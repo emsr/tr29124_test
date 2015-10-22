@@ -1,0 +1,2 @@
+../gcc/configure --prefix=/Users/ed/bin-4.3 --with-gmp=/usr/local --with-mpfr=/usr/local --enable-languages=c,c++,fortran,objc,obj-c++,treelang
+

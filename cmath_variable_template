@@ -1,0 +1,219 @@
+/*
+  Variable template math constants for the standard library.
+  Edward M. Smith-Rowland <esmith-rowland at alionscience dot com>
+  2014-03-12
+
+  We have variable templates in C++14.  In fact pi was offered as a use case for that feature.
+  We can do math constants right.  The constants in math.h are double precision
+  and promote computations unless you cast or erode long double precision.
+  These M_* constants are actually POSIX compatibility - std C++ does not mandate them.
+  GCC has extension for long double versions suffixed by 'l'
+  (but apparently no float versions with 'f' suffix).
+  In any case these macros don't help with generic code.
+  There are several bespoke versions of generic template math constants around libstdc++
+  using all the pre-variable-template techniques and with all the annoyances outlined
+  by the variable template proposal.
+
+  'Grammar' + Bikeshedding
+  I find 'm_' gives me flexibility in the 'grammar'.  We could do just '_'.  Or 'c_'.
+  Dividing numbers: 1_2 is 1/2, pi_2 is pi/2. Alt. _div_ seems wordy.
+  Multiples of pi: Npi (2pi, 4pi).   For some reason nobody cares about multiples of e
+  but 2e that would be my proposal for 2*e<> if someone were to want.
+  Function args preceded by '_' (unlike math.h!) make things easier to read.  Alt. revert that to math.h.
+  Lower case because these are not macros and because that's how we roll in the std library.
+
+  What to put in?
+  Help people with intensive calculations.
+  Division and sqrt are are more expensive than multiplication and integral powers.
+  Logs can take a while too.
+  This is a superset of math.h, <ext/cmath> from libstdc++ (with different grammar).
+
+  Prevent collision with an extra constants namespace after std.
+  Add namespace versioning.
+  Should I insert an experimental namespace between std and constants?
+
+  Should we default to double?  Doing so might play nice with auto.
+
+  Although it spoils the genericity of the template variable constants
+  we could offer typedefs to the different precisions.  I'll hold off for now.
+
+  I made the constants and math_constants name spaces inline for the same reason
+  library literal operator namespaces are inline: using std to get the math functions
+  should give you access to the constants as well.
+
+  This would go in some <cmath> or another.
+ */
+
+
+namespace std
+{
+namespace constants
+{
+namespace math_constants
+{
+inline namespace v1
+{
+  /// Constant: @f$ \pi @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_pi            = 3.1415'92653'58979'32384'62643'38327'95028'84195e+0L; // M_PIl
+
+  /// Constant: @f$ \pi / 2 @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_pi_2          = 1.5707'96326'79489'66192'31321'69163'97514'42098e+0L; // M_PI_2l
+
+  /// Constant: @f$ \pi / 3 @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_pi_3          = 1.0471'97551'19659'77461'54214'46109'31676'28063e+0L;
+
+  /// Constant: @f$ \pi / 4 @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_pi_4          = 7.8539'81633'97448'30961'56608'45819'87572'10488e-1L; // M_PI_4l
+
+  /// Constant: @f$ 4 \pi / 3 @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_4pi_3         = 4.1887'90204'78639'09846'16857'84437'26705'12253e+0L;
+
+  /// Constant: @f$ 2 \pi @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_2pi           = 6.2831'85307'17958'64769'25286'76655'90057'68391e+0L;
+
+  /// Constant: @f$ 4 \pi @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_4pi           = 1.2566'37061'43591'72953'85057'35331'18011'53678e+1L;
+
+  /// Constant: degrees per radian @f$ 180 / \pi @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_deg_rad       = 5.7295'77951'30823'20876'79815'48141'05170'33237e+1L;
+
+  /// Constant: radians per degree @f$ \pi / 180 @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_deg_rad       = 1.7453'29251'99432'95769'23690'76848'86127'13443e-2L;
+
+  /// Constant: @f$ \sqrt(\pi / 2) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_sqrt_pi_2     = 1.2533'14137'31550'02512'07882'64240'55226'26505e+0L;
+
+  /// Constant: @f$ 1 / \pi @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_1_pi          = 3.1830'98861'83790'67153'77675'26745'02872'40691e-1L; // M_1_PIl
+
+  /// Constant: @f$ 2 / \pi @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_2_pi          = 6.3661'97723'67581'34307'55350'53490'05744'81383e-1L; // M_2_PIl
+
+  /// Constant: @f$ 1 / \sqrt(\pi) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_1_sqrt_pi     = 5.6418'95835'47756'28694'80794'51560'77258'58438e-1L;
+
+  /// Constant: @f$ 2 / \sqrt(\pi) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_2_sqrt_pi     = 1.1283'79167'09551'25738'96158'90312'15451'71688e+0L; // M_2_SQRTPIl
+
+  /// Constant: Euler's number @f$ e @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_e             = 2.7182'81828'45904'52353'60287'47135'26624'97759e+0L; // M_El
+
+  /// Constant: @f$ 1 / e @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_1_e           = 3.6787'94411'71442'32159'55237'70161'46086'74462e-1L;
+
+  /// Constant: @f$ \log_2(e) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_log2_e        = 1.4426'95040'88896'34073'59924'68100'18921'37427e+0L; // M_LOG2El
+
+  /// Constant: @f$ \log_2(10) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_log2_10       = 3.3219'28094'88736'23478'70319'42948'93901'75867e+0L;
+
+  /// Constant: @f$ \log_10(2) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_log10_2       = 3.0102'99956'63981'19521'37388'94724'49302'67680e-1L;
+
+  /// Constant: @f$ \log_10(e) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_log10_e       = 4.3429'44819'03251'82765'11289'18916'60508'22940e-1L; // M_LOG10El
+
+  /// Constant: @f$ \log_10(pi) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_log10_pi      = 4.9714'98726'94133'85435'12682'88290'89887'36507e-1L;
+
+  /// Constant: @f$ \ln(2) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_ln_2          = 6.9314'71805'59945'30941'72321'21458'17656'80748e-1L; // M_LN2l
+
+  /// Constant: @f$ \ln(3) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_ln_3          = 1.0986'12288'66810'96913'95245'23692'25257'04648e+0L;
+
+  /// Constant: @f$ \ln(10) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_ln_10         = 2.3025'85092'99404'56840'17991'45468'43642'07602e+0L; // M_LN10l
+
+  /// Constant: Euler-Mascheroni @f$ \gamma_E @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_gamma_e       = 5.7721'56649'01532'86060'65120'90082'40243'10432e-1L;
+
+  /// Constant: Golden Ratio @f$ \phi = (1 + \sqrt{5})/2 @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_golden_ratio  = 1.6180'33988'74989'48482'04586'83436'56381'17720e+0L;
+
+  /// Constant: @f$ \sqrt(2) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_sqrt_2        = 1.4142'13562'37309'50488'01688'72420'96980'78569e+0L; // M_SQRT2l
+
+  /// Constant: @f$ \sqrt(3) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_sqrt_3        = 1.7320'50807'56887'72935'27446'34150'58723'66945e+0L;
+
+  /// Constant: @f$ \sqrt(5) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_sqrt_5        = 2.2360'67977'49978'96964'09173'66873'12762'35440e+0L;
+
+  /// Constant: @f$ \sqrt(7) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_sqrt_7        = 2.6457'51311'06459'05905'01615'75363'92604'25706e+0L;
+
+  /// Constant: @f$ 1 / \sqrt(2) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_sqrt_1_2      = 7.0710'67811'86547'52440'08443'62104'84903'92845e-1L; // M_SQRT1_2l
+
+  /// Constant: Catalan's @f$ G = 1 - 1/9 + 1/25 - 1/49 + 1/81 - ... @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_catalan       = 9.1596'55941'77219'01505'46035'14932'38411'07741e-1L;
+
+} // inline namespace v1
+} // namespace math_constants
+} // namespace constants
+} // namespace std

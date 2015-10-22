@@ -1,0 +1,34 @@
+Running target unix
+Using /usr/share/dejagnu/baseboards/unix.exp as board description file for target.
+Using /usr/share/dejagnu/config/unix.exp as generic interface file for target.
+Using /home/ed/gcc/libstdc++-v3/testsuite/config/default.exp as tool-and-target-specific interface file.
+Running /home/ed/gcc/libstdc++-v3/testsuite/libstdc++-abi/abi.exp ...
+Running /home/ed/gcc/libstdc++-v3/testsuite/libstdc++-dg/conformance.exp ...
+XPASS: 26_numerics/cmath/c99_classification_macros_c.cc (test for excess errors)
+XPASS: 27_io/fpos/14320-1.cc execution test
+FAIL: ext/enc_filebuf/char/13189.cc (test for excess errors)
+WARNING: ext/enc_filebuf/char/13189.cc compilation failed to produce executable
+FAIL: ext/enc_filebuf/char/13598.cc (test for excess errors)
+WARNING: ext/enc_filebuf/char/13598.cc compilation failed to produce executable
+FAIL: ext/enc_filebuf/wchar_t/13189.cc (test for excess errors)
+WARNING: ext/enc_filebuf/wchar_t/13189.cc compilation failed to produce executable
+FAIL: tr1/5_numerical_facilities/special_functions/01_assoc_laguerre/check_assoc_laguerre.cc execution test
+FAIL: tr1/5_numerical_facilities/special_functions/07_conf_hyperg/check_conf_hyperg.cc execution test
+FAIL: tr1/5_numerical_facilities/special_functions/07_conf_hyperg/check_nan.cc execution test
+FAIL: tr1/5_numerical_facilities/special_functions/14_ellint_3/check_ellint_3.cc execution test
+FAIL: tr1/5_numerical_facilities/special_functions/17_hyperg/check_hyperg.cc execution test
+FAIL: tr1/5_numerical_facilities/special_functions/17_hyperg/check_nan.cc execution test
+FAIL: tr1/5_numerical_facilities/special_functions/18_laguerre/check_laguerre.cc execution test
+FAIL: tr1/5_numerical_facilities/special_functions/22_sph_legendre/check_sph_legendre.cc execution test
+
+                === libstdc++ Summary ===
+
+# of expected passes            4605
+# of unexpected failures        11
+# of unexpected successes       2
+# of expected failures          14
+make[1]: *** [check-DEJAGNU] Error 1
+make[1]: Leaving directory `/home/ed/obj-4.3/x86_64-unknown-linux-gnu/libstdc++-v3/testsuite'
+make: *** [check-am] Error 2
+make: Target `check' not remade because of errors.
+[ed@localhost testsuite]$
