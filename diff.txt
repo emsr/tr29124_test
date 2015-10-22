@@ -1,0 +1,81 @@
+
+5.2.1.1   assoc_laguerre - good       - There are some stability issues at higher orders and arguments.
+                                        Look for some asymptotics.
+
+5.2.1.2   assoc_legendre - good       - There are some stability issues at higher orders
+                                        Check out what GSL is doing in gsl_sf_legendre_Plm_e.
+                                        Is there new research on working both Plm and Qlm together?
+
+5.2.1.3   beta           - great      - 
+
+5.2.1.4   comp_ellint_1  - great      - Use the Carlson formulations.
+                                        Put a good tolerance based on numeric_limits.
+                                        We need underflow and overflow guards based on numeric_limits.
+
+5.2.1.5   comp_ellint_2  - great      - Use the Carlson formulations.
+                                        Put a good tolerance based on numeric_limits.
+                                        We need underflow and overflow guards based on numeric_limits.
+
+5.2.1.6   comp_ellint_3  - great      - Use the Carlson formulations.
+                                        Put a good tolerance based on numeric_limits.
+                                        We need underflow and overflow guards based on numeric_limits.
+
+5.2.1.7   conf_hyperg    - great      - The stupid series seems to do pretty well.
+                                        Maybe try to push the a and c and x harder.
+                                        I need to do special login on nonpositive integral c.
+
+5.2.1.8   cyl_bessel_i   - great      - Watch nu = n + 1/2, x < 2; you need very accurate gamma functions.
+                                        It takes forever on MacOSX PPC on the long double!!!
+                                        It gives junk for modest argument on AMD x86_64.
+                                        I think we really need to compute scaled I_nu and K_nu
+                                        and then multiply the exponents.
+
+5.2.1.9   cyl_bessel_j   - great      - Watch nu = n + 1/2, x < 2; you need very accurate gamma functions.
+                                        Remember to wrap that copysign!
+
+5.2.1.10  cyl_bessel_k   - good       - Watch nu = n + 1/2, x < 2; you need very accurate gamma functions.
+                                        Higher orders get bad especially near the origin.
+
+5.2.1.11  cyl_neumann    - good       - Watch nu = n + 1/2, x < 2; you need very accurate gamma functions.
+                                        Higher orders get bad especially near the origin.
+                                        That gamma function needs to be horribly accurate.
+                                        All our Bessels need asymptotics!
+
+5.2.1.12  ellint_1       - great      - Use the Carlson formulations.
+                                        Put a good tolerance based on numeric_limits.
+                                        We need underflow and overflow guards based on numeric_limits.
+
+5.2.1.13  ellint_2       - great      - Use the Carlson formulations.
+                                        Put a good tolerance based on numeric_limits.
+                                        We need underflow and overflow guards based on numeric_limits.
+
+5.2.1.14  ellint_3       - great      - Use the Carlson formulations.
+                                        This is just comp_ellint_3 with one particular argument.
+                                        Put a good tolerance based on numeric_limits.
+                                        We need underflow and overflow guards based on numeric_limits.
+
+5.2.1.15  expint         - great      - negative arguments might not be so good relative to magnitude.
+                                        positive arguments migh be better relative to magnitude.
+                                        Look at series acceleration.
+                                        We need continued fractions greater than one and before asymptopia!
+
+5.2.1.16  hermite        - untested   - Look at scaled versions.
+
+5.2.1.17  hyperg         - good       - There are some spots where stability seems to wobble.
+
+5.2.1.18  laguerre       - good       - There are some stability issues at higher orders and arguments.
+                                        Look for some asymptotics.
+
+5.2.1.19  legendre       - great      - Seems rock solid unlike the associated version.
+
+5.2.1.20  riemann_zeta   - decent     - For negative even integers I might set these to zero.
+
+5.2.1.21  sph_bessel     - great      - This just calls the cylindrical Bessel function.
+
+5.2.1.22  sph_legendre   - great      - Don't mess with the associated legendre function.
+                                        Just do the corresponding iterations.
+
+5.2.1.23  sph_neumann    - good       - This just calls the cylindrical Neumann function.
+                                        There are issues for high orders.
+
+
