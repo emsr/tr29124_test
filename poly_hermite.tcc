@@ -43,78 +43,78 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
-  // Implementation-space details.
-  namespace __detail
-  {
-  _GLIBCXX_BEGIN_NAMESPACE_VERSION
+// Implementation-space details.
+namespace __detail
+{
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
-    /**
-     *   @brief This routine returns the Hermite polynomial
-     *          of order n: \f$ H_n(x) \f$ by recursion on n.
-     * 
-     *   The Hermite polynomial is defined by:
-     *   @f[
-     *     H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
-     *   @f]
-     *
-     *   @param __n The order of the Hermite polynomial.
-     *   @param __x The argument of the Hermite polynomial.
-     *   @return The value of the Hermite polynomial of order n
-     *           and argument x.
-     */
-    template<typename _Tp>
+  /**
+   *   @brief This routine returns the Hermite polynomial
+   *          of order n: \f$ H_n(x) \f$ by recursion on n.
+   * 
+   *   The Hermite polynomial is defined by:
+   *   @f[
+   *     H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
+   *   @f]
+   *
+   *   @param __n The order of the Hermite polynomial.
+   *   @param __x The argument of the Hermite polynomial.
+   *   @return The value of the Hermite polynomial of order n
+   *           and argument x.
+   */
+  template<typename _Tp>
     _Tp
     __poly_hermite_recursion(unsigned int __n, _Tp __x)
     {
       //  Compute H_0.
       _Tp __H_nm2 = 1;
       if (__n == 0)
-        return __H_nm2;
+	return __H_nm2;
 
       //  Compute H_1.
       _Tp __H_nm1 = 2 * __x;
       if (__n == 1)
-        return __H_nm1;
+	return __H_nm1;
 
       //  Compute H_n.
       _Tp __H_n;
       for (unsigned int __i = 2; __i <= __n; ++__i)
-        {
-          __H_n = 2 * (__x * __H_nm1 - (__i - 1) * __H_nm2);
-          __H_nm2 = __H_nm1;
-          __H_nm1 = __H_n;
-        }
+	{
+	  __H_n = 2 * (__x * __H_nm1 - (__i - 1) * __H_nm2);
+	  __H_nm2 = __H_nm1;
+	  __H_nm1 = __H_n;
+	}
 
       return __H_n;
     }
 
 
-    /**
-     *   @brief This routine returns the Hermite polynomial
-     *          of order n: \f$ H_n(x) \f$.
-     * 
-     *   The Hermite polynomial is defined by:
-     *   @f[
-     *     H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
-     *   @f]
-     *
-     *   @param __n The order of the Hermite polynomial.
-     *   @param __x The argument of the Hermite polynomial.
-     *   @return The value of the Hermite polynomial of order n
-     *           and argument x.
-     */
-    template<typename _Tp>
+  /**
+   *   @brief This routine returns the Hermite polynomial
+   *          of order n: \f$ H_n(x) \f$.
+   * 
+   *   The Hermite polynomial is defined by:
+   *   @f[
+   *     H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
+   *   @f]
+   *
+   *   @param __n The order of the Hermite polynomial.
+   *   @param __x The argument of the Hermite polynomial.
+   *   @return The value of the Hermite polynomial of order n
+   *           and argument x.
+   */
+  template<typename _Tp>
     inline _Tp
     __poly_hermite(unsigned int __n, _Tp __x)
     {
       if (__isnan(__x))
-        return std::numeric_limits<_Tp>::quiet_NaN();
+	return std::numeric_limits<_Tp>::quiet_NaN();
       else
-        return __poly_hermite_recursion(__n, __x);
+	return __poly_hermite_recursion(__n, __x);
     }
 
-  _GLIBCXX_END_NAMESPACE_VERSION
-  } // namespace __detail
+_GLIBCXX_END_NAMESPACE_VERSION
+} // namespace __detail
 }
 
 #endif // _GLIBCXX_BITS_POLY_HERMITE_TCC
