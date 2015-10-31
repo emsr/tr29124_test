@@ -50,26 +50,24 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
-  // [5.2] Special functions
+// Implementation-space details.
+namespace __detail
+{
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
-  // Implementation-space details.
-  namespace __detail
-  {
-  _GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-    /**
-     *   @brief  Return the beta function: \f$B(x,y)\f$.
-     * 
-     *   The beta function is defined by
-     *   @f[
-     *     B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
-     *   @f]
-     *
-     *   @param __x The first argument of the beta function.
-     *   @param __y The second argument of the beta function.
-     *   @return  The beta function.
-     */
-    template<typename _Tp>
+  /**
+   *   @brief  Return the beta function: \f$B(x,y)\f$.
+   * 
+   *   The beta function is defined by
+   *   @f[
+   *     B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+   *   @f]
+   *
+   *   @param __x The first argument of the beta function.
+   *   @param __y The second argument of the beta function.
+   *   @return  The beta function.
+   */
+  template<typename _Tp>
     _Tp
     __beta_gamma(_Tp __x, _Tp __y)
     {
@@ -77,78 +75,78 @@ namespace std _GLIBCXX_VISIBILITY(default)
       _Tp __bet;
 #if _GLIBCXX_USE_C99_MATH_TR1
       if (__x > __y)
-        {
-          __bet = TR1NS tgamma(__x)
-                / TR1NS tgamma(__x + __y);
-          __bet *= TR1NS tgamma(__y);
-        }
+	{
+	  __bet = TR1NS tgamma(__x)
+		/ TR1NS tgamma(__x + __y);
+	  __bet *= TR1NS tgamma(__y);
+	}
       else
-        {
-          __bet = TR1NS tgamma(__y)
-                / TR1NS tgamma(__x + __y);
-          __bet *= TR1NS tgamma(__x);
-        }
+	{
+	  __bet = TR1NS tgamma(__y)
+		/ TR1NS tgamma(__x + __y);
+	  __bet *= TR1NS tgamma(__x);
+	}
 #else
       if (__x > __y)
-        {
-          __bet = __gamma(__x) / __gamma(__x + __y);
-          __bet *= __gamma(__y);
-        }
+	{
+	  __bet = __gamma(__x) / __gamma(__x + __y);
+	  __bet *= __gamma(__y);
+	}
       else
-        {
-          __bet = __gamma(__y) / __gamma(__x + __y);
-          __bet *= __gamma(__x);
-        }
+	{
+	  __bet = __gamma(__y) / __gamma(__x + __y);
+	  __bet *= __gamma(__x);
+	}
 #endif
 
       return __bet;
     }
 
-    /**
-     *   @brief  Return the beta function \f$B(x,y)\f$ using
-     *           the log gamma functions.
-     * 
-     *   The beta function is defined by
-     *   @f[
-     *     B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
-     *   @f]
-     *
-     *   @param __x The first argument of the beta function.
-     *   @param __y The second argument of the beta function.
-     *   @return  The beta function.
-     */
-    template<typename _Tp>
+  /**
+   *   @brief  Return the beta function \f$B(x,y)\f$ using
+   *           the log gamma functions.
+   * 
+   *   The beta function is defined by
+   *   @f[
+   *     B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+   *   @f]
+   *
+   *   @param __x The first argument of the beta function.
+   *   @param __y The second argument of the beta function.
+   *   @return  The beta function.
+   */
+  template<typename _Tp>
     _Tp
     __beta_lgamma(_Tp __x, _Tp __y)
     {
 #if _GLIBCXX_USE_C99_MATH_TR1
       _Tp __bet = TR1NS lgamma(__x)
-                + TR1NS lgamma(__y)
-                - TR1NS lgamma(__x + __y);
+		+ TR1NS lgamma(__y)
+		- TR1NS lgamma(__x + __y);
 #else
       _Tp __bet = __log_gamma(__x)
-                + __log_gamma(__y)
-                - __log_gamma(__x + __y);
+		+ __log_gamma(__y)
+		- __log_gamma(__x + __y);
 #endif
       __bet = std::exp(__bet);
       return __bet;
     }
 
 
-    /**
-     *   @brief  Return the beta function \f$B(x,y)\f$ using
-     *           the product form.
-     * 
-     *   The beta function is defined by
-     *   @f[
-     *     B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
-     *   @f]
-     *
-     *   @param __x The first argument of the beta function.
-     *   @param __y The second argument of the beta function.
-     *   @return  The beta function.
-     */
-    template<typename _Tp>
+  /**
+   *   @brief  Return the beta function \f$B(x,y)\f$ using
+   *           the product form.
+   * 
+   *   The beta function is defined by
+   *   @f[
+   *     B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+   *   @f]
+   *
+   *   @param __x The first argument of the beta function.
+   *   @param __y The second argument of the beta function.
+   *   @return  The beta function.
+   */
+  template<typename _Tp>
     _Tp
     __beta_product(_Tp __x, _Tp __y)
     {
@@ -158,40 +156,40 @@ namespace std _GLIBCXX_VISIBILITY(default)
       const unsigned int __max_iter = 1000000;
 
       for (unsigned int __k = 1; __k < __max_iter; ++__k)
-        {
-          _Tp __term = (_Tp(1) + (__x + __y) / __k)
-                     / ((_Tp(1) + __x / __k) * (_Tp(1) + __y / __k));
-          __bet *= __term;
-        }
+	{
+	  _Tp __term = (_Tp(1) + (__x + __y) / __k)
+		     / ((_Tp(1) + __x / __k) * (_Tp(1) + __y / __k));
+	  __bet *= __term;
+	}
 
       return __bet;
     }
 
 
-    /**
-     *   @brief  Return the beta function \f$ B(x,y) \f$.
-     * 
-     *   The beta function is defined by
-     *   @f[
-     *     B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
-     *   @f]
-     *
-     *   @param __x The first argument of the beta function.
-     *   @param __y The second argument of the beta function.
-     *   @return  The beta function.
-     */
-    template<typename _Tp>
+  /**
+   *   @brief  Return the beta function \f$ B(x,y) \f$.
+   * 
+   *   The beta function is defined by
+   *   @f[
+   *     B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+   *   @f]
+   *
+   *   @param __x The first argument of the beta function.
+   *   @param __y The second argument of the beta function.
+   *   @return  The beta function.
+   */
+  template<typename _Tp>
     inline _Tp
     __beta(_Tp __x, _Tp __y)
     {
       if (__isnan(__x) || __isnan(__y))
-        return std::numeric_limits<_Tp>::quiet_NaN();
+	return std::numeric_limits<_Tp>::quiet_NaN();
       else
-        return __beta_lgamma(__x, __y);
+	return __beta_lgamma(__x, __y);
     }
 
-  _GLIBCXX_END_NAMESPACE_VERSION
-  } // namespace __detail
+_GLIBCXX_END_NAMESPACE_VERSION
+} // namespace __detail
 }
 
 #endif // __GLIBCXX_BITS_BETA_FUNCTION_TCC

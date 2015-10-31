@@ -4,7 +4,7 @@
      *  @brief Evaluate polynomial based on the confluent hypergeometric
      *         representation.
      *  @f[
-     *    L_n^\alpha(x) = (\alpha + 1)_n / n! _1F_1(-n,\alpha + 1, x)
+     *    L_n^\alpha(x) = (\alpha + 1)_n / n! _1F_1(-n, \alpha + 1, x)
      *  @f]
      *  Assumes n > 0 and @f$ \alpha @f$ != negative integer greater than -n.
      */
