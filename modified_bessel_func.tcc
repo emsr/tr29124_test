@@ -360,45 +360,45 @@ namespace std _GLIBCXX_VISIBILITY(default)
    */
   template<typename _Tp>
     void
-    __airy(_Tp __x, _Tp & __Ai, _Tp & __Bi, _Tp & __Aip, _Tp & __Bip)
+    __airy(_Tp __z, _Tp & __Ai, _Tp & __Bi, _Tp & __Aip, _Tp & __Bip)
     {
-      const _Tp __absx = std::abs(__x);
-      const _Tp __rootx = std::sqrt(__absx);
-      const _Tp __z = _Tp(2) * __absx * __rootx / _Tp(3);
+      const _Tp __absz = std::abs(__z);
+      const _Tp __rootz = std::sqrt(__absz);
+      const _Tp __xi = _Tp(2) * __absz * __rootz / _Tp(3);
 
-      if (__x > _Tp(0))
+      if (__z > _Tp(0))
 	{
 	  _Tp __I_nu, __Ip_nu, __K_nu, __Kp_nu;
 
-	  __bessel_ik(_Tp(1) / _Tp(3), __z, __I_nu, __K_nu, __Ip_nu, __Kp_nu);
-	  __Ai = __rootx * __K_nu
+	  __bessel_ik(_Tp(1) / _Tp(3), __xi, __I_nu, __K_nu, __Ip_nu, __Kp_nu);
+	  __Ai = __rootz * __K_nu
 	       / (__numeric_constants<_Tp>::__sqrt3()
 		* __numeric_constants<_Tp>::__pi());
-	  __Bi = __rootx * (__K_nu / __numeric_constants<_Tp>::__pi()
+	  __Bi = __rootz * (__K_nu / __numeric_constants<_Tp>::__pi()
 		 + _Tp(2) * __I_nu / __numeric_constants<_Tp>::__sqrt3());
 
-	  __bessel_ik(_Tp(2) / _Tp(3), __z, __I_nu, __K_nu, __Ip_nu, __Kp_nu);
-	  __Aip = -__x * __K_nu
+	  __bessel_ik(_Tp(2) / _Tp(3), __xi, __I_nu, __K_nu, __Ip_nu, __Kp_nu);
+	  __Aip = -__z * __K_nu
 		/ (__numeric_constants<_Tp>::__sqrt3()
 		 * __numeric_constants<_Tp>::__pi());
-	  __Bip = __x * (__K_nu / __numeric_constants<_Tp>::__pi()
+	  __Bip = __z * (__K_nu / __numeric_constants<_Tp>::__pi()
 		      + _Tp(2) * __I_nu
 		      / __numeric_constants<_Tp>::__sqrt3());
 	}
-      else if (__x < _Tp(0))
+      else if (__z < _Tp(0))
 	{
 	  _Tp __J_nu, __Jp_nu, __N_nu, __Np_nu;
 
-	  __bessel_jn(_Tp(1) / _Tp(3), __z, __J_nu, __N_nu, __Jp_nu, __Np_nu);
-	  __Ai = __rootx * (__J_nu
+	  __bessel_jn(_Tp(1) / _Tp(3), __xi, __J_nu, __N_nu, __Jp_nu, __Np_nu);
+	  __Ai = __rootz * (__J_nu
 		    - __N_nu / __numeric_constants<_Tp>::__sqrt3()) / _Tp(2);
-	  __Bi = -__rootx * (__N_nu
+	  __Bi = -__rootz * (__N_nu
 		    + __J_nu / __numeric_constants<_Tp>::__sqrt3()) / _Tp(2);
 
-	  __bessel_jn(_Tp(2) / _Tp(3), __z, __J_nu, __N_nu, __Jp_nu, __Np_nu);
-	  __Aip = __absx * (__N_nu / __numeric_constants<_Tp>::__sqrt3()
+	  __bessel_jn(_Tp(2) / _Tp(3), __xi, __J_nu, __N_nu, __Jp_nu, __Np_nu);
+	  __Aip = __absz * (__N_nu / __numeric_constants<_Tp>::__sqrt3()
 			  + __J_nu) / _Tp(2);
-	  __Bip = __absx * (__J_nu / __numeric_constants<_Tp>::__sqrt3()
+	  __Bip = __absz * (__J_nu / __numeric_constants<_Tp>::__sqrt3()
 			  - __N_nu) / _Tp(2);
 	}
       else
