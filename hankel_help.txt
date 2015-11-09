@@ -1,0 +1,27 @@
+
+nedit cylsubs.f hankel_debye.f hankel.f region.f test_hankel_old.f hankel.h hankel.tcc airy.tcc test_hankel.cpp hankel_toy.cpp hankel_help.txt &
+kdiff3 test_hankel.out test_hankel_old.out test_hankel_orig.out &
+
+notepad cylsubs.f hankel_debye.f hankel.f region.f test_hankel_old.f hankel.h hankel.tcc airy.tcc test_hankel.cpp hankel_toy.cpp hankel_help.txt &
+kdiff3 test_hankel.out test_hankel_old.out test_hankel_orig.out &
+
+$HOME/bin/bin/g++ -std=c++14 -Wall -Wextra -o test_hankel test_hankel.cpp > /dev/null
+./test_hankel > ./test_hankel.out
+
+$HOME/bin/bin/gfortran -I$HOME/ARAPP/diffraction -o test_hankel_old test_hankel_old.f region.f cylsubs.f hankel.f hankel_debye.f
+./test_hankel_old > ./test_hankel_old.out
+
+$HOME/bin/bin/gfortran -I$HOME/ARAPP/diffraction -o test_hankel_orig test_hankel_old.f orig/*.f
+./test_hankel_orig > ./test_hankel_orig.out
+
+
+
+$HOME/bin/bin/gfortran -I$HOME/ARAPP/diffraction -o test_hankel_orig test_hankel_old.f $HOME/ARAPP/diffraction/region.f $HOME/ARAPP/diffraction/cylsubs.f $HOME/ARAPP/diffraction/augment.f $HOME/ARAPP/diffraction/hfuns.f $HOME/ARAPP/diffraction/h_debye.f $HOME/ARAPP/diffraction/hyper.f
+./test_hankel_orig > ./test_hankel_orig.out
+
+
+
+
+kdiff3 region.f $HOME/ARAPP/diffraction/region.f &
+
+kdiff3 cylsubs.f $HOME/ARAPP/diffraction/cylsubs.f &
