@@ -28,7 +28,7 @@
 // invalidate any other reasons why the executable file might be covered by
 // the GNU General Public License.
 
-/** @file tr1/poly_hermite.tcc
+/** @file tr1/sf_hermite.tcc
  *  This is an internal header file, included by other library headers.
  *  You should not attempt to use it directly.
  */

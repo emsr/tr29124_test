@@ -22,13 +22,13 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/airy.tcc
+/** @file bits/sf_airy.tcc
  *  This is an internal header file, included by other library headers.
  *  You should not attempt to use it directly.
  */
 
-#ifndef _GLIBCXX_BITS_AIRY_TCC
-#define _GLIBCXX_BITS_AIRY_TCC 1
+#ifndef _GLIBCXX_BITS_SF_AIRY_TCC
+#define _GLIBCXX_BITS_SF_AIRY_TCC 1
 
 #pragma GCC system_header
 
@@ -89,25 +89,25 @@ namespace __detail
    *  Airy function and its derivative.
    *  The representations are recorded here for reference:
    *
-   *    	    sqrt(z)
-   *  (1) Ai(z)	= ------- (I_(-1/3)(xi) - I_(1/3)(xi))
+   *    	  \sqrt(z)  
+   *  (1) Ai(z)	= ------- (I_(-1/3)(\xi) - I_(1/3)(\xi))
    *    	       3
    *
-   *    	    sqrt(z/3)
-   *  (2) Ai(z)	= --------- K_(1/3)(xi)
+   *    	  \sqrt(z/3) 
+   *  (2) Ai(z)	= --------- K_(1/3)(\xi)
    *    	       pi
    *
    *    	      2/3  -5/6
-   *    	     2	3
+   *    	     2	  3
    *    	  =  --------  z exp(-xi) U(5/6; 5/3; 2 xi)
    *    	     sqrt(pi)
    *
-   *    	    sqrt(z)
-   *  (3) Ai(-z)  = ------- (J_(-1/3)(xi) + J_(1/3)(xi))
+   *    	    \sqrt(z)
+   *  (3) Ai(-z)  = --------(J_{-1/3}(\xi) + J_{1/3}(\xi))
    *    	       3
    *
    *    	    z
-   *  (4) Ai'(z)  = - (I_(2/3)(xi) - I_(-2/3)(xi))
+   *  (4) Ai'(z)  = - (I_(2/3)(\xi) - I_(-2/3)(\xi))
    *    	    3
    *
    *    		   z
@@ -115,17 +115,17 @@ namespace __detail
    *    	      pi sqrt(3)
    *
    *    		2/3  -7/6
-   *    	       4    3    2
-   *    	  =  - -------- Z  exp(-xi) U(7/6; 7/3; 2 xi)
-   *    	       sqrt(pi)
+   *    	       4    3      2
+   *    	  =  - ---------  z exp(-\xi) U(7/6; 7/3; 2 \xi)
+   *    	       sqrt(\pi)
    *
    *    	     z
-   *  (6) Ai'(-z) =  - (J_(2/3)(xi) - J_(-2/3)(xi)) ,
+   *  (6) Ai'(-z) =  - (J_{2/3}(\xi) - J_{-2/3}(\xi)) ,
    *    	     3
    *
-   *    	 2  3/2
-   *  Where xi = - z    and U(a;b;z) is the confluent hypergeometric
-   *        	 3
+   *    	  2  3/2
+   *  Where \xi = - z    and U(a;b;z) is the confluent hypergeometric
+   *        	  3
    *  function as defined in
    *
    *  @see Stegun, I. A. and Abramowitz, M., Handbook of Mathematical Functions,
@@ -165,11 +165,11 @@ namespace __detail
    *  the corresponding Bessel functions of the first kind are recovered
    *  via the identities
    *
-   *        J_nu(z) = exp(nu pi i/2) I_nu(z exp(-pi i/2)),
-   *    	  0 <= arg(z) <= pi/2
+   *        J_\nu(z) = exp(\nu \pi i/2) I_\nu(z exp(-\pi i/2)),
+   *    	  0 <= arg(z) <= \pi/2
    *  and
-   *        J_nu(z) = exp(-nu pi i/2) I_nu(z exp(pi i/2)),
-   *    	 -pi/2 <= arg(z) < 0 .
+   *        J_\nu(z) = exp(-\nu \pi i/2) I_\nu(z exp(\pi i/2)),
+   *    	 -\pi/2 <= arg(z) < 0 .
    *
    *  The particular backward recursion algorithm used is discussed in 
    *
@@ -372,14 +372,14 @@ namespace __detail
    *  Miller's algorithm for computation by backward recurrence
    *  from the recurrence relation
    *
-   *    I_(nu-1) = (2*nu/z)*I_nu + I_(nu+1)
+   *    I_{\nu-1} = (2*\nu/z)*I_\nu + I_{\nu+1}
    *
    *  satisfied by the modified Bessel functions of the first kind.
    *  the normalization relationship used is
-   *         nu z 
-   *    (z/2)  e                   inf  (k+nu)*Gamma(2 nu+k)
-   *    -----------  = I_nu(z) + 2 SUM  -------------------- I_(nu+k)(z).
-   *    Gamma(nu+1)                k=1   k! Gamma(1 + 2 nu)   
+   *         
+   *    (z/2)^\nu e^z                 \inf (k+\nu)*\Gamma(2\nu+k)
+   *    -------------  = I_\nu(z) + 2 SUM  ---------------------- I_{\nu+k}(z).
+   *    \Gamma(\nu+1)                 k=1   k!\Gamma(1+2\nu)   
    *
    *  This modification of the algorithm is given in part in
    *
@@ -613,7 +613,7 @@ namespace __detail
    *
    *  This routine computes
    *
-   *    E_nu(z) = exp(z) sqrt(2 z/pi) K_nu(z), for nu = 1/3 and nu = 2/3
+   *    E_\nu(z) = exp(z) sqrt(2 z/\pi) K_\nu(z), for \nu = 1/3 and \nu = 2/3
    *
    *  using a rational approximation given in
    *
@@ -1205,4 +1205,4 @@ namespace __detail
 } // namespace __detail
 } // namespace std
 
-#endif // _GLIBCXX_BITS_AIRY_TCC
+#endif // _GLIBCXX_BITS_SF_AIRY_TCC

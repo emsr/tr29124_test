@@ -32,10 +32,10 @@
 
 #pragma GCC system_header
 
-//#include <bits/hankel.tcc>
-//#include <bits/airy.tcc>
-#include "hankel.tcc"
-#include "airy.tcc"
+//#include <bits/sf_airy.tcc>
+//#include <bits/sf_hankel.tcc>
+#include "sf_airy.tcc"
+#include "sf_hankel.tcc"
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {

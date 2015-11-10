@@ -2,7 +2,7 @@
 #include <cmath>
 #include <stdexcept>
 
-#include <gsl/gsl_sf.h>
+//#include <gsl/gsl_sf.h>
 
 #include "gsl_wrap.h"
 

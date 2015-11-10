@@ -1,5 +1,5 @@
 
-// ../bin/bin/g++ -g -std=c++11 -o carlson1 carlson1.cpp
+// $HOME/bin/bin/g++ -g -std=c++11 -o carlson1 carlson1.cpp
 
 #include <cmath>
 #include <iostream>
@@ -9,7 +9,8 @@
 //  This should be added to <complex>.  Or not?
 
 namespace __gnu_cxx
-{ //_GLIBCXX_BEGIN_NAMESPACE(__gnu_cxx)
+{
+//_GLIBCXX_BEGIN_NAMESPACE(__gnu_cxx)
 
   //  They recently poisoned __promote in ext/type_traits.h to prevent usage of math functions with weird types
   template<>
@@ -24,14 +25,13 @@ namespace __gnu_cxx
     struct __promote<std::complex<float>>
     { typedef std::complex<float> __type; };
 
-} //_GLIBCXX_END_NAMESPACE
+//_GLIBCXX_END_NAMESPACE
+} // namespace __gnu_cxx
 
-
-// From bits/special_function_util.h
+// From bits/specfun_util.h
 
 namespace std
 {
-
 namespace __detail
 {
 
@@ -43,7 +43,6 @@ namespace __detail
     {
       static const _Tp __value;
     };
-
 
   /// A structure for numeric constants.
   template<typename _Tp>
@@ -90,7 +89,6 @@ namespace __detail
       { return static_cast<_Tp>(2.7182818284590452353602874713526625L); }
     };
 
-
 #if _GLIBCXX_USE_C99_MATH && !_GLIBCXX_USE_C99_FP_MACROS_DYNAMIC
 
   /// This is a wrapper for the isnan function. Otherwise, for NaN,
@@ -121,29 +119,60 @@ namespace __detail
 
 #endif
 
+  template<typename _Tp>
+    inline bool
+    __isnan(const std::complex<_Tp>& __x)
+    { return __isnan(std::real(__x)) || __isnan(std::imag(__x)); }
+
+
+  template<typename _Tp>
+    inline _Tp
+    __quiet_NaN(_Tp)
+    { return std::numeric_limits<_Tp>::quiet_NaN(); }
+
+  template<typename _Tp>
+    inline std::complex<_Tp>
+    __quiet_NaN(std::complex<_Tp>)
+    {
+      auto __nan = std::numeric_limits<_Tp>::quiet_NaN();
+      return std::complex<_Tp>(__nan, __nan);
+    }
+
+
+  template<typename _Tp>
+    inline _Tp
+    __infinity(_Tp)
+    { return std::numeric_limits<_Tp>::infinity(); }
+
+  template<typename _Tp>
+    inline std::complex<_Tp>
+    __infinity(std::complex<_Tp>)
+    {
+      auto __inf = std::numeric_limits<_Tp>::infinity();
+      return std::complex<_Tp>(__inf, __inf);
+    }
+
 } // namespace __detail
+} // namespace std
 
-}
-
-// End bits/special_function_util.h
+// End bits/specfun_util.h
 
 namespace std
 {
-
 namespace __detail
 {
 
   template<typename _Tp>
     struct __ellint_traits
     {
-      typedef _Tp __value_type;
+      using __value_type = _Tp;
     };
 
   template<>
     template<typename _Tp>
       struct __ellint_traits<std::complex<_Tp>>
       {
-	typedef _Tp __value_type;
+	using __value_type = typename std::complex<_Tp>::value_type;
       };
 
   /**
@@ -165,7 +194,7 @@ namespace __detail
     _Tp
     __ellint_rf(_Tp __x, _Tp __y, _Tp __z)
     {
-      using _Val = __ellint_traits<_Tp>::__value_type;;
+      using _Val = typename __ellint_traits<_Tp>::__value_type;
       const _Val __r = std::numeric_limits<_Val>::epsilon();
       _Tp __xt = __x;
       _Tp __yt = __y;
@@ -231,7 +260,7 @@ namespace __detail
     _Tp
     __ellint_rc(_Tp __x, _Tp __y)
     {
-      using _Val = __ellint_traits<_Tp>::__value_type;;
+      using _Val = typename __ellint_traits<_Tp>::__value_type;
       if (std::imag(__y) == _Val(0) && std::real(__y) < _Val(0))
 	return std::sqrt(__x / (__x - __y)) * __ellint_rc(__x - __y, -__y);
       const _Val __r = std::numeric_limits<_Val>::epsilon();
@@ -291,7 +320,7 @@ namespace __detail
     _Tp
     __ellint_rj(_Tp __x, _Tp __y, _Tp __z, _Tp __p)
     {
-      using _Val = __ellint_traits<_Tp>::__value_type;;
+      using _Val = typename __ellint_traits<_Tp>::__value_type;
       const _Val __r = std::numeric_limits<_Val>::epsilon();
       _Tp __xt = __x;
       _Tp __yt = __y;
@@ -380,7 +409,7 @@ namespace __detail
     _Tp
     __ellint_rd(_Tp __x, _Tp __y, _Tp __z)
     {
-      using _Val = __ellint_traits<_Tp>::__value_type;;
+      using _Val = typename __ellint_traits<_Tp>::__value_type;
       const _Val __r = std::numeric_limits<_Val>::epsilon();
       _Tp __xt = __x;
       _Tp __yt = __y;
@@ -434,7 +463,7 @@ namespace __detail
     _Tp
     __comp_ellint_rf(_Tp __x, _Tp __y)
     {
-      using _Val = __ellint_traits<_Tp>::__value_type;;
+      using _Val = typename __ellint_traits<_Tp>::__value_type;
       const _Val __r = std::numeric_limits<_Val>::epsilon();
       const _Val __tolfact = _Val(2.7L) * std::sqrt(__r);
       __x = std::sqrt(__x);
@@ -480,7 +509,7 @@ namespace __detail
     _Tp
     __ellint_rg(_Tp __x, _Tp __y, _Tp __z)
     {
-      using _Val = __ellint_traits<_Tp>::__value_type;;
+      using _Val = typename __ellint_traits<_Tp>::__value_type;
       if (__z == _Tp())
 	{
 	  if (__x == _Tp())
@@ -518,7 +547,7 @@ namespace __detail
     _Tp
     __comp_ellint_rg(_Tp __x, _Tp __y)
     {
-      using _Val = __ellint_traits<_Tp>::__value_type;;
+      using _Val = typename __ellint_traits<_Tp>::__value_type;
       const _Val __r = std::numeric_limits<_Val>::epsilon();
       const _Val __tolfact = _Val(2.7L) * std::sqrt(__r);
       _Tp __xt = std::sqrt(__x);
@@ -558,7 +587,7 @@ namespace __detail
     _Tp
     __comp_ellint_1(const _Tp __k)
     {
-      if (__isnan(std::real(__k)) || __isnan(std::imag(__k)))
+      if (__isnan(__k))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       //else if (std::abs(__k) >= _Tp(1))
 	//return std::numeric_limits<_Tp>::quiet_NaN();
@@ -780,12 +809,12 @@ namespace __detail
 	}
     }
 
-} // __detail
-
-}
+} // namespace __detail
+} // namespace std
 
 namespace __gnu_cxx
 {
+//_GLIBCXX_BEGIN_NAMESPACE(__gnu_cxx)
 
   inline float
   ellint_rff(float __x, float __y, float __z)
@@ -866,7 +895,9 @@ namespace __gnu_cxx
       typedef typename __gnu_cxx::__promote_3<_Tp, _Up, _Vp>::__type __type;
       return std::__detail::__ellint_rg<__type>(__x, __y, __z);
     }
-}
+
+//_GLIBCXX_END_NAMESPACE
+} // namespace __gnu_cxx
 
 
 int

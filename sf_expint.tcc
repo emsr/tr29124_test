@@ -22,7 +22,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/exp_integral.tcc
+/** @file bits/sf_expint.tcc
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{cmath}
  */
@@ -43,10 +43,10 @@
 //       2nd ed, pp. 222-225.
 //
 
-#ifndef _GLIBCXX_BITS_EXP_INTEGRAL_TCC
-#define _GLIBCXX_BITS_EXP_INTEGRAL_TCC 1
+#ifndef _GLIBCXX_BITS_SF_EXPINT_TCC
+#define _GLIBCXX_BITS_SF_EXPINT_TCC 1
 
-#include <bits/special_function_util.h>
+#include <bits/specfun_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -519,4 +519,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 }
 
-#endif // _GLIBCXX_BITS_EXP_INTEGRAL_TCC
+#endif // _GLIBCXX_BITS_SF_EXPINT_TCC

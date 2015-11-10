@@ -28,7 +28,7 @@
 // invalidate any other reasons why the executable file might be covered by
 // the GNU General Public License.
 
-/** @file tr1/bessel_function.tcc
+/** @file tr1/sf_bessel.tcc
  *  This is an internal header file, included by other library headers.
  *  You should not attempt to use it directly.
  */
@@ -50,7 +50,7 @@
 #ifndef _TR1_BESSEL_FUNCTION_TCC
 #define _TR1_BESSEL_FUNCTION_TCC 1
 
-#include "special_function_util.h"
+#include "specfun_util.h"
 
 namespace std
 {
