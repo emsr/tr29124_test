@@ -22,7 +22,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/ell_integral.tcc
+/** @file bits/sf_ellint.tcc
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{cmath}
  */
@@ -41,8 +41,8 @@
 //        W. T. Vetterling, B. P. Flannery, Cambridge University Press
 //        (1992), pp. 261-269
 
-#ifndef _GLIBCXX_BITS_ELL_INTEGRAL_TCC
-#define _GLIBCXX_BITS_ELL_INTEGRAL_TCC 1
+#ifndef _GLIBCXX_BITS_SF_ELLINT_TCC
+#define _GLIBCXX_BITS_SF_ELLINT_TCC 1
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -741,5 +741,5 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 }
 
-#endif // _GLIBCXX_BITS_ELL_INTEGRAL_TCC
+#endif // _GLIBCXX_BITS_SF_ELLINT_TCC
 

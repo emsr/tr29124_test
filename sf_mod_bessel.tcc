@@ -22,7 +22,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/modified_bessel_func.tcc
+/** @file bits/sf_mod_bessel.tcc
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{cmath}
  */
@@ -43,17 +43,17 @@
 //       W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
 //       2nd ed, pp. 246-249.
 
-#ifndef _GLIBCXX_BITS_MODIFIED_BESSEL_FUNC_TCC
-#define _GLIBCXX_BITS_MODIFIED_BESSEL_FUNC_TCC 1
+#ifndef _GLIBCXX_BITS_SF_MOD_BESSEL_TCC
+#define _GLIBCXX_BITS_SF_MOD_BESSEL_TCC 1
 
-#include <bits/special_function_util.h>
+#include <bits/specfun_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
-  // Implementation-space details.
-  namespace __detail
-  {
-  _GLIBCXX_BEGIN_NAMESPACE_VERSION
+// Implementation-space details.
+namespace __detail
+{
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *   @brief  Compute the modified Bessel functions @f$ I_\nu(x) @f$ and
@@ -64,37 +64,37 @@ namespace std _GLIBCXX_VISIBILITY(default)
    *
    *   @param  __nu  The order of the Bessel functions.
    *   @param  __x   The argument of the Bessel functions.
-   *   @param  __Inu  The output regular modified Bessel function.
-   *   @param  __Knu  The output irregular modified Bessel function.
-   *   @param  __Ipnu  The output derivative of the regular
+   *   @param  _Inu  The output regular modified Bessel function.
+   *   @param  _Knu  The output irregular modified Bessel function.
+   *   @param  _Ipnu  The output derivative of the regular
    *                   modified Bessel function.
-   *   @param  __Kpnu  The output derivative of the irregular
+   *   @param  _Kpnu  The output derivative of the irregular
    *                   modified Bessel function.
    */
   template<typename _Tp>
     void
     __bessel_ik(_Tp __nu, _Tp __x,
-		_Tp & __Inu, _Tp & __Knu, _Tp & __Ipnu, _Tp & __Kpnu)
+		_Tp & _Inu, _Tp & _Knu, _Tp & _Ipnu, _Tp & _Kpnu)
     {
       if (__x == _Tp(0))
 	{
 	  if (__nu == _Tp(0))
 	    {
-	      __Inu = _Tp(1);
-	      __Ipnu = _Tp(0);
+	      _Inu = _Tp(1);
+	      _Ipnu = _Tp(0);
 	    }
 	  else if (__nu == _Tp(1))
 	    {
-	      __Inu = _Tp(0);
-	      __Ipnu = _Tp(0.5L);
+	      _Inu = _Tp(0);
+	      _Ipnu = _Tp(0.5L);
 	    }
 	  else
 	    {
-	      __Inu = _Tp(0);
-	      __Ipnu = _Tp(0);
+	      _Inu = _Tp(0);
+	      _Ipnu = _Tp(0);
 	    }
-	  __Knu = std::numeric_limits<_Tp>::infinity();
-	  __Kpnu = -std::numeric_limits<_Tp>::infinity();
+	  _Knu = std::numeric_limits<_Tp>::infinity();
+	  _Kpnu = -std::numeric_limits<_Tp>::infinity();
 	  return;
 	}
 
@@ -129,20 +129,20 @@ namespace std _GLIBCXX_VISIBILITY(default)
       if (__i > __max_iter)
 	std::__throw_runtime_error(__N("__bessel_ik: argument x too large; "
 				       "try asymptotic expansion"));
-      _Tp __Inul = __fp_min;
-      _Tp __Ipnul = __h * __Inul;
-      _Tp __Inul1 = __Inul;
-      _Tp __Ipnu1 = __Ipnul;
+      _Tp _Inul = __fp_min;
+      _Tp _Ipnul = __h * _Inul;
+      _Tp _Inul1 = _Inul;
+      _Tp _Ipnu1 = _Ipnul;
       _Tp __fact = __nu * __xi;
       for (int __l = __nl; __l >= 1; --__l)
 	{
-	  const _Tp __Inutemp = __fact * __Inul + __Ipnul;
+	  const _Tp _Inutemp = __fact * _Inul + _Ipnul;
 	  __fact -= __xi;
-	  __Ipnul = __fact * __Inutemp + __Inul;
-	  __Inul = __Inutemp;
+	  _Ipnul = __fact * _Inutemp + _Inul;
+	  _Inul = _Inutemp;
 	}
-      _Tp __f = __Ipnul / __Inul;
-      _Tp __Kmu, __Knu1;
+      _Tp __f = _Ipnul / _Inul;
+      _Tp _Kmu, _Knu1;
       if (__x < __x_min)
 	{
 	  const _Tp __x2 = __x / _Tp(2);
@@ -181,8 +181,8 @@ namespace std _GLIBCXX_VISIBILITY(default)
 	  if (__i > __max_iter)
 	    std::__throw_runtime_error(__N("__bessel_ik: "
 					   "Bessel K-series failed to converge"));
-	  __Kmu = __sum;
-	  __Knu1 = __sum1 * __xi2;
+	  _Kmu = __sum;
+	  _Knu1 = __sum1 * __xi2;
 	}
       else
 	{
@@ -218,23 +218,23 @@ namespace std _GLIBCXX_VISIBILITY(default)
 	    std::__throw_runtime_error(__N("__bessel_ik: "
 					   "Steed's method failed"));
 	  __h = __a1 * __h;
-	  __Kmu = std::sqrt(__numeric_constants<_Tp>::__pi() / (_Tp(2) * __x))
+	  _Kmu = std::sqrt(__numeric_constants<_Tp>::__pi() / (_Tp(2) * __x))
 		* std::exp(-__x) / __s;
-	  __Knu1 = __Kmu * (__mu + __x + _Tp(0.5L) - __h) * __xi;
+	  _Knu1 = _Kmu * (__mu + __x + _Tp(0.5L) - __h) * __xi;
 	}
 
-      _Tp __Kpmu = __mu * __xi * __Kmu - __Knu1;
-      _Tp __Inumu = __xi / (__f * __Kmu - __Kpmu);
-      __Inu = __Inumu * __Inul1 / __Inul;
-      __Ipnu = __Inumu * __Ipnu1 / __Inul;
+      _Tp _Kpmu = __mu * __xi * _Kmu - _Knu1;
+      _Tp _Inumu = __xi / (__f * _Kmu - _Kpmu);
+      _Inu = _Inumu * _Inul1 / _Inul;
+      _Ipnu = _Inumu * _Ipnu1 / _Inul;
       for ( __i = 1; __i <= __nl; ++__i )
 	{
-	  const _Tp __Knutemp = (__mu + __i) * __xi2 * __Knu1 + __Kmu;
-	  __Kmu = __Knu1;
-	  __Knu1 = __Knutemp;
+	  const _Tp _Knutemp = (__mu + __i) * __xi2 * _Knu1 + _Kmu;
+	  _Kmu = _Knu1;
+	  _Knu1 = _Knutemp;
 	}
-      __Knu = __Kmu;
-      __Kpnu = __nu * __xi * __Kmu - __Knu1;
+      _Knu = _Kmu;
+      _Kpnu = __nu * __xi * _Kmu - _Knu1;
   
       return;
     }
@@ -266,9 +266,9 @@ namespace std _GLIBCXX_VISIBILITY(default)
 	return __cyl_bessel_ij_series(__nu, __x, +_Tp(1), 200);
       else
 	{
-	  _Tp __I_nu, __K_nu, __Ip_nu, __Kp_nu;
-	  __bessel_ik(__nu, __x, __I_nu, __K_nu, __Ip_nu, __Kp_nu);
-	  return __I_nu;
+	  _Tp _I_nu, _K_nu, _Ip_nu, _Kp_nu;
+	  __bessel_ik(__nu, __x, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
+	  return _I_nu;
 	}
     }
 
@@ -299,9 +299,9 @@ namespace std _GLIBCXX_VISIBILITY(default)
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	{
-	  _Tp __I_nu, __K_nu, __Ip_nu, __Kp_nu;
-	  __bessel_ik(__nu, __x, __I_nu, __K_nu, __Ip_nu, __Kp_nu);
-	  return __K_nu;
+	  _Tp _I_nu, _K_nu, _Ip_nu, _Kp_nu;
+	  __bessel_ik(__nu, __x, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
+	  return _K_nu;
 	}
     }
 
@@ -329,16 +329,16 @@ namespace std _GLIBCXX_VISIBILITY(default)
     {
       const _Tp __nu = _Tp(__n) + _Tp(0.5L);
 
-      _Tp __I_nu, __Ip_nu, __K_nu, __Kp_nu;
-      __bessel_ik(__nu, __x, __I_nu, __K_nu, __Ip_nu, __Kp_nu);
+      _Tp _I_nu, _Ip_nu, _K_nu, _Kp_nu;
+      __bessel_ik(__nu, __x, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
 
       const _Tp __factor = __numeric_constants<_Tp>::__sqrtpio2()
 			 / std::sqrt(__x);
 
-      __i_n = __factor * __I_nu;
-      __k_n = __factor * __K_nu;
-      __ip_n = __factor * __Ip_nu - __i_n / (_Tp(2) * __x);
-      __kp_n = __factor * __Kp_nu - __k_n / (_Tp(2) * __x);
+      __i_n = __factor * _I_nu;
+      __k_n = __factor * _K_nu;
+      __ip_n = __factor * _Ip_nu - __i_n / (_Tp(2) * __x);
+      __kp_n = __factor * _Kp_nu - __k_n / (_Tp(2) * __x);
 
       return;
     }
@@ -351,16 +351,16 @@ namespace std _GLIBCXX_VISIBILITY(default)
    *           respectively.
    *
    *   @param  __x  The argument of the Airy functions.
-   *   @param  __Ai  The output Airy function of the first kind.
-   *   @param  __Bi  The output Airy function of the second kind.
-   *   @param  __Aip  The output derivative of the Airy function
+   *   @param  _Ai  The output Airy function of the first kind.
+   *   @param  _Bi  The output Airy function of the second kind.
+   *   @param  _Aip  The output derivative of the Airy function
    *                  of the first kind.
-   *   @param  __Bip  The output derivative of the Airy function
+   *   @param  _Bip  The output derivative of the Airy function
    *                  of the second kind.
    */
   template<typename _Tp>
     void
-    __airy(_Tp __z, _Tp & __Ai, _Tp & __Bi, _Tp & __Aip, _Tp & __Bip)
+    __airy(_Tp __z, _Tp & _Ai, _Tp & _Bi, _Tp & _Aip, _Tp & _Bip)
     {
       const _Tp __absz = std::abs(__z);
       const _Tp __rootz = std::sqrt(__absz);
@@ -368,52 +368,52 @@ namespace std _GLIBCXX_VISIBILITY(default)
 
       if (__z > _Tp(0))
 	{
-	  _Tp __I_nu, __Ip_nu, __K_nu, __Kp_nu;
+	  _Tp _I_nu, _Ip_nu, _K_nu, _Kp_nu;
 
-	  __bessel_ik(_Tp(1) / _Tp(3), __xi, __I_nu, __K_nu, __Ip_nu, __Kp_nu);
-	  __Ai = __rootz * __K_nu
+	  __bessel_ik(_Tp(1) / _Tp(3), __xi, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
+	  _Ai = __rootz * _K_nu
 	       / (__numeric_constants<_Tp>::__sqrt3()
 		* __numeric_constants<_Tp>::__pi());
-	  __Bi = __rootz * (__K_nu / __numeric_constants<_Tp>::__pi()
-		 + _Tp(2) * __I_nu / __numeric_constants<_Tp>::__sqrt3());
+	  _Bi = __rootz * (_K_nu / __numeric_constants<_Tp>::__pi()
+		 + _Tp(2) * _I_nu / __numeric_constants<_Tp>::__sqrt3());
 
-	  __bessel_ik(_Tp(2) / _Tp(3), __xi, __I_nu, __K_nu, __Ip_nu, __Kp_nu);
-	  __Aip = -__z * __K_nu
+	  __bessel_ik(_Tp(2) / _Tp(3), __xi, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
+	  _Aip = -__z * _K_nu
 		/ (__numeric_constants<_Tp>::__sqrt3()
 		 * __numeric_constants<_Tp>::__pi());
-	  __Bip = __z * (__K_nu / __numeric_constants<_Tp>::__pi()
-		      + _Tp(2) * __I_nu
+	  _Bip = __z * (_K_nu / __numeric_constants<_Tp>::__pi()
+		      + _Tp(2) * _I_nu
 		      / __numeric_constants<_Tp>::__sqrt3());
 	}
       else if (__z < _Tp(0))
 	{
-	  _Tp __J_nu, __Jp_nu, __N_nu, __Np_nu;
+	  _Tp _J_nu, _Jp_nu, _N_nu, _Np_nu;
 
-	  __bessel_jn(_Tp(1) / _Tp(3), __xi, __J_nu, __N_nu, __Jp_nu, __Np_nu);
-	  __Ai = __rootz * (__J_nu
-		    - __N_nu / __numeric_constants<_Tp>::__sqrt3()) / _Tp(2);
-	  __Bi = -__rootz * (__N_nu
-		    + __J_nu / __numeric_constants<_Tp>::__sqrt3()) / _Tp(2);
+	  __bessel_jn(_Tp(1) / _Tp(3), __xi, _J_nu, _N_nu, _Jp_nu, _Np_nu);
+	  _Ai = __rootz * (_J_nu
+		    - _N_nu / __numeric_constants<_Tp>::__sqrt3()) / _Tp(2);
+	  _Bi = -__rootz * (_N_nu
+		    + _J_nu / __numeric_constants<_Tp>::__sqrt3()) / _Tp(2);
 
-	  __bessel_jn(_Tp(2) / _Tp(3), __xi, __J_nu, __N_nu, __Jp_nu, __Np_nu);
-	  __Aip = __absz * (__N_nu / __numeric_constants<_Tp>::__sqrt3()
-			  + __J_nu) / _Tp(2);
-	  __Bip = __absz * (__J_nu / __numeric_constants<_Tp>::__sqrt3()
-			  - __N_nu) / _Tp(2);
+	  __bessel_jn(_Tp(2) / _Tp(3), __xi, _J_nu, _N_nu, _Jp_nu, _Np_nu);
+	  _Aip = __absz * (_N_nu / __numeric_constants<_Tp>::__sqrt3()
+			  + _J_nu) / _Tp(2);
+	  _Bip = __absz * (_J_nu / __numeric_constants<_Tp>::__sqrt3()
+			  - _N_nu) / _Tp(2);
 	}
       else
 	{
 	  //  Reference:
 	  //    Abramowitz & Stegun, page 446 section 10.4.4 on Airy functions.
 	  //  The number is Ai(0) = 3^{-2/3}/\Gamma(2/3).
-	  __Ai = _Tp(0.35502805388781723926L);
-	  __Bi = __Ai * __numeric_constants<_Tp>::__sqrt3();
+	  _Ai = _Tp(0.35502805388781723926L);
+	  _Bi = _Ai * __numeric_constants<_Tp>::__sqrt3();
 
 	  //  Reference:
 	  //    Abramowitz & Stegun, page 446 section 10.4.5 on Airy functions.
 	  //  The number is Ai'(0) = -3^{-1/3}/\Gamma(1/3).
-	  __Aip = -_Tp(0.25881940379280679840L);
-	  __Bip = -__Aip * __numeric_constants<_Tp>::__sqrt3();
+	  _Aip = -_Tp(0.25881940379280679840L);
+	  _Bip = -_Aip * __numeric_constants<_Tp>::__sqrt3();
 	}
 
       return;
@@ -423,4 +423,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 }
 
-#endif // _GLIBCXX_BITS_MODIFIED_BESSEL_FUNC_TCC
+#endif // _GLIBCXX_BITS_SF_MOD_BESSEL_TCC

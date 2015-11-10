@@ -6,7 +6,7 @@
 #include <complex>
 #include <limits>
 
-// From bits/special_function_util.h
+// From bits/specfun_util.h
 
 namespace __gnu_cxx { //_GLIBCXX_BEGIN_NAMESPACE(__gnu_cxx)
 
@@ -26,7 +26,7 @@ namespace __gnu_cxx { //_GLIBCXX_BEGIN_NAMESPACE(__gnu_cxx)
 } //_GLIBCXX_END_NAMESPACE
 
 
-// From bits/special_function_util.h
+// From bits/specfun_util.h
 
 namespace std
 {
@@ -128,7 +128,7 @@ namespace std
 
 }
 
-// End bits/special_function_util.h
+// End bits/specfun_util.h
 
 namespace std
 {

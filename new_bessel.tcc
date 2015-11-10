@@ -2,7 +2,7 @@
 
 #include <cmath>
 #include <stdexcept>
-//#include <tr1/special_function_util.h>
+//#include <tr1/specfun_util.h>
     //  pi.
     const long double __PI       = 3.1415926535897932384626433832795029L;
     //  pi / 2.

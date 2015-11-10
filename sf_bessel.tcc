@@ -22,7 +22,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/bessel_function.tcc
+/** @file bits/sf_bessel.tcc
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{cmath}
  */
@@ -43,10 +43,10 @@
 //       W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
 //       2nd ed, pp. 240-245
 
-#ifndef _GLIBCXX_BITS_BESSEL_FUNCTION_TCC
-#define _GLIBCXX_BITS_BESSEL_FUNCTION_TCC 1
+#ifndef _GLIBCXX_BITS_SF_BESSEL_TCC
+#define _GLIBCXX_BITS_SF_BESSEL_TCC 1
 
-#include <bits/special_function_util.h>
+#include <bits/specfun_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -472,15 +472,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __cyl_bessel_ij_series(__nu, __x, -_Tp(1), 200);
       else if (__x > _Tp(1000))
 	{
-	  _Tp __J_nu, __N_nu;
-	  __cyl_bessel_jn_asymp(__nu, __x, __J_nu, __N_nu);
-	  return __J_nu;
+	  _Tp _J_nu, _N_nu;
+	  __cyl_bessel_jn_asymp(__nu, __x, _J_nu, _N_nu);
+	  return _J_nu;
 	}
       else
 	{
-	  _Tp __J_nu, __N_nu, __Jp_nu, __Np_nu;
-	  __bessel_jn(__nu, __x, __J_nu, __N_nu, __Jp_nu, __Np_nu);
-	  return __J_nu;
+	  _Tp _J_nu, _N_nu, _Jp_nu, _Np_nu;
+	  __bessel_jn(__nu, __x, _J_nu, _N_nu, _Jp_nu, _Np_nu);
+	  return _J_nu;
 	}
     }
 
@@ -511,15 +511,81 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__x > _Tp(1000))
 	{
-	  _Tp __J_nu, __N_nu;
-	  __cyl_bessel_jn_asymp(__nu, __x, __J_nu, __N_nu);
-	  return __N_nu;
+	  _Tp _J_nu, _N_nu;
+	  __cyl_bessel_jn_asymp(__nu, __x, _J_nu, _N_nu);
+	  return _N_nu;
 	}
       else
 	{
-	  _Tp __J_nu, __N_nu, __Jp_nu, __Np_nu;
-	  __bessel_jn(__nu, __x, __J_nu, __N_nu, __Jp_nu, __Np_nu);
-	  return __N_nu;
+	  _Tp _J_nu, _N_nu, _Jp_nu, _Np_nu;
+	  __bessel_jn(__nu, __x, _J_nu, _N_nu, _Jp_nu, _Np_nu);
+	  return _N_nu;
+	}
+    }
+
+
+  /**
+   *   @brief  Return the cylindrical Hankel function of the first kind
+   *           @f$ h^{(1)}_n(x) @f$.
+   *
+   *   The cylindrical Hankel function of the first kind is defined by:
+   *   @f[
+   *     H^{(1)}_n(x) = J_n(x) + i N_n(x)
+   *   @f]
+   *
+   *   @param  __n  The order of the spherical Neumann function.
+   *   @param  __x  The argument of the spherical Neumann function.
+   *   @return  The output spherical Neumann function.
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    __cyl_hankel_h1(unsigned int __n, _Tp __x)
+    {
+      if (__x < _Tp(0))
+	std::__throw_domain_error(__N("__cyl_hankel_h1: bad argument"));
+      else if (__isnan(__x))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__x == _Tp(0))
+	return -std::numeric_limits<_Tp>::infinity();
+      else
+	{
+	  std::complex<_Tp> _S_j(0, 1);
+	  _Tp __j_n, __n_n, __jp_n, __np_n;
+	  __bessel_jn(__n, __x, __j_n, __n_n, __jp_n, __np_n);
+	  return (__j_n + _S_j * __n_n);
+	}
+    }
+
+
+  /**
+   *   @brief  Return the cylindrical Hankel function of the second kind
+   *           @f$ h^{(1)}_n(x) @f$.
+   *
+   *   The cylindrical Hankel function of the second kind is defined by:
+   *   @f[
+   *     H^{(2)}_n(x) = J_n(x) - i N_n(x)
+   *   @f]
+   *
+   *   @param  __n  The order of the spherical Neumann function.
+   *   @param  __x  The argument of the spherical Neumann function.
+   *   @return  The output spherical Neumann function.
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    __cyl_hankel_h2(unsigned int __n, _Tp __x)
+    {
+      if (__x < _Tp(0))
+	std::__throw_domain_error(__N("__cyl_hankel_h2: bad argument"));
+      else if (__isnan(__x))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__x == _Tp(0))
+	return -std::numeric_limits<_Tp>::infinity();
+      else
+	{
+	  std::complex<_Tp> _S_j(0, 1);
+	  _Tp __j_n, __n_n, __jp_n, __np_n;
+	  __bessel_jn(__n, __x, __j_n, __n_n, __jp_n, __np_n);
+	  return (__j_n + _S_j * __n_n);
 	}
     }
 
@@ -544,16 +610,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const _Tp __nu = _Tp(__n) + _Tp(0.5L);
 
-      _Tp __J_nu, __N_nu, __Jp_nu, __Np_nu;
-      __bessel_jn(__nu, __x, __J_nu, __N_nu, __Jp_nu, __Np_nu);
+      _Tp _J_nu, _N_nu, _Jp_nu, _Np_nu;
+      __bessel_jn(__nu, __x, _J_nu, _N_nu, _Jp_nu, _Np_nu);
 
       const _Tp __factor = __numeric_constants<_Tp>::__sqrtpio2()
 			 / std::sqrt(__x);
 
-      __j_n = __factor * __J_nu;
-      __n_n = __factor * __N_nu;
-      __jp_n = __factor * __Jp_nu - __j_n / (_Tp(2) * __x);
-      __np_n = __factor * __Np_nu - __n_n / (_Tp(2) * __x);
+      __j_n = __factor * _J_nu;
+      __n_n = __factor * _N_nu;
+      __jp_n = __factor * _Jp_nu - __j_n / (_Tp(2) * __x);
+      __np_n = __factor * _Np_nu - __n_n / (_Tp(2) * __x);
 
       return;
     }
@@ -627,8 +693,74 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
     }
 
-  _GLIBCXX_END_NAMESPACE_VERSION
-  } // namespace __detail
+
+  /**
+   *   @brief  Return the spherical Hankel function of the first kind
+   *           @f$ h^{(1)}_n(x) @f$.
+   *
+   *   The spherical Hankel function of the first kind is defined by:
+   *   @f[
+   *     h^{(1)}_n(x) = j_n(x) + i n_n(x)
+   *   @f]
+   *
+   *   @param  __n  The order of the spherical Neumann function.
+   *   @param  __x  The argument of the spherical Neumann function.
+   *   @return  The output spherical Neumann function.
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    __sph_hankel_h1(unsigned int __n, _Tp __x)
+    {
+      if (__x < _Tp(0))
+	std::__throw_domain_error(__N("__sph_neumann: bad argument"));
+      else if (__isnan(__x))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__x == _Tp(0))
+	return -std::numeric_limits<_Tp>::infinity();
+      else
+	{
+	  std::complex<_Tp> _S_j(0, 1);
+	  _Tp __j_n, __n_n, __jp_n, __np_n;
+	  __sph_bessel_jn(__n, __x, __j_n, __n_n, __jp_n, __np_n);
+	  return (__j_n + _S_j * __n_n);
+	}
+    }
+
+
+  /**
+   *   @brief  Return the spherical Hankel function of the second kind
+   *           @f$ h^{(1)}_n(x) @f$.
+   *
+   *   The spherical Hankel function of the second kind is defined by:
+   *   @f[
+   *     h^{(2)}_n(x) = j_n(x) - i n_n(x)
+   *   @f]
+   *
+   *   @param  __n  The order of the spherical Neumann function.
+   *   @param  __x  The argument of the spherical Neumann function.
+   *   @return  The output spherical Neumann function.
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    __sph_hankel_h2(unsigned int __n, _Tp __x)
+    {
+      if (__x < _Tp(0))
+	std::__throw_domain_error(__N("__sph_neumann: bad argument"));
+      else if (__isnan(__x))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__x == _Tp(0))
+	return -std::numeric_limits<_Tp>::infinity();
+      else
+	{
+	  std::complex<_Tp> _S_j(0, 1);
+	  _Tp __j_n, __n_n, __jp_n, __np_n;
+	  __sph_bessel_jn(__n, __x, __j_n, __n_n, __jp_n, __np_n);
+	  return (__j_n + _S_j * __n_n);
+	}
+    }
+
+_GLIBCXX_END_NAMESPACE_VERSION
+} // namespace __detail
 }
 
-#endif // _GLIBCXX_BITS_BESSEL_FUNCTION_TCC
+#endif // _GLIBCXX_BITS_SF_BESSEL_TCC

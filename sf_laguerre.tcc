@@ -22,7 +22,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/poly_laguerre.tcc
+/** @file bits/sf_laguerre.tcc
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{cmath}
  */
@@ -40,8 +40,8 @@
 //       Section 13, pp. 509-510, Section 22 pp. 773-802
 //   (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
 
-#ifndef _GLIBCXX_BITS_POLY_LAGUERRE_TCC
-#define _GLIBCXX_BITS_POLY_LAGUERRE_TCC 1
+#ifndef _GLIBCXX_BITS_SF_LAGUERRE_TCC
+#define _GLIBCXX_BITS_SF_LAGUERRE_TCC 1
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -313,4 +313,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 }
 
-#endif // _GLIBCXX_BITS_POLY_LAGUERRE_TCC
+#endif // _GLIBCXX_BITS_SF_LAGUERRE_TCC

@@ -22,13 +22,13 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/hankel.tcc
+/** @file bits/sf_hankel.tcc
  *  This is an internal header file, included by other library headers.
  *  You should not attempt to use it directly.
  */
 
-#ifndef _GLIBCXX_BITS_HANKEL_TCC
-#define _GLIBCXX_BITS_HANKEL_TCC 1
+#ifndef _GLIBCXX_BITS_SF_HANKEL_TCC
+#define _GLIBCXX_BITS_SF_HANKEL_TCC 1
 
 #pragma GCC system_header
 
@@ -1332,4 +1332,4 @@ namespace __detail
 } // namespace __detail
 } // namespace std
 
-#endif // _GLIBCXX_BITS_HANKEL_TCC
+#endif // _GLIBCXX_BITS_SF_HANKEL_TCC

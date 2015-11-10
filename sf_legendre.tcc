@@ -22,7 +22,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/legendre_function.tcc
+/** @file bits/sf_legendre.tcc
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{cmath}
  */
@@ -43,10 +43,10 @@
 //       W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
 //       2nd ed, pp. 252-254
 
-#ifndef _GLIBCXX_BITS_LEGENDRE_FUNCTION_TCC
-#define _GLIBCXX_BITS_LEGENDRE_FUNCTION_TCC 1
+#ifndef _GLIBCXX_BITS_SF_LEGENDRE_TCC
+#define _GLIBCXX_BITS_SF_LEGENDRE_TCC 1
 
-#include <bits/special_function_util.h>
+#include <bits/specfun_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -290,4 +290,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 }
 
-#endif // _GLIBCXX_BITS_LEGENDRE_FUNCTION_TCC
+#endif // _GLIBCXX_BITS_SF_LEGENDRE_TCC

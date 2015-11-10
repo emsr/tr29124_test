@@ -22,7 +22,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/special_function.h
+/** @file bits/specfun.h
  *  This is an internal header file, included by other library headers.
  *  You should not attempt to use it directly.
  */
@@ -43,17 +43,19 @@
 #  define TR1NS std::tr1::
 #endif
 
-#include <bits/gamma.tcc>
-#include <bits/bessel_function.tcc>
-#include <bits/beta_function.tcc>
-#include <bits/ell_integral.tcc>
-#include <bits/exp_integral.tcc>
-#include <bits/hypergeometric.tcc>
-#include <bits/legendre_function.tcc>
-#include <bits/modified_bessel_func.tcc>
-#include <bits/poly_hermite.tcc>
-#include <bits/poly_laguerre.tcc>
-#include <bits/riemann_zeta.tcc>
+#include <complex>
+
+#include <bits/sf_gamma.tcc>
+#include <bits/sf_bessel.tcc>
+#include <bits/sf_beta.tcc>
+#include <bits/sf_ellint.tcc>
+#include <bits/sf_expint.tcc>
+#include <bits/sf_hyperg.tcc>
+#include <bits/sf_legendre.tcc>
+#include <bits/sf_mod_bessel.tcc>
+#include <bits/sf_hermite.tcc>
+#include <bits/sf_laguerre.tcc>
+#include <bits/sf_zeta.tcc>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -443,7 +445,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     inline typename __gnu_cxx::__promote_3<_Tpa, _Tpc, _Tp>::__type
     conf_hyperg(_Tpa __a, _Tpc __c, _Tp __x)
     {
-      typedef typename __gnu_cxx::__promote_3<_Tpa, _Tpc, _Tp>::__type __type;
+      using __type = __gnu_cxx::__promote_3<_Tpa, _Tpc, _Tp>::__type;
       return std::__detail::__conf_hyperg<__type>(__a, __c, __x);
     }
 
@@ -460,8 +462,110 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     inline typename __gnu_cxx::__promote_4<_Tpa, _Tpb, _Tpc, _Tp>::__type
     hyperg(_Tpa __a, _Tpb __b, _Tpc __c, _Tp __x)
     {
-      typedef typename __gnu_cxx::__promote_4<_Tpa, _Tpb, _Tpc, _Tp>::__type __type;
+      using __type = __gnu_cxx::__promote_4<_Tpa, _Tpb, _Tpc, _Tp>::__type;
       return std::__detail::__hyperg<__type>(__a, __b, __c, __x);
+    }
+
+
+  inline std::complex<float>
+  sph_hankel_h1f(int __n, float __z)
+  { return std::__detail::__sph_hankel_h1<float>(__n, __z); }
+
+  inline std::complex<long double>
+  sph_hankel_h1l(int __n, long double __z)
+  { return std::__detail::__sph_hankel_h1<long double>(__n, __z); }
+
+  template<typename _Tp>
+    inline std::complex<__gnu_cxx::__promote<_Tp>::__type>
+    sph_hankel_h1(int __n, _Tp __z)
+    {
+      using __type = __gnu_cxx::__promote<_Tp>::__type;
+      return std::__detail::__sph_hankel_h1<__type>(__n, __z);
+    }
+
+
+  inline std::complex<float>
+  sph_hankel_h2f(int __n, float __z)
+  { return std::__detail::__sph_hankel_h2<float>(__n, __z); }
+
+  inline std::complex<long double>
+  sph_hankel_h2l(int __n, std::complex<long double> __z)
+  { return std::__detail::__sph_hankel_h2<long double>(__n, __z); }
+
+  template<typename _Tp>
+    inline std::complex<__gnu_cxx::__promote<_Tp>::__type>
+    sph_hankel_h2(int __n, _Tp __z)
+    {
+      using __type = __gnu_cxx::__promote<_Tp>::__type;
+      return std::__detail::__sph_hankel_h2<__type>(__n, __z);
+    }
+
+
+  inline float
+  sph_besself(int __n, float __z)
+  { return std::__detail::__sph_bessel<float>(__n, __z); }
+
+  inline long double
+  sph_bessell(int __n, long double __z)
+  { return std::__detail::__sph_bessel<long double>(__n, __z); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote<_Tp>::__type
+    sph_bessel(int __n, _Tp __z)
+    {
+      using __type = __gnu_cxx::__promote<_Tp>::__type;
+      return std::__detail::__sph_bessel<__type>(__n, __z);
+    }
+
+
+  inline float
+  sph_neumannf(int __n, float __z)
+  { return std::__detail::__sph_neumann<float>(__n, __z); }
+
+  inline long double
+  sph_neumannl(int __n, long double __z)
+  { return std::__detail::__sph_neumann<long double>(__n, __z); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote<_Tp>::__type
+    sph_neumann(int __n, _Tp __z)
+    {
+      using __type = __gnu_cxx::__promote<_Tp>::__type;
+      return std::__detail::__sph_neumann<__type>(__n, __z);
+    }
+
+
+  inline float
+  airy_aif(float __z)
+  { return std::__detail::__airy_ai<float>(__z); }
+
+  inline long double
+  airy_ail(long double __z)
+  { return std::__detail::__airy_ai<long double>(__z); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote<_Tp>::__type
+    airy_ai(_Tp __z)
+    {
+      using __type = __gnu_cxx::__promote<_Tp>::__type;
+      return std::__detail::__airy_ai<__type>(__z);
+    }
+
+
+  inline float
+  airy_bif(float __z)
+  { return std::__detail::__airy_bi<float>(__z); }
+
+  inline long double
+  airy_bil(long double __z)
+  { return std::__detail::__airy_bi<long double>(__z); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote<_Tp>::__type
+    airy_bi(_Tp __z)
+    {
+      using __type = __gnu_cxx::__promote<_Tp>::__type;
+      return std::__detail:__airy_bi<__type>(__z);
     }
 
 } // namespace __gnu_cxx

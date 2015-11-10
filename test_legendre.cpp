@@ -6,7 +6,7 @@
 #include <limits>
 
 #include "legendre.tcc"
-#include "legendre_function.tcc"
+#include "sf_legendre.tcc"
 
 int main(int, char **)
 {
