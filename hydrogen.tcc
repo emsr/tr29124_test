@@ -1,6 +1,6 @@
 // Special functions -*- C++ -*-
 
-// Copyright (C) 2007
+// Copyright (C) 2015
 // Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
@@ -27,37 +27,49 @@
 // the GNU General Public License.  This exception does not however
 // invalidate any other reasons why the executable file might be covered by
 // the GNU General Public License.
-#if 
+#ifndef _GLIBCXX_BITS_SF_HYDROGEN_TCC
+#define _GLIBCXX_BITS_SF_HYDROGEN_TCC 1
 
-const long double __PI = 3.1415926535897932384626433832795029L;
+#pragma GCC system_header
+
+#include <complex>
+
+constexpr long double __PI = 3.1415926535897932384626433832795029L;
 
 template <typename _Tp>
-std::complex<_Tp>
-__hydrogen(const unsigned int __n,
-           const unsigned int __l, const unsigned int __m,
-           const _Tp __Z, const _Tp __r, const _Tp __theta, const _Tp __phi)
-{
-  if(__n < 1 || __l > __n - 1 || __Z <= _Tp(0) || __r < _Tp(0))
-    __throw_domain_error("Bad input in __hydrogen");
+  std::complex<_Tp>
+  __hydrogen(const unsigned int __n,
+             const unsigned int __l, const unsigned int __m,
+             const _Tp _Z, const _Tp __r, const _Tp __theta, const _Tp __phi)
+  {
+    if(__n < 1)
+      __throw_domain_error("__hydrogen: level number less than onw");
+    if(__l > __n - 1)
+      __throw_domain_error("__hydrogen: angular momentum number too large");
+    if(_Z <= _Tp(0))
+      __throw_domain_error("__hydrogen: non-positive charge");
+    if(__r < _Tp(0))
+      __throw_domain_error("__hydrogen: negative radius");
 
-  const _Tp __A = _Tp(2) * __Z / __n;
+    const _Tp _A = _Tp(2) * _Z / __n;
 
-  const _Tp __pre = std::sqrt(__A * __A * __A / (_Tp(2) * __n));
-  const _Tp __ln_a = std::tr1::lgamma(__n + __l + 1);
-  const _Tp __ln_b = std::tr1::lgamma(__n - __l);
-  const _Tp __ex = std::exp((__ln_b - __ln_a) / _Tp(2));
-  const _Tp __norm = __pre * __ex;
+    const _Tp __pre = std::sqrt(_A * _A * _A / (_Tp(2) * __n));
+    const _Tp __ln_a = std::lgamma(__n + __l + 1);
+    const _Tp __ln_b = std::lgamma(__n - __l);
+    const _Tp __ex = std::exp((__ln_b - __ln_a) / _Tp(2));
+    const _Tp __norm = __pre * __ex;
 
-  const _Tp __rho = __A * __r;
-  const _Tp __ea = std::exp(-__rho / _Tp(2));
-  const _Tp __pp = std::pow(__rho, __l);
-  const _Tp __lag = std::tr1::assoc_laguerre(__n - __l - 1, 2 * __l + 1,
-                                             __rho);
-  const std::complex<_Tp> __sphh = std::tr1::sph_legendre(__l, __m, __theta)
-                                 * std::polar(_Tp(1), _Tp(__m) * __phi);
+    const _Tp __rho = _A * __r;
+    const _Tp __ea = std::exp(-__rho / _Tp(2));
+    const _Tp __pp = std::pow(__rho, __l);
+    const _Tp __lag = std::assoc_laguerre(__n - __l - 1, 2 * __l + 1,
+                                               __rho);
+    const std::complex<_Tp> __sphh = std::sph_legendre(__l, __m, __theta)
+                                   * std::polar(_Tp(1), _Tp(__m) * __phi);
 
-  const std::complex<_Tp> __psi = __norm * __ea * __pp * __lag * __sphh;
+    const std::complex<_Tp> __psi = __norm * __ea * __pp * __lag * __sphh;
 
-  return __psi;
-}
+    return __psi;
+  }
 
+#endif // _GLIBCXX_BITS_SF_HYDROGEN_TCC
