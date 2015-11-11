@@ -1,6 +1,22 @@
 tool="mv"
 gcc_dir="."
 
+${tool} ${gcc_dir}/specfun_util.h    ${gcc_dir}/special_function_util.h 
+${tool} ${gcc_dir}/specfun.h	     ${gcc_dir}/special_function.h	
+${tool} ${gcc_dir}/sf_bessel.tcc     ${gcc_dir}/bessel_function.tcc	
+${tool} ${gcc_dir}/sf_beta.tcc	     ${gcc_dir}/beta_function.tcc	
+${tool} ${gcc_dir}/sf_ellint.tcc     ${gcc_dir}/ell_integral.tcc	
+${tool} ${gcc_dir}/sf_expint.tcc     ${gcc_dir}/exp_integral.tcc	
+${tool} ${gcc_dir}/sf_gamma.tcc      ${gcc_dir}/gamma.tcc		
+${tool} ${gcc_dir}/sf_hyperg.tcc     ${gcc_dir}/hypergeometric.tcc	
+${tool} ${gcc_dir}/sf_legendre.tcc   ${gcc_dir}/legendre_function.tcc	
+${tool} ${gcc_dir}/sf_mod_bessel.tcc ${gcc_dir}/modified_bessel_func.tcc
+${tool} ${gcc_dir}/sf_hermite.tcc    ${gcc_dir}/poly_hermite.tcc	
+${tool} ${gcc_dir}/sf_laguerre.tcc   ${gcc_dir}/poly_laguerre.tcc	
+${tool} ${gcc_dir}/sf_zeta.tcc	     ${gcc_dir}/riemann_zeta.tcc	
+
+tool="git mv"
+
 ${tool} ${gcc_dir}/special_function_util.h  ${gcc_dir}/specfun_util.h
 ${tool} ${gcc_dir}/special_function.h	    ${gcc_dir}/specfun.h
 ${tool} ${gcc_dir}/bessel_function.tcc	    ${gcc_dir}/sf_bessel.tcc
