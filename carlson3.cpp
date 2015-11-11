@@ -178,7 +178,7 @@ namespace __detail
   /**
    *   @brief Return the Carlson elliptic function @f$ R_F(x,y,z) @f$
    *          of the first kind.
-   * 
+   *
    *   The Carlson elliptic function of the first kind is defined by:
    *   @f[
    *       R_F(x,y,z) = \frac{1}{2} \int_0^\infty
@@ -239,7 +239,7 @@ namespace __detail
    *   @brief  Return the Carlson elliptic function
    *           @f$ R_C(x,y) = R_F(x,y,y) @f$ where @f$ R_F(x,y,z) @f$
    *           is the Carlson elliptic function of the first kind.
-   * 
+   *
    *   The Carlson elliptic function is defined by:
    *   @f[
    *       R_C(x,y) = \frac{1}{2} \int_0^\infty
@@ -297,7 +297,7 @@ namespace __detail
   /**
    *   @brief  Return the Carlson elliptic function @f$ R_J(x,y,z,p) @f$
    *           of the third kind.
-   * 
+   *
    *   The Carlson elliptic function of the third kind is defined by:
    *   @f[
    *       R_J(x,y,z,p) = \frac{3}{2} \int_0^\infty
@@ -387,7 +387,7 @@ namespace __detail
    *           @f$ R_D(x,y,z) = R_J(x,y,z,z) @f$ where
    *           @f$ R_J(x,y,z,p) @f$ is the Carlson elliptic function
    *           of the third kind.
-   * 
+   *
    *   The Carlson elliptic function of the second kind is defined by:
    *   @f[
    *       R_D(x,y,z) = \frac{3}{2} \int_0^\infty
@@ -571,7 +571,7 @@ namespace __detail
   /**
    *   @brief  Return the complete elliptic integral of the first kind
    *           @f$ K(k) @f$ using the Carlson formulation.
-   * 
+   *
    *   The complete elliptic integral of the first kind is defined as
    *   @f[
    *     K(k) = F(k,\pi/2) = \int_0^{\pi/2}\frac{d\theta}
@@ -579,7 +579,7 @@ namespace __detail
    *   @f]
    *   where @f$ F(k,\phi) @f$ is the incomplete elliptic integral of the
    *   first kind.
-   * 
+   *
    *   @param  __k  The argument of the complete elliptic function.
    *   @return  The complete elliptic function of the first kind.
    */
@@ -598,13 +598,13 @@ namespace __detail
   /**
    *   @brief  Return the incomplete elliptic integral of the first kind
    *           @f$ F(k,\phi) @f$ using the Carlson formulation.
-   * 
+   *
    *   The incomplete elliptic integral of the first kind is defined as
    *   @f[
    *     F(k,\phi) = \int_0^{\phi}\frac{d\theta}
    *                                   {\sqrt{1 - k^2 sin^2\theta}}
    *   @f]
-   * 
+   *
    *   @param  __k  The argument of the elliptic function.
    *   @param  __phi  The integral limit argument of the elliptic function.
    *   @return  The elliptic function of the first kind.
@@ -642,12 +642,12 @@ namespace __detail
   /**
    *   @brief  Return the complete elliptic integral of the second kind
    *           @f$ E(k) @f$ using the Carlson formulation.
-   * 
+   *
    *   The complete elliptic integral of the second kind is defined as
    *   @f[
    *     E(k,\pi/2) = \int_0^{\pi/2}\sqrt{1 - k^2 sin^2\theta}
    *   @f]
-   * 
+   *
    *   @param  __k  The argument of the complete elliptic function.
    *   @return  The complete elliptic function of the second kind.
    */
@@ -673,12 +673,12 @@ namespace __detail
   /**
    *   @brief  Return the incomplete elliptic integral of the second kind
    *           @f$ E(k,\phi) @f$ using the Carlson formulation.
-   * 
+   *
    *   The incomplete elliptic integral of the second kind is defined as
    *   @f[
    *     E(k,\phi) = \int_0^{\phi} \sqrt{1 - k^2 sin^2\theta}
    *   @f]
-   * 
+   *
    *   @param  __k  The argument of the elliptic function.
    *   @param  __phi  The integral limit argument of the elliptic function.
    *   @return  The elliptic function of the second kind.
@@ -723,14 +723,14 @@ namespace __detail
    *   @brief Return the complete elliptic integral of the third kind
    *          @f$ \Pi(k,\nu) = \Pi(k,\nu,\pi/2) @f$ using the
    *          Carlson formulation.
-   * 
+   *
    *   The complete elliptic integral of the third kind is defined as
    *   @f[
    *     \Pi(k,\nu) = \int_0^{\pi/2}
    *                   \frac{d\theta}
    *                 {(1 - \nu \sin^2\theta)\sqrt{1 - k^2 \sin^2\theta}}
    *   @f]
-   * 
+   *
    *   @param  __k  The argument of the elliptic function.
    *   @param  __nu  The second argument of the elliptic function.
    *   @return  The complete elliptic function of the third kind.
@@ -759,7 +759,7 @@ namespace __detail
   /**
    *   @brief Return the incomplete elliptic integral of the third kind
    *          @f$ \Pi(k,\nu,\phi) @f$ using the Carlson formulation.
-   * 
+   *
    *   The incomplete elliptic integral of the third kind is defined as
    *   @f[
    *     \Pi(k,\nu,\phi) = \int_0^{\phi}
@@ -767,7 +767,7 @@ namespace __detail
    *                            {(1 - \nu \sin^2\theta)
    *                             \sqrt{1 - k^2 \sin^2\theta}}
    *   @f]
-   * 
+   *
    *   @param  __k  The argument of the elliptic function.
    *   @param  __nu  The second argument of the elliptic function.
    *   @param  __phi  The integral limit argument of the elliptic function.
