@@ -29,7 +29,7 @@ namespace __gnu_cxx
 } // namespace __gnu_cxx
 
 
-// From bits/special_function_util.h
+// From bits/specfun_util.h
 
 namespace std
 {
@@ -156,7 +156,7 @@ namespace __detail
 } // namespace __detail
 } // namespace std
 
-// End bits/special_function_util.h
+// End bits/specfun_util.h
 
 namespace std
 {
@@ -171,7 +171,7 @@ namespace __detail
 
   template<>
     template<typename _Tp>
-      struct __ellint_traits<std::complex<_Tp> >
+      struct __ellint_traits<std::complex<_Tp>>
       {
 	using __value_type = typename std::complex<_Tp>::value_type;
       };
@@ -179,7 +179,7 @@ namespace __detail
   /**
    *   @brief Return the Carlson elliptic function @f$ R_F(x,y,z) @f$
    *          of the first kind.
-   * 
+   *
    *   The Carlson elliptic function of the first kind is defined by:
    *   @f[
    *       R_F(x,y,z) = \frac{1}{2} \int_0^\infty
@@ -240,7 +240,7 @@ namespace __detail
    *   @brief  Return the Carlson elliptic function
    *           @f$ R_C(x,y) = R_F(x,y,y) @f$ where @f$ R_F(x,y,z) @f$
    *           is the Carlson elliptic function of the first kind.
-   * 
+   *
    *   The Carlson elliptic function is defined by:
    *   @f[
    *       R_C(x,y) = \frac{1}{2} \int_0^\infty
@@ -298,7 +298,7 @@ namespace __detail
   /**
    *   @brief  Return the Carlson elliptic function @f$ R_J(x,y,z,p) @f$
    *           of the third kind.
-   * 
+   *
    *   The Carlson elliptic function of the third kind is defined by:
    *   @f[
    *       R_J(x,y,z,p) = \frac{3}{2} \int_0^\infty
@@ -388,7 +388,7 @@ namespace __detail
    *           @f$ R_D(x,y,z) = R_J(x,y,z,z) @f$ where
    *           @f$ R_J(x,y,z,p) @f$ is the Carlson elliptic function
    *           of the third kind.
-   * 
+   *
    *   The Carlson elliptic function of the second kind is defined by:
    *   @f[
    *       R_D(x,y,z) = \frac{3}{2} \int_0^\infty
@@ -479,10 +479,14 @@ namespace __detail
 	}
     }
 
+  template<typename _Tp>
+    _Tp
+    __comp_ellint_rg(_Tp __x, _Tp __y);
+
   /**
    *   @brief  Return the symmetric Carlson elliptic function of the second kind
    *           @f$ R_G(x,y,z) @f$.
-   * 
+   *
    *   The Carlson symmetric elliptic function of the second kind is defined by:
    *   @f[
    *       R_G(x,y,z) = \frac{1}{4} \int_0^\infty
@@ -501,10 +505,6 @@ namespace __detail
    *   @param  __z  The third of three symmetric arguments.
    *   @return  The Carlson symmetric elliptic function of the second kind.
    */
-
-  template<typename _Tp>
-    _Tp
-    __comp_ellint_rg(_Tp __x, _Tp __y);
 
   template<typename _Tp>
     _Tp
@@ -572,7 +572,7 @@ namespace __detail
   /**
    *   @brief  Return the complete elliptic integral of the first kind
    *           @f$ K(k) @f$ using the Carlson formulation.
-   * 
+   *
    *   The complete elliptic integral of the first kind is defined as
    *   @f[
    *     K(k) = F(k,\pi/2) = \int_0^{\pi/2}\frac{d\theta}
@@ -580,7 +580,7 @@ namespace __detail
    *   @f]
    *   where @f$ F(k,\phi) @f$ is the incomplete elliptic integral of the
    *   first kind.
-   * 
+   *
    *   @param  __k  The argument of the complete elliptic function.
    *   @return  The complete elliptic function of the first kind.
    */
@@ -599,13 +599,13 @@ namespace __detail
   /**
    *   @brief  Return the incomplete elliptic integral of the first kind
    *           @f$ F(k,\phi) @f$ using the Carlson formulation.
-   * 
+   *
    *   The incomplete elliptic integral of the first kind is defined as
    *   @f[
    *     F(k,\phi) = \int_0^{\phi}\frac{d\theta}
    *                                   {\sqrt{1 - k^2 sin^2\theta}}
    *   @f]
-   * 
+   *
    *   @param  __k  The argument of the elliptic function.
    *   @param  __phi  The integral limit argument of the elliptic function.
    *   @return  The elliptic function of the first kind.
@@ -643,12 +643,12 @@ namespace __detail
   /**
    *   @brief  Return the complete elliptic integral of the second kind
    *           @f$ E(k) @f$ using the Carlson formulation.
-   * 
+   *
    *   The complete elliptic integral of the second kind is defined as
    *   @f[
    *     E(k,\pi/2) = \int_0^{\pi/2}\sqrt{1 - k^2 sin^2\theta}
    *   @f]
-   * 
+   *
    *   @param  __k  The argument of the complete elliptic function.
    *   @return  The complete elliptic function of the second kind.
    */
@@ -674,12 +674,12 @@ namespace __detail
   /**
    *   @brief  Return the incomplete elliptic integral of the second kind
    *           @f$ E(k,\phi) @f$ using the Carlson formulation.
-   * 
+   *
    *   The incomplete elliptic integral of the second kind is defined as
    *   @f[
    *     E(k,\phi) = \int_0^{\phi} \sqrt{1 - k^2 sin^2\theta}
    *   @f]
-   * 
+   *
    *   @param  __k  The argument of the elliptic function.
    *   @param  __phi  The integral limit argument of the elliptic function.
    *   @return  The elliptic function of the second kind.
@@ -724,14 +724,14 @@ namespace __detail
    *   @brief Return the complete elliptic integral of the third kind
    *          @f$ \Pi(k,\nu) = \Pi(k,\nu,\pi/2) @f$ using the
    *          Carlson formulation.
-   * 
+   *
    *   The complete elliptic integral of the third kind is defined as
    *   @f[
    *     \Pi(k,\nu) = \int_0^{\pi/2}
    *                   \frac{d\theta}
    *                 {(1 - \nu \sin^2\theta)\sqrt{1 - k^2 \sin^2\theta}}
    *   @f]
-   * 
+   *
    *   @param  __k  The argument of the elliptic function.
    *   @param  __nu  The second argument of the elliptic function.
    *   @return  The complete elliptic function of the third kind.
@@ -760,7 +760,7 @@ namespace __detail
   /**
    *   @brief Return the incomplete elliptic integral of the third kind
    *          @f$ \Pi(k,\nu,\phi) @f$ using the Carlson formulation.
-   * 
+   *
    *   The incomplete elliptic integral of the third kind is defined as
    *   @f[
    *     \Pi(k,\nu,\phi) = \int_0^{\phi}
@@ -768,7 +768,7 @@ namespace __detail
    *                            {(1 - \nu \sin^2\theta)
    *                             \sqrt{1 - k^2 \sin^2\theta}}
    *   @f]
-   * 
+   *
    *   @param  __k  The argument of the elliptic function.
    *   @param  __nu  The second argument of the elliptic function.
    *   @param  __phi  The integral limit argument of the elliptic function.
@@ -933,10 +933,7 @@ main()
   std::cout << "R_J(-1 + i, -1 - i, 1, 2) = " << __gnu_cxx::ellint_rj(-1.0 + 1.0i, -1.0 - 1.0i, 1.0, 2.0) << std::endl;  //  0.94148358841220
   std::cout << "R_J(i, -i, 0, 1 - i) = " << __gnu_cxx::ellint_rj(1.0i, -1.0i, 0.0, 1.0 - 1.0i) << std::endl;  //  1.8260115229009 + i 1.2290661908643
   std::cout << "R_J(-1 + i, -1 - i, 1, -3 + i) = " << __gnu_cxx::ellint_rj(-1.0 + 1.0i, -1.0 - 1.0i, 1.0, -3.0 + 1.0i) << std::endl;  //  -0.61127970812028 - i 1.0684038390007
-  std::cout << "R_J(-1 + i, -2 - i, -i, -1 + i) = " << __gnu_cxx::ellint_rj(std::complex<double>(-1.0,1.0),
-								   std::complex<double>(-2.0,-1.0),
-								   std::complex<double>(0.0,-1.0),
-								   std::complex<double>(-1.0,1.0)) << std::endl;  //  1.8249027393704 - i 1.2218475784827
+  std::cout << "R_J(-1 + i, -2 - i, -i, -1 + i) = " << __gnu_cxx::ellint_rj(-1.0 + 1.0i, -2.0 - 1.0i, 0.0 - 1.0i, -1.0 + 1.0i) << std::endl;  //  1.8249027393704 - i 1.2218475784827
 
   std::cout << std::endl;
 
@@ -963,9 +960,9 @@ main()
   std::cout << std::endl;
 
   double __pi_2 = std::__detail::__numeric_constants<double>::__pi_2();
-  std::cout << "K(pi/2) = " << std::__detail::__comp_ellint_1(std::complex<double>(__pi_2, 0.0)) << std::endl;  //  1.5887715763658593607082818553065 - i 1.3986463677643598308560440635658
-  std::cout << "K(-1) = " << std::__detail::__comp_ellint_1(std::complex<double>(-1.0, 0.0)) << std::endl;  //  1.31102877714605990523242
-  std::cout << "K(2) = " << std::__detail::__comp_ellint_1(std::complex<double>(2.0, 0.0)) << std::endl;  //  1.31102877714605990523242 - i 1.31102877714605990523242
+  std::cout << "K(pi/2) = " << std::__detail::__comp_ellint_1(__pi_2 + 0.0i) << std::endl;  //  1.5887715763658593607082818553065 - i 1.3986463677643598308560440635658
+  std::cout << "K(-1) = " << std::__detail::__comp_ellint_1(-1.0 + 0.0i) << std::endl;  //  1.31102877714605990523242
+  std::cout << "K(2) = " << std::__detail::__comp_ellint_1(2.0 + 0.0i) << std::endl;  //  1.31102877714605990523242 - i 1.31102877714605990523242
 
   return 0;
 }
