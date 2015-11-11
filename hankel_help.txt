@@ -1,8 +1,8 @@
 
-nedit hankel.h hankel.tcc airy.tcc test_hankel.cpp hankel_toy.cpp hankel_help.txt &
+nedit hankel.h sf_hankel.tcc sf_airy.tcc test_hankel.cpp hankel_toy.cpp hankel_help.txt &
 #kdiff3 test_hankel.out test_hankel_old.out test_hankel_orig.out &
 
-notepad hankel.h hankel.tcc airy.tcc test_hankel.cpp hankel_toy.cpp hankel_help.txt &
+notepad hankel.h sf_hankel.tcc sf_airy.tcc test_hankel.cpp hankel_toy.cpp hankel_help.txt &
 #kdiff3 test_hankel.out test_hankel_old.out test_hankel_orig.out &
 
 $HOME/bin/bin/g++ -std=c++14 -Wall -Wextra -o test_hankel test_hankel.cpp > /dev/null
