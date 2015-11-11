@@ -34,8 +34,12 @@
 #include <complex>
 #include <stdexcept>
 
+namespace std _GLIBCXX_VISIBILITY(default)
+{
+// Implementation-space details.
 namespace __detail
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief This function computes the hyperbolic cosine @f$ Chi(x) @f$
@@ -178,6 +182,8 @@ namespace __detail
       return std::make_pair(_Chi, _Shi);
     }
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
+}
 
 #endif // _GLIBCXX_SF_HYPINT_TCC

@@ -55,52 +55,79 @@ main()
       mu = -(6 * s + 1) * lambda / (6 * s - 1);
     }
 
-  std::vector<long double> ustore;
-  std::vector<std::vector<std::pair<int, long double>>> uentry;
   std::polynomial<long double> upol1{0.0L, 0.0L, 0.5L, 0.0L, -0.5L};
-  std::polynomial<long double> upol2{0.125L, 0.0L, -0.625L};
+  std::polynomial<long double> upol2{+0.125L, 0.0L, -0.625L};
+  std::polynomial<long double> vpol1{0.0L, -0.5L, 0.0L, +0.5L};
+  std::polynomial<long double> vpol2{0.0L, 0.0L, -1.0L, 0.0L, +1.0L};
   std::polynomial<long double> u{1.0L};
-  std::cout << '\n';
+  std::vector<std::polynomial<long double>> uvec;
+  std::polynomial<long double> v{1.0L};
+  std::vector<std::polynomial<long double>> vvec;
   for (auto k = 1; k <= 20; ++k)
     {
-      std::cout << u << '\n';
+      uvec.push_back(u);
+      vvec.push_back(v);
+      v = vpol1 * u + vpol2 * u.derivative();
+      u = upol1 * u.derivative() + (upol2 * u).integral(0.0);
+      v += u;
+    }
+  std::cout << '\n';
+  for (const auto & u : uvec)
+    std::cout << u << '\n';
+  std::cout << '\n';
+  for (const auto & v : vvec)
+    std::cout << v << '\n';
+
+  std::vector<std::vector<std::tuple<int, int, long double>>> uentry;
+  auto ku = 0;
+  for (const auto & u : uvec)
+    {
       uentry.resize(u.degree() + 1);
       for (int i = 0; i <= u.degree(); ++i)
 	if (u.coefficient(i) != 0)
-	  {
-	    ustore.push_back(u.coefficient(i));
-	    uentry[i].push_back(std::make_pair(k - 1, u.coefficient(i)));
-	  }
-      u = upol1 * u.derivative() + (upol2 * u).integral(0.0);
+	  uentry[i].push_back(std::make_tuple(ku, i, u.coefficient(i)));
+      ++ku;
     }
-
   std::cout << '\n';
   auto iu = 0;
-  for (const auto & c : ustore)
-    std::cout << ' ' << std::setw(3) << ++iu
-	      << ' ' << std::setw(width) << c << '\n';
-
-  std::cout << '\n';
-  iu = 0;
-  for (const auto & p : uentry)
-    for (const auto & c : p)
-      std::cout << ' ' << std::setw(3) << ++iu
-		<< ' ' << std::setw(3) << c.first
-		<< ' ' << std::setw(width) << c.second << '\n';
-
-  std::vector<std::vector<std::pair<int, long double>>> ventry;
-  std::polynomial<long double> v{1.0L};
-  std::cout << '\n';
-  for (int k = 1; k <= 20; ++k)
+  for (const auto & u : uentry)
     {
-      std::cout << v << '\n';
-      
+      for (const auto & c : u)
+	std::cout << ' ' << std::setw(3) << ++iu
+		  << ' ' << std::setw(3) << std::get<0>(c)
+		  << ' ' << std::setw(3) << std::get<1>(c)
+		  << ' ' << std::setw(width) << std::get<2>(c) << '\n';
+    }
+  std::vector<std::vector<std::tuple<int, int, long double>>> ventry;
+  auto kv = 0;
+  for (const auto & v : vvec)
+    {
+      ventry.resize(v.degree() + 1);
+      for (int i = 0; i <= v.degree(); ++i)
+	if (v.coefficient(i) != 0)
+	  ventry[i].push_back(std::make_tuple(kv, i, v.coefficient(i)));
+      ++kv;
     }
   std::cout << '\n';
   auto iv = 0;
-  for (const auto & p : ventry)
-    for (const auto & c : p)
-      std::cout << ' ' << std::setw(3) << ++iv
-		<< ' ' << std::setw(3) << c.first
-		<< "  " << std::setw(width) << c.second << '\n';
+  for (const auto & v : ventry)
+    {
+      for (const auto & c : v)
+	std::cout << ' ' << std::setw(3) << ++iv
+		  << ' ' << std::setw(3) << std::get<0>(c)
+		  << ' ' << std::setw(3) << std::get<1>(c)
+		  << ' ' << std::setw(width) << std::get<2>(c) << '\n';
+    }
+
+  std::cout << '\n';
+  for (const auto& u : uvec)
+    for (auto c = u.crbegin(); c != u.crend(); ++c)
+      if (*c != 0)
+	std::cout << *c << '\n';
+
+  std::cout << '\n';
+  for (const auto& v : vvec)
+    for (auto c = v.crbegin(); c != v.crend(); ++c)
+      if (*c != 0)
+	std::cout << *c << '\n';
 }

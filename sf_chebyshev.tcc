@@ -30,8 +30,12 @@
 #ifndef _GLIBCXX_SF_CHEBYSHEV_TCC
 #define _GLIBCXX_SF_CHEBYSHEV_TCC 1
 
+namespace std _GLIBCXX_VISIBILITY(default)
+{
+// Implementation-space details.
 namespace __detail
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<typename _Tp>
     _Tp
@@ -107,6 +111,8 @@ namespace __detail
       return __chebyshev_recur(__n, __x, _W0, _W1);
     }
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
+}
 
 #endif // _GLIBCXX_SF_CHEBYSHEV_TCC

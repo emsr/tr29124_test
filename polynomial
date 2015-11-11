@@ -46,8 +46,17 @@ namespace std
      *  Typedefs.
      *  @todo Should we grab these from _M_coeff (i.e. std::vector<_Tp>)?
      */
-    typedef _Tp value_type;
-    typedef std::size_t size_type;
+    using value_type = typename std::vector<_Tp>::value_type;
+    using reference = typename std::vector<_Tp>::reference;
+    using const_reference = typename std::vector<_Tp>::const_reference;
+    using pointer = typename std::vector<_Tp>::pointer;
+    using const_pointer = typename std::vector<_Tp>::const_pointer;
+    using iterator = typename std::vector<value_type>::iterator;
+    using const_iterator = typename std::vector<value_type>::const_iterator;
+    using reverse_iterator = typename std::vector<value_type>::reverse_iterator;
+    using const_reverse_iterator = typename std::vector<value_type>::const_reverse_iterator;
+    using size_type = typename std::vector<_Tp>::size_type;
+    using difference_type = typename std::vector<_Tp>::difference_type;
 
     /**
      *  Create a zero degree polynomial with value zero.
@@ -417,6 +426,46 @@ namespace std
     void
     coefficient(size_type __i, value_type __val)
     { _M_coeff.at(__i) = __val; }
+
+    value_type
+    operator[](size_type __i) const
+    { return _M_coeff[__i]; }
+
+    reference
+    operator[](size_type __i)
+    { return _M_coeff[__i]; }
+
+    iterator
+    begin()
+    { return _M_coeff.begin(); }
+
+    iterator
+    end()
+    { return _M_coeff.end(); }
+
+    const_iterator
+    cbegin() const
+    { return _M_coeff.cbegin(); }
+
+    const_iterator
+    cend() const
+    { return _M_coeff.cend(); }
+
+    reverse_iterator
+    rbegin()
+    { return _M_coeff.rbegin(); }
+
+    reverse_iterator
+    rend()
+    { return _M_coeff.rend(); }
+
+    const_reverse_iterator
+    crbegin() const
+    { return _M_coeff.crbegin(); }
+
+    const_reverse_iterator
+    crend() const
+    { return _M_coeff.crend(); }
 
     template<typename CharT, typename Traits, typename _Tp1>
       friend basic_istream<CharT, Traits>&

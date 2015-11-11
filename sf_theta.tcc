@@ -105,6 +105,8 @@ namespace __detail
 	}
     }
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
+} // namespace std
 
 #endif // _GLIBCXX_SF_THETA_TCC

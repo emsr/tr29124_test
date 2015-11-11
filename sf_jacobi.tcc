@@ -30,8 +30,12 @@
 #ifndef _GLIBCXX_SF_JACOBI_TCC
 #define _GLIBCXX_SF_JACOBI_TCC 1
 
+namespace std _GLIBCXX_VISIBILITY(default)
+{
+// Implementation-space details.
 namespace __detail
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<typename _Tp>
     _Tp
@@ -85,6 +89,8 @@ namespace __detail
 	}
     }
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
+}
 
 #endif // _GLIBCXX_SF_JACOBI_TCC
