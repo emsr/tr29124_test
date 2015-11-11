@@ -41,3 +41,4 @@ test_legendre
 test_limits
 test_nric_bessel
 test_special_function
+test_polynomial
