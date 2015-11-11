@@ -36,8 +36,10 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+// Implementation-space details.
 namespace __detail
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template <typename _Tp>
     std::complex<_Tp>
@@ -78,7 +80,8 @@ namespace __detail
       return __psi;
     }
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
-} // namespace std
+}
 
 #endif // _GLIBCXX_BITS_SF_HYDROGEN_TCC

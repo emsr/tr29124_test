@@ -34,8 +34,12 @@
 #include <complex>
 #include <stdexcept>
 
+namespace std _GLIBCXX_VISIBILITY(default)
+{
+// Implementation-space details.
 namespace __detail
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief This function returns the Fresnel cosine and sine integrals
@@ -187,6 +191,8 @@ namespace __detail
       return std::make_pair(_C, _S);
     }
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
+}
 
 #endif // _GLIBCXX_SF_FRESNEL_TCC

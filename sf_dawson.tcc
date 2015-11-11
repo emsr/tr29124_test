@@ -32,8 +32,12 @@
 
 /// FIXME for better than float.  I'm not sure these are good even for float
 
+namespace std _GLIBCXX_VISIBILITY(default)
+{
+// Implementation-space details.
 namespace __detail
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief Compute the Dawson integral using the series expansion.
@@ -118,6 +122,8 @@ namespace __detail
 	return __dawson_const_frac(__x);
     }
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
+}
 
 #endif // _GLIBCXX_SF_DAWSON_TCC

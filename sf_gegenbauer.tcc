@@ -30,8 +30,12 @@
 #ifndef _GLIBCXX_SF_GEGENBAUER_TCC
 #define _GLIBCXX_SF_GEGENBAUER_TCC 1
 
+namespace std _GLIBCXX_VISIBILITY(default)
+{
+// Implementation-space details.
 namespace __detail
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<typename _Tp>
     _Tp
@@ -39,24 +43,25 @@ namespace __detail
     {
       auto _C0 = _Tp(1);
       if (__n == 0)
-	return _C0;
+        return _C0;
 
       auto _C1 = _Tp(2) * __alpha * __x;
       if (__n == 1)
-	return _C1;
+        return _C1;
 
-      auto _C(0);
+      auto _Cn = _Tp(0);
       for (unsigned int __nn = 2; __nn <= __n; ++__nn)
-	{
-	  _C = (_Tp(2) * (_Tp(__nn) - _Tp(1) + __alpha) * __x * _C1
-	     - (_Tp(__nn) - _Tp(2) + _Tp(2) * __alpha) * _C0)
-	     / _Tp(__nn);
-	  _C0 = _C1;
-	  _C1 = _C;
-	}
-      return _C;
+        {
+          _Cn = (_Tp(2) * (_Tp(__nn) - _Tp(1) + __alpha) * __x * _C1
+              - (_Tp(__nn) - _Tp(2) + _Tp(2) * __alpha) * _C0)
+              / _Tp(__nn);
+          _C0 = _C1;
+          _C1 = _Cn;
+        }
+      return _Cn;
     }
 
 } // namespace __detail
+} // namespace std
 
 #endif // _GLIBCXX_SF_GEGENBAUER_TCC

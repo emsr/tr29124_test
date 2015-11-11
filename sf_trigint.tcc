@@ -30,8 +30,12 @@
 #ifndef _GLIBCXX_SF_TRIGINT_TCC
 #define _GLIBCXX_SF_TRIGINT_TCC 1
 
+namespace std _GLIBCXX_VISIBILITY(default)
+{
+// Implementation-space details.
 namespace __detail
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief This function computes the cosine @f$ Ci(x) @f$ and sine @f$ Si(x) @f$
@@ -229,6 +233,8 @@ namespace __detail
       return std::make_pair(_Ci, _Si);
     }
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
+} // namespace std
 
 #endif // _GLIBCXX_SF_TRIGINT_TCC

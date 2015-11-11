@@ -37,28 +37,30 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+// Implementation-space details.
 namespace __detail
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<typename _Tp>
     void
     __airy(const std::complex<_Tp>& __z, _Tp __eps,
-           std::complex<_Tp>& __ai,
-           std::complex<_Tp>& __aip);
+           std::complex<_Tp>& _Ai,
+           std::complex<_Tp>& _Aip);
 
   template<typename _Tp>
     void
     __airy_bessel_i(const std::complex<_Tp>& __z, _Tp __eps,
-		    std::complex<_Tp>& __ip1d3,
-		    std::complex<_Tp>& __im1d3,
-		    std::complex<_Tp>& __ip2d3,
-		    std::complex<_Tp>& __im2d3);
+		    std::complex<_Tp>& _Ip1d3,
+		    std::complex<_Tp>& _Im1d3,
+		    std::complex<_Tp>& _Ip2d3,
+		    std::complex<_Tp>& _Im2d3);
 
   template<typename _Tp>
     void
     __airy_bessel_k(const std::complex<_Tp>& __z, _Tp __eps,
-		    std::complex<_Tp>& __kp1d3,
-		    std::complex<_Tp>& __kp2d3);
+		    std::complex<_Tp>& _Kp1d3,
+		    std::complex<_Tp>& _Kp2d3);
 
   template<typename _Tp>
     void
@@ -71,62 +73,43 @@ namespace __detail
   template<typename _Tp>
     void
     __airy_asymp_absarg_ge_pio3(std::complex<_Tp> __z,
-				std::complex<_Tp>& __ai,
-				std::complex<_Tp>& __aip);
+				std::complex<_Tp>& _Ai,
+				std::complex<_Tp>& _Aip);
 
   template<typename _Tp>
     void
     __airy_asymp_absarg_lt_pio3(std::complex<_Tp> __z,
-				std::complex<_Tp>& __ai,
-				std::complex<_Tp>& __aip);
+				std::complex<_Tp>& _Ai,
+				std::complex<_Tp>& _Aip);
 
   /**
-   *  @brief
-   *  This function computes the Airy function Ai(z) and its first
+   *  @brief This function computes the Airy function Ai(z) and its first
    *  derivative in the complex z-plane.
    *
    *  The algorithm used exploits numerous representations of the
    *  Airy function and its derivative.
    *  The representations are recorded here for reference:
    *
-   *    	  \sqrt(z)  
-   *  (1) Ai(z)	= ------- (I_(-1/3)(\xi) - I_(1/3)(\xi))
-   *    	       3
+   *  (1) Ai(z)	= \frac{\sqrt(z)}{3}(I_{-1/3}(\xi) - I_{1/3}(\xi))
    *
-   *    	  \sqrt(z/3) 
-   *  (2) Ai(z)	= --------- K_(1/3)(\xi)
-   *    	       pi
+   *  (2) Ai(z)	= \frac{\sqrt(z/3)}{\pi} K_{1/3}(\xi)
    *
-   *    	      2/3  -5/6
-   *    	     2	  3
-   *    	  =  --------  z exp(-xi) U(5/6; 5/3; 2 xi)
-   *    	     sqrt(pi)
+   *    	  = \frac{2^{2/3}3^{-5/6}}{\sqrt(\pi)}
+   *    	       z \exp(-\xi) U(5/6; 5/3; 2 \xi)
    *
-   *    	    \sqrt(z)
-   *  (3) Ai(-z)  = --------(J_{-1/3}(\xi) + J_{1/3}(\xi))
-   *    	       3
+   *  (3) Ai(-z)  = \frac{\sqrt(z)}{3}(J_{-1/3}(\xi) + J_{1/3}(\xi))
    *
-   *    	    z
-   *  (4) Ai'(z)  = - (I_(2/3)(\xi) - I_(-2/3)(\xi))
-   *    	    3
+   *  (4) Ai'(z)  = \frac{z}{3}(I_{2/3}(\xi) - I_{-2/3}(\xi))
    *
-   *    		   z
-   *  (5) Ai'(z)  = - ---------- K_(2/3)(xi)
-   *    	      pi sqrt(3)
+   *  (5) Ai'(z)  = -\frac{z}{\pi\sqrt(3)} K_(2/3)(xi)
    *
-   *    		2/3  -7/6
-   *    	       4    3      2
-   *    	  =  - ---------  z exp(-\xi) U(7/6; 7/3; 2 \xi)
-   *    	       sqrt(\pi)
+   *    	  =  -\frac{4^{2/3}3^{-7/6}}{\sqrt(\pi)}
+   *                   z^2 \exp(-\xi) U(7/6; 7/3; 2 \xi)
    *
-   *    	     z
-   *  (6) Ai'(-z) =  - (J_{2/3}(\xi) - J_{-2/3}(\xi)) ,
-   *    	     3
+   *  (6) Ai'(-z) = \frac{z}{3}(J_{2/3}(\xi) - J_{-2/3}(\xi)) ,
    *
-   *    	  2  3/2
-   *  Where \xi = - z    and U(a;b;z) is the confluent hypergeometric
-   *        	  3
-   *  function as defined in
+   *  Where \xi = - \frac{2}{3}z^{3/2} and U(a;b;z) is the confluent hypergeometric
+   *  function defined in
    *
    *  @see Stegun, I. A. and Abramowitz, M., Handbook of Mathematical Functions,
    *    Natl. Bureau of Standards, AMS 55, pp 504-515, 1964.
@@ -208,8 +191,8 @@ namespace __detail
   template<typename _Tp>
     void
     __airy(const std::complex<_Tp>& __z, _Tp __eps,
-           std::complex<_Tp>& __ai,
-           std::complex<_Tp>& __aip)
+           std::complex<_Tp>& _Ai,
+           std::complex<_Tp>& _Aip)
     {
       using __cmplx = std::complex<_Tp>;
 
@@ -250,12 +233,12 @@ namespace __detail
 		{
 		  //  Use rational approximation for modified Bessel functions
 		  //  of orders 1/3 and 2/3
-		  __airy_bessel_k(__xi, __eps, __ai, __aip);
+		  __airy_bessel_k(__xi, __eps, _Ai, _Aip);
 		  //  Recover Ai(z) and Ai'(z)
 		  auto __p1d4c = std::sqrt(__sqrtz);
 		  __xi = _S_rsqpi * std::exp(-__xi);
-		  __ai *= __xi / __p1d4c;
-		  __aip *= -__xi * __p1d4c;
+		  _Ai *= __xi / __p1d4c;
+		  _Aip *= -__xi * __p1d4c;
 		}
 	      else
 		{
@@ -263,26 +246,26 @@ namespace __detail
 		  if (__absz <= _S_small)
 		    {
 		      //  Use rational approximation along with (1) and (4)
-		      __cmplx __ip1d3, __im1d3, __ip2d3, __im2d3;
+		      __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
 		      __airy_hyperg_rational(__z,
-					     __ip1d3, __im1d3, __ip2d3, __im2d3);
+					     _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
 		      //  Recover Ai(z) and Ai'(z)
-		      __im1d3 *= _S_gm2d3;
-		      __ip1d3 *= _S_gm1d3;
-		      __ai = __im1d3 - __z * __ip1d3;
-		      __im2d3 *= _S_gm1d3;
-		      __ip2d3 *= _S_2g2d3;
-		      __aip = __z * __z * __ip2d3 - __im2d3;
+		      _Im1d3 *= _S_gm2d3;
+		      _Ip1d3 *= _S_gm1d3;
+		      _Ai = _Im1d3 - __z * _Ip1d3;
+		      _Im2d3 *= _S_gm1d3;
+		      _Ip2d3 *= _S_2g2d3;
+		      _Aip = __z * __z * _Ip2d3 - _Im2d3;
 		    }
 		  else
 		    {
 		      //  Use backward recurrence along with (1) and (4)
-		      __cmplx __ip1d3, __im1d3, __ip2d3, __im2d3;
+		      __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
 		      __airy_bessel_i(__xi, __eps,
-				      __ip1d3, __im1d3, __ip2d3, __im2d3);
+				      _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
 		      //  Recover Ai(z) and Ai'(z)
-		      __ai = _S_1d3 * __sqrtz * (__im1d3 - __ip1d3);
-		      __aip = _S_1d3 * __z * (__ip2d3 - __im2d3);
+		      _Ai = _S_1d3 * __sqrtz * (_Im1d3 - _Ip1d3);
+		      _Aip = _S_1d3 * __z * (_Ip2d3 - _Im2d3);
 		    }
 		}
 	    }
@@ -319,26 +302,26 @@ namespace __detail
 		{
 		  //  Use rational approximation
 		  __xi = -__z;
-		  __cmplx __ip1d3, __im1d3, __ip2d3, __im2d3;
-		  __airy_hyperg_rational(__z, __ip1d3, __im1d3, __ip2d3, __im2d3);
+		  __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
+		  __airy_hyperg_rational(__z, _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
 		  //  Recover Ai(z) and Ai'(z)
-		  __im1d3 *= _S_gm2d3;
-		  __ip1d3 *= _S_gm1d3;
-		  __ai = __im1d3 - __z * __ip1d3;
-		  __im2d3 *= _S_gm1d3;
-		  __ip2d3 *= _S_2g2d3;
-		  __aip = __z * __z * __ip2d3 - __im2d3;
+		  _Im1d3 *= _S_gm2d3;
+		  _Ip1d3 *= _S_gm1d3;
+		  _Ai = _Im1d3 - __z * _Ip1d3;
+		  _Im2d3 *= _S_gm1d3;
+		  _Ip2d3 *= _S_2g2d3;
+		  _Aip = __z * __z * _Ip2d3 - _Im2d3;
 		}
 	      else
 		{
 		  //  Use backward recurrence
-		  __cmplx __ip1d3, __im1d3, __ip2d3, __im2d3;
+		  __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
 		  __airy_bessel_i(__z2xi, __eps,
-				  __ip1d3, __im1d3, __ip2d3, __im2d3);
+				  _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
 		  //  Recover Ai(z) and Ai'(z)
-		  __ai = _S_1d3 * __sqrtz
-		       * (__m1d3f * __im1d3 + __p1d3f * __ip1d3);
-		  __aip = _S_1d3 * __z * (__m2d3f * __im2d3 - __p2d3f * __ip2d3);
+		  _Ai = _S_1d3 * __sqrtz
+		      * (__m1d3f * _Im1d3 + __p1d3f * _Ip1d3);
+		  _Aip = _S_1d3 * __z * (__m2d3f * _Im2d3 - __p2d3f * _Ip2d3);
 		}
 	    }
 	}
@@ -346,9 +329,9 @@ namespace __detail
 	{ //  abs(z) is large...
 	  //  Check arg(z) to see which asymptotic form is appropriate
 	  if (std::abs(std::arg(__z)) < 2 * _S_pi / 3)
-	    __airy_asymp_absarg_ge_pio3(__z, __ai, __aip);
+	    __airy_asymp_absarg_ge_pio3(__z, _Ai, _Aip);
 	  else
-	    __airy_asymp_absarg_lt_pio3(__z, __ai, __aip);
+	    __airy_asymp_absarg_lt_pio3(__z, _Ai, _Aip);
 	}
       return;
   }
@@ -369,10 +352,10 @@ namespace __detail
    *  since a low order rational approximation can be used instead.
    *
    *  This routine is an implementation of a modified version of
-   *  Miller's algorithm for computation by backward recurrence
+   *  Miller's backward recurrence algorithm for computation by
    *  from the recurrence relation
    *
-   *    I_{\nu-1} = (2*\nu/z)*I_\nu + I_{\nu+1}
+   *    I_{\nu-1} = (2\nu/z)I_\nu + I_{\nu+1}
    *
    *  satisfied by the modified Bessel functions of the first kind.
    *  the normalization relationship used is
@@ -414,7 +397,7 @@ namespace __detail
    *  norm used in the complex plane.
    *  To insure the validity of the results, the inequality
    *
-   *    abs(x) + abs(y) <= sqrt(2) sqrt(x^2 + y^2) 
+   *    |x| + |y| <= \sqrt(2) \sqrt(x^2 + y^2) 
    *
    *  was used to modify the convergence tests.
    *
@@ -432,10 +415,10 @@ namespace __detail
   template<typename _Tp>
     void
     __airy_bessel_i(const std::complex<_Tp>& __z, _Tp __eps,
-		    std::complex<_Tp>& __ip1d3,
-		    std::complex<_Tp>& __im1d3,
-		    std::complex<_Tp>& __ip2d3,
-		    std::complex<_Tp>& __im2d3)
+		    std::complex<_Tp>& _Ip1d3,
+		    std::complex<_Tp>& _Im1d3,
+		    std::complex<_Tp>& _Ip2d3,
+		    std::complex<_Tp>& _Im2d3)
     {
       using __cmplx = std::complex<_Tp>;
 
@@ -580,7 +563,7 @@ namespace __detail
       __pold1 = __zd2pow * std::exp(-__z);
       __sum1 *= _S_gm4d3 * __pold1;
       __plast1 /= __sum1;
-      __ip1d3 = __p1 / __sum1;
+      _Ip1d3 = __p1 / __sum1;
 
       //  Perform last two recurrence steps for order 2/3
       auto __pold2 = __plast2;
@@ -595,13 +578,13 @@ namespace __detail
       //  Compute scale factor and scale results for order 2/3 case
       __sum2 *= _S_gm5d3 * __zd2pow * __pold1;
       __plast2 /= __sum2;
-      __ip2d3 = __p2 / __sum2;
+      _Ip2d3 = __p2 / __sum2;
 
       //  Recur back one step from order +1/3 to get order -2/3
-      __im2d3 = _S_2d3 * __ip1d3 * __1dz + __plast1;
+      _Im2d3 = _S_2d3 * _Ip1d3 * __1dz + __plast1;
 
       //  Recur back one step from order +2/3 to get order -1/3
-      __im1d3 = _S_4d3 * __ip2d3 * __1dz + __plast2;
+      _Im1d3 = _S_4d3 * _Ip2d3 * __1dz + __plast2;
 
       return;
     }
@@ -613,7 +596,7 @@ namespace __detail
    *
    *  This routine computes
    *
-   *    E_\nu(z) = exp(z) sqrt(2 z/\pi) K_\nu(z), for \nu = 1/3 and \nu = 2/3
+   *    E_\nu(z) = \exp(z) \sqrt(2 z/\pi) K_\nu(z), for \nu = 1/3 and \nu = 2/3
    *
    *  using a rational approximation given in
    *
@@ -624,31 +607,31 @@ namespace __detail
    *  The convergence weakens as abs(arg(z)) increases.  Also, in
    *  the case of real order between 0 and 1, convergence weakens
    *  as the order approaches 1.  For these reasons, we only use
-   *  this code for abs(arg(z)) <= 3*pi/4 and the convergence test
+   *  this code for |\arg(z)| <= 3pi/4 and the convergence test
    *  is performed only for order 2/3.
    *
    *  The coding of this function is also influenced by the fact
-   *  that it will only be used for about 2 <= abs(z) <= 15.
+   *  that it will only be used for about 2 <= |z| <= 15.
    *  Hence, certain considerations of overflow, underflow, and
    *  loss of significance are unimportant for our purpose.
    *
    *  @param[in] z   The value for which the quantity E_nu is to be computed.
    *    	     it is recommended that abs(z) not be too small and that
-   *    	     abs(arg(z)) <= 3*pi/4.
+   *    	     |\arg(z)| <= 3pi/4.
    *  @param[in] eps The maximum relative error allowable in the computed
    *    	     results. The relative error test is based on the
    *    	     comparison of successive iterates.
-   *  @param[out] kp1d3  The value computed for E_(+1/3)(z).
-   *  @param[out] kp2d3  The value computed for E_(+2/3)(z).
+   *  @param[out] kp1d3  The value computed for E_{+1/3}(z).
+   *  @param[out] kp2d3  The value computed for E_{+2/3}(z).
    *
-   *  @note In the worst case, say, z=2 and arg(z) = 3*pi/4,
+   *  @note In the worst case, say, z=2 and \arg(z) = 3pi/4,
    *        20 iterations should give 7 or 8 decimals of accuracy.
    */
   template<typename _Tp>
     void
     __airy_bessel_k(const std::complex<_Tp>& __z, _Tp __eps,
-		    std::complex<_Tp>& __kp1d3,
-		    std::complex<_Tp>& __kp2d3)
+		    std::complex<_Tp>& _Kp1d3,
+		    std::complex<_Tp>& _Kp2d3)
     {
       using __cmplx = std::complex<_Tp>;
 
@@ -746,8 +729,8 @@ namespace __detail
 	  if (std::abs(__ratnew - __ratold) < __eps * std::abs(__ratnew))
 	    {
 	      //  Convergence.
-	      __kp2d3 = __ratnew;
-	      __kp1d3 = __phi13 / __f13;
+	      _Kp2d3 = __ratnew;
+	      _Kp1d3 = __phi13 / __f13;
 	      return;
 	    }
 
@@ -1196,13 +1179,14 @@ namespace __detail
     std::complex<_Tp>
     __airy_bi(std::complex<_Tp> __z)
     {
-      std::complex<_Tp> __ai, __aip, _Bi, _Bip;
-      __airy(__z, __ai, __aip, _Bi, _Bip);
+      std::complex<_Tp> _Ai, _Aip, _Bi, _Bip;
+      __airy(__z, _Ai, _Aip, _Bi, _Bip);
       return _Bi;
     }
 */
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
-} // namespace std
+}
 
 #endif // _GLIBCXX_BITS_SF_AIRY_TCC
