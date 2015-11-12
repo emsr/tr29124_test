@@ -45,3 +45,4 @@ test_nric_bessel
 test_special_function
 test_polynomial
 hankel_toy
+dilog
