@@ -1,0 +1,1251 @@
+commit 3274f846b6c57fc975da1695731c6c2f2a41c196
+Author: Jonathan Wakely <jwakely@redhat.com>
+Date:   Sun Oct 18 13:49:04 2015 +0100
+
+    implement IS 29124
+
+diff --git a/libstdc++-v3/include/Makefile.am b/libstdc++-v3/include/Makefile.am
+index 2dc0d01..cd9b4c6 100644
+--- a/libstdc++-v3/include/Makefile.am
++++ b/libstdc++-v3/include/Makefile.am
+@@ -120,6 +120,7 @@ bits_headers = \
+ 	${bits_srcdir}/locale_facets_nonio.tcc \
+ 	${bits_srcdir}/localefwd.h \
+ 	${bits_srcdir}/mask_array.h \
++	${bits_srcdir}/math_sf.h \
+ 	${bits_srcdir}/memoryfwd.h \
+ 	${bits_srcdir}/move.h \
+ 	${bits_srcdir}/mutex.h \
+diff --git a/libstdc++-v3/include/Makefile.in b/libstdc++-v3/include/Makefile.in
+index d545484..cf654ce 100644
+--- a/libstdc++-v3/include/Makefile.in
++++ b/libstdc++-v3/include/Makefile.in
+@@ -410,6 +410,7 @@ bits_headers = \
+ 	${bits_srcdir}/locale_facets_nonio.tcc \
+ 	${bits_srcdir}/localefwd.h \
+ 	${bits_srcdir}/mask_array.h \
++	${bits_srcdir}/math_sf.h \
+ 	${bits_srcdir}/memoryfwd.h \
+ 	${bits_srcdir}/move.h \
+ 	${bits_srcdir}/mutex.h \
+diff --git a/libstdc++-v3/include/bits/math_sf.h b/libstdc++-v3/include/bits/math_sf.h
+new file mode 100644
+index 0000000..344e4b7
+--- /dev/null
++++ b/libstdc++-v3/include/bits/math_sf.h
+@@ -0,0 +1,472 @@
++// Mathematical Special Functions for -*- C++ -*-
++
++// Copyright (C) 2006-2015 Free Software Foundation, Inc.
++//
++// This file is part of the GNU ISO C++ Library.  This library is free
++// software; you can redistribute it and/or modify it under the
++// terms of the GNU General Public License as published by the
++// Free Software Foundation; either version 3, or (at your option)
++// any later version.
++
++// This library is distributed in the hope that it will be useful,
++// but WITHOUT ANY WARRANTY; without even the implied warranty of
++// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++// GNU General Public License for more details.
++
++// Under Section 7 of GPL version 3, you are granted additional
++// permissions described in the GCC Runtime Library Exception, version
++// 3.1, as published by the Free Software Foundation.
++
++// You should have received a copy of the GNU General Public License and
++// a copy of the GCC Runtime Library Exception along with this program;
++// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
++// <http://www.gnu.org/licenses/>.
++
++/** @file bits/math_sf.h
++ *  This is an internal header file, included by other library headers.
++ *  Do not attempt to use it directly. @headername{cmath}
++ */
++
++#ifndef _GLIBCXX_MATH_SF_H
++#define _GLIBCXX_MATH_SF_H 1
++
++#pragma GCC visibility push(default)
++
++#include <bits/c++config.h>
++
++#if __STDCPP_WANT_MATH_SPEC_FUNCS__ == 0
++# error include <cmath> and define __STDCPP_WANT_MATH_SPEC_FUNCS__
++#endif
++
++#define __STDCPP_MATH_SPEC_FUNCS__ 201003L
++
++#include <bits/stl_algobase.h>
++#include <limits>
++#include <type_traits>
++
++#include <tr1/gamma.tcc>
++#include <tr1/bessel_function.tcc>
++#include <tr1/beta_function.tcc>
++#include <tr1/ell_integral.tcc>
++#include <tr1/exp_integral.tcc>
++#include <tr1/hypergeometric.tcc>
++#include <tr1/legendre_function.tcc>
++#include <tr1/modified_bessel_func.tcc>
++#include <tr1/poly_hermite.tcc>
++#include <tr1/poly_laguerre.tcc>
++#include <tr1/riemann_zeta.tcc>
++
++namespace std _GLIBCXX_VISIBILITY(default)
++{
++_GLIBCXX_BEGIN_NAMESPACE_VERSION
++
++  /**
++   * @defgroup mathsf Mathematical Special Functions
++   * @ingroup numerics
++   *
++   * A collection of advanced mathematical special functions,
++   * defined by ISO/IEC IS 29124.
++   * @{
++   */
++
++  inline float
++  assoc_laguerref(unsigned int __n, unsigned int __m, float __x)
++  { return __detail::__assoc_laguerre<float>(__n, __m, __x); }
++
++  inline long double
++  assoc_laguerrel(unsigned int __n, unsigned int __m, long double __x)
++  {
++    return __detail::__assoc_laguerre<long double>(__n, __m, __x);
++  }
++
++  ///  5.2.1.1  Associated Laguerre polynomials.
++  template<typename _Tp>
++    inline typename __gnu_cxx::__promote<_Tp>::__type
++    assoc_laguerre(unsigned int __n, unsigned int __m, _Tp __x)
++    {
++      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
++      return __detail::__assoc_laguerre<__type>(__n, __m, __x);
++    }
++
++  inline float
++  assoc_legendref(unsigned int __l, unsigned int __m, float __x)
++  { return __detail::__assoc_legendre_p<float>(__l, __m, __x); }
++
++  inline long double
++  assoc_legendrel(unsigned int __l, unsigned int __m, long double __x)
++  { return __detail::__assoc_legendre_p<long double>(__l, __m, __x); }
++
++  ///  5.2.1.2  Associated Legendre functions.
++  template<typename _Tp>
++    inline typename __gnu_cxx::__promote<_Tp>::__type
++    assoc_legendre(unsigned int __l, unsigned int __m, _Tp __x)
++    {
++      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
++      return __detail::__assoc_legendre_p<__type>(__l, __m, __x);
++    }
++
++  inline float
++  betaf(float __x, float __y)
++  { return __detail::__beta<float>(__x, __y); }
++
++  inline long double
++  betal(long double __x, long double __y)
++  { return __detail::__beta<long double>(__x, __y); }
++
++  ///  5.2.1.3  Beta functions.
++  template<typename _Tpx, typename _Tpy>
++    inline typename __gnu_cxx::__promote_2<_Tpx, _Tpy>::__type
++    beta(_Tpx __x, _Tpy __y)
++    {
++      typedef typename __gnu_cxx::__promote_2<_Tpx, _Tpy>::__type __type;
++      return __detail::__beta<__type>(__x, __y);
++    }
++
++  inline float
++  comp_ellint_1f(float __k)
++  { return __detail::__comp_ellint_1<float>(__k); }
++
++  inline long double
++  comp_ellint_1l(long double __k)
++  { return __detail::__comp_ellint_1<long double>(__k); }
++
++  ///  5.2.1.4  Complete elliptic integrals of the first kind.
++  template<typename _Tp>
++    inline typename __gnu_cxx::__promote<_Tp>::__type
++    comp_ellint_1(_Tp __k)
++    {
++      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
++      return __detail::__comp_ellint_1<__type>(__k);
++    }
++
++  inline float
++  comp_ellint_2f(float __k)
++  { return __detail::__comp_ellint_2<float>(__k); }
++
++  inline long double
++  comp_ellint_2l(long double __k)
++  { return __detail::__comp_ellint_2<long double>(__k); }
++
++  ///  5.2.1.5  Complete elliptic integrals of the second kind.
++  template<typename _Tp>
++    inline typename __gnu_cxx::__promote<_Tp>::__type
++    comp_ellint_2(_Tp __k)
++    {
++      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
++      return __detail::__comp_ellint_2<__type>(__k);
++    }
++
++  inline float
++  comp_ellint_3f(float __k, float __nu)
++  { return __detail::__comp_ellint_3<float>(__k, __nu); }
++
++  inline long double
++  comp_ellint_3l(long double __k, long double __nu)
++  { return __detail::__comp_ellint_3<long double>(__k, __nu); }
++
++  ///  5.2.1.6  Complete elliptic integrals of the third kind.
++  template<typename _Tp, typename _Tpn>
++    inline typename __gnu_cxx::__promote_2<_Tp, _Tpn>::__type
++    comp_ellint_3(_Tp __k, _Tpn __nu)
++    {
++      typedef typename __gnu_cxx::__promote_2<_Tp, _Tpn>::__type __type;
++      return __detail::__comp_ellint_3<__type>(__k, __nu);
++    }
++
++  inline float
++  conf_hypergf(float __a, float __c, float __x)
++  { return __detail::__conf_hyperg<float>(__a, __c, __x); }
++
++  inline long double
++  conf_hypergl(long double __a, long double __c, long double __x)
++  { return __detail::__conf_hyperg<long double>(__a, __c, __x); }
++
++  ///  5.2.1.7  Confluent hypergeometric functions.
++  template<typename _Tpa, typename _Tpc, typename _Tp>
++    inline typename __gnu_cxx::__promote_3<_Tpa, _Tpc, _Tp>::__type
++    conf_hyperg(_Tpa __a, _Tpc __c, _Tp __x)
++    {
++      typedef typename __gnu_cxx::__promote_3<_Tpa, _Tpc, _Tp>::__type __type;
++      return __detail::__conf_hyperg<__type>(__a, __c, __x);
++    }
++
++  inline float
++  cyl_bessel_if(float __nu, float __x)
++  { return __detail::__cyl_bessel_i<float>(__nu, __x); }
++
++  inline long double
++  cyl_bessel_il(long double __nu, long double __x)
++  { return __detail::__cyl_bessel_i<long double>(__nu, __x); }
++
++  ///  5.2.1.8  Regular modified cylindrical Bessel functions.
++  template<typename _Tpnu, typename _Tp>
++    inline typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type
++    cyl_bessel_i(_Tpnu __nu, _Tp __x)
++    {
++      typedef typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type __type;
++      return __detail::__cyl_bessel_i<__type>(__nu, __x);
++    }
++
++  inline float
++  cyl_bessel_jf(float __nu, float __x)
++  { return __detail::__cyl_bessel_j<float>(__nu, __x); }
++
++  inline long double
++  cyl_bessel_jl(long double __nu, long double __x)
++  { return __detail::__cyl_bessel_j<long double>(__nu, __x); }
++
++  ///  5.2.1.9  Cylindrical Bessel functions (of the first kind).
++  template<typename _Tpnu, typename _Tp>
++    inline typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type
++    cyl_bessel_j(_Tpnu __nu, _Tp __x)
++    {
++      typedef typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type __type;
++      return __detail::__cyl_bessel_j<__type>(__nu, __x);
++    }
++
++  inline float
++  cyl_bessel_kf(float __nu, float __x)
++  { return __detail::__cyl_bessel_k<float>(__nu, __x); }
++
++  inline long double
++  cyl_bessel_kl(long double __nu, long double __x)
++  { return __detail::__cyl_bessel_k<long double>(__nu, __x); }
++
++  ///  5.2.1.10  Irregular modified cylindrical Bessel functions.
++  template<typename _Tpnu, typename _Tp>
++    inline typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type
++    cyl_bessel_k(_Tpnu __nu, _Tp __x)
++    {
++      typedef typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type __type;
++      return __detail::__cyl_bessel_k<__type>(__nu, __x);
++    }
++
++  inline float
++  cyl_neumannf(float __nu, float __x)
++  { return __detail::__cyl_neumann_n<float>(__nu, __x); }
++
++  inline long double
++  cyl_neumannl(long double __nu, long double __x)
++  { return __detail::__cyl_neumann_n<long double>(__nu, __x); }
++
++  ///  5.2.1.11  Cylindrical Neumann functions.
++  template<typename _Tpnu, typename _Tp>
++    inline typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type
++    cyl_neumann(_Tpnu __nu, _Tp __x)
++    {
++      typedef typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type __type;
++      return __detail::__cyl_neumann_n<__type>(__nu, __x);
++    }
++
++  inline float
++  ellint_1f(float __k, float __phi)
++  { return __detail::__ellint_1<float>(__k, __phi); }
++
++  inline long double
++  ellint_1l(long double __k, long double __phi)
++  { return __detail::__ellint_1<long double>(__k, __phi); }
++
++  ///  5.2.1.12  Incomplete elliptic integrals of the first kind.
++  template<typename _Tp, typename _Tpp>
++    inline typename __gnu_cxx::__promote_2<_Tp, _Tpp>::__type
++    ellint_1(_Tp __k, _Tpp __phi)
++    {
++      typedef typename __gnu_cxx::__promote_2<_Tp, _Tpp>::__type __type;
++      return __detail::__ellint_1<__type>(__k, __phi);
++    }
++
++  inline float
++  ellint_2f(float __k, float __phi)
++  { return __detail::__ellint_2<float>(__k, __phi); }
++
++  inline long double
++  ellint_2l(long double __k, long double __phi)
++  { return __detail::__ellint_2<long double>(__k, __phi); }
++
++  ///  5.2.1.13  Incomplete elliptic integrals of the second kind.
++  template<typename _Tp, typename _Tpp>
++    inline typename __gnu_cxx::__promote_2<_Tp, _Tpp>::__type
++    ellint_2(_Tp __k, _Tpp __phi)
++    {
++      typedef typename __gnu_cxx::__promote_2<_Tp, _Tpp>::__type __type;
++      return __detail::__ellint_2<__type>(__k, __phi);
++    }
++
++  inline float
++  ellint_3f(float __k, float __nu, float __phi)
++  { return __detail::__ellint_3<float>(__k, __nu, __phi); }
++
++  inline long double
++  ellint_3l(long double __k, long double __nu, long double __phi)
++  { return __detail::__ellint_3<long double>(__k, __nu, __phi); }
++
++  ///  5.2.1.14  Incomplete elliptic integrals of the third kind.
++  template<typename _Tp, typename _Tpn, typename _Tpp>
++    inline typename __gnu_cxx::__promote_3<_Tp, _Tpn, _Tpp>::__type
++    ellint_3(_Tp __k, _Tpn __nu, _Tpp __phi)
++    {
++      typedef typename __gnu_cxx::__promote_3<_Tp, _Tpn, _Tpp>::__type __type;
++      return __detail::__ellint_3<__type>(__k, __nu, __phi);
++    }
++
++  inline float
++  expintf(float __x)
++  { return __detail::__expint<float>(__x); }
++
++  inline long double
++  expintl(long double __x)
++  { return __detail::__expint<long double>(__x); }
++
++  ///  5.2.1.15  Exponential integrals.
++  template<typename _Tp>
++    inline typename __gnu_cxx::__promote<_Tp>::__type
++    expint(_Tp __x)
++    {
++      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
++      return __detail::__expint<__type>(__x);
++    }
++
++  inline float
++  hermitef(unsigned int __n, float __x)
++  { return __detail::__poly_hermite<float>(__n, __x); }
++
++  inline long double
++  hermitel(unsigned int __n, long double __x)
++  { return __detail::__poly_hermite<long double>(__n, __x); }
++
++  ///  5.2.1.16  Hermite polynomials.
++  template<typename _Tp>
++    inline typename __gnu_cxx::__promote<_Tp>::__type
++    hermite(unsigned int __n, _Tp __x)
++    {
++      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
++      return __detail::__poly_hermite<__type>(__n, __x);
++    }
++
++  inline float
++  hypergf(float __a, float __b, float __c, float __x)
++  { return __detail::__hyperg<float>(__a, __b, __c, __x); }
++
++  inline long double
++  hypergl(long double __a, long double __b, long double __c, long double __x)
++  { return __detail::__hyperg<long double>(__a, __b, __c, __x); }
++
++  ///  5.2.1.17  Hypergeometric functions.
++  template<typename _Tpa, typename _Tpb, typename _Tpc, typename _Tp>
++    inline typename __gnu_cxx::__promote_4<_Tpa, _Tpb, _Tpc, _Tp>::__type
++    hyperg(_Tpa __a, _Tpb __b, _Tpc __c, _Tp __x)
++    {
++      typedef typename __gnu_cxx::__promote_4<_Tpa, _Tpb, _Tpc, _Tp>::__type __type;
++      return __detail::__hyperg<__type>(__a, __b, __c, __x);
++    }
++
++  inline float
++  laguerref(unsigned int __n, float __x)
++  { return __detail::__laguerre<float>(__n, __x); }
++
++  inline long double
++  laguerrel(unsigned int __n, long double __x)
++  { return __detail::__laguerre<long double>(__n, __x); }
++
++  ///  5.2.1.18  Laguerre polynomials.
++  template<typename _Tp>
++    inline typename __gnu_cxx::__promote<_Tp>::__type
++    laguerre(unsigned int __n, _Tp __x)
++    {
++      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
++      return __detail::__laguerre<__type>(__n, __x);
++    }
++
++  inline float
++  legendref(unsigned int __n, float __x)
++  { return __detail::__poly_legendre_p<float>(__n, __x); }
++
++  inline long double
++  legendrel(unsigned int __n, long double __x)
++  { return __detail::__poly_legendre_p<long double>(__n, __x); }
++
++  ///  5.2.1.19  Legendre polynomials.
++  template<typename _Tp>
++    inline typename __gnu_cxx::__promote<_Tp>::__type
++    legendre(unsigned int __n, _Tp __x)
++    {
++      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
++      return __detail::__poly_legendre_p<__type>(__n, __x);
++    }
++
++  inline float
++  riemann_zetaf(float __x)
++  { return __detail::__riemann_zeta<float>(__x); }
++
++  inline long double
++  riemann_zetal(long double __x)
++  { return __detail::__riemann_zeta<long double>(__x); }
++
++  ///  5.2.1.20  Riemann zeta function.
++  template<typename _Tp>
++    inline typename __gnu_cxx::__promote<_Tp>::__type
++    riemann_zeta(_Tp __x)
++    {
++      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
++      return __detail::__riemann_zeta<__type>(__x);
++    }
++
++  inline float
++  sph_besself(unsigned int __n, float __x)
++  { return __detail::__sph_bessel<float>(__n, __x); }
++
++  inline long double
++  sph_bessell(unsigned int __n, long double __x)
++  { return __detail::__sph_bessel<long double>(__n, __x); }
++
++  ///  5.2.1.21  Spherical Bessel functions.
++  template<typename _Tp>
++    inline typename __gnu_cxx::__promote<_Tp>::__type
++    sph_bessel(unsigned int __n, _Tp __x)
++    {
++      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
++      return __detail::__sph_bessel<__type>(__n, __x);
++    }
++
++  inline float
++  sph_legendref(unsigned int __l, unsigned int __m, float __theta)
++  { return __detail::__sph_legendre<float>(__l, __m, __theta); }
++
++  inline long double
++  sph_legendrel(unsigned int __l, unsigned int __m, long double __theta)
++  { return __detail::__sph_legendre<long double>(__l, __m, __theta); }
++
++  ///  5.2.1.22  Spherical associated Legendre functions.
++  template<typename _Tp>
++    inline typename __gnu_cxx::__promote<_Tp>::__type
++    sph_legendre(unsigned int __l, unsigned int __m, _Tp __theta)
++    {
++      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
++      return __detail::__sph_legendre<__type>(__l, __m, __theta);
++    }
++
++  inline float
++  sph_neumannf(unsigned int __n, float __x)
++  { return __detail::__sph_neumann<float>(__n, __x); }
++
++  inline long double
++  sph_neumannl(unsigned int __n, long double __x)
++  { return __detail::__sph_neumann<long double>(__n, __x); }
++
++  ///  5.2.1.23  Spherical Neumann functions.
++  template<typename _Tp>
++    inline typename __gnu_cxx::__promote<_Tp>::__type
++    sph_neumann(unsigned int __n, _Tp __x)
++    {
++      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
++      return __detail::__sph_neumann<__type>(__n, __x);
++    }
++
++  // @} group mathsf
++
++_GLIBCXX_END_NAMESPACE_VERSION
++} // namespace std
++
++#pragma GCC visibility pop
++
++#endif // _GLIBCXX_MATH_SF_H
+diff --git a/libstdc++-v3/include/c_global/cmath b/libstdc++-v3/include/c_global/cmath
+index 7718ea2..38fe5f3 100644
+--- a/libstdc++-v3/include/c_global/cmath
++++ b/libstdc++-v3/include/c_global/cmath
+@@ -1683,4 +1683,8 @@ _GLIBCXX_END_NAMESPACE_VERSION
+ 
+ #endif // C++11
+ 
++#if __STDCPP_WANT_MATH_SPEC_FUNCS__ == 1
++# include <bits/math_sf.h>
++#endif
++
+ #endif
+diff --git a/libstdc++-v3/include/tr1/bessel_function.tcc b/libstdc++-v3/include/tr1/bessel_function.tcc
+index 37f136b..1e4a01c 100644
+--- a/libstdc++-v3/include/tr1/bessel_function.tcc
++++ b/libstdc++-v3/include/tr1/bessel_function.tcc
+@@ -50,8 +50,15 @@
+ 
+ namespace std _GLIBCXX_VISIBILITY(default)
+ {
++#if __STDCPP_WANT_MATH_SPEC_FUNCS__
++# define _GLIBCXX_MATH_NS ::std
++#elif defined(_GLIBCXX_TR1_CMATH)
+ namespace tr1
+ {
++# define _GLIBCXX_MATH_NS ::std::tr1
++#else
++# error do not include this header directly, use <cmath> or <tr1/cmath>
++#endif
+   // [5.2] Special functions
+ 
+   // Implementation-space details.
+@@ -90,8 +97,8 @@ namespace tr1
+                   _Tp & __gam1, _Tp & __gam2, _Tp & __gampl, _Tp & __gammi)
+     {
+ #if _GLIBCXX_USE_C99_MATH_TR1
+-      __gampl = _Tp(1) / std::tr1::tgamma(_Tp(1) + __mu);
+-      __gammi = _Tp(1) / std::tr1::tgamma(_Tp(1) - __mu);
++      __gampl = _Tp(1) / _GLIBCXX_MATH_NS::tgamma(_Tp(1) + __mu);
++      __gammi = _Tp(1) / _GLIBCXX_MATH_NS::tgamma(_Tp(1) - __mu);
+ #else
+       __gampl = _Tp(1) / __gamma(_Tp(1) + __mu);
+       __gammi = _Tp(1) / __gamma(_Tp(1) - __mu);
+@@ -306,7 +313,7 @@ namespace tr1
+           const _Tp __gam = (__p - __f) / __q;
+           __Jmu = std::sqrt(__w / ((__p - __f) * __gam + __q));
+ #if _GLIBCXX_USE_C99_MATH_TR1
+-          __Jmu = std::tr1::copysign(__Jmu, __Jnul);
++          __Jmu = _GLIBCXX_MATH_NS::copysign(__Jmu, __Jnul);
+ #else
+           if (__Jmu * __Jnul < _Tp(0))
+             __Jmu = -__Jmu;
+@@ -414,7 +421,7 @@ namespace tr1
+       const _Tp __x2 = __x / _Tp(2);
+       _Tp __fact = __nu * std::log(__x2);
+ #if _GLIBCXX_USE_C99_MATH_TR1
+-      __fact -= std::tr1::lgamma(__nu + _Tp(1));
++      __fact -= _GLIBCXX_MATH_NS::lgamma(__nu + _Tp(1));
+ #else
+       __fact -= __log_gamma(__nu + _Tp(1));
+ #endif
+@@ -621,8 +628,11 @@ namespace tr1
+     }
+ 
+   _GLIBCXX_END_NAMESPACE_VERSION
+-  } // namespace std::tr1::__detail
+-}
++  } // namespace __detail
++#undef _GLIBCXX_MATH_NS
++#if ! __STDCPP_WANT_MATH_SPEC_FUNCS__ && defined(_GLIBCXX_TR1_CMATH)
++} // namespace tr1
++#endif
+ }
+ 
+ #endif // _GLIBCXX_TR1_BESSEL_FUNCTION_TCC
+diff --git a/libstdc++-v3/include/tr1/beta_function.tcc b/libstdc++-v3/include/tr1/beta_function.tcc
+index dd1418e..49efa87 100644
+--- a/libstdc++-v3/include/tr1/beta_function.tcc
++++ b/libstdc++-v3/include/tr1/beta_function.tcc
+@@ -48,8 +48,15 @@
+ 
+ namespace std _GLIBCXX_VISIBILITY(default)
+ {
++#if __STDCPP_WANT_MATH_SPEC_FUNCS__
++# define _GLIBCXX_MATH_NS ::std
++#elif defined(_GLIBCXX_TR1_CMATH)
+ namespace tr1
+ {
++# define _GLIBCXX_MATH_NS ::std::tr1
++#else
++# error do not include this header directly, use <cmath> or <tr1/cmath>
++#endif
+   // [5.2] Special functions
+ 
+   // Implementation-space details.
+@@ -78,15 +85,15 @@ namespace tr1
+ #if _GLIBCXX_USE_C99_MATH_TR1
+       if (__x > __y)
+         {
+-          __bet = std::tr1::tgamma(__x)
+-                / std::tr1::tgamma(__x + __y);
+-          __bet *= std::tr1::tgamma(__y);
++          __bet = _GLIBCXX_MATH_NS::tgamma(__x)
++                / _GLIBCXX_MATH_NS::tgamma(__x + __y);
++          __bet *= _GLIBCXX_MATH_NS::tgamma(__y);
+         }
+       else
+         {
+-          __bet = std::tr1::tgamma(__y)
+-                / std::tr1::tgamma(__x + __y);
+-          __bet *= std::tr1::tgamma(__x);
++          __bet = _GLIBCXX_MATH_NS::tgamma(__y)
++                / _GLIBCXX_MATH_NS::tgamma(__x + __y);
++          __bet *= _GLIBCXX_MATH_NS::tgamma(__x);
+         }
+ #else
+       if (__x > __y)
+@@ -122,9 +129,9 @@ namespace tr1
+     __beta_lgamma(_Tp __x, _Tp __y)
+     {
+ #if _GLIBCXX_USE_C99_MATH_TR1
+-      _Tp __bet = std::tr1::lgamma(__x)
+-                + std::tr1::lgamma(__y)
+-                - std::tr1::lgamma(__x + __y);
++      _Tp __bet = _GLIBCXX_MATH_NS::lgamma(__x)
++                + _GLIBCXX_MATH_NS::lgamma(__y)
++                - _GLIBCXX_MATH_NS::lgamma(__x + __y);
+ #else
+       _Tp __bet = __log_gamma(__x)
+                 + __log_gamma(__y)
+@@ -190,8 +197,11 @@ namespace tr1
+     }
+ 
+   _GLIBCXX_END_NAMESPACE_VERSION
+-  } // namespace std::tr1::__detail
+-}
++  } // namespace __detail
++#undef _GLIBCXX_MATH_NS
++#if ! __STDCPP_WANT_MATH_SPEC_FUNCS__ && defined(_GLIBCXX_TR1_CMATH)
++} // namespace tr1
++#endif
+ }
+ 
+ #endif // _GLIBCXX_TR1_BETA_FUNCTION_TCC
+diff --git a/libstdc++-v3/include/tr1/cmath b/libstdc++-v3/include/tr1/cmath
+index e299c84..4e7c2bd 100644
+--- a/libstdc++-v3/include/tr1/cmath
++++ b/libstdc++-v3/include/tr1/cmath
+@@ -1014,6 +1014,121 @@ _GLIBCXX_END_NAMESPACE_VERSION
+ }
+ }
+ 
++#if __STDCPP_WANT_MATH_SPEC_FUNCS__
++
++namespace std _GLIBCXX_VISIBILITY(default)
++{
++namespace tr1
++{
++_GLIBCXX_BEGIN_NAMESPACE_VERSION
++
++  /**
++   * @defgroup tr1_math_spec_func Mathematical Special Functions
++   * @ingroup numerics
++   *
++   * A collection of advanced mathematical special functions.
++   * @{
++   */
++
++  using std::assoc_laguerref;
++  using std::assoc_laguerrel;
++  using std::assoc_laguerre;
++
++  using std::assoc_legendref;
++  using std::assoc_legendrel;
++  using std::assoc_legendre;
++
++  using std::betaf;
++  using std::betal;
++  using std::beta;
++
++  using std::comp_ellint_1f;
++  using std::comp_ellint_1l;
++  using std::comp_ellint_1;
++
++  using std::comp_ellint_2f;
++  using std::comp_ellint_2l;
++  using std::comp_ellint_2;
++
++  using std::comp_ellint_3f;
++  using std::comp_ellint_3l;
++  using std::comp_ellint_3;
++
++  using std::conf_hypergf;
++  using std::conf_hypergl;
++  using std::conf_hyperg;
++
++  using std::cyl_bessel_if;
++  using std::cyl_bessel_il;
++  using std::cyl_bessel_i;
++
++  using std::cyl_bessel_jf;
++  using std::cyl_bessel_jl;
++  using std::cyl_bessel_j;
++
++  using std::cyl_bessel_kf;
++  using std::cyl_bessel_kl;
++  using std::cyl_bessel_k;
++
++  using std::cyl_neumannf;
++  using std::cyl_neumannl;
++  using std::cyl_neumann;
++
++  using std::ellint_1f;
++  using std::ellint_1l;
++  using std::ellint_1;
++
++  using std::ellint_2f;
++  using std::ellint_2l;
++  using std::ellint_2;
++
++  using std::ellint_3f;
++  using std::ellint_3l;
++  using std::ellint_3;
++
++  using std::expintf;
++  using std::expintl;
++  using std::expint;
++
++  using std::hermitef;
++  using std::hermitel;
++  using std::hermite;
++
++  using std::hypergf;
++  using std::hypergl;
++  using std::hyperg;
++
++  using std::laguerref;
++  using std::laguerrel;
++  using std::laguerre;
++
++  using std::legendref;
++  using std::legendrel;
++  using std::legendre;
++
++  using std::riemann_zetaf;
++  using std::riemann_zetal;
++  using std::riemann_zeta;
++
++  using std::sph_besself;
++  using std::sph_bessell;
++  using std::sph_bessel;
++
++  using std::sph_legendref;
++  using std::sph_legendrel;
++  using std::sph_legendre;
++
++  using std::sph_neumannf;
++  using std::sph_neumannl;
++  using std::sph_neumann;
++
++  /* @} */ // tr1_math_spec_func
++_GLIBCXX_END_NAMESPACE_VERSION
++}
++}
++
++#else // ! __STDCPP_WANT_MATH_SPEC_FUNCS__
++
+ #include <bits/stl_algobase.h>
+ #include <limits>
+ #include <tr1/type_traits>
+@@ -1441,5 +1556,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
+ _GLIBCXX_END_NAMESPACE_VERSION
+ }
+ }
++#endif // __STDCPP_WANT_MATH_SPEC_FUNCS__
+ 
+ #endif // _GLIBCXX_TR1_CMATH
+diff --git a/libstdc++-v3/include/tr1/ell_integral.tcc b/libstdc++-v3/include/tr1/ell_integral.tcc
+index c17f359..4599ba3 100644
+--- a/libstdc++-v3/include/tr1/ell_integral.tcc
++++ b/libstdc++-v3/include/tr1/ell_integral.tcc
+@@ -44,8 +44,13 @@
+ 
+ namespace std _GLIBCXX_VISIBILITY(default)
+ {
++#if __STDCPP_WANT_MATH_SPEC_FUNCS__
++#elif defined(_GLIBCXX_TR1_CMATH)
+ namespace tr1
+ {
++#else
++# error do not include this header directly, use <cmath> or <tr1/cmath>
++#endif
+   // [5.2] Special functions
+ 
+   // Implementation-space details.
+@@ -742,8 +747,10 @@ namespace tr1
+     }
+ 
+   _GLIBCXX_END_NAMESPACE_VERSION
+-  } // namespace std::tr1::__detail
+-}
++  } // namespace __detail
++#if ! __STDCPP_WANT_MATH_SPEC_FUNCS__ && defined(_GLIBCXX_TR1_CMATH)
++} // namespace tr1
++#endif
+ }
+ 
+ #endif // _GLIBCXX_TR1_ELL_INTEGRAL_TCC
+diff --git a/libstdc++-v3/include/tr1/exp_integral.tcc b/libstdc++-v3/include/tr1/exp_integral.tcc
+index b327e7d..aec8da7 100644
+--- a/libstdc++-v3/include/tr1/exp_integral.tcc
++++ b/libstdc++-v3/include/tr1/exp_integral.tcc
+@@ -49,8 +49,13 @@
+ 
+ namespace std _GLIBCXX_VISIBILITY(default)
+ {
++#if __STDCPP_WANT_MATH_SPEC_FUNCS__
++#elif defined(_GLIBCXX_TR1_CMATH)
+ namespace tr1
+ {
++#else
++# error do not include this header directly, use <cmath> or <tr1/cmath>
++#endif
+   // [5.2] Special functions
+ 
+   // Implementation-space details.
+@@ -519,8 +524,10 @@ namespace tr1
+     }
+ 
+   _GLIBCXX_END_NAMESPACE_VERSION
+-  } // namespace std::tr1::__detail
+-}
++  } // namespace __detail
++#if ! __STDCPP_WANT_MATH_SPEC_FUNCS__ && defined(_GLIBCXX_TR1_CMATH)
++} // namespace tr1
++#endif
+ }
+ 
+ #endif // _GLIBCXX_TR1_EXP_INTEGRAL_TCC
+diff --git a/libstdc++-v3/include/tr1/gamma.tcc b/libstdc++-v3/include/tr1/gamma.tcc
+index 187e00d..9239dec 100644
+--- a/libstdc++-v3/include/tr1/gamma.tcc
++++ b/libstdc++-v3/include/tr1/gamma.tcc
+@@ -46,12 +46,19 @@
+ #ifndef _GLIBCXX_TR1_GAMMA_TCC
+ #define _GLIBCXX_TR1_GAMMA_TCC 1
+ 
+-#include "special_function_util.h"
++#include <tr1/special_function_util.h>
+ 
+ namespace std _GLIBCXX_VISIBILITY(default)
+ {
++#if __STDCPP_WANT_MATH_SPEC_FUNCS__
++# define _GLIBCXX_MATH_NS ::std
++#elif defined(_GLIBCXX_TR1_CMATH)
+ namespace tr1
+ {
++# define _GLIBCXX_MATH_NS ::std::tr1
++#else
++# error do not include this header directly, use <cmath> or <tr1/cmath>
++#endif
+   // Implementation-space details.
+   namespace __detail
+   {
+@@ -282,9 +289,9 @@ namespace tr1
+                       = std::numeric_limits<_Tp>::max_exponent10
+                       * std::log(_Tp(10)) - _Tp(1);
+ #if _GLIBCXX_USE_C99_MATH_TR1
+-      _Tp __coeff =  std::tr1::lgamma(_Tp(1 + __n))
+-                  - std::tr1::lgamma(_Tp(1 + __k))
+-                  - std::tr1::lgamma(_Tp(1 + __n - __k));
++      _Tp __coeff =  _GLIBCXX_MATH_NS::lgamma(_Tp(1 + __n))
++                  - _GLIBCXX_MATH_NS::lgamma(_Tp(1 + __k))
++                  - _GLIBCXX_MATH_NS::lgamma(_Tp(1 + __n - __k));
+ #else
+       _Tp __coeff =  __log_gamma(_Tp(1 + __n))
+                   - __log_gamma(_Tp(1 + __k))
+@@ -449,7 +456,7 @@ namespace tr1
+         {
+           const _Tp __hzeta = __hurwitz_zeta(_Tp(__n + 1), __x);
+ #if _GLIBCXX_USE_C99_MATH_TR1
+-          const _Tp __ln_nfact = std::tr1::lgamma(_Tp(__n + 1));
++          const _Tp __ln_nfact = _GLIBCXX_MATH_NS::lgamma(_Tp(__n + 1));
+ #else
+           const _Tp __ln_nfact = __log_gamma(_Tp(__n + 1));
+ #endif
+@@ -461,9 +468,12 @@ namespace tr1
+     }
+ 
+   _GLIBCXX_END_NAMESPACE_VERSION
+-  } // namespace std::tr1::__detail
+-}
+-}
++  } // namespace __detail
++#undef _GLIBCXX_MATH_NS
++#if ! __STDCPP_WANT_MATH_SPEC_FUNCS__ && defined(_GLIBCXX_TR1_CMATH)
++} // namespace tr1
++#endif
++} // namespace std
+ 
+ #endif // _GLIBCXX_TR1_GAMMA_TCC
+ 
+diff --git a/libstdc++-v3/include/tr1/hypergeometric.tcc b/libstdc++-v3/include/tr1/hypergeometric.tcc
+index f1a4021..c81129e 100644
+--- a/libstdc++-v3/include/tr1/hypergeometric.tcc
++++ b/libstdc++-v3/include/tr1/hypergeometric.tcc
+@@ -43,8 +43,15 @@
+ 
+ namespace std _GLIBCXX_VISIBILITY(default)
+ {
++#if __STDCPP_WANT_MATH_SPEC_FUNCS__
++# define _GLIBCXX_MATH_NS ::std
++#elif defined(_GLIBCXX_TR1_CMATH)
+ namespace tr1
+ {
++# define _GLIBCXX_MATH_NS ::std::tr1
++#else
++# error do not include this header directly, use <cmath> or <tr1/cmath>
++#endif
+   // [5.2] Special functions
+ 
+   // Implementation-space details.
+@@ -222,7 +229,7 @@ namespace tr1
+     __conf_hyperg(_Tp __a, _Tp __c, _Tp __x)
+     {
+ #if _GLIBCXX_USE_C99_MATH_TR1
+-      const _Tp __c_nint = std::tr1::nearbyint(__c);
++      const _Tp __c_nint = _GLIBCXX_MATH_NS::nearbyint(__c);
+ #else
+       const _Tp __c_nint = static_cast<int>(__c + _Tp(0.5L));
+ #endif
+@@ -723,9 +730,9 @@ namespace tr1
+     __hyperg(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
+     {
+ #if _GLIBCXX_USE_C99_MATH_TR1
+-      const _Tp __a_nint = std::tr1::nearbyint(__a);
+-      const _Tp __b_nint = std::tr1::nearbyint(__b);
+-      const _Tp __c_nint = std::tr1::nearbyint(__c);
++      const _Tp __a_nint = _GLIBCXX_MATH_NS::nearbyint(__a);
++      const _Tp __b_nint = _GLIBCXX_MATH_NS::nearbyint(__b);
++      const _Tp __c_nint = _GLIBCXX_MATH_NS::nearbyint(__c);
+ #else
+       const _Tp __a_nint = static_cast<int>(__a + _Tp(0.5L));
+       const _Tp __b_nint = static_cast<int>(__b + _Tp(0.5L));
+@@ -768,8 +775,11 @@ namespace tr1
+     }
+ 
+   _GLIBCXX_END_NAMESPACE_VERSION
+-  } // namespace std::tr1::__detail
+-}
++  } // namespace __detail
++#undef _GLIBCXX_MATH_NS
++#if ! __STDCPP_WANT_MATH_SPEC_FUNCS__ && defined(_GLIBCXX_TR1_CMATH)
++} // namespace tr1
++#endif
+ }
+ 
+ #endif // _GLIBCXX_TR1_HYPERGEOMETRIC_TCC
+diff --git a/libstdc++-v3/include/tr1/legendre_function.tcc b/libstdc++-v3/include/tr1/legendre_function.tcc
+index 7db82e3..c174bec 100644
+--- a/libstdc++-v3/include/tr1/legendre_function.tcc
++++ b/libstdc++-v3/include/tr1/legendre_function.tcc
+@@ -48,8 +48,15 @@
+ 
+ namespace std _GLIBCXX_VISIBILITY(default)
+ {
++#if __STDCPP_WANT_MATH_SPEC_FUNCS__
++# define _GLIBCXX_MATH_NS ::std
++#elif defined(_GLIBCXX_TR1_CMATH)
+ namespace tr1
+ {
++# define _GLIBCXX_MATH_NS ::std::tr1
++#else
++# error do not include this header directly, use <cmath> or <tr1/cmath>
++#endif
+   // [5.2] Special functions
+ 
+   // Implementation-space details.
+@@ -243,14 +250,14 @@ namespace tr1
+           const _Tp __sgn = ( __m % 2 == 1 ? -_Tp(1) : _Tp(1));
+           const _Tp __y_mp1m_factor = __x * std::sqrt(_Tp(2 * __m + 3));
+ #if _GLIBCXX_USE_C99_MATH_TR1
+-          const _Tp __lncirc = std::tr1::log1p(-__x * __x);
++          const _Tp __lncirc = _GLIBCXX_MATH_NS::log1p(-__x * __x);
+ #else
+           const _Tp __lncirc = std::log(_Tp(1) - __x * __x);
+ #endif
+           //  Gamma(m+1/2) / Gamma(m)
+ #if _GLIBCXX_USE_C99_MATH_TR1
+-          const _Tp __lnpoch = std::tr1::lgamma(_Tp(__m + _Tp(0.5L)))
+-                             - std::tr1::lgamma(_Tp(__m));
++          const _Tp __lnpoch = _GLIBCXX_MATH_NS::lgamma(_Tp(__m + _Tp(0.5L)))
++                             - _GLIBCXX_MATH_NS::lgamma(_Tp(__m));
+ #else
+           const _Tp __lnpoch = __log_gamma(_Tp(__m + _Tp(0.5L)))
+                              - __log_gamma(_Tp(__m));
+@@ -296,8 +303,11 @@ namespace tr1
+     }
+ 
+   _GLIBCXX_END_NAMESPACE_VERSION
+-  } // namespace std::tr1::__detail
+-}
++  } // namespace __detail
++#undef _GLIBCXX_MATH_NS
++#if ! __STDCPP_WANT_MATH_SPEC_FUNCS__ && defined(_GLIBCXX_TR1_CMATH)
++} // namespace tr1
++#endif
+ }
+ 
+ #endif // _GLIBCXX_TR1_LEGENDRE_FUNCTION_TCC
+diff --git a/libstdc++-v3/include/tr1/modified_bessel_func.tcc b/libstdc++-v3/include/tr1/modified_bessel_func.tcc
+index 215d464..114ff13 100644
+--- a/libstdc++-v3/include/tr1/modified_bessel_func.tcc
++++ b/libstdc++-v3/include/tr1/modified_bessel_func.tcc
+@@ -50,8 +50,13 @@
+ 
+ namespace std _GLIBCXX_VISIBILITY(default)
+ {
++#if __STDCPP_WANT_MATH_SPEC_FUNCS__
++#elif defined(_GLIBCXX_TR1_CMATH)
+ namespace tr1
+ {
++#else
++# error do not include this header directly, use <cmath> or <tr1/cmath>
++#endif
+   // [5.2] Special functions
+ 
+   // Implementation-space details.
+@@ -427,8 +432,10 @@ namespace tr1
+     }
+ 
+   _GLIBCXX_END_NAMESPACE_VERSION
+-  } // namespace std::tr1::__detail
+-}
++  } // namespace __detail
++#if ! __STDCPP_WANT_MATH_SPEC_FUNCS__ && defined(_GLIBCXX_TR1_CMATH)
++} // namespace tr1
++#endif
+ }
+ 
+ #endif // _GLIBCXX_TR1_MODIFIED_BESSEL_FUNC_TCC
+diff --git a/libstdc++-v3/include/tr1/poly_hermite.tcc b/libstdc++-v3/include/tr1/poly_hermite.tcc
+index 4fb1a14..c888c73 100644
+--- a/libstdc++-v3/include/tr1/poly_hermite.tcc
++++ b/libstdc++-v3/include/tr1/poly_hermite.tcc
+@@ -41,8 +41,13 @@
+ 
+ namespace std _GLIBCXX_VISIBILITY(default)
+ {
++#if __STDCPP_WANT_MATH_SPEC_FUNCS__
++#elif defined(_GLIBCXX_TR1_CMATH)
+ namespace tr1
+ {
++#else
++# error do not include this header directly, use <cmath> or <tr1/cmath>
++#endif
+   // [5.2] Special functions
+ 
+   // Implementation-space details.
+@@ -117,8 +122,10 @@ namespace tr1
+     }
+ 
+   _GLIBCXX_END_NAMESPACE_VERSION
+-  } // namespace std::tr1::__detail
+-}
++  } // namespace __detail
++#if ! __STDCPP_WANT_MATH_SPEC_FUNCS__ && defined(_GLIBCXX_TR1_CMATH)
++} // namespace tr1
++#endif
+ }
+ 
+ #endif // _GLIBCXX_TR1_POLY_HERMITE_TCC
+diff --git a/libstdc++-v3/include/tr1/poly_laguerre.tcc b/libstdc++-v3/include/tr1/poly_laguerre.tcc
+index 16a4adb..c672357 100644
+--- a/libstdc++-v3/include/tr1/poly_laguerre.tcc
++++ b/libstdc++-v3/include/tr1/poly_laguerre.tcc
+@@ -43,8 +43,15 @@
+ 
+ namespace std _GLIBCXX_VISIBILITY(default)
+ {
++#if __STDCPP_WANT_MATH_SPEC_FUNCS__
++# define _GLIBCXX_MATH_NS ::std
++#elif defined(_GLIBCXX_TR1_CMATH)
+ namespace tr1
+ {
++# define _GLIBCXX_MATH_NS ::std::tr1
++#else
++# error do not include this header directly, use <cmath> or <tr1/cmath>
++#endif
+   // [5.2] Special functions
+ 
+   // Implementation-space details.
+@@ -80,8 +87,8 @@ namespace tr1
+                         * __eta * __eta * __cos2th * __sin2th;
+ 
+ #if _GLIBCXX_USE_C99_MATH_TR1
+-      const _Tp __lg_b = std::tr1::lgamma(_Tp(__n) + __b);
+-      const _Tp __lnfact = std::tr1::lgamma(_Tp(__n + 1));
++      const _Tp __lg_b = _GLIBCXX_MATH_NS::lgamma(_Tp(__n) + __b);
++      const _Tp __lnfact = _GLIBCXX_MATH_NS::lgamma(_Tp(__n + 1));
+ #else
+       const _Tp __lg_b = __log_gamma(_Tp(__n) + __b);
+       const _Tp __lnfact = __log_gamma(_Tp(__n + 1));
+@@ -312,8 +319,11 @@ namespace tr1
+     { return __poly_laguerre<unsigned int, _Tp>(__n, 0, __x); }
+ 
+   _GLIBCXX_END_NAMESPACE_VERSION
+-  } // namespace std::tr1::__detail
+-}
++  } // namespace __detail
++#undef _GLIBCXX_MATH_NS
++#if ! __STDCPP_WANT_MATH_SPEC_FUNCS__ && defined(_GLIBCXX_TR1_CMATH)
++} // namespace tr1
++#endif
+ }
+ 
+ #endif // _GLIBCXX_TR1_POLY_LAGUERRE_TCC
+diff --git a/libstdc++-v3/include/tr1/riemann_zeta.tcc b/libstdc++-v3/include/tr1/riemann_zeta.tcc
+index 19def70..f2e2a6c 100644
+--- a/libstdc++-v3/include/tr1/riemann_zeta.tcc
++++ b/libstdc++-v3/include/tr1/riemann_zeta.tcc
+@@ -46,8 +46,15 @@
+ 
+ namespace std _GLIBCXX_VISIBILITY(default)
+ {
++#if __STDCPP_WANT_MATH_SPEC_FUNCS__
++# define _GLIBCXX_MATH_NS ::std
++#elif defined(_GLIBCXX_TR1_CMATH)
+ namespace tr1
+ {
++# define _GLIBCXX_MATH_NS ::std::tr1
++#else
++# error do not include this header directly, use <cmath> or <tr1/cmath>
++#endif
+   // [5.2] Special functions
+ 
+   // Implementation-space details.
+@@ -163,7 +170,7 @@ namespace tr1
+       if (__s < _Tp(0))
+         {
+ #if _GLIBCXX_USE_C99_MATH_TR1
+-          if (std::tr1::fmod(__s,_Tp(2)) == _Tp(0))
++          if (_GLIBCXX_MATH_NS::fmod(__s,_Tp(2)) == _Tp(0))
+             return _Tp(0);
+           else
+ #endif
+@@ -173,7 +180,7 @@ namespace tr1
+                      * __numeric_constants<_Tp>::__pi(), __s)
+                      * std::sin(__numeric_constants<_Tp>::__pi_2() * __s)
+ #if _GLIBCXX_USE_C99_MATH_TR1
+-                     * std::exp(std::tr1::lgamma(_Tp(1) - __s))
++                     * std::exp(_GLIBCXX_MATH_NS::lgamma(_Tp(1) - __s))
+ #else
+                      * std::exp(__log_gamma(_Tp(1) - __s))
+ #endif
+@@ -192,9 +199,9 @@ namespace tr1
+           for (unsigned int __j = 0; __j <= __i; ++__j)
+             {
+ #if _GLIBCXX_USE_C99_MATH_TR1
+-              _Tp __bincoeff =  std::tr1::lgamma(_Tp(1 + __i))
+-                              - std::tr1::lgamma(_Tp(1 + __j))
+-                              - std::tr1::lgamma(_Tp(1 + __i - __j));
++              _Tp __bincoeff =  _GLIBCXX_MATH_NS::lgamma(_Tp(1 + __i))
++                              - _GLIBCXX_MATH_NS::lgamma(_Tp(1 + __j))
++                              - _GLIBCXX_MATH_NS::lgamma(_Tp(1 + __i - __j));
+ #else
+               _Tp __bincoeff =  __log_gamma(_Tp(1 + __i))
+                               - __log_gamma(_Tp(1 + __j))
+@@ -297,7 +304,7 @@ namespace tr1
+           __zeta *= std::pow(_Tp(2) * __numeric_constants<_Tp>::__pi(), __s)
+                  * std::sin(__numeric_constants<_Tp>::__pi_2() * __s)
+ #if _GLIBCXX_USE_C99_MATH_TR1
+-                 * std::exp(std::tr1::lgamma(_Tp(1) - __s))
++                 * std::exp(_GLIBCXX_MATH_NS::lgamma(_Tp(1) - __s))
+ #else
+                  * std::exp(__log_gamma(_Tp(1) - __s))
+ #endif
+@@ -320,7 +327,7 @@ namespace tr1
+                                 * __numeric_constants<_Tp>::__pi(), __s)
+                          * std::sin(__numeric_constants<_Tp>::__pi_2() * __s)
+ #if _GLIBCXX_USE_C99_MATH_TR1
+-                             * std::tr1::tgamma(_Tp(1) - __s)
++                             * _GLIBCXX_MATH_NS::tgamma(_Tp(1) - __s)
+ #else
+                              * std::exp(__log_gamma(_Tp(1) - __s))
+ #endif
+@@ -375,9 +382,9 @@ namespace tr1
+           for (unsigned int __j = 0; __j <= __i; ++__j)
+             {
+ #if _GLIBCXX_USE_C99_MATH_TR1
+-              _Tp __bincoeff =  std::tr1::lgamma(_Tp(1 + __i))
+-                              - std::tr1::lgamma(_Tp(1 + __j))
+-                              - std::tr1::lgamma(_Tp(1 + __i - __j));
++              _Tp __bincoeff =  _GLIBCXX_MATH_NS::lgamma(_Tp(1 + __i))
++                              - _GLIBCXX_MATH_NS::lgamma(_Tp(1 + __j))
++                              - _GLIBCXX_MATH_NS::lgamma(_Tp(1 + __i - __j));
+ #else
+               _Tp __bincoeff =  __log_gamma(_Tp(1 + __i))
+                               - __log_gamma(_Tp(1 + __j))
+@@ -426,8 +433,11 @@ namespace tr1
+     { return __hurwitz_zeta_glob(__a, __s); }
+ 
+   _GLIBCXX_END_NAMESPACE_VERSION
+-  } // namespace std::tr1::__detail
+-}
++  } // namespace __detail
++#undef _GLIBCXX_MATH_NS
++#if ! __STDCPP_WANT_MATH_SPEC_FUNCS__ && defined(_GLIBCXX_TR1_CMATH)
++} // namespace tr1
++#endif
+ }
+ 
+ #endif // _GLIBCXX_TR1_RIEMANN_ZETA_TCC
+diff --git a/libstdc++-v3/include/tr1/special_function_util.h b/libstdc++-v3/include/tr1/special_function_util.h
+index 9b7cd65..4a7f02a 100644
+--- a/libstdc++-v3/include/tr1/special_function_util.h
++++ b/libstdc++-v3/include/tr1/special_function_util.h
+@@ -38,8 +38,13 @@
+ 
+ namespace std _GLIBCXX_VISIBILITY(default)
+ {
++#if __STDCPP_WANT_MATH_SPEC_FUNCS__
++#elif defined(_GLIBCXX_TR1_CMATH)
+ namespace tr1
+ {
++#else
++# error do not include this header directly, use <cmath> or <tr1/cmath>
++#endif
+   namespace __detail
+   {
+   _GLIBCXX_BEGIN_NAMESPACE_VERSION
+@@ -128,7 +133,9 @@ namespace tr1
+ 
+   _GLIBCXX_END_NAMESPACE_VERSION
+   } // namespace __detail
+-}
++#if ! __STDCPP_WANT_MATH_SPEC_FUNCS__ && defined(_GLIBCXX_TR1_CMATH)
++} // namespace tr1
++#endif
+ }
+ 
+ #endif // _GLIBCXX_TR1_SPECIAL_FUNCTION_UTIL_H
