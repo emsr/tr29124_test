@@ -78,8 +78,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			* __eta * __eta * __cos2th * __sin2th;
 
 #if _GLIBCXX_USE_C99_MATH_TR1
-      const _Tp __lg_b = TR1NS lgamma(_Tp(__n) + __b);
-      const _Tp __lnfact = TR1NS lgamma(_Tp(__n + 1));
+      const _Tp __lg_b = std::lgamma(_Tp(__n) + __b);
+      const _Tp __lnfact = std::lgamma(_Tp(__n + 1));
 #else
       const _Tp __lg_b = __log_gamma(_Tp(__n) + __b);
       const _Tp __lnfact = __log_gamma(_Tp(__n + 1));
@@ -311,6 +311,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
-}
+} // namespace std
 
 #endif // _GLIBCXX_BITS_SF_LAGUERRE_TCC

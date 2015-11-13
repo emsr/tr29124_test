@@ -77,7 +77,7 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(5.0000000000000029e-12));
+    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
   }
 
 // Test data for k=-0.80000000000000004.
@@ -120,7 +120,7 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(1.0000000000000008e-12));
+    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
   }
 
 // Test data for k=-0.69999999999999996.
@@ -163,7 +163,7 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(5.0000000000000039e-13));
+    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
   }
 
 // Test data for k=-0.59999999999999998.
@@ -206,7 +206,7 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(5.0000000000000039e-13));
+    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
   }
 
 // Test data for k=-0.50000000000000000.
@@ -722,7 +722,7 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(5.0000000000000039e-13));
+    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
   }
 
 // Test data for k=0.69999999999999996.
@@ -765,7 +765,7 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(5.0000000000000039e-13));
+    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
   }
 
 // Test data for k=0.80000000000000004.
@@ -808,7 +808,7 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(1.0000000000000008e-12));
+    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
   }
 
 // Test data for k=0.89999999999999991.
@@ -851,7 +851,7 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(5.0000000000000029e-12));
+    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
   }
 
 int

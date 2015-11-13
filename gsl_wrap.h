@@ -1,6 +1,6 @@
 #include <gsl/gsl_sf.h>
-int gsl_sf_bessel_Jnu_asympx_e(const double nu, const double x, gsl_sf_result * result);
-int gsl_sf_bessel_Ynu_asympx_e(const double nu, const double x, gsl_sf_result * result);
+//int gsl_sf_bessel_Jnu_asympx_e(const double nu, const double x, gsl_sf_result * result);
+//int gsl_sf_bessel_Ynu_asympx_e(const double nu, const double x, gsl_sf_result * result);
 
 
 ///

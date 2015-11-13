@@ -278,9 +278,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __log_bincoef(unsigned int __n, unsigned int __k)
     {
 #if _GLIBCXX_USE_C99_MATH_TR1
-      _Tp __coeff = TR1NS lgamma(_Tp(1 + __n))
-		  - TR1NS lgamma(_Tp(1 + __k))
-		  - TR1NS lgamma(_Tp(1 + __n - __k));
+      _Tp __coeff = std::lgamma(_Tp(1 + __n))
+		  - std::lgamma(_Tp(1 + __k))
+		  - std::lgamma(_Tp(1 + __n - __k));
 #else
       _Tp __coeff = __log_gamma(_Tp(1 + __n))
 		  - __log_gamma(_Tp(1 + __k))
@@ -327,6 +327,183 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline _Tp
     __gamma(_Tp __x)
     { return std::exp(__log_gamma(__x)); }
+
+
+  template<typename _Tp>
+    std::pair<_Tp, _Tp>
+    __gamma_series(_Tp __a, _Tp __x)
+    {
+      constexpr auto _S_eps = 3.0 * std::numeric_limits<_Tp>::epsilon();
+      const auto _S_itmax = 10 * (10 + std::sqrt(std::abs(__a)));
+
+      _Tp __lngam = std::lgamma(__a);
+
+      if (__x < _Tp(0))
+	throw std::domain_error("Argument less than 0 in routine gamma_series().");
+      else if (__x == _Tp(0))
+	return std::make_pair(_Tp(0), __lngam);
+      else
+	{
+          _Tp __aa = __a;
+          _Tp __term, __sum;
+          __term = __sum = _Tp(1) / __a;
+          for (unsigned int __n = 1; __n <= _S_itmax; ++__n)
+            {
+              __aa += _Tp(1);
+              __term *= __x / __aa;
+              __sum += __term;
+              if (std::abs(__term) < _S_eps * std::abs(__sum))
+        	{
+                  _Tp __gamser = std::exp(-__x + __a * std::log(__x) - __lngam) * __sum;
+                  return std::make_pair(__gamser, __lngam);
+        	}
+            }
+          throw std::logic_error("__gamma_series: a too large, itmax too small in routine.");
+	}
+    }
+
+
+  template<typename _Tp>
+    std::pair<_Tp, _Tp>
+    __gamma_cont_frac(_Tp __a, _Tp __x)
+    {
+      constexpr _Tp _S_fpmin = 3 * std::numeric_limits<_Tp>::min();
+      constexpr _Tp _S_eps = 3 * std::numeric_limits<_Tp>::epsilon();
+      const auto _S_itmax = 10 * (10 + std::sqrt(std::abs(__a)));
+
+      _Tp __lngam = std::lgamma(__a);
+
+      _Tp __b = __x + _Tp(1) - __a;
+      _Tp __c = _Tp(1) / _S_fpmin;
+      _Tp __d = _Tp(1) / __b;
+      _Tp __h = __d;
+      for (unsigned int __n = 1; __n <= _S_itmax; ++__n)
+	{
+          _Tp __an = -_Tp(__n) * (_Tp(__n) - __a);
+          __b += _Tp(2);
+          __d = __an * __d + __b;
+          if (std::abs(__d) < _S_fpmin)
+            __d = _S_fpmin;
+          __c = __b + __an / __c;
+          if (std::abs(__c) < _S_fpmin)
+            __c = _S_fpmin;
+          __d = _Tp(1) / __d;
+          _Tp __del = __d * __c;
+          __h *= __del;
+          if (std::abs(__del - _Tp(1)) < _S_eps)
+            {
+              _Tp __gamcf = std::exp(-__x + __a * std::log(__x) - __lngam) * __h;
+              return std::make_pair(__gamcf, __lngam);
+            }
+	}
+      throw std::logic_error("__gamma_cont_fraction: a too large, itmax too small in routine.");
+    }
+
+
+  /**
+   *   @brief  Return the regularized lower incomplete gamma function.
+   *   The regularized lower incomplete gamma function is defined by
+   *   @f[
+   *     P(a,x) = \frac{\gamma(a,x)}{\Gamma(a)}
+   *   @f]
+   *   where @f$ \Gamma(a) @f$ is the gamma function and
+   *   @f[
+   *     \gamma(a,x) = \int_0^x e^{-t}t^{a-1}dt  (a > 0)
+   *   @f]
+   *   is the lower incomplete gamma function.
+   */
+  template<typename _Tp>
+    _Tp
+    __gamma_p(_Tp __a, _Tp __x)
+    {
+      if (__x < _Tp(0) || __a <= _Tp(0))
+	throw std::domain_error("Invalid arguments in routine gamma_p()");
+
+      if (__x < __a + _Tp(1))
+	return __gamma_series(__a, __x).first;
+      else
+	return _Tp(1) - __gamma_cont_frac(__a, __x).first;
+    }
+
+
+  /**
+   *   @brief  Return the regularized upper incomplete gamma function.
+   *   The regularized upper incomplete gamma function is defined by
+   *   @f[
+   *     Q(a,x) = \frac{\Gamma(a,x)}{\Gamma(a)}
+   *   @f]
+   *   where @f$ \Gamma(a) @f$ is the gamma function and
+   *   @f[
+   *     \Gamma(a,x) = \int_x^\infty e^{-t}t^{a-1}dt  (a > 0)
+   *   @f]
+   *   is the upper incomplete gamma function.
+   */
+  template<typename _Tp>
+    _Tp
+    __gamma_q(_Tp __a, _Tp __x)
+    {
+      if (__x < _Tp(0) || __a <= _Tp(0))
+	throw std::domain_error("Invalid arguments in routine gamma_q().");
+
+      if (__x < __a + _Tp(1))
+	return _Tp(1) - __gamma_series(__a, __x).first;
+      else
+	return __gamma_cont_frac(__a, __x).first;
+    }
+
+
+  /**
+   *   @brief  Return the lower incomplete gamma function.
+   *   The lower incomplete gamma function is defined by
+   *   @f[
+   *     \gamma(a,x) = \int_0^x e^{-t}t^{a-1}dt  (a > 0)
+   *   @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __gamma_l(_Tp __a, _Tp __x)
+    {
+      if (__x < _Tp(0) || __a <= _Tp(0))
+	throw std::domain_error("gamma_l: invalid arguments in routine");
+
+      if (__x < __a + _Tp(1))
+      {
+	std::pair<_Tp, _Tp> __gp = __gamma_series(__a, __x);
+	return std::exp(__gp.second) * __gp.first;
+      }
+      else
+      {
+	std::pair<_Tp, _Tp> __gp = __gamma_cont_frac(__a, __x);
+	return std::exp(__gp.second) * (_Tp(1) - __gp.first);
+      }
+    }
+
+
+  /**
+   *   @brief  Return the upper incomplete gamma function.
+   *   The lower incomplete gamma function is defined by
+   *   @f[
+   *     \Gamma(a,x) = \int_x^\infty e^{-t}t^{a-1}dt  (a > 0)
+   *   @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __gamma_u(_Tp __a, _Tp __x)
+    {
+      if (__x < 0.0 || __a <= 0.0)
+	throw std::domain_error("gamma_u: invalid arguments in routine");
+
+      if (__x < __a + _Tp(1))
+      {
+          std::pair<_Tp, _Tp> __gp = __gamma_series(__a, __x);
+          return std::exp(__gp.second) * (_Tp(1) - __gp.first);
+      }
+      else
+      {
+          std::pair<_Tp, _Tp> __gp = __gamma_cont_frac(__a, __x);
+          return std::exp(__gp.second) * __gp.first;
+      }
+    }
 
 
   /**
@@ -408,8 +585,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __psi(_Tp __x)
     {
       const int __n = static_cast<int>(__x + 0.5L);
-      const _Tp __eps = _Tp(4) * std::numeric_limits<_Tp>::epsilon();
-      if (__n <= 0 && std::abs(__x - _Tp(__n)) < __eps)
+      constexpr _Tp _S_eps = _Tp(4) * std::numeric_limits<_Tp>::epsilon();
+      if (__n <= 0 && std::abs(__x - _Tp(__n)) < _S_eps)
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__x < _Tp(0))
 	{
@@ -444,7 +621,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  const _Tp __hzeta = __hurwitz_zeta(_Tp(__n + 1), __x);
 #if _GLIBCXX_USE_C99_MATH_TR1
-	  const _Tp __ln_nfact = TR1NS lgamma(_Tp(__n + 1));
+	  const _Tp __ln_nfact = std::lgamma(_Tp(__n + 1));
 #else
 	  const _Tp __ln_nfact = __log_gamma(_Tp(__n + 1));
 #endif
@@ -457,7 +634,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
-}
+} // namespace std
 
 #endif // _GLIBCXX_BITS_SF_GAMMA_TCC
 

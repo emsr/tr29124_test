@@ -155,16 +155,16 @@ wrap_gsl_sf_bessel_Jnu(double nu, double x)
 ///
 ///  5.2.1.9  Cylindrical Bessel functions (of the first kind).
 ///
-double
-wrap_gsl_sf_bessel_Jnu_asymp(double nu, double x)
-{
-  gsl_sf_result result;
-  int stat = gsl_sf_bessel_Jnu_asympx_e(nu, x, &result);
-  if (stat != GSL_SUCCESS)
-    throw std::runtime_error("Error in wrap_gsl_sf_bessel_Jnu_asymp");
-  else
-    return result.val;
-}
+//double
+//wrap_gsl_sf_bessel_Jnu_asymp(double nu, double x)
+//{
+//  gsl_sf_result result;
+//  int stat = gsl_sf_bessel_Jnu_asympx_e(nu, x, &result);
+//  if (stat != GSL_SUCCESS)
+//    throw std::runtime_error("Error in wrap_gsl_sf_bessel_Jnu_asymp");
+//  else
+//    return result.val;
+//}
 
 
 ///
@@ -200,16 +200,16 @@ wrap_gsl_sf_bessel_Ynu(double nu, double x)
 ///
 ///  5.2.1.11  Cylindrical Neumann functions.
 ///
-double
-wrap_gsl_sf_bessel_Ynu_asymp(double nu, double x)
-{
-  gsl_sf_result result;
-  int stat = gsl_sf_bessel_Ynu_asympx_e(nu, x, &result);
-  if (stat != GSL_SUCCESS)
-    throw std::runtime_error("Error in wrap_gsl_sf_bessel_Ynu_asymp");
-  else
-    return result.val;
-}
+//double
+//wrap_gsl_sf_bessel_Ynu_asymp(double nu, double x)
+//{
+//  gsl_sf_result result;
+//  int stat = gsl_sf_bessel_Ynu_asympx_e(nu, x, &result);
+//  if (stat != GSL_SUCCESS)
+//    throw std::runtime_error("Error in wrap_gsl_sf_bessel_Ynu_asymp");
+//  else
+//    return result.val;
+//}
 
 ///
 ///  5.2.1.12  Elliptic integrals of the first kind.

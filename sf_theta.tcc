@@ -32,8 +32,12 @@
 
 #include <array>
 
+namespace std _GLIBCXX_VISIBILITY(default)
+{
+// Implementation-space details.
 namespace __detail
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<typename _Tp>
     void

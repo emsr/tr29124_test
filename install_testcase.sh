@@ -25,3 +25,6 @@ cp check_riemann_zeta_pos.cc ../gcc_specfun/libstdc++-v3/testsuite/special_funct
 cp check_sph_bessel.cc       ../gcc_specfun/libstdc++-v3/testsuite/special_functions/19_sph_bessel/check_value.cc
 cp check_sph_legendre.cc     ../gcc_specfun/libstdc++-v3/testsuite/special_functions/20_sph_legendre/check_value.cc
 cp check_sph_neumann.cc      ../gcc_specfun/libstdc++-v3/testsuite/special_functions/21_sph_neumann/check_value.cc
+
+cp check_conf_hyperg.cc      ../gcc_specfun/libstdc++-v3/testsuite/special_functions/conf_hyperg/check_value.cc
+cp check_hyperg.cc           ../gcc_specfun/libstdc++-v3/testsuite/special_functions/hyperg/check_value.cc

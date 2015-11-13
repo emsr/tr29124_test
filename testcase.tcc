@@ -200,6 +200,7 @@ template<typename Tp>
   void
   maketest(std::function<Tp(Tp1)> function1,
            std::function<Tp(Tp1)> function2,
+           const std::string & nsname,
            const std::string & funcname,
            const std::string & arg1, const std::vector<Tp1> & argument1,
            std::ostream & output)
@@ -294,7 +295,7 @@ template<typename Tp>
           }
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "      {\n";
-	output << "\tconst Tp f = std::" << funcname << "(Tp(" << dataname.str() << "[i]." << arg1 << ")" << ");\n";
+	output << "\tconst Tp f = " << nsname << "::" << funcname << "(Tp(" << dataname.str() << "[i]." << arg1 << ")" << ");\n";
 	output << "\tconst Tp f0 = " << dataname.str() << "[i].f0;\n";
 	output << "\tconst Tp diff = f - f0;\n";
 	output << "\tif (std::abs(diff) > max_abs_diff)\n";
@@ -336,6 +337,7 @@ template<typename Tp, typename Tp1, typename Tp2>
   void
   maketest(std::function<Tp(Tp1,Tp2)> function1,
            std::function<Tp(Tp1,Tp2)> function2,
+           const std::string & nsname,
            const std::string & funcname,
            const std::string & arg1, const std::vector<Tp1> & argument1,
            const std::string & arg2, const std::vector<Tp2> & argument2,
@@ -427,7 +429,7 @@ template<typename Tp, typename Tp1, typename Tp2>
             output << "\t\t\t   / sizeof(" << structname << ");\n";
             output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
             output << "      {\n";
-            output << "\tconst Tp f = std::" << funcname << "(Tp(" << dataname.str() << "[i]." << arg1 << ")" << ", Tp(" << dataname.str() << "[i]." << arg2 << ")" << ");\n";
+            output << "\tconst Tp f = " << nsname << "::" << funcname << "(Tp(" << dataname.str() << "[i]." << arg1 << ")" << ", Tp(" << dataname.str() << "[i]." << arg2 << ")" << ");\n";
             output << "\tconst Tp f0 = " << dataname.str() << "[i].f0;\n";
             output << "\tconst Tp diff = f - f0;\n";
             output << "\tif (std::abs(diff) > max_abs_diff)\n";
@@ -470,6 +472,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
   void
   maketest(std::function<Tp(Tp1,Tp2,Tp3)> function1,
            std::function<Tp(Tp1,Tp2,Tp3)> function2,
+           const std::string & nsname,
            const std::string & funcname,
            const std::string & arg1, const std::vector<Tp1> & argument1,
            const std::string & arg2, const std::vector<Tp2> & argument2,
@@ -570,7 +573,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
         	output << "\t\t\t   / sizeof(" << structname << ");\n";
         	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
         	output << "  	 {\n";
-        	output << "\tconst Tp f = std::" << funcname << "(Tp(" << dataname.str() << "[i]." << arg1 << ")" << ", Tp(" << dataname.str() << "[i]." << arg2 << ")" << ",\n";
+        	output << "\tconst Tp f = " << nsname << "::" << funcname << "(Tp(" << dataname.str() << "[i]." << arg1 << ")" << ", Tp(" << dataname.str() << "[i]." << arg2 << ")" << ",\n";
         	output << "\t\t     Tp(" << dataname.str() << "[i]." << arg3 << ")" << ");\n";
         	output << "\tconst Tp f0 = " << dataname.str() << "[i].f0;\n";
         	output << "\tconst Tp diff = f - f0;\n";
@@ -615,6 +618,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
   void
   maketest(std::function<Tp(Tp1,Tp2,Tp3,Tp4)> function1,
            std::function<Tp(Tp1,Tp2,Tp3,Tp4)> function2,
+           const std::string & nsname,
            const std::string & funcname,
            const std::string & arg1, const std::vector<Tp1> & argument1,
            const std::string & arg2, const std::vector<Tp2> & argument2,
@@ -723,7 +727,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
                     output << "\t\t\t   / sizeof(" << structname << ");\n";
                     output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
                     output << "      {\n";
-                    output << "\tconst Tp f = std::" << funcname << "(Tp(" << dataname.str() << "[i]." << arg1 << ")" << ", Tp(" << dataname.str() << "[i]." << arg2 << ")" << ",\n";
+                    output << "\tconst Tp f = " << nsname << "::" << funcname << "(Tp(" << dataname.str() << "[i]." << arg1 << ")" << ", Tp(" << dataname.str() << "[i]." << arg2 << ")" << ",\n";
                     output << "\t\t     Tp(" << dataname.str() << "[i]." << arg3 << ")" << ", Tp(" << dataname.str() << "[i]." << arg4 << ")" << ");\n";
                     output << "\tconst Tp f0 = " << dataname.str() << "[i].f0;\n";
                     output << "\tconst Tp diff = f - f0;\n";
