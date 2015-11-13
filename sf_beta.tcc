@@ -76,15 +76,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 #if _GLIBCXX_USE_C99_MATH_TR1
       if (__x > __y)
 	{
-	  __bet = TR1NS tgamma(__x)
-		/ TR1NS tgamma(__x + __y);
-	  __bet *= TR1NS tgamma(__y);
+	  __bet = std::tgamma(__x)
+		/ std::tgamma(__x + __y);
+	  __bet *= std::tgamma(__y);
 	}
       else
 	{
-	  __bet = TR1NS tgamma(__y)
-		/ TR1NS tgamma(__x + __y);
-	  __bet *= TR1NS tgamma(__x);
+	  __bet = std::tgamma(__y)
+		/ std::tgamma(__x + __y);
+	  __bet *= std::tgamma(__x);
 	}
 #else
       if (__x > __y)
@@ -120,9 +120,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __beta_lgamma(_Tp __x, _Tp __y)
     {
 #if _GLIBCXX_USE_C99_MATH_TR1
-      _Tp __bet = TR1NS lgamma(__x)
-		+ TR1NS lgamma(__y)
-		- TR1NS lgamma(__x + __y);
+      _Tp __bet = std::lgamma(__x)
+		+ std::lgamma(__y)
+		- std::lgamma(__x + __y);
 #else
       _Tp __bet = __log_gamma(__x)
 		+ __log_gamma(__y)
@@ -188,8 +188,83 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __beta_lgamma(__x, __y);
     }
 
+
+  template<typename _Tp>
+    _Tp
+    __beta_inc_cont_frac(_Tp __a, _Tp __b, _Tp __x)
+    {
+      static constexpr unsigned int _S_itmax = 100;
+      static constexpr _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
+
+      _Tp __apb = __a + __b;
+      _Tp __ap1 = __a + _Tp(1);
+      _Tp __am1 = __a - _Tp(1);
+      _Tp __c = _Tp(1);
+      _Tp __d = _Tp(1) - __apb * __x / __ap1;
+      if (std::abs(__d) < _S_eps)
+	__d = _S_eps;
+      __d = _Tp(1) / __d;
+      _Tp __h = __d;
+      for (unsigned int __m = 1; __m <= _S_itmax; ++__m)
+	{
+          _Tp __m2(2 * __m);
+
+          _Tp __aa = _Tp(__m) * (__b - _Tp(__m)) * __x
+                   / ((__am1 + __m2) * (__a + __m2));
+          __d = _Tp(1) + __aa * __d;
+          if (std::abs(__d) < _S_eps)
+            __d = _S_eps;
+          __c = _Tp(1) + __aa / __c;
+          if (std::abs(__c) < _S_eps)
+            __c = _S_eps;
+          __d = _Tp(1) / __d;
+          __h *= __d * __c;
+
+          __aa = -(__a + _Tp(__m)) * (__apb + __m) * __x
+               / ((__a + __m2) * (__ap1 + __m2));
+          __d = _Tp(1) + __aa * __d;
+          if (std::abs(__d) < _S_eps)
+            __d = _S_eps;
+          __c = _Tp(1) + __aa / __c;
+          if (std::abs(__c) < _S_eps)
+            __c = _S_eps;
+          __d = _Tp(1) / __d;
+          _Tp __del = __d * __c;
+          __h *= __del;
+
+          if (std::abs(__del - _Tp(1)) < _S_eps)
+            return __h;
+	}
+      throw std::logic_error("__beta_inc_cont_frac: ");
+    }
+
+
+  template<typename _Tp>
+    _Tp
+    __beta_inc(_Tp __a, _Tp __b, _Tp __x)
+    {
+      if (__isnan(__x) || __isnan(__a) || __isnan(__b))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+
+      if (__x < _Tp(0) || __x > _Tp(1))
+	throw std::domain_error("__beta_inc: x out of range");
+
+      _Tp __fact;
+      if (__x == _Tp(0) || __x == _Tp(1))
+	__fact = _Tp(0);
+      else
+	__fact = std::exp(std::lgamma(__a + __b)
+                	- std::lgamma(__a) - std::lgamma(__b)
+                	+ __a * std::log(__x) + __b * std::log(_Tp(1) - __x));
+
+      if (__x < (__a + _Tp(1)) / (__a + __b + _Tp(2)))
+	return __fact * __beta_inc_cont_frac(__a, __b, __x) / __a;
+      else
+	return _Tp(1) - __fact * __beta_inc_cont_frac(__b, __a, _Tp(1) - __x) / __b;
+    }
+
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
-}
+} // namespace std
 
 #endif // __GLIBCXX_BITS_SF_BETA_TCC

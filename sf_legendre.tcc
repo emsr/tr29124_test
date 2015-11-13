@@ -234,14 +234,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const _Tp __sgn = ( __m % 2 == 1 ? -_Tp(1) : _Tp(1));
 	  const _Tp __y_mp1m_factor = __x * std::sqrt(_Tp(2 * __m + 3));
 #if _GLIBCXX_USE_C99_MATH_TR1
-	  const _Tp __lncirc = TR1NS log1p(-__x * __x);
+	  const _Tp __lncirc = std::log1p(-__x * __x);
 #else
 	  const _Tp __lncirc = std::log(_Tp(1) - __x * __x);
 #endif
 	  //  Gamma(m+1/2) / Gamma(m)
 #if _GLIBCXX_USE_C99_MATH_TR1
-	  const _Tp __lnpoch = TR1NS lgamma(_Tp(__m + _Tp(0.5L)))
-			     - TR1NS lgamma(_Tp(__m));
+	  const _Tp __lnpoch = std::lgamma(_Tp(__m + _Tp(0.5L)))
+			     - std::lgamma(_Tp(__m));
 #else
 	  const _Tp __lnpoch = __log_gamma(_Tp(__m + _Tp(0.5L)))
 			     - __log_gamma(_Tp(__m));
@@ -288,6 +288,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
-}
+} // namespace std
 
 #endif // _GLIBCXX_BITS_SF_LEGENDRE_TCC

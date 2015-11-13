@@ -218,7 +218,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __conf_hyperg(_Tp __a, _Tp __c, _Tp __x)
     {
 #if _GLIBCXX_USE_C99_MATH_TR1
-      const _Tp __c_nint = TR1NS nearbyint(__c);
+      const _Tp __c_nint = std::nearbyint(__c);
 #else
       const _Tp __c_nint = static_cast<int>(__c + _Tp(0.5L));
 #endif
@@ -717,9 +717,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __hyperg(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
 #if _GLIBCXX_USE_C99_MATH_TR1
-      const _Tp __a_nint = TR1NS nearbyint(__a);
-      const _Tp __b_nint = TR1NS nearbyint(__b);
-      const _Tp __c_nint = TR1NS nearbyint(__c);
+      const _Tp __a_nint = std::nearbyint(__a);
+      const _Tp __b_nint = std::nearbyint(__b);
+      const _Tp __c_nint = std::nearbyint(__c);
 #else
       const _Tp __a_nint = static_cast<int>(__a + _Tp(0.5L));
       const _Tp __b_nint = static_cast<int>(__b + _Tp(0.5L));
@@ -784,6 +784,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
-}
+} // namespace std
 
 #endif // _GLIBCXX_BITS_SF_HYPERG_TCC

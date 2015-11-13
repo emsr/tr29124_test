@@ -86,8 +86,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		  _Tp & __gam1, _Tp & __gam2, _Tp & __gampl, _Tp & __gammi)
     {
 #if _GLIBCXX_USE_C99_MATH_TR1
-      __gampl = _Tp(1) / TR1NS tgamma(_Tp(1) + __mu);
-      __gammi = _Tp(1) / TR1NS tgamma(_Tp(1) - __mu);
+      __gampl = _Tp(1) / std::tgamma(_Tp(1) + __mu);
+      __gammi = _Tp(1) / std::tgamma(_Tp(1) - __mu);
 #else
       __gampl = _Tp(1) / __gamma(_Tp(1) + __mu);
       __gammi = _Tp(1) / __gamma(_Tp(1) - __mu);
@@ -302,7 +302,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const _Tp __gam = (__p - __f) / __q;
 	  __Jmu = std::sqrt(__w / ((__p - __f) * __gam + __q));
 #if _GLIBCXX_USE_C99_MATH_TR1
-	  __Jmu = TR1NS copysign(__Jmu, __Jnul);
+	  __Jmu = std::copysign(__Jmu, __Jnul);
 #else
 	  if (__Jmu * __Jnul < _Tp(0))
 	    __Jmu = -__Jmu;
@@ -425,7 +425,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const _Tp __x2 = __x / _Tp(2);
       _Tp __fact = __nu * std::log(__x2);
 #if _GLIBCXX_USE_C99_MATH_TR1
-      __fact -= TR1NS lgamma(__nu + _Tp(1));
+      __fact -= std::lgamma(__nu + _Tp(1));
 #else
       __fact -= __log_gamma(__nu + _Tp(1));
 #endif
@@ -539,7 +539,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __cyl_hankel_h1(unsigned int __n, _Tp __x)
+    __cyl_hankel_h1(_Tp __nu, _Tp __x)
     {
       if (__x < _Tp(0))
 	std::__throw_domain_error(__N("__cyl_hankel_h1: bad argument"));
@@ -550,9 +550,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
 	{
 	  std::complex<_Tp> _S_j(0, 1);
-	  _Tp __j_n, __n_n, __jp_n, __np_n;
-	  __bessel_jn(__n, __x, __j_n, __n_n, __jp_n, __np_n);
-	  return (__j_n + _S_j * __n_n);
+	  _Tp _J_n, _N_n, __jp_n, __np_n;
+	  __bessel_jn(__nu, __x, _J_n, _N_n, __jp_n, __np_n);
+	  return (_J_n + _S_j * _N_n);
 	}
     }
 
@@ -572,7 +572,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __cyl_hankel_h2(unsigned int __n, _Tp __x)
+    __cyl_hankel_h2(_Tp __nu, _Tp __x)
     {
       if (__x < _Tp(0))
 	std::__throw_domain_error(__N("__cyl_hankel_h2: bad argument"));
@@ -583,9 +583,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
 	{
 	  std::complex<_Tp> _S_j(0, 1);
-	  _Tp __j_n, __n_n, __jp_n, __np_n;
-	  __bessel_jn(__n, __x, __j_n, __n_n, __jp_n, __np_n);
-	  return (__j_n + _S_j * __n_n);
+	  _Tp _J_n, _N_n, __jp_n, __np_n;
+	  __bessel_jn(__nu, __x, _J_n, _N_n, __jp_n, __np_n);
+	  return (_J_n + _S_j * _N_n);
 	}
     }
 
@@ -761,6 +761,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
-}
+} // namespace std
 
 #endif // _GLIBCXX_BITS_SF_BESSEL_TCC

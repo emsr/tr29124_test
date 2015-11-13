@@ -33,8 +33,10 @@
 
 // Written by Edward Smith-Rowland based on numerous mathematics books.
 
-#ifndef _GLIBCXX_BITS_SPECIAL_FUNCTION_UTIL_H
-#define _GLIBCXX_BITS_SPECIAL_FUNCTION_UTIL_H 1
+#ifndef _GLIBCXX_BITS_SPECFUN_UTIL_H
+#define _GLIBCXX_BITS_SPECFUN_UTIL_H 1
+
+#include <complex>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -46,57 +48,71 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /// constants.  Not everything will be able to be expressed as
   /// type logic.
   template<typename _Tp>
-  struct __floating_point_constant
-  {
-    static const _Tp __value;
-  };
+    struct __floating_point_constant
+    {
+      static const _Tp __value;
+    };
 
+  template<typename _Tp>
+    struct __num_traits
+    {
+      using __value_type = _Tp;
+    };
+
+  template<>
+    template<typename _Tp>
+      struct __num_traits<std::complex<_Tp>>
+      {
+	using __value_type = typename std::complex<_Tp>::value_type;
+      };
+
+  template<typename _Tp>
+    using __num_traits_t = typename __num_traits<_Tp>::__value_type;
 
   /// A structure for numeric constants.
   template<typename _Tp>
     struct __numeric_constants
     {
       ///  Constant @f$ \pi @f$.
-      static _Tp __pi() throw()
+      static constexpr _Tp __pi() noexcept
       { return static_cast<_Tp>(3.1415926535897932384626433832795029L); }
       ///  Constant @f$ \pi / 2 @f$.
-      static _Tp __pi_2() throw()
+      static constexpr _Tp __pi_2() noexcept
       { return static_cast<_Tp>(1.5707963267948966192313216916397514L); }
       ///  Constant @f$ \pi / 3 @f$.
-      static _Tp __pi_3() throw()
+      static constexpr _Tp __pi_3() noexcept
       { return static_cast<_Tp>(1.0471975511965977461542144610931676L); }
       ///  Constant @f$ \pi / 4 @f$.
-      static _Tp __pi_4() throw()
+      static constexpr _Tp __pi_4() noexcept
       { return static_cast<_Tp>(0.7853981633974483096156608458198757L); }
       ///  Constant @f$ 1 / \pi @f$.
-      static _Tp __1_pi() throw()
+      static constexpr _Tp __1_pi() noexcept
       { return static_cast<_Tp>(0.3183098861837906715377675267450287L); }
       ///  Constant @f$ 2 / \sqrt(\pi) @f$.
-      static _Tp __2_sqrtpi() throw()
+      static constexpr _Tp __2_sqrtpi() noexcept
       { return static_cast<_Tp>(1.1283791670955125738961589031215452L); }
       ///  Constant @f$ \sqrt(2) @f$.
-      static _Tp __sqrt2() throw()
+      static constexpr _Tp __sqrt2() noexcept
       { return static_cast<_Tp>(1.4142135623730950488016887242096981L); }
       ///  Constant @f$ \sqrt(3) @f$.
-      static _Tp __sqrt3() throw()
+      static constexpr _Tp __sqrt3() noexcept
       { return static_cast<_Tp>(1.7320508075688772935274463415058723L); }
       ///  Constant @f$ \sqrt(\pi/2) @f$.
-      static _Tp __sqrtpio2() throw()
+      static constexpr _Tp __sqrtpio2() noexcept
       { return static_cast<_Tp>(1.2533141373155002512078826424055226L); }
       ///  Constant @f$ 1 / sqrt(2) @f$.
-      static _Tp __sqrt1_2() throw()
+      static constexpr _Tp __sqrt1_2() noexcept
       { return static_cast<_Tp>(0.7071067811865475244008443621048490L); }
       ///  Constant @f$ \log(\pi) @f$.
-      static _Tp __lnpi() throw()
+      static constexpr _Tp __lnpi() noexcept
       { return static_cast<_Tp>(1.1447298858494001741434273513530587L); }
       ///  Constant Euler's constant @f$ \gamma_E @f$.
-      static _Tp __gamma_e() throw()
+      static constexpr _Tp __gamma_e() noexcept
       { return static_cast<_Tp>(0.5772156649015328606065120900824024L); }
       ///  Constant Euler-Mascheroni @f$ e @f$
-      static _Tp __euler() throw()
+      static constexpr _Tp __euler() noexcept
       { return static_cast<_Tp>(2.7182818284590452353602874713526625L); }
     };
-
 
 #if _GLIBCXX_USE_C99_MATH && !_GLIBCXX_USE_C99_FP_MACROS_DYNAMIC
 
@@ -105,32 +121,65 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /// out of intrinsics, this will disappear completely in favor of
   /// std::isnan.
   template<typename _Tp>
-  inline bool
-  __isnan(_Tp __x)
-  { return std::isnan(__x); }
+    inline bool
+    __isnan(_Tp __x)
+    { return std::isnan(__x); }
 
 #else
 
   template<typename _Tp>
-  inline bool
-  __isnan(_Tp __x)
-  { return __builtin_isnan(__x); }
+    inline bool
+    __isnan(_Tp __x)
+    { return __builtin_isnan(__x); }
 
   template<>
-  inline bool
-  __isnan<float>(float __x)
-  { return __builtin_isnanf(__x); }
+    inline bool
+    __isnan<float>(float __x)
+    { return __builtin_isnanf(__x); }
 
   template<>
-  inline bool
-  __isnan<long double>(long double __x)
-  { return __builtin_isnanl(__x); }
+    inline bool
+    __isnan<long double>(long double __x)
+    { return __builtin_isnanl(__x); }
 
 #endif
+
+  template<typename _Tp>
+    inline bool
+    __isnan(const std::complex<_Tp>& __x)
+    { return __isnan(std::real(__x)) || __isnan(std::imag(__x)); }
+
+
+  template<typename _Tp>
+    inline _Tp
+    __quiet_NaN(_Tp)
+    { return std::numeric_limits<_Tp>::quiet_NaN(); }
+
+  template<typename _Tp>
+    inline std::complex<_Tp>
+    __quiet_NaN(std::complex<_Tp>)
+    {
+      auto __nan = std::numeric_limits<_Tp>::quiet_NaN();
+      return std::complex<_Tp>(__nan, __nan);
+    }
+
+
+  template<typename _Tp>
+    inline _Tp
+    __infinity(_Tp)
+    { return std::numeric_limits<_Tp>::infinity(); }
+
+  template<typename _Tp>
+    inline std::complex<_Tp>
+    __infinity(std::complex<_Tp>)
+    {
+      auto __inf = std::numeric_limits<_Tp>::infinity();
+      return std::complex<_Tp>(__inf, __inf);
+    }
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 }
 
-#endif // _GLIBCXX_BITS_SPECIAL_FUNCTION_UTIL_H
+#endif // _GLIBCXX_BITS_SPECFUN_UTIL_H
 

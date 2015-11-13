@@ -45,10 +45,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __csint_cont_frac(_Tp __t, _Tp& _Ci, _Tp& _Si)
     {
-      constexpr unsigned auto _S_max_iter = 100;
+      constexpr auto _S_max_iter = 100;
       constexpr auto _S_eps = _Tp(5) * std::numeric_limits<_Tp>::epsilon();
       constexpr auto _S_fp_min = std::numeric_limits<_Tp>::min();
-      constexpr auto _S_pi_2 = std::tr1::__detail::__numeric_constants<_Tp>::__pi_2();
+      constexpr auto _S_pi_2 = std::__detail::__numeric_constants<_Tp>::__pi_2();
 
       //  Evaluate Ci and Si by Lentz's modified method of continued fractions.
       std::complex<_Tp> __b(_Tp(1), __t);
@@ -87,10 +87,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __csint_series(_Tp __t, _Tp& _Ci, _Tp& _Si)
     {
-      constexpr unsigned auto _S_max_iter = 100;
+      constexpr auto _S_max_iter = 100;
       constexpr auto _S_eps = _Tp(5) * std::numeric_limits<_Tp>::epsilon();
       constexpr auto _S_fp_min = std::numeric_limits<_Tp>::min();
-      constexpr auto _S_gamma_e = std::tr1::__detail::__numeric_constants<_Tp>::__gamma_e();
+      constexpr auto _S_gamma_e = std::__detail::__numeric_constants<_Tp>::__gamma_e();
 
       //  Evaluate Ci and Si by series simultaneously.
       _Tp __sumc(0), __sums(0);
@@ -149,9 +149,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __csint_asymp(_Tp __t, _Tp& _Ci, _Tp& _Si)
     {
-      const unsigned auto _S_max_iter = 100;
+      const auto _S_max_iter = 100;
       constexpr auto _S_eps = _Tp(5) * std::numeric_limits<_Tp>::epsilon();
-      constexpr auto _S_pi_2 = std::tr1::__detail::__numeric_constants<_Tp>::__pi_2();
+      constexpr auto _S_pi_2 = std::__detail::__numeric_constants<_Tp>::__pi_2();
 
       auto __invt = _Tp(1) / __t;
       auto __term = _Tp(1); // 0!
@@ -214,21 +214,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __csint(_Tp __x)
     {
       auto __t = std::abs(__x);
-      _Tp _Ci, __si;
+      _Tp _Ci, _Si;
       if (__t == _Tp(0))
 	{
 	  _Ci = -std::numeric_limits<_Tp>::infinity();
-	  __si = _Tp(0);
+	  _Si = _Tp(0);
 	}
       else if (__t > _Tp(1000)) // Check this!
-	__csint_asymp(__t, _Ci, __si);
+	__csint_asymp(__t, _Ci, _Si);
       else if (__t > _Tp(2))
-	__csint_cont_frac(__t, _Ci, __si);
+	__csint_cont_frac(__t, _Ci, _Si);
       else
-	__csint_series(__t, _Ci, __si);
+	__csint_series(__t, _Ci, _Si);
 
       if (__x < _Tp(0))
-	__si = -__si;
+	_Si = -_Si;
 
       return std::make_pair(_Ci, _Si);
     }

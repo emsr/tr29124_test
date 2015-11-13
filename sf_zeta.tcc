@@ -170,7 +170,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		     * __numeric_constants<_Tp>::__pi(), __s)
 		     * std::sin(__numeric_constants<_Tp>::__pi_2() * __s)
 #if _GLIBCXX_USE_C99_MATH_TR1
-		     * std::exp(TR1NS lgamma(_Tp(1) - __s))
+		     * std::exp(std::lgamma(_Tp(1) - __s))
 #else
 		     * std::exp(__log_gamma(_Tp(1) - __s))
 #endif
@@ -285,7 +285,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __zeta *= std::pow(_Tp(2) * __numeric_constants<_Tp>::__pi(), __s)
 		 * std::sin(__numeric_constants<_Tp>::__pi_2() * __s)
 #if _GLIBCXX_USE_C99_MATH_TR1
-		 * std::exp(TR1NS lgamma(_Tp(1) - __s))
+		 * std::exp(std::lgamma(_Tp(1) - __s))
 #else
 		 * std::exp(__log_gamma(_Tp(1) - __s))
 #endif
@@ -308,7 +308,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				* __numeric_constants<_Tp>::__pi(), __s)
 			    * std::sin(__numeric_constants<_Tp>::__pi_2() * __s)
 #if _GLIBCXX_USE_C99_MATH_TR1
-			     * TR1NS tgamma(_Tp(1) - __s)
+			     * std::tgamma(_Tp(1) - __s)
 #else
 			     * std::exp(__log_gamma(_Tp(1) - __s))
 #endif

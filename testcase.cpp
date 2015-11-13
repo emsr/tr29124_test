@@ -75,7 +75,7 @@ main()
   typedef double assoc_laguerre(unsigned int, unsigned int, double);
   maketest<double, unsigned int, unsigned int, double>((assoc_laguerre *)std::assoc_laguerre,
                                                        wrap_gsl_sf_laguerre_nm,
-                                                       funcname,
+                                                       "std", funcname,
                                                        "n", vorder, "m", vorder,
                                                        "x", fill_argument(std::make_pair(0.0, 100.0),
                                                                           std::make_pair(true, true), 11),
@@ -89,7 +89,7 @@ main()
   typedef double assoc_legendre(unsigned int, unsigned int, double);
   maketest<double, unsigned int, unsigned int, double>((assoc_legendre *)std::assoc_legendre,
                                                        wrap_gsl_sf_legendre_Plm,
-                                                       funcname,
+                                                       "std", funcname,
                                                        "l", vorder, "m", vorder,
                                                        "x", fill_argument(std::make_pair(-1.0, 1.0),
                                                                           std::make_pair(true, true), 21),
@@ -103,7 +103,7 @@ main()
   typedef double beta(double, double);
   maketest<double, double, double>((beta *)std::beta,
                                    wrap_gsl_sf_beta,
-                                   funcname,
+                                   "std", funcname,
                                    "x", fill_argument(std::make_pair(0.0, 100.0),
                                                       std::make_pair(false, true), 11),
                                    "y", fill_argument(std::make_pair(0.0, 100.0),
@@ -119,7 +119,7 @@ main()
   typedef double comp_ellint_1(double);
   maketest<double, double>((comp_ellint_1 *)std::comp_ellint_1,
                            wrap_gsl_sf_ellint_Kcomp,
-                           funcname,
+                           "std", funcname,
                            "k", fill_argument(std::make_pair(-1.0, 1.0),
                                               std::make_pair(false, false), 21),
                            file_comp_ellint_1);
@@ -133,7 +133,7 @@ main()
   typedef double comp_ellint_2(double);
   maketest<double, double>((comp_ellint_2 *)std::comp_ellint_2,
                            wrap_gsl_sf_ellint_Ecomp,
-                           funcname,
+                           "std", funcname,
                            "k", fill_argument(std::make_pair(-1.0, 1.0),
                                               std::make_pair(false, false), 21),
                            file_comp_ellint_2);
@@ -147,7 +147,7 @@ main()
   typedef double comp_ellint_3(double, double);
   maketest<double, double, double>((comp_ellint_3 *)std::comp_ellint_3,
                                    wrap_gsl_sf_ellint_Pcomp,
-                                   funcname,
+                                   "std", funcname,
                                    "k", fill_argument(std::make_pair(-1.0, 1.0),
                                                       std::make_pair(false, false), 21),
                                    "nu", fill_argument(std::make_pair(0.0, 1.0),
@@ -156,22 +156,20 @@ main()
 
   //  5.2.1.7  Confluent hypergeometric functions.
   //  Skip the singularity aat c = 0.
-/*
   std::cout << "conf_hyperg\n";
   funcname = "conf_hyperg";
   filename = get_filename(path, prefix, funcname, "",  ".cc");
   std::ofstream file_conf_hyperg(filename.c_str());
   typedef double conf_hyperg(double, double, double);
-  maketest<double, double, double, double>((conf_hyperg *)std::conf_hyperg,
+  maketest<double, double, double, double>((conf_hyperg *)__gnu_cxx::conf_hyperg,
                                            wrap_gsl_sf_hyperg_1F1,
-                                           funcname,
+                                           "__gnu_cxx", funcname,
                                            "a", vab,
                                            "c", fill_argument(std::make_pair(0.0, 10.0),
                                                               std::make_pair(false, true), 11),
                                            "x", fill_argument(std::make_pair(-10.0, 10.0),
                                                               std::make_pair(true, true), 21),
                                            file_conf_hyperg);
-*/
 
   //  5.2.1.8  Regular modified cylindrical Bessel functions.
   std::cout << "cyl_bessel_i\n";
@@ -181,7 +179,7 @@ main()
   typedef double cyl_bessel_i(double, double);
   maketest<double, double, double>((cyl_bessel_i*)std::cyl_bessel_i,
                                    wrap_gsl_sf_bessel_Inu,
-                                   funcname,
+                                   "std", funcname,
                                    "nu", vborderd,
                                    "x", fill_argument(std::make_pair(0.0, 100.0),
                                                       std::make_pair(true, true), 21),
@@ -195,25 +193,26 @@ main()
   typedef double cyl_bessel_j(double, double);
   maketest<double, double, double>((cyl_bessel_j*)std::cyl_bessel_j,
                                    wrap_gsl_sf_bessel_Jnu,
-                                   funcname,
+                                   "std", funcname,
                                    "nu", vborderd,
                                    "x", fill_argument(std::make_pair(0.0, 100.0),
                                                       std::make_pair(true, true), 21),
                                    file_cyl_bessel_j);
 
   //  5.2.1.9  Cylindrical Bessel functions (of the first kind) asymptotics.
+/*
   std::cout << "cyl_bessel_j asymptotics\n";
   funcname = "cyl_bessel_j_asymp";
   filename = get_filename(path, prefix, funcname, "",  ".cc");
   std::ofstream file_cyl_bessel_j_asymp(filename.c_str());
   maketest<double, double, double>((cyl_bessel_j*)std::cyl_bessel_j,
                                    wrap_gsl_sf_bessel_Jnu_asymp,
-                                   funcname,
+                                   "std", funcname,
                                    "nu", vborderd,
                                    "x", fill_argument(std::make_pair(1000.0, 10000.0),
                                                       std::make_pair(true, true), 11),
                                    file_cyl_bessel_j_asymp);
-
+*/
   //  5.2.1.10  Irregular modified cylindrical Bessel functions.
   // Skip the pole at the origin.
   std::cout << "cyl_bessel_k\n";
@@ -223,7 +222,7 @@ main()
   typedef double cyl_bessel_k(double, double);
   maketest<double, double, double>((cyl_bessel_k*)std::cyl_bessel_k,
                                    wrap_gsl_sf_bessel_Knu,
-                                   funcname,
+                                   "std", funcname,
                                    "nu", vborderd,
                                    "x", fill_argument(std::make_pair(0.0, 100.0),
                                                       std::make_pair(false, true), 21),
@@ -238,7 +237,7 @@ main()
   typedef double cyl_neumann(double, double);
   maketest<double, double, double>((cyl_neumann*)std::cyl_neumann,
                                    wrap_gsl_sf_bessel_Ynu,
-                                   funcname,
+                                   "std", funcname,
                                    "nu", vborderd,
                                    "x", fill_argument(std::make_pair(0.0, 100.0),
                                                       std::make_pair(false, true), 21),
@@ -246,18 +245,19 @@ main()
 
   //  5.2.1.11  Cylindrical Neumann functions asymptotics.
   // Skip the pole at the origin.
+/*
   std::cout << "cyl_neumann asymptotics\n";
   funcname = "cyl_neumann_asymp";
   filename = get_filename(path, prefix, funcname, "",  ".cc");
   std::ofstream file_cyl_neumann_asymp(filename.c_str());
   maketest<double, double, double>((cyl_neumann*)std::cyl_neumann,
                                    wrap_gsl_sf_bessel_Ynu_asymp,
-                                   funcname,
+                                   "std", funcname,
                                    "nu", vborderd,
                                    "x", fill_argument(std::make_pair(1000.0, 10000.0),
                                                       std::make_pair(false, true), 11),
                                    file_cyl_neumann_asymp);
-
+*/
   //  5.2.1.12  Elliptic integrals of the first kind.
   //  Avoid poles at |x| = 1.
   std::cout << "ellint_1\n";
@@ -267,7 +267,7 @@ main()
   typedef double ellint_1(double, double);
   maketest<double, double, double>((ellint_1*)std::ellint_1,
                                    wrap_gsl_sf_ellint_F,
-                                   funcname,
+                                   "std", funcname,
                                    "k", fill_argument(std::make_pair(-1.0, 1.0),
                                                       std::make_pair(false, false), 21),
                                    "phi", vphid,
@@ -282,7 +282,7 @@ main()
   typedef double ellint_2(double, double);
   maketest<double, double, double>((ellint_2*)std::ellint_2,
                                    wrap_gsl_sf_ellint_E,
-                                   funcname,
+                                   "std", funcname,
                                    "k", fill_argument(std::make_pair(-1.0, 1.0),
                                                       std::make_pair(false, false), 21),
                                    "phi", vphid,
@@ -297,7 +297,7 @@ main()
   typedef double ellint_3(double, double, double);
   maketest<double, double, double, double>((ellint_3*)std::ellint_3,
                                            wrap_gsl_sf_ellint_P,
-                                           funcname,
+                                           "std", funcname,
                                            "k", fill_argument(std::make_pair(-1.0, 1.0),
                                                               std::make_pair(false, false), 21),
                                            "nu", fill_argument(std::make_pair(0.0, 1.0),
@@ -314,7 +314,7 @@ main()
   typedef double expint(double);
   maketest<double, double>((expint*)std::expint,
                            wrap_gsl_sf_expint_Ei,
-                           funcname,
+                           "std", funcname,
                            "x", fill_argument(std::make_pair(-50.0, 0.0),
                                               std::make_pair(true, false), 51),
                            file_expint_neg);
@@ -323,7 +323,7 @@ main()
   std::ofstream file_expint_pos(filename.c_str());
   maketest<double, double>((expint*)std::expint,
                            wrap_gsl_sf_expint_Ei,
-                           funcname,
+                           "std", funcname,
                            "x", fill_argument(std::make_pair(0.0, 50.0),
                                               std::make_pair(false, true), 51),
                            file_expint_pos);
@@ -331,7 +331,6 @@ main()
   //  5.2.1.16  Hermite polynomials
   std::cout << "hermite  UNTESTED\n";
 
-/*
   //  5.2.1.17  Hypergeometric functions.
   //  Skip the singularity at c = 0.
   //  Skip the singularity at x = -1.
@@ -340,9 +339,9 @@ main()
   filename = get_filename(path, prefix, funcname, "",  ".cc");
   std::ofstream file_hyperg(filename.c_str());
   typedef double hyperg(double, double, double, double);
-  maketest<double, double, double, double, double>((hyperg*)std::hyperg,
+  maketest<double, double, double, double, double>((hyperg*)__gnu_cxx::hyperg,
                                                    wrap_gsl_sf_hyperg_2F1,
-                                                   funcname,
+                                                   "__gnu_cxx", funcname,
                                                    "a", vab,
                                                    "b", vab,
                                                    "c", fill_argument(std::make_pair(0.0, 10.0),
@@ -350,7 +349,6 @@ main()
                                                    "x", fill_argument(std::make_pair(-1.0, 1.0),
                                                                       std::make_pair(false, true), 21),
                                                    file_hyperg);
-*/
 
   //  5.2.1.18  Laguerre polynomials.
   std::cout << "laguerre\n";
@@ -360,7 +358,7 @@ main()
   typedef double laguerre(unsigned int, double);
   maketest<double, unsigned int, double>((laguerre*)std::laguerre,
                                          wrap_gsl_sf_laguerre_n,
-                                         funcname,
+                                         "std", funcname,
                                          "n", vorder,
                                          "x", fill_argument(std::make_pair(0.0, 100.0),
                                                             std::make_pair(true, true), 21),
@@ -374,7 +372,7 @@ main()
   typedef double legendre(unsigned int, double);
   maketest<double, unsigned int, double>((legendre*)std::legendre,
                                          wrap_gsl_sf_legendre_Pl,
-                                         funcname,
+                                         "std", funcname,
                                          "l", vorder,
                                          "x", fill_argument(std::make_pair(-1.0, 1.0),
                                                             std::make_pair(true, true), 21),
@@ -389,7 +387,7 @@ main()
   typedef double riemann_zeta(double);
   maketest<double, double>((riemann_zeta*)std::riemann_zeta,
                            wrap_gsl_sf_zeta,
-                           funcname,
+                           "std", funcname,
                            "x", fill_argument(std::make_pair(-10.0, 1.0),
                                               std::make_pair(true, false), 56),
                            file_riemann_zeta_neg);
@@ -398,7 +396,7 @@ main()
   std::ofstream file_riemann_zeta_pos(filename.c_str());
   maketest<double, double>((riemann_zeta*)std::riemann_zeta,
                            wrap_gsl_sf_zeta,
-                           funcname,
+                           "std", funcname,
                            "x", fill_argument(std::make_pair(1.0, 30.0),
                                               std::make_pair(false, true), 146),
                            file_riemann_zeta_pos);
@@ -411,7 +409,7 @@ main()
   typedef double sph_bessel(unsigned int, double);
   maketest<double, unsigned int, double>((sph_bessel*)std::sph_bessel,
                                          wrap_gsl_sf_bessel_jl,
-                                         funcname,
+                                         "std", funcname,
                                          "n", sborder,
                                          "x", fill_argument(std::make_pair(0.0, 100.0),
                                                             std::make_pair(true, true), 21),
@@ -424,7 +422,7 @@ main()
   std::ofstream file_sph_legendre(filename.c_str());
   typedef double sph_legendre(unsigned int, unsigned int, double);
   maketest<double, unsigned int, unsigned int, double>((sph_legendre*)std::sph_legendre, wrap_gsl_sf_legendre_sphPlm,
-                                                       funcname,
+                                                       "std", funcname,
                                                        "l", vorder, "m", vorder,
                                                        "theta", fill_argument(std::make_pair(0.0, static_cast<double>(M_PI)),
                                                                               std::make_pair(true, true), 21),
@@ -438,7 +436,7 @@ main()
   std::ofstream file_sph_neumann(filename.c_str());
   typedef double sph_neumann(unsigned int, double);
   maketest<double, unsigned int, double>((sph_neumann*)std::sph_neumann, wrap_gsl_sf_bessel_yl,
-                                         funcname,
+                                         "std", funcname,
                                          "n", sborder,
                                          "x", fill_argument(std::make_pair(0.0, 100.0),
                                                             std::make_pair(false, true), 21),

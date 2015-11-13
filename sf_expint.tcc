@@ -515,8 +515,75 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __expint_Ei(__x);
     }
 
+  /**
+   *   @brief Return the logarithmic integral @f$ li(x) @f$.
+   *
+   *   The logarithmic integral is given by
+   *   \f[
+   *     li(x) = Ei(\log(x))
+   *   \f]
+   *
+   *   @param  __x  The argument of the logarithmic integral function.
+   *   @return  The logarithmic integral.
+   */
+  template<typename _Tp>
+    _Tp
+    __logint(const _Tp __x)
+    {
+      if (__isnan(__x))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (std::abs(__x) == _Tp(1))
+	return std::numeric_limits<_Tp>::infinity();
+      else
+	return __expint(std::log(__x));
+    }
+
+  /**
+   *   @brief Return the hyperbolic cosine integral @f$ li(x) @f$.
+   *
+   *   The hyperbolic cosine integral is given by
+   *   \f[
+   *     Chi(x) = (Ei(x) - E_1(x))/ 2
+   *   \f]
+   *
+   *   @param  __x  The argument of the hyperbolic cosine integral function.
+   *   @return  The hyperbolic cosine integral.
+   */
+  template<typename _Tp>
+    _Tp
+    __coshint(const _Tp __x)
+    {
+      if (__isnan(__x))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__x == _Tp(0))
+	return _Tp(0);
+      else
+	return (__expint_Ei(__x) - __expint_E1(__x)) / _Tp(2);
+    }
+
+  /**
+   *   @brief Return the hyperbolic sine integral @f$ li(x) @f$.
+   *
+   *   The hyperbolic sine integral is given by
+   *   \f[
+   *     Shi(x) = (Ei(x) - E_1(x))/ 2
+   *   \f]
+   *
+   *   @param  __x  The argument of the hyperbolic sine integral function.
+   *   @return  The hyperbolic sine integral.
+   */
+  template<typename _Tp>
+    _Tp
+    __sinhint(const _Tp __x)
+    {
+      if (__isnan(__x))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else
+	return (__expint_Ei(__x) + __expint_E1(__x)) / _Tp(2);
+    }
+
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
-}
+} // namespace std
 
 #endif // _GLIBCXX_BITS_SF_EXPINT_TCC
