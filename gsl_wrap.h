@@ -2,6 +2,9 @@
 //int gsl_sf_bessel_Jnu_asympx_e(const double nu, const double x, gsl_sf_result * result);
 //int gsl_sf_bessel_Ynu_asympx_e(const double nu, const double x, gsl_sf_result * result);
 
+///  Airy functions.
+double wrap_gsl_sf_airy_ai(double x);
+double wrap_gsl_sf_airy_bi(double x);
 
 ///
 ///  5.2.1.1  Associated Laguerre polynomials.

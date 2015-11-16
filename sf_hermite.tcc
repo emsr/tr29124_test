@@ -51,7 +51,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *   @brief This routine returns the Hermite polynomial
    *          of order n: \f$ H_n(x) \f$ by recursion on n.
-   * 
+   *
    *   The Hermite polynomial is defined by:
    *   @f[
    *     H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
@@ -67,12 +67,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __poly_hermite_recursion(unsigned int __n, _Tp __x)
     {
       //  Compute H_0.
-      _Tp __H_nm2 = 1;
+      auto __H_nm2 = _Tp{1};
       if (__n == 0)
 	return __H_nm2;
 
       //  Compute H_1.
-      _Tp __H_nm1 = 2 * __x;
+      auto __H_nm1 = _Tp{2} * __x;
       if (__n == 1)
 	return __H_nm1;
 
@@ -80,7 +80,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __H_n;
       for (unsigned int __i = 2; __i <= __n; ++__i)
 	{
-	  __H_n = 2 * (__x * __H_nm1 - (__i - 1) * __H_nm2);
+	  __H_n = _Tp{2} * (__x * __H_nm1 - _Tp{__i - 1} * __H_nm2);
 	  __H_nm2 = __H_nm1;
 	  __H_nm1 = __H_n;
 	}
@@ -92,7 +92,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *   @brief This routine returns the Hermite polynomial
    *          of order n: \f$ H_n(x) \f$.
-   * 
+   *
    *   The Hermite polynomial is defined by:
    *   @f[
    *     H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}

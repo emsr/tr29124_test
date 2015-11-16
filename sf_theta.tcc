@@ -46,22 +46,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __b, __c, __d;
 
       constexpr auto _S_N = 20;
-      constexpr auto _S_CA = _Tp(0.00001);
+      constexpr auto _S_CA = _Tp{0.00001};
 
       std::array<_Tp, _S_N> __m;
       std::array<_Tp, _S_N> __n;
 
-      if (__k != _Tp(0))
+      if (__k != _Tp{0})
 	{
-	  bool __bo = (__k < _Tp(0));
+	  bool __bo = (__k < _Tp{0});
 	  if (__bo)
 	    {
-	      __d = _Tp(1) - __k;
-	      __k /= -_Tp(1) / __d;
+	      __d = _Tp{1} - __k;
+	      __k /= -_Tp{1} / __d;
 	      __u *= (__d = std::sqrt(__d));
 	    }
-	  auto __a = _Tp(1);
-	  __dn = _Tp(1);
+	  auto __a = _Tp{1};
+	  __dn = _Tp{1};
 	  auto __l = _S_N;
 	  for (auto __i = 0; __i < _S_N; ++__i)
 	    {
@@ -77,7 +77,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __u *= __c;
 	  __cn = std::cos(__u);
 	  __sn = std::sin(__u);
-	  if (__sn != _Tp(0))
+	  if (__sn != _Tp{0})
 	    {
 	      __a = __cn / __sn;
 	      __c *= __a;
@@ -89,7 +89,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		  __dn = (__n[__ii] + __a) / (__b + __a);
 		  __a = __c / __b;
 		}
-	      __a = _Tp(1) / std::sqrt(__c * __c + _Tp(1));
+	      __a = _Tp{1} / std::sqrt(__c * __c + _Tp{1});
 	      __sn = std::copysign(__a, __sn);
 	      __cn = __c * __sn;
 	    }
@@ -103,7 +103,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else
 	{
-	  __cn = _Tp(1) / std::cosh(__u);
+	  __cn = _Tp{1} / std::cosh(__u);
 	  __sn = std::tanh(__u);
 	  __dn = __cn;
 	}

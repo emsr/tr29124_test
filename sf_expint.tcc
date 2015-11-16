@@ -61,12 +61,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @brief Return the exponential integral @f$ E_1(x) @f$
    *          by series summation.  This should be good
    *          for @f$ x < 1 @f$.
-   * 
+   *
    *   The exponential integral is given by
    *          \f[
    *            E_1(x) = \int_{1}^{\infty} \frac{e^{-xt}}{t} dt
    *          \f]
-   * 
+   *
    *   @param  __x  The argument of the exponential integral function.
    *   @return  The exponential integral.
    */
@@ -75,16 +75,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __expint_E1_series(_Tp __x)
     {
       const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
-      _Tp __term = _Tp(1);
-      _Tp __esum = _Tp(0);
-      _Tp __osum = _Tp(0);
+      _Tp __term = _Tp{1};
+      _Tp __esum = _Tp{0};
+      _Tp __osum = _Tp{0};
       const unsigned int __max_iter = 100;
       for (unsigned int __i = 1; __i < __max_iter; ++__i)
 	{
 	  __term *= - __x / __i;
 	  if (std::abs(__term) < __eps)
 	    break;
-	  if (__term >= _Tp(0))
+	  if (__term >= _Tp{0})
 	    __esum += __term / __i;
 	  else
 	    __osum += __term / __i;
@@ -98,12 +98,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *   @brief Return the exponential integral @f$ E_1(x) @f$
    *          by asymptotic expansion.
-   * 
+   *
    *   The exponential integral is given by
    *          \f[
    *            E_1(x) = \int_{1}^\infty \frac{e^{-xt}}{t} dt
    *          \f]
-   * 
+   *
    *   @param  __x  The argument of the exponential integral function.
    *   @return  The exponential integral.
    */
@@ -111,9 +111,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint_E1_asymp(_Tp __x)
     {
-      _Tp __term = _Tp(1);
-      _Tp __esum = _Tp(1);
-      _Tp __osum = _Tp(0);
+      _Tp __term = _Tp{1};
+      _Tp __esum = _Tp{1};
+      _Tp __osum = _Tp{0};
       const unsigned int __max_iter = 1000;
       for (unsigned int __i = 1; __i < __max_iter; ++__i)
 	{
@@ -121,7 +121,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __term *= - __i / __x;
 	  if (std::abs(__term) > std::abs(__prev))
 	    break;
-	  if (__term >= _Tp(0))
+	  if (__term >= _Tp{0})
 	    __esum += __term;
 	  else
 	    __osum += __term;
@@ -134,12 +134,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *   @brief Return the exponential integral @f$ E_n(x) @f$
    *          by series summation.
-   * 
+   *
    *   The exponential integral is given by
    *          \f[
    *            E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
    *          \f]
-   * 
+   *
    *   @param  __n  The order of the exponential integral function.
    *   @param  __x  The argument of the exponential integral function.
    *   @return  The exponential integral.
@@ -152,21 +152,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
       const int __nm1 = __n - 1;
       _Tp __ans = (__nm1 != 0
-		? _Tp(1) / __nm1 : -std::log(__x)
+		? _Tp{1} / __nm1 : -std::log(__x)
 				   - __numeric_constants<_Tp>::__gamma_e());
-      _Tp __fact = _Tp(1);
+      _Tp __fact = _Tp{1};
       for (int __i = 1; __i <= __max_iter; ++__i)
 	{
-	  __fact *= -__x / _Tp(__i);
+	  __fact *= -__x / _Tp{__i};
 	  _Tp __del;
 	  if ( __i != __nm1 )
-	    __del = -__fact / _Tp(__i - __nm1);
+	    __del = -__fact / _Tp{__i - __nm1};
 	  else
 	    {
 	      _Tp __psi = -__numeric_constants<_Tp>::gamma_e();
 	      for (int __ii = 1; __ii <= __nm1; ++__ii)
-		__psi += _Tp(1) / _Tp(__ii);
-	      __del = __fact * (__psi - std::log(__x)); 
+		__psi += _Tp{1} / _Tp{__ii};
+	      __del = __fact * (__psi - std::log(__x));
 	    }
 	  __ans += __del;
 	  if (std::abs(__del) < __eps * std::abs(__ans))
@@ -180,12 +180,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *   @brief Return the exponential integral @f$ E_n(x) @f$
    *          by continued fractions.
-   * 
+   *
    *   The exponential integral is given by
    *          \f[
    *            E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
    *          \f]
-   * 
+   *
    *   @param  __n  The order of the exponential integral function.
    *   @param  __x  The argument of the exponential integral function.
    *   @return  The exponential integral.
@@ -198,19 +198,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
       const _Tp __fp_min = std::numeric_limits<_Tp>::min();
       const int __nm1 = __n - 1;
-      _Tp __b = __x + _Tp(__n);
-      _Tp __c = _Tp(1) / __fp_min;
-      _Tp __d = _Tp(1) / __b;
+      _Tp __b = __x + _Tp{__n};
+      _Tp __c = _Tp{1} / __fp_min;
+      _Tp __d = _Tp{1} / __b;
       _Tp __h = __d;
       for ( unsigned int __i = 1; __i <= __max_iter; ++__i )
 	{
-	  _Tp __a = -_Tp(__i * (__nm1 + __i));
-	  __b += _Tp(2);
-	  __d = _Tp(1) / (__a * __d + __b);
+	  _Tp __a = -_Tp{__i * (__nm1 + __i)};
+	  __b += _Tp{2};
+	  __d = _Tp{1} / (__a * __d + __b);
 	  __c = __b + __a / __c;
 	  const _Tp __del = __c * __d;
 	  __h *= __del;
-	  if (std::abs(__del - _Tp(1)) < __eps)
+	  if (std::abs(__del - _Tp{1}) < __eps)
 	    {
 	      const _Tp __ans = __h * std::exp(-__x);
 	      return __ans;
@@ -225,12 +225,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @brief Return the exponential integral @f$ E_n(x) @f$
    *          by recursion.  Use upward recursion for @f$ x < n @f$
    *          and downward recursion (Miller's algorithm) otherwise.
-   * 
+   *
    *   The exponential integral is given by
    *          \f[
    *            E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
    *          \f]
-   * 
+   *
    *   @param  __n  The order of the exponential integral function.
    *   @param  __x  The argument of the exponential integral function.
    *   @return  The exponential integral.
@@ -241,19 +241,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       _Tp __En;
       _Tp __E1 = __expint_E1(__x);
-      if (__x < _Tp(__n))
+      if (__x < _Tp{__n})
 	{
 	  //  Forward recursion is stable only for n < x.
 	  __En = __E1;
 	  for (unsigned int __j = 2; __j < __n; ++__j)
-	    __En = (std::exp(-__x) - __x * __En) / _Tp(__j - 1);
+	    __En = (std::exp(-__x) - __x * __En) / _Tp{__j - 1};
 	}
       else
 	{
 	  //  Backward recursion is stable only for n >= x.
-	  __En = _Tp(1);
+	  __En = _Tp{1};
 	  const int __N = __n + 20;  //  TODO: Check this starting number.
-	  _Tp __save = _Tp(0);
+	  _Tp __save = _Tp{0};
 	  for (int __j = __N; __j > 0; --__j)
 	    {
 	      __En = (std::exp(-__x) - __j * __En) / __x;
@@ -270,12 +270,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *   @brief Return the exponential integral @f$ Ei(x) @f$
    *          by series summation.
-   * 
+   *
    *   The exponential integral is given by
    *          \f[
    *            Ei(x) = -\int_{-x}^\infty \frac{e^t}{t} dt
    *          \f]
-   * 
+   *
    *   @param  __x  The argument of the exponential integral function.
    *   @return  The exponential integral.
    */
@@ -283,8 +283,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint_Ei_series(_Tp __x)
     {
-      _Tp __term = _Tp(1);
-      _Tp __sum = _Tp(0);
+      _Tp __term = _Tp{1};
+      _Tp __sum = _Tp{0};
       const unsigned int __max_iter = 1000;
       for (unsigned int __i = 1; __i < __max_iter; ++__i)
 	{
@@ -301,12 +301,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *   @brief Return the exponential integral @f$ Ei(x) @f$
    *          by asymptotic expansion.
-   * 
+   *
    *   The exponential integral is given by
    *          \f[
    *            Ei(x) = -\int_{-x}^\infty \frac{e^t}{t} dt
    *          \f]
-   * 
+   *
    *   @param  __x  The argument of the exponential integral function.
    *   @return  The exponential integral.
    */
@@ -314,8 +314,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint_Ei_asymp(_Tp __x)
     {
-      _Tp __term = _Tp(1);
-      _Tp __sum = _Tp(1);
+      _Tp __term = _Tp{1};
+      _Tp __sum = _Tp{1};
       const unsigned int __max_iter = 1000;
       for (unsigned int __i = 1; __i < __max_iter; ++__i)
 	{
@@ -334,12 +334,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *   @brief Return the exponential integral @f$ Ei(x) @f$.
-   * 
+   *
    *   The exponential integral is given by
    *          \f[
    *            Ei(x) = -\int_{-x}^\infty \frac{e^t}{t} dt
    *          \f]
-   * 
+   *
    *   @param  __x  The argument of the exponential integral function.
    *   @return  The exponential integral.
    */
@@ -347,7 +347,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint_Ei(_Tp __x)
     {
-      if (__x < _Tp(0))
+      if (__x < _Tp{0})
 	return -__expint_E1(-__x);
       else if (__x < -std::log(std::numeric_limits<_Tp>::epsilon()))
 	return __expint_Ei_series(__x);
@@ -358,12 +358,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *   @brief Return the exponential integral @f$ E_1(x) @f$.
-   * 
+   *
    *   The exponential integral is given by
    *          \f[
    *            E_1(x) = \int_{1}^\infty \frac{e^{-xt}}{t} dt
    *          \f]
-   * 
+   *
    *   @param  __x  The argument of the exponential integral function.
    *   @return  The exponential integral.
    */
@@ -371,11 +371,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint_E1(_Tp __x)
     {
-      if (__x < _Tp(0))
+      if (__x < _Tp{0})
 	return -__expint_Ei(-__x);
-      else if (__x < _Tp(1))
+      else if (__x < _Tp{1})
 	return __expint_E1_series(__x);
-      else if (__x < _Tp(100))  //  TODO: Find a good asymptotic switch point.
+      else if (__x < _Tp{100})  //  TODO: Find a good asymptotic switch point.
 	return __expint_En_cont_frac(1, __x);
       else
 	return __expint_E1_asymp(__x);
@@ -385,14 +385,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *   @brief Return the exponential integral @f$ E_n(x) @f$
    *          for large argument.
-   * 
+   *
    *   The exponential integral is given by
    *          \f[
    *            E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
    *          \f]
-   * 
+   *
    *   This is something of an extension.
-   * 
+   *
    *   @param  __n  The order of the exponential integral function.
    *   @param  __x  The argument of the exponential integral function.
    *   @return  The exponential integral.
@@ -401,8 +401,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint_asymp(unsigned int __n, _Tp __x)
     {
-      _Tp __term = _Tp(1);
-      _Tp __sum = _Tp(1);
+      _Tp __term = _Tp{1};
+      _Tp __sum = _Tp{1};
       for (unsigned int __i = 1; __i <= __n; ++__i)
 	{
 	  _Tp __prev = __term;
@@ -419,14 +419,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *   @brief Return the exponential integral @f$ E_n(x) @f$
    *          for large order.
-   * 
+   *
    *   The exponential integral is given by
    *          \f[
    *            E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
    *          \f]
-   *        
+   *
    *   This is something of an extension.
-   * 
+   *
    *   @param  __n  The order of the exponential integral function.
    *   @param  __x  The argument of the exponential integral function.
    *   @return  The exponential integral.
@@ -437,8 +437,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const _Tp __xpn = __x + __n;
       const _Tp __xpn2 = __xpn * __xpn;
-      _Tp __term = _Tp(1);
-      _Tp __sum = _Tp(1);
+      _Tp __term = _Tp{1};
+      _Tp __sum = _Tp{1};
       for (unsigned int __i = 1; __i <= __n; ++__i)
 	{
 	  _Tp __prev = __term;
@@ -454,13 +454,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *   @brief Return the exponential integral @f$ E_n(x) @f$.
-   * 
+   *
    *   The exponential integral is given by
    *          \f[
    *            E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
    *          \f]
    *   This is something of an extension.
-   * 
+   *
    *   @param  __n  The order of the exponential integral function.
    *   @param  __x  The argument of the exponential integral function.
    *   @return  The exponential integral.
@@ -472,7 +472,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       //  Return NaN on NaN input.
       if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__n <= 1 && __x == _Tp(0))
+      else if (__n <= 1 && __x == _Tp{0})
 	return std::numeric_limits<_Tp>::infinity();
       else
 	{
@@ -484,8 +484,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (__n == 1)
 	    return __E1;
 
-	  if (__x == _Tp(0))
-	    return _Tp(1) / static_cast<_Tp>(__n - 1);
+	  if (__x == _Tp{0})
+	    return _Tp{1} / static_cast<_Tp>(__n - 1);
 
 	  _Tp __En = __expint_En_recursion(__n, __x);
 
@@ -496,12 +496,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *   @brief Return the exponential integral @f$ Ei(x) @f$.
-   * 
+   *
    *   The exponential integral is given by
    *   \f[
    *     Ei(x) = -\int_{-x}^\infty \frac{e^t}{t} dt
    *   \f]
-   * 
+   *
    *   @param  __x  The argument of the exponential integral function.
    *   @return  The exponential integral.
    */
@@ -532,7 +532,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (std::abs(__x) == _Tp(1))
+      else if (std::abs(__x) == _Tp{1})
 	return std::numeric_limits<_Tp>::infinity();
       else
 	return __expint(std::log(__x));
@@ -555,10 +555,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__x == _Tp(0))
-	return _Tp(0);
+      else if (__x == _Tp{0})
+	return _Tp{0};
       else
-	return (__expint_Ei(__x) - __expint_E1(__x)) / _Tp(2);
+	return (__expint_Ei(__x) - __expint_E1(__x)) / _Tp{2};
     }
 
   /**
@@ -579,7 +579,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
-	return (__expint_Ei(__x) + __expint_E1(__x)) / _Tp(2);
+	return (__expint_Ei(__x) + __expint_E1(__x)) / _Tp{2};
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION

@@ -34,7 +34,7 @@
 #else
 #  include <testsuite_hooks.h>
 #endif
-#include "../testcase.h"
+#include <specfun_testcase.h>
 
 
 // Test data for l=0, m=0.

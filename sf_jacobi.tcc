@@ -41,28 +41,28 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __poly_jacobi(unsigned int __n, _Tp __alpha, _Tp __beta, _Tp __x)
     {
-      auto _Pm2 = _Tp(1);
+      auto _Pm2 = _Tp{1};
       if (__n == 0)
 	return _Pm2;
 
       auto __apb = __alpha + __beta;
       auto __amb = __alpha - __beta;
-      auto _Pm1 = (__amb + (_Tp(2) + __apb) * __x) / _Tp(2);
+      auto _Pm1 = (__amb + (_Tp{2} + __apb) * __x) / _Tp{2};
       if (__n == 1)
 	return _Pm1;
 
       _Tp _P(0);
       for (auto __j = 2; __j < __n; ++__j )
 	{
-	  auto __japb = _Tp(__j) + __apb;
-	  auto __japb1 = __japb + _Tp(1);
-	  auto __japb2 = __japb1 + _Tp(1);
-	  auto __c = _Tp(2) * _Tp(__j + 1) * __japb * __japb1;
-	  auto __d = (__japb1) * __apb * __amb;
+	  auto __japb = _Tp{__j} + __apb;
+	  auto __japb1 = __japb + _Tp{1};
+	  auto __japb2 = __japb1 + _Tp{1};
+	  auto __c = _Tp{2} * _Tp{__j + 1} * __japb * __japb1;
+	  auto __d = __japb1 * __apb * __amb;
 	  auto __e = __japb * __japb1 * __japb2;
-	  auto __f = _Tp(2) * (__j + __alpha) * (__j + __beta) * __japb2;
+	  auto __f = _Tp{2} * (__j + __alpha) * (__j + __beta) * __japb2;
 
-	  if (__c == _Tp(0))
+	  if (__c == _Tp{0})
 	    std::__throw_runtime_error("poly_jacobi: error in recursion");
 	  _P = ((__d + __e * __x) * _Pm1 - __f * _Pm2) / __c;
 	  _Pm2 = _Pm1;
@@ -79,13 +79,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__m > __n)
 	throw std::range_error("poly_radial_jacobi: m > n");
       else if ((__n - __m) % 2 == 1)
-	return _Tp(0);
+	return _Tp{0};
       else
 	{
 	  auto __k = (__n - __m) / 2;
 	  return (__k % 2 == 0 ? 1 : -1) * std::pow(__rho, __m)
-	       * __poly_jacobi(__k, _Tp(__m), _Tp(0),
-			       _Tp(1) - _Tp(2) * __rho * __rho);
+	       * __poly_jacobi(__k, _Tp{__m}, _Tp{0},
+			       _Tp{1} - _Tp{2} * __rho * __rho);
 	}
     }
 

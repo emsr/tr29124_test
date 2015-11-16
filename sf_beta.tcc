@@ -57,7 +57,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *   @brief  Return the beta function: \f$B(x,y)\f$.
-   * 
+   *
    *   The beta function is defined by
    *   @f[
    *     B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
@@ -73,20 +73,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
 
       _Tp __bet;
-#if _GLIBCXX_USE_C99_MATH_TR1
-      if (__x > __y)
-	{
-	  __bet = std::tgamma(__x)
-		/ std::tgamma(__x + __y);
-	  __bet *= std::tgamma(__y);
-	}
-      else
-	{
-	  __bet = std::tgamma(__y)
-		/ std::tgamma(__x + __y);
-	  __bet *= std::tgamma(__x);
-	}
-#else
       if (__x > __y)
 	{
 	  __bet = __gamma(__x) / __gamma(__x + __y);
@@ -97,7 +83,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __bet = __gamma(__y) / __gamma(__x + __y);
 	  __bet *= __gamma(__x);
 	}
-#endif
 
       return __bet;
     }
@@ -105,7 +90,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *   @brief  Return the beta function \f$B(x,y)\f$ using
    *           the log gamma functions.
-   * 
+   *
    *   The beta function is defined by
    *   @f[
    *     B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
@@ -119,15 +104,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __beta_lgamma(_Tp __x, _Tp __y)
     {
-#if _GLIBCXX_USE_C99_MATH_TR1
-      _Tp __bet = std::lgamma(__x)
-		+ std::lgamma(__y)
-		- std::lgamma(__x + __y);
-#else
       _Tp __bet = __log_gamma(__x)
 		+ __log_gamma(__y)
 		- __log_gamma(__x + __y);
-#endif
       __bet = std::exp(__bet);
       return __bet;
     }
@@ -136,7 +115,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *   @brief  Return the beta function \f$B(x,y)\f$ using
    *           the product form.
-   * 
+   *
    *   The beta function is defined by
    *   @f[
    *     B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
@@ -157,8 +136,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       for (unsigned int __k = 1; __k < __max_iter; ++__k)
 	{
-	  _Tp __term = (_Tp(1) + (__x + __y) / __k)
-		     / ((_Tp(1) + __x / __k) * (_Tp(1) + __y / __k));
+	  _Tp __term = (_Tp{1} + (__x + __y) / __k)
+		     / ((_Tp{1} + __x / __k) * (_Tp{1} + __y / __k));
 	  __bet *= __term;
 	}
 
@@ -168,7 +147,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *   @brief  Return the beta function \f$ B(x,y) \f$.
-   * 
+   *
    *   The beta function is defined by
    *   @f[
    *     B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
@@ -197,45 +176,46 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
 
       _Tp __apb = __a + __b;
-      _Tp __ap1 = __a + _Tp(1);
-      _Tp __am1 = __a - _Tp(1);
-      _Tp __c = _Tp(1);
-      _Tp __d = _Tp(1) - __apb * __x / __ap1;
+      _Tp __ap1 = __a + _Tp{1};
+      _Tp __am1 = __a - _Tp{1};
+      _Tp __c = _Tp{1};
+      _Tp __d = _Tp{1} - __apb * __x / __ap1;
       if (std::abs(__d) < _S_eps)
 	__d = _S_eps;
-      __d = _Tp(1) / __d;
+      __d = _Tp{1} / __d;
       _Tp __h = __d;
       for (unsigned int __m = 1; __m <= _S_itmax; ++__m)
 	{
           _Tp __m2(2 * __m);
 
-          _Tp __aa = _Tp(__m) * (__b - _Tp(__m)) * __x
+          _Tp __aa = _Tp{__m} * (__b - _Tp{__m}) * __x
                    / ((__am1 + __m2) * (__a + __m2));
-          __d = _Tp(1) + __aa * __d;
+          __d = _Tp{1} + __aa * __d;
           if (std::abs(__d) < _S_eps)
             __d = _S_eps;
-          __c = _Tp(1) + __aa / __c;
+          __c = _Tp{1} + __aa / __c;
           if (std::abs(__c) < _S_eps)
             __c = _S_eps;
-          __d = _Tp(1) / __d;
+          __d = _Tp{1} / __d;
           __h *= __d * __c;
 
-          __aa = -(__a + _Tp(__m)) * (__apb + __m) * __x
+          __aa = -(__a + _Tp{__m}) * (__apb + __m) * __x
                / ((__a + __m2) * (__ap1 + __m2));
-          __d = _Tp(1) + __aa * __d;
+          __d = _Tp{1} + __aa * __d;
           if (std::abs(__d) < _S_eps)
             __d = _S_eps;
-          __c = _Tp(1) + __aa / __c;
+          __c = _Tp{1} + __aa / __c;
           if (std::abs(__c) < _S_eps)
             __c = _S_eps;
-          __d = _Tp(1) / __d;
+          __d = _Tp{1} / __d;
           _Tp __del = __d * __c;
           __h *= __del;
 
-          if (std::abs(__del - _Tp(1)) < _S_eps)
+          if (std::abs(__del - _Tp{1}) < _S_eps)
             return __h;
 	}
-      throw std::logic_error("__beta_inc_cont_frac: ");
+      throw std::runtime_error("__beta_inc_cont_frac: "
+			       "continued fractions failed to converge");
     }
 
 
@@ -246,21 +226,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__x) || __isnan(__a) || __isnan(__b))
 	return std::numeric_limits<_Tp>::quiet_NaN();
 
-      if (__x < _Tp(0) || __x > _Tp(1))
+      if (__x < _Tp{0} || __x > _Tp{1})
 	throw std::domain_error("__beta_inc: x out of range");
 
       _Tp __fact;
-      if (__x == _Tp(0) || __x == _Tp(1))
-	__fact = _Tp(0);
+      if (__x == _Tp{0} || __x == _Tp{1})
+	__fact = _Tp{0};
       else
 	__fact = std::exp(std::lgamma(__a + __b)
                 	- std::lgamma(__a) - std::lgamma(__b)
-                	+ __a * std::log(__x) + __b * std::log(_Tp(1) - __x));
+                	+ __a * std::log(__x) + __b * std::log(_Tp{1} - __x));
 
-      if (__x < (__a + _Tp(1)) / (__a + __b + _Tp(2)))
+      if (__x < (__a + _Tp{1}) / (__a + __b + _Tp{2}))
 	return __fact * __beta_inc_cont_frac(__a, __b, __x) / __a;
       else
-	return _Tp(1) - __fact * __beta_inc_cont_frac(__b, __a, _Tp(1) - __x) / __b;
+	return _Tp{1} - __fact * __beta_inc_cont_frac(__b, __a, _Tp{1} - __x) / __b;
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
