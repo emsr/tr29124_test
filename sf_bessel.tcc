@@ -71,7 +71,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   is the nearest integer to @f$ \nu @f$.
    *   The values of \f$ \Gamma(1 + \mu) \f$ and \f$ \Gamma(1 - \mu) \f$
    *   are returned as well.
-   * 
+   *
    *   The accuracy requirements on this are exquisite.
    *
    *   @param __mu     The input parameter of the gamma functions.
@@ -85,20 +85,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gamma_temme(_Tp __mu,
 		  _Tp & __gam1, _Tp & __gam2, _Tp & __gampl, _Tp & __gammi)
     {
-#if _GLIBCXX_USE_C99_MATH_TR1
-      __gampl = _Tp(1) / std::tgamma(_Tp(1) + __mu);
-      __gammi = _Tp(1) / std::tgamma(_Tp(1) - __mu);
-#else
-      __gampl = _Tp(1) / __gamma(_Tp(1) + __mu);
-      __gammi = _Tp(1) / __gamma(_Tp(1) - __mu);
-#endif
+      constexpr _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr _Tp _S_gamma_E = __numeric_constants<_Tp>::__gamma_e();
+      __gampl = _Tp{1} / std::tgamma(_Tp{1} + __mu);
+      __gammi = _Tp{1} / std::tgamma(_Tp{1} - __mu);
 
-      if (std::abs(__mu) < std::numeric_limits<_Tp>::epsilon())
-	__gam1 = -_Tp(__numeric_constants<_Tp>::__gamma_e());
+      if (std::abs(__mu) < _S_eps)
+	__gam1 = -_S_gamma_E;
       else
-	__gam1 = (__gammi - __gampl) / (_Tp(2) * __mu);
+	__gam1 = (__gammi - __gampl) / (_Tp{2} * __mu);
 
-      __gam2 = (__gammi + __gampl) / (_Tp(2));
+      __gam2 = (__gammi + __gampl) / _Tp{2};
 
       return;
     }
@@ -113,153 +110,158 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    *   @param  __nu  The order of the Bessel functions.
    *   @param  __x   The argument of the Bessel functions.
-   *   @param  __Jnu  The output Bessel function of the first kind.
-   *   @param  __Nnu  The output Neumann function (Bessel function of the second kind).
-   *   @param  __Jpnu  The output derivative of the Bessel function of the first kind.
-   *   @param  __Npnu  The output derivative of the Neumann function.
+   *   @param  _Jnu  The output Bessel function of the first kind.
+   *   @param  _Nnu  The output Neumann function (Bessel function of the second kind).
+   *   @param  _Jpnu  The output derivative of the Bessel function of the first kind.
+   *   @param  _Npnu  The output derivative of the Neumann function.
    */
   template<typename _Tp>
     void
     __bessel_jn(_Tp __nu, _Tp __x,
-		_Tp & __Jnu, _Tp & __Nnu, _Tp & __Jpnu, _Tp & __Npnu)
+		_Tp & _Jnu, _Tp & _Nnu, _Tp & _Jpnu, _Tp & _Npnu)
     {
-      if (__x == _Tp(0))
+      constexpr _Tp _S_pi = __numeric_constants<_Tp>::__pi();
+      constexpr _Tp _S_inf = std::numeric_limits<_Tp>::infinity();
+      constexpr _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
+      if (__x == _Tp{0})
 	{
-	  if (__nu == _Tp(0))
+	  if (__nu == _Tp{0})
 	    {
-	      __Jnu = _Tp(1);
-	      __Jpnu = _Tp(0);
+	      _Jnu = _Tp{1};
+	      _Jpnu = _Tp{0};
 	    }
-	  else if (__nu == _Tp(1))
+	  else if (__nu == _Tp{1})
 	    {
-	      __Jnu = _Tp(0);
-	      __Jpnu = _Tp(0.5L);
+	      _Jnu = _Tp{0};
+	      _Jpnu = _Tp{0.5L};
 	    }
 	  else
 	    {
-	      __Jnu = _Tp(0);
-	      __Jpnu = _Tp(0);
+	      _Jnu = _Tp{0};
+	      _Jpnu = _Tp{0};
 	    }
-	  __Nnu = -std::numeric_limits<_Tp>::infinity();
-	  __Npnu = std::numeric_limits<_Tp>::infinity();
+	  _Nnu = -_S_inf;
+	  _Npnu = _S_inf;
 	  return;
 	}
 
-      const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
       //  When the multiplier is N i.e.
       //  fp_min = N * min()
       //  Then J_0 and N_0 tank at x = 8 * N (J_0 = 0 and N_0 = nan)!
-      //const _Tp __fp_min = _Tp(20) * std::numeric_limits<_Tp>::min();
-      const _Tp __fp_min = std::sqrt(std::numeric_limits<_Tp>::min());
-      const int __max_iter = 15000;
-      const _Tp __x_min = _Tp(2);
+      //const _Tp _S_fp_min = _Tp{20} * std::numeric_limits<_Tp>::min();
+      constexpr _Tp _S_fp_min = std::sqrt(std::numeric_limits<_Tp>::min());
+      constexpr int _S_max_iter = 15000;
+      constexpr _Tp _S_x_min = _Tp{2};
 
       const int __nl = (__x < __x_min
-		    ? static_cast<int>(__nu + _Tp(0.5L))
-		    : std::max(0, static_cast<int>(__nu - __x + _Tp(1.5L))));
+		    ? static_cast<int>(__nu + _Tp{0.5L})
+		    : std::max(0, static_cast<int>(__nu - __x + _Tp{1.5L})));
 
       const _Tp __mu = __nu - __nl;
       const _Tp __mu2 = __mu * __mu;
-      const _Tp __xi = _Tp(1) / __x;
-      const _Tp __xi2 = _Tp(2) * __xi;
-      _Tp __w = __xi2 / __numeric_constants<_Tp>::__pi();
+      const _Tp __xi = _Tp{1} / __x;
+      const _Tp __xi2 = _Tp{2} * __xi;
+      _Tp __w = __xi2 / _S_pi;
       int __isign = 1;
       _Tp __h = __nu * __xi;
-      if (__h < __fp_min)
-	__h = __fp_min;
+      if (__h < _S_fp_min)
+	__h = _S_fp_min;
       _Tp __b = __xi2 * __nu;
-      _Tp __d = _Tp(0);
+      _Tp __d = _Tp{0};
       _Tp __c = __h;
       int __i;
-      for (__i = 1; __i <= __max_iter; ++__i)
+      for (__i = 1; __i <= _S_max_iter; ++__i)
 	{
 	  __b += __xi2;
 	  __d = __b - __d;
-	  if (std::abs(__d) < __fp_min)
-	    __d = __fp_min;
-	  __c = __b - _Tp(1) / __c;
-	  if (std::abs(__c) < __fp_min)
-	    __c = __fp_min;
-	  __d = _Tp(1) / __d;
+	  if (std::abs(__d) < _S_fp_min)
+	    __d = _S_fp_min;
+	  __c = __b - _Tp{1} / __c;
+	  if (std::abs(__c) < _S_fp_min)
+	    __c = _S_fp_min;
+	  __d = _Tp{1} / __d;
 	  const _Tp __del = __c * __d;
 	  __h *= __del;
-	  if (__d < _Tp(0))
+	  if (__d < _Tp{0})
 	    __isign = -__isign;
-	  if (std::abs(__del - _Tp(1)) < __eps)
+	  if (std::abs(__del - _Tp{1}) < _S_eps)
 	    break;
 	}
-      if (__i > __max_iter)
+      if (__i > _S_max_iter)
 	std::__throw_runtime_error(__N("__bessel_jn: argument x too large;"
 				       " try asymptotic expansion"));
-      _Tp __Jnul = __isign * __fp_min;
-      _Tp __Jpnul = __h * __Jnul;
-      _Tp __Jnul1 = __Jnul;
-      _Tp __Jpnu1 = __Jpnul;
+      _Tp _Jnul = __isign * _S_fp_min;
+      _Tp _Jpnul = __h * _Jnul;
+      _Tp _Jnul1 = _Jnul;
+      _Tp _Jpnu1 = _Jpnul;
       _Tp __fact = __nu * __xi;
-      for ( int __l = __nl; __l >= 1; --__l )
+      for (int __l = __nl; __l >= 1; --__l)
 	{
-	  const _Tp __Jnutemp = __fact * __Jnul + __Jpnul;
+	  const _Tp _Jnutemp = __fact * _Jnul + _Jpnul;
 	  __fact -= __xi;
-	  __Jpnul = __fact * __Jnutemp - __Jnul;
-	  __Jnul = __Jnutemp;
+	  _Jpnul = __fact * _Jnutemp - _Jnul;
+	  _Jnul = _Jnutemp;
 	}
-      if (__Jnul == _Tp(0))
-	__Jnul = __eps;
-      _Tp __f= __Jpnul / __Jnul;
-      _Tp __Nmu, __Nnu1, __Npmu, __Jmu;
+      if (_Jnul == _Tp{0})
+	_Jnul = _S_eps;
+      _Tp __f= _Jpnul / _Jnul;
+      _Tp _Nmu, _Nnu1, _Npmu, _Jmu;
       if (__x < __x_min)
 	{
-	  const _Tp __x2 = __x / _Tp(2);
-	  const _Tp __pimu = __numeric_constants<_Tp>::__pi() * __mu;
-	  _Tp __fact = (std::abs(__pimu) < __eps
-		      ? _Tp(1) : __pimu / std::sin(__pimu));
+	  const _Tp __x2 = __x / _Tp{2};
+	  const _Tp __pimu = _S_pi * __mu;
+	  const _Tp __fact = (std::abs(__pimu) < _S_eps
+		      ? _Tp{1}
+		      : __pimu / std::sin(__pimu));
 	  _Tp __d = -std::log(__x2);
 	  _Tp __e = __mu * __d;
-	  _Tp __fact2 = (std::abs(__e) < __eps
-		       ? _Tp(1) : std::sinh(__e) / __e);
+	  const _Tp __fact2 = (std::abs(__e) < _S_eps
+			    ? _Tp{1}
+			    : std::sinh(__e) / __e);
 	  _Tp __gam1, __gam2, __gampl, __gammi;
 	  __gamma_temme(__mu, __gam1, __gam2, __gampl, __gammi);
-	  _Tp __ff = (_Tp(2) / __numeric_constants<_Tp>::__pi())
-		   * __fact * (__gam1 * std::cosh(__e) + __gam2 * __fact2 * __d);
+	  _Tp __ff = (_Tp{2} / _S_pi) * __fact
+		   * (__gam1 * std::cosh(__e) + __gam2 * __fact2 * __d);
 	  __e = std::exp(__e);
-	  _Tp __p = __e / (__numeric_constants<_Tp>::__pi() * __gampl);
-	  _Tp __q = _Tp(1) / (__e * __numeric_constants<_Tp>::__pi() * __gammi);
-	  const _Tp __pimu2 = __pimu / _Tp(2);
-	  _Tp __fact3 = (std::abs(__pimu2) < __eps
-		       ? _Tp(1) : std::sin(__pimu2) / __pimu2 );
-	  _Tp __r = __numeric_constants<_Tp>::__pi() * __pimu2 * __fact3 * __fact3;
-	  _Tp __c = _Tp(1);
+	  _Tp __p = __e / (_S_pi * __gampl);
+	  _Tp __q = _Tp{1} / (__e * _S_pi * __gammi);
+	  const _Tp __pimu2 = __pimu / _Tp{2};
+	  _Tp __fact3 = (std::abs(__pimu2) < _S_eps
+		       ? _Tp{1} : std::sin(__pimu2) / __pimu2 );
+	  _Tp __r = _S_pi * __pimu2 * __fact3 * __fact3;
+	  _Tp __c = _Tp{1};
 	  __d = -__x2 * __x2;
 	  _Tp __sum = __ff + __r * __q;
 	  _Tp __sum1 = __p;
-	  for (__i = 1; __i <= __max_iter; ++__i)
+	  int __i;
+	  for (__i = 1; __i <= _S_max_iter; ++__i)
 	    {
 	      __ff = (__i * __ff + __p + __q) / (__i * __i - __mu2);
-	      __c *= __d / _Tp(__i);
-	      __p /= _Tp(__i) - __mu;
-	      __q /= _Tp(__i) + __mu;
+	      __c *= __d / _Tp{__i};
+	      __p /= _Tp{__i} - __mu;
+	      __q /= _Tp{__i} + __mu;
 	      const _Tp __del = __c * (__ff + __r * __q);
-	      __sum += __del; 
-	      const _Tp __del1 = __c * __p - __i * __del;
+	      __sum += __del;
+	      const _Tp __del1 = __c * __p - _Tp{__i} * __del;
 	      __sum1 += __del1;
-	      if ( std::abs(__del) < __eps * (_Tp(1) + std::abs(__sum)) )
+	      if (std::abs(__del) < _S_eps * (_Tp{1} + std::abs(__sum)))
 		break;
 	    }
-	  if ( __i > __max_iter )
+	  if (__i > _S_max_iter)
 	    std::__throw_runtime_error(__N("__bessel_jn: "
 					   "Y-series failed to converge"));
-	  __Nmu = -__sum;
-	  __Nnu1 = -__sum1 * __xi2;
-	  __Npmu = __mu * __xi * __Nmu - __Nnu1;
-	  __Jmu = __w / (__Npmu - __f * __Nmu);
+	  _Nmu = -__sum;
+	  _Nnu1 = -__sum1 * __xi2;
+	  _Npmu = __mu * __xi * _Nmu - _Nnu1;
+	  _Jmu = __w / (_Npmu - __f * _Nmu);
 	}
       else
 	{
-	  _Tp __a = _Tp(0.25L) - __mu2;
-	  _Tp __q = _Tp(1);
-	  _Tp __p = -__xi / _Tp(2);
-	  _Tp __br = _Tp(2) * __x;
-	  _Tp __bi = _Tp(2);
+	  _Tp __a = _Tp{0.25L} - __mu2;
+	  _Tp __q = _Tp{1};
+	  _Tp __p = -__xi / _Tp{2};
+	  _Tp __br = _Tp{2} * __x;
+	  _Tp __bi = _Tp{2};
 	  _Tp __fact = __a * __xi / (__p * __p + __q * __q);
 	  _Tp __cr = __br + __q * __fact;
 	  _Tp __ci = __bi + __p * __fact;
@@ -272,19 +274,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __q = __p * __dli + __q * __dlr;
 	  __p = __temp;
 	  int __i;
-	  for (__i = 2; __i <= __max_iter; ++__i)
+	  for (__i = 2; __i <= _S_max_iter; ++__i)
 	    {
-	      __a += _Tp(2 * (__i - 1));
-	      __bi += _Tp(2);
+	      __a += _Tp{2 * (__i - 1)};
+	      __bi += _Tp{2};
 	      __dr = __a * __dr + __br;
 	      __di = __a * __di + __bi;
-	      if (std::abs(__dr) + std::abs(__di) < __fp_min)
-		__dr = __fp_min;
+	      if (std::abs(__dr) + std::abs(__di) < _S_fp_min)
+		__dr = _S_fp_min;
 	      __fact = __a / (__cr * __cr + __ci * __ci);
 	      __cr = __br + __cr * __fact;
 	      __ci = __bi - __ci * __fact;
-	      if (std::abs(__cr) + std::abs(__ci) < __fp_min)
-		__cr = __fp_min;
+	      if (std::abs(__cr) + std::abs(__ci) < _S_fp_min)
+		__cr = _S_fp_min;
 	      __den = __dr * __dr + __di * __di;
 	      __dr /= __den;
 	      __di /= -__den;
@@ -293,35 +295,30 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __temp = __p * __dlr - __q * __dli;
 	      __q = __p * __dli + __q * __dlr;
 	      __p = __temp;
-	      if (std::abs(__dlr - _Tp(1)) + std::abs(__dli) < __eps)
+	      if (std::abs(__dlr - _Tp{1}) + std::abs(__dli) < _S_eps)
 		break;
 	    }
-	  if (__i > __max_iter)
+	  if (__i > _S_max_iter)
 	    std::__throw_runtime_error(__N("__bessel_jn: "
 					   "Lentz's method failed"));
 	  const _Tp __gam = (__p - __f) / __q;
-	  __Jmu = std::sqrt(__w / ((__p - __f) * __gam + __q));
-#if _GLIBCXX_USE_C99_MATH_TR1
-	  __Jmu = std::copysign(__Jmu, __Jnul);
-#else
-	  if (__Jmu * __Jnul < _Tp(0))
-	    __Jmu = -__Jmu;
-#endif
-	  __Nmu = __gam * __Jmu;
-	  __Npmu = (__p + __q / __gam) * __Nmu;
-	  __Nnu1 = __mu * __xi * __Nmu - __Npmu;
+	  _Jmu = std::sqrt(__w / ((__p - __f) * __gam + __q));
+	  _Jmu = std::copysign(_Jmu, _Jnul);
+	  _Nmu = __gam * _Jmu;
+	  _Npmu = (__p + __q / __gam) * _Nmu;
+	  _Nnu1 = __mu * __xi * _Nmu - _Npmu;
       }
-      __fact = __Jmu / __Jnul;
-      __Jnu = __fact * __Jnul1;
-      __Jpnu = __fact * __Jpnu1;
+      __fact = _Jmu / _Jnul;
+      _Jnu = __fact * _Jnul1;
+      _Jpnu = __fact * _Jpnu1;
       for (__i = 1; __i <= __nl; ++__i)
 	{
-	  const _Tp __Nnutemp = (__mu + __i) * __xi2 * __Nnu1 - __Nmu;
-	  __Nmu = __Nnu1;
-	  __Nnu1 = __Nnutemp;
+	  const _Tp _Nnutemp = (__mu + __i) * __xi2 * _Nnu1 - _Nmu;
+	  _Nmu = _Nnu1;
+	  _Nnu1 = _Nnutemp;
 	}
-      __Nnu = __Nmu;
-      __Npnu = __nu * __xi * __Nmu - __Nnu1;
+      _Nnu = _Nmu;
+      _Npnu = __nu * __xi * _Nmu - _Nnu1;
 
       return;
     }
@@ -340,51 +337,51 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    *   @param  __nu  The order of the Bessel functions.
    *   @param  __x   The argument of the Bessel functions.
-   *   @param  __Jnu  The output Bessel function of the first kind.
-   *   @param  __Nnu  The output Neumann function (Bessel function of the second kind).
+   *   @param  _Jnu  The output Bessel function of the first kind.
+   *   @param  _Nnu  The output Neumann function (Bessel function of the second kind).
    */
   template<typename _Tp>
     void
-    __cyl_bessel_jn_asymp( _Tp __nu, _Tp __x,
-			  _Tp & __Jnu, _Tp & __Nnu)
+    __cyl_bessel_jn_asymp(_Tp __nu, _Tp __x,
+			  _Tp & _Jnu, _Tp & _Nnu)
     {
-      const auto __2nu = 2 * __nu;
-      const auto __x8 = 8 * __x;
+      constexpr auto _S_pi = __numeric_constants<_Tp>::__pi();
+      constexpr auto _S_pi_2 = __numeric_constants<_Tp>::__pi_2();
+      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto __2nu = _Tp{2} * __nu;
+      const auto __x8 = _Tp{8} * __x;
       auto __k = 1;
       auto __k2m1 = 1;
-      auto __P = _Tp(1);
-      auto __Q = (__2nu - __k2m1) * (__2nu + __k2m1) / __x8;
+      auto _P = _Tp{1};
+      auto _Q = (__2nu - __k2m1) * (__2nu + __k2m1) / __x8;
       ++__k;
-      const auto __eps = std::numeric_limits<_Tp>::epsilon();
-      auto __t = _Tp(1);
+      auto __t = _Tp{1};
       do
 	{
 	  __k2m1 += 2;
 	  __t *= -(__2nu - __k2m1) * (__2nu + __k2m1) / (__k * __x8);
-	  auto __convP = std::abs(__t) < __eps * std::abs(__P);
-	  __P += __t;
+	  auto __convP = std::abs(__t) < _S_eps * std::abs(_P);
+	  _P += __t;
 	  ++__k;
 
 	  __k2m1 += 2;
 	  __t *= (__2nu - __k2m1) * (__2nu + __k2m1) / (__k * __x8);
-	  auto __convQ = std::abs(__t) < __eps * std::abs(__Q);
-	  __Q += __t;
+	  auto __convQ = std::abs(__t) < _S_eps * std::abs(_Q);
+	  _Q += __t;
 	  ++__k;
 
-	  if (__convP && __convQ && __k > (__nu / _Tp(2)))
+	  if (__convP && __convQ && __k > (__nu / _Tp{2}))
 	    break;
 	}
-      while (__k < 10 * __nu);
+      while (__k < _Tp{10} * __nu);
 
-      auto __chi = __x - (__nu + _Tp(0.5L))
-		       * __numeric_constants<_Tp>::__pi_2();
+      auto __chi = __x - (__nu + _Tp{0.5L}) * _S_pi_2;
       auto __c = std::cos(__chi);
       auto __s = std::sin(__chi);
 
-      auto __coef = std::sqrt(_Tp(2)
-		  / (__numeric_constants<_Tp>::__pi() * __x));
-      __Jnu = __coef * (__c * __P - __s * __Q);
-      __Nnu = __coef * (__s * __P + __c * __Q);
+      auto __coef = std::sqrt(_Tp{2} / (_S_pi * __x));
+      _Jnu = __coef * (__c * _P - __s * _Q);
+      _Nnu = __coef * (__s * _P + __c * _Q);
 
       return;
     }
@@ -402,7 +399,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @f]
    *   where \f$ \sigma = +1 \f$ or\f$  -1 \f$ for
    *   \f$ Z = I \f$ or \f$ J \f$ respectively.
-   * 
+   *
    *   See Abramowitz & Stegun, 9.1.10
    *       Abramowitz & Stegun, 9.6.7
    *    (1) Handbook of Mathematical Functions,
@@ -422,27 +419,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __cyl_bessel_ij_series(_Tp __nu, _Tp __x, _Tp __sgn,
 			   unsigned int __max_iter)
     {
-      const _Tp __x2 = __x / _Tp(2);
+      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const _Tp __x2 = __x / _Tp{2};
       _Tp __fact = __nu * std::log(__x2);
-#if _GLIBCXX_USE_C99_MATH_TR1
-      __fact -= std::lgamma(__nu + _Tp(1));
-#else
-      __fact -= __log_gamma(__nu + _Tp(1));
-#endif
+      __fact -= __log_gamma(__nu + _Tp{1});
       __fact = std::exp(__fact);
       const _Tp __xx4 = __sgn * __x2 * __x2;
-      _Tp __Jn = _Tp(1);
-      _Tp __term = _Tp(1);
+      _Tp _Jn = _Tp{1};
+      _Tp __term = _Tp{1};
 
       for (unsigned int __i = 1; __i < __max_iter; ++__i)
 	{
-	  __term *= __xx4 / (_Tp(__i) * (__nu + _Tp(__i)));
-	  __Jn += __term;
-	  if (std::abs(__term / __Jn) < std::numeric_limits<_Tp>::epsilon())
+	  __term *= __xx4 / (_Tp{__i} * (__nu + _Tp{__i}));
+	  _Jn += __term;
+	  if (std::abs(__term / _Jn) < _S_eps)
 	    break;
 	}
 
-      return __fact * __Jn;
+      return __fact * _Jn;
     }
 
 
@@ -464,13 +458,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __cyl_bessel_j(_Tp __nu, _Tp __x)
     {
-      if (__nu < _Tp(0) || __x < _Tp(0))
+      if (__nu < _Tp{0} || __x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_j: bad argument"));
       else if (__isnan(__nu) || __isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__x * __x < _Tp(10) * (__nu + _Tp(1)))
-	return __cyl_bessel_ij_series(__nu, __x, -_Tp(1), 200);
-      else if (__x > _Tp(1000))
+      else if (__x * __x < _Tp{10} * (__nu + _Tp{1}))
+	return __cyl_bessel_ij_series(__nu, __x, -_Tp{1}, 200);
+      else if (__x > _Tp{1000})
 	{
 	  _Tp _J_nu, _N_nu;
 	  __cyl_bessel_jn_asymp(__nu, __x, _J_nu, _N_nu);
@@ -505,11 +499,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __cyl_neumann_n(_Tp __nu, _Tp __x)
     {
-      if (__nu < _Tp(0) || __x < _Tp(0))
+      if (__nu < _Tp{0} || __x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_neumann_n: bad argument"));
       else if (__isnan(__nu) || __isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__x > _Tp(1000))
+      else if (__x > _Tp{1000})
 	{
 	  _Tp _J_nu, _N_nu;
 	  __cyl_bessel_jn_asymp(__nu, __x, _J_nu, _N_nu);
@@ -541,15 +535,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __cyl_hankel_h1(_Tp __nu, _Tp __x)
     {
-      if (__x < _Tp(0))
+      if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_hankel_h1: bad argument"));
       else if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__x == _Tp(0))
+      else if (__x == _Tp{0})
 	return -std::numeric_limits<_Tp>::infinity();
       else
 	{
-	  std::complex<_Tp> _S_j(0, 1);
+	  std::complex<_Tp> _S_j{0, 1};
 	  _Tp _J_n, _N_n, __jp_n, __np_n;
 	  __bessel_jn(__nu, __x, _J_n, _N_n, __jp_n, __np_n);
 	  return (_J_n + _S_j * _N_n);
@@ -574,15 +568,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __cyl_hankel_h2(_Tp __nu, _Tp __x)
     {
-      if (__x < _Tp(0))
+      if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_hankel_h2: bad argument"));
       else if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__x == _Tp(0))
+      else if (__x == _Tp{0})
 	return -std::numeric_limits<_Tp>::infinity();
       else
 	{
-	  std::complex<_Tp> _S_j(0, 1);
+	  std::complex<_Tp> _S_j{0, 1};
 	  _Tp _J_n, _N_n, __jp_n, __np_n;
 	  __bessel_jn(__nu, __x, _J_n, _N_n, __jp_n, __np_n);
 	  return (_J_n + _S_j * _N_n);
@@ -608,7 +602,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __sph_bessel_jn(unsigned int __n, _Tp __x,
 		    _Tp & __j_n, _Tp & __n_n, _Tp & __jp_n, _Tp & __np_n)
     {
-      const _Tp __nu = _Tp(__n) + _Tp(0.5L);
+      const _Tp __nu = _Tp{__n} + _Tp{0.5L};
 
       _Tp _J_nu, _N_nu, _Jp_nu, _Np_nu;
       __bessel_jn(__nu, __x, _J_nu, _N_nu, _Jp_nu, _Np_nu);
@@ -618,8 +612,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       __j_n = __factor * _J_nu;
       __n_n = __factor * _N_nu;
-      __jp_n = __factor * _Jp_nu - __j_n / (_Tp(2) * __x);
-      __np_n = __factor * _Np_nu - __n_n / (_Tp(2) * __x);
+      __jp_n = __factor * _Jp_nu - __j_n / (_Tp{2} * __x);
+      __np_n = __factor * _Np_nu - __n_n / (_Tp{2} * __x);
 
       return;
     }
@@ -631,7 +625,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    *   The spherical Bessel function is defined by:
    *   @f[
-   *    j_n(x) = \left( \frac{\pi}{2x} \right) ^{1/2} J_{n+1/2}(x)
+   *    j_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} J_{n+1/2}(x)
    *   @f]
    *
    *   @param  __n  The order of the spherical Bessel function.
@@ -642,16 +636,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __sph_bessel(unsigned int __n, _Tp __x)
     {
-      if (__x < _Tp(0))
+      if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__sph_bessel: bad argument"));
       else if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__x == _Tp(0))
+      else if (__x == _Tp{0})
 	{
 	  if (__n == 0)
-	    return _Tp(1);
+	    return _Tp{1};
 	  else
-	    return _Tp(0);
+	    return _Tp{0};
 	}
       else
 	{
@@ -668,7 +662,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    *   The spherical Neumann function is defined by:
    *   @f[
-   *    n_n(x) = \left( \frac{\pi}{2x} \right) ^{1/2} N_{n+1/2}(x)
+   *    n_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} N_{n+1/2}(x)
    *   @f]
    *
    *   @param  __n  The order of the spherical Neumann function.
@@ -679,11 +673,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __sph_neumann(unsigned int __n, _Tp __x)
     {
-      if (__x < _Tp(0))
+      if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__sph_neumann: bad argument"));
       else if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__x == _Tp(0))
+      else if (__x == _Tp{0})
 	return -std::numeric_limits<_Tp>::infinity();
       else
 	{
@@ -711,15 +705,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __sph_hankel_h1(unsigned int __n, _Tp __x)
     {
-      if (__x < _Tp(0))
+      if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__sph_neumann: bad argument"));
       else if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__x == _Tp(0))
+      else if (__x == _Tp{0})
 	return -std::numeric_limits<_Tp>::infinity();
       else
 	{
-	  std::complex<_Tp> _S_j(0, 1);
+	  std::complex<_Tp> _S_j{0, 1};
 	  _Tp __j_n, __n_n, __jp_n, __np_n;
 	  __sph_bessel_jn(__n, __x, __j_n, __n_n, __jp_n, __np_n);
 	  return (__j_n + _S_j * __n_n);
@@ -744,15 +738,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __sph_hankel_h2(unsigned int __n, _Tp __x)
     {
-      if (__x < _Tp(0))
+      if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__sph_neumann: bad argument"));
       else if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__x == _Tp(0))
+      else if (__x == _Tp{0})
 	return -std::numeric_limits<_Tp>::infinity();
       else
 	{
-	  std::complex<_Tp> _S_j(0, 1);
+	  std::complex<_Tp> _S_j{0, 1};
 	  _Tp __j_n, __n_n, __jp_n, __np_n;
 	  __sph_bessel_jn(__n, __x, __j_n, __n_n, __jp_n, __np_n);
 	  return (__j_n + _S_j * __n_n);

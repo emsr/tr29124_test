@@ -8,6 +8,38 @@
 
 
 ///
+///  Airy Ai functions.
+///
+double
+wrap_gsl_sf_airy_ai(double x)
+{
+  const gsl_mode_t mode = GSL_PREC_DOUBLE;
+  gsl_sf_result result;
+  int stat = gsl_sf_airy_Ai_e(x, mode, &result);
+  if (stat != GSL_SUCCESS)
+    throw std::runtime_error("Error in wrap_gsl_sf_airy_ai");
+  else
+    return result.val;
+}
+
+
+///
+///  Airy Bi functions.
+///
+double
+wrap_gsl_sf_airy_bi(double x)
+{
+  const gsl_mode_t mode = GSL_PREC_DOUBLE;
+  gsl_sf_result result;
+  int stat = gsl_sf_airy_Bi_e(x, mode, &result);
+  if (stat != GSL_SUCCESS)
+    throw std::runtime_error("Error in wrap_gsl_sf_airy_bi");
+  else
+    return result.val;
+}
+
+
+///
 ///  5.2.1.1  Associated Laguerre polynomials.
 ///
 double

@@ -51,7 +51,7 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *   @brief This routine returns the associated Laguerre polynomial 
+   *   @brief This routine returns the associated Laguerre polynomial
    *          of order @f$ n @f$, degree @f$ \alpha @f$ for large n.
    *   Abramowitz & Stegun, 13.5.21
    *
@@ -67,33 +67,28 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __poly_laguerre_large_n(unsigned __n, _Tpa __alpha1, _Tp __x)
     {
-      const _Tp __a = -_Tp(__n);
-      const _Tp __b = _Tp(__alpha1) + _Tp(1);
-      const _Tp __eta = _Tp(2) * __b - _Tp(4) * __a;
+      const _Tp __a = -_Tp{__n};
+      const _Tp __b = _Tp{__alpha1} + _Tp{1};
+      const _Tp __eta = _Tp{2} * __b - _Tp{4} * __a;
       const _Tp __cos2th = __x / __eta;
-      const _Tp __sin2th = _Tp(1) - __cos2th;
+      const _Tp __sin2th = _Tp{1} - __cos2th;
       const _Tp __th = std::acos(std::sqrt(__cos2th));
       const _Tp __pre_h = __numeric_constants<_Tp>::__pi_2()
 			* __numeric_constants<_Tp>::__pi_2()
 			* __eta * __eta * __cos2th * __sin2th;
 
-#if _GLIBCXX_USE_C99_MATH_TR1
-      const _Tp __lg_b = std::lgamma(_Tp(__n) + __b);
-      const _Tp __lnfact = std::lgamma(_Tp(__n + 1));
-#else
-      const _Tp __lg_b = __log_gamma(_Tp(__n) + __b);
-      const _Tp __lnfact = __log_gamma(_Tp(__n + 1));
-#endif
+      const _Tp __lg_b = __log_gamma(_Tp{__n} + __b);
+      const _Tp __lnfact = __log_gamma(_Tp{__n + 1});
 
-      _Tp __pre_term1 = _Tp(0.5L) * (_Tp(1) - __b)
-		      * std::log(_Tp(0.25L) * __x * __eta);
-      _Tp __pre_term2 = _Tp(0.25L) * std::log(__pre_h);
-      _Tp __lnpre = __lg_b - __lnfact + _Tp(0.5L) * __x
+      _Tp __pre_term1 = _Tp{0.5L} * (_Tp{1} - __b)
+		      * std::log(_Tp{0.25L} * __x * __eta);
+      _Tp __pre_term2 = _Tp{0.25L} * std::log(__pre_h);
+      _Tp __lnpre = __lg_b - __lnfact + _Tp{0.5L} * __x
 		      + __pre_term1 - __pre_term2;
       _Tp __ser_term1 = std::sin(__a * __numeric_constants<_Tp>::__pi());
-      _Tp __ser_term2 = std::sin(_Tp(0.25L) * __eta
-			      * (_Tp(2) * __th
-			       - std::sin(_Tp(2) * __th))
+      _Tp __ser_term2 = std::sin(_Tp{0.25L} * __eta
+			      * (_Tp{2} * __th
+			       - std::sin(_Tp{2} * __th))
 			       + __numeric_constants<_Tp>::__pi_4());
       _Tp __ser = __ser_term1 + __ser_term2;
 
@@ -121,12 +116,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __poly_laguerre_hyperg(unsigned int __n, _Tpa __alpha1, _Tp __x)
     {
-      const _Tp __b = _Tp(__alpha1) + _Tp(1);
+      const _Tp __b = _Tp{__alpha1} + _Tp{1};
       const _Tp __mx = -__x;
-      const _Tp __tc_sgn = (__x < _Tp(0) ? _Tp(1)
-			 : ((__n % 2 == 1) ? -_Tp(1) : _Tp(1)));
+      const _Tp __tc_sgn = (__x < _Tp{0} ? _Tp{1}
+			 : ((__n % 2 == 1) ? -_Tp{1} : _Tp{1}));
       //  Get |x|^n/n!
-      _Tp __tc = _Tp(1);
+      _Tp __tc = _Tp{1};
       const _Tp __ax = std::abs(__x);
       for (unsigned int __k = 1; __k <= __n; ++__k)
 	__tc *= (__ax / __k);
@@ -135,8 +130,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __sum = __term;
       for (int __k = int(__n) - 1; __k >= 0; --__k)
 	{
-	  __term *= ((__b + _Tp(__k)) / _Tp(int(__n) - __k))
-		  * _Tp(__k + 1) / __mx;
+	  __term *= ((__b + _Tp{__k}) / _Tp{int(__n) - __k})
+		  * _Tp{__k + 1} / __mx;
 	  __sum += __term;
 	}
 
@@ -145,7 +140,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief This routine returns the associated Laguerre polynomial 
+   *   @brief This routine returns the associated Laguerre polynomial
    *          of order @f$ n @f$, degree @f$ \alpha @f$: @f$ L_n^\alpha(x) @f$
    *          by recursion.
    *
@@ -178,24 +173,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __poly_laguerre_recursion(unsigned int __n, _Tpa __alpha1, _Tp __x)
     {
       //   Compute l_0.
-      _Tp __l_0 = _Tp(1);
+      _Tp __l_0 = _Tp{1};
       if  (__n == 0)
 	return __l_0;
 
       //  Compute l_1^alpha.
-      _Tp __l_1 = -__x + _Tp(1) + _Tp(__alpha1);
+      _Tp __l_1 = -__x + _Tp{1} + _Tp{__alpha1};
       if  (__n == 1)
 	return __l_1;
 
       //  Compute l_n^alpha by recursion on n.
       _Tp __l_n2 = __l_0;
       _Tp __l_n1 = __l_1;
-      _Tp __l_n = _Tp(0);
+      _Tp __l_n = _Tp{0};
       for  (unsigned int __nn = 2; __nn <= __n; ++__nn)
 	{
-	    __l_n = (_Tp(2 * __nn - 1) + _Tp(__alpha1) - __x)
-		  * __l_n1 / _Tp(__nn)
-		  - (_Tp(__nn - 1) + _Tp(__alpha1)) * __l_n2 / _Tp(__nn);
+	    __l_n = (_Tp{2 * __nn - 1} + _Tp{__alpha1} - __x)
+		  * __l_n1 / _Tp{__nn}
+		  - (_Tp{__nn - 1} + _Tp{__alpha1}) * __l_n2 / _Tp{__nn};
 	    __l_n2 = __l_n1;
 	    __l_n1 = __l_n;
 	}
@@ -237,27 +232,27 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __poly_laguerre(unsigned int __n, _Tpa __alpha1, _Tp __x)
     {
       const unsigned int __max_iter = 10000000;
-      if (__x < _Tp(0))
+      if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__poly_laguerre: negative argument"));
       //  Return NaN on NaN input.
       else if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__n == 0)
-	return _Tp(1);
+	return _Tp{1};
       else if (__n == 1)
-	return _Tp(1) + _Tp(__alpha1) - __x;
-      else if (__x == _Tp(0))
+	return _Tp{1} + _Tp{__alpha1} - __x;
+      else if (__x == _Tp{0})
 	{
-	  _Tp __prod = _Tp(__alpha1) + _Tp(1);
+	  _Tp __prod = _Tp{__alpha1} + _Tp{1};
 	  for (unsigned int __k = 2; __k <= __n; ++__k)
-	    __prod *= (_Tp(__alpha1) + _Tp(__k)) / _Tp(__k);
+	    __prod *= (_Tp{__alpha1} + _Tp{__k}) / _Tp{__k};
 	  return __prod;
 	}
-      else if (__n > __max_iter && _Tp(__alpha1) > -_Tp(1)
-	    && __x < _Tp(2) * (_Tp(__alpha1) + _Tp(1)) + _Tp(4 * __n))
+      else if (__n > __max_iter && _Tp{__alpha1} > -_Tp{1}
+	    && __x < _Tp{2} * (_Tp{__alpha1} + _Tp{1}) + _Tp{4 * __n})
 	return __poly_laguerre_large_n(__n, __alpha1, __x);
-      else if (_Tp(__alpha1) >= _Tp(0)
-	   || (__x > _Tp(0) && _Tp(__alpha1) < -_Tp(__n + 1)))
+      else if (_Tp{__alpha1} >= _Tp{0}
+	   || (__x > _Tp{0} && _Tp{__alpha1} < -_Tp{__n + 1}))
 	return __poly_laguerre_recursion(__n, __alpha1, __x);
       else
 	return __poly_laguerre_hyperg(__n, __alpha1, __x);

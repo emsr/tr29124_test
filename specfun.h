@@ -70,7 +70,7 @@
 #else
 #  include <tr1/type_traits>
 #  include <tr1/cmath>
-#  define _GLIBCXX_MATH_NS std::tr1::
+#  define _GLIBCXX_MATH_NS ::std::tr1::
 #  include <tr1/gamma.tcc>
 #  include <tr1/bessel_function.tcc>
 #  include <tr1/beta_function.tcc>
@@ -1083,6 +1083,24 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     {
       using __type = typename __gnu_cxx::__promote<_Tp>::__type;
       return std::__detail::__psi<__type>(__z);
+    }
+
+  //  Dilogarithm functions
+
+  inline float
+  dilogf(float __x)
+  { return std::__detail::__dilog<float>(__x); }
+
+  inline long double
+  dilogl(long double __x)
+  { return std::__detail::__dilog<long double>(__x); }
+
+  template<typename _Tp>
+    inline typename __gnu_cxx::__promote<_Tp>::__type
+    dilog(_Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      return std::__detail::__dilog<__type>(__x);
     }
 
   //  Complete Carlson elliptic R_F functions

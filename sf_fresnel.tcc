@@ -50,14 +50,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __fresnel_series(const _Tp __ax, _Tp & _C, _Tp & _S)
     {
       constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp(5) * std::numeric_limits<_Tp>::epsilon();
-      constexpr auto _S_piO2 = _Tp(M_PI / 2);
+      constexpr auto _S_eps = _Tp{5} * std::numeric_limits<_Tp>::epsilon();
+      constexpr auto _S_piO2 = _Tp{M_PI / 2};
 
       //  Evaluate S and C by series expansion.
-      auto __sum = _Tp(0);
-      auto _Ssum = _Tp(0);
+      auto __sum = _Tp{0};
+      auto _Ssum = _Tp{0};
       auto _Csum = __ax;
-      auto __sign = _Tp(1);
+      auto __sign = _Tp{1};
       auto __fact = _S_piO2 * __ax * __ax;
       auto __odd = true;
       auto __term = __ax;
@@ -106,15 +106,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __fresnel_cont_frac(const _Tp __ax, _Tp & _C, _Tp & _S)
     {
       constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp(5) * std::numeric_limits<_Tp>::epsilon();
+      constexpr auto _S_eps = _Tp{5} * std::numeric_limits<_Tp>::epsilon();
       constexpr auto _S_fp_min = std::numeric_limits<_Tp>::min();
-      constexpr auto _S_pi = _Tp(M_PI);
+      constexpr auto _S_pi = _Tp{M_PI};
 
       //  Evaluate S and C by Lentz's complex continued fraction method.
       const auto __pix2 = _S_pi * __ax * __ax;
-      std::complex<_Tp> __b(_Tp(1), -__pix2);
-      std::complex<_Tp> __cc(_Tp(1) / _S_fp_min, _Tp(0));
-      auto __h = _Tp(1) / __b;
+      std::complex<_Tp> __b(_Tp{1}, -__pix2);
+      std::complex<_Tp> __cc(_Tp{1} / _S_fp_min, _Tp{0});
+      auto __h = _Tp{1} / __b;
       auto __d = __h;
       auto __n = -1;
       auto __k = 0;
@@ -122,12 +122,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  __n += 2;
 	  const auto __a = -_Tp(__n * (__n + 1));
-	  __b += _Tp(4);
-	  __d = _Tp(1) / (__a * __d + __b);
+	  __b += _Tp{4};
+	  __d = _Tp{1} / (__a * __d + __b);
 	  __cc = __b + __a / __cc;
 	  const auto __del = __cc * __d;
 	  __h *= __del;
-	  if (std::abs(__del.real() - _Tp(1))
+	  if (std::abs(__del.real() - _Tp{1})
 	    + std::abs(__del.imag()) < _S_eps)
 	    break;
 	}
@@ -136,9 +136,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				 "continued fraction evaluation failed");
 
       __h *= std::complex<_Tp>(__ax, -__ax);
-      auto __phase = std::polar(_Tp(1), __pix2/_Tp(2));
-      auto __cs = std::complex<_Tp>(_Tp(0.5L), _Tp(0.5L))
-		* (_Tp(1) - __phase * __h);
+      auto __phase = std::polar(_Tp{1}, __pix2/_Tp{2});
+      auto __cs = std::complex<_Tp>(_Tp{0.5L}, _Tp{0.5L})
+		* (_Tp{1} - __phase * __h);
       _C = __cs.real();
       _S = __cs.imag();
 
@@ -149,12 +149,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *  @brief This function returns the Fresnel cosine and sine integrals
    *    as a pair.
-   * 
+   *
    *  The Fresnel cosine integral is defined by:
    *  @f[
    *      C(x) = \int_0^x \cos(\frac{\pi}{2}t^2) dt
    *  @f]
-   * 
+   *
    *  The Fresnel sine integral is defined by:
    *  @f[
    *      S(x) = \int_0^x \sin(\frac{\pi}{2}t^2) dt
@@ -166,23 +166,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
 
       constexpr auto _S_fp_min = std::numeric_limits<_Tp>::min();
-      constexpr auto _S_x_min = _Tp(1.5L);
+      constexpr auto _S_x_min = _Tp{1.5L};
 
-      auto _C = _Tp(0);
-      auto _S = _Tp(0);
+      auto _C = _Tp{0};
+      auto _S = _Tp{0};
 
       const _Tp __ax = std::abs(__x);
       if (__ax < std::sqrt(_S_fp_min))
 	{
 	  _C = __ax;
-	  _S = _Tp(0);
+	  _S = _Tp{0};
 	}
       else if (__ax < _S_x_min)
 	__fresnel_series(__ax, _C, _S);
       else
 	__fresnel_cont_frac(__ax, _C, _S);
 
-      if (__x < _Tp(0))
+      if (__x < _Tp{0})
 	{
 	  _C = -_C;
 	  _S = -_S;

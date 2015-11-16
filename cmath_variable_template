@@ -96,7 +96,7 @@ inline namespace v1
   /// Constant: radians per degree @f$ \pi / 180 @f$.
   template<typename _RealType>
     constexpr _RealType
-    m_deg_rad       = 1.7453'29251'99432'95769'23690'76848'86127'13443e-2L;
+    m_rad_deg       = 1.7453'29251'99432'95769'23690'76848'86127'13443e-2L;
 
   /// Constant: @f$ \sqrt(\pi / 2) @f$.
   template<typename _RealType>
@@ -117,6 +117,11 @@ inline namespace v1
   template<typename _RealType>
     constexpr _RealType
     m_1_sqrt_pi     = 5.6418'95835'47756'28694'80794'51560'77258'58438e-1L;
+
+  /// Constant: @f$ \sqrt(\pi) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_sqrt_pi       = 1.7724'53850'90551'60272'98167'48334'11451'82797e+0L;
 
   /// Constant: @f$ 2 / \sqrt(\pi) @f$.
   template<typename _RealType>
@@ -212,6 +217,10 @@ inline namespace v1
   template<typename _RealType>
     constexpr _RealType
     m_catalan       = 9.1596'55941'77219'01505'46035'14932'38411'07741e-1L;
+
+  /// Constant: @f$ \pi^2/6 @f$.
+    constexpr _RealType
+    m_pi2_6         = 1.6449'34066'84822'64364'72415'16664'60251'89218e+0L;
 
 } // inline namespace v1
 } // namespace math_constants

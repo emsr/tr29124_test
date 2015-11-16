@@ -2,13 +2,13 @@
 #HOME = /home/ed
 # -Wconversion
 CXX = $(HOME)/bin_specfun/bin/g++ -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__
-TR1_SRC_DIR = $(HOME)/gcc_specfun/libstdc++-v3/include/tr1
-CXX_INC_DIR = $(HOME)/bin_specfun/include/c++/6.0.0/tr1
+CXX_INC_DIR = $(HOME)/bin_specfun/include/c++/6.0.0/bits
 CXX_LIB_DIR = $(HOME)/bin_specfun/lib64
 
 BINS = test_special_function \
        diff_special_function \
        testcase \
+       test_airy \
        test_csint \
        test_fresnel \
        test_hermite \
@@ -21,6 +21,7 @@ BINS = test_special_function \
 all: test_special_function \
      diff_special_function \
      testcase \
+     test_airy \
      test_csint \
      test_fresnel \
      test_hermite \
@@ -34,6 +35,7 @@ testcases: testcase
 	LD_LIBRARY_PATH=/home/ed/bin_specfun/lib64:$LD_LIBRARY_PATH ./testcase
 
 test:
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_airy > test_airy.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_csint > test_csint.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_fresnel > test_fresnel.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_hermite > test_hermite.txt
@@ -45,7 +47,10 @@ test:
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_special_function > test_special_function.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_legendre > test_legendre.txt
 
-check: check_assoc_laguerre \
+check: \
+       check_airy_ai \
+       check_airy_bi \
+       check_assoc_laguerre \
        check_assoc_legendre \
        check_beta \
        check_comp_ellint_1 \
@@ -74,13 +79,13 @@ check: check_assoc_laguerre \
 
 
 
-test_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc $(CXX_INC_DIR)/*.tcc
+test_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
 	$(CXX) -o test_special_function test_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas
 
-diff_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tcc $(CXX_INC_DIR)/*.tcc
+diff_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
 	$(CXX) -o diff_special_function diff_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas
 
-testcase: testcase.cpp testcase.tcc gsl_wrap.cpp $(CXX_INC_DIR)/*.tcc
+testcase: testcase.cpp testcase.tcc gsl_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
 	$(CXX) -o testcase testcase.cpp gsl_wrap.cpp -lgslcblas -lgsl
 
 test_limits: test_limits.cpp
@@ -88,6 +93,9 @@ test_limits: test_limits.cpp
 
 test_cmath: test_cmath.cpp
 	$(CXX) -o test_cmath test_cmath.cpp
+
+test_airy: test_airy.cpp airy.tcc
+	$(CXX) -o test_airy test_airy.cpp
 
 test_csint: test_csint.cpp csint.tcc
 	$(CXX) -o test_csint test_csint.cpp
@@ -107,6 +115,12 @@ test_nric_bessel: test_nric_bessel.cpp nric_bessel.tcc
 test_legendre: test_legendre.cpp legendre.tcc
 	$(CXX) -o test_legendre test_legendre.cpp
 
+
+check_airy_ai: check_airy_ai.cc
+	$(CXX) -D__TEST_DEBUG -o check_airy_ai check_airy_ai.cc
+
+check_airy_bi: check_airy_bi.cc
+	$(CXX) -D__TEST_DEBUG -o check_airy_bi check_airy_bi.cc
 
 check_assoc_laguerre: check_assoc_laguerre.cc
 	$(CXX) -D__TEST_DEBUG -o check_assoc_laguerre check_assoc_laguerre.cc
@@ -187,24 +201,18 @@ check_sph_neumann: check_sph_neumann.cc
 	$(CXX) -D__TEST_DEBUG -o check_sph_neumann check_sph_neumann.cc
 
 
-delivery:
-	cp $(TR1_SRC_DIR)/cmath $(CXX_INC_DIR)
-	cp $(TR1_SRC_DIR)/math.h $(CXX_INC_DIR)
-	cp $(TR1_SRC_DIR)/*.tcc $(CXX_INC_DIR)
-	cp $(TR1_SRC_DIR)/special_function* $(CXX_INC_DIR)
-
 tarball:
-	mkdir tr1_test
-	cp Makefile cmath *.* tr1_test
-	tar -cvf tr1_test.tar tr1_test
-	bzip2 -f tr1_test.tar
-	md5sum tr1_test.tar.bz2 > tr1_test.tar.bz2.md5
-	rm -rf tr1_test
+	mkdir tr29124_test
+	cp Makefile cmath *.* tr29124_test
+	tar -cvf tr29124_test.tar tr29124_test
+	bzip2 -f tr29124_test.tar
+	md5sum tr29124_test.tar.bz2 > tr29124_test.tar.bz2.md5
+	rm -rf tr29124_test
 
 clean:
-	rm -f tr1_*_[fdl].txt
+	rm -f tr29124_*_[fdl].txt
 	rm -f gsl_*_[fdl].txt
 	rm -f diff_*_[fdl].txt
 	rm -f $(BINS)
-	rm -f tr1_test.tar.bz2*
+	rm -f tr29124_test.tar.bz2*
 

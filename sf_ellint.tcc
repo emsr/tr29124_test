@@ -108,7 +108,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 	}
 
-      return _Tp(0);
+      return _Tp{0};
     }
 
   /**
@@ -167,7 +167,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 	}
 
-      return _Tp(0);
+      return _Tp{0};
     }
 
   /**
@@ -211,7 +211,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __a = __a0;
       _Val __f = _Val(1);
       _Val __fe = _Val(1);
-      _Tp __sum = _Tp();
+      _Tp __sum = _Tp{};
 
       while (true)
 	{
@@ -229,7 +229,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __pt = (__pt + __lambda) / _Val(4);
 	  _Tp __d = (__proot + __xroot) * (__proot + __yroot) * (__proot + __zroot);
 	  _Tp __e = __delta / (__fe * __d * __d);
-	  __sum += __ellint_rc(_Tp(1), _Tp(1) + __e) / (__f * __d);
+	  __sum += __ellint_rc(_Tp{1}, _Tp{1} + __e) / (__f * __d);
 	  __f *= _Val(4);
 	  __fe *= _Val(64);
 	  if (__q < __f * std::abs(__a))
@@ -242,7 +242,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      _Tp __pp = __pf * __pf;
 	      _Tp __ppp = __pp * __pf;
 	      _Tp __e2 = __xf * __yf + __yf * __zf + __zf * __xf - _Val(3) * __pp;
-	      _Tp __e3 = __xyz + _Val(2) * __e2 * __pf + _Tp(4) * __ppp;
+	      _Tp __e3 = __xyz + _Val(2) * __e2 * __pf + _Tp{4} * __ppp;
 	      _Tp __e4 = (_Val(2) * __xyz + __e2 * __pf + _Val(3) * __ppp) * __pf;
 	      _Tp __e5 = __xyz * __pp;
 	      return (_Val(1) - _Val(3) * __e2 / _Val(14)
@@ -255,7 +255,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 	}
 
-      return _Tp(0);
+      return _Tp{0};
     }
 
   /**
@@ -297,7 +297,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			  std::abs(__a0 - __y)));
       _Tp __a = __a0;
       _Val __f = _Val(1);
-      _Tp __sum = _Tp();
+      _Tp __sum = _Tp{};
 
       while (true)
 	{
@@ -332,7 +332,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 	}
 
-      return _Tp(0);
+      return _Tp{0};
     }
 
   template<typename _Tp>
@@ -347,7 +347,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       while (true)
 	{
 	  _Tp __xt = __x;
-	  __x = (__x + __y) / _Tp(2);
+	  __x = (__x + __y) / _Tp{2};
 	  __y = std::sqrt(__xt) * std::sqrt(__y);
 	  if (std::abs(__x - __y) < __tolfact * std::abs(__x))
 	    return _Val(__numeric_constants<_Val>::__pi()) / (__x + __y);
@@ -386,29 +386,29 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_rg(_Tp __x, _Tp __y, _Tp __z)
     {
       using _Val = __num_traits_t<_Tp>;
-      if (__z == _Tp())
+      if (__z == _Tp{})
 	{
-	  if (__x == _Tp())
+	  if (__x == _Tp{})
 	    return std::sqrt(__y);
-	  else if (__y == _Tp())
+	  else if (__y == _Tp{})
 	    return std::sqrt(__x);
 	  else
 	    return __comp_ellint_rg(__x, __y);
 	}
-      else if (__x == _Tp())
+      else if (__x == _Tp{})
 	{
-	  if (__y == _Tp())
+	  if (__y == _Tp{})
 	    return std::sqrt(__z);
-	  else if (__z == _Tp())
+	  else if (__z == _Tp{})
 	    return std::sqrt(__y);
 	  else
 	    return __comp_ellint_rg(__y, __z);
 	}
-      else if (__y == _Tp())
+      else if (__y == _Tp{})
 	{
-	  if (__z == _Tp())
+	  if (__z == _Tp{})
 	    return std::sqrt(__x);
-	  else if (__x == _Tp())
+	  else if (__x == _Tp{})
 	    return std::sqrt(__z);
 	  else
 	    return __comp_ellint_rg(__z, __x);
@@ -429,12 +429,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __xt = std::sqrt(__x);
       _Tp __yt = std::sqrt(__y);
       const _Tp __a = (__xt + __yt) / _Val(2);
-      _Tp __sum = _Tp();
+      _Tp __sum = _Tp{};
       _Val __sf = _Val(1) / _Val(2);
       while (true)
 	{
 	  _Tp __xtt = __xt;
-	  __xt = (__xt + __yt) / _Tp(2);
+	  __xt = (__xt + __yt) / _Tp{2};
 	  __yt = std::sqrt(__xtt) * std::sqrt(__yt);
 	  _Tp __del = __xt - __yt;
 	  if (std::abs(__del) < __tolfact * std::abs(__xt))
@@ -465,10 +465,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__isnan(__k))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (std::abs(__k) == _Tp(1))
+      else if (std::abs(__k) == _Tp{1})
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
-	return __ellint_rf(_Tp(0), _Tp(1) - __k * __k, _Tp(1));
+	return __ellint_rf(_Tp{0}, _Tp{1} - __k * __k, _Tp{1});
     }
 
   /**
@@ -491,13 +491,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__isnan(__k) || __isnan(__phi))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (std::abs(__k) > _Tp(1))
+      else if (std::abs(__k) > _Tp{1})
 	std::__throw_domain_error(__N("__ellint_1: bad argument"));
       else
 	{
 	  //  Reduce phi to -pi/2 < phi < +pi/2.
 	  const int __n = std::floor(__phi / __numeric_constants<_Tp>::__pi()
-				   + _Tp(0.5L));
+				   + _Tp{0.5L});
 	  const _Tp __phi_red = __phi
 			      - __n * __numeric_constants<_Tp>::__pi();
 
@@ -506,12 +506,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 	  const _Tp __F = __s
 			* __ellint_rf(__c * __c,
-				_Tp(1) - __k * __k * __s * __s, _Tp(1));
+				_Tp{1} - __k * __k * __s * __s, _Tp{1});
 
 	  if (__n == 0)
 	    return __F;
 	  else
-	    return __F + _Tp(2) * __n * __comp_ellint_1(__k);
+	    return __F + _Tp{2} * __n * __comp_ellint_1(__k);
 	}
     }
 
@@ -534,15 +534,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__k))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (std::abs(__k) == 1)
-	return _Tp(1);
-      else if (std::abs(__k) > _Tp(1))
+	return _Tp{1};
+      else if (std::abs(__k) > _Tp{1})
 	std::__throw_domain_error(__N("__comp_ellint_2: bad argument"));
       else
 	{
 	  const _Tp __kk = __k * __k;
 
-	  return __ellint_rf(_Tp(0), _Tp(1) - __kk, _Tp(1))
-	       - __kk * __ellint_rd(_Tp(0), _Tp(1) - __kk, _Tp(1)) / _Tp(3);
+	  return __ellint_rf(_Tp{0}, _Tp{1} - __kk, _Tp{1})
+	       - __kk * __ellint_rd(_Tp{0}, _Tp{1} - __kk, _Tp{1}) / _Tp{3};
 	}
     }
 
@@ -565,13 +565,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__isnan(__k) || __isnan(__phi))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (std::abs(__k) > _Tp(1))
+      else if (std::abs(__k) > _Tp{1})
 	std::__throw_domain_error(__N("__ellint_2: bad argument"));
       else
 	{
 	  //  Reduce phi to -pi/2 < phi < +pi/2.
 	  const int __n = std::floor(__phi / __numeric_constants<_Tp>::__pi()
-				   + _Tp(0.5L));
+				   + _Tp{0.5L});
 	  const _Tp __phi_red = __phi
 			      - __n * __numeric_constants<_Tp>::__pi();
 
@@ -583,15 +583,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const _Tp __cc = __c * __c;
 
 	  const _Tp __E = __s
-			* __ellint_rf(__cc, _Tp(1) - __kk * __ss, _Tp(1))
+			* __ellint_rf(__cc, _Tp{1} - __kk * __ss, _Tp{1})
 			- __kk * __sss
-			* __ellint_rd(__cc, _Tp(1) - __kk * __ss, _Tp(1))
-			/ _Tp(3);
+			* __ellint_rd(__cc, _Tp{1} - __kk * __ss, _Tp{1})
+			/ _Tp{3};
 
 	  if (__n == 0)
 	    return __E;
 	  else
-	    return __E + _Tp(2) * __n * __comp_ellint_2(__k);
+	    return __E + _Tp{2} * __n * __comp_ellint_2(__k);
 	}
     }
 
@@ -617,18 +617,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__isnan(__k) || __isnan(__nu))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__nu == _Tp(1))
+      else if (__nu == _Tp{1})
 	return std::numeric_limits<_Tp>::infinity();
-      else if (std::abs(__k) > _Tp(1))
+      else if (std::abs(__k) > _Tp{1})
 	std::__throw_domain_error(__N("__comp_ellint_3: bad argument"));
       else
 	{
 	  const _Tp __kk = __k * __k;
 
-	  return __ellint_rf(_Tp(0), _Tp(1) - __kk, _Tp(1))
+	  return __ellint_rf(_Tp{0}, _Tp{1} - __kk, _Tp{1})
 	       - __nu
-	       * __ellint_rj(_Tp(0), _Tp(1) - __kk, _Tp(1), _Tp(1) + __nu)
-	       / _Tp(3);
+	       * __ellint_rj(_Tp{0}, _Tp{1} - __kk, _Tp{1}, _Tp{1} + __nu)
+	       / _Tp{3};
 	}
     }
 
@@ -655,13 +655,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__isnan(__k) || __isnan(__nu) || __isnan(__phi))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (std::abs(__k) > _Tp(1))
+      else if (std::abs(__k) > _Tp{1})
 	std::__throw_domain_error(__N("__ellint_3: bad argument"));
       else
 	{
 	  //  Reduce phi to -pi/2 < phi < +pi/2.
 	  const int __n = std::floor(__phi / __numeric_constants<_Tp>::__pi()
-				   + _Tp(0.5L));
+				   + _Tp{0.5L});
 	  const _Tp __phi_red = __phi
 			      - __n * __numeric_constants<_Tp>::__pi();
 
@@ -673,15 +673,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const _Tp __cc = __c * __c;
 
 	  const _Tp __Pi = __s
-			 * __ellint_rf(__cc, _Tp(1) - __kk * __ss, _Tp(1))
+			 * __ellint_rf(__cc, _Tp{1} - __kk * __ss, _Tp{1})
 			 - __nu * __sss
-			 * __ellint_rj(__cc, _Tp(1) - __kk * __ss, _Tp(1),
-				       _Tp(1) + __nu * __ss) / _Tp(3);
+			 * __ellint_rj(__cc, _Tp{1} - __kk * __ss, _Tp{1},
+				       _Tp{1} + __nu * __ss) / _Tp{3};
 
 	  if (__n == 0)
 	    return __Pi;
 	  else
-	    return __Pi + _Tp(2) * __n * __comp_ellint_3(__k, __nu);
+	    return __Pi + _Tp{2} * __n * __comp_ellint_3(__k, __nu);
 	}
     }
 

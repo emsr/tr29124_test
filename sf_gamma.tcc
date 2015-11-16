@@ -72,48 +72,48 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
 
       static const _Tp __num[28] = {
-	_Tp(1UL),                        -_Tp(1UL) / _Tp(2UL),
-	_Tp(1UL) / _Tp(6UL),             _Tp(0UL),
-	-_Tp(1UL) / _Tp(30UL),           _Tp(0UL),
-	_Tp(1UL) / _Tp(42UL),            _Tp(0UL),
-	-_Tp(1UL) / _Tp(30UL),           _Tp(0UL),
-	_Tp(5UL) / _Tp(66UL),            _Tp(0UL),
-	-_Tp(691UL) / _Tp(2730UL),       _Tp(0UL),
-	_Tp(7UL) / _Tp(6UL),             _Tp(0UL),
-	-_Tp(3617UL) / _Tp(510UL),       _Tp(0UL),
-	_Tp(43867UL) / _Tp(798UL),       _Tp(0UL),
-	-_Tp(174611) / _Tp(330UL),       _Tp(0UL),
-	_Tp(854513UL) / _Tp(138UL),      _Tp(0UL),
-	-_Tp(236364091UL) / _Tp(2730UL), _Tp(0UL),
-	_Tp(8553103UL) / _Tp(6UL),       _Tp(0UL)
+	_Tp{1UL},                        -_Tp{1UL} / _Tp{2UL},
+	_Tp{1UL} / _Tp{6UL},             _Tp{0UL},
+	-_Tp{1UL} / _Tp{30UL},           _Tp{0UL},
+	_Tp{1UL} / _Tp{42UL},            _Tp{0UL},
+	-_Tp{1UL} / _Tp{30UL},           _Tp{0UL},
+	_Tp{5UL} / _Tp{66UL},            _Tp{0UL},
+	-_Tp{691UL} / _Tp{2730UL},       _Tp{0UL},
+	_Tp{7UL} / _Tp{6UL},             _Tp{0UL},
+	-_Tp{3617UL} / _Tp{510UL},       _Tp{0UL},
+	_Tp{43867UL} / _Tp{798UL},       _Tp{0UL},
+	-_Tp{174611UL} / _Tp{330UL},     _Tp{0UL},
+	_Tp{854513UL} / _Tp{138UL},      _Tp{0UL},
+	-_Tp{236364091UL} / _Tp{2730UL}, _Tp{0UL},
+	_Tp{8553103UL} / _Tp{6UL},       _Tp{0UL}
       };
 
       if (__n == 0)
-	return _Tp(1);
+	return _Tp{1};
 
       if (__n == 1)
-	return -_Tp(1) / _Tp(2);
+	return -_Tp{1} / _Tp{2};
 
       //  Take care of the rest of the odd ones.
       if (__n % 2 == 1)
-	return _Tp(0);
+	return _Tp{0};
 
       //  Take care of some small evens that are painful for the series.
       if (__n < 28)
 	return __num[__n];
 
 
-      _Tp __fact = _Tp(1);
+      _Tp __fact = _Tp{1};
       if ((__n / 2) % 2 == 0)
-	__fact *= _Tp(-1);
+	__fact *= -_Tp{1};
       for (unsigned int __k = 1; __k <= __n; ++__k)
-	__fact *= __k / (_Tp(2) * __numeric_constants<_Tp>::__pi());
-      __fact *= _Tp(2);
+	__fact *= __k / (_Tp{2} * __numeric_constants<_Tp>::__pi());
+      __fact *= _Tp{2};
 
-      _Tp __sum = _Tp(0);
+      _Tp __sum = _Tp{0};
       for (unsigned int __i = 1; __i < 1000; ++__i)
 	{
-	  _Tp __term = std::pow(_Tp(__i), -_Tp(__n));
+	  _Tp __term = std::pow(_Tp{__i}, -_Tp{__n});
 	  if (__term < std::numeric_limits<_Tp>::epsilon())
 	    break;
 	  __sum += __term;
@@ -147,16 +147,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __log_gamma_bernoulli(_Tp __x)
     {
-      _Tp __lg = (__x - _Tp(0.5L)) * std::log(__x) - __x
-	       + _Tp(0.5L) * std::log(_Tp(2)
+      _Tp __lg = (__x - _Tp{0.5L}) * std::log(__x) - __x
+	       + _Tp{0.5L} * std::log(_Tp{2}
 	       * __numeric_constants<_Tp>::__pi());
 
       const _Tp __xx = __x * __x;
-      _Tp __help = _Tp(1) / __x;
+      _Tp __help = _Tp{1} / __x;
       for ( unsigned int __i = 1; __i < 20; ++__i )
 	{
-	  const _Tp __2i = _Tp(2 * __i);
-	  __help /= __2i * (__2i - _Tp(1)) * __xx;
+	  const _Tp __2i = _Tp{2 * __i};
+	  __help /= __2i * (__2i - _Tp{1}) * __xx;
 	  __lg += __bernoulli<_Tp>(2 * __i) * __help;
 	}
 
@@ -175,32 +175,32 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __log_gamma_lanczos(_Tp __x)
     {
-      const _Tp __xm1 = __x - _Tp(1);
+      const _Tp __xm1 = __x - _Tp{1};
 
       static const _Tp __lanczos_cheb_7[9] = {
-       _Tp( 0.99999999999980993227684700473478L),
-       _Tp( 676.520368121885098567009190444019L),
-       _Tp(-1259.13921672240287047156078755283L),
-       _Tp( 771.3234287776530788486528258894L),
-       _Tp(-176.61502916214059906584551354L),
-       _Tp( 12.507343278686904814458936853L),
-       _Tp(-0.13857109526572011689554707L),
-       _Tp( 9.984369578019570859563e-6L),
-       _Tp( 1.50563273514931155834e-7L)
+       _Tp{ 0.99999999999980993227684700473478L},
+       _Tp{ 676.520368121885098567009190444019L},
+       _Tp{-1259.13921672240287047156078755283L},
+       _Tp{ 771.3234287776530788486528258894L},
+       _Tp{-176.61502916214059906584551354L},
+       _Tp{ 12.507343278686904814458936853L},
+       _Tp{-0.13857109526572011689554707L},
+       _Tp{ 9.984369578019570859563e-6L},
+       _Tp{ 1.50563273514931155834e-7L}
       };
 
       static const _Tp __LOGROOT2PI
-	  = _Tp(0.9189385332046727417803297364056176L);
+	  = _Tp{0.9189385332046727417803297364056176L};
 
       _Tp __sum = __lanczos_cheb_7[0];
       for(unsigned int __k = 1; __k < 9; ++__k)
 	__sum += __lanczos_cheb_7[__k] / (__xm1 + __k);
 
-      const _Tp __term1 = (__xm1 + _Tp(0.5L))
-			* std::log((__xm1 + _Tp(7.5L))
+      const _Tp __term1 = (__xm1 + _Tp{0.5L})
+			* std::log((__xm1 + _Tp{7.5L})
 			/ __numeric_constants<_Tp>::__euler());
       const _Tp __term2 = __LOGROOT2PI + std::log(__sum);
-      const _Tp __result = __term1 + (__term2 - _Tp(7));
+      const _Tp __result = __term1 + (__term2 - _Tp{7});
 
       return __result;
     }
@@ -219,19 +219,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __log_gamma(_Tp __x)
     {
-      if (__x > _Tp(0.5L))
+#if _GLIBCXX_USE_C99_MATH_TR1
+	return std::lgamma(__x);
+#else
+      if (__x > _Tp{0.5L})
 	return __log_gamma_lanczos(__x);
       else
 	{
 	  const _Tp __sin_fact
 		 = std::abs(std::sin(__numeric_constants<_Tp>::__pi() * __x));
-	  if (__sin_fact == _Tp(0))
+	  if (__sin_fact == _Tp{0})
 	    std::__throw_domain_error(__N("Argument is nonpositive integer "
 					  "in __log_gamma"));
 	  return __numeric_constants<_Tp>::__lnpi()
 		     - std::log(__sin_fact)
-		     - __log_gamma_lanczos(_Tp(1) - __x);
+		     - __log_gamma_lanczos(_Tp{1} - __x);
 	}
+#endif
     }
 
 
@@ -246,18 +250,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __log_gamma_sign(_Tp __x)
     {
-      if (__x > _Tp(0))
-	return _Tp(1);
+      if (__x > _Tp{0})
+	return _Tp{1};
       else
 	{
 	  const _Tp __sin_fact
 		  = std::sin(__numeric_constants<_Tp>::__pi() * __x);
-	  if (__sin_fact > _Tp(0))
+	  if (__sin_fact > _Tp{0})
 	    return (1);
-	  else if (__sin_fact < _Tp(0))
-	    return -_Tp(1);
+	  else if (__sin_fact < _Tp{0})
+	    return -_Tp{1};
 	  else
-	    return _Tp(0);
+	    return _Tp{0};
 	}
     }
 
@@ -277,15 +281,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __log_bincoef(unsigned int __n, unsigned int __k)
     {
-#if _GLIBCXX_USE_C99_MATH_TR1
-      _Tp __coeff = std::lgamma(_Tp(1 + __n))
-		  - std::lgamma(_Tp(1 + __k))
-		  - std::lgamma(_Tp(1 + __n - __k));
-#else
-      _Tp __coeff = __log_gamma(_Tp(1 + __n))
-		  - __log_gamma(_Tp(1 + __k))
-		  - __log_gamma(_Tp(1 + __n - __k));
-#endif
+      _Tp __coeff = __log_gamma(_Tp{1 + __n})
+		  - __log_gamma(_Tp{1 + __k})
+		  - __log_gamma(_Tp{1 + __n - __k});
     }
 
 
@@ -307,7 +305,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       //  Max e exponent before overflow.
       static const _Tp __max_bincoeff
 		      = std::numeric_limits<_Tp>::max_exponent10
-		      * std::log(_Tp(10)) - _Tp(1);
+		      * std::log(_Tp{10}) - _Tp{1};
 
       const _Tp __log_coeff = __log_bincoef<_Tp>(__n, __k);
       if (__log_coeff > __max_bincoeff)
@@ -326,7 +324,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     inline _Tp
     __gamma(_Tp __x)
-    { return std::exp(__log_gamma(__x)); }
+    {
+#if _GLIBCXX_USE_C99_MATH_TR1
+      return std::lgamma(__x);
+#else
+      return std::exp(__log_gamma(__x));
+#endif
+    }
 
 
   template<typename _Tp>
@@ -338,18 +342,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       _Tp __lngam = std::lgamma(__a);
 
-      if (__x < _Tp(0))
+      if (__x < _Tp{0})
 	throw std::domain_error("Argument less than 0 in routine gamma_series().");
-      else if (__x == _Tp(0))
-	return std::make_pair(_Tp(0), __lngam);
+      else if (__x == _Tp{0})
+	return std::make_pair(_Tp{0}, __lngam);
       else
 	{
           _Tp __aa = __a;
           _Tp __term, __sum;
-          __term = __sum = _Tp(1) / __a;
+          __term = __sum = _Tp{1} / __a;
           for (unsigned int __n = 1; __n <= _S_itmax; ++__n)
             {
-              __aa += _Tp(1);
+              __aa += _Tp{1};
               __term *= __x / __aa;
               __sum += __term;
               if (std::abs(__term) < _S_eps * std::abs(__sum))
@@ -373,24 +377,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       _Tp __lngam = std::lgamma(__a);
 
-      _Tp __b = __x + _Tp(1) - __a;
-      _Tp __c = _Tp(1) / _S_fpmin;
-      _Tp __d = _Tp(1) / __b;
+      _Tp __b = __x + _Tp{1} - __a;
+      _Tp __c = _Tp{1} / _S_fpmin;
+      _Tp __d = _Tp{1} / __b;
       _Tp __h = __d;
       for (unsigned int __n = 1; __n <= _S_itmax; ++__n)
 	{
-          _Tp __an = -_Tp(__n) * (_Tp(__n) - __a);
-          __b += _Tp(2);
+          _Tp __an = -_Tp{__n} * (_Tp{__n} - __a);
+          __b += _Tp{2};
           __d = __an * __d + __b;
           if (std::abs(__d) < _S_fpmin)
             __d = _S_fpmin;
           __c = __b + __an / __c;
           if (std::abs(__c) < _S_fpmin)
             __c = _S_fpmin;
-          __d = _Tp(1) / __d;
+          __d = _Tp{1} / __d;
           _Tp __del = __d * __c;
           __h *= __del;
-          if (std::abs(__del - _Tp(1)) < _S_eps)
+          if (std::abs(__del - _Tp{1}) < _S_eps)
             {
               _Tp __gamcf = std::exp(-__x + __a * std::log(__x) - __lngam) * __h;
               return std::make_pair(__gamcf, __lngam);
@@ -416,13 +420,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __gamma_p(_Tp __a, _Tp __x)
     {
-      if (__x < _Tp(0) || __a <= _Tp(0))
+      if (__x < _Tp{0} || __a <= _Tp{0})
 	throw std::domain_error("Invalid arguments in routine gamma_p()");
 
-      if (__x < __a + _Tp(1))
+      if (__x < __a + _Tp{1})
 	return __gamma_series(__a, __x).first;
       else
-	return _Tp(1) - __gamma_cont_frac(__a, __x).first;
+	return _Tp{1} - __gamma_cont_frac(__a, __x).first;
     }
 
 
@@ -442,11 +446,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __gamma_q(_Tp __a, _Tp __x)
     {
-      if (__x < _Tp(0) || __a <= _Tp(0))
+      if (__x < _Tp{0} || __a <= _Tp{0})
 	throw std::domain_error("Invalid arguments in routine gamma_q().");
 
-      if (__x < __a + _Tp(1))
-	return _Tp(1) - __gamma_series(__a, __x).first;
+      if (__x < __a + _Tp{1})
+	return _Tp{1} - __gamma_series(__a, __x).first;
       else
 	return __gamma_cont_frac(__a, __x).first;
     }
@@ -463,10 +467,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __gamma_l(_Tp __a, _Tp __x)
     {
-      if (__x < _Tp(0) || __a <= _Tp(0))
+      if (__x < _Tp{0} || __a <= _Tp{0})
 	throw std::domain_error("gamma_l: invalid arguments in routine");
 
-      if (__x < __a + _Tp(1))
+      if (__x < __a + _Tp{1})
       {
 	std::pair<_Tp, _Tp> __gp = __gamma_series(__a, __x);
 	return std::exp(__gp.second) * __gp.first;
@@ -474,7 +478,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
       {
 	std::pair<_Tp, _Tp> __gp = __gamma_cont_frac(__a, __x);
-	return std::exp(__gp.second) * (_Tp(1) - __gp.first);
+	return std::exp(__gp.second) * (_Tp{1} - __gp.first);
       }
     }
 
@@ -493,10 +497,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__x < 0.0 || __a <= 0.0)
 	throw std::domain_error("gamma_u: invalid arguments in routine");
 
-      if (__x < __a + _Tp(1))
+      if (__x < __a + _Tp{1})
       {
           std::pair<_Tp, _Tp> __gp = __gamma_series(__a, __x);
-          return std::exp(__gp.second) * (_Tp(1) - __gp.first);
+          return std::exp(__gp.second) * (_Tp{1} - __gp.first);
       }
       else
       {
@@ -523,7 +527,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __psi_series(_Tp __x)
     {
-      _Tp __sum = -__numeric_constants<_Tp>::__gamma_e() - _Tp(1) / __x;
+      _Tp __sum = -__numeric_constants<_Tp>::__gamma_e() - _Tp{1} / __x;
       const unsigned int __max_iter = 100000;
       for (unsigned int __k = 1; __k < __max_iter; ++__k)
 	{
@@ -553,7 +557,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __psi_asymp(_Tp __x)
     {
-      _Tp __sum = std::log(__x) - _Tp(0.5L) / __x;
+      _Tp __sum = std::log(__x) - _Tp{0.5L} / __x;
       const _Tp __xx = __x * __x;
       _Tp __xp = __xx;
       const unsigned int __max_iter = 100;
@@ -585,16 +589,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __psi(_Tp __x)
     {
       const int __n = static_cast<int>(__x + 0.5L);
-      constexpr _Tp _S_eps = _Tp(4) * std::numeric_limits<_Tp>::epsilon();
-      if (__n <= 0 && std::abs(__x - _Tp(__n)) < _S_eps)
+      constexpr _Tp _S_eps = _Tp{4} * std::numeric_limits<_Tp>::epsilon();
+      if (__n <= 0 && std::abs(__x - _Tp{__n}) < _S_eps)
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__x < _Tp(0))
+      else if (__x < _Tp{0})
 	{
 	  const _Tp __pi = __numeric_constants<_Tp>::__pi();
-	  return __psi(_Tp(1) - __x)
+	  return __psi(_Tp{1} - __x)
 	       - __pi * std::cos(__pi * __x) / std::sin(__pi * __x);
 	}
-      else if (__x > _Tp(100))
+      else if (__x > _Tp{100})
 	return __psi_asymp(__x);
       else
 	return __psi_series(__x);
@@ -603,7 +607,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *   @brief  Return the polygamma function @f$ \psi^{(n)}(x) @f$.
-   * 
+   *
    *   The polygamma function is related to the Hurwitz zeta function:
    *   @f[
    *     \psi^{(n)}(x) = (-1)^{n+1} m! \zeta(m+1,x)
@@ -613,18 +617,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __psi(unsigned int __n, _Tp __x)
     {
-      if (__x <= _Tp(0))
+      if (__x <= _Tp{0})
 	std::__throw_domain_error(__N("__psi: argument out of range"));
       else if (__n == 0)
 	return __psi(__x);
       else
 	{
-	  const _Tp __hzeta = __hurwitz_zeta(_Tp(__n + 1), __x);
-#if _GLIBCXX_USE_C99_MATH_TR1
-	  const _Tp __ln_nfact = std::lgamma(_Tp(__n + 1));
-#else
-	  const _Tp __ln_nfact = __log_gamma(_Tp(__n + 1));
-#endif
+	  const _Tp __hzeta = __hurwitz_zeta(_Tp{__n + 1}, __x);
+	  const _Tp __ln_nfact = __log_gamma(_Tp{__n + 1});
 	  _Tp __result = std::exp(__ln_nfact) * __hzeta;
 	  if (__n % 2 == 1)
 	    __result = -__result;

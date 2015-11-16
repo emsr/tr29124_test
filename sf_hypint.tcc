@@ -52,32 +52,32 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __chshint_cont_frac(_Tp __t, _Tp& _Chi, _Tp& _Shi)
     {
       constexpr unsigned int _S_max_iter = 100;
-      constexpr _Tp _S_eps = _Tp(5) * std::numeric_limits<_Tp>::epsilon();
+      constexpr _Tp _S_eps = _Tp{5} * std::numeric_limits<_Tp>::epsilon();
       constexpr _Tp _S_fp_min = std::numeric_limits<_Tp>::min();
       constexpr _Tp _S_pi_2 = std::__detail::__numeric_constants<_Tp>::__pi_2();
 
       //  Evaluate Chi and Shi by Lentz's modified method of continued fracions.
-      std::complex<_Tp> __b(_Tp(1), __t);
-      std::complex<_Tp> __c(_Tp(1) / _S_fp_min);
-      std::complex<_Tp> __d(_Tp(1) / __b);
+      std::complex<_Tp> __b(_Tp{1}, __t);
+      std::complex<_Tp> __c(_Tp{1} / _S_fp_min);
+      std::complex<_Tp> __d(_Tp{1} / __b);
       std::complex<_Tp> __h(__d);
       unsigned int i = 2;
       while (true)
 	{
 	  _Tp __a = -(i - 1) * (i - 1);
-	  __b += _Tp(2);
-	  __d = _Tp(1) / (__a * __d + __b);
+	  __b += _Tp{2};
+	  __d = _Tp{1} / (__a * __d + __b);
 	  __c = __b + __a / __c;
 	  auto __del = __c * __d;
 	  __h *= __del;
-	  if (std::abs(__del.real() - _Tp(1)) + std::abs(__del.imag()) < _S_eps)
+	  if (std::abs(__del.real() - _Tp{1}) + std::abs(__del.imag()) < _S_eps)
 	    break;
 	  if (i > _S_max_iter)
 	    std::__throw_runtime_error("chishi: "
 				       "continued fraction evaluation failed");
 	  ++i;
 	}
-      __h *= std::polar(_Tp(1), -__t);
+      __h *= std::polar(_Tp{1}, -__t);
       _Chi = -__h.real();
       _Shi = _S_pi_2 + __h.imag();
 
@@ -95,7 +95,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __chshint_series(_Tp __t, _Tp& _Chi, _Tp& _Shi)
     {
       constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp(5) * std::numeric_limits<_Tp>::epsilon();
+      constexpr auto _S_eps = _Tp{5} * std::numeric_limits<_Tp>::epsilon();
       constexpr auto _S_fp_min = std::numeric_limits<_Tp>::min();
       constexpr auto _S_gamma_e = std::__detail::__numeric_constants<_Tp>::__gamma_e();
 
@@ -104,7 +104,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__t * __t < _S_fp_min)
 	{
 	  //  Avoid underflow.
-	  _Csum = _Tp(0);
+	  _Csum = _Tp{0};
 	  _Ssum = __t;
 	}
       else
@@ -150,12 +150,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *  @brief This function returns the hyperbolic cosine @f$ Ci(x) @f$
    *    and hyperbolic sine @f$ Si(x) @f$ integrals as a pair.
-   * 
+   *
    *  The hyperbolic cosine integral is defined by:
    *  @f[
    *      Chi(x) = \gamma_E + \log(x) + \int_0^x dt \frac{\cosh(t) - 1}{t}
    *  @f]
-   * 
+   *
    *  The hyperbolic sine integral is defined by:
    *  @f[
    *      Shi(x) = \int_0^x dt \frac{\sinh(t)}{t}
@@ -166,17 +166,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __chshint(_Tp __x, _Tp& _Chi, _Tp& _Shi)
     {
       auto __t = std::abs(__x);
-      if (__t == _Tp(0))
+      if (__t == _Tp{0})
 	{
 	  _Chi = -std::numeric_limits<_Tp>::infinity();
-	  _Shi = _Tp(0);
+	  _Shi = _Tp{0};
 	}
-      else if (__t > _Tp(2))
+      else if (__t > _Tp{2})
 	__chshint_cont_frac(__t, _Chi, _Shi);
       else
 	__chshint_series(__t, _Chi, _Shi);
 
-      if (__x < _Tp(0))
+      if (__x < _Tp{0})
 	_Shi = -_Shi;
 
       return std::make_pair(_Chi, _Shi);
