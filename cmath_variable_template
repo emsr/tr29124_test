@@ -216,7 +216,7 @@ inline namespace math_constants
   /// Constant: @f$ 1 / \sqrt(2) @f$.
   template<typename _RealType>
     constexpr _RealType
-    m_sqrt_1_2      = 7.0710'67811'86547'52440'08443'62104'84903'92845e-1L; // M_SQRT1_2l
+    m_1_sqrt_2      = 7.0710'67811'86547'52440'08443'62104'84903'92845e-1L; // M_SQRT1_2l
 
   /// Constant: Catalan's @f$ G = 1 - 1/9 + 1/25 - 1/49 + 1/81 - ... @f$.
   template<typename _RealType>
