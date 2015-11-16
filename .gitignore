@@ -47,3 +47,4 @@ test_polynomial
 hankel_toy
 dilog
 test_airy
+test_promote_num

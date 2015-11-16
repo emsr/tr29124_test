@@ -52,7 +52,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __term(1);
       while (true)
 	{
-	  __term *= -(_Tp{2} / _Tp{2 * __k + 1}) * __x2;
+	  __term *= -(_Tp{2} / _Tp(2 * __k + 1)) * __x2;
 	  __sum += __term;
 	  ++__k;
 	  if (std::abs(__term) < std::numeric_limits<_Tp>::epsilon())
@@ -81,7 +81,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __init = true;
 	  for (unsigned int __i = 1; __i <= __n_max; ++__i)
 	    {
-	      _Tp __y = _Tp{2 * __i - 1} * _S_H;
+	      _Tp __y = _Tp(2 * __i - 1) * _S_H;
 	      __c[__i] = std::exp(-__y * __y);
 	    }
 	}
@@ -91,7 +91,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __xp = __xx - __n0 * _S_H;
       auto __e1 = std::exp(_Tp{2} * __xp * _S_H);
       auto __e2 = __e1 * __e1;
-      auto __d1 = _Tp{__n0} + _Tp{1};
+      auto __d1 = _Tp(__n0) + _Tp{1};
       auto __d2 = __d1 - _Tp{2};
       auto __sum = _Tp{0};
       for (unsigned int __i = 1; __i <= __n_max; ++__i)
@@ -112,10 +112,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __dawson(_Tp __x)
     {
+      static constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
       constexpr _Tp _S_x_min{0.2L};
 
       if (__isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return _S_nan;
       else if (std::abs(__x) < _S_x_min)
 	return __dawson_series(__x);
       else

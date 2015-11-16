@@ -176,7 +176,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __zeta = _Tp{0};
       for (unsigned int __i = 1; __i < _S_max_iter; ++__i)
 	{
-	  _Tp __term = __sgn / std::pow(_Tp{__i}, __s);
+	  _Tp __term = __sgn / std::pow(_Tp(__i), __s);
 	  if (std::abs(__term) < std::numeric_limits<_Tp>::epsilon())
 	    break;
 	  __zeta += __term;
@@ -249,7 +249,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Tp __bincoeff = _Tp{1};
 	  for (unsigned int __j = 1; __j <= __i; ++__j)
 	    {
-	      __bincoeff *= -_Tp{__i - __j + 1} / _Tp{__j};
+	      __bincoeff *= -_Tp(__i - __j + 1) / _Tp(__j);
 	      if(std::fabs(__bincoeff) > __max_bincoeff )
 	      {
 		//  This only gets hit for x << 0.
@@ -413,7 +413,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr _Tp _S_max_bincoeff = std::numeric_limits<_Tp>::max_exponent10
 				    * std::log(_Tp{10}) - _Tp{1};
 
-      constexpr unsigned int __maxit = 10000;
+      constexpr unsigned int _S_maxit = 10000;
       __zeta = _Tp{0.5L}; // Zeroth order contribution already calculated.
       for (unsigned int __i = 1; __i < _S_maxit; ++__i)
 	{
@@ -422,18 +422,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Tp __bincoeff = _Tp{1};
 	  for (unsigned int __j = 1; __j <= __i; ++__j)
 	    {
-	      __bincoeff *= -_Tp{__i - __j + 1} / _Tp{__j};
+	      __bincoeff *= -_Tp(__i - __j + 1) / _Tp(__j);
 	      if(std::fabs(__bincoeff) > _S_max_bincoeff )
 	      {
 		//  This only gets hit for x << 0.
 		__punt = true;
 		break;
 	      }
-	      __term += __bincoeff * std::pow(_Tp{__a + __j}, -__s);
+	      __term += __bincoeff * std::pow(_Tp(__a + __j), -__s);
 	    }
 	  if (__punt)
 	    break;
-	  __term /= _Tp{__i + 1};
+	  __term /= _Tp(__i + 1);
 	  if (std::abs(__term / __zeta) < _S_eps)
 	    break;
 	  __zeta += __term;

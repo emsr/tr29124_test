@@ -44,14 +44,19 @@
   This would go in some <cmath> or another.
  */
 
+#if __cplusplus <= 201103L
+# include <bits/c++14_warning.h>
+#else
 
 namespace std
 {
-namespace constants
+namespace experimental
 {
-namespace math_constants
+inline namespace maths_v1
 {
-inline namespace v1
+inline namespace constants
+{
+inline namespace math_constants
 {
   /// Constant: @f$ \pi @f$.
   template<typename _RealType>
@@ -186,7 +191,7 @@ inline namespace v1
   /// Constant: Golden Ratio @f$ \phi = (1 + \sqrt{5})/2 @f$.
   template<typename _RealType>
     constexpr _RealType
-    m_golden_ratio  = 1.6180'33988'74989'48482'04586'83436'56381'17720e+0L;
+    m_phi           = 1.6180'33988'74989'48482'04586'83436'56381'17720e+0L;
 
   /// Constant: @f$ \sqrt(2) @f$.
   template<typename _RealType>
@@ -219,10 +224,34 @@ inline namespace v1
     m_catalan       = 9.1596'55941'77219'01505'46035'14932'38411'07741e-1L;
 
   /// Constant: @f$ \pi^2/6 @f$.
+  template<typename _RealType>
     constexpr _RealType
     m_pi2_6         = 1.6449'34066'84822'64364'72415'16664'60251'89218e+0L;
 
-} // inline namespace v1
-} // namespace math_constants
-} // namespace constants
+  /// Constant: @f$ min(RealType) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_min           = std::numeric_limits<_RealType>::min();
+
+  /// Constant: @f$ max(RealType) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_max           = std::numeric_limits<_RealType>::max();
+
+  /// Constant: @f$ inf(RealType) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_inf           = std::numeric_limits<_RealType>::infinity();
+
+  /// Constant: @f$ NaN(RealType) @f$.
+  template<typename _RealType>
+    constexpr _RealType
+    m_NaN           = std::numeric_limits<_RealType>::quiet_NaN();
+
+} // inline namespace math_constants
+} // inline namespace constants
+} // inline namespace maths_v1
+} // namespace experimental
 } // namespace std
+
+#endif // C++14

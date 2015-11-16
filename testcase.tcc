@@ -197,13 +197,14 @@ template<typename Tp>
   ///  @brief  Difference two one-argument functions.
   ///
   template<typename Tp, typename Tp1>
-  void
+  unsigned int
   maketest(std::function<Tp(Tp1)> function1,
            std::function<Tp(Tp1)> function2,
            const std::string & nsname,
            const std::string & funcname,
            const std::string & arg1, const std::vector<Tp1> & argument1,
-           std::ostream & output, bool write_header = true)
+           std::ostream & output,
+           bool write_header = true, bool write_main = true, unsigned int test = 1)
   {
     const int old_prec = output.precision(std::numeric_limits<Tp>::max_digits10);
     output.flags(std::ios::showpoint);
@@ -218,7 +219,6 @@ template<typename Tp>
       output << header << '\n';
 
     const Tp eps = std::numeric_limits<Tp>::epsilon();
-    unsigned int test = 1;
 
     std::vector<std::tuple<Tp, Tp1>> crud;
 
@@ -314,20 +314,23 @@ template<typename Tp>
 	++test;
       }
 
-    output << '\n';
-    output << "int\n";
-    output << "main()\n";
-    output << "{\n";
-    output.fill('0');
-    for (unsigned int t = 1; t < test; ++t)
+    if (write_main)
       {
-	output << "  test" << std::setw(3) << t << "<" << type_strings<Tp>::type() << ">();\n";
+	output << '\n';
+	output << "int\n";
+	output << "main()\n";
+	output << "{\n";
+	output.fill('0');
+	for (unsigned int t = 1; t < test; ++t)
+	  {
+	    output << "  test" << std::setw(3) << t << "<" << type_strings<Tp>::type() << ">();\n";
+	  }
+	output.fill(' ');
+	output << "  return 0;\n";
+	output << "}\n";
       }
-    output.fill(' ');
-    output << "  return 0;\n";
-    output << "}\n";
 
-    return;
+    return test;
   }
 
 
@@ -335,14 +338,15 @@ template<typename Tp>
 ///  @brief  Difference two two-argument functions.
 ///
 template<typename Tp, typename Tp1, typename Tp2>
-  void
+  unsigned int
   maketest(std::function<Tp(Tp1,Tp2)> function1,
            std::function<Tp(Tp1,Tp2)> function2,
            const std::string & nsname,
            const std::string & funcname,
            const std::string & arg1, const std::vector<Tp1> & argument1,
            const std::string & arg2, const std::vector<Tp2> & argument2,
-           std::ostream & output, bool write_header = true)
+           std::ostream & output,
+           bool write_header = true, bool write_main = true, unsigned int test = 1)
   {
     const int old_prec = output.precision(std::numeric_limits<Tp>::max_digits10);
     output.flags(std::ios::showpoint);
@@ -353,7 +357,6 @@ template<typename Tp, typename Tp1, typename Tp2>
       output << header << '\n';
 
     const Tp eps = std::numeric_limits<Tp>::epsilon();
-    unsigned int test = 1;
 
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
@@ -450,20 +453,23 @@ template<typename Tp, typename Tp1, typename Tp2>
           }
       }
 
-    output << '\n';
-    output << "int\n";
-    output << "main()\n";
-    output << "{\n";
-    output.fill('0');
-    for (unsigned int t = 1; t < test; ++t)
+    if (write_main)
       {
-	output << "  test" << std::setw(3) << t << "<" << type_strings<Tp>::type() << ">();\n";
+	output << '\n';
+	output << "int\n";
+	output << "main()\n";
+	output << "{\n";
+	output.fill('0');
+	for (unsigned int t = 1; t < test; ++t)
+	  {
+	    output << "  test" << std::setw(3) << t << "<" << type_strings<Tp>::type() << ">();\n";
+	  }
+	output.fill(' ');
+	output << "  return 0;\n";
+	output << "}\n";
       }
-    output.fill(' ');
-    output << "  return 0;\n";
-    output << "}\n";
 
-    return;
+    return test;
   }
 
 
@@ -471,7 +477,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 ///  @brief  Difference two three-argument functions.
 ///
 template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
-  void
+  unsigned int
   maketest(std::function<Tp(Tp1,Tp2,Tp3)> function1,
            std::function<Tp(Tp1,Tp2,Tp3)> function2,
            const std::string & nsname,
@@ -479,7 +485,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
            const std::string & arg1, const std::vector<Tp1> & argument1,
            const std::string & arg2, const std::vector<Tp2> & argument2,
            const std::string & arg3, const std::vector<Tp3> & argument3,
-           std::ostream & output, bool write_header = true)
+           std::ostream & output,
+           bool write_header = true, bool write_main = true, unsigned int test = 1)
   {
     const int old_prec = output.precision(std::numeric_limits<Tp>::max_digits10);
     output.flags(std::ios::showpoint);
@@ -490,7 +497,6 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
       output << header << '\n';
 
     const Tp eps = std::numeric_limits<Tp>::epsilon();
-    unsigned int test = 1;
 
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
@@ -597,20 +603,24 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
           }
       }
 
-    output << '\n';
-    output << "int\n";
-    output << "main()\n";
-    output << "{\n";
-    output.fill('0');
-    for (unsigned int t = 1; t < test; ++t)
-      {
-	output << "  test" << std::setw(3) << t << "<" << type_strings<Tp>::type() << ">();\n";
-      }
-    output.fill(' ');
-    output << "  return 0;\n";
-    output << "}\n";
 
-    return;
+    if (write_main)
+      {
+	output << '\n';
+	output << "int\n";
+	output << "main()\n";
+	output << "{\n";
+	output.fill('0');
+	for (unsigned int t = 1; t < test; ++t)
+	  {
+	    output << "  test" << std::setw(3) << t << "<" << type_strings<Tp>::type() << ">();\n";
+	  }
+	output.fill(' ');
+	output << "  return 0;\n";
+	output << "}\n";
+      }
+
+    return test;
   }
 
 
@@ -618,7 +628,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 ///  @brief  Difference two four-argument functions.
 ///
 template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
-  void
+  unsigned int
   maketest(std::function<Tp(Tp1,Tp2,Tp3,Tp4)> function1,
            std::function<Tp(Tp1,Tp2,Tp3,Tp4)> function2,
            const std::string & nsname,
@@ -627,7 +637,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
            const std::string & arg2, const std::vector<Tp2> & argument2,
            const std::string & arg3, const std::vector<Tp3> & argument3,
            const std::string & arg4, const std::vector<Tp4> & argument4,
-           std::ostream & output, bool write_header = true)
+           std::ostream & output,
+           bool write_header = true, bool write_main = true, unsigned int test = 1)
   {
     const int old_prec = output.precision(std::numeric_limits<Tp>::max_digits10);
     output.flags(std::ios::showpoint);
@@ -638,7 +649,6 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
       output << header << '\n';
 
     const Tp eps = std::numeric_limits<Tp>::epsilon();
-    unsigned int test = 1;
 
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
@@ -752,19 +762,22 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
           }
       }
 
-    output << '\n';
-    output << "int\n";
-    output << "main()\n";
-    output << "{\n";
-    output.fill('0');
-    for (unsigned int t = 1; t < test; ++t)
+    if (write_main)
       {
-	output << "  test" << std::setw(3) << t << "<" << type_strings<Tp>::type() << ">();\n";
+	output << '\n';
+	output << "int\n";
+	output << "main()\n";
+	output << "{\n";
+	output.fill('0');
+	for (unsigned int t = 1; t < test; ++t)
+	  {
+	    output << "  test" << std::setw(3) << t << "<" << type_strings<Tp>::type() << ">();\n";
+	  }
+	output.fill(' ');
+	output << "  return 0;\n";
+	output << "}\n";
       }
-    output.fill(' ');
-    output << "  return 0;\n";
-    output << "}\n";
 
-    return;
+    return test;
   }
 

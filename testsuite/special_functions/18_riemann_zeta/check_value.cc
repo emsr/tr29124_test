@@ -115,7 +115,7 @@ template<typename Tp>
     unsigned int num_datum = MAX_ITERATIONS;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::riemann_zeta(Tp(data001[i].x));
+	const Tp f = std::riemann_zeta(Tp(data001[i].s));
 	const Tp f0 = data001[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
@@ -130,13 +130,6 @@ template<typename Tp>
       }
     VERIFY(max_abs_frac < Tp(0.025000000000000001));
   }
-
-int
-main()
-{
-  test001<double>();
-  return 0;
-}
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
 //
 // Copyright (C) 2015 Free Software Foundation, Inc.
@@ -166,7 +159,7 @@ main()
 
 
 // Test data.
-testcase_riemann_zeta<double> data001[] = {
+testcase_riemann_zeta<double> data002[] = {
   { 5.5915824411777502, 1.2000000000000000 },
   { 3.1055472779775792, 1.3999999999999999 },
   { 2.2857656656801324, 1.6000000000000001 },
@@ -317,7 +310,7 @@ testcase_riemann_zeta<double> data001[] = {
 // Test function.
 template<typename Tp>
   void
-  test001()
+  test002()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
@@ -326,8 +319,8 @@ template<typename Tp>
     unsigned int num_datum = MAX_ITERATIONS;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::riemann_zeta(Tp(data001[i].x));
-	const Tp f0 = data001[i].f0;
+	const Tp f = std::riemann_zeta(Tp(data002[i].s));
+	const Tp f0 = data002[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -346,5 +339,6 @@ int
 main()
 {
   test001<double>();
+  test002<double>();
   return 0;
 }

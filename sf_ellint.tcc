@@ -463,10 +463,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __comp_ellint_1(_Tp __k)
     {
+      static constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
       if (__isnan(__k))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return _S_nan;
       else if (std::abs(__k) == _Tp{1})
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return _S_nan;
       else
 	return __ellint_rf(_Tp{0}, _Tp{1} - __k * __k, _Tp{1});
     }
@@ -489,17 +490,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __ellint_1(_Tp __k, _Tp __phi)
     {
+      static constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
+      static constexpr auto _S_pi = __numeric_constants<_Tp>::__pi();
       if (__isnan(__k) || __isnan(__phi))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return _S_nan;
       else if (std::abs(__k) > _Tp{1})
 	std::__throw_domain_error(__N("__ellint_1: bad argument"));
       else
 	{
 	  //  Reduce phi to -pi/2 < phi < +pi/2.
-	  const int __n = std::floor(__phi / __numeric_constants<_Tp>::__pi()
-				   + _Tp{0.5L});
-	  const _Tp __phi_red = __phi
-			      - __n * __numeric_constants<_Tp>::__pi();
+	  const int __n = std::floor(__phi / _S_pi + _Tp{0.5L});
+	  const _Tp __phi_red = __phi - __n * _S_pi;
 
 	  const _Tp __s = std::sin(__phi_red);
 	  const _Tp __c = std::cos(__phi_red);
@@ -531,8 +532,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __comp_ellint_2(_Tp __k)
     {
+      static constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
       if (__isnan(__k))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return _S_nan;
       else if (std::abs(__k) == 1)
 	return _Tp{1};
       else if (std::abs(__k) > _Tp{1})
@@ -563,17 +565,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __ellint_2(_Tp __k, _Tp __phi)
     {
+      static constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
+      static constexpr auto _S_pi = __numeric_constants<_Tp>::__pi();
       if (__isnan(__k) || __isnan(__phi))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return _S_nan;
       else if (std::abs(__k) > _Tp{1})
 	std::__throw_domain_error(__N("__ellint_2: bad argument"));
       else
 	{
 	  //  Reduce phi to -pi/2 < phi < +pi/2.
-	  const int __n = std::floor(__phi / __numeric_constants<_Tp>::__pi()
-				   + _Tp{0.5L});
-	  const _Tp __phi_red = __phi
-			      - __n * __numeric_constants<_Tp>::__pi();
+	  const int __n = std::floor(__phi / _S_pi + _Tp{0.5L});
+	  const _Tp __phi_red = __phi - __n * _S_pi;
 
 	  const _Tp __kk = __k * __k;
 	  const _Tp __s = std::sin(__phi_red);
@@ -615,8 +617,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __comp_ellint_3(_Tp __k, _Tp __nu)
     {
+      static constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
       if (__isnan(__k) || __isnan(__nu))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return _S_nan;
       else if (__nu == _Tp{1})
 	return std::numeric_limits<_Tp>::infinity();
       else if (std::abs(__k) > _Tp{1})
@@ -653,17 +656,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __ellint_3(_Tp __k, _Tp __nu, _Tp __phi)
     {
+      static constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
+      static constexpr auto _S_pi = __numeric_constants<_Tp>::__pi();
       if (__isnan(__k) || __isnan(__nu) || __isnan(__phi))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return _S_nan;
       else if (std::abs(__k) > _Tp{1})
 	std::__throw_domain_error(__N("__ellint_3: bad argument"));
       else
 	{
 	  //  Reduce phi to -pi/2 < phi < +pi/2.
-	  const int __n = std::floor(__phi / __numeric_constants<_Tp>::__pi()
-				   + _Tp{0.5L});
-	  const _Tp __phi_red = __phi
-			      - __n * __numeric_constants<_Tp>::__pi();
+	  const int __n = std::floor(__phi / _S_pi + _Tp{0.5L});
+	  const _Tp __phi_red = __phi - __n * _S_pi;
 
 	  const _Tp __kk = __k * __k;
 	  const _Tp __s = std::sin(__phi_red);

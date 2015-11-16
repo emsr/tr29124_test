@@ -52,6 +52,8 @@ main()
 
   std::vector<double> vab{ 0.0, 0.5, 1.0, 2.0, 5.0, 10.0, 20.0 };
 
+  unsigned int test = 1;
+
   const std::string path = ".";
   const std::string prefix = "/check_";
 
@@ -191,20 +193,21 @@ main()
   filename = get_filename(path, prefix, funcname, "",  ".cc");
   std::ofstream file_cyl_bessel_i(filename.c_str());
   typedef double cyl_bessel_i(double, double);
+  test = 
   maketest<double, double, double>((cyl_bessel_i*)std::cyl_bessel_i,
                                    wrap_gsl_sf_bessel_Inu,
                                    "std", funcname,
                                    "nu", vborderd,
                                    "x", fill_argument(std::make_pair(0.0, 5.0),
                                                       std::make_pair(true, true), 21),
-                                   file_cyl_bessel_i);
+                                   file_cyl_bessel_i, true, false);
   maketest<double, double, double>((cyl_bessel_i*)std::cyl_bessel_i,
                                    wrap_gsl_sf_bessel_Inu,
                                    "std", funcname,
                                    "nu", vborderd,
                                    "x", fill_argument(std::make_pair(0.0, 100.0),
                                                       std::make_pair(true, true), 21),
-                                   file_cyl_bessel_i, false);
+                                   file_cyl_bessel_i, false, true, test);
 
   //  5.2.1.9  Cylindrical Bessel functions (of the first kind).
   std::cout << "cyl_bessel_j" << std::endl;
@@ -212,20 +215,21 @@ main()
   filename = get_filename(path, prefix, funcname, "",  ".cc");
   std::ofstream file_cyl_bessel_j(filename.c_str());
   typedef double cyl_bessel_j(double, double);
+  test = 
   maketest<double, double, double>((cyl_bessel_j*)std::cyl_bessel_j,
                                    wrap_gsl_sf_bessel_Jnu,
                                    "std", funcname,
                                    "nu", vborderd,
                                    "x", fill_argument(std::make_pair(0.0, 5.0),
                                                       std::make_pair(true, true), 21),
-                                   file_cyl_bessel_j);
+                                   file_cyl_bessel_j, true, false);
   maketest<double, double, double>((cyl_bessel_j*)std::cyl_bessel_j,
                                    wrap_gsl_sf_bessel_Jnu,
                                    "std", funcname,
                                    "nu", vborderd,
                                    "x", fill_argument(std::make_pair(0.0, 100.0),
                                                       std::make_pair(true, true), 21),
-                                   file_cyl_bessel_j, false);
+                                   file_cyl_bessel_j, false, true, test);
 
   //  5.2.1.9  Cylindrical Bessel functions (of the first kind) asymptotics.
 /*
@@ -248,20 +252,21 @@ main()
   filename = get_filename(path, prefix, funcname, "",  ".cc");
   std::ofstream file_cyl_bessel_k(filename.c_str());
   typedef double cyl_bessel_k(double, double);
+  test = 
   maketest<double, double, double>((cyl_bessel_k*)std::cyl_bessel_k,
                                    wrap_gsl_sf_bessel_Knu,
                                    "std", funcname,
                                    "nu", vborderd,
                                    "x", fill_argument(std::make_pair(0.0, 5.0),
                                                       std::make_pair(false, true), 21),
-                                   file_cyl_bessel_k);
+                                   file_cyl_bessel_k, true, false);
   maketest<double, double, double>((cyl_bessel_k*)std::cyl_bessel_k,
                                    wrap_gsl_sf_bessel_Knu,
                                    "std", funcname,
                                    "nu", vborderd,
                                    "x", fill_argument(std::make_pair(0.0, 100.0),
                                                       std::make_pair(false, true), 21),
-                                   file_cyl_bessel_k, false);
+                                   file_cyl_bessel_k, false, true, test);
 
   //  5.2.1.11  Cylindrical Neumann functions.
   // Skip the pole at the origin.
@@ -270,20 +275,21 @@ main()
   filename = get_filename(path, prefix, funcname, "",  ".cc");
   std::ofstream file_cyl_neumann(filename.c_str());
   typedef double cyl_neumann(double, double);
+  test = 
   maketest<double, double, double>((cyl_neumann*)std::cyl_neumann,
                                    wrap_gsl_sf_bessel_Ynu,
                                    "std", funcname,
                                    "nu", vborderd,
                                    "x", fill_argument(std::make_pair(0.0, 5.0),
                                                       std::make_pair(false, true), 21),
-                                   file_cyl_neumann);
+                                   file_cyl_neumann, true, false);
   maketest<double, double, double>((cyl_neumann*)std::cyl_neumann,
                                    wrap_gsl_sf_bessel_Ynu,
                                    "std", funcname,
                                    "nu", vborderd,
                                    "x", fill_argument(std::make_pair(0.0, 100.0),
                                                       std::make_pair(false, true), 21),
-                                   file_cyl_neumann, false);
+                                   file_cyl_neumann, false, true, test);
 
   //  5.2.1.11  Cylindrical Neumann functions asymptotics.
   // Skip the pole at the origin.
@@ -354,18 +360,19 @@ main()
   filename = get_filename(path, prefix, funcname, "",  ".cc");
   std::ofstream file_expint(filename.c_str());
   typedef double expint(double);
+  test = 
   maketest<double, double>((expint*)std::expint,
                            wrap_gsl_sf_expint_Ei,
                            "std", funcname,
                            "x", fill_argument(std::make_pair(-50.0, 0.0),
                                               std::make_pair(true, false), 51),
-                           file_expint);
+                           file_expint, true, false);
   maketest<double, double>((expint*)std::expint,
                            wrap_gsl_sf_expint_Ei,
                            "std", funcname,
                            "x", fill_argument(std::make_pair(0.0, 50.0),
                                               std::make_pair(false, true), 51),
-                           file_expint, false);
+                           file_expint, false, true, test);
 
   //  5.2.1.16  Hermite polynomials
   std::cout << "hermite  UNTESTED" << std::endl;
@@ -424,39 +431,62 @@ main()
   filename = get_filename(path, prefix, funcname, "",  ".cc");
   std::ofstream file_riemann_zeta(filename.c_str());
   typedef double riemann_zeta(double);
+  test = 
   maketest<double, double>((riemann_zeta*)std::riemann_zeta,
                            wrap_gsl_sf_zeta,
                            "std", funcname,
-                           "x", fill_argument(std::make_pair(-10.0, 1.0),
+                           "s", fill_argument(std::make_pair(-10.0, 1.0),
                                               std::make_pair(true, false), 56),
-                           file_riemann_zeta);
+                           file_riemann_zeta, true, false);
   maketest<double, double>((riemann_zeta*)std::riemann_zeta,
                            wrap_gsl_sf_zeta,
                            "std", funcname,
-                           "x", fill_argument(std::make_pair(1.0, 30.0),
+                           "s", fill_argument(std::make_pair(1.0, 30.0),
                                               std::make_pair(false, true), 146),
-                           file_riemann_zeta, false);
-
+                           file_riemann_zeta, false, true, test);
+/*
+  //  Hurwitz zeta function.
+  std::cout << "hurwitz_zeta" << std::endl;
+  //  Skip the pole at 1.
+  funcname = "hurwitz_zeta";
+  filename = get_filename(path, prefix, funcname, "",  ".cc");
+  std::ofstream file_hurwitz_zeta(filename.c_str());
+  typedef double hurwitz_zeta(double, double);
+  test = 
+  maketest<double, double>((riemann_zeta*)__gnu_cxx::hurwitz_zeta,
+                           wrap_gsl_sf_zeta,
+                           "__gnu_cxx", funcname,
+                           "s", fill_argument(std::make_pair(-10.0, 1.0),
+                                              std::make_pair(true, false), 56),
+                           file_hurwitz_zeta, true, false);
+  maketest<double, double>((riemann_zeta*)__gnu_cxx::hurwitz_zeta,
+                           wrap_gsl_sf_zeta,
+                           "__gnu_cxx", funcname,
+                           "s", fill_argument(std::make_pair(1.0, 30.0),
+                                              std::make_pair(false, true), 146),
+                           file_hurwitz_zeta, false, true, test);
+*/
   //  5.2.1.21  Spherical Bessel functions.
   std::cout << "sph_bessel" << std::endl;
   funcname = "sph_bessel";
   filename = get_filename(path, prefix, funcname, "",  ".cc");
   std::ofstream file_sph_bessel(filename.c_str());
   typedef double sph_bessel(unsigned int, double);
+  test = 
   maketest<double, unsigned int, double>((sph_bessel*)std::sph_bessel,
                                          wrap_gsl_sf_bessel_jl,
                                          "std", funcname,
                                          "n", sborder,
                                          "x", fill_argument(std::make_pair(0.0, 5.0),
                                                             std::make_pair(true, true), 21),
-                                         file_sph_bessel);
+                                         file_sph_bessel, true, false);
   maketest<double, unsigned int, double>((sph_bessel*)std::sph_bessel,
                                          wrap_gsl_sf_bessel_jl,
                                          "std", funcname,
                                          "n", sborder,
                                          "x", fill_argument(std::make_pair(0.0, 100.0),
                                                             std::make_pair(true, true), 21),
-                                         file_sph_bessel, false);
+                                         file_sph_bessel, false, true, test);
 
   //  5.2.1.22  Spherical Legendre functions.
   std::cout << "sph_legendre" << std::endl;
@@ -478,18 +508,19 @@ main()
   filename = get_filename(path, prefix, funcname, "",  ".cc");
   std::ofstream file_sph_neumann(filename.c_str());
   typedef double sph_neumann(unsigned int, double);
+  test = 
   maketest<double, unsigned int, double>((sph_neumann*)std::sph_neumann, wrap_gsl_sf_bessel_yl,
                                          "std", funcname,
                                          "n", sborder,
                                          "x", fill_argument(std::make_pair(0.0, 5.0),
                                                             std::make_pair(false, true), 21),
-                                         file_sph_neumann);
+                                         file_sph_neumann, true, false);
   maketest<double, unsigned int, double>((sph_neumann*)std::sph_neumann, wrap_gsl_sf_bessel_yl,
                                          "std", funcname,
                                          "n", sborder,
                                          "x", fill_argument(std::make_pair(0.0, 100.0),
                                                             std::make_pair(false, true), 21),
-                                         file_sph_neumann, false);
+                                         file_sph_neumann, false, true, test);
 
   return 0;
 }

@@ -97,7 +97,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      //  This arrangement is supposed to be better for roundoff
 	      //  protection, Arfken, 2nd Ed, Eq 12.17a.
 	      __p_l = _Tp{2} * __x * __p_lm1 - __p_lm2
-		    - (__x * __p_lm1 - __p_lm2) / _Tp{__ll};
+		    - (__x * __p_lm1 - __p_lm2) / _Tp(__ll);
 	      __p_lm2 = __p_lm1;
 	      __p_lm1 = __p_l;
 	    }
@@ -157,7 +157,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (__l == __m)
 	    return __p_mm;
 
-	  _Tp __p_mp1m = _Tp{2 * __m + 1} * __x * __p_mm;
+	  _Tp __p_mp1m = _Tp(2 * __m + 1) * __x * __p_mm;
 	  if (__l == __m + 1)
 	    return __p_mp1m;
 
@@ -166,8 +166,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Tp __p_lm = _Tp{0};
 	  for (unsigned int __j = __m + 2; __j <= __l; ++__j)
 	    {
-	      __p_lm = (_Tp{2 * __j - 1} * __x * __P_lm1m
-		      - _Tp{__j + __m - 1} * __p_lm2m) / _Tp{__j - __m};
+	      __p_lm = (_Tp(2 * __j - 1) * __x * __P_lm1m
+		      - _Tp(__j + __m - 1) * __p_lm2m) / _Tp(__j - __m);
 	      __p_lm2m = __P_lm1m;
 	      __P_lm1m = __p_lm;
 	    }
@@ -217,7 +217,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (__m == 0)
 	{
 	  _Tp __P = __poly_legendre_p(__l, __x);
-	  _Tp __fact = std::sqrt(_Tp{2 * __l + 1}
+	  _Tp __fact = std::sqrt(_Tp(2 * __l + 1)
 		     / (_Tp{4} * __numeric_constants<_Tp>::__pi()));
 	  __P *= __fact;
 	  return __P;
@@ -232,11 +232,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  // Y_m^m(x) = sqrt( (2m+1)/(4pi m) gamma(m+1/2)/gamma(m) )
 	  //             (-1)^m (1-x^2)^(m/2) / pi^(1/4)
 	  const _Tp __sgn = (__m % 2 == 1 ? -_Tp{1} : _Tp{1});
-	  const _Tp __y_mp1m_factor = __x * std::sqrt(_Tp{2 * __m + 3});
+	  const _Tp __y_mp1m_factor = __x * std::sqrt(_Tp(2 * __m + 3));
 	  const _Tp __lncirc = std::log1p(-__x * __x);
 	  //  Gamma(m+1/2) / Gamma(m)
-	  const _Tp __lnpoch = __log_gamma(_Tp{__m + 0.5L})
-			     - __log_gamma(_Tp{__m});
+	  const _Tp __lnpoch = __log_gamma(_Tp(__m + 0.5L))
+			     - __log_gamma(_Tp(__m));
 	  const _Tp __lnpre_val =
 		    -_Tp{0.25L} * __numeric_constants<_Tp>::__lnpi()
 		    + _Tp{0.5L} * (__lnpoch + __m * __lncirc);
@@ -260,15 +260,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      // Compute Y_l^m, l > m+1, upward recursion on l.
 	      for ( int __ll = __m + 2; __ll <= __l; ++__ll)
 		{
-		  const _Tp __rat1 = _Tp{__ll - __m} / _Tp{__ll + __m};
-		  const _Tp __rat2 = _Tp{__ll - __m - 1} / _Tp{__ll + __m - 1};
-		  const _Tp __fact1 = std::sqrt(__rat1 * _Tp{2 * __ll + 1}
-						       * _Tp{2 * __ll - 1});
-		  const _Tp __fact2 = std::sqrt(__rat1 * __rat2 * _Tp{2 * __ll + 1}
-								/ _Tp{2 * __ll - 3});
+		  const _Tp __rat1 = _Tp(__ll - __m) / _Tp(__ll + __m);
+		  const _Tp __rat2 = _Tp(__ll - __m - 1) / _Tp(__ll + __m - 1);
+		  const _Tp __fact1 = std::sqrt(__rat1 * _Tp(2 * __ll + 1)
+						       * _Tp(2 * __ll - 1));
+		  const _Tp __fact2 = std::sqrt(__rat1 * __rat2 * _Tp(2 * __ll + 1)
+								/ _Tp(2 * __ll - 3));
 		  __y_lm = (__x * __y_mp1m * __fact1
-			 - _Tp{__ll + __m - 1} * __y_mm * __fact2)
-			 / _Tp{__ll - __m};
+			 - _Tp(__ll + __m - 1) * __y_mm * __fact2)
+			 / _Tp(__ll - __m);
 		  __y_mm = __y_mp1m;
 		  __y_mp1m = __y_lm;
 		}

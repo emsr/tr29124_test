@@ -165,7 +165,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    {
 	      _Tp __psi = -__numeric_constants<_Tp>::gamma_e();
 	      for (int __ii = 1; __ii <= __nm1; ++__ii)
-		__psi += _Tp{1} / _Tp{__ii};
+		__psi += _Tp{1} / _Tp(__ii);
 	      __del = __fact * (__psi - std::log(__x));
 	    }
 	  __ans += __del;
@@ -198,7 +198,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
       const _Tp __fp_min = std::numeric_limits<_Tp>::min();
       const int __nm1 = __n - 1;
-      _Tp __b = __x + _Tp{__n};
+      _Tp __b = __x + _Tp(__n);
       _Tp __c = _Tp{1} / __fp_min;
       _Tp __d = _Tp{1} / __b;
       _Tp __h = __d;
@@ -241,12 +241,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       _Tp __En;
       _Tp __E1 = __expint_E1(__x);
-      if (__x < _Tp{__n})
+      if (__x < _Tp(__n))
 	{
 	  //  Forward recursion is stable only for n < x.
 	  __En = __E1;
 	  for (unsigned int __j = 2; __j < __n; ++__j)
-	    __En = (std::exp(-__x) - __x * __En) / _Tp{__j - 1};
+	    __En = (std::exp(-__x) - __x * __En) / _Tp(__j - 1);
 	}
       else
 	{

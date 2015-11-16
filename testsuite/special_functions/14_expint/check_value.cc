@@ -119,13 +119,6 @@ template<typename Tp>
       }
     VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
   }
-
-int
-main()
-{
-  test001<double>();
-  return 0;
-}
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
 //
 // Copyright (C) 2015 Free Software Foundation, Inc.
@@ -148,7 +141,7 @@ main()
 //  expint
 
 // Test data.
-testcase_expint<double> data001[] = {
+testcase_expint<double> data002[] = {
   { 1.8951178163559366, 1.0000000000000000 },
   { 4.9542343560018907, 2.0000000000000000 },
   { 9.9338325706254160, 3.0000000000000000 },
@@ -204,18 +197,18 @@ testcase_expint<double> data001[] = {
 // Test function.
 template<typename Tp>
   void
-  test001()
+  test002()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data001)
+    unsigned int num_datum = sizeof(data002)
 			   / sizeof(testcase_expint<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::expint(Tp(data001[i].x));
-	const Tp f0 = data001[i].f0;
+	const Tp f = std::expint(Tp(data002[i].x));
+	const Tp f0 = data002[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -234,5 +227,6 @@ int
 main()
 {
   test001<double>();
+  test002<double>();
   return 0;
 }

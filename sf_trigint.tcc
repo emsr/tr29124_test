@@ -90,7 +90,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_max_iter = 100;
       constexpr auto _S_eps = _Tp{5} * std::numeric_limits<_Tp>::epsilon();
       constexpr auto _S_fp_min = std::numeric_limits<_Tp>::min();
-      constexpr auto _S_gamma_e = std::__detail::__numeric_constants<_Tp>::__gamma_e();
+      constexpr auto _S_gamma_e
+	= std::__detail::__numeric_constants<_Tp>::__gamma_e();
 
       //  Evaluate Ci and Si by series simultaneously.
       _Tp __sumc(0), __sums(0);

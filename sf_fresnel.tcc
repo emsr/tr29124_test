@@ -51,14 +51,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       constexpr auto _S_max_iter = 100;
       constexpr auto _S_eps = _Tp{5} * std::numeric_limits<_Tp>::epsilon();
-      constexpr auto _S_piO2 = _Tp{M_PI / 2};
+      constexpr auto _S_pi = __numeric_constants<_Tp>::__pi();
+      constexpr auto _S_pi_2 = _S_pi / _Tp{2};
 
       //  Evaluate S and C by series expansion.
       auto __sum = _Tp{0};
       auto _Ssum = _Tp{0};
       auto _Csum = __ax;
       auto __sign = _Tp{1};
-      auto __fact = _S_piO2 * __ax * __ax;
+      auto __fact = _S_pi_2 * __ax * __ax;
       auto __odd = true;
       auto __term = __ax;
       auto __n = 3;
@@ -108,7 +109,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_max_iter = 100;
       constexpr auto _S_eps = _Tp{5} * std::numeric_limits<_Tp>::epsilon();
       constexpr auto _S_fp_min = std::numeric_limits<_Tp>::min();
-      constexpr auto _S_pi = _Tp{M_PI};
+      constexpr auto _S_pi = __numeric_constants<_Tp>::__pi();
 
       //  Evaluate S and C by Lentz's complex continued fraction method.
       const auto __pix2 = _S_pi * __ax * __ax;

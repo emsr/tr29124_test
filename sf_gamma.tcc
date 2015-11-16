@@ -113,7 +113,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __sum = _Tp{0};
       for (unsigned int __i = 1; __i < 1000; ++__i)
 	{
-	  _Tp __term = std::pow(_Tp{__i}, -_Tp{__n});
+	  _Tp __term = std::pow(_Tp(__i), -_Tp(__n));
 	  if (__term < std::numeric_limits<_Tp>::epsilon())
 	    break;
 	  __sum += __term;
@@ -155,7 +155,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __help = _Tp{1} / __x;
       for ( unsigned int __i = 1; __i < 20; ++__i )
 	{
-	  const _Tp __2i = _Tp{2 * __i};
+	  const _Tp __2i = _Tp(2 * __i);
 	  __help /= __2i * (__2i - _Tp{1}) * __xx;
 	  __lg += __bernoulli<_Tp>(2 * __i) * __help;
 	}
