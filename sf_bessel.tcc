@@ -153,15 +153,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr int _S_max_iter = 15000;
       constexpr _Tp _S_x_min = _Tp{2};
 
-      const int __nl = (__x < __x_min
-		    ? static_cast<int>(__nu + _Tp{0.5L})
-		    : std::max(0, static_cast<int>(__nu - __x + _Tp{1.5L})));
+      const int __n = (__x < _S_x_min
+		    ? std::nearbyint(__nu + _Tp{0.5L})
+		    : std::max(0,
+			       static_cast<int>(__nu - __x + _Tp{1.5L})));
 
-      const _Tp __mu = __nu - __nl;
+      const _Tp __mu = __nu - __n;
       const _Tp __mu2 = __mu * __mu;
       const _Tp __xi = _Tp{1} / __x;
       const _Tp __xi2 = _Tp{2} * __xi;
-      _Tp __w = __xi2 / _S_pi;
+      const _Tp _Wronski = __xi2 / _S_pi;
       int __isign = 1;
       _Tp __h = __nu * __xi;
       if (__h < _S_fp_min)
@@ -195,7 +196,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp _Jnul1 = _Jnul;
       _Tp _Jpnu1 = _Jpnul;
       _Tp __fact = __nu * __xi;
-      for (int __l = __nl; __l >= 1; --__l)
+      for (int __l = __n; __l >= 1; --__l)
 	{
 	  const _Tp _Jnutemp = __fact * _Jnul + _Jpnul;
 	  __fact -= __xi;
@@ -204,9 +205,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       if (_Jnul == _Tp{0})
 	_Jnul = _S_eps;
-      _Tp __f= _Jpnul / _Jnul;
+
+      _Tp __f = _Jpnul / _Jnul;
       _Tp _Nmu, _Nnu1, _Npmu, _Jmu;
-      if (__x < __x_min)
+      if (__x < _S_x_min)
 	{
 	  const _Tp __x2 = __x / _Tp{2};
 	  const _Tp __pimu = _S_pi * __mu;
@@ -237,12 +239,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  for (__i = 1; __i <= _S_max_iter; ++__i)
 	    {
 	      __ff = (__i * __ff + __p + __q) / (__i * __i - __mu2);
-	      __c *= __d / _Tp{__i};
-	      __p /= _Tp{__i} - __mu;
-	      __q /= _Tp{__i} + __mu;
+	      __c *= __d / _Tp(__i);
+	      __p /= _Tp(__i) - __mu;
+	      __q /= _Tp(__i) + __mu;
 	      const _Tp __del = __c * (__ff + __r * __q);
 	      __sum += __del;
-	      const _Tp __del1 = __c * __p - _Tp{__i} * __del;
+	      const _Tp __del1 = __c * __p - _Tp(__i) * __del;
 	      __sum1 += __del1;
 	      if (std::abs(__del) < _S_eps * (_Tp{1} + std::abs(__sum)))
 		break;
@@ -253,7 +255,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Nmu = -__sum;
 	  _Nnu1 = -__sum1 * __xi2;
 	  _Npmu = __mu * __xi * _Nmu - _Nnu1;
-	  _Jmu = __w / (_Npmu - __f * _Nmu);
+	  _Jmu = _Wronski / (_Npmu - __f * _Nmu);
 	}
       else
 	{
@@ -302,16 +304,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    std::__throw_runtime_error(__N("__bessel_jn: "
 					   "Lentz's method failed"));
 	  const _Tp __gam = (__p - __f) / __q;
-	  _Jmu = std::sqrt(__w / ((__p - __f) * __gam + __q));
+	  _Jmu = std::sqrt(_Wronski / ((__p - __f) * __gam + __q));
 	  _Jmu = std::copysign(_Jmu, _Jnul);
 	  _Nmu = __gam * _Jmu;
 	  _Npmu = (__p + __q / __gam) * _Nmu;
 	  _Nnu1 = __mu * __xi * _Nmu - _Npmu;
-      }
+        }
       __fact = _Jmu / _Jnul;
       _Jnu = __fact * _Jnul1;
       _Jpnu = __fact * _Jpnu1;
-      for (__i = 1; __i <= __nl; ++__i)
+      for (int __i = 1; __i <= __n; ++__i)
 	{
 	  const _Tp _Nnutemp = (__mu + __i) * __xi2 * _Nnu1 - _Nmu;
 	  _Nmu = _Nnu1;
@@ -430,7 +432,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       for (unsigned int __i = 1; __i < __max_iter; ++__i)
 	{
-	  __term *= __xx4 / (_Tp{__i} * (__nu + _Tp{__i}));
+	  __term *= __xx4 / (_Tp(__i) * (__nu + _Tp(__i)));
 	  _Jn += __term;
 	  if (std::abs(__term / _Jn) < _S_eps)
 	    break;
@@ -602,7 +604,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __sph_bessel_jn(unsigned int __n, _Tp __x,
 		    _Tp & __j_n, _Tp & __n_n, _Tp & __jp_n, _Tp & __np_n)
     {
-      const _Tp __nu = _Tp{__n} + _Tp{0.5L};
+      const _Tp __nu = _Tp(__n + 0.5L);
 
       _Tp _J_nu, _N_nu, _Jp_nu, _Np_nu;
       __bessel_jn(__nu, __x, _J_nu, _N_nu, _Jp_nu, _Np_nu);

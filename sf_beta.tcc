@@ -188,7 +188,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
           _Tp __m2(2 * __m);
 
-          _Tp __aa = _Tp{__m} * (__b - _Tp{__m}) * __x
+          _Tp __aa = _Tp(__m) * (__b - _Tp(__m)) * __x
                    / ((__am1 + __m2) * (__a + __m2));
           __d = _Tp{1} + __aa * __d;
           if (std::abs(__d) < _S_eps)
@@ -199,7 +199,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
           __d = _Tp{1} / __d;
           __h *= __d * __c;
 
-          __aa = -(__a + _Tp{__m}) * (__apb + __m) * __x
+          __aa = -(__a + _Tp(__m)) * (__apb + __m) * __x
                / ((__a + __m2) * (__ap1 + __m2));
           __d = _Tp{1} + __aa * __d;
           if (std::abs(__d) < _S_eps)

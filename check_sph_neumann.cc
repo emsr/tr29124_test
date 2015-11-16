@@ -87,7 +87,7 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(0.050000000000000003));
+    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
   }
 
 // Test data for n=1.
@@ -140,7 +140,7 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(0.050000000000000003));
+    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
   }
 
 // Test data for n=2.
@@ -193,7 +193,7 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(0.050000000000000003));
+    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
   }
 
 // Test data for n=5.
@@ -246,7 +246,7 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(0.050000000000000003));
+    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
   }
 
 // Test data for n=10.
@@ -299,7 +299,7 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(0.050000000000000003));
+    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
   }
 
 // Test data for n=20.
@@ -352,7 +352,7 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(0.050000000000000003));
+    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
   }
 
 // Test data for n=50.
@@ -405,7 +405,7 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(0.050000000000000003));
+    VERIFY(max_abs_frac < Tp(5.0000000000000029e-12));
   }
 
 // Test data for n=100.
@@ -458,22 +458,8 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(0.050000000000000003));
+    VERIFY(max_abs_frac < Tp(5.0000000000000029e-12));
   }
-
-int
-main()
-{
-  test001<double>();
-  test002<double>();
-  test003<double>();
-  test004<double>();
-  test005<double>();
-  test006<double>();
-  test007<double>();
-  test008<double>();
-  return 0;
-}
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
 //
 // Copyright (C) 2015 Free Software Foundation, Inc.
@@ -496,7 +482,7 @@ main()
 //  sph_neumann
 
 // Test data for n=0.
-testcase_sph_neumann<double> data001[] = {
+testcase_sph_neumann<double> data009[] = {
   { -0.056732437092645263, 0, 5.0000000000000000 },
   { 0.083907152907645249, 0, 10.000000000000000 },
   { 0.050645860857254747, 0, 15.000000000000000 },
@@ -522,18 +508,18 @@ testcase_sph_neumann<double> data001[] = {
 // Test function for n=0.
 template<typename Tp>
   void
-  test001()
+  test009()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data001)
+    unsigned int num_datum = sizeof(data009)
 			   / sizeof(testcase_sph_neumann<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::sph_neumann(Tp(data001[i].n), Tp(data001[i].x));
-	const Tp f0 = data001[i].f0;
+	const Tp f = std::sph_neumann(Tp(data009[i].n), Tp(data009[i].x));
+	const Tp f0 = data009[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -549,7 +535,7 @@ template<typename Tp>
   }
 
 // Test data for n=1.
-testcase_sph_neumann<double> data002[] = {
+testcase_sph_neumann<double> data010[] = {
   { 0.18043836751409864, 1, 5.0000000000000000 },
   { 0.062792826379701502, 1, 10.000000000000000 },
   { -0.039976131953324147, 1, 15.000000000000000 },
@@ -575,18 +561,18 @@ testcase_sph_neumann<double> data002[] = {
 // Test function for n=1.
 template<typename Tp>
   void
-  test002()
+  test010()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data002)
+    unsigned int num_datum = sizeof(data010)
 			   / sizeof(testcase_sph_neumann<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::sph_neumann(Tp(data002[i].n), Tp(data002[i].x));
-	const Tp f0 = data002[i].f0;
+	const Tp f = std::sph_neumann(Tp(data010[i].n), Tp(data010[i].x));
+	const Tp f0 = data010[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -602,7 +588,7 @@ template<typename Tp>
   }
 
 // Test data for n=2.
-testcase_sph_neumann<double> data003[] = {
+testcase_sph_neumann<double> data011[] = {
   { 0.16499545760110443, 2, 5.0000000000000000 },
   { -0.065069304993734783, 2, 10.000000000000000 },
   { -0.058641087247919575, 2, 15.000000000000000 },
@@ -628,18 +614,18 @@ testcase_sph_neumann<double> data003[] = {
 // Test function for n=2.
 template<typename Tp>
   void
-  test003()
+  test011()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data003)
+    unsigned int num_datum = sizeof(data011)
 			   / sizeof(testcase_sph_neumann<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::sph_neumann(Tp(data003[i].n), Tp(data003[i].x));
-	const Tp f0 = data003[i].f0;
+	const Tp f = std::sph_neumann(Tp(data011[i].n), Tp(data011[i].x));
+	const Tp f0 = data011[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -655,7 +641,7 @@ template<typename Tp>
   }
 
 // Test data for n=5.
-testcase_sph_neumann<double> data004[] = {
+testcase_sph_neumann<double> data012[] = {
   { -0.32046504674973919, 5, 5.0000000000000000 },
   { 0.093833541678691818, 5, 10.000000000000000 },
   { 0.020475698281859061, 5, 15.000000000000000 },
@@ -681,18 +667,18 @@ testcase_sph_neumann<double> data004[] = {
 // Test function for n=5.
 template<typename Tp>
   void
-  test004()
+  test012()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data004)
+    unsigned int num_datum = sizeof(data012)
 			   / sizeof(testcase_sph_neumann<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::sph_neumann(Tp(data004[i].n), Tp(data004[i].x));
-	const Tp f0 = data004[i].f0;
+	const Tp f = std::sph_neumann(Tp(data012[i].n), Tp(data012[i].x));
+	const Tp f0 = data012[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -708,7 +694,7 @@ template<typename Tp>
   }
 
 // Test data for n=10.
-testcase_sph_neumann<double> data005[] = {
+testcase_sph_neumann<double> data013[] = {
   { -26.656114405718711, 10, 5.0000000000000000 },
   { -0.17245367208805784, 10, 10.000000000000000 },
   { 0.078461689849642580, 10, 15.000000000000000 },
@@ -734,18 +720,18 @@ testcase_sph_neumann<double> data005[] = {
 // Test function for n=10.
 template<typename Tp>
   void
-  test005()
+  test013()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data005)
+    unsigned int num_datum = sizeof(data013)
 			   / sizeof(testcase_sph_neumann<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::sph_neumann(Tp(data005[i].n), Tp(data005[i].x));
-	const Tp f0 = data005[i].f0;
+	const Tp f = std::sph_neumann(Tp(data013[i].n), Tp(data013[i].x));
+	const Tp f0 = data013[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -761,7 +747,7 @@ template<typename Tp>
   }
 
 // Test data for n=20.
-testcase_sph_neumann<double> data006[] = {
+testcase_sph_neumann<double> data014[] = {
   { -926795140.30575466, 20, 5.0000000000000000 },
   { -1211.2106053526036, 20, 10.000000000000000 },
   { -1.5559965765652175, 20, 15.000000000000000 },
@@ -787,18 +773,18 @@ testcase_sph_neumann<double> data006[] = {
 // Test function for n=20.
 template<typename Tp>
   void
-  test006()
+  test014()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data006)
+    unsigned int num_datum = sizeof(data014)
 			   / sizeof(testcase_sph_neumann<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::sph_neumann(Tp(data006[i].n), Tp(data006[i].x));
-	const Tp f0 = data006[i].f0;
+	const Tp f = std::sph_neumann(Tp(data014[i].n), Tp(data014[i].x));
+	const Tp f0 = data014[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -814,7 +800,7 @@ template<typename Tp>
   }
 
 // Test data for n=50.
-testcase_sph_neumann<double> data007[] = {
+testcase_sph_neumann<double> data015[] = {
   { -6.9641091882698388e+42, 50, 5.0000000000000000 },
   { -4.5282272723512023e+27, 50, 10.000000000000000 },
   { -9.0004902645887037e+18, 50, 15.000000000000000 },
@@ -840,18 +826,18 @@ testcase_sph_neumann<double> data007[] = {
 // Test function for n=50.
 template<typename Tp>
   void
-  test007()
+  test015()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data007)
+    unsigned int num_datum = sizeof(data015)
 			   / sizeof(testcase_sph_neumann<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::sph_neumann(Tp(data007[i].n), Tp(data007[i].x));
-	const Tp f0 = data007[i].f0;
+	const Tp f = std::sph_neumann(Tp(data015[i].n), Tp(data015[i].x));
+	const Tp f0 = data015[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -867,7 +853,7 @@ template<typename Tp>
   }
 
 // Test data for n=100.
-testcase_sph_neumann<double> data008[] = {
+testcase_sph_neumann<double> data016[] = {
   { -1.7997139826259740e+116, 100, 5.0000000000000000 },
   { -8.5732263093296268e+85, 100, 10.000000000000000 },
   { -1.9270658593711677e+68, 100, 15.000000000000000 },
@@ -893,18 +879,18 @@ testcase_sph_neumann<double> data008[] = {
 // Test function for n=100.
 template<typename Tp>
   void
-  test008()
+  test016()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data008)
+    unsigned int num_datum = sizeof(data016)
 			   / sizeof(testcase_sph_neumann<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::sph_neumann(Tp(data008[i].n), Tp(data008[i].x));
-	const Tp f0 = data008[i].f0;
+	const Tp f = std::sph_neumann(Tp(data016[i].n), Tp(data016[i].x));
+	const Tp f0 = data016[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -930,5 +916,13 @@ main()
   test006<double>();
   test007<double>();
   test008<double>();
+  test009<double>();
+  test010<double>();
+  test011<double>();
+  test012<double>();
+  test013<double>();
+  test014<double>();
+  test015<double>();
+  test016<double>();
   return 0;
 }

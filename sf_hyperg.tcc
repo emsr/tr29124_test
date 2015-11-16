@@ -83,8 +83,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       unsigned int __i;
       for (__i = 0; __i < __max_iter; ++__i)
 	{
-	  __term *= (__a + _Tp{__i}) * __x
-		  / ((__c + _Tp{__i}) * _Tp{1 + __i});
+	  __term *= (__a + _Tp(__i)) * __x
+		  / ((__c + _Tp(__i)) * _Tp(1 + __i));
 	  if (std::abs(__term) < __eps)
 	    break;
 	  __Fac += __term;
@@ -133,20 +133,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       int __n = 3;
       while(true)
 	{
-	  _Tp __npam1 = _Tp{__n - 1} + __a;
-	  _Tp __npcm1 = _Tp{__n - 1} + __c;
-	  _Tp __npam2 = _Tp{__n - 2} + __a;
-	  _Tp __npcm2 = _Tp{__n - 2} + __c;
-	  _Tp __tnm1  = _Tp{2 * __n - 1};
-	  _Tp __tnm3  = _Tp{2 * __n - 3};
-	  _Tp __tnm5  = _Tp{2 * __n - 5};
-	  _Tp __F1 =  (_Tp{__n - 2} - __a) / (_Tp{2} * __tnm3 * __npcm1);
-	  _Tp __F2 =  (_Tp{__n} + __a) * __npam1
+	  _Tp __npam1 = _Tp(__n - 1) + __a;
+	  _Tp __npcm1 = _Tp(__n - 1) + __c;
+	  _Tp __npam2 = _Tp(__n - 2) + __a;
+	  _Tp __npcm2 = _Tp(__n - 2) + __c;
+	  _Tp __tnm1  = _Tp(2 * __n - 1);
+	  _Tp __tnm3  = _Tp(2 * __n - 3);
+	  _Tp __tnm5  = _Tp(2 * __n - 5);
+	  _Tp __F1 =  (_Tp(__n - 2) - __a) / (_Tp{2} * __tnm3 * __npcm1);
+	  _Tp __F2 =  (_Tp(__n) + __a) * __npam1
 		   / (_Tp{4} * __tnm1 * __tnm3 * __npcm2 * __npcm1);
-	  _Tp __F3 = -__npam2 * __npam1 * (_Tp{__n - 2} - __a)
+	  _Tp __F3 = -__npam2 * __npam1 * (_Tp(__n - 2) - __a)
 		   / (_Tp{8} * __tnm3 * __tnm3 * __tnm5
-		   * (_Tp{__n - 3} + __c) * __npcm2 * __npcm1);
-	  _Tp __E  = -__npam1 * (_Tp{__n - 1} - __c)
+		   * (_Tp(__n - 3) + __c) * __npcm2 * __npcm1);
+	  _Tp __E  = -__npam1 * (_Tp(__n - 1) - __c)
 		   / (_Tp{2} * __tnm3 * __npcm2 * __npcm1);
 
 	  _Tp __An = (_Tp{1} + __F1 * __x) * __Anm1
@@ -265,8 +265,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       unsigned int __i;
       for (__i = 0; __i < __max_iter; ++__i)
 	{
-	  __term *= (__a + _Tp{__i}) * (__b + _Tp{__i}) * __x
-		  / ((__c + _Tp{__i}) * _Tp{1 + __i});
+	  __term *= (__a + _Tp(__i)) * (__b + _Tp(__i)) * __x
+		  / ((__c + _Tp(__i)) * _Tp(1 + __i));
 	  if (std::abs(__term) < __eps)
 	    break;
 	  __Fabc += __term;
@@ -312,15 +312,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       int __n = 3;
       while (true)
 	{
-	  const _Tp __npam1 = _Tp{__n - 1} + __a;
-	  const _Tp __npbm1 = _Tp{__n - 1] + __b;
-	  const _Tp __npcm1 = _Tp{__n - 1} + __c;
-	  const _Tp __npam2 = _Tp{__n - 2} + __a;
-	  const _Tp __npbm2 = _Tp{__n - 2} + __b;
-	  const _Tp __npcm2 = _Tp{__n - 2} + __c;
-	  const _Tp __tnm1  = _Tp{2 * __n - 1};
-	  const _Tp __tnm3  = _Tp{2 * __n - 3};
-	  const _Tp __tnm5  = _Tp{2 * __n - 5};
+	  const _Tp __npam1 = _Tp(__n - 1) + __a;
+	  const _Tp __npbm1 = _Tp(__n - 1) + __b;
+	  const _Tp __npcm1 = _Tp(__n - 1) + __c;
+	  const _Tp __npam2 = _Tp(__n - 2) + __a;
+	  const _Tp __npbm2 = _Tp(__n - 2) + __b;
+	  const _Tp __npcm2 = _Tp(__n - 2) + __c;
+	  const _Tp __tnm1  = _Tp(2 * __n - 1);
+	  const _Tp __tnm3  = _Tp(2 * __n - 3);
+	  const _Tp __tnm5  = _Tp(2 * __n - 5);
 	  const _Tp __n2 = __n * __n;
 	  const _Tp __F1 = (_Tp{3} * __n2 + (__a + __b - _Tp{6}) * __n
 			 + _Tp{2} - __a * __b - _Tp{2} * (__a + __b))
@@ -329,10 +329,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			 + _Tp{2} - __a * __b) * __npam1 * __npbm1
 			 / (_Tp{4} * __tnm1 * __tnm3 * __npcm2 * __npcm1);
 	  const _Tp __F3 = (__npam2 * __npam1 * __npbm2 * __npbm1
-			 * (_Tp{__n - 2} - __a) * (_Tp{__n - 2} - __b))
+			 * (_Tp(__n - 2) - __a) * (_Tp(__n - 2) - __b))
 			 / (_Tp{8} * __tnm3 * __tnm3 * __tnm5
-			 * (_Tp{__n - 3} + __c) * __npcm2 * __npcm1);
-	  const _Tp __E  = -__npam1 * __npbm1 * (_Tp{__n - 1} - __c)
+			 * (_Tp(__n - 3) + __c) * __npcm2 * __npcm1);
+	  const _Tp __E  = -__npam1 * __npbm1 * (_Tp(__n - 1) - __c)
 			 / (_Tp{2} * __tnm3 * __npcm2 * __npcm1);
 
 	  _Tp __An = (_Tp{1} + __F1 * __x) * __Anm1
@@ -546,8 +546,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		  const _Tp __term2 = _Tp{1} / (__a + __d1 + _Tp{__j - 1})
 				    + _Tp{1} / (__b + __d1 + _Tp{__j - 1});
 		  __psi_term += __term1 - __term2;
-		  __fact *= (__a + __d1 + _Tp{__j - 1})
-			  * (__b + __d1 + _Tp{__j - 1})
+		  __fact *= (__a + __d1 + _Tp(__j - 1))
+			  * (__b + __d1 + _Tp(__j - 1))
 			  / ((__ad + __j) * __j) * (_Tp{1} - __x);
 		  const _Tp __delta = __fact * __psi_term;
 		  __sum2 += __delta;

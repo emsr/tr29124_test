@@ -522,21 +522,6 @@ template<typename Tp>
       }
     VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
   }
-
-int
-main()
-{
-  test001<double>();
-  test002<double>();
-  test003<double>();
-  test004<double>();
-  test005<double>();
-  test006<double>();
-  test007<double>();
-  test008<double>();
-  test009<double>();
-  return 0;
-}
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
 //
 // Copyright (C) 2015 Free Software Foundation, Inc.
@@ -559,7 +544,7 @@ main()
 //  cyl_bessel_j
 
 // Test data for nu=0.0000000000000000.
-testcase_cyl_bessel_j<double> data001[] = {
+testcase_cyl_bessel_j<double> data010[] = {
   { 1.0000000000000000, 0.0000000000000000, 0.0000000000000000 },
   { -0.17759677131433835, 0.0000000000000000, 5.0000000000000000 },
   { -0.24593576445134835, 0.0000000000000000, 10.000000000000000 },
@@ -586,18 +571,18 @@ testcase_cyl_bessel_j<double> data001[] = {
 // Test function for nu=0.0000000000000000.
 template<typename Tp>
   void
-  test001()
+  test010()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data001)
+    unsigned int num_datum = sizeof(data010)
 			   / sizeof(testcase_cyl_bessel_j<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::cyl_bessel_j(Tp(data001[i].nu), Tp(data001[i].x));
-	const Tp f0 = data001[i].f0;
+	const Tp f = std::cyl_bessel_j(Tp(data010[i].nu), Tp(data010[i].x));
+	const Tp f0 = data010[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -613,7 +598,7 @@ template<typename Tp>
   }
 
 // Test data for nu=0.33333333333333331.
-testcase_cyl_bessel_j<double> data002[] = {
+testcase_cyl_bessel_j<double> data011[] = {
   { 0.0000000000000000, 0.33333333333333331, 0.0000000000000000 },
   { -0.30642046380026405, 0.33333333333333331, 5.0000000000000000 },
   { -0.18614516704869571, 0.33333333333333331, 10.000000000000000 },
@@ -640,18 +625,18 @@ testcase_cyl_bessel_j<double> data002[] = {
 // Test function for nu=0.33333333333333331.
 template<typename Tp>
   void
-  test002()
+  test011()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data002)
+    unsigned int num_datum = sizeof(data011)
 			   / sizeof(testcase_cyl_bessel_j<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::cyl_bessel_j(Tp(data002[i].nu), Tp(data002[i].x));
-	const Tp f0 = data002[i].f0;
+	const Tp f = std::cyl_bessel_j(Tp(data011[i].nu), Tp(data011[i].x));
+	const Tp f0 = data011[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -667,7 +652,7 @@ template<typename Tp>
   }
 
 // Test data for nu=0.50000000000000000.
-testcase_cyl_bessel_j<double> data003[] = {
+testcase_cyl_bessel_j<double> data012[] = {
   { 0.0000000000000000, 0.50000000000000000, 0.0000000000000000 },
   { -0.34216798479816180, 0.50000000000000000, 5.0000000000000000 },
   { -0.13726373575505049, 0.50000000000000000, 10.000000000000000 },
@@ -694,18 +679,18 @@ testcase_cyl_bessel_j<double> data003[] = {
 // Test function for nu=0.50000000000000000.
 template<typename Tp>
   void
-  test003()
+  test012()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data003)
+    unsigned int num_datum = sizeof(data012)
 			   / sizeof(testcase_cyl_bessel_j<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::cyl_bessel_j(Tp(data003[i].nu), Tp(data003[i].x));
-	const Tp f0 = data003[i].f0;
+	const Tp f = std::cyl_bessel_j(Tp(data012[i].nu), Tp(data012[i].x));
+	const Tp f0 = data012[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -721,7 +706,7 @@ template<typename Tp>
   }
 
 // Test data for nu=0.66666666666666663.
-testcase_cyl_bessel_j<double> data004[] = {
+testcase_cyl_bessel_j<double> data013[] = {
   { 0.0000000000000000, 0.66666666666666663, 0.0000000000000000 },
   { -0.35712533549168868, 0.66666666666666663, 5.0000000000000000 },
   { -0.080149603304315808, 0.66666666666666663, 10.000000000000000 },
@@ -748,18 +733,18 @@ testcase_cyl_bessel_j<double> data004[] = {
 // Test function for nu=0.66666666666666663.
 template<typename Tp>
   void
-  test004()
+  test013()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data004)
+    unsigned int num_datum = sizeof(data013)
 			   / sizeof(testcase_cyl_bessel_j<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::cyl_bessel_j(Tp(data004[i].nu), Tp(data004[i].x));
-	const Tp f0 = data004[i].f0;
+	const Tp f = std::cyl_bessel_j(Tp(data013[i].nu), Tp(data013[i].x));
+	const Tp f0 = data013[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -775,7 +760,7 @@ template<typename Tp>
   }
 
 // Test data for nu=1.0000000000000000.
-testcase_cyl_bessel_j<double> data005[] = {
+testcase_cyl_bessel_j<double> data014[] = {
   { 0.0000000000000000, 1.0000000000000000, 0.0000000000000000 },
   { -0.32757913759146529, 1.0000000000000000, 5.0000000000000000 },
   { 0.043472746168861459, 1.0000000000000000, 10.000000000000000 },
@@ -802,18 +787,18 @@ testcase_cyl_bessel_j<double> data005[] = {
 // Test function for nu=1.0000000000000000.
 template<typename Tp>
   void
-  test005()
+  test014()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data005)
+    unsigned int num_datum = sizeof(data014)
 			   / sizeof(testcase_cyl_bessel_j<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::cyl_bessel_j(Tp(data005[i].nu), Tp(data005[i].x));
-	const Tp f0 = data005[i].f0;
+	const Tp f = std::cyl_bessel_j(Tp(data014[i].nu), Tp(data014[i].x));
+	const Tp f0 = data014[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -829,7 +814,7 @@ template<typename Tp>
   }
 
 // Test data for nu=2.0000000000000000.
-testcase_cyl_bessel_j<double> data006[] = {
+testcase_cyl_bessel_j<double> data015[] = {
   { 0.0000000000000000, 2.0000000000000000, 0.0000000000000000 },
   { 0.046565116277751971, 2.0000000000000000, 5.0000000000000000 },
   { 0.25463031368512068, 2.0000000000000000, 10.000000000000000 },
@@ -856,18 +841,18 @@ testcase_cyl_bessel_j<double> data006[] = {
 // Test function for nu=2.0000000000000000.
 template<typename Tp>
   void
-  test006()
+  test015()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data006)
+    unsigned int num_datum = sizeof(data015)
 			   / sizeof(testcase_cyl_bessel_j<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::cyl_bessel_j(Tp(data006[i].nu), Tp(data006[i].x));
-	const Tp f0 = data006[i].f0;
+	const Tp f = std::cyl_bessel_j(Tp(data015[i].nu), Tp(data015[i].x));
+	const Tp f0 = data015[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -883,7 +868,7 @@ template<typename Tp>
   }
 
 // Test data for nu=5.0000000000000000.
-testcase_cyl_bessel_j<double> data007[] = {
+testcase_cyl_bessel_j<double> data016[] = {
   { 0.0000000000000000, 5.0000000000000000, 0.0000000000000000 },
   { 0.26114054612017007, 5.0000000000000000, 5.0000000000000000 },
   { -0.23406152818679371, 5.0000000000000000, 10.000000000000000 },
@@ -910,18 +895,18 @@ testcase_cyl_bessel_j<double> data007[] = {
 // Test function for nu=5.0000000000000000.
 template<typename Tp>
   void
-  test007()
+  test016()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data007)
+    unsigned int num_datum = sizeof(data016)
 			   / sizeof(testcase_cyl_bessel_j<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::cyl_bessel_j(Tp(data007[i].nu), Tp(data007[i].x));
-	const Tp f0 = data007[i].f0;
+	const Tp f = std::cyl_bessel_j(Tp(data016[i].nu), Tp(data016[i].x));
+	const Tp f0 = data016[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -937,7 +922,7 @@ template<typename Tp>
   }
 
 // Test data for nu=10.000000000000000.
-testcase_cyl_bessel_j<double> data008[] = {
+testcase_cyl_bessel_j<double> data017[] = {
   { 0.0000000000000000, 10.000000000000000, 0.0000000000000000 },
   { 0.0014678026473104744, 10.000000000000000, 5.0000000000000000 },
   { 0.20748610663335865, 10.000000000000000, 10.000000000000000 },
@@ -964,18 +949,18 @@ testcase_cyl_bessel_j<double> data008[] = {
 // Test function for nu=10.000000000000000.
 template<typename Tp>
   void
-  test008()
+  test017()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data008)
+    unsigned int num_datum = sizeof(data017)
 			   / sizeof(testcase_cyl_bessel_j<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::cyl_bessel_j(Tp(data008[i].nu), Tp(data008[i].x));
-	const Tp f0 = data008[i].f0;
+	const Tp f = std::cyl_bessel_j(Tp(data017[i].nu), Tp(data017[i].x));
+	const Tp f0 = data017[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -991,7 +976,7 @@ template<typename Tp>
   }
 
 // Test data for nu=20.000000000000000.
-testcase_cyl_bessel_j<double> data009[] = {
+testcase_cyl_bessel_j<double> data018[] = {
   { 0.0000000000000000, 20.000000000000000, 0.0000000000000000 },
   { 2.7703300521289426e-11, 20.000000000000000, 5.0000000000000000 },
   { 1.1513369247813403e-05, 20.000000000000000, 10.000000000000000 },
@@ -1018,18 +1003,18 @@ testcase_cyl_bessel_j<double> data009[] = {
 // Test function for nu=20.000000000000000.
 template<typename Tp>
   void
-  test009()
+  test018()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data009)
+    unsigned int num_datum = sizeof(data018)
 			   / sizeof(testcase_cyl_bessel_j<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::cyl_bessel_j(Tp(data009[i].nu), Tp(data009[i].x));
-	const Tp f0 = data009[i].f0;
+	const Tp f = std::cyl_bessel_j(Tp(data018[i].nu), Tp(data018[i].x));
+	const Tp f0 = data018[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -1045,7 +1030,7 @@ template<typename Tp>
   }
 
 // Test data for nu=50.000000000000000.
-testcase_cyl_bessel_j<double> data010[] = {
+testcase_cyl_bessel_j<double> data019[] = {
   { 0.0000000000000000, 50.000000000000000, 0.0000000000000000 },
   { 2.2942476159525415e-45, 50.000000000000000, 5.0000000000000000 },
   { 1.7845136078715964e-30, 50.000000000000000, 10.000000000000000 },
@@ -1072,18 +1057,18 @@ testcase_cyl_bessel_j<double> data010[] = {
 // Test function for nu=50.000000000000000.
 template<typename Tp>
   void
-  test010()
+  test019()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data010)
+    unsigned int num_datum = sizeof(data019)
 			   / sizeof(testcase_cyl_bessel_j<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::cyl_bessel_j(Tp(data010[i].nu), Tp(data010[i].x));
-	const Tp f0 = data010[i].f0;
+	const Tp f = std::cyl_bessel_j(Tp(data019[i].nu), Tp(data019[i].x));
+	const Tp f0 = data019[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -1099,7 +1084,7 @@ template<typename Tp>
   }
 
 // Test data for nu=100.00000000000000.
-testcase_cyl_bessel_j<double> data011[] = {
+testcase_cyl_bessel_j<double> data020[] = {
   { 0.0000000000000000, 100.00000000000000, 0.0000000000000000 },
   { 6.2677893955418763e-119, 100.00000000000000, 5.0000000000000000 },
   { 6.5973160641553816e-89, 100.00000000000000, 10.000000000000000 },
@@ -1126,18 +1111,18 @@ testcase_cyl_bessel_j<double> data011[] = {
 // Test function for nu=100.00000000000000.
 template<typename Tp>
   void
-  test011()
+  test020()
   {
     bool test [[gnu::unused]] = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data011)
+    unsigned int num_datum = sizeof(data020)
 			   / sizeof(testcase_cyl_bessel_j<double>);
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::cyl_bessel_j(Tp(data011[i].nu), Tp(data011[i].x));
-	const Tp f0 = data011[i].f0;
+	const Tp f = std::cyl_bessel_j(Tp(data020[i].nu), Tp(data020[i].x));
+	const Tp f0 = data020[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -1166,5 +1151,14 @@ main()
   test009<double>();
   test010<double>();
   test011<double>();
+  test012<double>();
+  test013<double>();
+  test014<double>();
+  test015<double>();
+  test016<double>();
+  test017<double>();
+  test018<double>();
+  test019<double>();
+  test020<double>();
   return 0;
 }

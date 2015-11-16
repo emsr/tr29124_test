@@ -54,10 +54,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp _P(0);
       for (auto __j = 2; __j < __n; ++__j )
 	{
-	  auto __japb = _Tp{__j} + __apb;
+	  auto __japb = _Tp(__j) + __apb;
 	  auto __japb1 = __japb + _Tp{1};
 	  auto __japb2 = __japb1 + _Tp{1};
-	  auto __c = _Tp{2} * _Tp{__j + 1} * __japb * __japb1;
+	  auto __c = _Tp{2} * _Tp(__j + 1) * __japb * __japb1;
 	  auto __d = __japb1 * __apb * __amb;
 	  auto __e = __japb * __japb1 * __japb2;
 	  auto __f = _Tp{2} * (__j + __alpha) * (__j + __beta) * __japb2;
@@ -84,7 +84,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  auto __k = (__n - __m) / 2;
 	  return (__k % 2 == 0 ? 1 : -1) * std::pow(__rho, __m)
-	       * __poly_jacobi(__k, _Tp{__m}, _Tp{0},
+	       * __poly_jacobi(__k, _Tp(__m), _Tp{0},
 			       _Tp{1} - _Tp{2} * __rho * __rho);
 	}
     }

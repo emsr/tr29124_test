@@ -54,7 +54,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
         {
           _Cn = (_Tp{2} * (_Tp{__nn} - _Tp{1} + __alpha) * __x * _C1
               - (_Tp{__nn} - _Tp{2} + _Tp{2} * __alpha) * _C0)
-              / _Tp{__nn};
+              / _Tp(__nn);
           _C0 = _C1;
           _C1 = _Cn;
         }

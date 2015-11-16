@@ -80,7 +80,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __H_n;
       for (unsigned int __i = 2; __i <= __n; ++__i)
 	{
-	  __H_n = _Tp{2} * (__x * __H_nm1 - _Tp{__i - 1} * __H_nm2);
+	  __H_n = _Tp{2} * (__x * __H_nm1 - _Tp(__i - 1) * __H_nm2);
 	  __H_nm2 = __H_nm1;
 	  __H_nm1 = __H_n;
 	}

@@ -103,11 +103,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       constexpr _Tp _S_fp_min = _Tp{10} * _S_eps;
       constexpr int _S_max_iter = 15000;
-      const _Tp __x_min = _Tp{2};
+      constexpr _Tp _S_x_min = _Tp{2};
 
-      const int __nl = static_cast<int>(__nu + _Tp{0.5L});
+      const int __n = std::nearbyint(__nu);
 
-      const _Tp __mu = __nu - __nl;
+      const _Tp __mu = __nu - __n;
       const _Tp __mu2 = __mu * __mu;
       const _Tp __xi = _Tp{1} / __x;
       const _Tp __xi2 = _Tp{2} * __xi;
@@ -136,16 +136,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp _Inul1 = _Inul;
       _Tp _Ipnu1 = _Ipnul;
       _Tp __fact = __nu * __xi;
-      for (int __l = __nl; __l >= 1; --__l)
+      for (int __l = __n; __l >= 1; --__l)
 	{
 	  const _Tp _Inutemp = __fact * _Inul + _Ipnul;
 	  __fact -= __xi;
 	  _Ipnul = __fact * _Inutemp + _Inul;
 	  _Inul = _Inutemp;
 	}
+
       _Tp __f = _Ipnul / _Inul;
       _Tp _Kmu, _Knu1;
-      if (__x < __x_min)
+      if (__x < _S_x_min)
 	{
 	  const _Tp __x2 = __x / _Tp{2};
 	  const _Tp __pimu = _S_pi * __mu;
@@ -172,12 +173,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  for (__i = 1; __i <= _S_max_iter; ++__i)
 	    {
 	      __ff = (__i * __ff + __p + __q) / (__i * __i - __mu2);
-	      __c *= __d / _Tp{__i};
-	      __p /= _Tp{__i} - __mu;
-	      __q /= _Tp{__i} + __mu;
+	      __c *= __d / _Tp(__i);
+	      __p /= _Tp(__i) - __mu;
+	      __q /= _Tp(__i) + __mu;
 	      const _Tp __del = __c * __ff;
 	      __sum += __del;
-	      const _Tp __del1 = __c * (__p - _Tp{__i} * __ff);
+	      const _Tp __del1 = __c * (__p - _Tp(__i) * __ff);
 	      __sum1 += __del1;
 	      if (std::abs(__del) < _S_eps * std::abs(__sum))
 		break;
@@ -231,9 +232,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp _Inumu = __xi / (__f * _Kmu - _Kpmu);
       _Inu = _Inumu * _Inul1 / _Inul;
       _Ipnu = _Inumu * _Ipnu1 / _Inul;
-      for (__i = 1; __i <= __nl; ++__i)
+      for (int __i = 1; __i <= __n; ++__i)
 	{
-	  const _Tp _Knutemp = (__mu + _Tp{__i}) * __xi2 * _Knu1 + _Kmu;
+	  const _Tp _Knutemp = (__mu + _Tp(__i)) * __xi2 * _Knu1 + _Kmu;
 	  _Kmu = _Knu1;
 	  _Knu1 = _Knutemp;
 	}
@@ -331,7 +332,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __sph_bessel_ik(unsigned int __n, _Tp __x,
 		    _Tp & __i_n, _Tp & __k_n, _Tp & __ip_n, _Tp & __kp_n)
     {
-      const _Tp __nu = _Tp{__n + 0.5L};
+      const _Tp __nu = _Tp(__n + 0.5L);
 
       _Tp _I_nu, _Ip_nu, _K_nu, _Kp_nu;
       __bessel_ik(__nu, __x, _I_nu, _K_nu, _Ip_nu, _Kp_nu);

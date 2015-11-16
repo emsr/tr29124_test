@@ -108,7 +108,7 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(0.050000000000000003));
+    VERIFY(max_abs_frac < Tp(5.0000000000000029e-12));
   }
 
 int
@@ -227,7 +227,7 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(0.050000000000000003));
+    VERIFY(max_abs_frac < Tp(1.0000000000000006e-11));
   }
 
 int
