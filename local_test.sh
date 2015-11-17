@@ -58,8 +58,10 @@ ${copy} check_sph_neumann.cc      ${testdir}/21_sph_neumann/check_value.cc
 
 ${makedir} ${textdir}/airy
 ${makedir} ${textdir}/conf_hyperg
+${makedir} ${textdir}/hurwitz_zeta
 ${makedir} ${textdir}/hyperg
 
 ${copy} check_airy.cc             ${textdir}/airy/check_value.cc
 ${copy} check_conf_hyperg.cc      ${textdir}/conf_hyperg/check_value.cc
+${copy} check_hurwitz_zeta.cc     ${textdir}/hurwitz_zeta/check_value.cc
 ${copy} check_hyperg.cc           ${textdir}/hyperg/check_value.cc

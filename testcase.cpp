@@ -444,7 +444,7 @@ main()
                            "s", fill_argument(std::make_pair(1.0, 30.0),
                                               std::make_pair(false, true), 146),
                            file_riemann_zeta, false, true, test);
-/*
+
   //  Hurwitz zeta function.
   std::cout << "hurwitz_zeta" << std::endl;
   //  Skip the pole at 1.
@@ -452,20 +452,15 @@ main()
   filename = get_filename(path, prefix, funcname, "",  ".cc");
   std::ofstream file_hurwitz_zeta(filename.c_str());
   typedef double hurwitz_zeta(double, double);
-  test = 
-  maketest<double, double>((riemann_zeta*)__gnu_cxx::hurwitz_zeta,
-                           wrap_gsl_sf_zeta,
-                           "__gnu_cxx", funcname,
-                           "s", fill_argument(std::make_pair(-10.0, 1.0),
-                                              std::make_pair(true, false), 56),
-                           file_hurwitz_zeta, true, false);
-  maketest<double, double>((riemann_zeta*)__gnu_cxx::hurwitz_zeta,
-                           wrap_gsl_sf_zeta,
-                           "__gnu_cxx", funcname,
-                           "s", fill_argument(std::make_pair(1.0, 30.0),
-                                              std::make_pair(false, true), 146),
-                           file_hurwitz_zeta, false, true, test);
-*/
+  maketest<double, double, double>((hurwitz_zeta*)__gnu_cxx::hurwitz_zeta,
+                        	   wrap_gsl_sf_hzeta,
+                        	   "__gnu_cxx", funcname,
+                        	   "s", fill_argument(std::make_pair(1.0, 30.0),
+                                        	      std::make_pair(false, true), 146),
+                        	   "a", fill_argument(std::make_pair(0.0, 5.0),
+                                        	      std::make_pair(false, true), 26),
+                        	   file_hurwitz_zeta);
+
   //  5.2.1.21  Spherical Bessel functions.
   std::cout << "sph_bessel" << std::endl;
   funcname = "sph_bessel";
