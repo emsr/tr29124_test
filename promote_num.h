@@ -1,4 +1,5 @@
 #include <type_traits>
+#include <complex>
 
   // For complex and cmath
   template<typename _Tp, bool = std::is_integral<_Tp>::value>
@@ -31,13 +32,18 @@
   // Alternatively we could decay refs and propagate cv to promoted type.
   template<typename _Tp, typename... _Tps>
     struct __promote_num
-    { using __type = decltype(__promote_help_t<std::decay_t<_Tp>>()
-		   + typename __promote_num<_Tps...>::__type()); };
+    { using __type = decltype(__promote_help_t<std::decay_t<_Tp>>{}
+		   + typename __promote_num<_Tps...>::__type{}); };
 
   template<>
     template<typename _Tp>
       struct __promote_num<_Tp>
-      { using __type = decltype(__promote_help_t<std::decay_t<_Tp>>()); };
+      { using __type = decltype(__promote_help_t<std::decay_t<_Tp>>{}); };
+
+  template<>
+    template<typename _Tp>
+      struct __promote_num<std::complex<_Tp>>
+      { using __type = decltype(std::complex<__promote_num<_Tp>>{}); };
 
   template<typename... _Tps>
     using __promote_num_t = typename __promote_num<_Tps...>::__type;
