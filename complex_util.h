@@ -32,7 +32,9 @@
 
 #pragma GCC system_header
 
+#include <complex>
 #include <ratio>
+#include <limits>
 
   /**
    *  Return true if one component of a complex number is NaN.

@@ -5,7 +5,7 @@ copy="cp -f"
 utildir="$HOME/gcc_specfun/libstdc++-v3/testsuite/util"
 gcc_dir="$HOME/gcc_specfun/libstdc++-v3/testsuite/special_functions"
 
-${copy} specfun_testcase.h      ${utildir}
+#${copy} specfun_testcase.h      ${utildir}
 
 ${copy} check_assoc_laguerre.cc ${gcc_dir}/01_assoc_laguerre/check_value.cc
 ${copy} check_assoc_legendre.cc ${gcc_dir}/02_assoc_legendre/check_value.cc

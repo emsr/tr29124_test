@@ -37,6 +37,7 @@
 #include <vector>
 
 //#include <bits/complex_util.h>
+#include "specfun_util.h"
 #include "complex_util.h"
 
 namespace std _GLIBCXX_VISIBILITY(default)
@@ -595,26 +596,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto _D = __v[1] + __zetm3h * (_S_lambda[1] * __zetm3h
 			+ _S_lambda[0] * __v[0]);
 
-      //  Compute terms.
-      auto _Aterm = _A * __1dnusq;
-      auto _Bterm = _B * __1dnusq;
-      auto _Cterm = _C * __1dnusq;
-      auto _Dterm = _D * __1dnusq;
       //  Compute sum of first two terms to initialize the Kahan summing scheme.
-      auto _Asum = _A0 + _Aterm;
-      auto _Atemp = _Aterm - (_Asum - _A0);
-      auto _Bsum = _B0 + _Bterm;
-      auto _Btemp = _Bterm - (_Bsum - _B0);
-      auto _Csum = _C0 + _Cterm;
-      auto _Ctemp = _Cterm - (_Csum - _C0);
-      auto _Dsum = _D0 + _Dterm;
-      auto _Dtemp = _Dterm - (_Dsum - _D0);
+      _KahanSum<std::complex<_Tp>> _Asum(_A0);
+      _KahanSum<std::complex<_Tp>> _Bsum(_B0);
+      _KahanSum<std::complex<_Tp>> _Csum(_C0);
+      _KahanSum<std::complex<_Tp>> _Dsum(_D0);
+      _Asum += _A * __1dnusq;
+      _Bsum += _B * __1dnusq;
+      _Csum += _C * __1dnusq;
+      _Dsum += _D * __1dnusq;
 
       //  Combine sums in form appearing in expansions.
-      _H1sum = _Aip * _Asum + __zo4dp * _Bsum;
-      _H2sum = _Aim * _Asum + __zo4dm * _Bsum;
-      _H1psum = __zod2p * _Csum + __zod0dp * _Dsum;
-      _H2psum = __zod2m * _Csum + __zod0dm * _Dsum;
+      _H1sum = _Aip * _Asum() + __zo4dp * _Bsum();
+      _H2sum = _Aim * _Asum() + __zo4dm * _Bsum();
+      _H1psum = __zod2p * _Csum() + __zod0dp * _Dsum();
+      _H2psum = __zod2m * _Csum() + __zod0dm * _Dsum();
+
       auto _H1save = _Aip + __zo4dp * _B0;
       auto _H2save = _Aim + __zo4dm * _B0;
       auto _H1psave = __zod2p * _C0 + __zod0dp;
@@ -728,31 +725,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	       * (_C * __zetm3h + _S_mu[0] * __v[__i2k]) + __v[__i2kp1];
 
 	  //  Evaluate new terms for sums.
-	  __z1dn2k *= __1dnusq;
-	  _Aterm = _A * __z1dn2k + _Atemp;
-	  _Bterm = _B * __z1dn2k + _Btemp;
-	  _Cterm = _C * __z1dn2k + _Ctemp;
-	  _Dterm = _D * __z1dn2k + _Dtemp;
-
-	  //  Update sums using Kahan summing scheme.
-	  _Atemp = _Asum;
-	  _Asum += _Aterm;
-	  _Atemp = _Aterm - (_Asum - _Atemp);
-	  _Btemp = _Bsum;
-	  _Bsum += _Bterm;
-	  _Btemp = _Bterm - (_Bsum - _Btemp);
-	  _Ctemp = _Csum;
-	  _Csum += _Cterm;
-	  _Ctemp = _Cterm - (_Csum - _Ctemp);
-	  _Dtemp = _Dsum;
-	  _Dsum += _Dterm;
-	  _Dtemp = _Dterm - (_Dsum - _Dtemp);
+	  _Asum += _A * __z1dn2k;
+	  _Bsum += _B * __z1dn2k;
+	  _Csum += _C * __z1dn2k;
+	  _Dsum += _D * __z1dn2k;
 
 	  //  Combine sums in form appearing in expansions.
-	  _H1sum  = _Aip  * _Asum  + __zo4dp * _Bsum;
-	  _H2sum  = _Aim  * _Asum  + __zo4dm * _Bsum;
-	  _H1psum = __zod2p * _Csum + __zod0dp * _Dsum;
-	  _H2psum = __zod2m * _Csum + __zod0dm * _Dsum;
+	  _H1sum  = _Aip  * _Asum()  + __zo4dp * _Bsum();
+	  _H2sum  = _Aim  * _Asum()  + __zo4dm * _Bsum();
+	  _H1psum = __zod2p * _Csum() + __zod0dp * _Dsum();
+	  _H2psum = __zod2m * _Csum() + __zod0dm * _Dsum();
 
 	  //  If convergence criteria met this term, see if it was before.
 	  if (__norm_L1(_H1sum - _H1save) < __eps * __norm_L1(_H1sum)
@@ -938,8 +920,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       static constexpr _Tp
 	_S_pi(3.141592653589793238462643383279502884195e+0L);
-      static constexpr __cmplx _S_j = _Tp{1.0il};
-      static constexpr _Tp _S_toler = _Tp{1.0e-8};
+      static constexpr __cmplx _S_j = _Tp{11.0il};
+      static constexpr _Tp _S_toler = _Tp{11.0e-8};
       const auto __maxexp
 	= std::floor(std::numeric_limits<_Tp>::max_exponent
 		   * std::log(std::numeric_limits<_Tp>::radix));
