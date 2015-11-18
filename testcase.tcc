@@ -245,7 +245,8 @@ template<typename Tp>
 
     bool riemann_zeta_limits = (funcname == "riemann_zeta");
 
-    output << boilerplate << '\n';
+    if (write_header)
+      output << boilerplate << '\n';
     output << "//  " << funcname << '\n';
     if (riemann_zeta_limits)
       output << riemann_limits << '\n';
@@ -385,7 +386,8 @@ template<typename Tp, typename Tp1, typename Tp2>
     const int old_prec = output.precision(std::numeric_limits<Tp>::max_digits10);
     output.flags(std::ios::showpoint);
 
-    output << boilerplate << '\n';
+    if (write_header)
+      output << boilerplate << '\n';
     output << "//  " << funcname << '\n';
     if (write_header)
       output << header << '\n';
@@ -525,7 +527,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
     const int old_prec = output.precision(std::numeric_limits<Tp>::max_digits10);
     output.flags(std::ios::showpoint);
 
-    output << boilerplate << '\n';
+    if (write_header)
+      output << boilerplate << '\n';
     output << "//  " << funcname << '\n';
     if (write_header)
       output << header << '\n';
@@ -677,7 +680,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
     const int old_prec = output.precision(std::numeric_limits<Tp>::max_digits10);
     output.flags(std::ios::showpoint);
 
-    output << boilerplate << '\n';
+    if (write_header)
+      output << boilerplate << '\n';
     output << "//  " << funcname << '\n';
     if (write_header)
       output << header << '\n';
