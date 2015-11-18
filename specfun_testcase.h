@@ -96,45 +96,35 @@ template<typename _Tp>
     _Tp f;
   };
 
-//  Regular modified cylindrical Bessel functions.
+//  Generic cylindrical Bessel functions.
 template<typename _Tp>
-  struct testcase_cyl_bessel_i
+  struct testcase_cyl_bessel
   {
     _Tp f0;
     _Tp nu;
     _Tp x;
     _Tp f;
   };
+
+//  Regular modified cylindrical Bessel functions.
+template<typename _Tp>
+  struct testcase_cyl_bessel_i : public testcase_cyl_bessel<_Tp>
+  { };
 
 //  Cylindrical Bessel functions (of the first kind).
 template<typename _Tp>
-  struct testcase_cyl_bessel_j
-  {
-    _Tp f0;
-    _Tp nu;
-    _Tp x;
-    _Tp f;
-  };
+  struct testcase_cyl_bessel_j : public testcase_cyl_bessel<_Tp>
+  { };
 
 //  Irregular modified cylindrical Bessel functions.
 template<typename _Tp>
-  struct testcase_cyl_bessel_k
-  {
-    _Tp f0;
-    _Tp nu;
-    _Tp x;
-    _Tp f;
-  };
+  struct testcase_cyl_bessel_k : public testcase_cyl_bessel<_Tp>
+  { };
 
 //  Cylindrical Neumann functions.
 template<typename _Tp>
-  struct testcase_cyl_neumann
-  {
-    _Tp f0;
-    _Tp nu;
-    _Tp x;
-    _Tp f;
-  };
+  struct testcase_cyl_neumann : public testcase_cyl_bessel<_Tp>
+  { };
 
 //  Elliptic integrals of the first kind.
 template<typename _Tp>
@@ -249,12 +239,12 @@ template<typename _Tp>
 
 //  Regular modified spherical Bessel functions.
 template<typename _Tp>
-  struct testcase_sph_bessel_i : public testcase_sph_bessel
+  struct testcase_sph_bessel_i : public testcase_sph_bessel<_Tp>
   { };
 
 //  Irregular modified spherical Bessel functions.
 template<typename _Tp>
-  struct testcase_sph_bessel_k : public testcase_sph_bessel
+  struct testcase_sph_bessel_k : public testcase_sph_bessel<_Tp>
   { };
 
 //  Spherical Legendre functions.
@@ -270,7 +260,7 @@ template<typename _Tp>
 
 //  Spherical Neumann functions.
 template<typename _Tp>
-  struct testcase_sph_neumann : public testcase_sph_bessel
+  struct testcase_sph_neumann : public testcase_sph_bessel<_Tp>
   { };
 
 //  Airy Ai functions.
