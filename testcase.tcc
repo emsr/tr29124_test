@@ -1,4 +1,6 @@
 
+#include <sstream>
+
 const std::string boilerplate = 
 R"(// { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
 //
@@ -51,36 +53,68 @@ R"(// This can take long on simulators, timing out the test.
 
 
 template<typename Tp>
-  class type_strings
+  struct type_strings
   {
-  public:
-    static const std::string type() { return std::string(""); }
-    static const std::string suffix() { return std::string(""); }
+    static const std::string
+    type()
+    { return std::string(""); }
+
+    static const std::string
+    suffix()
+    { return std::string(""); }
   };
 
 template<>
-  class type_strings<float>
+  struct type_strings<float>
   {
-  public:
-    static const std::string type() { return std::string("float"); }
-    static const std::string suffix() { return std::string("F"); }
+    static const std::string
+    type()
+    { return std::string("float"); }
+
+    static const std::string
+    suffix()
+    { return std::string("F"); }
   };
 
 template<>
-  class type_strings<double>
+  struct type_strings<double>
   {
-  public:
-    static const std::string type() { return std::string("double"); }
-    static const std::string suffix() { return std::string(""); }
+    static const std::string
+    type()
+    { return std::string("double"); }
+
+    static const std::string
+    suffix()
+    { return std::string(""); }
   };
 
 template<>
-  class type_strings<long double>
+  struct type_strings<long double>
   {
-  public:
-    static const std::string type() { return std::string("long double"); }
-    static const std::string suffix() { return std::string("L"); }
+    static const std::string
+    type()
+    { return std::string("long double"); }
+
+    static const std::string
+    suffix()
+    { return std::string("L"); }
   };
+
+template<>
+  template<typename Tp>
+    struct type_strings<std::complex<Tp>>
+    {
+      static const std::string
+      type()
+      {
+	std::ostringstream tp;
+	tp << "std::complex<" << type_strings<Tp>::type() << ">";
+	return std::string(tp.str());
+      }
+      static const std::string
+      suffix()
+      { return std::string(""); }
+    };
 
 
 
@@ -90,37 +124,37 @@ template<>
 template<typename Tp>
   std::vector<Tp>
   fill_argument(const std::pair<Tp,Tp> & range,
-        	const std::pair<bool,bool> & inclusive,
-        	const unsigned int num_steps = 101)
+		const std::pair<bool,bool> & inclusive,
+		const unsigned int num_steps = 101)
   {
     std::vector<Tp> argument;
 
     for (unsigned int i = 0; i < num_steps; ++i)
       {
 	if (i == 0 && ! inclusive.first)
-          {
-            continue;
-          }
+	  {
+	    continue;
+	  }
 	if (i == num_steps - 1 && ! inclusive.second)
-          {
-            continue;
-          }
+	  {
+	    continue;
+	  }
 
 	Tp x = range.first + i * (range.second - range.first) / (num_steps - 1);
 	if (range.first <= range.second)
-          {
-            if (x < range.first)
-              x = range.first;
-            else if (x > range.second)
-              x = range.second;
-          }
+	  {
+	    if (x < range.first)
+	      x = range.first;
+	    else if (x > range.second)
+	      x = range.second;
+	  }
 	else
-          {
-            if (x > range.first)
-              x = range.first;
-            else if (x < range.second)
-              x = range.second;
-          }
+	  {
+	    if (x > range.first)
+	      x = range.first;
+	    else if (x < range.second)
+	      x = range.second;
+	  }
 
 	argument.push_back(x);
       }
@@ -145,46 +179,46 @@ template<typename Tp>
       {
 	if (Tp(0.5L) * tol > abs_delta
 	 && Tp(0.5L) * tol > eps)
-          {
-            if (Tp(0.2L) * tol > abs_delta
-             && Tp(0.2L) * tol > eps)
-              {
-        	if (Tp(0.1L) * tol > abs_delta
-        	 && Tp(0.1L) * tol > eps)
-                  {
-                    tol *= Tp(0.1L);
-                  }
-        	else
-                  {
-                    tol *= Tp(0.2L);
-                    break;
-                  }
-              }
-            else
-              {
-        	tol *= Tp(0.5L);
-        	break;
-              }
-          }
+	  {
+	    if (Tp(0.2L) * tol > abs_delta
+	     && Tp(0.2L) * tol > eps)
+	      {
+		if (Tp(0.1L) * tol > abs_delta
+		 && Tp(0.1L) * tol > eps)
+		  {
+		    tol *= Tp(0.1L);
+		  }
+		else
+		  {
+		    tol *= Tp(0.2L);
+		    break;
+		  }
+	      }
+	    else
+	      {
+		tol *= Tp(0.5L);
+		break;
+	      }
+	  }
 	else
-          break;
+	  break;
       }
     ok = true;
     if (tol < min_tol && tol <= abs_delta)
       {
 	ok = false;
 	std::cerr << "**** Error in get_tolerance:"
-                  << " abs(delta)=" << abs_delta
-                  << " tol=" << tol
-                  << '\n';
+		  << " abs(delta)=" << abs_delta
+		  << " tol=" << tol
+		  << '\n';
       }
     if (tol == min_tol && tol < abs_delta)
       {
 	ok = false;
 	std::cerr << "Note in get_tolerance:"
-                  << " delta=" << delta
-                  << " tol=" << tol
-                  << '\n';
+		  << " delta=" << delta
+		  << " tol=" << tol
+		  << '\n';
       }
 
     //  Somehow, we seem to need extra space to get the tests to pass.
@@ -199,12 +233,12 @@ template<typename Tp>
   template<typename Tp, typename Tp1>
   unsigned int
   maketest(std::function<Tp(Tp1)> function1,
-           std::function<Tp(Tp1)> function2,
-           const std::string & nsname,
-           const std::string & funcname,
-           const std::string & arg1, const std::vector<Tp1> & argument1,
-           std::ostream & output,
-           bool write_header = true, bool write_main = true, unsigned int test = 1)
+	   std::function<Tp(Tp1)> function2,
+	   const std::string & nsname,
+	   const std::string & funcname,
+	   const std::string & arg1, const std::vector<Tp1> & argument1,
+	   std::ostream & output,
+	   bool write_header = true, bool write_main = true, unsigned int test = 1)
   {
     const int old_prec = output.precision(std::numeric_limits<Tp>::max_digits10);
     output.flags(std::ios::showpoint);
@@ -229,24 +263,24 @@ template<typename Tp>
 	const Tp1 x = argument1[i];
 
 	try
-          {
-            const Tp f1 = function1(x);
-            const Tp f2 = function2(x);
-            const Tp diff = f1 - f2;
-            if (std::abs(diff) > max_abs_diff)
-              max_abs_diff = std::abs(diff);
-            if (std::abs(f2) > Tp(10) * eps && std::abs(f1) > Tp(10) * eps)
-              {
-        	const Tp frac = diff / f2;
-        	if (std::abs(frac) > max_abs_frac)
-                  max_abs_frac = std::abs(frac);
-              }
-            crud.push_back(std::tuple<Tp, Tp1>(f2, x));
-          }
+	  {
+	    const Tp f1 = function1(x);
+	    const Tp f2 = function2(x);
+	    const Tp diff = f1 - f2;
+	    if (std::abs(diff) > max_abs_diff)
+	      max_abs_diff = std::abs(diff);
+	    if (std::abs(f2) > Tp(10) * eps && std::abs(f1) > Tp(10) * eps)
+	      {
+		const Tp frac = diff / f2;
+		if (std::abs(frac) > max_abs_frac)
+		  max_abs_frac = std::abs(frac);
+	      }
+	    crud.push_back(std::tuple<Tp, Tp1>(f2, x));
+	  }
 	catch (...)
-          {
-            continue;
-          }
+	  {
+	    continue;
+	  }
       }
 
     if (max_abs_diff >= Tp(0) && max_abs_frac >= Tp(0))
@@ -268,11 +302,11 @@ template<typename Tp>
 	output << structname << " " << dataname.str() << "[] = {\n";
 	output.fill(' ');
 	for (unsigned int i = 0; i < crud.size(); ++i)
-          {
-            output << "  { " << std::get<0>(crud[i]) << type_strings<Tp>::suffix();
-            output << ", " << std::get<1>(crud[i]) << type_strings<Tp>::suffix();
-            output << " },\n";
-          }
+	  {
+	    output << "  { " << std::get<0>(crud[i]) << type_strings<Tp>::suffix();
+	    output << ", " << std::get<1>(crud[i]) << type_strings<Tp>::suffix();
+	    output << " },\n";
+	  }
 	output << "};\n";
 
 	output << '\n';
@@ -288,12 +322,12 @@ template<typename Tp>
 	output << "    Tp max_abs_diff = -Tp(1);\n";
 	output << "    Tp max_abs_frac = -Tp(1);\n";
 	if (riemann_zeta_limits)
-          output << "    unsigned int num_datum = MAX_ITERATIONS;\n";
-        else
-          {
+	  output << "    unsigned int num_datum = MAX_ITERATIONS;\n";
+	else
+	  {
 	    output << "    unsigned int num_datum = sizeof(" << dataname.str() << ")\n";
 	    output << "\t\t\t   / sizeof(" << structname << ");\n";
-          }
+	  }
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "      {\n";
 	output << "\tconst Tp f = " << nsname << "::" << funcname << "(Tp(" << dataname.str() << "[i]." << arg1 << ")" << ");\n";
@@ -340,13 +374,13 @@ template<typename Tp>
 template<typename Tp, typename Tp1, typename Tp2>
   unsigned int
   maketest(std::function<Tp(Tp1,Tp2)> function1,
-           std::function<Tp(Tp1,Tp2)> function2,
-           const std::string & nsname,
-           const std::string & funcname,
-           const std::string & arg1, const std::vector<Tp1> & argument1,
-           const std::string & arg2, const std::vector<Tp2> & argument2,
-           std::ostream & output,
-           bool write_header = true, bool write_main = true, unsigned int test = 1)
+	   std::function<Tp(Tp1,Tp2)> function2,
+	   const std::string & nsname,
+	   const std::string & funcname,
+	   const std::string & arg1, const std::vector<Tp1> & argument1,
+	   const std::string & arg2, const std::vector<Tp2> & argument2,
+	   std::ostream & output,
+	   bool write_header = true, bool write_main = true, unsigned int test = 1)
   {
     const int old_prec = output.precision(std::numeric_limits<Tp>::max_digits10);
     output.flags(std::ios::showpoint);
@@ -367,90 +401,90 @@ template<typename Tp, typename Tp1, typename Tp2>
 	Tp max_abs_diff = -Tp(1);
 	Tp max_abs_frac = -Tp(1);
 	for (unsigned int j = 0; j < argument2.size(); ++j)
-          {
-            const Tp2 y = argument2[j];
+	  {
+	    const Tp2 y = argument2[j];
 
-            try
-              {
-        	const Tp f1 = function1(x, y);
-        	const Tp f2 = function2(x, y);
-        	const Tp diff = f1 - f2;
-        	if (std::abs(diff) > max_abs_diff)
-                  max_abs_diff = std::abs(diff);
-        	if (std::abs(f2) > Tp(10) * eps && std::abs(f1) > Tp(10) * eps)
-                  {
-                    const Tp frac = diff / f2;
-                    if (std::abs(frac) > max_abs_frac)
-                      max_abs_frac = std::abs(frac);
-                  }
-        	crud.push_back(std::tuple<Tp, Tp1, Tp2>(f2, x, y));
-              }
-            catch (...)
-              {
-        	continue;
-              }
-          }
+	    try
+	      {
+		const Tp f1 = function1(x, y);
+		const Tp f2 = function2(x, y);
+		const Tp diff = f1 - f2;
+		if (std::abs(diff) > max_abs_diff)
+		  max_abs_diff = std::abs(diff);
+		if (std::abs(f2) > Tp(10) * eps && std::abs(f1) > Tp(10) * eps)
+		  {
+		    const Tp frac = diff / f2;
+		    if (std::abs(frac) > max_abs_frac)
+		      max_abs_frac = std::abs(frac);
+		  }
+		crud.push_back(std::tuple<Tp, Tp1, Tp2>(f2, x, y));
+	      }
+	    catch (...)
+	      {
+		continue;
+	      }
+	  }
 
 	if (max_abs_diff >= Tp(0) && max_abs_frac >= Tp(0))
-          {
-            bool tol_ok = false;
-            const Tp min_tol = Tp(1.0e-3L);
-            //const Tp diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
-            const Tp frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
-            std::string structname = "testcase_";
-            structname += funcname;
-            structname += "<" + type_strings<Tp>::type() + ">";
-            std::ostringstream dataname;
-            dataname.fill('0');
-            dataname << "data" << std::setw(3) << test;
-            dataname.fill(' ');
-            output << '\n';
-            output << "// Test data for " << arg1 << "=" << std::get<1>(crud[0]) << ".\n";
-            output.fill('0');
-            output << structname << " " << dataname.str() << "[] = {\n";
-            output.fill(' ');
-            for (unsigned int j = 0; j < crud.size(); ++j)
-              {
-        	output << "  { " << std::get<0>(crud[j]) << type_strings<Tp>::suffix();
-        	output << ", " << std::get<1>(crud[j]) << type_strings<Tp>::suffix();
-        	output << ", " << std::get<2>(crud[j]) << type_strings<Tp>::suffix();
-        	output << " },\n";
-              }
-            output << "};\n";
+	  {
+	    bool tol_ok = false;
+	    const Tp min_tol = Tp(1.0e-3L);
+	    //const Tp diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
+	    const Tp frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
+	    std::string structname = "testcase_";
+	    structname += funcname;
+	    structname += "<" + type_strings<Tp>::type() + ">";
+	    std::ostringstream dataname;
+	    dataname.fill('0');
+	    dataname << "data" << std::setw(3) << test;
+	    dataname.fill(' ');
+	    output << '\n';
+	    output << "// Test data for " << arg1 << "=" << std::get<1>(crud[0]) << ".\n";
+	    output.fill('0');
+	    output << structname << " " << dataname.str() << "[] = {\n";
+	    output.fill(' ');
+	    for (unsigned int j = 0; j < crud.size(); ++j)
+	      {
+		output << "  { " << std::get<0>(crud[j]) << type_strings<Tp>::suffix();
+		output << ", " << std::get<1>(crud[j]) << type_strings<Tp>::suffix();
+		output << ", " << std::get<2>(crud[j]) << type_strings<Tp>::suffix();
+		output << " },\n";
+	      }
+	    output << "};\n";
 
-            output << '\n';
-            output << "// Test function for " << arg1 << "=" << std::get<1>(crud[0]) << ".\n";
-            output << "template<typename Tp>\n";
-            output.fill('0');
-            output << "  void\n";
+	    output << '\n';
+	    output << "// Test function for " << arg1 << "=" << std::get<1>(crud[0]) << ".\n";
+	    output << "template<typename Tp>\n";
+	    output.fill('0');
+	    output << "  void\n";
 	    output << "  test" << std::setw(3) << test << "()\n";
-            output.fill(' ');
-            output << "  {\n";
-            output << "    bool test [[gnu::unused]] = true;\n";
-            output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
-            output << "    Tp max_abs_diff = -Tp(1);\n";
-            output << "    Tp max_abs_frac = -Tp(1);\n";
-            output << "    unsigned int num_datum = sizeof(" << dataname.str() << ")\n";
-            output << "\t\t\t   / sizeof(" << structname << ");\n";
-            output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
-            output << "      {\n";
-            output << "\tconst Tp f = " << nsname << "::" << funcname << "(Tp(" << dataname.str() << "[i]." << arg1 << ")" << ", Tp(" << dataname.str() << "[i]." << arg2 << ")" << ");\n";
-            output << "\tconst Tp f0 = " << dataname.str() << "[i].f0;\n";
-            output << "\tconst Tp diff = f - f0;\n";
-            output << "\tif (std::abs(diff) > max_abs_diff)\n";
-            output << "\t  max_abs_diff = std::abs(diff);\n";
-            output << "\tif (std::abs(f0) > Tp(10) * eps\n";
-            output << "\t && std::abs(f) > Tp(10) * eps)\n";
-            output << "\t  {\n";
-            output << "\t    const Tp frac = diff / f0;\n";
-            output << "\t    if (std::abs(frac) > max_abs_frac)\n";
-            output << "\t      max_abs_frac = std::abs(frac);\n";
-            output << "\t  }\n";
-            output << "      }\n";
-            output << "    VERIFY(max_abs_frac < Tp(" << frac_toler << "));\n";
-            output << "  }\n";
-            ++test;
-          }
+	    output.fill(' ');
+	    output << "  {\n";
+	    output << "    bool test [[gnu::unused]] = true;\n";
+	    output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
+	    output << "    Tp max_abs_diff = -Tp(1);\n";
+	    output << "    Tp max_abs_frac = -Tp(1);\n";
+	    output << "    unsigned int num_datum = sizeof(" << dataname.str() << ")\n";
+	    output << "\t\t\t   / sizeof(" << structname << ");\n";
+	    output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
+	    output << "      {\n";
+	    output << "\tconst Tp f = " << nsname << "::" << funcname << "(Tp(" << dataname.str() << "[i]." << arg1 << ")" << ", Tp(" << dataname.str() << "[i]." << arg2 << ")" << ");\n";
+	    output << "\tconst Tp f0 = " << dataname.str() << "[i].f0;\n";
+	    output << "\tconst Tp diff = f - f0;\n";
+	    output << "\tif (std::abs(diff) > max_abs_diff)\n";
+	    output << "\t  max_abs_diff = std::abs(diff);\n";
+	    output << "\tif (std::abs(f0) > Tp(10) * eps\n";
+	    output << "\t && std::abs(f) > Tp(10) * eps)\n";
+	    output << "\t  {\n";
+	    output << "\t    const Tp frac = diff / f0;\n";
+	    output << "\t    if (std::abs(frac) > max_abs_frac)\n";
+	    output << "\t      max_abs_frac = std::abs(frac);\n";
+	    output << "\t  }\n";
+	    output << "      }\n";
+	    output << "    VERIFY(max_abs_frac < Tp(" << frac_toler << "));\n";
+	    output << "  }\n";
+	    ++test;
+	  }
       }
 
     if (write_main)
@@ -479,14 +513,14 @@ template<typename Tp, typename Tp1, typename Tp2>
 template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
   unsigned int
   maketest(std::function<Tp(Tp1,Tp2,Tp3)> function1,
-           std::function<Tp(Tp1,Tp2,Tp3)> function2,
-           const std::string & nsname,
-           const std::string & funcname,
-           const std::string & arg1, const std::vector<Tp1> & argument1,
-           const std::string & arg2, const std::vector<Tp2> & argument2,
-           const std::string & arg3, const std::vector<Tp3> & argument3,
-           std::ostream & output,
-           bool write_header = true, bool write_main = true, unsigned int test = 1)
+	   std::function<Tp(Tp1,Tp2,Tp3)> function2,
+	   const std::string & nsname,
+	   const std::string & funcname,
+	   const std::string & arg1, const std::vector<Tp1> & argument1,
+	   const std::string & arg2, const std::vector<Tp2> & argument2,
+	   const std::string & arg3, const std::vector<Tp3> & argument3,
+	   std::ostream & output,
+	   bool write_header = true, bool write_main = true, unsigned int test = 1)
   {
     const int old_prec = output.precision(std::numeric_limits<Tp>::max_digits10);
     output.flags(std::ios::showpoint);
@@ -503,104 +537,104 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 	const Tp1 x = argument1[i];
 
 	for (unsigned int j = 0; j < argument2.size(); ++j)
-          {
-            const Tp2 y = argument2[j];
+	  {
+	    const Tp2 y = argument2[j];
 
-            std::vector< std::tuple<Tp, Tp1, Tp2, Tp3> > crud;
+	    std::vector< std::tuple<Tp, Tp1, Tp2, Tp3> > crud;
 
-            Tp max_abs_diff = -Tp(1);
-            Tp max_abs_frac = -Tp(1);
-            for (unsigned int k = 0; k < argument3.size(); ++k)
-              {
-        	const Tp3 z = argument3[k];
+	    Tp max_abs_diff = -Tp(1);
+	    Tp max_abs_frac = -Tp(1);
+	    for (unsigned int k = 0; k < argument3.size(); ++k)
+	      {
+		const Tp3 z = argument3[k];
 
-        	try
-                  {
-                    const Tp f1 = function1(x, y, z);
-                    const Tp f2 = function2(x, y, z);
-                    const Tp diff = f1 - f2;
-                    if (std::abs(diff) > max_abs_diff)
-                      max_abs_diff = std::abs(diff);
-                    if (std::abs(f2) > Tp(10) * eps && std::abs(f1) > Tp(10) * eps)
-                      {
-                	const Tp frac = diff / f2;
-                	if (std::abs(frac) > max_abs_frac)
-                          max_abs_frac = std::abs(frac);
-                      }
-                    crud.push_back(std::tuple<Tp, Tp1, Tp2, Tp3>(f2, x, y, z));
-                  }
-        	catch (...)
-                  {
-                    continue;
-                  }
-              }
+		try
+		  {
+		    const Tp f1 = function1(x, y, z);
+		    const Tp f2 = function2(x, y, z);
+		    const Tp diff = f1 - f2;
+		    if (std::abs(diff) > max_abs_diff)
+		      max_abs_diff = std::abs(diff);
+		    if (std::abs(f2) > Tp(10) * eps && std::abs(f1) > Tp(10) * eps)
+		      {
+			const Tp frac = diff / f2;
+			if (std::abs(frac) > max_abs_frac)
+			  max_abs_frac = std::abs(frac);
+		      }
+		    crud.push_back(std::tuple<Tp, Tp1, Tp2, Tp3>(f2, x, y, z));
+		  }
+		catch (...)
+		  {
+		    continue;
+		  }
+	      }
 
-            if (max_abs_diff >= Tp(0) && max_abs_frac >= Tp(0))
-              {
-        	bool tol_ok = false;
-        	const Tp min_tol = Tp(1.0e-3L);
-        	//const Tp diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
-        	const Tp frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
-        	std::string structname = "testcase_";
-        	structname += funcname;
-        	structname += "<" + type_strings<Tp>::type() + ">";
-        	std::ostringstream dataname;
-        	dataname.fill('0');
-        	dataname << "data" << std::setw(3) << test;
-        	dataname.fill(' ');
-        	output << '\n';
-        	output << "// Test data for " << arg1 << "=" << std::get<1>(crud[0]);
-        	output << ", " << arg2 << "=" << std::get<2>(crud[0]) << ".\n";
-        	output.fill('0');
-        	output << structname << " " << dataname.str() << "[] = {\n";
-        	output.fill(' ');
-        	for (unsigned int k = 0; k < crud.size(); ++k)
-                  {
-                    output << "  { " << std::get<0>(crud[k]) << type_strings<Tp>::suffix();
-                    output << ", " << std::get<1>(crud[k]) << type_strings<Tp>::suffix();
-                    output << ", " << std::get<2>(crud[k]) << type_strings<Tp>::suffix();
-                    output << ", \n";
-                    output << "\t  " << std::get<3>(crud[k]) << type_strings<Tp>::suffix();
-                    output << " },\n";
-                  }
-        	output << "};\n";
+	    if (max_abs_diff >= Tp(0) && max_abs_frac >= Tp(0))
+	      {
+		bool tol_ok = false;
+		const Tp min_tol = Tp(1.0e-3L);
+		//const Tp diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
+		const Tp frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
+		std::string structname = "testcase_";
+		structname += funcname;
+		structname += "<" + type_strings<Tp>::type() + ">";
+		std::ostringstream dataname;
+		dataname.fill('0');
+		dataname << "data" << std::setw(3) << test;
+		dataname.fill(' ');
+		output << '\n';
+		output << "// Test data for " << arg1 << "=" << std::get<1>(crud[0]);
+		output << ", " << arg2 << "=" << std::get<2>(crud[0]) << ".\n";
+		output.fill('0');
+		output << structname << " " << dataname.str() << "[] = {\n";
+		output.fill(' ');
+		for (unsigned int k = 0; k < crud.size(); ++k)
+		  {
+		    output << "  { " << std::get<0>(crud[k]) << type_strings<Tp>::suffix();
+		    output << ", " << std::get<1>(crud[k]) << type_strings<Tp>::suffix();
+		    output << ", " << std::get<2>(crud[k]) << type_strings<Tp>::suffix();
+		    output << ", \n";
+		    output << "\t  " << std::get<3>(crud[k]) << type_strings<Tp>::suffix();
+		    output << " },\n";
+		  }
+		output << "};\n";
 
-        	output << '\n';
-        	output << "// Test function for " << arg1 << "=" << std::get<1>(crud[0]);
-        	output << ", " << arg2 << "=" << std::get<2>(crud[0]) << ".\n";
-        	output << "template<typename Tp>\n";
-        	output.fill('0');
-        	output << "  void\n";
-	        output << "  test" << std::setw(3) << test << "()\n";
-        	output.fill(' ');
-        	output << "  {\n";
-                output << "    bool test [[gnu::unused]] = true;\n";
-        	output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
-        	output << "    Tp max_abs_diff = -Tp(1);\n";
-        	output << "    Tp max_abs_frac = -Tp(1);\n";
-        	output << "    unsigned int num_datum = sizeof(" << dataname.str() << ")\n";
-        	output << "\t\t\t   / sizeof(" << structname << ");\n";
-        	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
-        	output << "  	 {\n";
-        	output << "\tconst Tp f = " << nsname << "::" << funcname << "(Tp(" << dataname.str() << "[i]." << arg1 << ")" << ", Tp(" << dataname.str() << "[i]." << arg2 << ")" << ",\n";
-        	output << "\t\t     Tp(" << dataname.str() << "[i]." << arg3 << ")" << ");\n";
-        	output << "\tconst Tp f0 = " << dataname.str() << "[i].f0;\n";
-        	output << "\tconst Tp diff = f - f0;\n";
-        	output << "\tif (std::abs(diff) > max_abs_diff)\n";
-        	output << "\t  max_abs_diff = std::abs(diff);\n";
-        	output << "\tif (std::abs(f0) > Tp(10) * eps\n";
-        	output << "\t && std::abs(f) > Tp(10) * eps)\n";
-        	output << "\t  {\n";
-        	output << "\t    const Tp frac = diff / f0;\n";
-        	output << "\t    if (std::abs(frac) > max_abs_frac)\n";
-        	output << "\t      max_abs_frac = std::abs(frac);\n";
-        	output << "\t  }\n";
-        	output << "      }\n";
-        	output << "    VERIFY(max_abs_frac < Tp(" << frac_toler << "));\n";
-        	output << "  }\n";
-        	++test;
-              }
-          }
+		output << '\n';
+		output << "// Test function for " << arg1 << "=" << std::get<1>(crud[0]);
+		output << ", " << arg2 << "=" << std::get<2>(crud[0]) << ".\n";
+		output << "template<typename Tp>\n";
+		output.fill('0');
+		output << "  void\n";
+		output << "  test" << std::setw(3) << test << "()\n";
+		output.fill(' ');
+		output << "  {\n";
+		output << "    bool test [[gnu::unused]] = true;\n";
+		output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
+		output << "    Tp max_abs_diff = -Tp(1);\n";
+		output << "    Tp max_abs_frac = -Tp(1);\n";
+		output << "    unsigned int num_datum = sizeof(" << dataname.str() << ")\n";
+		output << "\t\t\t   / sizeof(" << structname << ");\n";
+		output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
+		output << "  	 {\n";
+		output << "\tconst Tp f = " << nsname << "::" << funcname << "(Tp(" << dataname.str() << "[i]." << arg1 << ")" << ", Tp(" << dataname.str() << "[i]." << arg2 << ")" << ",\n";
+		output << "\t\t     Tp(" << dataname.str() << "[i]." << arg3 << ")" << ");\n";
+		output << "\tconst Tp f0 = " << dataname.str() << "[i].f0;\n";
+		output << "\tconst Tp diff = f - f0;\n";
+		output << "\tif (std::abs(diff) > max_abs_diff)\n";
+		output << "\t  max_abs_diff = std::abs(diff);\n";
+		output << "\tif (std::abs(f0) > Tp(10) * eps\n";
+		output << "\t && std::abs(f) > Tp(10) * eps)\n";
+		output << "\t  {\n";
+		output << "\t    const Tp frac = diff / f0;\n";
+		output << "\t    if (std::abs(frac) > max_abs_frac)\n";
+		output << "\t      max_abs_frac = std::abs(frac);\n";
+		output << "\t  }\n";
+		output << "      }\n";
+		output << "    VERIFY(max_abs_frac < Tp(" << frac_toler << "));\n";
+		output << "  }\n";
+		++test;
+	      }
+	  }
       }
 
 
@@ -630,15 +664,15 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
   unsigned int
   maketest(std::function<Tp(Tp1,Tp2,Tp3,Tp4)> function1,
-           std::function<Tp(Tp1,Tp2,Tp3,Tp4)> function2,
-           const std::string & nsname,
-           const std::string & funcname,
-           const std::string & arg1, const std::vector<Tp1> & argument1,
-           const std::string & arg2, const std::vector<Tp2> & argument2,
-           const std::string & arg3, const std::vector<Tp3> & argument3,
-           const std::string & arg4, const std::vector<Tp4> & argument4,
-           std::ostream & output,
-           bool write_header = true, bool write_main = true, unsigned int test = 1)
+	   std::function<Tp(Tp1,Tp2,Tp3,Tp4)> function2,
+	   const std::string & nsname,
+	   const std::string & funcname,
+	   const std::string & arg1, const std::vector<Tp1> & argument1,
+	   const std::string & arg2, const std::vector<Tp2> & argument2,
+	   const std::string & arg3, const std::vector<Tp3> & argument3,
+	   const std::string & arg4, const std::vector<Tp4> & argument4,
+	   std::ostream & output,
+	   bool write_header = true, bool write_main = true, unsigned int test = 1)
   {
     const int old_prec = output.precision(std::numeric_limits<Tp>::max_digits10);
     output.flags(std::ios::showpoint);
@@ -655,111 +689,111 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 	const Tp1 w = argument1[i];
 
 	for (unsigned int j = 0; j < argument2.size(); ++j)
-          {
-            const Tp2 x = argument2[j];
+	  {
+	    const Tp2 x = argument2[j];
 
-            for (unsigned int k = 0; k < argument3.size(); ++k)
-              {
-        	const Tp3 y = argument3[k];
+	    for (unsigned int k = 0; k < argument3.size(); ++k)
+	      {
+		const Tp3 y = argument3[k];
 
-        	std::vector< std::tuple<Tp, Tp1, Tp2, Tp3, Tp4> > crud;
+		std::vector< std::tuple<Tp, Tp1, Tp2, Tp3, Tp4> > crud;
 
-        	Tp max_abs_diff = -Tp(1);
-        	Tp max_abs_frac = -Tp(1);
-        	for (unsigned int l = 0; l < argument4.size(); ++l)
-                  {
-                    const Tp4 z = argument4[l];
+		Tp max_abs_diff = -Tp(1);
+		Tp max_abs_frac = -Tp(1);
+		for (unsigned int l = 0; l < argument4.size(); ++l)
+		  {
+		    const Tp4 z = argument4[l];
 
-                    try
-                      {
-                	const Tp f1 = function1(w, x, y, z);
-                	const Tp f2 = function2(w, x, y, z);
-                	const Tp diff = f1 - f2;
-                	if (std::abs(diff) > max_abs_diff)
-                          max_abs_diff = std::abs(diff);
-                	if (std::abs(f2) > Tp(10) * eps && std::abs(f1) > Tp(10) * eps)
-                          {
-                            const Tp frac = diff / f2;
-                            if (std::abs(frac) > max_abs_frac)
-                              max_abs_frac = std::abs(frac);
-                          }
-                	crud.push_back(std::tuple<Tp, Tp1, Tp2, Tp3, Tp4>(f2, w, x, y, z));
-                      }
-                    catch (...)
-                      {
-                	continue;
-                      }
-                  }
+		    try
+		      {
+			const Tp f1 = function1(w, x, y, z);
+			const Tp f2 = function2(w, x, y, z);
+			const Tp diff = f1 - f2;
+			if (std::abs(diff) > max_abs_diff)
+			  max_abs_diff = std::abs(diff);
+			if (std::abs(f2) > Tp(10) * eps && std::abs(f1) > Tp(10) * eps)
+			  {
+			    const Tp frac = diff / f2;
+			    if (std::abs(frac) > max_abs_frac)
+			      max_abs_frac = std::abs(frac);
+			  }
+			crud.push_back(std::tuple<Tp, Tp1, Tp2, Tp3, Tp4>(f2, w, x, y, z));
+		      }
+		    catch (...)
+		      {
+			continue;
+		      }
+		  }
 
-        	if (max_abs_diff >= Tp(0) && max_abs_frac >= Tp(0))
-        	 {
-                    bool tol_ok = false;
-                    const Tp min_tol = Tp(1.0e-3L);
-                    //const Tp diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
-                    const Tp frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
-                    std::string structname = "testcase_";
-                    structname += funcname;
-                    structname += "<" + type_strings<Tp>::type() + ">";
-                    std::ostringstream dataname;
-                    dataname.fill('0');
-                    dataname << "data" << std::setw(3) << test;
-                    dataname.fill(' ');
-                    output << '\n';
-                    output << "// Test data for " << arg1 << "=" << std::get<1>(crud[0]);
-                    output << ", " << arg2 << "=" << std::get<2>(crud[0]);
-                    output << ", " << arg3 << "=" << std::get<3>(crud[0]) << ".\n";
-                    output.fill('0');
-                    output << structname << " " << dataname.str() << "[] = {\n";
-                    output.fill(' ');
-                    for (unsigned int l = 0; l < crud.size(); ++l)
-                      {
-                	output << "  { " << std::get<0>(crud[l]) << type_strings<Tp>::suffix();
-                	output << ", " << std::get<1>(crud[l]) << type_strings<Tp>::suffix();
-                	output << ", " << std::get<2>(crud[l]) << type_strings<Tp>::suffix();
-                	output << ", \n";
-                	output << "\t  " << std::get<3>(crud[l]) << type_strings<Tp>::suffix();
-                	output << ", " << std::get<4>(crud[l]) << type_strings<Tp>::suffix();
-                	output << " },\n";
-                      }
-                    output << "};\n";
+		if (max_abs_diff >= Tp(0) && max_abs_frac >= Tp(0))
+		 {
+		    bool tol_ok = false;
+		    const Tp min_tol = Tp(1.0e-3L);
+		    //const Tp diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
+		    const Tp frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
+		    std::string structname = "testcase_";
+		    structname += funcname;
+		    structname += "<" + type_strings<Tp>::type() + ">";
+		    std::ostringstream dataname;
+		    dataname.fill('0');
+		    dataname << "data" << std::setw(3) << test;
+		    dataname.fill(' ');
+		    output << '\n';
+		    output << "// Test data for " << arg1 << "=" << std::get<1>(crud[0]);
+		    output << ", " << arg2 << "=" << std::get<2>(crud[0]);
+		    output << ", " << arg3 << "=" << std::get<3>(crud[0]) << ".\n";
+		    output.fill('0');
+		    output << structname << " " << dataname.str() << "[] = {\n";
+		    output.fill(' ');
+		    for (unsigned int l = 0; l < crud.size(); ++l)
+		      {
+			output << "  { " << std::get<0>(crud[l]) << type_strings<Tp>::suffix();
+			output << ", " << std::get<1>(crud[l]) << type_strings<Tp>::suffix();
+			output << ", " << std::get<2>(crud[l]) << type_strings<Tp>::suffix();
+			output << ", \n";
+			output << "\t  " << std::get<3>(crud[l]) << type_strings<Tp>::suffix();
+			output << ", " << std::get<4>(crud[l]) << type_strings<Tp>::suffix();
+			output << " },\n";
+		      }
+		    output << "};\n";
 
-                    output << '\n';
-                    output << "// Test function for " << arg1 << "=" << std::get<1>(crud[0]);
-                    output << ", " << arg2 << "=" << std::get<2>(crud[0]);
-                    output << ", " << arg3 << "=" << std::get<3>(crud[0]) << ".\n";
-                    output << "template<typename Tp>\n";
-                    output.fill('0');
-                    output << "  void\n";
-	            output << "  test" << std::setw(3) << test << "()\n";
-                    output.fill(' ');
-                    output << "  {\n";
-                    output << "    bool test [[gnu::unused]] = true;\n";
-                    output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
-                    output << "    Tp max_abs_diff = -Tp(1);\n";
-                    output << "    Tp max_abs_frac = -Tp(1);\n";
-                    output << "    unsigned int num_datum = sizeof(" << dataname.str() << ")\n";
-                    output << "\t\t\t   / sizeof(" << structname << ");\n";
-                    output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
-                    output << "      {\n";
-                    output << "\tconst Tp f = " << nsname << "::" << funcname << "(Tp(" << dataname.str() << "[i]." << arg1 << ")" << ", Tp(" << dataname.str() << "[i]." << arg2 << ")" << ",\n";
-                    output << "\t\t     Tp(" << dataname.str() << "[i]." << arg3 << ")" << ", Tp(" << dataname.str() << "[i]." << arg4 << ")" << ");\n";
-                    output << "\tconst Tp f0 = " << dataname.str() << "[i].f0;\n";
-                    output << "\tconst Tp diff = f - f0;\n";
-                    output << "\tif (std::abs(diff) > max_abs_diff)\n";
-                    output << "  	 max_abs_diff = std::abs(diff);\n";
-                    output << "\tif (std::abs(f0) > Tp(10) * eps && std::abs(f) > Tp(10) * eps)\n";
-                    output << "\t  {\n";
-                    output << "\t    const Tp frac = diff / f0;\n";
-                    output << "\t    if (std::abs(frac) > max_abs_frac)\n";
-                    output << "\t      max_abs_frac = std::abs(frac);\n";
-                    output << "\t  }\n";
-                    output << "      }\n";
-                    output << "    VERIFY(max_abs_frac < Tp(" << frac_toler << "));\n";
-                    output << "  }\n";
-                    ++test;
-                  }
-              }
-          }
+		    output << '\n';
+		    output << "// Test function for " << arg1 << "=" << std::get<1>(crud[0]);
+		    output << ", " << arg2 << "=" << std::get<2>(crud[0]);
+		    output << ", " << arg3 << "=" << std::get<3>(crud[0]) << ".\n";
+		    output << "template<typename Tp>\n";
+		    output.fill('0');
+		    output << "  void\n";
+		    output << "  test" << std::setw(3) << test << "()\n";
+		    output.fill(' ');
+		    output << "  {\n";
+		    output << "    bool test [[gnu::unused]] = true;\n";
+		    output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
+		    output << "    Tp max_abs_diff = -Tp(1);\n";
+		    output << "    Tp max_abs_frac = -Tp(1);\n";
+		    output << "    unsigned int num_datum = sizeof(" << dataname.str() << ")\n";
+		    output << "\t\t\t   / sizeof(" << structname << ");\n";
+		    output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
+		    output << "      {\n";
+		    output << "\tconst Tp f = " << nsname << "::" << funcname << "(Tp(" << dataname.str() << "[i]." << arg1 << ")" << ", Tp(" << dataname.str() << "[i]." << arg2 << ")" << ",\n";
+		    output << "\t\t     Tp(" << dataname.str() << "[i]." << arg3 << ")" << ", Tp(" << dataname.str() << "[i]." << arg4 << ")" << ");\n";
+		    output << "\tconst Tp f0 = " << dataname.str() << "[i].f0;\n";
+		    output << "\tconst Tp diff = f - f0;\n";
+		    output << "\tif (std::abs(diff) > max_abs_diff)\n";
+		    output << "  	 max_abs_diff = std::abs(diff);\n";
+		    output << "\tif (std::abs(f0) > Tp(10) * eps && std::abs(f) > Tp(10) * eps)\n";
+		    output << "\t  {\n";
+		    output << "\t    const Tp frac = diff / f0;\n";
+		    output << "\t    if (std::abs(frac) > max_abs_frac)\n";
+		    output << "\t      max_abs_frac = std::abs(frac);\n";
+		    output << "\t  }\n";
+		    output << "      }\n";
+		    output << "    VERIFY(max_abs_frac < Tp(" << frac_toler << "));\n";
+		    output << "  }\n";
+		    ++test;
+		  }
+	      }
+	  }
       }
 
     if (write_main)

@@ -90,18 +90,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       { return static_cast<_Tp>(4.1887902047863909846168578443726705L); }
       /// Constant: @f$ 2 \pi @f$.
       static constexpr _Tp __2pi() noexcept
-      { return static_cast<_Tp>(6.2831853071795864769252867665590057L;); }
+      { return static_cast<_Tp>(6.2831853071795864769252867665590057L); }
       /// Constant: @f$ 4 \pi @f$.
       static constexpr _Tp __4pi() noexcept
-      { return static_cast<_Tp>(12.566370614359172953850573533118011L;); }
+      { return static_cast<_Tp>(12.566370614359172953850573533118011L); }
       /// Constant: degrees per radian @f$ 180 / \pi @f$.
       static constexpr _Tp __deg_rad() noexcept
-      { return static_cast<_Tp>(57.295779513082320876798154814105170L;); }
+      { return static_cast<_Tp>(57.295779513082320876798154814105170L); }
       /// Constant: radians per degree @f$ \pi / 180 @f$.
       static constexpr _Tp __rad_deg() noexcept
-      { return static_cast<_Tp>(0.017453292519943295769236907684886127L;); }
+      { return static_cast<_Tp>(0.017453292519943295769236907684886127L); }
       /// Constant: @f$ \sqrt(\pi / 2) @f$.
-      static constexpr _Tp __sqrt_pi_2
+      static constexpr _Tp __sqrt_pi_2()
       { return static_cast<_Tp>(1.2533141373155002512078826424055226L); }
       ///  Constant @f$ 1 / \pi @f$.
       static constexpr _Tp __1_pi() noexcept
@@ -218,6 +218,51 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __inf = std::numeric_limits<_Tp>::infinity();
       return std::complex<_Tp>(__inf, __inf);
     }
+
+  template<typename _Tp>
+    class _KahanSum
+    {
+    public:
+
+      _KahanSum() = default;
+
+      explicit _KahanSum(_Tp __sum)
+      : _M_sum{__sum}, _M_term{}, _M_temp{}
+      { }
+
+      _KahanSum&
+      operator+=(_Tp __term)
+      {
+	this->_M_term = __term - this->_M_temp;
+	this->_M_temp = this->_M_sum;
+	this->_M_sum += this->_M_term;
+	this->_M_temp = this->_M_term - (this->_M_sum - this->_M_temp);
+	return *this;
+      }
+
+      _KahanSum&
+      operator=(_Tp __sum)
+      {
+	this->_M_term = _Tp{0};
+	this->_M_temp = _Tp{0};
+	this->_M_sum = __sum;
+	return *this;
+      }
+
+      _KahanSum&
+      operator-=(_Tp __term)
+      { return operator+=(-__term); }
+
+      _Tp
+      operator()() const
+      { return this->_M_sum; }
+
+    private:
+
+      _Tp _M_sum;
+      _Tp _M_term;
+      _Tp _M_temp;
+    };
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail

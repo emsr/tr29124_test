@@ -616,13 +616,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using __cmplx = std::complex<_Tp>;
 
-      constexpr _Tp _S_an1i{  _Tp{437} /  _Tp{9}}
-		    _S_an2i{  _Tp{425} /  _Tp{9}}
-		    _S_p12i{  _Tp{283} /  _Tp{9}}
-		    _S_p22i{  _Tp{295} /  _Tp{9}}
-		    _S_p13i{-  _Tp{25} / _Tp{27}}
-		    _S_p23i{   _Tp{35} / _Tp{27}}
-		    _S_p11i{-_Tp{2135} / _Tp{27}}
+      constexpr _Tp _S_an1i{  _Tp{437} /  _Tp{9}},
+		    _S_an2i{  _Tp{425} /  _Tp{9}},
+		    _S_p12i{  _Tp{283} /  _Tp{9}},
+		    _S_p22i{  _Tp{295} /  _Tp{9}},
+		    _S_p13i{-  _Tp{25} / _Tp{27}},
+		    _S_p23i{   _Tp{35} / _Tp{27}},
+		    _S_p11i{-_Tp{2135} / _Tp{27}},
 		    _S_p21i{-_Tp{2195} / _Tp{27}};
 
       constexpr std::complex<_Tp> _S_zone{1};
@@ -1155,6 +1155,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       }
 
 /*
+  /**
+   *  @brief  Return the complex Airy Ai function.
+   *//*
+  template<typename _Tp>
+    std::complex<_Tp>
+    __airy_ai(std::complex<_Tp> __z)
+    {
+      std::complex<_Tp> _Ai, _Aip, _Bi, _Bip;
+      __airy(__z, _Ai, _Aip, _Bi, _Bip);
+      return _Ai;
+    }
+
   /**
    *  @brief  Return the complex Airy Bi function.
    *//*
