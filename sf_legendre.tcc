@@ -46,8 +46,6 @@
 #ifndef _GLIBCXX_BITS_SF_LEGENDRE_TCC
 #define _GLIBCXX_BITS_SF_LEGENDRE_TCC 1
 
-#include <bits/specfun_util.h>
-
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 // Implementation-space details.
@@ -210,7 +208,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__theta))
 	return std::numeric_limits<_Tp>::quiet_NaN();
 
-      const _Tp __x = std::cos(__theta);
+      const auto __x = std::cos(__theta);
 
       if (__l < __m)
 	std::__throw_domain_error(__N("__sph_legendre: bad argument"));
@@ -218,7 +216,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  _Tp __P = __poly_legendre_p(__l, __x);
 	  _Tp __fact = std::sqrt(_Tp(2 * __l + 1)
-		     / (_Tp{4} * __numeric_constants<_Tp>::__pi()));
+		     / (_Tp{4} * __gnu_cxx::__math_constants<_Tp>::__pi));
 	  __P *= __fact;
 	  return __P;
 	}
@@ -231,17 +229,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  // Starting value for recursion.
 	  // Y_m^m(x) = sqrt( (2m+1)/(4pi m) gamma(m+1/2)/gamma(m) )
 	  //             (-1)^m (1-x^2)^(m/2) / pi^(1/4)
-	  const _Tp __sgn = (__m % 2 == 1 ? -_Tp{1} : _Tp{1});
-	  const _Tp __y_mp1m_factor = __x * std::sqrt(_Tp(2 * __m + 3));
-	  const _Tp __lncirc = std::log1p(-__x * __x);
+	  const auto __sgn = (__m % 2 == 1 ? -_Tp{1} : _Tp{1});
+	  const auto __y_mp1m_factor = __x * std::sqrt(_Tp(2 * __m + 3));
+	  const auto __lncirc = std::log1p(-__x * __x);
 	  //  Gamma(m+1/2) / Gamma(m)
-	  const _Tp __lnpoch = __log_gamma(_Tp(__m + 0.5L))
+	  const auto __lnpoch = __log_gamma(_Tp(__m + 0.5L))
 			     - __log_gamma(_Tp(__m));
-	  const _Tp __lnpre_val =
-		    -_Tp{0.25L} * __numeric_constants<_Tp>::__lnpi()
-		    + _Tp{0.5L} * (__lnpoch + __m * __lncirc);
+	  const auto __lnpre_val =
+		     -_Tp{0.25L} * __gnu_cxx::__math_constants<_Tp>::__ln_pi
+		     + _Tp{0.5L} * (__lnpoch + __m * __lncirc);
 	  _Tp __sr = std::sqrt((_Tp{2} + _Tp{1} / __m)
-		   / (_Tp{4} * __numeric_constants<_Tp>::__pi()));
+		   / (_Tp{4} * __gnu_cxx::__math_constants<_Tp>::__pi));
 	  _Tp __y_mm = __sgn * __sr * std::exp(__lnpre_val);
 	  _Tp __y_mp1m = __y_mp1m_factor * __y_mm;
 
@@ -260,12 +258,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      // Compute Y_l^m, l > m+1, upward recursion on l.
 	      for ( int __ll = __m + 2; __ll <= __l; ++__ll)
 		{
-		  const _Tp __rat1 = _Tp(__ll - __m) / _Tp(__ll + __m);
-		  const _Tp __rat2 = _Tp(__ll - __m - 1) / _Tp(__ll + __m - 1);
-		  const _Tp __fact1 = std::sqrt(__rat1 * _Tp(2 * __ll + 1)
+		  const auto __rat1 = _Tp(__ll - __m) / _Tp(__ll + __m);
+		  const auto __rat2 = _Tp(__ll - __m - 1) / _Tp(__ll + __m - 1);
+		  const auto __fact1 = std::sqrt(__rat1 * _Tp(2 * __ll + 1)
 						       * _Tp(2 * __ll - 1));
-		  const _Tp __fact2 = std::sqrt(__rat1 * __rat2 * _Tp(2 * __ll + 1)
-								/ _Tp(2 * __ll - 3));
+		  const auto __fact2 = std::sqrt(__rat1 * __rat2
+						 * _Tp(2 * __ll + 1)
+						 / _Tp(2 * __ll - 3));
 		  __y_lm = (__x * __y_mp1m * __fact1
 			 - _Tp(__ll + __m - 1) * __y_mm * __fact2)
 			 / _Tp(__ll - __m);

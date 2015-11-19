@@ -1,7 +1,10 @@
 #include <type_traits>
 #include <complex>
 
-  // For complex and cmath
+  /**
+   *  This is a more modern version of __promote_N in ext/type_traits.
+   *  This is used for numeric argument promotion of complex and cmath.
+   */
   template<typename _Tp, bool = std::is_integral<_Tp>::value>
     struct __promote_help
     { using __type = double; };

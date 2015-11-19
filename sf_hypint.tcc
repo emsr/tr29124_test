@@ -30,10 +30,6 @@
 #ifndef _GLIBCXX_SF_HYPINT_TCC
 #define _GLIBCXX_SF_HYPINT_TCC 1
 
-#include <cmath>
-#include <complex>
-#include <stdexcept>
-
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 // Implementation-space details.
@@ -52,9 +48,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __chshint_cont_frac(_Tp __t, _Tp& _Chi, _Tp& _Shi)
     {
       constexpr unsigned int _S_max_iter = 100;
-      constexpr _Tp _S_eps = _Tp{5} * std::numeric_limits<_Tp>::epsilon();
-      constexpr _Tp _S_fp_min = std::numeric_limits<_Tp>::min();
-      constexpr _Tp _S_pi_2 = std::__detail::__numeric_constants<_Tp>::__pi_2();
+      constexpr _Tp _S_eps = _Tp{5} * __gnu_cxx::__math_constants<_Tp>::__eps;
+      constexpr _Tp _S_fp_min = __gnu_cxx::__math_constants<_Tp>::__min;
+      constexpr _Tp _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
 
       //  Evaluate Chi and Shi by Lentz's modified method of continued fracions.
       std::complex<_Tp> __b(_Tp{1}, __t);
@@ -95,9 +91,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __chshint_series(_Tp __t, _Tp& _Chi, _Tp& _Shi)
     {
       constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * std::numeric_limits<_Tp>::epsilon();
-      constexpr auto _S_fp_min = std::numeric_limits<_Tp>::min();
-      constexpr auto _S_gamma_e = std::__detail::__numeric_constants<_Tp>::__gamma_e();
+      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__math_constants<_Tp>::__eps;
+      constexpr auto _S_fp_min = __gnu_cxx::__math_constants<_Tp>::__min;
+      constexpr auto _S_gamma_e = __gnu_cxx::__math_constants<_Tp>::__gamma_e;
 
       //  Evaluate Chi and Shi by series simultaneously.
       _Tp _Csum(0), _Ssum(0);
