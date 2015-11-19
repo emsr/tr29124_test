@@ -46,8 +46,6 @@
 #ifndef _GLIBCXX_BITS_SF_EXPINT_TCC
 #define _GLIBCXX_BITS_SF_EXPINT_TCC 1
 
-#include <bits/specfun_util.h>
-
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 // Implementation-space details.
@@ -91,7 +89,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
 
       return - __esum - __osum
-	     - __numeric_constants<_Tp>::__gamma_e() - std::log(__x);
+	     - __gnu_cxx::__math_constants<_Tp>::__gamma_e - std::log(__x);
     }
 
 
@@ -152,8 +150,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
       const int __nm1 = __n - 1;
       _Tp __ans = (__nm1 != 0
-		? _Tp{1} / __nm1 : -std::log(__x)
-				   - __numeric_constants<_Tp>::__gamma_e());
+		? _Tp{1} / __nm1
+		: -std::log(__x) - __gnu_cxx::__math_constants<_Tp>::__gamma_e);
       _Tp __fact = _Tp{1};
       for (int __i = 1; __i <= __max_iter; ++__i)
 	{
@@ -163,7 +161,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    __del = -__fact / _Tp{__i - __nm1};
 	  else
 	    {
-	      _Tp __psi = -__numeric_constants<_Tp>::gamma_e();
+	      _Tp __psi = -__gnu_cxx::__math_constants<_Tp>::__gamma_e;
 	      for (int __ii = 1; __ii <= __nm1; ++__ii)
 		__psi += _Tp{1} / _Tp(__ii);
 	      __del = __fact * (__psi - std::log(__x));
@@ -294,7 +292,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    break;
 	}
 
-      return __numeric_constants<_Tp>::__gamma_e() + __sum + std::log(__x);
+      return __gnu_cxx::__math_constants<_Tp>::__gamma_e
+	   + __sum + std::log(__x);
     }
 
 

@@ -523,7 +523,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      //  Gamma functions in the denominator are ok.
 	      //  Proceed with evaluation.
 	      const int __maxiter = 2000;
-	      const _Tp __psi_1 = -__numeric_constants<_Tp>::__gamma_e();
+	      const _Tp __psi_1 = -__gnu_cxx::__math_constants<_Tp>::__gamma_e;
 	      const _Tp __psi_1pd = __psi(_Tp{1} + __ad);
 	      const _Tp __psi_apd1 = __psi(__a + __d1);
 	      const _Tp __psi_bpd1 = __psi(__b + __d1);

@@ -46,8 +46,6 @@
 #ifndef _GLIBCXX_BITS_SF_MOD_BESSEL_TCC
 #define _GLIBCXX_BITS_SF_MOD_BESSEL_TCC 1
 
-#include <bits/specfun_util.h>
-
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 // Implementation-space details.
@@ -76,9 +74,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __bessel_ik(_Tp __nu, _Tp __x,
 		_Tp & _Inu, _Tp & _Knu, _Tp & _Ipnu, _Tp & _Kpnu)
     {
-      constexpr _Tp _S_pi = __numeric_constants<_Tp>::__pi();
-      constexpr _Tp _S_inf = std::numeric_limits<_Tp>::infinity();
-      constexpr _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_inf = __gnu_cxx::__math_constants<_Tp>::__inf;
+      constexpr auto _S_eps = __gnu_cxx::__math_constants<_Tp>::__eps;
       if (__x == _Tp{0})
 	{
 	  if (__nu == _Tp{0})
@@ -101,16 +99,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  return;
 	}
 
-      constexpr _Tp _S_fp_min = _Tp{10} * _S_eps;
+      constexpr auto _S_fp_min = _Tp{10} * _S_eps;
       constexpr int _S_max_iter = 15000;
-      constexpr _Tp _S_x_min = _Tp{2};
+      constexpr auto _S_x_min = _Tp{2};
 
       const int __n = std::nearbyint(__nu);
 
-      const _Tp __mu = __nu - __n;
-      const _Tp __mu2 = __mu * __mu;
-      const _Tp __xi = _Tp{1} / __x;
-      const _Tp __xi2 = _Tp{2} * __xi;
+      const auto __mu = __nu - _Tp(__n);
+      const auto __mu2 = __mu * __mu;
+      const auto __xi = _Tp{1} / __x;
+      const auto __xi2 = _Tp{2} * __xi;
       _Tp __h = __nu * __xi;
       if (__h < _S_fp_min)
 	__h = _S_fp_min;
@@ -123,7 +121,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __b += __xi2;
 	  __d = _Tp{1} / (__b + __d);
 	  __c = __b + _Tp{1} / __c;
-	  const _Tp __del = __c * __d;
+	  const auto __del = __c * __d;
 	  __h *= __del;
 	  if (std::abs(__del - _Tp{1}) < _S_eps)
 	    break;
@@ -138,7 +136,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __fact = __nu * __xi;
       for (int __l = __n; __l >= 1; --__l)
 	{
-	  const _Tp _Inutemp = __fact * _Inul + _Ipnul;
+	  const auto _Inutemp = __fact * _Inul + _Ipnul;
 	  __fact -= __xi;
 	  _Ipnul = __fact * _Inutemp + _Inul;
 	  _Inul = _Inutemp;
@@ -148,16 +146,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp _Kmu, _Knu1;
       if (__x < _S_x_min)
 	{
-	  const _Tp __x2 = __x / _Tp{2};
-	  const _Tp __pimu = _S_pi * __mu;
-	  const _Tp __fact = (std::abs(__pimu) < _S_eps
-			   ? _Tp{1}
-			   : __pimu / std::sin(__pimu));
+	  const auto __x2 = __x / _Tp{2};
+	  const auto __pimu = _S_pi * __mu;
+	  const auto __fact = (std::abs(__pimu) < _S_eps
+			    ? _Tp{1}
+			    : __pimu / std::sin(__pimu));
 	  _Tp __d = -std::log(__x2);
 	  _Tp __e = __mu * __d;
-	  const _Tp __fact2 = (std::abs(__e) < _S_eps
-			    ? _Tp{1}
-			    : std::sinh(__e) / __e);
+	  const auto __fact2 = (std::abs(__e) < _S_eps
+			     ? _Tp{1}
+			     : std::sinh(__e) / __e);
 	  _Tp __gam1, __gam2, __gampl, __gammi;
 	  __gamma_temme(__mu, __gam1, __gam2, __gampl, __gammi);
 	  _Tp __ff = __fact
@@ -176,9 +174,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __c *= __d / _Tp(__i);
 	      __p /= _Tp(__i) - __mu;
 	      __q /= _Tp(__i) + __mu;
-	      const _Tp __del = __c * __ff;
+	      const auto __del = __c * __ff;
 	      __sum += __del;
-	      const _Tp __del1 = __c * (__p - _Tp(__i) * __ff);
+	      const auto __del1 = __c * (__p - _Tp(__i) * __ff);
 	      __sum1 += __del1;
 	      if (std::abs(__del) < _S_eps * std::abs(__sum))
 		break;
@@ -191,22 +189,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else
 	{
-	  _Tp __b = _Tp{2} * (_Tp{1} + __x);
-	  _Tp __d = _Tp{1} / __b;
-	  _Tp __delh = __d;
-	  _Tp __h = __delh;
-	  _Tp __q1 = _Tp{0};
-	  _Tp __q2 = _Tp{1};
-	  _Tp __a1 = _Tp{0.25L} - __mu2;
-	  _Tp __q = __c = __a1;
-	  _Tp __a = -__a1;
-	  _Tp __s = _Tp{1} + __q * __delh;
+	  auto __b = _Tp{2} * (_Tp{1} + __x);
+	  auto __d = _Tp{1} / __b;
+	  auto __delh = __d;
+	  auto __h = __delh;
+	  auto __q1 = _Tp{0};
+	  auto __q2 = _Tp{1};
+	  auto __a1 = _Tp{0.25L} - __mu2;
+	  auto __q = __c = __a1;
+	  auto __a = -__a1;
+	  auto __s = _Tp{1} + __q * __delh;
 	  int __i;
 	  for (__i = 2; __i <= _S_max_iter; ++__i)
 	    {
 	      __a -= _Tp{2 * (__i - 1)};
 	      __c = -__a * __c / __i;
-	      const _Tp __qnew = (__q1 - __b * __q2) / __a;
+	      const auto __qnew = (__q1 - __b * __q2) / __a;
 	      __q1 = __q2;
 	      __q2 = __qnew;
 	      __q += __c * __qnew;
@@ -214,7 +212,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __d = _Tp{1} / (__b + __a * __d);
 	      __delh = (__b * __d - _Tp{1}) * __delh;
 	      __h += __delh;
-	      const _Tp __dels = __q * __delh;
+	      const auto __dels = __q * __delh;
 	      __s += __dels;
 	      if (std::abs(__dels / __s) < _S_eps)
 		break;
@@ -234,7 +232,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Ipnu = _Inumu * _Ipnu1 / _Inul;
       for (int __i = 1; __i <= __n; ++__i)
 	{
-	  const _Tp _Knutemp = (__mu + _Tp(__i)) * __xi2 * _Knu1 + _Kmu;
+	  const auto _Knutemp = (__mu + _Tp(__i)) * __xi2 * _Knu1 + _Kmu;
 	  _Kmu = _Knu1;
 	  _Knu1 = _Knutemp;
 	}
@@ -332,13 +330,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __sph_bessel_ik(unsigned int __n, _Tp __x,
 		    _Tp & __i_n, _Tp & __k_n, _Tp & __ip_n, _Tp & __kp_n)
     {
-      const _Tp __nu = _Tp(__n + 0.5L);
+      const auto __nu = _Tp(__n + 0.5L);
 
       _Tp _I_nu, _Ip_nu, _K_nu, _Kp_nu;
       __bessel_ik(__nu, __x, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
 
-      const _Tp __factor = __numeric_constants<_Tp>::__sqrtpio2()
-			 / std::sqrt(__x);
+      const auto __factor = __gnu_cxx::__math_constants<_Tp>::__root_pi_div_2
+			  / std::sqrt(__x);
 
       __i_n = __factor * _I_nu;
       __k_n = __factor * _K_nu;
@@ -367,13 +365,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __airy(_Tp __z, _Tp & _Ai, _Tp & _Bi, _Tp & _Aip, _Tp & _Bip)
     {
-      constexpr _Tp _S_pi = __numeric_constants<_Tp>::__pi();
-      constexpr _Tp _S_sqrt3 = __numeric_constants<_Tp>::__sqrt3();
-      const _Tp __absz = std::abs(__z);
-      const _Tp __rootz = std::sqrt(__absz);
-      const _Tp __xi = _Tp{2} * __absz * __rootz / _Tp{3};
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      constexpr auto _S_inf = __gnu_cxx::__math_constants<_Tp>::__inf;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_sqrt3 = __gnu_cxx::__math_constants<_Tp>::__root_3;
+      const auto __absz = std::abs(__z);
+      const auto __rootz = std::sqrt(__absz);
+      const auto __xi = _Tp{2} * __absz * __rootz / _Tp{3};
 
-      if (__z > _Tp{0})
+      if (__isnan(__z))
+	_Ai = _Bi = _Aip = _Bip = _S_nan;
+      else if (__z == _S_inf)
+	{
+	  _Ai = _Aip = _Tp{0};
+	  _Bi = _Bip = _S_inf;
+	}
+      else if (__z == -_S_inf)
+	_Ai = _Bi = _Aip = _Bip = _Tp{0};
+      else if (__z > _Tp{0})
 	{
 	  _Tp _I_nu, _K_nu, _Ip_nu, _Kp_nu;
 
@@ -441,7 +450,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		std::complex<_Tp>& __w1, std::complex<_Tp>& __w2,
 		std::complex<_Tp>& __w1p, std::complex<_Tp>& __w2p)
     {
-      constexpr _Tp _S_sqrtpi = 1.772453850905516027298167483341145182797L;
+      constexpr _Tp _S_sqrtpi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
 
       _Tp _Ai, _Bi, _Aip, _Bip;
       airy(x, &_Ai, &_Bi, &_Aip, &_Bip);

@@ -23,8 +23,8 @@
 // <http://www.gnu.org/licenses/>.
 
 /** @file bits/complex_util.h
- *  This is an internal header file, included by other library headers.
- *  You should not attempt to use it directly.
+ * This is an internal header file, included by other library headers.
+ * You should not attempt to use it directly.
  */
 
 #ifndef _GLIBCXX_BITS_COMPLEX_UTIL_H
@@ -36,8 +36,30 @@
 #include <ratio>
 #include <limits>
 
+namespace std _GLIBCXX_VISIBILITY(default)
+{
+namespace __detail
+{
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
+//
+// The base definitions of __num_traits, __promote_num,
+// and __isnan reside in ext/specfun_util.h
+//
+
   /**
-   *  Return true if one component of a complex number is NaN.
+   * A class to reach into compound numeric types to extract the
+   * value or element type - specialized for complex.
+   */
+  template<>
+    template<typename _Tp>
+      struct __num_traits<std::complex<_Tp>>
+      {
+	using __value_type = typename std::complex<_Tp>::value_type;
+      };
+
+  /**
+   * Return true if one component of a complex number is NaN.
    */
   template<typename _Tp>
     inline bool
@@ -46,19 +68,7 @@
 
 
   /**
-   *  Return a fraction as a real number.
-   */
-  template<intmax_t _Num, intmax_t _Den = 1, typename _Tp = double>
-    inline constexpr _Tp
-    __frac(const std::complex<_Tp> & z)
-    {
-      using __rat_t = std::ratio<_Num, _Den>;
-      return _Tp(__rat_t::num) / _Tp(__rat_t::den);
-    }
-
-
-  /**
-   *  Return the L1 norm modulus or the Manhattan metric distance of a complex number.
+   * Return the L1 norm modulus or the Manhattan metric distance of a complex number.
    */
   template<typename _Tp>
     inline constexpr _Tp
@@ -66,7 +76,7 @@
     { return std::abs(std::real(z)) + std::abs(std::imag(z)); }
 
   /**
-   *  Return the Linf norm modulus of a complex number.
+   * Return the Linf norm modulus of a complex number.
    */
   template<typename _Tp>
     inline constexpr _Tp
@@ -75,10 +85,10 @@
 
 
   /**
-   *  Carefully compute @c z1/z2 avoiding overflow and destructive underflow.
-   *  If the quotient is successfully computed, then the logical value @c true
-   *  is returned and the quotient is returned in @c z1dz2.
-   *  Otherwise, @c false is returned and the quotient is not.
+   * Carefully compute @c z1/z2 avoiding overflow and destructive underflow.
+   * If the quotient is successfully computed, then the logical value @c true
+   * is returned and the quotient is returned in @c z1dz2.
+   * Otherwise, @c false is returned and the quotient is not.
    */
   template<typename _Tp>
     bool
@@ -86,10 +96,10 @@
 	     std::complex<_Tp> & __z1dz2);
 
   /**
-   *  Carefully compute @c s/z2 avoiding overflow and destructive underflow.
-   *  If the quotient is successfully computed, then the logical value @c true
-   *  is returned and the quotient is returned in @c z1dz2.
-   *  Otherwise, @c false is returned and the quotient is not.
+   * Carefully compute @c s/z2 avoiding overflow and destructive underflow.
+   * If the quotient is successfully computed, then the logical value @c true
+   * is returned and the quotient is returned in @c z1dz2.
+   * Otherwise, @c false is returned and the quotient is not.
    */
   template<typename _Sp, typename _Tp>
     inline bool
@@ -98,16 +108,39 @@
     { return __safe_div(std::complex<_Tp>(__s), __z, __sdz); }
 
   /**
-   *  Carefully compute @c z1/s avoiding overflow and destructive underflow.
-   *  If the quotient is successfully computed, then the logical value @c true
-   *  is returned and the quotient is returned in @c z1dz2.
-   *  Otherwise, @c false is returned and the quotient is not.
+   * Carefully compute @c z1/s avoiding overflow and destructive underflow.
+   * If the quotient is successfully computed, then the logical value @c true
+   * is returned and the quotient is returned in @c z1dz2.
+   * Otherwise, @c false is returned and the quotient is not.
    */
   template<typename _Sp, typename _Tp>
     inline bool
     __safe_div(std::complex<_Tp> __z, _Sp __s,
 	       std::complex<_Tp> & __zds)
     { return __safe_div(__z, std::complex<_Tp>(__s), __zds); }
+
+_GLIBCXX_END_NAMESPACE_VERSION
+} // namespace __detail
+} // namespace std
+
+namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
+{
+
+#if __cplusplus >= 201103L
+
+  /**
+   * This is a more modern version of __promote_N in ext/type_traits
+   * specialized for complex.
+   * This is used for numeric argument promotion of complex and cmath
+   */
+  template<>
+    template<typename _Tp>
+      struct __promote_num<std::complex<_Tp>>
+      { using __type = decltype(std::complex<__promote_num<_Tp>>{}); };
+
+#endif // __cplusplus >= 201103L
+
+} // namespace __gnu_cxx
 
 #include "complex_util.tcc"
 

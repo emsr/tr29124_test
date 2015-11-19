@@ -350,7 +350,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __x = (__x + __y) / _Tp{2};
 	  __y = std::sqrt(__xt) * std::sqrt(__y);
 	  if (std::abs(__x - __y) < __tolfact * std::abs(__x))
-	    return _Val(__numeric_constants<_Val>::__pi()) / (__x + __y);
+	    return _Val(__gnu_cxx::__math_constants<_Tp>::__pi) / (__x + __y);
 	}
     }
 
@@ -438,7 +438,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __yt = std::sqrt(__xtt) * std::sqrt(__yt);
 	  _Tp __del = __xt - __yt;
 	  if (std::abs(__del) < __tolfact * std::abs(__xt))
-	    return (__a * __a - __sum) * _Val(__numeric_constants<_Val>::__pi()) / (__xt + __yt) / _Val(2);
+	    return (__a * __a - __sum)
+		 * _Val(__gnu_cxx::__math_constants<_Tp>::__pi)
+		 / (__xt + __yt) / _Val(2);
 	  __sum += __sf * __del * __del;
 	  __sf *= _Val(2);
 	}
@@ -463,7 +465,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __comp_ellint_1(_Tp __k)
     {
-      static constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
+      constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
       if (__isnan(__k))
 	return _S_nan;
       else if (std::abs(__k) == _Tp{1})
@@ -490,8 +492,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __ellint_1(_Tp __k, _Tp __phi)
     {
-      static constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
-      static constexpr auto _S_pi = __numeric_constants<_Tp>::__pi();
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       if (__isnan(__k) || __isnan(__phi))
 	return _S_nan;
       else if (std::abs(__k) > _Tp{1})
@@ -532,7 +534,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __comp_ellint_2(_Tp __k)
     {
-      static constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
+      constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
       if (__isnan(__k))
 	return _S_nan;
       else if (std::abs(__k) == 1)
@@ -565,8 +567,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __ellint_2(_Tp __k, _Tp __phi)
     {
-      static constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
-      static constexpr auto _S_pi = __numeric_constants<_Tp>::__pi();
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       if (__isnan(__k) || __isnan(__phi))
 	return _S_nan;
       else if (std::abs(__k) > _Tp{1})
@@ -617,11 +619,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __comp_ellint_3(_Tp __k, _Tp __nu)
     {
-      static constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
       if (__isnan(__k) || __isnan(__nu))
 	return _S_nan;
       else if (__nu == _Tp{1})
-	return std::numeric_limits<_Tp>::infinity();
+	return __gnu_cxx::__math_constants<_Tp>::__inf;
       else if (std::abs(__k) > _Tp{1})
 	std::__throw_domain_error(__N("__comp_ellint_3: bad argument"));
       else
@@ -656,8 +658,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __ellint_3(_Tp __k, _Tp __nu, _Tp __phi)
     {
-      static constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
-      static constexpr auto _S_pi = __numeric_constants<_Tp>::__pi();
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       if (__isnan(__k) || __isnan(__nu) || __isnan(__phi))
 	return _S_nan;
       else if (std::abs(__k) > _Tp{1})

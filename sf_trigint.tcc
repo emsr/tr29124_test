@@ -46,9 +46,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __csint_cont_frac(_Tp __t, _Tp& _Ci, _Tp& _Si)
     {
       constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * std::numeric_limits<_Tp>::epsilon();
-      constexpr auto _S_fp_min = std::numeric_limits<_Tp>::min();
-      constexpr auto _S_pi_2 = std::__detail::__numeric_constants<_Tp>::__pi_2();
+      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__math_constants<_Tp>::__eps;
+      constexpr auto _S_fp_min = __gnu_cxx::__math_constants<_Tp>::__min;
+      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
 
       //  Evaluate Ci and Si by Lentz's modified method of continued fractions.
       std::complex<_Tp> __b(_Tp{1}, __t);
@@ -88,10 +88,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __csint_series(_Tp __t, _Tp& _Ci, _Tp& _Si)
     {
       constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * std::numeric_limits<_Tp>::epsilon();
-      constexpr auto _S_fp_min = std::numeric_limits<_Tp>::min();
+      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__math_constants<_Tp>::__eps;
+      constexpr auto _S_fp_min = __gnu_cxx::__math_constants<_Tp>::__min;
       constexpr auto _S_gamma_e
-	= std::__detail::__numeric_constants<_Tp>::__gamma_e();
+	= __gnu_cxx::__math_constants<_Tp>::__gamma_e;
 
       //  Evaluate Ci and Si by series simultaneously.
       _Tp __sumc(0), __sums(0);
@@ -151,8 +151,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __csint_asymp(_Tp __t, _Tp& _Ci, _Tp& _Si)
     {
       const auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * std::numeric_limits<_Tp>::epsilon();
-      constexpr auto _S_pi_2 = std::__detail::__numeric_constants<_Tp>::__pi_2();
+      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__math_constants<_Tp>::__eps;
+      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
 
       auto __invt = _Tp{1} / __t;
       auto __term = _Tp{1}; // 0!

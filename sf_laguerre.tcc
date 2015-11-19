@@ -73,8 +73,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const _Tp __cos2th = __x / __eta;
       const _Tp __sin2th = _Tp{1} - __cos2th;
       const _Tp __th = std::acos(std::sqrt(__cos2th));
-      const _Tp __pre_h = __numeric_constants<_Tp>::__pi_2()
-			* __numeric_constants<_Tp>::__pi_2()
+      const _Tp __pre_h = __gnu_cxx::__math_constants<_Tp>::__pi_half
+			* __gnu_cxx::__math_constants<_Tp>::__pi_half
 			* __eta * __eta * __cos2th * __sin2th;
 
       const _Tp __lg_b = __log_gamma(_Tp(__n) + __b);
@@ -85,11 +85,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __pre_term2 = _Tp{0.25L} * std::log(__pre_h);
       _Tp __lnpre = __lg_b - __lnfact + _Tp{0.5L} * __x
 		      + __pre_term1 - __pre_term2;
-      _Tp __ser_term1 = std::sin(__a * __numeric_constants<_Tp>::__pi());
+      _Tp __ser_term1 = std::sin(__a * __gnu_cxx::__math_constants<_Tp>::__pi);
       _Tp __ser_term2 = std::sin(_Tp{0.25L} * __eta
 			      * (_Tp{2} * __th
-			       - std::sin(_Tp{2} * __th))
-			       + __numeric_constants<_Tp>::__pi_4());
+			      - std::sin(_Tp{2} * __th))
+			      + __gnu_cxx::__math_constants<_Tp>::__pi_quarter);
       _Tp __ser = __ser_term1 + __ser_term2;
 
       return std::exp(__lnpre) * __ser;

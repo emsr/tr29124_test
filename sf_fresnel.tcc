@@ -30,10 +30,6 @@
 #ifndef _GLIBCXX_SF_FRESNEL_TCC
 #define _GLIBCXX_SF_FRESNEL_TCC 1
 
-#include <limits>
-#include <complex>
-#include <stdexcept>
-
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 // Implementation-space details.
@@ -50,8 +46,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __fresnel_series(const _Tp __ax, _Tp & _C, _Tp & _S)
     {
       constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * std::numeric_limits<_Tp>::epsilon();
-      constexpr auto _S_pi = __numeric_constants<_Tp>::__pi();
+      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__math_constants<_Tp>::__eps;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi_2 = _S_pi / _Tp{2};
 
       //  Evaluate S and C by series expansion.
@@ -107,9 +103,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __fresnel_cont_frac(const _Tp __ax, _Tp & _C, _Tp & _S)
     {
       constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * std::numeric_limits<_Tp>::epsilon();
-      constexpr auto _S_fp_min = std::numeric_limits<_Tp>::min();
-      constexpr auto _S_pi = __numeric_constants<_Tp>::__pi();
+      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__math_constants<_Tp>::__eps;
+      constexpr auto _S_fp_min = __gnu_cxx::__math_constants<_Tp>::__min;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
 
       //  Evaluate S and C by Lentz's complex continued fraction method.
       const auto __pix2 = _S_pi * __ax * __ax;

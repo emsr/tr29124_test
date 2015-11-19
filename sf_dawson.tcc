@@ -70,10 +70,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __dawson_const_frac(_Tp __x)
     {
-      static constexpr auto _S_1_sqrtpi(0.5641895835477562869480794515607726L);
-      static constexpr auto _S_H(0.2);
+      constexpr auto _S_1_sqrtpi(0.5641895835477562869480794515607726L);
+      constexpr auto _S_H(0.2);
 ///  @todo this needs some compile-time construction!
-      static constexpr auto __n_max = 10;
+      constexpr auto __n_max = 10;
       static _Tp __c[__n_max + 1];
       static auto __init = false;
       if (! __init)
@@ -112,7 +112,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __dawson(_Tp __x)
     {
-      static constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
       constexpr _Tp _S_x_min{0.2L};
 
       if (__isnan(__x))

@@ -48,8 +48,6 @@
 #ifndef _GLIBCXX_BITS_SF_GAMMA_TCC
 #define _GLIBCXX_BITS_SF_GAMMA_TCC 1
 
-#include <bits/specfun_util.h>
-
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 // Implementation-space details.
@@ -71,21 +69,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __bernoulli_series(unsigned int __n)
     {
 
-      static const _Tp __num[28] = {
-	_Tp{1UL},                        -_Tp{1UL} / _Tp{2UL},
-	_Tp{1UL} / _Tp{6UL},             _Tp{0UL},
-	-_Tp{1UL} / _Tp{30UL},           _Tp{0UL},
-	_Tp{1UL} / _Tp{42UL},            _Tp{0UL},
-	-_Tp{1UL} / _Tp{30UL},           _Tp{0UL},
-	_Tp{5UL} / _Tp{66UL},            _Tp{0UL},
-	-_Tp{691UL} / _Tp{2730UL},       _Tp{0UL},
-	_Tp{7UL} / _Tp{6UL},             _Tp{0UL},
-	-_Tp{3617UL} / _Tp{510UL},       _Tp{0UL},
-	_Tp{43867UL} / _Tp{798UL},       _Tp{0UL},
-	-_Tp{174611UL} / _Tp{330UL},     _Tp{0UL},
-	_Tp{854513UL} / _Tp{138UL},      _Tp{0UL},
-	-_Tp{236364091UL} / _Tp{2730UL}, _Tp{0UL},
-	_Tp{8553103UL} / _Tp{6UL},       _Tp{0UL}
+      constexpr _Tp
+      __num[28]
+      {
+	 _Tp{1UL},	                 -_Tp{1UL} / _Tp{2UL},
+	 _Tp{1UL} / _Tp{6UL},             _Tp{0UL},
+	-_Tp{1UL} / _Tp{30UL},            _Tp{0UL},
+	 _Tp{1UL} / _Tp{42UL},            _Tp{0UL},
+	-_Tp{1UL} / _Tp{30UL},            _Tp{0UL},
+	 _Tp{5UL} / _Tp{66UL},            _Tp{0UL},
+	-_Tp{691UL} / _Tp{2730UL},        _Tp{0UL},
+	 _Tp{7UL} / _Tp{6UL},             _Tp{0UL},
+	-_Tp{3617UL} / _Tp{510UL},        _Tp{0UL},
+	 _Tp{43867UL} / _Tp{798UL},       _Tp{0UL},
+	-_Tp{174611UL} / _Tp{330UL},      _Tp{0UL},
+	 _Tp{854513UL} / _Tp{138UL},      _Tp{0UL},
+	-_Tp{236364091UL} / _Tp{2730UL},  _Tp{0UL},
+	 _Tp{8553103UL} / _Tp{6UL},       _Tp{0UL}
       };
 
       if (__n == 0)
@@ -107,7 +107,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if ((__n / 2) % 2 == 0)
 	__fact *= -_Tp{1};
       for (unsigned int __k = 1; __k <= __n; ++__k)
-	__fact *= __k / (_Tp{2} * __numeric_constants<_Tp>::__pi());
+	__fact *= __k / (_Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi);
       __fact *= _Tp{2};
 
       _Tp __sum = _Tp{0};
@@ -149,7 +149,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       _Tp __lg = (__x - _Tp{0.5L}) * std::log(__x) - __x
 	       + _Tp{0.5L} * std::log(_Tp{2}
-	       * __numeric_constants<_Tp>::__pi());
+	       * __gnu_cxx::__math_constants<_Tp>::__pi);
 
       const _Tp __xx = __x * __x;
       _Tp __help = _Tp{1} / __x;
@@ -175,9 +175,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __log_gamma_lanczos(_Tp __x)
     {
-      const _Tp __xm1 = __x - _Tp{1};
-
-      static const _Tp __lanczos_cheb_7[9] = {
+      constexpr int _S_num_lanczos_cheb_7 = 9;
+      constexpr _Tp
+      _S_lanczos_cheb_7[_S_num_lanczos_cheb_7]
+      {
        _Tp{ 0.99999999999980993227684700473478L},
        _Tp{ 676.520368121885098567009190444019L},
        _Tp{-1259.13921672240287047156078755283L},
@@ -188,19 +189,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        _Tp{ 9.984369578019570859563e-6L},
        _Tp{ 1.50563273514931155834e-7L}
       };
-
-      static const _Tp __LOGROOT2PI
+      constexpr _Tp _S_log_root_2pi
 	  = _Tp{0.9189385332046727417803297364056176L};
 
-      _Tp __sum = __lanczos_cheb_7[0];
-      for(unsigned int __k = 1; __k < 9; ++__k)
-	__sum += __lanczos_cheb_7[__k] / (__xm1 + __k);
+      const auto __xm1 = __x - _Tp{1};
+      _Tp __sum = _S_lanczos_cheb_7[0];
+      for(unsigned int __k = 1; __k < _S_num_lanczos_cheb_7; ++__k)
+	__sum += _S_lanczos_cheb_7[__k] / (__xm1 + __k);
 
-      const _Tp __term1 = (__xm1 + _Tp{0.5L})
-			* std::log((__xm1 + _Tp{7.5L})
-			/ __numeric_constants<_Tp>::__euler());
-      const _Tp __term2 = __LOGROOT2PI + std::log(__sum);
-      const _Tp __result = __term1 + (__term2 - _Tp{7});
+      auto __term1 = (__xm1 + _Tp{0.5L})
+		   * std::log((__xm1 + _Tp{7.5L})
+		   / __gnu_cxx::__math_constants<_Tp>::__e);
+      auto __term2 = _S_log_root_2pi + std::log(__sum);
+      auto __result = __term1 + (__term2 - _Tp{7});
 
       return __result;
     }
@@ -226,12 +227,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __log_gamma_lanczos(__x);
       else
 	{
-	  const _Tp __sin_fact
-		 = std::abs(std::sin(__numeric_constants<_Tp>::__pi() * __x));
+	  const _Tp __sin_fact = std::abs(
+			std::sin(__gnu_cxx::__math_constants<_Tp>::__pi * __x));
 	  if (__sin_fact == _Tp{0})
-	    std::__throw_domain_error(__N("Argument is nonpositive integer "
-					  "in __log_gamma"));
-	  return __numeric_constants<_Tp>::__lnpi()
+	    std::__throw_domain_error(__N("__log_gamma: "
+					  "argument is nonpositive integer"));
+	  return __gnu_cxx::__math_constants<_Tp>::__ln_pi
 		     - std::log(__sin_fact)
 		     - __log_gamma_lanczos(_Tp{1} - __x);
 	}
@@ -255,7 +256,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
 	{
 	  const _Tp __sin_fact
-		  = std::sin(__numeric_constants<_Tp>::__pi() * __x);
+		  = std::sin(__gnu_cxx::__math_constants<_Tp>::__pi * __x);
 	  if (__sin_fact > _Tp{0})
 	    return (1);
 	  else if (__sin_fact < _Tp{0})
@@ -499,13 +500,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__x < __a + _Tp{1})
       {
-          std::pair<_Tp, _Tp> __gp = __gamma_series(__a, __x);
-          return std::exp(__gp.second) * (_Tp{1} - __gp.first);
+	std::pair<_Tp, _Tp> __gp = __gamma_series(__a, __x);
+	return std::exp(__gp.second) * (_Tp{1} - __gp.first);
       }
       else
       {
-          std::pair<_Tp, _Tp> __gp = __gamma_cont_frac(__a, __x);
-          return std::exp(__gp.second) * __gp.first;
+	std::pair<_Tp, _Tp> __gp = __gamma_cont_frac(__a, __x);
+	return std::exp(__gp.second) * __gp.first;
       }
     }
 
@@ -527,7 +528,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __psi_series(_Tp __x)
     {
-      _Tp __sum = -__numeric_constants<_Tp>::__gamma_e() - _Tp{1} / __x;
+      _Tp __sum = -__gnu_cxx::__math_constants<_Tp>::__gamma_e - _Tp{1} / __x;
       const unsigned int __max_iter = 100000;
       for (unsigned int __k = 1; __k < __max_iter; ++__k)
 	{
@@ -594,7 +595,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__x < _Tp{0})
 	{
-	  const _Tp __pi = __numeric_constants<_Tp>::__pi();
+	  const _Tp __pi = __gnu_cxx::__math_constants<_Tp>::__pi;
 	  return __psi(_Tp{1} - __x)
 	       - __pi * std::cos(__pi * __x) / std::sin(__pi * __x);
 	}
