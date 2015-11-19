@@ -81,26 +81,26 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return (__l % 2 == 1 ? -_Tp{1} : +_Tp{1});
       else
 	{
-	  _Tp __p_lm2 = _Tp{1};
+	  _Tp _P_lm2 = _Tp{1};
 	  if (__l == 0)
-	    return __p_lm2;
+	    return _P_lm2;
 
-	  _Tp __p_lm1 = __x;
+	  _Tp _P_lm1 = __x;
 	  if (__l == 1)
-	    return __p_lm1;
+	    return _P_lm1;
 
-	  _Tp __p_l = 0;
+	  _Tp _P_l = 0;
 	  for (unsigned int __ll = 2; __ll <= __l; ++__ll)
 	    {
 	      //  This arrangement is supposed to be better for roundoff
 	      //  protection, Arfken, 2nd Ed, Eq 12.17a.
-	      __p_l = _Tp{2} * __x * __p_lm1 - __p_lm2
-		    - (__x * __p_lm1 - __p_lm2) / _Tp(__ll);
-	      __p_lm2 = __p_lm1;
-	      __p_lm1 = __p_l;
+	      _P_l = _Tp{2} * __x * _P_lm1 - _P_lm2
+		    - (__x * _P_lm1 - _P_lm2) / _Tp(__ll);
+	      _P_lm2 = _P_lm1;
+	      _P_lm1 = _P_l;
 	    }
 
-	  return __p_l;
+	  return _P_l;
 	}
     }
 
@@ -126,7 +126,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __assoc_legendre_p(unsigned int __l, unsigned int __m, _Tp __x)
     {
-
       if (__x < -_Tp{1} || __x > +_Tp{1})
 	std::__throw_domain_error(__N("__assoc_legendre_p: "
 				      "argument out of range"));
@@ -139,7 +138,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __poly_legendre_p(__l, __x);
       else
 	{
-	  _Tp __p_mm = _Tp{1};
+	  _Tp _P_mm = _Tp{1};
 	  if (__m > 0)
 	    {
 	      //  Two square roots seem more accurate more of the time
@@ -148,29 +147,29 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      _Tp __fact = _Tp{1};
 	      for (unsigned int __i = 1; __i <= __m; ++__i)
 		{
-		  __p_mm *= -__fact * __root;
+		  _P_mm *= -__fact * __root;
 		  __fact += _Tp{2};
 		}
 	    }
 	  if (__l == __m)
-	    return __p_mm;
+	    return _P_mm;
 
-	  _Tp __p_mp1m = _Tp(2 * __m + 1) * __x * __p_mm;
+	  _Tp _P_mp1m = _Tp(2 * __m + 1) * __x * _P_mm;
 	  if (__l == __m + 1)
-	    return __p_mp1m;
+	    return _P_mp1m;
 
-	  _Tp __p_lm2m = __p_mm;
-	  _Tp __P_lm1m = __p_mp1m;
-	  _Tp __p_lm = _Tp{0};
+	  _Tp _P_lm2m = _P_mm;
+	  _Tp _P_lm1m = _P_mp1m;
+	  _Tp _P_lm = _Tp{0};
 	  for (unsigned int __j = __m + 2; __j <= __l; ++__j)
 	    {
-	      __p_lm = (_Tp(2 * __j - 1) * __x * __P_lm1m
-		      - _Tp(__j + __m - 1) * __p_lm2m) / _Tp(__j - __m);
-	      __p_lm2m = __P_lm1m;
-	      __P_lm1m = __p_lm;
+	      _P_lm = (_Tp(2 * __j - 1) * __x * _P_lm1m
+		      - _Tp(__j + __m - 1) * _P_lm2m) / _Tp(__j - __m);
+	      _P_lm2m = _P_lm1m;
+	      _P_lm1m = _P_lm;
 	    }
 
-	  return __p_lm;
+	  return _P_lm;
 	}
     }
 
@@ -198,8 +197,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *              @f$ l >= 0 @f$.
    *   @param  m  The order of the spherical associated Legendre function.
    *              @f$ m <= l @f$.
-   *   @param  theta  The radian angle argument of the spherical associated
-   *                  Legendre function.
+   *   @param  theta  The radian polar angle argument
+   *                  of the spherical associated Legendre function.
    */
   template<typename _Tp>
     _Tp
@@ -214,11 +213,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_domain_error(__N("__sph_legendre: bad argument"));
       else if (__m == 0)
 	{
-	  _Tp __P = __poly_legendre_p(__l, __x);
+	  _Tp _P_l = __poly_legendre_p(__l, __x);
 	  _Tp __fact = std::sqrt(_Tp(2 * __l + 1)
 		     / (_Tp{4} * __gnu_cxx::__math_constants<_Tp>::__pi));
-	  __P *= __fact;
-	  return __P;
+	  _P_l *= __fact;
+	  return _P_l;
 	}
       else if (__x == _Tp{1} || __x == -_Tp{1})
 	return _Tp{0};  //  m > 0 here
@@ -230,30 +229,30 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  // Y_m^m(x) = sqrt( (2m+1)/(4pi m) gamma(m+1/2)/gamma(m) )
 	  //             (-1)^m (1-x^2)^(m/2) / pi^(1/4)
 	  const auto __sgn = (__m % 2 == 1 ? -_Tp{1} : _Tp{1});
-	  const auto __y_mp1m_factor = __x * std::sqrt(_Tp(2 * __m + 3));
+	  const auto _Y_mp1m_factor = __x * std::sqrt(_Tp(2 * __m + 3));
 	  const auto __lncirc = std::log1p(-__x * __x);
 	  //  Gamma(m+1/2) / Gamma(m)
 	  const auto __lnpoch = __log_gamma(_Tp(__m + 0.5L))
-			     - __log_gamma(_Tp(__m));
+			      - __log_gamma(_Tp(__m));
 	  const auto __lnpre_val =
 		     -_Tp{0.25L} * __gnu_cxx::__math_constants<_Tp>::__ln_pi
 		     + _Tp{0.5L} * (__lnpoch + __m * __lncirc);
 	  _Tp __sr = std::sqrt((_Tp{2} + _Tp{1} / __m)
 		   / (_Tp{4} * __gnu_cxx::__math_constants<_Tp>::__pi));
-	  _Tp __y_mm = __sgn * __sr * std::exp(__lnpre_val);
-	  _Tp __y_mp1m = __y_mp1m_factor * __y_mm;
+	  _Tp _Y_mm = __sgn * __sr * std::exp(__lnpre_val);
+	  _Tp _Y_mp1m = _Y_mp1m_factor * _Y_mm;
 
 	  if (__l == __m)
 	    {
-	      return __y_mm;
+	      return _Y_mm;
 	    }
 	  else if (__l == __m + 1)
 	    {
-	      return __y_mp1m;
+	      return _Y_mp1m;
 	    }
 	  else
 	    {
-	      _Tp __y_lm = _Tp{0};
+	      _Tp _Y_lm = _Tp{0};
 
 	      // Compute Y_l^m, l > m+1, upward recursion on l.
 	      for ( int __ll = __m + 2; __ll <= __l; ++__ll)
@@ -265,16 +264,49 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		  const auto __fact2 = std::sqrt(__rat1 * __rat2
 						 * _Tp(2 * __ll + 1)
 						 / _Tp(2 * __ll - 3));
-		  __y_lm = (__x * __y_mp1m * __fact1
-			 - _Tp(__ll + __m - 1) * __y_mm * __fact2)
+		  _Y_lm = (__x * _Y_mp1m * __fact1
+			 - _Tp(__ll + __m - 1) * _Y_mm * __fact2)
 			 / _Tp(__ll - __m);
-		  __y_mm = __y_mp1m;
-		  __y_mp1m = __y_lm;
+		  _Y_mm = _Y_mp1m;
+		  _Y_mp1m = _Y_lm;
 		}
 
-	      return __y_lm;
+	      return _Y_lm;
 	    }
 	}
+    }
+
+
+  /**
+   *   @brief  Return the spherical harmonic function.
+   *
+   *   The spherical harmonic function of @f$ l @f$, @f$ m @f$,
+   *   and @f$ \theta @f$, @f$ \phi @f$ is defined by:
+   *   @f[
+   *      Y_l^m(\theta,\phi) = (-1)^m[\frac{(2l+1)}{4\pi}
+   *                                  \frac{(l-m)!}{(l+m)!}]
+   *                     P_l^m(\cos\theta) \exp^{im\phi}
+   *   @f]
+   *
+   *   @param  l  The order of the spherical harmonic function.
+   *              @f$ l >= 0 @f$.
+   *   @param  m  The order of the spherical harmonic function.
+   *              @f$ m <= l @f$.
+   *   @param  theta  The radian polar angle argument
+   *                  of the spherical harmonic function.
+   *   @param  phi    The radian azimuthal angle argument
+   *                  of the spherical harmonic function.
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    __sph_harmonic(unsigned int __l, unsigned int __m, _Tp __theta, _Tp __phi)
+    {
+      constexpr auto _S_NaN = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      if (__isnan(__theta) || __isnan(__phi))
+	return std::complex<_Tp>:(_S_NaN, _S_NaN);
+
+      return std::sph_legendre(__l, __m, __theta)
+	   * std::polar(_Tp{1}, _Tp(__m) * __phi);
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
