@@ -411,13 +411,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  //  Reference:
 	  //    Abramowitz & Stegun, page 446 section 10.4.4 on Airy functions.
 	  //  The number is Ai(0) = 3^{-2/3}/\Gamma(2/3).
-	  _Ai = _Tp{0.35502805388781723926L};
+	  _Ai = _Tp{0.3550280538878172392600631860041831763979791741991772L};
 	  _Bi = _Ai * _S_sqrt3;
 
 	  //  Reference:
 	  //    Abramowitz & Stegun, page 446 section 10.4.5 on Airy functions.
 	  //  The number is Ai'(0) = -3^{-1/3}/\Gamma(1/3).
-	  _Aip = -_Tp{0.25881940379280679840L};
+	  _Aip = -_Tp{0.25881940379280679840518356018920396347909113835493L};
 	  _Bip = -_Aip * _S_sqrt3;
 	}
 

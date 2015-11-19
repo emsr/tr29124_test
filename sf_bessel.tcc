@@ -165,9 +165,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __h = __nu * __xi;
       if (__h < _S_fp_min)
 	__h = _S_fp_min;
-      _Tp __b = __xi2 * __nu;
-      _Tp __d = _Tp{0};
-      _Tp __c = __h;
+      auto __b = __xi2 * __nu;
+      auto __d = _Tp{0};
+      auto __c = __h;
       int __i;
       for (__i = 1; __i <= _S_max_iter; ++__i)
 	{
@@ -189,11 +189,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__i > _S_max_iter)
 	std::__throw_runtime_error(__N("__bessel_jn: argument x too large;"
 				       " try asymptotic expansion"));
-      _Tp _Jnul = __isign * _S_fp_min;
-      _Tp _Jpnul = __h * _Jnul;
-      _Tp _Jnul1 = _Jnul;
-      _Tp _Jpnu1 = _Jpnul;
-      _Tp __fact = __nu * __xi;
+      auto _Jnul = __isign * _S_fp_min;
+      auto _Jpnul = __h * _Jnul;
+      auto _Jnul1 = _Jnul;
+      auto _Jpnu1 = _Jpnul;
+      auto __fact = __nu * __xi;
       for (int __l = __n; __l >= 1; --__l)
 	{
 	  const auto _Jnutemp = __fact * _Jnul + _Jpnul;
@@ -204,7 +204,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (_Jnul == _Tp{0})
 	_Jnul = _S_eps;
 
-      _Tp __f = _Jpnul / _Jnul;
+      auto __f = _Jpnul / _Jnul;
       _Tp _Nmu, _Nnu1, _Npmu, _Jmu;
       if (__x < _S_x_min)
 	{
@@ -213,26 +213,26 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __fact = (std::abs(__pimu) < _S_eps
 			    ? _Tp{1}
 			    : __pimu / std::sin(__pimu));
-	  _Tp __d = -std::log(__x2);
-	  _Tp __e = __mu * __d;
+	  auto __d = -std::log(__x2);
+	  auto __e = __mu * __d;
 	  const auto __fact2 = (std::abs(__e) < _S_eps
 			     ? _Tp{1}
 			     : std::sinh(__e) / __e);
 	  _Tp __gam1, __gam2, __gampl, __gammi;
 	  __gamma_temme(__mu, __gam1, __gam2, __gampl, __gammi);
-	  _Tp __ff = (_Tp{2} / _S_pi) * __fact
+	  auto __ff = (_Tp{2} / _S_pi) * __fact
 		   * (__gam1 * std::cosh(__e) + __gam2 * __fact2 * __d);
 	  __e = std::exp(__e);
-	  _Tp __p = __e / (_S_pi * __gampl);
-	  _Tp __q = _Tp{1} / (__e * _S_pi * __gammi);
+	  auto __p = __e / (_S_pi * __gampl);
+	  auto __q = _Tp{1} / (__e * _S_pi * __gammi);
 	  const auto __pimu2 = __pimu / _Tp{2};
-	  _Tp __fact3 = (std::abs(__pimu2) < _S_eps
+	  auto __fact3 = (std::abs(__pimu2) < _S_eps
 		       ? _Tp{1} : std::sin(__pimu2) / __pimu2 );
-	  _Tp __r = _S_pi * __pimu2 * __fact3 * __fact3;
-	  _Tp __c = _Tp{1};
+	  auto __r = _S_pi * __pimu2 * __fact3 * __fact3;
+	  auto __c = _Tp{1};
 	  __d = -__x2 * __x2;
-	  _Tp __sum = __ff + __r * __q;
-	  _Tp __sum1 = __p;
+	  auto __sum = __ff + __r * __q;
+	  auto __sum1 = __p;
 	  int __i;
 	  for (__i = 1; __i <= _S_max_iter; ++__i)
 	    {
@@ -257,20 +257,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else
 	{
-	  _Tp __a = _Tp{0.25L} - __mu2;
-	  _Tp __q = _Tp{1};
-	  _Tp __p = -__xi / _Tp{2};
-	  _Tp __br = _Tp{2} * __x;
-	  _Tp __bi = _Tp{2};
-	  _Tp __fact = __a * __xi / (__p * __p + __q * __q);
-	  _Tp __cr = __br + __q * __fact;
-	  _Tp __ci = __bi + __p * __fact;
-	  _Tp __den = __br * __br + __bi * __bi;
-	  _Tp __dr = __br / __den;
-	  _Tp __di = -__bi / __den;
-	  _Tp __dlr = __cr * __dr - __ci * __di;
-	  _Tp __dli = __cr * __di + __ci * __dr;
-	  _Tp __temp = __p * __dlr - __q * __dli;
+	  auto __a = _Tp{0.25L} - __mu2;
+	  auto __q = _Tp{1};
+	  auto __p = -__xi / _Tp{2};
+	  auto __br = _Tp{2} * __x;
+	  auto __bi = _Tp{2};
+	  auto __fact = __a * __xi / (__p * __p + __q * __q);
+	  auto __cr = __br + __q * __fact;
+	  auto __ci = __bi + __p * __fact;
+	  auto __den = __br * __br + __bi * __bi;
+	  auto __dr = __br / __den;
+	  auto __di = -__bi / __den;
+	  auto __dlr = __cr * __dr - __ci * __di;
+	  auto __dli = __cr * __di + __ci * __dr;
+	  auto __temp = __p * __dlr - __q * __dli;
 	  __q = __p * __dli + __q * __dlr;
 	  __p = __temp;
 	  int __i;
