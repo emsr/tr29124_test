@@ -299,13 +299,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __sph_harmonic(unsigned int __l, unsigned int __m, _Tp __theta, _Tp __phi)
+    __sph_harmonic(unsigned int __l, int __m, _Tp __theta, _Tp __phi)
     {
       constexpr auto _S_NaN = __gnu_cxx::__math_constants<_Tp>::__NaN;
       if (__isnan(__theta) || __isnan(__phi))
 	return std::complex<_Tp>:(_S_NaN, _S_NaN);
 
-      return std::sph_legendre(__l, __m, __theta)
+      return std::sph_legendre(__l, std::abs(__m), __theta)
 	   * std::polar(_Tp{1}, _Tp(__m) * __phi);
     }
 

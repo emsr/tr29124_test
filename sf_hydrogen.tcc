@@ -32,8 +32,6 @@
 
 #pragma GCC system_header
 
-#include <complex>
-
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 // Implementation-space details.
@@ -47,8 +45,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
                const unsigned int __l, const unsigned int __m,
                const _Tp _Z, const _Tp __r, const _Tp __theta, const _Tp __phi)
     {
-      constexpr long double __PI = 3.1415926535897932384626433832795029L;
-
       if(__n < 1)
 	__throw_domain_error(__N("__hydrogen: level number less than one"));
       if(__l > __n - 1)
@@ -59,23 +55,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if(__r < _Tp(0))
 	__throw_domain_error(__N("__hydrogen: negative radius"));
 
-      const _Tp _A = _Tp(2) * _Z / __n;
+      const auto _A = _Tp(2) * _Z / __n;
 
-      const _Tp __pre = std::sqrt(_A * _A * _A / (_Tp(2) * __n));
-      const _Tp __ln_a = std::lgamma(__n + __l + 1);
-      const _Tp __ln_b = std::lgamma(__n - __l);
-      const _Tp __ex = std::exp((__ln_b - __ln_a) / _Tp(2));
-      const _Tp __norm = __pre * __ex;
+      const auto __pre = std::sqrt(_A * _A * _A / (_Tp(2) * __n));
+      const auto __ln_a = std::lgamma(__n + __l + 1);
+      const auto __ln_b = std::lgamma(__n - __l);
+      const auto __ex = std::exp((__ln_b - __ln_a) / _Tp(2));
+      const auto __norm = __pre * __ex;
 
-      const _Tp __rho = _A * __r;
-      const _Tp __ea = std::exp(-__rho / _Tp(2));
-      const _Tp __pp = std::pow(__rho, __l);
-      const _Tp __lag = std::assoc_laguerre(__n - __l - 1, 2 * __l + 1,
+      const auto __rho = _A * __r;
+      const auto __ea = std::exp(-__rho / _Tp(2));
+      const auto __pp = std::pow(__rho, __l);
+      const auto __lag = std::assoc_laguerre(__n - __l - 1, 2 * __l + 1,
                                         	 __rho);
-      const std::complex<_Tp> __sphh = std::sph_legendre(__l, __m, __theta)
-                                     * std::polar(_Tp(1), _Tp(__m) * __phi);
+      const auto __sphh = std::sph_legendre(__l, __m, __theta)
+ 			* std::polar(_Tp(1), _Tp(__m) * __phi);
 
-      const std::complex<_Tp> __psi = __norm * __ea * __pp * __lag * __sphh;
+      const auto __psi = __norm * __ea * __pp * __lag * __sphh;
 
       return __psi;
     }
