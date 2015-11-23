@@ -1,10 +1,15 @@
 
-#HOME = /home/ed
 # -Wconversion
-CXX = $(HOME)/bin_specfun/bin/g++ -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__
-CXX_INC_DIR = $(HOME)/bin_specfun/include/c++/6.0.0/bits
-CXX_LIB_DIR = $(HOME)/bin_specfun/lib64
-CXX_TEST_INC_DIR = $(HOME)/gcc_specfun/libstdc++-v3/testsuite/util
+
+SUFFIX = _specfun
+
+CXX_INST_DIR = $(HOME)/bin$(SUFFIX)
+CXX_SRC_DIR = $(HOME)/gcc$(SUFFIX)
+
+CXX = $(CXX_INST_DIR)/bin/g++ -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+CXX_INC_DIR = $(CXX_INST_DIR)/include/c++/6.0.0/bits
+CXX_LIB_DIR = $(CXX_INST_DIR)/lib64
+CXX_TEST_INC_DIR = $(CXX_SRC_DIR)/libstdc++-v3/testsuite/util
 
 BINS = test_special_function \
        diff_special_function \
@@ -46,6 +51,8 @@ test:
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_nric_bessel > test_nric_bessel.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./diff_special_function > diff_special_function.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_special_function > test_special_function.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./diff_local_special_function > diff_local_special_function.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_local_special_function > test_local_special_function.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_legendre > test_legendre.txt
 
 check: \
@@ -79,6 +86,12 @@ test_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc $(CX
 
 diff_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
 	$(CXX) -o diff_special_function diff_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas
+
+test_local_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc sf_*.tcc
+	$(CXX) -std=c++14 -o test_local_special_function test_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas
+
+diff_local_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tcc sf_*.tcc
+	$(CXX) -std=c++14 -o diff_local_special_function diff_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas
 
 testcase: testcase.cpp testcase.tcc gsl_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
 	$(CXX) -o testcase testcase.cpp gsl_wrap.cpp -lgslcblas -lgsl
