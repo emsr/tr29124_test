@@ -7,11 +7,16 @@
 #include <limits>
 #include <stdexcept>
 
-#include <cmath>
-#include <tr1/cmath>
-#include <tr1/array>
-#include <tr1/functional>
-using namespace std::tr1::placeholders;
+#define STD 0
+
+#if STD
+#  include <cmath>
+#  include <array>
+#else
+#  include <cmath>
+#  include <tr1/cmath>
+#  include <tr1/array>
+#endif
 
 #include "gsl_wrap.h"
 
