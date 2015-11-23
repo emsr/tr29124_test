@@ -52,66 +52,6 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *   @brief Return the Carlson elliptic function @f$ R_F(x,y,z) @f$
-   *          of the first kind.
-   *
-   *   The Carlson elliptic function of the first kind is defined by:
-   *   @f[
-   *       R_F(x,y,z) = \frac{1}{2} \int_0^\infty
-   *                 \frac{dt}{(t + x)^{1/2}(t + y)^{1/2}(t + z)^{1/2}}
-   *   @f]
-   *
-   *   @param  __x  The first of three symmetric arguments.
-   *   @param  __y  The second of three symmetric arguments.
-   *   @param  __z  The third of three symmetric arguments.
-   *   @return  The Carlson elliptic function of the first kind.
-   */
-  template<typename _Tp>
-    _Tp
-    __ellint_rf(_Tp __x, _Tp __y, _Tp __z)
-    {
-      using _Val = __num_traits_t<_Tp>;
-      const _Val __r = std::numeric_limits<_Val>::epsilon();
-      _Tp __xt = __x;
-      _Tp __yt = __y;
-      _Tp __zt = __z;
-      _Tp __a0 = (__x + __y + __z) / _Val(3);
-      _Val __q = std::pow( _Val(3) * __r, -_Val(1) / _Val(6) )
-	       * std::max(std::abs(__a0 - __z),
-			  std::max(std::abs(__a0 - __x),
-				   std::abs(__a0 - __y)));
-      _Tp __a = __a0;
-      _Val __f = _Val(1);
-
-      while (true)
-	{
-	  _Tp __lambda = std::sqrt(__xt) * std::sqrt(__yt)
-		       + std::sqrt(__yt) * std::sqrt(__zt)
-		       + std::sqrt(__zt) * std::sqrt(__xt);
-	  __a = (__a + __lambda) / _Val(4);
-	  __xt = (__xt + __lambda) / _Val(4);
-	  __yt = (__yt + __lambda) / _Val(4);
-	  __zt = (__zt + __lambda) / _Val(4);
-	  __f *= _Val(4);
-	  if (__q < __f * std::abs(__a))
-	    {
-	      _Tp __xf = (__a0 - __x) / (__f * __a);
-	      _Tp __yf = (__a0 - __y) / (__f * __a);
-	      _Tp __zf = -(__xf + __yf);
-	      _Tp __e2 = __xf * __yf - __zf * __zf;
-	      _Tp __e3 = __xf * __yf * __zf;
-	      return (_Val(1)
-		    - __e2 / _Val(10)
-		    + __e3 / _Val(14)
-		    + __e2 * __e2 / _Val(24)
-		    - _Val(3) * __e2 * __e3 / _Val(44)) / std::sqrt(__a);
-	    }
-	}
-
-      return _Tp{0};
-    }
-
-  /**
    *   @brief  Return the Carlson elliptic function
    *           @f$ R_C(x,y) = R_F(x,y,y) @f$ where @f$ R_F(x,y,z) @f$
    *           is the Carlson elliptic function of the first kind.
@@ -137,121 +77,35 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_rc(_Tp __x, _Tp __y)
     {
       using _Val = __num_traits_t<_Tp>;
-      if (std::imag(__y) == _Val(0) && std::real(__y) < _Val(0))
+
+      if (std::imag(__y) == _Val{0} && std::real(__y) < _Val{0})
 	return std::sqrt(__x / (__x - __y)) * __ellint_rc(__x - __y, -__y);
+
       const _Val __r = std::numeric_limits<_Val>::epsilon();
       _Tp __xt = __x;
       _Tp __yt = __y;
-      _Tp __a0 = (__x + _Val(2) * __y) / _Val(3);
-      _Val __q = std::pow( _Val(3) * __r, -_Val(1) / _Val(8) )
-	       * std::abs(__a0 - __x);
-      _Tp __a = __a0;
-      _Val __f = _Val(1);
+      _Tp _A0 = (__x + _Val{2} * __y) / _Val{3};
+      _Val _Q = std::pow( _Val{3} * __r, -_Val{1} / _Val{8} )
+	      * std::abs(_A0 - __x);
+      _Tp _A = _A0;
+      _Val __f = _Val{1};
 
       while (true)
 	{
-	  _Tp __lambda = _Val(2) * std::sqrt(__xt) * std::sqrt(__yt) + __yt;
-	  __a = (__a + __lambda) / _Val(4);
-	  __xt = (__xt + __lambda) / _Val(4);
-	  __yt = (__yt + __lambda) / _Val(4);
-	  __f *= _Val(4);
-	  if (__q < __f * std::abs(__a))
+	  _Tp __lambda = _Val{2} * std::sqrt(__xt) * std::sqrt(__yt) + __yt;
+	  _A = (_A + __lambda) / _Val{4};
+	  __xt = (__xt + __lambda) / _Val{4};
+	  __yt = (__yt + __lambda) / _Val{4};
+	  __f *= _Val{4};
+	  if (_Q < __f * std::abs(_A))
 	    {
-	      _Tp __s = (__y - __a0) / (__f * __a);
-	      return (_Val(1) + __s * __s * (_Val(3) / _Val(10)
-		    + __s * (_Val(1) / _Val(7)
-		    + __s * (_Val(3) / _Val(8)
-		    + __s * (_Val(9) / _Val(22)
-		    + __s * (_Val(159) / _Val(208)
-		    + __s * (_Val(9) / _Val(8)))))))) / std::sqrt(__a);
-	    }
-	}
-
-      return _Tp{0};
-    }
-
-  /**
-   *   @brief  Return the Carlson elliptic function @f$ R_J(x,y,z,p) @f$
-   *           of the third kind.
-   *
-   *   The Carlson elliptic function of the third kind is defined by:
-   *   @f[
-   *       R_J(x,y,z,p) = \frac{3}{2} \int_0^\infty
-   *       \frac{dt}{(t + x)^{1/2}(t + y)^{1/2}(t + z)^{1/2}(t + p)}
-   *   @f]
-   *
-   *   Based on Carlson's algorithms:
-   *   -  B. C. Carlson Numer. Math. 33, 1 (1979)
-   *   -  B. C. Carlson, Special Functions of Applied Mathematics (1977)
-   *   -  Numerical Recipes in C, 2nd ed, pp. 261-269,
-   *      by Press, Teukolsky, Vetterling, Flannery (1992)
-   *
-   *   @param  __x  The first of three symmetric arguments.
-   *   @param  __y  The second of three symmetric arguments.
-   *   @param  __z  The third of three symmetric arguments.
-   *   @param  __p  The fourth argument.
-   *   @return  The Carlson elliptic function of the fourth kind.
-   */
-  template<typename _Tp>
-    _Tp
-    __ellint_rj(_Tp __x, _Tp __y, _Tp __z, _Tp __p)
-    {
-      using _Val = __num_traits_t<_Tp>;
-      const _Val __r = std::numeric_limits<_Val>::epsilon();
-      _Tp __xt = __x;
-      _Tp __yt = __y;
-      _Tp __zt = __z;
-      _Tp __pt = __p;
-      _Tp __a0 = (__x + __y + __z + _Val(2) * __p) / _Val(5);
-      _Tp __delta = (__p - __x) * (__p - __y) * (__p - __z);
-      _Val __q = std::pow(__r / _Val(4), -_Val(1) / _Val(6))
-	       * std::max(std::abs(__a0 - __z),
-			  std::max(std::abs(__a0 - __x),
-				   std::max(std::abs(__a0 - __y), std::abs(__a0 - __p))));
-      _Tp __a = __a0;
-      _Val __f = _Val(1);
-      _Val __fe = _Val(1);
-      _Tp __sum = _Tp{};
-
-      while (true)
-	{
-	  _Tp __xroot = std::sqrt(__xt);
-	  _Tp __yroot = std::sqrt(__yt);
-	  _Tp __zroot = std::sqrt(__zt);
-	  _Tp __proot = std::sqrt(__pt);
-	  _Tp __lambda = __xroot * __yroot
-		       + __yroot * __zroot
-		       + __zroot * __xroot;
-	  __a = (__a + __lambda) / _Val(4);
-	  __xt = (__xt + __lambda) / _Val(4);
-	  __yt = (__yt + __lambda) / _Val(4);
-	  __zt = (__zt + __lambda) / _Val(4);
-	  __pt = (__pt + __lambda) / _Val(4);
-	  _Tp __d = (__proot + __xroot) * (__proot + __yroot) * (__proot + __zroot);
-	  _Tp __e = __delta / (__fe * __d * __d);
-	  __sum += __ellint_rc(_Tp{1}, _Tp{1} + __e) / (__f * __d);
-	  __f *= _Val(4);
-	  __fe *= _Val(64);
-	  if (__q < __f * std::abs(__a))
-	    {
-	      _Tp __xf = (__a0 - __x) / (__f * __a);
-	      _Tp __yf = (__a0 - __y) / (__f * __a);
-	      _Tp __zf = (__a0 - __z) / (__f * __a);
-	      _Tp __xyz = __xf * __yf * __zf;
-	      _Tp __pf = -(__xf + __yf + __zf) / _Val(2);
-	      _Tp __pp = __pf * __pf;
-	      _Tp __ppp = __pp * __pf;
-	      _Tp __e2 = __xf * __yf + __yf * __zf + __zf * __xf - _Val(3) * __pp;
-	      _Tp __e3 = __xyz + _Val(2) * __e2 * __pf + _Tp{4} * __ppp;
-	      _Tp __e4 = (_Val(2) * __xyz + __e2 * __pf + _Val(3) * __ppp) * __pf;
-	      _Tp __e5 = __xyz * __pp;
-	      return (_Val(1) - _Val(3) * __e2 / _Val(14)
-			      + __e3 / _Val(6)
-			      + _Val(9) * __e2 * __e2 / _Val(88)
-			      - _Val(3) * __e4 / _Val(22)
-			      - _Val(9) * __e2 * __e3 / _Val(52)
-			      + _Val(3) * __e5 / _Val(26)) / __f / __a / std::sqrt(__a)
-			      + _Val(6) * __sum;
+	      _Tp __s = (__y - _A0) / (__f * _A);
+	      return (_Val{1} + __s * __s * (_Val{3} / _Val{10}
+		    + __s * (_Val{1} / _Val{7}
+		    + __s * (_Val{3} / _Val{8}
+		    + __s * (_Val{9} / _Val{22}
+		    + __s * (_Val{159} / _Val{208}
+		    + __s * (_Val{9} / _Val{8}))))))) / std::sqrt(_A);
 	    }
 	}
 
@@ -287,16 +141,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = __num_traits_t<_Tp>;
       const _Val __r = std::numeric_limits<_Val>::epsilon();
+
+      if ((std::imag(__x) == _Val{} && std::real(__x) < _Val{})
+       || (std::imag(__y) == _Val{} && std::real(__y) < _Val{})
+       || (std::imag(__z) == _Val{} && std::real(__z) < _Val{}))
+        std::__throw_domain_error(__N("__ellint_rd: argument less than zero"));
+      //else if (__x + __y < __lolim || __z < __lolim)
+	//std::__throw_domain_error(__N("__ellint_rd: arguments too small"));
+
       _Tp __xt = __x;
       _Tp __yt = __y;
       _Tp __zt = __z;
-      _Tp __a0 = (__x + __y + _Val(3) * __z) / _Val(5);
-      _Val __q = std::pow(__r / _Val(4), -_Val(1) / _Val(6))
-	       * std::max(std::abs(__a0 - __z),
-			  std::max(std::abs(__a0 - __x),
-			  std::abs(__a0 - __y)));
-      _Tp __a = __a0;
-      _Val __f = _Val(1);
+      _Tp _A0 = (__x + __y + _Val{3} * __z) / _Val{5};
+      _Val _Q = std::pow(__r / _Val{4}, -_Val{1} / _Val{6})
+	      * std::max(std::abs(_A0 - __z),
+			 std::max(std::abs(_A0 - __x),
+			 std::abs(_A0 - __y)));
+      _Tp _A = _A0;
+      _Val __f = _Val{1};
       _Tp __sum = _Tp{};
 
       while (true)
@@ -304,31 +166,31 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Tp __lambda = std::sqrt(__xt) * std::sqrt(__yt)
 		       + std::sqrt(__yt) * std::sqrt(__zt)
 		       + std::sqrt(__zt) * std::sqrt(__xt);
-	  __sum += _Val(1) / __f / std::sqrt(__zt) / (__zt + __lambda);
-	  __a = (__a + __lambda) / _Val(4);
-	  __xt = (__xt + __lambda) / _Val(4);
-	  __yt = (__yt + __lambda) / _Val(4);
-	  __zt = (__zt + __lambda) / _Val(4);
-	  __f *= _Val(4);
-	  if (__q < __f * std::abs(__a))
+	  __sum += _Val{1} / __f / std::sqrt(__zt) / (__zt + __lambda);
+	  _A = (_A + __lambda) / _Val{4};
+	  __xt = (__xt + __lambda) / _Val{4};
+	  __yt = (__yt + __lambda) / _Val{4};
+	  __zt = (__zt + __lambda) / _Val{4};
+	  __f *= _Val{4};
+	  if (_Q < __f * std::abs(_A))
 	    {
-	      _Tp __xf = (__a0 - __x) / (__f * __a);
-	      _Tp __yf = (__a0 - __y) / (__f * __a);
-	      _Tp __zf = -(__xf + __yf) / _Val(3);
-	      _Tp __zz = __zf * __zf;
-	      _Tp __xy = __xf * __yf;
-	      _Tp __e2 = __xy - _Val(6) * __zz;
-	      _Tp __e3 = (_Val(3) * __xy - _Val(8) * __zz) * __zf;
-	      _Tp __e4 = _Val(3) * (__xy - __zz) * __zz;
-	      _Tp __e5 = __xy * __zf * __zz;
-	      return (_Val(1)
-		    - _Val(3) * __e2 / _Val(14)
-		    + __e3 / _Val(6)
-		    + _Val(9) * __e2 * __e2 / _Val(88)
-		    - _Val(3) * __e4 / _Val(22)
-		    - _Val(9) * __e2 * __e3 / _Val(52)
-		    + _Val(3) * __e5 / _Val(26)) / __f / __a / std::sqrt(__a)
-		    + _Val(3) * __sum;
+	      _Tp _X = (_A0 - __x) / (__f * _A);
+	      _Tp _Y = (_A0 - __y) / (__f * _A);
+	      _Tp _Z = -(_X + _Y) / _Val{3};
+	      _Tp _ZZ = _Z * _Z;
+	      _Tp _XY = _X * _Y;
+	      _Tp _E2 = _XY - _Val{6} * _ZZ;
+	      _Tp _E3 = (_Val{3} * _XY - _Val{8} * _ZZ) * _Z;
+	      _Tp _E4 = _Val{3} * (_XY - _ZZ) * _ZZ;
+	      _Tp _E5 = _XY * _Z * _ZZ;
+	      return (_Val{1}
+		    - _Val{3} * _E2 / _Val{14}
+		    + _E3 / _Val{6}
+		    + _Val{9} * _E2 * _E2 / _Val{88}
+		    - _Val{3} * _E4 / _Val{22}
+		    - _Val{9} * _E2 * _E3 / _Val{52}
+		    + _Val{3} * _E5 / _Val{26}) / __f / _A / std::sqrt(_A)
+		    + _Val{3} * __sum;
 	    }
 	}
 
@@ -340,13 +202,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __comp_ellint_rf(_Tp __x, _Tp __y)
     {
       using _Val = __num_traits_t<_Tp>;
-      const _Val __r = std::numeric_limits<_Val>::epsilon();
-      const _Val __tolfact = _Val(2.7L) * std::sqrt(__r);
+      const auto __r = std::numeric_limits<_Val>::epsilon();
+      const auto __tolfact = _Val(2.7L) * std::sqrt(__r);
       __x = std::sqrt(__x);
       __y = std::sqrt(__y);
       while (true)
 	{
-	  _Tp __xt = __x;
+	  auto __xt = __x;
 	  __x = (__x + __y) / _Tp{2};
 	  __y = std::sqrt(__xt) * std::sqrt(__y);
 	  if (std::abs(__x - __y) < __tolfact * std::abs(__x))
@@ -354,9 +216,99 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
     }
 
+  /**
+   *   @brief Return the Carlson elliptic function @f$ R_F(x,y,z) @f$
+   *          of the first kind.
+   *
+   *   The Carlson elliptic function of the first kind is defined by:
+   *   @f[
+   *       R_F(x,y,z) = \frac{1}{2} \int_0^\infty
+   *                 \frac{dt}{(t + x)^{1/2}(t + y)^{1/2}(t + z)^{1/2}}
+   *   @f]
+   *
+   *   @param  __x  The first of three symmetric arguments.
+   *   @param  __y  The second of three symmetric arguments.
+   *   @param  __z  The third of three symmetric arguments.
+   *   @return  The Carlson elliptic function of the first kind.
+   */
   template<typename _Tp>
     _Tp
-    __comp_ellint_rg(_Tp __x, _Tp __y);
+    __ellint_rf(_Tp __x, _Tp __y, _Tp __z)
+    {
+      using _Val = __num_traits_t<_Tp>;
+      const _Val __r = std::numeric_limits<_Val>::epsilon();
+
+      if (std::abs(__z) < __r)
+        return __comp_ellint_rf(__x, __y);
+      else if (std::abs(__z - __y) < __r)
+	return __ellint_rc(__x, __y);
+
+      _Tp __xt = __x;
+      _Tp __yt = __y;
+      _Tp __zt = __z;
+      _Tp _A0 = (__x + __y + __z) / _Val{3};
+      _Val _Q = std::pow( _Val{3} * __r, -_Val{1} / _Val{6} )
+	      * std::max(std::abs(_A0 - __z),
+			 std::max(std::abs(_A0 - __x),
+				  std::abs(_A0 - __y)));
+      _Tp _A = _A0;
+      _Val __f = _Val{1};
+
+      while (true)
+	{
+	  _Tp __lambda = std::sqrt(__xt) * std::sqrt(__yt)
+		       + std::sqrt(__yt) * std::sqrt(__zt)
+		       + std::sqrt(__zt) * std::sqrt(__xt);
+	  _A = (_A + __lambda) / _Val{4};
+	  __xt = (__xt + __lambda) / _Val{4};
+	  __yt = (__yt + __lambda) / _Val{4};
+	  __zt = (__zt + __lambda) / _Val{4};
+	  __f *= _Val{4};
+	  if (_Q < __f * std::abs(_A))
+	    {
+	      _Tp _X = (_A0 - __x) / (__f * _A);
+	      _Tp _Y = (_A0 - __y) / (__f * _A);
+	      _Tp _Z = -(_X + _Y);
+	      _Tp _E2 = _X * _Y - _Z * _Z;
+	      _Tp _E3 = _X * _Y * _Z;
+	      return (_Val{1}
+		    - _E2 / _Val{10}
+		    + _E3 / _Val{14}
+		    + _E2 * _E2 / _Val{24}
+		    - _Val{3} * _E2 * _E3 / _Val{44}) / std::sqrt(_A);
+	    }
+	}
+
+      return _Tp{0};
+    }
+
+  template<typename _Tp>
+    _Tp
+    __comp_ellint_rg(_Tp __x, _Tp __y)
+    {
+      using _Val = __num_traits_t<_Tp>;
+      const auto __r = std::numeric_limits<_Val>::epsilon();
+      const auto __tolfact = _Val(2.7L) * std::sqrt(__r);
+
+      auto __xt = std::sqrt(__x);
+      auto __yt = std::sqrt(__y);
+      const _Tp _A = (__xt + __yt) / _Val{2};
+      auto __sum = _Tp{};
+      auto __sf = _Val{1} / _Val{2};
+      while (true)
+	{
+	  auto __xtt = __xt;
+	  __xt = (__xt + __yt) / _Tp{2};
+	  __yt = std::sqrt(__xtt) * std::sqrt(__yt);
+	  auto __del = __xt - __yt;
+	  if (std::abs(__del) < __tolfact * std::abs(__xt))
+	    return (_A * _A - __sum)
+		 * _Val(__gnu_cxx::__math_constants<_Tp>::__pi)
+		 / (__xt + __yt) / _Val{2};
+	  __sum += __sf * __del * __del;
+	  __sf *= _Val{2};
+	}
+    }
 
   /**
    *   @brief  Return the symmetric Carlson elliptic function of the second kind
@@ -415,35 +367,106 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else
 	return (__z * __ellint_rf(__x, __y, __z)
-	      - (__x - __z) * (__y - __z) * __ellint_rd(__x, __y, __z) / _Val(3)
-	      + (std::sqrt(__x) * std::sqrt(__y) / std::sqrt(__z))) / _Val(2);
+	     - (__x - __z) * (__y - __z) * __ellint_rd(__x, __y, __z) / _Val{3}
+	     + (std::sqrt(__x) * std::sqrt(__y) / std::sqrt(__z))) / _Val{2};
     }
 
+  /**
+   *   @brief  Return the Carlson elliptic function @f$ R_J(x,y,z,p) @f$
+   *           of the third kind.
+   *
+   *   The Carlson elliptic function of the third kind is defined by:
+   *   @f[
+   *       R_J(x,y,z,p) = \frac{3}{2} \int_0^\infty
+   *       \frac{dt}{(t + x)^{1/2}(t + y)^{1/2}(t + z)^{1/2}(t + p)}
+   *   @f]
+   *
+   *   Based on Carlson's algorithms:
+   *   -  B. C. Carlson Numer. Math. 33, 1 (1979)
+   *   -  B. C. Carlson, Special Functions of Applied Mathematics (1977)
+   *   -  Numerical Recipes in C, 2nd ed, pp. 261-269,
+   *      by Press, Teukolsky, Vetterling, Flannery (1992)
+   *
+   *   @param  __x  The first of three symmetric arguments.
+   *   @param  __y  The second of three symmetric arguments.
+   *   @param  __z  The third of three symmetric arguments.
+   *   @param  __p  The fourth argument.
+   *   @return  The Carlson elliptic function of the fourth kind.
+   */
   template<typename _Tp>
     _Tp
-    __comp_ellint_rg(_Tp __x, _Tp __y)
+    __ellint_rj(_Tp __x, _Tp __y, _Tp __z, _Tp __p)
     {
       using _Val = __num_traits_t<_Tp>;
       const _Val __r = std::numeric_limits<_Val>::epsilon();
-      const _Val __tolfact = _Val(2.7L) * std::sqrt(__r);
-      _Tp __xt = std::sqrt(__x);
-      _Tp __yt = std::sqrt(__y);
-      const _Tp __a = (__xt + __yt) / _Val(2);
+
+      if (std::abs(__p - __z) < __r)
+	return __ellint_rd(__x, __y, __z);
+
+      _Tp __xt = __x;
+      _Tp __yt = __y;
+      _Tp __zt = __z;
+      _Tp __pt = __p;
+      _Tp _A0 = (__x + __y + __z + _Val{2} * __p) / _Val{5};
+      _Tp __delta = (__p - __x) * (__p - __y) * (__p - __z);
+      _Val _Q = std::pow(__r / _Val{4}, -_Val{1} / _Val{6})
+	      * std::max(std::abs(_A0 - __z),
+		  std::max(std::abs(_A0 - __x),
+		    std::max(std::abs(_A0 - __y), std::abs(_A0 - __p))));
+      _Tp _A = _A0;
+      _Val __f = _Val{1};
+      _Val __fe = _Val{1};
       _Tp __sum = _Tp{};
-      _Val __sf = _Val(1) / _Val(2);
+
       while (true)
 	{
-	  _Tp __xtt = __xt;
-	  __xt = (__xt + __yt) / _Tp{2};
-	  __yt = std::sqrt(__xtt) * std::sqrt(__yt);
-	  _Tp __del = __xt - __yt;
-	  if (std::abs(__del) < __tolfact * std::abs(__xt))
-	    return (__a * __a - __sum)
-		 * _Val(__gnu_cxx::__math_constants<_Tp>::__pi)
-		 / (__xt + __yt) / _Val(2);
-	  __sum += __sf * __del * __del;
-	  __sf *= _Val(2);
+	  _Tp __xroot = std::sqrt(__xt);
+	  _Tp __yroot = std::sqrt(__yt);
+	  _Tp __zroot = std::sqrt(__zt);
+	  _Tp __proot = std::sqrt(__pt);
+	  _Tp __lambda = __xroot * __yroot
+		       + __yroot * __zroot
+		       + __zroot * __xroot;
+	  _A = (_A + __lambda) / _Val{4};
+	  __xt = (__xt + __lambda) / _Val{4};
+	  __yt = (__yt + __lambda) / _Val{4};
+	  __zt = (__zt + __lambda) / _Val{4};
+	  __pt = (__pt + __lambda) / _Val{4};
+	  _Tp __d = (__proot + __xroot)
+		  * (__proot + __yroot)
+		  * (__proot + __zroot);
+	  _Tp _E = __delta / (__fe * __d * __d);
+	  __sum += __ellint_rc(_Tp{1}, _Tp{1} + _E) / (__f * __d);
+	  __f *= _Val{4};
+	  __fe *= _Val{64};
+	  if (_Q < __f * std::abs(_A))
+	    {
+	      _Tp _X = (_A0 - __x) / (__f * _A);
+	      _Tp _Y = (_A0 - __y) / (__f * _A);
+	      _Tp _Z = (_A0 - __z) / (__f * _A);
+	      _Tp _XYZ = _X * _Y * _Z;
+	      _Tp _P = -(_X + _Y + _Z) / _Val{2};
+	      _Tp _PP = _P * _P;
+	      _Tp _PPP = _PP * _P;
+	      _Tp _E2 = _X * _Y
+		      + _Y * _Z
+		      + _Z * _X
+		      - _Val{3} * _PP;
+	      _Tp _E3 = _XYZ + _Val{2} * _E2 * _P + _Tp{4} * _PPP;
+	      _Tp _E4 = _P
+		      * (_Val{2} * _XYZ + _E2 * _P + _Val{3} * _PPP);
+	      _Tp _E5 = _XYZ * _PP;
+	      return (_Val{1} - _Val{3} * _E2 / _Val{14}
+		    + _E3 / _Val{6}
+		    + _Val{9} * _E2 * _E2 / _Val{88}
+		    - _Val{3} * _E4 / _Val{22}
+		    - _Val{9} * _E2 * _E3 / _Val{52}
+		    + _Val{3} * _E5 / _Val{26}) / __f / _A / std::sqrt(_A)
+		    + _Val{6} * __sum;
+	    }
 	}
+
+      return _Tp{0};
     }
 
   /**
@@ -494,6 +517,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+
       if (__isnan(__k) || __isnan(__phi))
 	return _S_nan;
       else if (std::abs(__k) > _Tp{1})
@@ -535,6 +559,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __comp_ellint_2(_Tp __k)
     {
       constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
+
       if (__isnan(__k))
 	return _S_nan;
       else if (std::abs(__k) == 1)
@@ -569,6 +594,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+
       if (__isnan(__k) || __isnan(__phi))
 	return _S_nan;
       else if (std::abs(__k) > _Tp{1})
@@ -586,16 +612,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const _Tp __c = std::cos(__phi_red);
 	  const _Tp __cc = __c * __c;
 
-	  const _Tp __E = __s
-			* __ellint_rf(__cc, _Tp{1} - __kk * __ss, _Tp{1})
-			- __kk * __sss
-			* __ellint_rd(__cc, _Tp{1} - __kk * __ss, _Tp{1})
-			/ _Tp{3};
+	  const _Tp _E = __s
+		       * __ellint_rf(__cc, _Tp{1} - __kk * __ss, _Tp{1})
+		       - __kk * __sss
+		       * __ellint_rd(__cc, _Tp{1} - __kk * __ss, _Tp{1})
+		       / _Tp{3};
 
 	  if (__n == 0)
-	    return __E;
+	    return _E;
 	  else
-	    return __E + _Tp{2} * __n * __comp_ellint_2(__k);
+	    return _E + _Tp{2} * __n * __comp_ellint_2(__k);
 	}
     }
 
@@ -620,6 +646,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __comp_ellint_3(_Tp __k, _Tp __nu)
     {
       constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+
       if (__isnan(__k) || __isnan(__nu))
 	return _S_nan;
       else if (__nu == _Tp{1})
@@ -660,6 +687,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+
       if (__isnan(__k) || __isnan(__nu) || __isnan(__phi))
 	return _S_nan;
       else if (std::abs(__k) > _Tp{1})
@@ -677,16 +705,180 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const _Tp __c = std::cos(__phi_red);
 	  const _Tp __cc = __c * __c;
 
-	  const _Tp __Pi = __s
-			 * __ellint_rf(__cc, _Tp{1} - __kk * __ss, _Tp{1})
-			 - __nu * __sss
-			 * __ellint_rj(__cc, _Tp{1} - __kk * __ss, _Tp{1},
-				       _Tp{1} + __nu * __ss) / _Tp{3};
+	  const _Tp _Pi = __s
+			* __ellint_rf(__cc, _Tp{1} - __kk * __ss, _Tp{1})
+			- __nu * __sss
+			* __ellint_rj(__cc, _Tp{1} - __kk * __ss, _Tp{1},
+				      _Tp{1} + __nu * __ss) / _Tp{3};
 
 	  if (__n == 0)
-	    return __Pi;
+	    return _Pi;
 	  else
-	    return __Pi + _Tp{2} * __n * __comp_ellint_3(__k, __nu);
+	    return _Pi + _Tp{2} * __n * __comp_ellint_3(__k, __nu);
+	}
+    }
+
+  /**
+   * 
+   */
+  template<typename _Tp>
+    _Tp
+    __ellint_d(_Tp __k, _Tp __phi)
+    {
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+
+      if (__isnan(__k) || __isnan(__phi))
+	return _S_nan;
+      else
+	{
+	  auto __sinphi = std::sin(__phi);
+	  auto __sinphi2 = __sinphi * __sinphi;
+	  auto __k2 = __k * __k;
+	  auto __arg1 = _Tp{1} - __sinphi2;
+	  auto __arg2 = _Tp{1} - __k2 * __sinphi2;
+	  return __ellint_rd(__arg1, __arg2, _Tp{1}) / _Tp{3};
+	}
+    }
+
+  /**
+   * Return the Bulirsch elliptic integral of the first kind.
+   */
+  template<typename _Tp>
+    _Tp
+    __ellint_el1(_Tp __x, _Tp __k_c)
+    {
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+
+      if (__isnan(__x) || __isnan(__k_c))
+	return _S_nan;
+      else
+	{
+	  auto __x2 = __x * __x;
+	  auto __k2_c = __k_c * __k_c;
+	  auto __arg2 = _Tp{1} + __k2_c * __x2;
+	  return __x * __ellint_rf(_Tp{1}, __arg2, _Tp{1} + __x2);
+	}
+    }
+
+  /**
+   * Return the Bulirsch elliptic integral of the second kind.
+   */
+  template<typename _Tp>
+    _Tp
+    __ellint_el2(_Tp __x, _Tp __k_c, _Tp __a, _Tp __b)
+    {
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+
+      if (__isnan(__x) || __isnan(__k_c) || __isnan(__a) || __isnan(__b))
+	return _S_nan;
+      else
+	{
+	  auto __x2 = __x * __x;
+	  auto __x3 = __x * __x;
+	  auto __k2_c = __k_c * __k_c;
+	  auto __arg2 = _Tp{1} + __k2_c * __x2;
+	  auto __arg3 = _Tp{1} + __x2;
+	  return __a * __x * __ellint_rf(_Tp{1}, __arg2, __arg3)
+               + (__b - __a) * __x3
+		 * __ellint_rd(_Tp{1}, __arg2, __arg3) / _Tp{3};
+	}
+    }
+
+  /**
+   * Return the Bulirsch elliptic integral of the third kind.
+   */
+  template<typename _Tp>
+    _Tp
+    __ellint_el3(_Tp __x, _Tp __k_c, _Tp __p)
+    {
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+
+      if (__isnan(__x) || __isnan(__k_c) || __isnan(__p))
+	return _S_nan;
+      else
+	{
+	  auto __x2 = __x * __x;
+	  auto __x3 = __x * __x;
+	  auto __k2_c = __k_c * __k_c;
+	  auto __arg2 = _Tp{1} + __k2_c * __x2;
+	  auto __arg3 = _Tp{1} + __x2;
+	  auto __arg4 = _Tp{1} + __p * __x2;
+	  return __x * __ellint_rf(_Tp{1}, __arg2, __arg3)
+	       + (_Tp{1} - __p) * __x3
+		 * __ellint_rj(_Tp{1}, __arg2, __arg3, __arg4) / _Tp{3};
+	}
+    }
+
+  /**
+   * Return the Bulirsch complete elliptic integral.
+   */
+  template<typename _Tp>
+    _Tp
+    __ellint_cel(_Tp __k_c, _Tp __p, _Tp __a, _Tp __b)
+    {
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+
+      if (__isnan(__k_c) || __isnan(__p) || __isnan(__a) || __isnan(__b))
+	return _S_nan;
+      else
+	{
+	  auto __k2_c = __k_c * __k_c;
+	  return __a * __ellint_rf(_Tp{0}, __k2_c, _Tp{1})
+	       + (__b - __p * __a)
+		 * __ellint_rj(_Tp{0}, __k2_c, _Tp{1}, __p) / _Tp{3};
+	}
+    }
+
+  /**
+   * Return the Heuman lambda function.
+   */
+  template<typename _Tp>
+    _Tp
+    __heuman_lambda(_Tp __beta, _Tp __k)
+    {
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+
+      if (__isnan(__beta) || __isnan(__k))
+	return _S_nan;
+      else
+	{
+	  auto __k2 = __k * __k;
+	  auto __arg2 = _Tp{1} - __k2;
+	  auto __cosbeta = std::cos(__beta);
+	  auto __sinbeta = std::sin(__beta);
+	  auto _Delta2 = _Tp{1} - __arg2 * __sinbeta * __sinbeta;
+	  auto __fact = _Tp{2} * (_Tp{1} - __k2) * __cosbeta * __sinbeta
+		      / (_S_pi * std::sqrt(_Delta2));
+	  auto __arg4 = _Tp{1} - __k2 / _Delta2;
+	  auto __fact2 = __k2 / (_Tp{3} * _Delta2);
+
+	  return __fact * (__ellint_rf(_Tp{0}, __arg2, _Tp{1})
+			+ __fact2 * ellint_rj(_Tp{0}, __arg2, _Tp{1}, __arg4));
+	}
+    }
+
+  /**
+   * Return the Jacobi zeta function.
+   */
+  template<typename _Tp>
+    _Tp
+    __jacobi_zeta(_Tp __k, _Tp __phi)
+    {
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+
+      if (__isnan(__k) || __isnan(__phi))
+	return _S_nan;
+      else
+	{
+	  auto __k2 = __k * __k;
+	  auto __cosphi = std::cos(__phi);
+	  auto __sinphi = std::sin(__phi);
+	  auto __arg2 = _Tp{1} - __k2;
+	  auto __arg4 = _Tp{1} - __k2  * __sinphi * __sinphi;
+	  return __k2 * __cosphi * __sinphi * std::sqrt(__arg4)
+	       * __ellint_rj(_Tp{0}, __arg2, _Tp{1}, __arg4)
+	       / (_Tp{3} * __comp_ellint_1(__k));
 	}
     }
 

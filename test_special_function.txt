@@ -4,14 +4,3 @@
 5.2.1.4  comp_ellint_1
 5.2.1.5  comp_ellint_2
 5.2.1.6  comp_ellint_3
-5.2.1.7  conf_hyperg
-5.2.1.8  cyl_bessel_i
-5.2.1.9  cyl_bessel_j
-5.2.1.10  cyl_bessel_k
-5.2.1.11  cyl_neumann
-5.2.1.12  ellint_1
-5.2.1.13  ellint_2
-5.2.1.14  ellint_3
-5.2.1.15  expint
-5.2.1.16  hermite
-5.2.1.17  hyperg

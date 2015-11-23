@@ -6,6 +6,7 @@ carlson1
 carlson2
 carlson3
 carlson4
+check_airy
 check_assoc_laguerre
 check_assoc_legendre
 check_beta
@@ -20,13 +21,11 @@ check_cyl_neumann
 check_ellint_1
 check_ellint_2
 check_ellint_3
-check_expint_neg
-check_expint_pos
+check_expint
 check_hyperg
 check_laguerre
 check_legendre
-check_riemann_zeta_neg
-check_riemann_zeta_pos
+check_riemann_zeta
 check_sph_bessel
 check_sph_legendre
 check_sph_neumann

@@ -303,9 +303,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       constexpr auto _S_NaN = __gnu_cxx::__math_constants<_Tp>::__NaN;
       if (__isnan(__theta) || __isnan(__phi))
-	return std::complex<_Tp>:(_S_NaN, _S_NaN);
+	return std::complex<_Tp>{_S_NaN, _S_NaN};
 
-      return std::sph_legendre(__l, std::abs(__m), __theta)
+      return __sph_legendre(__l, std::abs(__m), __theta)
 	   * std::polar(_Tp{1}, _Tp(__m) * __phi);
     }
 
