@@ -17,6 +17,10 @@
     { };
 
   template<>
+    struct __promote_help<__float128>
+    { using __type = __float128; };
+
+  template<>
     struct __promote_help<long double>
     { using __type = long double; };
 
