@@ -48,3 +48,4 @@ dilog
 test_airy
 test_promote_num
 test_hurwitz_zeta
+test_float128

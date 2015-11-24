@@ -1,266 +1,292 @@
 
 #include <limits>
+#include <iostream>
+#include <iomanip> // For setw().
+#include <sstream>
 #include <quadmath.h>
+
+// From <limits>
+#define __glibcxx_max_digits10(T) \
+  (2 + (T) * 643L / 2136)
 
 namespace std
 {
 
   inline __float128
-  abs(__float128 __x)
+  abs(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return fabsq(__x); }
 
   inline __float128
-  acos(__float128 __x)
+  acos(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return acosq(__x); }
 
   inline __float128
-  asin(__float128 __x)
+  asin(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return asinq(__x); }
 
   inline __float128
-  atan(__float128 __x)
+  atan(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return atanq(__x); }
 
   inline __float128
-  atan2(__float128 __y, __float128 __x)
+  atan2(__float128 __y, __float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return atan2q(__y, __x); }
 
   inline __float128
-  cbrt(__float128 __x)
+  cbrt(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return cbrtq(__x); }
 
   inline __float128
-  ceil(__float128 __x)
+  ceil(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return ceilq(__x); }
 
   inline __float128
-  copysign(__float128 __x, __float128 __y)
+  copysign(__float128 __x, __float128 __y) _GLIBCXX_USE_NOEXCEPT
   { return copysignq(__x, __y); }
 
   inline __float128
-  cos(__float128 __x)
+  cos(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return cosq(__x); }
 
   inline __float128
-  cosh(__float128 __x)
+  cosh(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return coshq(__x); }
 
   inline __float128
-  exp(__float128 __x)
+  exp(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return expq(__x); }
 
   inline __float128
-  erf(__float128 __x)
+  erf(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return erfq(__x); }
 
   inline __float128
-  erfc(__float128)
-  { return erfcq(); }
+  erfc(__float128 __x) _GLIBCXX_USE_NOEXCEPT
+  { return erfcq(__x); }
 
   inline __float128
-  expm1(__float128);
-  { return expm1q(); }
+  expm1(__float128 __x) _GLIBCXX_USE_NOEXCEPT
+  { return expm1q(__x); }
 
   inline __float128
-  fabs(__float128 __x)
+  fabs(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return fabsq(__x); }
 
   inline __float128
-  fdim(__float128 __x, __float128 __y);
+  fdim(__float128 __x, __float128 __y) _GLIBCXX_USE_NOEXCEPT
   { return fdimq(__x, __y); }
 
   inline __float128
-  fdim(__float128 __x, __float128 __y);
-  { return fdimq(__x, __y); }
-
-  inline __float128
-  floor(__float128 __x)
+  floor(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return floorq(__x); }
 
   inline __float128
-  fma(__float128 __m, __float128 __x, __float128 __b)
+  fma(__float128 __m, __float128 __x, __float128 __b) _GLIBCXX_USE_NOEXCEPT
   { return fmaq(__m, __x, __b); }
 
   inline __float128
-  fmax(__float128 __x, __float128 __y)
+  fmax(__float128 __x, __float128 __y) _GLIBCXX_USE_NOEXCEPT
   { return fmaxq(__x, __y); }
 
   inline __float128
-  fmin(__float128 __x, __float128 __y)
+  fmin(__float128 __x, __float128 __y) _GLIBCXX_USE_NOEXCEPT
   { return fminq(__x, __y); }
 
   inline __float128
-  fmod(__float128 __x, __float128 __y)
+  fmod(__float128 __x, __float128 __y) _GLIBCXX_USE_NOEXCEPT
   { return fmodq(__x, __y); }
 
   inline __float128
-  frexp(__float128 __x, int* __exp)
+  frexp(__float128 __x, int* __exp) _GLIBCXX_USE_NOEXCEPT
   { return frexpq(__x, __exp); }
 
   inline __float128
-  hypot(__float128 __x, __float128 __y)
+  hypot(__float128 __x, __float128 __y) _GLIBCXX_USE_NOEXCEPT
   { return hypotq(__x, __y); }
 
   inline int
-  isinf(__float128 __x)
+  isinf(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return isinfq(__x); }
 
   inline int
-  ilogb(__float128 __x)
+  ilogb(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return ilogbq(__x); }
 
   inline int
-  isnan(__float128 __x)
+  isnan(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return isnanq(__x); }
 
   inline __float128
-  j0(__float128 )
+  j0(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return j0q(__x); }
 
   inline __float128
-  j1(__float128 __x)
+  j1(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return j1q(__x); }
 
   inline __float128
-  jn(int __n, __float128 __x)
+  jn(int __n, __float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return jnq(__n, __x); }
 
   inline __float128
-  ldexp(__float128 __x, int __exp)
+  ldexp(__float128 __x, int __exp) _GLIBCXX_USE_NOEXCEPT
   { return ldexpq(__x, __exp); }
 
   inline __float128
-  lgamma(__float128 __x)
+  lgamma(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return lgammaq(__x); }
 
   inline long long int
-  llrint(__float128 __x)
+  llrint(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return llrintq(__x); }
 
   inline long long int
-  llround(__float128 __x)
+  llround(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return llroundq(__x); }
 
   inline __float128
-  logb(__float128 __x)
+  logb(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return logbq(__x); }
 
   inline __float128
-  log(__float128 __x)
+  log(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return logq(__x); }
 
   inline __float128
-  log10(__float128 __x)
+  log10(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return log10q(__x); }
 
   inline __float128
-  log2(__float128 __x)
+  log2(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return log2q(__x); }
 
   inline __float128
-  log1p(__float128 __x)
+  log1p(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return log1pq(__x); }
 
   inline long int
-  lrint(__float128 __x)
+  lrint(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return lrintq(__x); }
 
   inline long int
-  lround(__float128 __x)
+  lround(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return lroundq(__x); }
 
   inline __float128
-  modf(__float128 __x, __float128* __iptr)
+  modf(__float128 __x, __float128* __iptr) _GLIBCXX_USE_NOEXCEPT
   { return modfq(__x, __iptr); }
 
   inline __float128
-  nan(const char * __msg)
+  nan(const char * __msg) _GLIBCXX_USE_NOEXCEPT
   { return nanq(__msg); }
 
   inline __float128
-  nearbyint(__float128 __x)
+  nearbyint(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return nearbyintq(__x); }
 
   inline __float128
-  nextafter(__float128 __x, __float128 __y)
+  nextafter(__float128 __x, __float128 __y) _GLIBCXX_USE_NOEXCEPT
   { return nextafterq(__x, __y); }
 
-  inline __float128
-  powi(__float128 __x, int __n)
-  { return powiq(__x, __n); }
+  //inline __float128
+  //powi(__float128 __x, int __n) _GLIBCXX_USE_NOEXCEPT
+  //{ return powiq(__x, __n); }
 
   inline __float128
-  remainder(__float128 __x, __float128 __y)
+  remainder(__float128 __x, __float128 __y) _GLIBCXX_USE_NOEXCEPT
   { return remainderq(__x, __y); }
 
   inline __float128
-  remquoq(__float128 __x, __float128 __y, int * __n);
+  remquo(__float128 __x, __float128 __y, int* __n) _GLIBCXX_USE_NOEXCEPT
   { return remquoq(__x, __y, __n); }
 
   inline __float128
-  rint(__float128 __x)
+  rint(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return rintq(__x); }
 
   inline __float128
-  round(__float128 )
+  round(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return roundq(__x); }
 
   inline __float128
-  scalbln(__float128 , long int )
-  { return scalblnq(__x, ); }
+  scalbln(__float128 __x, long int __n) _GLIBCXX_USE_NOEXCEPT
+  { return scalblnq(__x, __n); }
 
   inline __float128
-  scalbn(__float128 __x, int )
-  { return scalbnq(__x, ); }
+  scalbn(__float128 __x, int __n) _GLIBCXX_USE_NOEXCEPT
+  { return scalbnq(__x, __n); }
 
   inline int
-  signbitq(__float128 __x);
+  signbitq(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return signbitq(__x); }
 
   inline void
   sincos(__float128 __x, __float128 * __sin, __float128 * __cos)
+  _GLIBCXX_USE_NOEXCEPT
   { return sincosq(__x, __sin, __cos); }
 
   inline __float128
-  sin(__float128 __x)
+  sin(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return sinq(__x); }
 
   inline __float128
-  sinh(__float128 __x)
+  sinh(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return sinhq(__x); }
 
   inline __float128
-  sqrt(__float128 __x)
+  sqrt(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return sqrtq(__x); }
 
   inline __float128
-  tan(__float128 __x)
+  tan(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return tanq(__x); }
 
   inline __float128
-  tanh(__float128 __x)
+  tanh(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return tanhq(__x); }
 
   inline __float128
-  tgamma(__float128 __x)
+  tgamma(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return tgammaq(__x); }
 
   inline __float128
-  trunc(__float128 __x)
+  trunc(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return truncq(__x); }
 
   inline __float128
-  y0(__float128 __x)
+  y0(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return y0q(__x); }
 
   inline __float128
-  y1(__float128 __x)
+  y1(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return y1q(__x); }
 
   inline __float128
-  yn(int __n, __float128 __x)
+  yn(int __n, __float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return ynq(__n, __x); }
 
+  inline std::ostream&
+  operator<<(std::ostream& __os, const __float128& __x)
+  {
+    std::ostringstream __fmt;
+    __fmt << "%." << __os.precision() << "Qg";
+    constexpr int __strlen = 1000;
+    char __str[__strlen];
+    quadmath_snprintf(__str, __strlen, __fmt.str().c_str(), __x) ;
+    __os.precision(30);
+    __os << __str;
+    return __os;
+  }
+
+  inline std::istream&
+  operator>>(std::istream& __is, __float128& __x)
+  {
+    constexpr int __strlen = 1000;
+    char __str[__strlen];
+    __is >> std::setw(__strlen) >> __str;
+    __x = strtoflt128(__str, 0);
+    return __is;
+  }
 
   /// numeric_limits<__float128> specialization.
   template<>
@@ -276,7 +302,7 @@ namespace std
 
 #if __cplusplus >= 201103L
       static constexpr __float128 
-      lowest() noexcept { return -FLT128_MAX; }
+      lowest() _GLIBCXX_USE_NOEXCEPT { return -FLT128_MAX; }
 #endif
 
       static _GLIBCXX_USE_CONSTEXPR int digits = FLT128_MANT_DIG;
@@ -308,14 +334,14 @@ namespace std
 	= denorm_present;
       static _GLIBCXX_USE_CONSTEXPR bool has_denorm_loss = true;
 
-      static _GLIBCXX_CONSTEXPR __float128 
+      static _GLIBCXX_CONSTEXPR __float128
       infinity() _GLIBCXX_USE_NOEXCEPT { return __builtin_huge_valq(); }
 
-      static _GLIBCXX_CONSTEXPR __float128 
+      static /*_GLIBCXX_CONSTEXPR*/ __float128 
       quiet_NaN() _GLIBCXX_USE_NOEXCEPT { return nanq(""); }
 
-      static _GLIBCXX_CONSTEXPR __float128 
-      signaling_NaN() _GLIBCXX_USE_NOEXCEPT { return __builtin_nansq(""); }
+      //static _GLIBCXX_CONSTEXPR __float128 
+      //signaling_NaN() _GLIBCXX_USE_NOEXCEPT { return __builtin_nansq(""); }
 
       static _GLIBCXX_CONSTEXPR __float128 
       denorm_min() _GLIBCXX_USE_NOEXCEPT { return FLT128_DENORM_MIN; }
@@ -325,11 +351,14 @@ namespace std
       static _GLIBCXX_USE_CONSTEXPR bool is_bounded = true;
       static _GLIBCXX_USE_CONSTEXPR bool is_modulo = false;
 
-      static _GLIBCXX_USE_CONSTEXPR bool traps = false;/???
+      static _GLIBCXX_USE_CONSTEXPR bool traps = false;//???
       static _GLIBCXX_USE_CONSTEXPR bool tinyness_before = 
-					 false;/???
+					 false;//???
       static _GLIBCXX_USE_CONSTEXPR float_round_style round_style = 
 						      round_to_nearest;
     };
 
 } // namespace std
+
+// From <limits>
+#undef __glibcxx_max_digits10
