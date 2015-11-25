@@ -104,10 +104,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __isnan<long double>(long double __x)
     { return __builtin_isnanl(__x); }
 
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   template<>
     inline bool
     __isnan<__float128>(__float128 __x)
     { return __builtin_isnanq(__x); }
+#endif
 
 #endif
 

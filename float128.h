@@ -1,3 +1,7 @@
+#ifndef FLOAT128_H
+#define FLOAT128_H 1
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
 
 #include <limits>
 #include <iostream>
@@ -362,3 +366,7 @@ namespace std
 
 // From <limits>
 #undef __glibcxx_max_digits10
+
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
+
+#endif // FLOAT128_H

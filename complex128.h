@@ -1,3 +1,7 @@
+#ifndef COMPLEX128_H
+#define COMPLEX128_H 1
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
 
 #include "float128.h"
 
@@ -101,3 +105,7 @@ namespace std
   { return ctanhq(__z); }
 
 } // namespace std
+
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
+
+#endif // COMPLEX128_H
