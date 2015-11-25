@@ -16,9 +16,11 @@
     struct __promote_help<_Tp, false>
     { };
 
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   template<>
     struct __promote_help<__float128>
     { using __type = __float128; };
+#endif
 
   template<>
     struct __promote_help<long double>
