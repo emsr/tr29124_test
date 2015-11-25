@@ -4,9 +4,7 @@
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
 
 #include <limits>
-#include <iostream>
-#include <iomanip> // For setw().
-#include <sstream>
+#include <iosfwd>
 #include <quadmath.h>
 
 // From <limits>
@@ -221,7 +219,7 @@ namespace std
   { return scalbnq(__x, __n); }
 
   inline int
-  signbitq(__float128 __x) _GLIBCXX_USE_NOEXCEPT
+  signbit(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return signbitq(__x); }
 
   inline void
@@ -269,28 +267,14 @@ namespace std
   yn(int __n, __float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return ynq(__n, __x); }
 
-  inline std::ostream&
-  operator<<(std::ostream& __os, const __float128& __x)
-  {
-    std::ostringstream __fmt;
-    __fmt << "%." << __os.precision() << "Qg";
-    constexpr int __strlen = 1000;
-    char __str[__strlen];
-    quadmath_snprintf(__str, __strlen, __fmt.str().c_str(), __x) ;
-    __os.precision(30);
-    __os << __str;
-    return __os;
-  }
+  template<typename _CharT, typename _Traits = std::char_traits<_CharT>>
+    std::basic_ostream<_CharT, _Traits>&
+    operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+	       const __float128& __x);
 
-  inline std::istream&
-  operator>>(std::istream& __is, __float128& __x)
-  {
-    constexpr int __strlen = 1000;
-    char __str[__strlen];
-    __is >> std::setw(__strlen) >> __str;
-    __x = strtoflt128(__str, 0);
-    return __is;
-  }
+  template<typename _CharT, typename _Traits = std::char_traits<_CharT>>
+    std::basic_istream<_CharT, _Traits>&
+    operator>>(std::basic_istream<_CharT, _Traits>& __is, __float128& __x);
 
   /// numeric_limits<__float128> specialization.
   template<>
@@ -368,5 +352,7 @@ namespace std
 #undef __glibcxx_max_digits10
 
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
+
+#include "float128.tcc"
 
 #endif // FLOAT128_H
