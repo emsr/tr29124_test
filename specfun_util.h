@@ -104,6 +104,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __isnan<long double>(long double __x)
     { return __builtin_isnanl(__x); }
 
+  template<>
+    inline bool
+    __isnan<__float128>(__float128 __x)
+    { return __builtin_isnanq(__x); }
+
 #endif
 
   /**
@@ -168,6 +173,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   template<typename _Tp>
     struct __promote_help<_Tp, false>
     { };
+
+  template<>
+    struct __promote_help<__float128>
+    { using __type = __float128; };
 
   template<>
     struct __promote_help<long double>
