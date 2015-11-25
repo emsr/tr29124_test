@@ -39,25 +39,24 @@ do_test<_Tp>()
   std::vector<int> iorder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};
 
   //  ... corresponding double "integer" orders for GSL.
-  std::vector<double> duiorder{0.0, 1.0, 2.0, 3.0, 4.0,
+  std::vector<double> dorder{0.0, 1.0, 2.0, 3.0, 4.0,
 			       5.0, 10.0, 20.0, 50.0, 100.0};
 
   //  Orders for cylindrical Bessel functions.
-  std::vector<double> border{_Tp{0}, _Tp{1}/_Tp{3}, _Tp{1}/_Tp{2}, _Tp{2}/_Tp{3}, _Tp{1},
-                              _Tp{2}, _Tp{3}, _Tp{5}, _Tp{10}, _Tp{20}, _Tp{50}, _Tp{100}};
+  std::vector<_Tp> border{_Tp{0}, _Tp{1}/_Tp{3}, _Tp{1}/_Tp{2}, _Tp{2}/_Tp{3}, _Tp{1},
+                          _Tp{2}, _Tp{3}, _Tp{5}, _Tp{10}, _Tp{20}, _Tp{50}, _Tp{100}};
 
   //  Orders for spherical Bessel functions.
   std::vector<unsigned int> uisborder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};
   //  ... and for GSL.
   std::vector<int> isborder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};
 
-  const unsigned long num_phi = 10;
-  long double phi[num_phi];
+  const unsigned long num_phi = 19; // 0 - 180 degrees.
+  _Tp phi[num_phi];
   for (unsigned int i = 0; i < num_phi; ++i)
     phi[i] = _Tp{10} * i * static_cast<_Tp>(M_PI) / _Tp{180};
-  std::vector<float> vphif(phi, phi + num_phi);
   std::vector<double> vphid(phi, phi + num_phi);
-  std::vector<long double> vphil(phi, phi + num_phi);
+  std::vector<_Tp> vphi(phi, phi + num_phi);
 
 #if 1
   std::string ns("std");
@@ -117,7 +116,7 @@ do_test<_Tp>()
   //  double gsl_sf_laguerre_n(int n, double a, double x);
   std::cout << "assoc_laguerre" << std::endl;
   basename = "gsl_assoc_laguerre";
-  runtest<double, int, double, double>(gsl_sf_laguerre_n, basename, iorder, duiorder,
+  runtest<double, int, double, double>(gsl_sf_laguerre_n, basename, iorder, dorder,
                                        fill_argument(std::make_pair(0.0, 100.0),
                                                      std::make_pair(true, true)));
   basename = ns + "_assoc_laguerre";
@@ -287,7 +286,7 @@ do_test<_Tp>()
                          basename,
                          fill_argument(std::make_pair(-_Tp{1}, _Tp{1}),
                                        std::make_pair(true, true)),
-                         vphid);
+                         vphi);
 
 
   //  Elliptic integrals of the second kind.
@@ -301,7 +300,7 @@ do_test<_Tp>()
   runtest<_Tp, _Tp, _Tp>(ellint_2, basename,
                          fill_argument(std::make_pair(-_Tp{1}, _Tp{1}),
                                                 std::make_pair(true, true)),
-                         vphid);
+                         vphi);
 
 
   //  Elliptic integrals of the third kind.
@@ -321,7 +320,7 @@ do_test<_Tp>()
                                             std::make_pair(true, true)),
                               fill_argument(std::make_pair(_Tp{0}, _Tp{1}),
                                             std::make_pair(true, true), 11),
-                              vphid);
+                              vphi);
 
 
   //  Exponential integrals.
@@ -358,13 +357,13 @@ do_test<_Tp>()
   basename = "gsl_hyperg";
   runtest<double, double, double, double, double>(wrap_gsl_sf_hyperg_2F1, basename,
                                                   fill_argument(std::make_pair(0.0, 10.0),
-                                                                  std::make_pair(true, true), 11),
+                                                                std::make_pair(true, true), 11),
                                                   fill_argument(std::make_pair(0.0, 10.0),
-                                                                  std::make_pair(true, true), 11),
+                                                                std::make_pair(true, true), 11),
                                                   fill_argument(std::make_pair(0.0, 10.0),
-                                                                  std::make_pair(false, true), 11),  //  Skip the singularity
+                                                                std::make_pair(false, true), 11),  //  Skip the singularity
                                                   fill_argument(std::make_pair(-1.0, 1.0),
-                                                                  std::make_pair(false, true), 21));
+                                                                std::make_pair(false, true), 21));
   basename = ns + "_hyperg";
   runtest<_Tp, _Tp, _Tp, _Tp, _Tp>(hyperg, basename,
                                    fill_argument(std::make_pair(_Tp{0}, _Tp{10}),

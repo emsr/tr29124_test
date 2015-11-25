@@ -36,13 +36,13 @@ main()
   std::vector<double> dvorder{0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 10.0, 20.0, 50.0, 100.0};
 
   //  Orders for cylindrical Bessel functions.
-  std::vector<double> vborderd{0.0, 1.0/3.0, 0.5, 2.0/3.0, 1.0, 2.0, 3.0,
+  std::vector<double> cborderd{0.0, 1.0/3.0, 0.5, 2.0/3.0, 1.0, 2.0, 3.0,
                                5.0, 10.0, 20.0, 50.0, 100.0};
 
   //  Orders for spherical bessel functions.
   std::vector<unsigned int> sborder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};
 
-  const unsigned long num_phi = 10;
+  const unsigned long num_phi = 19; // 0 - 180 degrees.
   double phi[num_phi];
   for (unsigned int i = 0; i < num_phi; ++i)
     phi[i] = 10.0 * i * M_PI / 180.0;
@@ -171,8 +171,7 @@ main()
   basename = "diff_conf_hyperg";
   rundiff<double, double, double, double>(conf_hyperg,
                                           wrap_gsl_sf_hyperg_1F1, basename,
-                                          "a", vab,//fill_argument(std::make_pair(0.0, 10.0),
-                                                   //              std::make_pair(true, true), 11),
+                                          "a", vab,
                                           "c", fill_argument(std::make_pair(0.0, 10.0),
                                                              std::make_pair(false, true), 11),
                                           "x", fill_argument(std::make_pair(-10.0, 10.0),
@@ -184,7 +183,7 @@ main()
   basename = "diff_cyl_bessel_i";
   rundiff<double, double, double>(cyl_bessel_i,
                                   wrap_gsl_sf_bessel_Inu, basename,
-                                  "nu", vborderd,
+                                  "nu", cborderd,
                                   "x", fill_argument(std::make_pair(0.0, 100.0),
                                                      std::make_pair(true, true), 1001));
 
@@ -194,7 +193,7 @@ main()
   basename = "diff_cyl_bessel_j";
   rundiff<double, double, double>(cyl_bessel_j,
                                   wrap_gsl_sf_bessel_Jnu, basename,
-                                  "nu", vborderd,
+                                  "nu", cborderd,
                                   "x", fill_argument(std::make_pair(0.0, 100.0),
                                                      std::make_pair(true, true), 1001));
 
@@ -205,7 +204,7 @@ main()
   basename = "diff_cyl_bessel_k";
   rundiff<double, double, double>(cyl_bessel_k,
                                   wrap_gsl_sf_bessel_Knu, basename,
-                                  "nu", vborderd,
+                                  "nu", cborderd,
                                   "x", fill_argument(std::make_pair(0.0, 100.0),
                                                      std::make_pair(false, true), 1001));
 
@@ -216,7 +215,7 @@ main()
   basename = "diff_cyl_neumann";
   rundiff<double, double, double>(cyl_neumann,
                                   wrap_gsl_sf_bessel_Ynu, basename,
-                                  "nu", vborderd,
+                                  "nu", cborderd,
                                   "x", fill_argument(std::make_pair(0.0, 100.0),
                                                      std::make_pair(false, true), 1001));
 
@@ -286,10 +285,7 @@ main()
   basename = "diff_hyperg";
   rundiff<double, double, double, double, double>(hyperg,
                                                   wrap_gsl_sf_hyperg_2F1, basename,
-                                                  "a", vab,//fill_argument(std::make_pair(0.0, 10.0),
-                                                       //               std::make_pair(true, true), 11),
-                                                  "b", vab,//fill_argument(std::make_pair(0.0, 10.0),
-                                                       //               std::make_pair(true, true), 11),
+                                                  "a", vab, "b", vab,
                                                   "c", fill_argument(std::make_pair(0.0, 10.0),
                                                                      std::make_pair(false, true), 11),
                                                   "x", fill_argument(std::make_pair(-1.0, 1.0),
