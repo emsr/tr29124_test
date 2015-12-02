@@ -440,3 +440,69 @@ wrap_gsl_sf_bessel_yl(unsigned int n, double x)
   else
     return result.val;
 }
+
+double
+wrap_gsl_sf_gamma_inc_Q(double a, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_gamma_inc_Q_e(a, x, &result);
+  if (stat != GSL_SUCCESS)
+    throw std::runtime_error("Error in wrap_gsl_sf_gamma_inc_Q");
+  else
+    return result.val;
+}
+
+double
+wrap_gsl_sf_gamma_inc_P(double a, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_gamma_inc_P_e(a, x, &result);
+  if (stat != GSL_SUCCESS)
+    throw std::runtime_error("Error in wrap_gsl_sf_gamma_inc_P");
+  else
+    return result.val;
+}
+
+double
+wrap_gsl_sf_gamma_inc(double a, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_gamma_inc_e(a, x, &result);
+  if (stat != GSL_SUCCESS)
+    throw std::runtime_error("Error in wrap_gsl_sf_gamma_inc");
+  else
+    return result.val;
+}
+
+double
+wrap_gsl_sf_beta_inc(double a, double b, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_beta_inc_e(a, b, x, &result);
+  if (stat != GSL_SUCCESS)
+    throw std::runtime_error("Error in wrap_gsl_sf_beta_inc");
+  else
+    return result.val;
+}
+
+double
+wrap_gsl_sf_dilog(double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_dilog_e(x, &result);
+  if (stat != GSL_SUCCESS)
+    throw std::runtime_error("Error in wrap_gsl_sf_dilog");
+  else
+    return result.val;
+}
+
+double
+wrap_gsl_sf_psi(double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_psi_e(x, &result);
+  if (stat != GSL_SUCCESS)
+    throw std::runtime_error("Error in wrap_gsl_sf_psi");
+  else
+    return result.val;
+}

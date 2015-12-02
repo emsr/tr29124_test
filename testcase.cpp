@@ -585,6 +585,34 @@ template<typename Real>
 						  std::make_pair(false, true), 11),
 			       file_ellint_rj);
 
+    //  Dilogarithm functions.
+    std::cout << "dilog" << std::endl;
+    funcname = "dilog";
+    filename = get_filename(path, prefix, "dilog", "",  ".cc");
+    std::ofstream file_dilog(filename.c_str());
+    typedef Real dilog(Real);
+    test =
+    maketest<Real, Real>((dilog *)__gnu_cxx::dilog,
+			 wrap_gsl_sf_dilog,
+			 "__gnu_cxx", funcname,
+			 "x", fill_argument(std::make_pair(-Real{10}, Real{10}),
+					    std::make_pair(true, true), 41),
+			 file_dilog);
+
+    //  Upper incomplete Gamma functions.
+    std::cout << "gamma_u" << std::endl;
+    funcname = "gamma_u";
+    filename = get_filename(path, prefix, funcname, "", ".cc");
+    std::ofstream file_gamma_u(filename.c_str());
+    typedef Real gamma_u(Real, Real);
+    maketest<Real, Real, Real>((gamma_u*)__gnu_cxx::gamma_u, wrap_gsl_sf_gamma_inc,
+			       "__gnu_cxx", funcname,
+			       "a", fill_argument(std::make_pair(Real{0}, +Real{5}),
+						  std::make_pair(false, true), 11),
+			       "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
+						  std::make_pair(true, true), 11),
+			       file_gamma_u);
+
   }
 
 

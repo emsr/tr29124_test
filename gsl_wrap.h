@@ -6,63 +6,63 @@
 double wrap_gsl_sf_airy_ai(double x);
 double wrap_gsl_sf_airy_bi(double x);
 
-///  5.2.1.1  Associated Laguerre polynomials.
+///  Associated Laguerre polynomials.
 double wrap_gsl_sf_laguerre_nm(unsigned int n, unsigned int m, double x);
 
 
-///  5.2.1.2  Associated Legendre functions.
+///  Associated Legendre functions.
 double wrap_gsl_sf_legendre_Plm(unsigned int l, unsigned int m, double x);
 
 
-///  5.2.1.3  Beta function.
+///  Beta function.
 double wrap_gsl_sf_beta(double x, double y);
 
 
-///  5.2.1.4  Complete elliptic integrals of the first kind.
+///  Complete elliptic integrals of the first kind.
 double wrap_gsl_sf_ellint_Kcomp(double k);
 
 
-///  5.2.1.5  Complete elliptic integrals of the second kind.
+///  Complete elliptic integrals of the second kind.
 double wrap_gsl_sf_ellint_Ecomp(double k);
 
 
-///  5.2.1.6  Complete elliptic integrals of the third kind.
+///  Complete elliptic integrals of the third kind.
 double wrap_gsl_sf_ellint_Pcomp(double k, double nu);
 
 
-///  5.2.1.7  Confluent hypergeometric functions.
+///  Confluent hypergeometric functions.
 double wrap_gsl_sf_hyperg_1F1(double a, double c, double x);
 
 
-///  5.2.1.8  Regular modified cylindrical Bessel functions.
+///  Regular modified cylindrical Bessel functions.
 double wrap_gsl_sf_bessel_Inu(double nu, double x);
 
 
-///  5.2.1.9  Cylindrical Bessel functions (of the first kind).
+///  Cylindrical Bessel functions (of the first kind).
 double wrap_gsl_sf_bessel_Jnu(double nu, double x);
 
 //double wrap_gsl_sf_bessel_Jnu_asymp(double nu, double x);
 
 
-///  5.2.1.10  Irregular modified cylindrical Bessel functions.
+///  Irregular modified cylindrical Bessel functions.
 double wrap_gsl_sf_bessel_Knu(double nu, double x);
 
 
-///  5.2.1.11  Cylindrical Neumann functions.
+///  Cylindrical Neumann functions.
 double wrap_gsl_sf_bessel_Ynu(double nu, double x);
 
 //double wrap_gsl_sf_bessel_Ynu_asymp(double nu, double x);
 
 
-///  5.2.1.12  Elliptic integrals of the first kind.
+///  Elliptic integrals of the first kind.
 double wrap_gsl_sf_ellint_F(double k, double phi);
 
 
-///  5.2.1.13  Elliptic integrals of the second kind.
+///  Elliptic integrals of the second kind.
 double wrap_gsl_sf_ellint_E(double k, double phi);
 
 
-///  5.2.1.14  Elliptic integrals of the third kind.
+///  Elliptic integrals of the third kind.
 double wrap_gsl_sf_ellint_P(double k, double nu, double phi);
 
 ///  Carlson elliptic integrals.
@@ -71,36 +71,54 @@ double wrap_gsl_sf_ellint_RD(double x, double y, double z);
 double wrap_gsl_sf_ellint_RF(double x, double y, double z);
 double wrap_gsl_sf_ellint_RJ(double x, double y, double z, double p);
 
-///  5.2.1.15  Exponential integral.
+///  Exponential integral.
 double wrap_gsl_sf_expint_Ei(double x);
 
 
-///  5.2.1.17  Hypergeometric functions.
+///  Hypergeometric functions.
 double wrap_gsl_sf_hyperg_2F1(double a, double b, double c, double x);
 
 
-///  5.2.1.18  Laguerre polynomials.
+///  Laguerre polynomials.
 double wrap_gsl_sf_laguerre_n(unsigned int n, double x);
 
 
-///  5.2.1.19  Legendre polynomials.
+///  Legendre polynomials.
 double wrap_gsl_sf_legendre_Pl(unsigned int l, double x);
 
 
-///  5.2.1.20  Riemann zeta function.
+///  Riemann zeta function.
 double wrap_gsl_sf_zeta(double x);
 
 ///  Hurwitz zeta function.
 double wrap_gsl_sf_hzeta(double s, double q);
 
-///  5.2.1.21  Spherical Bessel functions.
+///  Spherical Bessel functions.
 double wrap_gsl_sf_bessel_jl(unsigned int n, double x);
 
 
-///  5.2.1.22  Spherical Legendre functions.
+///  Spherical Legendre functions.
 double wrap_gsl_sf_legendre_sphPlm(unsigned int l, unsigned int m, double theta);
 
 
-///  5.2.1.23  Spherical Neumann functions.
+///  Spherical Neumann functions.
 double wrap_gsl_sf_bessel_yl(unsigned int n, double x);
+
+//  Normalized incomplete gamma functions.
+double wrap_gsl_sf_gamma_inc_Q(double a, double x);
+
+//  Complementary normalized incomplete gamma functions.
+double wrap_gsl_sf_gamma_inc_P(double a, double x);
+
+//  Non-normalized incomplete gamma functions.
+double wrap_gsl_sf_gamma_inc(double a, double x);
+
+//  Incomplete beta functions.
+double wrap_gsl_sf_beta_inc(double a, double b, double x);
+
+//  Dilogarithm functions.
+double wrap_gsl_sf_dilog(double x);
+
+//  Digamma or psi functions.
+double wrap_gsl_sf_psi(double x);
 
