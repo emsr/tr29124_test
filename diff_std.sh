@@ -2,9 +2,11 @@
 
 tool="kdiff3"
 gcc_dir="$HOME/gcc_specfun/libstdc++-v3/include/bits"
+ext_dir="$HOME/gcc_specfun/libstdc++-v3/include/ext"
 
 ${tool} ./specfun_util.h    ${gcc_dir}/specfun_util.h
 ${tool} ./specfun.h         ${gcc_dir}/specfun.h
+${tool} ./math_const.h      ${ext_dir}/math_const.h
 ${tool} ./sf_bessel.tcc     ${gcc_dir}/sf_bessel.tcc
 ${tool} ./sf_beta.tcc       ${gcc_dir}/sf_beta.tcc
 ${tool} ./sf_ellint.tcc     ${gcc_dir}/sf_ellint.tcc

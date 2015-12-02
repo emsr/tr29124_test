@@ -46,6 +46,8 @@
 #ifndef _GLIBCXX_BITS_SF_LEGENDRE_TCC
 #define _GLIBCXX_BITS_SF_LEGENDRE_TCC 1
 
+#include <ext/math_const.h>
+
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 // Implementation-space details.

@@ -44,6 +44,8 @@
 #ifndef _GLIBCXX_BITS_SF_ELLINT_TCC
 #define _GLIBCXX_BITS_SF_ELLINT_TCC 1
 
+#include <ext/math_const.h>
+
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 // Implementation-space details.
@@ -77,39 +79,54 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_rc(_Tp __x, _Tp __y)
     {
       using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
+      constexpr auto _S_min = __gnu_cxx::__math_constants<_Val>::__min;
+      constexpr auto _S_max = __gnu_cxx::__math_constants<_Val>::__max;
+      constexpr auto _S_lolim = _Val(5) * _S_min;
+      constexpr auto _S_uplim = _S_max / _Val(5);
+      constexpr auto _S_eps = __gnu_cxx::__math_constants<_Val>::__eps;
 
-      if (std::imag(__y) == _Val{0} && std::real(__y) < _Val{0})
+      if (__isnan(__x) || __isnan(__y))
+	return _S_nan;
+      else if (std::imag(__x) == _Val{} && std::real(__x) < _Val{}
+	    || std::imag(__y) == _Val{} && std::real(__y) < _Val{})
+	std::__throw_domain_error(__N("__ellint_rc: argument less than zero"));
+      else if (std::abs(__x + __y) < _S_lolim)
+        std::__throw_domain_error(__N("__ellint_rc: arguments too small"));
+      else if (std::imag(__y) == _Val{0} && std::real(__y) < _Val{0})
 	return std::sqrt(__x / (__x - __y)) * __ellint_rc(__x - __y, -__y);
-
-      const _Val __r = std::numeric_limits<_Val>::epsilon();
-      _Tp __xt = __x;
-      _Tp __yt = __y;
-      _Tp _A0 = (__x + _Val{2} * __y) / _Val{3};
-      _Val _Q = std::pow( _Val{3} * __r, -_Val{1} / _Val{8} )
-	      * std::abs(_A0 - __x);
-      _Tp _A = _A0;
-      _Val __f = _Val{1};
-
-      while (true)
+      else
 	{
-	  _Tp __lambda = _Val{2} * std::sqrt(__xt) * std::sqrt(__yt) + __yt;
-	  _A = (_A + __lambda) / _Val{4};
-	  __xt = (__xt + __lambda) / _Val{4};
-	  __yt = (__yt + __lambda) / _Val{4};
-	  __f *= _Val{4};
-	  if (_Q < __f * std::abs(_A))
-	    {
-	      _Tp __s = (__y - _A0) / (__f * _A);
-	      return (_Val{1} + __s * __s * (_Val{3} / _Val{10}
-		    + __s * (_Val{1} / _Val{7}
-		    + __s * (_Val{3} / _Val{8}
-		    + __s * (_Val{9} / _Val{22}
-		    + __s * (_Val{159} / _Val{208}
-		    + __s * (_Val{9} / _Val{8}))))))) / std::sqrt(_A);
-	    }
-	}
+	  auto __xt = __x;
+	  auto __yt = __y;
+	  auto _A0 = (__x + _Val{2} * __y) / _Val{3};
+	  auto _Q = std::pow(_Val{3} * _S_eps, -_Val{1} / _Val{8})
+		  * std::abs(_A0 - __x);
+	  auto _A = _A0;
+	  auto __f = _Val{1};
 
-      return _Tp{0};
+	  while (true)
+	    {
+	      auto __lambda = _Val{2} * std::sqrt(__xt) * std::sqrt(__yt)
+			    + __yt;
+	      _A = (_A + __lambda) / _Val{4};
+	      __xt = (__xt + __lambda) / _Val{4};
+	      __yt = (__yt + __lambda) / _Val{4};
+	      __f *= _Val{4};
+	      if (_Q < __f * std::abs(_A))
+		{
+		  auto __s = (__y - _A0) / (__f * _A);
+		  return (_Val{1} + __s * __s * (_Val{3} / _Val{10}
+			+ __s * (_Val{1} / _Val{7}
+			+ __s * (_Val{3} / _Val{8}
+			+ __s * (_Val{9} / _Val{22}
+			+ __s * (_Val{159} / _Val{208}
+			+ __s * (_Val{9} / _Val{8}))))))) / std::sqrt(_A);
+		}
+	    }
+
+	  return _Tp{};
+	}
     }
 
   /**
@@ -140,61 +157,70 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_rd(_Tp __x, _Tp __y, _Tp __z)
     {
       using _Val = __num_traits_t<_Tp>;
-      const _Val __r = std::numeric_limits<_Val>::epsilon();
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
+      constexpr auto _S_min = __gnu_cxx::__math_constants<_Val>::__min;
+      constexpr auto _S_max = __gnu_cxx::__math_constants<_Val>::__max;
+      constexpr auto _S_lolim = _Val(5) * _S_min;
+      constexpr auto _S_uplim = _S_max / _Val(5);
+      constexpr auto _S_eps = __gnu_cxx::__math_constants<_Val>::__eps;
 
-      if ((std::imag(__x) == _Val{} && std::real(__x) < _Val{})
-       || (std::imag(__y) == _Val{} && std::real(__y) < _Val{})
-       || (std::imag(__z) == _Val{} && std::real(__z) < _Val{}))
+      if (__isnan(__x) || __isnan(__y) || __isnan(__z))
+	return _S_nan;
+      else if ((std::imag(__x) == _Val{} && std::real(__x) < _Val{})
+	    || (std::imag(__y) == _Val{} && std::real(__y) < _Val{})
+	    || (std::imag(__z) == _Val{} && std::real(__z) < _Val{}))
         std::__throw_domain_error(__N("__ellint_rd: argument less than zero"));
-      //else if (__x + __y < __lolim || __z < __lolim)
-	//std::__throw_domain_error(__N("__ellint_rd: arguments too small"));
-
-      _Tp __xt = __x;
-      _Tp __yt = __y;
-      _Tp __zt = __z;
-      _Tp _A0 = (__x + __y + _Val{3} * __z) / _Val{5};
-      _Val _Q = std::pow(__r / _Val{4}, -_Val{1} / _Val{6})
-	      * std::max(std::abs(_A0 - __z),
-			 std::max(std::abs(_A0 - __x),
-			 std::abs(_A0 - __y)));
-      _Tp _A = _A0;
-      _Val __f = _Val{1};
-      _Tp __sum = _Tp{};
-
-      while (true)
+      else if (std::abs(__x + __y) < _S_lolim || std::abs(__z) < _S_lolim)
+	std::__throw_domain_error(__N("__ellint_rd: arguments too small"));
+      else
 	{
-	  _Tp __lambda = std::sqrt(__xt) * std::sqrt(__yt)
-		       + std::sqrt(__yt) * std::sqrt(__zt)
-		       + std::sqrt(__zt) * std::sqrt(__xt);
-	  __sum += _Val{1} / __f / std::sqrt(__zt) / (__zt + __lambda);
-	  _A = (_A + __lambda) / _Val{4};
-	  __xt = (__xt + __lambda) / _Val{4};
-	  __yt = (__yt + __lambda) / _Val{4};
-	  __zt = (__zt + __lambda) / _Val{4};
-	  __f *= _Val{4};
-	  if (_Q < __f * std::abs(_A))
-	    {
-	      _Tp _X = (_A0 - __x) / (__f * _A);
-	      _Tp _Y = (_A0 - __y) / (__f * _A);
-	      _Tp _Z = -(_X + _Y) / _Val{3};
-	      _Tp _ZZ = _Z * _Z;
-	      _Tp _XY = _X * _Y;
-	      _Tp _E2 = _XY - _Val{6} * _ZZ;
-	      _Tp _E3 = (_Val{3} * _XY - _Val{8} * _ZZ) * _Z;
-	      _Tp _E4 = _Val{3} * (_XY - _ZZ) * _ZZ;
-	      _Tp _E5 = _XY * _Z * _ZZ;
-	      return (_Val{1}
-		    - _Val{3} * _E2 / _Val{14}
-		    + _E3 / _Val{6}
-		    + _Val{9} * _E2 * _E2 / _Val{88}
-		    - _Val{3} * _E4 / _Val{22}
-		    - _Val{9} * _E2 * _E3 / _Val{52}
-		    + _Val{3} * _E5 / _Val{26}) / __f / _A / std::sqrt(_A)
-		    + _Val{3} * __sum;
-	    }
-	}
+	  auto __xt = __x;
+	  auto __yt = __y;
+	  auto __zt = __z;
+	  auto _A0 = (__x + __y + _Val{3} * __z) / _Val{5};
+	  auto _Q = std::pow(_S_eps / _Val{4}, -_Val{1} / _Val{6})
+		  * std::max(std::abs(_A0 - __z),
+			     std::max(std::abs(_A0 - __x),
+			     std::abs(_A0 - __y)));
+	  auto _A = _A0;
+	  auto __f = _Val{1};
+	  auto __sum = _Tp{};
 
-      return _Tp{0};
+	  while (true)
+	    {
+	      auto __lambda = std::sqrt(__xt) * std::sqrt(__yt)
+			    + std::sqrt(__yt) * std::sqrt(__zt)
+			    + std::sqrt(__zt) * std::sqrt(__xt);
+	      __sum += _Val{1} / __f / std::sqrt(__zt) / (__zt + __lambda);
+	      _A = (_A + __lambda) / _Val{4};
+	      __xt = (__xt + __lambda) / _Val{4};
+	      __yt = (__yt + __lambda) / _Val{4};
+	      __zt = (__zt + __lambda) / _Val{4};
+	      __f *= _Val{4};
+	      if (_Q < __f * std::abs(_A))
+		{
+		  auto _X = (_A0 - __x) / (__f * _A);
+		  auto _Y = (_A0 - __y) / (__f * _A);
+		  auto _Z = -(_X + _Y) / _Val{3};
+		  auto _ZZ = _Z * _Z;
+		  auto _XY = _X * _Y;
+		  auto _E2 = _XY - _Val{6} * _ZZ;
+		  auto _E3 = (_Val{3} * _XY - _Val{8} * _ZZ) * _Z;
+		  auto _E4 = _Val{3} * (_XY - _ZZ) * _ZZ;
+		  auto _E5 = _XY * _Z * _ZZ;
+		  return (_Val{1}
+			- _Val{3} * _E2 / _Val{14}
+			+ _E3 / _Val{6}
+			+ _Val{9} * _E2 * _E2 / _Val{88}
+			- _Val{3} * _E4 / _Val{22}
+			- _Val{9} * _E2 * _E3 / _Val{52}
+			+ _Val{3} * _E5 / _Val{26}) / __f / _A / std::sqrt(_A)
+			+ _Val{3} * __sum;
+		}
+	    }
+
+	  return _Tp{};
+	}
     }
 
   template<typename _Tp>
@@ -202,17 +228,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __comp_ellint_rf(_Tp __x, _Tp __y)
     {
       using _Val = __num_traits_t<_Tp>;
-      const auto __r = std::numeric_limits<_Val>::epsilon();
-      const auto __tolfact = _Val(2.7L) * std::sqrt(__r);
-      __x = std::sqrt(__x);
-      __y = std::sqrt(__y);
-      while (true)
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
+      constexpr auto _S_eps = __gnu_cxx::__math_constants<_Val>::__eps;
+      const auto _S_tolfact = _Val(2.7L) * std::sqrt(_S_eps);
+
+      if (__isnan(__x) || __isnan(__y))
+	return _S_nan;
+      else
 	{
-	  auto __xt = __x;
-	  __x = (__x + __y) / _Tp{2};
-	  __y = std::sqrt(__xt) * std::sqrt(__y);
-	  if (std::abs(__x - __y) < __tolfact * std::abs(__x))
-	    return _Val(__gnu_cxx::__math_constants<_Tp>::__pi) / (__x + __y);
+	  __x = std::sqrt(__x);
+	  __y = std::sqrt(__y);
+	  while (true)
+	    {
+	      auto __xt = __x;
+	      __x = (__x + __y) / _Tp{2};
+	      __y = std::sqrt(__xt) * std::sqrt(__y);
+	      if (std::abs(__x - __y) < _S_tolfact * std::abs(__x))
+		return _Val(__gnu_cxx::__math_constants<_Tp>::__pi) / (__x + __y);
+	    }
 	}
     }
 
@@ -236,50 +269,68 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_rf(_Tp __x, _Tp __y, _Tp __z)
     {
       using _Val = __num_traits_t<_Tp>;
-      const _Val __r = std::numeric_limits<_Val>::epsilon();
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
+      constexpr auto _S_min = __gnu_cxx::__math_constants<_Val>::__min;
+      constexpr auto _S_max = __gnu_cxx::__math_constants<_Val>::__max;
+      constexpr auto _S_lolim = _Val(5) * _S_min;
+      constexpr auto _S_uplim = _S_max / _Val(5);
+      constexpr _Val _S_eps = __gnu_cxx::__math_constants<_Val>::__eps;
 
-      if (std::abs(__z) < __r)
+      if (__isnan(__x) || __isnan(__y) || __isnan(__z))
+	return _S_nan;
+      else if (std::imag(__x) == _Val{} && std::real(__x) < _Val{}
+	    || std::imag(__y) == _Val{} && std::real(__y) < _Val{}
+	    || std::imag(__z) == _Val{} && std::real(__z) < _Val{})
+        std::__throw_domain_error(__N("__ellint_rf: argument less than zero"));
+      else if (std::abs(__x + __y) < _S_lolim
+	    || std::abs(__x + __z) < _S_lolim
+	    || std::abs(__y + __z) < _S_lolim)
+        std::__throw_domain_error(__N("Argument too small in __ellint_rf"));
+
+      if (std::abs(__z) < _S_eps)
         return __comp_ellint_rf(__x, __y);
-      else if (std::abs(__z - __y) < __r)
+      else if (std::abs(__z - __y) < _S_eps)
 	return __ellint_rc(__x, __y);
-
-      _Tp __xt = __x;
-      _Tp __yt = __y;
-      _Tp __zt = __z;
-      _Tp _A0 = (__x + __y + __z) / _Val{3};
-      _Val _Q = std::pow( _Val{3} * __r, -_Val{1} / _Val{6} )
-	      * std::max(std::abs(_A0 - __z),
-			 std::max(std::abs(_A0 - __x),
-				  std::abs(_A0 - __y)));
-      _Tp _A = _A0;
-      _Val __f = _Val{1};
-
-      while (true)
+      else
 	{
-	  _Tp __lambda = std::sqrt(__xt) * std::sqrt(__yt)
-		       + std::sqrt(__yt) * std::sqrt(__zt)
-		       + std::sqrt(__zt) * std::sqrt(__xt);
-	  _A = (_A + __lambda) / _Val{4};
-	  __xt = (__xt + __lambda) / _Val{4};
-	  __yt = (__yt + __lambda) / _Val{4};
-	  __zt = (__zt + __lambda) / _Val{4};
-	  __f *= _Val{4};
-	  if (_Q < __f * std::abs(_A))
-	    {
-	      _Tp _X = (_A0 - __x) / (__f * _A);
-	      _Tp _Y = (_A0 - __y) / (__f * _A);
-	      _Tp _Z = -(_X + _Y);
-	      _Tp _E2 = _X * _Y - _Z * _Z;
-	      _Tp _E3 = _X * _Y * _Z;
-	      return (_Val{1}
-		    - _E2 / _Val{10}
-		    + _E3 / _Val{14}
-		    + _E2 * _E2 / _Val{24}
-		    - _Val{3} * _E2 * _E3 / _Val{44}) / std::sqrt(_A);
-	    }
-	}
+	  auto __xt = __x;
+	  auto __yt = __y;
+	  auto __zt = __z;
+	  auto _A0 = (__x + __y + __z) / _Val{3};
+	  auto _Q = std::pow( _Val{3} * _S_eps, -_Val{1} / _Val{6} )
+		  * std::max(std::abs(_A0 - __z),
+			     std::max(std::abs(_A0 - __x),
+				      std::abs(_A0 - __y)));
+	  auto _A = _A0;
+	  auto __f = _Val{1};
 
-      return _Tp{0};
+	  while (true)
+	    {
+	      auto __lambda = std::sqrt(__xt) * std::sqrt(__yt)
+			    + std::sqrt(__yt) * std::sqrt(__zt)
+			    + std::sqrt(__zt) * std::sqrt(__xt);
+	      _A = (_A + __lambda) / _Val{4};
+	      __xt = (__xt + __lambda) / _Val{4};
+	      __yt = (__yt + __lambda) / _Val{4};
+	      __zt = (__zt + __lambda) / _Val{4};
+	      __f *= _Val{4};
+	      if (_Q < __f * std::abs(_A))
+		{
+		  auto _X = (_A0 - __x) / (__f * _A);
+		  auto _Y = (_A0 - __y) / (__f * _A);
+		  auto _Z = -(_X + _Y);
+		  auto _E2 = _X * _Y - _Z * _Z;
+		  auto _E3 = _X * _Y * _Z;
+		  return (_Val{1}
+			- _E2 / _Val{10}
+			+ _E3 / _Val{14}
+			+ _E2 * _E2 / _Val{24}
+			- _Val{3} * _E2 * _E3 / _Val{44}) / std::sqrt(_A);
+		}
+	    }
+
+	  return _Tp{};
+	}
     }
 
   template<typename _Tp>
@@ -287,26 +338,32 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __comp_ellint_rg(_Tp __x, _Tp __y)
     {
       using _Val = __num_traits_t<_Tp>;
-      const auto __r = std::numeric_limits<_Val>::epsilon();
-      const auto __tolfact = _Val(2.7L) * std::sqrt(__r);
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
+      constexpr auto _S_eps = __gnu_cxx::__math_constants<_Val>::__eps;
+      constexpr auto _S_tolfact = _Val(2.7L) * std::sqrt(_S_eps);
 
-      auto __xt = std::sqrt(__x);
-      auto __yt = std::sqrt(__y);
-      const _Tp _A = (__xt + __yt) / _Val{2};
-      auto __sum = _Tp{};
-      auto __sf = _Val{1} / _Val{2};
-      while (true)
+      if (__isnan(__x) || __isnan(__y))
+	return _S_nan;
+      else
 	{
-	  auto __xtt = __xt;
-	  __xt = (__xt + __yt) / _Tp{2};
-	  __yt = std::sqrt(__xtt) * std::sqrt(__yt);
-	  auto __del = __xt - __yt;
-	  if (std::abs(__del) < __tolfact * std::abs(__xt))
-	    return (_A * _A - __sum)
-		 * _Val(__gnu_cxx::__math_constants<_Tp>::__pi)
-		 / (__xt + __yt) / _Val{2};
-	  __sum += __sf * __del * __del;
-	  __sf *= _Val{2};
+	  auto __xt = std::sqrt(__x);
+	  auto __yt = std::sqrt(__y);
+	  const auto _A = (__xt + __yt) / _Val{2};
+	  auto __sum = _Tp{};
+	  auto __sf = _Val{1} / _Val{2};
+	  while (true)
+	    {
+	      auto __xtt = __xt;
+	      __xt = (__xt + __yt) / _Tp{2};
+	      __yt = std::sqrt(__xtt) * std::sqrt(__yt);
+	      auto __del = __xt - __yt;
+	      if (std::abs(__del) < _S_tolfact * std::abs(__xt))
+		return (_A * _A - __sum)
+		     * _Val(__gnu_cxx::__math_constants<_Tp>::__pi)
+		     / (__xt + __yt) / _Val{2};
+	      __sum += __sf * __del * __del;
+	      __sf *= _Val{2};
+	    }
 	}
     }
 
@@ -338,7 +395,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_rg(_Tp __x, _Tp __y, _Tp __z)
     {
       using _Val = __num_traits_t<_Tp>;
-      if (__z == _Tp{})
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
+
+      if (__isnan(__x) || __isnan(__y) || __isnan(__z))
+	return _S_nan;
+      else if (__z == _Tp{})
 	{
 	  if (__x == _Tp{})
 	    return std::sqrt(__y);
@@ -398,75 +459,80 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_rj(_Tp __x, _Tp __y, _Tp __z, _Tp __p)
     {
       using _Val = __num_traits_t<_Tp>;
-      const _Val __r = std::numeric_limits<_Val>::epsilon();
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
+      constexpr auto _S_eps = __gnu_cxx::__math_constants<_Val>::__eps;
 
-      if (std::abs(__p - __z) < __r)
+      if (__isnan(__x) || __isnan(__y) || __isnan(__z) || __isnan(__p))
+	return _S_nan;
+      else if (std::abs(__p - __z) < _S_eps)
 	return __ellint_rd(__x, __y, __z);
-
-      _Tp __xt = __x;
-      _Tp __yt = __y;
-      _Tp __zt = __z;
-      _Tp __pt = __p;
-      _Tp _A0 = (__x + __y + __z + _Val{2} * __p) / _Val{5};
-      _Tp __delta = (__p - __x) * (__p - __y) * (__p - __z);
-      _Val _Q = std::pow(__r / _Val{4}, -_Val{1} / _Val{6})
-	      * std::max(std::abs(_A0 - __z),
-		  std::max(std::abs(_A0 - __x),
-		    std::max(std::abs(_A0 - __y), std::abs(_A0 - __p))));
-      _Tp _A = _A0;
-      _Val __f = _Val{1};
-      _Val __fe = _Val{1};
-      _Tp __sum = _Tp{};
-
-      while (true)
+      else
 	{
-	  _Tp __xroot = std::sqrt(__xt);
-	  _Tp __yroot = std::sqrt(__yt);
-	  _Tp __zroot = std::sqrt(__zt);
-	  _Tp __proot = std::sqrt(__pt);
-	  _Tp __lambda = __xroot * __yroot
-		       + __yroot * __zroot
-		       + __zroot * __xroot;
-	  _A = (_A + __lambda) / _Val{4};
-	  __xt = (__xt + __lambda) / _Val{4};
-	  __yt = (__yt + __lambda) / _Val{4};
-	  __zt = (__zt + __lambda) / _Val{4};
-	  __pt = (__pt + __lambda) / _Val{4};
-	  _Tp __d = (__proot + __xroot)
-		  * (__proot + __yroot)
-		  * (__proot + __zroot);
-	  _Tp _E = __delta / (__fe * __d * __d);
-	  __sum += __ellint_rc(_Tp{1}, _Tp{1} + _E) / (__f * __d);
-	  __f *= _Val{4};
-	  __fe *= _Val{64};
-	  if (_Q < __f * std::abs(_A))
-	    {
-	      _Tp _X = (_A0 - __x) / (__f * _A);
-	      _Tp _Y = (_A0 - __y) / (__f * _A);
-	      _Tp _Z = (_A0 - __z) / (__f * _A);
-	      _Tp _XYZ = _X * _Y * _Z;
-	      _Tp _P = -(_X + _Y + _Z) / _Val{2};
-	      _Tp _PP = _P * _P;
-	      _Tp _PPP = _PP * _P;
-	      _Tp _E2 = _X * _Y
-		      + _Y * _Z
-		      + _Z * _X
-		      - _Val{3} * _PP;
-	      _Tp _E3 = _XYZ + _Val{2} * _E2 * _P + _Tp{4} * _PPP;
-	      _Tp _E4 = _P
-		      * (_Val{2} * _XYZ + _E2 * _P + _Val{3} * _PPP);
-	      _Tp _E5 = _XYZ * _PP;
-	      return (_Val{1} - _Val{3} * _E2 / _Val{14}
-		    + _E3 / _Val{6}
-		    + _Val{9} * _E2 * _E2 / _Val{88}
-		    - _Val{3} * _E4 / _Val{22}
-		    - _Val{9} * _E2 * _E3 / _Val{52}
-		    + _Val{3} * _E5 / _Val{26}) / __f / _A / std::sqrt(_A)
-		    + _Val{6} * __sum;
-	    }
-	}
+	  auto __xt = __x;
+	  auto __yt = __y;
+	  auto __zt = __z;
+	  auto __pt = __p;
+	  auto _A0 = (__x + __y + __z + _Val{2} * __p) / _Val{5};
+	  auto __delta = (__p - __x) * (__p - __y) * (__p - __z);
+	  auto _Q = std::pow(_S_eps / _Val{4}, -_Val{1} / _Val{6})
+		  * std::max(std::abs(_A0 - __z),
+		      std::max(std::abs(_A0 - __x),
+			std::max(std::abs(_A0 - __y), std::abs(_A0 - __p))));
+	  auto _A = _A0;
+	  auto __f = _Val{1};
+	  auto __fe = _Val{1};
+	  auto __sum = _Tp{};
 
-      return _Tp{0};
+	  while (true)
+	    {
+	      auto __xroot = std::sqrt(__xt);
+	      auto __yroot = std::sqrt(__yt);
+	      auto __zroot = std::sqrt(__zt);
+	      auto __proot = std::sqrt(__pt);
+	      auto __lambda = __xroot * __yroot
+			    + __yroot * __zroot
+			    + __zroot * __xroot;
+	      _A = (_A + __lambda) / _Val{4};
+	      __xt = (__xt + __lambda) / _Val{4};
+	      __yt = (__yt + __lambda) / _Val{4};
+	      __zt = (__zt + __lambda) / _Val{4};
+	      __pt = (__pt + __lambda) / _Val{4};
+	      auto __d = (__proot + __xroot)
+		       * (__proot + __yroot)
+		       * (__proot + __zroot);
+	      auto _E = __delta / (__fe * __d * __d);
+	      __sum += __ellint_rc(_Tp{1}, _Tp{1} + _E) / (__f * __d);
+	      __f *= _Val{4};
+	      __fe *= _Val{64};
+	      if (_Q < __f * std::abs(_A))
+		{
+		  auto _X = (_A0 - __x) / (__f * _A);
+		  auto _Y = (_A0 - __y) / (__f * _A);
+		  auto _Z = (_A0 - __z) / (__f * _A);
+		  auto _XYZ = _X * _Y * _Z;
+		  auto _P = -(_X + _Y + _Z) / _Val{2};
+		  auto _PP = _P * _P;
+		  auto _PPP = _PP * _P;
+		  auto _E2 = _X * _Y
+			   + _Y * _Z
+			   + _Z * _X
+			   - _Val{3} * _PP;
+		  auto _E3 = _XYZ + _Val{2} * _E2 * _P + _Tp{4} * _PPP;
+		  auto _E4 = _P
+			   * (_Val{2} * _XYZ + _E2 * _P + _Val{3} * _PPP);
+		  auto _E5 = _XYZ * _PP;
+		  return (_Val{1} - _Val{3} * _E2 / _Val{14}
+			+ _E3 / _Val{6}
+			+ _Val{9} * _E2 * _E2 / _Val{88}
+			- _Val{3} * _E4 / _Val{22}
+			- _Val{9} * _E2 * _E3 / _Val{52}
+			+ _Val{3} * _E5 / _Val{26}) / __f / _A / std::sqrt(_A)
+			+ _Val{6} * __sum;
+		}
+	    }
+
+	  return _Tp{};
+	}
     }
 
   /**
@@ -488,10 +554,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __comp_ellint_1(_Tp __k)
     {
-      constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
+
       if (__isnan(__k))
 	return _S_nan;
-      else if (std::abs(__k) == _Tp{1})
+      else if (std::abs(__k) == _Val{1})
 	return _S_nan;
       else
 	return __ellint_rf(_Tp{0}, _Tp{1} - __k * __k, _Tp{1});
@@ -515,25 +583,26 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __ellint_1(_Tp __k, _Tp __phi)
     {
-      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Val>::__pi;
 
       if (__isnan(__k) || __isnan(__phi))
 	return _S_nan;
-      else if (std::abs(__k) > _Tp{1})
+      else if (std::abs(__k) > _Val{1})
 	std::__throw_domain_error(__N("__ellint_1: bad argument"));
       else
 	{
 	  //  Reduce phi to -pi/2 < phi < +pi/2.
-	  const int __n = std::floor(__phi / _S_pi + _Tp{0.5L});
-	  const _Tp __phi_red = __phi - __n * _S_pi;
+	  const int __n = std::floor(__phi / _S_pi + _Val{0.5L});
+	  const auto __phi_red = __phi - __n * _S_pi;
 
-	  const _Tp __s = std::sin(__phi_red);
-	  const _Tp __c = std::cos(__phi_red);
+	  const auto __s = std::sin(__phi_red);
+	  const auto __c = std::cos(__phi_red);
 
-	  const _Tp __F = __s
-			* __ellint_rf(__c * __c,
-				_Tp{1} - __k * __k * __s * __s, _Tp{1});
+	  const auto __F = __s
+			 * __ellint_rf(__c * __c,
+				       _Val{1} - __k * __k * __s * __s, _Tp{1});
 
 	  if (__n == 0)
 	    return __F;
@@ -558,20 +627,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __comp_ellint_2(_Tp __k)
     {
-      constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
 
       if (__isnan(__k))
 	return _S_nan;
-      else if (std::abs(__k) == 1)
+      else if (std::abs(__k) == _Val{1})
 	return _Tp{1};
-      else if (std::abs(__k) > _Tp{1})
+      else if (std::abs(__k) > _Val{1})
 	std::__throw_domain_error(__N("__comp_ellint_2: bad argument"));
       else
 	{
-	  const _Tp __kk = __k * __k;
+	  const auto __kk = __k * __k;
 
-	  return __ellint_rf(_Tp{0}, _Tp{1} - __kk, _Tp{1})
-	       - __kk * __ellint_rd(_Tp{0}, _Tp{1} - __kk, _Tp{1}) / _Tp{3};
+	  return __ellint_rf(_Val{0}, _Val{1} - __kk, _Val{1})
+	       - __kk * __ellint_rd(_Val{0}, _Val{1} - __kk, _Val{1}) / _Tp{3};
 	}
     }
 
@@ -592,31 +662,32 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __ellint_2(_Tp __k, _Tp __phi)
     {
-      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Val>::__pi;
 
       if (__isnan(__k) || __isnan(__phi))
 	return _S_nan;
-      else if (std::abs(__k) > _Tp{1})
+      else if (std::abs(__k) > _Val{1})
 	std::__throw_domain_error(__N("__ellint_2: bad argument"));
       else
 	{
 	  //  Reduce phi to -pi/2 < phi < +pi/2.
-	  const int __n = std::floor(__phi / _S_pi + _Tp{0.5L});
-	  const _Tp __phi_red = __phi - __n * _S_pi;
+	  const int __n = std::floor(std::abs(__phi) / _S_pi + _Val{0.5L});
+	  const auto __phi_red = __phi - __n * _S_pi;
 
-	  const _Tp __kk = __k * __k;
-	  const _Tp __s = std::sin(__phi_red);
-	  const _Tp __ss = __s * __s;
-	  const _Tp __sss = __ss * __s;
-	  const _Tp __c = std::cos(__phi_red);
-	  const _Tp __cc = __c * __c;
+	  const auto __kk = __k * __k;
+	  const auto __s = std::sin(__phi_red);
+	  const auto __ss = __s * __s;
+	  const auto __sss = __ss * __s;
+	  const auto __c = std::cos(__phi_red);
+	  const auto __cc = __c * __c;
 
-	  const _Tp _E = __s
-		       * __ellint_rf(__cc, _Tp{1} - __kk * __ss, _Tp{1})
-		       - __kk * __sss
-		       * __ellint_rd(__cc, _Tp{1} - __kk * __ss, _Tp{1})
-		       / _Tp{3};
+	  const auto _E = __s
+		        * __ellint_rf(__cc, _Tp{1} - __kk * __ss, _Tp{1})
+		        - __kk * __sss
+		        * __ellint_rd(__cc, _Tp{1} - __kk * __ss, _Tp{1})
+		        / _Tp{3};
 
 	  if (__n == 0)
 	    return _E;
@@ -645,17 +716,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __comp_ellint_3(_Tp __k, _Tp __nu)
     {
-      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
 
       if (__isnan(__k) || __isnan(__nu))
 	return _S_nan;
       else if (__nu == _Tp{1})
-	return __gnu_cxx::__math_constants<_Tp>::__inf;
-      else if (std::abs(__k) > _Tp{1})
+	return __gnu_cxx::__math_constants<_Val>::__inf;
+      else if (std::abs(__k) > _Val{1})
 	std::__throw_domain_error(__N("__comp_ellint_3: bad argument"));
       else
 	{
-	  const _Tp __kk = __k * __k;
+	  const auto __kk = __k * __k;
 
 	  return __ellint_rf(_Tp{0}, _Tp{1} - __kk, _Tp{1})
 	       - __nu
@@ -685,31 +757,32 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __ellint_3(_Tp __k, _Tp __nu, _Tp __phi)
     {
-      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Val>::__pi;
 
       if (__isnan(__k) || __isnan(__nu) || __isnan(__phi))
 	return _S_nan;
-      else if (std::abs(__k) > _Tp{1})
+      else if (std::abs(__k) > _Val{1})
 	std::__throw_domain_error(__N("__ellint_3: bad argument"));
       else
 	{
 	  //  Reduce phi to -pi/2 < phi < +pi/2.
-	  const int __n = std::floor(__phi / _S_pi + _Tp{0.5L});
-	  const _Tp __phi_red = __phi - __n * _S_pi;
+	  const int __n = std::floor(std::real(__phi) / _S_pi + _Val{0.5L});
+	  const auto __phi_red = __phi - __n * _S_pi;
 
-	  const _Tp __kk = __k * __k;
-	  const _Tp __s = std::sin(__phi_red);
-	  const _Tp __ss = __s * __s;
-	  const _Tp __sss = __ss * __s;
-	  const _Tp __c = std::cos(__phi_red);
-	  const _Tp __cc = __c * __c;
+	  const auto __kk = __k * __k;
+	  const auto __s = std::sin(__phi_red);
+	  const auto __ss = __s * __s;
+	  const auto __sss = __ss * __s;
+	  const auto __c = std::cos(__phi_red);
+	  const auto __cc = __c * __c;
 
-	  const _Tp _Pi = __s
-			* __ellint_rf(__cc, _Tp{1} - __kk * __ss, _Tp{1})
-			- __nu * __sss
-			* __ellint_rj(__cc, _Tp{1} - __kk * __ss, _Tp{1},
-				      _Tp{1} + __nu * __ss) / _Tp{3};
+	  const auto _Pi = __s
+			 * __ellint_rf(__cc, _Tp{1} - __kk * __ss, _Tp{1})
+			 - __nu * __sss
+			 * __ellint_rj(__cc, _Tp{1} - __kk * __ss, _Tp{1},
+				       _Tp{1} + __nu * __ss) / _Tp{3};
 
 	  if (__n == 0)
 	    return _Pi;
@@ -725,7 +798,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __ellint_d(_Tp __k, _Tp __phi)
     {
-      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
 
       if (__isnan(__k) || __isnan(__phi))
 	return _S_nan;
@@ -747,7 +821,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __ellint_el1(_Tp __x, _Tp __k_c)
     {
-      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
 
       if (__isnan(__x) || __isnan(__k_c))
 	return _S_nan;
@@ -767,7 +842,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __ellint_el2(_Tp __x, _Tp __k_c, _Tp __a, _Tp __b)
     {
-      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
 
       if (__isnan(__x) || __isnan(__k_c) || __isnan(__a) || __isnan(__b))
 	return _S_nan;
@@ -791,7 +867,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __ellint_el3(_Tp __x, _Tp __k_c, _Tp __p)
     {
-      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
 
       if (__isnan(__x) || __isnan(__k_c) || __isnan(__p))
 	return _S_nan;
@@ -816,7 +893,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __ellint_cel(_Tp __k_c, _Tp __p, _Tp __a, _Tp __b)
     {
-      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
 
       if (__isnan(__k_c) || __isnan(__p) || __isnan(__a) || __isnan(__b))
 	return _S_nan;
@@ -836,8 +914,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __heuman_lambda(_Tp __beta, _Tp __k)
     {
-      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Val>::__pi;
 
       if (__isnan(__beta) || __isnan(__k))
 	return _S_nan;
@@ -865,7 +944,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __jacobi_zeta(_Tp __k, _Tp __phi)
     {
-      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
 
       if (__isnan(__k) || __isnan(__phi))
 	return _S_nan;

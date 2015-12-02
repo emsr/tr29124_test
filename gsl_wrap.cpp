@@ -1,8 +1,12 @@
 
-#include <cmath>
-#include <stdexcept>
 
-//#include <gsl/gsl_sf.h>
+#if LOCAL
+#  include "cmath_local"
+#else
+#  include <cmath>
+#endif
+
+#include <stdexcept>
 
 #include "gsl_wrap.h"
 
@@ -260,6 +264,8 @@ wrap_gsl_sf_ellint_P(double k, double nu, double phi)
 double
 wrap_gsl_sf_ellint_RC(double x, double y)
 {
+  if (x == 0.0 && y == 0.0)
+    return 0.0;
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_ellint_RC_e(x, y, mode, &result);
@@ -272,6 +278,8 @@ wrap_gsl_sf_ellint_RC(double x, double y)
 double
 wrap_gsl_sf_ellint_RD(double x, double y, double z)
 {
+  if (x == 0.0 && y == 0.0 && z == 0.0)
+    return 0.0;
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_ellint_RD_e(x, y, z, mode, &result);
@@ -284,6 +292,8 @@ wrap_gsl_sf_ellint_RD(double x, double y, double z)
 double
 wrap_gsl_sf_ellint_RF(double x, double y, double z)
 {
+  if (x == 0.0 && y == 0.0 && z == 0.0)
+    return 0.0;
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_ellint_RF_e(x, y, z, mode, &result);
@@ -296,6 +306,8 @@ wrap_gsl_sf_ellint_RF(double x, double y, double z)
 double
 wrap_gsl_sf_ellint_RJ(double x, double y, double z, double p)
 {
+  if (x == 0.0 && y == 0.0 && z == 0.0)
+    return 0.0;
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_ellint_RJ_e(x, y, z, p, mode, &result);

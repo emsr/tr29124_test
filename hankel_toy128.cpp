@@ -1,5 +1,7 @@
 // $HOME/bin/bin/g++ -std=gnu++14 -o hankel_toy128 hankel_toy128.cpp -L$HOME/bin/lib64 -lquadmath
 
+// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./hankel_toy128
+
 #include <limits>
 #include <iostream>
 #include <iomanip>
@@ -124,11 +126,11 @@ main()
   for (const auto& u : uvec)
     for (auto c = u.crbegin(); c != u.crend(); ++c)
       if (*c != 0)
-	std::cout << *c << '\n';
+	std::cout << std::setw(width) << *c << '\n';
 
   std::cout << '\n';
   for (const auto& v : vvec)
     for (auto c = v.crbegin(); c != v.crend(); ++c)
       if (*c != 0)
-	std::cout << *c << '\n';
+	std::cout << std::setw(width) << *c << '\n';
 }

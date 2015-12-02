@@ -3,11 +3,11 @@
 #include <iomanip>
 #include <stdexcept>
 
-#include "csint.tcc"
+#include <cmath>
 
-int main(int, char **)
+int
+main()
 {
-
   std::cout.precision(8);
   std::cout.flags(std::ios::showpoint);
 
@@ -18,7 +18,7 @@ int main(int, char **)
   for (int i = 0; i <= 1000; ++i)
     {
       double x = i * 0.01;
-      std::pair<double,double> cisi = __csint(x);
+      std::pair<double, double> cisi = __csint(x);
       std::cout << "  " << std::setw(16) << x;
       std::cout << "  " << std::setw(16) << cisi.first;
       std::cout << "  " << std::setw(16) << cisi.second;

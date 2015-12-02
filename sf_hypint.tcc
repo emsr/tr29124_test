@@ -30,6 +30,8 @@
 #ifndef _GLIBCXX_SF_HYPINT_TCC
 #define _GLIBCXX_SF_HYPINT_TCC 1
 
+#include <ext/math_const.h>
+
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 // Implementation-space details.

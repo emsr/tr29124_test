@@ -31,15 +31,17 @@
 // ISO C++ 14882 TR29124: Mathematical Special Functions
 //
 
-// Written by Edward Smith-Rowland based on numerous mathematics books.
-
 #ifndef _GLIBCXX_BITS_SPECFUN_UTIL_H
 #define _GLIBCXX_BITS_SPECFUN_UTIL_H 1
 
-#include <ext/cmath>
 #if __cplusplus >= 201103L
 #  include <ratio>
+#  include <complex>
 #endif
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#  include <quadmath.h>
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -109,7 +111,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline bool
     __isnan<__float128>(__float128 __x)
     { return __builtin_isnanq(__x); }
-#endif
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
 #endif
 
@@ -177,20 +179,22 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     { };
 
   template<>
-    struct __promote_help<__float128>
-    { using __type = __float128; };
-
-  template<>
-    struct __promote_help<long double>
-    { using __type = long double; };
+    struct __promote_help<float>
+    { using __type = float; };
 
   template<>
     struct __promote_help<double>
     { using __type = double; };
 
   template<>
-    struct __promote_help<float>
-    { using __type = float; };
+    struct __promote_help<long double>
+    { using __type = long double; };
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  template<>
+    struct __promote_help<__float128>
+    { using __type = __float128; };
+#endif
 
   template<typename... _Tps>
     using __promote_help_t = typename __promote_help<_Tps...>::__type;

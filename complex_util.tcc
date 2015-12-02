@@ -56,8 +56,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     bool
-    __safe_div(std::complex<_Tp> __z1, std::complex<_Tp> __z2,
-	       std::complex<_Tp> & __z1dz2)
+    __safe_div(const std::complex<_Tp>& __z1, const std::complex<_Tp>& __z2,
+	       std::complex<_Tp>& __z1dz2)
     {
       //  Note that _S_xhinf is a machine floating-point dependent constant
       //  set equal to half the largest available floating-point number.

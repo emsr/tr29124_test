@@ -1,3 +1,5 @@
+#ifndef TESTCASE_TCC
+#define TESTCASE_TCC 1
 
 #include <sstream>
 
@@ -132,13 +134,9 @@ template<typename Tp>
     for (unsigned int i = 0; i < num_steps; ++i)
       {
 	if (i == 0 && ! inclusive.first)
-	  {
-	    continue;
-	  }
+	  continue;
 	if (i == num_steps - 1 && ! inclusive.second)
-	  {
-	    continue;
-	  }
+	  continue;
 
 	Tp x = range.first + i * (range.second - range.first) / (num_steps - 1);
 	if (range.first <= range.second)
@@ -172,7 +170,7 @@ template<typename Tp>
   {
     const Tp abs_delta = std::abs(delta);
     //  Make this some number larger because you lose some accuracy writing and reading.
-    const Tp eps = Tp(10.0L) * std::numeric_limits<Tp>::epsilon();
+    const Tp eps = Tp{10} * std::numeric_limits<Tp>::epsilon();
     Tp tol = min_tol;
     while (tol > std::abs(delta)
 	&& tol > eps)
@@ -818,4 +816,6 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 
     return test;
   }
+
+#endif // TESTCASE_TCC
 

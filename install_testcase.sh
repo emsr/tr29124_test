@@ -33,5 +33,9 @@ ext_dir="$HOME/gcc_specfun/libstdc++-v3/testsuite/ext/special_functions"
 
 ${copy} check_airy.cc           ${ext_dir}/airy/check_value.cc
 ${copy} check_conf_hyperg.cc    ${ext_dir}/conf_hyperg/check_value.cc
+${copy} check_ellint_rc.cc      ${ext_dir}/ellint_rc/check_value.cc
+${copy} check_ellint_rd.cc      ${ext_dir}/ellint_rd/check_value.cc
+${copy} check_ellint_rf.cc      ${ext_dir}/ellint_rf/check_value.cc
+${copy} check_ellint_rj.cc      ${ext_dir}/ellint_rj/check_value.cc
 ${copy} check_hurwitz_zeta.cc   ${ext_dir}/hurwitz_zeta/check_value.cc
 ${copy} check_hyperg.cc         ${ext_dir}/hyperg/check_value.cc

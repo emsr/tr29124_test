@@ -63,8 +63,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline bool
-    __isnan(const std::complex<_Tp> & z)
-    { return __isnan(std::real(z)) || __is_nan(std::imag(z)); }
+    __isnan(const std::complex<_Tp>& z)
+    { return __isnan(std::real(z)) || __isnan(std::imag(z)); }
 
 
   /**
@@ -72,7 +72,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline constexpr _Tp
-    __norm_L1(const std::complex<_Tp> & z)
+    __norm_L1(const std::complex<_Tp>& z)
     { return std::abs(std::real(z)) + std::abs(std::imag(z)); }
 
   /**
@@ -80,7 +80,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline constexpr _Tp
-    __norm_Linf(const std::complex<_Tp> & z)
+    __norm_Linf(const std::complex<_Tp>& z)
     { return std::max(std::abs(std::real(z)), std::abs(std::imag(z))); }
 
 
@@ -92,8 +92,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     bool
-    __safe_div(std::complex<_Tp> __z1, std::complex<_Tp> __z2,
-	     std::complex<_Tp> & __z1dz2);
+    __safe_div(const std::complex<_Tp>& __z1, const std::complex<_Tp>& __z2,
+	       std::complex<_Tp>& __z1dz2);
 
   /**
    * Carefully compute @c s/z2 avoiding overflow and destructive underflow.
@@ -103,8 +103,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Sp, typename _Tp>
     inline bool
-    __safe_div(_Sp __s, std::complex<_Tp> __z,
-	       std::complex<_Tp> & __sdz)
+    __safe_div(_Sp __s, const std::complex<_Tp>& __z,
+	       std::complex<_Tp>& __sdz)
     { return __safe_div(std::complex<_Tp>(__s), __z, __sdz); }
 
   /**
@@ -115,8 +115,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Sp, typename _Tp>
     inline bool
-    __safe_div(std::complex<_Tp> __z, _Sp __s,
-	       std::complex<_Tp> & __zds)
+    __safe_div(const std::complex<_Tp>& __z, _Sp __s,
+	       std::complex<_Tp>& __zds)
     { return __safe_div(__z, std::complex<_Tp>(__s), __zds); }
 
 _GLIBCXX_END_NAMESPACE_VERSION

@@ -178,9 +178,7 @@ namespace std
   modf(__float128 __x, __float128* __iptr) _GLIBCXX_USE_NOEXCEPT
   { return modfq(__x, __iptr); }
 
-  inline __float128
-  nan(const char * __msg) _GLIBCXX_USE_NOEXCEPT
-  { return nanq(__msg); }
+  using ::nanq;
 
   inline __float128
   nearbyint(__float128 __x) _GLIBCXX_USE_NOEXCEPT
@@ -267,15 +265,6 @@ namespace std
   yn(int __n, __float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return ynq(__n, __x); }
 
-  template<typename _CharT, typename _Traits = std::char_traits<_CharT>>
-    std::basic_ostream<_CharT, _Traits>&
-    operator<<(std::basic_ostream<_CharT, _Traits>& __os,
-	       const __float128& __x);
-
-  template<typename _CharT, typename _Traits = std::char_traits<_CharT>>
-    std::basic_istream<_CharT, _Traits>&
-    operator>>(std::basic_istream<_CharT, _Traits>& __is, __float128& __x);
-
   /// numeric_limits<__float128> specialization.
   template<>
     struct numeric_limits<__float128>
@@ -325,11 +314,12 @@ namespace std
       static _GLIBCXX_CONSTEXPR __float128
       infinity() _GLIBCXX_USE_NOEXCEPT { return __builtin_huge_valq(); }
 
+      // TODO: We probably could have this be constexpr in libquadmath.
       static /*_GLIBCXX_CONSTEXPR*/ __float128 
       quiet_NaN() _GLIBCXX_USE_NOEXCEPT { return nanq(""); }
 
-      //static _GLIBCXX_CONSTEXPR __float128 
-      //signaling_NaN() _GLIBCXX_USE_NOEXCEPT { return __builtin_nansq(""); }
+      static /*_GLIBCXX_CONSTEXPR*/ __float128 
+      signaling_NaN() _GLIBCXX_USE_NOEXCEPT { return quiet_NaN(); }
 
       static _GLIBCXX_CONSTEXPR __float128 
       denorm_min() _GLIBCXX_USE_NOEXCEPT { return FLT128_DENORM_MIN; }
@@ -345,6 +335,15 @@ namespace std
       static _GLIBCXX_USE_CONSTEXPR float_round_style round_style = 
 						      round_to_nearest;
     };
+
+  template<typename _CharT, typename _Traits = std::char_traits<_CharT>>
+    std::basic_ostream<_CharT, _Traits>&
+    operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+	       const __float128& __x);
+
+  template<typename _CharT, typename _Traits = std::char_traits<_CharT>>
+    std::basic_istream<_CharT, _Traits>&
+    operator>>(std::basic_istream<_CharT, _Traits>& __is, __float128& __x);
 
 } // namespace std
 
