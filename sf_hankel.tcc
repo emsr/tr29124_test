@@ -247,7 +247,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using __cmplx = std::complex<_Tp>;
 
-      //  zexpp and zexpm are exp(2*pi*i/3) and its reciprocal, respectively.
+      //  expp and expm are exp(2*pi*i/3) and its reciprocal, respectively.
       static constexpr auto __expp = __cmplx{-0.5L,  0.8660254037844386L};
       static constexpr auto __expm = __cmplx{-0.5L, -0.8660254037844386L};
 

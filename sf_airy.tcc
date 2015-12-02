@@ -838,13 +838,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __r = _Tp{2} * std::real(__zzz);
 	  auto __s = std::norm(__zzz);
 
-	  //  All of the following polynomial evaluations are done using
+	  //  The following polynomial evaluations are done using
 	  //  a modified of Horner's rule which exploits the fact that
 	  //  the polynomial coefficients are all real.  The algorithm is
 	  //  discussed in detail in:
 	  //  Knuth, D. E., The Art of Computer Programming: Seminumerical
 	  //  Algorithms (Vol. 2) Third Ed., Addison-Wesley, pp 486-488, 1998.
-
+	  //
 	  //  If n is the degree of the polynomial, n - 3 multiplies are
 	  //  saved and 4 * n - 6 additions are saved.
 	  auto __horner
@@ -881,33 +881,33 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  The representations are recorded here for reference:
    *
    *   @f[
-   *    (1) Ai(z) = \frac{\sqrt(z)}{3}(I_{-1/3}(\xi) - I_{1/3}(\xi))
+   *    (1a) Ai(z) = \frac{\sqrt(z)}{3}(I_{-1/3}(\xi) - I_{1/3}(\xi))
    *   @f]
    *
    *   @f[
-   *    (2) Ai(z) = \frac{\sqrt(z/3)}{\pi} K_{1/3}(\xi)
+   *    (2a) Ai(z) = \frac{\sqrt(z/3)}{\pi} K_{1/3}(\xi)
    *
    *      	  = \frac{2^{2/3}3^{-5/6}}{\sqrt(\pi)}
    *    	       z \exp(-\xi) U(5/6; 5/3; 2 \xi)
    *   @f]
    *
    *   @f[
-   *    (3) Ai(-z)  = \frac{\sqrt(z)}{3}(J_{-1/3}(\xi) + J_{1/3}(\xi))
-   *
-   *   @f[
-   *    (4) Ai'(z)  = \frac{z}{3}(I_{2/3}(\xi) - I_{-2/3}(\xi))
+   *    (3a) Ai(-z)  = \frac{\sqrt(z)}{3}(J_{-1/3}(\xi) + J_{1/3}(\xi))
    *   @f]
    *
    *   @f[
-   *    (5) Ai'(z)  = -\frac{z}{\pi\sqrt(3)} K_(2/3)(xi)
+   *    (4a) Ai'(z)  = \frac{z}{3}(I_{2/3}(\xi) - I_{-2/3}(\xi))
+   *   @f]
+   *
+   *   @f[
+   *    (5a) Ai'(z)  = -\frac{z}{\pi\sqrt(3)} K_(2/3)(xi)
    *
    *    	    =  -\frac{4^{2/3}3^{-7/6}}{\sqrt(\pi)}
    *                     z^2 \exp(-\xi) U(7/6; 7/3; 2 \xi)
    *   @f]
    *
    *   @f[
-   *    (6) Ai'(-z) = \frac{z}{3}(J_{2/3}(\xi) - J_{-2/3}(\xi)) ,
-   *
+   *    (6a) Ai'(-z) = \frac{z}{3}(J_{2/3}(\xi) - J_{-2/3}(\xi)) ,
    *   @f]
    *  Where \xi = - \frac{2}{3}z^{3/2} and U(a;b;z) is the confluent hypergeometric
    *  function defined in
