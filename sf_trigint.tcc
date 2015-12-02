@@ -30,6 +30,8 @@
 #ifndef _GLIBCXX_SF_TRIGINT_TCC
 #define _GLIBCXX_SF_TRIGINT_TCC 1
 
+#include <ext/math_const.h>
+
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 // Implementation-space details.
@@ -38,12 +40,13 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *  @brief This function computes the cosine @f$ Ci(x) @f$ and sine @f$ Si(x) @f$
-   *    integrals by continued fraction for positive argument.
+   *  @brief This function computes the sine @f$ Si(x) @f$
+   *         and cosine @f$ Ci(x) @f$ integrals by continued fraction
+   *         for positive argument.
    */
   template<typename _Tp>
     void
-    __csint_cont_frac(_Tp __t, _Tp& _Ci, _Tp& _Si)
+    __sincosint_cont_frac(_Tp __t, _Tp& _Si, _Tp& _Ci)
     {
       constexpr auto _S_max_iter = 100;
       constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__math_constants<_Tp>::__eps;
@@ -80,12 +83,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief This function computes the cosine @f$ Ci(x) @f$ and sine @f$ Si(x) @f$
-   *    integrals by series summation for positive argument.
+   *  @brief This function computes the sine @f$ Si(x) @f$
+   *         and cosine @f$ Ci(x) @f$ integrals by series summation
+   *         for positive argument.
    */
   template<typename _Tp>
     void
-    __csint_series(_Tp __t, _Tp& _Ci, _Tp& _Si)
+    __sincosint_series(_Tp __t, _Tp& _Si, _Tp& _Ci)
     {
       constexpr auto _S_max_iter = 100;
       constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__math_constants<_Tp>::__eps;
@@ -134,21 +138,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 					"series evaluation failed");
 	    }
 	}
-      _Ci = _S_gamma_e + std::log(__t) + __sumc;
       _Si = __sums;
+      _Ci = _S_gamma_e + std::log(__t) + __sumc;
 
       return;
     }
 
 
   /**
-   *  @brief This function computes the cosine @f$ Ci(x) @f$ and sine @f$ Si(x) @f$
-   *    integrals by asymptotic series summation for positive argument.
-   *    The asymptotic series is very good for x > 50.
+   *  @brief This function computes the sine @f$ Si(x) @f$
+   *         and cosine @f$ Ci(x) @f$ integrals by asymptotic series summation
+   *         for positive argument.
+   *
+   *   The asymptotic series is very good for x > 50.
    */
   template<typename _Tp>
     void
-    __csint_asymp(_Tp __t, _Tp& _Ci, _Tp& _Si)
+    __sincosint_asymp(_Tp __t, _Tp& _Si, _Tp& _Ci)
     {
       const auto _S_max_iter = 100;
       constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__math_constants<_Tp>::__eps;
@@ -186,52 +192,52 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  ++__k;
 	}
 
-      _Ci = std::sin(__t) * __invt * __sume
-	   - std::cos(__t) * __invt * __sumo;
       _Si = _S_pi_2
 	   - std::cos(__t) * __invt * __sume
 	   - std::sin(__t) * __invt * __sumo;
+      _Ci = std::sin(__t) * __invt * __sume
+	   - std::cos(__t) * __invt * __sumo;
 
       return;
     }
 
 
   /**
-   *  @brief This function returns the cosine @f$ Ci(x) @f$ and
-   *    sine @f$ Si(x) @f$ integrals as a pair.
-   *
-   *  The cosine integral is defined by:
-   *  @f[
-   *      Ci(x) = \gamma_E + \log(x) + \int_0^x dt \frac{\cos(t) - 1}{t}
-   *  @f]
+   *  @brief This function returns the sine @f$ Si(x) @f$
+   *         and cosine @f$ Ci(x) @f$ integrals as a @c pair.
    *
    *  The sine integral is defined by:
    *  @f[
    *      Si(x) = \int_0^x dt \frac{\sin(t)}{t}
    *  @f]
+   *
+   *  The cosine integral is defined by:
+   *  @f[
+   *      Ci(x) = \gamma_E + \log(x) + \int_0^x dt \frac{\cos(t) - 1}{t}
+   *  @f]
    */
   template<typename _Tp>
     std::pair<_Tp, _Tp>
-    __csint(_Tp __x)
+    __sincosint(_Tp __x)
     {
       auto __t = std::abs(__x);
       _Tp _Ci, _Si;
       if (__t == _Tp{0})
 	{
-	  _Ci = -std::numeric_limits<_Tp>::infinity();
 	  _Si = _Tp{0};
+	  _Ci = -std::numeric_limits<_Tp>::infinity();
 	}
       else if (__t > _Tp{1000}) // Check this!
-	__csint_asymp(__t, _Ci, _Si);
+	__sincosint_asymp(__t, _Si, _Ci);
       else if (__t > _Tp{2})
-	__csint_cont_frac(__t, _Ci, _Si);
+	__sincosint_cont_frac(__t, _Si, _Ci);
       else
-	__csint_series(__t, _Ci, _Si);
+	__sincosint_series(__t, _Si, _Ci);
 
       if (__x < _Tp{0})
 	_Si = -_Si;
 
-      return std::make_pair(_Ci, _Si);
+      return std::make_pair(_Si, _Ci);
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION

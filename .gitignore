@@ -30,6 +30,7 @@ check_sph_bessel
 check_sph_legendre
 check_sph_neumann
 diff_special_function
+diff_local_special_function
 test_bessel
 test_bessel_asymp
 testcase
@@ -42,10 +43,16 @@ test_legendre
 test_limits
 test_nric_bessel
 test_special_function
+test_local_special_function
 test_polynomial
+test_numeric_limits
 hankel_toy
 dilog
 test_airy
 test_promote_num
 test_hurwitz_zeta
 test_float128
+hankel_toy128
+err.txt
+test_local_special_function.txt
+diff_local_special_function.txt

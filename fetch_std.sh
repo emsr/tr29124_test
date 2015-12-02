@@ -2,11 +2,13 @@
 
 tool="cp -f"
 gcc_dir="$HOME/gcc_specfun/libstdc++-v3/include/bits"
+ext_dir="$HOME/gcc_specfun/libstdc++-v3/include/ext"
 
 ${tool} ${gcc_dir}/specfun.h         ./specfun.h
 ${tool} ${gcc_dir}/specfun_util.h    ./specfun_util.h
 ${tool} ${gcc_dir}/complex_util.h    ./complex_util.h
 ${tool} ${gcc_dir}/complex_util.tcc  ./complex_util.tcc
+${tool} ${ext_dir}/math_const.h      ./math_const.h
 ${tool} ${gcc_dir}/sf_bessel.tcc     ./sf_bessel.tcc
 ${tool} ${gcc_dir}/sf_beta.tcc       ./sf_beta.tcc
 ${tool} ${gcc_dir}/sf_chebyshev.tcc  ./sf_chebyshev.tcc

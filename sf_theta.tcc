@@ -31,6 +31,7 @@
 #define _GLIBCXX_SF_THETA_TCC 1
 
 #include <array>
+#include <ext/math_const.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {

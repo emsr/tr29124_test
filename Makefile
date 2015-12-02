@@ -88,10 +88,10 @@ diff_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tcc $(CX
 	$(CXX) -o diff_special_function diff_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas
 
 test_local_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc sf_*.tcc
-	$(CXX) -std=c++14 -o test_local_special_function test_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas
+	$(HOME)/bin/bin/g++ -std=c++14 -g -DLOCAL -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_local_special_function test_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas -lquadmath
 
 diff_local_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tcc sf_*.tcc
-	$(CXX) -std=c++14 -o diff_local_special_function diff_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas
+	$(HOME)/bin/bin/g++ -std=c++14 -g -DLOCAL -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o diff_local_special_function diff_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas -lquadmath
 
 testcase: testcase.cpp testcase.tcc gsl_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
 	$(CXX) -o testcase testcase.cpp gsl_wrap.cpp -lgslcblas -lgsl
@@ -102,8 +102,8 @@ test_limits: test_limits.cpp
 test_cmath: test_cmath.cpp
 	$(CXX) -o test_cmath test_cmath.cpp
 
-test_airy: test_airy.cpp airy.tcc
-	$(CXX) -o test_airy test_airy.cpp
+test_airy: test_airy.cpp sf_airy.tcc gsl_wrap.cpp
+	$(CXX) -o test_airy test_airy.cpp gsl_wrap.cpp -lgsl -lgslcblas
 
 test_csint: test_csint.cpp csint.tcc
 	$(CXX) -o test_csint test_csint.cpp

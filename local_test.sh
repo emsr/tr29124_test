@@ -58,10 +58,18 @@ ${copy} check_sph_neumann.cc      ${testdir}/21_sph_neumann/check_value.cc
 
 ${makedir} ${textdir}/airy
 ${makedir} ${textdir}/conf_hyperg
+${makedir} ${textdir}/ellint_rc
+${makedir} ${textdir}/ellint_rd
+${makedir} ${textdir}/ellint_rf
+${makedir} ${textdir}/ellint_rj
 ${makedir} ${textdir}/hurwitz_zeta
 ${makedir} ${textdir}/hyperg
 
 ${copy} check_airy.cc             ${textdir}/airy/check_value.cc
 ${copy} check_conf_hyperg.cc      ${textdir}/conf_hyperg/check_value.cc
+${copy} check_ellint_rc.cc        ${textdir}/ellint_rc/check_value.cc
+${copy} check_ellint_rd.cc        ${textdir}/ellint_rd/check_value.cc
+${copy} check_ellint_rf.cc        ${textdir}/ellint_rf/check_value.cc
+${copy} check_ellint_rj.cc        ${textdir}/ellint_rj/check_value.cc
 ${copy} check_hurwitz_zeta.cc     ${textdir}/hurwitz_zeta/check_value.cc
 ${copy} check_hyperg.cc           ${textdir}/hyperg/check_value.cc

@@ -32,6 +32,8 @@
 
 /// FIXME for better than float.  I'm not sure these are good even for float
 
+#include <ext/math_const.h>
+
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 // Implementation-space details.

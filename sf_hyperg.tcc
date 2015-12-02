@@ -43,6 +43,8 @@
 #ifndef _GLIBCXX_BITS_SF_HYPERG_TCC
 #define _GLIBCXX_BITS_SF_HYPERG_TCC 1
 
+#include <ext/math_const.h>
+
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 // Implementation-space details.

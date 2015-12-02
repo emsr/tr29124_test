@@ -587,36 +587,36 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   inline float
   sinintf(float __x)
-  { return std::__detail::__csint<float>(__x).second; }
+  { return std::__detail::__sincosint<float>(__x).first; }
 
   inline long double
   sinintl(long double __x)
-  { return std::__detail::__csint<long double>(__x).second; }
+  { return std::__detail::__sincosint<long double>(__x).first; }
 
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
     sinint(_Tp __x)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      return std::__detail::__csint<__type>(__x).second;
+      return std::__detail::__sincosint<__type>(__x).first;
     }
 
   //  Cosine integrals
 
   inline float
   cosintf(float __x)
-  { return std::__detail::__csint<float>(__x).first; }
+  { return std::__detail::__sincosint<float>(__x).second; }
 
   inline long double
   cosintl(long double __x)
-  { return std::__detail::__csint<long double>(__x).first; }
+  { return std::__detail::__sincosint<long double>(__x).second; }
 
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
     cosint(_Tp __x)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      return std::__detail::__csint<__type>(__x).first;
+      return std::__detail::__sincosint<__type>(__x).second;
     }
 
   //  Hyperbolic sine integrals

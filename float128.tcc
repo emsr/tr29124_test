@@ -16,13 +16,33 @@ namespace std
     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
 	       const __float128& __x)
     {
+      auto __sci = __os.flags() & std::ios::scientific;
+      auto __hex = __os.flags() & std::ios::fixed
+		&& __os.flags() & std::ios::scientific;
+      auto __upper = __os.flags() & std::ios::uppercase;
       std::ostringstream __fmt;
-      __fmt << "%." << __os.precision() << "Qg";
-std::cerr << __fmt.str() << std::endl;
+      __fmt << '%' << __os.width() << '.' << __os.precision() << 'Q';
+      if (__upper)
+	{
+	  if (__hex)
+	    __fmt << 'A';
+	  else if (__sci)
+	    __fmt << 'E';
+	  else
+	    __fmt << 'G';
+	}
+      else
+	{
+	  if (__hex)
+	    __fmt << 'a';
+	  else if (__sci)
+	    __fmt << 'e';
+	  else
+	    __fmt << 'g';
+	}
       constexpr int __strlen = 1000;
       char __str[__strlen];
       quadmath_snprintf(__str, __strlen, __fmt.str().c_str(), __x) ;
-      __os.precision(30);
       __os << __str;
       return __os;
     }
