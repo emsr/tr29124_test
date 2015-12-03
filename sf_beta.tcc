@@ -188,36 +188,36 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __h = __d;
       for (unsigned int __m = 1; __m <= _S_itmax; ++__m)
 	{
-          _Tp __m2(2 * __m);
+	  _Tp __m2(2 * __m);
 
-          _Tp __aa = _Tp(__m) * (__b - _Tp(__m)) * __x
-                   / ((__am1 + __m2) * (__a + __m2));
-          __d = _Tp{1} + __aa * __d;
-          if (std::abs(__d) < _S_eps)
-            __d = _S_eps;
-          __c = _Tp{1} + __aa / __c;
-          if (std::abs(__c) < _S_eps)
-            __c = _S_eps;
-          __d = _Tp{1} / __d;
-          __h *= __d * __c;
+	  _Tp __aa = _Tp(__m) * (__b - _Tp(__m)) * __x
+		   / ((__am1 + __m2) * (__a + __m2));
+	  __d = _Tp{1} + __aa * __d;
+	  if (std::abs(__d) < _S_eps)
+	    __d = _S_eps;
+	  __c = _Tp{1} + __aa / __c;
+	  if (std::abs(__c) < _S_eps)
+	    __c = _S_eps;
+	  __d = _Tp{1} / __d;
+	  __h *= __d * __c;
 
-          __aa = -(__a + _Tp(__m)) * (__apb + __m) * __x
-               / ((__a + __m2) * (__ap1 + __m2));
-          __d = _Tp{1} + __aa * __d;
-          if (std::abs(__d) < _S_eps)
-            __d = _S_eps;
-          __c = _Tp{1} + __aa / __c;
-          if (std::abs(__c) < _S_eps)
-            __c = _S_eps;
-          __d = _Tp{1} / __d;
-          _Tp __del = __d * __c;
-          __h *= __del;
+	  __aa = -(__a + _Tp(__m)) * (__apb + __m) * __x
+	       / ((__a + __m2) * (__ap1 + __m2));
+	  __d = _Tp{1} + __aa * __d;
+	  if (std::abs(__d) < _S_eps)
+	    __d = _S_eps;
+	  __c = _Tp{1} + __aa / __c;
+	  if (std::abs(__c) < _S_eps)
+	    __c = _S_eps;
+	  __d = _Tp{1} / __d;
+	  _Tp __del = __d * __c;
+	  __h *= __del;
 
-          if (std::abs(__del - _Tp{1}) < _S_eps)
-            return __h;
+	  if (std::abs(__del - _Tp{1}) < _S_eps)
+	    return __h;
 	}
-      throw std::runtime_error("__beta_inc_cont_frac: "
-			       "continued fractions failed to converge");
+      std::__throw_runtime_error("__beta_inc_cont_frac: "
+				 "continued fractions failed to converge");
     }
 
 
@@ -225,24 +225,27 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __beta_inc(_Tp __a, _Tp __b, _Tp __x)
     {
+      if (__x < _Tp{0} || __x > _Tp{1})
+	std::__throw_domain_error("__beta_inc: argument out of range");
+
       if (__isnan(__x) || __isnan(__a) || __isnan(__b))
 	return __gnu_cxx::__math_constants<_Tp>::__NaN;
-
-      if (__x < _Tp{0} || __x > _Tp{1})
-	throw std::domain_error("__beta_inc: x out of range");
-
-      _Tp __fact;
-      if (__x == _Tp{0} || __x == _Tp{1})
-	__fact = _Tp{0};
       else
-	__fact = std::exp(std::lgamma(__a + __b)
-                	- std::lgamma(__a) - std::lgamma(__b)
-                	+ __a * std::log(__x) + __b * std::log(_Tp{1} - __x));
+	{
+	  _Tp __fact;
+	  if (__x == _Tp{0} || __x == _Tp{1})
+	    __fact = _Tp{0};
+	  else
+	    __fact = std::exp(std::lgamma(__a + __b)
+			  - std::lgamma(__a) - std::lgamma(__b)
+			  + __a * std::log(__x) + __b * std::log(_Tp{1} - __x));
 
-      if (__x < (__a + _Tp{1}) / (__a + __b + _Tp{2}))
-	return __fact * __beta_inc_cont_frac(__a, __b, __x) / __a;
-      else
-	return _Tp{1} - __fact * __beta_inc_cont_frac(__b, __a, _Tp{1} - __x) / __b;
+	if (__x < (__a + _Tp{1}) / (__a + __b + _Tp{2}))
+	  return __fact * __beta_inc_cont_frac(__a, __b, __x) / __a;
+	else
+	  return _Tp{1}
+	       - __fact * __beta_inc_cont_frac(__b, __a, _Tp{1} - __x) / __b;
+	}
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION

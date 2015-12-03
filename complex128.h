@@ -104,6 +104,195 @@ namespace std
   tanh(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
   { return ctanhq(__z); }
 
+  /// complex<__float128> specialization
+  template<>
+    struct complex<__float128>
+    {
+      typedef __float128 value_type;
+      typedef __complex__ __float128 _ComplexT;
+
+      _GLIBCXX_CONSTEXPR complex(_ComplexT __z) : _M_value(__z) { }
+
+      _GLIBCXX_CONSTEXPR complex(__float128 __r = 0.0Q, 
+				 __float128 __i = 0.0Q)
+#if __cplusplus >= 201103L
+      : _M_value{ __r, __i } { }
+#else
+      {
+	__real__ _M_value = __r;
+	__imag__ _M_value = __i;
+      }
+#endif
+
+      _GLIBCXX_CONSTEXPR complex(const complex<float>& __z)
+      : _M_value(__z.__rep()) { }
+
+      _GLIBCXX_CONSTEXPR complex(const complex<double>& __z)
+      : _M_value(__z.__rep()) { }
+
+      _GLIBCXX_CONSTEXPR complex(const complex<long double>& __z)
+      : _M_value(__z.__rep()) { }
+
+#if __cplusplus >= 201103L
+      // _GLIBCXX_RESOLVE_LIB_DEFECTS
+      // DR 387. std::complex over-encapsulated.
+      __attribute ((__abi_tag__ ("cxx11")))
+      constexpr __float128 
+      real() const { return __real__ _M_value; }
+
+      __attribute ((__abi_tag__ ("cxx11")))
+      constexpr __float128 
+      imag() const { return __imag__ _M_value; }
+#else
+      __float128& 
+      real() { return __real__ _M_value; }
+
+      const __float128& 
+      real() const { return __real__ _M_value; }
+
+      __float128& 
+      imag() { return __imag__ _M_value; }
+
+      const __float128& 
+      imag() const { return __imag__ _M_value; }
+#endif
+
+      // _GLIBCXX_RESOLVE_LIB_DEFECTS
+      // DR 387. std::complex over-encapsulated.
+      void 
+      real(__float128 __val) { __real__ _M_value = __val; }
+
+      void 
+      imag(__float128 __val) { __imag__ _M_value = __val; }
+
+      complex&
+      operator=(__float128 __r)
+      {
+	_M_value = __r;
+	return *this;
+      }
+
+      complex&
+      operator+=(__float128 __r)
+      {
+	_M_value += __r;
+	return *this;
+      }
+
+      complex&
+      operator-=(__float128 __r)
+      {
+	_M_value -= __r;
+	return *this;
+      }
+
+      complex&
+      operator*=(__float128 __r)
+      {
+	_M_value *= __r;
+	return *this;
+      }
+
+      complex&
+      operator/=(__float128 __r)
+      {
+	_M_value /= __r;
+	return *this;
+      }
+
+      // The compiler knows how to do this efficiently
+      // complex& operator=(const complex&);
+
+      template<typename _Tp>
+        complex&
+        operator=(const complex<_Tp>& __z)
+	{
+	  __real__ _M_value = __z.real();
+	  __imag__ _M_value = __z.imag();
+	  return *this;
+	}
+
+      template<typename _Tp>
+        complex&
+	operator+=(const complex<_Tp>& __z)
+	{
+	  __real__ _M_value += __z.real();
+	  __imag__ _M_value += __z.imag();
+	  return *this;
+	}
+
+      template<typename _Tp>
+        complex&
+	operator-=(const complex<_Tp>& __z)
+	{
+	  __real__ _M_value -= __z.real();
+	  __imag__ _M_value -= __z.imag();
+	  return *this;
+	}
+
+      template<typename _Tp>
+        complex&
+	operator*=(const complex<_Tp>& __z)
+	{
+	  _ComplexT __t;
+	  __real__ __t = __z.real();
+	  __imag__ __t = __z.imag();
+	  _M_value *= __t;
+	  return *this;
+	}
+
+      template<typename _Tp>
+        complex&
+	operator/=(const complex<_Tp>& __z)
+	{
+	  _ComplexT __t;
+	  __real__ __t = __z.real();
+	  __imag__ __t = __z.imag();
+	  _M_value /= __t;
+	  return *this;
+	}
+
+      _GLIBCXX_CONSTEXPR _ComplexT __rep() const { return _M_value; }
+
+    private:
+      _ComplexT _M_value;
+    };
+
+  // @todo Ctors from larger types are marked explicit in the smaller classes.
+  inline _GLIBCXX_CONSTEXPR
+  complex<float>::complex(const complex<__float128>& __z)
+  : _M_value(__z.__rep()) { }
+
+  inline _GLIBCXX_CONSTEXPR
+  complex<double>::complex(const complex<__float128>& __z)
+  : _M_value(__z.__rep()) { }
+
+  inline _GLIBCXX_CONSTEXPR
+  complex<long double>::complex(const complex<__float128>& __z)
+  : _M_value(__z.__rep()) { }
+
+#if __cplusplus > 201103L
+
+inline namespace literals {
+inline namespace complex_literals {
+/*
+  constexpr std::complex<__float128>
+  operator""iq(long double __num)
+  { return std::complex<__float128>{0.0Q, __num}; }
+
+  constexpr std::complex<__float128>
+  operator""iq(unsigned long long __num)
+  { return std::complex<__float128>{0.0Q, static_cast<__float128>(__num)}; }
+*/
+  constexpr std::complex<__float128>
+  operator""iq(const char* __str)
+  { return strtoflt128(__str, 0); }
+
+} // inline namespace complex_literals
+} // inline namespace literals
+
+#endif // C++14
+
 } // namespace std
 
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
