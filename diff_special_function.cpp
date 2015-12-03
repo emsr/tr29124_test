@@ -87,6 +87,10 @@ main()
   using __gnu_cxx::ellint_rd;
   using __gnu_cxx::ellint_rf;
   using __gnu_cxx::ellint_rj;
+  using __gnu_cxx::dilog;
+  using __gnu_cxx::gamma_u;
+  using __gnu_cxx::ibeta;
+  using __gnu_cxx::psi;
 #else
   using std::tr1::assoc_laguerre;
   using std::tr1::assoc_legendre;
@@ -416,6 +420,40 @@ main()
 							 	     std::make_pair(false, true), 11),
 						  "p", fill_argument(std::make_pair(0.0, 5.0),
 							 	     std::make_pair(false, true), 11));
+
+    //  Dilogarithm functions.
+    std::cout << "dilog" << std::endl;
+    basename = "dilog";
+    rundiff<Real, Real>(dilog, wrap_gsl_sf_dilog, basename,
+			"x", fill_argument(std::make_pair(-Real{10}, Real{10}),
+					   std::make_pair(true, true), 41));
+
+    //  Upper incomplete Gamma functions.
+    std::cout << "gamma_u" << std::endl;
+    basename = "gamma_u";
+    rundiff<Real, Real, Real>(gamma_u, wrap_gsl_sf_gamma_inc, basename,
+			      "a", fill_argument(std::make_pair(Real{0}, +Real{5}),
+						 std::make_pair(false, true), 11),
+			      "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
+						 std::make_pair(true, true), 11));
+
+    //  Incomplete Beta functions.
+    std::cout << "ibeta" << std::endl;
+    basename = "ibeta";
+    rundiff<Real, Real, Real, Real>(ibeta, wrap_gsl_sf_gamma_inc, basename,
+				    "a", fill_argument(std::make_pair(Real{0}, +Real{5}),
+						       std::make_pair(false, true), 11),
+				    "b", fill_argument(std::make_pair(Real{5}, +Real{0}),
+						       std::make_pair(false, true), 11),
+				    "x", fill_argument(std::make_pair(Real{0}, +Real{1}),
+						       std::make_pair(false, false), 21));
+
+    //  Digamma or psi functions.
+    std::cout << "psi" << std::endl;
+    basename = "psi";
+    rundiff<Real, Real>(psi, wrap_gsl_sf_psi, basename,
+			"x", fill_argument(std::make_pair(-Real{10}, Real{10}),
+					   std::make_pair(true, true), 41));
 #endif // STD
 
   return 0;

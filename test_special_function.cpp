@@ -97,6 +97,10 @@ template<typename _Tp>
     using __gnu_cxx::ellint_rd;
     using __gnu_cxx::ellint_rf;
     using __gnu_cxx::ellint_rj;
+    using __gnu_cxx::dilog;
+    using __gnu_cxx::gamma_u;
+    using __gnu_cxx::ibeta;
+    using __gnu_cxx::psi;
 #else
     std::string ns("tr1");
     using std::tr1::assoc_laguerre;
@@ -577,6 +581,65 @@ template<typename _Tp>
 						   std::make_pair(false, true), 11),
 				     fill_argument(std::make_pair(_Tp{0}, _Tp{5}),
 						   std::make_pair(false, true), 11));
+
+    //  Dilogarithm functions.
+    std::cout << "dilog" << std::endl;
+    basename = "gsl_dilog";
+    maketest<Real, Real>(wrap_gsl_sf_dilog, basename,
+			 fill_argument(std::make_pair(-Real{10}, Real{10}),
+				       std::make_pair(true, true), 41));
+
+    basename = ns + "_dilog";
+    maketest<Real, Real>(dilog, basename,
+			 fill_argument(std::make_pair(-Real{10}, Real{10}),
+				       std::make_pair(true, true), 41));
+
+    //  Upper incomplete Gamma functions.
+    std::cout << "gamma_u" << std::endl;
+    basename = "gsl_gamma_u";
+    maketest<Real, Real, Real>(wrap_gsl_sf_gamma_inc, basename,
+			       fill_argument(std::make_pair(Real{0}, +Real{5}),
+					     std::make_pair(false, true), 11),
+			       fill_argument(std::make_pair(Real{0}, +Real{5}),
+					     std::make_pair(true, true), 11));
+
+    basename = ns + "_gamma_u";
+    maketest<Real, Real, Real>(gamma_u, basename,
+			       fill_argument(std::make_pair(Real{0}, +Real{5}),
+					     std::make_pair(false, true), 11),
+			       fill_argument(std::make_pair(Real{0}, +Real{5}),
+					     std::make_pair(true, true), 11));
+
+    //  Incomplete Beta functions.
+    std::cout << "ibeta" << std::endl;
+    basename = "gsl_ibeta";
+    maketest<Real, Real, Real, Real>(wrap_gsl_sf_beta_inc, basename,
+				     fill_argument(std::make_pair(Real{0}, Real{5}),
+						   std::make_pair(false, true), 11),
+				     fill_argument(std::make_pair(Real{5}, Real{0}),
+						   std::make_pair(false, true), 11),
+				     fill_argument(std::make_pair(Real{0}, Real{1}),
+						   std::make_pair(false, false), 21));
+    basename = ns + "_ibeta";
+    maketest<Real, Real, Real, Real>(ibeta, basename,
+				     fill_argument(std::make_pair(Real{0}, Real{5}),
+						   std::make_pair(false, true), 11),
+				     fill_argument(std::make_pair(Real{5}, Real{0}),
+						   std::make_pair(false, true), 11),
+				     fill_argument(std::make_pair(Real{0}, Real{1}),
+						   std::make_pair(false, false), 21));
+
+    //  Digamma or psi functions.
+    std::cout << "psi" << std::endl;
+    basename = "gsl_psi";
+    maketest<Real, Real>(wrap_gsl_sf_psi, basename,
+			 fill_argument(std::make_pair(-Real{10}, Real{10}),
+				       std::make_pair(true, true), 41));
+
+    basename = ns + "_psi";
+    maketest<Real, Real>(psi, basename,
+			 fill_argument(std::make_pair(-Real{10}, Real{10}),
+				       std::make_pair(true, true), 41));
 #endif // STD
 
     return;
