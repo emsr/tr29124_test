@@ -44,16 +44,31 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __jacobi_cnsndn(_Tp __k, _Tp __u, _Tp& __cn, _Tp& __sn, _Tp& __dn)
     {
-      _Tp __b, __c, __d;
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_eps = __gnu_cxx::__math_constants<_Val>::__eps;
 
-      constexpr auto _S_N = 20;
-      constexpr auto _S_CA = _Tp{0.00001};
-
-      std::array<_Tp, _S_N> __m;
-      std::array<_Tp, _S_N> __n;
-
-      if (__k != _Tp{0})
+      if (std::abs(__k) < _Tp{2} * _S_eps)
 	{
+	  __sn = std::tanh(__u);
+	  __cn = _Tp{1} / std::cosh(__u);
+	  __dn = __cn;
+	  return;
+	}
+      else if (std::abs(_Tp{1} + __k) < _Tp{2} * _S_eps)
+	{
+	  __sn = std::sin(__u);
+	  __cn = std::cos(__u);
+	  __dn = _Tp{1};
+	  return;
+	}
+      else
+	{
+	  constexpr auto _S_CA = _Tp{0.00001};
+	  constexpr auto _S_N = 20;
+	  std::array<_Tp, _S_N> __m;
+	  std::array<_Tp, _S_N> __n;
+	  _Tp __c, __d;
+
 	  bool __bo = (__k < _Tp{0});
 	  if (__bo)
 	    {
@@ -76,8 +91,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __a = __c;
 	    }
 	  __u *= __c;
-	  __cn = std::cos(__u);
 	  __sn = std::sin(__u);
+	  __cn = std::cos(__u);
 	  if (__sn != _Tp{0})
 	    {
 	      __a = __cn / __sn;
@@ -90,7 +105,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		  __dn = (__n[__ii] + __a) / (__b + __a);
 		  __a = __c / __b;
 		}
-	      __a = _Tp{1} / std::sqrt(__c * __c + _Tp{1});
+	      __a = _Tp{1} / std::hypot(_Tp{1}, __c);
 	      __sn = std::copysign(__a, __sn);
 	      __cn = __c * __sn;
 	    }
@@ -101,12 +116,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __cn = __a;
 	      __sn /= __d;
 	    }
-	}
-      else
-	{
-	  __cn = _Tp{1} / std::cosh(__u);
-	  __sn = std::tanh(__u);
-	  __dn = __cn;
+	  return;
 	}
     }
 

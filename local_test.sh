@@ -64,6 +64,7 @@ ${makedir} ${textdir}/ellint_rf
 ${makedir} ${textdir}/ellint_rj
 ${makedir} ${textdir}/hurwitz_zeta
 ${makedir} ${textdir}/hyperg
+${makedir} ${textdir}/dilog
 
 ${copy} check_airy.cc             ${textdir}/airy/check_value.cc
 ${copy} check_conf_hyperg.cc      ${textdir}/conf_hyperg/check_value.cc
@@ -73,3 +74,4 @@ ${copy} check_ellint_rf.cc        ${textdir}/ellint_rf/check_value.cc
 ${copy} check_ellint_rj.cc        ${textdir}/ellint_rj/check_value.cc
 ${copy} check_hurwitz_zeta.cc     ${textdir}/hurwitz_zeta/check_value.cc
 ${copy} check_hyperg.cc           ${textdir}/hyperg/check_value.cc
+${copy} check_dilog.cc            ${textdir}/dilog/check_value.cc

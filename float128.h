@@ -188,9 +188,9 @@ namespace std
   nextafter(__float128 __x, __float128 __y) _GLIBCXX_USE_NOEXCEPT
   { return nextafterq(__x, __y); }
 
-  //inline __float128
-  //powi(__float128 __x, int __n) _GLIBCXX_USE_NOEXCEPT
-  //{ return powiq(__x, __n); }
+  inline __float128
+  pow(__float128 __x, __float128 __y) _GLIBCXX_USE_NOEXCEPT
+  { return powq(__x, __y); }
 
   inline __float128
   remainder(__float128 __x, __float128 __y) _GLIBCXX_USE_NOEXCEPT
@@ -265,6 +265,24 @@ namespace std
   yn(int __n, __float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return ynq(__n, __x); }
 
+
+  inline __float128
+  mod(__float128 __x) _GLIBCXX_USE_NOEXCEPT
+  { return __x * __x; }
+
+  inline __float128
+  arg(__float128 __x) _GLIBCXX_USE_NOEXCEPT
+  { return __x < 0.0Q ? M_PIq : 0.0Q; }
+
+  inline _GLIBCXX_USE_CONSTEXPR __float128
+  imag(__float128) _GLIBCXX_USE_NOEXCEPT
+  { return 0.0Q; }
+
+  inline _GLIBCXX_USE_CONSTEXPR __float128
+  real(__float128 __x) _GLIBCXX_USE_NOEXCEPT
+  { return __x; }
+
+
   /// numeric_limits<__float128> specialization.
   template<>
     struct numeric_limits<__float128>
@@ -311,7 +329,7 @@ namespace std
 	= denorm_present;
       static _GLIBCXX_USE_CONSTEXPR bool has_denorm_loss = true;
 
-      static _GLIBCXX_CONSTEXPR __float128
+      static /*_GLIBCXX_CONSTEXPR*/ __float128
       infinity() _GLIBCXX_USE_NOEXCEPT { return __builtin_huge_valq(); }
 
       // TODO: We probably could have this be constexpr in libquadmath.
