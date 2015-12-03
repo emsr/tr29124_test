@@ -40,10 +40,6 @@
 #  include <ratio>
 #endif
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-#  include "float128.h"
-#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
-
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 namespace __detail
@@ -218,6 +214,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 #endif // __cplusplus >= 201103L
 
 } // namespace __gnu_cxx
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#  include "float128.h"
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
 #endif // _GLIBCXX_BITS_SPECFUN_UTIL_H
 

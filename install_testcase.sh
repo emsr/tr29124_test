@@ -39,3 +39,4 @@ ${copy} check_ellint_rf.cc      ${ext_dir}/ellint_rf/check_value.cc
 ${copy} check_ellint_rj.cc      ${ext_dir}/ellint_rj/check_value.cc
 ${copy} check_hurwitz_zeta.cc   ${ext_dir}/hurwitz_zeta/check_value.cc
 ${copy} check_hyperg.cc         ${ext_dir}/hyperg/check_value.cc
+${copy} check_dilog.cc          ${ext_dir}/dilog/check_value.cc

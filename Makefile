@@ -24,9 +24,11 @@ BINS = test_special_function \
        test_nric_bessel \
        test_legendre
 
-all: test_special_function \
-     diff_special_function \
+all: diff_special_function \
+     test_special_function \
      testcase \
+     diff_local_special_function \
+     test_local_special_function \
      test_airy \
      test_csint \
      test_fresnel \
@@ -87,11 +89,12 @@ test_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc $(CX
 diff_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
 	$(CXX) -o diff_special_function diff_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas
 
+#  You need gnu to get __float128!
 test_local_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc sf_*.tcc
-	$(HOME)/bin/bin/g++ -std=c++14 -g -DLOCAL -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_local_special_function test_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas -lquadmath
+	$(HOME)/bin/bin/g++ -std=gnu++14 -g -DLOCAL -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -I$(HOME)/gcc_specfun/libstdc++-v3/include -o test_local_special_function test_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas -lquadmath
 
 diff_local_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tcc sf_*.tcc
-	$(HOME)/bin/bin/g++ -std=c++14 -g -DLOCAL -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o diff_local_special_function diff_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas -lquadmath
+	$(HOME)/bin/bin/g++ -std=gnu++14 -g -DLOCAL -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -I$(HOME)/gcc_specfun/libstdc++-v3/include -o diff_local_special_function diff_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas -lquadmath
 
 testcase: testcase.cpp testcase.tcc gsl_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
 	$(CXX) -o testcase testcase.cpp gsl_wrap.cpp -lgslcblas -lgsl
@@ -195,17 +198,17 @@ check_sph_neumann: check_sph_neumann.cc
 
 
 tarball:
-	mkdir tr29124_test
-	cp Makefile cmath *.* tr29124_test
-	tar -cvf tr29124_test.tar tr29124_test
-	bzip2 -f tr29124_test.tar
-	md5sum tr29124_test.tar.bz2 > tr29124_test.tar.bz2.md5
-	rm -rf tr29124_test
+	mkdir tr29124
+	cp Makefile cmath *.* tr29124
+	tar -cvf tr29124.tar tr29124
+	bzip2 -f tr29124.tar
+	md5sum tr29124.tar.bz2 > tr29124.tar.bz2.md5
+	rm -rf tr29124
 
 clean:
-	rm -f tr29124_*_[fdl].txt
+	rm -f std_*_[fdl].txt
 	rm -f gsl_*_[fdl].txt
 	rm -f diff_*_[fdl].txt
 	rm -f $(BINS)
-	rm -f tr29124_test.tar.bz2*
+	rm -f tr29124.tar.bz2*
 

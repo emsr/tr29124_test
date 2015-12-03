@@ -460,10 +460,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = __num_traits_t<_Tp>;
       constexpr auto _S_nan = __gnu_cxx::__math_constants<_Val>::__NaN;
+      constexpr auto _S_min = __gnu_cxx::__math_constants<_Val>::__min;
+      constexpr auto _S_max = __gnu_cxx::__math_constants<_Val>::__max;
+      constexpr auto _S_lolim = _Val(5) * _S_min;
+      constexpr auto _S_uplim = _S_max / _Val(5);
       constexpr auto _S_eps = __gnu_cxx::__math_constants<_Val>::__eps;
 
       if (__isnan(__x) || __isnan(__y) || __isnan(__z) || __isnan(__p))
 	return _S_nan;
+      else if (std::imag(__x) == _Val{} && std::real(__x) < _Val{}
+	    || std::imag(__y) == _Val{} && std::real(__y) < _Val{}
+	    || std::imag(__z) == _Val{} && std::real(__z) < _Val{})
+        std::__throw_domain_error(__N("__ellint_rj: argument less than zero"));
+      else if (std::abs(__x + __y) < _S_lolim
+	    || std::abs(__x + __z) < _S_lolim
+	    || std::abs(__y + __z) < _S_lolim
+	    || std::abs(__p) < _S_lolim)
+        std::__throw_domain_error(__N("__ellint_rj: argument too small"));
       else if (std::abs(__p - __z) < _S_eps)
 	return __ellint_rd(__x, __y, __z);
       else

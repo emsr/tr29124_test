@@ -219,8 +219,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       //  Max e exponent before overflow.
-      constexpr auto _S_max_bincoeff = std::numeric_limits<_Tp>::max_exponent10
-				     * std::log(_Tp{10}) - _Tp{1};
+      const auto _S_max_bincoeff = std::numeric_limits<_Tp>::max_exponent10
+				 * std::log(_Tp{10}) - _Tp{1};
 
       //  This series works until the binomial coefficient blows up
       //  so use reflection.
