@@ -16,7 +16,7 @@
     _Tp
     __beta_cont_frac(_Tp __a, _Tp __b, _Tp __x)
     {
-      constexpr auto _S_maxiter = 100;
+      constexpr auto _S_itmax = 100;
       constexpr auto _S_fpmin = std::numeric_limits<_Tp>::min();
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       auto __qab = __a + __b;
@@ -29,8 +29,7 @@
 	__d = _S_fpmin;
       __d = _Tp{1} / __d;
       auto __h = __d;
-      int __m = 0;
-      for (__m = 1; __m <= _S_maxiter; ++__m)
+      for (int __m = 1; __m <= _S_itmax; ++__m)
 	{
 	  auto __m2 = 2 * __m;
 	  auto __aa = __m * (__b - __m) * __x
@@ -59,11 +58,10 @@
 	  auto __del = __d * __c;
 	  __h *= __del;
 	  if (std::abs(__del - _Tp{1}) < _S_eps)
-	    break;
+	    return __h;
 	}
-      if (__m > _S_maxiter)
-	std::__throw_logic_error("betacf: a or b too big, or _S_maxiter too small");
-      return __h;
+      std::__throw_runtime_error(__N("__beta_cont_frac: "
+				     "a or b too big, or _S_itmax too small"));
     }
 
   ///  Returns the incomplete beta function I_x(a;b).
@@ -71,19 +69,25 @@
     _Tp
     __ibeta(_Tp __a, _Tp __b, _Tp __x)
     {
-      _Tp __bt;
       if (__x < _Tp{0} || __x > _Tp{1})
-	throw std::domain_error("betai: bad argument");
-      if (__x == _Tp{0} || __x == _Tp{1})
-	__bt = _Tp{0};
-      else // Factors in front of the continued fraction.
-	__bt = std::exp(std::lgamma(__a + __b)
-	     - std::lgamma(__a) - std::lgamma(__b)
-             + __a * std::log(__x) + __b * std::log(_Tp{1} - __x));
-      if (__x < (__a + _Tp{1}) / (__a + __b + _Tp{2})) //  Use continued fraction directly.
-	return __bt * __beta_cont_frac(__a, __b, __x) / __a;
-      else  //  Use continued fraction after making the symmetry transformation.
-	return _Tp{1} - __bt * __beta_cont_frac(__b, __a, _Tp{1} - __x) / __b;
+	std::__throw_domain_error(__N("__ibeta: argument out of range"));
+      if (__isnan(__x) || __isnan(__a) || __isnan(__b))
+	return __gnu_cxx::__math_constants<_Tp>::__NaN;
+      else
+	{
+	  _Tp __fact;
+	  if (__x == _Tp{0} || __x == _Tp{1})
+	    __fact = _Tp{0};
+	  else
+	    __fact = std::exp(std::lgamma(__a + __b)
+			    - std::lgamma(__a) - std::lgamma(__b)
+			    + __a * std::log(__x) + __b * std::log(_Tp{1} - __x));
+	  if (__x < (__a + _Tp{1}) / (__a + __b + _Tp{2}))
+	    return __fact * __beta_cont_frac(__a, __b, __x) / __a;
+	  else
+	    return _Tp{1}
+	         - __fact * __beta_cont_frac(__b, __a, _Tp{1} - __x) / __b;
+	}
     }
 
 int
