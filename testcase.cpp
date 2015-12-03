@@ -591,7 +591,6 @@ template<typename Real>
     filename = get_filename(path, prefix, "dilog", "",  ".cc");
     std::ofstream file_dilog(filename.c_str());
     typedef Real dilog(Real);
-    test =
     maketest<Real, Real>((dilog *)__gnu_cxx::dilog,
 			 wrap_gsl_sf_dilog,
 			 "__gnu_cxx", funcname,
@@ -612,6 +611,35 @@ template<typename Real>
 			       "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 						  std::make_pair(true, true), 11),
 			       file_gamma_u);
+
+    //  Incomplete Beta functions.
+    std::cout << "ibeta" << std::endl;
+    funcname = "ibeta";
+    filename = get_filename(path, prefix, funcname, "", ".cc");
+    std::ofstream file_ibeta(filename.c_str());
+    typedef Real ibeta(Real, Real, Real);
+    maketest<Real, Real, Real, Real>((ibeta*)__gnu_cxx::ibeta, wrap_gsl_sf_gamma_inc,
+			       "__gnu_cxx", funcname,
+			       "a", fill_argument(std::make_pair(Real{0}, +Real{5}),
+						  std::make_pair(false, true), 11),
+			       "b", fill_argument(std::make_pair(Real{5}, +Real{0}),
+						  std::make_pair(false, true), 11),
+			       "x", fill_argument(std::make_pair(Real{0}, +Real{1}),
+						  std::make_pair(false, false), 21),
+			       file_ibeta);
+
+    //  Digamma or psi functions.
+    std::cout << "psi" << std::endl;
+    funcname = "psi";
+    filename = get_filename(path, prefix, "psi", "",  ".cc");
+    std::ofstream file_psi(filename.c_str());
+    typedef Real psi(Real);
+    maketest<Real, Real>((psi *)__gnu_cxx::psi,
+			 wrap_gsl_sf_psi,
+			 "__gnu_cxx", funcname,
+			 "x", fill_argument(std::make_pair(-Real{10}, Real{10}),
+					    std::make_pair(true, true), 41),
+			 file_psi);
 
   }
 
