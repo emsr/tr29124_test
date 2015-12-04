@@ -103,6 +103,18 @@ template<>
   };
 
 template<>
+  struct type_strings<__float128>
+  {
+    static const std::string
+    type()
+    { return std::string("__float128"); }
+
+    static const std::string
+    suffix()
+    { return std::string("Q"); }
+  };
+
+template<>
   template<typename Tp>
     struct type_strings<std::complex<Tp>>
     {
@@ -225,10 +237,10 @@ template<typename Tp>
   }
 
 
-  ///
-  ///  @brief  Difference two one-argument functions.
-  ///
-  template<typename Tp, typename Tp1>
+///
+///  @brief  Difference two one-argument functions.
+///
+template<typename Tp, typename Tp1>
   unsigned int
   maketest(std::function<Tp(Tp1)> function1,
 	   std::function<Tp(Tp1)> function2,
@@ -468,7 +480,9 @@ template<typename Tp, typename Tp1, typename Tp2>
 	    output << "\t\t\t   / sizeof(" << structname << ");\n";
 	    output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	    output << "      {\n";
-	    output << "\tconst Tp f = " << nsname << "::" << funcname << "(Tp(" << dataname.str() << "[i]." << arg1 << ")" << ", Tp(" << dataname.str() << "[i]." << arg2 << ")" << ");\n";
+	    output << "\tconst Tp f = " << nsname << "::" << funcname << "("
+		   << "Tp(" << dataname.str() << "[i]." << arg1 << ")" << ", "
+		   << "Tp(" << dataname.str() << "[i]." << arg2 << ")" << ");\n";
 	    output << "\tconst Tp f0 = " << dataname.str() << "[i].f0;\n";
 	    output << "\tconst Tp diff = f - f0;\n";
 	    output << "\tif (std::abs(diff) > max_abs_diff)\n";
@@ -617,7 +631,9 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		output << "\t\t\t   / sizeof(" << structname << ");\n";
 		output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 		output << "  	 {\n";
-		output << "\tconst Tp f = " << nsname << "::" << funcname << "(Tp(" << dataname.str() << "[i]." << arg1 << ")" << ", Tp(" << dataname.str() << "[i]." << arg2 << ")" << ",\n";
+		output << "\tconst Tp f = " << nsname << "::" << funcname << "("
+		       << "Tp(" << dataname.str() << "[i]." << arg1 << ")" << ", "
+		       << "Tp(" << dataname.str() << "[i]." << arg2 << ")" << ",\n";
 		output << "\t\t     Tp(" << dataname.str() << "[i]." << arg3 << ")" << ");\n";
 		output << "\tconst Tp f0 = " << dataname.str() << "[i].f0;\n";
 		output << "\tconst Tp diff = f - f0;\n";
@@ -777,8 +793,11 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		    output << "\t\t\t   / sizeof(" << structname << ");\n";
 		    output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 		    output << "      {\n";
-		    output << "\tconst Tp f = " << nsname << "::" << funcname << "(Tp(" << dataname.str() << "[i]." << arg1 << ")" << ", Tp(" << dataname.str() << "[i]." << arg2 << ")" << ",\n";
-		    output << "\t\t     Tp(" << dataname.str() << "[i]." << arg3 << ")" << ", Tp(" << dataname.str() << "[i]." << arg4 << ")" << ");\n";
+		    output << "\tconst Tp f = " << nsname << "::" << funcname << "("
+			   << "Tp(" << dataname.str() << "[i]." << arg1 << ")" << ", "
+			   << "Tp(" << dataname.str() << "[i]." << arg2 << ")" << ",\n";
+		    output << "\t\t     Tp(" << dataname.str() << "[i]." << arg3 << ")" << ", "
+			   << "Tp(" << dataname.str() << "[i]." << arg4 << ")" << ");\n";
 		    output << "\tconst Tp f0 = " << dataname.str() << "[i].f0;\n";
 		    output << "\tconst Tp diff = f - f0;\n";
 		    output << "\tif (std::abs(diff) > max_abs_diff)\n";
