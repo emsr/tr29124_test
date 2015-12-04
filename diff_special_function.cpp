@@ -33,26 +33,28 @@
 int
 main()
 {
+  using _TpGSL = double;
+
   //  Unsigned integer orders for various polynomials, harmonics, and spherical bessels.
   std::vector<unsigned int> vorder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};
 
-  //  ... corresponding "double" integer orders for GSL.
-  std::vector<double> dvorder{0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 10.0, 20.0, 50.0, 100.0};
+  //  ... corresponding "_TpGSL" integer orders for GSL.
+  std::vector<_TpGSL> dvorder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};
 
   //  Orders for cylindrical Bessel functions.
-  std::vector<double> cborderd{0.0, 1.0/3.0, 0.5, 2.0/3.0, 1.0, 2.0, 3.0,
-			      5.0, 10.0, 20.0, 50.0, 100.0};
+  std::vector<_TpGSL> cborderd{0, _TpGSL{1}/_TpGSL{3}, _TpGSL{0.5}, _TpGSL{2}/_TpGSL{3},
+			       1, 2, 3, 5, 10, 20, 50, 100};
 
   //  Orders for spherical bessel functions.
   std::vector<unsigned int> sborder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};
 
-  const unsigned long num_phi = 19; // 0 - 180 degrees.
-  double phi[num_phi];
+  const unsigned int num_phi = 19; // 0 - 180 degrees.
+  _TpGSL phi[num_phi];
   for (unsigned int i = 0; i < num_phi; ++i)
-    phi[i] = 10.0 * i * M_PI / 180.0;
-  std::vector<double> vphid(phi, phi + num_phi);
+    phi[i] = _TpGSL{10} * i * M_PI / _TpGSL{180};
+  std::vector<_TpGSL> vphid(phi, phi + num_phi);
 
-  std::vector<double> vab{0.0, 0.5, 1.0, 2.0, 5.0, 10.0, 20.0};
+  std::vector<_TpGSL> vab{0, 0.5, 1, 2, 5, 10, 20};
 
   std::string basename;
 
@@ -121,14 +123,14 @@ main()
   //  Airy Ai functions.
   std::cout << "airy_a" << std::endl;
   basename = "diff_airy_ai";
-  rundiff<double, double>(airy_ai, wrap_gsl_sf_airy_ai, basename,
+  rundiff<_TpGSL, _TpGSL>(airy_ai, wrap_gsl_sf_airy_ai, basename,
 			  "x", fill_argument(std::make_pair(-10.0, +10.0),
 					     std::make_pair(true, true), 41));
 
   //  Airy Bi functions.
   std::cout << "airy_bi" << std::endl;
   basename = "diff_airy_bi";
-  rundiff<double, double>(airy_bi, wrap_gsl_sf_airy_bi, basename,
+  rundiff<_TpGSL, _TpGSL>(airy_bi, wrap_gsl_sf_airy_bi, basename,
 			  "x", fill_argument(std::make_pair(-10.0, +10.0),
 					     std::make_pair(true, true), 41));
 #endif // STD
@@ -136,7 +138,7 @@ main()
   //  Associated Laguerre polynomials.
   std::cout << "assoc_laguerre" << std::endl;
   basename = "diff_assoc_laguerre";
-  rundiff<double, unsigned int, unsigned int, double>(assoc_laguerre, wrap_gsl_sf_laguerre_nm, basename,
+  rundiff<_TpGSL, unsigned int, unsigned int, _TpGSL>(assoc_laguerre, wrap_gsl_sf_laguerre_nm, basename,
 						      "n", vorder, "m", vorder,
 						      "x", fill_argument(std::make_pair(0.0, 100.0),
 									 std::make_pair(true, true)));
@@ -145,7 +147,7 @@ main()
   //  Associated Legendre functions.
   std::cout << "assoc_legendre" << std::endl;
   basename = "diff_assoc_legendre";
-  rundiff<double, unsigned int, unsigned int, double>(assoc_legendre, wrap_gsl_sf_legendre_Plm, basename,
+  rundiff<_TpGSL, unsigned int, unsigned int, _TpGSL>(assoc_legendre, wrap_gsl_sf_legendre_Plm, basename,
 						      "l", vorder, "m", vorder,
 						      "x", fill_argument(std::make_pair(-1.0, 1.0),
 									 std::make_pair(true, true), 1001));
@@ -154,7 +156,7 @@ main()
   //  Beta function.
   std::cout << "beta" << std::endl;
   basename = "diff_beta";
-  rundiff<double, double, double>(beta, wrap_gsl_sf_beta, basename,
+  rundiff<_TpGSL, _TpGSL, _TpGSL>(beta, wrap_gsl_sf_beta, basename,
 				  "x", fill_argument(std::make_pair(0.0, 100.0),
 						     std::make_pair(false, true)),
 				  "y", fill_argument(std::make_pair(0.0, 100.0),
@@ -165,7 +167,7 @@ main()
   //  Avoid poles at |x| = 1.
   std::cout << "comp_ellint_1" << std::endl;
   basename = "diff_comp_ellint_1";
-  rundiff<double, double>(comp_ellint_1, wrap_gsl_sf_ellint_Kcomp, basename,
+  rundiff<_TpGSL, _TpGSL>(comp_ellint_1, wrap_gsl_sf_ellint_Kcomp, basename,
 			  "k", fill_argument(std::make_pair(-1.0, 1.0),
 					     std::make_pair(false, false)));
 
@@ -174,7 +176,7 @@ main()
   //  Avoid poles at |x| = 1.
   std::cout << "comp_ellint_2" << std::endl;
   basename = "diff_comp_ellint_2";
-  rundiff<double, double>(comp_ellint_2, wrap_gsl_sf_ellint_Ecomp, basename,
+  rundiff<_TpGSL, _TpGSL>(comp_ellint_2, wrap_gsl_sf_ellint_Ecomp, basename,
 			  "k", fill_argument(std::make_pair(-1.0, 1.0),
 					     std::make_pair(false, false)));
 
@@ -183,7 +185,7 @@ main()
   //  Avoid poles at |x| = 1 and at nu = 1.
   std::cout << "comp_ellint_3" << std::endl;
   basename = "diff_comp_ellint_3";
-  rundiff<double, double, double>(comp_ellint_3, wrap_gsl_sf_ellint_Pcomp, basename,
+  rundiff<_TpGSL, _TpGSL, _TpGSL>(comp_ellint_3, wrap_gsl_sf_ellint_Pcomp, basename,
 				  "k", fill_argument(std::make_pair(-1.0, 1.0),
 						     std::make_pair(false, false)),
 				  "nu", fill_argument(std::make_pair(0.0, 1.0),
@@ -194,7 +196,7 @@ main()
   //  Skip the singularity at c = 0.
   std::cout << "conf_hyperg" << std::endl;
   basename = "diff_conf_hyperg";
-  rundiff<double, double, double, double>(conf_hyperg, wrap_gsl_sf_hyperg_1F1, basename,
+  rundiff<_TpGSL, _TpGSL, _TpGSL, _TpGSL>(conf_hyperg, wrap_gsl_sf_hyperg_1F1, basename,
 					  "a", vab,
 					  "c", fill_argument(std::make_pair(0.0, 10.0),
 							     std::make_pair(false, true), 11),
@@ -205,7 +207,7 @@ main()
   //  Regular modified cylindrical Bessel functions.
   std::cout << "cyl_bessel_i" << std::endl;
   basename = "diff_cyl_bessel_i";
-  rundiff<double, double, double>(cyl_bessel_i, wrap_gsl_sf_bessel_Inu, basename,
+  rundiff<_TpGSL, _TpGSL, _TpGSL>(cyl_bessel_i, wrap_gsl_sf_bessel_Inu, basename,
 				  "nu", cborderd,
 				  "x", fill_argument(std::make_pair(0.0, 100.0),
 						     std::make_pair(true, true), 1001));
@@ -214,7 +216,7 @@ main()
   //  Cylindrical Bessel functions (of the first kind).
   std::cout << "cyl_bessel_j" << std::endl;
   basename = "diff_cyl_bessel_j";
-  rundiff<double, double, double>(cyl_bessel_j, wrap_gsl_sf_bessel_Jnu, basename,
+  rundiff<_TpGSL, _TpGSL, _TpGSL>(cyl_bessel_j, wrap_gsl_sf_bessel_Jnu, basename,
 				  "nu", cborderd,
 				  "x", fill_argument(std::make_pair(0.0, 100.0),
 						     std::make_pair(true, true), 1001));
@@ -224,7 +226,7 @@ main()
   // Skip the pole at the origin.
   std::cout << "cyl_bessel_k" << std::endl;
   basename = "diff_cyl_bessel_k";
-  rundiff<double, double, double>(cyl_bessel_k, wrap_gsl_sf_bessel_Knu, basename,
+  rundiff<_TpGSL, _TpGSL, _TpGSL>(cyl_bessel_k, wrap_gsl_sf_bessel_Knu, basename,
 				  "nu", cborderd,
 				  "x", fill_argument(std::make_pair(0.0, 100.0),
 						     std::make_pair(false, true), 1001));
@@ -234,7 +236,7 @@ main()
   // Skip the pole at the origin.
   std::cout << "cyl_neumann" << std::endl;
   basename = "diff_cyl_neumann";
-  rundiff<double, double, double>(cyl_neumann, wrap_gsl_sf_bessel_Ynu, basename,
+  rundiff<_TpGSL, _TpGSL, _TpGSL>(cyl_neumann, wrap_gsl_sf_bessel_Ynu, basename,
 				  "nu", cborderd,
 				  "x", fill_argument(std::make_pair(0.0, 100.0),
 						     std::make_pair(false, true), 1001));
@@ -244,7 +246,7 @@ main()
   //  Avoid poles at |x| = 1.
   std::cout << "ellint_1" << std::endl;
   basename = "diff_ellint_1";
-  rundiff<double, double, double>(ellint_1, wrap_gsl_sf_ellint_F, basename,
+  rundiff<_TpGSL, _TpGSL, _TpGSL>(ellint_1, wrap_gsl_sf_ellint_F, basename,
 				  "k", fill_argument(std::make_pair(-1.0, 1.0),
 						     std::make_pair(false, false)),
 				  "phi", vphid);
@@ -254,7 +256,7 @@ main()
   //  Avoid poles at |x| = 1.
   std::cout << "ellint_2" << std::endl;
   basename = "diff_ellint_2";
-  rundiff<double, double, double>(ellint_2, wrap_gsl_sf_ellint_E, basename,
+  rundiff<_TpGSL, _TpGSL, _TpGSL>(ellint_2, wrap_gsl_sf_ellint_E, basename,
 				  "k", fill_argument(std::make_pair(-1.0, 1.0),
 						     std::make_pair(false, false)),
 				  "phi", vphid);
@@ -264,7 +266,7 @@ main()
   //  Avoid poles at |x| = 1 and at nu = 1.
   std::cout << "ellint_3" << std::endl;
   basename = "diff_ellint_3";
-  rundiff<double, double, double, double>(ellint_3, wrap_gsl_sf_ellint_P, basename,
+  rundiff<_TpGSL, _TpGSL, _TpGSL, _TpGSL>(ellint_3, wrap_gsl_sf_ellint_P, basename,
 					  "k", fill_argument(std::make_pair(-1.0, 1.0),
 							     std::make_pair(false, false)),
 					  "nu", fill_argument(std::make_pair(0.0, 1.0),
@@ -276,11 +278,11 @@ main()
   //  Skip the pole at 0.
   std::cout << "expint" << std::endl;
   basename = "diff_expint_neg";
-  rundiff<double, double>(expint, wrap_gsl_sf_expint_Ei, basename,
+  rundiff<_TpGSL, _TpGSL>(expint, wrap_gsl_sf_expint_Ei, basename,
 			  "x", fill_argument(std::make_pair(-50.0, 0.0),
 					     std::make_pair(true, false), 51));
   basename = "diff_expint_pos";
-  rundiff<double, double>(expint, wrap_gsl_sf_expint_Ei, basename,
+  rundiff<_TpGSL, _TpGSL>(expint, wrap_gsl_sf_expint_Ei, basename,
 			  "x", fill_argument(std::make_pair(0.0, 50.0),
 					     std::make_pair(false, true), 51));
 
@@ -288,7 +290,7 @@ main()
   //  Hermite polynomials
   std::cout << "hermite  UNTESTED" << std::endl;
 //  basename = "diff_hermite";
-//  rundiff<double, unsigned int, double>(hermite, gsl_xxx, basename, vorder,
+//  rundiff<_TpGSL, unsigned int, _TpGSL>(hermite, gsl_xxx, basename, vorder,
 //					fill_argument(std::make_pair(-10.0, 10.0),
 //						      std::make_pair(true, true)));
 
@@ -298,7 +300,7 @@ main()
   //  Skip the singularities at x = -1.
   std::cout << "hyperg" << std::endl;
   basename = "diff_hyperg";
-  rundiff<double, double, double, double, double>(hyperg, wrap_gsl_sf_hyperg_2F1, basename,
+  rundiff<_TpGSL, _TpGSL, _TpGSL, _TpGSL, _TpGSL>(hyperg, wrap_gsl_sf_hyperg_2F1, basename,
 						  "a", vab, "b", vab,
 						  "c", fill_argument(std::make_pair(0.0, 10.0),
 								     std::make_pair(false, true), 11),
@@ -309,7 +311,7 @@ main()
   //  Laguerre polynomials.
   std::cout << "laguerre" << std::endl;
   basename = "diff_laguerre";
-  rundiff<double, unsigned int, double>(laguerre, wrap_gsl_sf_laguerre_n, basename,
+  rundiff<_TpGSL, unsigned int, _TpGSL>(laguerre, wrap_gsl_sf_laguerre_n, basename,
 					"n", vorder,
 					"x", fill_argument(std::make_pair(0.0, 100.0),
 							   std::make_pair(true, true), 1001));
@@ -318,7 +320,7 @@ main()
   //  Legendre polynomials.
   std::cout << "legendre" << std::endl;
   basename = "diff_legendre";
-  rundiff<double, unsigned int, double>(legendre, wrap_gsl_sf_legendre_Pl, basename,
+  rundiff<_TpGSL, unsigned int, _TpGSL>(legendre, wrap_gsl_sf_legendre_Pl, basename,
 					"l", vorder,
 					"x", fill_argument(std::make_pair(-1.0, 1.0),
 							   std::make_pair(true, true), 1001));
@@ -328,11 +330,11 @@ main()
   //  Skip the pole at 1.
   std::cout << "riemann_zeta" << std::endl;
   basename = "diff_riemann_zeta_neg";
-  rundiff<double, double>(riemann_zeta, wrap_gsl_sf_zeta, basename,
+  rundiff<_TpGSL, _TpGSL>(riemann_zeta, wrap_gsl_sf_zeta, basename,
 			  "x", fill_argument(std::make_pair(-10.0, 1.0),
 					     std::make_pair(true, false), 56));
   basename = "diff_riemann_zeta_pos";
-  rundiff<double, double>(riemann_zeta, wrap_gsl_sf_zeta, basename,
+  rundiff<_TpGSL, _TpGSL>(riemann_zeta, wrap_gsl_sf_zeta, basename,
 			  "x", fill_argument(std::make_pair(1.0, 30.0),
 					     std::make_pair(false, true), 146));
 
@@ -341,7 +343,7 @@ main()
   std::cout << "hurwitz_zeta" << std::endl;
   //  Skip the pole at 1.
   basename = "diff_hurwitz_zeta";
-  rundiff<double, double, double>(hurwitz_zeta, wrap_gsl_sf_hzeta, basename,
+  rundiff<_TpGSL, _TpGSL, _TpGSL>(hurwitz_zeta, wrap_gsl_sf_hzeta, basename,
 				  "s", fill_argument(std::make_pair(1.0, 30.0),
 						     std::make_pair(false, true), 146),
 				  "a", fill_argument(std::make_pair(0.0, 5.0),
@@ -352,7 +354,7 @@ main()
   //  Spherical Bessel functions.
   std::cout << "sph_bessel" << std::endl;
   basename = "diff_sph_bessel";
-  rundiff<double, unsigned int, double>(sph_bessel, wrap_gsl_sf_bessel_jl, basename,
+  rundiff<_TpGSL, unsigned int, _TpGSL>(sph_bessel, wrap_gsl_sf_bessel_jl, basename,
 					"n", sborder,
 					"x", fill_argument(std::make_pair(0.0, 100.0),
 							   std::make_pair(true, true), 1001));
@@ -361,9 +363,9 @@ main()
   //  Spherical Legendre functions.
   std::cout << "sph_legendre" << std::endl;
   basename = "diff_sph_legendre";
-  rundiff<double, unsigned int, unsigned int, double>(sph_legendre, wrap_gsl_sf_legendre_sphPlm, basename,
+  rundiff<_TpGSL, unsigned int, unsigned int, _TpGSL>(sph_legendre, wrap_gsl_sf_legendre_sphPlm, basename,
 						      "l", vorder, "m", vorder,
-						      "theta", fill_argument(std::make_pair(0.0, static_cast<double>(M_PI)),
+						      "theta", fill_argument(std::make_pair(0.0, static_cast<_TpGSL>(M_PI)),
 									     std::make_pair(true, true), 1001));
 
 
@@ -371,7 +373,7 @@ main()
   // Skip the pole at the origin.
   std::cout << "sph_neumann" << std::endl;
   basename = "diff_sph_neumann";
-  rundiff<double, unsigned int, double>(sph_neumann, wrap_gsl_sf_bessel_yl, basename,
+  rundiff<_TpGSL, unsigned int, _TpGSL>(sph_neumann, wrap_gsl_sf_bessel_yl, basename,
 					"n", sborder,
 					"x", fill_argument(std::make_pair(0.0, 100.0),
 							   std::make_pair(false, true), 1001));
@@ -380,7 +382,7 @@ main()
   //  Carlson elliptic functions R_C.
   std::cout << "ellint_rc" << std::endl;
   basename = "diff_ellint_rc";
-  rundiff<double, double, double>(ellint_rc, wrap_gsl_sf_ellint_RC, basename,
+  rundiff<_TpGSL, _TpGSL, _TpGSL>(ellint_rc, wrap_gsl_sf_ellint_RC, basename,
 				  "x", fill_argument(std::make_pair(0.0, 5.0),
 						     std::make_pair(false, true), 11),
 				  "y", fill_argument(std::make_pair(0.0, 5.0),
@@ -389,7 +391,7 @@ main()
   //  Carlson elliptic functions R_D.
   std::cout << "ellint_rd" << std::endl;
   basename = "diff_ellint_rd";
-  rundiff<double, double, double, double>(ellint_rd, wrap_gsl_sf_ellint_RD, basename,
+  rundiff<_TpGSL, _TpGSL, _TpGSL, _TpGSL>(ellint_rd, wrap_gsl_sf_ellint_RD, basename,
 					  "x", fill_argument(std::make_pair(0.0, 5.0),
 							     std::make_pair(false, true), 11),
 					  "y", fill_argument(std::make_pair(0.0, 5.0),
@@ -400,7 +402,7 @@ main()
   //  Carlson elliptic functions R_F.
   std::cout << "ellint_rf" << std::endl;
   basename = "diff_ellint_rf";
-  rundiff<double, double, double, double>(ellint_rf, wrap_gsl_sf_ellint_RF, basename,
+  rundiff<_TpGSL, _TpGSL, _TpGSL, _TpGSL>(ellint_rf, wrap_gsl_sf_ellint_RF, basename,
 					  "x", fill_argument(std::make_pair(0.0, 5.0),
 							     std::make_pair(false, true), 11),
 					  "y", fill_argument(std::make_pair(0.0, 5.0),
@@ -411,7 +413,7 @@ main()
   //  Carlson elliptic functions R_J.
   std::cout << "ellint_rj" << std::endl;
   basename = "diff_ellint_rj";
-  rundiff<double, double, double, double, double>(ellint_rj, wrap_gsl_sf_ellint_RJ, basename,
+  rundiff<_TpGSL, _TpGSL, _TpGSL, _TpGSL, _TpGSL>(ellint_rj, wrap_gsl_sf_ellint_RJ, basename,
 						  "x", fill_argument(std::make_pair(0.0, 5.0),
 								     std::make_pair(false, true), 11),
 						  "y", fill_argument(std::make_pair(0.0, 5.0),
@@ -424,36 +426,36 @@ main()
     //  Dilogarithm functions.
     std::cout << "dilog" << std::endl;
     basename = "dilog";
-    rundiff<Real, Real>(dilog, wrap_gsl_sf_dilog, basename,
-			"x", fill_argument(std::make_pair(-Real{10}, Real{10}),
-					   std::make_pair(true, true), 41));
+    rundiff<_TpGSL, _TpGSL>(dilog, wrap_gsl_sf_dilog, basename,
+			    "x", fill_argument(std::make_pair(-_TpGSL{10}, _TpGSL{1}),
+					       std::make_pair(true, true), 23));
 
     //  Upper incomplete Gamma functions.
     std::cout << "gamma_u" << std::endl;
     basename = "gamma_u";
-    rundiff<Real, Real, Real>(gamma_u, wrap_gsl_sf_gamma_inc, basename,
-			      "a", fill_argument(std::make_pair(Real{0}, +Real{5}),
-						 std::make_pair(false, true), 11),
-			      "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
-						 std::make_pair(true, true), 11));
+    rundiff<_TpGSL, _TpGSL, _TpGSL>(gamma_u, wrap_gsl_sf_gamma_inc, basename,
+				    "a", fill_argument(std::make_pair(_TpGSL{0}, +_TpGSL{5}),
+						       std::make_pair(false, true), 11),
+				    "x", fill_argument(std::make_pair(_TpGSL{0}, +_TpGSL{5}),
+						       std::make_pair(true, true), 11));
 
     //  Incomplete Beta functions.
     std::cout << "ibeta" << std::endl;
     basename = "ibeta";
-    rundiff<Real, Real, Real, Real>(ibeta, wrap_gsl_sf_gamma_inc, basename,
-				    "a", fill_argument(std::make_pair(Real{0}, +Real{5}),
+    rundiff<_TpGSL, _TpGSL, _TpGSL, _TpGSL>(ibeta, wrap_gsl_sf_beta_inc, basename,
+				    "a", fill_argument(std::make_pair(_TpGSL{0}, +_TpGSL{5}),
 						       std::make_pair(false, true), 11),
-				    "b", fill_argument(std::make_pair(Real{5}, +Real{0}),
+				    "b", fill_argument(std::make_pair(_TpGSL{5}, +_TpGSL{0}),
 						       std::make_pair(false, true), 11),
-				    "x", fill_argument(std::make_pair(Real{0}, +Real{1}),
+				    "x", fill_argument(std::make_pair(_TpGSL{0}, +_TpGSL{1}),
 						       std::make_pair(false, false), 21));
 
     //  Digamma or psi functions.
     std::cout << "psi" << std::endl;
     basename = "psi";
-    rundiff<Real, Real>(psi, wrap_gsl_sf_psi, basename,
-			"x", fill_argument(std::make_pair(-Real{10}, Real{10}),
-					   std::make_pair(true, true), 41));
+    rundiff<_TpGSL, _TpGSL>(psi, wrap_gsl_sf_psi, basename,
+			    "x", fill_argument(std::make_pair(-_TpGSL{10}, _TpGSL{10}),
+					       std::make_pair(true, true), 41));
 #endif // STD
 
   return 0;

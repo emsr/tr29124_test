@@ -60,6 +60,8 @@ template<typename Real>
     const std::string path = ".";
     const std::string prefix = "/check_";
 
+    std::string nsname = "std";
+
     std::string funcname;
     std::string filename;
 
@@ -95,7 +97,7 @@ template<typename Real>
     typedef Real assoc_laguerre(unsigned int, unsigned int, Real);
     maketest<Real, unsigned int, unsigned int, Real>((assoc_laguerre *)std::assoc_laguerre,
 						     wrap_gsl_sf_laguerre_nm,
-						     "std", funcname,
+						     nsname, funcname,
 						     "n", vorder, "m", vorder,
 						     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 									std::make_pair(true, true), 11),
@@ -109,7 +111,7 @@ template<typename Real>
     typedef Real assoc_legendre(unsigned int, unsigned int, Real);
     maketest<Real, unsigned int, unsigned int, Real>((assoc_legendre *)std::assoc_legendre,
 						     wrap_gsl_sf_legendre_Plm,
-						     "std", funcname,
+						     nsname, funcname,
 						     "l", vorder, "m", vorder,
 						     "x", fill_argument(std::make_pair(-Real{1}, Real{1}),
 									std::make_pair(true, true), 21),
@@ -123,7 +125,7 @@ template<typename Real>
     typedef Real beta(Real, Real);
     maketest<Real, Real, Real>((beta *)std::beta,
 			       wrap_gsl_sf_beta,
-			       "std", funcname,
+			       nsname, funcname,
 			       "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 						  std::make_pair(false, true), 11),
 			       "y", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -139,7 +141,7 @@ template<typename Real>
     typedef Real comp_ellint_1(Real);
     maketest<Real, Real>((comp_ellint_1 *)std::comp_ellint_1,
 			 wrap_gsl_sf_ellint_Kcomp,
-			 "std", funcname,
+			 nsname, funcname,
 			 "k", fill_argument(std::make_pair(-Real{1}, Real{1}),
 					    std::make_pair(false, false), 21),
 			 file_comp_ellint_1);
@@ -153,7 +155,7 @@ template<typename Real>
     typedef Real comp_ellint_2(Real);
     maketest<Real, Real>((comp_ellint_2 *)std::comp_ellint_2,
 			 wrap_gsl_sf_ellint_Ecomp,
-			 "std", funcname,
+			 nsname, funcname,
 			 "k", fill_argument(std::make_pair(-Real{1}, Real{1}),
 					    std::make_pair(false, false), 21),
 			 file_comp_ellint_2);
@@ -167,7 +169,7 @@ template<typename Real>
     typedef Real comp_ellint_3(Real, Real);
     maketest<Real, Real, Real>((comp_ellint_3 *)std::comp_ellint_3,
 			       wrap_gsl_sf_ellint_Pcomp,
-			       "std", funcname,
+			       nsname, funcname,
 			       "k", fill_argument(std::make_pair(-Real{1}, Real{1}),
 						  std::make_pair(false, false), 21),
 			       "nu", fill_argument(std::make_pair(Real{0}, Real{1}),
@@ -200,14 +202,14 @@ template<typename Real>
     test =
     maketest<Real, Real, Real>((cyl_bessel_i*)std::cyl_bessel_i,
 			       wrap_gsl_sf_bessel_Inu,
-			       "std", funcname,
+			       nsname, funcname,
 			       "nu", vborderd,
 			       "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 						  std::make_pair(true, true), 21),
 			       file_cyl_bessel_i, true, false);
     maketest<Real, Real, Real>((cyl_bessel_i*)std::cyl_bessel_i,
 			       wrap_gsl_sf_bessel_Inu,
-			       "std", funcname,
+			       nsname, funcname,
 			       "nu", vborderd,
 			       "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 						  std::make_pair(true, true), 21),
@@ -222,14 +224,14 @@ template<typename Real>
     test =
     maketest<Real, Real, Real>((cyl_bessel_j*)std::cyl_bessel_j,
 			       wrap_gsl_sf_bessel_Jnu,
-			       "std", funcname,
+			       nsname, funcname,
 			       "nu", vborderd,
 			       "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 						  std::make_pair(true, true), 21),
 			       file_cyl_bessel_j, true, false);
     maketest<Real, Real, Real>((cyl_bessel_j*)std::cyl_bessel_j,
 			       wrap_gsl_sf_bessel_Jnu,
-			       "std", funcname,
+			       nsname, funcname,
 			       "nu", vborderd,
 			       "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 						  std::make_pair(true, true), 21),
@@ -243,7 +245,7 @@ template<typename Real>
     std::ofstream file_cyl_bessel_j_asymp(filename.c_str());
     maketest<Real, Real, Real>((cyl_bessel_j*)std::cyl_bessel_j,
 			       wrap_gsl_sf_bessel_Jnu_asymp,
-			       "std", funcname,
+			       nsname, funcname,
 			       "nu", vborderd,
 			       "x", fill_argument(std::make_pair(Real{1000}, Real{10000}),
 						  std::make_pair(true, true), 11),
@@ -259,14 +261,14 @@ template<typename Real>
     test =
     maketest<Real, Real, Real>((cyl_bessel_k*)std::cyl_bessel_k,
 			       wrap_gsl_sf_bessel_Knu,
-			       "std", funcname,
+			       nsname, funcname,
 			       "nu", vborderd,
 			       "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 						  std::make_pair(false, true), 21),
 			       file_cyl_bessel_k, true, false);
     maketest<Real, Real, Real>((cyl_bessel_k*)std::cyl_bessel_k,
 			       wrap_gsl_sf_bessel_Knu,
-			       "std", funcname,
+			       nsname, funcname,
 			       "nu", vborderd,
 			       "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 						  std::make_pair(false, true), 21),
@@ -282,14 +284,14 @@ template<typename Real>
     test =
     maketest<Real, Real, Real>((cyl_neumann*)std::cyl_neumann,
 				  wrap_gsl_sf_bessel_Ynu,
-				  "std", funcname,
+				  nsname, funcname,
 				  "nu", vborderd,
 				  "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 						     std::make_pair(false, true), 21),
 				  file_cyl_neumann, true, false);
     maketest<Real, Real, Real>((cyl_neumann*)std::cyl_neumann,
 			       wrap_gsl_sf_bessel_Ynu,
-			       "std", funcname,
+			       nsname, funcname,
 			       "nu", vborderd,
 			       "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 						  std::make_pair(false, true), 21),
@@ -304,7 +306,7 @@ template<typename Real>
     std::ofstream file_cyl_neumann_asymp(filename.c_str());
     maketest<Real, Real, Real>((cyl_neumann*)std::cyl_neumann,
 			       wrap_gsl_sf_bessel_Ynu_asymp,
-			       "std", funcname,
+			       nsname, funcname,
 			       "nu", vborderd,
 			       "x", fill_argument(std::make_pair(Real{1000}, Real{10000}),
 						  std::make_pair(false, true), 11),
@@ -319,7 +321,7 @@ template<typename Real>
     typedef Real ellint_1(Real, Real);
     maketest<Real, Real, Real>((ellint_1*)std::ellint_1,
 			       wrap_gsl_sf_ellint_F,
-			       "std", funcname,
+			       nsname, funcname,
 			       "k", fill_argument(std::make_pair(-Real{1}, Real{1}),
 						  std::make_pair(false, false), 21),
 			       "phi", vphid,
@@ -334,7 +336,7 @@ template<typename Real>
     typedef Real ellint_2(Real, Real);
     maketest<Real, Real, Real>((ellint_2*)std::ellint_2,
 			       wrap_gsl_sf_ellint_E,
-			       "std", funcname,
+			       nsname, funcname,
 			       "k", fill_argument(std::make_pair(-Real{1}, Real{1}),
 						  std::make_pair(false, false), 21),
 			       "phi", vphid,
@@ -349,7 +351,7 @@ template<typename Real>
     typedef Real ellint_3(Real, Real, Real);
     maketest<Real, Real, Real, Real>((ellint_3*)std::ellint_3,
 				     wrap_gsl_sf_ellint_P,
-				     "std", funcname,
+				     nsname, funcname,
 				     "k", fill_argument(std::make_pair(-Real{1}, Real{1}),
 							std::make_pair(false, false), 21),
 				     "nu", fill_argument(std::make_pair(Real{0}, Real{1}),
@@ -367,13 +369,13 @@ template<typename Real>
     test =
     maketest<Real, Real>((expint*)std::expint,
 			 wrap_gsl_sf_expint_Ei,
-			 "std", funcname,
+			 nsname, funcname,
 			 "x", fill_argument(std::make_pair(-Real{50}, Real{0}),
 					    std::make_pair(true, false), 51),
 			 file_expint, true, false);
     maketest<Real, Real>((expint*)std::expint,
 			 wrap_gsl_sf_expint_Ei,
-			 "std", funcname,
+			 nsname, funcname,
 			 "x", fill_argument(std::make_pair(Real{0}, Real{50}),
 					    std::make_pair(false, true), 51),
 			 file_expint, false, true, test);
@@ -408,7 +410,7 @@ template<typename Real>
     typedef Real laguerre(unsigned int, Real);
     maketest<Real, unsigned int, Real>((laguerre*)std::laguerre,
 				       wrap_gsl_sf_laguerre_n,
-				       "std", funcname,
+				       nsname, funcname,
 				       "n", vorder,
 				       "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 							  std::make_pair(true, true), 21),
@@ -422,7 +424,7 @@ template<typename Real>
     typedef Real legendre(unsigned int, Real);
     maketest<Real, unsigned int, Real>((legendre*)std::legendre,
 				       wrap_gsl_sf_legendre_Pl,
-				       "std", funcname,
+				       nsname, funcname,
 				       "l", vorder,
 				       "x", fill_argument(std::make_pair(-Real{1}, Real{1}),
 							  std::make_pair(true, true), 21),
@@ -438,13 +440,13 @@ template<typename Real>
     test =
     maketest<Real, Real>((riemann_zeta*)std::riemann_zeta,
 			 wrap_gsl_sf_zeta,
-			 "std", funcname,
+			 nsname, funcname,
 			 "s", fill_argument(std::make_pair(-Real{10}, Real{1}),
 					    std::make_pair(true, false), 56),
 			 file_riemann_zeta, true, false);
     maketest<Real, Real>((riemann_zeta*)std::riemann_zeta,
 			 wrap_gsl_sf_zeta,
-			 "std", funcname,
+			 nsname, funcname,
 			 "s", fill_argument(std::make_pair(Real{1}, Real{30}),
 					    std::make_pair(false, true), 146),
 			 file_riemann_zeta, false, true, test);
@@ -474,14 +476,14 @@ template<typename Real>
     test =
     maketest<Real, unsigned int, Real>((sph_bessel*)std::sph_bessel,
 				       wrap_gsl_sf_bessel_jl,
-				       "std", funcname,
+				       nsname, funcname,
 				       "n", sborder,
 				       "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 							  std::make_pair(true, true), 21),
 				       file_sph_bessel, true, false);
     maketest<Real, unsigned int, Real>((sph_bessel*)std::sph_bessel,
 				       wrap_gsl_sf_bessel_jl,
-				       "std", funcname,
+				       nsname, funcname,
 				       "n", sborder,
 				       "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 							  std::make_pair(true, true), 21),
@@ -494,7 +496,7 @@ template<typename Real>
     std::ofstream file_sph_legendre(filename.c_str());
     typedef Real sph_legendre(unsigned int, unsigned int, Real);
     maketest<Real, unsigned int, unsigned int, Real>((sph_legendre*)std::sph_legendre, wrap_gsl_sf_legendre_sphPlm,
-						     "std", funcname,
+						     nsname, funcname,
 						     "l", vorder, "m", vorder,
 						     "theta", fill_argument(std::make_pair(Real{0}, static_cast<Real>(M_PI)),
 									    std::make_pair(true, true), 21),
@@ -509,13 +511,13 @@ template<typename Real>
     typedef Real sph_neumann(unsigned int, Real);
     test =
     maketest<Real, unsigned int, Real>((sph_neumann*)std::sph_neumann, wrap_gsl_sf_bessel_yl,
-				       "std", funcname,
+				       nsname, funcname,
 				       "n", sborder,
 				       "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 							  std::make_pair(false, true), 21),
 				       file_sph_neumann, true, false);
     maketest<Real, unsigned int, Real>((sph_neumann*)std::sph_neumann, wrap_gsl_sf_bessel_yl,
-				       "std", funcname,
+				       nsname, funcname,
 				       "n", sborder,
 				       "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 							  std::make_pair(false, true), 21),
@@ -606,9 +608,9 @@ template<typename Real>
     typedef Real gamma_u(Real, Real);
     maketest<Real, Real, Real>((gamma_u*)__gnu_cxx::gamma_u, wrap_gsl_sf_gamma_inc,
 			       "__gnu_cxx", funcname,
-			       "a", fill_argument(std::make_pair(Real{0}, +Real{5}),
+			       "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 						  std::make_pair(false, true), 11),
-			       "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
+			       "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 						  std::make_pair(true, true), 11),
 			       file_gamma_u);
 
@@ -618,13 +620,13 @@ template<typename Real>
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_ibeta(filename.c_str());
     typedef Real ibeta(Real, Real, Real);
-    maketest<Real, Real, Real, Real>((ibeta*)__gnu_cxx::ibeta, wrap_gsl_sf_gamma_inc,
+    maketest<Real, Real, Real, Real>((ibeta*)__gnu_cxx::ibeta, wrap_gsl_sf_beta_inc,
 			       "__gnu_cxx", funcname,
-			       "a", fill_argument(std::make_pair(Real{0}, +Real{5}),
+			       "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 						  std::make_pair(false, true), 11),
-			       "b", fill_argument(std::make_pair(Real{5}, +Real{0}),
+			       "b", fill_argument(std::make_pair(Real{5}, Real{0}),
 						  std::make_pair(false, true), 11),
-			       "x", fill_argument(std::make_pair(Real{0}, +Real{1}),
+			       "x", fill_argument(std::make_pair(Real{0}, Real{1}),
 						  std::make_pair(false, false), 21),
 			       file_ibeta);
 
@@ -637,7 +639,7 @@ template<typename Real>
     maketest<Real, Real>((psi *)__gnu_cxx::psi,
 			 wrap_gsl_sf_psi,
 			 "__gnu_cxx", funcname,
-			 "x", fill_argument(std::make_pair(-Real{10}, Real{10}),
+			 "x", fill_argument(std::make_pair(-Real{10}, +Real{10}),
 					    std::make_pair(true, true), 41),
 			 file_psi);
 
