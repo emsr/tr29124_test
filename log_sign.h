@@ -5,6 +5,7 @@
     struct
     log_sign_t
     {
+      using value_type = _Tp;
       _Tp value = ;
       -Tp sign = 1;
     };

@@ -1,11 +1,13 @@
-// $HOME/bin_specfun/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_chebyshev test_chebyshev.cpp gsl_wrap.cpp -lgsl -lgslcblas
+// $HOME/bin_specfun/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_chebyshev test_chebyshev.cpp gsl_wrap.cpp -lgsl -lgslcblas -libquadmath
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_chebyshev
+// $HOME/bin/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_chebyshev test_chebyshev.cpp gsl_wrap.cpp -lgsl -lgslcblas -libquadmath 2> err.txt
+
+// LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_chebyshev
 
 #include <iostream>
 #include <iomanip>
 
-#include "chebyshev.tcc"
+#include "chebyshev.h"
 
 int
 main()
@@ -19,5 +21,5 @@ main()
      1.2719271366546e-3, -4.9717367042e-6,
     -3.31261198e-8, 2.423096e-10, -1.702e-13, -1.49e-15}};
 
-  
+  //;
 }
