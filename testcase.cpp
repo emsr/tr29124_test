@@ -47,7 +47,7 @@ template<typename Real>
     //  Orders for spherical bessel functions.
     std::vector<unsigned int> sborder{ 0, 1, 2, 5, 10, 20, 50, 100 };
 
-    const unsigned long num_phi = 10;
+    const unsigned int num_phi = 10;
     Real phi[num_phi];
     for (unsigned int i = 0; i < num_phi; ++i)
       phi[i] = Real{10} * i * __gnu_cxx::__math_constants<Real>::__pi / Real{180};
@@ -625,7 +625,7 @@ template<typename Real>
 			       "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 						  std::make_pair(false, true), 11),
 			       "b", fill_argument(std::make_pair(Real{5}, Real{0}),
-						  std::make_pair(false, true), 11),
+						  std::make_pair(true, false), 11),
 			       "x", fill_argument(std::make_pair(Real{0}, Real{1}),
 						  std::make_pair(false, false), 21),
 			       file_ibeta);
@@ -639,7 +639,7 @@ template<typename Real>
     maketest<Real, Real>((psi *)__gnu_cxx::psi,
 			 wrap_gsl_sf_psi,
 			 "__gnu_cxx", funcname,
-			 "x", fill_argument(std::make_pair(-Real{10}, +Real{10}),
+			 "x", fill_argument(std::make_pair(-Real{9.875}, +Real{10.125}),
 					    std::make_pair(true, true), 41),
 			 file_psi);
 

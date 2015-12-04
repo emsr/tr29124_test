@@ -534,7 +534,7 @@ wrap_gsl_sf_legendre_sphPlm(unsigned int l, unsigned int m, double theta)
         {
           std::ostringstream msg("Error in wrap_gsl_sf_legendre_sphPlm");
           msg << " l=" << l << " m=" << m << " theta=" << theta;
-          throw std::runtime_error();
+          throw std::runtime_error(msg.str());
         }
       else
         return result.val;
