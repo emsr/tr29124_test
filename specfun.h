@@ -1259,6 +1259,42 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__hurwitz_zeta<__type>(__s, __a);
     }
 
+  //  Digamma or psi functions
+
+  inline float
+  psif(float __x)
+  { return std::__detail::__psi<float>(__x); }
+
+  inline long double
+  psil(long double __x)
+  { return std::__detail::__psi<long double>(__x); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    psi(_Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__psi<__type>(__x);
+    }
+
+  //  Incomplete beta functions
+
+  inline float
+  ibetaf(float __a, float __b, float __x)
+  { return std::__detail::__beta_inc<float>(__a, __b, __x); }
+
+  inline long double
+  ibetal(long double __a, long double __b, long double __x)
+  { return std::__detail::__beta_inc<long double>(__a, __b, __x); }
+
+  template<typename _Ta, typename _Tb, typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Ta, _Tb, _Tp>
+    ibeta(_Ta __a, _Tb __b, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Ta, _Tb, _Tp>;
+      return std::__detail::__beta_inc<__type>(__a, __b, __x);
+    }
+
 #endif // __cplusplus >= 201103L
 
 } // namespace __gnu_cxx
