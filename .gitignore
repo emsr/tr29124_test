@@ -53,6 +53,7 @@ test_airy
 test_promote_num
 test_hurwitz_zeta
 test_float128
+test_chebyshev
 hankel_toy128
 err.txt
 test_local_special_function.txt

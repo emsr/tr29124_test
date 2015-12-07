@@ -434,27 +434,27 @@ main()
     std::cout << "gamma_u" << std::endl;
     basename = "gamma_u";
     rundiff<_TpGSL, _TpGSL, _TpGSL>(gamma_u, wrap_gsl_sf_gamma_inc, basename,
-				    "a", fill_argument(std::make_pair(_TpGSL{0}, +_TpGSL{5}),
+				    "a", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
 						       std::make_pair(false, true), 11),
-				    "x", fill_argument(std::make_pair(_TpGSL{0}, +_TpGSL{5}),
+				    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
 						       std::make_pair(true, true), 11));
 
     //  Incomplete Beta functions.
     std::cout << "ibeta" << std::endl;
     basename = "ibeta";
     rundiff<_TpGSL, _TpGSL, _TpGSL, _TpGSL>(ibeta, wrap_gsl_sf_beta_inc, basename,
-				    "a", fill_argument(std::make_pair(_TpGSL{0}, +_TpGSL{5}),
+				    "a", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
 						       std::make_pair(false, true), 11),
-				    "b", fill_argument(std::make_pair(_TpGSL{5}, +_TpGSL{0}),
-						       std::make_pair(false, true), 11),
-				    "x", fill_argument(std::make_pair(_TpGSL{0}, +_TpGSL{1}),
+				    "b", fill_argument(std::make_pair(_TpGSL{5}, _TpGSL{0}),
+						       std::make_pair(true, false), 11),
+				    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{1}),
 						       std::make_pair(false, false), 21));
 
     //  Digamma or psi functions.
     std::cout << "psi" << std::endl;
     basename = "psi";
     rundiff<_TpGSL, _TpGSL>(psi, wrap_gsl_sf_psi, basename,
-			    "x", fill_argument(std::make_pair(-_TpGSL{10}, _TpGSL{10}),
+			    "x", fill_argument(std::make_pair(-_TpGSL{9.875}, _TpGSL{10.125}),
 					       std::make_pair(true, true), 41));
 #endif // STD
 

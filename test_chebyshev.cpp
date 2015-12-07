@@ -1,6 +1,8 @@
-// $HOME/bin_specfun/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_chebyshev test_chebyshev.cpp gsl_wrap.cpp -lgsl -lgslcblas -libquadmath
+// $HOME/bin_specfun/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_chebyshev test_chebyshev.cpp gsl_wrap.cpp -lgsl -lgslcblas -lquadmath 2> err.txt
 
-// $HOME/bin/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_chebyshev test_chebyshev.cpp gsl_wrap.cpp -lgsl -lgslcblas -libquadmath 2> err.txt
+// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_chebyshev
+
+// $HOME/bin/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_chebyshev test_chebyshev.cpp gsl_wrap.cpp -lgsl -lgslcblas -lquadmath 2> err.txt
 
 // LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_chebyshev
 
@@ -8,6 +10,7 @@
 #include <iomanip>
 
 #include "chebyshev.h"
+#include <cmath>
 
 int
 main()
@@ -21,5 +24,12 @@ main()
      1.2719271366546e-3, -4.9717367042e-6,
     -3.31261198e-8, 2.423096e-10, -1.702e-13, -1.49e-15}};
 
-  //;
+  _Chebyshev<double> cdilog(-4.0, 1.0, 40, __gnu_cxx::dilog);
+  for (int i = 0; i <= 500; ++i)
+    {
+      auto x = -4.0 + i * 0.01;
+      std::cout << "x = " << x
+		<< "  dilog = " << cdilog(x) << '\n';
+
+    }
 }

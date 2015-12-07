@@ -617,7 +617,7 @@ template<typename _Tp>
 					    fill_argument(std::make_pair(0.0, 5.0),
 							  std::make_pair(false, true), 11),
 					    fill_argument(std::make_pair(5.0, 0.0),
-							  std::make_pair(false, true), 11),
+							  std::make_pair(true, false), 11),
 					    fill_argument(std::make_pair(0.0, 1.0),
 							  std::make_pair(false, false), 21));
     basename = ns + "_ibeta";
@@ -638,7 +638,7 @@ template<typename _Tp>
 
     basename = ns + "_psi";
     runtest<_Tp, _Tp>(psi, basename,
-		      fill_argument(std::make_pair(-_Tp{10}, _Tp{10}),
+		      fill_argument(std::make_pair(-_Tp{9.875}, _Tp{10.125}),
 				    std::make_pair(true, true), 41));
 #endif // STD
 

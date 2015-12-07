@@ -5,11 +5,14 @@
 #include <iterator>
 
   /**
-   *  @brief  Construct a Chebyshev fit.  Given a function, the lower limit a, the upper limit b,
-   *    and the number of points n this routine computes the coefficients c[0..n-1] of a 
-   *    Chebyshev polynomial expansion such that func(x) =~ kSum_0^n-1 c_k T_k(x) - c_0/2.
-   *    Use this routine with moderately large n of 30 or 50.  Then you can truncate the
-   *    series to a smaller number of terms to satisfy the accuracy requirements.
+   *  @brief  Construct a Chebyshev fit of a function.
+   *  Given a function @c func, the lower limit @c a, the upper limit @c b,
+   *  and the number of points @c n this routine computes the coefficients
+   *  of a Chebyshev polynomial expansion such that
+   *    func(x) =~ kSum_0^n-1 c_k T_k(x) - c_0/2.
+   *  Use this routine with moderately large n of 30 or 50.
+   *  Then truncate the series to a smaller number of terms to satisfy
+   *  the accuracy requirements.
    */
   template<typename _Tp>
     _Chebyshev<_Tp>::_Chebyshev(_Tp __a, _Tp __b, unsigned __n, _Tp __func(_Tp))
@@ -42,10 +45,10 @@
 
 
   /**
-   *    Chebyshev evaluation.  All arguments are input.  c[0..m-1] is an array of Chebyshev
-   *    coefficients - the first m elements of c output from chebyshev_fit (previously called
-   *    with the same a and b).  The Chebyshev polynomial is evaluated at a point y determined
-   *    from x, a, b.  The result is returned as the function value.
+   *  Chebyshev evaluation.  All arguments are input.  c[0..m-1] is an array of Chebyshev
+   *  coefficients - the first m elements of c output from chebyshev_fit (previously called
+   *  with the same a and b).  The Chebyshev polynomial is evaluated at a point y determined
+   *  from x, a, b.  The result is returned as the function value.
    */
   template<typename _Tp>
     _Tp
@@ -170,26 +173,29 @@
     {
       this->_M_lower = _Tp(__a);
       this->_M_upper = _Tp(__b);
-      this->_M_coef.resize(__d.order());
+      this->_M_coef.resize(__poly.order());
 
       if (this->_M_upper == this->_M_lower)
 	std::__throw_domain_error("poly_to_chebyshev: input range has zero length");
 
       //  Map the interval of the polynomial from x:[a,b] to y:[-1,+1].
-      poly_shift_coeff((-_Tp{2} - this->_M_upper - this->_M_lower) / (this->_M_upper - this->_M_lower), (+_Tp{2} - this->_M_upper - this->_M_lower) / (this->_M_upper - this->_M_lower), __d);
+      poly_shift_coeff((-_Tp{2} - this->_M_upper - this->_M_lower)
+		     / (this->_M_upper - this->_M_lower),
+		       (+_Tp{2} - this->_M_upper - this->_M_lower)
+		     / (this->_M_upper - this->_M_lower), __poly);
 
       _Tp __pow = _Tp{1};
       this->_M_coef[0] = _Tp{2} * __poly[0];
       for (int __k = 1; __k < __poly.size(); ++__k)
 	{
-	  this->_M_coef[k] = _Tp{0};
+	  this->_M_coef[__k] = _Tp{0};
 	  _Tp __fac = __poly[__k] / __pow;
 	  int __jm = __k;
 	  int __jp = 1;
 	  for (int __j = __k; __j >= 0; __j -= 2, --__jm, ++__jp)
 	    {
-	      //  Increment this and lower orders of Chebyshev with the combinatorial
-	      //  coefficient times d[k].
+	      //  Increment this and lower orders of Chebyshev
+	      //  with the combinatorial coefficient times d[k].
 	      this->_M_coef[__j] += __fac;
 	      __fac *= _Tp(__jm) / _Tp(__jp);
 	    }
@@ -197,19 +203,33 @@
 	}
 
       //  Map the interval of the polynomial from y:[-1,+1] to x:[a,b].
-      poly_shift_coeff(this->_M_lower, this->_M_upper, __d);
+      poly_shift_coeff(this->_M_lower, this->_M_upper, __poly);
     }
 
+  tempate<typename _Tp,
+	  typename _CharT, typename _Traits = std::char_traits<_CharT>>
+    std::basic_ostream<_CharT, _Traits>&
+    operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+	       const _Chebyshev<_Tp>& __cheb)
+    {
+      __os << '{' << '\n';
+      for (__cc : __cheb._M_coef)
+	__os << ' ' << __cc << ',' << '\n';
+      __os << '}' << '\n';
+    }
 
   /**
-   *  Economize the polynomial d[0..m-1] by a new polynomial d[0..m-1] so that the new polynomial
-   *  evaluated with fewer terms d[0..mfew-1] will equal the old polynomial within the specified tolerance err.
-   *  The index mfew will be set to the index of the first nonzero Chebyshev coefficient smaller than err.
-   *  Then the polynomial is approximated by the first mfew cefficients d[0..mfew-1].
+   *  Economize the polynomial d[0..m-1] by a new polynomial d[0..m-1]
+   *  so that the new polynomial evaluated with fewer terms d[0..mfew-1]
+   *  will equal the old polynomial within the specified tolerance err.
+   *  The index mfew will be set to the index of the first nonzero Chebyshev
+   *  coefficient smaller than err.
+   *
+   *  The polynomial is approximated by the first mfew cefficients d[0..mfew-1].
    */
   template<typename _Tp>
     void
-    poly_economize(_Tp __a, _Tp b, std::vector<_Tp> & __d, std::vector<_Tp> & __c, int & __mfew, _Tp __err)
+    poly_economize(_Tp __a, _Tp __b, std::vector<_Tp> & __d, std::vector<_Tp> & __c, _Tp __err)
     {
       if (__d.size() != __c.size())
 	throw std::domain_error("Bad input arrays in poly_economize");
@@ -220,12 +240,12 @@
       //  Truncate the Chebyshev series so that the first nonzero neglected term is less than err.
       //  Skipping zero coefficients takes care of series with alternating 0 and nonzero terms.
       //  Truncate the polynomial as well.
-      int __mfew = 0;
-      for (__k = 0; __k < __c.size(); ++__k)
+      unsigned int __mfew = 0;
+      for (unsigned int __k = 0; __k < __c.size(); ++__k)
 	{
-	  if (__c[k] == _Tp{0})
+	  if (__c[__k] == _Tp{0})
 	    continue;
-	  else if (__c[k] < __err)
+	  else if (__c[__k] < __err)
 	    {
 	      __mfew = __k;
 	      break;
@@ -233,9 +253,8 @@
 	  else
 	    __mfew = __k + 1;
 	}
-      //for (int __k = __mfew; __k < __c.size(); ++__k)
-	//__d[__k] = __c[__k] = _Tp{0};
-      std::erase(std::begin(__d) + __mfew, std::end(__d));
+      // @todo Uniform container erasure would be better.
+      __d.erase(std::begin(__d) + __mfew, std::end(__d));
 
       //  Convert the truncated Chebyshev series back into a polynomial.
       chebyshev_to_poly(__a, __b, __c, __d, __mfew);
