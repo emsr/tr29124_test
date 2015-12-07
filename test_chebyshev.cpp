@@ -24,14 +24,13 @@ main()
      1.2719271366546e-3, -4.9717367042e-6,
     -3.31261198e-8, 2.423096e-10, -1.702e-13, -1.49e-15}};
 
-  //[](double x){return x * x;}
-  _Chebyshev<double> cdilog(-4.0, 1.0, 40, __gnu_cxx::dilog);
+  //__gnu_cxx::dilog
+  _Chebyshev<double> cdilog(-4.0, 1.0, 40, [](double x){return x * x;});
   std::cout << cdilog << '\n';
   for (int i = 0; i <= 500; ++i)
     {
       auto x = -4.0 + i * 0.01;
       std::cout << "x = " << x
-		<< "  dilog = " << cdilog(x) << '\n';
-
+		<< "  dilog(x) = " << cdilog(x) << '\n';
     }
 }

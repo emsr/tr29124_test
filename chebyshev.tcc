@@ -218,9 +218,10 @@
       __os << '{' << '\n';
       for (auto __cc : __cheb._M_coef)
 	__os << ' ' << __cc << ',' << '\n';
-      __os << '}' << '\n';
+      __os << '}';
       __os.flags(__flags);
       __os.precision(__prec);
+      return __os;
     }
 
   /**
