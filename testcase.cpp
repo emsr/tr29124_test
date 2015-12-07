@@ -636,11 +636,10 @@ template<typename Real>
     filename = get_filename(path, prefix, "psi", "",  ".cc");
     std::ofstream file_psi(filename.c_str());
     typedef Real psi(Real);
-    maketest<Real, Real>((psi *)__gnu_cxx::psi,
-			 wrap_gsl_sf_psi,
+    maketest<Real, Real>((psi *)__gnu_cxx::psi, wrap_gsl_sf_psi,
 			 "__gnu_cxx", funcname,
 			 "x", fill_argument(std::make_pair(-Real{9.875}, +Real{10.125}),
-					    std::make_pair(true, true), 41),
+					    std::make_pair(true, true), 401),
 			 file_psi);
 
   }

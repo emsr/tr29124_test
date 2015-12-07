@@ -1,6 +1,7 @@
 #ifndef _CHEBYSHEV_H
 #define _CHEBYSHEV_H 1
 
+#include <initializer_list>
 #include <vector>
 #include <iosfwd>
 
@@ -49,7 +50,7 @@
     private:
       _Tp _M_lower;
       _Tp _M_upper;
-      std::vector<_Tp> & _M_coef;
+      std::vector<_Tp> _M_coef;
     };
 
 #include "chebyshev.tcc"
