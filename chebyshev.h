@@ -45,7 +45,13 @@
       std::polynomial<_Tp>
       to_polynomial();
 
-      _Tp operator()(_Tp __x) const;
+      template<typename _Up>
+	_Up operator()(_Up __x) const;
+
+      template<typename _Tp1, typename _CharT, typename _Traits>
+	friend std::basic_ostream<_CharT, _Traits>&
+	operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+		   const _Chebyshev<_Tp1>& __cheb);
 
     private:
       _Tp _M_lower;
