@@ -51,25 +51,26 @@
    *  from x, a, b.  The result is returned as the function value.
    */
   template<typename _Tp>
-    _Tp
-    _Chebyshev<_Tp>::operator()(_Tp __x) const
-    {
-      if ((__x - this->_M_lower) * (__x - this->_M_upper) > _Tp{0})
-	std::__throw_domain_error("_Chebyshev::operator(): Argument x out of range");
+    template<typename _Up>
+      _Up
+      _Chebyshev<_Tp>::operator()(_Up __x) const
+      {
+	if ((__x - this->_M_lower) * (__x - this->_M_upper) > _Tp{0})
+	  std::__throw_domain_error("_Chebyshev::operator(): Argument x out of range");
 
-      if (this->_M_coef.size() == 0)
-	return _Tp{0};
+	if (this->_M_coef.size() == 0)
+	  return _Up{0};
 
-      auto __d = _Tp{0};
-      auto __dd = _Tp{0};
-      auto __y = (_Tp{2} * __x - this->_M_lower - this->_M_upper)
-	       / (this->_M_upper - this->_M_lower);
-      auto __y2 = _Tp{2} * __y;
-      for (unsigned int __j = this->_M_coef.size() - 1; __j >= 1; --__j)
-	__dd = std::exchange(__d, __y2 * __d - __dd + this->_M_coef[__j]);
+	auto __d = _Tp{0};
+	auto __dd = _Tp{0};
+	auto __y = (_Tp{2} * __x - this->_M_lower - this->_M_upper)
+		 / (this->_M_upper - this->_M_lower);
+	auto __y2 = _Tp{2} * __y;
+	for (unsigned int __j = this->_M_coef.size() - 1; __j >= 1; --__j)
+	  __dd = std::exchange(__d, __y2 * __d - __dd + this->_M_coef[__j]);
 
-      return __y * __d - __dd + this->_M_coef[0] / _Tp{2};
-    }
+	return __y * __d - __dd + this->_M_coef[0] / _Tp{2};
+      }
 
 
   /**
@@ -206,16 +207,20 @@
       poly_shift_coeff(this->_M_lower, this->_M_upper, __poly);
     }
 
-  tempate<typename _Tp,
-	  typename _CharT, typename _Traits = std::char_traits<_CharT>>
+  template<typename _Tp,
+	   typename _CharT, typename _Traits = std::char_traits<_CharT>>
     std::basic_ostream<_CharT, _Traits>&
     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
 	       const _Chebyshev<_Tp>& __cheb)
     {
+      auto __prec = __os.precision(std::numeric_limits<_Tp>::max_digits10);
+      auto __flags = __os.flags(__os.flags() & std::ios::scientific);
       __os << '{' << '\n';
-      for (__cc : __cheb._M_coef)
+      for (auto __cc : __cheb._M_coef)
 	__os << ' ' << __cc << ',' << '\n';
       __os << '}' << '\n';
+      __os.flags(__flags);
+      __os.precision(__prec);
     }
 
   /**
