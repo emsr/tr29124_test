@@ -747,7 +747,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __q = _Tp{16} * __gam;
 	}
 
-      std::__throw_runtime_error(__N("airy_bessel_k:"
+      std::__throw_runtime_error(__N("__airy_bessel_k:"
 				     " maximum iterations exceeded"));
 
       return;

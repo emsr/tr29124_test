@@ -150,11 +150,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (__du < __dv)
 	    std::swap(__du, __dv);
 	  if (__du >= _S_1d2 && __dv > _S_inf / (_Tp{2} * __du))
-	    std::__throw_runtime_error(__N("hankel_params: "
+	    std::__throw_runtime_error(__N("__hankel_params: "
 					   "unable to compute 1-zhat^2"));
 	}
       else
-	std::__throw_runtime_error(__N("hankel_params: "
+	std::__throw_runtime_error(__N("__hankel_params: "
 				       "unable to compute 1-zhat^2"));
 
       //  Compute 1 - zhat^2 and related constants
@@ -176,7 +176,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __num4d3 = std::exp(_S_4d3 * __num4d3);
 	}
       else
-	std::__throw_runtime_error(__N("hankel_params: "
+	std::__throw_runtime_error(__N("__hankel_params: "
 				       "unable to compute nu^2"));
 
       //  Compute xi = ln(1+(1-zhat^2)^(1/2)) - ln(zhat) - (1-zhat^2)^(1/2)
@@ -239,7 +239,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *			  from hankel_params.
    *  @param[out]  zargp  exp(+2*pi*i/3) * nu^(-2/3) * zeta.
    *  @param[out]  zargm  exp(-2*pi*i/3) * nu^(-2/3) * zeta.
-   *  @throws  std::logic_error.
+   *  @throws  std::runtime_error.
    */
   template<typename _Tp>
     void
@@ -248,7 +248,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using __cmplx = std::complex<_Tp>;
 
-      //  zexpp and zexpm are exp(2*pi*i/3) and its reciprocal, respectively.
+      //  expp and expm are exp(2*pi*i/3) and its reciprocal, respectively.
       static constexpr auto __expp = __cmplx{-0.5L,  0.8660254037844386L};
       static constexpr auto __expm = __cmplx{-0.5L, -0.8660254037844386L};
 
@@ -258,8 +258,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __argm = __expm * __argm;
 	}
       else
-	std::__throw_runtime_error(__N("hankel_uniform_sum: unable to"
-				       " compute airy function arguments"));
+	std::__throw_runtime_error(__N("__airy_arg: unable to"
+				       " compute Airy function arguments"));
     }
 
 
@@ -313,7 +313,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __od0dm = __d2pd3 * _Aimp;
 	}
       else
-	std::__throw_runtime_error(__N("hankel_uniform_outer: "
+	std::__throw_runtime_error(__N("__hankel_uniform_outer: "
 				       "unable to compute z/nu"));
 
       return;
@@ -756,7 +756,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _H2psave = _H2psum;
 	}
 
-      std::__throw_runtime_error(__N("hankel_uniform_sum: "
+      std::__throw_runtime_error(__N("__hankel_uniform_sum: "
 				     "all allowable terms used"));
 
       return;
@@ -933,8 +933,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __denom = std::sqrt(_S_pi * __z / _Tp{2})
 		   * std::sqrt(-_S_j * std::sinh(__alpha));
       if (std::abs(std::real(__nu * (__thalpa - __alpha))) > __maxexp)
-	std::__throw_runtime_error(__N("hankel_debye: argument would overflow"
-				       " hankel function evaluation"));
+	std::__throw_runtime_error(__N("__hankel_debye: argument would overflow"
+				       " Hankel function evaluation"));
       auto __s1 = std::exp(+__nu * (__thalpa - __alpha) - _S_j * _S_pi / _Tp{4})
 		/ __denom;
       auto __s2 = std::exp(-__nu * (__thalpa - __alpha) + _S_j * _S_pi / _Tp{4})
@@ -1021,7 +1021,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			   * __sinrat) * __s2 + __s1);
 	    }
 	  else
-	    std::__throw_runtime_error(__N("hankel_debye: unexpected region"));
+	    std::__throw_runtime_error(__N("__hankel_debye: unexpected region"));
 	}
       else
 	{
@@ -1059,7 +1059,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				+ std::exp(-_Tp{2} * _S_j * __nu * _S_pi) * __s2);
 	    }
 	  else
-	    std::__throw_runtime_error(__N("hankel_debye: unexpected region"));
+	    std::__throw_runtime_error(__N("__hankel_debye: unexpected region"));
 	}
 
       return;
