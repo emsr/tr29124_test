@@ -1,5 +1,7 @@
 // $HOME/bin_specfun/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -std=gnu++14 -Wall -Wextra -o test_hankel test_hankel.cpp > /dev/null 2> err.txt
 
+// $HOME/bin/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -std=gnu++14 -Wall -Wextra -o test_hankel test_hankel.cpp > /dev/null 2> err.txt
+
 #include <iostream>
 #include <iomanip>
 

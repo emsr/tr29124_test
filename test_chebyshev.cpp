@@ -1,14 +1,19 @@
-// $HOME/bin_specfun/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_chebyshev test_chebyshev.cpp gsl_wrap.cpp -lgsl -lgslcblas -lquadmath 2> err.txt
+// $HOME/bin_specfun/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_chebyshev test_chebyshev.cpp -lquadmath 2> err.txt
 
 // LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_chebyshev
 
-// $HOME/bin/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_chebyshev test_chebyshev.cpp gsl_wrap.cpp -lgsl -lgslcblas -lquadmath 2> err.txt
+// $HOME/bin/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_chebyshev test_chebyshev.cpp -lquadmath 2> err.txt
 
 // LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_chebyshev
+
+// g++ -std=gnu++14 -o test_chebyshev test_chebyshev.cpp -lquadmath 2> err.txt
+
+// ./test_chebyshev
 
 #include <iostream>
 #include <iomanip>
 
+#include "float128.h"
 #include "chebyshev.h"
 #include <cmath>
 
@@ -24,8 +29,9 @@ main()
      1.2719271366546e-3, -4.9717367042e-6,
     -3.31261198e-8, 2.423096e-10, -1.702e-13, -1.49e-15}};
 
-  //[](double x){return x * x;}
-  _Chebyshev<double> cdilog(-4.0, 1.0, 40, __gnu_cxx::dilog);
+  //
+  //__gnu_cxx::dilog
+  _Chebyshev<double> cdilog(-4.0, 1.0, 40, [](double x){return x * x;});
   std::cout << cdilog << '\n';
   for (int i = 0; i <= 500; ++i)
     {
@@ -33,4 +39,18 @@ main()
       std::cout << "x = " << x
 		<< "  dilog(x) = " << cdilog(x) << '\n';
     }
+  cdilog.truncate(1.0e-12);
+  std::cout << cdilog << '\n';
+
+  //
+  _Chebyshev<__float128> cquad(-4.0Q, +7.0Q, 40, [](__float128 x){return 3.5Q + x * (13.25Q + x * 6.375Q);});
+  std::cout << cquad << '\n';
+  for (int i = 0; i <= 500; ++i)
+    {
+      auto x = -4.0 + i * 0.01;
+      std::cout << "x = " << x
+		<< "  quad(x) = " << cquad(x) << '\n';
+    }
+  cquad.truncate<float>();
+  std::cout << cquad << '\n';
 }

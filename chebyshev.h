@@ -7,6 +7,16 @@
 
 #include "polynomial"
 
+  /**
+   *  @brief  _Chebyshev represents a Chebyshev fit of a function.
+   *  Given a function @c func, the lower limit @c a, the upper limit @c b,
+   *  and the number of points @c n _Chebyshev contains the coefficients
+   *  of a Chebyshev polynomial expansion such that
+   *    func(x) =~ kSum_0^{n-1} c_k T_k(x) - c_0/2.
+   *  Use these constructors with moderately large n of 30 or 50.
+   *  Then truncate the Chebyshev fit to a smaller number of terms to satisfy
+   *  the accuracy requirements.
+   */
   template<typename _Tp>
     class _Chebyshev
     {
@@ -40,13 +50,28 @@
         _Chebyshev(_Up __a, _Up __b, const std::polynomial<_Up>& __poly);
 
       _Chebyshev derivative() const;
+
       _Chebyshev integral() const;
 
+      std::size_t
+      order() const
+      { return this->_M_coef.size(); }
+
+      value_type
+      lower() const
+      { return this->_M_lower; }
+
+      value_type
+      upper() const
+      { return this->_M_upper; }
+
       std::polynomial<_Tp>
-      to_polynomial();
+      to_polynomial() const;
+
+      value_type operator()(value_type __x) const;
 
       template<typename _Up>
-	_Up operator()(_Up __x) const;
+        void truncate(_Up __eps = std::numeric_limits<_Up>::epsilon());
 
       template<typename _Tp1, typename _CharT, typename _Traits>
 	friend std::basic_ostream<_CharT, _Traits>&
