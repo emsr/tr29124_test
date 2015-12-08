@@ -103,9 +103,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *    Compute parameters depending on z and nu that appear in the
-   *    uniform asymptotic expansions of the Hankel functions and
-   *    their derivatives, except the arguments to the Airy functions.
+   *  @brief Compute parameters depending on z and nu that appear
+   *  in the uniform asymptotic expansions of the Hankel functions
+   *  and their derivatives, except the arguments to the Airy functions.
    */
   template<typename _Tp>
     void
@@ -134,17 +134,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr __cmplx __zone{1.0L, 0.0L};
       static constexpr __cmplx _S_j{0.0L, 1.0L};
 
-      //  Separate real and imaginary parts of zhat
+      // Separate real and imaginary parts of zhat.
       auto __dx = std::real(__zhat);
       auto __dy = std::imag(__zhat);
       auto __dxabs = std::abs(__dx);
       auto __dyabs = std::abs(__dy);
 
-      //  If 1 - zhat^2 can be computed without overflow
+      // If 1 - zhat^2 can be computed without overflow.
       if (__dxabs <= _S_sqrtinf &&
 	  __dyabs <= (_S_sqrtinf - 1))
 	{
-	  //  Find max and min of abs(dx) and abs(dy)
+	  // Find max and min of abs(dx) and abs(dy).
 	  auto __du = __dxabs;
 	  auto __dv = __dyabs;
 	  if (__du < __dv)
@@ -157,19 +157,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_runtime_error(__N("__hankel_params: "
 				       "unable to compute 1-zhat^2"));
 
-      //  Compute 1 - zhat^2 and related constants
+      // Compute 1 - zhat^2 and related constants.
       auto __ztemp = __cmplx{_Tp{1} - (__dx - __dy) * (__dx + __dy),
 			  -_Tp{2} * __dx * __dy};
       __ztemp = std::sqrt(__ztemp);
       __t = _Tp{1} / __ztemp;
       __tsq = __t * __t;
 
-      //  If nu^2 can be computed without overflow
+      // If nu^2 can be computed without overflow.
       if (std::abs(__nu) <= _S_sqrtinf)
 	{
 	  __nusq = __nu * __nu;
 	  __1dnusq = _Tp{1} / __nusq;
-	  //  Compute nu^(-1/3), nu^(-2/3), nu^(-4/3)
+	  // Compute nu^(-1/3), nu^(-2/3), nu^(-4/3).
 	  __num4d3 = -std::log(__nu);
 	  __num1d3 = std::exp(_S_1d3 * __num4d3);
 	  __num2d3 = std::exp(_S_2d3 * __num4d3);
@@ -179,29 +179,29 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_runtime_error(__N("__hankel_params: "
 				       "unable to compute nu^2"));
 
-      //  Compute xi = ln(1+(1-zhat^2)^(1/2)) - ln(zhat) - (1-zhat^2)^(1/2)
-      //  using default branch of logarithm and square root
+      // Compute xi = ln(1+(1-zhat^2)^(1/2)) - ln(zhat) - (1-zhat^2)^(1/2)
+      // using default branch of logarithm and square root.
       auto __xi = std::log(__zone + __ztemp) - std::log(__zhat) - __ztemp;
       __zetm3h = _S_2d3 / __xi;
 
-      //  Compute principal value of ln(xi) and then adjust imaginary part
+      // Compute principal value of ln(xi) and then adjust imaginary part.
       auto __lnxi = std::log(__xi);
 
-      //  Prepare to adjust logarithm of xi to appropriate Riemann sheet
+      // Prepare to adjust logarithm of xi to appropriate Riemann sheet.
       auto __npi = _Tp{0};
 
-      //  Find adjustment necessary to get on proper Riemann sheet
-      if (__dy == _Tp{0})  //  zhat is real
+      // Find adjustment necessary to get on proper Riemann sheet.
+      if (__dy == _Tp{0})  // zhat is real.
 	{
 	  if (__dx > 1)
 	    __npi = _S_2pi;
 	}
-      else  //  zhat is not real
+      else  // zhat is not real.
 	{
-	  //  zhat is in upper half-plane
+	  // zhat is in upper half-plane.
 	  if (__dy > _Tp{0})
 	    {
-	      //  xi lies in upper half-plane
+	      // xi lies in upper half-plane.
 	      if (std::imag(__xi) > _Tp{0})
 		__npi = -_S_2pi;
 	      else
@@ -209,16 +209,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 	}
 
-      //  Adjust logarithm of xi.
+      // Adjust logarithm of xi.
       __lnxi += __npi * _S_j;
 
-      //  Compute ln(zeta), zeta, zeta^(+1/2), zeta^(-1/2)
+      // Compute ln(zeta), zeta, zeta^(+1/2), zeta^(-1/2).
       auto __lnzeta = _S_2d3 * __lnxi + _S_lncon;
       __zeta = std::exp(__lnzeta);
       __zetaphf = std::sqrt(__zeta);
       __zetamhf = _Tp{1} / __zetaphf;
 
-      //  Compute (4 * zeta / (1 - zhat^2))^(1/4)
+      // Compute (4 * zeta / (1 - zhat^2))^(1/4).
       __ztemp = std::log(__ztemp);
       __zetrat = _S_sqrt2 * std::exp(_S_1d4 * __lnzeta - _S_1d2 * __ztemp);
 
@@ -227,18 +227,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  Purpose
-   *    Compute the arguments for the Airy function evaluations
-   *    carefully to prevent premature overflow.  Note that the
-   *    major work here is in safe_div.  A faster, but less safe
-   *    implementation can be obtained without use of safe_div.
+   *  @brief Compute the arguments for the Airy function evaluations
+   *  carefully to prevent premature overflow.  Note that the
+   *  major work here is in @c safe_div.  A faster, but less safe
+   *  implementation can be obtained without use of safe_div.
    *
-   *  Arguments
    *  @param[in]  num2d3  nu^(-2/3) - output from hankel_params.
    *  @param[in]  zeta    zeta in the uniform asymptotic expansions - output
    *			  from hankel_params.
-   *  @param[out]  zargp  exp(+2*pi*i/3) * nu^(-2/3) * zeta.
-   *  @param[out]  zargm  exp(-2*pi*i/3) * nu^(-2/3) * zeta.
+   *  @param[out]  argp  exp(+2*pi*i/3) * nu^(-2/3) * zeta.
+   *  @param[out]  argm  exp(-2*pi*i/3) * nu^(-2/3) * zeta.
    *  @throws  std::runtime_error.
    */
   template<typename _Tp>
@@ -248,7 +246,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using __cmplx = std::complex<_Tp>;
 
-      //  expp and expm are exp(2*pi*i/3) and its reciprocal, respectively.
+      // expp and expm are exp(2*pi*i/3) and its reciprocal, respectively.
       static constexpr auto __expp = __cmplx{-0.5L,  0.8660254037844386L};
       static constexpr auto __expm = __cmplx{-0.5L, -0.8660254037844386L};
 
@@ -265,10 +263,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief Compute outer factors and associated functions of @c z and @c nu
-   *         appearing in Olver's uniform asymptotic expansions of the
-   *         Hankel functions of the first and second kinds and their derivatives.
-   *         The various functions of z and nu returned by @c hankel_uniform_outer
-   *         are available for use in computing further terms in the expansions.
+   *  appearing in Olver's uniform asymptotic expansions of the
+   *  Hankel functions of the first and second kinds and their derivatives.
+   *  The various functions of z and nu returned by @c hankel_uniform_outer
+   *  are available for use in computing further terms in the expansions.
    */
   template<typename _Tp>
     void
@@ -289,22 +287,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__safe_div(__z, __nu, __zhat))
 	{
-	  //  Try to compute other nu and z dependent parameters except args to Airy functions
+	  // Try to compute other nu and z dependent parameters except args to Airy functions.
 	  __cmplx __nm4d3, __nusq, __zeta, __etphf, __etmhf;
 	  __hankel_params(__nu, __zhat, __t, __tsq, __nusq,
 			  __1dnsq, __nm1d3, __nm2d3, __nm4d3,
 			  __zeta, __etphf, __etmhf, __etm3h, __etrat);
 
 
-	  //  Try to compute Airy function arguments
+	  // Try to compute Airy function arguments.
 	  __cmplx __argp, __argm;
 	  __airy_arg(__nm2d3, __zeta, __argp, __argm);
 
-	  //  Compute Airy functions and derivatives
+	  // Compute Airy functions and derivatives.
 	  __cmplx _Aipp, _Aimp;
 	  __airy(__argp, __eps, _Aip, _Aipp);
 	  __airy(__argm, __eps, _Aim, _Aimp);
-	  //  Compute partial outer terms in expansions
+	  // Compute partial outer terms in expansions.
 	  __o4dp = -__etmhf * __nm4d3 * __e2pd3 * _Aipp;
 	  __o4dm = -__etmhf * __nm4d3 * __d2pd3 * _Aimp;
 	  __od2p = -__etphf * __nm2d3 * _Aip;
@@ -321,11 +319,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief
-   *    Compute the sums in appropriate linear combinations appearing in
-   *    Olver's uniform asymptotic expansions for the Hankel functions
-   *    of the first and second kinds and their derivatives, using up to
-   *    nterms (less than 5) to achieve relative error eps.
+   *  @brief Compute the sums in appropriate linear combinations appearing
+   *  in Olver's uniform asymptotic expansions for the Hankel functions
+   *  of the first and second kinds and their derivatives, using up to
+   *  nterms (less than 5) to achieve relative error @c eps.
+   *
+   *  @param[out] H1  The Hankel function of the first kind.
+   *  @param[out] H1p The derivative of the Hankel function of the first kind.
+   *  @param[out] H2  The Hankel function of the second kind.
+   *  @param[out] H2p The derivative of the Hankel function of the second kind.
    */
   template<typename _Tp>
     void
@@ -345,9 +347,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       static constexpr auto __zone = __cmplx{1, 0};
 
-      //  Coefficients for u and v polynomials appearing in Olver's
-      //  uniform asymptotic expansions for the Hankel functions
-      //  and their derivatives.
+      // Coefficients for u and v polynomials appearing in Olver's
+      // uniform asymptotic expansions for the Hankel functions
+      // and their derivatives.
 
       static constexpr _Tp
       _S_a[66]
@@ -490,7 +492,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	-0.1215978927612305e+03
       };
 
-      //  lambda and mu coefficients appearing in the expansions.
+      // lambda and mu coefficients appearing in the expansions.
       static constexpr _Tp
       _S_lambda[21]
       {
@@ -554,7 +556,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __dr = _Tp{2} * __xtsq;
       auto __ds = std::norm(__tsq);
 
-      //  Compute Debye polynomials u_0,1,2 and v_0,1,2.
+      // Compute Debye polynomials u_0,1,2 and v_0,1,2.
       auto __tk = __t;
       __u.push_back(__tk * (_S_a[1] * __tsq + _S_a[2]));
       __v.push_back(__tk * (_S_b[1] * __tsq + _S_b[2]));
@@ -577,10 +579,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
      			((_Tp{3} * _S_b[6] * __xtsq + _Tp{2} * _S_b[7]) * __xtsq + _S_b[8]
      			- _S_b[6] * __ytsq2) * __ytsq));
 
-      //  Compute A_0,1, B_0,1, C_0,1, D_0,1 ... note that
-      //  B_k and C_k are computed up to -zeta^(-1/2) -zeta^(1/2) factors,
-      //  respectively.  These recurring factors are included as appropriate
-      //  in the outer factors, thus saving repeated multiplications by them.
+      // Compute A_0,1, B_0,1, C_0,1, D_0,1 ... note that
+      // B_k and C_k are computed up to -zeta^(-1/2) -zeta^(1/2) factors,
+      // respectively.  These recurring factors are included as appropriate
+      // in the outer factors, thus saving repeated multiplications by them.
       auto _A0 = __zone;
       auto _A = __u[1]
 	      + __zetm3h * (_S_mu[1] * __zetm3h + _S_mu[0] * __u[0]);
@@ -596,7 +598,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto _D = __v[1] + __zetm3h * (_S_lambda[1] * __zetm3h
 			+ _S_lambda[0] * __v[0]);
 
-      //  Compute sum of first two terms to initialize the Kahan summing scheme.
+      // Compute sum of first two terms to initialize the Kahan summing scheme.
       _KahanSum<std::complex<_Tp>> _Asum(_A0);
       _KahanSum<std::complex<_Tp>> _Bsum(_B0);
       _KahanSum<std::complex<_Tp>> _Csum(_C0);
@@ -606,7 +608,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Csum += _C * __1dnusq;
       _Dsum += _D * __1dnusq;
 
-      //  Combine sums in form appearing in expansions.
+      // Combine sums in form appearing in expansions.
       _H1sum = _Aip * _Asum() + __zo4dp * _Bsum();
       _H2sum = _Aim * _Asum() + __zo4dm * _Bsum();
       _H1psum = __zod2p * _Csum() + __zod0dp * _Dsum();
@@ -623,23 +625,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	&& __norm_L1(_H1psum - _H1psave) < __eps * __norm_L1(_H1psum)
 	&& __norm_L1(_H2psum - _H2psave) < __eps * __norm_L1(_H2psum));
 
-      //  Save current sums for next convergence test.
+      // Save current sums for next convergence test.
       _H1save = _H1sum;
       _H2save = _H2sum;
       _H1psave = _H1psum;
       _H2psave = _H2psum;
 
-      //  Maintain index into u_k and v_k coefficients.
+      // Maintain index into u_k and v_k coefficients.
       auto __index = 10;
       auto __indexp = 15;
-      //  Maintain power of nu^(-2)
+      // Maintain power of nu^(-2)
       auto __z1dn2k = __1dnusq;
 
       for (auto __k = 2; __k <= __nterms; ++__k)
 	{
-	  //  Initialize for evaluation of two new u and v polynomials
-	  //  via Horner's rule modified for complex arguments
-          //  and real coefficients.
+	  // Initialize for evaluation of two new u and v polynomials
+	  // via Horner's rule modified for complex arguments
+          // and real coefficients.
 	  auto __indexend = __indexp;
 	  auto __ukta = _S_a[__index];
 	  auto __vkta = _S_b[__index];
@@ -654,9 +656,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __vkptb = _S_b[__indexp];
 	  ++__indexp;
 
-	  //  Loop until quantities to evaluate lowest order u and v 
-	  //  polynomials and partial quantities to evaluate
-	  //  next highest order polynomials computed
+	  // Loop until quantities to evaluate lowest order u and v 
+	  // polynomials and partial quantities to evaluate
+	  // next highest order polynomials computed.
 	  for (; __index < __indexend; ++__index, ++__indexp)
 	    {
 	      auto __term = __ds * __ukta;
@@ -674,7 +676,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __vkptb = _S_b[__indexp] - __term;
 	    }
 
-	  //  One more iteration for highest order polynomials
+	  // One more iteration for highest order polynomials.
 	  auto __term = __ds * __ukpta;
 	  __ukpta = __ukptb + __dr * __ukpta;
 	  __ukptb = _S_a[__indexp] - __term;
@@ -683,7 +685,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __vkptb = _S_b[__indexp] - __term;
 	  ++__indexp;
 
-	  //  Post multiply and form new polynomials
+	  // Post multiply and form new polynomials.
 	  __tk *= __t;
 	  __u.push_back(__tk * (__ukta * __tsq + __uktb));
 	  __v.push_back(__tk * (__vkta * __tsq + __vktb));
@@ -692,20 +694,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __u.push_back(__tk * (__ukpta * __tsq + __ukptb));
 	  __v.push_back(__tk * (__vkpta * __tsq + __vkptb));
 
-	  //  Update indices in preparation for next iteration
+	  // Update indices in preparation for next iteration.
 	  __index = __indexp;
 	  auto __i2k = 2 * __k - 1;
 	  auto __i2km1 = __i2k - 1;
 	  auto __i2kp1 = __i2k + 1;
 	  __indexp += __i2kp1 + 3;
 
-	  //  Start Horner's rule evaluation of A, B, C, and D polynomials.
+	  // Start Horner's rule evaluation of A, B, C, and D polynomials.
 	  _A = _S_mu[__i2k] * __zetm3h + _S_mu[__i2km1] * __u[0];
 	  _D = _S_lambda[__i2k] * __zetm3h + _S_lambda[__i2km1] * __v[0];
 	  _B = _S_lambda[__i2kp1] * __zetm3h + _S_lambda[__i2k] * __u[0];
 	  _C = _S_mu[__i2kp1] * __zetm3h + _S_mu[__i2k] * __v[0];
 
-	  //  Do partial Horner's rule evaluations of A, B, C, and D.
+	  // Do partial Horner's rule evaluations of A, B, C, and D.
 	  for(auto __l = 1; __l <= __i2km1; ++__l)
 	    {
 	      auto __i2kl = __i2km1 - __l;
@@ -716,7 +718,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      _C = _C * __zetm3h + _S_mu[__i2kl] * __v[__l];
 	    }
 
-	  //  Complete the evaluations of A, B, C, and D.
+	  // Complete the evaluations of A, B, C, and D.
 	  _A = _A * __zetm3h + __u[__i2k];
 	  _D = _D * __zetm3h + __v[__i2k];
 	  _B = __zetm3h
@@ -724,19 +726,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _C = __zetm3h
 	       * (_C * __zetm3h + _S_mu[0] * __v[__i2k]) + __v[__i2kp1];
 
-	  //  Evaluate new terms for sums.
+	  // Evaluate new terms for sums.
+	  __z1dn2k *= __1dnusq;
 	  _Asum += _A * __z1dn2k;
 	  _Bsum += _B * __z1dn2k;
 	  _Csum += _C * __z1dn2k;
 	  _Dsum += _D * __z1dn2k;
 
-	  //  Combine sums in form appearing in expansions.
+	  // Combine sums in form appearing in expansions.
 	  _H1sum  = _Aip  * _Asum()  + __zo4dp * _Bsum();
 	  _H2sum  = _Aim  * _Asum()  + __zo4dm * _Bsum();
 	  _H1psum = __zod2p * _Csum() + __zod0dp * _Dsum();
 	  _H2psum = __zod2m * _Csum() + __zod0dm * _Dsum();
 
-	  //  If convergence criteria met this term, see if it was before.
+	  // If convergence criteria met this term, see if it was before.
 	  if (__norm_L1(_H1sum - _H1save) < __eps * __norm_L1(_H1sum)
 	   && __norm_L1(_H2sum - _H2save) < __eps * __norm_L1(_H2sum)
 	   && __norm_L1(_H1psum - _H1psave) < __eps * __norm_L1(_H1psum)
@@ -749,7 +752,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 	  else
 	    __converged = false;
-	  //  Save combined sums for comparison next iteration.
+	  // Save combined sums for comparison next iteration.
 	  _H1save = _H1sum;
 	  _H2save = _H2sum;
 	  _H1psave = _H1psum;
@@ -765,15 +768,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief Compute approximate values for the Hankel functions
-   *         of the first and second kinds using Olver's uniform asymptotic
-   *         expansion to of order @c nu along with their derivatives.
+   *  of the first and second kinds using Olver's uniform asymptotic
+   *  expansion to of order @c nu along with their derivatives.
    *
    *  @param[in]  nu  The order for which the Hankel functions are evaluated.
    *  @param[in]  z   The argument at which the Hankel functions are evaluated.
-   *  @param[out] h1  The Hankel function of the first kind.
-   *  @param[out] h1p The derivative of the Hankel function of the first kind.
-   *  @param[out] h2  The Hankel function of the second kind.
-   *  @param[out] h2p The derivative of the Hankel function of the second kind.
+   *  @param[out] H1  The Hankel function of the first kind.
+   *  @param[out] H1p The derivative of the Hankel function of the first kind.
+   *  @param[out] H2  The Hankel function of the second kind.
+   *  @param[out] H2p The derivative of the Hankel function of the second kind.
    */
   template<typename _Tp>
     void
@@ -796,7 +799,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr _Tp __eps   = 1.0e-06;
       static constexpr _Tp __epsai = 1.0e-12;
 
-      //  Extended to accommodate negative real orders.
+      // Extended to accommodate negative real orders.
       bool __nuswitch = false;
       if (std::real(__nu) < _Tp{0})
 	{
@@ -847,20 +850,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief
-   *      This routine computes the uniform asymptotic approximations
-   *      of the Hankel functions and their derivatives including a patch
-   *      for the case when the order equals or nearly equals the argument.
-   *      At such points, Olver's expressions have zero denominators (and
-   *      numerators) resulting in numerical problems.  This routine
-   *      averages results from four surrounding points in the complex plane
-   *      to obtain the result in such cases.
+   *  This routine computes the uniform asymptotic approximations
+   *  of the Hankel functions and their derivatives including a patch
+   *  for the case when the order equals or nearly equals the argument.
+   *  At such points, Olver's expressions have zero denominators (and
+   *  numerators) resulting in numerical problems.  This routine
+   *  averages results from four surrounding points in the complex plane
+   *  to obtain the result in such cases.
    *
    *  @param[in]  nu  The order for which the Hankel functions are evaluated.
    *  @param[in]  z   The argument at which the Hankel functions are evaluated.
-   *  @param[out] h1  The Hankel function of the first kind.
-   *  @param[out] h1p The derivative of the Hankel function of the first kind.
-   *  @param[out] h2  The Hankel function of the second kind.
-   *  @param[out] h2p The derivative of the Hankel function of the second kind.
+   *  @param[out] H1  The Hankel function of the first kind.
+   *  @param[out] H1p The derivative of the Hankel function of the first kind.
+   *  @param[out] H2  The Hankel function of the second kind.
+   *  @param[out] H2p The derivative of the Hankel function of the second kind.
    */
   template<typename _Tp>
     void
@@ -906,6 +909,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *
+   *  @param[in]  nu  The order for which the Hankel functions are evaluated.
+   *  @param[in]  z   The argument at which the Hankel functions are evaluated.
+   *  @param[out] H1  The Hankel function of the first kind.
+   *  @param[out] H1p The derivative of the Hankel function of the first kind.
+   *  @param[out] H2  The Hankel function of the second kind.
+   *  @param[out] H2p The derivative of the Hankel function of the second kind.
    */
   template<typename _Tp>
     void
@@ -920,8 +929,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       static constexpr _Tp
 	_S_pi(3.141592653589793238462643383279502884195e+0L);
-      static constexpr __cmplx _S_j = _Tp{11.0il};
-      static constexpr _Tp _S_toler = _Tp{11.0e-8};
+      static constexpr __cmplx _S_j = _Tp{1.0il};
+      static constexpr _Tp _S_toler = _Tp{1.0e-8il};
       const auto __maxexp
 	= std::floor(std::numeric_limits<_Tp>::max_exponent
 		   * std::log(std::numeric_limits<_Tp>::radix));
@@ -1068,6 +1077,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *
+   *  @param[in]  nu  The order for which the Hankel functions are evaluated.
+   *  @param[in]  z   The argument at which the Hankel functions are evaluated.
+   *  @param[out] H1  The Hankel function of the first kind.
+   *  @param[out] H1p The derivative of the Hankel function of the first kind.
+   *  @param[out] H2  The Hankel function of the second kind.
+   *  @param[out] H2p The derivative of the Hankel function of the second kind.
    */
   template<typename _Tp>
     void
@@ -1127,6 +1142,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief  Return the complex cylindrical Hankel function of the first kind.
+   *
+   *  @param[in]  nu  The order for which the cylindrical Hankel function of the first kind is evaluated.
+   *  @param[in]  z   The argument at which the cylindrical Hankel function of the first kind is evaluated.
+   *  @return  The complex cylindrical Hankel function of the first kind.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1139,6 +1158,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief  Return the complex cylindrical Hankel function of the second kind.
+   *
+   *  @param[in]  nu  The order for which the cylindrical Hankel function of the second kind is evaluated.
+   *  @param[in]  z   The argument at which the cylindrical Hankel function of the second kind is evaluated.
+   *  @return  The complex cylindrical Hankel function of the second kind.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1151,6 +1174,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief  Return the complex cylindrical Bessel function.
+   *
+   *  @param[in]  nu  The order for which the cylindrical Bessel function is evaluated.
+   *  @param[in]  z   The argument at which the cylindrical Bessel function is evaluated.
+   *  @return  The complex cylindrical Bessel function.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1163,6 +1190,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief  Return the complex cylindrical Neumann function.
+   *
+   *  @param[in]  nu  The order for which the cylindrical Neumann function is evaluated.
+   *  @param[in]  z   The argument at which the cylindrical Neumann function is evaluated.
+   *  @return  The complex cylindrical Neumann function.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1176,6 +1207,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *  @brief  Helper to compute complex spherical Hankel functions
    *	      and their derivatives.
+   *
+   *  @param[in]  n  The order for which the spherical Hankel functions are evaluated.
+   *  @param[in]  z  The argument at which the spherical Hankel functions are evaluated.
+   *  @param[out] H1  The spherical Hankel function of the first kind.
+   *  @param[out] H1p The derivative of the spherical Hankel function of the first kind.
+   *  @param[out] H2  The spherical Hankel function of the second kind.
+   *  @param[out] H2p The derivative of the spherical Hankel function of the second kind.
    */
   template<typename _Tp>
     void
@@ -1196,6 +1234,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief  Return the complex spherical Hankel function of the first kind.
+   *
+   *  @param[in]  n  The order for which the spherical Hankel function of the first kind is evaluated.
+   *  @param[in]  z  The argument at which the spherical Hankel function of the first kind is evaluated.
+   *  @return  The complex spherical Hankel function of the first kind.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1208,6 +1250,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief  Return the complex spherical Hankel function of the second kind.
+   *
+   *  @param[in]  n  The order for which the spherical Hankel function of the second kind is evaluated.
+   *  @param[in]  z  The argument at which the spherical Hankel function of the second kind is evaluated.
+   *  @return  The complex spherical Hankel function of the second kind.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1220,6 +1266,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief  Return the complex spherical Bessel function.
+   *
+   *  @param[in]  n  The order for which the spherical Bessel function is evaluated.
+   *  @param[in]  z  The argument at which the spherical Bessel function is evaluated.
+   *  @return  The complex spherical Bessel function.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1232,6 +1282,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief  Return the complex spherical Neumann function.
+   *
+   *  @param[in]  n  The order for which the spherical Neumann function is evaluated.
+   *  @param[in]  z  The argument at which the spherical Neumann function is evaluated.
+   *  @return  The complex spherical Neumann function.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1244,6 +1298,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
-}
+} // namespace std
 
 #endif // _GLIBCXX_BITS_SF_HANKEL_TCC

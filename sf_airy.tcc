@@ -72,7 +72,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr int _S_numnterms = 5;
       constexpr int _S_nterms[5]{ _S_ncoeffs, 12, 11, 11, 9 };
 
-      //  Coefficients for the expansion
+      // Coefficients for the expansion.
       constexpr _Tp
       _S_ck[_S_ncoeffs]
       {
@@ -113,23 +113,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	 0.1000000000000000e+01
       };
 
-      //  Compute -xi and z^(1/4)
+      // Compute -xi and z^(1/4).
       auto __pw1d4 = std::sqrt(__z);
       auto __xim = __z * __pw1d4;
       __xim *= _S_2d3;
       __pw1d4 = std::sqrt(__pw1d4);
 
-      //  Compute outer factors in the expansions
+      // Compute outer factors in the expansions.
       auto __zoutpr = std::exp(-__xim);
       __zoutpr *= _S_pmhd2;
       auto __zout = __zoutpr / __pw1d4;
       __zoutpr *= -__pw1d4;
 
-      //  Determine number of terms to use
+      // Determine number of terms to use.
       auto __nterm = _S_nterms[std::min(_S_numnterms - 1,
 					(int(std::abs(__z)) - 10) / 5)];
-      //  Initialize for modified Horner's rule evaluation of sums.
-      //  It is assumed that at least three terms are used.
+      // Initialize for modified Horner's rule evaluation of sums.
+      // It is assumed that at least three terms are used.
       __xim = -_Tp{1} / __xim;
       auto __r = _Tp{2} * std::real(__xim);
       auto __s = std::norm(__xim);
@@ -189,7 +189,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr int _S_numnterms = 5;
       constexpr int _S_nterms[_S_numnterms]{ _S_ncoeffs, 7, 6, 6, 5 };
 
-      //  coefficients for the expansion
+      // coefficients for the expansion.
       constexpr _Tp
       _S_ckc[_S_ncoeffs]
       {
@@ -244,24 +244,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	 0.1000000000000000e+01
       };
 
-      //  Set up working value of z
+      // Set up working value of z.
       __z = -__z;
-      //  Compute xi and z^(1/4)
+      // Compute xi and z^(1/4).
       auto __pw1d4 = std::sqrt(__z);
       auto __xi = __z * __pw1d4;
       __xi *= _S_2d3;
       __pw1d4 = std::sqrt(__pw1d4);
 
-      //  Compute sine and cosine factors in the expansions.
+      // Compute sine and cosine factors in the expansions.
       auto __xiarg = __xi + _S_pid4;
       auto __sinxi = std::sin(__xiarg);
       auto __cosxi = std::cos(__xiarg);
 
-      //  Determine number of terms to use.
+      // Determine number of terms to use.
       auto __nterm = _S_nterms[std::min(_S_numnterms - 1,
 					(int(std::abs(__z)) - 10) / 5)];
-      //  Initialize for modified Horner's rule evaluation of sums
-      //  it is assumed that at least three terms are used
+      // Initialize for modified Horner's rule evaluation of sums
+      // it is assumed that at least three terms are used.
       __z = std::pow(_S_zone / __z, _Tp(3));
       __z *= _S_9d4;
       auto __r = -2 * std::real(__z);
@@ -280,7 +280,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __beprc = _S_dkc[__index];
       ++__index;
 
-      //  Loop until components contributing to sums are computed
+      // Loop until components contributing to sums are computed.
       for (int __k = __index; __k < _S_ncoeffs; ++__k)
 	{
 	  auto __term = __s * __als;
@@ -297,7 +297,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __beprc = _S_dkc[__k] - __term;
 	}
 
-      //  Complete evaluation of the Airy functions
+      // Complete evaluation of the Airy functions.
       __xi = _S_zone / __xi;
       _Ai = __sinxi * __als * __z + __bes
            - __xi * __cosxi * __alc * __z + __bec;
@@ -327,14 +327,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  This routine is an implementation of a modified version of
    *  Miller's backward recurrence algorithm for computation by
    *  from the recurrence relation
-   *
    *   @f[
    *    I_{\nu-1} = (2\nu/z)I_\nu + I_{\nu+1}
    *   @f]
    *
    *  satisfied by the modified Bessel functions of the first kind.
    *  the normalization relationship used is
-   *         
    *   @f[
    *    \frac{z/2)^\nu e^z}{\Gamma(\nu+1)} = I_\nu(z)
    *      + 2\sum_{k=1}^{\infty}\frac{(k+\nu)\Gamma(2\nu+k)}{k!\Gamma(1+2\nu)}
@@ -366,23 +364,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  assumption that performing the convergence test for the
    *  functions of order 2/3 will suffice for order 1/3 as well.
    *  This assumption has not been established by rigourous
-   *  analysis at this time.  Two additional changes have been
-   *  made for the sake of speed.  First, the strong convergence
-   *  criteria is computed in single precision since magnitude is
-   *  the most important thing here.  Second, the tests are
-   *  performed in the 1-norm instead of the usual Euclidean
-   *  norm used in the complex plane.
-   *  To insure the validity of the results, the inequality
+   *  analysis at this time.  For the sake of speed the convergence
+   *  tests are performed in the 1-norm instead of the usual Euclidean
+   *  norm used in the complex plane using the inequality
    *
    *   @f[
    *    |x| + |y| <= \sqrt(2) \sqrt(x^2 + y^2) 
    *   @f]
-   *
-   *  was used to modify the convergence tests.
-   *
-   *  Note also that for the sake of speed and the fact that this
-   *  function will be driven by another, checks that are not
-   *  absolutely necessary are not made.
    *
    *  @param[in]  z     The argument of the modified Bessel functions.
    *  @param[in]  eps   The maximum relative error required in the results.
@@ -407,14 +395,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     	   _S_4d3  {_Tp{4} / _Tp{3}}, _S_5d3  {_Tp{5} / _Tp{3}},
     	   _S_8d3  {_Tp{8} / _Tp{3}}, _S_10d3 {_Tp{10} / _Tp{3}},
     	   _S_14d3 {_Tp{14} / _Tp{3}}, _S_16d3 {_Tp{16} / _Tp{3}},
-    	   _S_gm4d3{8.929795115692492e-01}, _S_gm5d3{9.027452929509336e-01},
+    	   _S_gamma4d3{8.929795115692492e-01},
+	   _S_gamma5d3{9.027452929509336e-01},
     	   _S_2sqrt2{2.828427124746190e+01};
 
-      //  Compute 1/z for use in recurrence for speed and abs(z).
+      // Compute 1/z for use in recurrence for speed and abs(z).
       __cmplx __1dz;
       __safe_div(1, __z, __1dz);
 
-      //  Initialize for forward recursion based on order 2/3.
+      // Initialize for forward recursion based on order 2/3.
       int __n = 0;
       auto __d2n = _Tp(2 * __n) + _S_4d3;
       auto __plast2 = _S_zone;
@@ -427,91 +416,91 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  do
 	    {
-    	      //  Update n dependent quantities.
+    	      // Update n dependent quantities.
     	      ++__n;
     	      __d2n += 2;
-    	      //  Interchange values.
+    	      // Interchange values.
     	      auto __pold2 = __plast2;
     	      __plast2 = __p2;
-    	      //  Recur forward one step.
+    	      // Recur forward one step.
     	      __p2 = __1dz * __d2n * __plast2 + __pold2;
 	    }
 	  while (__norm_L1(__p2) < __weak_test);
 
-	  //  If strong convergence, then weak and strong convergence.
+	  // If strong convergence, then weak and strong convergence.
 	  if (__converged)
     	    break;
 
-	  //  Calculate strong convergence test.
-	  //  See the Olver and Sookne papers cited for details.
+	  // Calculate strong convergence test.
+	  // See the Olver and Sookne papers cited for details.
 	  auto __rep2 = std::real(__p2);
 	  auto __imp2 = std::imag(__p2);
 	  auto __replast2 = std::real(__plast2);
 	  auto __implast2 = std::imag(__plast2);
-	  //  Compute scale factor to avoid possible overflow.
+	  // Compute scale factor to avoid possible overflow.
 	  auto __lamn = __norm_Linf(__p2);
-	  //  Compute the kappa_n of strong convergence lemma.
+	  // Compute the kappa_n of strong convergence lemma.
 	  auto __kapn = std::sqrt(((__rep2 / __lamn) * (__rep2 / __lamn)
     			       + (__imp2 / __lamn) * (__imp2 / __lamn))
     			     / ((__replast2 / __lamn) * (__replast2 / __lamn)
     			      + (__implast2 / __lamn) * (__implast2 / __lamn)));
-	  //  Compute quantity needed for lambda_n of strong convergence lemma
+	  // Compute quantity needed for lambda_n of strong convergence lemma
 	  __lamn = _Tp(__n + 1) / std::abs(__z);
-	  //  Determine appropriate value for rho_n of lemma
+	  // Determine appropriate value for rho_n of lemma
 	  if (__kapn + 1 / __kapn > 2 * __lamn)
     	    __kapn = __lamn + std::sqrt(__lamn * __lamn - 1);
-	  //  Compute test value - sqrt(2) multiple already included.
+	  // Compute test value - sqrt(2) multiple already included.
 	  __weak_test *= std::sqrt(__kapn - 1 / __kapn);
-	  //  Set strong convergence test flag.
+	  // Set strong convergence test flag.
 	  __converged = true;
 	}
 
-      //  Prepare for backward recurrence for both orders 1/3 and 2/3.
+      // Prepare for backward recurrence for both orders 1/3 and 2/3.
       auto __rn = _Tp(__n);
       ++__n;
       __d2n = _Tp(2 * __n);
       auto __plast1 = _S_zero;
       __plast2 = _S_zero;
-      //  Carefully compute 1/p2 to avoid overflow in complex divide.
+      // Carefully compute 1/p2 to avoid overflow in complex divide.
       __cmplx __p1;
       __safe_div(1, __p2, __p1);
       __p2 = __p1;
-      //  Set up n dependent parameters used in normalization sum.
+      // Set up n dependent parameters used in normalization sum.
       auto __rnpn1 = __rn + _S_1d3;
       auto __rnpn2 = __rn + _S_2d3;
       auto __rnp2n1 = (__rn - _Tp(1)) + _S_2d3;
       auto __rnp2n2 = (__rn - _Tp(1)) + _S_4d3;
-      //  Initialize normalization sum
+      // Initialize normalization sum
       auto __fact1 = __rnpn1 * __rnp2n1 / __rn;
       auto __sum1 = __fact1 * __p1;
       auto __fact2 = __rnpn2 * __rnp2n2 / __rn;
       auto __sum2 = __fact2 * __p2;
-      //  Set ending loop index to correspond to k=1 term of the
-      //  normalization relationship.
+      // Set ending loop index to correspond to k=1 term of the
+      // normalization relationship.
       auto __nend = __n - 3;
 
-      //  if backward recurrence loop will be nontrivial.
+      // if backward recurrence loop will be nontrivial.
       if (__nend > 0)
 	{
-	  //  Loop until backward recursion to k=1 term of normalization.
+	  // Loop until backward recursion to k=1 term of normalization.
 	  for (int __l = 1; __l <= __nend; ++__l)
 	    {
-    	      //  Update n dependent quantities.
+    	      // Update n dependent quantities.
     	      --__n;
     	      __d2n -= 2;
     	      __fact1 = __d2n + _S_2d3;
     	      __fact2 = __d2n + _S_4d3;
-    	      //  Interchanges for order 1/3 recurrence.
+    	      // Interchanges for order 1/3 recurrence.
     	      auto __pold1 = __plast1;
     	      __plast1 = __p1;
-    	      //  Recur back one step for order 1/3.
+    	      // Recur back one step for order 1/3.
     	      __p1 = __1dz * __fact1 * __plast1 + __pold1;
-    	      //  Interchanges for order 2/3 recurrence
+    	      // Interchanges for order 2/3 recurrence
     	      auto __pold2 = __plast2;
     	      __plast2 = __p2;
-    	      //  Recur back one step for order 2/3.
+    	      // Recur back one step for order 2/3.
     	      __p2 = __1dz * __fact2 * __plast2 + __pold2;
-    	      //  Update quantities for computing normalization sums.
+    	      // Update quantities for computing normalization sums.
     	      __rn -= _Tp(1);
     	      __rnpn1 = __rn + _S_1d3;
     	      __rnp2n1 = __rn - _S_1d3;
@@ -519,7 +508,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     	      __rnp2n2 = __rnpn1;
     	      __fact1 = __rnp2n1 / __rn;
     	      __fact2 = __rnp2n2 / __rn;
-    	      //  Update normalization sums
+    	      // Update normalization sums.
     	      __sum1 += __rnpn1 * __p1;
     	      __sum1 *= __fact1;
     	      __sum2 += __rnpn2 * __p2;
@@ -527,7 +516,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 	}
 
-      //  Perform last two recurrence steps for order 1/3
+      // Perform last two recurrence steps for order 1/3
       auto __pold1 = __plast1;
       __plast1 = __p1;
       __p1 = _S_14d3 * __plast1 * __1dz + __pold1;
@@ -537,14 +526,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __p1 = _S_8d3 * __plast1 * __1dz + __pold1;
       __sum1 = _Tp(2) * __sum1 + __p1;
 
-      //  Compute scale factor and scale results for order 1/3 case
+      // Compute scale factor and scale results for order 1/3 case
       auto __zd2pow = std::pow(_Tp(0.5L) * __z, -_S_1d3);
       __pold1 = __zd2pow * std::exp(-__z);
-      __sum1 *= _S_gm4d3 * __pold1;
+      __sum1 *= _S_gamma4d3 * __pold1;
       __plast1 /= __sum1;
       _Ip1d3 = __p1 / __sum1;
 
-      //  Perform last two recurrence steps for order 2/3
+      // Perform last two recurrence steps for order 2/3
       auto __pold2 = __plast2;
       __plast2 = __p2;
       __p2 = _S_16d3 * __plast2 * __1dz + __pold2;
@@ -554,15 +543,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __p2 = _S_10d3 * __plast2 * __1dz + __pold2;
       __sum2 = _Tp(2) * __sum2 + __p2;
 
-      //  Compute scale factor and scale results for order 2/3 case
-      __sum2 *= _S_gm5d3 * __zd2pow * __pold1;
+      // Compute scale factor and scale results for order 2/3 case
+      __sum2 *= _S_gamma5d3 * __zd2pow * __pold1;
       __plast2 /= __sum2;
       _Ip2d3 = __p2 / __sum2;
 
-      //  Recur back one step from order +1/3 to get order -2/3
+      // Recur back one step from order +1/3 to get order -2/3
       _Im2d3 = _S_2d3 * _Ip1d3 * __1dz + __plast1;
 
-      //  Recur back one step from order +2/3 to get order -1/3
+      // Recur back one step from order +2/3 to get order -1/3
       _Im1d3 = _S_4d3 * _Ip2d3 * __1dz + __plast2;
 
       return;
@@ -574,9 +563,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  of the second kind of orders 1/3 and 2/3 for moderate arguments.
    *
    *  This routine computes
-   *
    *   @f[
-   *    E_\nu(z) = \exp(z) \sqrt(2 z/\pi) K_\nu(z), for \nu = 1/3 and \nu = 2/3
+   *    E_\nu(z) = \exp{z} \sqrt{2 z/\pi} K_\nu(z), for \nu = 1/3 and \nu = 2/3
    *   @f]
    *
    *  using a rational approximation given in
@@ -637,7 +625,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       { 67, 91152, 12697, 79, 96336, 19633 };
 
 
-      //  Initialize polynomials for recurrence
+      // Initialize polynomials for recurrence
       auto __f10 = _S_zone;
       auto __f20 = _S_zone;
       auto __f11 = _S_zone + _S_f[0] * __z / _S_f[1];
@@ -658,7 +646,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __phi22 = __z * (_S_f[2] * __z + _S_phi[4]);
       __phi22 = (__phi22 + _S_phi[5]) / _S_f[7];
 
-      //  Initialize for recursion
+      // Initialize for recursion
       auto __ratold = __phi22 / __f22;
       auto __rat1 = __phi12 / __f12;
       auto __delt = _Tp{32};
@@ -675,10 +663,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __gam = _Tp{5};
       auto __q = _Tp{16} * __gam;
 
-      //  Loop until maximum iterations used or convergence
+      // Loop until maximum iterations used or convergence.
       for (int __i = 1; __i < _S_iter_max; ++__i)
 	{
-	  //  Evaluate next term in recurrence for order 1/3 polynomials
+	  // Evaluate next term in recurrence for order 1/3 polynomials.
 	  auto __qz = __q * __z;
 	  auto __fact1 = __qz - __p11;
 	  auto __fact2 = __qz - __p12;
@@ -691,7 +679,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		       - __p13 * __phi10;
 	  __phi13 /= __an1;
 
-	  //  Evaluate next term in recurrence for order 2/3 polynomials
+	  // Evaluate next term in recurrence for order 2/3 polynomials.
 	  __fact1 = __qz - __p21;
 	  __fact2 = __qz - __p22;
 	  auto __f23 = __fact1 * __f22
@@ -703,19 +691,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		       - __p23 * __phi20;
 	  __phi23 /= __an2;
 
-	  //  Check for convergence
+	  // Check for convergence
 	  auto __ratnew = __phi23 / __f23;
 	  __rat1 = __phi13 / __f13;
 
 	  if (std::abs(__ratnew - __ratold) < __eps * std::abs(__ratnew))
 	    {
-	      //  Convergence.
+	      // Convergence.
 	      _Kp2d3 = __ratnew;
 	      _Kp1d3 = __phi13 / __f13;
 	      return;
 	    }
 
-	  //  Prepare for next iteration
+	  // Prepare for next iteration.
 	  __ratold = __ratnew;
 	  __f20 = __f21;
 	  __f21 = __f22;
@@ -765,9 +753,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    \frac{\Gamma(\nu+1)}{(z/2)^nu}I_\nu(z) = _0F_1 (;\nu+1;z^2/4),
    *   @f]
    *
-   *  Where the function on the right is a generalized Gaussian
-   *  hypergeometric function.  For abs(z) <= 1/4  and
-   *  abs(arg(z)) <= pi/2, the approximations are accurate to
+   *  Wher the function on the right is a generalized Gaussian
+   *  hypeergeometric function.  For |z| <= 1/4  and
+   *  |arg(z)| <= pi/2, the approximations are accurate to
    *  about 16 decimals.
    *
    *  For further details including the four term recurrence
@@ -823,7 +811,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr _Tp _S_am2d3[4]{ 162, 36855,  1415232,   4481568};
       constexpr _Tp _S_bm2d3[4]{  -7,	819,   -78624,   4481568};
 
-      //  Check to see if z^3 will underflow and act accordingly
+      // Check to see if z^3 will underflow and act accordingly.
       auto __zzz = __z * __z * __z;
 
       if (std::abs(__zzz) < _Tp{10} * std::numeric_limits<_Tp>::min())
@@ -838,15 +826,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __r = _Tp{2} * std::real(__zzz);
 	  auto __s = std::norm(__zzz);
 
-	  //  The following polynomial evaluations are done using
-	  //  a modified of Horner's rule which exploits the fact that
-	  //  the polynomial coefficients are all real.  The algorithm is
-	  //  discussed in detail in:
-	  //  Knuth, D. E., The Art of Computer Programming: Seminumerical
-	  //  Algorithms (Vol. 2) Third Ed., Addison-Wesley, pp 486-488, 1998.
+	  // The following polynomial evaluations are done using
+	  // a modified of Horner's rule which exploits the fact that
+	  // the polynomial coefficients are all real.
+	  // The algorithm is discussed in detail in:
+	  // Knuth, D. E., The Art of Computer Programming: Seminumerical
+	  // Algorithms (Vol. 2) Third Ed., Addison-Wesley, pp 486-488, 1998.
 	  //
-	  //  If n is the degree of the polynomial, n - 3 multiplies are
-	  //  saved and 4 * n - 6 additions are saved.
+	  // If n is the degree of the polynomial, n - 3 multiplies are
+	  // saved and 4 * n - 6 additions are saved.
 	  auto __horner
 	  {
 	    [__r, __s, __zzz](const auto (&_S_c)[4])
@@ -881,22 +869,31 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  The representations are recorded here for reference:
    *
    *   @f[
-   *    (1a) Ai(z) = \frac{\sqrt(z)}{3}(I_{-1/3}(\xi) - I_{1/3}(\xi))
+   *    (1a) Ai(z) = \frac{\sqrt{z}}{3}(I_{-1/3}(\xi) - I_{1/3}(\xi))
+   *   @f]
+   *   @f[
+   *    (1b) Bi(z) = \sqrt{\frac{z}{3}}(I_{-1/3}(\xi) + I_{1/3}(\xi))
    *   @f]
    *
    *   @f[
-   *    (2a) Ai(z) = \frac{\sqrt(z/3)}{\pi} K_{1/3}(\xi)
+   *    (2) Ai(z) = \frac{\sqrt{z/3}}{\pi} K_{1/3}(\xi)
    *
    *      	  = \frac{2^{2/3}3^{-5/6}}{\sqrt(\pi)}
    *    	       z \exp(-\xi) U(5/6; 5/3; 2 \xi)
    *   @f]
    *
    *   @f[
-   *    (3a) Ai(-z)  = \frac{\sqrt(z)}{3}(J_{-1/3}(\xi) + J_{1/3}(\xi))
+   *    (3a) Ai(-z)  = \frac{\sqrt{z}}{3}(J_{-1/3}(\xi) + J_{1/3}(\xi))
+   *   @f]
+   *   @f[
+   *    (3b) Bi(-z)  = \sqrt{\frac{z}{3}}(J_{-1/3}(\xi) - J_{1/3}(\xi))
    *   @f]
    *
    *   @f[
    *    (4a) Ai'(z)  = \frac{z}{3}(I_{2/3}(\xi) - I_{-2/3}(\xi))
+   *   @f]
+   *   @f[
+   *    (4a) Bi'(z)  = \frac{z}{\sqrt{3}}(I_{2/3}(\xi) + I_{-2/3}(\xi))
    *   @f]
    *
    *   @f[
@@ -908,6 +905,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    *   @f[
    *    (6a) Ai'(-z) = \frac{z}{3}(J_{2/3}(\xi) - J_{-2/3}(\xi)) ,
+   *   @f]
+   *   @f[
+   *    (6b) Bi'(-z) = \frac{z}{\sqrt{3}}(J_{2/3}(\xi) + J_{-2/3}(\xi)) ,
    *   @f]
    *  Where \xi = - \frac{2}{3}z^{3/2} and U(a;b;z) is the confluent hypergeometric
    *  function defined in
@@ -921,20 +921,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  error bounds given in
    *
    *  @see Olver, F. W. J., Error Bounds for Asymptotic Expansions,
-   *    with an Application to Cylinder Functions of Large Argument,
-   *    in Asymptotic Solutions of Differential Equations (Wilcox, Ed.),
-   *    Wiley and Sons, pp 163-183, 1964
+   *  with an Application to Cylinder Functions of Large Argument,
+   *  in Asymptotic Solutions of Differential Equations (Wilcox, Ed.),
+   *  Wiley and Sons, pp 163-183, 1964
    *
    *  and
    *
    *  @see Olver, F. W. J., Asymptotics and Special Functions, Academic Press,
-   *    pp 266-268, 1974.
+   *  pp 266-268, 1974.
    *
    *  For small modulus of z, a rational approximation is used.  This
    *  approximant is derived from
    *
    *  Luke, Y. L., Mathematical Functions and their Approximations,
-   *    Academic Press, pp 361-363, 1975.
+   *  Academic Press, pp 361-363, 1975.
    *
    *  The identities given below are for Bessel functions of the first
    *  kind in terms of modified Bessel functions of the first kind are
@@ -962,29 +962,29 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  The particular backward recursion algorithm used is discussed in 
    *
    *  @see Olver, F. W. J, Numerical solution of second-order linear
-   *    difference equations, NBS J. Res., Series B, VOL 71B,
-   *    pp 111-129, 1967.
+   *  difference equations, NBS J. Res., Series B, VOL 71B,
+   *  pp 111-129, 1967.
    *
    *  @see Olver, F. W. J. and Sookne, D. J., Note on backward recurrence
-   *    algorithms, Math. Comp. Vol 26, No. 120, pp 941-947,
-   *    Oct. 1972
+   *  algorithms, Math. Comp. Vol 26, No. 120, pp 941-947,
+   *  Oct. 1972
    *
    *  @see Sookne, D. J., Bessel Functions I and J of Complex Argument and
-   *    Integer Order, NBS J. Res., Series B, Vol 77B, Nos 3& 4,
-   *    pp 111-113, July-December, 1973. 
+   *  Integer Order, NBS J. Res., Series B, Vol 77B, Nos 3& 4,
+   *  pp 111-113, July-December, 1973. 
    *
    *  The following paper was also useful
    *
    *  @see Cody, W. J., Preliminary report on software for the modified
-   *    Bessel functions of the first kind, Applied Mathematics
-   *    Division, Argonne National Laboratory, Tech. Memo. no. 357.
+   *  Bessel functions of the first kind, Applied Mathematics
+   *  Division, Argonne National Laboratory, Tech. Memo. no. 357.
    *
    *  A backward recursion algorithm is also used to compute the
    *  confluent hypergeometric function.  The recursion relations
    *  and a convergence theorem are given in
    *
    *  @see Wimp, J., On the computation of Tricomi's psi function, Computing,
-   *    Vol 13, pp 195-203, 1974.
+   *  Vol 13, pp 195-203, 1974.
    *
    *  @param[in] z   The argument at which the Airy function and its derivative
    *    	     are computed.
@@ -1010,36 +1010,35 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr _Tp
 	_S_1d3  {_Tp{1} / _Tp{3}},
 	_S_2d3  {_Tp{2} / _Tp{3}},
-	_S_gm1d3{2.588194037928068e-01},
-	_S_gm2d3{3.550280538878172e-01},
+	_S_gamma1d3{2.588194037928068e-01},
+	_S_gamma2d3{3.550280538878172e-01},
 	_S_2g2d3{1.775140269439086e-01},
 	_S_rsqpi{2.820947917738781e-01},
 	_S_pi   {3.1415926535897932385};
       static constexpr _Tp _S_small{0.25}, _S_big{15};
 
 
-      //  Compute modulus of z for later use
       auto __absz = std::abs(__z);
-      //  Check size of abs(z) and select appropriate methods
+      // Check size of abs(z) and select appropriate methods.
       if (__absz < _S_big)
 	{
-	  //  Moderate or small abs(z)
-	  //  Check argument for right or left half plane
-	  if (std::real(__z) >= _Tp(0))
+	  // Moderate or small abs(z)
+	  // Check argument for right or left half plane.
+	  if (std::real(__z) >= _Tp{0})
 	    {
-	      //  Argument in closed right half plane. Compute xi as defined
-	      //  in the representations in terms of Bessel functions
+	      // Argument in closed right half plane. Compute xi as defined
+	      // in the representations in terms of Bessel functions.
 	      auto __sqrtz = std::sqrt(__z);
 	      auto __xi = _S_2d3 * __z * __sqrtz;
 
-	      //  Check for abs(z) too large for accuracy of
-	      //  representations (1) and (4)
+	      // Check for abs(z) too large for accuracy of
+	      // representations (1) and (4).
 	      if (__absz >= _Tp{2})
 		{
-		  //  Use rational approximation for modified Bessel functions
-		  //  of orders 1/3 and 2/3
+		  // Use rational approximation for modified Bessel functions
+		  // of orders 1/3 and 2/3.
 		  __airy_bessel_k(__xi, __eps, _Ai, _Aip);
-		  //  Recover Ai(z) and Ai'(z)
+		  // Recover Ai(z) and Ai'(z).
 		  auto __p1d4c = std::sqrt(__sqrtz);
 		  __xi = _S_rsqpi * std::exp(-__xi);
 		  _Ai *= __xi / __p1d4c;
@@ -1047,45 +1046,43 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		}
 	      else
 		{
-		  //  Check for abs(z) small enough for rational approximation
+		  // Check for abs(z) small enough for rational approximation.
 		  if (__absz <= _S_small)
 		    {
-		      //  Use rational approximation along with (1) and (4)
+		      // Use rational approximation along with (1) and (4).
 		      __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
 		      __airy_hyperg_rational(__z,
 					     _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
-		      //  Recover Ai(z) and Ai'(z)
-		      _Im1d3 *= _S_gm2d3;
-		      _Ip1d3 *= _S_gm1d3;
-		      _Ai = _Im1d3 - __z * _Ip1d3;
-		      _Im2d3 *= _S_gm1d3;
-		      _Ip2d3 *= _S_2g2d3;
-		      _Aip = __z * __z * _Ip2d3 - _Im2d3;
+		      // Recover Ai(z) and Ai'(z).
+		      _Ai = _S_gamma2d3 * _Im1d3 - __z * _S_gamma1d3 * _Ip1d3;
+		      _Aip = __z * __z * _S_2g2d3 * _Ip2d3 - _S_gamma1d3 * _Im2d3;
 		    }
 		  else
 		    {
-		      //  Use backward recurrence along with (1) and (4)
+		      // Use Miller's backward recurrence along with (1), (4).
 		      __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
 		      __airy_bessel_i(__xi, __eps,
 				      _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
-		      //  Recover Ai(z) and Ai'(z)
+		      // Recover Ai(z) and Ai'(z).
 		      _Ai = _S_1d3 * __sqrtz * (_Im1d3 - _Ip1d3);
 		      _Aip = _S_1d3 * __z * (_Ip2d3 - _Im2d3);
+		      //_Bi = __sqrtz * (__m2d3f * _Im2d3 * __p2d3f * _Ip2d3) / _S_sqrt3;
+		      //_Bip = 
 		    }
 		}
 	    }
 	  else
 	    {
-	      //  Argument lies in left half plane.  Compute xi as defined
-	      //  in the representations in terms of Bessel functions
+	      // Argument lies in left half plane.  Compute xi as defined
+	      // in the representations in terms of Bessel functions.
 	      auto __sqrtz = std::sqrt(-__z);
 	      auto __xi = -_S_2d3 * __z * __sqrtz;
-	      //  Set up arguments to recover Bessel functions of the first kind
-	      //  in (3) and (6)
+	      // Set up arguments to recover Bessel functions of the first kind
+	      // in (3) and (6).
 	      __cmplx __z2xi, __p1d3f, __m1d3f, __p2d3f, __m2d3f;
-	      if (std::imag(__xi) >= _Tp(0))
+	      if (std::imag(__xi) >= _Tp{0})
 		{
-		  //  Argument lies in upper half plane
+		  // Argument lies in upper half plane.
 		  __z2xi = -_S_j * __xi;
 		  __p1d3f = _S_eppid6;
 		  __m1d3f = _S_empid6;
@@ -1094,7 +1091,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		}
 	      else
 		{
-		  //  Argument lies in lower half plane
+		  // Argument lies in lower half plane.
 		  __z2xi = _S_j * __xi;
 		  __p1d3f = _S_empid6;
 		  __m1d3f = _S_eppid6;
@@ -1102,37 +1099,35 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		  __m2d3f = _S_eppid3;
 		}
 
-	      //  Use approximation depending on size of z
+	      // Use approximation depending on size of z.
 	      if (__absz <= _S_small)
 		{
-		  //  Use rational approximation
+		  // Use rational approximation.
 		  __xi = -__z;
 		  __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
 		  __airy_hyperg_rational(__z, _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
-		  //  Recover Ai(z) and Ai'(z)
-		  _Im1d3 *= _S_gm2d3;
-		  _Ip1d3 *= _S_gm1d3;
-		  _Ai = _Im1d3 - __z * _Ip1d3;
-		  _Im2d3 *= _S_gm1d3;
-		  _Ip2d3 *= _S_2g2d3;
-		  _Aip = __z * __z * _Ip2d3 - _Im2d3;
+		  // Recover Ai(z) and Ai'(z).
+		  _Ai = _S_gamma2d3 * _Im1d3 - __z * _S_gamma1d3 * _Ip1d3;
+		  _Aip = __z * __z * _S_2g2d3 * _Ip2d3 - _S_gamma1d3 * _Im2d3;
 		}
 	      else
 		{
-		  //  Use backward recurrence
+		  // Use Miller's backward recurrence.
 		  __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
 		  __airy_bessel_i(__z2xi, __eps,
 				  _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
-		  //  Recover Ai(z) and Ai'(z)
+		  // Recover Ai(z) and Ai'(z).
 		  _Ai = _S_1d3 * __sqrtz
 		      * (__m1d3f * _Im1d3 + __p1d3f * _Ip1d3);
 		  _Aip = _S_1d3 * __z * (__m2d3f * _Im2d3 - __p2d3f * _Ip2d3);
+		  //_Bi = __sqrtz * (__m2d3f * _Im2d3 * __p2d3f * _Ip2d3) / _S_sqrt3;
+		  //_Bip = 
 		}
 	    }
 	}
       else
-	{ //  abs(z) is large...
-	  //  Check arg(z) to see which asymptotic form is appropriate
+	{ // abs(z) is large...
+	  // Check arg(z) to see which asymptotic form is appropriate.
 	  if (std::abs(std::arg(__z)) < _Tp{2} * _S_pi / _Tp{3})
 	    __airy_asymp_absarg_ge_pio3(__z, _Ai, _Aip);
 	  else
@@ -1182,6 +1177,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
-}
+} // namespace std
 
 #endif // _GLIBCXX_BITS_SF_AIRY_TCC
