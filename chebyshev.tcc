@@ -213,11 +213,12 @@
     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
 	       const _Chebyshev<_Tp>& __cheb)
     {
-      auto __prec = __os.precision(std::numeric_limits<_Tp>::max_digits10);
+      auto __width = std::numeric_limits<_Tp>::max_digits10;
+      auto __prec = __os.precision(__width);
       auto __flags = __os.flags(__os.flags() & std::ios::scientific);
       __os << '{' << '\n';
       for (auto __cc : __cheb._M_coef)
-	__os << ' ' << __cc << ',' << '\n';
+	__os << ' ' << std::right << std::setw(__width + 6) << __cc << ',' << '\n';
       __os << '}';
       __os.flags(__flags);
       __os.precision(__prec);
