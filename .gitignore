@@ -29,6 +29,7 @@ check_riemann_zeta
 check_sph_bessel
 check_sph_legendre
 check_sph_neumann
+complex_literal_arith
 diff_special_function
 diff_local_special_function
 test_bessel
