@@ -48,6 +48,7 @@ test_local_special_function
 test_polynomial
 test_numeric_limits
 test_beta_inc
+test_pow
 hankel_toy
 dilog
 test_airy
