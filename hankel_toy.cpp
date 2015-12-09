@@ -123,11 +123,11 @@ main()
   for (const auto& u : uvec)
     for (auto c = u.crbegin(); c != u.crend(); ++c)
       if (*c != 0)
-	std::cout << *c << '\n';
+	std::cout << std::setw(width) << *c << '\n';
 
   std::cout << '\n';
   for (const auto& v : vvec)
     for (auto c = v.crbegin(); c != v.crend(); ++c)
       if (*c != 0)
-	std::cout << *c << '\n';
+	std::cout << std::setw(width) << *c << '\n';
 }

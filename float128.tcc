@@ -19,27 +19,29 @@ namespace std
       auto __sci = __os.flags() & std::ios::scientific;
       auto __hex = __os.flags() & std::ios::fixed
 		&& __os.flags() & std::ios::scientific;
+      //auto __hex = __os.flags() & (std::ios::fixed | std::ios::scientific);
       auto __upper = __os.flags() & std::ios::uppercase;
+      auto __width = __os.width();
       std::ostringstream __fmt;
-      __fmt << '%' << __os.width() << '.' << __os.precision() << 'Q';
-      if (__upper)
-	{
-	  if (__hex)
-	    __fmt << 'A';
-	  else if (__sci)
-	    __fmt << 'E';
-	  else
-	    __fmt << 'G';
-	}
+      __fmt << '%';
+
+      if (__os.flags() & std::ios::showpos)
+	__fmt << '+';
       else
-	{
-	  if (__hex)
-	    __fmt << 'a';
-	  else if (__sci)
-	    __fmt << 'e';
-	  else
-	    __fmt << 'g';
-	}
+	__fmt << ' '; // Space instead of plus standard?
+
+      if (__os.flags() & std::ios::left)
+	__fmt << '-';
+
+      __fmt << __os.width() << '.' << __os.precision() << 'Q';
+
+      if (__hex)
+	__fmt << (__upper ? 'A' : 'a');
+      else if (__sci)
+	__fmt << (__upper ? 'E' : 'e');
+      else
+	__fmt << (__upper ? 'G' : 'g');
+
       constexpr int __strlen = 1000;
       char __str[__strlen];
       quadmath_snprintf(__str, __strlen, __fmt.str().c_str(), __x) ;
@@ -51,7 +53,7 @@ namespace std
     std::basic_istream<_CharT, _Traits>&
     operator>>(std::basic_istream<_CharT, _Traits>& __is, __float128& __x)
     {
-      constexpr int __strlen = 1000;
+      constexpr int __strlen = 160;
       char __str[__strlen];
       __is >> std::setw(__strlen) >> __str;
       __x = strtoflt128(__str, 0);
