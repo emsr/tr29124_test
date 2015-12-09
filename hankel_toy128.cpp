@@ -132,5 +132,7 @@ main()
   for (const auto& v : vvec)
     for (auto c = v.crbegin(); c != v.crend(); ++c)
       if (*c != 0)
-	std::cout << std::setw(width) << *c << '\n';
+	std::cout << std::showpos << std::setw(width) << *c << '\n';
+
+  //  Try  << std::uppercase << std::hexfloat << std::showpos
 }
