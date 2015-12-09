@@ -633,7 +633,7 @@ template<typename _Tp>
     std::cout << "psi" << std::endl;
     basename = "gsl_psi";
     runtest<double, double>(wrap_gsl_sf_psi, basename,
-			    fill_argument(std::make_pair(-10.0, 10.0),
+			    fill_argument(std::make_pair(-9.875, 10.125),
 					  std::make_pair(true, true), 41));
 
     basename = ns + "_psi";

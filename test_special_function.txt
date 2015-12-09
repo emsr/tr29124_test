@@ -28,6 +28,10 @@ ellint_rc
 ellint_rd
 ellint_rf
 ellint_rj
+dilog
+gamma_u
+ibeta
+psi
 airy_ai
 airy_bi
 assoc_laguerre
@@ -58,6 +62,10 @@ ellint_rc
 ellint_rd
 ellint_rf
 ellint_rj
+dilog
+gamma_u
+ibeta
+psi
 airy_ai
 airy_bi
 assoc_laguerre
@@ -88,3 +96,7 @@ ellint_rc
 ellint_rd
 ellint_rf
 ellint_rj
+dilog
+gamma_u
+ibeta
+psi
