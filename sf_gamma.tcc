@@ -523,20 +523,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   The series is given by:
    *   @f[
    *     \psi(x) = -\gamma_E - \frac{1}{x}
-   *              \sum_{k=1}^{\infty} \frac{x}{k(x + k)}
+   *              \sum_{k=1}^{\infty} \frac{x - 1}{(k + 1)(x + k)}
    *   @f]
    */
   template<typename _Tp>
     _Tp
     __psi_series(_Tp __x)
     {
-      _Tp __sum = -__gnu_cxx::__math_constants<_Tp>::__gamma_e - _Tp{1} / __x;
-      const unsigned int __max_iter = 100000;
-      for (unsigned int __k = 1; __k < __max_iter; ++__k)
+      _Tp __sum = -__gnu_cxx::__math_constants<_Tp>::__gamma_e;
+      const unsigned int _S_max_iter = 100000;
+      for (unsigned int __k = 0; __k < _S_max_iter; ++__k)
 	{
-	  const _Tp __term = __x / (__k * (__k + __x));
+	  const _Tp __term = (__x - _Tp(1)) / ((__k + 1) * (__k + __x));
 	  __sum += __term;
-	  if (std::abs(__term / __sum) < std::numeric_limits<_Tp>::epsilon())
+	  if (std::abs(__term) < std::numeric_limits<_Tp>::epsilon())
 	    break;
 	}
       return __sum;
@@ -591,7 +591,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __psi(_Tp __x)
     {
-      const int __n = static_cast<int>(__x + 0.5L);
+      const int __n = std::nearbyint(__x);
       constexpr _Tp _S_eps = _Tp{4} * std::numeric_limits<_Tp>::epsilon();
       if (__n <= 0 && std::abs(__x - _Tp{__n}) < _S_eps)
 	return std::numeric_limits<_Tp>::quiet_NaN();
@@ -599,7 +599,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  const _Tp __pi = __gnu_cxx::__math_constants<_Tp>::__pi;
 	  return __psi(_Tp{1} - __x)
-	       - __pi * std::cos(__pi * __x) / std::sin(__pi * __x);
+	       - __pi / std::tan(__pi * __x);
 	}
       else if (__x > _Tp{100})
 	return __psi_asymp(__x);
