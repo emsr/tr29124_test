@@ -74,7 +74,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       constexpr auto _S_1_sqrtpi(0.5641895835477562869480794515607726L);
       constexpr auto _S_H(0.2);
-///  @todo this needs some compile-time construction!
+      /// @todo this needs some compile-time construction!
       constexpr auto __n_max = 10;
       static _Tp __c[__n_max + 1];
       static auto __init = false;

@@ -34,16 +34,16 @@
 // Written by Edward Smith-Rowland.
 //
 // References:
-//   (1) Handbook of Mathematical Functions,
-//       ed. Milton Abramowitz and Irene A. Stegun,
-//       Dover Publications,
-//       Section 6, pp. 253-266
-//   (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
-//   (3) Numerical Recipes in C, by W. H. Press, S. A. Teukolsky,
-//       W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
-//       2nd ed, pp. 213-216
-//   (4) Gamma, Exploring Euler's Constant, Julian Havil,
-//       Princeton, 2003.
+// (1) Handbook of Mathematical Functions,
+//     ed. Milton Abramowitz and Irene A. Stegun,
+//     Dover Publications,
+//     Section 6, pp. 253-266
+// (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
+// (3) Numerical Recipes in C, by W. H. Press, S. A. Teukolsky,
+//     W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
+//     2nd ed, pp. 213-216
+// (4) Gamma, Exploring Euler's Constant, Julian Havil,
+//     Princeton, 2003.
 
 #ifndef _GLIBCXX_BITS_SF_BETA_TCC
 #define _GLIBCXX_BITS_SF_BETA_TCC 1

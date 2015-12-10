@@ -34,11 +34,11 @@
 // Written by Edward Smith-Rowland.
 //
 // References:
-//   (1) Handbook of Mathematical Functions,
-//       ed. Milton Abramowitz and Irene A. Stegun,
-//       Dover Publications,
-//       Section 6, pp. 555-566
-//   (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
+// (1) Handbook of Mathematical Functions,
+//     ed. Milton Abramowitz and Irene A. Stegun,
+//     Dover Publications,
+//     Section 6, pp. 555-566
+// (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
 
 #ifndef _GLIBCXX_BITS_SF_HYPERG_TCC
 #define _GLIBCXX_BITS_SF_HYPERG_TCC 1
@@ -451,10 +451,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 	  const _Tp __lng_c = __log_gamma(__c);
 
-	  //  Evaluate F1.
+	  // Evaluate F1.
 	  if (__ad < __eps)
 	    {
-	      //  d = c - a - b = 0.
+	      // d = c - a - b = 0.
 	      __F1 = _Tp{0};
 	    }
 	  else
@@ -501,8 +501,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		}
 	      else
 		{
-		  //  Gamma functions in the denominator were not ok.
-		  //  So the F1 term is zero.
+		  // Gamma functions in the denominator were not ok.
+		  // So the F1 term is zero.
 		  __F1 = _Tp{0};
 		}
 	    } // end F1 evaluation
@@ -522,8 +522,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 	  if (__ok_d2)
 	    {
-	      //  Gamma functions in the denominator are ok.
-	      //  Proceed with evaluation.
+	      // Gamma functions in the denominator are ok.
+	      // Proceed with evaluation.
 	      const int __maxiter = 2000;
 	      const _Tp __psi_1 = -__gnu_cxx::__math_constants<_Tp>::__gamma_e;
 	      const _Tp __psi_1pd = __psi(_Tp{1} + __ad);
@@ -541,8 +541,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      int __j;
 	      for (__j = 1; __j < __maxiter; ++__j)
 		{
-		  //  Values for psi functions use recurrence;
-		  //  Abramowitz & Stegun 6.3.5
+		  // Values for psi functions use recurrence;
+		  // Abramowitz & Stegun 6.3.5
 		  const _Tp __term1 = _Tp{1} / _Tp{__j}
 				    + _Tp{1} / (__ad + __j);
 		  const _Tp __term2 = _Tp{1} / (__a + __d1 + _Tp{__j - 1})
@@ -579,10 +579,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else
 	{
-	  //  d = c - a - b not an integer.
+	  // d = c - a - b not an integer.
 
-	  //  These gamma functions appear in the denominator, so we
-	  //  catch their harmless domain errors and set the terms to zero.
+	  // These gamma functions appear in the denominator, so we
+	  // catch their harmless domain errors and set the terms to zero.
 	  bool __ok1 = true;
 	  _Tp __sgn_g1ca = _Tp{0}, __ln_g1ca = _Tp{0};
 	  _Tp __sgn_g1cb = _Tp{0}, __ln_g1cb = _Tp{0};
@@ -755,8 +755,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __hyperg_series(__a, __b, __c, __x);
       else if (std::abs(__a) < _Tp{10} && std::abs(__b) < _Tp{10})
 	{
-	  //  For integer a and b the hypergeometric function is a
-	  //  finite polynomial.
+	  // For integer a and b the hypergeometric function is a
+	  // finite polynomial.
 	  if (__a < _Tp{0}  &&  std::abs(__a - __a_nint) < __toler)
 	    return __hyperg_series(__a_nint, __b, __c, __x);
 	  else if (__b < _Tp{0}  &&  std::abs(__b - __b_nint) < __toler)

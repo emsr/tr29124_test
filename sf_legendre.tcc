@@ -34,14 +34,14 @@
 // Written by Edward Smith-Rowland.
 //
 // References:
-//   (1) Handbook of Mathematical Functions,
-//       ed. Milton Abramowitz and Irene A. Stegun,
-//       Dover Publications,
-//       Section 8, pp. 331-341
-//   (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
-//   (3) Numerical Recipes in C, by W. H. Press, S. A. Teukolsky,
-//       W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
-//       2nd ed, pp. 252-254
+// (1) Handbook of Mathematical Functions,
+//     ed. Milton Abramowitz and Irene A. Stegun,
+//     Dover Publications,
+//     Section 8, pp. 331-341
+// (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
+// (3) Numerical Recipes in C, by W. H. Press, S. A. Teukolsky,
+//     W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
+//     2nd ed, pp. 252-254
 
 #ifndef _GLIBCXX_BITS_SF_LEGENDRE_TCC
 #define _GLIBCXX_BITS_SF_LEGENDRE_TCC 1
@@ -94,8 +94,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Tp _P_l = 0;
 	  for (unsigned int __ll = 2; __ll <= __l; ++__ll)
 	    {
-	      //  This arrangement is supposed to be better for roundoff
-	      //  protection, Arfken, 2nd Ed, Eq 12.17a.
+	      // This arrangement is supposed to be better for roundoff
+	      // protection, Arfken, 2nd Ed, Eq 12.17a.
 	      _P_l = _Tp{2} * __x * _P_lm1 - _P_lm2
 		    - (__x * _P_lm1 - _P_lm2) / _Tp(__ll);
 	      _P_lm2 = _P_lm1;
@@ -143,8 +143,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Tp _P_mm = _Tp{1};
 	  if (__m > 0)
 	    {
-	      //  Two square roots seem more accurate more of the time
-	      //  than just one.
+	      // Two square roots seem more accurate more of the time
+	      // than just one.
 	      _Tp __root = std::sqrt(_Tp{1} - __x) * std::sqrt(_Tp{1} + __x);
 	      _Tp __fact = _Tp{1};
 	      for (unsigned int __i = 1; __i <= __m; ++__i)
@@ -222,18 +222,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  return _P_l;
 	}
       else if (__x == _Tp{1} || __x == -_Tp{1})
-	return _Tp{0};  //  m > 0 here
+	return _Tp{0}; // m > 0 here
       else
 	{
 	  // m > 0 and |x| < 1 here
 
 	  // Starting value for recursion.
 	  // Y_m^m(x) = sqrt( (2m+1)/(4pi m) gamma(m+1/2)/gamma(m) )
-	  //             (-1)^m (1-x^2)^(m/2) / pi^(1/4)
+	  //           (-1)^m (1-x^2)^(m/2) / pi^(1/4)
 	  const auto __sgn = (__m % 2 == 1 ? -_Tp{1} : _Tp{1});
 	  const auto _Y_mp1m_factor = __x * std::sqrt(_Tp(2 * __m + 3));
 	  const auto __lncirc = std::log1p(-__x * __x);
-	  //  Gamma(m+1/2) / Gamma(m)
+	  // Gamma(m+1/2) / Gamma(m)
 	  const auto __lnpoch = __log_gamma(_Tp(__m + 0.5L))
 			      - __log_gamma(_Tp(__m));
 	  const auto __lnpre_val =

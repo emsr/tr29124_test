@@ -34,14 +34,14 @@
 // Written by Edward Smith-Rowland.
 //
 // References:
-//   (1) Handbook of Mathematical Functions,
-//       Ed. Milton Abramowitz and Irene A. Stegun,
-//       Dover Publications,
-//       Section 9, pp. 355-434, Section 10 pp. 435-478
-//   (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
-//   (3) Numerical Recipes in C, by W. H. Press, S. A. Teukolsky,
-//       W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
-//       2nd ed, pp. 246-249.
+// (1) Handbook of Mathematical Functions,
+//     Ed. Milton Abramowitz and Irene A. Stegun,
+//     Dover Publications,
+//     Section 9, pp. 355-434, Section 10 pp. 435-478
+// (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
+// (3) Numerical Recipes in C, by W. H. Press, S. A. Teukolsky,
+//     W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
+//     2nd ed, pp. 246-249.
 
 #ifndef _GLIBCXX_BITS_SF_MOD_BESSEL_TCC
 #define _GLIBCXX_BITS_SF_MOD_BESSEL_TCC 1
@@ -410,15 +410,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else
 	{
-	  //  Reference:
-	  //    Abramowitz & Stegun, page 446 section 10.4.4 on Airy functions.
-	  //  The number is Ai(0) = 3^{-2/3}/\Gamma(2/3).
+	  // Reference:
+	  //  Abramowitz & Stegun, page 446 section 10.4.4 on Airy functions.
+	  // The number is Ai(0) = 3^{-2/3}/\Gamma(2/3).
 	  _Ai = _Tp{0.3550280538878172392600631860041831763979791741991772L};
 	  _Bi = _Ai * _S_sqrt3;
 
-	  //  Reference:
-	  //    Abramowitz & Stegun, page 446 section 10.4.5 on Airy functions.
-	  //  The number is Ai'(0) = -3^{-1/3}/\Gamma(1/3).
+	  // Reference:
+	  //  Abramowitz & Stegun, page 446 section 10.4.5 on Airy functions.
+	  // The number is Ai'(0) = -3^{-1/3}/\Gamma(1/3).
 	  _Aip = -_Tp{0.25881940379280679840518356018920396347909113835493L};
 	  _Bip = -_Aip * _S_sqrt3;
 	}

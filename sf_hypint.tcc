@@ -54,7 +54,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr _Tp _S_fp_min = __gnu_cxx::__math_constants<_Tp>::__min;
       constexpr _Tp _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
 
-      //  Evaluate Chi and Shi by Lentz's modified method of continued fracions.
+      // Evaluate Chi and Shi by Lentz's modified method of continued fracions.
       std::complex<_Tp> __b(_Tp{1}, __t);
       std::complex<_Tp> __c(_Tp{1} / _S_fp_min);
       std::complex<_Tp> __d(_Tp{1} / __b);
@@ -97,11 +97,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_fp_min = __gnu_cxx::__math_constants<_Tp>::__min;
       constexpr auto _S_gamma_e = __gnu_cxx::__math_constants<_Tp>::__gamma_e;
 
-      //  Evaluate Chi and Shi by series simultaneously.
+      // Evaluate Chi and Shi by series simultaneously.
       _Tp _Csum(0), _Ssum(0);
       if (__t * __t < _S_fp_min)
 	{
-	  //  Avoid underflow.
+	  // Avoid underflow.
 	  _Csum = _Tp{0};
 	  _Ssum = __t;
 	}

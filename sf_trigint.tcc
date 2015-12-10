@@ -53,7 +53,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_fp_min = __gnu_cxx::__math_constants<_Tp>::__min;
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
 
-      //  Evaluate Ci and Si by Lentz's modified method of continued fractions.
+      // Evaluate Ci and Si by Lentz's modified method of continued fractions.
       std::complex<_Tp> __b(_Tp{1}, __t);
       std::complex<_Tp> __c(_Tp{1} / _S_fp_min);
       std::complex<_Tp> __d(_Tp{1} / __b);
@@ -97,17 +97,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_gamma_e
 	= __gnu_cxx::__math_constants<_Tp>::__gamma_e;
 
-      //  Evaluate Ci and Si by series simultaneously.
+      // Evaluate Ci and Si by series simultaneously.
       _Tp __sumc(0), __sums(0);
       if (__t * __t < _S_fp_min)
 	{
-	  //  Avoid underflow.
+	  // Avoid underflow.
 	  __sumc = _Tp{0};
 	  __sums = __t;
 	}
       else
 	{
-	  //  Evaluate Si and Ci by series expansion.
+	  // Evaluate Si and Ci by series expansion.
 	  _Tp __sum(0);
 	  _Tp __sign(1), __fact(1);
 	  bool __odd = true;

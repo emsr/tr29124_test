@@ -34,12 +34,12 @@
 // Written by Edward Smith-Rowland.
 //
 // References:
-//   (1)  B. C. Carlson Numer. Math. 33, 1 (1979)
-//   (2)  B. C. Carlson, Special Functions of Applied Mathematics (1977)
-//   (3)  The Gnu Scientific Library, http://www.gnu.org/software/gsl
-//   (4)  Numerical Recipes in C, 2nd ed, by W. H. Press, S. A. Teukolsky,
-//        W. T. Vetterling, B. P. Flannery, Cambridge University Press
-//        (1992), pp. 261-269
+// (1)  B. C. Carlson Numer. Math. 33, 1 (1979)
+// (2)  B. C. Carlson, Special Functions of Applied Mathematics (1977)
+// (3)  The Gnu Scientific Library, http://www.gnu.org/software/gsl
+// (4)  Numerical Recipes in C, 2nd ed, by W. H. Press, S. A. Teukolsky,
+//      W. T. Vetterling, B. P. Flannery, Cambridge University Press
+//      (1992), pp. 261-269
 
 #ifndef _GLIBCXX_BITS_SF_ELLINT_TCC
 #define _GLIBCXX_BITS_SF_ELLINT_TCC 1
@@ -606,7 +606,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_domain_error(__N("__ellint_1: bad argument"));
       else
 	{
-	  //  Reduce phi to -pi/2 < phi < +pi/2.
+	  // Reduce phi to -pi/2 < phi < +pi/2.
 	  const int __n = std::floor(__phi / _S_pi + _Val{0.5L});
 	  const auto __phi_red = __phi - __n * _S_pi;
 
@@ -685,7 +685,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_domain_error(__N("__ellint_2: bad argument"));
       else
 	{
-	  //  Reduce phi to -pi/2 < phi < +pi/2.
+	  // Reduce phi to -pi/2 < phi < +pi/2.
 	  const int __n = std::floor(std::abs(__phi) / _S_pi + _Val{0.5L});
 	  const auto __phi_red = __phi - __n * _S_pi;
 
@@ -780,7 +780,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_domain_error(__N("__ellint_3: bad argument"));
       else
 	{
-	  //  Reduce phi to -pi/2 < phi < +pi/2.
+	  // Reduce phi to -pi/2 < phi < +pi/2.
 	  const int __n = std::floor(std::real(__phi) / _S_pi + _Val{0.5L});
 	  const auto __phi_red = __phi - __n * _S_pi;
 
