@@ -275,18 +275,10 @@ namespace std
 
 inline namespace literals {
 inline namespace complex_literals {
-/*
-  constexpr std::complex<__float128>
-  operator""iq(long double __num)
-  { return std::complex<__float128>{0.0Q, __num}; }
 
   constexpr std::complex<__float128>
-  operator""iq(unsigned long long __num)
-  { return std::complex<__float128>{0.0Q, static_cast<__float128>(__num)}; }
-*/
-  constexpr std::complex<__float128>
   operator""iq(const char* __str)
-  { return strtoflt128(__str, 0); }
+  { return complex<__float128>(0.0Q, strtoflt128(__str, 0)); }
 
 } // inline namespace complex_literals
 } // inline namespace literals
