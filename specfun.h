@@ -98,7 +98,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @{
    */
 
-  //  Associated Laguerre polynomials
+  // Associated Laguerre polynomials
 
   inline float
   assoc_laguerref(unsigned int __n, unsigned int __m, float __x)
@@ -116,7 +116,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__assoc_laguerre<__type>(__n, __m, __x);
     }
 
-  //  Associated Legendre functions
+  // Associated Legendre functions
 
   inline float
   assoc_legendref(unsigned int __l, unsigned int __m, float __x)
@@ -134,7 +134,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__assoc_legendre_p<__type>(__l, __m, __x);
     }
 
-  //  Beta functions
+  // Beta functions
 
   inline float
   betaf(float __x, float __y)
@@ -152,7 +152,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__beta<__type>(__x, __y);
     }
 
-  //  Complete elliptic integrals of the first kind
+  // Complete elliptic integrals of the first kind
 
   inline float
   comp_ellint_1f(float __k)
@@ -170,7 +170,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__comp_ellint_1<__type>(__k);
     }
 
-  //  Complete elliptic integrals of the second kind
+  // Complete elliptic integrals of the second kind
 
   inline float
   comp_ellint_2f(float __k)
@@ -188,7 +188,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__comp_ellint_2<__type>(__k);
     }
 
-  //  Complete elliptic integrals of the third kind
+  // Complete elliptic integrals of the third kind
 
   inline float
   comp_ellint_3f(float __k, float __nu)
@@ -206,7 +206,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__comp_ellint_3<__type>(__k, __nu);
     }
 
-  //  Regular modified cylindrical Bessel functions
+  // Regular modified cylindrical Bessel functions
 
   inline float
   cyl_bessel_if(float __nu, float __x)
@@ -224,7 +224,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__cyl_bessel_i<__type>(__nu, __x);
     }
 
-  //  Cylindrical Bessel functions (of the first kind)
+  // Cylindrical Bessel functions (of the first kind)
 
   inline float
   cyl_bessel_jf(float __nu, float __x)
@@ -242,7 +242,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__cyl_bessel_j<__type>(__nu, __x);
     }
 
-  //  Irregular modified cylindrical Bessel functions
+  // Irregular modified cylindrical Bessel functions
 
   inline float
   cyl_bessel_kf(float __nu, float __x)
@@ -260,7 +260,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__cyl_bessel_k<__type>(__nu, __x);
     }
 
-  //  Cylindrical Neumann functions
+  // Cylindrical Neumann functions
 
   inline float
   cyl_neumannf(float __nu, float __x)
@@ -278,7 +278,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__cyl_neumann_n<__type>(__nu, __x);
     }
 
-  //  Incomplete elliptic integrals of the first kind
+  // Incomplete elliptic integrals of the first kind
 
   inline float
   ellint_1f(float __k, float __phi)
@@ -296,7 +296,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__ellint_1<__type>(__k, __phi);
     }
 
-  //  Incomplete elliptic integrals of the second kind
+  // Incomplete elliptic integrals of the second kind
 
   inline float
   ellint_2f(float __k, float __phi)
@@ -314,7 +314,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__ellint_2<__type>(__k, __phi);
     }
 
-  //  Incomplete elliptic integrals of the third kind
+  // Incomplete elliptic integrals of the third kind
 
   inline float
   ellint_3f(float __k, float __nu, float __phi)
@@ -332,7 +332,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__ellint_3<__type>(__k, __nu, __phi);
     }
 
-  //  Exponential integrals
+  // Exponential integrals
 
   inline float
   expintf(float __x)
@@ -350,7 +350,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__expint<__type>(__x);
     }
 
-  //  Hermite polynomials
+  // Hermite polynomials
 
   inline float
   hermitef(unsigned int __n, float __x)
@@ -368,7 +368,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__poly_hermite<__type>(__n, __x);
     }
 
-  //  Laguerre polynomials
+  // Laguerre polynomials
 
   inline float
   laguerref(unsigned int __n, float __x)
@@ -386,7 +386,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__laguerre<__type>(__n, __x);
     }
 
-  //  Legendre polynomials
+  // Legendre polynomials
 
   inline float
   legendref(unsigned int __n, float __x)
@@ -404,7 +404,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__poly_legendre_p<__type>(__n, __x);
     }
 
-  //  Riemann zeta functions
+  // Riemann zeta functions
 
   inline float
   riemann_zetaf(float __s)
@@ -422,7 +422,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__riemann_zeta<__type>(__s);
     }
 
-  //  Spherical Bessel functions
+  // Spherical Bessel functions
 
   inline float
   sph_besself(unsigned int __n, float __x)
@@ -440,7 +440,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__sph_bessel<__type>(__n, __x);
     }
 
-  //  Spherical associated Legendre functions
+  // Spherical associated Legendre functions
 
   inline float
   sph_legendref(unsigned int __l, unsigned int __m, float __theta)
@@ -458,7 +458,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__sph_legendre<__type>(__l, __m, __theta);
     }
 
-  //  Spherical Neumann functions
+  // Spherical Neumann functions
 
   inline float
   sph_neumannf(unsigned int __n, float __x)
@@ -484,7 +484,7 @@ _GLIBCXX_END_NAMESPACE_VERSION
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 
-  //  Confluent hypergeometric functions
+  // Confluent hypergeometric functions
 
   inline float
   conf_hypergf(float __a, float __c, float __x)
@@ -502,7 +502,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__conf_hyperg<__type>(__a, __c, __x);
     }
 
-  //  Hypergeometric functions
+  // Hypergeometric functions
 
   inline float
   hypergf(float __a, float __b, float __c, float __x)
@@ -565,7 +565,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
              : std::sin(__type(__x)) / __type(__x);
     }
 
-  //  Logarithmic integrals
+  // Logarithmic integrals
 
   inline float
   logintf(float __x)
@@ -583,7 +583,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__logint<__type>(__x);
     }
 
-  //  Sine integrals
+  // Sine integrals
 
   inline float
   sinintf(float __x)
@@ -601,7 +601,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__sincosint<__type>(__x).first;
     }
 
-  //  Cosine integrals
+  // Cosine integrals
 
   inline float
   cosintf(float __x)
@@ -619,7 +619,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__sincosint<__type>(__x).second;
     }
 
-  //  Hyperbolic sine integrals
+  // Hyperbolic sine integrals
 
   inline float
   sinhintf(float __x)
@@ -637,7 +637,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__sinhint<__type>(__x);
     }
 
-  //  Hyperbolic cosine integrals
+  // Hyperbolic cosine integrals
 
   inline float
   coshintf(float __x)
@@ -655,7 +655,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__coshint<__type>(__x);
     }
 
-  //  Chebyshev polynomials of the first kind
+  // Chebyshev polynomials of the first kind
 
   inline float
   chebyshev_tf(unsigned int __n, float __x)
@@ -673,7 +673,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__chebyshev_t<__type>(__n, __x);
     }
 
-  //  Chebyshev polynomials of the second kind
+  // Chebyshev polynomials of the second kind
 
   inline float
   chebyshev_uf(unsigned int __n, float __x)
@@ -691,7 +691,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__chebyshev_u<__type>(__n, __x);
     }
 
-  //  Chebyshev polynomials of the third kind
+  // Chebyshev polynomials of the third kind
 
   inline float
   chebyshev_vf(unsigned int __n, float __x)
@@ -709,7 +709,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__chebyshev_v<__type>(__n, __x);
     }
 
-  //  Chebyshev polynomials of the fourth kind
+  // Chebyshev polynomials of the fourth kind
 
   inline float
   chebyshev_wf(unsigned int __n, float __x)
@@ -727,7 +727,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__chebyshev_w<__type>(__n, __x);
     }
 
-  //  Jacobi polynomials
+  // Jacobi polynomials
 
   inline float
   jacobif(unsigned __n, float __alpha, float __beta, float __x)
@@ -745,7 +745,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__poly_jacobi<__type>(__n, __alpha, __beta, __x);
     }
 
-  //  Gegenbauer polynomials
+  // Gegenbauer polynomials
 
   inline float
   gegenbauerf(unsigned int __n, float __alpha, float __x)
@@ -763,7 +763,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__gegenbauer_poly<__type>(__n, __alpha, __x);
     }
 
-  //  Zernike polynomials
+  // Zernike polynomials
 
   inline float
   zernikef(unsigned int __n, int __m, float __rho, float __phi)
@@ -784,7 +784,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
            * (__m >= 0 ? std::cos(__m * __phi) : std::sin(__m * __phi));
     }
 
-  //  Radial polynomials
+  // Radial polynomials
 
   inline float
   radpolyf(unsigned int __n, unsigned int __m, float __rho)
@@ -802,7 +802,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__poly_radial_jacobi<__type>(__n, __m, __rho);
     }
 
-  //  Hyperbolic sinus cardinal functions
+  // Hyperbolic sinus cardinal functions
 
   inline float
   sinhcf(float __x)
@@ -835,7 +835,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
              : std::sinh(__type(__x)) / __type(__x);
     }
 
-  //  Dawson's integrals
+  // Dawson's integrals
 
   inline float
   dawsonintf(float __x)
@@ -853,7 +853,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__dawson<__type>(__x);
     }
 
-  //  Cylindrical Hankel functions of the first kind
+  // Cylindrical Hankel functions of the first kind
 
   inline std::complex<float>
   cyl_hankel_h1f(float __nu, float __z)
@@ -871,7 +871,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__cyl_hankel_h1<__type>(__nu, __z);
     }
 
-  //  Cylindrical Hankel functions of the second kind
+  // Cylindrical Hankel functions of the second kind
 
   inline std::complex<float>
   cyl_hankel_h2f(float __nu, float __z)
@@ -889,7 +889,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__cyl_hankel_h2<__type>(__nu, __z);
     }
 
-  //  Spherical Hankel functions of the first kind
+  // Spherical Hankel functions of the first kind
 
   inline std::complex<float>
   sph_hankel_h1f(unsigned int __n, float __z)
@@ -907,7 +907,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__sph_hankel_h1<__type>(__n, __z);
     }
 
-  //  Spherical Hankel functions of the second kind
+  // Spherical Hankel functions of the second kind
 
   inline std::complex<float>
   sph_hankel_h2f(unsigned int __n, float __z)
@@ -925,7 +925,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__sph_hankel_h2<__type>(__n, __z);
     }
 
-  //  Modified spherical Bessel functions of the first kind
+  // Modified spherical Bessel functions of the first kind
 
   inline float
   sph_bessel_if(unsigned int __n, float __x)
@@ -956,7 +956,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return __i_n;
     }
 
-  //  Modified spherical Bessel functions of the second kind
+  // Modified spherical Bessel functions of the second kind
 
   inline float
   sph_bessel_kf(unsigned int __n, float __x)
@@ -987,7 +987,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return __k_n;
     }
 
-  //  Airy functions of the first kind
+  // Airy functions of the first kind
 
   inline float
   airy_aif(float __x)
@@ -1015,7 +1015,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return __Ai;
     }
 
-  //  Airy functions of the second kind
+  // Airy functions of the second kind
 
   inline float
   airy_bif(float __x)
@@ -1043,7 +1043,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return __Bi;
     }
 
-  //  Upper incomplete gamma functions
+  // Upper incomplete gamma functions
 
   inline float
   gamma_uf(float __n, float __x)
@@ -1061,7 +1061,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__gamma_u<__type>(__n, __x);
     }
 
-  //  Lower incomplete gamma functions
+  // Lower incomplete gamma functions
 
   inline float
   gamma_lf(float __n, float __x)
@@ -1079,7 +1079,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__gamma_l<__type>(__n, __x);
     }
 
-  //  Digamma functions
+  // Digamma functions
 
   inline float
   digammaf(float __z)
@@ -1097,7 +1097,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__psi<__type>(__z);
     }
 
-  //  Dilogarithm functions
+  // Dilogarithm functions
 
   inline float
   dilogf(float __x)
@@ -1115,7 +1115,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__dilog<__type>(__x);
     }
 
-  //  Complete Carlson elliptic R_F functions
+  // Complete Carlson elliptic R_F functions
 
   inline float
   comp_ellint_rf(float __x, float __y)
@@ -1133,7 +1133,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__comp_ellint_rf<__type>(__x, __y);
     }
 
-  //  Carlson elliptic R_F functions
+  // Carlson elliptic R_F functions
 
   inline float
   ellint_rff(float __x, float __y, float __z)
@@ -1151,7 +1151,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__ellint_rf<__type>(__x, __y, __z);
     }
 
-  //  Carlson elliptic R_C functions
+  // Carlson elliptic R_C functions
 
   inline float
   ellint_rcf(float __x, float __y)
@@ -1169,7 +1169,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__ellint_rc<__type>(__x, __y);
     }
 
-  //  Carlson elliptic R_J functions
+  // Carlson elliptic R_J functions
 
   inline float
   ellint_rjf(float __x, float __y, float __z, float __p)
@@ -1187,7 +1187,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__ellint_rj<__type>(__x, __y, __z, __p);
     }
 
-  //  Carlson elliptic R_D functions
+  // Carlson elliptic R_D functions
 
   inline float
   ellint_rdf(float __x, float __y, float __z)
@@ -1205,7 +1205,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__ellint_rd<__type>(__x, __y, __z);
     }
 
-  //  Complete Carlson elliptic R_G functions
+  // Complete Carlson elliptic R_G functions
 
   inline float
   comp_ellint_rg(float __x, float __y)
@@ -1223,7 +1223,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__comp_ellint_rg<__type>(__x, __y);
     }
 
-  //  Carlson elliptic R_G functions
+  // Carlson elliptic R_G functions
 
   inline float
   ellint_rgf(float __x, float __y, float __z)
@@ -1241,7 +1241,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__ellint_rg<__type>(__x, __y, __z);
     }
 
-  //  Hurwitz zeta functions
+  // Hurwitz zeta functions
 
   inline float
   hurwitz_zetaf(float __s, float __a)
@@ -1259,7 +1259,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__hurwitz_zeta<__type>(__s, __a);
     }
 
-  //  Digamma or psi functions
+  // Digamma or psi functions
 
   inline float
   psif(float __x)
@@ -1277,7 +1277,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__psi<__type>(__x);
     }
 
-  //  Incomplete beta functions
+  // Incomplete beta functions
 
   inline float
   ibetaf(float __a, float __b, float __x)

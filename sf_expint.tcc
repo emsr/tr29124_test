@@ -31,16 +31,16 @@
 // ISO C++ 14882 TR29124: Mathematical Special Functions
 //
 
-//  Written by Edward Smith-Rowland.
+// Written by Edward Smith-Rowland.
 //
-//  References:
-//   (1) Handbook of Mathematical Functions,
-//       Ed. by Milton Abramowitz and Irene A. Stegun,
-//       Dover Publications, New-York, Section 5, pp. 228-251.
-//   (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
-//   (3) Numerical Recipes in C, by W. H. Press, S. A. Teukolsky,
-//       W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
-//       2nd ed, pp. 222-225.
+// References:
+// (1) Handbook of Mathematical Functions,
+//     Ed. by Milton Abramowitz and Irene A. Stegun,
+//     Dover Publications, New-York, Section 5, pp. 228-251.
+// (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
+// (3) Numerical Recipes in C, by W. H. Press, S. A. Teukolsky,
+//     W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
+//     2nd ed, pp. 222-225.
 //
 
 #ifndef _GLIBCXX_BITS_SF_EXPINT_TCC
@@ -243,16 +243,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __E1 = __expint_E1(__x);
       if (__x < _Tp(__n))
 	{
-	  //  Forward recursion is stable only for n < x.
+	  // Forward recursion is stable only for n < x.
 	  __En = __E1;
 	  for (unsigned int __j = 2; __j < __n; ++__j)
 	    __En = (std::exp(-__x) - __x * __En) / _Tp(__j - 1);
 	}
       else
 	{
-	  //  Backward recursion is stable only for n >= x.
+	  // Backward recursion is stable only for n >= x.
 	  __En = _Tp{1};
-	  const int __N = __n + 20;  //  TODO: Check this starting number.
+	  const int __N = __n + 20;  // TODO: Check this starting number.
 	  _Tp __save = _Tp{0};
 	  for (int __j = __N; __j > 0; --__j)
 	    {
@@ -376,7 +376,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return -__expint_Ei(-__x);
       else if (__x < _Tp{1})
 	return __expint_E1_series(__x);
-      else if (__x < _Tp{100})  //  TODO: Find a good asymptotic switch point.
+      else if (__x < _Tp{100})  // TODO: Find a good asymptotic switch point.
 	return __expint_En_cont_frac(1, __x);
       else
 	return __expint_E1_asymp(__x);
@@ -470,7 +470,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint(unsigned int __n, _Tp __x)
     {
-      //  Return NaN on NaN input.
+      // Return NaN on NaN input.
       if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__n <= 1 && __x == _Tp{0})

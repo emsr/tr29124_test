@@ -34,14 +34,14 @@
 // Written by Edward Smith-Rowland.
 //
 // References:
-//   (1) Handbook of Mathematical Functions,
-//       ed. Milton Abramowitz and Irene A. Stegun,
-//       Dover Publications,
-//       Section 9, pp. 355-434, Section 10 pp. 435-478
-//   (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
-//   (3) Numerical Recipes in C, by W. H. Press, S. A. Teukolsky,
-//       W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
-//       2nd ed, pp. 240-245
+// (1) Handbook of Mathematical Functions,
+//     ed. Milton Abramowitz and Irene A. Stegun,
+//     Dover Publications,
+//     Section 9, pp. 355-434, Section 10 pp. 435-478
+// (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
+// (3) Numerical Recipes in C, by W. H. Press, S. A. Teukolsky,
+//     W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
+//     2nd ed, pp. 240-245
 
 #ifndef _GLIBCXX_BITS_SF_BESSEL_TCC
 #define _GLIBCXX_BITS_SF_BESSEL_TCC 1
@@ -145,9 +145,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  return;
 	}
 
-      //  When the multiplier is N i.e.
-      //  fp_min = N * min()
-      //  Then J_0 and N_0 tank at x = 8 * N (J_0 = 0 and N_0 = nan)!
+      // When the multiplier is N i.e.
+      // fp_min = N * min()
+      // Then J_0 and N_0 tank at x = 8 * N (J_0 = 0 and N_0 = nan)!
       //const _Tp _S_fp_min = _Tp{20} * std::numeric_limits<_Tp>::min();
       constexpr auto _S_fp_min = std::sqrt(std::numeric_limits<_Tp>::min());
       constexpr int _S_max_iter = 15000;

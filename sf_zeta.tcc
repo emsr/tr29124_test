@@ -34,12 +34,12 @@
 // Written by Edward Smith-Rowland
 //
 // References:
-//   (1) Handbook of Mathematical Functions,
-//       Ed. by Milton Abramowitz and Irene A. Stegun,
-//       Dover Publications, New-York, Section 5, pp. 807-808.
-//   (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
-//   (3) Gamma, Exploring Euler's Constant, Julian Havil,
-//       Princeton, 2003.
+// (1) Handbook of Mathematical Functions,
+//     Ed. by Milton Abramowitz and Irene A. Stegun,
+//     Dover Publications, New-York, Section 5, pp. 807-808.
+// (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
+// (3) Gamma, Exploring Euler's Constant, Julian Havil,
+//     Princeton, 2003.
 
 #ifndef _GLIBCXX_BITS_SF_ZETA_TCC
 #define _GLIBCXX_BITS_SF_ZETA_TCC 1
@@ -54,24 +54,24 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *   @brief  Compute the dilogarithm function @f$ Li_2(x) @f$
-   *           by summation for x <= 1.
+   * @brief Compute the dilogarithm function @f$ Li_2(x) @f$
+   * 	    by summation for x <= 1.
    *
-   *   The Riemann zeta function is defined by:
-   *    \f[
-   *      Li_2(x) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
-   *    \f]
-   *   For |x| near 1 use the reflection formulae:
-   *    \f[
-   *      Li_2(-x) + Li_2(1-x) = \frac{\pi^2}{6} - \ln(x) \ln(1-x)
-   *    \f]
-   *    \f[
-   *      Li_2(-x) - Li_2(1-x) - \frac{1}{2}Li_2(1-x^2) = -\frac{\pi^2}{12} - \ln(x) \ln(1-x)
-   *    \f]
-   *   For x < 1 use the reflection formula:
-   *    \f[
-   *      Li_2(1-x) - Li_2(1-\frac{1}{1-x}) - \frac{1}{2}(\ln(x))^2
-   *    \f]
+   * The Riemann zeta function is defined by:
+   *  \f[
+   * 	Li_2(x) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
+   *  \f]
+   * For |x| near 1 use the reflection formulae:
+   *  \f[
+   * 	Li_2(-x) + Li_2(1-x) = \frac{\pi^2}{6} - \ln(x) \ln(1-x)
+   *  \f]
+   *  \f[
+   * 	Li_2(-x) - Li_2(1-x) - \frac{1}{2}Li_2(1-x^2) = -\frac{\pi^2}{12} - \ln(x) \ln(1-x)
+   *  \f]
+   * For x < 1 use the reflection formula:
+   *  \f[
+   * 	Li_2(1-x) - Li_2(1-\frac{1}{1-x}) - \frac{1}{2}(\ln(x))^2
+   *  \f]
    */
   template<typename _Tp>
     _Tp
@@ -120,23 +120,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Compute the Riemann zeta function @f$ \zeta(s) @f$
-   *           by summation for s > 1.
+   * @brief  Compute the Riemann zeta function @f$ \zeta(s) @f$
+   * 	     by summation for s > 1.
    *
-   *   The Riemann zeta function is defined by:
-   *    \f[
-   *      \zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
-   *    \f]
-   *   For s < 1 use the reflection formula:
-   *    \f[
-   *      \zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
-   *    \f]
+   * The Riemann zeta function is defined by:
+   *  \f[
+   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
+   *  \f]
+   * For s < 1 use the reflection formula:
+   *  \f[
+   * 	\zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
+   *  \f]
    */
   template<typename _Tp>
     _Tp
     __riemann_zeta_sum(_Tp __s)
     {
-      //  A user shouldn't get to this.
+      // A user shouldn't get to this.
       if (__s < _Tp{1})
 	std::__throw_domain_error(__N("Bad argument in zeta sum."));
 
@@ -218,12 +218,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __zeta = _Tp{0};
 
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      //  Max e exponent before overflow.
+      // Max e exponent before overflow.
       const auto _S_max_bincoeff = std::numeric_limits<_Tp>::max_exponent10
 				 * std::log(_Tp{10}) - _Tp{1};
 
-      //  This series works until the binomial coefficient blows up
-      //  so use reflection.
+      // This series works until the binomial coefficient blows up
+      // so use reflection.
       if (__s < _Tp{0})
 	{
 	  constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
@@ -253,7 +253,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __bincoeff *= -_Tp(__i - __j + 1) / _Tp(__j);
 	      if(std::fabs(__bincoeff) > _S_max_bincoeff )
 	      {
-		//  This only gets hit for x << 0.
+		// This only gets hit for x << 0.
 		__punt = true;
 		break;
 	      }
@@ -359,7 +359,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else if (__s < _Tp{20})
 	{
-	  //  Global double sum or McLaurin?
+	  // Global double sum or McLaurin?
 	  bool __glob = true;
 	  if (__glob)
 	    return __riemann_zeta_glob(__s);
@@ -399,8 +399,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __pfact = __pmax / (_S_N + __a);
       auto __ans = __pmax * ((_S_N + __a) / (__s - _Tp{1}) + _Tp{0.5L});
 
-      //  Coefficients for Euler-Maclaurin summation:
-      //  B_{2j}/(2j)!
+      // Coefficients for Euler-Maclaurin summation:
+      // B_{2j}/(2j)!
       constexpr _Tp
       _S_hzeta_c[15]
       {
@@ -464,11 +464,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __hurwitz_zeta_glob(_Tp __s, _Tp __a)
     {
       constexpr _Tp _S_eps = __gnu_cxx::__math_constants<_Tp>::__eps;
-      //  Max before overflow?
+      // Max before overflow?
       constexpr _Tp _S_max = __gnu_cxx::__math_constants<_Tp>::__max;
 
       constexpr unsigned int _S_maxit = 10000;
-      //  Zeroth order contribution already calculated.
+      // Zeroth order contribution already calculated.
       auto __zeta = _Tp{0.5L};
       for (unsigned int __n = 1; __n < _S_maxit; ++__n)
 	{

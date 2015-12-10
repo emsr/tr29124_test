@@ -34,11 +34,11 @@
 // Written by Edward Smith-Rowland.
 //
 // References:
-//   (1) Handbook of Mathematical Functions,
-//       Ed. Milton Abramowitz and Irene A. Stegun,
-//       Dover Publications,
-//       Section 13, pp. 509-510, Section 22 pp. 773-802
-//   (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
+// (1) Handbook of Mathematical Functions,
+//     Ed. Milton Abramowitz and Irene A. Stegun,
+//     Dover Publications,
+//     Section 13, pp. 509-510, Section 22 pp. 773-802
+// (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
 
 #ifndef _GLIBCXX_BITS_SF_LAGUERRE_TCC
 #define _GLIBCXX_BITS_SF_LAGUERRE_TCC 1
@@ -122,7 +122,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const _Tp __mx = -__x;
       const _Tp __tc_sgn = (__x < _Tp{0} ? _Tp{1}
 			 : ((__n % 2 == 1) ? -_Tp{1} : _Tp{1}));
-      //  Get |x|^n/n!
+      // Get |x|^n/n!
       _Tp __tc = _Tp{1};
       const _Tp __ax = std::abs(__x);
       for (unsigned int __k = 1; __k <= __n; ++__k)
@@ -174,17 +174,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __poly_laguerre_recursion(unsigned int __n, _Tpa __alpha1, _Tp __x)
     {
-      //   Compute l_0.
+      // Compute l_0.
       _Tp __l_0 = _Tp{1};
       if  (__n == 0)
 	return __l_0;
 
-      //  Compute l_1^alpha.
+      // Compute l_1^alpha.
       _Tp __l_1 = -__x + _Tp{1} + _Tp(__alpha1);
       if  (__n == 1)
 	return __l_1;
 
-      //  Compute l_n^alpha by recursion on n.
+      // Compute l_n^alpha by recursion on n.
       _Tp __l_n2 = __l_0;
       _Tp __l_n1 = __l_1;
       _Tp __l_n = _Tp{0};
@@ -236,7 +236,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const unsigned int __max_iter = 10000000;
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__poly_laguerre: negative argument"));
-      //  Return NaN on NaN input.
+      // Return NaN on NaN input.
       else if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__n == 0)

@@ -52,7 +52,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi_2 = _S_pi / _Tp{2};
 
-      //  Evaluate S and C by series expansion.
+      // Evaluate S and C by series expansion.
       auto __sum = _Tp{0};
       auto _Ssum = _Tp{0};
       auto _Csum = __ax;
@@ -109,7 +109,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_fp_min = __gnu_cxx::__math_constants<_Tp>::__min;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
 
-      //  Evaluate S and C by Lentz's complex continued fraction method.
+      // Evaluate S and C by Lentz's complex continued fraction method.
       const auto __pix2 = _S_pi * __ax * __ax;
       std::complex<_Tp> __b(_Tp{1}, -__pix2);
       std::complex<_Tp> __cc(_Tp{1} / _S_fp_min, _Tp{0});

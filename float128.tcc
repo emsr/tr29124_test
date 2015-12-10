@@ -4,7 +4,6 @@
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
 
 #include <iostream>
-#include <iomanip> // For setw().
 #include <sstream>
 #include <quadmath.h>
 

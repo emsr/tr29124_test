@@ -34,9 +34,9 @@
 // Written by Edward Smith-Rowland.
 //
 // Reference:
-//   (1) Handbook of Mathematical Functions,
-//       Ed. Milton Abramowitz and Irene A. Stegun,
-//       Dover Publications, Section 22 pp. 773-802
+// (1) Handbook of Mathematical Functions,
+//     Ed. Milton Abramowitz and Irene A. Stegun,
+//     Dover Publications, Section 22 pp. 773-802
 
 #ifndef _GLIBCXX_BITS_SF_HERMITE_TCC
 #define _GLIBCXX_BITS_SF_HERMITE_TCC 1
@@ -68,17 +68,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __poly_hermite_recursion(unsigned int __n, _Tp __x)
     {
-      //  Compute H_0.
+      // Compute H_0.
       auto __H_nm2 = _Tp{1};
       if (__n == 0)
 	return __H_nm2;
 
-      //  Compute H_1.
+      // Compute H_1.
       auto __H_nm1 = _Tp{2} * __x;
       if (__n == 1)
 	return __H_nm1;
 
-      //  Compute H_n.
+      // Compute H_n.
       _Tp __H_n;
       for (unsigned int __i = 2; __i <= __n; ++__i)
 	{

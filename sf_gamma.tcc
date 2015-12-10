@@ -34,16 +34,16 @@
 // Written by Edward Smith-Rowland.
 //
 // References:
-//   (1) Handbook of Mathematical Functions,
-//       ed. Milton Abramowitz and Irene A. Stegun,
-//       Dover Publications,
-//       Section 6, pp. 253-266
-//   (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
-//   (3) Numerical Recipes in C, by W. H. Press, S. A. Teukolsky,
-//       W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
-//       2nd ed, pp. 213-216
-//   (4) Gamma, Exploring Euler's Constant, Julian Havil,
-//       Princeton, 2003.
+// (1) Handbook of Mathematical Functions,
+//     ed. Milton Abramowitz and Irene A. Stegun,
+//     Dover Publications,
+//     Section 6, pp. 253-266
+// (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
+// (3) Numerical Recipes in C, by W. H. Press, S. A. Teukolsky,
+//     W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
+//     2nd ed, pp. 213-216
+// (4) Gamma, Exploring Euler's Constant, Julian Havil,
+//     Princeton, 2003.
 
 #ifndef _GLIBCXX_BITS_SF_GAMMA_TCC
 #define _GLIBCXX_BITS_SF_GAMMA_TCC 1
@@ -96,11 +96,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__n == 1)
 	return -_Tp{1} / _Tp{2};
 
-      //  Take care of the rest of the odd ones.
+      // Take care of the rest of the odd ones.
       if (__n % 2 == 1)
 	return _Tp{0};
 
-      //  Take care of some small evens that are painful for the series.
+      // Take care of some small evens that are painful for the series.
       if (__n < 28)
 	return __num[__n];
 
@@ -305,7 +305,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __bincoef(unsigned int __n, unsigned int __k)
     {
-      //  Max e exponent before overflow.
+      // Max e exponent before overflow.
       static const _Tp __max_bincoeff
 		      = std::numeric_limits<_Tp>::max_exponent10
 		      * std::log(_Tp{10}) - _Tp{1};
