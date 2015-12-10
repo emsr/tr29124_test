@@ -175,44 +175,44 @@ template<typename _Tp>
   void
   test_limits()
   {
-    std::cout << "  tinyness_before     " << std::numeric_limits<_Tp>::tinyness_before << std::endl;
-    std::cout << "  digits              " << std::numeric_limits<_Tp>::digits << std::endl;
-    std::cout << "  digits10            " << std::numeric_limits<_Tp>::digits10 << std::endl;
-    std::cout << "  max_digits10        " << std::numeric_limits<_Tp>::max_digits10 << std::endl;
-    std::cout << "  max_exponent        " << std::numeric_limits<_Tp>::max_exponent << std::endl;
-    std::cout << "  max_exponent10      " << std::numeric_limits<_Tp>::max_exponent10 << std::endl;
-    std::cout << "  min_exponent        " << std::numeric_limits<_Tp>::min_exponent << std::endl;
-    std::cout << "  min_exponent10      " << std::numeric_limits<_Tp>::min_exponent10 << std::endl;
-    std::cout << "  denorm_min          " << std::numeric_limits<_Tp>::denorm_min() << std::endl;
-    std::cout << "  epsilon             " << std::numeric_limits<_Tp>::epsilon() << std::endl;
-    std::cout << "  max                 " << std::numeric_limits<_Tp>::max() << std::endl;
-    std::cout << "  min                 " << std::numeric_limits<_Tp>::min() << std::endl;
-    std::cout << "  sqrt_max            " << sqrt_max<_Tp>() << std::endl;
-    std::cout << "  cbrt_max            " << cbrt_max<_Tp>() << std::endl;
-    std::cout << "  root_max(5)         " << root_max(_Tp{5}) << std::endl;
-    std::cout << "  log_max             " << log_max<_Tp>() << std::endl;
-    std::cout << "  log10_max           " << log10_max<_Tp>() << std::endl;
-    std::cout << "  sqrt_min            " << sqrt_min<_Tp>() << std::endl;
-    std::cout << "  cbrt_min            " << cbrt_min<_Tp>() << std::endl;
-    std::cout << "  root_min(5)         " << root_min(_Tp{5}) << std::endl;
-    std::cout << "  log_min             " << log_min<_Tp>() << std::endl;
-    std::cout << "  log10_min           " << log10_min<_Tp>() << std::endl;
-    std::cout << "  sqrt_eps            " << sqrt_eps<_Tp>() << std::endl;
-    std::cout << "  cbrt_eps            " << cbrt_eps<_Tp>() << std::endl;
-    std::cout << "  root_eps(5)         " << root_eps(_Tp{5}) << std::endl;
-    std::cout << "  log_eps             " << log_eps<_Tp>() << std::endl;
-    std::cout << "  log10_eps           " << log10_eps<_Tp>() << std::endl;
+    std::cout << "  tinyness_before     " << std::numeric_limits<_Tp>::tinyness_before << '\n';
+    std::cout << "  digits              " << std::numeric_limits<_Tp>::digits << '\n';
+    std::cout << "  digits10            " << std::numeric_limits<_Tp>::digits10 << '\n';
+    std::cout << "  max_digits10        " << std::numeric_limits<_Tp>::max_digits10 << '\n';
+    std::cout << "  max_exponent        " << std::numeric_limits<_Tp>::max_exponent << '\n';
+    std::cout << "  max_exponent10      " << std::numeric_limits<_Tp>::max_exponent10 << '\n';
+    std::cout << "  min_exponent        " << std::numeric_limits<_Tp>::min_exponent << '\n';
+    std::cout << "  min_exponent10      " << std::numeric_limits<_Tp>::min_exponent10 << '\n';
+    std::cout << "  denorm_min          " << std::numeric_limits<_Tp>::denorm_min() << '\n';
+    std::cout << "  epsilon             " << std::numeric_limits<_Tp>::epsilon() << '\n';
+    std::cout << "  max                 " << std::numeric_limits<_Tp>::max() << '\n';
+    std::cout << "  min                 " << std::numeric_limits<_Tp>::min() << '\n';
+    std::cout << "  sqrt_max            " << sqrt_max<_Tp>() << '\n';
+    std::cout << "  cbrt_max            " << cbrt_max<_Tp>() << '\n';
+    std::cout << "  root_max(5)         " << root_max(_Tp{5}) << '\n';
+    std::cout << "  log_max             " << log_max<_Tp>() << '\n';
+    std::cout << "  log10_max           " << log10_max<_Tp>() << '\n';
+    std::cout << "  sqrt_min            " << sqrt_min<_Tp>() << '\n';
+    std::cout << "  cbrt_min            " << cbrt_min<_Tp>() << '\n';
+    std::cout << "  root_min(5)         " << root_min(_Tp{5}) << '\n';
+    std::cout << "  log_min             " << log_min<_Tp>() << '\n';
+    std::cout << "  log10_min           " << log10_min<_Tp>() << '\n';
+    std::cout << "  sqrt_eps            " << sqrt_eps<_Tp>() << '\n';
+    std::cout << "  cbrt_eps            " << cbrt_eps<_Tp>() << '\n';
+    std::cout << "  root_eps(5)         " << root_eps(_Tp{5}) << '\n';
+    std::cout << "  log_eps             " << log_eps<_Tp>() << '\n';
+    std::cout << "  log10_eps           " << log10_eps<_Tp>() << '\n';
   }
 
 int
 main()
 {
-  std::cout << std::endl << "float" << std::endl;
+  std::cout << std::endl << "float" << '\n';
   test_limits<float>();
 
-  std::cout << std::endl << "double" << std::endl;
+  std::cout << std::endl << "double" << '\n';
   test_limits<double>();
 
-  std::cout << std::endl << "long double" << std::endl;
+  std::cout << std::endl << "long double" << '\n';
   test_limits<long double>();
 }

@@ -296,7 +296,7 @@ namespace std
       max() _GLIBCXX_USE_NOEXCEPT { return FLT128_MAX; }
 
 #if __cplusplus >= 201103L
-      static constexpr __float128 
+      static _GLIBCXX_CONSTEXPR __float128 
       lowest() _GLIBCXX_USE_NOEXCEPT { return -FLT128_MAX; }
 #endif
 
@@ -367,6 +367,263 @@ namespace std
 
 // From <limits>
 #undef __glibcxx_max_digits10
+
+#include "numeric_limits.h"
+namespace __gnu_cxx
+{
+
+  /**
+   *  @brief Part of std::numeric_limits.
+   *  The idea is that types with, say, non-constexpr or even dynamic epsilon()
+   *  can participate in this.
+   *  I think variable templates could be specialized with non-constexpr types
+   *  but I need something to work in C++11 and variable templates won't allow
+   *  extraction of variable max from a mp number.
+   */
+
+  // Constexpr function template versions of std::numeric_limits.
+
+  template<>
+    _GLIBCXX_CONSTEXPR bool
+    is_specialized<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::is_specialized; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR __float128
+    min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::min(); }
+
+  template<>
+    _GLIBCXX_CONSTEXPR __float128
+    max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::max(); }
+
+  template<>
+    _GLIBCXX_CONSTEXPR __float128
+    lowest<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::lowest(); }
+
+  template<>
+    _GLIBCXX_CONSTEXPR int
+    digits<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::digits; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR int
+    digits10<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::digits10; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR int
+    max_digits10<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::max_digits10; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR bool
+    xxx_is_signed<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::is_signed; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR bool
+    is_integer<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::is_integer; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR bool
+    is_exact<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::is_exact; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR int
+    radix<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::radix; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR __float128
+    epsilon<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::epsilon(); }
+
+  template<>
+    _GLIBCXX_CONSTEXPR __float128
+    round_error<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::round_error(); }
+
+  template<>
+    _GLIBCXX_CONSTEXPR int
+    min_exponent<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::min_exponent; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR int
+    min_exponent10<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::min_exponent10; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR int
+    max_exponent<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::max_exponent; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR int
+    max_exponent10<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::max_exponent10; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR bool
+    has_infinity<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::has_infinity; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR bool
+    has_quiet_NaN<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::has_quiet_NaN; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR bool
+    has_signaling_NaN<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::has_signaling_NaN; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR std::float_denorm_style
+    has_denorm<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::has_denorm; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR bool
+    has_denorm_loss<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::has_denorm_loss; }
+
+  template<>
+    /*_GLIBCXX_CONSTEXPR*/ __float128
+    infinity<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::infinity(); }
+
+  template<>
+    /*_GLIBCXX_CONSTEXPR*/ __float128
+    quiet_NaN<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::quiet_NaN(); }
+
+  template<>
+    /*_GLIBCXX_CONSTEXPR*/ __float128
+    signaling_NaN<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::signaling_NaN(); }
+
+  template<>
+    _GLIBCXX_CONSTEXPR __float128
+    denorm_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::denorm_min(); }
+
+  template<>
+    _GLIBCXX_CONSTEXPR bool
+    is_iec559<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::is_iec559; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR bool
+    is_bounded<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::is_bounded; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR bool
+    is_modulo<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::is_modulo; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR bool
+    traps<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::traps; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR bool
+    tinyness_before<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::tinyness_before; }
+
+  template<>
+    _GLIBCXX_CONSTEXPR std::float_round_style
+    round_style<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<__float128>::round_style; }
+
+  // Extra bits to help with numerics...
+  // These depend math functions which aren't constexpr for __float128.
+
+  template<>
+    __float128
+    sqrt_max<__float128>(__float128)
+    { return std::sqrt(max(__float128{})); }
+
+  template<>
+    __float128
+    cbrt_max<__float128>(__float128)
+    { return std::cbrt(max(__float128{})); }
+
+  template<>
+    __float128
+    root_max(__float128 __root)
+    { return std::pow(max(__float128{}), 1 / __root); }
+
+  template<>
+    __float128
+    log_max<__float128>(__float128)
+    { return std::log(max(__float128{})); }
+
+  template<>
+    __float128
+    log10_max<__float128>(__float128)
+    { return std::log10(max(__float128{})); }
+
+
+  template<>
+    __float128
+    sqrt_min<__float128>(__float128)
+    { return std::sqrt(min(__float128{})); }
+
+  template<>
+    __float128
+    cbrt_min<__float128>(__float128)
+    { return std::cbrt(min(__float128{})); }
+
+  template<>
+    __float128
+    root_min(__float128 __root)
+    { return std::pow(min(__float128{}), 1 / __root); }
+
+  template<>
+    __float128
+    log_min<__float128>(__float128)
+    { return std::log(min(__float128{})); }
+
+  template<>
+    __float128
+    log10_min<__float128>(__float128)
+    { return std::log10(min(__float128{})); }
+
+
+  template<>
+    __float128
+    sqrt_eps<__float128>(__float128)
+    { return std::sqrt(epsilon(__float128{})); }
+
+  template<>
+    __float128
+    cbrt_eps<__float128>(__float128)
+    { return std::cbrt(epsilon(__float128{})); }
+
+  template<>
+    __float128
+    root_eps(__float128 __root)
+    { return std::pow(epsilon(__float128{}), 1 / __root); }
+
+  template<>
+    __float128
+    log_eps<__float128>(__float128)
+    { return std::log(epsilon(__float128{})); }
+
+  template<>
+    __float128
+    log10_eps<__float128>(__float128)
+    { return std::log10(epsilon(__float128{})); }
+
+} // namespace __gnu_cxx
 
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
