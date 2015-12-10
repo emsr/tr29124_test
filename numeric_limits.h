@@ -20,244 +20,244 @@ namespace __gnu_cxx
   // Constexpr function template versions of std::numeric_limits.
 
   template<typename _Tp>
-    constexpr bool
-    is_specialized(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR bool
+    __is_specialized(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::is_specialized; }
 
   template<typename _Tp>
-    constexpr _Tp
-    min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR _Tp
+    __min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::min(); }
 
   template<typename _Tp>
-    constexpr _Tp
-    max(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR _Tp
+    __max(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::max(); }
 
   template<typename _Tp>
-    constexpr _Tp
-    lowest(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR _Tp
+    __lowest(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::lowest(); }
 
   template<typename _Tp>
-    constexpr int
-    digits(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR int
+    __digits(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::digits; }
 
   template<typename _Tp>
-    constexpr int
-    digits10(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR int
+    __digits10(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::digits10; }
 
   template<typename _Tp>
-    constexpr int
-    max_digits10(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR int
+    __max_digits10(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::max_digits10; }
 
   template<typename _Tp>
-    constexpr bool
-    xxx_is_signed(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR bool
+    __is_signed(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::is_signed; }
 
   template<typename _Tp>
-    constexpr bool
-    is_integer(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR bool
+    __is_integer(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::is_integer; }
 
   template<typename _Tp>
-    constexpr bool
-    is_exact(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR bool
+    __is_exact(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::is_exact; }
 
   template<typename _Tp>
-    constexpr int
-    radix(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR int
+    __radix(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::radix; }
 
   template<typename _Tp>
-    constexpr _Tp
-    epsilon(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR _Tp
+    __epsilon(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::epsilon(); }
 
   template<typename _Tp>
-    constexpr _Tp
-    round_error(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR _Tp
+    __round_error(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::round_error(); }
 
   template<typename _Tp>
-    constexpr int
-    min_exponent(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR int
+    __min_exponent(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::min_exponent; }
 
   template<typename _Tp>
-    constexpr int
-    min_exponent10(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR int
+    __min_exponent10(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::min_exponent10; }
 
   template<typename _Tp>
-    constexpr int
-    max_exponent(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR int
+    __max_exponent(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::max_exponent; }
 
   template<typename _Tp>
-    constexpr int
-    max_exponent10(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR int
+    __max_exponent10(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::max_exponent10; }
 
   template<typename _Tp>
-    constexpr bool
-    has_infinity(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR bool
+    __has_infinity(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::has_infinity; }
 
   template<typename _Tp>
-    constexpr bool
-    has_quiet_NaN(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR bool
+    __has_quiet_NaN(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::has_quiet_NaN; }
 
   template<typename _Tp>
-    constexpr bool
-    has_signaling_NaN(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR bool
+    __has_signaling_NaN(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::has_signaling_NaN; }
 
   template<typename _Tp>
-    constexpr std::float_denorm_style
-    has_denorm(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR std::float_denorm_style
+    __has_denorm(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::has_denorm; }
 
   template<typename _Tp>
-    constexpr bool
-    has_denorm_loss(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR bool
+    __has_denorm_loss(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::has_denorm_loss; }
 
   template<typename _Tp>
-    constexpr _Tp
-    infinity(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR _Tp
+    __infinity(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::infinity(); }
 
   template<typename _Tp>
-    constexpr _Tp
-    quiet_NaN(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR _Tp
+    __quiet_NaN(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::quiet_NaN(); }
 
   template<typename _Tp>
-    constexpr _Tp
-    signaling_NaN(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR _Tp
+    __signaling_NaN(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::signaling_NaN(); }
 
   template<typename _Tp>
-    constexpr _Tp
-    denorm_min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR _Tp
+    __denorm_min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::denorm_min(); }
 
   template<typename _Tp>
-    constexpr bool
-    is_iec559(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR bool
+    __is_iec559(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::is_iec559; }
 
   template<typename _Tp>
-    constexpr bool
-    is_bounded(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR bool
+    __is_bounded(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::is_bounded; }
 
   template<typename _Tp>
-    constexpr bool
-    is_modulo(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR bool
+    __is_modulo(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::is_modulo; }
 
   template<typename _Tp>
-    constexpr bool
-    traps(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR bool
+    __traps(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::traps; }
 
   template<typename _Tp>
-    constexpr bool
-    tinyness_before(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR bool
+    __tinyness_before(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::tinyness_before; }
 
   template<typename _Tp>
-    constexpr std::float_round_style
-    round_style(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    _GLIBCXX_CONSTEXPR std::float_round_style
+    __round_style(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::round_style; }
 
   // Extra bits to help with numerics...
   // These depend on constexpr math functions.
 
   template<typename _Tp>
-    constexpr _Tp
-    sqrt_max(_Tp = _Tp{})
-    { return std::sqrt(max(_Tp{})); }
+    _GLIBCXX_CONSTEXPR _Tp
+    __sqrt_max(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    { return std::sqrt(__max(_Tp{})); }
 
   template<typename _Tp>
-    constexpr _Tp
-    cbrt_max(_Tp = _Tp{})
-    { return std::cbrt(max(_Tp{})); }
+    _GLIBCXX_CONSTEXPR _Tp
+    __cbrt_max(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    { return std::cbrt(__max(_Tp{})); }
 
   template<typename _Tp>
-    constexpr _Tp
-    root_max(_Tp __root)
-    { return std::pow(max(_Tp{}), 1 / __root); }
+    _GLIBCXX_CONSTEXPR _Tp
+    __root_max(_Tp __root) _GLIBCXX_USE_NOEXCEPT
+    { return std::pow(__max(_Tp{}), 1 / __root); }
 
   template<typename _Tp>
-    constexpr _Tp
-    log_max(_Tp = _Tp{})
-    { return std::log(max(_Tp{})); }
+    _GLIBCXX_CONSTEXPR _Tp
+    __log_max(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    { return std::log(__max(_Tp{})); }
 
   template<typename _Tp>
-    constexpr _Tp
-    log10_max(_Tp = _Tp{})
-    { return std::log10(max(_Tp{})); }
-
-
-  template<typename _Tp>
-    constexpr _Tp
-    sqrt_min(_Tp = _Tp{})
-    { return std::sqrt(min(_Tp{})); }
-
-  template<typename _Tp>
-    constexpr _Tp
-    cbrt_min(_Tp = _Tp{})
-    { return std::cbrt(min(_Tp{})); }
-
-  template<typename _Tp>
-    constexpr _Tp
-    root_min(_Tp __root)
-    { return std::pow(min(_Tp{}), 1 / __root); }
-
-  template<typename _Tp>
-    constexpr _Tp
-    log_min(_Tp = _Tp{})
-    { return std::log(min(_Tp{})); }
-
-  template<typename _Tp>
-    constexpr _Tp
-    log10_min(_Tp = _Tp{})
-    { return std::log10(min(_Tp{})); }
+    _GLIBCXX_CONSTEXPR _Tp
+    __log10_max(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    { return std::log10(__max(_Tp{})); }
 
 
   template<typename _Tp>
-    constexpr _Tp
-    sqrt_eps(_Tp = _Tp{})
-    { return std::sqrt(epsilon(_Tp{})); }
+    _GLIBCXX_CONSTEXPR _Tp
+    __sqrt_min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    { return std::sqrt(__min(_Tp{})); }
 
   template<typename _Tp>
-    constexpr _Tp
-    cbrt_eps(_Tp = _Tp{})
-    { return std::cbrt(epsilon(_Tp{})); }
+    _GLIBCXX_CONSTEXPR _Tp
+    __cbrt_min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    { return std::cbrt(__min(_Tp{})); }
 
   template<typename _Tp>
-    constexpr _Tp
-    root_eps(_Tp __root)
-    { return std::pow(epsilon(_Tp{}), 1 / __root); }
+    _GLIBCXX_CONSTEXPR _Tp
+    __root_min(_Tp __root) _GLIBCXX_USE_NOEXCEPT
+    { return std::pow(__min(_Tp{}), 1 / __root); }
 
   template<typename _Tp>
-    constexpr _Tp
-    log_eps(_Tp = _Tp{})
-    { return std::log(epsilon(_Tp{})); }
+    _GLIBCXX_CONSTEXPR _Tp
+    __log_min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    { return std::log(__min(_Tp{})); }
 
   template<typename _Tp>
-    constexpr _Tp
-    log10_eps(_Tp = _Tp{})
-    { return std::log10(epsilon(_Tp{})); }
+    _GLIBCXX_CONSTEXPR _Tp
+    __log10_min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    { return std::log10(__min(_Tp{})); }
+
+
+  template<typename _Tp>
+    _GLIBCXX_CONSTEXPR _Tp
+    __sqrt_eps(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    { return std::sqrt(__epsilon(_Tp{})); }
+
+  template<typename _Tp>
+    _GLIBCXX_CONSTEXPR _Tp
+    __cbrt_eps(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    { return std::cbrt(__epsilon(_Tp{})); }
+
+  template<typename _Tp>
+    _GLIBCXX_CONSTEXPR _Tp
+    __root_eps(_Tp __root) _GLIBCXX_USE_NOEXCEPT
+    { return std::pow(__epsilon(_Tp{}), 1 / __root); }
+
+  template<typename _Tp>
+    _GLIBCXX_CONSTEXPR _Tp
+    __log_eps(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    { return std::log(__epsilon(_Tp{})); }
+
+  template<typename _Tp>
+    _GLIBCXX_CONSTEXPR _Tp
+    __log10_eps(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    { return std::log10(__epsilon(_Tp{})); }
 
 } // namespace __gnu_cxx
 
