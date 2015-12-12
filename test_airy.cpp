@@ -29,7 +29,7 @@ chebyshev_eval(double a, double b, double * c, int m, double x)
 }
 
 void
-bessel_cheb(double x, double &gam1, double &gam2, double &gampl, double &gammi)
+bessel_cheb(double x, double& gam1, double& gam2, double& gampl, double& gammi)
 {
   double xx;
   static double c1[]
@@ -82,7 +82,7 @@ bessel_cheb(double x, double &gam1, double &gam2, double &gampl, double &gammi)
     }
 
 void
-old_bessel_chunk(double xnu, double x, double &rj, double &ry, double &rjp, double &ryp)
+old_bessel_chunk(double xnu, double x, double& rj, double& ry, double& rjp, double& ryp)
 {
     const double  EPS    =  1.0e-16;
     const double  FPMIN  =  1.0e-30;
