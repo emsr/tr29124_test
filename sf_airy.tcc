@@ -1002,10 +1002,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using __cmplx = std::complex<_Tp>;
 
       static constexpr std::complex<_Tp>
-	_S_eppid6{ 0.8660254037844386,  0.5},
-	_S_empid6{ 0.8660254037844386, -0.5},
-	_S_eppid3{ 0.5,  0.8660254037844386},
-	_S_empid3{ 0.5, -0.8660254037844386},
+	_S_sqrt3 = __gnu_cxx::__math_constants<_Tp>::__root_3;
+	_S_eppid6{ _S_sqrt3 / _Tp{2},  _Tp{0.5L}},
+	_S_empid6{ _S_sqrt3 / _Tp{2}, -_Tp{0.5L}},
+	_S_eppid3{ _Tp{0.5L},  _S_sqrt3 / _Tp{2}},
+	_S_empid3{ _Tp{0.5L}, -_S_sqrt3 / _Tp{2}},
 	_S_j{0, 1};
       static constexpr _Tp
 	_S_1d3  {_Tp{1} / _Tp{3}},
@@ -1014,9 +1015,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	_S_gamma2d3{3.550280538878172e-01},
 	_S_2g2d3{1.775140269439086e-01},
 	_S_rsqpi{2.820947917738781e-01},
-	_S_pi   {3.1415926535897932385};
+	_S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       static constexpr _Tp _S_small{0.25}, _S_big{15};
-
 
       auto __absz = std::abs(__z);
       // Check size of abs(z) and select appropriate methods.
