@@ -27,8 +27,10 @@ template<typename _Tp>
     constexpr _Tp _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
     constexpr _Tp _S_eps = __gnu_cxx::__math_constants<_Tp>::__eps;
     constexpr _Tp _S_log10min = std::log10(__gnu_cxx::__math_constants<_Tp>::__min);
-    constexpr _Tp _S_gamma1d3{2.588194037928068e-01};
-    constexpr _Tp _S_gamma2d3{3.550280538878172e-01};
+    constexpr _Tp _S_Ai0{3.550280538878172392600631860041831763980e-1};
+    constexpr _Tp _S_Aip0{2.588194037928067984051835601892039634793e-1};
+    constexpr _Tp _S_Bi0{6.149266274460007351509223690936135535960e-1};
+    constexpr _Tp _S_Bip0{8.868776642045783582807775119976424596506e-1};
     constexpr auto _S_i = __cmplx(_Tp{0}, _Tp{1});
     constexpr _Tp _S_big = _Tp{3.5};
     constexpr _Tp _F_k[9]
@@ -99,8 +101,8 @@ template<typename _Tp>
 	    _G += _G_k[__n] * __term * __t;
 	  }
 	auto _U = std::sqrt(_Tp{3} * _S_pi)
-		* (_S_gamma2d3 * _F + _S_gamma1d3 * _G);
-	auto _V = _S_sqrt_pi * (_S_gamma2d3 * _F - _S_gamma1d3 * _G);
+		* (_S_Ai0 * _F + _S_Aip0 * _G);
+	auto _V = _S_sqrt_pi * (_S_Ai0 * _F - _S_Aip0 * _G);
 	__w1 = _U - _S_i * _V;
 	__w2 = _U + _S_i * _V;
 	_Bi = _U / _S_sqrt_pi;
@@ -122,8 +124,8 @@ template<typename _Tp>
 	    _Gp += _Gp_k[__n] * __term;
 	  }
 	auto _Up = std::sqrt(_Tp{3} * _S_pi)
-		 * (_S_gamma2d3 * _Fp + _S_gamma1d3 * _Gp);
-	auto _Vp = _S_sqrt_pi * (_S_gamma2d3 * _Fp - _S_gamma1d3 * _Gp);
+		 * (_S_Ai0 * _Fp + _S_Aip0 * _Gp);
+	auto _Vp = _S_sqrt_pi * (_S_Ai0 * _Fp - _S_Aip0 * _Gp);
 	__w1p = _Up - _S_i * _Vp;
 	__w2p = _Up + _S_i * _Vp;
 	_Bip = _Up / _S_sqrt_pi;
