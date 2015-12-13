@@ -183,7 +183,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr _Tp _S_2d3 {_Tp{2} / _Tp{3}};
       constexpr _Tp _S_9d4 {_Tp{9} / _Tp{4}};
       constexpr _Tp _S_pimh{5.641895835477563e-01};
-      constexpr _Tp _S_pid4{7.853981633974483e-01};
+      constexpr _Tp _S_pid4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
+
       constexpr std::complex<_Tp> _S_zone{1};
       constexpr int _S_ncoeffs = 9;
       constexpr int _S_numnterms = 5;
@@ -395,9 +396,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     	   _S_4d3  {_Tp{4} / _Tp{3}}, _S_5d3  {_Tp{5} / _Tp{3}},
     	   _S_8d3  {_Tp{8} / _Tp{3}}, _S_10d3 {_Tp{10} / _Tp{3}},
     	   _S_14d3 {_Tp{14} / _Tp{3}}, _S_16d3 {_Tp{16} / _Tp{3}},
-    	   _S_gamma4d3{8.929795115692492e-01},
-	   _S_gamma5d3{9.027452929509336e-01},
-    	   _S_2sqrt2{2.828427124746190e+01};
+    	   _S_gamma4d3{8.929795115692492112185643136582258813769e-1},
+	   _S_gamma5d3{9.027452929509336112968586854363425236809e-1},
+    	   _S_sqrt2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
 
       // Compute 1/z for use in recurrence for speed and abs(z).
       __cmplx __1dz;
@@ -409,7 +410,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __plast2 = _S_zone;
       auto __p2 = __d2n * __1dz;
 
-      auto __weak_test = _S_2sqrt2 / __eps;
+      auto __weak_test = 20 * _S_sqrt2 / __eps;
       bool __converged = false;
 
       while (true)
@@ -1011,8 +1012,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr _Tp
 	_S_1d3  {_Tp{1} / _Tp{3}},
 	_S_2d3  {_Tp{2} / _Tp{3}},
-	_S_gamma1d3{2.588194037928068e-01},
-	_S_gamma2d3{3.550280538878172e-01},
+	_S_Ai0{3.550280538878172392600631860041831763980e-1};
+	_S_Aip0{2.588194037928067984051835601892039634793e-1};
+	_S_Bi0{6.149266274460007351509223690936135535960e-1};
+	_S_Bip0{8.868776642045783582807775119976424596506e-1};
 	_S_2g2d3{1.775140269439086e-01},
 	_S_rsqpi{2.820947917738781e-01},
 	_S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
@@ -1054,8 +1057,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		      __airy_hyperg_rational(__z,
 					     _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
 		      // Recover Ai(z) and Ai'(z).
-		      _Ai = _S_gamma2d3 * _Im1d3 - __z * _S_gamma1d3 * _Ip1d3;
-		      _Aip = __z * __z * _S_2g2d3 * _Ip2d3 - _S_gamma1d3 * _Im2d3;
+		      _Ai = _S_Ai0 * _Im1d3 - __z * _S_Aip0 * _Ip1d3;
+		      _Aip = __z * __z * _S_2g2d3 * _Ip2d3 - _S_Aip0 * _Im2d3;
 		    }
 		  else
 		    {
@@ -1107,8 +1110,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		  __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
 		  __airy_hyperg_rational(__z, _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
 		  // Recover Ai(z) and Ai'(z).
-		  _Ai = _S_gamma2d3 * _Im1d3 - __z * _S_gamma1d3 * _Ip1d3;
-		  _Aip = __z * __z * _S_2g2d3 * _Ip2d3 - _S_gamma1d3 * _Im2d3;
+		  _Ai = _S_Ai0 * _Im1d3 - __z * _S_Aip0 * _Ip1d3;
+		  _Aip = __z * __z * _S_2g2d3 * _Ip2d3 - _S_Aip0 * _Im2d3;
 		}
 	      else
 		{
