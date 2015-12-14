@@ -51,6 +51,8 @@ test_beta_inc
 test_pow_funs
 test_pow_bits
 hankel_toy
+hankel_toy128
+airy_toy
 dilog
 test_airy
 test_little_airy
@@ -58,7 +60,6 @@ test_promote_num
 test_hurwitz_zeta
 test_float128
 test_chebyshev
-hankel_toy128
 err.txt
 test_local_special_function.txt
 diff_local_special_function.txt
