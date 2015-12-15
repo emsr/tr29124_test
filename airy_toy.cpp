@@ -15,14 +15,20 @@ template<typename _Tp>
   {
     std::vector<_Tp> _S_cn, _S_dn;
 
-    _S_cn.push_back(_Tp{15} / _Tp{216});
-    _S_dn.push_back(-(_Tp{7} / _Tp{5}) * _S_cn.back());
-    for (int __n = 2; __n <= 200; ++__n)
+    _S_cn.push_back(_Tp{1});
+    _S_dn.push_back(-_Tp{1});
+    auto __denom = _Tp{1};
+    for (int __s = 2; __s <= 200; ++__s)
       {
-	_S_cn.push_back(_S_cn.back()
-		       * (6 * __n - 5) * (6 * __n - 3) * (6 * __n - 1)
-		       / (216 * __n * (2 * __n - 1)));
-	_S_dn.push_back(-_S_cn.back() * (6 * __n + 1) / (6 * __n - 1));
+	//_S_cn.push_back(_S_cn.back()
+	//	       * (6 * __s - 5) * (6 * __s - 3) * (6 * __s - 1)
+	//	       / (216 * __s * (2 * __s - 1)));
+	__denom *= 216 * __s;
+	auto __numer = _Tp{1};
+	for (int __r = 0; __r < 2 * __s; ++__r)
+	  __numer *= (2 * __s + 2 * __r + 1);
+	_S_cn.push_back(__numer / __denom);
+	_S_dn.push_back(-_S_cn.back() * (6 * __s + 1) / (6 * __s - 1));
       }
     std::cout.precision(std::numeric_limits<_Tp>::max_digits10);
     std::cout << "\nc\n";
@@ -35,11 +41,17 @@ template<typename _Tp>
     std::cout << '\n';
     std::cout << '\n';
     std::vector<_Tp> _F_k, _Fp_k, _G_k, _Gp_k;
-    for (int __k = 0; __k < 9; ++__k)
+    _F_k.push_back(_Tp{1});
+    _Fp_k.push_back(_Tp{1});
+    _G_k.push_back(_Tp{1});
+    _Gp_k.push_back(_Tp{1});
+    auto __numer = _Tp{1};
+    for (int __k = 1; __k < 9; ++__k)
       {
-	_F_k.push_back();
+	__numer /= (3 * __k - 2) * (3 * __k - 1) * (3 * __k - 0);
+	_F_k.push_back(_Tp{1} / __numer);
 	_Fp_k.push_back(3 * (__k + 1) * _F_k.back());
-	_G_k.push_back();
+	_G_k.push_back(_Fp_k.back());
 	_Gp_k.push_back((3 * (__k + 1) + 1) * _G_k.back());
       }
     std::cout << "\nF\n";
