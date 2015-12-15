@@ -1,6 +1,6 @@
 // $HOME/bin/bin/g++ -std=gnu++14 -o hankel_toy128 hankel_toy128.cpp -L$HOME/bin/lib64 -lquadmath
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./hankel_toy128
+// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./hankel_toy128 > hankel_toy128.txt
 
 #include <limits>
 #include <iostream>
@@ -91,7 +91,7 @@ main()
 	  uentry[i].push_back(std::make_tuple(ku, i, u.coefficient(i)));
       ++ku;
     }
-  std::cout << '\n';
+  std::cout << "\nuentry\n";
   auto iu = 0;
   for (const auto & u : uentry)
     {
@@ -111,7 +111,7 @@ main()
 	  ventry[i].push_back(std::make_tuple(kv, i, v.coefficient(i)));
       ++kv;
     }
-  std::cout << '\n';
+  std::cout << "\nventry\n";
   auto iv = 0;
   for (const auto & v : ventry)
     {
@@ -122,13 +122,13 @@ main()
 		  << ' ' << std::setw(width) << std::get<2>(c) << '\n';
     }
 
-  std::cout << '\n';
+  std::cout << "\nu\n";
   for (const auto& u : uvec)
     for (auto c = u.crbegin(); c != u.crend(); ++c)
       if (*c != 0)
 	std::cout << std::setw(width) << *c << '\n';
 
-  std::cout << '\n';
+  std::cout << "\nv\n";
   for (const auto& v : vvec)
     for (auto c = v.crbegin(); c != v.crend(); ++c)
       if (*c != 0)
