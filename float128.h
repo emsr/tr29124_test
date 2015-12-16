@@ -146,9 +146,11 @@ namespace std
   llround(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return llroundq(__x); }
 
+#ifndef NO_LOGBQ
   inline __float128
   logb(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return logbq(__x); }
+#endif
 
   inline __float128
   log(__float128 __x) _GLIBCXX_USE_NOEXCEPT
@@ -551,10 +553,17 @@ namespace __gnu_cxx
     __sqrt_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::sqrt(__max(__float128{})); }
 
+#ifdef NO_CBRT
+  template<>
+    __float128
+    __cbrt_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::pow(__max(__float128{}), 1 / 3.0Q); }
+#else
   template<>
     __float128
     __cbrt_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::cbrt(__max(__float128{})); }
+#endif
 
   template<>
     __float128
@@ -577,10 +586,17 @@ namespace __gnu_cxx
     __sqrt_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::sqrt(__min(__float128{})); }
 
+#ifdef NO_CBRT
+  template<>
+    __float128
+    __cbrt_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::pow(__min(__float128{}), 1 / 3.0Q); }
+#else
   template<>
     __float128
     __cbrt_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::cbrt(__min(__float128{})); }
+#endif
 
   template<>
     __float128
@@ -603,10 +619,17 @@ namespace __gnu_cxx
     __sqrt_eps<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::sqrt(__epsilon(__float128{})); }
 
+#ifdef NO_CBRT
+  template<>
+    __float128
+    __cbrt_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    { return std::pow(__epsilon(__float128{}), 1 / 3.0Q); }
+#else
   template<>
     __float128
     __cbrt_eps<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::cbrt(__epsilon(__float128{})); }
+#endif
 
   template<>
     __float128

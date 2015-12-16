@@ -1,6 +1,10 @@
 // $HOME/bin/bin/g++ -std=gnu++14 -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.txt
+// LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.txt
+
+// g++ -std=gnu++14 -DNO_LOGBQ -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
+
+// ./airy_toy > airy_toy.txt
 
 #include <limits>
 #include <iostream>
@@ -46,15 +50,22 @@ template<typename _Tp>
     _Fp_k.push_back(_Tp{1});
     _G_k.push_back(_Tp{1});
     _Gp_k.push_back(_Tp{1});
-    auto __numer = _Tp{1};
-    auto __denom = _Tp{1};
-    for (int __k = 1; __k < 9; ++__k)
+    auto __F_numer = _Tp{1};
+    auto __F_denom = _Tp{1};
+    auto __G_numer = _Tp{1};
+    auto __G_denom = _Tp{1};
+    for (unsigned long long __k = 1ULL; __k <= 12ULL; ++__k)
       {
-	__numer *= (3 * __k - 2) * (3 * __k - 1) * (3 * __k - 0);
-	__denom *= __k * (__k + 1) * (__k + 2);
-	_F_k.push_back(_Tp{1} / __numer);
+	std::cout << '\n' << ' ' << std::setw(40) << __F_numer << '/' << std::setw(40) << __F_denom;
+	__F_denom *= (3ULL * __k - 2ULL) * (3ULL * __k - 1ULL) * (3ULL * __k - 0ULL);
+	__F_numer *= 1ULL + 3ULL * (__k - 1ULL);
+	_F_k.push_back(__F_numer / __F_denom);
 	_Fp_k.push_back(3 * (__k + 1) * _F_k.back());
-	_G_k.push_back(_Fp_k.back());
+
+	std::cout << '\t' << ' ' << std::setw(40) << __G_numer << '/' << std::setw(40) << __G_denom;
+	__G_denom *= (3ULL * (__k + 1) - 4ULL) * (3ULL * (__k + 1) - 3ULL) * (3ULL * (__k + 1) - 2ULL);
+	__G_numer *= 2ULL + 3ULL * (__k - 1ULL);
+	_G_k.push_back(__G_numer / __G_denom);
 	_Gp_k.push_back((3 * (__k + 1) + 1) * _G_k.back());
       }
     std::cout << "\nF\n";
