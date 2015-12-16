@@ -754,8 +754,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    \frac{\Gamma(\nu+1)}{(z/2)^nu}I_\nu(z) = _0F_1 (;\nu+1;z^2/4),
    *   @f]
    *
-   *  Wher the function on the right is a generalized Gaussian
-   *  hypeergeometric function.  For |z| <= 1/4  and
+   *  Where the function on the right is a generalized Gaussian
+   *  hypergeometric function.  For |z| <= 1/4  and
    *  |arg(z)| <= pi/2, the approximations are accurate to
    *  about 16 decimals.
    *
@@ -894,7 +894,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    (4a) Ai'(z)  = \frac{z}{3}(I_{2/3}(\xi) - I_{-2/3}(\xi))
    *   @f]
    *   @f[
-   *    (4a) Bi'(z)  = \frac{z}{\sqrt{3}}(I_{2/3}(\xi) + I_{-2/3}(\xi))
+   *    (4a) Bi'(z)  = \frac{z}{\sqrt{3}}(I_{-2/3}(\xi) + I_{2/3}(\xi))
    *   @f]
    *
    *   @f[
@@ -908,7 +908,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    (6a) Ai'(-z) = \frac{z}{3}(J_{2/3}(\xi) - J_{-2/3}(\xi)) ,
    *   @f]
    *   @f[
-   *    (6b) Bi'(-z) = \frac{z}{\sqrt{3}}(J_{2/3}(\xi) + J_{-2/3}(\xi)) ,
+   *    (6b) Bi'(-z) = \frac{z}{\sqrt{3}}(J_{-2/3}(\xi) + J_{2/3}(\xi)) ,
    *   @f]
    *  Where \xi = - \frac{2}{3}z^{3/2} and U(a;b;z) is the confluent hypergeometric
    *  function defined in
@@ -1112,6 +1112,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		  // Recover Ai(z) and Ai'(z).
 		  _Ai = _S_Ai0 * _Im1d3 - __z * _S_Aip0 * _Ip1d3;
 		  _Aip = __z * __z * _S_2g2d3 * _Ip2d3 - _S_Aip0 * _Im2d3;
+		  //_Ai = _S_Ai0 * _Im1d3 - __z * _S_Aip0 * _Ip1d3;
+		  //
 		}
 	      else
 		{
@@ -1124,7 +1126,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		      * (__m1d3f * _Im1d3 + __p1d3f * _Ip1d3);
 		  _Aip = _S_1d3 * __z * (__m2d3f * _Im2d3 - __p2d3f * _Ip2d3);
 		  //_Bi = __sqrtz * (__m2d3f * _Im2d3 * __p2d3f * _Ip2d3) / _S_sqrt3;
-		  //_Bip = 
+		  //_Bip = (__z / _S_sqrt3)*(I_{2/3}(\xi) + I_{-2/3}(\xi))
 		}
 	    }
 	}
