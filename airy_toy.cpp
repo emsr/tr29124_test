@@ -1,6 +1,6 @@
 // $HOME/bin/bin/g++ -std=gnu++14 -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./airy_toy
+// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.txt
 
 #include <limits>
 #include <iostream>
@@ -18,8 +18,9 @@ template<typename _Tp>
     _S_cn.push_back(_Tp{1});
     _S_dn.push_back(-_Tp{1});
     auto __denom = _Tp{1};
-    for (int __s = 2; __s <= 200; ++__s)
+    for (int __s = 1; __s <= 200; ++__s)
       {
+	//  This also works actually.
 	//_S_cn.push_back(_S_cn.back()
 	//	       * (6 * __s - 5) * (6 * __s - 3) * (6 * __s - 1)
 	//	       / (216 * __s * (2 * __s - 1)));
@@ -46,9 +47,11 @@ template<typename _Tp>
     _G_k.push_back(_Tp{1});
     _Gp_k.push_back(_Tp{1});
     auto __numer = _Tp{1};
+    auto __denom = _Tp{1};
     for (int __k = 1; __k < 9; ++__k)
       {
-	__numer /= (3 * __k - 2) * (3 * __k - 1) * (3 * __k - 0);
+	__numer *= (3 * __k - 2) * (3 * __k - 1) * (3 * __k - 0);
+	__denom *= __k * (__k + 1) * (__k + 2);
 	_F_k.push_back(_Tp{1} / __numer);
 	_Fp_k.push_back(3 * (__k + 1) * _F_k.back());
 	_G_k.push_back(_Fp_k.back());
