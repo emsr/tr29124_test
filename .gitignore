@@ -47,6 +47,7 @@ test_special_function
 test_local_special_function
 test_polynomial
 test_numeric_limits
+test_rational
 test_beta_inc
 test_pow_funs
 test_pow_bits
