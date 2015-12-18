@@ -138,5 +138,5 @@ main()
       if (*c != 0)
 	std::cout << std::showpos << std::setw(width) << *c << '\n';
 
-  //  Try  << std::uppercase << std::hexfloat << std::showpos
+  //  Try this:  << std::uppercase << std::hexfloat << std::showpos
 }

@@ -53,6 +53,7 @@ test_pow_bits
 hankel_toy
 hankel_toy128
 airy_toy
+airy_toy_old
 dilog
 test_airy
 test_little_airy
