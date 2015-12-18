@@ -65,6 +65,8 @@ template<typename _Tp>
       }
 
     std::cout.precision(std::numeric_limits<_Tp>::max_digits10);
+    std::cout << std::showpoint;
+
     std::cout << "\nc\n";
     for (const auto& c : _S_cn)
       std::cout << c << '\n';

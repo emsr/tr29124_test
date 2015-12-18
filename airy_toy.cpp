@@ -35,7 +35,10 @@ template<typename _Tp>
 	_S_cn.push_back(__numer / __denom);
 	_S_dn.push_back(-_S_cn.back() * (6 * __s + 1) / (6 * __s - 1));
       }
+
     std::cout.precision(std::numeric_limits<_Tp>::max_digits10);
+    std::cout << std::showpoint;
+
     std::cout << "\nc\n";
     for (const auto& c : _S_cn)
       std::cout << c << '\n';
@@ -85,6 +88,15 @@ template<typename _Tp>
 int
 main()
 {
+  std::cout << "\nfloat\n-----\n";
+  run_toy<float>();
+
+  std::cout << "\ndouble\n------\n";
+  run_toy<double>();
+
+  std::cout << "\nlong double\n-----------\n";
   run_toy<long double>();
+
+  std::cout << "\n__float128\n----------\n";
   run_toy<__float128>();
 }

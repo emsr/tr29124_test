@@ -4,7 +4,7 @@
 
 // g++ -std=gnu++14 -DNO_LOGBQ -o hankel_toy128 hankel_toy128.cpp -L$HOME/bin/lib64 -lquadmath
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./hankel_toy128 > hankel_toy128.txt
+// ./hankel_toy128 > hankel_toy128.txt
 
 #include <limits>
 #include <iostream>
@@ -46,18 +46,27 @@ main()
 
   std::cout.precision(prec);
   std::cout << std::scientific;
+  std::cout << std::showpoint;
 
   std::cout << '\n';
   __float128 lambda = 1.0Q;
   __float128 mu = -1.0Q;
+  __float128 numer = 1.0Q;
   __float128 denom = 1.0Q;
-  for (int s = 1; s <= 50; ++s)
+  std::cout << std::setw(width) << lambda << '\t' << mu << '\n';
+  numer *= 3 * 5;
+  denom *= 144;
+  lambda = numer / denom;
+  mu = -7 * lambda / 5;
+  std::cout << std::setw(width) << lambda << '\t' << mu << '\n';
+  for (int s = 2; s <= 50; ++s)
     {
       std::cout << std::setw(width) << lambda << '\t' << mu << '\n';
+      //__float128 numer = 1.0Q;
+      //for (int m = 2 * s + 1; m <= 6 * s - 1; m += 2)
+      //  numer *= m;
+      numer *= (6 * s - 3) * (6 * s - 1) / (2 * s - 1);
       denom *= s * 144;
-      __float128 numer = 1.0Q;
-      for (int m = 2 * s + 1; m <= 6 * s - 1; m += 2)
-        numer *= m;
       lambda = numer / denom;
       mu = -(6 * s + 1) * lambda / (6 * s - 1);
     }
@@ -136,7 +145,7 @@ main()
   for (const auto& v : vvec)
     for (auto c = v.crbegin(); c != v.crend(); ++c)
       if (*c != 0)
-	std::cout << std::showpos << std::setw(width) << *c << '\n';
+	std::cout << std::setw(width) << *c << '\n';
 
-  //  Try this:  << std::uppercase << std::hexfloat << std::showpos
+  //  Try these:  << std::showpos << std::uppercase << std::hexfloat << std::showpos
 }
