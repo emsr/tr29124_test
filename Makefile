@@ -6,7 +6,7 @@ SUFFIX = _specfun
 CXX_INST_DIR = $(HOME)/bin$(SUFFIX)
 CXX_SRC_DIR = $(HOME)/gcc$(SUFFIX)
 
-CXX = $(CXX_INST_DIR)/bin/g++ -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+CXX = $(CXX_INST_DIR)/bin/g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__
 CXX_INC_DIR = $(CXX_INST_DIR)/include/c++/6.0.0/bits
 CXX_LIB_DIR = $(CXX_INST_DIR)/lib64
 CXX_TEST_INC_DIR = $(CXX_SRC_DIR)/libstdc++-v3/testsuite/util
@@ -14,6 +14,10 @@ CXX_TEST_INC_DIR = $(CXX_SRC_DIR)/libstdc++-v3/testsuite/util
 BINS = test_special_function \
        diff_special_function \
        testcase \
+       airy_toy \
+       hankel_toy \
+       hankel_toy128 \
+       hankel_toy_new \
        test_airy \
        test_csint \
        test_fresnel \
@@ -22,13 +26,17 @@ BINS = test_special_function \
        test_cmath \
        test_bessel \
        test_nric_bessel \
-       test_legendre
+       test_legendre \
+       diff_local_special_function \
+       test_local_special_function
 
 all: diff_special_function \
      test_special_function \
      testcase \
-     diff_local_special_function \
-     test_local_special_function \
+     airy_toy \
+     hankel_toy \
+     hankel_toy128 \
+     hankel_toy_new \
      test_airy \
      test_csint \
      test_fresnel \
@@ -37,10 +45,12 @@ all: diff_special_function \
      test_cmath \
      test_bessel \
      test_nric_bessel \
-     test_legendre
+     test_legendre \
+     diff_local_special_function \
+     test_local_special_function
 
 testcases: testcase
-	LD_LIBRARY_PATH=/home/ed/bin_specfun/lib64:$LD_LIBRARY_PATH ./testcase
+	LD_LIBRARY_PATH=/home/ed/bin_specfun/lib64:$$LD_LIBRARY_PATH ./testcase
 
 test:
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_airy > test_airy.txt
@@ -53,9 +63,13 @@ test:
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_nric_bessel > test_nric_bessel.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./diff_special_function > diff_special_function.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_special_function > test_special_function.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_legendre > test_legendre.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./airy_toy > airy_toy.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./hankel_toy > hankel_toy.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./hankel_toy128 > hankel_toy128.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./hankel_toy_new > hankel_toy_new.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./diff_local_special_function > diff_local_special_function.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_local_special_function > test_local_special_function.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_legendre > test_legendre.txt
 
 check: \
        check_airy \
@@ -84,10 +98,10 @@ check: \
 
 
 test_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
-	$(CXX) -o test_special_function test_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas
+	$(CXX) -o test_special_function test_special_function.cpp gsl_wrap.cpp -lquadmath -lgsl -lgslcblas
 
 diff_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
-	$(CXX) -o diff_special_function diff_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas
+	$(CXX) -o diff_special_function diff_special_function.cpp gsl_wrap.cpp -lquadmath -lgsl -lgslcblas
 
 #  You need gnu to get __float128!
 test_local_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc sf_*.tcc
@@ -125,6 +139,19 @@ test_nric_bessel: test_nric_bessel.cpp nric_bessel.tcc
 
 test_legendre: test_legendre.cpp legendre.tcc
 	$(CXX) -o test_legendre test_legendre.cpp
+
+
+airy_toy: airy_toy.cpp
+	$(CXX) -o airy_toy airy_toy.cpp -L$(CXX_LIB_DIR) -lquadmath
+
+hankel_toy: hankel_toy.cpp
+	$(CXX) -o hankel_toy hankel_toy.cpp
+
+hankel_toy128: hankel_toy128.cpp
+	$(CXX) -o hankel_toy128 hankel_toy128.cpp -L$(CXX_LIB_DIR) -lquadmath
+
+hankel_toy_new: hankel_toy_new.cpp
+	$(CXX) -o hankel_toy_new hankel_toy_new.cpp -L$(CXX_LIB_DIR) -lquadmath
 
 
 check_airy: check_airy.cc
