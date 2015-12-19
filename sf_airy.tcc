@@ -439,7 +439,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __replast2 = std::real(__plast2);
 	  auto __implast2 = std::imag(__plast2);
 	  // Compute scale factor to avoid possible overflow.
-	  auto __lamn = __norm_Linf(__p2);
+	  auto __lamn = __linf_norm(__p2);
 	  // Compute the kappa_n of strong convergence lemma.
 	  auto __kapn = std::sqrt(((__rep2 / __lamn) * (__rep2 / __lamn)
     			       + (__imp2 / __lamn) * (__imp2 / __lamn))
