@@ -72,7 +72,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline constexpr _Tp
-    __norm_L1(const std::complex<_Tp>& z)
+    __l1_norm(const std::complex<_Tp>& z)
     { return std::abs(std::real(z)) + std::abs(std::imag(z)); }
 
   /**
@@ -80,7 +80,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline constexpr _Tp
-    __norm_Linf(const std::complex<_Tp>& z)
+    __linf_norm(const std::complex<_Tp>& z)
     { return std::max(std::abs(std::real(z)), std::abs(std::imag(z))); }
 
 

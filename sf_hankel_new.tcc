@@ -620,10 +620,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto _H2psave = __zod2m * _C0 + __zod0dm;
 
       auto __converged
-	= (__norm_L1(_H1sum - _H1save) < __eps * __norm_L1(_H1sum)
-	&& __norm_L1(_H2sum - _H2save) < __eps * __norm_L1(_H2sum)
-	&& __norm_L1(_H1psum - _H1psave) < __eps * __norm_L1(_H1psum)
-	&& __norm_L1(_H2psum - _H2psave) < __eps * __norm_L1(_H2psum));
+	= (__l1_norm(_H1sum - _H1save) < __eps * __l1_norm(_H1sum)
+	&& __l1_norm(_H2sum - _H2save) < __eps * __l1_norm(_H2sum)
+	&& __l1_norm(_H1psum - _H1psave) < __eps * __l1_norm(_H1psum)
+	&& __l1_norm(_H2psum - _H2psave) < __eps * __l1_norm(_H2psum));
 
       // Save current sums for next convergence test.
       _H1save = _H1sum;
@@ -634,7 +634,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Maintain index into u_k and v_k coefficients.
       auto __index = 10;
       auto __indexp = 15;
-      // Maintain power of nu^(-2)
+      // Maintain power of nu^(-2).
       auto __z1dn2k = __1dnusq;
 
       for (auto __k = 2; __k <= __nterms; ++__k)
@@ -740,10 +740,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _H2psum = __zod2m * _Csum() + __zod0dm * _Dsum();
 
 	  // If convergence criteria met this term, see if it was before.
-	  if (__norm_L1(_H1sum - _H1save) < __eps * __norm_L1(_H1sum)
-	   && __norm_L1(_H2sum - _H2save) < __eps * __norm_L1(_H2sum)
-	   && __norm_L1(_H1psum - _H1psave) < __eps * __norm_L1(_H1psum)
-	   && __norm_L1(_H2psum - _H2psave) < __eps * __norm_L1(_H2psum))
+	  if (__l1_norm(_H1sum - _H1save) < __eps * __l1_norm(_H1sum)
+	   && __l1_norm(_H2sum - _H2save) < __eps * __l1_norm(_H2sum)
+	   && __l1_norm(_H1psum - _H1psave) < __eps * __l1_norm(_H1psum)
+	   && __l1_norm(_H2psum - _H2psave) < __eps * __l1_norm(_H2psum))
 	    {
 	      if (__converged) // Converged twice in a row - done!
 		return;
