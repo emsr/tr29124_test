@@ -14,6 +14,8 @@
 int
 main()
 {
+  using _Tp = long double;
+
   auto index = 0;
   auto indexp = 0;
   for (int k = 0; k <= 20; ++k)
@@ -25,8 +27,6 @@ main()
       auto indexpold = indexp;
       index += 2;
       indexp += 2;
-      for (; index < indexpold; ++index, ++indexp)
-        /*std::cout << "  index  = " << index << '\n'*/ ;
       ++indexp;
       index = indexp;
       indexp += 2 * k + 3;
@@ -40,38 +40,35 @@ main()
       std::cout << "indexp = " << (k + 1) * (2 * k + 1) << '\n';
     }
 
-  auto prec = std::numeric_limits<long double>::max_digits10;
+  auto prec = std::numeric_limits<_Tp>::max_digits10;
   auto width = prec + 6;
 
   std::cout.precision(prec);
   std::cout << std::scientific;
   std::cout << std::showpoint;
 
-  std::cout << '\n';
-  long double lambda = 1.0L;
-  long double mu = -1.0L;
-  long double numer = 1.0L;
-  long double denom = 1.0L;
+  std::cout << '\n' << std::setw(width) << "lambda\t" << std::setw(width) << "mu\n";
+  _Tp lambda = _Tp{1};
+  _Tp mu = -_Tp{1};
   for (int s = 1; s <= 50; ++s)
     {
-      std::cout << std::setw(width) << lambda << '\t' << mu << '\n';
-      //long double numer = 1.0L;
-      //for (int m = 2 * s + 1; m <= 6 * s - 1; m += 2)
-      //  numer *= m;
-      numer *= (6 * s - 3) * (6 * s - 1) / (2 * s - 1);
-      denom *= s * 144;
-      lambda = numer / denom;
+      std::cout << std::setw(width) << lambda << '\t' << std::setw(width) << mu << '\n';
+      // Turn this into a recursion:
+      // for (int m = 2 * s + 1; m <= 6 * s - 1; m += 2)
+      //   numer *= m;
+      lambda *= _Tp{1} * (6 * s - 5) * (6 * s - 3) * (6 * s - 1)
+	      / ((2 * s - 1) * s * 144);
       mu = -(6 * s + 1) * lambda / (6 * s - 1);
     }
 
-  std::polynomial<long double> upol1{0.0L, 0.0L, 0.5L, 0.0L, -0.5L};
-  std::polynomial<long double> upol2{+0.125L, 0.0L, -0.625L};
-  std::polynomial<long double> vpol1{0.0L, -0.5L, 0.0L, +0.5L};
-  std::polynomial<long double> vpol2{0.0L, 0.0L, -1.0L, 0.0L, +1.0L};
-  std::polynomial<long double> u{1.0L};
-  std::vector<std::polynomial<long double>> uvec;
-  std::polynomial<long double> v{1.0L};
-  std::vector<std::polynomial<long double>> vvec;
+  std::polynomial<_Tp> upol1{_Tp{0}, _Tp{0}, _Tp{0.5L}, _Tp{0}, -_Tp{0.5L}};
+  std::polynomial<_Tp> upol2{+_Tp{0.125L}, _Tp{0}, -_Tp{0.625L}};
+  std::polynomial<_Tp> vpol1{_Tp{0}, -_Tp{0.5L}, _Tp{0}, +_Tp{0.5L}};
+  std::polynomial<_Tp> vpol2{_Tp{0}, _Tp{0}, -_Tp{1}, _Tp{0}, +_Tp{1}};
+  std::polynomial<_Tp> u{_Tp{1}};
+  std::vector<std::polynomial<_Tp>> uvec;
+  std::polynomial<_Tp> v{_Tp{1}};
+  std::vector<std::polynomial<_Tp>> vvec;
   for (auto k = 1; k <= 20; ++k)
     {
       uvec.push_back(u);
@@ -80,14 +77,14 @@ main()
       u = upol1 * u.derivative() + (upol2 * u).integral(0.0);
       v += u;
     }
-  std::cout << '\n';
+  std::cout << "\nu\n";
   for (const auto & u : uvec)
     std::cout << u << '\n';
-  std::cout << '\n';
+  std::cout << "\nv\n";
   for (const auto & v : vvec)
     std::cout << v << '\n';
 
-  std::vector<std::vector<std::tuple<int, int, long double>>> uentry;
+  std::vector<std::vector<std::tuple<int, int, _Tp>>> uentry;
   auto ku = 0;
   for (const auto & u : uvec)
     {
@@ -107,7 +104,7 @@ main()
 		  << ' ' << std::setw(3) << std::get<1>(c)
 		  << ' ' << std::setw(width) << std::get<2>(c) << '\n';
     }
-  std::vector<std::vector<std::tuple<int, int, long double>>> ventry;
+  std::vector<std::vector<std::tuple<int, int, _Tp>>> ventry;
   auto kv = 0;
   for (const auto & v : vvec)
     {
@@ -140,5 +137,5 @@ main()
       if (*c != 0)
 	std::cout << std::setw(width) << *c << '\n';
 
-  //  Try these:  << std::showpos << std::uppercase << std::hexfloat << std::showpos
+  // Try these:  << std::showpos << std::uppercase << std::hexfloat << std::showpos
 }
