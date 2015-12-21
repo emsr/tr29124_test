@@ -2,7 +2,7 @@
 
 // LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.txt
 
-// g++ -std=gnu++14 -DNO_LOGBQ -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
+// g++ -std=gnu++14 -DNO_LOGBQ -o airy_toy airy_toy.cpp -lquadmath
 
 // ./airy_toy > airy_toy.txt
 
@@ -21,18 +21,14 @@ template<typename _Tp>
 
     _S_cn.push_back(_Tp{1});
     _S_dn.push_back(-_Tp{1});
-    auto __denom = _Tp{1};
     for (int __s = 1; __s <= 200; ++__s)
       {
-	//  This also works actually - it's recursion on the products.
-	//_S_cn.push_back(_S_cn.back()
-	//	       * (6 * __s - 5) * (6 * __s - 3) * (6 * __s - 1)
-	//	       / (216 * __s * (2 * __s - 1)));
-	__denom *= 216 * __s;
-	auto __numer = _Tp{1};
-	for (int __r = 0; __r < 2 * __s; ++__r)
-	  __numer *= (2 * __s + 2 * __r + 1);
-	_S_cn.push_back(__numer / __denom);
+        // Turn this into a recursion:
+	// for (int r = 0; r < 2 * s; ++r)
+	//   numer *= (2 * s + 2 * r + 1);
+	_S_cn.push_back(_S_cn.back()
+		      * (6 * __s - 5) * (6 * __s - 3) * (6 * __s - 1)
+		      / (216 * __s * (2 * __s - 1)));
 	_S_dn.push_back(-_S_cn.back() * (6 * __s + 1) / (6 * __s - 1));
       }
 
