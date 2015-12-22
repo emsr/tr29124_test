@@ -66,8 +66,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				std::complex<_Tp>& _Ai,
 				std::complex<_Tp>& _Aip)
     {
-      constexpr _Tp _S_2d3   = _Tp(2) / _Tp(3);
-      constexpr _Tp _S_pmhd2 = 2.820947917738781e-01;
+      constexpr _Tp _S_2d3   = _Tp{2} / _Tp{3};
+      constexpr _Tp _S_pmhd2 = _Tp{2.820947917738781434740397257803862929219e-01L};
       constexpr int _S_ncoeffs = 15;
       constexpr int _S_numnterms = 5;
       constexpr int _S_nterms[5]{ _S_ncoeffs, 12, 11, 11, 9 };
@@ -182,7 +182,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       constexpr _Tp _S_2d3 {_Tp{2} / _Tp{3}};
       constexpr _Tp _S_9d4 {_Tp{9} / _Tp{4}};
-      constexpr _Tp _S_pimh{5.641895835477563e-01};
+      constexpr _Tp _S_pimh{5.641895835477562869480794515607725858438e-01};
       constexpr _Tp _S_pid4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
 
       constexpr std::complex<_Tp> _S_zone{1};
@@ -1017,7 +1017,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	_S_Bi0{6.149266274460007351509223690936135535960e-1};
 	_S_Bip0{8.868776642045783582807775119976424596506e-1};
 	_S_2g2d3{1.775140269439086e-01},
-	_S_rsqpi{2.820947917738781e-01},
+	_S_rsqpi{2.820947917738781434740397257803862929219e-01}, // 1/(2sqrt(pi))
 	_S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       static constexpr _Tp _S_small{0.25}, _S_big{15};
 
@@ -1059,6 +1059,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		      // Recover Ai(z) and Ai'(z).
 		      _Ai = _S_Ai0 * _Im1d3 - __z * _S_Aip0 * _Ip1d3;
 		      _Aip = __z * __z * _S_2g2d3 * _Ip2d3 - _S_Aip0 * _Im2d3;
+		      //_Bi = 
+		      //_Bip = 
 		    }
 		  else
 		    {
@@ -1112,8 +1114,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		  // Recover Ai(z) and Ai'(z).
 		  _Ai = _S_Ai0 * _Im1d3 - __z * _S_Aip0 * _Ip1d3;
 		  _Aip = __z * __z * _S_2g2d3 * _Ip2d3 - _S_Aip0 * _Im2d3;
-		  //_Ai = _S_Ai0 * _Im1d3 - __z * _S_Aip0 * _Ip1d3;
-		  //
+		  //_Bi = _S_Bi0 * _Im1d3 - __z * _S_Bip0 * _Ip1d3;
+		  //_Bip = 
 		}
 	      else
 		{
