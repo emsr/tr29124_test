@@ -115,7 +115,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		    std::complex<_Tp>& __num1d3, std::complex<_Tp>& __num2d3,
 		    std::complex<_Tp>& __num4d3, std::complex<_Tp>& __zeta,
 		    std::complex<_Tp>& __zetaphf, std::complex<_Tp>& __zetamhf,
-		    std::complex<_Tp>& __zetm3h, std::complex<_Tp>& __zetrat)
+		    std::complex<_Tp>& __zetam3hf, std::complex<_Tp>& __zetrat)
     {
       using __cmplx = std::complex<_Tp>;
 
@@ -123,16 +123,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr auto _S_sqrtinf = std::sqrt(_S_inf);
 
       static constexpr auto _S_1d4   = _Tp(0.25L);
-      static constexpr auto _S_1d3   = _Tp(0.33333333333333333333L);
+      static constexpr auto _S_1d3   = _Tp(0.3333333333333333333333333333333333333333L);
       static constexpr auto _S_1d2   = _Tp(0.5L);
-      static constexpr auto _S_2d3   = _Tp(0.66666666666666633337L);
-      static constexpr auto _S_2pi   = _Tp(6.283185307179586L);
-      static constexpr auto _S_lncon = _Tp(0.2703100720721096L);
-      static constexpr auto _S_sqrt2 = _Tp(1.4142135623730950L);
-      static constexpr auto _S_4d3   = _Tp(1.33333333333333333333L);
+      static constexpr auto _S_2d3   = _Tp(0.6666666666666666666666666666666666666666L);
+      static constexpr auto _S_2pi   = _Tp(6.283185307179586476925286766559005768391L);
+      static constexpr auto _S_lncon = _Tp(0.2703100720721095879853420769762327577152L); // (2/3)ln(3/2)
+      static constexpr auto _S_sqrt2 = _Tp(1.414213562373095048801688724209698078569L);
+      static constexpr auto _S_4d3   = _Tp(1.333333333333333333333333333333333333333L);
 
-      static constexpr __cmplx __zone{1.0L, 0.0L};
-      static constexpr __cmplx _S_j{0.0L, 1.0L};
+      static constexpr __cmplx __zone{_Tp{1}, _Tp{0}};
+      static constexpr __cmplx _S_j{_Tp{0}, _Tp{1}};
 
       // Separate real and imaginary parts of zhat.
       auto __dx = std::real(__zhat);
@@ -182,7 +182,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Compute xi = ln(1+(1-zhat^2)^(1/2)) - ln(zhat) - (1-zhat^2)^(1/2)
       // using default branch of logarithm and square root.
       auto __xi = std::log(__zone + __ztemp) - std::log(__zhat) - __ztemp;
-      __zetm3h = _S_2d3 / __xi;
+      __zetam3hf = _S_2d3 / __xi;
 
       // Compute principal value of ln(xi) and then adjust imaginary part.
       auto __lnxi = std::log(__xi);
@@ -235,8 +235,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  @param[in]  num2d3  nu^(-2/3) - output from hankel_params.
    *  @param[in]  zeta    zeta in the uniform asymptotic expansions - output
    *			  from hankel_params.
-   *  @param[out]  argp  exp(+2*pi*i/3) * nu^(-2/3) * zeta.
-   *  @param[out]  argm  exp(-2*pi*i/3) * nu^(-2/3) * zeta.
+   *  @param[out]  argp  exp(+2*pi*i/3) * nu^(2/3) * zeta.
+   *  @param[out]  argm  exp(-2*pi*i/3) * nu^(2/3) * zeta.
    *  @throws  std::runtime_error.
    */
   template<typename _Tp>
@@ -247,8 +247,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using __cmplx = std::complex<_Tp>;
 
       // expp and expm are exp(2*pi*i/3) and its reciprocal, respectively.
-      static constexpr auto __expp = __cmplx{-0.5L,  0.8660254037844386L};
-      static constexpr auto __expm = __cmplx{-0.5L, -0.8660254037844386L};
+      static constexpr auto __expp = __cmplx{-0.5L,  0.8660254037844386467637231707529361834727L};
+      static constexpr auto __expm = __cmplx{-0.5L, -0.8660254037844386467637231707529361834727L};
 
       if (__safe_div(__zeta, __nm2d3, __argm))
 	{
@@ -282,16 +282,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using __cmplx = std::complex<_Tp>;
 
-      static constexpr __cmplx __e2pd3{-0.5L,  0.8660254037844386L};
-      static constexpr __cmplx __d2pd3{-0.5L, -0.8660254037844386L};
+      static constexpr __cmplx __e2pd3{-0.5L,  0.8660254037844386467637231707529361834727L};
+      static constexpr __cmplx __d2pd3{-0.5L, -0.8660254037844386467637231707529361834727L};
 
       if (__safe_div(__z, __nu, __zhat))
 	{
 	  // Try to compute other nu and z dependent parameters except args to Airy functions.
-	  __cmplx __nm4d3, __nusq, __zeta, __etphf, __etmhf;
+	  __cmplx __nm4d3, __nusq, __zeta, __zetaphf, __zetamhf;
 	  __hankel_params(__nu, __zhat, __t, __tsq, __nusq,
 			  __1dnsq, __nm1d3, __nm2d3, __nm4d3,
-			  __zeta, __etphf, __etmhf, __etm3h, __etrat);
+			  __zeta, __zetaphf, __zetamhf, __etm3h, __etrat);
 
 
 	  // Try to compute Airy function arguments.
@@ -303,11 +303,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __airy(__argp, __eps, _Aip, _Aipp);
 	  __airy(__argm, __eps, _Aim, _Aimp);
 	  // Compute partial outer terms in expansions.
-	  __o4dp = -__etmhf * __nm4d3 * __e2pd3 * _Aipp;
-	  __o4dm = -__etmhf * __nm4d3 * __d2pd3 * _Aimp;
-	  __od2p = -__etphf * __nm2d3 * _Aip;
+	  __o4dp = -__zetamhf * __nm4d3 * __e2pd3 * _Aipp;
+	  __o4dm = -__zetamhf * __nm4d3 * __d2pd3 * _Aimp;
+	  __od2p = -__zetaphf * __nm2d3 * _Aip;
 	  __od0dp = __e2pd3 * _Aipp;
-	  __od2m = -__etphf * __nm2d3 * _Aim;
+	  __od2m = -__zetaphf * __nm2d3 * _Aim;
 	  __od0dm = __d2pd3 * _Aimp;
 	}
       else
@@ -332,11 +332,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     void
     __hankel_uniform_sum(std::complex<_Tp> __t, std::complex<_Tp> __tsq,
-			std::complex<_Tp> __1dnusq, std::complex<_Tp> __zetm3h,
-			std::complex<_Tp> _Aip, std::complex<_Tp> __zo4dp,
-			std::complex<_Tp> _Aim, std::complex<_Tp> __zo4dm,
-			std::complex<_Tp> __zod2p, std::complex<_Tp> __zod0dp,
-			std::complex<_Tp> __zod2m, std::complex<_Tp> __zod0dm,
+			std::complex<_Tp> __1dnusq, std::complex<_Tp> __zetam3hf,
+			std::complex<_Tp> _Aip, std::complex<_Tp> __o4dp,
+			std::complex<_Tp> _Aim, std::complex<_Tp> __o4dm,
+			std::complex<_Tp> __od2p, std::complex<_Tp> __od0dp,
+			std::complex<_Tp> __od2m, std::complex<_Tp> __od0dm,
 			_Tp __eps,
 			std::complex<_Tp>& _H1sum, std::complex<_Tp>& _H1psum,
 			std::complex<_Tp>& _H2sum, std::complex<_Tp>& _H2psum)
@@ -585,17 +585,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // in the outer factors, thus saving repeated multiplications by them.
       auto _A0 = __zone;
       auto _A = __u[1]
-	      + __zetm3h * (_S_mu[1] * __zetm3h + _S_mu[0] * __u[0]);
-      auto _B0 = __u[0] + _S_lambda[0] * __zetm3h;
-      auto _B = __u[2] + __zetm3h * (__zetm3h * (_S_lambda[2] * __zetm3h
+	      + __zetam3hf * (_S_mu[1] * __zetam3hf + _S_mu[0] * __u[0]);
+      auto _B0 = __u[0] + _S_lambda[0] * __zetam3hf;
+      auto _B = __u[2] + __zetam3hf * (__zetam3hf * (_S_lambda[2] * __zetam3hf
 					 + _S_lambda[1] * __u[0])
 		     + _S_lambda[0] * __u[1]);
-      auto _C0 = __v[0] + _S_mu[0] * __zetm3h;
-      auto _C = __v[2] + __zetm3h * (__zetm3h * (_S_mu[2] * __zetm3h
+      auto _C0 = __v[0] + _S_mu[0] * __zetam3hf;
+      auto _C = __v[2] + __zetam3hf * (__zetam3hf * (_S_mu[2] * __zetam3hf
 					 + _S_mu[1] * __v[0])
 		     + _S_mu[0] * __v[1]);
       auto _D0 = __zone;
-      auto _D = __v[1] + __zetm3h * (_S_lambda[1] * __zetm3h
+      auto _D = __v[1] + __zetam3hf * (_S_lambda[1] * __zetam3hf
 			+ _S_lambda[0] * __v[0]);
 
       // Compute sum of first two terms to initialize the Kahan summing scheme.
@@ -609,15 +609,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Dsum += _D * __1dnusq;
 
       // Combine sums in form appearing in expansions.
-      _H1sum = _Aip * _Asum() + __zo4dp * _Bsum();
-      _H2sum = _Aim * _Asum() + __zo4dm * _Bsum();
-      _H1psum = __zod2p * _Csum() + __zod0dp * _Dsum();
-      _H2psum = __zod2m * _Csum() + __zod0dm * _Dsum();
+      _H1sum = _Aip * _Asum() + __o4dp * _Bsum();
+      _H2sum = _Aim * _Asum() + __o4dm * _Bsum();
+      _H1psum = __od2p * _Csum() + __od0dp * _Dsum();
+      _H2psum = __od2m * _Csum() + __od0dm * _Dsum();
 
-      auto _H1save = _Aip + __zo4dp * _B0;
-      auto _H2save = _Aim + __zo4dm * _B0;
-      auto _H1psave = __zod2p * _C0 + __zod0dp;
-      auto _H2psave = __zod2m * _C0 + __zod0dm;
+      auto _H1save = _Aip * A0 + __o4dp * _B0;
+      auto _H2save = _Aim * A0 + __o4dm * _B0;
+      auto _H1psave = __od2p * _C0 + __od0dp * _D0;
+      auto _H2psave = __od2m * _C0 + __od0dm * _D0;
 
       auto __converged
 	= (__l1_norm(_H1sum - _H1save) < __eps * __l1_norm(_H1sum)
@@ -702,29 +702,29 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __indexp += __i2kp1 + 3;
 
 	  // Start Horner's rule evaluation of A, B, C, and D polynomials.
-	  _A = _S_mu[__i2k] * __zetm3h + _S_mu[__i2km1] * __u[0];
-	  _D = _S_lambda[__i2k] * __zetm3h + _S_lambda[__i2km1] * __v[0];
-	  _B = _S_lambda[__i2kp1] * __zetm3h + _S_lambda[__i2k] * __u[0];
-	  _C = _S_mu[__i2kp1] * __zetm3h + _S_mu[__i2k] * __v[0];
+	  _A = _S_mu[__i2k] * __zetam3hf + _S_mu[__i2km1] * __u[0];
+	  _D = _S_lambda[__i2k] * __zetam3hf + _S_lambda[__i2km1] * __v[0];
+	  _B = _S_lambda[__i2kp1] * __zetam3hf + _S_lambda[__i2k] * __u[0];
+	  _C = _S_mu[__i2kp1] * __zetam3hf + _S_mu[__i2k] * __v[0];
 
 	  // Do partial Horner's rule evaluations of A, B, C, and D.
 	  for(auto __l = 1; __l <= __i2km1; ++__l)
 	    {
 	      auto __i2kl = __i2km1 - __l;
-	      _A = _A * __zetm3h + _S_mu[__i2kl] * __u[__l];
-	      _D = _D * __zetm3h + _S_lambda[__i2kl] * __v[__l];
+	      _A = _A * __zetam3hf + _S_mu[__i2kl] * __u[__l];
+	      _D = _D * __zetam3hf + _S_lambda[__i2kl] * __v[__l];
 	      __i2kl = __i2k - __l;
-	      _B = _B * __zetm3h + _S_lambda[__i2kl] * __u[__l];
-	      _C = _C * __zetm3h + _S_mu[__i2kl] * __v[__l];
+	      _B = _B * __zetam3hf + _S_lambda[__i2kl] * __u[__l];
+	      _C = _C * __zetam3hf + _S_mu[__i2kl] * __v[__l];
 	    }
 
 	  // Complete the evaluations of A, B, C, and D.
-	  _A = _A * __zetm3h + __u[__i2k];
-	  _D = _D * __zetm3h + __v[__i2k];
-	  _B = __zetm3h
-	       * (_B * __zetm3h + _S_lambda[0] * __u[__i2k]) + __u[__i2kp1];
-	  _C = __zetm3h
-	       * (_C * __zetm3h + _S_mu[0] * __v[__i2k]) + __v[__i2kp1];
+	  _A = _A * __zetam3hf + __u[__i2k];
+	  _D = _D * __zetam3hf + __v[__i2k];
+	  _B = __zetam3hf
+	       * (_B * __zetam3hf + _S_lambda[0] * __u[__i2k]) + __u[__i2kp1];
+	  _C = __zetam3hf
+	       * (_C * __zetam3hf + _S_mu[0] * __v[__i2k]) + __v[__i2kp1];
 
 	  // Evaluate new terms for sums.
 	  __z1dn2k *= __1dnusq;
@@ -734,10 +734,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Dsum += _D * __z1dn2k;
 
 	  // Combine sums in form appearing in expansions.
-	  _H1sum  = _Aip  * _Asum()  + __zo4dp * _Bsum();
-	  _H2sum  = _Aim  * _Asum()  + __zo4dm * _Bsum();
-	  _H1psum = __zod2p * _Csum() + __zod0dp * _Dsum();
-	  _H2psum = __zod2m * _Csum() + __zod0dm * _Dsum();
+	  _H1sum  = _Aip  * _Asum()  + __o4dp * _Bsum();
+	  _H2sum  = _Aim  * _Asum()  + __o4dm * _Bsum();
+	  _H1psum = __od2p * _Csum() + __od0dp * _Dsum();
+	  _H2psum = __od2m * _Csum() + __od0dm * _Dsum();
 
 	  // If convergence criteria met this term, see if it was before.
 	  if (__l1_norm(_H1sum - _H1save) < __eps * __l1_norm(_H1sum)
@@ -792,10 +792,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr _Tp
 	_S_pi_3(1.047197551196597746154214461093167628063e+0L);
       static constexpr __cmplx _S_j{1il};
-      static constexpr __cmplx __con1p{ 1.0, 1.732050807568877}; // 2*exp( pi*j/3)
-      static constexpr __cmplx __con1m{ 1.0,-1.732050807568877}; // 2*exp(-pi*j/3)
-      static constexpr __cmplx __con2p{-2.0, 3.464101615137755}; // 4*exp( 2*pi*j/3)
-      static constexpr __cmplx __con2m{-2.0,-3.464101615137755}; // 4*exp(-2*pi*j/3)
+      static constexpr __cmplx __con1p{ 1.0, 1.732050807568877293527446341505872366945}; // 2*exp( pi*j/3) (1,sqrt(3))
+      static constexpr __cmplx __con1m{ 1.0,-1.732050807568877293527446341505872366945}; // 2*exp(-pi*j/3)
+      static constexpr __cmplx __con2p{-2.0, 3.464101615137754587054892683011744733891}; // 4*exp( 2*pi*j/3) (-2,2sqrt(3))
+      static constexpr __cmplx __con2m{-2.0,-3.464101615137754587054892683011744733891}; // 4*exp(-2*pi*j/3)
       static constexpr _Tp __eps   = 1.0e-06;
       static constexpr _Tp __epsai = 1.0e-12;
 
