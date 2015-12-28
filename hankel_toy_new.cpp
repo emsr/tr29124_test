@@ -15,6 +15,7 @@ template<typename _Tp>
   void
   run_toy()
   {
+    // Figure out the array indexing in the Hankel asymptotic series.
     auto index = 0;
     auto indexp = 0;
     for (int k = 0; k <= 20; ++k)
@@ -31,6 +32,7 @@ template<typename _Tp>
 	indexp += 2 * k + 3;
       }
 
+    // Figure out a formula for the array indexing in the Hankel asymptotic series.
     for (int k = 0; k <= 20; ++k)
       {
 	std::cout << '\n';
@@ -46,6 +48,7 @@ template<typename _Tp>
     std::cout << std::scientific;
     std::cout << std::showpoint;
 
+    // Figure out the lambda_k and mu_k ratios for the asymptotic series.
     std::cout << '\n';
     _Tp lambda = _Tp{1};
     _Tp mu = -_Tp{1};
@@ -63,6 +66,7 @@ template<typename _Tp>
 	mu = -(6 * s + 1) * lambda / (6 * s - 1);
       }
 
+    // Fill out the Debye polynomial coefficients for the asymptotic series.
     std::polynomial<_Tp> upol1{_Tp{1}, _Tp{1}, _Tp{0.5L}, _Tp{1}, -_Tp{0.5L}};
     std::polynomial<_Tp> upol2{+_Tp{0.125L}, _Tp{1}, -_Tp{0.625L}};
     std::polynomial<_Tp> vpol1{_Tp{1}, -_Tp{0.5L}, _Tp{1}, +_Tp{0.5L}};
@@ -127,6 +131,8 @@ template<typename _Tp>
 		    << ' ' << std::setw(width) << std::get<2>(c) << '\n';
       }
 
+    // Write the Debye polynomials in reverse as they are stored in the code.
+    // This allows application of Horner's rule by traversing the coefficients in order.
     std::cout << "\nu\n";
     for (const auto& u : uvec)
       for (auto c = u.crbegin(); c != u.crend(); ++c)
