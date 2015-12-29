@@ -14,6 +14,7 @@ CXX_TEST_INC_DIR = $(CXX_SRC_DIR)/libstdc++-v3/testsuite/util
 BINS = test_special_function \
        diff_special_function \
        testcase \
+       testcase_new \
        airy_toy \
        hankel_toy \
        hankel_toy128 \
@@ -112,6 +113,9 @@ diff_local_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tc
 
 testcase: testcase.cpp testcase.tcc gsl_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
 	$(CXX) -o testcase testcase.cpp gsl_wrap.cpp -lgslcblas -lgsl
+
+testcase_new: testcase_new.cpp testcase_new.tcc gsl_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
+	$(CXX) -o testcase_new testcase_new.cpp gsl_wrap.cpp -lgslcblas -lgsl
 
 test_limits: test_limits.cpp
 	$(CXX) -o test_limits test_limits.cpp
