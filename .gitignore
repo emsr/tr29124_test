@@ -37,6 +37,7 @@ test_bessel_asymp
 testcase
 test_cmath
 test_complex_gamma
+test_complex128
 test_csint
 test_fresnel
 test_hermite

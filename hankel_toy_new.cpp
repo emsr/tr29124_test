@@ -1,14 +1,16 @@
-// $HOME/bin/bin/g++ -std=gnu++14 -o hankel_toy_new hankel_toy_new.cpp
+// $HOME/bin/bin/g++ -std=gnu++14 -o hankel_toy_new hankel_toy_new.cpp -L$HOME/bin/lib64 -lquadmath
 
 // LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./hankel_toy_new > hankel_toy_new.txt
 
-// g++ -std=gnu++14 -o hankel_toy_new hankel_toy_new.cpp -L$HOME/bin/lib64
+// g++ -std=gnu++14 -o hankel_toy_new hankel_toy_new.cpp -lquadmath
 
 // ./hankel_toy_new > hankel_toy_new.txt
 
 #include <limits>
 #include <iostream>
 #include <iomanip>
+#include "float128.h"
+#include "complex128.h"
 #include "polynomial"
 
 template<typename _Tp>
@@ -46,23 +48,18 @@ template<typename _Tp>
     std::cout << std::scientific;
     std::cout << std::showpoint;
 
-    std::cout << '\n';
+    std::cout << '\n' << std::setw(width) << "lambda\t" << std::setw(width) << "mu\n";
     _Tp lambda = _Tp{1};
     _Tp mu = -_Tp{1};
-    _Tp numer = _Tp{1};
-    _Tp denom = _Tp{1};
     for (int s = 1; s <= 50; ++s)
       {
-	std::cout << std::setw(width) << lambda << '\t' << mu << '\n';
-	denom *= s * 144;
-	//_Tp numer = _Tp{1};
-	//for (int m = 2 * s + 1; m <= 6 * s - 1; m += 2)
-	//  numer *= m;
-	numer *= (6 * s - 3) * (6 * s - 1) / (2 * s - 1);
-	lambda = numer / denom;
+	std::cout << std::setw(width) << lambda << '\t' << std::setw(width) << mu << '\n';
+	lambda *= _Tp{1} * (6 * s - 3) * (6 * s - 3) * (6 * s - 1)
+		/ ((2 * s - 1) * s * 144);
 	mu = -(6 * s + 1) * lambda / (6 * s - 1);
       }
 
+    //  Build the Debye polynomials.
     std::polynomial<_Tp> upol1{_Tp{1}, _Tp{1}, _Tp{0.5L}, _Tp{1}, -_Tp{0.5L}};
     std::polynomial<_Tp> upol2{+_Tp{0.125L}, _Tp{1}, -_Tp{0.625L}};
     std::polynomial<_Tp> vpol1{_Tp{1}, -_Tp{0.5L}, _Tp{1}, +_Tp{0.5L}};
@@ -79,10 +76,10 @@ template<typename _Tp>
 	u = upol1 * u.derivative() + (upol2 * u).integral(_Tp{0});
 	v += u;
       }
-    std::cout << '\n';
+    std::cout << "\nu\n";
     for (const auto & u : uvec)
       std::cout << u << '\n';
-    std::cout << '\n';
+    std::cout << "\nv\n";
     for (const auto & v : vvec)
       std::cout << v << '\n';
 
@@ -139,11 +136,33 @@ template<typename _Tp>
 	if (*c != 0)
 	  std::cout << std::setw(width) << *c << '\n';
 
-    //  Try these:  << std::showpos << std::uppercase << std::hexfloat << std::showpos
+    // Try these:  << std::showpos << std::uppercase << std::hexfloat << std::showpos
+
+    // Try to build A, B, C, D functions...
+    // These are polynomials in p and zeta^{-3/2}
+    for (int i = 0; i <= 100; ++i)
+      {
+	auto z = std::complex<_Tp>(i * 0.01);
+	auto w = std::sqrt(_Tp{1} - z * z);
+	auto xi = std::log((_Tp{1} + w) / z) - w;
+	auto zeta = std::pow(_Tp{3} * xi / _Tp{2}, _Tp{2} / _Tp{3});
+	auto p = _Tp{1} / w;
+	auto zetam32 = _Tp{2} / (_Tp{3} * xi);
+      }
   }
 
 int
 main()
 {
+  std::cout << "\nfloat\n-----\n";
+  run_toy<float>();
+
+  std::cout << "\ndouble\n------\n";
+  run_toy<double>();
+
+  std::cout << "\nlong double\n-----------\n";
   run_toy<long double>();
+
+  std::cout << "\n__float128\n----------\n";
+  run_toy<__float128>();
 }
