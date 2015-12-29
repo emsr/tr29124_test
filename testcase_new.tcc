@@ -312,6 +312,8 @@ template<typename Tp, typename Tp1>
 	dataname.fill(' ');
 	output << '\n';
 	output << "// Test data.\n";
+	output << "// max(|f - f_GSL|): " << max_abs_diff << "\n";
+	output << "// max(|f - f_GSL| / |f_GSL|): " << max_abs_frac << "\n";
 	output.fill('0');
 	output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
 	output.fill(' ');
@@ -334,6 +336,7 @@ template<typename Tp, typename Tp1>
 	structname += funcname;
 	structname += "<Tp>";
 
+	output << '\n';
 	output << "template<typename Tp, unsigned int Num>\n";
 	output.fill('0');
 	output << "  void\n";
@@ -458,6 +461,8 @@ template<typename Tp, typename Tp1, typename Tp2>
 	    dataname.fill(' ');
 	    output << '\n';
 	    output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]) << ".\n";
+	    output << "// max(|f - f_GSL|): " << max_abs_diff << "\n";
+	    output << "// max(|f - f_GSL| / |f_GSL|): " << max_abs_frac << "\n";
 	    output.fill('0');
 	    output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
 	    output.fill(' ');
@@ -482,6 +487,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 	structname += funcname;
 	structname += "<Tp>";
 
+	output << '\n';
 	output << "template<typename Tp, unsigned int Num>\n";
 	output.fill('0');
 	output << "  void\n";
@@ -610,6 +616,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		output << '\n';
 		output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]);
 		output << ", " << arg2 << '=' << std::get<2>(crud[0]) << ".\n";
+		output << "// max(|f - f_GSL|): " << max_abs_diff << "\n";
+		output << "// max(|f - f_GSL| / |f_GSL|): " << max_abs_frac << "\n";
 		output.fill('0');
 		output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
 		output.fill(' ');
@@ -638,6 +646,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 	structname += funcname;
 	structname += "<Tp>";
 
+	output << '\n';
 	output << "template<typename Tp, unsigned int Num>\n";
 	output.fill('0');
 	output << "  void\n";
@@ -773,6 +782,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		    output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]);
 		    output << ", " << arg2 << '=' << std::get<2>(crud[0]);
 		    output << ", " << arg3 << '=' << std::get<3>(crud[0]) << ".\n";
+		    output << "// max(|f - f_GSL|): " << max_abs_diff << "\n";
+		    output << "// max(|f - f_GSL| / |f_GSL|): " << max_abs_frac << "\n";
 		    output.fill('0');
 		    output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
 		    output.fill(' ');
@@ -802,6 +813,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 	structname += funcname;
 	structname += "<Tp>";
 
+	output << '\n';
 	output << "template<typename Tp, unsigned int Num>\n";
 	output.fill('0');
 	output << "  void\n";
