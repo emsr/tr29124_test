@@ -38,7 +38,9 @@
 
 
 // Test data for k=-0.90000000000000002.
-testcase_ellint_2<double> data001[] = {
+const testcase_ellint_2<double>
+data001[10] =
+{
   { 0.0000000000000000, -0.90000000000000002, 0.0000000000000000 },
   { 0.17381690606167960, -0.90000000000000002, 0.17453292519943295 },
   { 0.34337919186972055, -0.90000000000000002, 0.34906585039886590 },
@@ -50,38 +52,12 @@ testcase_ellint_2<double> data001[] = {
   { 1.0940135583194068, -0.90000000000000002, 1.3962634015954636 },
   { 1.1716970527816140, -0.90000000000000002, 1.5707963267948966 },
 };
-
-// Test function for k=-0.90000000000000002.
-template<typename Tp>
-  void
-  test001()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data001)
-			   / sizeof(testcase_ellint_2<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::ellint_2(Tp(data001[i].k), Tp(data001[i].phi));
-	const Tp f0 = data001[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler001 = 2.5000000000000020e-13;
 
 // Test data for k=-0.80000000000000004.
-testcase_ellint_2<double> data002[] = {
+const testcase_ellint_2<double>
+data002[10] =
+{
   { 0.0000000000000000, -0.80000000000000004, 0.0000000000000000 },
   { 0.17396762274534805, -0.80000000000000004, 0.17453292519943295 },
   { 0.34458685226969316, -0.80000000000000004, 0.34906585039886590 },
@@ -93,38 +69,12 @@ testcase_ellint_2<double> data002[] = {
   { 1.1706981862452361, -0.80000000000000004, 1.3962634015954636 },
   { 1.2763499431699064, -0.80000000000000004, 1.5707963267948966 },
 };
-
-// Test function for k=-0.80000000000000004.
-template<typename Tp>
-  void
-  test002()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data002)
-			   / sizeof(testcase_ellint_2<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::ellint_2(Tp(data002[i].k), Tp(data002[i].phi));
-	const Tp f0 = data002[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler002 = 2.5000000000000020e-13;
 
 // Test data for k=-0.69999999999999996.
-testcase_ellint_2<double> data003[] = {
+const testcase_ellint_2<double>
+data003[10] =
+{
   { 0.0000000000000000, -0.69999999999999996, 0.0000000000000000 },
   { 0.17410041242702542, -0.69999999999999996, 0.17453292519943295 },
   { 0.34564605085764760, -0.69999999999999996, 0.34906585039886590 },
@@ -136,38 +86,12 @@ testcase_ellint_2<double> data003[] = {
   { 1.2304180097292914, -0.69999999999999996, 1.3962634015954636 },
   { 1.3556611355719554, -0.69999999999999996, 1.5707963267948966 },
 };
-
-// Test function for k=-0.69999999999999996.
-template<typename Tp>
-  void
-  test003()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data003)
-			   / sizeof(testcase_ellint_2<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::ellint_2(Tp(data003[i].k), Tp(data003[i].phi));
-	const Tp f0 = data003[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler003 = 2.5000000000000020e-13;
 
 // Test data for k=-0.59999999999999998.
-testcase_ellint_2<double> data004[] = {
+const testcase_ellint_2<double>
+data004[10] =
+{
   { 0.0000000000000000, -0.59999999999999998, 0.0000000000000000 },
   { 0.17421534919599127, -0.59999999999999998, 0.17453292519943295 },
   { 0.34655927787174101, -0.59999999999999998, 0.34906585039886590 },
@@ -179,38 +103,12 @@ testcase_ellint_2<double> data004[] = {
   { 1.2780617372844056, -0.59999999999999998, 1.3962634015954636 },
   { 1.4180833944487241, -0.59999999999999998, 1.5707963267948966 },
 };
-
-// Test function for k=-0.59999999999999998.
-template<typename Tp>
-  void
-  test004()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data004)
-			   / sizeof(testcase_ellint_2<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::ellint_2(Tp(data004[i].k), Tp(data004[i].phi));
-	const Tp f0 = data004[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler004 = 2.5000000000000020e-13;
 
 // Test data for k=-0.50000000000000000.
-testcase_ellint_2<double> data005[] = {
+const testcase_ellint_2<double>
+data005[10] =
+{
   { 0.0000000000000000, -0.50000000000000000, 0.0000000000000000 },
   { 0.17431249677315910, -0.50000000000000000, 0.17453292519943295 },
   { 0.34732862537770803, -0.50000000000000000, 0.34906585039886590 },
@@ -222,38 +120,12 @@ testcase_ellint_2<double> data005[] = {
   { 1.3160584048772543, -0.50000000000000000, 1.3962634015954636 },
   { 1.4674622093394274, -0.50000000000000000, 1.5707963267948966 },
 };
-
-// Test function for k=-0.50000000000000000.
-template<typename Tp>
-  void
-  test005()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data005)
-			   / sizeof(testcase_ellint_2<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::ellint_2(Tp(data005[i].k), Tp(data005[i].phi));
-	const Tp f0 = data005[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler005 = 2.5000000000000020e-13;
 
 // Test data for k=-0.40000000000000002.
-testcase_ellint_2<double> data006[] = {
+const testcase_ellint_2<double>
+data006[10] =
+{
   { 0.0000000000000000, -0.40000000000000002, 0.0000000000000000 },
   { 0.17439190872481267, -0.40000000000000002, 0.17453292519943295 },
   { 0.34795581767099210, -0.40000000000000002, 0.34906585039886590 },
@@ -265,38 +137,12 @@ testcase_ellint_2<double> data006[] = {
   { 1.3458259266501533, -0.40000000000000002, 1.3962634015954636 },
   { 1.5059416123600402, -0.40000000000000002, 1.5707963267948966 },
 };
-
-// Test function for k=-0.40000000000000002.
-template<typename Tp>
-  void
-  test006()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data006)
-			   / sizeof(testcase_ellint_2<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::ellint_2(Tp(data006[i].k), Tp(data006[i].phi));
-	const Tp f0 = data006[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler006 = 2.5000000000000020e-13;
 
 // Test data for k=-0.30000000000000004.
-testcase_ellint_2<double> data007[] = {
+const testcase_ellint_2<double>
+data007[10] =
+{
   { 0.0000000000000000, -0.30000000000000004, 0.0000000000000000 },
   { 0.17445362864048913, -0.30000000000000004, 0.17453292519943295 },
   { 0.34844223535713464, -0.30000000000000004, 0.34906585039886590 },
@@ -308,38 +154,12 @@ testcase_ellint_2<double> data007[] = {
   { 1.3682566113689623, -0.30000000000000004, 1.3962634015954636 },
   { 1.5348334649232491, -0.30000000000000004, 1.5707963267948966 },
 };
-
-// Test function for k=-0.30000000000000004.
-template<typename Tp>
-  void
-  test007()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data007)
-			   / sizeof(testcase_ellint_2<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::ellint_2(Tp(data007[i].k), Tp(data007[i].phi));
-	const Tp f0 = data007[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler007 = 2.5000000000000020e-13;
 
 // Test data for k=-0.19999999999999996.
-testcase_ellint_2<double> data008[] = {
+const testcase_ellint_2<double>
+data008[10] =
+{
   { 0.0000000000000000, -0.19999999999999996, 0.0000000000000000 },
   { 0.17449769027652812, -0.19999999999999996, 0.17453292519943295 },
   { 0.34878893400762095, -0.19999999999999996, 0.34906585039886590 },
@@ -351,38 +171,12 @@ testcase_ellint_2<double> data008[] = {
   { 1.3839259540325153, -0.19999999999999996, 1.3962634015954636 },
   { 1.5549685462425291, -0.19999999999999996, 1.5707963267948966 },
 };
-
-// Test function for k=-0.19999999999999996.
-template<typename Tp>
-  void
-  test008()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data008)
-			   / sizeof(testcase_ellint_2<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::ellint_2(Tp(data008[i].k), Tp(data008[i].phi));
-	const Tp f0 = data008[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler008 = 2.5000000000000020e-13;
 
 // Test data for k=-0.099999999999999978.
-testcase_ellint_2<double> data009[] = {
+const testcase_ellint_2<double>
+data009[10] =
+{
   { 0.0000000000000000, -0.099999999999999978, 0.0000000000000000 },
   { 0.17452411766649939, -0.099999999999999978, 0.17453292519943295 },
   { 0.34899665805442404, -0.099999999999999978, 0.34906585039886590 },
@@ -394,38 +188,12 @@ testcase_ellint_2<double> data009[] = {
   { 1.3931950229892744, -0.099999999999999978, 1.3962634015954636 },
   { 1.5668619420216685, -0.099999999999999978, 1.5707963267948966 },
 };
-
-// Test function for k=-0.099999999999999978.
-template<typename Tp>
-  void
-  test009()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data009)
-			   / sizeof(testcase_ellint_2<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::ellint_2(Tp(data009[i].k), Tp(data009[i].phi));
-	const Tp f0 = data009[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler009 = 2.5000000000000020e-13;
 
 // Test data for k=0.0000000000000000.
-testcase_ellint_2<double> data010[] = {
+const testcase_ellint_2<double>
+data010[10] =
+{
   { 0.0000000000000000, 0.0000000000000000, 0.0000000000000000 },
   { 0.17453292519943292, 0.0000000000000000, 0.17453292519943295 },
   { 0.34906585039886584, 0.0000000000000000, 0.34906585039886590 },
@@ -437,38 +205,12 @@ testcase_ellint_2<double> data010[] = {
   { 1.3962634015954631, 0.0000000000000000, 1.3962634015954636 },
   { 1.5707963267948966, 0.0000000000000000, 1.5707963267948966 },
 };
-
-// Test function for k=0.0000000000000000.
-template<typename Tp>
-  void
-  test010()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data010)
-			   / sizeof(testcase_ellint_2<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::ellint_2(Tp(data010[i].k), Tp(data010[i].phi));
-	const Tp f0 = data010[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler010 = 2.5000000000000020e-13;
 
 // Test data for k=0.10000000000000009.
-testcase_ellint_2<double> data011[] = {
+const testcase_ellint_2<double>
+data011[10] =
+{
   { 0.0000000000000000, 0.10000000000000009, 0.0000000000000000 },
   { 0.17452411766649939, 0.10000000000000009, 0.17453292519943295 },
   { 0.34899665805442404, 0.10000000000000009, 0.34906585039886590 },
@@ -480,38 +222,12 @@ testcase_ellint_2<double> data011[] = {
   { 1.3931950229892744, 0.10000000000000009, 1.3962634015954636 },
   { 1.5668619420216685, 0.10000000000000009, 1.5707963267948966 },
 };
-
-// Test function for k=0.10000000000000009.
-template<typename Tp>
-  void
-  test011()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data011)
-			   / sizeof(testcase_ellint_2<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::ellint_2(Tp(data011[i].k), Tp(data011[i].phi));
-	const Tp f0 = data011[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler011 = 2.5000000000000020e-13;
 
 // Test data for k=0.19999999999999996.
-testcase_ellint_2<double> data012[] = {
+const testcase_ellint_2<double>
+data012[10] =
+{
   { 0.0000000000000000, 0.19999999999999996, 0.0000000000000000 },
   { 0.17449769027652812, 0.19999999999999996, 0.17453292519943295 },
   { 0.34878893400762095, 0.19999999999999996, 0.34906585039886590 },
@@ -523,38 +239,12 @@ testcase_ellint_2<double> data012[] = {
   { 1.3839259540325153, 0.19999999999999996, 1.3962634015954636 },
   { 1.5549685462425291, 0.19999999999999996, 1.5707963267948966 },
 };
-
-// Test function for k=0.19999999999999996.
-template<typename Tp>
-  void
-  test012()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data012)
-			   / sizeof(testcase_ellint_2<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::ellint_2(Tp(data012[i].k), Tp(data012[i].phi));
-	const Tp f0 = data012[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler012 = 2.5000000000000020e-13;
 
 // Test data for k=0.30000000000000004.
-testcase_ellint_2<double> data013[] = {
+const testcase_ellint_2<double>
+data013[10] =
+{
   { 0.0000000000000000, 0.30000000000000004, 0.0000000000000000 },
   { 0.17445362864048913, 0.30000000000000004, 0.17453292519943295 },
   { 0.34844223535713464, 0.30000000000000004, 0.34906585039886590 },
@@ -566,38 +256,12 @@ testcase_ellint_2<double> data013[] = {
   { 1.3682566113689623, 0.30000000000000004, 1.3962634015954636 },
   { 1.5348334649232491, 0.30000000000000004, 1.5707963267948966 },
 };
-
-// Test function for k=0.30000000000000004.
-template<typename Tp>
-  void
-  test013()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data013)
-			   / sizeof(testcase_ellint_2<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::ellint_2(Tp(data013[i].k), Tp(data013[i].phi));
-	const Tp f0 = data013[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler013 = 2.5000000000000020e-13;
 
 // Test data for k=0.39999999999999991.
-testcase_ellint_2<double> data014[] = {
+const testcase_ellint_2<double>
+data014[10] =
+{
   { 0.0000000000000000, 0.39999999999999991, 0.0000000000000000 },
   { 0.17439190872481267, 0.39999999999999991, 0.17453292519943295 },
   { 0.34795581767099210, 0.39999999999999991, 0.34906585039886590 },
@@ -609,38 +273,12 @@ testcase_ellint_2<double> data014[] = {
   { 1.3458259266501533, 0.39999999999999991, 1.3962634015954636 },
   { 1.5059416123600404, 0.39999999999999991, 1.5707963267948966 },
 };
-
-// Test function for k=0.39999999999999991.
-template<typename Tp>
-  void
-  test014()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data014)
-			   / sizeof(testcase_ellint_2<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::ellint_2(Tp(data014[i].k), Tp(data014[i].phi));
-	const Tp f0 = data014[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler014 = 2.5000000000000020e-13;
 
 // Test data for k=0.50000000000000000.
-testcase_ellint_2<double> data015[] = {
+const testcase_ellint_2<double>
+data015[10] =
+{
   { 0.0000000000000000, 0.50000000000000000, 0.0000000000000000 },
   { 0.17431249677315910, 0.50000000000000000, 0.17453292519943295 },
   { 0.34732862537770803, 0.50000000000000000, 0.34906585039886590 },
@@ -652,38 +290,12 @@ testcase_ellint_2<double> data015[] = {
   { 1.3160584048772543, 0.50000000000000000, 1.3962634015954636 },
   { 1.4674622093394274, 0.50000000000000000, 1.5707963267948966 },
 };
-
-// Test function for k=0.50000000000000000.
-template<typename Tp>
-  void
-  test015()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data015)
-			   / sizeof(testcase_ellint_2<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::ellint_2(Tp(data015[i].k), Tp(data015[i].phi));
-	const Tp f0 = data015[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler015 = 2.5000000000000020e-13;
 
 // Test data for k=0.60000000000000009.
-testcase_ellint_2<double> data016[] = {
+const testcase_ellint_2<double>
+data016[10] =
+{
   { 0.0000000000000000, 0.60000000000000009, 0.0000000000000000 },
   { 0.17421534919599127, 0.60000000000000009, 0.17453292519943295 },
   { 0.34655927787174101, 0.60000000000000009, 0.34906585039886590 },
@@ -695,38 +307,12 @@ testcase_ellint_2<double> data016[] = {
   { 1.2780617372844056, 0.60000000000000009, 1.3962634015954636 },
   { 1.4180833944487241, 0.60000000000000009, 1.5707963267948966 },
 };
-
-// Test function for k=0.60000000000000009.
-template<typename Tp>
-  void
-  test016()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data016)
-			   / sizeof(testcase_ellint_2<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::ellint_2(Tp(data016[i].k), Tp(data016[i].phi));
-	const Tp f0 = data016[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler016 = 2.5000000000000020e-13;
 
 // Test data for k=0.69999999999999996.
-testcase_ellint_2<double> data017[] = {
+const testcase_ellint_2<double>
+data017[10] =
+{
   { 0.0000000000000000, 0.69999999999999996, 0.0000000000000000 },
   { 0.17410041242702542, 0.69999999999999996, 0.17453292519943295 },
   { 0.34564605085764760, 0.69999999999999996, 0.34906585039886590 },
@@ -738,38 +324,12 @@ testcase_ellint_2<double> data017[] = {
   { 1.2304180097292914, 0.69999999999999996, 1.3962634015954636 },
   { 1.3556611355719554, 0.69999999999999996, 1.5707963267948966 },
 };
-
-// Test function for k=0.69999999999999996.
-template<typename Tp>
-  void
-  test017()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data017)
-			   / sizeof(testcase_ellint_2<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::ellint_2(Tp(data017[i].k), Tp(data017[i].phi));
-	const Tp f0 = data017[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler017 = 2.5000000000000020e-13;
 
 // Test data for k=0.80000000000000004.
-testcase_ellint_2<double> data018[] = {
+const testcase_ellint_2<double>
+data018[10] =
+{
   { 0.0000000000000000, 0.80000000000000004, 0.0000000000000000 },
   { 0.17396762274534805, 0.80000000000000004, 0.17453292519943295 },
   { 0.34458685226969316, 0.80000000000000004, 0.34906585039886590 },
@@ -781,38 +341,12 @@ testcase_ellint_2<double> data018[] = {
   { 1.1706981862452361, 0.80000000000000004, 1.3962634015954636 },
   { 1.2763499431699064, 0.80000000000000004, 1.5707963267948966 },
 };
-
-// Test function for k=0.80000000000000004.
-template<typename Tp>
-  void
-  test018()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data018)
-			   / sizeof(testcase_ellint_2<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::ellint_2(Tp(data018[i].k), Tp(data018[i].phi));
-	const Tp f0 = data018[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler018 = 2.5000000000000020e-13;
 
 // Test data for k=0.89999999999999991.
-testcase_ellint_2<double> data019[] = {
+const testcase_ellint_2<double>
+data019[10] =
+{
   { 0.0000000000000000, 0.89999999999999991, 0.0000000000000000 },
   { 0.17381690606167960, 0.89999999999999991, 0.17453292519943295 },
   { 0.34337919186972055, 0.89999999999999991, 0.34906585039886590 },
@@ -824,22 +358,20 @@ testcase_ellint_2<double> data019[] = {
   { 1.0940135583194071, 0.89999999999999991, 1.3962634015954636 },
   { 1.1716970527816144, 0.89999999999999991, 1.5707963267948966 },
 };
-
-// Test function for k=0.89999999999999991.
-template<typename Tp>
+const double toler019 = 2.5000000000000020e-13;
+template<typename Tp, unsigned int Num>
   void
-  test019()
+  test(const testcase_ellint_2<Tp> (&data)[Num], Tp toler)
   {
-    bool test [[gnu::unused]] = true;
+    bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data019)
-			   / sizeof(testcase_ellint_2<double>);
+    unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::ellint_2(Tp(data019[i].k), Tp(data019[i].phi));
-	const Tp f0 = data019[i].f0;
+	const Tp f = std::ellint_2(data[i].k, data[i].phi);
+	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -851,30 +383,30 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
+    VERIFY(max_abs_frac < toler);
   }
 
 int
 main()
 {
-  test001<double>();
-  test002<double>();
-  test003<double>();
-  test004<double>();
-  test005<double>();
-  test006<double>();
-  test007<double>();
-  test008<double>();
-  test009<double>();
-  test010<double>();
-  test011<double>();
-  test012<double>();
-  test013<double>();
-  test014<double>();
-  test015<double>();
-  test016<double>();
-  test017<double>();
-  test018<double>();
-  test019<double>();
+  test(data001, toler001);
+  test(data002, toler002);
+  test(data003, toler003);
+  test(data004, toler004);
+  test(data005, toler005);
+  test(data006, toler006);
+  test(data007, toler007);
+  test(data008, toler008);
+  test(data009, toler009);
+  test(data010, toler010);
+  test(data011, toler011);
+  test(data012, toler012);
+  test(data013, toler013);
+  test(data014, toler014);
+  test(data015, toler015);
+  test(data016, toler016);
+  test(data017, toler017);
+  test(data018, toler018);
+  test(data019, toler019);
   return 0;
 }

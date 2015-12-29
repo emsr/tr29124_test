@@ -35,6 +35,7 @@ diff_local_special_function
 test_bessel
 test_bessel_asymp
 testcase
+testcase_new
 test_cmath
 test_complex_gamma
 test_complex128

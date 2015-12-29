@@ -38,7 +38,9 @@
 
 
 // Test data.
-testcase_expint<double> data001[] = {
+const testcase_expint<double>
+data001[50] =
+{
   { -3.7832640295504591e-24, -50.000000000000000 },
   { -1.0489811642368024e-23, -49.000000000000000 },
   { -2.9096641904058423e-23, -48.000000000000000 },
@@ -90,39 +92,13 @@ testcase_expint<double> data001[] = {
   { -0.048900510708061125, -2.0000000000000000 },
   { -0.21938393439552029, -1.0000000000000000 },
 };
-
-// Test function.
-template<typename Tp>
-  void
-  test001()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data001)
-			   / sizeof(testcase_expint<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::expint(Tp(data001[i].x));
-	const Tp f0 = data001[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler001 = 2.5000000000000020e-13;
 //  expint
 
 // Test data.
-testcase_expint<double> data002[] = {
+const testcase_expint<double>
+data002[50] =
+{
   { 1.8951178163559366, 1.0000000000000000 },
   { 4.9542343560018907, 2.0000000000000000 },
   { 9.9338325706254160, 3.0000000000000000 },
@@ -174,22 +150,20 @@ testcase_expint<double> data002[] = {
   { 3.9754427479037444e+19, 49.000000000000000 },
   { 1.0585636897131690e+20, 50.000000000000000 },
 };
-
-// Test function.
-template<typename Tp>
+const double toler002 = 2.5000000000000020e-13;
+template<typename Tp, unsigned int Num>
   void
-  test002()
+  test(const testcase_expint<Tp> (&data)[Num], Tp toler)
   {
-    bool test [[gnu::unused]] = true;
+    bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data002)
-			   / sizeof(testcase_expint<double>);
+    unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::expint(Tp(data002[i].x));
-	const Tp f0 = data002[i].f0;
+	const Tp f = std::expint(data[i].x);
+	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -201,13 +175,13 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
+    VERIFY(max_abs_frac < toler);
   }
 
 int
 main()
 {
-  test001<double>();
-  test002<double>();
+  test(data001, toler001);
+  test(data002, toler002);
   return 0;
 }

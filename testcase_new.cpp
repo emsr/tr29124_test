@@ -68,26 +68,26 @@ template<typename Real>
     //  Airy functions.
     std::cout << "airy_ai" << std::endl;
     funcname = "airy_ai";
-    filename = get_filename(path, prefix, "airy", "",  ".cc");
-    std::ofstream file_airy(filename.c_str());
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_airy_ai(filename.c_str());
     typedef Real airy(Real);
-    test =
     maketest<Real, Real>((airy *)__gnu_cxx::airy_ai,
 			 wrap_gsl_sf_airy_ai,
 			 "__gnu_cxx", funcname,
 			 "x", fill_argument(std::make_pair(-Real{10}, Real{10}),
 					    std::make_pair(true, true), 41),
-			 file_airy, true, false);
+			 file_airy_ai);
 
     std::cout << "airy_bi" << std::endl;
     funcname = "airy_bi";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_airy_bi(filename.c_str());
     maketest<Real, Real>((airy *)__gnu_cxx::airy_bi,
 			 wrap_gsl_sf_airy_bi,
 			 "__gnu_cxx", funcname,
 			 "x", fill_argument(std::make_pair(-Real{10}, Real{10}),
 					    std::make_pair(true, true), 41),
-			 file_airy, false, true, test);
+			 file_airy_bi);
 
     //  Associated Laguerre polynomials.
     std::cout << "assoc_laguerre" << std::endl;
