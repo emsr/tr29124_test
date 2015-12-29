@@ -142,16 +142,16 @@ test_legendre: test_legendre.cpp legendre.tcc
 
 
 airy_toy: airy_toy.cpp
-	$(CXX) -o airy_toy airy_toy.cpp -L$(CXX_LIB_DIR) -lquadmath
+	$(CXX) -o airy_toy airy_toy.cpp -lquadmath
 
 hankel_toy: hankel_toy.cpp
 	$(CXX) -o hankel_toy hankel_toy.cpp
 
 hankel_toy128: hankel_toy128.cpp
-	$(CXX) -o hankel_toy128 hankel_toy128.cpp -L$(CXX_LIB_DIR) -lquadmath
+	$(CXX) -o hankel_toy128 hankel_toy128.cpp -lquadmath
 
 hankel_toy_new: hankel_toy_new.cpp
-	$(CXX) -o hankel_toy_new hankel_toy_new.cpp -L$(CXX_LIB_DIR) -lquadmath
+	$(CXX) -o hankel_toy_new hankel_toy_new.cpp -lquadmath
 
 
 check_airy: check_airy.cc

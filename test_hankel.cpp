@@ -6,6 +6,7 @@
 #include <iomanip>
 
 #include <ext/cmath>
+#include "complex_util.h"
 #include "hankel.h"
 #include "float128.h"
 
@@ -36,8 +37,7 @@ main()
   std::cout << " Y'(z)  = " << (h1p - h2p) / 2.0i << '\n';
 
   std::complex<double> ai, aip;
-  int ier;
-  std::__detail::__airy(z, 1.0e-16, ai, aip, ier);
+  std::__detail::__airy(z, 1.0e-16, ai, aip);
   std::cout << '\n';
   std::cout << " z      = " << z << '\n';
   std::cout << " Ai(z)  = " << ai << '\n';
