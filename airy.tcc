@@ -5,14 +5,14 @@
 /**
  *  @param[in]  t      The input argument.
  *
- *  @param[out]  _Ai    
- *  @param[out]  _Aip   
- *  @param[out]  _Bi    
- *  @param[out]  _Bip   
- *  @param[out]  __w1   
- *  @param[out]  __w1p  
- *  @param[out]  __w2   
- *  @param[out]  __w2p  
+ *  @param[out]  _Ai    The Airy function of the first kind.
+ *  @param[out]  _Aip   The derivative of the Airy function of the first kind.
+ *  @param[out]  _Bi    The Airy function of the second kind.
+ *  @param[out]  _Bip   The derivative of the Airy function of the second kind.
+ *  @param[out]  __w1   The Fock-type Airy function of the first kind.
+ *  @param[out]  __w1p  The derivative of the Fock-type Airy function of the first kind.
+ *  @param[out]  __w2   The Fock-type Airy function of the second kind.
+ *  @param[out]  __w2p  The derivative of the Fock-type Airy function of the second kind.
  */
 template<typename _Tp>
   void
@@ -54,6 +54,7 @@ template<typename _Tp>
       1.89199419292176334630779962142231545e-35L,
       9.55552622687759265812020010819351237e-39L
     };
+    constexpr _Tp _S_slope_F{-2.660L}, _S_intercept_F{-0.778L};
     constexpr _Tp
     _Fp_k[_N_FG]
     {
@@ -73,6 +74,7 @@ template<typename _Tp>
       7.9463756102714060544927584099737242e-34L,
       4.29998680209491669615409004868708044e-37L
     };
+    constexpr _Tp _S_slope_Fp{-2.576L}, _S_intercept_Fp{-0.301L};
     constexpr _Tp
     _G_k[_N_FG]
     {
@@ -92,6 +94,7 @@ template<typename _Tp>
       2.09810689944775905725672213649504515e-36L,
       1.01357821229360340930276431714736476e-39L
     };
+    constexpr _Tp _S_slope_G{-2.708L}, _S_intercept_G{-1.079L};
     constexpr _Tp
     _Gp_k[_N_FG]
     {
@@ -111,6 +114,7 @@ template<typename _Tp>
       9.02185966762536394620390518692869428e-35L,
       4.66245977655057568279271585887787801e-38L
     };
+    constexpr _Tp _S_slope_Gp{-2.632L}, _S_intercept_Gp{-0.477};
 
     constexpr int _N_cd = 50;
     constexpr _Tp
@@ -235,7 +239,7 @@ template<typename _Tp>
 	    if (std::abs(__t) < _S_eps)
 	      break;
 	    auto __xx = __log10t * (3 * (__n + 1) + 1)
-		      + std::log10(_G_k[__n]);
+		      + _S_slope_G * __n + _S_intercept_G);
 	    if (__xx < _S_log10min)
 	      break;
 	    __term *= __ttt;
@@ -258,7 +262,7 @@ template<typename _Tp>
 	    if (std::abs(__t) < _S_eps)
 	      break;
 	    auto __xx = __log10t * 3 * (__n + 1)
-		      + std::log10(_Gp_k[__n]);
+		      + _S_slope_Gp * __n + _S_intercept_Gp;
 	    if (__xx < _S_log10min)
 	      break;
 	    __term *= __ttt;
