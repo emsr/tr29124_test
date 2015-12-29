@@ -265,6 +265,12 @@ template<typename Tp, typename Tp1>
 
     const Tp eps = std::numeric_limits<Tp>::epsilon();
 
+    std::string numname = type_strings<Tp>::type();
+
+    std::string structname = "testcase_";
+    structname += funcname;
+    structname += '<' + numname + '>';
+
     std::vector<std::tuple<Tp, Tp1>> crud;
 
     Tp max_abs_diff = -Tp(1);
@@ -300,9 +306,6 @@ template<typename Tp, typename Tp1>
 	const Tp min_tol = Tp(1.0e-3L);
 	//const Tp diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
 	const Tp frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
-	std::string structname = "testcase_";
-	structname += funcname;
-	structname += "<Tp>";
 	std::ostringstream dataname;
 	dataname.fill('0');
 	dataname << "data" << std::setw(3) << test;
@@ -319,18 +322,22 @@ template<typename Tp, typename Tp1>
 	    output << " },\n";
 	  }
 	output << "};\n";
-	output << "const Tp toler" << std::setw(3) << test << " = " << frac_toler << ";\n";
+	output.fill('0');
+	output << "const " << numname << " toler" << std::setw(3) << test << " = " << frac_toler << ";\n";
+	output.fill(' ');
 	++test;
       }
 
     if (write_main)
       {
-	output << '\n';
-	output << "// Test function.\n";
+	std::string structname = "testcase_";
+	structname += funcname;
+	structname += "<Tp>";
+
 	output << "template<typename Tp, unsigned int Num>\n";
 	output.fill('0');
 	output << "  void\n";
-	output << "  test(const " << structname << "<Tp> (&data)[Num], Tp toler)\n";
+	output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
 	output.fill(' ');
 	output << "  {\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
@@ -365,7 +372,7 @@ template<typename Tp, typename Tp1>
 	output << "{\n";
 	output.fill('0');
 	for (unsigned int t = 1; t < test; ++t)
-	  output << "  test" << std::setw(3) << t << "<" << type_strings<Tp>::type() << ">();\n";
+	  output << "  test(data" << std::setw(3) << t << ", toler" << std::setw(3) << t << ");\n";
 	output.fill(' ');
 	output << "  return 0;\n";
 	output << "}\n";
@@ -399,6 +406,12 @@ template<typename Tp, typename Tp1, typename Tp2>
       output << header << '\n';
 
     const Tp eps = std::numeric_limits<Tp>::epsilon();
+
+    std::string numname = type_strings<Tp>::type();
+
+    std::string structname = "testcase_";
+    structname += funcname;
+    structname += '<' + numname + '>';
 
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
@@ -439,9 +452,6 @@ template<typename Tp, typename Tp1, typename Tp2>
 	    const Tp min_tol = Tp(1.0e-3L);
 	    //const Tp diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
 	    const Tp frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
-	    std::string structname = "testcase_";
-	    structname += funcname;
-	    structname += "<Tp>";
 	    std::ostringstream dataname;
 	    dataname.fill('0');
 	    dataname << "data" << std::setw(3) << test;
@@ -459,26 +469,30 @@ template<typename Tp, typename Tp1, typename Tp2>
 		output << " },\n";
 	      }
 	    output << "};\n";
-	    output << "const Tp toler" << std::setw(3) << test << " = " << frac_toler << ";\n";
+	    output.fill('0');
+	    output << "const " << numname << " toler" << std::setw(3) << test << " = " << frac_toler << ";\n";
+	    output.fill(' ');
 	    ++test;
 	  }
       }
 
     if (write_main)
       {
-	output << '\n';
-	output << "// Test function for " << arg1 << '=' << std::get<1>(crud[0]) << ".\n";
+	std::string structname = "testcase_";
+	structname += funcname;
+	structname += "<Tp>";
+
 	output << "template<typename Tp, unsigned int Num>\n";
 	output.fill('0');
 	output << "  void\n";
-	output << "  test(const " << structname << "<Tp> (&data)[Num], Tp toler)\n";
+	output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
 	output.fill(' ');
 	output << "  {\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
 	output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
 	output << "    Tp max_abs_diff = -Tp(1);\n";
 	output << "    Tp max_abs_frac = -Tp(1);\n";
-	output << "    unsigned int num_datum =  Num;\n";
+	output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "      {\n";
 	output << "\tconst Tp f = " << nsname << "::" << funcname << '('
@@ -540,6 +554,12 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 
     const Tp eps = std::numeric_limits<Tp>::epsilon();
 
+    std::string numname = type_strings<Tp>::type();
+
+    std::string structname = "testcase_";
+    structname += funcname;
+    structname += '<' + numname + '>';
+
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
 	const Tp1 x = argument1[i];
@@ -583,9 +603,6 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		const Tp min_tol = Tp(1.0e-3L);
 		//const Tp diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
 		const Tp frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
-		std::string structname = "testcase_";
-		structname += funcname;
-		structname += "<Tp>";
 		std::ostringstream dataname;
 		dataname.fill('0');
 		dataname << "data" << std::setw(3) << test;
@@ -606,7 +623,9 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		    output << " },\n";
 		  }
 		output << "};\n";
-		output << "const Tp toler" << std::setw(3) << test << " = " << frac_toler << ";\n";
+		output.fill('0');
+		output << "const " << numname << " toler" << std::setw(3) << test << " = " << frac_toler << ";\n";
+		output.fill(' ');
 		++test;
 	      }
 	  }
@@ -615,13 +634,14 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 
     if (write_main)
       {
-	output << '\n';
-	output << "// Test function for " << arg1 << '=' << std::get<1>(crud[0]);
-	output << ", " << arg2 << '=' << std::get<2>(crud[0]) << ".\n";
+	std::string structname = "testcase_";
+	structname += funcname;
+	structname += "<Tp>";
+
 	output << "template<typename Tp, unsigned int Num>\n";
 	output.fill('0');
 	output << "  void\n";
-	output << "  test(const " << structname << "<Tp> (&data)[Num], Tp toler)\n";
+	output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
 	output.fill(' ');
 	output << "  {\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
@@ -692,6 +712,12 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 
     const Tp eps = std::numeric_limits<Tp>::epsilon();
 
+    std::string numname = type_strings<Tp>::type();
+
+    std::string structname = "testcase_";
+    structname += funcname;
+    structname += '<' + numname + '>';
+
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
 	const Tp1 w = argument1[i];
@@ -739,9 +765,6 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		    const Tp min_tol = Tp(1.0e-3L);
 		    //const Tp diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
 		    const Tp frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
-		    std::string structname = "testcase_";
-		    structname += funcname;
-		    structname += "<Tp>";
 		    std::ostringstream dataname;
 		    dataname.fill('0');
 		    dataname << "data" << std::setw(3) << test;
@@ -764,7 +787,9 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 			output << " },\n";
 		      }
 		    output << "};\n";
-		    output << "const Tp toler" << std::setw(3) << test << " = " << frac_toler << ";\n";
+		    output.fill('0');
+		    output << "const " << numname << " toler" << std::setw(3) << test << " = " << frac_toler << ";\n";
+		    output.fill(' ');
 		    ++test;
 		  }
 	      }
@@ -773,14 +798,14 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 
     if (write_main)
       {
-	output << '\n';
-	output << "// Test function for " << arg1 << '=' << std::get<1>(crud[0]);
-	output << ", " << arg2 << '=' << std::get<2>(crud[0]);
-	output << ", " << arg3 << '=' << std::get<3>(crud[0]) << ".\n";
+	std::string structname = "testcase_";
+	structname += funcname;
+	structname += "<Tp>";
+
 	output << "template<typename Tp, unsigned int Num>\n";
 	output.fill('0');
 	output << "  void\n";
-	output << "  test(const " << structname << "<Tp> (&data)[Num], Tp toler)\n";
+	output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
 	output.fill(' ');
 	output << "  {\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
@@ -791,7 +816,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "      {\n";
 	output << "\tconst Tp f = " << nsname << "::" << funcname << '('
-	       << "data[i]." << arg1 << << ", data[i]." << arg2 << ",\n";
+	       << "data[i]." << arg1 << ", data[i]." << arg2 << ",\n";
 	output << "\t\t     data[i]." << arg3 << ", data[i]." << arg4 << ");\n";
 	output << "\tconst Tp f0 = data[i].f0;\n";
 	output << "\tconst Tp diff = f - f0;\n";

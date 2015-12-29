@@ -38,7 +38,9 @@
 
 
 // Test data for n=0.
-testcase_laguerre<double> data001[] = {
+const testcase_laguerre<double>
+data001[21] =
+{
   { 1.0000000000000000, 0, 0.0000000000000000 },
   { 1.0000000000000000, 0, 5.0000000000000000 },
   { 1.0000000000000000, 0, 10.000000000000000 },
@@ -61,38 +63,12 @@ testcase_laguerre<double> data001[] = {
   { 1.0000000000000000, 0, 95.000000000000000 },
   { 1.0000000000000000, 0, 100.00000000000000 },
 };
-
-// Test function for n=0.
-template<typename Tp>
-  void
-  test001()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data001)
-			   / sizeof(testcase_laguerre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::laguerre(Tp(data001[i].n), Tp(data001[i].x));
-	const Tp f0 = data001[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler001 = 2.5000000000000020e-13;
 
 // Test data for n=1.
-testcase_laguerre<double> data002[] = {
+const testcase_laguerre<double>
+data002[21] =
+{
   { 1.0000000000000000, 1, 0.0000000000000000 },
   { -4.0000000000000000, 1, 5.0000000000000000 },
   { -9.0000000000000000, 1, 10.000000000000000 },
@@ -115,38 +91,12 @@ testcase_laguerre<double> data002[] = {
   { -94.000000000000000, 1, 95.000000000000000 },
   { -99.000000000000000, 1, 100.00000000000000 },
 };
-
-// Test function for n=1.
-template<typename Tp>
-  void
-  test002()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data002)
-			   / sizeof(testcase_laguerre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::laguerre(Tp(data002[i].n), Tp(data002[i].x));
-	const Tp f0 = data002[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler002 = 2.5000000000000020e-13;
 
 // Test data for n=2.
-testcase_laguerre<double> data003[] = {
+const testcase_laguerre<double>
+data003[21] =
+{
   { 1.0000000000000000, 2, 0.0000000000000000 },
   { 3.5000000000000000, 2, 5.0000000000000000 },
   { 31.000000000000000, 2, 10.000000000000000 },
@@ -169,38 +119,12 @@ testcase_laguerre<double> data003[] = {
   { 4323.5000000000000, 2, 95.000000000000000 },
   { 4801.0000000000000, 2, 100.00000000000000 },
 };
-
-// Test function for n=2.
-template<typename Tp>
-  void
-  test003()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data003)
-			   / sizeof(testcase_laguerre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::laguerre(Tp(data003[i].n), Tp(data003[i].x));
-	const Tp f0 = data003[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler003 = 2.5000000000000020e-13;
 
 // Test data for n=5.
-testcase_laguerre<double> data004[] = {
+const testcase_laguerre<double>
+data004[21] =
+{
   { 1.0000000000000000, 5, 0.0000000000000000 },
   { -3.1666666666666665, 5, 5.0000000000000000 },
   { 34.333333333333329, 5, 10.000000000000000 },
@@ -223,38 +147,12 @@ testcase_laguerre<double> data004[] = {
   { -48897171.916666657, 5, 95.000000000000000 },
   { -64117165.666666664, 5, 100.00000000000000 },
 };
-
-// Test function for n=5.
-template<typename Tp>
-  void
-  test004()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data004)
-			   / sizeof(testcase_laguerre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::laguerre(Tp(data004[i].n), Tp(data004[i].x));
-	const Tp f0 = data004[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler004 = 2.5000000000000020e-13;
 
 // Test data for n=10.
-testcase_laguerre<double> data005[] = {
+const testcase_laguerre<double>
+data005[21] =
+{
   { 1.0000000000000000, 10, 0.0000000000000000 },
   { 1.7562761794532631, 10, 5.0000000000000000 },
   { 27.984126984126977, 10, 10.000000000000000 },
@@ -277,38 +175,12 @@ testcase_laguerre<double> data005[] = {
   { 5071986977681.8652, 10, 95.000000000000000 },
   { 9051283795429.5723, 10, 100.00000000000000 },
 };
-
-// Test function for n=10.
-template<typename Tp>
-  void
-  test005()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data005)
-			   / sizeof(testcase_laguerre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::laguerre(Tp(data005[i].n), Tp(data005[i].x));
-	const Tp f0 = data005[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(5.0000000000000039e-13));
-  }
+const double toler005 = 5.0000000000000039e-13;
 
 // Test data for n=20.
-testcase_laguerre<double> data006[] = {
+const testcase_laguerre<double>
+data006[21] =
+{
   { 1.0000000000000000, 20, 0.0000000000000000 },
   { 2.0202257444769134, 20, 5.0000000000000000 },
   { -11.961333867812119, 20, 10.000000000000000 },
@@ -331,38 +203,12 @@ testcase_laguerre<double> data006[] = {
   { 5.3239262855563100e+18, 20, 95.000000000000000 },
   { 2.2061882785931735e+19, 20, 100.00000000000000 },
 };
-
-// Test function for n=20.
-template<typename Tp>
-  void
-  test006()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data006)
-			   / sizeof(testcase_laguerre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::laguerre(Tp(data006[i].n), Tp(data006[i].x));
-	const Tp f0 = data006[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(5.0000000000000039e-13));
-  }
+const double toler006 = 5.0000000000000039e-13;
 
 // Test data for n=50.
-testcase_laguerre<double> data007[] = {
+const testcase_laguerre<double>
+data007[21] =
+{
   { 1.0000000000000000, 50, 0.0000000000000000 },
   { 1.4735258819430543, 50, 5.0000000000000000 },
   { 17.534183446338233, 50, 10.000000000000000 },
@@ -385,38 +231,12 @@ testcase_laguerre<double> data007[] = {
   { 3.2438187475835134e+19, 50, 95.000000000000000 },
   { -3.9710103487094692e+20, 50, 100.00000000000000 },
 };
-
-// Test function for n=50.
-template<typename Tp>
-  void
-  test007()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data007)
-			   / sizeof(testcase_laguerre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::laguerre(Tp(data007[i].n), Tp(data007[i].x));
-	const Tp f0 = data007[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler007 = 2.5000000000000020e-13;
 
 // Test data for n=100.
-testcase_laguerre<double> data008[] = {
+const testcase_laguerre<double>
+data008[21] =
+{
   { 1.0000000000000000, 100, 0.0000000000000000 },
   { 1.4555271625328801, 100, 5.0000000000000000 },
   { 13.277662844303450, 100, 10.000000000000000 },
@@ -439,22 +259,20 @@ testcase_laguerre<double> data008[] = {
   { -7.2706523009007821e+18, 100, 95.000000000000000 },
   { -2.6292260693068916e+20, 100, 100.00000000000000 },
 };
-
-// Test function for n=100.
-template<typename Tp>
+const double toler008 = 2.5000000000000020e-13;
+template<typename Tp, unsigned int Num>
   void
-  test008()
+  test(const testcase_laguerre<Tp> (&data)[Num], Tp toler)
   {
-    bool test [[gnu::unused]] = true;
+    bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data008)
-			   / sizeof(testcase_laguerre<double>);
+    unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::laguerre(Tp(data008[i].n), Tp(data008[i].x));
-	const Tp f0 = data008[i].f0;
+	const Tp f = std::laguerre(data[i].n, data[i].x);
+	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -466,19 +284,19 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
+    VERIFY(max_abs_frac < toler);
   }
 
 int
 main()
 {
-  test001<double>();
-  test002<double>();
-  test003<double>();
-  test004<double>();
-  test005<double>();
-  test006<double>();
-  test007<double>();
-  test008<double>();
+  test(data001, toler001);
+  test(data002, toler002);
+  test(data003, toler003);
+  test(data004, toler004);
+  test(data005, toler005);
+  test(data006, toler006);
+  test(data007, toler007);
+  test(data008, toler008);
   return 0;
 }

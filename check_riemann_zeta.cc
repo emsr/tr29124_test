@@ -45,7 +45,9 @@
 
 
 // Test data.
-testcase_riemann_zeta<double> data001[] = {
+const testcase_riemann_zeta<double>
+data001[55] =
+{
   { 0.0000000000000000, -10.000000000000000 },
   { -0.0033669820451019579, -9.8000000000000007 },
   { -0.0058129517767319039, -9.5999999999999996 },
@@ -102,34 +104,7 @@ testcase_riemann_zeta<double> data001[] = {
   { -1.9526614482239983, 0.59999999999999964 },
   { -4.4375384158955677, 0.80000000000000071 },
 };
-
-// Test function.
-template<typename Tp>
-  void
-  test001()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = MAX_ITERATIONS;
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::riemann_zeta(Tp(data001[i].s));
-	const Tp f0 = data001[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(0.025000000000000001));
-  }
+const double toler001 = 0.025000000000000001;
 //  riemann_zeta
 // This can take long on simulators, timing out the test.
 // { dg-options "-DMAX_ITERATIONS=5" { target simulator } }
@@ -140,7 +115,9 @@ template<typename Tp>
 
 
 // Test data.
-testcase_riemann_zeta<double> data002[] = {
+const testcase_riemann_zeta<double>
+data002[145] =
+{
   { 5.5915824411777502, 1.2000000000000000 },
   { 3.1055472779775792, 1.3999999999999999 },
   { 2.2857656656801324, 1.6000000000000001 },
@@ -287,21 +264,20 @@ testcase_riemann_zeta<double> data002[] = {
   { 1.0000000010698147, 29.800000000000001 },
   { 1.0000000009313275, 30.000000000000000 },
 };
-
-// Test function.
-template<typename Tp>
+const double toler002 = 0.025000000000000001;
+template<typename Tp, unsigned int Num>
   void
-  test002()
+  test(const testcase_riemann_zeta<Tp> (&data)[Num], Tp toler)
   {
-    bool test [[gnu::unused]] = true;
+    bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
     unsigned int num_datum = MAX_ITERATIONS;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::riemann_zeta(Tp(data002[i].s));
-	const Tp f0 = data002[i].f0;
+	const Tp f = std::riemann_zeta(data[i].s);
+	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -313,13 +289,13 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(0.025000000000000001));
+    VERIFY(max_abs_frac < toler);
   }
 
 int
 main()
 {
-  test001<double>();
-  test002<double>();
+  test(data001, toler001);
+  test(data002, toler002);
   return 0;
 }

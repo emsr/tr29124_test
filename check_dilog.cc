@@ -38,7 +38,9 @@
 
 
 // Test data.
-testcase_dilog<double> data001[] = {
+const testcase_dilog<double>
+data001[23] =
+{
   { -4.1982778868581043, -10.000000000000000 },
   { -4.0764759702627735, -9.5000000000000000 },
   { -3.9506637782441563, -9.0000000000000000 },
@@ -63,22 +65,20 @@ testcase_dilog<double> data001[] = {
   { 0.58224052646501256, 0.50000000000000000 },
   { 1.6449340668482264, 1.0000000000000000 },
 };
-
-// Test function.
-template<typename Tp>
+const double toler001 = 2.5000000000000020e-13;
+template<typename Tp, unsigned int Num>
   void
-  test001()
+  test(const testcase_dilog<Tp> (&data)[Num], Tp toler)
   {
-    bool test [[gnu::unused]] = true;
+    bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data001)
-			   / sizeof(testcase_dilog<double>);
+    unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = __gnu_cxx::dilog(Tp(data001[i].x));
-	const Tp f0 = data001[i].f0;
+	const Tp f = __gnu_cxx::dilog(data[i].x);
+	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -90,12 +90,12 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
+    VERIFY(max_abs_frac < toler);
   }
 
 int
 main()
 {
-  test001<double>();
+  test(data001, toler001);
   return 0;
 }

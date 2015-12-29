@@ -38,7 +38,9 @@
 
 
 // Test data.
-testcase_airy_ai<double> data001[] = {
+const testcase_airy_ai<double>
+data001[41] =
+{
   { 0.040241238486444071, -10.000000000000000 },
   { 0.31910324771912801, -9.5000000000000000 },
   { -0.022133721547341240, -9.0000000000000000 },
@@ -81,22 +83,20 @@ testcase_airy_ai<double> data001[] = {
   { 5.3302637046174900e-10, 9.5000000000000000 },
   { 1.1047532552898652e-10, 10.000000000000000 },
 };
-
-// Test function.
-template<typename Tp>
+const double toler001 = 5.0000000000000029e-12;
+template<typename Tp, unsigned int Num>
   void
-  test001()
+  test(const testcase_airy_ai<Tp> (&data)[Num], Tp toler)
   {
-    bool test [[gnu::unused]] = true;
+    bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data001)
-			   / sizeof(testcase_airy_ai<double>);
+    unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = __gnu_cxx::airy_ai(Tp(data001[i].x));
-	const Tp f0 = data001[i].f0;
+	const Tp f = __gnu_cxx::airy_ai(data[i].x);
+	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -108,88 +108,12 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(5.0000000000000029e-12));
-  }
-//  airy_bi
-
-// Test data.
-testcase_airy_bi<double> data002[] = {
-  { -0.31467982964383845, -10.000000000000000 },
-  { 0.037785432489467467, -9.5000000000000000 },
-  { 0.32494732345524480, -9.0000000000000000 },
-  { 0.0077544364476580746, -8.5000000000000000 },
-  { -0.33125158075113792, -8.0000000000000000 },
-  { -0.11246348507649087, -7.5000000000000000 },
-  { 0.29376207185441372, -7.0000000000000000 },
-  { 0.26101265763648318, -6.5000000000000000 },
-  { -0.14669837667055663, -6.0000000000000000 },
-  { -0.36781345391571185, -5.5000000000000000 },
-  { -0.13836913490160088, -5.0000000000000000 },
-  { 0.25387265769693296, -4.5000000000000000 },
-  { 0.39223470570699931, -4.0000000000000000 },
-  { 0.16893983748105870, -3.5000000000000000 },
-  { -0.19828962637492650, -3.0000000000000000 },
-  { -0.43242247184070520, -2.5000000000000000 },
-  { -0.41230258795639835, -2.0000000000000000 },
-  { -0.19178486115704119, -1.5000000000000000 },
-  { 0.10399738949694459, -1.0000000000000000 },
-  { 0.38035265975105381, -0.50000000000000000 },
-  { 0.61492662744600068, 0.0000000000000000 },
-  { 0.85427704310315555, 0.50000000000000000 },
-  { 1.2074235949528713, 1.0000000000000000 },
-  { 1.8789415037478949, 1.5000000000000000 },
-  { 3.2980949999782148, 2.0000000000000000 },
-  { 6.4816607384605804, 2.5000000000000000 },
-  { 14.037328963730236, 3.0000000000000000 },
-  { 33.055506754611478, 3.5000000000000000 },
-  { 83.847071408468111, 4.0000000000000000 },
-  { 227.58808183559950, 4.5000000000000000 },
-  { 657.79204417117160, 5.0000000000000000 },
-  { 2016.5800386595315, 5.5000000000000000 },
-  { 6536.4461048098583, 6.0000000000000000 },
-  { 22340.607718396990, 6.5000000000000000 },
-  { 80327.790709430337, 7.0000000000000000 },
-  { 303229.61511253362, 7.5000000000000000 },
-  { 1199586.0041244617, 8.0000000000000000 },
-  { 4965319.5414712988, 8.5000000000000000 },
-  { 21472868.891435351, 9.0000000000000000 },
-  { 96892265.580451161, 9.5000000000000000 },
-  { 455641153.54822654, 10.000000000000000 },
-};
-
-// Test function.
-template<typename Tp>
-  void
-  test002()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data002)
-			   / sizeof(testcase_airy_bi<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::airy_bi(Tp(data002[i].x));
-	const Tp f0 = data002[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(1.0000000000000006e-11));
+    VERIFY(max_abs_frac < toler);
   }
 
 int
 main()
 {
-  test001<double>();
-  test002<double>();
+  test(data001, toler001);
   return 0;
 }

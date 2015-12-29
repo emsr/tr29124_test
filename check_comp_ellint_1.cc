@@ -38,7 +38,9 @@
 
 
 // Test data.
-testcase_comp_ellint_1<double> data001[] = {
+const testcase_comp_ellint_1<double>
+data001[19] =
+{
   { 2.2805491384227703, -0.90000000000000002 },
   { 1.9953027776647296, -0.80000000000000004 },
   { 1.8456939983747236, -0.69999999999999996 },
@@ -59,22 +61,20 @@ testcase_comp_ellint_1<double> data001[] = {
   { 1.9953027776647296, 0.80000000000000004 },
   { 2.2805491384227703, 0.89999999999999991 },
 };
-
-// Test function.
-template<typename Tp>
+const double toler001 = 2.5000000000000020e-13;
+template<typename Tp, unsigned int Num>
   void
-  test001()
+  test(const testcase_comp_ellint_1<Tp> (&data)[Num], Tp toler)
   {
-    bool test [[gnu::unused]] = true;
+    bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data001)
-			   / sizeof(testcase_comp_ellint_1<double>);
+    unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::comp_ellint_1(Tp(data001[i].k));
-	const Tp f0 = data001[i].f0;
+	const Tp f = std::comp_ellint_1(data[i].k);
+	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -86,12 +86,12 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
+    VERIFY(max_abs_frac < toler);
   }
 
 int
 main()
 {
-  test001<double>();
+  test(data001, toler001);
   return 0;
 }
