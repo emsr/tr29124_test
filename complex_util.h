@@ -76,6 +76,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     { return std::abs(std::real(z)) + std::abs(std::imag(z)); }
 
   /**
+   * Return the L2 norm modulus or the Manhattan metric distance of a complex number.
+   */
+  template<typename _Tp>
+    inline constexpr _Tp
+    __l2_norm(const std::complex<_Tp>& z)
+    { return std::norm(z); }
+
+  /**
    * Return the Linf norm modulus of a complex number.
    */
   template<typename _Tp>

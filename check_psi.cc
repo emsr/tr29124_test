@@ -38,7 +38,9 @@
 
 
 // Test data.
-testcase_psi<double> data001[] = {
+const testcase_psi<double>
+data001[401] =
+{
   { -5.2446900613726646, -9.8750000000000000 },
   { -2.7916549229772443, -9.8249999999999993 },
   { -1.3482246241204852, -9.7750000000000004 },
@@ -441,22 +443,20 @@ testcase_psi<double> data001[] = {
   { 2.2596091487437522, 10.074999999999999 },
   { 2.2648128020191511, 10.125000000000000 },
 };
-
-// Test function.
-template<typename Tp>
+const double toler001 = 0.050000000000000003;
+template<typename Tp, unsigned int Num>
   void
-  test001()
+  test(const testcase_psi<Tp> (&data)[Num], Tp toler)
   {
-    bool test [[gnu::unused]] = true;
+    bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data001)
-			   / sizeof(testcase_psi<double>);
+    unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = __gnu_cxx::psi(Tp(data001[i].x));
-	const Tp f0 = data001[i].f0;
+	const Tp f = __gnu_cxx::psi(data[i].x);
+	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -468,12 +468,12 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(0.050000000000000003));
+    VERIFY(max_abs_frac < toler);
   }
 
 int
 main()
 {
-  test001<double>();
+  test(data001, toler001);
   return 0;
 }

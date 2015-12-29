@@ -38,7 +38,9 @@
 
 
 // Test data for a=0.0000000000000000, c=1.0000000000000000.
-testcase_conf_hyperg<double> data001[] = {
+const testcase_conf_hyperg<double>
+data001[21] =
+{
   { 1.0000000000000000, 0.0000000000000000, 1.0000000000000000, 
 	  -10.000000000000000 },
   { 1.0000000000000000, 0.0000000000000000, 1.0000000000000000, 
@@ -82,39 +84,12 @@ testcase_conf_hyperg<double> data001[] = {
   { 1.0000000000000000, 0.0000000000000000, 1.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.0000000000000000, c=1.0000000000000000.
-template<typename Tp>
-  void
-  test001()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data001)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data001[i].a), Tp(data001[i].c),
-		     Tp(data001[i].x));
-	const Tp f0 = data001[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler001 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, c=2.0000000000000000.
-testcase_conf_hyperg<double> data002[] = {
+const testcase_conf_hyperg<double>
+data002[21] =
+{
   { 1.0000000000000000, 0.0000000000000000, 2.0000000000000000, 
 	  -10.000000000000000 },
   { 1.0000000000000000, 0.0000000000000000, 2.0000000000000000, 
@@ -158,39 +133,12 @@ testcase_conf_hyperg<double> data002[] = {
   { 1.0000000000000000, 0.0000000000000000, 2.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.0000000000000000, c=2.0000000000000000.
-template<typename Tp>
-  void
-  test002()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data002)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data002[i].a), Tp(data002[i].c),
-		     Tp(data002[i].x));
-	const Tp f0 = data002[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler002 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, c=3.0000000000000000.
-testcase_conf_hyperg<double> data003[] = {
+const testcase_conf_hyperg<double>
+data003[21] =
+{
   { 1.0000000000000000, 0.0000000000000000, 3.0000000000000000, 
 	  -10.000000000000000 },
   { 1.0000000000000000, 0.0000000000000000, 3.0000000000000000, 
@@ -234,39 +182,12 @@ testcase_conf_hyperg<double> data003[] = {
   { 1.0000000000000000, 0.0000000000000000, 3.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.0000000000000000, c=3.0000000000000000.
-template<typename Tp>
-  void
-  test003()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data003)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data003[i].a), Tp(data003[i].c),
-		     Tp(data003[i].x));
-	const Tp f0 = data003[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler003 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, c=4.0000000000000000.
-testcase_conf_hyperg<double> data004[] = {
+const testcase_conf_hyperg<double>
+data004[21] =
+{
   { 1.0000000000000000, 0.0000000000000000, 4.0000000000000000, 
 	  -10.000000000000000 },
   { 1.0000000000000000, 0.0000000000000000, 4.0000000000000000, 
@@ -310,39 +231,12 @@ testcase_conf_hyperg<double> data004[] = {
   { 1.0000000000000000, 0.0000000000000000, 4.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.0000000000000000, c=4.0000000000000000.
-template<typename Tp>
-  void
-  test004()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data004)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data004[i].a), Tp(data004[i].c),
-		     Tp(data004[i].x));
-	const Tp f0 = data004[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler004 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, c=5.0000000000000000.
-testcase_conf_hyperg<double> data005[] = {
+const testcase_conf_hyperg<double>
+data005[21] =
+{
   { 1.0000000000000000, 0.0000000000000000, 5.0000000000000000, 
 	  -10.000000000000000 },
   { 1.0000000000000000, 0.0000000000000000, 5.0000000000000000, 
@@ -386,39 +280,12 @@ testcase_conf_hyperg<double> data005[] = {
   { 1.0000000000000000, 0.0000000000000000, 5.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.0000000000000000, c=5.0000000000000000.
-template<typename Tp>
-  void
-  test005()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data005)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data005[i].a), Tp(data005[i].c),
-		     Tp(data005[i].x));
-	const Tp f0 = data005[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler005 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, c=6.0000000000000000.
-testcase_conf_hyperg<double> data006[] = {
+const testcase_conf_hyperg<double>
+data006[21] =
+{
   { 1.0000000000000000, 0.0000000000000000, 6.0000000000000000, 
 	  -10.000000000000000 },
   { 1.0000000000000000, 0.0000000000000000, 6.0000000000000000, 
@@ -462,39 +329,12 @@ testcase_conf_hyperg<double> data006[] = {
   { 1.0000000000000000, 0.0000000000000000, 6.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.0000000000000000, c=6.0000000000000000.
-template<typename Tp>
-  void
-  test006()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data006)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data006[i].a), Tp(data006[i].c),
-		     Tp(data006[i].x));
-	const Tp f0 = data006[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler006 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, c=7.0000000000000000.
-testcase_conf_hyperg<double> data007[] = {
+const testcase_conf_hyperg<double>
+data007[21] =
+{
   { 1.0000000000000000, 0.0000000000000000, 7.0000000000000000, 
 	  -10.000000000000000 },
   { 1.0000000000000000, 0.0000000000000000, 7.0000000000000000, 
@@ -538,39 +378,12 @@ testcase_conf_hyperg<double> data007[] = {
   { 1.0000000000000000, 0.0000000000000000, 7.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.0000000000000000, c=7.0000000000000000.
-template<typename Tp>
-  void
-  test007()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data007)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data007[i].a), Tp(data007[i].c),
-		     Tp(data007[i].x));
-	const Tp f0 = data007[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler007 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, c=8.0000000000000000.
-testcase_conf_hyperg<double> data008[] = {
+const testcase_conf_hyperg<double>
+data008[21] =
+{
   { 1.0000000000000000, 0.0000000000000000, 8.0000000000000000, 
 	  -10.000000000000000 },
   { 1.0000000000000000, 0.0000000000000000, 8.0000000000000000, 
@@ -614,39 +427,12 @@ testcase_conf_hyperg<double> data008[] = {
   { 1.0000000000000000, 0.0000000000000000, 8.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.0000000000000000, c=8.0000000000000000.
-template<typename Tp>
-  void
-  test008()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data008)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data008[i].a), Tp(data008[i].c),
-		     Tp(data008[i].x));
-	const Tp f0 = data008[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler008 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, c=9.0000000000000000.
-testcase_conf_hyperg<double> data009[] = {
+const testcase_conf_hyperg<double>
+data009[21] =
+{
   { 1.0000000000000000, 0.0000000000000000, 9.0000000000000000, 
 	  -10.000000000000000 },
   { 1.0000000000000000, 0.0000000000000000, 9.0000000000000000, 
@@ -690,39 +476,12 @@ testcase_conf_hyperg<double> data009[] = {
   { 1.0000000000000000, 0.0000000000000000, 9.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.0000000000000000, c=9.0000000000000000.
-template<typename Tp>
-  void
-  test009()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data009)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data009[i].a), Tp(data009[i].c),
-		     Tp(data009[i].x));
-	const Tp f0 = data009[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler009 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, c=10.000000000000000.
-testcase_conf_hyperg<double> data010[] = {
+const testcase_conf_hyperg<double>
+data010[21] =
+{
   { 1.0000000000000000, 0.0000000000000000, 10.000000000000000, 
 	  -10.000000000000000 },
   { 1.0000000000000000, 0.0000000000000000, 10.000000000000000, 
@@ -766,39 +525,12 @@ testcase_conf_hyperg<double> data010[] = {
   { 1.0000000000000000, 0.0000000000000000, 10.000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.0000000000000000, c=10.000000000000000.
-template<typename Tp>
-  void
-  test010()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data010)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data010[i].a), Tp(data010[i].c),
-		     Tp(data010[i].x));
-	const Tp f0 = data010[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler010 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, c=1.0000000000000000.
-testcase_conf_hyperg<double> data011[] = {
+const testcase_conf_hyperg<double>
+data011[21] =
+{
   { 0.18354081260932842, 0.50000000000000000, 1.0000000000000000, 
 	  -10.000000000000000 },
   { 0.19419827762834704, 0.50000000000000000, 1.0000000000000000, 
@@ -842,39 +574,12 @@ testcase_conf_hyperg<double> data011[] = {
   { 4042.7554308904109, 0.50000000000000000, 1.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.50000000000000000, c=1.0000000000000000.
-template<typename Tp>
-  void
-  test011()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data011)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data011[i].a), Tp(data011[i].c),
-		     Tp(data011[i].x));
-	const Tp f0 = data011[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(1.0000000000000006e-11));
-  }
+const double toler011 = 1.0000000000000006e-11;
 
 // Test data for a=0.50000000000000000, c=2.0000000000000000.
-testcase_conf_hyperg<double> data012[] = {
+const testcase_conf_hyperg<double>
+data012[21] =
+{
   { 0.34751307955387056, 0.50000000000000000, 2.0000000000000000, 
 	  -10.000000000000000 },
   { 0.36515709992587503, 0.50000000000000000, 2.0000000000000000, 
@@ -918,39 +623,12 @@ testcase_conf_hyperg<double> data012[] = {
   { 431.02590173952319, 0.50000000000000000, 2.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.50000000000000000, c=2.0000000000000000.
-template<typename Tp>
-  void
-  test012()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data012)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data012[i].a), Tp(data012[i].c),
-		     Tp(data012[i].x));
-	const Tp f0 = data012[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler012 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, c=3.0000000000000000.
-testcase_conf_hyperg<double> data013[] = {
+const testcase_conf_hyperg<double>
+data013[21] =
+{
   { 0.44148780381255504, 0.50000000000000000, 3.0000000000000000, 
 	  -10.000000000000000 },
   { 0.46154890030153722, 0.50000000000000000, 3.0000000000000000, 
@@ -994,39 +672,12 @@ testcase_conf_hyperg<double> data013[] = {
   { 93.137265099245838, 0.50000000000000000, 3.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.50000000000000000, c=3.0000000000000000.
-template<typename Tp>
-  void
-  test013()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data013)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data013[i].a), Tp(data013[i].c),
-		     Tp(data013[i].x));
-	const Tp f0 = data013[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler013 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, c=4.0000000000000000.
-testcase_conf_hyperg<double> data014[] = {
+const testcase_conf_hyperg<double>
+data014[21] =
+{
   { 0.50723143075298205, 0.50000000000000000, 4.0000000000000000, 
 	  -10.000000000000000 },
   { 0.52815420026166782, 0.50000000000000000, 4.0000000000000000, 
@@ -1070,39 +721,12 @@ testcase_conf_hyperg<double> data014[] = {
   { 30.671445325428429, 0.50000000000000000, 4.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.50000000000000000, c=4.0000000000000000.
-template<typename Tp>
-  void
-  test014()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data014)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data014[i].a), Tp(data014[i].c),
-		     Tp(data014[i].x));
-	const Tp f0 = data014[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler014 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, c=5.0000000000000000.
-testcase_conf_hyperg<double> data015[] = {
+const testcase_conf_hyperg<double>
+data015[21] =
+{
   { 0.55715239162383312, 0.50000000000000000, 5.0000000000000000, 
 	  -10.000000000000000 },
   { 0.57823135269518977, 0.50000000000000000, 5.0000000000000000, 
@@ -1146,39 +770,12 @@ testcase_conf_hyperg<double> data015[] = {
   { 13.636227878037948, 0.50000000000000000, 5.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.50000000000000000, c=5.0000000000000000.
-template<typename Tp>
-  void
-  test015()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data015)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data015[i].a), Tp(data015[i].c),
-		     Tp(data015[i].x));
-	const Tp f0 = data015[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler015 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, c=6.0000000000000000.
-testcase_conf_hyperg<double> data016[] = {
+const testcase_conf_hyperg<double>
+data016[21] =
+{
   { 0.59687111919499192, 0.50000000000000000, 6.0000000000000000, 
 	  -10.000000000000000 },
   { 0.61774982278057033, 0.50000000000000000, 6.0000000000000000, 
@@ -1222,39 +819,12 @@ testcase_conf_hyperg<double> data016[] = {
   { 7.5801565545352858, 0.50000000000000000, 6.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.50000000000000000, c=6.0000000000000000.
-template<typename Tp>
-  void
-  test016()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data016)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data016[i].a), Tp(data016[i].c),
-		     Tp(data016[i].x));
-	const Tp f0 = data016[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler016 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, c=7.0000000000000000.
-testcase_conf_hyperg<double> data017[] = {
+const testcase_conf_hyperg<double>
+data017[21] =
+{
   { 0.62946736953754079, 0.50000000000000000, 7.0000000000000000, 
 	  -10.000000000000000 },
   { 0.64995830964827050, 0.50000000000000000, 7.0000000000000000, 
@@ -1298,39 +868,12 @@ testcase_conf_hyperg<double> data017[] = {
   { 4.9659500648552237, 0.50000000000000000, 7.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.50000000000000000, c=7.0000000000000000.
-template<typename Tp>
-  void
-  test017()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data017)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data017[i].a), Tp(data017[i].c),
-		     Tp(data017[i].x));
-	const Tp f0 = data017[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler017 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, c=8.0000000000000000.
-testcase_conf_hyperg<double> data018[] = {
+const testcase_conf_hyperg<double>
+data018[21] =
+{
   { 0.65682574389601267, 0.50000000000000000, 8.0000000000000000, 
 	  -10.000000000000000 },
   { 0.67683106084440448, 0.50000000000000000, 8.0000000000000000, 
@@ -1374,39 +917,12 @@ testcase_conf_hyperg<double> data018[] = {
   { 3.6587666457431234, 0.50000000000000000, 8.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.50000000000000000, c=8.0000000000000000.
-template<typename Tp>
-  void
-  test018()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data018)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data018[i].a), Tp(data018[i].c),
-		     Tp(data018[i].x));
-	const Tp f0 = data018[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler018 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, c=9.0000000000000000.
-testcase_conf_hyperg<double> data019[] = {
+const testcase_conf_hyperg<double>
+data019[21] =
+{
   { 0.68018654063475448, 0.50000000000000000, 9.0000000000000000, 
 	  -10.000000000000000 },
   { 0.69965870094538662, 0.50000000000000000, 9.0000000000000000, 
@@ -1450,39 +966,12 @@ testcase_conf_hyperg<double> data019[] = {
   { 2.9266541358556295, 0.50000000000000000, 9.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.50000000000000000, c=9.0000000000000000.
-template<typename Tp>
-  void
-  test019()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data019)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data019[i].a), Tp(data019[i].c),
-		     Tp(data019[i].x));
-	const Tp f0 = data019[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler019 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, c=10.000000000000000.
-testcase_conf_hyperg<double> data020[] = {
+const testcase_conf_hyperg<double>
+data020[21] =
+{
   { 0.70040954461104099, 0.50000000000000000, 10.000000000000000, 
 	  -10.000000000000000 },
   { 0.71933025737654444, 0.50000000000000000, 10.000000000000000, 
@@ -1526,39 +1015,12 @@ testcase_conf_hyperg<double> data020[] = {
   { 2.4786679001777303, 0.50000000000000000, 10.000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=0.50000000000000000, c=10.000000000000000.
-template<typename Tp>
-  void
-  test020()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data020)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data020[i].a), Tp(data020[i].c),
-		     Tp(data020[i].x));
-	const Tp f0 = data020[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler020 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, c=1.0000000000000000.
-testcase_conf_hyperg<double> data021[] = {
+const testcase_conf_hyperg<double>
+data021[21] =
+{
   { 4.5399929762484854e-05, 1.0000000000000000, 1.0000000000000000, 
 	  -10.000000000000000 },
   { 0.00012340980408667956, 1.0000000000000000, 1.0000000000000000, 
@@ -1602,39 +1064,12 @@ testcase_conf_hyperg<double> data021[] = {
   { 22026.465794806718, 1.0000000000000000, 1.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=1.0000000000000000, c=1.0000000000000000.
-template<typename Tp>
-  void
-  test021()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data021)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data021[i].a), Tp(data021[i].c),
-		     Tp(data021[i].x));
-	const Tp f0 = data021[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler021 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, c=2.0000000000000000.
-testcase_conf_hyperg<double> data022[] = {
+const testcase_conf_hyperg<double>
+data022[21] =
+{
   { 0.099995460007023751, 1.0000000000000000, 2.0000000000000000, 
 	  -10.000000000000000 },
   { 0.11109739891065704, 1.0000000000000000, 2.0000000000000000, 
@@ -1678,39 +1113,12 @@ testcase_conf_hyperg<double> data022[] = {
   { 2202.5465794806719, 1.0000000000000000, 2.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=1.0000000000000000, c=2.0000000000000000.
-template<typename Tp>
-  void
-  test022()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data022)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data022[i].a), Tp(data022[i].c),
-		     Tp(data022[i].x));
-	const Tp f0 = data022[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler022 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, c=3.0000000000000000.
-testcase_conf_hyperg<double> data023[] = {
+const testcase_conf_hyperg<double>
+data023[21] =
+{
   { 0.18000090799859525, 1.0000000000000000, 3.0000000000000000, 
 	  -10.000000000000000 },
   { 0.19753391135318732, 1.0000000000000000, 3.0000000000000000, 
@@ -1754,39 +1162,12 @@ testcase_conf_hyperg<double> data023[] = {
   { 440.30931589613436, 1.0000000000000000, 3.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=1.0000000000000000, c=3.0000000000000000.
-template<typename Tp>
-  void
-  test023()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data023)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data023[i].a), Tp(data023[i].c),
-		     Tp(data023[i].x));
-	const Tp f0 = data023[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler023 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, c=4.0000000000000000.
-testcase_conf_hyperg<double> data024[] = {
+const testcase_conf_hyperg<double>
+data024[21] =
+{
   { 0.24599972760042138, 1.0000000000000000, 4.0000000000000000, 
 	  -10.000000000000000 },
   { 0.26748869621560417, 1.0000000000000000, 4.0000000000000000, 
@@ -1830,39 +1211,12 @@ testcase_conf_hyperg<double> data024[] = {
   { 131.79279476884014, 1.0000000000000000, 4.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=1.0000000000000000, c=4.0000000000000000.
-template<typename Tp>
-  void
-  test024()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data024)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data024[i].a), Tp(data024[i].c),
-		     Tp(data024[i].x));
-	const Tp f0 = data024[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler024 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, c=5.0000000000000000.
-testcase_conf_hyperg<double> data025[] = {
+const testcase_conf_hyperg<double>
+data025[21] =
+{
   { 0.30160010895983153, 1.0000000000000000, 5.0000000000000000, 
 	  -10.000000000000000 },
   { 0.32556057945973133, 1.0000000000000000, 5.0000000000000000, 
@@ -1906,39 +1260,12 @@ testcase_conf_hyperg<double> data025[] = {
   { 52.317117907536058, 1.0000000000000000, 5.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=1.0000000000000000, c=5.0000000000000000.
-template<typename Tp>
-  void
-  test025()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data025)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data025[i].a), Tp(data025[i].c),
-		     Tp(data025[i].x));
-	const Tp f0 = data025[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler025 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, c=6.0000000000000000.
-testcase_conf_hyperg<double> data026[] = {
+const testcase_conf_hyperg<double>
+data026[21] =
+{
   { 0.34919994552008421, 1.0000000000000000, 6.0000000000000000, 
 	  -10.000000000000000 },
   { 0.37468856696681579, 1.0000000000000000, 6.0000000000000000, 
@@ -1982,39 +1309,12 @@ testcase_conf_hyperg<double> data026[] = {
   { 25.658558953767979, 1.0000000000000000, 6.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=1.0000000000000000, c=6.0000000000000000.
-template<typename Tp>
-  void
-  test026()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data026)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data026[i].a), Tp(data026[i].c),
-		     Tp(data026[i].x));
-	const Tp f0 = data026[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler026 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, c=7.0000000000000000.
-testcase_conf_hyperg<double> data027[] = {
+const testcase_conf_hyperg<double>
+data027[21] =
+{
   { 0.39048003268794934, 1.0000000000000000, 7.0000000000000000, 
 	  -10.000000000000000 },
   { 0.41687428868878917, 1.0000000000000000, 7.0000000000000000, 
@@ -2058,39 +1358,12 @@ testcase_conf_hyperg<double> data027[] = {
   { 14.795135372260791, 1.0000000000000000, 7.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=1.0000000000000000, c=7.0000000000000000.
-template<typename Tp>
-  void
-  test027()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data027)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data027[i].a), Tp(data027[i].c),
-		     Tp(data027[i].x));
-	const Tp f0 = data027[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler027 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, c=8.0000000000000000.
-testcase_conf_hyperg<double> data028[] = {
+const testcase_conf_hyperg<double>
+data028[21] =
+{
   { 0.42666397711843551, 1.0000000000000000, 8.0000000000000000, 
 	  -10.000000000000000 },
   { 0.45354221990871935, 1.0000000000000000, 8.0000000000000000, 
@@ -2134,39 +1407,12 @@ testcase_conf_hyperg<double> data028[] = {
   { 9.6565947605825802, 1.0000000000000000, 8.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=1.0000000000000000, c=8.0000000000000000.
-template<typename Tp>
-  void
-  test028()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data028)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data028[i].a), Tp(data028[i].c),
-		     Tp(data028[i].x));
-	const Tp f0 = data028[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler028 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, c=9.0000000000000000.
-testcase_conf_hyperg<double> data029[] = {
+const testcase_conf_hyperg<double>
+data029[21] =
+{
   { 0.45866881830525147, 1.0000000000000000, 9.0000000000000000, 
 	  -10.000000000000000 },
   { 0.48574024897002727, 1.0000000000000000, 9.0000000000000000, 
@@ -2210,39 +1456,12 @@ testcase_conf_hyperg<double> data029[] = {
   { 6.9252758084660471, 1.0000000000000000, 9.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=1.0000000000000000, c=9.0000000000000000.
-template<typename Tp>
-  void
-  test029()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data029)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data029[i].a), Tp(data029[i].c),
-		     Tp(data029[i].x));
-	const Tp f0 = data029[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler029 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, c=10.000000000000000.
-testcase_conf_hyperg<double> data030[] = {
+const testcase_conf_hyperg<double>
+data030[21] =
+{
   { 0.48719806352527351, 1.0000000000000000, 10.000000000000000, 
 	  -10.000000000000000 },
   { 0.51425975102997290, 1.0000000000000000, 10.000000000000000, 
@@ -2286,39 +1505,12 @@ testcase_conf_hyperg<double> data030[] = {
   { 5.3327482276194447, 1.0000000000000000, 10.000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=1.0000000000000000, c=10.000000000000000.
-template<typename Tp>
-  void
-  test030()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data030)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data030[i].a), Tp(data030[i].c),
-		     Tp(data030[i].x));
-	const Tp f0 = data030[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler030 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, c=1.0000000000000000.
-testcase_conf_hyperg<double> data031[] = {
+const testcase_conf_hyperg<double>
+data031[20] =
+{
   { -0.00040859936786236367, 2.0000000000000000, 1.0000000000000000, 
 	  -10.000000000000000 },
   { -0.00098727843269343649, 2.0000000000000000, 1.0000000000000000, 
@@ -2360,39 +1552,12 @@ testcase_conf_hyperg<double> data031[] = {
   { 242291.12374287390, 2.0000000000000000, 1.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=2.0000000000000000, c=1.0000000000000000.
-template<typename Tp>
-  void
-  test031()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data031)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data031[i].a), Tp(data031[i].c),
-		     Tp(data031[i].x));
-	const Tp f0 = data031[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(1.0000000000000008e-12));
-  }
+const double toler031 = 1.0000000000000008e-12;
 
 // Test data for a=2.0000000000000000, c=2.0000000000000000.
-testcase_conf_hyperg<double> data032[] = {
+const testcase_conf_hyperg<double>
+data032[21] =
+{
   { 4.5399929762484854e-05, 2.0000000000000000, 2.0000000000000000, 
 	  -10.000000000000000 },
   { 0.00012340980408667956, 2.0000000000000000, 2.0000000000000000, 
@@ -2436,39 +1601,12 @@ testcase_conf_hyperg<double> data032[] = {
   { 22026.465794806718, 2.0000000000000000, 2.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=2.0000000000000000, c=2.0000000000000000.
-template<typename Tp>
-  void
-  test032()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data032)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data032[i].a), Tp(data032[i].c),
-		     Tp(data032[i].x));
-	const Tp f0 = data032[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler032 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, c=3.0000000000000000.
-testcase_conf_hyperg<double> data033[] = {
+const testcase_conf_hyperg<double>
+data033[21] =
+{
   { 0.019990012015452256, 2.0000000000000000, 3.0000000000000000, 
 	  -10.000000000000000 },
   { 0.024660886468126749, 2.0000000000000000, 3.0000000000000000, 
@@ -2512,39 +1650,12 @@ testcase_conf_hyperg<double> data033[] = {
   { 3964.7838430652091, 2.0000000000000000, 3.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=2.0000000000000000, c=3.0000000000000000.
-template<typename Tp>
-  void
-  test033()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data033)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data033[i].a), Tp(data033[i].c),
-		     Tp(data033[i].x));
-	const Tp f0 = data033[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler033 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, c=4.0000000000000000.
-testcase_conf_hyperg<double> data034[] = {
+const testcase_conf_hyperg<double>
+data034[21] =
+{
   { 0.048003268794942940, 2.0000000000000000, 4.0000000000000000, 
 	  -10.000000000000000 },
   { 0.057624341628353531, 2.0000000000000000, 4.0000000000000000, 
@@ -2588,39 +1699,12 @@ testcase_conf_hyperg<double> data034[] = {
   { 1057.3423581507243, 2.0000000000000000, 4.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=2.0000000000000000, c=4.0000000000000000.
-template<typename Tp>
-  void
-  test034()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data034)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data034[i].a), Tp(data034[i].c),
-		     Tp(data034[i].x));
-	const Tp f0 = data034[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler034 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, c=5.0000000000000000.
-testcase_conf_hyperg<double> data035[] = {
+const testcase_conf_hyperg<double>
+data035[21] =
+{
   { 0.079198583522191404, 2.0000000000000000, 5.0000000000000000, 
 	  -10.000000000000000 },
   { 0.093273046483222530, 2.0000000000000000, 5.0000000000000000, 
@@ -2664,39 +1748,12 @@ testcase_conf_hyperg<double> data035[] = {
   { 370.21982535275242, 2.0000000000000000, 5.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=2.0000000000000000, c=5.0000000000000000.
-template<typename Tp>
-  void
-  test035()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data035)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data035[i].a), Tp(data035[i].c),
-		     Tp(data035[i].x));
-	const Tp f0 = data035[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler035 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, c=6.0000000000000000.
-testcase_conf_hyperg<double> data036[] = {
+const testcase_conf_hyperg<double>
+data036[21] =
+{
   { 0.11120076271882003, 2.0000000000000000, 6.0000000000000000, 
 	  -10.000000000000000 },
   { 0.12904862943139384, 2.0000000000000000, 6.0000000000000000, 
@@ -2740,39 +1797,12 @@ testcase_conf_hyperg<double> data036[] = {
   { 158.95135372260788, 2.0000000000000000, 6.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=2.0000000000000000, c=6.0000000000000000.
-template<typename Tp>
-  void
-  test036()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data036)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data036[i].a), Tp(data036[i].c),
-		     Tp(data036[i].x));
-	const Tp f0 = data036[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler036 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, c=7.0000000000000000.
-testcase_conf_hyperg<double> data037[] = {
+const testcase_conf_hyperg<double>
+data037[21] =
+{
   { 0.14279950968075855, 2.0000000000000000, 7.0000000000000000, 
 	  -10.000000000000000 },
   { 0.16375995835694801, 2.0000000000000000, 7.0000000000000000, 
@@ -2816,39 +1846,12 @@ testcase_conf_hyperg<double> data037[] = {
   { 79.975676861303953, 2.0000000000000000, 7.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=2.0000000000000000, c=7.0000000000000000.
-template<typename Tp>
-  void
-  test037()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data037)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data037[i].a), Tp(data037[i].c),
-		     Tp(data037[i].x));
-	const Tp f0 = data037[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler037 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, c=8.0000000000000000.
-testcase_conf_hyperg<double> data038[] = {
+const testcase_conf_hyperg<double>
+data038[21] =
+{
   { 0.17337636610503362, 2.0000000000000000, 8.0000000000000000, 
 	  -10.000000000000000 },
   { 0.19686670136921000, 2.0000000000000000, 8.0000000000000000, 
@@ -2892,39 +1895,12 @@ testcase_conf_hyperg<double> data038[] = {
   { 45.626379042330321, 2.0000000000000000, 8.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=2.0000000000000000, c=8.0000000000000000.
-template<typename Tp>
-  void
-  test038()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data038)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data038[i].a), Tp(data038[i].c),
-		     Tp(data038[i].x));
-	const Tp f0 = data038[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler038 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, c=9.0000000000000000.
-testcase_conf_hyperg<double> data039[] = {
+const testcase_conf_hyperg<double>
+data039[21] =
+{
   { 0.20263008881072142, 2.0000000000000000, 9.0000000000000000, 
 	  -10.000000000000000 },
   { 0.22815601647956382, 2.0000000000000000, 9.0000000000000000, 
@@ -2968,39 +1944,12 @@ testcase_conf_hyperg<double> data039[] = {
   { 28.775827425398141, 2.0000000000000000, 9.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=2.0000000000000000, c=9.0000000000000000.
-template<typename Tp>
-  void
-  test039()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data039)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data039[i].a), Tp(data039[i].c),
-		     Tp(data039[i].x));
-	const Tp f0 = data039[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler039 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, c=10.000000000000000.
-testcase_conf_hyperg<double> data040[] = {
+const testcase_conf_hyperg<double>
+data040[21] =
+{
   { 0.23043485654507717, 2.0000000000000000, 10.000000000000000, 
 	  -10.000000000000000 },
   { 0.25758423249046342, 2.0000000000000000, 10.000000000000000, 
@@ -3044,39 +1993,12 @@ testcase_conf_hyperg<double> data040[] = {
   { 19.665496455238888, 2.0000000000000000, 10.000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=2.0000000000000000, c=10.000000000000000.
-template<typename Tp>
-  void
-  test040()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data040)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data040[i].a), Tp(data040[i].c),
-		     Tp(data040[i].x));
-	const Tp f0 = data040[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler040 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, c=1.0000000000000000.
-testcase_conf_hyperg<double> data041[] = {
+const testcase_conf_hyperg<double>
+data041[21] =
+{
   { 0.00049939922738733290, 5.0000000000000000, 1.0000000000000000, 
 	  -10.000000000000000 },
   { -0.00057077034390089253, 5.0000000000000000, 1.0000000000000000, 
@@ -3120,39 +2042,12 @@ testcase_conf_hyperg<double> data041[] = {
   { 31373029.447069697, 5.0000000000000000, 1.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=5.0000000000000000, c=1.0000000000000000.
-template<typename Tp>
-  void
-  test041()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data041)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data041[i].a), Tp(data041[i].c),
-		     Tp(data041[i].x));
-	const Tp f0 = data041[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(5.0000000000000034e-10));
-  }
+const double toler041 = 5.0000000000000034e-10;
 
 // Test data for a=5.0000000000000000, c=2.0000000000000000.
-testcase_conf_hyperg<double> data042[] = {
+const testcase_conf_hyperg<double>
+data042[21] =
+{
   { -0.00025726626865408078, 5.0000000000000000, 2.0000000000000000, 
 	  -10.000000000000000 },
   { -0.00029309828470586396, 5.0000000000000000, 2.0000000000000000, 
@@ -3196,39 +2091,12 @@ testcase_conf_hyperg<double> data042[] = {
   { 2371516.1505741901, 5.0000000000000000, 2.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=5.0000000000000000, c=2.0000000000000000.
-template<typename Tp>
-  void
-  test042()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data042)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data042[i].a), Tp(data042[i].c),
-		     Tp(data042[i].x));
-	const Tp f0 = data042[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(1.0000000000000006e-10));
-  }
+const double toler042 = 1.0000000000000006e-10;
 
 // Test data for a=5.0000000000000000, c=3.0000000000000000.
-testcase_conf_hyperg<double> data043[] = {
+const testcase_conf_hyperg<double>
+data043[21] =
+{
   { 0.00012106647936662629, 5.0000000000000000, 3.0000000000000000, 
 	  -10.000000000000000 },
   { 0.00021596715715168925, 5.0000000000000000, 3.0000000000000000, 
@@ -3272,39 +2140,12 @@ testcase_conf_hyperg<double> data043[] = {
   { 352423.45271690749, 5.0000000000000000, 3.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=5.0000000000000000, c=3.0000000000000000.
-template<typename Tp>
-  void
-  test043()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data043)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data043[i].a), Tp(data043[i].c),
-		     Tp(data043[i].x));
-	const Tp f0 = data043[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(5.0000000000000028e-11));
-  }
+const double toler043 = 5.0000000000000028e-11;
 
 // Test data for a=5.0000000000000000, c=4.0000000000000000.
-testcase_conf_hyperg<double> data044[] = {
+const testcase_conf_hyperg<double>
+data044[21] =
+{
   { -6.8099894643727278e-05, 5.0000000000000000, 4.0000000000000000, 
 	  -10.000000000000000 },
   { -0.00015426225510834944, 5.0000000000000000, 4.0000000000000000, 
@@ -3348,39 +2189,12 @@ testcase_conf_hyperg<double> data044[] = {
   { 77092.630281823513, 5.0000000000000000, 4.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=5.0000000000000000, c=4.0000000000000000.
-template<typename Tp>
-  void
-  test044()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data044)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data044[i].a), Tp(data044[i].c),
-		     Tp(data044[i].x));
-	const Tp f0 = data044[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000014e-11));
-  }
+const double toler044 = 2.5000000000000014e-11;
 
 // Test data for a=5.0000000000000000, c=5.0000000000000000.
-testcase_conf_hyperg<double> data045[] = {
+const testcase_conf_hyperg<double>
+data045[21] =
+{
   { 4.5399929762484854e-05, 5.0000000000000000, 5.0000000000000000, 
 	  -10.000000000000000 },
   { 0.00012340980408667956, 5.0000000000000000, 5.0000000000000000, 
@@ -3424,39 +2238,12 @@ testcase_conf_hyperg<double> data045[] = {
   { 22026.465794806718, 5.0000000000000000, 5.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=5.0000000000000000, c=5.0000000000000000.
-template<typename Tp>
-  void
-  test045()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data045)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data045[i].a), Tp(data045[i].c),
-		     Tp(data045[i].x));
-	const Tp f0 = data045[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler045 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, c=6.0000000000000000.
-testcase_conf_hyperg<double> data046[] = {
+const testcase_conf_hyperg<double>
+data046[21] =
+{
   { 0.0011648967743076431, 5.0000000000000000, 6.0000000000000000, 
 	  -10.000000000000000 },
   { 0.0019205128456127479, 5.0000000000000000, 6.0000000000000000, 
@@ -3500,39 +2287,12 @@ testcase_conf_hyperg<double> data046[] = {
   { 7691.6406555465046, 5.0000000000000000, 6.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=5.0000000000000000, c=6.0000000000000000.
-template<typename Tp>
-  void
-  test046()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data046)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data046[i].a), Tp(data046[i].c),
-		     Tp(data046[i].x));
-	const Tp f0 = data046[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(1.0000000000000006e-11));
-  }
+const double toler046 = 1.0000000000000006e-11;
 
 // Test data for a=5.0000000000000000, c=7.0000000000000000.
-testcase_conf_hyperg<double> data047[] = {
+const testcase_conf_hyperg<double>
+data047[21] =
+{
   { 0.0036308901122103932, 5.0000000000000000, 7.0000000000000000, 
 	  -10.000000000000000 },
   { 0.0055327336019229401, 5.0000000000000000, 7.0000000000000000, 
@@ -3576,39 +2336,12 @@ testcase_conf_hyperg<double> data047[] = {
   { 3145.3685154983905, 5.0000000000000000, 7.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=5.0000000000000000, c=7.0000000000000000.
-template<typename Tp>
-  void
-  test047()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data047)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data047[i].a), Tp(data047[i].c),
-		     Tp(data047[i].x));
-	const Tp f0 = data047[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(5.0000000000000029e-12));
-  }
+const double toler047 = 5.0000000000000029e-12;
 
 // Test data for a=5.0000000000000000, c=8.0000000000000000.
-testcase_conf_hyperg<double> data048[] = {
+const testcase_conf_hyperg<double>
+data048[21] =
+{
   { 0.0075295293831406113, 5.0000000000000000, 8.0000000000000000, 
 	  -10.000000000000000 },
   { 0.010936052508673187, 5.0000000000000000, 8.0000000000000000, 
@@ -3652,39 +2385,12 @@ testcase_conf_hyperg<double> data048[] = {
   { 1461.6183101433730, 5.0000000000000000, 8.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=5.0000000000000000, c=8.0000000000000000.
-template<typename Tp>
-  void
-  test048()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data048)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data048[i].a), Tp(data048[i].c),
-		     Tp(data048[i].x));
-	const Tp f0 = data048[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000015e-12));
-  }
+const double toler048 = 2.5000000000000015e-12;
 
 // Test data for a=5.0000000000000000, c=9.0000000000000000.
-testcase_conf_hyperg<double> data049[] = {
+const testcase_conf_hyperg<double>
+data049[21] =
+{
   { 0.012801285049305222, 5.0000000000000000, 9.0000000000000000, 
 	  -10.000000000000000 },
   { 0.017955923031350202, 5.0000000000000000, 9.0000000000000000, 
@@ -3728,39 +2434,12 @@ testcase_conf_hyperg<double> data049[] = {
   { 754.64844371961408, 5.0000000000000000, 9.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=5.0000000000000000, c=9.0000000000000000.
-template<typename Tp>
-  void
-  test049()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data049)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data049[i].a), Tp(data049[i].c),
-		     Tp(data049[i].x));
-	const Tp f0 = data049[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(1.0000000000000008e-12));
-  }
+const double toler049 = 1.0000000000000008e-12;
 
 // Test data for a=5.0000000000000000, c=10.000000000000000.
-testcase_conf_hyperg<double> data050[] = {
+const testcase_conf_hyperg<double>
+data050[21] =
+{
   { 0.019313731161840469, 5.0000000000000000, 10.000000000000000, 
 	  -10.000000000000000 },
   { 0.026361085775183927, 5.0000000000000000, 10.000000000000000, 
@@ -3804,39 +2483,12 @@ testcase_conf_hyperg<double> data050[] = {
   { 425.41323880637168, 5.0000000000000000, 10.000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=5.0000000000000000, c=10.000000000000000.
-template<typename Tp>
-  void
-  test050()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data050)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data050[i].a), Tp(data050[i].c),
-		     Tp(data050[i].x));
-	const Tp f0 = data050[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(5.0000000000000039e-13));
-  }
+const double toler050 = 5.0000000000000039e-13;
 
 // Test data for a=10.000000000000000, c=1.0000000000000000.
-testcase_conf_hyperg<double> data051[] = {
+const testcase_conf_hyperg<double>
+data051[21] =
+{
   { 0.00067155063653961294, 10.000000000000000, 1.0000000000000000, 
 	  -10.000000000000000 },
   { -0.00071555648905258684, 10.000000000000000, 1.0000000000000000, 
@@ -3880,39 +2532,12 @@ testcase_conf_hyperg<double> data051[] = {
   { 8514625476.5462780, 10.000000000000000, 1.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=10.000000000000000, c=1.0000000000000000.
-template<typename Tp>
-  void
-  test051()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data051)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data051[i].a), Tp(data051[i].c),
-		     Tp(data051[i].x));
-	const Tp f0 = data051[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000015e-12));
-  }
+const double toler051 = 2.5000000000000015e-12;
 
 // Test data for a=10.000000000000000, c=2.0000000000000000.
-testcase_conf_hyperg<double> data052[] = {
+const testcase_conf_hyperg<double>
+data052[21] =
+{
   { -0.00014116415550486912, 10.000000000000000, 2.0000000000000000, 
 	  -10.000000000000000 },
   { -0.00016988130843806985, 10.000000000000000, 2.0000000000000000, 
@@ -3956,39 +2581,12 @@ testcase_conf_hyperg<double> data052[] = {
   { 534524325.69810420, 10.000000000000000, 2.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=10.000000000000000, c=2.0000000000000000.
-template<typename Tp>
-  void
-  test052()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data052)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data052[i].a), Tp(data052[i].c),
-		     Tp(data052[i].x));
-	const Tp f0 = data052[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000017e-10));
-  }
+const double toler052 = 2.5000000000000017e-10;
 
 // Test data for a=10.000000000000000, c=3.0000000000000000.
-testcase_conf_hyperg<double> data053[] = {
+const testcase_conf_hyperg<double>
+data053[21] =
+{
   { 1.4973169075105227e-05, 10.000000000000000, 3.0000000000000000, 
 	  -10.000000000000000 },
   { 5.7627971015476266e-05, 10.000000000000000, 3.0000000000000000, 
@@ -4032,39 +2630,12 @@ testcase_conf_hyperg<double> data053[] = {
   { 65871447.346678361, 10.000000000000000, 3.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=10.000000000000000, c=3.0000000000000000.
-template<typename Tp>
-  void
-  test053()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data053)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data053[i].a), Tp(data053[i].c),
-		     Tp(data053[i].x));
-	const Tp f0 = data053[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000013e-09));
-  }
+const double toler053 = 2.5000000000000013e-09;
 
 // Test data for a=10.000000000000000, c=4.0000000000000000.
-testcase_conf_hyperg<double> data054[] = {
+const testcase_conf_hyperg<double>
+data054[21] =
+{
   { 6.9661267889527048e-06, 10.000000000000000, 4.0000000000000000, 
 	  -10.000000000000000 },
   { -3.0301514396282942e-06, 10.000000000000000, 4.0000000000000000, 
@@ -4108,39 +2679,12 @@ testcase_conf_hyperg<double> data054[] = {
   { 11939626.424402930, 10.000000000000000, 4.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=10.000000000000000, c=4.0000000000000000.
-template<typename Tp>
-  void
-  test054()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data054)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data054[i].a), Tp(data054[i].c),
-		     Tp(data054[i].x));
-	const Tp f0 = data054[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(5.0000000000000026e-09));
-  }
+const double toler054 = 5.0000000000000026e-09;
 
 // Test data for a=10.000000000000000, c=5.0000000000000000.
-testcase_conf_hyperg<double> data055[] = {
+const testcase_conf_hyperg<double>
+data055[21] =
+{
   { -6.2454929831989742e-06, 10.000000000000000, 5.0000000000000000, 
 	  -10.000000000000000 },
   { -1.1459481808048817e-05, 10.000000000000000, 5.0000000000000000, 
@@ -4184,39 +2728,12 @@ testcase_conf_hyperg<double> data055[] = {
   { 2826613.2348531331, 10.000000000000000, 5.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=10.000000000000000, c=5.0000000000000000.
-template<typename Tp>
-  void
-  test055()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data055)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data055[i].a), Tp(data055[i].c),
-		     Tp(data055[i].x));
-	const Tp f0 = data055[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000013e-09));
-  }
+const double toler055 = 2.5000000000000013e-09;
 
 // Test data for a=10.000000000000000, c=6.0000000000000000.
-testcase_conf_hyperg<double> data056[] = {
+const testcase_conf_hyperg<double>
+data056[21] =
+{
   { 9.6084507433830306e-07, 10.000000000000000, 6.0000000000000000, 
 	  -10.000000000000000 },
   { 7.7131127554174726e-06, 10.000000000000000, 6.0000000000000000, 
@@ -4260,39 +2777,12 @@ testcase_conf_hyperg<double> data056[] = {
   { 818592.04096678528, 10.000000000000000, 6.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=10.000000000000000, c=6.0000000000000000.
-template<typename Tp>
-  void
-  test056()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data056)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data056[i].a), Tp(data056[i].c),
-		     Tp(data056[i].x));
-	const Tp f0 = data056[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000012e-08));
-  }
+const double toler056 = 2.5000000000000012e-08;
 
 // Test data for a=10.000000000000000, c=7.0000000000000000.
-testcase_conf_hyperg<double> data057[] = {
+const testcase_conf_hyperg<double>
+data057[21] =
+{
   { 3.9634859316455036e-06, 10.000000000000000, 7.0000000000000000, 
 	  -10.000000000000000 },
   { 4.4074930030956985e-06, 10.000000000000000, 7.0000000000000000, 
@@ -4336,39 +2826,12 @@ testcase_conf_hyperg<double> data057[] = {
   { 278127.83396458329, 10.000000000000000, 7.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=10.000000000000000, c=7.0000000000000000.
-template<typename Tp>
-  void
-  test057()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data057)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data057[i].a), Tp(data057[i].c),
-		     Tp(data057[i].x));
-	const Tp f0 = data057[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(1.0000000000000004e-06));
-  }
+const double toler057 = 1.0000000000000004e-06;
 
 // Test data for a=10.000000000000000, c=8.0000000000000000.
-testcase_conf_hyperg<double> data058[] = {
+const testcase_conf_hyperg<double>
+data058[21] =
+{
   { -5.0444366402760974e-06, 10.000000000000000, 8.0000000000000000, 
 	  -10.000000000000000 },
   { -1.5426225510834945e-05, 10.000000000000000, 8.0000000000000000, 
@@ -4412,39 +2875,12 @@ testcase_conf_hyperg<double> data058[] = {
   { 107684.94388572175, 10.000000000000000, 8.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=10.000000000000000, c=8.0000000000000000.
-template<typename Tp>
-  void
-  test058()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data058)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data058[i].a), Tp(data058[i].c),
-		     Tp(data058[i].x));
-	const Tp f0 = data058[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000013e-09));
-  }
+const double toler058 = 2.5000000000000013e-09;
 
 // Test data for a=10.000000000000000, c=9.0000000000000000.
-testcase_conf_hyperg<double> data059[] = {
+const testcase_conf_hyperg<double>
+data059[21] =
+{
   { -5.0444366402760974e-06, 10.000000000000000, 9.0000000000000000, 
 	  -10.000000000000000 },
   { 0.0000000000000000, 10.000000000000000, 9.0000000000000000, 
@@ -4488,39 +2924,12 @@ testcase_conf_hyperg<double> data059[] = {
   { 46500.316677925293, 10.000000000000000, 9.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=10.000000000000000, c=9.0000000000000000.
-template<typename Tp>
-  void
-  test059()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data059)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data059[i].a), Tp(data059[i].c),
-		     Tp(data059[i].x));
-	const Tp f0 = data059[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000013e-09));
-  }
+const double toler059 = 2.5000000000000013e-09;
 
 // Test data for a=10.000000000000000, c=10.000000000000000.
-testcase_conf_hyperg<double> data060[] = {
+const testcase_conf_hyperg<double>
+data060[21] =
+{
   { 4.5399929762484854e-05, 10.000000000000000, 10.000000000000000, 
 	  -10.000000000000000 },
   { 0.00012340980408667956, 10.000000000000000, 10.000000000000000, 
@@ -4564,39 +2973,12 @@ testcase_conf_hyperg<double> data060[] = {
   { 22026.465794806718, 10.000000000000000, 10.000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=10.000000000000000, c=10.000000000000000.
-template<typename Tp>
-  void
-  test060()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data060)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data060[i].a), Tp(data060[i].c),
-		     Tp(data060[i].x));
-	const Tp f0 = data060[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler060 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, c=1.0000000000000000.
-testcase_conf_hyperg<double> data061[] = {
+const testcase_conf_hyperg<double>
+data061[21] =
+{
   { 0.00018021852293239509, 20.000000000000000, 1.0000000000000000, 
 	  -10.000000000000000 },
   { 0.0017726368057851866, 20.000000000000000, 1.0000000000000000, 
@@ -4640,39 +3022,12 @@ testcase_conf_hyperg<double> data061[] = {
   { 26446266822604.152, 20.000000000000000, 1.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=20.000000000000000, c=1.0000000000000000.
-template<typename Tp>
-  void
-  test061()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data061)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data061[i].a), Tp(data061[i].c),
-		     Tp(data061[i].x));
-	const Tp f0 = data061[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000015e-12));
-  }
+const double toler061 = 2.5000000000000015e-12;
 
 // Test data for a=20.000000000000000, c=2.0000000000000000.
-testcase_conf_hyperg<double> data062[] = {
+const testcase_conf_hyperg<double>
+data062[21] =
+{
   { 6.6647681992684102e-05, 20.000000000000000, 2.0000000000000000, 
 	  -10.000000000000000 },
   { -3.7248253270227151e-05, 20.000000000000000, 2.0000000000000000, 
@@ -4716,39 +3071,12 @@ testcase_conf_hyperg<double> data062[] = {
   { 1329571695324.3132, 20.000000000000000, 2.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=20.000000000000000, c=2.0000000000000000.
-template<typename Tp>
-  void
-  test062()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data062)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data062[i].a), Tp(data062[i].c),
-		     Tp(data062[i].x));
-	const Tp f0 = data062[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000017e-10));
-  }
+const double toler062 = 2.5000000000000017e-10;
 
 // Test data for a=20.000000000000000, c=3.0000000000000000.
-testcase_conf_hyperg<double> data063[] = {
+const testcase_conf_hyperg<double>
+data063[21] =
+{
   { -8.6671962318505780e-06, 20.000000000000000, 3.0000000000000000, 
 	  -10.000000000000000 },
   { -1.8205565180535425e-05, 20.000000000000000, 3.0000000000000000, 
@@ -4792,39 +3120,12 @@ testcase_conf_hyperg<double> data063[] = {
   { 131344201933.74118, 20.000000000000000, 3.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=20.000000000000000, c=3.0000000000000000.
-template<typename Tp>
-  void
-  test063()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data063)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data063[i].a), Tp(data063[i].c),
-		     Tp(data063[i].x));
-	const Tp f0 = data063[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(1.0000000000000007e-09));
-  }
+const double toler063 = 1.0000000000000007e-09;
 
 // Test data for a=20.000000000000000, c=4.0000000000000000.
-testcase_conf_hyperg<double> data064[] = {
+const testcase_conf_hyperg<double>
+data064[21] =
+{
   { -1.1286669552452399e-06, 20.000000000000000, 4.0000000000000000, 
 	  -10.000000000000000 },
   { 3.9595188785137704e-06, 20.000000000000000, 4.0000000000000000, 
@@ -4868,39 +3169,12 @@ testcase_conf_hyperg<double> data064[] = {
   { 19111993543.124691, 20.000000000000000, 4.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=20.000000000000000, c=4.0000000000000000.
-template<typename Tp>
-  void
-  test064()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data064)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data064[i].a), Tp(data064[i].c),
-		     Tp(data064[i].x));
-	const Tp f0 = data064[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(1.0000000000000007e-09));
-  }
+const double toler064 = 1.0000000000000007e-09;
 
 // Test data for a=20.000000000000000, c=5.0000000000000000.
-testcase_conf_hyperg<double> data065[] = {
+const testcase_conf_hyperg<double>
+data065[21] =
+{
   { 8.4755643455671027e-07, 20.000000000000000, 5.0000000000000000, 
 	  -10.000000000000000 },
   { 8.5721061862565697e-07, 20.000000000000000, 5.0000000000000000, 
@@ -4944,39 +3218,12 @@ testcase_conf_hyperg<double> data065[] = {
   { 3639417243.5150661, 20.000000000000000, 5.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=20.000000000000000, c=5.0000000000000000.
-template<typename Tp>
-  void
-  test065()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data065)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data065[i].a), Tp(data065[i].c),
-		     Tp(data065[i].x));
-	const Tp f0 = data065[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(1.0000000000000005e-07));
-  }
+const double toler065 = 1.0000000000000005e-07;
 
 // Test data for a=20.000000000000000, c=6.0000000000000000.
-testcase_conf_hyperg<double> data066[] = {
+const testcase_conf_hyperg<double>
+data066[21] =
+{
   { -1.9022359545310046e-08, 20.000000000000000, 6.0000000000000000, 
 	  -10.000000000000000 },
   { -7.4533809656234698e-07, 20.000000000000000, 6.0000000000000000, 
@@ -5020,39 +3267,12 @@ testcase_conf_hyperg<double> data066[] = {
   { 849871092.10959554, 20.000000000000000, 6.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=20.000000000000000, c=6.0000000000000000.
-template<typename Tp>
-  void
-  test066()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data066)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data066[i].a), Tp(data066[i].c),
-		     Tp(data066[i].x));
-	const Tp f0 = data066[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(5.0000000000000019e-07));
-  }
+const double toler066 = 5.0000000000000019e-07;
 
 // Test data for a=20.000000000000000, c=7.0000000000000000.
-testcase_conf_hyperg<double> data067[] = {
+const testcase_conf_hyperg<double>
+data067[21] =
+{
   { -1.7754301607387146e-07, 20.000000000000000, 7.0000000000000000, 
 	  -10.000000000000000 },
   { -6.2128605089471266e-08, 20.000000000000000, 7.0000000000000000, 
@@ -5096,39 +3316,12 @@ testcase_conf_hyperg<double> data067[] = {
   { 233529421.53991735, 20.000000000000000, 7.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=20.000000000000000, c=7.0000000000000000.
-template<typename Tp>
-  void
-  test067()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data067)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data067[i].a), Tp(data067[i].c),
-		     Tp(data067[i].x));
-	const Tp f0 = data067[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000009e-07));
-  }
+const double toler067 = 2.5000000000000009e-07;
 
 // Test data for a=20.000000000000000, c=8.0000000000000000.
-testcase_conf_hyperg<double> data068[] = {
+const testcase_conf_hyperg<double>
+data068[21] =
+{
   { 4.4385719622857099e-08, 20.000000000000000, 8.0000000000000000, 
 	  -10.000000000000000 },
   { 2.7870855352561944e-07, 20.000000000000000, 8.0000000000000000, 
@@ -5172,39 +3365,12 @@ testcase_conf_hyperg<double> data068[] = {
   { 73379158.893325046, 20.000000000000000, 8.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=20.000000000000000, c=8.0000000000000000.
-template<typename Tp>
-  void
-  test068()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data068)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data068[i].a), Tp(data068[i].c),
-		     Tp(data068[i].x));
-	const Tp f0 = data068[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(1.0000000000000005e-07));
-  }
+const double toler068 = 1.0000000000000005e-07;
 
 // Test data for a=20.000000000000000, c=9.0000000000000000.
-testcase_conf_hyperg<double> data069[] = {
+const testcase_conf_hyperg<double>
+data069[21] =
+{
   { 7.3976263576568592e-08, 20.000000000000000, 9.0000000000000000, 
 	  -10.000000000000000 },
   { -9.0753238092548168e-09, 20.000000000000000, 9.0000000000000000, 
@@ -5248,39 +3414,12 @@ testcase_conf_hyperg<double> data069[] = {
   { 25817349.972859699, 20.000000000000000, 9.0000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=20.000000000000000, c=9.0000000000000000.
-template<typename Tp>
-  void
-  test069()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data069)
-			   / sizeof(testcase_conf_hyperg<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data069[i].a), Tp(data069[i].c),
-		     Tp(data069[i].x));
-	const Tp f0 = data069[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(1.0000000000000004e-06));
-  }
+const double toler069 = 1.0000000000000004e-06;
 
 // Test data for a=20.000000000000000, c=10.000000000000000.
-testcase_conf_hyperg<double> data070[] = {
+const testcase_conf_hyperg<double>
+data070[21] =
+{
   { -4.1157677792944960e-08, 20.000000000000000, 10.000000000000000, 
 	  -10.000000000000000 },
   { -2.0187210039960914e-07, 20.000000000000000, 10.000000000000000, 
@@ -5324,23 +3463,21 @@ testcase_conf_hyperg<double> data070[] = {
   { 10008079.497419352, 20.000000000000000, 10.000000000000000, 
 	  10.000000000000000 },
 };
-
-// Test function for a=20.000000000000000, c=10.000000000000000.
-template<typename Tp>
+const double toler070 = 2.5000000000000009e-07;
+template<typename Tp, unsigned int Num>
   void
-  test070()
+  test(const testcase_conf_hyperg<Tp> (&data)[Num], Tp toler)
   {
-    bool test [[gnu::unused]] = true;
+    bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data070)
-			   / sizeof(testcase_conf_hyperg<double>);
+    unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
   	 {
-	const Tp f = __gnu_cxx::conf_hyperg(Tp(data070[i].a), Tp(data070[i].c),
-		     Tp(data070[i].x));
-	const Tp f0 = data070[i].f0;
+	const Tp f = __gnu_cxx::conf_hyperg(data[i].a, data[i].c,
+		     data[i].x);
+	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -5352,81 +3489,81 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(2.5000000000000009e-07));
+    VERIFY(max_abs_frac < toler);
   }
 
 int
 main()
 {
-  test001<double>();
-  test002<double>();
-  test003<double>();
-  test004<double>();
-  test005<double>();
-  test006<double>();
-  test007<double>();
-  test008<double>();
-  test009<double>();
-  test010<double>();
-  test011<double>();
-  test012<double>();
-  test013<double>();
-  test014<double>();
-  test015<double>();
-  test016<double>();
-  test017<double>();
-  test018<double>();
-  test019<double>();
-  test020<double>();
-  test021<double>();
-  test022<double>();
-  test023<double>();
-  test024<double>();
-  test025<double>();
-  test026<double>();
-  test027<double>();
-  test028<double>();
-  test029<double>();
-  test030<double>();
-  test031<double>();
-  test032<double>();
-  test033<double>();
-  test034<double>();
-  test035<double>();
-  test036<double>();
-  test037<double>();
-  test038<double>();
-  test039<double>();
-  test040<double>();
-  test041<double>();
-  test042<double>();
-  test043<double>();
-  test044<double>();
-  test045<double>();
-  test046<double>();
-  test047<double>();
-  test048<double>();
-  test049<double>();
-  test050<double>();
-  test051<double>();
-  test052<double>();
-  test053<double>();
-  test054<double>();
-  test055<double>();
-  test056<double>();
-  test057<double>();
-  test058<double>();
-  test059<double>();
-  test060<double>();
-  test061<double>();
-  test062<double>();
-  test063<double>();
-  test064<double>();
-  test065<double>();
-  test066<double>();
-  test067<double>();
-  test068<double>();
-  test069<double>();
-  test070<double>();
+  test(data001, toler001);
+  test(data002, toler002);
+  test(data003, toler003);
+  test(data004, toler004);
+  test(data005, toler005);
+  test(data006, toler006);
+  test(data007, toler007);
+  test(data008, toler008);
+  test(data009, toler009);
+  test(data010, toler010);
+  test(data011, toler011);
+  test(data012, toler012);
+  test(data013, toler013);
+  test(data014, toler014);
+  test(data015, toler015);
+  test(data016, toler016);
+  test(data017, toler017);
+  test(data018, toler018);
+  test(data019, toler019);
+  test(data020, toler020);
+  test(data021, toler021);
+  test(data022, toler022);
+  test(data023, toler023);
+  test(data024, toler024);
+  test(data025, toler025);
+  test(data026, toler026);
+  test(data027, toler027);
+  test(data028, toler028);
+  test(data029, toler029);
+  test(data030, toler030);
+  test(data031, toler031);
+  test(data032, toler032);
+  test(data033, toler033);
+  test(data034, toler034);
+  test(data035, toler035);
+  test(data036, toler036);
+  test(data037, toler037);
+  test(data038, toler038);
+  test(data039, toler039);
+  test(data040, toler040);
+  test(data041, toler041);
+  test(data042, toler042);
+  test(data043, toler043);
+  test(data044, toler044);
+  test(data045, toler045);
+  test(data046, toler046);
+  test(data047, toler047);
+  test(data048, toler048);
+  test(data049, toler049);
+  test(data050, toler050);
+  test(data051, toler051);
+  test(data052, toler052);
+  test(data053, toler053);
+  test(data054, toler054);
+  test(data055, toler055);
+  test(data056, toler056);
+  test(data057, toler057);
+  test(data058, toler058);
+  test(data059, toler059);
+  test(data060, toler060);
+  test(data061, toler061);
+  test(data062, toler062);
+  test(data063, toler063);
+  test(data064, toler064);
+  test(data065, toler065);
+  test(data066, toler066);
+  test(data067, toler067);
+  test(data068, toler068);
+  test(data069, toler069);
+  test(data070, toler070);
   return 0;
 }

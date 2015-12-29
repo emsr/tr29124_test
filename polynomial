@@ -6,6 +6,7 @@
 #include <array>
 #include <ios>
 #include <cmath>
+#include <complex>
 
 /**
  *  detail: Do we want this to always have a size of at least one? a_0 = _Tp()?  NO.
@@ -69,7 +70,7 @@ namespace std
      */
     explicit polynomial(value_type __a, size_type __degree = 0)
     :  _M_coeff(__degree + 1)
-    { _M_coeff[__degree] = __a; }
+    { this->_M_coeff[__degree] = __a; }
 
     /**
      *  Create a polynomial from an initializer list of coefficients.
@@ -110,14 +111,14 @@ namespace std
     value_type
     operator()(value_type __x) const
     {
-      if (degree() > 0)
+      if (this->degree() > 0)
 	{
-	  value_type __poly(coefficient(degree()));
-	  for (int __i = degree() - 1; __i >= 0; --__i)
-	    __poly = __poly * __x + coefficient(__i);
+	  value_type __poly(this->coefficient(this->degree()));
+	  for (int __i = this->degree() - 1; __i >= 0; --__i)
+	    __poly = __poly * __x + this->coefficient(__i);
 	}
       else
-	return value_type();
+	return value_type{};
     }
 
     /**
@@ -126,17 +127,46 @@ namespace std
     template<typename _Tp2>
       auto
       operator()(_Tp2 __x) const
-      -> decltype(value_type() * _Tp2())
+      -> decltype(value_type{} * _Tp2())
       {
-	if (degree() > 0)
+	if (this->degree() > 0)
 	  {
-	    auto __poly(coefficient(degree()) * _Tp2(1));
-	    for (int __i = degree() - 1; __i >= 0; --__i)
-	      __poly = __poly * __x + coefficient(__i);
+	    auto __poly(this->coefficient(this->degree()) * _Tp2(1));
+	    for (int __i = this->degree() - 1; __i >= 0; --__i)
+	      __poly = __poly * __x + this->coefficient(__i);
 	  }
 	else
-	  return value_type();
+	  return value_type{};
       }
+
+    /**
+     *  The following polynomial evaluations are done using
+     *  a modified of Horner's rule which exploits the fact that
+     *  the polynomial coefficients are all real.
+     *  The algorithm is discussed in detail in:
+     *  Knuth, D. E., The Art of Computer Programming: Seminumerical
+     *  Algorithms (Vol. 2) Third Ed., Addison-Wesley, pp 486-488, 1998.
+     * 
+     *  If n is the degree of the polynomial, n - 3 multiplies are
+     *  saved and 4 * n - 6 additions are saved.
+     */
+    template<typename _Tp2>
+      auto
+      operator()(std::complex<_Tp2> __z) const
+      -> decltype(value_type{} * std::complex<_Tp2>{})
+      {
+	const auto __r = _Tp{2} * std::real(__z);
+	const auto __s = std::norm(__z);
+	auto __aa = this->coefficient(this->degree());
+	auto __bb = this->coefficient(this->degree() - 1);
+	for (int __j = 1; __j <= this->degree(); ++__j)
+	  {
+	    auto __cc  = __s * __aa;
+	    __aa = __bb + __r * __aa;
+	    __bb = this->coefficient(this->degree() - __j) - __cc;
+	  }
+	return __aa * __z + __bb;
+      };
 
     /**
      *  Evaluate the polynomial at a range of input points.
@@ -161,15 +191,15 @@ namespace std
       {
 	if (__arr.size() > 0)
 	  {
-	    __arr.fill(value_type());
+	    __arr.fill(value_type{});
 	    const size_type __sz = _M_coeff.size();
-	    __arr[0] = _M_coeff[__sz - 1];
+	    __arr[0] = this->coefficient(__sz - 1);
             for (int __i = __sz - 2; __i >= 0; --__i)
 	      {
 		int __nn = std::min(__arr.size() - 1, __sz - 1 - __i);
 		for (int __j = __nn; __j >= 1; --__j)
 		  __arr[__j] = __arr[__j] * __x + __arr[__j - 1];
-		__arr[0] = __arr[0] * __x + _M_coeff[__i];
+		__arr[0] = __arr[0] * __x + this->coefficient(__i);
 	      }
 	    //  Now put in the factorials.
 	    value_type __fact = value_type(1);
@@ -191,7 +221,7 @@ namespace std
       {
 	if(__b != __e)
 	  {
-	    std::fill(__b, __e, value_type());
+	    std::fill(__b, __e, value_type{});
 	    const size_type __sz = _M_coeff.size();
 	    *__b = _M_coeff[__sz - 1];
             for (int __i = __sz - 2; __i >= 0; --__i)
@@ -219,8 +249,8 @@ namespace std
     polynomial
     derivative() const
     {
-      polynomial __res(value_type(), (degree() > 0UL ? degree() - 1 : 0UL));
-      for (size_type __i = 1; __i <= degree(); ++__i)
+      polynomial __res(value_type{}, (this->degree() > 0UL ? this->degree() - 1 : 0UL));
+      for (size_type __i = 1; __i <= this->degree(); ++__i)
 	__res._M_coeff[__i - 1] = __i * _M_coeff[__i];
       return __res;
     }
@@ -229,11 +259,11 @@ namespace std
      *  Return the integral of the polynomial with given integration constant.
      */
     polynomial
-    integral(value_type __c = value_type()) const
+    integral(value_type __c = value_type{}) const
     {
-      polynomial __res(value_type(), degree() + 1);
+      polynomial __res(value_type{}, this->degree() + 1);
       __res._M_coeff[0] = __c;
-      for (size_type __i = 0; __i <= degree(); ++__i)
+      for (size_type __i = 0; __i <= this->degree(); ++__i)
 	__res._M_coeff[__i + 1] = _M_coeff[__i] / value_type(__i + 1);
       return __res;
     }
@@ -280,7 +310,7 @@ namespace std
       polynomial&
       operator+=(const _Up& __x)
       {
-	degree(degree()); // Resize if necessary.
+	degree(this->degree()); // Resize if necessary.
 	_M_coeff[0] += static_cast<value_type>(__x);
 	return *this;
       }
@@ -292,7 +322,7 @@ namespace std
       polynomial&
       operator-=(const _Up& __x)
       {
-	degree(degree()); // Resize if necessary.
+	degree(this->degree()); // Resize if necessary.
 	_M_coeff[0] -= static_cast<value_type>(__x);
 	return *this;
       }
@@ -304,7 +334,7 @@ namespace std
       polynomial&
       operator*=(const _Up& __x)
       {
-	degree(degree()); // Resize if necessary.
+	degree(this->degree()); // Resize if necessary.
 	for (size_type __i = 0; __i < _M_coeff.size(); ++__i)
 	  _M_coeff[__i] *= static_cast<value_type>(__x);
 	return *this;
@@ -317,7 +347,7 @@ namespace std
       polynomial&
       operator/=(const _Up& __x)
       {
-	degree(degree()); // Resize if necessary.
+	degree(this->degree()); // Resize if necessary.
 	for (size_type __i = 0; __i < _M_coeff.size(); ++__i)
 	  _M_coeff[__i] /= static_cast<value_type>(__x);
 	return *this;
@@ -332,7 +362,7 @@ namespace std
       operator%=(const _Up&)
       {
 	degree(0UL); // Resize.
-	_M_coeff[0] = value_type();
+	_M_coeff[0] = value_type{};
 	return *this;
       }
 
@@ -343,7 +373,7 @@ namespace std
       polynomial&
       operator+=(const polynomial<_Up>& __poly)
       {
-	degree(std::max(degree(), __poly.degree())); // Resize if necessary.
+	degree(std::max(this->degree(), __poly.degree())); // Resize if necessary.
 	for (size_type __i = 0; __i <= __poly.degree(); ++__i)
 	  _M_coeff[__i] += static_cast<value_type>(__poly._M_coeff[__i]);
 	return *this;
@@ -356,7 +386,7 @@ namespace std
       polynomial&
       operator-=(const polynomial<_Up>& __poly)
       {
-	degree(std::max(degree(), __poly.degree())); // Resize if necessary.
+	degree(std::max(this->degree(), __poly.degree())); // Resize if necessary.
 	for (size_type __i = 0; __i <= __poly.degree(); ++__i)
 	  _M_coeff[__i] -= static_cast<value_type>(__poly._M_coeff[__i]);
 	return *this;
@@ -370,7 +400,7 @@ namespace std
       operator*=(const polynomial<_Up>& __poly)
       {
 	//  Test for zero size polys and do special processing?
-	std::vector<value_type> __new_coeff(degree() + __poly.degree() + 1);
+	std::vector<value_type> __new_coeff(this->degree() + __poly.degree() + 1);
 	for (size_type __i = 0; __i < _M_coeff.size(); ++__i)
 	  for (size_type __j = 0; __j < __poly._M_coeff.size(); ++__j)
 	    __new_coeff[__i + __j] += _M_coeff[__i]
@@ -421,7 +451,7 @@ namespace std
 
     value_type
     coefficient(size_type __i) const
-    { return (_M_coeff.size() > __i ? _M_coeff[__i] : value_type()); }
+    { return (_M_coeff.size() > __i ? _M_coeff[__i] : value_type{}); }
 
     void
     coefficient(size_type __i, value_type __val)

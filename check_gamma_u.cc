@@ -38,7 +38,9 @@
 
 
 // Test data for a=0.50000000000000000.
-testcase_gamma_u<double> data001[] = {
+const testcase_gamma_u<double>
+data001[11] =
+{
   { 1.7724538509055161, 0.50000000000000000, 0.0000000000000000 },
   { 0.56241823159440663, 0.50000000000000000, 0.50000000000000000 },
   { 0.27880558528066168, 0.50000000000000000, 1.0000000000000000 },
@@ -51,38 +53,12 @@ testcase_gamma_u<double> data001[] = {
   { 0.0047852639289850734, 0.50000000000000000, 4.5000000000000000 },
   { 0.0027746032604128051, 0.50000000000000000, 5.0000000000000000 },
 };
-
-// Test function for a=0.50000000000000000.
-template<typename Tp>
-  void
-  test001()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data001)
-			   / sizeof(testcase_gamma_u<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::gamma_u(Tp(data001[i].a), Tp(data001[i].x));
-	const Tp f0 = data001[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler001 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000.
-testcase_gamma_u<double> data002[] = {
+const testcase_gamma_u<double>
+data002[11] =
+{
   { 1.0000000000000000, 1.0000000000000000, 0.0000000000000000 },
   { 0.60653065971263342, 1.0000000000000000, 0.50000000000000000 },
   { 0.36787944117144233, 1.0000000000000000, 1.0000000000000000 },
@@ -95,38 +71,12 @@ testcase_gamma_u<double> data002[] = {
   { 0.011108996538242308, 1.0000000000000000, 4.5000000000000000 },
   { 0.0067379469990854679, 1.0000000000000000, 5.0000000000000000 },
 };
-
-// Test function for a=1.0000000000000000.
-template<typename Tp>
-  void
-  test002()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data002)
-			   / sizeof(testcase_gamma_u<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::gamma_u(Tp(data002[i].a), Tp(data002[i].x));
-	const Tp f0 = data002[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler002 = 2.5000000000000020e-13;
 
 // Test data for a=1.5000000000000000.
-testcase_gamma_u<double> data003[] = {
+const testcase_gamma_u<double>
+data003[11] =
+{
   { 0.88622692545275883, 1.5000000000000000, 0.0000000000000000 },
   { 0.71009105827755781, 1.5000000000000000, 0.50000000000000000 },
   { 0.50728223381177362, 1.5000000000000000, 1.0000000000000000 },
@@ -139,38 +89,12 @@ testcase_gamma_u<double> data003[] = {
   { 0.025958372317599603, 1.5000000000000000, 4.5000000000000000 },
   { 0.016453809148952239, 1.5000000000000000, 5.0000000000000000 },
 };
-
-// Test function for a=1.5000000000000000.
-template<typename Tp>
-  void
-  test003()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data003)
-			   / sizeof(testcase_gamma_u<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::gamma_u(Tp(data003[i].a), Tp(data003[i].x));
-	const Tp f0 = data003[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler003 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000.
-testcase_gamma_u<double> data004[] = {
+const testcase_gamma_u<double>
+data004[11] =
+{
   { 1.0000000000000000, 2.0000000000000000, 0.0000000000000000 },
   { 0.90979598956895025, 2.0000000000000000, 0.50000000000000000 },
   { 0.73575888234288500, 2.0000000000000000, 1.0000000000000000 },
@@ -183,38 +107,12 @@ testcase_gamma_u<double> data004[] = {
   { 0.061099480960332637, 2.0000000000000000, 4.5000000000000000 },
   { 0.040427681994512750, 2.0000000000000000, 5.0000000000000000 },
 };
-
-// Test function for a=2.0000000000000000.
-template<typename Tp>
-  void
-  test004()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data004)
-			   / sizeof(testcase_gamma_u<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::gamma_u(Tp(data004[i].a), Tp(data004[i].x));
-	const Tp f0 = data004[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler004 = 2.5000000000000020e-13;
 
 // Test data for a=2.5000000000000000.
-testcase_gamma_u<double> data005[] = {
+const testcase_gamma_u<double>
+data005[11] =
+{
   { 1.3293403881791381, 2.5000000000000000, 0.0000000000000000 },
   { 1.2795775586565132, 2.5000000000000000, 0.50000000000000000 },
   { 1.1288027918891035, 2.5000000000000000, 1.0000000000000000 },
@@ -227,38 +125,12 @@ testcase_gamma_u<double> data005[] = {
   { 0.14498339006538122, 2.5000000000000000, 4.5000000000000000 },
   { 0.10001325131715731, 2.5000000000000000, 5.0000000000000000 },
 };
-
-// Test function for a=2.5000000000000000.
-template<typename Tp>
-  void
-  test005()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data005)
-			   / sizeof(testcase_gamma_u<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::gamma_u(Tp(data005[i].a), Tp(data005[i].x));
-	const Tp f0 = data005[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler005 = 2.5000000000000020e-13;
 
 // Test data for a=3.0000000000000000.
-testcase_gamma_u<double> data006[] = {
+const testcase_gamma_u<double>
+data006[11] =
+{
   { 2.0000000000000000, 3.0000000000000000, 0.0000000000000000 },
   { 1.9712246440660586, 3.0000000000000000, 0.50000000000000000 },
   { 1.8393972058572119, 3.0000000000000000, 1.0000000000000000 },
@@ -271,38 +143,12 @@ testcase_gamma_u<double> data006[] = {
   { 0.34715614182007126, 3.0000000000000000, 4.5000000000000000 },
   { 0.24930403896616155, 3.0000000000000000, 5.0000000000000000 },
 };
-
-// Test function for a=3.0000000000000000.
-template<typename Tp>
-  void
-  test006()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data006)
-			   / sizeof(testcase_gamma_u<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::gamma_u(Tp(data006[i].a), Tp(data006[i].x));
-	const Tp f0 = data006[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler006 = 2.5000000000000020e-13;
 
 // Test data for a=3.5000000000000000.
-testcase_gamma_u<double> data007[] = {
+const testcase_gamma_u<double>
+data007[11] =
+{
   { 3.3233509704478443, 3.5000000000000000, 0.0000000000000000 },
   { 3.3061643822613704, 3.5000000000000000, 0.50000000000000000 },
   { 3.1898864208941999, 3.5000000000000000, 1.0000000000000000 },
@@ -315,38 +161,12 @@ testcase_gamma_u<double> data007[] = {
   { 0.83966471731387160, 3.5000000000000000, 4.5000000000000000 },
   { 0.62669581626153847, 3.5000000000000000, 5.0000000000000000 },
 };
-
-// Test function for a=3.5000000000000000.
-template<typename Tp>
-  void
-  test007()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data007)
-			   / sizeof(testcase_gamma_u<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::gamma_u(Tp(data007[i].a), Tp(data007[i].x));
-	const Tp f0 = data007[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler007 = 2.5000000000000020e-13;
 
 // Test data for a=4.0000000000000000.
-testcase_gamma_u<double> data008[] = {
+const testcase_gamma_u<double>
+data008[11] =
+{
   { 6.0000000000000000, 4.0000000000000000, 0.0000000000000000 },
   { 5.9894902646622548, 4.0000000000000000, 0.50000000000000000 },
   { 5.8860710587430773, 4.0000000000000000, 1.0000000000000000 },
@@ -359,38 +179,12 @@ testcase_gamma_u<double> data008[] = {
   { 2.0537757350075476, 4.0000000000000000, 4.5000000000000000 },
   { 1.5901554917841700, 4.0000000000000000, 5.0000000000000000 },
 };
-
-// Test function for a=4.0000000000000000.
-template<typename Tp>
-  void
-  test008()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data008)
-			   / sizeof(testcase_gamma_u<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::gamma_u(Tp(data008[i].a), Tp(data008[i].x));
-	const Tp f0 = data008[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler008 = 2.5000000000000020e-13;
 
 // Test data for a=4.5000000000000000.
-testcase_gamma_u<double> data009[] = {
+const testcase_gamma_u<double>
+data009[11] =
+{
   { 11.631728396567455, 4.5000000000000000, 0.0000000000000000 },
   { 11.625185580724841, 4.5000000000000000, 0.50000000000000000 },
   { 11.532481914301142, 4.5000000000000000, 1.0000000000000000 },
@@ -403,38 +197,12 @@ testcase_gamma_u<double> data009[] = {
   { 5.0862546002754296, 4.5000000000000000, 4.5000000000000000 },
   { 4.0767487967586113, 4.5000000000000000, 5.0000000000000000 },
 };
-
-// Test function for a=4.5000000000000000.
-template<typename Tp>
-  void
-  test009()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data009)
-			   / sizeof(testcase_gamma_u<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::gamma_u(Tp(data009[i].a), Tp(data009[i].x));
-	const Tp f0 = data009[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler009 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000.
-testcase_gamma_u<double> data010[] = {
+const testcase_gamma_u<double>
+data010[11] =
+{
   { 24.000000000000000, 5.0000000000000000, 0.0000000000000000 },
   { 23.995869224881059, 5.0000000000000000, 0.50000000000000000 },
   { 23.912163676143752, 5.0000000000000000, 1.0000000000000000 },
@@ -447,22 +215,20 @@ testcase_gamma_u<double> data010[] = {
   { 12.770485832993153, 5.0000000000000000, 4.5000000000000000 },
   { 10.571838841565068, 5.0000000000000000, 5.0000000000000000 },
 };
-
-// Test function for a=5.0000000000000000.
-template<typename Tp>
+const double toler010 = 2.5000000000000020e-13;
+template<typename Tp, unsigned int Num>
   void
-  test010()
+  test(const testcase_gamma_u<Tp> (&data)[Num], Tp toler)
   {
-    bool test [[gnu::unused]] = true;
+    bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data010)
-			   / sizeof(testcase_gamma_u<double>);
+    unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = __gnu_cxx::gamma_u(Tp(data010[i].a), Tp(data010[i].x));
-	const Tp f0 = data010[i].f0;
+	const Tp f = __gnu_cxx::gamma_u(data[i].a, data[i].x);
+	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -474,21 +240,21 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
+    VERIFY(max_abs_frac < toler);
   }
 
 int
 main()
 {
-  test001<double>();
-  test002<double>();
-  test003<double>();
-  test004<double>();
-  test005<double>();
-  test006<double>();
-  test007<double>();
-  test008<double>();
-  test009<double>();
-  test010<double>();
+  test(data001, toler001);
+  test(data002, toler002);
+  test(data003, toler003);
+  test(data004, toler004);
+  test(data005, toler005);
+  test(data006, toler006);
+  test(data007, toler007);
+  test(data008, toler008);
+  test(data009, toler009);
+  test(data010, toler010);
   return 0;
 }
