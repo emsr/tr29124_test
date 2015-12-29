@@ -392,13 +392,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       constexpr __cmplx _S_zero{0}, _S_zone{1};
       constexpr _Tp
-    	   _S_1d3  {_Tp{1} / _Tp{3}}, _S_2d3  {_Tp{2} / _Tp{3}},
-    	   _S_4d3  {_Tp{4} / _Tp{3}}, _S_5d3  {_Tp{5} / _Tp{3}},
-    	   _S_8d3  {_Tp{8} / _Tp{3}}, _S_10d3 {_Tp{10} / _Tp{3}},
-    	   _S_14d3 {_Tp{14} / _Tp{3}}, _S_16d3 {_Tp{16} / _Tp{3}},
-    	   _S_gamma4d3{8.929795115692492112185643136582258813769e-1},
-	   _S_gamma5d3{9.027452929509336112968586854363425236809e-1},
-    	   _S_sqrt2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
+    	_S_1d3  {_Tp{1} / _Tp{3}}, _S_2d3  {_Tp{2} / _Tp{3}},
+    	_S_4d3  {_Tp{4} / _Tp{3}}, _S_5d3  {_Tp{5} / _Tp{3}},
+    	_S_8d3  {_Tp{8} / _Tp{3}}, _S_10d3 {_Tp{10} / _Tp{3}},
+    	_S_14d3 {_Tp{14} / _Tp{3}}, _S_16d3 {_Tp{16} / _Tp{3}},
+    	_S_gamma4d3{8.929795115692492112185643136582258813769e-1},
+	_S_gamma5d3{9.027452929509336112968586854363425236809e-1},
+    	_S_sqrt2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
 
       // Compute 1/z for use in recurrence for speed and abs(z).
       __cmplx __1dz;
@@ -1002,20 +1002,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using __cmplx = std::complex<_Tp>;
 
-      static constexpr std::complex<_Tp>
-	_S_sqrt3 = __gnu_cxx::__math_constants<_Tp>::__root_3;
-	_S_eppid6{ _S_sqrt3 / _Tp{2},  _Tp{0.5L}},
-	_S_empid6{ _S_sqrt3 / _Tp{2}, -_Tp{0.5L}},
-	_S_eppid3{ _Tp{0.5L},  _S_sqrt3 / _Tp{2}},
-	_S_empid3{ _Tp{0.5L}, -_S_sqrt3 / _Tp{2}},
-	_S_j{0, 1};
       static constexpr _Tp
-	_S_1d3  {_Tp{1} / _Tp{3}},
-	_S_2d3  {_Tp{2} / _Tp{3}},
-	_S_Ai0{3.550280538878172392600631860041831763980e-1};
-	_S_Aip0{2.588194037928067984051835601892039634793e-1};
-	_S_Bi0{6.149266274460007351509223690936135535960e-1};
-	_S_Bip0{8.868776642045783582807775119976424596506e-1};
+	_S_sqrt3 = __gnu_cxx::__math_constants<_Tp>::__root_3;
+      static constexpr __cmplx _S_j{0, 1},
+	_S_eppid6{_S_sqrt3 / _Tp{2},  _Tp{0.5L}},
+	_S_empid6{_S_sqrt3 / _Tp{2}, -_Tp{0.5L}},
+	_S_eppid3{_Tp{0.5L},  _S_sqrt3 / _Tp{2}},
+	_S_empid3{_Tp{0.5L}, -_S_sqrt3 / _Tp{2}};
+      static constexpr _Tp
+	_S_1d3{_Tp{1} / _Tp{3}},
+	_S_2d3{_Tp{2} / _Tp{3}},
+	_S_Ai0{3.550280538878172392600631860041831763980e-1},
+	_S_Aip0{2.588194037928067984051835601892039634793e-1},
+	_S_Bi0{6.149266274460007351509223690936135535960e-1},
+	_S_Bip0{8.868776642045783582807775119976424596506e-1},
 	_S_2g2d3{1.775140269439086e-01},
 	_S_rsqpi{2.820947917738781434740397257803862929219e-01}, // 1/(2sqrt(pi))
 	_S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
@@ -1152,7 +1152,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __airy_ai(std::complex<_Tp> __z)
       {
 	std::complex<_Tp> _Ai, _Aip;
-	__airy(__z, _Ai, _Aip);
+	__airy(__z, std::numeric_limits<_Tp>::epsilon(), _Ai, _Aip);
 	return _Ai;
       }
 

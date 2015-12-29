@@ -27,8 +27,8 @@
  *  You should not attempt to use it directly.
  */
 
-#ifndef _GLIBCXX_BITS_SF_HANKEL_TCC
-#define _GLIBCXX_BITS_SF_HANKEL_TCC 1
+#ifndef _GLIBCXX_BITS_SF_HANKEL_NEW_TCC
+#define _GLIBCXX_BITS_SF_HANKEL_NEW_TCC 1
 
 #pragma GCC system_header
 
@@ -122,14 +122,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr auto _S_inf     = std::numeric_limits<_Tp>::max();
       static constexpr auto _S_sqrtinf = std::sqrt(_S_inf);
 
-      static constexpr auto _S_1d4   = _Tp(0.25L);
-      static constexpr auto _S_1d3   = _Tp(0.3333333333333333333333333333333333333333L);
-      static constexpr auto _S_1d2   = _Tp(0.5L);
-      static constexpr auto _S_2d3   = _Tp(0.6666666666666666666666666666666666666666L);
-      static constexpr auto _S_2pi   = _Tp(6.283185307179586476925286766559005768391L);
-      static constexpr auto _S_lncon = _Tp(0.2703100720721095879853420769762327577152L); // (2/3)ln(3/2)
-      static constexpr auto _S_sqrt2 = _Tp(1.414213562373095048801688724209698078569L);
-      static constexpr auto _S_4d3   = _Tp(1.333333333333333333333333333333333333333L);
+      static constexpr auto _S_1d4   = _Tp{0.25L};
+      static constexpr auto _S_1d3   = _Tp{0.3333333333333333333333333333333333333333L};
+      static constexpr auto _S_1d2   = _Tp{0.5L};
+      static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666666L};
+      static constexpr auto _S_2pi   = _Tp{6.283185307179586476925286766559005768391L};
+      static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152L}; // (2/3)ln(3/2)
+      static constexpr auto _S_sqrt2 = _Tp{1.414213562373095048801688724209698078569L};
+      static constexpr auto _S_4d3   = _Tp{1.333333333333333333333333333333333333333L};
 
       static constexpr __cmplx __zone{_Tp{1}, _Tp{0}};
       static constexpr __cmplx _S_j{_Tp{0}, _Tp{1}};
@@ -614,8 +614,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _H1psum = __od2p * _Csum() + __od0dp * _Dsum();
       _H2psum = __od2m * _Csum() + __od0dm * _Dsum();
 
-      auto _H1save = _Aip * A0 + __o4dp * _B0;
-      auto _H2save = _Aim * A0 + __o4dm * _B0;
+      auto _H1save = _Aip * _A0 + __o4dp * _B0;
+      auto _H2save = _Aim * _A0 + __o4dm * _B0;
       auto _H1psave = __od2p * _C0 + __od0dp * _D0;
       auto _H2psave = __od2m * _C0 + __od0dm * _D0;
 
@@ -792,12 +792,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr _Tp
 	_S_pi_3(1.047197551196597746154214461093167628063e+0L);
       static constexpr __cmplx _S_j{1il};
-      static constexpr __cmplx __con1p{ 1.0, 1.732050807568877293527446341505872366945}; // 2*exp( pi*j/3) (1,sqrt(3))
-      static constexpr __cmplx __con1m{ 1.0,-1.732050807568877293527446341505872366945}; // 2*exp(-pi*j/3)
-      static constexpr __cmplx __con2p{-2.0, 3.464101615137754587054892683011744733891}; // 4*exp( 2*pi*j/3) (-2,2sqrt(3))
-      static constexpr __cmplx __con2m{-2.0,-3.464101615137754587054892683011744733891}; // 4*exp(-2*pi*j/3)
-      static constexpr _Tp __eps   = 1.0e-06;
-      static constexpr _Tp __epsai = 1.0e-12;
+      static constexpr __cmplx __con1p{ 1.0L, 1.732050807568877293527446341505872366945L}; // 2*exp( pi*j/3) (1,sqrt(3))
+      static constexpr __cmplx __con1m{ 1.0L,-1.732050807568877293527446341505872366945L}; // 2*exp(-pi*j/3)
+      static constexpr __cmplx __con2p{-2.0L, 3.464101615137754587054892683011744733891L}; // 4*exp( 2*pi*j/3) (-2,2sqrt(3))
+      static constexpr __cmplx __con2m{-2.0L,-3.464101615137754587054892683011744733891L}; // 4*exp(-2*pi*j/3)
+      static constexpr _Tp __eps   = 1.0e-06L;
+      static constexpr _Tp __epsai = 1.0e-12L;
 
       // Extended to accommodate negative real orders.
       bool __nuswitch = false;
@@ -929,8 +929,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       static constexpr _Tp
 	_S_pi(3.141592653589793238462643383279502884195e+0L);
-      static constexpr __cmplx _S_j = _Tp{1.0il};
-      static constexpr _Tp _S_toler = _Tp{1.0e-8il};
+      static constexpr __cmplx _S_j{1.0il};
+      static constexpr _Tp _S_toler = _Tp{1.0e-8L};
       const auto __maxexp
 	= std::floor(std::numeric_limits<_Tp>::max_exponent
 		   * std::log(std::numeric_limits<_Tp>::radix));
@@ -1300,4 +1300,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 } // namespace std
 
-#endif // _GLIBCXX_BITS_SF_HANKEL_TCC
+#endif // _GLIBCXX_BITS_SF_HANKEL_NEW_TCC

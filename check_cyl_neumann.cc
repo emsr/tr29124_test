@@ -38,7 +38,9 @@
 
 
 // Test data for nu=0.0000000000000000.
-testcase_cyl_neumann<double> data001[] = {
+const testcase_cyl_neumann<double>
+data001[20] =
+{
   { -0.93157302493005878, 0.0000000000000000, 0.25000000000000000 },
   { -0.44451873350670656, 0.0000000000000000, 0.50000000000000000 },
   { -0.13717276938577236, 0.0000000000000000, 0.75000000000000000 },
@@ -60,38 +62,12 @@ testcase_cyl_neumann<double> data001[] = {
   { -0.26123250323497549, 0.0000000000000000, 4.7500000000000000 },
   { -0.30851762524903359, 0.0000000000000000, 5.0000000000000000 },
 };
-
-// Test function for nu=0.0000000000000000.
-template<typename Tp>
-  void
-  test001()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data001)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data001[i].nu), Tp(data001[i].x));
-	const Tp f0 = data001[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler001 = 2.5000000000000020e-13;
 
 // Test data for nu=0.33333333333333331.
-testcase_cyl_neumann<double> data002[] = {
+const testcase_cyl_neumann<double>
+data002[20] =
+{
   { -1.3461842332051077, 0.33333333333333331, 0.25000000000000000 },
   { -0.84062782604337771, 0.33333333333333331, 0.50000000000000000 },
   { -0.52488281484097077, 0.33333333333333331, 0.75000000000000000 },
@@ -113,38 +89,12 @@ testcase_cyl_neumann<double> data002[] = {
   { -0.10281143123935124, 0.33333333333333331, 4.7500000000000000 },
   { -0.18192321129343850, 0.33333333333333331, 5.0000000000000000 },
 };
-
-// Test function for nu=0.33333333333333331.
-template<typename Tp>
-  void
-  test002()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data002)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data002[i].nu), Tp(data002[i].x));
-	const Tp f0 = data002[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(1.0000000000000008e-12));
-  }
+const double toler002 = 1.0000000000000008e-12;
 
 // Test data for nu=0.50000000000000000.
-testcase_cyl_neumann<double> data003[] = {
+const testcase_cyl_neumann<double>
+data003[20] =
+{
   { -1.5461605241060765, 0.50000000000000000, 0.25000000000000000 },
   { -0.99024588024340454, 0.50000000000000000, 0.50000000000000000 },
   { -0.67411792914454460, 0.50000000000000000, 0.75000000000000000 },
@@ -166,38 +116,12 @@ testcase_cyl_neumann<double> data003[] = {
   { -0.013765943019498003, 0.50000000000000000, 4.7500000000000000 },
   { -0.10121770918510846, 0.50000000000000000, 5.0000000000000000 },
 };
-
-// Test function for nu=0.50000000000000000.
-template<typename Tp>
-  void
-  test003()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data003)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data003[i].nu), Tp(data003[i].x));
-	const Tp f0 = data003[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(5.0000000000000039e-13));
-  }
+const double toler003 = 5.0000000000000039e-13;
 
 // Test data for nu=0.66666666666666663.
-testcase_cyl_neumann<double> data004[] = {
+const testcase_cyl_neumann<double>
+data004[20] =
+{
   { -1.8021638417426857, 0.66666666666666663, 0.25000000000000000 },
   { -1.1316060101031435, 0.66666666666666663, 0.50000000000000000 },
   { -0.80251156358450737, 0.66666666666666663, 0.75000000000000000 },
@@ -219,38 +143,12 @@ testcase_cyl_neumann<double> data004[] = {
   { 0.074359649728861360, 0.66666666666666663, 4.7500000000000000 },
   { -0.016050662643389627, 0.66666666666666663, 5.0000000000000000 },
 };
-
-// Test function for nu=0.66666666666666663.
-template<typename Tp>
-  void
-  test004()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data004)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data004[i].nu), Tp(data004[i].x));
-	const Tp f0 = data004[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(5.0000000000000039e-13));
-  }
+const double toler004 = 5.0000000000000039e-13;
 
 // Test data for nu=1.0000000000000000.
-testcase_cyl_neumann<double> data005[] = {
+const testcase_cyl_neumann<double>
+data005[13] =
+{
   { -0.10703243154093699, 1.0000000000000000, 2.0000000000000000 },
   { 0.027192057738017056, 1.0000000000000000, 2.2500000000000000 },
   { 0.14591813796678599, 1.0000000000000000, 2.5000000000000000 },
@@ -265,38 +163,12 @@ testcase_cyl_neumann<double> data005[] = {
   { 0.22922559673872217, 1.0000000000000000, 4.7500000000000000 },
   { 0.14786314339122700, 1.0000000000000000, 5.0000000000000000 },
 };
-
-// Test function for nu=1.0000000000000000.
-template<typename Tp>
-  void
-  test005()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data005)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data005[i].nu), Tp(data005[i].x));
-	const Tp f0 = data005[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000015e-12));
-  }
+const double toler005 = 2.5000000000000015e-12;
 
 // Test data for nu=2.0000000000000000.
-testcase_cyl_neumann<double> data006[] = {
+const testcase_cyl_neumann<double>
+data006[20] =
+{
   { -20.701268809592200, 2.0000000000000000, 0.25000000000000000 },
   { -5.4413708371742668, 2.0000000000000000, 0.50000000000000000 },
   { -2.6297460326656559, 2.0000000000000000, 0.75000000000000000 },
@@ -318,38 +190,12 @@ testcase_cyl_neumann<double> data006[] = {
   { 0.35774854396706901, 2.0000000000000000, 4.7500000000000000 },
   { 0.36766288260552438, 2.0000000000000000, 5.0000000000000000 },
 };
-
-// Test function for nu=2.0000000000000000.
-template<typename Tp>
-  void
-  test006()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data006)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data006[i].nu), Tp(data006[i].x));
-	const Tp f0 = data006[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(1.0000000000000008e-12));
-  }
+const double toler006 = 1.0000000000000008e-12;
 
 // Test data for nu=5.0000000000000000.
-testcase_cyl_neumann<double> data007[] = {
+const testcase_cyl_neumann<double>
+data007[13] =
+{
   { -9.9359891284819675, 5.0000000000000000, 2.0000000000000000 },
   { -5.9446343848076424, 5.0000000000000000, 2.2500000000000000 },
   { -3.8301760007407522, 5.0000000000000000, 2.5000000000000000 },
@@ -364,38 +210,12 @@ testcase_cyl_neumann<double> data007[] = {
   { -0.52130838331747587, 5.0000000000000000, 4.7500000000000000 },
   { -0.45369482249110193, 5.0000000000000000, 5.0000000000000000 },
 };
-
-// Test function for nu=5.0000000000000000.
-template<typename Tp>
-  void
-  test007()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data007)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data007[i].nu), Tp(data007[i].x));
-	const Tp f0 = data007[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler007 = 2.5000000000000020e-13;
 
 // Test data for nu=10.000000000000000.
-testcase_cyl_neumann<double> data008[] = {
+const testcase_cyl_neumann<double>
+data008[20] =
+{
   { -124241617095379.48, 10.000000000000000, 0.25000000000000000 },
   { -121963623349.56966, 10.000000000000000, 0.50000000000000000 },
   { -2133501638.9057348, 10.000000000000000, 0.75000000000000000 },
@@ -417,38 +237,12 @@ testcase_cyl_neumann<double> data008[] = {
   { -38.944510430296937, 10.000000000000000, 4.7500000000000000 },
   { -25.129110095610095, 10.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for nu=10.000000000000000.
-template<typename Tp>
-  void
-  test008()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data008)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data008[i].nu), Tp(data008[i].x));
-	const Tp f0 = data008[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler008 = 2.5000000000000020e-13;
 
 // Test data for nu=20.000000000000000.
-testcase_cyl_neumann<double> data009[] = {
+const testcase_cyl_neumann<double>
+data009[20] =
+{
   { -4.4678815064152581e+34, 20.000000000000000, 0.25000000000000000 },
   { -4.2714301215659088e+28, 20.000000000000000, 0.50000000000000000 },
   { -1.2898357375834223e+25, 20.000000000000000, 0.75000000000000000 },
@@ -470,38 +264,12 @@ testcase_cyl_neumann<double> data009[] = {
   { -1602110715.5159132, 20.000000000000000, 4.7500000000000000 },
   { -593396529.69143200, 20.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for nu=20.000000000000000.
-template<typename Tp>
-  void
-  test009()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data009)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data009[i].nu), Tp(data009[i].x));
-	const Tp f0 = data009[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler009 = 2.5000000000000020e-13;
 
 // Test data for nu=50.000000000000000.
-testcase_cyl_neumann<double> data010[] = {
+const testcase_cyl_neumann<double>
+data010[20] =
+{
   { -2.7643487471155969e+107, 50.000000000000000, 0.25000000000000000 },
   { -2.4575848224461092e+92, 50.000000000000000, 0.50000000000000000 },
   { -3.8604508467683829e+83, 50.000000000000000, 0.75000000000000000 },
@@ -523,38 +291,12 @@ testcase_cyl_neumann<double> data010[] = {
   { -3.5795477722116469e+43, 50.000000000000000, 4.7500000000000000 },
   { -2.7888370175838930e+42, 50.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for nu=50.000000000000000.
-template<typename Tp>
-  void
-  test010()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data010)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data010[i].nu), Tp(data010[i].x));
-	const Tp f0 = data010[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler010 = 2.5000000000000020e-13;
 
 // Test data for nu=100.00000000000000.
-testcase_cyl_neumann<double> data011[] = {
+const testcase_cyl_neumann<double>
+data011[20] =
+{
   { -6.0523080585856754e+245, 100.00000000000000, 0.25000000000000000 },
   { -4.7766903780412668e+215, 100.00000000000000, 0.50000000000000000 },
   { -1.1758283017660654e+198, 100.00000000000000, 0.75000000000000000 },
@@ -576,39 +318,13 @@ testcase_cyl_neumann<double> data011[] = {
   { -8.5357945104770158e+117, 100.00000000000000, 4.7500000000000000 },
   { -5.0848639160196196e+115, 100.00000000000000, 5.0000000000000000 },
 };
-
-// Test function for nu=100.00000000000000.
-template<typename Tp>
-  void
-  test011()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data011)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data011[i].nu), Tp(data011[i].x));
-	const Tp f0 = data011[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000014e-11));
-  }
+const double toler011 = 2.5000000000000014e-11;
 //  cyl_neumann
 
 // Test data for nu=0.0000000000000000.
-testcase_cyl_neumann<double> data012[] = {
+const testcase_cyl_neumann<double>
+data012[20] =
+{
   { -0.30851762524903359, 0.0000000000000000, 5.0000000000000000 },
   { 0.055671167283599457, 0.0000000000000000, 10.000000000000000 },
   { 0.20546429603891822, 0.0000000000000000, 15.000000000000000 },
@@ -630,38 +346,12 @@ testcase_cyl_neumann<double> data012[] = {
   { -0.0028230995861232107, 0.0000000000000000, 95.000000000000000 },
   { -0.077244313365083153, 0.0000000000000000, 100.00000000000000 },
 };
-
-// Test function for nu=0.0000000000000000.
-template<typename Tp>
-  void
-  test012()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data012)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data012[i].nu), Tp(data012[i].x));
-	const Tp f0 = data012[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(1.0000000000000006e-10));
-  }
+const double toler012 = 1.0000000000000006e-10;
 
 // Test data for nu=0.33333333333333331.
-testcase_cyl_neumann<double> data013[] = {
+const testcase_cyl_neumann<double>
+data013[20] =
+{
   { -0.18192321129343850, 0.33333333333333331, 5.0000000000000000 },
   { 0.17020111788268760, 0.33333333333333331, 10.000000000000000 },
   { 0.18540507541540796, 0.33333333333333331, 15.000000000000000 },
@@ -683,38 +373,12 @@ testcase_cyl_neumann<double> data013[] = {
   { -0.043310380106990683, 0.33333333333333331, 95.000000000000000 },
   { -0.076900504962136559, 0.33333333333333331, 100.00000000000000 },
 };
-
-// Test function for nu=0.33333333333333331.
-template<typename Tp>
-  void
-  test013()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data013)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data013[i].nu), Tp(data013[i].x));
-	const Tp f0 = data013[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000014e-11));
-  }
+const double toler013 = 2.5000000000000014e-11;
 
 // Test data for nu=0.50000000000000000.
-testcase_cyl_neumann<double> data014[] = {
+const testcase_cyl_neumann<double>
+data014[20] =
+{
   { -0.10121770918510846, 0.50000000000000000, 5.0000000000000000 },
   { 0.21170886633139810, 0.50000000000000000, 10.000000000000000 },
   { 0.15650551590730855, 0.50000000000000000, 15.000000000000000 },
@@ -736,38 +400,12 @@ testcase_cyl_neumann<double> data014[] = {
   { -0.059772904856097500, 0.50000000000000000, 95.000000000000000 },
   { -0.068803091468728109, 0.50000000000000000, 100.00000000000000 },
 };
-
-// Test function for nu=0.50000000000000000.
-template<typename Tp>
-  void
-  test014()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data014)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data014[i].nu), Tp(data014[i].x));
-	const Tp f0 = data014[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(5.0000000000000028e-11));
-  }
+const double toler014 = 5.0000000000000028e-11;
 
 // Test data for nu=0.66666666666666663.
-testcase_cyl_neumann<double> data015[] = {
+const testcase_cyl_neumann<double>
+data015[20] =
+{
   { -0.016050662643389627, 0.66666666666666663, 5.0000000000000000 },
   { 0.23937232657540733, 0.66666666666666663, 10.000000000000000 },
   { 0.11762106604241235, 0.66666666666666663, 15.000000000000000 },
@@ -789,38 +427,12 @@ testcase_cyl_neumann<double> data015[] = {
   { -0.072173520560584681, 0.66666666666666663, 95.000000000000000 },
   { -0.056057339204073887, 0.66666666666666663, 100.00000000000000 },
 };
-
-// Test function for nu=0.66666666666666663.
-template<typename Tp>
-  void
-  test015()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data015)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data015[i].nu), Tp(data015[i].x));
-	const Tp f0 = data015[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000014e-11));
-  }
+const double toler015 = 2.5000000000000014e-11;
 
 // Test data for nu=1.0000000000000000.
-testcase_cyl_neumann<double> data016[] = {
+const testcase_cyl_neumann<double>
+data016[20] =
+{
   { 0.14786314339122700, 1.0000000000000000, 5.0000000000000000 },
   { 0.24901542420695386, 1.0000000000000000, 10.000000000000000 },
   { 0.021073628036873522, 1.0000000000000000, 15.000000000000000 },
@@ -842,38 +454,12 @@ testcase_cyl_neumann<double> data016[] = {
   { -0.081827958724501215, 1.0000000000000000, 95.000000000000000 },
   { -0.020372312002759834, 1.0000000000000000, 100.00000000000000 },
 };
-
-// Test function for nu=1.0000000000000000.
-template<typename Tp>
-  void
-  test016()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data016)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data016[i].nu), Tp(data016[i].x));
-	const Tp f0 = data016[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000014e-11));
-  }
+const double toler016 = 2.5000000000000014e-11;
 
 // Test data for nu=2.0000000000000000.
-testcase_cyl_neumann<double> data017[] = {
+const testcase_cyl_neumann<double>
+data017[20] =
+{
   { 0.36766288260552438, 2.0000000000000000, 5.0000000000000000 },
   { -0.0058680824422086830, 2.0000000000000000, 10.000000000000000 },
   { -0.20265447896733507, 2.0000000000000000, 15.000000000000000 },
@@ -895,38 +481,12 @@ testcase_cyl_neumann<double> data017[] = {
   { 0.0011004057182389746, 2.0000000000000000, 95.000000000000000 },
   { 0.076836867125027963, 2.0000000000000000, 100.00000000000000 },
 };
-
-// Test function for nu=2.0000000000000000.
-template<typename Tp>
-  void
-  test017()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data017)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data017[i].nu), Tp(data017[i].x));
-	const Tp f0 = data017[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000017e-10));
-  }
+const double toler017 = 2.5000000000000017e-10;
 
 // Test data for nu=5.0000000000000000.
-testcase_cyl_neumann<double> data018[] = {
+const testcase_cyl_neumann<double>
+data018[20] =
+{
   { -0.45369482249110193, 5.0000000000000000, 5.0000000000000000 },
   { 0.13540304768936234, 5.0000000000000000, 10.000000000000000 },
   { 0.16717271575940015, 5.0000000000000000, 15.000000000000000 },
@@ -948,38 +508,12 @@ testcase_cyl_neumann<double> data018[] = {
   { -0.081531504045514361, 5.0000000000000000, 95.000000000000000 },
   { -0.029480196281661937, 5.0000000000000000, 100.00000000000000 },
 };
-
-// Test function for nu=5.0000000000000000.
-template<typename Tp>
-  void
-  test018()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data018)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data018[i].nu), Tp(data018[i].x));
-	const Tp f0 = data018[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000013e-09));
-  }
+const double toler018 = 2.5000000000000013e-09;
 
 // Test data for nu=10.000000000000000.
-testcase_cyl_neumann<double> data019[] = {
+const testcase_cyl_neumann<double>
+data019[20] =
+{
   { -25.129110095610095, 10.000000000000000, 5.0000000000000000 },
   { -0.35981415218340279, 10.000000000000000, 10.000000000000000 },
   { 0.21997141360195577, 10.000000000000000, 15.000000000000000 },
@@ -1001,38 +535,12 @@ testcase_cyl_neumann<double> data019[] = {
   { -0.038798074754578089, 10.000000000000000, 95.000000000000000 },
   { 0.058331574236414913, 10.000000000000000, 100.00000000000000 },
 };
-
-// Test function for nu=10.000000000000000.
-template<typename Tp>
-  void
-  test019()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data019)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data019[i].nu), Tp(data019[i].x));
-	const Tp f0 = data019[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000017e-10));
-  }
+const double toler019 = 2.5000000000000017e-10;
 
 // Test data for nu=20.000000000000000.
-testcase_cyl_neumann<double> data020[] = {
+const testcase_cyl_neumann<double>
+data020[20] =
+{
   { -593396529.69143200, 20.000000000000000, 5.0000000000000000 },
   { -1597.4838482696259, 20.000000000000000, 10.000000000000000 },
   { -3.3087330924737621, 20.000000000000000, 15.000000000000000 },
@@ -1054,38 +562,12 @@ testcase_cyl_neumann<double> data020[] = {
   { 0.072349520791638741, 20.000000000000000, 95.000000000000000 },
   { 0.051247973076188474, 20.000000000000000, 100.00000000000000 },
 };
-
-// Test function for nu=20.000000000000000.
-template<typename Tp>
-  void
-  test020()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data020)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data020[i].nu), Tp(data020[i].x));
-	const Tp f0 = data020[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(1.0000000000000006e-10));
-  }
+const double toler020 = 1.0000000000000006e-10;
 
 // Test data for nu=50.000000000000000.
-testcase_cyl_neumann<double> data021[] = {
+const testcase_cyl_neumann<double>
+data021[20] =
+{
   { -2.7888370175838930e+42, 50.000000000000000, 5.0000000000000000 },
   { -3.6410665018007421e+27, 50.000000000000000, 10.000000000000000 },
   { -1.0929732912175415e+19, 50.000000000000000, 15.000000000000000 },
@@ -1107,38 +589,12 @@ testcase_cyl_neumann<double> data021[] = {
   { -0.068897613820457934, 50.000000000000000, 95.000000000000000 },
   { 0.076505263944803045, 50.000000000000000, 100.00000000000000 },
 };
-
-// Test function for nu=50.000000000000000.
-template<typename Tp>
-  void
-  test021()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data021)
-			   / sizeof(testcase_cyl_neumann<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::cyl_neumann(Tp(data021[i].nu), Tp(data021[i].x));
-	const Tp f0 = data021[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000017e-10));
-  }
+const double toler021 = 2.5000000000000017e-10;
 
 // Test data for nu=100.00000000000000.
-testcase_cyl_neumann<double> data022[] = {
+const testcase_cyl_neumann<double>
+data022[20] =
+{
   { -5.0848639160196196e+115, 100.00000000000000, 5.0000000000000000 },
   { -4.8491482711800252e+85, 100.00000000000000, 10.000000000000000 },
   { -1.6375955323195320e+68, 100.00000000000000, 15.000000000000000 },
@@ -1160,22 +616,20 @@ testcase_cyl_neumann<double> data022[] = {
   { -0.45762200495904848, 100.00000000000000, 95.000000000000000 },
   { -0.16692141141757652, 100.00000000000000, 100.00000000000000 },
 };
-
-// Test function for nu=100.00000000000000.
-template<typename Tp>
+const double toler022 = 1.0000000000000006e-11;
+template<typename Tp, unsigned int Num>
   void
-  test022()
+  test(const testcase_cyl_neumann<Tp> (&data)[Num], Tp toler)
   {
-    bool test [[gnu::unused]] = true;
+    bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data022)
-			   / sizeof(testcase_cyl_neumann<double>);
+    unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::cyl_neumann(Tp(data022[i].nu), Tp(data022[i].x));
-	const Tp f0 = data022[i].f0;
+	const Tp f = std::cyl_neumann(data[i].nu, data[i].x);
+	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -1187,33 +641,33 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(1.0000000000000006e-11));
+    VERIFY(max_abs_frac < toler);
   }
 
 int
 main()
 {
-  test001<double>();
-  test002<double>();
-  test003<double>();
-  test004<double>();
-  test005<double>();
-  test006<double>();
-  test007<double>();
-  test008<double>();
-  test009<double>();
-  test010<double>();
-  test011<double>();
-  test012<double>();
-  test013<double>();
-  test014<double>();
-  test015<double>();
-  test016<double>();
-  test017<double>();
-  test018<double>();
-  test019<double>();
-  test020<double>();
-  test021<double>();
-  test022<double>();
+  test(data001, toler001);
+  test(data002, toler002);
+  test(data003, toler003);
+  test(data004, toler004);
+  test(data005, toler005);
+  test(data006, toler006);
+  test(data007, toler007);
+  test(data008, toler008);
+  test(data009, toler009);
+  test(data010, toler010);
+  test(data011, toler011);
+  test(data012, toler012);
+  test(data013, toler013);
+  test(data014, toler014);
+  test(data015, toler015);
+  test(data016, toler016);
+  test(data017, toler017);
+  test(data018, toler018);
+  test(data019, toler019);
+  test(data020, toler020);
+  test(data021, toler021);
+  test(data022, toler022);
   return 0;
 }

@@ -38,7 +38,9 @@
 
 
 // Test data for n=0.
-testcase_sph_bessel<double> data001[] = {
+const testcase_sph_bessel<double>
+data001[21] =
+{
   { 1.0000000000000000, 0, 0.0000000000000000 },
   { 0.98961583701809175, 0, 0.25000000000000000 },
   { 0.95885107720840601, 0, 0.50000000000000000 },
@@ -61,38 +63,12 @@ testcase_sph_bessel<double> data001[] = {
   { -0.21037742925797431, 0, 4.7500000000000000 },
   { -0.19178485493262770, 0, 5.0000000000000000 },
 };
-
-// Test function for n=0.
-template<typename Tp>
-  void
-  test001()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data001)
-			   / sizeof(testcase_sph_bessel<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::sph_bessel(Tp(data001[i].n), Tp(data001[i].x));
-	const Tp f0 = data001[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler001 = 2.5000000000000020e-13;
 
 // Test data for n=1.
-testcase_sph_bessel<double> data002[] = {
+const testcase_sph_bessel<double>
+data002[21] =
+{
   { 0.0000000000000000, 1, 0.0000000000000000 },
   { 0.082813661229788060, 1, 0.25000000000000000 },
   { 0.16253703063606650, 1, 0.50000000000000000 },
@@ -115,38 +91,12 @@ testcase_sph_bessel<double> data002[] = {
   { -0.052206227820200179, 1, 4.7500000000000000 },
   { -0.095089408079170795, 1, 5.0000000000000000 },
 };
-
-// Test function for n=1.
-template<typename Tp>
-  void
-  test002()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data002)
-			   / sizeof(testcase_sph_bessel<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::sph_bessel(Tp(data002[i].n), Tp(data002[i].x));
-	const Tp f0 = data002[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000015e-12));
-  }
+const double toler002 = 2.5000000000000015e-12;
 
 // Test data for n=2.
-testcase_sph_bessel<double> data003[] = {
+const testcase_sph_bessel<double>
+data003[21] =
+{
   { 0.0000000000000000, 2, 0.0000000000000000 },
   { 0.0041480977393611252, 2, 0.25000000000000000 },
   { 0.016371106607993412, 2, 0.50000000000000000 },
@@ -169,38 +119,12 @@ testcase_sph_bessel<double> data003[] = {
   { 0.17740507484521628, 2, 4.7500000000000000 },
   { 0.13473121008512520, 2, 5.0000000000000000 },
 };
-
-// Test function for n=2.
-template<typename Tp>
-  void
-  test003()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data003)
-			   / sizeof(testcase_sph_bessel<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::sph_bessel(Tp(data003[i].n), Tp(data003[i].x));
-	const Tp f0 = data003[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler003 = 2.5000000000000020e-13;
 
 // Test data for n=5.
-testcase_sph_bessel<double> data004[] = {
+const testcase_sph_bessel<double>
+data004[21] =
+{
   { 0.0000000000000000, 5, 0.0000000000000000 },
   { 9.3719811237268220e-08, 5, 0.25000000000000000 },
   { 2.9774668754574453e-06, 5, 0.50000000000000000 },
@@ -223,38 +147,12 @@ testcase_sph_bessel<double> data004[] = {
   { 0.092117870593729223, 5, 4.7500000000000000 },
   { 0.10681116145650453, 5, 5.0000000000000000 },
 };
-
-// Test function for n=5.
-template<typename Tp>
-  void
-  test004()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data004)
-			   / sizeof(testcase_sph_bessel<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::sph_bessel(Tp(data004[i].n), Tp(data004[i].x));
-	const Tp f0 = data004[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler004 = 2.5000000000000020e-13;
 
 // Test data for n=10.
-testcase_sph_bessel<double> data005[] = {
+const testcase_sph_bessel<double>
+data005[21] =
+{
   { 0.0000000000000000, 10, 0.0000000000000000 },
   { 6.9267427453708468e-17, 10, 0.25000000000000000 },
   { 7.0641239636618740e-14, 10, 0.50000000000000000 },
@@ -277,38 +175,12 @@ testcase_sph_bessel<double> data005[] = {
   { 0.00025777607369970674, 10, 4.7500000000000000 },
   { 0.00040734424424946052, 10, 5.0000000000000000 },
 };
-
-// Test function for n=10.
-template<typename Tp>
-  void
-  test005()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data005)
-			   / sizeof(testcase_sph_bessel<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::sph_bessel(Tp(data005[i].n), Tp(data005[i].x));
-	const Tp f0 = data005[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(5.0000000000000039e-13));
-  }
+const double toler005 = 5.0000000000000039e-13;
 
 // Test data for n=20.
-testcase_sph_bessel<double> data006[] = {
+const testcase_sph_bessel<double>
+data006[21] =
+{
   { 0.0000000000000000, 20, 0.0000000000000000 },
   { 6.9307487073399339e-38, 20, 0.25000000000000000 },
   { 7.2515880810153944e-32, 20, 0.50000000000000000 },
@@ -331,39 +203,13 @@ testcase_sph_bessel<double> data006[] = {
   { 2.0024157388665026e-12, 20, 4.7500000000000000 },
   { 5.4277267607932098e-12, 20, 5.0000000000000000 },
 };
-
-// Test function for n=20.
-template<typename Tp>
-  void
-  test006()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data006)
-			   / sizeof(testcase_sph_bessel<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::sph_bessel(Tp(data006[i].n), Tp(data006[i].x));
-	const Tp f0 = data006[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000015e-12));
-  }
+const double toler006 = 2.5000000000000015e-12;
 //  sph_bessel
 
 // Test data for n=0.
-testcase_sph_bessel<double> data007[] = {
+const testcase_sph_bessel<double>
+data007[21] =
+{
   { 1.0000000000000000, 0, 0.0000000000000000 },
   { -0.19178485493262770, 0, 5.0000000000000000 },
   { -0.054402111088936979, 0, 10.000000000000000 },
@@ -386,38 +232,12 @@ testcase_sph_bessel<double> data007[] = {
   { 0.0071922285761696946, 0, 95.000000000000000 },
   { -0.0050636564110975880, 0, 100.00000000000000 },
 };
-
-// Test function for n=0.
-template<typename Tp>
-  void
-  test007()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data007)
-			   / sizeof(testcase_sph_bessel<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::sph_bessel(Tp(data007[i].n), Tp(data007[i].x));
-	const Tp f0 = data007[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000014e-11));
-  }
+const double toler007 = 2.5000000000000014e-11;
 
 // Test data for n=1.
-testcase_sph_bessel<double> data008[] = {
+const testcase_sph_bessel<double>
+data008[21] =
+{
   { 0.0000000000000000, 1, 0.0000000000000000 },
   { -0.095089408079170795, 1, 5.0000000000000000 },
   { 0.078466941798751549, 1, 10.000000000000000 },
@@ -440,38 +260,12 @@ testcase_sph_bessel<double> data008[] = {
   { -0.0076103298149331573, 1, 95.000000000000000 },
   { -0.0086738252869878168, 1, 100.00000000000000 },
 };
-
-// Test function for n=1.
-template<typename Tp>
-  void
-  test008()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data008)
-			   / sizeof(testcase_sph_bessel<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::sph_bessel(Tp(data008[i].n), Tp(data008[i].x));
-	const Tp f0 = data008[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(5.0000000000000028e-11));
-  }
+const double toler008 = 5.0000000000000028e-11;
 
 // Test data for n=2.
-testcase_sph_bessel<double> data009[] = {
+const testcase_sph_bessel<double>
+data009[21] =
+{
   { 0.0000000000000000, 2, 0.0000000000000000 },
   { 0.13473121008512520, 2, 5.0000000000000000 },
   { 0.077942193628562445, 2, 10.000000000000000 },
@@ -494,38 +288,12 @@ testcase_sph_bessel<double> data009[] = {
   { -0.0074325547808517939, 2, 95.000000000000000 },
   { 0.0048034416524879537, 2, 100.00000000000000 },
 };
-
-// Test function for n=2.
-template<typename Tp>
-  void
-  test009()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data009)
-			   / sizeof(testcase_sph_bessel<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::sph_bessel(Tp(data009[i].n), Tp(data009[i].x));
-	const Tp f0 = data009[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000014e-11));
-  }
+const double toler009 = 2.5000000000000014e-11;
 
 // Test data for n=5.
-testcase_sph_bessel<double> data010[] = {
+const testcase_sph_bessel<double>
+data010[21] =
+{
   { 0.0000000000000000, 5, 0.0000000000000000 },
   { 0.10681116145650453, 5, 5.0000000000000000 },
   { -0.055534511621452155, 5, 10.000000000000000 },
@@ -548,38 +316,12 @@ testcase_sph_bessel<double> data010[] = {
   { -0.0064646119368202771, 5, 95.000000000000000 },
   { -0.0092901489349075730, 5, 100.00000000000000 },
 };
-
-// Test function for n=5.
-template<typename Tp>
-  void
-  test010()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data010)
-			   / sizeof(testcase_sph_bessel<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::sph_bessel(Tp(data010[i].n), Tp(data010[i].x));
-	const Tp f0 = data010[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(5.0000000000000028e-11));
-  }
+const double toler010 = 5.0000000000000028e-11;
 
 // Test data for n=10.
-testcase_sph_bessel<double> data011[] = {
+const testcase_sph_bessel<double>
+data011[21] =
+{
   { 0.0000000000000000, 10, 0.0000000000000000 },
   { 0.00040734424424946052, 10, 5.0000000000000000 },
   { 0.064605154492564265, 10, 10.000000000000000 },
@@ -602,38 +344,12 @@ testcase_sph_bessel<double> data011[] = {
   { -0.010258326955210768, 10, 95.000000000000000 },
   { -0.00019565785971342419, 10, 100.00000000000000 },
 };
-
-// Test function for n=10.
-template<typename Tp>
-  void
-  test011()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data011)
-			   / sizeof(testcase_sph_bessel<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::sph_bessel(Tp(data011[i].n), Tp(data011[i].x));
-	const Tp f0 = data011[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000017e-10));
-  }
+const double toler011 = 2.5000000000000017e-10;
 
 // Test data for n=20.
-testcase_sph_bessel<double> data012[] = {
+const testcase_sph_bessel<double>
+data012[21] =
+{
   { 0.0000000000000000, 20, 0.0000000000000000 },
   { 5.4277267607932098e-12, 20, 5.0000000000000000 },
   { 2.3083719613194670e-06, 20, 10.000000000000000 },
@@ -656,38 +372,12 @@ testcase_sph_bessel<double> data012[] = {
   { 0.0018051661455979529, 20, 95.000000000000000 },
   { 0.010107671283873056, 20, 100.00000000000000 },
 };
-
-// Test function for n=20.
-template<typename Tp>
-  void
-  test012()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data012)
-			   / sizeof(testcase_sph_bessel<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::sph_bessel(Tp(data012[i].n), Tp(data012[i].x));
-	const Tp f0 = data012[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000014e-11));
-  }
+const double toler012 = 2.5000000000000014e-11;
 
 // Test data for n=50.
-testcase_sph_bessel<double> data013[] = {
+const testcase_sph_bessel<double>
+data013[21] =
+{
   { 0.0000000000000000, 50, 0.0000000000000000 },
   { 2.8574793504401511e-46, 50, 5.0000000000000000 },
   { 2.2306960232186471e-31, 50, 10.000000000000000 },
@@ -710,38 +400,12 @@ testcase_sph_bessel<double> data013[] = {
   { -0.010613873910261154, 50, 95.000000000000000 },
   { 0.00057971408822774949, 50, 100.00000000000000 },
 };
-
-// Test function for n=50.
-template<typename Tp>
-  void
-  test013()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data013)
-			   / sizeof(testcase_sph_bessel<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = std::sph_bessel(Tp(data013[i].n), Tp(data013[i].x));
-	const Tp f0 = data013[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000017e-10));
-  }
+const double toler013 = 2.5000000000000017e-10;
 
 // Test data for n=100.
-testcase_sph_bessel<double> data014[] = {
+const testcase_sph_bessel<double>
+data014[21] =
+{
   { 0.0000000000000000, 100, 0.0000000000000000 },
   { 5.5356503033889938e-120, 100, 5.0000000000000000 },
   { 5.8320401820058771e-90, 100, 10.000000000000000 },
@@ -764,22 +428,20 @@ testcase_sph_bessel<double> data014[] = {
   { 0.0024744308520581117, 100, 95.000000000000000 },
   { 0.010880477011438352, 100, 100.00000000000000 },
 };
-
-// Test function for n=100.
-template<typename Tp>
+const double toler014 = 5.0000000000000029e-12;
+template<typename Tp, unsigned int Num>
   void
-  test014()
+  test(const testcase_sph_bessel<Tp> (&data)[Num], Tp toler)
   {
-    bool test [[gnu::unused]] = true;
+    bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data014)
-			   / sizeof(testcase_sph_bessel<double>);
+    unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::sph_bessel(Tp(data014[i].n), Tp(data014[i].x));
-	const Tp f0 = data014[i].f0;
+	const Tp f = std::sph_bessel(data[i].n, data[i].x);
+	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -791,25 +453,25 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(5.0000000000000029e-12));
+    VERIFY(max_abs_frac < toler);
   }
 
 int
 main()
 {
-  test001<double>();
-  test002<double>();
-  test003<double>();
-  test004<double>();
-  test005<double>();
-  test006<double>();
-  test007<double>();
-  test008<double>();
-  test009<double>();
-  test010<double>();
-  test011<double>();
-  test012<double>();
-  test013<double>();
-  test014<double>();
+  test(data001, toler001);
+  test(data002, toler002);
+  test(data003, toler003);
+  test(data004, toler004);
+  test(data005, toler005);
+  test(data006, toler006);
+  test(data007, toler007);
+  test(data008, toler008);
+  test(data009, toler009);
+  test(data010, toler010);
+  test(data011, toler011);
+  test(data012, toler012);
+  test(data013, toler013);
+  test(data014, toler014);
   return 0;
 }
