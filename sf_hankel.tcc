@@ -122,13 +122,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr auto _S_sqrtinf = std::sqrt(_S_inf);
 
       static constexpr auto _S_1d4   = _Tp(0.25L);
-      static constexpr auto _S_1d3   = _Tp(0.33333333333333333333L);
+      static constexpr auto _S_1d3   = _Tp(0.3333333333333333333333333333333333333333L);
       static constexpr auto _S_1d2   = _Tp(0.5L);
-      static constexpr auto _S_2d3   = _Tp(0.66666666666666633337L);
+      static constexpr auto _S_2d3   = _Tp(0.6666666666666666666666666666666666666666L);
       static constexpr auto _S_2pi   = _Tp(6.283185307179586L);
       static constexpr auto _S_lncon = _Tp(0.2703100720721096L);
       static constexpr auto _S_sqrt2 = _Tp(1.4142135623730950L);
-      static constexpr auto _S_4d3   = _Tp(1.33333333333333333333L);
+      static constexpr auto _S_4d3   = _Tp(1.333333333333333333333333333333333333333L);
 
       static constexpr __cmplx __zone{1.0L, 0.0L};
       static constexpr __cmplx _S_j{0.0L, 1.0L};
