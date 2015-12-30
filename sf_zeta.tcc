@@ -295,23 +295,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __riemann_zeta_product(_Tp __s)
     {
+      extern const unsigned long __prime_list[];
+
       constexpr _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
-      constexpr _Tp
-      _S_prime[]
-      {
-	  2,   3,   5,   7,  11,  13,  17,  19,  23,  29,
-	 31,  37,  41,  43,  47,  53,  59,  61,  67,  71,
-	 73,  79,  83,  89,  97, 101, 103, 107, 109, 113,
-        127, 131, 137, 139, 149, 151, 157, 163, 167, 173,
-        179, 181, 191, 193, 197, 199, 211, 223, 227, 229
-      };
-      constexpr unsigned int
-      _S_num_primes = sizeof(_S_prime) / sizeof(_Tp);
+      constexpr unsigned long
+      _S_num_primes = sizeof(__prime_list) / sizeof(unsigned long);
 
       _Tp __zeta = _Tp{1};
-      for (unsigned int __i = 0; __i < _S_num_primes; ++__i)
+      for (unsigned long __i = 0; __i < _S_num_primes; ++__i)
 	{
-	  const _Tp __fact = _Tp{1} - std::pow(_S_prime[__i], -__s);
+	  const _Tp __fact = _Tp{1} - std::pow(__prime_list[__i], -__s);
 	  __zeta *= __fact;
 	  if (_Tp{1} - __fact < _S_eps)
 	    break;
@@ -394,10 +387,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_eps = __gnu_cxx::__math_constants<_Tp>::__eps;
       constexpr int _S_N = 10 + std::numeric_limits<_Tp>::digits10 / 2;
       constexpr int _S_jmax = 12;
-      const auto __pmax  = std::pow(_Tp(_S_N) + __a, -__s);
-      auto __sfact = __s;
-      auto __pfact = __pmax / (_S_N + __a);
-      auto __ans = __pmax * ((_S_N + __a) / (__s - _Tp{1}) + _Tp{0.5L});
 
       // Coefficients for Euler-Maclaurin summation:
       // B_{2j}/(2j)!
@@ -421,9 +410,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        -8.9535174270375468504026113181e-23L
       };
 
+      const auto __pmax  = std::pow(_Tp(_S_N) + __a, -__s);
+      auto __ans = __pmax * ((_S_N + __a) / (__s - _Tp{1}) + _Tp{0.5L});
       for(auto __k = 0; __k < _S_N; ++__k)
         __ans += std::pow(__k + __a, -__s);
 
+      auto __sfact = __s;
+      auto __pfact = __pmax / (_S_N + __a);
       for(auto __j = 0; __j <= _S_jmax; ++__j)
         {
 	  auto __delta = _S_hzeta_c[__j + 1] * __sfact * __pfact;
@@ -478,7 +471,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  for (unsigned int __k = 1; __k <= __n; ++__k)
 	    {
 	      __bincoeff *= -_Tp(__n - __k + 1) / _Tp(__k);
-	      if (std::abs(__bincoeff) > _S_max )
+	      if (std::abs(__bincoeff) > _S_max)
 	      {
 		__punt = true;
 		break;
@@ -500,16 +493,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the Hurwitz zeta function @f$ \zeta(x,s) @f$
-   *           for all s != 1 and x > -1.
+   *   @brief  Return the Hurwitz zeta function @f$ \zeta(s,a) @f$
+   *           for all s != 1 and a > -1.
    *
    *   The Hurwitz zeta function is defined by:
    *   @f[
-   *     \zeta(s, a) = \sum_{n=0}^{\infty} \frac{1}{(n + a)^s}
+   *     \zeta(s,a) = \sum_{n=0}^{\infty} \frac{1}{(n+a)^s}
    *   @f]
    *   The Riemann zeta function is a special case:
    *   @f[
-   *     \zeta(s) = \zeta(s, 1)
+   *     \zeta(s) = \zeta(s,1)
    *   @f]
    */
   template<typename _Tp>

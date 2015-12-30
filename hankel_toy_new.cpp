@@ -159,15 +159,15 @@ template<typename _Tp>
 int
 main()
 {
-  std::cout << "\nfloat\n-----\n";
+  std::cout << "\nRunning float\n-------------\n";
   run_toy<float>();
 
-  std::cout << "\ndouble\n------\n";
+  std::cout << "\nRunning double\n--------------\n";
   run_toy<double>();
 
-  std::cout << "\nlong double\n-----------\n";
+  std::cout << "\nRunning long double\n-------------------\n";
   run_toy<long double>();
 
-  std::cout << "\n__float128\n----------\n";
-  run_toy<__float128>();
+  std::cout << "\nSkipping __float128\n-------------------\n";
+  //run_toy<__float128>();
 }

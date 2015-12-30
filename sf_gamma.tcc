@@ -67,7 +67,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @return  The Bernoulli number of order n.
    */
   template<typename _Tp>
-    _Tp
+    _GLIBCXX14_CONSTEXPR _Tp
     __bernoulli_series(unsigned int __n)
     {
 
@@ -132,7 +132,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @return  The Bernoulli number of order n.
    */
   template<typename _Tp>
-    inline _Tp
+    inline _GLIBCXX14_CONSTEXPR _Tp
     __bernoulli(int __n)
     { return __bernoulli_series<_Tp>(__n); }
 
@@ -146,7 +146,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @return  The logarithm of the gamma function.
    */
   template<typename _Tp>
-    _Tp
+    _GLIBCXX14_CONSTEXPR _Tp
     __log_gamma_bernoulli(_Tp __x)
     {
       _Tp __lg = (__x - _Tp{0.5L}) * std::log(__x) - __x
@@ -174,7 +174,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @return  The logarithm of the gamma function.
    */
   template<typename _Tp>
-    _Tp
+    _GLIBCXX14_CONSTEXPR _Tp
     __log_gamma_lanczos(_Tp __x)
     {
       constexpr int _S_num_lanczos_cheb_7 = 9;
