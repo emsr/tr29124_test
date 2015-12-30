@@ -18,6 +18,7 @@
 // <http://www.gnu.org/licenses/>.
 
 //  riemann_zeta
+
 // This can take long on simulators, timing out the test.
 // { dg-options "-DMAX_ITERATIONS=5" { target simulator } }
 
@@ -42,7 +43,6 @@
 #  include <testsuite_hooks.h>
 #endif
 #include <specfun_testcase.h>
-
 
 // Test data.
 // max(|f - f_GSL|): 8.1688445328964576e-05
@@ -108,6 +108,7 @@ data001[55] =
 };
 const double toler001 = 0.025000000000000001;
 //  riemann_zeta
+
 // This can take long on simulators, timing out the test.
 // { dg-options "-DMAX_ITERATIONS=5" { target simulator } }
 
