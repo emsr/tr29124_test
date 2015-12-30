@@ -36,6 +36,7 @@
 #else
 
 #include <type_traits>
+#include <limits>
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {

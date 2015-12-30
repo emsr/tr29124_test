@@ -299,7 +299,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       constexpr _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
       constexpr unsigned long
-      _S_num_primes = sizeof(__prime_list) / sizeof(unsigned long);
+      _S_num_primes = sizeof(unsigned long) != 8 ? 256 : 256 + 48;
 
       _Tp __zeta = _Tp{1};
       for (unsigned long __i = 0; __i < _S_num_primes; ++__i)
