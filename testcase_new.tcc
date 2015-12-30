@@ -257,11 +257,11 @@ template<typename Tp, typename Tp1>
 
     if (write_header)
       output << boilerplate << '\n';
-    output << "//  " << funcname << '\n';
+    output << "//  " << funcname << '\n' << '\n';
     if (riemann_zeta_limits)
       output << riemann_limits << '\n';
     if (write_header)
-      output << header << '\n';
+      output << header;
 
     const Tp eps = std::numeric_limits<Tp>::epsilon();
 
