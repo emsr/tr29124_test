@@ -38,6 +38,8 @@
 
 
 // Test data.
+// max(|f - f_GSL|): 1.1920928955078125e-07
+// max(|f - f_GSL| / |f_GSL|): 1.3892218807298919e-13
 const testcase_airy_bi<double>
 data001[41] =
 {
@@ -84,6 +86,7 @@ data001[41] =
   { 455641153.54822654, 10.000000000000000 },
 };
 const double toler001 = 1.0000000000000006e-11;
+
 template<typename Tp, unsigned int Num>
   void
   test(const testcase_airy_bi<Tp> (&data)[Num], Tp toler)

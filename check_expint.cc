@@ -38,6 +38,8 @@
 
 
 // Test data.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 2.0242558374827411e-15
 const testcase_expint<double>
 data001[50] =
 {
@@ -96,6 +98,8 @@ const double toler001 = 2.5000000000000020e-13;
 //  expint
 
 // Test data.
+// max(|f - f_GSL|): 2048.0000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.4993769017626171e-15
 const testcase_expint<double>
 data002[50] =
 {
@@ -151,6 +155,7 @@ data002[50] =
   { 1.0585636897131690e+20, 50.000000000000000 },
 };
 const double toler002 = 2.5000000000000020e-13;
+
 template<typename Tp, unsigned int Num>
   void
   test(const testcase_expint<Tp> (&data)[Num], Tp toler)

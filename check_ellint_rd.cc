@@ -38,6 +38,8 @@
 
 
 // Test data for x=0.50000000000000000, y=0.0000000000000000.
+// max(|f - f_GSL|): 8.8817841970012523e-16
+// max(|f - f_GSL| / |f_GSL|): 1.3522105946307419e-16
 const testcase_ellint_rd<double>
 data001[10] =
 {
@@ -65,6 +67,8 @@ data001[10] =
 const double toler001 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=0.50000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 3.1691363401248547e-16
 const testcase_ellint_rd<double>
 data002[10] =
 {
@@ -92,6 +96,8 @@ data002[10] =
 const double toler002 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=1.0000000000000000.
+// max(|f - f_GSL|): 8.8817841970012523e-16
+// max(|f - f_GSL| / |f_GSL|): 3.9288655288847435e-16
 const testcase_ellint_rd<double>
 data003[10] =
 {
@@ -119,6 +125,8 @@ data003[10] =
 const double toler003 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=1.5000000000000000.
+// max(|f - f_GSL|): 1.6653345369377348e-16
+// max(|f - f_GSL| / |f_GSL|): 3.7891508687468268e-16
 const testcase_ellint_rd<double>
 data004[10] =
 {
@@ -146,6 +154,8 @@ data004[10] =
 const double toler004 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=2.0000000000000000.
+// max(|f - f_GSL|): 3.3306690738754696e-16
+// max(|f - f_GSL| / |f_GSL|): 4.2090137012387734e-16
 const testcase_ellint_rd<double>
 data005[10] =
 {
@@ -173,6 +183,8 @@ data005[10] =
 const double toler005 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=2.5000000000000000.
+// max(|f - f_GSL|): 3.3306690738754696e-16
+// max(|f - f_GSL| / |f_GSL|): 4.1418805024691276e-16
 const testcase_ellint_rd<double>
 data006[10] =
 {
@@ -200,6 +212,8 @@ data006[10] =
 const double toler006 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=3.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 1.9376154358325624e-16
 const testcase_ellint_rd<double>
 data007[10] =
 {
@@ -227,6 +241,8 @@ data007[10] =
 const double toler007 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=3.5000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 2.6387125620490936e-16
 const testcase_ellint_rd<double>
 data008[10] =
 {
@@ -254,6 +270,8 @@ data008[10] =
 const double toler008 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=4.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 2.0741239307037440e-16
 const testcase_ellint_rd<double>
 data009[10] =
 {
@@ -281,6 +299,8 @@ data009[10] =
 const double toler009 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=4.5000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 3.2296584257889862e-16
 const testcase_ellint_rd<double>
 data010[10] =
 {
@@ -308,6 +328,8 @@ data010[10] =
 const double toler010 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=5.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 1.8852135081959272e-16
 const testcase_ellint_rd<double>
 data011[10] =
 {
@@ -335,6 +357,8 @@ data011[10] =
 const double toler011 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=0.0000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 2.0035978266821301e-16
 const testcase_ellint_rd<double>
 data012[10] =
 {
@@ -362,6 +386,8 @@ data012[10] =
 const double toler012 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=0.50000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 3.2035213988035616e-16
 const testcase_ellint_rd<double>
 data013[10] =
 {
@@ -389,6 +415,8 @@ data013[10] =
 const double toler013 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=1.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 1.6127593767885116e-16
 const testcase_ellint_rd<double>
 data014[10] =
 {
@@ -416,6 +444,8 @@ data014[10] =
 const double toler014 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=1.5000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.0558229541923375e-16
 const testcase_ellint_rd<double>
 data015[10] =
 {
@@ -443,6 +473,8 @@ data015[10] =
 const double toler015 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=2.0000000000000000.
+// max(|f - f_GSL|): 2.7755575615628914e-17
+// max(|f - f_GSL| / |f_GSL|): 1.4317760142357166e-16
 const testcase_ellint_rd<double>
 data016[10] =
 {
@@ -470,6 +502,8 @@ data016[10] =
 const double toler016 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=2.5000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 3.3900539243894478e-16
 const testcase_ellint_rd<double>
 data017[10] =
 {
@@ -497,6 +531,8 @@ data017[10] =
 const double toler017 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=3.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 1.8273733406261973e-16
 const testcase_ellint_rd<double>
 data018[10] =
 {
@@ -524,6 +560,8 @@ data018[10] =
 const double toler018 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=3.5000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 3.0002054727948029e-16
 const testcase_ellint_rd<double>
 data019[10] =
 {
@@ -551,6 +589,8 @@ data019[10] =
 const double toler019 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=4.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 3.5660342362731674e-16
 const testcase_ellint_rd<double>
 data020[10] =
 {
@@ -578,6 +618,8 @@ data020[10] =
 const double toler020 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=4.5000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 4.1790973255449729e-16
 const testcase_ellint_rd<double>
 data021[10] =
 {
@@ -605,6 +647,8 @@ data021[10] =
 const double toler021 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=5.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.2541571493447988e-16
 const testcase_ellint_rd<double>
 data022[10] =
 {
@@ -632,6 +676,8 @@ data022[10] =
 const double toler022 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=0.0000000000000000.
+// max(|f - f_GSL|): 8.8817841970012523e-16
+// max(|f - f_GSL| / |f_GSL|): 2.0665540893443871e-16
 const testcase_ellint_rd<double>
 data023[10] =
 {
@@ -659,6 +705,8 @@ data023[10] =
 const double toler023 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=0.50000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 3.7891508687468268e-16
 const testcase_ellint_rd<double>
 data024[10] =
 {
@@ -686,6 +734,8 @@ data024[10] =
 const double toler024 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=1.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 5.8932496757348148e-16
 const testcase_ellint_rd<double>
 data025[10] =
 {
@@ -713,6 +763,8 @@ data025[10] =
 const double toler025 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=1.5000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 2.5902206786177604e-16
 const testcase_ellint_rd<double>
 data026[10] =
 {
@@ -740,6 +792,8 @@ data026[10] =
 const double toler026 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=2.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 4.2217255149958021e-16
 const testcase_ellint_rd<double>
 data027[10] =
 {
@@ -767,6 +821,8 @@ data027[10] =
 const double toler027 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=2.5000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 3.3930218002447058e-16
 const testcase_ellint_rd<double>
 data028[10] =
 {
@@ -794,6 +850,8 @@ data028[10] =
 const double toler028 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=3.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.0911462960927578e-16
 const testcase_ellint_rd<double>
 data029[10] =
 {
@@ -821,6 +879,8 @@ data029[10] =
 const double toler029 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=3.5000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 4.2311757770171681e-16
 const testcase_ellint_rd<double>
 data030[10] =
 {
@@ -848,6 +908,8 @@ data030[10] =
 const double toler030 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=4.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 2.2125437717692275e-16
 const testcase_ellint_rd<double>
 data031[10] =
 {
@@ -875,6 +937,8 @@ data031[10] =
 const double toler031 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=4.5000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 2.3039281853216550e-16
 const testcase_ellint_rd<double>
 data032[10] =
 {
@@ -902,6 +966,8 @@ data032[10] =
 const double toler032 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=5.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 2.1983888447315219e-16
 const testcase_ellint_rd<double>
 data033[10] =
 {
@@ -929,6 +995,8 @@ data033[10] =
 const double toler033 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=0.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.5200734900681876e-16
 const testcase_ellint_rd<double>
 data034[10] =
 {
@@ -956,6 +1024,8 @@ data034[10] =
 const double toler034 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=0.50000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.7563454726767028e-16
 const testcase_ellint_rd<double>
 data035[10] =
 {
@@ -983,6 +1053,8 @@ data035[10] =
 const double toler035 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=1.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.5933897901532718e-16
 const testcase_ellint_rd<double>
 data036[10] =
 {
@@ -1010,6 +1082,8 @@ data036[10] =
 const double toler036 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=1.5000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 4.2217255149958021e-16
 const testcase_ellint_rd<double>
 data037[10] =
 {
@@ -1037,6 +1111,8 @@ data037[10] =
 const double toler037 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=2.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 2.4341842334360707e-16
 const testcase_ellint_rd<double>
 data038[10] =
 {
@@ -1064,6 +1140,8 @@ data038[10] =
 const double toler038 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=2.5000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 2.4315462859192206e-16
 const testcase_ellint_rd<double>
 data039[10] =
 {
@@ -1091,6 +1169,8 @@ data039[10] =
 const double toler039 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=3.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 3.5661832043097002e-16
 const testcase_ellint_rd<double>
 data040[10] =
 {
@@ -1118,6 +1198,8 @@ data040[10] =
 const double toler040 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=3.5000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 2.2857283878998205e-16
 const testcase_ellint_rd<double>
 data041[10] =
 {
@@ -1145,6 +1227,8 @@ data041[10] =
 const double toler041 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=4.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 3.9288655288847435e-16
 const testcase_ellint_rd<double>
 data042[10] =
 {
@@ -1172,6 +1256,8 @@ data042[10] =
 const double toler042 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=4.5000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 2.0470071756436580e-16
 const testcase_ellint_rd<double>
 data043[10] =
 {
@@ -1199,6 +1285,8 @@ data043[10] =
 const double toler043 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=5.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 1.7420580085006548e-16
 const testcase_ellint_rd<double>
 data044[10] =
 {
@@ -1226,6 +1314,8 @@ data044[10] =
 const double toler044 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=0.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 3.6381488452455595e-16
 const testcase_ellint_rd<double>
 data045[10] =
 {
@@ -1253,6 +1343,8 @@ data045[10] =
 const double toler045 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=0.50000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 4.1418805024691276e-16
 const testcase_ellint_rd<double>
 data046[10] =
 {
@@ -1280,6 +1372,8 @@ data046[10] =
 const double toler046 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=1.0000000000000000.
+// max(|f - f_GSL|): 8.3266726846886741e-17
+// max(|f - f_GSL| / |f_GSL|): 5.0850808865841690e-16
 const testcase_ellint_rd<double>
 data047[10] =
 {
@@ -1307,6 +1401,8 @@ data047[10] =
 const double toler047 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=1.5000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 3.7991167092599219e-16
 const testcase_ellint_rd<double>
 data048[10] =
 {
@@ -1334,6 +1430,8 @@ data048[10] =
 const double toler048 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=2.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.1582895916283637e-16
 const testcase_ellint_rd<double>
 data049[10] =
 {
@@ -1361,6 +1459,8 @@ data049[10] =
 const double toler049 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=2.5000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 2.5899810209956327e-16
 const testcase_ellint_rd<double>
 data050[10] =
 {
@@ -1388,6 +1488,8 @@ data050[10] =
 const double toler050 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=3.0000000000000000.
+// max(|f - f_GSL|): 1.3877787807814457e-16
+// max(|f - f_GSL| / |f_GSL|): 5.8006596979454375e-16
 const testcase_ellint_rd<double>
 data051[10] =
 {
@@ -1415,6 +1517,8 @@ data051[10] =
 const double toler051 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=3.5000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.6703450786134420e-16
 const testcase_ellint_rd<double>
 data052[10] =
 {
@@ -1442,6 +1546,8 @@ data052[10] =
 const double toler052 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=4.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.8163320645605438e-16
 const testcase_ellint_rd<double>
 data053[10] =
 {
@@ -1469,6 +1575,8 @@ data053[10] =
 const double toler053 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=4.5000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 4.9717780245819188e-16
 const testcase_ellint_rd<double>
 data054[10] =
 {
@@ -1496,6 +1604,8 @@ data054[10] =
 const double toler054 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=5.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 3.4851690525747262e-16
 const testcase_ellint_rd<double>
 data055[10] =
 {
@@ -1523,6 +1633,8 @@ data055[10] =
 const double toler055 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=0.0000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 2.9225488205284127e-16
 const testcase_ellint_rd<double>
 data056[10] =
 {
@@ -1550,6 +1662,8 @@ data056[10] =
 const double toler056 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=0.50000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 3.1585372521312449e-16
 const testcase_ellint_rd<double>
 data057[10] =
 {
@@ -1577,6 +1691,8 @@ data057[10] =
 const double toler057 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=1.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.9592344870019177e-16
 const testcase_ellint_rd<double>
 data058[10] =
 {
@@ -1604,6 +1720,8 @@ data058[10] =
 const double toler058 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=1.5000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 5.1037460341007580e-16
 const testcase_ellint_rd<double>
 data059[10] =
 {
@@ -1631,6 +1749,8 @@ data059[10] =
 const double toler059 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=2.0000000000000000.
+// max(|f - f_GSL|): 3.3306690738754696e-16
+// max(|f - f_GSL| / |f_GSL|): 3.9713781601022334e-16
 const testcase_ellint_rd<double>
 data060[10] =
 {
@@ -1658,6 +1778,8 @@ data060[10] =
 const double toler060 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=2.5000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 3.8137850227665747e-16
 const testcase_ellint_rd<double>
 data061[10] =
 {
@@ -1685,6 +1807,8 @@ data061[10] =
 const double toler061 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=3.0000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 2.8844440295753460e-16
 const testcase_ellint_rd<double>
 data062[10] =
 {
@@ -1712,6 +1836,8 @@ data062[10] =
 const double toler062 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=3.5000000000000000.
+// max(|f - f_GSL|): 8.3266726846886741e-17
+// max(|f - f_GSL| / |f_GSL|): 4.5351318992344683e-16
 const testcase_ellint_rd<double>
 data063[10] =
 {
@@ -1739,6 +1865,8 @@ data063[10] =
 const double toler063 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=4.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 4.4413530221432183e-16
 const testcase_ellint_rd<double>
 data064[10] =
 {
@@ -1766,6 +1894,8 @@ data064[10] =
 const double toler064 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=4.5000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 1.8779653436174768e-16
 const testcase_ellint_rd<double>
 data065[10] =
 {
@@ -1793,6 +1923,8 @@ data065[10] =
 const double toler065 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=5.0000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 2.8969699111145000e-16
 const testcase_ellint_rd<double>
 data066[10] =
 {
@@ -1820,6 +1952,8 @@ data066[10] =
 const double toler066 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=0.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 2.5955313664814527e-16
 const testcase_ellint_rd<double>
 data067[10] =
 {
@@ -1847,6 +1981,8 @@ data067[10] =
 const double toler067 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=0.50000000000000000.
+// max(|f - f_GSL|): 1.3877787807814457e-16
+// max(|f - f_GSL| / |f_GSL|): 5.7693089831259598e-16
 const testcase_ellint_rd<double>
 data068[10] =
 {
@@ -1874,6 +2010,8 @@ data068[10] =
 const double toler068 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=1.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 3.0002054727948034e-16
 const testcase_ellint_rd<double>
 data069[10] =
 {
@@ -1901,6 +2039,8 @@ data069[10] =
 const double toler069 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=1.5000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 5.7798314297029945e-16
 const testcase_ellint_rd<double>
 data070[10] =
 {
@@ -1928,6 +2068,8 @@ data070[10] =
 const double toler070 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=2.0000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 2.2857283878998205e-16
 const testcase_ellint_rd<double>
 data071[10] =
 {
@@ -1955,6 +2097,8 @@ data071[10] =
 const double toler071 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=2.5000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 4.1675847498493559e-16
 const testcase_ellint_rd<double>
 data072[10] =
 {
@@ -1982,6 +2126,8 @@ data072[10] =
 const double toler072 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=3.0000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 4.3778924977046198e-16
 const testcase_ellint_rd<double>
 data073[10] =
 {
@@ -2009,6 +2155,8 @@ data073[10] =
 const double toler073 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=3.5000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 5.2753415116890604e-16
 const testcase_ellint_rd<double>
 data074[10] =
 {
@@ -2036,6 +2184,8 @@ data074[10] =
 const double toler074 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=4.0000000000000000.
+// max(|f - f_GSL|): 1.6653345369377348e-16
+// max(|f - f_GSL| / |f_GSL|): 4.2289386521329635e-16
 const testcase_ellint_rd<double>
 data075[10] =
 {
@@ -2063,6 +2213,8 @@ data075[10] =
 const double toler075 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=4.5000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 3.3563829558292431e-16
 const testcase_ellint_rd<double>
 data076[10] =
 {
@@ -2090,6 +2242,8 @@ data076[10] =
 const double toler076 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=5.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 3.9896803940057237e-16
 const testcase_ellint_rd<double>
 data077[10] =
 {
@@ -2117,6 +2271,8 @@ data077[10] =
 const double toler077 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=0.0000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 2.5550877709555408e-16
 const testcase_ellint_rd<double>
 data078[10] =
 {
@@ -2144,6 +2300,8 @@ data078[10] =
 const double toler078 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=0.50000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 3.4769112550186234e-16
 const testcase_ellint_rd<double>
 data079[10] =
 {
@@ -2171,6 +2329,8 @@ data079[10] =
 const double toler079 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=1.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 4.0103279700854668e-16
 const testcase_ellint_rd<double>
 data080[10] =
 {
@@ -2198,6 +2358,8 @@ data080[10] =
 const double toler080 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=1.5000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 2.2125437717692270e-16
 const testcase_ellint_rd<double>
 data081[10] =
 {
@@ -2225,6 +2387,8 @@ data081[10] =
 const double toler081 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=2.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 4.4159477815519347e-16
 const testcase_ellint_rd<double>
 data082[10] =
 {
@@ -2252,6 +2416,8 @@ data082[10] =
 const double toler082 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=2.5000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 3.2967242011133036e-16
 const testcase_ellint_rd<double>
 data083[10] =
 {
@@ -2279,6 +2445,8 @@ data083[10] =
 const double toler083 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=3.0000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 2.6878051900738846e-16
 const testcase_ellint_rd<double>
 data084[10] =
 {
@@ -2306,6 +2474,8 @@ data084[10] =
 const double toler084 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=3.5000000000000000.
+// max(|f - f_GSL|): 1.6653345369377348e-16
+// max(|f - f_GSL| / |f_GSL|): 4.0120410639470918e-16
 const testcase_ellint_rd<double>
 data085[10] =
 {
@@ -2333,6 +2503,8 @@ data085[10] =
 const double toler085 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=4.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 1.9708122877855641e-16
 const testcase_ellint_rd<double>
 data086[10] =
 {
@@ -2360,6 +2532,8 @@ data086[10] =
 const double toler086 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=4.5000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 2.5380646691911731e-16
 const testcase_ellint_rd<double>
 data087[10] =
 {
@@ -2387,6 +2561,8 @@ data087[10] =
 const double toler087 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=5.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 5.5485756352458946e-16
 const testcase_ellint_rd<double>
 data088[10] =
 {
@@ -2414,6 +2590,8 @@ data088[10] =
 const double toler088 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=0.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 1.8333146312953747e-16
 const testcase_ellint_rd<double>
 data089[10] =
 {
@@ -2441,6 +2619,8 @@ data089[10] =
 const double toler089 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=0.50000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 3.2296584257889862e-16
 const testcase_ellint_rd<double>
 data090[10] =
 {
@@ -2468,6 +2648,8 @@ data090[10] =
 const double toler090 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=1.0000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 2.8629549546305520e-16
 const testcase_ellint_rd<double>
 data091[10] =
 {
@@ -2495,6 +2677,8 @@ data091[10] =
 const double toler091 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=1.5000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 2.9509724311610225e-16
 const testcase_ellint_rd<double>
 data092[10] =
 {
@@ -2522,6 +2706,8 @@ data092[10] =
 const double toler092 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=2.0000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 2.0470071756436575e-16
 const testcase_ellint_rd<double>
 data093[10] =
 {
@@ -2549,6 +2735,8 @@ data093[10] =
 const double toler093 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=2.5000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 2.6480609739634912e-16
 const testcase_ellint_rd<double>
 data094[10] =
 {
@@ -2576,6 +2764,8 @@ data094[10] =
 const double toler094 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=3.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 5.2027049947411937e-16
 const testcase_ellint_rd<double>
 data095[10] =
 {
@@ -2603,6 +2793,8 @@ data095[10] =
 const double toler095 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=3.5000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 3.3563829558292431e-16
 const testcase_ellint_rd<double>
 data096[10] =
 {
@@ -2630,6 +2822,8 @@ data096[10] =
 const double toler096 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=4.0000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 3.0580013923003881e-16
 const testcase_ellint_rd<double>
 data097[10] =
 {
@@ -2657,6 +2851,8 @@ data097[10] =
 const double toler097 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=4.5000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 4.2401007176848479e-16
 const testcase_ellint_rd<double>
 data098[10] =
 {
@@ -2684,6 +2880,8 @@ data098[10] =
 const double toler098 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=5.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 4.3513618328220662e-16
 const testcase_ellint_rd<double>
 data099[10] =
 {
@@ -2711,6 +2909,8 @@ data099[10] =
 const double toler099 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=0.0000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 2.4418632079348363e-16
 const testcase_ellint_rd<double>
 data100[10] =
 {
@@ -2738,6 +2938,8 @@ data100[10] =
 const double toler100 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=0.50000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 2.2450504214663743e-16
 const testcase_ellint_rd<double>
 data101[10] =
 {
@@ -2765,6 +2967,8 @@ data101[10] =
 const double toler101 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=1.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 2.9677250333876674e-16
 const testcase_ellint_rd<double>
 data102[10] =
 {
@@ -2792,6 +2996,8 @@ data102[10] =
 const double toler102 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=1.5000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 1.9636039558254171e-16
 const testcase_ellint_rd<double>
 data103[10] =
 {
@@ -2819,6 +3025,8 @@ data103[10] =
 const double toler103 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=2.0000000000000000.
+// max(|f - f_GSL|): 3.3306690738754696e-16
+// max(|f - f_GSL| / |f_GSL|): 4.2663229566040277e-16
 const testcase_ellint_rd<double>
 data104[10] =
 {
@@ -2846,6 +3054,8 @@ data104[10] =
 const double toler104 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=2.5000000000000000.
+// max(|f - f_GSL|): 1.6653345369377348e-16
+// max(|f - f_GSL| / |f_GSL|): 3.8826021711735669e-16
 const testcase_ellint_rd<double>
 data105[10] =
 {
@@ -2873,6 +3083,8 @@ data105[10] =
 const double toler105 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=3.0000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 3.8860159540022247e-16
 const testcase_ellint_rd<double>
 data106[10] =
 {
@@ -2900,6 +3112,8 @@ data106[10] =
 const double toler106 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=3.5000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 2.9086687327767915e-16
 const testcase_ellint_rd<double>
 data107[10] =
 {
@@ -2927,6 +3141,8 @@ data107[10] =
 const double toler107 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=4.0000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 4.2280823836599906e-16
 const testcase_ellint_rd<double>
 data108[10] =
 {
@@ -2954,6 +3170,8 @@ data108[10] =
 const double toler108 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=4.5000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 4.3513618328220662e-16
 const testcase_ellint_rd<double>
 data109[10] =
 {
@@ -2981,6 +3199,8 @@ data109[10] =
 const double toler109 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=5.0000000000000000.
+// max(|f - f_GSL|): 2.7755575615628914e-17
+// max(|f - f_GSL| / |f_GSL|): 2.8240424629269787e-16
 const testcase_ellint_rd<double>
 data110[10] =
 {
@@ -3006,6 +3226,7 @@ data110[10] =
 	  5.0000000000000000 },
 };
 const double toler110 = 2.5000000000000020e-13;
+
 template<typename Tp, unsigned int Num>
   void
   test(const testcase_ellint_rd<Tp> (&data)[Num], Tp toler)

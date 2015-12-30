@@ -38,6 +38,8 @@
 
 
 // Test data for l=0, m=0.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_sph_legendre<double>
 data001[21] =
 {
@@ -87,6 +89,8 @@ data001[21] =
 const double toler001 = 2.5000000000000020e-13;
 
 // Test data for l=1, m=0.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_sph_legendre<double>
 data002[21] =
 {
@@ -136,6 +140,8 @@ data002[21] =
 const double toler002 = 2.5000000000000020e-13;
 
 // Test data for l=1, m=1.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 7.7031500691196945e-16
 const testcase_sph_legendre<double>
 data003[21] =
 {
@@ -185,6 +191,8 @@ data003[21] =
 const double toler003 = 2.5000000000000020e-13;
 
 // Test data for l=2, m=0.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 3.0159263334953002e-15
 const testcase_sph_legendre<double>
 data004[21] =
 {
@@ -234,6 +242,8 @@ data004[21] =
 const double toler004 = 2.5000000000000020e-13;
 
 // Test data for l=2, m=1.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 8.1384221730905279e-16
 const testcase_sph_legendre<double>
 data005[21] =
 {
@@ -283,6 +293,8 @@ data005[21] =
 const double toler005 = 2.5000000000000020e-13;
 
 // Test data for l=2, m=2.
+// max(|f - f_GSL|): 1.6653345369377348e-16
+// max(|f - f_GSL| / |f_GSL|): 6.2393366429561032e-16
 const testcase_sph_legendre<double>
 data006[21] =
 {
@@ -332,6 +344,8 @@ data006[21] =
 const double toler006 = 2.5000000000000020e-13;
 
 // Test data for l=5, m=0.
+// max(|f - f_GSL|): 1.0547118733938987e-15
+// max(|f - f_GSL| / |f_GSL|): 2.9385557676213648e-15
 const testcase_sph_legendre<double>
 data007[21] =
 {
@@ -381,6 +395,8 @@ data007[21] =
 const double toler007 = 2.5000000000000020e-13;
 
 // Test data for l=5, m=1.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 1.4161260272615034e-15
 const testcase_sph_legendre<double>
 data008[21] =
 {
@@ -430,6 +446,8 @@ data008[21] =
 const double toler008 = 2.5000000000000020e-13;
 
 // Test data for l=5, m=2.
+// max(|f - f_GSL|): 1.6653345369377348e-16
+// max(|f - f_GSL| / |f_GSL|): 3.0636916515712721e-15
 const testcase_sph_legendre<double>
 data009[21] =
 {
@@ -479,6 +497,8 @@ data009[21] =
 const double toler009 = 2.5000000000000020e-13;
 
 // Test data for l=5, m=5.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 4.2617219728402347e-16
 const testcase_sph_legendre<double>
 data010[21] =
 {
@@ -528,6 +548,8 @@ data010[21] =
 const double toler010 = 2.5000000000000020e-13;
 
 // Test data for l=10, m=0.
+// max(|f - f_GSL|): 9.9920072216264089e-16
+// max(|f - f_GSL| / |f_GSL|): 2.2266594990531305e-15
 const testcase_sph_legendre<double>
 data011[21] =
 {
@@ -577,6 +599,8 @@ data011[21] =
 const double toler011 = 2.5000000000000020e-13;
 
 // Test data for l=10, m=1.
+// max(|f - f_GSL|): 1.4432899320127035e-15
+// max(|f - f_GSL| / |f_GSL|): 4.9708436073954521e-15
 const testcase_sph_legendre<double>
 data012[21] =
 {
@@ -626,6 +650,8 @@ data012[21] =
 const double toler012 = 2.5000000000000020e-13;
 
 // Test data for l=10, m=2.
+// max(|f - f_GSL|): 3.3306690738754696e-16
+// max(|f - f_GSL| / |f_GSL|): 3.3968188217108871e-15
 const testcase_sph_legendre<double>
 data013[21] =
 {
@@ -675,6 +701,8 @@ data013[21] =
 const double toler013 = 2.5000000000000020e-13;
 
 // Test data for l=10, m=5.
+// max(|f - f_GSL|): 3.6082248300317588e-16
+// max(|f - f_GSL| / |f_GSL|): 1.6350423942234514e-15
 const testcase_sph_legendre<double>
 data014[21] =
 {
@@ -724,6 +752,8 @@ data014[21] =
 const double toler014 = 2.5000000000000020e-13;
 
 // Test data for l=10, m=10.
+// max(|f - f_GSL|): 9.9920072216264089e-16
+// max(|f - f_GSL| / |f_GSL|): 1.9163828344752537e-15
 const testcase_sph_legendre<double>
 data015[21] =
 {
@@ -773,6 +803,8 @@ data015[21] =
 const double toler015 = 2.5000000000000020e-13;
 
 // Test data for l=20, m=0.
+// max(|f - f_GSL|): 1.2212453270876722e-15
+// max(|f - f_GSL| / |f_GSL|): 2.1900476331757668e-15
 const testcase_sph_legendre<double>
 data016[21] =
 {
@@ -822,6 +854,8 @@ data016[21] =
 const double toler016 = 2.5000000000000020e-13;
 
 // Test data for l=20, m=1.
+// max(|f - f_GSL|): 2.8310687127941492e-15
+// max(|f - f_GSL| / |f_GSL|): 9.0837292708194213e-15
 const testcase_sph_legendre<double>
 data017[21] =
 {
@@ -871,6 +905,8 @@ data017[21] =
 const double toler017 = 5.0000000000000039e-13;
 
 // Test data for l=20, m=2.
+// max(|f - f_GSL|): 2.3314683517128287e-15
+// max(|f - f_GSL| / |f_GSL|): 2.6675898738403374e-15
 const testcase_sph_legendre<double>
 data018[21] =
 {
@@ -920,6 +956,8 @@ data018[21] =
 const double toler018 = 2.5000000000000020e-13;
 
 // Test data for l=20, m=5.
+// max(|f - f_GSL|): 3.5388358909926865e-16
+// max(|f - f_GSL| / |f_GSL|): 1.2458491381272207e-14
 const testcase_sph_legendre<double>
 data019[21] =
 {
@@ -969,6 +1007,8 @@ data019[21] =
 const double toler019 = 1.0000000000000008e-12;
 
 // Test data for l=20, m=10.
+// max(|f - f_GSL|): 1.6653345369377348e-15
+// max(|f - f_GSL| / |f_GSL|): 2.0744116940226714e-14
 const testcase_sph_legendre<double>
 data020[21] =
 {
@@ -1018,6 +1058,8 @@ data020[21] =
 const double toler020 = 2.5000000000000015e-12;
 
 // Test data for l=20, m=20.
+// max(|f - f_GSL|): 3.3306690738754696e-16
+// max(|f - f_GSL| / |f_GSL|): 8.6795105199201385e-16
 const testcase_sph_legendre<double>
 data021[21] =
 {
@@ -1067,6 +1109,8 @@ data021[21] =
 const double toler021 = 2.5000000000000020e-13;
 
 // Test data for l=50, m=0.
+// max(|f - f_GSL|): 4.8849813083506888e-15
+// max(|f - f_GSL| / |f_GSL|): 9.2046020313085697e-15
 const testcase_sph_legendre<double>
 data022[21] =
 {
@@ -1116,6 +1160,8 @@ data022[21] =
 const double toler022 = 5.0000000000000039e-13;
 
 // Test data for l=50, m=1.
+// max(|f - f_GSL|): 4.2743586448068527e-15
+// max(|f - f_GSL| / |f_GSL|): 1.3104848798660735e-14
 const testcase_sph_legendre<double>
 data023[21] =
 {
@@ -1165,6 +1211,8 @@ data023[21] =
 const double toler023 = 1.0000000000000008e-12;
 
 // Test data for l=50, m=2.
+// max(|f - f_GSL|): 7.5495165674510645e-15
+// max(|f - f_GSL| / |f_GSL|): 2.0277903864891892e-14
 const testcase_sph_legendre<double>
 data024[21] =
 {
@@ -1214,6 +1262,8 @@ data024[21] =
 const double toler024 = 2.5000000000000015e-12;
 
 // Test data for l=50, m=5.
+// max(|f - f_GSL|): 4.3021142204224816e-16
+// max(|f - f_GSL| / |f_GSL|): 8.9548506383410822e-15
 const testcase_sph_legendre<double>
 data025[21] =
 {
@@ -1263,6 +1313,8 @@ data025[21] =
 const double toler025 = 5.0000000000000039e-13;
 
 // Test data for l=50, m=10.
+// max(|f - f_GSL|): 1.3322676295501878e-15
+// max(|f - f_GSL| / |f_GSL|): 6.0812430149180488e-15
 const testcase_sph_legendre<double>
 data026[21] =
 {
@@ -1312,6 +1364,8 @@ data026[21] =
 const double toler026 = 5.0000000000000039e-13;
 
 // Test data for l=50, m=20.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 6.0930911637998029e-15
 const testcase_sph_legendre<double>
 data027[21] =
 {
@@ -1361,6 +1415,8 @@ data027[21] =
 const double toler027 = 5.0000000000000039e-13;
 
 // Test data for l=50, m=50.
+// max(|f - f_GSL|): 1.2323475573339238e-14
+// max(|f - f_GSL| / |f_GSL|): 1.6099735616249234e-14
 const testcase_sph_legendre<double>
 data028[21] =
 {
@@ -1410,6 +1466,8 @@ data028[21] =
 const double toler028 = 1.0000000000000008e-12;
 
 // Test data for l=100, m=0.
+// max(|f - f_GSL|): 7.5495165674510645e-15
+// max(|f - f_GSL| / |f_GSL|): 1.2423065089723510e-14
 const testcase_sph_legendre<double>
 data029[21] =
 {
@@ -1459,6 +1517,8 @@ data029[21] =
 const double toler029 = 1.0000000000000008e-12;
 
 // Test data for l=100, m=1.
+// max(|f - f_GSL|): 4.1078251911130792e-15
+// max(|f - f_GSL| / |f_GSL|): 1.5162419336330716e-14
 const testcase_sph_legendre<double>
 data030[21] =
 {
@@ -1508,6 +1568,8 @@ data030[21] =
 const double toler030 = 1.0000000000000008e-12;
 
 // Test data for l=100, m=2.
+// max(|f - f_GSL|): 2.7755575615628914e-15
+// max(|f - f_GSL| / |f_GSL|): 5.7552022268705475e-15
 const testcase_sph_legendre<double>
 data031[21] =
 {
@@ -1557,6 +1619,8 @@ data031[21] =
 const double toler031 = 5.0000000000000039e-13;
 
 // Test data for l=100, m=5.
+// max(|f - f_GSL|): 5.9674487573602164e-16
+// max(|f - f_GSL| / |f_GSL|): 8.4413588189215985e-15
 const testcase_sph_legendre<double>
 data032[21] =
 {
@@ -1606,6 +1670,8 @@ data032[21] =
 const double toler032 = 5.0000000000000039e-13;
 
 // Test data for l=100, m=10.
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 4.0853922061744651e-15
 const testcase_sph_legendre<double>
 data033[21] =
 {
@@ -1655,6 +1721,8 @@ data033[21] =
 const double toler033 = 2.5000000000000020e-13;
 
 // Test data for l=100, m=20.
+// max(|f - f_GSL|): 9.7144514654701197e-16
+// max(|f - f_GSL| / |f_GSL|): 2.8802569343392205e-14
 const testcase_sph_legendre<double>
 data034[21] =
 {
@@ -1704,6 +1772,8 @@ data034[21] =
 const double toler034 = 2.5000000000000015e-12;
 
 // Test data for l=100, m=50.
+// max(|f - f_GSL|): 8.3266726846886741e-15
+// max(|f - f_GSL| / |f_GSL|): 1.8981734972089879e-14
 const testcase_sph_legendre<double>
 data035[21] =
 {
@@ -1753,6 +1823,8 @@ data035[21] =
 const double toler035 = 1.0000000000000008e-12;
 
 // Test data for l=100, m=100.
+// max(|f - f_GSL|): 2.3314683517128287e-14
+// max(|f - f_GSL| / |f_GSL|): 2.6593512237122742e-14
 const testcase_sph_legendre<double>
 data036[21] =
 {
@@ -1800,6 +1872,7 @@ data036[21] =
 	  3.1415926535897931 },
 };
 const double toler036 = 2.5000000000000015e-12;
+
 template<typename Tp, unsigned int Num>
   void
   test(const testcase_sph_legendre<Tp> (&data)[Num], Tp toler)

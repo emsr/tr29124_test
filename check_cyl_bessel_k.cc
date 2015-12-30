@@ -38,6 +38,8 @@
 
 
 // Test data for nu=0.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 1.7863051312335036e-16
 const testcase_cyl_bessel_k<double>
 data001[20] =
 {
@@ -65,6 +67,8 @@ data001[20] =
 const double toler001 = 2.5000000000000020e-13;
 
 // Test data for nu=0.33333333333333331.
+// max(|f - f_GSL|): 1.3322676295501878e-15
+// max(|f - f_GSL| / |f_GSL|): 4.3522010494015439e-15
 const testcase_cyl_bessel_k<double>
 data002[20] =
 {
@@ -92,6 +96,8 @@ data002[20] =
 const double toler002 = 2.5000000000000020e-13;
 
 // Test data for nu=0.50000000000000000.
+// max(|f - f_GSL|): 1.3322676295501878e-15
+// max(|f - f_GSL| / |f_GSL|): 1.5172850443872369e-15
 const testcase_cyl_bessel_k<double>
 data003[20] =
 {
@@ -119,6 +125,8 @@ data003[20] =
 const double toler003 = 2.5000000000000020e-13;
 
 // Test data for nu=0.66666666666666663.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 8.1483075013172610e-16
 const testcase_cyl_bessel_k<double>
 data004[20] =
 {
@@ -146,6 +154,8 @@ data004[20] =
 const double toler004 = 2.5000000000000020e-13;
 
 // Test data for nu=1.0000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 2.7422040631145076e-16
 const testcase_cyl_bessel_k<double>
 data005[20] =
 {
@@ -173,6 +183,8 @@ data005[20] =
 const double toler005 = 2.5000000000000020e-13;
 
 // Test data for nu=2.0000000000000000.
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 1.9937716861613039e-16
 const testcase_cyl_bessel_k<double>
 data006[20] =
 {
@@ -200,6 +212,8 @@ data006[20] =
 const double toler006 = 2.5000000000000020e-13;
 
 // Test data for nu=5.0000000000000000.
+// max(|f - f_GSL|): 5.8207660913467407e-11
+// max(|f - f_GSL| / |f_GSL|): 2.4867363835720159e-16
 const testcase_cyl_bessel_k<double>
 data007[20] =
 {
@@ -227,6 +241,8 @@ data007[20] =
 const double toler007 = 2.5000000000000020e-13;
 
 // Test data for nu=10.000000000000000.
+// max(|f - f_GSL|): 6.1035156250000000e-05
+// max(|f - f_GSL| / |f_GSL|): 7.7998476565326393e-16
 const testcase_cyl_bessel_k<double>
 data008[20] =
 {
@@ -254,6 +270,8 @@ data008[20] =
 const double toler008 = 2.5000000000000020e-13;
 
 // Test data for nu=20.000000000000000.
+// max(|f - f_GSL|): 2.7670116110564327e+19
+// max(|f - f_GSL| / |f_GSL|): 1.2737005853777639e-15
 const testcase_cyl_bessel_k<double>
 data009[20] =
 {
@@ -281,6 +299,8 @@ data009[20] =
 const double toler009 = 2.5000000000000020e-13;
 
 // Test data for nu=50.000000000000000.
+// max(|f - f_GSL|): 3.9111090745622133e+92
+// max(|f - f_GSL| / |f_GSL|): 3.7220730535457535e-15
 const testcase_cyl_bessel_k<double>
 data010[20] =
 {
@@ -308,6 +328,8 @@ data010[20] =
 const double toler010 = 2.5000000000000020e-13;
 
 // Test data for nu=100.00000000000000.
+// max(|f - f_GSL|): 8.5970689361151757e+232
+// max(|f - f_GSL| / |f_GSL|): 9.0457919481999128e-14
 const testcase_cyl_bessel_k<double>
 data011[20] =
 {
@@ -336,6 +358,8 @@ const double toler011 = 5.0000000000000029e-12;
 //  cyl_bessel_k
 
 // Test data for nu=0.0000000000000000.
+// max(|f - f_GSL|): 4.3368086899420177e-19
+// max(|f - f_GSL| / |f_GSL|): 1.8009631353873430e-16
 const testcase_cyl_bessel_k<double>
 data012[20] =
 {
@@ -363,6 +387,8 @@ data012[20] =
 const double toler012 = 2.5000000000000020e-13;
 
 // Test data for nu=0.33333333333333331.
+// max(|f - f_GSL|): 1.0339757656912846e-25
+// max(|f - f_GSL| / |f_GSL|): 1.7960859646361972e-16
 const testcase_cyl_bessel_k<double>
 data013[20] =
 {
@@ -390,6 +416,8 @@ data013[20] =
 const double toler013 = 2.5000000000000020e-13;
 
 // Test data for nu=0.50000000000000000.
+// max(|f - f_GSL|): 1.5046327690525280e-36
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_cyl_bessel_k<double>
 data014[20] =
 {
@@ -417,6 +445,8 @@ data014[20] =
 const double toler014 = 2.5000000000000020e-13;
 
 // Test data for nu=0.66666666666666663.
+// max(|f - f_GSL|): 4.3368086899420177e-19
+// max(|f - f_GSL| / |f_GSL|): 3.5630695000470094e-16
 const testcase_cyl_bessel_k<double>
 data015[20] =
 {
@@ -444,6 +474,8 @@ data015[20] =
 const double toler015 = 2.5000000000000020e-13;
 
 // Test data for nu=1.0000000000000000.
+// max(|f - f_GSL|): 1.0339757656912846e-25
+// max(|f - f_GSL| / |f_GSL|): 2.9112857291682056e-16
 const testcase_cyl_bessel_k<double>
 data016[20] =
 {
@@ -471,6 +503,8 @@ data016[20] =
 const double toler016 = 2.5000000000000020e-13;
 
 // Test data for nu=2.0000000000000000.
+// max(|f - f_GSL|): 8.6736173798840355e-19
+// max(|f - f_GSL| / |f_GSL|): 1.6337745981208381e-16
 const testcase_cyl_bessel_k<double>
 data017[20] =
 {
@@ -498,6 +532,8 @@ data017[20] =
 const double toler017 = 2.5000000000000020e-13;
 
 // Test data for nu=5.0000000000000000.
+// max(|f - f_GSL|): 6.9388939039072284e-18
+// max(|f - f_GSL| / |f_GSL|): 2.3552470349020973e-16
 const testcase_cyl_bessel_k<double>
 data018[20] =
 {
@@ -525,6 +561,8 @@ data018[20] =
 const double toler018 = 2.5000000000000020e-13;
 
 // Test data for nu=10.000000000000000.
+// max(|f - f_GSL|): 5.3290705182007514e-15
+// max(|f - f_GSL| / |f_GSL|): 5.4609173619982130e-16
 const testcase_cyl_bessel_k<double>
 data019[20] =
 {
@@ -552,6 +590,8 @@ data019[20] =
 const double toler019 = 2.5000000000000020e-13;
 
 // Test data for nu=20.000000000000000.
+// max(|f - f_GSL|): 4.1723251342773438e-07
+// max(|f - f_GSL| / |f_GSL|): 1.2224656515794909e-15
 const testcase_cyl_bessel_k<double>
 data020[20] =
 {
@@ -579,6 +619,8 @@ data020[20] =
 const double toler020 = 2.5000000000000020e-13;
 
 // Test data for nu=50.000000000000000.
+// max(|f - f_GSL|): 8.6655802749976619e+27
+// max(|f - f_GSL| / |f_GSL|): 2.6684549464729312e-15
 const testcase_cyl_bessel_k<double>
 data021[20] =
 {
@@ -606,6 +648,8 @@ data021[20] =
 const double toler021 = 2.5000000000000020e-13;
 
 // Test data for nu=100.00000000000000.
+// max(|f - f_GSL|): 3.4996011596528191e+101
+// max(|f - f_GSL| / |f_GSL|): 4.9711230957426436e-15
 const testcase_cyl_bessel_k<double>
 data022[20] =
 {
@@ -631,6 +675,7 @@ data022[20] =
   { 7.6171296304940840e-25, 100.00000000000000, 100.00000000000000 },
 };
 const double toler022 = 2.5000000000000020e-13;
+
 template<typename Tp, unsigned int Num>
   void
   test(const testcase_cyl_bessel_k<Tp> (&data)[Num], Tp toler)

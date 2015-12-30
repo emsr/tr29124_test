@@ -38,6 +38,8 @@
 
 
 // Test data.
+// max(|f - f_GSL|): 9.8744630669500566e-05
+// max(|f - f_GSL| / |f_GSL|): 0.0014435327555427054
 const testcase_psi<double>
 data001[401] =
 {
@@ -444,6 +446,7 @@ data001[401] =
   { 2.2648128020191511, 10.125000000000000 },
 };
 const double toler001 = 0.050000000000000003;
+
 template<typename Tp, unsigned int Num>
   void
   test(const testcase_psi<Tp> (&data)[Num], Tp toler)

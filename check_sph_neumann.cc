@@ -38,6 +38,8 @@
 
 
 // Test data for n=0.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 4.8209634107822837e-15
 const testcase_sph_neumann<double>
 data001[20] =
 {
@@ -65,6 +67,8 @@ data001[20] =
 const double toler001 = 2.5000000000000020e-13;
 
 // Test data for n=1.
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 3.7472288263398607e-15
 const testcase_sph_neumann<double>
 data002[20] =
 {
@@ -92,6 +96,8 @@ data002[20] =
 const double toler002 = 2.5000000000000020e-13;
 
 // Test data for n=2.
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 2.4702749396271158e-15
 const testcase_sph_neumann<double>
 data003[20] =
 {
@@ -119,6 +125,8 @@ data003[20] =
 const double toler003 = 2.5000000000000020e-13;
 
 // Test data for n=5.
+// max(|f - f_GSL|): 4.6566128730773926e-10
+// max(|f - f_GSL| / |f_GSL|): 6.3451511503162099e-16
 const testcase_sph_neumann<double>
 data004[20] =
 {
@@ -146,6 +154,8 @@ data004[20] =
 const double toler004 = 2.5000000000000020e-13;
 
 // Test data for n=10.
+// max(|f - f_GSL|): 0.50000000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.2712694703401436e-15
 const testcase_sph_neumann<double>
 data005[20] =
 {
@@ -173,6 +183,8 @@ data005[20] =
 const double toler005 = 2.5000000000000020e-13;
 
 // Test data for n=20.
+// max(|f - f_GSL|): 2.9514790517935283e+20
+// max(|f - f_GSL| / |f_GSL|): 1.9896573344672978e-15
 const testcase_sph_neumann<double>
 data006[20] =
 {
@@ -200,6 +212,8 @@ data006[20] =
 const double toler006 = 2.5000000000000020e-13;
 
 // Test data for n=50.
+// max(|f - f_GSL|): 2.0859248397665138e+93
+// max(|f - f_GSL| / |f_GSL|): 7.3237119407125301e-14
 const testcase_sph_neumann<double>
 data007[20] =
 {
@@ -227,6 +241,8 @@ data007[20] =
 const double toler007 = 5.0000000000000029e-12;
 
 // Test data for n=100.
+// max(|f - f_GSL|): 2.4840289476811343e+232
+// max(|f - f_GSL| / |f_GSL|): 9.0555289224453335e-14
 const testcase_sph_neumann<double>
 data008[20] =
 {
@@ -255,6 +271,8 @@ const double toler008 = 5.0000000000000029e-12;
 //  sph_neumann
 
 // Test data for n=0.
+// max(|f - f_GSL|): 1.0165479569224090e-15
+// max(|f - f_GSL| / |f_GSL|): 5.9073915926662418e-13
 const testcase_sph_neumann<double>
 data009[20] =
 {
@@ -282,6 +300,8 @@ data009[20] =
 const double toler009 = 5.0000000000000028e-11;
 
 // Test data for n=1.
+// max(|f - f_GSL|): 1.0529771499179219e-15
+// max(|f - f_GSL| / |f_GSL|): 3.5182047773188613e-13
 const testcase_sph_neumann<double>
 data010[20] =
 {
@@ -309,6 +329,8 @@ data010[20] =
 const double toler010 = 2.5000000000000014e-11;
 
 // Test data for n=2.
+// max(|f - f_GSL|): 9.7144514654701197e-16
+// max(|f - f_GSL| / |f_GSL|): 8.9389761338979581e-13
 const testcase_sph_neumann<double>
 data011[20] =
 {
@@ -336,6 +358,8 @@ data011[20] =
 const double toler011 = 5.0000000000000028e-11;
 
 // Test data for n=5.
+// max(|f - f_GSL|): 1.1327744298128550e-15
+// max(|f - f_GSL| / |f_GSL|): 6.2024335299315527e-13
 const testcase_sph_neumann<double>
 data012[20] =
 {
@@ -363,6 +387,8 @@ data012[20] =
 const double toler012 = 5.0000000000000028e-11;
 
 // Test data for n=10.
+// max(|f - f_GSL|): 1.0658141036401503e-14
+// max(|f - f_GSL| / |f_GSL|): 7.3655649039219020e-13
 const testcase_sph_neumann<double>
 data013[20] =
 {
@@ -390,6 +416,8 @@ data013[20] =
 const double toler013 = 5.0000000000000028e-11;
 
 // Test data for n=20.
+// max(|f - f_GSL|): 1.0728836059570312e-06
+// max(|f - f_GSL| / |f_GSL|): 1.0496253232407487e-11
 const testcase_sph_neumann<double>
 data014[20] =
 {
@@ -417,6 +445,8 @@ data014[20] =
 const double toler014 = 1.0000000000000007e-09;
 
 // Test data for n=50.
+// max(|f - f_GSL|): 5.1003129618557667e+29
+// max(|f - f_GSL| / |f_GSL|): 4.9443320929884463e-13
 const testcase_sph_neumann<double>
 data015[20] =
 {
@@ -444,6 +474,8 @@ data015[20] =
 const double toler015 = 2.5000000000000014e-11;
 
 // Test data for n=100.
+// max(|f - f_GSL|): 3.0796490204944808e+102
+// max(|f - f_GSL| / |f_GSL|): 4.6209003006798690e-14
 const testcase_sph_neumann<double>
 data016[20] =
 {
@@ -469,6 +501,7 @@ data016[20] =
   { -0.022983850491562267, 100, 100.00000000000000 },
 };
 const double toler016 = 2.5000000000000015e-12;
+
 template<typename Tp, unsigned int Num>
   void
   test(const testcase_sph_neumann<Tp> (&data)[Num], Tp toler)

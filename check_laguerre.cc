@@ -38,6 +38,8 @@
 
 
 // Test data for n=0.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_laguerre<double>
 data001[21] =
 {
@@ -66,6 +68,8 @@ data001[21] =
 const double toler001 = 2.5000000000000020e-13;
 
 // Test data for n=1.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_laguerre<double>
 data002[21] =
 {
@@ -94,6 +98,8 @@ data002[21] =
 const double toler002 = 2.5000000000000020e-13;
 
 // Test data for n=2.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_laguerre<double>
 data003[21] =
 {
@@ -122,6 +128,8 @@ data003[21] =
 const double toler003 = 2.5000000000000020e-13;
 
 // Test data for n=5.
+// max(|f - f_GSL|): 7.4505805969238281e-09
+// max(|f - f_GSL| / |f_GSL|): 1.9501553136894460e-16
 const testcase_laguerre<double>
 data004[21] =
 {
@@ -150,6 +158,8 @@ data004[21] =
 const double toler004 = 2.5000000000000020e-13;
 
 // Test data for n=10.
+// max(|f - f_GSL|): 0.0029296875000000000
+// max(|f - f_GSL| / |f_GSL|): 6.1315986390500118e-15
 const testcase_laguerre<double>
 data005[21] =
 {
@@ -178,6 +188,8 @@ data005[21] =
 const double toler005 = 5.0000000000000039e-13;
 
 // Test data for n=20.
+// max(|f - f_GSL|): 2048.0000000000000
+// max(|f - f_GSL| / |f_GSL|): 7.1189246999774008e-15
 const testcase_laguerre<double>
 data006[21] =
 {
@@ -206,6 +218,8 @@ data006[21] =
 const double toler006 = 5.0000000000000039e-13;
 
 // Test data for n=50.
+// max(|f - f_GSL|): 196608.00000000000
+// max(|f - f_GSL| / |f_GSL|): 4.2910775919271532e-15
 const testcase_laguerre<double>
 data007[21] =
 {
@@ -234,6 +248,8 @@ data007[21] =
 const double toler007 = 2.5000000000000020e-13;
 
 // Test data for n=100.
+// max(|f - f_GSL|): 98304.000000000000
+// max(|f - f_GSL| / |f_GSL|): 3.8776197831393928e-15
 const testcase_laguerre<double>
 data008[21] =
 {
@@ -260,6 +276,7 @@ data008[21] =
   { -2.6292260693068916e+20, 100, 100.00000000000000 },
 };
 const double toler008 = 2.5000000000000020e-13;
+
 template<typename Tp, unsigned int Num>
   void
   test(const testcase_laguerre<Tp> (&data)[Num], Tp toler)
