@@ -19,6 +19,7 @@ ${tool} ${gcc_dir}/sf_fresnel.tcc    ./sf_fresnel.tcc
 ${tool} ${gcc_dir}/sf_gamma.tcc      ./sf_gamma.tcc
 ${tool} ${gcc_dir}/sf_gegenbauer.tcc ./sf_gegenbauer.tcc
 ${tool} ${gcc_dir}/sf_hermite.tcc    ./sf_hermite.tcc
+${tool} ${gcc_dir}/sf_hydrogen.tcc   ./sf_hydrogen.tcc
 ${tool} ${gcc_dir}/sf_hyperg.tcc     ./sf_hyperg.tcc
 ${tool} ${gcc_dir}/sf_hypint.tcc     ./sf_hypint.tcc
 ${tool} ${gcc_dir}/sf_jacobi.tcc     ./sf_jacobi.tcc
@@ -28,3 +29,5 @@ ${tool} ${gcc_dir}/sf_mod_bessel.tcc ./sf_mod_bessel.tcc
 ${tool} ${gcc_dir}/sf_theta.tcc      ./sf_theta.tcc
 ${tool} ${gcc_dir}/sf_trigint.tcc    ./sf_trigint.tcc
 ${tool} ${gcc_dir}/sf_zeta.tcc       ./sf_zeta.tcc
+${tool} ${gcc_dir}/sf_airy.tcc       ./sf_airy.tcc
+${tool} ${gcc_dir}/sf_hankel.tcc     ./sf_hankel.tcc

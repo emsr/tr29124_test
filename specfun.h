@@ -60,12 +60,12 @@
 #  include <bits/sf_fresnel.tcc>
 #  include <bits/sf_gegenbauer.tcc>
 #  include <bits/sf_hermite.tcc>
-#  include <bits/sf_hydrogen.tcc>
 #  include <bits/sf_hyperg.tcc>
 #  include <bits/sf_hypint.tcc>
 #  include <bits/sf_jacobi.tcc>
 #  include <bits/sf_laguerre.tcc>
 #  include <bits/sf_legendre.tcc>
+#  include <bits/sf_hydrogen.tcc>
 #  include <bits/sf_mod_bessel.tcc>
 #  include <bits/sf_theta.tcc>
 #  include <bits/sf_trigint.tcc>

@@ -66,9 +66,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __rho = _A * __r;
       const auto __ea = std::exp(-__rho / _Tp(2));
       const auto __pp = std::pow(__rho, __l);
-      const auto __lag = std::assoc_laguerre(__n - __l - 1, 2 * __l + 1,
+      const auto __lag = __assoc_laguerre(__n - __l - 1, 2 * __l + 1,
                                         	 __rho);
-      const auto __sphh = std::sph_legendre(__l, __m, __theta)
+      const auto __sphh = __sph_legendre(__l, __m, __theta)
  			* std::polar(_Tp(1), _Tp(__m) * __phi);
 
       const auto __psi = __norm * __ea * __pp * __lag * __sphh;
