@@ -38,6 +38,8 @@
 
 
 // Test data.
+// max(|f - f_GSL|): 2.2204460492503131e-15
+// max(|f - f_GSL| / |f_GSL|): 1.9068116597202735e-15
 const testcase_dilog<double>
 data001[23] =
 {
@@ -66,6 +68,7 @@ data001[23] =
   { 1.6449340668482264, 1.0000000000000000 },
 };
 const double toler001 = 2.5000000000000020e-13;
+
 template<typename Tp, unsigned int Num>
   void
   test(const testcase_dilog<Tp> (&data)[Num], Tp toler)

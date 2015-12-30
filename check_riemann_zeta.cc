@@ -45,6 +45,8 @@
 
 
 // Test data.
+// max(|f - f_GSL|): 8.1688445328964576e-05
+// max(|f - f_GSL| / |f_GSL|): 0.00024261187105164634
 const testcase_riemann_zeta<double>
 data001[55] =
 {
@@ -115,6 +117,8 @@ const double toler001 = 0.025000000000000001;
 
 
 // Test data.
+// max(|f - f_GSL|): 0.00024413768982534112
+// max(|f - f_GSL| / |f_GSL|): 0.00024413742228915217
 const testcase_riemann_zeta<double>
 data002[145] =
 {
@@ -265,6 +269,7 @@ data002[145] =
   { 1.0000000009313275, 30.000000000000000 },
 };
 const double toler002 = 0.025000000000000001;
+
 template<typename Tp, unsigned int Num>
   void
   test(const testcase_riemann_zeta<Tp> (&data)[Num], Tp toler)

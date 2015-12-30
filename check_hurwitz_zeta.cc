@@ -38,6 +38,8 @@
 
 
 // Test data for s=1.2000000000000000.
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 5.6464134003629243e-16
 const testcase_hurwitz_zeta<double>
 data001[25] =
 {
@@ -70,6 +72,8 @@ data001[25] =
 const double toler001 = 2.5000000000000020e-13;
 
 // Test data for s=1.3999999999999999.
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 5.5993291042014306e-16
 const testcase_hurwitz_zeta<double>
 data002[25] =
 {
@@ -102,6 +106,8 @@ data002[25] =
 const double toler002 = 2.5000000000000020e-13;
 
 // Test data for s=1.6000000000000001.
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 3.9048510200589565e-16
 const testcase_hurwitz_zeta<double>
 data003[25] =
 {
@@ -134,6 +140,8 @@ data003[25] =
 const double toler003 = 2.5000000000000020e-13;
 
 // Test data for s=1.8000000000000000.
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 6.2884409572817387e-16
 const testcase_hurwitz_zeta<double>
 data004[25] =
 {
@@ -166,6 +174,8 @@ data004[25] =
 const double toler004 = 2.5000000000000020e-13;
 
 // Test data for s=2.0000000000000000.
+// max(|f - f_GSL|): 1.0658141036401503e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8133681658947818e-16
 const testcase_hurwitz_zeta<double>
 data005[25] =
 {
@@ -198,6 +208,8 @@ data005[25] =
 const double toler005 = 2.5000000000000020e-13;
 
 // Test data for s=2.2000000000000002.
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7856683875643773e-16
 const testcase_hurwitz_zeta<double>
 data006[25] =
 {
@@ -230,6 +242,8 @@ data006[25] =
 const double toler006 = 2.5000000000000020e-13;
 
 // Test data for s=2.3999999999999999.
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 4.7695185944897341e-16
 const testcase_hurwitz_zeta<double>
 data007[25] =
 {
@@ -262,6 +276,8 @@ data007[25] =
 const double toler007 = 2.5000000000000020e-13;
 
 // Test data for s=2.6000000000000001.
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 3.9498662112442395e-16
 const testcase_hurwitz_zeta<double>
 data008[25] =
 {
@@ -294,6 +310,8 @@ data008[25] =
 const double toler008 = 2.5000000000000020e-13;
 
 // Test data for s=2.7999999999999998.
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 4.0736802113753408e-16
 const testcase_hurwitz_zeta<double>
 data009[25] =
 {
@@ -326,6 +344,8 @@ data009[25] =
 const double toler009 = 2.5000000000000020e-13;
 
 // Test data for s=3.0000000000000000.
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 6.3119202363336380e-16
 const testcase_hurwitz_zeta<double>
 data010[25] =
 {
@@ -358,6 +378,8 @@ data010[25] =
 const double toler010 = 2.5000000000000020e-13;
 
 // Test data for s=3.2000000000000002.
+// max(|f - f_GSL|): 8.5265128291212022e-14
+// max(|f - f_GSL| / |f_GSL|): 7.6122616592691250e-16
 const testcase_hurwitz_zeta<double>
 data011[25] =
 {
@@ -390,6 +412,8 @@ data011[25] =
 const double toler011 = 2.5000000000000020e-13;
 
 // Test data for s=3.3999999999999999.
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 5.8818935122942988e-16
 const testcase_hurwitz_zeta<double>
 data012[25] =
 {
@@ -422,6 +446,8 @@ data012[25] =
 const double toler012 = 2.5000000000000020e-13;
 
 // Test data for s=3.6000000000000001.
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 4.2123746685998130e-16
 const testcase_hurwitz_zeta<double>
 data013[25] =
 {
@@ -454,6 +480,8 @@ data013[25] =
 const double toler013 = 2.5000000000000020e-13;
 
 // Test data for s=3.7999999999999998.
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 6.4883446883021001e-16
 const testcase_hurwitz_zeta<double>
 data014[25] =
 {
@@ -486,6 +514,8 @@ data014[25] =
 const double toler014 = 2.5000000000000020e-13;
 
 // Test data for s=4.0000000000000000.
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 4.2474912710030933e-16
 const testcase_hurwitz_zeta<double>
 data015[25] =
 {
@@ -518,6 +548,8 @@ data015[25] =
 const double toler015 = 2.5000000000000020e-13;
 
 // Test data for s=4.2000000000000002.
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 4.3235538447636407e-16
 const testcase_hurwitz_zeta<double>
 data016[25] =
 {
@@ -550,6 +582,8 @@ data016[25] =
 const double toler016 = 2.5000000000000020e-13;
 
 // Test data for s=4.4000000000000004.
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 4.3805024386153911e-16
 const testcase_hurwitz_zeta<double>
 data017[25] =
 {
@@ -582,6 +616,8 @@ data017[25] =
 const double toler017 = 2.5000000000000020e-13;
 
 // Test data for s=4.5999999999999996.
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 6.5655497956389558e-16
 const testcase_hurwitz_zeta<double>
 data018[25] =
 {
@@ -614,6 +650,8 @@ data018[25] =
 const double toler018 = 2.5000000000000020e-13;
 
 // Test data for s=4.7999999999999998.
+// max(|f - f_GSL|): 9.0949470177292824e-13
+// max(|f - f_GSL| / |f_GSL|): 6.0577968216285940e-16
 const testcase_hurwitz_zeta<double>
 data019[25] =
 {
@@ -646,6 +684,8 @@ data019[25] =
 const double toler019 = 2.5000000000000020e-13;
 
 // Test data for s=5.0000000000000000.
+// max(|f - f_GSL|): 4.5474735088646412e-13
+// max(|f - f_GSL| / |f_GSL|): 4.4200220792862006e-16
 const testcase_hurwitz_zeta<double>
 data020[25] =
 {
@@ -678,6 +718,8 @@ data020[25] =
 const double toler020 = 2.5000000000000020e-13;
 
 // Test data for s=5.2000000000000002.
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8897863499607799e-16
 const testcase_hurwitz_zeta<double>
 data021[25] =
 {
@@ -710,6 +752,8 @@ data021[25] =
 const double toler021 = 2.5000000000000020e-13;
 
 // Test data for s=5.4000000000000004.
+// max(|f - f_GSL|): 1.8189894035458565e-12
+// max(|f - f_GSL| / |f_GSL|): 4.8461371014185388e-16
 const testcase_hurwitz_zeta<double>
 data022[25] =
 {
@@ -742,6 +786,8 @@ data022[25] =
 const double toler022 = 2.5000000000000020e-13;
 
 // Test data for s=5.5999999999999996.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 5.3544714129135670e-16
 const testcase_hurwitz_zeta<double>
 data023[25] =
 {
@@ -774,6 +820,8 @@ data023[25] =
 const double toler023 = 2.5000000000000020e-13;
 
 // Test data for s=5.7999999999999998.
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 4.3532875481537144e-16
 const testcase_hurwitz_zeta<double>
 data024[25] =
 {
@@ -806,6 +854,8 @@ data024[25] =
 const double toler024 = 2.5000000000000020e-13;
 
 // Test data for s=6.0000000000000000.
+// max(|f - f_GSL|): 1.8189894035458565e-12
+// max(|f - f_GSL| / |f_GSL|): 4.3651864001884824e-16
 const testcase_hurwitz_zeta<double>
 data025[25] =
 {
@@ -838,6 +888,8 @@ data025[25] =
 const double toler025 = 2.5000000000000020e-13;
 
 // Test data for s=6.2000000000000002.
+// max(|f - f_GSL|): 3.6379788070917130e-12
+// max(|f - f_GSL| / |f_GSL|): 6.6331916936662678e-16
 const testcase_hurwitz_zeta<double>
 data026[25] =
 {
@@ -870,6 +922,8 @@ data026[25] =
 const double toler026 = 2.5000000000000020e-13;
 
 // Test data for s=6.4000000000000004.
+// max(|f - f_GSL|): 3.6379788070917130e-12
+// max(|f - f_GSL| / |f_GSL|): 4.1376609317094708e-16
 const testcase_hurwitz_zeta<double>
 data027[25] =
 {
@@ -902,6 +956,8 @@ data027[25] =
 const double toler027 = 2.5000000000000020e-13;
 
 // Test data for s=6.5999999999999996.
+// max(|f - f_GSL|): 7.2759576141834259e-12
+// max(|f - f_GSL| / |f_GSL|): 4.4237720322047698e-16
 const testcase_hurwitz_zeta<double>
 data028[25] =
 {
@@ -934,6 +990,8 @@ data028[25] =
 const double toler028 = 2.5000000000000020e-13;
 
 // Test data for s=6.7999999999999998.
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.6531513908061276e-16
 const testcase_hurwitz_zeta<double>
 data029[25] =
 {
@@ -966,6 +1024,8 @@ data029[25] =
 const double toler029 = 2.5000000000000020e-13;
 
 // Test data for s=7.0000000000000000.
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 5.1122313335947261e-16
 const testcase_hurwitz_zeta<double>
 data030[25] =
 {
@@ -998,6 +1058,8 @@ data030[25] =
 const double toler030 = 2.5000000000000020e-13;
 
 // Test data for s=7.2000000000000002.
+// max(|f - f_GSL|): 2.1316282072803006e-14
+// max(|f - f_GSL| / |f_GSL|): 5.3828933643284034e-16
 const testcase_hurwitz_zeta<double>
 data031[25] =
 {
@@ -1030,6 +1092,8 @@ data031[25] =
 const double toler031 = 2.5000000000000020e-13;
 
 // Test data for s=7.4000000000000004.
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 4.2539832879511325e-16
 const testcase_hurwitz_zeta<double>
 data032[25] =
 {
@@ -1062,6 +1126,8 @@ data032[25] =
 const double toler032 = 2.5000000000000020e-13;
 
 // Test data for s=7.5999999999999996.
+// max(|f - f_GSL|): 2.2737367544323206e-13
+// max(|f - f_GSL| / |f_GSL|): 2.1496299845787800e-16
 const testcase_hurwitz_zeta<double>
 data033[25] =
 {
@@ -1094,6 +1160,8 @@ data033[25] =
 const double toler033 = 2.5000000000000020e-13;
 
 // Test data for s=7.7999999999999998.
+// max(|f - f_GSL|): 1.1641532182693481e-10
+// max(|f - f_GSL| / |f_GSL|): 5.5784064466048994e-16
 const testcase_hurwitz_zeta<double>
 data034[25] =
 {
@@ -1126,6 +1194,8 @@ data034[25] =
 const double toler034 = 2.5000000000000020e-13;
 
 // Test data for s=8.0000000000000000.
+// max(|f - f_GSL|): 8.8817841970012523e-16
+// max(|f - f_GSL| / |f_GSL|): 4.4228585288653252e-16
 const testcase_hurwitz_zeta<double>
 data035[25] =
 {
@@ -1158,6 +1228,8 @@ data035[25] =
 const double toler035 = 2.5000000000000020e-13;
 
 // Test data for s=8.1999999999999993.
+// max(|f - f_GSL|): 1.1641532182693481e-10
+// max(|f - f_GSL| / |f_GSL|): 4.2175794013633686e-16
 const testcase_hurwitz_zeta<double>
 data036[25] =
 {
@@ -1190,6 +1262,8 @@ data036[25] =
 const double toler036 = 2.5000000000000020e-13;
 
 // Test data for s=8.4000000000000004.
+// max(|f - f_GSL|): 9.0949470177292824e-13
+// max(|f - f_GSL| / |f_GSL|): 4.2391361148539043e-16
 const testcase_hurwitz_zeta<double>
 data037[25] =
 {
@@ -1222,6 +1296,8 @@ data037[25] =
 const double toler037 = 2.5000000000000020e-13;
 
 // Test data for s=8.5999999999999996.
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.2878654193790933e-16
 const testcase_hurwitz_zeta<double>
 data038[25] =
 {
@@ -1254,6 +1330,8 @@ data038[25] =
 const double toler038 = 2.5000000000000020e-13;
 
 // Test data for s=8.8000000000000007.
+// max(|f - f_GSL|): 2.3283064365386963e-10
+// max(|f - f_GSL| / |f_GSL|): 3.9845062488983630e-16
 const testcase_hurwitz_zeta<double>
 data039[25] =
 {
@@ -1286,6 +1364,8 @@ data039[25] =
 const double toler039 = 2.5000000000000020e-13;
 
 // Test data for s=9.0000000000000000.
+// max(|f - f_GSL|): 2.3283064365386963e-10
+// max(|f - f_GSL| / |f_GSL|): 4.7787892313133187e-16
 const testcase_hurwitz_zeta<double>
 data040[25] =
 {
@@ -1318,6 +1398,8 @@ data040[25] =
 const double toler040 = 2.5000000000000020e-13;
 
 // Test data for s=9.1999999999999993.
+// max(|f - f_GSL|): 4.6566128730773926e-10
+// max(|f - f_GSL| / |f_GSL|): 5.7007545559028402e-16
 const testcase_hurwitz_zeta<double>
 data041[25] =
 {
@@ -1350,6 +1432,8 @@ data041[25] =
 const double toler041 = 2.5000000000000020e-13;
 
 // Test data for s=9.4000000000000004.
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.3876229042014553e-16
 const testcase_hurwitz_zeta<double>
 data042[25] =
 {
@@ -1382,6 +1466,8 @@ data042[25] =
 const double toler042 = 2.5000000000000020e-13;
 
 // Test data for s=9.5999999999999996.
+// max(|f - f_GSL|): 9.0949470177292824e-13
+// max(|f - f_GSL| / |f_GSL|): 3.9005895699127338e-16
 const testcase_hurwitz_zeta<double>
 data043[25] =
 {
@@ -1414,6 +1500,8 @@ data043[25] =
 const double toler043 = 2.5000000000000020e-13;
 
 // Test data for s=9.8000000000000007.
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 4.4403569477955908e-16
 const testcase_hurwitz_zeta<double>
 data044[25] =
 {
@@ -1446,6 +1534,8 @@ data044[25] =
 const double toler044 = 2.5000000000000020e-13;
 
 // Test data for s=10.000000000000000.
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.6429275448894696e-16
 const testcase_hurwitz_zeta<double>
 data045[25] =
 {
@@ -1478,6 +1568,8 @@ data045[25] =
 const double toler045 = 2.5000000000000020e-13;
 
 // Test data for s=10.199999999999999.
+// max(|f - f_GSL|): 1.8189894035458565e-12
+// max(|f - f_GSL| / |f_GSL|): 6.2401598837276767e-16
 const testcase_hurwitz_zeta<double>
 data046[25] =
 {
@@ -1510,6 +1602,8 @@ data046[25] =
 const double toler046 = 2.5000000000000020e-13;
 
 // Test data for s=10.400000000000000.
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 4.1305180613618882e-16
 const testcase_hurwitz_zeta<double>
 data047[25] =
 {
@@ -1542,6 +1636,8 @@ data047[25] =
 const double toler047 = 2.5000000000000020e-13;
 
 // Test data for s=10.600000000000000.
+// max(|f - f_GSL|): 3.6379788070917130e-12
+// max(|f - f_GSL| / |f_GSL|): 4.8664590411580356e-16
 const testcase_hurwitz_zeta<double>
 data048[25] =
 {
@@ -1574,6 +1670,8 @@ data048[25] =
 const double toler048 = 2.5000000000000020e-13;
 
 // Test data for s=10.800000000000001.
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 5.0963653143346752e-16
 const testcase_hurwitz_zeta<double>
 data049[25] =
 {
@@ -1606,6 +1704,8 @@ data049[25] =
 const double toler049 = 2.5000000000000020e-13;
 
 // Test data for s=11.000000000000000.
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 4.3878072600128618e-16
 const testcase_hurwitz_zeta<double>
 data050[25] =
 {
@@ -1638,6 +1738,8 @@ data050[25] =
 const double toler050 = 2.5000000000000020e-13;
 
 // Test data for s=11.199999999999999.
+// max(|f - f_GSL|): 3.6379788070917130e-12
+// max(|f - f_GSL| / |f_GSL|): 6.4092142755450842e-16
 const testcase_hurwitz_zeta<double>
 data051[25] =
 {
@@ -1670,6 +1772,8 @@ data051[25] =
 const double toler051 = 2.5000000000000020e-13;
 
 // Test data for s=11.400000000000000.
+// max(|f - f_GSL|): 7.2759576141834259e-12
+// max(|f - f_GSL| / |f_GSL|): 4.3045856957262973e-16
 const testcase_hurwitz_zeta<double>
 data052[25] =
 {
@@ -1702,6 +1806,8 @@ data052[25] =
 const double toler052 = 2.5000000000000020e-13;
 
 // Test data for s=11.600000000000000.
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 4.4394484862945992e-16
 const testcase_hurwitz_zeta<double>
 data053[25] =
 {
@@ -1734,6 +1840,8 @@ data053[25] =
 const double toler053 = 2.5000000000000020e-13;
 
 // Test data for s=11.800000000000001.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 5.7492328202195540e-16
 const testcase_hurwitz_zeta<double>
 data054[25] =
 {
@@ -1766,6 +1874,8 @@ data054[25] =
 const double toler054 = 2.5000000000000020e-13;
 
 // Test data for s=12.000000000000000.
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 3.4443516424400458e-16
 const testcase_hurwitz_zeta<double>
 data055[25] =
 {
@@ -1798,6 +1908,8 @@ data055[25] =
 const double toler055 = 2.5000000000000020e-13;
 
 // Test data for s=12.199999999999999.
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 4.5471179733280341e-16
 const testcase_hurwitz_zeta<double>
 data056[25] =
 {
@@ -1830,6 +1942,8 @@ data056[25] =
 const double toler056 = 2.5000000000000020e-13;
 
 // Test data for s=12.400000000000000.
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 3.4642697400096100e-16
 const testcase_hurwitz_zeta<double>
 data057[25] =
 {
@@ -1862,6 +1976,8 @@ data057[25] =
 const double toler057 = 2.5000000000000020e-13;
 
 // Test data for s=12.600000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 4.3809686171546277e-16
 const testcase_hurwitz_zeta<double>
 data058[25] =
 {
@@ -1894,6 +2010,8 @@ data058[25] =
 const double toler058 = 2.5000000000000020e-13;
 
 // Test data for s=12.800000000000001.
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 4.4402659133649871e-16
 const testcase_hurwitz_zeta<double>
 data059[25] =
 {
@@ -1926,6 +2044,8 @@ data059[25] =
 const double toler059 = 2.5000000000000020e-13;
 
 // Test data for s=13.000000000000000.
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 4.4403472086302431e-16
 const testcase_hurwitz_zeta<double>
 data060[25] =
 {
@@ -1958,6 +2078,8 @@ data060[25] =
 const double toler060 = 2.5000000000000020e-13;
 
 // Test data for s=13.199999999999999.
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 4.2529408623001239e-16
 const testcase_hurwitz_zeta<double>
 data061[25] =
 {
@@ -1990,6 +2112,8 @@ data061[25] =
 const double toler061 = 2.5000000000000020e-13;
 
 // Test data for s=13.400000000000000.
+// max(|f - f_GSL|): 1.3877787807814457e-17
+// max(|f - f_GSL| / |f_GSL|): 4.5390883763992709e-16
 const testcase_hurwitz_zeta<double>
 data062[25] =
 {
@@ -2022,6 +2146,8 @@ data062[25] =
 const double toler062 = 2.5000000000000020e-13;
 
 // Test data for s=13.600000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 7.9185484842648021e-16
 const testcase_hurwitz_zeta<double>
 data063[25] =
 {
@@ -2054,6 +2180,8 @@ data063[25] =
 const double toler063 = 2.5000000000000020e-13;
 
 // Test data for s=13.800000000000001.
+// max(|f - f_GSL|): 1.7347234759768071e-18
+// max(|f - f_GSL| / |f_GSL|): 3.9862044391834013e-16
 const testcase_hurwitz_zeta<double>
 data064[25] =
 {
@@ -2086,6 +2214,8 @@ data064[25] =
 const double toler064 = 2.5000000000000020e-13;
 
 // Test data for s=14.000000000000000.
+// max(|f - f_GSL|): 1.3877787807814457e-17
+// max(|f - f_GSL| / |f_GSL|): 5.9494536070403734e-16
 const testcase_hurwitz_zeta<double>
 data065[25] =
 {
@@ -2118,6 +2248,8 @@ data065[25] =
 const double toler065 = 2.5000000000000020e-13;
 
 // Test data for s=14.199999999999999.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 4.0122762780161022e-16
 const testcase_hurwitz_zeta<double>
 data066[25] =
 {
@@ -2150,6 +2282,8 @@ data066[25] =
 const double toler066 = 2.5000000000000020e-13;
 
 // Test data for s=14.400000000000000.
+// max(|f - f_GSL|): 1.3877787807814457e-17
+// max(|f - f_GSL| / |f_GSL|): 5.5572294242267985e-16
 const testcase_hurwitz_zeta<double>
 data067[25] =
 {
@@ -2182,6 +2316,8 @@ data067[25] =
 const double toler067 = 2.5000000000000020e-13;
 
 // Test data for s=14.600000000000000.
+// max(|f - f_GSL|): 1.3877787807814457e-17
+// max(|f - f_GSL| / |f_GSL|): 3.3687696645770852e-16
 const testcase_hurwitz_zeta<double>
 data068[25] =
 {
@@ -2214,6 +2350,8 @@ data068[25] =
 const double toler068 = 2.5000000000000020e-13;
 
 // Test data for s=14.800000000000001.
+// max(|f - f_GSL|): 8.6736173798840355e-19
+// max(|f - f_GSL| / |f_GSL|): 4.3910002428586283e-16
 const testcase_hurwitz_zeta<double>
 data069[25] =
 {
@@ -2246,6 +2384,8 @@ data069[25] =
 const double toler069 = 2.5000000000000020e-13;
 
 // Test data for s=15.000000000000000.
+// max(|f - f_GSL|): 8.6736173798840355e-19
+// max(|f - f_GSL| / |f_GSL|): 4.4149767337718877e-16
 const testcase_hurwitz_zeta<double>
 data070[25] =
 {
@@ -2278,6 +2418,8 @@ data070[25] =
 const double toler070 = 2.5000000000000020e-13;
 
 // Test data for s=15.199999999999999.
+// max(|f - f_GSL|): 1.0842021724855044e-19
+// max(|f - f_GSL| / |f_GSL|): 2.7056603415779248e-16
 const testcase_hurwitz_zeta<double>
 data071[25] =
 {
@@ -2310,6 +2452,8 @@ data071[25] =
 const double toler071 = 2.5000000000000020e-13;
 
 // Test data for s=15.400000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 3.9399414199439672e-16
 const testcase_hurwitz_zeta<double>
 data072[25] =
 {
@@ -2342,6 +2486,8 @@ data072[25] =
 const double toler072 = 2.5000000000000020e-13;
 
 // Test data for s=15.600000000000000.
+// max(|f - f_GSL|): 6.9388939039072284e-18
+// max(|f - f_GSL| / |f_GSL|): 3.1743309914217584e-16
 const testcase_hurwitz_zeta<double>
 data073[25] =
 {
@@ -2374,6 +2520,8 @@ data073[25] =
 const double toler073 = 2.5000000000000020e-13;
 
 // Test data for s=15.800000000000001.
+// max(|f - f_GSL|): 1.0842021724855044e-19
+// max(|f - f_GSL| / |f_GSL|): 4.2895443619599388e-16
 const testcase_hurwitz_zeta<double>
 data074[25] =
 {
@@ -2406,6 +2554,8 @@ data074[25] =
 const double toler074 = 2.5000000000000020e-13;
 
 // Test data for s=16.000000000000000.
+// max(|f - f_GSL|): 8.6736173798840355e-19
+// max(|f - f_GSL| / |f_GSL|): 4.2292377310526944e-16
 const testcase_hurwitz_zeta<double>
 data075[25] =
 {
@@ -2438,6 +2588,8 @@ data075[25] =
 const double toler075 = 2.5000000000000020e-13;
 
 // Test data for s=16.199999999999999.
+// max(|f - f_GSL|): 6.9388939039072284e-18
+// max(|f - f_GSL| / |f_GSL|): 3.3739980712294663e-16
 const testcase_hurwitz_zeta<double>
 data076[25] =
 {
@@ -2470,6 +2622,8 @@ data076[25] =
 const double toler076 = 2.5000000000000020e-13;
 
 // Test data for s=16.399999999999999.
+// max(|f - f_GSL|): 1.7347234759768071e-18
+// max(|f - f_GSL| / |f_GSL|): 4.3218223383099284e-16
 const testcase_hurwitz_zeta<double>
 data077[25] =
 {
@@ -2502,6 +2656,8 @@ data077[25] =
 const double toler077 = 2.5000000000000020e-13;
 
 // Test data for s=16.600000000000001.
+// max(|f - f_GSL|): 5.4210108624275222e-20
+// max(|f - f_GSL| / |f_GSL|): 2.3402307884049575e-16
 const testcase_hurwitz_zeta<double>
 data078[25] =
 {
@@ -2534,6 +2690,8 @@ data078[25] =
 const double toler078 = 2.5000000000000020e-13;
 
 // Test data for s=16.800000000000001.
+// max(|f - f_GSL|): 6.7762635780344027e-21
+// max(|f - f_GSL| / |f_GSL|): 4.3066541841316176e-16
 const testcase_hurwitz_zeta<double>
 data079[25] =
 {
@@ -2566,6 +2724,8 @@ data079[25] =
 const double toler079 = 2.5000000000000020e-13;
 
 // Test data for s=17.000000000000000.
+// max(|f - f_GSL|): 6.7762635780344027e-21
+// max(|f - f_GSL| / |f_GSL|): 2.8783964998707109e-16
 const testcase_hurwitz_zeta<double>
 data080[25] =
 {
@@ -2598,6 +2758,8 @@ data080[25] =
 const double toler080 = 2.5000000000000020e-13;
 
 // Test data for s=17.199999999999999.
+// max(|f - f_GSL|): 6.7762635780344027e-21
+// max(|f - f_GSL| / |f_GSL|): 4.0462311500211635e-16
 const testcase_hurwitz_zeta<double>
 data081[25] =
 {
@@ -2630,6 +2792,8 @@ data081[25] =
 const double toler081 = 2.5000000000000020e-13;
 
 // Test data for s=17.399999999999999.
+// max(|f - f_GSL|): 5.4210108624275222e-20
+// max(|f - f_GSL| / |f_GSL|): 5.6768438278282181e-16
 const testcase_hurwitz_zeta<double>
 data082[25] =
 {
@@ -2662,6 +2826,8 @@ data082[25] =
 const double toler082 = 2.5000000000000020e-13;
 
 // Test data for s=17.600000000000001.
+// max(|f - f_GSL|): 6.7762635780344027e-21
+// max(|f - f_GSL| / |f_GSL|): 3.1509555596656760e-16
 const testcase_hurwitz_zeta<double>
 data083[25] =
 {
@@ -2694,6 +2860,8 @@ data083[25] =
 const double toler083 = 2.5000000000000020e-13;
 
 // Test data for s=17.800000000000001.
+// max(|f - f_GSL|): 2.7105054312137611e-20
+// max(|f - f_GSL| / |f_GSL|): 4.0737419804727801e-16
 const testcase_hurwitz_zeta<double>
 data084[25] =
 {
@@ -2726,6 +2894,8 @@ data084[25] =
 const double toler084 = 2.5000000000000020e-13;
 
 // Test data for s=18.000000000000000.
+// max(|f - f_GSL|): 2.7105054312137611e-20
+// max(|f - f_GSL| / |f_GSL|): 3.8903228276964160e-16
 const testcase_hurwitz_zeta<double>
 data085[25] =
 {
@@ -2758,6 +2928,8 @@ data085[25] =
 const double toler085 = 2.5000000000000020e-13;
 
 // Test data for s=18.199999999999999.
+// max(|f - f_GSL|): 4.2351647362715017e-22
+// max(|f - f_GSL| / |f_GSL|): 3.9706411878455752e-16
 const testcase_hurwitz_zeta<double>
 data086[25] =
 {
@@ -2790,6 +2962,8 @@ data086[25] =
 const double toler086 = 2.5000000000000020e-13;
 
 // Test data for s=18.399999999999999.
+// max(|f - f_GSL|): 3.3881317890172014e-21
+// max(|f - f_GSL| / |f_GSL|): 4.2264399060404906e-16
 const testcase_hurwitz_zeta<double>
 data087[25] =
 {
@@ -2822,6 +2996,8 @@ data087[25] =
 const double toler087 = 2.5000000000000020e-13;
 
 // Test data for s=18.600000000000001.
+// max(|f - f_GSL|): 4.2351647362715017e-22
+// max(|f - f_GSL| / |f_GSL|): 4.1776719064783747e-16
 const testcase_hurwitz_zeta<double>
 data088[25] =
 {
@@ -2854,6 +3030,8 @@ data088[25] =
 const double toler088 = 2.5000000000000020e-13;
 
 // Test data for s=18.800000000000001.
+// max(|f - f_GSL|): 5.2939559203393771e-23
+// max(|f - f_GSL| / |f_GSL|): 4.1804575634278906e-16
 const testcase_hurwitz_zeta<double>
 data089[25] =
 {
@@ -2886,6 +3064,8 @@ data089[25] =
 const double toler089 = 2.5000000000000020e-13;
 
 // Test data for s=19.000000000000000.
+// max(|f - f_GSL|): 1.6940658945086007e-21
+// max(|f - f_GSL| / |f_GSL|): 3.8539796399967929e-16
 const testcase_hurwitz_zeta<double>
 data090[25] =
 {
@@ -2918,6 +3098,8 @@ data090[25] =
 const double toler090 = 2.5000000000000020e-13;
 
 // Test data for s=19.199999999999999.
+// max(|f - f_GSL|): 5.2939559203393771e-23
+// max(|f - f_GSL| / |f_GSL|): 5.9640831455522343e-16
 const testcase_hurwitz_zeta<double>
 data091[25] =
 {
@@ -2950,6 +3132,8 @@ data091[25] =
 const double toler091 = 2.5000000000000020e-13;
 
 // Test data for s=19.399999999999999.
+// max(|f - f_GSL|): 2.1175823681357508e-22
+// max(|f - f_GSL| / |f_GSL|): 4.0437888161539340e-16
 const testcase_hurwitz_zeta<double>
 data092[25] =
 {
@@ -2982,6 +3166,8 @@ data092[25] =
 const double toler092 = 2.5000000000000020e-13;
 
 // Test data for s=19.600000000000001.
+// max(|f - f_GSL|): 2.6469779601696886e-23
+// max(|f - f_GSL| / |f_GSL|): 2.3975375135203178e-16
 const testcase_hurwitz_zeta<double>
 data093[25] =
 {
@@ -3014,6 +3200,8 @@ data093[25] =
 const double toler093 = 2.5000000000000020e-13;
 
 // Test data for s=19.800000000000001.
+// max(|f - f_GSL|): 8.2718061255302767e-25
+// max(|f - f_GSL| / |f_GSL|): 4.2415136553938231e-16
 const testcase_hurwitz_zeta<double>
 data094[25] =
 {
@@ -3046,6 +3234,8 @@ data094[25] =
 const double toler094 = 2.5000000000000020e-13;
 
 // Test data for s=20.000000000000000.
+// max(|f - f_GSL|): 2.6469779601696886e-23
+// max(|f - f_GSL| / |f_GSL|): 3.8978410376218726e-16
 const testcase_hurwitz_zeta<double>
 data095[25] =
 {
@@ -3078,6 +3268,8 @@ data095[25] =
 const double toler095 = 2.5000000000000020e-13;
 
 // Test data for s=20.199999999999999.
+// max(|f - f_GSL|): 1.0587911840678754e-22
+// max(|f - f_GSL| / |f_GSL|): 6.1767938768129751e-16
 const testcase_hurwitz_zeta<double>
 data096[25] =
 {
@@ -3110,6 +3302,8 @@ data096[25] =
 const double toler096 = 2.5000000000000020e-13;
 
 // Test data for s=20.399999999999999.
+// max(|f - f_GSL|): 1.3234889800848443e-23
+// max(|f - f_GSL| / |f_GSL|): 5.3706047381488165e-16
 const testcase_hurwitz_zeta<double>
 data097[25] =
 {
@@ -3142,6 +3336,8 @@ data097[25] =
 const double toler097 = 2.5000000000000020e-13;
 
 // Test data for s=20.600000000000001.
+// max(|f - f_GSL|): 1.0339757656912846e-25
+// max(|f - f_GSL| / |f_GSL|): 3.8577289162339126e-16
 const testcase_hurwitz_zeta<double>
 data098[25] =
 {
@@ -3174,6 +3370,8 @@ data098[25] =
 const double toler098 = 2.5000000000000020e-13;
 
 // Test data for s=20.800000000000001.
+// max(|f - f_GSL|): 1.6543612251060553e-24
+// max(|f - f_GSL| / |f_GSL|): 3.7844905718596965e-16
 const testcase_hurwitz_zeta<double>
 data099[25] =
 {
@@ -3206,6 +3404,8 @@ data099[25] =
 const double toler099 = 2.5000000000000020e-13;
 
 // Test data for s=21.000000000000000.
+// max(|f - f_GSL|): 1.0339757656912846e-25
+// max(|f - f_GSL| / |f_GSL|): 2.5357822656109878e-16
 const testcase_hurwitz_zeta<double>
 data100[25] =
 {
@@ -3238,6 +3438,8 @@ data100[25] =
 const double toler100 = 2.5000000000000020e-13;
 
 // Test data for s=21.199999999999999.
+// max(|f - f_GSL|): 6.6174449004242214e-24
+// max(|f - f_GSL| / |f_GSL|): 2.4971689739282975e-16
 const testcase_hurwitz_zeta<double>
 data101[25] =
 {
@@ -3270,6 +3472,8 @@ data101[25] =
 const double toler101 = 2.5000000000000020e-13;
 
 // Test data for s=21.399999999999999.
+// max(|f - f_GSL|): 2.0679515313825692e-25
+// max(|f - f_GSL| / |f_GSL|): 3.6680708958835889e-16
 const testcase_hurwitz_zeta<double>
 data102[25] =
 {
@@ -3302,6 +3506,8 @@ data102[25] =
 const double toler102 = 2.5000000000000020e-13;
 
 // Test data for s=21.600000000000001.
+// max(|f - f_GSL|): 8.2718061255302767e-25
+// max(|f - f_GSL| / |f_GSL|): 2.4298053780590306e-16
 const testcase_hurwitz_zeta<double>
 data103[25] =
 {
@@ -3334,6 +3540,8 @@ data103[25] =
 const double toler103 = 2.5000000000000020e-13;
 
 // Test data for s=21.800000000000001.
+// max(|f - f_GSL|): 2.5849394142282115e-26
+// max(|f - f_GSL| / |f_GSL|): 2.1865521189175971e-16
 const testcase_hurwitz_zeta<double>
 data104[25] =
 {
@@ -3366,6 +3574,8 @@ data104[25] =
 const double toler104 = 2.5000000000000020e-13;
 
 // Test data for s=22.000000000000000.
+// max(|f - f_GSL|): 1.0339757656912846e-25
+// max(|f - f_GSL| / |f_GSL|): 2.2038792408515805e-16
 const testcase_hurwitz_zeta<double>
 data105[25] =
 {
@@ -3398,6 +3608,8 @@ data105[25] =
 const double toler105 = 2.5000000000000020e-13;
 
 // Test data for s=22.199999999999999.
+// max(|f - f_GSL|): 8.0779356694631609e-28
+// max(|f - f_GSL| / |f_GSL|): 2.5332051269002402e-16
 const testcase_hurwitz_zeta<double>
 data106[25] =
 {
@@ -3430,6 +3642,8 @@ data106[25] =
 const double toler106 = 2.5000000000000020e-13;
 
 // Test data for s=22.399999999999999.
+// max(|f - f_GSL|): 1.2924697071141057e-26
+// max(|f - f_GSL| / |f_GSL|): 2.0222766539113865e-16
 const testcase_hurwitz_zeta<double>
 data107[25] =
 {
@@ -3462,6 +3676,8 @@ data107[25] =
 const double toler107 = 2.5000000000000020e-13;
 
 // Test data for s=22.600000000000001.
+// max(|f - f_GSL|): 4.1359030627651384e-25
+// max(|f - f_GSL| / |f_GSL|): 3.7577177874260099e-16
 const testcase_hurwitz_zeta<double>
 data108[25] =
 {
@@ -3494,6 +3710,8 @@ data108[25] =
 const double toler108 = 2.5000000000000020e-13;
 
 // Test data for s=22.800000000000001.
+// max(|f - f_GSL|): 1.2924697071141057e-26
+// max(|f - f_GSL| / |f_GSL|): 3.3445895262970264e-16
 const testcase_hurwitz_zeta<double>
 data109[25] =
 {
@@ -3526,6 +3744,8 @@ data109[25] =
 const double toler109 = 2.5000000000000020e-13;
 
 // Test data for s=23.000000000000000.
+// max(|f - f_GSL|): 6.4623485355705287e-27
+// max(|f - f_GSL| / |f_GSL|): 4.4144286495105922e-16
 const testcase_hurwitz_zeta<double>
 data110[25] =
 {
@@ -3558,6 +3778,8 @@ data110[25] =
 const double toler110 = 2.5000000000000020e-13;
 
 // Test data for s=23.199999999999999.
+// max(|f - f_GSL|): 6.4623485355705287e-27
+// max(|f - f_GSL| / |f_GSL|): 1.7747076117648303e-16
 const testcase_hurwitz_zeta<double>
 data111[25] =
 {
@@ -3590,6 +3812,8 @@ data111[25] =
 const double toler111 = 2.5000000000000020e-13;
 
 // Test data for s=23.399999999999999.
+// max(|f - f_GSL|): 5.0487097934144756e-29
+// max(|f - f_GSL| / |f_GSL|): 4.5097527354246997e-16
 const testcase_hurwitz_zeta<double>
 data112[25] =
 {
@@ -3622,6 +3846,8 @@ data112[25] =
 const double toler112 = 2.5000000000000020e-13;
 
 // Test data for s=23.600000000000001.
+// max(|f - f_GSL|): 8.0779356694631609e-28
+// max(|f - f_GSL| / |f_GSL|): 1.6924409147799960e-16
 const testcase_hurwitz_zeta<double>
 data113[25] =
 {
@@ -3654,6 +3880,8 @@ data113[25] =
 const double toler113 = 2.5000000000000020e-13;
 
 // Test data for s=23.800000000000001.
+// max(|f - f_GSL|): 1.9721522630525295e-31
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hurwitz_zeta<double>
 data114[25] =
 {
@@ -3686,6 +3914,8 @@ data114[25] =
 const double toler114 = 2.5000000000000020e-13;
 
 // Test data for s=24.000000000000000.
+// max(|f - f_GSL|): 1.0097419586828951e-28
+// max(|f - f_GSL| / |f_GSL|): 1.4346520731899684e-16
 const testcase_hurwitz_zeta<double>
 data115[25] =
 {
@@ -3718,6 +3948,8 @@ data115[25] =
 const double toler115 = 2.5000000000000020e-13;
 
 // Test data for s=24.199999999999999.
+// max(|f - f_GSL|): 3.2311742677852644e-27
+// max(|f - f_GSL| / |f_GSL|): 2.1395173143204665e-16
 const testcase_hurwitz_zeta<double>
 data116[25] =
 {
@@ -3750,6 +3982,8 @@ data116[25] =
 const double toler116 = 2.5000000000000020e-13;
 
 // Test data for s=24.399999999999999.
+// max(|f - f_GSL|): 1.2621774483536189e-29
+// max(|f - f_GSL| / |f_GSL|): 2.2043734057241493e-16
 const testcase_hurwitz_zeta<double>
 data117[25] =
 {
@@ -3782,6 +4016,8 @@ data117[25] =
 const double toler117 = 2.5000000000000020e-13;
 
 // Test data for s=24.600000000000001.
+// max(|f - f_GSL|): 5.0487097934144756e-29
+// max(|f - f_GSL| / |f_GSL|): 1.5242286510507393e-16
 const testcase_hurwitz_zeta<double>
 data118[25] =
 {
@@ -3814,6 +4050,8 @@ data118[25] =
 const double toler118 = 2.5000000000000020e-13;
 
 // Test data for s=24.800000000000001.
+// max(|f - f_GSL|): 1.9721522630525295e-31
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hurwitz_zeta<double>
 data119[25] =
 {
@@ -3846,6 +4084,8 @@ data119[25] =
 const double toler119 = 2.5000000000000020e-13;
 
 // Test data for s=25.000000000000000.
+// max(|f - f_GSL|): 3.9443045261050590e-31
+// max(|f - f_GSL| / |f_GSL|): 1.2282535924024112e-16
 const testcase_hurwitz_zeta<double>
 data120[25] =
 {
@@ -3878,6 +4118,8 @@ data120[25] =
 const double toler120 = 2.5000000000000020e-13;
 
 // Test data for s=25.199999999999999.
+// max(|f - f_GSL|): 6.3108872417680944e-30
+// max(|f - f_GSL| / |f_GSL|): 1.5584795738055996e-16
 const testcase_hurwitz_zeta<double>
 data121[25] =
 {
@@ -3910,6 +4152,8 @@ data121[25] =
 const double toler121 = 2.5000000000000020e-13;
 
 // Test data for s=25.399999999999999.
+// max(|f - f_GSL|): 1.5777218104420236e-30
+// max(|f - f_GSL| / |f_GSL|): 2.1244682967123811e-16
 const testcase_hurwitz_zeta<double>
 data122[25] =
 {
@@ -3942,6 +4186,8 @@ data122[25] =
 const double toler122 = 2.5000000000000020e-13;
 
 // Test data for s=25.600000000000001.
+// max(|f - f_GSL|): 3.1554436208840472e-30
+// max(|f - f_GSL| / |f_GSL|): 1.3725313089620342e-16
 const testcase_hurwitz_zeta<double>
 data123[25] =
 {
@@ -3974,6 +4220,8 @@ data123[25] =
 const double toler123 = 2.5000000000000020e-13;
 
 // Test data for s=25.800000000000001.
+// max(|f - f_GSL|): 7.8886090522101181e-31
+// max(|f - f_GSL| / |f_GSL|): 1.7734635243314333e-16
 const testcase_hurwitz_zeta<double>
 data124[25] =
 {
@@ -4006,6 +4254,8 @@ data124[25] =
 const double toler124 = 2.5000000000000020e-13;
 
 // Test data for s=26.000000000000000.
+// max(|f - f_GSL|): 9.8607613152626476e-32
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hurwitz_zeta<double>
 data125[25] =
 {
@@ -4038,6 +4288,8 @@ data125[25] =
 const double toler125 = 2.5000000000000020e-13;
 
 // Test data for s=26.199999999999999.
+// max(|f - f_GSL|): 9.8607613152626476e-32
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hurwitz_zeta<double>
 data126[25] =
 {
@@ -4070,6 +4322,8 @@ data126[25] =
 const double toler126 = 2.5000000000000020e-13;
 
 // Test data for s=26.399999999999999.
+// max(|f - f_GSL|): 9.8607613152626476e-32
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hurwitz_zeta<double>
 data127[25] =
 {
@@ -4102,6 +4356,8 @@ data127[25] =
 const double toler127 = 2.5000000000000020e-13;
 
 // Test data for s=26.600000000000001.
+// max(|f - f_GSL|): 1.2325951644078309e-32
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hurwitz_zeta<double>
 data128[25] =
 {
@@ -4134,6 +4390,8 @@ data128[25] =
 const double toler128 = 2.5000000000000020e-13;
 
 // Test data for s=26.800000000000001.
+// max(|f - f_GSL|): 3.0814879110195774e-33
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hurwitz_zeta<double>
 data129[25] =
 {
@@ -4166,6 +4424,8 @@ data129[25] =
 const double toler129 = 2.5000000000000020e-13;
 
 // Test data for s=27.000000000000000.
+// max(|f - f_GSL|): 4.9303806576313238e-32
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hurwitz_zeta<double>
 data130[25] =
 {
@@ -4198,6 +4458,8 @@ data130[25] =
 const double toler130 = 2.5000000000000020e-13;
 
 // Test data for s=27.199999999999999.
+// max(|f - f_GSL|): 2.3283064365386963e-10
+// max(|f - f_GSL| / |f_GSL|): 2.1515634061823847e-16
 const testcase_hurwitz_zeta<double>
 data131[25] =
 {
@@ -4230,6 +4492,8 @@ data131[25] =
 const double toler131 = 2.5000000000000020e-13;
 
 // Test data for s=27.399999999999999.
+// max(|f - f_GSL|): 1.5258789062500000e-05
+// max(|f - f_GSL| / |f_GSL|): 1.9426045394926288e-16
 const testcase_hurwitz_zeta<double>
 data132[25] =
 {
@@ -4262,6 +4526,8 @@ data132[25] =
 const double toler132 = 2.5000000000000020e-13;
 
 // Test data for s=27.600000000000001.
+// max(|f - f_GSL|): 2.3283064365386963e-10
+// max(|f - f_GSL| / |f_GSL|): 1.7539396636016029e-16
 const testcase_hurwitz_zeta<double>
 data133[25] =
 {
@@ -4294,6 +4560,8 @@ data133[25] =
 const double toler133 = 2.5000000000000020e-13;
 
 // Test data for s=27.800000000000001.
+// max(|f - f_GSL|): 1.5258789062500000e-05
+// max(|f - f_GSL| / |f_GSL|): 1.3206502815684503e-16
 const testcase_hurwitz_zeta<double>
 data134[25] =
 {
@@ -4326,6 +4594,8 @@ data134[25] =
 const double toler134 = 2.5000000000000020e-13;
 
 // Test data for s=28.000000000000000.
+// max(|f - f_GSL|): 2.3283064365386963e-10
+// max(|f - f_GSL| / |f_GSL|): 1.4297995284333703e-16
 const testcase_hurwitz_zeta<double>
 data135[25] =
 {
@@ -4358,6 +4628,8 @@ data135[25] =
 const double toler135 = 2.5000000000000020e-13;
 
 // Test data for s=28.199999999999999.
+// max(|f - f_GSL|): 1.5407439555097887e-33
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hurwitz_zeta<double>
 data136[25] =
 {
@@ -4390,6 +4662,8 @@ data136[25] =
 const double toler136 = 2.5000000000000020e-13;
 
 // Test data for s=28.399999999999999.
+// max(|f - f_GSL|): 3.0517578125000000e-05
+// max(|f - f_GSL| / |f_GSL|): 1.5242416295641141e-16
 const testcase_hurwitz_zeta<double>
 data137[25] =
 {
@@ -4422,6 +4696,8 @@ data137[25] =
 const double toler137 = 2.5000000000000020e-13;
 
 // Test data for s=28.600000000000001.
+// max(|f - f_GSL|): 9.6296497219361793e-35
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hurwitz_zeta<double>
 data138[25] =
 {
@@ -4454,6 +4730,8 @@ data138[25] =
 const double toler138 = 2.5000000000000020e-13;
 
 // Test data for s=28.800000000000001.
+// max(|f - f_GSL|): 4.6566128730773926e-10
+// max(|f - f_GSL| / |f_GSL|): 1.9003174023433136e-16
 const testcase_hurwitz_zeta<double>
 data139[25] =
 {
@@ -4486,6 +4764,8 @@ data139[25] =
 const double toler139 = 2.5000000000000020e-13;
 
 // Test data for s=29.000000000000000.
+// max(|f - f_GSL|): 4.6566128730773926e-10
+// max(|f - f_GSL| / |f_GSL|): 1.7157594341213123e-16
 const testcase_hurwitz_zeta<double>
 data140[25] =
 {
@@ -4518,6 +4798,8 @@ data140[25] =
 const double toler140 = 2.5000000000000020e-13;
 
 // Test data for s=29.199999999999999.
+// max(|f - f_GSL|): 6.1035156250000000e-05
+// max(|f - f_GSL| / |f_GSL|): 1.5491256524547674e-16
 const testcase_hurwitz_zeta<double>
 data141[25] =
 {
@@ -4550,6 +4832,8 @@ data141[25] =
 const double toler141 = 2.5000000000000020e-13;
 
 // Test data for s=29.399999999999999.
+// max(|f - f_GSL|): 6.1035156250000000e-05
+// max(|f - f_GSL| / |f_GSL|): 1.2193933036512919e-16
 const testcase_hurwitz_zeta<double>
 data142[25] =
 {
@@ -4582,6 +4866,8 @@ data142[25] =
 const double toler142 = 2.5000000000000020e-13;
 
 // Test data for s=29.600000000000001.
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 1.5387703214396101e-16
 const testcase_hurwitz_zeta<double>
 data143[25] =
 {
@@ -4614,6 +4900,8 @@ data143[25] =
 const double toler143 = 2.5000000000000020e-13;
 
 // Test data for s=29.800000000000001.
+// max(|f - f_GSL|): 4.6566128730773926e-10
+// max(|f - f_GSL| / |f_GSL|): 1.4716068435197784e-16
 const testcase_hurwitz_zeta<double>
 data144[25] =
 {
@@ -4646,6 +4934,8 @@ data144[25] =
 const double toler144 = 2.5000000000000020e-13;
 
 // Test data for s=30.000000000000000.
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 1.4073748835150058e-16
 const testcase_hurwitz_zeta<double>
 data145[25] =
 {
@@ -4676,6 +4966,7 @@ data145[25] =
   { 1.0783103972232821e-21, 30.000000000000000, 5.0000000000000000 },
 };
 const double toler145 = 2.5000000000000020e-13;
+
 template<typename Tp, unsigned int Num>
   void
   test(const testcase_hurwitz_zeta<Tp> (&data)[Num], Tp toler)

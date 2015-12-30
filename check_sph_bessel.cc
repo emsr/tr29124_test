@@ -38,6 +38,8 @@
 
 
 // Test data for n=0.
+// max(|f - f_GSL|): 3.3306690738754696e-16
+// max(|f - f_GSL| / |f_GSL|): 2.0843271082049370e-15
 const testcase_sph_bessel<double>
 data001[21] =
 {
@@ -66,6 +68,8 @@ data001[21] =
 const double toler001 = 2.5000000000000020e-13;
 
 // Test data for n=1.
+// max(|f - f_GSL|): 3.1918911957973251e-16
+// max(|f - f_GSL| / |f_GSL|): 2.4117292520000496e-14
 const testcase_sph_bessel<double>
 data002[21] =
 {
@@ -94,6 +98,8 @@ data002[21] =
 const double toler002 = 2.5000000000000015e-12;
 
 // Test data for n=2.
+// max(|f - f_GSL|): 8.3266726846886741e-17
+// max(|f - f_GSL| / |f_GSL|): 6.5384527054443100e-16
 const testcase_sph_bessel<double>
 data003[21] =
 {
@@ -122,6 +128,8 @@ data003[21] =
 const double toler003 = 2.5000000000000020e-13;
 
 // Test data for n=5.
+// max(|f - f_GSL|): 9.7144514654701197e-17
+// max(|f - f_GSL| / |f_GSL|): 2.7459190669103549e-15
 const testcase_sph_bessel<double>
 data004[21] =
 {
@@ -150,6 +158,8 @@ data004[21] =
 const double toler004 = 2.5000000000000020e-13;
 
 // Test data for n=10.
+// max(|f - f_GSL|): 8.6736173798840355e-19
+// max(|f - f_GSL| / |f_GSL|): 6.7232224139500876e-15
 const testcase_sph_bessel<double>
 data005[21] =
 {
@@ -178,6 +188,8 @@ data005[21] =
 const double toler005 = 5.0000000000000039e-13;
 
 // Test data for n=20.
+// max(|f - f_GSL|): 4.9275407583725281e-26
+// max(|f - f_GSL| / |f_GSL|): 2.4002866288153026e-14
 const testcase_sph_bessel<double>
 data006[21] =
 {
@@ -207,6 +219,8 @@ const double toler006 = 2.5000000000000015e-12;
 //  sph_bessel
 
 // Test data for n=0.
+// max(|f - f_GSL|): 1.0694570229397016e-15
+// max(|f - f_GSL| / |f_GSL|): 3.7496052611150890e-13
 const testcase_sph_bessel<double>
 data007[21] =
 {
@@ -235,6 +249,8 @@ data007[21] =
 const double toler007 = 2.5000000000000014e-11;
 
 // Test data for n=1.
+// max(|f - f_GSL|): 1.0044048925905713e-15
+// max(|f - f_GSL| / |f_GSL|): 6.5448142299812716e-13
 const testcase_sph_bessel<double>
 data008[21] =
 {
@@ -263,6 +279,8 @@ data008[21] =
 const double toler008 = 5.0000000000000028e-11;
 
 // Test data for n=2.
+// max(|f - f_GSL|): 1.0772632785815972e-15
+// max(|f - f_GSL| / |f_GSL|): 3.4761702917932150e-13
 const testcase_sph_bessel<double>
 data009[21] =
 {
@@ -291,6 +309,8 @@ data009[21] =
 const double toler009 = 2.5000000000000014e-11;
 
 // Test data for n=5.
+// max(|f - f_GSL|): 9.4455693266937146e-16
+// max(|f - f_GSL| / |f_GSL|): 8.4346477099300519e-13
 const testcase_sph_bessel<double>
 data010[21] =
 {
@@ -319,6 +339,8 @@ data010[21] =
 const double toler010 = 5.0000000000000028e-11;
 
 // Test data for n=10.
+// max(|f - f_GSL|): 1.2002118049414534e-15
+// max(|f - f_GSL| / |f_GSL|): 2.9536603530036236e-12
 const testcase_sph_bessel<double>
 data011[21] =
 {
@@ -347,6 +369,8 @@ data011[21] =
 const double toler011 = 2.5000000000000017e-10;
 
 // Test data for n=20.
+// max(|f - f_GSL|): 8.5521867365656590e-16
+// max(|f - f_GSL| / |f_GSL|): 2.3231623379380350e-13
 const testcase_sph_bessel<double>
 data012[21] =
 {
@@ -375,6 +399,8 @@ data012[21] =
 const double toler012 = 2.5000000000000014e-11;
 
 // Test data for n=50.
+// max(|f - f_GSL|): 9.7377618121785581e-16
+// max(|f - f_GSL| / |f_GSL|): 2.0735742618499052e-12
 const testcase_sph_bessel<double>
 data013[21] =
 {
@@ -403,6 +429,8 @@ data013[21] =
 const double toler013 = 2.5000000000000017e-10;
 
 // Test data for n=100.
+// max(|f - f_GSL|): 3.2959746043559335e-17
+// max(|f - f_GSL| / |f_GSL|): 8.7913733453697387e-14
 const testcase_sph_bessel<double>
 data014[21] =
 {
@@ -429,6 +457,7 @@ data014[21] =
   { 0.010880477011438352, 100, 100.00000000000000 },
 };
 const double toler014 = 5.0000000000000029e-12;
+
 template<typename Tp, unsigned int Num>
   void
   test(const testcase_sph_bessel<Tp> (&data)[Num], Tp toler)

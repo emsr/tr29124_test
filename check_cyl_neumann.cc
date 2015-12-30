@@ -38,6 +38,8 @@
 
 
 // Test data for nu=0.0000000000000000.
+// max(|f - f_GSL|): 1.6653345369377348e-16
+// max(|f - f_GSL| / |f_GSL|): 2.6623873675138176e-15
 const testcase_cyl_neumann<double>
 data001[20] =
 {
@@ -65,6 +67,8 @@ data001[20] =
 const double toler001 = 2.5000000000000020e-13;
 
 // Test data for nu=0.33333333333333331.
+// max(|f - f_GSL|): 5.8286708792820718e-16
+// max(|f - f_GSL| / |f_GSL|): 1.7769445360534625e-14
 const testcase_cyl_neumann<double>
 data002[20] =
 {
@@ -92,6 +96,8 @@ data002[20] =
 const double toler002 = 1.0000000000000008e-12;
 
 // Test data for nu=0.50000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 5.7217850214577088e-15
 const testcase_cyl_neumann<double>
 data003[20] =
 {
@@ -119,6 +125,8 @@ data003[20] =
 const double toler003 = 5.0000000000000039e-13;
 
 // Test data for nu=0.66666666666666663.
+// max(|f - f_GSL|): 1.4988010832439613e-15
+// max(|f - f_GSL| / |f_GSL|): 6.3663053018318525e-15
 const testcase_cyl_neumann<double>
 data004[20] =
 {
@@ -146,6 +154,8 @@ data004[20] =
 const double toler004 = 5.0000000000000039e-13;
 
 // Test data for nu=1.0000000000000000.
+// max(|f - f_GSL|): 9.1593399531575415e-16
+// max(|f - f_GSL| / |f_GSL|): 3.3683879467319323e-14
 const testcase_cyl_neumann<double>
 data005[13] =
 {
@@ -166,6 +176,8 @@ data005[13] =
 const double toler005 = 2.5000000000000015e-12;
 
 // Test data for nu=2.0000000000000000.
+// max(|f - f_GSL|): 6.1062266354383610e-16
+// max(|f - f_GSL| / |f_GSL|): 1.2540693630135021e-14
 const testcase_cyl_neumann<double>
 data006[20] =
 {
@@ -193,6 +205,8 @@ data006[20] =
 const double toler006 = 1.0000000000000008e-12;
 
 // Test data for nu=5.0000000000000000.
+// max(|f - f_GSL|): 8.8817841970012523e-15
+// max(|f - f_GSL| / |f_GSL|): 1.6846903979704834e-15
 const testcase_cyl_neumann<double>
 data007[13] =
 {
@@ -213,6 +227,8 @@ data007[13] =
 const double toler007 = 2.5000000000000020e-13;
 
 // Test data for nu=10.000000000000000.
+// max(|f - f_GSL|): 2.3841857910156250e-07
+// max(|f - f_GSL| / |f_GSL|): 1.4991559422183497e-15
 const testcase_cyl_neumann<double>
 data008[20] =
 {
@@ -240,6 +256,8 @@ data008[20] =
 const double toler008 = 2.5000000000000020e-13;
 
 // Test data for nu=20.000000000000000.
+// max(|f - f_GSL|): 6442450944.0000000
+// max(|f - f_GSL| / |f_GSL|): 1.6458221996165416e-15
 const testcase_cyl_neumann<double>
 data009[20] =
 {
@@ -267,6 +285,8 @@ data009[20] =
 const double toler009 = 2.5000000000000020e-13;
 
 // Test data for nu=50.000000000000000.
+// max(|f - f_GSL|): 6.4703872001161536e+68
+// max(|f - f_GSL| / |f_GSL|): 3.7730746786493403e-15
 const testcase_cyl_neumann<double>
 data010[20] =
 {
@@ -294,6 +314,8 @@ data010[20] =
 const double toler010 = 2.5000000000000020e-13;
 
 // Test data for nu=100.00000000000000.
+// max(|f - f_GSL|): 1.6136484921850493e+233
+// max(|f - f_GSL| / |f_GSL|): 3.7090973947899002e-13
 const testcase_cyl_neumann<double>
 data011[20] =
 {
@@ -322,6 +344,8 @@ const double toler011 = 2.5000000000000014e-11;
 //  cyl_neumann
 
 // Test data for nu=0.0000000000000000.
+// max(|f - f_GSL|): 7.1245093158367467e-15
+// max(|f - f_GSL| / |f_GSL|): 1.5215931554460198e-12
 const testcase_cyl_neumann<double>
 data012[20] =
 {
@@ -349,6 +373,8 @@ data012[20] =
 const double toler012 = 1.0000000000000006e-10;
 
 // Test data for nu=0.33333333333333331.
+// max(|f - f_GSL|): 6.4392935428259079e-15
+// max(|f - f_GSL| / |f_GSL|): 4.0229312517518102e-13
 const testcase_cyl_neumann<double>
 data013[20] =
 {
@@ -376,6 +402,8 @@ data013[20] =
 const double toler013 = 2.5000000000000014e-11;
 
 // Test data for nu=0.50000000000000000.
+// max(|f - f_GSL|): 6.5988881026157742e-15
+// max(|f - f_GSL| / |f_GSL|): 6.0282403975230169e-13
 const testcase_cyl_neumann<double>
 data014[20] =
 {
@@ -403,6 +431,8 @@ data014[20] =
 const double toler014 = 5.0000000000000028e-11;
 
 // Test data for nu=0.66666666666666663.
+// max(|f - f_GSL|): 7.2442052356791464e-15
+// max(|f - f_GSL| / |f_GSL|): 4.1296144775547441e-13
 const testcase_cyl_neumann<double>
 data015[20] =
 {
@@ -430,6 +460,8 @@ data015[20] =
 const double toler015 = 2.5000000000000014e-11;
 
 // Test data for nu=1.0000000000000000.
+// max(|f - f_GSL|): 7.6640083168655337e-15
+// max(|f - f_GSL| / |f_GSL|): 4.2719333494531163e-13
 const testcase_cyl_neumann<double>
 data016[20] =
 {
@@ -457,6 +489,8 @@ data016[20] =
 const double toler016 = 2.5000000000000014e-11;
 
 // Test data for nu=2.0000000000000000.
+// max(|f - f_GSL|): 7.1193051454088163e-15
+// max(|f - f_GSL| / |f_GSL|): 3.9371586401654762e-12
 const testcase_cyl_neumann<double>
 data017[20] =
 {
@@ -484,6 +518,8 @@ data017[20] =
 const double toler017 = 2.5000000000000017e-10;
 
 // Test data for nu=5.0000000000000000.
+// max(|f - f_GSL|): 7.8097792989562098e-15
+// max(|f - f_GSL| / |f_GSL|): 3.2731037832632215e-11
 const testcase_cyl_neumann<double>
 data018[20] =
 {
@@ -511,6 +547,8 @@ data018[20] =
 const double toler018 = 2.5000000000000013e-09;
 
 // Test data for nu=10.000000000000000.
+// max(|f - f_GSL|): 1.7763568394002505e-14
+// max(|f - f_GSL| / |f_GSL|): 2.7466153115234563e-12
 const testcase_cyl_neumann<double>
 data019[20] =
 {
@@ -538,6 +576,8 @@ data019[20] =
 const double toler019 = 2.5000000000000017e-10;
 
 // Test data for nu=20.000000000000000.
+// max(|f - f_GSL|): 7.1525573730468750e-07
+// max(|f - f_GSL| / |f_GSL|): 1.7017552833615218e-12
 const testcase_cyl_neumann<double>
 data020[20] =
 {
@@ -565,6 +605,8 @@ data020[20] =
 const double toler020 = 1.0000000000000006e-10;
 
 // Test data for nu=50.000000000000000.
+// max(|f - f_GSL|): 1.0522490333925732e+28
+// max(|f - f_GSL| / |f_GSL|): 2.6658726302692481e-12
 const testcase_cyl_neumann<double>
 data021[20] =
 {
@@ -592,6 +634,8 @@ data021[20] =
 const double toler021 = 2.5000000000000017e-10;
 
 // Test data for nu=100.00000000000000.
+// max(|f - f_GSL|): 6.3342780989716025e+102
+// max(|f - f_GSL| / |f_GSL|): 1.2681517765786818e-13
 const testcase_cyl_neumann<double>
 data022[20] =
 {
@@ -617,6 +661,7 @@ data022[20] =
   { -0.16692141141757652, 100.00000000000000, 100.00000000000000 },
 };
 const double toler022 = 1.0000000000000006e-11;
+
 template<typename Tp, unsigned int Num>
   void
   test(const testcase_cyl_neumann<Tp> (&data)[Num], Tp toler)

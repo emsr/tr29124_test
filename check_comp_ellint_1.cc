@@ -38,6 +38,8 @@
 
 
 // Test data.
+// max(|f - f_GSL|): 6.6613381477509392e-16
+// max(|f - f_GSL| / |f_GSL|): 4.0617918857203532e-16
 const testcase_comp_ellint_1<double>
 data001[19] =
 {
@@ -62,6 +64,7 @@ data001[19] =
   { 2.2805491384227703, 0.89999999999999991 },
 };
 const double toler001 = 2.5000000000000020e-13;
+
 template<typename Tp, unsigned int Num>
   void
   test(const testcase_comp_ellint_1<Tp> (&data)[Num], Tp toler)

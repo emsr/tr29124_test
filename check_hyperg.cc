@@ -38,6 +38,8 @@
 
 
 // Test data for a=0.0000000000000000, b=0.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data001[19] =
 {
@@ -83,6 +85,8 @@ data001[19] =
 const double toler001 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=0.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data002[19] =
 {
@@ -128,6 +132,8 @@ data002[19] =
 const double toler002 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=0.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data003[19] =
 {
@@ -173,6 +179,8 @@ data003[19] =
 const double toler003 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=0.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data004[19] =
 {
@@ -218,6 +226,8 @@ data004[19] =
 const double toler004 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=0.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data005[19] =
 {
@@ -263,6 +273,8 @@ data005[19] =
 const double toler005 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=0.50000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data006[19] =
 {
@@ -308,6 +320,8 @@ data006[19] =
 const double toler006 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=0.50000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data007[19] =
 {
@@ -353,6 +367,8 @@ data007[19] =
 const double toler007 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=0.50000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data008[19] =
 {
@@ -398,6 +414,8 @@ data008[19] =
 const double toler008 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=0.50000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data009[19] =
 {
@@ -443,6 +461,8 @@ data009[19] =
 const double toler009 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=0.50000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data010[19] =
 {
@@ -488,6 +508,8 @@ data010[19] =
 const double toler010 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=1.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data011[19] =
 {
@@ -533,6 +555,8 @@ data011[19] =
 const double toler011 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=1.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data012[19] =
 {
@@ -578,6 +602,8 @@ data012[19] =
 const double toler012 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=1.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data013[19] =
 {
@@ -623,6 +649,8 @@ data013[19] =
 const double toler013 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=1.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data014[19] =
 {
@@ -668,6 +696,8 @@ data014[19] =
 const double toler014 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=1.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data015[19] =
 {
@@ -713,6 +743,8 @@ data015[19] =
 const double toler015 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=2.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data016[19] =
 {
@@ -758,6 +790,8 @@ data016[19] =
 const double toler016 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=2.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data017[19] =
 {
@@ -803,6 +837,8 @@ data017[19] =
 const double toler017 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=2.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data018[19] =
 {
@@ -848,6 +884,8 @@ data018[19] =
 const double toler018 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=2.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data019[19] =
 {
@@ -893,6 +931,8 @@ data019[19] =
 const double toler019 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=2.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data020[19] =
 {
@@ -938,6 +978,8 @@ data020[19] =
 const double toler020 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=5.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data021[19] =
 {
@@ -983,6 +1025,8 @@ data021[19] =
 const double toler021 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=5.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data022[19] =
 {
@@ -1028,6 +1072,8 @@ data022[19] =
 const double toler022 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=5.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data023[19] =
 {
@@ -1073,6 +1119,8 @@ data023[19] =
 const double toler023 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=5.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data024[19] =
 {
@@ -1118,6 +1166,8 @@ data024[19] =
 const double toler024 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=5.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data025[19] =
 {
@@ -1163,6 +1213,8 @@ data025[19] =
 const double toler025 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=10.000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data026[19] =
 {
@@ -1208,6 +1260,8 @@ data026[19] =
 const double toler026 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=10.000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data027[19] =
 {
@@ -1253,6 +1307,8 @@ data027[19] =
 const double toler027 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=10.000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data028[19] =
 {
@@ -1298,6 +1354,8 @@ data028[19] =
 const double toler028 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=10.000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data029[19] =
 {
@@ -1343,6 +1401,8 @@ data029[19] =
 const double toler029 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=10.000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data030[19] =
 {
@@ -1388,6 +1448,8 @@ data030[19] =
 const double toler030 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=20.000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data031[19] =
 {
@@ -1433,6 +1495,8 @@ data031[19] =
 const double toler031 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=20.000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data032[19] =
 {
@@ -1478,6 +1542,8 @@ data032[19] =
 const double toler032 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=20.000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data033[19] =
 {
@@ -1523,6 +1589,8 @@ data033[19] =
 const double toler033 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=20.000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data034[19] =
 {
@@ -1568,6 +1636,8 @@ data034[19] =
 const double toler034 = 2.5000000000000020e-13;
 
 // Test data for a=0.0000000000000000, b=20.000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data035[19] =
 {
@@ -1613,6 +1683,8 @@ data035[19] =
 const double toler035 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=0.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data036[19] =
 {
@@ -1658,6 +1730,8 @@ data036[19] =
 const double toler036 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=0.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data037[19] =
 {
@@ -1703,6 +1777,8 @@ data037[19] =
 const double toler037 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=0.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data038[19] =
 {
@@ -1748,6 +1824,8 @@ data038[19] =
 const double toler038 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=0.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data039[19] =
 {
@@ -1793,6 +1871,8 @@ data039[19] =
 const double toler039 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=0.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data040[19] =
 {
@@ -1838,6 +1918,8 @@ data040[19] =
 const double toler040 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=0.50000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.2734148235941270e-16
 const testcase_hyperg<double>
 data041[19] =
 {
@@ -1883,6 +1965,8 @@ data041[19] =
 const double toler041 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=0.50000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.2341054918357306e-16
 const testcase_hyperg<double>
 data042[19] =
 {
@@ -1928,6 +2012,8 @@ data042[19] =
 const double toler042 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=0.50000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 5.5511151231257827e-16
+// max(|f - f_GSL| / |f_GSL|): 5.5963253065363064e-16
 const testcase_hyperg<double>
 data043[19] =
 {
@@ -1973,6 +2059,8 @@ data043[19] =
 const double toler043 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=0.50000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 3.3306690738754696e-16
+// max(|f - f_GSL| / |f_GSL|): 3.3511105824376917e-16
 const testcase_hyperg<double>
 data044[19] =
 {
@@ -2018,6 +2106,8 @@ data044[19] =
 const double toler044 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=0.50000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.1915128876304698e-16
 const testcase_hyperg<double>
 data045[19] =
 {
@@ -2063,6 +2153,8 @@ data045[19] =
 const double toler045 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=1.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 6.6613381477509392e-16
+// max(|f - f_GSL| / |f_GSL|): 4.3839191144484910e-16
 const testcase_hyperg<double>
 data046[19] =
 {
@@ -2108,6 +2200,8 @@ data046[19] =
 const double toler046 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=1.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.1628301908162427e-16
 const testcase_hyperg<double>
 data047[19] =
 {
@@ -2153,6 +2247,8 @@ data047[19] =
 const double toler047 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=1.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 4.5130734546221216e-16
 const testcase_hyperg<double>
 data048[19] =
 {
@@ -2198,6 +2294,8 @@ data048[19] =
 const double toler048 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=1.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 4.4952983921284566e-16
 const testcase_hyperg<double>
 data049[19] =
 {
@@ -2243,6 +2341,8 @@ data049[19] =
 const double toler049 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=1.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.2314542629443562e-16
 const testcase_hyperg<double>
 data050[19] =
 {
@@ -2288,6 +2388,8 @@ data050[19] =
 const double toler050 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=2.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 1.5700924586837752e-16
 const testcase_hyperg<double>
 data051[19] =
 {
@@ -2333,6 +2435,8 @@ data051[19] =
 const double toler051 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=2.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 3.0893602609058104e-16
 const testcase_hyperg<double>
 data052[19] =
 {
@@ -2378,6 +2482,8 @@ data052[19] =
 const double toler052 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=2.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 3.3306690738754696e-16
+// max(|f - f_GSL| / |f_GSL|): 3.3853500746952663e-16
 const testcase_hyperg<double>
 data053[19] =
 {
@@ -2423,6 +2529,8 @@ data053[19] =
 const double toler053 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=2.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.2746445692007949e-16
 const testcase_hyperg<double>
 data054[19] =
 {
@@ -2468,6 +2576,8 @@ data054[19] =
 const double toler054 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=2.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 4.4848478782807992e-16
 const testcase_hyperg<double>
 data055[19] =
 {
@@ -2513,6 +2623,8 @@ data055[19] =
 const double toler055 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=5.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 4.5474735088646412e-13
+// max(|f - f_GSL| / |f_GSL|): 1.5124797514980704e-15
 const testcase_hyperg<double>
 data056[19] =
 {
@@ -2558,6 +2670,8 @@ data056[19] =
 const double toler056 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=5.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 8.8817841970012523e-15
+// max(|f - f_GSL| / |f_GSL|): 1.3217255411112326e-15
 const testcase_hyperg<double>
 data057[19] =
 {
@@ -2603,6 +2717,8 @@ data057[19] =
 const double toler057 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=5.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 2.6645352591003757e-15
+// max(|f - f_GSL| / |f_GSL|): 1.2228264607471081e-15
 const testcase_hyperg<double>
 data058[19] =
 {
@@ -2648,6 +2764,8 @@ data058[19] =
 const double toler058 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=5.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 6.6613381477509392e-16
+// max(|f - f_GSL| / |f_GSL|): 4.2082370290419495e-16
 const testcase_hyperg<double>
 data059[19] =
 {
@@ -2693,6 +2811,8 @@ data059[19] =
 const double toler059 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=5.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.2751041935095266e-16
 const testcase_hyperg<double>
 data060[19] =
 {
@@ -2738,6 +2858,8 @@ data060[19] =
 const double toler060 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=10.000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 1.4901161193847656e-08
+// max(|f - f_GSL| / |f_GSL|): 1.8229127098648091e-15
 const testcase_hyperg<double>
 data061[19] =
 {
@@ -2783,6 +2905,8 @@ data061[19] =
 const double toler061 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=10.000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 2.0008883439004421e-11
+// max(|f - f_GSL| / |f_GSL|): 1.5684473872214654e-15
 const testcase_hyperg<double>
 data062[19] =
 {
@@ -2828,6 +2952,8 @@ data062[19] =
 const double toler062 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=10.000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 1.9895196601282805e-13
+// max(|f - f_GSL| / |f_GSL|): 1.4567107859209967e-15
 const testcase_hyperg<double>
 data063[19] =
 {
@@ -2873,6 +2999,8 @@ data063[19] =
 const double toler063 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=10.000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 1.2434497875801753e-14
+// max(|f - f_GSL| / |f_GSL|): 1.3245081211977836e-15
 const testcase_hyperg<double>
 data064[19] =
 {
@@ -2918,6 +3046,8 @@ data064[19] =
 const double toler064 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=10.000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 1.5700924586837752e-16
 const testcase_hyperg<double>
 data065[19] =
 {
@@ -2963,6 +3093,8 @@ data065[19] =
 const double toler065 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=20.000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 48.000000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.8556481344875154e-15
 const testcase_hyperg<double>
 data066[19] =
 {
@@ -3008,6 +3140,8 @@ data066[19] =
 const double toler066 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=20.000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.011718750000000000
+// max(|f - f_GSL| / |f_GSL|): 1.7519521419034139e-15
 const testcase_hyperg<double>
 data067[19] =
 {
@@ -3053,6 +3187,8 @@ data067[19] =
 const double toler067 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=20.000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 1.4305114746093750e-05
+// max(|f - f_GSL| / |f_GSL|): 1.9261147266354006e-15
 const testcase_hyperg<double>
 data068[19] =
 {
@@ -3098,6 +3234,8 @@ data068[19] =
 const double toler068 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=20.000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 4.0978193283081055e-08
+// max(|f - f_GSL| / |f_GSL|): 1.7692881266931737e-15
 const testcase_hyperg<double>
 data069[19] =
 {
@@ -3143,6 +3281,8 @@ data069[19] =
 const double toler069 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000, b=20.000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 2.9103830456733704e-10
+// max(|f - f_GSL| / |f_GSL|): 1.6694673196526831e-15
 const testcase_hyperg<double>
 data070[19] =
 {
@@ -3188,6 +3328,8 @@ data070[19] =
 const double toler070 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=0.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data071[19] =
 {
@@ -3233,6 +3375,8 @@ data071[19] =
 const double toler071 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=0.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data072[19] =
 {
@@ -3278,6 +3422,8 @@ data072[19] =
 const double toler072 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=0.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data073[19] =
 {
@@ -3323,6 +3469,8 @@ data073[19] =
 const double toler073 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=0.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data074[19] =
 {
@@ -3368,6 +3516,8 @@ data074[19] =
 const double toler074 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=0.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data075[19] =
 {
@@ -3413,6 +3563,8 @@ data075[19] =
 const double toler075 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=0.50000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 6.6613381477509392e-16
+// max(|f - f_GSL| / |f_GSL|): 4.3839191144484910e-16
 const testcase_hyperg<double>
 data076[19] =
 {
@@ -3458,6 +3610,8 @@ data076[19] =
 const double toler076 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=0.50000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.1628301908162427e-16
 const testcase_hyperg<double>
 data077[19] =
 {
@@ -3503,6 +3657,8 @@ data077[19] =
 const double toler077 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=0.50000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 4.5130734546221216e-16
 const testcase_hyperg<double>
 data078[19] =
 {
@@ -3548,6 +3704,8 @@ data078[19] =
 const double toler078 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=0.50000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 4.4952983921284566e-16
 const testcase_hyperg<double>
 data079[19] =
 {
@@ -3593,6 +3751,8 @@ data079[19] =
 const double toler079 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=0.50000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.2314542629443562e-16
 const testcase_hyperg<double>
 data080[19] =
 {
@@ -3638,6 +3798,8 @@ data080[19] =
 const double toler080 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=1.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 1.3886315518367356e-15
 const testcase_hyperg<double>
 data081[19] =
 {
@@ -3683,6 +3845,8 @@ data081[19] =
 const double toler081 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=1.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 4.5503149336769291e-16
 const testcase_hyperg<double>
 data082[19] =
 {
@@ -3728,6 +3892,8 @@ data082[19] =
 const double toler082 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=1.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 4.5856134910670077e-16
 const testcase_hyperg<double>
 data083[19] =
 {
@@ -3773,6 +3939,8 @@ data083[19] =
 const double toler083 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=1.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 3.3306690738754696e-16
+// max(|f - f_GSL| / |f_GSL|): 3.4123997230344747e-16
 const testcase_hyperg<double>
 data084[19] =
 {
@@ -3818,6 +3986,8 @@ data084[19] =
 const double toler084 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=1.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 3.3306690738754696e-16
+// max(|f - f_GSL| / |f_GSL|): 3.3962402892941561e-16
 const testcase_hyperg<double>
 data085[19] =
 {
@@ -3863,6 +4033,8 @@ data085[19] =
 const double toler085 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=2.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 2.1094237467877971e-16
 const testcase_hyperg<double>
 data086[19] =
 {
@@ -3908,6 +4080,8 @@ data086[19] =
 const double toler086 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=2.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 2.6645352591003757e-15
+// max(|f - f_GSL| / |f_GSL|): 1.2228571846595251e-15
 const testcase_hyperg<double>
 data087[19] =
 {
@@ -3953,6 +4127,8 @@ data087[19] =
 const double toler087 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=2.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 6.6613381477509392e-16
+// max(|f - f_GSL| / |f_GSL|): 4.3538225385592644e-16
 const testcase_hyperg<double>
 data088[19] =
 {
@@ -3998,6 +4174,8 @@ data088[19] =
 const double toler088 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=2.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.3297369954770822e-16
 const testcase_hyperg<double>
 data089[19] =
 {
@@ -4043,6 +4221,8 @@ data089[19] =
 const double toler089 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=2.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 4.6160879869309861e-16
 const testcase_hyperg<double>
 data090[19] =
 {
@@ -4088,6 +4268,8 @@ data090[19] =
 const double toler090 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=5.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 4.0927261579781771e-12
+// max(|f - f_GSL| / |f_GSL|): 1.4735287697491276e-15
 const testcase_hyperg<double>
 data091[19] =
 {
@@ -4133,6 +4315,8 @@ data091[19] =
 const double toler091 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=5.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 4.2632564145606011e-14
+// max(|f - f_GSL| / |f_GSL|): 1.3117712044801915e-15
 const testcase_hyperg<double>
 data092[19] =
 {
@@ -4178,6 +4362,8 @@ data092[19] =
 const double toler092 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=5.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 6.2172489379008766e-15
+// max(|f - f_GSL| / |f_GSL|): 1.2433022037532461e-15
 const testcase_hyperg<double>
 data093[19] =
 {
@@ -4223,6 +4409,8 @@ data093[19] =
 const double toler093 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=5.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 3.1086244689504383e-15
+// max(|f - f_GSL| / |f_GSL|): 1.1989697058841889e-15
 const testcase_hyperg<double>
 data094[19] =
 {
@@ -4268,6 +4456,8 @@ data094[19] =
 const double toler094 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=5.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-15
+// max(|f - f_GSL| / |f_GSL|): 5.6896158687269898e-16
 const testcase_hyperg<double>
 data095[19] =
 {
@@ -4313,6 +4503,8 @@ data095[19] =
 const double toler095 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=10.000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 2.0861625671386719e-07
+// max(|f - f_GSL| / |f_GSL|): 1.6897916810721311e-15
 const testcase_hyperg<double>
 data096[19] =
 {
@@ -4358,6 +4550,8 @@ data096[19] =
 const double toler096 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=10.000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 2.6193447411060333e-10
+// max(|f - f_GSL| / |f_GSL|): 1.6039867544159931e-15
 const testcase_hyperg<double>
 data097[19] =
 {
@@ -4403,6 +4597,8 @@ data097[19] =
 const double toler097 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=10.000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 2.0463630789890885e-12
+// max(|f - f_GSL| / |f_GSL|): 1.5238873992472010e-15
 const testcase_hyperg<double>
 data098[19] =
 {
@@ -4448,6 +4644,8 @@ data098[19] =
 const double toler098 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=10.000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 7.8159700933611020e-14
+// max(|f - f_GSL| / |f_GSL|): 1.4210854715202060e-15
 const testcase_hyperg<double>
 data099[19] =
 {
@@ -4493,6 +4691,8 @@ data099[19] =
 const double toler099 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=10.000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 2.1094237467877971e-16
 const testcase_hyperg<double>
 data100[19] =
 {
@@ -4538,6 +4738,8 @@ data100[19] =
 const double toler100 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=20.000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 1024.0000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.7510400000000382e-15
 const testcase_hyperg<double>
 data101[19] =
 {
@@ -4583,6 +4785,8 @@ data101[19] =
 const double toler101 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=20.000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.21875000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.5452521875000274e-15
 const testcase_hyperg<double>
 data102[19] =
 {
@@ -4628,6 +4832,8 @@ data102[19] =
 const double toler102 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=20.000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 0.00024414062500000000
+// max(|f - f_GSL| / |f_GSL|): 1.6763226855512825e-15
 const testcase_hyperg<double>
 data103[19] =
 {
@@ -4673,6 +4879,8 @@ data103[19] =
 const double toler103 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=20.000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 7.1525573730468750e-07
+// max(|f - f_GSL| / |f_GSL|): 1.7237966704608456e-15
 const testcase_hyperg<double>
 data104[19] =
 {
@@ -4718,6 +4926,8 @@ data104[19] =
 const double toler104 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000, b=20.000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 4.6566128730773926e-09
+// max(|f - f_GSL| / |f_GSL|): 1.6665618165272271e-15
 const testcase_hyperg<double>
 data105[19] =
 {
@@ -4763,6 +4973,8 @@ data105[19] =
 const double toler105 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=0.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data106[19] =
 {
@@ -4808,6 +5020,8 @@ data106[19] =
 const double toler106 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=0.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data107[19] =
 {
@@ -4853,6 +5067,8 @@ data107[19] =
 const double toler107 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=0.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data108[19] =
 {
@@ -4898,6 +5114,8 @@ data108[19] =
 const double toler108 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=0.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data109[19] =
 {
@@ -4943,6 +5161,8 @@ data109[19] =
 const double toler109 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=0.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data110[19] =
 {
@@ -4988,6 +5208,8 @@ data110[19] =
 const double toler110 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=0.50000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 1.5700924586837752e-16
 const testcase_hyperg<double>
 data111[19] =
 {
@@ -5033,6 +5255,8 @@ data111[19] =
 const double toler111 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=0.50000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 3.0893602609058104e-16
 const testcase_hyperg<double>
 data112[19] =
 {
@@ -5078,6 +5302,8 @@ data112[19] =
 const double toler112 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=0.50000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 3.3306690738754696e-16
+// max(|f - f_GSL| / |f_GSL|): 3.3853500746952663e-16
 const testcase_hyperg<double>
 data113[19] =
 {
@@ -5123,6 +5349,8 @@ data113[19] =
 const double toler113 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=0.50000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.2746445692007949e-16
 const testcase_hyperg<double>
 data114[19] =
 {
@@ -5168,6 +5396,8 @@ data114[19] =
 const double toler114 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=0.50000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 4.4848478782807992e-16
 const testcase_hyperg<double>
 data115[19] =
 {
@@ -5213,6 +5443,8 @@ data115[19] =
 const double toler115 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=1.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 2.1094237467877971e-16
 const testcase_hyperg<double>
 data116[19] =
 {
@@ -5258,6 +5490,8 @@ data116[19] =
 const double toler116 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=1.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 2.6645352591003757e-15
+// max(|f - f_GSL| / |f_GSL|): 1.2228571846595251e-15
 const testcase_hyperg<double>
 data117[19] =
 {
@@ -5303,6 +5537,8 @@ data117[19] =
 const double toler117 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=1.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 6.6613381477509392e-16
+// max(|f - f_GSL| / |f_GSL|): 4.3538225385592644e-16
 const testcase_hyperg<double>
 data118[19] =
 {
@@ -5348,6 +5584,8 @@ data118[19] =
 const double toler118 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=1.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.3297369954770822e-16
 const testcase_hyperg<double>
 data119[19] =
 {
@@ -5393,6 +5631,8 @@ data119[19] =
 const double toler119 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=1.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 4.6160879869309861e-16
 const testcase_hyperg<double>
 data120[19] =
 {
@@ -5438,6 +5678,8 @@ data120[19] =
 const double toler120 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=2.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 4.2632564145606011e-14
+// max(|f - f_GSL| / |f_GSL|): 4.2632564145606064e-16
 const testcase_hyperg<double>
 data121[19] =
 {
@@ -5483,6 +5725,8 @@ data121[19] =
 const double toler121 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=2.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 7.9936057773011271e-15
+// max(|f - f_GSL| / |f_GSL|): 1.3252801810681365e-15
 const testcase_hyperg<double>
 data122[19] =
 {
@@ -5528,6 +5772,8 @@ data122[19] =
 const double toler122 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=2.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 3.1086244689504383e-15
+// max(|f - f_GSL| / |f_GSL|): 1.2095468681839719e-15
 const testcase_hyperg<double>
 data123[19] =
 {
@@ -5573,6 +5819,8 @@ data123[19] =
 const double toler123 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=2.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-15
+// max(|f - f_GSL| / |f_GSL|): 6.1065577401595934e-16
 const testcase_hyperg<double>
 data124[19] =
 {
@@ -5618,6 +5866,8 @@ data124[19] =
 const double toler124 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=2.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 2.7923027351444343e-16
 const testcase_hyperg<double>
 data125[19] =
 {
@@ -5663,6 +5913,8 @@ data125[19] =
 const double toler125 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=5.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 1.1641532182693481e-10
+// max(|f - f_GSL| / |f_GSL|): 1.4551915228366856e-15
 const testcase_hyperg<double>
 data126[19] =
 {
@@ -5708,6 +5960,8 @@ data126[19] =
 const double toler126 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=5.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 6.8212102632969618e-13
+// max(|f - f_GSL| / |f_GSL|): 1.2402200478721823e-15
 const testcase_hyperg<double>
 data127[19] =
 {
@@ -5753,6 +6007,8 @@ data127[19] =
 const double toler127 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=5.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 4.9737991503207013e-14
+// max(|f - f_GSL| / |f_GSL|): 1.6580642616864663e-15
 const testcase_hyperg<double>
 data128[19] =
 {
@@ -5798,6 +6054,8 @@ data128[19] =
 const double toler128 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=5.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 1.1546319456101628e-14
+// max(|f - f_GSL| / |f_GSL|): 1.4852319937858947e-15
 const testcase_hyperg<double>
 data129[19] =
 {
@@ -5843,6 +6101,8 @@ data129[19] =
 const double toler129 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=5.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-15
+// max(|f - f_GSL| / |f_GSL|): 1.0721199711322771e-15
 const testcase_hyperg<double>
 data130[19] =
 {
@@ -5888,6 +6148,8 @@ data130[19] =
 const double toler130 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=10.000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 2.2888183593750000e-05
+// max(|f - f_GSL| / |f_GSL|): 2.8610229492187516e-15
 const testcase_hyperg<double>
 data131[19] =
 {
@@ -5933,6 +6195,8 @@ data131[19] =
 const double toler131 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=10.000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 1.4901161193847656e-08
+// max(|f - f_GSL| / |f_GSL|): 1.4958811384436855e-15
 const testcase_hyperg<double>
 data132[19] =
 {
@@ -5978,6 +6242,8 @@ data132[19] =
 const double toler132 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=10.000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 8.7311491370201111e-11
+// max(|f - f_GSL| / |f_GSL|): 1.5843951771650368e-15
 const testcase_hyperg<double>
 data133[19] =
 {
@@ -6023,6 +6289,8 @@ data133[19] =
 const double toler133 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=10.000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 1.8189894035458565e-12
+// max(|f - f_GSL| / |f_GSL|): 1.4848893090170350e-15
 const testcase_hyperg<double>
 data134[19] =
 {
@@ -6068,6 +6336,8 @@ data134[19] =
 const double toler134 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=10.000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 4.2632564145606011e-14
+// max(|f - f_GSL| / |f_GSL|): 4.2632564145606064e-16
 const testcase_hyperg<double>
 data135[19] =
 {
@@ -6113,6 +6383,8 @@ data135[19] =
 const double toler135 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=20.000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 425984.00000000000
+// max(|f - f_GSL| / |f_GSL|): 5.4067200000000052e-15
 const testcase_hyperg<double>
 data136[19] =
 {
@@ -6158,6 +6430,8 @@ data136[19] =
 const double toler136 = 5.0000000000000039e-13;
 
 // Test data for a=2.0000000000000000, b=20.000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 40.000000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.8712609271523571e-15
 const testcase_hyperg<double>
 data137[19] =
 {
@@ -6203,6 +6477,8 @@ data137[19] =
 const double toler137 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=20.000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 0.031250000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.6379336164122315e-15
 const testcase_hyperg<double>
 data138[19] =
 {
@@ -6248,6 +6524,8 @@ data138[19] =
 const double toler138 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=20.000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 8.3923339843750000e-05
+// max(|f - f_GSL| / |f_GSL|): 1.8221514326727084e-15
 const testcase_hyperg<double>
 data139[19] =
 {
@@ -6293,6 +6571,8 @@ data139[19] =
 const double toler139 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000, b=20.000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 5.0663948059082031e-07
+// max(|f - f_GSL| / |f_GSL|): 1.9925479281070174e-15
 const testcase_hyperg<double>
 data140[19] =
 {
@@ -6338,6 +6618,8 @@ data140[19] =
 const double toler140 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=0.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data141[19] =
 {
@@ -6383,6 +6665,8 @@ data141[19] =
 const double toler141 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=0.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data142[19] =
 {
@@ -6428,6 +6712,8 @@ data142[19] =
 const double toler142 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=0.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data143[19] =
 {
@@ -6473,6 +6759,8 @@ data143[19] =
 const double toler143 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=0.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data144[19] =
 {
@@ -6518,6 +6806,8 @@ data144[19] =
 const double toler144 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=0.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data145[19] =
 {
@@ -6563,6 +6853,8 @@ data145[19] =
 const double toler145 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=0.50000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 4.5474735088646412e-13
+// max(|f - f_GSL| / |f_GSL|): 1.5124797514980704e-15
 const testcase_hyperg<double>
 data146[19] =
 {
@@ -6608,6 +6900,8 @@ data146[19] =
 const double toler146 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=0.50000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 8.8817841970012523e-15
+// max(|f - f_GSL| / |f_GSL|): 1.3217255411112326e-15
 const testcase_hyperg<double>
 data147[19] =
 {
@@ -6653,6 +6947,8 @@ data147[19] =
 const double toler147 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=0.50000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 2.6645352591003757e-15
+// max(|f - f_GSL| / |f_GSL|): 1.2228264607471081e-15
 const testcase_hyperg<double>
 data148[19] =
 {
@@ -6698,6 +6994,8 @@ data148[19] =
 const double toler148 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=0.50000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 6.6613381477509392e-16
+// max(|f - f_GSL| / |f_GSL|): 4.2082370290419495e-16
 const testcase_hyperg<double>
 data149[19] =
 {
@@ -6743,6 +7041,8 @@ data149[19] =
 const double toler149 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=0.50000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 2.2751041935095266e-16
 const testcase_hyperg<double>
 data150[19] =
 {
@@ -6788,6 +7088,8 @@ data150[19] =
 const double toler150 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=1.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 4.0927261579781771e-12
+// max(|f - f_GSL| / |f_GSL|): 1.4735287697491276e-15
 const testcase_hyperg<double>
 data151[19] =
 {
@@ -6833,6 +7135,8 @@ data151[19] =
 const double toler151 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=1.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 4.2632564145606011e-14
+// max(|f - f_GSL| / |f_GSL|): 1.3117712044801915e-15
 const testcase_hyperg<double>
 data152[19] =
 {
@@ -6878,6 +7182,8 @@ data152[19] =
 const double toler152 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=1.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 6.2172489379008766e-15
+// max(|f - f_GSL| / |f_GSL|): 1.2433022037532461e-15
 const testcase_hyperg<double>
 data153[19] =
 {
@@ -6923,6 +7229,8 @@ data153[19] =
 const double toler153 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=1.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 3.1086244689504383e-15
+// max(|f - f_GSL| / |f_GSL|): 1.1989697058841889e-15
 const testcase_hyperg<double>
 data154[19] =
 {
@@ -6968,6 +7276,8 @@ data154[19] =
 const double toler154 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=1.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 1.1102230246251565e-15
+// max(|f - f_GSL| / |f_GSL|): 5.6896158687269898e-16
 const testcase_hyperg<double>
 data155[19] =
 {
@@ -7013,6 +7323,8 @@ data155[19] =
 const double toler155 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=2.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 1.1641532182693481e-10
+// max(|f - f_GSL| / |f_GSL|): 1.4551915228366856e-15
 const testcase_hyperg<double>
 data156[19] =
 {
@@ -7058,6 +7370,8 @@ data156[19] =
 const double toler156 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=2.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 6.8212102632969618e-13
+// max(|f - f_GSL| / |f_GSL|): 1.2402200478721823e-15
 const testcase_hyperg<double>
 data157[19] =
 {
@@ -7103,6 +7417,8 @@ data157[19] =
 const double toler157 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=2.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 4.9737991503207013e-14
+// max(|f - f_GSL| / |f_GSL|): 1.6580642616864663e-15
 const testcase_hyperg<double>
 data158[19] =
 {
@@ -7148,6 +7464,8 @@ data158[19] =
 const double toler158 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=2.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 1.1546319456101628e-14
+// max(|f - f_GSL| / |f_GSL|): 1.4852319937858947e-15
 const testcase_hyperg<double>
 data159[19] =
 {
@@ -7193,6 +7511,8 @@ data159[19] =
 const double toler159 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=2.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-15
+// max(|f - f_GSL| / |f_GSL|): 1.0721199711322771e-15
 const testcase_hyperg<double>
 data160[19] =
 {
@@ -7238,6 +7558,8 @@ data160[19] =
 const double toler160 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=5.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 1.3113021850585938e-06
+// max(|f - f_GSL| / |f_GSL|): 2.8467351045253575e-14
 const testcase_hyperg<double>
 data161[19] =
 {
@@ -7283,6 +7605,8 @@ data161[19] =
 const double toler161 = 2.5000000000000015e-12;
 
 // Test data for a=5.0000000000000000, b=5.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 1.8626451492309570e-09
+// max(|f - f_GSL| / |f_GSL|): 1.5205266524334494e-15
 const testcase_hyperg<double>
 data162[19] =
 {
@@ -7328,6 +7652,8 @@ data162[19] =
 const double toler162 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=5.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 1.8189894035458565e-11
+// max(|f - f_GSL| / |f_GSL|): 1.5011259042308369e-15
 const testcase_hyperg<double>
 data163[19] =
 {
@@ -7373,6 +7699,8 @@ data163[19] =
 const double toler163 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=5.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 6.8212102632969618e-13
+// max(|f - f_GSL| / |f_GSL|): 1.3038469641917493e-15
 const testcase_hyperg<double>
 data164[19] =
 {
@@ -7418,6 +7746,8 @@ data164[19] =
 const double toler164 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=5.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 9.9475983006414026e-14
+// max(|f - f_GSL| / |f_GSL|): 1.3163001721303592e-15
 const testcase_hyperg<double>
 data165[19] =
 {
@@ -7463,6 +7793,8 @@ data165[19] =
 const double toler165 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=10.000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 0.81250000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.8182428501096805e-15
 const testcase_hyperg<double>
 data166[19] =
 {
@@ -7508,6 +7840,8 @@ data166[19] =
 const double toler166 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=10.000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.00039672851562500000
+// max(|f - f_GSL| / |f_GSL|): 1.6882064494681041e-15
 const testcase_hyperg<double>
 data167[19] =
 {
@@ -7553,6 +7887,8 @@ data167[19] =
 const double toler167 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=10.000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 9.5367431640625000e-07
+// max(|f - f_GSL| / |f_GSL|): 1.6314276114917867e-15
 const testcase_hyperg<double>
 data168[19] =
 {
@@ -7598,6 +7934,8 @@ data168[19] =
 const double toler168 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=10.000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 7.4505805969238281e-09
+// max(|f - f_GSL| / |f_GSL|): 1.6196914341138888e-15
 const testcase_hyperg<double>
 data169[19] =
 {
@@ -7643,6 +7981,8 @@ data169[19] =
 const double toler169 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=10.000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 1.1641532182693481e-10
+// max(|f - f_GSL| / |f_GSL|): 1.4551915228366856e-15
 const testcase_hyperg<double>
 data170[19] =
 {
@@ -7688,6 +8028,8 @@ data170[19] =
 const double toler170 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=20.000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 60129542144.000000
+// max(|f - f_GSL| / |f_GSL|): 2.0181355730233454e-15
 const testcase_hyperg<double>
 data171[19] =
 {
@@ -7733,6 +8075,8 @@ data171[19] =
 const double toler171 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=20.000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 9437184.0000000000
+// max(|f - f_GSL| / |f_GSL|): 2.0515617391304744e-15
 const testcase_hyperg<double>
 data172[19] =
 {
@@ -7778,6 +8122,8 @@ data172[19] =
 const double toler172 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=20.000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 5120.0000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.7944916193878923e-15
 const testcase_hyperg<double>
 data173[19] =
 {
@@ -7823,6 +8169,8 @@ data173[19] =
 const double toler173 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=20.000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 7.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.5351977183414298e-15
 const testcase_hyperg<double>
 data174[19] =
 {
@@ -7868,6 +8216,8 @@ data174[19] =
 const double toler174 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000, b=20.000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 0.029296875000000000
+// max(|f - f_GSL| / |f_GSL|): 1.8717083246628922e-15
 const testcase_hyperg<double>
 data175[19] =
 {
@@ -7913,6 +8263,8 @@ data175[19] =
 const double toler175 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=0.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data176[19] =
 {
@@ -7958,6 +8310,8 @@ data176[19] =
 const double toler176 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=0.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data177[19] =
 {
@@ -8003,6 +8357,8 @@ data177[19] =
 const double toler177 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=0.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data178[19] =
 {
@@ -8048,6 +8404,8 @@ data178[19] =
 const double toler178 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=0.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data179[19] =
 {
@@ -8093,6 +8451,8 @@ data179[19] =
 const double toler179 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=0.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data180[19] =
 {
@@ -8138,6 +8498,8 @@ data180[19] =
 const double toler180 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=0.50000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 1.4901161193847656e-08
+// max(|f - f_GSL| / |f_GSL|): 1.8229127098648091e-15
 const testcase_hyperg<double>
 data181[19] =
 {
@@ -8183,6 +8545,8 @@ data181[19] =
 const double toler181 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=0.50000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 2.0008883439004421e-11
+// max(|f - f_GSL| / |f_GSL|): 1.5684473872214654e-15
 const testcase_hyperg<double>
 data182[19] =
 {
@@ -8228,6 +8592,8 @@ data182[19] =
 const double toler182 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=0.50000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 1.9895196601282805e-13
+// max(|f - f_GSL| / |f_GSL|): 1.4567107859209967e-15
 const testcase_hyperg<double>
 data183[19] =
 {
@@ -8273,6 +8639,8 @@ data183[19] =
 const double toler183 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=0.50000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 1.2434497875801753e-14
+// max(|f - f_GSL| / |f_GSL|): 1.3245081211977836e-15
 const testcase_hyperg<double>
 data184[19] =
 {
@@ -8318,6 +8686,8 @@ data184[19] =
 const double toler184 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=0.50000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 1.5700924586837752e-16
 const testcase_hyperg<double>
 data185[19] =
 {
@@ -8363,6 +8733,8 @@ data185[19] =
 const double toler185 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=1.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 2.0861625671386719e-07
+// max(|f - f_GSL| / |f_GSL|): 1.6897916810721311e-15
 const testcase_hyperg<double>
 data186[19] =
 {
@@ -8408,6 +8780,8 @@ data186[19] =
 const double toler186 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=1.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 2.6193447411060333e-10
+// max(|f - f_GSL| / |f_GSL|): 1.6039867544159931e-15
 const testcase_hyperg<double>
 data187[19] =
 {
@@ -8453,6 +8827,8 @@ data187[19] =
 const double toler187 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=1.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 2.0463630789890885e-12
+// max(|f - f_GSL| / |f_GSL|): 1.5238873992472010e-15
 const testcase_hyperg<double>
 data188[19] =
 {
@@ -8498,6 +8874,8 @@ data188[19] =
 const double toler188 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=1.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 7.8159700933611020e-14
+// max(|f - f_GSL| / |f_GSL|): 1.4210854715202060e-15
 const testcase_hyperg<double>
 data189[19] =
 {
@@ -8543,6 +8921,8 @@ data189[19] =
 const double toler189 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=1.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 2.1094237467877971e-16
 const testcase_hyperg<double>
 data190[19] =
 {
@@ -8588,6 +8968,8 @@ data190[19] =
 const double toler190 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=2.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 2.2888183593750000e-05
+// max(|f - f_GSL| / |f_GSL|): 2.8610229492187516e-15
 const testcase_hyperg<double>
 data191[19] =
 {
@@ -8633,6 +9015,8 @@ data191[19] =
 const double toler191 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=2.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 1.4901161193847656e-08
+// max(|f - f_GSL| / |f_GSL|): 1.4958811384436855e-15
 const testcase_hyperg<double>
 data192[19] =
 {
@@ -8678,6 +9062,8 @@ data192[19] =
 const double toler192 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=2.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 8.7311491370201111e-11
+// max(|f - f_GSL| / |f_GSL|): 1.5843951771650368e-15
 const testcase_hyperg<double>
 data193[19] =
 {
@@ -8723,6 +9109,8 @@ data193[19] =
 const double toler193 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=2.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 1.8189894035458565e-12
+// max(|f - f_GSL| / |f_GSL|): 1.4848893090170350e-15
 const testcase_hyperg<double>
 data194[19] =
 {
@@ -8768,6 +9156,8 @@ data194[19] =
 const double toler194 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=2.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 4.2632564145606011e-14
+// max(|f - f_GSL| / |f_GSL|): 4.2632564145606064e-16
 const testcase_hyperg<double>
 data195[19] =
 {
@@ -8813,6 +9203,8 @@ data195[19] =
 const double toler195 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=5.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 0.81250000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.8182428501096805e-15
 const testcase_hyperg<double>
 data196[19] =
 {
@@ -8858,6 +9250,8 @@ data196[19] =
 const double toler196 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=5.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.00039672851562500000
+// max(|f - f_GSL| / |f_GSL|): 1.6882064494681041e-15
 const testcase_hyperg<double>
 data197[19] =
 {
@@ -8903,6 +9297,8 @@ data197[19] =
 const double toler197 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=5.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 9.5367431640625000e-07
+// max(|f - f_GSL| / |f_GSL|): 1.6314276114917867e-15
 const testcase_hyperg<double>
 data198[19] =
 {
@@ -8948,6 +9344,8 @@ data198[19] =
 const double toler198 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=5.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 7.4505805969238281e-09
+// max(|f - f_GSL| / |f_GSL|): 1.6196914341138888e-15
 const testcase_hyperg<double>
 data199[19] =
 {
@@ -8993,6 +9391,8 @@ data199[19] =
 const double toler199 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=5.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 1.1641532182693481e-10
+// max(|f - f_GSL| / |f_GSL|): 1.4551915228366856e-15
 const testcase_hyperg<double>
 data200[19] =
 {
@@ -9038,6 +9438,8 @@ data200[19] =
 const double toler200 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=10.000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 3407872.0000000000
+// max(|f - f_GSL| / |f_GSL|): 1.8642431677286335e-15
 const testcase_hyperg<double>
 data201[19] =
 {
@@ -9083,6 +9485,8 @@ data201[19] =
 const double toler201 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=10.000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 832.00000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.7889121078953977e-15
 const testcase_hyperg<double>
 data202[19] =
 {
@@ -9128,6 +9532,8 @@ data202[19] =
 const double toler202 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=10.000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 0.93750000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.8742262123209408e-15
 const testcase_hyperg<double>
 data203[19] =
 {
@@ -9173,6 +9579,8 @@ data203[19] =
 const double toler203 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=10.000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 0.0024414062500000000
+// max(|f - f_GSL| / |f_GSL|): 1.6580008488964534e-15
 const testcase_hyperg<double>
 data204[19] =
 {
@@ -9218,6 +9626,8 @@ data204[19] =
 const double toler204 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=10.000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 2.2888183593750000e-05
+// max(|f - f_GSL| / |f_GSL|): 2.8610229492187516e-15
 const testcase_hyperg<double>
 data205[19] =
 {
@@ -9263,6 +9673,8 @@ data205[19] =
 const double toler205 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=20.000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 2.5940733853654057e+18
+// max(|f - f_GSL| / |f_GSL|): 1.8312596334405405e-15
 const testcase_hyperg<double>
 data206[19] =
 {
@@ -9308,6 +9720,8 @@ data206[19] =
 const double toler206 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=20.000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 299067162755072.00
+// max(|f - f_GSL| / |f_GSL|): 2.1129345912024644e-15
 const testcase_hyperg<double>
 data207[19] =
 {
@@ -9353,6 +9767,8 @@ data207[19] =
 const double toler207 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=20.000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 103079215104.00000
+// max(|f - f_GSL| / |f_GSL|): 1.8869870511942065e-15
 const testcase_hyperg<double>
 data208[19] =
 {
@@ -9398,6 +9814,8 @@ data208[19] =
 const double toler208 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=20.000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 100663296.00000000
+// max(|f - f_GSL| / |f_GSL|): 1.9414329026037087e-15
 const testcase_hyperg<double>
 data209[19] =
 {
@@ -9443,6 +9861,8 @@ data209[19] =
 const double toler209 = 2.5000000000000020e-13;
 
 // Test data for a=10.000000000000000, b=20.000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 425984.00000000000
+// max(|f - f_GSL| / |f_GSL|): 5.4067200000000052e-15
 const testcase_hyperg<double>
 data210[19] =
 {
@@ -9488,6 +9908,8 @@ data210[19] =
 const double toler210 = 5.0000000000000039e-13;
 
 // Test data for a=20.000000000000000, b=0.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data211[19] =
 {
@@ -9533,6 +9955,8 @@ data211[19] =
 const double toler211 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=0.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data212[19] =
 {
@@ -9578,6 +10002,8 @@ data212[19] =
 const double toler212 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=0.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data213[19] =
 {
@@ -9623,6 +10049,8 @@ data213[19] =
 const double toler213 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=0.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data214[19] =
 {
@@ -9668,6 +10096,8 @@ data214[19] =
 const double toler214 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=0.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_hyperg<double>
 data215[19] =
 {
@@ -9713,6 +10143,8 @@ data215[19] =
 const double toler215 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=0.50000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 48.000000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.8556481344875154e-15
 const testcase_hyperg<double>
 data216[19] =
 {
@@ -9758,6 +10190,8 @@ data216[19] =
 const double toler216 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=0.50000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.011718750000000000
+// max(|f - f_GSL| / |f_GSL|): 1.7519521419034139e-15
 const testcase_hyperg<double>
 data217[19] =
 {
@@ -9803,6 +10237,8 @@ data217[19] =
 const double toler217 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=0.50000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 1.4305114746093750e-05
+// max(|f - f_GSL| / |f_GSL|): 1.9261147266354006e-15
 const testcase_hyperg<double>
 data218[19] =
 {
@@ -9848,6 +10284,8 @@ data218[19] =
 const double toler218 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=0.50000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 4.0978193283081055e-08
+// max(|f - f_GSL| / |f_GSL|): 1.7692881266931737e-15
 const testcase_hyperg<double>
 data219[19] =
 {
@@ -9893,6 +10331,8 @@ data219[19] =
 const double toler219 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=0.50000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 2.9103830456733704e-10
+// max(|f - f_GSL| / |f_GSL|): 1.6694673196526831e-15
 const testcase_hyperg<double>
 data220[19] =
 {
@@ -9938,6 +10378,8 @@ data220[19] =
 const double toler220 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=1.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 1024.0000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.7510400000000382e-15
 const testcase_hyperg<double>
 data221[19] =
 {
@@ -9983,6 +10425,8 @@ data221[19] =
 const double toler221 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=1.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 0.21875000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.5452521875000274e-15
 const testcase_hyperg<double>
 data222[19] =
 {
@@ -10028,6 +10472,8 @@ data222[19] =
 const double toler222 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=1.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 0.00024414062500000000
+// max(|f - f_GSL| / |f_GSL|): 1.6763226855512825e-15
 const testcase_hyperg<double>
 data223[19] =
 {
@@ -10073,6 +10519,8 @@ data223[19] =
 const double toler223 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=1.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 7.1525573730468750e-07
+// max(|f - f_GSL| / |f_GSL|): 1.7237966704608456e-15
 const testcase_hyperg<double>
 data224[19] =
 {
@@ -10118,6 +10566,8 @@ data224[19] =
 const double toler224 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=1.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 4.6566128730773926e-09
+// max(|f - f_GSL| / |f_GSL|): 1.6665618165272271e-15
 const testcase_hyperg<double>
 data225[19] =
 {
@@ -10163,6 +10613,8 @@ data225[19] =
 const double toler225 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=2.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 425984.00000000000
+// max(|f - f_GSL| / |f_GSL|): 5.4067200000000052e-15
 const testcase_hyperg<double>
 data226[19] =
 {
@@ -10208,6 +10660,8 @@ data226[19] =
 const double toler226 = 5.0000000000000039e-13;
 
 // Test data for a=20.000000000000000, b=2.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 40.000000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.8712609271523571e-15
 const testcase_hyperg<double>
 data227[19] =
 {
@@ -10253,6 +10707,8 @@ data227[19] =
 const double toler227 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=2.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 0.031250000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.6379336164122315e-15
 const testcase_hyperg<double>
 data228[19] =
 {
@@ -10298,6 +10754,8 @@ data228[19] =
 const double toler228 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=2.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 8.3923339843750000e-05
+// max(|f - f_GSL| / |f_GSL|): 1.8221514326727084e-15
 const testcase_hyperg<double>
 data229[19] =
 {
@@ -10343,6 +10801,8 @@ data229[19] =
 const double toler229 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=2.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 5.0663948059082031e-07
+// max(|f - f_GSL| / |f_GSL|): 1.9925479281070174e-15
 const testcase_hyperg<double>
 data230[19] =
 {
@@ -10388,6 +10848,8 @@ data230[19] =
 const double toler230 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=5.0000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 60129542144.000000
+// max(|f - f_GSL| / |f_GSL|): 2.0181355730233454e-15
 const testcase_hyperg<double>
 data231[19] =
 {
@@ -10433,6 +10895,8 @@ data231[19] =
 const double toler231 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=5.0000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 9437184.0000000000
+// max(|f - f_GSL| / |f_GSL|): 2.0515617391304744e-15
 const testcase_hyperg<double>
 data232[19] =
 {
@@ -10478,6 +10942,8 @@ data232[19] =
 const double toler232 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=5.0000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 5120.0000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.7944916193878923e-15
 const testcase_hyperg<double>
 data233[19] =
 {
@@ -10523,6 +10989,8 @@ data233[19] =
 const double toler233 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=5.0000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 7.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.5351977183414298e-15
 const testcase_hyperg<double>
 data234[19] =
 {
@@ -10568,6 +11036,8 @@ data234[19] =
 const double toler234 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=5.0000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 0.029296875000000000
+// max(|f - f_GSL| / |f_GSL|): 1.8717083246628922e-15
 const testcase_hyperg<double>
 data235[19] =
 {
@@ -10613,6 +11083,8 @@ data235[19] =
 const double toler235 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=10.000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 2.5940733853654057e+18
+// max(|f - f_GSL| / |f_GSL|): 1.8312596334405405e-15
 const testcase_hyperg<double>
 data236[19] =
 {
@@ -10658,6 +11130,8 @@ data236[19] =
 const double toler236 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=10.000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 299067162755072.00
+// max(|f - f_GSL| / |f_GSL|): 2.1129345912024644e-15
 const testcase_hyperg<double>
 data237[19] =
 {
@@ -10703,6 +11177,8 @@ data237[19] =
 const double toler237 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=10.000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 103079215104.00000
+// max(|f - f_GSL| / |f_GSL|): 1.8869870511942065e-15
 const testcase_hyperg<double>
 data238[19] =
 {
@@ -10748,6 +11224,8 @@ data238[19] =
 const double toler238 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=10.000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 100663296.00000000
+// max(|f - f_GSL| / |f_GSL|): 1.9414329026037087e-15
 const testcase_hyperg<double>
 data239[19] =
 {
@@ -10793,6 +11271,8 @@ data239[19] =
 const double toler239 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=10.000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 425984.00000000000
+// max(|f - f_GSL| / |f_GSL|): 5.4067200000000052e-15
 const testcase_hyperg<double>
 data240[19] =
 {
@@ -10838,6 +11318,8 @@ data240[19] =
 const double toler240 = 5.0000000000000039e-13;
 
 // Test data for a=20.000000000000000, b=20.000000000000000, c=2.0000000000000000.
+// max(|f - f_GSL|): 8.1129638414606682e+31
+// max(|f - f_GSL| / |f_GSL|): 2.1657042453581189e-15
 const testcase_hyperg<double>
 data241[19] =
 {
@@ -10883,6 +11365,8 @@ data241[19] =
 const double toler241 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=20.000000000000000, c=4.0000000000000000.
+// max(|f - f_GSL|): 4.3327901374988310e+27
+// max(|f - f_GSL| / |f_GSL|): 2.2075464057601018e-15
 const testcase_hyperg<double>
 data242[19] =
 {
@@ -10928,6 +11412,8 @@ data242[19] =
 const double toler242 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=20.000000000000000, c=6.0000000000000000.
+// max(|f - f_GSL|): 7.5557863725914323e+23
+// max(|f - f_GSL| / |f_GSL|): 1.9837376456390635e-15
 const testcase_hyperg<double>
 data243[19] =
 {
@@ -10973,6 +11459,8 @@ data243[19] =
 const double toler243 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=20.000000000000000, c=8.0000000000000000.
+// max(|f - f_GSL|): 3.3204139332677193e+20
+// max(|f - f_GSL| / |f_GSL|): 1.9148846081415644e-15
 const testcase_hyperg<double>
 data244[19] =
 {
@@ -11018,6 +11506,8 @@ data244[19] =
 const double toler244 = 2.5000000000000020e-13;
 
 // Test data for a=20.000000000000000, b=20.000000000000000, c=10.000000000000000.
+// max(|f - f_GSL|): 3.4227357168015770e+17
+// max(|f - f_GSL| / |f_GSL|): 2.2509396750115090e-15
 const testcase_hyperg<double>
 data245[19] =
 {
@@ -11061,6 +11551,7 @@ data245[19] =
 	  10.000000000000000, 0.89999999999999991 },
 };
 const double toler245 = 2.5000000000000020e-13;
+
 template<typename Tp, unsigned int Num>
   void
   test(const testcase_hyperg<Tp> (&data)[Num], Tp toler)

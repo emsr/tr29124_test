@@ -38,6 +38,8 @@
 
 
 // Test data for l=0, m=0.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data001[21] =
 {
@@ -87,6 +89,8 @@ data001[21] =
 const double toler001 = 2.5000000000000020e-13;
 
 // Test data for l=1, m=0.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data002[21] =
 {
@@ -136,6 +140,8 @@ data002[21] =
 const double toler002 = 2.5000000000000020e-13;
 
 // Test data for l=1, m=1.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data003[21] =
 {
@@ -185,6 +191,8 @@ data003[21] =
 const double toler003 = 2.5000000000000020e-13;
 
 // Test data for l=2, m=0.
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 1.3877787807814482e-15
 const testcase_assoc_legendre<double>
 data004[21] =
 {
@@ -234,6 +242,8 @@ data004[21] =
 const double toler004 = 2.5000000000000020e-13;
 
 // Test data for l=2, m=1.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data005[21] =
 {
@@ -283,6 +293,8 @@ data005[21] =
 const double toler005 = 2.5000000000000020e-13;
 
 // Test data for l=2, m=2.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data006[21] =
 {
@@ -332,6 +344,8 @@ data006[21] =
 const double toler006 = 2.5000000000000020e-13;
 
 // Test data for l=5, m=0.
+// max(|f - f_GSL|): 2.0122792321330962e-16
+// max(|f - f_GSL| / |f_GSL|): 4.8911475274404243e-15
 const testcase_assoc_legendre<double>
 data007[21] =
 {
@@ -381,6 +395,8 @@ data007[21] =
 const double toler007 = 2.5000000000000020e-13;
 
 // Test data for l=5, m=1.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data008[21] =
 {
@@ -430,6 +446,8 @@ data008[21] =
 const double toler008 = 2.5000000000000020e-13;
 
 // Test data for l=5, m=2.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data009[21] =
 {
@@ -479,6 +497,8 @@ data009[21] =
 const double toler009 = 2.5000000000000020e-13;
 
 // Test data for l=5, m=5.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data010[21] =
 {
@@ -528,6 +548,8 @@ data010[21] =
 const double toler010 = 2.5000000000000020e-13;
 
 // Test data for l=10, m=0.
+// max(|f - f_GSL|): 2.7755575615628914e-16
+// max(|f - f_GSL| / |f_GSL|): 1.0547610802636413e-15
 const testcase_assoc_legendre<double>
 data011[21] =
 {
@@ -577,6 +599,8 @@ data011[21] =
 const double toler011 = 2.5000000000000020e-13;
 
 // Test data for l=10, m=1.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data012[21] =
 {
@@ -626,6 +650,8 @@ data012[21] =
 const double toler012 = 2.5000000000000020e-13;
 
 // Test data for l=10, m=2.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data013[21] =
 {
@@ -675,6 +701,8 @@ data013[21] =
 const double toler013 = 2.5000000000000020e-13;
 
 // Test data for l=10, m=5.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data014[21] =
 {
@@ -724,6 +752,8 @@ data014[21] =
 const double toler014 = 2.5000000000000020e-13;
 
 // Test data for l=10, m=10.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data015[21] =
 {
@@ -773,6 +803,8 @@ data015[21] =
 const double toler015 = 2.5000000000000020e-13;
 
 // Test data for l=20, m=0.
+// max(|f - f_GSL|): 3.3306690738754696e-16
+// max(|f - f_GSL| / |f_GSL|): 2.2307336678138069e-15
 const testcase_assoc_legendre<double>
 data016[21] =
 {
@@ -822,6 +854,8 @@ data016[21] =
 const double toler016 = 2.5000000000000020e-13;
 
 // Test data for l=20, m=1.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data017[21] =
 {
@@ -871,6 +905,8 @@ data017[21] =
 const double toler017 = 2.5000000000000020e-13;
 
 // Test data for l=20, m=2.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data018[21] =
 {
@@ -920,6 +956,8 @@ data018[21] =
 const double toler018 = 2.5000000000000020e-13;
 
 // Test data for l=20, m=5.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data019[21] =
 {
@@ -969,6 +1007,8 @@ data019[21] =
 const double toler019 = 2.5000000000000020e-13;
 
 // Test data for l=20, m=10.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data020[21] =
 {
@@ -1018,6 +1058,8 @@ data020[21] =
 const double toler020 = 2.5000000000000020e-13;
 
 // Test data for l=20, m=20.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data021[21] =
 {
@@ -1067,6 +1109,8 @@ data021[21] =
 const double toler021 = 2.5000000000000020e-13;
 
 // Test data for l=50, m=0.
+// max(|f - f_GSL|): 3.6082248300317588e-16
+// max(|f - f_GSL| / |f_GSL|): 2.1700196856209138e-15
 const testcase_assoc_legendre<double>
 data022[21] =
 {
@@ -1116,6 +1160,8 @@ data022[21] =
 const double toler022 = 2.5000000000000020e-13;
 
 // Test data for l=50, m=1.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data023[21] =
 {
@@ -1165,6 +1211,8 @@ data023[21] =
 const double toler023 = 2.5000000000000020e-13;
 
 // Test data for l=50, m=2.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data024[21] =
 {
@@ -1214,6 +1262,8 @@ data024[21] =
 const double toler024 = 2.5000000000000020e-13;
 
 // Test data for l=50, m=5.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data025[21] =
 {
@@ -1263,6 +1313,8 @@ data025[21] =
 const double toler025 = 2.5000000000000020e-13;
 
 // Test data for l=50, m=10.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data026[21] =
 {
@@ -1312,6 +1364,8 @@ data026[21] =
 const double toler026 = 2.5000000000000020e-13;
 
 // Test data for l=50, m=20.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data027[21] =
 {
@@ -1361,6 +1415,8 @@ data027[21] =
 const double toler027 = 2.5000000000000020e-13;
 
 // Test data for l=50, m=50.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data028[21] =
 {
@@ -1410,6 +1466,8 @@ data028[21] =
 const double toler028 = 2.5000000000000020e-13;
 
 // Test data for l=100, m=0.
+// max(|f - f_GSL|): 3.4694469519536142e-16
+// max(|f - f_GSL| / |f_GSL|): 6.8214063779431592e-15
 const testcase_assoc_legendre<double>
 data029[21] =
 {
@@ -1459,6 +1517,8 @@ data029[21] =
 const double toler029 = 5.0000000000000039e-13;
 
 // Test data for l=100, m=1.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data030[21] =
 {
@@ -1508,6 +1568,8 @@ data030[21] =
 const double toler030 = 2.5000000000000020e-13;
 
 // Test data for l=100, m=2.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data031[21] =
 {
@@ -1557,6 +1619,8 @@ data031[21] =
 const double toler031 = 2.5000000000000020e-13;
 
 // Test data for l=100, m=5.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data032[21] =
 {
@@ -1606,6 +1670,8 @@ data032[21] =
 const double toler032 = 2.5000000000000020e-13;
 
 // Test data for l=100, m=10.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data033[21] =
 {
@@ -1655,6 +1721,8 @@ data033[21] =
 const double toler033 = 2.5000000000000020e-13;
 
 // Test data for l=100, m=20.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data034[21] =
 {
@@ -1704,6 +1772,8 @@ data034[21] =
 const double toler034 = 2.5000000000000020e-13;
 
 // Test data for l=100, m=50.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data035[21] =
 {
@@ -1753,6 +1823,8 @@ data035[21] =
 const double toler035 = 2.5000000000000020e-13;
 
 // Test data for l=100, m=100.
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 const testcase_assoc_legendre<double>
 data036[21] =
 {
@@ -1800,6 +1872,7 @@ data036[21] =
 	  1.0000000000000000 },
 };
 const double toler036 = 2.5000000000000020e-13;
+
 template<typename Tp, unsigned int Num>
   void
   test(const testcase_assoc_legendre<Tp> (&data)[Num], Tp toler)
