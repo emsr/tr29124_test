@@ -1,0 +1,66 @@
+Index: libstdc++-v3/include/tr1/riemann_zeta.tcc
+===================================================================
+--- libstdc++-v3/include/tr1/riemann_zeta.tcc	(revision 214396)
++++ libstdc++-v3/include/tr1/riemann_zeta.tcc	(working copy)
+@@ -155,8 +155,8 @@
+ 
+       const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
+       //  Max e exponent before overflow.
+-      const _Tp __max_bincoeff = std::numeric_limits<_Tp>::max_exponent10
+-                               * std::log(_Tp(10)) - _Tp(1);
++      const _Tp __max_bincoeff = std::exp(std::numeric_limits<_Tp>::max_exponent10
++                               * std::log(_Tp(10)) - _Tp(1));
+ 
+       //  This series works until the binomial coefficient blows up
+       //  so use reflection.
+@@ -182,33 +182,27 @@
+             }
+         }
+ 
+-      _Tp __num = _Tp(0.5L);
++      _Tp __num = _Tp(0.5L*0.5L);
+       const unsigned int __maxit = 10000;
+-      for (unsigned int __i = 0; __i < __maxit; ++__i)
++      __zeta = _Tp(0.5L);
++//This for loop starts at 1 because we already calculated the value of the zeroeth order in __zeta above
++      for (unsigned int __i = 1; __i < __maxit; ++__i)
+         {
+           bool __punt = false;
+-          _Tp __sgn = _Tp(1);
+-          _Tp __term = _Tp(0);
+-          for (unsigned int __j = 0; __j <= __i; ++__j)
++          _Tp __term = _Tp(1.0);
++          _Tp __bincoeff = _Tp(1);
++//This for loop starts at 1 because we already calculated the value of the zeroeth order in __term above
++          for (unsigned int __j = 1; __j <= __i; ++__j)
+             {
+-#if _GLIBCXX_USE_C99_MATH_TR1
+-              _Tp __bincoeff =  std::tr1::lgamma(_Tp(1 + __i))
+-                              - std::tr1::lgamma(_Tp(1 + __j))
+-                              - std::tr1::lgamma(_Tp(1 + __i - __j));
+-#else
+-              _Tp __bincoeff =  __log_gamma(_Tp(1 + __i))
+-                              - __log_gamma(_Tp(1 + __j))
+-                              - __log_gamma(_Tp(1 + __i - __j));
+-#endif
+-              if (__bincoeff > __max_bincoeff)
+-                {
+-                  //  This only gets hit for x << 0.
+-                  __punt = true;
+-                  break;
+-                }
+-              __bincoeff = std::exp(__bincoeff);
+-              __term += __sgn * __bincoeff * std::pow(_Tp(1 + __j), -__s);
+-              __sgn *= _Tp(-1);
++              _Tp incr = _Tp(__i - __j + 1)/__j;
++              __bincoeff *= -incr;
++              if(std::fabs(__bincoeff) > __max_bincoeff )
++              {
++                //  This only gets hit for x << 0.
++                __punt = true;
++                break;
++              }
++              __term += __bincoeff * std::pow(_Tp(1 + __j), -__s);
+             }
+           if (__punt)
+             break;
