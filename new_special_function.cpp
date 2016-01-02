@@ -78,7 +78,7 @@ main()
   basename = "diff_assoc_laguerre";
   typedef double assoc_laguerre(unsigned int, unsigned int, double);
   rundiff<double, unsigned int, unsigned int, double>( (assoc_laguerre *)std::tr1::assoc_laguerre,
-                                                       wrap_gsl_sf_laguerre_nm, basename,
+                                                       gsl::laguerre_nm, basename,
                                                        "n", vorder, "m", vorder,
                                                        "x", fill_argument( std::make_pair( 0.0, 100.0 ),
                                                                            std::make_pair( true, true ) ) );
@@ -89,7 +89,7 @@ main()
   basename = "diff_assoc_legendre";
   typedef double assoc_legendre(unsigned int, unsigned int, double);
   rundiff<double, unsigned int, unsigned int, double>( (assoc_legendre *)std::tr1::assoc_legendre,
-                                                       wrap_gsl_sf_legendre_Plm, basename,
+                                                       gsl::legendre_Plm, basename,
                                                        "l", vorder, "m", vorder,
                                                        "x", fill_argument( std::make_pair( -1.0, 1.0 ),
                                                                            std::make_pair( true, true ), 1001 ) );
@@ -100,7 +100,7 @@ main()
   basename = "diff_beta";
   typedef double beta(double, double);
   rundiff<double, double, double>( (beta *)std::tr1::beta,
-                                   wrap_gsl_sf_beta, basename,
+                                   gsl::beta, basename,
                                    "x", fill_argument( std::make_pair( 0.0, 100.0 ),
                                                        std::make_pair( false, true ) ),
                                    "y", fill_argument( std::make_pair( 0.0, 100.0 ),
@@ -113,7 +113,7 @@ main()
   basename = "diff_comp_ellint_1";
   typedef double comp_ellint_1(double);
   rundiff<double, double>( (comp_ellint_1 *)std::tr1::comp_ellint_1,
-                           wrap_gsl_sf_ellint_Kcomp, basename,
+                           gsl::ellint_Kcomp, basename,
                            "k", fill_argument( std::make_pair( -1.0, 1.0 ),
                                                std::make_pair( false, false ) ) );
 
@@ -124,7 +124,7 @@ main()
   basename = "diff_comp_ellint_2";
   typedef double comp_ellint_2(double);
   rundiff<double, double>( (comp_ellint_2 *)std::tr1::comp_ellint_2,
-                           wrap_gsl_sf_ellint_Ecomp, basename,
+                           gsl::ellint_Ecomp, basename,
                            "k", fill_argument( std::make_pair( -1.0, 1.0 ),
                                                std::make_pair( false, false ) ) );
 
@@ -135,7 +135,7 @@ main()
   basename = "diff_comp_ellint_3";
   typedef double comp_ellint_3(double, double);
   rundiff<double, double, double>( (comp_ellint_3 *)std::tr1::comp_ellint_3,
-                                   wrap_gsl_sf_ellint_Pcomp, basename,
+                                   gsl::ellint_Pcomp, basename,
                                    "k", fill_argument( std::make_pair( -1.0, 1.0 ),
                                                        std::make_pair( false, false ) ),
                                    "nu", vnud );
@@ -147,7 +147,7 @@ main()
   basename = "diff_conf_hyperg";
   typedef double conf_hyperg(double, double, double);
   rundiff<double, double, double, double>( (conf_hyperg *)std::tr1::conf_hyperg,
-                                           wrap_gsl_sf_hyperg_1F1, basename,
+                                           gsl::hyperg_1F1, basename,
                                            "a", fill_argument( std::make_pair( 0.0, 10.0 ),
                                                                std::make_pair( true, true ), 11 ),
                                            "c", fill_argument( std::make_pair( 0.0, 10.0 ),
@@ -161,7 +161,7 @@ main()
   basename = "diff_cyl_bessel_i";
   typedef double cyl_bessel_i(double, double);
   rundiff<double, double, double>( (cyl_bessel_i*)std::tr1::cyl_bessel_i,
-                                   wrap_gsl_sf_bessel_Inu, basename,
+                                   gsl::bessel_Inu, basename,
                                    "nu", vborderd,
                                    "x", fill_argument( std::make_pair( 0.0, 100.0 ),
                                                        std::make_pair( true, true ), 1001 ) );
@@ -172,7 +172,7 @@ main()
   basename = "diff_cyl_bessel_j";
   typedef double cyl_bessel_j(double, double);
   rundiff<double, double, double>( (cyl_bessel_j*)std::tr1::cyl_bessel_j,
-                                   wrap_gsl_sf_bessel_Jnu, basename,
+                                   gsl::bessel_Jnu, basename,
                                    "nu", vborderd,
                                    "x", fill_argument( std::make_pair( 0.0, 100.0 ),
                                                        std::make_pair( true, true ), 1001 ) );
@@ -184,7 +184,7 @@ main()
   basename = "diff_cyl_bessel_k";
   typedef double cyl_bessel_k(double, double);
   rundiff<double, double, double>( (cyl_bessel_k*)std::tr1::cyl_bessel_k,
-                                   wrap_gsl_sf_bessel_Knu, basename,
+                                   gsl::bessel_Knu, basename,
                                    "nu", vborderd,
                                    "x", fill_argument( std::make_pair( 0.0, 100.0 ),
                                                        std::make_pair( false, true ), 1001 ) );
@@ -196,7 +196,7 @@ main()
   basename = "diff_cyl_neumann";
   typedef double cyl_neumann(double, double);
   rundiff<double, double, double>( (cyl_neumann*)std::tr1::cyl_neumann,
-                                   wrap_gsl_sf_bessel_Ynu, basename,
+                                   gsl::bessel_Ynu, basename,
                                    "nu", vborderd,
                                    "x", fill_argument( std::make_pair( 0.0, 100.0 ),
                                                        std::make_pair( false, true ), 1001 ) );
@@ -208,7 +208,7 @@ main()
   basename = "diff_ellint_1";
   typedef double ellint_1(double, double);
   rundiff<double, double, double>( (ellint_1*)std::tr1::ellint_1,
-                                   wrap_gsl_sf_ellint_F, basename,
+                                   gsl::ellint_F, basename,
                                    "k", fill_argument( std::make_pair( -1.0, 1.0 ),
                                                        std::make_pair( false, false ) ),
                                    "phi", vphid );
@@ -220,7 +220,7 @@ main()
   basename = "diff_ellint_2";
   typedef double ellint_2(double, double);
   rundiff<double, double, double>( (ellint_2*)std::tr1::ellint_2,
-                                   wrap_gsl_sf_ellint_E, basename,
+                                   gsl::ellint_E, basename,
                                    "k", fill_argument( std::make_pair( -1.0, 1.0 ),
                                                        std::make_pair( false, false ) ),
                                    "phi", vphid );
@@ -232,7 +232,7 @@ main()
   basename = "diff_ellint_3";
   typedef double ellint_3(double, double, double);
   rundiff<double, double, double, double>( (ellint_3*)std::tr1::ellint_3,
-                                           wrap_gsl_sf_ellint_P, basename,
+                                           gsl::ellint_P, basename,
                                            "k", fill_argument( std::make_pair( -1.0, 1.0 ),
                                                                std::make_pair( false, false ) ),
                                            "nu", vnud, "phi", vphid );
@@ -244,12 +244,12 @@ main()
   basename = "diff_expint_neg";
   typedef double expint(double);
   rundiff<double, double>( (expint*)std::tr1::expint,
-                           wrap_gsl_sf_expint_Ei, basename,
+                           gsl::expint_Ei, basename,
                            "x", fill_argument( std::make_pair( -50.0, 0.0 ),
                                                std::make_pair( true, false ), 51 ) );
   basename = "diff_expint_pos";
   rundiff<double, double>( (expint*)std::tr1::expint,
-                           wrap_gsl_sf_expint_Ei, basename,
+                           gsl::expint_Ei, basename,
                            "x", fill_argument( std::make_pair( 0.0, 50.0 ),
                                                std::make_pair( false, true ), 51 ) );
 
@@ -270,7 +270,7 @@ main()
   basename = "diff_hyperg";
   typedef double hyperg(double, double, double, double);
   rundiff<double, double, double, double, double>( (hyperg*)std::tr1::hyperg,
-                                                   wrap_gsl_sf_hyperg_2F1, basename,
+                                                   gsl::hyperg_2F1, basename,
                                                    "a", fill_argument( std::make_pair( 0.0, 10.0 ),
                                                                        std::make_pair( true, true ), 11 ),
                                                    "b", fill_argument( std::make_pair( 0.0, 10.0 ),
@@ -286,7 +286,7 @@ main()
   basename = "diff_laguerre";
   typedef double laguerre(unsigned int, double);
   rundiff<double, unsigned int, double>( (laguerre*)std::tr1::laguerre,
-                                         wrap_gsl_sf_laguerre_n, basename,
+                                         gsl::laguerre_n, basename,
                                          "n", vorder,
                                          "x", fill_argument( std::make_pair( 0.0, 100.0 ),
                                                              std::make_pair( true, true ), 1001 ) );
@@ -297,7 +297,7 @@ main()
   basename = "diff_legendre";
   typedef double legendre(unsigned int, double);
   rundiff<double, unsigned int, double>( (legendre*)std::tr1::legendre,
-                                         wrap_gsl_sf_legendre_Pl, basename,
+                                         gsl::legendre_Pl, basename,
                                          "l", vorder,
                                          "x", fill_argument( std::make_pair( -1.0, 1.0 ),
                                                              std::make_pair( true, true ), 1001 ) );
@@ -309,12 +309,12 @@ main()
   basename = "diff_riemann_zeta_neg";
   typedef double riemann_zeta(double);
   rundiff<double, double>( (riemann_zeta*)std::tr1::riemann_zeta,
-                           wrap_gsl_sf_zeta, basename,
+                           gsl::zeta, basename,
                            "x", fill_argument( std::make_pair( -10.0, 1.0 ),
                                                std::make_pair( true, false ), 56 ) );
   basename = "diff_riemann_zeta_pos";
   rundiff<double, double>( (riemann_zeta*)std::tr1::riemann_zeta,
-                           wrap_gsl_sf_zeta, basename,
+                           gsl::zeta, basename,
                            "x", fill_argument( std::make_pair( 1.0, 30.0 ),
                                                std::make_pair( false, true ), 146 ) );
 
@@ -324,7 +324,7 @@ main()
   basename = "diff_sph_bessel";
   typedef double sph_bessel(unsigned int, double);
   rundiff<double, unsigned int, double>( (sph_bessel*)std::tr1::sph_bessel,
-                                         wrap_gsl_sf_bessel_jl, basename,
+                                         gsl::bessel_jl, basename,
                                          "n", sborder,
                                          "x", fill_argument( std::make_pair( 0.0, 100.0 ),
                                                              std::make_pair( true, true ), 1001 ) );
@@ -335,7 +335,7 @@ main()
   basename = "diff_sph_legendre";
   typedef double sph_legendre(unsigned int, unsigned int, double);
   rundiff<double, unsigned int, unsigned int, double>( (sph_legendre*)std::tr1::sph_legendre,
-                                                       wrap_gsl_sf_legendre_sphPlm, basename,
+                                                       gsl::legendre_sphPlm, basename,
                                                        "l", vorder, "m", vorder,
                                                        "theta", fill_argument( std::make_pair( 0.0, static_cast<double>(M_PI) ),
                                                                                std::make_pair( true, true ), 1001 ) );
@@ -347,7 +347,7 @@ main()
   basename = "diff_sph_neumann";
   typedef double sph_neumann(unsigned int, double);
   rundiff<double, unsigned int, double>( (sph_neumann*)std::tr1::sph_neumann,
-                                         wrap_gsl_sf_bessel_yl, basename,
+                                         gsl::bessel_yl, basename,
                                          "n", sborder,
                                          "x", fill_argument( std::make_pair( 0.0, 100.0 ),
                                                              std::make_pair( false, true ), 1001 ) );

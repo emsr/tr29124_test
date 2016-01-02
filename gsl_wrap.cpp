@@ -11,17 +11,19 @@
 
 #include "gsl_wrap.h"
 
+namespace gsl
+{
 
 ///  Airy Ai functions.
 double
-wrap_gsl_sf_airy_ai(double x)
+airy_ai(double x)
 {
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_airy_Ai_e(x, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_airy_ai:");
+      std::ostringstream msg("Error in airy_ai:");
       msg << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -32,14 +34,14 @@ wrap_gsl_sf_airy_ai(double x)
 
 ///  Airy Bi functions.
 double
-wrap_gsl_sf_airy_bi(double x)
+airy_bi(double x)
 {
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_airy_Bi_e(x, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_airy_bi:");
+      std::ostringstream msg("Error in airy_bi:");
       msg << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -48,15 +50,15 @@ wrap_gsl_sf_airy_bi(double x)
 }
 
 
-///  5.2.1.1  Associated Laguerre polynomials.
+///  Associated Laguerre polynomials.
 double
-wrap_gsl_sf_laguerre_nm(unsigned int n, unsigned int m, double x)
+laguerre_nm(unsigned int n, unsigned int m, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_laguerre_n_e(static_cast<int>(n), static_cast<int>(m), x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_laguerre_nm:");
+      std::ostringstream msg("Error in laguerre_nm:");
       msg << " n=" << n << " m=" << m << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -65,9 +67,9 @@ wrap_gsl_sf_laguerre_nm(unsigned int n, unsigned int m, double x)
 }
 
 
-///  5.2.1.2  Associated Legendre functions.
+///  Associated Legendre functions.
 double
-wrap_gsl_sf_legendre_Plm(unsigned int l, unsigned int m, double x)
+legendre_Plm(unsigned int l, unsigned int m, double x)
 {
   if (l < m)
    return 0.0;
@@ -77,7 +79,7 @@ wrap_gsl_sf_legendre_Plm(unsigned int l, unsigned int m, double x)
       int stat = gsl_sf_legendre_Plm_e(static_cast<int>(l), static_cast<int>(m), x, &result);
       if (stat != GSL_SUCCESS)
         {
-          std::ostringstream msg("Error in wrap_gsl_sf_legendre_Plm:");
+          std::ostringstream msg("Error in legendre_Plm:");
           msg << " l=" << l << " m=" << m << " x=" << x;
           throw std::runtime_error(msg.str());
         }
@@ -87,15 +89,15 @@ wrap_gsl_sf_legendre_Plm(unsigned int l, unsigned int m, double x)
 }
 
 
-///  5.2.1.3  Beta function.
+///  Beta function.
 double
-wrap_gsl_sf_beta(double x, double y)
+beta(double x, double y)
 {
   gsl_sf_result result;
   int stat = gsl_sf_beta_e(x, y, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_beta:");
+      std::ostringstream msg("Error in beta:");
       msg << " x=" << x << " y=" << y;
       throw std::runtime_error(msg.str());
     }
@@ -104,16 +106,16 @@ wrap_gsl_sf_beta(double x, double y)
 }
 
 
-///  5.2.1.4  Complete elliptic integrals of the first kind.
+///  Complete elliptic integrals of the first kind.
 double
-wrap_gsl_sf_ellint_Kcomp(double k)
+ellint_Kcomp(double k)
 {
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_ellint_Kcomp_e(k, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_ellint_Kcomp:");
+      std::ostringstream msg("Error in ellint_Kcomp:");
       msg << " k=" << k;
       throw std::runtime_error(msg.str());
     }
@@ -122,16 +124,16 @@ wrap_gsl_sf_ellint_Kcomp(double k)
 }
 
 
-///  5.2.1.5  Complete elliptic integrals of the second kind.
+///  Complete elliptic integrals of the second kind.
 double
-wrap_gsl_sf_ellint_Ecomp(double k)
+ellint_Ecomp(double k)
 {
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_ellint_Ecomp_e(k, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_ellint_Ecomp:");
+      std::ostringstream msg("Error in ellint_Ecomp:");
       msg << " k=" << k;
       throw std::runtime_error(msg.str());
     }
@@ -140,9 +142,9 @@ wrap_gsl_sf_ellint_Ecomp(double k)
 }
 
 
-///  5.2.1.6  Complete elliptic integrals of the third kind.
+///  Complete elliptic integrals of the third kind.
 double
-wrap_gsl_sf_ellint_Pcomp(double k, double nu)
+ellint_Pcomp(double k, double nu)
 {
   //double phi = M_PI / 2.0;
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
@@ -151,7 +153,7 @@ wrap_gsl_sf_ellint_Pcomp(double k, double nu)
   int stat = gsl_sf_ellint_Pcomp_e(k, nu, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_ellint_Pcomp:");
+      std::ostringstream msg("Error in ellint_Pcomp:");
       msg << " k=" << k << " nu=" << nu;
       throw std::runtime_error(msg.str());
     }
@@ -160,15 +162,15 @@ wrap_gsl_sf_ellint_Pcomp(double k, double nu)
 }
 
 
-///  5.2.1.7  Confluent hypergeometric functions.
+///  Confluent hypergeometric functions.
 double
-wrap_gsl_sf_hyperg_1F1(double a, double c, double x)
+hyperg_1F1(double a, double c, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_hyperg_1F1_e(a, c, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_hyperg_1F1:");
+      std::ostringstream msg("Error in hyperg_1F1:");
       msg << " a=" << a << " c=" << c << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -177,15 +179,32 @@ wrap_gsl_sf_hyperg_1F1(double a, double c, double x)
 }
 
 
-///  5.2.1.8  Regular modified cylindrical Bessel functions.
+///  Confluent hypergeometric limit functions.
 double
-wrap_gsl_sf_bessel_Inu(double nu, double x)
+hyperg_0F1(double c, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_hyperg_0F1_e(c, x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in hyperg_0F1:");
+      msg << " c=" << c << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+
+///  Regular modified cylindrical Bessel functions.
+double
+bessel_Inu(double nu, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_bessel_Inu_e(nu, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_bessel_Inu:");
+      std::ostringstream msg("Error in bessel_Inu:");
       msg << " nu=" << nu << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -194,15 +213,15 @@ wrap_gsl_sf_bessel_Inu(double nu, double x)
 }
 
 
-///  5.2.1.9  Cylindrical Bessel functions (of the first kind).
+///  Cylindrical Bessel functions (of the first kind).
 double
-wrap_gsl_sf_bessel_Jnu(double nu, double x)
+bessel_Jnu(double nu, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_bessel_Jnu_e(nu, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_bessel_Jnu:");
+      std::ostringstream msg("Error in bessel_Jnu:");
       msg << " nu=" << nu << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -211,28 +230,28 @@ wrap_gsl_sf_bessel_Jnu(double nu, double x)
 }
 
 
-///  5.2.1.9  Cylindrical Bessel functions (of the first kind).
+///  Cylindrical Bessel functions (of the first kind).
 //double
-//wrap_gsl_sf_bessel_Jnu_asymp(double nu, double x)
+//bessel_Jnu_asymp(double nu, double x)
 //{
 //  gsl_sf_result result;
 //  int stat = gsl_sf_bessel_Jnu_asympx_e(nu, x, &result);
 //  if (stat != GSL_SUCCESS)
-//    throw std::runtime_error("Error in wrap_gsl_sf_bessel_Jnu_asymp");
+//    throw std::runtime_error("Error in bessel_Jnu_asymp");
 //  else
 //    return result.val;
 //}
 
 
-///  5.2.1.10  Irregular modified cylindrical Bessel functions.
+///  Irregular modified cylindrical Bessel functions.
 double
-wrap_gsl_sf_bessel_Knu(double nu, double x)
+bessel_Knu(double nu, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_bessel_Knu_e(nu, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_bessel_Knu:");
+      std::ostringstream msg("Error in bessel_Knu:");
       msg << " nu=" << nu << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -241,15 +260,15 @@ wrap_gsl_sf_bessel_Knu(double nu, double x)
 }
 
 
-///  5.2.1.11  Cylindrical Neumann functions.
+///  Cylindrical Neumann functions.
 double
-wrap_gsl_sf_bessel_Ynu(double nu, double x)
+bessel_Ynu(double nu, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_bessel_Ynu_e(nu, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_bessel_Ynu:");
+      std::ostringstream msg("Error in bessel_Ynu:");
       msg << " nu=" << nu << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -258,29 +277,29 @@ wrap_gsl_sf_bessel_Ynu(double nu, double x)
 }
 
 
-///  5.2.1.11  Cylindrical Neumann functions.
+///  Cylindrical Neumann functions.
 //double
-//wrap_gsl_sf_bessel_Ynu_asymp(double nu, double x)
+//bessel_Ynu_asymp(double nu, double x)
 //{
 //  gsl_sf_result result;
 //  int stat = gsl_sf_bessel_Ynu_asympx_e(nu, x, &result);
 //  if (stat != GSL_SUCCESS)
-//    throw std::runtime_error("Error in wrap_gsl_sf_bessel_Ynu_asymp");
+//    throw std::runtime_error("Error in bessel_Ynu_asymp");
 //  else
 //    return result.val;
 //}
 
 
-///  5.2.1.12  Elliptic integrals of the first kind.
+///  Elliptic integrals of the first kind.
 double
-wrap_gsl_sf_ellint_F(double k, double phi)
+ellint_F(double k, double phi)
 {
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_ellint_F_e(phi, k, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_ellint_F:");
+      std::ostringstream msg("Error in ellint_F:");
       msg << " k=" << k << " phi=" << phi;
       throw std::runtime_error(msg.str());
     }
@@ -289,16 +308,16 @@ wrap_gsl_sf_ellint_F(double k, double phi)
 }
 
 
-///  5.2.1.13  Elliptic integrals of the second kind.
+///  Elliptic integrals of the second kind.
 double
-wrap_gsl_sf_ellint_E(double k, double phi)
+ellint_E(double k, double phi)
 {
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_ellint_E_e(phi, k, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_ellint_E:");
+      std::ostringstream msg("Error in ellint_E:");
       msg << " phi=" << phi << " k=" << k;
       throw std::runtime_error(msg.str());
     }
@@ -307,16 +326,16 @@ wrap_gsl_sf_ellint_E(double k, double phi)
 }
 
 
-///  5.2.1.14  Elliptic integrals of the third kind.
+///  Elliptic integrals of the third kind.
 double
-wrap_gsl_sf_ellint_P(double k, double nu, double phi)
+ellint_P(double k, double nu, double phi)
 {
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_ellint_P_e(phi, k, nu, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_ellint_P:");
+      std::ostringstream msg("Error in ellint_P:");
       msg << " k=" << k << " nu=" << nu << " phi=" << phi;
       throw std::runtime_error(msg.str());
     }
@@ -327,7 +346,7 @@ wrap_gsl_sf_ellint_P(double k, double nu, double phi)
 
 ///  Carlson elliptic integrals.
 double
-wrap_gsl_sf_ellint_RC(double x, double y)
+ellint_RC(double x, double y)
 {
   if (x == 0.0 && y == 0.0)
     return 0.0;
@@ -336,7 +355,7 @@ wrap_gsl_sf_ellint_RC(double x, double y)
   int stat = gsl_sf_ellint_RC_e(x, y, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_ellint_RC:");
+      std::ostringstream msg("Error in ellint_RC:");
       msg << " x=" << x << " y=" << y;
       throw std::runtime_error(msg.str());
     }
@@ -344,8 +363,10 @@ wrap_gsl_sf_ellint_RC(double x, double y)
     return result.val;
 }
 
+
+
 double
-wrap_gsl_sf_ellint_RD(double x, double y, double z)
+ellint_RD(double x, double y, double z)
 {
   if (x == 0.0 && y == 0.0 && z == 0.0)
     return 0.0;
@@ -354,7 +375,7 @@ wrap_gsl_sf_ellint_RD(double x, double y, double z)
   int stat = gsl_sf_ellint_RD_e(x, y, z, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_ellint_RD:");
+      std::ostringstream msg("Error in ellint_RD:");
       msg << " x=" << x << " y=" << y << " z=" << z;
       throw std::runtime_error(msg.str());
     }
@@ -362,8 +383,10 @@ wrap_gsl_sf_ellint_RD(double x, double y, double z)
     return result.val;
 }
 
+
+
 double
-wrap_gsl_sf_ellint_RF(double x, double y, double z)
+ellint_RF(double x, double y, double z)
 {
   if (x == 0.0 && y == 0.0 && z == 0.0)
     return 0.0;
@@ -372,7 +395,7 @@ wrap_gsl_sf_ellint_RF(double x, double y, double z)
   int stat = gsl_sf_ellint_RF_e(x, y, z, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_ellint_RF:");
+      std::ostringstream msg("Error in ellint_RF:");
       msg << " x=" << x << " y=" << y << " z=" << z;
       throw std::runtime_error(msg.str());
     }
@@ -380,8 +403,9 @@ wrap_gsl_sf_ellint_RF(double x, double y, double z)
     return result.val;
 }
 
+
 double
-wrap_gsl_sf_ellint_RJ(double x, double y, double z, double p)
+ellint_RJ(double x, double y, double z, double p)
 {
   if (x == 0.0 && y == 0.0 && z == 0.0)
     return 0.0;
@@ -390,7 +414,7 @@ wrap_gsl_sf_ellint_RJ(double x, double y, double z, double p)
   int stat = gsl_sf_ellint_RJ_e(x, y, z, p, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_ellint_RJ:");
+      std::ostringstream msg("Error in ellint_RJ:");
       msg << " x=" << x << " y=" << y << " z=" << z << " p=" << p;
       throw std::runtime_error(msg.str());
     }
@@ -399,15 +423,15 @@ wrap_gsl_sf_ellint_RJ(double x, double y, double z, double p)
 }
 
 
-///  5.2.1.15  Exponential integral.
+///  Exponential integral.
 double
-wrap_gsl_sf_expint_Ei(double x)
+expint_Ei(double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_expint_Ei_e(x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_expint_Ei:");
+      std::ostringstream msg("Error in expint_Ei:");
       msg << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -415,34 +439,29 @@ wrap_gsl_sf_expint_Ei(double x)
     return result.val;
 }
 
-
-///  5.2.1.17  Hypergeometric functions.
 double
-wrap_gsl_sf_hyperg_2F1(double a, double b, double c, double x)
+expint_E1(double x)
 {
   gsl_sf_result result;
-  int stat = gsl_sf_hyperg_2F1_e(a, b, c, x, &result);
+  int stat = gsl_sf_expint_E1_e(x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_hyperg_2F1:");
-      msg << " a=" << a << " b=" << b << " c=" << c << " x=" << x;
+      std::ostringstream msg("Error in expint_E1:");
+      msg << " x=" << x;
       throw std::runtime_error(msg.str());
     }
   else
     return result.val;
 }
 
-
-///  5.2.1.18  Laguerre polynomials.
 double
-wrap_gsl_sf_laguerre_n(unsigned int n, double x)
+expint_En(int n, double x)
 {
-  int m = 0;
   gsl_sf_result result;
-  int stat = gsl_sf_laguerre_n_e(static_cast<int>(n), m, x, &result);
+  int stat = gsl_sf_expint_En_e(n, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_laguerre_n:");
+      std::ostringstream msg("Error in expint_En:");
       msg << " n=" << n << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -451,15 +470,50 @@ wrap_gsl_sf_laguerre_n(unsigned int n, double x)
 }
 
 
-///  5.2.1.19  Legendre polynomials.
+///  Hypergeometric functions.
 double
-wrap_gsl_sf_legendre_Pl(unsigned int l, double x)
+hyperg_2F1(double a, double b, double c, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_hyperg_2F1_e(a, b, c, x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in hyperg_2F1:");
+      msg << " a=" << a << " b=" << b << " c=" << c << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+
+///  Laguerre polynomials.
+double
+laguerre_n(unsigned int n, double x)
+{
+  int m = 0;
+  gsl_sf_result result;
+  int stat = gsl_sf_laguerre_n_e(static_cast<int>(n), m, x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in laguerre_n:");
+      msg << " n=" << n << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+
+///  Legendre polynomials.
+double
+legendre_Pl(unsigned int l, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_legendre_Pl_e(static_cast<int>(l), x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_legendre_Pl:");
+      std::ostringstream msg("Error in legendre_Pl:");
       msg << " l=" << l << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -468,15 +522,15 @@ wrap_gsl_sf_legendre_Pl(unsigned int l, double x)
 }
 
 
-///  5.2.1.20  Riemann zeta function.
+///  Riemann zeta function.
 double
-wrap_gsl_sf_zeta(double x)
+zeta(double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_zeta_e(x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_zeta:");
+      std::ostringstream msg("Error in zeta:");
       msg << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -487,13 +541,13 @@ wrap_gsl_sf_zeta(double x)
 
 ///  Hurwitz zeta function.
 double
-wrap_gsl_sf_hzeta(double s, double x)
+hzeta(double s, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_hzeta_e(s, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_hzeta:");
+      std::ostringstream msg("Error in hzeta:");
       msg << " s=" << s << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -502,15 +556,15 @@ wrap_gsl_sf_hzeta(double s, double x)
 }
 
 
-///  5.2.1.21  Spherical Bessel functions.
+///  Spherical Bessel functions.
 double
-wrap_gsl_sf_bessel_jl(unsigned int n, double x)
+bessel_jl(unsigned int n, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_bessel_jl_e(static_cast<int>(n), x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_bessel_jl:");
+      std::ostringstream msg("Error in bessel_jl:");
       msg << " n=" << n << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -519,9 +573,9 @@ wrap_gsl_sf_bessel_jl(unsigned int n, double x)
 }
 
 
-///  5.2.1.22  Spherical Legendre functions.
+///  Spherical Legendre functions.
 double
-wrap_gsl_sf_legendre_sphPlm(unsigned int l, unsigned int m, double theta)
+legendre_sphPlm(unsigned int l, unsigned int m, double theta)
 {
   double x = std::cos(theta);
   if (l < m)
@@ -532,7 +586,7 @@ wrap_gsl_sf_legendre_sphPlm(unsigned int l, unsigned int m, double theta)
       int stat = gsl_sf_legendre_sphPlm_e(static_cast<int>(l), static_cast<int>(m), x, &result);
       if (stat != GSL_SUCCESS)
         {
-          std::ostringstream msg("Error in wrap_gsl_sf_legendre_sphPlm");
+          std::ostringstream msg("Error in legendre_sphPlm");
           msg << " l=" << l << " m=" << m << " theta=" << theta;
           throw std::runtime_error(msg.str());
         }
@@ -542,15 +596,15 @@ wrap_gsl_sf_legendre_sphPlm(unsigned int l, unsigned int m, double theta)
 }
 
 
-///  5.2.1.23  Spherical Neumann functions.
+///  Spherical Neumann functions.
 double
-wrap_gsl_sf_bessel_yl(unsigned int n, double x)
+bessel_yl(unsigned int n, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_bessel_yl_e(static_cast<int>(n), x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_bessel_yl:");
+      std::ostringstream msg("Error in bessel_yl:");
       msg << " n=" << n << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -558,14 +612,16 @@ wrap_gsl_sf_bessel_yl(unsigned int n, double x)
     return result.val;
 }
 
+
+
 double
-wrap_gsl_sf_gamma_inc_Q(double a, double x)
+gamma_inc_Q(double a, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_gamma_inc_Q_e(a, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_gamma_inc_Q:");
+      std::ostringstream msg("Error in gamma_inc_Q:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -573,14 +629,16 @@ wrap_gsl_sf_gamma_inc_Q(double a, double x)
     return result.val;
 }
 
+
+
 double
-wrap_gsl_sf_gamma_inc_P(double a, double x)
+gamma_inc_P(double a, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_gamma_inc_P_e(a, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_gamma_inc_P:");
+      std::ostringstream msg("Error in gamma_inc_P:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -588,14 +646,16 @@ wrap_gsl_sf_gamma_inc_P(double a, double x)
     return result.val;
 }
 
+
+
 double
-wrap_gsl_sf_gamma_inc(double a, double x)
+gamma_inc(double a, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_gamma_inc_e(a, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_gamma_inc:");
+      std::ostringstream msg("Error in gamma_inc:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -603,14 +663,16 @@ wrap_gsl_sf_gamma_inc(double a, double x)
     return result.val;
 }
 
+
+
 double
-wrap_gsl_sf_beta_inc(double a, double b, double x)
+beta_inc(double a, double b, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_beta_inc_e(a, b, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_beta_inc:");
+      std::ostringstream msg("Error in beta_inc:");
       msg << " a=" << a << " b=" << b << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -618,14 +680,16 @@ wrap_gsl_sf_beta_inc(double a, double b, double x)
     return result.val;
 }
 
+
+///  Dilogarithm function.
 double
-wrap_gsl_sf_dilog(double x)
+dilog(double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_dilog_e(x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_dilog:");
+      std::ostringstream msg("Error in dilog:");
       msg << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -633,17 +697,157 @@ wrap_gsl_sf_dilog(double x)
     return result.val;
 }
 
+
+///  Digamma function.
 double
-wrap_gsl_sf_psi(double x)
+psi(double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_psi_e(x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in wrap_gsl_sf_psi:");
+      std::ostringstream msg("Error in psi:");
       msg << " x=" << x;
       throw std::runtime_error(msg.str());
     }
   else
     return result.val;
 }
+
+
+///  Sine integral.
+double
+Si(double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_Si_e(x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in Si:");
+      msg << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+
+///  Cosine integral.
+double
+Ci(double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_Ci_e(x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in Ci:");
+      msg << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+
+///  Hyperbolic sine integral.
+double
+Shi(double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_Shi_e(x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in Shi:");
+      msg << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+
+///  Hyperbolic cosine integral.
+double
+Chi(double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_Chi_e(x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in Chi:");
+      msg << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+
+///  Gegenbauer polynomials.
+double
+gegenpoly_n(int n, double lambda, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_gegenpoly_n_e(n, lambda, x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in gegenpoly_n:");
+      msg << " n=" << n << " lambda=" << lambda << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+
+///  Hydrogen wave functions.
+double
+hydrogen(int n, double l, double Z, double r)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_hydrogenicR_e(n, l, Z, r, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in hydrogen:");
+      msg << " n=" << n << " l=" << l << " Z=" << Z << " r=" << r;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+
+///  Dawson integral.
+double
+dawson(double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_dawson_e(x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in dawson:");
+      msg << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+
+///  Jacobian elliptic integrals.
+void
+elljac(double u, double m, double& sn, double& cn, double& dn)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_elljac_e(u, m, &sn, &cn, &dn);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in elljac:");
+      msg << " u=" << u << " m=" << m;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return;
+}
+
+} // namespace gsl

@@ -456,8 +456,8 @@ main()
       auto x = i * 0.05;
       auto Ai = __gnu_cxx::airy_ai(x);
       auto Bi = __gnu_cxx::airy_bi(x);
-      auto Ai_gsl = wrap_gsl_sf_airy_ai(x);
-      auto Bi_gsl = wrap_gsl_sf_airy_bi(x);
+      auto Ai_gsl = gsl::airy_ai(x);
+      auto Bi_gsl = gsl::airy_bi(x);
       //double Ai_tr1, Bi_tr1, Aip_tr1, Bip_tr1;
       //std::tr1::__detail::__airy(x, Ai_tr1, Bi_tr1, Aip_tr1, Bip_tr1);
       std::cout << ' ' << std::setw(8) << x
@@ -497,6 +497,6 @@ main()
   new_bessel_chunk(nu, x, J, Y, Jp, Yp);
   std::cout << "NEW: Jnu=" << J << '\n';
   std::cout << "NEW: Nnu=" << Y << '\n';
-  std::cout << "GSL: Jnu=" << wrap_gsl_sf_bessel_Jnu(nu, x) << '\n';
-  std::cout << "GSL: Nnu=" << wrap_gsl_sf_bessel_Ynu(nu, x) << '\n';
+  std::cout << "GSL: Jnu=" << gsl::bessel_Jnu(nu, x) << '\n';
+  std::cout << "GSL: Nnu=" << gsl::bessel_Ynu(nu, x) << '\n';
 }

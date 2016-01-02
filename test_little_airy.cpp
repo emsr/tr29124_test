@@ -27,8 +27,8 @@ main()
   for (auto i = -200; i <= +200; ++i)
     {
       t = i * 0.05;
-      auto Ai_gsl = wrap_gsl_sf_airy_ai(std::real(t));
-      auto Bi_gsl = wrap_gsl_sf_airy_bi(std::real(t));
+      auto Ai_gsl = gsl::airy_ai(std::real(t));
+      auto Bi_gsl = gsl::airy_bi(std::real(t));
       airy(t, Ai, Aip, Bi, Bip, w1, w1p, w2, w2p);
       std::cout << ' ' << std::setw(8) << std::real(t)
                 << ' ' << std::setw(20) << std::real(Ai)

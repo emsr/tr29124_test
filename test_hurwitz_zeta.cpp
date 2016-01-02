@@ -258,7 +258,7 @@ main()
   using _Tp = long double;
 
   std::cout.precision(std::numeric_limits<_Tp>::max_digits10);
-  auto width = std::numeric_limits<_Tp>::max_digits10 + 4;
+  auto width = std::numeric_limits<_Tp>::max_digits10 + 6;
 
   _Tp __fact{1};
   for (auto i = 1; i < 100; ++i)

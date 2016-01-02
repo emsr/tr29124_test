@@ -53,6 +53,9 @@ all: diff_special_function \
 testcases: testcase
 	LD_LIBRARY_PATH=/home/ed/bin_specfun/lib64:$$LD_LIBRARY_PATH ./testcase
 
+testcases_new: testcase_new
+	LD_LIBRARY_PATH=/home/ed/bin_specfun/lib64:$$LD_LIBRARY_PATH ./testcase_new
+
 test:
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_airy > test_airy.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_csint > test_csint.txt
