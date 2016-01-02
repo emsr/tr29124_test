@@ -134,7 +134,7 @@ template<typename _Tp>
     //  Airy Ai functions.
     std::cout << "airy_ai" << std::endl;
     basename = "gsl_airy_ai";
-    runtest<double, double>(wrap_gsl_sf_airy_ai, basename,
+    runtest<double, double>(gsl::airy_ai, basename,
 			    fill_argument(std::make_pair(-10.0, +10.0),
 					  std::make_pair(true, true), 41));
     basename = ns + "_airy_ai";
@@ -145,7 +145,7 @@ template<typename _Tp>
     //  Airy Bi functions.
     std::cout << "airy_bi" << std::endl;
     basename = "gsl_airy_bi";
-    runtest<double, double>(wrap_gsl_sf_airy_bi, basename,
+    runtest<double, double>(gsl::airy_bi, basename,
 			    fill_argument(std::make_pair(-10.0, +10.0),
 					  std::make_pair(true, true), 41));
     basename = ns + "_airy_bi";
@@ -170,7 +170,7 @@ template<typename _Tp>
     //  Associated Legendre functions.
     std::cout << "assoc_legendre" << std::endl;
     basename = "gsl_assoc_legendre";
-    runtest<double, unsigned int, unsigned int, double>(wrap_gsl_sf_legendre_Plm, basename, uiorder, uiorder,
+    runtest<double, unsigned int, unsigned int, double>(gsl::legendre_Plm, basename, uiorder, uiorder,
 							fill_argument(std::make_pair(-1.0, 1.0),
 								      std::make_pair(true, true),
 							1001));
@@ -184,7 +184,7 @@ template<typename _Tp>
     //  Beta function.
     std::cout << "beta" << std::endl;
     basename = "gsl_beta";
-    runtest<double, double, double>(wrap_gsl_sf_beta, basename,
+    runtest<double, double, double>(gsl::beta, basename,
 				    fill_argument(std::make_pair(0.0, 100.0),
 						  std::make_pair(false, true)),
 				    fill_argument(std::make_pair(0.0, 100.0),
@@ -201,7 +201,7 @@ template<typename _Tp>
     std::cout << "comp_ellint_1" << std::endl;
     basename = ns + "_comp_ellint_1";
     basename = "gsl_comp_ellint_1";
-    runtest<double, double>(wrap_gsl_sf_ellint_Kcomp, basename,
+    runtest<double, double>(gsl::ellint_Kcomp, basename,
 			    fill_argument(std::make_pair(-1.0, 1.0),
 					  std::make_pair(false, false)));  //  Avoid poles at |x| = 1.
     basename = ns + "_comp_ellint_1";
@@ -213,7 +213,7 @@ template<typename _Tp>
     //  Complete elliptic integrals of the second kind.
     std::cout << "comp_ellint_2" << std::endl;
     basename = "gsl_comp_ellint_2";
-    runtest<double, double>(wrap_gsl_sf_ellint_Ecomp, basename,
+    runtest<double, double>(gsl::ellint_Ecomp, basename,
 			    fill_argument(std::make_pair(-1.0, 1.0),
 					  std::make_pair(false, false)));  //  Avoid poles at |x| = 1.
     basename = ns + "_comp_ellint_2";
@@ -226,7 +226,7 @@ template<typename _Tp>
     //  Avoid poles at |x| = 1 and at nu = 1.
     std::cout << "comp_ellint_3" << std::endl;
     basename = "gsl_comp_ellint_3";
-    runtest<double, double, double>(wrap_gsl_sf_ellint_Pcomp, basename,
+    runtest<double, double, double>(gsl::ellint_Pcomp, basename,
 				    fill_argument(std::make_pair(-1.0, 1.0),
 						  std::make_pair(false, false)),
 				    fill_argument(std::make_pair(0.0, 1.0),
@@ -242,7 +242,7 @@ template<typename _Tp>
     //  Confluent hypergeometric functions.
     std::cout << "conf_hyperg" << std::endl;
     basename = "gsl_conf_hyperg";
-    runtest<double, double, double, double>(wrap_gsl_sf_hyperg_1F1,
+    runtest<double, double, double, double>(gsl::hyperg_1F1,
 					    basename,
 					    fill_argument(std::make_pair(0.0, 10.0),
 							  std::make_pair(true, true), 11),
@@ -313,7 +313,7 @@ template<typename _Tp>
     //  Elliptic integrals of the first kind.
     std::cout << "ellint_1" << std::endl;
     basename = "gsl_ellint_1";
-    runtest<double, double, double>(wrap_gsl_sf_ellint_F,
+    runtest<double, double, double>(gsl::ellint_F,
 				    basename,
 				    fill_argument(std::make_pair(-1.0, 1.0),
 						  std::make_pair(false, false)),  //  Avoid poles at |x| = 1.
@@ -328,7 +328,7 @@ template<typename _Tp>
     //  Elliptic integrals of the second kind.
     std::cout << "ellint_2" << std::endl;
     basename = "gsl_ellint_2";
-    runtest<double, double, double>(wrap_gsl_sf_ellint_E, basename,
+    runtest<double, double, double>(gsl::ellint_E, basename,
 				    fill_argument(std::make_pair(-1.0, 1.0),
 						  std::make_pair(false, false)),  //  Avoid poles at |x| = 1.
 						  vphid);
@@ -342,7 +342,7 @@ template<typename _Tp>
     //  Avoid poles at |x| = 1 and at nu = 1.
     std::cout << "ellint_3" << std::endl;
     basename = "gsl_ellint_3";
-    runtest<double, double, double, double>(wrap_gsl_sf_ellint_P,
+    runtest<double, double, double, double>(gsl::ellint_P,
 					    basename,
 					    fill_argument(std::make_pair(-1.0, 1.0),
 							  std::make_pair(false, false)),
@@ -388,7 +388,7 @@ template<typename _Tp>
     //  Hypergeometric functions.
     std::cout << "hyperg" << std::endl;
     basename = "gsl_hyperg";
-    runtest<double, double, double, double, double>(wrap_gsl_sf_hyperg_2F1, basename,
+    runtest<double, double, double, double, double>(gsl::hyperg_2F1, basename,
 						    fill_argument(std::make_pair(0.0, 10.0),
 								  std::make_pair(true, true), 11),
 						    fill_argument(std::make_pair(0.0, 10.0),
@@ -412,7 +412,7 @@ template<typename _Tp>
     //  Laguerre polynomials.
     std::cout << "laguerre" << std::endl;
     basename = "gsl_laguerre";
-    runtest<double, unsigned int, double>(wrap_gsl_sf_laguerre_n, basename,
+    runtest<double, unsigned int, double>(gsl::laguerre_n, basename,
 					  uiorder,
 					  fill_argument(std::make_pair(0.0, 100.0),
 							std::make_pair(true, true)));
@@ -438,11 +438,11 @@ template<typename _Tp>
     std::cout << "riemann_zeta" << std::endl;
     //  Skip the pole at 1.
     basename = "gsl_riemann_zeta_neg";
-    runtest<double, double>(wrap_gsl_sf_zeta, basename,
+    runtest<double, double>(gsl::zeta, basename,
 			    fill_argument(std::make_pair(-10.0, 1.0),
 					  std::make_pair(true, false), 56));
     basename = "gsl_riemann_zeta_pos";
-    runtest<double, double>(wrap_gsl_sf_zeta, basename,
+    runtest<double, double>(gsl::zeta, basename,
 			    fill_argument(std::make_pair(1.0, 30.0),
 					  std::make_pair(false, true), 146));
     basename = ns + "_riemann_zeta";
@@ -455,7 +455,7 @@ template<typename _Tp>
     std::cout << "hurwitz_zeta" << std::endl;
     //  Skip the pole at 1.
     basename = "gsl_hurwitz_zeta";
-    runtest<double, double, double>(wrap_gsl_sf_hzeta, basename,
+    runtest<double, double, double>(gsl::hzeta, basename,
 				    fill_argument(std::make_pair(1.0, 30.0),
 						  std::make_pair(false, true), 146),
 				    fill_argument(std::make_pair(0.0, 5.0),
@@ -483,7 +483,7 @@ template<typename _Tp>
     //  Spherical Legendre functions.
     std::cout << "sph_legendre" << std::endl;
     basename = "gsl_sph_legendre";
-    runtest<double, unsigned int, unsigned int, double>(wrap_gsl_sf_legendre_sphPlm, basename, uiorder, uiorder,
+    runtest<double, unsigned int, unsigned int, double>(gsl::legendre_sphPlm, basename, uiorder, uiorder,
 							fill_argument(std::make_pair(0.0, static_cast<double>(M_PI)),
 								      std::make_pair(true, true), 1001));
     basename = ns + "_sph_legendre";
@@ -509,7 +509,7 @@ template<typename _Tp>
     //  Carlson elliptic functions R_C.
     std::cout << "ellint_rc" << std::endl;
     basename = "gsl_ellint_rc";
-    runtest<double, double, double>(wrap_gsl_sf_ellint_RC, basename,
+    runtest<double, double, double>(gsl::ellint_RC, basename,
 				    fill_argument(std::make_pair(0.0, 5.0),
 						  std::make_pair(false, true), 11),
 				    fill_argument(std::make_pair(0.0, 5.0),
@@ -524,7 +524,7 @@ template<typename _Tp>
     //  Carlson elliptic functions R_D.
     std::cout << "ellint_rd" << std::endl;
     basename = "gsl_ellint_rd";
-    runtest<double, double, double, double>(wrap_gsl_sf_ellint_RD, basename,
+    runtest<double, double, double, double>(gsl::ellint_RD, basename,
 					    fill_argument(std::make_pair(0.0, 5.0),
 							  std::make_pair(false, true), 11),
 					    fill_argument(std::make_pair(0.0, 5.0),
@@ -543,7 +543,7 @@ template<typename _Tp>
     //  Carlson elliptic functions R_F.
     std::cout << "ellint_rf" << std::endl;
     basename = "gsl_ellint_rf";
-    runtest<double, double, double, double>(wrap_gsl_sf_ellint_RF, basename,
+    runtest<double, double, double, double>(gsl::ellint_RF, basename,
 					    fill_argument(std::make_pair(0.0, 5.0),
 							  std::make_pair(false, true), 11),
 					    fill_argument(std::make_pair(0.0, 5.0),
@@ -562,7 +562,7 @@ template<typename _Tp>
     //  Carlson elliptic functions R_J.
     std::cout << "ellint_rj" << std::endl;
     basename = "gsl_ellint_rj";
-    runtest<double, double, double, double, double>(wrap_gsl_sf_ellint_RJ, basename,
+    runtest<double, double, double, double, double>(gsl::ellint_RJ, basename,
 						    fill_argument(std::make_pair(0.0, 5.0),
 								  std::make_pair(false, true), 11),
 						    fill_argument(std::make_pair(0.0, 5.0),
@@ -585,7 +585,7 @@ template<typename _Tp>
     //  Dilogarithm functions.
     std::cout << "dilog" << std::endl;
     basename = "gsl_dilog";
-    runtest<double, double>(wrap_gsl_sf_dilog, basename,
+    runtest<double, double>(gsl::dilog, basename,
 			    fill_argument(std::make_pair(-10.0, 1.0),
 					  std::make_pair(true, true), 23));
 
@@ -597,7 +597,7 @@ template<typename _Tp>
     //  Upper incomplete Gamma functions.
     std::cout << "gamma_u" << std::endl;
     basename = "gsl_gamma_u";
-    runtest<double, double, double>(wrap_gsl_sf_gamma_inc, basename,
+    runtest<double, double, double>(gsl::gamma_inc, basename,
 				    fill_argument(std::make_pair(0.0, 5.0),
 						  std::make_pair(false, true), 11),
 				    fill_argument(std::make_pair(0.0, 5.0),
@@ -613,7 +613,7 @@ template<typename _Tp>
     //  Incomplete Beta functions.
     std::cout << "ibeta" << std::endl;
     basename = "gsl_ibeta";
-    runtest<double, double, double, double>(wrap_gsl_sf_beta_inc, basename,
+    runtest<double, double, double, double>(gsl::beta_inc, basename,
 					    fill_argument(std::make_pair(0.0, 5.0),
 							  std::make_pair(false, true), 11),
 					    fill_argument(std::make_pair(5.0, 0.0),
@@ -632,7 +632,7 @@ template<typename _Tp>
     //  Digamma or psi functions.
     std::cout << "psi" << std::endl;
     basename = "gsl_psi";
-    runtest<double, double>(wrap_gsl_sf_psi, basename,
+    runtest<double, double>(gsl::psi, basename,
 			    fill_argument(std::make_pair(-9.875, 10.125),
 					  std::make_pair(true, true), 41));
 

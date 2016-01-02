@@ -58,19 +58,18 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *   @brief This returns Bernoulli numbers from a table or by summation
-   *          for larger values.
+   *  @brief This returns Bernoulli numbers from a table or by summation
+   *         for larger values.
    *
-   *   Recursion is unstable.
+   *  Recursion is unstable.
    *
-   *   @param __n the order n of the Bernoulli number.
-   *   @return  The Bernoulli number of order n.
+   *  @param __n the order n of the Bernoulli number.
+   *  @return  The Bernoulli number of order n.
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
     __bernoulli_series(unsigned int __n)
     {
-
       constexpr _Tp
       __num[28]
       {
@@ -138,12 +137,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief Return \f$log(\Gamma(x))\f$ by asymptotic expansion
-   *          with Bernoulli number coefficients.  This is like
-   *          Sterling's approximation.
+   *  @brief Return \f$log(\Gamma(x))\f$ by asymptotic expansion
+   *         with Bernoulli number coefficients.  This is like
+   *         Sterling's approximation.
    *
-   *   @param __x The argument of the log of the gamma function.
-   *   @return  The logarithm of the gamma function.
+   *  @param __x The argument of the log of the gamma function.
+   *  @return  The logarithm of the gamma function.
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
@@ -167,11 +166,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief Return \f$log(\Gamma(x))\f$ by the Lanczos method.
-   *          This method dominates all others on the positive axis I think.
+   *  @brief Return \f$log(\Gamma(x))\f$ by the Lanczos method.
+   *         This method dominates all others on the positive axis I think.
    *
-   *   @param __x The argument of the log of the gamma function.
-   *   @return  The logarithm of the gamma function.
+   *  @param __x The argument of the log of the gamma function.
+   *  @return  The logarithm of the gamma function.
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
@@ -210,13 +209,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief Return \f$ log(|\Gamma(x)|) \f$.
-   *          This will return values even for \f$ x < 0 \f$.
-   *          To recover the sign of \f$ \Gamma(x) \f$ for
-   *          any argument use @a __log_gamma_sign.
+   *  @brief Return \f$ log(|\Gamma(x)|) \f$.
+   *         This will return values even for \f$ x < 0 \f$.
+   *         To recover the sign of \f$ \Gamma(x) \f$ for
+   *         any argument use @a __log_gamma_sign.
    *
-   *   @param __x The argument of the log of the gamma function.
-   *   @return  The logarithm of the gamma function.
+   *  @param __x The argument of the log of the gamma function.
+   *  @return  The logarithm of the gamma function.
    */
   template<typename _Tp>
     _Tp
@@ -260,7 +259,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const _Tp __sin_fact
 		  = std::sin(__gnu_cxx::__math_constants<_Tp>::__pi * __x);
 	  if (__sin_fact > _Tp{0})
-	    return (1);
+	    return _Tp{1};
 	  else if (__sin_fact < _Tp{0})
 	    return -_Tp{1};
 	  else
@@ -270,15 +269,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief Return the logarithm of the binomial coefficient.
-   *   The binomial coefficient is given by:
-   *   @f[
-   *   \left(  \right) = \frac{n!}{(n-k)! k!}
-   *   @f]
+   *  @brief Return the logarithm of the binomial coefficient.
+   *  The binomial coefficient is given by:
+   *  @f[
+   *  \left(  \right) = \frac{n!}{(n-k)! k!}
+   *  @f]
    *
-   *   @param __n The first argument of the binomial coefficient.
-   *   @param __k The second argument of the binomial coefficient.
-   *   @return  The binomial coefficient.
+   *  @param __n The first argument of the binomial coefficient.
+   *  @param __k The second argument of the binomial coefficient.
+   *  @return  The binomial coefficient.
    */
   template<typename _Tp>
     _Tp
@@ -291,15 +290,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief Return the binomial coefficient.
-   *   The binomial coefficient is given by:
-   *   @f[
-   *   \left(  \right) = \frac{n!}{(n-k)! k!}
-   *   @f]
+   *  @brief Return the binomial coefficient.
+   *  The binomial coefficient is given by:
+   *  @f[
+   *  \left(  \right) = \frac{n!}{(n-k)! k!}
+   *  @f]
    *
-   *   @param __n The first argument of the binomial coefficient.
-   *   @param __k The second argument of the binomial coefficient.
-   *   @return  The binomial coefficient.
+   *  @param __n The first argument of the binomial coefficient.
+   *  @param __k The second argument of the binomial coefficient.
+   *  @return  The binomial coefficient.
    */
   template<typename _Tp>
     _Tp
@@ -319,10 +318,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief Return \f$ \Gamma(x) \f$.
+   *  @brief Return \f$ \Gamma(x) \f$.
    *
-   *   @param __x The argument of the gamma function.
-   *   @return  The gamma function.
+   *  @param __x The argument of the gamma function.
+   *  @return  The gamma function.
    */
   template<typename _Tp>
     inline _Tp
@@ -351,21 +350,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::make_pair(_Tp{0}, __lngam);
       else
 	{
-          _Tp __aa = __a;
-          _Tp __term, __sum;
-          __term = __sum = _Tp{1} / __a;
-          for (unsigned int __n = 1; __n <= _S_itmax; ++__n)
-            {
-              __aa += _Tp{1};
-              __term *= __x / __aa;
-              __sum += __term;
-              if (std::abs(__term) < _S_eps * std::abs(__sum))
-        	{
-                  _Tp __gamser = std::exp(-__x + __a * std::log(__x) - __lngam) * __sum;
-                  return std::make_pair(__gamser, __lngam);
-        	}
-            }
-          throw std::logic_error("__gamma_series: a too large, itmax too small in routine.");
+	  _Tp __aa = __a;
+	  _Tp __term, __sum;
+	  __term = __sum = _Tp{1} / __a;
+	  for (unsigned int __n = 1; __n <= _S_itmax; ++__n)
+	    {
+	      __aa += _Tp{1};
+	      __term *= __x / __aa;
+	      __sum += __term;
+	      if (std::abs(__term) < _S_eps * std::abs(__sum))
+		{
+		  _Tp __gamser = std::exp(-__x + __a * std::log(__x) - __lngam) * __sum;
+		  return std::make_pair(__gamser, __lngam);
+		}
+	    }
+	  throw std::logic_error("__gamma_series: a too large, itmax too small in routine.");
 	}
     }
 
@@ -386,38 +385,38 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __h = __d;
       for (unsigned int __n = 1; __n <= _S_itmax; ++__n)
 	{
-          _Tp __an = -_Tp{__n} * (_Tp{__n} - __a);
-          __b += _Tp{2};
-          __d = __an * __d + __b;
-          if (std::abs(__d) < _S_fpmin)
-            __d = _S_fpmin;
-          __c = __b + __an / __c;
-          if (std::abs(__c) < _S_fpmin)
-            __c = _S_fpmin;
-          __d = _Tp{1} / __d;
-          _Tp __del = __d * __c;
-          __h *= __del;
-          if (std::abs(__del - _Tp{1}) < _S_eps)
-            {
-              _Tp __gamcf = std::exp(-__x + __a * std::log(__x) - __lngam) * __h;
-              return std::make_pair(__gamcf, __lngam);
-            }
+	  _Tp __an = -_Tp{__n} * (_Tp{__n} - __a);
+	  __b += _Tp{2};
+	  __d = __an * __d + __b;
+	  if (std::abs(__d) < _S_fpmin)
+	    __d = _S_fpmin;
+	  __c = __b + __an / __c;
+	  if (std::abs(__c) < _S_fpmin)
+	    __c = _S_fpmin;
+	  __d = _Tp{1} / __d;
+	  _Tp __del = __d * __c;
+	  __h *= __del;
+	  if (std::abs(__del - _Tp{1}) < _S_eps)
+	    {
+	      _Tp __gamcf = std::exp(-__x + __a * std::log(__x) - __lngam) * __h;
+	      return std::make_pair(__gamcf, __lngam);
+	    }
 	}
       throw std::logic_error("__gamma_cont_fraction: a too large, itmax too small in routine.");
     }
 
 
   /**
-   *   @brief  Return the regularized lower incomplete gamma function.
-   *   The regularized lower incomplete gamma function is defined by
-   *   @f[
-   *     P(a,x) = \frac{\gamma(a,x)}{\Gamma(a)}
-   *   @f]
-   *   where @f$ \Gamma(a) @f$ is the gamma function and
-   *   @f[
-   *     \gamma(a,x) = \int_0^x e^{-t}t^{a-1}dt  (a > 0)
-   *   @f]
-   *   is the lower incomplete gamma function.
+   *  @brief  Return the regularized lower incomplete gamma function.
+   *  The regularized lower incomplete gamma function is defined by
+   *  @f[
+   *    P(a,x) = \frac{\gamma(a,x)}{\Gamma(a)}
+   *  @f]
+   *  where @f$ \Gamma(a) @f$ is the gamma function and
+   *  @f[
+   *    \gamma(a,x) = \int_0^x e^{-t}t^{a-1}dt  (a > 0)
+   *  @f]
+   *  is the lower incomplete gamma function.
    */
   template<typename _Tp>
     _Tp
@@ -434,16 +433,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the regularized upper incomplete gamma function.
-   *   The regularized upper incomplete gamma function is defined by
-   *   @f[
-   *     Q(a,x) = \frac{\Gamma(a,x)}{\Gamma(a)}
-   *   @f]
-   *   where @f$ \Gamma(a) @f$ is the gamma function and
-   *   @f[
-   *     \Gamma(a,x) = \int_x^\infty e^{-t}t^{a-1}dt  (a > 0)
-   *   @f]
-   *   is the upper incomplete gamma function.
+   *  @brief  Return the regularized upper incomplete gamma function.
+   *  The regularized upper incomplete gamma function is defined by
+   *  @f[
+   *    Q(a,x) = \frac{\Gamma(a,x)}{\Gamma(a)}
+   *  @f]
+   *  where @f$ \Gamma(a) @f$ is the gamma function and
+   *  @f[
+   *    \Gamma(a,x) = \int_x^\infty e^{-t}t^{a-1}dt  (a > 0)
+   *  @f]
+   *  is the upper incomplete gamma function.
    */
   template<typename _Tp>
     _Tp
@@ -460,11 +459,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the lower incomplete gamma function.
-   *   The lower incomplete gamma function is defined by
-   *   @f[
-   *     \gamma(a,x) = \int_0^x e^{-t}t^{a-1}dt  (a > 0)
-   *   @f]
+   *  @brief  Return the lower incomplete gamma function.
+   *  The lower incomplete gamma function is defined by
+   *  @f[
+   *    \gamma(a,x) = \int_0^x e^{-t}t^{a-1}dt  (a > 0)
+   *  @f]
    */
   template<typename _Tp>
     _Tp
@@ -487,17 +486,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the upper incomplete gamma function.
-   *   The lower incomplete gamma function is defined by
-   *   @f[
-   *     \Gamma(a,x) = \int_x^\infty e^{-t}t^{a-1}dt  (a > 0)
-   *   @f]
+   *  @brief  Return the upper incomplete gamma function.
+   *  The lower incomplete gamma function is defined by
+   *  @f[
+   *    \Gamma(a,x) = \int_x^\infty e^{-t}t^{a-1}dt  (a > 0)
+   *  @f]
    */
   template<typename _Tp>
     _Tp
     __gamma_u(_Tp __a, _Tp __x)
     {
-      if (__x < 0.0 || __a <= 0.0)
+      if (__x < _Tp{0} || __a <= _Tp{0})
 	throw std::domain_error("gamma_u: invalid arguments in routine");
 
       if (__x < __a + _Tp{1})
@@ -514,17 +513,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the digamma function by series expansion.
-   *   The digamma or @f$ \psi(x) @f$ function is defined by
-   *   @f[
-   *     \psi(x) = \frac{\Gamma'(x)}{\Gamma(x)}
-   *   @f]
+   *  @brief  Return the digamma function by series expansion.
+   *  The digamma or @f$ \psi(x) @f$ function is defined by
+   *  @f[
+   *    \psi(x) = \frac{\Gamma'(x)}{\Gamma(x)}
+   *  @f]
    *
-   *   The series is given by:
-   *   @f[
-   *     \psi(x) = -\gamma_E - \frac{1}{x}
-   *              \sum_{k=1}^{\infty} \frac{x - 1}{(k + 1)(x + k)}
-   *   @f]
+   *  The series is given by:
+   *  @f[
+   *    \psi(x) = -\gamma_E - \frac{1}{x}
+   *    	 \sum_{k=1}^{\infty} \frac{x - 1}{(k + 1)(x + k)}
+   *  @f]
    */
   template<typename _Tp>
     _Tp
@@ -534,7 +533,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const unsigned int _S_max_iter = 100000;
       for (unsigned int __k = 0; __k < _S_max_iter; ++__k)
 	{
-	  const _Tp __term = (__x - _Tp(1)) / ((__k + 1) * (__k + __x));
+	  const _Tp __term = (__x - _Tp{1}) / ((__k + 1) * (__k + __x));
 	  __sum += __term;
 	  if (std::abs(__term) < std::numeric_limits<_Tp>::epsilon())
 	    break;
@@ -544,17 +543,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the digamma function for large argument.
-   *   The digamma or @f$ \psi(x) @f$ function is defined by
-   *   @f[
-   *     \psi(x) = \frac{\Gamma'(x)}{\Gamma(x)}
-   *   @f]
+   *  @brief  Return the digamma function for large argument.
+   *  The digamma or @f$ \psi(x) @f$ function is defined by
+   *  @f[
+   *    \psi(x) = \frac{\Gamma'(x)}{\Gamma(x)}
+   *  @f]
    *
-   *   The asymptotic series is given by:
-   *   @f[
-   *     \psi(x) = \ln(x) - \frac{1}{2x}
-   *             - \sum_{n=1}^{\infty} \frac{B_{2n}}{2 n x^{2n}}
-   *   @f]
+   *  The asymptotic series is given by:
+   *  @f[
+   *    \psi(x) = \ln(x) - \frac{1}{2x}
+   *    	- \sum_{n=1}^{\infty} \frac{B_{2n}}{2 n x^{2n}}
+   *  @f]
    */
   template<typename _Tp>
     _Tp
@@ -577,44 +576,80 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the digamma function.
-   *   The digamma or @f$ \psi(x) @f$ function is defined by
-   *   @f[
-   *     \psi(x) = \frac{\Gamma'(x)}{\Gamma(x)}
-   *   @f]
-   *   For negative argument the reflection formula is used:
-   *   @f[
-   *     \psi(x) = \psi(1-x) - \pi \cot(\pi x)
-   *   @f]
+   *  @brief  Return the digamma function.
+   *  The digamma or @f$ \psi(x) @f$ function is defined by
+   *  @f[
+   *    \psi(x) = \frac{\Gamma'(x)}{\Gamma(x)}
+   *  @f]
+   *  For negative argument the reflection formula is used:
+   *  @f[
+   *    \psi(x) = \psi(1-x) - \pi \cot(\pi x)
+   *  @f]
    */
   template<typename _Tp>
     _Tp
     __psi(_Tp __x)
     {
-      const int __n = std::nearbyint(__x);
-      constexpr _Tp _S_eps = _Tp{4} * std::numeric_limits<_Tp>::epsilon();
-      if (__n <= 0 && std::abs(__x - _Tp{__n}) < _S_eps)
-	return std::numeric_limits<_Tp>::quiet_NaN();
+      constexpr auto _S_eps = _Tp{4} * std::numeric_limits<_Tp>::epsilon();
+      constexpr auto _S_x_asymp = _Tp{20};
+      constexpr auto __gamma_E = __gnu_cxx::__math_constants<_Tp>::__gamma_e;
+      constexpr auto __2_ln_2 = 2 * __gnu_cxx::__math_constants<_Tp>::__ln_2;
+
+      const auto __n = std::nearbyint(__x);
+      const bool __integral = (std::abs(__x - _Tp{__n}) < _S_eps);
+      const auto __m = std::nearbyint(2 * __x);
+      const bool __half_integral = !__integral
+				&& (std::abs(2 * __x - _Tp{__m}) < _S_eps);
+      if (__integral)
+	{
+	  if (__n <= 0)
+	    return std::numeric_limits<_Tp>::quiet_NaN();
+	  else
+	    {
+	      _Tp __sum = -__gamma_E;
+	      for (int __k = 1; __k < __m / 2; ++__k)
+		__sum += _Tp{2} / (2 * __k - 1);
+	      return __sum;
+	    }
+	}
+      if (__half_integral)
+	{
+	  _Tp __sum = -__gamma_E - __2_ln_2;
+	  for (int __k = 1; __k <= __n; ++__k)
+	    __sum += _Tp{1} / __k;
+	  return __sum;
+	}
       else if (__x < _Tp{0})
 	{
-	  const _Tp __pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-	  return __psi(_Tp{1} - __x)
-	       - __pi / std::tan(__pi * __x);
+	  constexpr auto __pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+	  return __psi(_Tp{1} - __x) - __pi / std::tan(__pi * __x);
 	}
-      else if (__x > _Tp{100})
+      else if (__x > _S_x_asymp)
 	return __psi_asymp(__x);
       else
-	return __psi_series(__x);
+	{
+	  //return __psi_series(__x);
+	  // The series does not converge quickly enough.
+	  // Reflect to larger argument and use asymptotic expansion.
+	  auto __w = _Tp{0};
+	  auto __y = __x;
+	  while (__y <= _S_x_asymp)
+	    {
+	      __w += 1 / __y;
+	      __y += 1;
+	    }
+	  return __psi_asymp(__y) - __w;
+	}
     }
 
 
   /**
-   *   @brief  Return the polygamma function @f$ \psi^{(n)}(x) @f$.
+   *  @brief  Return the polygamma function @f$ \psi^{(n)}(x) @f$.
    *
-   *   The polygamma function is related to the Hurwitz zeta function:
-   *   @f[
-   *     \psi^{(n)}(x) = (-1)^{n+1} m! \zeta(m+1,x)
-   *   @f]
+   *  The polygamma function is related to the Hurwitz zeta function:
+   *  @f[
+   *    \psi^{(n)}(x) = (-1)^{n+1} m! \zeta(m+1,x)
+   *  @f]
    */
   template<typename _Tp>
     _Tp

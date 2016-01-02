@@ -45,8 +45,8 @@
 #include <specfun_testcase.h>
 
 // Test data.
-// max(|f - f_GSL|): 8.1688445328964576e-05
-// max(|f - f_GSL| / |f_GSL|): 0.00024261187105164634
+// max(|f - f_GSL|): 8.8817841970012523e-16
+// max(|f - f_GSL| / |f_GSL|): 3.7349082148991403e-15
 const testcase_riemann_zeta<double>
 data001[55] =
 {
@@ -106,7 +106,7 @@ data001[55] =
   { -1.9526614482239983, 0.59999999999999964 },
   { -4.4375384158955677, 0.80000000000000071 },
 };
-const double toler001 = 0.025000000000000001;
+const double toler001 = 2.5000000000000020e-13;
 //  riemann_zeta
 
 // This can take long on simulators, timing out the test.
@@ -118,8 +118,8 @@ const double toler001 = 0.025000000000000001;
 
 
 // Test data.
-// max(|f - f_GSL|): 0.00024413768982534112
-// max(|f - f_GSL| / |f_GSL|): 0.00024413742228915217
+// max(|f - f_GSL|): 2.6645352591003757e-15
+// max(|f - f_GSL| / |f_GSL|): 1.1657079722157521e-15
 const testcase_riemann_zeta<double>
 data002[145] =
 {
@@ -269,7 +269,7 @@ data002[145] =
   { 1.0000000010698147, 29.800000000000001 },
   { 1.0000000009313275, 30.000000000000000 },
 };
-const double toler002 = 0.025000000000000001;
+const double toler002 = 2.5000000000000020e-13;
 
 template<typename Tp, unsigned int Num>
   void

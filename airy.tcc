@@ -239,7 +239,7 @@ template<typename _Tp>
 	    if (std::abs(__t) < _S_eps)
 	      break;
 	    auto __xx = __log10t * (3 * (__n + 1) + 1)
-		      + _S_slope_G * __n + _S_intercept_G);
+		      + _S_slope_G * __n + _S_intercept_G;
 	    if (__xx < _S_log10min)
 	      break;
 	    __term *= __ttt;

@@ -72,7 +72,7 @@ template<typename Real>
     std::ofstream file_airy_ai(filename.c_str());
     typedef Real airy(Real);
     maketest<Real, Real>((airy *)__gnu_cxx::airy_ai,
-			 wrap_gsl_sf_airy_ai,
+			 gsl::airy_ai,
 			 "__gnu_cxx", funcname,
 			 "x", fill_argument(std::make_pair(-Real{10}, Real{10}),
 					    std::make_pair(true, true), 41),
@@ -83,7 +83,7 @@ template<typename Real>
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_airy_bi(filename.c_str());
     maketest<Real, Real>((airy *)__gnu_cxx::airy_bi,
-			 wrap_gsl_sf_airy_bi,
+			 gsl::airy_bi,
 			 "__gnu_cxx", funcname,
 			 "x", fill_argument(std::make_pair(-Real{10}, Real{10}),
 					    std::make_pair(true, true), 41),
@@ -96,7 +96,7 @@ template<typename Real>
     std::ofstream file_assoc_laguerre(filename.c_str());
     typedef Real assoc_laguerre(unsigned int, unsigned int, Real);
     maketest<Real, unsigned int, unsigned int, Real>((assoc_laguerre *)std::assoc_laguerre,
-						     wrap_gsl_sf_laguerre_nm,
+						     gsl::laguerre_nm,
 						     nsname, funcname,
 						     "n", vorder, "m", vorder,
 						     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -110,7 +110,7 @@ template<typename Real>
     std::ofstream file_assoc_legendre(filename.c_str());
     typedef Real assoc_legendre(unsigned int, unsigned int, Real);
     maketest<Real, unsigned int, unsigned int, Real>((assoc_legendre *)std::assoc_legendre,
-						     wrap_gsl_sf_legendre_Plm,
+						     gsl::legendre_Plm,
 						     nsname, funcname,
 						     "l", vorder, "m", vorder,
 						     "x", fill_argument(std::make_pair(-Real{1}, Real{1}),
@@ -124,7 +124,7 @@ template<typename Real>
     std::ofstream file_beta(filename.c_str());
     typedef Real beta(Real, Real);
     maketest<Real, Real, Real>((beta *)std::beta,
-			       wrap_gsl_sf_beta,
+			       gsl::beta,
 			       nsname, funcname,
 			       "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 						  std::make_pair(false, true), 11),
@@ -140,7 +140,7 @@ template<typename Real>
     std::ofstream file_comp_ellint_1(filename.c_str());
     typedef Real comp_ellint_1(Real);
     maketest<Real, Real>((comp_ellint_1 *)std::comp_ellint_1,
-			 wrap_gsl_sf_ellint_Kcomp,
+			 gsl::ellint_Kcomp,
 			 nsname, funcname,
 			 "k", fill_argument(std::make_pair(-Real{1}, Real{1}),
 					    std::make_pair(false, false), 21),
@@ -154,7 +154,7 @@ template<typename Real>
     std::ofstream file_comp_ellint_2(filename.c_str());
     typedef Real comp_ellint_2(Real);
     maketest<Real, Real>((comp_ellint_2 *)std::comp_ellint_2,
-			 wrap_gsl_sf_ellint_Ecomp,
+			 gsl::ellint_Ecomp,
 			 nsname, funcname,
 			 "k", fill_argument(std::make_pair(-Real{1}, Real{1}),
 					    std::make_pair(false, false), 21),
@@ -168,7 +168,7 @@ template<typename Real>
     std::ofstream file_comp_ellint_3(filename.c_str());
     typedef Real comp_ellint_3(Real, Real);
     maketest<Real, Real, Real>((comp_ellint_3 *)std::comp_ellint_3,
-			       wrap_gsl_sf_ellint_Pcomp,
+			       gsl::ellint_Pcomp,
 			       nsname, funcname,
 			       "k", fill_argument(std::make_pair(-Real{1}, Real{1}),
 						  std::make_pair(false, false), 21),
@@ -184,7 +184,7 @@ template<typename Real>
     std::ofstream file_conf_hyperg(filename.c_str());
     typedef Real conf_hyperg(Real, Real, Real);
     maketest<Real, Real, Real, Real>((conf_hyperg *)__gnu_cxx::conf_hyperg,
-				     wrap_gsl_sf_hyperg_1F1,
+				     gsl::hyperg_1F1,
 				     "__gnu_cxx", funcname,
 				     "a", vab,
 				     "c", fill_argument(std::make_pair(Real{0}, Real{10}),
@@ -201,14 +201,14 @@ template<typename Real>
     typedef Real cyl_bessel_i(Real, Real);
     test =
     maketest<Real, Real, Real>((cyl_bessel_i*)std::cyl_bessel_i,
-			       wrap_gsl_sf_bessel_Inu,
+			       gsl::bessel_Inu,
 			       nsname, funcname,
 			       "nu", vborderd,
 			       "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 						  std::make_pair(true, true), 21),
 			       file_cyl_bessel_i, true, false);
     maketest<Real, Real, Real>((cyl_bessel_i*)std::cyl_bessel_i,
-			       wrap_gsl_sf_bessel_Inu,
+			       gsl::bessel_Inu,
 			       nsname, funcname,
 			       "nu", vborderd,
 			       "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -223,14 +223,14 @@ template<typename Real>
     typedef Real cyl_bessel_j(Real, Real);
     test =
     maketest<Real, Real, Real>((cyl_bessel_j*)std::cyl_bessel_j,
-			       wrap_gsl_sf_bessel_Jnu,
+			       gsl::bessel_Jnu,
 			       nsname, funcname,
 			       "nu", vborderd,
 			       "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 						  std::make_pair(true, true), 21),
 			       file_cyl_bessel_j, true, false);
     maketest<Real, Real, Real>((cyl_bessel_j*)std::cyl_bessel_j,
-			       wrap_gsl_sf_bessel_Jnu,
+			       gsl::bessel_Jnu,
 			       nsname, funcname,
 			       "nu", vborderd,
 			       "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -244,7 +244,7 @@ template<typename Real>
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_cyl_bessel_j_asymp(filename.c_str());
     maketest<Real, Real, Real>((cyl_bessel_j*)std::cyl_bessel_j,
-			       wrap_gsl_sf_bessel_Jnu_asymp,
+			       gsl::bessel_Jnu_asymp,
 			       nsname, funcname,
 			       "nu", vborderd,
 			       "x", fill_argument(std::make_pair(Real{1000}, Real{10000}),
@@ -260,14 +260,14 @@ template<typename Real>
     typedef Real cyl_bessel_k(Real, Real);
     test =
     maketest<Real, Real, Real>((cyl_bessel_k*)std::cyl_bessel_k,
-			       wrap_gsl_sf_bessel_Knu,
+			       gsl::bessel_Knu,
 			       nsname, funcname,
 			       "nu", vborderd,
 			       "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 						  std::make_pair(false, true), 21),
 			       file_cyl_bessel_k, true, false);
     maketest<Real, Real, Real>((cyl_bessel_k*)std::cyl_bessel_k,
-			       wrap_gsl_sf_bessel_Knu,
+			       gsl::bessel_Knu,
 			       nsname, funcname,
 			       "nu", vborderd,
 			       "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -283,14 +283,14 @@ template<typename Real>
     typedef Real cyl_neumann(Real, Real);
     test =
     maketest<Real, Real, Real>((cyl_neumann*)std::cyl_neumann,
-				  wrap_gsl_sf_bessel_Ynu,
+				  gsl::bessel_Ynu,
 				  nsname, funcname,
 				  "nu", vborderd,
 				  "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 						     std::make_pair(false, true), 21),
 				  file_cyl_neumann, true, false);
     maketest<Real, Real, Real>((cyl_neumann*)std::cyl_neumann,
-			       wrap_gsl_sf_bessel_Ynu,
+			       gsl::bessel_Ynu,
 			       nsname, funcname,
 			       "nu", vborderd,
 			       "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -305,7 +305,7 @@ template<typename Real>
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_cyl_neumann_asymp(filename.c_str());
     maketest<Real, Real, Real>((cyl_neumann*)std::cyl_neumann,
-			       wrap_gsl_sf_bessel_Ynu_asymp,
+			       gsl::bessel_Ynu_asymp,
 			       nsname, funcname,
 			       "nu", vborderd,
 			       "x", fill_argument(std::make_pair(Real{1000}, Real{10000}),
@@ -320,7 +320,7 @@ template<typename Real>
     std::ofstream file_ellint_1(filename.c_str());
     typedef Real ellint_1(Real, Real);
     maketest<Real, Real, Real>((ellint_1*)std::ellint_1,
-			       wrap_gsl_sf_ellint_F,
+			       gsl::ellint_F,
 			       nsname, funcname,
 			       "k", fill_argument(std::make_pair(-Real{1}, Real{1}),
 						  std::make_pair(false, false), 21),
@@ -335,7 +335,7 @@ template<typename Real>
     std::ofstream file_ellint_2(filename.c_str());
     typedef Real ellint_2(Real, Real);
     maketest<Real, Real, Real>((ellint_2*)std::ellint_2,
-			       wrap_gsl_sf_ellint_E,
+			       gsl::ellint_E,
 			       nsname, funcname,
 			       "k", fill_argument(std::make_pair(-Real{1}, Real{1}),
 						  std::make_pair(false, false), 21),
@@ -350,7 +350,7 @@ template<typename Real>
     std::ofstream file_ellint_3(filename.c_str());
     typedef Real ellint_3(Real, Real, Real);
     maketest<Real, Real, Real, Real>((ellint_3*)std::ellint_3,
-				     wrap_gsl_sf_ellint_P,
+				     gsl::ellint_P,
 				     nsname, funcname,
 				     "k", fill_argument(std::make_pair(-Real{1}, Real{1}),
 							std::make_pair(false, false), 21),
@@ -368,13 +368,13 @@ template<typename Real>
     typedef Real expint(Real);
     test =
     maketest<Real, Real>((expint*)std::expint,
-			 wrap_gsl_sf_expint_Ei,
+			 gsl::expint_Ei,
 			 nsname, funcname,
 			 "x", fill_argument(std::make_pair(-Real{50}, Real{0}),
 					    std::make_pair(true, false), 51),
 			 file_expint, true, false);
     maketest<Real, Real>((expint*)std::expint,
-			 wrap_gsl_sf_expint_Ei,
+			 gsl::expint_Ei,
 			 nsname, funcname,
 			 "x", fill_argument(std::make_pair(Real{0}, Real{50}),
 					    std::make_pair(false, true), 51),
@@ -392,7 +392,7 @@ template<typename Real>
     std::ofstream file_hyperg(filename.c_str());
     typedef Real hyperg(Real, Real, Real, Real);
     maketest<Real, Real, Real, Real, Real>((hyperg*)__gnu_cxx::hyperg,
-					   wrap_gsl_sf_hyperg_2F1,
+					   gsl::hyperg_2F1,
 					   "__gnu_cxx", funcname,
 					   "a", vab,
 					   "b", vab,
@@ -409,7 +409,7 @@ template<typename Real>
     std::ofstream file_laguerre(filename.c_str());
     typedef Real laguerre(unsigned int, Real);
     maketest<Real, unsigned int, Real>((laguerre*)std::laguerre,
-				       wrap_gsl_sf_laguerre_n,
+				       gsl::laguerre_n,
 				       nsname, funcname,
 				       "n", vorder,
 				       "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -423,7 +423,7 @@ template<typename Real>
     std::ofstream file_legendre(filename.c_str());
     typedef Real legendre(unsigned int, Real);
     maketest<Real, unsigned int, Real>((legendre*)std::legendre,
-				       wrap_gsl_sf_legendre_Pl,
+				       gsl::legendre_Pl,
 				       nsname, funcname,
 				       "l", vorder,
 				       "x", fill_argument(std::make_pair(-Real{1}, Real{1}),
@@ -439,13 +439,13 @@ template<typename Real>
     typedef Real riemann_zeta(Real);
     test =
     maketest<Real, Real>((riemann_zeta*)std::riemann_zeta,
-			 wrap_gsl_sf_zeta,
+			 gsl::zeta,
 			 nsname, funcname,
 			 "s", fill_argument(std::make_pair(-Real{10}, Real{1}),
 					    std::make_pair(true, false), 56),
 			 file_riemann_zeta, true, false);
     maketest<Real, Real>((riemann_zeta*)std::riemann_zeta,
-			 wrap_gsl_sf_zeta,
+			 gsl::zeta,
 			 nsname, funcname,
 			 "s", fill_argument(std::make_pair(Real{1}, Real{30}),
 					    std::make_pair(false, true), 146),
@@ -459,7 +459,7 @@ template<typename Real>
     std::ofstream file_hurwitz_zeta(filename.c_str());
     typedef Real hurwitz_zeta(Real, Real);
     maketest<Real, Real, Real>((hurwitz_zeta*)__gnu_cxx::hurwitz_zeta,
-			       wrap_gsl_sf_hzeta,
+			       gsl::hzeta,
 			       "__gnu_cxx", funcname,
 			       "s", fill_argument(std::make_pair(Real{1}, Real{30}),
 						  std::make_pair(false, true), 146),
@@ -475,14 +475,14 @@ template<typename Real>
     typedef Real sph_bessel(unsigned int, Real);
     test =
     maketest<Real, unsigned int, Real>((sph_bessel*)std::sph_bessel,
-				       wrap_gsl_sf_bessel_jl,
+				       gsl::bessel_jl,
 				       nsname, funcname,
 				       "n", sborder,
 				       "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 							  std::make_pair(true, true), 21),
 				       file_sph_bessel, true, false);
     maketest<Real, unsigned int, Real>((sph_bessel*)std::sph_bessel,
-				       wrap_gsl_sf_bessel_jl,
+				       gsl::bessel_jl,
 				       nsname, funcname,
 				       "n", sborder,
 				       "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -495,7 +495,7 @@ template<typename Real>
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_sph_legendre(filename.c_str());
     typedef Real sph_legendre(unsigned int, unsigned int, Real);
-    maketest<Real, unsigned int, unsigned int, Real>((sph_legendre*)std::sph_legendre, wrap_gsl_sf_legendre_sphPlm,
+    maketest<Real, unsigned int, unsigned int, Real>((sph_legendre*)std::sph_legendre, gsl::legendre_sphPlm,
 						     nsname, funcname,
 						     "l", vorder, "m", vorder,
 						     "theta", fill_argument(std::make_pair(Real{0}, static_cast<Real>(M_PI)),
@@ -510,13 +510,13 @@ template<typename Real>
     std::ofstream file_sph_neumann(filename.c_str());
     typedef Real sph_neumann(unsigned int, Real);
     test =
-    maketest<Real, unsigned int, Real>((sph_neumann*)std::sph_neumann, wrap_gsl_sf_bessel_yl,
+    maketest<Real, unsigned int, Real>((sph_neumann*)std::sph_neumann, gsl::bessel_yl,
 				       nsname, funcname,
 				       "n", sborder,
 				       "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 							  std::make_pair(false, true), 21),
 				       file_sph_neumann, true, false);
-    maketest<Real, unsigned int, Real>((sph_neumann*)std::sph_neumann, wrap_gsl_sf_bessel_yl,
+    maketest<Real, unsigned int, Real>((sph_neumann*)std::sph_neumann, gsl::bessel_yl,
 				       nsname, funcname,
 				       "n", sborder,
 				       "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -529,7 +529,7 @@ template<typename Real>
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_ellint_rc(filename.c_str());
     typedef Real ellint_rc(Real, Real);
-    maketest<Real, Real, Real>((ellint_rc*)__gnu_cxx::ellint_rc, wrap_gsl_sf_ellint_RC,
+    maketest<Real, Real, Real>((ellint_rc*)__gnu_cxx::ellint_rc, gsl::ellint_RC,
 			       "__gnu_cxx", funcname,
 			       "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 						  std::make_pair(false, true), 11),
@@ -543,7 +543,7 @@ template<typename Real>
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_ellint_rd(filename.c_str());
     typedef Real ellint_rd(Real, Real, Real);
-    maketest<Real, Real, Real, Real>((ellint_rd*)__gnu_cxx::ellint_rd, wrap_gsl_sf_ellint_RD,
+    maketest<Real, Real, Real, Real>((ellint_rd*)__gnu_cxx::ellint_rd, gsl::ellint_RD,
 			       "__gnu_cxx", funcname,
 			       "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 						  std::make_pair(false, true), 11),
@@ -559,7 +559,7 @@ template<typename Real>
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_ellint_rf(filename.c_str());
     typedef Real ellint_rf(Real, Real, Real);
-    maketest<Real, Real, Real, Real>((ellint_rf*)__gnu_cxx::ellint_rf, wrap_gsl_sf_ellint_RF,
+    maketest<Real, Real, Real, Real>((ellint_rf*)__gnu_cxx::ellint_rf, gsl::ellint_RF,
 			       "__gnu_cxx", funcname,
 			       "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 						  std::make_pair(false, true), 11),
@@ -575,7 +575,7 @@ template<typename Real>
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_ellint_rj(filename.c_str());
     typedef Real ellint_rj(Real, Real, Real, Real);
-    maketest<Real, Real, Real, Real, Real>((ellint_rj*)__gnu_cxx::ellint_rj, wrap_gsl_sf_ellint_RJ,
+    maketest<Real, Real, Real, Real, Real>((ellint_rj*)__gnu_cxx::ellint_rj, gsl::ellint_RJ,
 			       "__gnu_cxx", funcname,
 			       "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 						  std::make_pair(false, true), 11),
@@ -594,7 +594,7 @@ template<typename Real>
     std::ofstream file_dilog(filename.c_str());
     typedef Real dilog(Real);
     maketest<Real, Real>((dilog *)__gnu_cxx::dilog,
-			 wrap_gsl_sf_dilog,
+			 gsl::dilog,
 			 "__gnu_cxx", funcname,
 			 "x", fill_argument(std::make_pair(-Real{10}, Real{10}),
 					    std::make_pair(true, true), 41),
@@ -606,7 +606,7 @@ template<typename Real>
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_gamma_u(filename.c_str());
     typedef Real gamma_u(Real, Real);
-    maketest<Real, Real, Real>((gamma_u*)__gnu_cxx::gamma_u, wrap_gsl_sf_gamma_inc,
+    maketest<Real, Real, Real>((gamma_u*)__gnu_cxx::gamma_u, gsl::gamma_inc,
 			       "__gnu_cxx", funcname,
 			       "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 						  std::make_pair(false, true), 11),
@@ -620,7 +620,7 @@ template<typename Real>
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_ibeta(filename.c_str());
     typedef Real ibeta(Real, Real, Real);
-    maketest<Real, Real, Real, Real>((ibeta*)__gnu_cxx::ibeta, wrap_gsl_sf_beta_inc,
+    maketest<Real, Real, Real, Real>((ibeta*)__gnu_cxx::ibeta, gsl::beta_inc,
 			       "__gnu_cxx", funcname,
 			       "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 						  std::make_pair(false, true), 11),
@@ -636,11 +636,65 @@ template<typename Real>
     filename = get_filename(path, prefix, "psi", "",  ".cc");
     std::ofstream file_psi(filename.c_str());
     typedef Real psi(Real);
-    maketest<Real, Real>((psi *)__gnu_cxx::psi, wrap_gsl_sf_psi,
+    test =
+    maketest<Real, Real>((psi *)__gnu_cxx::psi, gsl::psi,
 			 "__gnu_cxx", funcname,
-			 "x", fill_argument(std::make_pair(-Real{9.875}, +Real{10.125}),
-					    std::make_pair(true, true), 401),
-			 file_psi);
+			 "x", fill_argument(std::make_pair(-Real{9.9375}, +Real{10.0625}),
+					    std::make_pair(true, true), 801),
+			 file_psi, true, false);
+    maketest<Real, Real>((psi *)__gnu_cxx::psi, gsl::psi,
+			 "__gnu_cxx", funcname,
+			 "x", fill_argument(std::make_pair(Real{1}, Real{100}),
+					    std::make_pair(true, true), 199),
+			 file_psi, false, true, test);
+
+    //  Si functions.
+    std::cout << "sinint" << std::endl;
+    funcname = "sinint";
+    filename = get_filename(path, prefix, "sinint", "",  ".cc");
+    std::ofstream file_sinint(filename.c_str());
+    typedef Real sinint(Real);
+    maketest<Real, Real>((sinint *)__gnu_cxx::sinint, gsl::Si,
+			 "__gnu_cxx", funcname,
+			 "x", fill_argument(std::make_pair(Real{0}, Real{+10}),
+					    std::make_pair(false, true), 101),
+			 file_sinint);
+
+    //  Ci functions.
+    std::cout << "cosint" << std::endl;
+    funcname = "cosint";
+    filename = get_filename(path, prefix, "cosint", "",  ".cc");
+    std::ofstream file_cosint(filename.c_str());
+    typedef Real cosint(Real);
+    maketest<Real, Real>((cosint *)__gnu_cxx::cosint, gsl::Ci,
+			 "__gnu_cxx", funcname,
+			 "x", fill_argument(std::make_pair(Real{0}, Real{+10}),
+					    std::make_pair(false, true), 101),
+			 file_cosint);
+
+    //  Shi functions.
+    std::cout << "sinhint" << std::endl;
+    funcname = "sinhint";
+    filename = get_filename(path, prefix, "sinhint", "",  ".cc");
+    std::ofstream file_sinhint(filename.c_str());
+    typedef Real sinhint(Real);
+    maketest<Real, Real>((sinhint *)__gnu_cxx::sinhint, gsl::Shi,
+			 "__gnu_cxx", funcname,
+			 "x", fill_argument(std::make_pair(Real{0}, Real{+5}),
+					    std::make_pair(false, true), 101),
+			 file_sinhint);
+
+    //  Chi functions.
+    std::cout << "coshint" << std::endl;
+    funcname = "coshint";
+    filename = get_filename(path, prefix, "coshint", "",  ".cc");
+    std::ofstream file_coshint(filename.c_str());
+    typedef Real coshint(Real);
+    maketest<Real, Real>((coshint *)__gnu_cxx::coshint, gsl::Chi,
+			 "__gnu_cxx", funcname,
+			 "x", fill_argument(std::make_pair(Real{0}, Real{+5}),
+					    std::make_pair(false, true), 101),
+			 file_coshint);
 
   }
 
