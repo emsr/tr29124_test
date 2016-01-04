@@ -1,6 +1,6 @@
 // Special functions -*- C++ -*-
 
-// Copyright (C) 2006-2015 Free Software Foundation, Inc.
+// Copyright (C) 2006-2016 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -367,7 +367,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __airy(_Tp __z, _Tp & _Ai, _Tp & _Bi, _Tp & _Aip, _Tp & _Bip)
     {
-      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      constexpr auto _S_NaN = __gnu_cxx::__math_constants<_Tp>::__NaN;
       constexpr auto _S_inf = __gnu_cxx::__math_constants<_Tp>::__inf;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_sqrt3 = __gnu_cxx::__math_constants<_Tp>::__root_3;
@@ -376,7 +376,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __xi = _Tp{2} * __absz * __rootz / _Tp{3};
 
       if (__isnan(__z))
-	_Ai = _Bi = _Aip = _Bip = _S_nan;
+	_Ai = _Bi = _Aip = _Bip = _S_NaN;
       else if (__z == _S_inf)
 	{
 	  _Ai = _Aip = _Tp{0};

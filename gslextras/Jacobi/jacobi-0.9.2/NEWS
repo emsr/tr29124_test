@@ -1,0 +1,9 @@
+2006-07-14
+
+I improved a little bit the interface. Version 0.9.1
+
+2006-07-13 
+
+Version 0.9 is out. It now contains a high level interface to the library.
+I also wrote a few simple tests/demos in ./test
+

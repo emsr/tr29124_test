@@ -2,11 +2,11 @@
 
 copy="cp -f"
 
-util_dir="$HOME/gcc_tr29124/libstdc++-v3/testsuite/util"
-gcc_dir="$HOME/gcc_tr29124/libstdc++-v3/testsuite/special_functions"
-ext_dir="$HOME/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions"
-
-##${copy} specfun_testcase.h      ${util_dir}
+base_dir="$HOME/gcc_tr29124"
+test_dir="${base_dir}/libstdc++-v3/testsuite"
+util_dir="${test_dir}/util"
+gcc_dir="${test_dir}/special_functions"
+ext_dir="${test_dir}/ext/special_functions"
 
 ${copy} check_assoc_laguerre.cc ${gcc_dir}/01_assoc_laguerre/check_value.cc
 ${copy} check_assoc_legendre.cc ${gcc_dir}/02_assoc_legendre/check_value.cc
@@ -31,13 +31,5 @@ ${copy} check_sph_legendre.cc   ${gcc_dir}/20_sph_legendre/check_value.cc
 ${copy} check_sph_neumann.cc    ${gcc_dir}/21_sph_neumann/check_value.cc
 
 
-#${copy} check_airy_ai.cc           ${ext_dir}/airy_ai/check_value.cc
-#${copy} check_airy_bi.cc           ${ext_dir}/airy_bi/check_value.cc
 ${copy} check_conf_hyperg.cc    ${ext_dir}/conf_hyperg/check_value.cc
-#${copy} check_ellint_rc.cc      ${ext_dir}/ellint_rc/check_value.cc
-#${copy} check_ellint_rd.cc      ${ext_dir}/ellint_rd/check_value.cc
-#${copy} check_ellint_rf.cc      ${ext_dir}/ellint_rf/check_value.cc
-#${copy} check_ellint_rj.cc      ${ext_dir}/ellint_rj/check_value.cc
-#${copy} check_hurwitz_zeta.cc   ${ext_dir}/hurwitz_zeta/check_value.cc
 ${copy} check_hyperg.cc         ${ext_dir}/hyperg/check_value.cc
-#${copy} check_dilog.cc          ${ext_dir}/dilog/check_value.cc

@@ -11,6 +11,15 @@ CXX_INC_DIR = $(CXX_INST_DIR)/include/c++/6.0.0/bits
 CXX_LIB_DIR = $(CXX_INST_DIR)/lib64
 CXX_TEST_INC_DIR = $(CXX_SRC_DIR)/libstdc++-v3/testsuite/util
 
+GSL_DIR = /usr/local
+GSL_INC_DIR = $(GSL_DIR)/include
+GSL_LIB_DIR = $(GSL_DIR)/lib
+
+GSL_EXT_DIR = $(HOME)/tr29124_test/gslextras
+GSL_FRESNEL_DIR = $(GSL_EXT_DIR)/Fresnel
+
+GSL_LIBS = $(GSL_FRESNEL_DIR)/fresnel.c -L$(GSL_LIB_DIR) -lgsl -lgslcblas -ljacobi
+
 BINS = test_special_function \
        diff_special_function \
        testcase \
@@ -51,10 +60,10 @@ all: diff_special_function \
      test_local_special_function
 
 testcases: testcase
-	LD_LIBRARY_PATH=/home/ed/bin_specfun/lib64:$$LD_LIBRARY_PATH ./testcase
+	LD_LIBRARY_PATH=/home/ed/bin_specfun/lib64:$(GSL_LIB_DIR):$$LD_LIBRARY_PATH ./testcase
 
 testcases_new: testcase_new
-	LD_LIBRARY_PATH=/home/ed/bin_specfun/lib64:$$LD_LIBRARY_PATH ./testcase_new
+	LD_LIBRARY_PATH=/home/ed/bin_specfun/lib64:$(GSL_LIB_DIR):$$LD_LIBRARY_PATH ./testcase_new
 
 test:
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_airy > test_airy.txt
@@ -102,23 +111,23 @@ check: \
 
 
 test_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
-	$(CXX) -o test_special_function test_special_function.cpp gsl_wrap.cpp -lquadmath -lgsl -lgslcblas
+	$(CXX) -o test_special_function -I$(GSL_INC_DIR) test_special_function.cpp gsl_wrap.cpp -lquadmath $(GSL_LIBS)
 
 diff_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
-	$(CXX) -o diff_special_function diff_special_function.cpp gsl_wrap.cpp -lquadmath -lgsl -lgslcblas
+	$(CXX) -o diff_special_function -I$(GSL_INC_DIR) diff_special_function.cpp gsl_wrap.cpp -lquadmath $(GSL_LIBS)
 
 #  You need gnu to get __float128!
 test_local_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc sf_*.tcc
-	$(HOME)/bin/bin/g++ -std=gnu++14 -g -DLOCAL -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -I$(HOME)/gcc_specfun/libstdc++-v3/include -o test_local_special_function test_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas -lquadmath
+	$(HOME)/bin/bin/g++ -std=gnu++14 -g -DLOCAL -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -I$(HOME)/gcc_specfun/libstdc++-v3/include -I$(GSL_INC_DIR) -o test_local_special_function test_special_function.cpp gsl_wrap.cpp $(GSL_LIBS) -lquadmath
 
 diff_local_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tcc sf_*.tcc
-	$(HOME)/bin/bin/g++ -std=gnu++14 -g -DLOCAL -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -I$(HOME)/gcc_specfun/libstdc++-v3/include -o diff_local_special_function diff_special_function.cpp gsl_wrap.cpp -lgsl -lgslcblas -lquadmath
+	$(HOME)/bin/bin/g++ -std=gnu++14 -g -DLOCAL -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -I$(HOME)/gcc_specfun/libstdc++-v3/include -I$(GSL_INC_DIR) -o diff_local_special_function diff_special_function.cpp gsl_wrap.cpp $(GSL_LIBS) -lquadmath
 
-testcase: testcase.cpp testcase.tcc gsl_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
-	$(CXX) -o testcase testcase.cpp gsl_wrap.cpp -lgslcblas -lgsl
+testcase: testcase.cpp testcase.tcc gsl_wrap.h gsl_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
+	$(CXX) -o testcase -I$(GSL_INC_DIR) testcase.cpp gsl_wrap.cpp $(GSL_LIBS)
 
-testcase_new: testcase_new.cpp testcase_new.tcc gsl_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
-	$(CXX) -o testcase_new testcase_new.cpp gsl_wrap.cpp -lgslcblas -lgsl
+testcase_new: testcase_new.cpp testcase_new.tcc gsl_wrap.h gsl_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
+	$(CXX) -o testcase_new -I$(GSL_INC_DIR) testcase_new.cpp gsl_wrap.cpp $(GSL_LIBS)
 
 test_limits: test_limits.cpp
 	$(CXX) -o test_limits test_limits.cpp
@@ -127,7 +136,7 @@ test_cmath: test_cmath.cpp
 	$(CXX) -o test_cmath test_cmath.cpp
 
 test_airy: test_airy.cpp sf_airy.tcc gsl_wrap.cpp
-	$(CXX) -o test_airy test_airy.cpp gsl_wrap.cpp -lgsl -lgslcblas
+	$(CXX) -o test_airy -I$(GSL_INC_DIR) test_airy.cpp gsl_wrap.cpp $(GSL_LIBS)
 
 test_csint: test_csint.cpp csint.tcc
 	$(CXX) -o test_csint test_csint.cpp

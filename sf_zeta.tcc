@@ -1,6 +1,6 @@
 // Special functions -*- C++ -*-
 
-// Copyright (C) 2006-2015 Free Software Foundation, Inc.
+// Copyright (C) 2006-2016 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -494,11 +494,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __riemann_zeta(_Tp __s)
     {
-      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      constexpr auto _S_NaN = __gnu_cxx::__math_constants<_Tp>::__NaN;
       constexpr auto _S_inf = __gnu_cxx::__math_constants<_Tp>::__inf;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       if (__isnan(__s))
-	return _S_nan;
+	return _S_NaN;
       else if (__s == _Tp{1})
 	return _S_inf;
       else if (__s < -_Tp{19})
@@ -587,7 +587,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     inline _Tp
     __hurwitz_zeta(_Tp __s, _Tp __a)
-    { return __hurwitz_zeta_euler_maclaurin(__s, __a); }
+    {
+      constexpr auto _S_NaN = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      constexpr auto _S_inf = __gnu_cxx::__math_constants<_Tp>::__inf;
+      if (__isnan(__s) || __isnan(__a))
+	return _S_NaN;
+      else if (__a == _Tp{1} && __s == _Tp{1})
+	return _S_inf;
+      else
+        return __hurwitz_zeta_euler_maclaurin(__s, __a);
+    }
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail

@@ -1,0 +1,15 @@
+libjacobi version 0.9 (2006-07-13)
+
+A library to compute Jacobi polynomials and Gauss-Jacobi quadrature related stuff.
+It can be used to integrate, derivate and interpolate functions.
+
+Just include jacobi.h in your program and link the libjacobi.a library. It requires the GNU Scientific library (GSL).
+
+
+Documentation: It has doxygen generated documentation. It still needs som
+improvement but it is usable. This is a beta release. I am developing this
+library to become a GNU Scientific Library package.
+
+
+Paulo Jabardo <pjabardo@yahoo.com.br>
+

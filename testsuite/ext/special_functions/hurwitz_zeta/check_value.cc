@@ -1,6 +1,6 @@
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
 //
-// Copyright (C) 2015 Free Software Foundation, Inc.
+// Copyright (C) 2016 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -38,7 +38,11 @@
 
 
 // Test data for s=1.2000000000000000.
-testcase_hurwitz_zeta<double> data001[] = {
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 5.6464134003629243e-16
+const testcase_hurwitz_zeta<double>
+data001[25] =
+{
   { 12.184082269921509, 1.2000000000000000, 0.20000000000000001 },
   { 8.0566716049727276, 1.2000000000000000, 0.40000000000000002 },
   { 6.7159877810846709, 1.2000000000000000, 0.59999999999999998 },
@@ -65,38 +69,14 @@ testcase_hurwitz_zeta<double> data001[] = {
   { 3.7328789087794507, 1.2000000000000000, 4.7999999999999998 },
   { 3.6992620681291464, 1.2000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=1.2000000000000000.
-template<typename Tp>
-  void
-  test001()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data001)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data001[i].s), Tp(data001[i].a));
-	const Tp f0 = data001[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler001 = 2.5000000000000020e-13;
 
 // Test data for s=1.3999999999999999.
-testcase_hurwitz_zeta<double> data002[] = {
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 5.5993291042014306e-16
+const testcase_hurwitz_zeta<double>
+data002[25] =
+{
   { 12.299701477499207, 1.3999999999999999, 0.20000000000000001 },
   { 6.1532230894489759, 1.3999999999999999, 0.40000000000000002 },
   { 4.4110561092139777, 1.3999999999999999, 0.59999999999999998 },
@@ -123,38 +103,14 @@ testcase_hurwitz_zeta<double> data002[] = {
   { 1.3931922938064676, 1.3999999999999999, 4.7999999999999998 },
   { 1.3682328369829335, 1.3999999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=1.3999999999999999.
-template<typename Tp>
-  void
-  test002()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data002)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data002[i].s), Tp(data002[i].a));
-	const Tp f0 = data002[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler002 = 2.5000000000000020e-13;
 
 // Test data for s=1.6000000000000001.
-testcase_hurwitz_zeta<double> data003[] = {
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 3.9048510200589565e-16
+const testcase_hurwitz_zeta<double>
+data003[25] =
+{
   { 15.076372107266012, 1.6000000000000001, 0.20000000000000001 },
   { 6.0380687894755010, 1.6000000000000001, 0.40000000000000002 },
   { 3.7945527283796405, 1.6000000000000001, 0.59999999999999998 },
@@ -181,38 +137,14 @@ testcase_hurwitz_zeta<double> data003[] = {
   { 0.69317127734041173, 1.6000000000000001, 4.7999999999999998 },
   { 0.67464258158429513, 1.6000000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=1.6000000000000001.
-template<typename Tp>
-  void
-  test003()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data003)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data003[i].s), Tp(data003[i].a));
-	const Tp f0 = data003[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler003 = 2.5000000000000020e-13;
 
 // Test data for s=1.8000000000000000.
-testcase_hurwitz_zeta<double> data004[] = {
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 6.2884409572817387e-16
+const testcase_hurwitz_zeta<double>
+data004[25] =
+{
   { 19.641862340786140, 1.8000000000000000, 0.20000000000000001 },
   { 6.4856595090797260, 1.8000000000000000, 0.40000000000000002 },
   { 3.6187609121901598, 1.8000000000000000, 0.59999999999999998 },
@@ -239,38 +171,14 @@ testcase_hurwitz_zeta<double> data004[] = {
   { 0.38792388677074674, 1.8000000000000000, 4.7999999999999998 },
   { 0.37417123608408875, 1.8000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=1.8000000000000000.
-template<typename Tp>
-  void
-  test004()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data004)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data004[i].s), Tp(data004[i].a));
-	const Tp f0 = data004[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler004 = 2.5000000000000020e-13;
 
 // Test data for s=2.0000000000000000.
-testcase_hurwitz_zeta<double> data005[] = {
+// max(|f - f_GSL|): 1.0658141036401503e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8133681658947818e-16
+const testcase_hurwitz_zeta<double>
+data005[25] =
+{
   { 26.267377205423774, 2.0000000000000000, 0.20000000000000001 },
   { 7.2753565905295972, 2.0000000000000000, 0.40000000000000002 },
   { 3.6362096709023586, 2.0000000000000000, 0.59999999999999998 },
@@ -297,38 +205,14 @@ testcase_hurwitz_zeta<double> data005[] = {
   { 0.23152906422256811, 2.0000000000000000, 4.7999999999999998 },
   { 0.22132295573711533, 2.0000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=2.0000000000000000.
-template<typename Tp>
-  void
-  test005()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data005)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data005[i].s), Tp(data005[i].a));
-	const Tp f0 = data005[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler005 = 2.5000000000000020e-13;
 
 // Test data for s=2.2000000000000002.
-testcase_hurwitz_zeta<double> data006[] = {
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7856683875643773e-16
+const testcase_hurwitz_zeta<double>
+data006[25] =
+{
   { 35.588692400796965, 2.2000000000000002, 0.20000000000000001 },
   { 8.3590869349750765, 2.2000000000000002, 0.40000000000000002 },
   { 3.7663673017380002, 2.2000000000000002, 0.59999999999999998 },
@@ -355,38 +239,14 @@ testcase_hurwitz_zeta<double> data006[] = {
   { 0.14391894119935894, 2.2000000000000002, 4.7999999999999998 },
   { 0.13634596611716460, 2.2000000000000002, 5.0000000000000000 },
 };
-
-// Test function for s=2.2000000000000002.
-template<typename Tp>
-  void
-  test006()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data006)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data006[i].s), Tp(data006[i].a));
-	const Tp f0 = data006[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler006 = 2.5000000000000020e-13;
 
 // Test data for s=2.3999999999999999.
-testcase_hurwitz_zeta<double> data007[] = {
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 4.7695185944897341e-16
+const testcase_hurwitz_zeta<double>
+data007[25] =
+{
   { 48.562256762453899, 2.3999999999999999, 0.20000000000000001 },
   { 9.7434825080349956, 2.3999999999999999, 0.40000000000000002 },
   { 3.9766234874163917, 2.3999999999999999, 0.59999999999999998 },
@@ -413,38 +273,14 @@ testcase_hurwitz_zeta<double> data007[] = {
   { 0.092000441216573192, 2.3999999999999999, 4.7999999999999998 },
   { 0.086382129435805963, 2.3999999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=2.3999999999999999.
-template<typename Tp>
-  void
-  test007()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data007)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data007[i].s), Tp(data007[i].a));
-	const Tp f0 = data007[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler007 = 2.5000000000000020e-13;
 
 // Test data for s=2.6000000000000001.
-testcase_hurwitz_zeta<double> data008[] = {
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 3.9498662112442395e-16
+const testcase_hurwitz_zeta<double>
+data008[25] =
+{
   { 66.539117265598946, 2.6000000000000001, 0.20000000000000001 },
   { 11.461544300150948, 2.6000000000000001, 0.40000000000000002 },
   { 4.2525602501358692, 2.6000000000000001, 0.59999999999999998 },
@@ -471,38 +307,14 @@ testcase_hurwitz_zeta<double> data008[] = {
   { 0.060026380821393457, 2.6000000000000001, 4.7999999999999998 },
   { 0.055858853126299755, 2.6000000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=2.6000000000000001.
-template<typename Tp>
-  void
-  test008()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data008)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data008[i].s), Tp(data008[i].a));
-	const Tp f0 = data008[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler008 = 2.5000000000000020e-13;
 
 // Test data for s=2.7999999999999998.
-testcase_hurwitz_zeta<double> data009[] = {
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 4.0736802113753408e-16
+const testcase_hurwitz_zeta<double>
+data009[25] =
+{
   { 91.398058387862648, 2.7999999999999998, 0.20000000000000001 },
   { 13.564434307452430, 2.7999999999999998, 0.40000000000000002 },
   { 4.5880676573844239, 2.7999999999999998, 0.59999999999999998 },
@@ -529,38 +341,14 @@ testcase_hurwitz_zeta<double> data009[] = {
   { 0.039779533501489946, 2.7999999999999998, 4.7999999999999998 },
   { 0.036688633888074550, 2.7999999999999998, 5.0000000000000000 },
 };
-
-// Test function for s=2.7999999999999998.
-template<typename Tp>
-  void
-  test009()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data009)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data009[i].s), Tp(data009[i].a));
-	const Tp f0 = data009[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler009 = 2.5000000000000020e-13;
 
 // Test data for s=3.0000000000000000.
-testcase_hurwitz_zeta<double> data010[] = {
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 6.3119202363336380e-16
+const testcase_hurwitz_zeta<double>
+data010[25] =
+{
   { 125.73901805721796, 3.0000000000000000, 0.20000000000000001 },
   { 16.119564311789176, 3.0000000000000000, 0.40000000000000002 },
   { 4.9814157685717300, 3.0000000000000000, 0.59999999999999998 },
@@ -587,38 +375,14 @@ testcase_hurwitz_zeta<double> data010[] = {
   { 0.026686923352947901, 3.0000000000000000, 4.7999999999999998 },
   { 0.024394866122557250, 3.0000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=3.0000000000000000.
-template<typename Tp>
-  void
-  test010()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data010)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data010[i].s), Tp(data010[i].a));
-	const Tp f0 = data010[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler010 = 2.5000000000000020e-13;
 
 // Test data for s=3.2000000000000002.
-testcase_hurwitz_zeta<double> data011[] = {
+// max(|f - f_GSL|): 8.5265128291212022e-14
+// max(|f - f_GSL| / |f_GSL|): 7.6122616592691250e-16
+const testcase_hurwitz_zeta<double>
+data011[25] =
+{
   { 173.15362080409190, 3.2000000000000002, 0.20000000000000001 },
   { 19.211262848243596, 3.2000000000000002, 0.40000000000000002 },
   { 5.4334953624888476, 3.2000000000000002, 0.59999999999999998 },
@@ -645,38 +409,14 @@ testcase_hurwitz_zeta<double> data011[] = {
   { 0.018081265363876699, 3.2000000000000002, 4.7999999999999998 },
   { 0.016381845942506395, 3.2000000000000002, 5.0000000000000000 },
 };
-
-// Test function for s=3.2000000000000002.
-template<typename Tp>
-  void
-  test011()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data011)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data011[i].s), Tp(data011[i].a));
-	const Tp f0 = data011[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler011 = 2.5000000000000020e-13;
 
 // Test data for s=3.3999999999999999.
-testcase_hurwitz_zeta<double> data012[] = {
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 5.8818935122942988e-16
+const testcase_hurwitz_zeta<double>
+data012[25] =
+{
   { 238.60002724283555, 3.3999999999999999, 0.20000000000000001 },
   { 22.942840933340623, 3.3999999999999999, 0.40000000000000002 },
   { 5.9469652833297912, 3.3999999999999999, 0.59999999999999998 },
@@ -703,38 +443,14 @@ testcase_hurwitz_zeta<double> data012[] = {
   { 0.012350665744580266, 3.3999999999999999, 4.7999999999999998 },
   { 0.011090839423569900, 3.3999999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=3.3999999999999999.
-template<typename Tp>
-  void
-  test012()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data012)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data012[i].s), Tp(data012[i].a));
-	const Tp f0 = data012[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler012 = 2.5000000000000020e-13;
 
 // Test data for s=3.6000000000000001.
-testcase_hurwitz_zeta<double> data013[] = {
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 4.2123746685998130e-16
+const testcase_hurwitz_zeta<double>
+data013[25] =
+{
   { 328.92088378084100, 3.6000000000000001, 0.20000000000000001 },
   { 27.439670862340744, 3.6000000000000001, 0.40000000000000002 },
   { 6.5258212937572591, 3.6000000000000001, 0.59999999999999998 },
@@ -761,38 +477,14 @@ testcase_hurwitz_zeta<double> data013[] = {
   { 0.0084938760661442871, 3.6000000000000001, 4.7999999999999998 },
   { 0.0075600710919923909, 3.6000000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=3.6000000000000001.
-template<typename Tp>
-  void
-  test013()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data013)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data013[i].s), Tp(data013[i].a));
-	const Tp f0 = data013[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler013 = 2.5000000000000020e-13;
 
 // Test data for s=3.7999999999999998.
-testcase_hurwitz_zeta<double> data014[] = {
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 6.4883446883021001e-16
+const testcase_hurwitz_zeta<double>
+data014[25] =
+{
   { 453.55834575796666, 3.7999999999999998, 0.20000000000000001 },
   { 32.853189984241034, 3.7999999999999998, 0.40000000000000002 },
   { 7.1751788790408551, 3.7999999999999998, 0.59999999999999998 },
@@ -819,38 +511,14 @@ testcase_hurwitz_zeta<double> data014[] = {
   { 0.0058752572594275862, 3.7999999999999998, 4.7999999999999998 },
   { 0.0051832071789920013, 3.7999999999999998, 5.0000000000000000 },
 };
-
-// Test function for s=3.7999999999999998.
-template<typename Tp>
-  void
-  test014()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data014)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data014[i].s), Tp(data014[i].a));
-	const Tp f0 = data014[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler014 = 2.5000000000000020e-13;
 
 // Test data for s=4.0000000000000000.
-testcase_hurwitz_zeta<double> data015[] = {
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 4.2474912710030933e-16
+const testcase_hurwitz_zeta<double>
+data015[25] =
+{
   { 625.54083247745439, 4.0000000000000000, 0.20000000000000001 },
   { 39.365876505657845, 4.0000000000000000, 0.40000000000000002 },
   { 7.9011735075576288, 4.0000000000000000, 0.59999999999999998 },
@@ -877,38 +545,14 @@ testcase_hurwitz_zeta<double> data015[] = {
   { 0.0040841131041739198, 4.0000000000000000, 4.7999999999999998 },
   { 0.0035713046987925138, 4.0000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=4.0000000000000000.
-template<typename Tp>
-  void
-  test015()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data015)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data015[i].s), Tp(data015[i].a));
-	const Tp f0 = data015[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler015 = 2.5000000000000020e-13;
 
 // Test data for s=4.2000000000000002.
-testcase_hurwitz_zeta<double> data016[] = {
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 4.3235538447636407e-16
+const testcase_hurwitz_zeta<double>
+data016[25] =
+{
   { 862.84460806659888, 4.2000000000000002, 0.20000000000000001 },
   { 47.197321935273457, 4.2000000000000002, 0.40000000000000002 },
   { 8.7109304831715999, 4.2000000000000002, 0.59999999999999998 },
@@ -935,38 +579,14 @@ testcase_hurwitz_zeta<double> data016[] = {
   { 0.0028512285939902120, 4.2000000000000002, 4.7999999999999998 },
   { 0.0024712934574751561, 4.2000000000000002, 5.0000000000000000 },
 };
-
-// Test function for s=4.2000000000000002.
-template<typename Tp>
-  void
-  test016()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data016)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data016[i].s), Tp(data016[i].a));
-	const Tp f0 = data016[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler016 = 2.5000000000000020e-13;
 
 // Test data for s=4.4000000000000004.
-testcase_hurwitz_zeta<double> data017[] = {
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 4.3805024386153911e-16
+const testcase_hurwitz_zeta<double>
+data017[25] =
+{
   { 1190.2724712263728, 4.4000000000000004, 0.20000000000000001 },
   { 56.611582463551976, 4.4000000000000004, 0.40000000000000002 },
   { 9.6125794528928026, 4.4000000000000004, 0.59999999999999998 },
@@ -993,38 +613,14 @@ testcase_hurwitz_zeta<double> data017[] = {
   { 0.0019979999339281573, 4.4000000000000004, 4.7999999999999998 },
   { 0.0017165501353960378, 4.4000000000000004, 5.0000000000000000 },
 };
-
-// Test function for s=4.4000000000000004.
-template<typename Tp>
-  void
-  test017()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data017)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data017[i].s), Tp(data017[i].a));
-	const Tp f0 = data017[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler017 = 2.5000000000000020e-13;
 
 // Test data for s=4.5999999999999996.
-testcase_hurwitz_zeta<double> data018[] = {
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 6.5655497956389558e-16
+const testcase_hurwitz_zeta<double>
+data018[25] =
+{
   { 1642.0458872172246, 4.5999999999999996, 0.20000000000000001 },
   { 67.926044834051950, 4.5999999999999996, 0.40000000000000002 },
   { 10.615300142649309, 4.5999999999999996, 0.59999999999999998 },
@@ -1051,38 +647,14 @@ testcase_hurwitz_zeta<double> data018[] = {
   { 0.0014047340135108649, 4.5999999999999996, 4.7999999999999998 },
   { 0.0011962705085533196, 4.5999999999999996, 5.0000000000000000 },
 };
-
-// Test function for s=4.5999999999999996.
-template<typename Tp>
-  void
-  test018()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data018)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data018[i].s), Tp(data018[i].a));
-	const Tp f0 = data018[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler018 = 2.5000000000000020e-13;
 
 // Test data for s=4.7999999999999998.
-testcase_hurwitz_zeta<double> data019[] = {
+// max(|f - f_GSL|): 9.0949470177292824e-13
+// max(|f - f_GSL| / |f_GSL|): 6.0577968216285940e-16
+const testcase_hurwitz_zeta<double>
+data019[25] =
+{
   { 2265.3814604623512, 4.7999999999999998, 0.20000000000000001 },
   { 81.522098525728865, 4.7999999999999998, 0.40000000000000002 },
   { 11.729391999797643, 4.7999999999999998, 0.59999999999999998 },
@@ -1109,38 +681,14 @@ testcase_hurwitz_zeta<double> data019[] = {
   { 0.00099052521442014626, 4.7999999999999998, 4.7999999999999998 },
   { 0.00083614302532714654, 4.7999999999999998, 5.0000000000000000 },
 };
-
-// Test function for s=4.7999999999999998.
-template<typename Tp>
-  void
-  test019()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data019)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data019[i].s), Tp(data019[i].a));
-	const Tp f0 = data019[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler019 = 2.5000000000000020e-13;
 
 // Test data for s=5.0000000000000000.
-testcase_hurwitz_zeta<double> data020[] = {
+// max(|f - f_GSL|): 4.5474735088646412e-13
+// max(|f - f_GSL| / |f_GSL|): 4.4200220792862006e-16
+const testcase_hurwitz_zeta<double>
+data020[25] =
+{
   { 3125.4255207488595, 5.0000000000000000, 0.20000000000000001 },
   { 97.857969728666248, 5.0000000000000000, 0.40000000000000002 },
   { 12.966363830385911, 5.0000000000000000, 0.59999999999999998 },
@@ -1167,38 +715,14 @@ testcase_hurwitz_zeta<double> data020[] = {
   { 0.00070028121634352933, 5.0000000000000000, 4.7999999999999998 },
   { 0.00058596630592136663, 5.0000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=5.0000000000000000.
-template<typename Tp>
-  void
-  test020()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data020)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data020[i].s), Tp(data020[i].a));
-	const Tp f0 = data020[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler020 = 2.5000000000000020e-13;
 
 // Test data for s=5.2000000000000002.
-testcase_hurwitz_zeta<double> data021[] = {
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8897863499607799e-16
+const testcase_hurwitz_zeta<double>
+data021[25] =
+{
   { 4312.0625324695311, 5.2000000000000002, 0.20000000000000001 },
   { 117.48414698002783, 5.2000000000000002, 0.40000000000000002 },
   { 14.339041521938043, 5.2000000000000002, 0.59999999999999998 },
@@ -1225,38 +749,14 @@ testcase_hurwitz_zeta<double> data021[] = {
   { 0.00049624690207921525, 5.2000000000000002, 4.7999999999999998 },
   { 0.00041161237805103416, 5.2000000000000002, 5.0000000000000000 },
 };
-
-// Test function for s=5.2000000000000002.
-template<typename Tp>
-  void
-  test021()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data021)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data021[i].s), Tp(data021[i].a));
-	const Tp f0 = data021[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler021 = 2.5000000000000020e-13;
 
 // Test data for s=5.4000000000000004.
-testcase_hurwitz_zeta<double> data022[] = {
+// max(|f - f_GSL|): 1.8189894035458565e-12
+// max(|f - f_GSL| / |f_GSL|): 4.8461371014185388e-16
+const testcase_hurwitz_zeta<double>
+data022[25] =
+{
   { 5949.3088688037806, 5.4000000000000004, 0.20000000000000001 },
   { 141.06191651846282, 5.4000000000000004, 0.40000000000000002 },
   { 15.861693184179401, 5.4000000000000004, 0.59999999999999998 },
@@ -1283,38 +783,14 @@ testcase_hurwitz_zeta<double> data022[] = {
   { 0.00035240400908701175, 5.4000000000000004, 4.7999999999999998 },
   { 0.00028975247784934099, 5.4000000000000004, 5.0000000000000000 },
 };
-
-// Test function for s=5.4000000000000004.
-template<typename Tp>
-  void
-  test022()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data022)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data022[i].s), Tp(data022[i].a));
-	const Tp f0 = data022[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler022 = 2.5000000000000020e-13;
 
 // Test data for s=5.5999999999999996.
-testcase_hurwitz_zeta<double> data023[] = {
+// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL| / |f_GSL|): 5.3544714129135670e-16
+const testcase_hurwitz_zeta<double>
+data023[25] =
+{
   { 8208.2736877234038, 5.5999999999999996, 0.20000000000000001 },
   { 169.38563068237571, 5.5999999999999996, 0.40000000000000002 },
   { 17.550171858163345, 5.5999999999999996, 0.59999999999999998 },
@@ -1341,38 +817,14 @@ testcase_hurwitz_zeta<double> data023[] = {
   { 0.00025073467020079044, 5.5999999999999996, 4.7999999999999998 },
   { 0.00020436267815918135, 5.5999999999999996, 5.0000000000000000 },
 };
-
-// Test function for s=5.5999999999999996.
-template<typename Tp>
-  void
-  test023()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data023)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data023[i].s), Tp(data023[i].a));
-	const Tp f0 = data023[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler023 = 2.5000000000000020e-13;
 
 // Test data for s=5.7999999999999998.
-testcase_hurwitz_zeta<double> data024[] = {
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 4.3532875481537144e-16
+const testcase_hurwitz_zeta<double>
+data024[25] =
+{
   { 11325.041442233409, 5.7999999999999998, 0.20000000000000001 },
   { 203.40945872474367, 5.7999999999999998, 0.40000000000000002 },
   { 19.422076522232853, 5.7999999999999998, 0.59999999999999998 },
@@ -1399,38 +851,14 @@ testcase_hurwitz_zeta<double> data024[] = {
   { 0.00017870737642713708, 5.7999999999999998, 4.7999999999999998 },
   { 0.00014438951479399406, 5.7999999999999998, 5.0000000000000000 },
 };
-
-// Test function for s=5.7999999999999998.
-template<typename Tp>
-  void
-  test024()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data024)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data024[i].s), Tp(data024[i].a));
-	const Tp f0 = data024[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler024 = 2.5000000000000020e-13;
 
 // Test data for s=6.0000000000000000.
-testcase_hurwitz_zeta<double> data025[] = {
+// max(|f - f_GSL|): 1.8189894035458565e-12
+// max(|f - f_GSL| / |f_GSL|): 4.3651864001884824e-16
+const testcase_hurwitz_zeta<double>
+data025[25] =
+{
   { 15625.344913986806, 6.0000000000000000, 0.20000000000000001 },
   { 244.27952057715629, 6.0000000000000000, 0.40000000000000002 },
   { 21.496932564737243, 6.0000000000000000, 0.59999999999999998 },
@@ -1457,38 +885,14 @@ testcase_hurwitz_zeta<double> data025[] = {
   { 0.00012757292247525274, 6.0000000000000000, 4.7999999999999998 },
   { 0.00010217924696628649, 6.0000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=6.0000000000000000.
-template<typename Tp>
-  void
-  test025()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data025)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data025[i].s), Tp(data025[i].a));
-	const Tp f0 = data025[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler025 = 2.5000000000000020e-13;
 
 // Test data for s=6.2000000000000002.
-testcase_hurwitz_zeta<double> data026[] = {
+// max(|f - f_GSL|): 3.6379788070917130e-12
+// max(|f - f_GSL| / |f_GSL|): 6.6331916936662678e-16
+const testcase_hurwitz_zeta<double>
+data026[25] =
+{
   { 21558.607332450261, 6.2000000000000002, 0.20000000000000001 },
   { 293.37248550888182, 6.2000000000000002, 0.40000000000000002 },
   { 23.796393259029355, 6.2000000000000002, 0.59999999999999998 },
@@ -1515,38 +919,14 @@ testcase_hurwitz_zeta<double> data026[] = {
   { 9.1201874946071618e-05, 6.2000000000000002, 4.7999999999999998 },
   { 7.2414233078925357e-05, 6.2000000000000002, 5.0000000000000000 },
 };
-
-// Test function for s=6.2000000000000002.
-template<typename Tp>
-  void
-  test026()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data026)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data026[i].s), Tp(data026[i].a));
-	const Tp f0 = data026[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler026 = 2.5000000000000020e-13;
 
 // Test data for s=6.4000000000000004.
-testcase_hurwitz_zeta<double> data027[] = {
+// max(|f - f_GSL|): 3.6379788070917130e-12
+// max(|f - f_GSL| / |f_GSL|): 4.1376609317094708e-16
+const testcase_hurwitz_zeta<double>
+data027[25] =
+{
   { 29744.911298610354, 6.4000000000000004, 0.20000000000000001 },
   { 352.34193543142800, 6.4000000000000004, 0.40000000000000002 },
   { 26.344464102818822, 6.4000000000000004, 0.59999999999999998 },
@@ -1573,38 +953,14 @@ testcase_hurwitz_zeta<double> data027[] = {
   { 6.5286934299929955e-05, 6.4000000000000004, 4.7999999999999998 },
   { 5.1388661782596012e-05, 6.4000000000000004, 5.0000000000000000 },
 };
-
-// Test function for s=6.4000000000000004.
-template<typename Tp>
-  void
-  test027()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data027)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data027[i].s), Tp(data027[i].a));
-	const Tp f0 = data027[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler027 = 2.5000000000000020e-13;
 
 // Test data for s=6.5999999999999996.
-testcase_hurwitz_zeta<double> data028[] = {
+// max(|f - f_GSL|): 7.2759576141834259e-12
+// max(|f - f_GSL| / |f_GSL|): 4.4237720322047698e-16
+const testcase_hurwitz_zeta<double>
+data028[25] =
+{
   { 41039.803203825817, 6.5999999999999996, 0.20000000000000001 },
   { 423.17405414763391, 6.5999999999999996, 0.40000000000000002 },
   { 29.167752194796336, 6.5999999999999996, 0.59999999999999998 },
@@ -1631,38 +987,14 @@ testcase_hurwitz_zeta<double> data028[] = {
   { 4.6792879968150710e-05, 6.5999999999999996, 4.7999999999999998 },
   { 3.6512913445845248e-05, 6.5999999999999996, 5.0000000000000000 },
 };
-
-// Test function for s=6.5999999999999996.
-template<typename Tp>
-  void
-  test028()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data028)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data028[i].s), Tp(data028[i].a));
-	const Tp f0 = data028[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler028 = 2.5000000000000020e-13;
 
 // Test data for s=6.7999999999999998.
-testcase_hurwitz_zeta<double> data029[] = {
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.6531513908061276e-16
+const testcase_hurwitz_zeta<double>
+data029[25] =
+{
   { 56623.705809985222, 6.7999999999999998, 0.20000000000000001 },
   { 508.25451795553977, 6.7999999999999998, 0.40000000000000002 },
   { 32.295743132118290, 6.7999999999999998, 0.59999999999999998 },
@@ -1689,38 +1021,14 @@ testcase_hurwitz_zeta<double> data029[] = {
   { 3.3575534783886272e-05, 6.7999999999999998, 4.7999999999999998 },
   { 2.5972877892602721e-05, 6.7999999999999998, 5.0000000000000000 },
 };
-
-// Test function for s=6.7999999999999998.
-template<typename Tp>
-  void
-  test029()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data029)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data029[i].s), Tp(data029[i].a));
-	const Tp f0 = data029[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler029 = 2.5000000000000020e-13;
 
 // Test data for s=7.0000000000000000.
-testcase_hurwitz_zeta<double> data030[] = {
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 5.1122313335947261e-16
+const testcase_hurwitz_zeta<double>
+data030[25] =
+{
   { 78125.283439450228, 7.0000000000000000, 0.20000000000000001 },
   { 610.44884027612022, 7.0000000000000000, 0.40000000000000002 },
   { 35.761108233837604, 7.0000000000000000, 0.59999999999999998 },
@@ -1747,38 +1055,14 @@ testcase_hurwitz_zeta<double> data030[] = {
   { 2.4116745361140698e-05, 7.0000000000000000, 4.7999999999999998 },
   { 1.8494854845209101e-05, 7.0000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=7.0000000000000000.
-template<typename Tp>
-  void
-  test030()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data030)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data030[i].s), Tp(data030[i].a));
-	const Tp f0 = data030[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler030 = 2.5000000000000020e-13;
 
 // Test data for s=7.2000000000000002.
-testcase_hurwitz_zeta<double> data031[] = {
+// max(|f - f_GSL|): 2.1316282072803006e-14
+// max(|f - f_GSL| / |f_GSL|): 5.3828933643284034e-16
+const testcase_hurwitz_zeta<double>
+data031[25] =
+{
   { 107791.65258759380, 7.2000000000000002, 0.20000000000000001 },
   { 733.19887608970078, 7.2000000000000002, 0.40000000000000002 },
   { 39.600045236011340, 7.2000000000000002, 0.59999999999999998 },
@@ -1805,38 +1089,14 @@ testcase_hurwitz_zeta<double> data031[] = {
   { 1.7339384886837714e-05, 7.2000000000000002, 4.7999999999999998 },
   { 1.3182737663385856e-05, 7.2000000000000002, 5.0000000000000000 },
 };
-
-// Test function for s=7.2000000000000002.
-template<typename Tp>
-  void
-  test031()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data031)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data031[i].s), Tp(data031[i].a));
-	const Tp f0 = data031[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler031 = 2.5000000000000020e-13;
 
 // Test data for s=7.4000000000000004.
-testcase_hurwitz_zeta<double> data032[] = {
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 4.2539832879511325e-16
+const testcase_hurwitz_zeta<double>
+data032[25] =
+{
   { 148723.22655423332, 7.4000000000000004, 0.20000000000000001 },
   { 880.63873620094444, 7.4000000000000004, 0.40000000000000002 },
   { 43.852655970798274, 7.4000000000000004, 0.59999999999999998 },
@@ -1863,38 +1123,14 @@ testcase_hurwitz_zeta<double> data032[] = {
   { 1.2477792827690068e-05, 7.4000000000000004, 4.7999999999999998 },
   { 9.4048942037754161e-06, 7.4000000000000004, 5.0000000000000000 },
 };
-
-// Test function for s=7.4000000000000004.
-template<typename Tp>
-  void
-  test032()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data032)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data032[i].s), Tp(data032[i].a));
-	const Tp f0 = data032[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler032 = 2.5000000000000020e-13;
 
 // Test data for s=7.5999999999999996.
-testcase_hurwitz_zeta<double> data033[] = {
+// max(|f - f_GSL|): 2.2737367544323206e-13
+// max(|f - f_GSL| / |f_GSL|): 2.1496299845787800e-16
+const testcase_hurwitz_zeta<double>
+data033[25] =
+{
   { 205197.73754794712, 7.5999999999999996, 0.20000000000000001 },
   { 1057.7340150369457, 7.5999999999999996, 0.40000000000000002 },
   { 48.563364940356344, 7.5999999999999996, 0.59999999999999998 },
@@ -1921,38 +1157,14 @@ testcase_hurwitz_zeta<double> data033[] = {
   { 8.9867704246496137e-06, 7.5999999999999996, 4.7999999999999998 },
   { 6.7153471452948921e-06, 7.5999999999999996, 5.0000000000000000 },
 };
-
-// Test function for s=7.5999999999999996.
-template<typename Tp>
-  void
-  test033()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data033)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data033[i].s), Tp(data033[i].a));
-	const Tp f0 = data033[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler033 = 2.5000000000000020e-13;
 
 // Test data for s=7.7999999999999998.
-testcase_hurwitz_zeta<double> data034[] = {
+// max(|f - f_GSL|): 1.1641532182693481e-10
+// max(|f - f_GSL| / |f_GSL|): 5.5784064466048994e-16
+const testcase_hurwitz_zeta<double>
+data034[25] =
+{
   { 283117.29959476780, 7.7999999999999998, 0.20000000000000001 },
   { 1270.4490208328891, 7.7999999999999998, 0.40000000000000002 },
   { 53.781383132360425, 7.7999999999999998, 0.59999999999999998 },
@@ -1979,38 +1191,14 @@ testcase_hurwitz_zeta<double> data034[] = {
   { 6.4774864023202376e-06, 7.7999999999999998, 4.7999999999999998 },
   { 4.7987087529471902e-06, 7.7999999999999998, 5.0000000000000000 },
 };
-
-// Test function for s=7.7999999999999998.
-template<typename Tp>
-  void
-  test034()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data034)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data034[i].s), Tp(data034[i].a));
-	const Tp f0 = data034[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler034 = 2.5000000000000020e-13;
 
 // Test data for s=8.0000000000000000.
-testcase_hurwitz_zeta<double> data035[] = {
+// max(|f - f_GSL|): 8.8817841970012523e-16
+// max(|f - f_GSL| / |f_GSL|): 4.4228585288653252e-16
+const testcase_hurwitz_zeta<double>
+data035[25] =
+{
   { 390625.23449416354, 8.0000000000000000, 0.20000000000000001 },
   { 1525.9476401175793, 8.0000000000000000, 0.40000000000000002 },
   { 59.561221903019508, 8.0000000000000000, 0.59999999999999998 },
@@ -2037,38 +1225,14 @@ testcase_hurwitz_zeta<double> data035[] = {
   { 4.6722250838511364e-06, 8.0000000000000000, 4.7999999999999998 },
   { 3.4316186059667983e-06, 8.0000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=8.0000000000000000.
-template<typename Tp>
-  void
-  test035()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data035)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data035[i].s), Tp(data035[i].a));
-	const Tp f0 = data035[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler035 = 2.5000000000000020e-13;
 
 // Test data for s=8.1999999999999993.
-testcase_hurwitz_zeta<double> data036[] = {
+// max(|f - f_GSL|): 1.1641532182693481e-10
+// max(|f - f_GSL| / |f_GSL|): 4.2175794013633686e-16
+const testcase_hurwitz_zeta<double>
+data036[25] =
+{
   { 538957.12488672731, 8.1999999999999993, 0.20000000000000001 },
   { 1832.8346011374999, 8.1999999999999993, 0.40000000000000002 },
   { 65.963262281260484, 8.1999999999999993, 0.59999999999999998 },
@@ -2095,38 +1259,14 @@ testcase_hurwitz_zeta<double> data036[] = {
   { 3.3723663131030858e-06, 8.1999999999999993, 4.7999999999999998 },
   { 2.4556791194146190e-06, 8.1999999999999993, 5.0000000000000000 },
 };
-
-// Test function for s=8.1999999999999993.
-template<typename Tp>
-  void
-  test036()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data036)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data036[i].s), Tp(data036[i].a));
-	const Tp f0 = data036[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler036 = 2.5000000000000020e-13;
 
 // Test data for s=8.4000000000000004.
-testcase_hurwitz_zeta<double> data037[] = {
+// max(|f - f_GSL|): 9.0949470177292824e-13
+// max(|f - f_GSL| / |f_GSL|): 4.2391361148539043e-16
+const testcase_hurwitz_zeta<double>
+data037[25] =
+{
   { 743615.03741536278, 8.4000000000000004, 0.20000000000000001 },
   { 2201.4452614006705, 8.4000000000000004, 0.40000000000000002 },
   { 73.054385630242692, 8.4000000000000004, 0.59999999999999998 },
@@ -2153,38 +1293,14 @@ testcase_hurwitz_zeta<double> data037[] = {
   { 2.4356818742605752e-06, 8.4000000000000004, 4.7999999999999998 },
   { 1.7584224896633779e-06, 8.4000000000000004, 5.0000000000000000 },
 };
-
-// Test function for s=8.4000000000000004.
-template<typename Tp>
-  void
-  test037()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data037)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data037[i].s), Tp(data037[i].a));
-	const Tp f0 = data037[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler037 = 2.5000000000000020e-13;
 
 // Test data for s=8.5999999999999996.
-testcase_hurwitz_zeta<double> data038[] = {
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.2878654193790933e-16
+const testcase_hurwitz_zeta<double>
+data038[25] =
+{
   { 1025987.6332501065, 8.5999999999999996, 0.20000000000000001 },
   { 2644.1936787006052, 8.5999999999999996, 0.40000000000000002 },
   { 80.908672245994936, 8.5999999999999996, 0.59999999999999998 },
@@ -2211,38 +1327,14 @@ testcase_hurwitz_zeta<double> data038[] = {
   { 1.7602075322761195e-06, 8.5999999999999996, 4.7999999999999998 },
   { 1.2599010372570089e-06, 8.5999999999999996, 5.0000000000000000 },
 };
-
-// Test function for s=8.5999999999999996.
-template<typename Tp>
-  void
-  test038()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data038)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data038[i].s), Tp(data038[i].a));
-	const Tp f0 = data038[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler038 = 2.5000000000000020e-13;
 
 // Test data for s=8.8000000000000007.
-testcase_hurwitz_zeta<double> data039[] = {
+// max(|f - f_GSL|): 2.3283064365386963e-10
+// max(|f - f_GSL| / |f_GSL|): 3.9845062488983630e-16
+const testcase_hurwitz_zeta<double>
+data039[25] =
+{
   { 1415585.4826342429, 8.8000000000000007, 0.20000000000000001 },
   { 3175.9906878316765, 8.8000000000000007, 0.40000000000000002 },
   { 89.608175184681954, 8.8000000000000007, 0.59999999999999998 },
@@ -2269,38 +1361,14 @@ testcase_hurwitz_zeta<double> data039[] = {
   { 1.2727664601056843e-06, 8.8000000000000007, 4.7999999999999998 },
   { 9.0322345496537038e-07, 8.8000000000000007, 5.0000000000000000 },
 };
-
-// Test function for s=8.8000000000000007.
-template<typename Tp>
-  void
-  test039()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data039)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data039[i].s), Tp(data039[i].a));
-	const Tp f0 = data039[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler039 = 2.5000000000000020e-13;
 
 // Test data for s=9.0000000000000000.
-testcase_hurwitz_zeta<double> data040[] = {
+// max(|f - f_GSL|): 2.3283064365386963e-10
+// max(|f - f_GSL| / |f_GSL|): 4.7787892313133187e-16
+const testcase_hurwitz_zeta<double>
+data040[25] =
+{
   { 1953125.1946663572, 9.0000000000000000, 0.20000000000000001 },
   { 3814.7460628341423, 9.0000000000000000, 0.40000000000000002 },
   { 99.243777397410554, 9.0000000000000000, 0.59999999999999998 },
@@ -2327,38 +1395,14 @@ testcase_hurwitz_zeta<double> data040[] = {
   { 9.2078960078723529e-07, 9.0000000000000000, 4.7999999999999998 },
   { 6.4786539129855773e-07, 9.0000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=9.0000000000000000.
-template<typename Tp>
-  void
-  test040()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data040)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data040[i].s), Tp(data040[i].a));
-	const Tp f0 = data040[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler040 = 2.5000000000000020e-13;
 
 // Test data for s=9.1999999999999993.
-testcase_hurwitz_zeta<double> data041[] = {
+// max(|f - f_GSL|): 4.6566128730773926e-10
+// max(|f - f_GSL| / |f_GSL|): 5.7007545559028402e-16
+const testcase_hurwitz_zeta<double>
+data041[25] =
+{
   { 2694784.6826405707, 9.1999999999999993, 0.20000000000000001 },
   { 4581.9716764099094, 9.1999999999999993, 0.40000000000000002 },
   { 109.91614112293725, 9.1999999999999993, 0.59999999999999998 },
@@ -2385,38 +1429,14 @@ testcase_hurwitz_zeta<double> data041[] = {
   { 6.6647728850667592e-07, 9.1999999999999993, 4.7999999999999998 },
   { 4.6493422349788024e-07, 9.1999999999999993, 5.0000000000000000 },
 };
-
-// Test function for s=9.1999999999999993.
-template<typename Tp>
-  void
-  test041()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data041)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data041[i].s), Tp(data041[i].a));
-	const Tp f0 = data041[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler041 = 2.5000000000000020e-13;
 
 // Test data for s=9.4000000000000004.
-testcase_hurwitz_zeta<double> data042[] = {
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.3876229042014553e-16
+const testcase_hurwitz_zeta<double>
+data042[25] =
+{
   { 3718074.2798539097, 9.4000000000000004, 0.20000000000000001 },
   { 5503.5059694966767, 9.4000000000000004, 0.40000000000000002 },
   { 121.73675945331489, 9.4000000000000004, 0.59999999999999998 },
@@ -2443,38 +1463,14 @@ testcase_hurwitz_zeta<double> data042[] = {
   { 4.8262633648575812e-07, 9.4000000000000004, 4.7999999999999998 },
   { 3.3381265102368450e-07, 9.4000000000000004, 5.0000000000000000 },
 };
-
-// Test function for s=9.4000000000000004.
-template<typename Tp>
-  void
-  test042()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data042)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data042[i].s), Tp(data042[i].a));
-	const Tp f0 = data042[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler042 = 2.5000000000000020e-13;
 
 // Test data for s=9.5999999999999996.
-testcase_hurwitz_zeta<double> data043[] = {
+// max(|f - f_GSL|): 9.0949470177292824e-13
+// max(|f - f_GSL| / |f_GSL|): 3.9005895699127338e-16
+const testcase_hurwitz_zeta<double>
+data043[25] =
+{
   { 5129937.2922316501, 9.5999999999999996, 0.20000000000000001 },
   { 6610.3841294282774, 9.5999999999999996, 0.40000000000000002 },
   { 134.82912105557673, 9.5999999999999996, 0.59999999999999998 },
@@ -2501,38 +1497,14 @@ testcase_hurwitz_zeta<double> data043[] = {
   { 3.4964374735248115e-07, 9.5999999999999996, 4.7999999999999998 },
   { 2.3977666449661713e-07, 9.5999999999999996, 5.0000000000000000 },
 };
-
-// Test function for s=9.5999999999999996.
-template<typename Tp>
-  void
-  test043()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data043)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data043[i].s), Tp(data043[i].a));
-	const Tp f0 = data043[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler043 = 2.5000000000000020e-13;
 
 // Test data for s=9.8000000000000007.
-testcase_hurwitz_zeta<double> data044[] = {
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 4.4403569477955908e-16
+const testcase_hurwitz_zeta<double>
+data044[25] =
+{
   { 7077926.5710588843, 9.8000000000000007, 0.20000000000000001 },
   { 7939.8832822307395, 9.8000000000000007, 0.40000000000000002 },
   { 149.33000021519993, 9.8000000000000007, 0.59999999999999998 },
@@ -2559,38 +1531,14 @@ testcase_hurwitz_zeta<double> data044[] = {
   { 2.5340711937903149e-07, 9.8000000000000007, 4.7999999999999998 },
   { 1.7230307469432874e-07, 9.8000000000000007, 5.0000000000000000 },
 };
-
-// Test function for s=9.8000000000000007.
-template<typename Tp>
-  void
-  test044()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data044)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data044[i].s), Tp(data044[i].a));
-	const Tp f0 = data044[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler044 = 2.5000000000000020e-13;
 
 // Test data for s=10.000000000000000.
-testcase_hurwitz_zeta<double> data045[] = {
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.6429275448894696e-16
+const testcase_hurwitz_zeta<double>
+data045[25] =
+{
   { 9765625.1618916336, 10.000000000000000, 0.20000000000000001 },
   { 9536.7778986665890, 10.000000000000000, 0.40000000000000002 },
   { 165.39088567670413, 10.000000000000000, 0.59999999999999998 },
@@ -2617,38 +1565,14 @@ testcase_hurwitz_zeta<double> data045[] = {
   { 1.8373002258243628e-07, 10.000000000000000, 4.7999999999999998 },
   { 1.2386569324880045e-07, 10.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=10.000000000000000.
-template<typename Tp>
-  void
-  test045()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data045)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data045[i].s), Tp(data045[i].a));
-	const Tp f0 = data045[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler045 = 2.5000000000000020e-13;
 
 // Test data for s=10.199999999999999.
-testcase_hurwitz_zeta<double> data046[] = {
+// max(|f - f_GSL|): 1.8189894035458565e-12
+// max(|f - f_GSL| / |f_GSL|): 6.2401598837276767e-16
+const testcase_hurwitz_zeta<double>
+data046[25] =
+{
   { 13473922.631258745, 10.199999999999999, 0.20000000000000001 },
   { 11454.847693143573, 10.199999999999999, 0.40000000000000002 },
   { 183.17956320704755, 10.199999999999999, 0.59999999999999998 },
@@ -2675,38 +1599,14 @@ testcase_hurwitz_zeta<double> data046[] = {
   { 1.3326017654889317e-07, 10.199999999999999, 4.7999999999999998 },
   { 8.9078223783595553e-08, 10.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=10.199999999999999.
-template<typename Tp>
-  void
-  test046()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data046)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data046[i].s), Tp(data046[i].a));
-	const Tp f0 = data046[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler046 = 2.5000000000000020e-13;
 
 // Test data for s=10.400000000000000.
-testcase_hurwitz_zeta<double> data047[] = {
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 4.1305180613618882e-16
+const testcase_hurwitz_zeta<double>
+data047[25] =
+{
   { 18590370.645699307, 10.400000000000000, 0.20000000000000001 },
   { 13758.688797967614, 10.400000000000000, 0.40000000000000002 },
   { 202.88186841363844, 10.400000000000000, 0.59999999999999998 },
@@ -2733,38 +1633,14 @@ testcase_hurwitz_zeta<double> data047[] = {
   { 9.6687623147738594e-08, 10.400000000000000, 4.7999999999999998 },
   { 6.4083437497352179e-08, 10.400000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=10.400000000000000.
-template<typename Tp>
-  void
-  test047()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data047)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data047[i].s), Tp(data047[i].a));
-	const Tp f0 = data047[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler047 = 2.5000000000000020e-13;
 
 // Test data for s=10.600000000000000.
-testcase_hurwitz_zeta<double> data048[] = {
+// max(|f - f_GSL|): 3.6379788070917130e-12
+// max(|f - f_GSL| / |f_GSL|): 4.8664590411580356e-16
+const testcase_hurwitz_zeta<double>
+data048[25] =
+{
   { 25649685.734889872, 10.600000000000000, 0.20000000000000001 },
   { 16525.889209018369, 10.600000000000000, 0.40000000000000002 },
   { 224.70362812758816, 10.600000000000000, 0.59999999999999998 },
@@ -2791,38 +1667,14 @@ testcase_hurwitz_zeta<double> data048[] = {
   { 7.0175176589960983e-08, 10.600000000000000, 4.7999999999999998 },
   { 4.6117484704310917e-08, 10.600000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=10.600000000000000.
-template<typename Tp>
-  void
-  test048()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data048)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data048[i].s), Tp(data048[i].a));
-	const Tp f0 = data048[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler048 = 2.5000000000000020e-13;
 
 // Test data for s=10.800000000000001.
-testcase_hurwitz_zeta<double> data049[] = {
+// max(|f - f_GSL|): 5.5511151231257827e-17
+// max(|f - f_GSL| / |f_GSL|): 5.0963653143346752e-16
+const testcase_hurwitz_zeta<double>
+data049[25] =
+{
   { 35389632.155302785, 10.800000000000001, 0.20000000000000001 },
   { 19849.641766728131, 10.800000000000001, 0.40000000000000002 },
   { 248.87281063288972, 10.800000000000001, 0.59999999999999998 },
@@ -2849,38 +1701,14 @@ testcase_hurwitz_zeta<double> data049[] = {
   { 5.0948416884780244e-08, 10.800000000000001, 4.7999999999999998 },
   { 3.3198873113129642e-08, 10.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=10.800000000000001.
-template<typename Tp>
-  void
-  test049()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data049)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data049[i].s), Tp(data049[i].a));
-	const Tp f0 = data049[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler049 = 2.5000000000000020e-13;
 
 // Test data for s=11.000000000000000.
-testcase_hurwitz_zeta<double> data050[] = {
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 4.3878072600128618e-16
+const testcase_hurwitz_zeta<double>
+data050[25] =
+{
   { 48828125.134762034, 11.000000000000000, 0.20000000000000001 },
   { 23841.882671401137, 11.000000000000000, 0.40000000000000002 },
   { 275.64190720408999, 11.000000000000000, 0.59999999999999998 },
@@ -2907,38 +1735,14 @@ testcase_hurwitz_zeta<double> data050[] = {
   { 3.7000307423074854e-08, 11.000000000000000, 4.7999999999999998 },
   { 2.3906270886233965e-08, 11.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=11.000000000000000.
-template<typename Tp>
-  void
-  test050()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data050)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data050[i].s), Tp(data050[i].a));
-	const Tp f0 = data050[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler050 = 2.5000000000000020e-13;
 
 // Test data for s=11.199999999999999.
-testcase_hurwitz_zeta<double> data051[] = {
+// max(|f - f_GSL|): 3.6379788070917130e-12
+// max(|f - f_GSL| / |f_GSL|): 6.4092142755450842e-16
+const testcase_hurwitz_zeta<double>
+data051[25] =
+{
   { 67369612.505952984, 11.199999999999999, 0.20000000000000001 },
   { 28637.061230668474, 11.199999999999999, 0.40000000000000002 },
   { 305.29056983155755, 11.199999999999999, 0.59999999999999998 },
@@ -2965,38 +1769,14 @@ testcase_hurwitz_zeta<double> data051[] = {
   { 2.6878237730114796e-08, 11.199999999999999, 4.7999999999999998 },
   { 1.7219652849737222e-08, 11.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=11.199999999999999.
-template<typename Tp>
-  void
-  test051()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data051)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data051[i].s), Tp(data051[i].a));
-	const Tp f0 = data051[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler051 = 2.5000000000000020e-13;
 
 // Test data for s=11.400000000000000.
-testcase_hurwitz_zeta<double> data052[] = {
+// max(|f - f_GSL|): 7.2759576141834259e-12
+// max(|f - f_GSL| / |f_GSL|): 4.3045856957262973e-16
+const testcase_hurwitz_zeta<double>
+data052[25] =
+{
   { 92951852.601609945, 11.400000000000000, 0.20000000000000001 },
   { 34396.667795281974, 11.400000000000000, 0.40000000000000002 },
   { 338.12853268985572, 11.400000000000000, 0.59999999999999998 },
@@ -3023,38 +1803,14 @@ testcase_hurwitz_zeta<double> data052[] = {
   { 1.9530386813236694e-08, 11.400000000000000, 4.7999999999999998 },
   { 1.2406655503964860e-08, 11.400000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=11.400000000000000.
-template<typename Tp>
-  void
-  test052()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data052)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data052[i].s), Tp(data052[i].a));
-	const Tp f0 = data052[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler052 = 2.5000000000000020e-13;
 
 // Test data for s=11.600000000000000.
-testcase_hurwitz_zeta<double> data053[] = {
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 4.4394484862945992e-16
+const testcase_hurwitz_zeta<double>
+data053[25] =
+{
   { 128248428.07015234, 11.600000000000000, 0.20000000000000001 },
   { 41314.672373446003, 11.600000000000000, 0.40000000000000002 },
   { 374.49884786899463, 11.600000000000000, 0.59999999999999998 },
@@ -3081,38 +1837,14 @@ testcase_hurwitz_zeta<double> data053[] = {
   { 1.4194812309870070e-08, 11.600000000000000, 4.7999999999999998 },
   { 8.9412230621448771e-09, 11.600000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=11.600000000000000.
-template<typename Tp>
-  void
-  test053()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data053)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data053[i].s), Tp(data053[i].a));
-	const Tp f0 = data053[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler053 = 2.5000000000000020e-13;
 
 // Test data for s=11.800000000000001.
-testcase_hurwitz_zeta<double> data054[] = {
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 5.7492328202195540e-16
+const testcase_hurwitz_zeta<double>
+data054[25] =
+{
   { 176948160.19397655, 11.800000000000001, 0.20000000000000001 },
   { 49624.057083392086, 11.800000000000001, 0.40000000000000002 },
   { 414.78146917143147, 11.800000000000001, 0.59999999999999998 },
@@ -3139,38 +1871,14 @@ testcase_hurwitz_zeta<double> data054[] = {
   { 1.0319335540801076e-08, 11.800000000000001, 4.7999999999999998 },
   { 6.4453345524979613e-09, 11.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=11.800000000000001.
-template<typename Tp>
-  void
-  test054()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data054)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data054[i].s), Tp(data054[i].a));
-	const Tp f0 = data054[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler054 = 2.5000000000000020e-13;
 
 // Test data for s=12.000000000000000.
-testcase_hurwitz_zeta<double> data055[] = {
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 3.4443516424400458e-16
+const testcase_hurwitz_zeta<double>
+data055[25] =
+{
   { 244140625.11223519, 12.000000000000000, 0.20000000000000001 },
   { 59604.662441790577, 12.000000000000000, 0.40000000000000002 },
   { 459.39722141387824, 12.000000000000000, 0.59999999999999998 },
@@ -3197,38 +1905,14 @@ testcase_hurwitz_zeta<double> data055[] = {
   { 7.5036389086701676e-09, 12.000000000000000, 4.7999999999999998 },
   { 4.6472401139872674e-09, 12.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=12.000000000000000.
-template<typename Tp>
-  void
-  test055()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data055)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data055[i].s), Tp(data055[i].a));
-	const Tp f0 = data055[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler055 = 2.5000000000000020e-13;
 
 // Test data for s=12.199999999999999.
-testcase_hurwitz_zeta<double> data056[] = {
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 4.5471179733280341e-16
+const testcase_hurwitz_zeta<double>
+data056[25] =
+{
   { 336848061.98838657, 12.199999999999999, 0.20000000000000001 },
   { 71592.611732489837, 12.199999999999999, 0.40000000000000002 },
   { 508.81219670031720, 12.199999999999999, 0.59999999999999998 },
@@ -3255,38 +1939,14 @@ testcase_hurwitz_zeta<double> data056[] = {
   { 5.4573948866403472e-09, 12.199999999999999, 4.7999999999999998 },
   { 3.3515134011659586e-09, 12.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=12.199999999999999.
-template<typename Tp>
-  void
-  test056()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data056)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data056[i].s), Tp(data056[i].a));
-	const Tp f0 = data056[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler056 = 2.5000000000000020e-13;
 
 // Test data for s=12.400000000000000.
-testcase_hurwitz_zeta<double> data057[] = {
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 3.4642697400096100e-16
+const testcase_hurwitz_zeta<double>
+data057[25] =
+{
   { 464759262.48613185, 12.400000000000000, 0.20000000000000001 },
   { 85991.630846092579, 12.400000000000000, 0.40000000000000002 },
   { 563.54262359310417, 12.400000000000000, 0.59999999999999998 },
@@ -3313,38 +1973,14 @@ testcase_hurwitz_zeta<double> data057[] = {
   { 3.9699727242689536e-09, 12.400000000000000, 4.7999999999999998 },
   { 2.4175662315391026e-09, 12.400000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=12.400000000000000.
-template<typename Tp>
-  void
-  test057()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data057)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data057[i].s), Tp(data057[i].a));
-	const Tp f0 = data057[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler057 = 2.5000000000000020e-13;
 
 // Test data for s=12.600000000000000.
-testcase_hurwitz_zeta<double> data058[] = {
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 4.3809686171546277e-16
+const testcase_hurwitz_zeta<double>
+data058[25] =
+{
   { 641242139.84759641, 12.600000000000000, 0.20000000000000001 },
   { 103286.64481586787, 12.600000000000000, 0.40000000000000002 },
   { 624.16026004934599, 12.600000000000000, 0.59999999999999998 },
@@ -3371,38 +2007,14 @@ testcase_hurwitz_zeta<double> data058[] = {
   { 2.8885111566006345e-09, 12.600000000000000, 4.7999999999999998 },
   { 1.7442270169213478e-09, 12.600000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=12.600000000000000.
-template<typename Tp>
-  void
-  test058()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data058)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data058[i].s), Tp(data058[i].a));
-	const Tp f0 = data058[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler058 = 2.5000000000000020e-13;
 
 // Test data for s=12.800000000000001.
-testcase_hurwitz_zeta<double> data059[] = {
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 4.4402659133649871e-16
+const testcase_hurwitz_zeta<double>
+data059[25] =
+{
   { 884740800.48478889, 12.800000000000001, 0.20000000000000001 },
   { 124060.10894926239, 12.800000000000001, 0.40000000000000002 },
   { 691.29836646141052, 12.800000000000001, 0.59999999999999998 },
@@ -3429,38 +2041,14 @@ testcase_hurwitz_zeta<double> data059[] = {
   { 2.1020396117782626e-09, 12.800000000000001, 4.7999999999999998 },
   { 1.2586666514468873e-09, 12.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=12.800000000000001.
-template<typename Tp>
-  void
-  test059()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data059)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data059[i].s), Tp(data059[i].a));
-	const Tp f0 = data059[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler059 = 2.5000000000000020e-13;
 
 // Test data for s=13.000000000000000.
-testcase_hurwitz_zeta<double> data060[] = {
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 4.4403472086302431e-16
+const testcase_hurwitz_zeta<double>
+data060[25] =
+{
   { 1220703125.0934985, 13.000000000000000, 0.20000000000000001 },
   { 149011.62454899785, 13.000000000000000, 0.40000000000000002 },
   { 765.65832120066557, 13.000000000000000, 0.59999999999999998 },
@@ -3487,38 +2075,14 @@ testcase_hurwitz_zeta<double> data060[] = {
   { 1.5299746225758338e-09, 13.000000000000000, 4.7999999999999998 },
   { 9.0844290899218036e-10, 13.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=13.000000000000000.
-template<typename Tp>
-  void
-  test060()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data060)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data060[i].s), Tp(data060[i].a));
-	const Tp f0 = data060[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler060 = 2.5000000000000020e-13;
 
 // Test data for s=13.199999999999999.
-testcase_hurwitz_zeta<double> data061[] = {
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 4.2529408623001239e-16
+const testcase_hurwitz_zeta<double>
+data061[25] =
+{
   { 1684240309.4910417, 13.199999999999999, 0.20000000000000001 },
   { 178981.49983498050, 13.199999999999999, 0.40000000000000002 },
   { 848.01694777566502, 13.199999999999999, 0.59999999999999998 },
@@ -3545,38 +2109,14 @@ testcase_hurwitz_zeta<double> data061[] = {
   { 1.1137825798958110e-09, 13.199999999999999, 4.7999999999999998 },
   { 6.5578287618863349e-10, 13.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=13.199999999999999.
-template<typename Tp>
-  void
-  test061()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data061)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data061[i].s), Tp(data061[i].a));
-	const Tp f0 = data061[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler061 = 2.5000000000000020e-13;
 
 // Test data for s=13.400000000000000.
-testcase_hurwitz_zeta<double> data062[] = {
+// max(|f - f_GSL|): 1.3877787807814457e-17
+// max(|f - f_GSL| / |f_GSL|): 4.5390883763992709e-16
+const testcase_hurwitz_zeta<double>
+data062[25] =
+{
   { 2323796311.9959469, 13.400000000000000, 0.20000000000000001 },
   { 214979.04954329820, 13.400000000000000, 0.40000000000000002 },
   { 939.23463015007519, 13.400000000000000, 0.59999999999999998 },
@@ -3603,38 +2143,14 @@ testcase_hurwitz_zeta<double> data062[] = {
   { 8.1093501398882063e-10, 13.400000000000000, 4.7999999999999998 },
   { 4.7347226650685639e-10, 13.400000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=13.400000000000000.
-template<typename Tp>
-  void
-  test062()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data062)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data062[i].s), Tp(data062[i].a));
-	const Tp f0 = data062[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler062 = 2.5000000000000020e-13;
 
 // Test data for s=13.600000000000000.
-testcase_hurwitz_zeta<double> data063[] = {
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 7.9185484842648021e-16
+const testcase_hurwitz_zeta<double>
+data063[25] =
+{
   { 3206210698.8188639, 13.600000000000000, 0.20000000000000001 },
   { 258216.58626605241, 13.600000000000000, 0.40000000000000002 },
   { 1040.2643009993990, 13.600000000000000, 0.59999999999999998 },
@@ -3661,38 +2177,14 @@ testcase_hurwitz_zeta<double> data063[] = {
   { 5.9052444829708019e-10, 13.600000000000000, 4.7999999999999998 },
   { 3.4189894939529825e-10, 13.600000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=13.600000000000000.
-template<typename Tp>
-  void
-  test063()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data063)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data063[i].s), Tp(data063[i].a));
-	const Tp f0 = data063[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler063 = 2.5000000000000020e-13;
 
 // Test data for s=13.800000000000001.
-testcase_hurwitz_zeta<double> data064[] = {
+// max(|f - f_GSL|): 1.7347234759768071e-18
+// max(|f - f_GSL| / |f_GSL|): 3.9862044391834013e-16
+const testcase_hurwitz_zeta<double>
+data064[25] =
+{
   { 4423704002.0198593, 13.800000000000001, 0.20000000000000001 },
   { 310150.24828018330, 13.800000000000001, 0.40000000000000002 },
   { 1152.1613968049769, 13.800000000000001, 0.59999999999999998 },
@@ -3719,38 +2211,14 @@ testcase_hurwitz_zeta<double> data064[] = {
   { 4.3008356348780247e-10, 13.800000000000001, 4.7999999999999998 },
   { 2.4692588339310645e-10, 13.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=13.800000000000001.
-template<typename Tp>
-  void
-  test064()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data064)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data064[i].s), Tp(data064[i].a));
-	const Tp f0 = data064[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler064 = 2.5000000000000020e-13;
 
 // Test data for s=14.000000000000000.
-testcase_hurwitz_zeta<double> data065[] = {
+// max(|f - f_GSL|): 1.3877787807814457e-17
+// max(|f - f_GSL| / |f_GSL|): 5.9494536070403734e-16
+const testcase_hurwitz_zeta<double>
+data065[25] =
+{
   { 6103515625.0778980, 14.000000000000000, 0.20000000000000001 },
   { 372529.03885025677, 14.000000000000000, 0.40000000000000002 },
   { 1276.0948837840642, 14.000000000000000, 0.59999999999999998 },
@@ -3777,38 +2245,14 @@ testcase_hurwitz_zeta<double> data065[] = {
   { 3.1327665843549157e-10, 14.000000000000000, 4.7999999999999998 },
   { 1.7836027759837275e-10, 14.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=14.000000000000000.
-template<typename Tp>
-  void
-  test065()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data065)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data065[i].s), Tp(data065[i].a));
-	const Tp f0 = data065[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler065 = 2.5000000000000020e-13;
 
 // Test data for s=14.199999999999999.
-testcase_hurwitz_zeta<double> data066[] = {
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 4.0122762780161022e-16
+const testcase_hurwitz_zeta<double>
+data066[25] =
+{
   { 8421201547.0795803, 14.199999999999999, 0.20000000000000001 },
   { 447453.72853327781, 14.199999999999999, 0.40000000000000002 },
   { 1413.3594698416455, 14.199999999999999, 0.59999999999999998 },
@@ -3835,38 +2279,14 @@ testcase_hurwitz_zeta<double> data066[] = {
   { 2.2822368230369105e-10, 14.199999999999999, 4.7999999999999998 },
   { 1.2885151645172116e-10, 14.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=14.199999999999999.
-template<typename Tp>
-  void
-  test066()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data066)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data066[i].s), Tp(data066[i].a));
-	const Tp f0 = data066[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler066 = 2.5000000000000020e-13;
 
 // Test data for s=14.400000000000000.
-testcase_hurwitz_zeta<double> data067[] = {
+// max(|f - f_GSL|): 1.3877787807814457e-17
+// max(|f - f_GSL| / |f_GSL|): 5.5572294242267985e-16
+const testcase_hurwitz_zeta<double>
+data067[25] =
+{
   { 11618981559.617575, 14.400000000000000, 0.20000000000000001 },
   { 537447.60417622025, 14.400000000000000, 0.40000000000000002 },
   { 1565.3891301197123, 14.400000000000000, 0.59999999999999998 },
@@ -3893,38 +2313,14 @@ testcase_hurwitz_zeta<double> data067[] = {
   { 1.6628315211338522e-10, 14.400000000000000, 4.7999999999999998 },
   { 9.3097526140682161e-11, 14.400000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=14.400000000000000.
-template<typename Tp>
-  void
-  test067()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data067)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data067[i].s), Tp(data067[i].a));
-	const Tp f0 = data067[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler067 = 2.5000000000000020e-13;
 
 // Test data for s=14.600000000000000.
-testcase_hurwitz_zeta<double> data068[] = {
+// max(|f - f_GSL|): 1.3877787807814457e-17
+// max(|f - f_GSL| / |f_GSL|): 3.3687696645770852e-16
+const testcase_hurwitz_zeta<double>
+data068[25] =
+{
   { 16031053493.745142, 14.600000000000000, 0.20000000000000001 },
   { 645541.44726564072, 14.600000000000000, 0.40000000000000002 },
   { 1733.7720874426566, 14.600000000000000, 0.59999999999999998 },
@@ -3951,38 +2347,14 @@ testcase_hurwitz_zeta<double> data068[] = {
   { 1.2116806824795621e-10, 14.600000000000000, 4.7999999999999998 },
   { 6.7273099143424462e-11, 14.600000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=14.600000000000000.
-template<typename Tp>
-  void
-  test068()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data068)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data068[i].s), Tp(data068[i].a));
-	const Tp f0 = data068[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler068 = 2.5000000000000020e-13;
 
 // Test data for s=14.800000000000001.
-testcase_hurwitz_zeta<double> data069[] = {
+// max(|f - f_GSL|): 8.6736173798840355e-19
+// max(|f - f_GSL| / |f_GSL|): 4.3910002428586283e-16
+const testcase_hurwitz_zeta<double>
+data069[25] =
+{
   { 22118520009.762627, 14.800000000000001, 0.20000000000000001 },
   { 775375.60349977296, 14.800000000000001, 0.40000000000000002 },
   { 1920.2674041564464, 14.800000000000001, 0.59999999999999998 },
@@ -4009,38 +2381,14 @@ testcase_hurwitz_zeta<double> data069[] = {
   { 8.8303550600991243e-11, 14.800000000000001, 4.7999999999999998 },
   { 4.8617992276283682e-11, 14.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=14.800000000000001.
-template<typename Tp>
-  void
-  test069()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data069)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data069[i].s), Tp(data069[i].a));
-	const Tp f0 = data069[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler069 = 2.5000000000000020e-13;
 
 // Test data for s=15.000000000000000.
-testcase_hurwitz_zeta<double> data070[] = {
+// max(|f - f_GSL|): 8.6736173798840355e-19
+// max(|f - f_GSL| / |f_GSL|): 4.4149767337718877e-16
+const testcase_hurwitz_zeta<double>
+data070[25] =
+{
   { 30517578125.064888, 15.000000000000000, 0.20000000000000001 },
   { 931322.58104552270, 15.000000000000000, 0.40000000000000002 },
   { 2126.8233586930728, 15.000000000000000, 0.59999999999999998 },
@@ -4067,38 +2415,14 @@ testcase_hurwitz_zeta<double> data070[] = {
   { 6.4359989663869528e-11, 15.000000000000000, 4.7999999999999998 },
   { 3.5140069621749301e-11, 15.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=15.000000000000000.
-template<typename Tp>
-  void
-  test070()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data070)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data070[i].s), Tp(data070[i].a));
-	const Tp f0 = data070[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler070 = 2.5000000000000020e-13;
 
 // Test data for s=15.199999999999999.
-testcase_hurwitz_zeta<double> data071[] = {
+// max(|f - f_GSL|): 1.0842021724855044e-19
+// max(|f - f_GSL| / |f_GSL|): 2.7056603415779248e-16
+const testcase_hurwitz_zeta<double>
+data071[25] =
+{
   { 42106007735.084930, 15.199999999999999, 0.20000000000000001 },
   { 1118634.3063005302, 15.199999999999999, 0.40000000000000002 },
   { 2355.5977988365307, 15.199999999999999, 0.59999999999999998 },
@@ -4125,38 +2449,14 @@ testcase_hurwitz_zeta<double> data071[] = {
   { 4.6913675885316182e-11, 15.199999999999999, 4.7999999999999998 },
   { 2.5401306873285982e-11, 15.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=15.199999999999999.
-template<typename Tp>
-  void
-  test071()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data071)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data071[i].s), Tp(data071[i].a));
-	const Tp f0 = data071[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler071 = 2.5000000000000020e-13;
 
 // Test data for s=15.400000000000000.
-testcase_hurwitz_zeta<double> data072[] = {
+// max(|f - f_GSL|): 2.2204460492503131e-16
+// max(|f - f_GSL| / |f_GSL|): 3.9399414199439672e-16
+const testcase_hurwitz_zeta<double>
+data072[25] =
+{
   { 58094907797.786118, 15.400000000000000, 0.20000000000000001 },
   { 1343618.9963870181, 15.400000000000000, 0.40000000000000002 },
   { 2608.9806843166884, 15.400000000000000, 0.59999999999999998 },
@@ -4183,38 +2483,14 @@ testcase_hurwitz_zeta<double> data072[] = {
   { 3.4200042453155480e-11, 15.400000000000000, 4.7999999999999998 },
   { 1.8363492880866503e-11, 15.400000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=15.400000000000000.
-template<typename Tp>
-  void
-  test072()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data072)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data072[i].s), Tp(data072[i].a));
-	const Tp f0 = data072[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler072 = 2.5000000000000020e-13;
 
 // Test data for s=15.600000000000000.
-testcase_hurwitz_zeta<double> data073[] = {
+// max(|f - f_GSL|): 6.9388939039072284e-18
+// max(|f - f_GSL| / |f_GSL|): 3.1743309914217584e-16
+const testcase_hurwitz_zeta<double>
+data073[25] =
+{
   { 80155267468.434753, 15.600000000000000, 0.20000000000000001 },
   { 1613853.6050258495, 15.600000000000000, 0.40000000000000002 },
   { 2889.6190542289028, 15.600000000000000, 0.59999999999999998 },
@@ -4241,38 +2517,14 @@ testcase_hurwitz_zeta<double> data073[] = {
   { 2.4934209102871717e-11, 15.600000000000000, 4.7999999999999998 },
   { 1.3276950810522124e-11, 15.600000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=15.600000000000000.
-template<typename Tp>
-  void
-  test073()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data073)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data073[i].s), Tp(data073[i].a));
-	const Tp f0 = data073[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler073 = 2.5000000000000020e-13;
 
 // Test data for s=15.800000000000001.
-testcase_hurwitz_zeta<double> data074[] = {
+// max(|f - f_GSL|): 1.0842021724855044e-19
+// max(|f - f_GSL| / |f_GSL|): 4.2895443619599388e-16
+const testcase_hurwitz_zeta<double>
+data074[25] =
+{
   { 110592600048.53261, 15.800000000000001, 0.20000000000000001 },
   { 1938438.9964667845, 15.800000000000001, 0.40000000000000002 },
   { 3200.4446801089448, 15.800000000000001, 0.59999999999999998 },
@@ -4299,38 +2551,14 @@ testcase_hurwitz_zeta<double> data074[] = {
   { 1.8180444532498107e-11, 15.800000000000001, 4.7999999999999998 },
   { 9.6002680837699982e-12, 15.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=15.800000000000001.
-template<typename Tp>
-  void
-  test074()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data074)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data074[i].s), Tp(data074[i].a));
-	const Tp f0 = data074[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler074 = 2.5000000000000020e-13;
 
 // Test data for s=16.000000000000000.
-testcase_hurwitz_zeta<double> data075[] = {
+// max(|f - f_GSL|): 8.6736173798840355e-19
+// max(|f - f_GSL| / |f_GSL|): 4.2292377310526944e-16
+const testcase_hurwitz_zeta<double>
+data075[25] =
+{
   { 152587890625.05396, 16.000000000000000, 0.20000000000000001 },
   { 2328306.4411309892, 16.000000000000000, 0.40000000000000002 },
   { 3544.7046935491471, 16.000000000000000, 0.59999999999999998 },
@@ -4357,38 +2585,14 @@ testcase_hurwitz_zeta<double> data075[] = {
   { 1.3257194080661127e-11, 16.000000000000000, 4.7999999999999998 },
   { 6.9423827990883045e-12, 16.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=16.000000000000000.
-template<typename Tp>
-  void
-  test075()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data075)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data075[i].s), Tp(data075[i].a));
-	const Tp f0 = data075[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler075 = 2.5000000000000020e-13;
 
 // Test data for s=16.199999999999999.
-testcase_hurwitz_zeta<double> data076[] = {
+// max(|f - f_GSL|): 6.9388939039072284e-18
+// max(|f - f_GSL| / |f_GSL|): 3.3739980712294663e-16
+const testcase_hurwitz_zeta<double>
+data076[25] =
+{
   { 210530038675.16385, 16.199999999999999, 0.20000000000000001 },
   { 2796585.7550162091, 16.199999999999999, 0.40000000000000002 },
   { 3925.9955083162918, 16.199999999999999, 0.59999999999999998 },
@@ -4415,38 +2619,14 @@ testcase_hurwitz_zeta<double> data076[] = {
   { 9.6679700392507929e-12, 16.199999999999999, 4.7999999999999998 },
   { 5.0207921245700035e-12, 16.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=16.199999999999999.
-template<typename Tp>
-  void
-  test076()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data076)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data076[i].s), Tp(data076[i].a));
-	const Tp f0 = data076[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler076 = 2.5000000000000020e-13;
 
 // Test data for s=16.399999999999999.
-testcase_hurwitz_zeta<double> data077[] = {
+// max(|f - f_GSL|): 1.7347234759768071e-18
+// max(|f - f_GSL| / |f_GSL|): 4.3218223383099284e-16
+const testcase_hurwitz_zeta<double>
+data077[25] =
+{
   { 290474538988.67828, 16.399999999999999, 0.20000000000000001 },
   { 3359047.4809313999, 16.399999999999999, 0.40000000000000002 },
   { 4348.3003913485763, 16.399999999999999, 0.59999999999999998 },
@@ -4473,38 +2653,14 @@ testcase_hurwitz_zeta<double> data077[] = {
   { 7.0510528748026451e-12, 16.399999999999999, 4.7999999999999998 },
   { 3.6313892048994217e-12, 16.399999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=16.399999999999999.
-template<typename Tp>
-  void
-  test077()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data077)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data077[i].s), Tp(data077[i].a));
-	const Tp f0 = data077[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler077 = 2.5000000000000020e-13;
 
 // Test data for s=16.600000000000001.
-testcase_hurwitz_zeta<double> data078[] = {
+// max(|f - f_GSL|): 5.4210108624275222e-20
+// max(|f - f_GSL| / |f_GSL|): 2.3402307884049575e-16
+const testcase_hurwitz_zeta<double>
+data078[25] =
+{
   { 400776337341.93243, 16.600000000000001, 0.20000000000000001 },
   { 4034634.0031819236, 16.600000000000001, 0.40000000000000002 },
   { 4816.0310751281922, 16.600000000000001, 0.59999999999999998 },
@@ -4531,38 +2687,14 @@ testcase_hurwitz_zeta<double> data078[] = {
   { 5.1428770715255590e-12, 16.600000000000001, 4.7999999999999998 },
   { 2.6266892096505695e-12, 16.600000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=16.600000000000001.
-template<typename Tp>
-  void
-  test078()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data078)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data078[i].s), Tp(data078[i].a));
-	const Tp f0 = data078[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler078 = 2.5000000000000020e-13;
 
 // Test data for s=16.800000000000001.
-testcase_hurwitz_zeta<double> data079[] = {
+// max(|f - f_GSL|): 6.7762635780344027e-21
+// max(|f - f_GSL| / |f_GSL|): 4.3066541841316176e-16
+const testcase_hurwitz_zeta<double>
+data079[25] =
+{
   { 552963000242.42932, 16.800000000000001, 0.20000000000000001 },
   { 4846097.4823951181, 16.800000000000001, 0.40000000000000002 },
   { 5334.0738461453866, 16.800000000000001, 0.59999999999999998 },
@@ -4589,38 +2721,14 @@ testcase_hurwitz_zeta<double> data079[] = {
   { 3.7513741870555944e-12, 16.800000000000001, 4.7999999999999998 },
   { 1.9001087063146456e-12, 16.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=16.800000000000001.
-template<typename Tp>
-  void
-  test079()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data079)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data079[i].s), Tp(data079[i].a));
-	const Tp f0 = data079[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler079 = 2.5000000000000020e-13;
 
 // Test data for s=17.000000000000000.
-testcase_hurwitz_zeta<double> data080[] = {
+// max(|f - f_GSL|): 6.7762635780344027e-21
+// max(|f - f_GSL| / |f_GSL|): 2.8783964998707109e-16
+const testcase_hurwitz_zeta<double>
+data080[25] =
+{
   { 762939453125.04431, 17.000000000000000, 0.20000000000000001 },
   { 5820766.0946266986, 17.000000000000000, 0.40000000000000002 },
   { 5907.8405909308412, 17.000000000000000, 0.59999999999999998 },
@@ -4647,38 +2755,14 @@ testcase_hurwitz_zeta<double> data080[] = {
   { 2.7365622853009043e-12, 17.000000000000000, 4.7999999999999998 },
   { 1.3746137092146471e-12, 17.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=17.000000000000000.
-template<typename Tp>
-  void
-  test080()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data080)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data080[i].s), Tp(data080[i].a));
-	const Tp f0 = data080[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler080 = 2.5000000000000020e-13;
 
 // Test data for s=17.199999999999999.
-testcase_hurwitz_zeta<double> data081[] = {
+// max(|f - f_GSL|): 6.7762635780344027e-21
+// max(|f - f_GSL| / |f_GSL|): 4.0462311500211635e-16
+const testcase_hurwitz_zeta<double>
+data081[25] =
+{
   { 1052650193375.6019, 17.199999999999999, 0.20000000000000001 },
   { 6991464.3798736213, 17.199999999999999, 0.40000000000000002 },
   { 6543.3253329236368, 17.199999999999999, 0.59999999999999998 },
@@ -4705,38 +2789,14 @@ testcase_hurwitz_zeta<double> data081[] = {
   { 1.9964098366997422e-12, 17.199999999999999, 4.7999999999999998 },
   { 9.9452114595105990e-13, 17.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=17.199999999999999.
-template<typename Tp>
-  void
-  test081()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data081)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data081[i].s), Tp(data081[i].a));
-	const Tp f0 = data081[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler081 = 2.5000000000000020e-13;
 
 // Test data for s=17.399999999999999.
-testcase_hurwitz_zeta<double> data082[] = {
+// max(|f - f_GSL|): 5.4210108624275222e-20
+// max(|f - f_GSL| / |f_GSL|): 5.6768438278282181e-16
+const testcase_hurwitz_zeta<double>
+data082[25] =
+{
   { 1452372694943.1819, 17.399999999999999, 0.20000000000000001 },
   { 8397618.6951606981, 17.399999999999999, 0.40000000000000002 },
   { 7247.1668508039957, 17.399999999999999, 0.59999999999999998 },
@@ -4763,38 +2823,14 @@ testcase_hurwitz_zeta<double> data082[] = {
   { 1.4565394079134453e-12, 17.399999999999999, 4.7999999999999998 },
   { 7.1957691750685527e-13, 17.399999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=17.399999999999999.
-template<typename Tp>
-  void
-  test082()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data082)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data082[i].s), Tp(data082[i].a));
-	const Tp f0 = data082[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler082 = 2.5000000000000020e-13;
 
 // Test data for s=17.600000000000001.
-testcase_hurwitz_zeta<double> data083[] = {
+// max(|f - f_GSL|): 6.7762635780344027e-21
+// max(|f - f_GSL| / |f_GSL|): 3.1509555596656760e-16
+const testcase_hurwitz_zeta<double>
+data083[25] =
+{
   { 2003881686709.4600, 17.600000000000001, 0.20000000000000001 },
   { 10086585.001253607, 17.600000000000001, 0.40000000000000002 },
   { 8026.7180324516066, 17.600000000000001, 0.59999999999999998 },
@@ -4821,38 +2857,14 @@ testcase_hurwitz_zeta<double> data083[] = {
   { 1.0627271384538847e-12, 17.600000000000001, 4.7999999999999998 },
   { 5.2067779525834850e-13, 17.600000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=17.600000000000001.
-template<typename Tp>
-  void
-  test083()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data083)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data083[i].s), Tp(data083[i].a));
-	const Tp f0 = data083[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler083 = 2.5000000000000020e-13;
 
 // Test data for s=17.800000000000001.
-testcase_hurwitz_zeta<double> data084[] = {
+// max(|f - f_GSL|): 2.7105054312137611e-20
+// max(|f - f_GSL| / |f_GSL|): 4.0737419804727801e-16
+const testcase_hurwitz_zeta<double>
+data084[25] =
+{
   { 2764815001211.9517, 17.800000000000001, 0.20000000000000001 },
   { 12115243.699722804, 17.800000000000001, 0.40000000000000002 },
   { 8890.1226890560520, 17.800000000000001, 0.59999999999999998 },
@@ -4879,38 +2891,14 @@ testcase_hurwitz_zeta<double> data084[] = {
   { 7.7543815986032008e-13, 17.800000000000001, 4.7999999999999998 },
   { 3.7678044728606079e-13, 17.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=17.800000000000001.
-template<typename Tp>
-  void
-  test084()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data084)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data084[i].s), Tp(data084[i].a));
-	const Tp f0 = data084[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler084 = 2.5000000000000020e-13;
 
 // Test data for s=18.000000000000000.
-testcase_hurwitz_zeta<double> data085[] = {
+// max(|f - f_GSL|): 2.7105054312137611e-20
+// max(|f - f_GSL| / |f_GSL|): 3.8903228276964160e-16
+const testcase_hurwitz_zeta<double>
+data085[25] =
+{
   { 3814697265625.0337, 18.000000000000000, 0.20000000000000001 },
   { 14551915.230709566, 18.000000000000000, 0.40000000000000002 },
   { 9846.4006318407774, 18.000000000000000, 0.59999999999999998 },
@@ -4937,38 +2925,14 @@ testcase_hurwitz_zeta<double> data085[] = {
   { 5.6584483622789831e-13, 18.000000000000000, 4.7999999999999998 },
   { 2.7266789829242784e-13, 18.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=18.000000000000000.
-template<typename Tp>
-  void
-  test085()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data085)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data085[i].s), Tp(data085[i].a));
-	const Tp f0 = data085[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler085 = 2.5000000000000020e-13;
 
 // Test data for s=18.199999999999999.
-testcase_hurwitz_zeta<double> data086[] = {
+// max(|f - f_GSL|): 4.2351647362715017e-22
+// max(|f - f_GSL| / |f_GSL|): 3.9706411878455752e-16
+const testcase_hurwitz_zeta<double>
+data086[25] =
+{
   { 5263250966877.8281, 18.199999999999999, 0.20000000000000001 },
   { 17478660.944208123, 18.199999999999999, 0.40000000000000002 },
   { 10905.541900179389, 18.199999999999999, 0.59999999999999998 },
@@ -4995,38 +2959,14 @@ testcase_hurwitz_zeta<double> data086[] = {
   { 4.1292512281057217e-13, 18.199999999999999, 4.7999999999999998 },
   { 1.9733537838135960e-13, 18.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=18.199999999999999.
-template<typename Tp>
-  void
-  test086()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data086)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data086[i].s), Tp(data086[i].a));
-	const Tp f0 = data086[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler086 = 2.5000000000000020e-13;
 
 // Test data for s=18.399999999999999.
-testcase_hurwitz_zeta<double> data087[] = {
+// max(|f - f_GSL|): 3.3881317890172014e-21
+// max(|f - f_GSL| / |f_GSL|): 4.2264399060404906e-16
+const testcase_hurwitz_zeta<double>
+data087[25] =
+{
   { 7261863474715.7344, 18.399999999999999, 0.20000000000000001 },
   { 20994046.732782252, 18.399999999999999, 0.40000000000000002 },
   { 12078.611125486319, 18.399999999999999, 0.59999999999999998 },
@@ -5053,38 +2993,14 @@ testcase_hurwitz_zeta<double> data087[] = {
   { 3.0134780749544221e-13, 18.399999999999999, 4.7999999999999998 },
   { 1.4282366258808053e-13, 18.399999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=18.399999999999999.
-template<typename Tp>
-  void
-  test087()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data087)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data087[i].s), Tp(data087[i].a));
-	const Tp f0 = data087[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler087 = 2.5000000000000020e-13;
 
 // Test data for s=18.600000000000001.
-testcase_hurwitz_zeta<double> data088[] = {
+// max(|f - f_GSL|): 4.2351647362715017e-22
+// max(|f - f_GSL| / |f_GSL|): 4.1776719064783747e-16
+const testcase_hurwitz_zeta<double>
+data088[25] =
+{
   { 10019408433547.131, 18.600000000000001, 0.20000000000000001 },
   { 25216462.498347748, 18.600000000000001, 0.40000000000000002 },
   { 13377.863121149856, 18.600000000000001, 0.59999999999999998 },
@@ -5111,38 +3027,14 @@ testcase_hurwitz_zeta<double> data088[] = {
   { 2.1993107994798346e-13, 18.600000000000001, 4.7999999999999998 },
   { 1.0337575084094667e-13, 18.600000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=18.600000000000001.
-template<typename Tp>
-  void
-  test088()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data088)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data088[i].s), Tp(data088[i].a));
-	const Tp f0 = data088[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler088 = 2.5000000000000020e-13;
 
 // Test data for s=18.800000000000001.
-testcase_hurwitz_zeta<double> data089[] = {
+// max(|f - f_GSL|): 5.2939559203393771e-23
+// max(|f - f_GSL| / |f_GSL|): 4.1804575634278906e-16
+const testcase_hurwitz_zeta<double>
+data089[25] =
+{
   { 13824075006059.596, 18.800000000000001, 0.20000000000000001 },
   { 30288109.244832270, 18.800000000000001, 0.40000000000000002 },
   { 14816.870906051799, 18.800000000000001, 0.59999999999999998 },
@@ -5169,38 +3061,14 @@ testcase_hurwitz_zeta<double> data089[] = {
   { 1.6051888041243567e-13, 18.800000000000001, 4.7999999999999998 },
   { 7.4827210340624237e-14, 18.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=18.800000000000001.
-template<typename Tp>
-  void
-  test089()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data089)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data089[i].s), Tp(data089[i].a));
-	const Tp f0 = data089[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler089 = 2.5000000000000020e-13;
 
 // Test data for s=19.000000000000000.
-testcase_hurwitz_zeta<double> data090[] = {
+// max(|f - f_GSL|): 1.6940658945086007e-21
+// max(|f - f_GSL| / |f_GSL|): 3.8539796399967929e-16
+const testcase_hurwitz_zeta<double>
+data090[25] =
+{
   { 19073486328125.012, 19.000000000000000, 0.20000000000000001 },
   { 36379788.072590426, 19.000000000000000, 0.40000000000000002 },
   { 16410.667499109502, 19.000000000000000, 0.59999999999999998 },
@@ -5227,38 +3095,14 @@ testcase_hurwitz_zeta<double> data090[] = {
   { 1.1716171604046841e-13, 19.000000000000000, 4.7999999999999998 },
   { 5.4165394101550014e-14, 19.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=19.000000000000000.
-template<typename Tp>
-  void
-  test090()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data090)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data090[i].s), Tp(data090[i].a));
-	const Tp f0 = data090[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler090 = 2.5000000000000020e-13;
 
 // Test data for s=19.199999999999999.
-testcase_hurwitz_zeta<double> data091[] = {
+// max(|f - f_GSL|): 5.2939559203393771e-23
+// max(|f - f_GSL| / |f_GSL|): 5.9640831455522343e-16
+const testcase_hurwitz_zeta<double>
+data091[25] =
+{
   { 26316254834388.988, 19.199999999999999, 0.20000000000000001 },
   { 43696652.356609114, 19.199999999999999, 0.40000000000000002 },
   { 18175.902966138230, 19.199999999999999, 0.59999999999999998 },
@@ -5285,38 +3129,14 @@ testcase_hurwitz_zeta<double> data091[] = {
   { 8.5519389754375934e-14, 19.199999999999999, 4.7999999999999998 },
   { 3.9210725943368963e-14, 19.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=19.199999999999999.
-template<typename Tp>
-  void
-  test091()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data091)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data091[i].s), Tp(data091[i].a));
-	const Tp f0 = data091[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler091 = 2.5000000000000020e-13;
 
 // Test data for s=19.399999999999999.
-testcase_hurwitz_zeta<double> data092[] = {
+// max(|f - f_GSL|): 2.1175823681357508e-22
+// max(|f - f_GSL| / |f_GSL|): 4.0437888161539340e-16
+const testcase_hurwitz_zeta<double>
+data092[25] =
+{
   { 36309317373578.523, 19.399999999999999, 0.20000000000000001 },
   { 52485116.828299001, 19.399999999999999, 0.40000000000000002 },
   { 20131.018359670634, 19.399999999999999, 0.59999999999999998 },
@@ -5343,38 +3163,14 @@ testcase_hurwitz_zeta<double> data092[] = {
   { 6.2425487864822850e-14, 19.399999999999999, 4.7999999999999998 },
   { 2.8386226539097474e-14, 19.399999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=19.399999999999999.
-template<typename Tp>
-  void
-  test092()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data092)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data092[i].s), Tp(data092[i].a));
-	const Tp f0 = data092[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler092 = 2.5000000000000020e-13;
 
 // Test data for s=19.600000000000001.
-testcase_hurwitz_zeta<double> data093[] = {
+// max(|f - f_GSL|): 2.6469779601696886e-23
+// max(|f - f_GSL| / |f_GSL|): 2.3975375135203178e-16
+const testcase_hurwitz_zeta<double>
+data093[25] =
+{
   { 50097042167735.523, 19.600000000000001, 0.20000000000000001 },
   { 63041156.242450729, 19.600000000000001, 0.40000000000000002 },
   { 22296.438368846721, 19.600000000000001, 0.59999999999999998 },
@@ -5401,38 +3197,14 @@ testcase_hurwitz_zeta<double> data093[] = {
   { 4.5569790252584491e-14, 19.600000000000001, 4.7999999999999998 },
   { 2.0550834890701980e-14, 19.600000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=19.600000000000001.
-template<typename Tp>
-  void
-  test093()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data093)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data093[i].s), Tp(data093[i].a));
-	const Tp f0 = data093[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler093 = 2.5000000000000020e-13;
 
 // Test data for s=19.800000000000001.
-testcase_hurwitz_zeta<double> data094[] = {
+// max(|f - f_GSL|): 8.2718061255302767e-25
+// max(|f - f_GSL| / |f_GSL|): 4.2415136553938231e-16
+const testcase_hurwitz_zeta<double>
+data094[25] =
+{
   { 69120375030297.836, 19.800000000000001, 0.20000000000000001 },
   { 75720273.108884543, 19.800000000000001, 0.40000000000000002 },
   { 24694.784691948043, 19.800000000000001, 0.59999999999999998 },
@@ -5459,38 +3231,14 @@ testcase_hurwitz_zeta<double> data094[] = {
   { 3.3266654589866302e-14, 19.800000000000001, 4.7999999999999998 },
   { 1.4878856357665388e-14, 19.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=19.800000000000001.
-template<typename Tp>
-  void
-  test094()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data094)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data094[i].s), Tp(data094[i].a));
-	const Tp f0 = data094[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler094 = 2.5000000000000020e-13;
 
 // Test data for s=20.000000000000000.
-testcase_hurwitz_zeta<double> data095[] = {
+// max(|f - f_GSL|): 2.6469779601696886e-23
+// max(|f - f_GSL| / |f_GSL|): 3.8978410376218726e-16
+const testcase_hurwitz_zeta<double>
+data095[25] =
+{
   { 95367431640624.922, 20.000000000000000, 0.20000000000000001 },
   { 90949470.178487942, 20.000000000000000, 0.40000000000000002 },
   { 27351.112360635641, 20.000000000000000, 0.59999999999999998 },
@@ -5517,38 +3265,14 @@ testcase_hurwitz_zeta<double> data095[] = {
   { 2.4286087532260379e-14, 20.000000000000000, 4.7999999999999998 },
   { 1.0772765096092464e-14, 20.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=20.000000000000000.
-template<typename Tp>
-  void
-  test095()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data095)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data095[i].s), Tp(data095[i].a));
-	const Tp f0 = data095[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler095 = 2.5000000000000020e-13;
 
 // Test data for s=20.199999999999999.
-testcase_hurwitz_zeta<double> data096[] = {
+// max(|f - f_GSL|): 1.0587911840678754e-22
+// max(|f - f_GSL| / |f_GSL|): 6.1767938768129751e-16
+const testcase_hurwitz_zeta<double>
+data096[25] =
+{
   { 131581274171944.81, 20.199999999999999, 0.20000000000000001 },
   { 109241630.88872913, 20.199999999999999, 0.40000000000000002 },
   { 30293.171484721926, 20.199999999999999, 0.59999999999999998 },
@@ -5575,38 +3299,14 @@ testcase_hurwitz_zeta<double> data096[] = {
   { 1.7730527369021284e-14, 20.199999999999999, 4.7999999999999998 },
   { 7.8001274617819591e-15, 20.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=20.199999999999999.
-template<typename Tp>
-  void
-  test096()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data096)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data096[i].s), Tp(data096[i].a));
-	const Tp f0 = data096[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler096 = 2.5000000000000020e-13;
 
 // Test data for s=20.399999999999999.
-testcase_hurwitz_zeta<double> data097[] = {
+// max(|f - f_GSL|): 1.3234889800848443e-23
+// max(|f - f_GSL| / |f_GSL|): 5.3706047381488165e-16
+const testcase_hurwitz_zeta<double>
+data097[25] =
+{
   { 181546586867892.50, 20.399999999999999, 0.20000000000000001 },
   { 131212792.06813566, 20.399999999999999, 0.40000000000000002 },
   { 33551.697151870794, 20.399999999999999, 0.59999999999999998 },
@@ -5633,38 +3333,14 @@ testcase_hurwitz_zeta<double> data097[] = {
   { 1.2944962337012187e-14, 20.399999999999999, 4.7999999999999998 },
   { 5.6479705168209174e-15, 20.399999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=20.399999999999999.
-template<typename Tp>
-  void
-  test097()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data097)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data097[i].s), Tp(data097[i].a));
-	const Tp f0 = data097[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler097 = 2.5000000000000020e-13;
 
 // Test data for s=20.600000000000001.
-testcase_hurwitz_zeta<double> data098[] = {
+// max(|f - f_GSL|): 1.0339757656912846e-25
+// max(|f - f_GSL| / |f_GSL|): 3.8577289162339126e-16
+const testcase_hurwitz_zeta<double>
+data098[25] =
+{
   { 250485210838677.47, 20.600000000000001, 0.20000000000000001 },
   { 157602890.60368499, 20.600000000000001, 0.40000000000000002 },
   { 37160.730510748559, 20.600000000000001, 0.59999999999999998 },
@@ -5691,38 +3367,14 @@ testcase_hurwitz_zeta<double> data098[] = {
   { 9.4513613348999302e-15, 20.600000000000001, 4.7999999999999998 },
   { 4.0897684744066106e-15, 20.600000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=20.600000000000001.
-template<typename Tp>
-  void
-  test098()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data098)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data098[i].s), Tp(data098[i].a));
-	const Tp f0 = data098[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler098 = 2.5000000000000020e-13;
 
 // Test data for s=20.800000000000001.
-testcase_hurwitz_zeta<double> data099[] = {
+// max(|f - f_GSL|): 1.6543612251060553e-24
+// max(|f - f_GSL| / |f_GSL|): 3.7844905718596965e-16
+const testcase_hurwitz_zeta<double>
+data099[25] =
+{
   { 345601875151489.00, 20.800000000000001, 0.20000000000000001 },
   { 189300682.76992843, 20.800000000000001, 0.40000000000000002 },
   { 41157.974391915181, 20.800000000000001, 0.59999999999999998 },
@@ -5749,38 +3401,14 @@ testcase_hurwitz_zeta<double> data099[] = {
   { 6.9008375390508047e-15, 20.800000000000001, 4.7999999999999998 },
   { 2.9615563469055568e-15, 20.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=20.800000000000001.
-template<typename Tp>
-  void
-  test099()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data099)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data099[i].s), Tp(data099[i].a));
-	const Tp f0 = data099[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler099 = 2.5000000000000020e-13;
 
 // Test data for s=21.000000000000000.
-testcase_hurwitz_zeta<double> data100[] = {
+// max(|f - f_GSL|): 1.0339757656912846e-25
+// max(|f - f_GSL| / |f_GSL|): 2.5357822656109878e-16
+const testcase_hurwitz_zeta<double>
+data100[25] =
+{
   { 476837158203124.44, 21.000000000000000, 0.20000000000000001 },
   { 227373675.44408551, 21.000000000000000, 0.40000000000000002 },
   { 45585.187181554975, 21.000000000000000, 0.59999999999999998 },
@@ -5807,38 +3435,14 @@ testcase_hurwitz_zeta<double> data100[] = {
   { 5.0387469356188021e-15, 21.000000000000000, 4.7999999999999998 },
   { 2.1446462718408824e-15, 21.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=21.000000000000000.
-template<typename Tp>
-  void
-  test100()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data100)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data100[i].s), Tp(data100[i].a));
-	const Tp f0 = data100[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler100 = 2.5000000000000020e-13;
 
 // Test data for s=21.199999999999999.
-testcase_hurwitz_zeta<double> data101[] = {
+// max(|f - f_GSL|): 6.6174449004242214e-24
+// max(|f - f_GSL| / |f_GSL|): 2.4971689739282975e-16
+const testcase_hurwitz_zeta<double>
+data101[25] =
+{
   { 657906370859723.88, 21.199999999999999, 0.20000000000000001 },
   { 273104077.21982741, 21.199999999999999, 0.40000000000000002 },
   { 50488.619062763748, 21.199999999999999, 0.59999999999999998 },
@@ -5865,38 +3469,14 @@ testcase_hurwitz_zeta<double> data101[] = {
   { 3.6792226355787085e-15, 21.199999999999999, 4.7999999999999998 },
   { 1.5531206067317571e-15, 21.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=21.199999999999999.
-template<typename Tp>
-  void
-  test101()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data101)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data101[i].s), Tp(data101[i].a));
-	const Tp f0 = data101[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler101 = 2.5000000000000020e-13;
 
 // Test data for s=21.399999999999999.
-testcase_hurwitz_zeta<double> data102[] = {
+// max(|f - f_GSL|): 2.0679515313825692e-25
+// max(|f - f_GSL| / |f_GSL|): 3.6680708958835889e-16
+const testcase_hurwitz_zeta<double>
+data102[25] =
+{
   { 907732934339462.25, 21.399999999999999, 0.20000000000000001 },
   { 328031980.16847360, 21.399999999999999, 0.40000000000000002 },
   { 55919.495181716389, 21.399999999999999, 0.59999999999999998 },
@@ -5923,38 +3503,14 @@ testcase_hurwitz_zeta<double> data102[] = {
   { 2.6865928829101584e-15, 21.399999999999999, 4.7999999999999998 },
   { 1.1247810640265546e-15, 21.399999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=21.399999999999999.
-template<typename Tp>
-  void
-  test102()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data102)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data102[i].s), Tp(data102[i].a));
-	const Tp f0 = data102[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler102 = 2.5000000000000020e-13;
 
 // Test data for s=21.600000000000001.
-testcase_hurwitz_zeta<double> data103[] = {
+// max(|f - f_GSL|): 8.2718061255302767e-25
+// max(|f - f_GSL| / |f_GSL|): 2.4298053780590306e-16
+const testcase_hurwitz_zeta<double>
+data103[25] =
+{
   { 1252426054193387.0, 21.600000000000001, 0.20000000000000001 },
   { 394007226.50746834, 21.600000000000001, 0.40000000000000002 },
   { 61934.550786252388, 21.600000000000001, 0.59999999999999998 },
@@ -5981,38 +3537,14 @@ testcase_hurwitz_zeta<double> data103[] = {
   { 1.9618212521784261e-15, 21.600000000000001, 4.7999999999999998 },
   { 8.1459849378809354e-16, 21.600000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=21.600000000000001.
-template<typename Tp>
-  void
-  test103()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data103)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data103[i].s), Tp(data103[i].a));
-	const Tp f0 = data103[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler103 = 2.5000000000000020e-13;
 
 // Test data for s=21.800000000000001.
-testcase_hurwitz_zeta<double> data104[] = {
+// max(|f - f_GSL|): 2.5849394142282115e-26
+// max(|f - f_GSL| / |f_GSL|): 2.1865521189175971e-16
+const testcase_hurwitz_zeta<double>
+data104[25] =
+{
   { 1728009375757445.0, 21.800000000000001, 0.20000000000000001 },
   { 473251706.92319041, 21.800000000000001, 0.40000000000000002 },
   { 68596.623927361637, 21.800000000000001, 0.59999999999999998 },
@@ -6039,38 +3571,14 @@ testcase_hurwitz_zeta<double> data104[] = {
   { 1.4326111504227165e-15, 21.800000000000001, 4.7999999999999998 },
   { 5.8997214848766441e-16, 21.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=21.800000000000001.
-template<typename Tp>
-  void
-  test104()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data104)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data104[i].s), Tp(data104[i].a));
-	const Tp f0 = data104[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler104 = 2.5000000000000020e-13;
 
 // Test data for s=22.000000000000000.
-testcase_hurwitz_zeta<double> data105[] = {
+// max(|f - f_GSL|): 1.0339757656912846e-25
+// max(|f - f_GSL| / |f_GSL|): 2.2038792408515805e-16
+const testcase_hurwitz_zeta<double>
+data105[25] =
+{
   { 2384185791015622.0, 22.000000000000000, 0.20000000000000001 },
   { 568434188.60868919, 22.000000000000000, 0.40000000000000002 },
   { 75975.311915402912, 22.000000000000000, 0.59999999999999998 },
@@ -6097,38 +3605,14 @@ testcase_hurwitz_zeta<double> data105[] = {
   { 1.0461840378636560e-15, 22.000000000000000, 4.7999999999999998 },
   { 4.2729837984770735e-16, 22.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=22.000000000000000.
-template<typename Tp>
-  void
-  test105()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data105)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data105[i].s), Tp(data105[i].a));
-	const Tp f0 = data105[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler105 = 2.5000000000000020e-13;
 
 // Test data for s=22.199999999999999.
-testcase_hurwitz_zeta<double> data106[] = {
+// max(|f - f_GSL|): 8.0779356694631609e-28
+// max(|f - f_GSL| / |f_GSL|): 2.5332051269002402e-16
+const testcase_hurwitz_zeta<double>
+data106[25] =
+{
   { 3289531854298619.0, 22.199999999999999, 0.20000000000000001 },
   { 682760193.04814315, 22.199999999999999, 0.40000000000000002 },
   { 84147.698388916193, 22.199999999999999, 0.59999999999999998 },
@@ -6155,38 +3639,14 @@ testcase_hurwitz_zeta<double> data106[] = {
   { 7.6400868166126149e-16, 22.199999999999999, 4.7999999999999998 },
   { 3.0948696276200628e-16, 22.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=22.199999999999999.
-template<typename Tp>
-  void
-  test106()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data106)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data106[i].s), Tp(data106[i].a));
-	const Tp f0 = data106[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler106 = 2.5000000000000020e-13;
 
 // Test data for s=22.399999999999999.
-testcase_hurwitz_zeta<double> data107[] = {
+// max(|f - f_GSL|): 1.2924697071141057e-26
+// max(|f - f_GSL| / |f_GSL|): 2.0222766539113865e-16
+const testcase_hurwitz_zeta<double>
+data107[25] =
+{
   { 4538664671697311.0, 22.399999999999999, 0.20000000000000001 },
   { 820079950.41985142, 22.399999999999999, 0.40000000000000002 },
   { 93199.158591569067, 22.399999999999999, 0.59999999999999998 },
@@ -6213,38 +3673,14 @@ testcase_hurwitz_zeta<double> data107[] = {
   { 5.5795417102657069e-16, 22.399999999999999, 4.7999999999999998 },
   { 2.2416324964422953e-16, 22.399999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=22.399999999999999.
-template<typename Tp>
-  void
-  test107()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data107)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data107[i].s), Tp(data107[i].a));
-	const Tp f0 = data107[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler107 = 2.5000000000000020e-13;
 
 // Test data for s=22.600000000000001.
-testcase_hurwitz_zeta<double> data108[] = {
+// max(|f - f_GSL|): 4.1359030627651384e-25
+// max(|f - f_GSL| / |f_GSL|): 3.7577177874260099e-16
+const testcase_hurwitz_zeta<double>
+data108[25] =
+{
   { 6262130270966935.0, 22.600000000000001, 0.20000000000000001 },
   { 985018066.26742494, 22.600000000000001, 0.40000000000000002 },
   { 103224.25126979951, 22.600000000000001, 0.59999999999999998 },
@@ -6271,38 +3707,14 @@ testcase_hurwitz_zeta<double> data108[] = {
   { 4.0748197285791044e-16, 22.600000000000001, 4.7999999999999998 },
   { 1.6236671114162184e-16, 22.600000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=22.600000000000001.
-template<typename Tp>
-  void
-  test108()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data108)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data108[i].s), Tp(data108[i].a));
-	const Tp f0 = data108[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler108 = 2.5000000000000020e-13;
 
 // Test data for s=22.800000000000001.
-testcase_hurwitz_zeta<double> data109[] = {
+// max(|f - f_GSL|): 1.2924697071141057e-26
+// max(|f - f_GSL| / |f_GSL|): 3.3445895262970264e-16
+const testcase_hurwitz_zeta<double>
+data109[25] =
+{
   { 8640046878787225.0, 22.800000000000001, 0.20000000000000001 },
   { 1183129267.3068111, 22.800000000000001, 0.40000000000000002 },
   { 114327.70650862616, 22.800000000000001, 0.59999999999999998 },
@@ -6329,38 +3741,14 @@ testcase_hurwitz_zeta<double> data109[] = {
   { 2.9759630222143765e-16, 22.800000000000001, 4.7999999999999998 },
   { 1.1760876740299272e-16, 22.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=22.800000000000001.
-template<typename Tp>
-  void
-  test109()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data109)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data109[i].s), Tp(data109[i].a));
-	const Tp f0 = data109[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler109 = 2.5000000000000020e-13;
 
 // Test data for s=23.000000000000000.
-testcase_hurwitz_zeta<double> data110[] = {
+// max(|f - f_GSL|): 6.4623485355705287e-27
+// max(|f - f_GSL| / |f_GSL|): 4.4144286495105922e-16
+const testcase_hurwitz_zeta<double>
+data110[25] =
+{
   { 11920928955078110., 23.000000000000000, 0.20000000000000001 },
   { 1421085471.5206342, 23.000000000000000, 0.40000000000000002 },
   { 126625.51982534587, 23.000000000000000, 0.59999999999999998 },
@@ -6387,38 +3775,14 @@ testcase_hurwitz_zeta<double> data110[] = {
   { 2.1734795447483042e-16, 23.000000000000000, 4.7999999999999998 },
   { 8.5190691416476382e-17, 23.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=23.000000000000000.
-template<typename Tp>
-  void
-  test110()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data110)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data110[i].s), Tp(data110[i].a));
-	const Tp f0 = data110[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler110 = 2.5000000000000020e-13;
 
 // Test data for s=23.199999999999999.
-testcase_hurwitz_zeta<double> data111[] = {
+// max(|f - f_GSL|): 6.4623485355705287e-27
+// max(|f - f_GSL| / |f_GSL|): 1.7747076117648303e-16
+const testcase_hurwitz_zeta<double>
+data111[25] =
+{
   { 16447659271493094., 23.199999999999999, 0.20000000000000001 },
   { 1706900482.6193399, 23.199999999999999, 0.40000000000000002 },
   { 140246.16395088789, 23.199999999999999, 0.59999999999999998 },
@@ -6445,38 +3809,14 @@ testcase_hurwitz_zeta<double> data111[] = {
   { 1.5874210407578455e-16, 23.199999999999999, 4.7999999999999998 },
   { 6.1709774370038459e-17, 23.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=23.199999999999999.
-template<typename Tp>
-  void
-  test111()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data111)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data111[i].s), Tp(data111[i].a));
-	const Tp f0 = data111[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler111 = 2.5000000000000020e-13;
 
 // Test data for s=23.399999999999999.
-testcase_hurwitz_zeta<double> data112[] = {
+// max(|f - f_GSL|): 5.0487097934144756e-29
+// max(|f - f_GSL| / |f_GSL|): 4.5097527354246997e-16
+const testcase_hurwitz_zeta<double>
+data112[25] =
+{
   { 22693323358486552., 23.399999999999999, 0.20000000000000001 },
   { 2050199876.0486767, 23.399999999999999, 0.40000000000000002 },
   { 155331.93095805825, 23.399999999999999, 0.59999999999999998 },
@@ -6503,38 +3843,14 @@ testcase_hurwitz_zeta<double> data112[] = {
   { 1.1594096811005184e-16, 23.399999999999999, 4.7999999999999998 },
   { 4.4701777245752138e-17, 23.399999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=23.399999999999999.
-template<typename Tp>
-  void
-  test112()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data112)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data112[i].s), Tp(data112[i].a));
-	const Tp f0 = data112[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler112 = 2.5000000000000020e-13;
 
 // Test data for s=23.600000000000001.
-testcase_hurwitz_zeta<double> data113[] = {
+// max(|f - f_GSL|): 8.0779356694631609e-28
+// max(|f - f_GSL| / |f_GSL|): 1.6924409147799960e-16
+const testcase_hurwitz_zeta<double>
+data113[25] =
+{
   { 31310651354834672., 23.600000000000001, 0.20000000000000001 },
   { 2462545165.6676722, 23.600000000000001, 0.40000000000000002 },
   { 172040.41875761133, 23.600000000000001, 0.59999999999999998 },
@@ -6561,38 +3877,14 @@ testcase_hurwitz_zeta<double> data113[] = {
   { 8.4681707616558898e-17, 23.600000000000001, 4.7999999999999998 },
   { 3.2382046870633344e-17, 23.600000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=23.600000000000001.
-template<typename Tp>
-  void
-  test113()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data113)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data113[i].s), Tp(data113[i].a));
-	const Tp f0 = data113[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler113 = 2.5000000000000020e-13;
 
 // Test data for s=23.800000000000001.
-testcase_hurwitz_zeta<double> data114[] = {
+// max(|f - f_GSL|): 1.9721522630525295e-31
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_hurwitz_zeta<double>
+data114[25] =
+{
   { 43200234393936120., 23.800000000000001, 0.20000000000000001 },
   { 2957823168.2661963, 23.800000000000001, 0.40000000000000002 },
   { 190546.17749126689, 23.800000000000001, 0.59999999999999998 },
@@ -6619,38 +3911,14 @@ testcase_hurwitz_zeta<double> data114[] = {
   { 6.1851449098609104e-17, 23.800000000000001, 4.7999999999999998 },
   { 2.3458063204840668e-17, 23.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=23.800000000000001.
-template<typename Tp>
-  void
-  test114()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data114)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data114[i].s), Tp(data114[i].a));
-	const Tp f0 = data114[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler114 = 2.5000000000000020e-13;
 
 // Test data for s=24.000000000000000.
-testcase_hurwitz_zeta<double> data115[] = {
+// max(|f - f_GSL|): 1.0097419586828951e-28
+// max(|f - f_GSL| / |f_GSL|): 1.4346520731899684e-16
+const testcase_hurwitz_zeta<double>
+data115[25] =
+{
   { 59604644775390544., 24.000000000000000, 0.20000000000000001 },
   { 3552713678.8008070, 24.000000000000000, 0.40000000000000002 },
   { 211042.53302120644, 24.000000000000000, 0.59999999999999998 },
@@ -6677,38 +3945,14 @@ testcase_hurwitz_zeta<double> data115[] = {
   { 4.5177005776743476e-17, 24.000000000000000, 4.7999999999999998 },
   { 1.6993703662169741e-17, 24.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=24.000000000000000.
-template<typename Tp>
-  void
-  test115()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data115)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data115[i].s), Tp(data115[i].a));
-	const Tp f0 = data115[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler115 = 2.5000000000000020e-13;
 
 // Test data for s=24.199999999999999.
-testcase_hurwitz_zeta<double> data116[] = {
+// max(|f - f_GSL|): 3.2311742677852644e-27
+// max(|f - f_GSL| / |f_GSL|): 2.1395173143204665e-16
+const testcase_hurwitz_zeta<double>
+data116[25] =
+{
   { 82238296357465472., 24.199999999999999, 0.20000000000000001 },
   { 4267251206.5476222, 24.199999999999999, 0.40000000000000002 },
   { 233743.60656566391, 24.199999999999999, 0.59999999999999998 },
@@ -6735,38 +3979,14 @@ testcase_hurwitz_zeta<double> data116[] = {
   { 3.2998334265237380e-17, 24.199999999999999, 4.7999999999999998 },
   { 1.2310952642717490e-17, 24.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=24.199999999999999.
-template<typename Tp>
-  void
-  test116()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data116)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data116[i].s), Tp(data116[i].a));
-	const Tp f0 = data116[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler116 = 2.5000000000000020e-13;
 
 // Test data for s=24.399999999999999.
-testcase_hurwitz_zeta<double> data117[] = {
+// max(|f - f_GSL|): 1.2621774483536189e-29
+// max(|f - f_GSL| / |f_GSL|): 2.2043734057241493e-16
+const testcase_hurwitz_zeta<double>
+data117[25] =
+{
   { 1.1346661679243275e+17, 24.399999999999999, 0.20000000000000001 },
   { 5125499690.1210117, 24.399999999999999, 0.40000000000000002 },
   { 258886.55157933259, 24.399999999999999, 0.59999999999999998 },
@@ -6793,38 +4013,14 @@ testcase_hurwitz_zeta<double> data117[] = {
   { 2.4103123681267524e-17, 24.399999999999999, 4.7999999999999998 },
   { 8.9187239424739463e-18, 24.399999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=24.399999999999999.
-template<typename Tp>
-  void
-  test117()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data117)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data117[i].s), Tp(data117[i].a));
-	const Tp f0 = data117[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler117 = 2.5000000000000020e-13;
 
 // Test data for s=24.600000000000001.
-testcase_hurwitz_zeta<double> data118[] = {
+// max(|f - f_GSL|): 5.0487097934144756e-29
+// max(|f - f_GSL| / |f_GSL|): 1.5242286510507393e-16
+const testcase_hurwitz_zeta<double>
+data118[25] =
+{
   { 1.5655325677417334e+17, 24.600000000000001, 0.20000000000000001 },
   { 6156362914.1685448, 24.600000000000001, 0.40000000000000002 },
   { 286734.03124681825, 24.600000000000001, 0.59999999999999998 },
@@ -6851,38 +4047,14 @@ testcase_hurwitz_zeta<double> data118[] = {
   { 1.7606017045458436e-17, 24.600000000000001, 4.7999999999999998 },
   { 6.4613154489753602e-18, 24.600000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=24.600000000000001.
-template<typename Tp>
-  void
-  test118()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data118)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data118[i].s), Tp(data118[i].a));
-	const Tp f0 = data118[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler118 = 2.5000000000000020e-13;
 
 // Test data for s=24.800000000000001.
-testcase_hurwitz_zeta<double> data119[] = {
+// max(|f - f_GSL|): 1.9721522630525295e-31
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_hurwitz_zeta<double>
+data119[25] =
+{
   { 2.1600117196968061e+17, 24.800000000000001, 0.20000000000000001 },
   { 7394557920.6648951, 24.800000000000001, 0.40000000000000002 },
   { 317576.96247100108, 24.800000000000001, 0.59999999999999998 },
@@ -6909,38 +4081,14 @@ testcase_hurwitz_zeta<double> data119[] = {
   { 1.2860419439202510e-17, 24.800000000000001, 4.7999999999999998 },
   { 4.6810799703918333e-18, 24.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=24.800000000000001.
-template<typename Tp>
-  void
-  test119()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data119)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data119[i].s), Tp(data119[i].a));
-	const Tp f0 = data119[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler119 = 2.5000000000000020e-13;
 
 // Test data for s=25.000000000000000.
-testcase_hurwitz_zeta<double> data120[] = {
+// max(|f - f_GSL|): 3.9443045261050590e-31
+// max(|f - f_GSL| / |f_GSL|): 1.2282535924024112e-16
+const testcase_hurwitz_zeta<double>
+data120[25] =
+{
   { 2.9802322387695270e+17, 25.000000000000000, 0.20000000000000001 },
   { 8881784197.0014629, 25.000000000000000, 0.40000000000000002 },
   { 351737.55502219626, 25.000000000000000, 0.59999999999999998 },
@@ -6967,38 +4115,14 @@ testcase_hurwitz_zeta<double> data120[] = {
   { 9.3940990395733372e-18, 25.000000000000000, 4.7999999999999998 },
   { 3.3913906026819614e-18, 25.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=25.000000000000000.
-template<typename Tp>
-  void
-  test120()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data120)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data120[i].s), Tp(data120[i].a));
-	const Tp f0 = data120[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler120 = 2.5000000000000020e-13;
 
 // Test data for s=25.199999999999999.
-testcase_hurwitz_zeta<double> data121[] = {
+// max(|f - f_GSL|): 6.3108872417680944e-30
+// max(|f - f_GSL| / |f_GSL|): 1.5584795738055996e-16
+const testcase_hurwitz_zeta<double>
+data121[25] =
+{
   { 4.1119148178732730e+17, 25.199999999999999, 0.20000000000000001 },
   { 10668128016.368536, 25.199999999999999, 0.40000000000000002 },
   { 389572.67759747163, 25.199999999999999, 0.59999999999999998 },
@@ -7025,38 +4149,14 @@ testcase_hurwitz_zeta<double> data121[] = {
   { 6.8621608065248088e-18, 25.199999999999999, 4.7999999999999998 },
   { 2.4570610757401837e-18, 25.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=25.199999999999999.
-template<typename Tp>
-  void
-  test121()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data121)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data121[i].s), Tp(data121[i].a));
-	const Tp f0 = data121[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler121 = 2.5000000000000020e-13;
 
 // Test data for s=25.399999999999999.
-testcase_hurwitz_zeta<double> data122[] = {
+// max(|f - f_GSL|): 1.5777218104420236e-30
+// max(|f - f_GSL| / |f_GSL|): 2.1244682967123811e-16
+const testcase_hurwitz_zeta<double>
+data122[25] =
+{
   { 5.6733308396216378e+17, 25.399999999999999, 0.20000000000000001 },
   { 12813749225.302042, 25.399999999999999, 0.40000000000000002 },
   { 431477.58595465979, 25.399999999999999, 0.59999999999999998 },
@@ -7083,38 +4183,14 @@ testcase_hurwitz_zeta<double> data122[] = {
   { 5.0127053923984403e-18, 25.399999999999999, 4.7999999999999998 },
   { 1.7801649292225403e-18, 25.399999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=25.399999999999999.
-template<typename Tp>
-  void
-  test122()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data122)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data122[i].s), Tp(data122[i].a));
-	const Tp f0 = data122[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler122 = 2.5000000000000020e-13;
 
 // Test data for s=25.600000000000001.
-testcase_hurwitz_zeta<double> data123[] = {
+// max(|f - f_GSL|): 3.1554436208840472e-30
+// max(|f - f_GSL| / |f_GSL|): 1.3725313089620342e-16
+const testcase_hurwitz_zeta<double>
+data123[25] =
+{
   { 7.8276628387086669e+17, 25.600000000000001, 0.20000000000000001 },
   { 15390907285.420906, 25.600000000000001, 0.40000000000000002 },
   { 477890.05206811341, 25.600000000000001, 0.59999999999999998 },
@@ -7141,38 +4217,14 @@ testcase_hurwitz_zeta<double> data123[] = {
   { 3.6617508523668495e-18, 25.600000000000001, 4.7999999999999998 },
   { 1.2897645910652554e-18, 25.600000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=25.600000000000001.
-template<typename Tp>
-  void
-  test123()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data123)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data123[i].s), Tp(data123[i].a));
-	const Tp f0 = data123[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler123 = 2.5000000000000020e-13;
 
 // Test data for s=25.800000000000001.
-testcase_hurwitz_zeta<double> data124[] = {
+// max(|f - f_GSL|): 7.8886090522101181e-31
+// max(|f - f_GSL| / |f_GSL|): 1.7734635243314333e-16
+const testcase_hurwitz_zeta<double>
+data124[25] =
+{
   { 1.0800058598484029e+18, 25.800000000000001, 0.20000000000000001 },
   { 18486394801.661816, 25.800000000000001, 0.40000000000000002 },
   { 529294.93744264124, 25.800000000000001, 0.59999999999999998 },
@@ -7199,38 +4251,14 @@ testcase_hurwitz_zeta<double> data124[] = {
   { 2.6749182737080426e-18, 25.800000000000001, 4.7999999999999998 },
   { 9.3447214067243292e-19, 25.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=25.800000000000001.
-template<typename Tp>
-  void
-  test124()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data124)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data124[i].s), Tp(data124[i].a));
-	const Tp f0 = data124[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler124 = 2.5000000000000020e-13;
 
 // Test data for s=26.000000000000000.
-testcase_hurwitz_zeta<double> data125[] = {
+// max(|f - f_GSL|): 9.8607613152626476e-32
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_hurwitz_zeta<double>
+data125[25] =
+{
   { 1.4901161193847634e+18, 26.000000000000000, 0.20000000000000001 },
   { 22204460492.503258, 26.000000000000000, 0.40000000000000002 },
   { 586229.25836210977, 26.000000000000000, 0.59999999999999998 },
@@ -7257,38 +4285,14 @@ testcase_hurwitz_zeta<double> data125[] = {
   { 1.9540567094273127e-18, 26.000000000000000, 4.7999999999999998 },
   { 6.7706093187502813e-19, 26.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=26.000000000000000.
-template<typename Tp>
-  void
-  test125()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data125)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data125[i].s), Tp(data125[i].a));
-	const Tp f0 = data125[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler125 = 2.5000000000000020e-13;
 
 // Test data for s=26.199999999999999.
-testcase_hurwitz_zeta<double> data126[] = {
+// max(|f - f_GSL|): 9.8607613152626476e-32
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_hurwitz_zeta<double>
+data126[25] =
+{
   { 2.0559574089366364e+18, 26.199999999999999, 0.20000000000000001 },
   { 26670320040.920967, 26.199999999999999, 0.40000000000000002 },
   { 649287.79598830594, 26.199999999999999, 0.59999999999999998 },
@@ -7315,38 +4319,14 @@ testcase_hurwitz_zeta<double> data126[] = {
   { 1.4274750947906663e-18, 26.199999999999999, 4.7999999999999998 },
   { 4.9056259980550462e-19, 26.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=26.199999999999999.
-template<typename Tp>
-  void
-  test126()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data126)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data126[i].s), Tp(data126[i].a));
-	const Tp f0 = data126[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler126 = 2.5000000000000020e-13;
 
 // Test data for s=26.399999999999999.
-testcase_hurwitz_zeta<double> data127[] = {
+// max(|f - f_GSL|): 9.8607613152626476e-32
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_hurwitz_zeta<double>
+data127[25] =
+{
   { 2.8366654198108186e+18, 26.399999999999999, 0.20000000000000001 },
   { 32034373063.254757, 26.399999999999999, 0.40000000000000002 },
   { 719129.30991762411, 26.399999999999999, 0.59999999999999998 },
@@ -7373,38 +4353,14 @@ testcase_hurwitz_zeta<double> data127[] = {
   { 1.0428082674632461e-18, 26.399999999999999, 4.7999999999999998 },
   { 3.5543992018306413e-19, 26.399999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=26.399999999999999.
-template<typename Tp>
-  void
-  test127()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data127)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data127[i].s), Tp(data127[i].a));
-	const Tp f0 = data127[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler127 = 2.5000000000000020e-13;
 
 // Test data for s=26.600000000000001.
-testcase_hurwitz_zeta<double> data128[] = {
+// max(|f - f_GSL|): 1.2325951644078309e-32
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_hurwitz_zeta<double>
+data128[25] =
+{
   { 3.9138314193543337e+18, 26.600000000000001, 0.20000000000000001 },
   { 38477268213.551941, 26.600000000000001, 0.40000000000000002 },
   { 796483.42010732437, 26.600000000000001, 0.59999999999999998 },
@@ -7431,38 +4387,14 @@ testcase_hurwitz_zeta<double> data128[] = {
   { 7.6180666255903174e-19, 26.600000000000001, 4.7999999999999998 },
   { 2.5753891980144182e-19, 26.600000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=26.600000000000001.
-template<typename Tp>
-  void
-  test128()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data128)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data128[i].s), Tp(data128[i].a));
-	const Tp f0 = data128[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler128 = 2.5000000000000020e-13;
 
 // Test data for s=26.800000000000001.
-testcase_hurwitz_zeta<double> data129[] = {
+// max(|f - f_GSL|): 3.0814879110195774e-33
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_hurwitz_zeta<double>
+data129[25] =
+{
   { 5.4000292992420147e+18, 26.800000000000001, 0.20000000000000001 },
   { 46215987004.154228, 26.800000000000001, 0.40000000000000002 },
   { 882158.22906542674, 26.800000000000001, 0.59999999999999998 },
@@ -7489,38 +4421,14 @@ testcase_hurwitz_zeta<double> data129[] = {
   { 5.5653089075115867e-19, 26.800000000000001, 4.7999999999999998 },
   { 1.8660542035688238e-19, 26.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=26.800000000000001.
-template<typename Tp>
-  void
-  test129()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data129)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data129[i].s), Tp(data129[i].a));
-	const Tp f0 = data129[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler129 = 2.5000000000000020e-13;
 
 // Test data for s=27.000000000000000.
-testcase_hurwitz_zeta<double> data130[] = {
+// max(|f - f_GSL|): 4.9303806576313238e-32
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_hurwitz_zeta<double>
+data130[25] =
+{
   { 7.4505805969238170e+18, 27.000000000000000, 0.20000000000000001 },
   { 55511151231.257858, 27.000000000000000, 0.40000000000000002 },
   { 977048.76393171377, 27.000000000000000, 0.59999999999999998 },
@@ -7547,38 +4455,14 @@ testcase_hurwitz_zeta<double> data130[] = {
   { 4.0657234142408829e-19, 27.000000000000000, 4.7999999999999998 },
   { 1.3521042647245370e-19, 27.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=27.000000000000000.
-template<typename Tp>
-  void
-  test130()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data130)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data130[i].s), Tp(data130[i].a));
-	const Tp f0 = data130[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler130 = 2.5000000000000020e-13;
 
 // Test data for s=27.199999999999999.
-testcase_hurwitz_zeta<double> data131[] = {
+// max(|f - f_GSL|): 2.3283064365386963e-10
+// max(|f - f_GSL| / |f_GSL|): 2.1515634061823847e-16
+const testcase_hurwitz_zeta<double>
+data131[25] =
+{
   { 1.0279787044683182e+19, 27.199999999999999, 0.20000000000000001 },
   { 66675800102.302147, 27.199999999999999, 0.40000000000000002 },
   { 1082146.3266425016, 27.199999999999999, 0.59999999999999998 },
@@ -7605,38 +4489,14 @@ testcase_hurwitz_zeta<double> data131[] = {
   { 2.9702313575832480e-19, 27.199999999999999, 4.7999999999999998 },
   { 9.7971664336909839e-20, 27.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=27.199999999999999.
-template<typename Tp>
-  void
-  test131()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data131)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data131[i].s), Tp(data131[i].a));
-	const Tp f0 = data131[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler131 = 2.5000000000000020e-13;
 
 // Test data for s=27.399999999999999.
-testcase_hurwitz_zeta<double> data132[] = {
+// max(|f - f_GSL|): 1.5258789062500000e-05
+// max(|f - f_GSL| / |f_GSL|): 1.9426045394926288e-16
+const testcase_hurwitz_zeta<double>
+data132[25] =
+{
   { 1.4183327099054092e+19, 27.399999999999999, 0.20000000000000001 },
   { 80085932658.136642, 27.399999999999999, 0.40000000000000002 },
   { 1198548.8498584512, 27.399999999999999, 0.59999999999999998 },
@@ -7663,38 +4523,14 @@ testcase_hurwitz_zeta<double> data132[] = {
   { 2.1699337290434646e-19, 27.399999999999999, 4.7999999999999998 },
   { 7.0989644744920640e-20, 27.399999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=27.399999999999999.
-template<typename Tp>
-  void
-  test132()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data132)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data132[i].s), Tp(data132[i].a));
-	const Tp f0 = data132[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler132 = 2.5000000000000020e-13;
 
 // Test data for s=27.600000000000001.
-testcase_hurwitz_zeta<double> data133[] = {
+// max(|f - f_GSL|): 2.3283064365386963e-10
+// max(|f - f_GSL| / |f_GSL|): 1.7539396636016029e-16
+const testcase_hurwitz_zeta<double>
+data133[25] =
+{
   { 1.9569157096771666e+19, 27.600000000000001, 0.20000000000000001 },
   { 96193170533.879608, 27.600000000000001, 0.40000000000000002 },
   { 1327472.3668416666, 27.600000000000001, 0.59999999999999998 },
@@ -7721,38 +4557,14 @@ testcase_hurwitz_zeta<double> data133[] = {
   { 1.5852810317322142e-19, 27.600000000000001, 4.7999999999999998 },
   { 5.1439125656280983e-20, 27.600000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=27.600000000000001.
-template<typename Tp>
-  void
-  test133()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data133)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data133[i].s), Tp(data133[i].a));
-	const Tp f0 = data133[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler133 = 2.5000000000000020e-13;
 
 // Test data for s=27.800000000000001.
-testcase_hurwitz_zeta<double> data134[] = {
+// max(|f - f_GSL|): 1.5258789062500000e-05
+// max(|f - f_GSL| / |f_GSL|): 1.3206502815684503e-16
+const testcase_hurwitz_zeta<double>
+data134[25] =
+{
   { 2.7000146496210072e+19, 27.800000000000001, 0.20000000000000001 },
   { 115539967510.38533, 27.800000000000001, 0.40000000000000002 },
   { 1470263.7151055182, 27.800000000000001, 0.59999999999999998 },
@@ -7779,38 +4591,14 @@ testcase_hurwitz_zeta<double> data134[] = {
   { 1.1581625558796262e-19, 27.800000000000001, 4.7999999999999998 },
   { 3.7273146971603398e-20, 27.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=27.800000000000001.
-template<typename Tp>
-  void
-  test134()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data134)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data134[i].s), Tp(data134[i].a));
-	const Tp f0 = data134[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler134 = 2.5000000000000020e-13;
 
 // Test data for s=28.000000000000000.
-testcase_hurwitz_zeta<double> data135[] = {
+// max(|f - f_GSL|): 2.3283064365386963e-10
+// max(|f - f_GSL| / |f_GSL|): 1.4297995284333703e-16
+const testcase_hurwitz_zeta<double>
+data135[25] =
+{
   { 3.7252902984619082e+19, 28.000000000000000, 0.20000000000000001 },
   { 138777878078.14444, 28.000000000000000, 0.40000000000000002 },
   { 1628414.6065496462, 28.000000000000000, 0.59999999999999998 },
@@ -7837,38 +4625,14 @@ testcase_hurwitz_zeta<double> data135[] = {
   { 8.4612808074285399e-20, 28.000000000000000, 4.7999999999999998 },
   { 2.7008614754506107e-20, 28.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=28.000000000000000.
-template<typename Tp>
-  void
-  test135()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data135)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data135[i].s), Tp(data135[i].a));
-	const Tp f0 = data135[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler135 = 2.5000000000000020e-13;
 
 // Test data for s=28.199999999999999.
-testcase_hurwitz_zeta<double> data136[] = {
+// max(|f - f_GSL|): 1.5407439555097887e-33
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_hurwitz_zeta<double>
+data136[25] =
+{
   { 5.1398935223415906e+19, 28.199999999999999, 0.20000000000000001 },
   { 166689500255.75516, 28.199999999999999, 0.40000000000000002 },
   { 1803577.2110679143, 28.199999999999999, 0.59999999999999998 },
@@ -7895,38 +4659,14 @@ testcase_hurwitz_zeta<double> data136[] = {
   { 6.1816712098703694e-20, 28.199999999999999, 4.7999999999999998 },
   { 1.9570962498543655e-20, 28.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=28.199999999999999.
-template<typename Tp>
-  void
-  test136()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data136)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data136[i].s), Tp(data136[i].a));
-	const Tp f0 = data136[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler136 = 2.5000000000000020e-13;
 
 // Test data for s=28.399999999999999.
-testcase_hurwitz_zeta<double> data137[] = {
+// max(|f - f_GSL|): 3.0517578125000000e-05
+// max(|f - f_GSL| / |f_GSL|): 1.5242416295641141e-16
+const testcase_hurwitz_zeta<double>
+data137[25] =
+{
   { 7.0916635495270457e+19, 28.399999999999999, 0.20000000000000001 },
   { 200214831645.34143, 28.399999999999999, 0.40000000000000002 },
   { 1997581.4164280924, 28.399999999999999, 0.59999999999999998 },
@@ -7953,38 +4693,14 @@ testcase_hurwitz_zeta<double> data137[] = {
   { 4.5162583677237495e-20, 28.399999999999999, 4.7999999999999998 },
   { 1.4181610460990158e-20, 28.399999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=28.399999999999999.
-template<typename Tp>
-  void
-  test137()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data137)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data137[i].s), Tp(data137[i].a));
-	const Tp f0 = data137[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler137 = 2.5000000000000020e-13;
 
 // Test data for s=28.600000000000001.
-testcase_hurwitz_zeta<double> data138[] = {
+// max(|f - f_GSL|): 9.6296497219361793e-35
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_hurwitz_zeta<double>
+data138[25] =
+{
   { 9.7845785483858330e+19, 28.600000000000001, 0.20000000000000001 },
   { 240482926334.69885, 28.600000000000001, 0.40000000000000002 },
   { 2212453.9447336905, 28.600000000000001, 0.59999999999999998 },
@@ -8011,38 +4727,14 @@ testcase_hurwitz_zeta<double> data138[] = {
   { 3.2995493062989130e-20, 28.600000000000001, 4.7999999999999998 },
   { 1.0276430365581455e-20, 28.600000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=28.600000000000001.
-template<typename Tp>
-  void
-  test138()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data138)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data138[i].s), Tp(data138[i].a));
-	const Tp f0 = data138[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler138 = 2.5000000000000020e-13;
 
 // Test data for s=28.800000000000001.
-testcase_hurwitz_zeta<double> data139[] = {
+// max(|f - f_GSL|): 4.6566128730773926e-10
+// max(|f - f_GSL| / |f_GSL|): 1.9003174023433136e-16
+const testcase_hurwitz_zeta<double>
+data139[25] =
+{
   { 1.3500073248105035e+20, 28.800000000000001, 0.20000000000000001 },
   { 288849918775.96320, 28.800000000000001, 0.40000000000000002 },
   { 2450439.5251736599, 28.800000000000001, 0.59999999999999998 },
@@ -8069,38 +4761,14 @@ testcase_hurwitz_zeta<double> data139[] = {
   { 2.4106453336765368e-20, 28.800000000000001, 4.7999999999999998 },
   { 7.4466725354205518e-21, 28.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=28.800000000000001.
-template<typename Tp>
-  void
-  test139()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data139)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data139[i].s), Tp(data139[i].a));
-	const Tp f0 = data139[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler139 = 2.5000000000000020e-13;
 
 // Test data for s=29.000000000000000.
-testcase_hurwitz_zeta<double> data140[] = {
+// max(|f - f_GSL|): 4.6566128730773926e-10
+// max(|f - f_GSL| / |f_GSL|): 1.7157594341213123e-16
+const testcase_hurwitz_zeta<double>
+data140[25] =
+{
   { 1.8626451492309539e+20, 29.000000000000000, 0.20000000000000001 },
   { 346944695195.36090, 29.000000000000000, 0.40000000000000002 },
   { 2714024.3442474045, 29.000000000000000, 0.59999999999999998 },
@@ -8127,38 +4795,14 @@ testcase_hurwitz_zeta<double> data140[] = {
   { 1.7612246765271491e-20, 29.000000000000000, 4.7999999999999998 },
   { 5.3961666168820370e-21, 29.000000000000000, 5.0000000000000000 },
 };
-
-// Test function for s=29.000000000000000.
-template<typename Tp>
-  void
-  test140()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data140)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data140[i].s), Tp(data140[i].a));
-	const Tp f0 = data140[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler140 = 2.5000000000000020e-13;
 
 // Test data for s=29.199999999999999.
-testcase_hurwitz_zeta<double> data141[] = {
+// max(|f - f_GSL|): 6.1035156250000000e-05
+// max(|f - f_GSL| / |f_GSL|): 1.5491256524547674e-16
+const testcase_hurwitz_zeta<double>
+data141[25] =
+{
   { 2.5699467611707952e+20, 29.199999999999999, 0.20000000000000001 },
   { 416723750639.38782, 29.199999999999999, 0.40000000000000002 },
   { 3005962.0184446978, 29.199999999999999, 0.59999999999999998 },
@@ -8185,38 +4829,14 @@ testcase_hurwitz_zeta<double> data141[] = {
   { 1.2867638315668862e-20, 29.199999999999999, 4.7999999999999998 },
   { 3.9103123799400860e-21, 29.199999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=29.199999999999999.
-template<typename Tp>
-  void
-  test141()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data141)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data141[i].s), Tp(data141[i].a));
-	const Tp f0 = data141[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler141 = 2.5000000000000020e-13;
 
 // Test data for s=29.399999999999999.
-testcase_hurwitz_zeta<double> data142[] = {
+// max(|f - f_GSL|): 6.1035156250000000e-05
+// max(|f - f_GSL| / |f_GSL|): 1.2193933036512919e-16
+const testcase_hurwitz_zeta<double>
+data142[25] =
+{
   { 3.5458317747635225e+20, 29.399999999999999, 0.20000000000000001 },
   { 500537079113.35333, 29.399999999999999, 0.40000000000000002 },
   { 3329302.3607118251, 29.399999999999999, 0.59999999999999998 },
@@ -8243,38 +4863,14 @@ testcase_hurwitz_zeta<double> data142[] = {
   { 9.4012471467354025e-21, 29.399999999999999, 4.7999999999999998 },
   { 2.8336124515937949e-21, 29.399999999999999, 5.0000000000000000 },
 };
-
-// Test function for s=29.399999999999999.
-template<typename Tp>
-  void
-  test142()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data142)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data142[i].s), Tp(data142[i].a));
-	const Tp f0 = data142[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler142 = 2.5000000000000020e-13;
 
 // Test data for s=29.600000000000001.
-testcase_hurwitz_zeta<double> data143[] = {
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 1.5387703214396101e-16
+const testcase_hurwitz_zeta<double>
+data143[25] =
+{
   { 4.8922892741929160e+20, 29.600000000000001, 0.20000000000000001 },
   { 601207315836.74695, 29.600000000000001, 0.40000000000000002 },
   { 3687423.2412213041, 29.600000000000001, 0.59999999999999998 },
@@ -8301,38 +4897,14 @@ testcase_hurwitz_zeta<double> data143[] = {
   { 6.8686998588515347e-21, 29.600000000000001, 4.7999999999999998 },
   { 2.0533937830274062e-21, 29.600000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=29.600000000000001.
-template<typename Tp>
-  void
-  test143()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data143)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data143[i].s), Tp(data143[i].a));
-	const Tp f0 = data143[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler143 = 2.5000000000000020e-13;
 
 // Test data for s=29.800000000000001.
-testcase_hurwitz_zeta<double> data144[] = {
+// max(|f - f_GSL|): 4.6566128730773926e-10
+// max(|f - f_GSL| / |f_GSL|): 1.4716068435197784e-16
+const testcase_hurwitz_zeta<double>
+data144[25] =
+{
   { 6.7500366240525163e+20, 29.800000000000001, 0.20000000000000001 },
   { 722124796939.90771, 29.800000000000001, 0.40000000000000002 },
   { 4084065.8752880557, 29.800000000000001, 0.59999999999999998 },
@@ -8359,38 +4931,14 @@ testcase_hurwitz_zeta<double> data144[] = {
   { 5.0184079371424298e-21, 29.800000000000001, 4.7999999999999998 },
   { 1.4880129896438225e-21, 29.800000000000001, 5.0000000000000000 },
 };
-
-// Test function for s=29.800000000000001.
-template<typename Tp>
-  void
-  test144()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data144)
-			   / sizeof(testcase_hurwitz_zeta<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-      {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data144[i].s), Tp(data144[i].a));
-	const Tp f0 = data144[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler144 = 2.5000000000000020e-13;
 
 // Test data for s=30.000000000000000.
-testcase_hurwitz_zeta<double> data145[] = {
+// max(|f - f_GSL|): 1.1368683772161603e-13
+// max(|f - f_GSL| / |f_GSL|): 1.4073748835150058e-16
+const testcase_hurwitz_zeta<double>
+data145[25] =
+{
   { 9.3132257461547696e+20, 30.000000000000000, 0.20000000000000001 },
   { 867361737988.40210, 30.000000000000000, 0.40000000000000002 },
   { 4523373.9070777548, 30.000000000000000, 0.59999999999999998 },
@@ -8417,22 +4965,21 @@ testcase_hurwitz_zeta<double> data145[] = {
   { 3.6665671807592250e-21, 30.000000000000000, 4.7999999999999998 },
   { 1.0783103972232821e-21, 30.000000000000000, 5.0000000000000000 },
 };
+const double toler145 = 2.5000000000000020e-13;
 
-// Test function for s=30.000000000000000.
-template<typename Tp>
+template<typename Tp, unsigned int Num>
   void
-  test145()
+  test(const testcase_hurwitz_zeta<Tp> (&data)[Num], Tp toler)
   {
-    bool test [[gnu::unused]] = true;
+    bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data145)
-			   / sizeof(testcase_hurwitz_zeta<double>);
+    unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = __gnu_cxx::hurwitz_zeta(Tp(data145[i].s), Tp(data145[i].a));
-	const Tp f0 = data145[i].f0;
+	const Tp f = __gnu_cxx::hurwitz_zeta(data[i].s, data[i].a);
+	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -8444,156 +4991,156 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
+    VERIFY(max_abs_frac < toler);
   }
 
 int
 main()
 {
-  test001<double>();
-  test002<double>();
-  test003<double>();
-  test004<double>();
-  test005<double>();
-  test006<double>();
-  test007<double>();
-  test008<double>();
-  test009<double>();
-  test010<double>();
-  test011<double>();
-  test012<double>();
-  test013<double>();
-  test014<double>();
-  test015<double>();
-  test016<double>();
-  test017<double>();
-  test018<double>();
-  test019<double>();
-  test020<double>();
-  test021<double>();
-  test022<double>();
-  test023<double>();
-  test024<double>();
-  test025<double>();
-  test026<double>();
-  test027<double>();
-  test028<double>();
-  test029<double>();
-  test030<double>();
-  test031<double>();
-  test032<double>();
-  test033<double>();
-  test034<double>();
-  test035<double>();
-  test036<double>();
-  test037<double>();
-  test038<double>();
-  test039<double>();
-  test040<double>();
-  test041<double>();
-  test042<double>();
-  test043<double>();
-  test044<double>();
-  test045<double>();
-  test046<double>();
-  test047<double>();
-  test048<double>();
-  test049<double>();
-  test050<double>();
-  test051<double>();
-  test052<double>();
-  test053<double>();
-  test054<double>();
-  test055<double>();
-  test056<double>();
-  test057<double>();
-  test058<double>();
-  test059<double>();
-  test060<double>();
-  test061<double>();
-  test062<double>();
-  test063<double>();
-  test064<double>();
-  test065<double>();
-  test066<double>();
-  test067<double>();
-  test068<double>();
-  test069<double>();
-  test070<double>();
-  test071<double>();
-  test072<double>();
-  test073<double>();
-  test074<double>();
-  test075<double>();
-  test076<double>();
-  test077<double>();
-  test078<double>();
-  test079<double>();
-  test080<double>();
-  test081<double>();
-  test082<double>();
-  test083<double>();
-  test084<double>();
-  test085<double>();
-  test086<double>();
-  test087<double>();
-  test088<double>();
-  test089<double>();
-  test090<double>();
-  test091<double>();
-  test092<double>();
-  test093<double>();
-  test094<double>();
-  test095<double>();
-  test096<double>();
-  test097<double>();
-  test098<double>();
-  test099<double>();
-  test100<double>();
-  test101<double>();
-  test102<double>();
-  test103<double>();
-  test104<double>();
-  test105<double>();
-  test106<double>();
-  test107<double>();
-  test108<double>();
-  test109<double>();
-  test110<double>();
-  test111<double>();
-  test112<double>();
-  test113<double>();
-  test114<double>();
-  test115<double>();
-  test116<double>();
-  test117<double>();
-  test118<double>();
-  test119<double>();
-  test120<double>();
-  test121<double>();
-  test122<double>();
-  test123<double>();
-  test124<double>();
-  test125<double>();
-  test126<double>();
-  test127<double>();
-  test128<double>();
-  test129<double>();
-  test130<double>();
-  test131<double>();
-  test132<double>();
-  test133<double>();
-  test134<double>();
-  test135<double>();
-  test136<double>();
-  test137<double>();
-  test138<double>();
-  test139<double>();
-  test140<double>();
-  test141<double>();
-  test142<double>();
-  test143<double>();
-  test144<double>();
-  test145<double>();
+  test(data001, toler001);
+  test(data002, toler002);
+  test(data003, toler003);
+  test(data004, toler004);
+  test(data005, toler005);
+  test(data006, toler006);
+  test(data007, toler007);
+  test(data008, toler008);
+  test(data009, toler009);
+  test(data010, toler010);
+  test(data011, toler011);
+  test(data012, toler012);
+  test(data013, toler013);
+  test(data014, toler014);
+  test(data015, toler015);
+  test(data016, toler016);
+  test(data017, toler017);
+  test(data018, toler018);
+  test(data019, toler019);
+  test(data020, toler020);
+  test(data021, toler021);
+  test(data022, toler022);
+  test(data023, toler023);
+  test(data024, toler024);
+  test(data025, toler025);
+  test(data026, toler026);
+  test(data027, toler027);
+  test(data028, toler028);
+  test(data029, toler029);
+  test(data030, toler030);
+  test(data031, toler031);
+  test(data032, toler032);
+  test(data033, toler033);
+  test(data034, toler034);
+  test(data035, toler035);
+  test(data036, toler036);
+  test(data037, toler037);
+  test(data038, toler038);
+  test(data039, toler039);
+  test(data040, toler040);
+  test(data041, toler041);
+  test(data042, toler042);
+  test(data043, toler043);
+  test(data044, toler044);
+  test(data045, toler045);
+  test(data046, toler046);
+  test(data047, toler047);
+  test(data048, toler048);
+  test(data049, toler049);
+  test(data050, toler050);
+  test(data051, toler051);
+  test(data052, toler052);
+  test(data053, toler053);
+  test(data054, toler054);
+  test(data055, toler055);
+  test(data056, toler056);
+  test(data057, toler057);
+  test(data058, toler058);
+  test(data059, toler059);
+  test(data060, toler060);
+  test(data061, toler061);
+  test(data062, toler062);
+  test(data063, toler063);
+  test(data064, toler064);
+  test(data065, toler065);
+  test(data066, toler066);
+  test(data067, toler067);
+  test(data068, toler068);
+  test(data069, toler069);
+  test(data070, toler070);
+  test(data071, toler071);
+  test(data072, toler072);
+  test(data073, toler073);
+  test(data074, toler074);
+  test(data075, toler075);
+  test(data076, toler076);
+  test(data077, toler077);
+  test(data078, toler078);
+  test(data079, toler079);
+  test(data080, toler080);
+  test(data081, toler081);
+  test(data082, toler082);
+  test(data083, toler083);
+  test(data084, toler084);
+  test(data085, toler085);
+  test(data086, toler086);
+  test(data087, toler087);
+  test(data088, toler088);
+  test(data089, toler089);
+  test(data090, toler090);
+  test(data091, toler091);
+  test(data092, toler092);
+  test(data093, toler093);
+  test(data094, toler094);
+  test(data095, toler095);
+  test(data096, toler096);
+  test(data097, toler097);
+  test(data098, toler098);
+  test(data099, toler099);
+  test(data100, toler100);
+  test(data101, toler101);
+  test(data102, toler102);
+  test(data103, toler103);
+  test(data104, toler104);
+  test(data105, toler105);
+  test(data106, toler106);
+  test(data107, toler107);
+  test(data108, toler108);
+  test(data109, toler109);
+  test(data110, toler110);
+  test(data111, toler111);
+  test(data112, toler112);
+  test(data113, toler113);
+  test(data114, toler114);
+  test(data115, toler115);
+  test(data116, toler116);
+  test(data117, toler117);
+  test(data118, toler118);
+  test(data119, toler119);
+  test(data120, toler120);
+  test(data121, toler121);
+  test(data122, toler122);
+  test(data123, toler123);
+  test(data124, toler124);
+  test(data125, toler125);
+  test(data126, toler126);
+  test(data127, toler127);
+  test(data128, toler128);
+  test(data129, toler129);
+  test(data130, toler130);
+  test(data131, toler131);
+  test(data132, toler132);
+  test(data133, toler133);
+  test(data134, toler134);
+  test(data135, toler135);
+  test(data136, toler136);
+  test(data137, toler137);
+  test(data138, toler138);
+  test(data139, toler139);
+  test(data140, toler140);
+  test(data141, toler141);
+  test(data142, toler142);
+  test(data143, toler143);
+  test(data144, toler144);
+  test(data145, toler145);
   return 0;
 }

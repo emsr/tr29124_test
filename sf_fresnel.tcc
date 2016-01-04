@@ -1,6 +1,6 @@
 // Special functions -*- C++ -*-
 
-// Copyright (C) 2015 Free Software Foundation, Inc.
+// Copyright (C) 2016 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -87,7 +87,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __n += 2;
       }
       if (__k > _S_max_iter)
-	std::__throw_runtime_error("fresnel_series: series evaluation failed");
+	std::__throw_runtime_error("__fresnel_series: series evaluation failed");
 
       _C = _Csum;
       _S = _Ssum;
@@ -131,7 +131,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    break;
 	}
       if (__k > _S_max_iter)
-	std::__throw_runtime_error("fresnel_cont_frac: "
+	std::__throw_runtime_error("__fresnel_cont_frac: "
 				 "continued fraction evaluation failed");
 
       __h *= std::complex<_Tp>(__ax, -__ax);
@@ -160,12 +160,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  @f]
    */
   template <typename _Tp>
-    std::pair<_Tp, _Tp>
+    std::complex<_Tp>
     __fresnel(const _Tp __x)
     {
-
       constexpr auto _S_fp_min = std::numeric_limits<_Tp>::min();
       constexpr auto _S_x_min = _Tp{1.5L};
+      constexpr auto _S_NaN = std::numeric_limits<_Tp>::quiet_NaN();
+      if (__isnan(__x))
+	return std::complex<_Tp>{_S_NaN, _S_NaN};
 
       auto _C = _Tp{0};
       auto _S = _Tp{0};
@@ -187,7 +189,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _S = -_S;
 	}
 
-      return std::make_pair(_C, _S);
+      return std::complex<_Tp>(_C, _S);
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION

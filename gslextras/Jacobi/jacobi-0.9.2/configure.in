@@ -1,0 +1,33 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ(2.60)
+AC_INIT([jacobi], [0.9.2], [pjabardo@yahoo.com.br])
+AC_CONFIG_SRCDIR([src/jacobi.c])
+# AC_CONFIG_HEADER([config.h])
+AM_INIT_AUTOMAKE
+# Checks for programs.
+AC_PROG_LIBTOOL
+AC_PROG_CC
+
+# Checks for libraries.
+AC_CHECK_LIB(m,main,,       [AC_MSG_ERROR(jacobi requires math library)])
+AC_CHECK_LIB(gslcblas,main,,[AC_MSG_ERROR(jacobi requires cblas library)])
+AC_CHECK_LIB(gsl,main,,     [AC_MSG_ERROR(jacobi requires gsl)])
+
+
+# Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS([stdlib.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+
+# Checks for library functions.
+AC_FUNC_MALLOC
+AC_CHECK_FUNCS([pow])
+
+AC_CONFIG_FILES([Makefile
+                 src/Makefile
+                 test/Makefile])
+AC_OUTPUT

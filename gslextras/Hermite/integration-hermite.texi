@@ -1,0 +1,69 @@
+\input texinfo   @c -*-texinfo-*-
+@c %**start of header
+@setfilename gsl_integration_hermite.info
+@settitle Gauss-Hermite Quadrature
+@c %**end of header
+
+@setchapternewpage odd
+
+@node Hermite Quadrature
+@chapter Hermite Quadrature
+
+@tex
+\gdef\beforedisplay{}
+\gdef\afterdisplay{}
+@end tex
+
+@c begin GSL-manual
+
+@c Version 1: Konrad Griessinger (konradg(at)gmx.net), 04/2014
+
+@cindex Hermite quadrature
+
+
+@node Hermite quadrature
+@subsection Hermite quadrature
+
+
+To evaluate integrals of the form 
+
+@tex
+\beforedisplay
+$$
+\eqalign{
+\int_{-\infty}^{\infty} e^{-x^2/2} f(x) dx & \quad \rm{(probabilist)}  \cr
+\int_{-\infty}^{\infty} e^{-x^2} f(x) dx & \quad \rm{(physicist)}
+}
+$$
+\afterdisplay
+@end tex
+@ifinfo
+
+@example
+\int_{-\infty}^{\infty} e^{-x^2/2} f(x) dx 
+\int_{-\infty}^{\infty} e^{-x^2} f(x) dx 
+@end example
+
+@end ifinfo
+@noindent
+
+Gauss-Hermite quadrature can be used. For polynomials, this method gives the exact result when using @var{n} sample points to integrate a polynomial of order @math{2n-1} or less. For any function @math{f(x)} that can be approximated by a polynomial, the result of the quadrature will give a reasonably accurate approximation of the above integral for sufficiently large @var{n}. (See e.g. Introduction to Numerical Analysis (1992) by J. Stoer, R. Bulirsch.)  
+
+ Unlike most other numerical integration routines within the library, these routines do not accept absolute or relative error bounds. 
+
+@deftypefun double gsl_sf_hermite_prob_quad (const int @var{n}, const gsl_function * @var{func})
+This routine computes the @var{n}-point probabilists' Gauss-Hermite quadrature of the function @var{func}.
+@end deftypefun
+
+@deftypefun double gsl_sf_hermite_phys_quad (const int @var{n}, const gsl_function * @var{func})
+This routine computes the @var{n}-point physicists' Gauss-Hermite quadrature of the function @var{func}.
+@end deftypefun
+
+
+@c end GSL-manual
+
+@page
+@printindex cp
+
+@contents
+@bye

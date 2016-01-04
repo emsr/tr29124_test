@@ -93,6 +93,16 @@ main()
   using __gnu_cxx::gamma_u;
   using __gnu_cxx::ibeta;
   using __gnu_cxx::psi;
+  using __gnu_cxx::sinint;
+  using __gnu_cxx::cosint;
+  using __gnu_cxx::sinhint;
+  using __gnu_cxx::coshint;
+  using __gnu_cxx::jacobi_sn;
+  using __gnu_cxx::jacobi_cn;
+  using __gnu_cxx::jacobi_dn;
+  using __gnu_cxx::fresnel_s;
+  using __gnu_cxx::fresnel_c;
+  using __gnu_cxx::dawson;
 #else
   using std::tr1::assoc_laguerre;
   using std::tr1::assoc_legendre;
@@ -289,10 +299,11 @@ main()
 
   //  Hermite polynomials
   std::cout << "hermite  UNTESTED" << std::endl;
-//  basename = "diff_hermite";
-//  rundiff<_TpGSL, unsigned int, _TpGSL>(hermite, gsl_xxx, basename, vorder,
-//					fill_argument(std::make_pair(-10.0, 10.0),
-//						      std::make_pair(true, true)));
+  basename = "diff_hermite";
+  rundiff<_TpGSL, unsigned int, _TpGSL>(hermite, gsl::hermite, basename,
+					"n", vorder,
+					"x", fill_argument(std::make_pair(-10.0, 10.0),
+							   std::make_pair(true, true)));
 
 
   //  Hypergeometric functions.
@@ -456,6 +467,42 @@ main()
     rundiff<_TpGSL, _TpGSL>(psi, gsl::psi, basename,
 			    "x", fill_argument(std::make_pair(-_TpGSL{9.875}, _TpGSL{10.125}),
 					       std::make_pair(true, true), 41));
+
+    //  Sine integral or Si functions.
+    std::cout << "sinint" << std::endl;
+    basename = "sinint";
+    rundiff<_TpGSL, _TpGSL>(sinint, gsl::Si, basename,
+			    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+10}),
+					       std::make_pair(false, true), 101));
+
+    //  Cosine integral or Ci functions.
+    std::cout << "cosint" << std::endl;
+    basename = "cosint";
+    rundiff<_TpGSL, _TpGSL>(cosint, gsl::Ci, basename,
+			    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+10}),
+					       std::make_pair(false, true), 101));
+
+    //  Hyperbolic sine integral or Shi functions.
+    std::cout << "sinhint" << std::endl;
+    basename = "sinhint";
+    rundiff<_TpGSL, _TpGSL>(sinhint, gsl::Shi, basename,
+			    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
+					       std::make_pair(false, true), 101));
+
+    //  Hyperbolic cosine integral or Chi functions.
+    std::cout << "coshint" << std::endl;
+    basename = "coshint";
+    rundiff<_TpGSL, _TpGSL>(coshint, gsl::Chi, basename,
+			    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
+					       std::make_pair(false, true), 101));
+
+    //  Dawson integral.
+    std::cout << "dawson" << std::endl;
+    basename = "dawson";
+    rundiff<_TpGSL, _TpGSL>(dawson, gsl::dawson, basename,
+			    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
+					       std::make_pair(false, true), 101));
+
 #endif // STD
 
   return 0;
