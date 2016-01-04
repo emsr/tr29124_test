@@ -101,6 +101,16 @@ template<typename _Tp>
     using __gnu_cxx::gamma_u;
     using __gnu_cxx::ibeta;
     using __gnu_cxx::psi;
+    using __gnu_cxx::sinint;
+    using __gnu_cxx::cosint;
+    using __gnu_cxx::sinhint;
+    using __gnu_cxx::coshint;
+    using __gnu_cxx::jacobi_sn;
+    using __gnu_cxx::jacobi_cn;
+    using __gnu_cxx::jacobi_dn;
+    using __gnu_cxx::fresnel_s;
+    using __gnu_cxx::fresnel_c;
+    using __gnu_cxx::dawson;
 #else
     std::string ns("tr1");
     using std::tr1::assoc_laguerre;
@@ -242,7 +252,7 @@ template<typename _Tp>
     //  Confluent hypergeometric functions.
     std::cout << "conf_hyperg" << std::endl;
     basename = "gsl_conf_hyperg";
-    runtest<double, double, double, double>(gsl::hyperg_1F1,
+    runtest<double, double, double, double>(gsl_sf_hyperg_1F1,
 					    basename,
 					    fill_argument(std::make_pair(0.0, 10.0),
 							  std::make_pair(true, true), 11),
@@ -263,7 +273,7 @@ template<typename _Tp>
     //  Regular modified cylindrical Bessel functions.
     std::cout << "cyl_bessel_i" << std::endl;
     basename = "gsl_cyl_bessel_i";
-    runtest<double, double, double>(gsl_sf_bessel_Inu, basename, dborder,
+    runtest<double, double, double>(gsl::bessel_Inu, basename, dborder,
 				    fill_argument(std::make_pair(0.0, 100.0),
 						  std::make_pair(true, true), 1001));
     basename = ns + "_cyl_bessel_i";
@@ -275,7 +285,7 @@ template<typename _Tp>
     //  Cylindrical Bessel functions (of the first kind).
     std::cout << "cyl_bessel_j" << std::endl;
     basename = "gsl_cyl_bessel_j";
-    runtest<double, double, double>(gsl_sf_bessel_Jnu, basename, dborder,
+    runtest<double, double, double>(gsl::bessel_Jnu, basename, dborder,
 				    fill_argument(std::make_pair(0.0, 100.0),
 						  std::make_pair(true, true), 1001));
     basename = ns + "_cyl_bessel_j";
@@ -287,7 +297,7 @@ template<typename _Tp>
     //  Irregular modified cylindrical Bessel functions.
     std::cout << "cyl_bessel_k" << std::endl;
     basename = "gsl_cyl_bessel_k";
-    runtest<double, double, double>(gsl_sf_bessel_Knu, basename, dborder,
+    runtest<double, double, double>(gsl::bessel_Knu, basename, dborder,
 				    fill_argument(std::make_pair(0.0, 100.0),
 						  std::make_pair(false, true),  // Skip the pole at the origin.
 						  1001));
@@ -300,7 +310,7 @@ template<typename _Tp>
     //  Cylindrical Neumann functions.
     std::cout << "cyl_neumann" << std::endl;
     basename = "gsl_cyl_neumann";
-    runtest<double, double, double>(gsl_sf_bessel_Ynu, basename, dborder,
+    runtest<double, double, double>(gsl::bessel_Ynu, basename, dborder,
 				    fill_argument(std::make_pair(0.0, 100.0),
 						  std::make_pair(false, true),  // Skip the pole at the origin.
 						  1001));
@@ -360,11 +370,11 @@ template<typename _Tp>
     std::cout << "expint" << std::endl;
     //  Skip the pole at 0.
     basename = "gsl_expint_neg";
-    runtest<double, double>(gsl_sf_expint_Ei, basename,
+    runtest<double, double>(gsl::expint_Ei, basename,
 			    fill_argument(std::make_pair(-50.0, 0.0),
 					  std::make_pair(true, false), 51));
     basename = "gsl_expint_pos";
-    runtest<double, double>(gsl_sf_expint_Ei, basename,
+    runtest<double, double>(gsl::expint_Ei, basename,
 			    fill_argument(std::make_pair(0.0, 50.0),
 					  std::make_pair(false, true), 51));
     basename = ns + "_expint";
@@ -376,9 +386,9 @@ template<typename _Tp>
     //  Hermite polynomials
     std::cout << "hermite" << std::endl;
     basename = "gsl_hermite";
-    //runtest<double, unsigned int, double>(gsl_sf_hermite, basename, uiorder,
-    //				      fill_argument(std::make_pair(-10.0, 10.0),
-    //						    std::make_pair(true, true)));
+    runtest<double, unsigned int, double>(gsl::hermite, basename, uiorder,
+    				    fill_argument(std::make_pair(-10.0, 10.0),
+    						  std::make_pair(true, true)));
     basename = ns + "_hermite";
     runtest<_Tp, unsigned int, _Tp>(hermite, basename, uiorder,
 				    fill_argument(std::make_pair(-_Tp{10}, _Tp{10}),
@@ -388,7 +398,7 @@ template<typename _Tp>
     //  Hypergeometric functions.
     std::cout << "hyperg" << std::endl;
     basename = "gsl_hyperg";
-    runtest<double, double, double, double, double>(gsl::hyperg_2F1, basename,
+    runtest<double, double, double, double, double>(gsl_sf_hyperg_2F1, basename,
 						    fill_argument(std::make_pair(0.0, 10.0),
 								  std::make_pair(true, true), 11),
 						    fill_argument(std::make_pair(0.0, 10.0),
@@ -635,11 +645,66 @@ template<typename _Tp>
     runtest<double, double>(gsl::psi, basename,
 			    fill_argument(std::make_pair(-9.875, 10.125),
 					  std::make_pair(true, true), 41));
-
     basename = ns + "_psi";
     runtest<_Tp, _Tp>(psi, basename,
 		      fill_argument(std::make_pair(-_Tp{9.875}, _Tp{10.125}),
 				    std::make_pair(true, true), 41));
+
+    //  Sine integral or Si functions.
+    std::cout << "gsl_sinint" << std::endl;
+    basename = "sinint";
+    runtest<double, double>(gsl_sf_Si, basename,
+			    fill_argument(std::make_pair(0.0, +10.0),
+					  std::make_pair(false, true), 101));
+    basename = ns + "_sinint";
+    runtest<_Tp, _Tp>(sinint, basename,
+		      fill_argument(std::make_pair(_Tp{0}, _Tp{+10}),
+				    std::make_pair(false, true), 101));
+
+    //  Cosine integral or Ci functions.
+    std::cout << "gsl_cosint" << std::endl;
+    basename = "cosint";
+    runtest<double, double>(gsl_sf_Ci, basename,
+			    fill_argument(std::make_pair(0.0, +10.0),
+					  std::make_pair(false, true), 101));
+    basename = ns + "_cosint";
+    runtest<_Tp, _Tp>(cosint, basename,
+		      fill_argument(std::make_pair(_Tp{0}, _Tp{+10}),
+				    std::make_pair(false, true), 101));
+
+    //  Hyperbolic sine integral or Shi functions.
+    std::cout << "gsl_sinhint" << std::endl;
+    basename = "sinhint";
+    runtest<double, double>(gsl_sf_Shi, basename,
+			    fill_argument(std::make_pair(0.0, +5.0),
+					  std::make_pair(false, true), 101));
+    basename = ns + "_sinhint";
+    runtest<_Tp, _Tp>(sinhint, basename,
+		      fill_argument(std::make_pair(_Tp{0}, _Tp{+5}),
+				    std::make_pair(false, true), 101));
+
+    //  Hyperbolic cosine integral or Chi functions.
+    std::cout << "gsl_coshint" << std::endl;
+    basename = "coshint";
+    runtest<double, double>(gsl_sf_Chi, basename,
+			    fill_argument(std::make_pair(0.0, +5.0),
+					  std::make_pair(false, true), 101));
+    basename = ns + "_coshint";
+    runtest<_Tp, _Tp>(coshint, basename,
+		      fill_argument(std::make_pair(_Tp{0}, _Tp{+5}),
+				    std::make_pair(false, true), 101));
+
+    //  Dawson integral.
+    std::cout << "gsl_dawson" << std::endl;
+    basename = "dawson";
+    runtest<double, double>(gsl::dawson, basename,
+			    fill_argument(std::make_pair(0.0, +5.0),
+					  std::make_pair(false, true), 101));
+    basename = ns + "_dawson";
+    runtest<_Tp, _Tp>(dawson, basename,
+		      fill_argument(std::make_pair(_Tp{0}, _Tp{+5}),
+				    std::make_pair(false, true), 101));
+
 #endif // STD
 
     return;

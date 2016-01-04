@@ -1,6 +1,6 @@
 // math special functions -*- C++ -*-
 
-// Copyright (C) 2006-2015 Free Software Foundation, Inc.
+// Copyright (C) 2006-2016 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -659,6 +659,89 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__coshint<__type>(__x);
     }
 
+  // Slots for Jacobi elliptic function tuple.
+  enum
+  {
+    _GLIBCXX_JACOBI_SN,
+    _GLIBCXX_JACOBI_CN,
+    _GLIBCXX_JACOBI_DN
+  };
+
+  // Jacobi elliptic sn functions.
+
+  inline float
+  jacobi_snf(float __k, float __u)
+  {
+    return std::get<_GLIBCXX_JACOBI_SN>
+		(std::__detail::__jacobi_sncndn<float>(__k, __u));
+  }
+
+  inline long double
+  jacobi_snl(long double __k, long double __u)
+  {
+    return std::get<_GLIBCXX_JACOBI_SN>
+		(std::__detail::__jacobi_sncndn<long double>(__k, __u));
+  }
+
+  template<typename _Kp, typename _Up>
+    inline __gnu_cxx::__promote_num_t<_Kp, _Up>
+    jacobi_sn(_Kp __k, _Up __u)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Kp, _Up>;
+      return std::get<_GLIBCXX_JACOBI_SN>
+		(std::__detail::__jacobi_sncndn<__type>(__k, __u));
+    }
+
+  // Jacobi elliptic cn functions.
+
+  inline float
+  jacobi_cnf(float __k, float __u)
+  {
+    return std::get<_GLIBCXX_JACOBI_CN>
+		(std::__detail::__jacobi_sncndn<float>(__k, __u));
+  }
+
+  inline long double
+  jacobi_cnl(long double __k, long double __u)
+  {
+    return std::get<_GLIBCXX_JACOBI_CN>
+		(std::__detail::__jacobi_sncndn<long double>(__k, __u));
+  }
+
+  template<typename _Kp, typename _Up>
+    inline __gnu_cxx::__promote_num_t<_Kp, _Up>
+    jacobi_cn(_Kp __k, _Up __u)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Kp, _Up>;
+      return std::get<_GLIBCXX_JACOBI_CN>
+		(std::__detail::__jacobi_sncndn<__type>(__k, __u));
+    }
+
+  // Jacobi elliptic dn functions.
+
+  inline float
+  jacobi_dnf(float __k, float __u)
+  {
+    return std::get<_GLIBCXX_JACOBI_DN>
+		(std::__detail::__jacobi_sncndn<float>(__k, __u));
+  }
+
+  inline long double
+  jacobi_dnl(long double __k, long double __u)
+  {
+    return std::get<_GLIBCXX_JACOBI_DN>
+		(std::__detail::__jacobi_sncndn<long double>(__k, __u));
+  }
+
+  template<typename _Kp, typename _Up>
+    inline __gnu_cxx::__promote_num_t<_Kp, _Up>
+    jacobi_dn(_Kp __k, _Up __u)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Kp, _Up>;
+      return std::get<_GLIBCXX_JACOBI_DN>
+		(std::__detail::__jacobi_sncndn<__type>(__k, __u));
+    }
+
   // Chebyshev polynomials of the first kind
 
   inline float
@@ -1297,6 +1380,92 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     {
       using __type = __gnu_cxx::__promote_num_t<_Ta, _Tb, _Tp>;
       return std::__detail::__beta_inc<__type>(__a, __b, __x);
+    }
+
+  // Fresnel sine integral
+
+  inline float
+  fresnel_sf(float __x)
+  { return std::imag(std::__detail::__fresnel<float>(__x)); }
+
+  inline long double
+  fresnel_sl(long double __x)
+  { return std::imag(std::__detail::__fresnel<long double>(__x)); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    fresnel_s(_Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::imag(std::__detail::__fresnel<__type>(__x));
+    }
+
+  // Fresnel cosine integral
+
+  inline float
+  fresnel_cf(float __x)
+  { return std::real(std::__detail::__fresnel<float>(__x)); }
+
+  inline long double
+  fresnel_cl(long double __x)
+  { return std::real(std::__detail::__fresnel<long double>(__x)); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    fresnel_c(_Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::real(std::__detail::__fresnel<__type>(__x));
+    }
+
+  // Dawson integral
+
+  inline float
+  dawsonf(float __x)
+  { return std::__detail::__dawson<float>(__x); }
+
+  inline long double
+  dawsonl(long double __x)
+  { return std::__detail::__dawson<long double>(__x); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    dawson(_Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__dawson<__type>(__x);
+    }
+
+  inline float
+  expint_e1f(float __x)
+  { return std::__detail::__expint_E1<float>(__x); }
+
+  inline long double
+  expint_e1l(long double __x)
+  { return std::__detail::__expint_E1<long double>(__x); }
+
+  template<typename _Tp>
+    inline typename __gnu_cxx::__promote<_Tp>::__type
+    expint_e1(_Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      return std::__detail::__expint_E1<__type>(__x);
+    }
+
+  inline float
+  expint_enf(unsigned int __n, float __x)
+  { return std::__detail::__expint<float>(__n, __x); }
+
+  inline long double
+  expint_enl(unsigned int __n, long double __x)
+  { return std::__detail::__expint<long double>(__n, __x); }
+
+  template<typename _Tp>
+    inline typename __gnu_cxx::__promote<_Tp>::__type
+    expint_en(unsigned int __n, _Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      return std::__detail::__expint<__type>(__n, __x);
     }
 
 #endif // __cplusplus >= 201103L

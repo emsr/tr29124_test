@@ -1,6 +1,6 @@
 // Special functions -*- C++ -*-
 
-// Copyright (C) 2015 Free Software Foundation, Inc.
+// Copyright (C) 2016 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -114,11 +114,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __dawson(_Tp __x)
     {
-      constexpr auto _S_nan = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      constexpr auto _S_NaN = __gnu_cxx::__math_constants<_Tp>::__NaN;
       constexpr _Tp _S_x_min{0.2L};
 
       if (__isnan(__x))
-	return _S_nan;
+	return _S_NaN;
       else if (std::abs(__x) < _S_x_min)
 	return __dawson_series(__x);
       else

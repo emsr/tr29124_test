@@ -1,6 +1,6 @@
 // TR29124 math special functions -*- C++ -*-
 
-// Copyright (C) 2015 Free Software Foundation, Inc.
+// Copyright (C) 2016 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -32,8 +32,7 @@
 
 #pragma GCC system_header
 
-//#include <bits/complex_util.h>
-#include "complex_util.h"
+#include <bits/complex_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {

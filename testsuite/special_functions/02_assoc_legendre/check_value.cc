@@ -1,6 +1,6 @@
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
 //
-// Copyright (C) 2015 Free Software Foundation, Inc.
+// Copyright (C) 2016 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -38,7 +38,11 @@
 
 
 // Test data for l=0, m=0.
-testcase_assoc_legendre<double> data001[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data001[21] =
+{
   { 1.0000000000000000, 0, 0, 
 	  -1.0000000000000000 },
   { 1.0000000000000000, 0, 0, 
@@ -82,39 +86,14 @@ testcase_assoc_legendre<double> data001[] = {
   { 1.0000000000000000, 0, 0, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=0, m=0.
-template<typename Tp>
-  void
-  test001()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data001)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data001[i].l), Tp(data001[i].m),
-		     Tp(data001[i].x));
-	const Tp f0 = data001[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler001 = 2.5000000000000020e-13;
 
 // Test data for l=1, m=0.
-testcase_assoc_legendre<double> data002[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data002[21] =
+{
   { -1.0000000000000000, 1, 0, 
 	  -1.0000000000000000 },
   { -0.90000000000000002, 1, 0, 
@@ -158,39 +137,14 @@ testcase_assoc_legendre<double> data002[] = {
   { 1.0000000000000000, 1, 0, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=1, m=0.
-template<typename Tp>
-  void
-  test002()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data002)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data002[i].l), Tp(data002[i].m),
-		     Tp(data002[i].x));
-	const Tp f0 = data002[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler002 = 2.5000000000000020e-13;
 
 // Test data for l=1, m=1.
-testcase_assoc_legendre<double> data003[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data003[21] =
+{
   { -0.0000000000000000, 1, 1, 
 	  -1.0000000000000000 },
   { -0.43588989435406728, 1, 1, 
@@ -234,39 +188,14 @@ testcase_assoc_legendre<double> data003[] = {
   { -0.0000000000000000, 1, 1, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=1, m=1.
-template<typename Tp>
-  void
-  test003()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data003)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data003[i].l), Tp(data003[i].m),
-		     Tp(data003[i].x));
-	const Tp f0 = data003[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler003 = 2.5000000000000020e-13;
 
 // Test data for l=2, m=0.
-testcase_assoc_legendre<double> data004[] = {
+// max(|f - f_GSL|): 1.1102230246251565e-16
+// max(|f - f_GSL| / |f_GSL|): 1.3877787807814482e-15
+const testcase_assoc_legendre<double>
+data004[21] =
+{
   { 1.0000000000000000, 2, 0, 
 	  -1.0000000000000000 },
   { 0.71500000000000008, 2, 0, 
@@ -310,39 +239,14 @@ testcase_assoc_legendre<double> data004[] = {
   { 1.0000000000000000, 2, 0, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=2, m=0.
-template<typename Tp>
-  void
-  test004()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data004)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data004[i].l), Tp(data004[i].m),
-		     Tp(data004[i].x));
-	const Tp f0 = data004[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler004 = 2.5000000000000020e-13;
 
 // Test data for l=2, m=1.
-testcase_assoc_legendre<double> data005[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data005[21] =
+{
   { 0.0000000000000000, 2, 1, 
 	  -1.0000000000000000 },
   { 1.1769027147559816, 2, 1, 
@@ -386,39 +290,14 @@ testcase_assoc_legendre<double> data005[] = {
   { -0.0000000000000000, 2, 1, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=2, m=1.
-template<typename Tp>
-  void
-  test005()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data005)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data005[i].l), Tp(data005[i].m),
-		     Tp(data005[i].x));
-	const Tp f0 = data005[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler005 = 2.5000000000000020e-13;
 
 // Test data for l=2, m=2.
-testcase_assoc_legendre<double> data006[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data006[21] =
+{
   { 0.0000000000000000, 2, 2, 
 	  -1.0000000000000000 },
   { 0.56999999999999984, 2, 2, 
@@ -462,39 +341,14 @@ testcase_assoc_legendre<double> data006[] = {
   { 0.0000000000000000, 2, 2, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=2, m=2.
-template<typename Tp>
-  void
-  test006()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data006)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data006[i].l), Tp(data006[i].m),
-		     Tp(data006[i].x));
-	const Tp f0 = data006[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler006 = 2.5000000000000020e-13;
 
 // Test data for l=5, m=0.
-testcase_assoc_legendre<double> data007[] = {
+// max(|f - f_GSL|): 2.0122792321330962e-16
+// max(|f - f_GSL| / |f_GSL|): 4.8911475274404243e-15
+const testcase_assoc_legendre<double>
+data007[21] =
+{
   { -1.0000000000000000, 5, 0, 
 	  -1.0000000000000000 },
   { 0.041141250000000087, 5, 0, 
@@ -538,39 +392,14 @@ testcase_assoc_legendre<double> data007[] = {
   { 1.0000000000000000, 5, 0, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=5, m=0.
-template<typename Tp>
-  void
-  test007()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data007)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data007[i].l), Tp(data007[i].m),
-		     Tp(data007[i].x));
-	const Tp f0 = data007[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler007 = 2.5000000000000020e-13;
 
 // Test data for l=5, m=1.
-testcase_assoc_legendre<double> data008[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data008[21] =
+{
   { 0.0000000000000000, 5, 1, 
 	  -1.0000000000000000 },
   { -2.8099369608350981, 5, 1, 
@@ -614,39 +443,14 @@ testcase_assoc_legendre<double> data008[] = {
   { 0.0000000000000000, 5, 1, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=5, m=1.
-template<typename Tp>
-  void
-  test008()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data008)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data008[i].l), Tp(data008[i].m),
-		     Tp(data008[i].x));
-	const Tp f0 = data008[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler008 = 2.5000000000000020e-13;
 
 // Test data for l=5, m=2.
-testcase_assoc_legendre<double> data009[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data009[21] =
+{
   { 0.0000000000000000, 5, 2, 
 	  -1.0000000000000000 },
   { -12.837825000000000, 5, 2, 
@@ -690,39 +494,14 @@ testcase_assoc_legendre<double> data009[] = {
   { 0.0000000000000000, 5, 2, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=5, m=2.
-template<typename Tp>
-  void
-  test009()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data009)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data009[i].l), Tp(data009[i].m),
-		     Tp(data009[i].x));
-	const Tp f0 = data009[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler009 = 2.5000000000000020e-13;
 
 // Test data for l=5, m=5.
-testcase_assoc_legendre<double> data010[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data010[21] =
+{
   { -0.0000000000000000, 5, 5, 
 	  -1.0000000000000000 },
   { -14.870165800941818, 5, 5, 
@@ -766,39 +545,14 @@ testcase_assoc_legendre<double> data010[] = {
   { -0.0000000000000000, 5, 5, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=5, m=5.
-template<typename Tp>
-  void
-  test010()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data010)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data010[i].l), Tp(data010[i].m),
-		     Tp(data010[i].x));
-	const Tp f0 = data010[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler010 = 2.5000000000000020e-13;
 
 // Test data for l=10, m=0.
-testcase_assoc_legendre<double> data011[] = {
+// max(|f - f_GSL|): 2.7755575615628914e-16
+// max(|f - f_GSL| / |f_GSL|): 1.0547610802636413e-15
+const testcase_assoc_legendre<double>
+data011[21] =
+{
   { 1.0000000000000000, 10, 0, 
 	  -1.0000000000000000 },
   { -0.26314561785585960, 10, 0, 
@@ -842,39 +596,14 @@ testcase_assoc_legendre<double> data011[] = {
   { 1.0000000000000000, 10, 0, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=10, m=0.
-template<typename Tp>
-  void
-  test011()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data011)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data011[i].l), Tp(data011[i].m),
-		     Tp(data011[i].x));
-	const Tp f0 = data011[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler011 = 2.5000000000000020e-13;
 
 // Test data for l=10, m=1.
-testcase_assoc_legendre<double> data012[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data012[21] =
+{
   { -0.0000000000000000, 10, 1, 
 	  -1.0000000000000000 },
   { -3.0438748781479039, 10, 1, 
@@ -918,39 +647,14 @@ testcase_assoc_legendre<double> data012[] = {
   { 0.0000000000000000, 10, 1, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=10, m=1.
-template<typename Tp>
-  void
-  test012()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data012)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data012[i].l), Tp(data012[i].m),
-		     Tp(data012[i].x));
-	const Tp f0 = data012[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler012 = 2.5000000000000020e-13;
 
 // Test data for l=10, m=2.
-testcase_assoc_legendre<double> data013[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data013[21] =
+{
   { 0.0000000000000000, 10, 2, 
 	  -1.0000000000000000 },
   { 16.376387762496137, 10, 2, 
@@ -994,39 +698,14 @@ testcase_assoc_legendre<double> data013[] = {
   { 0.0000000000000000, 10, 2, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=10, m=2.
-template<typename Tp>
-  void
-  test013()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data013)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data013[i].l), Tp(data013[i].m),
-		     Tp(data013[i].x));
-	const Tp f0 = data013[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler013 = 2.5000000000000020e-13;
 
 // Test data for l=10, m=5.
-testcase_assoc_legendre<double> data014[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data014[21] =
+{
   { 0.0000000000000000, 10, 5, 
 	  -1.0000000000000000 },
   { 21343.618518164680, 10, 5, 
@@ -1070,39 +749,14 @@ testcase_assoc_legendre<double> data014[] = {
   { 0.0000000000000000, 10, 5, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=10, m=5.
-template<typename Tp>
-  void
-  test014()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data014)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data014[i].l), Tp(data014[i].m),
-		     Tp(data014[i].x));
-	const Tp f0 = data014[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler014 = 2.5000000000000020e-13;
 
 // Test data for l=10, m=10.
-testcase_assoc_legendre<double> data015[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data015[21] =
+{
   { 0.0000000000000000, 10, 10, 
 	  -1.0000000000000000 },
   { 162117.40078784220, 10, 10, 
@@ -1146,39 +800,14 @@ testcase_assoc_legendre<double> data015[] = {
   { 0.0000000000000000, 10, 10, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=10, m=10.
-template<typename Tp>
-  void
-  test015()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data015)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data015[i].l), Tp(data015[i].m),
-		     Tp(data015[i].x));
-	const Tp f0 = data015[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler015 = 2.5000000000000020e-13;
 
 // Test data for l=20, m=0.
-testcase_assoc_legendre<double> data016[] = {
+// max(|f - f_GSL|): 3.3306690738754696e-16
+// max(|f - f_GSL| / |f_GSL|): 2.2307336678138069e-15
+const testcase_assoc_legendre<double>
+data016[21] =
+{
   { 1.0000000000000000, 20, 0, 
 	  -1.0000000000000000 },
   { -0.14930823530984835, 20, 0, 
@@ -1222,39 +851,14 @@ testcase_assoc_legendre<double> data016[] = {
   { 1.0000000000000000, 20, 0, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=20, m=0.
-template<typename Tp>
-  void
-  test016()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data016)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data016[i].l), Tp(data016[i].m),
-		     Tp(data016[i].x));
-	const Tp f0 = data016[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler016 = 2.5000000000000020e-13;
 
 // Test data for l=20, m=1.
-testcase_assoc_legendre<double> data017[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data017[21] =
+{
   { 0.0000000000000000, 20, 1, 
 	  -1.0000000000000000 },
   { 4.3838334818220499, 20, 1, 
@@ -1298,39 +902,14 @@ testcase_assoc_legendre<double> data017[] = {
   { 0.0000000000000000, 20, 1, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=20, m=1.
-template<typename Tp>
-  void
-  test017()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data017)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data017[i].l), Tp(data017[i].m),
-		     Tp(data017[i].x));
-	const Tp f0 = data017[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler017 = 2.5000000000000020e-13;
 
 // Test data for l=20, m=2.
-testcase_assoc_legendre<double> data018[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data018[21] =
+{
   { 0.0000000000000000, 20, 2, 
 	  -1.0000000000000000 },
   { 80.812425587310102, 20, 2, 
@@ -1374,39 +953,14 @@ testcase_assoc_legendre<double> data018[] = {
   { 0.0000000000000000, 20, 2, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=20, m=2.
-template<typename Tp>
-  void
-  test018()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data018)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data018[i].l), Tp(data018[i].m),
-		     Tp(data018[i].x));
-	const Tp f0 = data018[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler018 = 2.5000000000000020e-13;
 
 // Test data for l=20, m=5.
-testcase_assoc_legendre<double> data019[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data019[21] =
+{
   { -0.0000000000000000, 20, 5, 
 	  -1.0000000000000000 },
   { -315702.32715134218, 20, 5, 
@@ -1450,39 +1004,14 @@ testcase_assoc_legendre<double> data019[] = {
   { 0.0000000000000000, 20, 5, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=20, m=5.
-template<typename Tp>
-  void
-  test019()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data019)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data019[i].l), Tp(data019[i].m),
-		     Tp(data019[i].x));
-	const Tp f0 = data019[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler019 = 2.5000000000000020e-13;
 
 // Test data for l=20, m=10.
-testcase_assoc_legendre<double> data020[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data020[21] =
+{
   { -0.0000000000000000, 20, 10, 
 	  -1.0000000000000000 },
   { 990017476694.99084, 20, 10, 
@@ -1526,39 +1055,14 @@ testcase_assoc_legendre<double> data020[] = {
   { 0.0000000000000000, 20, 10, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=20, m=10.
-template<typename Tp>
-  void
-  test020()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data020)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data020[i].l), Tp(data020[i].m),
-		     Tp(data020[i].x));
-	const Tp f0 = data020[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler020 = 2.5000000000000020e-13;
 
 // Test data for l=20, m=20.
-testcase_assoc_legendre<double> data021[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data021[21] =
+{
   { 0.0000000000000000, 20, 20, 
 	  -1.0000000000000000 },
   { 19609049712023808., 20, 20, 
@@ -1602,39 +1106,14 @@ testcase_assoc_legendre<double> data021[] = {
   { 0.0000000000000000, 20, 20, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=20, m=20.
-template<typename Tp>
-  void
-  test021()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data021)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data021[i].l), Tp(data021[i].m),
-		     Tp(data021[i].x));
-	const Tp f0 = data021[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler021 = 2.5000000000000020e-13;
 
 // Test data for l=50, m=0.
-testcase_assoc_legendre<double> data022[] = {
+// max(|f - f_GSL|): 3.6082248300317588e-16
+// max(|f - f_GSL| / |f_GSL|): 2.1700196856209138e-15
+const testcase_assoc_legendre<double>
+data022[21] =
+{
   { 1.0000000000000000, 50, 0, 
 	  -1.0000000000000000 },
   { -0.17003765994383671, 50, 0, 
@@ -1678,39 +1157,14 @@ testcase_assoc_legendre<double> data022[] = {
   { 1.0000000000000000, 50, 0, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=50, m=0.
-template<typename Tp>
-  void
-  test022()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data022)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data022[i].l), Tp(data022[i].m),
-		     Tp(data022[i].x));
-	const Tp f0 = data022[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler022 = 2.5000000000000020e-13;
 
 // Test data for l=50, m=1.
-testcase_assoc_legendre<double> data023[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data023[21] =
+{
   { 0.0000000000000000, 50, 1, 
 	  -1.0000000000000000 },
   { -0.13424149984449490, 50, 1, 
@@ -1754,39 +1208,14 @@ testcase_assoc_legendre<double> data023[] = {
   { 0.0000000000000000, 50, 1, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=50, m=1.
-template<typename Tp>
-  void
-  test023()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data023)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data023[i].l), Tp(data023[i].m),
-		     Tp(data023[i].x));
-	const Tp f0 = data023[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler023 = 2.5000000000000020e-13;
 
 // Test data for l=50, m=2.
-testcase_assoc_legendre<double> data024[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data024[21] =
+{
   { 0.0000000000000000, 50, 2, 
 	  -1.0000000000000000 },
   { 433.04168483713511, 50, 2, 
@@ -1830,39 +1259,14 @@ testcase_assoc_legendre<double> data024[] = {
   { 0.0000000000000000, 50, 2, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=50, m=2.
-template<typename Tp>
-  void
-  test024()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data024)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data024[i].l), Tp(data024[i].m),
-		     Tp(data024[i].x));
-	const Tp f0 = data024[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler024 = 2.5000000000000020e-13;
 
 // Test data for l=50, m=5.
-testcase_assoc_legendre<double> data025[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data025[21] =
+{
   { -0.0000000000000000, 50, 5, 
 	  -1.0000000000000000 },
   { -27340473.952132829, 50, 5, 
@@ -1906,39 +1310,14 @@ testcase_assoc_legendre<double> data025[] = {
   { 0.0000000000000000, 50, 5, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=50, m=5.
-template<typename Tp>
-  void
-  test025()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data025)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data025[i].l), Tp(data025[i].m),
-		     Tp(data025[i].x));
-	const Tp f0 = data025[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler025 = 2.5000000000000020e-13;
 
 // Test data for l=50, m=10.
-testcase_assoc_legendre<double> data026[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data026[21] =
+{
   { -0.0000000000000000, 50, 10, 
 	  -1.0000000000000000 },
   { -8994661710093155.0, 50, 10, 
@@ -1982,39 +1361,14 @@ testcase_assoc_legendre<double> data026[] = {
   { 0.0000000000000000, 50, 10, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=50, m=10.
-template<typename Tp>
-  void
-  test026()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data026)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data026[i].l), Tp(data026[i].m),
-		     Tp(data026[i].x));
-	const Tp f0 = data026[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler026 = 2.5000000000000020e-13;
 
 // Test data for l=50, m=20.
-testcase_assoc_legendre<double> data027[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data027[21] =
+{
   { 0.0000000000000000, 50, 20, 
 	  -1.0000000000000000 },
   { 1.6630925158645501e+33, 50, 20, 
@@ -2058,39 +1412,14 @@ testcase_assoc_legendre<double> data027[] = {
   { 0.0000000000000000, 50, 20, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=50, m=20.
-template<typename Tp>
-  void
-  test027()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data027)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data027[i].l), Tp(data027[i].m),
-		     Tp(data027[i].x));
-	const Tp f0 = data027[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler027 = 2.5000000000000020e-13;
 
 // Test data for l=50, m=50.
-testcase_assoc_legendre<double> data028[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data028[21] =
+{
   { 0.0000000000000000, 50, 50, 
 	  -1.0000000000000000 },
   { 2.5366994974431341e+60, 50, 50, 
@@ -2134,39 +1463,14 @@ testcase_assoc_legendre<double> data028[] = {
   { 0.0000000000000000, 50, 50, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=50, m=50.
-template<typename Tp>
-  void
-  test028()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data028)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data028[i].l), Tp(data028[i].m),
-		     Tp(data028[i].x));
-	const Tp f0 = data028[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler028 = 2.5000000000000020e-13;
 
 // Test data for l=100, m=0.
-testcase_assoc_legendre<double> data029[] = {
+// max(|f - f_GSL|): 3.4694469519536142e-16
+// max(|f - f_GSL| / |f_GSL|): 6.8214063779431592e-15
+const testcase_assoc_legendre<double>
+data029[21] =
+{
   { 1.0000000000000000, 100, 0, 
 	  -1.0000000000000000 },
   { 0.10226582055871893, 100, 0, 
@@ -2210,39 +1514,14 @@ testcase_assoc_legendre<double> data029[] = {
   { 1.0000000000000000, 100, 0, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=100, m=0.
-template<typename Tp>
-  void
-  test029()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data029)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data029[i].l), Tp(data029[i].m),
-		     Tp(data029[i].x));
-	const Tp f0 = data029[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(5.0000000000000039e-13));
-  }
+const double toler029 = 5.0000000000000039e-13;
 
 // Test data for l=100, m=1.
-testcase_assoc_legendre<double> data030[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data030[21] =
+{
   { -0.0000000000000000, 100, 1, 
 	  -1.0000000000000000 },
   { 6.5200167187780345, 100, 1, 
@@ -2286,39 +1565,14 @@ testcase_assoc_legendre<double> data030[] = {
   { 0.0000000000000000, 100, 1, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=100, m=1.
-template<typename Tp>
-  void
-  test030()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data030)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data030[i].l), Tp(data030[i].m),
-		     Tp(data030[i].x));
-	const Tp f0 = data030[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler030 = 2.5000000000000020e-13;
 
 // Test data for l=100, m=2.
-testcase_assoc_legendre<double> data031[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data031[21] =
+{
   { 0.0000000000000000, 100, 2, 
 	  -1.0000000000000000 },
   { -1005.9604880761002, 100, 2, 
@@ -2362,39 +1616,14 @@ testcase_assoc_legendre<double> data031[] = {
   { 0.0000000000000000, 100, 2, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=100, m=2.
-template<typename Tp>
-  void
-  test031()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data031)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data031[i].l), Tp(data031[i].m),
-		     Tp(data031[i].x));
-	const Tp f0 = data031[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler031 = 2.5000000000000020e-13;
 
 // Test data for l=100, m=5.
-testcase_assoc_legendre<double> data032[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data032[21] =
+{
   { 0.0000000000000000, 100, 5, 
 	  -1.0000000000000000 },
   { 900551126.09653807, 100, 5, 
@@ -2438,39 +1667,14 @@ testcase_assoc_legendre<double> data032[] = {
   { 0.0000000000000000, 100, 5, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=100, m=5.
-template<typename Tp>
-  void
-  test032()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data032)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data032[i].l), Tp(data032[i].m),
-		     Tp(data032[i].x));
-	const Tp f0 = data032[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler032 = 2.5000000000000020e-13;
 
 // Test data for l=100, m=10.
-testcase_assoc_legendre<double> data033[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data033[21] =
+{
   { 0.0000000000000000, 100, 10, 
 	  -1.0000000000000000 },
   { 2.5643395957658602e+17, 100, 10, 
@@ -2514,39 +1718,14 @@ testcase_assoc_legendre<double> data033[] = {
   { 0.0000000000000000, 100, 10, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=100, m=10.
-template<typename Tp>
-  void
-  test033()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data033)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data033[i].l), Tp(data033[i].m),
-		     Tp(data033[i].x));
-	const Tp f0 = data033[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler033 = 2.5000000000000020e-13;
 
 // Test data for l=100, m=20.
-testcase_assoc_legendre<double> data034[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data034[21] =
+{
   { 0.0000000000000000, 100, 20, 
 	  -1.0000000000000000 },
   { 7.1604344878780134e+37, 100, 20, 
@@ -2590,39 +1769,14 @@ testcase_assoc_legendre<double> data034[] = {
   { 0.0000000000000000, 100, 20, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=100, m=20.
-template<typename Tp>
-  void
-  test034()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data034)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data034[i].l), Tp(data034[i].m),
-		     Tp(data034[i].x));
-	const Tp f0 = data034[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler034 = 2.5000000000000020e-13;
 
 // Test data for l=100, m=50.
-testcase_assoc_legendre<double> data035[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data035[21] =
+{
   { 0.0000000000000000, 100, 50, 
 	  -1.0000000000000000 },
   { 9.3231278516893716e+96, 100, 50, 
@@ -2666,39 +1820,14 @@ testcase_assoc_legendre<double> data035[] = {
   { 0.0000000000000000, 100, 50, 
 	  1.0000000000000000 },
 };
-
-// Test function for l=100, m=50.
-template<typename Tp>
-  void
-  test035()
-  {
-    bool test [[gnu::unused]] = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data035)
-			   / sizeof(testcase_assoc_legendre<double>);
-    for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
-	const Tp f = std::assoc_legendre(Tp(data035[i].l), Tp(data035[i].m),
-		     Tp(data035[i].x));
-	const Tp f0 = data035[i].f0;
-	const Tp diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
-	  {
-	    const Tp frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
-	  }
-      }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
-  }
+const double toler035 = 2.5000000000000020e-13;
 
 // Test data for l=100, m=100.
-testcase_assoc_legendre<double> data036[] = {
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+const testcase_assoc_legendre<double>
+data036[21] =
+{
   { 0.0000000000000000, 100, 100, 
 	  -1.0000000000000000 },
   { 5.7751792255758316e+150, 100, 100, 
@@ -2742,23 +1871,22 @@ testcase_assoc_legendre<double> data036[] = {
   { 0.0000000000000000, 100, 100, 
 	  1.0000000000000000 },
 };
+const double toler036 = 2.5000000000000020e-13;
 
-// Test function for l=100, m=100.
-template<typename Tp>
+template<typename Tp, unsigned int Num>
   void
-  test036()
+  test(const testcase_assoc_legendre<Tp> (&data)[Num], Tp toler)
   {
-    bool test [[gnu::unused]] = true;
+    bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
     Tp max_abs_diff = -Tp(1);
     Tp max_abs_frac = -Tp(1);
-    unsigned int num_datum = sizeof(data036)
-			   / sizeof(testcase_assoc_legendre<double>);
+    unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
   	 {
-	const Tp f = std::assoc_legendre(Tp(data036[i].l), Tp(data036[i].m),
-		     Tp(data036[i].x));
-	const Tp f0 = data036[i].f0;
+	const Tp f = std::assoc_legendre(data[i].l, data[i].m,
+		     data[i].x);
+	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
@@ -2770,47 +1898,47 @@ template<typename Tp>
 	      max_abs_frac = std::abs(frac);
 	  }
       }
-    VERIFY(max_abs_frac < Tp(2.5000000000000020e-13));
+    VERIFY(max_abs_frac < toler);
   }
 
 int
 main()
 {
-  test001<double>();
-  test002<double>();
-  test003<double>();
-  test004<double>();
-  test005<double>();
-  test006<double>();
-  test007<double>();
-  test008<double>();
-  test009<double>();
-  test010<double>();
-  test011<double>();
-  test012<double>();
-  test013<double>();
-  test014<double>();
-  test015<double>();
-  test016<double>();
-  test017<double>();
-  test018<double>();
-  test019<double>();
-  test020<double>();
-  test021<double>();
-  test022<double>();
-  test023<double>();
-  test024<double>();
-  test025<double>();
-  test026<double>();
-  test027<double>();
-  test028<double>();
-  test029<double>();
-  test030<double>();
-  test031<double>();
-  test032<double>();
-  test033<double>();
-  test034<double>();
-  test035<double>();
-  test036<double>();
+  test(data001, toler001);
+  test(data002, toler002);
+  test(data003, toler003);
+  test(data004, toler004);
+  test(data005, toler005);
+  test(data006, toler006);
+  test(data007, toler007);
+  test(data008, toler008);
+  test(data009, toler009);
+  test(data010, toler010);
+  test(data011, toler011);
+  test(data012, toler012);
+  test(data013, toler013);
+  test(data014, toler014);
+  test(data015, toler015);
+  test(data016, toler016);
+  test(data017, toler017);
+  test(data018, toler018);
+  test(data019, toler019);
+  test(data020, toler020);
+  test(data021, toler021);
+  test(data022, toler022);
+  test(data023, toler023);
+  test(data024, toler024);
+  test(data025, toler025);
+  test(data026, toler026);
+  test(data027, toler027);
+  test(data028, toler028);
+  test(data029, toler029);
+  test(data030, toler030);
+  test(data031, toler031);
+  test(data032, toler032);
+  test(data033, toler033);
+  test(data034, toler034);
+  test(data035, toler035);
+  test(data036, toler036);
   return 0;
 }

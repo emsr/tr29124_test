@@ -1,0 +1,268 @@
+\input texinfo   @c -*-texinfo-*-
+@c %**start of header
+@setfilename gsl_sf_hermite.info
+@settitle Hermite Polynomials and Functions
+@c %**end of header
+
+@setchapternewpage odd
+
+@node Hermite Polynomials and Functions
+@chapter Hermite Polynomials and Functions
+
+@tex
+\gdef\beforedisplay{}
+\gdef\afterdisplay{}
+@end tex
+
+@c begin GSL-manual
+
+@c Version 1: Konrad Griessinger (konradg(at)gmx.net), 12/2013
+
+@cindex Hermite polynomials
+@cindex Hermite functions
+@cindex @math{He_n(x)}
+@cindex @math{H_n(x)}
+@c how can you get greek characters in the index in Texinfo?!?
+@c @cindex @math{psi_n(x)}
+
+The Hermite polynomials exist in two variants: the probabilists' version @math{He_n(x)} and the physicists'version @math{H_n(x)}. The are defined by the derivatives
+
+@tex
+\beforedisplay
+$$
+\eqalign{
+He_n(x) & = (-1)^n e^{x^2/2} \left({d \over dx}\right)^n e^{-x^2/2} \,,\cr
+H_n(x) & = (-1)^n e^{x^2} \left({d \over dx}\right)^n e^{-x^2} \,.
+}
+$$
+\afterdisplay
+@end tex
+@ifinfo
+
+@example
+He_n(x) = (-1)^n e^{x^2/2} (d / dx)^n e^{-x^2/2} 
+H_n(x) = (-1)^n e^{x^2} (d / dx)^n e^{-x^2} 
+@end example
+
+@end ifinfo
+@noindent
+
+They are connected via 
+
+@tex
+\beforedisplay
+$$
+\eqalign{
+He_n(x) & = 2^{-n/2} H_n({x \over \sqrt{2}}) \,,\cr
+H_n(x) & = 2^{n/2} He_n(\sqrt{2} \, x) \,,
+}
+$$
+\afterdisplay
+@end tex
+@ifinfo
+
+@example
+He_n(x) = 2^{-n/2} H_n(x / \sqrt{2})
+H_n(x) = 2^{n/2} He_n(\sqrt{2} x)
+@end example
+
+@end ifinfo
+@noindent
+
+and satisfy the ordinary differential equations
+
+@tex
+\beforedisplay
+$$
+\eqalign{
+He_n^{\prime\prime}(x) - x He_n^{\prime}(x) + n He_n(x) & = 0 \,,\cr
+H_n^{\prime\prime}(x) - 2x H_n^{\prime}(x) + 2n H_n(x) & = 0 \,.
+}
+$$
+\afterdisplay
+@end tex
+@ifinfo
+
+@example
+He_n^{''}(x) - x He_n^{'}(x) + n He_n(x) = 0
+H_n^{''}(x) - 2x H_n^{'}(x) + 2n H_n(x) = 0
+@end example
+
+@end ifinfo
+@noindent
+
+
+The closely related Hermite functions are defined by 
+
+@tex
+\beforedisplay
+$$
+\psi_n(x) = (n! \sqrt{\pi})^{-1/2} e^{-x^2/2} He_n({\sqrt{2} \, x}) \,,
+$$
+\afterdisplay
+@end tex
+@ifinfo
+
+@example
+@psi_n = (n! @sqrt{\pi})^{-1/2} e^{-x^2/2} He_n(address@hidden \, x})
+@end example
+
+@end ifinfo
+@noindent
+
+and satisfy the Schr@"odinger equation for a quantum mechanical harmonic oscillator
+
+@tex
+\beforedisplay
+$$
+\psi_n^{\prime\prime}(x) - (2n + 1 - x^2) \psi_n(x) = 0 \,.
+$$
+\afterdisplay
+@end tex
+@ifinfo
+
+@example
+@psi_n^{''}(x) - (2n + 1 - x^2) @psi_n(x) = 0
+@end example
+
+@end ifinfo
+@noindent
+
+Maybe most importantly, the Hermite functions @address@hidden are eigenfunctions of the (continuous) Fourier transform.
+
+For further information see Abramowitz & Stegun, Chapter 22 and Szego, Gabor (1939, 1958, 1967), Orthogonal Polynomials, American Mathematical Society. The Hermite polynomials and functions are defined in the header file @file{gsl_sf_hermite.h}.
+
+@menu
+* Hermite Polynomials::              
+* Hermite Functions::              
+* Derivatives of Hermite Polynomials::  
+* Derivatives of Hermite Functions::  
+* Zeros of Hermite Polynomials and Hermite Functions:: 
+* Gauss-Hermite quadrature::  
+@end menu
+
+@node Hermite Polynomials
+@subsection Hermite Polynomials
+
+
+@deftypefun double gsl_sf_hermite_prob (const int @var{n}, const double @var{x})
+@deftypefunx int gsl_sf_hermite_prob_e (const int @var{n}, const double @var{x}, gsl_sf_result * @var{result})
+These routines evaluate the probabilists' Hermite polynomial @math{He_n(x)} of order n at position x.
+@end deftypefun
+
+@deftypefun int gsl_sf_hermite_prob_array (const int @var{nmax}, const double @var{x}, double * @var{result_array})
+This routine evaluates all probabilists' Hermite polynomials @math{He_n(x)} up to order nmax at position x. The results are stored in result_array.
+@end deftypefun
+
+@deftypefun double gsl_sf_hermite_prob_series (const int @var{n}, const double @var{x}, const double * @var{a})
+@deftypefunx int gsl_sf_hermite_prob_series_e (const int @var{n}, const double @var{x}, const double * @var{a}, gsl_sf_result * @var{result})
+These routines evaluate the series @address@hidden a_j He_j(x)} with @math{He_j} being the j-th probabilists' Hermite polynomial using the Clenshaw algorithm.
+@end deftypefun
+
+@deftypefun double gsl_sf_hermite_phys (const int @var{n}, const double @var{x})
+@deftypefunx int gsl_sf_hermite_phys_e (const int @var{n}, const double @var{x}, gsl_sf_result * @var{result})
+These routines evaluate the physicists' Hermite polynomial @math{H_n(x)} of order n at position x.
+@end deftypefun
+
+@deftypefun int gsl_sf_hermite_phys_array (const int @var{nmax}, const double @var{x}, double * @var{result_array})
+This routine evaluates all physicists' Hermite polynomials @math{H_n} up to order nmax at position x. The results are stored in result_array.
+@end deftypefun
+
+@deftypefun double gsl_sf_hermite_phys_series (const int @var{n}, const double @var{x}, const double * @var{a})
+@deftypefunx int gsl_sf_hermite_phys_series_e (const int @var{n}, const double @var{x}, const double * @var{a}, gsl_sf_result * @var{result})
+These routines evaluate the series @address@hidden a_j H_j(x)} with @math{H_j} being the j-th physicists' Hermite polynomial using the Clenshaw algorithm.
+@end deftypefun
+
+
+@node Hermite Functions
+@subsection Hermite Functions
+
+
+@deftypefun double gsl_sf_hermite_func (const int @var{n}, const double @var{x})
+@deftypefunx int gsl_sf_hermite_func_e (const int @var{n}, const double @var{x}, gsl_sf_result * @var{result})
+These routines evaluate the Hermite function @address@hidden(x)} of order n at position x.
+@end deftypefun
+
+@deftypefun int gsl_sf_hermite_func_array (const int @var{nmax}, const double @var{x}, double * @var{result_array})
+This routine evaluates all Hermite functions @address@hidden(x)} up to order nmax at position x. The results are stored in result_array.
+@end deftypefun
+
+@deftypefun double gsl_sf_hermite_func_series (const int @var{n}, const double @var{x}, const double * @var{a})
+@deftypefunx int gsl_sf_hermite_func_series_e (const int @var{n}, const double @var{x}, const double * @var{a}, gsl_sf_result * @var{result})
+These routines evaluate the series @address@hidden a_j @psi_j(x)} with @address@hidden being the j-th Hermite function using the Clenshaw algorithm.
+@end deftypefun
+
+
+@node Derivatives of Hermite Polynomials
+@subsection Derivatives of Hermite Polynomials
+
+
+@deftypefun double gsl_sf_hermite_prob_der (const int @var{m}, const  int @var{n}, const double @var{x})
+@deftypefunx int gsl_sf_hermite_prob_der_e (const int @var{m}, const  int @var{n}, const double @var{x}, gsl_sf_result * @var{result})
+These routines evaluate the m-th derivative of the probabilists' Hermite polynomial @math{He_n(x)} of order n at position x.
+@end deftypefun
+
+@deftypefun int gsl_sf_hermite_prob_array_der (const int @var{m}, const int @var{nmax}, const double @var{x}, double * @var{result_array})
+This routine evaluates the m-th derivative of all probabilists' Hermite polynomials @math{He_n(x)} up to order nmax at position x. The results are stored in result_array.
+@end deftypefun
+
+@deftypefun int gsl_sf_hermite_prob_der_array (const int @var{mmax}, const int @var{n}, const double @var{x}, double * @var{result_array})
+This routine evaluates all derivatives (starting from 0) up to the mmax-th derivative of the probabilists' Hermite polynomial of order n @math{He_n(x)} at position x. The results are stored in result_array.
+@end deftypefun
+
+@deftypefun double gsl_sf_hermite_phys_der (const int @var{m}, const int @var{n}, const double @var{x})
+@deftypefunx int gsl_sf_hermite_phys_der_e (const int @var{m}, const int @var{n}, const double @var{x}, gsl_sf_result * @var{result})
+These routines evaluate the m-th derivative of the physicists' Hermite polynomial @math{H_n(x)} of order n at position x.
+@end deftypefun
+
+@deftypefun int gsl_sf_hermite_phys_array_der (const int @var{m}, const int @var{nmax}, const double @var{x}, double * @var{result_array})
+This routine evaluates the m-th derivative of all physicists' Hermite polynomials @math{H_n} up to order nmax at position x. The results are stored in result_array.
+@end deftypefun
+
+@deftypefun int gsl_sf_hermite_phys_der_array (const int @var{mmax}, const int @var{n}, const double @var{x}, double * @var{result_array})
+This routine evaluates all derivatives (starting from 0) up to the mmax-th derivative of the physicists' Hermite polynomial of order n @math{H_n} at position x. The results are stored in result_array.
+@end deftypefun
+
+
+@node Derivatives of Hermite Functions
+@subsection Derivatives of Hermite Functions
+
+
+@deftypefun double gsl_sf_hermite_func_der (const int @var{m}, const int @var{n}, const double @var{x})
+@deftypefunx int gsl_sf_hermite_func_der_e (const int @var{m}, const int @var{n}, const double @var{x}, gsl_sf_result * @var{result})
+These routines evaluate the m-th derivative of the Hermite function @address@hidden(x)} of order n at position x.
+@end deftypefun
+
+
+@node Zeros of Hermite Polynomials and Hermite Functions
+@subsection Zeros of Hermite Polynomials and Hermite Functions
+
+
+These routines calculate the @var{s}-th zero of the Hermite Polynomial/Function of order @var{n}. Since the zeros are symmetrical around zero, only positive zeros are calculated, ordered from smallest to largest, starting from index 1. Only for odd polynomial orders a zeroth zero exists, its value always being zero.
+
+
+@deftypefun double gsl_sf_hermite_prob_zero (const int @var{n}, const int @var{s})
+@deftypefunx int gsl_sf_hermite_prob_zero_e (const int @var{n}, const int @var{s}, gsl_sf_result * @var{result})
+These routines evaluate the @var{s}-th zero of the probabilists' Hermite polynomial @math{He_n(x)} of order @var{n}.
+@end deftypefun
+
+
+@deftypefun double gsl_sf_hermite_phys_zero (const int @var{n}, const int @var{s})
+@deftypefunx int gsl_sf_hermite_phys_zero_e (const int @var{n}, const int @var{s}, gsl_sf_result * @var{result})
+These routines evaluate the @var{s}-th zero of the physicists' Hermite polynomial @math{H_n(x)} of order @var{n}.
+@end deftypefun
+
+
+@deftypefun double gsl_sf_hermite_func_zero (const int @var{n}, const int @var{s})
+@deftypefunx int gsl_sf_hermite_func_zero_e (const int @var{n}, const int @var{s}, gsl_sf_result * @var{result})
+These routines evaluate the @var{s}-th zero of the Hermite function @address@hidden(x)} of order @var{n}.
+@end deftypefun
+
+
+@c end GSL-manual
+
+@page
+@printindex cp
+
+@contents
+@bye

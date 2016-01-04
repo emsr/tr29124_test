@@ -74,7 +74,7 @@ template<typename Real>
     maketest<Real, Real>((airy *)__gnu_cxx::airy_ai,
 			 gsl::airy_ai,
 			 "__gnu_cxx", funcname,
-			 "x", fill_argument(std::make_pair(-Real{10}, Real{10}),
+			 "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 					    std::make_pair(true, true), 41),
 			 file_airy_ai);
 
@@ -85,7 +85,7 @@ template<typename Real>
     maketest<Real, Real>((airy *)__gnu_cxx::airy_bi,
 			 gsl::airy_bi,
 			 "__gnu_cxx", funcname,
-			 "x", fill_argument(std::make_pair(-Real{10}, Real{10}),
+			 "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 					    std::make_pair(true, true), 41),
 			 file_airy_bi);
 
@@ -113,7 +113,7 @@ template<typename Real>
 						     gsl::legendre_Plm,
 						     nsname, funcname,
 						     "l", vorder, "m", vorder,
-						     "x", fill_argument(std::make_pair(-Real{1}, Real{1}),
+						     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
 									std::make_pair(true, true), 21),
 						     file_assoc_legendre);
 
@@ -142,7 +142,7 @@ template<typename Real>
     maketest<Real, Real>((comp_ellint_1 *)std::comp_ellint_1,
 			 gsl::ellint_Kcomp,
 			 nsname, funcname,
-			 "k", fill_argument(std::make_pair(-Real{1}, Real{1}),
+			 "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 					    std::make_pair(false, false), 21),
 			 file_comp_ellint_1);
 
@@ -156,7 +156,7 @@ template<typename Real>
     maketest<Real, Real>((comp_ellint_2 *)std::comp_ellint_2,
 			 gsl::ellint_Ecomp,
 			 nsname, funcname,
-			 "k", fill_argument(std::make_pair(-Real{1}, Real{1}),
+			 "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 					    std::make_pair(false, false), 21),
 			 file_comp_ellint_2);
 
@@ -170,7 +170,7 @@ template<typename Real>
     maketest<Real, Real, Real>((comp_ellint_3 *)std::comp_ellint_3,
 			       gsl::ellint_Pcomp,
 			       nsname, funcname,
-			       "k", fill_argument(std::make_pair(-Real{1}, Real{1}),
+			       "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 						  std::make_pair(false, false), 21),
 			       "nu", fill_argument(std::make_pair(Real{0}, Real{1}),
 						   std::make_pair(true, false), 11),
@@ -189,7 +189,7 @@ template<typename Real>
 				     "a", vab,
 				     "c", fill_argument(std::make_pair(Real{0}, Real{10}),
 							std::make_pair(false, true), 11),
-				     "x", fill_argument(std::make_pair(-Real{10}, Real{10}),
+				     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 							std::make_pair(true, true), 21),
 				     file_conf_hyperg);
 
@@ -237,20 +237,6 @@ template<typename Real>
 						  std::make_pair(true, true), 21),
 			       file_cyl_bessel_j, false, true, test);
 
-    //  Cylindrical Bessel functions (of the first kind) asymptotics.
-  /*
-    std::cout << "cyl_bessel_j asymptotics" << std::endl;
-    funcname = "cyl_bessel_j_asymp";
-    filename = get_filename(path, prefix, funcname, "",  ".cc");
-    std::ofstream file_cyl_bessel_j_asymp(filename.c_str());
-    maketest<Real, Real, Real>((cyl_bessel_j*)std::cyl_bessel_j,
-			       gsl::bessel_Jnu_asymp,
-			       nsname, funcname,
-			       "nu", vborderd,
-			       "x", fill_argument(std::make_pair(Real{1000}, Real{10000}),
-						  std::make_pair(true, true), 11),
-			       file_cyl_bessel_j_asymp);
-  */
     //  Irregular modified cylindrical Bessel functions.
     // Skip the pole at the origin.
     std::cout << "cyl_bessel_k" << std::endl;
@@ -297,21 +283,6 @@ template<typename Real>
 						  std::make_pair(false, true), 21),
 			       file_cyl_neumann, false, true, test);
 
-    //  Cylindrical Neumann functions asymptotics.
-    // Skip the pole at the origin.
-  /*
-    std::cout << "cyl_neumann asymptotics" << std::endl;
-    funcname = "cyl_neumann_asymp";
-    filename = get_filename(path, prefix, funcname, "",  ".cc");
-    std::ofstream file_cyl_neumann_asymp(filename.c_str());
-    maketest<Real, Real, Real>((cyl_neumann*)std::cyl_neumann,
-			       gsl::bessel_Ynu_asymp,
-			       nsname, funcname,
-			       "nu", vborderd,
-			       "x", fill_argument(std::make_pair(Real{1000}, Real{10000}),
-						  std::make_pair(false, true), 11),
-			       file_cyl_neumann_asymp);
-  */
     //  Elliptic integrals of the first kind.
     //  Avoid poles at |x| = 1.
     std::cout << "ellint_1" << std::endl;
@@ -322,7 +293,7 @@ template<typename Real>
     maketest<Real, Real, Real>((ellint_1*)std::ellint_1,
 			       gsl::ellint_F,
 			       nsname, funcname,
-			       "k", fill_argument(std::make_pair(-Real{1}, Real{1}),
+			       "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 						  std::make_pair(false, false), 21),
 			       "phi", vphid,
 			       file_ellint_1);
@@ -337,7 +308,7 @@ template<typename Real>
     maketest<Real, Real, Real>((ellint_2*)std::ellint_2,
 			       gsl::ellint_E,
 			       nsname, funcname,
-			       "k", fill_argument(std::make_pair(-Real{1}, Real{1}),
+			       "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 						  std::make_pair(false, false), 21),
 			       "phi", vphid,
 			       file_ellint_2);
@@ -352,7 +323,7 @@ template<typename Real>
     maketest<Real, Real, Real, Real>((ellint_3*)std::ellint_3,
 				     gsl::ellint_P,
 				     nsname, funcname,
-				     "k", fill_argument(std::make_pair(-Real{1}, Real{1}),
+				     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 							std::make_pair(false, false), 21),
 				     "nu", fill_argument(std::make_pair(Real{0}, Real{1}),
 							 std::make_pair(true, false), 11),
@@ -370,7 +341,7 @@ template<typename Real>
     maketest<Real, Real>((expint*)std::expint,
 			 gsl::expint_Ei,
 			 nsname, funcname,
-			 "x", fill_argument(std::make_pair(-Real{50}, Real{0}),
+			 "x", fill_argument(std::make_pair(Real{-50}, Real{0}),
 					    std::make_pair(true, false), 51),
 			 file_expint, true, false);
     maketest<Real, Real>((expint*)std::expint,
@@ -381,7 +352,18 @@ template<typename Real>
 			 file_expint, false, true, test);
 
     //  Hermite polynomials
-    std::cout << "hermite  UNTESTED" << std::endl;
+    std::cout << "hermite" << std::endl;
+    funcname = "hermite";
+    filename = get_filename(path, prefix, funcname, "", ".cc");
+    std::ofstream file_hermite(filename.c_str());
+    typedef Real hermite(unsigned int, Real);
+    maketest<Real, unsigned int, Real>((hermite*)std::hermite,
+				       gsl::hermite,
+				       nsname, funcname,
+				       "n", vorder,
+				       "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
+							  std::make_pair(true, true), 201),
+				       file_hermite);
 
     //  Hypergeometric functions.
     //  Skip the singularity at c = 0.
@@ -398,7 +380,7 @@ template<typename Real>
 					   "b", vab,
 					   "c", fill_argument(std::make_pair(Real{0}, Real{10}),
 							      std::make_pair(false, true), 6),
-					   "x", fill_argument(std::make_pair(-Real{1}, Real{1}),
+					   "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
 							      std::make_pair(true, false), 21),
 					   file_hyperg);
 
@@ -426,7 +408,7 @@ template<typename Real>
 				       gsl::legendre_Pl,
 				       nsname, funcname,
 				       "l", vorder,
-				       "x", fill_argument(std::make_pair(-Real{1}, Real{1}),
+				       "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
 							  std::make_pair(true, true), 21),
 				       file_legendre);
 
@@ -441,7 +423,7 @@ template<typename Real>
     maketest<Real, Real>((riemann_zeta*)std::riemann_zeta,
 			 gsl::zeta,
 			 nsname, funcname,
-			 "s", fill_argument(std::make_pair(-Real{10}, Real{1}),
+			 "s", fill_argument(std::make_pair(Real{-10}, Real{1}),
 					    std::make_pair(true, false), 56),
 			 file_riemann_zeta, true, false);
     maketest<Real, Real>((riemann_zeta*)std::riemann_zeta,
@@ -590,13 +572,13 @@ template<typename Real>
     //  Dilogarithm functions.
     std::cout << "dilog" << std::endl;
     funcname = "dilog";
-    filename = get_filename(path, prefix, "dilog", "",  ".cc");
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_dilog(filename.c_str());
     typedef Real dilog(Real);
     maketest<Real, Real>((dilog *)__gnu_cxx::dilog,
 			 gsl::dilog,
 			 "__gnu_cxx", funcname,
-			 "x", fill_argument(std::make_pair(-Real{10}, Real{10}),
+			 "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 					    std::make_pair(true, true), 41),
 			 file_dilog);
 
@@ -633,13 +615,13 @@ template<typename Real>
     //  Digamma or psi functions.
     std::cout << "psi" << std::endl;
     funcname = "psi";
-    filename = get_filename(path, prefix, "psi", "",  ".cc");
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_psi(filename.c_str());
     typedef Real psi(Real);
     test =
     maketest<Real, Real>((psi *)__gnu_cxx::psi, gsl::psi,
 			 "__gnu_cxx", funcname,
-			 "x", fill_argument(std::make_pair(-Real{9.9375}, +Real{10.0625}),
+			 "x", fill_argument(std::make_pair(Real{-9.9375}, +Real{10.0625}),
 					    std::make_pair(true, true), 801),
 			 file_psi, true, false);
     maketest<Real, Real>((psi *)__gnu_cxx::psi, gsl::psi,
@@ -648,10 +630,10 @@ template<typename Real>
 					    std::make_pair(true, true), 199),
 			 file_psi, false, true, test);
 
-    //  Si functions.
+    //  Sine integral or Si functions.
     std::cout << "sinint" << std::endl;
     funcname = "sinint";
-    filename = get_filename(path, prefix, "sinint", "",  ".cc");
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_sinint(filename.c_str());
     typedef Real sinint(Real);
     maketest<Real, Real>((sinint *)__gnu_cxx::sinint, gsl::Si,
@@ -660,10 +642,10 @@ template<typename Real>
 					    std::make_pair(false, true), 101),
 			 file_sinint);
 
-    //  Ci functions.
+    //  Cosine integral or Ci functions.
     std::cout << "cosint" << std::endl;
     funcname = "cosint";
-    filename = get_filename(path, prefix, "cosint", "",  ".cc");
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_cosint(filename.c_str());
     typedef Real cosint(Real);
     maketest<Real, Real>((cosint *)__gnu_cxx::cosint, gsl::Ci,
@@ -672,10 +654,10 @@ template<typename Real>
 					    std::make_pair(false, true), 101),
 			 file_cosint);
 
-    //  Shi functions.
+    //  Hyperbolic sine integral or Shi functions.
     std::cout << "sinhint" << std::endl;
     funcname = "sinhint";
-    filename = get_filename(path, prefix, "sinhint", "",  ".cc");
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_sinhint(filename.c_str());
     typedef Real sinhint(Real);
     maketest<Real, Real>((sinhint *)__gnu_cxx::sinhint, gsl::Shi,
@@ -684,10 +666,10 @@ template<typename Real>
 					    std::make_pair(false, true), 101),
 			 file_sinhint);
 
-    //  Chi functions.
+    //  Hyperbolic cosine integral or Chi functions.
     std::cout << "coshint" << std::endl;
     funcname = "coshint";
-    filename = get_filename(path, prefix, "coshint", "",  ".cc");
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_coshint(filename.c_str());
     typedef Real coshint(Real);
     maketest<Real, Real>((coshint *)__gnu_cxx::coshint, gsl::Chi,
@@ -695,6 +677,105 @@ template<typename Real>
 			 "x", fill_argument(std::make_pair(Real{0}, Real{+5}),
 					    std::make_pair(false, true), 101),
 			 file_coshint);
+
+    //  Dawson integral.
+    std::cout << "dawson" << std::endl;
+    funcname = "dawson";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_dawson(filename.c_str());
+    typedef Real dawson(Real);
+    maketest<Real, Real>((dawson *)__gnu_cxx::dawson, gsl::dawson,
+			 "__gnu_cxx", funcname,
+			 "x", fill_argument(std::make_pair(Real{0}, Real{+20}),
+					    std::make_pair(false, true), 201),
+			 file_dawson);
+
+    //  Jacobian elliptic integrals.
+    std::cout << "jacobi_sn" << std::endl;
+    funcname = "jacobi_sn";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_jacobi_sn(filename.c_str());
+    typedef Real jacobi_sn(Real, Real);
+    maketest<Real, Real, Real>((jacobi_sn *)__gnu_cxx::jacobi_sn, gsl::elljac_sn,
+			 "__gnu_cxx", funcname,
+			 "u", fill_argument(std::make_pair(Real{-5}, Real{+5}),
+					    std::make_pair(false, true), 101),
+			 "m", fill_argument(std::make_pair(Real{-1}, Real{+1}),
+					    std::make_pair(false, true), 21),
+			 file_jacobi_sn);
+
+    //  Jacobian elliptic integrals.
+    std::cout << "jacobi_cn" << std::endl;
+    funcname = "jacobi_cn";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_jacobi_cn(filename.c_str());
+    typedef Real jacobi_cn(Real, Real);
+    maketest<Real, Real, Real>((jacobi_cn *)__gnu_cxx::jacobi_cn, gsl::elljac_cn,
+			 "__gnu_cxx", funcname,
+			 "u", fill_argument(std::make_pair(Real{-5}, Real{+5}),
+					    std::make_pair(false, true), 101),
+			 "m", fill_argument(std::make_pair(Real{-1}, Real{+1}),
+					    std::make_pair(false, true), 21),
+			 file_jacobi_cn);
+
+    //  Jacobian elliptic integrals.
+    std::cout << "jacobi_dn" << std::endl;
+    funcname = "jacobi_dn";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_jacobi_dn(filename.c_str());
+    typedef Real jacobi_dn(Real, Real);
+    maketest<Real, Real, Real>((jacobi_dn *)__gnu_cxx::jacobi_dn, gsl::elljac_dn,
+			 "__gnu_cxx", funcname,
+			 "u", fill_argument(std::make_pair(Real{-5}, Real{+5}),
+					    std::make_pair(false, true), 101),
+			 "m", fill_argument(std::make_pair(Real{-1}, Real{+1}),
+					    std::make_pair(false, true), 21),
+			 file_jacobi_dn);
+
+    //  Exponential integral E1.
+    //  Skip the pole at 0.
+    std::cout << "expint_e1" << std::endl;
+    funcname = "expint_e1";
+    filename = get_filename(path, prefix, funcname, "", ".cc");
+    std::ofstream file_expint_e1(filename.c_str());
+    typedef Real expint_e1(Real);
+    test =
+    maketest<Real, Real>((expint_e1*)__gnu_cxx::expint_e1,
+			 gsl::expint_E1,
+			 nsname, funcname,
+			 "x", fill_argument(std::make_pair(Real{-50}, Real{0}),
+					    std::make_pair(true, false), 51),
+			 file_expint_e1, true, false);
+    maketest<Real, Real>((expint_e1*)__gnu_cxx::expint_e1,
+			 gsl::expint_E1,
+			 nsname, funcname,
+			 "x", fill_argument(std::make_pair(Real{0}, Real{50}),
+					    std::make_pair(false, true), 51),
+			 file_expint_e1, false, true, test);
+
+    //  Fresnel cosine integral.
+    std::cout << "fresnel_c" << std::endl;
+    funcname = "fresnel_c";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_fresnel_c(filename.c_str());
+    typedef Real fresnel_c(Real);
+    maketest<Real, Real>((fresnel_c *)__gnu_cxx::fresnel_c, gsl::fresnel_c,
+			 "__gnu_cxx", funcname,
+			 "x", fill_argument(std::make_pair(Real{-20}, Real{+20}),
+					    std::make_pair(false, true), 401),
+			 file_fresnel_c);
+
+    //  Fresnel sine integral.
+    std::cout << "fresnel_s" << std::endl;
+    funcname = "fresnel_s";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_fresnel_s(filename.c_str());
+    typedef Real fresnel_s(Real);
+    maketest<Real, Real>((fresnel_s *)__gnu_cxx::fresnel_s, gsl::fresnel_s,
+			 "__gnu_cxx", funcname,
+			 "x", fill_argument(std::make_pair(Real{-20}, Real{+20}),
+					    std::make_pair(false, true), 401),
+			 file_fresnel_s);
 
   }
 

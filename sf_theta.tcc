@@ -1,6 +1,6 @@
 // Special functions -*- C++ -*-
 
-// Copyright (C) 2015 Free Software Foundation, Inc.
+// Copyright (C) 2016 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -31,6 +31,7 @@
 #define _GLIBCXX_SF_THETA_TCC 1
 
 #include <array>
+#include <tuple>
 #include <ext/math_const.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
@@ -41,25 +42,27 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<typename _Tp>
-    void
-    __jacobi_cnsndn(_Tp __k, _Tp __u, _Tp& __cn, _Tp& __sn, _Tp& __dn)
+    std::tuple<_Tp, _Tp, _Tp>
+    __jacobi_sncndn(_Tp __k, _Tp __u)
     {
       using _Val = __num_traits_t<_Tp>;
       constexpr auto _S_eps = __gnu_cxx::__math_constants<_Val>::__eps;
 
+      _Tp __sn, __cn, __dn;
       if (std::abs(__k) < _Tp{2} * _S_eps)
+
 	{
 	  __sn = std::tanh(__u);
 	  __cn = _Tp{1} / std::cosh(__u);
 	  __dn = __cn;
-	  return;
+	  return std::make_tuple(__sn, __cn, __dn);
 	}
       else if (std::abs(_Tp{1} + __k) < _Tp{2} * _S_eps)
 	{
 	  __sn = std::sin(__u);
 	  __cn = std::cos(__u);
 	  __dn = _Tp{1};
-	  return;
+	  return std::make_tuple(__sn, __cn, __dn);
 	}
       else
 	{
@@ -116,7 +119,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __cn = __a;
 	      __sn /= __d;
 	    }
-	  return;
+	  return std::make_tuple(__sn, __cn, __dn);
 	}
     }
 
