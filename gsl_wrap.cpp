@@ -853,8 +853,9 @@ dawson(double x)
 
 /// Jacobian elliptic integrals.
 double
-elljac_sn(double u, double m)
+elljac_sn(double u, double k)
 {
+  double m = k * k;
   double sn, cn, dn;
   int stat = gsl_sf_elljac_e(u, m, &sn, &cn, &dn);
   if (stat != GSL_SUCCESS)
@@ -868,8 +869,9 @@ elljac_sn(double u, double m)
 }
 
 double
-elljac_cn(double u, double m)
+elljac_cn(double u, double k)
 {
+  double m = k * k;
   double sn, cn, dn;
   int stat = gsl_sf_elljac_e(u, m, &sn, &cn, &dn);
   if (stat != GSL_SUCCESS)
@@ -883,8 +885,9 @@ elljac_cn(double u, double m)
 }
 
 double
-elljac_dn(double u, double m)
+elljac_dn(double u, double k)
 {
+  double m = k * k;
   double sn, cn, dn;
   int stat = gsl_sf_elljac_e(u, m, &sn, &cn, &dn);
   if (stat != GSL_SUCCESS)
@@ -912,7 +915,9 @@ double
 sinc(double x)
 {
   gsl_sf_result result;
-  int stat = gsl_sf_sinc_e(x, &result);
+  // Scale x by pi to match the deinition for the C++ proposal:
+  // sinc(x) = sin(x)/x
+  int stat = gsl_sf_sinc_e(x / M_PI, &result);
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in sinc:");

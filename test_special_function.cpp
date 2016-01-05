@@ -111,6 +111,8 @@ template<typename _Tp>
     using __gnu_cxx::fresnel_s;
     using __gnu_cxx::fresnel_c;
     using __gnu_cxx::dawson;
+    using __gnu_cxx::sinc;
+    using __gnu_cxx::expint_e1;
 #else
     std::string ns("tr1");
     using std::tr1::assoc_laguerre;
@@ -149,7 +151,7 @@ template<typename _Tp>
 					  std::make_pair(true, true), 41));
     basename = ns + "_airy_ai";
     runtest<_Tp, _Tp>(airy_ai, basename,
-		      fill_argument(std::make_pair(-_Tp{10}, +_Tp{10}),
+		      fill_argument(std::make_pair(_Tp{-10}, +_Tp{10}),
 				    std::make_pair(true, true), 41));
 
     //  Airy Bi functions.
@@ -160,7 +162,7 @@ template<typename _Tp>
 					  std::make_pair(true, true), 41));
     basename = ns + "_airy_bi";
     runtest<_Tp, _Tp>(airy_bi, basename,
-		      fill_argument(std::make_pair(-_Tp{10}, +_Tp{10}),
+		      fill_argument(std::make_pair(_Tp{-10}, +_Tp{10}),
 				    std::make_pair(true, true), 41));
 #endif // STD
 
@@ -186,7 +188,7 @@ template<typename _Tp>
 							1001));
     basename = ns + "_assoc_legendre";
     runtest<_Tp, unsigned int, unsigned int, _Tp>(assoc_legendre, basename, uiorder, uiorder,
-						  fill_argument(std::make_pair(-_Tp{1}, _Tp{1}),
+						  fill_argument(std::make_pair(_Tp{-1}, _Tp{1}),
 								std::make_pair(true, true),
 						  1001));
 
@@ -216,7 +218,7 @@ template<typename _Tp>
 					  std::make_pair(false, false)));  //  Avoid poles at |x| = 1.
     basename = ns + "_comp_ellint_1";
     runtest<_Tp, _Tp>(comp_ellint_1, basename,
-		      fill_argument(std::make_pair(-_Tp{1}, _Tp{1}),
+		      fill_argument(std::make_pair(_Tp{-1}, _Tp{1}),
 				    std::make_pair(true, true)));
 
 
@@ -228,7 +230,7 @@ template<typename _Tp>
 					  std::make_pair(false, false)));  //  Avoid poles at |x| = 1.
     basename = ns + "_comp_ellint_2";
     runtest<_Tp, _Tp>(comp_ellint_2, basename,
-		      fill_argument(std::make_pair(-_Tp{1}, _Tp{1}),
+		      fill_argument(std::make_pair(_Tp{-1}, _Tp{1}),
 				    std::make_pair(true, true)));
 
 
@@ -243,7 +245,7 @@ template<typename _Tp>
 						  std::make_pair(true, false), 11));
     basename = ns + "_comp_ellint_3";
     runtest<_Tp, _Tp, _Tp>(comp_ellint_3, basename,
-			   fill_argument(std::make_pair(-_Tp{1}, _Tp{1}),
+			   fill_argument(std::make_pair(_Tp{-1}, _Tp{1}),
 					 std::make_pair(true, true)),
 			   fill_argument(std::make_pair(_Tp{0}, _Tp{1}),
 					 std::make_pair(true, true), 11));
@@ -266,7 +268,7 @@ template<typename _Tp>
 					      std::make_pair(true, true), 11),
 				fill_argument(std::make_pair(_Tp{0}, _Tp{10}),
 					      std::make_pair(true, true), 11),
-				fill_argument(std::make_pair(-_Tp{10}, _Tp{10}),
+				fill_argument(std::make_pair(_Tp{-10}, _Tp{10}),
 					      std::make_pair(true, true), 201));
 
 
@@ -331,7 +333,7 @@ template<typename _Tp>
     basename = ns + "_ellint_1";
     runtest<_Tp, _Tp, _Tp>(ellint_1,
 			   basename,
-			   fill_argument(std::make_pair(-_Tp{1}, _Tp{1}),
+			   fill_argument(std::make_pair(_Tp{-1}, _Tp{1}),
 					 std::make_pair(true, true)), vphi);
 
 
@@ -344,7 +346,7 @@ template<typename _Tp>
 						  vphid);
     basename = ns + "_ellint_2";
     runtest<_Tp, _Tp, _Tp>(ellint_2, basename,
-			   fill_argument(std::make_pair(-_Tp{1}, _Tp{1}),
+			   fill_argument(std::make_pair(_Tp{-1}, _Tp{1}),
 						  std::make_pair(true, true)), vphi);
 
 
@@ -360,7 +362,7 @@ template<typename _Tp>
 							  std::make_pair(true, false), 11), vphid);
     basename = ns + "_ellint_3";
     runtest<_Tp, _Tp, _Tp, _Tp>(ellint_3, basename,
-				fill_argument(std::make_pair(-_Tp{1}, _Tp{1}),
+				fill_argument(std::make_pair(_Tp{-1}, _Tp{1}),
 					      std::make_pair(true, true)),
 				fill_argument(std::make_pair(_Tp{0}, _Tp{1}),
 					      std::make_pair(true, true), 11), vphi);
@@ -379,7 +381,7 @@ template<typename _Tp>
 					  std::make_pair(false, true), 51));
     basename = ns + "_expint";
     runtest<_Tp, _Tp>(expint, basename,
-		      fill_argument(std::make_pair(-_Tp{50}, _Tp{50}),
+		      fill_argument(std::make_pair(_Tp{-50}, _Tp{50}),
 				    std::make_pair(true, true)));
 
 
@@ -391,7 +393,7 @@ template<typename _Tp>
     						  std::make_pair(true, true)));
     basename = ns + "_hermite";
     runtest<_Tp, unsigned int, _Tp>(hermite, basename, uiorder,
-				    fill_argument(std::make_pair(-_Tp{10}, _Tp{10}),
+				    fill_argument(std::make_pair(_Tp{-10}, _Tp{10}),
 						  std::make_pair(true, true)));
 
 
@@ -415,7 +417,7 @@ template<typename _Tp>
 						   std::make_pair(true, true), 11),
 				     fill_argument(std::make_pair(_Tp{0}, _Tp{10}),
 						   std::make_pair(true, true), 11),
-				     fill_argument(std::make_pair(-_Tp{1}, _Tp{1}),
+				     fill_argument(std::make_pair(_Tp{-1}, _Tp{1}),
 						   std::make_pair(false, true), 21));
 
 
@@ -440,7 +442,7 @@ template<typename _Tp>
 					       std::make_pair(true, true), 1001));
     basename = ns + "_legendre";
     runtest<_Tp, unsigned int, _Tp>(legendre, basename, uiorder,
-				    fill_argument(std::make_pair(-_Tp{1}, _Tp{1}),
+				    fill_argument(std::make_pair(_Tp{-1}, _Tp{1}),
 						  std::make_pair(true, true), 1001));
 
 
@@ -457,7 +459,7 @@ template<typename _Tp>
 					  std::make_pair(false, true), 146));
     basename = ns + "_riemann_zeta";
     runtest<_Tp, _Tp>(riemann_zeta, basename,
-		      fill_argument(std::make_pair(-_Tp{10}, _Tp{30}),
+		      fill_argument(std::make_pair(_Tp{-10}, _Tp{30}),
 				    std::make_pair(true, true), 201));
 
 #if STD
@@ -601,7 +603,7 @@ template<typename _Tp>
 
     basename = ns + "_dilog";
     runtest<_Tp, _Tp>(dilog, basename,
-		      fill_argument(std::make_pair(-_Tp{10}, _Tp{1}),
+		      fill_argument(std::make_pair(_Tp{-10}, _Tp{1}),
 				    std::make_pair(true, true), 23));
 
     //  Upper incomplete Gamma functions.
@@ -647,8 +649,8 @@ template<typename _Tp>
 					  std::make_pair(true, true), 41));
     basename = ns + "_psi";
     runtest<_Tp, _Tp>(psi, basename,
-		      fill_argument(std::make_pair(-_Tp{9.875}, _Tp{10.125}),
-				    std::make_pair(true, true), 41));
+		      fill_argument(std::make_pair(_Tp{-9.9375}, _Tp{10.0625}),
+				    std::make_pair(true, true), 801));
 
     //  Sine integral or Si functions.
     std::cout << "gsl_sinint" << std::endl;
@@ -704,6 +706,28 @@ template<typename _Tp>
     runtest<_Tp, _Tp>(dawson, basename,
 		      fill_argument(std::make_pair(_Tp{0}, _Tp{+5}),
 				    std::make_pair(false, true), 101));
+
+    //  Exponential integral E1.
+    std::cout << "gsl_expint_e1" << std::endl;
+    basename = "expint_e1";
+    runtest<double, double>(gsl::expint_e1, basename,
+			    fill_argument(std::make_pair(0.0, +5.0),
+					  std::make_pair(false, true), 101));
+    basename = ns + "_expint_e1";
+    runtest<_Tp, _Tp>(expint_e1, basename,
+		      fill_argument(std::make_pair(_Tp{0}, _Tp{+5}),
+				    std::make_pair(false, true), 101));
+
+    //  Sine cardinal function.
+    std::cout << "gsl_sinc" << std::endl;
+    basename = "sinc";
+    runtest<double, double>(gsl::sinc, basename,
+			    fill_argument(std::make_pair(-20.0, +20.0),
+					  std::make_pair(false, true), 401));
+    basename = ns + "_sinc";
+    runtest<_Tp, _Tp>(sinc, basename,
+		      fill_argument(std::make_pair(_Tp{20}, _Tp{+20}),
+				    std::make_pair(false, true), 401));
 
 #endif // STD
 

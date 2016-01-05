@@ -78,7 +78,11 @@ ${makedir} ${textdir}/fresnel_s
 ${makedir} ${textdir}/hurwitz_zeta
 ${makedir} ${textdir}/hyperg
 ${makedir} ${textdir}/ibeta
+${makedir} ${textdir}/jacobi_sn
+${makedir} ${textdir}/jacobi_cn
+${makedir} ${textdir}/jacobi_dn
 ${makedir} ${textdir}/psi
+${makedir} ${textdir}/sinc
 ${makedir} ${textdir}/sinhint
 ${makedir} ${textdir}/sinint
 
@@ -100,6 +104,10 @@ ${copy} check_fresnel_s.cc        ${textdir}/fresnel_s/check_value.cc
 ${copy} check_hurwitz_zeta.cc     ${textdir}/hurwitz_zeta/check_value.cc
 ${copy} check_hyperg.cc           ${textdir}/hyperg/check_value.cc
 ${copy} check_ibeta.cc            ${textdir}/ibeta/check_value.cc
+${copy} check_jacobi_sn.cc        ${textdir}/jacobi_sn/check_value.cc
+${copy} check_jacobi_cn.cc        ${textdir}/jacobi_cn/check_value.cc
+${copy} check_jacobi_dn.cc        ${textdir}/jacobi_dn/check_value.cc
 ${copy} check_psi.cc              ${textdir}/psi/check_value.cc
+${copy} check_sinc.cc             ${textdir}/sinc/check_value.cc
 ${copy} check_sinhint.cc          ${textdir}/sinhint/check_value.cc
 ${copy} check_sinint.cc           ${textdir}/sinint/check_value.cc

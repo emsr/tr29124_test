@@ -8,18 +8,23 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<typename _Tp>
-    __vanWijnGaardenSum
+    class __vanWijngaardenSum
     {
     public:
-      __vanWijnGaardenSum() = default;
+      __vanWijngaardenSum() = default;
 
-      explicit __vanWijnGaardenSum(_Tp __sum)
+      explicit __vanWijngaardenSum(_Tp __sum)
       : _M_sum(__sum), _M_delta{}
       { }
 
-      __vanWijnGaardenSum&
+      __vanWijngaardenSum&
       operator+=(_Tp __term)
       {
+	if (__isnan(__term))
+	  throw std::runtime_error("__vanWijngaardenSum: bad term");
+	if (std::fabs(__term) == std::numeric_limits<_Tp>::infinity())
+	  throw std::runtime_error("__vanWijngaardenSum: bad term");
+
 	if (this->_M_delta.size() == 0)
 	  {
 	    this->_M_delta.push_back(__term);
@@ -29,7 +34,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  {
 	    auto __temp = this->_M_delta[0];
 	    this->_M_delta[0] = __term;
-	    for (auto __j = 0, __n = this->_M_delta.size();
+	    auto __n = this->_M_delta.size();
+	    for (auto __j = 0;
 		 __j < __n - 1; ++__j)
 	      __temp = std::exchange(this->_M_delta[__j + 1],
 				_Tp{0.5L} * (this->_M_delta[__j] + __temp));
@@ -45,13 +51,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return *this;
       }
 
-      __vanWijnGaardenSum&
+      __vanWijngaardenSum&
       operator-=(_Tp __term)
       { return operator+=(-__term); }
 
       _Tp
       operator()() const
       { return this->_M_sum; }
+
+      __vanWijngaardenSum&
+      reset(_Tp __sum = _Tp{})
+      {
+	this->_M_sum = __sum;
+	this->_M_delta.clear();
+	return *this;
+      }
 
     private:
       _Tp _M_sum;

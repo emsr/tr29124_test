@@ -48,6 +48,11 @@ ${copy} check_fresnel_c.cc        ${ext_dir}/fresnel_c/check_value.cc
 ${copy} check_fresnel_s.cc        ${ext_dir}/fresnel_s/check_value.cc
 ${copy} check_hurwitz_zeta.cc     ${ext_dir}/hurwitz_zeta/check_value.cc
 ${copy} check_hyperg.cc           ${ext_dir}/hyperg/check_value.cc
+${copy} check_ibeta.cc            ${ext_dir}/ibeta/check_value.cc
+${copy} check_jacobi_sn.cc        ${ext_dir}/jacobi_sn/check_value.cc
+${copy} check_jacobi_cn.cc        ${ext_dir}/jacobi_cn/check_value.cc
+${copy} check_jacobi_dn.cc        ${ext_dir}/jacobi_dn/check_value.cc
 ${copy} check_psi.cc              ${ext_dir}/psi/check_value.cc
+${copy} check_sinc.cc             ${ext_dir}/sinc/check_value.cc
 ${copy} check_sinhint.cc          ${ext_dir}/sinhint/check_value.cc
 ${copy} check_sinint.cc           ${ext_dir}/sinint/check_value.cc

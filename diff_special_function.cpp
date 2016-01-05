@@ -103,6 +103,8 @@ main()
   using __gnu_cxx::fresnel_s;
   using __gnu_cxx::fresnel_c;
   using __gnu_cxx::dawson;
+  using __gnu_cxx::sinc;
+  using __gnu_cxx::expint_e1;
 #else
   using std::tr1::assoc_laguerre;
   using std::tr1::assoc_legendre;
@@ -438,7 +440,7 @@ main()
     std::cout << "dilog" << std::endl;
     basename = "dilog";
     rundiff<_TpGSL, _TpGSL>(dilog, gsl::dilog, basename,
-			    "x", fill_argument(std::make_pair(-_TpGSL{10}, _TpGSL{1}),
+			    "x", fill_argument(std::make_pair(_TpGSL{-10}, _TpGSL{1}),
 					       std::make_pair(true, true), 23));
 
     //  Upper incomplete Gamma functions.
@@ -465,8 +467,8 @@ main()
     std::cout << "psi" << std::endl;
     basename = "psi";
     rundiff<_TpGSL, _TpGSL>(psi, gsl::psi, basename,
-			    "x", fill_argument(std::make_pair(-_TpGSL{9.875}, _TpGSL{10.125}),
-					       std::make_pair(true, true), 41));
+			    "x", fill_argument(std::make_pair(_TpGSL{-9.9375}, _TpGSL{10.0625}),
+					       std::make_pair(true, true), 801));
 
     //  Sine integral or Si functions.
     std::cout << "sinint" << std::endl;
@@ -496,12 +498,40 @@ main()
 			    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
 					       std::make_pair(false, true), 101));
 
+    //  .
+    std::cout << "fresnel_c" << std::endl;
+    basename = "fresnel_c";
+    rundiff<_TpGSL, _TpGSL>(fresnel_c, gsl::fresnel_c, basename,
+			    "x", fill_argument(std::make_pair(_TpGSL{-20}, _TpGSL{+20}),
+					       std::make_pair(false, true), 401));
+
+    //  .
+    std::cout << "fresnel_s" << std::endl;
+    basename = "fresnel_s";
+    rundiff<_TpGSL, _TpGSL>(fresnel_s, gsl::fresnel_s, basename,
+			    "x", fill_argument(std::make_pair(_TpGSL{-20}, _TpGSL{+20}),
+					       std::make_pair(false, true), 401));
+
     //  Dawson integral.
     std::cout << "dawson" << std::endl;
     basename = "dawson";
     rundiff<_TpGSL, _TpGSL>(dawson, gsl::dawson, basename,
 			    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
 					       std::make_pair(false, true), 101));
+
+    //  Exponential integral E1.
+    std::cout << "expint_e1" << std::endl;
+    basename = "expint_e1";
+    rundiff<_TpGSL, _TpGSL>(expint_e1, gsl::expint_e1, basename,
+			    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
+					       std::make_pair(false, true), 101));
+
+    //  Sine cardinal function.
+    std::cout << "sinc" << std::endl;
+    basename = "sinc";
+    rundiff<_TpGSL, _TpGSL>(sinc, gsl::sinc, basename,
+			    "x", fill_argument(std::make_pair(_TpGSL{-20}, _TpGSL{+20}),
+					       std::make_pair(false, true), 401));
 
 #endif // STD
 

@@ -156,13 +156,13 @@ double hydrogen(int n, double l, double Z, double r);
 double dawson(double x);
 
 /// Jacobian elliptic integrals.
-double elljac_sn(double u, double m);
+double elljac_sn(double u, double k);
 
 /// Jacobian elliptic integrals.
-double elljac_cn(double u, double m);
+double elljac_cn(double u, double k);
 
 /// Jacobian elliptic integrals.
-double elljac_dn(double u, double m);
+double elljac_dn(double u, double k);
 
 /// Fresnel cosine integral.
 double fresnel_c(double x);

@@ -242,8 +242,8 @@ template<typename Tp>
 ///
 template<typename Tp, typename Tp1>
   unsigned int
-  maketest(std::function<Tp(Tp1)> function1,
-	   std::function<Tp(Tp1)> function2,
+  maketest(Tp function1(Tp1),
+	   Tp function2(Tp1),
 	   const std::string & nsname,
 	   const std::string & funcname,
 	   const std::string & arg1, const std::vector<Tp1> & argument1,
@@ -390,8 +390,8 @@ template<typename Tp, typename Tp1>
 ///
 template<typename Tp, typename Tp1, typename Tp2>
   unsigned int
-  maketest(std::function<Tp(Tp1,Tp2)> function1,
-	   std::function<Tp(Tp1,Tp2)> function2,
+  maketest(Tp function1(Tp1,Tp2),
+	   Tp function2(Tp1,Tp2),
 	   const std::string & nsname,
 	   const std::string & funcname,
 	   const std::string & arg1, const std::vector<Tp1> & argument1,
@@ -539,8 +539,8 @@ template<typename Tp, typename Tp1, typename Tp2>
 ///
 template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
   unsigned int
-  maketest(std::function<Tp(Tp1,Tp2,Tp3)> function1,
-	   std::function<Tp(Tp1,Tp2,Tp3)> function2,
+  maketest(Tp function1(Tp1,Tp2,Tp3),
+	   Tp function2(Tp1,Tp2,Tp3),
 	   const std::string & nsname,
 	   const std::string & funcname,
 	   const std::string & arg1, const std::vector<Tp1> & argument1,
@@ -699,8 +699,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 ///
 template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
   unsigned int
-  maketest(std::function<Tp(Tp1,Tp2,Tp3,Tp4)> function1,
-	   std::function<Tp(Tp1,Tp2,Tp3,Tp4)> function2,
+  maketest(Tp function1(Tp1,Tp2,Tp3,Tp4),
+	   Tp function2(Tp1,Tp2,Tp3,Tp4),
 	   const std::string & nsname,
 	   const std::string & funcname,
 	   const std::string & arg1, const std::vector<Tp1> & argument1,
