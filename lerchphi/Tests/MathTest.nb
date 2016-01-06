@@ -1,0 +1,815 @@
+(************** Content-type: application/mathematica **************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     21518,        679]*)
+(*NotebookOutlinePosition[     22181,        702]*)
+(*  CellTagsIndexPosition[     22137,        698]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Tests of lerchphi()", "Title"],
+
+Cell[TextData[{
+  "Sergej V. Aksenov",
+  "\nDepartment of Microbiology and Immunology\nUniversity of Michigan\nAnn \
+Arbor, MI 48109, USA\n",
+  ButtonBox["http://www.geocities.com/saksenov",
+    ButtonData:>{
+      URL[ "http://www.geocities.com/saksenov"], None},
+    ButtonStyle->"Hyperlink"]
+}], "Subsubtitle"],
+
+Cell[TextData[{
+  "Ulrich D. Jentschura",
+  "\nInstitute of Theoretical Physics\nDresden University of Technology\n\
+01062 Dresden, Germany\n",
+  ButtonBox["jentschura@physik.tu-dresden.de",
+    ButtonData:>{
+      URL[ "mailto:jentschura@physik.tu-dresden.de"], None},
+    ButtonStyle->"Hyperlink"]
+}], "Subsubtitle"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Regular cases in output from program test.c (cases 5-12), saved to \
+test.ref\
+\>", "Section"],
+
+Cell["First, some definitions...", "Text"],
+
+Cell[BoxData[
+    \(form[x_]\  := \ 
+      PaddedForm[x, {34, 31}, \ DigitBlock\  \[Rule] \ 5, \ 
+        NumberSeparator\  \[Rule] \ "\< \>"]\)], "Input"],
+
+Cell[BoxData[
+    \(shortform[x_]\  := \ 
+      PaddedForm[x, {22, 16}, \ DigitBlock\  \[Rule] \ 5, \ 
+        NumberSeparator\  \[Rule] \ "\< \>"]\)], "Input"],
+
+Cell[BoxData[
+    \(Attributes[form] = {Listable}; \ 
+    Attributes[shortform] = {Listable};\)], "Input"],
+
+Cell["Example cases 5 through 12:", "Text"],
+
+Cell[TextData[{
+  "We ask ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " to calculate in extended precision (quad-double):"
+}], "Text"],
+
+Cell[BoxData[
+    \(\(testcases = {{0.99999`64, 2.0`64, 1.0`64}, {\(-0.99999`64\), 2.0`64, 
+            1.0`64}, {0.99999`64, 2.0`64, 1.0`64\ 10^3}, {0.3`64, 
+            2.0`64, \(-4.5`64\)}, {0.00001`64, 2.0`64, 
+            1.0`64}, {\(-0.000063`64\), 2.0`64, 
+            1.0`64}, {3.4709929976435479`64\ 10^\((\(-6\))\), 1.0`64, 
+            1.5172413793103448`64}, {0.0003`64, 
+            2, \(-3.00000000000001`64\)}};\)\)], "Input"],
+
+Cell["The table of the input parameters z, s, v reads:", "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Join[{{"z", "s", "v"}}, shortform[testcases]] // TableForm\)], "Input"],
+
+Cell[BoxData[
+    TagBox[GridBox[{
+          {"\<\"z\"\>", "\<\"s\"\>", "\<\"v\"\>"},
+          {
+            TagBox[
+              InterpretationBox["\<\"       0.99999 00000 00000 0\"\>",
+                0.99999`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)], 
+            TagBox[
+              InterpretationBox["\<\"       2.00000 00000 00000 0\"\>",
+                2.`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)], 
+            TagBox[
+              InterpretationBox["\<\"       1.00000 00000 00000 0\"\>",
+                1.`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)]},
+          {
+            TagBox[
+              InterpretationBox["\<\"      -0.99999 00000 00000 0\"\>",
+                -0.99999`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)], 
+            TagBox[
+              InterpretationBox["\<\"       2.00000 00000 00000 0\"\>",
+                2.`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)], 
+            TagBox[
+              InterpretationBox["\<\"       1.00000 00000 00000 0\"\>",
+                1.`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)]},
+          {
+            TagBox[
+              InterpretationBox["\<\"       0.99999 00000 00000 0\"\>",
+                0.99999`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)], 
+            TagBox[
+              InterpretationBox["\<\"       2.00000 00000 00000 0\"\>",
+                2.`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)], 
+            TagBox[
+              InterpretationBox["\<\"    1000.00000 00000 00000 0\"\>",
+                1000.`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)]},
+          {
+            TagBox[
+              InterpretationBox["\<\"       0.30000 00000 00000 0\"\>",
+                0.3`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)], 
+            TagBox[
+              InterpretationBox["\<\"       2.00000 00000 00000 0\"\>",
+                2.`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)], 
+            TagBox[
+              InterpretationBox["\<\"      -4.50000 00000 00000 0\"\>",
+                -4.5`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)]},
+          {
+            TagBox[
+              InterpretationBox["\<\"       0.00001 00000 00000 0\"\>",
+                0.00001`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)], 
+            TagBox[
+              InterpretationBox["\<\"       2.00000 00000 00000 0\"\>",
+                2.`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)], 
+            TagBox[
+              InterpretationBox["\<\"       1.00000 00000 00000 0\"\>",
+                1.`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)]},
+          {
+            TagBox[
+              InterpretationBox["\<\"      -0.00006 30000 00000 0\"\>",
+                -0.000063`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)], 
+            TagBox[
+              InterpretationBox["\<\"       2.00000 00000 00000 0\"\>",
+                2.`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)], 
+            TagBox[
+              InterpretationBox["\<\"       1.00000 00000 00000 0\"\>",
+                1.`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)]},
+          {
+            TagBox[
+              
+              InterpretationBox[\("       3.47099 29976 43547 \
+9"\[Times]10\^"-6"\),
+                3.4709929976435479`64*^-6,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)], 
+            TagBox[
+              InterpretationBox["\<\"       1.00000 00000 00000 0\"\>",
+                1.`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)], 
+            TagBox[
+              InterpretationBox["\<\"       1.51724 13793 10344 8\"\>",
+                1.5172413793103448`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)]},
+          {
+            TagBox[
+              InterpretationBox["\<\"       0.00030 00000 00000 0\"\>",
+                0.0003`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)], 
+            TagBox[
+              InterpretationBox["\<\"       2.0000000000000000000\"\>",
+                2,
+                Editable->False],
+              (PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)], 
+            TagBox[
+              InterpretationBox["\<\"      -3.00000 00000 00010 0\"\>",
+                -3.00000000000001`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {22, 16}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)]}
+          },
+        RowSpacings->1,
+        ColumnSpacings->3,
+        RowAlignments->Baseline,
+        ColumnAlignments->{Left}],
+      Function[ BoxForm`e$, 
+        TableForm[ BoxForm`e$]]]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \($MinPrecision = 64\)], "Input"],
+
+Cell[BoxData[
+    \(64\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \($Version\)], "Input"],
+
+Cell[BoxData[
+    \("4.1 for SGI IRIX (November 7, 2000)"\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\(Timing[
+        testres = Map[Apply[LerchPhi, #] &, testcases]]\)[\([1]\)]\)], "Input"],
+
+Cell[BoxData[
+    \(17.459999999999994`\ Second\)], "Output"]
+}, Open  ]],
+
+Cell[TextData[{
+  "A typical execution time for the C++ implementation (file lerchphimp.cc) \
+is 0.6 seconds on a Pentium II. This implementation uses optimized arithmetic \
+with 64 significant decimals (\"quad-double\" precision) (",
+  ButtonBox["go to web page",
+    ButtonData:>{
+      URL[ "http://www.nersc.gov/~dhbailey/mpdist/mpdist.html"], None},
+    ButtonStyle->"Hyperlink"],
+  "). Note that the computational overhead in ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " caused by handing the arguments over to the routine LerchPhi should be \
+small. Our LerchPhiCNCT implementation in ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " is not applicable to the parameter region z < 0, and thus cannot be \
+applied to the example calculations 6 and 10 (see below)."
+}], "Text"],
+
+Cell[BoxData[
+    \(\(factors = {1.`64, 10.`64, 10000.`64, 10.`64, 1.`64, 10.`64, 10.`64, 
+          1.0`64\ 10^\((\(-17\))\)};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(casenum = Table[i, {i, 5, 12}];\)\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(ResTable\  = \ 
+      TableForm[Transpose[{casenum, form[factors\ testres]}]]\)], "Input"],
+
+Cell[BoxData[
+    TagBox[GridBox[{
+          {"5", 
+            TagBox[
+              
+              InterpretationBox["\<\"   1.64482 53852 46778 97994 71620 01912 \
+0\"\>",
+                
+                1.644825385246778979947162001912012933908619364668612747162411\
+261`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {34, 31}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)]},
+          {"6", 
+            TagBox[
+              
+              InterpretationBox["\<\"   8.22468 32662 59164 96204 28513 35653 \
+2\"\>",
+                
+                8.224683266259164962042851335653246788793431142825743218926715\
+485`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {34, 31}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)]},
+          {"7", 
+            TagBox[
+              
+              InterpretationBox["\<\"   9.59714 89709 96546 60298 24231 47799 \
+6\"\>",
+                
+                9.597148970996546602982423147799550922901023312428274127202912\
+326`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {34, 31}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)]},
+          {"8", 
+            TagBox[
+              
+              InterpretationBox["\<\"   1.42758 08137 60309 42598 94006 12727 \
+3\"\>",
+                
+                1.427580813760309425989400612727345245027412099155852277731441\
+561`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {34, 31}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)]},
+          {"9", 
+            TagBox[
+              
+              InterpretationBox["\<\"   1.00000 25000 11111 17361 15111 13888 \
+9\"\>",
+                
+                1.000002500011111173611511113888909297208405429589239185693949\
+408`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {34, 31}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)]},
+          {"10", 
+            TagBox[
+              
+              InterpretationBox["\<\"   9.99984 25044 09843 72692 59087 35941 \
+8\"\>",
+                
+                9.999842504409843726925908735941782974910082938639203455154433\
+352`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {34, 31}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)]},
+          {"11", 
+            TagBox[
+              
+              InterpretationBox["\<\"   6.59092 28798 19636 65749 71951 52954 \
+5\"\>",
+                
+                6.590922879819636657497195152954530975324490243727929625683745\
+891`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {34, 31}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)]},
+          {"12", 
+            TagBox[
+              
+              InterpretationBox["\<\"   2.70000 00000 00000 00111 18620 11111 \
+2\"\>",
+                
+                2.700000000000000001111862011111184702261513842074607484846883\
+555`64,
+                AutoDelete->True],
+              (
+              PaddedForm[ #, {34, 31}, DigitBlock -> 5, NumberSeparator -> 
+                " "]&)]}
+          },
+        RowSpacings->1,
+        ColumnSpacings->3,
+        RowAlignments->Baseline,
+        ColumnAlignments->{Left}],
+      Function[ BoxForm`e$, 
+        TableForm[ BoxForm`e$]]]], "Output"]
+}, Open  ]],
+
+Cell["\<\
+As shown below, cases 7 and 12 are interesting (the above results \
+are correct).\
+\>", "Text"],
+
+Cell[BoxData[
+    \(\(Export["\<test.ref\>", ResTable, "\<Table\>"];\)\)], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["The Problematic Cases 7 and 12", "Section"],
+
+Cell[TextData[{
+  "Case 7: The result from the C program (lerchphi.c) in standard double \
+precision x 10^4 is     9.59714 89709 9796    which is - on the level of one \
+part in 10^12 - different from the above result of  9.59714 89709 9654...\n\n\
+Case 12: The result from the C program (lerchphi.c) in standard double \
+precision x 10^(-17) is 2.5880201290103731 which is in disagreement with the \
+result of 2.70000000000000000111 in the table above.\n\nThese are the only \
+two cases where the standard-precision routine (lerchphi.c) written in C \
+(double, 16 digits) is not sufficient to calculate the result to the desired \
+precision (14 digits).\n \n An explanation for the numerical problems \
+occurring in both of the above cases is given in the program documentation \
+file  (lphidoc.pdf).\n \nThe discrepancy disappears if the algorithm is \
+augmented by extended-precision arithmetic either in ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " (both with the built-in routine LerchPhi and also with our implementation \
+LerchPhiCNCT), and it also disappears when using the multiprecision C++ \
+routine (lerchphimp.cc)."
+}], "Text",
+  FontSize->16],
+
+Cell[TextData[{
+  "Load CNCT algorithm from our ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " package."
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(<<  ../Mathematica/lerchphi.m\)], "Input"],
+
+Cell[BoxData[
+    \(">> LerchPhiCNCT package 1.00 -- Copyright (C) 2002 Sergej Aksenov\n \
+and Ulrich Jentschura -- Type ?LerchPhiCNCT for information"\)], "Print"]
+}, Open  ]],
+
+Cell["Require more accuracy in the result.", "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(SetOptions[LerchPhiCNCT, CNCTRelativeAccuracy \[Rule] 32]\)], "Input"],
+
+Cell[BoxData[
+    \({CNCTRelativeAccuracy \[Rule] 32, CNCTMaximumIterations \[Rule] 100, 
+      CNCTBeta \[Rule] 1, CNCTN \[Rule] 0}\)], "Output"]
+}, Open  ]],
+
+Cell[TextData[{
+  "In a C program one can use a multiprecision software library, for example \
+by Bailey et al. (",
+  ButtonBox["go to web page",
+    ButtonData:>{
+      URL[ "http://www.nersc.gov/~dhbailey/mpdist/mpdist.html"], None},
+    ButtonStyle->"Hyperlink"],
+  ") or by Briggs (",
+  ButtonBox["go to web page",
+    ButtonData:>{
+      URL[ "http://www.btexact.com/people/briggsk2/doubledouble.html"], None},
+    
+    ButtonStyle->"Hyperlink"],
+  ")."
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell["Case 7", "Subsection"],
+
+Cell["\<\
+The result from the C program (lerchphi.c) in standard precision x \
+10^4 is     9.59714 89709 9796.\
+\>", "Text",
+  FontSize->16],
+
+Cell[TextData[{
+  "The result of ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  "'s built-in LerchPhi is:"
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(form[10^4\ testres[\([7 - 5 + 1]\)]]\)], "Input"],
+
+Cell[BoxData[
+    TagBox[
+      InterpretationBox["\<\"   9.59714 89709 96546 60298 24231 47799 6\"\>",
+        9.597148970996546602982423147799550922901023312428274127202912326`64,
+        AutoDelete->True],
+      (PaddedForm[ #, {34, 31}, DigitBlock -> 5, NumberSeparator -> 
+        " "]&)]], "Output"]
+}, Open  ]],
+
+Cell[TextData[{
+  "The result obtained with our implementation LerchPhiCNCT (in ",
+  StyleBox["Mathematica)",
+    FontSlant->"Italic"],
+  " coincides with the built-in LerchPhi routine:"
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(form[10^4\ Apply[LerchPhiCNCT, testcases[\([3]\)]]]\)], "Input"],
+
+Cell[BoxData[
+    TagBox[
+      InterpretationBox["\<\"   9.59714 89709 96546 60298 24231 47799 6\"\>",
+        9.597148970996546602982423147799551495243208014566552192984339793`64,
+        AutoDelete->True],
+      (PaddedForm[ #, {34, 31}, DigitBlock -> 5, NumberSeparator -> 
+        " "]&)]], "Output"]
+}, Open  ]],
+
+Cell["\<\
+The same is true for the output of lerchphimp.cc (result not \
+shown). \
+\>", "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Case 12", "Subsection"],
+
+Cell["\<\
+The result from the C program in standard precision x 10^(-17) is   \
+  2.58802 01290 1037.\
+\>", "Text",
+  FontSize->16],
+
+Cell[TextData[{
+  "The result of ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  "'s built-in LerchPhi is:"
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(form[testres[\([12 - 5 + 1]\)]]\)], "Input"],
+
+Cell[BoxData[
+    TagBox[
+      InterpretationBox[\("   2.70000 00000 00000 00111 18620 11111 \
+2"\[Times]10\^"17"\),
+        2.700000000000000001111862011111184702261513842074607484846883555`64*^\
+17,
+        AutoDelete->True],
+      (PaddedForm[ #, {34, 31}, DigitBlock -> 5, NumberSeparator -> 
+        " "]&)]], "Output"]
+}, Open  ]],
+
+Cell[TextData[{
+  "The result obtained with our implementation LerchPhiCNCT (in ",
+  StyleBox["Mathematica)",
+    FontSlant->"Italic"],
+  " coincides with the built-in LerchPhi routine:"
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(form[10^4\ Apply[LerchPhiCNCT, testcases[\([8]\)]]]\)], "Input"],
+
+Cell[BoxData[
+    TagBox[
+      InterpretationBox[\("   2.70000 00000 00000 00111 18620 11111 \
+2"\[Times]10\^"21"\),
+        2.700000000000000001111862011111184702261581272890372801973642217`64*^\
+21,
+        AutoDelete->True],
+      (PaddedForm[ #, {34, 31}, DigitBlock -> 5, NumberSeparator -> 
+        " "]&)]], "Output"]
+}, Open  ]],
+
+Cell["\<\
+The same is true for the output of lerchphimp.cc (result not \
+shown). \
+\>", "Text"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+FrontEndVersion->"4.1 for Macintosh",
+ScreenRectangle->{{0, 1024}, {0, 746}},
+WindowToolbars->"EditBar",
+WindowSize->{913, 724},
+WindowMargins->{{16, Automatic}, {Automatic, 0}}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1727, 52, 36, 0, 108, "Title"],
+Cell[1766, 54, 313, 8, 125, "Subsubtitle"],
+Cell[2082, 64, 318, 8, 125, "Subsubtitle"],
+
+Cell[CellGroupData[{
+Cell[2425, 76, 104, 3, 56, "Section"],
+Cell[2532, 81, 42, 0, 32, "Text"],
+Cell[2577, 83, 155, 3, 27, "Input"],
+Cell[2735, 88, 160, 3, 27, "Input"],
+Cell[2898, 93, 106, 2, 27, "Input"],
+Cell[3007, 97, 43, 0, 32, "Text"],
+Cell[3053, 99, 147, 5, 32, "Text"],
+Cell[3203, 106, 441, 7, 75, "Input"],
+Cell[3647, 115, 64, 0, 32, "Text"],
+
+Cell[CellGroupData[{
+Cell[3736, 119, 91, 1, 24, "Input"],
+Cell[3830, 122, 6916, 186, 161, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[10783, 313, 51, 1, 24, "Input"],
+Cell[10837, 316, 36, 1, 24, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[10910, 322, 41, 1, 24, "Input"],
+Cell[10954, 325, 71, 1, 70, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[11062, 331, 109, 2, 70, "Input"],
+Cell[11174, 335, 61, 1, 70, "Output"]
+}, Open  ]],
+Cell[11250, 339, 805, 17, 70, "Text"],
+Cell[12058, 358, 142, 2, 70, "Input"],
+Cell[12203, 362, 68, 1, 70, "Input"],
+
+Cell[CellGroupData[{
+Cell[12296, 367, 110, 2, 70, "Input"],
+Cell[12409, 371, 3426, 104, 70, "Output"]
+}, Open  ]],
+Cell[15850, 478, 105, 3, 70, "Text"],
+Cell[15958, 483, 83, 1, 70, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[16078, 489, 49, 0, 70, "Section"],
+Cell[16130, 491, 1170, 19, 70, "Text"],
+Cell[17303, 512, 128, 5, 70, "Text"],
+
+Cell[CellGroupData[{
+Cell[17456, 521, 62, 1, 70, "Input"],
+Cell[17521, 524, 164, 2, 70, "Print"]
+}, Open  ]],
+Cell[17700, 529, 52, 0, 70, "Text"],
+
+Cell[CellGroupData[{
+Cell[17777, 533, 90, 1, 70, "Input"],
+Cell[17870, 536, 146, 2, 70, "Output"]
+}, Open  ]],
+Cell[18031, 541, 470, 14, 70, "Text"],
+
+Cell[CellGroupData[{
+Cell[18526, 559, 28, 0, 70, "Subsection"],
+Cell[18557, 561, 140, 4, 70, "Text"],
+Cell[18700, 567, 128, 5, 70, "Text"],
+
+Cell[CellGroupData[{
+Cell[18853, 576, 69, 1, 70, "Input"],
+Cell[18925, 579, 305, 6, 70, "Output"]
+}, Open  ]],
+Cell[19245, 588, 198, 5, 70, "Text"],
+
+Cell[CellGroupData[{
+Cell[19468, 597, 84, 1, 70, "Input"],
+Cell[19555, 600, 305, 6, 70, "Output"]
+}, Open  ]],
+Cell[19875, 609, 95, 3, 70, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[20007, 617, 29, 0, 70, "Subsection"],
+Cell[20039, 619, 131, 4, 70, "Text"],
+Cell[20173, 625, 128, 5, 70, "Text"],
+
+Cell[CellGroupData[{
+Cell[20326, 634, 64, 1, 70, "Input"],
+Cell[20393, 637, 325, 8, 70, "Output"]
+}, Open  ]],
+Cell[20733, 648, 198, 5, 70, "Text"],
+
+Cell[CellGroupData[{
+Cell[20956, 657, 84, 1, 70, "Input"],
+Cell[21043, 660, 325, 8, 70, "Output"]
+}, Open  ]],
+Cell[21383, 671, 95, 3, 70, "Text"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

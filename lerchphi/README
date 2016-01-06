@@ -1,0 +1,360 @@
+----------------------------------------------------------
+README: How to use C and Mathematica programs for LerchPhi
+----------------------------------------------------------
+
+=================
+Table of Contents
+=================
+
+1      Introduction
+1.1    Important Stuff
+1.2    Files in the distribution
+1.3    Technical Aspects
+2      The Files
+2.1    Documentation
+2.2    Mathematica Files
+2.3    C Program Files
+2.4    Makefiles
+2.5    Test programs 
+2.5.1  Test Programs for the double-precision version "Source/lerchphi.c"
+2.5.2  Test Programs for the quad-double version "Source/lerchphimp.cc"
+3      Mini-User Guide
+3.1    File "lerchphi.m"
+3.2    Files "lerchphi.c" and "test.c"
+3.3    File "testf77.f"
+3.4    File "lerchphimp.cc"
+
+===================
+1      Introduction
+===================
+
+======================
+1.1    Important Stuff
+======================
+
+The LerchPhi software (in particular the files
+* Source/lerchphi.c, 
+* Source/lerchphimp.cc, and 
+* Mathematica/lerchphi.m) 
+are copyright by Sergej V. Aksenov and Ulrich D. Jentschura, 2002.
+
+The current distribution is 1.00 (May 1, 2002). This README is meant to
+provide only essential information.
+
+The program files are:
+
+* Source/lerchphi.c - double-precision version (16 decimal figures). C.
+* Source/lerchphimp.cc - quad-double version (64 decimal figures). C++.
+* Mathematica/lerchphi.m - accuracy adjustable. Mathematica.
+
+IMPORTANT: "Source/lerchphimp.cc" uses David H. Bailey's quad-double precision
+package "qd" which provides routines for handling arithmetic with 64 significant
+decimal figures. Consult "http://www.nersc.gov/~dhbailey/mpdist/mpdist.html".
+You should compile "qd" before using "Source/lerchphimp.cc". The other program 
+files listed above do NOT depend on "qd".
+
+================================
+1.2    Files in the distribution
+================================
+
+lerchphi/README
+lerchphi/Documents/lphidoc.pdf
+lerchphi/Documents/lphidoc.tex
+lerchphi/Mathematica/lerchphi.m
+lerchphi/Mathematica/lerchphidemo.nb
+lerchphi/Source/lerchphi.c
+lerchphi/Source/lerchphimp.cc
+lerchphi/Tests/testmp.linux.cc
+lerchphi/Tests/Makefile
+lerchphi/Tests/testmp.out
+lerchphi/Tests/test.out
+lerchphi/Tests/test.ref
+lerchphi/Tests/MathTest.nb
+lerchphi/Tests/Makefile.mp
+lerchphi/Tests/Makefile.linux.mp
+lerchphi/Tests/Makefile.f77
+lerchphi/Tests/test.c
+lerchphi/Tests/testf77.out
+lerchphi/Tests/testf77.f
+lerchphi/Tests/testmp.cc
+
+========================
+1.3    Technical Aspects
+========================
+
+Computers for which the program is designed:  
+All computers which provide support for the "C" programming language
+and/or the "Mathematica" scientific computing environment.
+
+Operating system under which the program has been tested: 
+INTEL Linux, POWERPC Darwin (a BSD UNIX variant), SunOS.
+
+Programming language used: 
+C and Mathematica. Implementations are provided for both.
+Furthermore, a special implementation is provided in C++ which
+uses extended-precision arithmetic [Y. Hida, X. S. Li, D. H. Bailey,
+Lawrence Berkeley reports LBNL-48597 and LBNL-46996, available from
+http://www.nersc.gov/~dhb].
+
+Keywords: Computational techniques;
+numerical approximation and analysis; DNA, RNA;
+Folding and sequence analysis.
+
+Nature of Problem:
+Computation of the Lerch Phi transcendent. Implementation of the combined
+nonlinear-condensation transformation (CNCT) in C and Mathematica. 
+
+Method of solution:
+A special function is evaluated via accelerated evaluation of its defining
+power series in problematic parameter regions. The principal numerical 
+difficulty associated with slow convergence of the power series is removed
+by the use of a transformation that converts the slowly convergent input 
+series into a sequence of rapidly convergent numerical approximants. The 
+terms of the input series are in general nonalternating and represent a
+certain numerical problem. See the e-print math.NA/0202009.
+
+Typical running time:
+The extended-precision arithmetic version takes about 0.06 seconds on a
+Pentium II with 450 MHz for a specific evaluation of LerchPhi in problematic
+parameter regions with 48 decimal figures accuracy. The double-precision
+version is much faster.
+
+Unusual features:
+The double-precision version of the program has problems in calculating
+the Lerch Phi transcendent Phi(z,s,v) for two parameter combinations:
+(1) SIMULTANEOUSLY z being very close to unity, and v very large
+(2) v being very close to a negative integer.
+Both problematic combinations are described in the program documentation
+Documents/lphidoc.pdf, and in both cases, the use of an extended precision
+arithmetic resolves the numerical problems.
+
+================
+2      The Files
+================
+
+The following procedures have been successfully tested on a Macintosh computer
+running Darwin (free operating system based on the BSD UNIX standard for 
+PowerPC-based Macintosh computers), an INTEL PC running Linux, and a Sun 
+workstation running SunOS.
+
+This distribution contains the following files:
+
+====================
+2.1    Documentation
+====================
+
+* Documents/lphidoc.tex -
+    User's Guide in LaTeX format. 
+
+* Documents/lphidoc.pdf -
+    User's Guide in PDF format. 
+
+========================
+2.2    Mathematica Files
+========================
+
+* Mathematica/lerchphi.m - 
+    Mathematica package with an implementation of the CNCT for the calculation 
+    of Lerch's transcendent.
+
+* Mathematica/lerchphidemo.nb - 
+    Mathematica notebook with test calculations. Uses Mathematica/lerchphi.m.
+
+======================
+2.3    C Program Files
+====================== 
+
+* Source/lerchphi.c -
+    Lerch's transcendent C program in standard double precision.
+
+* Source/lerchphimp.cc -
+    Lerch's transcendent C++ program in quad-double precision.
+
+================
+2.4    Makefiles
+================
+
+* Tests/Makefile - 
+    Makefile to build the test program "Tests/test" for the double precision
+    version for UNIX systems. Uses "Source/lerchphi.c" and "Tests/test.c".
+
+* Tests/Makefile.f77 -
+    Makefile to build the Fortran test program "Tests/testf77" calling the
+    double precision version "Source/lerchphi.c" from a Fortran program
+    on UNIX systems. Compiles "Test/testf77.f" -> "Tests/testf77".
+
+* Tests/Makefile.mp -
+    Makefile to build the test program "Tests/testmp" for the quad-double
+    precision version "Source/lerchphimp.cc" for UNIX systems. Compiles
+    "Tests/testmp.cc" -> "Tests/testmp".
+
+* Tests/Makefile.linux.mp -
+    Variant of Makefile.mp that contains LINUX-specific changes. Uses
+    "Source/lerchphimp.cc" and compiles "Tests/testmp.linux.cc" -> "Tests/testmp".
+
+====================
+2.5    Test programs 
+====================
+
+=========================================================================
+2.5.1  Test Programs for the double-precision version "Source/lerchphi.c"
+=========================================================================
+
+* Tests/test.c -
+     Test driver program for "Source/lerchphi.c".
+
+* Tests/test.out -
+     Verification of output generated by "Tests/test".
+
+* Tests/testf77.f -
+      Test driver program for cross-calling "Source/lerchphi.c" from Fortran.
+      Compiles "Tests/testf77.f" -> "Tests/testf77".
+
+* Tests/testf77.out -
+      Verification of output generated by "Tests/testf77".
+
+=======================================================================
+2.5.2  Test Programs for the quad-double version "Source/lerchphimp.cc"
+=======================================================================
+
+* Tests/testmp.cc -
+     Test driver program for the quad-double precision code
+     contained in "Source/lerchphimp.c".
+
+* Tests/testmp.linux.cc -
+     Variant of "Tests/testmp.c" with LINUX-specific changes.
+
+* Tests/testmp.out -
+     Verification of output generated by "Tests/testmp".
+
+* Test/MathTest.nb -
+     Mathematica notebook that generates reference values.
+ 
+* Tests/test.ref -
+     Output of "Test/MathTest.nb" that contains the reference values.
+
+======================
+3      Mini-User Guide
+======================
+
+========================
+3.1    File "lerchphi.m"
+========================
+
+lerchphi.m defines the Mathematica function LerchPhiCNCT[] and the symbols
+CNCTRelativeAccuracy, CNCTMaximumIterations, CNCTBeta, and CNCTN. All symbols
+are put into the global context.
+
+LerchPhiCNCT[] uses exactly the same algorithm as the C program does, but
+extensive use is made of the functional programming paradigm supported by
+Mathematica. For a description of the algorithm underlying the Mathematica
+function LerchPhiCNCT[], see the file lphidoc.pdf.
+
+The Mathematica code LerchPhiCNCT is restricted to positive values for z and v.
+There is a further difference in the algorithm used: Within the Mathematica
+program, the CNCT is used for all values of z, whereas the C program is
+designed to rely on a direct term-by-term summation of the defining power
+series of the Lerch transcendent for |z| <= 0.5.
+
+To use: just load file "<<lerchphi.m" and use LerchPhiCNCT[z,s,v] like any
+other standard Mathematica function. Examples of its application are given in
+the Mathematica notebook file Mathematica/lerchphidemo.nb.
+
+======================================
+3.2    Files "lerchphi.c" and "test.c"
+======================================
+
+Essentially, in order to build an executable from the test C program, all 
+that is required is to compile 
+  
+  Source/lerchphi.c 
+
+and 
+
+  Tests/test.c 
+
+together. For this purpose, you may use "Tests/Makefile" as instructed below.
+
+1. Edit the prototype makefile 
+
+     Tests/Makefile (currently for Unix platforms)
+
+   for your platform and compiler, according to your platform-specific needs.
+
+2. If appropriate, set your programming environment and/or operating system 
+   default directory to "Tests/" in this distribution.
+
+3. The compilation of "test": On a Unix machine execute the command "make".
+
+4. The executable is created as "Tests/test".
+
+6. The output of test should be compared to 
+   
+     Tests/test.out    
+
+   for verification purposes (the output of test should be identical 
+   to the file test.out up to machine-specific differences in the 
+   implementation of double-precision arithmetic). 
+
+=======================
+3.3    File "testf77.f"
+=======================
+
+If you intend to call double-prec. "Source/lerchphi.c" from a Fortran code,
+then the most important point to remember is to define the following
+preprocessor macro: "-DADD_UNDERSCORE" when compiling the C code. This will
+generate an object file with the function name appended with an underscore.
+That is a requirement of the Fortran compiler on a Sun system and also on most
+other systems that support Fortran. The files: "Makefile.f77" and the program
+"testf77.f" give an indication.
+   
+===========================
+3.4    File "lerchphimp.cc"
+===========================
+   
+Essentially, in order to build an executable from the test C++ program that 
+uses the multiprecision software library by David H. Bailey et al., compile
+
+  Source/lerchphimp.cc 
+
+and 
+
+  Tests/testmp.cc 
+
+together. To this end, you may use the "Makefile.mp".
+
+Note that you will need Bailey's multiprecision library compiled for your 
+system and available to the compiler; edit Makefile.mp if necessary. The 
+source code for the "qd" library can be downloaded at
+
+http://www.nersc.gov/~dhbailey/mpdist/mpdist.html
+
+The "qd" package being compiled successfully, the library "libqd.a" is made
+available for general use on a computer system. This library must be placed in
+a directory where the C++ compiler sees it. One option is "/usr/local/include".
+Another option is to specify paths in the Makefile. We have assumed that
+"libqd.a" resides in a directory "../../qd" relative to "lerchphi/Tests". In
+"Makefile.mp", the following lines
+
+INCPATH = ../../qd/include
+LIBPATH = ../../qd
+
+serve to inform the compiler about the location of "libqd.a", and to also
+provide the location of relevant header files ("../../qd/include").
+
+Note for LINUX users: if your processor is INTEL, make sure to set the
+preprocessor macro x86 when compiling libqd AND testmp. You may have to edit
+testmp.cc and Makefile.mp for this purpose. Also, uncomment the references to
+the macros "x86_fix_start" and "x86_fix_end" in the body of "testmp.cc", and do
+not forget to also uncomment the reference to the header file "x86.h" in
+"testmp.cc". The C++ compiler will enjoy seeing the option "-Dx86" specified in
+order to correctly compile under LINUX.
+
+For convenience, we have added the files "Makefile.linux.mp" and
+"testmp.linux.cc" where the required changes have already been taken into
+account, without implying that these files will work under every variant of
+LINUX (they are not necessarily applicable to non-INTEL based systems).
+
+Please consult the documentation of the "qd" package for instructions on 
+compiling and using on various platforms, some of these instructions may 
+also help to resolve potential problems with testmp.cc and lerchphimp.cc.

@@ -1,0 +1,601 @@
+\documentclass[11pt]{article}
+
+\topmargin 0.3cm
+\oddsidemargin 0cm
+\textwidth 16cm
+\textheight 21cm
+\pagestyle{plain}
+\frenchspacing{}
+
+\jot 0.55cm
+\renewcommand{\arraystretch}{1.4}
+\def\bbox#1{\mbox{\boldmath$#1$}}
+\def\eq{\;\;\Longleftrightarrow\;\;}
+\def\trunc#1{[\mkern - 2.5 mu  [#1] \mkern - 2.5 mu ]}
+\def\corresponds{{\lower.2ex\hbox{=}}{\rm\kern-.75em^\triangle}}
+\def\succsim{\succ\kern-.9em_\sim\kern.3em}
+\def\precsim{\prec\kern-1em_\sim\kern.3em}
+\def\slantfrac#1#2{\kern1em^{#1}\kern-.3em/\kern-.1em_{#2}}
+\def\lfrac#1#2{{}^{#1\!}\kern-.0em/_{#2}}
+
+\setlength{\parindent}{0mm}
+\setlength{\parskip}{1.0ex plus0.3ex minus0.5ex}
+
+\sloppy{}
+
+\usepackage{amsfonts}
+
+\begin{document}
+
+\begin{center}
+\begin{tabular}{c}
+\hline
+\rule[-5mm]{0mm}{15mm} {\Huge \sf {\tt lerchphi} User's Guide} \\
+\hline
+\end{tabular}
+\end{center}
+%
+\vspace{0.2cm}
+%
+\begin{center}
+Sergej V. Aksenov$^{1,2)}$ and Ulrich D. Jentschura$^{3)}$
+\end{center}
+%
+\vspace{0.2cm}
+%
+\begin{center}
+$^{1)}$ Department of Microbiology and Immunology, \\
+University of Michigan, Ann Arbor, MI 48109, USA \\[2ex]
+$^{2)}$ Current address: Department of Zoology, \\
+University of Cambridge, Downing Street, Cambridge, CB2 3EJ, UK \\[2ex]
+$^{3)}$ Institute of Theoretical Physics, \\
+Dresden University of Technology, 01062 Dresden, Germany \\[1ex]
+{\bf Email:} sa354@cam.ac.uk, jentschura@physik.tu-dresden.de
+\end{center}
+%
+\begin{center}
+May 1, 2002
+\end{center}
+%
+\vspace{0.1cm}
+%
+\begin{center}
+\begin{minipage}{11.8cm}
+{\underline{Abstract}}
+This document describes the usage of a C program that calculates 
+Lerch's $\Phi$ transcendent of real arguments using convergence acceleration 
+methods (nonlinear sequence transformations and the combined 
+nonlinear-condensation transformation).
+\end{minipage}
+\end{center}
+
+\tableofcontents
+
+\newpage
+
+%
+% Conditions of Use
+%
+\section{Conditions of Use}
+
+\begin{itemize}
+%
+\item This document and software (file {\tt lerchphi.c}) described herein 
+is copyright by Sergej V. Aksenov and Ulrich D. Jentschura.
+%
+\item This software and its constituent parts come with no warranty, 
+whether expressed or implied, that it is free of errors or suitable 
+for any specific purpose.  It must not be used to solve any problem, 
+whose incorrect solution could result in injury to a person, institution, 
+or property.  It is user's own risk to use this software or its parts and 
+the authors disclaim all liability for such use.
+%
+\item This software is distributed ``as is''. In particular, no maintenance, 
+support, troubleshooting, or subsequent upgrade is implied.
+%
+\item The use of this software must be acknowledged in any publication 
+that contains results obtained with it; please cite~\cite{JeBeSoAkSaMo2002}.
+%
+\item The free use of this software and its parts is restricted for research 
+purposes; commercial use require permission and licensing from Sergej V. 
+Aksenov and Ulrich D. Jentschura.
+\end{itemize}
+
+\section{Availability}
+
+The source of the LerchPhi program {\tt lerchphi.c}, the example driver file 
+{\tt test.c}, example makefile, and a sample output of a run of 
+{\tt test.c}, as well as this documentation can be downloaded from the
+web pages of the authors~\cite{AkJeURL}.
+
+\section{Purpose}
+
+The C program contained in the file {\tt lerchphi.c} calculates 
+Lerch's transcendent which is defined by the following infinite 
+series:
+%
+\begin{equation}
+\label{lerch}
+\Phi(z,s,v) = \sum_{n=0}^\infty \frac{z^n}{(n+v)^s}\,,  \qquad
+|z|<1\,, \qquad v \neq 0,-1,\dots\,.
+\end{equation}
+%
+[See Eq.~(1) on p.~27 of Ref.~\cite{Ba1953vol1}].
+We consider the case of real parameters $z$, $s$, and $v$ only.
+
+The C language implementation of the combined nonlinear-condensation 
+transformation (CNCT) described here is motivated by the virtual absence 
+of freely available and transportable C code for Lerch's transcendent 
+for real arguments. 
+
+%
+% Basic formulas
+%
+\section{Basic formulas}
+
+Assume that the elements of
+the sequence $\{ s_n \}_{n=0}^{\infty}$
+represent partial sums 
+%
+\begin{equation}
+\label{defsn}
+s_n = \sum_{k=0}^{n} a(k)
+\end{equation}
+%
+of an infinite series
+%
+\begin{equation}
+\label{infser}
+\sum_{k=0}^{\infty} a(k)\,,
+\quad a(k) \geq 0\,,
+\end{equation}
+%
+e.g. that in Eq.~(\ref{lerch}). We denote 
+the limit $s \equiv \sum_{k=0}^{\infty} a(k)$. 
+
+The first step of the CNCT is the Van Wijngaarden 
+transformation~\cite{vW1965} of the
+nonalternating input series~(\ref{infser}), whose partial 
+sums are given by (\ref{defsn}), into an alternating
+series
+%
+\begin{equation}
+\label{vwijn}
+s = \sum_{j=0}^{\infty} (-1)^j {\bf A}_j\,.
+\end{equation}
+%
+The quantities ${\bf A}_j$ are defined according to 
+%
+\begin{equation}
+\label{A2B}
+{\bf A}_j \; = \; \sum_{k=0}^{\infty} \, {\bf b}_{k}^{(j)} \, ,
+\end{equation}
+%
+where
+%
+\begin{equation}
+\label{B2a}
+{\bf b}_{k}^{(j)} \; = \; 2^k \, a(2^k\,(j+1)-1) \, .
+\end{equation}
+
+The second step is to apply an appropriate sequence transformation 
+to the series of partial sums
+%
+\begin{equation}
+\label{PSumS}
+{\bf S}_n \; = \; \sum_{j=0}^{n} \, (-1)^j \, {\bf A}_j
+\end{equation}
+%
+of the Van Wijngaarden transformed series~(\ref{vwijn}) of the first step.  
+We use the delta sequence transformation~\cite{Si1979,We1989} which is 
+constructed according to [Eq.~(8.4-4) of~\cite{We1989}]
+%
+\begin{equation}
+\label{defdelta}
+\delta_{k}^{(0)} \left( 1, {\bf S}_n \right) = \frac
+{\displaystyle \sum_{j=0}^{k} \; ( - 1)^{j} \; 
+{k \choose j} \; 
+\frac {(j+1 )_{k-1}} {(k+1 )_{k-1}} \;
+\frac {{\bf S}_{j}} {\omega_{j}} }
+{\displaystyle \sum_{j=0}^{k} \; ( - 1)^{j} \; 
+{k \choose j} \; 
+\frac {(j+1 )_{k-1}} {(k+1 )_{k-1}} \;
+\frac {1} {\omega_{j}} } \, .
+\end{equation}
+%
+The quantities appearing in Eq.~(\ref{defdelta})
+have the following interpretation: ${\bf S}_n$ are the elements of an 
+alternating sequence whose convergence is to be accelerated, and the
+$\omega_n$ are remainder estimates, i.e.~estimates for the
+truncation error $\omega_n \approx r_n$ defined by $r_n = {\bf S}_n - s$.  
+Remainder estimates are calculated as $\omega_n = {\bf S}_{n+1} - {\bf S}_n$.
+
+%
+% Usage of the program 
+%
+\section{Usage of the {\tt lerchphi} Program}
+
+The program consists in a self-contained file {\tt lerchphi.c} written in 
+ISO C. The file {\tt lerchphi.c} should be compiled with any user written 
+main program.  A test program {\tt test.c} is provided which calculates 
+Lerch's transcendent for several combinations of parameters, as well as a 
+makefile (written for Unix systems) to build the executable {\tt test}. 
+We built and ran an executable from this 
+makefile on a Macintosh computer with the PowerPC G3 processor, 
+Mac OS X v10.1.3, Darwin Kernel v5.3, and on an INTEL--based
+LINUX system running SuSE Linux 7.3, as well as a Sun workstation
+running SunOS. However, one should rather view these 
+makefiles as templates and modify for the particular operating system and 
+compiler.  
+
+Further useful explanations are provided in the {\tt README} file
+which forms part of the current distribution.
+
+The main program should call {\tt lerchphi()} as follows
+%
+\begin{quote}
+\fbox{{\tt flag = {\bf lerchphi}(\&z, \&s, \&v, \&acc, \&result, \&iter);}}
+\end{quote}
+%
+Here, the variables should be defined in the main program and 
+have the following types:
+%
+\begin{quote}
+\fbox{{\tt {\bf int} flag, iter;}}
+\end{quote}
+%
+\begin{quote}
+\fbox{{\tt {\bf double} z, s, v, acc, result;}}
+\end{quote}
+%
+The meaning of these variables is as follows: {\tt z}, {\tt s}, {\tt v} carry
+the arguments of Lerch's transcendent $\Phi(z,s,v)$;
+{\tt acc} stores the value of
+the desired relative accuracy of the result; 
+{\tt result} holds the calculated
+value of Lerch's transcendent; and {\tt iter} is the 
+number of iterations in the
+convergence acceleration loop needed to reach 
+the accuracy {\tt acc}. A positive
+(nonzero) value of {\tt flag} signifies that 
+an internal error occurred in the
+calculation. 
+The error flags are explained in Table~\ref{cerr} below.
+
+The range of valid arguments $z$, $s$ and $v$
+of the C program is determined by the properties of the defining series
+representation (\ref{lerch}): we require 
+$-1 < z < 1$, and $s,v$ to be real. The case
+of negative $v$ is problematic. The C program stops with an error flag
+if $v$ is a negative integer [one of the terms of the defining series
+of Lerch's transcendent 
+has a vanishing denominator for negative integer $v$]. 
+Finally, if $v$ is negative non-integer, then we require
+$s$ to be integer (for negative non-integer $v$ and non-integer $s$,
+the C function ${\tt pow}$ is not well-defined).
+
+%
+% Details of the implementation
+%
+\section{Details of the Implementation}
+
+The use of the CNCT for positive $z$, $z$ close to unity, removes
+the principal numerical difficulties associated with the
+slow convergence of the series (\ref{lerch}) in this parameter region.
+For negative $z$, the partial sums of the -- in this case
+alternating -- series (\ref{lerch}) are directly used as
+input data for the delta transformation (\ref{defdelta}),
+and the Van Wijngaarden step (\ref{vwijn}) -- (\ref{B2a})
+of the CNCT may be skipped. This corresponds to the
+standard use of nonlinear sequence transformations as efficient
+accelerators for alternating series~\cite{We1989}.
+
+The LerchPhi program has two subroutines: {\tt aj()} which calculates the Van 
+Wijngaarden terms ${\bf A}_j$ in Eq.~(\ref{A2B}), and {\tt lerchphi()} that 
+calculates the sequence of CNC transforms~(\ref{defdelta}).
+Table~\ref{cerr} summarizes certain special conditions and genuine
+error conditions handled by  {\tt lerchphi()} and lists the flag 
+values generated.
+
+\begin{table}[htb!]
+\begin{center}
+\begin{minipage}{16cm}
+\begin{center}
+%
+\begin{tabular}{lll}
+\hline
+Special case & Program action & Flag \\
+\hline
+$z=0$ & Return $1/v^s$$^{\dagger}$ & 0\\
+%
+$z<-0.5$ & Use (\ref{defsn}) as input for (\ref{defdelta})$^{\ddagger}$ & 0 \\
+%
+$|z| \leq 0.5$ & Use term-by-term summation of (\ref{lerch}) & 0\\
+%
+$v<0\,,\,v \not \in \mathbb{Z} \setminus \mathbb{N}$, $s \in \mathbb{Z}$ 
+& 
+Use (\ref{lerchrel}) with $m=-\trunc{v}$ \hspace*{5mm} & 0 \\
+%
+$\vert z \vert \geq 1$ & 
+Error exit & 1 \\
+%
+$v<0\,,v\in \mathbb{Z} \setminus \mathbb{N}$ & 
+Error exit & 2 \\
+%
+$v<0\,,\,v \not \in \mathbb{Z} \setminus \mathbb{N}$, $s \not \in 
+\mathbb{Z}$ & 
+Error exit & 3 \\
+%
+Overflow in index of $a(k)$~[Eq.~(\ref{B2a})] \hspace*{5mm} & 
+Return current iterate & 4 \\
+%
+Underflow in $\omega_{j}$~[Eq.~(\ref{defdelta})] & 
+Return current iterate & 5 \\
+%
+Over max. iterations & 
+Return current iterate & 6 \\
+%
+\hline
+\multicolumn{3}{l}{$^{\dagger}$This is just the first term of the series 
+  (\ref{lerch})}\\
+\multicolumn{3}{l}{\hspace*{3mm} if we use the definition $0^0=1$.} \\[1ex]
+\multicolumn{3}{l}{$^{\ddagger}$The Van Wijngaarden step (\ref{vwijn}) -- (\ref{B2a})
+  is not needed because} \\
+\multicolumn{3}{l}{\hspace*{3mm} the series is already alternating 
+[replace ${\bf S}_n \to s_n$ in Eq.~(\ref{defdelta})].}\\
+\hline
+\end{tabular}
+%
+\caption{Special cases and error conditions in the C program 
+{\tt lerchphi()} which calculates Lerch's transcendent.}
+\label{cerr}
+%
+\end{center}
+\end{minipage}
+\end{center}
+%
+\end{table}
+
+The program checks for parameters $z$, $s$, and $v$ to be in the domain 
+of validity of the series representation of Lerch's transcendent~(\ref{lerch}). 
+The program also refuses to calculate if $v<0$ and $s$ is not an integer, 
+which is problematic for the standard C function {\tt pow()}.  
+Note that the program can determine only up to machine accuracy
+whether the parameters $v$ and $s$ are integer.
+
+%
+% Algorithms Used
+%
+\section{Algorithms Used}
+
+We use the following relation [Eq.~(2) on p.~27 of Ref.~\cite{Ba1953vol1}]
+%
+\begin{equation}
+\label{lerchrel}
+\Phi(z,s,v) = z^m \, \Phi(z,s,m+v) + 
+  \sum_{n=0}^{m-1} \frac{z^n}{(n+v)^s}\,.
+\end{equation}
+%
+to transform from negative to positive values of $v$.
+
+In the term-by-term summation of the defining series~(\ref{lerch}) for 
+$|z| \leq 0.5$, we use the following recursion relationship for the 
+terms $a(k)$ of Lerch's power series:
+%
+\begin{equation}
+\label{termsrec}
+\frac{a(k+1)}{a(k)} = z \left( \frac{v+k}{v+k+1} \right)^s\,.
+\end{equation}
+
+For the calculation of the Van Wijngaarden 
+condensed series~(\ref{A2B}) of odd index,
+we use the following recursion~\cite{JeBeSoAkSaMo2002,Da1969}:
+%
+\begin{equation}
+\label{compute}
+{\bf A}_{i+1} = 1/2\,({\bf A}_{i/2} - a(i/2))\,,
+\end{equation}
+%
+where $i$ in the main loop of the program is an even integer.
+
+The final output of the CNC transformation is a sequence
+of approximants ${\cal T}_n \equiv {\cal T}_{\rm CNC}(n)$ that converge
+to the value of $\Phi(z,s,v)$. We define the ratio of two
+consecutive differences of approximants as
+%
+\begin{equation}
+\label{xx}
+x_n = \left| \frac{{\cal T}_{n} - {\cal T}_{n-1}}
+  {{\cal T}_{n-1} - {\cal T}_{n-2}} \right|\,.
+\end{equation}
+%
+The $x_n$ behave asymptotically, as shown in~\cite{JeBeSoAkSaMo2002} for a 
+class of model problems, like 
+a geometric series (within the region of convergence). 
+Therefore, a good estimate for the truncation error 
+${\cal T}_{n} - {\cal T}_\infty$ can be obtained
+by summing the geometric series 
+$\sum_{k=1}^\infty {\bar \rho}^k \, 
+|{\cal T}_{n} - {\cal T}_{n-1}|$ where our best 
+estimate for $\bar \rho$ is $\bar \rho \approx x_n$.
+Therefore, we use the following convergence criterion to terminate 
+the calculation of the CNC transforms:
+%
+\begin{equation}
+\label{convcrit}
+\frac{2}{x_n} \, \left[ \frac{1}{1-x_n} \,
+\left| \frac{{\cal T}_{n} - {\cal T}_{n-1}}{{\cal T}_{n}} \right| \right] < 
+{\tt acc}\,.
+\end{equation}
+%
+Here, ${\tt acc}$ is the specified desired {\em relative} 
+accuracy of the result. The factor $2/x_n$ in~(\ref{convcrit})
+is a heuristic ``safeguard factor'' introduced with the 
+notion of avoiding a premature termination of the calculation
+of successive transforms in the problematic case of
+two consecutive transforms accidentally assuming values
+very close to each other. Such a situation may arise {\em before}
+the asymptotic, geometric convergence sets in.
+The term in square brackets in (\ref{convcrit}) represents 
+the remainder estimate based on the geometric model $x_n \approx \bar \rho$
+[see Eq.~(\ref{xx})].
+
+Please note that {\tt lerchphi.c} relies on the header file 
+{\tt float.h} which contains 
+floating-point specifications for the minimum representable 
+double precision number and machine epsilon on a system.  
+This header file may not be present on all computer systems
+on which {\tt lerchphi.c} is compiled.
+If it is desired to code the relevant arithmetic constants
+explicitly, then one should modify lines 50 and 51
+of {\tt lerchphi.c}.
+
+Finally, we would like to point out that the current
+implementation of {\tt lerchphi} relies on only two 
+algorithms (direct summation of the defining power series
+and convergence acceleration), and that one cannot expect to 
+obtain optimal performance in all parameter regions, let alone
+analytic continuations for those cases where the power series
+(\ref{lerch}) diverges. As regards the evaluation
+of special functions with very large (excessive)
+parameter values, it is known that asymptotic expansions can
+provide optimal methods of evaluation. These are not implemented
+in the current version of {\tt lerchphi}. 
+
+Additionally, the use of the defining power series
+(\ref{lerch}) entails {\em eo ipso} numerical problems,
+when only double-precision arithmetic is used.
+Consider the following two representative parameter combinations:
+%
+\begin{equation}
+\label{cases}
+\begin{array}{clll}
+\mbox{(case 1:)} & z = 0.99999\,, & s = 2\,, & v = 10^3\,,\\[1ex]
+%
+\mbox{(case 2:)} & z = 0.0003\,, & s = 2\,, & v = -3.00000~00000~0001\,.
+\end{array}
+\end{equation}
+%
+When using the series (\ref{lerch}) in double precision, problems
+result for both cases. 
+
+{\bf Case 1.} The use of the CNCT implies
+that terms of very large index of the input series have to be evaluated,
+while avoiding the necessity to evaluate {\em all} terms until convergence
+is reached. In case 1, the argument $z$ is very close to unity, 
+but this should {\em a priori} not be a problem -- the CNCT is designed
+to work with this problematic case. However, since $v$ is large,
+the contribution of terms of large index as compared to the terms
+of small index in (\ref{lerch}) becomes numerically more significant. 
+This entails a loss of precision when trying to evaluate expressions
+like $0.99999^L$ where $L$ is a very large integer. This expression can be
+written as $\exp(L \, \ln 0.99999)$, and the numerical cancellations
+encountered in the evaluation of $\ln 0.99999 \approx - 0.00001$ eventually
+become significant when $L$ is excessively large. 
+In the considered case, for a specified desired 
+relative accuracy of $10^{-14}$, the double-precision version
+{\tt lerchphi.c} yields a value of $9.59714\,89709\,9796 \times 10^{-4}$
+which has to be compared to the true value of 
+$9.59714\,89709\,9654\dots \times 10^{-4}$ obtained with arithmetic of
+enhanced accuracy. The relative accuracy of the result obtained with
+double-precision arithmetic is only $10^{-12}$ and thus smaller than
+the specified accuracy goal.
+
+{\bf Case 2.} The term with $n=3$ in Eq.~(\ref{lerch}) dominates
+the sum, and its calculation entails considerable loss of numerical
+significance in forming the difference $3-3.00000~00000~0001$,
+corresponding to a loss of 14 significant decimals.
+The double-precision version yields a value of $2.58\dots \times 10^{17}$,
+which has to be compared to the value $2.70\dots \times 10^{17}$ obtained
+with the extended-precision version. It is natural that after a loss
+of 14 decimals at an intermediate stage of a calculation, the final
+answer will provide not more than two significant decimals if
+double-precision arithmetic (roughly 16 decimals) is used.
+
+Consequently, both above cases find a solution in the 
+extended-precision version of the code which is discussed
+in the next section.
+
+%
+% Extended Precision
+%
+\section{Extended Precision}
+
+The file {\tt lerchphimp.cc}, written in C++, contains a version
+of {\tt lerchphi} that
+uses multiprecision software libraries, e.g.~\cite{BaURL,BrURL}, 
+to perform all floating-point arithmetic. 
+The {\tt lerchphimp.cc}-code and the testing program {\tt testmp.cc} use the
+multiprecision library~\cite{BaURL}; running the tests reveals 
+that calculations in extended precision give correct 
+results for the two problematic cases listed in
+Eq.~(\ref{cases}). 
+
+For the 8 representative example cases considered in the testing
+routine, we have also carried out calculations with our own
+Mathematica-based~\cite{Wo1988} implementation of the CNCT 
+(file {\rm lerchphi.m})
+and we compared with Mathematica's built-in {\tt LerchPhi}
+routine. The speed comparison of {\tt lerchphimp.cc}
+and Mathematica's built-in {\tt LerchPhi} is in favour of {\tt lerchphimp.cc}
+for the 8 example calculations considered,
+and final results are in mutual agreement.
+
+Reports on further tests and comparisons are always welcome to the authors.
+
+\begin{thebibliography}{10}
+
+%\bibitem{JeAkMoSaSo2002}
+%U.~D. Jentschura, S.~V. Aksenov, P.~J. Mohr, M.~A. Savageau, and G. Soff,
+%  {\em Convergence Acceleration Techniques}, 
+%  to be published in the Proceedings of
+%  the ICCN--2002 conference (Computational Publications, 2002), e-print
+%  math.NA/0202009.
+
+\bibitem{JeBeSoAkSaMo2002} S.~V. Aksenov, M.~A. Savageau, U.~D. Jentschura,
+  J. Becher, G. Soff, and P.~J. Mohr, 
+  {\em Application of the Combined Nonlinear-Condensation Transformation to Problems in Statistical Analysis and Theoretical Physics}, 
+Comput. Phys. Commun. {\bf 150}, 1 (2003), e-print math.NA/0207086. 
+  
+\bibitem{AkJeURL} 
+S.~V.~Aksenov and U.~D.~Jentschura,
+C and Mathematica Programs for Calculation of Lerch's Transcendent,\\
+available at {\em http://aksenov.freeshell.org/} and\\
+{\em http://tqd1.physik.uni-freiburg.de/\~{}ulj}.
+  
+\bibitem{Ba1953vol1}
+H. Bateman, {\em Higher Transcendental Functions} (McGraw-Hill, New York, NY,
+  1953), Vol.~1.
+  
+\bibitem{JeMoSoWe1999}
+U.~D. Jentschura, P.~J. Mohr, G. Soff, and E.~J. Weniger, Comput. Phys. Commun.
+  {\bf 116},  28  (1999).
+  
+\bibitem{vW1965}
+A. van Wijngaarden, in {\em Cursus: Wetenschappelijk Rekenen B, Process
+  Analyse} (Stichting Mathematisch Centrum, Amsterdam, 1965), pp.\ 51--60.
+
+\bibitem{Si1979}
+A. Sidi, Math. Comput. {\bf 33},  315  (1979).
+
+\bibitem{We1989}
+E.~J. Weniger, Comput. Phys. Rep. {\bf 10},  189  (1989).
+
+\bibitem{Da1969}
+J.~W. Daniel, Math. Comput. {\bf 23},  91  (1969).
+
+\bibitem{BaURL} 
+D.~H.~Bailey {\em et al.}, High precision arithmetic software, \\
+available at {\em http://www.nersc.gov/\~{}dhbailey/mpdist/mpdist.html}.
+
+\bibitem{BrURL} 
+K.~M.~Briggs, Double-double floating point arithmetic, \\
+available at {\em http://www.btexact.com/people/briggsk2/doubledouble.html}.
+
+\bibitem{Wo1988}
+S. Wolfram, {\em Mathematica-A System for Doing Mathematics by Computer}
+  (Addison-Wesley, Reading, MA, 1988).
+
+\end{thebibliography}
+
+\end{document}
