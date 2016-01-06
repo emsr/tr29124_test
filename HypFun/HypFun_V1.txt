@@ -1,0 +1,10 @@
+Within the subfolders is code used to compute the confluent and Gauss hypergeometric functions, using numerical methods discussed in the submitted article:
+
+J. W. Pearson, S. Olver, and M. A. Porter, Numerical Methods for the Computation of the Confluent and Gauss Hypergeometric Functions, submitted, 2014.
+
+For full details of the methods used, we refer to this paper and the references therein.
+
+---
+
+- The subfolder HypFunM contains codes used to compute the confluent hypergeometric function \mathbf{M}(a;b;z) (and _1F_1(a;b;z)).
+- The subfolder HypFunF contains codes used to compute the Gauss hypergeometric function \mathbf{F}(a,b;c;z) (and _2F_1(a,b;c;z)).

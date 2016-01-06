@@ -1,0 +1,276 @@
+(************** Content-type: application/mathematica **************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      4976,        182]*)
+(*NotebookOutlinePosition[      5812,        211]*)
+(*  CellTagsIndexPosition[      5725,        205]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+Demonstration Program
+for LerchPhiCNCT\
+\>", "Title"],
+
+Cell[TextData[{
+  StyleBox["The LerchPhi software (contained in the file lerchphi.m) is \
+copyright by\nSergej V. Aksenov \n", "Text"],
+  "(http://www.geocities.com/saksenov)",
+  StyleBox[" and \nUlrich D. Jentschura,\n", "Text"],
+  "(jentschura@physik.uni-freiburg.de),",
+  StyleBox[" 2002.\n\nThe current distribution is 1.0 (May 1, 2002).", 
+    "Text"]
+}], "Text",
+  FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell["Reading the Program", "Section"],
+
+Cell["\<\
+Read in file lerchphi.m from wherever you put it. This file defines \
+the function 
+
+LerchPhiCNCT[] 
+
+and the symbols 
+
+CNCTRelativeAccuracy,
+CNCTMaximumIterations, 
+CNCTBeta, and 
+CNCTN, 
+
+all in the global context.\
+\>", "Text",
+  FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(<< lerchphi.m\)], "Input"],
+
+Cell[BoxData[
+    \(">> LerchPhiCNCT package 1.00 -- Copyright (C) 2002 Sergej Aksenov\n \
+and Ulrich Jentschura -- Type ?LerchPhiCNCT for information"\)], "Print"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\(?LerchPhiCNCT\)\)], "Input"],
+
+Cell[BoxData[
+    \("LerchPhiCNCT[z,s,v] returns Lerch's transcendent  of positive \
+arguments z, v, and s using the combined-nonlinear condensation  \
+transformation. For related formulas, see the e-print math.NA/0202009 and \
+references therein.  z is restricted to the interval (0,1).   LerchPhiCNCT \
+can be given four options: CNCTRelativeAccuracy specifies  the AccuracyGoal \
+for the calculation; CNCTMaximumIterations specifies  the maximum number of \
+iterations of CNC transforms; and CNCTBeta and  CNCTN specify parameters of \
+the transformation beta (shift parameter) and n (initial element of the \
+transformation), respectively."\)], "Print",
+  CellTags->"Info3225106390-5323908"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Options[LerchPhiCNCT]\)], "Input"],
+
+Cell[BoxData[
+    \({CNCTRelativeAccuracy \[Rule] 14, CNCTMaximumIterations \[Rule] 100, 
+      CNCTBeta \[Rule] 1, CNCTN \[Rule] 0}\)], "Output"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Example Calculations", "Section"],
+
+Cell["\<\
+An example for the CNCT-based routine using standard precision \
+arithmetic...\
+\>", "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(LerchPhiCNCT[0.9999999, 3.5, 8.4]\)], "Input"],
+
+Cell[BoxData[
+    \(0.002267130423614229`\)], "Output"]
+}, Open  ]],
+
+Cell["...and using more accurate numerical data...", "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(LerchPhiCNCT[0.999999900000000000000000000000, 15/10, 11/10, 
+      CNCTRelativeAccuracy\  \[Rule] \ 32]\)], "Input"],
+
+Cell[BoxData[
+    \(2.4290783409459555692384458753808717065101903`25.6797\)], "Output"]
+}, Open  ]],
+
+Cell["The standard Mathematica implementation yields:", "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(LerchPhi[0.9999999, 3.5, 8.4]\)], "Input"],
+
+Cell[BoxData[
+    \(0.002267130423612001`\)], "Output"]
+}, Open  ]],
+
+Cell["...and using more accurate numerical data...", "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(LerchPhi[0.9999999000000000000000000000000000, 15/10, 11/10]\)], "Input"],
+
+Cell[BoxData[
+    \(2.429078340945955569238445872669825808348501`27.2376\)], "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+FrontEndVersion->"4.1 for Macintosh",
+ScreenRectangle->{{0, 1024}, {0, 746}},
+WindowSize->{662, 724},
+WindowMargins->{{Automatic, 43}, {Automatic, 0}},
+StyleDefinitions -> "NaturalColor.nb"
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{
+  "Info3225106390-5323908"->{
+    Cell[2827, 104, 695, 10, 99, "Print",
+      CellTags->"Info3225106390-5323908"]}
+  }
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{
+  {"Info3225106390-5323908", 5614, 198}
+  }
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1727, 52, 63, 3, 125, "Title"],
+Cell[1793, 57, 384, 9, 162, "Text"],
+
+Cell[CellGroupData[{
+Cell[2202, 70, 38, 0, 66, "Section"],
+Cell[2243, 72, 256, 15, 272, "Text"],
+
+Cell[CellGroupData[{
+Cell[2524, 91, 46, 1, 39, "Input"],
+Cell[2573, 94, 164, 2, 53, "Print"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2774, 101, 50, 1, 24, "Input"],
+Cell[2827, 104, 695, 10, 99, "Print",
+  CellTags->"Info3225106390-5323908"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3559, 119, 54, 1, 24, "Input"],
+Cell[3616, 122, 146, 2, 24, "Output"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3811, 130, 39, 0, 24, "Section"],
+Cell[3853, 132, 102, 3, 24, "Text"],
+
+Cell[CellGroupData[{
+Cell[3980, 139, 66, 1, 24, "Input"],
+Cell[4049, 142, 55, 1, 70, "Output"]
+}, Open  ]],
+Cell[4119, 146, 60, 0, 70, "Text"],
+
+Cell[CellGroupData[{
+Cell[4204, 150, 137, 2, 70, "Input"],
+Cell[4344, 154, 87, 1, 70, "Output"]
+}, Open  ]],
+Cell[4446, 158, 63, 0, 70, "Text"],
+
+Cell[CellGroupData[{
+Cell[4534, 162, 62, 1, 70, "Input"],
+Cell[4599, 165, 55, 1, 70, "Output"]
+}, Open  ]],
+Cell[4669, 169, 60, 0, 70, "Text"],
+
+Cell[CellGroupData[{
+Cell[4754, 173, 93, 1, 70, "Input"],
+Cell[4850, 176, 86, 1, 70, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+
