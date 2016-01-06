@@ -1,10 +1,12 @@
-// $HOME/bin/bin/g++ -o test_psi test_psi.cpp
+
+// $HOME/bin_specfun/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_psi test_psi.cpp gsl_wrap.cpp gslextras/Fresnel/fresnel.c -L/usr/local/lib -lgsl -lgslcblas
+
+// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:/usr/local/lib:$LD_LIBRARY_PATH ./test_psi
 
 #include <cmath>
 #include <iostream>
 #include <iomanip>
-#include "psi.tcc"
-#include "sf_gamma.tcc"
+#include "gsl_wrap.h"
 
 int
 main()
@@ -13,26 +15,33 @@ main()
   std::cout.precision(16);
   std::cout.flags(std::ios::showpoint);
 
-//  for (unsigned int i = 1; i <= 100; ++i)
-//    {
-//      double x = i * 1.0;
-//      std::cout << "psi(0," << std::setw(5) << x << ") = " << std::__detail::__psi(0,x);
-//      std::cout << "psi(1," << std::setw(5) << x << ") = " << std::__detail::__psi(1,x);
-//      std::cout << std::endl;
-//    }
-
-  const unsigned int max = 4001;
-  for (unsigned int i = 1; i < max; ++i)
+  double x_start = -9.9375;
+  double x_stop = +10.0625;
+  const unsigned int max = 801;
+  double delta = (x_stop - x_start) / (max - 1);
+  std::cout << std::endl;
+  for (unsigned int i = 0; i < max; ++i)
     {
-      double x = -200.0 + i * 0.1;
-      //double x = i * 0.1;
-      double y_tr1 = std::__detail::__psi(x);
-      double y_ser = std::__detail::__psi_series(x);
-      //double y_asym = std::__detail::__psi_asymp(x);
-      std::cout << "psi(" << std::setw(5) << x << ") = "
-                << std::setw(20) << y_tr1
-                << std::setw(20) << y_ser
-                //<< std::setw(20) << y_asym
+      double x = x_start + i * delta;
+      double y_gcc = __gnu_cxx::psi(x);
+      double y_gsl = gsl::psi(x);
+      std::cout << "psi(" << std::setw(5) << x << ") ="
+                << ' ' << std::setw(20) << y_gcc
+                << ' ' << std::setw(20) << y_gsl
+                << ' ' << std::setw(20) << y_gcc - y_gsl
+                << std::endl;
+    }
+
+  std::cout << std::endl;
+  for (unsigned int i = 1; i < 100; ++i)
+    {
+      double x = i * 0.5;
+      double y_gcc = __gnu_cxx::psi(x);
+      double y_gsl = gsl::psi(x);
+      std::cout << "psi(" << std::setw(5) << x << ") ="
+                << ' ' << std::setw(20) << y_gcc
+                << ' ' << std::setw(20) << y_gsl
+                << ' ' << std::setw(20) << y_gcc - y_gsl
                 << std::endl;
     }
 

@@ -55,6 +55,7 @@ test_polynomial
 test_numeric_limits
 test_rational
 test_beta_inc
+test_psi
 test_pow_funs
 test_pow_bits
 test_lerch_transcendent

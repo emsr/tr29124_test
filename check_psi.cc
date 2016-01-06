@@ -850,8 +850,8 @@ const double toler001 = 2.5000000000000014e-11;
 
 
 // Test data.
-// max(|f - f_GSL|): 1.3812566097073633
-// max(|f - f_GSL| / |f_GSL|): 13.702393986182425
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 1.9015891619931257e-15
 const testcase_psi<double>
 data002[199] =
 {
@@ -1055,7 +1055,7 @@ data002[199] =
   { 4.5951241013255633, 99.500000000000000 },
   { 4.6001618527380872, 100.00000000000000 },
 };
-const double toler002 = 0.050000000000000003;
+const double toler002 = 2.5000000000000020e-13;
 
 template<typename Tp, unsigned int Num>
   void

@@ -607,16 +607,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  else
 	    {
 	      _Tp __sum = -__gamma_E;
-	      for (int __k = 1; __k < __m / 2; ++__k)
-		__sum += _Tp{2} / (2 * __k - 1);
+	      for (int __k = 1; __k < __n; ++__k)
+		__sum += _Tp{1} / __k;
 	      return __sum;
 	    }
 	}
       if (__half_integral)
 	{
 	  _Tp __sum = -__gamma_E - __2_ln_2;
-	  for (int __k = 1; __k <= __n; ++__k)
-	    __sum += _Tp{1} / __k;
+	  for (int __k = 1; __k < __m / 2; ++__k)
+	    __sum += _Tp{2} / (2 * __k - 1);
 	  return __sum;
 	}
       else if (__x < _Tp{0})
