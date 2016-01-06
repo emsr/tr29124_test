@@ -38,8 +38,8 @@
 #include <specfun_testcase.h>
 
 // Test data.
-// max(|f - f_GSL|): 2.8418913028405157e-08
-// max(|f - f_GSL| / |f_GSL|): 2.2934383048073036e-07
+// max(|f - f_GSL|): 2.7755575615628914e-16
+// max(|f - f_GSL| / |f_GSL|): 1.0150427006013930e-15
 const testcase_dawson<double>
 data001[200] =
 {
@@ -244,7 +244,7 @@ data001[200] =
   { 0.025157472544570545, 19.899999999999999 },
   { 0.025031367926403668, 20.000000000000000 },
 };
-const double toler001 = 2.5000000000000005e-05;
+const double toler001 = 2.5000000000000020e-13;
 
 template<typename Tp, unsigned int Num>
   void
