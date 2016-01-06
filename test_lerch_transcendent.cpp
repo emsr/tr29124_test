@@ -29,6 +29,8 @@
       const bool __integral = (std::abs(__a - _Tp(__na)) < _S_eps);
       if (__integral && __na <= 0)
 	return _S_nan;
+      else if (std::abs(__z) >= _Tp{1})
+	throw std::domain_error("__lerch_transcendent_sum: |z| > 1");
       else
 	{
 	  constexpr auto _S_maxit = 100000;
