@@ -132,6 +132,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _KahanSum&
       operator+=(_Tp __term)
       {
+	if (__isnan(__term))
+	  throw std::runtime_error("_KahanSum: bad term");
+	if (std::fabs(__term) == std::numeric_limits<_Tp>::infinity())
+	  throw std::runtime_error("_KahanSum: infinite term");
 	this->_M_term = __term - this->_M_temp;
 	this->_M_temp = this->_M_sum;
 	this->_M_sum += this->_M_term;

@@ -30,7 +30,7 @@
 #ifndef _GLIBCXX_SF_THETA_TCC
 #define _GLIBCXX_SF_THETA_TCC 1
 
-#include <array>
+#include <vector>
 #include <tuple>
 #include <ext/math_const.h>
 
@@ -47,55 +47,61 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = __num_traits_t<_Tp>;
       constexpr auto _S_eps = __gnu_cxx::__math_constants<_Val>::__eps;
+      constexpr auto _S_NaN = std::numeric_limits<_Val>::quiet_NaN();
 
-      _Tp __sn, __cn, __dn;
-      if (std::abs(__k) < _Tp{2} * _S_eps)
-
+      if (__isnan(__k) || __isnan(__u))
+	return std::make_tuple(_S_NaN, _S_NaN, _S_NaN);
+      else if (std::abs(__k) > _Tp{1})
+	throw std::domain_error("__jacobi_sncndn:"
+			" argument k out of range");
+      else if (std::abs(_Tp{1} - __k) < _Tp{2} * _S_eps)
 	{
-	  __sn = std::tanh(__u);
-	  __cn = _Tp{1} / std::cosh(__u);
-	  __dn = __cn;
+	  auto __sn = std::tanh(__u);
+	  auto __cn = _Tp{1} / std::cosh(__u);
+	  auto __dn = __cn;
 	  return std::make_tuple(__sn, __cn, __dn);
 	}
-      else if (std::abs(_Tp{1} + __k) < _Tp{2} * _S_eps)
+      else if (std::abs(__k) < _Tp{2} * _S_eps)
 	{
-	  __sn = std::sin(__u);
-	  __cn = std::cos(__u);
-	  __dn = _Tp{1};
+	  auto __sn = std::sin(__u);
+	  auto __cn = std::cos(__u);
+	  auto __dn = _Tp{1};
 	  return std::make_tuple(__sn, __cn, __dn);
 	}
       else
 	{
-	  constexpr auto _S_CA = _Tp{0.00001};
-	  constexpr auto _S_N = 20;
-	  std::array<_Tp, _S_N> __m;
-	  std::array<_Tp, _S_N> __n;
+	  constexpr auto _S_CA = std::sqrt(_S_eps);
+	  constexpr auto _S_N = 100;
+	  std::vector<_Tp> __m;
+	  std::vector<_Tp> __n;
+	  __m.reserve(20);
+	  __n.reserve(20);
 	  _Tp __c, __d;
-
-	  bool __bo = (__k < _Tp{0});
+	  auto __mc = _Tp{1} - __k * __k;
+	  bool __bo = (__mc < _Tp{0});
 	  if (__bo)
 	    {
-	      __d = _Tp{1} - __k;
-	      __k /= -_Tp{1} / __d;
+	      __d = _Tp{1} - __mc;
+	      __mc /= -_Tp{1} / __d;
 	      __u *= (__d = std::sqrt(__d));
 	    }
 	  auto __a = _Tp{1};
-	  __dn = _Tp{1};
+	  auto __dn = _Tp{1};
 	  auto __l = _S_N;
 	  for (auto __i = 0; __i < _S_N; ++__i)
 	    {
 	      __l = __i;
-	      __m[__i] = __a;
-	      __n[__i] = (__k = std::sqrt(__k));
-	      __c = 0.5 * (__a + __k);
-	      if (std::abs(__a - __k) <= _S_CA * __a)
+	      __m.push_back(__a);
+	      __n.push_back(__mc = std::sqrt(__mc));
+	      __c = 0.5 * (__a + __mc);
+	      if (std::abs(__a - __mc) <= _S_CA * __a)
 		break;
-	      __k *= __a;
+	      __mc *= __a;
 	      __a = __c;
 	    }
 	  __u *= __c;
-	  __sn = std::sin(__u);
-	  __cn = std::cos(__u);
+	  auto __sn = std::sin(__u);
+	  auto __cn = std::cos(__u);
 	  if (__sn != _Tp{0})
 	    {
 	      __a = __cn / __sn;

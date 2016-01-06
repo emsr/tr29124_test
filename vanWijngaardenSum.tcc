@@ -23,7 +23,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	if (__isnan(__term))
 	  throw std::runtime_error("__vanWijngaardenSum: bad term");
 	if (std::fabs(__term) == std::numeric_limits<_Tp>::infinity())
-	  throw std::runtime_error("__vanWijngaardenSum: bad term");
+	  throw std::runtime_error("__vanWijngaardenSum: infinite term");
 
 	if (this->_M_delta.size() == 0)
 	  {
