@@ -103,18 +103,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__n < 28)
 	return __num[__n];
 
-
-      _Tp __fact = _Tp{1};
+      auto __fact = _Tp{1};
       if ((__n / 2) % 2 == 0)
 	__fact *= -_Tp{1};
       for (unsigned int __k = 1; __k <= __n; ++__k)
 	__fact *= __k / (_Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi);
       __fact *= _Tp{2};
 
-      _Tp __sum = _Tp{0};
+      auto __sum = _Tp{0};
       for (unsigned int __i = 1; __i < 1000; ++__i)
 	{
-	  _Tp __term = std::pow(_Tp(__i), -_Tp(__n));
+	  auto __term = std::pow(_Tp(__i), -_Tp(__n));
 	  if (__term < std::numeric_limits<_Tp>::epsilon())
 	    break;
 	  __sum += __term;
@@ -148,15 +147,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _GLIBCXX14_CONSTEXPR _Tp
     __log_gamma_bernoulli(_Tp __x)
     {
-      _Tp __lg = (__x - _Tp{0.5L}) * std::log(__x) - __x
-	       + _Tp{0.5L} * std::log(_Tp{2}
-	       * __gnu_cxx::__math_constants<_Tp>::__pi);
+      auto __lg = (__x - _Tp{0.5L}) * std::log(__x) - __x
+		+ _Tp{0.5L} * std::log(_Tp{2}
+		* __gnu_cxx::__math_constants<_Tp>::__pi);
 
-      const _Tp __xx = __x * __x;
-      _Tp __help = _Tp{1} / __x;
+      const auto __xx = __x * __x;
+      auto __help = _Tp{1} / __x;
       for ( unsigned int __i = 1; __i < 20; ++__i )
 	{
-	  const _Tp __2i = _Tp(2 * __i);
+	  const auto __2i = _Tp(2 * __i);
 	  __help /= __2i * (__2i - _Tp{1}) * __xx;
 	  __lg += __bernoulli<_Tp>(2 * __i) * __help;
 	}
@@ -190,11 +189,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        _Tp{ 9.984369578019570859563e-6L},
        _Tp{ 1.50563273514931155834e-7L}
       };
-      constexpr _Tp _S_log_root_2pi
+      constexpr auto _S_log_root_2pi
 	  = _Tp{0.9189385332046727417803297364056176L};
 
       const auto __xm1 = __x - _Tp{1};
-      _Tp __sum = _S_lanczos_cheb_7[0];
+      auto __sum = _S_lanczos_cheb_7[0];
       for(unsigned int __k = 1; __k < _S_num_lanczos_cheb_7; ++__k)
 	__sum += _S_lanczos_cheb_7[__k] / (__xm1 + __k);
 
@@ -228,7 +227,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __log_gamma_lanczos(__x);
       else
 	{
-	  const _Tp __sin_fact = std::abs(
+	  const auto __sin_fact = std::abs(
 			std::sin(__gnu_cxx::__math_constants<_Tp>::__pi * __x));
 	  if (__sin_fact == _Tp{0})
 	    std::__throw_domain_error(__N("__log_gamma: "
@@ -256,7 +255,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return _Tp{1};
       else
 	{
-	  const _Tp __sin_fact
+	  const auto __sin_fact
 		  = std::sin(__gnu_cxx::__math_constants<_Tp>::__pi * __x);
 	  if (__sin_fact > _Tp{0})
 	    return _Tp{1};
@@ -272,20 +271,25 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  @brief Return the logarithm of the binomial coefficient.
    *  The binomial coefficient is given by:
    *  @f[
-   *  \left(  \right) = \frac{n!}{(n-k)! k!}
+   *    \left( __n \over __k \right) = \frac{n!}{(n-k)! k!}
    *  @f]
    *
    *  @param __n The first argument of the binomial coefficient.
    *  @param __k The second argument of the binomial coefficient.
-   *  @return  The binomial coefficient.
+   *  @return  The logarithm of the binomial coefficient.
    */
   template<typename _Tp>
     _Tp
     __log_bincoef(unsigned int __n, unsigned int __k)
     {
-      _Tp __coeff = __log_gamma(_Tp{1 + __n})
-		  - __log_gamma(_Tp{1 + __k})
-		  - __log_gamma(_Tp{1 + __n - __k});
+      if (__k > __n)
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__k == 0 || __k == __n)
+	return _Tp{0};
+      else
+	_Tp __coeff = std::lgamma(_Tp(1 + __n))
+		    - std::lgamma(_Tp(1 + __k))
+		    - std::lgamma(_Tp(1 + __n - __k));
     }
 
 
@@ -293,7 +297,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  @brief Return the binomial coefficient.
    *  The binomial coefficient is given by:
    *  @f[
-   *  \left(  \right) = \frac{n!}{(n-k)! k!}
+   *    \left( __n \over __k \right) = \frac{n!}{(n-k)! k!}
    *  @f]
    *
    *  @param __n The first argument of the binomial coefficient.
@@ -305,15 +309,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __bincoef(unsigned int __n, unsigned int __k)
     {
       // Max e exponent before overflow.
-      static const _Tp __max_bincoeff
-		      = std::numeric_limits<_Tp>::max_exponent10
-		      * std::log(_Tp{10}) - _Tp{1};
+      constexpr auto __max_bincoeff
+                      = std::numeric_limits<_Tp>::max_exponent10
+                      * std::log(_Tp(10)) - _Tp(1);
 
-      const _Tp __log_coeff = __log_bincoef<_Tp>(__n, __k);
-      if (__log_coeff > __max_bincoeff)
-	return std::numeric_limits<_Tp>::quiet_NaN();
+      if (__k > __n)
+	return _Tp{0};
+      else if (__k == 0 || __k == __n)
+	return _Tp{1};
       else
-	return std::exp(__log_coeff);
+        {
+	  const auto __log_coeff = __log_bincoef<_Tp>(__n, __k);
+	  if (__log_coeff > __max_bincoeff)
+	    return std::numeric_limits<_Tp>::quiet_NaN();
+	  else
+	    return std::exp(__log_coeff);
+	}
     }
 
 
@@ -345,7 +356,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __lngam = std::lgamma(__a);
 
       if (__x < _Tp{0})
-	throw std::domain_error("Argument less than 0 in routine gamma_series().");
+	throw std::domain_error("gamma_series: argument less than 0");
       else if (__x == _Tp{0})
 	return std::make_pair(_Tp{0}, __lngam);
       else
@@ -373,19 +384,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::pair<_Tp, _Tp>
     __gamma_cont_frac(_Tp __a, _Tp __x)
     {
-      constexpr _Tp _S_fpmin = 3 * std::numeric_limits<_Tp>::min();
-      constexpr _Tp _S_eps = 3 * std::numeric_limits<_Tp>::epsilon();
+      constexpr auto _S_fpmin = 3 * std::numeric_limits<_Tp>::min();
+      constexpr auto _S_eps = 3 * std::numeric_limits<_Tp>::epsilon();
       const auto _S_itmax = 10 * (10 + std::sqrt(std::abs(__a)));
 
-      _Tp __lngam = std::lgamma(__a);
+      auto __lngam = std::lgamma(__a);
 
-      _Tp __b = __x + _Tp{1} - __a;
-      _Tp __c = _Tp{1} / _S_fpmin;
-      _Tp __d = _Tp{1} / __b;
-      _Tp __h = __d;
+      auto __b = __x + _Tp{1} - __a;
+      auto __c = _Tp{1} / _S_fpmin;
+      auto __d = _Tp{1} / __b;
+      auto __h = __d;
       for (unsigned int __n = 1; __n <= _S_itmax; ++__n)
 	{
-	  _Tp __an = -_Tp{__n} * (_Tp{__n} - __a);
+	  auto __an = -_Tp{__n} * (_Tp{__n} - __a);
 	  __b += _Tp{2};
 	  __d = __an * __d + __b;
 	  if (std::abs(__d) < _S_fpmin)
@@ -423,7 +434,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gamma_p(_Tp __a, _Tp __x)
     {
       if (__x < _Tp{0} || __a <= _Tp{0})
-	throw std::domain_error("Invalid arguments in routine gamma_p()");
+	throw std::domain_error("gamma_p: invalid arguments");
 
       if (__x < __a + _Tp{1})
 	return __gamma_series(__a, __x).first;
@@ -449,7 +460,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gamma_q(_Tp __a, _Tp __x)
     {
       if (__x < _Tp{0} || __a <= _Tp{0})
-	throw std::domain_error("Invalid arguments in routine gamma_q().");
+	throw std::domain_error("__gamma_q: invalid arguments");
 
       if (__x < __a + _Tp{1})
 	return _Tp{1} - __gamma_series(__a, __x).first;
@@ -470,7 +481,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gamma_l(_Tp __a, _Tp __x)
     {
       if (__x < _Tp{0} || __a <= _Tp{0})
-	throw std::domain_error("gamma_l: invalid arguments in routine");
+	throw std::domain_error("__gamma_l: invalid arguments");
 
       if (__x < __a + _Tp{1})
       {
@@ -497,7 +508,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gamma_u(_Tp __a, _Tp __x)
     {
       if (__x < _Tp{0} || __a <= _Tp{0})
-	throw std::domain_error("gamma_u: invalid arguments in routine");
+	throw std::domain_error("__gamma_u: invalid arguments");
 
       if (__x < __a + _Tp{1})
       {
@@ -509,6 +520,126 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::pair<_Tp, _Tp> __gp = __gamma_cont_frac(__a, __x);
 	return std::exp(__gp.second) * __gp.first;
       }
+    }
+
+
+  /**
+   *  @brief  Return the logarithm of the (upper) Pochhammer symbol
+   *  or the rising factorial function.
+   *  The Pochammer symbol is defined by
+   *  @f[
+   *    (a)_n = \prod_{k=0}^{n-1} (a + k), (a)_0 = 1
+   *          = \Gamma(a + n) / \Gamma(n)
+   *  @f]
+   *  Thus this function returns
+   *  @f[
+   *    ln[(a)_n] = \Gamma(a + n) - \Gamma(n), ln[(a)_0] = 0
+   *  @f]
+   *  Many notations exist: @f[ a^{\overline{n}} @f],
+   *   @f[ \left[ a \over n \right] @f], and others.
+   */
+  template<typename _Tp>
+    _Tp
+    __log_pochhammer_u(_Tp __n, _Tp __a)
+    {
+      if (__isnan(__n) || __isnan(__a))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__n == _Tp{0})
+	return _Tp{0};
+      else
+	return std::lgamma(__a + __n) - std::lgamma(__a);
+    }
+
+
+  /**
+   *  @brief  Return the (upper) Pochhammer function
+   *  or the rising factorial function.
+   *  The Pochammer symbol is defined by
+   *  @f[
+   *    (a)_n = \prod_{k=0}^{n-1} (a + k), (a)_0 = 1
+   *          = \Gamma(a + n) / \Gamma(n)
+   *  @f]
+   *  Many notations exist: @f[ a^{\overline{n}} @f],
+   *   @f[ \left[ a \over n \right] @f], and others.
+   */
+  template<typename _Tp>
+    _Tp
+    __pochhammer_u(_Tp __n, _Tp __a)
+    {
+      constexpr auto __log10{2.3025850929940456840179914546843642L};
+      if (__isnan(__n) || __isnan(__a))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__n == _Tp{0})
+	return _Tp{1};
+      else
+	{
+          _Tp __logpoch = std::lgamma(__a + __n) - std::lgamma(__a);
+          if (std::abs(__logpoch)
+              > std::numeric_limits<_Tp>::max_digits10 * __log10)
+            return std::numeric_limits<_Tp>::infinity();
+          else
+            return std::exp(__logpoch);
+	}
+    }
+
+
+  /**
+   *  @brief  Return the logarithm of the lower Pochhammer symbol
+   *  or the falling factorial function.
+   *  The lower Pochammer symbol is defined by
+   *  @f[
+   *    (a)_n = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1
+   *          = \Gamma(a + 1) / \Gamma(a - n + 1)
+   *  @f]
+   *  In particular, $f[ (n)_n = n! $f].
+   *  Thus this function returns
+   *  @f[
+   *    ln[(a)_n] = \Gamma(a + 1) - \Gamma(a - n + 1), ln[(a)_0] = 0
+   *  @f]
+   *  Many notations exist: @f[ a^{\underline{n}} @f],
+   *   @f[ \left{ a \over n \right} @f], and others.
+   */
+  template<typename _Tp>
+    _Tp
+    __log_pochhammer_l(_Tp __n, _Tp __a)
+    {
+      if (__isnan(__n) || __isnan(__a))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__n == _Tp{0})
+	return _Tp{0};
+      else
+	return std::lgamma(__a + 1) - std::lgamma(__a - __n + 1);
+    }
+
+
+  /**
+   *  @brief  Return the logarithm of the lower Pochhammer symbol
+   *  or the falling factorial function.
+   *  The lower Pochammer symbol is defined by
+   *  @f[
+   *    (a)_n = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1
+   *          = \Gamma(a + 1) / \Gamma(a - n + 1)
+   *  @f]
+   *  In particular, $f[ (n)_n = n! $f].
+   */
+  template<typename _Tp>
+    _Tp
+    __pochhammer_l(_Tp __n, _Tp __a)
+    {
+      constexpr auto __log10{2.3025850929940456840179914546843642L};
+      if (__isnan(__n) || __isnan(__a))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__n == _Tp{0})
+	return _Tp{1};
+      else
+	{
+          auto __logpoch = std::lgamma(__a + 1) - std::lgamma(__a - __n + 1);
+          if (std::abs(__logpoch)
+              > std::numeric_limits<_Tp>::max_digits10 * __log10)
+            return std::numeric_limits<_Tp>::infinity();
+          else
+            return std::exp(__logpoch);
+	}
     }
 
 
@@ -533,7 +664,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const unsigned int _S_max_iter = 100000;
       for (unsigned int __k = 0; __k < _S_max_iter; ++__k)
 	{
-	  const _Tp __term = (__x - _Tp{1}) / ((__k + 1) * (__k + __x));
+	  const auto __term = (__x - _Tp{1}) / ((__k + 1) * (__k + __x));
 	  __sum += __term;
 	  if (std::abs(__term) < std::numeric_limits<_Tp>::epsilon())
 	    break;
@@ -559,9 +690,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __psi_asymp(_Tp __x)
     {
-      _Tp __sum = std::log(__x) - _Tp{0.5L} / __x;
-      const _Tp __xx = __x * __x;
-      _Tp __xp = __xx;
+      auto __sum = std::log(__x) - _Tp{0.5L} / __x;
+      const auto __xx = __x * __x;
+      auto __xp = __xx;
       const unsigned int __max_iter = 100;
       for (unsigned int __k = 1; __k < __max_iter; ++__k)
 	{
@@ -661,9 +792,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __psi(__x);
       else
 	{
-	  const _Tp __hzeta = __hurwitz_zeta(_Tp{__n + 1}, __x);
-	  const _Tp __ln_nfact = __log_gamma(_Tp{__n + 1});
-	  _Tp __result = std::exp(__ln_nfact) * __hzeta;
+	  const auto __hzeta = __hurwitz_zeta(_Tp{__n + 1}, __x);
+	  const auto __ln_nfact = __log_gamma(_Tp{__n + 1});
+	  auto __result = std::exp(__ln_nfact) * __hzeta;
 	  if (__n % 2 == 1)
 	    __result = -__result;
 	  return __result;
