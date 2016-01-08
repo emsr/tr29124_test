@@ -1,11 +1,13 @@
 
-// g++ -std=c++14 -o test_dawson test_dawson.cpp
+// $HOME/bin/bin/g++ -std=gnu++14 -o test_dawson test_dawson.cpp -L$HOME/bin/lib64 -lquadmath
 
-// ./test_dawson
+// LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_dawson
 
-#include <iostream>
 #include <limits>
+#include <iostream>
+#include <iomanip>
 #include <cmath>
+#include "float128.h"
 
 int
 main()
@@ -18,6 +20,7 @@ main()
   constexpr auto __n_max = 100;
   static _Tp __c[__n_max + 1];
   static auto __init = false;
+  __c[0] = _Tp{1};
   for (unsigned int __i = 1; __i <= __n_max; ++__i)
    {
      _Tp __y = _Tp(2 * __i - 1) * _S_H;

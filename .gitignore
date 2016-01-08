@@ -65,6 +65,7 @@ test_promote_num
 test_hurwitz_zeta
 test_hurwitz_zeta_new
 test_float128
+test_dawson
 test_chebyshev
 hankel_toy
 hankel_toy128
