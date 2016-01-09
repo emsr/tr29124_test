@@ -1468,6 +1468,78 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__expint<__type>(__n, __x);
     }
 
+  //  Log upper Pochhammer symbol
+
+  inline float
+  lpochhammer_uf(float __n, float __x)
+  { return std::__detail::__log_pochhammer_u<float>(__n, __x); }
+
+  inline long double
+  lpochhammer_ul(long double __n, long double __x)
+  { return std::__detail::__log_pochhammer_u<long double>(__n, __x); }
+
+  template<typename _Tn, typename _Tp>
+    inline typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type
+    lpochhammer_u(_Tn __n, _Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type __type;
+      return std::__detail::__log_pochhammer_u<__type>(__n, __x);
+    }
+
+  //  Log lower Pochhammer symbol
+
+  inline float
+  lpochhammer_lf(float __n, float __x)
+  { return std::__detail::__log_pochhammer_l<float>(__n, __x); }
+
+  inline long double
+  lpochhammer_ll(long double __n, long double __x)
+  { return std::__detail::__log_pochhammer_l<long double>(__n, __x); }
+
+  template<typename _Tn, typename _Tp>
+    inline typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type
+    lpochhammer_l(_Tn __n, _Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type __type;
+      return std::__detail::__log_pochhammer_l<__type>(__n, __x);
+    }
+
+  //  Upper Pochhammer symbols (see boost::rising_factorial)
+
+  inline float
+  pochhammer_uf(float __n, float __x)
+  { return std::__detail::__pochhammer_u<float>(__n, __x); }
+
+  inline long double
+  pochhammer_ul(long double __n, long double __x)
+  { return std::__detail::__pochhammer_u<long double>(__n, __x); }
+
+  template<typename _Tn, typename _Tp>
+    inline typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type
+    pochhammer_u(_Tn __n, _Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type __type;
+      return std::__detail::__pochhammer_u<__type>(__n, __x);
+    }
+
+  //  Lower Pochhammer symbols (see boost::falling_factorial)
+
+  inline float
+  pochhammer_lf(float __n, float __x)
+  { return std::__detail::__pochhammer_l<float>(__n, __x); }
+
+  inline long double
+  pochhammer_ll(long double __n, long double __x)
+  { return std::__detail::__pochhammer_l<long double>(__n, __x); }
+
+  template<typename _Tn, typename _Tp>
+    inline typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type
+    pochhammer_l(_Tn __n, _Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type __type;
+      return std::__detail::__pochhammer_l<__type>(__n, __x);
+    }
+
 #endif // __cplusplus >= 201103L
 
 } // namespace __gnu_cxx
