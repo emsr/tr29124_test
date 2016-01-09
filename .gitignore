@@ -67,6 +67,7 @@ test_hurwitz_zeta_new
 test_float128
 test_dawson
 test_chebyshev
+test_factorial
 hankel_toy
 hankel_toy128
 hankel_toy_new
