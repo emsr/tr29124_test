@@ -52,6 +52,10 @@ ${copy} check_ibeta.cc            ${ext_dir}/ibeta/check_value.cc
 ${copy} check_jacobi_sn.cc        ${ext_dir}/jacobi_sn/check_value.cc
 ${copy} check_jacobi_cn.cc        ${ext_dir}/jacobi_cn/check_value.cc
 ${copy} check_jacobi_dn.cc        ${ext_dir}/jacobi_dn/check_value.cc
+#${copy} check_lpochhammer_l.cc    ${textdir}/lpochhammer_l/check_value.cc
+${copy} check_lpochhammer_u.cc    ${textdir}/lpochhammer_u/check_value.cc
+#${copy} check_pochhammer_l.cc     ${textdir}/pochhammer_l/check_value.cc
+${copy} check_pochhammer_u.cc     ${textdir}/pochhammer_u/check_value.cc
 ${copy} check_psi.cc              ${ext_dir}/psi/check_value.cc
 ${copy} check_sinc.cc             ${ext_dir}/sinc/check_value.cc
 ${copy} check_sinhint.cc          ${ext_dir}/sinhint/check_value.cc
