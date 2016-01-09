@@ -8,6 +8,8 @@ ${tool} ${gcc_dir}/specfun.h         ./specfun.h
 ${tool} ${gcc_dir}/specfun_util.h    ./specfun_util.h
 ${tool} ${gcc_dir}/complex_util.h    ./complex_util.h
 ${tool} ${gcc_dir}/complex_util.tcc  ./complex_util.tcc
+${tool} ${gcc_dir}/float128.h        ./float128.h
+${tool} ${gcc_dir}/float128.tcc      ./float128.tcc
 ${tool} ${ext_dir}/math_const.h      ./math_const.h
 ${tool} ${gcc_dir}/sf_bessel.tcc     ./sf_bessel.tcc
 ${tool} ${gcc_dir}/sf_beta.tcc       ./sf_beta.tcc

@@ -81,6 +81,8 @@ ${makedir} ${textdir}/ibeta
 ${makedir} ${textdir}/jacobi_sn
 ${makedir} ${textdir}/jacobi_cn
 ${makedir} ${textdir}/jacobi_dn
+${makedir} ${textdir}/pochhammer_l
+${makedir} ${textdir}/pochhammer_u
 ${makedir} ${textdir}/psi
 ${makedir} ${textdir}/sinc
 ${makedir} ${textdir}/sinhint
@@ -107,6 +109,10 @@ ${copy} check_ibeta.cc            ${textdir}/ibeta/check_value.cc
 ${copy} check_jacobi_sn.cc        ${textdir}/jacobi_sn/check_value.cc
 ${copy} check_jacobi_cn.cc        ${textdir}/jacobi_cn/check_value.cc
 ${copy} check_jacobi_dn.cc        ${textdir}/jacobi_dn/check_value.cc
+${copy} check_lpochhammer_l.cc    ${textdir}/lpochhammer_l/check_value.cc
+${copy} check_lpochhammer_u.cc    ${textdir}/lpochhammer_u/check_value.cc
+${copy} check_pochhammer_l.cc     ${textdir}/pochhammer_l/check_value.cc
+${copy} check_pochhammer_u.cc     ${textdir}/pochhammer_u/check_value.cc
 ${copy} check_psi.cc              ${textdir}/psi/check_value.cc
 ${copy} check_sinc.cc             ${textdir}/sinc/check_value.cc
 ${copy} check_sinhint.cc          ${textdir}/sinhint/check_value.cc
