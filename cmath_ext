@@ -704,9 +704,8 @@ using std::tr1::__detail::__bessel_ik;
       return std::__detail::__log_pochhammer_l<__type>(__n, __x);
     }
 
+  // Factorial
 
-  //  factorial
-/*  FIXME!!! - need impl
   inline float
   factorialf(float __x)
   { return std::__detail::__factorial<float>(__x); }
@@ -722,10 +721,9 @@ using std::tr1::__detail::__bessel_ik;
       typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
       return std::__detail::__factorial<__type>(__x);
     }
-*/
 
-  //  double factorial
-/*  FIXME!!! - need impl
+  // Double factorial
+
   inline float
   double_factorialf(float __x)
   { return std::__detail::__double_factorial<float>(__x); }
@@ -741,7 +739,6 @@ using std::tr1::__detail::__bessel_ik;
       typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
       return std::__detail::__double_factorial<__type>(__x);
     }
-*/
 
   //  Generalized exponential integrals
 
