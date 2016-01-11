@@ -71,7 +71,7 @@ dumb_runge_kutta(double *ystart, int nvar, double x1, double x2, int nstep,
   double * dy = dvector(1, nvar);
 
   //  Load starting values of dependant variables.
-  for (i = 1; i <= nvar; ++i)
+  for (int i = 1; i <= nvar; ++i)
     {
       y[i] = ystart[i];
       runge_kutta_yy[i][1] = y[i];
@@ -139,7 +139,7 @@ quad_runge_kutta(double *y, double *dydx, int n, double *x, double htry,
     }
   //  Set stepsize to the initial trial value.
   double h = htry;
-  while (true)
+  while (1)
     {
 
       //  Take two half steps.
@@ -154,11 +154,11 @@ quad_runge_kutta(double *y, double *dydx, int n, double *x, double htry,
       //  Take the large step.
       runge_kutta_4(ysav, dysav, n, xsav, h, ytemp, derivs);
       //  Evaluate accuracy.  Put the error estimate into ytemp.
-      errmax = 0.0;
+      double errmax = 0.0;
       for (int i = 1; i <= n; ++i)
         {
           ytemp[i] = y[i] - ytemp[i];
-          temp = fabs(ytemp[i]/yscale[i]);
+          double temp = fabs(ytemp[i]/yscale[i]);
           if (errmax < temp)
             errmax = temp;
         }
@@ -272,7 +272,7 @@ quad_cash_karp_rk(double *y, double *dydx, int n, double *x, double htry,
   ytemp = dvector(1, n);
 
   h = htry;
-  while (true)
+  while (1)
     {
       cash_karp_rk(y, dydx, n, *x, h, ytemp, yerr, derivs);
       errmax = 0.0;
@@ -454,32 +454,32 @@ stoermer(double *y, double *d2y, int nv, double xs,
          double htot, int nstep, double *yout,
          void (*derivs)(double, double *, double *))
 {
-  int i, n, neqns, nn;
-  double h, h2, hh, x, *ytemp;
-
-  ytemp = dvector(1, nv);
+  double *ytemp = dvector(1, nv);
 
   double h = htot / nstep;
   double hh = 0.5 * h;
   int neqns = nv / 2;
   for (int i = 1; i <= neqns; ++i)
     {
-      n = neqns + i;
+      int n = neqns + i;
       ytemp[i] = y[i] + (ytemp[n] = h * (y[n] + hh * d2y[i]));
     }
-  x = xs + h;
+  double x = xs + h;
   (*derivs)(x, ytemp, yout);
-  h2 = 2.0 * h;
+  double h2 = 2.0 * h;
   for (int nn = 2; nn <= nstep; ++nn)
     {
       for (int i = 1; i <= neqns; ++i)
-        ytemp[i] += (ytemp[(n = neqns + i)] += h2 * yout[i]);
+        {
+	  int n = neqns + i;
+          ytemp[i] += (ytemp[n] += h2 * yout[i]);
+	}
       x += h;
       (*derivs)(x, ytemp, yout);
     }
   for (int i = 1; i <= neqns; ++i)
-    { 
-      n = neqns + i;
+    {
+      int n = neqns + i;
       yout[n] = ytemp[n] / h + hh * yout[i];
       yout[i] = ytemp[i];
     }
@@ -559,7 +559,7 @@ bulirsch_stoer(double *y, double *dydx, int nv, double *xx,
         kopt = kmax;
       }
     reduct = 0;
-    while (true)
+    while (1)
       {
         for (int k = 1; k <= kmax; ++k)
           {
@@ -572,7 +572,7 @@ bulirsch_stoer(double *y, double *dydx, int nv, double *xx,
             if (k != 1)
               {
                 errmax = TINY;
-                for (i = 1; i <= nv; ++i)
+                for (int i = 1; i <= nv; ++i)
                   errmax = dmax(errmax, fabs(yerr[i] / yscale[i]));
                 errmax /= eps;
                 km = kk - 1;
@@ -657,7 +657,7 @@ bs_rat_extrap(int iest, double xest, double *yest,
 
   bs_xx[iest] = xest;
   if (iest == 1)
-    for (j = 1; j <= nv; ++j)
+    for (int j = 1; j <= nv; ++j)
       dy[j] = bs_yy[j][1] = yz[j] = yest[j];
   else
     {
@@ -667,14 +667,13 @@ bs_rat_extrap(int iest, double xest, double *yest,
       for (int j = 1; j <= nv; ++j)
         {
           double v = bs_yy[j][1];
-          double yy, c;
+          double yy, c, ddy;
           bs_yy[j][1] = c = yy = yest[j];
           for (int k = 2; k < iest; ++k)
             {
               double b1 = fx[k] * v;
               double b = b1 - c;
               //  Watch division by zero.
-              double ddy;
               if (b)
         	{
                   b = (c - v) / b;

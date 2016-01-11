@@ -1,4 +1,5 @@
 
+#include <malloc.h>
 #include <math.h>
 
 #include "nric.h"
