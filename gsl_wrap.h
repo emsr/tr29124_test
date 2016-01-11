@@ -173,5 +173,29 @@ double fresnel_s(double x);
 /// Sinus cardinal function.
 double sinc(double x);
 
+/// Log upper Pochhammer symbol.
+double lnpoch(double a, double x);
+
+/// Upper Pochhammer symbol.
+double poch(double a, double x);
+
+/// Log factorial.
+double lnfact(unsigned int n);
+
+/// Factorial.
+double fact(unsigned int n);
+
+/// Log double factorial.
+double lndoublefact(unsigned int n);
+
+/// Double factorial.
+double doublefact(unsigned int n);
+
+/// Regular modified spherical bessel functions.
+double bessel_il(unsigned int n, double x);
+
+/// Irregular modified spherical bessel functions.
+double bessel_kl(unsigned int n, double x);
+
 } // namespace gsl
 
