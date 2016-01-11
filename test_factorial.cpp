@@ -35,10 +35,10 @@ template<typename Tp>
   {
     std::cout.precision(std::numeric_limits<Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
-    Tp prev = 1ULL;
-    Tp fact = 1ULL;
-    std::cout << '\n';
-    for (auto i = 1ULL; i < 600ULL; ++i)
+    auto prev = Tp{1};
+    auto fact = Tp{1};
+    std::cout << "{\n";
+    for (auto i = 1ULL; i < 1000LL; ++i)
       {
 	std::cout << "  {" << std::setw(4) << (i - 1)
 		  << ", " << fact << suffix<Tp>()
@@ -49,6 +49,7 @@ template<typename Tp>
 	if (fact < prev || __isinf(fact))
 	  break;
       }
+    std::cout << "};\n";
   }
 
 template<typename Tp>
@@ -58,17 +59,17 @@ template<typename Tp>
     std::cout.precision(std::numeric_limits<Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     long long i_o = -1LL;
-    Tp prev_o = 1LL;
-    Tp fact_o = 1LL;
+    auto prev_o = Tp{1};
+    auto fact_o = Tp{1};
     long long i_e = 0LL;
-    Tp prev_e = 1LL;
-    Tp fact_e = 1LL;
-    std::cout << '\n';
-    for (auto i = 1LL; i < 600LL; ++i)
+    auto prev_e = Tp{1};
+    auto fact_e = Tp{1};
+    std::cout << "{\n";
+    for (auto i = 1LL; i < 1000LL; ++i)
       {
-	std::cout << "  {" << std::setw(4) << i_e << ", "
-		  << fact_e << suffix<Tp>() << ", "
-		  << std::log(fact_e) << suffix<Tp>() << "},\n";
+	std::cout << "  {" << std::setw(4) << i_e
+		  << ", " << fact_e << suffix<Tp>()
+		  << ", " << std::log(fact_e) << suffix<Tp>() << "},\n";
 
 	i_o += 2LL;
 	prev_o = fact_o;
@@ -77,8 +78,8 @@ template<typename Tp>
 	  break;
 
 	std::cout << "  {" << std::setw(4) << i_o
-		  << ", " << fact_o << suffix<Tp>() << ", "
-		  << std::log(fact_o) << suffix<Tp>() << "},\n";
+		  << ", " << fact_o << suffix<Tp>()
+		  << ", " << std::log(fact_o) << suffix<Tp>() << "},\n";
 
 	i_e += 2LL;
 	prev_e = fact_e;
@@ -86,31 +87,60 @@ template<typename Tp>
 	if (fact_e < prev_e || __isinf(fact_e))
 	  break;
       }
-    std::cout << '\n';
-    i_o = -1LL;
-    prev_o = 1LL;
-    fact_o = 1LL;
-    for (auto i = 1LL; i < 300LL; ++i)
+    std::cout << "};\n";
+  }
+
+
+template<typename Tp>
+  void
+  neg_double_factorial()
+  {
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
+    std::cout << std::showpoint << std::scientific;
+    std::cout << "{\n";
+    auto i_o = -1LL;
+    auto prev_o = Tp{1};
+    auto fact_o = Tp{1};
+    for (auto i = 1LL; i < 1000LL; ++i)
       {
 	std::cout << "  {" << std::setw(4) << i_o
-		  << ", " << fact_o << suffix<Tp>() << "},\n";
+		  << ", " << fact_o << suffix<Tp>()
+		  << ", " << std::log(std::abs(fact_o)) << suffix<Tp>() << "},\n";
 	i_o -= 2LL;
 	fact_o /= i_o;
 	if (fact_o > prev_o || __isinf(fact_o) || std::abs(fact_o) < std::numeric_limits<Tp>::min())
 	  break;
       }
+    std::cout << "};\n";
   }
 
 int
 main()
 {
+  std::cout << "\n_S_factorial_table<float>\n";
   factorial<float>();
+  std::cout << "\n_S_factorial_table<double>\n";
   factorial<double>();
+  std::cout << "\n_S_factorial_table<long double>\n";
   factorial<long double>();
+  std::cout << "\n_S_factorial_table<__float128>\n";
   factorial<__float128>();
 
+  std::cout << "\n_S_double_factorial_table<float>\n";
   double_factorial<float>();
+  std::cout << "\n_S_double_factorial_table<double>\n";
   double_factorial<double>();
+  std::cout << "\n_S_double_factorial_table<long double>\n";
   double_factorial<long double>();
+  std::cout << "\n_S_double_factorial_table<__float128>\n";
   double_factorial<__float128>();
+
+  std::cout << "\n_S_neg_double_factorial_table<float>\n";
+  neg_double_factorial<float>();
+  std::cout << "\n_S_neg_double_factorial_table<double>\n";
+  neg_double_factorial<double>();
+  std::cout << "\n_S_neg_double_factorial_table<long double>\n";
+  neg_double_factorial<long double>();
+  std::cout << "\n_S_neg_double_factorial_table<__float128>\n";
+  neg_double_factorial<__float128>();
 }
