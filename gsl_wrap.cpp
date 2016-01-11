@@ -928,4 +928,132 @@ sinc(double x)
     return result.val;
 }
 
+/// Log upper Pochhammer symbol.
+double
+lnpoch(double a, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_lnpoch_e(a, x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in lnpoch:");
+      msg << " a=" << a << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+/// Upper Pochhammer symbol.
+double
+poch(double a, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_poch_e(a, x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in poch:");
+      msg << " a=" << a << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+/// Log factorial.
+double
+lnfact(unsigned int n)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_lnfact_e(n, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in lnfact:");
+      msg << " n=" << n;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+/// Factorial.
+double
+fact(unsigned int n)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_fact_e(n, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in fact:");
+      msg << " n=" << n;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+/// Log double factorial.
+double
+lndoublefact(unsigned int n)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_lndoublefact_e(n, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in lndoublefact:");
+      msg << " n=" << n;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+/// Double factorial.
+double
+doublefact(unsigned int n)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_doublefact_e(n, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in doublefact:");
+      msg << " n=" << n;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+/// Regular modified spherical bessel functions.
+double
+bessel_il(unsigned int n, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_bessel_il_scaled_e(n, x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in bessel_il:");
+      msg << " n=" << n << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return std::exp(std::abs(x)) * result.val;
+}
+
+/// Irregular modified spherical bessel functions.
+double
+bessel_kl(unsigned int n, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_bessel_kl_scaled_e(n, x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in bessel_kl:");
+      msg << " n=" << n << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return std::exp(-x) * result.val;
+}
+
 } // namespace gsl
