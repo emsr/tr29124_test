@@ -1,8 +1,6 @@
-#include <gsl/gsl_sf.h>
+#include "nric/nric.h"
 
-#include "gslextras/Fresnel/fresnel.h"
-
-namespace gsl
+namespace nric
 {
 
 /// Airy functions.
@@ -97,9 +95,6 @@ double laguerre_n(unsigned int n, double x);
 
 /// Legendre polynomials.
 double legendre_Pl(unsigned int l, double x);
-
-/// Legendre polynomials.
-double legendre_Ql(unsigned int l, double x);
 
 
 /// Riemann zeta function.
@@ -206,5 +201,4 @@ double chebyshev_t(unsigned int n, double x);
 /// Jacobi polynomials.
 double jacobi(unsigned int n, double alpha, double beta, double x);
 
-} // namespace gsl
-
+} // namespace nric
