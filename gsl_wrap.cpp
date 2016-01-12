@@ -1056,4 +1056,20 @@ bessel_kl(unsigned int n, double x)
     return std::exp(-x) * result.val;
 }
 
+/// Legendre function of the second kind.
+double
+legendre_Ql(unsigned int l, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_legendre_Ql_e(l, x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in legendre_Ql:");
+      msg << " l=" << l << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
 } // namespace gsl

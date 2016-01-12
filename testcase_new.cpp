@@ -58,6 +58,7 @@ template<typename Real>
     using __gnu_cxx::hyperg;
     using std::laguerre;
     using std::legendre;
+    using __gnu_cxx::legendre_q;
     using std::riemann_zeta;
     using __gnu_cxx::hurwitz_zeta;
     using std::sph_bessel;
@@ -789,6 +790,18 @@ template<typename Real>
 	     "x", fill_argument(std::make_pair(Real{-20}, Real{+20}),
 	    			std::make_pair(true, true), 401),
 	     file_sinc);
+
+    //  Legendre functions of the second kind.
+    std::cout << "legendre_q" << std::endl;
+    funcname = "legendre_q";
+    filename = get_filename(path, prefix, funcname, "", ".cc");
+    std::ofstream file_legendre_q(filename.c_str());
+    maketest(legendre_q, gsl::legendre_Ql,
+	     nsname, funcname,
+	     "l", vorder,
+	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
+	        		std::make_pair(false, false), 21),
+	     file_legendre_q);
 
   }
 
