@@ -763,7 +763,7 @@ double carlson_rc( double x, double y );
 double legendre_e( double phi, double ak );
 double legendre_f( double phi, double ak );
 double legendre_pi( double phi, double en, double ak );
-void jacobian_sncndn( double uu, double emmc, double *sc, double *cn, double *dn );
+void jacobian_sncndn( double uu, double emmc, double *sn, double *cn, double *dn );
 
 
 /*

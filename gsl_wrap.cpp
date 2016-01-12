@@ -11,6 +11,8 @@
 
 #include "gsl_wrap.h"
 
+#include <jacobi.h>
+
 namespace gsl
 {
 
@@ -1054,10 +1056,10 @@ chebyshev_t(unsigned int n, double x)
 
 /// Jacobi polynomials.
 double
-jacobi(unsigned int n, double alpha, double beta, double x);
+jacobi(unsigned int n, double alpha, double beta, double x)
 {
   gsl_sf_result result;
-  int stat = jac_djacobi_e(x, n, alpha, beta, &result);
+  int stat = jac_jacobi_e(x, n, alpha, beta, &result);
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in jacobi:");
