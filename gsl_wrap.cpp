@@ -230,19 +230,6 @@ bessel_Jnu(double nu, double x)
 }
 
 
-/// Cylindrical Bessel functions (of the first kind).
-//double
-//bessel_Jnu_asymp(double nu, double x)
-//{
-//  gsl_sf_result result;
-//  int stat = gsl_sf_bessel_Jnu_asympx_e(nu, x, &result);
-//  if (stat != GSL_SUCCESS)
-//    throw std::runtime_error("Error in bessel_Jnu_asymp");
-//  else
-//    return result.val;
-//}
-
-
 /// Irregular modified cylindrical Bessel functions.
 double
 bessel_Knu(double nu, double x)
@@ -275,19 +262,6 @@ bessel_Ynu(double nu, double x)
   else
     return result.val;
 }
-
-
-/// Cylindrical Neumann functions.
-//double
-//bessel_Ynu_asymp(double nu, double x)
-//{
-//  gsl_sf_result result;
-//  int stat = gsl_sf_bessel_Ynu_asympx_e(nu, x, &result);
-//  if (stat != GSL_SUCCESS)
-//    throw std::runtime_error("Error in bessel_Ynu_asymp");
-//  else
-//    return result.val;
-//}
 
 
 /// Elliptic integrals of the first kind.
@@ -531,6 +505,23 @@ legendre_Pl(unsigned int l, double x)
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in legendre_Pl:");
+      msg << " l=" << l << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+
+/// Legendre polynomials.
+double
+legendre_Ql(unsigned int l, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_legendre_Ql_e(static_cast<int>(l), x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in legendre_Ql:");
       msg << " l=" << l << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -1054,6 +1045,27 @@ bessel_kl(unsigned int n, double x)
     }
   else
     return std::exp(-x) * result.val;
+}
+
+/// Chebyshev polynomials of the first kind.
+double
+chebyshev_t(unsigned int n, double x)
+{ 0.0; }
+
+/// Jacobi polynomials.
+double
+jacobi(unsigned int n, double alpha, double beta, double x);
+{
+  gsl_sf_result result;
+  int stat = jac_djacobi_e(x, n, alpha, beta, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in jacobi:");
+      msg << " n=" << n << " alpha=" << alpha << " beta=" << beta << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
 }
 
 } // namespace gsl
