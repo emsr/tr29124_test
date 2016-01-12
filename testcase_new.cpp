@@ -39,75 +39,81 @@ template<typename Real>
     std::string ns("std");
     using __gnu_cxx::airy_ai;
     using __gnu_cxx::airy_bi;
-    using std::assoc_laguerre;
-    using std::assoc_legendre;
-    using std::beta;
-    using std::comp_ellint_1;
-    using std::comp_ellint_2;
-    using std::comp_ellint_3;
+    using       std::assoc_laguerre;
+    using       std::assoc_legendre;
+    using       std::beta;
     using __gnu_cxx::conf_hyperg;
-    using std::cyl_bessel_i;
-    using std::cyl_bessel_j;
-    using std::cyl_bessel_k;
-    using std::cyl_neumann;
-    using std::ellint_1;
-    using std::ellint_2;
-    using std::ellint_3;
-    using std::expint;
-    using std::hermite;
-    using __gnu_cxx::hyperg;
-    using std::laguerre;
-    using std::legendre;
-    using std::riemann_zeta;
-    using __gnu_cxx::hurwitz_zeta;
-    using std::sph_bessel;
-    using std::sph_legendre;
-    using std::sph_neumann;
+    using __gnu_cxx::coshint;
+    using __gnu_cxx::cosint;
+    using       std::cyl_bessel_i;
+    using       std::cyl_bessel_j;
+    using       std::cyl_bessel_k;
+    using       std::cyl_neumann;
+    using __gnu_cxx::dawson;
+    using __gnu_cxx::dilog;
+    using       std::comp_ellint_1;
+    using       std::comp_ellint_2;
+    using       std::comp_ellint_3;
     using __gnu_cxx::ellint_rc;
     using __gnu_cxx::ellint_rd;
     using __gnu_cxx::ellint_rf;
     using __gnu_cxx::ellint_rj;
-    using __gnu_cxx::dilog;
+    using       std::ellint_1;
+    using       std::ellint_2;
+    using       std::ellint_3;
+    using       std::expint;
+    using __gnu_cxx::expint_e1;
+    using __gnu_cxx::fresnel_s;
+    using __gnu_cxx::fresnel_c;
     using __gnu_cxx::gamma_u;
     using __gnu_cxx::ibeta;
-    using __gnu_cxx::psi;
-    using __gnu_cxx::sinint;
-    using __gnu_cxx::cosint;
-    using __gnu_cxx::sinhint;
-    using __gnu_cxx::coshint;
+    using       std::hermite;
+    using __gnu_cxx::hurwitz_zeta;
+    using __gnu_cxx::hyperg;
     using __gnu_cxx::jacobi_sn;
     using __gnu_cxx::jacobi_cn;
     using __gnu_cxx::jacobi_dn;
-    using __gnu_cxx::fresnel_s;
-    using __gnu_cxx::fresnel_c;
-    using __gnu_cxx::dawson;
+    using       std::laguerre;
+    using       std::legendre;
+    using __gnu_cxx::lpochhammer_l;
+    using __gnu_cxx::lpochhammer_u;
+    using __gnu_cxx::pochhammer_l;
+    using __gnu_cxx::pochhammer_u;
+    using __gnu_cxx::psi;
+    using       std::riemann_zeta;
     using __gnu_cxx::sinc;
-    using __gnu_cxx::expint_e1;
+    using __gnu_cxx::sinhint;
+    using __gnu_cxx::sinint;
+    using       std::sph_bessel;
+    using __gnu_cxx::sph_bessel_i;
+    using __gnu_cxx::sph_bessel_k;
+    using       std::sph_legendre;
+    using       std::sph_neumann;
 #else
     std::string ns("tr1");
-    using std::tr1::assoc_laguerre;
-    using std::tr1::assoc_legendre;
-    using std::tr1::beta;
-    using std::tr1::comp_ellint_1;
-    using std::tr1::comp_ellint_2;
-    using std::tr1::comp_ellint_3;
-    using std::tr1::conf_hyperg;
-    using std::tr1::cyl_bessel_i;
-    using std::tr1::cyl_bessel_j;
-    using std::tr1::cyl_bessel_k;
-    using std::tr1::cyl_neumann;
-    using std::tr1::ellint_1;
-    using std::tr1::ellint_2;
-    using std::tr1::ellint_3;
-    using std::tr1::expint;
-    using std::tr1::hermite;
-    using std::tr1::hyperg;
-    using std::tr1::laguerre;
-    using std::tr1::legendre;
-    using std::tr1::riemann_zeta;
-    using std::tr1::sph_bessel;
-    using std::tr1::sph_legendre;
-    using std::tr1::sph_neumann;
+    using  std::tr1::assoc_laguerre;
+    using  std::tr1::assoc_legendre;
+    using  std::tr1::beta;
+    using  std::tr1::comp_ellint_1;
+    using  std::tr1::comp_ellint_2;
+    using  std::tr1::comp_ellint_3;
+    using  std::tr1::conf_hyperg;
+    using  std::tr1::cyl_bessel_i;
+    using  std::tr1::cyl_bessel_j;
+    using  std::tr1::cyl_bessel_k;
+    using  std::tr1::cyl_neumann;
+    using  std::tr1::ellint_1;
+    using  std::tr1::ellint_2;
+    using  std::tr1::ellint_3;
+    using  std::tr1::expint;
+    using  std::tr1::hermite;
+    using  std::tr1::hyperg;
+    using  std::tr1::laguerre;
+    using  std::tr1::legendre;
+    using  std::tr1::riemann_zeta;
+    using  std::tr1::sph_bessel;
+    using  std::tr1::sph_legendre;
+    using  std::tr1::sph_neumann;
 #endif
 
     //  Unsigned integer orders for various polynomials, harmonics, and spherical bessels.
@@ -142,6 +148,7 @@ template<typename Real>
     std::string funcname;
     std::string filename;
 
+#if STD
     //  Airy functions.
     std::cout << "airy_ai" << std::endl;
     funcname = "airy_ai";
@@ -163,6 +170,7 @@ template<typename Real>
 	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 	    			std::make_pair(true, true), 41),
 	     file_airy_bi);
+#endif // STD
 
     //  Associated Laguerre polynomials.
     std::cout << "assoc_laguerre" << std::endl;
@@ -239,6 +247,7 @@ template<typename Real>
 	        		 std::make_pair(true, false), 11),
 	     file_comp_ellint_3);
 
+#if STD
     //  Confluent hypergeometric functions.
     //  Skip the singularity at c = 0.
     std::cout << "conf_hyperg" << std::endl;
@@ -253,6 +262,22 @@ template<typename Real>
 	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 				std::make_pair(true, true), 21),
 	     file_conf_hyperg);
+#else
+    //  Confluent hypergeometric functions.
+    //  Skip the singularity at c = 0.
+    std::cout << "conf_hyperg" << std::endl;
+    funcname = "conf_hyperg";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_conf_hyperg(filename.c_str());
+    maketest(conf_hyperg, gsl::hyperg_1F1,
+	     nsname, funcname,
+	     "a", vab,
+	     "c", fill_argument(std::make_pair(Real{0}, Real{10}),
+				std::make_pair(false, true), 11),
+	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
+				std::make_pair(true, true), 21),
+	     file_conf_hyperg);
+#endif // STD
 
     //  Regular modified cylindrical Bessel functions.
     std::cout << "cyl_bessel_i" << std::endl;
@@ -403,6 +428,7 @@ template<typename Real>
 	        		std::make_pair(true, true), 201),
 	     file_hermite);
 
+#if STD
     //  Hypergeometric functions.
     //  Skip the singularity at c = 0.
     //  Skip the singularity at x = -1.
@@ -419,6 +445,24 @@ template<typename Real>
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
 		  		std::make_pair(true, false), 21),
 	     file_hyperg);
+#else
+    //  Hypergeometric functions.
+    //  Skip the singularity at c = 0.
+    //  Skip the singularity at x = -1.
+    std::cout << "hyperg" << std::endl;
+    funcname = "hyperg";
+    filename = get_filename(path, prefix, funcname, "", ".cc");
+    std::ofstream file_hyperg(filename.c_str());
+    maketest(hyperg, gsl::hyperg_2F1,
+	     nsname, funcname,
+	     "a", vab,
+	     "b", vab,
+	     "c", fill_argument(std::make_pair(Real{0}, Real{10}),
+		  		std::make_pair(false, true), 6),
+	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
+		  		std::make_pair(true, false), 21),
+	     file_hyperg);
+#endif // STD
 
     //  Laguerre polynomials.
     std::cout << "laguerre" << std::endl;
@@ -462,6 +506,7 @@ template<typename Real>
 	    			std::make_pair(false, true), 146),
 	     file_riemann_zeta, false, true, test);
 
+#if STD
     //  Hurwitz zeta function.
     std::cout << "hurwitz_zeta" << std::endl;
     //  Skip the pole at 1.
@@ -475,6 +520,7 @@ template<typename Real>
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 	        		std::make_pair(false, true), 26),
 	     file_hurwitz_zeta);
+#endif // STD
 
     //  Spherical Bessel functions.
     std::cout << "sph_bessel" << std::endl;
@@ -527,6 +573,7 @@ template<typename Real>
 	        		std::make_pair(false, true), 21),
 	     file_sph_neumann, false, true, test);
 
+#if STD
     //  Carlson elliptic functions R_C.
     std::cout << "ellint_rc" << std::endl;
     funcname = "ellint_rc";
@@ -746,13 +793,13 @@ template<typename Real>
     test =
     maketest(expint_e1,
 	     gsl::expint_E1,
-	     nsname, funcname,
+	     "__gnu_cxx", funcname,
 	     "x", fill_argument(std::make_pair(Real{-50}, Real{0}),
 	    			std::make_pair(true, false), 51),
 	     file_expint_e1, true, false);
     maketest(expint_e1,
 	     gsl::expint_E1,
-	     nsname, funcname,
+	     "__gnu_cxx", funcname,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{50}),
 	    			std::make_pair(false, true), 51),
 	     file_expint_e1, false, true, test);
@@ -790,6 +837,80 @@ template<typename Real>
 	    			std::make_pair(true, true), 401),
 	     file_sinc);
 
+    //  Log upper Pochhammer symbol
+    std::cout << "lpochhammer_u" << std::endl;
+    funcname = "lpochhammer_u";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_lpochhammer_u(filename.c_str());
+    maketest(lpochhammer_u, gsl::lnpoch,
+	     "__gnu_cxx", funcname,
+	     "a", dvorder,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+	        		std::make_pair(false, true), 21),
+	     file_lpochhammer_u, true, true);
+
+    //  Log lower Pochhammer symbol
+    //std::cout << "lpochhammer_l" << std::endl;
+    //funcname = "lpochhammer_l";
+    //filename = get_filename(path, prefix, funcname, "",  ".cc");
+    //std::ofstream file_lpochhammer_l(filename.c_str());
+
+    //  Upper Pochhammer symbols (see boost::rising_factorial)
+    std::cout << "pochhammer_u" << std::endl;
+    funcname = "pochhammer_u";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_pochhammer_u(filename.c_str());
+    maketest(pochhammer_u, gsl::poch,
+	     "__gnu_cxx", funcname,
+	     "a", dvorder,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+	        		std::make_pair(false, true), 21),
+	     file_pochhammer_u, true, true);
+
+    //  Lower Pochhammer symbols (see boost::falling_factorial)
+    //std::cout << "pochhammer_l" << std::endl;
+    //funcname = "pochhammer_l";
+    //filename = get_filename(path, prefix, funcname, "",  ".cc");
+    //std::ofstream file_pochhammer_l(filename.c_str());
+
+    // Regular modified spherical bessel functions.
+    std::cout << "sph_bessel_i" << std::endl;
+    funcname = "sph_bessel_i";
+    filename = get_filename(path, prefix, funcname, "", ".cc");
+    std::ofstream file_sph_bessel_i(filename.c_str());
+    test =
+    maketest(sph_bessel_i, gsl::bessel_il,
+	     "__gnu_cxx", funcname,
+	     "n", sborder,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+	        		std::make_pair(true, true), 21),
+	     file_sph_bessel_i, true, false);
+    maketest(sph_bessel_i, gsl::bessel_il,
+	     "__gnu_cxx", funcname,
+	     "n", sborder,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
+	        		std::make_pair(true, true), 21),
+	     file_sph_bessel_i, false, true, test);
+
+    // Irregular modified spherical bessel functions.
+    std::cout << "sph_bessel_k" << std::endl;
+    funcname = "sph_bessel_k";
+    filename = get_filename(path, prefix, funcname, "", ".cc");
+    std::ofstream file_sph_bessel_k(filename.c_str());
+    test =
+    maketest(sph_bessel_k, gsl::bessel_kl,
+	     "__gnu_cxx", funcname,
+	     "n", sborder,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+	        		std::make_pair(true, true), 21),
+	     file_sph_bessel_k, true, false);
+    maketest(sph_bessel_k, gsl::bessel_kl,
+	     "__gnu_cxx", funcname,
+	     "n", sborder,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
+	        		std::make_pair(true, true), 21),
+	     file_sph_bessel_k, false, true, test);
+#endif // STD
   }
 
 
