@@ -197,5 +197,8 @@ double bessel_il(unsigned int n, double x);
 /// Irregular modified spherical bessel functions.
 double bessel_kl(unsigned int n, double x);
 
+/// Legendre function of the second kind.
+double legendre_Ql(unsigned int l, double x);
+
 } // namespace gsl
 

@@ -56,10 +56,10 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *   @brief  Return the Legendre polynomial by recursion on order
-   *           @f$ l @f$.
+   *   @brief  Return the Legendre polynomial by upward recursion
+   *           on order @f$ l @f$.
    *
-   *   The Legendre function of @f$ l @f$ and @f$ x @f$,
+   *   The Legendre function of order @f$ l @f$ and argument @f$ x @f$,
    *   @f$ P_l(x) @f$, is defined by:
    *   @f[
    *     P_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l}
@@ -72,7 +72,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __poly_legendre_p(unsigned int __l, _Tp __x)
     {
-
       if ((__x < -_Tp{1}) || (__x > +_Tp{1}))
 	std::__throw_domain_error(__N("__poly_legendre_p: argument out of range"));
       else if (__isnan(__x))
@@ -83,15 +82,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return (__l % 2 == 1 ? -_Tp{1} : +_Tp{1});
       else
 	{
-	  _Tp _P_lm2 = _Tp{1};
+	  auto _P_lm2 = _Tp{1};
 	  if (__l == 0)
 	    return _P_lm2;
 
-	  _Tp _P_lm1 = __x;
+	  auto _P_lm1 = __x;
 	  if (__l == 1)
 	    return _P_lm1;
 
-	  _Tp _P_l = 0;
+	  auto _P_l = _Tp{0};
 	  for (unsigned int __ll = 2; __ll <= __l; ++__ll)
 	    {
 	      // This arrangement is supposed to be better for roundoff
@@ -106,10 +105,57 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
     }
 
+  /**
+   *   @brief  Return the Legendre function of the second kind
+   *           by upward recursion on order @f$ l @f$.
+   *
+   *   The Legendre function of order @f$ l @f$ and argument @f$ x @f$,
+   *   @f$ Q_l(x) @f$, is defined by:
+   *   @f[
+   *     Q_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l}
+   *   @f]
+   *
+   *   @param  l  The order of the Legendre polynomial.  @f$l >= 0@f$.
+   *   @param  x  The argument of the Legendre polynomial.  @f$|x| <= 1@f$.
+   */
+  template<typename _Tp>
+    _Tp
+    __poly_legendre_q(unsigned int __l, _Tp __x)
+    {
+      if ((__x < -_Tp{1}) || (__x > +_Tp{1}))
+	std::__throw_domain_error(__N("__poly_legendre_q: argument out of range"));
+      else if (__isnan(__x))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__x == +_Tp{1})
+	return +_Tp{1};
+      else if (__x == -_Tp{1})
+	return (__l % 2 == 1 ? -_Tp{1} : +_Tp{1});
+      else
+	{
+	  auto _Q_lm2 = _Tp{0.5L} * std::log((_Tp{1} + __x) / (_Tp{1} - __x));
+	  if (__l == 0)
+	    return _Q_lm2;
+	  auto _Q_lm1 = __x * _Q_lm2 - _Tp{1};
+	  if (__l == 1)
+	    return _Q_lm1;
+	  auto _Q_l = _Tp{0};
+	  for (unsigned int __ll = 2; __ll <= __l; ++__ll)
+	    {
+	      // This arrangement is supposed to be better for roundoff
+	      // protection, Arfken, 2nd Ed, Eq 12.17a.
+	      _Q_l = _Tp{2} * __x * _Q_lm1 - _Q_lm2
+		    - (__x * _Q_lm1 - _Q_lm2) / _Tp(__ll);
+	      _Q_lm2 = _Q_lm1;
+	      _Q_lm1 = _Q_l;
+	    }
+
+	  return _Q_l;
+	}
+
 
   /**
    *   @brief  Return the associated Legendre function by recursion
-   *           on @f$ l @f$.
+   *           on @f$ l @f$ and downward recursion on m.
    *
    *   The associated Legendre function is derived from the Legendre function
    *   @f$ P_l(x) @f$ by the Rodrigues formula:
