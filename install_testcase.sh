@@ -60,3 +60,5 @@ ${copy} check_psi.cc              ${ext_dir}/psi/check_value.cc
 ${copy} check_sinc.cc             ${ext_dir}/sinc/check_value.cc
 ${copy} check_sinhint.cc          ${ext_dir}/sinhint/check_value.cc
 ${copy} check_sinint.cc           ${ext_dir}/sinint/check_value.cc
+${copy} check_sph_bessel_i.cc     ${ext_dir}/sph_bessel_i/check_value.cc
+${copy} check_sph_bessel_k.cc     ${ext_dir}/sph_bessel_k/check_value.cc
