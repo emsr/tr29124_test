@@ -1471,37 +1471,37 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   //  Log upper Pochhammer symbol
 
   inline float
-  lpochhammer_uf(float __n, float __x)
-  { return std::__detail::__log_pochhammer_u<float>(__n, __x); }
+  lpochhammer_uf(float __a, float __n)
+  { return std::__detail::__log_pochhammer_u<float>(__a, __n); }
 
   inline long double
-  lpochhammer_ul(long double __n, long double __x)
-  { return std::__detail::__log_pochhammer_u<long double>(__n, __x); }
+  lpochhammer_ul(long double __a, long double __n)
+  { return std::__detail::__log_pochhammer_u<long double>(__a, __n); }
 
-  template<typename _Tn, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tn, _Tp>
-    lpochhammer_u(_Tn __n, _Tp __x)
+  template<typename _Tp, typename _Tn>
+    inline __gnu_cxx::__promote_num_t<_Tp, _Tn>
+    lpochhammer_u(_Tp __a, _Tn __n)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tn, _Tp>;
-      return std::__detail::__log_pochhammer_u<__type>(__n, __x);
+      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tn>;
+      return std::__detail::__log_pochhammer_u<__type>(__a, __n);
     }
 
   //  Log lower Pochhammer symbol
 
   inline float
-  lpochhammer_lf(float __n, float __x)
-  { return std::__detail::__log_pochhammer_l<float>(__n, __x); }
+  lpochhammer_lf(float __a, float __n)
+  { return std::__detail::__log_pochhammer_l<float>(__a, __n); }
 
   inline long double
-  lpochhammer_ll(long double __n, long double __x)
-  { return std::__detail::__log_pochhammer_l<long double>(__n, __x); }
+  lpochhammer_ll(long double __a, long double __n)
+  { return std::__detail::__log_pochhammer_l<long double>(__a, __n); }
 
-  template<typename _Tn, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tn, _Tp>
-    lpochhammer_l(_Tn __n, _Tp __x)
+  template<typename _Tp, typename _Tn>
+    inline __gnu_cxx::__promote_num_t<_Tp, _Tn>
+    lpochhammer_l(_Tp __a, _Tn __n)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tn, _Tp>;
-      return std::__detail::__log_pochhammer_l<__type>(__n, __x);
+      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tn>;
+      return std::__detail::__log_pochhammer_l<__type>(__a, __n);
     }
 
   //  Upper Pochhammer symbols (see boost::rising_factorial)
