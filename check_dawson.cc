@@ -38,7 +38,7 @@
 #include <specfun_testcase.h>
 
 // Test data.
-// max(|f - f_GSL|): 2.7755575615628914e-16
+// max(|f - f_GSL|): 2.2204460492503131e-16
 // max(|f - f_GSL| / |f_GSL|): 1.0150427006013930e-15
 const testcase_dawson<double>
 data001[200] =

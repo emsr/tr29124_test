@@ -204,9 +204,9 @@ template<typename Real>
     maketest(beta, gsl::beta,
 	     nsname, funcname,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
-	        		std::make_pair(false, true), 11),
+				std::make_pair(false, true), 11),
 	     "y", fill_argument(std::make_pair(Real{0}, Real{100}),
-	        		std::make_pair(false, true), 11),
+				std::make_pair(false, true), 11),
 	     file_beta);
 
     //  Complete elliptic integrals of the first kind.
@@ -242,9 +242,9 @@ template<typename Real>
     maketest(comp_ellint_3, gsl::ellint_Pcomp,
 	     nsname, funcname,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
-	        		std::make_pair(false, false), 21),
+				std::make_pair(false, false), 21),
 	     "nu", fill_argument(std::make_pair(Real{0}, Real{1}),
-	        		 std::make_pair(true, false), 11),
+				 std::make_pair(true, false), 11),
 	     file_comp_ellint_3);
 
 #if STD
@@ -289,13 +289,13 @@ template<typename Real>
 	     nsname, funcname,
 	     "nu", vborderd,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
-	        		std::make_pair(true, true), 21),
+				std::make_pair(true, true), 21),
 	     file_cyl_bessel_i, true, false);
     maketest(cyl_bessel_i, gsl::bessel_Inu,
 	     nsname, funcname,
 	     "nu", vborderd,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
-	        		std::make_pair(true, true), 21),
+				std::make_pair(true, true), 21),
 	     file_cyl_bessel_i, false, true, test);
 
     //  Cylindrical Bessel functions (of the first kind).
@@ -308,13 +308,13 @@ template<typename Real>
 	     nsname, funcname,
 	     "nu", vborderd,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
-	        		std::make_pair(true, true), 21),
+				std::make_pair(true, true), 21),
 	     file_cyl_bessel_j, true, false);
     maketest(cyl_bessel_j, gsl::bessel_Jnu,
 	     nsname, funcname,
 	     "nu", vborderd,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
-	        		std::make_pair(true, true), 21),
+				std::make_pair(true, true), 21),
 	     file_cyl_bessel_j, false, true, test);
 
     //  Irregular modified cylindrical Bessel functions.
@@ -328,13 +328,13 @@ template<typename Real>
 	     nsname, funcname,
 	     "nu", vborderd,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
-	        		std::make_pair(false, true), 21),
+				std::make_pair(false, true), 21),
 	     file_cyl_bessel_k, true, false);
     maketest(cyl_bessel_k, gsl::bessel_Knu,
 	     nsname, funcname,
 	     "nu", vborderd,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
-	        		std::make_pair(false, true), 21),
+				std::make_pair(false, true), 21),
 	     file_cyl_bessel_k, false, true, test);
 
     //  Cylindrical Neumann functions.
@@ -354,7 +354,7 @@ template<typename Real>
 	     nsname, funcname,
 	     "nu", vborderd,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
-	        		std::make_pair(false, true), 21),
+				std::make_pair(false, true), 21),
 	     file_cyl_neumann, false, true, test);
 
     //  Elliptic integrals of the first kind.
@@ -366,7 +366,7 @@ template<typename Real>
     maketest(ellint_1, gsl::ellint_F,
 	     nsname, funcname,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
-	        		std::make_pair(false, false), 21),
+				std::make_pair(false, false), 21),
 	     "phi", vphid,
 	     file_ellint_1);
 
@@ -379,7 +379,7 @@ template<typename Real>
     maketest(ellint_2, gsl::ellint_E,
 	     nsname, funcname,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
-	        		std::make_pair(false, false), 21),
+				std::make_pair(false, false), 21),
 	     "phi", vphid,
 	     file_ellint_2);
 
@@ -425,7 +425,7 @@ template<typename Real>
 	     nsname, funcname,
 	     "n", vorder,
 	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
-	        		std::make_pair(true, true), 201),
+				std::make_pair(true, true), 201),
 	     file_hermite);
 
 #if STD
@@ -473,7 +473,7 @@ template<typename Real>
 	     nsname, funcname,
 	     "n", vorder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
-	        		std::make_pair(true, true), 21),
+				std::make_pair(true, true), 21),
 	     file_laguerre);
 
     //  Legendre polynomials.
@@ -485,7 +485,7 @@ template<typename Real>
 	     nsname, funcname,
 	     "l", vorder,
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
-	        		std::make_pair(true, true), 21),
+				std::make_pair(true, true), 21),
 	     file_legendre);
 
     //  Riemann zeta function.
@@ -516,9 +516,9 @@ template<typename Real>
     maketest(hurwitz_zeta, gsl::hzeta,
 	     "__gnu_cxx", funcname,
 	     "s", fill_argument(std::make_pair(Real{1}, Real{30}),
-	        		std::make_pair(false, true), 146),
+				std::make_pair(false, true), 146),
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
-	        		std::make_pair(false, true), 26),
+				std::make_pair(false, true), 26),
 	     file_hurwitz_zeta);
 #endif // STD
 
@@ -532,13 +532,13 @@ template<typename Real>
 	     nsname, funcname,
 	     "n", sborder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
-	        		std::make_pair(true, true), 21),
+				std::make_pair(true, true), 21),
 	     file_sph_bessel, true, false);
     maketest(sph_bessel, gsl::bessel_jl,
 	     nsname, funcname,
 	     "n", sborder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
-	        		std::make_pair(true, true), 21),
+				std::make_pair(true, true), 21),
 	     file_sph_bessel, false, true, test);
 
     //  Spherical Legendre functions.
@@ -564,13 +564,13 @@ template<typename Real>
 	     nsname, funcname,
 	     "n", sborder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
-	        		std::make_pair(false, true), 21),
+				std::make_pair(false, true), 21),
 	     file_sph_neumann, true, false);
     maketest(sph_neumann, gsl::bessel_yl,
 	     nsname, funcname,
 	     "n", sborder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
-	        		std::make_pair(false, true), 21),
+				std::make_pair(false, true), 21),
 	     file_sph_neumann, false, true, test);
 
 #if STD
@@ -582,9 +582,9 @@ template<typename Real>
     maketest(ellint_rc, gsl::ellint_RC,
 	     "__gnu_cxx", funcname,
 	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
-	        		std::make_pair(false, true), 11),
+				std::make_pair(false, true), 11),
 	     "y", fill_argument(std::make_pair(Real{0}, +Real{5}),
-	        		std::make_pair(false, true), 11),
+				std::make_pair(false, true), 11),
 	     file_ellint_rc);
 
     //  Carlson elliptic functions R_D.
@@ -595,11 +595,11 @@ template<typename Real>
     maketest(ellint_rd, gsl::ellint_RD,
 	     "__gnu_cxx", funcname,
 	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
-	        		std::make_pair(false, true), 11),
+				std::make_pair(false, true), 11),
 	     "y", fill_argument(std::make_pair(Real{0}, +Real{5}),
-	        		std::make_pair(true, true), 11),
+				std::make_pair(true, true), 11),
 	     "z", fill_argument(std::make_pair(Real{0}, +Real{5}),
-	        		std::make_pair(true, true), 11),
+				std::make_pair(true, true), 11),
 	     file_ellint_rd);
 
     //  Carlson elliptic functions R_F.
@@ -610,11 +610,11 @@ template<typename Real>
     maketest(ellint_rf, gsl::ellint_RF,
 	     "__gnu_cxx", funcname,
 	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
-	        		std::make_pair(false, true), 11),
+				std::make_pair(false, true), 11),
 	     "y", fill_argument(std::make_pair(Real{0}, +Real{5}),
-	        		std::make_pair(true, true), 11),
+				std::make_pair(true, true), 11),
 	     "z", fill_argument(std::make_pair(Real{0}, +Real{5}),
-	        		std::make_pair(true, true), 11),
+				std::make_pair(true, true), 11),
 	     file_ellint_rf);
 
     //  Carlson elliptic functions R_J.
@@ -625,13 +625,13 @@ template<typename Real>
     maketest(ellint_rj, gsl::ellint_RJ,
 	     "__gnu_cxx", funcname,
 	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
-	        		std::make_pair(false, true), 11),
+				std::make_pair(false, true), 11),
 	     "y", fill_argument(std::make_pair(Real{0}, +Real{5}),
-	        		std::make_pair(true, true), 11),
+				std::make_pair(true, true), 11),
 	     "z", fill_argument(std::make_pair(Real{0}, +Real{5}),
-	        		std::make_pair(true, true), 11),
+				std::make_pair(true, true), 11),
 	     "p", fill_argument(std::make_pair(Real{0}, +Real{5}),
-	        		std::make_pair(false, true), 11),
+				std::make_pair(false, true), 11),
 	     file_ellint_rj);
 
     //  Dilogarithm functions.
@@ -653,9 +653,9 @@ template<typename Real>
     maketest(gamma_u, gsl::gamma_inc,
 	     "__gnu_cxx", funcname,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
-	        		std::make_pair(false, true), 11),
+				std::make_pair(false, true), 11),
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
-	        		std::make_pair(true, true), 11),
+				std::make_pair(true, true), 11),
 	     file_gamma_u);
 
     //  Incomplete Beta functions.
@@ -666,11 +666,11 @@ template<typename Real>
     maketest<Real, Real, Real, Real>(ibeta, gsl::beta_inc,
 	     "__gnu_cxx", funcname,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
-	        		std::make_pair(false, true), 11),
+				std::make_pair(false, true), 11),
 	     "b", fill_argument(std::make_pair(Real{5}, Real{0}),
-	        		std::make_pair(true, false), 11),
+				std::make_pair(true, false), 11),
 	     "x", fill_argument(std::make_pair(Real{0}, Real{1}),
-	        		std::make_pair(false, false), 21),
+				std::make_pair(false, false), 21),
 	     file_ibeta);
 
     //  Digamma or psi functions.
@@ -844,9 +844,9 @@ template<typename Real>
     std::ofstream file_lpochhammer_u(filename.c_str());
     maketest(lpochhammer_u, gsl::lnpoch,
 	     "__gnu_cxx", funcname,
-	     "a", dvorder,
+	     "a", {1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0},
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
-	        		std::make_pair(false, true), 21),
+				std::make_pair(false, true), 21),
 	     file_lpochhammer_u, true, true);
 
     //  Log lower Pochhammer symbol
@@ -864,7 +864,7 @@ template<typename Real>
 	     "__gnu_cxx", funcname,
 	     "a", dvorder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
-	        		std::make_pair(false, true), 21),
+				std::make_pair(false, true), 21),
 	     file_pochhammer_u, true, true);
 
     //  Lower Pochhammer symbols (see boost::falling_factorial)
@@ -883,13 +883,13 @@ template<typename Real>
 	     "__gnu_cxx", funcname,
 	     "n", sborder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
-	        		std::make_pair(true, true), 21),
+				std::make_pair(true, true), 21),
 	     file_sph_bessel_i, true, false);
     maketest(sph_bessel_i, gsl::bessel_il,
 	     "__gnu_cxx", funcname,
 	     "n", sborder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
-	        		std::make_pair(true, true), 21),
+				std::make_pair(true, true), 21),
 	     file_sph_bessel_i, false, true, test);
 
     // Irregular modified spherical bessel functions.
@@ -902,13 +902,13 @@ template<typename Real>
 	     "__gnu_cxx", funcname,
 	     "n", sborder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
-	        		std::make_pair(true, true), 21),
+				std::make_pair(false, true), 21),
 	     file_sph_bessel_k, true, false);
     maketest(sph_bessel_k, gsl::bessel_kl,
 	     "__gnu_cxx", funcname,
 	     "n", sborder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
-	        		std::make_pair(true, true), 21),
+				std::make_pair(false, true), 21),
 	     file_sph_bessel_k, false, true, test);
 #endif // STD
   }

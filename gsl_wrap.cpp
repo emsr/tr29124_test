@@ -1058,16 +1058,17 @@ chebyshev_t(unsigned int n, double x)
 double
 jacobi(unsigned int n, double alpha, double beta, double x)
 {
-  gsl_sf_result result;
-  int stat = jac_jacobi_e(x, n, alpha, beta, &result);
-  if (stat != GSL_SUCCESS)
-    {
-      std::ostringstream msg("Error in jacobi:");
-      msg << " n=" << n << " alpha=" << alpha << " beta=" << beta << " x=" << x;
-      throw std::runtime_error(msg.str());
-    }
-  else
-    return result.val;
+//  gsl_sf_result result;
+//  int stat = ::jac_jacobi_e(x, n, alpha, beta, &result);
+//  if (stat != GSL_SUCCESS)
+//    {
+//      std::ostringstream msg("Error in jacobi:");
+//      msg << " n=" << n << " alpha=" << alpha << " beta=" << beta << " x=" << x;
+//      throw std::runtime_error(msg.str());
+//    }
+//  else
+//    return result.val;
+  return 0.0;
 }
 
 } // namespace gsl
