@@ -16,7 +16,7 @@
 namespace gsl
 {
 
-/// Airy Ai functions.
+/// Airy Ai function.
 double
 airy_ai(double x)
 {
@@ -33,8 +33,7 @@ airy_ai(double x)
     return result.val;
 }
 
-
-/// Airy Bi functions.
+/// Airy Bi function.
 double
 airy_bi(double x)
 {
@@ -51,7 +50,6 @@ airy_bi(double x)
     return result.val;
 }
 
-
 /// Associated Laguerre polynomials.
 double
 laguerre_nm(unsigned int n, unsigned int m, double x)
@@ -67,7 +65,6 @@ laguerre_nm(unsigned int n, unsigned int m, double x)
   else
     return result.val;
 }
-
 
 /// Associated Legendre functions.
 double
@@ -90,8 +87,7 @@ legendre_Plm(unsigned int l, unsigned int m, double x)
     }
 }
 
-
-/// Beta function.
+/// Beta functions.
 double
 beta(double x, double y)
 {
@@ -106,7 +102,6 @@ beta(double x, double y)
   else
     return result.val;
 }
-
 
 /// Complete elliptic integrals of the first kind.
 double
@@ -125,7 +120,6 @@ ellint_Kcomp(double k)
     return result.val;
 }
 
-
 /// Complete elliptic integrals of the second kind.
 double
 ellint_Ecomp(double k)
@@ -142,7 +136,6 @@ ellint_Ecomp(double k)
   else
     return result.val;
 }
-
 
 /// Complete elliptic integrals of the third kind.
 double
@@ -163,7 +156,6 @@ ellint_Pcomp(double k, double nu)
     return result.val;
 }
 
-
 /// Confluent hypergeometric functions.
 double
 hyperg_1F1(double a, double c, double x)
@@ -179,7 +171,6 @@ hyperg_1F1(double a, double c, double x)
   else
     return result.val;
 }
-
 
 /// Confluent hypergeometric limit functions.
 double
@@ -197,7 +188,6 @@ hyperg_0F1(double c, double x)
     return result.val;
 }
 
-
 /// Regular modified cylindrical Bessel functions.
 double
 bessel_Inu(double nu, double x)
@@ -213,7 +203,6 @@ bessel_Inu(double nu, double x)
   else
     return result.val;
 }
-
 
 /// Cylindrical Bessel functions (of the first kind).
 double
@@ -231,7 +220,6 @@ bessel_Jnu(double nu, double x)
     return result.val;
 }
 
-
 /// Irregular modified cylindrical Bessel functions.
 double
 bessel_Knu(double nu, double x)
@@ -248,7 +236,6 @@ bessel_Knu(double nu, double x)
     return result.val;
 }
 
-
 /// Cylindrical Neumann functions.
 double
 bessel_Ynu(double nu, double x)
@@ -264,7 +251,6 @@ bessel_Ynu(double nu, double x)
   else
     return result.val;
 }
-
 
 /// Elliptic integrals of the first kind.
 double
@@ -283,7 +269,6 @@ ellint_F(double k, double phi)
     return result.val;
 }
 
-
 /// Elliptic integrals of the second kind.
 double
 ellint_E(double k, double phi)
@@ -300,7 +285,6 @@ ellint_E(double k, double phi)
   else
     return result.val;
 }
-
 
 /// Elliptic integrals of the third kind.
 double
@@ -319,8 +303,7 @@ ellint_P(double k, double nu, double phi)
     return result.val;
 }
 
-
-/// Carlson elliptic integrals.
+/// Carlson elliptic integrals R_C.
 double
 ellint_RC(double x, double y)
 {
@@ -339,8 +322,7 @@ ellint_RC(double x, double y)
     return result.val;
 }
 
-
-
+/// Carlson elliptic integrals R_D.
 double
 ellint_RD(double x, double y, double z)
 {
@@ -359,8 +341,7 @@ ellint_RD(double x, double y, double z)
     return result.val;
 }
 
-
-
+/// Carlson elliptic integrals R_F.
 double
 ellint_RF(double x, double y, double z)
 {
@@ -379,7 +360,7 @@ ellint_RF(double x, double y, double z)
     return result.val;
 }
 
-
+/// Carlson elliptic integrals R_J.
 double
 ellint_RJ(double x, double y, double z, double p)
 {
@@ -398,8 +379,7 @@ ellint_RJ(double x, double y, double z, double p)
     return result.val;
 }
 
-
-/// Exponential integral.
+/// Exponential integral Ei.
 double
 expint_Ei(double x)
 {
@@ -415,6 +395,7 @@ expint_Ei(double x)
     return result.val;
 }
 
+/// Exponential integral E_1.
 double
 expint_E1(double x)
 {
@@ -430,6 +411,7 @@ expint_E1(double x)
     return result.val;
 }
 
+/// Exponential integrals E_n.
 double
 expint_En(int n, double x)
 {
@@ -444,7 +426,6 @@ expint_En(int n, double x)
   else
     return result.val;
 }
-
 
 /// Hermite polynomials.
 double
@@ -462,7 +443,6 @@ hermite(unsigned int n, double x)
     return result.val;
 }
 
-
 /// Hypergeometric functions.
 double
 hyperg_2F1(double a, double b, double c, double x)
@@ -478,7 +458,6 @@ hyperg_2F1(double a, double b, double c, double x)
   else
     return result.val;
 }
-
 
 /// Laguerre polynomials.
 double
@@ -497,7 +476,6 @@ laguerre_n(unsigned int n, double x)
     return result.val;
 }
 
-
 /// Legendre polynomials.
 double
 legendre_Pl(unsigned int l, double x)
@@ -514,8 +492,7 @@ legendre_Pl(unsigned int l, double x)
     return result.val;
 }
 
-
-/// Legendre polynomials.
+/// Legendre polynomials of the second kind.
 double
 legendre_Ql(unsigned int l, double x)
 {
@@ -530,7 +507,6 @@ legendre_Ql(unsigned int l, double x)
   else
     return result.val;
 }
-
 
 /// Riemann zeta function.
 double
@@ -548,8 +524,7 @@ zeta(double x)
     return result.val;
 }
 
-
-/// Hurwitz zeta function.
+/// Hurwitz zeta functions.
 double
 hzeta(double s, double x)
 {
@@ -564,7 +539,6 @@ hzeta(double s, double x)
   else
     return result.val;
 }
-
 
 /// Spherical Bessel functions.
 double
@@ -581,7 +555,6 @@ bessel_jl(unsigned int n, double x)
   else
     return result.val;
 }
-
 
 /// Spherical Legendre functions.
 double
@@ -605,7 +578,6 @@ legendre_sphPlm(unsigned int l, unsigned int m, double theta)
     }
 }
 
-
 /// Spherical Neumann functions.
 double
 bessel_yl(unsigned int n, double x)
@@ -622,8 +594,7 @@ bessel_yl(unsigned int n, double x)
     return result.val;
 }
 
-
-
+/// Normalized incomlete gamma functions.
 double
 gamma_inc_Q(double a, double x)
 {
@@ -639,8 +610,7 @@ gamma_inc_Q(double a, double x)
     return result.val;
 }
 
-
-
+/// Normalized incomlete gamma functions.
 double
 gamma_inc_P(double a, double x)
 {
@@ -656,8 +626,7 @@ gamma_inc_P(double a, double x)
     return result.val;
 }
 
-
-
+/// Non-normalized incomlete gamma functions.
 double
 gamma_inc(double a, double x)
 {
@@ -673,8 +642,7 @@ gamma_inc(double a, double x)
     return result.val;
 }
 
-
-
+/// Incomlete beta functions.
 double
 beta_inc(double a, double b, double x)
 {
@@ -689,7 +657,6 @@ beta_inc(double a, double b, double x)
   else
     return result.val;
 }
-
 
 /// Dilogarithm function.
 double
@@ -707,8 +674,7 @@ dilog(double x)
     return result.val;
 }
 
-
-/// Digamma function.
+/// Digamma or psi function.
 double
 psi(double x)
 {
@@ -723,7 +689,6 @@ psi(double x)
   else
     return result.val;
 }
-
 
 /// Sine integral.
 double
@@ -741,7 +706,6 @@ Si(double x)
     return result.val;
 }
 
-
 /// Cosine integral.
 double
 Ci(double x)
@@ -757,7 +721,6 @@ Ci(double x)
   else
     return result.val;
 }
-
 
 /// Hyperbolic sine integral.
 double
@@ -775,7 +738,6 @@ Shi(double x)
     return result.val;
 }
 
-
 /// Hyperbolic cosine integral.
 double
 Chi(double x)
@@ -791,7 +753,6 @@ Chi(double x)
   else
     return result.val;
 }
-
 
 /// Gegenbauer polynomials.
 double
@@ -809,7 +770,6 @@ gegenpoly_n(int n, double lambda, double x)
     return result.val;
 }
 
-
 /// Hydrogen wave functions.
 double
 hydrogen(int n, double l, double Z, double r)
@@ -825,7 +785,6 @@ hydrogen(int n, double l, double Z, double r)
   else
     return result.val;
 }
-
 
 /// Dawson integral.
 double
@@ -843,8 +802,7 @@ dawson(double x)
     return result.val;
 }
 
-
-/// Jacobian elliptic integrals.
+/// Jacobian elliptic integrals sn.
 double
 elljac_sn(double u, double k)
 {
@@ -861,6 +819,7 @@ elljac_sn(double u, double k)
     return sn;
 }
 
+/// Jacobian elliptic integrals cn.
 double
 elljac_cn(double u, double k)
 {
@@ -877,6 +836,7 @@ elljac_cn(double u, double k)
     return cn;
 }
 
+/// Jacobian elliptic integrals dn.
 double
 elljac_dn(double u, double k)
 {
