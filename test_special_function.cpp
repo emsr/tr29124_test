@@ -10,11 +10,7 @@
 #define STD 1
 
 #if STD
-#  if LOCAL
-#    include "cmath_local"
-#  else
-#    include <cmath>
-#  endif
+#  include <cmath>
 #  include <array>
 #else
 #  include <cmath>

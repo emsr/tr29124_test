@@ -10,18 +10,14 @@
 #define STD 1
 
 #if STD
-#  if LOCAL
-#    include "cmath_local"
-#  else
-#    include <cmath>
-#  endif
+#  include <cmath>
 #  include <array>
 #else
 #  include <cmath>
 #  include <tr1/cmath>
 #  include <tr1/array>
 #endif
-
+#include <bits/specfun.h>
 #include "gsl_wrap.h"
 
 #include "test_func.tcc"
