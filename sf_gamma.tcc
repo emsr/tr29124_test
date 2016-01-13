@@ -2077,14 +2077,14 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __log_pochhammer_u(_Tp __n, _Tp __a)
+    __log_pochhammer_u(_Tp __a, _Tp __n)
     {
       if (__isnan(__n) || __isnan(__a))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__n == _Tp{0})
 	return _Tp{0};
       else
-	return std::lgamma(__a + __n) - std::lgamma(__a);
+	return __log_gamma(__a + __n) - __log_gamma(__a);
     }
 
 
@@ -2101,7 +2101,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __pochhammer_u(_Tp __n, _Tp __a)
+    __pochhammer_u(_Tp __a, _Tp __n)
     {
       constexpr auto __log10{2.3025850929940456840179914546843642L};
       if (__isnan(__n) || __isnan(__a))
@@ -2138,7 +2138,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __log_pochhammer_l(_Tp __n, _Tp __a)
+    __log_pochhammer_l(_Tp __a, _Tp __n)
     {
       if (__isnan(__n) || __isnan(__a))
 	return std::numeric_limits<_Tp>::quiet_NaN();
@@ -2161,7 +2161,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __pochhammer_l(_Tp __n, _Tp __a)
+    __pochhammer_l(_Tp __a, _Tp __n)
     {
       constexpr auto __log10{2.3025850929940456840179914546843642L};
       if (__isnan(__n) || __isnan(__a))
