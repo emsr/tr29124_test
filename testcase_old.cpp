@@ -13,7 +13,7 @@
 #include "specfun_testcase.h"
 #include "gsl_wrap.h"
 
-#include "testcase.tcc"
+#include "testcase_old.tcc"
 
 
 std::string
