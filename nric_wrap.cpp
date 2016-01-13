@@ -4,7 +4,7 @@
 namespace nric
 {
 
-/// Airy functions.
+/// Airy Ai function.
 double
 airy_ai(double x)
 {
@@ -13,6 +13,7 @@ airy_ai(double x)
   return ai;
 }
 
+/// Airy Bi function.
 double
 airy_bi(double x)
 {
@@ -26,36 +27,30 @@ double
 laguerre_nm(unsigned int n, unsigned int m, double x)
 { return laguerre_poly(n, double(m), x); }
 
-
 /// Associated Legendre functions.
 double
 legendre_Plm(unsigned int l, unsigned int m, double x)
 { return legendre_poly(l, m, x); }
 
-
-/// Beta function.
+/// Beta functions.
 double
 beta(double x, double y)
 { return beta(x, y); }
-
 
 /// Complete elliptic integrals of the first kind.
 double
 ellint_Kcomp(double k)
 { return 0.0; }
 
-
 /// Complete elliptic integrals of the second kind.
 double
 ellint_Ecomp(double k)
 { return 0.0; }
 
-
 /// Complete elliptic integrals of the third kind.
 double
 ellint_Pcomp(double k, double nu)
 { return 0.0; }
-
 
 /// Confluent hypergeometric functions.
 double
@@ -67,71 +62,72 @@ double
 hyperg_0F1(double c, double x)
 { return 0.0; }
 
-
 /// Regular modified cylindrical Bessel functions.
 double
 bessel_Inu(double nu, double x)
 { return 0.0; }
-
 
 /// Cylindrical Bessel functions (of the first kind).
 double
 bessel_Jnu(double nu, double x)
 { return 0.0; }
 
-
 /// Irregular modified cylindrical Bessel functions.
 double
 bessel_Knu(double nu, double x)
 { return 0.0; }
-
 
 /// Cylindrical Neumann functions.
 double
 bessel_Ynu(double nu, double x)
 { return 0.0; }
 
-
 /// Elliptic integrals of the first kind.
 double
 ellint_F(double k, double phi)
 { return legendre_f(phi, k); }
-
 
 /// Elliptic integrals of the second kind.
 double
 ellint_E(double k, double phi)
 { return legendre_e(phi, k); }
 
-
 /// Elliptic integrals of the third kind.
 double
 ellint_P(double k, double nu, double phi)
 { return legendre_pi(phi, nu, k); }
 
-/// Carlson elliptic integrals.
+/// Carlson elliptic integrals R_C.
 double
 ellint_RC(double x, double y)
 { return carlson_rc(x, y); }
+
+/// Carlson elliptic integrals R_D.
 double
 ellint_RD(double x, double y, double z)
 { return carlson_rd(x, y, z); }
+
+/// Carlson elliptic integrals R_F.
 double
 ellint_RF(double x, double y, double z)
 { return carlson_rf(x, y, z); }
+
+/// Carlson elliptic integrals R_J.
 double
 ellint_RJ(double x, double y, double z, double p)
 { return carlson_rj(x, y, z, p); }
 
-/// Exponential integrals.
+/// Exponential integral Ei.
 double
 expint_Ei(double x)
 { return ei(x); }
 
+/// Exponential integral E_1.
 double
 expint_E1(double x)
 { return exp_int(1, x); }
 
+/// Exponential integrals E_n.
 double
 expint_En(unsigned int n, double x)
 { return exp_int(n, x); }
@@ -146,31 +142,27 @@ double
 hyperg_2F1(double a, double b, double c, double x)
 { return 0.0; }
 
-
 /// Laguerre polynomials.
 double
 laguerre_n(unsigned int n, double x)
 { return 0.0; }
-
 
 /// Legendre polynomials.
 double
 legendre_Pl(unsigned int l, double x)
 { return legendre_p(l, x); }
 
-
-/// Legendre polynomials.
+/// Legendre polynomials of the second kind.
 double
 legendre_Ql(unsigned int l, double x)
 { return legendre_q(l, x); }
-
 
 /// Riemann zeta function.
 double
 zeta(double x)
 { return 0.0; }
 
-/// Hurwitz zeta function.
+/// Hurwitz zeta functions.
 double
 hzeta(double s, double q)
 { return 0.0; }
@@ -180,12 +172,10 @@ double
 bessel_jl(unsigned int n, double x)
 { return sph_bessel_j(n, x); }
 
-
 /// Spherical Legendre functions.
 double
 legendre_sphPlm(unsigned int l, unsigned int m, double theta)
 { return spherical_harmonic(l, m, theta, phi); }
-
 
 /// Spherical Neumann functions.
 double
@@ -212,12 +202,12 @@ double
 beta_inc(double a, double b, double x)
 { return 0.0; }
 
-/// Dilogarithm functions.
+/// Dilogarithm function.
 double
 dilog(double x)
 { return 0.0; }
 
-/// Digamma or psi functions.
+/// Digamma or psi function.
 double
 psi(double x)
 { return 0.0; }
@@ -265,7 +255,7 @@ double
 dawson(double x)
 { return ::dawson(x); }
 
-/// Jacobian elliptic integrals.
+/// Jacobian elliptic integrals sn.
 double
 elljac_sn(double u, double k)
 {
@@ -275,7 +265,7 @@ elljac_sn(double u, double k)
   return sn;
 }
 
-/// Jacobian elliptic integrals.
+/// Jacobian elliptic integrals cn.
 double
 elljac_cn(double u, double k)
 {
@@ -285,7 +275,7 @@ elljac_cn(double u, double k)
   return cn;
 }
 
-/// Jacobian elliptic integrals.
+/// Jacobian elliptic integrals dn.
 double
 elljac_dn(double u, double k)
 {
