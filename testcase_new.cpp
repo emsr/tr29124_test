@@ -42,6 +42,9 @@ template<typename Real>
     using       std::assoc_laguerre;
     using       std::assoc_legendre;
     using       std::beta;
+    using       std::comp_ellint_1;
+    using       std::comp_ellint_2;
+    using       std::comp_ellint_3;
     using __gnu_cxx::conf_hyperg;
     using __gnu_cxx::coshint;
     using __gnu_cxx::cosint;
@@ -51,9 +54,6 @@ template<typename Real>
     using       std::cyl_neumann;
     using __gnu_cxx::dawson;
     using __gnu_cxx::dilog;
-    using       std::comp_ellint_1;
-    using       std::comp_ellint_2;
-    using       std::comp_ellint_3;
     using __gnu_cxx::ellint_rc;
     using __gnu_cxx::ellint_rd;
     using __gnu_cxx::ellint_rf;
@@ -63,8 +63,8 @@ template<typename Real>
     using       std::ellint_3;
     using       std::expint;
     using __gnu_cxx::expint_e1;
-    using __gnu_cxx::fresnel_s;
     using __gnu_cxx::fresnel_c;
+    using __gnu_cxx::fresnel_s;
     using __gnu_cxx::gamma_u;
     using __gnu_cxx::ibeta;
     using       std::hermite;
@@ -75,6 +75,7 @@ template<typename Real>
     using __gnu_cxx::jacobi_dn;
     using       std::laguerre;
     using       std::legendre;
+    using __gnu_cxx::legendre_q;
     using __gnu_cxx::lpochhammer_l;
     using __gnu_cxx::lpochhammer_u;
     using __gnu_cxx::pochhammer_l;
@@ -910,6 +911,18 @@ template<typename Real>
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(false, true), 21),
 	     file_sph_bessel_k, false, true, test);
+
+    //  Legendre functions of the second kind.
+    std::cout << "legendre_q" << std::endl;
+    funcname = "legendre_q";
+    filename = get_filename(path, prefix, funcname, "", ".cc");
+    std::ofstream file_legendre_q(filename.c_str());
+    maketest(legendre_q, gsl::legendre_Ql,
+	     nsname, funcname,
+	     "l", vorder,
+	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
+	        		std::make_pair(false, false), 21),
+	     file_legendre_q);
 #endif // STD
   }
 
