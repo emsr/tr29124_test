@@ -87,6 +87,8 @@ ${makedir} ${textdir}/psi
 ${makedir} ${textdir}/sinc
 ${makedir} ${textdir}/sinhint
 ${makedir} ${textdir}/sinint
+${makedir} ${textdir}/sph_bessel_i
+${makedir} ${textdir}/sph_bessel_k
 
 ${copy} check_airy_ai.cc          ${textdir}/airy_ai/check_value.cc
 ${copy} check_airy_bi.cc          ${textdir}/airy_bi/check_value.cc
@@ -109,11 +111,13 @@ ${copy} check_ibeta.cc            ${textdir}/ibeta/check_value.cc
 ${copy} check_jacobi_sn.cc        ${textdir}/jacobi_sn/check_value.cc
 ${copy} check_jacobi_cn.cc        ${textdir}/jacobi_cn/check_value.cc
 ${copy} check_jacobi_dn.cc        ${textdir}/jacobi_dn/check_value.cc
-${copy} check_lpochhammer_l.cc    ${textdir}/lpochhammer_l/check_value.cc
+#${copy} check_lpochhammer_l.cc    ${textdir}/lpochhammer_l/check_value.cc
 ${copy} check_lpochhammer_u.cc    ${textdir}/lpochhammer_u/check_value.cc
-${copy} check_pochhammer_l.cc     ${textdir}/pochhammer_l/check_value.cc
+#${copy} check_pochhammer_l.cc     ${textdir}/pochhammer_l/check_value.cc
 ${copy} check_pochhammer_u.cc     ${textdir}/pochhammer_u/check_value.cc
 ${copy} check_psi.cc              ${textdir}/psi/check_value.cc
 ${copy} check_sinc.cc             ${textdir}/sinc/check_value.cc
 ${copy} check_sinhint.cc          ${textdir}/sinhint/check_value.cc
 ${copy} check_sinint.cc           ${textdir}/sinint/check_value.cc
+${copy} check_sph_bessel_i.cc     ${textdir}/sph_bessel_i/check_value.cc
+${copy} check_sph_bessel_k.cc     ${textdir}/sph_bessel_k/check_value.cc

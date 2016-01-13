@@ -51,7 +51,13 @@ ${tool} ${text_dir}/ibeta/*             ${ext_dir}/ibeta
 ${tool} ${text_dir}/jacobi_sn/*         ${ext_dir}/jacobi_sn
 ${tool} ${text_dir}/jacobi_cn/*         ${ext_dir}/jacobi_cn
 ${tool} ${text_dir}/jacobi_dn/*         ${ext_dir}/jacobi_dn
+#${tool} ${text_dir}/lpochhammer_l/*     ${ext_dir}/lpochhammer_l
+${tool} ${text_dir}/lpochhammer_u/*     ${ext_dir}/lpochhammer_u
+#${tool} ${text_dir}/pochhammer_l/*      ${ext_dir}/pochhammer_l
+${tool} ${text_dir}/pochhammer_u/*      ${ext_dir}/pochhammer_u
 ${tool} ${text_dir}/psi/*               ${ext_dir}/psi
 ${tool} ${text_dir}/sinc/*              ${ext_dir}/sinc
 ${tool} ${text_dir}/sinhint/*           ${ext_dir}/sinhint
 ${tool} ${text_dir}/sinint/*            ${ext_dir}/sinint
+${tool} ${text_dir}/sph_bessel_i/*      ${ext_dir}/sph_bessel_i
+${tool} ${text_dir}/sph_bessel_k/*      ${ext_dir}/sph_bessel_k
