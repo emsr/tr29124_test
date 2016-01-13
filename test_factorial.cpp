@@ -3,6 +3,10 @@
 
 // LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_factorial > test_factorial.txt
 
+// $HOME/bin/bin/g++ -o test_factorial test_factorial.cpp -lquadmath
+
+// LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_factorial > test_factorial.txt
+
 #include "numeric_limits.h"
 #include <limits>
 #include <iostream>
