@@ -89,6 +89,63 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       return __H_n;
     }
+  /**
+   *   @brief This routine returns the Hermite polynomial
+   *          of large order n: \f$ H_n(x) \f$.  We assume here
+   *          that x >= 0.
+   *
+   *   The Hermite polynomial is defined by:
+   *   @f[
+   *     H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
+   *   @f]
+   *
+   *  @see "Asymptotic analysis of the Hermite polynomials
+   *        from their differential-difference equation", 
+   *        Diego Dominici, arXiv:math/0601078v1 [math.CA] 4 Jan 2006
+   *   @param __n The order of the Hermite polynomial.
+   *   @param __x The argument of the Hermite polynomial.
+   *   @return The value of the Hermite polynomial of order n
+   *           and argument x.
+   */
+  template<typename _Tp>
+    _Tp
+    __poly_hermite_asymp(unsigned int __n, _Tp __x)
+    {
+      // __x >= 0 in this routine.
+      const auto __xturn = std::sqrt(_Tp(2 * __n));
+      if (std::abs(__x - __xturn) < 1.05 * __xturn)
+	{
+	  // Transition region x ~ sqrt(2n).
+	  const auto __n_2 = _Tp(__n) / 2;
+	  const auto __n6th = std::pow(_Tp(__n), 1 / _Tp(6))
+	  const auto __exparg = __n_2 * std::log(__xturn) - 3 * __n_2
+			      + __xturn * __x;
+	  const auto __airyarg = _S_sqrt_2 * (__x - __xturn) * __n6th;
+	  return std::sqrt(_S_sqrt_2pi) * __n6th * std::exp(__exparg)
+	       * airy_ai(__airyarg);
+	}
+      else if (__x < __xturn)
+	{
+	  // Oscillatory region |x| < sqrt(2n).
+	  const auto __theta = std::asin(__x / __xturn);
+	  const auto __n_2 = _Tp(__n) / 2;
+	  const auto __exparg = __n_2 * (std::log(__xturn)
+					- std::cos(2 * __theta));
+	  const auto __arg = __theta / 2
+			   + __n * (_Tp{0.5L} * std::sin(2 * __theta) + __theta - _S_pi_2);
+	  return std::sqrt(2 / std::cos(__theta))
+	       * std::exp(__exparg) * std::cos(__arg);
+	}
+      else
+	{
+	  // Exponential region |x| > sqrt(2n).
+	  const auto __sigma = std::sqrt((__x - __xturn) * (__x + __xturn));
+	  const auto __exparg = _Tp{0.5L} * (__x * (__x - __sigma) - __n)
+			     + __n * std::log(__sigma + __x)
+	  return std::exp(__exparg)
+	       * std::sqrt(_Tp{0.5L} * (_Tp{1} + __x / __sigma));
+	}
+    }
 
 
   /**
@@ -98,6 +155,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   The Hermite polynomial is defined by:
    *   @f[
    *     H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
+   *   @f]
+   *
+   *   The Hermite polynomial obeys a reflection formula:
+   *   @f[
+   *     H_n(-x) = (-1)^n H_n(x)
    *   @f]
    *
    *   @param __n The order of the Hermite polynomial.
@@ -111,6 +173,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__x < _Tp{0})
+	return (__n % 2 == 1 ? -1 : +1) * __poly_hermite(__n, -__x);
+      else if (__n > 100)
+	return __poly_hermite_asymp(__n, __x);
       else
 	return __poly_hermite_recursion(__n, __x);
     }

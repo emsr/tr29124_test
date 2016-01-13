@@ -194,5 +194,8 @@ double chebyshev_t(unsigned int n, double x);
 /// Jacobi polynomials.
 double jacobi(unsigned int n, double alpha, double beta, double x);
 
+/// Legendre function of the second kind.
+double legendre_Ql(unsigned int l, double x);
+
 } // namespace gsl
 
