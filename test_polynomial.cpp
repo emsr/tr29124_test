@@ -142,6 +142,11 @@ main()
   std::cout << "P = " << P << std::endl;
   std::cout << "P' = " << P.derivative() << std::endl;
   std::cout << "I = " << P.integral(42.0) << std::endl;
+  
+  std::polynomial<std::polynomial<double>>
+  Pp({{9.0, 8.0, 7.0}, {6.0, 5.0, 4.0}, {3.0, 2.0, 1.0}});
+  std::cout << "Pp = " << Pp << std::endl;
+  //std::cout << "Pp(-1) = " << Pp(-1.0) << std::endl;
 
   //std::array<double, 5> aaa{{1.1, 2.2, 3.3, 4.4, 5.5}};
   //std::cout << "aaa = " << std::polynomial_eval(aaa, 3.13149) << std::endl;
