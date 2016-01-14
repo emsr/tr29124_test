@@ -111,18 +111,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __poly_hermite_asymp(unsigned int __n, _Tp __x)
     {
+      constexpr auto _S_sqrt_2pi = __gnu_cxx::__math_constants<_Tp>::__root_2
+				 * __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
+      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
       // __x >= 0 in this routine.
       const auto __xturn = std::sqrt(_Tp(2 * __n));
       if (std::abs(__x - __xturn) < 1.05 * __xturn)
 	{
 	  // Transition region x ~ sqrt(2n).
 	  const auto __n_2 = _Tp(__n) / 2;
-	  const auto __n6th = std::pow(_Tp(__n), 1 / _Tp(6))
+	  const auto __n6th = std::pow(_Tp(__n), 1 / _Tp(6));
 	  const auto __exparg = __n_2 * std::log(__xturn) - 3 * __n_2
 			      + __xturn * __x;
 	  const auto __airyarg = _S_sqrt_2 * (__x - __xturn) * __n6th;
-	  return std::sqrt(_S_sqrt_2pi) * __n6th * std::exp(__exparg)
-	       * airy_ai(__airyarg);
+	  _Tp _Ai, _Bi, _Aip, _Bip;
+	  __airy(__airyarg, _Ai, _Bi, _Aip, _Bip);
+	  return std::sqrt(_S_sqrt_2pi) * __n6th * std::exp(__exparg) * _Ai;
 	}
       else if (__x < __xturn)
 	{
@@ -132,7 +137,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __exparg = __n_2 * (std::log(__xturn)
 					- std::cos(2 * __theta));
 	  const auto __arg = __theta / 2
-			   + __n * (_Tp{0.5L} * std::sin(2 * __theta) + __theta - _S_pi_2);
+		+ __n * (_Tp{0.5L} * std::sin(2 * __theta) + __theta - _S_pi_2);
 	  return std::sqrt(2 / std::cos(__theta))
 	       * std::exp(__exparg) * std::cos(__arg);
 	}
@@ -141,7 +146,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  // Exponential region |x| > sqrt(2n).
 	  const auto __sigma = std::sqrt((__x - __xturn) * (__x + __xturn));
 	  const auto __exparg = _Tp{0.5L} * (__x * (__x - __sigma) - __n)
-			     + __n * std::log(__sigma + __x)
+			     + __n * std::log(__sigma + __x);
 	  return std::exp(__exparg)
 	       * std::sqrt(_Tp{0.5L} * (_Tp{1} + __x / __sigma));
 	}

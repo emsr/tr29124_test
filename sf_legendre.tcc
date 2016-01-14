@@ -151,7 +151,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 	  return _Q_l;
 	}
-
+    }
 
   /**
    *   @brief  Return the associated Legendre function by recursion
