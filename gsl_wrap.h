@@ -147,13 +147,13 @@ double hydrogen(int n, double l, double Z, double r);
 double dawson(double x);
 
 /// Jacobian elliptic integrals sn.
-double elljac_sn(double u, double k);
+double elljac_sn(double k, double u);
 
 /// Jacobian elliptic integrals cn.
-double elljac_cn(double u, double k);
+double elljac_cn(double k, double u);
 
 /// Jacobian elliptic integrals dn.
-double elljac_dn(double u, double k);
+double elljac_dn(double k, double u);
 
 /// Fresnel cosine integral.
 double fresnel_c(double x);
@@ -177,10 +177,10 @@ double lnfact(unsigned int n);
 double fact(unsigned int n);
 
 /// Log double factorial.
-double lndoublefact(unsigned int n);
+double lndoublefact(int n);
 
 /// Double factorial.
-double doublefact(unsigned int n);
+double doublefact(int n);
 
 /// Regular modified spherical bessel functions.
 double bessel_il(unsigned int n, double x);
