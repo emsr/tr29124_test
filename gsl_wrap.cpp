@@ -799,7 +799,7 @@ dawson(double x)
 
 /// Jacobian elliptic integrals sn.
 double
-elljac_sn(double u, double k)
+elljac_sn(double k, double u)
 {
   double m = k * k;
   double sn, cn, dn;
@@ -807,7 +807,7 @@ elljac_sn(double u, double k)
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in elljac_sn:");
-      msg << " u=" << u << " m=" << m;
+      msg << " u=" << u << " k=" << k;
       throw std::runtime_error(msg.str());
     }
   else
@@ -816,7 +816,7 @@ elljac_sn(double u, double k)
 
 /// Jacobian elliptic integrals cn.
 double
-elljac_cn(double u, double k)
+elljac_cn(double k, double u)
 {
   double m = k * k;
   double sn, cn, dn;
@@ -824,7 +824,7 @@ elljac_cn(double u, double k)
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in elljac_cn:");
-      msg << " u=" << u << " m=" << m;
+      msg << " u=" << u << " k=" << k;
       throw std::runtime_error(msg.str());
     }
   else
@@ -833,7 +833,7 @@ elljac_cn(double u, double k)
 
 /// Jacobian elliptic integrals dn.
 double
-elljac_dn(double u, double k)
+elljac_dn(double k, double u)
 {
   double m = k * k;
   double sn, cn, dn;
@@ -841,7 +841,7 @@ elljac_dn(double u, double k)
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in elljac_dn:");
-      msg << " u=" << u << " m=" << m;
+      msg << " u=" << u << " k=" << k;
       throw std::runtime_error(msg.str());
     }
   else
@@ -942,7 +942,7 @@ fact(unsigned int n)
 
 /// Log double factorial.
 double
-lndoublefact(unsigned int n)
+lndoublefact(int n)
 {
   gsl_sf_result result;
   int stat = gsl_sf_lndoublefact_e(n, &result);
@@ -958,7 +958,7 @@ lndoublefact(unsigned int n)
 
 /// Double factorial.
 double
-doublefact(unsigned int n)
+doublefact(int n)
 {
   gsl_sf_result result;
   int stat = gsl_sf_doublefact_e(n, &result);

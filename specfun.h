@@ -1543,73 +1543,73 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Factorial
 
   inline float
-  factorialf(float __x)
-  { return std::__detail::__factorial<float>(__x); }
+  factorialf(unsigned int __n)
+  { return std::__detail::__factorial<float>(__n); }
 
   inline long double
-  factoriall(long double __x)
-  { return std::__detail::__factorial<long double>(__x); }
+  factoriall(unsigned int __n)
+  { return std::__detail::__factorial<long double>(__n); }
 
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
-    factorial(_Tp __x)
+    factorial(unsigned int __n)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      return std::__detail::__factorial<__type>(__x);
+      return std::__detail::__factorial<__type>(__n);
     }
 
   // Double factorial
 
   inline float
-  double_factorialf(float __x)
-  { return std::__detail::__double_factorial<float>(__x); }
+  double_factorialf(int __n)
+  { return std::__detail::__double_factorial<float>(__n); }
 
   inline long double
-  double_factoriall(long double __x)
-  { return std::__detail::__double_factorial<long double>(__x); }
+  double_factoriall(int __n)
+  { return std::__detail::__double_factorial<long double>(__n); }
 
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
-    double_factorial(_Tp __x)
+    double_factorial(int __n)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      return std::__detail::__double_factorial<__type>(__x);
+      return std::__detail::__double_factorial<__type>(__n);
     }
 
   // Log factorial
 
   inline float
-  lfactorialf(float __x)
-  { return std::__detail::__log_factorial<float>(__x); }
+  lfactorialf(unsigned int __n)
+  { return std::__detail::__log_factorial<float>(__n); }
 
   inline long double
-  lfactoriall(long double __x)
-  { return std::__detail::__log_factorial<long double>(__x); }
+  lfactoriall(unsigned int __n)
+  { return std::__detail::__log_factorial<long double>(__n); }
 
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
-    lfactorial(_Tp __x)
+    lfactorial(unsigned int __n)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      return std::__detail::__log_factorial<__type>(__x);
+      return std::__detail::__log_factorial<__type>(__n);
     }
 
   // Log double factorial
 
   inline float
-  ldouble_factorialf(float __x)
-  { return std::__detail::__log_double_factorial<float>(__x); }
+  ldouble_factorialf(int __n)
+  { return std::__detail::__log_double_factorial<float>(__n); }
 
   inline long double
-  ldouble_factoriall(long double __x)
-  { return std::__detail::__log_double_factorial<long double>(__x); }
+  ldouble_factoriall(int __n)
+  { return std::__detail::__log_double_factorial<long double>(__n); }
 
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
-    ldouble_factorial(_Tp __x)
+    ldouble_factorial(int __n)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      return std::__detail::__log_double_factorial<__type>(__x);
+      return std::__detail::__log_double_factorial<__type>(__n);
     }
 
   // Legendre functions of the second kind
