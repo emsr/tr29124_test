@@ -197,5 +197,14 @@ double jacobi(unsigned int n, double alpha, double beta, double x);
 /// Legendre function of the second kind.
 double legendre_Ql(unsigned int l, double x);
 
+/// Binomial coefficients.
+double bincoeff(unsigned int n, unsigned int k);
+
+/// Log binomial coefficients.
+double lnbincoeff(unsigned int n, unsigned int k);
+
+/// Taylor coefficients.
+double taylorcoeff(unsigned int n, double x);
+
 } // namespace gsl
 
