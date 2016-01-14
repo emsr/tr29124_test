@@ -1031,20 +1031,4 @@ jacobi(unsigned int n, double alpha, double beta, double x)
   return 0.0;
 }
 
-/// Legendre function of the second kind.
-double
-legendre_Ql(unsigned int l, double x)
-{
-  gsl_sf_result result;
-  int stat = gsl_sf_legendre_Ql_e(l, x, &result);
-  if (stat != GSL_SUCCESS)
-    {
-      std::ostringstream msg("Error in legendre_Ql:");
-      msg << " l=" << l << " x=" << x;
-      throw std::runtime_error(msg.str());
-    }
-  else
-    return result.val;
-}
-
 } // namespace gsl
