@@ -16,7 +16,7 @@
 #include "specfun_testcase.h"
 #include "gsl_wrap.h"
 
-#include "testcase_new.tcc"
+#include "testcase.tcc"
 
 std::string
 get_filename(const std::string & path,
@@ -54,6 +54,7 @@ template<typename Real>
     using       std::cyl_neumann;
     using __gnu_cxx::dawson;
     using __gnu_cxx::dilog;
+    using __gnu_cxx::double_factorial;
     using       std::ellint_1;
     using       std::ellint_2;
     using       std::ellint_3;
@@ -64,6 +65,7 @@ template<typename Real>
     using __gnu_cxx::ellint_rj;
     using       std::expint;
     using __gnu_cxx::expint_e1;
+    using __gnu_cxx::factorial;
     using __gnu_cxx::fresnel_c;
     using __gnu_cxx::fresnel_s;
     using __gnu_cxx::gamma_l;
@@ -76,8 +78,10 @@ template<typename Real>
     using __gnu_cxx::jacobi_cn;
     using __gnu_cxx::jacobi_dn;
     using       std::laguerre;
+    using __gnu_cxx::ldouble_factorial;
     using       std::legendre;
     using __gnu_cxx::legendre_q;
+    using __gnu_cxx::lfactorial;
     using __gnu_cxx::lpochhammer_l;
     using __gnu_cxx::lpochhammer_u;
     using __gnu_cxx::pochhammer_l;
@@ -755,10 +759,10 @@ template<typename Real>
     std::ofstream file_jacobi_sn(filename.c_str());
     maketest(jacobi_sn, gsl::elljac_sn,
 	     "__gnu_cxx", funcname,
-	     "u", fill_argument(std::make_pair(Real{-5}, Real{+5}),
-		    		std::make_pair(true, true), 101),
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{+1}),
 		    		std::make_pair(true, true), 21),
+	     "u", fill_argument(std::make_pair(Real{-5}, Real{+5}),
+		    		std::make_pair(true, true), 101),
 	     file_jacobi_sn);
 
     //  Jacobian elliptic integrals.
@@ -768,10 +772,10 @@ template<typename Real>
     std::ofstream file_jacobi_cn(filename.c_str());
     maketest(jacobi_cn, gsl::elljac_cn,
 	     "__gnu_cxx", funcname,
-	     "u", fill_argument(std::make_pair(Real{-5}, Real{+5}),
-		    		std::make_pair(true, true), 101),
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{+1}),
 		    		std::make_pair(true, true), 21),
+	     "u", fill_argument(std::make_pair(Real{-5}, Real{+5}),
+		    		std::make_pair(true, true), 101),
 	     file_jacobi_cn);
 
     //  Jacobian elliptic integrals.
@@ -781,10 +785,10 @@ template<typename Real>
     std::ofstream file_jacobi_dn(filename.c_str());
     maketest(jacobi_dn, gsl::elljac_dn,
 	     "__gnu_cxx", funcname,
-	     "u", fill_argument(std::make_pair(Real{-5}, Real{+5}),
-		    		std::make_pair(true, true), 101),
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{+1}),
 		    		std::make_pair(true, true), 21),
+	     "u", fill_argument(std::make_pair(Real{-5}, Real{+5}),
+		    		std::make_pair(true, true), 101),
 	     file_jacobi_dn);
 
     //  Exponential integral E1.
@@ -925,6 +929,46 @@ template<typename Real>
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
 	        		std::make_pair(false, false), 21),
 	     file_legendre_q);
+
+    std::cout << "factorial" << std::endl;
+    funcname = "factorial";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_factorial(filename.c_str());
+    maketest(factorial<Real>, gsl::fact,
+	     "__gnu_cxx", funcname,
+	     "n", fill_argument(std::make_pair(0U, 50U),
+	    			std::make_pair(true, true), 51),
+	     file_factorial);
+
+    std::cout << "lfactorial" << std::endl;
+    funcname = "lfactorial";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_lfactorial(filename.c_str());
+    maketest(lfactorial<Real>, gsl::lnfact,
+	     "__gnu_cxx", funcname,
+	     "n", fill_argument(std::make_pair(0U, 500U),
+	    			std::make_pair(true, true), 501),
+	     file_lfactorial);
+
+    std::cout << "double_factorial" << std::endl;
+    funcname = "double_factorial";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_double_factorial(filename.c_str());
+    maketest(double_factorial<Real>, gsl::doublefact,
+	     "__gnu_cxx", funcname,
+	     "n", fill_argument(std::make_pair(0, 50),
+	    			std::make_pair(true, true), 51),
+	     file_double_factorial);
+
+    std::cout << "ldouble_factorial" << std::endl;
+    funcname = "ldouble_factorial";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_ldouble_factorial(filename.c_str());
+    maketest(ldouble_factorial<Real>, gsl::lndoublefact,
+	     "__gnu_cxx", funcname,
+	     "n", fill_argument(std::make_pair(0, 500),
+	    			std::make_pair(true, true), 501),
+	     file_ldouble_factorial);
 #endif // STD
   }
 
