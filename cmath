@@ -589,7 +589,7 @@ _GLIBCXX_END_NAMESPACE_VERSION
 #endif /* _GLIBCXX_USE_C99_MATH */
 
 #if __STDCPP_WANT_MATH_SPEC_FUNCS__ == 1
-#  include "specfun_local.h"
+#  include <bits/specfun.h>
 #endif
 
 #endif
