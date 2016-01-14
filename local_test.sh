@@ -81,6 +81,9 @@ ${makedir} ${textdir}/ibeta
 ${makedir} ${textdir}/jacobi_sn
 ${makedir} ${textdir}/jacobi_cn
 ${makedir} ${textdir}/jacobi_dn
+${makedir} ${textdir}/legendre_q
+${makedir} ${textdir}/lpochhammer_l
+${makedir} ${textdir}/lpochhammer_u
 ${makedir} ${textdir}/pochhammer_l
 ${makedir} ${textdir}/pochhammer_u
 ${makedir} ${textdir}/psi
@@ -111,6 +114,7 @@ ${copy} check_ibeta.cc            ${textdir}/ibeta/check_value.cc
 ${copy} check_jacobi_sn.cc        ${textdir}/jacobi_sn/check_value.cc
 ${copy} check_jacobi_cn.cc        ${textdir}/jacobi_cn/check_value.cc
 ${copy} check_jacobi_dn.cc        ${textdir}/jacobi_dn/check_value.cc
+${copy} check_legendre_q.cc       ${textdir}/legendre_q/check_value.cc
 #${copy} check_lpochhammer_l.cc    ${textdir}/lpochhammer_l/check_value.cc
 ${copy} check_lpochhammer_u.cc    ${textdir}/lpochhammer_u/check_value.cc
 #${copy} check_pochhammer_l.cc     ${textdir}/pochhammer_l/check_value.cc
