@@ -39,7 +39,7 @@ dilog
 test_bessel
 test_bessel_asymp
 testcase
-testcase_new
+testcase_old
 test_cmath
 test_complex_gamma
 test_complex128

@@ -23,7 +23,7 @@ GSL_LIBS = $(GSL_FRESNEL_DIR)/fresnel.c -L$(GSL_LIB_DIR) -lgsl -lgslcblas -ljaco
 BINS = test_special_function \
        diff_special_function \
        testcase_old \
-       testcase_new \
+       testcase \
        airy_toy \
        hankel_toy \
        hankel_toy128 \
@@ -43,7 +43,7 @@ BINS = test_special_function \
 all: diff_special_function \
      test_special_function \
      testcase_old \
-     testcase_new \
+     testcase \
      airy_toy \
      hankel_toy \
      hankel_toy128 \
@@ -63,8 +63,8 @@ all: diff_special_function \
 testcases_old: testcase_old
 	LD_LIBRARY_PATH=/home/ed/bin_specfun/lib64:$(GSL_LIB_DIR):$$LD_LIBRARY_PATH ./testcase_old
 
-testcases_new: testcase_new
-	LD_LIBRARY_PATH=/home/ed/bin_specfun/lib64:$(GSL_LIB_DIR):$$LD_LIBRARY_PATH ./testcase_new
+testcases: testcase
+	LD_LIBRARY_PATH=/home/ed/bin_specfun/lib64:$(GSL_LIB_DIR):$$LD_LIBRARY_PATH ./testcase
 
 test:
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_airy > test_airy.txt
@@ -127,8 +127,8 @@ diff_local_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tc
 testcase_old: testcase_old.cpp testcase_old.tcc gsl_wrap.h gsl_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
 	$(CXX) -o testcase_old -I$(GSL_INC_DIR) testcase_old.cpp gsl_wrap.cpp $(GSL_LIBS)
 
-testcase_new: testcase_new.cpp testcase_new.tcc gsl_wrap.h gsl_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
-	$(CXX) -o testcase_new -I$(GSL_INC_DIR) testcase_new.cpp gsl_wrap.cpp $(GSL_LIBS)
+testcase: testcase.cpp testcase.tcc gsl_wrap.h gsl_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
+	$(CXX) -o testcase -I$(GSL_INC_DIR) testcase.cpp gsl_wrap.cpp $(GSL_LIBS)
 
 test_limits: test_limits.cpp
 	$(CXX) -o test_limits test_limits.cpp
