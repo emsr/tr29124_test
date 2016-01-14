@@ -85,3 +85,10 @@ cephes/qfloat/qcwhitebx
 cephes/qfloat/qmtst
 cephes/qfloat/qparanoi
 cephes/single/mtstf
+
+gslextras/Jacobi/jacobi-0.9.2/Makefile
+gslextras/Jacobi/jacobi-0.9.2/config.log
+gslextras/Jacobi/jacobi-0.9.2/config.status
+gslextras/Jacobi/jacobi-0.9.2/src/.libs/libjacobi.so.0.0.0
+gslextras/Jacobi/jacobi-0.9.2/src/Makefile
+gslextras/Jacobi/jacobi-0.9.2/test/Makefile

@@ -59,7 +59,6 @@
 #  include <bits/sf_expint.tcc>
 #  include <bits/sf_fresnel.tcc>
 #  include <bits/sf_gegenbauer.tcc>
-#  include <bits/sf_hermite.tcc>
 #  include <bits/sf_hyperg.tcc>
 #  include <bits/sf_hypint.tcc>
 #  include <bits/sf_jacobi.tcc>
@@ -72,6 +71,7 @@
 #  include <bits/sf_zeta.tcc>
 #  include <bits/sf_airy.tcc>
 #  include <bits/sf_hankel.tcc>
+#  include <bits/sf_hermite.tcc>
 #else
 #  include <tr1/type_traits>
 #  include <tr1/cmath>
@@ -1610,6 +1610,24 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
       return std::__detail::__log_double_factorial<__type>(__x);
+    }
+
+  // Legendre functions of the second kind
+
+  inline float
+  legendre_qf(unsigned int __n, float __x)
+  { return std::__detail::__poly_legendre_q<float>(__n, __x); }
+
+  inline long double
+  legendre_ql(unsigned int __n, long double __x)
+  { return std::__detail::__poly_legendre_q<long double>(__n, __x); }
+
+  template<typename _Tp>
+    inline typename __gnu_cxx::__promote<_Tp>::__type
+    legendre_q(unsigned int __n, _Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      return std::__detail::__poly_legendre_q<__type>(__n, __x);
     }
 
 #endif // __cplusplus >= 201103L
