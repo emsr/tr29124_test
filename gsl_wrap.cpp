@@ -1026,4 +1026,52 @@ jacobi(unsigned int n, double alpha, double beta, double x)
   return 0.0;
 }
 
+/// Binomial coefficients.
+double
+bincoeff(unsigned int n, unsigned int k)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_choose_e(n, m, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in bincoeff:");
+      msg << " n=" << n << " k=" << k;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+/// Log binomial coefficients.
+double
+lnbincoeff(unsigned int n, unsigned int k)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_lnchoose_e(n, m, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in lnbincoeff:");
+      msg << " n=" << n << " k=" << k;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+/// Taylor coefficients.
+double
+taylorcoeff(unsigned int n, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_taylorcoeff_e(n, x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in taylorcoeff:");
+      msg << " n=" << n << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
 } // namespace gsl

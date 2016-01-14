@@ -1612,6 +1612,42 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__log_double_factorial<__type>(__n);
     }
 
+  // Binomial coefficient
+
+  inline float
+  bincoeff(unsigned int __n, unsigned int __k)
+  { return std::__detail::__bincoef<float>(__n); }
+
+  inline long double
+  bincoefl(unsigned int __n, unsigned int __k)
+  { return std::__detail::__bincoef<long double>(__n); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    bincoef(unsigned int __n, unsigned int __k)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__bincoef<__type>(__n);
+    }
+
+  // Log binomial coefficient
+
+  inline float
+  lbincoeff(unsigned int __n, unsigned int __k)
+  { return std::__detail::__log_bincoef<float>(__n); }
+
+  inline long double
+  lbincoefl(unsigned int __n, unsigned int __k)
+  { return std::__detail::__log_bincoef<long double>(__n); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    lbincoef(unsigned int __n, unsigned int __k)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__log_bincoef<__type>(__n);
+    }
+
   // Legendre functions of the second kind
 
   inline float
