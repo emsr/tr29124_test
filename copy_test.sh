@@ -51,6 +51,7 @@ ${tool} ${text_dir}/ibeta/*             ${ext_dir}/ibeta
 ${tool} ${text_dir}/jacobi_sn/*         ${ext_dir}/jacobi_sn
 ${tool} ${text_dir}/jacobi_cn/*         ${ext_dir}/jacobi_cn
 ${tool} ${text_dir}/jacobi_dn/*         ${ext_dir}/jacobi_dn
+${tool} ${text_dir}/legendre_q/*        ${ext_dir}/legendre_q
 #${tool} ${text_dir}/lpochhammer_l/*     ${ext_dir}/lpochhammer_l
 ${tool} ${text_dir}/lpochhammer_u/*     ${ext_dir}/lpochhammer_u
 #${tool} ${text_dir}/pochhammer_l/*      ${ext_dir}/pochhammer_l
