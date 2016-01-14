@@ -42,6 +42,7 @@ template<typename Real>
     using       std::assoc_laguerre;
     using       std::assoc_legendre;
     using       std::beta;
+    using __gnu_cxx::bincoeff;
     using       std::comp_ellint_1;
     using       std::comp_ellint_2;
     using       std::comp_ellint_3;
@@ -70,6 +71,7 @@ template<typename Real>
     using __gnu_cxx::fresnel_s;
     using __gnu_cxx::gamma_l;
     using __gnu_cxx::gamma_u;
+    using __gnu_cxx::gegenbauer;
     using       std::hermite;
     using __gnu_cxx::hurwitz_zeta;
     using __gnu_cxx::hyperg;
@@ -78,6 +80,7 @@ template<typename Real>
     using __gnu_cxx::jacobi_cn;
     using __gnu_cxx::jacobi_dn;
     using       std::laguerre;
+    using __gnu_cxx::lbincoeff;
     using __gnu_cxx::ldouble_factorial;
     using       std::legendre;
     using __gnu_cxx::legendre_q;
@@ -123,18 +126,18 @@ template<typename Real>
     using  std::tr1::sph_neumann;
 #endif
 
-    //  Unsigned integer orders for various polynomials, harmonics, and spherical bessels.
+    // Unsigned integer orders for various polynomials, harmonics, and spherical bessels.
     std::vector<unsigned int> vorder{0, 1, 2, 5, 10, 20, 50, 100};
 
-    //  ... corresponding "Real" integer orders for GSL.
+    // ... corresponding "Real" integer orders for GSL.
     std::vector<Real> dvorder{0, 1, 2, 5, 10, 20, 50, 100};
 
-    //  Orders for cylindrical Bessel functions.
+    // Orders for cylindrical Bessel functions.
     std::vector<Real> vborderd{0, Real{1.0L/3.0L},
 			       Real{0.5L}, Real{2.0L/3.0L},
 			       1, 2, 5, 10, 20, 50, 100};
 
-    //  Orders for spherical bessel functions.
+    // Orders for spherical bessel functions.
     std::vector<unsigned int> sborder{ 0, 1, 2, 5, 10, 20, 50, 100 };
 
     const unsigned int num_phi = 10;
@@ -156,7 +159,7 @@ template<typename Real>
     std::string filename;
 
 #if STD
-    //  Airy functions.
+    // Airy functions.
     std::cout << "airy_ai" << std::endl;
     funcname = "airy_ai";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -179,7 +182,7 @@ template<typename Real>
 	     file_airy_bi);
 #endif // STD
 
-    //  Associated Laguerre polynomials.
+    // Associated Laguerre polynomials.
     std::cout << "assoc_laguerre" << std::endl;
     funcname = "assoc_laguerre";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -191,7 +194,7 @@ template<typename Real>
 				std::make_pair(true, true), 11),
 	     file_assoc_laguerre);
 
-    //  Associated Legendre functions.
+    // Associated Legendre functions.
     std::cout << "assoc_legendre" << std::endl;
     funcname = "assoc_legendre";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -203,7 +206,7 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     file_assoc_legendre);
 
-    //  Beta function.
+    // Beta function.
     std::cout << "beta" << std::endl;
     funcname = "beta";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -216,8 +219,8 @@ template<typename Real>
 				std::make_pair(false, true), 11),
 	     file_beta);
 
-    //  Complete elliptic integrals of the first kind.
-    //  Avoid poles at |x| = 1.
+    // Complete elliptic integrals of the first kind.
+    // Avoid poles at |x| = 1.
     std::cout << "comp_ellint_1" << std::endl;
     funcname = "comp_ellint_1";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -228,8 +231,8 @@ template<typename Real>
 	    			std::make_pair(false, false), 21),
 	     file_comp_ellint_1);
 
-    //  Complete elliptic integrals of the second kind.
-    //  Avoid poles at |x| = 1.
+    // Complete elliptic integrals of the second kind.
+    // Avoid poles at |x| = 1.
     std::cout << "comp_ellint_2" << std::endl;
     funcname = "comp_ellint_2";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -240,8 +243,8 @@ template<typename Real>
 	    			std::make_pair(false, false), 21),
 	     file_comp_ellint_2);
 
-    //  Complete elliptic integrals of the third kind.
-    //  Avoid poles at |x| = 1 and at nu = 1.
+    // Complete elliptic integrals of the third kind.
+    // Avoid poles at |x| = 1 and at nu = 1.
     std::cout << "comp_ellint_3" << std::endl;
     funcname = "comp_ellint_3";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -255,8 +258,8 @@ template<typename Real>
 	     file_comp_ellint_3);
 
 #if STD
-    //  Confluent hypergeometric functions.
-    //  Skip the singularity at c = 0.
+    // Confluent hypergeometric functions.
+    // Skip the singularity at c = 0.
     std::cout << "conf_hyperg" << std::endl;
     funcname = "conf_hyperg";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -270,8 +273,8 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     file_conf_hyperg);
 #else
-    //  Confluent hypergeometric functions.
-    //  Skip the singularity at c = 0.
+    // Confluent hypergeometric functions.
+    // Skip the singularity at c = 0.
     std::cout << "conf_hyperg" << std::endl;
     funcname = "conf_hyperg";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -286,7 +289,7 @@ template<typename Real>
 	     file_conf_hyperg);
 #endif // STD
 
-    //  Regular modified cylindrical Bessel functions.
+    // Regular modified cylindrical Bessel functions.
     std::cout << "cyl_bessel_i" << std::endl;
     funcname = "cyl_bessel_i";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -305,7 +308,7 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     file_cyl_bessel_i, false, true, test);
 
-    //  Cylindrical Bessel functions (of the first kind).
+    // Cylindrical Bessel functions (of the first kind).
     std::cout << "cyl_bessel_j" << std::endl;
     funcname = "cyl_bessel_j";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -324,7 +327,7 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     file_cyl_bessel_j, false, true, test);
 
-    //  Irregular modified cylindrical Bessel functions.
+    // Irregular modified cylindrical Bessel functions.
     // Skip the pole at the origin.
     std::cout << "cyl_bessel_k" << std::endl;
     funcname = "cyl_bessel_k";
@@ -344,7 +347,7 @@ template<typename Real>
 				std::make_pair(false, true), 21),
 	     file_cyl_bessel_k, false, true, test);
 
-    //  Cylindrical Neumann functions.
+    // Cylindrical Neumann functions.
     // Skip the pole at the origin.
     std::cout << "cyl_neumann" << std::endl;
     funcname = "cyl_neumann";
@@ -364,8 +367,8 @@ template<typename Real>
 				std::make_pair(false, true), 21),
 	     file_cyl_neumann, false, true, test);
 
-    //  Elliptic integrals of the first kind.
-    //  Avoid poles at |x| = 1.
+    // Elliptic integrals of the first kind.
+    // Avoid poles at |x| = 1.
     std::cout << "ellint_1" << std::endl;
     funcname = "ellint_1";
     filename = get_filename(path, prefix, funcname, "", ".cc");
@@ -377,8 +380,8 @@ template<typename Real>
 	     "phi", vphid,
 	     file_ellint_1);
 
-    //  Elliptic integrals of the second kind.
-    //  Avoid poles at |x| = 1.
+    // Elliptic integrals of the second kind.
+    // Avoid poles at |x| = 1.
     std::cout << "ellint_2" << std::endl;
     funcname = "ellint_2";
     filename = get_filename(path, prefix, funcname, "", ".cc");
@@ -390,8 +393,8 @@ template<typename Real>
 	     "phi", vphid,
 	     file_ellint_2);
 
-    //  Elliptic integrals of the third kind.
-    //  Avoid poles at |x| = 1 and at nu = 1.
+    // Elliptic integrals of the third kind.
+    // Avoid poles at |x| = 1 and at nu = 1.
     std::cout << "ellint_3" << std::endl;
     funcname = "ellint_3";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -405,8 +408,8 @@ template<typename Real>
 	     "phi", vphid,
 	     file_ellint_3);
 
-    //  Exponential integral.
-    //  Skip the pole at 0.
+    // Exponential integral.
+    // Skip the pole at 0.
     std::cout << "expint" << std::endl;
     funcname = "expint";
     filename = get_filename(path, prefix, funcname, "", ".cc");
@@ -423,7 +426,7 @@ template<typename Real>
 	    			std::make_pair(false, true), 51),
 	     file_expint, false, true, test);
 
-    //  Hermite polynomials
+    // Hermite polynomials
     std::cout << "hermite" << std::endl;
     funcname = "hermite";
     filename = get_filename(path, prefix, funcname, "", ".cc");
@@ -436,9 +439,9 @@ template<typename Real>
 	     file_hermite);
 
 #if STD
-    //  Hypergeometric functions.
-    //  Skip the singularity at c = 0.
-    //  Skip the singularity at x = -1.
+    // Hypergeometric functions.
+    // Skip the singularity at c = 0.
+    // Skip the singularity at x = -1.
     std::cout << "hyperg" << std::endl;
     funcname = "hyperg";
     filename = get_filename(path, prefix, funcname, "", ".cc");
@@ -453,9 +456,9 @@ template<typename Real>
 		  		std::make_pair(true, false), 21),
 	     file_hyperg);
 #else
-    //  Hypergeometric functions.
-    //  Skip the singularity at c = 0.
-    //  Skip the singularity at x = -1.
+    // Hypergeometric functions.
+    // Skip the singularity at c = 0.
+    // Skip the singularity at x = -1.
     std::cout << "hyperg" << std::endl;
     funcname = "hyperg";
     filename = get_filename(path, prefix, funcname, "", ".cc");
@@ -471,7 +474,7 @@ template<typename Real>
 	     file_hyperg);
 #endif // STD
 
-    //  Laguerre polynomials.
+    // Laguerre polynomials.
     std::cout << "laguerre" << std::endl;
     funcname = "laguerre";
     filename = get_filename(path, prefix, funcname, "", ".cc");
@@ -483,7 +486,7 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     file_laguerre);
 
-    //  Legendre polynomials.
+    // Legendre polynomials.
     std::cout << "legendre" << std::endl;
     funcname = "legendre";
     filename = get_filename(path, prefix, funcname, "", ".cc");
@@ -495,9 +498,9 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     file_legendre);
 
-    //  Riemann zeta function.
+    // Riemann zeta function.
     std::cout << "riemann_zeta" << std::endl;
-    //  Skip the pole at 1.
+    // Skip the pole at 1.
     funcname = "riemann_zeta";
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_riemann_zeta(filename.c_str());
@@ -514,9 +517,9 @@ template<typename Real>
 	     file_riemann_zeta, false, true, test);
 
 #if STD
-    //  Hurwitz zeta function.
+    // Hurwitz zeta function.
     std::cout << "hurwitz_zeta" << std::endl;
-    //  Skip the pole at 1.
+    // Skip the pole at 1.
     funcname = "hurwitz_zeta";
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_hurwitz_zeta(filename.c_str());
@@ -529,7 +532,7 @@ template<typename Real>
 	     file_hurwitz_zeta);
 #endif // STD
 
-    //  Spherical Bessel functions.
+    // Spherical Bessel functions.
     std::cout << "sph_bessel" << std::endl;
     funcname = "sph_bessel";
     filename = get_filename(path, prefix, funcname, "", ".cc");
@@ -548,7 +551,7 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     file_sph_bessel, false, true, test);
 
-    //  Spherical Legendre functions.
+    // Spherical Legendre functions.
     std::cout << "sph_legendre" << std::endl;
     funcname = "sph_legendre";
     filename = get_filename(path, prefix, funcname, "", ".cc");
@@ -560,7 +563,7 @@ template<typename Real>
 				    std::make_pair(true, true), 21),
 	     file_sph_legendre);
 
-    //  Spherical Neumann functions.
+    // Spherical Neumann functions.
     // Skip the pole at the origin.
     std::cout << "sph_neumann" << std::endl;
     funcname = "sph_neumann";
@@ -581,7 +584,7 @@ template<typename Real>
 	     file_sph_neumann, false, true, test);
 
 #if STD
-    //  Carlson elliptic functions R_C.
+    // Carlson elliptic functions R_C.
     std::cout << "ellint_rc" << std::endl;
     funcname = "ellint_rc";
     filename = get_filename(path, prefix, funcname, "", ".cc");
@@ -594,7 +597,7 @@ template<typename Real>
 				std::make_pair(false, true), 11),
 	     file_ellint_rc);
 
-    //  Carlson elliptic functions R_D.
+    // Carlson elliptic functions R_D.
     std::cout << "ellint_rd" << std::endl;
     funcname = "ellint_rd";
     filename = get_filename(path, prefix, funcname, "", ".cc");
@@ -609,7 +612,7 @@ template<typename Real>
 				std::make_pair(true, true), 11),
 	     file_ellint_rd);
 
-    //  Carlson elliptic functions R_F.
+    // Carlson elliptic functions R_F.
     std::cout << "ellint_rf" << std::endl;
     funcname = "ellint_rf";
     filename = get_filename(path, prefix, funcname, "", ".cc");
@@ -624,7 +627,7 @@ template<typename Real>
 				std::make_pair(true, true), 11),
 	     file_ellint_rf);
 
-    //  Carlson elliptic functions R_J.
+    // Carlson elliptic functions R_J.
     std::cout << "ellint_rj" << std::endl;
     funcname = "ellint_rj";
     filename = get_filename(path, prefix, funcname, "", ".cc");
@@ -641,7 +644,7 @@ template<typename Real>
 				std::make_pair(false, true), 11),
 	     file_ellint_rj);
 
-    //  Dilogarithm functions.
+    // Dilogarithm functions.
     std::cout << "dilog" << std::endl;
     funcname = "dilog";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -652,7 +655,7 @@ template<typename Real>
 	    			std::make_pair(true, true), 41),
 	     file_dilog);
 
-    //  Upper incomplete Gamma functions.
+    // Upper incomplete Gamma functions.
     std::cout << "gamma_u" << std::endl;
     funcname = "gamma_u";
     filename = get_filename(path, prefix, funcname, "", ".cc");
@@ -665,7 +668,7 @@ template<typename Real>
 				std::make_pair(true, true), 11),
 	     file_gamma_u);
 
-    //  Incomplete Beta functions.
+    // Incomplete Beta functions.
     std::cout << "ibeta" << std::endl;
     funcname = "ibeta";
     filename = get_filename(path, prefix, funcname, "", ".cc");
@@ -680,7 +683,7 @@ template<typename Real>
 				std::make_pair(false, false), 21),
 	     file_ibeta);
 
-    //  Digamma or psi functions.
+    // Digamma or psi functions.
     std::cout << "psi" << std::endl;
     funcname = "psi";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -697,7 +700,7 @@ template<typename Real>
 	    			std::make_pair(true, true), 199),
 	     file_psi, false, true, test);
 
-    //  Sine integral or Si functions.
+    // Sine integral or Si functions.
     std::cout << "sinint" << std::endl;
     funcname = "sinint";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -708,7 +711,7 @@ template<typename Real>
 	    			std::make_pair(false, true), 101),
 	     file_sinint);
 
-    //  Cosine integral or Ci functions.
+    // Cosine integral or Ci functions.
     std::cout << "cosint" << std::endl;
     funcname = "cosint";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -719,7 +722,7 @@ template<typename Real>
 	    			std::make_pair(false, true), 101),
 	     file_cosint);
 
-    //  Hyperbolic sine integral or Shi functions.
+    // Hyperbolic sine integral or Shi functions.
     std::cout << "sinhint" << std::endl;
     funcname = "sinhint";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -730,7 +733,7 @@ template<typename Real>
 	    			std::make_pair(false, true), 101),
 	     file_sinhint);
 
-    //  Hyperbolic cosine integral or Chi functions.
+    // Hyperbolic cosine integral or Chi functions.
     std::cout << "coshint" << std::endl;
     funcname = "coshint";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -741,7 +744,7 @@ template<typename Real>
 	    			std::make_pair(false, true), 101),
 	     file_coshint);
 
-    //  Dawson integral.
+    // Dawson integral.
     std::cout << "dawson" << std::endl;
     funcname = "dawson";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -752,7 +755,7 @@ template<typename Real>
 	    			std::make_pair(false, true), 201),
 	     file_dawson);
 
-    //  Jacobian elliptic integrals.
+    // Jacobian elliptic integrals.
     std::cout << "jacobi_sn" << std::endl;
     funcname = "jacobi_sn";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -765,7 +768,7 @@ template<typename Real>
 		    		std::make_pair(true, true), 101),
 	     file_jacobi_sn);
 
-    //  Jacobian elliptic integrals.
+    // Jacobian elliptic integrals.
     std::cout << "jacobi_cn" << std::endl;
     funcname = "jacobi_cn";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -778,7 +781,7 @@ template<typename Real>
 		    		std::make_pair(true, true), 101),
 	     file_jacobi_cn);
 
-    //  Jacobian elliptic integrals.
+    // Jacobian elliptic integrals.
     std::cout << "jacobi_dn" << std::endl;
     funcname = "jacobi_dn";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -791,8 +794,8 @@ template<typename Real>
 		    		std::make_pair(true, true), 101),
 	     file_jacobi_dn);
 
-    //  Exponential integral E1.
-    //  Skip the pole at 0.
+    // Exponential integral E1.
+    // Skip the pole at 0.
     std::cout << "expint_e1" << std::endl;
     funcname = "expint_e1";
     filename = get_filename(path, prefix, funcname, "", ".cc");
@@ -811,7 +814,7 @@ template<typename Real>
 	    			std::make_pair(false, true), 51),
 	     file_expint_e1, false, true, test);
 
-    //  Fresnel cosine integral.
+    // Fresnel cosine integral.
     std::cout << "fresnel_c" << std::endl;
     funcname = "fresnel_c";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -822,7 +825,7 @@ template<typename Real>
 	    			std::make_pair(false, true), 401),
 	     file_fresnel_c);
 
-    //  Fresnel sine integral.
+    // Fresnel sine integral.
     std::cout << "fresnel_s" << std::endl;
     funcname = "fresnel_s";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -833,7 +836,7 @@ template<typename Real>
 	    			std::make_pair(false, true), 401),
 	     file_fresnel_s);
 
-    //  Sine cardinal function.
+    // Sine cardinal function.
     std::cout << "sinc" << std::endl;
     funcname = "sinc";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -844,7 +847,7 @@ template<typename Real>
 	    			std::make_pair(true, true), 401),
 	     file_sinc);
 
-    //  Log upper Pochhammer symbol
+    // Log upper Pochhammer symbol
     std::cout << "lpochhammer_u" << std::endl;
     funcname = "lpochhammer_u";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -856,13 +859,13 @@ template<typename Real>
 				std::make_pair(false, true), 21),
 	     file_lpochhammer_u, true, true);
 
-    //  Log lower Pochhammer symbol
+    // Log lower Pochhammer symbol
     //std::cout << "lpochhammer_l" << std::endl;
     //funcname = "lpochhammer_l";
     //filename = get_filename(path, prefix, funcname, "",  ".cc");
     //std::ofstream file_lpochhammer_l(filename.c_str());
 
-    //  Upper Pochhammer symbols (see boost::rising_factorial)
+    // Upper Pochhammer symbols (see boost::rising_factorial)
     std::cout << "pochhammer_u" << std::endl;
     funcname = "pochhammer_u";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -874,7 +877,7 @@ template<typename Real>
 				std::make_pair(false, true), 21),
 	     file_pochhammer_u, true, true);
 
-    //  Lower Pochhammer symbols (see boost::falling_factorial)
+    // Lower Pochhammer symbols (see boost::falling_factorial)
     //std::cout << "pochhammer_l" << std::endl;
     //funcname = "pochhammer_l";
     //filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -918,7 +921,7 @@ template<typename Real>
 				std::make_pair(false, true), 21),
 	     file_sph_bessel_k, false, true, test);
 
-    //  Legendre functions of the second kind.
+    // Legendre functions of the second kind.
     std::cout << "legendre_q" << std::endl;
     funcname = "legendre_q";
     filename = get_filename(path, prefix, funcname, "", ".cc");
@@ -930,6 +933,7 @@ template<typename Real>
 	        		std::make_pair(false, false), 21),
 	     file_legendre_q);
 
+    // Factorial.
     std::cout << "factorial" << std::endl;
     funcname = "factorial";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -940,6 +944,7 @@ template<typename Real>
 	    			std::make_pair(true, true), 51),
 	     file_factorial);
 
+    // Log factorial.
     std::cout << "lfactorial" << std::endl;
     funcname = "lfactorial";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -950,6 +955,7 @@ template<typename Real>
 	    			std::make_pair(true, true), 501),
 	     file_lfactorial);
 
+    // Double factorial.
     std::cout << "double_factorial" << std::endl;
     funcname = "double_factorial";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -960,6 +966,7 @@ template<typename Real>
 	    			std::make_pair(true, true), 51),
 	     file_double_factorial);
 
+    // Log double factorial.
     std::cout << "ldouble_factorial" << std::endl;
     funcname = "ldouble_factorial";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -969,6 +976,47 @@ template<typename Real>
 	     "n", fill_argument(std::make_pair(0, 500),
 	    			std::make_pair(true, true), 501),
 	     file_ldouble_factorial);
+
+    // Binomial coefficient.
+    std::cout << "bincoeff" << std::endl;
+    funcname = "bincoeff";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_bincoeff(filename.c_str());
+    maketest(bincoeff<Real>, gsl::bincoeff,
+	     "__gnu_cxx", funcname,
+	     "n", fill_argument(std::make_pair(0, 50),
+	    			std::make_pair(true, true), 51),
+	     "k", fill_argument(std::make_pair(0, 50),
+	    			std::make_pair(true, true), 51),
+	     file_bincoeff);
+
+    // Log binomial coefficient.
+    std::cout << "lbincoeff" << std::endl;
+    funcname = "lbincoeff";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_lbincoeff(filename.c_str());
+    maketest(lbincoeff<Real>, gsl::lnbincoeff,
+	     "__gnu_cxx", funcname,
+	     "n", fill_argument(std::make_pair(0, 500),
+	    			std::make_pair(true, true), 501),
+	     "k", fill_argument(std::make_pair(0, 500),
+	    			std::make_pair(true, true), 501),
+	     file_lbincoeff);
+
+    // Gegenbauer polynomials
+    std::cout << "gegenbauer" << std::endl;
+    funcname = "gegenbauer";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_gegenbauer(filename.c_str());
+    maketest(gegenbauer, gsl::gegenpoly,
+	     "__gnu_cxx", funcname,
+	     "n", vorder,
+	     "alpha", fill_argument(std::make_pair(Real{0}, Real{5}),
+	    			    std::make_pair(true, true), 11),
+             "x", fill_argument(std::make_pair(Real{0}, Real{20}),
+	    			std::make_pair(true, true), 41)
+	     file_gegenbauer);
+
 #endif // STD
   }
 
