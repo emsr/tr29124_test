@@ -64,14 +64,14 @@
 #  include <bits/sf_jacobi.tcc>
 #  include <bits/sf_laguerre.tcc>
 #  include <bits/sf_legendre.tcc>
-#  include <bits/sf_hydrogen.tcc>
+#  include <bits/sf_hydrogen.tcc> // Needs __sph_legendre.
 #  include <bits/sf_mod_bessel.tcc>
+#  include <bits/sf_hermite.tcc> // Needs __airy.
 #  include <bits/sf_theta.tcc>
 #  include <bits/sf_trigint.tcc>
 #  include <bits/sf_zeta.tcc>
 #  include <bits/sf_airy.tcc>
 #  include <bits/sf_hankel.tcc>
-#  include <bits/sf_hermite.tcc>
 #else
 #  include <tr1/type_traits>
 #  include <tr1/cmath>
@@ -1507,37 +1507,37 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   //  Upper Pochhammer symbols (see boost::rising_factorial)
 
   inline float
-  pochhammer_uf(float __n, float __x)
-  { return std::__detail::__pochhammer_u<float>(__n, __x); }
+  pochhammer_uf(float __a, float __n)
+  { return std::__detail::__pochhammer_u<float>(__a, __n); }
 
   inline long double
-  pochhammer_ul(long double __n, long double __x)
-  { return std::__detail::__pochhammer_u<long double>(__n, __x); }
+  pochhammer_ul(long double __a, long double __n)
+  { return std::__detail::__pochhammer_u<long double>(__a, __n); }
 
-  template<typename _Tn, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tn, _Tp>
-    pochhammer_u(_Tn __n, _Tp __x)
+  template<typename _Tp, typename _Tn>
+    inline __gnu_cxx::__promote_num_t<_Tp, _Tn>
+    pochhammer_u(_Tp __a, _Tn __n)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tn, _Tp>;
-      return std::__detail::__pochhammer_u<__type>(__n, __x);
+      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tn>;
+      return std::__detail::__pochhammer_u<__type>(__a, __n);
     }
 
   //  Lower Pochhammer symbols (see boost::falling_factorial)
 
   inline float
-  pochhammer_lf(float __n, float __x)
-  { return std::__detail::__pochhammer_l<float>(__n, __x); }
+  pochhammer_lf(float __a, float __n)
+  { return std::__detail::__pochhammer_l<float>(__a, __n); }
 
   inline long double
-  pochhammer_ll(long double __n, long double __x)
-  { return std::__detail::__pochhammer_l<long double>(__n, __x); }
+  pochhammer_ll(long double __a, long double __n)
+  { return std::__detail::__pochhammer_l<long double>(__a, __n); }
 
-  template<typename _Tn, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tn, _Tp>
-    pochhammer_l(_Tn __n, _Tp __x)
+  template<typename _Tp, typename _Tn>
+    inline __gnu_cxx::__promote_num_t<_Tp, _Tn>
+    pochhammer_l(_Tp __a, _Tn __n)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tn, _Tp>;
-      return std::__detail::__pochhammer_l<__type>(__n, __x);
+      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tn>;
+      return std::__detail::__pochhammer_l<__type>(__a, __n);
     }
 
   // Factorial
