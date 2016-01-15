@@ -107,6 +107,8 @@ main()
   using __gnu_cxx::psi;
   using       std::riemann_zeta;
   using __gnu_cxx::sinc;
+  using __gnu_cxx::sinc_pi;
+  using __gnu_cxx::sinc;
   using __gnu_cxx::sinhint;
   using __gnu_cxx::sinint;
   using       std::sph_bessel;
@@ -536,9 +538,9 @@ main()
 			     std::make_pair(false, true), 101));
 
   //  Sine cardinal function.
-  std::cout << "sinc" << std::endl;
-  basename = "diff_sinc";
-  rundiff(sinc, gsl::sinc, basename,
+  std::cout << "sinc_pi" << std::endl;
+  basename = "diff_sinc_pi";
+  rundiff(sinc_pi, gsl::sinc_pi, basename,
 	  "x", fill_argument(std::make_pair(_TpGSL{-20}, _TpGSL{+20}),
 			     std::make_pair(false, true), 401));
 

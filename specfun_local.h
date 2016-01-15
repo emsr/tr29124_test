@@ -528,7 +528,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Sinus cardinal functions
 
   inline float
-  sincf(float __x)
+  sinc_pif(float __x)
   {
     if (__isnan(__x))
       return std::numeric_limits<float>::quiet_NaN();
@@ -541,7 +541,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   }
 
   inline long double
-  sincl(long double __x)
+  sinc_pil(long double __x)
   {
     if (__isnan(__x))
       return std::numeric_limits<long double>::quiet_NaN();
@@ -555,7 +555,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
-    sinc(_Tp __x)
+    sinc_pi(_Tp __x)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
       if (__isnan(__x))
@@ -891,7 +891,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Hyperbolic sinus cardinal functions
 
   inline float
-  sinhcf(float __x)
+  sinhc_pif(float __x)
   {
     if (__isnan(__x))
       return std::numeric_limits<float>::quiet_NaN();
@@ -900,7 +900,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   }
 
   inline long double
-  sinchl(long double __x)
+  sinhc_pil(long double __x)
   {
     if (__isnan(__x))
       return std::numeric_limits<long double>::quiet_NaN();
@@ -910,7 +910,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
-    sinch(_Tp __x)
+    sinhc_pi(_Tp __x)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
       if (__isnan(__x))
