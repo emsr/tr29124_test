@@ -42,7 +42,7 @@ template<typename Real>
     using       std::assoc_laguerre;
     using       std::assoc_legendre;
     using       std::beta;
-    using __gnu_cxx::bincoeff;
+    using __gnu_cxx::bincoef;
     using       std::comp_ellint_1;
     using       std::comp_ellint_2;
     using       std::comp_ellint_3;
@@ -80,7 +80,7 @@ template<typename Real>
     using __gnu_cxx::jacobi_cn;
     using __gnu_cxx::jacobi_dn;
     using       std::laguerre;
-    using __gnu_cxx::lbincoeff;
+    using __gnu_cxx::lbincoef;
     using __gnu_cxx::ldouble_factorial;
     using       std::legendre;
     using __gnu_cxx::legendre_q;
@@ -978,43 +978,43 @@ template<typename Real>
 	     file_ldouble_factorial);
 
     // Binomial coefficient.
-    std::cout << "bincoeff" << std::endl;
-    funcname = "bincoeff";
+    std::cout << "bincoef" << std::endl;
+    funcname = "bincoef";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
-    std::ofstream file_bincoeff(filename.c_str());
-    maketest(bincoeff<Real>, gsl::bincoeff,
+    std::ofstream file_bincoef(filename.c_str());
+    maketest(bincoef<Real>, gsl::choose,
 	     "__gnu_cxx", funcname,
-	     "n", fill_argument(std::make_pair(0, 50),
+	     "n", fill_argument(std::make_pair(0U, 50U),
 	    			std::make_pair(true, true), 51),
-	     "k", fill_argument(std::make_pair(0, 50),
+	     "k", fill_argument(std::make_pair(0U, 50U),
 	    			std::make_pair(true, true), 51),
-	     file_bincoeff);
+	     file_bincoef);
 
     // Log binomial coefficient.
-    std::cout << "lbincoeff" << std::endl;
-    funcname = "lbincoeff";
+    std::cout << "lbincoef" << std::endl;
+    funcname = "lbincoef";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
-    std::ofstream file_lbincoeff(filename.c_str());
-    maketest(lbincoeff<Real>, gsl::lnbincoeff,
+    std::ofstream file_lbincoef(filename.c_str());
+    maketest(lbincoef<Real>, gsl::lnchoose,
 	     "__gnu_cxx", funcname,
-	     "n", fill_argument(std::make_pair(0, 500),
+	     "n", fill_argument(std::make_pair(0U, 500U),
 	    			std::make_pair(true, true), 501),
-	     "k", fill_argument(std::make_pair(0, 500),
+	     "k", fill_argument(std::make_pair(0U, 500U),
 	    			std::make_pair(true, true), 501),
-	     file_lbincoeff);
+	     file_lbincoef);
 
     // Gegenbauer polynomials
     std::cout << "gegenbauer" << std::endl;
     funcname = "gegenbauer";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_gegenbauer(filename.c_str());
-    maketest(gegenbauer, gsl::gegenpoly,
+    maketest(gegenbauer, gsl::gegenpoly_n,
 	     "__gnu_cxx", funcname,
 	     "n", vorder,
 	     "alpha", fill_argument(std::make_pair(Real{0}, Real{5}),
 	    			    std::make_pair(true, true), 11),
              "x", fill_argument(std::make_pair(Real{0}, Real{20}),
-	    			std::make_pair(true, true), 41)
+	    			std::make_pair(true, true), 41),
 	     file_gegenbauer);
 
 #endif // STD

@@ -62,7 +62,7 @@ ${copy} check_sph_neumann.cc      ${testdir}/21_sph_neumann/check_value.cc
 
 ${makedir} ${textdir}/airy_ai
 ${makedir} ${textdir}/airy_bi
-${makedir} ${textdir}/bincoeff
+${makedir} ${textdir}/bincoef
 ${makedir} ${textdir}/conf_hyperg
 ${makedir} ${textdir}/conf_hyperg_lim
 ${makedir} ${textdir}/coshint
@@ -80,13 +80,14 @@ ${makedir} ${textdir}/fresnel_c
 ${makedir} ${textdir}/fresnel_s
 ${makedir} ${textdir}/gamma_l
 ${makedir} ${textdir}/gamma_u
+${makedir} ${textdir}/gegenbauer
 ${makedir} ${textdir}/hurwitz_zeta
 ${makedir} ${textdir}/hyperg
 ${makedir} ${textdir}/ibeta
 ${makedir} ${textdir}/jacobi_sn
 ${makedir} ${textdir}/jacobi_cn
 ${makedir} ${textdir}/jacobi_dn
-${makedir} ${textdir}/lbincoeff
+${makedir} ${textdir}/lbincoef
 ${makedir} ${textdir}/ldouble_factorial
 ${makedir} ${textdir}/legendre_q
 ${makedir} ${textdir}/lfactorial
@@ -103,7 +104,7 @@ ${makedir} ${textdir}/sph_bessel_k
 
 ${copy} check_airy_ai.cc            ${textdir}/airy_ai/check_value.cc
 ${copy} check_airy_bi.cc            ${textdir}/airy_bi/check_value.cc
-${copy} check_bincoeff.cc           ${textdir}/bincoeff/check_value.cc
+${copy} check_bincoef.cc            ${textdir}/bincoef/check_value.cc
 ${copy} check_conf_hyperg.cc        ${textdir}/conf_hyperg/check_value.cc
 #${copy} check_conf_hyperg_lim.cc    ${textdir}/conf_hyperg_lim/check_value.cc
 ${copy} check_coshint.cc            ${textdir}/coshint/check_value.cc
@@ -128,7 +129,7 @@ ${copy} check_ibeta.cc              ${textdir}/ibeta/check_value.cc
 ${copy} check_jacobi_sn.cc          ${textdir}/jacobi_sn/check_value.cc
 ${copy} check_jacobi_cn.cc          ${textdir}/jacobi_cn/check_value.cc
 ${copy} check_jacobi_dn.cc          ${textdir}/jacobi_dn/check_value.cc
-${copy} check_lbincoeff.cc          ${textdir}/lbincoeff/check_value.cc
+${copy} check_lbincoef.cc           ${textdir}/lbincoef/check_value.cc
 ${copy} check_ldouble_factorial.cc  ${textdir}/ldouble_factorial/check_value.cc
 ${copy} check_legendre_q.cc         ${textdir}/legendre_q/check_value.cc
 ${copy} check_lfactorial.cc         ${textdir}/lfactorial/check_value.cc

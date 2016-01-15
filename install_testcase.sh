@@ -33,7 +33,7 @@ ${copy} check_sph_neumann.cc      ${gcc_dir}/21_sph_neumann/check_value.cc
 
 ${copy} check_airy_ai.cc            ${ext_dir}/airy_ai/check_value.cc
 ${copy} check_airy_bi.cc            ${ext_dir}/airy_bi/check_value.cc
-${copy} check_bincoeff.cc           ${ext_dir}/bincoeff/check_value.cc
+${copy} check_bincoef.cc            ${ext_dir}/bincoef/check_value.cc
 ${copy} check_conf_hyperg.cc        ${ext_dir}/conf_hyperg/check_value.cc
 #${copy} check_conf_hyperg_lim.cc    ${textdir}/conf_hyperg_lim/check_value.cc
 ${copy} check_coshint.cc            ${ext_dir}/coshint/check_value.cc
@@ -58,7 +58,7 @@ ${copy} check_ibeta.cc              ${ext_dir}/ibeta/check_value.cc
 ${copy} check_jacobi_sn.cc          ${ext_dir}/jacobi_sn/check_value.cc
 ${copy} check_jacobi_cn.cc          ${ext_dir}/jacobi_cn/check_value.cc
 ${copy} check_jacobi_dn.cc          ${ext_dir}/jacobi_dn/check_value.cc
-${copy} check_lbincoeff.cc          ${ext_dir}/lbincoeff/check_value.cc
+${copy} check_lbincoef.cc           ${ext_dir}/lbincoef/check_value.cc
 ${copy} check_ldouble_factorial.cc  ${ext_dir}/ldouble_factorial/check_value.cc
 ${copy} check_legendre_q.cc         ${ext_dir}/legendre_q/check_value.cc
 ${copy} check_lfactorial.cc         ${ext_dir}/lfactorial/check_value.cc
