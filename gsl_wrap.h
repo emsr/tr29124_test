@@ -138,7 +138,7 @@ double Shi(double x);
 double Chi(double x);
 
 /// Gegenbauer polynomials.
-double gegenpoly_n(int n, double lambda, double x);
+double gegenpoly_n(unsigned int n, double lambda, double x);
 
 /// Hydrogen wave functions.
 double hydrogen(int n, double l, double Z, double r);
@@ -198,10 +198,10 @@ double jacobi(unsigned int n, double alpha, double beta, double x);
 double legendre_Ql(unsigned int l, double x);
 
 /// Binomial coefficients.
-double bincoeff(unsigned int n, unsigned int k);
+double choose(unsigned int n, unsigned int k);
 
 /// Log binomial coefficients.
-double lnbincoeff(unsigned int n, unsigned int k);
+double lnchoose(unsigned int n, unsigned int k);
 
 /// Taylor coefficients.
 double taylorcoeff(unsigned int n, double x);

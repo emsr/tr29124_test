@@ -1820,7 +1820,7 @@ _S_neg_double_factorial_table[999]
     __log_bincoef(unsigned int __n, unsigned int __k)
     {
       if (__k > __n)
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return -std::numeric_limits<_Tp>::infinity();
       else if (__k == 0 || __k == __n)
 	return _Tp{0};
       else
