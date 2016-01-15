@@ -263,7 +263,8 @@ template<typename Tp, typename Tp1>
     if (write_header)
       output << header;
 
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
+    constexpr auto eps = std::numeric_limits<Tp>::epsilon();
+    constexpr auto inf = std::numeric_limits<Tp>::infinity();
 
     std::experimental::string_view numname = type_strings<Tp>::type();
 
@@ -283,6 +284,8 @@ template<typename Tp, typename Tp1>
 	  {
 	    const Tp f1 = function1(x);
 	    const Tp f2 = function2(x);
+	    if (std::abs(f1) == inf || std::abs(f2) == inf)
+	      break;
 	    const Tp diff = f1 - f2;
 	    if (std::abs(diff) > max_abs_diff)
 	      max_abs_diff = std::abs(diff);
@@ -408,7 +411,8 @@ template<typename Tp, typename Tp1, typename Tp2>
     if (write_header)
       output << header << '\n';
 
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
+    const auto eps = std::numeric_limits<Tp>::epsilon();
+    const auto inf = std::numeric_limits<Tp>::infinity();
 
     std::experimental::string_view numname = type_strings<Tp>::type();
 
@@ -432,6 +436,8 @@ template<typename Tp, typename Tp1, typename Tp2>
 	      {
 		const Tp f1 = function1(x, y);
 		const Tp f2 = function2(x, y);
+		if (std::abs(f1) == inf || std::abs(f2) == inf)
+		  break;
 		const Tp diff = f1 - f2;
 		if (std::abs(diff) > max_abs_diff)
 		  max_abs_diff = std::abs(diff);
@@ -558,7 +564,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
     if (write_header)
       output << header << '\n';
 
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
+    const auto eps = std::numeric_limits<Tp>::epsilon();
+    const auto inf = std::numeric_limits<Tp>::infinity();
 
     std::experimental::string_view numname = type_strings<Tp>::type();
 
@@ -586,6 +593,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		  {
 		    const Tp f1 = function1(x, y, z);
 		    const Tp f2 = function2(x, y, z);
+		    if (std::abs(f1) == inf || std::abs(f2) == inf)
+		      break;
 		    const Tp diff = f1 - f2;
 		    if (std::abs(diff) > max_abs_diff)
 		      max_abs_diff = std::abs(diff);
@@ -719,7 +728,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
     if (write_header)
       output << header << '\n';
 
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
+    const auto eps = std::numeric_limits<Tp>::epsilon();
+    const auto inf = std::numeric_limits<Tp>::infinity();
 
     std::experimental::string_view numname = type_strings<Tp>::type();
 
@@ -751,6 +761,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		      {
 			const Tp f1 = function1(w, x, y, z);
 			const Tp f2 = function2(w, x, y, z);
+			if (std::abs(f1) == inf || std::abs(f2) == inf)
+			  break;
 			const Tp diff = f1 - f2;
 			if (std::abs(diff) > max_abs_diff)
 			  max_abs_diff = std::abs(diff);
