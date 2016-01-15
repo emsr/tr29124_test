@@ -160,6 +160,9 @@ double fresnel_c(double x);
 double fresnel_s(double x);
 
 /// Sinus cardinal function.
+double sinc_pi(double x);
+
+/// Sinus cardinal function.
 double sinc(double x);
 
 /// Log upper Pochhammer symbol.

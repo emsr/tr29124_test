@@ -778,16 +778,16 @@ template<typename Real>
 			 file_fresnel_s);
 
     //  Sine cardinal function.
-    std::cout << "sinc" << std::endl;
-    funcname = "sinc";
+    std::cout << "sinc_pi" << std::endl;
+    funcname = "sinc_pi";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
-    std::ofstream file_sinc(filename.c_str());
-    typedef Real sinc(Real);
-    maketest<Real, Real>((sinc *)__gnu_cxx::sinc, gsl::sinc,
+    std::ofstream file_sinc_pi(filename.c_str());
+    typedef Real sinc_pi(Real);
+    maketest<Real, Real>((sinc_pi *)__gnu_cxx::sinc_pi, gsl::sinc_pi,
 			 "__gnu_cxx", funcname,
 			 "x", fill_argument(std::make_pair(Real{-20}, Real{+20}),
 					    std::make_pair(false, true), 401),
-			 file_sinc);
+			 file_sinc_pi);
 
   }
 

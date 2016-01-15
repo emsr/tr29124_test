@@ -114,6 +114,7 @@ template<typename _Tp>
     using __gnu_cxx::pochhammer_u;
     using __gnu_cxx::psi;
     using       std::riemann_zeta;
+    using __gnu_cxx::sinc_pi;
     using __gnu_cxx::sinc;
     using __gnu_cxx::sinhint;
     using __gnu_cxx::sinint;
@@ -728,13 +729,13 @@ template<typename _Tp>
 	        	  std::make_pair(false, true), 101));
 
     //  Sine cardinal function.
-    std::cout << "gsl_sinc" << std::endl;
-    basename = "sinc";
-    runtest(gsl::sinc, basename,
+    std::cout << "gsl_sinc_pi" << std::endl;
+    basename = "sinc_pi";
+    runtest(gsl::sinc_pi, basename,
 	    fill_argument(std::make_pair(-20.0, +20.0),
 			  std::make_pair(false, true), 401));
-    basename = ns + "_sinc";
-    runtest(sinc, basename,
+    basename = ns + "_sinc_pi";
+    runtest(sinc_pi, basename,
 	    fill_argument(std::make_pair(_Tp{20}, _Tp{+20}),
 	        	  std::make_pair(false, true), 401));
 
