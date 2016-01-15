@@ -997,10 +997,10 @@ template<typename Real>
     std::ofstream file_lbincoef(filename.c_str());
     maketest(lbincoef<Real>, gsl::lnchoose,
 	     "__gnu_cxx", funcname,
-	     "n", fill_argument(std::make_pair(0U, 500U),
-	    			std::make_pair(true, true), 501),
-	     "k", fill_argument(std::make_pair(0U, 500U),
-	    			std::make_pair(true, true), 501),
+	     "n", fill_argument(std::make_pair(0U, 200U),
+	    			std::make_pair(true, true), 201),
+	     "k", fill_argument(std::make_pair(0U, 200U),
+	    			std::make_pair(true, true), 201),
 	     file_lbincoef);
 
     // Gegenbauer polynomials
