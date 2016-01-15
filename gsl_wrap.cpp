@@ -751,7 +751,7 @@ Chi(double x)
 
 /// Gegenbauer polynomials.
 double
-gegenpoly_n(int n, double lambda, double x)
+gegenpoly_n(unsigned int n, double lambda, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_gegenpoly_n_e(n, lambda, x, &result);
@@ -767,7 +767,7 @@ gegenpoly_n(int n, double lambda, double x)
 
 /// Hydrogen wave functions.
 double
-hydrogen(int n, double l, double Z, double r)
+hydrogen(unsigned int n, double l, double Z, double r)
 {
   gsl_sf_result result;
   int stat = gsl_sf_hydrogenicR_e(n, l, Z, r, &result);
@@ -1028,13 +1028,15 @@ jacobi(unsigned int n, double alpha, double beta, double x)
 
 /// Binomial coefficients.
 double
-bincoeff(unsigned int n, unsigned int k)
+choose(unsigned int n, unsigned int k)
 {
+  if (k > n)
+    return 0.0; // GSL barfs on this for no reason.
   gsl_sf_result result;
-  int stat = gsl_sf_choose_e(n, m, &result);
+  int stat = gsl_sf_choose_e(n, k, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in bincoeff:");
+      std::ostringstream msg("Error in choose:");
       msg << " n=" << n << " k=" << k;
       throw std::runtime_error(msg.str());
     }
@@ -1044,13 +1046,15 @@ bincoeff(unsigned int n, unsigned int k)
 
 /// Log binomial coefficients.
 double
-lnbincoeff(unsigned int n, unsigned int k)
+lnchoose(unsigned int n, unsigned int k)
 {
+  if (k > n)
+    return -std::numeric_limits<double>::infinity(); // GSL barfs on this for no reason.
   gsl_sf_result result;
-  int stat = gsl_sf_lnchoose_e(n, m, &result);
+  int stat = gsl_sf_lnchoose_e(n, k, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in lnbincoeff:");
+      std::ostringstream msg("Error in lnchoose:");
       msg << " n=" << n << " k=" << k;
       throw std::runtime_error(msg.str());
     }

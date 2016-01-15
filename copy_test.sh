@@ -32,7 +32,7 @@ ext_dir="$HOME/gcc_specfun/libstdc++-v3/testsuite/ext/special_functions"
 
 ${tool} ${text_dir}/airy_ai/*            ${ext_dir}/airy_ai
 ${tool} ${text_dir}/airy_bi/*            ${ext_dir}/airy_bi
-${tool} ${text_dir}/bincoeff/*           ${ext_dir}/bincoeff
+${tool} ${text_dir}/bincoef/*            ${ext_dir}/bincoef
 ${tool} ${text_dir}/conf_hyperg/*        ${ext_dir}/conf_hyperg
 #${tool} ${text_dir}/conf_hyperg_lim/*    ${ext_dir}/conf_hyperg_lim
 ${tool} ${text_dir}/coshint/*            ${ext_dir}/coshint
@@ -57,7 +57,7 @@ ${tool} ${text_dir}/ibeta/*              ${ext_dir}/ibeta
 ${tool} ${text_dir}/jacobi_sn/*          ${ext_dir}/jacobi_sn
 ${tool} ${text_dir}/jacobi_cn/*          ${ext_dir}/jacobi_cn
 ${tool} ${text_dir}/jacobi_dn/*          ${ext_dir}/jacobi_dn
-${tool} ${text_dir}/lbincoeff/*          ${ext_dir}/lbincoeff
+${tool} ${text_dir}/lbincoef/*           ${ext_dir}/lbincoef
 ${tool} ${text_dir}/ldouble_factorial/*  ${ext_dir}/ldouble_factorial
 ${tool} ${text_dir}/legendre_q/*         ${ext_dir}/legendre_q
 ${tool} ${text_dir}/lfactorial/*         ${ext_dir}/lfactorial
