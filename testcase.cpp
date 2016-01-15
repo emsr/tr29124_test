@@ -91,7 +91,7 @@ template<typename Real>
     using __gnu_cxx::pochhammer_u;
     using __gnu_cxx::psi;
     using       std::riemann_zeta;
-    using __gnu_cxx::sinc;
+    using __gnu_cxx::sinc_pi;
     using __gnu_cxx::sinhint;
     using __gnu_cxx::sinint;
     using       std::sph_bessel;
@@ -837,15 +837,15 @@ template<typename Real>
 	     file_fresnel_s);
 
     // Sine cardinal function.
-    std::cout << "sinc" << std::endl;
-    funcname = "sinc";
+    std::cout << "sinc_pi" << std::endl;
+    funcname = "sinc_pi";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
-    std::ofstream file_sinc(filename.c_str());
-    maketest(sinc, gsl::sinc,
+    std::ofstream file_sinc_pi(filename.c_str());
+    maketest(sinc_pi, gsl::sinc,
 	     "__gnu_cxx", funcname,
 	     "x", fill_argument(std::make_pair(Real{-20}, Real{+20}),
 	    			std::make_pair(true, true), 401),
-	     file_sinc);
+	     file_sinc_pi);
 
     // Log upper Pochhammer symbol
     std::cout << "lpochhammer_u" << std::endl;

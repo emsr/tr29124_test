@@ -860,12 +860,26 @@ fresnel_s(double x)
 
 /// Sinus cardinal function.
 double
+sinc_pi(double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_sinc_e(x / M_PI, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in sinc:");
+      msg << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+/// Sinus cardinal function.
+double
 sinc(double x)
 {
   gsl_sf_result result;
-  // Scale x by pi to match the deinition for the C++ proposal:
-  // sinc(x) = sin(x)/x
-  int stat = gsl_sf_sinc_e(x / M_PI, &result);
+  int stat = gsl_sf_sinc_e(x, &result);
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in sinc:");
