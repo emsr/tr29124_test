@@ -97,6 +97,7 @@ ${makedir} ${textdir}/pochhammer_l
 ${makedir} ${textdir}/pochhammer_u
 ${makedir} ${textdir}/psi
 ${makedir} ${textdir}/sinc
+${makedir} ${textdir}/sinc_pi
 ${makedir} ${textdir}/sinhint
 ${makedir} ${textdir}/sinint
 ${makedir} ${textdir}/sph_bessel_i
@@ -139,6 +140,7 @@ ${copy} check_lpochhammer_u.cc      ${textdir}/lpochhammer_u/check_value.cc
 ${copy} check_pochhammer_u.cc       ${textdir}/pochhammer_u/check_value.cc
 ${copy} check_psi.cc                ${textdir}/psi/check_value.cc
 ${copy} check_sinc.cc               ${textdir}/sinc/check_value.cc
+${copy} check_sinc_pi.cc            ${textdir}/sinc_pi/check_value.cc
 ${copy} check_sinhint.cc            ${textdir}/sinhint/check_value.cc
 ${copy} check_sinint.cc             ${textdir}/sinint/check_value.cc
 ${copy} check_sph_bessel_i.cc       ${textdir}/sph_bessel_i/check_value.cc

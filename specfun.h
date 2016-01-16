@@ -49,10 +49,12 @@
 #if __cplusplus >= 201103L
 #  include <type_traits>
 #  include <complex>
+#  include <bits/numeric_limits.h>
 #  include <bits/complex_util.h>
 #  include <bits/sf_gamma.tcc>
 #  include <bits/sf_bessel.tcc>
 #  include <bits/sf_beta.tcc>
+#  include <bits/sf_cardinal.tcc>
 #  include <bits/sf_chebyshev.tcc>
 #  include <bits/sf_dawson.tcc>
 #  include <bits/sf_ellint.tcc>
@@ -526,47 +528,40 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
 #if __cplusplus >= 201103L
 
-  // Sinus cardinal functions
+  // Unnormalized sinus cardinal functions
 
   inline float
   sinc_pif(float __x)
-  {
-    if (__isnan(__x))
-      return std::numeric_limits<float>::quiet_NaN();
-    else if (std::abs(__x) == std::numeric_limits<float>::infinity())
-      return 0.0F;
-    else
-      return __x == 0.0F
-	   ? 1.0F
-	   : std::sin/*f*/(__x) / __x;
-  }
+  { return std::__detail::__sinc_pi<float>(__x); }
 
   inline long double
   sinc_pil(long double __x)
-  {
-    if (__isnan(__x))
-      return std::numeric_limits<long double>::quiet_NaN();
-    else if (std::abs(__x) == std::numeric_limits<long double>::infinity())
-      return 0.0L;
-    else
-      return __x == 0.0L
-	   ? 1.0L
-	   : std::sin/*l*/(__x) / __x;
-  }
+  { return std::__detail::__sinc_pi<long double>(__x); }
 
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
     sinc_pi(_Tp __x)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      if (__isnan(__x))
-        return std::numeric_limits<__type>::quiet_NaN();
-      else if (std::abs(__x) == std::numeric_limits<__type>::infinity())
-	return __type(0);
-      else
-        return __type(__x) == __type(0)
-             ? __type(1)
-             : std::sin(__type(__x)) / __type(__x);
+      return std::__detail::__sinc_pi<__type>(__x);
+    }
+
+  // Normalized sinus cardinal functions
+
+  inline float
+  sincf(float __x)
+  { return std::__detail::__sinc<float>(__x); }
+
+  inline long double
+  sincl(long double __x)
+  { return std::__detail::__sinc<long double>(__x); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    sinc(_Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__sinc<__type>(__x);
     }
 
   // Logarithmic integrals
@@ -889,37 +884,40 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__poly_radial_jacobi<__type>(__n, __m, __rho);
     }
 
-  // Hyperbolic sinus cardinal functions
+  // Unnormalized hyperbolic sinus cardinal functions
 
   inline float
   sinhc_pif(float __x)
-  {
-    if (__isnan(__x))
-      return std::numeric_limits<float>::quiet_NaN();
-    else
-      return __x == 0.0F ? 1.0F : std::sinh/*f*/(__x) / __x;
-  }
+  { return std::__detail::__sinhc_pi<float>(__x); }
 
   inline long double
   sinhc_pil(long double __x)
-  {
-    if (__isnan(__x))
-      return std::numeric_limits<long double>::quiet_NaN();
-    else
-      return __x == 0.0L ? 1.0L : std::sinh/*l*/(__x) / __x;
-  }
+  { return std::__detail::__sinhc_pi<long double>(__x); }
 
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
     sinhc_pi(_Tp __x)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      if (__isnan(__x))
-        return std::numeric_limits<__type>::quiet_NaN();
-      else
-        return __type(__x) == __type(0)
-             ? __type(1)
-             : std::sinh(__type(__x)) / __type(__x);
+      return std::__detail::__sinhc_pi<__type>(__x);
+    }
+
+  // Normalized hyperbolic sinus cardinal functions
+
+  inline float
+  sinhcf(float __x)
+  { return std::__detail::__sinhc<float>(__x); }
+
+  inline long double
+  sinhcl(long double __x)
+  { return std::__detail::__sinhc<long double>(__x); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    sinhc(_Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__sinhc<__type>(__x);
     }
 
   // Dawson's integrals
