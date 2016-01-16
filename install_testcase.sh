@@ -68,6 +68,7 @@ ${copy} check_lpochhammer_u.cc      ${ext_dir}/lpochhammer_u/check_value.cc
 ${copy} check_pochhammer_u.cc       ${ext_dir}/pochhammer_u/check_value.cc
 ${copy} check_psi.cc                ${ext_dir}/psi/check_value.cc
 ${copy} check_sinc.cc               ${ext_dir}/sinc/check_value.cc
+${copy} check_sinc_pi.cc            ${ext_dir}/sinc_pi/check_value.cc
 ${copy} check_sinhint.cc            ${ext_dir}/sinhint/check_value.cc
 ${copy} check_sinint.cc             ${ext_dir}/sinint/check_value.cc
 ${copy} check_sph_bessel_i.cc       ${ext_dir}/sph_bessel_i/check_value.cc
