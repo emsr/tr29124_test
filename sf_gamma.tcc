@@ -1607,8 +1607,9 @@ _S_neg_double_factorial_table[999]
     _GLIBCXX14_CONSTEXPR _Tp
     __bernoulli_series(unsigned int __n)
     {
+      constexpr unsigned long _S_num_bern_tab = 28;
       constexpr _Tp
-      __num[28]
+      _S_bernoulli_tab[_S_num_bern_tab]
       {
 	 _Tp{1UL},	                 -_Tp{1UL} / _Tp{2UL},
 	 _Tp{1UL} / _Tp{6UL},             _Tp{0UL},
@@ -1625,38 +1626,39 @@ _S_neg_double_factorial_table[999]
 	-_Tp{236364091UL} / _Tp{2730UL},  _Tp{0UL},
 	 _Tp{8553103UL} / _Tp{6UL},       _Tp{0UL}
       };
+      constexpr _Tp _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
 
       if (__n == 0)
 	return _Tp{1};
-
-      if (__n == 1)
+      else if (__n == 1)
 	return -_Tp{1} / _Tp{2};
-
       // Take care of the rest of the odd ones.
-      if (__n % 2 == 1)
+      else if (__n % 2 == 1)
 	return _Tp{0};
-
       // Take care of some small evens that are painful for the series.
-      if (__n < 28)
-	return __num[__n];
-
-      auto __fact = _Tp{1};
-      if ((__n / 2) % 2 == 0)
-	__fact *= -_Tp{1};
-      for (unsigned int __k = 1; __k <= __n; ++__k)
-	__fact *= __k / (_Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi);
-      __fact *= _Tp{2};
-
-      auto __sum = _Tp{0};
-      for (unsigned int __i = 1; __i < 1000; ++__i)
+      else if (__n < _S_num_bern_tab)
+	return _S_bernoulli_tab[__n];
+      else
 	{
-	  auto __term = std::pow(_Tp(__i), -_Tp(__n));
-	  if (__term < std::numeric_limits<_Tp>::epsilon())
-	    break;
-	  __sum += __term;
-	}
+	  auto __fact = _Tp{1};
+	  if ((__n / 2) % 2 == 0)
+	    __fact *= -_Tp{1};
+	  for (unsigned int __k = 1; __k <= __n; ++__k)
+	    __fact *= __k / (_Tp{2} * _S_pi);
+	  __fact *= _Tp{2};
 
-      return __fact * __sum;
+	  // Riemann zeta function.
+	  auto __sum = _Tp{1};
+	  for (unsigned int __i = 2; __i < 1000; ++__i)
+	    {
+	      auto __term = std::pow(_Tp(__i), -_Tp(__n));
+	      if (__term < std::numeric_limits<_Tp>::epsilon())
+		break;
+	      __sum += __term;
+	    }
+
+	  return __fact * __sum;
+	}
     }
 
 

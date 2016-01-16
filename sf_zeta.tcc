@@ -257,16 +257,45 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_domain_error(__N("Bad argument in zeta sum."));
 
       constexpr unsigned int _S_max_iter = 10000;
-      _Tp __zeta = _Tp{0};
-      for (unsigned int __k = 1; __k < _S_max_iter; ++__k)
+      _Tp __zeta = _Tp{1};
+      for (unsigned int __k = 2; __k < _S_max_iter; ++__k)
 	{
-	  _Tp __term = std::pow(static_cast<_Tp>(__k), -__s);
+	  _Tp __term = std::pow(_Tp(__k), -__s);
 	  if (__term < std::numeric_limits<_Tp>::epsilon())
 	    break;
 	  __zeta += __term;
 	}
 
       return __zeta;
+    }
+
+
+  /**
+   * @brief  Compute the Riemann zeta function @f$ \zeta(s) - 1 @f$
+   * 	     by summation for s > 1.  This is a small remainder for large s.
+   *
+   * The Riemann zeta function is defined by:
+   *  \f[
+   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
+   *  \f]
+   */
+  template<typename _Tp>
+    _Tp
+    __riemann_zeta_m_1_sum(_Tp __s)
+    {
+      // A user shouldn't get to this.
+      if (__s < _Tp{1})
+	std::__throw_domain_error(__N("Bad argument in zeta sum."));
+
+      int __k_max = std::exp(-std::log(__gnu_cxx::__epsilon<_Tp>()) / __s);
+      _Tp __zeta_m_1 = _Tp{0};
+      for (int __k = __k_max; __k >= 2; --__k)
+	{
+	  _Tp __term = std::pow(_Tp(__k), -__s);
+	  __zeta_m_1 += __term;
+	}
+
+      return __zeta_m_1;
     }
 
 
@@ -336,7 +365,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__term) < _S_eps)
 	    break;
 	  __zeta += __term;
-	  __sgn *= -_Tp{1};
+	  __sgn = -__sgn;
 	}
       __zeta /= _Tp{1} - std::pow(_Tp{2}, _Tp{1} - __s);
 
