@@ -1,6 +1,9 @@
 #ifndef TEST_FUNC_TCC
 #define TEST_FUNC_TCC 1
 
+const std::string diffdirname = "diff/";
+const std::string testdirname = "test/";
+
 template<typename Tp>
   class filename_end
   {
@@ -87,7 +90,7 @@ template<typename Tp, typename Tp1>
           const std::vector<Tp1> & argument1,
           const bool verbose = false)
   {
-    std::string filename = basename + filename_end<Tp>::suffix();
+    std::string filename = testdirname + basename + filename_end<Tp>::suffix();
 
     std::ofstream output(filename.c_str());
     output.precision(std::numeric_limits<Tp>::digits10);
@@ -135,7 +138,7 @@ template<typename Tp, typename Tp1, typename Tp2>
           const std::vector<Tp2> & argument2,
           const bool verbose = false)
   {
-    std::string filename = basename + filename_end<Tp>::suffix();
+    std::string filename = testdirname + basename + filename_end<Tp>::suffix();
 
     std::ofstream output(filename.c_str());
     output.precision(std::numeric_limits<Tp>::digits10);
@@ -198,7 +201,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
           const std::vector<Tp3> & argument3,
           const bool verbose = false)
   {
-    std::string filename = basename + filename_end<Tp>::suffix();
+    std::string filename = testdirname + basename + filename_end<Tp>::suffix();
 
     std::ofstream output(filename.c_str());
     output.precision(std::numeric_limits<Tp>::digits10);
@@ -268,7 +271,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
           const std::vector<Tp4> & argument4,
           const bool verbose = false)
   {
-    std::string filename = basename + filename_end<Tp>::suffix();
+    std::string filename = testdirname + basename + filename_end<Tp>::suffix();
 
     std::ofstream output(filename.c_str());
     output.precision(std::numeric_limits<Tp>::digits10);
@@ -343,7 +346,7 @@ template<typename Tp, typename Tp1>
           const std::vector<Tp1> & argument1,
           const bool verbose = false)
   {
-    std::string filename = basename + filename_end<Tp>::suffix();
+    std::string filename = diffdirname + basename + filename_end<Tp>::suffix();
 
     std::ofstream output(filename.c_str());
     output.precision(std::numeric_limits<Tp>::digits10);
@@ -423,7 +426,7 @@ template<typename Tp, typename Tp1, typename Tp2>
           const std::string & arg2, const std::vector<Tp2> & argument2,
           const bool verbose = false)
   {
-    std::string filename = basename + filename_end<Tp>::suffix();
+    std::string filename = diffdirname + basename + filename_end<Tp>::suffix();
 
     std::ofstream output(filename.c_str());
     output.precision(std::numeric_limits<Tp>::digits10);
@@ -511,7 +514,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
           const std::string & arg3, const std::vector<Tp3> & argument3,
           const bool verbose = false)
   {
-    std::string filename = basename + filename_end<Tp>::suffix();
+    std::string filename = diffdirname + basename + filename_end<Tp>::suffix();
 
     std::ofstream output(filename.c_str());
     output.precision(std::numeric_limits<Tp>::digits10);
@@ -607,7 +610,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
           const std::string & arg4, const std::vector<Tp4> & argument4,
           const bool verbose = false)
   {
-    std::string filename = basename + filename_end<Tp>::suffix();
+    std::string filename = diffdirname + basename + filename_end<Tp>::suffix();
 
     std::ofstream output(filename.c_str());
     output.precision(std::numeric_limits<Tp>::digits10);

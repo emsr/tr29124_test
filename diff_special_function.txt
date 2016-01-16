@@ -15,7 +15,7 @@ ellint_1
 ellint_2
 ellint_3
 expint
-hermite  UNTESTED
+hermite
 hyperg
 laguerre
 legendre
@@ -32,3 +32,12 @@ dilog
 gamma_u
 ibeta
 psi
+sinint
+cosint
+sinhint
+coshint
+fresnel_c
+fresnel_s
+dawson
+expint_e1
+sinc_pi
