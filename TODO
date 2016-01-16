@@ -1,0 +1,20 @@
+
+0. Use <filesystem> dammit!
+
+1. In mathar it turns out that
+(2\pi)^k B_{2k}/(2k)! - 2 is small.  It might be worth computing... carefully.
+I think I just did this in __riemann_zeta_m_1_sum.
+I might want a starting fit for small s?
+
+2. __riemann_zeta_alt should be tested with vanWijnGaarden
+
+3. Debye integrals matharr has some.
+
+4.
+
+
+
+
+
+
+
