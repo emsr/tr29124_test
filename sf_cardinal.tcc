@@ -50,17 +50,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline __gnu_cxx::__promote_num_t<_Tp>
     __sinc(_Tp __a, _Tp __x)
     {
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       if (__isnan(__a) || __isnan(__x))
         return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (std::abs(__a) < __gnu_cxx::__min<_Tp>())
+	std::__throw_domain_error(__N("__sinc: Zero normalization a"));
       else if (std::abs(__x) == std::numeric_limits<_Tp>::infinity())
 	return _Tp{0};
-      else if (auto __arg = std::abs(_S_pi * __x / __a),
-	       __arg < __gnu_cxx::__sqrt_min<_Tp>())
-        return _Tp{1} - __arg * __arg / _Tp{6};
       else
 	{
 	  auto __arg = _S_pi * __x / __a;
-	  return std::sin(__arg) / __arg;
+	  if (std::abs(__arg) < __gnu_cxx::__sqrt_min<_Tp>())
+            return _Tp{1} - __arg * __arg / _Tp{6};
+	  else
+	    return std::sin(__arg) / __arg;
 	}
     }
 
@@ -99,13 +102,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
         return std::numeric_limits<_Tp>::quiet_NaN();
       else if (std::abs(__x) == std::numeric_limits<_Tp>::infinity())
 	return _Tp{0};
-      else if (auto __arg = std::abs(_S_pi * __x),
-	       __x < _Tp{4} * __gnu_cxx::__sqrt_min<_Tp>())
-        return _Tp{1} - __arg * __arg / _Tp{6};
       else
 	{
 	  auto __arg = _S_pi * __x;
-	  return std::sin(__arg) / __arg;
+	  if (std::abs(__arg) < _Tp{4} * __gnu_cxx::__sqrt_min<_Tp>())
+	    return _Tp{1} - __arg * __arg / _Tp{6};
+	  else
+	    return std::sin(__arg) / __arg;
 	}
     }
 
@@ -118,18 +121,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
-    sinhc(_Tp __a, _Tp __x)
+    __sinhc(_Tp __a, _Tp __x)
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      if (__isnan(__x))
+      if (__isnan(__a) || __isnan(__x))
         return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (auto __arg = std::abs(_S_pi * __x / __a),
-	       __x < _Tp{4} * __gnu_cxx::__sqrt_min<_Tp>())
-        return _Tp{1} + __arg * __arg / _Tp{6};
+      else if (std::abs(__a) < __gnu_cxx::__min<_Tp>())
+	std::__throw_domain_error(__N("__sinhc: Zero normalization a"));
       else
 	{
 	  auto __arg = _S_pi * __x / __a;
-	  return std::sinh(__arg) / __arg;
+	  if (std::abs(__arg) < _Tp{4} * __gnu_cxx::__sqrt_min<_Tp>())
+	    return _Tp{1} + __arg * __arg / _Tp{6};
+	  else
+	    return std::sinh(__arg) / __arg;
 	}
     }
 
@@ -141,11 +146,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
-    sinhc_pi(_Tp __x)
+    __sinhc_pi(_Tp __x)
     {
       if (__isnan(__x))
         return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__x < _Tp{4} * __gnu_cxx::__sqrt_min<_Tp>())
+      else if (std::abs(__x) < _Tp{4} * __gnu_cxx::__sqrt_min<_Tp>())
         return _Tp{1} + __x * __x / _Tp{6};
       else
 	return std::sinh(__x) / __x;
@@ -159,17 +164,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
-    sinhc_pi(_Tp __x)
+    __sinhc(_Tp __x)
     {
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       if (__isnan(__x))
         return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (auto __arg = std::abs(_S_pi * __x),
-	       __x < _Tp{4} * __gnu_cxx::__sqrt_min<_Tp>())
-        return _Tp{1} + __arg * __arg / _Tp{6};
       else
 	{
 	  auto __arg = _S_pi * __x;
-	  return std::sinh(__arg) / __arg;
+	  if (std::abs(__arg) < _Tp{4} * __gnu_cxx::__sqrt_min<_Tp>())
+	    return _Tp{1} + __arg * __arg / _Tp{6};
+	  else
+	    return std::sinh(__arg) / __arg;
 	}
     }
 
