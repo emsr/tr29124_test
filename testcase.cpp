@@ -91,6 +91,9 @@ template<typename Real>
     using __gnu_cxx::pochhammer_u;
     using __gnu_cxx::psi;
     using       std::riemann_zeta;
+    using __gnu_cxx::sinhc;
+    using __gnu_cxx::sinhc_pi;
+    using __gnu_cxx::sinc;
     using __gnu_cxx::sinc_pi;
     using __gnu_cxx::sinhint;
     using __gnu_cxx::sinint;
@@ -836,12 +839,23 @@ template<typename Real>
 	    			std::make_pair(false, true), 401),
 	     file_fresnel_s);
 
-    // Sine cardinal function.
+    // Normalized sine cardinal function.
+    std::cout << "sinc" << std::endl;
+    funcname = "sinc";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_sinc(filename.c_str());
+    maketest(sinc, gsl::sinc,
+	     "__gnu_cxx", funcname,
+	     "x", fill_argument(std::make_pair(Real{-20}, Real{+20}),
+	    			std::make_pair(true, true), 401),
+	     file_sinc);
+
+    // Unnormalized sine cardinal function.
     std::cout << "sinc_pi" << std::endl;
     funcname = "sinc_pi";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_sinc_pi(filename.c_str());
-    maketest(sinc_pi, gsl::sinc,
+    maketest(sinc_pi, gsl::sinc_pi,
 	     "__gnu_cxx", funcname,
 	     "x", fill_argument(std::make_pair(Real{-20}, Real{+20}),
 	    			std::make_pair(true, true), 401),
