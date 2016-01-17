@@ -43,6 +43,10 @@ template<typename Real>
     using       std::assoc_legendre;
     using       std::beta;
     using __gnu_cxx::bincoef;
+    using __gnu_cxx::chebyshev_t;
+    using __gnu_cxx::chebyshev_u;
+    using __gnu_cxx::chebyshev_v;
+    using __gnu_cxx::chebyshev_w;
     using       std::comp_ellint_1;
     using       std::comp_ellint_2;
     using       std::comp_ellint_3;
@@ -1031,7 +1035,62 @@ template<typename Real>
 	    			std::make_pair(true, true), 41),
 	     file_gegenbauer);
 
+    //  Chebyshev polynomials of the first kind.
+    std::cout << "chebyshev_t UNTESTED" << std::endl;
+/*
+    funcname = "chebyshev_t";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_chebyshev_t(filename.c_str());
+    maketest(chebyshev_t, gsl::chebyshev_t,
+	     "__gnu_cxx", funcname,
+	     "n", {0U, 1U, 5U, 8U, 10U, 20U, 40U, 100U},
+	     "x", fill_argument(std::make_pair(Real{-1}, Real{+1}),
+	    			std::make_pair(true, true), 21),
+	     file_chebyshev_t);
+*/
+    //  Chebyshev polynomials of the second kind.
+    std::cout << "chebyshev_u - UNTESTED" << std::endl;
+
+    //  Chebyshev polynomials of the third kind.
+    std::cout << "chebyshev_v - UNTESTED" << std::endl;
+
+    //  Chebyshev polynomials of the fourth kind.
+    std::cout << "chebyshev_w - UNTESTED" << std::endl;
+
+    //  Radial polynomials.
+    std::cout << "radpoly UNTESTED" << std::endl;
+/*
+    funcname = "radpoly";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_radpoly(filename.c_str());
+    maketest(radpoly, gsl::radpoly,
+	     "__gnu_cxx", funcname,
+	     "n", vorder, "m", vorder,
+	     "alpha", fill_argument(std::make_pair(Real{0}, Real{5}),
+	    			    std::make_pair(true, true), 11),
+             "rho", fill_argument(std::make_pair(Real{0}, Real{1}),
+	    			  std::make_pair(true, true), 21),
+	     file_radpoly);
+*/
+
+    //  Zernicke polynomials.
+    std::cout << "zernicke UNTESTED" << std::endl;
+/*
+    funcname = "zernicke";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_zernicke(filename.c_str());
+    maketest(zernicke, gsl::zernicke,
+	     "__gnu_cxx", funcname,
+	     "n", vorder, "m", vorder,
+	     "alpha", fill_argument(std::make_pair(Real{0}, Real{5}),
+	    			    std::make_pair(true, true), 11),
+             "rho", fill_argument(std::make_pair(Real{0}, Real{1}),
+	    			  std::make_pair(true, true), 21),
+             "phi", vphid
+	     file_zernicke);
+*/
 #endif // STD
+
   }
 
 
