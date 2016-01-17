@@ -209,5 +209,11 @@ double lnchoose(unsigned int n, unsigned int k);
 /// Taylor coefficients.
 double taylorcoeff(unsigned int n, double x);
 
+/// Radial polynomials
+double radpoly(unsigned int n, unsigned int m, double rho);
+
+/// Zernicke polynomials
+double zernicke(unsigned int n, unsigned int m, double rho,double phi);
+
 } // namespace gsl
 
