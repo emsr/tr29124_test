@@ -5,15 +5,13 @@
 
 #include <iostream>
 #include <sstream>
-#include <cmath>
+#include <ext/cmath>
 
 
-using std::__detail::__numeric_constants;
-
-    template <typename _Tp>
+  template <typename _Tp>
     void
-    __cyl_bessel_jn_asymp(const _Tp __nu, const _Tp __x,
-                          _Tp & __Jnu, _Tp & __Nnu)
+    __cyl_bessel_jn_asymp_old(_Tp __nu, _Tp __x,
+			      _Tp & __Jnu, _Tp & __Nnu)
     {
       const auto __2nu = 2 * __nu;
       const auto __x8 = 8 * __x;
@@ -44,12 +42,12 @@ using std::__detail::__numeric_constants;
       while (__k < 50 * __nu);
 
       auto __chi = __x - (__nu + _Tp(0.5L))
-        	       * __numeric_constants<_Tp>::__pi_2();
+        	       * __gnu_cxx::__math_constants<_Tp>::__pi_half;
       auto __c = std::cos(__chi);
       auto __s = std::sin(__chi);
 
       auto __coef = std::sqrt(_Tp(2)
-        	  / (__numeric_constants<_Tp>::__pi() * __x));
+        	  / (__gnu_cxx::__math_constants<_Tp>::__pi * __x));
       __Jnu = __coef * (__c * __P - __s * __Q);
       __Nnu = __coef * (__s * __P + __c * __Q);
 
@@ -59,7 +57,7 @@ using std::__detail::__numeric_constants;
 int
 main(int n_app_args, char ** app_arg)
 {
-  double x = 1000.0;
+  double x = 100.0;
   double nu = 20;
 
   bool use_internal = false;
@@ -84,11 +82,11 @@ main(int n_app_args, char ** app_arg)
     in >> x;
   }
 
-  std::cout << std::endl;
-  std::cout << "use internal function = " << std::boolalpha << use_internal << std::endl;
+  std::cout << '\n';
+  std::cout << "use internal function = " << std::boolalpha << use_internal << '\n';
 
-  std::cout << std::endl;
-  std::cout << "nu = " << nu << std::endl;
+  std::cout << '\n';
+  std::cout << "nu = " << nu << '\n';
 
   do
   {
@@ -99,21 +97,30 @@ main(int n_app_args, char ** app_arg)
     }
     catch (std::exception e)
     {
-      std::cout << std::endl << "Couldn't run main Bessel function." << std::endl;
+      std::cout << '\n' << "Couldn't run main Bessel function." << '\n';
     }
-    double Jnua, Nnua;
+    double Jnua = 0.0, Nnua = 0.0, Jpnua = 0.0, Npnua = 0.0;
     if (use_internal)
-      __cyl_bessel_jn_asymp(nu, x, Jnua, Nnua);
+      __cyl_bessel_jn_asymp_old(nu, x, Jnua, Nnua);
     else
-      std::__detail::__cyl_bessel_jn_asymp(nu, x, Jnua, Nnua);
-    std::cout << std::endl;
-    std::cout << "x = " << x << std::endl;
-    std::cout << "Jnu = " << Jnu << std::endl;
-    std::cout << "Nnu = " << Nnu << std::endl;
-    std::cout << "Jnua = " << Jnua << std::endl;
-    std::cout << "Nnua = " << Nnua << std::endl;
-    std::cout << "Jnua - Jnu = " << Jnua - Jnu << std::endl;
-    std::cout << "Nnua - Nnu = " << Nnua - Nnu << std::endl;
+      std::__detail::__cyl_bessel_jn_asymp(nu, x, Jnua, Nnua, Jpnua, Npnua);
+    std::cout << '\n';
+    std::cout << "x = " << x << '\n';
+    std::cout << "Jnu = " << Jnu << '\n';
+    std::cout << "Nnu = " << Nnu << '\n';
+    std::cout << "Jnua = " << Jnua << '\n';
+    std::cout << "Nnua = " << Nnua << '\n';
+    std::cout << "Jnua - Jnu = " << Jnua - Jnu << '\n';
+    std::cout << "Nnua - Nnu = " << Nnua - Nnu << '\n';
+    if (!use_internal)
+    {
+      std::cout << "Jpnu = " << Jpnu << '\n';
+      std::cout << "Npnu = " << Npnu << '\n';
+      std::cout << "Jpnua = " << Jpnua << '\n';
+      std::cout << "Npnua = " << Npnua << '\n';
+      std::cout << "Jpnua - Jpnu = " << Jpnua - Jpnu << '\n';
+      std::cout << "Npnua - Npnu = " << Npnua - Npnu << '\n';
+    }
 
     x += 1000.0;
   }

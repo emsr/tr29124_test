@@ -1092,4 +1092,18 @@ taylorcoeff(unsigned int n, double x)
     return result.val;
 }
 
+/// Radial polynomials
+double
+radpoly(unsigned int n, unsigned int m, double rho)
+{
+  return 0.0;
+}
+
+/// Zernicke polynomials
+double
+zernicke(unsigned int n, unsigned int m, double rho,double phi)
+{
+  return 0.0;
+}
+
 } // namespace gsl
