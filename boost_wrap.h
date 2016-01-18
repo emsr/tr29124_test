@@ -1,5 +1,5 @@
 
-namespace gsl
+namespace bst
 {
 
 /// Airy Ai function.
@@ -248,5 +248,5 @@ double heuman_lambda(double phi, double k);
 /// Jacobi zeta functions.
 double jacobi_zeta(double k, double phi);
 
-} // namespace gsl
+} // namespace bst
 
