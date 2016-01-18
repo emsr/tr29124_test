@@ -1,11 +1,12 @@
 
-
 #include <cmath>
 #include <sstream>
 #include <stdexcept>
 
 #include "gsl_wrap.h"
 
+#include <gsl/gsl_sf.h>
+#include "gslextras/Fresnel/fresnel.h"
 #include <jacobi.h>
 
 namespace gsl
@@ -80,6 +81,13 @@ legendre_Plm(unsigned int l, unsigned int m, double x)
       else
         return result.val;
     }
+}
+
+/// Associated Legendre functions of the second kind.
+double
+legendre_Qlm(unsigned int l, unsigned int m, double x)
+{
+  return 0.0;
 }
 
 /// Beta functions.
@@ -473,13 +481,13 @@ laguerre_n(unsigned int n, double x)
 
 /// Legendre polynomials.
 double
-legendre_Pl(unsigned int l, double x)
+legendre_p(unsigned int l, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_legendre_Pl_e(static_cast<int>(l), x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in legendre_Pl:");
+      std::ostringstream msg("Error in legendre_p:");
       msg << " l=" << l << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -489,13 +497,13 @@ legendre_Pl(unsigned int l, double x)
 
 /// Legendre polynomials of the second kind.
 double
-legendre_Ql(unsigned int l, double x)
+legendre_q(unsigned int l, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_legendre_Ql_e(static_cast<int>(l), x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in legendre_Ql:");
+      std::ostringstream msg("Error in legendre_q:");
       msg << " l=" << l << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -589,15 +597,18 @@ bessel_yl(unsigned int n, double x)
     return result.val;
 }
 
+/// Non-normalized lower incomplete gamma functions.
+double gamma_l(double a, double x);
+
 /// Normalized incomlete gamma functions.
 double
-gamma_inc_Q(double a, double x)
+gamma_q(double a, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_gamma_inc_Q_e(a, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in gamma_inc_Q:");
+      std::ostringstream msg("Error in gamma_q:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -607,13 +618,13 @@ gamma_inc_Q(double a, double x)
 
 /// Normalized incomlete gamma functions.
 double
-gamma_inc_P(double a, double x)
+gamma_p(double a, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_gamma_inc_P_e(a, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in gamma_inc_P:");
+      std::ostringstream msg("Error in gamma_p:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -621,15 +632,15 @@ gamma_inc_P(double a, double x)
     return result.val;
 }
 
-/// Non-normalized incomlete gamma functions.
+/// Non-normalized (upper) incomlete gamma functions.
 double
-gamma_inc(double a, double x)
+gamma_u(double a, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_gamma_inc_e(a, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in gamma_inc:");
+      std::ostringstream msg("Error in gamma_u:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -639,13 +650,13 @@ gamma_inc(double a, double x)
 
 /// Incomlete beta functions.
 double
-beta_inc(double a, double b, double x)
+ibeta(double a, double b, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_beta_inc_e(a, b, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in beta_inc:");
+      std::ostringstream msg("Error in ibeta:");
       msg << " a=" << a << " b=" << b << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -799,14 +810,14 @@ dawson(double x)
 
 /// Jacobian elliptic integrals sn.
 double
-elljac_sn(double k, double u)
+jacobi_sn(double k, double u)
 {
   double m = k * k;
   double sn, cn, dn;
   int stat = gsl_sf_elljac_e(u, m, &sn, &cn, &dn);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in elljac_sn:");
+      std::ostringstream msg("Error in jacobi_sn:");
       msg << " u=" << u << " k=" << k;
       throw std::runtime_error(msg.str());
     }
@@ -816,14 +827,14 @@ elljac_sn(double k, double u)
 
 /// Jacobian elliptic integrals cn.
 double
-elljac_cn(double k, double u)
+jacobi_cn(double k, double u)
 {
   double m = k * k;
   double sn, cn, dn;
   int stat = gsl_sf_elljac_e(u, m, &sn, &cn, &dn);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in elljac_cn:");
+      std::ostringstream msg("Error in jacobi_cn:");
       msg << " u=" << u << " k=" << k;
       throw std::runtime_error(msg.str());
     }
@@ -833,14 +844,14 @@ elljac_cn(double k, double u)
 
 /// Jacobian elliptic integrals dn.
 double
-elljac_dn(double k, double u)
+jacobi_dn(double k, double u)
 {
   double m = k * k;
   double sn, cn, dn;
   int stat = gsl_sf_elljac_e(u, m, &sn, &cn, &dn);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in elljac_dn:");
+      std::ostringstream msg("Error in jacobi_dn:");
       msg << " u=" << u << " k=" << k;
       throw std::runtime_error(msg.str());
     }
@@ -888,6 +899,20 @@ sinc(double x)
     }
   else
     return result.val;
+}
+
+/// Hyperbolic sinus cardinal function.
+double
+sinhc_pi(double x)
+{
+  return 0.0;
+}
+
+/// Hyperbolic sinus cardinal function.
+double
+sinhc(double x)
+{
+  return 0.0;
 }
 
 /// Log upper Pochhammer symbol.
@@ -1102,6 +1127,48 @@ radpoly(unsigned int n, unsigned int m, double rho)
 /// Zernicke polynomials
 double
 zernicke(unsigned int n, unsigned int m, double rho,double phi)
+{
+  return 0.0;
+}
+
+/// Cylindrical Hankel functions of the first kind.
+std::complex<double>
+cyl_hankel_1(double nu, double x)
+{
+  return 0.0;
+}
+
+/// Cylindrical Hankel functions of the second kind.
+std::complex<double>
+cyl_hankel_2(double nu, double x)
+{
+  return 0.0;
+}
+
+/// Spherical Hankel functions of the first kind.
+std::complex<double>
+sph_hankel_1(unsigned int n, double x)
+{
+  return 0.0;
+}
+
+/// Spherical Hankel functions of the second kind.
+std::complex<double>
+sph_hankel_2(unsigned int n, double x)
+{
+  return 0.0;
+}
+
+/// Heuman lambda functions.
+double
+heuman_lambda(double phi, double k)
+{
+  return 0.0;
+}
+
+/// Jacobi zeta functions.
+double
+jacobi_zeta(double k, double phi)
 {
   return 0.0;
 }

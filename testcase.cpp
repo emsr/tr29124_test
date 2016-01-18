@@ -51,6 +51,7 @@ template<typename Real>
     using       std::comp_ellint_2;
     using       std::comp_ellint_3;
     using __gnu_cxx::conf_hyperg;
+    using __gnu_cxx::conf_hyperg_lim;
     using __gnu_cxx::coshint;
     using __gnu_cxx::cosint;
     using       std::cyl_bessel_i;
@@ -74,6 +75,8 @@ template<typename Real>
     using __gnu_cxx::fresnel_c;
     using __gnu_cxx::fresnel_s;
     using __gnu_cxx::gamma_l;
+    using __gnu_cxx::gamma_p;
+    using __gnu_cxx::gamma_q;
     using __gnu_cxx::gamma_u;
     using __gnu_cxx::gegenbauer;
     using       std::hermite;
@@ -498,7 +501,7 @@ template<typename Real>
     funcname = "legendre";
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_legendre(filename.c_str());
-    maketest(legendre, gsl::legendre_Pl,
+    maketest(legendre, gsl::legendre_p,
 	     nsname, funcname,
 	     "l", vorder,
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
@@ -667,7 +670,7 @@ template<typename Real>
     funcname = "gamma_u";
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_gamma_u(filename.c_str());
-    maketest(gamma_u, gsl::gamma_inc,
+    maketest(gamma_u, gsl::gamma_u,
 	     "__gnu_cxx", funcname,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 11),
@@ -675,12 +678,15 @@ template<typename Real>
 				std::make_pair(true, true), 11),
 	     file_gamma_u);
 
+    // Lower incomplete Gamma functions.
+    std::cout << "gamma_l - UNCHECKED" << std::endl;
+
     // Incomplete Beta functions.
     std::cout << "ibeta" << std::endl;
     funcname = "ibeta";
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_ibeta(filename.c_str());
-    maketest<Real, Real, Real, Real>(ibeta, gsl::beta_inc,
+    maketest<Real, Real, Real, Real>(ibeta, gsl::ibeta,
 	     "__gnu_cxx", funcname,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 11),
@@ -767,7 +773,7 @@ template<typename Real>
     funcname = "jacobi_sn";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_jacobi_sn(filename.c_str());
-    maketest(jacobi_sn, gsl::elljac_sn,
+    maketest(jacobi_sn, gsl::jacobi_sn,
 	     "__gnu_cxx", funcname,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{+1}),
 		    		std::make_pair(true, true), 21),
@@ -780,7 +786,7 @@ template<typename Real>
     funcname = "jacobi_cn";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_jacobi_cn(filename.c_str());
-    maketest(jacobi_cn, gsl::elljac_cn,
+    maketest(jacobi_cn, gsl::jacobi_cn,
 	     "__gnu_cxx", funcname,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{+1}),
 		    		std::make_pair(true, true), 21),
@@ -793,7 +799,7 @@ template<typename Real>
     funcname = "jacobi_dn";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_jacobi_dn(filename.c_str());
-    maketest(jacobi_dn, gsl::elljac_dn,
+    maketest(jacobi_dn, gsl::jacobi_dn,
 	     "__gnu_cxx", funcname,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{+1}),
 		    		std::make_pair(true, true), 21),
@@ -865,7 +871,7 @@ template<typename Real>
 	    			std::make_pair(true, true), 401),
 	     file_sinc_pi);
 
-    // Log upper Pochhammer symbol
+    // Log upper Pochhammer symbol.
     std::cout << "lpochhammer_u" << std::endl;
     funcname = "lpochhammer_u";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -877,13 +883,13 @@ template<typename Real>
 				std::make_pair(false, true), 21),
 	     file_lpochhammer_u, true, true);
 
-    // Log lower Pochhammer symbol
+    // Log lower Pochhammer symbol.
     //std::cout << "lpochhammer_l" << std::endl;
     //funcname = "lpochhammer_l";
     //filename = get_filename(path, prefix, funcname, "",  ".cc");
     //std::ofstream file_lpochhammer_l(filename.c_str());
 
-    // Upper Pochhammer symbols (see boost::rising_factorial)
+    // Upper Pochhammer symbols (see boost::rising_factorial).
     std::cout << "pochhammer_u" << std::endl;
     funcname = "pochhammer_u";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -895,7 +901,7 @@ template<typename Real>
 				std::make_pair(false, true), 21),
 	     file_pochhammer_u, true, true);
 
-    // Lower Pochhammer symbols (see boost::falling_factorial)
+    // Lower Pochhammer symbols (see boost::falling_factorial).
     //std::cout << "pochhammer_l" << std::endl;
     //funcname = "pochhammer_l";
     //filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -944,7 +950,7 @@ template<typename Real>
     funcname = "legendre_q";
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_legendre_q(filename.c_str());
-    maketest(legendre_q, gsl::legendre_Ql,
+    maketest(legendre_q, gsl::legendre_q,
 	     nsname, funcname,
 	     "l", vorder,
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
@@ -1021,7 +1027,7 @@ template<typename Real>
 	    			std::make_pair(true, true), 201),
 	     file_lbincoef);
 
-    // Gegenbauer polynomials
+    // Gegenbauer polynomials.
     std::cout << "gegenbauer" << std::endl;
     funcname = "gegenbauer";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -1035,8 +1041,8 @@ template<typename Real>
 	    			std::make_pair(true, true), 41),
 	     file_gegenbauer);
 
-    //  Chebyshev polynomials of the first kind.
-    std::cout << "chebyshev_t UNTESTED" << std::endl;
+    // Chebyshev polynomials of the first kind.
+    std::cout << "chebyshev_t - UNTESTED" << std::endl;
 /*
     funcname = "chebyshev_t";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -1048,17 +1054,17 @@ template<typename Real>
 	    			std::make_pair(true, true), 21),
 	     file_chebyshev_t);
 */
-    //  Chebyshev polynomials of the second kind.
+    // Chebyshev polynomials of the second kind.
     std::cout << "chebyshev_u - UNTESTED" << std::endl;
 
-    //  Chebyshev polynomials of the third kind.
+    // Chebyshev polynomials of the third kind.
     std::cout << "chebyshev_v - UNTESTED" << std::endl;
 
-    //  Chebyshev polynomials of the fourth kind.
+    // Chebyshev polynomials of the fourth kind.
     std::cout << "chebyshev_w - UNTESTED" << std::endl;
 
-    //  Radial polynomials.
-    std::cout << "radpoly UNTESTED" << std::endl;
+    // Radial polynomials.
+    std::cout << "radpoly - UNTESTED" << std::endl;
 /*
     funcname = "radpoly";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -1073,8 +1079,8 @@ template<typename Real>
 	     file_radpoly);
 */
 
-    //  Zernicke polynomials.
-    std::cout << "zernicke UNTESTED" << std::endl;
+    // Zernicke polynomials.
+    std::cout << "zernicke - UNTESTED" << std::endl;
 /*
     funcname = "zernicke";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
@@ -1089,6 +1095,21 @@ template<typename Real>
              "phi", vphid
 	     file_zernicke);
 */
+
+    // Confluent hypergeometric limit functions.
+    // Skip the singularity at c = 0.
+    std::cout << "conf_hyperg_lim" << std::endl;
+    funcname = "conf_hyperg_lim";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_conf_hyperg_lim(filename.c_str());
+    maketest(conf_hyperg_lim, gsl::hyperg_0F1,
+	     "__gnu_cxx", funcname,
+	     "c", fill_argument(std::make_pair(Real{0}, Real{10}),
+				std::make_pair(false, true), 11),
+	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
+				std::make_pair(true, true), 21),
+	     file_conf_hyperg_lim);
+
 #endif // STD
 
   }
