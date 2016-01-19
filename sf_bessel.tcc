@@ -369,7 +369,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  ++__k;
 	  __2km1 += 2;
-	  __bk_xk *= -(__4nu2 + __2km1 * (__2km1 + 2)) / (__k * __8x);
+	  __bk_xk = -(__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
 	  _Rsum += __bk_xk;
 	  __ak_xk *= -(__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
 	  _Psum += __ak_xk;
@@ -377,7 +377,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 	  ++__k;
 	  __2km1 += 2;
-	  __bk_xk *= (__4nu2 + __2km1 * (__2km1 + 2)) / (__k * __8x);
+	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
 	  _Ssum += __bk_xk;
 	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
 	  _Qsum += __ak_xk;
