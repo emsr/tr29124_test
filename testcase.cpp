@@ -879,8 +879,8 @@ template<typename Real>
     maketest(lpochhammer_u, gsl::lnpoch,
 	     "__gnu_cxx", funcname,
 	     "a", {1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0},
-	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
-				std::make_pair(false, true), 21),
+	     "nu", fill_argument(std::make_pair(Real{0}, Real{5}),
+				 std::make_pair(false, true), 21),
 	     file_lpochhammer_u, true, true);
 
     // Log lower Pochhammer symbol.
@@ -897,8 +897,8 @@ template<typename Real>
     maketest(pochhammer_u, gsl::poch,
 	     "__gnu_cxx", funcname,
 	     "a", dvorder,
-	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
-				std::make_pair(false, true), 21),
+	     "nu", fill_argument(std::make_pair(Real{0}, Real{5}),
+				 std::make_pair(false, true), 21),
 	     file_pochhammer_u, true, true);
 
     // Lower Pochhammer symbols (see boost::falling_factorial).
@@ -951,7 +951,7 @@ template<typename Real>
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_legendre_q(filename.c_str());
     maketest(legendre_q, gsl::legendre_q,
-	     nsname, funcname,
+	     "__gnu_cxx", funcname,
 	     "l", vorder,
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
 	        		std::make_pair(false, false), 21),
@@ -959,7 +959,7 @@ template<typename Real>
 
     // Factorial.
     std::cout << "factorial" << std::endl;
-    funcname = "factorial";
+    funcname = "factorial<Tp>";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_factorial(filename.c_str());
     maketest(factorial<Real>, gsl::fact,
@@ -970,7 +970,7 @@ template<typename Real>
 
     // Log factorial.
     std::cout << "lfactorial" << std::endl;
-    funcname = "lfactorial";
+    funcname = "lfactorial<Tp>";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_lfactorial(filename.c_str());
     maketest(lfactorial<Real>, gsl::lnfact,
@@ -981,7 +981,7 @@ template<typename Real>
 
     // Double factorial.
     std::cout << "double_factorial" << std::endl;
-    funcname = "double_factorial";
+    funcname = "double_factorial<Tp>";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_double_factorial(filename.c_str());
     maketest(double_factorial<Real>, gsl::doublefact,
@@ -992,7 +992,7 @@ template<typename Real>
 
     // Log double factorial.
     std::cout << "ldouble_factorial" << std::endl;
-    funcname = "ldouble_factorial";
+    funcname = "ldouble_factorial<Tp>";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_ldouble_factorial(filename.c_str());
     maketest(ldouble_factorial<Real>, gsl::lndoublefact,
@@ -1003,7 +1003,7 @@ template<typename Real>
 
     // Binomial coefficient.
     std::cout << "bincoef" << std::endl;
-    funcname = "bincoef";
+    funcname = "bincoef<Tp>";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_bincoef(filename.c_str());
     maketest(bincoef<Real>, gsl::choose,
@@ -1016,7 +1016,7 @@ template<typename Real>
 
     // Log binomial coefficient.
     std::cout << "lbincoef" << std::endl;
-    funcname = "lbincoef";
+    funcname = "lbincoef<Tp>";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_lbincoef(filename.c_str());
     maketest(lbincoef<Real>, gsl::lnchoose,

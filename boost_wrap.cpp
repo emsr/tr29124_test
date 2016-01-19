@@ -17,6 +17,7 @@
 #include <boost/math/special_functions/jacobi_elliptic.hpp>
 #include <boost/math/special_functions/jacobi_zeta.hpp>
 #include <boost/math/special_functions/heuman_lambda.hpp>
+#include <boost/math/special_functions/polygamma.hpp>
 
 #include "boost_wrap.h"
 
@@ -268,28 +269,56 @@ bessel_yl(unsigned int n, double x)
   return boost::math::sph_neumann(n, x);
 }
 
-/// Non-normalized lower incomplete gamma functions.
+/// Non-normalized lower incomplete gamma functions. (See Boost tgamma_lower(a, x)).
 double
 gamma_l(double a, double x)
 {
   return boost::math::tgamma_lower(a, x);
 }
 
-/// Normalized incomplete gamma functions.
+/// Normalized upper incomplete gamma functions.
 double
 gamma_q(double a, double x)
 {
   return boost::math::gamma_q(a, x);
 }
 
-/// Complementary normalized incomplete gamma functions.
+/// Inverse normalized upper incomplete gamma functions.
+double
+gamma_q_inv(double a, double q)
+{
+  return boost::math::gamma_q_inv(a, q);
+}
+
+/// Inverse parameter normalized upper incomplete gamma functions.
+double
+gamma_q_inva(double x, double q)
+{
+  return boost::math::gamma_q_inv(a, q);
+}
+
+/// Normalized lower incomplete gamma functions.
 double
 gamma_p(double a, double x)
 {
   return boost::math::gamma(a, x)_p;
 }
 
-/// Non-normalized (upper) incomplete gamma functions.
+/// Inverse normalized lower incomplete gamma functions.
+double
+gamma_p_inv(double a, double q)
+{
+  return boost::math::gamma_p_inv(a, p);
+}
+
+/// Inverse parameter normalized lower incomplete gamma functions.
+double
+gamma_p_inva(double x, double q)
+{
+  return boost::math::gamma_p_inv(a, p);
+}
+
+/// Non-normalized (upper) incomplete gamma functions. (See Boost tgamma(a, x)).
 double
 gamma_u(double a, double x)
 {
@@ -301,6 +330,42 @@ double
 ibeta(double a, double b, double x)
 {
   return boost::math::ibeta(a, b, x);
+}
+
+double
+ibeta_inv(double a, double b, double p)
+{
+  return boost::math::ibeta_inv(a, b, p);
+}
+
+double
+ibetac_inv(double a, double b, double p)
+{
+  return boost::math::ibetac_inv(a, b, p);
+}
+
+double
+ibeta_inva(double b, double x, double p)
+{
+  return boost::math::ibeta_inva(b, x, p);
+}
+
+double
+ibetac_inva(double b, double x, double p)
+{
+  return boost::math::ibetac_inva(b, x, p);
+}
+
+double
+ibeta_invb(double a, double x, double p)
+{
+  return boost::math::ibeta_invb(b, x, p);
+}
+
+double
+ibetac_invb(double a, double x, double p)
+{
+  return boost::math::ibetac_invb(b, x, p);
 }
 
 /// Dilogarithm function.
@@ -315,6 +380,13 @@ double
 psi(double x)
 {
   return boost::math::digamma(x);
+}
+
+/// Polygamma functions.
+double
+polygamma(int n, double x)
+{
+  return boost::math::polygamma(n, x);
 }
 
 /// Sine integral.
@@ -595,6 +667,20 @@ double
 jacobi_zeta(double k, double phi)
 {
   return boost::math::jacobi_zeta(k, phi);
+}
+
+/// Inverse error function.
+double
+erf_inv(double p)
+{
+  return boost::math::erf_inv(p);
+}
+
+/// Inverse complementary error function.
+double
+erfc_inv(double p)
+{
+  return boost::math::erfc_inv(p);
 }
 
 } // namespace bst

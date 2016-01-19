@@ -20,6 +20,9 @@ double legendre_Qlm(unsigned int l, unsigned int m, double x);
 /// Beta functions.
 double beta(double x, double y);
 
+/// Complementary beta functions.
+double betac(double x, double y);
+
 /// Complete elliptic integrals of the first kind.
 double ellint_Kcomp(double k);
 
@@ -107,26 +110,44 @@ double legendre_sphPlm(unsigned int l, unsigned int m, double theta);
 /// Spherical Neumann functions.
 double bessel_yl(unsigned int n, double x);
 
-/// Non-normalized lower incomplete gamma functions.
+/// Non-normalized lower incomplete gamma functions. (See Boost tgamma_lower(a, x)).
 double gamma_l(double a, double x);
 
-/// Normalized incomplete gamma functions.
+/// Normalized upper incomplete gamma functions.
 double gamma_q(double a, double x);
 
-/// Complementary normalized incomplete gamma functions.
+/// Inverse normalized upper incomplete gamma functions.
+double gamma_q_inv(double a, double q);
+
+/// Inverse parameter normalized upper incomplete gamma functions.
+double gamma_q_inva(double x, double q);
+
+/// Normalized lower incomplete gamma functions.
 double gamma_p(double a, double x);
 
-/// Non-normalized (upper) incomplete gamma functions.
+/// Inverse normalized lower incomplete gamma functions.
+double gamma_p_inv(double a, double q);
+
+/// Inverse parameter normalized lower incomplete gamma functions.
+double gamma_p_inva(double x, double q);
+
+/// Non-normalized (upper) incomplete gamma functions. (See Boost tgamma(a, x)).
 double gamma_u(double a, double x);
 
 /// Incomplete beta functions.
 double ibeta(double a, double b, double x);
+
+/// Complementary incomplete beta functions.
+double ibetac(double a, double b, double x);
 
 /// Dilogarithm function.
 double dilog(double x);
 
 /// Digamma or psi function.
 double psi(double x);
+
+/// Polygamma functions.
+double polygamma(int n, double x);
 
 /// Sine integral.
 double Si(double x);
@@ -247,6 +268,36 @@ double heuman_lambda(double phi, double k);
 
 /// Jacobi zeta functions.
 double jacobi_zeta(double k, double phi);
+
+/// Inverse error function.
+double
+erf_inv(double p)
+{
+  return boost::math::erf_inv(p);
+}
+
+/// Inverse complementary error function.
+double erfc_inv(double p);
+
+double gamma_q_inv(double a, double q);
+
+double gamma_q_inva(double x, double q);
+
+double gamma_p_inv(double a, double q);
+
+double gamma_p_inva(double x, double q);
+
+double ibeta_inv(double a, double b, double p);
+
+double ibetac_inv(double a, double b, double p);
+
+double ibeta_inva(double b, double x, double p);
+
+double ibetac_inva(double b, double x, double p);
+
+double ibeta_invb(double a, double x, double p);
+
+double ibetac_invb(double a, double x, double p);
 
 } // namespace bst
 
