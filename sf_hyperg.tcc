@@ -53,6 +53,74 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
+   *   @brief This routine returns the confluent hypergeometric limit function
+   *          by series expansion.
+   *
+   *   @f[
+   *     _0F_1(-;c;x) = \Gamma(c)
+   *                      \sum_{n=0}^{\infty}
+   *                      \frac{1}{\Gamma(c+n)}
+   *                      \frac{x^n}{n!}
+   *   @f]
+   *
+   *   If a and b are integers and a < 0 and either b > 0 or b < a
+   *   then the series is a polynomial with a finite number of
+   *   terms.
+   *
+   *   @param  __c  The "denominator" parameter.
+   *   @param  __x  The argument of the confluent hypergeometric limit function.
+   *   @return  The confluent hypergeometric limit function.
+   */
+  template<typename _Tp>
+    _Tp
+    __conf_hyperg_lim_series(_Tp __c, _Tp __x)
+    {
+      const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
+
+      _Tp __term = _Tp{1};
+      _Tp __Fac = _Tp{1};
+      const unsigned int __max_iter = 100000;
+      unsigned int __i;
+      for (__i = 0; __i < __max_iter; ++__i)
+	{
+	  __term /= ((__c + _Tp(__i)) * _Tp(1 + __i));
+	  if (std::abs(__term) < __eps)
+	    break;
+	  __Fac += __term;
+	}
+      if (__i == __max_iter)
+	std::__throw_runtime_error(__N("__conf_hyperg_lim_series: "
+				       "series failed to converge"));
+
+      return __Fac;
+    }
+
+
+  /**
+   *   @brief  Return the confluent hypergeometric limit function
+   *           @f$ _0F_1(-;c;x) @f$.
+   *
+   *   @param  __c  The @a denominator parameter.
+   *   @param  __x  The argument of the confluent hypergeometric limit function.
+   *   @return  The confluent limit hypergeometric function.
+   */
+  template<typename _Tp>
+    _Tp
+    __conf_hyperg_lim(_Tp __c, _Tp __x)
+    {
+      const _Tp __c_nint = std::nearbyint(__c);
+      if (__isnan(__c) || __isnan(__x))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__c_nint == __c && __c_nint <= 0)
+	return std::numeric_limits<_Tp>::infinity();
+      //else if (__x < _Tp{0})
+	//return __conf_hyperg_lim_luke(__c, __x);
+      else
+	return __conf_hyperg_lim_series(__c, __x);
+    }
+
+
+  /**
    *   @brief This routine returns the confluent hypergeometric function
    *          by series expansion.
    *
@@ -62,11 +130,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *                      \frac{\Gamma(a+n)}{\Gamma(c+n)}
    *                      \frac{x^n}{n!}
    *   @f]
-   *
-   *   If a and b are integers and a < 0 and either b > 0 or b < a
-   *   then the series is a polynomial with a finite number of
-   *   terms.  If b is an integer and b <= 0 the confluent
-   *   hypergeometric function is undefined.
    *
    *   @param  __a  The "numerator" parameter.
    *   @param  __c  The "denominator" parameter.
@@ -100,7 +163,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief  Return the hypogeometric function @f$ _2F_1(a,b;c;x) @f$
+   *  @brief  Return the hypergeometric function @f$ _2F_1(a;c;x) @f$
    *          by an iterative procedure described in
    *          Luke, Algorithms for the Computation of Mathematical Functions.
    *
@@ -205,10 +268,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the confluent hypogeometric function
+   *   @brief  Return the confluent hypergeometric function
    *           @f$ _1F_1(a;c;x) @f$.
-   *
-   *   @todo  Handle b == nonpositive integer blowup - return NaN.
    *
    *   @param  __a  The @a numerator parameter.
    *   @param  __c  The @a denominator parameter.
@@ -236,10 +297,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief Return the hypogeometric function @f$ _2F_1(a,b;c;x) @f$
+   *   @brief Return the hypergeometric function @f$ _2F_1(a,b;c;x) @f$
    *   by series expansion.
    *
-   *   The hypogeometric function is defined by
+   *   The hypergeometric function is defined by
    *   @f[
    *     _2F_1(a,b;c;x) = \frac{\Gamma(c)}{\Gamma(a)\Gamma(b)}
    *                      \sum_{n=0}^{\infty}
@@ -282,7 +343,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the hypogeometric function @f$ _2F_1(a,b;c;x) @f$
+   *   @brief  Return the hypergeometric function @f$ _2F_1(a,b;c;x) @f$
    *           by an iterative procedure described in
    *           Luke, Algorithms for the Computation of Mathematical Functions.
    */
@@ -391,13 +452,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief  Return the hypogeometric function @f$ _2F_1(a,b;c;x) @f$
+   *  @brief  Return the hypergeometric function @f$ _2F_1(a,b;c;x) @f$
    *  by the reflection formulae in Abramowitz & Stegun formula
    *  15.3.6 for d = c - a - b not integral and formula 15.3.11 for
    *  d = c - a - b integral.  This assumes a, b, c != negative
    *  integer.
    *
-   *   The hypogeometric function is defined by
+   *   The hypergeometric function is defined by
    *   @f[
    *     _2F_1(a,b;c;x) = \frac{\Gamma(c)}{\Gamma(a)\Gamma(b)}
    *                      \sum_{n=0}^{\infty}
@@ -694,9 +755,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief Return the hypogeometric function @f$ _2F_1(a,b;c;x) @f$.
+   *   @brief Return the hypergeometric function @f$ _2F_1(a,b;c;x) @f$.
    *
-   *   The hypogeometric function is defined by
+   *   The hypergeometric function is defined by
    *   @f[
    *     _2F_1(a,b;c;x) = \frac{\Gamma(c)}{\Gamma(a)\Gamma(b)}
    *                      \sum_{n=0}^{\infty}

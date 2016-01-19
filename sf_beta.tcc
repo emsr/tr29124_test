@@ -230,21 +230,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__isnan(__x) || __isnan(__a) || __isnan(__b))
 	return __gnu_cxx::__math_constants<_Tp>::__NaN;
+      else if (__x == _Tp{0} || __x == _Tp{1})
+	return _Tp{0};
       else
 	{
-	  _Tp __fact;
-	  if (__x == _Tp{0} || __x == _Tp{1})
-	    __fact = _Tp{0};
-	  else
-	    __fact = std::exp(std::lgamma(__a + __b)
-			  - std::lgamma(__a) - std::lgamma(__b)
-			  + __a * std::log(__x) + __b * std::log(_Tp{1} - __x));
+	  auto __fact = std::exp(std::lgamma(__a + __b)
+		      - std::lgamma(__a) - std::lgamma(__b)
+		      + __a * std::log(__x) + __b * std::log(_Tp{1} - __x));
 
-	if (__x < (__a + _Tp{1}) / (__a + __b + _Tp{2}))
-	  return __fact * __beta_inc_cont_frac(__a, __b, __x) / __a;
-	else
-	  return _Tp{1}
-	       - __fact * __beta_inc_cont_frac(__b, __a, _Tp{1} - __x) / __b;
+	  if (__x < (__a + _Tp{1}) / (__a + __b + _Tp{2}))
+	    return __fact * __beta_inc_cont_frac(__a, __b, __x) / __a;
+	  else
+	    return _Tp{1}
+		 - __fact * __beta_inc_cont_frac(__b, __a, _Tp{1} - __x) / __b;
 	}
     }
 
