@@ -164,7 +164,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __beta(_Tp __x, _Tp __y)
     {
       if (__isnan(__x) || __isnan(__y))
-	return __gnu_cxx::__math_constants<_Tp>::__NaN;
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else
 	return __beta_lgamma(__x, __y);
     }
@@ -175,7 +175,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __beta_inc_cont_frac(_Tp __a, _Tp __b, _Tp __x)
     {
       constexpr unsigned int _S_itmax = 100;
-      constexpr _Tp _S_eps = __gnu_cxx::__math_constants<_Tp>::__eps;
+      constexpr _Tp _S_eps = __gnu_cxx::__epsilon<_Tp>();
 
       _Tp __apb = __a + __b;
       _Tp __ap1 = __a + _Tp{1};
@@ -229,7 +229,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_domain_error("__beta_inc: argument out of range");
 
       if (__isnan(__x) || __isnan(__a) || __isnan(__b))
-	return __gnu_cxx::__math_constants<_Tp>::__NaN;
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x == _Tp{0} || __x == _Tp{1})
 	return _Tp{0};
       else

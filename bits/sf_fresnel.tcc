@@ -189,7 +189,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Sf = -_Sf;
 	}
 
-      return std::complex<_Tp>(_C, _S);
+      return std::complex<_Tp>(_Cf, _Sf);
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION

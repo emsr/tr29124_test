@@ -118,7 +118,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using __cmplx = std::complex<_Tp>;
 
       static constexpr auto _S_inf     = __gnu_cxx::__max<_Tp>();
-      static constexpr auto _S_sqrtinf = std::sqrt(_S_inf);
+      static constexpr auto _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();
 
       static constexpr auto _S_1d4   = _Tp{0.25L};
       static constexpr auto _S_1d3   = _Tp{0.3333333333333333333333333333333333333333L};
@@ -139,8 +139,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __dyabs = std::abs(__dy);
 
       // If 1 - zhat^2 can be computed without overflow.
-      if (__dxabs <= _S_sqrtinf &&
-	  __dyabs <= (_S_sqrtinf - 1))
+      if (__dxabs <= _S_sqrt_max &&
+	  __dyabs <= (_S_sqrt_max - 1))
 	{
 	  // Find max and min of abs(dx) and abs(dy).
 	  auto __du = __dxabs;
@@ -163,7 +163,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __tsq = __t * __t;
 
       // If nu^2 can be computed without overflow.
-      if (std::abs(__nu) <= _S_sqrtinf)
+      if (std::abs(__nu) <= _S_sqrt_max)
 	{
 	  __nusq = __nu * __nu;
 	  __1dnusq = _Tp{1} / __nusq;
@@ -582,25 +582,25 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // respectively.  These recurring factors are included as appropriate
       // in the outer factors, thus saving repeated multiplications by them.
       auto _A0 = __zone;
-      auto _Ak = __u[1]
-	       + __zetam3hf * (_S_mu[1] * __zetam3hf + _S_mu[0] * __u[0]);
+      auto _A = __u[1]
+	      + __zetam3hf * (_S_mu[1] * __zetam3hf + _S_mu[0] * __u[0]);
       auto _B0 = __u[0] + _S_lambda[0] * __zetam3hf;
-      auto _Bk = __u[2] + __zetam3hf * (__zetam3hf * (_S_lambda[2] * __zetam3hf
+      auto _B = __u[2] + __zetam3hf * (__zetam3hf * (_S_lambda[2] * __zetam3hf
 					 + _S_lambda[1] * __u[0])
 		     + _S_lambda[0] * __u[1]);
       auto _C0 = __v[0] + _S_mu[0] * __zetam3hf;
-      auto _Ck = __v[2] + __zetam3hf * (__zetam3hf * (_S_mu[2] * __zetam3hf
+      auto _C = __v[2] + __zetam3hf * (__zetam3hf * (_S_mu[2] * __zetam3hf
 					 + _S_mu[1] * __v[0])
 		     + _S_mu[0] * __v[1]);
       auto _D0 = __zone;
-      auto _Dk = __v[1] + __zetam3hf * (_S_lambda[1] * __zetam3hf
+      auto _D = __v[1] + __zetam3hf * (_S_lambda[1] * __zetam3hf
 			+ _S_lambda[0] * __v[0]);
 
       // Compute terms.
-      auto _Aterm = _Ak * __1dnusq;
-      auto _Bterm = _Bk * __1dnusq;
-      auto _Cterm = _Ck * __1dnusq;
-      auto _Dterm = _Dk * __1dnusq;
+      auto _Aterm = _A * __1dnusq;
+      auto _Bterm = _B * __1dnusq;
+      auto _Cterm = _C * __1dnusq;
+      auto _Dterm = _D * __1dnusq;
       // Compute sum of first two terms to initialize the Kahan summing scheme.
       auto _Asum = _A0 + _Aterm;
       auto _Atemp = _Aterm - (_Asum - _A0);
@@ -704,36 +704,36 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __indexp += __i2kp1 + 3;
 
 	  // Start Horner's rule evaluation of A, B, C, and D polynomials.
-	  _Ak = _S_mu[__i2k] * __zetam3hf + _S_mu[__i2km1] * __u[0];
-	  _Dk = _S_lambda[__i2k] * __zetam3hf + _S_lambda[__i2km1] * __v[0];
-	  _Bk = _S_lambda[__i2kp1] * __zetam3hf + _S_lambda[__i2k] * __u[0];
-	  _Ck = _S_mu[__i2kp1] * __zetam3hf + _S_mu[__i2k] * __v[0];
+	  _A = _S_mu[__i2k] * __zetam3hf + _S_mu[__i2km1] * __u[0];
+	  _D = _S_lambda[__i2k] * __zetam3hf + _S_lambda[__i2km1] * __v[0];
+	  _B = _S_lambda[__i2kp1] * __zetam3hf + _S_lambda[__i2k] * __u[0];
+	  _C = _S_mu[__i2kp1] * __zetam3hf + _S_mu[__i2k] * __v[0];
 
 	  // Do partial Horner's rule evaluations of A, B, C, and D.
 	  for(auto __l = 1; __l <= __i2km1; ++__l)
 	    {
 	      auto __i2kl = __i2km1 - __l;
-	      _Ak = _Ak * __zetam3hf + _S_mu[__i2kl] * __u[__l];
-	      _Dk = _Dk * __zetam3hf + _S_lambda[__i2kl] * __v[__l];
+	      _A = _A * __zetam3hf + _S_mu[__i2kl] * __u[__l];
+	      _D = _D * __zetam3hf + _S_lambda[__i2kl] * __v[__l];
 	      __i2kl = __i2k - __l;
-	      _Bk = _Bk * __zetam3hf + _S_lambda[__i2kl] * __u[__l];
-	      _Ck = _Ck * __zetam3hf + _S_mu[__i2kl] * __v[__l];
+	      _B = _B * __zetam3hf + _S_lambda[__i2kl] * __u[__l];
+	      _C = _C * __zetam3hf + _S_mu[__i2kl] * __v[__l];
 	    }
 
 	  // Complete the evaluations of A, B, C, and D.
-	  _Ak = _Ak * __zetam3hf + __u[__i2k];
-	  _Dk = _Dk * __zetam3hf + __v[__i2k];
-	  _Bk = __zetam3hf
-	       * (_Bk * __zetam3hf + _S_lambda[0] * __u[__i2k]) + __u[__i2kp1];
-	  _Ck = __zetam3hf
-	       * (_Ck * __zetam3hf + _S_mu[0] * __v[__i2k]) + __v[__i2kp1];
+	  _A = _A * __zetam3hf + __u[__i2k];
+	  _D = _D * __zetam3hf + __v[__i2k];
+	  _B = __zetam3hf
+	       * (_B * __zetam3hf + _S_lambda[0] * __u[__i2k]) + __u[__i2kp1];
+	  _C = __zetam3hf
+	       * (_C * __zetam3hf + _S_mu[0] * __v[__i2k]) + __v[__i2kp1];
 
 	  // Evaluate new terms for sums.
 	  __z1dn2k *= __1dnusq;
-	  _Aterm = _Ak * __z1dn2k + _Atemp;
-	  _Bterm = _Bk * __z1dn2k + _Btemp;
-	  _Cterm = _Ck * __z1dn2k + _Ctemp;
-	  _Dterm = _Dk * __z1dn2k + _Dtemp;
+	  _Aterm = _A * __z1dn2k + _Atemp;
+	  _Bterm = _B * __z1dn2k + _Btemp;
+	  _Cterm = _C * __z1dn2k + _Ctemp;
+	  _Dterm = _D * __z1dn2k + _Dtemp;
 
 	  // Update sums using Kahan summing scheme.
 	  _Atemp = _Asum;

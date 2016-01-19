@@ -153,7 +153,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
     }
 
-
   /**
    *   @brief  Return the associated Legendre function by recursion
    *           on @f$ l @f$ and downward recursion on m.
