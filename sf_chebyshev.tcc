@@ -43,14 +43,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __chebyshev_recur(unsigned int __n, _Tp __x, _Tp _C0, _Tp _C1)
     {
-      auto _C = _Tp{0};
+      auto _Ck = _Tp{0};
       for (unsigned int __j = 1; __j < __n; ++__j)
       {
-	_C = _Tp{2} * __x * _C1 - _C0;
+	_Ck = _Tp{2} * __x * _C1 - _C0;
 	_C0 = _C1;
-	_C1 = _C;
+	_C1 = _Ck;
       }
-      return _C;
+      return _Ck;
     }
 
   template<typename _Tp>

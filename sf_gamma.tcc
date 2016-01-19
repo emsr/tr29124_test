@@ -1652,7 +1652,7 @@ _S_neg_double_factorial_table[999]
 	  for (unsigned int __i = 2; __i < 1000; ++__i)
 	    {
 	      auto __term = std::pow(_Tp(__i), -_Tp(__n));
-	      if (__term < std::numeric_limits<_Tp>::epsilon())
+	      if (__term < __gnu_cxx::__epsilon<_Tp>())
 		break;
 	      __sum += __term;
 	    }
@@ -1822,7 +1822,7 @@ _S_neg_double_factorial_table[999]
     __log_bincoef(unsigned int __n, unsigned int __k)
     {
       if (__k > __n)
-	return -std::numeric_limits<_Tp>::infinity();
+	return -__gnu_cxx::__infinity<_Tp>();
       else if (__k == 0 || __k == __n)
 	return _Tp{0};
       else
@@ -1860,7 +1860,7 @@ _S_neg_double_factorial_table[999]
         {
 	  const auto __log_coeff = __log_bincoef<_Tp>(__n, __k);
 	  if (__log_coeff > __max_bincoeff)
-	    return std::numeric_limits<_Tp>::quiet_NaN();
+	    return __gnu_cxx::__quiet_NaN<_Tp>();
 	  else
 	    return std::exp(__log_coeff);
 	}
@@ -1889,7 +1889,7 @@ _S_neg_double_factorial_table[999]
     std::pair<_Tp, _Tp>
     __gamma_series(_Tp __a, _Tp __x)
     {
-      constexpr auto _S_eps = 3.0 * std::numeric_limits<_Tp>::epsilon();
+      constexpr auto _S_eps = 3.0 * __gnu_cxx::__epsilon<_Tp>();
       const auto _S_itmax = 10 * (10 + std::sqrt(std::abs(__a)));
 
       _Tp __lngam = std::lgamma(__a);
@@ -1923,8 +1923,8 @@ _S_neg_double_factorial_table[999]
     std::pair<_Tp, _Tp>
     __gamma_cont_frac(_Tp __a, _Tp __x)
     {
-      constexpr auto _S_fpmin = 3 * std::numeric_limits<_Tp>::min();
-      constexpr auto _S_eps = 3 * std::numeric_limits<_Tp>::epsilon();
+      constexpr auto _S_fpmin = 3 * __gnu_cxx::__min<_Tp>();
+      constexpr auto _S_eps = 3 * __gnu_cxx::__epsilon<_Tp>();
       const auto _S_itmax = 10 * (10 + std::sqrt(std::abs(__a)));
 
       auto __lngam = std::lgamma(__a);
@@ -2082,7 +2082,7 @@ _S_neg_double_factorial_table[999]
     __log_pochhammer_u(_Tp __a, _Tp __n)
     {
       if (__isnan(__n) || __isnan(__a))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__n == _Tp{0})
 	return _Tp{0};
       else
@@ -2107,7 +2107,7 @@ _S_neg_double_factorial_table[999]
     {
       constexpr auto __log10{2.3025850929940456840179914546843642L};
       if (__isnan(__n) || __isnan(__a))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__n == _Tp{0})
 	return _Tp{1};
       else
@@ -2115,7 +2115,7 @@ _S_neg_double_factorial_table[999]
           _Tp __logpoch = std::lgamma(__a + __n) - std::lgamma(__a);
           if (std::abs(__logpoch)
               > std::numeric_limits<_Tp>::max_digits10 * __log10)
-            return std::numeric_limits<_Tp>::infinity();
+            return __gnu_cxx::__infinity<_Tp>();
           else
             return std::exp(__logpoch);
 	}
@@ -2143,7 +2143,7 @@ _S_neg_double_factorial_table[999]
     __log_pochhammer_l(_Tp __a, _Tp __n)
     {
       if (__isnan(__n) || __isnan(__a))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__n == _Tp{0})
 	return _Tp{0};
       else
@@ -2167,7 +2167,7 @@ _S_neg_double_factorial_table[999]
     {
       constexpr auto __log10{2.3025850929940456840179914546843642L};
       if (__isnan(__n) || __isnan(__a))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__n == _Tp{0})
 	return _Tp{1};
       else
@@ -2175,7 +2175,7 @@ _S_neg_double_factorial_table[999]
           auto __logpoch = std::lgamma(__a + 1) - std::lgamma(__a - __n + 1);
           if (std::abs(__logpoch)
               > std::numeric_limits<_Tp>::max_digits10 * __log10)
-            return std::numeric_limits<_Tp>::infinity();
+            return __gnu_cxx::__infinity<_Tp>();
           else
             return std::exp(__logpoch);
 	}
@@ -2205,7 +2205,7 @@ _S_neg_double_factorial_table[999]
 	{
 	  const auto __term = (__x - _Tp{1}) / ((__k + 1) * (__k + __x));
 	  __sum += __term;
-	  if (std::abs(__term) < std::numeric_limits<_Tp>::epsilon())
+	  if (std::abs(__term) < __gnu_cxx::__epsilon<_Tp>())
 	    break;
 	}
       return __sum;
@@ -2237,7 +2237,7 @@ _S_neg_double_factorial_table[999]
 	{
 	  const _Tp __term = __bernoulli<_Tp>(2 * __k) / (2 * __k * __xp);
 	  __sum -= __term;
-	  if (std::abs(__term / __sum) < std::numeric_limits<_Tp>::epsilon())
+	  if (std::abs(__term / __sum) < __gnu_cxx::__epsilon<_Tp>())
 	    break;
 	  __xp *= __xx;
 	}
@@ -2260,7 +2260,7 @@ _S_neg_double_factorial_table[999]
     _Tp
     __psi(_Tp __x)
     {
-      constexpr auto _S_eps = _Tp{4} * std::numeric_limits<_Tp>::epsilon();
+      constexpr auto _S_eps = _Tp{4} * __gnu_cxx::__epsilon<_Tp>();
       constexpr auto _S_x_asymp = _Tp{20};
       constexpr auto __gamma_E = __gnu_cxx::__math_constants<_Tp>::__gamma_e;
       constexpr auto __2_ln_2 = 2 * __gnu_cxx::__math_constants<_Tp>::__ln_2;
@@ -2273,7 +2273,7 @@ _S_neg_double_factorial_table[999]
       if (__integral)
 	{
 	  if (__n <= 0)
-	    return std::numeric_limits<_Tp>::quiet_NaN();
+	    return __gnu_cxx::__quiet_NaN<_Tp>();
 	  else
 	    {
 	      _Tp __sum = -__gamma_E;
@@ -2355,7 +2355,7 @@ _S_neg_double_factorial_table[999]
       if (__n <= _S_num_factorials<_Tp>)
 	return _S_factorial_table[__n].__factorial;
       else
-	return std::numeric_limits<_Tp>::infinity();
+	return __gnu_cxx::__infinity<_Tp>();
     }
 
   /**
@@ -2420,7 +2420,7 @@ _S_neg_double_factorial_table[999]
       else if (__n <= _S_num_double_factorials<_Tp>)
 	return _S_double_factorial_table[__n].__factorial;
       else
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
     }
 
   /**

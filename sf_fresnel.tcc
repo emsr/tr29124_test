@@ -45,10 +45,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template <typename _Tp>
     void
-    __fresnel_series(const _Tp __ax, _Tp & _C, _Tp & _S)
+    __fresnel_series(const _Tp __ax, _Tp & _Cf, _Tp & _Sf)
     {
       constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__math_constants<_Tp>::__eps;
+      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi_2 = _S_pi / _Tp{2};
 
@@ -85,12 +85,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __odd = ! __odd;
 
 	  __n += 2;
-      }
+	}
       if (__k > _S_max_iter)
 	std::__throw_runtime_error("__fresnel_series: series evaluation failed");
 
-      _C = _Csum;
-      _S = _Ssum;
+      _Cf = _Csum;
+      _Sf = _Ssum;
 
       return;
     }
@@ -102,11 +102,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template <typename _Tp>
     void
-    __fresnel_cont_frac(const _Tp __ax, _Tp & _C, _Tp & _S)
+    __fresnel_cont_frac(const _Tp __ax, _Tp & _Cf, _Tp & _Sf)
     {
       constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__math_constants<_Tp>::__eps;
-      constexpr auto _S_fp_min = __gnu_cxx::__math_constants<_Tp>::__min;
+      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
+      constexpr auto _S_fp_min = __gnu_cxx::__min<_Tp>();
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
 
       // Evaluate S and C by Lentz's complex continued fraction method.
@@ -138,8 +138,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __phase = std::polar(_Tp{1}, __pix2/_Tp{2});
       auto __cs = std::complex<_Tp>(_Tp{0.5L}, _Tp{0.5L})
 		* (_Tp{1} - __phase * __h);
-      _C = __cs.real();
-      _S = __cs.imag();
+      _Cf = __cs.real();
+      _Sf = __cs.imag();
 
       return;
     }
@@ -147,7 +147,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief This function returns the Fresnel cosine and sine integrals
-   *    as a pair.
+   *    as a complex number $f[ C(x) + iS(x) $f].
    *
    *  The Fresnel cosine integral is defined by:
    *  @f[
@@ -163,33 +163,33 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __fresnel(const _Tp __x)
     {
-      constexpr auto _S_fp_min = std::numeric_limits<_Tp>::min();
+      constexpr auto _S_fp_min = __gnu_cxx::__min<_Tp>();
       constexpr auto _S_x_min = _Tp{1.5L};
-      constexpr auto _S_NaN = std::numeric_limits<_Tp>::quiet_NaN();
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
       if (__isnan(__x))
 	return std::complex<_Tp>{_S_NaN, _S_NaN};
 
-      auto _C = _Tp{0};
-      auto _S = _Tp{0};
+      auto _Cf = _Tp{0};
+      auto _Sf = _Tp{0};
 
       const _Tp __ax = std::abs(__x);
       if (__ax < std::sqrt(_S_fp_min))
 	{
-	  _C = __ax;
-	  _S = _Tp{0};
+	  _Cf = __ax;
+	  _Sf = _Tp{0};
 	}
       else if (__ax < _S_x_min)
-	__fresnel_series(__ax, _C, _S);
+	__fresnel_series(__ax, _Cf, _Sf);
       else
-	__fresnel_cont_frac(__ax, _C, _S);
+	__fresnel_cont_frac(__ax, _Cf, _Sf);
 
       if (__x < _Tp{0})
 	{
-	  _C = -_C;
-	  _S = -_S;
+	  _Cf = -_Cf;
+	  _Sf = -_Sf;
 	}
 
-      return std::complex<_Tp>(_C, _S);
+      return std::complex<_Tp>(_Cf, _Sf);
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
