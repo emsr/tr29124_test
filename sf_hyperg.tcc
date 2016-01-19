@@ -75,10 +75,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __conf_hyperg_lim_series(_Tp __c, _Tp __x)
     {
-      const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
 
-      _Tp __term = _Tp{1};
-      _Tp __Fac = _Tp{1};
+      auto __term = _Tp{1};
+      auto __Fac = _Tp{1};
       const unsigned int __max_iter = 100000;
       unsigned int __i;
       for (__i = 0; __i < __max_iter; ++__i)
@@ -110,9 +110,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const _Tp __c_nint = std::nearbyint(__c);
       if (__isnan(__c) || __isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__c_nint == __c && __c_nint <= 0)
-	return std::numeric_limits<_Tp>::infinity();
+	return __gnu_cxx::__infinity<_Tp>();
       //else if (__x < _Tp{0})
 	//return __conf_hyperg_lim_luke(__c, __x);
       else
@@ -140,7 +140,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __conf_hyperg_series(_Tp __a, _Tp __c, _Tp __x)
     {
-      const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
 
       _Tp __term = _Tp{1};
       _Tp __Fac = _Tp{1};
@@ -163,7 +163,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief  Return the hypergeometric function @f$ _2F_1(a;c;x) @f$
+   *  @brief  Return the hypergeometric function @f$ _1F_1(a;c;x) @f$
    *          by an iterative procedure described in
    *          Luke, Algorithms for the Computation of Mathematical Functions.
    *
@@ -175,9 +175,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __conf_hyperg_luke(_Tp __a, _Tp __c, _Tp __xin)
     {
-      const _Tp __big = std::pow(std::numeric_limits<_Tp>::max(), _Tp{0.16L});
+      const _Tp __big = __gnu_cxx::__pow_max(_Tp{0.16L});
       const int __nmax = 20000;
-      const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
+      const _Tp __eps = __gnu_cxx::__epsilon<_Tp>();
       const _Tp __x  = -__xin;
       const _Tp __x3 = __x * __x * __x;
       const _Tp __t0 = __a / __c;
@@ -282,9 +282,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const _Tp __c_nint = std::nearbyint(__c);
       if (__isnan(__a) || __isnan(__c) || __isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__c_nint == __c && __c_nint <= 0)
-	return std::numeric_limits<_Tp>::infinity();
+	return __gnu_cxx::__infinity<_Tp>();
       else if (__a == _Tp{0})
 	return _Tp{1};
       else if (__c == __a)
@@ -320,10 +320,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __hyperg_series(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
 
-      _Tp __term = _Tp{1};
-      _Tp __Fabc = _Tp{1};
+      auto __term = _Tp{1};
+      auto __Fabc = _Tp{1};
       const unsigned int __max_iter = 100000;
       unsigned int __i;
       for (__i = 0; __i < __max_iter; ++__i)
@@ -351,60 +351,60 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __hyperg_luke(_Tp __a, _Tp __b, _Tp __c, _Tp __xin)
     {
-      const _Tp __big = std::pow(std::numeric_limits<_Tp>::max(), _Tp{0.16L});
+      constexpr auto __big = __gnu_cxx::__pow_max<_Tp>(_Tp{0.16L});
       const int __nmax = 20000;
-      const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
-      const _Tp __x  = -__xin;
-      const _Tp __x3 = __x * __x * __x;
-      const _Tp __t0 = __a * __b / __c;
-      const _Tp __t1 = (__a + _Tp{1}) * (__b + _Tp{1}) / (_Tp{2} * __c);
-      const _Tp __t2 = (__a + _Tp{2}) * (__b + _Tp{2})
+      constexpr auto __eps = __gnu_cxx::__epsilon();
+      const auto __x  = -__xin;
+      const auto __x3 = __x * __x * __x;
+      const auto __t0 = __a * __b / __c;
+      const auto __t1 = (__a + _Tp{1}) * (__b + _Tp{1}) / (_Tp{2} * __c);
+      const auto __t2 = (__a + _Tp{2}) * (__b + _Tp{2})
 		     / (_Tp{2} * (__c + _Tp{1}));
 
-      _Tp __F = _Tp{1};
+      auto __F = _Tp{1};
 
-      _Tp __Bnm3 = _Tp{1};
-      _Tp __Bnm2 = _Tp{1} + __t1 * __x;
-      _Tp __Bnm1 = _Tp{1} + __t2 * __x * (_Tp{1} + __t1 / _Tp{3} * __x);
+      auto __Bnm3 = _Tp{1};
+      auto __Bnm2 = _Tp{1} + __t1 * __x;
+      auto __Bnm1 = _Tp{1} + __t2 * __x * (_Tp{1} + __t1 / _Tp{3} * __x);
 
-      _Tp __Anm3 = _Tp{1};
-      _Tp __Anm2 = __Bnm2 - __t0 * __x;
-      _Tp __Anm1 = __Bnm1 - __t0 * (_Tp{1} + __t2 * __x) * __x
-		 + __t0 * __t1 * (__c / (__c + _Tp{1})) * __x * __x;
+      auto __Anm3 = _Tp{1};
+      auto __Anm2 = __Bnm2 - __t0 * __x;
+      auto __Anm1 = __Bnm1 - __t0 * (_Tp{1} + __t2 * __x) * __x
+		  + __t0 * __t1 * (__c / (__c + _Tp{1})) * __x * __x;
 
       int __n = 3;
       while (true)
 	{
-	  const _Tp __npam1 = _Tp(__n - 1) + __a;
-	  const _Tp __npbm1 = _Tp(__n - 1) + __b;
-	  const _Tp __npcm1 = _Tp(__n - 1) + __c;
-	  const _Tp __npam2 = _Tp(__n - 2) + __a;
-	  const _Tp __npbm2 = _Tp(__n - 2) + __b;
-	  const _Tp __npcm2 = _Tp(__n - 2) + __c;
-	  const _Tp __tnm1  = _Tp(2 * __n - 1);
-	  const _Tp __tnm3  = _Tp(2 * __n - 3);
-	  const _Tp __tnm5  = _Tp(2 * __n - 5);
-	  const _Tp __n2 = __n * __n;
-	  const _Tp __F1 = (_Tp{3} * __n2 + (__a + __b - _Tp{6}) * __n
-			 + _Tp{2} - __a * __b - _Tp{2} * (__a + __b))
-			 / (_Tp{2} * __tnm3 * __npcm1);
-	  const _Tp __F2 = -(_Tp{3} * __n2 - (__a + __b + _Tp{6}) * __n
-			 + _Tp{2} - __a * __b) * __npam1 * __npbm1
-			 / (_Tp{4} * __tnm1 * __tnm3 * __npcm2 * __npcm1);
-	  const _Tp __F3 = (__npam2 * __npam1 * __npbm2 * __npbm1
-			 * (_Tp(__n - 2) - __a) * (_Tp(__n - 2) - __b))
-			 / (_Tp{8} * __tnm3 * __tnm3 * __tnm5
-			 * (_Tp(__n - 3) + __c) * __npcm2 * __npcm1);
-	  const _Tp __E  = -__npam1 * __npbm1 * (_Tp(__n - 1) - __c)
-			 / (_Tp{2} * __tnm3 * __npcm2 * __npcm1);
+	  const auto __npam1 = _Tp(__n - 1) + __a;
+	  const auto __npbm1 = _Tp(__n - 1) + __b;
+	  const auto __npcm1 = _Tp(__n - 1) + __c;
+	  const auto __npam2 = _Tp(__n - 2) + __a;
+	  const auto __npbm2 = _Tp(__n - 2) + __b;
+	  const auto __npcm2 = _Tp(__n - 2) + __c;
+	  const auto __tnm1  = _Tp(2 * __n - 1);
+	  const auto __tnm3  = _Tp(2 * __n - 3);
+	  const auto __tnm5  = _Tp(2 * __n - 5);
+	  const auto __n2 = __n * __n;
+	  const auto __F1 = (_Tp{3} * __n2 + (__a + __b - _Tp{6}) * __n
+			  + _Tp{2} - __a * __b - _Tp{2} * (__a + __b))
+			  / (_Tp{2} * __tnm3 * __npcm1);
+	  const auto __F2 = -(_Tp{3} * __n2 - (__a + __b + _Tp{6}) * __n
+			  + _Tp{2} - __a * __b) * __npam1 * __npbm1
+			  / (_Tp{4} * __tnm1 * __tnm3 * __npcm2 * __npcm1);
+	  const auto __F3 = (__npam2 * __npam1 * __npbm2 * __npbm1
+			  * (_Tp(__n - 2) - __a) * (_Tp(__n - 2) - __b))
+			  / (_Tp{8} * __tnm3 * __tnm3 * __tnm5
+			  * (_Tp(__n - 3) + __c) * __npcm2 * __npcm1);
+	  const auto __E  = -__npam1 * __npbm1 * (_Tp(__n - 1) - __c)
+			  / (_Tp{2} * __tnm3 * __npcm2 * __npcm1);
 
-	  _Tp __An = (_Tp{1} + __F1 * __x) * __Anm1
-		   + (__E + __F2 * __x) * __x * __Anm2 + __F3 * __x3 * __Anm3;
-	  _Tp __Bn = (_Tp{1} + __F1 * __x) * __Bnm1
-		   + (__E + __F2 * __x) * __x * __Bnm2 + __F3 * __x3 * __Bnm3;
-	  const _Tp __r = __An / __Bn;
+	  auto __An = (_Tp{1} + __F1 * __x) * __Anm1
+		    + (__E + __F2 * __x) * __x * __Anm2 + __F3 * __x3 * __Anm3;
+	  auto __Bn = (_Tp{1} + __F1 * __x) * __Bnm1
+		    + (__E + __F2 * __x) * __x * __Bnm2 + __F3 * __x3 * __Bnm3;
+	  const auto __r = __An / __Bn;
 
-	  const _Tp __prec = std::abs((__F - __r) / __F);
+	  const auto __prec = std::abs((__F - __r) / __F);
 	  __F = __r;
 
 	  if (__prec < __eps || __n > __nmax)
@@ -485,17 +485,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __hyperg_reflect(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      const _Tp __d = __c - __a - __b;
+      const auto __d = __c - __a - __b;
       const int __intd  = std::floor(__d + _Tp{0.5L});
-      const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
-      const _Tp __toler = _Tp{1000} * __eps;
-      const _Tp __log_max = std::log(std::numeric_limits<_Tp>::max());
+      constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
+      const auto __toler = _Tp{1000} * __eps;
+      constexpr auto __log_max = __gnu_cxx::__log_max<_Tp>();
       const bool __d_integer = (std::abs(__d - __intd) < __toler);
 
       if (__d_integer)
 	{
-	  const _Tp __ln_omx = std::log(_Tp{1} - __x);
-	  const _Tp __ad = std::abs(__d);
+	  const auto __ln_omx = std::log1p(-__x);
+	  const auto __ad = std::abs(__d);
 	  _Tp __F1, __F2;
 
 	  _Tp __d1, __d2;
@@ -539,10 +539,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		  /* Gamma functions in the denominator are ok.
 		   * Proceed with evaluation.
 		   */
-		  _Tp __sum1 = _Tp{1};
-		  _Tp __term = _Tp{1};
-		  _Tp __ln_pre1 = __lng_ad + __lng_c + __d2 * __ln_omx
-				- __lng_ad1 - __lng_bd1;
+		  auto __sum1 = _Tp{1};
+		  auto __term = _Tp{1};
+		  auto __ln_pre1 = __lng_ad + __lng_c + __d2 * __ln_omx
+				 - __lng_ad1 - __lng_bd1;
 
 		  /* Do F1 sum.
 		   */
@@ -586,17 +586,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      // Gamma functions in the denominator are ok.
 	      // Proceed with evaluation.
 	      const int __maxiter = 2000;
-	      const _Tp __psi_1 = -__gnu_cxx::__math_constants<_Tp>::__gamma_e;
-	      const _Tp __psi_1pd = __psi(_Tp{1} + __ad);
-	      const _Tp __psi_apd1 = __psi(__a + __d1);
-	      const _Tp __psi_bpd1 = __psi(__b + __d1);
+	      const auto __psi_1 = -__gnu_cxx::__math_constants<_Tp>::__gamma_e;
+	      const auto __psi_1pd = __psi(_Tp{1} + __ad);
+	      const auto __psi_apd1 = __psi(__a + __d1);
+	      const auto __psi_bpd1 = __psi(__b + __d1);
 
-	      _Tp __psi_term = __psi_1 + __psi_1pd - __psi_apd1
-			     - __psi_bpd1 - __ln_omx;
-	      _Tp __fact = _Tp{1};
-	      _Tp __sum2 = __psi_term;
-	      _Tp __ln_pre2 = __lng_c + __d1 * __ln_omx
-			    - __lng_ad2 - __lng_bd2;
+	      auto __psi_term = __psi_1 + __psi_1pd - __psi_apd1
+			      - __psi_bpd1 - __ln_omx;
+	      auto __fact = _Tp{1};
+	      auto __sum2 = __psi_term;
+	      auto __ln_pre2 = __lng_c + __d1 * __ln_omx
+			     - __lng_ad2 - __lng_bd2;
 
 	      // Do F2 sum.
 	      int __j;
@@ -604,15 +604,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		{
 		  // Values for psi functions use recurrence;
 		  // Abramowitz & Stegun 6.3.5
-		  const _Tp __term1 = _Tp{1} / _Tp{__j}
-				    + _Tp{1} / (__ad + __j);
-		  const _Tp __term2 = _Tp{1} / (__a + __d1 + _Tp{__j - 1})
-				    + _Tp{1} / (__b + __d1 + _Tp{__j - 1});
+		  const auto __term1 = _Tp{1} / _Tp{__j}
+				     + _Tp{1} / (__ad + __j);
+		  const auto __term2 = _Tp{1} / (__a + __d1 + _Tp{__j - 1})
+				     + _Tp{1} / (__b + __d1 + _Tp{__j - 1});
 		  __psi_term += __term1 - __term2;
 		  __fact *= (__a + __d1 + _Tp(__j - 1))
 			  * (__b + __d1 + _Tp(__j - 1))
 			  / ((__ad + __j) * __j) * (_Tp{1} - __x);
-		  const _Tp __delta = __fact * __psi_term;
+		  const auto __delta = __fact * __psi_term;
 		  __sum2 += __delta;
 		  if (std::abs(__delta) < __eps * std::abs(__sum2))
 		    break;
@@ -633,8 +633,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __F2 = _Tp{0};
 	    } // end F2 evaluation
 
-	  const _Tp __sgn_2 = (__intd % 2 == 1 ? -_Tp{1} : _Tp{1});
-	  const _Tp __F = __F1 + __sgn_2 * __F2;
+	  const auto __sgn_2 = (__intd % 2 == 1 ? -_Tp{1} : _Tp{1});
+	  const auto __F = __F1 + __sgn_2 * __F2;
 
 	  return __F;
 	}
@@ -645,8 +645,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  // These gamma functions appear in the denominator, so we
 	  // catch their harmless domain errors and set the terms to zero.
 	  bool __ok1 = true;
-	  _Tp __sgn_g1ca = _Tp{0}, __ln_g1ca = _Tp{0};
-	  _Tp __sgn_g1cb = _Tp{0}, __ln_g1cb = _Tp{0};
+	  auto __sgn_g1ca = _Tp{0}, __ln_g1ca = _Tp{0};
+	  auto __sgn_g1cb = _Tp{0}, __ln_g1cb = _Tp{0};
 	  __try
 	    {
 	      __sgn_g1ca = __log_gamma_sign(__c - __a);
@@ -660,8 +660,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 
 	  bool __ok2 = true;
-	  _Tp __sgn_g2a = _Tp{0}, __ln_g2a = _Tp{0};
-	  _Tp __sgn_g2b = _Tp{0}, __ln_g2b = _Tp{0};
+	  auto __sgn_g2a = _Tp{0}, __ln_g2a = _Tp{0};
+	  auto __sgn_g2b = _Tp{0}, __ln_g2b = _Tp{0};
 	  __try
 	    {
 	      __sgn_g2a = __log_gamma_sign(__a);
@@ -674,21 +674,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __ok2 = false;
 	    }
 
-	  const _Tp __sgn_gc = __log_gamma_sign(__c);
-	  const _Tp __ln_gc = __log_gamma(__c);
-	  const _Tp __sgn_gd = __log_gamma_sign(__d);
-	  const _Tp __ln_gd = __log_gamma(__d);
-	  const _Tp __sgn_gmd = __log_gamma_sign(-__d);
-	  const _Tp __ln_gmd = __log_gamma(-__d);
+	  const auto __sgn_gc = __log_gamma_sign(__c);
+	  const auto __ln_gc = __log_gamma(__c);
+	  const auto __sgn_gd = __log_gamma_sign(__d);
+	  const auto __ln_gd = __log_gamma(__d);
+	  const auto __sgn_gmd = __log_gamma_sign(-__d);
+	  const auto __ln_gmd = __log_gamma(-__d);
 
-	  const _Tp __sgn1 = __sgn_gc * __sgn_gd  * __sgn_g1ca * __sgn_g1cb;
-	  const _Tp __sgn2 = __sgn_gc * __sgn_gmd * __sgn_g2a  * __sgn_g2b;
+	  const auto __sgn1 = __sgn_gc * __sgn_gd  * __sgn_g1ca * __sgn_g1cb;
+	  const auto __sgn2 = __sgn_gc * __sgn_gmd * __sgn_g2a  * __sgn_g2b;
 
 	  _Tp __pre1, __pre2;
 	  if (__ok1 && __ok2)
 	    {
-	      _Tp __ln_pre1 = __ln_gc + __ln_gd  - __ln_g1ca - __ln_g1cb;
-	      _Tp __ln_pre2 = __ln_gc + __ln_gmd - __ln_g2a  - __ln_g2b
+	      auto __ln_pre1 = __ln_gc + __ln_gd  - __ln_g1ca - __ln_g1cb;
+	      auto __ln_pre2 = __ln_gc + __ln_gmd - __ln_g2a  - __ln_g2b
 			    + __d * std::log(_Tp{1} - __x);
 	      if (__ln_pre1 < __log_max && __ln_pre2 < __log_max)
 		{
@@ -705,7 +705,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 	  else if (__ok1 && !__ok2)
 	    {
-	      _Tp __ln_pre1 = __ln_gc + __ln_gd - __ln_g1ca - __ln_g1cb;
+	      auto __ln_pre1 = __ln_gc + __ln_gd - __ln_g1ca - __ln_g1cb;
 	      if (__ln_pre1 < __log_max)
 		{
 		  __pre1 = std::exp(__ln_pre1);
@@ -720,8 +720,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 	  else if (!__ok1 && __ok2)
 	    {
-	      _Tp __ln_pre2 = __ln_gc + __ln_gmd - __ln_g2a - __ln_g2b
-			    + __d * std::log(_Tp{1} - __x);
+	      auto __ln_pre2 = __ln_gc + __ln_gmd - __ln_g2a - __ln_g2b
+			     + __d * std::log(_Tp{1} - __x);
 	      if (__ln_pre2 < __log_max)
 		{
 		  __pre1 = _Tp{0};
@@ -742,12 +742,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 					     "underflow of gamma functions"));
 	    }
 
-	  const _Tp __F1 = __hyperg_series(__a, __b, _Tp{1} - __d,
-					   _Tp{1} - __x);
-	  const _Tp __F2 = __hyperg_series(__c - __a, __c - __b, _Tp{1} + __d,
-					   _Tp{1} - __x);
+	  const auto __F1 = __hyperg_series(__a, __b, _Tp{1} - __d,
+					    _Tp{1} - __x);
+	  const auto __F2 = __hyperg_series(__c - __a, __c - __b, _Tp{1} + __d,
+					    _Tp{1} - __x);
 
-	  const _Tp __F = __pre1 * __F1 + __pre2 * __F2;
+	  const auto __F = __pre1 * __F1 + __pre2 * __F2;
 
 	  return __F;
 	}
@@ -778,22 +778,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const _Tp __a_nint = std::nearbyint(__a);
       const _Tp __b_nint = std::nearbyint(__b);
       const _Tp __c_nint = std::nearbyint(__c);
-      const _Tp __toler = _Tp{1000} * std::numeric_limits<_Tp>::epsilon();
+      const _Tp __toler = _Tp{1000} * __gnu_cxx::__epsilon<_Tp>();
       const bool __c_neg_integer
 		  = (__c < _Tp{0} && std::abs(__c - __c_nint) < __toler );
       if (std::abs(__x - _Tp{1}) < __toler && __c - __b - __a > _Tp{0}
        && __c != _Tp{0} && ! __c_neg_integer)
 	{
-	  const _Tp __log_gamc = __log_gamma(__c);
-	  const _Tp __sign_gamc = __log_gamma_sign(__c);
-	  const _Tp __log_gamcab = __log_gamma(__c - __a - __b);
-	  const _Tp __log_gamca = __log_gamma(__c - __a);
-	  const _Tp __sign_gamca = __log_gamma_sign(__c - __a);
-	  const _Tp __log_gamcb = __log_gamma(__c - __b);
-	  const _Tp __sign_gamcb = __log_gamma_sign(__c - __b);
-	  const _Tp __log_max = std::log(std::numeric_limits<_Tp>::max());
-	  const _Tp __log_pre = __log_gamc + __log_gamcab
-			      - __log_gamca - __log_gamcb;
+	  const auto __log_gamc = __log_gamma(__c);
+	  const auto __sign_gamc = __log_gamma_sign(__c);
+	  const auto __log_gamcab = __log_gamma(__c - __a - __b);
+	  const auto __log_gamca = __log_gamma(__c - __a);
+	  const auto __sign_gamca = __log_gamma_sign(__c - __a);
+	  const auto __log_gamcb = __log_gamma(__c - __b);
+	  const auto __sign_gamcb = __log_gamma_sign(__c - __b);
+	  const auto __log_max = std::log(std::numeric_limits<_Tp>::max());
+	  const auto __log_pre = __log_gamc + __log_gamcab
+			       - __log_gamca - __log_gamcb;
 	  if (__log_pre < __log_max)
 	    return __sign_gamc * __sign_gamca * __sign_gamcb
 		   * std::exp(__log_pre);
@@ -806,9 +806,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				      "argument outside unit circle"));
       else if (__isnan(__a) || __isnan(__b)
 	    || __isnan(__c) || __isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__c_nint == __c && __c_nint <= _Tp{0})
-	return std::numeric_limits<_Tp>::infinity();
+	return __gnu_cxx::__infinity<_Tp>();
       else if (std::abs(__c - __b) < __toler || std::abs(__c - __a) < __toler)
 	return std::pow(_Tp{1} - __x, __c - __a - __b);
       else if (__a >= _Tp{0} && __b >= _Tp{0} && __c >= _Tp{0}

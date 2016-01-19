@@ -76,9 +76,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __bessel_ik(_Tp __nu, _Tp __x,
 		_Tp & _Inu, _Tp & _Knu, _Tp & _Ipnu, _Tp & _Kpnu)
     {
+      constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_inf = __gnu_cxx::__math_constants<_Tp>::__inf;
-      constexpr auto _S_eps = __gnu_cxx::__math_constants<_Tp>::__eps;
       if (__x == _Tp{0})
 	{
 	  if (__nu == _Tp{0})
@@ -266,7 +266,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__nu < _Tp{0} || __x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_i: bad argument"));
       else if (__isnan(__nu) || __isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x * __x < _Tp{10} * (__nu + _Tp{1}))
 	return __cyl_bessel_ij_series(__nu, __x, +_Tp{1}, 200);
       else
@@ -301,7 +301,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__nu < _Tp{0} || __x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_k: Bad argument"));
       else if (__isnan(__nu) || __isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else
 	{
 	  _Tp _I_nu, _K_nu, _Ip_nu, _Kp_nu;
@@ -367,8 +367,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __airy(_Tp __z, _Tp & _Ai, _Tp & _Bi, _Tp & _Aip, _Tp & _Bip)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__math_constants<_Tp>::__NaN;
-      constexpr auto _S_inf = __gnu_cxx::__math_constants<_Tp>::__inf;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_sqrt3 = __gnu_cxx::__math_constants<_Tp>::__root_3;
       const auto __absz = std::abs(__z);

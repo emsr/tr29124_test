@@ -44,16 +44,17 @@
 
 #include <limits>
 #include <bits/stl_algobase.h>
-#include <bits/numeric_limits.h>
 #include <bits/specfun_util.h>
 
 #if __cplusplus >= 201103L
 #  include <type_traits>
 #  include <complex>
+#  include <bits/numeric_limits.h>
 #  include <bits/complex_util.h>
 #  include <bits/sf_gamma.tcc>
 #  include <bits/sf_bessel.tcc>
 #  include <bits/sf_beta.tcc>
+#  include <bits/sf_cardinal.tcc>
 #  include <bits/sf_chebyshev.tcc>
 #  include <bits/sf_dawson.tcc>
 #  include <bits/sf_ellint.tcc>
@@ -527,47 +528,58 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
 #if __cplusplus >= 201103L
 
-  // Sinus cardinal functions
+  // Confluent hypergeometric limit functions
+
+  inline float
+  conf_hyperg_limf(float __c, float __x)
+  { return std::__detail::__conf_hyperg_lim<float>(__c, __x); }
+
+  inline long double
+  conf_hyperg_liml(long double __c, long double __x)
+  { return std::__detail::__conf_hyperg_lim<long double>(__c, __x); }
+
+  template<typename _Tpc, typename _Tp>
+    inline typename __gnu_cxx::__promote_2<_Tpc, _Tp>::__type
+    conf_hyperg_lim(_Tpc __c, _Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote_2<_Tpc, _Tp>::__type __type;
+      return std::__detail::__conf_hyperg_lim<__type>(__c, __x);
+    }
+
+  // Unnormalized sinus cardinal functions
+
+  inline float
+  sinc_pif(float __x)
+  { return std::__detail::__sinc_pi<float>(__x); }
+
+  inline long double
+  sinc_pil(long double __x)
+  { return std::__detail::__sinc_pi<long double>(__x); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    sinc_pi(_Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__sinc_pi<__type>(__x);
+    }
+
+  // Normalized sinus cardinal functions
 
   inline float
   sincf(float __x)
-  {
-    if (__isnan(__x))
-      return std::numeric_limits<float>::quiet_NaN();
-    else if (std::abs(__x) == std::numeric_limits<float>::infinity())
-      return 0.0F;
-    else
-      return __x == 0.0F
-	   ? 1.0F
-	   : std::sin/*f*/(__x) / __x;
-  }
+  { return std::__detail::__sinc<float>(__x); }
 
   inline long double
   sincl(long double __x)
-  {
-    if (__isnan(__x))
-      return std::numeric_limits<long double>::quiet_NaN();
-    else if (std::abs(__x) == std::numeric_limits<long double>::infinity())
-      return 0.0L;
-    else
-      return __x == 0.0L
-	   ? 1.0L
-	   : std::sin/*l*/(__x) / __x;
-  }
+  { return std::__detail::__sinc<long double>(__x); }
 
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
     sinc(_Tp __x)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      if (__isnan(__x))
-        return std::numeric_limits<__type>::quiet_NaN();
-      else if (std::abs(__x) == std::numeric_limits<__type>::infinity())
-	return __type(0);
-      else
-        return __type(__x) == __type(0)
-             ? __type(1)
-             : std::sin(__type(__x)) / __type(__x);
+      return std::__detail::__sinc<__type>(__x);
     }
 
   // Logarithmic integrals
@@ -890,37 +902,40 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__poly_radial_jacobi<__type>(__n, __m, __rho);
     }
 
-  // Hyperbolic sinus cardinal functions
+  // Unnormalized hyperbolic sinus cardinal functions
 
   inline float
-  sinhcf(float __x)
-  {
-    if (__isnan(__x))
-      return std::numeric_limits<float>::quiet_NaN();
-    else
-      return __x == 0.0F ? 1.0F : std::sinh/*f*/(__x) / __x;
-  }
+  sinhc_pif(float __x)
+  { return std::__detail::__sinhc_pi<float>(__x); }
 
   inline long double
-  sinchl(long double __x)
-  {
-    if (__isnan(__x))
-      return std::numeric_limits<long double>::quiet_NaN();
-    else
-      return __x == 0.0L ? 1.0L : std::sinh/*l*/(__x) / __x;
-  }
+  sinhc_pil(long double __x)
+  { return std::__detail::__sinhc_pi<long double>(__x); }
 
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
-    sinch(_Tp __x)
+    sinhc_pi(_Tp __x)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      if (__isnan(__x))
-        return std::numeric_limits<__type>::quiet_NaN();
-      else
-        return __type(__x) == __type(0)
-             ? __type(1)
-             : std::sinh(__type(__x)) / __type(__x);
+      return std::__detail::__sinhc_pi<__type>(__x);
+    }
+
+  // Normalized hyperbolic sinus cardinal functions
+
+  inline float
+  sinhcf(float __x)
+  { return std::__detail::__sinhc<float>(__x); }
+
+  inline long double
+  sinhcl(long double __x)
+  { return std::__detail::__sinhc<long double>(__x); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    sinhc(_Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__sinhc<__type>(__x);
     }
 
   // Dawson's integrals
@@ -1035,7 +1050,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
-    sph_bessel_i(unsigned int __n, double __x)
+    sph_bessel_i(unsigned int __n, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
       __type __i_n, __k_n, __ip_n, __kp_n;
@@ -1383,6 +1398,24 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__beta_inc<__type>(__a, __b, __x);
     }
 
+  // Complementary incomplete beta functions
+
+  inline float
+  ibetacf(float __a, float __b, float __x)
+  { return 1.0F - ibetaf(__a, __b, __x); }
+
+  inline long double
+  ibetacl(long double __a, long double __b, long double __x)
+  { return 1.0L - ibetal(__a, __b, __x); }
+
+  template<typename _Ta, typename _Tb, typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Ta, _Tb, _Tp>
+    ibetac(_Ta __a, _Tb __b, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Ta, _Tb, _Tp>;
+      return __type(1) - ibeta<__type>(__a, __b, __x);
+    }
+
   // Fresnel sine integral
 
   inline float
@@ -1446,10 +1479,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__expint_E1<long double>(__x); }
 
   template<typename _Tp>
-    inline typename __gnu_cxx::__promote<_Tp>::__type
+    inline __gnu_cxx::__promote_num_t<_Tp>
     expint_e1(_Tp __x)
     {
-      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
       return std::__detail::__expint_E1<__type>(__x);
     }
 
@@ -1462,83 +1495,391 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__expint<long double>(__n, __x); }
 
   template<typename _Tp>
-    inline typename __gnu_cxx::__promote<_Tp>::__type
+    inline __gnu_cxx::__promote_num_t<_Tp>
     expint_en(unsigned int __n, _Tp __x)
     {
-      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
       return std::__detail::__expint<__type>(__n, __x);
     }
 
   //  Log upper Pochhammer symbol
 
   inline float
-  lpochhammer_uf(float __n, float __x)
-  { return std::__detail::__log_pochhammer_u<float>(__n, __x); }
+  lpochhammer_uf(float __a, float __n)
+  { return std::__detail::__log_pochhammer_u<float>(__a, __n); }
 
   inline long double
-  lpochhammer_ul(long double __n, long double __x)
-  { return std::__detail::__log_pochhammer_u<long double>(__n, __x); }
+  lpochhammer_ul(long double __a, long double __n)
+  { return std::__detail::__log_pochhammer_u<long double>(__a, __n); }
 
-  template<typename _Tn, typename _Tp>
-    inline typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type
-    lpochhammer_u(_Tn __n, _Tp __x)
+  template<typename _Tp, typename _Tn>
+    inline __gnu_cxx::__promote_num_t<_Tp, _Tn>
+    lpochhammer_u(_Tp __a, _Tn __n)
     {
-      typedef typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type __type;
-      return std::__detail::__log_pochhammer_u<__type>(__n, __x);
+      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tn>;
+      return std::__detail::__log_pochhammer_u<__type>(__a, __n);
     }
 
   //  Log lower Pochhammer symbol
 
   inline float
-  lpochhammer_lf(float __n, float __x)
-  { return std::__detail::__log_pochhammer_l<float>(__n, __x); }
+  lpochhammer_lf(float __a, float __n)
+  { return std::__detail::__log_pochhammer_l<float>(__a, __n); }
 
   inline long double
-  lpochhammer_ll(long double __n, long double __x)
-  { return std::__detail::__log_pochhammer_l<long double>(__n, __x); }
+  lpochhammer_ll(long double __a, long double __n)
+  { return std::__detail::__log_pochhammer_l<long double>(__a, __n); }
 
-  template<typename _Tn, typename _Tp>
-    inline typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type
-    lpochhammer_l(_Tn __n, _Tp __x)
+  template<typename _Tp, typename _Tn>
+    inline __gnu_cxx::__promote_num_t<_Tp, _Tn>
+    lpochhammer_l(_Tp __a, _Tn __n)
     {
-      typedef typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type __type;
-      return std::__detail::__log_pochhammer_l<__type>(__n, __x);
+      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tn>;
+      return std::__detail::__log_pochhammer_l<__type>(__a, __n);
     }
 
   //  Upper Pochhammer symbols (see boost::rising_factorial)
 
   inline float
-  pochhammer_uf(float __n, float __x)
-  { return std::__detail::__pochhammer_u<float>(__n, __x); }
+  pochhammer_uf(float __a, float __n)
+  { return std::__detail::__pochhammer_u<float>(__a, __n); }
 
   inline long double
-  pochhammer_ul(long double __n, long double __x)
-  { return std::__detail::__pochhammer_u<long double>(__n, __x); }
+  pochhammer_ul(long double __a, long double __n)
+  { return std::__detail::__pochhammer_u<long double>(__a, __n); }
 
-  template<typename _Tn, typename _Tp>
-    inline typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type
-    pochhammer_u(_Tn __n, _Tp __x)
+  template<typename _Tp, typename _Tn>
+    inline __gnu_cxx::__promote_num_t<_Tp, _Tn>
+    pochhammer_u(_Tp __a, _Tn __n)
     {
-      typedef typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type __type;
-      return std::__detail::__pochhammer_u<__type>(__n, __x);
+      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tn>;
+      return std::__detail::__pochhammer_u<__type>(__a, __n);
     }
 
   //  Lower Pochhammer symbols (see boost::falling_factorial)
 
   inline float
-  pochhammer_lf(float __n, float __x)
-  { return std::__detail::__pochhammer_l<float>(__n, __x); }
+  pochhammer_lf(float __a, float __n)
+  { return std::__detail::__pochhammer_l<float>(__a, __n); }
 
   inline long double
-  pochhammer_ll(long double __n, long double __x)
-  { return std::__detail::__pochhammer_l<long double>(__n, __x); }
+  pochhammer_ll(long double __a, long double __n)
+  { return std::__detail::__pochhammer_l<long double>(__a, __n); }
 
-  template<typename _Tn, typename _Tp>
-    inline typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type
-    pochhammer_l(_Tn __n, _Tp __x)
+  template<typename _Tp, typename _Tn>
+    inline __gnu_cxx::__promote_num_t<_Tp, _Tn>
+    pochhammer_l(_Tp __a, _Tn __n)
     {
-      typedef typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type __type;
-      return std::__detail::__pochhammer_l<__type>(__n, __x);
+      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tn>;
+      return std::__detail::__pochhammer_l<__type>(__a, __n);
+    }
+
+  // Factorial
+
+  inline float
+  factorialf(unsigned int __n)
+  { return std::__detail::__factorial<float>(__n); }
+
+  inline long double
+  factoriall(unsigned int __n)
+  { return std::__detail::__factorial<long double>(__n); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    factorial(unsigned int __n)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__factorial<__type>(__n);
+    }
+
+  // Double factorial
+
+  inline float
+  double_factorialf(int __n)
+  { return std::__detail::__double_factorial<float>(__n); }
+
+  inline long double
+  double_factoriall(int __n)
+  { return std::__detail::__double_factorial<long double>(__n); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    double_factorial(int __n)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__double_factorial<__type>(__n);
+    }
+
+  // Log factorial
+
+  inline float
+  lfactorialf(unsigned int __n)
+  { return std::__detail::__log_factorial<float>(__n); }
+
+  inline long double
+  lfactoriall(unsigned int __n)
+  { return std::__detail::__log_factorial<long double>(__n); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    lfactorial(unsigned int __n)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__log_factorial<__type>(__n);
+    }
+
+  // Log double factorial
+
+  inline float
+  ldouble_factorialf(int __n)
+  { return std::__detail::__log_double_factorial<float>(__n); }
+
+  inline long double
+  ldouble_factoriall(int __n)
+  { return std::__detail::__log_double_factorial<long double>(__n); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    ldouble_factorial(int __n)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__log_double_factorial<__type>(__n);
+    }
+
+  // Binomial coefficient
+
+  inline float
+  bincoeff(unsigned int __n, unsigned int __k)
+  { return std::__detail::__bincoef<float>(__n, __k); }
+
+  inline long double
+  bincoefl(unsigned int __n, unsigned int __k)
+  { return std::__detail::__bincoef<long double>(__n, __k); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    bincoef(unsigned int __n, unsigned int __k)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__bincoef<__type>(__n, __k);
+    }
+
+  // Log binomial coefficient
+
+  inline float
+  lbincoeff(unsigned int __n, unsigned int __k)
+  { return std::__detail::__log_bincoef<float>(__n, __k); }
+
+  inline long double
+  lbincoefl(unsigned int __n, unsigned int __k)
+  { return std::__detail::__log_bincoef<long double>(__n, __k); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    lbincoef(unsigned int __n, unsigned int __k)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__log_bincoef<__type>(__n, __k);
+    }
+
+  // Legendre functions of the second kind
+
+  inline float
+  legendre_qf(unsigned int __n, float __x)
+  { return std::__detail::__poly_legendre_q<float>(__n, __x); }
+
+  inline long double
+  legendre_ql(unsigned int __n, long double __x)
+  { return std::__detail::__poly_legendre_q<long double>(__n, __x); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    legendre_q(unsigned int __n, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__poly_legendre_q<__type>(__n, __x);
+    }
+
+  // Scaled lower incomplete gamma
+
+  inline float
+  gamma_pf(float __a, float __x)
+  { return std::__detail::__gamma_p<float>(__a, __x); }
+
+  inline long double
+  gamma_pl(long double __a, long double __x)
+  { return std::__detail::__gamma_p<long double>(__a, __x); }
+
+  template<typename _Ta, typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Ta, _Tp>
+    gamma_p(_Ta __a, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Ta, _Tp>;
+      return std::__detail::__gamma_p<__type>(__a, __x);
+    }
+
+  // Scaled upper incomplete gamma
+
+  inline float
+  gamma_qf(float __a, float __x)
+  { return std::__detail::__gamma_q<float>(__a, __x); }
+
+  inline long double
+  gamma_ql(long double __a, long double __x)
+  { return std::__detail::__gamma_q<long double>(__a, __x); }
+
+  template<typename _Ta, typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Ta, _Tp>
+    gamma_q(_Ta __a,_Tp  __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Ta, _Tp>;
+      return std::__detail::__gamma_q<__type>(__a, __x);
+    }
+
+  // Jacobi zeta functions.
+
+  inline float
+  jacobi_zetaf(float __k, float __phi)
+  { return std::__detail::__jacobi_zeta<float>(__k, __phi); }
+
+  inline long double
+  jacobi_zetal(long double __k, long double __phi)
+  { return std::__detail::__jacobi_zeta<long double>(__k, __phi); }
+
+  template<typename _Tk, typename _Tphi>
+    inline __gnu_cxx::__promote_num_t<_Tk, _Tphi>
+    jacobi_zeta(_Tk __k, _Tphi __phi)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tk, _Tphi>;
+      return std::__detail::__jacobi_zeta<__type>(__k, __phi);
+    }
+
+  // Heuman lambda functions.
+
+  inline float
+  heuman_lambdaf(float __phi, float __k)
+  { return std::__detail::__heuman_lambda<float>(__phi, __k); }
+
+  inline long double
+  heuman_lambdal(long double __phi, long double __k)
+  { return std::__detail::__heuman_lambda<long double>(__phi, __k); }
+
+  template<typename _Tphi, typename _Tk>
+    inline __gnu_cxx::__promote_num_t<_Tphi, _Tk>
+    heuman_lambda(_Tphi __phi, _Tk __k)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tphi, _Tk>;
+      return std::__detail::__heuman_lambda<__type>(__phi, __k);
+    }
+
+  // Complete Legendre elliptic integral D.
+
+  inline float
+  comp_ellint_df(float __k)
+  { return std::__detail::__comp_ellint_d<float>(__k); }
+
+  inline long double
+  comp_ellint_dl(long double __k)
+  { return std::__detail::__comp_ellint_d<long double>(__k); }
+
+  template<typename _Tk>
+    inline __gnu_cxx::__promote_num_t<_Tk>
+    comp_ellint_d(_Tk __k)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tk>;
+      return std::__detail::__comp_ellint_d<__type>(__k);
+    }
+
+  // Legendre elliptic integrals D.
+
+  inline float
+  ellint_df(float __k, float __phi)
+  { return std::__detail::__ellint_d<float>(__k, __phi); }
+
+  inline long double
+  ellint_dl(long double __k, long double __phi)
+  { return std::__detail::__ellint_d<long double>(__k, __phi); }
+
+  template<typename _Tk, typename _Tphi>
+    inline __gnu_cxx::__promote_num_t<_Tk, _Tphi>
+    ellint_d(_Tk __k, _Tphi __phi)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tk, _Tphi>;
+      return std::__detail::__ellint_d<__type>(__k, __phi);
+    }
+
+  // Bulirsch elliptic integrals of the first kind.
+
+  inline float
+  ellint_el1f(float __x, float __k_c)
+  { return std::__detail::__ellint_el1<float>(__x, __k_c); }
+
+  inline long double
+  ellint_el1l(long double __x, long double __k_c)
+  { return std::__detail::__ellint_el1<long double>(__x, __k_c); }
+
+  template<typename _Tp, typename _Tk>
+    inline __gnu_cxx::__promote_num_t<_Tp, _Tk>
+    ellint_el1(_Tp __x, _Tk __k_c)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tk>;
+      return std::__detail::__ellint_el1<__type>(__x, __k_c);
+    }
+
+  // Bulirsch elliptic integrals of the second kind.
+
+  inline float
+  ellint_el2f(float __x, float __k_c, float __a, float __b)
+  { return std::__detail::__ellint_el2<float>(__x, __k_c, __a, __b); }
+
+  inline long double
+  ellint_el2l(long double __x, long double __k_c,
+	      long double __a, long double __b)
+  { return std::__detail::__ellint_el2<long double>(__x, __k_c, __a, __b); }
+
+  template<typename _Tp, typename _Tk, typename _Ta, typename _Tb>
+    inline __gnu_cxx::__promote_num_t<_Tp, _Tk, _Ta, _Tb>
+    ellint_el2(_Tp __x, _Tk __k_c, _Ta __a, _Tb __b)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tk, _Ta, _Tb>;
+      return std::__detail::__ellint_el2<__type>(__x, __k_c, __a, __b);
+    }
+
+  // Bulirsch elliptic integrals of the third kind.
+
+  inline float
+  ellint_el3f(float __x, float __k_c, float __p)
+  { return std::__detail::__ellint_el3<float>(__x, __k_c, __p); }
+
+  inline long double
+  ellint_el3l(long double __x, long double __k_c, long double __p)
+  { return std::__detail::__ellint_el3<long double>(__x, __k_c, __p); }
+
+  template<typename _Tx, typename _Tk, typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tx, _Tk, _Tp>
+    ellint_el3(_Tx __x, _Tk __k_c, _Tp __p)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tx, _Tk, _Tp>;
+      return std::__detail::__ellint_el3<__type>(__x, __k_c, __p);
+    }
+
+  // Bulirsch complete elliptic integrals.
+
+  inline float
+  ellint_celf(float __k_c, float __p, float __a, float __b)
+  { return std::__detail::__ellint_cel<float>(__k_c, __p, __a, __b); }
+
+  inline long double
+  ellint_cell(long double __k_c, long double __p,
+	      long double __a, long double __b)
+  { return std::__detail::__ellint_cel<long double>(__k_c, __p, __a, __b); }
+
+  template<typename _Tk, typename _Tp, typename _Ta, typename _Tb>
+    inline __gnu_cxx::__promote_num_t<_Tk, _Tp, _Ta, _Tb>
+    ellint_cel(_Tk __k_c, _Tp __p, _Ta __a, _Tb __b)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tk, _Tp, _Ta, _Tb>;
+      return std::__detail::__ellint_cel<__type>(__k_c, __p, __a, __b);
     }
 
 #endif // __cplusplus >= 201103L

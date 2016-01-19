@@ -55,8 +55,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __sincosint_cont_frac(_Tp __t, _Tp& _Si, _Tp& _Ci)
     {
       constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__math_constants<_Tp>::__eps;
-      constexpr auto _S_fp_min = __gnu_cxx::__math_constants<_Tp>::__min;
+      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
+      constexpr auto _S_fp_min = __gnu_cxx::__min<_Tp>();
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
 
       // Evaluate Ci and Si by Lentz's modified method of continued fractions.
@@ -98,8 +98,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __sincosint_series(_Tp __t, _Tp& _Si, _Tp& _Ci)
     {
       constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__math_constants<_Tp>::__eps;
-      constexpr auto _S_fp_min = __gnu_cxx::__math_constants<_Tp>::__min;
+      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
+      constexpr auto _S_fp_min = __gnu_cxx::__min<_Tp>();
       constexpr auto _S_gamma_e
 	= __gnu_cxx::__math_constants<_Tp>::__gamma_e;
 
@@ -163,7 +163,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __sincosint_asymp(_Tp __t, _Tp& _Si, _Tp& _Ci)
     {
       const auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__math_constants<_Tp>::__eps;
+      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
 
       auto __invt = _Tp{1} / __t;
@@ -231,7 +231,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__t == _Tp{0})
 	{
 	  _Si = _Tp{0};
-	  _Ci = -std::numeric_limits<_Tp>::infinity();
+	  _Ci = -__gnu_cxx::__infinity<_Tp>();
 	}
       else if (__t > _Tp{1000}) // Check this!
 	__sincosint_asymp(__t, _Si, _Ci);

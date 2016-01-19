@@ -46,8 +46,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __jacobi_sncndn(_Tp __k, _Tp __u)
     {
       using _Val = __num_traits_t<_Tp>;
-      constexpr auto _S_eps = __gnu_cxx::__math_constants<_Val>::__eps;
-      constexpr auto _S_NaN = std::numeric_limits<_Val>::quiet_NaN();
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Val>();
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
 
       if (__isnan(__k) || __isnan(__u))
 	return std::make_tuple(_S_NaN, _S_NaN, _S_NaN);
