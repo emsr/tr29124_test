@@ -805,7 +805,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * 
+   * Return the Legendre elliptic integral D.
    */
   template<typename _Tp>
     _Tp
@@ -828,7 +828,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the Bulirsch elliptic integral of the first kind.
+   * Return the complete Legendre elliptic integral D.
+   */
+  template<typename _Tp>
+    _Tp
+    __comp_ellint_d(_Tp __k)
+    {
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_NaN = __gnu_cxx::__math_constants<_Val>::__NaN;
+
+      if (__isnan(__k))
+	return _S_NaN;
+      else
+	return __ellint_rd(_Tp{0}, _Tp{1} - __k * __k, _Tp{1}) / _Tp{3};
+    }
+
+  /**
+   * Return the Bulirsch elliptic integrals of the first kind.
    */
   template<typename _Tp>
     _Tp
@@ -849,7 +865,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the Bulirsch elliptic integral of the second kind.
+   * Return the Bulirsch elliptic integrals of the second kind.
    */
   template<typename _Tp>
     _Tp
@@ -874,7 +890,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the Bulirsch elliptic integral of the third kind.
+   * Return the Bulirsch elliptic integrals of the third kind.
    */
   template<typename _Tp>
     _Tp
@@ -900,7 +916,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the Bulirsch complete elliptic integral.
+   * Return the Bulirsch complete elliptic integrals.
    */
   template<typename _Tp>
     _Tp
@@ -925,28 +941,28 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     _Tp
-    __heuman_lambda(_Tp __beta, _Tp __k)
+    __heuman_lambda(_Tp __phi, _Tp __k)
     {
       using _Val = __num_traits_t<_Tp>;
       constexpr auto _S_NaN = __gnu_cxx::__math_constants<_Val>::__NaN;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Val>::__pi;
 
-      if (__isnan(__beta) || __isnan(__k))
+      if (__isnan(__phi) || __isnan(__k))
 	return _S_NaN;
       else
 	{
-	  auto __k2 = __k * __k;
-	  auto __arg2 = _Tp{1} - __k2;
-	  auto __cosbeta = std::cos(__beta);
-	  auto __sinbeta = std::sin(__beta);
-	  auto _Delta2 = _Tp{1} - __arg2 * __sinbeta * __sinbeta;
-	  auto __fact = _Tp{2} * (_Tp{1} - __k2) * __cosbeta * __sinbeta
+	  auto __mc = __k * __k;
+	  auto __m = _Tp{1} - __mc;
+	  auto __cosphi = std::cos(__phi);
+	  auto __sinphi = std::sin(__phi);
+	  auto _Delta2 = _Tp{1} - __m * __sinphi * __sinphi;
+	  auto __fact = _Tp{2} * __m * __cosphi * __sinphi
 		      / (_S_pi * std::sqrt(_Delta2));
-	  auto __arg4 = _Tp{1} - __k2 / _Delta2;
-	  auto __fact2 = __k2 / (_Tp{3} * _Delta2);
+	  auto __arg4 = _Tp{1} - __mc / _Delta2;
+	  auto __fact2 = __mc / (_Tp{3} * _Delta2);
 
-	  return __fact * (__ellint_rf(_Tp{0}, __arg2, _Tp{1})
-			+ __fact2 * ellint_rj(_Tp{0}, __arg2, _Tp{1}, __arg4));
+	  return __fact * (__ellint_rf(_Tp{0}, __m, _Tp{1})
+			+ __fact2 * __ellint_rj(_Tp{0}, __m, _Tp{1}, __arg4));
 	}
     }
 
@@ -962,15 +978,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__isnan(__k) || __isnan(__phi))
 	return _S_NaN;
+      else if (__phi < _Tp{0})
+	return -__jacobi_zeta(__k, -__phi);
+      else if (__k == _Tp{1})
+	return std::copysign(std::sin(__phi), std::cos(__phi));
       else
 	{
-	  auto __k2 = __k * __k;
+	  auto __mc = __k * __k;
 	  auto __cosphi = std::cos(__phi);
 	  auto __sinphi = std::sin(__phi);
-	  auto __arg2 = _Tp{1} - __k2;
-	  auto __arg4 = _Tp{1} - __k2  * __sinphi * __sinphi;
-	  return __k2 * __cosphi * __sinphi * std::sqrt(__arg4)
-	       * __ellint_rj(_Tp{0}, __arg2, _Tp{1}, __arg4)
+	  auto __m = _Tp{1} - __mc;
+	  auto __arg4 = _Tp{1} - __mc  * __sinphi * __sinphi;
+	  return __mc * __cosphi * __sinphi * std::sqrt(__arg4)
+	       * __ellint_rj(_Tp{0}, __m, _Tp{1}, __arg4)
 	       / (_Tp{3} * __comp_ellint_1(__k));
 	}
     }

@@ -45,3 +45,19 @@ I might want a starting fit for small s?
       calculated-result-type ellint_d(T1 k, T2 phi);
 
 14. Expose Bernoulli numbers.
+
+15. polygamma...
+
+16. inverse erf and erfc.
+
+17. inverse incomplete gammas
+
+18. In testcase.tcc in the big string_view header I'd like to be able to replace
+#include <specfun_testcase.h>
+with
+#include "../testcase.h"
+for TR1 test generation...
+
+19. Tabulate riemann_zeta for integer arguments - various sums can use this.
+
+20.
