@@ -119,8 +119,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using __cmplx = std::complex<_Tp>;
 
-      static constexpr auto _S_inf     = std::numeric_limits<_Tp>::max();
-      static constexpr auto _S_sqrtinf = std::sqrt(_S_inf);
+      static constexpr auto _S_inf     = __gnu_cxx::__max<_Tp>();
+      static constexpr auto _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();
 
       static constexpr auto _S_1d4   = _Tp{0.25L};
       static constexpr auto _S_1d3   = _Tp{0.3333333333333333333333333333333333333333L};
@@ -141,8 +141,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __dyabs = std::abs(__dy);
 
       // If 1 - zhat^2 can be computed without overflow.
-      if (__dxabs <= _S_sqrtinf &&
-	  __dyabs <= (_S_sqrtinf - 1))
+      if (__dxabs <= _S_sqrt_max &&
+	  __dyabs <= (_S_sqrt_max - 1))
 	{
 	  // Find max and min of abs(dx) and abs(dy).
 	  auto __du = __dxabs;
@@ -165,7 +165,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __tsq = __t * __t;
 
       // If nu^2 can be computed without overflow.
-      if (std::abs(__nu) <= _S_sqrtinf)
+      if (std::abs(__nu) <= _S_sqrt_max)
 	{
 	  __nusq = __nu * __nu;
 	  __1dnusq = _Tp{1} / __nusq;

@@ -53,7 +53,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__n == 1)
 	return _Pm1;
 
-      _Tp _P(0);
+      _Tp _Pm0(0);
       for (auto __j = 2; __j < __n; ++__j )
 	{
 	  auto __japb = _Tp(__j) + __apb;
@@ -66,11 +66,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 	  if (__c == _Tp{0})
 	    std::__throw_runtime_error("poly_jacobi: error in recursion");
-	  _P = ((__d + __e * __x) * _Pm1 - __f * _Pm2) / __c;
+	  _Pm0 = ((__d + __e * __x) * _Pm1 - __f * _Pm2) / __c;
 	  _Pm2 = _Pm1;
-	  _Pm1 = _P;
+	  _Pm1 = _Pm0;
 	}
-      return _P;
+      return _Pm0;
     }
 
 
@@ -85,7 +85,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
 	{
 	  auto __k = (__n - __m) / 2;
-	  return (__k % 2 == 0 ? 1 : -1) * std::pow(__rho, __m)
+	  return (__k % 2 == 0 ? +1 : -1) * std::pow(__rho, __m)
 	       * __poly_jacobi(__k, _Tp(__m), _Tp{0},
 			       _Tp{1} - _Tp{2} * __rho * __rho);
 	}

@@ -345,45 +345,58 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     void
     __cyl_bessel_jn_asymp(_Tp __nu, _Tp __x,
-			  _Tp & _Jnu, _Tp & _Nnu)
+			  _Tp & _Jnu, _Tp & _Nnu,
+			  _Tp & _Jpnu, _Tp & _Npnu)
     {
       constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<long double>::__pi_half;
       const auto __2nu = _Tp{2} * __nu;
-      const auto __x8 = _Tp{8} * __x;
-      auto __k = 1;
-      auto __k2m1 = 1;
-      auto _PP = _Tp{1};
-      auto _QQ = (__2nu - __k2m1) * (__2nu + __k2m1) / __x8;
+      const auto __4nu2 = __2nu * __2nu;
+      const auto __8x = _Tp{8} * __x;
+      auto __k = 0;
+      auto __bk_xk = _Tp{1};
+      auto _Rsum = __bk_xk;
+      auto __ak_xk = _Tp{1};
+      auto _Psum = __ak_xk;
       ++__k;
-      auto __t = _Tp{1};
+      auto __2km1 = 1;
+      __bk_xk *= (__4nu2 + __2km1 * (__2km1 + 2)) / __8x;
+      auto _Ssum = __bk_xk;
+      __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / __8x;
+      auto _Qsum = __ak_xk;
       do
 	{
-	  __k2m1 += 2;
-	  __t *= -(__2nu - __k2m1) * (__2nu + __k2m1) / (__k * __x8);
-	  auto __convP = std::abs(__t) < _S_eps * std::abs(_PP);
-	  _PP += __t;
 	  ++__k;
+	  __2km1 += 2;
+	  __bk_xk *= -(__4nu2 + __2km1 * (__2km1 + 2)) / (__k * __8x);
+	  _Rsum += __bk_xk;
+	  __ak_xk *= -(__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
+	  _Psum += __ak_xk;
+	  auto __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
 
-	  __k2m1 += 2;
-	  __t *= (__2nu - __k2m1) * (__2nu + __k2m1) / (__k * __x8);
-	  auto __convQ = std::abs(__t) < _S_eps * std::abs(_QQ);
-	  _QQ += __t;
 	  ++__k;
+	  __2km1 += 2;
+	  __bk_xk *= (__4nu2 + __2km1 * (__2km1 + 2)) / (__k * __8x);
+	  _Ssum += __bk_xk;
+	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
+	  _Qsum += __ak_xk;
+	  auto __convQ = std::abs(__ak_xk) < _S_eps * std::abs(_Qsum);
 
 	  if (__convP && __convQ && __k > (__nu / _Tp{2}))
 	    break;
 	}
-      while (__k < _Tp{10} * __nu);
+      while (__k < _Tp{100} * __nu);
 
-      auto __chi = __x - (__nu + _Tp{0.5L}) * _S_pi_2;
-      auto __c = std::cos(__chi);
-      auto __s = std::sin(__chi);
+      auto __omega = __x - (__nu + 0.5L) * _S_pi_2;
+      auto __c = std::cos(__omega);
+      auto __s = std::sin(__omega);
 
       auto __coef = std::sqrt(_Tp{2} / (_S_pi * __x));
-      _Jnu = __coef * (__c * _PP - __s * _QQ);
-      _Nnu = __coef * (__s * _PP + __c * _QQ);
+      _Jnu = __coef * (__c * _Psum - __s * _Qsum);
+      _Nnu = __coef * (__s * _Psum + __c * _Qsum);
+      _Jpnu = -__coef * (__s * _Rsum + __c * _Ssum);
+      _Npnu =  __coef * (__c * _Rsum - __s * _Ssum);
 
       return;
     }
@@ -468,8 +481,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __cyl_bessel_ij_series(__nu, __x, -_Tp{1}, 200);
       else if (__x > _Tp{1000})
 	{
-	  _Tp _J_nu, _N_nu;
-	  __cyl_bessel_jn_asymp(__nu, __x, _J_nu, _N_nu);
+	  _Tp _J_nu, _N_nu, _Jp_nu, _Np_nu;
+	  __cyl_bessel_jn_asymp(__nu, __x, _J_nu, _N_nu, _Jp_nu, _Np_nu);
 	  return _J_nu;
 	}
       else
@@ -507,8 +520,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x > _Tp{1000})
 	{
-	  _Tp _J_nu, _N_nu;
-	  __cyl_bessel_jn_asymp(__nu, __x, _J_nu, _N_nu);
+	  _Tp _J_nu, _N_nu, _Jp_nu, _Np_nu;
+	  __cyl_bessel_jn_asymp(__nu, __x, _J_nu, _N_nu, _Jp_nu, _Np_nu);
 	  return _N_nu;
 	}
       else

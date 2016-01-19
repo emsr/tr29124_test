@@ -75,7 +75,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if ((__x < -_Tp{1}) || (__x > +_Tp{1}))
 	std::__throw_domain_error(__N("__poly_legendre_p: argument out of range"));
       else if (__isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x == +_Tp{1})
 	return +_Tp{1};
       else if (__x == -_Tp{1})
@@ -125,7 +125,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if ((__x < -_Tp{1}) || (__x > +_Tp{1}))
 	std::__throw_domain_error(__N("__poly_legendre_q: argument out of range"));
       else if (__isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x == +_Tp{1})
 	return +_Tp{1};
       else if (__x == -_Tp{1})
@@ -181,7 +181,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_domain_error(__N("__assoc_legendre_p: "
 				      "degree out of range"));
       else if (__isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__m == 0)
 	return __poly_legendre_p(__l, __x);
       else
@@ -253,7 +253,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __sph_legendre(unsigned int __l, unsigned int __m, _Tp __theta)
     {
       if (__isnan(__theta))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
 
       const auto __x = std::cos(__theta);
 
@@ -349,7 +349,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __sph_harmonic(unsigned int __l, int __m, _Tp __theta, _Tp __phi)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
       if (__isnan(__theta) || __isnan(__phi))
 	return std::complex<_Tp>{_S_NaN, _S_NaN};
 

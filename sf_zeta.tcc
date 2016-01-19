@@ -193,11 +193,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __dilog(_Tp __x)
     {
       constexpr unsigned long long _S_maxit = 100000ULL;
-      constexpr _Tp _S_eps = 10 * __gnu_cxx::__math_constants<_Tp>::__eps;
+      constexpr _Tp _S_eps = 10 * __gnu_cxx::__epsilon<_Tp>();
       constexpr _Tp _S_pipio6
 	= 1.644934066848226436472415166646025189219L;
       if (__isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x > +_Tp{1})
 	std::__throw_range_error(__N("dilog: argument greater than one"));
       else if (__x < -_Tp{1})
@@ -257,11 +257,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_domain_error(__N("Bad argument in zeta sum."));
 
       constexpr unsigned int _S_max_iter = 10000;
-      _Tp __zeta = _Tp{1};
+      auto __zeta = _Tp{1};
       for (unsigned int __k = 2; __k < _S_max_iter; ++__k)
 	{
-	  _Tp __term = std::pow(_Tp(__k), -__s);
-	  if (__term < std::numeric_limits<_Tp>::epsilon())
+	  auto __term = std::pow(_Tp(__k), -__s);
+	  if (__term < __gnu_cxx::__epsilon<_Tp>())
 	    break;
 	  __zeta += __term;
 	}
@@ -288,10 +288,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_domain_error(__N("Bad argument in zeta sum."));
 
       int __k_max = std::exp(-std::log(__gnu_cxx::__epsilon<_Tp>()) / __s);
-      _Tp __zeta_m_1 = _Tp{0};
+      auto __zeta_m_1 = _Tp{0};
       for (int __k = __k_max; __k >= 2; --__k)
 	{
-	  _Tp __term = std::pow(_Tp(__k), -__s);
+	  auto __term = std::pow(_Tp(__k), -__s);
 	  __zeta_m_1 += __term;
 	}
 
@@ -309,8 +309,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __riemann_zeta_euler_maclaurin(_Tp __s)
     {
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      constexpr auto _S_N = 10 + std::numeric_limits<_Tp>::digits10 / 2;
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      constexpr auto _S_N = 10 + __gnu_cxx::__digits10<_Tp>() / 2;
       constexpr auto _S_jmax = 99;
 
       const auto __pmax  = std::pow(_Tp(_S_N) + _Tp{1}, -__s);
@@ -320,7 +320,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
         __ans += std::pow(__k + _Tp{1}, -__s);
 
       auto __fact = __pmax * __s / (_S_N + _Tp{1});
-      auto __delta_prev = std::numeric_limits<_Tp>::max();
+      auto __delta_prev = __gnu_cxx::__max<_Tp>();
       for(auto __j = 0; __j <= _S_jmax; ++__j)
         {
 	  auto __delta = _S_Euler_Maclaurin_zeta[__j + 1] * __fact;
@@ -355,7 +355,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __riemann_zeta_alt(_Tp __s)
     {
-      constexpr auto _S_eps = __gnu_cxx::__math_constants<_Tp>::__eps;
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
       constexpr unsigned int _S_max_iter = 10000000;
       _Tp __sgn = _Tp{1};
       _Tp __zeta = _Tp{0};
@@ -401,7 +401,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       auto __zeta = _Tp{0};
 
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
       //  Max e exponent before overflow.
       constexpr auto __max_bincoeff
 		 = std::exp(std::numeric_limits<_Tp>::max_exponent10
@@ -486,7 +486,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       extern const unsigned long __prime_list[];
 
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
       constexpr unsigned long
       _S_num_primes = sizeof(unsigned long) != 8 ? 256 : 256 + 48;
 
@@ -523,8 +523,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __riemann_zeta(_Tp __s)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__math_constants<_Tp>::__NaN;
-      constexpr auto _S_inf = __gnu_cxx::__math_constants<_Tp>::__inf;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       if (__isnan(__s))
 	return _S_NaN;
@@ -575,7 +575,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __hurwitz_zeta_euler_maclaurin(_Tp __s, _Tp __a)
     {
-      constexpr auto _S_eps = __gnu_cxx::__math_constants<_Tp>::__eps;
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
       constexpr int _S_N = 10 + std::numeric_limits<_Tp>::digits10 / 2;
       constexpr int _S_jmax = 99;
 
@@ -617,8 +617,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline _Tp
     __hurwitz_zeta(_Tp __s, _Tp __a)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__math_constants<_Tp>::__NaN;
-      constexpr auto _S_inf = __gnu_cxx::__math_constants<_Tp>::__inf;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
       if (__isnan(__s) || __isnan(__a))
 	return _S_NaN;
       else if (__a == _Tp{1} && __s == _Tp{1})
