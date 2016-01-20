@@ -56,6 +56,81 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
+   *   @brief This routine computes the asymptotic cylindrical Bessel
+   *          and Neumann functions of order nu: \f$ J_{\nu}(x) \f$,
+   *          \f$ N_{\nu}(x) \f$.  Use this for \f$ x >> nu^2 + 1 \f$.
+   *
+   *   References:
+   *    (1) Handbook of Mathematical Functions,
+   *        ed. Milton Abramowitz and Irene A. Stegun,
+   *        Dover Publications,
+   *        Section 9 p. 364, Equations 9.2.5-9.2.10
+   *
+   *   @param  __nu  The order of the Bessel functions.
+   *   @param  __x   The argument of the Bessel functions.
+   *   @param  _Jnu  The output Bessel function of the first kind.
+   *   @param  _Nnu  The output Neumann function (Bessel function of the second kind).
+   */
+  template<typename _Tp>
+    void
+    __cyl_bessel_jn_asymp(_Tp __nu, _Tp __x,
+			  _Tp & _Jnu, _Tp & _Nnu,
+			  _Tp & _Jpnu, _Tp & _Npnu)
+    {
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<long double>::__pi_half;
+      const auto __2nu = _Tp{2} * __nu;
+      const auto __4nu2 = __2nu * __2nu;
+      const auto __8x = _Tp{8} * __x;
+      auto __k = 0;
+      auto __bk_xk = _Tp{1};
+      auto _Rsum = __bk_xk;
+      auto __ak_xk = _Tp{1};
+      auto _Psum = __ak_xk;
+      ++__k;
+      auto __2km1 = 1;
+      __bk_xk *= (__4nu2 + __2km1 * (__2km1 + 2)) / __8x;
+      auto _Ssum = __bk_xk;
+      __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / __8x;
+      auto _Qsum = __ak_xk;
+      do
+	{
+	  ++__k;
+	  __2km1 += 2;
+	  __bk_xk = -(__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
+	  _Rsum += __bk_xk;
+	  __ak_xk *= -(__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
+	  _Psum += __ak_xk;
+	  auto __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
+
+	  ++__k;
+	  __2km1 += 2;
+	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
+	  _Ssum += __bk_xk;
+	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
+	  _Qsum += __ak_xk;
+	  auto __convQ = std::abs(__ak_xk) < _S_eps * std::abs(_Qsum);
+
+	  if (__convP && __convQ && __k > (__nu / _Tp{2}))
+	    break;
+	}
+      while (__k < _Tp{100} * __nu);
+
+      auto __omega = __x - (__nu + 0.5L) * _S_pi_2;
+      auto __c = std::cos(__omega);
+      auto __s = std::sin(__omega);
+
+      auto __coef = std::sqrt(_Tp{2} / (_S_pi * __x));
+      _Jnu = __coef * (__c * _Psum - __s * _Qsum);
+      _Nnu = __coef * (__s * _Psum + __c * _Qsum);
+      _Jpnu = -__coef * (__s * _Rsum + __c * _Ssum);
+      _Npnu =  __coef * (__c * _Rsum - __s * _Ssum);
+
+      return;
+    }
+
+  /**
    *   @brief Compute the gamma functions required by the Temme series
    *          expansions of @f$ N_\nu(x) @f$ and @f$ K_\nu(x) @f$.
    *   @f[
@@ -85,7 +160,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gamma_temme(_Tp __mu,
 		  _Tp & __gam1, _Tp & __gam2, _Tp & __gampl, _Tp & __gammi)
     {
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
       constexpr auto _S_gamma_E = __gnu_cxx::__math_constants<_Tp>::__gamma_e;
       __gampl = _Tp{1} / std::tgamma(_Tp{1} + __mu);
       __gammi = _Tp{1} / std::tgamma(_Tp{1} - __mu);
@@ -99,7 +174,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       return;
     }
-
 
   /**
    *   @brief  Compute the Bessel @f$ J_\nu(x) @f$ and Neumann
@@ -120,9 +194,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __bessel_jn(_Tp __nu, _Tp __x,
 		_Tp & _Jnu, _Tp & _Nnu, _Tp & _Jpnu, _Tp & _Npnu)
     {
+      constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_inf = __gnu_cxx::__math_constants<_Tp>::__inf;
-      constexpr auto _S_eps = __gnu_cxx::__math_constants<_Tp>::__eps;
       if (__x == _Tp{0})
 	{
 	  if (__nu == _Tp{0})
@@ -148,8 +222,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // When the multiplier is N i.e.
       // fp_min = N * min()
       // Then J_0 and N_0 tank at x = 8 * N (J_0 = 0 and N_0 = nan)!
-      //const _Tp _S_fp_min = _Tp{20} * std::numeric_limits<_Tp>::min();
-      constexpr auto _S_fp_min = std::sqrt(std::numeric_limits<_Tp>::min());
+      //const _Tp _S_fp_min = _Tp{20} * __gnu_cxx::__min<_Tp>();
+      constexpr auto _S_fp_min = __gnu_cxx::__sqrt_min<_Tp>();
       constexpr int _S_max_iter = 15000;
       constexpr auto _S_x_min = _Tp{2};
 
@@ -189,8 +263,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    break;
 	}
       if (__i > _S_max_iter)
-	std::__throw_runtime_error(__N("__bessel_jn: argument x too large;"
-				       " try asymptotic expansion"));
+	{
+	  // Don't throw with message "try asymptotic expansion" - Just do it!
+	  __cyl_bessel_jn_asymp(__nu, __x, _Jnu, _Nnu, _Jpnu, _Npnu);
+	  return;
+	}
       auto _Jnul = __isign * _S_fp_min;
       auto _Jpnul = __h * _Jnul;
       auto _Jnul1 = _Jnul;
@@ -327,82 +404,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief This routine computes the asymptotic cylindrical Bessel
-   *          and Neumann functions of order nu: \f$ J_{\nu}(x) \f$,
-   *          \f$ N_{\nu}(x) \f$.  Use this for \f$ x >> nu^2 + 1 \f$.
-   *
-   *   References:
-   *    (1) Handbook of Mathematical Functions,
-   *        ed. Milton Abramowitz and Irene A. Stegun,
-   *        Dover Publications,
-   *        Section 9 p. 364, Equations 9.2.5-9.2.10
-   *
-   *   @param  __nu  The order of the Bessel functions.
-   *   @param  __x   The argument of the Bessel functions.
-   *   @param  _Jnu  The output Bessel function of the first kind.
-   *   @param  _Nnu  The output Neumann function (Bessel function of the second kind).
-   */
-  template<typename _Tp>
-    void
-    __cyl_bessel_jn_asymp(_Tp __nu, _Tp __x,
-			  _Tp & _Jnu, _Tp & _Nnu,
-			  _Tp & _Jpnu, _Tp & _Npnu)
-    {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<long double>::__pi_half;
-      constexpr auto _S_eps = __gnu_cxx::__math_constants<_Tp>::__eps;
-      const auto __2nu = _Tp{2} * __nu;
-      const auto __4nu2 = __2nu * __2nu;
-      const auto __8x = _Tp{8} * __x;
-      auto __k = 0;
-      auto __bk_xk = _Tp{1};
-      auto _Rsum = __bk_xk;
-      auto __ak_xk = _Tp{1};
-      auto _Psum = __ak_xk;
-      ++__k;
-      auto __2km1 = 1;
-      __bk_xk *= (__4nu2 + __2km1 * (__2km1 + 2)) / __8x;
-      auto _Ssum = __bk_xk;
-      __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / __8x;
-      auto _Qsum = __ak_xk;
-      do
-	{
-	  ++__k;
-	  __2km1 += 2;
-	  __bk_xk *= -(__4nu2 + __2km1 * (__2km1 + 2)) / (__k * __8x);
-	  _Rsum += __bk_xk;
-	  __ak_xk *= -(__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
-	  _Psum += __ak_xk;
-	  auto __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
-
-	  ++__k;
-	  __2km1 += 2;
-	  __bk_xk *= (__4nu2 + __2km1 * (__2km1 + 2)) / (__k * __8x);
-	  _Ssum += __bk_xk;
-	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
-	  _Qsum += __ak_xk;
-	  auto __convQ = std::abs(__ak_xk) < _S_eps * std::abs(_Qsum);
-
-	  if (__convP && __convQ && __k > (__nu / _Tp{2}))
-	    break;
-	}
-      while (__k < _Tp{100} * __nu);
-
-      auto __omega = __x - (__nu + 0.5L) * _S_pi_2;
-      auto __c = std::cos(__omega);
-      auto __s = std::sin(__omega);
-
-      auto __coef = std::sqrt(_Tp{2} / (_S_pi * __x));
-      _Jnu = __coef * (__c * _Psum - __s * _Qsum);
-      _Nnu = __coef * (__s * _Psum + __c * _Qsum);
-      _Jpnu = -__coef * (__s * _Rsum + __c * _Ssum);
-      _Npnu =  __coef * (__c * _Rsum - __s * _Ssum);
-
-      return;
-    }
-
-
-  /**
    *   @brief This routine returns the cylindrical Bessel functions
    *          of order \f$ \nu \f$: \f$ J_{\nu} \f$ or \f$ I_{\nu} \f$
    *          by series expansion.
@@ -434,7 +435,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __cyl_bessel_ij_series(_Tp __nu, _Tp __x, _Tp __sgn,
 			   unsigned int __max_iter)
     {
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
       const auto __x2 = __x / _Tp{2};
       _Tp __fact = __nu * std::log(__x2);
       __fact -= __log_gamma(__nu + _Tp{1});
@@ -476,7 +477,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__nu < _Tp{0} || __x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_j: bad argument"));
       else if (__isnan(__nu) || __isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x * __x < _Tp{10} * (__nu + _Tp{1}))
 	return __cyl_bessel_ij_series(__nu, __x, -_Tp{1}, 200);
       else if (__x > _Tp{1000})
@@ -517,7 +518,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__nu < _Tp{0} || __x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_neumann_n: bad argument"));
       else if (__isnan(__nu) || __isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x > _Tp{1000})
 	{
 	  _Tp _J_nu, _N_nu, _Jp_nu, _Np_nu;
@@ -553,9 +554,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_hankel_h1: bad argument"));
       else if (__isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x == _Tp{0})
-	return -std::numeric_limits<_Tp>::infinity();
+	return -__gnu_cxx::__infinity<_Tp>();
       else
 	{
 	  std::complex<_Tp> _S_j{0, 1};
@@ -586,9 +587,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_hankel_h2: bad argument"));
       else if (__isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x == _Tp{0})
-	return -std::numeric_limits<_Tp>::infinity();
+	return -__gnu_cxx::__infinity<_Tp>();
       else
 	{
 	  std::complex<_Tp> _S_j{0, 1};
@@ -654,7 +655,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__sph_bessel: bad argument"));
       else if (__isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x == _Tp{0})
 	{
 	  if (__n == 0)
@@ -691,9 +692,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__sph_neumann: bad argument"));
       else if (__isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x == _Tp{0})
-	return -std::numeric_limits<_Tp>::infinity();
+	return -__gnu_cxx::__infinity<_Tp>();
       else
 	{
 	  _Tp __j_n, __n_n, __jp_n, __np_n;
@@ -723,9 +724,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__sph_neumann: bad argument"));
       else if (__isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x == _Tp{0})
-	return -std::numeric_limits<_Tp>::infinity();
+	return -__gnu_cxx::__infinity<_Tp>();
       else
 	{
 	  std::complex<_Tp> _S_j{0, 1};
@@ -756,9 +757,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__sph_neumann: bad argument"));
       else if (__isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x == _Tp{0})
-	return -std::numeric_limits<_Tp>::infinity();
+	return -__gnu_cxx::__infinity<_Tp>();
       else
 	{
 	  std::complex<_Tp> _S_j{0, 1};
