@@ -814,7 +814,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Check to see if z^3 will underflow and act accordingly.
       auto __zzz = __z * __z * __z;
 
-      if (std::abs(__zzz) < _Tp{10} * std::numeric_limits<_Tp>::min())
+      if (std::abs(__zzz) < _Tp{10} * __gnu_cxx::__min<_Tp>())
 	{
 	  __fp1d3  = _S_zone;
 	  __fm1d3 = _S_zone;
@@ -1151,7 +1151,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __airy_ai(std::complex<_Tp> __z)
       {
 	std::complex<_Tp> _Ai, _Aip;
-	__airy(__z, std::numeric_limits<_Tp>::epsilon(), _Ai, _Aip);
+	__airy(__z, __gnu_cxx::__epsilon<_Tp>(), _Ai, _Aip);
 	return _Ai;
       }
 

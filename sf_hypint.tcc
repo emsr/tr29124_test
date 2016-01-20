@@ -50,8 +50,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __chshint_cont_frac(_Tp __t, _Tp& _Chi, _Tp& _Shi)
     {
       constexpr unsigned int _S_max_iter = 100;
-      constexpr _Tp _S_eps = _Tp{5} * __gnu_cxx::__math_constants<_Tp>::__eps;
-      constexpr _Tp _S_fp_min = __gnu_cxx::__math_constants<_Tp>::__min;
+      constexpr _Tp _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
+      constexpr _Tp _S_fp_min = __gnu_cxx::__min<_Tp>();
       constexpr _Tp _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
 
       // Evaluate Chi and Shi by Lentz's modified method of continued fracions.
@@ -93,8 +93,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __chshint_series(_Tp __t, _Tp& _Chi, _Tp& _Shi)
     {
       constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__math_constants<_Tp>::__eps;
-      constexpr auto _S_fp_min = __gnu_cxx::__math_constants<_Tp>::__min;
+      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
+      constexpr auto _S_fp_min = __gnu_cxx::__min<_Tp>();
       constexpr auto _S_gamma_e = __gnu_cxx::__math_constants<_Tp>::__gamma_e;
 
       // Evaluate Chi and Shi by series simultaneously.
@@ -166,7 +166,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __t = std::abs(__x);
       if (__t == _Tp{0})
 	{
-	  _Chi = -std::numeric_limits<_Tp>::infinity();
+	  _Chi = -__gnu_cxx::__infinity<_Tp>();
 	  _Shi = _Tp{0};
 	}
       else if (__t > _Tp{2})

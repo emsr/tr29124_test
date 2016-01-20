@@ -101,7 +101,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  return;
 	}
 
-      constexpr auto _S_fp_min = __gnu_cxx::__sqrt_min<_Tp>();
+      constexpr auto _S_fp_min = _Tp{10} * _S_eps;
       constexpr int _S_max_iter = 15000;
       constexpr auto _S_x_min = _Tp{2};
 

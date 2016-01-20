@@ -238,7 +238,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_domain_error(__N("__poly_laguerre: negative argument"));
       // Return NaN on NaN input.
       else if (__isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__n == 0)
 	return _Tp{1};
       else if (__n == 1)
