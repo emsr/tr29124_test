@@ -1035,7 +1035,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
-    sph_bessel_i(unsigned int __n, double __x)
+    sph_bessel_i(unsigned int __n, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
       __type __i_n, __k_n, __ip_n, __kp_n;
@@ -1446,10 +1446,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__expint_E1<long double>(__x); }
 
   template<typename _Tp>
-    inline typename __gnu_cxx::__promote<_Tp>::__type
+    inline __gnu_cxx::__promote_num_t<_Tp>
     expint_e1(_Tp __x)
     {
-      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
       return std::__detail::__expint_E1<__type>(__x);
     }
 
@@ -1462,83 +1462,173 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__expint<long double>(__n, __x); }
 
   template<typename _Tp>
-    inline typename __gnu_cxx::__promote<_Tp>::__type
+    inline __gnu_cxx::__promote_num_t<_Tp>
     expint_en(unsigned int __n, _Tp __x)
     {
-      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
       return std::__detail::__expint<__type>(__n, __x);
     }
 
   //  Log upper Pochhammer symbol
 
   inline float
-  lpochhammer_uf(float __n, float __x)
-  { return std::__detail::__log_pochhammer_u<float>(__n, __x); }
+  lpochhammer_uf(float __a, float __n)
+  { return std::__detail::__log_pochhammer_u<float>(__a, __n); }
 
   inline long double
-  lpochhammer_ul(long double __n, long double __x)
-  { return std::__detail::__log_pochhammer_u<long double>(__n, __x); }
+  lpochhammer_ul(long double __a, long double __n)
+  { return std::__detail::__log_pochhammer_u<long double>(__a, __n); }
 
-  template<typename _Tn, typename _Tp>
-    inline typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type
-    lpochhammer_u(_Tn __n, _Tp __x)
+  template<typename _Tp, typename _Tn>
+    inline __gnu_cxx::__promote_num_t<_Tp, _Tn>
+    lpochhammer_u(_Tp __a, _Tn __n)
     {
-      typedef typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type __type;
-      return std::__detail::__log_pochhammer_u<__type>(__n, __x);
+      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tn>;
+      return std::__detail::__log_pochhammer_u<__type>(__a, __n);
     }
 
   //  Log lower Pochhammer symbol
 
   inline float
-  lpochhammer_lf(float __n, float __x)
-  { return std::__detail::__log_pochhammer_l<float>(__n, __x); }
+  lpochhammer_lf(float __a, float __n)
+  { return std::__detail::__log_pochhammer_l<float>(__a, __n); }
 
   inline long double
-  lpochhammer_ll(long double __n, long double __x)
-  { return std::__detail::__log_pochhammer_l<long double>(__n, __x); }
+  lpochhammer_ll(long double __a, long double __n)
+  { return std::__detail::__log_pochhammer_l<long double>(__a, __n); }
 
-  template<typename _Tn, typename _Tp>
-    inline typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type
-    lpochhammer_l(_Tn __n, _Tp __x)
+  template<typename _Tp, typename _Tn>
+    inline __gnu_cxx::__promote_num_t<_Tp, _Tn>
+    lpochhammer_l(_Tp __a, _Tn __n)
     {
-      typedef typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type __type;
-      return std::__detail::__log_pochhammer_l<__type>(__n, __x);
+      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tn>;
+      return std::__detail::__log_pochhammer_l<__type>(__a, __n);
     }
 
   //  Upper Pochhammer symbols (see boost::rising_factorial)
 
   inline float
-  pochhammer_uf(float __n, float __x)
-  { return std::__detail::__pochhammer_u<float>(__n, __x); }
+  pochhammer_uf(float __a, float __n)
+  { return std::__detail::__pochhammer_u<float>(__a, __n); }
 
   inline long double
-  pochhammer_ul(long double __n, long double __x)
-  { return std::__detail::__pochhammer_u<long double>(__n, __x); }
+  pochhammer_ul(long double __a, long double __n)
+  { return std::__detail::__pochhammer_u<long double>(__a, __n); }
 
-  template<typename _Tn, typename _Tp>
-    inline typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type
-    pochhammer_u(_Tn __n, _Tp __x)
+  template<typename _Tp, typename _Tn>
+    inline __gnu_cxx::__promote_num_t<_Tp, _Tn>
+    pochhammer_u(_Tp __a, _Tn __n)
     {
-      typedef typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type __type;
-      return std::__detail::__pochhammer_u<__type>(__n, __x);
+      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tn>;
+      return std::__detail::__pochhammer_u<__type>(__a, __n);
     }
 
   //  Lower Pochhammer symbols (see boost::falling_factorial)
 
   inline float
-  pochhammer_lf(float __n, float __x)
-  { return std::__detail::__pochhammer_l<float>(__n, __x); }
+  pochhammer_lf(float __a, float __n)
+  { return std::__detail::__pochhammer_l<float>(__a, __n); }
 
   inline long double
-  pochhammer_ll(long double __n, long double __x)
-  { return std::__detail::__pochhammer_l<long double>(__n, __x); }
+  pochhammer_ll(long double __a, long double __n)
+  { return std::__detail::__pochhammer_l<long double>(__a, __n); }
 
-  template<typename _Tn, typename _Tp>
-    inline typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type
-    pochhammer_l(_Tn __n, _Tp __x)
+  template<typename _Tp, typename _Tn>
+    inline __gnu_cxx::__promote_num_t<_Tp, _Tn>
+    pochhammer_l(_Tp __a, _Tn __n)
     {
-      typedef typename __gnu_cxx::__promote_2<_Tn, _Tp>::__type __type;
-      return std::__detail::__pochhammer_l<__type>(__n, __x);
+      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tn>;
+      return std::__detail::__pochhammer_l<__type>(__a, __n);
+    }
+
+  // Factorial
+
+  inline float
+  factorialf(float __x)
+  { return std::__detail::__factorial<float>(__x); }
+
+  inline long double
+  factoriall(long double __x)
+  { return std::__detail::__factorial<long double>(__x); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    factorial(_Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__factorial<__type>(__x);
+    }
+
+  // Double factorial
+
+  inline float
+  double_factorialf(float __x)
+  { return std::__detail::__double_factorial<float>(__x); }
+
+  inline long double
+  double_factoriall(long double __x)
+  { return std::__detail::__double_factorial<long double>(__x); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    double_factorial(_Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__double_factorial<__type>(__x);
+    }
+
+  // Log factorial
+
+  inline float
+  lfactorialf(float __x)
+  { return std::__detail::__log_factorial<float>(__x); }
+
+  inline long double
+  lfactoriall(long double __x)
+  { return std::__detail::__log_factorial<long double>(__x); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    lfactorial(_Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__log_factorial<__type>(__x);
+    }
+
+  // Log double factorial
+
+  inline float
+  ldouble_factorialf(float __x)
+  { return std::__detail::__log_double_factorial<float>(__x); }
+
+  inline long double
+  ldouble_factoriall(long double __x)
+  { return std::__detail::__log_double_factorial<long double>(__x); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    ldouble_factorial(_Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__log_double_factorial<__type>(__x);
+    }
+
+  // Legendre functions of the second kind
+
+  inline float
+  legendre_qf(unsigned int __n, float __x)
+  { return std::__detail::__poly_legendre_q<float>(__n, __x); }
+
+  inline long double
+  legendre_ql(unsigned int __n, long double __x)
+  { return std::__detail::__poly_legendre_q<long double>(__n, __x); }
+
+  template<typename _Tp>
+    inline typename __gnu_cxx::__promote<_Tp>::__type
+    legendre_q(unsigned int __n, _Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      return std::__detail::__poly_legendre_q<__type>(__n, __x);
     }
 
 #endif // __cplusplus >= 201103L
