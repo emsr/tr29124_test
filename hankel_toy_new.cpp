@@ -14,6 +14,47 @@
 #include "polynomial"
 
 template<typename _Tp>
+  _Tp
+  get_zeta(_Tp __zhat)
+  {
+    static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666666L};
+    static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152L}; // -(2/3)ln(2/3)
+    //if (std::abs(__zhat) <= _Tp{1})
+    if (__zhat == _Tp{0})
+      return std::numeric_limits<_Tp>::infinity();
+    else if (__zhat <= _Tp{1})
+      {
+	auto __ztemp = std::sqrt((_Tp{1} + __zhat) * (_Tp{1} - __zhat)); // __w
+	// Compute xi = ln(1 + (1 - zhat^2)^(1/2)) - ln(zhat) - (1 - zhat^2)^(1/2) = (2/3)(zeta)^(3/2)
+	// using default branch of logarithm and square root.
+	auto __xi = std::log(_Tp{1} + __ztemp) - std::log(__zhat) - __ztemp;
+	//auto __zetam3hf = _S_2d3 / __xi;
+
+	auto __lnxi = std::log(__xi);
+
+	// Compute ln(zeta), zeta.
+	auto __lnzeta = _S_2d3 * __lnxi + _S_lncon;
+	auto __zeta = std::exp(__lnzeta);
+	return __zeta;
+      }
+    else
+      {
+	auto __ztemp = std::sqrt((__zhat + _Tp{1}) * (__zhat - _Tp{1})); // __w
+	// Compute xi = (zhat^2 - 1)^(1/2) - arcsec(zhat) = (2/3)(-zeta)^(3/2)
+	// using default branch of logarithm and square root.
+	auto __xi = __ztemp - std::acos(_Tp{1} / __zhat);
+	//auto __mzetam3hf = _S_2d3 / __xi;
+
+	auto __lnxi = std::log(__xi);
+
+	// Compute ln(zeta), zeta.
+	auto __lnmzeta = _S_2d3 * __lnxi + _S_lncon;
+	auto __zeta = -std::exp(__lnmzeta);
+	return __zeta;
+      }
+  }
+
+template<typename _Tp>
   void
   run_toy()
   {
@@ -52,14 +93,17 @@ template<typename _Tp>
 
     // Build the lambda_k and mu_k ratios for the asymptotic series.
     std::cout << '\n' << std::setw(width) << "lambda\t" << std::setw(width) << "mu\n";
-    _Tp lambda = _Tp{1};
-    _Tp mu = -_Tp{1};
+    std::vector<_Tp> lambda;
+    std::vector<_Tp> mu;
+    lambda.push_back(_Tp{1});
+    mu.push_back(-_Tp{1});
     for (int s = 1; s <= 50; ++s)
       {
-	std::cout << std::setw(width) << lambda << '\t' << std::setw(width) << mu << '\n';
-	lambda *= _Tp{1} * (6 * s - 3) * (6 * s - 3) * (6 * s - 1)
-		/ ((2 * s - 1) * s * 144);
-	mu = -(6 * s + 1) * lambda / (6 * s - 1);
+	std::cout << std::setw(width) << lambda.back() << '\t'
+		  << std::setw(width) << mu.back() << '\n';
+	lambda.push_back(lambda.back() * (6 * s - 3) * (6 * s - 3) * (6 * s - 1)
+			 / ((2 * s - 1) * s * 144));
+	mu.push_back(-(6 * s + 1) * lambda.back() / (6 * s - 1));
       }
 
     // Build the Debye polynomials.
@@ -145,14 +189,70 @@ template<typename _Tp>
 
     // Try to build A, B, C, D functions...
     // These are polynomials in p and zeta^{-3/2}
-    for (int i = 0; i <= 100; ++i)
+    std::cout << '\n'
+	      << std::setw(width) << "z" << ' '
+	      << std::setw(width) << "zeta" << ' '
+	      << std::setw(width) << "zeta^(3/2)" << ' '
+	      << std::setw(width) << "thing" << ' '
+	      << std::setw(width) << "p" << ' ';
+    std::cout << '\n';
+    for (int i = 0; i <= 2000; ++i)
       {
-	auto z = std::complex<_Tp>(i * 0.01);
-	auto w = std::sqrt(_Tp{1} - z * z);
-	auto xi = std::log((_Tp{1} + w) / z) - w;
-	auto zeta = std::pow(_Tp{3} * xi / _Tp{2}, _Tp{2} / _Tp{3});
-	auto p = _Tp{1} / w;
-	auto zetam32 = _Tp{2} / (_Tp{3} * xi);
+	auto z = i * 0.01L;
+	auto zeta = get_zeta<_Tp>(z);
+	auto thing = std::sqrt(std::sqrt(4 * zeta / ((_Tp{1} + z) * (_Tp{1} - z))));
+	auto p = _Tp{1} / std::sqrt((_Tp{1} + z) * (_Tp{1} - z));
+	auto t = _Tp{1.5L} / std::pow(std::abs(zeta), _Tp{1.5L});
+	std::cout << std::setw(width) << z << ' '
+		  << std::setw(width) << zeta << ' '
+		  << std::setw(width) << std::pow(std::abs(zeta), _Tp{-1.5L}) << ' '
+		  << std::setw(width) << thing << ' '
+		  << std::setw(width) << p << ' ';
+	for (int k = 0; k < 6; ++k)
+	  {
+	    auto tj = _Tp{1};
+	    auto A = _Tp{0};
+	    for (int j = 0; j <= 2 * k; ++j)
+	      {
+		A += tj * mu[j] * uvec[2 * k - j](p);
+		tj *= t;
+	      }
+	    std::cout << std::setw(width) << A << ' ';
+	  }
+	for (int k = 0; k < 6; ++k)
+	  {
+	    auto tj = _Tp{1};
+	    auto B = _Tp{0};
+	    for (int j = 0; j <= 2 * k + 1; ++j)
+	      {
+		B += tj * lambda[j] * uvec[2 * k + 1 - j](p);
+		tj *= t;
+	      }
+	    std::cout << std::setw(width) << B << ' ';
+	  }
+	for (int k = 0; k < 6; ++k)
+	  {
+	    auto tj = _Tp{1};
+	    auto C = _Tp{0};
+	    for (int j = 0; j <= 2 * k + 1; ++j)
+	      {
+		C += tj * mu[j] * vvec[2 * k + 1 - j](p);
+		tj *= t;
+	      }
+	    std::cout << std::setw(width) << C << ' ';
+	  }
+	for (int k = 0; k < 6; ++k)
+	  {
+	    auto tj = _Tp{1};
+	    auto D = _Tp{0};
+	    for (int j = 0; j <= 2 * k; ++j)
+	      {
+		D += tj * lambda[j] * vvec[2 * k - j](p);
+		tj *= t;
+	      }
+	    std::cout << std::setw(width) << D << ' ';
+	  }
+	std::cout << '\n';
       }
   }
 

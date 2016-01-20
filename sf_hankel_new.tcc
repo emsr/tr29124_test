@@ -127,7 +127,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr auto _S_1d2   = _Tp{0.5L};
       static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666666L};
       static constexpr auto _S_2pi   = _Tp{6.283185307179586476925286766559005768391L};
-      static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152L}; // (2/3)ln(3/2)
+      static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152L}; // -(2/3)ln(2/3)
       static constexpr auto _S_sqrt2 = _Tp{1.414213562373095048801688724209698078569L};
       static constexpr auto _S_4d3   = _Tp{1.333333333333333333333333333333333333333L};
 
