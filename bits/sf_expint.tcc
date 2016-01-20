@@ -74,10 +74,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint_E1_series(_Tp __x)
     {
-      const _Tp __eps = __gnu_cxx::__epsilon<_Tp>();
-      _Tp __term = _Tp{1};
-      _Tp __esum = _Tp{0};
-      _Tp __osum = _Tp{0};
+      constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
+      auto __term = _Tp{1};
+      auto __esum = _Tp{0};
+      auto __osum = _Tp{0};
       const unsigned int __max_iter = 100;
       for (unsigned int __i = 1; __i < __max_iter; ++__i)
 	{
@@ -111,13 +111,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint_E1_asymp(_Tp __x)
     {
-      _Tp __term = _Tp{1};
-      _Tp __esum = _Tp{1};
-      _Tp __osum = _Tp{0};
+      auto __term = _Tp{1};
+      auto __esum = _Tp{1};
+      auto __osum = _Tp{0};
       const unsigned int __max_iter = 1000;
       for (unsigned int __i = 1; __i < __max_iter; ++__i)
 	{
-	  _Tp __prev = __term;
+	  auto __prev = __term;
 	  __term *= - __i / __x;
 	  if (std::abs(__term) > std::abs(__prev))
 	    break;
@@ -149,7 +149,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __expint_En_series(unsigned int __n, _Tp __x)
     {
       const unsigned int __max_iter = 100;
-      const _Tp __eps = __gnu_cxx::__epsilon<_Tp>();
+      constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
       const int __nm1 = __n - 1;
       _Tp __ans = (__nm1 != 0
 		? _Tp{1} / __nm1
@@ -195,24 +195,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __expint_En_cont_frac(unsigned int __n, _Tp __x)
     {
       const unsigned int __max_iter = 100;
-      const _Tp __eps = __gnu_cxx::__epsilon<_Tp>();
-      const _Tp __fp_min = __gnu_cxx::__min<_Tp>();
+      constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
+      constexpr auto __fp_min = __gnu_cxx::__min<_Tp>();
       const int __nm1 = __n - 1;
-      _Tp __b = __x + _Tp(__n);
-      _Tp __c = _Tp{1} / __fp_min;
-      _Tp __d = _Tp{1} / __b;
-      _Tp __h = __d;
+      auto __b = __x + _Tp(__n);
+      auto __c = _Tp{1} / __fp_min;
+      auto __d = _Tp{1} / __b;
+      auto __h = __d;
       for ( unsigned int __i = 1; __i <= __max_iter; ++__i )
 	{
-	  _Tp __a = -_Tp{__i * (__nm1 + __i)};
+	  auto __a = -_Tp{__i * (__nm1 + __i)};
 	  __b += _Tp{2};
 	  __d = _Tp{1} / (__a * __d + __b);
 	  __c = __b + __a / __c;
-	  const _Tp __del = __c * __d;
+	  const auto __del = __c * __d;
 	  __h *= __del;
 	  if (std::abs(__del - _Tp{1}) < __eps)
 	    {
-	      const _Tp __ans = __h * std::exp(-__x);
+	      const auto __ans = __h * std::exp(-__x);
 	      return __ans;
 	    }
 	}
@@ -402,12 +402,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint_asymp(unsigned int __n, _Tp __x)
     {
-      _Tp __term = _Tp{1};
-      _Tp __sum = _Tp{1};
+      auto __term = _Tp{1};
+      auto __sum = _Tp{1};
       for (unsigned int __i = 1; __i <= __n; ++__i)
 	{
-	  _Tp __prev = __term;
-	  __term *= -(__n - __i + 1) / __x;
+	  auto __prev = __term;
+	  __term *= -_Tp(__n - __i + 1) / __x;
 	  if (std::abs(__term) > std::abs(__prev))
 	    break;
 	  __sum += __term;
@@ -436,13 +436,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint_large_n(unsigned int __n, _Tp __x)
     {
-      const _Tp __xpn = __x + __n;
-      const _Tp __xpn2 = __xpn * __xpn;
-      _Tp __term = _Tp{1};
-      _Tp __sum = _Tp{1};
+      const auto __xpn = __x + __n;
+      const auto __xpn2 = __xpn * __xpn;
+      auto __term = _Tp{1};
+      auto __sum = _Tp{1};
       for (unsigned int __i = 1; __i <= __n; ++__i)
 	{
-	  _Tp __prev = __term;
+	  auto __prev = __term;
 	  __term *= (__n - 2 * (__i - 1) * __x) / __xpn2;
 	  if (std::abs(__term) < __gnu_cxx::__epsilon<_Tp>())
 	    break;
@@ -477,18 +477,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __gnu_cxx::__infinity<_Tp>();
       else
 	{
-	  _Tp __E0 = std::exp(__x) / __x;
+	  auto __E0 = std::exp(__x) / __x;
 	  if (__n == 0)
 	    return __E0;
 
-	  _Tp __E1 = __expint_E1(__x);
+	  auto __E1 = __expint_E1(__x);
 	  if (__n == 1)
 	    return __E1;
 
 	  if (__x == _Tp{0})
 	    return _Tp{1} / static_cast<_Tp>(__n - 1);
 
-	  _Tp __En = __expint_En_recursion(__n, __x);
+	  auto __En = __expint_En_recursion(__n, __x);
 
 	  return __En;
 	}

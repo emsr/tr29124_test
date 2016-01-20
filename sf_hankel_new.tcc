@@ -1,6 +1,6 @@
 // TR29124 math special functions -*- C++ -*-
 
-// Copyright (C) 2015 Free Software Foundation, Inc.
+// Copyright (C) 2016 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -119,8 +119,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using __cmplx = std::complex<_Tp>;
 
-      static constexpr auto _S_inf     = std::numeric_limits<_Tp>::max();
-      static constexpr auto _S_sqrtinf = std::sqrt(_S_inf);
+      static constexpr auto _S_inf     = __gnu_cxx::__max<_Tp>();
+      static constexpr auto _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();
 
       static constexpr auto _S_1d4   = _Tp{0.25L};
       static constexpr auto _S_1d3   = _Tp{0.3333333333333333333333333333333333333333L};
@@ -135,18 +135,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr __cmplx _S_j{_Tp{0}, _Tp{1}};
 
       // Separate real and imaginary parts of zhat.
-      auto __dx = std::real(__zhat);
-      auto __dy = std::imag(__zhat);
-      auto __dxabs = std::abs(__dx);
-      auto __dyabs = std::abs(__dy);
+      auto _Re_zhat = std::real(__zhat);
+      auto _Im_zhat = std::imag(__zhat);
+      auto _abs_Re_zhat = std::abs(_Re_zhat);
+      auto _abs_Im_zhat = std::abs(_Im_zhat);
 
       // If 1 - zhat^2 can be computed without overflow.
-      if (__dxabs <= _S_sqrtinf &&
-	  __dyabs <= (_S_sqrtinf - 1))
+      if (_abs_Re_zhat < _S_sqrt_max && _abs_Im_zhat < _S_sqrt_max)
 	{
 	  // Find max and min of abs(dx) and abs(dy).
-	  auto __du = __dxabs;
-	  auto __dv = __dyabs;
+	  auto __du = _abs_Re_zhat;
+	  auto __dv = _abs_Im_zhat;
 	  if (__du < __dv)
 	    std::swap(__du, __dv);
 	  if (__du >= _S_1d2 && __dv > _S_inf / (_Tp{2} * __du))
@@ -158,14 +157,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				       "unable to compute 1-zhat^2"));
 
       // Compute 1 - zhat^2 and related constants.
-      auto __ztemp = __cmplx{_Tp{1} - (__dx - __dy) * (__dx + __dy),
-			  -_Tp{2} * __dx * __dy};
+      auto __ztemp = __cmplx{_Tp{1} - (_Re_zhat - _Im_zhat) * (_Re_zhat + _Im_zhat),
+			  -_Tp{2} * _Re_zhat * _Im_zhat};
       __ztemp = std::sqrt(__ztemp);
       __t = _Tp{1} / __ztemp;
       __tsq = __t * __t;
 
       // If nu^2 can be computed without overflow.
-      if (std::abs(__nu) <= _S_sqrtinf)
+      if (std::abs(__nu) <= _S_sqrt_max)
 	{
 	  __nusq = __nu * __nu;
 	  __1dnusq = _Tp{1} / __nusq;
@@ -191,15 +190,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __npi = _Tp{0};
 
       // Find adjustment necessary to get on proper Riemann sheet.
-      if (__dy == _Tp{0})  // zhat is real.
+      if (_Im_zhat == _Tp{0})  // zhat is real.
 	{
-	  if (__dx > 1)
+	  if (_Re_zhat > 1)
 	    __npi = _S_2pi;
 	}
-      else  // zhat is not real.
+      else // zhat is not real.
 	{
 	  // zhat is in upper half-plane.
-	  if (__dy > _Tp{0})
+	  if (_Im_zhat > _Tp{0})
 	    {
 	      // xi lies in upper half-plane.
 	      if (std::imag(__xi) > _Tp{0})
