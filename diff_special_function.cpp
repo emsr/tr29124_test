@@ -344,7 +344,7 @@ main()
   //  Legendre polynomials.
   std::cout << "legendre" << std::endl;
   basename = "diff_legendre";
-  rundiff(legendre, gsl::legendre_Pl, basename,
+  rundiff(legendre, gsl::legendre_p, basename,
 	  "l", vorder,
 	  "x", fill_argument(std::make_pair(-1.0, 1.0),
 	  		     std::make_pair(true, true), 1001));
@@ -457,7 +457,7 @@ main()
   //  Upper incomplete Gamma functions.
   std::cout << "gamma_u" << std::endl;
   basename = "diff_gamma_u";
-  rundiff(gamma_u, gsl::gamma_inc, basename,
+  rundiff(gamma_u, gsl::gamma_u, basename,
 	  "a", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
 			     std::make_pair(false, true), 11),
 	  "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
@@ -466,7 +466,7 @@ main()
   //  Incomplete Beta functions.
   std::cout << "ibeta" << std::endl;
   basename = "diff_ibeta";
-  rundiff(ibeta, gsl::beta_inc, basename,
+  rundiff(ibeta, gsl::ibeta, basename,
 	  "a", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
 			     std::make_pair(false, true), 11),
 	  "b", fill_argument(std::make_pair(_TpGSL{5}, _TpGSL{0}),
