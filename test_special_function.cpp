@@ -619,7 +619,7 @@ template<typename _Tp>
     //  Upper incomplete Gamma functions.
     std::cout << "gamma_u" << std::endl;
     basename = "gsl_gamma_u";
-    runtest(gsl::gamma_inc, basename,
+    runtest(gsl::gamma_u, basename,
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(0.0, 5.0),
@@ -635,7 +635,7 @@ template<typename _Tp>
     //  Incomplete Beta functions.
     std::cout << "ibeta" << std::endl;
     basename = "gsl_ibeta";
-    runtest(gsl::beta_inc, basename,
+    runtest(gsl::ibeta, basename,
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(5.0, 0.0),
