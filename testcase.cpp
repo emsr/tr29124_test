@@ -959,7 +959,7 @@ template<typename Real>
 
     // Factorial.
     std::cout << "factorial" << std::endl;
-    funcname = "factorial<Tp>";
+    funcname = "factorial";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_factorial(filename.c_str());
     maketest(factorial<Real>, gsl::fact,
@@ -970,7 +970,7 @@ template<typename Real>
 
     // Log factorial.
     std::cout << "lfactorial" << std::endl;
-    funcname = "lfactorial<Tp>";
+    funcname = "lfactorial";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_lfactorial(filename.c_str());
     maketest(lfactorial<Real>, gsl::lnfact,
@@ -981,7 +981,7 @@ template<typename Real>
 
     // Double factorial.
     std::cout << "double_factorial" << std::endl;
-    funcname = "double_factorial<Tp>";
+    funcname = "double_factorial";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_double_factorial(filename.c_str());
     maketest(double_factorial<Real>, gsl::doublefact,
@@ -992,7 +992,7 @@ template<typename Real>
 
     // Log double factorial.
     std::cout << "ldouble_factorial" << std::endl;
-    funcname = "ldouble_factorial<Tp>";
+    funcname = "ldouble_factorial";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_ldouble_factorial(filename.c_str());
     maketest(ldouble_factorial<Real>, gsl::lndoublefact,
@@ -1003,7 +1003,7 @@ template<typename Real>
 
     // Binomial coefficient.
     std::cout << "bincoef" << std::endl;
-    funcname = "bincoef<Tp>";
+    funcname = "bincoef";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_bincoef(filename.c_str());
     maketest(bincoef<Real>, gsl::choose,
@@ -1016,7 +1016,7 @@ template<typename Real>
 
     // Log binomial coefficient.
     std::cout << "lbincoef" << std::endl;
-    funcname = "lbincoef<Tp>";
+    funcname = "lbincoef";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_lbincoef(filename.c_str());
     maketest(lbincoef<Real>, gsl::lnchoose,
@@ -1079,13 +1079,13 @@ template<typename Real>
 	     file_radpoly);
 */
 
-    // Zernicke polynomials.
-    std::cout << "zernicke - UNTESTED" << std::endl;
+    // zernike polynomials.
+    std::cout << "zernike - UNTESTED" << std::endl;
 /*
-    funcname = "zernicke";
+    funcname = "zernike";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
-    std::ofstream file_zernicke(filename.c_str());
-    maketest(zernicke, gsl::zernicke,
+    std::ofstream file_zernike(filename.c_str());
+    maketest(zernike, gsl::zernike,
 	     "__gnu_cxx", funcname,
 	     "n", vorder, "m", vorder,
 	     "alpha", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -1093,7 +1093,7 @@ template<typename Real>
              "rho", fill_argument(std::make_pair(Real{0}, Real{1}),
 	    			  std::make_pair(true, true), 21),
              "phi", vphid
-	     file_zernicke);
+	     file_zernike);
 */
 
     // Confluent hypergeometric limit functions.

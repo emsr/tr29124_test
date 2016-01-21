@@ -401,7 +401,8 @@ namespace std
 // From <limits>
 #undef __glibcxx_max_digits10
 
-#include "numeric_limits.h"
+#include <bits/numeric_limits.h>
+
 namespace __gnu_cxx
 {
 
@@ -578,6 +579,7 @@ namespace __gnu_cxx
 
   // Extra bits to help with numerics...
   // These depend math functions which aren't constexpr for __float128.
+  // These are specializations of the functions in bits/numeric_limits.h
 
   template<>
     __float128
