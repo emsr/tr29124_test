@@ -1079,13 +1079,13 @@ template<typename Real>
 	     file_radpoly);
 */
 
-    // Zernicke polynomials.
-    std::cout << "zernicke - UNTESTED" << std::endl;
+    // zernike polynomials.
+    std::cout << "zernike - UNTESTED" << std::endl;
 /*
-    funcname = "zernicke";
+    funcname = "zernike";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
-    std::ofstream file_zernicke(filename.c_str());
-    maketest(zernicke, gsl::zernicke,
+    std::ofstream file_zernike(filename.c_str());
+    maketest(zernike, gsl::zernike,
 	     "__gnu_cxx", funcname,
 	     "n", vorder, "m", vorder,
 	     "alpha", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -1093,7 +1093,7 @@ template<typename Real>
              "rho", fill_argument(std::make_pair(Real{0}, Real{1}),
 	    			  std::make_pair(true, true), 21),
              "phi", vphid
-	     file_zernicke);
+	     file_zernike);
 */
 
     // Confluent hypergeometric limit functions.
