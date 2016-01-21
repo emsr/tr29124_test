@@ -1972,6 +1972,11 @@ _S_neg_double_factorial_table[999]
     _Tp
     __gamma_p(_Tp __a, _Tp __x)
     {
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+
+      if (__isnan(__x) || __isnan(__k_c))
+	return _S_NaN;
+
       if (__x < _Tp{0} || __a <= _Tp{0})
 	throw std::domain_error("gamma_p: invalid arguments");
 
@@ -1998,6 +2003,11 @@ _S_neg_double_factorial_table[999]
     _Tp
     __gamma_q(_Tp __a, _Tp __x)
     {
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+
+      if (__isnan(__x) || __isnan(__k_c))
+	return _S_NaN;
+
       if (__x < _Tp{0} || __a <= _Tp{0})
 	throw std::domain_error("__gamma_q: invalid arguments");
 
@@ -2019,6 +2029,11 @@ _S_neg_double_factorial_table[999]
     _Tp
     __gamma_l(_Tp __a, _Tp __x)
     {
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+
+      if (__isnan(__x) || __isnan(__k_c))
+	return _S_NaN;
+
       if (__x < _Tp{0} || __a <= _Tp{0})
 	throw std::domain_error("__gamma_l: invalid arguments");
 
@@ -2046,6 +2061,11 @@ _S_neg_double_factorial_table[999]
     _Tp
     __gamma_u(_Tp __a, _Tp __x)
     {
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+
+      if (__isnan(__x) || __isnan(__k_c))
+	return _S_NaN;
+
       if (__x < _Tp{0} || __a <= _Tp{0})
 	throw std::domain_error("__gamma_u: invalid arguments");
 

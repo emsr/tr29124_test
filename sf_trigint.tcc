@@ -162,7 +162,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __sincosint_asymp(_Tp __t, _Tp& _Si, _Tp& _Ci)
     {
-      const auto _S_max_iter = 100;
+      constexpr auto _S_max_iter = 100;
       constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
 
@@ -226,6 +226,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::pair<_Tp, _Tp>
     __sincosint(_Tp __x)
     {
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      if (__isnan(__x))
+	return std::make_pair(_S_NaN, _S_NaN);
+
       auto __t = std::abs(__x);
       _Tp _Ci, _Si;
       if (__t == _Tp{0})
