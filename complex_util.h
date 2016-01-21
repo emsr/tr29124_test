@@ -96,33 +96,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Carefully compute @c z1/z2 avoiding overflow and destructive underflow.
    * If the quotient is successfully computed, then the logical value @c true
    * is returned and the quotient is returned in @c z1dz2.
-   * Otherwise, std::runtime_error is thrown.
+   * Otherwise, @c false is returned and the quotient is not.
    */
   template<typename _Tp>
     bool
     __safe_div(const std::complex<_Tp>& __z1, const std::complex<_Tp>& __z2,
 	       std::complex<_Tp>& __z1dz2);
-
-  /**
-   * Carefully compute @c z1*z2 avoiding overflow and destructive underflow.
-   * If the product is successfully computed, then the logical value @c true
-   * is returned and the product is returned in @c z1z2.
-   * Otherwise, std::runtime_error is thrown.
-   */
-  template<typename _Tp>
-    bool
-    __safe_mul(const std::complex<_Tp>& __z1, const std::complex<_Tp>& __z2,
-	       std::complex<_Tp>& __z1z2);
-
-  /**
-   * Carefully compute @c z*z avoiding overflow and destructive underflow.
-   * If the square is successfully computed, then the logical value @c true
-   * is returned and the square is returned in @c z1z2.
-   * Otherwise, std::runtime_error is thrown.
-   */
-  template<typename _Tp>
-    bool
-    __safe_sqr(const std::complex<_Tp>& __z, std::complex<_Tp>& __z2);
 
   /**
    * Carefully compute @c s/z2 avoiding overflow and destructive underflow.
