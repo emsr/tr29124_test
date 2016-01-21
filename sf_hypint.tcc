@@ -108,7 +108,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
 	{
 	  /*
-	   *    Evaluate Shi and Chi by series expansion.
+	   *    Evaluate Shi and Chi by series17 expansion.
 	   */
 	  _Tp __sum(0);
 	  _Tp __fact(1);
@@ -163,6 +163,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::pair<_Tp, _Tp>
     __chshint(_Tp __x, _Tp& _Chi, _Tp& _Shi)
     {
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      if (__isnan(__x))
+	return std::make_pair(_S_NaN, _S_NaN);
+
       auto __t = std::abs(__x);
       if (__t == _Tp{0})
 	{
