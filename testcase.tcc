@@ -2,6 +2,7 @@
 #define TESTCASE_TCC 1
 
 #include <sstream>
+#include <experimental/type_traits>
 
 const std::experimental::string_view boilerplate = 
 R"(// { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
@@ -255,6 +256,10 @@ template<typename Tp, typename Tp1>
 
     bool riemann_zeta_limits = (funcname == "riemann_zeta");
 
+    std::string templparm;
+    if (!std::experimental::is_floating_point_v<Tp1>)
+      templparm += "<Tp>";
+
     if (write_header)
       output << boilerplate << '\n';
     output << "//  " << funcname << '\n' << '\n';
@@ -356,7 +361,7 @@ template<typename Tp, typename Tp1>
 	  output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "      {\n";
-	output << "\tconst Tp f = " << nsname << "::" << funcname << "(data[i]." << arg1 << ");\n";
+	output << "\tconst Tp f = " << nsname << "::" << funcname << templparm << "(data[i]." << arg1 << ");\n";
 	output << "\tconst Tp f0 = data[i].f0;\n";
 	output << "\tconst Tp diff = f - f0;\n";
 	output << "\tif (std::abs(diff) > max_abs_diff)\n";
@@ -404,6 +409,11 @@ template<typename Tp, typename Tp1, typename Tp2>
   {
     const int old_prec = output.precision(std::numeric_limits<Tp>::max_digits10);
     output.flags(std::ios::showpoint);
+
+    std::string templparm;
+    if (!std::experimental::is_floating_point_v<Tp1>
+     && !std::experimental::is_floating_point_v<Tp2>)
+      templparm += "<Tp>";
 
     if (write_header)
       output << boilerplate << '\n';
@@ -507,7 +517,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 	output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "      {\n";
-	output << "\tconst Tp f = " << nsname << "::" << funcname << '('
+	output << "\tconst Tp f = " << nsname << "::" << funcname << templparm << '('
 	       << "data[i]." << arg1 << ", data[i]." << arg2 << ");\n";
 	output << "\tconst Tp f0 = data[i].f0;\n";
 	output << "\tconst Tp diff = f - f0;\n";
@@ -557,6 +567,12 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
   {
     const int old_prec = output.precision(std::numeric_limits<Tp>::max_digits10);
     output.flags(std::ios::showpoint);
+
+    std::string templparm;
+    if (!std::experimental::is_floating_point_v<Tp1>
+     && !std::experimental::is_floating_point_v<Tp2>
+     && !std::experimental::is_floating_point_v<Tp3>)
+      templparm += "<Tp>";
 
     if (write_header)
       output << boilerplate << '\n';
@@ -669,7 +685,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 	output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "  	 {\n";
-	output << "\tconst Tp f = " << nsname << "::" << funcname << '('
+	output << "\tconst Tp f = " << nsname << "::" << funcname << templparm << '('
 	       << "data[i]." << arg1 << ", data[i]." << arg2 << ",\n";
 	output << "\t\t     data[i]." << arg3 << ");\n";
 	output << "\tconst Tp f0 = data[i].f0;\n";
@@ -721,6 +737,13 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
   {
     const int old_prec = output.precision(std::numeric_limits<Tp>::max_digits10);
     output.flags(std::ios::showpoint);
+
+    std::string templparm;
+    if (!std::experimental::is_floating_point_v<Tp1>
+     && !std::experimental::is_floating_point_v<Tp2>
+     && !std::experimental::is_floating_point_v<Tp3>
+     && !std::experimental::is_floating_point_v<Tp4>)
+      templparm += "<Tp>";
 
     if (write_header)
       output << boilerplate << '\n';
@@ -839,7 +862,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 	output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "      {\n";
-	output << "\tconst Tp f = " << nsname << "::" << funcname << '('
+	output << "\tconst Tp f = " << nsname << "::" << funcname << templparm << '('
 	       << "data[i]." << arg1 << ", data[i]." << arg2 << ",\n";
 	output << "\t\t     data[i]." << arg3 << ", data[i]." << arg4 << ");\n";
 	output << "\tconst Tp f0 = data[i].f0;\n";

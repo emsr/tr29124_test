@@ -896,7 +896,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
-    radpoly(unsigned int __n, unsigned int __m, double __rho)
+    radpoly(unsigned int __n, unsigned int __m, _Tp __rho)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
       return std::__detail::__poly_radial_jacobi<__type>(__n, __m, __rho);
