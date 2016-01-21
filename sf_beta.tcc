@@ -225,11 +225,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __beta_inc(_Tp __a, _Tp __b, _Tp __x)
     {
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+
       if (__x < _Tp{0} || __x > _Tp{1})
 	std::__throw_domain_error("__beta_inc: argument out of range");
 
       if (__isnan(__x) || __isnan(__a) || __isnan(__b))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return _S_NaN;
       else if (__x == _Tp{0} || __x == _Tp{1})
 	return _Tp{0};
       else
