@@ -57,7 +57,7 @@
 int
 main(int n_app_args, char ** app_arg)
 {
-  double x = 100.0;
+  double x = 1000.0;
   double nu = 20;
 
   bool use_internal = false;
@@ -124,7 +124,7 @@ main(int n_app_args, char ** app_arg)
 
     x += 1000.0;
   }
-  while (x < 500.0 * nu);
+  while (x < 100000.0);
 
   return 0;
 }
