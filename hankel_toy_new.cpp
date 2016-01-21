@@ -31,9 +31,10 @@ template<typename _Tp>
     std::complex<_Tp> __num4d3;
     std::complex<_Tp> __w;
     std::complex<_Tp> __p;
+    std::complex<_Tp> __p2;
     std::complex<_Tp> __xi;
     std::complex<_Tp> __zeta;
-    std::complex<_Tp> __nu2;
+    std::complex<_Tp> __nup2;
     std::complex<_Tp> __num1d3;
     std::complex<_Tp> __num2d3;
     std::complex<_Tp> __num4d3;
@@ -52,8 +53,8 @@ template<typename _Tp>
     // If nu^2 can be computed without overflow.
     if (std::abs(__nu) <= _S_sqrt_max)
       {
-	auto __nusq = __nu * __nu;
-	__num2 = _Tp{1} / __nusq;
+	auto __nup2 = __nu * __nu;
+	__num2 = _Tp{1} / __nup2;
 	// Compute nu^(-1/3), nu^(-2/3), nu^(-4/3).
 	__num1d3 = std::pow(__nu, -_S_1d3);
 	__num2d3 = __num1d3 * __num1d3;
@@ -67,6 +68,7 @@ template<typename _Tp>
       {
 	__w = std::sqrt((_Tp{1} + __zhat) * (_Tp{1} - __zhat));
 	__p = _Tp{1} / __w;
+	__p2 = __p * __p;
 	__xi = std::log(_Tp{1} + __w) - std::log(__zhat) - __w;
 	auto __zetam3hf = _S_2d3 / __xi; // zeta^(-3/2)
 	auto __logzeta = _S_2d3 * std::log(__xi) + _S_lncon; // ln(zeta)
@@ -78,6 +80,7 @@ template<typename _Tp>
       {
 	__w = std::sqrt((__zhat + _Tp{1}) * (__zhat - _Tp{1}));
 	__p = _S_j / __w;
+	__p2 = __p * __p;
 	__xi = __w - std::acos(_Tp{1} / __zhat);
 	__zetam3hf = _S_j * _S_2d3 / __xi; // i(-zeta)^(-3/2)
 	auto __logmzeta = _S_2d3 * std::log(__xi) + _S_lncon; // ln(-zeta)
@@ -100,12 +103,12 @@ template<typename _Tp>
     static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
     static constexpr __cmplx _S_j{_Tp{0}, _Tp{1}};
 
-    auto _Re_zhat = std::real(__zhat);
-    auto _Im_zhat = std::imag(__zhat);
+    auto __rezhat = std::real(__zhat);
+    auto __imzhat = std::imag(__zhat);
 
     // Compute 1 - zhat^2 and related constants.
-    auto __w = __cmplx{_Tp{1} - (_Re_zhat - _Im_zhat) * (_Re_zhat + _Im_zhat),
-			-_Tp{2} * _Re_zhat * _Im_zhat};
+    auto __w = __cmplx{_Tp{1} - (__rezhat - __imzhat) * (__rezhat + __imzhat),
+			-_Tp{2} * __rezhat * __imzhat};
     __w = std::sqrt(__w);
 
     // Compute xi = ln(1+(1-zhat^2)^(1/2)) - ln(zhat) - (1-zhat^2)^(1/2)
@@ -120,15 +123,15 @@ template<typename _Tp>
     auto __npi = _Tp{0};
 
     // Find adjustment necessary to get on proper Riemann sheet.
-    if (_Im_zhat == _Tp{0})  // zhat is real.
+    if (__imzhat == _Tp{0})  // zhat is real.
       {
-	if (_Re_zhat > 1)
+	if (__rezhat > _Tp{1})
 	  __npi = _S_2pi;
       }
     else // zhat is not real.
       {
 	// zhat is in upper half-plane.
-	if (_Im_zhat > _Tp{0})
+	if (__imzhat > _Tp{0})
 	  {
 	    // xi lies in upper half-plane.
 	    if (std::imag(__xi) > _Tp{0})
