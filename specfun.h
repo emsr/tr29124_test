@@ -24,7 +24,7 @@
 
 /** @file bits/specfun.h
  * This is an internal header file, included by other library headers.
- * You should not attempt to use it directly.
+ * You should not attempt to use it directly. @headername{cmath}
  */
 
 #ifndef _GLIBCXX_BITS_SPECFUN_H
