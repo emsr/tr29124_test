@@ -1974,7 +1974,7 @@ _S_neg_double_factorial_table[999]
     {
       constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
 
-      if (__isnan(__x) || __isnan(__k_c))
+      if (__isnan(__a) || __isnan(__x))
 	return _S_NaN;
 
       if (__x < _Tp{0} || __a <= _Tp{0})
@@ -2005,7 +2005,7 @@ _S_neg_double_factorial_table[999]
     {
       constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
 
-      if (__isnan(__x) || __isnan(__k_c))
+      if (__isnan(__a) || __isnan(__x))
 	return _S_NaN;
 
       if (__x < _Tp{0} || __a <= _Tp{0})
@@ -2031,7 +2031,7 @@ _S_neg_double_factorial_table[999]
     {
       constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
 
-      if (__isnan(__x) || __isnan(__k_c))
+      if (__isnan(__a) || __isnan(__x))
 	return _S_NaN;
 
       if (__x < _Tp{0} || __a <= _Tp{0})
@@ -2063,7 +2063,7 @@ _S_neg_double_factorial_table[999]
     {
       constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
 
-      if (__isnan(__x) || __isnan(__k_c))
+      if (__isnan(__a) || __isnan(__x))
 	return _S_NaN;
 
       if (__x < _Tp{0} || __a <= _Tp{0})
