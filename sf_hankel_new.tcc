@@ -110,8 +110,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     void
     __hankel_params(std::complex<_Tp> __nu, std::complex<_Tp> __zhat,
-		    std::complex<_Tp>& __t, std::complex<_Tp>& __tsq,
-		    std::complex<_Tp>& __nusq, std::complex<_Tp>& __1dnusq,
+		    std::complex<_Tp>& __p, std::complex<_Tp>& __p2,
+		    std::complex<_Tp>& __nup2, std::complex<_Tp>& __num2,
 		    std::complex<_Tp>& __num1d3, std::complex<_Tp>& __num2d3,
 		    std::complex<_Tp>& __num4d3, std::complex<_Tp>& __zeta,
 		    std::complex<_Tp>& __zetaphf, std::complex<_Tp>& __zetamhf,
@@ -135,52 +135,26 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr __cmplx _S_j{_Tp{0}, _Tp{1}};
 
       // Separate real and imaginary parts of zhat.
-      auto _Re_zhat = std::real(__zhat);
-      auto _Im_zhat = std::imag(__zhat);
-      auto _abs_Re_zhat = std::abs(_Re_zhat);
-      auto _abs_Im_zhat = std::abs(_Im_zhat);
-
-      // If 1 - zhat^2 can be computed without overflow.
-      if (_abs_Re_zhat < _S_sqrt_max && _abs_Im_zhat < _S_sqrt_max)
-	{
-	  // Find max and min of abs(dx) and abs(dy).
-	  auto __du = _abs_Re_zhat;
-	  auto __dv = _abs_Im_zhat;
-	  if (__du < __dv)
-	    std::swap(__du, __dv);
-	  if (__du >= _S_1d2 && __dv > _S_inf / (_Tp{2} * __du))
-	    std::__throw_runtime_error(__N("__hankel_params: "
-					   "unable to compute 1-zhat^2"));
-	}
-      else
-	std::__throw_runtime_error(__N("__hankel_params: "
-				       "unable to compute 1-zhat^2"));
+      auto __rezhat = std::real(__zhat);
+      auto __imzhat = std::imag(__zhat);
 
       // Compute 1 - zhat^2 and related constants.
-      auto __ztemp = __cmplx{_Tp{1} - (_Re_zhat - _Im_zhat) * (_Re_zhat + _Im_zhat),
-			  -_Tp{2} * _Re_zhat * _Im_zhat};
-      __ztemp = std::sqrt(__ztemp);
-      __t = _Tp{1} / __ztemp;
-      __tsq = __t * __t;
+      auto __w = __cmplx{_Tp{1} - __safe_sqr(__zhat);
+      __w = std::sqrt(__w);
+      __p = _Tp{1} / __w;
+      __p2 = __p * __p;
 
-      // If nu^2 can be computed without overflow.
-      if (std::abs(__nu) <= _S_sqrt_max)
-	{
-	  __nusq = __nu * __nu;
-	  __1dnusq = _Tp{1} / __nusq;
-	  // Compute nu^(-1/3), nu^(-2/3), nu^(-4/3).
-	  __num4d3 = -std::log(__nu);
-	  __num1d3 = std::exp(_S_1d3 * __num4d3);
-	  __num2d3 = std::exp(_S_2d3 * __num4d3);
-	  __num4d3 = std::exp(_S_4d3 * __num4d3);
-	}
-      else
-	std::__throw_runtime_error(__N("__hankel_params: "
-				       "unable to compute nu^2"));
+      __nup2 = __safe_sqr(__nu);
+      __num2 = _Tp{1} / __nup2;
+      // Compute nu^(-1/3), nu^(-2/3), nu^(-4/3).
+      __num4d3 = -std::log(__nu);
+      __num1d3 = std::exp(_S_1d3 * __num4d3);
+      __num2d3 = std::exp(_S_2d3 * __num4d3);
+      __num4d3 = std::exp(_S_4d3 * __num4d3);
 
       // Compute xi = ln(1+(1-zhat^2)^(1/2)) - ln(zhat) - (1-zhat^2)^(1/2)
       // using default branch of logarithm and square root.
-      auto __xi = std::log(__zone + __ztemp) - std::log(__zhat) - __ztemp;
+      auto __xi = std::log(__zone + __w) - std::log(__zhat) - __w;
       __zetam3hf = _S_2d3 / __xi;
 
       // Compute principal value of ln(xi) and then adjust imaginary part.
@@ -190,15 +164,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __npi = _Tp{0};
 
       // Find adjustment necessary to get on proper Riemann sheet.
-      if (_Im_zhat == _Tp{0})  // zhat is real.
+      if (__imzhat == _Tp{0})  // zhat is real.
 	{
-	  if (_Re_zhat > 1)
+	  if (__rezhat > _Tp{1})
 	    __npi = _S_2pi;
 	}
       else // zhat is not real.
 	{
 	  // zhat is in upper half-plane.
-	  if (_Im_zhat > _Tp{0})
+	  if (__imzhat > _Tp{0})
 	    {
 	      // xi lies in upper half-plane.
 	      if (std::imag(__xi) > _Tp{0})
@@ -218,8 +192,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __zetamhf = _Tp{1} / __zetaphf;
 
       // Compute (4 * zeta / (1 - zhat^2))^(1/4).
-      __ztemp = std::log(__ztemp);
-      __zetrat = _S_sqrt2 * std::exp(_S_1d4 * __lnzeta - _S_1d2 * __ztemp);
+      __w = std::log(__w);
+      __zetrat = _S_sqrt2 * std::exp(_S_1d4 * __lnzeta - _S_1d2 * __w);
 
       return;
     }
@@ -240,7 +214,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     void
-    __airy_arg(std::complex<_Tp> __nm2d3, std::complex<_Tp> __zeta,
+    __airy_arg(std::complex<_Tp> __num2d3, std::complex<_Tp> __zeta,
 	       std::complex<_Tp>& __argp, std::complex<_Tp>& __argm)
     {
       using __cmplx = std::complex<_Tp>;
@@ -249,7 +223,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr auto __expp = __cmplx{-0.5L,  0.8660254037844386467637231707529361834727L};
       static constexpr auto __expm = __cmplx{-0.5L, -0.8660254037844386467637231707529361834727L};
 
-      if (__safe_div(__zeta, __nm2d3, __argm))
+      if (__safe_div(__zeta, __num2d3, __argm))
 	{
 	  __argp = __expp * __argm;
 	  __argm = __expm * __argm;
@@ -271,8 +245,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __hankel_uniform_outer(std::complex<_Tp> __nu, std::complex<_Tp> __z, _Tp __eps,
 			   std::complex<_Tp>& __zhat, std::complex<_Tp>& __1dnsq,
-			   std::complex<_Tp>& __nm1d3, std::complex<_Tp>& __nm2d3,
-			   std::complex<_Tp>& __t, std::complex<_Tp>& __tsq,
+			   std::complex<_Tp>& __num1d3, std::complex<_Tp>& __num2d3,
+			   std::complex<_Tp>& __p, std::complex<_Tp>& __p2,
 			   std::complex<_Tp>& __etm3h, std::complex<_Tp>& __etrat,
 			   std::complex<_Tp>& _Aip, std::complex<_Tp>& __o4dp,
 			   std::complex<_Tp>& _Aim, std::complex<_Tp>& __o4dm,
@@ -287,26 +261,26 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__safe_div(__z, __nu, __zhat))
 	{
 	  // Try to compute other nu and z dependent parameters except args to Airy functions.
-	  __cmplx __nm4d3, __nusq, __zeta, __zetaphf, __zetamhf;
-	  __hankel_params(__nu, __zhat, __t, __tsq, __nusq,
-			  __1dnsq, __nm1d3, __nm2d3, __nm4d3,
+	  __cmplx __num4d3, __nup2, __zeta, __zetaphf, __zetamhf;
+	  __hankel_params(__nu, __zhat, __p, __p2, __nup2,
+			  __1dnsq, __num1d3, __num2d3, __num4d3,
 			  __zeta, __zetaphf, __zetamhf, __etm3h, __etrat);
 
 
 	  // Try to compute Airy function arguments.
 	  __cmplx __argp, __argm;
-	  __airy_arg(__nm2d3, __zeta, __argp, __argm);
+	  __airy_arg(__num2d3, __zeta, __argp, __argm);
 
 	  // Compute Airy functions and derivatives.
 	  __cmplx _Aipp, _Aimp;
 	  __airy(__argp, __eps, _Aip, _Aipp);
 	  __airy(__argm, __eps, _Aim, _Aimp);
 	  // Compute partial outer terms in expansions.
-	  __o4dp = -__zetamhf * __nm4d3 * __e2pd3 * _Aipp;
-	  __o4dm = -__zetamhf * __nm4d3 * __d2pd3 * _Aimp;
-	  __od2p = -__zetaphf * __nm2d3 * _Aip;
+	  __o4dp = -__zetamhf * __num4d3 * __e2pd3 * _Aipp;
+	  __o4dm = -__zetamhf * __num4d3 * __d2pd3 * _Aimp;
+	  __od2p = -__zetaphf * __num2d3 * _Aip;
 	  __od0dp = __e2pd3 * _Aipp;
-	  __od2m = -__zetaphf * __nm2d3 * _Aim;
+	  __od2m = -__zetaphf * __num2d3 * _Aim;
 	  __od0dm = __d2pd3 * _Aimp;
 	}
       else
@@ -330,8 +304,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     void
-    __hankel_uniform_sum(std::complex<_Tp> __t, std::complex<_Tp> __tsq,
-			std::complex<_Tp> __1dnusq, std::complex<_Tp> __zetam3hf,
+    __hankel_uniform_sum(std::complex<_Tp> __p, std::complex<_Tp> __p2,
+			std::complex<_Tp> __num2, std::complex<_Tp> __zetam3hf,
 			std::complex<_Tp> _Aip, std::complex<_Tp> __o4dp,
 			std::complex<_Tp> _Aim, std::complex<_Tp> __o4dm,
 			std::complex<_Tp> __od2p, std::complex<_Tp> __od0dp,
@@ -549,30 +523,30 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       std::vector<__cmplx> __v;
       __v.reserve(100);
 
-      auto __xtsq = std::real(__tsq);
-      auto __ytsq = std::imag(__tsq);
+      auto __xtsq = std::real(__p2);
+      auto __ytsq = std::imag(__p2);
       auto __ytsq2 = __ytsq * __ytsq;
       auto __dr = _Tp{2} * __xtsq;
-      auto __ds = std::norm(__tsq);
+      auto __ds = std::norm(__p2);
 
       // Compute Debye polynomials u_0,1,2 and v_0,1,2.
-      auto __tk = __t;
-      __u.push_back(__tk * (_S_a[1] * __tsq + _S_a[2]));
-      __v.push_back(__tk * (_S_b[1] * __tsq + _S_b[2]));
-      __tk *= __t;
-      __u.push_back(__tk * __cmplx((_S_a[3] * __xtsq + _S_a[4])
+      auto __pk = __p;
+      __u.push_back(__pk * (_S_a[1] * __p2 + _S_a[2]));
+      __v.push_back(__pk * (_S_b[1] * __p2 + _S_b[2]));
+      __pk *= __p;
+      __u.push_back(__pk * __cmplx((_S_a[3] * __xtsq + _S_a[4])
 				   * __xtsq + _S_a[5] - _S_a[3] * __ytsq2,
 			(_Tp{2} * _S_a[3] * __xtsq + _S_a[4]) * __ytsq));
-      __v.push_back(__tk * __cmplx((_S_b[3] * __xtsq + _S_b[4])
+      __v.push_back(__pk * __cmplx((_S_b[3] * __xtsq + _S_b[4])
 				   * __xtsq + _S_b[5] - _S_b[3] * __ytsq2,
 			(_Tp{2} * _S_b[3] * __xtsq + _S_b[4]) * __ytsq));
-      __tk *= __t;
-      __u.push_back(__tk * __cmplx(((_S_a[6] * __xtsq + _S_a[7])
+      __pk *= __p;
+      __u.push_back(__pk * __cmplx(((_S_a[6] * __xtsq + _S_a[7])
 				   * __xtsq + _S_a[8]) * __xtsq
      			+ _S_a[9] - (_Tp{3} * _S_a[6] * __xtsq + _S_a[7]) * __ytsq2,
      			((_Tp{3} * _S_a[6] * __xtsq + _Tp{2} * _S_a[7]) * __xtsq + _S_a[8]
      			- _S_a[6] * __ytsq2) * __ytsq));
-      __v.push_back(__tk * __cmplx(((_S_b[6] * __xtsq + _S_b[7])
+      __v.push_back(__pk * __cmplx(((_S_b[6] * __xtsq + _S_b[7])
 				   * __xtsq + _S_b[8]) * __xtsq
      			+ _S_b[9] - (_Tp{3} * _S_b[6] * __xtsq + _S_b[7]) * __ytsq2,
      			((_Tp{3} * _S_b[6] * __xtsq + _Tp{2} * _S_b[7]) * __xtsq + _S_b[8]
@@ -602,10 +576,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _KahanSum<std::complex<_Tp>> _Bsum(_B0);
       _KahanSum<std::complex<_Tp>> _Csum(_C0);
       _KahanSum<std::complex<_Tp>> _Dsum(_D0);
-      _Asum += _A * __1dnusq;
-      _Bsum += _B * __1dnusq;
-      _Csum += _C * __1dnusq;
-      _Dsum += _D * __1dnusq;
+      _Asum += _A * __num2;
+      _Bsum += _B * __num2;
+      _Csum += _C * __num2;
+      _Dsum += _D * __num2;
 
       // Combine sums in form appearing in expansions.
       _H1sum = _Aip * _Asum() + __o4dp * _Bsum();
@@ -634,7 +608,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __index = 10;
       auto __indexp = 15;
       // Maintain power of nu^(-2).
-      auto __z1dn2k = __1dnusq;
+      auto __num2k = __num2;
 
       for (auto __k = 2; __k <= __nterms; ++__k)
 	{
@@ -685,13 +659,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  ++__indexp;
 
 	  // Post multiply and form new polynomials.
-	  __tk *= __t;
-	  __u.push_back(__tk * (__ukta * __tsq + __uktb));
-	  __v.push_back(__tk * (__vkta * __tsq + __vktb));
+	  __pk *= __p;
+	  __u.push_back(__pk * (__ukta * __p2 + __uktb));
+	  __v.push_back(__pk * (__vkta * __p2 + __vktb));
 
-	  __tk *= __t;
-	  __u.push_back(__tk * (__ukpta * __tsq + __ukptb));
-	  __v.push_back(__tk * (__vkpta * __tsq + __vkptb));
+	  __pk *= __p;
+	  __u.push_back(__pk * (__ukpta * __p2 + __ukptb));
+	  __v.push_back(__pk * (__vkpta * __p2 + __vkptb));
 
 	  // Update indices in preparation for next iteration.
 	  __index = __indexp;
@@ -726,11 +700,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	       * (_C * __zetam3hf + _S_mu[0] * __v[__i2k]) + __v[__i2kp1];
 
 	  // Evaluate new terms for sums.
-	  __z1dn2k *= __1dnusq;
-	  _Asum += _A * __z1dn2k;
-	  _Bsum += _B * __z1dn2k;
-	  _Csum += _C * __z1dn2k;
-	  _Dsum += _D * __z1dn2k;
+	  __num2k *= __num2;
+	  _Asum += _A * __num2k;
+	  _Bsum += _B * __num2k;
+	  _Csum += _C * __num2k;
+	  _Dsum += _D * __num2k;
 
 	  // Combine sums in form appearing in expansions.
 	  _H1sum  = _Aip  * _Asum()  + __o4dp * _Bsum();
@@ -809,27 +783,27 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Compute outer factors in the uniform asymptotic expansions
       // for the Hankel functions and their derivatives along with
       // other important functions of nu and z.
-      __cmplx __t, __tsq,
+      __cmplx __p, __p2,
 	    __1dnsq, __etm3h, _Aip, __o4dp, _Aim, __o4dm,
-	    __od2p, __od0dp, __od0dm, __tmp, __zhat, __nm1d3,
-	    __nm2d3, __etrat, __od2m, __r_factor;
-      __hankel_uniform_outer(__nu, __z, __epsai, __zhat, __1dnsq, __nm1d3,
-			     __nm2d3, __t, __tsq, __etm3h, __etrat,
+	    __od2p, __od0dp, __od0dm, __tmp, __zhat, __num1d3,
+	    __num2d3, __etrat, __od2m, __r_factor;
+      __hankel_uniform_outer(__nu, __z, __epsai, __zhat, __1dnsq, __num1d3,
+			     __num2d3, __p, __p2, __etm3h, __etrat,
 			     _Aip, __o4dp, _Aim, __o4dm, __od2p,
 			     __od0dp, __od2m, __od0dm);
 
       // Compute further terms in the expansions in their appropriate linear combinations.
 
-      __hankel_uniform_sum(__t, __tsq, __1dnsq, __etm3h,
+      __hankel_uniform_sum(__p, __p2, __1dnsq, __etm3h,
 			   _Aip, __o4dp, _Aim, __o4dm,
 			   __od2p, __od0dp, __od2m, __od0dm, __eps,
 			   _H1, _H1p, _H2, _H2p);
 
       // Assemble approximations.
-      __tmp = __etrat * __nm1d3;
+      __tmp = __etrat * __num1d3;
       _H1 = __con1m * __tmp * _H1;
       _H2 = __con1p * __tmp * _H2;
-      __tmp = __nm2d3 / (__zhat * __etrat);
+      __tmp = __num2d3 / (__zhat * __etrat);
       _H1p = __con2p * __tmp * _H1p;
       _H2p = __con2m * __tmp * _H2p;
 
@@ -1292,7 +1266,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       std::complex<_Tp> _H1, _H1p, _H2, _H2p;
       __sph_hankel(__n, __z, _H1, _H1p, _H2, _H2p);
-      return (_H1 - _H2) / std::complex<_Tp>(0, 2);
+      return (_H1 - _H2) / std::complex<_Tp>{0, 2};
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
