@@ -101,6 +101,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
     }
 
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    __zernike(unsigned int __n, int __m, _Tp __rho, _Tp __phi)
+    {
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+
+      if (__isnan(__rho) || __isnan(__phi))
+	return _S_NaN;
+      else
+        return __poly_radial_jacobi(__n, std::abs(__m), __rho)
+	     * (__m >= 0 ? std::cos(__m * __phi) : std::sin(__m * __phi));
+    }
+
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 }
