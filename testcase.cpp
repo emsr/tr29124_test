@@ -1063,6 +1063,24 @@ template<typename Real>
     // Chebyshev polynomials of the fourth kind.
     std::cout << "chebyshev_w - UNTESTED" << std::endl;
 
+    // Jacobi polynomials.
+    std::cout << "jacobi - UNTESTED" << std::endl;
+/*
+    funcname = "jacobi";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_jacobi(filename.c_str());
+    maketest(jacobi, gsl::jacobi,
+	     "__gnu_cxx", funcname,
+	     "n", vorder,
+	     "alpha", fill_argument(std::make_pair(Real{0}, Real{5}),
+	    			    std::make_pair(true, true), 11),
+             "beta", fill_argument(std::make_pair(Real{0}, Real{5}),
+	    			   std::make_pair(true, true), 21),
+             "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
+	    			   std::make_pair(true, true), 41),
+	     file_jacobi);
+*/
+
     // Radial polynomials.
     std::cout << "radpoly - UNTESTED" << std::endl;
 /*
@@ -1072,8 +1090,6 @@ template<typename Real>
     maketest(radpoly, gsl::radpoly,
 	     "__gnu_cxx", funcname,
 	     "n", vorder, "m", vorder,
-	     "alpha", fill_argument(std::make_pair(Real{0}, Real{5}),
-	    			    std::make_pair(true, true), 11),
              "rho", fill_argument(std::make_pair(Real{0}, Real{1}),
 	    			  std::make_pair(true, true), 21),
 	     file_radpoly);
@@ -1088,8 +1104,6 @@ template<typename Real>
     maketest(zernike, gsl::zernike,
 	     "__gnu_cxx", funcname,
 	     "n", vorder, "m", vorder,
-	     "alpha", fill_argument(std::make_pair(Real{0}, Real{5}),
-	    			    std::make_pair(true, true), 11),
              "rho", fill_argument(std::make_pair(Real{0}, Real{1}),
 	    			  std::make_pair(true, true), 21),
              "phi", vphid
