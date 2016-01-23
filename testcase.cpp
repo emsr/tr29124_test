@@ -879,8 +879,8 @@ template<typename Real>
     maketest(lpochhammer_u, gsl::lnpoch,
 	     "__gnu_cxx", funcname,
 	     "a", {1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0},
-	     "nu", fill_argument(std::make_pair(Real{0}, Real{5}),
-				 std::make_pair(false, true), 21),
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(false, true), 21),
 	     file_lpochhammer_u, true, true);
 
     // Log lower Pochhammer symbol.
@@ -897,8 +897,8 @@ template<typename Real>
     maketest(pochhammer_u, gsl::poch,
 	     "__gnu_cxx", funcname,
 	     "a", dvorder,
-	     "nu", fill_argument(std::make_pair(Real{0}, Real{5}),
-				 std::make_pair(false, true), 21),
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(false, true), 21),
 	     file_pochhammer_u, true, true);
 
     // Lower Pochhammer symbols (see boost::falling_factorial).
