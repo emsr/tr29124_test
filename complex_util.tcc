@@ -32,6 +32,8 @@
 
 #pragma GCC system_header
 
+#include <ext/math_const.h>
+
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 namespace __detail
@@ -46,7 +48,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @param[in]  z1  Dividend
    * @param[in]  z2  Divisor
-   * @return  z1dz2  Quotient
+   * @return  The quotient of z1 and z2
    * @throws  std::runtime_error on division overflow.
    */
   template<typename _Tp>
@@ -143,15 +145,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __im1 = std::imag(__z1);
       auto __re2 = std::real(__z2);
       auto __im2 = std::imag(__z2);
-      auto __abs_re1 = std::abs(__re1);
-      auto __abs_im1 = std::abs(__im1);
-      auto __abs_re2 = std::abs(__re2);
-      auto __abs_im2 = std::abs(__im2);
 
       auto __abs_rem = std::abs(__re1 - __im1);
       auto __abs_rep = std::abs(__re2 + __im2);
-      auto __abs_imm = ;
-      auto __abs_imp = ;
       if (__abs_rem < _S_sqrt_max || __abs_rep < _S_sqrt_max)
 	{
 	  // Find the largest and smallest magnitudes
@@ -163,7 +159,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    std::__throw_runtime_error(__N("__safe_mul: "
 					"overflow in complex multiplication"));
 	  else
-	    return std::complex<_Tp>();
+	    return std::complex<_Tp>((__re1 - __im1) * (__re2 + __im2),
+			__safe_mul(__re1, __im2) + __safe_mul(__re2, __im1));
 	}
       else
 	std::__throw_runtime_error(__N("__safe_mul: "
@@ -183,7 +180,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __safe_sqr(const std::complex<_Tp>& __z)
     {
-      static constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::root_2
+      static constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
       static constexpr auto _S_max = __gnu_cxx::__max<_Tp>();
       static constexpr auto _S_hmax = _S_max / _Tp{2};
       static constexpr auto _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();
@@ -191,15 +188,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       auto __rez = std::real(__z);
       auto __imz = std::imag(__z);
-      auto __abs_rez = std::abs(__re);
-      auto __abs_imz = std::abs(__im);
+      auto __abs_rez = std::abs(__rez);
+      auto __abs_imz = std::abs(__imz);
       auto __zm = __rez - __imz;
       auto __zp = __rez + __imz;
       auto __abs_zm = std::abs(__zm);
       auto __abs_zp = std::abs(__zp);
 
       if ((__abs_zm < _S_sqrt_max || __abs_zp < _S_sqrt_max)
-       && (_abs_rez < _S_sqrt_hmax || _abs_imz < _S_sqrt_hhmax))
+       && (__abs_rez < _S_sqrt_hmax || __abs_imz < _S_sqrt_hmax))
 	{
 	  // Sort the magnitudes of the imag part factors.
 	  auto __imzmax = __abs_rez;
