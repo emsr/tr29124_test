@@ -729,46 +729,6 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Upper Pochammer functions.
-template<typename _Tp>
-  struct testcase_pochammer_u
-  {
-    _Tp f0;
-    _Tp a;
-    _Tp nu;
-    _Tp f;
-  };
-
-// Log upper Pochammer functions.
-template<typename _Tp>
-  struct testcase_lpochammer_u
-  {
-    _Tp f0;
-    _Tp a;
-    _Tp nu;
-    _Tp f;
-  };
-
-// Lower Pochammer functions.
-template<typename _Tp>
-  struct testcase_pochammer_l
-  {
-    _Tp f0;
-    _Tp a;
-    _Tp nu;
-    _Tp f;
-  };
-
-// Log lower Pochammer functions.
-template<typename _Tp>
-  struct testcase_lpochammer_l
-  {
-    _Tp f0;
-    _Tp a;
-    _Tp nu;
-    _Tp f;
-  };
-
 // Beta function.
 template<typename _Tp>
   struct testcase_ibeta
