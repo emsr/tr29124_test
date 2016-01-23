@@ -1174,7 +1174,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       std::complex<_Tp> _H1, _H1p, _H2, _H2p;
       __hankel(__nu, __z, _H1, _H1p, _H2, _H2p);
-      return (_H1 - _H2) / std::complex<_Tp>(0, 2);
+      return (_H1 - _H2) / std::complex<_Tp>{0, 2};
     }
 
   /**
