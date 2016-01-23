@@ -867,21 +867,18 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   inline float
   zernikef(unsigned int __n, int __m, float __rho, float __phi)
-  { return std::__detail::__poly_radial_jacobi(__n, std::abs(__m), __rho)
-         * (__m >= 0 ? std::cos(__m * __phi) : std::sin(__m * __phi)); }
+  { return std::__detail::__zernike<float>(__n, __m, __rho, __phi); }
 
   inline long double
   zernikel(unsigned int __n, int __m, long double __rho, long double __phi)
-  { return std::__detail::__poly_radial_jacobi(__n, std::abs(__m), __rho)
-         * (__m >= 0 ? std::cos(__m * __phi) : std::sin(__m * __phi)); }
+  { return std::__detail::__zernike<long double>(__n, __m, __rho, __phi); }
 
   template<typename _Trho, typename _Tphi>
     inline __gnu_cxx::__promote_num_t<_Trho, _Tphi>
     zernike(unsigned int __n, int __m, _Trho __rho, _Tphi __phi)
     {
       using __type = __gnu_cxx::__promote_num_t<_Trho, _Tphi>;
-      return std::__detail::__poly_radial_jacobi<__type>(__n, std::abs(__m), __rho)
-           * (__m >= 0 ? std::cos(__m * __phi) : std::sin(__m * __phi));
+      return std::__detail::__zernike<__type>(__n, __m, __rho, __phi);
     }
 
   // Radial polynomials
