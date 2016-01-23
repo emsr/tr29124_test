@@ -791,16 +791,4 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Complementary beta function.
-template<typename _Tp>
-  struct testcase_zernike
-  {
-    _Tp f0;
-    unsigned int n;
-    int n;
-    _Tp rho;
-    _Tp phi;
-    _Tp f;
-  };
-
 #endif // _GLIBCXX_SPECFUN_TESTCASE_H
