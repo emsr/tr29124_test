@@ -332,19 +332,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __sph_bessel_ik(unsigned int __n, _Tp __x,
 		    _Tp & __i_n, _Tp & __k_n, _Tp & __ip_n, _Tp & __kp_n)
     {
-      const auto __nu = _Tp(__n + 0.5L);
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
 
-      _Tp _I_nu, _Ip_nu, _K_nu, _Kp_nu;
-      __bessel_ik(__nu, __x, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
+      if (__isnan(__x))
+	__i_n = __k_n = __ip_n = __kp_n = _S_NaN;
+      else
+	{
+	  const auto __nu = _Tp(__n + 0.5L);
+	  _Tp _I_nu, _Ip_nu, _K_nu, _Kp_nu;
+	  __bessel_ik(__nu, __x, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
 
-      const auto __factor = __gnu_cxx::__math_constants<_Tp>::__root_pi_div_2
-			  / std::sqrt(__x);
+	  const auto __factor = __gnu_cxx::__math_constants<_Tp>::__root_pi_div_2
+			      / std::sqrt(__x);
 
-      __i_n = __factor * _I_nu;
-      __k_n = __factor * _K_nu;
-      __ip_n = __factor * _Ip_nu - __i_n / (_Tp{2} * __x);
-      __kp_n = __factor * _Kp_nu - __k_n / (_Tp{2} * __x);
-
+	  __i_n = __factor * _I_nu;
+	  __k_n = __factor * _K_nu;
+	  __ip_n = __factor * _Ip_nu - __i_n / (_Tp{2} * __x);
+	  __kp_n = __factor * _Kp_nu - __k_n / (_Tp{2} * __x);
+	}
       return;
     }
 
