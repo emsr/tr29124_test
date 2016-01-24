@@ -50,7 +50,7 @@
 #define __JACOBI_H__
 
 #ifdef __cplusplus
-//extern "C"{
+extern "C"{
 #endif
 
 #include <gsl/gsl_sf_result.h>
@@ -206,7 +206,7 @@ void jac_interpmat_free(jac_quadrature *quad);
 
 
 #ifdef __cplusplus
-  //}
+}
 #endif
 
 #endif /* __JACOBI_H__ */
