@@ -83,7 +83,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       unsigned int __i;
       for (__i = 0; __i < __max_iter; ++__i)
 	{
-	  __term /= ((__c + _Tp(__i)) * _Tp(1 + __i));
+	  __term *= __x / ((__c + _Tp(__i)) * _Tp(1 + __i));
 	  if (std::abs(__term) < __eps)
 	    break;
 	  __Fac += __term;
