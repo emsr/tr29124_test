@@ -1754,19 +1754,19 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Heuman lambda functions.
 
   inline float
-  heuman_lambdaf(float __phi, float __k)
-  { return std::__detail::__heuman_lambda<float>(__phi, __k); }
+  heuman_lambdaf(float __k, float __phi)
+  { return std::__detail::__heuman_lambda<float>(__k, __phi); }
 
   inline long double
-  heuman_lambdal(long double __phi, long double __k)
-  { return std::__detail::__heuman_lambda<long double>(__phi, __k); }
+  heuman_lambdal(long double __k, long double __phi)
+  { return std::__detail::__heuman_lambda<long double>(__k, __phi); }
 
-  template<typename _Tphi, typename _Tk>
-    inline __gnu_cxx::__promote_num_t<_Tphi, _Tk>
-    heuman_lambda(_Tphi __phi, _Tk __k)
+  template<typename _Tk, typename _Tphi>
+    inline __gnu_cxx::__promote_num_t<_Tk, _Tphi>
+    heuman_lambda(_Tk __k, _Tphi __phi)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tphi, _Tk>;
-      return std::__detail::__heuman_lambda<__type>(__phi, __k);
+      using __type = __gnu_cxx::__promote_num_t<_Tk, _Tphi>;
+      return std::__detail::__heuman_lambda<__type>(__k, __phi);
     }
 
   // Complete Legendre elliptic integral D.

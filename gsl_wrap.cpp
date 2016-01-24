@@ -1048,23 +1048,6 @@ double
 chebyshev_t(unsigned int n, double x)
 { 0.0; }
 
-/// Jacobi polynomials.
-double
-jacobi(unsigned int n, double alpha, double beta, double x)
-{
-//  gsl_sf_result result;
-//  int stat = ::jac_jacobi_e(x, n, alpha, beta, &result);
-//  if (stat != GSL_SUCCESS)
-//    {
-//      std::ostringstream msg("Error in jacobi:");
-//      msg << " n=" << n << " alpha=" << alpha << " beta=" << beta << " x=" << x;
-//      throw std::runtime_error(msg.str());
-//    }
-//  else
-//    return result.val;
-  return 0.0;
-}
-
 /// Binomial coefficients.
 double
 choose(unsigned int n, unsigned int k)
@@ -1117,18 +1100,45 @@ taylorcoeff(unsigned int n, double x)
     return result.val;
 }
 
+/// Jacobi polynomials.
+double
+jacobi(unsigned int n, double alpha, double beta, double x)
+{
+  gsl_sf_result result;
+  int stat = jac_jacobi_e(x, n, alpha, beta, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in jacobi:");
+      msg << " n=" << n << " alpha=" << alpha << " beta=" << beta << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+  return 0.0;
+}
+
 /// Radial polynomials
 double
 radpoly(unsigned int n, unsigned int m, double rho)
 {
-  return 0.0;
+  if (m > n)
+    throw std::range_error("radpoly: m > n");
+  else if ((n - m) % 2 == 1)
+    return 0.0;
+  else
+    {
+      auto k = (n - m) / 2;
+      return (k % 2 == 0 ? +1 : -1) * std::pow(rho, double(m))
+	   * jacobi(k, double(m), 0.0, 1.0 - 2.0 * rho * rho);
+    }
 }
 
 /// Zernicke polynomials
 double
-zernicke(unsigned int n, unsigned int m, double rho,double phi)
+zernicke(unsigned int n, int m, double rho, double phi)
 {
-  return 0.0;
+  return radpoly(n, std::abs(m), rho)
+       * (m >= 0 ? std::cos(m * phi) : std::sin(m * phi));
 }
 
 /// Cylindrical Hankel functions of the first kind.
@@ -1161,7 +1171,7 @@ sph_hankel_2(unsigned int n, double x)
 
 /// Heuman lambda functions.
 double
-heuman_lambda(double phi, double k)
+heuman_lambda(double k, double phi)
 {
   return 0.0;
 }

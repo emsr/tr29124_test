@@ -941,13 +941,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     _Tp
-    __heuman_lambda(_Tp __phi, _Tp __k)
+    __heuman_lambda(_Tp __k, _Tp __phi)
     {
       using _Val = __num_traits_t<_Tp>;
       constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Val>::__pi;
 
-      if (__isnan(__phi) || __isnan(__k))
+      if (__isnan(__k) || __isnan(__phi))
 	return _S_NaN;
       else
 	{
