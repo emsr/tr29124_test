@@ -264,7 +264,7 @@ std::complex<double> sph_hankel_1(unsigned int n, double x);
 std::complex<double> sph_hankel_2(unsigned int n, double x);
 
 /// Heuman lambda functions.
-double heuman_lambda(double phi, double k);
+double heuman_lambda(double k, double phi);
 
 /// Jacobi zeta functions.
 double jacobi_zeta(double k, double phi);
