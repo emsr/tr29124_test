@@ -657,7 +657,7 @@ sph_hankel_2(unsigned int n, double x)
 
 /// Heuman lambda functions.
 double
-heuman_lambda(double phi, double k)
+heuman_lambda(double k, double phi)
 {
   return boost::math::heuman_lambda(k, phi);
 }
