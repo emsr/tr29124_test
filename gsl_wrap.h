@@ -212,14 +212,14 @@ double chebyshev_v(unsigned int n, double x);
 /// Chebyshev polynomials of the fourth kind.
 double chebyshev_w(unsigned int n, double x);
 
-/// Jacobi polynomials.
-double jacobi(unsigned int n, double alpha, double beta, double x);
-
 /// Binomial coefficients.
 double choose(unsigned int n, unsigned int k);
 
 /// Log binomial coefficients.
 double lnchoose(unsigned int n, unsigned int k);
+
+/// Jacobi polynomials.
+double jacobi(unsigned int n, double alpha, double beta, double x);
 
 /// Taylor coefficients.
 double taylorcoeff(unsigned int n, double x);
@@ -228,7 +228,7 @@ double taylorcoeff(unsigned int n, double x);
 double radpoly(unsigned int n, unsigned int m, double rho);
 
 /// Zernicke polynomials
-double zernicke(unsigned int n, unsigned int m, double rho,double phi);
+double zernicke(unsigned int n, int m, double rho, double phi);
 
 /// Cylindrical Hankel functions of the first kind.
 std::complex<double> cyl_hankel_1(double nu, double x);
@@ -243,7 +243,7 @@ std::complex<double> sph_hankel_1(unsigned int n, double x);
 std::complex<double> sph_hankel_2(unsigned int n, double x);
 
 /// Heuman lambda functions.
-double heuman_lambda(double phi, double k);
+double heuman_lambda(double k, double phi);
 
 /// Jacobi zeta functions.
 double jacobi_zeta(double k, double phi);
