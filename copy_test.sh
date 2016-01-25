@@ -34,7 +34,7 @@ ${tool} ${text_dir}/airy_ai/*            ${ext_dir}/airy_ai
 ${tool} ${text_dir}/airy_bi/*            ${ext_dir}/airy_bi
 ${tool} ${text_dir}/bincoef/*            ${ext_dir}/bincoef
 ${tool} ${text_dir}/conf_hyperg/*        ${ext_dir}/conf_hyperg
-#${tool} ${text_dir}/conf_hyperg_lim/*    ${ext_dir}/conf_hyperg_lim
+${tool} ${text_dir}/conf_hyperg_lim/*    ${ext_dir}/conf_hyperg_lim
 ${tool} ${text_dir}/coshint/*            ${ext_dir}/coshint
 ${tool} ${text_dir}/cosint/*             ${ext_dir}/cosint
 ${tool} ${text_dir}/dawson/*             ${ext_dir}/dawson

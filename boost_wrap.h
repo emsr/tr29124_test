@@ -198,22 +198,28 @@ double sinhc_pi(double x);
 double sinhc(double x);
 
 /// Log upper Pochhammer symbol.
-double lnpoch(double a, double x);
+double lpochhammer_u(double a, double x);
+
+/// Log lower Pochhammer symbol.
+double lpochhammer_l(double a, double x);
 
 /// Upper Pochhammer symbol.
-double poch(double a, double x);
+double pochhammer_u(double a, double x);
+
+/// Lower Pochhammer symbol.
+double pochhammer_l(double a, double x);
 
 /// Log factorial.
-double lnfact(unsigned int n);
+double lfactorial(unsigned int n);
 
 /// Factorial.
-double fact(unsigned int n);
+double factorial(unsigned int n);
 
 /// Log double factorial.
-double lndoublefact(int n);
+double ldouble_factorial(int n);
 
 /// Double factorial.
-double doublefact(int n);
+double double_factorial(int n);
 
 /// Regular modified spherical bessel functions.
 double bessel_il(unsigned int n, double x);
@@ -233,14 +239,14 @@ double chebyshev_v(unsigned int n, double x);
 /// Chebyshev polynomials of the fourth kind.
 double chebyshev_w(unsigned int n, double x);
 
-/// Jacobi polynomials.
-double jacobi(unsigned int n, double alpha, double beta, double x);
-
 /// Binomial coefficients.
 double choose(unsigned int n, unsigned int k);
 
 /// Log binomial coefficients.
 double lnchoose(unsigned int n, unsigned int k);
+
+/// Jacobi polynomials.
+double jacobi(unsigned int n, double alpha, double beta, double x);
 
 /// Taylor coefficients.
 double taylorcoeff(unsigned int n, double x);
@@ -248,8 +254,8 @@ double taylorcoeff(unsigned int n, double x);
 /// Radial polynomials
 double radpoly(unsigned int n, unsigned int m, double rho);
 
-/// Zernicke polynomials
-double zernicke(unsigned int n, unsigned int m, double rho,double phi);
+/// Zernike polynomials
+double zernike(unsigned int n, int m, double rho, double phi);
 
 /// Cylindrical Hankel functions of the first kind.
 std::complex<double> cyl_hankel_1(double nu, double x);
@@ -270,33 +276,27 @@ double heuman_lambda(double k, double phi);
 double jacobi_zeta(double k, double phi);
 
 /// Inverse error function.
-double
-erf_inv(double p)
-{
-  return boost::math::erf_inv(p);
-}
+double erf_inv(double p);
 
 /// Inverse complementary error function.
-double erfc_inv(double p);
+double erfc(double p);
 
-double gamma_q_inv(double a, double q);
-
-double gamma_q_inva(double x, double q);
-
-double gamma_p_inv(double a, double q);
-
-double gamma_p_inva(double x, double q);
-
+/// Inverse incomplete beta function.
 double ibeta_inv(double a, double b, double p);
 
+/// Inverse complementary incomplete beta function.
 double ibetac_inv(double a, double b, double p);
 
+/// Inverse parameter incomplete beta function.
 double ibeta_inva(double b, double x, double p);
 
+/// Inverse parameter complementary incomplete beta function.
 double ibetac_inva(double b, double x, double p);
 
+/// Inverse parameter incomplete beta function.
 double ibeta_invb(double a, double x, double p);
 
+/// Inverse parameter complementary incomplete beta function.
 double ibetac_invb(double a, double x, double p);
 
 } // namespace bst

@@ -64,6 +64,7 @@ main()
   using       std::comp_ellint_2;
   using       std::comp_ellint_3;
   using __gnu_cxx::conf_hyperg;
+  using __gnu_cxx::conf_hyperg_lim;
   using __gnu_cxx::coshint;
   using __gnu_cxx::cosint;
   using       std::cyl_bessel_i; 
@@ -92,6 +93,7 @@ main()
   using __gnu_cxx::hurwitz_zeta;
   using __gnu_cxx::hyperg;
   using __gnu_cxx::ibeta;
+  using __gnu_cxx::jacobi;
   using __gnu_cxx::jacobi_sn;
   using __gnu_cxx::jacobi_cn;
   using __gnu_cxx::jacobi_dn;
@@ -105,6 +107,7 @@ main()
   using __gnu_cxx::pochhammer_l;
   using __gnu_cxx::pochhammer_u;
   using __gnu_cxx::psi;
+  using __gnu_cxx::radpoly;
   using       std::riemann_zeta;
   using __gnu_cxx::sinc;
   using __gnu_cxx::sinc_pi;
@@ -116,6 +119,7 @@ main()
   using __gnu_cxx::sph_bessel_k;
   using       std::sph_legendre;
   using       std::sph_neumann;
+  using __gnu_cxx::zernike;
 #else
   using  std::tr1::assoc_laguerre;
   using  std::tr1::assoc_legendre;
