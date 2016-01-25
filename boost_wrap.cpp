@@ -503,42 +503,56 @@ sinhc(double x)
 
 /// Log upper Pochhammer symbol.
 double
-lnpoch(double a, double x)
+lpochhammer_u(double a, double x)
 {
   return std::log(boost::math::rising_factorial(a, x));
 }
 
+/// Log lower Pochhammer symbol.
+double
+lpochhammer_l(double a, double x)
+{
+  return boost::math::lgamma(a + x) - lpochhammer_u(a, x);
+}
+
 /// Upper Pochhammer symbol.
 double
-poch(double a, double x)
+pochhammer_u(double a, double x)
 {
   return boost::math::rising_factorial(a, x);
 }
 
+/// Lower Pochhammer symbol.
+double
+pochhammer_u(double a, double x)
+{
+  return boost::math::tgamma(a + x) / pochhammer_u(a, x);
+}
+
 /// Log factorial.
 double
-lnfact(unsigned int n)
+lfactorial(unsigned int n)
 {
   return boost::math::log_factorial<double>(n);
 }
 
 /// Factorial.
 double
-fact(unsigned int n)
+factorial(unsigned int n)
 {
   return boost::math::factorial<double>(n);
 }
 
 /// Log double factorial.
 double
-lndoublefact(int n)
+ldouble_factorial(int n)
 {
   return 0.0;
 }
 
 /// Double factorial.
 double
-doublefact(int n)
+double_factorial(int n)
 {
   return boost::math::double_factorial(n);
 }
@@ -620,9 +634,9 @@ radpoly(unsigned int n, unsigned int m, double rho)
   return 0.0;
 }
 
-/// Zernicke polynomials
+/// Zernike polynomials
 double
-zernicke(unsigned int n, unsigned int m, double rho,double phi)
+zernike(unsigned int n, unsigned int m, double rho, double phi)
 {
   return 0.0;
 }

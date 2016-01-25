@@ -36,6 +36,7 @@
 #endif
 #include <specfun_testcase.h>
 
+Divergence at a=0.0000000000000000 x=0.25000000000000000 f1=inf f2=0.0000000000000000
 
 // Test data for a=1.0000000000000000.
 // max(|f - f_GSL|): 1.4210854715202004e-13
@@ -251,7 +252,7 @@ template<typename Tp, unsigned int Num>
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = __gnu_cxx::pochhammer_u(data[i].a, data[i].nu);
+	const Tp f = __gnu_cxx::pochhammer_u(data[i].a, data[i].x);
 	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)

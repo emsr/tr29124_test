@@ -107,7 +107,7 @@ ${copy} check_airy_ai.cc            ${textdir}/airy_ai/check_value.cc
 ${copy} check_airy_bi.cc            ${textdir}/airy_bi/check_value.cc
 ${copy} check_bincoef.cc            ${textdir}/bincoef/check_value.cc
 ${copy} check_conf_hyperg.cc        ${textdir}/conf_hyperg/check_value.cc
-#${copy} check_conf_hyperg_lim.cc    ${textdir}/conf_hyperg_lim/check_value.cc
+${copy} check_conf_hyperg_lim.cc    ${textdir}/conf_hyperg_lim/check_value.cc
 ${copy} check_coshint.cc            ${textdir}/coshint/check_value.cc
 ${copy} check_cosint.cc             ${textdir}/cosint/check_value.cc
 ${copy} check_dawson.cc             ${textdir}/dawson/check_value.cc
@@ -121,7 +121,7 @@ ${copy} check_expint_e1.cc          ${textdir}/expint_e1/check_value.cc
 ${copy} check_factorial.cc          ${textdir}/factorial/check_value.cc
 ${copy} check_fresnel_c.cc          ${textdir}/fresnel_c/check_value.cc
 ${copy} check_fresnel_s.cc          ${textdir}/fresnel_s/check_value.cc
-#${copy} check_gamma_l.cc            ${textdir}/gamma_l/check_value.cc
+${copy} check_gamma_l.cc            ${textdir}/gamma_l/check_value.cc
 ${copy} check_gamma_u.cc            ${textdir}/gamma_u/check_value.cc
 ${copy} check_gegenbauer.cc         ${textdir}/gegenbauer/check_value.cc
 ${copy} check_hurwitz_zeta.cc       ${textdir}/hurwitz_zeta/check_value.cc

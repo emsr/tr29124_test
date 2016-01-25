@@ -83,6 +83,7 @@ template<typename Real>
     using __gnu_cxx::hurwitz_zeta;
     using __gnu_cxx::hyperg;
     using __gnu_cxx::ibeta;
+    using __gnu_cxx::jacobi;
     using __gnu_cxx::jacobi_sn;
     using __gnu_cxx::jacobi_cn;
     using __gnu_cxx::jacobi_dn;
@@ -97,6 +98,7 @@ template<typename Real>
     using __gnu_cxx::pochhammer_l;
     using __gnu_cxx::pochhammer_u;
     using __gnu_cxx::psi;
+    using __gnu_cxx::radpoly;
     using       std::riemann_zeta;
     using __gnu_cxx::sinhc;
     using __gnu_cxx::sinhc_pi;
@@ -109,6 +111,7 @@ template<typename Real>
     using __gnu_cxx::sph_bessel_k;
     using       std::sph_legendre;
     using       std::sph_neumann;
+    using __gnu_cxx::zernike;
 #else
     std::string ns("tr1");
     using  std::tr1::assoc_laguerre;
@@ -139,6 +142,9 @@ template<typename Real>
     // Unsigned integer orders for various polynomials, harmonics, and spherical bessels.
     std::vector<unsigned int> vorder{0, 1, 2, 5, 10, 20, 50, 100};
 
+    // Integer orders for various polynomials, harmonics, and spherical bessels.
+    std::vector<int> iorder{0, 1, 2, 5, 10, 20, 50, 100};
+
     // ... corresponding "Real" integer orders for GSL.
     std::vector<Real> dvorder{0, 1, 2, 5, 10, 20, 50, 100};
 
@@ -148,7 +154,7 @@ template<typename Real>
 			       1, 2, 5, 10, 20, 50, 100};
 
     // Orders for spherical bessel functions.
-    std::vector<unsigned int> sborder{ 0, 1, 2, 5, 10, 20, 50, 100 };
+    std::vector<unsigned int> sborder{0, 1, 2, 5, 10, 20, 50, 100};
 
     const unsigned int num_phi = 10;
     Real phi[num_phi];
@@ -679,7 +685,17 @@ template<typename Real>
 	     file_gamma_u);
 
     // Lower incomplete Gamma functions.
-    std::cout << "gamma_l - UNCHECKED" << std::endl;
+    std::cout << "gamma_l" << std::endl;
+    funcname = "gamma_l";
+    filename = get_filename(path, prefix, funcname, "", ".cc");
+    std::ofstream file_gamma_l(filename.c_str());
+    maketest(gamma_l, gsl::gamma_l,
+	     "__gnu_cxx", funcname,
+	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(false, true), 11),
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(true, true), 11),
+	     file_gamma_l);
 
     // Incomplete Beta functions.
     std::cout << "ibeta" << std::endl;
@@ -876,7 +892,7 @@ template<typename Real>
     funcname = "lpochhammer_u";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_lpochhammer_u(filename.c_str());
-    maketest(lpochhammer_u, gsl::lnpoch,
+    maketest(lpochhammer_u, gsl::lpochhammer_u,
 	     "__gnu_cxx", funcname,
 	     "a", {1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0},
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -884,17 +900,25 @@ template<typename Real>
 	     file_lpochhammer_u, true, true);
 
     // Log lower Pochhammer symbol.
-    //std::cout << "lpochhammer_l" << std::endl;
-    //funcname = "lpochhammer_l";
-    //filename = get_filename(path, prefix, funcname, "",  ".cc");
-    //std::ofstream file_lpochhammer_l(filename.c_str());
+    std::cout << "lpochhammer_l" << std::endl;
+/*
+    funcname = "lpochhammer_l";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_lpochhammer_l(filename.c_str());
+    maketest(lpochhammer_l, gsl::lpochhammer_l,
+	     "__gnu_cxx", funcname,
+	     "a", {1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0},
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(false, true), 21),
+	     file_lpochhammer_l, true, true);
+*/
 
     // Upper Pochhammer symbols (see boost::rising_factorial).
     std::cout << "pochhammer_u" << std::endl;
     funcname = "pochhammer_u";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_pochhammer_u(filename.c_str());
-    maketest(pochhammer_u, gsl::poch,
+    maketest(pochhammer_u, gsl::pochhammer_u,
 	     "__gnu_cxx", funcname,
 	     "a", dvorder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -902,10 +926,18 @@ template<typename Real>
 	     file_pochhammer_u, true, true);
 
     // Lower Pochhammer symbols (see boost::falling_factorial).
-    //std::cout << "pochhammer_l" << std::endl;
-    //funcname = "pochhammer_l";
-    //filename = get_filename(path, prefix, funcname, "",  ".cc");
-    //std::ofstream file_pochhammer_l(filename.c_str());
+    std::cout << "pochhammer_l" << std::endl;
+/*
+    funcname = "pochhammer_l";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_pochhammer_l(filename.c_str());
+    maketest(pochhammer_l, gsl::pochhammer_l,
+	     "__gnu_cxx", funcname,
+	     "a", dvorder,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(false, true), 21),
+	     file_pochhammer_l, true, true);
+*/
 
     // Regular modified spherical bessel functions.
     std::cout << "sph_bessel_i" << std::endl;
@@ -962,7 +994,7 @@ template<typename Real>
     funcname = "factorial";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_factorial(filename.c_str());
-    maketest(factorial<Real>, gsl::fact,
+    maketest(factorial<Real>, gsl::factorial,
 	     "__gnu_cxx", funcname,
 	     "n", fill_argument(std::make_pair(0U, 50U),
 	    			std::make_pair(true, true), 51),
@@ -973,7 +1005,7 @@ template<typename Real>
     funcname = "lfactorial";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_lfactorial(filename.c_str());
-    maketest(lfactorial<Real>, gsl::lnfact,
+    maketest(lfactorial<Real>, gsl::lfactorial,
 	     "__gnu_cxx", funcname,
 	     "n", fill_argument(std::make_pair(0U, 500U),
 	    			std::make_pair(true, true), 501),
@@ -984,7 +1016,7 @@ template<typename Real>
     funcname = "double_factorial";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_double_factorial(filename.c_str());
-    maketest(double_factorial<Real>, gsl::doublefact,
+    maketest(double_factorial<Real>, gsl::double_factorial,
 	     "__gnu_cxx", funcname,
 	     "n", fill_argument(std::make_pair(0, 50),
 	    			std::make_pair(true, true), 51),
@@ -995,7 +1027,7 @@ template<typename Real>
     funcname = "ldouble_factorial";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_ldouble_factorial(filename.c_str());
-    maketest(ldouble_factorial<Real>, gsl::lndoublefact,
+    maketest(ldouble_factorial<Real>, gsl::ldouble_factorial,
 	     "__gnu_cxx", funcname,
 	     "n", fill_argument(std::make_pair(0, 500),
 	    			std::make_pair(true, true), 501),
@@ -1064,8 +1096,7 @@ template<typename Real>
     std::cout << "chebyshev_w - UNTESTED" << std::endl;
 
     // Jacobi polynomials.
-    std::cout << "jacobi - UNTESTED" << std::endl;
-/*
+    std::cout << "jacobi" << std::endl;
     funcname = "jacobi";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_jacobi(filename.c_str());
@@ -1079,11 +1110,9 @@ template<typename Real>
              "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 	    			   std::make_pair(true, true), 41),
 	     file_jacobi);
-*/
 
     // Radial polynomials.
-    std::cout << "radpoly - UNTESTED" << std::endl;
-/*
+    std::cout << "radpoly" << std::endl;
     funcname = "radpoly";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_radpoly(filename.c_str());
@@ -1093,22 +1122,19 @@ template<typename Real>
              "rho", fill_argument(std::make_pair(Real{0}, Real{1}),
 	    			  std::make_pair(true, true), 21),
 	     file_radpoly);
-*/
 
-    // zernike polynomials.
-    std::cout << "zernike - UNTESTED" << std::endl;
-/*
+    // Zernike polynomials.
+    std::cout << "zernike" << std::endl;
     funcname = "zernike";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_zernike(filename.c_str());
     maketest(zernike, gsl::zernike,
 	     "__gnu_cxx", funcname,
-	     "n", vorder, "m", vorder,
+	     "n", vorder, "m", iorder,
              "rho", fill_argument(std::make_pair(Real{0}, Real{1}),
 	    			  std::make_pair(true, true), 21),
-             "phi", vphid
+             "phi", vphid,
 	     file_zernike);
-*/
 
     // Confluent hypergeometric limit functions.
     // Skip the singularity at c = 0.

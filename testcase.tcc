@@ -290,7 +290,13 @@ template<typename Tp, typename Tp1>
 	    const Tp f1 = function1(x);
 	    const Tp f2 = function2(x);
 	    if (std::abs(f1) == inf || std::abs(f2) == inf)
-	      break;
+	      {
+		output << "Divergence at"
+		       << " " << arg1 << "=" << x
+		       << " f1=" << f1
+		       << " f2=" << f2 << '\n';
+		break;
+	      }
 	    const Tp diff = f1 - f2;
 	    if (std::abs(diff) > max_abs_diff)
 	      max_abs_diff = std::abs(diff);
@@ -447,7 +453,14 @@ template<typename Tp, typename Tp1, typename Tp2>
 		const Tp f1 = function1(x, y);
 		const Tp f2 = function2(x, y);
 		if (std::abs(f1) == inf || std::abs(f2) == inf)
-		  break;
+		  {
+		    output << "Divergence at"
+			   << " " << arg1 << "=" << x
+			   << " " << arg2 << "=" << y
+			   << " f1=" << f1
+			   << " f2=" << f2 << '\n';
+		    break;
+		  }
 		const Tp diff = f1 - f2;
 		if (std::abs(diff) > max_abs_diff)
 		  max_abs_diff = std::abs(diff);
@@ -597,7 +610,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 	  {
 	    const Tp2 y = argument2[j];
 
-	    std::vector< std::tuple<Tp, Tp1, Tp2, Tp3> > crud;
+	    std::vector<std::tuple<Tp, Tp1, Tp2, Tp3>> crud;
 
 	    Tp max_abs_diff = -Tp(1);
 	    Tp max_abs_frac = -Tp(1);
@@ -610,7 +623,15 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		    const Tp f1 = function1(x, y, z);
 		    const Tp f2 = function2(x, y, z);
 		    if (std::abs(f1) == inf || std::abs(f2) == inf)
-		      break;
+		      {
+			output << "Divergence at"
+			       << " " << arg1 << "=" << x
+			       << " " << arg2 << "=" << y
+			       << " " << arg3 << "=" << z
+			       << " f1=" << f1
+			       << " f2=" << f2 << '\n';
+			break;
+		      }
 		    const Tp diff = f1 - f2;
 		    if (std::abs(diff) > max_abs_diff)
 		      max_abs_diff = std::abs(diff);
@@ -772,7 +793,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 	      {
 		const Tp3 y = argument3[k];
 
-		std::vector< std::tuple<Tp, Tp1, Tp2, Tp3, Tp4> > crud;
+		std::vector<std::tuple<Tp, Tp1, Tp2, Tp3, Tp4>> crud;
 
 		Tp max_abs_diff = -Tp(1);
 		Tp max_abs_frac = -Tp(1);
@@ -785,7 +806,16 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 			const Tp f1 = function1(w, x, y, z);
 			const Tp f2 = function2(w, x, y, z);
 			if (std::abs(f1) == inf || std::abs(f2) == inf)
-			  break;
+			  {
+			    output << "Divergence at"
+				   << " " << arg1 << "=" << w
+				   << " " << arg2 << "=" << x
+				   << " " << arg3 << "=" << y
+				   << " " << arg4 << "=" << z
+				   << " f1=" << f1
+				   << " f2=" << f2 << '\n';
+			    break;
+			  }
 			const Tp diff = f1 - f2;
 			if (std::abs(diff) > max_abs_diff)
 			  max_abs_diff = std::abs(diff);
