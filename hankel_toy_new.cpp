@@ -9,8 +9,10 @@
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include "float128.h"
+#include <tuple>
+//#include "float128.h"
 #include "polynomial"
+#include "numeric_limits.h"
 
 template<typename _Tp>
   struct __hankel_outer_param_t
@@ -18,21 +20,21 @@ template<typename _Tp>
     __hankel_outer_param_t(std::complex<_Tp> __nu_in, std::complex<_Tp> __z_in);
 
     std::complex<_Tp> __zhat;
-    std::complex<_Tp> __1dnsq,
+    std::complex<_Tp> __1dnsq;
     std::complex<_Tp> __num1d3;
-    std::complex<_Tp> __num2d3,
+    std::complex<_Tp> __num2d3;
     std::complex<_Tp> __p;
-    std::complex<_Tp> __p2,
+    std::complex<_Tp> __p2;
     std::complex<_Tp> __etm3h;
-    std::complex<_Tp> __etrat,
+    std::complex<_Tp> __etrat;
     std::complex<_Tp> _Aip;
-    std::complex<_Tp> __o4dp,
+    std::complex<_Tp> __o4dp;
     std::complex<_Tp> _Aim;
-    std::complex<_Tp> __o4dm,
+    std::complex<_Tp> __o4dm;
     std::complex<_Tp> __od2p;
-    std::complex<_Tp> __od0dp,
+    std::complex<_Tp> __od0dp;
     std::complex<_Tp> __od2m;
-    std::complex<_Tp> __od0dm
+    std::complex<_Tp> __od0dm;
   };
 
 
@@ -41,11 +43,11 @@ template<typename _Tp>
   {
     __hankel_param_t(std::complex<_Tp> __nu_in, std::complex<_Tp> __zhat_in);
 
-    static constexpr auto _S_2pi   = _Tp{6.283185307179586476925286766559005768391Q};
-    static constexpr auto _S_1d3   = _Tp{0.3333333333333333333333333333333333333333Q};
-    static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666666Q};
-    static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
-    static constexpr auto _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();
+    static constexpr _Tp _S_2pi   = _Tp{6.283185307179586476925286766559005768391Q};
+    static constexpr _Tp _S_1d3   = _Tp{0.3333333333333333333333333333333333333333Q};
+    static constexpr _Tp _S_2d3   = _Tp{0.6666666666666666666666666666666666666666Q};
+    static constexpr _Tp _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
+    static constexpr _Tp _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();
     static constexpr std::complex<_Tp> _S_j{0, 1};
 
     std::complex<_Tp> __nu;
@@ -65,6 +67,19 @@ template<typename _Tp>
     std::complex<_Tp> __zetamhf;
     std::complex<_Tp> __thing;
   };
+
+template<typename _Tp>
+  constexpr _Tp __hankel_param_t<_Tp>::_S_2pi;
+template<typename _Tp>
+  constexpr _Tp __hankel_param_t<_Tp>::_S_1d3;
+template<typename _Tp>
+  constexpr _Tp __hankel_param_t<_Tp>::_S_2d3;
+template<typename _Tp>
+  constexpr _Tp __hankel_param_t<_Tp>::_S_lncon;
+template<typename _Tp>
+  constexpr _Tp __hankel_param_t<_Tp>::_S_sqrt_max;
+template<typename _Tp>
+  constexpr std::complex<_Tp> __hankel_param_t<_Tp>::_S_j;
 
 template<typename _Tp>
   __hankel_param_t<_Tp>::__hankel_param_t(std::complex<_Tp> __nu_in,
@@ -336,7 +351,8 @@ template<typename _Tp>
 	uentry.resize(u.degree() + 1);
 	for (int i = 0; i <= u.degree(); ++i)
 	  if (u.coefficient(i) != 0)
-	    uentry[i].push_back(std::make_tuple(ku, i, u.coefficient(i)));
+	    //uentry[i].push_back(std::make_tuple(ku, i, u.coefficient(i)));
+	    uentry[i].emplace_back(ku, i, u.coefficient(i));
 	++ku;
       }
     std::cout << "\nuentry\n";
@@ -356,7 +372,8 @@ template<typename _Tp>
 	ventry.resize(v.degree() + 1);
 	for (int i = 0; i <= v.degree(); ++i)
 	  if (v.coefficient(i) != 0)
-	    ventry[i].push_back(std::make_tuple(kv, i, v.coefficient(i)));
+	    //ventry[i].push_back(std::make_tuple(kv, i, v.coefficient(i)));
+	    ventry[i].emplace_back(kv, i, v.coefficient(i));
 	++kv;
       }
     std::cout << "\nventry\n";
@@ -391,6 +408,8 @@ template<typename _Tp>
     k_max = std::min(k_max, lambda.size() - 1);
     k_max = std::min(k_max, mu.size() - 1);
     std::cout << "\nkmax = " << k_max << '\n';
+    k_max = 6;
+    std::cout << "\nkmax = " << k_max << '\n';
     std::cout << "U_k\n";
     for (int k = 0; k <= k_max; ++k)
       std::cout << uvec[k] << '\n';
@@ -406,6 +425,14 @@ template<typename _Tp>
 	      << std::setw(width) << "zeta^(3/2)" << ' '
 	      << std::setw(width) << "thing" << ' '
 	      << std::setw(width) << "p" << ' ';
+    for (int k = 0; k < k_max; ++k)
+      std::cout << std::setw(width-1) << "A_" << k << ' ';
+    for (int k = 0; k < k_max; ++k)
+      std::cout << std::setw(width-1) << "B_" << k << ' ';
+    for (int k = 0; k < k_max; ++k)
+      std::cout << std::setw(width-1) << "C_" << k << ' ';
+    for (int k = 0; k < k_max; ++k)
+      std::cout << std::setw(width-1) << "D_" << k << ' ';
     std::cout << '\n';
     for (int i = 0; i <= 2000; ++i)
       {
@@ -413,6 +440,8 @@ template<typename _Tp>
 	auto zeta = get_zeta<_Tp>(z);
 	auto thing = std::sqrt(std::sqrt(4 * zeta / ((_Tp{1} + z) * (_Tp{1} - z))));
 	auto p = std::abs(_Tp{1} / std::sqrt((_Tp{1} + z) * (_Tp{1} - z)));
+	if (std::abs(z) > _Tp{1})
+	  p = std::abs(_Tp{1} / std::sqrt((z + _Tp{1}) * (z - _Tp{1})));
 	auto t = _Tp{1.5L} / std::pow(std::abs(zeta), _Tp{1.5L});
 	std::cout << std::setw(width) << z << ' '
 		  << std::setw(width) << zeta << ' '
@@ -425,6 +454,7 @@ template<typename _Tp>
 	    auto A = _Tp{0};
 	    for (int j = 0; j <= 2 * k; ++j)
 	      {
+//std::cout << "\nuvec[" << 2 * k - j << "]: " << uvec[2 * k - j] << '\n';;
 		A += tj * mu[j] * uvec[2 * k - j](p);
 		tj *= t;
 	      }
@@ -436,6 +466,7 @@ template<typename _Tp>
 	    auto B = _Tp{0};
 	    for (int j = 0; j <= 2 * k + 1; ++j)
 	      {
+//std::cout << "\nuvec[" << 2 * k + 1 - j << "]: " << uvec[2 * k + 1 - j] << '\n';;
 		B += tj * lambda[j] * uvec[2 * k + 1 - j](p);
 		tj *= t;
 	      }
@@ -447,6 +478,7 @@ template<typename _Tp>
 	    auto C = _Tp{0};
 	    for (int j = 0; j <= 2 * k + 1; ++j)
 	      {
+//std::cout << "\nvvec[" << 2 * k + 1 - j << "]: " << vvec[2 * k + 1 - j] << '\n';
 		C += tj * mu[j] * vvec[2 * k + 1 - j](p);
 		tj *= t;
 	      }
@@ -458,6 +490,7 @@ template<typename _Tp>
 	    auto D = _Tp{0};
 	    for (int j = 0; j <= 2 * k; ++j)
 	      {
+//std::cout << "\nvvec[" << 2 * k - j << "]: " << vvec[2 * k - j] << '\n';
 		D += tj * lambda[j] * vvec[2 * k - j](p);
 		tj *= t;
 	      }
@@ -465,20 +498,50 @@ template<typename _Tp>
 	  }
 	std::cout << '\n';
       }
+
+    auto nu = _Tp{1};
+    for (int i = 0; i <= 2000; ++i)
+      {
+	auto zhat = _Tp(i * 0.01Q);
+	auto parm = __hankel_param_t<_Tp>(nu, zhat);
+	std::cout
+	  << ' ' << parm.__zhat
+	  << ' ' << parm.__zeta
+	  << ' ' << parm.__zetam3hf
+	  << ' ' << parm.__thing
+	  << ' ' << parm.__p;
+	//  << ' ' << parm.
+	//  << ' ' << parm.
+	//  << ' ' << parm.
+	auto t = _Tp{1.5L} / std::pow(parm.__zeta, _Tp{1.5L});
+	for (int k = 0; k < k_max; ++k)
+	  {
+	    decltype(t) tj = 1;
+	    decltype(t) A = 0;
+	    for (int j = 0; j <= 2 * k; ++j)
+	      {
+//std::cout << "\nuvec[" << 2 * k - j << "]: " << uvec[2 * k - j] << '\n';;
+		A += tj * mu[j] * uvec[2 * k - j](parm.__p);
+		tj *= t;
+	      }
+	    std::cout << std::setw(width) << A << ' ';
+	  }
+	  std::cout << '\n';
+      }
   }
 
 int
 main()
 {
-  std::cout << "\nRunning float\n-------------\n";
-  run_toy<float>();
+  //std::cout << "\nRunning float\n-------------\n";
+  //run_toy<float>();
 
   std::cout << "\nRunning double\n--------------\n";
   run_toy<double>();
 
-  std::cout << "\nRunning long double\n-------------------\n";
-  run_toy<long double>();
+  //std::cout << "\nRunning long double\n-------------------\n";
+  //run_toy<long double>();
 
-  std::cout << "\nSkipping __float128\n-------------------\n";
-  run_toy<__float128>();
+  //std::cout << "\nSkipping __float128\n-------------------\n";
+  //run_toy<__float128>();
 }
