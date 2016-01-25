@@ -1,0 +1,52 @@
+PURPOSE:
+=========
+
+The purpose of this package is the computation of 
+the incomplete gamma function ratios P(a,x), Q(a,x)
+(routine incgam) and the inverse of P(a,x) and Q(a,x)
+for a given (routine invincgam).
+
+THIS PACKAGE CONTAINS THE FOLLOWING FILES: 
+==========================================
+ 
+1.  cons.f90        Includes the module Someconstants for internal 
+                    global parameters
+
+2.  constants       Data file for the module Someconstants 
+
+                    
+3.  incgam.f90      Includes the module IncgamFI, with public routines
+                    incgam and invincgam. 
+
+4.  testincgam.f90     Test program for the module IncgamFI
+
+
+Here is an example set of compiler/linker commands for building
+the programs using the GNU Fortran compiler g95. 
+Options: -c compile to object code -- don't make executable
+ 
+g95 -c cons.f90  
+g95 -c incgam.f90 
+g95 -c testincgam.f90 
+g95 cons.o incgam.o testincgam.o -o testincgam
+
+where testincgam is the name of the executable file.
+Basically the first files are compiled as object code libraries, and
+then a program using incgam (testincgam) is compiled and linked to those libraries.
+
+
+DESCRIPTION OF THE MODULE INCGAMFI
+===================================
+
+The public routines of the module IncgamFI are:
+1) incgam,  computes the functions P(a,x) and
+   Q(a,x) for a and x positive values.
+2) invincgam, computes xr in the equations P(a,xr)=p and Q(a,xr)=q
+   with a as a given positive parameter.
+
+Also, the IncgamFI module includes the public function checkincgam
+which checks the relative accuracy in the recursions
+a) Q(a+1,x)=Q(a,x)+x^a*exp(-x)/Gamma(a+1)
+b) P(a+1,x)=P(a,x)-x^a*exp(-x)/Gamma(a+1)
+
+ 

@@ -1,0 +1,158 @@
+The AMath archive contains units for accurate mathematical methods without
+using multi precision arithmetic. Please note that the high accuracy can only
+be achieved with the rmNearest rounding mode; it decreases if other modes are
+used. AMath is designed for the 80-bit extended data type, and therefore
+cannot be used with 64-bit code on 64-bit system (for these use the
+corresponding DAMath package).
+
+The units and basic test programs can be compiled with the usual Pascal
+(TP5-6, BP7, VP 2.1, FPC 1.0/2.0-2.6/3x) and Delphi (1-7/9-10/12/17-18)
+versions. The test suites run without 'failure warnings about relative errors'
+on Intel CPUs on Win98, Win2000 (see log files), WinXP, and Win7. There may be
+some sporadic warnings with other processors or operating systems; normally,
+these are NOT AMath bugs but features of the CPU (and can be avoided by using
+slightly increased error levels).
+
+
+---------------------------------------------------------------------------
+AMath V2.07: This unit implements accurate mathematical functions; it makes
+many routines of Delphi's math unit available to other supported Pascal
+versions and fixes bugs and inaccuracies of Delphi:
+
+It is known since more than 15 years that exp looses up to 13 bits for
+extended arguments; even the newer Delphi versions (confirmed up to D14,
+some are corrected in D17+) have horrible bugs: e.g. arccsch(2) =
+0.27980789397 (correct = 0.48121182506); coth(12000)=1 crashes;
+sech(12000)=0 crashes; sinh(x)/x=0 for small x; sin(1e22)=1e22 (correct =
+-0.852200849767); StdDev(a,a+1,a+2) crashes e.g. for a=100000000000; etc..
+
+AMath's elementary mathematical functions include: exponential, logarithmic,
+trigonometric, hyperbolic, inverse circular / hyperbolic functions. There
+are polynomial, vector, statistic operations as well as floating point and
+FPU control functions. Delphi's nonsense routines (IfThen, IsZero, InRange
+...) and its financial functions are not (and will not be) implemented. The
+file amath_info.txt contains the complete list of AMath functions with short
+descriptions.
+
+All standard one argument elementary transcendental functions have peak
+relative errors less than 2.2e-19, values for power(x,y) are 2.1e-19 (for
+|x|,|y| < 1000) and 3.4e-19 (for |x|,|y| < 2000). The precision is tested
+with the t_amathx program using MPArith functions.
+
+The ext2 (double-extended) routines operate on pairs of extended floating
+point numbers, which represent the unevaluated sum of the high and low parts:
+a = (a.h, a.l) = a.h + a.l, normally with |a.l| <= eps_x*|a.h|.
+
+
+---------------------------------------------------------------------------
+The AMTools V0.34 unit provides accurate and reliable tools for finding zeroes
+and local minima of functions, numerical integration of one-dimensional
+functions,convergence acceleration of sums and sequences, and solving
+quadratic or cubic equations:
+
+The functions localmin, mbrent, and fmin (differing in parameter count/ease
+of use) use Brent's algorithm with guaranteed convergence for finding a
+local minimum of a function f in an interval (a,b). The algorithm combines
+golden section search and successive parabolic interpolation using only
+function (not derivative) evaluations. The functions zbrent and zeroin use
+the Brent/Dekker algorithm with guaranteed convergence for finding a zero of
+a continuous function f in the interval [a,b], when f(a) and f(b) have
+different signs. The algorithm is based on a combination of successive
+interpolations and bisection.
+
+The qag* procedures are Pascal translations of Quadpack algorithms by R.
+Piessens, E. de Doncker-Kapenga, C.W. Ueberhuber, D. Kahaner. These routines
+perform global adaptive quadrature of functions over finite or infinite
+intervals based on Gauss-Kronrod rules for the subintervals and acceleration
+by Wynn's epsilon algorithm, they can handle rather difficult integrals
+including integrand functions with local difficulties such as a disconti-
+nuities and integrable singularities. quagk is a simple general purpose
+shell for the qag* routines. The Quadpack algorithm qawc computes the Cauchy
+principal value of f(x)/(x-c) using a globally adaptive strategy and
+modified Clenshaw-Curtis integration on the subintervals containing the
+point x=c.
+
+The procedures intdeo and intdei use the Double Exponential (DE) trans-
+formation (developed by M. Mori, T. Ooura, and others) for automatic
+quadrature of f(x) over the infinite interval (a,+INF) for functions with
+and without oscillatory factors resp. The DE transformation is very powerful
+if the abscissas a+xi can be processed with high accuracy; therefore the
+two routines are best used with a=0, otherwise there can be severe roundoff
+problems (a+xi=a).
+
+The adaptive quanc8 algorithm by G.E. Forsythe, M.A. Malcolm, C.B. Moler
+estimates the integral of a smooth function over a finite interval using a
+Newton-Cotes rule.
+
+The procedures levinu1 and wynneps1 are stand-alone versions of convergence
+acceleration methods, they perform one step of the Levin u-transformation for
+sums or one step of Wynn's epsilon algorithm for the sequences or sums
+(original customized versions are used in LerchPhi and the Quadpack routines,
+respectively). The calling driver routines have analyze the convergence of
+the processes.
+
+The squad functions accurately solve quadratic equations with double
+coefficients; they implement ideas of G.E. Forsythe, W. Kahan, P.H. Sterbenz
+(high precision calculation of discriminant, scaling by powers of two etc).
+The cubsolve procedure computes the solutions of real cubic equations with
+double coefficients; it is based on lecture notes by W. Kahan.
+
+
+---------------------------------------------------------------------------
+The units SpecFun/SpecFunX V1.36.02 implement many special functions for
+double and extended precision. In this release the following function
+groups are available:
+
+ * Bessel functions and related,
+ * elliptic integrals/functions and theta functions,
+ * gamma function and related,
+ * zeta functions, polylogarithms, and related,
+ * error function and related,
+ * exponential integrals and related,
+ * orthogonal polynomials, Legendre functions and related,
+ * hypergeometric functions and related,
+ * statistical distributions,
+ * and other special functions.
+
+Currently all functions have double and extended versions (with name suffix
+x), eg. erfc vs. erfcx, amath_info.txt contains the complete list of AMath
+special functions with short descriptions. The file specialfunctions.pdf (on
+the web site) contains the reference manual with implementation notes for
+the special functions.
+
+Generally the extended versions have larger relative errors (measured in
+corresponding machine epsilon units eps_x or eps_d) than their double
+counterparts, especially gammax and betax for large arguments. Note that
+some functions are sensitive to small changes in the argument; therefore in
+high precision comparisons argument values should be used, that are
+representable in both calculations.
+
+Please note: The sf*.pas units can be compiled with TP5 but some functions
+generate invalid operations due to TP5's brain-damaged usage of the FPU!
+
+
+---------------------------------------------------------------------------
+The unit AMCmplx V0.85 provides AMath based complex arithmetic, basic and
+transcendental functions. The complex data type is a record with real and
+imaginary parts of type extended. Most routines are procedures with const
+input record(s) and a var output record; therefore the units are usable with
+BP7 or newer.
+
+Please note that the exponential, trigonometric, or hyperbolic functions
+may overflow or return INFs or NaNs for inputs with real or imaginary parts
+of order ln_MaxExt or greater, this will be handled more systematically in
+future versions.
+
+
+---------------------------------------------------------------------------
+Last changes (Oct. 2015):
+
+* New lemniscate functions sin lemn and cos lemn,
+
+* the reflection formula for polygamma uses derivatives of Euler's
+  series for Pi*cot(Pi*x),
+
+* the parabolic cylinder function V(a,x) is extended to negative a.
+
+---------------------------------------------------------------------------
+http://wolfgang-ehrhardt.de/
