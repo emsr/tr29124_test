@@ -36,6 +36,7 @@
 #endif
 #include <specfun_testcase.h>
 
+Divergence at a=0.0000000000000000 x=0.25000000000000000 f1=inf f2=0.0000000000000000
 
 // Test data for a=1.0000000000000000.
 // max(|f - f_GSL|): 1.4210854715202004e-13

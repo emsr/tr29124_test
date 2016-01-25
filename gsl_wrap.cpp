@@ -598,7 +598,20 @@ bessel_yl(unsigned int n, double x)
 }
 
 /// Non-normalized lower incomplete gamma functions.
-double gamma_l(double a, double x);
+double
+gamma_l(double a, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_gamma_e(a, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in gamma_q:");
+      msg << " a=" << a << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val - gamma_u(a, x);
+}
 
 /// Normalized incomlete gamma functions.
 double
@@ -917,13 +930,13 @@ sinhc(double x)
 
 /// Log upper Pochhammer symbol.
 double
-lnpoch(double a, double x)
+lpochhammer_u(double a, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_lnpoch_e(a, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in lnpoch:");
+      std::ostringstream msg("Error in lpochhammer_u:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -931,15 +944,33 @@ lnpoch(double a, double x)
     return result.val;
 }
 
+/// Log lower Pochhammer symbol.
+double
+lpochhammer_l(double a, double x)
+{
+  gsl_sf_result result_num;
+  int stat_num = gsl_sf_lngamma_e(a - x, &result_num);
+  gsl_sf_result result_den;
+  int stat_den = gsl_sf_lngamma_e(a, &result_den);
+  if (stat_num != GSL_SUCCESS && stat_den != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in lpochhammer_l:");
+      msg << " a=" << a << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result_num.val - result_den.val;
+}
+
 /// Upper Pochhammer symbol.
 double
-poch(double a, double x)
+pochhammer_u(double a, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_poch_e(a, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in poch:");
+      std::ostringstream msg("Error in pochhammer_u:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -947,15 +978,33 @@ poch(double a, double x)
     return result.val;
 }
 
+/// Lower Pochhammer symbol.
+double
+pochhammer_l(double a, double x)
+{
+  gsl_sf_result result_num;
+  int stat_num = gsl_sf_gamma_e(a - x, &result_num);
+  gsl_sf_result result_den;
+  int stat_den = gsl_sf_gamma_e(a, &result_den);
+  if (stat_num != GSL_SUCCESS && stat_den != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in lpochhammer_l:");
+      msg << " a=" << a << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result_num.val / result_den.val;
+}
+
 /// Log factorial.
 double
-lnfact(unsigned int n)
+lfactorial(unsigned int n)
 {
   gsl_sf_result result;
   int stat = gsl_sf_lnfact_e(n, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in lnfact:");
+      std::ostringstream msg("Error in lfactorial:");
       msg << " n=" << n;
       throw std::runtime_error(msg.str());
     }
@@ -965,13 +1014,13 @@ lnfact(unsigned int n)
 
 /// Factorial.
 double
-fact(unsigned int n)
+factorial(unsigned int n)
 {
   gsl_sf_result result;
   int stat = gsl_sf_fact_e(n, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in fact:");
+      std::ostringstream msg("Error in factorial:");
       msg << " n=" << n;
       throw std::runtime_error(msg.str());
     }
@@ -981,13 +1030,13 @@ fact(unsigned int n)
 
 /// Log double factorial.
 double
-lndoublefact(int n)
+ldouble_factorial(int n)
 {
   gsl_sf_result result;
   int stat = gsl_sf_lndoublefact_e(n, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in lndoublefact:");
+      std::ostringstream msg("Error in ldouble_factorial:");
       msg << " n=" << n;
       throw std::runtime_error(msg.str());
     }
@@ -997,13 +1046,13 @@ lndoublefact(int n)
 
 /// Double factorial.
 double
-doublefact(int n)
+double_factorial(int n)
 {
   gsl_sf_result result;
   int stat = gsl_sf_doublefact_e(n, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in doublefact:");
+      std::ostringstream msg("Error in double_factorial:");
       msg << " n=" << n;
       throw std::runtime_error(msg.str());
     }
@@ -1133,9 +1182,9 @@ radpoly(unsigned int n, unsigned int m, double rho)
     }
 }
 
-/// Zernicke polynomials
+/// Zernike polynomials
 double
-zernicke(unsigned int n, int m, double rho, double phi)
+zernike(unsigned int n, int m, double rho, double phi)
 {
   return radpoly(n, std::abs(m), rho)
        * (m >= 0 ? std::cos(m * phi) : std::sin(m * phi));

@@ -20,6 +20,9 @@ double legendre_Qlm(unsigned int l, unsigned int m, double x);
 /// Beta functions.
 double beta(double x, double y);
 
+/// Complementary beta functions.
+double betac(double x, double y);
+
 /// Complete elliptic integrals of the first kind.
 double ellint_Kcomp(double k);
 
@@ -107,26 +110,44 @@ double legendre_sphPlm(unsigned int l, unsigned int m, double theta);
 /// Spherical Neumann functions.
 double bessel_yl(unsigned int n, double x);
 
-/// Non-normalized lower incomplete gamma functions.
+/// Non-normalized lower incomplete gamma functions. (See Boost tgamma_lower(a, x)).
 double gamma_l(double a, double x);
 
-/// Normalized incomplete gamma functions.
+/// Normalized upper incomplete gamma functions.
 double gamma_q(double a, double x);
 
-/// Complementary normalized incomplete gamma functions.
+/// Inverse normalized upper incomplete gamma functions.
+double gamma_q_inv(double a, double q);
+
+/// Inverse parameter normalized upper incomplete gamma functions.
+double gamma_q_inva(double x, double q);
+
+/// Normalized lower incomplete gamma functions.
 double gamma_p(double a, double x);
 
-/// Non-normalized (upper) incomplete gamma functions.
+/// Inverse normalized lower incomplete gamma functions.
+double gamma_p_inv(double a, double q);
+
+/// Inverse parameter normalized lower incomplete gamma functions.
+double gamma_p_inva(double x, double q);
+
+/// Non-normalized (upper) incomplete gamma functions. (See Boost tgamma(a, x)).
 double gamma_u(double a, double x);
 
 /// Incomplete beta functions.
 double ibeta(double a, double b, double x);
+
+/// Complementary incomplete beta functions.
+double ibetac(double a, double b, double x);
 
 /// Dilogarithm function.
 double dilog(double x);
 
 /// Digamma or psi function.
 double psi(double x);
+
+/// Polygamma functions.
+double polygamma(int n, double x);
 
 /// Sine integral.
 double Si(double x);
@@ -177,22 +198,28 @@ double sinhc_pi(double x);
 double sinhc(double x);
 
 /// Log upper Pochhammer symbol.
-double lnpoch(double a, double x);
+double lpochhammer_u(double a, double x);
+
+/// Log lower Pochhammer symbol.
+double lpochhammer_l(double a, double x);
 
 /// Upper Pochhammer symbol.
-double poch(double a, double x);
+double pochhammer_u(double a, double x);
+
+/// Lower Pochhammer symbol.
+double pochhammer_l(double a, double x);
 
 /// Log factorial.
-double lnfact(unsigned int n);
+double lfactorial(unsigned int n);
 
 /// Factorial.
-double fact(unsigned int n);
+double factorial(unsigned int n);
 
 /// Log double factorial.
-double lndoublefact(int n);
+double ldouble_factorial(int n);
 
 /// Double factorial.
-double doublefact(int n);
+double double_factorial(int n);
 
 /// Regular modified spherical bessel functions.
 double bessel_il(unsigned int n, double x);
@@ -227,8 +254,8 @@ double taylorcoeff(unsigned int n, double x);
 /// Radial polynomials
 double radpoly(unsigned int n, unsigned int m, double rho);
 
-/// Zernicke polynomials
-double zernicke(unsigned int n, int m, double rho, double phi);
+/// Zernike polynomials
+double zernike(unsigned int n, int m, double rho, double phi);
 
 /// Cylindrical Hankel functions of the first kind.
 std::complex<double> cyl_hankel_1(double nu, double x);
@@ -247,6 +274,30 @@ double heuman_lambda(double k, double phi);
 
 /// Jacobi zeta functions.
 double jacobi_zeta(double k, double phi);
+
+/// Inverse error function.
+double erf_inv(double p);
+
+/// Inverse complementary error function.
+double erfc(double p);
+
+/// Inverse incomplete beta function.
+double ibeta_inv(double a, double b, double p);
+
+/// Inverse complementary incomplete beta function.
+double ibetac_inv(double a, double b, double p);
+
+/// Inverse parameter incomplete beta function.
+double ibeta_inva(double b, double x, double p);
+
+/// Inverse parameter complementary incomplete beta function.
+double ibetac_inva(double b, double x, double p);
+
+/// Inverse parameter incomplete beta function.
+double ibeta_invb(double a, double x, double p);
+
+/// Inverse parameter complementary incomplete beta function.
+double ibetac_invb(double a, double x, double p);
 
 } // namespace gsl
 
