@@ -1,0 +1,142 @@
+The DAMath archive contains units for double precision accurate mathematical
+methods without using multi precision arithmetic or assembler. The main
+purpose is to make the AMath functions available for 64-bit systems without
+Extended Precision or 387-FPU, but they can be used with 32-bit systems.
+
+The source can be compiled with the usual Pascal versions that allow const
+parameters (tested with BP 7.0, VP 2.1, FPC 1.0/2.0/2.2/2.4/2.6/3x, and
+Delphi versions 1-7/9-10/12/17-18).
+
+The units assume IEEE-754 53-bit double precision (binary64) and rounding to
+nearest; there are NO rounding / precision control functions.
+
+
+---------------------------------------------------------------------------
+DAMath V0.83: This unit implements the double precision accurate elementary
+mathematical functions: exponential, logarithmic, trigonometric, hyperbolic,
+inverse circular / hyperbolic functions; and there are the polynomial,
+vector, statistic operations and floating point functions. The file
+damath_info.txt contains the complete list of DAMath functions with short
+descriptions.
+
+DAMath uses the system functions abs, arctan, frac, int, ln, and trunc
+(including possible bugs for 32-bit). Because FPC-64 (version <= 2.6.4)
+looses up to 13 of the 53 bits for exp, DAMath implements its own exp
+function. System sin(x) and cos(x) are used for |x| <= Pi/4, Payne/Hanek
+range reduction is performed if |x| > 2^30.
+
+On Win7/64 the 64-bit DAMath's one argument elementary transcendental
+functions (except cosd, sind, ..) and power have peak relative errors
+< 2*eps_d (about 4.4E-16), the RMS values are < 0.6*eps_d, a complete list
+and the Delphi/FPC figures can be found in the log file t_xdamat64.cmp.
+
+The dbl2 (double-double) routines operate on pairs of 53-bit double
+floating point numbers, which represent the unevaluated sum of the high and
+low parts: a = (a.h, a.l) = a.h + a.l, normally with |a.l| < eps_d*|a.h|.
+
+
+---------------------------------------------------------------------------
+The DAMTools V0.33 unit provides accurate and reliable tools for finding
+zeroes and local minima of functions, numerical integration of one-dimensional
+functions,convergence acceleration of sums and sequences, and solving
+quadratic or cubic equations:
+
+The functions localmin, mbrent, and fmin (differing in parameter count/ease
+of use) use Brent's algorithm with guaranteed convergence for finding a
+local minimum of a function f in an interval (a,b). The algorithm combines
+golden section search and successive parabolic interpolation using only
+function (not derivative) evaluations. The functions zbrent and zeroin use
+the Brent/Dekker algorithm with guaranteed convergence for finding a zero of
+a continuous function f in the interval [a,b], when f(a) and f(b) have
+different signs. The algorithm is based on a combination of successive
+interpolations and bisection.
+
+The qag* procedures are Pascal translations of Quadpack algorithms by R.
+Piessens, E. de Doncker-Kapenga, C.W. Ueberhuber, D. Kahaner. These routines
+perform global adaptive quadrature of functions over finite or infinite
+intervals based on Gauss-Kronrod rules for the subintervals and acceleration
+by Wynn's epsilon algorithm, they can handle rather difficult integrals
+including integrand functions with local difficulties such as a disconti-
+nuities and integrable singularities. quagk is a simple general purpose
+shell for the qag* routines. The Quadpack algorithm qawc computes the Cauchy
+principal value of f(x)/(x-c) using a globally adaptive strategy and
+modified Clenshaw-Curtis integration on the subintervals containing the
+point x=c.
+
+The procedures intdeo and intdei use the Double Exponential (DE) trans-
+formation (developed by M. Mori, T. Ooura, and others) for automatic
+quadrature of f(x) over the infinite interval (a,+INF) for functions with
+and without oscillatory factors resp. The DE transformation is very powerful
+if the abscissas a+xi can be processed with high accuracy; therefore the
+two routines are best used with a=0, otherwise there can be severe roundoff
+problems (a+xi=a).
+
+The adaptive quanc8 algorithm by G.E. Forsythe, M.A. Malcolm, C.B. Moler
+estimates the integral of a smooth function over a finite interval using a
+Newton-Cotes rule.
+
+The procedures levinu1 and wynneps1 are stand-alone versions of convergence
+acceleration methods, they perform one step of the Levin u-transformation for
+sums or one step of Wynn's epsilon algorithm for the sequences or sums
+(original customized versions are used in LerchPhi and the Quadpack routines,
+respectively). The calling driver routines have analyze the convergence of
+the processes.
+
+The squad functions accurately solve quadratic equations with double
+coefficients; they implement ideas of G.E. Forsythe, W. Kahan, P.H. Sterbenz
+(high precision calculation of discriminant, scaling by powers of two etc).
+The cubsolve procedure computes the solutions of real cubic equations with
+double coefficients; it is based on lecture notes by W. Kahan.
+
+
+---------------------------------------------------------------------------
+The unit SpecFunD V1.21.02 implements many special functions for double and
+extended precision. The DAMath based double precision special functions are
+derived from the AMath implementations (i.e. the descriptions in the AMath
+introduction and the specialfunctions.pdf manual are essentially valid), the
+interfaced functions have the same names, etc.
+
+In this release the following function groups are available:
+
+ * Bessel functions and related
+ * Elliptic integrals, elliptic / theta functions
+ * Error function and related
+ * Exponential integrals and related
+ * Gamma function and related
+ * Orthogonal polynomials, Legendre functions, and related
+ * Hypergeometric functions and related
+ * Statistical distributions
+ * Zeta functions, polylogarithms, and related
+ * Other special functions
+
+The relative errors of the DAMath special functions are usually larger
+(especially on 64-bit systems) than those of the corresponding AMath double
+functions (which are often correctly rounded due to the internal extended
+precision calculations).
+
+
+---------------------------------------------------------------------------
+The unit DAMCmplx V0.45 provides DAMath based complex arithmetic, basic and
+transcendental functions. The complex data type is a record with real and
+imaginary parts of type double. Most routines are procedures with const input
+record(s) and a var output record.
+
+Please note that the exponential, trigonometric, or hyperbolic functions
+may overflow or return INFs or NaNs for inputs with real or imaginary parts
+of order ln_MaxDbl or greater, this will be handled more systematically in
+future versions.
+
+
+
+---------------------------------------------------------------------------
+Last changes (Oct. 2015):
+
+* New lemniscate functions sin lemn and cos lemn,
+
+* the reflection formula for polygamma uses derivatives of Euler's
+  series for Pi*cot(Pi*x),
+
+* the parabolic cylinder function V(a,x) is extended to negative a.
+
+---------------------------------------------------------------------------
+http://wolfgang-ehrhardt.de/
