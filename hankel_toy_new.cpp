@@ -13,6 +13,30 @@
 #include "polynomial"
 
 template<typename _Tp>
+  struct __hankel_outer_param_t
+  {
+    __hankel_outer_param_t(std::complex<_Tp> __nu_in, std::complex<_Tp> __z_in);
+
+    std::complex<_Tp> __zhat;
+    std::complex<_Tp> __1dnsq,
+    std::complex<_Tp> __num1d3;
+    std::complex<_Tp> __num2d3,
+    std::complex<_Tp> __p;
+    std::complex<_Tp> __p2,
+    std::complex<_Tp> __etm3h;
+    std::complex<_Tp> __etrat,
+    std::complex<_Tp> _Aip;
+    std::complex<_Tp> __o4dp,
+    std::complex<_Tp> _Aim;
+    std::complex<_Tp> __o4dm,
+    std::complex<_Tp> __od2p;
+    std::complex<_Tp> __od0dp,
+    std::complex<_Tp> __od2m;
+    std::complex<_Tp> __od0dm
+  };
+
+
+template<typename _Tp>
   struct __hankel_param_t
   {
     __hankel_param_t(std::complex<_Tp> __nu_in, std::complex<_Tp> __zhat_in);
