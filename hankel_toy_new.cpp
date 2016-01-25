@@ -17,14 +17,16 @@ template<typename _Tp>
   {
     __hankel_param_t(std::complex<_Tp> __nu_in, std::complex<_Tp> __zhat_in);
 
-    static constexpr auto _S_2pi   = _Tp{6.283185307179586476925286766559005768391L};
+    static constexpr auto _S_2pi   = _Tp{6.283185307179586476925286766559005768391Q};
+    static constexpr auto _S_1d3   = _Tp{0.3333333333333333333333333333333333333333Q};
     static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666666Q};
     static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
     static constexpr auto _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();
-    static constexpr __cmplx _S_j{_Tp{0}, _Tp{1}};
+    static constexpr std::complex<_Tp> _S_j{0, 1};
 
     std::complex<_Tp> __nu;
     std::complex<_Tp> __zhat;
+    std::complex<_Tp> __nup2;
     std::complex<_Tp> __num2;
     std::complex<_Tp> __num1d3;
     std::complex<_Tp> __num2d3;
@@ -34,10 +36,6 @@ template<typename _Tp>
     std::complex<_Tp> __p2;
     std::complex<_Tp> __xi;
     std::complex<_Tp> __zeta;
-    std::complex<_Tp> __nup2;
-    std::complex<_Tp> __num1d3;
-    std::complex<_Tp> __num2d3;
-    std::complex<_Tp> __num4d3;
     std::complex<_Tp> __zetam3hf;
     std::complex<_Tp> __zetaphf;
     std::complex<_Tp> __zetamhf;
@@ -49,6 +47,7 @@ template<typename _Tp>
 					  std::complex<_Tp> __zhat_in)
   : __nu(__nu_in), __zhat(__zhat_in)
   {
+    using __cmplx = std::complex<_Tp>;
 
     // If nu^2 can be computed without overflow.
     if (std::abs(__nu) <= _S_sqrt_max)
@@ -87,7 +86,7 @@ template<typename _Tp>
 	auto __mzeta = std::exp(__logmzeta); // -zeta
 	__zetaphf = -_S_j * std::sqrt(__mzeta); // -i(-zeta)^(1/2)
 	__zetamhf = _Tp{1} / __zetaphf; // i(-zeta)^(-1/2)
-	zeta = -__mzeta;
+	__zeta = -__mzeta;
       }
       __thing = std::pow(_Tp{4} * __zeta / __w, _Tp{0.25L});
   }
@@ -101,7 +100,7 @@ template<typename _Tp>
     static constexpr auto _S_2pi   = _Tp{6.283185307179586476925286766559005768391L};
     static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666666Q};
     static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
-    static constexpr __cmplx _S_j{_Tp{0}, _Tp{1}};
+    static constexpr __cmplx _S_j{0, 1};
 
     auto __rezhat = std::real(__zhat);
     auto __imzhat = std::imag(__zhat);
@@ -158,7 +157,7 @@ template<typename _Tp>
 
     static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666666Q};
     static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
-    static constexpr __cmplx _S_j{_Tp{0}, _Tp{1}};
+    static constexpr __cmplx _S_j{0, 1};
 
     if (__zhat == _Tp{0})
       return std::numeric_limits<_Tp>::infinity();
@@ -179,6 +178,13 @@ template<typename _Tp>
     else
       {
 	auto __w = std::sqrt((__zhat + _Tp{1}) * (__zhat - _Tp{1}));
+	auto __xi = __w - std::acos(_Tp{1} / __zhat);
+
+	auto __logxi = std::log(__xi);
+
+	// Compute ln(-zeta), zeta.
+	auto __logmzeta = _S_2d3 * __logxi + _S_lncon;
+	auto __zeta = -std::exp(__logmzeta);
 	return __zeta;
       }
   }
