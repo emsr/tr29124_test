@@ -2,7 +2,7 @@
 
 // LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./hankel_toy_new > hankel_toy_new.txt
 
-// g++ -std=gnu++14 -o hankel_toy_new hankel_toy_new.cpp -lquadmath
+// g++ -std=gnu++14 -DNO_CBRT -o hankel_toy_new hankel_toy_new.cpp -lquadmath
 
 // ./hankel_toy_new > hankel_toy_new.txt
 
