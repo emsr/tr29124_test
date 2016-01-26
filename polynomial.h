@@ -63,7 +63,7 @@ namespace __gnu_cxx
      *  Create a zero degree polynomial with value zero.
      */
     _Polynomial()
-    :  _M_coeff(1)
+    : _M_coeff(1)
     { }
 
     /**
@@ -73,7 +73,7 @@ namespace __gnu_cxx
 
     template<typename _Up>
       _Polynomial(const _Polynomial<_Up>& __poly)    
-      :  _M_coeff{}
+      : _M_coeff{}
       {
         for (const auto __c : __poly)
 	  this->_M_coeff.push_back(static_cast<value_type>(__c));
@@ -84,7 +84,7 @@ namespace __gnu_cxx
      */
     explicit
     _Polynomial(value_type __a, size_type __degree = 0)
-    :  _M_coeff(__degree + 1)
+    : _M_coeff(__degree + 1)
     { this->_M_coeff[__degree] = __a; }
 
     /**
@@ -110,9 +110,16 @@ namespace __gnu_cxx
     template<typename InIter,
 	     typename = std::_RequireInputIter<InIter>>
       _Polynomial(const InIter& __xbegin, const InIter& __xend,
-		 const InIter& __ybegin)
+		  const InIter& __ybegin)
       : _M_coeff()
       {
+	std::vector<_Polynomial<value_type>> __numer;
+	for (auto __xi = __xbegin; __xi != __xend; ++__xi)
+	  {
+	    for (auto __xj = __xi + 1; __xj != __xend; ++__xj)
+	      __denom.push_back(value_type(*__xj) - value_type(*__xi));
+	    __numer.push_back({-value_type(*__xi), value_type{1}});
+	  }
       }
 
     /**
