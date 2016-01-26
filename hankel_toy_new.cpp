@@ -11,7 +11,7 @@
 #include <iomanip>
 #include <tuple>
 //#include "float128.h"
-#include "polynomial"
+#include "polynomial.h"
 #include "numeric_limits.h"
 
 template<typename _Tp>
@@ -321,14 +321,14 @@ template<typename _Tp>
       }
 
     // Build the Debye polynomials.
-    std::polynomial<_Tp> upol1{_Tp{1}, _Tp{1}, _Tp{0.5Q}, _Tp{1}, -_Tp{0.5Q}};
-    std::polynomial<_Tp> upol2{+_Tp{0.125Q}, _Tp{1}, -_Tp{0.625Q}};
-    std::polynomial<_Tp> vpol1{_Tp{1}, -_Tp{0.5Q}, _Tp{1}, +_Tp{0.5Q}};
-    std::polynomial<_Tp> vpol2{_Tp{1}, _Tp{1}, -_Tp{1}, _Tp{1}, +_Tp{1}};
-    std::polynomial<_Tp> u{_Tp{1}};
-    std::vector<std::polynomial<_Tp>> uvec;
-    std::polynomial<_Tp> v{_Tp{1}};
-    std::vector<std::polynomial<_Tp>> vvec;
+    __gnu_cxx::_Polynomial<_Tp> upol1{_Tp{1}, _Tp{1}, _Tp{0.5Q}, _Tp{1}, -_Tp{0.5Q}};
+    __gnu_cxx::_Polynomial<_Tp> upol2{+_Tp{0.125Q}, _Tp{1}, -_Tp{0.625Q}};
+    __gnu_cxx::_Polynomial<_Tp> vpol1{_Tp{1}, -_Tp{0.5Q}, _Tp{1}, +_Tp{0.5Q}};
+    __gnu_cxx::_Polynomial<_Tp> vpol2{_Tp{1}, _Tp{1}, -_Tp{1}, _Tp{1}, +_Tp{1}};
+    __gnu_cxx::_Polynomial<_Tp> u{_Tp{1}};
+    std::vector<__gnu_cxx::_Polynomial<_Tp>> uvec;
+    __gnu_cxx::_Polynomial<_Tp> v{_Tp{1}};
+    std::vector<__gnu_cxx::_Polynomial<_Tp>> vvec;
     for (auto k = 1; k <= 20; ++k)
       {
 	uvec.push_back(u);

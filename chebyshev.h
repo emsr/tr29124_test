@@ -5,7 +5,10 @@
 #include <vector>
 #include <iosfwd>
 
-#include "polynomial"
+#include "polynomial.h"
+
+namespace __gnu_cxx
+{
 
   /**
    *  @brief  _Chebyshev represents a Chebyshev fit of a function.
@@ -47,7 +50,7 @@
       { }
 
       template<typename _Up>
-        _Chebyshev(_Up __a, _Up __b, const std::polynomial<_Up>& __poly);
+        _Chebyshev(_Up __a, _Up __b, const _Polynomial<_Up>& __poly);
 
       _Chebyshev derivative() const;
 
@@ -65,7 +68,7 @@
       upper() const
       { return this->_M_upper; }
 
-      std::polynomial<_Tp>
+      _Polynomial<_Tp>
       to_polynomial() const;
 
       value_type operator()(value_type __x) const;
@@ -83,6 +86,8 @@
       _Tp _M_upper;
       std::vector<_Tp> _M_coef;
     };
+
+} // namespace __gnu_cxx
 
 #include "chebyshev.tcc"
 
