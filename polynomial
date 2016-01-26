@@ -97,7 +97,8 @@ namespace std
     /**
      *  Create a polynomial from an input iterator range of coefficients.
      */
-    template<typename InIter>
+    template<typename InIter,
+	     typename = std::_RequireInputIter<InIter>>
       polynomial(const InIter& __abegin, const InIter& __aend)
       : _M_coeff(__abegin, __aend)
       { }
@@ -106,7 +107,8 @@ namespace std
      *  Use Lagrange interpolation to construct a polynomial passing through
      *  the data points.  The degree will be one less than the number of points.
      */
-    template<typename InIter>
+    template<typename InIter,
+	     typename = std::_RequireInputIter<InIter>>
       polynomial(const InIter& __xbegin, const InIter& __xend,
 		 const InIter& __ybegin)
       : _M_coeff()
@@ -118,7 +120,7 @@ namespace std
      */
     void
     swap(polynomial& __poly)
-    { _M_coeff.swap(__poly._M_coeff); }
+    { this->_M_coeff.swap(__poly._M_coeff); }
 
     /**
      *  Evaluate the polynomial at the input point.
@@ -189,7 +191,8 @@ namespace std
      *  must be large enough to contain the results.
      *  The next available output iterator is returned.
      */
-    template<typename InIter, typename OutIter>
+    template<typename InIter, typename OutIter,
+	     typename = std::_RequireInputIter<InIter>>
       OutIter
       operator()(const InIter& __xbegin, const InIter& __xend,
         	 OutIter& __pbegin) const
