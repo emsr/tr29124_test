@@ -9,7 +9,7 @@
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include "polynomial"
+#include "polynomial.h"
 
 int
 main()
@@ -61,14 +61,14 @@ main()
       mu = -(6 * s + 1) * lambda / (6 * s - 1);
     }
 
-  std::polynomial<_Tp> upol1{_Tp{0}, _Tp{0}, _Tp{0.5L}, _Tp{0}, -_Tp{0.5L}};
-  std::polynomial<_Tp> upol2{+_Tp{0.125L}, _Tp{0}, -_Tp{0.625L}};
-  std::polynomial<_Tp> vpol1{_Tp{0}, -_Tp{0.5L}, _Tp{0}, +_Tp{0.5L}};
-  std::polynomial<_Tp> vpol2{_Tp{0}, _Tp{0}, -_Tp{1}, _Tp{0}, +_Tp{1}};
-  std::polynomial<_Tp> u{_Tp{1}};
-  std::vector<std::polynomial<_Tp>> uvec;
-  std::polynomial<_Tp> v{_Tp{1}};
-  std::vector<std::polynomial<_Tp>> vvec;
+  __gnu_cxx::_Polynomial<_Tp> upol1{_Tp{0}, _Tp{0}, _Tp{0.5L}, _Tp{0}, -_Tp{0.5L}};
+  __gnu_cxx::_Polynomial<_Tp> upol2{+_Tp{0.125L}, _Tp{0}, -_Tp{0.625L}};
+  __gnu_cxx::_Polynomial<_Tp> vpol1{_Tp{0}, -_Tp{0.5L}, _Tp{0}, +_Tp{0.5L}};
+  __gnu_cxx::_Polynomial<_Tp> vpol2{_Tp{0}, _Tp{0}, -_Tp{1}, _Tp{0}, +_Tp{1}};
+  __gnu_cxx::_Polynomial<_Tp> u{_Tp{1}};
+  std::vector<__gnu_cxx::_Polynomial<_Tp>> uvec;
+  __gnu_cxx::_Polynomial<_Tp> v{_Tp{1}};
+  std::vector<__gnu_cxx::_Polynomial<_Tp>> vvec;
   for (auto k = 1; k <= 20; ++k)
     {
       uvec.push_back(u);

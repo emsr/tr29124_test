@@ -5,6 +5,9 @@
 #include <iterator>
 #include <algorithm> // For find_if.
 
+namespace __gnu_cxx
+{
+
   /**
    *  @brief  Construct a Chebyshev fit of a function.
    *  Given a function @c func, the lower limit @c a, the upper limit @c b,
@@ -59,7 +62,7 @@
   template<typename _Tp>
     template<typename _Up>
     _Chebyshev<_Tp>::_Chebyshev(_Up __a, _Up __b,
-				const std::polynomial<_Up> & __poly)
+				const _Polynomial<_Up> & __poly)
     : _M_lower(__a),
       _M_upper(__b),
       _M_coef(__poly.order())
@@ -183,7 +186,7 @@
    *  expansion which is equivalent to the Chebyshev fit.
    */
   template<typename _Tp>
-    std::polynomial<_Tp>
+    _Polynomial<_Tp>
     _Chebyshev<_Tp>::to_polynomial() const
     {
       unsigned int __n = this->_M_coef.size();
@@ -205,7 +208,7 @@
       //  Map the interval [-1,+1] to [a,b].
       poly_shift_coeff(this->lower(), this->upper(), __d);
 
-      return std::polynomial<_Tp>(__d);
+      return _Polynomial<_Tp>(__d);
     }
 
 
@@ -260,8 +263,8 @@
    *  over the requested range.
    */
   template<typename _Tp>
-    std::polynomial<_Tp>
-    economize_polynomial(_Tp __a, _Tp __b, const std::polynomial<_Tp>& __poly,
+    _Polynomial<_Tp>
+    economize_polynomial(_Tp __a, _Tp __b, const _Polynomial<_Tp>& __poly,
 			 _Tp __eps)
     {
       if (__poly.order() < 3)
@@ -276,5 +279,7 @@
       //  Convert the truncated Chebyshev series back into a polynomial.
       return cpoly.to_polynomial();
     }
+
+} // namespace __gnu_cxx
 
 #endif // _CHEBYSHEV_TCC
