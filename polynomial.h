@@ -25,22 +25,22 @@
  *  How to handle division?
  *    operator/ and throw out remainder?
  *    operator% to return the remainder?
- *    std::pair<> div(const polynomial& __a, const polynomial& __b)
- *    void divmod(const polynomial& __a, const polynomial& __b,
- *                polynomial& __q, polynomial& __r);
+ *    std::pair<> div(const _Polynomial& __a, const _Polynomial& __b)
+ *    void divmod(const _Polynomial& __a, const _Polynomial& __b,
+ *                _Polynomial& __q, _Polynomial& __r);
  *  Should factory methods like derivative and integral be globals?
  *  I could have members:
- *    polynomial& integrate(_Tp c);
- *    polynomial& differentiate();
+ *    _Polynomial& integrate(_Tp c);
+ *    _Polynomial& differentiate();
  */
-namespace std
+namespace __gnu_cxx
 {
 
   /**
    *
    */
   template<typename _Tp>
-  class polynomial
+  class _Polynomial
   {
   public:
     /**
@@ -62,17 +62,17 @@ namespace std
     /**
      *  Create a zero degree polynomial with value zero.
      */
-    polynomial()
+    _Polynomial()
     :  _M_coeff(1)
     { }
 
     /**
      *  Copy ctor.
      */
-    polynomial(const polynomial&) = default;
+    _Polynomial(const _Polynomial&) = default;
 
     template<typename _Up>
-      polynomial(const polynomial<_Up>& __poly)    
+      _Polynomial(const _Polynomial<_Up>& __poly)    
       :  _M_coeff{}
       {
         for (const auto __c : __poly)
@@ -83,14 +83,14 @@ namespace std
      *  .
      */
     explicit
-    polynomial(value_type __a, size_type __degree = 0)
+    _Polynomial(value_type __a, size_type __degree = 0)
     :  _M_coeff(__degree + 1)
     { this->_M_coeff[__degree] = __a; }
 
     /**
      *  Create a polynomial from an initializer list of coefficients.
      */
-    polynomial(std::initializer_list<value_type> __ila)
+    _Polynomial(std::initializer_list<value_type> __ila)
     : _M_coeff(__ila)
     { }
 
@@ -99,7 +99,7 @@ namespace std
      */
     template<typename InIter,
 	     typename = std::_RequireInputIter<InIter>>
-      polynomial(const InIter& __abegin, const InIter& __aend)
+      _Polynomial(const InIter& __abegin, const InIter& __aend)
       : _M_coeff(__abegin, __aend)
       { }
 
@@ -109,7 +109,7 @@ namespace std
      */
     template<typename InIter,
 	     typename = std::_RequireInputIter<InIter>>
-      polynomial(const InIter& __xbegin, const InIter& __xend,
+      _Polynomial(const InIter& __xbegin, const InIter& __xend,
 		 const InIter& __ybegin)
       : _M_coeff()
       {
@@ -119,7 +119,7 @@ namespace std
      *  Swap the polynomial with another polynomial.
      */
     void
-    swap(polynomial& __poly)
+    swap(_Polynomial& __poly)
     { this->_M_coeff.swap(__poly._M_coeff); }
 
     /**
@@ -264,10 +264,10 @@ namespace std
     /**
      *  Return the derivative of the polynomial.
      */
-    polynomial
+    _Polynomial
     derivative() const
     {
-      polynomial __res(value_type{}, (this->degree() > 0UL ? this->degree() - 1 : 0UL));
+      _Polynomial __res(value_type{}, (this->degree() > 0UL ? this->degree() - 1 : 0UL));
       for (size_type __i = 1; __i <= this->degree(); ++__i)
 	__res._M_coeff[__i - 1] = __i * _M_coeff[__i];
       return __res;
@@ -276,10 +276,10 @@ namespace std
     /**
      *  Return the integral of the polynomial with given integration constant.
      */
-    polynomial
+    _Polynomial
     integral(value_type __c = value_type{}) const
     {
-      polynomial __res(value_type{}, this->degree() + 1);
+      _Polynomial __res(value_type{}, this->degree() + 1);
       __res._M_coeff[0] = __c;
       for (size_type __i = 0; __i <= this->degree(); ++__i)
 	__res._M_coeff[__i + 1] = _M_coeff[__i] / value_type(__i + 1);
@@ -289,22 +289,22 @@ namespace std
     /**
      *  Unary plus.
      */
-    polynomial
+    _Polynomial
     operator+() const
     { return *this; }
 
     /**
      *  Unary minus.
      */
-    polynomial
+    _Polynomial
     operator-() const
-    { return polynomial(*this) *= value_type(-1); }
+    { return _Polynomial(*this) *= value_type(-1); }
 
     /**
      *  Assign from a scalar.
      *  The result is a zero degree polynomial equal to the scalar.
      */
-    polynomial&
+    _Polynomial&
     operator=(const value_type& __x)
     {
       _M_coeff = {__x};
@@ -314,12 +314,12 @@ namespace std
     /**
      *  Copy assignment.
      */
-    polynomial&
-    operator=(const polynomial&) = default;
+    _Polynomial&
+    operator=(const _Polynomial&) = default;
 
     template<typename _Up>
-      polynomial&
-      operator=(const polynomial<_Up>& __poly)
+      _Polynomial&
+      operator=(const _Polynomial<_Up>& __poly)
       {
 	if (&__poly != this)
 	  {
@@ -333,7 +333,7 @@ namespace std
     /**
      *  Assign from an initialiser list.
      */
-    polynomial&
+    _Polynomial&
     operator=(std::initializer_list<value_type> __ila)
     {
       _M_coeff = __ila;
@@ -344,7 +344,7 @@ namespace std
      *  Add a scalar to the polynomial.
      */
     template<typename _Up>
-      polynomial&
+      _Polynomial&
       operator+=(const _Up& __x)
       {
 	degree(this->degree()); // Resize if necessary.
@@ -356,7 +356,7 @@ namespace std
      *  Subtract a scalar from the polynomial.
      */
     template<typename _Up>
-      polynomial&
+      _Polynomial&
       operator-=(const _Up& __x)
       {
 	degree(this->degree()); // Resize if necessary.
@@ -368,7 +368,7 @@ namespace std
      *  Multiply the polynomial by a scalar.
      */
     template<typename _Up>
-      polynomial&
+      _Polynomial&
       operator*=(const _Up& __x)
       {
 	degree(this->degree()); // Resize if necessary.
@@ -381,7 +381,7 @@ namespace std
      *  Divide the polynomial by a scalar.
      */
     template<typename _Up>
-      polynomial&
+      _Polynomial&
       operator/=(const _Up& __x)
       {
 	for (size_type __i = 0; __i < _M_coeff.size(); ++__i)
@@ -394,7 +394,7 @@ namespace std
      *  The result is always null.
      */
     template<typename _Up>
-      polynomial&
+      _Polynomial&
       operator%=(const _Up&)
       {
 	degree(0UL); // Resize.
@@ -403,11 +403,11 @@ namespace std
       }
 
     /**
-     *  Add another polynomial the polynomial.
+     *  Add another polynomial to the polynomial.
      */
     template<typename _Up>
-      polynomial&
-      operator+=(const polynomial<_Up>& __poly)
+      _Polynomial&
+      operator+=(const _Polynomial<_Up>& __poly)
       {
 	this->degree(std::max(this->degree(), __poly.degree())); // Resize if necessary.
 	for (size_type __i = 0; __i <= __poly.degree(); ++__i)
@@ -419,8 +419,8 @@ namespace std
      *  Subtract another polynomial from the polynomial.
      */
     template<typename _Up>
-      polynomial&
-      operator-=(const polynomial<_Up>& __poly)
+      _Polynomial&
+      operator-=(const _Polynomial<_Up>& __poly)
       {
 	this->degree(std::max(this->degree(), __poly.degree())); // Resize if necessary.
 	for (size_type __i = 0; __i <= __poly.degree(); ++__i)
@@ -432,8 +432,8 @@ namespace std
      *  Multiply the polynomial by another polynomial.
      */
     template<typename _Up>
-      polynomial&
-      operator*=(const polynomial<_Up>& __poly)
+      _Polynomial&
+      operator*=(const _Polynomial<_Up>& __poly)
       {
 	//  Test for zero size polys and do special processing?
 	std::vector<value_type> __new_coeff(this->degree() + __poly.degree() + 1);
@@ -449,10 +449,10 @@ namespace std
      *  Divide the polynomial by another polynomial.
      */
     template<typename _Up>
-      polynomial&
-      operator/=(const polynomial<_Up>& __poly)
+      _Polynomial&
+      operator/=(const _Polynomial<_Up>& __poly)
       {
-	polynomial<value_type >__quo, __rem;
+	_Polynomial<value_type >__quo, __rem;
 	divmod(*this, __poly, __quo, __rem);
 	*this = __quo;
 	return *this;
@@ -462,10 +462,10 @@ namespace std
      *  Take the modulus of (modulate?) the polynomial relative to another polynomial.
      */
     template<typename _Up>
-      polynomial&
-      operator%=(const polynomial<_Up>& __poly)
+      _Polynomial&
+      operator%=(const _Polynomial<_Up>& __poly)
       {
-	polynomial<value_type >__quo, __rem;
+	_Polynomial<value_type >__quo, __rem;
 	divmod(*this, __poly, __quo, __rem);
 	*this = __rem;
 	return *this;
@@ -550,12 +550,12 @@ namespace std
     { return this->_M_coeff.crend(); }
 
     template<typename CharT, typename Traits, typename _Tp1>
-      friend basic_istream<CharT, Traits>&
-      operator>>(basic_istream<CharT, Traits>&, polynomial<_Tp1>&);
+      friend std::basic_istream<CharT, Traits>&
+      operator>>(std::basic_istream<CharT, Traits>&, _Polynomial<_Tp1>&);
 
     template<typename _Tp1>
       friend bool
-      operator==(const polynomial<_Tp1>& __pa, const polynomial<_Tp1>& __pb);
+      operator==(const _Polynomial<_Tp1>& __pa, const _Polynomial<_Tp1>& __pb);
 
   private:
     std::vector<value_type> _M_coeff;
@@ -565,132 +565,132 @@ namespace std
    *  Return the sum of a polynomial with a scalar.
    */
   template<typename _Tp, typename _Up>
-    inline polynomial<decltype(_Tp() + _Up())>
-    operator+(const polynomial<_Tp>& __poly, const _Up& __x)
-    { return polynomial<decltype(_Tp() + _Up())>(__poly) += __x; }
+    inline _Polynomial<decltype(_Tp() + _Up())>
+    operator+(const _Polynomial<_Tp>& __poly, const _Up& __x)
+    { return _Polynomial<decltype(_Tp() + _Up())>(__poly) += __x; }
 
   /**
    *  Return the difference of a polynomial with a scalar.
    */
   template<typename _Tp, typename _Up>
-    inline polynomial<decltype(_Tp() - _Up())>
-    operator-(const polynomial<_Tp>& __poly, const _Up& __x)
-    { return polynomial<decltype(_Tp() - _Up())>(__poly) -= __x; }
+    inline _Polynomial<decltype(_Tp() - _Up())>
+    operator-(const _Polynomial<_Tp>& __poly, const _Up& __x)
+    { return _Polynomial<decltype(_Tp() - _Up())>(__poly) -= __x; }
 
   /**
    *  Return the product of a polynomial with a scalar.
    */
   template<typename _Tp, typename _Up>
-    inline polynomial<decltype(_Tp() * _Up())>
-    operator*(const polynomial<_Tp>& __poly, const _Up& __x)
-    { return polynomial<decltype(_Tp() * _Up())>(__poly) *= __x; }
+    inline _Polynomial<decltype(_Tp() * _Up())>
+    operator*(const _Polynomial<_Tp>& __poly, const _Up& __x)
+    { return _Polynomial<decltype(_Tp() * _Up())>(__poly) *= __x; }
 
   /**
    *  Return the quotient of a polynomial with a scalar.
    */
   template<typename _Tp, typename _Up>
-    inline polynomial<decltype(_Tp() / _Up())>
-    operator/(const polynomial<_Tp>& __poly, const _Up& __x)
-    { return polynomial<decltype(_Tp() / _Up())>(__poly) /= __x; }
+    inline _Polynomial<decltype(_Tp() / _Up())>
+    operator/(const _Polynomial<_Tp>& __poly, const _Up& __x)
+    { return _Polynomial<decltype(_Tp() / _Up())>(__poly) /= __x; }
 
   /**
    *
    */
   template<typename _Tp, typename _Up>
-    inline polynomial<decltype(_Tp() / _Up())>
-    operator%(const polynomial<_Tp>& __poly, const _Up& __x)
-    { return polynomial<decltype(_Tp() / _Up())>(__poly) %= __x; }
+    inline _Polynomial<decltype(_Tp() / _Up())>
+    operator%(const _Polynomial<_Tp>& __poly, const _Up& __x)
+    { return _Polynomial<decltype(_Tp() / _Up())>(__poly) %= __x; }
 
   /**
    *  Return the sum of two polynomials.
    */
   template<typename _Tp, typename _Up>
-    inline polynomial<decltype(_Tp() + _Up())>
-    operator+(const polynomial<_Tp>& __pa, const polynomial<_Up>& __pb)
-    { return polynomial<decltype(_Tp() + _Up())>(__pa) += __pb; }
+    inline _Polynomial<decltype(_Tp() + _Up())>
+    operator+(const _Polynomial<_Tp>& __pa, const _Polynomial<_Up>& __pb)
+    { return _Polynomial<decltype(_Tp() + _Up())>(__pa) += __pb; }
 
   /**
    *  Return the difference of two polynomials.
    */
   template<typename _Tp, typename _Up>
-    inline polynomial<decltype(_Tp() - _Up())>
-    operator-(const polynomial<_Tp>& __pa, const polynomial<_Up>& __pb)
-    { return polynomial<decltype(_Tp() - _Up())>(__pa) -= __pb; }
+    inline _Polynomial<decltype(_Tp() - _Up())>
+    operator-(const _Polynomial<_Tp>& __pa, const _Polynomial<_Up>& __pb)
+    { return _Polynomial<decltype(_Tp() - _Up())>(__pa) -= __pb; }
 
   /**
    *  Return the product of two polynomials.
    */
   template<typename _Tp, typename _Up>
-    inline polynomial<decltype(_Tp() * _Up())>
-    operator*(const polynomial<_Tp>& __pa, const polynomial<_Up>& __pb)
-    { return polynomial<decltype(_Tp() * _Up())>(__pa) *= __pb; }
+    inline _Polynomial<decltype(_Tp() * _Up())>
+    operator*(const _Polynomial<_Tp>& __pa, const _Polynomial<_Up>& __pb)
+    { return _Polynomial<decltype(_Tp() * _Up())>(__pa) *= __pb; }
 
   /**
    *  Return the quotient of two polynomials.
    */
   template<typename _Tp, typename _Up>
-    inline polynomial<decltype(_Tp() / _Up())>
-    operator/(const polynomial<_Tp>& __pa, const polynomial<_Up>& __pb)
-    { return polynomial<decltype(_Tp() / _Up())>(__pa) /= __pb; }
+    inline _Polynomial<decltype(_Tp() / _Up())>
+    operator/(const _Polynomial<_Tp>& __pa, const _Polynomial<_Up>& __pb)
+    { return _Polynomial<decltype(_Tp() / _Up())>(__pa) /= __pb; }
 
   /**
    *  Return the modulus or remainder of one polynomial relative to another one.
    */
   template<typename _Tp, typename _Up>
-    inline polynomial<decltype(_Tp() / _Up())>
-    operator%(const polynomial<_Tp>& __pa, const polynomial<_Up>& __pb)
-    { return polynomial<decltype(_Tp() / _Up())>(__pa) %= __pb; }
+    inline _Polynomial<decltype(_Tp() / _Up())>
+    operator%(const _Polynomial<_Tp>& __pa, const _Polynomial<_Up>& __pb)
+    { return _Polynomial<decltype(_Tp() / _Up())>(__pa) %= __pb; }
 
   /**
    *
    */
   template<typename _Tp, typename _Up>
-    inline polynomial<decltype(_Tp() + _Up())>
-    operator+(const _Tp& __x, const polynomial<_Up>& __poly)
-    { return polynomial<decltype(_Tp() + _Up())>(__x) += __poly; }
+    inline _Polynomial<decltype(_Tp() + _Up())>
+    operator+(const _Tp& __x, const _Polynomial<_Up>& __poly)
+    { return _Polynomial<decltype(_Tp() + _Up())>(__x) += __poly; }
 
   /**
    *
    */
   template<typename _Tp, typename _Up>
-    inline polynomial<decltype(_Tp() - _Up())>
-    operator-(const _Tp& __x, const polynomial<_Up>& __poly)
-    { return polynomial<decltype(_Tp() - _Up())>(__x) -= __poly; }
+    inline _Polynomial<decltype(_Tp() - _Up())>
+    operator-(const _Tp& __x, const _Polynomial<_Up>& __poly)
+    { return _Polynomial<decltype(_Tp() - _Up())>(__x) -= __poly; }
 
   /**
    *
    */
   template<typename _Tp, typename _Up>
-    inline polynomial<decltype(_Tp() * _Up())>
-    operator*(const _Tp& __x, const polynomial<_Up>& __poly)
-    { return polynomial<decltype(_Tp() * _Up())>(__x) *= __poly; }
+    inline _Polynomial<decltype(_Tp() * _Up())>
+    operator*(const _Tp& __x, const _Polynomial<_Up>& __poly)
+    { return _Polynomial<decltype(_Tp() * _Up())>(__x) *= __poly; }
 
   /**
    *  Return the quotient of two polynomials.
    */
   template<typename _Tp, typename _Up>
-    inline polynomial<decltype(_Tp() / _Up())>
-    operator/(const _Tp& __x, const polynomial<_Up>& __poly)
-    { return polynomial<decltype(_Tp() / _Up())>(__x) /= __poly; }
+    inline _Polynomial<decltype(_Tp() / _Up())>
+    operator/(const _Tp& __x, const _Polynomial<_Up>& __poly)
+    { return _Polynomial<decltype(_Tp() / _Up())>(__x) /= __poly; }
 
   /**
    *  Return the modulus or remainder of one polynomial relative to another one.
    */
   template<typename _Tp, typename _Up>
-    inline polynomial<decltype(_Tp() / _Up())>
-    operator%(const _Tp& __x, const polynomial<_Up>& __poly)
-    { return polynomial<decltype(_Tp() / _Up())>(__x) %= __poly; }
+    inline _Polynomial<decltype(_Tp() / _Up())>
+    operator%(const _Tp& __x, const _Polynomial<_Up>& __poly)
+    { return _Polynomial<decltype(_Tp() / _Up())>(__x) %= __poly; }
 
   /**
    *  Divide two polynomials returning the quotient and remainder.
    */
   template<typename _Tp>
     void
-    divmod(const polynomial<_Tp>& __pa, const polynomial<_Tp>& __pb,
-           polynomial<_Tp>& __quo, polynomial<_Tp>& __rem)
+    divmod(const _Polynomial<_Tp>& __pa, const _Polynomial<_Tp>& __pb,
+           _Polynomial<_Tp>& __quo, _Polynomial<_Tp>& __rem)
     {
       __rem = __pa;
-      __quo = polynomial<_Tp>(_Tp(), __pa.degree());
+      __quo = _Polynomial<_Tp>(_Tp(), __pa.degree());
       const std::size_t __na = __pa.degree();
       const std::size_t __nb = __pb.degree();
       if (__nb <= __na)
@@ -714,8 +714,8 @@ namespace std
    *  The format is a parenthesized comma-delimited list of coefficients.
    */
   template<typename CharT, typename Traits, typename _Tp>
-    basic_ostream<CharT, Traits>&
-    operator<<(basic_ostream<CharT, Traits>& __os, const polynomial<_Tp>& __poly)
+    std::basic_ostream<CharT, Traits>&
+    operator<<(std::basic_ostream<CharT, Traits>& __os, const _Polynomial<_Tp>& __poly)
     {
       int __old_prec = __os.precision(std::numeric_limits<_Tp>::max_digits10);
       __os << "(";
@@ -733,8 +733,8 @@ namespace std
    *  or a parenthesized comma-delimited list of coefficients.
    */
   template<typename CharT, typename Traits, typename _Tp>
-    basic_istream<CharT, Traits>&
-    operator>>(basic_istream<CharT, Traits>& __is, polynomial<_Tp>& __poly)
+    std::basic_istream<CharT, Traits>&
+    operator>>(std::basic_istream<CharT, Traits>& __is, _Polynomial<_Tp>& __poly)
     {
       _Tp __x;
       CharT __ch;
@@ -748,7 +748,7 @@ namespace std
 	    }
 	  while (__ch == ',');
 	  if (__ch != ')')
-	    __is.setstate(ios_base::failbit);
+	    __is.setstate(std::ios_base::failbit);
 	}
       else
 	{
@@ -764,7 +764,7 @@ namespace std
    */
   template<typename _Tp>
     inline bool
-    operator==(const polynomial<_Tp>& __pa, const polynomial<_Tp>& __pb)
+    operator==(const _Polynomial<_Tp>& __pa, const _Polynomial<_Tp>& __pb)
     { return __pa._M_coeff == __pb._M_coeff; }
 
   /**
@@ -772,34 +772,35 @@ namespace std
    */
   template<typename _Tp>
     inline bool
-    operator!=(const polynomial<_Tp>& __pa, const polynomial<_Tp>& __pb)
+    operator!=(const _Polynomial<_Tp>& __pa, const _Polynomial<_Tp>& __pb)
     { return !(__pa == __pb); }
-} // namespace std
+
+} // namespace __gnu_cxx
 
 /*
 //  Here is another idea from boost.
-namespace std
+namespace __gnu_cxx
 {
 
   template<typename _Tp, size_t _Num, size_t _K>
     constexpr _Tp
-    polynomial_eval_help(const std::array<_Tp, _Num>& __arr, _Tp __x)
-    { return polynomial_eval_help<_Tp, _Num, _K - 1>(__arr, __x) * __x + __arr[_K]; }
+    _Polynomial_eval_help(const std::array<_Tp, _Num>& __arr, _Tp __x)
+    { return _Polynomial_eval_help<_Tp, _Num, _K - 1>(__arr, __x) * __x + __arr[_K]; }
 
   template<typename _Tp, size_t _Num>
     constexpr _Tp
-    polynomial_eval_help<_Tp, _Num, 0>(const std::array<_Tp, _Num>& __arr, _Tp __x)
+    _Polynomial_eval_help<_Tp, _Num, 0>(const std::array<_Tp, _Num>& __arr, _Tp __x)
     { return _Tp(1); }
 
   template<typename _Tp, size_t _Num>
     constexpr _Tp
-    polynomial_eval(const std::array<_Tp, _Num>& __arr, _Tp __x)
-    { return polynomial_eval_help<_Tp, _Num, _Num - 1>(__arr, __x); }
+    _Polynomial_eval(const std::array<_Tp, _Num>& __arr, _Tp __x)
+    { return _Polynomial_eval_help<_Tp, _Num, _Num - 1>(__arr, __x); }
 
   template<typename _Tp>
     constexpr _Tp
-    polynomial_eval<_Tp, 0>(const std::array<_Tp, 0>& __arr, _Tp __x)
+    _Polynomial_eval<_Tp, 0>(const std::array<_Tp, 0>& __arr, _Tp __x)
     { return _Tp(0); }
 
-} // namespace std
+} // namespace __gnu_cxx
 */
