@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <limits>
 #include <ratio>
+#include <cassert>
 #include <experimental/numeric>
 
 namespace __gnu_cxx
@@ -28,7 +29,7 @@ template<typename _IntTp>
   rational<_IntTp>
   abs(const rational<_IntTp>&);
 
-template<typename _IntTp>
+template<typename _IntTp = std::intmax_t>
   class rational
   {
     static_assert(std::numeric_limits<_IntTp>::is_specialized, "");
@@ -59,7 +60,7 @@ template<typename _IntTp>
 
     // Default copy constructor and assignment are fine
 
-    // Add assignment from _IntTp
+    // Add assignment from value_type
     rational&
     operator=(value_type __num)
     { return assign(__num, 1); }
@@ -69,12 +70,12 @@ template<typename _IntTp>
     assign(value_type, value_type);
 
     // Access to representation
-    constexpr _IntTp
-    numerator() const
+    constexpr value_type
+    num() const
     { return this->_M_num; }
 
-    constexpr _IntTp
-    denominator() const
+    constexpr value_type
+    den() const
     { return this->_M_den; }
 
     // Arithmetic assignment operators
@@ -111,8 +112,8 @@ template<typename _IntTp>
     bool operator==(value_type) const;
 
   private:
-    _IntTp _M_num;
-    _IntTp _M_den;
+    value_type _M_num;
+    value_type _M_den;
 
     // Representation note: Fractions are kept in normalized form at all
     // times. normalized form is defined as gcd(num,den) == 1 and den > 0.
@@ -142,7 +143,7 @@ template<typename _IntTp>
 template<typename _IntTp>
   inline rational<_IntTp>
   operator-(const rational<_IntTp>& __rat)
-  { return rational<_IntTp>(-__rat.numerator(), __rat.denominator()); }
+  { return rational<_IntTp>(-__rat.num(), __rat.den()); }
 
 // Arithmetic assignment operators
 template<typename _IntTp>
@@ -167,7 +168,7 @@ template<typename _IntTp>
     // Which proves that instead of normalizing the result, it is better to
     // divide num and den by gcd((a*d1 + c*b1), g)
 
-    _IntTp __gcd = std::experimental::gcd(this->_M_den, __rat.den);
+    value_type __gcd = std::experimental::gcd(this->_M_den, __rat.den);
     this->_M_den /= __gcd;  // = b1 from the calculations above
     this->_M_num = this->_M_num * (__rat.den / __gcd) + __rat.num * this->_M_den;
     __gcd = std::experimental::gcd(this->_M_num, __gcd);
@@ -183,7 +184,7 @@ template<typename _IntTp>
   {
     // This calculation avoids overflow, and minimises the number of expensive
     // calculations. It corresponds exactly to the += case above
-    _IntTp __gcd = std::experimental::gcd(this->_M_den, __rat.den);
+    value_type __gcd = std::experimental::gcd(this->_M_den, __rat.den);
     this->_M_den /= __gcd;
     this->_M_num = this->_M_num * (__rat.den / __gcd) - __rat.num * this->_M_den;
     __gcd = std::experimental::gcd(this->_M_num, __gcd);
@@ -198,8 +199,8 @@ template<typename _IntTp>
   rational<_IntTp>::operator*=(rational<_IntTp> __rat)
   {
     // Avoid overflow and preserve normalization
-    _IntTp __gcd1 = std::experimental::gcd(this->_M_num, __rat.den);
-    _IntTp __gcd2 = std::experimental::gcd(__rat.num, this->_M_den);
+    value_type __gcd1 = std::experimental::gcd(this->_M_num, __rat.den);
+    value_type __gcd2 = std::experimental::gcd(__rat.num, this->_M_den);
     this->_M_num = (this->_M_num / __gcd1) * (__rat.num / __gcd2);
     this->_M_den = (this->_M_den / __gcd2) * (__rat.den / __gcd1);
     return *this;
@@ -209,7 +210,7 @@ template<typename _IntTp>
   rational<_IntTp>&
   rational<_IntTp>::operator/=(rational<_IntTp> __rat)
   {
-    constexpr _IntTp zero{0};
+    constexpr value_type zero{0};
 
     // Trap division by zero
     if (__rat.num == zero)
@@ -218,8 +219,8 @@ template<typename _IntTp>
       return *this;
 
     // Avoid overflow and preserve normalization
-    _IntTp __gcd1 = std::experimental::gcd(this->_M_num, __rat.num);
-    _IntTp __gcd2 = std::experimental::gcd(__rat.den, this->_M_den);
+    value_type __gcd1 = std::experimental::gcd(this->_M_num, __rat.num);
+    value_type __gcd2 = std::experimental::gcd(__rat.den, this->_M_den);
     this->_M_num = (this->_M_num / __gcd1) * (__rat.den / __gcd2);
     this->_M_den = (this->_M_den / __gcd2) * (__rat.num / __gcd1);
 
@@ -411,7 +412,7 @@ template<typename _IntTp>
   void
   rational<_IntTp>::_M_normalize()
   {
-    constexpr _IntTp zero{0};
+    constexpr value_type zero{0};
 
     if (this->_M_den == zero)
       throw bad_rational();
@@ -423,7 +424,7 @@ template<typename _IntTp>
         return;
       }
 
-    _IntTp __gcd = std::experimental::gcd(this->_M_num, this->_M_den);
+    value_type __gcd = std::experimental::gcd(this->_M_num, this->_M_den);
 
     this->_M_num /= __gcd;
     this->_M_den /= __gcd;
@@ -462,7 +463,9 @@ template<typename _IntTp>
   std::istream&
   operator>>(std::istream& __is, rational<_IntTp>& __rat)
   {
-    _IntTp __num = _IntTp{0}, __d = _IntTp{1};
+    using __value_type = typename rational<_IntTp>::value_type;
+
+    auto __num = __value_type{0}, __den = __value_type{1};
     char __c = 0;
     detail::resetter sentry(__is);
 
@@ -477,10 +480,10 @@ template<typename _IntTp>
 #else
     __is.unsetf(ios::skipws); // compiles, but seems to have no effect.
 #endif
-    __is >> __d;
+    __is >> __den;
 
     if (__is)
-      __rat.assign(__num, __d);
+      __rat.assign(__num, __den);
 
     return __is;
   }
@@ -490,7 +493,7 @@ template<typename _IntTp>
   std::ostream&
   operator<<(std::ostream& __os, const rational<_IntTp>& __rat)
   {
-    __os << __rat.numerator() << '/' << __rat.denominator();
+    __os << __rat.num() << '/' << __rat.den();
     return __os;
   }
 
@@ -499,8 +502,8 @@ template<typename _Tp, typename _IntTp>
   inline _Tp
   rational_cast(const rational<_IntTp>& __src)
   {
-    return static_cast<_Tp>(__src.numerator())
-         / static_cast<_Tp>(__src.denominator());
+    return static_cast<_Tp>(__src.num())
+         / static_cast<_Tp>(__src.den());
   }
 
 // Do not use any abs() defined on _IntTp - it isn't worth it, given the
@@ -510,10 +513,10 @@ template<typename _IntTp>
   inline rational<_IntTp>
   abs(const rational<_IntTp>& __rat)
   {
-    if (__rat.numerator() >= _IntTp{0})
+    if (__rat.num() >= _IntTp{0})
       return __rat;
-
-    return rational<_IntTp>(-__rat.numerator(), __rat.denominator());
+    else
+      return rational<_IntTp>(-__rat.num(), __rat.den());
   }
 
 } // namespace __gnu_cxx
