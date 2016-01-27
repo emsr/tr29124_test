@@ -55,6 +55,7 @@ ${copy} check_gegenbauer.cc         ${ext_dir}/gegenbauer/check_value.cc
 ${copy} check_hurwitz_zeta.cc       ${ext_dir}/hurwitz_zeta/check_value.cc
 ${copy} check_hyperg.cc             ${ext_dir}/hyperg/check_value.cc
 ${copy} check_ibeta.cc              ${ext_dir}/ibeta/check_value.cc
+${copy} check_jacobi.cc             ${ext_dir}/jacobi/check_value.cc
 ${copy} check_jacobi_sn.cc          ${ext_dir}/jacobi_sn/check_value.cc
 ${copy} check_jacobi_cn.cc          ${ext_dir}/jacobi_cn/check_value.cc
 ${copy} check_jacobi_dn.cc          ${ext_dir}/jacobi_dn/check_value.cc
@@ -62,14 +63,16 @@ ${copy} check_lbincoef.cc           ${ext_dir}/lbincoef/check_value.cc
 ${copy} check_ldouble_factorial.cc  ${ext_dir}/ldouble_factorial/check_value.cc
 ${copy} check_legendre_q.cc         ${ext_dir}/legendre_q/check_value.cc
 ${copy} check_lfactorial.cc         ${ext_dir}/lfactorial/check_value.cc
-#${copy} check_lpochhammer_l.cc      ${ext_dir}/lpochhammer_l/check_value.cc
+${copy} check_lpochhammer_l.cc      ${ext_dir}/lpochhammer_l/check_value.cc
 ${copy} check_lpochhammer_u.cc      ${ext_dir}/lpochhammer_u/check_value.cc
-#${copy} check_pochhammer_l.cc       ${ext_dir}/pochhammer_l/check_value.cc
+${copy} check_pochhammer_l.cc       ${ext_dir}/pochhammer_l/check_value.cc
 ${copy} check_pochhammer_u.cc       ${ext_dir}/pochhammer_u/check_value.cc
 ${copy} check_psi.cc                ${ext_dir}/psi/check_value.cc
+${copy} check_radpoly.cc            ${ext_dir}/radpoly/check_value.cc
 ${copy} check_sinc.cc               ${ext_dir}/sinc/check_value.cc
 ${copy} check_sinc_pi.cc            ${ext_dir}/sinc_pi/check_value.cc
 ${copy} check_sinhint.cc            ${ext_dir}/sinhint/check_value.cc
 ${copy} check_sinint.cc             ${ext_dir}/sinint/check_value.cc
 ${copy} check_sph_bessel_i.cc       ${ext_dir}/sph_bessel_i/check_value.cc
 ${copy} check_sph_bessel_k.cc       ${ext_dir}/sph_bessel_k/check_value.cc
+${copy} check_zernike.cc            ${ext_dir}/zernike/check_value.cc
