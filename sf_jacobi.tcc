@@ -73,7 +73,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       auto _Pm0 = _Tp{0};
       auto __a2mb2 = __amb * __apb;
-      for (auto __k = 2; __k < __n; ++__k )
+      for (auto __k = 2; __k <= __n; ++__k )
 	{
 	  auto __apbpk = __apb + _Tp(__k);
 	  auto __apbp2k = __apbpk + _Tp(__k);
@@ -86,7 +86,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			    * (__beta + _Tp(__k - 1)) * __apbp2k;
 	  if (__d == _Tp{0})
 	    std::__throw_runtime_error("__poly_jacobi: error in recursion");
-	  _Pm0 = ((__a + __b * __x) * _Pm1 - __c * _Pm2) / __d;
+	  _Pm0 = ((__b + __a * __x) * _Pm1 - __c * _Pm2) / __d;
 	  _Pm2 = _Pm1;
 	  _Pm1 = _Pm0;
 	}
@@ -96,8 +96,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   P^{(a,b)}_{k}(z) =
 
-    (a+b+2k-1)((a-b)(a+b)+z(a+b+2k-2)(a+b+2k))
-    ------------------------------------------ P^{(a,b)}_{k-1}(z)
+    (a+b+2k-1)((a-b)(a+b) + z(a+b+2k-2)(a+b+2k))
+    -------------------------------------------- P^{(a,b)}_{k-1}(z)
              2 k(a+b+k)(a+b+2k-2)
 
        2(a+k-1)(b+k-1)(a+b+2k)
