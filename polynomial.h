@@ -114,6 +114,7 @@ namespace __gnu_cxx
       : _M_coeff()
       {
 	std::vector<_Polynomial<value_type>> __numer;
+	std::vector<_Polynomial<value_type>> __denom;
 	for (auto __xi = __xbegin; __xi != __xend; ++__xi)
 	  {
 	    for (auto __xj = __xi + 1; __xj != __xend; ++__xj)
