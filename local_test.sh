@@ -134,9 +134,9 @@ ${copy} check_lbincoef.cc           ${textdir}/lbincoef/check_value.cc
 ${copy} check_ldouble_factorial.cc  ${textdir}/ldouble_factorial/check_value.cc
 ${copy} check_legendre_q.cc         ${textdir}/legendre_q/check_value.cc
 ${copy} check_lfactorial.cc         ${textdir}/lfactorial/check_value.cc
-#${copy} check_lpochhammer_l.cc      ${textdir}/lpochhammer_l/check_value.cc
+${copy} check_lpochhammer_l.cc      ${textdir}/lpochhammer_l/check_value.cc
 ${copy} check_lpochhammer_u.cc      ${textdir}/lpochhammer_u/check_value.cc
-#${copy} check_pochhammer_l.cc       ${textdir}/pochhammer_l/check_value.cc
+${copy} check_pochhammer_l.cc       ${textdir}/pochhammer_l/check_value.cc
 ${copy} check_pochhammer_u.cc       ${textdir}/pochhammer_u/check_value.cc
 ${copy} check_psi.cc                ${textdir}/psi/check_value.cc
 ${copy} check_sinc.cc               ${textdir}/sinc/check_value.cc
