@@ -35,6 +35,23 @@ namespace std
 namespace __detail
 {
 
+  /// A class to abstract the scalar data type in a generic way.
+  template<typename _Tp>
+    struct __num_traits
+    {
+      using __value_type = _Tp;
+    };
+
+  template<>
+    template<typename _Tp>
+      struct __num_traits<std::complex<_Tp>>
+      {
+	using __value_type = typename std::complex<_Tp>::value_type;
+      };
+
+  template<typename _Tp>
+    using __num_traits_t = typename __num_traits<_Tp>::__value_type;
+
   /// A class to encapsulate type dependent floating point
   /// constants.  Not everything will be able to be expressed as
   /// type logic.
@@ -162,19 +179,6 @@ namespace std
 namespace __detail
 {
 
-  template<typename _Tp>
-    struct __ellint_traits
-    {
-      using __value_type = _Tp;
-    };
-
-  template<>
-    template<typename _Tp>
-      struct __ellint_traits<std::complex<_Tp>>
-      {
-	using __value_type = typename std::complex<_Tp>::value_type;
-      };
-
   /**
    *   @brief Return the Carlson elliptic function @f$ R_F(x,y,z) @f$
    *          of the first kind.
@@ -194,7 +198,7 @@ namespace __detail
     _Tp
     __ellint_rf(_Tp __x, _Tp __y, _Tp __z)
     {
-      using _Val = typename __ellint_traits<_Tp>::__value_type;
+      using _Val = __num_traits_t<_Tp>;
       const _Val __r = std::numeric_limits<_Val>::epsilon();
       _Tp __xt = __x;
       _Tp __yt = __y;
@@ -260,7 +264,7 @@ namespace __detail
     _Tp
     __ellint_rc(_Tp __x, _Tp __y)
     {
-      using _Val = typename __ellint_traits<_Tp>::__value_type;
+      using _Val = __num_traits_t<_Tp>;
       if (std::imag(__y) == _Val(0) && std::real(__y) < _Val(0))
 	return std::sqrt(__x / (__x - __y)) * __ellint_rc(__x - __y, -__y);
       const _Val __r = std::numeric_limits<_Val>::epsilon();
@@ -320,7 +324,7 @@ namespace __detail
     _Tp
     __ellint_rj(_Tp __x, _Tp __y, _Tp __z, _Tp __p)
     {
-      using _Val = typename __ellint_traits<_Tp>::__value_type;
+      using _Val = __num_traits_t<_Tp>;
       const _Val __r = std::numeric_limits<_Val>::epsilon();
       _Tp __xt = __x;
       _Tp __yt = __y;
@@ -409,7 +413,7 @@ namespace __detail
     _Tp
     __ellint_rd(_Tp __x, _Tp __y, _Tp __z)
     {
-      using _Val = typename __ellint_traits<_Tp>::__value_type;
+      using _Val = __num_traits_t<_Tp>;
       const _Val __r = std::numeric_limits<_Val>::epsilon();
       _Tp __xt = __x;
       _Tp __yt = __y;
@@ -463,7 +467,7 @@ namespace __detail
     _Tp
     __comp_ellint_rf(_Tp __x, _Tp __y)
     {
-      using _Val = typename __ellint_traits<_Tp>::__value_type;
+      using _Val = __num_traits_t<_Tp>;
       const _Val __r = std::numeric_limits<_Val>::epsilon();
       const _Val __tolfact = _Val(2.7L) * std::sqrt(__r);
       __x = std::sqrt(__x);
@@ -509,7 +513,7 @@ namespace __detail
     _Tp
     __ellint_rg(_Tp __x, _Tp __y, _Tp __z)
     {
-      using _Val = typename __ellint_traits<_Tp>::__value_type;
+      using _Val = __num_traits_t<_Tp>;
       if (__z == _Tp())
 	{
 	  if (__x == _Tp())
@@ -547,7 +551,7 @@ namespace __detail
     _Tp
     __comp_ellint_rg(_Tp __x, _Tp __y)
     {
-      using _Val = typename __ellint_traits<_Tp>::__value_type;
+      using _Val = __num_traits_t<_Tp>;
       const _Val __r = std::numeric_limits<_Val>::epsilon();
       const _Val __tolfact = _Val(2.7L) * std::sqrt(__r);
       _Tp __xt = std::sqrt(__x);
@@ -587,9 +591,10 @@ namespace __detail
     _Tp
     __comp_ellint_1(const _Tp __k)
     {
+      using _Val = __num_traits_t<_Tp>;
       if (__isnan(__k))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (std::abs(__k) >= _Tp(1))
+      else if (std::abs(__k) >= _Val(1))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	return __ellint_rf(_Tp(0), _Tp(1) - __k * __k, _Tp(1));
@@ -613,9 +618,10 @@ namespace __detail
     _Tp
     __ellint_1(const _Tp __k, const _Tp __phi)
     {
+      using _Val = __num_traits_t<_Tp>;
       if (__isnan(__k) || __isnan(__phi))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (std::abs(__k) > _Tp(1))
+      else if (std::abs(__k) > _Val(1))
 	std::__throw_domain_error(__N("Bad argument in __ellint_1."));
       else
 	{
@@ -655,9 +661,10 @@ namespace __detail
     _Tp
     __comp_ellint_2(const _Tp __k)
     {
+      using _Val = __num_traits_t<_Tp>;
       if (__isnan(__k))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (std::abs(__k) == 1)
+      else if (std::abs(__k) == _Val{1})
 	return _Tp(1);
       else if (std::abs(__k) > _Tp(1))
 	std::__throw_domain_error(__N("Bad argument in __comp_ellint_2."));
@@ -687,9 +694,10 @@ namespace __detail
     _Tp
     __ellint_2(const _Tp __k, const _Tp __phi)
     {
+      using _Val = __num_traits_t<_Tp>;
       if (__isnan(__k) || __isnan(__phi))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (std::abs(__k) > _Tp(1))
+      else if (std::abs(__k) > _Val(1))
 	std::__throw_domain_error(__N("Bad argument in __ellint_2."));
       else
 	{
@@ -739,11 +747,12 @@ namespace __detail
     _Tp
     __comp_ellint_3(const _Tp __k, const _Tp __nu)
     {
+      using _Val = __num_traits_t<_Tp>;
       if (__isnan(__k) || __isnan(__nu))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__nu == _Tp(1))
 	return std::numeric_limits<_Tp>::infinity();
-      else if (std::abs(__k) > _Tp(1))
+      else if (std::abs(__k) > _Val(1))
 	std::__throw_domain_error(__N("Bad argument in __comp_ellint_3."));
       else
 	{
@@ -777,9 +786,10 @@ namespace __detail
     _Tp
     __ellint_3(const _Tp __k, const _Tp __nu, const _Tp __phi)
     {
+      using _Val = __num_traits_t<_Tp>;
       if (__isnan(__k) || __isnan(__nu) || __isnan(__phi))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (std::abs(__k) > _Tp(1))
+      else if (std::abs(__k) > _Val(1))
 	std::__throw_domain_error(__N("Bad argument in __ellint_3."));
       else
 	{
