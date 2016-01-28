@@ -1702,6 +1702,33 @@ _S_neg_double_factorial_table[999]
       return __lg;
     }
 
+  /**
+   *  @brief Return \f$\Gamma(z)\f$ by the Spouge algorithm:
+   *  @f[
+   *    \Gamma(z+1) = (z+a)^{z+1/2}e^{-z-a}\left[ \sqrt{2\pi} \sum_{k=1}^{\ceil{a}+1}\frac{c_k(a)}{z+k}\right]
+   *  @f]
+   *  where
+   *  @f[
+   *    c_k(a) = \frac{(-1)^{k-1}}{(k-1)!}(a-k)^{k-1/2}e^{a-k}
+   *  @f]
+   *  and the error is bounded by
+   *  @f[
+   *    \epsilon(a) < a^{-1/2}(2\pi)^{-a-1/2}
+   *  @f]
+   *  @see Spouge, J.L., Computation of the gamma, digamma, and trigamma functions.
+   *       SIAM Journal on Numerical Analysis 31, 3 (1994), pp. 931-944
+   *
+   *  @param __z The argument of the gamma function.
+   *  @return  The the gamma function.
+   */
+  template<typename _Tp>
+    _GLIBCXX14_CONSTEXPR _Tp
+    __gamma_spouge(_Tp __x)
+    {
+      return 0.0;
+    }
+
+
 
   /**
    *  @brief Return \f$log(\Gamma(x))\f$ by the Lanczos method.
