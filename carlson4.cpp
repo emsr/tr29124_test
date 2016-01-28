@@ -36,15 +36,6 @@ namespace std
 namespace __detail
 {
 
-  /// A class to encapsulate type dependent floating point
-  /// constants.  Not everything will be able to be expressed as
-  /// type logic.
-  template<typename _Tp>
-    struct __floating_point_constant
-    {
-      static const _Tp __value;
-    };
-
   /// A class to abstract the scalar data type in a generic way.
   template<typename _Tp>
     struct __num_traits
@@ -61,6 +52,15 @@ namespace __detail
 
   template<typename _Tp>
     using __num_traits_t = typename __num_traits<_Tp>::__value_type;
+
+  /// A class to encapsulate type dependent floating point
+  /// constants.  Not everything will be able to be expressed as
+  /// type logic.
+  template<typename _Tp>
+    struct __floating_point_constant
+    {
+      static const _Tp __value;
+    };
 
   /// A structure for numeric constants.
   template<typename _Tp>
