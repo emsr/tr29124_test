@@ -21,6 +21,9 @@ main()
   auto sign = [](int s, int r){return (s + r) % 2 == 1 ? -1 : +1; };
   using rational = double;
 
+  std::cout.precision(std::numeric_limits<double>::digits10);
+  auto width = std::cout.precision() + 6;
+
   __gnu_cxx::_Polynomial<int> poo({0, -2});
   std::vector<__gnu_cxx::_Polynomial<int>> phi;
   std::vector<__gnu_cxx::_Polynomial<int>> psi;
@@ -53,7 +56,7 @@ main()
       std::cout << "B_" << s << ": " << B[s] << '\n';
     }
 
-  std::vector<__gnu_cxx::_Polynomial<__gnu_cxx::rational<int>>>
+  std::vector<__gnu_cxx::_Polynomial<__gnu_cxx::_Rational<long long>>>
   P
   {
     {{1, 1}},
@@ -63,7 +66,7 @@ main()
     {{}, {947, 346500}, {}, {}, {5903, 138600}, {}, {}, {-23573, 147000}, {}, {}, {27, 20000}}
   };
 
-  std::vector<__gnu_cxx::_Polynomial<__gnu_cxx::rational<int>>>
+  std::vector<__gnu_cxx::_Polynomial<__gnu_cxx::_Rational<long long>>>
   Q
   {
     {{}, {}, {3, 10}},
@@ -72,7 +75,7 @@ main()
     {{}, {}, {79, 12375}, {}, {}, {-110767, 693000}, {}, {}, {549, 28000}}
   };
 
-  std::vector<__gnu_cxx::_Polynomial<__gnu_cxx::rational<int>>>
+  std::vector<__gnu_cxx::_Polynomial<__gnu_cxx::_Rational<long long>>>
   R
   {
     {{1, 1}},
@@ -82,7 +85,7 @@ main()
     {{}, {-1159, 115500}, {}, {}, {3889, 4620}, {}, {}, {-46631, 147000}, {}, {}, {27, 20000}}
   };
 
-  std::vector<__gnu_cxx::_Polynomial<__gnu_cxx::rational<int>>>
+  std::vector<__gnu_cxx::_Polynomial<__gnu_cxx::_Rational<long long>>>
   S
   {
     {{-1, 5}, {}, {}, {3, 5}},
@@ -91,14 +94,47 @@ main()
     {{947, 346500}, {}, {}, {31727, 173250}, {}, {}, {-999443, 693000}, {}, {}, {369, 7000}}
   };
 
+  for (const auto& p : P)
+    std::cout << p << '\n';
   for (int i = -100; i <= +100; ++i)
   {
-    auto z = 0.01L * i;
-    std::cout << setw(width) << z
-	      << setw(width) << P(z)
-	      << setw(width) << Q(z)
-	      << setw(width) << R(z)
-	      << setw(width) << S(z)
-	      << '\n';
+    auto z = 0.01 * i;
+    std::cout << std::setw(width) << z;
+    for (const auto& p : P)
+      std::cout << std::setw(width) << p(z);
+    std::cout << '\n';
+  }
+
+  for (const auto& q : Q)
+    std::cout << q << '\n';
+  for (int i = -100; i <= +100; ++i)
+  {
+    auto z = 0.01 * i;
+    std::cout << std::setw(width) << z;
+    for (const auto& q : Q)
+      std::cout << std::setw(width) << q(z);
+    std::cout << '\n';
+  }
+
+  for (const auto& r : R)
+    std::cout << r << '\n';
+  for (int i = -100; i <= +100; ++i)
+  {
+    auto z = 0.01 * i;
+    std::cout << std::setw(width) << z;
+    for (const auto& r : R)
+      std::cout << std::setw(width) << r(z);
+    std::cout << '\n';
+  }
+
+  for (const auto& s : S)
+    std::cout << s << '\n';
+  for (int i = -100; i <= +100; ++i)
+  {
+    auto z = 0.01 * i;
+    std::cout << std::setw(width) << z;
+    for (const auto& s : S)
+      std::cout << std::setw(width) << s(z);
+    std::cout << '\n';
   }
 }
