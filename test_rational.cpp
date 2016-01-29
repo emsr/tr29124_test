@@ -8,6 +8,6 @@
 int
 main()
 {
-  __gnu_cxx::_Polynomial<__gnu_cxx::rational<int>> rpoly{{1,2}, {3, 4}, {5, 6}, {7, 8}};
+  __gnu_cxx::_Polynomial<__gnu_cxx::_Rational<int>> rpoly{{1,2}, {3, 4}, {5, 6}, {7, 8}};
   std::cout << rpoly << '\n';
 }
