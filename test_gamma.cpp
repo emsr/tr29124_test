@@ -44,23 +44,36 @@ template<typename _Tp>
   void
   spouge()
   {
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+
     const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
     const auto _S_2pi = _Tp{6.283185307179586476925286766559005768391L};
     auto a = _Tp{1};
     const auto __fact = _Tp{1} / std::sqrt(_S_2pi);
-    while (_S_eps >= __fact * std::pow(_S_2pi, -a) / std::sqrt(a);
-      a += _Tp{1};
-
-    auto __term = _Tp{1};
-    auto __sum = __term * std::sqrt(a - 1) * std::exp(a - 1);
-    for (int __k = 2; __k < std::ceil(a); ++__k)
+    while (_S_eps <= __fact * std::pow(_S_2pi, -a) / std::sqrt(a))
       {
-	__term *= -_Tp{1} / _Tp(__k);
-	__sum += __term * std::pow(a - __k, k - 0.5) * std::exp(a - __k);
+        std::cout << "err = " << __fact * std::pow(_S_2pi, -a) / std::sqrt(a) << '\n';
+        a += _Tp{1};
+      }
+    std::cout << "a = " << a << '\n';
+
+    std::vector<_Tp> c;
+    auto __factc = _Tp{1};
+    c.push_back(__factc * std::sqrt(a - 1) * std::exp(a - 1));
+    std::cout << "c_0 = " << c.back() << '\n';
+    auto __sum = __factc * std::exp(a - 1);
+    for (int __k = 1; __k < std::ceil(a); ++__k)
+      {
+	__factc *= -_Tp{1} / _Tp(__k);
+	c.push_back(__factc * std::pow(a - __k - 1, __k + 0.5) * std::exp(a - __k - 1));
+	std::cout << "c_" << __k << " = " << c.back() << '\n';
       }
   }
 
 int
 main()
 {
+  spouge<float>();
+  spouge<double>();
+  spouge<long double>();
 }
