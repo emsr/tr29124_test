@@ -47,6 +47,7 @@ template<typename _Tp>
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
 
     const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+    const auto _S_pi  = _Tp{3.1415926535897932384626433832795029L};
     const auto _S_2pi = _Tp{6.283185307179586476925286766559005768391L};
     auto a = _Tp{1};
     const auto __fact = _Tp{1} / std::sqrt(_S_2pi);
@@ -72,13 +73,19 @@ template<typename _Tp>
     auto
     __log_gamma_spouge = [=](_Tp __z) -> _Tp
     {
-      auto __sum = std::sqrt(_S_2pi);
-      for (int __k = 0; __k < c.size(); ++__k)
-	__sum += c[__k] / (__z + __k + 1);
-      return std::log(__sum) + (__z + _Tp{0.5L})* std::log(__z + a) - (__z + a) - std::log(__z);
+      // Reflection is right but auto and use of functions won't compile.
+      //if (__z <= -a)
+	//return std::log(_S_pi) - std::log(std::sin(_S_pi * __z)) - __log_gamma_spouge(_Tp{1} - __z);
+      //else
+	{
+	  auto __sum = std::sqrt(_S_2pi);
+	  for (int __k = 0; __k < c.size(); ++__k)
+	    __sum += c[__k] / (__z + __k + 1);
+	  return std::log(__sum) + (__z + _Tp{0.5L})* std::log(__z + a) - (__z + a) - std::log(__z);
+	}
     };
 
-    for (int i = 0; i <= 200; ++i)
+    for (int i = 0; i <= 500; ++i)
       {
 	auto z = _Tp{0.01L} * i;
 	std::cout << ' ' << z
