@@ -1705,7 +1705,8 @@ _S_neg_double_factorial_table[999]
   /**
    *  @brief Return \f$\Gamma(z)\f$ by the Spouge algorithm:
    *  @f[
-   *    \Gamma(z+1) = (z+a)^{z+1/2}e^{-z-a}\left[ \sqrt{2\pi} \sum_{k=1}^{\ceil{a}+1}\frac{c_k(a)}{z+k}\right]
+   *    \Gamma(z+1) = (z+a)^{z+1/2}e^{-z-a}\left[ \sqrt{2\pi}
+   *      \sum_{k=1}^{\ceil{a}+1}\frac{c_k(a)}{z+k}\right]
    *  @f]
    *  where
    *  @f[
@@ -1723,7 +1724,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __gamma_spouge(_Tp __x)
+    __log_gamma_spouge(_Tp __x)
     {
       return 0.0;
     }

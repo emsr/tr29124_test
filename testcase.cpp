@@ -15,6 +15,7 @@
 
 #include "specfun_testcase.h"
 #include "gsl_wrap.h"
+#include "boost_wrap.h"
 
 #include "testcase.tcc"
 
@@ -64,6 +65,7 @@ template<typename Real>
     using       std::ellint_1;
     using       std::ellint_2;
     using       std::ellint_3;
+    using __gnu_cxx::ellint_d;
     using __gnu_cxx::ellint_rc;
     using __gnu_cxx::ellint_rd;
     using __gnu_cxx::ellint_rf;
@@ -80,6 +82,7 @@ template<typename Real>
     using __gnu_cxx::gamma_u;
     using __gnu_cxx::gegenbauer;
     using       std::hermite;
+    using __gnu_cxx::heuman_lambda;
     using __gnu_cxx::hurwitz_zeta;
     using __gnu_cxx::hyperg;
     using __gnu_cxx::ibeta;
@@ -87,6 +90,7 @@ template<typename Real>
     using __gnu_cxx::jacobi_sn;
     using __gnu_cxx::jacobi_cn;
     using __gnu_cxx::jacobi_dn;
+    using __gnu_cxx::jacobi_zeta;
     using       std::laguerre;
     using __gnu_cxx::lbincoef;
     using __gnu_cxx::ldouble_factorial;
@@ -241,7 +245,7 @@ template<typename Real>
     funcname = "comp_ellint_1";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_comp_ellint_1(filename.c_str());
-    maketest(comp_ellint_1, gsl::ellint_Kcomp,
+    maketest(comp_ellint_1, gsl::comp_ellint_1,
 	     nsname, funcname,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 	    			std::make_pair(false, false), 21),
@@ -253,7 +257,7 @@ template<typename Real>
     funcname = "comp_ellint_2";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_comp_ellint_2(filename.c_str());
-    maketest(comp_ellint_2, gsl::ellint_Ecomp,
+    maketest(comp_ellint_2, gsl::comp_ellint_2,
 	     nsname, funcname,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 	    			std::make_pair(false, false), 21),
@@ -265,7 +269,7 @@ template<typename Real>
     funcname = "comp_ellint_3";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_comp_ellint_3(filename.c_str());
-    maketest(comp_ellint_3, gsl::ellint_Pcomp,
+    maketest(comp_ellint_3, gsl::comp_ellint_3,
 	     nsname, funcname,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
@@ -389,7 +393,7 @@ template<typename Real>
     funcname = "ellint_1";
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_ellint_1(filename.c_str());
-    maketest(ellint_1, gsl::ellint_F,
+    maketest(ellint_1, gsl::ellint_1,
 	     nsname, funcname,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
@@ -402,7 +406,7 @@ template<typename Real>
     funcname = "ellint_2";
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_ellint_2(filename.c_str());
-    maketest(ellint_2, gsl::ellint_E,
+    maketest(ellint_2, gsl::ellint_2,
 	     nsname, funcname,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
@@ -415,7 +419,7 @@ template<typename Real>
     funcname = "ellint_3";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_ellint_3(filename.c_str());
-    maketest(ellint_3, gsl::ellint_P,
+    maketest(ellint_3, gsl::ellint_3,
 	     nsname, funcname,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
@@ -1149,6 +1153,45 @@ template<typename Real>
 	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 				std::make_pair(true, true), 21),
 	     file_conf_hyperg_lim);
+
+    // Heuman lambda functions.
+    // Avoid poles at |x| = 1.
+    std::cout << "heuman_lambda" << std::endl;
+    funcname = "heuman_lambda";
+    filename = get_filename(path, prefix, funcname, "", ".cc");
+    std::ofstream file_heuman_lambda(filename.c_str());
+    maketest(heuman_lambda, beast::heuman_lambda,
+	     nsname, funcname,
+	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
+				std::make_pair(false, false), 21),
+	     "phi", vphid,
+	     file_ellint_1);
+
+    // Elliptic D integrals.
+    // Avoid poles at |x| = 1.
+    std::cout << "ellint_d" << std::endl;
+    funcname = "ellint_d";
+    filename = get_filename(path, prefix, funcname, "", ".cc");
+    std::ofstream file_ellint_d(filename.c_str());
+    maketest(ellint_d, beast::ellint_d,
+	     nsname, funcname,
+	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
+				std::make_pair(false, false), 21),
+	     "phi", vphid,
+	     file_ellint_1);
+
+    // Jacobi zeta functions.
+    // Avoid poles at |x| = 1.
+    std::cout << "jacobi_zeta" << std::endl;
+    funcname = "jacobi_zeta";
+    filename = get_filename(path, prefix, funcname, "", ".cc");
+    std::ofstream file_jacobi_zeta(filename.c_str());
+    maketest(jacobi_zeta, beast::jacobi_zeta,
+	     nsname, funcname,
+	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
+				std::make_pair(false, false), 21),
+	     "phi", vphid,
+	     file_ellint_1);
 
 #endif // STD
 
