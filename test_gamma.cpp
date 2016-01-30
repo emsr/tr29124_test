@@ -68,6 +68,24 @@ template<typename _Tp>
 	c.push_back(__factc * std::pow(a - __k - 1, __k + 0.5) * std::exp(a - __k - 1));
 	std::cout << "c_" << __k << " = " << c.back() << '\n';
       }
+
+    auto
+    __log_gamma_spouge = [=](_Tp __z) -> _Tp
+    {
+      auto __sum = std::sqrt(_S_2pi);
+      for (int __k = 0; __k < c.size(); ++__k)
+	__sum += c[__k] / (__z + __k + 1);
+      return std::log(__sum) + (__z + _Tp{0.5L})* std::log(__z + a) - (__z + a) - std::log(__z);
+    };
+
+    for (int i = 0; i <= 200; ++i)
+      {
+	auto z = _Tp{0.01L} * i;
+	std::cout << ' ' << z
+		  << ' ' << __log_gamma_spouge(z)
+		  << ' ' << std::lgamma(z)
+		  << ' ' << __log_gamma_spouge(z) - std::lgamma(z) << '\n';
+      }
   }
 
 int
