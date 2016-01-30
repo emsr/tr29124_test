@@ -24,13 +24,16 @@ double beta(double x, double y);
 double betac(double x, double y);
 
 /// Complete elliptic integrals of the first kind.
-double ellint_Kcomp(double k);
+double comp_ellint_1(double k);
 
 /// Complete elliptic integrals of the second kind.
-double ellint_Ecomp(double k);
+double comp_ellint_2(double k);
 
 /// Complete elliptic integrals of the third kind.
-double ellint_Pcomp(double k, double nu);
+double comp_ellint_3(double k, double nu);
+
+/// Complete Legendre elliptic D integrals.
+double comp_ellint_d(double k);
 
 /// Confluent hypergeometric functions.
 double hyperg_1F1(double a, double c, double x);
@@ -51,13 +54,16 @@ double bessel_Knu(double nu, double x);
 double bessel_Ynu(double nu, double x);
 
 /// Elliptic integrals of the first kind.
-double ellint_F(double k, double phi);
+double ellint_1(double k, double phi);
 
 /// Elliptic integrals of the second kind.
-double ellint_E(double k, double phi);
+double ellint_2(double k, double phi);
 
 /// Elliptic integrals of the third kind.
-double ellint_P(double k, double nu, double phi);
+double ellint_3(double k, double nu, double phi);
+
+/// Legendre elliptic D integrals.
+double ellint_d(double k, double phi);
 
 /// Carlson elliptic integrals R_C.
 double ellint_RC(double x, double y);
