@@ -20,6 +20,12 @@ GSL_FRESNEL_DIR = $(GSL_EXT_DIR)/Fresnel
 
 GSL_LIBS = $(GSL_FRESNEL_DIR)/fresnel.c -L$(GSL_LIB_DIR) -lgsl -lgslcblas -ljacobi
 
+BOOST_DIR = /usr/local
+BOOST_INC_DIR = $(BOOST_DIR)/include
+BOOST_LIB_DIR = $(BOOST_DIR)/lib
+
+#BOOST_LIBS = -L$(BOOST_LIB_DIR) -lboost_math_tools -lboost_math_tr1f -lboost_math_tr1l -lboost_math_tr1
+
 BINS = test_special_function \
        diff_special_function \
        testcase_old \
@@ -131,8 +137,8 @@ diff_local_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tc
 testcase_old: testcase_old.cpp testcase_old.tcc gsl_wrap.h gsl_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
 	$(CXX) -o testcase_old -I$(GSL_INC_DIR) testcase_old.cpp gsl_wrap.cpp $(GSL_LIBS)
 
-testcase: testcase.cpp testcase.tcc gsl_wrap.h gsl_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
-	$(CXX) -o testcase -I$(GSL_INC_DIR) testcase.cpp gsl_wrap.cpp $(GSL_LIBS)
+testcase: testcase.cpp testcase.tcc gsl_wrap.h gsl_wrap.cpp boost_wrap.h boost_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
+	$(CXX) -o testcase -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp gsl_wrap.cpp boost_wrap.cpp $(GSL_LIBS) $(BOOST_LIBS)
 
 test_limits: test_limits.cpp
 	$(CXX) -o test_limits test_limits.cpp
