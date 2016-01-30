@@ -108,14 +108,14 @@ beta(double x, double y)
 
 /// Complete elliptic integrals of the first kind.
 double
-ellint_Kcomp(double k)
+comp_ellint_1(double k)
 {
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_ellint_Kcomp_e(k, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in ellint_Kcomp:");
+      std::ostringstream msg("Error in ellint_1:");
       msg << " k=" << k;
       throw std::runtime_error(msg.str());
     }
@@ -125,14 +125,14 @@ ellint_Kcomp(double k)
 
 /// Complete elliptic integrals of the second kind.
 double
-ellint_Ecomp(double k)
+comp_ellint_2(double k)
 {
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_ellint_Ecomp_e(k, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in ellint_Ecomp:");
+      std::ostringstream msg("Error in ellint_2:");
       msg << " k=" << k;
       throw std::runtime_error(msg.str());
     }
@@ -142,7 +142,7 @@ ellint_Ecomp(double k)
 
 /// Complete elliptic integrals of the third kind.
 double
-ellint_Pcomp(double k, double nu)
+comp_ellint_3(double k, double nu)
 {
   //double phi = M_PI / 2.0;
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
@@ -151,12 +151,19 @@ ellint_Pcomp(double k, double nu)
   int stat = gsl_sf_ellint_Pcomp_e(k, nu, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in ellint_Pcomp:");
+      std::ostringstream msg("Error in comp_ellint_3:");
       msg << " k=" << k << " nu=" << nu;
       throw std::runtime_error(msg.str());
     }
   else
     return result.val;
+}
+
+/// Complete Legendre elliptic D integrals.
+double
+comp_ellint_d(double k)
+{
+  return 0.0;
 }
 
 /// Confluent hypergeometric functions.
@@ -257,14 +264,14 @@ bessel_Ynu(double nu, double x)
 
 /// Elliptic integrals of the first kind.
 double
-ellint_F(double k, double phi)
+ellint_1(double k, double phi)
 {
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_ellint_F_e(phi, k, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in ellint_F:");
+      std::ostringstream msg("Error in ellint_1:");
       msg << " k=" << k << " phi=" << phi;
       throw std::runtime_error(msg.str());
     }
@@ -274,14 +281,14 @@ ellint_F(double k, double phi)
 
 /// Elliptic integrals of the second kind.
 double
-ellint_E(double k, double phi)
+ellint_2(double k, double phi)
 {
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_ellint_E_e(phi, k, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in ellint_E:");
+      std::ostringstream msg("Error in ellint_2:");
       msg << " phi=" << phi << " k=" << k;
       throw std::runtime_error(msg.str());
     }
@@ -291,19 +298,26 @@ ellint_E(double k, double phi)
 
 /// Elliptic integrals of the third kind.
 double
-ellint_P(double k, double nu, double phi)
+ellint_3(double k, double nu, double phi)
 {
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_ellint_P_e(phi, k, nu, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in ellint_P:");
+      std::ostringstream msg("Error in ellint_3:");
       msg << " k=" << k << " nu=" << nu << " phi=" << phi;
       throw std::runtime_error(msg.str());
     }
   else
     return result.val;
+}
+
+/// Legendre elliptic D integrals.
+double
+ellint_d(double k, double phi)
+{
+  return 0.0;
 }
 
 /// Carlson elliptic integrals R_C.
@@ -1228,6 +1242,20 @@ heuman_lambda(double k, double phi)
 /// Jacobi zeta functions.
 double
 jacobi_zeta(double k, double phi)
+{
+  return 0.0;
+}
+
+/// Inverse error function.
+double
+erf_inv(double p)
+{
+  return 0.0;
+}
+
+/// Inverse complementary error function.
+double
+erfc_inv(double p)
 {
   return 0.0;
 }

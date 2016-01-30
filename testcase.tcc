@@ -291,7 +291,7 @@ template<typename Tp, typename Tp1>
 	    const Tp f2 = function2(x);
 	    if (std::abs(f1) == inf || std::abs(f2) == inf)
 	      {
-		output << "Divergence at"
+		output << "//  Divergence at"
 		       << " " << arg1 << "=" << x
 		       << " f1=" << f1
 		       << " f2=" << f2 << '\n';
@@ -454,7 +454,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 		const Tp f2 = function2(x, y);
 		if (std::abs(f1) == inf || std::abs(f2) == inf)
 		  {
-		    output << "Divergence at"
+		    output << "//  Divergence at"
 			   << " " << arg1 << "=" << x
 			   << " " << arg2 << "=" << y
 			   << " f1=" << f1
@@ -624,7 +624,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		    const Tp f2 = function2(x, y, z);
 		    if (std::abs(f1) == inf || std::abs(f2) == inf)
 		      {
-			output << "Divergence at"
+			output << "//  Divergence at"
 			       << " " << arg1 << "=" << x
 			       << " " << arg2 << "=" << y
 			       << " " << arg3 << "=" << z
@@ -807,7 +807,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 			const Tp f2 = function2(w, x, y, z);
 			if (std::abs(f1) == inf || std::abs(f2) == inf)
 			  {
-			    output << "Divergence at"
+			    output << "//  Divergence at"
 				   << " " << arg1 << "=" << w
 				   << " " << arg2 << "=" << x
 				   << " " << arg3 << "=" << y
