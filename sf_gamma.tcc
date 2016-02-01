@@ -2508,11 +2508,11 @@ _S_neg_double_factorial_table[999]
     }
 
   /**
-   *  @brief  Return the chi-square propability function.
-   *  This returns the probability that the observed chi-square for a correct model
+   *  @brief  Return the chi-squared propability function.
+   *  This returns the probability that the observed chi-squared for a correct model
    *  is less than the value @f$ \chi^2 @f$.
    *
-   *  The chi-square propability function is related
+   *  The chi-squared propability function is related
    *  to the normalized lower incomplete gamma function:
    *  @f[
    *    P(\chi^2|\nu) = \Gamma_P(\frac{\nu}{2}, \frac{\chi^2}{2})
@@ -2520,22 +2520,22 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __chi_square_pdf(_Tp __chi2, unsigned int __nu)
+    __chi_squared_pdf(_Tp __chi2, unsigned int __nu)
     {
       if (__isnan(__chi2))
 	return std::numeric_limits<_Tp>::quiet_NaN()
       else if (__chi2 < _Tp{0})
-	std::__throw_domain_error(_N("__chi_square_pdf: chi-square is negative"))
+	std::__throw_domain_error(_N("__chi_squared_cdf: chi-squared is negative"))
       else
 	return __gamma_p(_Tp(__nu) / _Tp{2}, __chi2 / _Tp{2});
     }
 
   /**
-   *  @brief  Return the complementary chi-square propability function.
-   *  This returns the probability that the observed chi-square for a correct model
+   *  @brief  Return the complementary chi-squared propability function.
+   *  This returns the probability that the observed chi-squared for a correct model
    *  is greater than the value @f$ \chi^2 @f$.
    *
-   *  The complementary chi-square propability function is related
+   *  The complementary chi-squared propability function is related
    *  to the normalized upper incomplete gamma function:
    *  @f[
    *    Q(\chi^2|\nu) = \Gamma_Q(\frac{\nu}{2}, \frac{\chi^2}{2})
@@ -2543,12 +2543,12 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __chi_square_pdfc(_Tp __chi2, unsigned int __nu)
+    __chi_squared_pdfc(_Tp __chi2, unsigned int __nu)
     {
       if (__isnan(__chi2))
 	return std::numeric_limits<_Tp>::quiet_NaN()
       else if (__chi2 < _Tp{0})
-	std::__throw_domain_error(_N("__chi_square_pdfc: chi-square is negative"))
+	std::__throw_domain_error(_N("__chi_square_pdfc: chi-squared is negative"))
       else
 	return __gamma_q(_Tp(__nu) / _Tp{2}, __chi2 / _Tp{2});
     }
