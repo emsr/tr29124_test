@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <limits>
 #include <ext/cmath>
+#include "float128.h"
 
 //  Checbyshev coefficient matrix.
 int
@@ -189,9 +190,15 @@ main()
   lanczos<float>();
   lanczos<double>();
   lanczos<long double>();
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  lanczos<__float128_t>();
+#endif
 
   std::cout << "\n\nSpouge Algorithm\n\n";
   spouge<float>();
   spouge<double>();
   spouge<long double>();
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  spouge<__float128_t>();
+#endif
 }
