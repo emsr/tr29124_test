@@ -249,24 +249,43 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief  Return the complementary chi-square propability function.
-   *  This returns the probability that the observed chi-square for a correct model
-   *  exceeds the value $f[ \chi^2 $f].
+   *  @brief  Return the Students T probability function.
    *
-   *  The chi-square propability function is related to the incomplete beta function:
+   *  The students T propability function is related to the incomplete beta function:
    *  @f[
-   *    A(t|\nu) = 1 - \Gamma_P(\frac{\nu}{2}, \frac{\chi^2}{2})
+   *    A(t|\nu) = 1 - I_{\frac{\nu}{\nu + t^2}}(\frac{\nu}{2}, \frac{1}{2})
+   *    A(t|\nu) = 
    *  @f]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __student_t_cdf(_Tp __t, unsigned int __nu)
+    __students_t_cdf(_Tp __t, unsigned int __nu)
     {
       if (__isnan(__t))
 	return std::numeric_limits<_Tp>::quiet_NaN()
       else
-	return _Tp{1} - __beta_inc(_Tp(__nu) / _Tp{2}, _Tp{0.5L},
-				   _Tp(__nu) / (_Tp(__nu) + __t * __t));
+	return __beta_inc(_Tp{0.5L}, _Tp(__nu) / _Tp{2},
+			  __t * __t / (_Tp(__nu) + __t * __t));
+    }
+
+  /**
+   *  @brief  Return the complement of the Students T probability function.
+   *
+   *  The complement of the students T propability function is:
+   *  @f[
+   *    A_c(t|\nu) = I_{\frac{\nu}{\nu + t^2}}(\frac{\nu}{2}, \frac{1}{2})
+   *               = 1 - A(t|\nu)
+   *  @f]
+   */
+  template<typename _Tp>
+    _GLIBCXX14_CONSTEXPR _Tp
+    __students_t_cdfc(_Tp __t, unsigned int __nu)
+    {
+      if (__isnan(__t))
+	return std::numeric_limits<_Tp>::quiet_NaN()
+      else
+	return __beta_inc(_Tp(__nu) / _Tp{2}, _Tp{0.5L},
+			  _Tp(__nu) / (_Tp(__nu) + __t * __t));
     }
 
   /**
@@ -276,21 +295,46 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    *  The f-distribution propability function is related to the incomplete beta function:
    *  @f[
-   *    Q(F|\nu_1, \nu_2) = \I_{\frac{\nu_2}{\nu_2 + \nu_1F}}
+   *    Q(F|\nu_1, \nu_2) = \I_{\frac{\nu_2}{\nu_2 + \nu_1 F}}
    *                          (\frac{\nu_2}{2}, \frac{\nu_1}{2})
    *  @f]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __f_distribution(_Tp __F, unsigned int __nu1, unsigned int __nu2)
+    __f_cdf(_Tp __F, unsigned int __nu1, unsigned int __nu2)
     {
       if (__isnan(__F))
 	return std::numeric_limits<_Tp>::quiet_NaN()
       else if (__F < _Tp{0})
-	std::__throw_domain_error(_N("__f_distribution: F is negative"))
+	std::__throw_domain_error(_N("__f_cdf: F is negative"))
       else
 	return __beta_inc(_Tp(__nu2) / _Tp{2}, _Tp(__nu1) / _Tp{2},
 			  _Tp(__nu2) / (_Tp(__nu2) + __nu1 * __F));
+    }
+
+  /**
+   *  @brief  Return the F-distribution propability function.
+   *  This returns the probability that the observed chi-square for a correct model
+   *  exceeds the value $f[ \chi^2 $f].
+   *
+   *  The f-distribution propability function is related to the incomplete beta function:
+   *  @f[
+   *    P(F|\nu_1, \nu_2) = 1 - \I_{\frac{\nu_2}{\nu_2 + \nu_1 F}}
+   *                          (\frac{\nu_2}{2}, \frac{\nu_1}{2})
+   *                      = 1 - Q(F|\nu_1, \nu_2)
+   *  @f]
+   */
+  template<typename _Tp>
+    _GLIBCXX14_CONSTEXPR _Tp
+    __f_cdfc(_Tp __F, unsigned int __nu1, unsigned int __nu2)
+    {
+      if (__isnan(__F))
+	return std::numeric_limits<_Tp>::quiet_NaN()
+      else if (__F < _Tp{0})
+	std::__throw_domain_error(_N("__f_cdf: F is negative"))
+      else
+	return __beta_inc(_Tp(__nu1) / _Tp{2}, _Tp(__nu2) / _Tp{2},
+			  __nu1 * __F / (_Tp(__nu2) + __nu1 * __F));
     }
 
   /**
@@ -309,13 +353,38 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__p))
 	return std::numeric_limits<_Tp>::quiet_NaN()
       else if (__p < _Tp{0} || __p > _Tp{1})
-	std::__throw_domain_error(_N("__binomial_cdf: F is negative"))
+	std::__throw_domain_error(_N("__binomial_cdf: probability is out of range"))
       else if (__k == 0)
-	return _Tp{1}; i
+	return _Tp{1};
       else if (__k > __n)
 	return _Tp{0};
       else
 	return __beta_inc(_Tp(__k), _Tp(__n - __k - 1), __p);
+    }
+
+  /**
+   *  @brief  Return the complementary binomial cumulative distribution function.
+   *
+   *  The binomial cumulative distribution function is related
+   *  to the incomplete beta function:
+   *  @f[
+   *    Q(p|n, k) = \I_{1-p}(n-k+1, k)
+   *  @f]
+   */
+  template<typename _Tp>
+    _GLIBCXX14_CONSTEXPR _Tp
+    __binomial_cdfc(_Tp __p, unsigned int __n, unsigned int __k)
+    {
+      if (__isnan(__p))
+	return std::numeric_limits<_Tp>::quiet_NaN()
+      else if (__p < _Tp{0} || __p > _Tp{1})
+	std::__throw_domain_error(_N("__binomial_cdfc: probability is out of range"))
+      else if (__k == 0)
+	return _Tp{1};
+      else if (__k > __n)
+	return _Tp{0};
+      else
+	return __beta_inc(_Tp(__n - __k - 1), _Tp(__k), _Tp{1} - __p);
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
