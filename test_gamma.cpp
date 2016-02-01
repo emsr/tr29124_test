@@ -60,37 +60,42 @@ template<typename _Tp>
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
 
     // From Pugh..
+    int __n_old = 0;
     int __n = -2 - 0.3 * std::log(std::numeric_limits<_Tp>::epsilon());
     std::cout << "n = " << __n << '\n';
 
     auto __g = __n - _Tp{0.5L};
     std::cout << "g = " << __g << '\n';
-
-    std::cout << '\n';
-    std::vector<_Tp> __a;
-    for (unsigned int k = 1; k <= __n; ++k)
+    while (__n != __n_old)
       {
-	for (unsigned int j = 1; j <= k; ++j)
-          std::cout << "  C(" << std::setw(2) << k
-		      << ", " << std::setw(2) << j
-		      << ") = " << std::setw(4) << __c(k, j);
-        std::cout << '\n';
-      }
-
-    std::cout << '\n';
-    auto __prev = std::numeric_limits<_Tp>::max();
-    for (unsigned int __k = 0; __k <= __n + 5; ++__k)
-      {
-	auto __curr = __p(__k, __g);
-	if (std::abs(__curr) > std::abs(__prev))
+	std::cout << '\n';
+	std::vector<_Tp> __a;
+	for (unsigned int k = 1; k <= __n; ++k)
 	  {
-	    __n = __k;
-	    break;
+	    for (unsigned int j = 1; j <= k; ++j)
+              std::cout << "  C(" << std::setw(2) << k
+			  << ", " << std::setw(2) << j
+			  << ") = " << std::setw(4) << __c(k, j);
+            std::cout << '\n';
 	  }
-	__prev = __curr;
-	std::cout << "  p(" << __k << ", " << __g << ") = " << __curr << '\n';
+
+	std::cout << '\n';
+	auto __prev = std::numeric_limits<_Tp>::max();
+	for (unsigned int __k = 0; __k <= __n + 5; ++__k)
+	  {
+	    auto __curr = __p(__k, __g);
+	    if (std::abs(__curr) > std::abs(__prev))
+	      {
+		__n_old = __n;
+		__n = __k;
+		__g = __n - _Tp{0.5L};
+		break;
+	      }
+	    __prev = __curr;
+	    std::cout << "  p(" << __k << ", " << __g << ") = " << __curr << '\n';
+	  }
+	std::cout << "n = " << __n << '\n';
       }
-    std::cout << "n = " << __n << '\n';
 
     constexpr auto _S_log_sqrt_2pi = 9.189385332046727417803297364056176398620e-1L;
 
