@@ -16,23 +16,23 @@
     struct __promote_help<_Tp, false>
     { };
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   template<>
-    struct __promote_help<__float128>
-    { using __type = __float128; };
-#endif
-
-  template<>
-    struct __promote_help<long double>
-    { using __type = long double; };
+    struct __promote_help<float>
+    { using __type = float; };
 
   template<>
     struct __promote_help<double>
     { using __type = double; };
 
   template<>
-    struct __promote_help<float>
-    { using __type = float; };
+    struct __promote_help<long double>
+    { using __type = long double; };
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  template<>
+    struct __promote_help<__float128>
+    { using __type = __float128; };
+#endif
 
   template<typename... _Tps>
     using __promote_help_t = typename __promote_help<_Tps...>::__type;
@@ -49,10 +49,30 @@
       struct __promote_num<_Tp>
       { using __type = decltype(__promote_help_t<std::decay_t<_Tp>>{}); };
 
-  template<>
-    template<typename _Tp>
-      struct __promote_num<std::complex<_Tp>>
-      { using __type = decltype(std::complex<__promote_num<_Tp>>{}); };
-
   template<typename... _Tps>
     using __promote_num_t = typename __promote_num<_Tps...>::__type;
+
+  // Assume complex value_type is floating point.
+  template<>
+    template<typename _Tp>
+      struct __promote_help<std::complex<_Tp>, false>
+      {
+      private:
+	using __vtype = typename std::complex<_Tp>::value_type;
+      public:
+	using __type = decltype(std::complex<__promote_help_t<__vtype>>{});
+      };
+
+  // Try to get something like array<Tp, Num> or vector<Tp, Alloc>
+  // This should be able to do complex too.
+  template<>
+    template<template<typename _Arg, typename... _Args> typename _Tp,
+	     typename = std::void_t<_Tp::value_type>>
+      struct __promote_help<_Tp<_Arg, _Args...>, false>
+      {
+      private:
+	using __vtype = typename _Tp<_Arg, _Args...>::value_type;
+	using __ptype = __promote_num_t<__vtype>;
+      public:
+	using __type = decltype(_Tp<__ptype, _Args...>>{});
+      };
