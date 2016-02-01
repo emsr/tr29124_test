@@ -1,6 +1,6 @@
 // $HOME/bin/bin/g++ -o test_gamma test_gamma.cpp
 
-// LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_gamma
+// LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_gamma > test_gamma.txt
 
 #include <vector>
 #include <iostream>
@@ -8,35 +8,104 @@
 #include <limits>
 #include <ext/cmath>
 
+//  Checbyshev coefficient matrix.
+int
+__c(unsigned int __n, unsigned int __k)
+{
+  if (__k > __n)
+    return 0;
+  else if (__n == 1)
+    return 1;
+  else if (__n == 2)
+    {
+      if (__k == 1)
+	return 0;
+      else if (__k == 2)
+	return 1;
+    }
+  else
+    {
+      if (__k == 1)
+	return -__c(__n - 2, 1);
+      else if (__k == __n)
+	return 2 * __c(__n - 1, __k - 1);
+      else
+	return 2 * __c(__n - 1, __k - 1) - __c(__n - 2, __k);
+    }
+}
+
 template<typename _Tp>
   _Tp
-  a(_Tp g, unsigned int k)
+  __p(unsigned int __k, _Tp __g)
   {
-    
+    const auto _S_pi  = _Tp{3.1415926535897932384626433832795029L};
+    auto __fact = std::sqrt(_Tp{2} / _S_pi);
+    auto __sum = __c(2 * __k + 1, 1) * __fact
+	       * std::exp(__g + 0.5)
+	       / std::sqrt(__g + 0.5);
+    for (int __a = 1; __a <= __k; ++__a)
+      {
+	__fact *= _Tp(2 * __a - 1) / 2;
+	__sum += __c(2 * __k + 1, 2 * __a + 1) * __fact
+	       * std::pow(__a + __g + 0.5, -(__a + 0.5))
+	       * std::exp(__a + __g + 0.5);
+      }
+    return __sum;
   }
 
 template<typename _Tp>
   void
-  lanczos(_Tp z, _Tp g)
+  lanczos()
   {
-    // From pugh..
-    int n = -2 - 0.3 * std::log(std::numeric_limits<_Tp>::epsilon);
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
 
-    std::vector<_Tp> a;
-    for (unsigned int k = 1; k < 100; ++k)
+    // From Pugh..
+    int __n = -2 - 0.3 * std::log(std::numeric_limits<_Tp>::epsilon());
+    std::cout << "n = " << __n << '\n';
+
+    auto __g = __n - _Tp{0.5L};
+    std::cout << "g = " << __g << '\n';
+
+    std::cout << '\n';
+    std::vector<_Tp> __a;
+    for (unsigned int k = 1; k <= __n; ++k)
       {
-	;
+	for (unsigned int j = 1; j <= k; ++j)
+          std::cout << "  C(" << std::setw(2) << k
+		      << ", " << std::setw(2) << j
+		      << ") = " << std::setw(4) << __c(k, j);
+        std::cout << '\n';
       }
 
+    std::cout << '\n';
+    for (unsigned int k = 0; k <= 10; ++k)
+      std::cout << "  p(" << k << ", " << __g << ") = " << __p(k, __g) << '\n';
+
     constexpr auto _S_log_sqrt_2pi = 9.189385332046727417803297364056176398620e-1L;
-    auto logGammap1 = _S_log_sqrt_2pi + (z + 0.5L) * std::log(z + g + 0.5L)
-	       - (z + g + 0.5L);
-    auto fact = _Tp{1};
-    auto sum = 0.5L * a(g, 0);
-    for (unsigned int k = 1; k < 100; ++k)
+
+    auto
+    __log_gamma_lanczos = [=](_Tp __z) -> _Tp
+    {
+      auto __fact = _Tp{1};
+      auto __sum = _Tp{0.5L} * __p(0, __g);
+      for (unsigned int __k = 1; __k < __n; ++__k)
+	{
+	  __fact *= (__z - __k - 1) / (__z + __k);
+	  __sum += __fact * __p(__k, __g);
+	}
+      return _S_log_sqrt_2pi + std::log(__sum)
+	   + (__z + 0.5L) * std::log(__z + __g + 0.5L)
+	   - (__z + __g + 0.5L) - std::log(__z);
+    };
+
+    std::cout << '\n';
+    for (int i = 0; i <= 500; ++i)
       {
-	fact *= (z - k - 1) / (z + k);
-	auto term = fact * a(g, k);
+	auto z = _Tp{0.01L} * i;
+	std::cout << ' ' << z
+		  << ' ' << __log_gamma_lanczos(z)
+		  << ' ' << std::lgamma(z)
+		  << ' ' << __log_gamma_lanczos(z) - std::lgamma(z) << '\n';
       }
   }
 
@@ -81,7 +150,9 @@ template<typename _Tp>
 	  auto __sum = std::sqrt(_S_2pi);
 	  for (int __k = 0; __k < c.size(); ++__k)
 	    __sum += c[__k] / (__z + __k + 1);
-	  return std::log(__sum) + (__z + _Tp{0.5L})* std::log(__z + a) - (__z + a) - std::log(__z);
+	  return std::log(__sum)
+	       + (__z + _Tp{0.5L}) * std::log(__z + a)
+	       - (__z + a) - std::log(__z);
 	}
     };
 
@@ -98,6 +169,12 @@ template<typename _Tp>
 int
 main()
 {
+  std::cout << "\n\nLanczos Algorithm\n\n";
+  lanczos<float>();
+  lanczos<double>();
+  lanczos<long double>();
+
+  std::cout << "\n\nSpouge Algorithm\n\n";
   spouge<float>();
   spouge<double>();
   spouge<long double>();
