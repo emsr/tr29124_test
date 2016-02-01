@@ -78,8 +78,19 @@ template<typename _Tp>
       }
 
     std::cout << '\n';
-    for (unsigned int k = 0; k <= 10; ++k)
-      std::cout << "  p(" << k << ", " << __g << ") = " << __p(k, __g) << '\n';
+    auto __prev = std::numeric_limits<_Tp>::max();
+    for (unsigned int __k = 0; __k <= __n + 5; ++__k)
+      {
+	auto __curr = __p(__k, __g);
+	if (std::abs(__curr) > std::abs(__prev))
+	  {
+	    __n = __k;
+	    break;
+	  }
+	__prev = __curr;
+	std::cout << "  p(" << __k << ", " << __g << ") = " << __curr << '\n';
+      }
+    std::cout << "n = " << __n << '\n';
 
     constexpr auto _S_log_sqrt_2pi = 9.189385332046727417803297364056176398620e-1L;
 
@@ -90,7 +101,7 @@ template<typename _Tp>
       auto __sum = _Tp{0.5L} * __p(0, __g);
       for (unsigned int __k = 1; __k < __n; ++__k)
 	{
-	  __fact *= (__z - __k - 1) / (__z + __k);
+	  __fact *= (__z - __k + 1) / (__z + __k);
 	  __sum += __fact * __p(__k, __g);
 	}
       return _S_log_sqrt_2pi + std::log(__sum)
