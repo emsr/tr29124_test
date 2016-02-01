@@ -1,0 +1,28 @@
+FeNICS python uses std::tr1 or boost::math - fenicsproject.org/ ?
+
+And Dinkumware sells a complete TR1 implementation. http://www.johndcook.com/blog/tag/gcc/
+
+gcc has has tr1 specfun since 4.5 2006.
+
+boost has has specfuns tr1 and extensions since 1.36 ()
+
+People haven't clamored because they have tr1 in gcc and boost and Dinkumware.
+
+for better ot worse, tr1 has become a pseudo-standard instead of the experimental library is was meant to be.
+Bringing special math functions int C++17 would allow implementors to deprecate TR1 and eventually stic a fork in it.
+Furthermore, implementors can leverage the tr1 implementation for tr29124 sincethe latter includes the same functions
+<em>except the troublesome hypergeometric functions</em>.
+
+boost::math also does not have hypergeometric functions and otherwise is a superset of tr29124.
+
+If commercial compilers are worried they could follow the imehonored tradition of commercial Fortran compilers
+and partner with an IMSL or a Maple...
+
+Implementations of these functions have been in the open literature since the mid 90's.  Sack up.
+
+Inclusion of tr1 features is likely to cause problems for implementers and users as more compilers
+make their default version 2011 of 2014.
+
+This stuff is hard.  And it's use is ubiquitous (science engineering, economics, finance).
+That's a *great* reason to have a standard library.
+
