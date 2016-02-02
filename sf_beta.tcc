@@ -262,7 +262,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __students_t_cdf(_Tp __t, unsigned int __nu)
     {
       if (__isnan(__t))
-	return std::numeric_limits<_Tp>::quiet_NaN()
+	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	return __beta_inc(_Tp{0.5L}, _Tp(__nu) / _Tp{2},
 			  __t * __t / (_Tp(__nu) + __t * __t));
@@ -282,7 +282,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __students_t_cdfc(_Tp __t, unsigned int __nu)
     {
       if (__isnan(__t))
-	return std::numeric_limits<_Tp>::quiet_NaN()
+	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	return __beta_inc(_Tp(__nu) / _Tp{2}, _Tp{0.5L},
 			  _Tp(__nu) / (_Tp(__nu) + __t * __t));
@@ -304,9 +304,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __f_cdf(_Tp __F, unsigned int __nu1, unsigned int __nu2)
     {
       if (__isnan(__F))
-	return std::numeric_limits<_Tp>::quiet_NaN()
+	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__F < _Tp{0})
-	std::__throw_domain_error(_N("__f_cdf: F is negative"))
+	std::__throw_domain_error(__N("__f_cdf: F is negative"));
       else
 	return __beta_inc(_Tp(__nu2) / _Tp{2}, _Tp(__nu1) / _Tp{2},
 			  _Tp(__nu2) / (_Tp(__nu2) + __nu1 * __F));
@@ -329,9 +329,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __f_cdfc(_Tp __F, unsigned int __nu1, unsigned int __nu2)
     {
       if (__isnan(__F))
-	return std::numeric_limits<_Tp>::quiet_NaN()
+	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__F < _Tp{0})
-	std::__throw_domain_error(_N("__f_cdf: F is negative"))
+	std::__throw_domain_error(__N("__f_cdfc: F is negative"));
       else
 	return __beta_inc(_Tp(__nu1) / _Tp{2}, _Tp(__nu2) / _Tp{2},
 			  __nu1 * __F / (_Tp(__nu2) + __nu1 * __F));
@@ -351,9 +351,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __binomial_cdf(_Tp __p, unsigned int __n, unsigned int __k)
     {
       if (__isnan(__p))
-	return std::numeric_limits<_Tp>::quiet_NaN()
+	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__p < _Tp{0} || __p > _Tp{1})
-	std::__throw_domain_error(_N("__binomial_cdf: probability is out of range"))
+	std::__throw_domain_error(__N("__binomial_cdf: "
+				      "probability is out of range"));
       else if (__k == 0)
 	return _Tp{1};
       else if (__k > __n)
@@ -376,9 +377,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __binomial_cdfc(_Tp __p, unsigned int __n, unsigned int __k)
     {
       if (__isnan(__p))
-	return std::numeric_limits<_Tp>::quiet_NaN()
+	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__p < _Tp{0} || __p > _Tp{1})
-	std::__throw_domain_error(_N("__binomial_cdfc: probability is out of range"))
+	std::__throw_domain_error(__N("__binomial_cdfc: "
+				      "probability is out of range"));
       else if (__k == 0)
 	return _Tp{1};
       else if (__k > __n)

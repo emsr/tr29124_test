@@ -71,3 +71,8 @@ ${tool} ${text_dir}/sinhint/*            ${ext_dir}/sinhint
 ${tool} ${text_dir}/sinint/*             ${ext_dir}/sinint
 ${tool} ${text_dir}/sph_bessel_i/*       ${ext_dir}/sph_bessel_i
 ${tool} ${text_dir}/sph_bessel_k/*       ${ext_dir}/sph_bessel_k
+${tool} ${text_dir}/cyl_hankel_1/*       ${ext_dir}/cyl_hankel_1
+${tool} ${text_dir}/cyl_hankel_2/*       ${ext_dir}/cyl_hankel_2
+${tool} ${text_dir}/sph_hankel_1/*       ${ext_dir}/sph_hankel_1
+${tool} ${text_dir}/sph_hankel_2/*       ${ext_dir}/sph_hankel_2
+${tool} ${text_dir}/sph_harmonic/*       ${ext_dir}/sph_harmonic

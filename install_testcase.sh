@@ -76,3 +76,8 @@ ${copy} check_sinint.cc             ${ext_dir}/sinint/check_value.cc
 ${copy} check_sph_bessel_i.cc       ${ext_dir}/sph_bessel_i/check_value.cc
 ${copy} check_sph_bessel_k.cc       ${ext_dir}/sph_bessel_k/check_value.cc
 ${copy} check_zernike.cc            ${ext_dir}/zernike/check_value.cc
+${copy} check_cyl_hankel_1.cc       ${ext_dir}/cyl_hankel_1/check_value.cc
+${copy} check_cyl_hankel_2.cc       ${ext_dir}/cyl_hankel_2/check_value.cc
+${copy} check_sph_hankel_1.cc       ${ext_dir}/sph_hankel_1/check_value.cc
+${copy} check_sph_hankel_2.cc       ${ext_dir}/sph_hankel_2/check_value.cc
+${copy} check_sph_harmonic.cc       ${ext_dir}/sph_harmonic/check_value.cc
