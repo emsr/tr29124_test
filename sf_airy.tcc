@@ -400,8 +400,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     	_S_sqrt2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
 
       // Compute 1/z for use in recurrence for speed and abs(z).
-      __cmplx __1dz;
-      __safe_div(1, __z, __1dz);
+      auto __1dz = __safe_div(_Tp{1}, __z);
 
       // Initialize for forward recursion based on order 2/3.
       int __n = 0;
@@ -425,7 +424,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     	      // Recur forward one step.
     	      __p2 = __1dz * __d2n * __plast2 + __pold2;
 	    }
-	  while (__norm_L1(__p2) < __weak_test);
+	  while (__l1_norm(__p2) < __weak_test);
 
 	  // If strong convergence, then weak and strong convergence.
 	  if (__converged)
@@ -462,8 +461,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __plast1 = _S_zero;
       __plast2 = _S_zero;
       // Carefully compute 1/p2 to avoid overflow in complex divide.
-      __cmplx __p1;
-      __safe_div(1, __p2, __p1);
+      auto __p1 = __safe_div(_Tp{1}, __p2);
       __p2 = __p1;
       // Set up n dependent parameters used in normalization sum.
       auto __rnpn1 = __rn + _S_1d3;

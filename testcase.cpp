@@ -116,6 +116,11 @@ template<typename Real>
     using       std::sph_legendre;
     using       std::sph_neumann;
     using __gnu_cxx::zernike;
+    using __gnu_cxx::cyl_hankel_1;
+    using __gnu_cxx::cyl_hankel_2;
+    using __gnu_cxx::sph_hankel_1;
+    using __gnu_cxx::sph_hankel_2;
+    using __gnu_cxx::sph_harmonic;
 #else
     std::string ns("tr1");
     using  std::tr1::assoc_laguerre;
@@ -905,7 +910,6 @@ template<typename Real>
 
     // Log lower Pochhammer symbol.
     std::cout << "lpochhammer_l" << std::endl;
-/*
     funcname = "lpochhammer_l";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_lpochhammer_l(filename.c_str());
@@ -915,7 +919,6 @@ template<typename Real>
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     file_lpochhammer_l, true, true);
-*/
 
     // Upper Pochhammer symbols (see boost::rising_factorial).
     std::cout << "pochhammer_u" << std::endl;
@@ -931,7 +934,6 @@ template<typename Real>
 
     // Lower Pochhammer symbols (see boost::falling_factorial).
     std::cout << "pochhammer_l" << std::endl;
-/*
     funcname = "pochhammer_l";
     filename = get_filename(path, prefix, funcname, "",  ".cc");
     std::ofstream file_pochhammer_l(filename.c_str());
@@ -941,7 +943,6 @@ template<typename Real>
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     file_pochhammer_l, true, true);
-*/
 
     // Regular modified spherical bessel functions.
     std::cout << "sph_bessel_i" << std::endl;
@@ -1205,7 +1206,7 @@ template<typename Real>
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_cyl_hankel_1, true, false);
-    maketest(cyl_hankel_1, gsl::bessel_Inu,
+    maketest(cyl_hankel_1, beast::cyl_hankel_1,
 	     nsname, funcname,
 	     "nu", vborderd,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -1224,7 +1225,7 @@ template<typename Real>
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_cyl_hankel_2, true, false);
-    maketest(cyl_hankel_2, gsl::bessel_Inu,
+    maketest(cyl_hankel_2, beast::cyl_hankel_2,
 	     nsname, funcname,
 	     "nu", vborderd,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -1239,13 +1240,13 @@ template<typename Real>
     test =
     maketest(sph_hankel_1, beast::sph_hankel_1,
 	     nsname, funcname,
-	     "n", vborder,
+	     "n", sborder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_sph_hankel_1, true, false);
-    maketest(sph_hankel_1, gsl::bessel_Inu,
+    maketest(sph_hankel_1, beast::sph_hankel_1,
 	     nsname, funcname,
-	     "n", vborder,
+	     "n", sborder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
 	     file_sph_hankel_1, false, true, test);
@@ -1258,13 +1259,13 @@ template<typename Real>
     test =
     maketest(sph_hankel_2, beast::sph_hankel_2,
 	     nsname, funcname,
-	     "n", vborder,
+	     "n", sborder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_sph_hankel_2, true, false);
-    maketest(sph_hankel_2, gsl::bessel_Inu,
+    maketest(sph_hankel_2, beast::sph_hankel_2,
 	     nsname, funcname,
-	     "n", vborder,
+	     "n", sborder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
 	     file_sph_hankel_2, false, true, test);
@@ -1274,12 +1275,12 @@ template<typename Real>
     funcname = "sph_harmonic";
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_sph_harmonic(filename.c_str());
-    maketest(sph_harmonic, gsl::legendre_sphPlm,
+    maketest(sph_harmonic, beast::sph_harmonic,
 	     nsname, funcname,
-	     "l", vorder, "m", vorder,
+	     "l", vorder, "m", iorder,
 	     "theta", fill_argument(std::make_pair(Real{0}, static_cast<Real>(M_PI)),
 				    std::make_pair(true, true), 21),
-	     "phi", vphi,
+	     "phi", vphid,
 	     file_sph_harmonic);
 
 #endif // STD

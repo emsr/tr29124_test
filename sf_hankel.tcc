@@ -247,14 +247,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr auto __expp = __cmplx{-0.5L,  0.8660254037844386467637231707529361834727L};
       static constexpr auto __expm = __cmplx{-0.5L, -0.8660254037844386467637231707529361834727L};
 
-      if (__safe_div(__zeta, __num2d3, __argm))
+      try
 	{
+	  __argm = __safe_div(__num2d3, __zeta);
 	  __argp = __expp * __argm;
 	  __argm = __expm * __argm;
 	}
-      else
-	std::__throw_runtime_error(__N("__airy_arg: unable to"
-				       " compute Airy function arguments"));
+      catch (...)
+	{
+	   std::__throw_runtime_error(__N("__airy_arg: unable to"
+				          " compute Airy function arguments"));
+	}
     }
 
 
@@ -282,8 +285,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr __cmplx __e2pd3{-0.5L,  0.8660254037844386467637231707529361834727L};
       static constexpr __cmplx __d2pd3{-0.5L, -0.8660254037844386467637231707529361834727L};
 
-      if (__safe_div(__z, __nu, __zhat))
+      try
 	{
+	  __zhat = __safe_div(__z, __nu);
 	  // Try to compute other nu and z dependent parameters except args to Airy functions.
 	  __cmplx __num4d3, __nup2, __zeta, __zetaphf, __zetamhf;
 	  __hankel_params(__nu, __zhat, __p, __p2, __nup2,
@@ -307,9 +311,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __od2m = -__zetaphf * __num2d3 * _Aim;
 	  __od0dm = __d2pd3 * _Aimp;
 	}
-      else
-	std::__throw_runtime_error(__N("__hankel_uniform_outer: "
-				       "unable to compute z/nu"));
+      catch (...)
+	{
+	  std::__throw_runtime_error(__N("__hankel_uniform_outer: "
+					 "unable to compute z/nu"));
+	}
 
       return;
     }
@@ -1164,7 +1170,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __cyl_hankel_h1(std::complex<_Tp> __nu, std::complex<_Tp> __z)
+    __cyl_hankel_1(std::complex<_Tp> __nu, std::complex<_Tp> __z)
     {
       std::complex<_Tp> _H1, _H1p, _H2, _H2p;
       __hankel(__nu, __z, _H1, _H1p, _H2, _H2p);
@@ -1180,7 +1186,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __cyl_hankel_h2(std::complex<_Tp> __nu, std::complex<_Tp> __z)
+    __cyl_hankel_2(std::complex<_Tp> __nu, std::complex<_Tp> __z)
     {
       std::complex<_Tp> _H1, _H1p, _H2, _H2p;
       __hankel(__nu, __z, _H1, _H1p, _H2, _H2p);
@@ -1232,7 +1238,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     void
-    __sph_hankel(int __n, std::complex<_Tp> __z,
+    __sph_hankel(unsigned int __n, std::complex<_Tp> __z,
 		 std::complex<_Tp>& _H1, std::complex<_Tp>& _H1p,
 		 std::complex<_Tp>& _H2, std::complex<_Tp>& _H2p)
     {
@@ -1256,7 +1262,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __sph_hankel_h1(int __n, std::complex<_Tp> __z)
+    __sph_hankel_1(unsigned int __n, std::complex<_Tp> __z)
     {
       std::complex<_Tp> _H1, _H1p, _H2, _H2p;
       __sph_hankel(__n, __z, _H1, _H1p, _H2, _H2p);
@@ -1272,7 +1278,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __sph_hankel_h2(int __n, std::complex<_Tp> __z)
+    __sph_hankel_2(unsigned int __n, std::complex<_Tp> __z)
     {
       std::complex<_Tp> _H1, _H1p, _H2, _H2p;
       __sph_hankel(__n, __z, _H1, _H1p, _H2, _H2p);
@@ -1288,7 +1294,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __sph_bessel(int __n, std::complex<_Tp> __z)
+    __sph_bessel(unsigned int __n, std::complex<_Tp> __z)
     {
       std::complex<_Tp> _H1, _H1p, _H2, _H2p;
       __sph_hankel(__n, __z, _H1, _H1p, _H2, _H2p);
@@ -1304,7 +1310,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __sph_neumann(int __n, std::complex<_Tp> __z)
+    __sph_neumann(unsigned int __n, std::complex<_Tp> __z)
     {
       std::complex<_Tp> _H1, _H1p, _H2, _H2p;
       __sph_hankel(__n, __z, _H1, _H1p, _H2, _H2p);

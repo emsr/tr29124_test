@@ -962,10 +962,12 @@ lpochhammer_u(double a, double x)
 double
 lpochhammer_l(double a, double x)
 {
+  if (a == x)
+    return std::numeric_limits<double>::infinity();
   gsl_sf_result result_num;
-  int stat_num = gsl_sf_lngamma_e(a - x, &result_num);
+  int stat_num = gsl_sf_lngamma_e(std::abs(a - x), &result_num);
   gsl_sf_result result_den;
-  int stat_den = gsl_sf_lngamma_e(a, &result_den);
+  int stat_den = gsl_sf_lngamma_e(std::abs(a), &result_den);
   if (stat_num != GSL_SUCCESS && stat_den != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in lpochhammer_l:");
@@ -996,10 +998,12 @@ pochhammer_u(double a, double x)
 double
 pochhammer_l(double a, double x)
 {
+  if (a == x)
+    return std::numeric_limits<double>::infinity();
   gsl_sf_result result_num;
-  int stat_num = gsl_sf_gamma_e(a - x, &result_num);
+  int stat_num = gsl_sf_gamma_e(std::abs(a - x), &result_num);
   gsl_sf_result result_den;
-  int stat_den = gsl_sf_gamma_e(a, &result_den);
+  int stat_den = gsl_sf_gamma_e(std::abs(a), &result_den);
   if (stat_num != GSL_SUCCESS && stat_den != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in lpochhammer_l:");
