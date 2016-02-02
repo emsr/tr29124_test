@@ -1,6 +1,6 @@
-// $HOME/bin/bin/g++ -o test_gamma test_gamma.cpp
+// $HOME/bin_specfun/bin/g++ -o test_gamma test_gamma.cpp -lquadmath
 
-// LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_gamma > test_gamma.txt
+// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_gamma > test_gamma.txt
 
 #include <vector>
 #include <iostream>
@@ -48,8 +48,8 @@ template<typename _Tp>
       {
 	__fact *= _Tp(2 * __a - 1) / 2;
 	__sum += __c(2 * __k + 1, 2 * __a + 1) * __fact
-	       * std::pow(__a + __g + 0.5, -(__a + 0.5))
-	       * std::exp(__a + __g + 0.5);
+	       * std::pow(__a + __g + 0.5L, -_Tp(__a + 0.5L))
+	       * std::exp(__a + __g + 0.5L);
       }
     return __sum;
   }
@@ -118,7 +118,7 @@ template<typename _Tp>
     std::cout << '\n';
     for (int i = 0; i <= 500; ++i)
       {
-	auto z = _Tp{0.01L} * i;
+	auto z = _Tp{0.01Q} * i;
 	std::cout << ' ' << z
 		  << ' ' << __log_gamma_lanczos(z)
 		  << ' ' << std::lgamma(z)
@@ -152,7 +152,8 @@ template<typename _Tp>
     for (int __k = 1; __k < std::ceil(a); ++__k)
       {
 	__factc *= -_Tp{1} / _Tp(__k);
-	c.push_back(__factc * std::pow(a - __k - 1, __k + 0.5) * std::exp(a - __k - 1));
+	auto __ak = _Tp(a - __k - 1);
+	c.push_back(__factc * std::pow(__ak, _Tp(__k + 0.5L)) * std::exp(__ak));
 	std::cout << "c_" << __k << " = " << c.back() << '\n';
       }
 
@@ -187,18 +188,26 @@ int
 main()
 {
   std::cout << "\n\nLanczos Algorithm\n\n";
+  std::cout << "\nlanczos<float>\n";
   lanczos<float>();
+  std::cout << "\nlanczos<double>\n";
   lanczos<double>();
+  std::cout << "\nlanczos<long double>\n";
   lanczos<long double>();
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  lanczos<__float128_t>();
+  std::cout << "\nlanczos<__float128>\n";
+  lanczos<__float128>();
 #endif
 
   std::cout << "\n\nSpouge Algorithm\n\n";
+  std::cout << "\nspouge<float>\n";
   spouge<float>();
+  std::cout << "\nspouge<double>\n";
   spouge<double>();
+  std::cout << "\nspouge<long double>\n";
   spouge<long double>();
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  spouge<__float128_t>();
+  std::cout << "\nspouge<__float128>\n";
+  spouge<__float128>();
 #endif
 }
