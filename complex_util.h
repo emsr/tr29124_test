@@ -184,8 +184,13 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    */
   template<>
     template<typename _Tp>
-      struct __promote_num<std::complex<_Tp>>
-      { using __type = decltype(std::complex<__promote_num<_Tp>>{}); };
+      struct __promote_help<std::complex<_Tp>, false>
+      {
+      private:
+	using __vtype = typename std::complex<_Tp>::value_type;
+      public:
+	using __type = decltype(std::complex<__promote_help_t<__vtype>>{});
+      };
 
 #endif // __cplusplus >= 201103L
 
