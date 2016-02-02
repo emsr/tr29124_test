@@ -1193,6 +1193,95 @@ template<typename Real>
 	     "phi", vphid,
 	     file_ellint_1);
 
+    // Cylindrical Hankel functions of the first kind.
+    std::cout << "cyl_hankel_1" << std::endl;
+    funcname = "cyl_hankel_1";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_cyl_hankel_1(filename.c_str());
+    test =
+    maketest(cyl_hankel_1, beast::cyl_hankel_1,
+	     nsname, funcname,
+	     "nu", vborderd,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(true, true), 21),
+	     file_cyl_hankel_1, true, false);
+    maketest(cyl_hankel_1, gsl::bessel_Inu,
+	     nsname, funcname,
+	     "nu", vborderd,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
+				std::make_pair(true, true), 21),
+	     file_cyl_hankel_1, false, true, test);
+
+    // Cylindrical Hankel functions of the second kind.
+    std::cout << "cyl_hankel_2" << std::endl;
+    funcname = "cyl_hankel_2";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_cyl_hankel_2(filename.c_str());
+    test =
+    maketest(cyl_hankel_2, beast::cyl_hankel_2,
+	     nsname, funcname,
+	     "nu", vborderd,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(true, true), 21),
+	     file_cyl_hankel_2, true, false);
+    maketest(cyl_hankel_2, gsl::bessel_Inu,
+	     nsname, funcname,
+	     "nu", vborderd,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
+				std::make_pair(true, true), 21),
+	     file_cyl_hankel_2, false, true, test);
+
+    // Spherical Hankel functions of the first kind.
+    std::cout << "sph_hankel_1" << std::endl;
+    funcname = "sph_hankel_1";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_sph_hankel_1(filename.c_str());
+    test =
+    maketest(sph_hankel_1, beast::sph_hankel_1,
+	     nsname, funcname,
+	     "n", vborder,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(true, true), 21),
+	     file_sph_hankel_1, true, false);
+    maketest(sph_hankel_1, gsl::bessel_Inu,
+	     nsname, funcname,
+	     "n", vborder,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
+				std::make_pair(true, true), 21),
+	     file_sph_hankel_1, false, true, test);
+
+    // Spherical Hankel functions of the second kind.
+    std::cout << "sph_hankel_2" << std::endl;
+    funcname = "sph_hankel_2";
+    filename = get_filename(path, prefix, funcname, "",  ".cc");
+    std::ofstream file_sph_hankel_2(filename.c_str());
+    test =
+    maketest(sph_hankel_2, beast::sph_hankel_2,
+	     nsname, funcname,
+	     "n", vborder,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(true, true), 21),
+	     file_sph_hankel_2, true, false);
+    maketest(sph_hankel_2, gsl::bessel_Inu,
+	     nsname, funcname,
+	     "n", vborder,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
+				std::make_pair(true, true), 21),
+	     file_sph_hankel_2, false, true, test);
+
+    // Spherical harmonic functions.
+    std::cout << "sph_harmonic" << std::endl;
+    funcname = "sph_harmonic";
+    filename = get_filename(path, prefix, funcname, "", ".cc");
+    std::ofstream file_sph_harmonic(filename.c_str());
+    maketest(sph_harmonic, gsl::legendre_sphPlm,
+	     nsname, funcname,
+	     "l", vorder, "m", vorder,
+	     "theta", fill_argument(std::make_pair(Real{0}, static_cast<Real>(M_PI)),
+				    std::make_pair(true, true), 21),
+	     "phi", vphi,
+	     file_sph_harmonic);
+
 #endif // STD
 
   }
