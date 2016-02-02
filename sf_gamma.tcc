@@ -2523,9 +2523,10 @@ _S_neg_double_factorial_table[999]
     __chi_squared_pdf(_Tp __chi2, unsigned int __nu)
     {
       if (__isnan(__chi2))
-	return std::numeric_limits<_Tp>::quiet_NaN()
+	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__chi2 < _Tp{0})
-	std::__throw_domain_error(_N("__chi_squared_cdf: chi-squared is negative"))
+	std::__throw_domain_error(__N("__chi_squared_cdf: "
+				      "chi-squared is negative"));
       else
 	return __gamma_p(_Tp(__nu) / _Tp{2}, __chi2 / _Tp{2});
     }
@@ -2546,9 +2547,10 @@ _S_neg_double_factorial_table[999]
     __chi_squared_pdfc(_Tp __chi2, unsigned int __nu)
     {
       if (__isnan(__chi2))
-	return std::numeric_limits<_Tp>::quiet_NaN()
+	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__chi2 < _Tp{0})
-	std::__throw_domain_error(_N("__chi_square_pdfc: chi-squared is negative"))
+	std::__throw_domain_error(__N("__chi_square_pdfc: "
+				      "chi-squared is negative"));
       else
 	return __gamma_q(_Tp(__nu) / _Tp{2}, __chi2 / _Tp{2});
     }
