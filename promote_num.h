@@ -63,12 +63,24 @@
 	using __type = decltype(std::complex<__promote_help_t<__vtype>>{});
       };
 
+  // primary template handles types that have no nested ::value_type member:
+  template<typename, typename = std::void_t<>>
+    struct __has_value_type
+    : std::false_type
+    { };
+
+  // Specialization recognizes types that do have a nested ::value_type member:
+  template<typename _Tp>
+    struct __has_value_type<_Tp, std::void_t<typename _Tp::value_type>>
+    : std::true_type
+    { };
+
   // Try to get something like array<Tp, Num> or vector<Tp, Alloc>
   // This should be able to do complex too.
   template<>
-    template<template<typename _Arg, typename... _Args> typename _Tp,
-	     typename = std::void_t<_Tp::value_type>>
-      struct __promote_help<_Tp<_Arg, _Args...>, false>
+    template<template<typename _Arg, typename... _Args> typename _Tp>
+      struct __promote_help<typename _Tp<_Arg, _Args...>,
+			    typename = std::void_t<typename _Tp<_Arg, _Args...>::value_type>>
       {
       private:
 	using __vtype = typename _Tp<_Arg, _Args...>::value_type;
