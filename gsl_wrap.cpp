@@ -1000,6 +1000,10 @@ pochhammer_l(double a, double x)
 {
   if (a == x)
     return std::numeric_limits<double>::infinity();
+  if (std::fmod(std::abs(a - x), M_PI) < 1.0e-12)
+    return std::numeric_limits<double>::infinity();
+  if (std::fmod(std::abs(a), M_PI) < 1.0e-12)
+    return std::numeric_limits<double>::infinity();
   gsl_sf_result result_num;
   int stat_num = gsl_sf_gamma_e(std::abs(a - x), &result_num);
   gsl_sf_result result_den;
