@@ -1122,7 +1122,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __cyl_hankel_h1(std::complex<_Tp> __nu, std::complex<_Tp> __z)
+    __cyl_hankel_1(std::complex<_Tp> __nu, std::complex<_Tp> __z)
     {
       std::complex<_Tp> _H1, _H1p, _H2, _H2p;
       __hankel(__nu, __z, _H1, _H1p, _H2, _H2p);
@@ -1138,7 +1138,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __cyl_hankel_h2(std::complex<_Tp> __nu, std::complex<_Tp> __z)
+    __cyl_hankel_2(std::complex<_Tp> __nu, std::complex<_Tp> __z)
     {
       std::complex<_Tp> _H1, _H1p, _H2, _H2p;
       __hankel(__nu, __z, _H1, _H1p, _H2, _H2p);
@@ -1214,7 +1214,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __sph_hankel_h1(int __n, std::complex<_Tp> __z)
+    __sph_hankel_1(int __n, std::complex<_Tp> __z)
     {
       std::complex<_Tp> _H1, _H1p, _H2, _H2p;
       __sph_hankel(__n, __z, _H1, _H1p, _H2, _H2p);
@@ -1230,7 +1230,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __sph_hankel_h2(int __n, std::complex<_Tp> __z)
+    __sph_hankel_2(int __n, std::complex<_Tp> __z)
     {
       std::complex<_Tp> _H1, _H1p, _H2, _H2p;
       __sph_hankel(__n, __z, _H1, _H1p, _H2, _H2p);

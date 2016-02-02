@@ -549,10 +549,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __cyl_hankel_h1(_Tp __nu, _Tp __x)
+    __cyl_hankel_1(_Tp __nu, _Tp __x)
     {
       if (__x < _Tp{0})
-	std::__throw_domain_error(__N("__cyl_hankel_h1: bad argument"));
+	std::__throw_domain_error(__N("__cyl_hankel_1: bad argument"));
       else if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x == _Tp{0})
@@ -582,10 +582,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __cyl_hankel_h2(_Tp __nu, _Tp __x)
+    __cyl_hankel_2(_Tp __nu, _Tp __x)
     {
       if (__x < _Tp{0})
-	std::__throw_domain_error(__N("__cyl_hankel_h2: bad argument"));
+	std::__throw_domain_error(__N("__cyl_hankel_2: bad argument"));
       else if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x == _Tp{0})
@@ -719,10 +719,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __sph_hankel_h1(unsigned int __n, _Tp __x)
+    __sph_hankel_1(unsigned int __n, _Tp __x)
     {
       if (__x < _Tp{0})
-	std::__throw_domain_error(__N("__sph_neumann: bad argument"));
+	std::__throw_domain_error(__N("__sph_hankel_1: bad argument"));
       else if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x == _Tp{0})
@@ -752,10 +752,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __sph_hankel_h2(unsigned int __n, _Tp __x)
+    __sph_hankel_2(unsigned int __n, _Tp __x)
     {
       if (__x < _Tp{0})
-	std::__throw_domain_error(__N("__sph_neumann: bad argument"));
+	std::__throw_domain_error(__N("__sph_hankel_2: bad argument"));
       else if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x == _Tp{0})
