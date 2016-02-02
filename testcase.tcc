@@ -54,6 +54,22 @@ R"(// This can take long on simulators, timing out the test.
 #endif
 )";
 
+/// A class to abstract the scalar data type in a generic way.
+template<typename Tp>
+  struct __num_traits
+  {
+    using __value_type = Tp;
+  };
+
+template<>
+  template<typename Tp>
+    struct __num_traits<std::complex<Tp>>
+    {
+      using __value_type = typename std::complex<Tp>::value_type;
+    };
+
+template<typename Tp>
+  using __num_traits_t = typename __num_traits<Tp>::__value_type;
 
 template<typename Tp>
   struct type_strings
@@ -140,7 +156,7 @@ template<typename Tp>
   std::vector<Tp>
   fill_argument(const std::pair<Tp,Tp> & range,
 		const std::pair<bool,bool> & inclusive,
-		const unsigned int num_steps = 101)
+		unsigned int num_steps = 101)
   {
     std::vector<Tp> argument;
 
@@ -179,11 +195,13 @@ template<typename Tp>
 ///
 template<typename Tp>
   Tp
-  get_tolerance(const Tp delta, const Tp min_tol, bool & ok)
+  get_tolerance(Tp delta, Tp min_tol, bool & ok)
   {
-    const Tp abs_delta = std::abs(delta);
+    using Val = __num_traits_t<Tp>;
+
+    const auto abs_delta = std::abs(delta);
     //  Make this some number larger because you lose some accuracy writing and reading.
-    const Tp eps = Tp{10} * std::numeric_limits<Tp>::epsilon();
+    const auto eps = Tp{10} * std::numeric_limits<Val>::epsilon();
     Tp tol = min_tol;
     while (tol > std::abs(delta)
 	&& tol > eps)
@@ -251,7 +269,9 @@ template<typename Tp, typename Tp1>
 	   std::ostream & output,
 	   bool write_header = true, bool write_main = true, unsigned int test = 1)
   {
-    const int old_prec = output.precision(std::numeric_limits<Tp>::max_digits10);
+    using Val = __num_traits_t<Tp>;
+
+    const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
 
     bool riemann_zeta_limits = (funcname == "riemann_zeta");
@@ -268,8 +288,8 @@ template<typename Tp, typename Tp1>
     if (write_header)
       output << header;
 
-    constexpr auto eps = std::numeric_limits<Tp>::epsilon();
-    constexpr auto inf = std::numeric_limits<Tp>::infinity();
+    constexpr auto eps = std::numeric_limits<Val>::epsilon();
+    constexpr auto inf = std::numeric_limits<Val>::infinity();
 
     std::experimental::string_view numname = type_strings<Tp>::type();
 
@@ -279,16 +299,16 @@ template<typename Tp, typename Tp1>
 
     std::vector<std::tuple<Tp, Tp1>> crud;
 
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
+    auto max_abs_diff = Val{-1};
+    auto max_abs_frac = Val{-1};
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
-	const Tp1 x = argument1[i];
+	const auto x = argument1[i];
 
 	try
 	  {
-	    const Tp f1 = function1(x);
-	    const Tp f2 = function2(x);
+	    const auto f1 = function1(x);
+	    const auto f2 = function2(x);
 	    if (std::abs(f1) == inf || std::abs(f2) == inf)
 	      {
 		output << "//  Divergence at"
@@ -297,12 +317,12 @@ template<typename Tp, typename Tp1>
 		       << " f2=" << f2 << '\n';
 		break;
 	      }
-	    const Tp diff = f1 - f2;
+	    const auto diff = f1 - f2;
 	    if (std::abs(diff) > max_abs_diff)
 	      max_abs_diff = std::abs(diff);
-	    if (std::abs(f2) > Tp(10) * eps && std::abs(f1) > Tp(10) * eps)
+	    if (std::abs(f2) > Val{10} * eps && std::abs(f1) > Val{10} * eps)
 	      {
-		const Tp frac = diff / f2;
+		const auto frac = diff / f2;
 		if (std::abs(frac) > max_abs_frac)
 		  max_abs_frac = std::abs(frac);
 	      }
@@ -314,12 +334,12 @@ template<typename Tp, typename Tp1>
 	  }
       }
 
-    if (max_abs_diff >= Tp(0) && max_abs_frac >= Tp(0))
+    if (max_abs_diff >= Val{0} && max_abs_frac >= Val{0})
       {
 	bool tol_ok = false;
-	const Tp min_tol = Tp(1.0e-3L);
-	//const Tp diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
-	const Tp frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
+	const auto min_tol = Val{1.0e-3L};
+	//const auto diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
+	const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 	std::ostringstream dataname;
 	dataname.fill('0');
 	dataname << "data" << std::setw(3) << test;
@@ -395,6 +415,8 @@ template<typename Tp, typename Tp1>
 	output << "}\n";
       }
 
+    output.flush();
+
     return test;
   }
 
@@ -413,7 +435,9 @@ template<typename Tp, typename Tp1, typename Tp2>
 	   std::ostream & output,
 	   bool write_header = true, bool write_main = true, unsigned int test = 1)
   {
-    const int old_prec = output.precision(std::numeric_limits<Tp>::max_digits10);
+    using Val = __num_traits_t<Tp>;
+
+    const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
 
     std::string templparm;
@@ -427,8 +451,8 @@ template<typename Tp, typename Tp1, typename Tp2>
     if (write_header)
       output << header << '\n';
 
-    const auto eps = std::numeric_limits<Tp>::epsilon();
-    const auto inf = std::numeric_limits<Tp>::infinity();
+    const auto eps = std::numeric_limits<Val>::epsilon();
+    const auto inf = std::numeric_limits<Val>::infinity();
 
     std::experimental::string_view numname = type_strings<Tp>::type();
 
@@ -438,20 +462,20 @@ template<typename Tp, typename Tp1, typename Tp2>
 
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
-	const Tp1 x = argument1[i];
+	const auto x = argument1[i];
 
 	std::vector<std::tuple<Tp, Tp1, Tp2>> crud;
 
-	Tp max_abs_diff = -Tp(1);
-	Tp max_abs_frac = -Tp(1);
+	auto max_abs_diff = Val{-1};
+	auto max_abs_frac = Val{-1};
 	for (unsigned int j = 0; j < argument2.size(); ++j)
 	  {
-	    const Tp2 y = argument2[j];
+	    const auto y = argument2[j];
 
 	    try
 	      {
-		const Tp f1 = function1(x, y);
-		const Tp f2 = function2(x, y);
+		const auto f1 = function1(x, y);
+		const auto f2 = function2(x, y);
 		if (std::abs(f1) == inf || std::abs(f2) == inf)
 		  {
 		    output << "//  Divergence at"
@@ -461,12 +485,12 @@ template<typename Tp, typename Tp1, typename Tp2>
 			   << " f2=" << f2 << '\n';
 		    break;
 		  }
-		const Tp diff = f1 - f2;
+		const auto diff = f1 - f2;
 		if (std::abs(diff) > max_abs_diff)
 		  max_abs_diff = std::abs(diff);
-		if (std::abs(f2) > Tp(10) * eps && std::abs(f1) > Tp(10) * eps)
+		if (std::abs(f2) > Val{10} * eps && std::abs(f1) > Val{10} * eps)
 		  {
-		    const Tp frac = diff / f2;
+		    const auto frac = diff / f2;
 		    if (std::abs(frac) > max_abs_frac)
 		      max_abs_frac = std::abs(frac);
 		  }
@@ -478,12 +502,12 @@ template<typename Tp, typename Tp1, typename Tp2>
 	      }
 	  }
 
-	if (max_abs_diff >= Tp(0) && max_abs_frac >= Tp(0))
+	if (max_abs_diff >= Val{0} && max_abs_frac >= Val{0})
 	  {
 	    bool tol_ok = false;
-	    const Tp min_tol = Tp(1.0e-3L);
-	    //const Tp diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
-	    const Tp frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
+	    const auto min_tol = Val{1.0e-3L};
+	    //const auto diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
+	    const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 	    std::ostringstream dataname;
 	    dataname.fill('0');
 	    dataname << "data" << std::setw(3) << test;
@@ -559,6 +583,8 @@ template<typename Tp, typename Tp1, typename Tp2>
 	output << "}\n";
       }
 
+    output.flush();
+
     return test;
   }
 
@@ -578,7 +604,9 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 	   std::ostream & output,
 	   bool write_header = true, bool write_main = true, unsigned int test = 1)
   {
-    const int old_prec = output.precision(std::numeric_limits<Tp>::max_digits10);
+    using Val = __num_traits_t<Tp>;
+
+    const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
 
     std::string templparm;
@@ -593,8 +621,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
     if (write_header)
       output << header << '\n';
 
-    const auto eps = std::numeric_limits<Tp>::epsilon();
-    const auto inf = std::numeric_limits<Tp>::infinity();
+    const auto eps = std::numeric_limits<Val>::epsilon();
+    const auto inf = std::numeric_limits<Val>::infinity();
 
     std::experimental::string_view numname = type_strings<Tp>::type();
 
@@ -604,24 +632,24 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
-	const Tp1 x = argument1[i];
+	const auto x = argument1[i];
 
 	for (unsigned int j = 0; j < argument2.size(); ++j)
 	  {
-	    const Tp2 y = argument2[j];
+	    const auto y = argument2[j];
 
 	    std::vector<std::tuple<Tp, Tp1, Tp2, Tp3>> crud;
 
-	    Tp max_abs_diff = -Tp(1);
-	    Tp max_abs_frac = -Tp(1);
+	    auto max_abs_diff = Val{-1};
+	    auto max_abs_frac = Val{-1};
 	    for (unsigned int k = 0; k < argument3.size(); ++k)
 	      {
-		const Tp3 z = argument3[k];
+		const auto z = argument3[k];
 
 		try
 		  {
-		    const Tp f1 = function1(x, y, z);
-		    const Tp f2 = function2(x, y, z);
+		    const auto f1 = function1(x, y, z);
+		    const auto f2 = function2(x, y, z);
 		    if (std::abs(f1) == inf || std::abs(f2) == inf)
 		      {
 			output << "//  Divergence at"
@@ -632,12 +660,12 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 			       << " f2=" << f2 << '\n';
 			break;
 		      }
-		    const Tp diff = f1 - f2;
+		    const auto diff = f1 - f2;
 		    if (std::abs(diff) > max_abs_diff)
 		      max_abs_diff = std::abs(diff);
-		    if (std::abs(f2) > Tp(10) * eps && std::abs(f1) > Tp(10) * eps)
+		    if (std::abs(f2) > Val{10} * eps && std::abs(f1) > Val{10} * eps)
 		      {
-			const Tp frac = diff / f2;
+			const auto frac = diff / f2;
 			if (std::abs(frac) > max_abs_frac)
 			  max_abs_frac = std::abs(frac);
 		      }
@@ -649,12 +677,12 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		  }
 	      }
 
-	    if (max_abs_diff >= Tp(0) && max_abs_frac >= Tp(0))
+	    if (max_abs_diff >= Val{0} && max_abs_frac >= Val{0})
 	      {
 		bool tol_ok = false;
-		const Tp min_tol = Tp(1.0e-3L);
-		//const Tp diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
-		const Tp frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
+		const auto min_tol = Val{1.0e-3L};
+		//const auto diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
+		const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 		std::ostringstream dataname;
 		dataname.fill('0');
 		dataname << "data" << std::setw(3) << test;
@@ -736,6 +764,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 	output << "}\n";
       }
 
+    output.flush();
+
     return test;
   }
 
@@ -756,7 +786,9 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 	   std::ostream & output,
 	   bool write_header = true, bool write_main = true, unsigned int test = 1)
   {
-    const int old_prec = output.precision(std::numeric_limits<Tp>::max_digits10);
+    using Val = __num_traits_t<Tp>;
+
+    const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
 
     std::string templparm;
@@ -772,8 +804,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
     if (write_header)
       output << header << '\n';
 
-    const auto eps = std::numeric_limits<Tp>::epsilon();
-    const auto inf = std::numeric_limits<Tp>::infinity();
+    const auto eps = std::numeric_limits<Val>::epsilon();
+    const auto inf = std::numeric_limits<Val>::infinity();
 
     std::experimental::string_view numname = type_strings<Tp>::type();
 
@@ -783,28 +815,28 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
-	const Tp1 w = argument1[i];
+	const auto w = argument1[i];
 
 	for (unsigned int j = 0; j < argument2.size(); ++j)
 	  {
-	    const Tp2 x = argument2[j];
+	    const auto x = argument2[j];
 
 	    for (unsigned int k = 0; k < argument3.size(); ++k)
 	      {
-		const Tp3 y = argument3[k];
+		const auto y = argument3[k];
 
 		std::vector<std::tuple<Tp, Tp1, Tp2, Tp3, Tp4>> crud;
 
-		Tp max_abs_diff = -Tp(1);
-		Tp max_abs_frac = -Tp(1);
+		auto max_abs_diff = Val{-1};
+		auto max_abs_frac = Val{-1};
 		for (unsigned int l = 0; l < argument4.size(); ++l)
 		  {
-		    const Tp4 z = argument4[l];
+		    const auto z = argument4[l];
 
 		    try
 		      {
-			const Tp f1 = function1(w, x, y, z);
-			const Tp f2 = function2(w, x, y, z);
+			const auto f1 = function1(w, x, y, z);
+			const auto f2 = function2(w, x, y, z);
 			if (std::abs(f1) == inf || std::abs(f2) == inf)
 			  {
 			    output << "//  Divergence at"
@@ -816,12 +848,12 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 				   << " f2=" << f2 << '\n';
 			    break;
 			  }
-			const Tp diff = f1 - f2;
+			const auto diff = f1 - f2;
 			if (std::abs(diff) > max_abs_diff)
 			  max_abs_diff = std::abs(diff);
-			if (std::abs(f2) > Tp(10) * eps && std::abs(f1) > Tp(10) * eps)
+			if (std::abs(f2) > Val{10} * eps && std::abs(f1) > Val{10} * eps)
 			  {
-			    const Tp frac = diff / f2;
+			    const auto frac = diff / f2;
 			    if (std::abs(frac) > max_abs_frac)
 			      max_abs_frac = std::abs(frac);
 			  }
@@ -833,12 +865,12 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		      }
 		  }
 
-		if (max_abs_diff >= Tp(0) && max_abs_frac >= Tp(0))
+		if (max_abs_diff >= Val{0} && max_abs_frac >= Val{0})
 		 {
 		    bool tol_ok = false;
-		    const Tp min_tol = Tp(1.0e-3L);
-		    //const Tp diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
-		    const Tp frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
+		    const auto min_tol = Val{1.0e-3L};
+		    //const auto diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
+		    const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 		    std::ostringstream dataname;
 		    dataname.fill('0');
 		    dataname << "data" << std::setw(3) << test;
@@ -920,6 +952,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 	output << "  return 0;\n";
 	output << "}\n";
       }
+
+    output.flush();
 
     return test;
   }
