@@ -1,4 +1,3 @@
-#include <boost/math/special_functions/math_fwd.hpp>
 #include <boost/math/special_functions/factorials.hpp>
 #include <boost/math/special_functions/gamma.hpp>
 #include <boost/math/special_functions/beta.hpp>
@@ -15,11 +14,15 @@
 #include <boost/math/special_functions/ellint_1.hpp>
 #include <boost/math/special_functions/ellint_2.hpp>
 #include <boost/math/special_functions/ellint_3.hpp>
+#include <boost/math/special_functions/ellint_d.hpp>
 #include <boost/math/special_functions/jacobi_elliptic.hpp>
 #include <boost/math/special_functions/jacobi_zeta.hpp>
 #include <boost/math/special_functions/heuman_lambda.hpp>
 #include <boost/math/special_functions/polygamma.hpp>
 #include <boost/math/special_functions/binomial.hpp>
+#include <boost/math/special_functions/hankel.hpp>
+#include <boost/math/special_functions/expint.hpp>
+#include <boost/math/special_functions/sinc.hpp>
 
 #include "boost_wrap.h"
 
@@ -500,21 +503,21 @@ sinc_pi(double x)
 double
 sinc(double x)
 {
-  return 0.0;//boost::math::sinc(x);
+  return boost::math::sinc_pi(x / M_PI);
 }
 
 /// Hyperbolic sinus cardinal function.
 double
 sinhc_pi(double x)
 {
-  return boost::math::sinhc_pi(x);
+  return std::sinh(x) / x;
 }
 
 /// Hyperbolic sinus cardinal function.
 double
 sinhc(double x)
 {
-  return 0.0;//boost::math::sinhc(x);
+  return std::sinh(x / M_PI) / (x / M_PI);
 }
 
 /// Log upper Pochhammer symbol.
@@ -528,7 +531,7 @@ lpochhammer_u(double a, double x)
 double
 lpochhammer_l(double a, double x)
 {
-  return boost::math::lgamma(a + x) - lpochhammer_u(a, x);
+  return boost::math::lgamma(std::abs(a + x)) - lpochhammer_u(a, x);
 }
 
 /// Upper Pochhammer symbol.
@@ -542,7 +545,7 @@ pochhammer_u(double a, double x)
 double
 pochhammer_l(double a, double x)
 {
-  return boost::math::tgamma(a + x) / pochhammer_u(a, x);
+  return boost::math::tgamma(std::abs(a + x)) / pochhammer_u(a, x);
 }
 
 /// Log factorial.
@@ -711,6 +714,13 @@ double
 erfc_inv(double p)
 {
   return boost::math::erfc_inv(p);
+}
+
+/// Spherical Legendre functions.
+std::complex<double>
+sph_harmonic(unsigned int l, int m, double theta, double phi)
+{
+  return boost::math::spherical_harmonic(l, m, theta, phi);
 }
 
 } // namespace beast

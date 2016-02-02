@@ -956,73 +956,73 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Cylindrical Hankel functions of the first kind
 
   inline std::complex<float>
-  cyl_hankel_h1f(float __nu, float __z)
-  { return std::__detail::__cyl_hankel_h1<float>(__nu, __z); }
+  cyl_hankel_1f(float __nu, float __z)
+  { return std::__detail::__cyl_hankel_1<float>(__nu, __z); }
 
   inline std::complex<long double>
-  cyl_hankel_h1l(long double __nu, long double __z)
-  { return std::__detail::__cyl_hankel_h1<long double>(__nu, __z); }
+  cyl_hankel_1l(long double __nu, long double __z)
+  { return std::__detail::__cyl_hankel_1<long double>(__nu, __z); }
 
   template<typename _Tpnu, typename _Tp>
     inline std::complex<__gnu_cxx::__promote_num_t<_Tpnu, _Tp>>
-    cyl_hankel_h1(_Tpnu __nu, _Tp __z)
+    cyl_hankel_1(_Tpnu __nu, _Tp __z)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tpnu, _Tp>;
-      return std::__detail::__cyl_hankel_h1<__type>(__nu, __z);
+      return std::__detail::__cyl_hankel_1<__type>(__nu, __z);
     }
 
   // Cylindrical Hankel functions of the second kind
 
   inline std::complex<float>
-  cyl_hankel_h2f(float __nu, float __z)
-  { return std::__detail::__cyl_hankel_h2<float>(__nu, __z); }
+  cyl_hankel_2f(float __nu, float __z)
+  { return std::__detail::__cyl_hankel_2<float>(__nu, __z); }
 
   inline std::complex<long double>
-  cyl_hankel_h2l(long double __nu, long double __z)
-  { return std::__detail::__cyl_hankel_h2<long double>(__nu, __z); }
+  cyl_hankel_2l(long double __nu, long double __z)
+  { return std::__detail::__cyl_hankel_2<long double>(__nu, __z); }
 
   template<typename _Tpnu, typename _Tp>
     inline std::complex<__gnu_cxx::__promote_num_t<_Tpnu, _Tp>>
-    cyl_hankel_h2(_Tpnu __nu, _Tp __z)
+    cyl_hankel_2(_Tpnu __nu, _Tp __z)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tpnu, _Tp>;
-      return std::__detail::__cyl_hankel_h2<__type>(__nu, __z);
+      return std::__detail::__cyl_hankel_2<__type>(__nu, __z);
     }
 
   // Spherical Hankel functions of the first kind
 
   inline std::complex<float>
-  sph_hankel_h1f(unsigned int __n, float __z)
-  { return std::__detail::__sph_hankel_h1<float>(__n, __z); }
+  sph_hankel_1f(unsigned int __n, float __z)
+  { return std::__detail::__sph_hankel_1<float>(__n, __z); }
 
   inline std::complex<long double>
-  sph_hankel_h1l(unsigned int __n, long double __z)
-  { return std::__detail::__sph_hankel_h1<long double>(__n, __z); }
+  sph_hankel_1l(unsigned int __n, long double __z)
+  { return std::__detail::__sph_hankel_1<long double>(__n, __z); }
 
   template<typename _Tp>
     inline std::complex<__gnu_cxx::__promote_num_t<_Tp>>
-    sph_hankel_h1(unsigned int __n, _Tp __z)
+    sph_hankel_1(unsigned int __n, _Tp __z)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      return std::__detail::__sph_hankel_h1<__type>(__n, __z);
+      return std::__detail::__sph_hankel_1<__type>(__n, __z);
     }
 
   // Spherical Hankel functions of the second kind
 
   inline std::complex<float>
-  sph_hankel_h2f(unsigned int __n, float __z)
-  { return std::__detail::__sph_hankel_h2<float>(__n, __z); }
+  sph_hankel_2f(unsigned int __n, float __z)
+  { return std::__detail::__sph_hankel_2<float>(__n, __z); }
 
   inline std::complex<long double>
-  sph_hankel_h2l(unsigned int __n, long double __z)
-  { return std::__detail::__sph_hankel_h2<long double>(__n, __z); }
+  sph_hankel_2l(unsigned int __n, long double __z)
+  { return std::__detail::__sph_hankel_2<long double>(__n, __z); }
 
   template<typename _Tp>
     inline std::complex<__gnu_cxx::__promote_num_t<_Tp>>
-    sph_hankel_h2(unsigned int __n, _Tp __z)
+    sph_hankel_2(unsigned int __n, _Tp __z)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      return std::__detail::__sph_hankel_h2<__type>(__n, __z);
+      return std::__detail::__sph_hankel_2<__type>(__n, __z);
     }
 
   // Modified spherical Bessel functions of the first kind
@@ -1877,6 +1877,100 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tk, _Tp, _Ta, _Tb>;
       return std::__detail::__ellint_cel<__type>(__k_c, __p, __a, __b);
+    }
+
+  // Cylindrical Hankel functions of the first kind.
+
+  inline std::complex<float>
+  cyl_hankel_1f(std::complex<float> __nu, std::complex<float> __x)
+  { return std::__detail::__cyl_hankel_1<float>(__nu, __x); }
+
+  inline std::complex<long double>
+  cyl_hankel_1l(std::complex<long double> __nu, std::complex<long double> __x)
+  { return std::__detail::__cyl_hankel_1<long double>(__nu, __x); }
+
+  template<typename _Tpnu, typename _Tp>
+    inline std::complex<__gnu_cxx::__promote_num_t<_Tpnu, _Tp>>
+    cyl_hankel_1(std::complex<_Tpnu> __nu, std::complex<_Tp> __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tpnu, _Tp>;
+      return std::__detail::__cyl_hankel_1<__type>(__nu, __x);
+    }
+
+  // Cylindrical Hankel functions of the second kind.
+
+  inline std::complex<float>
+  cyl_hankel_2f(std::complex<float> __nu, std::complex<float> __x)
+  { return std::__detail::__cyl_hankel_2<float>(__nu, __x); }
+
+  inline std::complex<long double>
+  cyl_hankel_2l(std::complex<long double> __nu, std::complex<long double> __x)
+  { return std::__detail::__cyl_hankel_2<long double>(__nu, __x); }
+
+  template<typename _Tpnu, typename _Tp>
+    inline std::complex<__gnu_cxx::__promote_num_t<_Tpnu, _Tp>>
+    cyl_hankel_2(std::complex<_Tpnu> __nu, std::complex<_Tp> __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tpnu, _Tp>;
+      return std::__detail::__cyl_hankel_2<__type>(__nu, __x);
+    }
+
+  // Spherical Hankel functions of the first kind.
+
+  inline std::complex<float>
+  sph_hankel_1f(unsigned int __n, std::complex<float> __x)
+  { return std::__detail::__sph_hankel_1<float>(__n, __x); }
+
+  inline std::complex<long double>
+  sph_hankel_1l(unsigned int __n, std::complex<long double> __x)
+  { return std::__detail::__sph_hankel_1<long double>(__n, __x); }
+
+  template<typename _Tp>
+    inline std::complex<__gnu_cxx::__promote_num_t<_Tp>>
+    sph_hankel_1(unsigned int __n, std::complex<_Tp> __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__sph_hankel_1<__type>(__n, __x);
+    }
+
+  // Spherical Hankel functions of the second kind.
+
+  inline std::complex<float>
+  sph_hankel_2f(unsigned int __n, std::complex<float> __x)
+  { return std::__detail::__sph_hankel_2<float>(__n, __x); }
+
+  inline std::complex<long double>
+  sph_hankel_2l(unsigned int __n, std::complex<long double> __x)
+  { return std::__detail::__sph_hankel_2<long double>(__n, __x); }
+
+  template<typename _Tp>
+    inline std::complex<__gnu_cxx::__promote_num_t<_Tp>>
+    sph_hankel_2(unsigned int __n, std::complex<_Tp> __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__sph_hankel_2<__type>(__n, __x);
+    }
+
+  // Spherical harmonic functions
+
+  inline std::complex<float>
+  sph_harmonicf(unsigned int __l, unsigned int __m,
+		float __theta, float __phi)
+  { return std::__detail::__sph_harmonic<float>(__l, __m, __theta, __phi); }
+
+  inline std::complex<long double>
+  sph_harmonicl(unsigned int __l, unsigned int __m,
+		long double __theta, long double __phi)
+  {
+    return std::__detail::__sph_harmonic<long double>(__l, __m, __theta, __phi);
+  }
+
+  template<typename _Ttheta, typename _Tphi>
+    inline std::complex<__gnu_cxx::__promote_num_t<_Ttheta, _Tphi>>
+    sph_harmonic(unsigned int __l, int __m, _Ttheta __theta, _Tphi __phi)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Ttheta, _Tphi>;
+      return std::__detail::__sph_harmonic<__type>(__l, __m, __theta, __phi);
     }
 
 #endif // __cplusplus >= 201103L
