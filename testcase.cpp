@@ -1162,11 +1162,11 @@ template<typename Real>
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_heuman_lambda(filename.c_str());
     maketest(heuman_lambda, beast::heuman_lambda,
-	     nsname, funcname,
+	     "__gnu_cxx", funcname,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
 	     "phi", vphid,
-	     file_ellint_1);
+	     file_heuman_lambda);
 
     // Elliptic D integrals.
     // Avoid poles at |x| = 1.
@@ -1175,11 +1175,11 @@ template<typename Real>
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_ellint_d(filename.c_str());
     maketest(ellint_d, beast::ellint_d,
-	     nsname, funcname,
+	     "__gnu_cxx", funcname,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
 	     "phi", vphid,
-	     file_ellint_1);
+	     file_ellint_d);
 
     // Jacobi zeta functions.
     // Avoid poles at |x| = 1.
@@ -1188,11 +1188,11 @@ template<typename Real>
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_jacobi_zeta(filename.c_str());
     maketest(jacobi_zeta, beast::jacobi_zeta,
-	     nsname, funcname,
+	     "__gnu_cxx", funcname,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
 	     "phi", vphid,
-	     file_ellint_1);
+	     file_jacobi_zeta);
 
     // Cylindrical Hankel functions of the first kind.
     std::cout << "cyl_hankel_1" << std::endl;
@@ -1201,13 +1201,13 @@ template<typename Real>
     std::ofstream file_cyl_hankel_1(filename.c_str());
     test =
     maketest(cyl_hankel_1, beast::cyl_hankel_1,
-	     nsname, funcname,
+	     "__gnu_cxx", funcname,
 	     "nu", vborderd,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_cyl_hankel_1, true, false);
     maketest(cyl_hankel_1, beast::cyl_hankel_1,
-	     nsname, funcname,
+	     "__gnu_cxx", funcname,
 	     "nu", vborderd,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
@@ -1220,13 +1220,13 @@ template<typename Real>
     std::ofstream file_cyl_hankel_2(filename.c_str());
     test =
     maketest(cyl_hankel_2, beast::cyl_hankel_2,
-	     nsname, funcname,
+	     "__gnu_cxx", funcname,
 	     "nu", vborderd,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_cyl_hankel_2, true, false);
     maketest(cyl_hankel_2, beast::cyl_hankel_2,
-	     nsname, funcname,
+	     "__gnu_cxx", funcname,
 	     "nu", vborderd,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
@@ -1239,13 +1239,13 @@ template<typename Real>
     std::ofstream file_sph_hankel_1(filename.c_str());
     test =
     maketest(sph_hankel_1, beast::sph_hankel_1,
-	     nsname, funcname,
+	     "__gnu_cxx", funcname,
 	     "n", sborder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_sph_hankel_1, true, false);
     maketest(sph_hankel_1, beast::sph_hankel_1,
-	     nsname, funcname,
+	     "__gnu_cxx", funcname,
 	     "n", sborder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
@@ -1258,13 +1258,13 @@ template<typename Real>
     std::ofstream file_sph_hankel_2(filename.c_str());
     test =
     maketest(sph_hankel_2, beast::sph_hankel_2,
-	     nsname, funcname,
+	     "__gnu_cxx", funcname,
 	     "n", sborder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_sph_hankel_2, true, false);
     maketest(sph_hankel_2, beast::sph_hankel_2,
-	     nsname, funcname,
+	     "__gnu_cxx", funcname,
 	     "n", sborder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
@@ -1276,7 +1276,7 @@ template<typename Real>
     filename = get_filename(path, prefix, funcname, "", ".cc");
     std::ofstream file_sph_harmonic(filename.c_str());
     maketest(sph_harmonic, beast::sph_harmonic,
-	     nsname, funcname,
+	     "__gnu_cxx", funcname,
 	     "l", vorder, "m", iorder,
 	     "theta", fill_argument(std::make_pair(Real{0}, static_cast<Real>(M_PI)),
 				    std::make_pair(true, true), 21),
