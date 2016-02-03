@@ -667,21 +667,21 @@ template<typename Tp, unsigned int Num>
   test(const testcase_cyl_hankel_2<Tp> (&data)[Num], Tp toler)
   {
     bool test __attribute__((unused)) = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
+    const auto eps = std::numeric_limits<Tp>::epsilon();
+    auto max_abs_diff = -Tp(1);
+    auto max_abs_frac = -Tp(1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = __gnu_cxx::cyl_hankel_2(data[i].nu, data[i].x);
-	const Tp f0 = data[i].f0;
-	const Tp diff = f - f0;
+	const auto f = __gnu_cxx::cyl_hankel_2(data[i].nu, data[i].x);
+	const auto f0 = data[i].f0;
+	const auto diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
 	if (std::abs(f0) > Tp(10) * eps
 	 && std::abs(f) > Tp(10) * eps)
 	  {
-	    const Tp frac = diff / f0;
+	    const auto frac = diff / f0;
 	    if (std::abs(frac) > max_abs_frac)
 	      max_abs_frac = std::abs(frac);
 	  }
