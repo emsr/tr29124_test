@@ -595,7 +595,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  std::complex<_Tp> _S_j{0, 1};
 	  _Tp _J_n, _N_n, __jp_n, __np_n;
 	  __bessel_jn(__nu, __x, _J_n, _N_n, __jp_n, __np_n);
-	  return (_J_n + _S_j * _N_n);
+	  return (_J_n - _S_j * _N_n);
 	}
     }
 
@@ -765,7 +765,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  std::complex<_Tp> _S_j{0, 1};
 	  _Tp __j_n, __n_n, __jp_n, __np_n;
 	  __sph_bessel_jn(__n, __x, __j_n, __n_n, __jp_n, __np_n);
-	  return (__j_n + _S_j * __n_n);
+	  return (__j_n - _S_j * __n_n);
 	}
     }
 
