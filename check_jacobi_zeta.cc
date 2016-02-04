@@ -40,6 +40,9 @@
 // Test data for k=-0.90000000000000002.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 4.0706454465558064e-16
+// mean(f - f_GSL): 1.9428902930940241e-17
+// variance(f - f_GSL): 4.6602749271592266e-35
+// stddev(f - f_GSL): 6.8266206333435773e-18
 const testcase_jacobi_zeta<double>
 data001[10] =
 {
@@ -59,6 +62,9 @@ const double toler001 = 2.5000000000000020e-13;
 // Test data for k=-0.80000000000000004.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 3.3895448572450267e-16
+// mean(f - f_GSL): 9.0205620750793972e-18
+// variance(f - f_GSL): 1.0045745697575385e-35
+// stddev(f - f_GSL): 3.1695024369095197e-18
 const testcase_jacobi_zeta<double>
 data002[10] =
 {
@@ -78,6 +84,9 @@ const double toler002 = 2.5000000000000020e-13;
 // Test data for k=-0.69999999999999996.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 2.1455915857898406e-16
+// mean(f - f_GSL): -1.1102230246251566e-17
+// variance(f - f_GSL): 1.5217224251948522e-35
+// stddev(f - f_GSL): 3.9009260761963331e-18
 const testcase_jacobi_zeta<double>
 data003[10] =
 {
@@ -97,6 +106,9 @@ const double toler003 = 2.5000000000000020e-13;
 // Test data for k=-0.59999999999999998.
 // max(|f - f_GSL|): 4.1633363423443370e-17
 // max(|f - f_GSL| / |f_GSL|): 4.4937670030222614e-16
+// mean(f - f_GSL): 9.7144514654701207e-18
+// variance(f - f_GSL): 1.1650687317898087e-35
+// stddev(f - f_GSL): 3.4133103166717918e-18
 const testcase_jacobi_zeta<double>
 data004[10] =
 {
@@ -116,6 +128,9 @@ const double toler004 = 2.5000000000000020e-13;
 // Test data for k=-0.50000000000000000.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 4.6979541059860659e-16
+// mean(f - f_GSL): -1.0755285551056204e-17
+// variance(f - f_GSL): 1.4281008306760283e-35
+// stddev(f - f_GSL): 3.7790221363151981e-18
 const testcase_jacobi_zeta<double>
 data005[10] =
 {
@@ -135,6 +150,9 @@ const double toler005 = 2.5000000000000020e-13;
 // Test data for k=-0.40000000000000002.
 // max(|f - f_GSL|): 2.0816681711721685e-17
 // max(|f - f_GSL| / |f_GSL|): 5.0829329239944491e-16
+// mean(f - f_GSL): -6.2450045135165057e-18
+// variance(f - f_GSL): 4.8148248609680886e-36
+// stddev(f - f_GSL): 2.1942709178604378e-18
 const testcase_jacobi_zeta<double>
 data006[10] =
 {
@@ -154,6 +172,9 @@ const double toler006 = 2.5000000000000020e-13;
 // Test data for k=-0.30000000000000004.
 // max(|f - f_GSL|): 1.0408340855860843e-17
 // max(|f - f_GSL| / |f_GSL|): 5.1876131255043083e-16
+// mean(f - f_GSL): -3.6429192995512951e-18
+// variance(f - f_GSL): 1.6383779040794189e-36
+// stddev(f - f_GSL): 1.2799913687519221e-18
 const testcase_jacobi_zeta<double>
 data007[10] =
 {
@@ -173,6 +194,9 @@ const double toler007 = 2.5000000000000020e-13;
 // Test data for k=-0.19999999999999996.
 // max(|f - f_GSL|): 3.4694469519536142e-18
 // max(|f - f_GSL| / |f_GSL|): 3.7835348280030090e-16
+// mean(f - f_GSL): -1.1709383462843449e-18
+// variance(f - f_GSL): 1.6927118651840941e-37
+// stddev(f - f_GSL): 4.1142579709883214e-19
 const testcase_jacobi_zeta<double>
 data008[10] =
 {
@@ -192,6 +216,9 @@ const double toler008 = 2.5000000000000020e-13;
 // Test data for k=-0.099999999999999978.
 // max(|f - f_GSL|): 4.3368086899420177e-19
 // max(|f - f_GSL| / |f_GSL|): 2.6893936273561792e-16
+// mean(f - f_GSL): -6.5052130349130264e-20
+// variance(f - f_GSL): 5.2244193369879512e-40
+// stddev(f - f_GSL): 2.2856988727712912e-20
 const testcase_jacobi_zeta<double>
 data009[10] =
 {
@@ -211,6 +238,9 @@ const double toler009 = 2.5000000000000020e-13;
 // Test data for k=0.10000000000000009.
 // max(|f - f_GSL|): 8.6736173798840355e-19
 // max(|f - f_GSL| / |f_GSL|): 3.5133724290431918e-16
+// mean(f - f_GSL): -1.1926223897340547e-19
+// variance(f - f_GSL): 1.7559853882653938e-39
+// stddev(f - f_GSL): 4.1904479334140329e-20
 const testcase_jacobi_zeta<double>
 data010[10] =
 {
@@ -230,6 +260,9 @@ const double toler010 = 2.5000000000000020e-13;
 // Test data for k=0.19999999999999996.
 // max(|f - f_GSL|): 3.4694469519536142e-18
 // max(|f - f_GSL| / |f_GSL|): 3.7835348280030090e-16
+// mean(f - f_GSL): -1.1709383462843449e-18
+// variance(f - f_GSL): 1.6927118651840941e-37
+// stddev(f - f_GSL): 4.1142579709883214e-19
 const testcase_jacobi_zeta<double>
 data011[10] =
 {
@@ -249,6 +282,9 @@ const double toler011 = 2.5000000000000020e-13;
 // Test data for k=0.30000000000000004.
 // max(|f - f_GSL|): 1.0408340855860843e-17
 // max(|f - f_GSL| / |f_GSL|): 5.1876131255043083e-16
+// mean(f - f_GSL): -3.6429192995512951e-18
+// variance(f - f_GSL): 1.6383779040794189e-36
+// stddev(f - f_GSL): 1.2799913687519221e-18
 const testcase_jacobi_zeta<double>
 data012[10] =
 {
@@ -268,6 +304,9 @@ const double toler012 = 2.5000000000000020e-13;
 // Test data for k=0.39999999999999991.
 // max(|f - f_GSL|): 3.4694469519536142e-17
 // max(|f - f_GSL| / |f_GSL|): 8.4715548733240854e-16
+// mean(f - f_GSL): -1.2316536679435331e-17
+// variance(f - f_GSL): 1.8728034046404421e-35
+// stddev(f - f_GSL): 4.3275898657803077e-18
 const testcase_jacobi_zeta<double>
 data013[10] =
 {
@@ -287,6 +326,9 @@ const double toler013 = 2.5000000000000020e-13;
 // Test data for k=0.50000000000000000.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 4.6979541059860659e-16
+// mean(f - f_GSL): -1.0755285551056204e-17
+// variance(f - f_GSL): 1.4281008306760283e-35
+// stddev(f - f_GSL): 3.7790221363151981e-18
 const testcase_jacobi_zeta<double>
 data014[10] =
 {
@@ -306,6 +348,9 @@ const double toler014 = 2.5000000000000020e-13;
 // Test data for k=0.60000000000000009.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 5.5820409081595190e-16
+// mean(f - f_GSL): 1.2490009027033011e-17
+// variance(f - f_GSL): 1.9259299443872341e-35
+// stddev(f - f_GSL): 4.3885418357208741e-18
 const testcase_jacobi_zeta<double>
 data015[10] =
 {
@@ -325,6 +370,9 @@ const double toler015 = 2.5000000000000020e-13;
 // Test data for k=0.69999999999999996.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 2.1455915857898406e-16
+// mean(f - f_GSL): -1.1102230246251566e-17
+// variance(f - f_GSL): 1.5217224251948522e-35
+// stddev(f - f_GSL): 3.9009260761963331e-18
 const testcase_jacobi_zeta<double>
 data016[10] =
 {
@@ -344,6 +392,9 @@ const double toler016 = 2.5000000000000020e-13;
 // Test data for k=0.80000000000000004.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 3.3895448572450267e-16
+// mean(f - f_GSL): 9.0205620750793972e-18
+// variance(f - f_GSL): 1.0045745697575385e-35
+// stddev(f - f_GSL): 3.1695024369095197e-18
 const testcase_jacobi_zeta<double>
 data017[10] =
 {
@@ -363,6 +414,9 @@ const double toler017 = 2.5000000000000020e-13;
 // Test data for k=0.89999999999999991.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 4.1164027076444479e-16
+// mean(f - f_GSL): -1.3877787807814457e-17
+// variance(f - f_GSL): 2.3776912893669558e-35
+// stddev(f - f_GSL): 4.8761575952454158e-18
 const testcase_jacobi_zeta<double>
 data018[10] =
 {
@@ -383,10 +437,11 @@ template<typename Tp, unsigned int Num>
   void
   test(const testcase_jacobi_zeta<Tp> (&data)[Num], Tp toler)
   {
+    typedef Tp Val;
     bool test __attribute__((unused)) = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
+    const Val eps = std::numeric_limits<Val>::epsilon();
+    Val max_abs_diff = -Val(1);
+    Val max_abs_frac = -Val(1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
@@ -395,8 +450,8 @@ template<typename Tp, unsigned int Num>
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
+	if (std::abs(f0) > Val(10) * eps
+	 && std::abs(f) > Val(10) * eps)
 	  {
 	    const Tp frac = diff / f0;
 	    if (std::abs(frac) > max_abs_frac)

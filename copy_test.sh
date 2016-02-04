@@ -33,6 +33,7 @@ ext_dir="$HOME/gcc_specfun/libstdc++-v3/testsuite/ext/special_functions"
 ${tool} ${text_dir}/airy_ai/*            ${ext_dir}/airy_ai
 ${tool} ${text_dir}/airy_bi/*            ${ext_dir}/airy_bi
 ${tool} ${text_dir}/bincoef/*            ${ext_dir}/bincoef
+${tool} ${text_dir}/comp_ellint_d/*      ${ext_dir}/comp_ellint_d
 ${tool} ${text_dir}/conf_hyperg/*        ${ext_dir}/conf_hyperg
 ${tool} ${text_dir}/conf_hyperg_lim/*    ${ext_dir}/conf_hyperg_lim
 ${tool} ${text_dir}/coshint/*            ${ext_dir}/coshint
@@ -40,6 +41,7 @@ ${tool} ${text_dir}/cosint/*             ${ext_dir}/cosint
 ${tool} ${text_dir}/dawson/*             ${ext_dir}/dawson
 ${tool} ${text_dir}/dilog/*              ${ext_dir}/dilog
 ${tool} ${text_dir}/double_factorial/*   ${ext_dir}/double_factorial
+${tool} ${text_dir}/ellint_d/*           ${ext_dir}/ellint_d
 ${tool} ${text_dir}/ellint_rc/*          ${ext_dir}/ellint_rc
 ${tool} ${text_dir}/ellint_rd/*          ${ext_dir}/ellint_rd
 ${tool} ${text_dir}/ellint_rf/*          ${ext_dir}/ellint_rf
@@ -61,9 +63,9 @@ ${tool} ${text_dir}/lbincoef/*           ${ext_dir}/lbincoef
 ${tool} ${text_dir}/ldouble_factorial/*  ${ext_dir}/ldouble_factorial
 ${tool} ${text_dir}/legendre_q/*         ${ext_dir}/legendre_q
 ${tool} ${text_dir}/lfactorial/*         ${ext_dir}/lfactorial
-#${tool} ${text_dir}/lpochhammer_l/*      ${ext_dir}/lpochhammer_l
+${tool} ${text_dir}/lpochhammer_l/*      ${ext_dir}/lpochhammer_l
 ${tool} ${text_dir}/lpochhammer_u/*      ${ext_dir}/lpochhammer_u
-#${tool} ${text_dir}/pochhammer_l/*       ${ext_dir}/pochhammer_l
+${tool} ${text_dir}/pochhammer_l/*       ${ext_dir}/pochhammer_l
 ${tool} ${text_dir}/pochhammer_u/*       ${ext_dir}/pochhammer_u
 ${tool} ${text_dir}/psi/*                ${ext_dir}/psi
 ${tool} ${text_dir}/sinc/*               ${ext_dir}/sinc

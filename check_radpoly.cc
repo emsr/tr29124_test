@@ -40,6 +40,9 @@
 // Test data for n=0, m=0.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_radpoly<double>
 data001[21] =
 {
@@ -91,6 +94,9 @@ const double toler001 = 2.5000000000000020e-13;
 // Test data for n=1, m=1.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_radpoly<double>
 data002[21] =
 {
@@ -142,6 +148,9 @@ const double toler002 = 2.5000000000000020e-13;
 // Test data for n=2, m=0.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_radpoly<double>
 data003[21] =
 {
@@ -193,6 +202,9 @@ const double toler003 = 2.5000000000000020e-13;
 // Test data for n=2, m=2.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_radpoly<double>
 data004[21] =
 {
@@ -244,6 +256,9 @@ const double toler004 = 2.5000000000000020e-13;
 // Test data for n=5, m=1.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 2.4093381610789071e-16
+// mean(f - f_GSL): 1.1564823173178713e-18
+// variance(f - f_GSL): 7.0216195889117977e-38
+// stddev(f - f_GSL): 2.6498338794935424e-19
 const testcase_radpoly<double>
 data005[21] =
 {
@@ -295,6 +310,9 @@ const double toler005 = 2.5000000000000020e-13;
 // Test data for n=5, m=5.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_radpoly<double>
 data006[21] =
 {
@@ -346,6 +364,9 @@ const double toler006 = 2.5000000000000020e-13;
 // Test data for n=10, m=0.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 3.3510368581959916e-16
+// mean(f - f_GSL): -5.2867763077388404e-18
+// variance(f - f_GSL): 1.4673751957236083e-36
+// stddev(f - f_GSL): 1.2113526306256194e-18
 const testcase_radpoly<double>
 data007[21] =
 {
@@ -397,6 +418,9 @@ const double toler007 = 2.5000000000000020e-13;
 // Test data for n=10, m=2.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 7.1660461551973940e-15
+// mean(f - f_GSL): -1.2060458452029231e-17
+// variance(f - f_GSL): 7.6363695488389732e-36
+// stddev(f - f_GSL): 2.7633981886146942e-18
 const testcase_radpoly<double>
 data008[21] =
 {
@@ -448,6 +472,9 @@ const double toler008 = 5.0000000000000039e-13;
 // Test data for n=10, m=10.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_radpoly<double>
 data009[21] =
 {
@@ -499,6 +526,9 @@ const double toler009 = 2.5000000000000020e-13;
 // Test data for n=20, m=0.
 // max(|f - f_GSL|): 1.6653345369377348e-15
 // max(|f - f_GSL| / |f_GSL|): 5.2048833381899225e-14
+// mean(f - f_GSL): -7.9879885774741552e-17
+// variance(f - f_GSL): 3.3499179794775222e-34
+// stddev(f - f_GSL): 1.8302781153358969e-17
 const testcase_radpoly<double>
 data010[21] =
 {
@@ -550,6 +580,9 @@ const double toler010 = 5.0000000000000029e-12;
 // Test data for n=20, m=2.
 // max(|f - f_GSL|): 3.3306690738754696e-16
 // max(|f - f_GSL| / |f_GSL|): 1.3735545771658409e-15
+// mean(f - f_GSL): -2.5029581581951074e-17
+// variance(f - f_GSL): 3.2890197593796083e-35
+// stddev(f - f_GSL): 5.7349976106181664e-18
 const testcase_radpoly<double>
 data011[21] =
 {
@@ -601,6 +634,9 @@ const double toler011 = 2.5000000000000020e-13;
 // Test data for n=20, m=10.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 5.2312045490724507e-16
+// mean(f - f_GSL): -4.8763308633721473e-18
+// variance(f - f_GSL): 1.2483766411764770e-36
+// stddev(f - f_GSL): 1.1173077647526115e-18
 const testcase_radpoly<double>
 data012[21] =
 {
@@ -652,6 +688,9 @@ const double toler012 = 2.5000000000000020e-13;
 // Test data for n=20, m=20.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_radpoly<double>
 data013[21] =
 {
@@ -703,6 +742,9 @@ const double toler013 = 2.5000000000000020e-13;
 // Test data for n=50, m=0.
 // max(|f - f_GSL|): 2.2898349882893854e-15
 // max(|f - f_GSL| / |f_GSL|): 3.1121006853787319e-14
+// mean(f - f_GSL): 1.0110959688550533e-16
+// variance(f - f_GSL): 5.3671540557334289e-34
+// stddev(f - f_GSL): 2.3167119060714971e-17
 const testcase_radpoly<double>
 data014[21] =
 {
@@ -754,6 +796,9 @@ const double toler014 = 2.5000000000000015e-12;
 // Test data for n=50, m=2.
 // max(|f - f_GSL|): 4.4408920985006262e-15
 // max(|f - f_GSL| / |f_GSL|): 4.0517947489290507e-14
+// mean(f - f_GSL): 2.6425620950713363e-16
+// variance(f - f_GSL): 9.1582508583449419e-31
+// stddev(f - f_GSL): 9.5698750557909278e-16
 const testcase_radpoly<double>
 data015[21] =
 {
@@ -805,6 +850,9 @@ const double toler015 = 2.5000000000000015e-12;
 // Test data for n=50, m=10.
 // max(|f - f_GSL|): 1.5543122344752192e-15
 // max(|f - f_GSL| / |f_GSL|): 3.4162286081375887e-15
+// mean(f - f_GSL): 1.1274686154312541e-16
+// variance(f - f_GSL): 1.0910081303293444e-31
+// stddev(f - f_GSL): 3.3030412203442821e-16
 const testcase_radpoly<double>
 data016[21] =
 {
@@ -856,6 +904,9 @@ const double toler016 = 2.5000000000000020e-13;
 // Test data for n=50, m=20.
 // max(|f - f_GSL|): 5.5511151231257827e-16
 // max(|f - f_GSL| / |f_GSL|): 6.1690913616781911e-15
+// mean(f - f_GSL): 1.7352315695754978e-17
+// variance(f - f_GSL): 1.5182210061163490e-32
+// stddev(f - f_GSL): 1.2321611120776167e-16
 const testcase_radpoly<double>
 data017[21] =
 {
@@ -907,6 +958,9 @@ const double toler017 = 5.0000000000000039e-13;
 // Test data for n=50, m=50.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_radpoly<double>
 data018[21] =
 {
@@ -958,6 +1012,9 @@ const double toler018 = 2.5000000000000020e-13;
 // Test data for n=100, m=0.
 // max(|f - f_GSL|): 5.1070259132757201e-15
 // max(|f - f_GSL| / |f_GSL|): 7.0359947722694919e-14
+// mean(f - f_GSL): 4.1173868217009038e-16
+// variance(f - f_GSL): 9.7764592539717495e-32
+// stddev(f - f_GSL): 3.1267330001091794e-16
 const testcase_radpoly<double>
 data019[21] =
 {
@@ -1009,6 +1066,9 @@ const double toler019 = 5.0000000000000029e-12;
 // Test data for n=100, m=2.
 // max(|f - f_GSL|): 2.9087843245179101e-14
 // max(|f - f_GSL| / |f_GSL|): 1.2519644637601681e-13
+// mean(f - f_GSL): 1.2498476129713373e-15
+// variance(f - f_GSL): 4.0685085042987974e-29
+// stddev(f - f_GSL): 6.3784861090221067e-15
 const testcase_radpoly<double>
 data020[21] =
 {
@@ -1060,6 +1120,9 @@ const double toler020 = 1.0000000000000006e-11;
 // Test data for n=100, m=10.
 // max(|f - f_GSL|): 2.2204460492503131e-15
 // max(|f - f_GSL| / |f_GSL|): 2.5514680182991673e-14
+// mean(f - f_GSL): -1.8297202377564894e-17
+// variance(f - f_GSL): 2.6312849570224162e-31
+// stddev(f - f_GSL): 5.1296052060781601e-16
 const testcase_radpoly<double>
 data021[21] =
 {
@@ -1111,6 +1174,9 @@ const double toler021 = 2.5000000000000015e-12;
 // Test data for n=100, m=20.
 // max(|f - f_GSL|): 3.3306690738754696e-15
 // max(|f - f_GSL| / |f_GSL|): 1.0240728209556704e-13
+// mean(f - f_GSL): 1.3423528071784521e-16
+// variance(f - f_GSL): 5.3640242218710208e-31
+// stddev(f - f_GSL): 7.3239499055298158e-16
 const testcase_radpoly<double>
 data022[21] =
 {
@@ -1162,6 +1228,9 @@ const double toler022 = 1.0000000000000006e-11;
 // Test data for n=100, m=50.
 // max(|f - f_GSL|): 4.4408920985006262e-16
 // max(|f - f_GSL| / |f_GSL|): 1.1324796315050435e-15
+// mean(f - f_GSL): -3.1193924436745958e-17
+// variance(f - f_GSL): 8.9503321276185714e-33
+// stddev(f - f_GSL): 9.4606194974845980e-17
 const testcase_radpoly<double>
 data023[21] =
 {
@@ -1213,6 +1282,9 @@ const double toler023 = 2.5000000000000020e-13;
 // Test data for n=100, m=100.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_radpoly<double>
 data024[21] =
 {
@@ -1265,10 +1337,11 @@ template<typename Tp, unsigned int Num>
   void
   test(const testcase_radpoly<Tp> (&data)[Num], Tp toler)
   {
+    typedef Tp Val;
     bool test __attribute__((unused)) = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
+    const Val eps = std::numeric_limits<Val>::epsilon();
+    Val max_abs_diff = -Val(1);
+    Val max_abs_frac = -Val(1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
   	 {
@@ -1278,8 +1351,8 @@ template<typename Tp, unsigned int Num>
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
+	if (std::abs(f0) > Val(10) * eps
+	 && std::abs(f) > Val(10) * eps)
 	  {
 	    const Tp frac = diff / f0;
 	    if (std::abs(frac) > max_abs_frac)

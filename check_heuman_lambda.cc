@@ -40,6 +40,9 @@
 // Test data for k=-0.90000000000000002.
 // max(|f - f_GSL|): 4.5519144009631418e-15
 // max(|f - f_GSL| / |f_GSL|): 5.0108632207628440e-15
+// mean(f - f_GSL): 5.0576826677368240e-16
+// variance(f - f_GSL): 2.3022138570772931e-30
+// stddev(f - f_GSL): 1.5173048003210472e-15
 const testcase_heuman_lambda<double>
 data001[9] =
 {
@@ -58,6 +61,9 @@ const double toler001 = 5.0000000000000039e-13;
 // Test data for k=-0.80000000000000004.
 // max(|f - f_GSL|): 2.2204460492503131e-16
 // max(|f - f_GSL| / |f_GSL|): 2.6468222272894167e-16
+// mean(f - f_GSL): 4.0091387000352874e-17
+// variance(f - f_GSL): 3.2112206919956619e-33
+// stddev(f - f_GSL): 5.6667633548575694e-17
 const testcase_heuman_lambda<double>
 data002[9] =
 {
@@ -76,6 +82,9 @@ const double toler002 = 2.5000000000000020e-13;
 // Test data for k=-0.69999999999999996.
 // max(|f - f_GSL|): 2.3314683517128287e-15
 // max(|f - f_GSL| / |f_GSL|): 2.4986914608470095e-15
+// mean(f - f_GSL): -2.9605947323337506e-16
+// variance(f - f_GSL): 5.8259380817713885e-31
+// stddev(f - f_GSL): 7.6327832942979512e-16
 const testcase_heuman_lambda<double>
 data003[9] =
 {
@@ -94,6 +103,9 @@ const double toler003 = 2.5000000000000020e-13;
 // Test data for k=-0.59999999999999998.
 // max(|f - f_GSL|): 8.8817841970012523e-16
 // max(|f - f_GSL| / |f_GSL|): 9.4155496136245940e-16
+// mean(f - f_GSL): -1.7578531223231644e-16
+// variance(f - f_GSL): 7.1367741501699509e-32
+// stddev(f - f_GSL): 2.6714741530042829e-16
 const testcase_heuman_lambda<double>
 data004[9] =
 {
@@ -112,6 +124,9 @@ const double toler004 = 2.5000000000000020e-13;
 // Test data for k=-0.50000000000000000.
 // max(|f - f_GSL|): 4.4408920985006262e-16
 // max(|f - f_GSL| / |f_GSL|): 4.9669123877958787e-16
+// mean(f - f_GSL): -3.7007434154171883e-17
+// variance(f - f_GSL): 2.3303752327085554e-32
+// stddev(f - f_GSL): 1.5265566588595902e-16
 const testcase_heuman_lambda<double>
 data005[9] =
 {
@@ -130,6 +145,9 @@ const double toler005 = 2.5000000000000020e-13;
 // Test data for k=-0.40000000000000002.
 // max(|f - f_GSL|): 9.9920072216264089e-16
 // max(|f - f_GSL| / |f_GSL|): 1.0391671569585280e-15
+// mean(f - f_GSL): 2.7755575615628914e-17
+// variance(f - f_GSL): 1.4830864277996958e-31
+// stddev(f - f_GSL): 3.8510861166685117e-16
 const testcase_heuman_lambda<double>
 data006[9] =
 {
@@ -148,6 +166,9 @@ const double toler006 = 2.5000000000000020e-13;
 // Test data for k=-0.30000000000000004.
 // max(|f - f_GSL|): 1.7763568394002505e-15
 // max(|f - f_GSL| / |f_GSL|): 1.8319160169398432e-15
+// mean(f - f_GSL): -1.7578531223231644e-16
+// variance(f - f_GSL): 3.6025723315978489e-31
+// stddev(f - f_GSL): 6.0021432268797525e-16
 const testcase_heuman_lambda<double>
 data007[9] =
 {
@@ -166,6 +187,9 @@ const double toler007 = 2.5000000000000020e-13;
 // Test data for k=-0.19999999999999996.
 // max(|f - f_GSL|): 1.7763568394002505e-15
 // max(|f - f_GSL| / |f_GSL|): 1.8183393452528993e-15
+// mean(f - f_GSL): -2.0045693500176438e-16
+// variance(f - f_GSL): 3.4923663403356905e-31
+// stddev(f - f_GSL): 5.9096246414943232e-16
 const testcase_heuman_lambda<double>
 data008[9] =
 {
@@ -184,6 +208,9 @@ const double toler008 = 2.5000000000000020e-13;
 // Test data for k=-0.099999999999999978.
 // max(|f - f_GSL|): 1.6691782437222639e-08
 // max(|f - f_GSL| / |f_GSL|): 9.0398653283132016e-16
+// mean(f - f_GSL): 1.6691780272287741e-09
+// variance(f - f_GSL): 2.7861560896193475e-17
+// stddev(f - f_GSL): 5.2784051470300645e-09
 const testcase_heuman_lambda<double>
 data009[10] =
 {
@@ -204,6 +231,9 @@ const double toler009 = 2.5000000000000020e-13;
 // Test data for k=0.0000000000000000.
 // max(|f - f_GSL|): 1.1102230246251565e-15
 // max(|f - f_GSL| / |f_GSL|): 1.1273500043326667e-15
+// mean(f - f_GSL): -2.0045693500176438e-16
+// variance(f - f_GSL): 1.1639170375715223e-31
+// stddev(f - f_GSL): 3.4116228360877205e-16
 const testcase_heuman_lambda<double>
 data010[9] =
 {
@@ -223,6 +253,9 @@ const double toler010 = 2.5000000000000020e-13;
 // Test data for k=0.10000000000000009.
 // max(|f - f_GSL|): 5.5511151231257827e-16
 // max(|f - f_GSL| / |f_GSL|): 5.6499158301957510e-16
+// mean(f - f_GSL): -1.6653345369377348e-16
+// variance(f - f_GSL): 2.1233377636869275e-32
+// stddev(f - f_GSL): 1.4571677198205180e-16
 const testcase_heuman_lambda<double>
 data011[9] =
 {
@@ -241,6 +274,9 @@ const double toler011 = 2.5000000000000020e-13;
 // Test data for k=0.19999999999999996.
 // max(|f - f_GSL|): 1.7763568394002505e-15
 // max(|f - f_GSL| / |f_GSL|): 1.8183393452528993e-15
+// mean(f - f_GSL): -2.0045693500176438e-16
+// variance(f - f_GSL): 3.4923663403356905e-31
+// stddev(f - f_GSL): 5.9096246414943232e-16
 const testcase_heuman_lambda<double>
 data012[9] =
 {
@@ -259,6 +295,9 @@ const double toler012 = 2.5000000000000020e-13;
 // Test data for k=0.30000000000000004.
 // max(|f - f_GSL|): 1.7763568394002505e-15
 // max(|f - f_GSL| / |f_GSL|): 1.8319160169398432e-15
+// mean(f - f_GSL): -1.7578531223231644e-16
+// variance(f - f_GSL): 3.6025723315978489e-31
+// stddev(f - f_GSL): 6.0021432268797525e-16
 const testcase_heuman_lambda<double>
 data013[9] =
 {
@@ -277,6 +316,9 @@ const double toler013 = 2.5000000000000020e-13;
 // Test data for k=0.39999999999999991.
 // max(|f - f_GSL|): 6.6613381477509392e-16
 // max(|f - f_GSL| / |f_GSL|): 6.9277810463901876e-16
+// mean(f - f_GSL): 1.2644206669342060e-16
+// variance(f - f_GSL): 8.8337324233911482e-32
+// stddev(f - f_GSL): 2.9721595555069297e-16
 const testcase_heuman_lambda<double>
 data014[9] =
 {
@@ -295,6 +337,9 @@ const double toler014 = 2.5000000000000020e-13;
 // Test data for k=0.50000000000000000.
 // max(|f - f_GSL|): 4.4408920985006262e-16
 // max(|f - f_GSL| / |f_GSL|): 4.9669123877958787e-16
+// mean(f - f_GSL): -3.7007434154171883e-17
+// variance(f - f_GSL): 2.3303752327085554e-32
+// stddev(f - f_GSL): 1.5265566588595902e-16
 const testcase_heuman_lambda<double>
 data015[9] =
 {
@@ -313,6 +358,9 @@ const double toler015 = 2.5000000000000020e-13;
 // Test data for k=0.60000000000000009.
 // max(|f - f_GSL|): 7.7715611723760958e-16
 // max(|f - f_GSL| / |f_GSL|): 8.2386059119215188e-16
+// mean(f - f_GSL): -2.1896065207885033e-16
+// variance(f - f_GSL): 4.3816243686159887e-32
+// stddev(f - f_GSL): 2.0932329943453473e-16
 const testcase_heuman_lambda<double>
 data016[9] =
 {
@@ -331,6 +379,9 @@ const double toler016 = 2.5000000000000020e-13;
 // Test data for k=0.69999999999999996.
 // max(|f - f_GSL|): 2.3314683517128287e-15
 // max(|f - f_GSL| / |f_GSL|): 2.4986914608470095e-15
+// mean(f - f_GSL): -2.9605947323337506e-16
+// variance(f - f_GSL): 5.8259380817713885e-31
+// stddev(f - f_GSL): 7.6327832942979512e-16
 const testcase_heuman_lambda<double>
 data017[9] =
 {
@@ -349,6 +400,9 @@ const double toler017 = 2.5000000000000020e-13;
 // Test data for k=0.80000000000000004.
 // max(|f - f_GSL|): 2.2204460492503131e-16
 // max(|f - f_GSL| / |f_GSL|): 2.6468222272894167e-16
+// mean(f - f_GSL): 4.0091387000352874e-17
+// variance(f - f_GSL): 3.2112206919956619e-33
+// stddev(f - f_GSL): 5.6667633548575694e-17
 const testcase_heuman_lambda<double>
 data018[9] =
 {
@@ -367,6 +421,9 @@ const double toler018 = 2.5000000000000020e-13;
 // Test data for k=0.89999999999999991.
 // max(|f - f_GSL|): 5.3290705182007514e-15
 // max(|f - f_GSL| / |f_GSL|): 5.8663764535760125e-15
+// mean(f - f_GSL): 4.3175339846533865e-16
+// variance(f - f_GSL): 3.3727099178325314e-30
+// stddev(f - f_GSL): 1.8364939199007799e-15
 const testcase_heuman_lambda<double>
 data019[9] =
 {
@@ -386,10 +443,11 @@ template<typename Tp, unsigned int Num>
   void
   test(const testcase_heuman_lambda<Tp> (&data)[Num], Tp toler)
   {
+    typedef Tp Val;
     bool test __attribute__((unused)) = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
+    const Val eps = std::numeric_limits<Val>::epsilon();
+    Val max_abs_diff = -Val(1);
+    Val max_abs_frac = -Val(1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
@@ -398,8 +456,8 @@ template<typename Tp, unsigned int Num>
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
+	if (std::abs(f0) > Val(10) * eps
+	 && std::abs(f) > Val(10) * eps)
 	  {
 	    const Tp frac = diff / f0;
 	    if (std::abs(frac) > max_abs_frac)
