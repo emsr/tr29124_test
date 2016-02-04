@@ -74,6 +74,9 @@ double ellint_RD(double x, double y, double z);
 /// Carlson elliptic integrals R_F.
 double ellint_RF(double x, double y, double z);
 
+/// Carlson elliptic integrals R_G.
+double ellint_RG(double x, double y, double z);
+
 /// Carlson elliptic integrals R_J.
 double ellint_RJ(double x, double y, double z, double p);
 
