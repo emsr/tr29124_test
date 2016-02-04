@@ -194,13 +194,11 @@ template<typename _Tp>
     basename = "gsl_assoc_legendre";
     runtest(gsl::legendre_Plm, basename, uiorder, uiorder,
 	    fill_argument(std::make_pair(-1.0, 1.0),
-	    		  std::make_pair(true, true),
-	    1001));
+	    		  std::make_pair(true, true), 1001));
     basename = ns + "_assoc_legendre";
     runtest(assoc_legendre, basename, uiorder, uiorder,
 	    fill_argument(std::make_pair(_Tp{-1}, _Tp{1}),
-		  	  std::make_pair(true, true),
-	    1001));
+		  	  std::make_pair(true, true), 1001));
 
 
     //  Beta function.
@@ -214,41 +212,41 @@ template<typename _Tp>
     basename = ns + "_beta";
     runtest(beta, basename,
 	    fill_argument(std::make_pair(_Tp{0}, _Tp{100}),
-		 	  std::make_pair(false, true)),
+		 	  std::make_pair(false, true), 101),
 	    fill_argument(std::make_pair(_Tp{0}, _Tp{100}),
-		 	  std::make_pair(false, true)));
+		 	  std::make_pair(false, true), 101));
 
 
     //  Complete elliptic integrals of the first kind.
     std::cout << "comp_ellint_1" << std::endl;
     basename = ns + "_comp_ellint_1";
     basename = "gsl_comp_ellint_1";
-    runtest(gsl::ellint_Kcomp, basename,
+    runtest(gsl::comp_ellint_1, basename,
 	    fill_argument(std::make_pair(-1.0, 1.0),
-			  std::make_pair(false, false)));  //  Avoid poles at |x| = 1.
+			  std::make_pair(false, false), 101));  //  Avoid poles at |x| = 1.
     basename = ns + "_comp_ellint_1";
     runtest(comp_ellint_1, basename,
 	    fill_argument(std::make_pair(_Tp{-1}, _Tp{1}),
-	        	  std::make_pair(true, true)));
+	        	  std::make_pair(true, true), 101));
 
 
     //  Complete elliptic integrals of the second kind.
     std::cout << "comp_ellint_2" << std::endl;
     basename = "gsl_comp_ellint_2";
-    runtest(gsl::ellint_Ecomp, basename,
+    runtest(gsl::comp_ellint_2, basename,
 	    fill_argument(std::make_pair(-1.0, 1.0),
-			  std::make_pair(false, false)));  //  Avoid poles at |x| = 1.
+			  std::make_pair(false, false), 101));  //  Avoid poles at |x| = 1.
     basename = ns + "_comp_ellint_2";
     runtest(comp_ellint_2, basename,
 	    fill_argument(std::make_pair(_Tp{-1}, _Tp{1}),
-	        	  std::make_pair(true, true)));
+	        	  std::make_pair(true, true), 101));
 
 
     //  Complete elliptic integrals of the third kind.
     //  Avoid poles at |x| = 1 and at nu = 1.
     std::cout << "comp_ellint_3" << std::endl;
     basename = "gsl_comp_ellint_3";
-    runtest(gsl::ellint_Pcomp, basename,
+    runtest(gsl::comp_ellint_3, basename,
 	    fill_argument(std::make_pair(-1.0, 1.0),
 			  std::make_pair(false, false)),
 	    fill_argument(std::make_pair(0.0, 1.0),
@@ -335,36 +333,36 @@ template<typename _Tp>
     //  Elliptic integrals of the first kind.
     std::cout << "ellint_1" << std::endl;
     basename = "gsl_ellint_1";
-    runtest(gsl::ellint_F,
+    runtest(gsl::ellint_1,
 	    basename,
 	    fill_argument(std::make_pair(-1.0, 1.0),
-	        	  std::make_pair(false, false)),  //  Avoid poles at |x| = 1.
+	        	  std::make_pair(false, false), 101),  //  Avoid poles at |x| = 1.
 	        	  vphid);
     basename = ns + "_ellint_1";
     runtest(ellint_1,
 	    basename,
 	    fill_argument(std::make_pair(_Tp{-1}, _Tp{1}),
-		 	  std::make_pair(true, true)), vphi);
+		 	  std::make_pair(true, true), 101), vphi);
 
 
     //  Elliptic integrals of the second kind.
     std::cout << "ellint_2" << std::endl;
     basename = "gsl_ellint_2";
-    runtest(gsl::ellint_E, basename,
+    runtest(gsl::ellint_2, basename,
 	    fill_argument(std::make_pair(-1.0, 1.0),
-			  std::make_pair(false, false)),  //  Avoid poles at |x| = 1.
+			  std::make_pair(false, false), 101),  //  Avoid poles at |x| = 1.
 			  vphid);
     basename = ns + "_ellint_2";
     runtest(ellint_2, basename,
 	    fill_argument(std::make_pair(_Tp{-1}, _Tp{1}),
-		 		   std::make_pair(true, true)), vphi);
+		 		   std::make_pair(true, true), 101), vphi);
 
 
     //  Elliptic integrals of the third kind.
     //  Avoid poles at |x| = 1 and at nu = 1.
     std::cout << "ellint_3" << std::endl;
     basename = "gsl_ellint_3";
-    runtest(gsl::ellint_P,
+    runtest(gsl::ellint_3,
 	    basename,
 	    fill_argument(std::make_pair(-1.0, 1.0),
 			  std::make_pair(false, false)),
@@ -392,7 +390,7 @@ template<typename _Tp>
     basename = ns + "_expint";
     runtest(expint, basename,
 	    fill_argument(std::make_pair(_Tp{-50}, _Tp{50}),
-	        	  std::make_pair(true, true)));
+	        	  std::make_pair(true, true), 101));
 
 
     //  Hermite polynomials
@@ -400,11 +398,11 @@ template<typename _Tp>
     basename = "gsl_hermite";
     runtest(gsl::hermite, basename, uiorder,
     	    fill_argument(std::make_pair(-10.0, 10.0),
-    			  std::make_pair(true, true)));
+    			  std::make_pair(true, true), 101));
     basename = ns + "_hermite";
     runtest(hermite, basename, uiorder,
 	    fill_argument(std::make_pair(_Tp{-10}, _Tp{10}),
-			  std::make_pair(true, true)));
+			  std::make_pair(true, true), 101));
 
 
     //  Hypergeometric functions.
@@ -437,11 +435,11 @@ template<typename _Tp>
     runtest(gsl::laguerre_n, basename,
 	    uiorder,
 	    fill_argument(std::make_pair(0.0, 100.0),
-		  	  std::make_pair(true, true)));
+		  	  std::make_pair(true, true), 101));
     basename = ns + "_laguerre";
     runtest(laguerre, basename, uiorder,
 	    fill_argument(std::make_pair(_Tp{0}, _Tp{100}),
-			  std::make_pair(true, true)));
+			  std::make_pair(true, true), 101));
 
 
     ///  Legendre polynomials

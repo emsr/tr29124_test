@@ -40,6 +40,9 @@
 // Test data for n=0.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_laguerre<double>
 data001[21] =
 {
@@ -70,6 +73,9 @@ const double toler001 = 2.5000000000000020e-13;
 // Test data for n=1.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_laguerre<double>
 data002[21] =
 {
@@ -100,6 +106,9 @@ const double toler002 = 2.5000000000000020e-13;
 // Test data for n=2.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_laguerre<double>
 data003[21] =
 {
@@ -130,6 +139,9 @@ const double toler003 = 2.5000000000000020e-13;
 // Test data for n=5.
 // max(|f - f_GSL|): 7.4505805969238281e-09
 // max(|f - f_GSL| / |f_GSL|): 1.9501553136894460e-16
+// mean(f - f_GSL): -9.1645146498075565e-11
+// variance(f - f_GSL): 2.8430813755854757e-18
+// stddev(f - f_GSL): 1.6861439367934980e-09
 const testcase_laguerre<double>
 data004[21] =
 {
@@ -160,6 +172,9 @@ const double toler004 = 2.5000000000000020e-13;
 // Test data for n=10.
 // max(|f - f_GSL|): 0.0029296875000000000
 // max(|f - f_GSL| / |f_GSL|): 6.1315986390500118e-15
+// mean(f - f_GSL): -0.00011841882388131082
+// variance(f - f_GSL): 7.3638903636883773e-10
+// stddev(f - f_GSL): 2.7136489020668051e-05
 const testcase_laguerre<double>
 data005[21] =
 {
@@ -190,6 +205,9 @@ const double toler005 = 5.0000000000000039e-13;
 // Test data for n=20.
 // max(|f - f_GSL|): 2048.0000000000000
 // max(|f - f_GSL| / |f_GSL|): 7.1189246999774008e-15
+// mean(f - f_GSL): -96.983562564903480
+// variance(f - f_GSL): 8.4641159685539344e+21
+// stddev(f - f_GSL): 92000630261.721222
 const testcase_laguerre<double>
 data006[21] =
 {
@@ -220,6 +238,9 @@ const double toler006 = 5.0000000000000039e-13;
 // Test data for n=50.
 // max(|f - f_GSL|): 196608.00000000000
 // max(|f - f_GSL| / |f_GSL|): 4.2910775919271532e-15
+// mean(f - f_GSL): -8840.7163987470722
+// variance(f - f_GSL): 9.4918743844066836e+19
+// stddev(f - f_GSL): 9742625100.2523346
 const testcase_laguerre<double>
 data007[21] =
 {
@@ -250,6 +271,9 @@ const double toler007 = 2.5000000000000020e-13;
 // Test data for n=100.
 // max(|f - f_GSL|): 98304.000000000000
 // max(|f - f_GSL| / |f_GSL|): 3.8776197831393928e-15
+// mean(f - f_GSL): -3668.6107413234895
+// variance(f - f_GSL): 2.7407314162194493e+19
+// stddev(f - f_GSL): 5235199534.1337748
 const testcase_laguerre<double>
 data008[21] =
 {
@@ -281,10 +305,11 @@ template<typename Tp, unsigned int Num>
   void
   test(const testcase_laguerre<Tp> (&data)[Num], Tp toler)
   {
+    typedef Tp Val;
     bool test __attribute__((unused)) = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
+    const Val eps = std::numeric_limits<Val>::epsilon();
+    Val max_abs_diff = -Val(1);
+    Val max_abs_frac = -Val(1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
@@ -293,8 +318,8 @@ template<typename Tp, unsigned int Num>
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
+	if (std::abs(f0) > Val(10) * eps
+	 && std::abs(f) > Val(10) * eps)
 	  {
 	    const Tp frac = diff / f0;
 	    if (std::abs(frac) > max_abs_frac)

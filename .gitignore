@@ -90,7 +90,6 @@ check_zernike
 complex_literal_arith
 diff_special_function
 diff_local_special_function
-dilog
 test_airy
 test_bessel
 test_bessel_asymp
@@ -103,6 +102,7 @@ test_complex_gamma
 test_complex128
 test_csint
 test_dawson
+test_dilog
 test_factorial
 test_float128
 test_fresnel

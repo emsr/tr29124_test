@@ -1,6 +1,7 @@
 #ifndef TESTCASE_TCC
 #define TESTCASE_TCC 1
 
+#include <complex>
 #include <sstream>
 #include <experimental/type_traits>
 
@@ -53,6 +54,136 @@ R"(// This can take long on simulators, timing out the test.
 #define MAX_ITERATIONS (sizeof(data001) / sizeof(testcase_riemann_zeta<double>))
 #endif
 )";
+
+// This is in boost:
+template<typename _Tp>
+  struct is_complex : public std::false_type
+  { };
+
+template<>
+  template<typename _Tp>
+    struct is_complex<std::complex<_Tp>> : public std::true_type
+    { };
+
+template<typename _Tp>
+  using is_complex_t = typename is_complex<_Tp>::type;
+
+template<typename _Tp>
+  constexpr bool is_complex_v = is_complex<_Tp>::value;
+
+template<typename _Tp, typename _Up>
+  constexpr bool
+  operator<(const std::complex<_Tp>& __y, const std::complex<_Up>& __z)
+  {
+    if (__y.real() < __z.real())
+      return true;
+    else if (__z.real() < __y.real())
+      return false;
+    else
+      return __y.imag() < __z.imag();
+  }
+
+template<typename _Tp, typename _Up>
+  constexpr bool
+  operator<(const std::complex<_Tp>& __y, _Up __z)
+  {
+    if (__y.real() < __z)
+      return true;
+    else if (__z < __y.real())
+      return false;
+    else
+      return __y.imag() < _Up{};
+  }
+
+template<typename _Tp, typename _Up>
+  constexpr bool
+  operator<(_Tp __y, const std::complex<_Up>& __z)
+  {
+    if (__y < __z.real())
+      return true;
+    else if (__z.real() < __y)
+      return false;
+    else
+      return _Tp{} < __z.imag();
+  }
+
+template<typename _Tp, typename _Up>
+  constexpr bool
+  operator>(const std::complex<_Tp>& __y, const std::complex<_Up>& __z)
+  { return !operator<(__y, __z); }
+
+template<typename _Tp, typename _Up>
+  constexpr bool
+  operator>(const std::complex<_Tp>& __y, _Up __z)
+  { return !operator<(__y, __z); }
+
+template<typename _Tp, typename _Up>
+  constexpr bool
+  operator>(_Tp __y, const std::complex<_Up>& __z)
+  { return !operator<(__y, __z); }
+
+/**
+ *  Incremental computation of statistics.
+ */
+template<typename _Tp>
+  struct _Statistics
+  {
+    _Statistics&
+    operator<<(_Tp __diff)
+    {
+      ++_M_count;
+      auto __old_mean = _M_mean;
+      _M_mean = (_M_type(__diff) + _M_type(_M_count - 1) * _M_mean) / _M_type(_M_count);
+      auto __del_mean = _M_mean - __old_mean;
+      auto __del_diff = _M_type(__diff) - _M_mean;
+      if (_M_count > 1)
+	_M_variance = (_M_type(_M_count - 2) * _M_variance * _M_variance
+		    + _M_type(_M_count - 1) * __del_mean * __del_mean
+		    + __del_diff * __del_diff) / _M_type(_M_count - 1);
+      if (__diff < _M_min)
+	_M_min = __diff;
+      if (__diff > _M_max)
+	_M_max = __diff;
+
+      return *this;
+    }
+
+    static constexpr bool _M_is_complex = is_complex_v<_Tp>;
+
+    using _M_type = std::conditional_t<is_complex_v<_Tp>,
+				       std::complex<long double>, long double>;
+
+    _Tp
+    count() const
+    { return _Tp(_M_count); }
+
+    _Tp
+    mean() const
+    { return _Tp(_M_mean); }
+
+    _Tp
+    variance() const
+    { return _Tp(_M_variance); }
+
+    _Tp
+    std_deviation() const
+    { return _Tp(std::sqrt(_M_variance)); }
+
+    _Tp
+    min() const
+    { return _Tp(_M_min); }
+
+    _Tp
+    max() const
+    { return _Tp(_M_max); }
+
+    std::size_t _M_count = 0;
+    _M_type _M_mean = 0;
+    _M_type _M_variance = 0;
+    _M_type _M_min = std::numeric_limits<long double>::max();
+    _M_type _M_max = std::numeric_limits<long double>::lowest();
+  };
+
 
 /// A class to abstract the scalar data type in a generic way.
 template<typename Tp>
@@ -204,15 +335,28 @@ template<>
   };
 
 
+///
+///  @brief  Append two testcase vectors.
+///
+template<typename Tp>
+  std::vector<Tp>
+  fill_argument(std::vector<Tp>&& arg, std::vector<Tp>&& more)
+  {
+    std::vector<Tp> ret;
+    ret.reserve(arg.size() + more.size());
+    ret.insert(ret.end(), arg.begin(), arg.end());
+    ret.insert(ret.end(), more.begin(), more.end());
+    return ret;
+  }
 
 ///
-///  @brief  Fill an array with evenly spaces values between two limits.
+///  @brief  Fill an array with evenly spaced values between two limits.
 ///
 template<typename Tp>
   std::vector<Tp>
   fill_argument(const std::pair<Tp,Tp> & range,
 		const std::pair<bool,bool> & inclusive,
-		unsigned int num_steps = 101)
+		unsigned int num_steps)
   {
     std::vector<Tp> argument;
 
@@ -347,6 +491,7 @@ template<typename Tp, typename Tp1>
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
+    constexpr auto is_complex = is_complex_v<Tp>;
 
     std::string numname = type_strings<Val>::type();
 
@@ -355,8 +500,8 @@ template<typename Tp, typename Tp1>
     structname += '<' + numname + '>';
 
     std::vector<std::tuple<Tp, Tp1>> crud;
-
-    auto max_abs_diff = Val{-1};
+    _Statistics<Tp> raw_stats;
+    _Statistics<decltype(std::abs(Tp{}))> abs_stats;
     auto max_abs_frac = Val{-1};
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
@@ -383,8 +528,8 @@ template<typename Tp, typename Tp1>
 		break;
 	      }
 	    const auto diff = f1 - f2;
-	    if (std::abs(diff) > max_abs_diff)
-	      max_abs_diff = std::abs(diff);
+	    raw_stats << diff;
+	    abs_stats << std::abs(diff);
 	    if (std::abs(f2) > Val{10} * eps && std::abs(f1) > Val{10} * eps)
 	      {
 		const auto frac = diff / f2;
@@ -399,11 +544,11 @@ template<typename Tp, typename Tp1>
 	  }
       }
 
-    if (max_abs_diff >= Val{0} && max_abs_frac >= Val{0})
+std::cerr << "\nabs_stats.max() = " << abs_stats.max() << '\n';
+    if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
       {
 	bool tol_ok = false;
 	const auto min_tol = Val{1.0e-3L};
-	//const auto diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
 	const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 	std::ostringstream dataname;
 	dataname.fill('0');
@@ -411,8 +556,11 @@ template<typename Tp, typename Tp1>
 	dataname.fill(' ');
 	output << '\n';
 	output << "// Test data.\n";
-	output << "// max(|f - f_GSL|): " << max_abs_diff << "\n";
-	output << "// max(|f - f_GSL| / |f_GSL|): " << max_abs_frac << "\n";
+	output << "// max(|f - f_GSL|): " << abs_stats.max() << '\n';
+	output << "// max(|f - f_GSL| / |f_GSL|): " << max_abs_frac << '\n';
+	output << "// mean(f - f_GSL): " << raw_stats.mean() << '\n';
+	output << "// variance(f - f_GSL): " << raw_stats.variance() << '\n';
+	output << "// stddev(f - f_GSL): " << raw_stats.std_deviation() << '\n';
 	output.fill('0');
 	output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
 	output.fill(' ');
@@ -442,10 +590,14 @@ template<typename Tp, typename Tp1>
 	output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
 	output.fill(' ');
 	output << "  {\n";
+	if (is_complex)
+	  output << "    typedef typename Tp::value_type Val;\n";
+	else
+	  output << "    typedef Tp Val;\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
-	output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
-	output << "    Tp max_abs_diff = -Tp(1);\n";
-	output << "    Tp max_abs_frac = -Tp(1);\n";
+	output << "    const Val eps = std::numeric_limits<Val>::epsilon();\n";
+	output << "    Val max_abs_diff = -Val(1);\n";
+	output << "    Val max_abs_frac = -Val(1);\n";
 	if (riemann_zeta_limits)
 	  output << "    unsigned int num_datum = MAX_ITERATIONS;\n";
 	else
@@ -457,8 +609,8 @@ template<typename Tp, typename Tp1>
 	output << "\tconst Tp diff = f - f0;\n";
 	output << "\tif (std::abs(diff) > max_abs_diff)\n";
 	output << "\t  max_abs_diff = std::abs(diff);\n";
-	output << "\tif (std::abs(f0) > Tp(10) * eps\n";
-	output << "\t && std::abs(f) > Tp(10) * eps)\n";
+	output << "\tif (std::abs(f0) > Val(10) * eps\n";
+	output << "\t && std::abs(f) > Val(10) * eps)\n";
 	output << "\t  {\n";
 	output << "\t    const Tp frac = diff / f0;\n";
 	output << "\t    if (std::abs(frac) > max_abs_frac)\n";
@@ -519,6 +671,7 @@ template<typename Tp, typename Tp1, typename Tp2>
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
+    constexpr auto is_complex = is_complex_v<Tp>;
 
     std::string numname = type_strings<Val>::type();
 
@@ -531,8 +684,9 @@ template<typename Tp, typename Tp1, typename Tp2>
 	const auto x = argument1[i];
 
 	std::vector<std::tuple<Tp, Tp1, Tp2>> crud;
+	_Statistics<Tp> raw_stats;
+	_Statistics<decltype(std::abs(Tp{}))> abs_stats;
 
-	auto max_abs_diff = Val{-1};
 	auto max_abs_frac = Val{-1};
 	for (unsigned int j = 0; j < argument2.size(); ++j)
 	  {
@@ -561,8 +715,8 @@ template<typename Tp, typename Tp1, typename Tp2>
 		    break;
 		  }
 		const auto diff = f1 - f2;
-		if (std::abs(diff) > max_abs_diff)
-		  max_abs_diff = std::abs(diff);
+		raw_stats << diff;
+		abs_stats << std::abs(diff);
 		if (std::abs(f2) > Val{10} * eps && std::abs(f1) > Val{10} * eps)
 		  {
 		    const auto frac = diff / f2;
@@ -577,11 +731,11 @@ template<typename Tp, typename Tp1, typename Tp2>
 	      }
 	  }
 
-	if (max_abs_diff >= Val{0} && max_abs_frac >= Val{0})
+std::cerr << "\nabs_stats.max() = " << abs_stats.max() << '\n';
+	if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
 	  {
 	    bool tol_ok = false;
 	    const auto min_tol = Val{1.0e-3L};
-	    //const auto diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
 	    const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 	    std::ostringstream dataname;
 	    dataname.fill('0');
@@ -589,8 +743,11 @@ template<typename Tp, typename Tp1, typename Tp2>
 	    dataname.fill(' ');
 	    output << '\n';
 	    output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]) << ".\n";
-	    output << "// max(|f - f_GSL|): " << max_abs_diff << "\n";
-	    output << "// max(|f - f_GSL| / |f_GSL|): " << max_abs_frac << "\n";
+	    output << "// max(|f - f_GSL|): " << abs_stats.max() << '\n';
+	    output << "// max(|f - f_GSL| / |f_GSL|): " << max_abs_frac << '\n';
+	    output << "// mean(f - f_GSL): " << raw_stats.mean() << '\n';
+	    output << "// variance(f - f_GSL): " << raw_stats.variance() << '\n';
+	    output << "// stddev(f - f_GSL): " << raw_stats.std_deviation() << '\n';
 	    output.fill('0');
 	    output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
 	    output.fill(' ');
@@ -622,10 +779,14 @@ template<typename Tp, typename Tp1, typename Tp2>
 	output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
 	output.fill(' ');
 	output << "  {\n";
+	if (is_complex)
+	  output << "    typedef typename Tp::value_type Val;\n";
+	else
+	  output << "    typedef Tp Val;\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
-	output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
-	output << "    Tp max_abs_diff = -Tp(1);\n";
-	output << "    Tp max_abs_frac = -Tp(1);\n";
+	output << "    const Val eps = std::numeric_limits<Val>::epsilon();\n";
+	output << "    Val max_abs_diff = -Val(1);\n";
+	output << "    Val max_abs_frac = -Val(1);\n";
 	output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "      {\n";
@@ -635,8 +796,8 @@ template<typename Tp, typename Tp1, typename Tp2>
 	output << "\tconst Tp diff = f - f0;\n";
 	output << "\tif (std::abs(diff) > max_abs_diff)\n";
 	output << "\t  max_abs_diff = std::abs(diff);\n";
-	output << "\tif (std::abs(f0) > Tp(10) * eps\n";
-	output << "\t && std::abs(f) > Tp(10) * eps)\n";
+	output << "\tif (std::abs(f0) > Val(10) * eps\n";
+	output << "\t && std::abs(f) > Val(10) * eps)\n";
 	output << "\t  {\n";
 	output << "\t    const Tp frac = diff / f0;\n";
 	output << "\t    if (std::abs(frac) > max_abs_frac)\n";
@@ -699,6 +860,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
+    constexpr auto is_complex = is_complex_v<Tp>;
 
     std::string numname = type_strings<Val>::type();
 
@@ -715,8 +877,9 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 	    const auto y = argument2[j];
 
 	    std::vector<std::tuple<Tp, Tp1, Tp2, Tp3>> crud;
+	    _Statistics<Tp> raw_stats;
+	    _Statistics<decltype(std::abs(Tp{}))> abs_stats;
 
-	    auto max_abs_diff = Val{-1};
 	    auto max_abs_frac = Val{-1};
 	    for (unsigned int k = 0; k < argument3.size(); ++k)
 	      {
@@ -747,8 +910,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 			break;
 		      }
 		    const auto diff = f1 - f2;
-		    if (std::abs(diff) > max_abs_diff)
-		      max_abs_diff = std::abs(diff);
+		    raw_stats << diff;
+		    abs_stats << std::abs(diff);
 		    if (std::abs(f2) > Val{10} * eps && std::abs(f1) > Val{10} * eps)
 		      {
 			const auto frac = diff / f2;
@@ -763,11 +926,11 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		  }
 	      }
 
-	    if (max_abs_diff >= Val{0} && max_abs_frac >= Val{0})
+std::cerr << "\nabs_stats.max() = " << abs_stats.max() << '\n';
+	    if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
 	      {
 		bool tol_ok = false;
 		const auto min_tol = Val{1.0e-3L};
-		//const auto diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
 		const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 		std::ostringstream dataname;
 		dataname.fill('0');
@@ -776,8 +939,11 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		output << '\n';
 		output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]);
 		output << ", " << arg2 << '=' << std::get<2>(crud[0]) << ".\n";
-		output << "// max(|f - f_GSL|): " << max_abs_diff << "\n";
-		output << "// max(|f - f_GSL| / |f_GSL|): " << max_abs_frac << "\n";
+		output << "// max(|f - f_GSL|): " << abs_stats.max() << '\n';
+		output << "// max(|f - f_GSL| / |f_GSL|): " << max_abs_frac << '\n';
+		output << "// mean(f - f_GSL): " << raw_stats.mean() << '\n';
+		output << "// variance(f - f_GSL): " << raw_stats.variance() << '\n';
+		output << "// stddev(f - f_GSL): " << raw_stats.std_deviation() << '\n';
 		output.fill('0');
 		output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
 		output.fill(' ');
@@ -813,10 +979,14 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 	output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
 	output.fill(' ');
 	output << "  {\n";
+	if (is_complex)
+	  output << "    typedef typename Tp::value_type Val;\n";
+	else
+	  output << "    typedef Tp Val;\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
-	output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
-	output << "    Tp max_abs_diff = -Tp(1);\n";
-	output << "    Tp max_abs_frac = -Tp(1);\n";
+	output << "    const Val eps = std::numeric_limits<Val>::epsilon();\n";
+	output << "    Val max_abs_diff = -Val(1);\n";
+	output << "    Val max_abs_frac = -Val(1);\n";
 	output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "  	 {\n";
@@ -827,8 +997,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 	output << "\tconst Tp diff = f - f0;\n";
 	output << "\tif (std::abs(diff) > max_abs_diff)\n";
 	output << "\t  max_abs_diff = std::abs(diff);\n";
-	output << "\tif (std::abs(f0) > Tp(10) * eps\n";
-	output << "\t && std::abs(f) > Tp(10) * eps)\n";
+	output << "\tif (std::abs(f0) > Val(10) * eps\n";
+	output << "\t && std::abs(f) > Val(10) * eps)\n";
 	output << "\t  {\n";
 	output << "\t    const Tp frac = diff / f0;\n";
 	output << "\t    if (std::abs(frac) > max_abs_frac)\n";
@@ -893,6 +1063,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
+    constexpr auto is_complex = is_complex_v<Tp>;
 
     std::string numname = type_strings<Val>::type();
 
@@ -913,8 +1084,9 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		const auto y = argument3[k];
 
 		std::vector<std::tuple<Tp, Tp1, Tp2, Tp3, Tp4>> crud;
+		_Statistics<Tp> raw_stats;
+		_Statistics<decltype(std::abs(Tp{}))> abs_stats;
 
-		auto max_abs_diff = Val{-1};
 		auto max_abs_frac = Val{-1};
 		for (unsigned int l = 0; l < argument4.size(); ++l)
 		  {
@@ -947,8 +1119,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 			    break;
 			  }
 			const auto diff = f1 - f2;
-			if (std::abs(diff) > max_abs_diff)
-			  max_abs_diff = std::abs(diff);
+			raw_stats << diff;
+			abs_stats << std::abs(diff);
 			if (std::abs(f2) > Val{10} * eps && std::abs(f1) > Val{10} * eps)
 			  {
 			    const auto frac = diff / f2;
@@ -963,11 +1135,11 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		      }
 		  }
 
-		if (max_abs_diff >= Val{0} && max_abs_frac >= Val{0})
+std::cerr << "\nabs_stats.max() = " << abs_stats.max() << '\n';
+		if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
 		 {
 		    bool tol_ok = false;
 		    const auto min_tol = Val{1.0e-3L};
-		    //const auto diff_toler = get_tolerance(max_abs_diff, min_tol, tol_ok);
 		    const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 		    std::ostringstream dataname;
 		    dataname.fill('0');
@@ -977,8 +1149,11 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		    output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]);
 		    output << ", " << arg2 << '=' << std::get<2>(crud[0]);
 		    output << ", " << arg3 << '=' << std::get<3>(crud[0]) << ".\n";
-		    output << "// max(|f - f_GSL|): " << max_abs_diff << "\n";
-		    output << "// max(|f - f_GSL| / |f_GSL|): " << max_abs_frac << "\n";
+		    output << "// max(|f - f_GSL|): " << abs_stats.max() << '\n';
+		    output << "// max(|f - f_GSL| / |f_GSL|): " << max_abs_frac << '\n';
+		    output << "// mean(f - f_GSL): " << raw_stats.mean() << '\n';
+		    output << "// variance(f - f_GSL): " << raw_stats.variance() << '\n';
+		    output << "// stddev(f - f_GSL): " << raw_stats.std_deviation() << '\n';
 		    output.fill('0');
 		    output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
 		    output.fill(' ');
@@ -1015,10 +1190,14 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 	output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
 	output.fill(' ');
 	output << "  {\n";
+	if (is_complex)
+	  output << "    typedef typename Tp::value_type Val;\n";
+	else
+	  output << "    typedef Tp Val;\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
-	output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
-	output << "    Tp max_abs_diff = -Tp(1);\n";
-	output << "    Tp max_abs_frac = -Tp(1);\n";
+	output << "    const Val eps = std::numeric_limits<Val>::epsilon();\n";
+	output << "    Val max_abs_diff = -Val(1);\n";
+	output << "    Val max_abs_frac = -Val(1);\n";
 	output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "      {\n";
@@ -1029,7 +1208,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 	output << "\tconst Tp diff = f - f0;\n";
 	output << "\tif (std::abs(diff) > max_abs_diff)\n";
 	output << "\t  max_abs_diff = std::abs(diff);\n";
-	output << "\tif (std::abs(f0) > Tp(10) * eps && std::abs(f) > Tp(10) * eps)\n";
+	output << "\tif (std::abs(f0) > Val(10) * eps\n";
+	output << "\t && std::abs(f) > Val(10) * eps)\n";
 	output << "\t  {\n";
 	output << "\t    const Tp frac = diff / f0;\n";
 	output << "\t    if (std::abs(frac) > max_abs_frac)\n";

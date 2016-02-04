@@ -40,6 +40,9 @@
 // Test data for a=0.50000000000000000.
 // max(|f - f_GSL|): 4.4408920985006262e-16
 // max(|f - f_GSL| / |f_GSL|): 3.6700507221670789e-16
+// mean(f - f_GSL): -4.0371746350005693e-17
+// variance(f - f_GSL): 1.7928656936841177e-34
+// stddev(f - f_GSL): 1.3389793477436901e-17
 const testcase_gamma_l<double>
 data001[11] =
 {
@@ -60,6 +63,9 @@ const double toler001 = 2.5000000000000020e-13;
 // Test data for a=1.0000000000000000.
 // max(|f - f_GSL|): 2.2204460492503131e-16
 // max(|f - f_GSL| / |f_GSL|): 2.8581957174120111e-16
+// mean(f - f_GSL): -1.5139404881252134e-17
+// variance(f - f_GSL): 2.5212173817432908e-35
+// stddev(f - f_GSL): 5.0211725540388381e-18
 const testcase_gamma_l<double>
 data002[11] =
 {
@@ -80,6 +86,9 @@ const double toler002 = 2.5000000000000020e-13;
 // Test data for a=1.5000000000000000.
 // max(|f - f_GSL|): 9.9920072216264089e-16
 // max(|f - f_GSL| / |f_GSL|): 1.2691245560039412e-15
+// mean(f - f_GSL): -6.1062266354383610e-16
+// variance(f - f_GSL): 3.0506730319093816e-33
+// stddev(f - f_GSL): 5.5232898094427217e-17
 const testcase_gamma_l<double>
 data003[11] =
 {
@@ -100,6 +109,9 @@ const double toler003 = 2.5000000000000020e-13;
 // Test data for a=2.0000000000000000.
 // max(|f - f_GSL|): 6.6613381477509392e-16
 // max(|f - f_GSL| / |f_GSL|): 1.5064949803406053e-15
+// mean(f - f_GSL): -1.4634758051877063e-16
+// variance(f - f_GSL): 2.3559375756067859e-33
+// stddev(f - f_GSL): 4.8538001355708765e-17
 const testcase_gamma_l<double>
 data004[11] =
 {
@@ -120,6 +132,9 @@ const double toler004 = 2.5000000000000020e-13;
 // Test data for a=2.5000000000000000.
 // max(|f - f_GSL|): 1.3322676295501878e-15
 // max(|f - f_GSL| / |f_GSL|): 2.9229512374522006e-15
+// mean(f - f_GSL): -6.6487219770165621e-16
+// variance(f - f_GSL): 4.8995832869751680e-32
+// stddev(f - f_GSL): 2.2135002342387877e-16
 const testcase_gamma_l<double>
 data005[11] =
 {
@@ -140,6 +155,9 @@ const double toler005 = 2.5000000000000020e-13;
 // Test data for a=3.0000000000000000.
 // max(|f - f_GSL|): 3.2196467714129540e-15
 // max(|f - f_GSL| / |f_GSL|): 4.9789853455847480e-15
+// mean(f - f_GSL): -9.7586080630404377e-16
+// variance(f - f_GSL): 1.0552389020973163e-32
+// stddev(f - f_GSL): 1.0272482183471122e-16
 const testcase_gamma_l<double>
 data006[11] =
 {
@@ -160,6 +178,9 @@ const double toler006 = 2.5000000000000020e-13;
 // Test data for a=3.5000000000000000.
 // max(|f - f_GSL|): 5.1070259132757201e-15
 // max(|f - f_GSL| / |f_GSL|): 6.9779842373368441e-15
+// mean(f - f_GSL): -1.5205639777607612e-15
+// variance(f - f_GSL): 1.4395373217827791e-31
+// stddev(f - f_GSL): 3.7941235111455969e-16
 const testcase_gamma_l<double>
 data007[11] =
 {
@@ -180,6 +201,9 @@ const double toler007 = 5.0000000000000039e-13;
 // Test data for a=4.0000000000000000.
 // max(|f - f_GSL|): 3.5527136788005009e-15
 // max(|f - f_GSL| / |f_GSL|): 2.8225041341114752e-14
+// mean(f - f_GSL): 7.4766581814600386e-16
+// variance(f - f_GSL): 6.1490459318632662e-32
+// stddev(f - f_GSL): 2.4797269873643886e-16
 const testcase_gamma_l<double>
 data008[11] =
 {
@@ -200,6 +224,9 @@ const double toler008 = 2.5000000000000015e-12;
 // Test data for a=4.5000000000000000.
 // max(|f - f_GSL|): 1.9095836023552692e-14
 // max(|f - f_GSL| / |f_GSL|): 1.4449807501071034e-14
+// mean(f - f_GSL): -5.6101745723760839e-15
+// variance(f - f_GSL): 9.9042280501586226e-30
+// stddev(f - f_GSL): 3.1470983540649984e-15
 const testcase_gamma_l<double>
 data009[11] =
 {
@@ -220,6 +247,9 @@ const double toler009 = 1.0000000000000008e-12;
 // Test data for a=5.0000000000000000.
 // max(|f - f_GSL|): 4.0856207306205761e-14
 // max(|f - f_GSL| / |f_GSL|): 3.0614433794477864e-13
+// mean(f - f_GSL): -1.3461611875714203e-14
+// variance(f - f_GSL): 4.5281537519900165e-29
+// stddev(f - f_GSL): 6.7291557806236110e-15
 const testcase_gamma_l<double>
 data010[11] =
 {
@@ -241,10 +271,11 @@ template<typename Tp, unsigned int Num>
   void
   test(const testcase_gamma_l<Tp> (&data)[Num], Tp toler)
   {
+    typedef Tp Val;
     bool test __attribute__((unused)) = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
+    const Val eps = std::numeric_limits<Val>::epsilon();
+    Val max_abs_diff = -Val(1);
+    Val max_abs_frac = -Val(1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
@@ -253,8 +284,8 @@ template<typename Tp, unsigned int Num>
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
+	if (std::abs(f0) > Val(10) * eps
+	 && std::abs(f) > Val(10) * eps)
 	  {
 	    const Tp frac = diff / f0;
 	    if (std::abs(frac) > max_abs_frac)

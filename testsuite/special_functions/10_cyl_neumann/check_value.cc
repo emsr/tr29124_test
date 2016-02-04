@@ -40,6 +40,9 @@
 // Test data for nu=0.0000000000000000.
 // max(|f - f_GSL|): 1.6653345369377348e-16
 // max(|f - f_GSL| / |f_GSL|): 2.6623873675138176e-15
+// mean(f - f_GSL): -1.8214596497756474e-17
+// variance(f - f_GSL): 1.8380693937733099e-35
+// stddev(f - f_GSL): 4.2872711528119021e-18
 const testcase_cyl_neumann<double>
 data001[20] =
 {
@@ -69,6 +72,9 @@ const double toler001 = 2.5000000000000020e-13;
 // Test data for nu=0.33333333333333331.
 // max(|f - f_GSL|): 5.8286708792820718e-16
 // max(|f - f_GSL| / |f_GSL|): 1.7769445360534625e-14
+// mean(f - f_GSL): 7.2511441295830532e-17
+// variance(f - f_GSL): 3.0025367870181905e-33
+// stddev(f - f_GSL): 5.4795408448319744e-17
 const testcase_cyl_neumann<double>
 data002[20] =
 {
@@ -98,6 +104,9 @@ const double toler002 = 1.0000000000000008e-12;
 // Test data for nu=0.50000000000000000.
 // max(|f - f_GSL|): 4.4408920985006262e-16
 // max(|f - f_GSL| / |f_GSL|): 5.7217850214577088e-15
+// mean(f - f_GSL): -1.0902737046514233e-16
+// variance(f - f_GSL): 8.7047382045388203e-35
+// stddev(f - f_GSL): 9.3299186515954257e-18
 const testcase_cyl_neumann<double>
 data003[20] =
 {
@@ -127,6 +136,9 @@ const double toler003 = 5.0000000000000039e-13;
 // Test data for nu=0.66666666666666663.
 // max(|f - f_GSL|): 1.4988010832439613e-15
 // max(|f - f_GSL| / |f_GSL|): 6.3663053018318525e-15
+// mean(f - f_GSL): 1.3183898417423734e-16
+// variance(f - f_GSL): 9.6029747919585170e-35
+// stddev(f - f_GSL): 9.7994769207129199e-18
 const testcase_cyl_neumann<double>
 data004[20] =
 {
@@ -156,6 +168,9 @@ const double toler004 = 5.0000000000000039e-13;
 // Test data for nu=1.0000000000000000.
 // max(|f - f_GSL|): 9.1593399531575415e-16
 // max(|f - f_GSL| / |f_GSL|): 3.3683879467319323e-14
+// mean(f - f_GSL): -6.9388939039072284e-17
+// variance(f - f_GSL): 5.0248047229603092e-33
+// stddev(f - f_GSL): 7.0885857002369024e-17
 const testcase_cyl_neumann<double>
 data005[13] =
 {
@@ -178,6 +193,9 @@ const double toler005 = 2.5000000000000015e-12;
 // Test data for nu=2.0000000000000000.
 // max(|f - f_GSL|): 6.1062266354383610e-16
 // max(|f - f_GSL| / |f_GSL|): 1.2540693630135021e-14
+// mean(f - f_GSL): 7.0776717819853725e-17
+// variance(f - f_GSL): 1.2910666109188673e-35
+// stddev(f - f_GSL): 3.5931415375947375e-18
 const testcase_cyl_neumann<double>
 data006[20] =
 {
@@ -207,6 +225,9 @@ const double toler006 = 1.0000000000000008e-12;
 // Test data for nu=5.0000000000000000.
 // max(|f - f_GSL|): 8.8817841970012523e-15
 // max(|f - f_GSL| / |f_GSL|): 1.6846903979704834e-15
+// mean(f - f_GSL): -2.9036602182504095e-16
+// variance(f - f_GSL): 2.3703753161689057e-32
+// stddev(f - f_GSL): 1.5396023240333542e-16
 const testcase_cyl_neumann<double>
 data007[13] =
 {
@@ -229,6 +250,9 @@ const double toler007 = 2.5000000000000020e-13;
 // Test data for nu=10.000000000000000.
 // max(|f - f_GSL|): 2.3841857910156250e-07
 // max(|f - f_GSL| / |f_GSL|): 1.4991559422183497e-15
+// mean(f - f_GSL): 1.1410207712003740e-08
+// variance(f - f_GSL): 7.2129221830135911e-18
+// stddev(f - f_GSL): 2.6856884002083324e-09
 const testcase_cyl_neumann<double>
 data008[20] =
 {
@@ -258,6 +282,9 @@ const double toler008 = 2.5000000000000020e-13;
 // Test data for nu=20.000000000000000.
 // max(|f - f_GSL|): 6442450944.0000000
 // max(|f - f_GSL| / |f_GSL|): 1.6458221996165416e-15
+// mean(f - f_GSL): 322083864.23008448
+// variance(f - f_GSL): inf
+// stddev(f - f_GSL): inf
 const testcase_cyl_neumann<double>
 data009[20] =
 {
@@ -287,6 +314,9 @@ const double toler009 = 2.5000000000000020e-13;
 // Test data for nu=50.000000000000000.
 // max(|f - f_GSL|): 6.4703872001161536e+68
 // max(|f - f_GSL| / |f_GSL|): 3.7730746786493403e-15
+// mean(f - f_GSL): 3.2351936000129644e+67
+// variance(f - f_GSL): inf
+// stddev(f - f_GSL): inf
 const testcase_cyl_neumann<double>
 data010[20] =
 {
@@ -316,6 +346,9 @@ const double toler010 = 2.5000000000000020e-13;
 // Test data for nu=100.00000000000000.
 // max(|f - f_GSL|): 1.6136484921850493e+233
 // max(|f - f_GSL| / |f_GSL|): 3.7090973947899002e-13
+// mean(f - f_GSL): -8.0682424609252473e+231
+// variance(f - f_GSL): inf
+// stddev(f - f_GSL): inf
 const testcase_cyl_neumann<double>
 data011[20] =
 {
@@ -346,6 +379,9 @@ const double toler011 = 2.5000000000000014e-11;
 // Test data for nu=0.0000000000000000.
 // max(|f - f_GSL|): 7.1245093158367467e-15
 // max(|f - f_GSL| / |f_GSL|): 1.5215931554460198e-12
+// mean(f - f_GSL): 1.0848526937889958e-16
+// variance(f - f_GSL): 9.3913515508022887e-32
+// stddev(f - f_GSL): 3.0645312122414889e-16
 const testcase_cyl_neumann<double>
 data012[20] =
 {
@@ -375,6 +411,9 @@ const double toler012 = 1.0000000000000006e-10;
 // Test data for nu=0.33333333333333331.
 // max(|f - f_GSL|): 6.4392935428259079e-15
 // max(|f - f_GSL| / |f_GSL|): 4.0229312517518102e-13
+// mean(f - f_GSL): 4.0852737859253807e-16
+// variance(f - f_GSL): 5.7739928235976998e-32
+// stddev(f - f_GSL): 2.4029134032664803e-16
 const testcase_cyl_neumann<double>
 data013[20] =
 {
@@ -404,6 +443,9 @@ const double toler013 = 2.5000000000000014e-11;
 // Test data for nu=0.50000000000000000.
 // max(|f - f_GSL|): 6.5988881026157742e-15
 // max(|f - f_GSL| / |f_GSL|): 6.0282403975230169e-13
+// mean(f - f_GSL): 4.5018242605943113e-16
+// variance(f - f_GSL): 2.2297963049794567e-31
+// stddev(f - f_GSL): 4.7220719022262429e-16
 const testcase_cyl_neumann<double>
 data014[20] =
 {
@@ -433,6 +475,9 @@ const double toler014 = 5.0000000000000028e-11;
 // Test data for nu=0.66666666666666663.
 // max(|f - f_GSL|): 7.2442052356791464e-15
 // max(|f - f_GSL| / |f_GSL|): 4.1296144775547441e-13
+// mean(f - f_GSL): 4.5987519348145160e-16
+// variance(f - f_GSL): 4.7892936352850507e-31
+// stddev(f - f_GSL): 6.9204722637151365e-16
 const testcase_cyl_neumann<double>
 data015[20] =
 {
@@ -462,6 +507,9 @@ const double toler015 = 2.5000000000000014e-11;
 // Test data for nu=1.0000000000000000.
 // max(|f - f_GSL|): 7.6640083168655337e-15
 // max(|f - f_GSL| / |f_GSL|): 4.2719333494531163e-13
+// mean(f - f_GSL): 4.7852347084820228e-16
+// variance(f - f_GSL): 8.9128237023835657e-31
+// stddev(f - f_GSL): 9.4407752342609904e-16
 const testcase_cyl_neumann<double>
 data016[20] =
 {
@@ -491,6 +539,9 @@ const double toler016 = 2.5000000000000014e-11;
 // Test data for nu=2.0000000000000000.
 // max(|f - f_GSL|): 7.1193051454088163e-15
 // max(|f - f_GSL| / |f_GSL|): 3.9371586401654762e-12
+// mean(f - f_GSL): -7.5373735031192273e-17
+// variance(f - f_GSL): 1.0337827474944609e-31
+// stddev(f - f_GSL): 3.2152492088397450e-16
 const testcase_cyl_neumann<double>
 data017[20] =
 {
@@ -520,6 +571,9 @@ const double toler017 = 2.5000000000000017e-10;
 // Test data for nu=5.0000000000000000.
 // max(|f - f_GSL|): 7.8097792989562098e-15
 // max(|f - f_GSL| / |f_GSL|): 3.2731037832632215e-11
+// mean(f - f_GSL): 4.8693959021212100e-16
+// variance(f - f_GSL): 8.7986924944267162e-31
+// stddev(f - f_GSL): 9.3801345909462927e-16
 const testcase_cyl_neumann<double>
 data018[20] =
 {
@@ -549,6 +603,9 @@ const double toler018 = 2.5000000000000013e-09;
 // Test data for nu=10.000000000000000.
 // max(|f - f_GSL|): 1.7763568394002505e-14
 // max(|f - f_GSL| / |f_GSL|): 2.7466153115234563e-12
+// mean(f - f_GSL): -7.2592756458766949e-16
+// variance(f - f_GSL): 1.2320603895340095e-30
+// stddev(f - f_GSL): 1.1099821573043459e-15
 const testcase_cyl_neumann<double>
 data019[20] =
 {
@@ -578,6 +635,9 @@ const double toler019 = 2.5000000000000017e-10;
 // Test data for nu=20.000000000000000.
 // max(|f - f_GSL|): 7.1525573730468750e-07
 // max(|f - f_GSL| / |f_GSL|): 1.7017552833615218e-12
+// mean(f - f_GSL): -3.5762867211250673e-08
+// variance(f - f_GSL): 7.0857751170185363e-17
+// stddev(f - f_GSL): 8.4177046259764522e-09
 const testcase_cyl_neumann<double>
 data020[20] =
 {
@@ -607,6 +667,9 @@ const double toler020 = 1.0000000000000006e-10;
 // Test data for nu=50.000000000000000.
 // max(|f - f_GSL|): 1.0522490333925732e+28
 // max(|f - f_GSL| / |f_GSL|): 2.6658726302692481e-12
+// mean(f - f_GSL): -5.2612451669628722e+26
+// variance(f - f_GSL): inf
+// stddev(f - f_GSL): inf
 const testcase_cyl_neumann<double>
 data021[20] =
 {
@@ -636,6 +699,9 @@ const double toler021 = 2.5000000000000017e-10;
 // Test data for nu=100.00000000000000.
 // max(|f - f_GSL|): 6.3342780989716025e+102
 // max(|f - f_GSL| / |f_GSL|): 1.2681517765786818e-13
+// mean(f - f_GSL): -3.1671390494858015e+101
+// variance(f - f_GSL): inf
+// stddev(f - f_GSL): inf
 const testcase_cyl_neumann<double>
 data022[20] =
 {
@@ -666,10 +732,11 @@ template<typename Tp, unsigned int Num>
   void
   test(const testcase_cyl_neumann<Tp> (&data)[Num], Tp toler)
   {
+    typedef Tp Val;
     bool test __attribute__((unused)) = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
+    const Val eps = std::numeric_limits<Val>::epsilon();
+    Val max_abs_diff = -Val(1);
+    Val max_abs_frac = -Val(1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
@@ -678,8 +745,8 @@ template<typename Tp, unsigned int Num>
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
+	if (std::abs(f0) > Val(10) * eps
+	 && std::abs(f) > Val(10) * eps)
 	  {
 	    const Tp frac = diff / f0;
 	    if (std::abs(frac) > max_abs_frac)

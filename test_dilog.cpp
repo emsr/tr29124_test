@@ -1,4 +1,6 @@
-// $HOME/bin/bin/g++ -std=c++14 -o dilog dilog.cpp
+// $HOME/bin/bin/g++ -std=c++14 -o test_dilog test_dilog.cpp
+
+// ./test_dilog > test_dilog.txt
 
 #include <cmath>
 #include <limits>

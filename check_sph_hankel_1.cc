@@ -40,6 +40,9 @@
 // Test data for n=0.
 // max(|f - f_GSL|): 4.4408920985006262e-16
 // max(|f - f_GSL| / |f_GSL|): 6.6645899605625129e-16
+// mean(f - f_GSL): (-3.8163916471489759e-18,-7.6501305290577195e-17)
+// variance(f - f_GSL): (5.2421238955477712e-35,2.4881040936664742e-35)
+// stddev(f - f_GSL): (7.4312699982072973e-18,1.6740773072884571e-18)
 const testcase_sph_hankel_1<double>
 data001[20] =
 {
@@ -69,6 +72,9 @@ const double toler001 = 2.5000000000000020e-13;
 // Test data for n=1.
 // max(|f - f_GSL|): 3.5527136788005009e-15
 // max(|f - f_GSL| / |f_GSL|): 6.7144690086529409e-16
+// mean(f - f_GSL): (-1.8539857149502127e-18,-2.2863655413374319e-16)
+// variance(f - f_GSL): (-2.8084362878269867e-33,-1.0077584315628269e-33)
+// stddev(f - f_GSL): (9.3630939640874221e-18,-5.3815460756248449e-17)
 const testcase_sph_hankel_1<double>
 data002[20] =
 {
@@ -98,6 +104,9 @@ const double toler002 = 2.5000000000000020e-13;
 // Test data for n=2.
 // max(|f - f_GSL|): 5.6843418887277794e-14
 // max(|f - f_GSL| / |f_GSL|): 6.6186965391813605e-16
+// mean(f - f_GSL): (-5.4643789493269422e-18,-2.9684588120915124e-15)
+// variance(f - f_GSL): (-5.1533996065332114e-31,-3.5693497066205441e-32)
+// stddev(f - f_GSL): (2.4845757109390881e-17,-7.1830165828825699e-16)
 const testcase_sph_hankel_1<double>
 data003[20] =
 {
@@ -127,6 +136,9 @@ const double toler003 = 2.5000000000000020e-13;
 // Test data for n=5.
 // max(|f - f_GSL|): 9.3132257461547852e-10
 // max(|f - f_GSL| / |f_GSL|): 6.3043260119832369e-16
+// mean(f - f_GSL): (2.2441707803584160e-18,-4.6499809558397941e-11)
+// variance(f - f_GSL): (-1.1979040451229840e-22,-8.3065409331077315e-29)
+// stddev(f - f_GSL): (3.7947152982727455e-18,-1.0944880287710451e-11)
 const testcase_sph_hankel_1<double>
 data004[20] =
 {
@@ -156,6 +168,9 @@ const double toler004 = 2.5000000000000020e-13;
 // Test data for n=10.
 // max(|f - f_GSL|): 0.50000000000000000
 // max(|f - f_GSL| / |f_GSL|): 1.0170155762721146e-15
+// mean(f - f_GSL): (2.2921203814654216e-20,-0.025011744939616064)
+// variance(f - f_GSL): (-3.4657015678225154e-05,-2.1669301004722810e-21)
+// stddev(f - f_GSL): (1.8404300906062936e-19,-0.0058870209510604897)
 const testcase_sph_hankel_1<double>
 data005[20] =
 {
@@ -185,6 +200,9 @@ const double toler005 = 2.5000000000000020e-13;
 // Test data for n=20.
 // max(|f - f_GSL|): 281474976710656.00
 // max(|f - f_GSL| / |f_GSL|): 1.9681846257869076e-15
+// mean(f - f_GSL): (6.3645693308366400e-28,-14066024785382.158)
+// variance(f - f_GSL): (inf,-nan)
+// stddev(f - f_GSL): (inf,nan)
 const testcase_sph_hankel_1<double>
 data006[20] =
 {
@@ -214,6 +232,9 @@ const double toler006 = 2.5000000000000020e-13;
 // Test data for n=50.
 // max(|f - f_GSL|): 2.0859248397665138e+93
 // max(|f - f_GSL| / |f_GSL|): 3.0833708483316997e-15
+// mean(f - f_GSL): (-9.2703148159453746e-61,1.0429624198832555e+92)
+// variance(f - f_GSL): (inf,-nan)
+// stddev(f - f_GSL): (inf,nan)
 const testcase_sph_hankel_1<double>
 data007[20] =
 {
@@ -243,6 +264,9 @@ const double toler007 = 2.5000000000000020e-13;
 // Test data for n=100.
 // max(|f - f_GSL|): 3.1050361846014179e+232
 // max(|f - f_GSL| / |f_GSL|): 7.0931035946041080e-15
+// mean(f - f_GSL): (-1.9153906003364707e-133,1.5525180923007089e+231)
+// variance(f - f_GSL): (inf,-nan)
+// stddev(f - f_GSL): (inf,nan)
 const testcase_sph_hankel_1<double>
 data008[20] =
 {
@@ -273,6 +297,9 @@ const double toler008 = 5.0000000000000039e-13;
 // Test data for n=0.
 // max(|f - f_GSL|): 1.2268947523510753e-15
 // max(|f - f_GSL| / |f_GSL|): 8.7416575448265905e-14
+// mean(f - f_GSL): (-2.7690523485279784e-17,5.4700710107324910e-17)
+// variance(f - f_GSL): (9.7838936520202290e-33,-1.3350343047183040e-32)
+// stddev(f - f_GSL): (1.1475085396270238e-16,-5.8170996494380428e-17)
 const testcase_sph_hankel_1<double>
 data009[20] =
 {
@@ -302,6 +329,9 @@ const double toler009 = 5.0000000000000029e-12;
 // Test data for n=1.
 // max(|f - f_GSL|): 1.2271559423749789e-15
 // max(|f - f_GSL| / |f_GSL|): 8.6995970799487860e-14
+// mean(f - f_GSL): (5.4063741330989676e-17,3.2699537522162816e-17)
+// variance(f - f_GSL): (-9.2717744963969183e-33,1.2213035988189720e-32)
+// stddev(f - f_GSL): (5.5054431080468793e-17,1.1091782939631936e-16)
 const testcase_sph_hankel_1<double>
 data010[20] =
 {
@@ -331,6 +361,9 @@ const double toler010 = 5.0000000000000029e-12;
 // Test data for n=2.
 // max(|f - f_GSL|): 1.2111910864538658e-15
 // max(|f - f_GSL| / |f_GSL|): 8.7379439371892693e-14
+// mean(f - f_GSL): (2.5934115965853265e-17,-4.8648151479424583e-17)
+// variance(f - f_GSL): (1.0032716347500790e-32,-1.2255934433441590e-32)
+// stddev(f - f_GSL): (1.1373517901102432e-16,-5.3879259434117678e-17)
 const testcase_sph_hankel_1<double>
 data011[20] =
 {
@@ -360,6 +393,9 @@ const double toler011 = 5.0000000000000029e-12;
 // Test data for n=5.
 // max(|f - f_GSL|): 1.2104566790977178e-15
 // max(|f - f_GSL| / |f_GSL|): 8.8073682165372941e-14
+// mean(f - f_GSL): (4.6344221862892886e-17,1.8669961410200385e-17)
+// variance(f - f_GSL): (-1.3583099503893422e-32,9.6711507160590296e-33)
+// stddev(f - f_GSL): (3.9314021276573668e-17,1.2299874703763576e-16)
 const testcase_sph_hankel_1<double>
 data012[20] =
 {
@@ -389,6 +425,9 @@ const double toler012 = 5.0000000000000029e-12;
 // Test data for n=10.
 // max(|f - f_GSL|): 2.1316282086313621e-14
 // max(|f - f_GSL| / |f_GSL|): 8.9674072720206678e-14
+// mean(f - f_GSL): (4.3453467820503413e-17,-1.1545994195449882e-15)
+// variance(f - f_GSL): (-5.9754853157003883e-32,6.9924616134279078e-32)
+// stddev(f - f_GSL): (1.2693289250844150e-16,2.7543930793836135e-16)
 const testcase_sph_hankel_1<double>
 data013[20] =
 {
@@ -418,6 +457,9 @@ const double toler013 = 5.0000000000000029e-12;
 // Test data for n=20.
 // max(|f - f_GSL|): 1.4305114746093750e-06
 // max(|f - f_GSL| / |f_GSL|): 8.0569975817719396e-14
+// mean(f - f_GSL): (6.1914296821472206e-18,-7.1525698959151897e-08)
+// variance(f - f_GSL): (-2.8343077712913959e-16,5.9238670877834763e-27)
+// stddev(f - f_GSL): (1.7593482216881191e-19,1.6835402493826502e-08)
 const testcase_sph_hankel_1<double>
 data014[20] =
 {
@@ -447,6 +489,9 @@ const double toler014 = 5.0000000000000029e-12;
 // Test data for n=50.
 // max(|f - f_GSL|): 2.1044980667851465e+28
 // max(|f - f_GSL| / |f_GSL|): 8.9312597113986040e-14
+// mean(f - f_GSL): (6.4920375173131773e-18,-1.0522490333925739e+27)
+// variance(f - f_GSL): (inf,-nan)
+// stddev(f - f_GSL): (inf,nan)
 const testcase_sph_hankel_1<double>
 data015[20] =
 {
@@ -476,6 +521,9 @@ const double toler015 = 5.0000000000000029e-12;
 // Test data for n=100.
 // max(|f - f_GSL|): 1.0498803478958457e+102
 // max(|f - f_GSL| / |f_GSL|): 5.8335955492437900e-15
+// mean(f - f_GSL): (-3.3474264742180846e-19,-5.2494017394792286e+100)
+// variance(f - f_GSL): (inf,-nan)
+// stddev(f - f_GSL): (inf,nan)
 const testcase_sph_hankel_1<double>
 data016[20] =
 {
@@ -506,22 +554,23 @@ template<typename Tp, unsigned int Num>
   void
   test(const testcase_sph_hankel_1<Tp> (&data)[Num], Tp toler)
   {
+    typedef typename Tp::value_type Val;
     bool test __attribute__((unused)) = true;
-    const auto eps = std::numeric_limits<Tp>::epsilon();
-    auto max_abs_diff = -Tp(1);
-    auto max_abs_frac = -Tp(1);
+    const Val eps = std::numeric_limits<Val>::epsilon();
+    Val max_abs_diff = -Val(1);
+    Val max_abs_frac = -Val(1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const auto f = __gnu_cxx::sph_hankel_1(data[i].n, data[i].x);
-	const auto f0 = data[i].f0;
-	const auto diff = f - f0;
+	const Tp f = __gnu_cxx::sph_hankel_1(data[i].n, data[i].x);
+	const Tp f0 = data[i].f0;
+	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
+	if (std::abs(f0) > Val(10) * eps
+	 && std::abs(f) > Val(10) * eps)
 	  {
-	    const auto frac = diff / f0;
+	    const Tp frac = diff / f0;
 	    if (std::abs(frac) > max_abs_frac)
 	      max_abs_frac = std::abs(frac);
 	  }

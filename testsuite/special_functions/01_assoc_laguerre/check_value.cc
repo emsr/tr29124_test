@@ -40,6 +40,9 @@
 // Test data for n=0, m=0.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data001[11] =
 {
@@ -71,6 +74,9 @@ const double toler001 = 2.5000000000000020e-13;
 // Test data for n=0, m=1.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data002[11] =
 {
@@ -102,6 +108,9 @@ const double toler002 = 2.5000000000000020e-13;
 // Test data for n=0, m=2.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data003[11] =
 {
@@ -133,6 +142,9 @@ const double toler003 = 2.5000000000000020e-13;
 // Test data for n=0, m=5.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data004[11] =
 {
@@ -164,6 +176,9 @@ const double toler004 = 2.5000000000000020e-13;
 // Test data for n=0, m=10.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data005[11] =
 {
@@ -195,6 +210,9 @@ const double toler005 = 2.5000000000000020e-13;
 // Test data for n=0, m=20.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data006[11] =
 {
@@ -226,6 +244,9 @@ const double toler006 = 2.5000000000000020e-13;
 // Test data for n=0, m=50.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data007[11] =
 {
@@ -257,6 +278,9 @@ const double toler007 = 2.5000000000000020e-13;
 // Test data for n=0, m=100.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data008[11] =
 {
@@ -288,6 +312,9 @@ const double toler008 = 2.5000000000000020e-13;
 // Test data for n=1, m=0.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data009[11] =
 {
@@ -319,6 +346,9 @@ const double toler009 = 2.5000000000000020e-13;
 // Test data for n=1, m=1.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data010[11] =
 {
@@ -350,6 +380,9 @@ const double toler010 = 2.5000000000000020e-13;
 // Test data for n=1, m=2.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data011[11] =
 {
@@ -381,6 +414,9 @@ const double toler011 = 2.5000000000000020e-13;
 // Test data for n=1, m=5.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data012[11] =
 {
@@ -412,6 +448,9 @@ const double toler012 = 2.5000000000000020e-13;
 // Test data for n=1, m=10.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data013[11] =
 {
@@ -443,6 +482,9 @@ const double toler013 = 2.5000000000000020e-13;
 // Test data for n=1, m=20.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data014[11] =
 {
@@ -474,6 +516,9 @@ const double toler014 = 2.5000000000000020e-13;
 // Test data for n=1, m=50.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data015[11] =
 {
@@ -505,6 +550,9 @@ const double toler015 = 2.5000000000000020e-13;
 // Test data for n=1, m=100.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data016[11] =
 {
@@ -536,6 +584,9 @@ const double toler016 = 2.5000000000000020e-13;
 // Test data for n=2, m=0.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data017[11] =
 {
@@ -567,6 +618,9 @@ const double toler017 = 2.5000000000000020e-13;
 // Test data for n=2, m=1.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data018[11] =
 {
@@ -598,6 +652,9 @@ const double toler018 = 2.5000000000000020e-13;
 // Test data for n=2, m=2.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data019[11] =
 {
@@ -629,6 +686,9 @@ const double toler019 = 2.5000000000000020e-13;
 // Test data for n=2, m=5.
 // max(|f - f_GSL|): 4.5519144009631418e-15
 // max(|f - f_GSL| / |f_GSL|): 4.5519144009631623e-15
+// mean(f - f_GSL): 4.1381040008755832e-16
+// variance(f - f_GSL): 1.8836295194268761e-32
+// stddev(f - f_GSL): 1.3724538314372823e-16
 const testcase_assoc_laguerre<double>
 data020[11] =
 {
@@ -660,6 +720,9 @@ const double toler020 = 2.5000000000000020e-13;
 // Test data for n=2, m=10.
 // max(|f - f_GSL|): 3.5527136788005009e-14
 // max(|f - f_GSL| / |f_GSL|): 2.4424906541753385e-15
+// mean(f - f_GSL): 4.1179181277005809e-15
+// variance(f - f_GSL): 1.8652974677089562e-30
+// stddev(f - f_GSL): 1.3657589346985639e-15
 const testcase_assoc_laguerre<double>
 data021[11] =
 {
@@ -691,6 +754,9 @@ const double toler021 = 2.5000000000000020e-13;
 // Test data for n=2, m=20.
 // max(|f - f_GSL|): 5.6843418860808015e-13
 // max(|f - f_GSL| / |f_GSL|): 5.9211894646674663e-15
+// mean(f - f_GSL): -6.0557619525008543e-14
+// variance(f - f_GSL): 4.0339478107892650e-28
+// stddev(f - f_GSL): 2.0084690216155350e-14
 const testcase_assoc_laguerre<double>
 data022[11] =
 {
@@ -722,6 +788,9 @@ const double toler022 = 5.0000000000000039e-13;
 // Test data for n=2, m=50.
 // max(|f - f_GSL|): 3.6379788070917130e-12
 // max(|f - f_GSL| / |f_GSL|): 1.9243865760169750e-14
+// mean(f - f_GSL): 1.1085274112784562e-12
+// variance(f - f_GSL): 7.0379368001597960e-25
+// stddev(f - f_GSL): 8.3892412053533160e-13
 const testcase_assoc_laguerre<double>
 data023[11] =
 {
@@ -753,6 +822,9 @@ const double toler023 = 1.0000000000000008e-12;
 // Test data for n=2, m=100.
 // max(|f - f_GSL|): 6.5483618527650833e-11
 // max(|f - f_GSL| / |f_GSL|): 1.6416871873157281e-14
+// mean(f - f_GSL): -2.0930328177696950e-11
+// variance(f - f_GSL): 4.7796831888707054e-23
+// stddev(f - f_GSL): 6.9135252866180405e-12
 const testcase_assoc_laguerre<double>
 data024[11] =
 {
@@ -784,6 +856,9 @@ const double toler024 = 1.0000000000000008e-12;
 // Test data for n=5, m=0.
 // max(|f - f_GSL|): 7.4505805969238281e-09
 // max(|f - f_GSL| / |f_GSL|): 1.9501553136894460e-16
+// mean(f - f_GSL): -5.1328573714603078e-10
+// variance(f - f_GSL): 5.2938665968649395e-18
+// stddev(f - f_GSL): 2.3008404109944130e-09
 const testcase_assoc_laguerre<double>
 data025[11] =
 {
@@ -815,6 +890,9 @@ const double toler025 = 2.5000000000000020e-13;
 // Test data for n=5, m=1.
 // max(|f - f_GSL|): 3.7252902984619141e-09
 // max(|f - f_GSL| / |f_GSL|): 3.1347473636475015e-16
+// mean(f - f_GSL): -3.6516147681388907e-10
+// variance(f - f_GSL): 1.4667719456379050e-20
+// stddev(f - f_GSL): 1.2111036064837331e-10
 const testcase_assoc_laguerre<double>
 data026[11] =
 {
@@ -846,6 +924,9 @@ const double toler026 = 2.5000000000000020e-13;
 // Test data for n=5, m=2.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_assoc_laguerre<double>
 data027[11] =
 {
@@ -877,6 +958,9 @@ const double toler027 = 2.5000000000000020e-13;
 // Test data for n=5, m=5.
 // max(|f - f_GSL|): 7.4505805969238281e-09
 // max(|f - f_GSL| / |f_GSL|): 1.7763568394002536e-15
+// mean(f - f_GSL): -1.0450849882462617e-09
+// variance(f - f_GSL): 1.2014228959234583e-19
+// stddev(f - f_GSL): 3.4661547800458338e-10
 const testcase_assoc_laguerre<double>
 data028[11] =
 {
@@ -908,6 +992,9 @@ const double toler028 = 2.5000000000000020e-13;
 // Test data for n=5, m=10.
 // max(|f - f_GSL|): 7.4505805969238281e-09
 // max(|f - f_GSL| / |f_GSL|): 1.9556222085140405e-15
+// mean(f - f_GSL): -9.4849348577306296e-10
+// variance(f - f_GSL): 4.6504850481092197e-18
+// stddev(f - f_GSL): 2.1564983301892953e-09
 const testcase_assoc_laguerre<double>
 data029[11] =
 {
@@ -939,6 +1026,9 @@ const double toler029 = 2.5000000000000020e-13;
 // Test data for n=5, m=20.
 // max(|f - f_GSL|): 1.8626451492309570e-09
 // max(|f - f_GSL| / |f_GSL|): 2.8421709430404088e-15
+// mean(f - f_GSL): 1.8654330605469030e-10
+// variance(f - f_GSL): 3.8278245537195241e-21
+// stddev(f - f_GSL): 6.1869415333584047e-11
 const testcase_assoc_laguerre<double>
 data030[11] =
 {
@@ -970,6 +1060,9 @@ const double toler030 = 2.5000000000000020e-13;
 // Test data for n=5, m=50.
 // max(|f - f_GSL|): 5.8207660913467407e-11
 // max(|f - f_GSL| / |f_GSL|): 8.3212917817998576e-15
+// mean(f - f_GSL): 2.5837917664003642e-12
+// variance(f - f_GSL): 7.3435778813301465e-25
+// stddev(f - f_GSL): 8.5694678255596164e-13
 const testcase_assoc_laguerre<double>
 data031[11] =
 {
@@ -1001,6 +1094,9 @@ const double toler031 = 5.0000000000000039e-13;
 // Test data for n=5, m=100.
 // max(|f - f_GSL|): 1.4901161193847656e-08
 // max(|f - f_GSL| / |f_GSL|): 4.3934583843896481e-16
+// mean(f - f_GSL): 9.3181866263462735e-10
+// variance(f - f_GSL): 9.5511462203760402e-20
+// stddev(f - f_GSL): 3.0904928766098203e-10
 const testcase_assoc_laguerre<double>
 data032[11] =
 {
@@ -1032,6 +1128,9 @@ const double toler032 = 2.5000000000000020e-13;
 // Test data for n=10, m=0.
 // max(|f - f_GSL|): 6.1035156250000000e-05
 // max(|f - f_GSL| / |f_GSL|): 6.1315986390500118e-15
+// mean(f - f_GSL): -5.5892985322068194e-06
+// variance(f - f_GSL): 3.4364283890538241e-12
+// stddev(f - f_GSL): 1.8537606072667053e-06
 const testcase_assoc_laguerre<double>
 data033[11] =
 {
@@ -1063,6 +1162,9 @@ const double toler033 = 5.0000000000000039e-13;
 // Test data for n=10, m=1.
 // max(|f - f_GSL|): 0.0019531250000000000
 // max(|f - f_GSL| / |f_GSL|): 3.2082933888884751e-16
+// mean(f - f_GSL): -0.00017647174536266681
+// variance(f - f_GSL): 3.4721464659347714e-07
+// stddev(f - f_GSL): 0.00058924922281957846
 const testcase_assoc_laguerre<double>
 data034[11] =
 {
@@ -1094,6 +1196,9 @@ const double toler034 = 2.5000000000000020e-13;
 // Test data for n=10, m=2.
 // max(|f - f_GSL|): 0.00012207031250000000
 // max(|f - f_GSL| / |f_GSL|): 3.0884259455918855e-16
+// mean(f - f_GSL): 1.4045021730039894e-05
+// variance(f - f_GSL): 2.1698889894483716e-11
+// stddev(f - f_GSL): 4.6582067251769446e-06
 const testcase_assoc_laguerre<double>
 data035[11] =
 {
@@ -1125,6 +1230,9 @@ const double toler035 = 2.5000000000000020e-13;
 // Test data for n=10, m=5.
 // max(|f - f_GSL|): 0.0019531250000000000
 // max(|f - f_GSL| / |f_GSL|): 5.4929549774030811e-15
+// mean(f - f_GSL): 0.00020540323628249655
+// variance(f - f_GSL): 3.3599844999940669e-07
+// stddev(f - f_GSL): 0.00057965373284350253
 const testcase_assoc_laguerre<double>
 data036[11] =
 {
@@ -1156,6 +1264,9 @@ const double toler036 = 5.0000000000000039e-13;
 // Test data for n=10, m=10.
 // max(|f - f_GSL|): 0.00048828125000000000
 // max(|f - f_GSL| / |f_GSL|): 1.2999856205575476e-15
+// mean(f - f_GSL): 3.5049890987631279e-05
+// variance(f - f_GSL): 2.2596053129284716e-08
+// stddev(f - f_GSL): 0.00015031983611381671
 const testcase_assoc_laguerre<double>
 data037[11] =
 {
@@ -1187,6 +1298,9 @@ const double toler037 = 2.5000000000000020e-13;
 // Test data for n=10, m=20.
 // max(|f - f_GSL|): 1.1444091796875000e-05
 // max(|f - f_GSL| / |f_GSL|): 1.3165826881543491e-14
+// mean(f - f_GSL): -1.0290407937480433e-06
+// variance(f - f_GSL): 1.1648174507175886e-13
+// stddev(f - f_GSL): 3.4129422068320885e-07
 const testcase_assoc_laguerre<double>
 data038[11] =
 {
@@ -1218,6 +1332,9 @@ const double toler038 = 1.0000000000000008e-12;
 // Test data for n=10, m=50.
 // max(|f - f_GSL|): 1.7881393432617188e-07
 // max(|f - f_GSL| / |f_GSL|): 1.9220038158581863e-14
+// mean(f - f_GSL): -1.7959874557246538e-08
+// variance(f - f_GSL): 1.5426792767859101e-17
+// stddev(f - f_GSL): 3.9276956052956932e-09
 const testcase_assoc_laguerre<double>
 data039[11] =
 {
@@ -1249,6 +1366,9 @@ const double toler039 = 1.0000000000000008e-12;
 // Test data for n=10, m=100.
 // max(|f - f_GSL|): 0.0019531250000000000
 // max(|f - f_GSL| / |f_GSL|): 8.5796208358610616e-15
+// mean(f - f_GSL): 0.00016085392880168828
+// variance(f - f_GSL): 2.8461549974308565e-09
+// stddev(f - f_GSL): 5.3349367357362886e-05
 const testcase_assoc_laguerre<double>
 data040[11] =
 {
@@ -1280,6 +1400,9 @@ const double toler040 = 5.0000000000000039e-13;
 // Test data for n=20, m=0.
 // max(|f - f_GSL|): 20.000000000000000
 // max(|f - f_GSL| / |f_GSL|): 4.7350442720305269e-15
+// mean(f - f_GSL): -1.8323417989965736
+// variance(f - f_GSL): 2754690.9677631622
+// stddev(f - f_GSL): 1659.7261725246012
 const testcase_assoc_laguerre<double>
 data041[11] =
 {
@@ -1311,6 +1434,9 @@ const double toler041 = 2.5000000000000020e-13;
 // Test data for n=20, m=1.
 // max(|f - f_GSL|): 8192.0000000000000
 // max(|f - f_GSL| / |f_GSL|): 2.0583579235866667e-15
+// mean(f - f_GSL): -744.54973777790485
+// variance(f - f_GSL): 6101096.7248424273
+// stddev(f - f_GSL): 2470.0398225215777
 const testcase_assoc_laguerre<double>
 data042[11] =
 {
@@ -1342,6 +1468,9 @@ const double toler042 = 2.5000000000000020e-13;
 // Test data for n=20, m=2.
 // max(|f - f_GSL|): 6144.0000000000000
 // max(|f - f_GSL| / |f_GSL|): 9.3068805041852228e-15
+// mean(f - f_GSL): 610.73011506755233
+// variance(f - f_GSL): 995562063.33027601
+// stddev(f - f_GSL): 31552.528636074101
 const testcase_assoc_laguerre<double>
 data043[11] =
 {
@@ -1373,6 +1502,9 @@ const double toler043 = 5.0000000000000039e-13;
 // Test data for n=20, m=5.
 // max(|f - f_GSL|): 16.000000000000000
 // max(|f - f_GSL| / |f_GSL|): 3.5731302592472765e-15
+// mean(f - f_GSL): -1.4092810048974798
+// variance(f - f_GSL): 598.27450725320409
+// stddev(f - f_GSL): 24.459650595484884
 const testcase_assoc_laguerre<double>
 data044[11] =
 {
@@ -1404,6 +1536,9 @@ const double toler044 = 2.5000000000000020e-13;
 // Test data for n=20, m=10.
 // max(|f - f_GSL|): 64.000000000000000
 // max(|f - f_GSL| / |f_GSL|): 1.0709209504860220e-15
+// mean(f - f_GSL): -5.5440786440316181
+// variance(f - f_GSL): 376.60778837733284
+// stddev(f - f_GSL): 19.406385247575933
 const testcase_assoc_laguerre<double>
 data045[11] =
 {
@@ -1435,6 +1570,9 @@ const double toler045 = 2.5000000000000020e-13;
 // Test data for n=20, m=20.
 // max(|f - f_GSL|): 2.1250000000000000
 // max(|f - f_GSL| / |f_GSL|): 1.1968937782285294e-14
+// mean(f - f_GSL): 0.19344895682429938
+// variance(f - f_GSL): 0.41039783756558101
+// stddev(f - f_GSL): 0.64062300736515931
 const testcase_assoc_laguerre<double>
 data046[11] =
 {
@@ -1466,6 +1604,9 @@ const double toler046 = 1.0000000000000008e-12;
 // Test data for n=20, m=50.
 // max(|f - f_GSL|): 0.25000000000000000
 // max(|f - f_GSL| / |f_GSL|): 1.2103144092558234e-14
+// mean(f - f_GSL): -0.022849527272311123
+// variance(f - f_GSL): 5.7130155161570465e-05
+// stddev(f - f_GSL): 0.0075584492563997852
 const testcase_assoc_laguerre<double>
 data047[11] =
 {
@@ -1497,6 +1638,9 @@ const double toler047 = 1.0000000000000008e-12;
 // Test data for n=20, m=100.
 // max(|f - f_GSL|): 1572864.0000000000
 // max(|f - f_GSL| / |f_GSL|): 3.6621229371267356e-14
+// mean(f - f_GSL): 137262.28072981400
+// variance(f - f_GSL): inf
+// stddev(f - f_GSL): inf
 const testcase_assoc_laguerre<double>
 data048[11] =
 {
@@ -1528,6 +1672,9 @@ const double toler048 = 2.5000000000000015e-12;
 // Test data for n=50, m=0.
 // max(|f - f_GSL|): 196608.00000000000
 // max(|f - f_GSL| / |f_GSL|): 4.2910775919271532e-15
+// mean(f - f_GSL): -17990.447398879332
+// variance(f - f_GSL): 27618453284.204639
+// stddev(f - f_GSL): 166188.00583737876
 const testcase_assoc_laguerre<double>
 data049[11] =
 {
@@ -1559,6 +1706,9 @@ const double toler049 = 2.5000000000000020e-13;
 // Test data for n=50, m=1.
 // max(|f - f_GSL|): 311296.00000000000
 // max(|f - f_GSL| / |f_GSL|): 4.3113718426975911e-14
+// mean(f - f_GSL): 28417.096591423862
+// variance(f - f_GSL): 32927254885.825413
+// stddev(f - f_GSL): 181458.68644356879
 const testcase_assoc_laguerre<double>
 data050[11] =
 {
@@ -1590,6 +1740,9 @@ const double toler050 = 2.5000000000000015e-12;
 // Test data for n=50, m=2.
 // max(|f - f_GSL|): 139264.00000000000
 // max(|f - f_GSL| / |f_GSL|): 2.5437687254653283e-15
+// mean(f - f_GSL): 12649.078840684118
+// variance(f - f_GSL): 1765904219.6855280
+// stddev(f - f_GSL): 42022.663167456769
 const testcase_assoc_laguerre<double>
 data051[11] =
 {
@@ -1621,6 +1774,9 @@ const double toler051 = 2.5000000000000020e-13;
 // Test data for n=50, m=5.
 // max(|f - f_GSL|): 81920.000000000000
 // max(|f - f_GSL| / |f_GSL|): 2.6215979818234617e-15
+// mean(f - f_GSL): -7423.7222822287622
+// variance(f - f_GSL): 648926959.11275744
+// stddev(f - f_GSL): 25474.044812568685
 const testcase_assoc_laguerre<double>
 data052[11] =
 {
@@ -1652,6 +1808,9 @@ const double toler052 = 2.5000000000000020e-13;
 // Test data for n=50, m=10.
 // max(|f - f_GSL|): 192.00000000000000
 // max(|f - f_GSL| / |f_GSL|): 3.6229303412867937e-15
+// mean(f - f_GSL): -17.490024036237049
+// variance(f - f_GSL): 12219580.275082903
+// stddev(f - f_GSL): 3495.6516238153513
 const testcase_assoc_laguerre<double>
 data053[11] =
 {
@@ -1683,6 +1842,9 @@ const double toler053 = 2.5000000000000020e-13;
 // Test data for n=50, m=20.
 // max(|f - f_GSL|): 512.00000000000000
 // max(|f - f_GSL| / |f_GSL|): 9.6616871455409171e-14
+// mean(f - f_GSL): -47.364405233074315
+// variance(f - f_GSL): 23782.450110032125
+// stddev(f - f_GSL): 154.21559619581973
 const testcase_assoc_laguerre<double>
 data054[11] =
 {
@@ -1714,6 +1876,9 @@ const double toler054 = 5.0000000000000029e-12;
 // Test data for n=50, m=50.
 // max(|f - f_GSL|): 989855744.00000000
 // max(|f - f_GSL| / |f_GSL|): 1.1139535389485780e-14
+// mean(f - f_GSL): 89986812.018465906
+// variance(f - f_GSL): inf
+// stddev(f - f_GSL): inf
 const testcase_assoc_laguerre<double>
 data055[11] =
 {
@@ -1745,6 +1910,9 @@ const double toler055 = 1.0000000000000008e-12;
 // Test data for n=50, m=100.
 // max(|f - f_GSL|): 1.8889465931478581e+22
 // max(|f - f_GSL| / |f_GSL|): 2.2737143709403468e-14
+// mean(f - f_GSL): -1.7004551248566624e+21
+// variance(f - f_GSL): inf
+// stddev(f - f_GSL): inf
 const testcase_assoc_laguerre<double>
 data056[11] =
 {
@@ -1776,6 +1944,9 @@ const double toler056 = 2.5000000000000015e-12;
 // Test data for n=100, m=0.
 // max(|f - f_GSL|): 98304.000000000000
 // max(|f - f_GSL| / |f_GSL|): 3.8776197831393928e-15
+// mean(f - f_GSL): -8865.4606155926431
+// variance(f - f_GSL): 4058808072.1721206
+// stddev(f - f_GSL): 63708.775472238682
 const testcase_assoc_laguerre<double>
 data057[11] =
 {
@@ -1807,6 +1978,9 @@ const double toler057 = 2.5000000000000020e-13;
 // Test data for n=100, m=1.
 // max(|f - f_GSL|): 245760.00000000000
 // max(|f - f_GSL| / |f_GSL|): 1.4500034612453474e-14
+// mean(f - f_GSL): 22224.249977270934
+// variance(f - f_GSL): 29644360933.494530
+// stddev(f - f_GSL): 172175.37841832824
 const testcase_assoc_laguerre<double>
 data058[11] =
 {
@@ -1838,6 +2012,9 @@ const double toler058 = 1.0000000000000008e-12;
 // Test data for n=100, m=2.
 // max(|f - f_GSL|): 557056.00000000000
 // max(|f - f_GSL| / |f_GSL|): 5.1603746667135714e-15
+// mean(f - f_GSL): 50294.883489425141
+// variance(f - f_GSL): 2009492413242.1035
+// stddev(f - f_GSL): 1417565.6645256698
 const testcase_assoc_laguerre<double>
 data059[11] =
 {
@@ -1869,6 +2046,9 @@ const double toler059 = 5.0000000000000039e-13;
 // Test data for n=100, m=5.
 // max(|f - f_GSL|): 393216.00000000000
 // max(|f - f_GSL| / |f_GSL|): 8.0946565190235238e-15
+// mean(f - f_GSL): 35883.277835871675
+// variance(f - f_GSL): 72845813363.438187
+// stddev(f - f_GSL): 269899.63572305575
 const testcase_assoc_laguerre<double>
 data060[11] =
 {
@@ -1900,6 +2080,9 @@ const double toler060 = 5.0000000000000039e-13;
 // Test data for n=100, m=10.
 // max(|f - f_GSL|): 155648.00000000000
 // max(|f - f_GSL| / |f_GSL|): 5.1685581852917721e-15
+// mean(f - f_GSL): 13707.238286828961
+// variance(f - f_GSL): 5037793089646.2549
+// stddev(f - f_GSL): 2244502.8602446141
 const testcase_assoc_laguerre<double>
 data061[11] =
 {
@@ -1931,6 +2114,9 @@ const double toler061 = 5.0000000000000039e-13;
 // Test data for n=100, m=20.
 // max(|f - f_GSL|): 524288.00000000000
 // max(|f - f_GSL| / |f_GSL|): 3.7005989410347388e-14
+// mean(f - f_GSL): -46766.623212640938
+// variance(f - f_GSL): 55764004614002920.
+// stddev(f - f_GSL): 236144033.61932081
 const testcase_assoc_laguerre<double>
 data062[11] =
 {
@@ -1962,6 +2148,9 @@ const double toler062 = 2.5000000000000015e-12;
 // Test data for n=100, m=50.
 // max(|f - f_GSL|): 316659348799488.00
 // max(|f - f_GSL| / |f_GSL|): 1.1554040570270351e-14
+// mean(f - f_GSL): -28787238841995.637
+// variance(f - f_GSL): inf
+// stddev(f - f_GSL): inf
 const testcase_assoc_laguerre<double>
 data063[11] =
 {
@@ -1993,6 +2182,9 @@ const double toler063 = 1.0000000000000008e-12;
 // Test data for n=100, m=100.
 // max(|f - f_GSL|): 2.3819765684465692e+39
 // max(|f - f_GSL| / |f_GSL|): 1.9897039067343855e-14
+// mean(f - f_GSL): 2.1654330573519588e+38
+// variance(f - f_GSL): inf
+// stddev(f - f_GSL): inf
 const testcase_assoc_laguerre<double>
 data064[11] =
 {
@@ -2025,10 +2217,11 @@ template<typename Tp, unsigned int Num>
   void
   test(const testcase_assoc_laguerre<Tp> (&data)[Num], Tp toler)
   {
+    typedef Tp Val;
     bool test __attribute__((unused)) = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
+    const Val eps = std::numeric_limits<Val>::epsilon();
+    Val max_abs_diff = -Val(1);
+    Val max_abs_frac = -Val(1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
   	 {
@@ -2038,8 +2231,8 @@ template<typename Tp, unsigned int Num>
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
+	if (std::abs(f0) > Val(10) * eps
+	 && std::abs(f) > Val(10) * eps)
 	  {
 	    const Tp frac = diff / f0;
 	    if (std::abs(frac) > max_abs_frac)

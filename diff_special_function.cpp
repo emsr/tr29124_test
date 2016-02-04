@@ -19,6 +19,7 @@
 #endif
 #include <bits/specfun.h>
 #include "gsl_wrap.h"
+#include "boost_wrap.h"
 
 #include "test_func.tcc"
 
@@ -30,19 +31,20 @@ int
 main()
 {
   using _TpGSL = double;
+  using Real = double;
 
   //  Unsigned integer orders for various polynomials, harmonics, and spherical bessels.
   std::vector<unsigned int> vorder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};
 
   //  ... corresponding "_TpGSL" integer orders for GSL.
-  std::vector<_TpGSL> dvorder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};
+  std::vector<_TpGSL> dvorder{std::begin(vorder), std::end(vorder)};
+
+  //  Orders for spherical bessel functions.
+  std::vector<unsigned int> sborder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};
 
   //  Orders for cylindrical Bessel functions.
   std::vector<_TpGSL> cborderd{0, _TpGSL{1}/_TpGSL{3}, _TpGSL{0.5}, _TpGSL{2}/_TpGSL{3},
 			       1, 2, 3, 5, 10, 20, 50, 100};
-
-  //  Orders for spherical bessel functions.
-  std::vector<unsigned int> sborder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};
 
   const unsigned int num_phi = 19; // 0 - 180 degrees.
   _TpGSL phi[num_phi];
@@ -60,6 +62,11 @@ main()
   using       std::assoc_laguerre;
   using       std::assoc_legendre;
   using       std::beta;
+  using __gnu_cxx::bincoef;
+  using __gnu_cxx::chebyshev_t;
+  using __gnu_cxx::chebyshev_u;
+  using __gnu_cxx::chebyshev_v;
+  using __gnu_cxx::chebyshev_w;
   using       std::comp_ellint_1;
   using       std::comp_ellint_2;
   using       std::comp_ellint_3;
@@ -70,6 +77,8 @@ main()
   using       std::cyl_bessel_i; 
   using       std::cyl_bessel_j; 
   using       std::cyl_bessel_k; 
+  using __gnu_cxx::cyl_hankel_1;
+  using __gnu_cxx::cyl_hankel_2;
   using       std::cyl_neumann;  
   using __gnu_cxx::dawson;
   using __gnu_cxx::dilog;
@@ -77,6 +86,7 @@ main()
   using       std::ellint_1;	 
   using       std::ellint_2;	 
   using       std::ellint_3;	 
+  using __gnu_cxx::ellint_d;
   using __gnu_cxx::ellint_rc;
   using __gnu_cxx::ellint_rd;
   using __gnu_cxx::ellint_rf;
@@ -88,8 +98,12 @@ main()
   using __gnu_cxx::fresnel_c;
   using __gnu_cxx::fresnel_s;
   using __gnu_cxx::gamma_l;
+  using __gnu_cxx::gamma_p;
+  using __gnu_cxx::gamma_q;
   using __gnu_cxx::gamma_u;
+  using __gnu_cxx::gegenbauer;
   using       std::hermite;	 
+  using __gnu_cxx::heuman_lambda;
   using __gnu_cxx::hurwitz_zeta;
   using __gnu_cxx::hyperg;
   using __gnu_cxx::ibeta;
@@ -97,7 +111,9 @@ main()
   using __gnu_cxx::jacobi_sn;
   using __gnu_cxx::jacobi_cn;
   using __gnu_cxx::jacobi_dn;
+  using __gnu_cxx::jacobi_zeta;
   using       std::laguerre;
+  using __gnu_cxx::lbincoef;
   using __gnu_cxx::ldouble_factorial;
   using       std::legendre;
   using __gnu_cxx::legendre_q;
@@ -109,14 +125,18 @@ main()
   using __gnu_cxx::psi;
   using __gnu_cxx::radpoly;
   using       std::riemann_zeta;
+  using __gnu_cxx::sinhc;
+  using __gnu_cxx::sinhc_pi;
   using __gnu_cxx::sinc;
   using __gnu_cxx::sinc_pi;
-  using __gnu_cxx::sinc;
   using __gnu_cxx::sinhint;
   using __gnu_cxx::sinint;
   using       std::sph_bessel;
   using __gnu_cxx::sph_bessel_i;
   using __gnu_cxx::sph_bessel_k;
+  using __gnu_cxx::sph_hankel_1;
+  using __gnu_cxx::sph_hankel_2;
+  using __gnu_cxx::sph_harmonic;
   using       std::sph_legendre;
   using       std::sph_neumann;
   using __gnu_cxx::zernike;
@@ -168,7 +188,7 @@ main()
   rundiff(assoc_laguerre, gsl::laguerre_nm, basename,
 	  "n", vorder, "m", vorder,
 	  "x", fill_argument(std::make_pair(0.0, 100.0),
-	    		     std::make_pair(true, true)));
+	    		     std::make_pair(true, true), 101));
 
 
   //  Associated Legendre functions.
@@ -185,36 +205,48 @@ main()
   basename = "diff_beta";
   rundiff(beta, gsl::beta, basename,
 	  "x", fill_argument(std::make_pair(0.0, 100.0),
-			     std::make_pair(false, true)),
+			     std::make_pair(false, true), 101),
 	  "y", fill_argument(std::make_pair(0.0, 100.0),
-			     std::make_pair(false, true)));
+			     std::make_pair(false, true), 101));
+
+
+#if STD
+  // Binomial coefficient.
+  std::cout << "bincoef" << std::endl;
+  basename = "diff_bincoef";
+  rundiff(bincoef, gsl::choose, basename,
+	  "n", fill_argument(std::make_pair(0U, 50U),
+	    		     std::make_pair(true, true), 51),
+	  "k", fill_argument(std::make_pair(0U, 50U),
+	    		     std::make_pair(true, true), 51));
+#endif // STD
 
 
   //  Complete elliptic integrals of the first kind.
   //  Avoid poles at |x| = 1.
   std::cout << "comp_ellint_1" << std::endl;
   basename = "diff_comp_ellint_1";
-  rundiff(comp_ellint_1, gsl::ellint_Kcomp, basename,
+  rundiff(comp_ellint_1, gsl::comp_ellint_1, basename,
 	  "k", fill_argument(std::make_pair(-1.0, 1.0),
-			     std::make_pair(false, false)));
+			     std::make_pair(false, false), 101));
 
 
   //  Complete elliptic integrals of the second kind.
   //  Avoid poles at |x| = 1.
   std::cout << "comp_ellint_2" << std::endl;
   basename = "diff_comp_ellint_2";
-  rundiff(comp_ellint_2, gsl::ellint_Ecomp, basename,
+  rundiff(comp_ellint_2, gsl::comp_ellint_2, basename,
 	  "k", fill_argument(std::make_pair(-1.0, 1.0),
-			     std::make_pair(false, false)));
+			     std::make_pair(false, false), 101));
 
 
   //  Complete elliptic integrals of the third kind.
   //  Avoid poles at |x| = 1 and at nu = 1.
   std::cout << "comp_ellint_3" << std::endl;
   basename = "diff_comp_ellint_3";
-  rundiff(comp_ellint_3, gsl::ellint_Pcomp, basename,
+  rundiff(comp_ellint_3, gsl::comp_ellint_3, basename,
 	  "k", fill_argument(std::make_pair(-1.0, 1.0),
-			     std::make_pair(false, false)),
+			     std::make_pair(false, false), 101),
 	  "nu", fill_argument(std::make_pair(0.0, 1.0),
 			      std::make_pair(true, false), 11));
 
@@ -229,6 +261,19 @@ main()
 			     std::make_pair(false, true), 11),
 	  "x", fill_argument(std::make_pair(-10.0, 10.0),
 			     std::make_pair(true, true), 201));
+
+#if STD
+  // Confluent hypergeometric limit functions.
+  // Skip the singularity at c = 0.
+  std::cout << "conf_hyperg_lim" << std::endl;
+  basename = "conf_hyperg_lim";
+  rundiff(conf_hyperg_lim, gsl::hyperg_0F1,
+	  "__gnu_cxx", basename,
+	  "c", fill_argument(std::make_pair(Real{0}, Real{10}),
+			     std::make_pair(false, true), 11),
+	  "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
+			     std::make_pair(true, true), 21));
+#endif // STD
 
 
   //  Regular modified cylindrical Bessel functions.
@@ -258,6 +303,28 @@ main()
 	  "x", fill_argument(std::make_pair(0.0, 100.0),
 			     std::make_pair(false, true), 1001));
 
+#if STD
+    // Cylindrical Hankel functions of the first kind.
+  std::cout << "cyl_hankel_1" << std::endl;
+  basename = "cyl_hankel_1";
+  maketest(cyl_hankel_1, beast::cyl_hankel_1, basename,
+	   "nu", vborderd,
+	   "x", fill_argument(fill_argument(std::make_pair(Real{0}, Real{5}),
+					    std::make_pair(true, true), 21),
+			      fill_argument(std::make_pair(Real{0}, Real{100}),
+					    std::make_pair(true, true), 21)));
+
+  // Cylindrical Hankel functions of the second kind.
+  std::cout << "cyl_hankel_2" << std::endl;
+  basename = "cyl_hankel_2";
+  maketest(cyl_hankel_2, beast::cyl_hankel_2, basename,
+	   "nu", vborderd,
+	   "x", fill_argument(fill_argument(std::make_pair(Real{0}, Real{5}),
+					    std::make_pair(true, true), 21),
+			      fill_argument(std::make_pair(Real{0}, Real{100}),
+					    std::make_pair(true, true), 21)));
+#endif // STD
+
 
   //  Cylindrical Neumann functions.
   // Skip the pole at the origin.
@@ -266,16 +333,16 @@ main()
   rundiff(cyl_neumann, gsl::bessel_Ynu, basename,
 	  "nu", cborderd,
 	  "x", fill_argument(std::make_pair(0.0, 100.0),
-			     std::make_pair(false, true), 1001));
+			     std::make_pair(false, true), 1001), 101);
 
 
   //  Elliptic integrals of the first kind.
   //  Avoid poles at |x| = 1.
   std::cout << "ellint_1" << std::endl;
   basename = "diff_ellint_1";
-  rundiff(ellint_1, gsl::ellint_F, basename,
+  rundiff(ellint_1, gsl::ellint_1, basename,
 	  "k", fill_argument(std::make_pair(-1.0, 1.0),
-			     std::make_pair(false, false)),
+			     std::make_pair(false, false), 101),
 	  "phi", vphid);
 
 
@@ -283,9 +350,9 @@ main()
   //  Avoid poles at |x| = 1.
   std::cout << "ellint_2" << std::endl;
   basename = "diff_ellint_2";
-  rundiff(ellint_2, gsl::ellint_E, basename,
+  rundiff(ellint_2, gsl::ellint_2, basename,
 	  "k", fill_argument(std::make_pair(-1.0, 1.0),
-			     std::make_pair(false, false)),
+			     std::make_pair(false, false), 101),
 	  "phi", vphid);
 
 
@@ -293,9 +360,9 @@ main()
   //  Avoid poles at |x| = 1 and at nu = 1.
   std::cout << "ellint_3" << std::endl;
   basename = "diff_ellint_3";
-  rundiff(ellint_3, gsl::ellint_P, basename,
+  rundiff(ellint_3, gsl::ellint_3, basename,
 	  "k", fill_argument(std::make_pair(-1.0, 1.0),
-			     std::make_pair(false, false)),
+			     std::make_pair(false, false), 101),
 	  "nu", fill_argument(std::make_pair(0.0, 1.0),
 			      std::make_pair(true, false), 11),
 	  "phi", vphid);
@@ -320,7 +387,7 @@ main()
   rundiff(hermite, gsl::hermite, basename,
 	  "n", vorder,
 	  "x", fill_argument(std::make_pair(-10.0, 10.0),
-	  		     std::make_pair(true, true)));
+	  		     std::make_pair(true, true), 101));
 
 
   //  Hypergeometric functions.

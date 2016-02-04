@@ -921,24 +921,6 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
              : std::sinh(__type(__x)) / __type(__x);
     }
 
-  // Dawson's integrals
-
-  inline float
-  dawsonintf(float __x)
-  { return std::__detail::__dawson<float>(__x); }
-
-  inline long double
-  dawsonintl(long double __x)
-  { return std::__detail::__dawson<long double>(__x); }
-
-  template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
-    dawsonint(_Tp __x)
-    {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      return std::__detail::__dawson<__type>(__x);
-    }
-
   // Cylindrical Hankel functions of the first kind
 
   inline std::complex<float>

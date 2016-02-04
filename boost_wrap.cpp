@@ -531,7 +531,7 @@ lpochhammer_u(double a, double x)
 double
 lpochhammer_l(double a, double x)
 {
-  return boost::math::lgamma(std::abs(a + x)) - lpochhammer_u(a, x);
+  return std::log(boost::math::falling_factorial(a, x));
 }
 
 /// Upper Pochhammer symbol.
@@ -545,7 +545,7 @@ pochhammer_u(double a, double x)
 double
 pochhammer_l(double a, double x)
 {
-  return boost::math::tgamma(std::abs(a + x)) / pochhammer_u(a, x);
+  return boost::math::falling_factorial(a, x);
 }
 
 /// Log factorial.
