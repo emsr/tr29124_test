@@ -175,8 +175,8 @@ check: \
 test_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
 	$(CXX) -o test_special_function -I$(GSL_INC_DIR) test_special_function.cpp gsl_wrap.cpp -lquadmath $(GSL_LIBS)
 
-diff_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
-	$(CXX) -o diff_special_function -I$(GSL_INC_DIR) diff_special_function.cpp gsl_wrap.cpp -lquadmath $(GSL_LIBS)
+diff_special_function: diff_special_function.cpp gsl_wrap.h gsl_wrap.cpp boost_wrap.h boost_wrap.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
+	$(CXX) -o diff_special_function -I$(GSL_INC_DIR) diff_special_function.cpp gsl_wrap.cpp boost_wrap.cpp -lquadmath $(GSL_LIBS)
 
 #  You need gnu to get __float128!
 test_local_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc sf_*.tcc

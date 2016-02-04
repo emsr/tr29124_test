@@ -47,6 +47,9 @@
 // Test data.
 // max(|f - f_GSL|): 8.8817841970012523e-16
 // max(|f - f_GSL| / |f_GSL|): 3.7349082148991403e-15
+// mean(f - f_GSL): 3.4745722713144550e-17
+// variance(f - f_GSL): 1.6065978565058237e-32
+// stddev(f - f_GSL): 1.2675164127165469e-16
 const testcase_riemann_zeta<double>
 data001[55] =
 {
@@ -120,6 +123,9 @@ const double toler001 = 2.5000000000000020e-13;
 // Test data.
 // max(|f - f_GSL|): 2.6645352591003757e-15
 // max(|f - f_GSL| / |f_GSL|): 1.1657079722157521e-15
+// mean(f - f_GSL): -1.5925957870485004e-16
+// variance(f - f_GSL): 1.7735937231581391e-34
+// stddev(f - f_GSL): 1.3317633885785189e-17
 const testcase_riemann_zeta<double>
 data002[145] =
 {
@@ -275,10 +281,11 @@ template<typename Tp, unsigned int Num>
   void
   test(const testcase_riemann_zeta<Tp> (&data)[Num], Tp toler)
   {
+    typedef Tp Val;
     bool test __attribute__((unused)) = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
+    const Val eps = std::numeric_limits<Val>::epsilon();
+    Val max_abs_diff = -Val(1);
+    Val max_abs_frac = -Val(1);
     unsigned int num_datum = MAX_ITERATIONS;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
@@ -287,8 +294,8 @@ template<typename Tp, unsigned int Num>
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
+	if (std::abs(f0) > Val(10) * eps
+	 && std::abs(f) > Val(10) * eps)
 	  {
 	    const Tp frac = diff / f0;
 	    if (std::abs(frac) > max_abs_frac)

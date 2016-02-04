@@ -40,6 +40,9 @@
 // Test data for nu=0.0000000000000000.
 // max(|f - f_GSL|): 3.9252311467094378e-16
 // max(|f - f_GSL| / |f_GSL|): 9.7855353150307294e-16
+// mean(f - f_GSL): (-1.7347234759768071e-17,4.2500725161431774e-17)
+// variance(f - f_GSL): (-6.1156444931600394e-34,-9.0594730936636415e-34)
+// stddev(f - f_GSL): (1.5515838457795457e-17,-2.9194274992957241e-17)
 const testcase_cyl_hankel_1<double>
 data001[20] =
 {
@@ -69,6 +72,9 @@ const double toler001 = 2.5000000000000020e-13;
 // Test data for nu=0.33333333333333331.
 // max(|f - f_GSL|): 7.4734174503522709e-16
 // max(|f - f_GSL| / |f_GSL|): 1.4879256826285980e-15
+// mean(f - f_GSL): (-1.0755285551056204e-17,1.8006429680639257e-16)
+// variance(f - f_GSL): (9.9764238116457933e-35,-7.0541852325928607e-35)
+// stddev(f - f_GSL): (1.0534437689766388e-17,-3.3481546145769142e-18)
 const testcase_cyl_hankel_1<double>
 data002[20] =
 {
@@ -98,6 +104,9 @@ const double toler002 = 2.5000000000000020e-13;
 // Test data for nu=0.50000000000000000.
 // max(|f - f_GSL|): 3.7238012298709097e-16
 // max(|f - f_GSL| / |f_GSL|): 7.1608575195374956e-16
+// mean(f - f_GSL): (-1.6653345369377347e-17,-4.2500725161431774e-17)
+// variance(f - f_GSL): (-3.6079343259599837e-34,-1.5204710087267652e-34)
+// stddev(f - f_GSL): (3.9197907682851680e-18,-1.9394798072244321e-17)
 const testcase_cyl_hankel_1<double>
 data003[20] =
 {
@@ -127,6 +136,9 @@ const double toler003 = 2.5000000000000020e-13;
 // Test data for nu=0.66666666666666663.
 // max(|f - f_GSL|): 6.2063353831181828e-16
 // max(|f - f_GSL| / |f_GSL|): 1.0893511578080240e-15
+// mean(f - f_GSL): (-1.8735013540549518e-17,1.5439038936193584e-17)
+// variance(f - f_GSL): (-8.2335005587365573e-34,2.5603931539059394e-34)
+// stddev(f - f_GSL): (4.4097646143208139e-18,2.9030950377612026e-17)
 const testcase_cyl_hankel_1<double>
 data004[20] =
 {
@@ -156,6 +168,9 @@ const double toler004 = 2.5000000000000020e-13;
 // Test data for nu=1.0000000000000000.
 // max(|f - f_GSL|): 1.0053497077208614e-15
 // max(|f - f_GSL| / |f_GSL|): 1.8310642502281144e-15
+// mean(f - f_GSL): (-2.2951725989846985e-17,-5.4443629092195174e-17)
+// variance(f - f_GSL): (2.5993109790293594e-33,-2.8852940860224375e-33)
+// stddev(f - f_GSL): (5.6933210940816750e-17,-2.5339288249715622e-17)
 const testcase_cyl_hankel_1<double>
 data005[13] =
 {
@@ -178,6 +193,9 @@ const double toler005 = 2.5000000000000020e-13;
 // Test data for nu=2.0000000000000000.
 // max(|f - f_GSL|): 8.8818519593785407e-16
 // max(|f - f_GSL| / |f_GSL|): 1.2691656715371439e-15
+// mean(f - f_GSL): (5.4210108624275222e-18,-6.1062266354383615e-17)
+// variance(f - f_GSL): (-3.5123276257580133e-35,-2.3887399794996810e-34)
+// stddev(f - f_GSL): (1.0156749516780579e-17,-1.1759372304855504e-17)
 const testcase_cyl_hankel_1<double>
 data006[20] =
 {
@@ -207,6 +225,9 @@ const double toler006 = 2.5000000000000020e-13;
 // Test data for nu=5.0000000000000000.
 // max(|f - f_GSL|): 1.7763587452233594e-15
 // max(|f - f_GSL| / |f_GSL|): 1.0718446752086932e-15
+// mean(f - f_GSL): (-2.4686449465823794e-18,-8.9671859681262646e-17)
+// variance(f - f_GSL): (-5.6224553880423290e-33,2.6821043616546602e-33)
+// stddev(f - f_GSL): (1.7420760671679491e-17,7.6980116201667712e-17)
 const testcase_cyl_hankel_1<double>
 data007[13] =
 {
@@ -229,6 +250,9 @@ const double toler007 = 2.5000000000000020e-13;
 // Test data for nu=10.000000000000000.
 // max(|f - f_GSL|): 0.015625000000000000
 // max(|f - f_GSL| / |f_GSL|): 8.5286222390953037e-16
+// mean(f - f_GSL): (-5.7638934632338830e-20,-0.00078278890857177432)
+// variance(f - f_GSL): (-3.3947836468295917e-08,-1.8307853324436648e-22)
+// stddev(f - f_GSL): (4.9682263970336045e-19,-0.00018424938661579289)
 const testcase_cyl_hankel_1<double>
 data008[20] =
 {
@@ -258,6 +282,9 @@ const double toler008 = 2.5000000000000020e-13;
 // Test data for nu=20.000000000000000.
 // max(|f - f_GSL|): 9.2233720368547758e+18
 // max(|f - f_GSL| / |f_GSL|): 1.2343666497124058e-15
+// mean(f - f_GSL): (1.0708574206925728e-26,4.6116728264266624e+17)
+// variance(f - f_GSL): (inf,-nan)
+// stddev(f - f_GSL): (inf,nan)
 const testcase_cyl_hankel_1<double>
 data009[20] =
 {
@@ -287,6 +314,9 @@ const double toler009 = 2.5000000000000020e-13;
 // Test data for nu=50.000000000000000.
 // max(|f - f_GSL|): 9.7777726864055332e+91
 // max(|f - f_GSL| / |f_GSL|): 3.2523400560389774e-15
+// mean(f - f_GSL): (-4.8615533664579390e-60,4.8888863432027637e+90)
+// variance(f - f_GSL): (inf,-nan)
+// stddev(f - f_GSL): (inf,nan)
 const testcase_cyl_hankel_1<double>
 data010[20] =
 {
@@ -316,6 +346,9 @@ const double toler010 = 2.5000000000000020e-13;
 // Test data for nu=100.00000000000000.
 // max(|f - f_GSL|): 1.9406476153758862e+230
 // max(|f - f_GSL| / |f_GSL|): 6.1846539296328477e-15
+// mean(f - f_GSL): (-2.0468009619716763e-132,9.7032380768794314e+228)
+// variance(f - f_GSL): (inf,-nan)
+// stddev(f - f_GSL): (inf,nan)
 const testcase_cyl_hankel_1<double>
 data011[20] =
 {
@@ -346,6 +379,9 @@ const double toler011 = 5.0000000000000039e-13;
 // Test data for nu=0.0000000000000000.
 // max(|f - f_GSL|): 7.7914424684144130e-15
 // max(|f - f_GSL| / |f_GSL|): 8.8223480531070192e-14
+// mean(f - f_GSL): (-4.9127368839663175e-16,1.2884658617817736e-16)
+// variance(f - f_GSL): (8.2916403431309102e-31,5.9902880604737129e-31)
+// stddev(f - f_GSL): (9.6230863361400876e-16,3.1124567790568505e-16)
 const testcase_cyl_hankel_1<double>
 data012[20] =
 {
@@ -375,6 +411,9 @@ const double toler012 = 5.0000000000000029e-12;
 // Test data for nu=0.33333333333333331.
 // max(|f - f_GSL|): 8.1669521096044489e-15
 // max(|f - f_GSL| / |f_GSL|): 9.1071652536538408e-14
+// mean(f - f_GSL): (-3.7697167436234744e-16,3.9907313564846449e-16)
+// variance(f - f_GSL): (1.1723724857304471e-30,-5.0791487317956071e-31)
+// stddev(f - f_GSL): (1.1068062591200158e-15,-2.2945066898310937e-16)
 const testcase_cyl_hankel_1<double>
 data013[20] =
 {
@@ -404,6 +443,9 @@ const double toler013 = 5.0000000000000029e-12;
 // Test data for nu=0.50000000000000000.
 // max(|f - f_GSL|): 8.0225287548737208e-15
 // max(|f - f_GSL| / |f_GSL|): 8.7444960161346788e-14
+// mean(f - f_GSL): (-2.5751970000875699e-16,4.3201119764857409e-16)
+// variance(f - f_GSL): (6.0046726599982142e-31,-8.5180347574699698e-31)
+// stddev(f - f_GSL): (9.0626787497368165e-16,-4.6995126897316850e-16)
 const testcase_cyl_hankel_1<double>
 data014[20] =
 {
@@ -433,6 +475,9 @@ const double toler014 = 5.0000000000000029e-12;
 // Test data for nu=0.66666666666666663.
 // max(|f - f_GSL|): 7.8671298985765334e-15
 // max(|f - f_GSL| / |f_GSL|): 8.5389238214739034e-14
+// mean(f - f_GSL): (-1.6982942829812942e-16,4.8806444996607472e-16)
+// variance(f - f_GSL): (9.9538266031905748e-32,-1.2276466197900679e-30)
+// stddev(f - f_GSL): (8.1584728480318683e-16,-7.5237525616465252e-16)
 const testcase_cyl_hankel_1<double>
 data015[20] =
 {
@@ -462,6 +507,9 @@ const double toler015 = 5.0000000000000029e-12;
 // Test data for nu=1.0000000000000000.
 // max(|f - f_GSL|): 7.7791159383693038e-15
 // max(|f - f_GSL| / |f_GSL|): 8.8090427759930080e-14
+// mean(f - f_GSL): (1.1666015375944028e-16,4.8463837110102048e-16)
+// variance(f - f_GSL): (-7.7907814608995639e-31,-5.6314412684044541e-31)
+// stddev(f - f_GSL): (3.0184430473487608e-16,-9.3283874833265651e-16)
 const testcase_cyl_hankel_1<double>
 data016[20] =
 {
@@ -491,6 +539,9 @@ const double toler016 = 5.0000000000000029e-12;
 // Test data for nu=2.0000000000000000.
 // max(|f - f_GSL|): 7.8529550327574923e-15
 // max(|f - f_GSL| / |f_GSL|): 8.8413787077502042e-14
+// mean(f - f_GSL): (4.9441787469683971e-16,-9.3707593767922143e-17)
+// variance(f - f_GSL): (8.1530394666545019e-31,6.2557115696014206e-31)
+// stddev(f - f_GSL): (9.5993532279727358e-16,3.2584026345504889e-16)
 const testcase_cyl_hankel_1<double>
 data017[20] =
 {
@@ -520,6 +571,9 @@ const double toler017 = 5.0000000000000029e-12;
 // Test data for nu=5.0000000000000000.
 // max(|f - f_GSL|): 7.7997998131035858e-15
 // max(|f - f_GSL| / |f_GSL|): 8.8898104350400344e-14
+// mean(f - f_GSL): (5.3874005950804713e-17,4.8557078496935806e-16)
+// variance(f - f_GSL): (-6.8218400354431697e-31,-7.8787901102558301e-31)
+// stddev(f - f_GSL): (4.2425865588322973e-16,-9.2853616549715592e-16)
 const testcase_cyl_hankel_1<double>
 data018[20] =
 {
@@ -549,6 +603,9 @@ const double toler018 = 5.0000000000000029e-12;
 // Test data for nu=10.000000000000000.
 // max(|f - f_GSL|): 1.4210854880638126e-14
 // max(|f - f_GSL| / |f_GSL|): 8.7856502746316503e-14
+// mean(f - f_GSL): (6.1172854975977129e-16,-5.5630413470231233e-16)
+// variance(f - f_GSL): (-4.2272984685340259e-31,1.8044999652700937e-30)
+// stddev(f - f_GSL): (8.4576120888250895e-16,1.0667904523868807e-15)
 const testcase_cyl_hankel_1<double>
 data019[20] =
 {
@@ -578,6 +635,9 @@ const double toler019 = 5.0000000000000029e-12;
 // Test data for nu=20.000000000000000.
 // max(|f - f_GSL|): 5.9604644775390625e-07
 // max(|f - f_GSL| / |f_GSL|): 8.5402044627675738e-14
+// mean(f - f_GSL): (5.6374616619498320e-16,-2.9802402618135661e-08)
+// variance(f - f_GSL): (-4.9206813624307214e-17,8.0370911489882865e-24)
+// stddev(f - f_GSL): (5.7287025937902736e-16,7.0147568471264595e-09)
 const testcase_cyl_hankel_1<double>
 data020[20] =
 {
@@ -607,6 +667,9 @@ const double toler020 = 5.0000000000000029e-12;
 // Test data for nu=50.000000000000000.
 // max(|f - f_GSL|): 8.6655802749976619e+27
 // max(|f - f_GSL| / |f_GSL|): 9.0095541945766050e-14
+// mean(f - f_GSL): (-1.7434013267733696e-16,-4.3327901374988382e+26)
+// variance(f - f_GSL): (inf,-nan)
+// stddev(f - f_GSL): (inf,nan)
 const testcase_cyl_hankel_1<double>
 data021[20] =
 {
@@ -636,6 +699,9 @@ const double toler021 = 5.0000000000000029e-12;
 // Test data for nu=100.00000000000000.
 // max(|f - f_GSL|): 2.9746609857048962e+101
 // max(|f - f_GSL| / |f_GSL|): 6.8317940825779373e-15
+// mean(f - f_GSL): (3.0292036712325931e-18,-1.4873304928524481e+100)
+// variance(f - f_GSL): (inf,-nan)
+// stddev(f - f_GSL): (inf,nan)
 const testcase_cyl_hankel_1<double>
 data022[20] =
 {
@@ -666,22 +732,23 @@ template<typename Tp, unsigned int Num>
   void
   test(const testcase_cyl_hankel_1<Tp> (&data)[Num], Tp toler)
   {
+    typedef typename Tp::value_type Val;
     bool test __attribute__((unused)) = true;
-    const auto eps = std::numeric_limits<Tp>::epsilon();
-    auto max_abs_diff = -Tp(1);
-    auto max_abs_frac = -Tp(1);
+    const Val eps = std::numeric_limits<Val>::epsilon();
+    Val max_abs_diff = -Val(1);
+    Val max_abs_frac = -Val(1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const auto f = __gnu_cxx::cyl_hankel_1(data[i].nu, data[i].x);
-	const auto f0 = data[i].f0;
-	const auto diff = f - f0;
+	const Tp f = __gnu_cxx::cyl_hankel_1(data[i].nu, data[i].x);
+	const Tp f0 = data[i].f0;
+	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
+	if (std::abs(f0) > Val(10) * eps
+	 && std::abs(f) > Val(10) * eps)
 	  {
-	    const auto frac = diff / f0;
+	    const Tp frac = diff / f0;
 	    if (std::abs(frac) > max_abs_frac)
 	      max_abs_frac = std::abs(frac);
 	  }
