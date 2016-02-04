@@ -544,7 +544,7 @@ template<typename Tp, typename Tp1>
 	  }
       }
 
-std::cerr << "\nabs_stats.max() = " << abs_stats.max() << '\n';
+//std::cerr << "\nabs_stats.max() = " << abs_stats.max() << '\n';
     if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
       {
 	bool tol_ok = false;
@@ -731,7 +731,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 	      }
 	  }
 
-std::cerr << "\nabs_stats.max() = " << abs_stats.max() << '\n';
+//std::cerr << "\nabs_stats.max() = " << abs_stats.max() << '\n';
 	if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
 	  {
 	    bool tol_ok = false;
@@ -926,7 +926,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		  }
 	      }
 
-std::cerr << "\nabs_stats.max() = " << abs_stats.max() << '\n';
+//std::cerr << "\nabs_stats.max() = " << abs_stats.max() << '\n';
 	    if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
 	      {
 		bool tol_ok = false;
@@ -1135,7 +1135,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		      }
 		  }
 
-std::cerr << "\nabs_stats.max() = " << abs_stats.max() << '\n';
+//std::cerr << "\nabs_stats.max() = " << abs_stats.max() << '\n';
 		if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
 		 {
 		    bool tol_ok = false;
