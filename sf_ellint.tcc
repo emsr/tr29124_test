@@ -90,13 +90,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__isnan(__x) || __isnan(__y))
 	return _S_NaN;
-      else if (std::imag(__x) == _Val{} && std::real(__x) < _Val{}
-	    || std::imag(__y) == _Val{} && std::real(__y) < _Val{})
+      else if (std::imag(__x) == _Val{} && std::real(__x) < _Val{})
 	std::__throw_domain_error(__N("__ellint_rc: argument less than zero"));
       else if (std::abs(__x + __y) < _S_lolim)
         std::__throw_domain_error(__N("__ellint_rc: arguments too small"));
       else if (std::imag(__y) == _Val{0} && std::real(__y) < _Val{0})
-	return std::sqrt(__x / (__x - __y)) * __ellint_rc(__x - __y, -__y);
+	{
+	  if (std::abs(__x) == _Val{0})
+	    return _Tp{};
+	  else
+	    return std::sqrt(__x / (__x - __y)) * __ellint_rc(__x - __y, -__y);
+	}
       else
 	{
 	  auto __xt = __x;
@@ -346,6 +350,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__isnan(__x) || __isnan(__y))
 	return _S_NaN;
+      else if (__x == _Tp{} && __y == _Tp{})
+	return _Tp{};
+      else if (__x == _Tp{})
+	return std::sqrt(__y) / _Val{2};
+      else if (__y == _Tp{})
+	return std::sqrt(__x) / _Val{2};
       else
 	{
 	  auto __xt = std::sqrt(__x);
@@ -402,32 +412,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__x) || __isnan(__y) || __isnan(__z))
 	return _S_NaN;
       else if (__z == _Tp{})
-	{
-	  if (__x == _Tp{})
-	    return std::sqrt(__y);
-	  else if (__y == _Tp{})
-	    return std::sqrt(__x);
-	  else
-	    return __comp_ellint_rg(__x, __y);
-	}
+	return __comp_ellint_rg(__x, __y);
       else if (__x == _Tp{})
-	{
-	  if (__y == _Tp{})
-	    return std::sqrt(__z);
-	  else if (__z == _Tp{})
-	    return std::sqrt(__y);
-	  else
-	    return __comp_ellint_rg(__y, __z);
-	}
+	return __comp_ellint_rg(__y, __z);
       else if (__y == _Tp{})
-	{
-	  if (__z == _Tp{})
-	    return std::sqrt(__x);
-	  else if (__x == _Tp{})
-	    return std::sqrt(__z);
-	  else
-	    return __comp_ellint_rg(__z, __x);
-	}
+	return __comp_ellint_rg(__z, __x);
       else
 	return (__z * __ellint_rf(__x, __y, __z)
 	     - (__x - __z) * (__y - __z) * __ellint_rd(__x, __y, __z) / _Val{3}
