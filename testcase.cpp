@@ -659,6 +659,21 @@ template<typename Real>
 				std::make_pair(true, true), 11),
 	     file_ellint_rf);
 
+    // Carlson elliptic functions R_G.
+    std::cout << "ellint_rg" << std::endl;
+    basename = "ellint_rg";
+    filename = get_filename(path, prefix, basename, "", ".cc");
+    std::ofstream file_ellint_rg(filename.c_str());
+    maketest(ellint_rg, beast::ellint_RG,
+	     "__gnu_cxx", basename,
+	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
+				std::make_pair(false, true), 11),
+	     "y", fill_argument(std::make_pair(Real{0}, +Real{5}),
+				std::make_pair(true, true), 11),
+	     "z", fill_argument(std::make_pair(Real{0}, +Real{5}),
+				std::make_pair(true, true), 11),
+	     file_ellint_rg);
+
     // Carlson elliptic functions R_J.
     std::cout << "ellint_rj" << std::endl;
     basename = "ellint_rj";
