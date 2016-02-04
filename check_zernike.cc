@@ -40,6 +40,9 @@
 // Test data for n=0, m=0, rho=0.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data001[10] =
 {
@@ -69,6 +72,9 @@ const double toler001 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.050000000000000003.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data002[10] =
 {
@@ -98,6 +104,9 @@ const double toler002 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.10000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data003[10] =
 {
@@ -127,6 +136,9 @@ const double toler003 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.14999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data004[10] =
 {
@@ -156,6 +168,9 @@ const double toler004 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.20000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data005[10] =
 {
@@ -185,6 +200,9 @@ const double toler005 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.25000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data006[10] =
 {
@@ -214,6 +232,9 @@ const double toler006 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.29999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data007[10] =
 {
@@ -243,6 +264,9 @@ const double toler007 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.34999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data008[10] =
 {
@@ -272,6 +296,9 @@ const double toler008 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.40000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data009[10] =
 {
@@ -301,6 +328,9 @@ const double toler009 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.45000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data010[10] =
 {
@@ -330,6 +360,9 @@ const double toler010 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data011[10] =
 {
@@ -359,6 +392,9 @@ const double toler011 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.55000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data012[10] =
 {
@@ -388,6 +424,9 @@ const double toler012 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.59999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data013[10] =
 {
@@ -417,6 +456,9 @@ const double toler013 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.65000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data014[10] =
 {
@@ -446,6 +488,9 @@ const double toler014 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.69999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data015[10] =
 {
@@ -475,6 +520,9 @@ const double toler015 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.75000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data016[10] =
 {
@@ -504,6 +552,9 @@ const double toler016 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.80000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data017[10] =
 {
@@ -533,6 +584,9 @@ const double toler017 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.84999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data018[10] =
 {
@@ -562,6 +616,9 @@ const double toler018 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.90000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data019[10] =
 {
@@ -591,6 +648,9 @@ const double toler019 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=0.94999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data020[10] =
 {
@@ -620,6 +680,9 @@ const double toler020 = 2.5000000000000020e-13;
 // Test data for n=0, m=0, rho=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data021[10] =
 {
@@ -649,6 +712,9 @@ const double toler021 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.050000000000000003.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data022[10] =
 {
@@ -678,6 +744,9 @@ const double toler022 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.10000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data023[10] =
 {
@@ -707,6 +776,9 @@ const double toler023 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.14999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data024[10] =
 {
@@ -736,6 +808,9 @@ const double toler024 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.20000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data025[10] =
 {
@@ -765,6 +840,9 @@ const double toler025 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.25000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data026[10] =
 {
@@ -794,6 +872,9 @@ const double toler026 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.29999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data027[10] =
 {
@@ -823,6 +904,9 @@ const double toler027 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.34999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data028[10] =
 {
@@ -852,6 +936,9 @@ const double toler028 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.40000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data029[10] =
 {
@@ -881,6 +968,9 @@ const double toler029 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.45000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data030[10] =
 {
@@ -910,6 +1000,9 @@ const double toler030 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data031[10] =
 {
@@ -939,6 +1032,9 @@ const double toler031 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.55000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data032[10] =
 {
@@ -968,6 +1064,9 @@ const double toler032 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.59999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data033[10] =
 {
@@ -997,6 +1096,9 @@ const double toler033 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.65000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data034[10] =
 {
@@ -1026,6 +1128,9 @@ const double toler034 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.69999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data035[10] =
 {
@@ -1055,6 +1160,9 @@ const double toler035 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.75000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data036[10] =
 {
@@ -1084,6 +1192,9 @@ const double toler036 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.80000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data037[10] =
 {
@@ -1113,6 +1224,9 @@ const double toler037 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.84999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data038[10] =
 {
@@ -1142,6 +1256,9 @@ const double toler038 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.90000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data039[10] =
 {
@@ -1171,6 +1288,9 @@ const double toler039 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=0.94999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data040[10] =
 {
@@ -1200,6 +1320,9 @@ const double toler040 = 2.5000000000000020e-13;
 // Test data for n=1, m=1, rho=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data041[10] =
 {
@@ -1229,6 +1352,9 @@ const double toler041 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data042[10] =
 {
@@ -1258,6 +1384,9 @@ const double toler042 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.050000000000000003.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data043[10] =
 {
@@ -1287,6 +1416,9 @@ const double toler043 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.10000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data044[10] =
 {
@@ -1316,6 +1448,9 @@ const double toler044 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.14999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data045[10] =
 {
@@ -1345,6 +1480,9 @@ const double toler045 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.20000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data046[10] =
 {
@@ -1374,6 +1512,9 @@ const double toler046 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.25000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data047[10] =
 {
@@ -1403,6 +1544,9 @@ const double toler047 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.29999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data048[10] =
 {
@@ -1432,6 +1576,9 @@ const double toler048 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.34999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data049[10] =
 {
@@ -1461,6 +1608,9 @@ const double toler049 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.40000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data050[10] =
 {
@@ -1490,6 +1640,9 @@ const double toler050 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.45000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data051[10] =
 {
@@ -1519,6 +1672,9 @@ const double toler051 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data052[10] =
 {
@@ -1548,6 +1704,9 @@ const double toler052 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.55000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data053[10] =
 {
@@ -1577,6 +1736,9 @@ const double toler053 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.59999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data054[10] =
 {
@@ -1606,6 +1768,9 @@ const double toler054 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.65000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data055[10] =
 {
@@ -1635,6 +1800,9 @@ const double toler055 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.69999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data056[10] =
 {
@@ -1664,6 +1832,9 @@ const double toler056 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.75000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data057[10] =
 {
@@ -1693,6 +1864,9 @@ const double toler057 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.80000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data058[10] =
 {
@@ -1722,6 +1896,9 @@ const double toler058 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.84999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data059[10] =
 {
@@ -1751,6 +1928,9 @@ const double toler059 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.90000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data060[10] =
 {
@@ -1780,6 +1960,9 @@ const double toler060 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=0.94999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data061[10] =
 {
@@ -1809,6 +1992,9 @@ const double toler061 = 2.5000000000000020e-13;
 // Test data for n=2, m=0, rho=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data062[10] =
 {
@@ -1838,6 +2024,9 @@ const double toler062 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.050000000000000003.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data063[10] =
 {
@@ -1867,6 +2056,9 @@ const double toler063 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.10000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data064[10] =
 {
@@ -1896,6 +2088,9 @@ const double toler064 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.14999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data065[10] =
 {
@@ -1925,6 +2120,9 @@ const double toler065 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.20000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data066[10] =
 {
@@ -1954,6 +2152,9 @@ const double toler066 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.25000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data067[10] =
 {
@@ -1983,6 +2184,9 @@ const double toler067 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.29999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data068[10] =
 {
@@ -2012,6 +2216,9 @@ const double toler068 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.34999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data069[10] =
 {
@@ -2041,6 +2248,9 @@ const double toler069 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.40000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data070[10] =
 {
@@ -2070,6 +2280,9 @@ const double toler070 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.45000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data071[10] =
 {
@@ -2099,6 +2312,9 @@ const double toler071 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data072[10] =
 {
@@ -2128,6 +2344,9 @@ const double toler072 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.55000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data073[10] =
 {
@@ -2157,6 +2376,9 @@ const double toler073 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.59999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data074[10] =
 {
@@ -2186,6 +2408,9 @@ const double toler074 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.65000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data075[10] =
 {
@@ -2215,6 +2440,9 @@ const double toler075 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.69999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data076[10] =
 {
@@ -2244,6 +2472,9 @@ const double toler076 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.75000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data077[10] =
 {
@@ -2273,6 +2504,9 @@ const double toler077 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.80000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data078[10] =
 {
@@ -2302,6 +2536,9 @@ const double toler078 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.84999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data079[10] =
 {
@@ -2331,6 +2568,9 @@ const double toler079 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.90000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data080[10] =
 {
@@ -2360,6 +2600,9 @@ const double toler080 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=0.94999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data081[10] =
 {
@@ -2389,6 +2632,9 @@ const double toler081 = 2.5000000000000020e-13;
 // Test data for n=2, m=2, rho=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data082[10] =
 {
@@ -2418,6 +2664,9 @@ const double toler082 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.050000000000000003.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data083[10] =
 {
@@ -2447,6 +2696,9 @@ const double toler083 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.10000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data084[10] =
 {
@@ -2476,6 +2728,9 @@ const double toler084 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.14999999999999999.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 1.9480114207986710e-16
+// mean(f - f_GSL): 3.1918911957973248e-17
+// variance(f - f_GSL): 1.2577986920751206e-34
+// stddev(f - f_GSL): 1.1215162469064460e-17
 const testcase_zernike<double>
 data085[10] =
 {
@@ -2505,6 +2760,9 @@ const double toler085 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.20000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data086[10] =
 {
@@ -2534,6 +2792,9 @@ const double toler086 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.25000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data087[10] =
 {
@@ -2563,6 +2824,9 @@ const double toler087 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.29999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data088[10] =
 {
@@ -2592,6 +2856,9 @@ const double toler088 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.34999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data089[10] =
 {
@@ -2621,6 +2888,9 @@ const double toler089 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.40000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data090[10] =
 {
@@ -2650,6 +2920,9 @@ const double toler090 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.45000000000000001.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 1.8400612004967961e-16
+// mean(f - f_GSL): 3.4694469519536142e-17
+// variance(f - f_GSL): 1.4860570558543484e-34
+// stddev(f - f_GSL): 1.2190393988113545e-17
 const testcase_zernike<double>
 data091[10] =
 {
@@ -2679,6 +2952,9 @@ const double toler091 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data092[10] =
 {
@@ -2708,6 +2984,9 @@ const double toler092 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.55000000000000004.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 2.5880089809343296e-16
+// mean(f - f_GSL): 1.7347234759768071e-17
+// variance(f - f_GSL): 3.7151426396358710e-35
+// stddev(f - f_GSL): 6.0951969940567724e-18
 const testcase_zernike<double>
 data093[10] =
 {
@@ -2737,6 +3016,9 @@ const double toler093 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.59999999999999998.
 // max(|f - f_GSL|): 3.4694469519536142e-18
 // max(|f - f_GSL| / |f_GSL|): 3.5222167584216737e-16
+// mean(f - f_GSL): -2.2985086056692693e-18
+// variance(f - f_GSL): 6.5223972967107259e-37
+// stddev(f - f_GSL): 8.0761360171252230e-19
 const testcase_zernike<double>
 data094[10] =
 {
@@ -2766,6 +3048,9 @@ const double toler094 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.65000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data095[10] =
 {
@@ -2795,6 +3080,9 @@ const double toler095 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.69999999999999996.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 2.1611888296006711e-16
+// mean(f - f_GSL): -2.9837243786801081e-17
+// variance(f - f_GSL): 1.0990877985098760e-34
+// stddev(f - f_GSL): 1.0483738829777648e-17
 const testcase_zernike<double>
 data096[10] =
 {
@@ -2824,6 +3112,9 @@ const double toler096 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.75000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data097[10] =
 {
@@ -2853,6 +3144,9 @@ const double toler097 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.80000000000000004.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 3.6969186912208706e-16
+// mean(f - f_GSL): -7.3552275381416618e-17
+// variance(f - f_GSL): 6.6789348318317833e-34
+// stddev(f - f_GSL): 2.5843635254800713e-17
 const testcase_zernike<double>
 data098[10] =
 {
@@ -2882,6 +3176,9 @@ const double toler098 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.84999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data099[10] =
 {
@@ -2911,6 +3208,9 @@ const double toler099 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.90000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data100[10] =
 {
@@ -2940,6 +3240,9 @@ const double toler100 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=0.94999999999999996.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 2.8853095773201070e-16
+// mean(f - f_GSL): 3.5388358909926862e-17
+// variance(f - f_GSL): 1.5460937609108638e-34
+// stddev(f - f_GSL): 1.2434201867875813e-17
 const testcase_zernike<double>
 data101[10] =
 {
@@ -2969,6 +3272,9 @@ const double toler101 = 2.5000000000000020e-13;
 // Test data for n=5, m=1, rho=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data102[10] =
 {
@@ -2998,6 +3304,9 @@ const double toler102 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.050000000000000003.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data103[10] =
 {
@@ -3027,6 +3336,9 @@ const double toler103 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.10000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data104[10] =
 {
@@ -3056,6 +3368,9 @@ const double toler104 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.14999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data105[10] =
 {
@@ -3085,6 +3400,9 @@ const double toler105 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.20000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data106[10] =
 {
@@ -3114,6 +3432,9 @@ const double toler106 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.25000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data107[10] =
 {
@@ -3143,6 +3464,9 @@ const double toler107 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.29999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data108[10] =
 {
@@ -3172,6 +3496,9 @@ const double toler108 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.34999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data109[10] =
 {
@@ -3201,6 +3528,9 @@ const double toler109 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.40000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data110[10] =
 {
@@ -3230,6 +3560,9 @@ const double toler110 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.45000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data111[10] =
 {
@@ -3259,6 +3592,9 @@ const double toler111 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data112[10] =
 {
@@ -3288,6 +3624,9 @@ const double toler112 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.55000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data113[10] =
 {
@@ -3317,6 +3656,9 @@ const double toler113 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.59999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data114[10] =
 {
@@ -3346,6 +3688,9 @@ const double toler114 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.65000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data115[10] =
 {
@@ -3375,6 +3720,9 @@ const double toler115 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.69999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data116[10] =
 {
@@ -3404,6 +3752,9 @@ const double toler116 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.75000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data117[10] =
 {
@@ -3433,6 +3784,9 @@ const double toler117 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.80000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data118[10] =
 {
@@ -3462,6 +3816,9 @@ const double toler118 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.84999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data119[10] =
 {
@@ -3491,6 +3848,9 @@ const double toler119 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.90000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data120[10] =
 {
@@ -3520,6 +3880,9 @@ const double toler120 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=0.94999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data121[10] =
 {
@@ -3549,6 +3912,9 @@ const double toler121 = 2.5000000000000020e-13;
 // Test data for n=5, m=5, rho=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data122[10] =
 {
@@ -3578,6 +3944,9 @@ const double toler122 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data123[10] =
 {
@@ -3607,6 +3976,9 @@ const double toler123 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.050000000000000003.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 1.1985517657237626e-16
+// mean(f - f_GSL): -1.1102230246251565e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data124[10] =
 {
@@ -3636,6 +4008,9 @@ const double toler124 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.10000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data125[10] =
 {
@@ -3665,6 +4040,9 @@ const double toler125 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.14999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data126[10] =
 {
@@ -3694,6 +4072,9 @@ const double toler126 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.20000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data127[10] =
 {
@@ -3723,6 +4104,9 @@ const double toler127 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.25000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data128[10] =
 {
@@ -3752,6 +4136,9 @@ const double toler128 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.29999999999999999.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 3.0218888333235583e-16
+// mean(f - f_GSL): -1.1102230246251565e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data129[10] =
 {
@@ -3781,6 +4168,9 @@ const double toler129 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.34999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data130[10] =
 {
@@ -3810,6 +4200,9 @@ const double toler130 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.40000000000000002.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 3.3510368581959916e-16
+// mean(f - f_GSL): 1.1102230246251565e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data131[10] =
 {
@@ -3839,6 +4232,9 @@ const double toler131 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.45000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data132[10] =
 {
@@ -3868,6 +4264,9 @@ const double toler132 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data133[10] =
 {
@@ -3897,6 +4296,9 @@ const double toler133 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.55000000000000004.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 2.0033760216171281e-16
+// mean(f - f_GSL): 5.5511151231257827e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data134[10] =
 {
@@ -3926,6 +4328,9 @@ const double toler134 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.59999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data135[10] =
 {
@@ -3955,6 +4360,9 @@ const double toler135 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.65000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data136[10] =
 {
@@ -3984,6 +4392,9 @@ const double toler136 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.69999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data137[10] =
 {
@@ -4013,6 +4424,9 @@ const double toler137 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.75000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data138[10] =
 {
@@ -4042,6 +4456,9 @@ const double toler138 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.80000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data139[10] =
 {
@@ -4071,6 +4488,9 @@ const double toler139 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.84999999999999998.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 2.7653896489644957e-16
+// mean(f - f_GSL): -5.5511151231257827e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data140[10] =
 {
@@ -4100,6 +4520,9 @@ const double toler140 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.90000000000000002.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 2.7560530458150348e-16
+// mean(f - f_GSL): -5.5511151231257827e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data141[10] =
 {
@@ -4129,6 +4552,9 @@ const double toler141 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=0.94999999999999996.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 1.4124372011131002e-16
+// mean(f - f_GSL): 5.5511151231257827e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data142[10] =
 {
@@ -4158,6 +4584,9 @@ const double toler142 = 2.5000000000000020e-13;
 // Test data for n=10, m=0, rho=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data143[10] =
 {
@@ -4187,6 +4616,9 @@ const double toler143 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=0.050000000000000003.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data144[10] =
 {
@@ -4216,6 +4648,9 @@ const double toler144 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=0.10000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data145[10] =
 {
@@ -4245,6 +4680,9 @@ const double toler145 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=0.14999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data146[10] =
 {
@@ -4274,6 +4712,9 @@ const double toler146 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=0.20000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data147[10] =
 {
@@ -4303,6 +4744,9 @@ const double toler147 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=0.25000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data148[10] =
 {
@@ -4332,6 +4776,9 @@ const double toler148 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=0.29999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data149[10] =
 {
@@ -4361,6 +4808,9 @@ const double toler149 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=0.34999999999999998.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 1.9930172780854577e-16
+// mean(f - f_GSL): 5.5511151231257830e-18
+// variance(f - f_GSL): 4.6032103362144305e-34
+// stddev(f - f_GSL): 2.1455093419079839e-17
 const testcase_zernike<double>
 data150[10] =
 {
@@ -4390,6 +4840,9 @@ const double toler150 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=0.40000000000000002.
 // max(|f - f_GSL|): 8.3266726846886741e-17
 // max(|f - f_GSL| / |f_GSL|): 4.7666037895244258e-16
+// mean(f - f_GSL): 2.7755575615628915e-18
+// variance(f - f_GSL): 7.9985534974304465e-34
+// stddev(f - f_GSL): 2.8281714052423424e-17
 const testcase_zernike<double>
 data151[10] =
 {
@@ -4419,6 +4872,9 @@ const double toler151 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=0.45000000000000001.
 // max(|f - f_GSL|): 5.8980598183211441e-17
 // max(|f - f_GSL| / |f_GSL|): 7.2910922205054424e-15
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 4.2947048914190676e-34
+// stddev(f - f_GSL): 2.0723669779793028e-17
 const testcase_zernike<double>
 data152[10] =
 {
@@ -4448,6 +4904,9 @@ const double toler152 = 5.0000000000000039e-13;
 // Test data for n=10, m=2, rho=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data153[10] =
 {
@@ -4477,6 +4936,9 @@ const double toler153 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=0.55000000000000004.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 4.3162429207398091e-16
+// mean(f - f_GSL): -5.5511151231257830e-18
+// variance(f - f_GSL): 1.6776989737773253e-33
+// stddev(f - f_GSL): 4.0959723800061512e-17
 const testcase_zernike<double>
 data154[10] =
 {
@@ -4506,6 +4968,9 @@ const double toler154 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=0.59999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data155[10] =
 {
@@ -4535,6 +5000,9 @@ const double toler155 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=0.65000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data156[10] =
 {
@@ -4564,6 +5032,9 @@ const double toler156 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=0.69999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data157[10] =
 {
@@ -4593,6 +5064,9 @@ const double toler157 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=0.75000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data158[10] =
 {
@@ -4622,6 +5096,9 @@ const double toler158 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=0.80000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data159[10] =
 {
@@ -4651,6 +5128,9 @@ const double toler159 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=0.84999999999999998.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 3.5715995587279697e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 3.8043060629871323e-34
+// stddev(f - f_GSL): 1.9504630380981672e-17
 const testcase_zernike<double>
 data160[10] =
 {
@@ -4680,6 +5160,9 @@ const double toler160 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=0.90000000000000002.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 3.4480328554280005e-16
+// mean(f - f_GSL): 2.0816681711721684e-18
+// variance(f - f_GSL): 3.5243329136641735e-34
+// stddev(f - f_GSL): 1.8773206741694861e-17
 const testcase_zernike<double>
 data161[10] =
 {
@@ -4709,6 +5192,9 @@ const double toler161 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=0.94999999999999996.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 2.0816517154642617e-16
+// mean(f - f_GSL): -5.5511151231257830e-18
+// variance(f - f_GSL): 4.6032103362144305e-34
+// stddev(f - f_GSL): 2.1455093419079839e-17
 const testcase_zernike<double>
 data162[10] =
 {
@@ -4738,6 +5224,9 @@ const double toler162 = 2.5000000000000020e-13;
 // Test data for n=10, m=2, rho=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data163[10] =
 {
@@ -4767,6 +5256,9 @@ const double toler163 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.050000000000000003.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data164[10] =
 {
@@ -4796,6 +5288,9 @@ const double toler164 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.10000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data165[10] =
 {
@@ -4825,6 +5320,9 @@ const double toler165 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.14999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data166[10] =
 {
@@ -4854,6 +5352,9 @@ const double toler166 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.20000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data167[10] =
 {
@@ -4883,6 +5384,9 @@ const double toler167 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.25000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data168[10] =
 {
@@ -4912,6 +5416,9 @@ const double toler168 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.29999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data169[10] =
 {
@@ -4941,6 +5448,9 @@ const double toler169 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.34999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data170[10] =
 {
@@ -4970,6 +5480,9 @@ const double toler170 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.40000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data171[10] =
 {
@@ -4999,6 +5512,9 @@ const double toler171 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.45000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data172[10] =
 {
@@ -5028,6 +5544,9 @@ const double toler172 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data173[10] =
 {
@@ -5057,6 +5576,9 @@ const double toler173 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.55000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data174[10] =
 {
@@ -5086,6 +5608,9 @@ const double toler174 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.59999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data175[10] =
 {
@@ -5115,6 +5640,9 @@ const double toler175 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.65000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data176[10] =
 {
@@ -5144,6 +5672,9 @@ const double toler176 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.69999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data177[10] =
 {
@@ -5173,6 +5704,9 @@ const double toler177 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.75000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data178[10] =
 {
@@ -5202,6 +5736,9 @@ const double toler178 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.80000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data179[10] =
 {
@@ -5231,6 +5768,9 @@ const double toler179 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.84999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data180[10] =
 {
@@ -5260,6 +5800,9 @@ const double toler180 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.90000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data181[10] =
 {
@@ -5289,6 +5832,9 @@ const double toler181 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=0.94999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data182[10] =
 {
@@ -5318,6 +5864,9 @@ const double toler182 = 2.5000000000000020e-13;
 // Test data for n=10, m=10, rho=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data183[10] =
 {
@@ -5347,6 +5896,9 @@ const double toler183 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data184[10] =
 {
@@ -5376,6 +5928,9 @@ const double toler184 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.050000000000000003.
 // max(|f - f_GSL|): 1.6653345369377348e-15
 // max(|f - f_GSL| / |f_GSL|): 2.2412617292038884e-15
+// mean(f - f_GSL): -1.6653345369377348e-15
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data185[10] =
 {
@@ -5405,6 +5960,9 @@ const double toler185 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.10000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data186[10] =
 {
@@ -5434,6 +5992,9 @@ const double toler186 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.14999999999999999.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 1.7755525525670580e-16
+// mean(f - f_GSL): 5.5511151231257827e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data187[10] =
 {
@@ -5463,6 +6024,9 @@ const double toler187 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.20000000000000001.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 1.4712121336767688e-16
+// mean(f - f_GSL): -5.5511151231257827e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data188[10] =
 {
@@ -5492,6 +6056,9 @@ const double toler188 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.25000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data189[10] =
 {
@@ -5521,6 +6088,9 @@ const double toler189 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.29999999999999999.
 // max(|f - f_GSL|): 1.6653345369377348e-16
 // max(|f - f_GSL| / |f_GSL|): 6.6283237195667208e-16
+// mean(f - f_GSL): -1.6653345369377348e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data190[10] =
 {
@@ -5550,6 +6120,9 @@ const double toler190 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.34999999999999998.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 4.0161753443246990e-16
+// mean(f - f_GSL): 1.1102230246251565e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data191[10] =
 {
@@ -5579,6 +6152,9 @@ const double toler191 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.40000000000000002.
 // max(|f - f_GSL|): 1.2663481374630692e-16
 // max(|f - f_GSL| / |f_GSL|): 5.2048833381899225e-14
+// mean(f - f_GSL): 1.2663481374630692e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data192[10] =
 {
@@ -5608,6 +6184,9 @@ const double toler192 = 5.0000000000000029e-12;
 // Test data for n=20, m=0, rho=0.45000000000000001.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 2.2122986667397544e-16
+// mean(f - f_GSL): -5.5511151231257827e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data193[10] =
 {
@@ -5637,6 +6216,9 @@ const double toler193 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data194[10] =
 {
@@ -5666,6 +6248,9 @@ const double toler194 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.55000000000000004.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 2.5190353934533574e-16
+// mean(f - f_GSL): -2.7755575615628914e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data195[10] =
 {
@@ -5695,6 +6280,9 @@ const double toler195 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.59999999999999998.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 4.4764134145843950e-16
+// mean(f - f_GSL): 1.1102230246251565e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data196[10] =
 {
@@ -5724,6 +6312,9 @@ const double toler196 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.65000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data197[10] =
 {
@@ -5753,6 +6344,9 @@ const double toler197 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.69999999999999996.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 1.1531265569343241e-16
+// mean(f - f_GSL): -2.7755575615628914e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data198[10] =
 {
@@ -5782,6 +6376,9 @@ const double toler198 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.75000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data199[10] =
 {
@@ -5811,6 +6408,9 @@ const double toler199 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.80000000000000004.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 2.2382067072921965e-16
+// mean(f - f_GSL): 5.5511151231257827e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data200[10] =
 {
@@ -5840,6 +6440,9 @@ const double toler200 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.84999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data201[10] =
 {
@@ -5869,6 +6472,9 @@ const double toler201 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.90000000000000002.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 1.3632279511168173e-16
+// mean(f - f_GSL): 2.7755575615628914e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data202[10] =
 {
@@ -5898,6 +6504,9 @@ const double toler202 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=0.94999999999999996.
 // max(|f - f_GSL|): 1.6653345369377348e-16
 // max(|f - f_GSL| / |f_GSL|): 5.7033733791949463e-16
+// mean(f - f_GSL): -1.6653345369377348e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data203[10] =
 {
@@ -5927,6 +6536,9 @@ const double toler203 = 2.5000000000000020e-13;
 // Test data for n=20, m=0, rho=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data204[10] =
 {
@@ -5956,6 +6568,9 @@ const double toler204 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.050000000000000003.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 2.8865626622636955e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 9.5107651574678308e-35
+// stddev(f - f_GSL): 9.7523151904908362e-18
 const testcase_zernike<double>
 data205[10] =
 {
@@ -5985,6 +6600,9 @@ const double toler205 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.10000000000000001.
 // max(|f - f_GSL|): 2.2204460492503131e-16
 // max(|f - f_GSL| / |f_GSL|): 6.3744817809073441e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 6.0868897007794117e-33
+// stddev(f - f_GSL): 7.8018521523926690e-17
 const testcase_zernike<double>
 data206[10] =
 {
@@ -6014,6 +6632,9 @@ const double toler206 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.14999999999999999.
 // max(|f - f_GSL|): 3.3306690738754696e-16
 // max(|f - f_GSL| / |f_GSL|): 7.2531251133171602e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 1.3695501826753678e-32
+// stddev(f - f_GSL): 1.1702778228589004e-16
 const testcase_zernike<double>
 data207[10] =
 {
@@ -6043,6 +6664,9 @@ const double toler207 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.20000000000000001.
 // max(|f - f_GSL|): 2.7755575615628914e-16
 // max(|f - f_GSL| / |f_GSL|): 9.5947013607113877e-16
+// mean(f - f_GSL): -5.5511151231257830e-18
+// variance(f - f_GSL): 9.8950000698295322e-33
+// stddev(f - f_GSL): 9.9473614943006532e-17
 const testcase_zernike<double>
 data208[10] =
 {
@@ -6072,6 +6696,9 @@ const double toler208 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.25000000000000000.
 // max(|f - f_GSL|): 6.9388939039072284e-18
 // max(|f - f_GSL| / |f_GSL|): 1.7831219687430748e-16
+// mean(f - f_GSL): -1.7347234759768072e-19
+// variance(f - f_GSL): 6.2451547772279001e-36
+// stddev(f - f_GSL): 2.4990307675632766e-18
 const testcase_zernike<double>
 data209[10] =
 {
@@ -6101,6 +6728,9 @@ const double toler209 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.29999999999999999.
 // max(|f - f_GSL|): 1.6653345369377348e-16
 // max(|f - f_GSL| / |f_GSL|): 5.8661803005343696e-16
+// mean(f - f_GSL): -5.5511151231257830e-18
+// variance(f - f_GSL): 3.6559381265306345e-33
+// stddev(f - f_GSL): 6.0464354181043181e-17
 const testcase_zernike<double>
 data210[10] =
 {
@@ -6130,6 +6760,9 @@ const double toler210 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.34999999999999998.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 4.9870080599254652e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 1.5217224251948529e-33
+// stddev(f - f_GSL): 3.9009260761963345e-17
 const testcase_zernike<double>
 data211[10] =
 {
@@ -6159,6 +6792,9 @@ const double toler211 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.40000000000000002.
 // max(|f - f_GSL|): 4.8572257327350599e-17
 // max(|f - f_GSL| / |f_GSL|): 8.9762466043851311e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 2.9126718294745235e-34
+// stddev(f - f_GSL): 1.7066551583358962e-17
 const testcase_zernike<double>
 data212[10] =
 {
@@ -6188,6 +6824,9 @@ const double toler212 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.45000000000000001.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 2.9563005146917758e-16
+// mean(f - f_GSL): -6.9388939039072288e-19
+// variance(f - f_GSL): 3.9000081373841524e-34
+// stddev(f - f_GSL): 1.9748438260743944e-17
 const testcase_zernike<double>
 data213[10] =
 {
@@ -6217,6 +6856,9 @@ const double toler213 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data214[10] =
 {
@@ -6246,6 +6888,9 @@ const double toler214 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.55000000000000004.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 2.7843951209308300e-16
+// mean(f - f_GSL): -3.4694469519536144e-19
+// variance(f - f_GSL): 9.2744820855869895e-35
+// stddev(f - f_GSL): 9.6304112506097004e-18
 const testcase_zernike<double>
 data215[10] =
 {
@@ -6275,6 +6920,9 @@ const double toler215 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.59999999999999998.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 2.9878190655969806e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 3.8043060629871323e-34
+// stddev(f - f_GSL): 1.9504630380981672e-17
 const testcase_zernike<double>
 data216[10] =
 {
@@ -6304,6 +6952,9 @@ const double toler216 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.65000000000000002.
 // max(|f - f_GSL|): 1.7347234759768071e-18
 // max(|f - f_GSL| / |f_GSL|): 2.1720323595820860e-16
+// mean(f - f_GSL): 1.7347234759768072e-19
+// variance(f - f_GSL): 4.4953225939594048e-37
+// stddev(f - f_GSL): 6.7047166934624498e-19
 const testcase_zernike<double>
 data217[10] =
 {
@@ -6333,6 +6984,9 @@ const double toler217 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.69999999999999996.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 3.2529181533751771e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 3.8043060629871323e-34
+// stddev(f - f_GSL): 1.9504630380981672e-17
 const testcase_zernike<double>
 data218[10] =
 {
@@ -6362,6 +7016,9 @@ const double toler218 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.75000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data219[10] =
 {
@@ -6391,6 +7048,9 @@ const double toler219 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.80000000000000004.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 2.3525966202030213e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 3.8043060629871323e-34
+// stddev(f - f_GSL): 1.9504630380981672e-17
 const testcase_zernike<double>
 data220[10] =
 {
@@ -6420,6 +7080,9 @@ const double toler220 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.84999999999999998.
 // max(|f - f_GSL|): 6.9388939039072284e-17
 // max(|f - f_GSL| / |f_GSL|): 1.3842474722946591e-15
+// mean(f - f_GSL): -1.7347234759768072e-19
+// variance(f - f_GSL): 5.9145442337267042e-34
+// stddev(f - f_GSL): 2.4319836006286522e-17
 const testcase_zernike<double>
 data221[10] =
 {
@@ -6449,6 +7112,9 @@ const double toler221 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.90000000000000002.
 // max(|f - f_GSL|): 8.3266726846886741e-17
 // max(|f - f_GSL| / |f_GSL|): 4.5393345722435615e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 8.5596886417210486e-34
+// stddev(f - f_GSL): 2.9256945571472510e-17
 const testcase_zernike<double>
 data222[10] =
 {
@@ -6478,6 +7144,9 @@ const double toler222 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=0.94999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data223[10] =
 {
@@ -6507,6 +7176,9 @@ const double toler223 = 2.5000000000000020e-13;
 // Test data for n=20, m=2, rho=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data224[10] =
 {
@@ -6536,6 +7208,9 @@ const double toler224 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.050000000000000003.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data225[10] =
 {
@@ -6565,6 +7240,9 @@ const double toler225 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.10000000000000001.
 // max(|f - f_GSL|): 5.2939559203393771e-23
 // max(|f - f_GSL| / |f_GSL|): 2.7310930424335868e-16
+// mean(f - f_GSL): -1.9852334701272663e-24
+// variance(f - f_GSL): 3.7243615434929264e-46
+// stddev(f - f_GSL): 1.9298604984539494e-23
 const testcase_zernike<double>
 data226[10] =
 {
@@ -6594,6 +7272,9 @@ const double toler226 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.14999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data227[10] =
 {
@@ -6623,6 +7304,9 @@ const double toler227 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.20000000000000001.
 // max(|f - f_GSL|): 5.4210108624275222e-20
 // max(|f - f_GSL| / |f_GSL|): 3.1086575174781742e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 3.6280689840194057e-40
+// stddev(f - f_GSL): 1.9047490606427414e-20
 const testcase_zernike<double>
 data228[10] =
 {
@@ -6652,6 +7336,9 @@ const double toler228 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.25000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data229[10] =
 {
@@ -6681,6 +7368,9 @@ const double toler229 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.29999999999999999.
 // max(|f - f_GSL|): 1.7347234759768071e-18
 // max(|f - f_GSL| / |f_GSL|): 2.8579719690527795e-16
+// mean(f - f_GSL): -6.5052130349130264e-20
+// variance(f - f_GSL): 3.9990027569455501e-37
+// stddev(f - f_GSL): 6.3237668813339013e-19
 const testcase_zernike<double>
 data230[10] =
 {
@@ -6710,6 +7400,9 @@ const double toler230 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.34999999999999998.
 // max(|f - f_GSL|): 3.4694469519536142e-18
 // max(|f - f_GSL| / |f_GSL|): 1.6292929358975695e-16
+// mean(f - f_GSL): -8.6736173798840360e-20
+// variance(f - f_GSL): 1.5612886943069750e-36
+// stddev(f - f_GSL): 1.2495153837816383e-18
 const testcase_zernike<double>
 data231[10] =
 {
@@ -6739,6 +7432,9 @@ const double toler231 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.40000000000000002.
 // max(|f - f_GSL|): 1.3877787807814457e-17
 // max(|f - f_GSL| / |f_GSL|): 2.4483054560056550e-16
+// mean(f - f_GSL): 1.3877787807814458e-18
+// variance(f - f_GSL): 1.9259299443872360e-35
+// stddev(f - f_GSL): 4.3885418357208764e-18
 const testcase_zernike<double>
 data232[10] =
 {
@@ -6768,6 +7464,9 @@ const double toler232 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.45000000000000001.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 2.1329050526325582e-16
+// mean(f - f_GSL): 2.7755575615628915e-18
+// variance(f - f_GSL): 7.7037197775489438e-35
+// stddev(f - f_GSL): 8.7770836714417528e-18
 const testcase_zernike<double>
 data233[10] =
 {
@@ -6797,6 +7496,9 @@ const double toler233 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data234[10] =
 {
@@ -6826,6 +7528,9 @@ const double toler234 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.55000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data235[10] =
 {
@@ -6855,6 +7560,9 @@ const double toler235 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.59999999999999998.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 2.9020658447966844e-16
+// mean(f - f_GSL): 3.4694469519536142e-18
+// variance(f - f_GSL): 3.3436283756722846e-34
+// stddev(f - f_GSL): 1.8285590982170317e-17
 const testcase_zernike<double>
 data236[10] =
 {
@@ -6884,6 +7592,9 @@ const double toler236 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.65000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data237[10] =
 {
@@ -6913,6 +7624,9 @@ const double toler237 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.69999999999999996.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 1.8437181551643272e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 9.5107651574678308e-35
+// stddev(f - f_GSL): 9.7523151904908362e-18
 const testcase_zernike<double>
 data238[10] =
 {
@@ -6942,6 +7656,9 @@ const double toler238 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.75000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data239[10] =
 {
@@ -6971,6 +7688,9 @@ const double toler239 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.80000000000000004.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 5.6484949403409513e-16
+// mean(f - f_GSL): 1.7347234759768072e-19
+// variance(f - f_GSL): 9.6300212362001431e-35
+// stddev(f - f_GSL): 9.8132671604314041e-18
 const testcase_zernike<double>
 data240[10] =
 {
@@ -7000,6 +7720,9 @@ const double toler240 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.84999999999999998.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 2.5656801496976361e-16
+// mean(f - f_GSL): 2.7755575615628915e-18
+// variance(f - f_GSL): 3.4333862218458872e-34
+// stddev(f - f_GSL): 1.8529398861932589e-17
 const testcase_zernike<double>
 data241[10] =
 {
@@ -7029,6 +7752,9 @@ const double toler241 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.90000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data242[10] =
 {
@@ -7058,6 +7784,9 @@ const double toler242 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=0.94999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data243[10] =
 {
@@ -7087,6 +7816,9 @@ const double toler243 = 2.5000000000000020e-13;
 // Test data for n=20, m=10, rho=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data244[10] =
 {
@@ -7116,6 +7848,9 @@ const double toler244 = 2.5000000000000020e-13;
 // Test data for n=20, m=20, rho=0.20000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data245[10] =
 {
@@ -7145,6 +7880,9 @@ const double toler245 = 2.5000000000000020e-13;
 // Test data for n=20, m=20, rho=0.25000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data246[10] =
 {
@@ -7174,6 +7912,9 @@ const double toler246 = 2.5000000000000020e-13;
 // Test data for n=20, m=20, rho=0.29999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data247[10] =
 {
@@ -7203,6 +7944,9 @@ const double toler247 = 2.5000000000000020e-13;
 // Test data for n=20, m=20, rho=0.34999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data248[10] =
 {
@@ -7232,6 +7976,9 @@ const double toler248 = 2.5000000000000020e-13;
 // Test data for n=20, m=20, rho=0.40000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data249[10] =
 {
@@ -7261,6 +8008,9 @@ const double toler249 = 2.5000000000000020e-13;
 // Test data for n=20, m=20, rho=0.45000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data250[10] =
 {
@@ -7290,6 +8040,9 @@ const double toler250 = 2.5000000000000020e-13;
 // Test data for n=20, m=20, rho=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data251[10] =
 {
@@ -7319,6 +8072,9 @@ const double toler251 = 2.5000000000000020e-13;
 // Test data for n=20, m=20, rho=0.55000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data252[10] =
 {
@@ -7348,6 +8104,9 @@ const double toler252 = 2.5000000000000020e-13;
 // Test data for n=20, m=20, rho=0.59999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data253[10] =
 {
@@ -7377,6 +8136,9 @@ const double toler253 = 2.5000000000000020e-13;
 // Test data for n=20, m=20, rho=0.65000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data254[10] =
 {
@@ -7406,6 +8168,9 @@ const double toler254 = 2.5000000000000020e-13;
 // Test data for n=20, m=20, rho=0.69999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data255[10] =
 {
@@ -7435,6 +8200,9 @@ const double toler255 = 2.5000000000000020e-13;
 // Test data for n=20, m=20, rho=0.75000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data256[10] =
 {
@@ -7464,6 +8232,9 @@ const double toler256 = 2.5000000000000020e-13;
 // Test data for n=20, m=20, rho=0.80000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data257[10] =
 {
@@ -7493,6 +8264,9 @@ const double toler257 = 2.5000000000000020e-13;
 // Test data for n=20, m=20, rho=0.84999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data258[10] =
 {
@@ -7522,6 +8296,9 @@ const double toler258 = 2.5000000000000020e-13;
 // Test data for n=20, m=20, rho=0.90000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data259[10] =
 {
@@ -7551,6 +8328,9 @@ const double toler259 = 2.5000000000000020e-13;
 // Test data for n=20, m=20, rho=0.94999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data260[10] =
 {
@@ -7580,6 +8360,9 @@ const double toler260 = 2.5000000000000020e-13;
 // Test data for n=20, m=20, rho=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data261[10] =
 {
@@ -7609,6 +8392,9 @@ const double toler261 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=0.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data262[10] =
 {
@@ -7638,6 +8424,9 @@ const double toler262 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=0.050000000000000003.
 // max(|f - f_GSL|): 2.2898349882893854e-15
 // max(|f - f_GSL| / |f_GSL|): 3.1121006853787319e-14
+// mean(f - f_GSL): 2.2898349882893854e-15
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data263[10] =
 {
@@ -7667,6 +8456,9 @@ const double toler263 = 2.5000000000000015e-12;
 // Test data for n=50, m=0, rho=0.10000000000000001.
 // max(|f - f_GSL|): 6.6613381477509392e-16
 // max(|f - f_GSL| / |f_GSL|): 4.6971391590352079e-15
+// mean(f - f_GSL): -6.6613381477509392e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data264[10] =
 {
@@ -7696,6 +8488,9 @@ const double toler264 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=0.14999999999999999.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 1.1562506589468195e-16
+// mean(f - f_GSL): 2.7755575615628914e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data265[10] =
 {
@@ -7725,6 +8520,9 @@ const double toler265 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=0.20000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data266[10] =
 {
@@ -7754,6 +8552,9 @@ const double toler266 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=0.25000000000000000.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 1.3741865703324519e-16
+// mean(f - f_GSL): 2.7755575615628914e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data267[10] =
 {
@@ -7783,6 +8584,9 @@ const double toler267 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=0.29999999999999999.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data268[10] =
 {
@@ -7812,6 +8616,9 @@ const double toler268 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=0.34999999999999998.
 // max(|f - f_GSL|): 1.8041124150158794e-16
 // max(|f - f_GSL| / |f_GSL|): 5.5856206066699634e-15
+// mean(f - f_GSL): 1.8041124150158794e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data269[10] =
 {
@@ -7841,6 +8648,9 @@ const double toler269 = 5.0000000000000039e-13;
 // Test data for n=50, m=0, rho=0.40000000000000002.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 1.3609316726982927e-15
+// mean(f - f_GSL): -5.5511151231257827e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data270[10] =
 {
@@ -7870,6 +8680,9 @@ const double toler270 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=0.45000000000000001.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 6.0670757196390314e-16
+// mean(f - f_GSL): 5.5511151231257827e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data271[10] =
 {
@@ -7899,6 +8712,9 @@ const double toler271 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=0.50000000000000000.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 2.3056419758720352e-16
+// mean(f - f_GSL): -2.7755575615628914e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data272[10] =
 {
@@ -7928,6 +8744,9 @@ const double toler272 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=0.55000000000000004.
 // max(|f - f_GSL|): 1.3877787807814457e-16
 // max(|f - f_GSL| / |f_GSL|): 1.0486932705860350e-15
+// mean(f - f_GSL): 1.3877787807814457e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data273[10] =
 {
@@ -7957,6 +8776,9 @@ const double toler273 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=0.59999999999999998.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 2.1086582724868768e-16
+// mean(f - f_GSL): 2.7755575615628914e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data274[10] =
 {
@@ -7986,6 +8808,9 @@ const double toler274 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=0.65000000000000002.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 2.3713298934758548e-16
+// mean(f - f_GSL): 2.7755575615628914e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data275[10] =
 {
@@ -8015,6 +8840,9 @@ const double toler275 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=0.69999999999999996.
 // max(|f - f_GSL|): 1.3877787807814457e-17
 // max(|f - f_GSL| / |f_GSL|): 1.7987407086176825e-16
+// mean(f - f_GSL): 1.3877787807814457e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data276[10] =
 {
@@ -8044,6 +8872,9 @@ const double toler276 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=0.75000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data277[10] =
 {
@@ -8073,6 +8904,9 @@ const double toler277 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=0.80000000000000004.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 2.1086582724868679e-16
+// mean(f - f_GSL): -2.7755575615628914e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data278[10] =
 {
@@ -8102,6 +8936,9 @@ const double toler278 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=0.84999999999999998.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 2.3086593297369543e-16
+// mean(f - f_GSL): 2.7755575615628914e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data279[10] =
 {
@@ -8131,6 +8968,9 @@ const double toler279 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=0.90000000000000002.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 6.3814422293362242e-16
+// mean(f - f_GSL): -1.1102230246251565e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data280[10] =
 {
@@ -8160,6 +9000,9 @@ const double toler280 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=0.94999999999999996.
 // max(|f - f_GSL|): 1.9428902930940239e-16
 // max(|f - f_GSL| / |f_GSL|): 9.9303757370998572e-16
+// mean(f - f_GSL): 1.9428902930940239e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data281[10] =
 {
@@ -8189,6 +9032,9 @@ const double toler281 = 2.5000000000000020e-13;
 // Test data for n=50, m=0, rho=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data282[10] =
 {
@@ -8218,6 +9064,9 @@ const double toler282 = 2.5000000000000020e-13;
 // Test data for n=50, m=2, rho=0.050000000000000003.
 // max(|f - f_GSL|): 4.9960036108132044e-16
 // max(|f - f_GSL| / |f_GSL|): 1.1730053452598427e-15
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 3.0814879110195774e-32
+// stddev(f - f_GSL): 1.7554167342883506e-16
 const testcase_zernike<double>
 data283[10] =
 {
@@ -8247,6 +9096,9 @@ const double toler283 = 2.5000000000000020e-13;
 // Test data for n=50, m=2, rho=0.10000000000000001.
 // max(|f - f_GSL|): 3.8857805861880479e-16
 // max(|f - f_GSL| / |f_GSL|): 4.0625039471056706e-14
+// mean(f - f_GSL): 1.5178830414797061e-19
+// variance(f - f_GSL): 1.8626539193895660e-32
+// stddev(f - f_GSL): 1.3647907969317370e-16
 const testcase_zernike<double>
 data284[10] =
 {
@@ -8276,6 +9128,9 @@ const double toler284 = 2.5000000000000015e-12;
 // Test data for n=50, m=2, rho=0.14999999999999999.
 // max(|f - f_GSL|): 8.3266726846886741e-17
 // max(|f - f_GSL| / |f_GSL|): 4.5659775886015030e-16
+// mean(f - f_GSL): -2.7755575615628915e-18
+// variance(f - f_GSL): 7.9985534974304465e-34
+// stddev(f - f_GSL): 2.8281714052423424e-17
 const testcase_zernike<double>
 data285[10] =
 {
@@ -8305,6 +9160,9 @@ const double toler285 = 2.5000000000000020e-13;
 // Test data for n=50, m=2, rho=0.20000000000000001.
 // max(|f - f_GSL|): 1.6653345369377348e-16
 // max(|f - f_GSL| / |f_GSL|): 7.3222070311195911e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 3.4238754566884194e-33
+// stddev(f - f_GSL): 5.8513891142945020e-17
 const testcase_zernike<double>
 data286[10] =
 {
@@ -8334,6 +9192,9 @@ const double toler286 = 2.5000000000000020e-13;
 // Test data for n=50, m=2, rho=0.25000000000000000.
 // max(|f - f_GSL|): 1.9428902930940239e-16
 // max(|f - f_GSL| / |f_GSL|): 1.0034570787451951e-15
+// mean(f - f_GSL): -6.9388939039072288e-19
+// variance(f - f_GSL): 4.6270466913903339e-33
+// stddev(f - f_GSL): 6.8022398453673577e-17
 const testcase_zernike<double>
 data287[10] =
 {
@@ -8363,6 +9224,9 @@ const double toler287 = 2.5000000000000020e-13;
 // Test data for n=50, m=2, rho=0.29999999999999999.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 8.5315374125368032e-16
+// mean(f - f_GSL): 3.1225022567582528e-18
+// variance(f - f_GSL): 1.6085230178273054e-33
+// stddev(f - f_GSL): 4.0106396220893561e-17
 const testcase_zernike<double>
 data288[10] =
 {
@@ -8392,6 +9256,9 @@ const double toler288 = 2.5000000000000020e-13;
 // Test data for n=50, m=2, rho=0.34999999999999998.
 // max(|f - f_GSL|): 2.0816681711721685e-16
 // max(|f - f_GSL| / |f_GSL|): 4.0011257641886640e-15
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 5.3498054010756553e-33
+// stddev(f - f_GSL): 7.3142363928681269e-17
 const testcase_zernike<double>
 data289[10] =
 {
@@ -8421,6 +9288,9 @@ const double toler289 = 2.5000000000000020e-13;
 // Test data for n=50, m=2, rho=0.40000000000000002.
 // max(|f - f_GSL|): 1.2143064331837650e-16
 // max(|f - f_GSL| / |f_GSL|): 5.0878894303832689e-15
+// mean(f - f_GSL): -8.6736173798840360e-20
+// variance(f - f_GSL): 1.8178202223594919e-33
+// stddev(f - f_GSL): 4.2635902973427125e-17
 const testcase_zernike<double>
 data290[10] =
 {
@@ -8450,6 +9320,9 @@ const double toler290 = 5.0000000000000039e-13;
 // Test data for n=50, m=2, rho=0.45000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data291[10] =
 {
@@ -8479,6 +9352,9 @@ const double toler291 = 2.5000000000000020e-13;
 // Test data for n=50, m=2, rho=0.50000000000000000.
 // max(|f - f_GSL|): 1.3877787807814457e-17
 // max(|f - f_GSL| / |f_GSL|): 1.7814766308684605e-16
+// mean(f - f_GSL): -3.4694469519536144e-19
+// variance(f - f_GSL): 2.2602927819544643e-35
+// stddev(f - f_GSL): 4.7542536553642823e-18
 const testcase_zernike<double>
 data292[10] =
 {
@@ -8508,6 +9384,9 @@ const double toler292 = 2.5000000000000020e-13;
 // Test data for n=50, m=2, rho=0.55000000000000004.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 4.6730995149902752e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 3.8043060629871323e-34
+// stddev(f - f_GSL): 1.9504630380981672e-17
 const testcase_zernike<double>
 data293[10] =
 {
@@ -8537,6 +9416,9 @@ const double toler293 = 2.5000000000000020e-13;
 // Test data for n=50, m=2, rho=0.59999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data294[10] =
 {
@@ -8566,6 +9448,9 @@ const double toler294 = 2.5000000000000020e-13;
 // Test data for n=50, m=2, rho=0.65000000000000002.
 // max(|f - f_GSL|): 8.3266726846886741e-17
 // max(|f - f_GSL| / |f_GSL|): 8.9118675991971366e-16
+// mean(f - f_GSL): -3.4694469519536144e-19
+// variance(f - f_GSL): 8.4885065087456251e-34
+// stddev(f - f_GSL): 2.9135041631591374e-17
 const testcase_zernike<double>
 data295[10] =
 {
@@ -8595,6 +9480,9 @@ const double toler295 = 2.5000000000000020e-13;
 // Test data for n=50, m=2, rho=0.69999999999999996.
 // max(|f - f_GSL|): 1.3877787807814457e-17
 // max(|f - f_GSL| / |f_GSL|): 2.0617153096179610e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 2.3776912893669577e-35
+// stddev(f - f_GSL): 4.8761575952454181e-18
 const testcase_zernike<double>
 data296[10] =
 {
@@ -8624,6 +9512,9 @@ const double toler296 = 2.5000000000000020e-13;
 // Test data for n=50, m=2, rho=0.75000000000000000.
 // max(|f - f_GSL|): 1.2143064331837650e-17
 // max(|f - f_GSL| / |f_GSL|): 9.5804032707423779e-16
+// mean(f - f_GSL): -1.7347234759768072e-19
+// variance(f - f_GSL): 1.8728034046404429e-35
+// stddev(f - f_GSL): 4.3275898657803085e-18
 const testcase_zernike<double>
 data297[10] =
 {
@@ -8653,6 +9544,9 @@ const double toler297 = 2.5000000000000020e-13;
 // Test data for n=50, m=2, rho=0.80000000000000004.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 5.3921238340888432e-16
+// mean(f - f_GSL): 1.3877787807814458e-18
+// variance(f - f_GSL): 3.6164684511271429e-34
+// stddev(f - f_GSL): 1.9017014621457129e-17
 const testcase_zernike<double>
 data298[10] =
 {
@@ -8682,6 +9576,9 @@ const double toler298 = 2.5000000000000020e-13;
 // Test data for n=50, m=2, rho=0.84999999999999998.
 // max(|f - f_GSL|): 1.3877787807814457e-17
 // max(|f - f_GSL| / |f_GSL|): 1.7013408946326525e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 2.3776912893669577e-35
+// stddev(f - f_GSL): 4.8761575952454181e-18
 const testcase_zernike<double>
 data299[10] =
 {
@@ -8711,6 +9608,9 @@ const double toler299 = 2.5000000000000020e-13;
 // Test data for n=50, m=2, rho=0.90000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data300[10] =
 {
@@ -8740,6 +9640,9 @@ const double toler300 = 2.5000000000000020e-13;
 // Test data for n=50, m=2, rho=0.94999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data301[10] =
 {
@@ -8769,6 +9672,9 @@ const double toler301 = 2.5000000000000020e-13;
 // Test data for n=50, m=2, rho=1.0000000000000000.
 // max(|f - f_GSL|): 4.4408920985006262e-15
 // max(|f - f_GSL| / |f_GSL|): 4.4928090103036696e-15
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 2.4347558803117648e-30
+// stddev(f - f_GSL): 1.5603704304785337e-15
 const testcase_zernike<double>
 data302[10] =
 {
@@ -8798,6 +9704,9 @@ const double toler302 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.050000000000000003.
 // max(|f - f_GSL|): 3.3881317890172014e-21
 // max(|f - f_GSL| / |f_GSL|): 1.5201286640617674e-15
+// mean(f - f_GSL): 4.2351647362715019e-23
+// variance(f - f_GSL): 1.4528662478119703e-42
+// stddev(f - f_GSL): 1.2053490149379849e-21
 const testcase_zernike<double>
 data303[10] =
 {
@@ -8827,6 +9736,9 @@ const double toler303 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.10000000000000001.
 // max(|f - f_GSL|): 1.5178830414797062e-18
 // max(|f - f_GSL| / |f_GSL|): 9.6092124995278511e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 2.8444060834712143e-37
+// stddev(f - f_GSL): 5.3332973697996757e-19
 const testcase_zernike<double>
 data304[10] =
 {
@@ -8856,6 +9768,9 @@ const double toler304 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.14999999999999999.
 // max(|f - f_GSL|): 4.1633363423443370e-17
 // max(|f - f_GSL| / |f_GSL|): 1.0213786863480373e-15
+// mean(f - f_GSL): 1.3010426069826053e-18
+// variance(f - f_GSL): 2.0082667931381660e-34
+// stddev(f - f_GSL): 1.4171333011181997e-17
 const testcase_zernike<double>
 data305[10] =
 {
@@ -8885,6 +9800,9 @@ const double toler305 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.20000000000000001.
 // max(|f - f_GSL|): 7.7715611723760958e-16
 // max(|f - f_GSL| / |f_GSL|): 3.5039476427122135e-15
+// mean(f - f_GSL): 2.7755575615628915e-18
+// variance(f - f_GSL): 7.5097952759881744e-32
+// stddev(f - f_GSL): 2.7404005685279248e-16
 const testcase_zernike<double>
 data306[10] =
 {
@@ -8914,6 +9832,9 @@ const double toler306 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.25000000000000000.
 // max(|f - f_GSL|): 2.7755575615628914e-16
 // max(|f - f_GSL| / |f_GSL|): 1.0769515322294994e-15
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 9.5107651574678312e-33
+// stddev(f - f_GSL): 9.7523151904908359e-17
 const testcase_zernike<double>
 data307[10] =
 {
@@ -8943,6 +9864,9 @@ const double toler307 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.29999999999999999.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 3.7895721594248142e-16
+// mean(f - f_GSL): -2.7755575615628915e-18
+// variance(f - f_GSL): 3.4333862218458872e-34
+// stddev(f - f_GSL): 1.8529398861932589e-17
 const testcase_zernike<double>
 data308[10] =
 {
@@ -8972,6 +9896,9 @@ const double toler308 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.34999999999999998.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 1.0718885195744711e-15
+// mean(f - f_GSL): -1.7347234759768072e-19
+// variance(f - f_GSL): 3.8281201273071984e-34
+// stddev(f - f_GSL): 1.9565582350922240e-17
 const testcase_zernike<double>
 data309[10] =
 {
@@ -9001,6 +9928,9 @@ const double toler309 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.40000000000000002.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 6.9631282694157104e-16
+// mean(f - f_GSL): -3.4694469519536144e-19
+// variance(f - f_GSL): 1.5312480509228794e-33
+// stddev(f - f_GSL): 3.9131164701844481e-17
 const testcase_zernike<double>
 data310[10] =
 {
@@ -9030,6 +9960,9 @@ const double toler310 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.45000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data311[10] =
 {
@@ -9059,6 +9992,9 @@ const double toler311 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data312[10] =
 {
@@ -9088,6 +10024,9 @@ const double toler312 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.55000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data313[10] =
 {
@@ -9117,6 +10056,9 @@ const double toler313 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.59999999999999998.
 // max(|f - f_GSL|): 6.9388939039072284e-18
 // max(|f - f_GSL| / |f_GSL|): 1.6572521970448948e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 5.9442282234173943e-36
+// stddev(f - f_GSL): 2.4380787976227091e-18
 const testcase_zernike<double>
 data314[10] =
 {
@@ -9146,6 +10088,9 @@ const double toler314 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.65000000000000002.
 // max(|f - f_GSL|): 1.3877787807814457e-17
 // max(|f - f_GSL| / |f_GSL|): 3.7399977259282458e-16
+// mean(f - f_GSL): 6.9388939039072288e-19
+// variance(f - f_GSL): 2.6214046465270708e-35
+// stddev(f - f_GSL): 5.1199654750076890e-18
 const testcase_zernike<double>
 data315[10] =
 {
@@ -9175,6 +10120,9 @@ const double toler315 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.69999999999999996.
 // max(|f - f_GSL|): 1.3877787807814457e-17
 // max(|f - f_GSL| / |f_GSL|): 2.5707614823978260e-16
+// mean(f - f_GSL): 5.2041704279304211e-19
+// variance(f - f_GSL): 2.2027080710401084e-35
+// stddev(f - f_GSL): 4.6933016854237152e-18
 const testcase_zernike<double>
 data316[10] =
 {
@@ -9204,6 +10152,9 @@ const double toler316 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.75000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data317[10] =
 {
@@ -9233,6 +10184,9 @@ const double toler317 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.80000000000000004.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 2.2307214119918863e-16
+// mean(f - f_GSL): -1.3877787807814458e-18
+// variance(f - f_GSL): 8.5834655546147181e-35
+// stddev(f - f_GSL): 9.2646994309662945e-18
 const testcase_zernike<double>
 data318[10] =
 {
@@ -9262,6 +10216,9 @@ const double toler318 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.84999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data319[10] =
 {
@@ -9291,6 +10248,9 @@ const double toler319 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.90000000000000002.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 6.8673133246349918e-16
+// mean(f - f_GSL): 2.4286128663675298e-18
+// variance(f - f_GSL): 1.4558752370499469e-33
+// stddev(f - f_GSL): 3.8155933182795394e-17
 const testcase_zernike<double>
 data320[10] =
 {
@@ -9320,6 +10280,9 @@ const double toler320 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=0.94999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data321[10] =
 {
@@ -9349,6 +10312,9 @@ const double toler321 = 2.5000000000000020e-13;
 // Test data for n=50, m=10, rho=1.0000000000000000.
 // max(|f - f_GSL|): 1.5543122344752192e-15
 // max(|f - f_GSL| / |f_GSL|): 1.5983798959794526e-15
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 2.9825759533819120e-31
+// stddev(f - f_GSL): 5.4612965066748679e-16
 const testcase_zernike<double>
 data322[10] =
 {
@@ -9378,6 +10344,9 @@ const double toler322 = 2.5000000000000020e-13;
 // Test data for n=50, m=20, rho=0.10000000000000001.
 // max(|f - f_GSL|): 2.5849394142282115e-26
 // max(|f - f_GSL| / |f_GSL|): 1.1145055913515511e-15
+// mean(f - f_GSL): -2.5041600575335799e-27
+// variance(f - f_GSL): 6.7283944996506764e-53
+// stddev(f - f_GSL): 8.2026791352890774e-27
 const testcase_zernike<double>
 data323[10] =
 {
@@ -9407,6 +10376,9 @@ const double toler323 = 2.5000000000000020e-13;
 // Test data for n=50, m=20, rho=0.14999999999999999.
 // max(|f - f_GSL|): 2.6469779601696886e-23
 // max(|f - f_GSL| / |f_GSL|): 4.7205955108759977e-16
+// mean(f - f_GSL): -1.9852334701272663e-24
+// variance(f - f_GSL): 7.4011481391229733e-47
+// stddev(f - f_GSL): 8.6029925834694127e-24
 const testcase_zernike<double>
 data324[10] =
 {
@@ -9436,6 +10408,9 @@ const double toler324 = 2.5000000000000020e-13;
 // Test data for n=50, m=20, rho=0.20000000000000001.
 // max(|f - f_GSL|): 1.6940658945086007e-21
 // max(|f - f_GSL| / |f_GSL|): 2.1019857612364056e-16
+// mean(f - f_GSL): -2.5410988417629009e-22
+// variance(f - f_GSL): 2.5598435946816609e-43
+// stddev(f - f_GSL): 5.0594896923322821e-22
 const testcase_zernike<double>
 data325[10] =
 {
@@ -9465,6 +10440,9 @@ const double toler325 = 2.5000000000000020e-13;
 // Test data for n=50, m=20, rho=0.25000000000000000.
 // max(|f - f_GSL|): 1.0842021724855044e-19
 // max(|f - f_GSL| / |f_GSL|): 2.7044235555772425e-16
+// mean(f - f_GSL): 1.3552527156068805e-20
+// variance(f - f_GSL): 1.1110961263559431e-39
+// stddev(f - f_GSL): 3.3333108561247973e-20
 const testcase_zernike<double>
 data326[10] =
 {
@@ -9494,6 +10472,9 @@ const double toler326 = 2.5000000000000020e-13;
 // Test data for n=50, m=20, rho=0.29999999999999999.
 // max(|f - f_GSL|): 3.4694469519536142e-18
 // max(|f - f_GSL| / |f_GSL|): 5.3195608620471010e-16
+// mean(f - f_GSL): -5.6378512969246232e-19
+// variance(f - f_GSL): 1.0423297068328392e-36
+// stddev(f - f_GSL): 1.0209454965045094e-18
 const testcase_zernike<double>
 data327[10] =
 {
@@ -9523,6 +10504,9 @@ const double toler327 = 2.5000000000000020e-13;
 // Test data for n=50, m=20, rho=0.34999999999999998.
 // max(|f - f_GSL|): 6.9388939039072284e-18
 // max(|f - f_GSL| / |f_GSL|): 1.6425483771072218e-16
+// mean(f - f_GSL): 3.4694469519536144e-19
+// variance(f - f_GSL): 6.5535116163176770e-36
+// stddev(f - f_GSL): 2.5599827375038445e-18
 const testcase_zernike<double>
 data328[10] =
 {
@@ -9552,6 +10536,9 @@ const double toler328 = 2.5000000000000020e-13;
 // Test data for n=50, m=20, rho=0.40000000000000002.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 4.0260702277892647e-16
+// mean(f - f_GSL): -5.5511151231257830e-18
+// variance(f - f_GSL): 3.0814879110195775e-34
+// stddev(f - f_GSL): 1.7554167342883506e-17
 const testcase_zernike<double>
 data329[10] =
 {
@@ -9581,6 +10568,9 @@ const double toler329 = 2.5000000000000020e-13;
 // Test data for n=50, m=20, rho=0.45000000000000001.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data330[10] =
 {
@@ -9610,6 +10600,9 @@ const double toler330 = 2.5000000000000020e-13;
 // Test data for n=50, m=20, rho=0.50000000000000000.
 // max(|f - f_GSL|): 1.3877787807814457e-17
 // max(|f - f_GSL| / |f_GSL|): 2.4040557541277389e-16
+// mean(f - f_GSL): -1.0408340855860842e-18
+// variance(f - f_GSL): 2.0344121094646034e-35
+// stddev(f - f_GSL): 4.5104457756020114e-18
 const testcase_zernike<double>
 data331[10] =
 {
@@ -9639,6 +10632,9 @@ const double toler331 = 2.5000000000000020e-13;
 // Test data for n=50, m=20, rho=0.55000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data332[10] =
 {
@@ -9668,6 +10664,9 @@ const double toler332 = 2.5000000000000020e-13;
 // Test data for n=50, m=20, rho=0.59999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data333[10] =
 {
@@ -9697,6 +10696,9 @@ const double toler333 = 2.5000000000000020e-13;
 // Test data for n=50, m=20, rho=0.65000000000000002.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 4.2838401856911201e-16
+// mean(f - f_GSL): -4.8572257327350596e-18
+// variance(f - f_GSL): 3.1676792202591295e-34
+// stddev(f - f_GSL): 1.7797975222645777e-17
 const testcase_zernike<double>
 data334[10] =
 {
@@ -9726,6 +10728,9 @@ const double toler334 = 2.5000000000000020e-13;
 // Test data for n=50, m=20, rho=0.69999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data335[10] =
 {
@@ -9755,6 +10760,9 @@ const double toler335 = 2.5000000000000020e-13;
 // Test data for n=50, m=20, rho=0.75000000000000000.
 // max(|f - f_GSL|): 1.3877787807814457e-17
 // max(|f - f_GSL| / |f_GSL|): 2.2021516421498355e-16
+// mean(f - f_GSL): 1.7347234759768071e-18
+// variance(f - f_GSL): 1.8204198934215772e-35
+// stddev(f - f_GSL): 4.2666378958397406e-18
 const testcase_zernike<double>
 data336[10] =
 {
@@ -9784,6 +10792,9 @@ const double toler336 = 2.5000000000000020e-13;
 // Test data for n=50, m=20, rho=0.80000000000000004.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 2.9499406319048521e-16
+// mean(f - f_GSL): -6.5919492087118667e-18
+// variance(f - f_GSL): 5.5296183048340314e-35
+// stddev(f - f_GSL): 7.4361403327492618e-18
 const testcase_zernike<double>
 data337[10] =
 {
@@ -9813,6 +10824,9 @@ const double toler337 = 2.5000000000000020e-13;
 // Test data for n=50, m=20, rho=0.84999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data338[10] =
 {
@@ -9842,6 +10856,9 @@ const double toler338 = 2.5000000000000020e-13;
 // Test data for n=50, m=20, rho=0.90000000000000002.
 // max(|f - f_GSL|): 6.2450045135165055e-17
 // max(|f - f_GSL| / |f_GSL|): 1.8506832519937557e-15
+// mean(f - f_GSL): 6.2450045135165057e-18
+// variance(f - f_GSL): 3.9000081373841524e-34
+// stddev(f - f_GSL): 1.9748438260743944e-17
 const testcase_zernike<double>
 data339[10] =
 {
@@ -9871,6 +10888,9 @@ const double toler339 = 2.5000000000000020e-13;
 // Test data for n=50, m=20, rho=0.94999999999999996.
 // max(|f - f_GSL|): 1.0408340855860843e-16
 // max(|f - f_GSL| / |f_GSL|): 6.2171167172535162e-15
+// mean(f - f_GSL): -1.0581813203458523e-17
+// variance(f - f_GSL): 1.0793269548096531e-33
+// stddev(f - f_GSL): 3.2853111797966001e-17
 const testcase_zernike<double>
 data340[10] =
 {
@@ -9900,6 +10920,9 @@ const double toler340 = 5.0000000000000039e-13;
 // Test data for n=50, m=20, rho=1.0000000000000000.
 // max(|f - f_GSL|): 5.5511151231257827e-16
 // max(|f - f_GSL| / |f_GSL|): 6.6613381477509264e-16
+// mean(f - f_GSL): 4.4408920985006264e-17
+// variance(f - f_GSL): 3.2199646517123092e-32
+// stddev(f - f_GSL): 1.7944259950503138e-16
 const testcase_zernike<double>
 data341[10] =
 {
@@ -9929,6 +10952,9 @@ const double toler341 = 2.5000000000000020e-13;
 // Test data for n=50, m=50, rho=0.55000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data342[10] =
 {
@@ -9958,6 +10984,9 @@ const double toler342 = 2.5000000000000020e-13;
 // Test data for n=50, m=50, rho=0.59999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data343[10] =
 {
@@ -9987,6 +11016,9 @@ const double toler343 = 2.5000000000000020e-13;
 // Test data for n=50, m=50, rho=0.65000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data344[10] =
 {
@@ -10016,6 +11048,9 @@ const double toler344 = 2.5000000000000020e-13;
 // Test data for n=50, m=50, rho=0.69999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data345[10] =
 {
@@ -10045,6 +11080,9 @@ const double toler345 = 2.5000000000000020e-13;
 // Test data for n=50, m=50, rho=0.75000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data346[10] =
 {
@@ -10074,6 +11112,9 @@ const double toler346 = 2.5000000000000020e-13;
 // Test data for n=50, m=50, rho=0.80000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data347[10] =
 {
@@ -10103,6 +11144,9 @@ const double toler347 = 2.5000000000000020e-13;
 // Test data for n=50, m=50, rho=0.84999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data348[10] =
 {
@@ -10132,6 +11176,9 @@ const double toler348 = 2.5000000000000020e-13;
 // Test data for n=50, m=50, rho=0.90000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data349[10] =
 {
@@ -10161,6 +11208,9 @@ const double toler349 = 2.5000000000000020e-13;
 // Test data for n=50, m=50, rho=0.94999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data350[10] =
 {
@@ -10190,6 +11240,9 @@ const double toler350 = 2.5000000000000020e-13;
 // Test data for n=50, m=50, rho=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data351[10] =
 {
@@ -10219,6 +11272,9 @@ const double toler351 = 2.5000000000000020e-13;
 // Test data for n=100, m=0, rho=0.0000000000000000.
 // max(|f - f_GSL|): 1.7763568394002505e-15
 // max(|f - f_GSL| / |f_GSL|): 1.7763568394002536e-15
+// mean(f - f_GSL): 1.7763568394002505e-15
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data352[10] =
 {
@@ -10248,6 +11304,9 @@ const double toler352 = 2.5000000000000020e-13;
 // Test data for n=100, m=0, rho=0.050000000000000003.
 // max(|f - f_GSL|): 5.1070259132757201e-15
 // max(|f - f_GSL| / |f_GSL|): 3.1821479221514877e-14
+// mean(f - f_GSL): 5.1070259132757201e-15
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data353[10] =
 {
@@ -10277,6 +11336,9 @@ const double toler353 = 2.5000000000000015e-12;
 // Test data for n=100, m=0, rho=0.10000000000000001.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 4.4383442852459877e-16
+// mean(f - f_GSL): -1.1102230246251565e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data354[10] =
 {
@@ -10306,6 +11368,9 @@ const double toler354 = 2.5000000000000020e-13;
 // Test data for n=100, m=0, rho=0.14999999999999999.
 // max(|f - f_GSL|): 2.9837243786801082e-16
 // max(|f - f_GSL| / |f_GSL|): 5.2959923449574140e-15
+// mean(f - f_GSL): 2.9837243786801082e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data355[10] =
 {
@@ -10335,6 +11400,9 @@ const double toler355 = 5.0000000000000039e-13;
 // Test data for n=100, m=0, rho=0.20000000000000001.
 // max(|f - f_GSL|): 8.3266726846886741e-17
 // max(|f - f_GSL| / |f_GSL|): 6.0528174724495765e-16
+// mean(f - f_GSL): 8.3266726846886741e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data356[10] =
 {
@@ -10364,6 +11432,9 @@ const double toler356 = 2.5000000000000020e-13;
 // Test data for n=100, m=0, rho=0.25000000000000000.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 7.4765462045748034e-16
+// mean(f - f_GSL): -1.1102230246251565e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data357[10] =
 {
@@ -10393,6 +11464,9 @@ const double toler357 = 2.5000000000000020e-13;
 // Test data for n=100, m=0, rho=0.29999999999999999.
 // max(|f - f_GSL|): 1.0755285551056204e-16
 // max(|f - f_GSL| / |f_GSL|): 5.1980417796783578e-15
+// mean(f - f_GSL): 1.0755285551056204e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data358[10] =
 {
@@ -10422,6 +11496,9 @@ const double toler358 = 5.0000000000000039e-13;
 // Test data for n=100, m=0, rho=0.34999999999999998.
 // max(|f - f_GSL|): 9.7144514654701197e-17
 // max(|f - f_GSL| / |f_GSL|): 9.7495108482703416e-16
+// mean(f - f_GSL): -9.7144514654701197e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data359[10] =
 {
@@ -10451,6 +11528,9 @@ const double toler359 = 2.5000000000000020e-13;
 // Test data for n=100, m=0, rho=0.40000000000000002.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 4.2427173447168464e-16
+// mean(f - f_GSL): -5.5511151231257827e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data360[10] =
 {
@@ -10480,6 +11560,9 @@ const double toler360 = 2.5000000000000020e-13;
 // Test data for n=100, m=0, rho=0.45000000000000001.
 // max(|f - f_GSL|): 1.3877787807814457e-17
 // max(|f - f_GSL| / |f_GSL|): 1.5403167583559789e-16
+// mean(f - f_GSL): -1.3877787807814457e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data361[10] =
 {
@@ -10509,6 +11592,9 @@ const double toler361 = 2.5000000000000020e-13;
 // Test data for n=100, m=0, rho=0.50000000000000000.
 // max(|f - f_GSL|): 4.8572257327350599e-17
 // max(|f - f_GSL| / |f_GSL|): 1.5638656147956226e-15
+// mean(f - f_GSL): -4.8572257327350599e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data362[10] =
 {
@@ -10538,6 +11624,9 @@ const double toler362 = 2.5000000000000020e-13;
 // Test data for n=100, m=0, rho=0.55000000000000004.
 // max(|f - f_GSL|): 1.0408340855860843e-16
 // max(|f - f_GSL| / |f_GSL|): 1.0209939748697136e-14
+// mean(f - f_GSL): 1.0408340855860843e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data363[10] =
 {
@@ -10567,6 +11656,9 @@ const double toler363 = 1.0000000000000008e-12;
 // Test data for n=100, m=0, rho=0.59999999999999998.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 4.9961837387278356e-15
+// mean(f - f_GSL): -1.1102230246251565e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data364[10] =
 {
@@ -10596,6 +11688,9 @@ const double toler364 = 2.5000000000000020e-13;
 // Test data for n=100, m=0, rho=0.65000000000000002.
 // max(|f - f_GSL|): 4.4452289071905682e-17
 // max(|f - f_GSL| / |f_GSL|): 7.0359947722694919e-14
+// mean(f - f_GSL): -4.4452289071905682e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data365[10] =
 {
@@ -10625,6 +11720,9 @@ const double toler365 = 5.0000000000000029e-12;
 // Test data for n=100, m=0, rho=0.69999999999999996.
 // max(|f - f_GSL|): 6.9388939039072284e-18
 // max(|f - f_GSL| / |f_GSL|): 1.1621066158662336e-16
+// mean(f - f_GSL): 6.9388939039072284e-18
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data366[10] =
 {
@@ -10654,6 +11752,9 @@ const double toler366 = 2.5000000000000020e-13;
 // Test data for n=100, m=0, rho=0.75000000000000000.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 2.4650180850220743e-16
+// mean(f - f_GSL): -2.7755575615628914e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data367[10] =
 {
@@ -10683,6 +11784,9 @@ const double toler367 = 2.5000000000000020e-13;
 // Test data for n=100, m=0, rho=0.80000000000000004.
 // max(|f - f_GSL|): 1.3877787807814457e-17
 // max(|f - f_GSL| / |f_GSL|): 6.2452296734094316e-16
+// mean(f - f_GSL): -1.3877787807814457e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data368[10] =
 {
@@ -10712,6 +11816,9 @@ const double toler368 = 2.5000000000000020e-13;
 // Test data for n=100, m=0, rho=0.84999999999999998.
 // max(|f - f_GSL|): 2.0816681711721685e-17
 // max(|f - f_GSL| / |f_GSL|): 6.5445820120594509e-16
+// mean(f - f_GSL): 2.0816681711721685e-17
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data369[10] =
 {
@@ -10741,6 +11848,9 @@ const double toler369 = 2.5000000000000020e-13;
 // Test data for n=100, m=0, rho=0.90000000000000002.
 // max(|f - f_GSL|): 1.6653345369377348e-16
 // max(|f - f_GSL| / |f_GSL|): 1.8555921912597776e-15
+// mean(f - f_GSL): 1.6653345369377348e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data370[10] =
 {
@@ -10770,6 +11880,9 @@ const double toler370 = 2.5000000000000020e-13;
 // Test data for n=100, m=0, rho=0.94999999999999996.
 // max(|f - f_GSL|): 1.6653345369377348e-16
 // max(|f - f_GSL| / |f_GSL|): 1.1524096860874952e-15
+// mean(f - f_GSL): -1.6653345369377348e-16
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data371[10] =
 {
@@ -10799,6 +11912,9 @@ const double toler371 = 2.5000000000000020e-13;
 // Test data for n=100, m=0, rho=1.0000000000000000.
 // max(|f - f_GSL|): 1.7763568394002505e-15
 // max(|f - f_GSL| / |f_GSL|): 1.7763568394002536e-15
+// mean(f - f_GSL): 1.7763568394002505e-15
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data372[10] =
 {
@@ -10828,6 +11944,9 @@ const double toler372 = 2.5000000000000020e-13;
 // Test data for n=100, m=2, rho=0.050000000000000003.
 // max(|f - f_GSL|): 3.5908775952719907e-15
 // max(|f - f_GSL| / |f_GSL|): 1.2525027148774750e-13
+// mean(f - f_GSL): -3.4694469519536144e-19
+// variance(f - f_GSL): 1.5922090983287071e-30
+// stddev(f - f_GSL): 1.2618276817096330e-15
 const testcase_zernike<double>
 data373[10] =
 {
@@ -10857,6 +11976,9 @@ const double toler373 = 1.0000000000000006e-11;
 // Test data for n=100, m=2, rho=0.10000000000000001.
 // max(|f - f_GSL|): 7.2164496600635175e-16
 // max(|f - f_GSL| / |f_GSL|): 2.8645946427864258e-15
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 6.4292772464482535e-32
+// stddev(f - f_GSL): 2.5356019495276176e-16
 const testcase_zernike<double>
 data374[10] =
 {
@@ -10886,6 +12008,9 @@ const double toler374 = 2.5000000000000020e-13;
 // Test data for n=100, m=2, rho=0.14999999999999999.
 // max(|f - f_GSL|): 8.3266726846886741e-17
 // max(|f - f_GSL| / |f_GSL|): 1.1046725040380488e-15
+// mean(f - f_GSL): 1.3877787807814458e-18
+// variance(f - f_GSL): 8.2767433782863795e-34
+// stddev(f - f_GSL): 2.8769329811947967e-17
 const testcase_zernike<double>
 data375[10] =
 {
@@ -10915,6 +12040,9 @@ const double toler375 = 2.5000000000000020e-13;
 // Test data for n=100, m=2, rho=0.20000000000000001.
 // max(|f - f_GSL|): 1.3877787807814457e-16
 // max(|f - f_GSL| / |f_GSL|): 1.1712269931165822e-15
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 2.3776912893669578e-33
+// stddev(f - f_GSL): 4.8761575952454180e-17
 const testcase_zernike<double>
 data376[10] =
 {
@@ -10944,6 +12072,9 @@ const double toler376 = 2.5000000000000020e-13;
 // Test data for n=100, m=2, rho=0.25000000000000000.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 2.6094741267372354e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 9.5107651574678308e-35
+// stddev(f - f_GSL): 9.7523151904908362e-18
 const testcase_zernike<double>
 data377[10] =
 {
@@ -10973,6 +12104,9 @@ const double toler377 = 2.5000000000000020e-13;
 // Test data for n=100, m=2, rho=0.29999999999999999.
 // max(|f - f_GSL|): 1.8041124150158794e-16
 // max(|f - f_GSL| / |f_GSL|): 6.0533307316883603e-15
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 4.0182982790301585e-33
+// stddev(f - f_GSL): 6.3390048738190441e-17
 const testcase_zernike<double>
 data378[10] =
 {
@@ -11002,6 +12136,9 @@ const double toler378 = 5.0000000000000039e-13;
 // Test data for n=100, m=2, rho=0.34999999999999998.
 // max(|f - f_GSL|): 8.3266726846886741e-17
 // max(|f - f_GSL| / |f_GSL|): 9.3798005243304020e-16
+// mean(f - f_GSL): -1.3877787807814458e-18
+// variance(f - f_GSL): 8.8473892877344503e-34
+// stddev(f - f_GSL): 2.9744561330997047e-17
 const testcase_zernike<double>
 data379[10] =
 {
@@ -11031,6 +12168,9 @@ const double toler379 = 2.5000000000000020e-13;
 // Test data for n=100, m=2, rho=0.40000000000000002.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 3.0463476977346135e-16
+// mean(f - f_GSL): 3.4694469519536144e-19
+// variance(f - f_GSL): 9.7500203434603811e-35
+// stddev(f - f_GSL): 9.8742191303719720e-18
 const testcase_zernike<double>
 data380[10] =
 {
@@ -11060,6 +12200,9 @@ const double toler380 = 2.5000000000000020e-13;
 // Test data for n=100, m=2, rho=0.45000000000000001.
 // max(|f - f_GSL|): 4.1633363423443370e-17
 // max(|f - f_GSL| / |f_GSL|): 4.7390495114080702e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 2.1399221604302622e-34
+// stddev(f - f_GSL): 1.4628472785736255e-17
 const testcase_zernike<double>
 data381[10] =
 {
@@ -11089,6 +12232,9 @@ const double toler381 = 2.5000000000000020e-13;
 // Test data for n=100, m=2, rho=0.50000000000000000.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 1.6853107170450578e-15
+// mean(f - f_GSL): -6.9388939039072288e-19
+// variance(f - f_GSL): 3.9000081373841524e-34
+// stddev(f - f_GSL): 1.9748438260743944e-17
 const testcase_zernike<double>
 data382[10] =
 {
@@ -11118,6 +12264,9 @@ const double toler382 = 2.5000000000000020e-13;
 // Test data for n=100, m=2, rho=0.55000000000000004.
 // max(|f - f_GSL|): 4.5102810375396984e-17
 // max(|f - f_GSL| / |f_GSL|): 6.7763448725938313e-15
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 2.5114364243938490e-34
+// stddev(f - f_GSL): 1.5847512184547610e-17
 const testcase_zernike<double>
 data383[10] =
 {
@@ -11147,6 +12296,9 @@ const double toler383 = 5.0000000000000039e-13;
 // Test data for n=100, m=2, rho=0.59999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data384[10] =
 {
@@ -11176,6 +12328,9 @@ const double toler384 = 2.5000000000000020e-13;
 // Test data for n=100, m=2, rho=0.65000000000000002.
 // max(|f - f_GSL|): 6.2883726004159257e-17
 // max(|f - f_GSL| / |f_GSL|): 3.1756700346468621e-14
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 4.8819296248965125e-34
+// stddev(f - f_GSL): 2.2095089103455801e-17
 const testcase_zernike<double>
 data385[10] =
 {
@@ -11205,6 +12360,9 @@ const double toler385 = 2.5000000000000015e-12;
 // Test data for n=100, m=2, rho=0.69999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data386[10] =
 {
@@ -11234,6 +12392,9 @@ const double toler386 = 2.5000000000000020e-13;
 // Test data for n=100, m=2, rho=0.75000000000000000.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 3.5516578787760566e-16
+// mean(f - f_GSL): 3.4694469519536144e-19
+// variance(f - f_GSL): 9.2744820855869895e-35
+// stddev(f - f_GSL): 9.6304112506097004e-18
 const testcase_zernike<double>
 data387[10] =
 {
@@ -11263,6 +12424,9 @@ const double toler387 = 2.5000000000000020e-13;
 // Test data for n=100, m=2, rho=0.80000000000000004.
 // max(|f - f_GSL|): 1.3877787807814457e-17
 // max(|f - f_GSL| / |f_GSL|): 6.2718544362408535e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 2.3776912893669577e-35
+// stddev(f - f_GSL): 4.8761575952454181e-18
 const testcase_zernike<double>
 data388[10] =
 {
@@ -11292,6 +12456,9 @@ const double toler388 = 2.5000000000000020e-13;
 // Test data for n=100, m=2, rho=0.84999999999999998.
 // max(|f - f_GSL|): 4.5102810375396984e-17
 // max(|f - f_GSL| / |f_GSL|): 1.6427202414056363e-15
+// mean(f - f_GSL): -8.6736173798840360e-20
+// variance(f - f_GSL): 2.5211050831135014e-34
+// stddev(f - f_GSL): 1.5877988169517893e-17
 const testcase_zernike<double>
 data389[10] =
 {
@@ -11321,6 +12488,9 @@ const double toler389 = 2.5000000000000020e-13;
 // Test data for n=100, m=2, rho=0.90000000000000002.
 // max(|f - f_GSL|): 4.1633363423443370e-17
 // max(|f - f_GSL| / |f_GSL|): 5.9979293966914019e-16
+// mean(f - f_GSL): 2.7755575615628915e-18
+// variance(f - f_GSL): 1.8641099708636949e-34
+// stddev(f - f_GSL): 1.3653241266687170e-17
 const testcase_zernike<double>
 data390[10] =
 {
@@ -11350,6 +12520,9 @@ const double toler390 = 2.5000000000000020e-13;
 // Test data for n=100, m=2, rho=0.94999999999999996.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 4.1509890233739825e-16
+// mean(f - f_GSL): -2.7755575615628915e-18
+// variance(f - f_GSL): 3.4333862218458872e-34
+// stddev(f - f_GSL): 1.8529398861932589e-17
 const testcase_zernike<double>
 data391[10] =
 {
@@ -11379,6 +12552,9 @@ const double toler391 = 2.5000000000000020e-13;
 // Test data for n=100, m=2, rho=1.0000000000000000.
 // max(|f - f_GSL|): 2.9087843245179101e-14
 // max(|f - f_GSL| / |f_GSL|): 2.9130793905518060e-14
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 1.0445711415507549e-28
+// stddev(f - f_GSL): 1.0220426319634396e-14
 const testcase_zernike<double>
 data392[10] =
 {
@@ -11408,6 +12584,9 @@ const double toler392 = 2.5000000000000015e-12;
 // Test data for n=100, m=10, rho=0.050000000000000003.
 // max(|f - f_GSL|): 5.2041704279304213e-18
 // max(|f - f_GSL| / |f_GSL|): 3.3901045815423867e-15
+// mean(f - f_GSL): -3.7947076036992653e-20
+// variance(f - f_GSL): 3.3925673981977221e-36
+// stddev(f - f_GSL): 1.8418923416415308e-18
 const testcase_zernike<double>
 data393[10] =
 {
@@ -11437,6 +12616,9 @@ const double toler393 = 2.5000000000000020e-13;
 // Test data for n=100, m=10, rho=0.10000000000000001.
 // max(|f - f_GSL|): 1.3322676295501878e-15
 // max(|f - f_GSL| / |f_GSL|): 6.1881158238856314e-15
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 2.1912802922805884e-31
+// stddev(f - f_GSL): 4.6811112914356016e-16
 const testcase_zernike<double>
 data394[10] =
 {
@@ -11466,6 +12648,9 @@ const double toler394 = 5.0000000000000039e-13;
 // Test data for n=100, m=10, rho=0.14999999999999999.
 // max(|f - f_GSL|): 2.6367796834847468e-16
 // max(|f - f_GSL| / |f_GSL|): 2.2816002560852014e-15
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 8.5834655546147173e-33
+// stddev(f - f_GSL): 9.2646994309662939e-17
 const testcase_zernike<double>
 data395[10] =
 {
@@ -11495,6 +12680,9 @@ const double toler395 = 2.5000000000000020e-13;
 // Test data for n=100, m=10, rho=0.20000000000000001.
 // max(|f - f_GSL|): 1.1934897514720433e-15
 // max(|f - f_GSL| / |f_GSL|): 6.3017665404980865e-15
+// mean(f - f_GSL): -6.9388939039072288e-19
+// variance(f - f_GSL): 1.7605858865474799e-31
+// stddev(f - f_GSL): 4.1959336107086824e-16
 const testcase_zernike<double>
 data396[10] =
 {
@@ -11524,6 +12712,9 @@ const double toler396 = 5.0000000000000039e-13;
 // Test data for n=100, m=10, rho=0.25000000000000000.
 // max(|f - f_GSL|): 1.1969591984239969e-16
 // max(|f - f_GSL| / |f_GSL|): 2.5583675699717901e-14
+// mean(f - f_GSL): -4.3368086899420180e-20
+// variance(f - f_GSL): 1.7674979187163790e-33
+// stddev(f - f_GSL): 4.2041621266506587e-17
 const testcase_zernike<double>
 data397[10] =
 {
@@ -11553,6 +12744,9 @@ const double toler397 = 2.5000000000000015e-12;
 // Test data for n=100, m=10, rho=0.29999999999999999.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 7.9501440676851154e-16
+// mean(f - f_GSL): -3.1225022567582528e-18
+// variance(f - f_GSL): 1.4373292449928845e-33
+// stddev(f - f_GSL): 3.7912125303033123e-17
 const testcase_zernike<double>
 data398[10] =
 {
@@ -11582,6 +12776,9 @@ const double toler398 = 2.5000000000000020e-13;
 // Test data for n=100, m=10, rho=0.34999999999999998.
 // max(|f - f_GSL|): 1.3877787807814457e-16
 // max(|f - f_GSL| / |f_GSL|): 2.0507634704913810e-15
+// mean(f - f_GSL): -6.9388939039072288e-19
+// variance(f - f_GSL): 2.4015276445428617e-33
+// stddev(f - f_GSL): 4.9005383832216451e-17
 const testcase_zernike<double>
 data399[10] =
 {
@@ -11611,6 +12808,9 @@ const double toler399 = 2.5000000000000020e-13;
 // Test data for n=100, m=10, rho=0.40000000000000002.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 8.7836589911023103e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 3.8043060629871323e-34
+// stddev(f - f_GSL): 1.9504630380981672e-17
 const testcase_zernike<double>
 data400[10] =
 {
@@ -11640,6 +12840,9 @@ const double toler400 = 2.5000000000000020e-13;
 // Test data for n=100, m=10, rho=0.45000000000000001.
 // max(|f - f_GSL|): 1.3877787807814457e-17
 // max(|f - f_GSL| / |f_GSL|): 1.6146400084888546e-16
+// mean(f - f_GSL): -1.3877787807814458e-18
+// variance(f - f_GSL): 2.8770064601340190e-35
+// stddev(f - f_GSL): 5.3637733547699598e-18
 const testcase_zernike<double>
 data401[10] =
 {
@@ -11669,6 +12872,9 @@ const double toler401 = 2.5000000000000020e-13;
 // Test data for n=100, m=10, rho=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data402[10] =
 {
@@ -11698,6 +12904,9 @@ const double toler402 = 2.5000000000000020e-13;
 // Test data for n=100, m=10, rho=0.55000000000000004.
 // max(|f - f_GSL|): 1.3877787807814457e-17
 // max(|f - f_GSL| / |f_GSL|): 2.7320140678434852e-16
+// mean(f - f_GSL): -8.6736173798840355e-19
+// variance(f - f_GSL): 2.6841905571369173e-35
+// stddev(f - f_GSL): 5.1809174449482569e-18
 const testcase_zernike<double>
 data403[10] =
 {
@@ -11727,6 +12936,9 @@ const double toler403 = 2.5000000000000020e-13;
 // Test data for n=100, m=10, rho=0.59999999999999998.
 // max(|f - f_GSL|): 2.0816681711721685e-17
 // max(|f - f_GSL| / |f_GSL|): 5.7647569800841034e-16
+// mean(f - f_GSL): -8.6736173798840355e-19
+// variance(f - f_GSL): 5.8049103744310494e-35
+// stddev(f - f_GSL): 7.6189962425709656e-18
 const testcase_zernike<double>
 data404[10] =
 {
@@ -11756,6 +12968,9 @@ const double toler404 = 2.5000000000000020e-13;
 // Test data for n=100, m=10, rho=0.65000000000000002.
 // max(|f - f_GSL|): 4.8572257327350599e-17
 // max(|f - f_GSL| / |f_GSL|): 8.0810682858610735e-16
+// mean(f - f_GSL): -1.7347234759768072e-19
+// variance(f - f_GSL): 2.8919041821189587e-34
+// stddev(f - f_GSL): 1.7005599613418394e-17
 const testcase_zernike<double>
 data405[10] =
 {
@@ -11785,6 +13000,9 @@ const double toler405 = 2.5000000000000020e-13;
 // Test data for n=100, m=10, rho=0.69999999999999996.
 // max(|f - f_GSL|): 4.1633363423443370e-17
 // max(|f - f_GSL| / |f_GSL|): 4.4819630808589039e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 2.1399221604302622e-34
+// stddev(f - f_GSL): 1.4628472785736255e-17
 const testcase_zernike<double>
 data406[10] =
 {
@@ -11814,6 +13032,9 @@ const double toler406 = 2.5000000000000020e-13;
 // Test data for n=100, m=10, rho=0.75000000000000000.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 3.9877291743671564e-16
+// mean(f - f_GSL): -1.7347234759768071e-18
+// variance(f - f_GSL): 1.0736762228547669e-34
+// stddev(f - f_GSL): 1.0361834889896514e-17
 const testcase_zernike<double>
 data407[10] =
 {
@@ -11843,6 +13064,9 @@ const double toler407 = 2.5000000000000020e-13;
 // Test data for n=100, m=10, rho=0.80000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data408[10] =
 {
@@ -11872,6 +13096,9 @@ const double toler408 = 2.5000000000000020e-13;
 // Test data for n=100, m=10, rho=0.84999999999999998.
 // max(|f - f_GSL|): 8.6736173798840355e-19
 // max(|f - f_GSL| / |f_GSL|): 2.8964273986948598e-16
+// mean(f - f_GSL): -1.0842021724855045e-20
+// variance(f - f_GSL): 9.0571114117060445e-38
+// stddev(f - f_GSL): 3.0095035158155314e-19
 const testcase_zernike<double>
 data409[10] =
 {
@@ -11901,6 +13128,9 @@ const double toler409 = 2.5000000000000020e-13;
 // Test data for n=100, m=10, rho=0.90000000000000002.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 1.0858470305307792e-15
+// mean(f - f_GSL): 1.3877787807814458e-18
+// variance(f - f_GSL): 1.5600032549536610e-33
+// stddev(f - f_GSL): 3.9496876521487888e-17
 const testcase_zernike<double>
 data410[10] =
 {
@@ -11930,6 +13160,9 @@ const double toler410 = 2.5000000000000020e-13;
 // Test data for n=100, m=10, rho=0.94999999999999996.
 // max(|f - f_GSL|): 1.1102230246251565e-16
 // max(|f - f_GSL| / |f_GSL|): 8.5702581859239043e-16
+// mean(f - f_GSL): 2.4286128663675298e-18
+// variance(f - f_GSL): 1.5890259492544966e-33
+// stddev(f - f_GSL): 3.9862588341131296e-17
 const testcase_zernike<double>
 data411[10] =
 {
@@ -11959,6 +13192,9 @@ const double toler411 = 2.5000000000000020e-13;
 // Test data for n=100, m=10, rho=1.0000000000000000.
 // max(|f - f_GSL|): 2.2204460492503131e-15
 // max(|f - f_GSL| / |f_GSL|): 2.2448018640644360e-15
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 6.0868897007794120e-31
+// stddev(f - f_GSL): 7.8018521523926687e-16
 const testcase_zernike<double>
 data412[10] =
 {
@@ -11988,6 +13224,9 @@ const double toler412 = 2.5000000000000020e-13;
 // Test data for n=100, m=20, rho=0.050000000000000003.
 // max(|f - f_GSL|): 1.9387045606711586e-26
 // max(|f - f_GSL| / |f_GSL|): 6.9164095744642664e-16
+// mean(f - f_GSL): 1.2924697071141058e-27
+// variance(f - f_GSL): 4.0421441603246168e-53
+// stddev(f - f_GSL): 6.3577859041686962e-27
 const testcase_zernike<double>
 data413[10] =
 {
@@ -12017,6 +13256,9 @@ const double toler413 = 2.5000000000000020e-13;
 // Test data for n=100, m=20, rho=0.10000000000000001.
 // max(|f - f_GSL|): 1.5246593050577406e-20
 // max(|f - f_GSL| / |f_GSL|): 1.2866007941802811e-15
+// mean(f - f_GSL): 1.5246593050577406e-21
+// variance(f - f_GSL): 2.3245859964991524e-41
+// stddev(f - f_GSL): 4.8213960597519395e-21
 const testcase_zernike<double>
 data414[10] =
 {
@@ -12046,6 +13288,9 @@ const double toler414 = 2.5000000000000020e-13;
 // Test data for n=100, m=20, rho=0.14999999999999999.
 // max(|f - f_GSL|): 2.0816681711721685e-17
 // max(|f - f_GSL| / |f_GSL|): 2.5957683387645262e-15
+// mean(f - f_GSL): 2.1250362580715888e-18
+// variance(f - f_GSL): 4.3133038242587449e-35
+// stddev(f - f_GSL): 6.5675747610961722e-18
 const testcase_zernike<double>
 data415[10] =
 {
@@ -12075,6 +13320,9 @@ const double toler415 = 2.5000000000000020e-13;
 // Test data for n=100, m=20, rho=0.20000000000000001.
 // max(|f - f_GSL|): 1.9428902930940239e-16
 // max(|f - f_GSL| / |f_GSL|): 1.2208724768942128e-15
+// mean(f - f_GSL): -1.8041124150158794e-17
+// variance(f - f_GSL): 3.8349782806199666e-33
+// stddev(f - f_GSL): 6.1927201459616811e-17
 const testcase_zernike<double>
 data416[10] =
 {
@@ -12104,6 +13352,9 @@ const double toler416 = 2.5000000000000020e-13;
 // Test data for n=100, m=20, rho=0.25000000000000000.
 // max(|f - f_GSL|): 8.5001450322863548e-16
 // max(|f - f_GSL| / |f_GSL|): 1.0245228641306437e-13
+// mean(f - f_GSL): -8.5023134366313263e-17
+// variance(f - f_GSL): 7.2248369683191297e-32
+// stddev(f - f_GSL): 2.6879056844166111e-16
 const testcase_zernike<double>
 data417[10] =
 {
@@ -12133,6 +13384,9 @@ const double toler417 = 1.0000000000000006e-11;
 // Test data for n=100, m=20, rho=0.29999999999999999.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 3.9637956592983639e-16
+// mean(f - f_GSL): 2.2551405187698493e-18
+// variance(f - f_GSL): 8.0280517299891548e-35
+// stddev(f - f_GSL): 8.9599395812634549e-18
 const testcase_zernike<double>
 data418[10] =
 {
@@ -12162,6 +13416,9 @@ const double toler418 = 2.5000000000000020e-13;
 // Test data for n=100, m=20, rho=0.34999999999999998.
 // max(|f - f_GSL|): 8.3266726846886741e-17
 // max(|f - f_GSL| / |f_GSL|): 5.9358106676807550e-16
+// mean(f - f_GSL): -6.9388939039072284e-18
+// variance(f - f_GSL): 7.1925161503350478e-34
+// stddev(f - f_GSL): 2.6818866773849800e-17
 const testcase_zernike<double>
 data419[10] =
 {
@@ -12191,6 +13448,9 @@ const double toler419 = 2.5000000000000020e-13;
 // Test data for n=100, m=20, rho=0.40000000000000002.
 // max(|f - f_GSL|): 9.1940344226770776e-17
 // max(|f - f_GSL| / |f_GSL|): 5.9556159749116565e-15
+// mean(f - f_GSL): 8.9338259012805572e-18
+// variance(f - f_GSL): 8.5062741784196828e-34
+// stddev(f - f_GSL): 2.9165517616561657e-17
 const testcase_zernike<double>
 data420[10] =
 {
@@ -12220,6 +13480,9 @@ const double toler420 = 5.0000000000000039e-13;
 // Test data for n=100, m=20, rho=0.45000000000000001.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 4.4991916011915781e-16
+// mean(f - f_GSL): 4.1633363423443369e-18
+// variance(f - f_GSL): 3.2550593751433655e-34
+// stddev(f - f_GSL): 1.8041783102408046e-17
 const testcase_zernike<double>
 data421[10] =
 {
@@ -12249,6 +13512,9 @@ const double toler421 = 2.5000000000000020e-13;
 // Test data for n=100, m=20, rho=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data422[10] =
 {
@@ -12278,6 +13544,9 @@ const double toler422 = 2.5000000000000020e-13;
 // Test data for n=100, m=20, rho=0.55000000000000004.
 // max(|f - f_GSL|): 1.0408340855860843e-16
 // max(|f - f_GSL| / |f_GSL|): 5.2743999020271429e-15
+// mean(f - f_GSL): 1.0234868508263162e-17
+// variance(f - f_GSL): 1.0873516629112665e-33
+// stddev(f - f_GSL): 3.2975015737847137e-17
 const testcase_zernike<double>
 data423[10] =
 {
@@ -12307,6 +13576,9 @@ const double toler423 = 5.0000000000000039e-13;
 // Test data for n=100, m=20, rho=0.59999999999999998.
 // max(|f - f_GSL|): 1.3877787807814457e-17
 // max(|f - f_GSL| / |f_GSL|): 2.5240254821232641e-16
+// mean(f - f_GSL): -1.7347234759768071e-18
+// variance(f - f_GSL): 1.8204198934215772e-35
+// stddev(f - f_GSL): 4.2666378958397406e-18
 const testcase_zernike<double>
 data424[10] =
 {
@@ -12336,6 +13608,9 @@ const double toler424 = 2.5000000000000020e-13;
 // Test data for n=100, m=20, rho=0.65000000000000002.
 // max(|f - f_GSL|): 5.5511151231257827e-17
 // max(|f - f_GSL| / |f_GSL|): 7.2307290931663504e-16
+// mean(f - f_GSL): -4.6837533851373795e-18
+// variance(f - f_GSL): 3.1894128047009995e-34
+// stddev(f - f_GSL): 1.7858927192586345e-17
 const testcase_zernike<double>
 data425[10] =
 {
@@ -12365,6 +13640,9 @@ const double toler425 = 2.5000000000000020e-13;
 // Test data for n=100, m=20, rho=0.69999999999999996.
 // max(|f - f_GSL|): 2.0816681711721685e-17
 // max(|f - f_GSL| / |f_GSL|): 4.6604123006590248e-16
+// mean(f - f_GSL): 2.7755575615628915e-18
+// variance(f - f_GSL): 4.0182982790301589e-35
+// stddev(f - f_GSL): 6.3390048738190433e-18
 const testcase_zernike<double>
 data426[10] =
 {
@@ -12394,6 +13672,9 @@ const double toler426 = 2.5000000000000020e-13;
 // Test data for n=100, m=20, rho=0.75000000000000000.
 // max(|f - f_GSL|): 3.1225022567582528e-17
 // max(|f - f_GSL| / |f_GSL|): 1.2625753793342351e-15
+// mean(f - f_GSL): 3.2092384305570933e-18
+// variance(f - f_GSL): 9.6899279112642722e-35
+// stddev(f - f_GSL): 9.8437431454016881e-18
 const testcase_zernike<double>
 data427[10] =
 {
@@ -12423,6 +13704,9 @@ const double toler427 = 2.5000000000000020e-13;
 // Test data for n=100, m=20, rho=0.80000000000000004.
 // max(|f - f_GSL|): 4.1633363423443370e-17
 // max(|f - f_GSL| / |f_GSL|): 3.8367396629160527e-16
+// mean(f - f_GSL): -2.7755575615628915e-18
+// variance(f - f_GSL): 1.8641099708636949e-34
+// stddev(f - f_GSL): 1.3653241266687170e-17
 const testcase_zernike<double>
 data428[10] =
 {
@@ -12452,6 +13736,9 @@ const double toler428 = 2.5000000000000020e-13;
 // Test data for n=100, m=20, rho=0.84999999999999998.
 // max(|f - f_GSL|): 4.1633363423443370e-17
 // max(|f - f_GSL| / |f_GSL|): 5.4779085495258563e-16
+// mean(f - f_GSL): 5.5511151231257830e-18
+// variance(f - f_GSL): 1.6073193116120635e-34
+// stddev(f - f_GSL): 1.2678009747638087e-17
 const testcase_zernike<double>
 data429[10] =
 {
@@ -12481,6 +13768,9 @@ const double toler429 = 2.5000000000000020e-13;
 // Test data for n=100, m=20, rho=0.90000000000000002.
 // max(|f - f_GSL|): 1.3877787807814457e-16
 // max(|f - f_GSL| / |f_GSL|): 1.1708367478880710e-15
+// mean(f - f_GSL): 1.3183898417423733e-17
+// variance(f - f_GSL): 1.9473886082737726e-33
+// stddev(f - f_GSL): 4.4129226236971031e-17
 const testcase_zernike<double>
 data430[10] =
 {
@@ -12510,6 +13800,9 @@ const double toler430 = 2.5000000000000020e-13;
 // Test data for n=100, m=20, rho=0.94999999999999996.
 // max(|f - f_GSL|): 1.9428902930940239e-16
 // max(|f - f_GSL| / |f_GSL|): 1.9234873160392616e-15
+// mean(f - f_GSL): 1.9428902930940238e-17
+// variance(f - f_GSL): 3.7748226909989825e-33
+// stddev(f - f_GSL): 6.1439585700092268e-17
 const testcase_zernike<double>
 data431[10] =
 {
@@ -12539,6 +13832,9 @@ const double toler431 = 2.5000000000000020e-13;
 // Test data for n=100, m=20, rho=1.0000000000000000.
 // max(|f - f_GSL|): 3.3306690738754696e-15
 // max(|f - f_GSL| / |f_GSL|): 3.3565977815568491e-15
+// mean(f - f_GSL): 3.3861802251067273e-16
+// variance(f - f_GSL): 1.1052308017250848e-30
+// stddev(f - f_GSL): 1.0512995775349120e-15
 const testcase_zernike<double>
 data432[10] =
 {
@@ -12568,6 +13864,9 @@ const double toler432 = 2.5000000000000020e-13;
 // Test data for n=100, m=50, rho=0.25000000000000000.
 // max(|f - f_GSL|): 4.0389678347315804e-28
 // max(|f - f_GSL| / |f_GSL|): 1.4950508909229171e-16
+// mean(f - f_GSL): 4.0389678347315807e-29
+// variance(f - f_GSL): 1.6313261169996312e-56
+// stddev(f - f_GSL): 1.2772337753910328e-28
 const testcase_zernike<double>
 data433[10] =
 {
@@ -12597,6 +13896,9 @@ const double toler433 = 2.5000000000000020e-13;
 // Test data for n=100, m=50, rho=0.29999999999999999.
 // max(|f - f_GSL|): 1.6543612251060553e-24
 // max(|f - f_GSL| / |f_GSL|): 2.1982791703347744e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 3.3789025470795163e-49
+// stddev(f - f_GSL): 5.8128328266685225e-25
 const testcase_zernike<double>
 data434[10] =
 {
@@ -12626,6 +13928,9 @@ const double toler434 = 2.5000000000000020e-13;
 // Test data for n=100, m=50, rho=0.34999999999999998.
 // max(|f - f_GSL|): 2.5410988417629010e-21
 // max(|f - f_GSL| / |f_GSL|): 5.6392441035668898e-16
+// mean(f - f_GSL): -4.2351647362715019e-23
+// variance(f - f_GSL): 7.7083179524972844e-43
+// stddev(f - f_GSL): 8.7797027014001364e-22
 const testcase_zernike<double>
 data435[10] =
 {
@@ -12655,6 +13960,9 @@ const double toler435 = 2.5000000000000020e-13;
 // Test data for n=100, m=50, rho=0.40000000000000002.
 // max(|f - f_GSL|): 6.5052130349130266e-19
 // max(|f - f_GSL| / |f_GSL|): 1.1859584557463523e-15
+// mean(f - f_GSL): -1.3552527156068806e-21
+// variance(f - f_GSL): 5.2026735985149778e-38
+// stddev(f - f_GSL): 2.2809370001196828e-19
 const testcase_zernike<double>
 data436[10] =
 {
@@ -12684,6 +13992,9 @@ const double toler436 = 2.5000000000000020e-13;
 // Test data for n=100, m=50, rho=0.45000000000000001.
 // max(|f - f_GSL|): 3.4694469519536142e-18
 // max(|f - f_GSL| / |f_GSL|): 2.5804280988210665e-16
+// mean(f - f_GSL): 1.7347234759768072e-19
+// variance(f - f_GSL): 1.6383779040794192e-36
+// stddev(f - f_GSL): 1.2799913687519222e-18
 const testcase_zernike<double>
 data437[10] =
 {
@@ -12713,6 +14024,9 @@ const double toler437 = 2.5000000000000020e-13;
 // Test data for n=100, m=50, rho=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data438[10] =
 {
@@ -12742,6 +14056,9 @@ const double toler438 = 2.5000000000000020e-13;
 // Test data for n=100, m=50, rho=0.55000000000000004.
 // max(|f - f_GSL|): 8.3266726846886741e-17
 // max(|f - f_GSL| / |f_GSL|): 1.2051596516293769e-15
+// mean(f - f_GSL): 1.3877787807814458e-18
+// variance(f - f_GSL): 8.2767433782863795e-34
+// stddev(f - f_GSL): 2.8769329811947967e-17
 const testcase_zernike<double>
 data439[10] =
 {
@@ -12771,6 +14088,9 @@ const double toler439 = 2.5000000000000020e-13;
 // Test data for n=100, m=50, rho=0.59999999999999998.
 // max(|f - f_GSL|): 6.9388939039072284e-17
 // max(|f - f_GSL| / |f_GSL|): 1.1739581375534554e-15
+// mean(f - f_GSL): -1.3877787807814458e-18
+// variance(f - f_GSL): 6.1843750436434576e-34
+// stddev(f - f_GSL): 2.4868403735751633e-17
 const testcase_zernike<double>
 data440[10] =
 {
@@ -12800,6 +14120,9 @@ const double toler440 = 2.5000000000000020e-13;
 // Test data for n=100, m=50, rho=0.65000000000000002.
 // max(|f - f_GSL|): 1.3877787807814457e-17
 // max(|f - f_GSL| / |f_GSL|): 3.4533108965330779e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 2.3776912893669577e-35
+// stddev(f - f_GSL): 4.8761575952454181e-18
 const testcase_zernike<double>
 data441[10] =
 {
@@ -12829,6 +14152,9 @@ const double toler441 = 2.5000000000000020e-13;
 // Test data for n=100, m=50, rho=0.69999999999999996.
 // max(|f - f_GSL|): 8.3266726846886741e-17
 // max(|f - f_GSL| / |f_GSL|): 7.8998670012239980e-16
+// mean(f - f_GSL): -1.0408340855860842e-18
+// variance(f - f_GSL): 8.7750183091143440e-34
+// stddev(f - f_GSL): 2.9622657391115918e-17
 const testcase_zernike<double>
 data442[10] =
 {
@@ -12858,6 +14184,9 @@ const double toler442 = 2.5000000000000020e-13;
 // Test data for n=100, m=50, rho=0.75000000000000000.
 // max(|f - f_GSL|): 1.3877787807814457e-17
 // max(|f - f_GSL| / |f_GSL|): 1.6816904670581064e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 2.3776912893669577e-35
+// stddev(f - f_GSL): 4.8761575952454181e-18
 const testcase_zernike<double>
 data443[10] =
 {
@@ -12887,6 +14216,9 @@ const double toler443 = 2.5000000000000020e-13;
 // Test data for n=100, m=50, rho=0.80000000000000004.
 // max(|f - f_GSL|): 2.7755575615628914e-17
 // max(|f - f_GSL| / |f_GSL|): 3.0384472054812103e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 9.5107651574678308e-35
+// stddev(f - f_GSL): 9.7523151904908362e-18
 const testcase_zernike<double>
 data444[10] =
 {
@@ -12916,6 +14248,9 @@ const double toler444 = 2.5000000000000020e-13;
 // Test data for n=100, m=50, rho=0.84999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data445[10] =
 {
@@ -12945,6 +14280,9 @@ const double toler445 = 2.5000000000000020e-13;
 // Test data for n=100, m=50, rho=0.90000000000000002.
 // max(|f - f_GSL|): 1.3877787807814457e-17
 // max(|f - f_GSL| / |f_GSL|): 1.7628270396775890e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 2.3776912893669577e-35
+// stddev(f - f_GSL): 4.8761575952454181e-18
 const testcase_zernike<double>
 data446[10] =
 {
@@ -12974,6 +14312,9 @@ const double toler446 = 2.5000000000000020e-13;
 // Test data for n=100, m=50, rho=0.94999999999999996.
 // max(|f - f_GSL|): 2.0816681711721685e-17
 // max(|f - f_GSL| / |f_GSL|): 6.6977545855349025e-16
+// mean(f - f_GSL): -3.4694469519536144e-19
+// variance(f - f_GSL): 5.5296183048340314e-35
+// stddev(f - f_GSL): 7.4361403327492618e-18
 const testcase_zernike<double>
 data447[10] =
 {
@@ -13003,6 +14344,9 @@ const double toler447 = 2.5000000000000020e-13;
 // Test data for n=100, m=50, rho=1.0000000000000000.
 // max(|f - f_GSL|): 4.4408920985006262e-16
 // max(|f - f_GSL| / |f_GSL|): 4.7951396879384198e-16
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 2.4347558803117647e-32
+// stddev(f - f_GSL): 1.5603704304785338e-16
 const testcase_zernike<double>
 data448[10] =
 {
@@ -13032,6 +14376,9 @@ const double toler448 = 2.5000000000000020e-13;
 // Test data for n=100, m=100, rho=0.75000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data449[10] =
 {
@@ -13061,6 +14408,9 @@ const double toler449 = 2.5000000000000020e-13;
 // Test data for n=100, m=100, rho=0.80000000000000004.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data450[10] =
 {
@@ -13090,6 +14440,9 @@ const double toler450 = 2.5000000000000020e-13;
 // Test data for n=100, m=100, rho=0.84999999999999998.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data451[10] =
 {
@@ -13119,6 +14472,9 @@ const double toler451 = 2.5000000000000020e-13;
 // Test data for n=100, m=100, rho=0.90000000000000002.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data452[10] =
 {
@@ -13148,6 +14504,9 @@ const double toler452 = 2.5000000000000020e-13;
 // Test data for n=100, m=100, rho=0.94999999999999996.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data453[10] =
 {
@@ -13177,6 +14536,9 @@ const double toler453 = 2.5000000000000020e-13;
 // Test data for n=100, m=100, rho=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_zernike<double>
 data454[10] =
 {
@@ -13207,10 +14569,11 @@ template<typename Tp, unsigned int Num>
   void
   test(const testcase_zernike<Tp> (&data)[Num], Tp toler)
   {
+    typedef Tp Val;
     bool test __attribute__((unused)) = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
+    const Val eps = std::numeric_limits<Val>::epsilon();
+    Val max_abs_diff = -Val(1);
+    Val max_abs_frac = -Val(1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
@@ -13219,8 +14582,9 @@ template<typename Tp, unsigned int Num>
 	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
-  	 max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps && std::abs(f) > Tp(10) * eps)
+	  max_abs_diff = std::abs(diff);
+	if (std::abs(f0) > Val(10) * eps
+	 && std::abs(f) > Val(10) * eps)
 	  {
 	    const Tp frac = diff / f0;
 	    if (std::abs(frac) > max_abs_frac)

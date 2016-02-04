@@ -40,6 +40,9 @@
 // Test data for n=0.
 // max(|f - f_GSL|): 4.4408920985006262e-16
 // max(|f - f_GSL| / |f_GSL|): 4.8209634107822837e-15
+// mean(f - f_GSL): -7.3031858338623581e-17
+// variance(f - f_GSL): 6.2035884029301465e-36
+// stddev(f - f_GSL): 2.4907003840145337e-18
 const testcase_sph_neumann<double>
 data001[20] =
 {
@@ -69,6 +72,9 @@ const double toler001 = 2.5000000000000020e-13;
 // Test data for n=1.
 // max(|f - f_GSL|): 3.5527136788005009e-15
 // max(|f - f_GSL| / |f_GSL|): 3.7472288263398607e-15
+// mean(f - f_GSL): -2.2655488596257100e-16
+// variance(f - f_GSL): 2.8436075542112773e-33
+// stddev(f - f_GSL): 5.3325486910212804e-17
 const testcase_sph_neumann<double>
 data002[20] =
 {
@@ -98,6 +104,9 @@ const double toler002 = 2.5000000000000020e-13;
 // Test data for n=2.
 // max(|f - f_GSL|): 5.6843418860808015e-14
 // max(|f - f_GSL| / |f_GSL|): 2.4702749396271158e-15
+// mean(f - f_GSL): -2.9803416679019533e-15
+// variance(f - f_GSL): 5.1998317985460192e-31
+// stddev(f - f_GSL): 7.2109859232604382e-16
 const testcase_sph_neumann<double>
 data003[20] =
 {
@@ -127,6 +136,9 @@ const double toler003 = 2.5000000000000020e-13;
 // Test data for n=5.
 // max(|f - f_GSL|): 4.6566128730773926e-10
 // max(|f - f_GSL| / |f_GSL|): 6.3451511503162099e-16
+// mean(f - f_GSL): -2.3308027730095658e-11
+// variance(f - f_GSL): 3.0097307122544499e-23
+// stddev(f - f_GSL): 5.4861012679811610e-12
 const testcase_sph_neumann<double>
 data004[20] =
 {
@@ -156,6 +168,9 @@ const double toler004 = 2.5000000000000020e-13;
 // Test data for n=10.
 // max(|f - f_GSL|): 0.50000000000000000
 // max(|f - f_GSL| / |f_GSL|): 1.2712694703401436e-15
+// mean(f - f_GSL): -0.025036064438653759
+// variance(f - f_GSL): 3.4727583969724927e-05
+// stddev(f - f_GSL): 0.0058930114516879172
 const testcase_sph_neumann<double>
 data005[20] =
 {
@@ -185,6 +200,9 @@ const double toler005 = 2.5000000000000020e-13;
 // Test data for n=20.
 // max(|f - f_GSL|): 2.9514790517935283e+20
 // max(|f - f_GSL| / |f_GSL|): 1.9896573344672978e-15
+// mean(f - f_GSL): -1.4757416361011208e+19
+// variance(f - f_GSL): inf
+// stddev(f - f_GSL): inf
 const testcase_sph_neumann<double>
 data006[20] =
 {
@@ -214,6 +232,9 @@ const double toler006 = 2.5000000000000020e-13;
 // Test data for n=50.
 // max(|f - f_GSL|): 2.0859248397665138e+93
 // max(|f - f_GSL| / |f_GSL|): 7.3237119407125301e-14
+// mean(f - f_GSL): 1.0429624198832551e+92
+// variance(f - f_GSL): inf
+// stddev(f - f_GSL): inf
 const testcase_sph_neumann<double>
 data007[20] =
 {
@@ -243,6 +264,9 @@ const double toler007 = 5.0000000000000029e-12;
 // Test data for n=100.
 // max(|f - f_GSL|): 2.4840289476811343e+232
 // max(|f - f_GSL| / |f_GSL|): 9.0555289224453335e-14
+// mean(f - f_GSL): 1.2420144738405672e+231
+// variance(f - f_GSL): inf
+// stddev(f - f_GSL): inf
 const testcase_sph_neumann<double>
 data008[20] =
 {
@@ -273,6 +297,9 @@ const double toler008 = 5.0000000000000029e-12;
 // Test data for n=0.
 // max(|f - f_GSL|): 1.0165479569224090e-15
 // max(|f - f_GSL| / |f_GSL|): 5.9073915926662418e-13
+// mean(f - f_GSL): 5.5652097513680938e-17
+// variance(f - f_GSL): 3.4053497532755181e-33
+// stddev(f - f_GSL): 5.8355374673422489e-17
 const testcase_sph_neumann<double>
 data009[20] =
 {
@@ -302,6 +329,9 @@ const double toler009 = 5.0000000000000028e-11;
 // Test data for n=1.
 // max(|f - f_GSL|): 1.0529771499179219e-15
 // max(|f - f_GSL| / |f_GSL|): 3.5182047773188613e-13
+// mean(f - f_GSL): 3.3003114130458753e-17
+// variance(f - f_GSL): 1.2241700649125932e-32
+// stddev(f - f_GSL): 1.1064221910792430e-16
 const testcase_sph_neumann<double>
 data010[20] =
 {
@@ -331,6 +361,9 @@ const double toler010 = 2.5000000000000014e-11;
 // Test data for n=2.
 // max(|f - f_GSL|): 9.7144514654701197e-16
 // max(|f - f_GSL| / |f_GSL|): 8.9389761338979581e-13
+// mean(f - f_GSL): -4.9613091412936685e-17
+// variance(f - f_GSL): 2.9225320032826861e-33
+// stddev(f - f_GSL): 5.4060447679266271e-17
 const testcase_sph_neumann<double>
 data011[20] =
 {
@@ -360,6 +393,9 @@ const double toler011 = 5.0000000000000028e-11;
 // Test data for n=5.
 // max(|f - f_GSL|): 1.1327744298128550e-15
 // max(|f - f_GSL| / |f_GSL|): 6.2024335299315527e-13
+// mean(f - f_GSL): 1.8474805019152996e-17
+// variance(f - f_GSL): 1.5114883927750998e-32
+// stddev(f - f_GSL): 1.2294260420111083e-16
 const testcase_sph_neumann<double>
 data012[20] =
 {
@@ -389,6 +425,9 @@ const double toler012 = 5.0000000000000028e-11;
 // Test data for n=10.
 // max(|f - f_GSL|): 1.0658141036401503e-14
 // max(|f - f_GSL| / |f_GSL|): 7.3655649039219020e-13
+// mean(f - f_GSL): -6.2137794909489228e-16
+// variance(f - f_GSL): 2.2479603690495691e-32
+// stddev(f - f_GSL): 1.4993199688690767e-16
 const testcase_sph_neumann<double>
 data013[20] =
 {
@@ -418,6 +457,9 @@ const double toler013 = 5.0000000000000028e-11;
 // Test data for n=20.
 // max(|f - f_GSL|): 1.0728836059570312e-06
 // max(|f - f_GSL| / |f_GSL|): 1.0496253232407487e-11
+// mean(f - f_GSL): -5.3644294158292414e-08
+// variance(f - f_GSL): 1.5942992976847171e-16
+// stddev(f - f_GSL): 1.2626556528542202e-08
 const testcase_sph_neumann<double>
 data014[20] =
 {
@@ -447,6 +489,9 @@ const double toler014 = 1.0000000000000007e-09;
 // Test data for n=50.
 // max(|f - f_GSL|): 5.1003129618557667e+29
 // max(|f - f_GSL| / |f_GSL|): 4.9443320929884463e-13
+// mean(f - f_GSL): -2.5501564809278835e+28
+// variance(f - f_GSL): inf
+// stddev(f - f_GSL): inf
 const testcase_sph_neumann<double>
 data015[20] =
 {
@@ -476,6 +521,9 @@ const double toler015 = 2.5000000000000014e-11;
 // Test data for n=100.
 // max(|f - f_GSL|): 3.0796490204944808e+102
 // max(|f - f_GSL| / |f_GSL|): 4.6209003006798690e-14
+// mean(f - f_GSL): 1.5398245102472405e+101
+// variance(f - f_GSL): inf
+// stddev(f - f_GSL): inf
 const testcase_sph_neumann<double>
 data016[20] =
 {
@@ -506,10 +554,11 @@ template<typename Tp, unsigned int Num>
   void
   test(const testcase_sph_neumann<Tp> (&data)[Num], Tp toler)
   {
+    typedef Tp Val;
     bool test __attribute__((unused)) = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
+    const Val eps = std::numeric_limits<Val>::epsilon();
+    Val max_abs_diff = -Val(1);
+    Val max_abs_frac = -Val(1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
@@ -518,8 +567,8 @@ template<typename Tp, unsigned int Num>
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
+	if (std::abs(f0) > Val(10) * eps
+	 && std::abs(f) > Val(10) * eps)
 	  {
 	    const Tp frac = diff / f0;
 	    if (std::abs(frac) > max_abs_frac)

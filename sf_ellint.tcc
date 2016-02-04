@@ -40,6 +40,8 @@
 // (4)  Numerical Recipes in C, 2nd ed, by W. H. Press, S. A. Teukolsky,
 //      W. T. Vetterling, B. P. Flannery, Cambridge University Press
 //      (1992), pp. 261-269
+// (5)  Toshio Fukushima, Elliptic functions and elliptic integrals for
+//      celestial mechanics and dynamical astronomy
 
 #ifndef _GLIBCXX_BITS_SF_ELLINT_TCC
 #define _GLIBCXX_BITS_SF_ELLINT_TCC 1
@@ -823,7 +825,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __k2 = __k * __k;
 	  auto __arg1 = _Tp{1} - __sinphi2;
 	  auto __arg2 = _Tp{1} - __k2 * __sinphi2;
-	  return __ellint_rd(__arg1, __arg2, _Tp{1}) / _Tp{3};
+	  return __sinphi * __sinphi2 * __ellint_rd(__arg1, __arg2, _Tp{1}) / _Tp{3};
 	}
     }
 

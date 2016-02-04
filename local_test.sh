@@ -63,6 +63,7 @@ ${copy} check_sph_neumann.cc      ${test_dir}/21_sph_neumann/check_value.cc
 ${makedir} ${text_dir}/airy_ai
 ${makedir} ${text_dir}/airy_bi
 ${makedir} ${text_dir}/bincoef
+${makedir} ${text_dir}/comp_ellint_d
 ${makedir} ${text_dir}/conf_hyperg
 ${makedir} ${text_dir}/conf_hyperg_lim
 ${makedir} ${text_dir}/coshint
@@ -70,6 +71,7 @@ ${makedir} ${text_dir}/cosint
 ${makedir} ${text_dir}/dawson
 ${makedir} ${text_dir}/dilog
 ${makedir} ${text_dir}/double_factorial
+${makedir} ${text_dir}/ellint_d
 ${makedir} ${text_dir}/ellint_rc
 ${makedir} ${text_dir}/ellint_rd
 ${makedir} ${text_dir}/ellint_rf
@@ -111,6 +113,7 @@ ${makedir} ${text_dir}/sph_harmonic
 ${copy} check_airy_ai.cc            ${text_dir}/airy_ai/check_value.cc
 ${copy} check_airy_bi.cc            ${text_dir}/airy_bi/check_value.cc
 ${copy} check_bincoef.cc            ${text_dir}/bincoef/check_value.cc
+${copy} check_comp_ellint_d.cc      ${text_dir}/comp_ellint_d/check_value.cc
 ${copy} check_conf_hyperg.cc        ${text_dir}/conf_hyperg/check_value.cc
 ${copy} check_conf_hyperg_lim.cc    ${text_dir}/conf_hyperg_lim/check_value.cc
 ${copy} check_coshint.cc            ${text_dir}/coshint/check_value.cc
@@ -118,6 +121,7 @@ ${copy} check_cosint.cc             ${text_dir}/cosint/check_value.cc
 ${copy} check_dawson.cc             ${text_dir}/dawson/check_value.cc
 ${copy} check_dilog.cc              ${text_dir}/dilog/check_value.cc
 ${copy} check_double_factorial.cc   ${text_dir}/double_factorial/check_value.cc
+${copy} check_ellint_d.cc           ${text_dir}/ellint_d/check_value.cc
 ${copy} check_ellint_rc.cc          ${text_dir}/ellint_rc/check_value.cc
 ${copy} check_ellint_rd.cc          ${text_dir}/ellint_rd/check_value.cc
 ${copy} check_ellint_rf.cc          ${text_dir}/ellint_rf/check_value.cc

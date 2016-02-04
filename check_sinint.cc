@@ -40,6 +40,9 @@
 // Test data.
 // max(|f - f_GSL|): 2.6645352591003757e-15
 // max(|f - f_GSL| / |f_GSL|): 1.5471627473752280e-15
+// mean(f - f_GSL): -3.4278135885301711e-17
+// variance(f - f_GSL): 1.1988476683718077e-35
+// stddev(f - f_GSL): 3.4624379682122937e-18
 const testcase_sinint<double>
 data001[100] =
 {
@@ -150,10 +153,11 @@ template<typename Tp, unsigned int Num>
   void
   test(const testcase_sinint<Tp> (&data)[Num], Tp toler)
   {
+    typedef Tp Val;
     bool test __attribute__((unused)) = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
+    const Val eps = std::numeric_limits<Val>::epsilon();
+    Val max_abs_diff = -Val(1);
+    Val max_abs_frac = -Val(1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
@@ -162,8 +166,8 @@ template<typename Tp, unsigned int Num>
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
+	if (std::abs(f0) > Val(10) * eps
+	 && std::abs(f) > Val(10) * eps)
 	  {
 	    const Tp frac = diff / f0;
 	    if (std::abs(frac) > max_abs_frac)

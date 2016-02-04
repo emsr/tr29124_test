@@ -40,6 +40,9 @@
 // Test data for n=0.
 // max(|f - f_GSL|): 3.3306690738754696e-16
 // max(|f - f_GSL| / |f_GSL|): 2.0843271082049370e-15
+// mean(f - f_GSL): 1.3216940769347101e-18
+// variance(f - f_GSL): 3.6684379893090205e-35
+// stddev(f - f_GSL): 6.0567631531280972e-18
 const testcase_sph_bessel<double>
 data001[21] =
 {
@@ -70,6 +73,9 @@ const double toler001 = 2.5000000000000020e-13;
 // Test data for n=1.
 // max(|f - f_GSL|): 3.1918911957973251e-16
 // max(|f - f_GSL| / |f_GSL|): 2.8516043985912409e-14
+// mean(f - f_GSL): -1.9205867055457507e-17
+// variance(f - f_GSL): 2.6407111150141003e-35
+// stddev(f - f_GSL): 5.1387849877321193e-18
 const testcase_sph_bessel<double>
 data002[21] =
 {
@@ -100,6 +106,9 @@ const double toler002 = 2.5000000000000015e-12;
 // Test data for n=2.
 // max(|f - f_GSL|): 8.3266726846886741e-17
 // max(|f - f_GSL| / |f_GSL|): 6.5384527054443100e-16
+// mean(f - f_GSL): -5.7824115865893567e-19
+// variance(f - f_GSL): 3.5896274743414335e-34
+// stddev(f - f_GSL): 1.8946312238378829e-17
 const testcase_sph_bessel<double>
 data003[21] =
 {
@@ -130,6 +139,9 @@ const double toler003 = 2.5000000000000020e-13;
 // Test data for n=5.
 // max(|f - f_GSL|): 9.7144514654701197e-17
 // max(|f - f_GSL| / |f_GSL|): 2.7459190669103549e-15
+// mean(f - f_GSL): 3.0672884393007950e-18
+// variance(f - f_GSL): 4.9393356441808615e-37
+// stddev(f - f_GSL): 7.0280407256794272e-19
 const testcase_sph_bessel<double>
 data004[21] =
 {
@@ -160,6 +172,9 @@ const double toler004 = 2.5000000000000020e-13;
 // Test data for n=10.
 // max(|f - f_GSL|): 8.6736173798840355e-19
 // max(|f - f_GSL| / |f_GSL|): 6.7232224139500876e-15
+// mean(f - f_GSL): 2.9233537895331568e-20
+// variance(f - f_GSL): 4.2203862158694132e-38
+// stddev(f - f_GSL): 2.0543578597385153e-19
 const testcase_sph_bessel<double>
 data005[21] =
 {
@@ -190,6 +205,9 @@ const double toler005 = 5.0000000000000039e-13;
 // Test data for n=20.
 // max(|f - f_GSL|): 4.9275407583725281e-26
 // max(|f - f_GSL| / |f_GSL|): 2.4002866288153026e-14
+// mean(f - f_GSL): 5.5808686996707338e-28
+// variance(f - f_GSL): 1.2460231022017667e-52
+// stddev(f - f_GSL): 1.1162540491311853e-26
 const testcase_sph_bessel<double>
 data006[21] =
 {
@@ -221,6 +239,9 @@ const double toler006 = 2.5000000000000015e-12;
 // Test data for n=0.
 // max(|f - f_GSL|): 1.0694570229397016e-15
 // max(|f - f_GSL| / |f_GSL|): 3.7496052611150890e-13
+// mean(f - f_GSL): -2.6124109489412632e-17
+// variance(f - f_GSL): 1.2558410443492295e-32
+// stddev(f - f_GSL): 1.1206431387150995e-16
 const testcase_sph_bessel<double>
 data007[21] =
 {
@@ -251,6 +272,9 @@ const double toler007 = 2.5000000000000014e-11;
 // Test data for n=1.
 // max(|f - f_GSL|): 1.0044048925905713e-15
 // max(|f - f_GSL| / |f_GSL|): 6.5465850130521528e-13
+// mean(f - f_GSL): 5.1561557602917773e-17
+// variance(f - f_GSL): 2.9340234335545131e-33
+// stddev(f - f_GSL): 5.4166626566129380e-17
 const testcase_sph_bessel<double>
 data008[21] =
 {
@@ -281,6 +305,9 @@ const double toler008 = 5.0000000000000028e-11;
 // Test data for n=2.
 // max(|f - f_GSL|): 1.0772632785815972e-15
 // max(|f - f_GSL| / |f_GSL|): 3.4761702917932150e-13
+// mean(f - f_GSL): 2.6712676383047619e-17
+// variance(f - f_GSL): 1.2218714322750144e-32
+// stddev(f - f_GSL): 1.1053829346769446e-16
 const testcase_sph_bessel<double>
 data009[21] =
 {
@@ -311,6 +338,9 @@ const double toler009 = 2.5000000000000014e-11;
 // Test data for n=5.
 // max(|f - f_GSL|): 9.4455693266937146e-16
 // max(|f - f_GSL| / |f_GSL|): 8.4346477099300519e-13
+// mean(f - f_GSL): 4.5743005943912237e-17
+// variance(f - f_GSL): 1.4752048613244596e-33
+// stddev(f - f_GSL): 3.8408395714016221e-17
 const testcase_sph_bessel<double>
 data010[21] =
 {
@@ -341,6 +371,9 @@ const double toler010 = 5.0000000000000028e-11;
 // Test data for n=10.
 // max(|f - f_GSL|): 1.1999949645069563e-15
 // max(|f - f_GSL| / |f_GSL|): 2.9533832871668437e-12
+// mean(f - f_GSL): 4.1910867550924778e-17
+// variance(f - f_GSL): 1.5079763856266103e-32
+// stddev(f - f_GSL): 1.2279968996811883e-16
 const testcase_sph_bessel<double>
 data011[21] =
 {
@@ -371,6 +404,9 @@ const double toler011 = 2.5000000000000017e-10;
 // Test data for n=20.
 // max(|f - f_GSL|): 8.5521867365656590e-16
 // max(|f - f_GSL| / |f_GSL|): 2.3231623379380350e-13
+// mean(f - f_GSL): 7.4661920833706034e-18
+// variance(f - f_GSL): 1.4597276928432959e-38
+// stddev(f - f_GSL): 1.2081919106016625e-19
 const testcase_sph_bessel<double>
 data012[21] =
 {
@@ -401,6 +437,9 @@ const double toler012 = 2.5000000000000014e-11;
 // Test data for n=50.
 // max(|f - f_GSL|): 9.7377618121785581e-16
 // max(|f - f_GSL| / |f_GSL|): 2.0735742618499052e-12
+// mean(f - f_GSL): 6.2784361339472195e-18
+// variance(f - f_GSL): 5.0165160423422681e-33
+// stddev(f - f_GSL): 7.0827367890825003e-17
 const testcase_sph_bessel<double>
 data013[21] =
 {
@@ -431,6 +470,9 @@ const double toler013 = 2.5000000000000017e-10;
 // Test data for n=100.
 // max(|f - f_GSL|): 3.1225022567582528e-17
 // max(|f - f_GSL| / |f_GSL|): 8.7701893132122237e-14
+// mean(f - f_GSL): -1.2140001788067151e-18
+// variance(f - f_GSL): 4.7284726903029159e-35
+// stddev(f - f_GSL): 6.8763890889789794e-18
 const testcase_sph_bessel<double>
 data014[21] =
 {
@@ -462,10 +504,11 @@ template<typename Tp, unsigned int Num>
   void
   test(const testcase_sph_bessel<Tp> (&data)[Num], Tp toler)
   {
+    typedef Tp Val;
     bool test __attribute__((unused)) = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
+    const Val eps = std::numeric_limits<Val>::epsilon();
+    Val max_abs_diff = -Val(1);
+    Val max_abs_frac = -Val(1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
@@ -474,8 +517,8 @@ template<typename Tp, unsigned int Num>
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
+	if (std::abs(f0) > Val(10) * eps
+	 && std::abs(f) > Val(10) * eps)
 	  {
 	    const Tp frac = diff / f0;
 	    if (std::abs(frac) > max_abs_frac)

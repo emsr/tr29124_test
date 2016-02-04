@@ -34,6 +34,7 @@ ${copy} check_sph_neumann.cc      ${gcc_dir}/21_sph_neumann/check_value.cc
 ${copy} check_airy_ai.cc            ${ext_dir}/airy_ai/check_value.cc
 ${copy} check_airy_bi.cc            ${ext_dir}/airy_bi/check_value.cc
 ${copy} check_bincoef.cc            ${ext_dir}/bincoef/check_value.cc
+${copy} check_comp_ellint_d.cc      ${ext_dir}/comp_ellint_d/check_value.cc
 ${copy} check_conf_hyperg.cc        ${ext_dir}/conf_hyperg/check_value.cc
 ${copy} check_conf_hyperg_lim.cc    ${ext_dir}/conf_hyperg_lim/check_value.cc
 ${copy} check_coshint.cc            ${ext_dir}/coshint/check_value.cc
@@ -41,6 +42,7 @@ ${copy} check_cosint.cc             ${ext_dir}/cosint/check_value.cc
 ${copy} check_dawson.cc             ${ext_dir}/dawson/check_value.cc
 ${copy} check_dilog.cc              ${ext_dir}/dilog/check_value.cc
 ${copy} check_double_factorial.cc   ${ext_dir}/double_factorial/check_value.cc
+${copy} check_ellint_d.cc           ${ext_dir}/ellint_d/check_value.cc
 ${copy} check_ellint_rc.cc          ${ext_dir}/ellint_rc/check_value.cc
 ${copy} check_ellint_rd.cc          ${ext_dir}/ellint_rd/check_value.cc
 ${copy} check_ellint_rf.cc          ${ext_dir}/ellint_rf/check_value.cc
