@@ -432,7 +432,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Compute the Fock type Airy functions
+   *   @brief  Compute the Fock-type Airy functions
    *           @f$ w_1(x) @f$ and @f$ w_2(x) @f$ and their first
    *           derivatives @f$ w_1'(x) @f$ and @f$ w_2'(x) @f$
    *           respectively.
@@ -444,11 +444,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @f]
    *
    *   @param  __x   The argument of the Airy functions.
-   *   @param  __w1  The output Fock type Airy function of the first kind.
-   *   @param  __w2  The output Fock type Airy function of the second kind.
-   *   @param  __w1p  The output derivative of the Fock type Airy function
+   *   @param  __w1  The output Fock-type Airy function of the first kind.
+   *   @param  __w2  The output Fock-type Airy function of the second kind.
+   *   @param  __w1p  The output derivative of the Fock-type Airy function
    *                  of the first kind.
-   *   @param  __w2p  The output derivative of the Fock type Airy function
+   *   @param  __w2p  The output derivative of the Fock-type Airy function
    *                  of the second kind.
    */
   template<typename _Tp>
