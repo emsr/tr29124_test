@@ -46,6 +46,7 @@ ${copy} check_ellint_d.cc           ${ext_dir}/ellint_d/check_value.cc
 ${copy} check_ellint_rc.cc          ${ext_dir}/ellint_rc/check_value.cc
 ${copy} check_ellint_rd.cc          ${ext_dir}/ellint_rd/check_value.cc
 ${copy} check_ellint_rf.cc          ${ext_dir}/ellint_rf/check_value.cc
+${copy} check_ellint_rg.cc          ${ext_dir}/ellint_rg/check_value.cc
 ${copy} check_ellint_rj.cc          ${ext_dir}/ellint_rj/check_value.cc
 ${copy} check_expint_e1.cc          ${ext_dir}/expint_e1/check_value.cc
 ${copy} check_factorial.cc          ${ext_dir}/factorial/check_value.cc

@@ -7,6 +7,7 @@
 #include <boost/math/special_functions/laguerre.hpp>
 #include <boost/math/special_functions/bessel.hpp> 
 #include <boost/math/special_functions/airy.hpp>
+#include <boost/math/special_functions/ellint_rg.hpp>
 #include <boost/math/special_functions/ellint_rf.hpp>
 #include <boost/math/special_functions/ellint_rd.hpp>
 #include <boost/math/special_functions/ellint_rj.hpp>
@@ -188,6 +189,13 @@ double
 ellint_RF(double x, double y, double z)
 {
   return boost::math::ellint_rf(x, y, z);
+}
+
+/// Carlson elliptic integrals R_G.
+double
+ellint_RG(double x, double y, double z)
+{
+  return boost::math::ellint_rg(x, y, z);
 }
 
 /// Carlson elliptic integrals R_J.

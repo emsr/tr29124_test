@@ -45,6 +45,7 @@ ${tool} ${text_dir}/ellint_d/*           ${ext_dir}/ellint_d
 ${tool} ${text_dir}/ellint_rc/*          ${ext_dir}/ellint_rc
 ${tool} ${text_dir}/ellint_rd/*          ${ext_dir}/ellint_rd
 ${tool} ${text_dir}/ellint_rf/*          ${ext_dir}/ellint_rf
+${tool} ${text_dir}/ellint_rg/*          ${ext_dir}/ellint_rg
 ${tool} ${text_dir}/ellint_rj/*          ${ext_dir}/ellint_rj
 ${tool} ${text_dir}/expint_e1/*          ${ext_dir}/expint_e1
 ${tool} ${text_dir}/factorial/*          ${ext_dir}/factorial

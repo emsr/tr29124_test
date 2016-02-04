@@ -75,6 +75,7 @@ ${makedir} ${text_dir}/ellint_d
 ${makedir} ${text_dir}/ellint_rc
 ${makedir} ${text_dir}/ellint_rd
 ${makedir} ${text_dir}/ellint_rf
+${makedir} ${text_dir}/ellint_rg
 ${makedir} ${text_dir}/ellint_rj
 ${makedir} ${text_dir}/expint_e1
 ${makedir} ${text_dir}/factorial
@@ -125,6 +126,7 @@ ${copy} check_ellint_d.cc           ${text_dir}/ellint_d/check_value.cc
 ${copy} check_ellint_rc.cc          ${text_dir}/ellint_rc/check_value.cc
 ${copy} check_ellint_rd.cc          ${text_dir}/ellint_rd/check_value.cc
 ${copy} check_ellint_rf.cc          ${text_dir}/ellint_rf/check_value.cc
+${copy} check_ellint_rg.cc          ${text_dir}/ellint_rg/check_value.cc
 ${copy} check_ellint_rj.cc          ${text_dir}/ellint_rj/check_value.cc
 ${copy} check_expint_e1.cc          ${text_dir}/expint_e1/check_value.cc
 ${copy} check_factorial.cc          ${text_dir}/factorial/check_value.cc
