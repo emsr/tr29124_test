@@ -42,24 +42,23 @@
 
 
 
-  ///
-  ///  @brief  Compute the normalized Hermite polynomial by recursion.
-  ///
+  /**
+   *  @brief  Compute the Hermite polynomial by recursion.
+   */
   template<typename _Tp>
     _Tp
-    __hermite(unsigned int __n, _Tp __x)
+    __hermite_recur(unsigned int __n, _Tp __x)
     {
+      auto __hnm1 = _Tp{0};
 
-      _Tp __hnm1 = 0;
-
-      _Tp __hn = 1;
+      auto __hn = _Tp{1};
       if (__n == 0)
         return __hn;
 
       _Tp __hnp1;
       for (int __i = 0; __i < __n; ++__i)
         {
-          __hnp1 = _Tp(2) *__x * __hn
+          __hnp1 = _Tp{2} *__x * __hn
                  - _Tp(2 * __i) * __hnm1;
           __hnm1 = __hn;
           __hn = __hnp1;
@@ -69,26 +68,25 @@
     }
 
 
-  ///
-  ///  @brief  Compute the normalized Hermite polynomial by recursion.
-  ///
+  /**
+   *  @brief  Compute the normalized Hermite polynomial by recursion.
+   *  @todo  Tabulate sqrt(int) or even sqrt(i)/sqrt(i+1) and add a helper.
+   */
   template<typename _Tp>
     _Tp
-    __hermite_norm(unsigned int __n, _Tp __x)
+    __hermite_norm_recur(unsigned int __n, _Tp __x)
     {
+      const auto __INV_ROOT4_PI = _Tp{0.7511255444649425L};
 
-      const _Tp __INV_ROOT4_PI = 0.7511255444649425L;
-
-      _Tp __htnm1 = 0;
-
-      _Tp __htn = __INV_ROOT4_PI;
+      auto __htnm1 = _Tp{0};
+      auto __htn = __INV_ROOT4_PI;
       if (__n == 0)
         return __htn;
 
       _Tp __htnp1;
       for (int __i = 0; __i < __n; ++__i)
         {
-          __htnp1 = __x * std::sqrt(_Tp(2) / _Tp(__i + 1)) * __htn
+          __htnp1 = __x * std::sqrt(_Tp{2} / _Tp(__i + 1)) * __htn
                   - std::sqrt(_Tp(__i) / _Tp(__i + 1)) * __htnm1;
           __htnm1 = __htn;
           __htn = __htnp1;
