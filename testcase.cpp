@@ -939,7 +939,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
-	     "x", {1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0},
+	     "x", {0.0, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0},
 	     file_lpochhammer_l, true, true);
 
     // Upper Pochhammer symbols (see boost::rising_factorial).
@@ -963,7 +963,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
-	     "x", {1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0},
+	     "x", {0.0, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0},
 	     file_pochhammer_l, true, true);
 
     // Regular modified spherical bessel functions.
