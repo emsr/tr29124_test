@@ -2221,8 +2221,7 @@ _S_neg_double_factorial_table[999]
       else
 	{
           auto __logpoch = std::lgamma(__a + 1) - std::lgamma(__a - __n + 1);
-          if (std::abs(__logpoch)
-              > std::numeric_limits<_Tp>::max_digits10 * __log10)
+          if (__logpoch > __gnu_cxx::__log_max<_Tp>())
             return __gnu_cxx::__infinity<_Tp>();
           else
             return std::exp(__logpoch);
@@ -2391,7 +2390,7 @@ _S_neg_double_factorial_table[999]
   /**
    *  @brief  Return the factorial of the integer n.
    *
-   *  The polygamma function is related to the Hurwitz zeta function:
+   *  The factorial is:
    *  @f[
    *    n! = 1 2 ... (n-1) n, 0! = 1
    *  @f]
@@ -2409,7 +2408,7 @@ _S_neg_double_factorial_table[999]
   /**
    *  @brief  Return the logarithm of the factorial of the integer n.
    *
-   *  The polygamma function is related to the Hurwitz zeta function:
+   *  The factorial is:
    *  @f[
    *    n! = 1 2 ... (n-1) n, 0! = 1
    *  @f]
