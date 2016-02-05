@@ -1,3 +1,7 @@
+// $HOME/bin_specfun/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_hermite test_hermite.cpp
+
+// ./test_hermite > test_hermite.txt
+
 #include <iostream>
 #include <iomanip>
 #include <cmath>
@@ -7,7 +11,6 @@
 int
 main()
 {
-
   std::cout.precision(8);
   std::cout.flags(std::ios::showpoint);
 
@@ -26,8 +29,8 @@ main()
       for (int i = 0; i <= 100; ++i)
         {
           double x = i * 0.1;
-          double h = __hermite(n, x);
-          double ht = __hermite_norm(n, x);
+          double h = __hermite_recur(n, x);
+          double ht = __hermite_norm_recur(n, x);
           std::cout << "  " << std::setw(16) << x;
           std::cout << "  " << std::setw(16) << h;
           std::cout << "  " << std::setw(16) << ht;
