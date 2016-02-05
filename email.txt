@@ -1,0 +1,13 @@
+Me + GSL Mail Trail
+-------------------
+https://sourceware.org/ml/gsl-discuss/2007-q1/msg00016.html
+
+Florian Goth Hurwitx Zeta + Polylog
+-----------------------------------
+http://comments.gmane.org/gmane.comp.gcc.devel/136780
+https://github.com/CaptainSifff/zeta
+Old Zeta failure:
+https://github.com/CaptainSifff/zeta/commit/6f4d70975f0a064a1d551fd5319f5ac3391f4234
+Clean up Riemann:
+https://github.com/CaptainSifff/zeta/commit/d1d32f2ac2422d9c5408e1b850984dcb3cd2aeb6
+https://github.com/CaptainSifff/zeta/commit/e48ba770a0591af8d56150401a50807218c00026
