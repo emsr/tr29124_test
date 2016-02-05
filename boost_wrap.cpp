@@ -560,7 +560,7 @@ pochhammer_l(double a, double x)
 double
 lfactorial(unsigned int n)
 {
-  return 0.0;//boost::math::log_factorial<double>(n);
+  return std::log(boost::math::factorial<double>(n));
 }
 
 /// Factorial.
@@ -574,7 +574,7 @@ factorial(unsigned int n)
 double
 ldouble_factorial(int n)
 {
-  return 0.0;
+  return std::log(boost::math::double_factorial<double>(n));
 }
 
 /// Double factorial.

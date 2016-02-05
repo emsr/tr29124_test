@@ -182,6 +182,35 @@ template<typename _Tp>
 		  << ' ' << std::lgamma(z)
 		  << ' ' << __log_gamma_spouge(z) - std::lgamma(z) << '\n';
       }
+
+    //  Try to invert using Newton...
+    const auto _S_log_10 = std::log(10.0);
+    const auto _S_log_sqrt2pi = 0.5 * std::log(_S_2pi);
+    auto inv_log_gamma
+    {
+      [=](_Tp y)
+      -> _Tp
+      {
+	auto x = y * _S_log_10 - _S_log_sqrt2pi;
+	auto x0 = x;
+	for (int i = 0; i < 100; ++i)
+	  x = (x0 + x) / std::log(x);
+	return x;
+      }
+    };
+
+    for (int i = 0; i <= 500; ++i)
+      {
+	auto z = _Tp{0.01L} * i;
+	_Tp x, y;
+	std::cout << ' ' << z
+		  << ' ' << (y = __log_gamma_spouge(z))
+		  << ' ' << std::lgamma(z)
+		  << ' ' << __log_gamma_spouge(z) - std::lgamma(z)
+		  << ' ' << (x = inv_log_gamma(y))
+		  << ' ' << x - y
+		  << '\n';
+      }
   }
 
 int

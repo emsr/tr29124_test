@@ -1,6 +1,6 @@
 // Special functions -*- C++ -*-
 
-// Copyright (C) 2015
+// Copyright (C) 2016
 // Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
@@ -42,53 +42,131 @@
 
 
 
-  ///
-  ///  @brief  Compute the normalized Hermite polynomial by recursion.
-  ///
+  /**
+   *   @brief This routine returns the Hermite polynomial
+   *          of order n: \f$ H_n(x) \f$ by recursion on n.
+   *
+   *   The Hermite polynomial is defined by:
+   *   @f[
+   *     H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
+   *   @f]
+   *
+   *   @param __n The order of the Hermite polynomial.
+   *   @param __x The argument of the Hermite polynomial.
+   *   @return The value of the Hermite polynomial of order n
+   *           and argument x.
+   */
   template<typename _Tp>
     _Tp
-    __hermite(unsigned int __n, _Tp __x)
+    __poly_hermite_recursion(unsigned int __n, _Tp __x)
     {
-
-      _Tp __hnm1 = 0;
-
-      _Tp __hn = 1;
+      // Compute H_0.
+      auto __H_nm2 = _Tp{1};
       if (__n == 0)
-        return __hn;
+	return __H_nm2;
 
-      _Tp __hnp1;
-      for (int __i = 0; __i < __n; ++__i)
-        {
-          __hnp1 = _Tp(2) *__x * __hn
-                 - _Tp(2 * __i) * __hnm1;
-          __hnm1 = __hn;
-          __hn = __hnp1;
-        }
+      // Compute H_1.
+      auto __H_nm1 = _Tp{2} * __x;
+      if (__n == 1)
+	return __H_nm1;
 
-      return __hnp1;
+      // Compute H_n.
+      _Tp __H_n;
+      for (unsigned int __i = 2; __i <= __n; ++__i)
+	{
+	  __H_n = _Tp{2} * (__x * __H_nm1 - _Tp(__i - 1) * __H_nm2);
+	  __H_nm2 = __H_nm1;
+	  __H_nm1 = __H_n;
+	}
+
+      return __H_n;
     }
 
 
-  ///
-  ///  @brief  Compute the normalized Hermite polynomial by recursion.
-  ///
+  /**
+   *   @brief This routine returns the Hermite polynomial
+   *          of large order n: \f$ H_n(x) \f$.  We assume here
+   *          that x >= 0.
+   *
+   *   The Hermite polynomial is defined by:
+   *   @f[
+   *     H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
+   *   @f]
+   *
+   *  @see "Asymptotic analysis of the Hermite polynomials
+   *        from their differential-difference equation", 
+   *        Diego Dominici, arXiv:math/0601078v1 [math.CA] 4 Jan 2006
+   *   @param __n The order of the Hermite polynomial.
+   *   @param __x The argument of the Hermite polynomial.
+   *   @return The value of the Hermite polynomial of order n
+   *           and argument x.
+   */
   template<typename _Tp>
     _Tp
-    __hermite_norm(unsigned int __n, _Tp __x)
+    __poly_hermite_asymp(unsigned int __n, _Tp __x)
     {
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
+      constexpr auto _S_sqrt_2pi = _S_sqrt_2
+				 * __gnu_cxx::__math_constants<_Tp>::__root_pi;
+      // __x >= 0 in this routine.
+      const auto __xturn = std::sqrt(_Tp(2 * __n));
+      if (std::abs(__x - __xturn) < _Tp{0.05L} * __xturn)
+	{
+	  // Transition region x ~ sqrt(2n).
+	  const auto __n_2 = _Tp(__n) / _Tp{2};
+	  const auto __n6th = std::pow(_Tp(__n), _Tp{1} / _Tp{6});
+	  const auto __exparg = __n_2 * std::log(__xturn) - _Tp{3} * __n_2
+			      + __xturn * __x;
+	  const auto __airyarg = _S_sqrt_2 * (__x - __xturn) * __n6th;
+	  _Tp _Ai, _Bi, _Aip, _Bip;
+	  __airy(__airyarg, _Ai, _Bi, _Aip, _Bip);
+	  return std::sqrt(_S_sqrt_2pi) * __n6th * std::exp(__exparg) * _Ai;
+	}
+      else if (__x < __xturn)
+	{
+	  // Oscillatory region |x| < sqrt(2n).
+	  const auto __theta = std::asin(__x / __xturn);
+	  const auto __2theta = _Tp{2} * __theta;
+	  const auto __n_2 = _Tp(__n) / _Tp{2};
+	  const auto __exparg = __n_2 * (std::log(__xturn)
+					- std::cos(__2theta));
+	  const auto __arg = __theta / _Tp{2}
+			   + __n_2 * (std::sin(__2theta) + __2theta - _S_pi);
+	  return std::sqrt(_Tp{2} / std::cos(__theta))
+	       * std::exp(__exparg) * std::cos(__arg);
+	}
+      else
+	{
+	  // Exponential region |x| > sqrt(2n).
+	  const auto __sigma = std::sqrt((__x - __xturn) * (__x + __xturn));
+	  const auto __exparg = _Tp{0.5L} * (__x * (__x - __sigma) - __n)
+			      + __n * std::log(__sigma + __x);
+	  return std::exp(__exparg)
+	       * std::sqrt(_Tp{0.5L} * (_Tp{1} + __x / __sigma));
+	}
+    }
 
-      const _Tp __INV_ROOT4_PI = 0.7511255444649425L;
 
-      _Tp __htnm1 = 0;
+  /**
+   *  @brief  Compute the normalized Hermite polynomial by recursion.
+   *  @todo  Tabulate sqrt(int) or even sqrt(i)/sqrt(i+1) and add a helper.
+   */
+  template<typename _Tp>
+    _Tp
+    __poly_hermite_norm_recursion(unsigned int __n, _Tp __x)
+    {
+      const auto __INV_ROOT4_PI = _Tp{0.7511255444649425L};
 
-      _Tp __htn = __INV_ROOT4_PI;
+      auto __htnm1 = _Tp{0};
+      auto __htn = __INV_ROOT4_PI;
       if (__n == 0)
         return __htn;
 
       _Tp __htnp1;
       for (int __i = 0; __i < __n; ++__i)
         {
-          __htnp1 = __x * std::sqrt(_Tp(2) / _Tp(__i + 1)) * __htn
+          __htnp1 = __x * std::sqrt(_Tp{2} / _Tp(__i + 1)) * __htn
                   - std::sqrt(_Tp(__i) / _Tp(__i + 1)) * __htnm1;
           __htnm1 = __htn;
           __htn = __htnp1;
