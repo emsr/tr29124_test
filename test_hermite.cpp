@@ -29,8 +29,8 @@ main()
       for (int i = 0; i <= 100; ++i)
         {
           double x = i * 0.1;
-          double h = __hermite_recur(n, x);
-          double ht = __hermite_norm_recur(n, x);
+          double h = __poly_hermite_recursion(n, x);
+          double ht = __poly_hermite_norm_recursion(n, x);
           std::cout << "  " << std::setw(16) << x;
           std::cout << "  " << std::setw(16) << h;
           std::cout << "  " << std::setw(16) << ht;
