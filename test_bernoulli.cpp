@@ -1,7 +1,7 @@
 
-// $HOME/bin/bin/g++ -o bernoulli bernoulli.cpp
+// $HOME/bin/bin/g++ -o test_bernoulli test_bernoulli.cpp
 
-//
+// ./test_bernoulli > test_bernoulli.txt
 
 
 #include <iostream>
