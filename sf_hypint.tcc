@@ -50,9 +50,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __chshint_cont_frac(_Tp __t, _Tp& _Chi, _Tp& _Shi)
     {
       constexpr unsigned int _S_max_iter = 100;
-      constexpr _Tp _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
-      constexpr _Tp _S_fp_min = __gnu_cxx::__min<_Tp>();
-      constexpr _Tp _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
+      constexpr auto _S_fp_min = __gnu_cxx::__min<_Tp>();
+      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
 
       // Evaluate Chi and Shi by Lentz's modified method of continued fracions.
       std::complex<_Tp> __b(_Tp{1}, __t);
