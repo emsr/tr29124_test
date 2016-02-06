@@ -72,6 +72,7 @@
 #  include <bits/sf_theta.tcc>
 #  include <bits/sf_trigint.tcc>
 #  include <bits/sf_zeta.tcc>
+#  include <bits/sf_polylog.tcc>
 #  include <bits/sf_airy.tcc>
 #  include <bits/sf_hankel.tcc>
 #else

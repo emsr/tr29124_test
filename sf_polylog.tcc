@@ -40,9 +40,7 @@
 #ifndef _GLIBCXX_BITS_SF_POLYLOG_TCC
 #define _GLIBCXX_BITS_SF_POLYLOG_TCC 1
 
-//#include <ext/math_const.h>
-#include <complex>
-#include "math_const.h"
+#include <ext/math_const.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -75,8 +73,7 @@ template<typename _Tp>
   __clamp_pi(std::complex<_Tp> __w)
   {
     constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-    constexpr auto _S_i2pi = std::complex<_Tp>{0, 1}
-			   * __gnu_cxx::__math_constants<_Tp>::__2pi;
+    constexpr auto _S_i2pi = std::complex<_Tp>{0, _Tp{2} * _S_pi};
     while (__w.imag() > _S_pi)
       __w -= _S_i2pi;
     while (__w.imag() <= -_S_pi)
@@ -88,8 +85,8 @@ template<typename _Tp>
   std::complex<_Tp>
   __clamp_0_m2pi(std::complex<_Tp> __w)
   {
-    constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2pi;
-    constexpr auto _S_i2pi = std::complex<_Tp>{0, 1} * _S_2pi;
+    constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
+    constexpr auto _S_i2pi = std::complex<_Tp>{0, _S_2pi};
     while (__w.imag() > _Tp{0})
       __w = std::complex<_Tp>(__w.real(), __w.imag() - _S_2pi);
     while (__w.imag() <= -_S_2pi)
@@ -130,7 +127,7 @@ evenzeta(unsigned int __k)
   if (__k < __maxk)
     return __data[__k / 2];
   else
-    return __riemann_zeta(static_cast<_Tp>(__k));
+    return std::__detail::__riemann_zeta(static_cast<_Tp>(__k));
 }
 
 /**
@@ -151,15 +148,16 @@ template<typename _Tp>
   { // positive integer s
     //std::cout << "Integer Series for positive s - 1" << std::endl;
     // Optimization possibility: s are positive integers
-    constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2pi;
+    constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
     constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-    std::complex<_Tp> __res = __riemann_zeta(static_cast<_Tp>(__s));
+    constexpr auto _S_pipio6 = __gnu_cxx::__math_constants<_Tp>::__pi_sqr_div_6;
+    std::complex<_Tp> __res = std::__detail::__riemann_zeta(static_cast<_Tp>(__s));
     auto __wk = __w;
     auto __fac = _Tp{1};
     auto __harmonicN = _Tp{1}; // HarmonicNumber_1
     for (unsigned int __k = 1; __k <= __s - 2; ++__k)
       {
-	__res += __wk * __fac * __riemann_zeta(static_cast<_Tp>(__s - __k));
+	__res += __wk * __fac * std::__detail::__riemann_zeta(static_cast<_Tp>(__s - __k));
 	__wk *= __w;
 	_Tp __temp = _Tp{1}/(_Tp{1} + __k);
 	__fac *= __temp;
@@ -178,7 +176,7 @@ template<typename _Tp>
     unsigned int __j = 1;
     bool __terminate = false;
     __fac /= (__s + _Tp{1}); // (1/(n+1)!)
-    __res -= _S_pi * _S_pi / _Tp{6} * __fac * __pref; //subtract the zeroth order term.
+    __res -= _S_pipio6 * __fac * __pref; //subtract the zeroth order term.
     // Remainder of series.
     __fac *= _Tp{3} * _Tp{2} / (__s + _Tp{2}) / (__s + _Tp{3});
     auto __upfac = -(__w / _S_2pi) * (__w / _S_2pi);
@@ -186,7 +184,7 @@ template<typename _Tp>
     while (!__terminate) // Assume uniform convergence.
       {
         auto __rzarg = 2 * __j + 2;
-        //auto __rz = __riemann_zeta(rzarg);
+        //auto __rz = std::__detail::__riemann_zeta(rzarg);
 	auto __rz = evenzeta<_Tp>(__rzarg);
         //std::cout << __rz << ' ' << __fac << ' ' << __w2 << std::endl;
         auto __nextterm = (__rz * __fac) * __w2;
@@ -221,15 +219,15 @@ template<typename _Tp>
   { // positive integer s
     //std::cout << "Integer Series for positive s - 2" << std::endl;
     // Optimization possibility: s are positive integers.
-    constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2pi;
+    constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
     constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-    auto __res = __riemann_zeta(static_cast<_Tp>(__s));
+    auto __res = std::__detail::__riemann_zeta(static_cast<_Tp>(__s));
     auto __wk = __w;
     auto __fac = _Tp{1};
     auto __harmonicN = _Tp{1}; // HarmonicNumber_1
     for (unsigned int __k = 1; __k <= __s - 2; ++__k)
       {
-	__res += __wk * __fac * __riemann_zeta(static_cast<_Tp>(__s - __k));
+	__res += __wk * __fac * std::__detail::__riemann_zeta(static_cast<_Tp>(__s - __k));
 	__wk *= __w;
 	auto __temp = _Tp{1} / (_Tp{1} + __k);
 	__fac *= __temp;
@@ -286,7 +284,7 @@ template<typename _Tp>
   __polylog_exp_neg(_Tp __s, std::complex<_Tp> __w)
   {
     constexpr auto _S_i = std::complex<_Tp>{0, 1};
-    constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2pi;
+    constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
     constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
     // Basic general loop, but s is a negative quantity here
     // FIXME Large s makes problems.
@@ -314,7 +312,7 @@ template<typename _Tp>
            - __expis * std::pow(__q, __s - _Tp{1}));
     // The above expression is the result of sum_k Gamma(1+k-s) /k! * sin(pi /2* (s-k)) * (w/2/pi)^k
     // Therefore we only need to sample values of zeta(n) on the real axis that really differ from one
-    __res += __pref * (__sp * __gam * (__riemann_zeta(_Tp{1} - __s) - _Tp{1}));
+    __res += __pref * (__sp * __gam * (std::__detail::__riemann_zeta(_Tp{1} - __s) - _Tp{1}));
     constexpr unsigned int __maxit = 200;
     unsigned int __j = 1;
     bool __terminate = false;
@@ -324,7 +322,7 @@ template<typename _Tp>
 	auto __rzarg = (_Tp{1} - __s) + __j;
 	// only the difference to one is needed.
 	// FIXME: this expression underflows for rzarg > 50
-	auto __rz = (__riemann_zeta(__rzarg) - _Tp{1});
+	auto __rz = (std::__detail::__riemann_zeta(__rzarg) - _Tp{1});
 	_Tp __sine;
 	// Save the repeated recalculation of the sines
 	if (__j & 1)
@@ -347,7 +345,7 @@ template<typename _Tp>
 	__terminate = (__fpequal(std::abs(__res + __pref * __nextterm), std::abs(__res)) || (__j > __maxit));
 	__res += __pref * __nextterm;
       }
-    std::cout << "Iterations in __polylogExp_neg: " << __j << std::endl;
+    std::cout << "Iterations in __polylog_exp_neg: " << __j << std::endl;
     return __res;
   }
 
@@ -371,7 +369,7 @@ template<typename _Tp, int __sigma>
   inline std::complex<_Tp>
   __polylog_exp_neg_even(unsigned int __n, std::complex<_Tp> __w)
   {
-    constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2pi;
+    constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
     constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
     //std::cout << " Negative even integer s = -2k , - 4" << std::endl;
     const auto __np = 1 + __n;
@@ -382,7 +380,7 @@ template<typename _Tp, int __sigma>
     auto __pref = _Tp{2} * std::pow(_S_2pi, -int(1 + __n));
     // Subtract the expression A_p(w)
     __res -= std::exp(__lnp - 0.5 * __np * std::log(_Tp{1} + __wq))
-	   * __pref * std::cos(_Tp(__np) * std::atan2(_Tp{1}, __wup));
+	   * __pref * std::cos(_Tp(__np) * std::atan(_Tp{1} / __wup));
     unsigned int __k = 0;
     bool __terminate = false;
     constexpr unsigned int __maxit = 300;
@@ -435,7 +433,7 @@ template<typename _Tp, int __sigma>
     auto __pref = _Tp{2} * std::pow(__itp, __np);
     // Subtract the expression A_p(w)
     __res += std::exp(__lnp - 0.5 * __np * std::log(_Tp{1} - __wq))
-	* __pref * std::cos(static_cast<_Tp>(__np) * std::atan2(_Tp{2} * _S_pi, __w));
+	* __pref * std::cos(_Tp(__np) * std::atan(std::complex<_Tp>{2 * _S_pi} / __w));
     if (__sigma != 1)
       __pref = -__pref;
     bool __terminate = false;
@@ -499,11 +497,11 @@ template<typename _Tp>
   inline std::complex<_Tp>
   __polylog_exp_pos(_Tp __s, std::complex<_Tp> __w)
   { // positive s
-    constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2pi;
+    constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
     constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
     constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
     std::cout << "Series for real positive s - 6" << std::endl;
-    std::complex<_Tp> __res = __riemann_zeta(__s);
+    std::complex<_Tp> __res = std::__detail::__riemann_zeta(__s);
     auto __wk = __w;
     _Tp __sp, __cp;
     sincos(_S_pi_2 * __s, &__sp, &__cp);
@@ -514,7 +512,7 @@ template<typename _Tp>
     const unsigned int __m = static_cast<unsigned int>(std::floor(__s));
     for (unsigned int __k = 1; __k <= __m; ++__k)
       {
-        __res += __wk * __fac * __riemann_zeta(static_cast<_Tp>(__s - __k));
+        __res += __wk * __fac * std::__detail::__riemann_zeta(static_cast<_Tp>(__s - __k));
         __wk *= __w;
         auto __temp = _Tp{1} / (_Tp{1} + __k);
         __fac *= __temp;
@@ -548,7 +546,7 @@ template<typename _Tp>
 	    if ((__idx / 2) & 1)
 	      __sine = -__sine;
 	  }
-        auto __nextterm = __w2 * __riemann_zeta(__zetaarg) * __sine * __gam;
+        auto __nextterm = __w2 * std::__detail::__riemann_zeta(__zetaarg) * __sine * __gam;
 	//std::cout << __j << ' ' << nextterm << " used Gamma = " << __gam << std::endl;
         __w2 *= __wup;
         __gam *= __zetaarg / (_Tp{1} + __idx);
@@ -556,7 +554,7 @@ template<typename _Tp>
         __terminate = (__fpequal(std::abs(__res + __pref * __nextterm), std::abs(__res)) || (__j > __maxit));
         __res += __pref * __nextterm;
     }
-    std::cout << "Iterations in __polylogExp_pos: " << __j << std::endl;
+    std::cout << "Iterations in __polylog_exp_pos: " << __j << std::endl;
     return __res;
 }
 
@@ -657,7 +655,7 @@ template<typename _Tp>
   std::complex<_Tp>
   __polylog_exp_int_pos(const unsigned int __s, std::complex<_Tp> __w)
   {
-    constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2pi;
+    constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
     constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
     constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
     auto __rw = __w.real();
@@ -665,7 +663,7 @@ template<typename _Tp>
     if (__fpequal(__rw, _Tp{0}) && __fpequal(std::remainder(__iw, _S_2pi), _Tp{0}))
       {
 	if (__s > 1)
-	  return __riemann_zeta(_Tp(__s));
+	  return std::__detail::__riemann_zeta(_Tp(__s));
 	else
 	  return std::numeric_limits<_Tp>::infinity();
       }
@@ -708,7 +706,7 @@ template<typename _Tp>
     if (__fpequal(__w, _Tp{0}))
       {
 	if (__s > 1)
-	  return __riemann_zeta(_Tp(__s));
+	  return std::__detail::__riemann_zeta(_Tp(__s));
 	else
 	  return std::numeric_limits<_Tp>::infinity();
       }
@@ -743,7 +741,7 @@ template<typename _Tp>
   std::complex<_Tp>
   __polylog_exp_int_neg(const int __s, std::complex<_Tp> __w)
   {
-    constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2pi;
+    constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
     constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
     constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
     if ((((-__s) & 1) == 0) && __fpequal(std::real(__w), _Tp{0}))
@@ -806,7 +804,7 @@ template<typename _Tp>
   std::complex<_Tp>
   __polylog_exp_real_pos(_Tp __s, std::complex<_Tp> __w)
   {
-    constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2pi;
+    constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
     constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
     constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
     auto __rw = __w.real();
@@ -814,7 +812,7 @@ template<typename _Tp>
     if (__fpequal(__rw, _Tp{0}) && __fpequal(std::remainder(__iw, _S_2pi), _Tp{0}))
       {
 	if (__s > _Tp{1})
-	  return __riemann_zeta(__s);
+	  return std::__detail::__riemann_zeta(__s);
 	else
 	  return std::numeric_limits<_Tp>::infinity();
       }
@@ -844,7 +842,7 @@ template<typename _Tp>
     if (__fpequal(__w, _Tp{0}))
       {
         if (__s > _Tp{1})
-	  return __riemann_zeta(__s);
+	  return std::__detail::__riemann_zeta(__s);
 	else
 	  return std::numeric_limits<_Tp>::infinity();
       }
@@ -1043,7 +1041,7 @@ template<typename _Tp>
   __claussen_cl(unsigned int __m, std::complex<_Tp> __w)
   {
     constexpr auto _S_i = std::complex<_Tp>{0, 1};
-    auto __ple = ____polylog_exp(__m, _S_i * __w);
+    auto __ple = __polylog_exp(__m, _S_i * __w);
     if (__m & 1)
       return std::real(__ple);
     else
