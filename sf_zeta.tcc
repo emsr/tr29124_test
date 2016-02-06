@@ -195,7 +195,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr unsigned long long _S_maxit = 100000ULL;
       constexpr _Tp _S_eps = 10 * __gnu_cxx::__epsilon<_Tp>();
       constexpr _Tp _S_pipio6
-	= 1.644934066848226436472415166646025189219L;
+	= __gnu_cxx::__math_constants<_Tp>::__pi_sqr_div_6;
       if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x > +_Tp{1})
@@ -314,10 +314,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_jmax = 99;
 
       const auto __pmax  = std::pow(_Tp(_S_N) + _Tp{1}, -__s);
-      const auto __denom = (_S_N + _Tp{1}) * (_S_N + _Tp{1});
-      auto __ans = __pmax * ((_S_N + _Tp{1}) / (__s - _Tp{1}) + _Tp{0.5L});
+      const auto __denom = _Tp(_S_N + 1) * _Tp(_S_N + 1);
+      auto __ans = __pmax * (_Tp(_S_N + 1) / (__s - _Tp{1}) + _Tp{0.5L});
       for(auto __k = 0; __k < _S_N; ++__k)
-        __ans += std::pow(__k + _Tp{1}, -__s);
+        __ans += std::pow(_Tp(__k + 1), -__s);
 
       auto __fact = __pmax * __s / (_S_N + _Tp{1});
       auto __delta_prev = __gnu_cxx::__max<_Tp>();
@@ -575,25 +575,26 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __hurwitz_zeta_euler_maclaurin(_Tp __s, _Tp __a)
     {
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
-      constexpr int _S_N = 10 + std::numeric_limits<_Tp>::digits10 / 2;
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Val>();
+      constexpr int _S_N = 10 + std::numeric_limits<_Val>::digits10 / 2;
       constexpr int _S_jmax = 99;
 
       const auto __pmax  = std::pow(_Tp{_S_N} + __a, -__s);
-      auto __ans = __pmax * ((_S_N + __a) / (__s - _Tp{1}) + _Tp{0.5L});
+      auto __ans = __pmax * ((_Tp{_S_N} + __a) / (__s - _Tp{1}) + _Tp{0.5L});
       for(auto __k = 0; __k < _S_N; ++__k)
-	__ans += std::pow(__k + __a, -__s);
+	__ans += std::pow(_Tp(__k) + __a, -__s);
 
       auto __sfact = __s;
-      auto __pfact = __pmax / (_S_N + __a);
+      auto __pfact = __pmax / (_Tp(_S_N) + __a);
       for(auto __j = 0; __j <= _S_jmax; ++__j)
 	{
-	  auto __delta = _S_Euler_Maclaurin_zeta[__j + 1] * __sfact * __pfact;
+	  auto __delta = _Tp(_S_Euler_Maclaurin_zeta[__j + 1]) * __sfact * __pfact;
 	  __ans += __delta;
-	  if(std::abs(__delta / __ans) < _Tp{0.5L} * _S_eps)
+	  if (std::abs(__delta / __ans) < _Val{0.5L} * _S_eps)
 	    break;
 	  __sfact *= (__s + _Tp(2 * __j + 1)) * (__s + _Tp(2 * __j + 2));
-	  __pfact /= (_S_N + __a) * (_S_N + __a);
+	  __pfact /= (_Tp{_S_N} + __a) * (_Tp{_S_N} + __a);
 	}
 
       return __ans;
@@ -617,8 +618,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline _Tp
     __hurwitz_zeta(_Tp __s, _Tp __a)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
-      constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
+      constexpr auto _S_inf = __gnu_cxx::__infinity<_Val>();
       if (__isnan(__s) || __isnan(__a))
 	return _S_NaN;
       else if (__a == _Tp{1} && __s == _Tp{1})
