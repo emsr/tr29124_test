@@ -1675,6 +1675,18 @@ _S_neg_double_factorial_table[999]
 
 
   /**
+   *   @brief This returns Bernoulli number \f$B_n\f$.
+   *
+   *   @param __n the order n of the Bernoulli number.
+   *   @return  The Bernoulli number of order n.
+   */
+  template<typename _Tp>
+    inline _GLIBCXX14_CONSTEXPR _Tp
+    __bernoulli_2n(int __n)
+    { return __bernoulli_series<_Tp>(2 * __n); }
+
+
+  /**
    *  @brief Return \f$log(\Gamma(x))\f$ by asymptotic expansion
    *         with Bernoulli number coefficients.  This is like
    *         Sterling's approximation.
@@ -1696,7 +1708,7 @@ _S_neg_double_factorial_table[999]
 	{
 	  const auto __2i = _Tp(2 * __i);
 	  __help /= __2i * (__2i - _Tp{1}) * __xx;
-	  __lg += __bernoulli<_Tp>(2 * __i) * __help;
+	  __lg += __bernoulli<_Tp>(__2i) * __help;
 	}
 
       return __lg;
@@ -2428,10 +2440,10 @@ _S_neg_double_factorial_table[999]
     __log_double_factorial(_Tp __x)
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      return (_Tp(__x) / _Tp{2}) * std::log(_Tp{2})
-	   + (std::cos(_S_pi * _Tp(__x)) - _Tp{1})
+      return (__x / _Tp{2}) * std::log(_Tp{2})
+	   + (std::cos(_Tp(_S_pi) * __x) - _Tp{1})
 		* std::log(_S_pi / 2) / _Tp{4}
-	   + __log_gamma(_Tp(__x) / _Tp{2} + _Tp{1});
+	   + __log_gamma(_Tp{1} + __x / _Tp{2});
     }
 
   /**

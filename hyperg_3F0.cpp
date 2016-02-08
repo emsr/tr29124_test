@@ -29,7 +29,7 @@ template<typename _Tp>
 	bn += 1.0;
 	cn += 1.0;
 	++n;
-	z = fabs(a0);
+	z = abs(a0);
 	if (z > max)
 	  max = z;
 	if (z >= conv)
@@ -41,15 +41,15 @@ template<typename _Tp>
 	conv = z;
 	sum += a0;
 	if (sum != 0)
-	  t = fabs(a0 / sum);
+	  t = abs(a0 / sum);
 	else
 	  t = z;
       }
     while (t > stop);
 
-    t = fabs(MACHEP * max / sum);
+    t = abs(MACHEP * max / sum);
 
-    max = fabs(conv / sum);
+    max = abs(conv / sum);
     if (max > t)
       t = max;
 
