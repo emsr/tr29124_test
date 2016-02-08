@@ -192,6 +192,24 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 	using __type = decltype(std::complex<__promote_help_t<__vtype>>{});
       };
 
+  /**
+   * Type introspection for complex.
+   */
+  template<typename _Tp>
+    struct is_complex : public std::false_type
+    { };
+
+  template<>
+    template<typename _Tp>
+      struct is_complex<std::complex<_Tp>> : public std::true_type
+      { };
+
+  template<typename _Tp>
+    using is_complex_t = typename is_complex<_Tp>::type;
+
+  template<typename _Tp>
+    constexpr bool is_complex_v = is_complex<_Tp>::value;
+
 #endif // __cplusplus >= 201103L
 
 } // namespace __gnu_cxx
