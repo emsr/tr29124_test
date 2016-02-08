@@ -124,8 +124,9 @@ CHECKS = check_airy_ai \
 	 complex_ellint_rd \
 	 complex_ellint_rf \
 	 complex_ellint_rg \
-	 complex_ellint_rj
-
+	 complex_ellint_rj \
+	 pr56216_cyl_hankel_1 \
+	 pr56216_cyl_hankel_2
 
 all: diff_special_function \
      test_special_function \
@@ -468,6 +469,12 @@ complex_ellint_rg: complex_ellint_rg.cc
 
 complex_ellint_rj: complex_ellint_rj.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o complex_ellint_rj complex_ellint_rj.cc
+
+pr56216_cyl_hankel_1: pr56216_cyl_hankel_1.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o pr56216_cyl_hankel_1 pr56216_cyl_hankel_1.cc
+
+pr56216_cyl_hankel_2: pr56216_cyl_hankel_2.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o pr56216_cyl_hankel_2 pr56216_cyl_hankel_2.cc
 
 
 tarball:
