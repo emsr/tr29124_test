@@ -156,23 +156,26 @@
     _Tp
     __poly_hermite_norm_recursion(unsigned int __n, _Tp __x)
     {
-      const auto __INV_ROOT4_PI = _Tp{0.7511255444649425L};
+      const auto _S_inv_root4_pi = _Tp{7.511255444649424828587030047762276930510e-1L};
+      const auto _S_root_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
 
-      auto __htnm1 = _Tp{0};
-      auto __htn = __INV_ROOT4_PI;
+      auto __htn = _S_inv_root4_pi;
       if (__n == 0)
-        return __htn;
+	return __htn;
+      auto __htnp1 = _S_root_2 * __x * __htn;
+      if (__n == 1)
+	return __htnp1;
 
-      _Tp __htnp1;
+      _Tp __htnp2;
       for (int __i = 0; __i < __n; ++__i)
         {
-          __htnp1 = __x * std::sqrt(_Tp{2} / _Tp(__i + 1)) * __htn
-                  - std::sqrt(_Tp(__i) / _Tp(__i + 1)) * __htnm1;
-          __htnm1 = __htn;
+          __htnp2 = __x * std::sqrt(_Tp{2} / _Tp(__i + 2)) * __htnp1
+                  - std::sqrt(_Tp(__i + 1) / _Tp(__i + 2)) * __htn;
+          __htnp1 = __htnp2;
           __htn = __htnp1;
         }
 
-      return __htnp1;
+      return __htnp2;
     }
 
 #endif // _GLIBCXX_BITS_NEW_HERMITE_TCC

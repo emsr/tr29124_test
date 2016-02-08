@@ -491,7 +491,7 @@ template<typename Tp, typename Tp1>
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-    constexpr auto is_complex = is_complex_v<Tp>;
+    constexpr auto ret_complex = is_complex_v<Tp>;
 
     std::string numname = type_strings<Val>::type();
 
@@ -544,7 +544,6 @@ template<typename Tp, typename Tp1>
 	  }
       }
 
-//std::cerr << "\nabs_stats.max() = " << abs_stats.max() << '\n';
     if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
       {
 	bool tol_ok = false;
@@ -582,6 +581,9 @@ template<typename Tp, typename Tp1>
 	std::string structname = "testcase_";
 	structname += funcname;
 	structname += "<Tp>";
+	std::string tname = "Tp";
+	if (ret_complex)
+	  tname = "std::complex<Tp>";
 
 	output << '\n';
 	output << "template<typename Tp, unsigned int Num>\n";
@@ -590,29 +592,25 @@ template<typename Tp, typename Tp1>
 	output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
 	output.fill(' ');
 	output << "  {\n";
-	if (is_complex)
-	  output << "    typedef typename Tp::value_type Val;\n";
-	else
-	  output << "    typedef Tp Val;\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
-	output << "    const Val eps = std::numeric_limits<Val>::epsilon();\n";
-	output << "    Val max_abs_diff = -Val(1);\n";
-	output << "    Val max_abs_frac = -Val(1);\n";
+	output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
+	output << "    Tp max_abs_diff = -Tp(1);\n";
+	output << "    Tp max_abs_frac = -Tp(1);\n";
 	if (riemann_zeta_limits)
 	  output << "    unsigned int num_datum = MAX_ITERATIONS;\n";
 	else
 	  output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "      {\n";
-	output << "\tconst Tp f = " << nsname << "::" << funcname << templparm << "(data[i]." << arg1 << ");\n";
-	output << "\tconst Tp f0 = data[i].f0;\n";
-	output << "\tconst Tp diff = f - f0;\n";
+	output << "\tconst " << tname << " f = " << nsname << "::" << funcname << templparm << "(data[i]." << arg1 << ");\n";
+	output << "\tconst " << tname << " f0 = data[i].f0;\n";
+	output << "\tconst " << tname << " diff = f - f0;\n";
 	output << "\tif (std::abs(diff) > max_abs_diff)\n";
 	output << "\t  max_abs_diff = std::abs(diff);\n";
-	output << "\tif (std::abs(f0) > Val(10) * eps\n";
-	output << "\t && std::abs(f) > Val(10) * eps)\n";
+	output << "\tif (std::abs(f0) > Tp(10) * eps\n";
+	output << "\t && std::abs(f) > Tp(10) * eps)\n";
 	output << "\t  {\n";
-	output << "\t    const Tp frac = diff / f0;\n";
+	output << "\t    const " << tname << " frac = diff / f0;\n";
 	output << "\t    if (std::abs(frac) > max_abs_frac)\n";
 	output << "\t      max_abs_frac = std::abs(frac);\n";
 	output << "\t  }\n";
@@ -671,7 +669,7 @@ template<typename Tp, typename Tp1, typename Tp2>
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-    constexpr auto is_complex = is_complex_v<Tp>;
+    constexpr auto ret_complex = is_complex_v<Tp>;
 
     std::string numname = type_strings<Val>::type();
 
@@ -731,7 +729,6 @@ template<typename Tp, typename Tp1, typename Tp2>
 	      }
 	  }
 
-//std::cerr << "\nabs_stats.max() = " << abs_stats.max() << '\n';
 	if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
 	  {
 	    bool tol_ok = false;
@@ -771,6 +768,9 @@ template<typename Tp, typename Tp1, typename Tp2>
 	std::string structname = "testcase_";
 	structname += funcname;
 	structname += "<Tp>";
+	std::string tname = "Tp";
+	if (ret_complex)
+	  tname = "std::complex<Tp>";
 
 	output << '\n';
 	output << "template<typename Tp, unsigned int Num>\n";
@@ -779,27 +779,23 @@ template<typename Tp, typename Tp1, typename Tp2>
 	output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
 	output.fill(' ');
 	output << "  {\n";
-	if (is_complex)
-	  output << "    typedef typename Tp::value_type Val;\n";
-	else
-	  output << "    typedef Tp Val;\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
-	output << "    const Val eps = std::numeric_limits<Val>::epsilon();\n";
-	output << "    Val max_abs_diff = -Val(1);\n";
-	output << "    Val max_abs_frac = -Val(1);\n";
+	output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
+	output << "    Tp max_abs_diff = -Tp(1);\n";
+	output << "    Tp max_abs_frac = -Tp(1);\n";
 	output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "      {\n";
-	output << "\tconst Tp f = " << nsname << "::" << funcname << templparm << '('
+	output << "\tconst " << tname << " f = " << nsname << "::" << funcname << templparm << '('
 	       << "data[i]." << arg1 << ", data[i]." << arg2 << ");\n";
-	output << "\tconst Tp f0 = data[i].f0;\n";
-	output << "\tconst Tp diff = f - f0;\n";
+	output << "\tconst " << tname << " f0 = data[i].f0;\n";
+	output << "\tconst " << tname << " diff = f - f0;\n";
 	output << "\tif (std::abs(diff) > max_abs_diff)\n";
 	output << "\t  max_abs_diff = std::abs(diff);\n";
-	output << "\tif (std::abs(f0) > Val(10) * eps\n";
-	output << "\t && std::abs(f) > Val(10) * eps)\n";
+	output << "\tif (std::abs(f0) > Tp(10) * eps\n";
+	output << "\t && std::abs(f) > Tp(10) * eps)\n";
 	output << "\t  {\n";
-	output << "\t    const Tp frac = diff / f0;\n";
+	output << "\t    const " << tname << " frac = diff / f0;\n";
 	output << "\t    if (std::abs(frac) > max_abs_frac)\n";
 	output << "\t      max_abs_frac = std::abs(frac);\n";
 	output << "\t  }\n";
@@ -860,7 +856,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-    constexpr auto is_complex = is_complex_v<Tp>;
+    constexpr auto ret_complex = is_complex_v<Tp>;
 
     std::string numname = type_strings<Val>::type();
 
@@ -926,7 +922,6 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		  }
 	      }
 
-//std::cerr << "\nabs_stats.max() = " << abs_stats.max() << '\n';
 	    if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
 	      {
 		bool tol_ok = false;
@@ -971,6 +966,9 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 	std::string structname = "testcase_";
 	structname += funcname;
 	structname += "<Tp>";
+	std::string tname = "Tp";
+	if (ret_complex)
+	  tname = "std::complex<Tp>";
 
 	output << '\n';
 	output << "template<typename Tp, unsigned int Num>\n";
@@ -979,28 +977,24 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 	output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
 	output.fill(' ');
 	output << "  {\n";
-	if (is_complex)
-	  output << "    typedef typename Tp::value_type Val;\n";
-	else
-	  output << "    typedef Tp Val;\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
-	output << "    const Val eps = std::numeric_limits<Val>::epsilon();\n";
-	output << "    Val max_abs_diff = -Val(1);\n";
-	output << "    Val max_abs_frac = -Val(1);\n";
+	output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
+	output << "    Tp max_abs_diff = -Tp(1);\n";
+	output << "    Tp max_abs_frac = -Tp(1);\n";
 	output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "  	 {\n";
-	output << "\tconst Tp f = " << nsname << "::" << funcname << templparm << '('
+	output << "\tconst " << tname << " f = " << nsname << "::" << funcname << templparm << '('
 	       << "data[i]." << arg1 << ", data[i]." << arg2 << ",\n";
 	output << "\t\t     data[i]." << arg3 << ");\n";
-	output << "\tconst Tp f0 = data[i].f0;\n";
-	output << "\tconst Tp diff = f - f0;\n";
+	output << "\tconst " << tname << " f0 = data[i].f0;\n";
+	output << "\tconst " << tname << " diff = f - f0;\n";
 	output << "\tif (std::abs(diff) > max_abs_diff)\n";
 	output << "\t  max_abs_diff = std::abs(diff);\n";
-	output << "\tif (std::abs(f0) > Val(10) * eps\n";
-	output << "\t && std::abs(f) > Val(10) * eps)\n";
+	output << "\tif (std::abs(f0) > Tp(10) * eps\n";
+	output << "\t && std::abs(f) > Tp(10) * eps)\n";
 	output << "\t  {\n";
-	output << "\t    const Tp frac = diff / f0;\n";
+	output << "\t    const " << tname << " frac = diff / f0;\n";
 	output << "\t    if (std::abs(frac) > max_abs_frac)\n";
 	output << "\t      max_abs_frac = std::abs(frac);\n";
 	output << "\t  }\n";
@@ -1063,7 +1057,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-    constexpr auto is_complex = is_complex_v<Tp>;
+    constexpr auto ret_complex = is_complex_v<Tp>;
 
     std::string numname = type_strings<Val>::type();
 
@@ -1135,7 +1129,6 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		      }
 		  }
 
-//std::cerr << "\nabs_stats.max() = " << abs_stats.max() << '\n';
 		if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
 		 {
 		    bool tol_ok = false;
@@ -1182,6 +1175,9 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 	std::string structname = "testcase_";
 	structname += funcname;
 	structname += "<Tp>";
+	std::string tname = "Tp";
+	if (ret_complex)
+	  tname = "std::complex<Tp>";
 
 	output << '\n';
 	output << "template<typename Tp, unsigned int Num>\n";
@@ -1190,28 +1186,24 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 	output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
 	output.fill(' ');
 	output << "  {\n";
-	if (is_complex)
-	  output << "    typedef typename Tp::value_type Val;\n";
-	else
-	  output << "    typedef Tp Val;\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
-	output << "    const Val eps = std::numeric_limits<Val>::epsilon();\n";
-	output << "    Val max_abs_diff = -Val(1);\n";
-	output << "    Val max_abs_frac = -Val(1);\n";
+	output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
+	output << "    Tp max_abs_diff = -Tp(1);\n";
+	output << "    Tp max_abs_frac = -Tp(1);\n";
 	output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "      {\n";
-	output << "\tconst Tp f = " << nsname << "::" << funcname << templparm << '('
+	output << "\tconst " << tname << " f = " << nsname << "::" << funcname << templparm << '('
 	       << "data[i]." << arg1 << ", data[i]." << arg2 << ",\n";
 	output << "\t\t     data[i]." << arg3 << ", data[i]." << arg4 << ");\n";
-	output << "\tconst Tp f0 = data[i].f0;\n";
-	output << "\tconst Tp diff = f - f0;\n";
+	output << "\tconst " << tname << " f0 = data[i].f0;\n";
+	output << "\tconst " << tname << " diff = f - f0;\n";
 	output << "\tif (std::abs(diff) > max_abs_diff)\n";
 	output << "\t  max_abs_diff = std::abs(diff);\n";
-	output << "\tif (std::abs(f0) > Val(10) * eps\n";
-	output << "\t && std::abs(f) > Val(10) * eps)\n";
+	output << "\tif (std::abs(f0) > Tp(10) * eps\n";
+	output << "\t && std::abs(f) > Tp(10) * eps)\n";
 	output << "\t  {\n";
-	output << "\t    const Tp frac = diff / f0;\n";
+	output << "\t    const " << tname << " frac = diff / f0;\n";
 	output << "\t    if (std::abs(frac) > max_abs_frac)\n";
 	output << "\t      max_abs_frac = std::abs(frac);\n";
 	output << "\t  }\n";

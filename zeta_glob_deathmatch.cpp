@@ -196,7 +196,7 @@
             {
               _Tp incr = _Tp(__i - __j + 1) / _Tp(__j);
               __bincoeff *= -incr;
-              if(std::fabs(__bincoeff) > __max_bincoeff )
+              if(std::abs(__bincoeff) > __max_bincoeff )
                 {
                   // This only gets hit for x << 0.
                   __punt = true;
@@ -270,7 +270,7 @@
             {
               _Tp incr = _Tp(__i - __j + 1) / _Tp(__j);
               __bincoeff *= -incr;
-              if(std::fabs(__bincoeff) > __max_bincoeff )
+              if(std::abs(__bincoeff) > __max_bincoeff )
                 {
                   // This only gets hit for x << 0.
                   __punt = true;

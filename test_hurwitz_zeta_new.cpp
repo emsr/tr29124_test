@@ -1,6 +1,6 @@
-// $HOME/bin/bin/g++ -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
+// $HOME/bin_specfun/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 
-// LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
+// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
 
 // g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 
@@ -12,6 +12,7 @@
 #include <iomanip>
 #include <vector>
 #include "float128.h"
+#include "vanWijngaardenSum.tcc"
 
   //  From sf_gamma.tcc
   template<typename _Tp>
@@ -19,22 +20,24 @@
     __bernoulli_series(unsigned int __n)
     {
       constexpr _Tp
-      __bernoulli_numbers[28]
+      __bernoulli_numbers[32]
       {
-	 _Tp{1UL},	                 -_Tp{1UL} / _Tp{2UL},
-	 _Tp{1UL} / _Tp{6UL},             _Tp{0UL},
-	-_Tp{1UL} / _Tp{30UL},            _Tp{0UL},
-	 _Tp{1UL} / _Tp{42UL},            _Tp{0UL},
-	-_Tp{1UL} / _Tp{30UL},            _Tp{0UL},
-	 _Tp{5UL} / _Tp{66UL},            _Tp{0UL},
-	-_Tp{691UL} / _Tp{2730UL},        _Tp{0UL},
-	 _Tp{7UL} / _Tp{6UL},             _Tp{0UL},
-	-_Tp{3617UL} / _Tp{510UL},        _Tp{0UL},
-	 _Tp{43867UL} / _Tp{798UL},       _Tp{0UL},
-	-_Tp{174611UL} / _Tp{330UL},      _Tp{0UL},
-	 _Tp{854513UL} / _Tp{138UL},      _Tp{0UL},
-	-_Tp{236364091UL} / _Tp{2730UL},  _Tp{0UL},
-	 _Tp{8553103UL} / _Tp{6UL},       _Tp{0UL}
+		     _Tp{1ULL},			-_Tp{1ULL} / _Tp{2ULL},
+		     _Tp{1ULL} /     _Tp{6ULL},  _Tp{0ULL},
+		    -_Tp{1ULL} /    _Tp{30ULL},  _Tp{0ULL},
+		     _Tp{1ULL} /    _Tp{42ULL},  _Tp{0ULL},
+		    -_Tp{1ULL} /    _Tp{30ULL},  _Tp{0ULL},
+		     _Tp{5ULL} /    _Tp{66ULL},  _Tp{0ULL},
+		  -_Tp{691ULL} /  _Tp{2730ULL},  _Tp{0ULL},
+	             _Tp{7ULL} /     _Tp{6ULL},  _Tp{0ULL},
+	         -_Tp{3617ULL} /   _Tp{510ULL},  _Tp{0ULL},
+	         _Tp{43867ULL} /   _Tp{798ULL},  _Tp{0ULL},
+	       -_Tp{174611ULL} /   _Tp{330ULL},  _Tp{0ULL},
+	        _Tp{854513ULL} /   _Tp{138ULL},  _Tp{0ULL},
+	    -_Tp{236364091ULL} /  _Tp{2730ULL},  _Tp{0ULL},
+	       _Tp{8553103ULL} /     _Tp{6ULL},  _Tp{0ULL},
+	  -_Tp{23749461029ULL} /   _Tp{870ULL},  _Tp{0ULL},
+	 _Tp{8615841276005ULL} / _Tp{14322ULL},  _Tp{0ULL}
       };
 
       if (__n == 0)
@@ -312,33 +315,144 @@
       return __sign * __factorial * __hurwitz_zeta_euler_maclaurin(_Tp(__m + 1), __z);
     }
 
+
+  template<typename _Tp>
+    _Tp
+    __riemann_zeta_m_1_basic_sum(_Tp __s)
+    {
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      // A user shouldn't get to this.
+      if (__s < _Tp{1})
+	std::__throw_domain_error(__N("Bad argument in zeta sum."));
+
+      int __k_max = std::min(1000000, int(std::pow(_Tp{1} / _S_eps, _Tp{1} / __s)));
+std::cerr << "k_max = " << __k_max << std::endl;
+      auto __zeta_m_1 = _Tp{0};
+      for (int __k = __k_max; __k >= 2; --__k)
+	{
+	  auto __term = std::pow(_Tp(__k), -__s);
+	  __zeta_m_1 += __term;
+	  if (__term < _S_eps * __zeta_m_1)
+	    break;
+	}
+
+      return __zeta_m_1;
+    }
+
+
+  template<typename _Tp>
+    _Tp
+    __riemann_zeta_m_1_vanwg_sum(_Tp __s)
+    {
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      // A user shouldn't get to this.
+      if (__s < _Tp{1})
+	std::__throw_domain_error(__N("Bad argument in zeta sum."));
+
+      int __k_max = std::min(1000000, int(std::pow(_Tp{1} / _S_eps, _Tp{1} / __s)));
+std::cerr << "k_max = " << __k_max << std::endl;
+      auto __zeta_m_1 = _Tp{0};
+      for (int __k = __k_max; __k >= 2; --__k)
+	{
+	  auto __term = std::pow(_Tp(__k), -__s);
+	  __zeta_m_1 += __term;
+	  if (__term < _S_eps * __zeta_m_1)
+	    break;
+	}
+
+      return __zeta_m_1;
+    }
+
+
+  template<typename _Tp>
+    _Tp
+    __riemann_zeta_m_1_kahan_sum(_Tp __s)
+    {
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      // A user shouldn't get to this.
+      if (__s < _Tp{1})
+	std::__throw_domain_error(__N("Bad argument in zeta sum."));
+
+      std::__detail::_KahanSum<_Tp> __zeta_m_1(0);
+      int __k_max = std::min(1000000, int(std::pow(_Tp{1} / _S_eps, _Tp{1} / __s)));
+      std::cerr << "k_max = " << __k_max << std::endl;
+      for (int __k = __k_max; __k >= 2; --__k)
+      //int __k_max = 10000;
+      //for (int __k = __k_max; __k >= 2; --__k)
+	{
+	  auto __term = std::pow(_Tp(__k), -__s);
+	  __zeta_m_1 += __term;
+	  if (__term < _S_eps * __zeta_m_1())
+	    break;
+	}
+
+      return __zeta_m_1();
+    }
+
+
 int
 main()
 {
-  //using _Tp = long double;
-  using _Tp = __float128;
+  using _Tp = long double;
+  //using _Tp = __float128;
 
   std::cout.precision(std::numeric_limits<_Tp>::max_digits10);
   auto width = std::numeric_limits<_Tp>::max_digits10 + 6;
 
-  // Build the B_{2j} numbers.
-  std::cout << '\n';
+  // Build the harmonic numbers H_n.
+  std::cout << "\nBuild the H_n numbers\n";
+  auto hn = _Tp{0};
   for (auto i = 1; i < 100; ++i)
     {
-      std::cout << __bernoulli_series<_Tp>(2 * i) << '\n';
+      std::cout << (hn += _Tp{1} / i) << std::endl;
+    }
+
+  // Build the B_{2j} numbers.
+  std::cout << "\nBuild the B_{2j} numbers\n";
+  for (auto i = 1; i < 100; ++i)
+    {
+      std::cout << __bernoulli_series<_Tp>(2 * i) << std::endl;
     }
 
   // Build the B_{2j}/(2j)! numbers.
-  std::cout << '\n';
+  std::cout << "\nBuild the B_{2j}/(2j)! numbers\n";
   _Tp __fact{1};
   for (auto i = 1; i < 100; ++i)
     {
       __fact /= (2 * i - 1) * (2 * i);
-      std::cout << __fact * __bernoulli_series<_Tp>(2 * i) << '\n';
+      std::cout << __fact * __bernoulli_series<_Tp>(2 * i) << std::endl;
+    }
+
+  // Test zeta - 1 function with both simple and Kahan summation.
+  std::cout << "\nTest zeta - 1 function with both simple and Kahan summation\n";
+  for (auto is = 10; is < 100; ++is)
+    {
+      _Tp s = 0.1L * is;
+      auto zetam1s = __riemann_zeta_m_1_basic_sum(s);
+      auto zetam1k = __riemann_zeta_m_1_kahan_sum(s);
+      std::cout << ' ' << std::setw(width) << s
+		<< ' ' << std::setw(width) << zetam1s
+		<< ' ' << std::setw(width) << zetam1k
+		<< ' ' << std::setw(width) << zetam1k - zetam1s
+		<< std::endl;
+    }
+
+  // Test zeta - 1 function with both simple and Kahan summation.
+  std::cout << "\nTest zeta - 1 function with both simple and Kahan summation\n";
+  for (auto is = 1; is <= 100; ++is)
+    {
+      _Tp s = 1.0L * is;
+      auto zetam1s = __riemann_zeta_m_1_basic_sum(s);
+      auto zetam1k = __riemann_zeta_m_1_kahan_sum(s);
+      std::cout << ' ' << std::setw(width) << s
+		<< ' ' << std::setw(width) << zetam1s
+		<< ' ' << std::setw(width) << zetam1k
+		<< ' ' << std::setw(width) << zetam1k - zetam1s
+		<< std::endl;
     }
 
   // Test a Bernoulli thing for the regular zeta function.
-  std::cout << '\n';
+  std::cout << "\nBernoulli sum regular zeta function\n";
   for (auto is = -9; is < 100; ++is)
     {
       _Tp s = 0.1L * is;
@@ -348,16 +462,18 @@ main()
 		<< ' ' << std::setw(width) << hzeta
 		<< ' ' << std::setw(width) << rzeta
 		<< ' ' << std::setw(width) << hzeta - rzeta
-		<< std::endl;//'\n';
+		<< std::endl;
     }
 
+  // Test a Hurwitz zeta function.
+  std::cout << "\nHurwitz zeta function\n";
   std::cout << "\n a = " << _Tp{4} << std::endl;//'\n';
   std::cout << ' ' << std::setw(width) << _Tp{10}
 	    << ' ' << std::setw(width) << __hurwitz_zeta_euler_maclaurin(_Tp{10}, _Tp{4})
 	    << ' ' << std::setw(width) << __hurwitz_zeta_glob(_Tp{10}, _Tp{4})
-	    << std::endl;//<< '\n';
+	    << std::endl;
 
-  std::cout << '\n';
+  std::cout << "\nHurwitz zeta function\n";
   for (auto ia = 1; ia < 100; ++ia)
     {
       _Tp a = 0.1L * ia;
@@ -370,7 +486,7 @@ main()
 	  std::cout << ' ' << std::setw(width) << s
 		    << ' ' << std::setw(width) << __hurwitz_zeta_euler_maclaurin(s, a)
 		    << ' ' << std::setw(width) << __hurwitz_zeta_glob(s, a)
-		    << std::endl;//<< '\n';
+		    << std::endl;
 	}
     }
 }
