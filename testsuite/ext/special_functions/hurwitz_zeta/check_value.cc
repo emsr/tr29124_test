@@ -2112,9 +2112,9 @@ const double toler056 = 2.5000000000000020e-13;
 // Test data for s=12.400000000000000.
 // max(|f - f_GSL|): 1.1368683772161603e-13
 // max(|f - f_GSL| / |f_GSL|): 3.4642697400096100e-16
-// mean(f - f_GSL): 4.4674507382443241e-15
-// variance(f - f_GSL): 8.6623767789235069e-31
-// stddev(f - f_GSL): 9.3071890380090092e-16
+// mean(f - f_GSL): 4.4674507382112369e-15
+// variance(f - f_GSL): 8.6623767787951935e-31
+// stddev(f - f_GSL): 9.3071890379400766e-16
 const testcase_hurwitz_zeta<double>
 data057[25] =
 {
@@ -5406,11 +5406,10 @@ template<typename Tp, unsigned int Num>
   void
   test(const testcase_hurwitz_zeta<Tp> (&data)[Num], Tp toler)
   {
-    typedef Tp Val;
     bool test __attribute__((unused)) = true;
-    const Val eps = std::numeric_limits<Val>::epsilon();
-    Val max_abs_diff = -Val(1);
-    Val max_abs_frac = -Val(1);
+    const Tp eps = std::numeric_limits<Tp>::epsilon();
+    Tp max_abs_diff = -Tp(1);
+    Tp max_abs_frac = -Tp(1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
@@ -5419,8 +5418,8 @@ template<typename Tp, unsigned int Num>
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Val(10) * eps
-	 && std::abs(f) > Val(10) * eps)
+	if (std::abs(f0) > Tp(10) * eps
+	 && std::abs(f) > Tp(10) * eps)
 	  {
 	    const Tp frac = diff / f0;
 	    if (std::abs(frac) > max_abs_frac)

@@ -18,8 +18,8 @@ struve(double v, double x)
       return y;
     }
   double t = 0.25 * x * x;
-  f = fabs(x);
-  double g = 1.5 * fabs(v);
+  f = abs(x);
+  double g = 1.5 * abs(v);
   if (f > 30.0 && f > g)
     {
       onef2err = 1.0e38;

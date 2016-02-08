@@ -26,9 +26,8 @@ BOOST_LIB_DIR = $(BOOST_DIR)/lib
 
 #BOOST_LIBS = -L$(BOOST_LIB_DIR) -lboost_math_tools -lboost_math_tr1f -lboost_math_tr1l -lboost_math_tr1
 
-BINS = test_special_function \
-       diff_special_function \
-       testcase_old \
+BINS = diff_special_function \
+       test_special_function \
        testcase \
        airy_toy \
        hankel_toy \
@@ -46,9 +45,90 @@ BINS = test_special_function \
        diff_local_special_function \
        test_local_special_function
 
+CHECKS = check_airy_ai \
+	 check_airy_bi \
+	 check_assoc_laguerre \
+	 check_assoc_legendre \
+	 check_beta \
+	 check_bincoef \
+	 check_comp_ellint_1 \
+	 check_comp_ellint_2 \
+	 check_comp_ellint_3 \
+	 check_comp_ellint_d \
+	 check_conf_hyperg \
+	 check_conf_hyperg_lim \
+	 check_coshint \
+	 check_cosint \
+	 check_cyl_bessel_i \
+	 check_cyl_bessel_j \
+	 check_cyl_bessel_k \
+	 check_cyl_hankel_1 \
+	 check_cyl_hankel_2 \
+	 check_cyl_neumann \
+	 check_dawson \
+	 check_dilog \
+	 check_ellint_1 \
+	 check_ellint_2 \
+	 check_ellint_3 \
+	 check_ellint_d \
+	 check_ellint_rc \
+	 check_ellint_rd \
+	 check_ellint_rf \
+	 check_ellint_rj \
+	 check_expint \
+	 check_expint_e1 \
+	 check_factorial \
+	 check_fresnel_c \
+	 check_fresnel_s \
+	 check_gamma_l \
+	 check_gamma_u \
+	 check_gegenbauer \
+	 check_hermite \
+	 check_heuman_lambda \
+	 check_hurwitz_zeta \
+	 check_hyperg \
+	 check_ibeta \
+	 check_jacobi \
+	 check_jacobi_cn \
+	 check_jacobi_dn \
+	 check_jacobi_sn \
+	 check_jacobi_zeta \
+	 check_laguerre \
+	 check_lbincoef \
+	 check_ldouble_factorial \
+	 check_legendre \
+	 check_legendre \
+	 check_legendre_q \
+	 check_lfactorial \
+	 check_lpochhammer_l \
+	 check_lpochhammer_u \
+	 check_pochhammer_l \
+	 check_pochhammer_u \
+	 check_psi \
+	 check_radpoly \
+	 check_riemann_zeta \
+	 check_sinc \
+	 check_sinc_pi \
+	 check_sinhint \
+	 check_sinint \
+	 check_sph_bessel \
+	 check_sph_bessel_i \
+	 check_sph_bessel_k \
+	 check_sph_hankel_1 \
+	 check_sph_hankel_2 \
+	 check_sph_harmonic \
+	 check_sph_legendre \
+	 check_sph_neumann \
+	 check_zernike \
+	 complex_ellint_rc \
+	 complex_ellint_rd \
+	 complex_ellint_rf \
+	 complex_ellint_rg \
+	 complex_ellint_rj
+
+
 all: diff_special_function \
      test_special_function \
-     testcase_old \
      testcase \
      airy_toy \
      hankel_toy \
@@ -65,9 +145,6 @@ all: diff_special_function \
      test_legendre \
      diff_local_special_function \
      test_local_special_function
-
-testcases_old: testcase_old
-	LD_LIBRARY_PATH=/home/ed/bin_specfun/lib64:$(GSL_LIB_DIR):$$LD_LIBRARY_PATH ./testcase_old
 
 testcases: testcase
 	LD_LIBRARY_PATH=/home/ed/bin_specfun/lib64:$(GSL_LIB_DIR):$$LD_LIBRARY_PATH ./testcase
@@ -95,81 +172,7 @@ test:
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./diff_local_special_function > diff_local_special_function.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_local_special_function > test_local_special_function.txt
 
-check: \
-       check_airy_ai \
-       check_airy_bi \
-       check_assoc_laguerre \
-       check_assoc_legendre \
-       check_beta \
-       check_bincoef \
-       check_comp_ellint_1 \
-       check_comp_ellint_2 \
-       check_comp_ellint_3 \
-       check_conf_hyperg \
-       check_conf_hyperg_lim \
-       check_coshint \
-       check_cosint \
-       check_cyl_bessel_i \
-       check_cyl_bessel_j \
-       check_cyl_bessel_k \
-       check_cyl_hankel_1 \
-       check_cyl_hankel_2 \
-       check_cyl_neumann \
-       check_dawson \
-       check_dilog \
-       check_ellint_1 \
-       check_ellint_2 \
-       check_ellint_3 \
-       check_ellint_d \
-       check_ellint_rc \
-       check_ellint_rd \
-       check_ellint_rf \
-       check_ellint_rj \
-       check_expint \
-       check_expint_e1 \
-       check_factorial \
-       check_fresnel_c \
-       check_fresnel_s \
-       check_gamma_l \
-       check_gamma_u \
-       check_gegenbauer \
-       check_hermite \
-       check_heuman_lambda \
-       check_hurwitz_zeta \
-       check_hyperg \
-       check_ibeta \
-       check_jacobi \
-       check_jacobi_cn \
-       check_jacobi_dn \
-       check_jacobi_sn \
-       check_jacobi_zeta \
-       check_laguerre \
-       check_lbincoef \
-       check_ldouble_factorial \
-       check_legendre \
-       check_legendre \
-       check_legendre_q \
-       check_lfactorial \
-       check_lpochhammer_l \
-       check_lpochhammer_u \
-       check_pochhammer_l \
-       check_pochhammer_u \
-       check_psi \
-       check_radpoly \
-       check_riemann_zeta \
-       check_sinc \
-       check_sinc_pi \
-       check_sinhint \
-       check_sinint \
-       check_sph_bessel \
-       check_sph_bessel_i \
-       check_sph_bessel_k \
-       check_sph_hankel_1 \
-       check_sph_hankel_2 \
-       check_sph_harmonic \
-       check_sph_legendre \
-       check_sph_neumann \
-       check_zernike
+check: $(CHECKS)
 
 
 test_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
@@ -184,9 +187,6 @@ test_local_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tc
 
 diff_local_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tcc sf_*.tcc
 	$(HOME)/bin/bin/g++ -std=gnu++14 -g -DLOCAL -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -I$(HOME)/gcc_specfun/libstdc++-v3/include -I$(GSL_INC_DIR) -o diff_local_special_function diff_special_function.cpp gsl_wrap.cpp $(GSL_LIBS) -lquadmath
-
-testcase_old: testcase_old.cpp testcase_old.tcc gsl_wrap.h gsl_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
-	$(CXX) -o testcase_old -I$(GSL_INC_DIR) testcase_old.cpp gsl_wrap.cpp $(GSL_LIBS)
 
 testcase: testcase.cpp testcase.tcc gsl_wrap.h gsl_wrap.cpp boost_wrap.h boost_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
 	$(CXX) -o testcase -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp gsl_wrap.cpp boost_wrap.cpp $(GSL_LIBS) $(BOOST_LIBS)
@@ -258,6 +258,9 @@ check_comp_ellint_2: check_comp_ellint_2.cc
 
 check_comp_ellint_3: check_comp_ellint_3.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_comp_ellint_3 check_comp_ellint_3.cc
+
+check_comp_ellint_d: check_comp_ellint_d.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_comp_ellint_d check_comp_ellint_d.cc
 
 check_conf_hyperg: check_conf_hyperg.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_conf_hyperg check_conf_hyperg.cc
@@ -451,6 +454,21 @@ check_sph_neumann: check_sph_neumann.cc
 check_zernike: check_zernike.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_zernike check_zernike.cc
 
+complex_ellint_rc: complex_ellint_rc.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o complex_ellint_rc complex_ellint_rc.cc
+
+complex_ellint_rd: complex_ellint_rd.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o complex_ellint_rd complex_ellint_rd.cc
+
+complex_ellint_rf: complex_ellint_rf.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o complex_ellint_rf complex_ellint_rf.cc
+
+complex_ellint_rg: complex_ellint_rg.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o complex_ellint_rg complex_ellint_rg.cc
+
+complex_ellint_rj: complex_ellint_rj.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o complex_ellint_rj complex_ellint_rj.cc
+
 
 tarball:
 	mkdir tr29124
@@ -465,5 +483,6 @@ clean:
 	rm -f gsl_*_[fdl].txt
 	rm -f diff_*_[fdl].txt
 	rm -f $(BINS)
+	rm -f $(CHECKS)
 	rm -f tr29124.tar.bz2*
 

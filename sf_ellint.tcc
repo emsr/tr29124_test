@@ -92,7 +92,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return _S_NaN;
       else if (std::imag(__x) == _Val{} && std::real(__x) < _Val{})
 	std::__throw_domain_error(__N("__ellint_rc: argument less than zero"));
-      else if (std::abs(__x + __y) < _S_lolim)
+      else if (std::abs(__x) + std::abs(__y) < _S_lolim)
         std::__throw_domain_error(__N("__ellint_rc: arguments too small"));
       else if (std::imag(__y) == _Val{0} && std::real(__y) < _Val{0})
 	{
@@ -176,7 +176,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    || (std::imag(__y) == _Val{} && std::real(__y) < _Val{})
 	    || (std::imag(__z) == _Val{} && std::real(__z) < _Val{}))
         std::__throw_domain_error(__N("__ellint_rd: argument less than zero"));
-      else if (std::abs(__x + __y) < _S_lolim || std::abs(__z) < _S_lolim)
+      else if (std::abs(__x) + std::abs(__y) < _S_lolim
+	    || std::abs(__z) < _S_lolim)
 	std::__throw_domain_error(__N("__ellint_rd: arguments too small"));
       else
 	{
@@ -236,6 +237,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Val = __num_traits_t<_Tp>;
       constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
       constexpr auto _S_eps = __gnu_cxx::__epsilon<_Val>();
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Val>::__pi;
       const auto _S_tolfact = _Val{2.7L} * __gnu_cxx::__sqrt_eps<_Val>();
 
       if (__isnan(__x) || __isnan(__y))
@@ -250,7 +252,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __x = (__x + __y) / _Tp{2};
 	      __y = std::sqrt(__xt) * std::sqrt(__y);
 	      if (std::abs(__x - __y) < _S_tolfact * std::abs(__x))
-		return _Val(__gnu_cxx::__math_constants<_Tp>::__pi) / (__x + __y);
+		return _S_pi / (__x + __y);
 	    }
 	}
     }
@@ -288,9 +290,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    || std::imag(__y) == _Val{} && std::real(__y) < _Val{}
 	    || std::imag(__z) == _Val{} && std::real(__z) < _Val{})
         std::__throw_domain_error(__N("__ellint_rf: argument less than zero"));
-      else if (std::abs(__x + __y) < _S_lolim
-	    || std::abs(__x + __z) < _S_lolim
-	    || std::abs(__y + __z) < _S_lolim)
+      else if (std::abs(__x) + std::abs(__y) < _S_lolim
+	    || std::abs(__x) + std::abs(__z) < _S_lolim
+	    || std::abs(__y) + std::abs(__z) < _S_lolim)
         std::__throw_domain_error(__N("Argument too small in __ellint_rf"));
 
       if (std::abs(__z) < _S_eps)
@@ -303,7 +305,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __yt = __y;
 	  auto __zt = __z;
 	  auto _A0 = (__x + __y + __z) / _Val{3};
-	  auto _Q = std::pow( _Val{3} * _S_eps, -_Val{1} / _Val{6} )
+	  auto _Q = std::pow(_Val{3} * _S_eps, -_Val{1} / _Val{6})
 		  * std::max(std::abs(_A0 - __z),
 			     std::max(std::abs(_A0 - __x),
 				      std::abs(_A0 - __y)));
@@ -347,6 +349,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
       constexpr auto _S_eps = __gnu_cxx::__epsilon<_Val>();
       constexpr auto _S_tolfact = _Val{2.7L} * __gnu_cxx::__sqrt_eps<_Val>();
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Val>::__pi;
 
       if (__isnan(__x) || __isnan(__y))
 	return _S_NaN;
@@ -370,9 +373,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __yt = std::sqrt(__xtt) * std::sqrt(__yt);
 	      auto __del = __xt - __yt;
 	      if (std::abs(__del) < _S_tolfact * std::abs(__xt))
-		return (_A * _A - __sum)
-		     * _Val(__gnu_cxx::__math_constants<_Tp>::__pi)
-		     / (__xt + __yt) / _Val{2};
+		return (_A * _A - __sum) * _S_pi / (__xt + __yt) / _Val{2};
 	      __sum += __sf * __del * __del;
 	      __sf *= _Val{2};
 	    }
@@ -463,9 +464,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    || std::imag(__y) == _Val{} && std::real(__y) < _Val{}
 	    || std::imag(__z) == _Val{} && std::real(__z) < _Val{})
         std::__throw_domain_error(__N("__ellint_rj: argument less than zero"));
-      else if (std::abs(__x + __y) < _S_lolim
-	    || std::abs(__x + __z) < _S_lolim
-	    || std::abs(__y + __z) < _S_lolim
+      else if (std::abs(__x) + std::abs(__y) < _S_lolim
+	    || std::abs(__x) + std::abs(__z) < _S_lolim
+	    || std::abs(__y) + std::abs(__z) < _S_lolim
 	    || std::abs(__p) < _S_lolim)
         std::__throw_domain_error(__N("__ellint_rj: argument too small"));
       else if (std::abs(__p - __z) < _S_eps)
