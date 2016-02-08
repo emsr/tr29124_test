@@ -419,9 +419,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (__y == _Tp{})
 	return __comp_ellint_rg(__z, __x);
       else
-	return (__z * __ellint_rf(__x, __y, __z)
-	     - (__x - __z) * (__y - __z) * __ellint_rd(__x, __y, __z) / _Val{3}
-	     + (std::sqrt(__x) * std::sqrt(__y) / std::sqrt(__z))) / _Val{2};
+	//return (__z * __ellint_rf(__x, __y, __z)
+	//     - (__x - __z) * (__y - __z) * __ellint_rd(__x, __y, __z) / _Val{3}
+	//     + (std::sqrt(__x) * std::sqrt(__y) / std::sqrt(__z))) / _Val{2};
+	// There is a symmetric version that is less subject to cancellation loss
+	// when the arguments are real:
+	return (__x * (__y + __z) * __ellint_rd(__y, __z, __x)
+	      + __y * (__z + __x) * __ellint_rd(__z, __x, __y)
+	      + __z * (__x + __y) * __ellint_rd(__x, __y, __z)) / _Tp{6};
     }
 
   /**

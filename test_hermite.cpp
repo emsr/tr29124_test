@@ -5,14 +5,29 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <limits>
 
 #include "new_hermite.tcc"
 
 int
 main()
 {
-  std::cout.precision(8);
+  std::cout.precision(std::numeric_limits<double>::epsilon());
   std::cout.flags(std::ios::showpoint);
+
+  for (int n = 0; n <= 50; ++n)
+    {
+      std::cout << "  " << std::setw(16) << "x";
+      std::cout << "  " << std::setw(16) << "H_" << n << "(x)";
+      std::cout << "  " << std::setw(16) << "H~_" << n << "(x)";
+      for (int i = 0; i <= 100; ++i)
+        {
+          double x = i * 0.1;
+          double h = __poly_hermite_recursion(n, x);
+          double ht = __poly_hermite_norm_recursion(n, x);
+          std::cout << std::endl;
+        }
+    }
 
   double power = 1.0;
   for (int n = 0; n <= 50; ++n)
@@ -30,7 +45,7 @@ main()
         {
           double x = i * 0.1;
           double h = __poly_hermite_recursion(n, x);
-          double ht = __poly_hermite_norm_recursion(n, x);
+          double ht = __poly_hermite_asymp(n, x);
           std::cout << "  " << std::setw(16) << x;
           std::cout << "  " << std::setw(16) << h;
           std::cout << "  " << std::setw(16) << ht;
