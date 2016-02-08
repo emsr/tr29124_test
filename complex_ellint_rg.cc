@@ -24,10 +24,12 @@
 #include <cmath>
 #include <complex>
 #include <testsuite_hooks.h>
+#include <iostream>
 
 void
 test01()
 {
+  std::cerr.precision(16);
   using cmplx = std::complex<double>;
   using __gnu_cxx::ellint_rg;
 
@@ -37,6 +39,9 @@ test01()
   auto rg4 = ellint_rg(cmplx(-1.0, 1.0), cmplx(0.0, 1.0), cmplx(0.0, 0.0));
   auto rg5 = ellint_rg(cmplx(0.0, -1.0), cmplx(-1.0, 1.0), cmplx(0.0, 1.0));
   auto rg6 = ellint_rg(0, 0.0796, 4);
+
+  std::cerr << " x=" << 2 << " y=" << 3 << " z=" << 4 << " ellint_rg=" << rg2 << '\n';
+  std::cerr << " del = " << rg2 - 1.725503020692 << '\n';
 
   bool test [[gnu::unused]] = true;
   double eps = 1.0e-12;
