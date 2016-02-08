@@ -128,14 +128,14 @@ std::cout << "c   =" << c << '\n';
     for ( i = 1; i <= MAXIT; ++i ) {
         b += xi2;
         d = b - d;
-        if ( fabs(d) < FPMIN ) d = FPMIN;
+        if ( abs(d) < FPMIN ) d = FPMIN;
         c = b - 1.0/c;
-        if ( fabs(c) < FPMIN ) c = FPMIN;
+        if ( abs(c) < FPMIN ) c = FPMIN;
         d = 1.0/d;
         del = c*d;
         h = del*h;
         if ( d < 0.0 ) isign = -isign;
-        if ( fabs(del - 1.0) < EPS ) break;
+        if ( abs(del - 1.0) < EPS ) break;
     }
     if ( i > MAXIT ) std::cout << "Argument x too large in bessel_jy; try asymptotic expansion.\n";
 std::cout << "h   =" << h << '\n';
@@ -163,17 +163,17 @@ std::cout << "f   =" << f << '\n';
     if ( x < XMIN ) {
         x2 = 0.5*x;
         pimu = PI*xmu;
-        fact = ( fabs(pimu) < EPS ? 1.0 : pimu/sin(pimu) );
+        fact = ( abs(pimu) < EPS ? 1.0 : pimu/sin(pimu) );
         d = -log(x2);
         e = xmu*d;
-        fact2 = ( fabs(e) < EPS ? 1.0 : sinh(e)/e );
+        fact2 = ( abs(e) < EPS ? 1.0 : sinh(e)/e );
         bessel_cheb( xmu, gam1, gam2, gampl, gammi );
         ff = (2.0/PI)*fact*(gam1*cosh(e) + gam2*fact2*d);
         e = exp(e);
         p = e/(PI*gampl);
         q = 1.0/(e*PI*gammi);
         pimu2 = 0.5*pimu;
-        fact3 = (fabs(pimu2) < EPS ? 1.0 : sin(pimu2)/pimu2 );
+        fact3 = (abs(pimu2) < EPS ? 1.0 : sin(pimu2)/pimu2 );
         r = PI*pimu2*fact3*fact3;
         c = 1.0;
         d = -x2*x2;
@@ -204,7 +204,7 @@ std::cout << "r     =" << r << '\n';
             del1 = c*p - i*del;
             sum1 += del1;
 std::cout << "  i =" << i <<  "  del = " << del <<  "  del1 = " << del1 << '\n';
-            if ( fabs(del) < EPS*(1.0 + fabs(sum)) ) break;
+            if ( abs(del) < EPS*(1.0 + abs(sum)) ) break;
         }
         if ( i > MAXIT ) std::cout << "Bessel y series failed to converge in bessel_jy.\n";
 std::cout << "i     =" << i << '\n';

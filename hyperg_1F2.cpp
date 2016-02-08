@@ -28,17 +28,17 @@ template<typename _Tp>
 	bn += _Tp{1};
 	cn += _Tp{1};
 	++n;
-	z = fabs(a0);
+	z = abs(a0);
 	if (z > max)
 	  max = z;
 	if (sum != _Tp{0})
-	  t = fabs(a0 / sum);
+	  t = abs(a0 / sum);
 	else
 	  t = z;
       }
     while (t > stop);
 
-    err = fabs(MACHEP * max / sum);
+    err = abs(MACHEP * max / sum);
 
     return sum;
   }
