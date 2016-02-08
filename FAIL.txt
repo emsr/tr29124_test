@@ -1,0 +1,138 @@
+FAIL: ext/special_functions/cyl_hankel_2/pr56216.cc execution test
+FAIL: ext/special_functions/cyl_hankel_1/check_nan.cc (test for excess errors)
+FAIL: ext/special_functions/cyl_hankel_1/check_value.cc execution test
+FAIL: ext/special_functions/cyl_hankel_1/pr56216.cc execution test
+FAIL: ext/special_functions/cyl_hankel_2/check_nan.cc (test for excess errors)
+FAIL: ext/special_functions/cyl_hankel_2/check_value.cc execution test
+FAIL: ext/special_functions/ellint_rg/complex.cc execution test
+FAIL: ext/special_functions/lbincoef/check_value.cc execution test
+FAIL: ext/special_functions/pochhammer_l/check_value.cc execution test
+FAIL: ext/special_functions/sph_hankel_2/check_value.cc execution test
+FAIL: ext/special_functions/sph_harmonic/check_nan.cc (test for excess errors)
+FAIL: ext/special_functions/sph_harmonic/check_value.cc execution test
+FAIL: ext/special_functions/sph_harmonic/compile.cc (test for excess errors)
+FAIL: ext/special_functions/sph_hankel_1/check_nan.cc (test for excess errors)
+FAIL: ext/special_functions/sph_hankel_1/check_value.cc execution test
+FAIL: ext/special_functions/sph_hankel_2/check_nan.cc (test for excess errors)
+FAIL: special_functions/07_cyl_bessel_i/pr56216.cc execution test
+FAIL: special_functions/15_hermite/check_value.cc execution test
+
+hankels - check_nan
+===================
+
+Executing on host: /home/ed/obj_specfun/./gcc/xg++ -shared-libgcc -B/home/ed/obj_specfun/./gcc -nostdinc++ -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_specfun/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_specfun/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_specfun/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_specfun/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_specfun/libstdc++-v3/libsupc++ -I/home/ed/gcc_specfun/libstdc++-v3/include/backward -I/home/ed/gcc_specfun/libstdc++-v3/testsuite/util /home/ed/gcc_specfun/libstdc++-v3/testsuite/ext/special_functions/cyl_hankel_2/pr56216.cc   -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs  -lm   -o ./pr56216.exe    (timeout = 600)
+spawn /home/ed/obj_specfun/./gcc/xg++ -shared-libgcc -B/home/ed/obj_specfun/./gcc -nostdinc++ -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_specfun/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_specfun/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_specfun/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_specfun/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_specfun/libstdc++-v3/libsupc++ -I/home/ed/gcc_specfun/libstdc++-v3/include/backward -I/home/ed/gcc_specfun/libstdc++-v3/testsuite/util /home/ed/gcc_specfun/libstdc++-v3/testsuite/ext/special_functions/cyl_hankel_2/pr56216.cc -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs -lm -o ./pr56216.exe
+PASS: ext/special_functions/cyl_hankel_2/pr56216.cc (test for excess errors)
+Setting LD_LIBRARY_PATH to :/home/ed/obj_specfun/gcc:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_specfun/gcc/32::/home/ed/obj_specfun/gcc:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_specfun/gcc/32
+spawn [open ...]
+pr56216.exe: /home/ed/gcc_specfun/libstdc++-v3/testsuite/ext/special_functions/cyl_hankel_2/pr56216.cc:32: void test01(): Assertion `j0 == 1.0' failed.
+FAIL: ext/special_functions/cyl_hankel_2/pr56216.cc execution test
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+
+-----------------------------------------------------------------------------
+We need a
+template<typename _Tp>
+  bool
+  std::is_nan(std::complex<_Tp>);
+Dammit!!!
+
+  template<typename _Tp>
+    bool
+    std::is_nan(std::complex<_Tp> __z)
+    { return std::isnan(std::real(__z)) || std::isnan(std::imag(__z)); }
+
+For now I put it in __gnu_cxx...  complex_utils.h
+-----------------------------------------------------------------------------
+
+
+hankels - check_value
+=====================
+
+Executing on host: /home/ed/obj_specfun/./gcc/xg++ -shared-libgcc -B/home/ed/obj_specfun/./gcc -nostdinc++ -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_specfun/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_specfun/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_specfun/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_specfun/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_specfun/libstdc++-v3/libsupc++ -I/home/ed/gcc_specfun/libstdc++-v3/include/backward -I/home/ed/gcc_specfun/libstdc++-v3/testsuite/util /home/ed/gcc_specfun/libstdc++-v3/testsuite/ext/special_functions/cyl_hankel_1/check_value.cc   -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs  -lm   -o ./check_value.exe    (timeout = 600)
+spawn /home/ed/obj_specfun/./gcc/xg++ -shared-libgcc -B/home/ed/obj_specfun/./gcc -nostdinc++ -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_specfun/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_specfun/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_specfun/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_specfun/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_specfun/libstdc++-v3/libsupc++ -I/home/ed/gcc_specfun/libstdc++-v3/include/backward -I/home/ed/gcc_specfun/libstdc++-v3/testsuite/util /home/ed/gcc_specfun/libstdc++-v3/testsuite/ext/special_functions/cyl_hankel_1/check_value.cc -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs -lm -o ./check_value.exe
+PASS: ext/special_functions/cyl_hankel_1/check_value.cc (test for excess errors)
+Setting LD_LIBRARY_PATH to :/home/ed/obj_specfun/gcc:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_specfun/gcc/32::/home/ed/obj_specfun/gcc:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_specfun/gcc/32
+spawn [open ...]
+check_value.exe: /home/ed/gcc_specfun/libstdc++-v3/testsuite/ext/special_functions/cyl_hankel_1/check_value.cc:755: void test(const testcase_cyl_hankel_1<Tp> (&)[Num], Tp) [with Tp = double; unsigned int Num = 20u]: Assertion `max_abs_frac < toler' failed.
+FAIL: ext/special_functions/cyl_hankel_1/check_value.cc execution test
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+
+You know *exactly* what's going on.
+It's the pole at the origin...
+We actually get good rational agreement.
+
+// Test data for nu=20.000000000000000.
+// max(|f - f_GSL|): 9.2233720368547758e+18
+// max(|f - f_GSL| / |f_GSL|): 1.2343666497124058e-15
+// mean(f - f_GSL): (1.0708574206925728e-26,4.6116728264266624e+17)
+// variance(f - f_GSL): (inf,-nan)
+// stddev(f - f_GSL): (inf,nan)
+const testcase_cyl_hankel_1<double>
+data009[20] =
+{
+  { (3.5624805510586986e-37,-4.4678815064152590e+34), 20.000000000000000, 0.25000000000000000 },
+  { (3.7272019617047145e-31,-4.2714301215659061e+28), 20.000000000000000, 0.50000000000000000 },
+  { (1.2347870693633491e-27,-1.2898357375834221e+25), 20.000000000000000, 0.75000000000000000 },
+  { (3.8735030085246576e-25,-4.1139703148355049e+22), 20.000000000000000, 1.0000000000000000 },
+  { (3.3372897667043754e-23,-4.7783533372148600e+20), 20.000000000000000, 1.2500000000000000 },
+  { (1.2689972189332560e-21,-1.2577301772964243e+19), 20.000000000000000, 1.5000000000000000 },
+  { (2.7427715944032983e-20,-5.8251041176649638e+17), 20.000000000000000, 1.7500000000000000 },
+  { (3.9189728050907538e-19,-40816513889983664.), 20.000000000000000, 2.0000000000000000 },
+  { (4.0805232551365143e-18,-3925339868516417.0), 20.000000000000000, 2.2500000000000000 },
+  { (3.3090793836587768e-17,-484776559582090.12), 20.000000000000000, 2.5000000000000000 },
+  { (2.1915404680645980e-16,-73320655044814.453), 20.000000000000000, 2.7500000000000000 },
+  { (1.2275946737992987e-15,-13113540041757.447), 20.000000000000000, 3.0000000000000000 },
+  { (5.9727663938305375e-15,-2700669268882.7119), 20.000000000000000, 3.2500000000000000 },
+  { (2.5768553102807590e-14,-627339518240.21240), 20.000000000000000, 3.5000000000000000 },
+  { (1.0021112208287214e-13,-161695236802.71735), 20.000000000000000, 3.7500000000000000 },
+  { (3.5595116285938532e-13,-45637199262.220108), 20.000000000000000, 4.0000000000000000 },
+  { (1.1673622958555072e-12,-13953299213.925386), 20.000000000000000, 4.2500000000000000 },
+  { (3.5665470983611762e-12,-4580215756.5691042), 20.000000000000000, 4.5000000000000000 },
+  { (1.0227564044880961e-11,-1602110715.5159137), 20.000000000000000, 4.7500000000000000 },
+  { (2.7703300521289416e-11,-593396529.69143212), 20.000000000000000, 5.0000000000000000 },
+};
+const double toler009 = 2.5000000000000020e-13;
+
+
+Ditto for hankel_2 and the sph_hankels...
+
+
+ellint_rg - check_value
+=======================
+
+Executing on host: /home/ed/obj_specfun/./gcc/xg++ -shared-libgcc -B/home/ed/obj_specfun/./gcc -nostdinc++ -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_specfun/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_specfun/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_specfun/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_specfun/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_specfun/libstdc++-v3/libsupc++ -I/home/ed/gcc_specfun/libstdc++-v3/include/backward -I/home/ed/gcc_specfun/libstdc++-v3/testsuite/util /home/ed/gcc_specfun/libstdc++-v3/testsuite/ext/special_functions/ellint_rg/complex.cc   -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs  -lm   -o ./complex.exe    (timeout = 600)
+spawn /home/ed/obj_specfun/./gcc/xg++ -shared-libgcc -B/home/ed/obj_specfun/./gcc -nostdinc++ -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_specfun/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_specfun/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_specfun/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_specfun/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_specfun/libstdc++-v3/libsupc++ -I/home/ed/gcc_specfun/libstdc++-v3/include/backward -I/home/ed/gcc_specfun/libstdc++-v3/testsuite/util /home/ed/gcc_specfun/libstdc++-v3/testsuite/ext/special_functions/ellint_rg/complex.cc -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs -lm -o ./complex.exe
+PASS: ext/special_functions/ellint_rg/complex.cc (test for excess errors)
+Setting LD_LIBRARY_PATH to :/home/ed/obj_specfun/gcc:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_specfun/gcc/32::/home/ed/obj_specfun/gcc:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_specfun/gcc/32
+spawn [open ...]
+complex.exe: /home/ed/gcc_specfun/libstdc++-v3/testsuite/ext/special_functions/ellint_rg/complex.cc:44: void test01(): Assertion `std::abs(rg2 - 1.725503020692) < eps' failed.
+FAIL: ext/special_functions/ellint_rg/complex.cc execution test
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+
+
+lbincoef - check_value
+======================
+
+Executing on host: /home/ed/obj_specfun/./gcc/xg++ -shared-libgcc -B/home/ed/obj_specfun/./gcc -nostdinc++ -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_specfun/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_specfun/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_specfun/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_specfun/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_specfun/libstdc++-v3/libsupc++ -I/home/ed/gcc_specfun/libstdc++-v3/include/backward -I/home/ed/gcc_specfun/libstdc++-v3/testsuite/util /home/ed/gcc_specfun/libstdc++-v3/testsuite/ext/special_functions/lbincoef/check_value.cc   -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs  -lm   -o ./check_value.exe    (timeout = 600)
+spawn /home/ed/obj_specfun/./gcc/xg++ -shared-libgcc -B/home/ed/obj_specfun/./gcc -nostdinc++ -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_specfun/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_specfun/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_specfun/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_specfun/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_specfun/libstdc++-v3/libsupc++ -I/home/ed/gcc_specfun/libstdc++-v3/include/backward -I/home/ed/gcc_specfun/libstdc++-v3/testsuite/util /home/ed/gcc_specfun/libstdc++-v3/testsuite/ext/special_functions/lbincoef/check_value.cc -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs -lm -o ./check_value.exe
+PASS: ext/special_functions/lbincoef/check_value.cc (test for excess errors)
+Setting LD_LIBRARY_PATH to :/home/ed/obj_specfun/gcc:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_specfun/gcc/32::/home/ed/obj_specfun/gcc:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_specfun/gcc/32
+spawn [open ...]
+check_value.exe: /home/ed/gcc_specfun/libstdc++-v3/testsuite/ext/special_functions/lbincoef/check_value.cc:22950: void test(const testcase_lbincoef<Tp> (&)[Num], Tp) [with Tp = double; unsigned int Num = 4u]: Assertion `max_abs_frac < toler' failed.
+FAIL: ext/special_functions/lbincoef/check_value.cc execution test
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+
+
+hermite - check_value
+=====================
+
+Setting LD_LIBRARY_PATH to :/home/ed/obj_specfun/gcc:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_specfun/gcc/32::/home/ed/obj_specfun/gcc:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_specfun/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_specfun/gcc/32
+spawn [open ...]
+check_value.exe: /home/ed/gcc_specfun/libstdc++-v3/testsuite/special_functions/15_hermite/check_value.cc:1917: void test(const testcase_hermite<Tp> (&)[Num], Tp) [with Tp = double; unsigned int Num = 9u]: Assertion `max_abs_frac < toler' failed.
+FAIL: special_functions/15_hermite/check_value.cc execution test
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__

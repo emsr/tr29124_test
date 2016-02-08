@@ -171,8 +171,8 @@
         {
           __htnp2 = __x * std::sqrt(_Tp{2} / _Tp(__i + 2)) * __htnp1
                   - std::sqrt(_Tp(__i + 1) / _Tp(__i + 2)) * __htn;
-          __htnp1 = __htnp2;
           __htn = __htnp1;
+          __htnp1 = __htnp2;
         }
 
       return __htnp2;
