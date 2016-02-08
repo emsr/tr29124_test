@@ -126,7 +126,8 @@ CHECKS = check_airy_ai \
 	 complex_ellint_rg \
 	 complex_ellint_rj \
 	 pr56216_cyl_hankel_1 \
-	 pr56216_cyl_hankel_2
+	 pr56216_cyl_hankel_2 \
+	 pr56216_cyl_bessel_i
 
 all: diff_special_function \
      test_special_function \
@@ -475,6 +476,9 @@ pr56216_cyl_hankel_1: pr56216_cyl_hankel_1.cc
 
 pr56216_cyl_hankel_2: pr56216_cyl_hankel_2.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o pr56216_cyl_hankel_2 pr56216_cyl_hankel_2.cc
+
+pr56216_cyl_bessel_i: pr56216_cyl_bessel_i.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o pr56216_cyl_bessel_i pr56216_cyl_bessel_i.cc
 
 
 tarball:
