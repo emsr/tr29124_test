@@ -1662,6 +1662,24 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__log_bincoef<__type>(__n, __k);
     }
 
+  // Bernoulli numbers
+
+  inline float
+  bernoullif(unsigned int __n)
+  { return std::__detail::__bernoulli<float>(__n); }
+
+  inline long double
+  bernoullil(unsigned int __n)
+  { return std::__detail::__bernoulli<long double>(__n); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    bernoulli(unsigned int __n)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__bernoulli<__type>(__n);
+    }
+
   // Legendre functions of the second kind
 
   inline float
@@ -1937,12 +1955,12 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Spherical harmonic functions
 
   inline std::complex<float>
-  sph_harmonicf(unsigned int __l, unsigned int __m,
+  sph_harmonicf(unsigned int __l, int __m,
 		float __theta, float __phi)
   { return std::__detail::__sph_harmonic<float>(__l, __m, __theta, __phi); }
 
   inline std::complex<long double>
-  sph_harmonicl(unsigned int __l, unsigned int __m,
+  sph_harmonicl(unsigned int __l, int __m,
 		long double __theta, long double __phi)
   {
     return std::__detail::__sph_harmonic<long double>(__l, __m, __theta, __phi);
@@ -1954,6 +1972,78 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     {
       using __type = __gnu_cxx::__promote_num_t<_Ttheta, _Tphi>;
       return std::__detail::__sph_harmonic<__type>(__l, __m, __theta, __phi);
+    }
+
+  // Polylogarithm functions
+
+  inline std::complex<float>
+  polylogf(float __s, std::complex<float> __w)
+  { return std::__detail::__polylog<float>(__s, __w); }
+
+  inline std::complex<long double>
+  polylogl(long double __s, std::complex<long double> __w)
+  { return std::__detail::__polylog<long double>(__s, __w); }
+
+  template<typename _Tp>
+    inline std::complex<__gnu_cxx::__promote_num_t<_Tp>>
+    polylog(_Tp __s, std::complex<_Tp> __w)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__polylog<__type>(__m, __w);
+    }
+
+  // Dirichlet eta function
+
+  inline float
+  dirichlet_etaf(float __w)
+  { return std::__detail::__dirichlet_eta<float>(__w); }
+
+  inline long double
+  dirichlet_etal(long double __w)
+  { return std::__detail::__dirichlet_eta<long double>(__w); }
+
+  template<typename _Tp>
+    inline _Tp
+    dirichlet_eta(_Tp __w)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__dirichlet_eta<__type>(__w);
+    }
+
+  // Dirichlet beta function
+
+  inline float
+  dirichlet_betaf(float __w)
+  { return std::__detail::__dirichlet_beta<float>(__w); }
+
+  inline long double
+  dirichlet_betal(long double __w)
+  { return std::__detail::__dirichlet_beta<long double>(__w); }
+
+  template<typename _Tp>
+    inline _Tp
+    dirichlet_beta(_Tp __w)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__dirichlet_beta<__type>(__w);
+    }
+
+  // Clausen functions
+
+  inline std::complex<float>
+  clausenf(unsigned int __m, std::complex<float> __w)
+  { return std::__detail::__clausen<float>(__m, __w); }
+
+  inline std::complex<long double>
+  clausenl(unsigned int __m, std::complex<long double> __w)
+  { return std::__detail::__clausen<long double>(__m, __w); }
+
+  template<typename _Tp>
+    inline std::complex<__gnu_cxx::__promote_num_t<_Tp>>
+    clausen(unsigned int __m, _Tp __w)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__clausen<__type>(__m, __w);
     }
 
 #endif // __cplusplus >= 201103L
