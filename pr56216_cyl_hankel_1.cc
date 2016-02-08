@@ -21,26 +21,23 @@
 
 #include <testsuite_hooks.h>
 #include <cmath>
+#include <limits>
 
 void
 test01()
 {
-  double j0 = std::cyl_bessel_j(0.0, 0.0);
-  double i0 = std::cyl_bessel_i(0.0, 0.0);
-  double j1 = std::cyl_bessel_j(1.0, 0.0);
-  double i1 = std::cyl_bessel_i(1.0, 0.0);
+  const double eps = 5.0 * std::numeric_limits<double>::epsilon();
+  std::complex<double> h10 = __gnu_cxx::cyl_hankel_1(0.0, 0.0);
+  std::complex<double> h11 = __gnu_cxx::cyl_hankel_1(1.0, 0.0);
 
   bool test [[gnu::unused]] = true;
-  VERIFY(j0 == 1.0);
-  VERIFY(i0 == 1.0);
-  VERIFY(j1 == 0.0);
-  VERIFY(i1 == 0.0);
+  VERIFY(std::abs(h10 - 1.0) < eps);
+  VERIFY(std::abs(h11 - 0.0) < eps);
 }
 
 int
 main()
 {
   test01();
-
   return 0;
 }
