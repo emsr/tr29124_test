@@ -18,7 +18,7 @@ main()
   for (int n = 0; n <= 50; ++n)
     {
       // sqrt(factrl(n) * 2**n sqrt(pi))
-      double factor = std::exp(0.5 * ::lgamma(n + 1)) * std::sqrt(power * std::sqrt(M_PI));
+      double factor = std::exp(0.5 * std::lgamma(n + 1)) * std::sqrt(power * std::sqrt(M_PI));
       power *= 2.0;
       std::cout << "  " << std::setw(16) << "factor = " << factor << std::endl;
       std::cout << "  " << std::setw(16) << "x";
