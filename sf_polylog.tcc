@@ -422,16 +422,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * and 
    * @f[
    *   B_p(w) = - 2 (2 pi)^(p-1) \sum \limits_{k = 0}^\infty \Gamma(2 + 2k - p)
-   *           / (2k+1)! (-1)^k (w/2/\pi)^(2k+1) (Zeta(2 + 2k - p) - _Tp{1})
+   *           / (2k+1)! (-1)^k (w/2\pi)^(2k+1) (Zeta(2 + 2k - p) - _Tp{1})
    * @f]
    * This is suitable for |w| < 2 pi
    * The original series is (This might be worthwhile if we use
    * the already present table of the Bernoullis)
    * @f[
-   *   Li_p(e^w) = Gamma(1-p) (-w)^{p-1} - sigma (2 pi)^p / pi
+   *   Li_p(e^w) = Gamma(1-p) (-w)^{p-1} - sigma (2 \pi)^p / pi
    *              \sum \limits_{k = 0}^\infty
-   *               \Gamma(2 + 2k - p)/ (2k+1)! (-1)^k (w/2/\pi)^(2k+1)
-   *             Zeta(2 + 2k - p)
+   *               \Gamma(2 + 2k - p)/ (2k+1)! (-1)^k (w/2\pi)^(2k+1)
+   *             \zeta(2 + 2k - p)
    * @f]
    *
    * @param n the index n = 4k.
@@ -1010,11 +1010,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * hence the template parameter ArgType.
    *
    * @param s  The real order.
-   * @param w  The complex argument.
-   * @return  The value of Li_s(e^w).
+   * @param w  The real or complex argument.
+   * @return  The real or complex value of Li_s(e^w).
    */
   template<typename _Tp, typename ArgType>
-    std::complex<_Tp>
+    std::conditional_t<__gnu_cxx::is_complex_v<ArgType>,
+		       __gnu_cxx::__promote_num_t<std::complex<_Tp>, ArgType>,
+		      _Tp>
     __polylog_exp(_Tp __s, ArgType __w)
     {
       if (__isnan(__s) || __isnan(__w))
@@ -1023,7 +1025,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __polylog_exp_negative_real_part(__s, __w);
       else if (__fpequal<_Tp>(std::rint(__s), __s))
 	{
-          //In this branch of the if statement, s is an integer
+          // In this branch of the if statement, s is an integer
           int __p = int(std::lrint(__s));
           if (__p > 0)
             return __polylog_exp_int_pos(__p, __w);
@@ -1032,7 +1034,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else
 	{
-          if (__s > 0)
+          if (__s > _Tp{0})
 	    return __polylog_exp_real_pos(__s, __w);
 	  else
 	    return __polylog_exp_real_neg(__s, __w);
@@ -1042,8 +1044,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the polylog Li_s(x) for two real arguments.
    *
-   * @param s The index s.
-   * @param x A real x.
+   * @param s  The real index.
+   * @param x  The real argument.
    * @return The complex value of the polylogarithm.
    */
   template<typename _Tp>
@@ -1054,11 +1056,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__fpequal(__x, _Tp{0}))
 	return _Tp{0}; // According to Mathematica
-      else if (__x < 0)
-	{ // Use the square formula to access negative values.
+      else if (__x < _Tp{0})
+	{ // Use the reflection formula to access negative values.
           auto __xp = -__x;
           auto __y = std::log(__xp);
-          return __polylog_exp(__s, _Tp{2} * __y) * std::pow(_Tp{2}, _Tp{1} - __s)
+          return __polylog_exp(__s, _Tp{2} * __y)
+	       * std::pow(_Tp{2}, _Tp{1} - __s)
 	       - __polylog_exp(__s, __y);
 	}
       else
@@ -1088,14 +1091,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  A function to implement Dirichlet's Eta function.
+   * Return the Dirichlet eta function.
+   * Currently, w must be real (complex type but negligible imaginary part.)
+   * Otherwise we must throw.
    *
-   *  @param w  The complex argument.
-   *  @return if w lacks an imaginary part we calculate the value, else we throw an exception.
+   * @param w  The complex (but on-real-axis) argument.
+   * @return  The complex Dirichlet eta function.
+   * @throw  std::domain_error if the argument has a significant imaginary part.
    */
   template<typename _Tp>
     inline std::complex<_Tp>
-    __eta(std::complex<_Tp> __w)
+    __dirichlet_eta(std::complex<_Tp> __w)
     {
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
@@ -1106,12 +1112,29 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * A function to implement Dirichlet's beta function.
-   * This function is only supported for real argument currently.
+   *  Return the Dirichlet eta function.
    *
-   * @param w The complex argument.
+   *  @param w  The real argument.
+   *  @return  The Dirichlet eta function.
+   */
+  template<typename _Tp>
+    inline _Tp
+    __dirichlet_eta(_Tp __w)
+    {
+      if (__isnan(__w))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else
+	return -__polylog(__w, _Tp{-1});
+    }
+
+  /**
+   * Return the Dirichlet beta function.
+   * Currently, w must be real (complex type but negligible imaginary part.)
+   * Otherwise we must throw.
+   *
+   * @param w  The complex (but on-real-axis) argument.
    * @return  The Dirichlet Beta function of real argument.
-   * @throw  std::domain_error if the rgument has a significant imaginary part.
+   * @throw  std::domain_error if the argument has a significant imaginary part.
    */
   template<typename _Tp>
     inline _Tp
@@ -1127,11 +1150,28 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * A function to implement Clausen's series Cl.
-   * The notation and connection to polylog from Wikipedia
+   * Return the Dirichlet beta function.
+   *
+   * @param w  The real argument.
+   * @return  The Dirichlet Beta function of real argument.
+   */
+  template<typename _Tp>
+    inline _Tp
+    __dirichlet_beta(_Tp __w)
+    {
+      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      if (__isnan(__w))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else
+	return std::imag(__polylog(__w, _S_i));
+    }
+
+  /**
+   * A function to implement Clausen's function.
+   * The notation and connection to polylog is from Wikipedia
    *
    * @param w  The complex argument.
-   * @return  The Clausen function.
+   * @return  The complex Clausen function.
    */
   template<typename _Tp>
     inline std::complex<_Tp>
