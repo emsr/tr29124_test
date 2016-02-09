@@ -16,9 +16,9 @@ main()
   std::cout.flags(std::ios::showpoint);
   auto width = 6 + std::cout.precision();
 
-  std::cout << "\n\n  Examine asymptotic transition region\n";
+  std::cout << "\f\n\n  Examine asymptotic transition region\n";
   std::cout << "  ====================================\n";
-  for (int n = 5; n <= 50; ++n)
+  for (int n = 4; n <= 50; ++n)
     {
       auto xt = std::sqrt(2.0 * n);
       auto del = 0.2 * xt / 80;
@@ -33,14 +33,22 @@ main()
           auto x = 0.9 * xt + i * del;
           auto h = __poly_hermite_recursion(n, x);
           auto ht = __poly_hermite_asymp(n, x);
-          std::cout << "  " << std::setw(width) << x
+	  if (std::abs(x - xt) < del)
+	    std::cout << ">>";
+	  else if (std::abs(x - 0.95 * xt) < del)
+	    std::cout << "> ";
+	  else if (std::abs(x - 1.05 * xt) < del)
+	    std::cout << "> ";
+          else
+            std::cout << "  ";
+	  std::cout << std::setw(width) << x
 		    << "  " << std::setw(width) << h
 		    << "  " << std::setw(width) << ht
 		    << '\n';
         }
     }
 
-  std::cout << "\n\n  Compare recursion and asymptotic\n";
+  std::cout << "\f\n\n  Compare recursion and asymptotic\n";
   std::cout << "  ================================\n";
   for (int n = 0; n <= 50; ++n)
     {
@@ -63,16 +71,16 @@ main()
         }
     }
 
-  std::cout << "\n\n  Compare normalizations\n";
+  std::cout << "\f\n\n  Compare normalizations\n";
   std::cout << "  ======================\n";
   auto power = 1.0;
   for (int n = 0; n <= 50; ++n)
     {
-      // sqrt(factrl(n) * 2**n sqrt(pi))
-      auto factor = std::exp(0.5 * std::lgamma(n + 1)) * std::sqrt(power * std::sqrt(M_PI));
+      // sqrt(factorial(n) * 2**n sqrt(pi))
+      auto norm = std::exp(0.5 * std::lgamma(n + 1)) * std::sqrt(power * std::sqrt(M_PI));
       power *= 2.0;
       std::cout << "  " << std::setw(width) << "n = " << n << '\n';
-      std::cout << "  " << std::setw(width) << "factor = " << factor << '\n';
+      std::cout << "  " << std::setw(width) << "norm = " << norm << '\n';
       std::cout << "  " << std::setw(width) << "x";
       std::cout << "  " << std::setw(width) << "H_" << n << "(x)";
       std::cout << "  " << std::setw(width) << "H~_" << n << "(x)";
