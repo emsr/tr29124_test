@@ -63,8 +63,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline bool
-    __isnan(const std::complex<_Tp>& z)
-    { return __isnan(std::real(z)) || __isnan(std::imag(z)); }
+    __isnan(const std::complex<_Tp>& __z)
+    { return __isnan(std::real(__z)) || __isnan(std::imag(__z)); }
 
 
   /**
@@ -174,8 +174,17 @@ _GLIBCXX_END_NAMESPACE_VERSION
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 #if __cplusplus >= 201103L
+
+  /**
+   * We need isnan to be extended to std::complex.
+   */
+  template<typename _Tp>
+    bool
+    isnan(const std::complex<_Tp>& __z)
+    { return std::__detail::__isnan(__z); }
 
   /**
    * This is a more modern version of __promote_N in ext/type_traits
@@ -212,6 +221,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
 #endif // __cplusplus >= 201103L
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
 #include "complex_util.tcc"

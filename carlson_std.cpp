@@ -1,7 +1,7 @@
 
 // $HOME/bin_specfun/bin/g++ -g -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o carlson_std carlson_std.cpp
 
-#include <cmath>
+#include <ext/cmath>
 #include <iostream>
 #include <complex>
 #include <limits>
@@ -10,7 +10,7 @@ int
 main()
 {
   using namespace std::literals::complex_literals;
-  std::cout.precision(std::numeric_limits<double>::digits10)
+  std::cout.precision(std::numeric_limits<double>::digits10);
 
   std::cout << "R_F(1, 2, 0)         = " << __gnu_cxx::ellint_rf(1.0, 2.0, 0.0) << std::endl;  //  1.3110287771461
   std::cout << "R_F(i, -i, 0)        = " << __gnu_cxx::ellint_rf(1.0i, -1.0i, 0.0) << std::endl;  //  1.8540746773014;
@@ -64,7 +64,7 @@ main()
 
   std::cout << std::endl;
 
-  double __pi_2 = std::__detail::__numeric_constants<double>::__pi_2();
+  double __pi_2 = __gnu_cxx::__math_constants<double>::__pi_half;
   std::cout << "K(pi/2)  = " << std::__detail::__comp_ellint_1(__pi_2 + 0.0i) << std::endl;  //  1.5887715763658593607082818553065 - i 1.3986463677643598308560440635658
   std::cout << "K(-1)    = " << std::__detail::__comp_ellint_1(-1.0 + 0.0i) << std::endl;  //  1.31102877714605990523242
   std::cout << "K(2)     = " << std::__detail::__comp_ellint_1(2.0 + 0.0i) << std::endl;  //  1.31102877714605990523242 - i 1.31102877714605990523242
