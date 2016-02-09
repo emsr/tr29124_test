@@ -12,45 +12,82 @@
 int
 main()
 {
-  std::cout.precision(std::numeric_limits<double>::epsilon());
+  std::cout.precision(std::numeric_limits<double>::digits10);
   std::cout.flags(std::ios::showpoint);
+  auto width = 6 + std::cout.precision();
 
-  for (int n = 0; n <= 50; ++n)
+  std::cout << "\n\n  Examine asymptotic transition region\n";
+  std::cout << "  ====================================\n";
+  for (int n = 5; n <= 50; ++n)
     {
-      std::cout << "  " << std::setw(16) << "x";
-      std::cout << "  " << std::setw(16) << "H_" << n << "(x)";
-      std::cout << "  " << std::setw(16) << "H~_" << n << "(x)";
-      for (int i = 0; i <= 100; ++i)
+      auto xt = std::sqrt(2.0 * n);
+      auto del = 0.2 * xt / 80;
+      std::cout << "  " << std::setw(width) << "n = " << std::setw(width) << n << '\n';
+      std::cout << "  " << std::setw(width) << "x_t = " << std::setw(width) << xt << '\n';
+      std::cout << "  " << std::setw(width) << "x";
+      std::cout << "  " << std::setw(width) << "Hr_" << n << "(x)";
+      std::cout << "  " << std::setw(width) << "Ha_" << n << "(x)";
+      std::cout << '\n';
+      for (int i = 0; i <= 81; ++i)
         {
-          double x = i * 0.1;
-          double h = __poly_hermite_recursion(n, x);
-          double ht = __poly_hermite_norm_recursion(n, x);
-          std::cout << std::endl;
+          auto x = 0.9 * xt + i * del;
+          auto h = __poly_hermite_recursion(n, x);
+          auto ht = __poly_hermite_asymp(n, x);
+          std::cout << "  " << std::setw(width) << x
+		    << "  " << std::setw(width) << h
+		    << "  " << std::setw(width) << ht
+		    << '\n';
         }
     }
 
-  double power = 1.0;
+  std::cout << "\n\n  Compare recursion and asymptotic\n";
+  std::cout << "  ================================\n";
+  for (int n = 0; n <= 50; ++n)
+    {
+      auto xt = std::sqrt(2.0 * n);
+      std::cout << "  " << std::setw(width) << "n = " << std::setw(width) << n << '\n';;
+      std::cout << "  " << std::setw(width) << "x_t = " << std::setw(width) << xt << '\n';;
+      std::cout << "  " << std::setw(width) << "x";
+      std::cout << "  " << std::setw(width) << "Hr_" << n << "(x)";
+      std::cout << "  " << std::setw(width) << "Ha_" << n << "(x)";
+      std::cout << '\n';
+      for (int i = 0; i <= 100; ++i)
+        {
+          auto x = i * 0.1;
+          auto h = __poly_hermite_recursion(n, x);
+          auto ht = __poly_hermite_asymp(n, x);
+          std::cout << "  " << std::setw(width) << x
+		    << "  " << std::setw(width) << h
+		    << "  " << std::setw(width) << ht
+		    << '\n';
+        }
+    }
+
+  std::cout << "\n\n  Compare normalizations\n";
+  std::cout << "  ======================\n";
+  auto power = 1.0;
   for (int n = 0; n <= 50; ++n)
     {
       // sqrt(factrl(n) * 2**n sqrt(pi))
-      double factor = std::exp(0.5 * std::lgamma(n + 1)) * std::sqrt(power * std::sqrt(M_PI));
+      auto factor = std::exp(0.5 * std::lgamma(n + 1)) * std::sqrt(power * std::sqrt(M_PI));
       power *= 2.0;
-      std::cout << "  " << std::setw(16) << "factor = " << factor << std::endl;
-      std::cout << "  " << std::setw(16) << "x";
-      std::cout << "  " << std::setw(16) << "H_" << n << "(x)";
-      std::cout << "  " << std::setw(16) << "H~_" << n << "(x)";
-      std::cout << "  " << std::setw(16) << "ratio";
-      std::cout << std::endl;
+      std::cout << "  " << std::setw(width) << "n = " << n << '\n';
+      std::cout << "  " << std::setw(width) << "factor = " << factor << '\n';
+      std::cout << "  " << std::setw(width) << "x";
+      std::cout << "  " << std::setw(width) << "H_" << n << "(x)";
+      std::cout << "  " << std::setw(width) << "H~_" << n << "(x)";
+      std::cout << "  " << std::setw(width) << "ratio";
+      std::cout << '\n';
       for (int i = 0; i <= 100; ++i)
         {
-          double x = i * 0.1;
-          double h = __poly_hermite_recursion(n, x);
-          double ht = __poly_hermite_asymp(n, x);
-          std::cout << "  " << std::setw(16) << x;
-          std::cout << "  " << std::setw(16) << h;
-          std::cout << "  " << std::setw(16) << ht;
-          std::cout << "  " << std::setw(16) << h / ht;
-          std::cout << std::endl;
+          auto x = i * 0.1;
+          auto h = __poly_hermite_recursion(n, x);
+          auto ht = __poly_hermite_norm_recursion(n, x);
+          std::cout << "  " << std::setw(width) << x;
+          std::cout << "  " << std::setw(width) << h;
+          std::cout << "  " << std::setw(width) << ht;
+          std::cout << "  " << std::setw(width) << h / ht;
+          std::cout << '\n';
         }
     }
   return 0;
