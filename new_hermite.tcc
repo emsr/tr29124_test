@@ -168,12 +168,12 @@
 
       _Tp __htnp2;
       for (int __i = 0; __i < __n; ++__i)
-        {
-          __htnp2 = __x * std::sqrt(_Tp{2} / _Tp(__i + 2)) * __htnp1
-                  - std::sqrt(_Tp(__i + 1) / _Tp(__i + 2)) * __htn;
-          __htn = __htnp1;
-          __htnp1 = __htnp2;
-        }
+	{
+	  __htnp2 = __x * std::sqrt(_Tp{2} / _Tp(__i + 2)) * __htnp1
+		  - std::sqrt(_Tp(__i + 1) / _Tp(__i + 2)) * __htn;
+	  __htn = __htnp1;
+	  __htnp1 = __htnp2;
+	}
 
       return __htnp2;
     }

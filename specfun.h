@@ -32,11 +32,13 @@
 
 #define __STDCPP_MATH_SPEC_FUNCS__ 201003L
 
+#define __cpp_lib_math_special_functions 201602
+
 #pragma GCC visibility push(default)
 
 #include <bits/c++config.h>
 
-#if __STDCPP_WANT_MATH_SPEC_FUNCS__ == 0
+#if __cplusplus <= 201402L && __STDCPP_WANT_MATH_SPEC_FUNCS__ == 0
 # error include <cmath> and define __STDCPP_WANT_MATH_SPEC_FUNCS__
 #endif
 
