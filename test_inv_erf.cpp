@@ -10,6 +10,33 @@
 #include <cmath>
 #include "float128.h"
 
+/**
+ * Return a quick approximation to the experfc function.
+ * The experfc function is defined by
+ * @f[
+ *   experfc(x) = exp(x)erfc(\sqrt{x})
+ * @f]
+ * The approximation is:
+ * @f[
+ *   experfc(x) = \frac{2}{\sqrt{\pi x}
+ *       + \sqrt{\pi(x+2)-2(\pi-2)exp(-\sqrt(5x/7))}}
+ * @f]
+ * Surprisingly, this is accurate to within 0.1% over the whole range
+ * [0, infty].  It is used to start agm algorithms of the experfc function.
+ */
+template<typename _Tp>
+  _Tp
+  experfc_approx(_Tp __x)
+  {
+    const auto _S_pi =  _Tp{3.1415926535897932384626433832795029Q};
+    const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797Q};
+    auto __experfc = _S_sqrt_pi * std::sqrt(__x)
+		   + std::sqrt(_S_pi * (__x + _Tp{2})
+			     - _Tp{2} * (_S_pi - _Tp{2})
+			     * std::exp(-std::sqrt(_Tp{5} * __x / _Tp{7})));
+    return _Tp{2} / __experfc;
+  }
+
 template<typename _Tp>
   void
   test_inv_erf()
@@ -37,6 +64,20 @@ template<typename _Tp>
       }
     for (auto aa : a)
       std::cout << ' ' << aa << '\n';
+
+    std::vector<_Tp> c;
+    c.push_back(1);
+    for (int n = 1; n < n_max; ++n)
+      {
+	auto ctemp = _Tp{0};
+	for (int k = 1; k <= n; ++k)
+          ctemp += c[k - 1] * c[n - k] / _Tp(k * (2 * k - 1));
+	c.push_back(atemp);
+      }
+    for (int n = 1; n < n_max; ++n)
+      c[n] /= _Tp(2 * n + 1);
+    for (auto cc : c)
+      std::cout << ' ' << cc << '\n';
 
     std::cout << "\n\n"
 	      << std::setw(width) << "x"
