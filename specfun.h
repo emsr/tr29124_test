@@ -1991,43 +1991,43 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     polylog(_Tp __s, std::complex<_Tp> __w)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      return std::__detail::__polylog<__type>(__m, __w);
+      return std::__detail::__polylog<__type>(__s, __w);
     }
 
   // Dirichlet eta function
 
   inline float
-  dirichlet_etaf(float __w)
-  { return std::__detail::__dirichlet_eta<float>(__w); }
+  dirichlet_etaf(float __x)
+  { return std::__detail::__dirichlet_eta<float>(__x); }
 
   inline long double
-  dirichlet_etal(long double __w)
-  { return std::__detail::__dirichlet_eta<long double>(__w); }
+  dirichlet_etal(long double __x)
+  { return std::__detail::__dirichlet_eta<long double>(__x); }
 
   template<typename _Tp>
     inline _Tp
-    dirichlet_eta(_Tp __w)
+    dirichlet_eta(_Tp __x)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      return std::__detail::__dirichlet_eta<__type>(__w);
+      return std::__detail::__dirichlet_eta<__type>(__x);
     }
 
   // Dirichlet beta function
 
   inline float
-  dirichlet_betaf(float __w)
-  { return std::__detail::__dirichlet_beta<float>(__w); }
+  dirichlet_betaf(float __x)
+  { return std::__detail::__dirichlet_beta<float>(__x); }
 
   inline long double
-  dirichlet_betal(long double __w)
-  { return std::__detail::__dirichlet_beta<long double>(__w); }
+  dirichlet_betal(long double __x)
+  { return std::__detail::__dirichlet_beta<long double>(__x); }
 
   template<typename _Tp>
     inline _Tp
-    dirichlet_beta(_Tp __w)
+    dirichlet_beta(_Tp __x)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      return std::__detail::__dirichlet_beta<__type>(__w);
+      return std::__detail::__dirichlet_beta<__type>(__x);
     }
 
   // Clausen functions
