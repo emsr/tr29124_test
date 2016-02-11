@@ -59,12 +59,21 @@ main()
       std::cout << "  " << std::setw(width) << "Hr_" << n << "(x)";
       std::cout << "  " << std::setw(width) << "Ha_" << n << "(x)";
       std::cout << '\n';
+      auto del = 0.1;
       for (int i = 0; i <= 100; ++i)
         {
-          auto x = i * 0.1;
+          auto x = i * del;
           auto h = __poly_hermite_recursion(n, x);
           auto ht = __poly_hermite_asymp(n, x);
-          std::cout << "  " << std::setw(width) << x
+	  if (std::abs(x - xt) < del)
+	    std::cout << ">>";
+	  else if (std::abs(x - 0.95 * xt) < del)
+	    std::cout << "> ";
+	  else if (std::abs(x - 1.05 * xt) < del)
+	    std::cout << "> ";
+          else
+            std::cout << "  ";
+          std::cout << std::setw(width) << x
 		    << "  " << std::setw(width) << h
 		    << "  " << std::setw(width) << ht
 		    << '\n';

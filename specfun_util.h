@@ -119,33 +119,90 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    */
   template<typename _Tp>
+    class _BasicSum
+    {
+    public:
+
+      _BasicSum() = default;
+
+      explicit
+      _BasicSum(_Tp __sum)
+      : _M_sum{__sum}, _M_term{}, _M_converged{false}
+      { }
+
+      _BasicSum&
+      operator+=(_Tp __term)
+      {
+	if (!this->_M_converged)
+	  {
+	    if (__isnan(__term))
+	      throw std::runtime_error("_BasicSum: bad term");
+	    if (std::abs(__term) == std::numeric_limits<_Tp>::infinity())
+	      throw std::runtime_error("_BasicSum: infinite term");
+	    this->_M_term = __term;
+	    this->_M_sum += this->_M_term;
+	  }
+	return *this;
+      }
+
+      _BasicSum&
+      operator-=(_Tp __term)
+      { return operator+=(-__term); }
+
+      operator
+      bool() const
+      { return !this->_M_converged; }
+
+      _Tp
+      operator()() const
+      { return this->_M_sum; }
+
+    private:
+
+      _Tp _M_sum;
+      _Tp _M_term;
+      bool _M_converged;
+    };
+
+  /**
+   *
+   */
+  template<typename _Tp>
     class _KahanSum
     {
     public:
 
       _KahanSum() = default;
 
-      explicit _KahanSum(_Tp __sum)
-      : _M_sum{__sum}, _M_term{}, _M_temp{}
+      explicit
+      _KahanSum(_Tp __sum)
+      : _M_sum{__sum}, _M_term{}, _M_temp{}, _M_converged{false}
       { }
 
       _KahanSum&
       operator+=(_Tp __term)
       {
-	if (__isnan(__term))
-	  throw std::runtime_error("_KahanSum: bad term");
-	if (std::abs(__term) == std::numeric_limits<_Tp>::infinity())
-	  throw std::runtime_error("_KahanSum: infinite term");
-	this->_M_term = __term - this->_M_temp;
-	this->_M_temp = this->_M_sum;
-	this->_M_sum += this->_M_term;
-	this->_M_temp = this->_M_term - (this->_M_sum - this->_M_temp);
+	if (!this->_M_converged)
+	  {
+	    if (__isnan(__term))
+	      throw std::runtime_error("_KahanSum: bad term");
+	    if (std::abs(__term) == std::numeric_limits<_Tp>::infinity())
+	      throw std::runtime_error("_KahanSum: infinite term");
+	    this->_M_term = __term - this->_M_temp;
+	    this->_M_temp = this->_M_sum;
+	    this->_M_sum += this->_M_term;
+	    this->_M_temp = this->_M_term - (this->_M_sum - this->_M_temp);
+	  }
 	return *this;
       }
 
       _KahanSum&
       operator-=(_Tp __term)
       { return operator+=(-__term); }
+
+      operator
+      bool() const
+      { return !this->_M_converged; }
 
       _Tp
       operator()() const
@@ -156,6 +213,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp _M_sum;
       _Tp _M_term;
       _Tp _M_temp;
+      bool _M_converged;
     };
 
 _GLIBCXX_END_NAMESPACE_VERSION
