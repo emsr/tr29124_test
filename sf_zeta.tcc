@@ -271,35 +271,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   * @brief  Compute the Riemann zeta function @f$ \zeta(s) - 1 @f$
-   * 	     by summation for s > 1.  This is a small remainder for large s.
-   *
-   * The Riemann zeta function is defined by:
-   *  \f[
-   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
-   *  \f]
-   */
-  template<typename _Tp>
-    _Tp
-    __riemann_zeta_m_1_sum(_Tp __s)
-    {
-      // A user shouldn't get to this.
-      if (__s < _Tp{1})
-	std::__throw_domain_error(__N("Bad argument in zeta sum."));
-
-      int __k_max = std::exp(-std::log(__gnu_cxx::__epsilon<_Tp>()) / __s);
-      auto __zeta_m_1 = _Tp{0};
-      for (int __k = __k_max; __k >= 2; --__k)
-	{
-	  auto __term = std::pow(_Tp(__k), -__s);
-	  __zeta_m_1 += __term;
-	}
-
-      return __zeta_m_1;
-    }
-
-
-  /**
    *  @brief  Evaluate the Riemann zeta function @f$ \zeta(s) @f$
    *          by an alternate series for s > 0.
    *
@@ -309,26 +280,27 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __riemann_zeta_euler_maclaurin(_Tp __s)
     {
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto _S_N = 10 + __gnu_cxx::__digits10<_Tp>() / 2;
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Val>();
+      constexpr auto _S_N = 10 + __gnu_cxx::__digits10<_Val>() / _Tp{2};
       constexpr auto _S_jmax = 99;
 
-      const auto __pmax  = std::pow(_Tp(_S_N) + _Tp{1}, -__s);
-      const auto __denom = _Tp(_S_N + 1) * _Tp(_S_N + 1);
-      auto __ans = __pmax * (_Tp(_S_N + 1) / (__s - _Tp{1}) + _Tp{0.5L});
-      for(auto __k = 0; __k < _S_N; ++__k)
+      const auto __pmax  = std::pow(_Tp{_S_N + 1}, -__s);
+      const auto __denom = _Tp{_S_N + 1} * _Tp{_S_N + 1};
+      auto __ans = __pmax * (_Tp{_S_N + 1} / (__s - _Tp{1}) + _Tp{0.5L});
+      for (auto __k = 0; __k < _S_N; ++__k)
         __ans += std::pow(_Tp(__k + 1), -__s);
 
-      auto __fact = __pmax * __s / (_S_N + _Tp{1});
-      auto __delta_prev = __gnu_cxx::__max<_Tp>();
-      for(auto __j = 0; __j <= _S_jmax; ++__j)
+      auto __fact = __pmax * __s / _Tp{_S_N + 1};
+      auto __delta_prev = __gnu_cxx::__max<_Val>();
+      for (auto __j = 0; __j <= _S_jmax; ++__j)
         {
 	  auto __delta = _S_Euler_Maclaurin_zeta[__j + 1] * __fact;
 	  if (std::abs(__delta) > __delta_prev)
 	    break;
 	  __delta_prev = std::abs(__delta);
 	  __ans += __delta;
-	  if(std::abs(__delta / __ans) < _Tp{0.5L} * _S_eps)
+	  if (std::abs(__delta / __ans) < _Tp{0.5L} * _S_eps)
 	    break;
 	  __fact *= (__s + _Tp(2 * __j + 1)) * (__s + _Tp(2 * __j + 2))
 		  / __denom;
@@ -355,13 +327,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __riemann_zeta_alt(_Tp __s)
     {
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Val>();
       constexpr unsigned int _S_max_iter = 10000000;
-      _Tp __sgn = _Tp{1};
-      _Tp __zeta = _Tp{0};
+      auto __sgn = _Val{1};
+      auto __zeta = _Tp{0};
       for (unsigned int __i = 1; __i < _S_max_iter; ++__i)
 	{
-	  _Tp __term = __sgn / std::pow(_Tp(__i), __s);
+	  auto __term = __sgn / std::pow(_Tp(__i), __s);
 	  if (std::abs(__term) < _S_eps)
 	    break;
 	  __zeta += __term;
@@ -399,32 +372,33 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __riemann_zeta_glob(_Tp __s)
     {
+      using _Val = __num_traits_t<_Tp>;
       auto __zeta = _Tp{0};
 
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Val>();
       //  Max e exponent before overflow.
       constexpr auto __max_bincoeff
-		 = std::exp(std::numeric_limits<_Tp>::max_exponent10
-			    * std::log(_Tp{10}) - _Tp{1});
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+		 = std::exp(std::numeric_limits<_Val>::max_exponent10
+			    * std::log(_Val{10}) - _Val{1});
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Val>::__pi;
+      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Val>::__pi_half;
       //  This series works until the binomial coefficient blows up
       //  so use reflection.
-      if (__s < _Tp{0})
+      if (std::real(__s) < _Val{0})
 	{
 	  if (std::fmod(__s, _Tp{2}) == _Tp{0})
 	    return _Tp{0};
 	  else
 	    {
 	      auto __zeta = __riemann_zeta_glob(_Tp{1} - __s);
-	      __zeta *= std::pow(_Tp{2}* _S_pi, __s)
+	      __zeta *= std::pow(_Tp{2} * _S_pi, __s)
 		     * std::sin(_S_pi_2 * __s)
 		     * std::exp(__log_gamma(_Tp{1} - __s)) / _S_pi;
 	      return __zeta;
 	    }
 	}
 
-      _Tp __num = _Tp{0.25L};
+      auto __num = _Tp{0.25L};
       const unsigned int __maxit = 10000;
       __zeta = _Tp{0.5L};
       // This for loop starts at 1 because we already calculated the
@@ -433,12 +407,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  bool __punt = false;
 	  auto __term = _Tp{1};
-	  auto __bincoeff = _Tp{1};
+	  auto __bincoeff = _Val{1};
 	  // This for loop starts at 1 because we already calculated the value
 	  // of the zeroeth order in __term above.
 	  for (unsigned int __j = 1; __j <= __i; ++__j)
 	    {
-	      auto incr = _Tp(__i - __j + 1) / _Tp(__j);
+	      auto incr = _Val(__i - __j + 1) / _Tp(__j);
 	      __bincoeff *= -incr;
 	      if(std::abs(__bincoeff) > __max_bincoeff )
 		{
@@ -446,7 +420,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		  __punt = true;
 		  break;
 		}
-	      __term += __bincoeff * std::pow(_Tp(1 + __j), -__s);
+	      __term += __bincoeff * std::pow(_Val(1 + __j), -__s);
 	    }
 	  if (__punt)
 	    break;
@@ -454,7 +428,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __zeta += __term;
 	  if (std::abs(__term / __zeta) < _S_eps)
 	    break;
-	  __num *= _Tp{0.5L};
+	  __num *= _Val{0.5L};
 	}
 
       __zeta /= _Tp{1} - std::pow(_Tp{2}, _Tp{1} - __s);
@@ -484,9 +458,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __riemann_zeta_product(_Tp __s)
     {
+      using _Val = __num_traits_t<_Tp>;
       extern const unsigned long __prime_list[];
 
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Val>();
       constexpr unsigned long
       _S_num_primes = sizeof(unsigned long) != 8 ? 256 : 256 + 48;
 
@@ -610,6 +585,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   constexpr long double
   _S_zetam1[_S_num_zetam1]
   {
+    -1.5,                                           //  0
+    std::numeric_limits<_Tp>::infinity(),           //  1
     6.449340668482264364724151666460251892177e-1L,  //  2
     2.020569031595942853997381615114499907647e-1L,  //  3
     8.232323371113819151600369654116790277462e-2L,  //  4
@@ -642,6 +619,63 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     4.656629065033784072989233251220071062704e-10L, // 31
     2.328311833676505492001455975940495024831e-10L  // 32
   };
+
+  /**
+   * @brief  Return the Riemann zeta function @f$ \zeta(s) - 1 @f$
+   * 	     by summation for s > 1.  This is a small remainder for large s.
+   *
+   * The Riemann zeta function is defined by:
+   *  \f[
+   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
+   *  \f]
+   */
+  template<typename _Tp>
+    _Tp
+    __riemann_zeta_m_1_sum(_Tp __s)
+    {
+      using _Val = __num_traits_t<_Tp>;
+      if (__s == _Tp{1})
+	return std::numeric_limits<_Val>::quiet_NaN();
+
+      int __k_max = std::min(1000000,  int(std::pow(_Tp{1} / _S_eps, _Tp{1} / __s)));
+      auto __zeta_m_1 = _Tp{0};
+      for (int __k = __k_max; __k >= 2; --__k)
+	{
+	  auto __term = std::pow(_Tp(__k), -__s);
+	  __zeta_m_1 += __term;
+	}
+
+      return __zeta_m_1;
+    }
+
+
+  /**
+   * @brief  Return the Riemann zeta function @f$ \zeta(s) - 1 @f$
+   *
+   */
+  template<typename _Tp>
+    _Tp
+    __riemann_zeta_m_1(_Tp __s)
+    {
+      if (__s == _Tp{1})
+	return std::numeric_limits<_Tp>::quiet_NaN();
+
+      auto __n = std::nearbyint(__s)
+      if (__s == __n && __n >= 0 && __n < _S_num_zetam1)
+	return _S_zetam1[__n];
+      else
+	{
+	  int __k_max = std::min(1000000,  int(std::pow(_Tp{1} / _S_eps, _Tp{1} / __s)));
+	  auto __zeta_m_1 = _Tp{0};
+	  for (int __k = __k_max; __k >= 2; --__k)
+	    {
+	      auto __term = std::pow(_Tp(__k), -__s);
+	      __zeta_m_1 += __term;
+	    }
+	}
+
+      return __zeta_m_1;
+    }
 
   /**
    *  @brief  Return the Hurwitz zeta function @f$ \zeta(s,a) @f$
