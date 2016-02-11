@@ -1,6 +1,14 @@
+
+/**
+ * You need a functor belching a, b
+ * an iterator pair for a and an iterator for b
+ *  
+ */
 template<typename _Tp>
-  _LentzContinuedFraction()
+  class _LentzContinuedFraction
   {
+    _Tp
+    operator()
       std::complex<_Tp> __b(_Tp{1}, __t);
       std::complex<_Tp> __c(_Tp{1} / _S_fp_min);
       auto __d(_Tp{1} / __b);
@@ -24,4 +32,5 @@ template<typename _Tp>
       __h *= std::polar(_Tp{1}, -__t);
       _Ci = -__h.real();
       _Si = _S_pi_2 + __h.imag();
-  }
+  };
+

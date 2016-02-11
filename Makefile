@@ -74,6 +74,7 @@ CHECKS = check_airy_ai \
 	 check_ellint_rc \
 	 check_ellint_rd \
 	 check_ellint_rf \
+	 check_ellint_rg \
 	 check_ellint_rj \
 	 check_expint \
 	 check_expint_e1 \
@@ -320,6 +321,9 @@ check_ellint_rd: check_ellint_rd.cc
 
 check_ellint_rf: check_ellint_rf.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_ellint_rf check_ellint_rf.cc
+
+check_ellint_rg: check_ellint_rg.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_ellint_rg check_ellint_rg.cc
 
 check_ellint_rj: check_ellint_rj.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_ellint_rj check_ellint_rj.cc

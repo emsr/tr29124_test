@@ -237,13 +237,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
           auto __rzarg = 2 * __j + 2;
           //auto __rz = std::__detail::__riemann_zeta(rzarg);
 	  auto __rz = evenzeta<_Tp>(__rzarg);
-          auto __nextterm = (__rz * __fac) * __w2;
+          auto __term = (__rz * __fac) * __w2;
           __w2 *= __upfac;
           __fac *= __rzarg / _Tp(__rzarg + __s)
 	      * (__rzarg + 1) / _Tp(__rzarg + __s + 1);
           ++__j;
-          __terminate = (__fpequal(std::abs(__res - __pref * __nextterm), std::abs(__res)) || (__j > __maxit));
-          __res -= __pref * __nextterm;
+          __terminate = (__fpequal(std::abs(__res - __pref * __term), std::abs(__res)) || (__j > __maxit));
+          __res -= __pref * __term;
 	}
       return __res;
     }
@@ -309,12 +309,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  auto __rzarg = static_cast<_Tp>(2 * __j + 2);
 	  auto __rz = evenzeta<_Tp>(__rzarg);
-	  auto __nextterm = __rz * __fac * __w2;
+	  auto __term = __rz * __fac * __w2;
 	  __w2 *= __upfac;
 	  __fac *= __rzarg / (__rzarg + __s) * (__rzarg + _Tp{1}) / (__rzarg + __s + _Tp{1});
 	  ++__j;
-	  __terminate = (__fpequal(std::abs(__res - __pref * __nextterm), std::abs(__res)) || (__j > __maxit));
-	  __res -= __pref * __nextterm;
+	  __terminate = (__fpequal(std::abs(__res - __pref * __term), std::abs(__res)) || (__j > __maxit));
+	  __res -= __pref * __term;
 	}
       return std::complex<_Tp>(__res, std::imag(__imagtemp));
     }
@@ -324,14 +324,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Theoretical convergence is present for |w| < 2*pi.
    * We use an optimized version of
    * @f[
-   *   Li_s(e^w) = \Gamma(1-s)(-w)^(s-1) + (2\pi)^(-s)/pi  A_p(w)
+   *   Li_s(e^w) = \Gamma(1-s)(-w)^(s-1) + (2\pi)^(-s)/pi A_p(w)
    * @f]
    * @f[
    *   A_p(w) = \sum_k \Gamma(1+k-s)/k!\Sin(\pi/2*(s-k))(w/2/\pi)^k\zeta(1+k-s)
    * @f]
-   * @param s the index s.
-   * @param w The Argument w.
-   * @return the value of the Polylogarithm.
+   * @param s  The index s.
+   * @param w  The Argument w.
+   * @return  The value of the polylogarithm.
    */
   template<typename _Tp>
     inline std::complex<_Tp>
@@ -354,8 +354,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Since s is negative we evaluate the Gamma Function on the positive real axis where it is real.
       auto __gam = std::exp(__ls);
 
-      _Tp __sp, __cp;
-      sincos(_S_pi_2 * __s, &__sp, &__cp);
+      auto __phase = std::polar(_Tp{1}, _S_pi_2 * __s);
+      auto __cp = std::real(__phase);
+      auto __sp = std::imag(__phase);
       // Here we add the expression that would result from ignoring the zeta function in the series.
       std::complex<_Tp> __expis(__cp, __sp);
       auto __p = _S_2pi - _S_i * __w;
@@ -372,8 +373,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __gam *= (_Tp{1} - __s);
       while (!__terminate) // Assume convergence
 	{
-	  auto __rzarg = (_Tp{1} - __s) + __j;
-	  // only the difference to one is needed.
+	  auto __rzarg = _Tp(1 + __j) - __s;
+	  // Only the difference to one is needed.
 	  // FIXME: this expression underflows for rzarg > 50
 	  auto __rz = (std::__detail::__riemann_zeta(__rzarg) - _Tp{1});
 	  _Tp __sine;
@@ -390,12 +391,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
               if ((__j / 2) & 1)
 		__sine = -__sine;
             }
-	  auto __nextterm =  __w2 * (__gam * __sine * __rz);
+	  auto __term =  __w2 * (__gam * __sine * __rz);
 	  __w2 *= __wup;
 	  ++__j;
 	  __gam  *= __rzarg / (__j); // equal to 1/(j+1) since we have incremented j in the line above
-	  __terminate = (__fpequal(std::abs(__res + __pref * __nextterm), std::abs(__res)) || (__j > __maxit));
-	  __res += __pref * __nextterm;
+	  __terminate = (__fpequal(std::abs(__res + __pref * __term), std::abs(__res)) || (__j > __maxit));
+	  __res += __pref * __term;
 	}
       return __res;
     }
@@ -445,13 +446,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       const auto __np = 1 + __n;
-      auto __lnp = std::lgamma(__np);
+      auto __lnp = std::lgamma(_Tp(__np));
       auto __res = std::exp(__lnp - _Tp(__np) * std::log(-__w));
       auto __wup = __w / _S_2pi;
       auto __wq = __wup * __wup;
-      auto __pref = _Tp{2} * std::pow(_S_2pi, -int(1 + __n));
+      auto __pref = _Tp{2} * std::pow(_S_2pi, -_Tp(1 + __n));
       // Subtract the expression A_p(w)
-      __res -= std::exp(__lnp - 0.5 * __np * std::log(_Tp{1} + __wq))
+      __res -= std::exp(__lnp - _Tp{0.5L} * __np * std::log(_Tp{1} + __wq))
 	     * __pref * std::cos(_Tp(__np) * std::atan(_Tp{1} / __wup));
       unsigned int __k = 0;
       bool __terminate = false;
@@ -461,12 +462,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	__pref = -__pref;
       while (!__terminate)
 	{
-	  auto __newterm = (__gam * (evenzeta<_Tp>(2 * __k + 2 + __n) - _Tp{1})) * __wup;
+	  auto __term = (__gam * (evenzeta<_Tp>(2 * __k + 2 + __n) - _Tp{1}))
+			 * __wup;
 	  __gam *= - _Tp(2 * __k + 2 + __n + 1) / _Tp(2 * __k + 2 + 1)
 		* _Tp(2 * __k + 2 + __n) / _Tp(2 * __k + 1 + 1);
 	  __wup *= __wq;
-	  __terminate = (__fpequal(std::abs(__res - __pref * __newterm), std::abs(__res)) || (__k > __maxit));
-	  __res -= __pref * __newterm;
+	  __terminate = (__k > __maxit)
+		     || __fpequal(std::abs(__res - __pref * __term),
+				  std::abs(__res));
+	  __res -= __pref * __term;
 	  ++__k;
 	}
     return __res;
@@ -508,14 +512,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       const unsigned int __np = 1 + __n;
-      auto __lnp = std::lgamma(__np);
+      auto __lnp = std::lgamma(_Tp(__np));
       auto __res = std::exp(__lnp - _Tp(__np) * std::log(-__w));
       constexpr auto __itp = _Tp{1} / (_Tp{2} * _S_pi);
       auto __wq = -__w * __itp * __w * __itp;
-      auto __pref = _Tp{2} * std::pow(__itp, __np);
+      auto __pref = _Tp{2} * std::pow(__itp, _Tp(__np));
       // Subtract the expression A_p(w)
-      __res += std::exp(__lnp - 0.5 * __np * std::log(_Tp{1} - __wq))
-	  * __pref * std::cos(_Tp(__np) * std::atan(std::complex<_Tp>{2 * _S_pi} / __w));
+      __res += std::exp(__lnp - _Tp{0.5L} * __np * std::log(_Tp{1} - __wq))
+	     * __pref * std::cos(_Tp(__np)
+			* std::atan(std::complex<_Tp>{2 * _S_pi} / __w));
       if (__sigma != 1)
 	__pref = -__pref;
       bool __terminate = false;
@@ -528,12 +533,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       while (!__terminate)
 	{
 	  auto __zk = 2 * __k;
-	  __gam *= _Tp(__zk + __np) / (1 + __zk)
-		 * _Tp(1 + __zk + __np) / (__zk + 2);
-	  auto __newterm = (__gam * (evenzeta<_Tp>(__zk + 2 + __np) - _Tp{1})) * __wup;
+	  __gam *= _Tp(__zk + __np) / _Tp(1 + __zk)
+		 * _Tp(1 + __zk + __np) / _Tp(__zk + 2);
+	  auto __term = (__gam * (evenzeta<_Tp>(__zk + 2 + __np) - _Tp{1})) * __wup;
 	  __wup *= __wq;
-	  __terminate = (__fpequal(std::abs(__res - __pref * __newterm), std::abs(__res)) || (__k > __maxit));
-	  __res -= __pref * __newterm;
+	  __terminate = __k > __maxit
+		     || __fpequal(std::abs(__res - __pref * __term),
+				  std::abs(__res));
+	  __res -= __pref * __term;
 	  ++__k;
 	}
       return __res;
@@ -569,7 +576,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The defining series is
    * @f[
-   *   Li_s(e^w) = A_s(w) + B_s(w)+ \Gamma(1-s)(-w)^(s-1)
+   *   Li_s(e^w) = A_s(w) + B_s(w) + \Gamma(1-s)(-w)^(s-1)
    * @f]
    * with
    * @f[
@@ -582,7 +589,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @param s the positive real index s.
    * @param w The argument w.
-   * @return the value of the Polylogarithm.
+   * @return the value of the polylogarithm.
    */
   template<typename _Tp>
     inline std::complex<_Tp>
@@ -593,8 +600,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
       std::complex<_Tp> __res = std::__detail::__riemann_zeta(__s);
       auto __wk = __w;
-      _Tp __sp, __cp;
-      sincos(_S_pi_2 * __s, &__sp, &__cp);
+      auto __phase = std::polar(_Tp{1}, _S_pi_2 * __s);
+      auto __cp = std::real(__phase);
+      auto __sp = std::imag(__phase);
       // This is \Gamma(1-s)(-w)^(s-1)
       __res += _S_pi / (_Tp{2} * __sp * __cp)
 	  * std::exp(-std::lgamma(__s) + (__s - _Tp{1}) * std::log(-__w));
@@ -609,42 +617,42 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       // fac should now be 1/(m+1)!
       const auto __pref = _Tp{2} * std::pow(_S_2pi, __s - _Tp{1});
-      // now comes the remainder of the series
+      // Now comes the remainder of the series
       constexpr unsigned int __maxit = 100;
       unsigned int __j = 0;
       bool __terminate = false;
       auto __wup = __w / _S_2pi;
-      auto __w2 = std::pow(__wup, __m + 1);
+      auto __w2 = std::pow(__wup, _Tp(__m + 1));
       // It is 1 < 2 - s + m < 2 => Gamma(2-s+m) will not overflow
       // Here we factor up the ratio of Gamma(1 - s + k) / k!.
       // This ratio should be well behaved even for large k
-      auto __gam = std::tgamma(_Tp{2} - __s + __m) * __fac;
-      while (!__terminate) // Assume convergence.
+      auto __gam = std::tgamma(_Tp(2 + __m) - __s) * __fac;
+      while (!__terminate)
 	{ // FIXME: optimize.
-	  int __idx = __m + 1 + __j;
+	  auto __idx = __m + 1 + __j;
 	  auto __zetaarg = _Tp(1 + __idx) - __s;
-	  _Tp __sine;
+	  auto __rz = std::__detail::__riemann_zeta(__zetaarg);
+	  auto __sine = __cp;
 	  if (__idx & 1) // Save the repeated calculation of the sines.
 	    { // odd
 	      __sine = __cp;
 	      if (!((__idx - 1) / 2 & 1))
 		__sine = -__sine;
-           }
+            }
 	  else
 	    { // even
 	      __sine = __sp;
 	      if ((__idx / 2) & 1)
 		__sine = -__sine;
 	    }
-          auto __nextterm = __w2 * __sine * __gam
-			  * std::__detail::__riemann_zeta(__zetaarg);
+          auto __term = __w2 * __sine * __gam * __rz;
           __w2 *= __wup;
           __gam *= __zetaarg / _Tp(1 + __idx);
           ++__j;
-          __terminate = (__fpequal(std::abs(__res + __pref * __nextterm),
+          __terminate = (__fpequal(std::abs(__res + __pref * __term),
 				   std::abs(__res))
 		     || (__j > __maxit));
-          __res += __pref * __nextterm;
+          __res += __pref * __term;
 	}
       return __res;
     }
@@ -676,25 +684,25 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr unsigned int __maxiter = 100;
       bool __terminate = false;
       // zeta(0) * w^s / Gamma(s + 1)
-      std::complex<_Tp> __oldterm = -0.5 * __wgamma;
+      std::complex<_Tp> __oldterm = -_Tp{0.5L} * __wgamma;
       __res += _Tp{2} * __oldterm;
-      std::complex<_Tp> __newterm;
+      std::complex<_Tp> __term;
       auto __wq = _Tp{1} / (__w * __w);
       unsigned int __k = 1;
       while (!__terminate)
 	{
           __wgamma *= __wq * (__s + _Tp(1 - 2 * __k)) * (__s + _Tp(2 - 2 * __k));
-	  __newterm = evenzeta<_Tp>(2 * __k) * __wgamma;
-          if (std::abs(__newterm) > std::abs(__oldterm))
+	  __term = evenzeta<_Tp>(2 * __k) * __wgamma;
+          if (std::abs(__term) > std::abs(__oldterm))
 	    __terminate = true; // Termination due to failure of asymptotic expansion
-          if (__fpequal(std::abs(__res + _Tp{2} * __newterm), std::abs(__res)))
+          if (__fpequal(std::abs(__res + _Tp{2} * __term), std::abs(__res)))
 	    __terminate = true; // Precision goal reached.
           if (__k > __maxiter)
 	    __terminate = true; // Stop the iteration somewhen
           if (!__terminate)
             {
-              __res += _Tp{2} * __newterm;
-              __oldterm = __newterm;
+              __res += _Tp{2} * __term;
+              __oldterm = __term;
               ++__k;
             }
 	}
@@ -714,9 +722,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param w something with a negative real part.
    * @return the value of the polylogarithm.
    */
-  template<typename PowerType, typename _Tp>
+  template<typename _PowTp, typename _Tp>
     inline _Tp
-    __polylog_exp_negative_real_part(PowerType __s, _Tp __w)
+    __polylog_exp_negative_real_part(_PowTp __s, _Tp __w)
     {
       auto __ew = std::exp(__w);
       const auto __up = __ew;
@@ -727,10 +735,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       while (!__terminate)
 	{
 	  __ew *= __up;
-	  auto __temp = std::pow(__k, __s); // This saves us a type conversion
-	  auto __newterm = __ew / __temp;
-	  __terminate = (__fpequal(std::abs(__res + __newterm), std::abs(__res))) || (__k > __maxiter);
-	  __res += __newterm;
+	  _Tp __temp = std::pow(__k, __s); // This saves us a type conversion
+	  auto __term = __ew / __temp;
+	  __terminate = (__fpequal(std::abs(__res + __term), std::abs(__res))) || (__k > __maxiter);
+	  __res += __term;
 	  ++__k;
 	}
       return __res;
@@ -845,7 +853,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  // Now s is odd and w on the unit-circle.
 	  auto __iw = imag(__w);  //get imaginary part
 	  auto __rem = std::remainder(__iw, _S_2pi);
-	  if (__fpequal(std::abs(__rem), 0.5))
+	  if (__fpequal(std::abs(__rem), _Tp{0.5L}))
 	    // Due to: Li_{-n}(-1) + (-1)^n Li_{-n}(1/-1) = 0.
 	    return _Tp{0};
 	  else
@@ -876,7 +884,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return the value of the polylogarithm.
    */
   template<typename _Tp>
-    inline std::complex<_Tp> __polylog_exp_int_neg(const int __s, _Tp __w)
+    inline std::complex<_Tp>
+    __polylog_exp_int_neg(const int __s, _Tp __w)
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
@@ -1009,14 +1018,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * This function is the same irrespective of a real or complex w,
    * hence the template parameter ArgType.
    *
+   * @note: I *really* wish we could return a variant<Tp, std::complex<Tp>>.
+   *
    * @param s  The real order.
    * @param w  The real or complex argument.
    * @return  The real or complex value of Li_s(e^w).
    */
   template<typename _Tp, typename ArgType>
-    std::conditional_t<__gnu_cxx::is_complex_v<ArgType>,
-		       __gnu_cxx::__promote_num_t<std::complex<_Tp>, ArgType>,
-		      _Tp>
+    __gnu_cxx::__promote_num_t<std::complex<_Tp>, ArgType>
     __polylog_exp(_Tp __s, ArgType __w)
     {
       if (__isnan(__s) || __isnan(__w))
@@ -1027,14 +1036,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
           // In this branch of the if statement, s is an integer
           int __p = int(std::lrint(__s));
-          if (__p > 0)
-            return __polylog_exp_int_pos(__p, __w);
-          else
+	  if (__p > 0)
+	    return __polylog_exp_int_pos(__p, __w);
+	  else
 	    return __polylog_exp_int_neg(__p, __w);
 	}
       else
 	{
-          if (__s > _Tp{0})
+	  if (__s > _Tp{0})
 	    return __polylog_exp_real_pos(__s, __w);
 	  else
 	    return __polylog_exp_real_neg(__s, __w);
@@ -1049,7 +1058,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return The complex value of the polylogarithm.
    */
   template<typename _Tp>
-    std::complex<_Tp>
+    _Tp
     __polylog(_Tp __s, _Tp __x)
     {
       if (__isnan(__s) || __isnan(__x))
@@ -1060,14 +1069,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{ // Use the reflection formula to access negative values.
           auto __xp = -__x;
           auto __y = std::log(__xp);
-          return __polylog_exp(__s, _Tp{2} * __y)
-	       * std::pow(_Tp{2}, _Tp{1} - __s)
-	       - __polylog_exp(__s, __y);
+          return std::real(__polylog_exp(__s, _Tp{2} * __y)
+				* std::pow(_Tp{2}, _Tp{1} - __s)
+			 - __polylog_exp(__s, __y));
 	}
       else
 	{
           auto __y = std::log(__x);
-          return __polylog_exp(__s, __y);
+          return std::real(__polylog_exp(__s, __y));
 	}
     }
 
@@ -1093,7 +1102,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the Dirichlet eta function.
    * Currently, w must be real (complex type but negligible imaginary part.)
-   * Otherwise we must throw.
+   * Otherwise std::domain_error is thrown.
    *
    * @param w  The complex (but on-real-axis) argument.
    * @return  The complex Dirichlet eta function.
@@ -1112,7 +1121,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the Dirichlet eta function.
+   *  Return the Dirichlet eta function for real argument.
    *
    *  @param w  The real argument.
    *  @return  The Dirichlet eta function.
@@ -1124,13 +1133,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
-	return -__polylog(__w, _Tp{-1});
+	return -std::real(__polylog(__w, _Tp{-1}));
     }
 
   /**
    * Return the Dirichlet beta function.
    * Currently, w must be real (complex type but negligible imaginary part.)
-   * Otherwise we must throw.
+   * Otherwise std::domain_error is thrown.
    *
    * @param w  The complex (but on-real-axis) argument.
    * @return  The Dirichlet Beta function of real argument.
@@ -1150,7 +1159,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the Dirichlet beta function.
+   * Return the Dirichlet beta function for real argument.
    *
    * @param w  The real argument.
    * @return  The Dirichlet Beta function of real argument.
@@ -1167,7 +1176,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * A function to implement Clausen's function.
+   * Return Clausen's function of integer order m and complex argument w.
    * The notation and connection to polylog is from Wikipedia
    *
    * @param w  The complex argument.
@@ -1178,7 +1187,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __clausen(unsigned int __m, std::complex<_Tp> __w)
     {
       constexpr auto _S_i = std::complex<_Tp>{0, 1};
-      auto __ple = __polylog_exp(__m, _S_i * __w);
+      auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
@@ -1190,7 +1199,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * A function to implement Clausen's series Sl.
+   * Return Clausen's sine sum Sl for positive integer order m
+   * and complex argument w.
    * The notation and connection to polylog from Wikipedia
    *
    * @param w  The complex argument.
@@ -1201,7 +1211,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __clausen_s(unsigned int __m, std::complex<_Tp> __w)
     {
       constexpr auto _S_i = std::complex<_Tp>{0, 1};
-      auto __ple = __polylog_exp(__m, _S_i * __w);
+      auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
@@ -1213,7 +1223,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * A function to implement Clausen's series Cl
+   * Return Clausen's cosine sum Cl for positive integer order m
+   * and complex argument w.
+   * The notation and connection to polylog from Wikipedia
    *
    * @param w  The complex argument.
    * @return  The Clausen cosine sum C_m(w),
@@ -1223,7 +1235,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __clausen_c(unsigned int __m, std::complex<_Tp> __w)
     {
       constexpr auto _S_i = std::complex<_Tp>{0, 1};
-      auto __ple = __polylog_exp(__m, _S_i * __w);
+      auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
