@@ -88,7 +88,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Specialize for real numbers.
   template<typename _Tp>
     inline bool
-    __fpreal(const _Tp __w)
+    __fpreal(const _Tp)
     { return true; }
 
 
@@ -110,7 +110,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Specialize for real numbers.
   template<typename _Tp>
     inline bool
-    __fpimag(const _Tp __w)
+    __fpimag(const _Tp)
     { return false; }
 
 
@@ -202,13 +202,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pipio6 = __gnu_cxx::__math_constants<_Tp>::__pi_sqr_div_6;
-      std::complex<_Tp> __res = std::__detail::__riemann_zeta(static_cast<_Tp>(__s));
+      std::complex<_Tp> __res = std::__detail::__riemann_zeta(_Tp(__s));
       auto __wk = __w;
       auto __fac = _Tp{1};
       auto __harmonicN = _Tp{1}; // HarmonicNumber_1
       for (unsigned int __k = 1; __k <= __s - 2; ++__k)
 	{
-	  __res += __wk * __fac * std::__detail::__riemann_zeta(static_cast<_Tp>(__s - __k));
+	  __res += __wk * __fac * std::__detail::__riemann_zeta(_Tp(__s - __k));
 	  __wk *= __w;
 	  _Tp __temp = _Tp{1}/(_Tp{1} + __k);
 	  __fac *= __temp;
@@ -273,13 +273,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Optimization possibility: s are positive integers.
       constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      auto __res = std::__detail::__riemann_zeta(static_cast<_Tp>(__s));
+      auto __res = std::__detail::__riemann_zeta(_Tp(__s));
       auto __wk = __w;
       auto __fac = _Tp{1};
       auto __harmonicN = _Tp{1}; // HarmonicNumber_1
       for (unsigned int __k = 1; __k <= __s - 2; ++__k)
 	{
-	  __res += __wk * __fac * std::__detail::__riemann_zeta(static_cast<_Tp>(__s - __k));
+	  __res += __wk * __fac * std::__detail::__riemann_zeta(_Tp(__s - __k));
 	  __wk *= __w;
 	  auto __temp = _Tp{1} / (_Tp{1} + __k);
 	  __fac *= __temp;
@@ -307,7 +307,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __w2 = __upfac;
       while (!__terminate) // Assume convergence
 	{
-	  auto __rzarg = static_cast<_Tp>(2 * __j + 2);
+	  auto __rzarg = _Tp(2 * __j + 2);
 	  auto __rz = evenzeta<_Tp>(__rzarg);
 	  auto __term = __rz * __fac * __w2;
 	  __w2 *= __upfac;
@@ -344,7 +344,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // FIXME Large s makes problems.
       // The series should be rearrangeable so that we only need the ratio Gamma(1-s)/(2 pi)^s
       auto __ls = std::lgamma(_Tp{1} - __s);
-      auto __res = std::exp(__ls - (_Tp{1}-__s) * std::log(-__w));
+      auto __res = std::exp(__ls - (_Tp{1} - __s) * std::log(-__w));
       const auto __wup = __w / _S_2pi;
       auto __w2 = __wup;
       auto __pref = _Tp{2} * std::pow(_S_2pi, -(_Tp{1} - __s));
@@ -374,9 +374,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       while (!__terminate) // Assume convergence
 	{
 	  auto __rzarg = _Tp(1 + __j) - __s;
-	  // Only the difference to one is needed.
-	  // FIXME: this expression underflows for rzarg > 50
-	  auto __rz = (std::__detail::__riemann_zeta(__rzarg) - _Tp{1});
+	  auto __rz = std::__detail::__riemann_zeta_m_1(__rzarg);
 	  _Tp __sine;
 	  // Save the repeated recalculation of the sines
 	  if (__j & 1)
@@ -462,10 +460,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	__pref = -__pref;
       while (!__terminate)
 	{
-	  auto __term = (__gam * (evenzeta<_Tp>(2 * __k + 2 + __n) - _Tp{1}))
-			 * __wup;
+	  auto __term = __gam * __riemann_zeta_m_1<_Tp>(2 * __k + 2 + __n)
+		      * __wup;
 	  __gam *= - _Tp(2 * __k + 2 + __n + 1) / _Tp(2 * __k + 2 + 1)
-		* _Tp(2 * __k + 2 + __n) / _Tp(2 * __k + 1 + 1);
+		 * _Tp(2 * __k + 2 + __n) / _Tp(2 * __k + 1 + 1);
 	  __wup *= __wq;
 	  __terminate = (__k > __maxit)
 		     || __fpequal(std::abs(__res - __pref * __term),
@@ -535,7 +533,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __zk = 2 * __k;
 	  __gam *= _Tp(__zk + __np) / _Tp(1 + __zk)
 		 * _Tp(1 + __zk + __np) / _Tp(__zk + 2);
-	  auto __term = (__gam * (evenzeta<_Tp>(__zk + 2 + __np) - _Tp{1})) * __wup;
+	  auto __term = (__gam * __riemann_zeta_m_1<_Tp>(__zk + 2 + __np)) * __wup;
 	  __wup *= __wq;
 	  __terminate = __k > __maxit
 		     || __fpequal(std::abs(__res - __pref * __term),
