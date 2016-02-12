@@ -64,6 +64,8 @@ template<typename Real>
     using       std::cyl_neumann;
     using __gnu_cxx::dawson;
     using __gnu_cxx::dilog;
+    using __gnu_cxx::dirichlet_beta;
+    using __gnu_cxx::dirichlet_eta;
     using __gnu_cxx::double_factorial;
     using       std::ellint_1;
     using       std::ellint_2;
@@ -537,12 +539,12 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_riemann_zeta(filename.c_str());
     test =
-    maketest(riemann_zeta, gsl::zeta,
+    maketest(riemann_zeta, gsl::riemann_zeta,
 	     nsname, basename,
 	     "s", fill_argument(std::make_pair(Real{-10}, Real{1}),
 				std::make_pair(true, false), 56),
 	     file_riemann_zeta, true, false);
-    maketest(riemann_zeta, gsl::zeta,
+    maketest(riemann_zeta, gsl::riemann_zeta,
 	     nsname, basename,
 	     "s", fill_argument(std::make_pair(Real{1}, Real{30}),
 				std::make_pair(false, true), 146),
@@ -555,7 +557,7 @@ template<typename Real>
     basename = "hurwitz_zeta";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_hurwitz_zeta(filename.c_str());
-    maketest(hurwitz_zeta, gsl::hzeta,
+    maketest(hurwitz_zeta, gsl::hurwitz_zeta,
 	     "__gnu_cxx", basename,
 	     "s", fill_argument(std::make_pair(Real{1}, Real{30}),
 				std::make_pair(false, true), 146),
@@ -1316,6 +1318,24 @@ template<typename Real>
 				    std::make_pair(true, true), 21),
 	     "phi", vphid,
 	     file_sph_harmonic);
+
+    // Dirichlet eta function.
+    std::cout << "dirichlet_eta" << std::endl;
+    // Skip the pole at 1.
+    basename = "dirichlet_eta";
+    filename = get_filename(path, prefix, basename, "", ".cc");
+    std::ofstream file_dirichlet_eta(filename.c_str());
+    test =
+    maketest(dirichlet_eta, gsl::dirichlet_eta,
+	     nsname, basename,
+	     "s", fill_argument(std::make_pair(Real{-10}, Real{1}),
+				std::make_pair(true, false), 56),
+	     file_dirichlet_eta, true, false);
+    maketest(dirichlet_eta, gsl::dirichlet_eta,
+	     nsname, basename,
+	     "s", fill_argument(std::make_pair(Real{1}, Real{30}),
+				std::make_pair(false, true), 146),
+	     file_dirichlet_eta, false, true, test);
 
 #endif // STD
 
