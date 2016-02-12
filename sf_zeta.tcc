@@ -580,13 +580,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * MPFR - 128 bits.
    */
   constexpr size_t
-  _S_num_zetam1 = 31;
+  _S_num_zetam1 = 33;
 
   constexpr long double
   _S_zetam1[_S_num_zetam1]
   {
     -1.5,                                           //  0
-    std::numeric_limits<_Tp>::infinity(),           //  1
+    std::numeric_limits<long double>::infinity(),   //  1
     6.449340668482264364724151666460251892177e-1L,  //  2
     2.020569031595942853997381615114499907647e-1L,  //  3
     8.232323371113819151600369654116790277462e-2L,  //  4
@@ -634,6 +634,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __riemann_zeta_m_1_sum(_Tp __s)
     {
       using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       if (__s == _Tp{1})
 	return std::numeric_limits<_Val>::quiet_NaN();
 
@@ -660,21 +661,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__s == _Tp{1})
 	return std::numeric_limits<_Tp>::quiet_NaN();
 
-      auto __n = std::nearbyint(__s)
+      auto __n = int(std::nearbyint(__s));
       if (__s == __n && __n >= 0 && __n < _S_num_zetam1)
 	return _S_zetam1[__n];
       else
-	{
-	  int __k_max = std::min(1000000,  int(std::pow(_Tp{1} / _S_eps, _Tp{1} / __s)));
-	  auto __zeta_m_1 = _Tp{0};
-	  for (int __k = __k_max; __k >= 2; --__k)
-	    {
-	      auto __term = std::pow(_Tp(__k), -__s);
-	      __zeta_m_1 += __term;
-	    }
-	}
-
-      return __zeta_m_1;
+	return __riemann_zeta_m_1_sum(__s);
     }
 
   /**
