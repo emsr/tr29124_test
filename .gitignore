@@ -40,6 +40,7 @@ check_dilog
 check_ellint_rc
 check_ellint_rd
 check_ellint_rf
+check_ellint_rg
 check_ellint_rj
 check_err.txt
 check_ellint_1
