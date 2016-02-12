@@ -102,10 +102,13 @@ double legendre_p(unsigned int l, double x);
 double legendre_q(unsigned int l, double x);
 
 /// Riemann zeta function.
-double zeta(double x);
+double riemann_zeta(double x);
 
 /// Hurwitz zeta functions.
-double hzeta(double s, double q);
+double hurwitz_zeta(double s, double q);
+
+/// Dirichlet eta function.
+double dirichlet_eta(double x);
 
 /// Spherical Bessel functions.
 double bessel_jl(unsigned int n, double x);

@@ -263,14 +263,20 @@ legendre_q(unsigned int l, double x)
 
 /// Riemann zeta function.
 double
-zeta(double x)
+riemann_zeta(double x)
 {
   return boost::math::zeta(x);
 }
 
 /// Hurwitz zeta functions.
 double
-hzeta(double s, double q)
+hurwitz_zeta(double s, double q)
+{
+  return 0.0;
+}
+
+/// Dirichlet eta function.
+double dirichlet_eta(double x)
 {
   return 0.0;
 }
