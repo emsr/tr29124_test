@@ -36,7 +36,7 @@ template<typename _Tp>
     constexpr auto _S_big = _Tp{5.0L}; // was 3.5
     constexpr int _N_FG = 15;
     constexpr _Tp
-    _F_k[_N_FG]
+    _Fai[_N_FG]
     {
       0.166666666666666666666666666666666659L,
       0.00555555555555555555555555555555555574L,
@@ -56,7 +56,7 @@ template<typename _Tp>
     };
     constexpr _Tp _S_slope_F{-2.660L}, _S_intercept_F{-0.778L};
     constexpr _Tp
-    _Fp_k[_N_FG]
+    _Faip[_N_FG]
     {
       0.5L,
       0.0333333333333333333333333333333333329L,
@@ -76,7 +76,7 @@ template<typename _Tp>
     };
     constexpr _Tp _S_slope_Fp{-2.576L}, _S_intercept_Fp{-0.301L};
     constexpr _Tp
-    _G_k[_N_FG]
+    _Gai[_N_FG]
     {
       0.0833333333333333333333333333333333293L,
       0.00198412698412698412698412698412698403L,
@@ -96,7 +96,7 @@ template<typename _Tp>
     };
     constexpr _Tp _S_slope_G{-2.708L}, _S_intercept_G{-1.079L};
     constexpr _Tp
-    _Gp_k[_N_FG]
+    _Gaip[_N_FG]
     {
       0.333333333333333333333333333333333317L,
       0.0138888888888888888888888888888888882L,
@@ -243,8 +243,8 @@ template<typename _Tp>
 	    if (__xx < _S_log10min)
 	      break;
 	    __term *= __ttt;
-	    _F += _F_k[__n] * __term;
-	    _G += _G_k[__n] * __term * __t;
+	    _F += _Fai[__n] * __term;
+	    _G += _Gai[__n] * __term * __t;
 	  }
 	auto _UU = std::sqrt(_Tp{3} * _S_pi)
 		* (_S_Ai0 * _F + _S_Aip0 * _G);
@@ -266,8 +266,8 @@ template<typename _Tp>
 	    if (__xx < _S_log10min)
 	      break;
 	    __term *= __ttt;
-	    _Fp += _Fp_k[__n] * __term / __t;
-	    _Gp += _Gp_k[__n] * __term;
+	    _Fp += _Faip[__n] * __term / __t;
+	    _Gp += _Gaip[__n] * __term;
 	  }
 	auto _UUp = std::sqrt(_Tp{3} * _S_pi)
 		  * (_S_Ai0 * _Fp + _S_Aip0 * _Gp);
