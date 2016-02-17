@@ -1,6 +1,6 @@
-// $HOME/bin/bin/g++ -std=gnu++14 -o hankel_toy hankel_toy.cpp
+// $HOME/bin_specfun/bin/g++ -std=gnu++14 -o hankel_toy hankel_toy.cpp
 
-// LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./hankel_toy > hankel_toy.txt
+// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./hankel_toy > hankel_toy.txt
 
 // g++ -std=gnu++14 -o hankel_toy hankel_toy.cpp -L$HOME/bin/lib64
 
