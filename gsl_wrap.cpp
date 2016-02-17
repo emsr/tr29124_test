@@ -527,13 +527,13 @@ legendre_q(unsigned int l, double x)
 
 /// Riemann zeta function.
 double
-zeta(double x)
+riemann_zeta(double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_zeta_e(x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in zeta:");
+      std::ostringstream msg("Error in riemann_zeta:");
       msg << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -543,14 +543,30 @@ zeta(double x)
 
 /// Hurwitz zeta functions.
 double
-hzeta(double s, double x)
+hurwitz_zeta(double s, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_hzeta_e(s, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in hzeta:");
+      std::ostringstream msg("Error in hurwitz_zeta:");
       msg << " s=" << s << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+/// Dirichlet eta function.
+double
+dirichlet_eta(double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_eta_e(x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in dirichlet_eta:");
+      msg << " x=" << x;
       throw std::runtime_error(msg.str());
     }
   else

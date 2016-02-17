@@ -1,4 +1,4 @@
-// $HOME/bin_specfun/bin/g++ -Wall -Wextra -o test_little_airy test_little_airy.cpp gsl_wrap.cpp -lgsl -lgslcblas 2> err.txt
+// $HOME/bin_specfun/bin/g++ -std=c++1z -Wall -Wextra -o test_little_airy test_little_airy.cpp gsl_wrap.cpp -lgsl -lgslcblas 2> err.txt
 
 // LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_little_airy > test_little_airy.txt
 
