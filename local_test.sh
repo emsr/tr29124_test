@@ -70,6 +70,7 @@ ${makedir} ${text_dir}/coshint
 ${makedir} ${text_dir}/cosint
 ${makedir} ${text_dir}/dawson
 ${makedir} ${text_dir}/dilog
+${makedir} ${text_dir}/dirichlet_eta
 ${makedir} ${text_dir}/double_factorial
 ${makedir} ${text_dir}/ellint_d
 ${makedir} ${text_dir}/ellint_rc
@@ -121,6 +122,7 @@ ${copy} check_coshint.cc            ${text_dir}/coshint/check_value.cc
 ${copy} check_cosint.cc             ${text_dir}/cosint/check_value.cc
 ${copy} check_dawson.cc             ${text_dir}/dawson/check_value.cc
 ${copy} check_dilog.cc              ${text_dir}/dilog/check_value.cc
+${copy} check_dirichlet_eta.cc      ${text_dir}/dirichlet_eta/check_value.cc
 ${copy} check_double_factorial.cc   ${text_dir}/double_factorial/check_value.cc
 ${copy} check_ellint_d.cc           ${text_dir}/ellint_d/check_value.cc
 ${copy} check_ellint_rc.cc          ${text_dir}/ellint_rc/check_value.cc
