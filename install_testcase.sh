@@ -40,6 +40,7 @@ ${copy} check_conf_hyperg_lim.cc    ${ext_dir}/conf_hyperg_lim/check_value.cc
 ${copy} check_coshint.cc            ${ext_dir}/coshint/check_value.cc
 ${copy} check_cosint.cc             ${ext_dir}/cosint/check_value.cc
 ${copy} check_dawson.cc             ${ext_dir}/dawson/check_value.cc
+${copy} check_dirichlet_eta.cc      ${ext_dir}/dirichlet_eta/check_value.cc
 ${copy} check_dilog.cc              ${ext_dir}/dilog/check_value.cc
 ${copy} check_double_factorial.cc   ${ext_dir}/double_factorial/check_value.cc
 ${copy} check_ellint_d.cc           ${ext_dir}/ellint_d/check_value.cc
