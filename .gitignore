@@ -122,6 +122,7 @@ test_hermite
 test_inv_erf
 test_hurwitz_zeta
 test_hurwitz_zeta_new
+test_comp_ellint_1
 test_jacobi
 test_legendre
 test_lerch_transcendent
