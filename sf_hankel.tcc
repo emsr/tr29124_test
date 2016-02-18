@@ -301,8 +301,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 	  // Compute Airy functions and derivatives.
 	  __cmplx _Aipp, _Aimp;
-	  __airy(__argp, __eps, _Aip, _Aipp);
-	  __airy(__argm, __eps, _Aim, _Aimp);
+	  __cmplx _Bi, _Bip;
+	  __airy(__argp, __eps, _Aip, _Aipp, _Bi, _Bip);
+	  __airy(__argm, __eps, _Aim, _Aimp, _Bi, _Bip);
 	  // Compute partial outer terms in expansions.
 	  __o4dp = -__zetamhf * __num4d3 * __e2pd3 * _Aipp;
 	  __o4dm = -__zetamhf * __num4d3 * __d2pd3 * _Aimp;
