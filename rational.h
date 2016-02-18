@@ -246,12 +246,12 @@ namespace __gnu_cxx
   template<typename _IntTp>
     inline _Rational<_IntTp>&
     _Rational<_IntTp>::operator*=(value_type __i)
-    { return operator*= (_Rational<_IntTp>(__i)); }
+    { return this->operator*= (_Rational<_IntTp>(__i)); }
 
   template<typename _IntTp>
     inline _Rational<_IntTp>&
     _Rational<_IntTp>::operator/=(value_type __i)
-    { return operator/= (_Rational<_IntTp>(__i)); }
+    { return this->operator/= (_Rational<_IntTp>(__i)); }
 
   // Increment and decrement
   template<typename _IntTp>
