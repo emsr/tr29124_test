@@ -50,19 +50,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __chshint_cont_frac(_Tp __t, _Tp& _Chi, _Tp& _Shi)
     {
       constexpr unsigned int _S_max_iter = 100;
-      constexpr _Tp _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
-      constexpr _Tp _S_fp_min = __gnu_cxx::__min<_Tp>();
-      constexpr _Tp _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
+      constexpr auto _S_fp_min = __gnu_cxx::__min<_Tp>();
+      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
 
       // Evaluate Chi and Shi by Lentz's modified method of continued fracions.
       std::complex<_Tp> __b(_Tp{1}, __t);
       std::complex<_Tp> __c(_Tp{1} / _S_fp_min);
       std::complex<_Tp> __d(_Tp{1} / __b);
       std::complex<_Tp> __h(__d);
-      unsigned int i = 2;
+      unsigned int __i = 2;
       while (true)
 	{
-	  _Tp __a = -(i - 1) * (i - 1);
+	  _Tp __a = -(__i - 1) * (__i - 1);
 	  __b += _Tp{2};
 	  __d = _Tp{1} / (__a * __d + __b);
 	  __c = __b + __a / __c;
@@ -70,10 +70,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __h *= __del;
 	  if (std::abs(__del.real() - _Tp{1}) + std::abs(__del.imag()) < _S_eps)
 	    break;
-	  if (i > _S_max_iter)
-	    std::__throw_runtime_error("chishi: "
+	  if (__i > _S_max_iter)
+	    std::__throw_runtime_error("__chshint_cont_frac: "
 				       "continued fraction evaluation failed");
-	  ++i;
+	  ++__i;
 	}
       __h *= std::polar(_Tp{1}, -__t);
       _Chi = -__h.real();
@@ -107,9 +107,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else
 	{
-	  /*
-	   *    Evaluate Shi and Chi by series expansion.
-	   */
+	  // Evaluate Shi and Chi by series expansion.
 	  _Tp __sum(0);
 	  _Tp __fact(1);
 	  auto __odd = true;
@@ -135,7 +133,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __odd = !__odd;
 	      ++__k;
 	      if (__k > _S_max_iter)
-		std::__throw_runtime_error("chishi: series evaluation failed");
+		std::__throw_runtime_error("__chshint_series: series evaluation failed");
 	    }
 	}
       _Chi = _S_gamma_e + std::log(__t) + _Csum;
@@ -163,6 +161,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::pair<_Tp, _Tp>
     __chshint(_Tp __x, _Tp& _Chi, _Tp& _Shi)
     {
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      if (__isnan(__x))
+	return std::make_pair(_S_NaN, _S_NaN);
+
       auto __t = std::abs(__x);
       if (__t == _Tp{0})
 	{

@@ -333,7 +333,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @f[
    *      Y_l^m(\theta,\phi) = (-1)^m[\frac{(2l+1)}{4\pi}
    *                                  \frac{(l-m)!}{(l+m)!}]
-   *                     P_l^m(\cos\theta) \exp^{im\phi}
+   *                     P_l^{|m|}(\cos\theta) \exp^{im\phi}
    *   @f]
    *
    *   @param  l  The order of the spherical harmonic function.

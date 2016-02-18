@@ -332,19 +332,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __sph_bessel_ik(unsigned int __n, _Tp __x,
 		    _Tp & __i_n, _Tp & __k_n, _Tp & __ip_n, _Tp & __kp_n)
     {
-      const auto __nu = _Tp(__n + 0.5L);
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
 
-      _Tp _I_nu, _Ip_nu, _K_nu, _Kp_nu;
-      __bessel_ik(__nu, __x, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
+      if (__isnan(__x))
+	__i_n = __k_n = __ip_n = __kp_n = _S_NaN;
+      else
+	{
+	  const auto __nu = _Tp(__n + 0.5L);
+	  _Tp _I_nu, _Ip_nu, _K_nu, _Kp_nu;
+	  __bessel_ik(__nu, __x, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
 
-      const auto __factor = __gnu_cxx::__math_constants<_Tp>::__root_pi_div_2
-			  / std::sqrt(__x);
+	  const auto __factor = __gnu_cxx::__math_constants<_Tp>::__root_pi_div_2
+			      / std::sqrt(__x);
 
-      __i_n = __factor * _I_nu;
-      __k_n = __factor * _K_nu;
-      __ip_n = __factor * _Ip_nu - __i_n / (_Tp{2} * __x);
-      __kp_n = __factor * _Kp_nu - __k_n / (_Tp{2} * __x);
-
+	  __i_n = __factor * _I_nu;
+	  __k_n = __factor * _K_nu;
+	  __ip_n = __factor * _Ip_nu - __i_n / (_Tp{2} * __x);
+	  __kp_n = __factor * _Kp_nu - __k_n / (_Tp{2} * __x);
+	}
       return;
     }
 
@@ -427,7 +432,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Compute the Fock type Airy functions
+   *   @brief  Compute the Fock-type Airy functions
    *           @f$ w_1(x) @f$ and @f$ w_2(x) @f$ and their first
    *           derivatives @f$ w_1'(x) @f$ and @f$ w_2'(x) @f$
    *           respectively.
@@ -439,11 +444,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @f]
    *
    *   @param  __x   The argument of the Airy functions.
-   *   @param  __w1  The output Fock type Airy function of the first kind.
-   *   @param  __w2  The output Fock type Airy function of the second kind.
-   *   @param  __w1p  The output derivative of the Fock type Airy function
+   *   @param  __w1  The output Fock-type Airy function of the first kind.
+   *   @param  __w2  The output Fock-type Airy function of the second kind.
+   *   @param  __w1p  The output derivative of the Fock-type Airy function
    *                  of the first kind.
-   *   @param  __w2p  The output derivative of the Fock type Airy function
+   *   @param  __w2p  The output derivative of the Fock-type Airy function
    *                  of the second kind.
    */
   template<typename _Tp>

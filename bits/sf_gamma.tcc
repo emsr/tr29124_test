@@ -1675,6 +1675,18 @@ _S_neg_double_factorial_table[999]
 
 
   /**
+   *   @brief This returns Bernoulli number \f$B_n\f$.
+   *
+   *   @param __n the order n of the Bernoulli number.
+   *   @return  The Bernoulli number of order n.
+   */
+  template<typename _Tp>
+    inline _GLIBCXX14_CONSTEXPR _Tp
+    __bernoulli_2n(int __n)
+    { return __bernoulli_series<_Tp>(2 * __n); }
+
+
+  /**
    *  @brief Return \f$log(\Gamma(x))\f$ by asymptotic expansion
    *         with Bernoulli number coefficients.  This is like
    *         Sterling's approximation.
@@ -1696,11 +1708,39 @@ _S_neg_double_factorial_table[999]
 	{
 	  const auto __2i = _Tp(2 * __i);
 	  __help /= __2i * (__2i - _Tp{1}) * __xx;
-	  __lg += __bernoulli<_Tp>(2 * __i) * __help;
+	  __lg += __bernoulli<_Tp>(__2i) * __help;
 	}
 
       return __lg;
     }
+
+  /**
+   *  @brief Return \f$\Gamma(z)\f$ by the Spouge algorithm:
+   *  @f[
+   *    \Gamma(z+1) = (z+a)^{z+1/2}e^{-z-a}\left[ \sqrt{2\pi}
+   *      \sum_{k=1}^{\ceil{a}+1}\frac{c_k(a)}{z+k}\right]
+   *  @f]
+   *  where
+   *  @f[
+   *    c_k(a) = \frac{(-1)^{k-1}}{(k-1)!}(a-k)^{k-1/2}e^{a-k}
+   *  @f]
+   *  and the error is bounded by
+   *  @f[
+   *    \epsilon(a) < a^{-1/2}(2\pi)^{-a-1/2}
+   *  @f]
+   *  @see Spouge, J.L., Computation of the gamma, digamma, and trigamma functions.
+   *       SIAM Journal on Numerical Analysis 31, 3 (1994), pp. 931-944
+   *
+   *  @param __z The argument of the gamma function.
+   *  @return  The the gamma function.
+   */
+  template<typename _Tp>
+    _GLIBCXX14_CONSTEXPR _Tp
+    __log_gamma_spouge(_Tp __x)
+    {
+      return 0.0;
+    }
+
 
 
   /**
@@ -1972,6 +2012,11 @@ _S_neg_double_factorial_table[999]
     _Tp
     __gamma_p(_Tp __a, _Tp __x)
     {
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+
+      if (__isnan(__a) || __isnan(__x))
+	return _S_NaN;
+
       if (__x < _Tp{0} || __a <= _Tp{0})
 	throw std::domain_error("gamma_p: invalid arguments");
 
@@ -1998,6 +2043,11 @@ _S_neg_double_factorial_table[999]
     _Tp
     __gamma_q(_Tp __a, _Tp __x)
     {
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+
+      if (__isnan(__a) || __isnan(__x))
+	return _S_NaN;
+
       if (__x < _Tp{0} || __a <= _Tp{0})
 	throw std::domain_error("__gamma_q: invalid arguments");
 
@@ -2019,6 +2069,11 @@ _S_neg_double_factorial_table[999]
     _Tp
     __gamma_l(_Tp __a, _Tp __x)
     {
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+
+      if (__isnan(__a) || __isnan(__x))
+	return _S_NaN;
+
       if (__x < _Tp{0} || __a <= _Tp{0})
 	throw std::domain_error("__gamma_l: invalid arguments");
 
@@ -2046,6 +2101,11 @@ _S_neg_double_factorial_table[999]
     _Tp
     __gamma_u(_Tp __a, _Tp __x)
     {
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+
+      if (__isnan(__a) || __isnan(__x))
+	return _S_NaN;
+
       if (__x < _Tp{0} || __a <= _Tp{0})
 	throw std::domain_error("__gamma_u: invalid arguments");
 
@@ -2173,8 +2233,7 @@ _S_neg_double_factorial_table[999]
       else
 	{
           auto __logpoch = std::lgamma(__a + 1) - std::lgamma(__a - __n + 1);
-          if (std::abs(__logpoch)
-              > std::numeric_limits<_Tp>::max_digits10 * __log10)
+          if (__logpoch > __gnu_cxx::__log_max<_Tp>())
             return __gnu_cxx::__infinity<_Tp>();
           else
             return std::exp(__logpoch);
@@ -2343,7 +2402,7 @@ _S_neg_double_factorial_table[999]
   /**
    *  @brief  Return the factorial of the integer n.
    *
-   *  The polygamma function is related to the Hurwitz zeta function:
+   *  The factorial is:
    *  @f[
    *    n! = 1 2 ... (n-1) n, 0! = 1
    *  @f]
@@ -2361,7 +2420,7 @@ _S_neg_double_factorial_table[999]
   /**
    *  @brief  Return the logarithm of the factorial of the integer n.
    *
-   *  The polygamma function is related to the Hurwitz zeta function:
+   *  The factorial is:
    *  @f[
    *    n! = 1 2 ... (n-1) n, 0! = 1
    *  @f]
@@ -2381,10 +2440,10 @@ _S_neg_double_factorial_table[999]
     __log_double_factorial(_Tp __x)
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      return (_Tp(__x) / _Tp{2}) * std::log(_Tp{2})
-	   + (std::cos(_S_pi * _Tp(__x)) - _Tp{1})
+      return (__x / _Tp{2}) * std::log(_Tp{2})
+	   + (std::cos(_Tp(_S_pi) * __x) - _Tp{1})
 		* std::log(_S_pi / 2) / _Tp{4}
-	   + __log_gamma(_Tp(__x) / _Tp{2} + _Tp{1});
+	   + __log_gamma(_Tp{1} + __x / _Tp{2});
     }
 
   /**
@@ -2457,6 +2516,54 @@ _S_neg_double_factorial_table[999]
 	return _S_double_factorial_table[__n].__log_factorial;
       else
 	return __log_double_factorial(_Tp(__n));
+    }
+
+  /**
+   *  @brief  Return the chi-squared propability function.
+   *  This returns the probability that the observed chi-squared for a correct model
+   *  is less than the value @f$ \chi^2 @f$.
+   *
+   *  The chi-squared propability function is related
+   *  to the normalized lower incomplete gamma function:
+   *  @f[
+   *    P(\chi^2|\nu) = \Gamma_P(\frac{\nu}{2}, \frac{\chi^2}{2})
+   *  @f]
+   */
+  template<typename _Tp>
+    _GLIBCXX14_CONSTEXPR _Tp
+    __chi_squared_pdf(_Tp __chi2, unsigned int __nu)
+    {
+      if (__isnan(__chi2))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__chi2 < _Tp{0})
+	std::__throw_domain_error(__N("__chi_squared_cdf: "
+				      "chi-squared is negative"));
+      else
+	return __gamma_p(_Tp(__nu) / _Tp{2}, __chi2 / _Tp{2});
+    }
+
+  /**
+   *  @brief  Return the complementary chi-squared propability function.
+   *  This returns the probability that the observed chi-squared for a correct model
+   *  is greater than the value @f$ \chi^2 @f$.
+   *
+   *  The complementary chi-squared propability function is related
+   *  to the normalized upper incomplete gamma function:
+   *  @f[
+   *    Q(\chi^2|\nu) = \Gamma_Q(\frac{\nu}{2}, \frac{\chi^2}{2})
+   *  @f]
+   */
+  template<typename _Tp>
+    _GLIBCXX14_CONSTEXPR _Tp
+    __chi_squared_pdfc(_Tp __chi2, unsigned int __nu)
+    {
+      if (__isnan(__chi2))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__chi2 < _Tp{0})
+	std::__throw_domain_error(__N("__chi_square_pdfc: "
+				      "chi-squared is negative"));
+      else
+	return __gamma_q(_Tp(__nu) / _Tp{2}, __chi2 / _Tp{2});
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
