@@ -61,7 +61,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __parabolic_cylinder_factor(_Tp __a)
     {
       const auto _S_pi = __gnu_cxx::__math_const<_Tp>::__pi;
-      const auto _S_sqrt_pi = __gnu_cxx::__math_const<_Tp>::__half_pi;
+      const auto _S_sqrt_pi = __gnu_cxx::__math_const<_Tp>::__pi_half;
       auto __2e14p = std::pow(_Tp{2}, 0.25L + 0.5L * __a);
       auto __2e34p = std::pow(_Tp{2}, 0.75L + 0.5L * __a);
       auto __2e14m = std::pow(_Tp{2}, 0.25L - 0.5L * __a);
