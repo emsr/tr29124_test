@@ -2,7 +2,7 @@
 
 // LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.txt
 
-// g++ -std=gnu++14 -DNO_LOGBQ -o airy_toy airy_toy.cpp -lquadmath
+// g++ -std=gnu++14 -DNO_LOGBQ -I. -o airy_toy airy_toy.cpp -lquadmath
 
 // ./airy_toy > airy_toy.txt
 
@@ -10,13 +10,30 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
-
-#include "float128.h"
+#include <complex>
+#include <ext/math_const.h>
+#include <bits/float128.h>
+#include <bits/numeric_limits.h>
 
 template<typename _Tp>
   void
   run_toy()
   {
+    using __cmplx = std::complex<_Tp>;
+
+    constexpr auto _S_eps = __gnu_cxx::__epsilon(_Tp{});
+    /*constexpr*/ auto _S_log10min = __gnu_cxx::__log10_min(_Tp{});
+    constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+    constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
+    constexpr auto _S_Ai0{3.550280538878172392600631860041831763980e-1};
+    constexpr auto _S_Aip0{2.588194037928067984051835601892039634793e-1};
+    //constexpr auto _S_Bi0{6.149266274460007351509223690936135535960e-1};
+    //constexpr auto _S_Bip0{8.868776642045783582807775119976424596506e-1};
+    constexpr auto _S_1d6 = _Tp{1} / _Tp{6};
+    constexpr auto _S_i = __cmplx{_Tp{0}, _Tp{1}};
+    constexpr auto _S_big = _Tp{5.0L}; // was 3.5
+    constexpr int _N_FG = 40;
+
     std::vector<_Tp> _S_cn, _S_dn;
     _S_cn.push_back(_Tp{1});
     _S_dn.push_back(-_Tp{1});
@@ -25,13 +42,15 @@ template<typename _Tp>
         // Turn this into a recursion:
 	// for (int r = 0; r < 2 * s; ++r)
 	//   numer *= (2 * s + 2 * r + 1);
+	//auto __a = _S_cn.back()
+	//	 * (6 * __s - 5) * (6 * __s - 3) * (6 * __s - 1)
+	//	      / (216 * __s * (2 * __s - 1));
 	auto __a = _S_cn.back()
-		 * (6 * __s - 5) * (6 * __s - 3) * (6 * __s - 1)
-		      / (216 * __s * (2 * __s - 1));
+		 * (_Tp(__s - 1) / _Tp{2} + _Tp{5} / _Tp(72 * __s));
 	if (std::isnan(__a) || std::isinf(__a))
 	  break;
 	_S_cn.push_back(__a);
-	_S_dn.push_back(-_S_cn.back() * (6 * __s + 1) / (6 * __s - 1));
+	_S_dn.push_back(-_S_cn.back() * (__s + _S_1d6) / (__s - _S_1d6));
       }
 
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
@@ -131,15 +150,15 @@ template<typename _Tp>
 int
 main()
 {
-  std::cout << "\nfloat\n-----\n";
+  std::cout << "\nfloat\n=====\n";
   run_toy<float>();
 
-  std::cout << "\ndouble\n------\n";
+  std::cout << "\ndouble\n======\n";
   run_toy<double>();
 
-  std::cout << "\nlong double\n-----------\n";
+  std::cout << "\nlong double\n===========\n";
   run_toy<long double>();
 
-  std::cout << "\n__float128\n----------\n";
+  std::cout << "\n__float128\n==========\n";
   run_toy<__float128>();
 }
