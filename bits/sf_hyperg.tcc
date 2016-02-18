@@ -83,7 +83,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       unsigned int __i;
       for (__i = 0; __i < __max_iter; ++__i)
 	{
-	  __term /= ((__c + _Tp(__i)) * _Tp(1 + __i));
+	  __term *= __x / ((__c + _Tp(__i)) * _Tp(1 + __i));
 	  if (std::abs(__term) < __eps)
 	    break;
 	  __Fac += __term;
@@ -175,7 +175,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __conf_hyperg_luke(_Tp __a, _Tp __c, _Tp __xin)
     {
-      const _Tp __big = __gnu_cxx::__pow_max(_Tp{0.16L});
+      const _Tp __big = __gnu_cxx::__root_max(_Tp{6});
       const int __nmax = 20000;
       const _Tp __eps = __gnu_cxx::__epsilon<_Tp>();
       const _Tp __x  = -__xin;
@@ -351,9 +351,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __hyperg_luke(_Tp __a, _Tp __b, _Tp __c, _Tp __xin)
     {
-      constexpr auto __big = __gnu_cxx::__pow_max<_Tp>(_Tp{0.16L});
+      constexpr auto __big = __gnu_cxx::__root_max(_Tp{6});
       const int __nmax = 20000;
-      constexpr auto __eps = __gnu_cxx::__epsilon();
+      constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
       const auto __x  = -__xin;
       const auto __x3 = __x * __x * __x;
       const auto __t0 = __a * __b / __c;
