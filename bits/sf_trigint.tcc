@@ -64,10 +64,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       std::complex<_Tp> __c(_Tp{1} / _S_fp_min);
       std::complex<_Tp> __d(_Tp{1} / __b);
       std::complex<_Tp> __h(__d);
-      int i = 2;
+      int __i = 2;
       while (true)
 	{
-	  _Tp __a = -(i - 1) * (i - 1);
+	  auto __a = -_Tp(__i - 1) * _Tp(__i - 1);
 	  __b += _Tp{2};
 	  __d = _Tp{1} / (__a * __d + __b);
 	  __c = __b + __a / __c;
@@ -75,10 +75,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __h *= __del;
 	  if (std::abs(__del - _Tp{1}) < _S_eps)
 	    break;
-	  if (i > _S_max_iter)
-	    std::__throw_runtime_error("csint_cont_frac: "
+	  if (__i > _S_max_iter)
+	    std::__throw_runtime_error("__sincosint_cont_frac: "
 				   "continued fraction evaluation failed");
-	  ++i;
+	  ++__i;
 	}
       __h *= std::polar(_Tp{1}, -__t);
       _Ci = -__h.real();
@@ -140,7 +140,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __odd = !__odd;
 	      ++__k;
 	      if (__k > _S_max_iter)
-		std::__throw_runtime_error("csint_series: "
+		std::__throw_runtime_error("__sincosint_series: "
 					"series evaluation failed");
 	    }
 	}
@@ -162,7 +162,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __sincosint_asymp(_Tp __t, _Tp& _Si, _Tp& _Ci)
     {
-      const auto _S_max_iter = 100;
+      constexpr auto _S_max_iter = 100;
       constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
 
@@ -194,7 +194,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __even = !__even;
 
 	  if (__k > _S_max_iter)
-	    std::__throw_runtime_error("csint_asymp: series evaluation failed");
+	    std::__throw_runtime_error("__sincosint_asymp: series evaluation failed");
 	  ++__k;
 	}
 
@@ -226,6 +226,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::pair<_Tp, _Tp>
     __sincosint(_Tp __x)
     {
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      if (__isnan(__x))
+	return std::make_pair(_S_NaN, _S_NaN);
+
       auto __t = std::abs(__x);
       _Tp _Ci, _Si;
       if (__t == _Tp{0})

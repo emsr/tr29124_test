@@ -42,6 +42,158 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<typename _Tp>
+    _Tp
+    __theta_2_sum(_Tp __nu, _Tp __x)
+    {
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Val>();
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Val>::__pi;
+      auto __sum = std::exp(-__nu * __nu / __x);
+      auto __sign = _Tp{-1};
+      for (auto __k = 1; __k < 20; ++__k)
+	{
+	  auto __nup = __nu + _Tp(__k);
+	  auto __termp = __sign * std::exp(-__nup * __nup / __x);
+	  auto __num = __nu - _Tp(__k);
+	  auto __termm = __sign * std::exp(-__num * __num / __x);
+	  __sum += __termp + __termm;
+	  __sign = -__sign;
+	  if (std::abs(__termp) < _S_eps * std::abs(__sum)
+	   && std::abs(__termm) < _S_eps * std::abs(__sum))
+	    break;
+	}
+      return __sum / std::sqrt(_S_pi * __x);
+    }
+
+  template<typename _Tp>
+    _Tp
+    __theta_3_sum(_Tp __nu, _Tp __x)
+    {
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Val>();
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Val>::__pi;
+      auto __sum = std::exp(-__nu * __nu / __x);
+      for (auto __k = 1; __k < 20; ++__k)
+	{
+	  auto __nup = __nu + _Tp(__k);
+	  auto __termp = std::exp(-__nup * __nup / __x);
+	  auto __num = __nu - _Tp(__k);
+	  auto __termm = std::exp(-__num * __num / __x);
+	  __sum += __termp + __termm;
+	  if (std::abs(__termp) < _S_eps * std::abs(__sum)
+	   && std::abs(__termm) < _S_eps * std::abs(__sum))
+	    break;
+	}
+      return __sum / std::sqrt(_S_pi * __x);
+    }
+
+  template<typename _Tp>
+    _Tp
+    __theta_2_asymp(_Tp __nu, _Tp __x)
+    {
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Val>();
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Val>::__pi;
+      auto __sum = _Tp{0};
+      for (auto __k = 0; __k < 20; ++__k)
+	{
+	  auto __thing = _Tp(2 * __k + 1) * _S_pi;
+	  auto __cosarg = __nu * __thing;
+	  auto __exparg = __thing * __thing * __x / _Tp{4};
+	  auto __term = std::exp(-__exparg) * std::cos(__cosarg);
+	  __sum += __term;
+	  if (std::abs(__term) < _S_eps * std::abs(__sum))
+	    break;
+	}
+      return _Tp{2} * __sum;
+    }
+
+  template<typename _Tp>
+    _Tp
+    __theta_3_asymp(_Tp __nu, _Tp __x)
+    {
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Val>();
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Val>::__pi;
+      auto __sum = _Tp{0};
+      for (auto __k = 1; __k < 20; ++__k)
+	{
+	  auto __thing = _Tp(2 * __k) * _S_pi;
+	  auto __cosarg = __nu * __thing;
+	  auto __exparg = __thing * __thing * __x / _Tp{4};
+	  auto __term = std::exp(-__exparg) * std::cos(__cosarg);
+	  __sum += __term;
+	  if (std::abs(__term) < _S_eps * std::abs(__sum))
+	    break;
+	}
+      return _Tp{1} + _Tp{2} * __sum;
+    }
+
+  template<typename _Tp>
+    _Tp
+    __theta_2(_Tp __nu, _Tp __x)
+    {
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Val>::__pi;
+
+      if (__isnan(__nu) || __isnan(__x))
+	return _S_NaN;
+      else if (std::abs(__x) <= _Tp{1} / _S_pi)
+	return __theta_2_sum(__nu, __x);
+      else
+	return __theta_2_asymp(__nu, __x);
+    }
+
+  template<typename _Tp>
+    _Tp
+    __theta_1(_Tp __nu, _Tp __x)
+    {
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Val>::__pi;
+
+      if (__isnan(__nu) || __isnan(__x))
+	return _S_NaN;
+      else
+	return __theta_2(__nu - _Tp{0.5L}, __x);
+    }
+
+  template<typename _Tp>
+    _Tp
+    __theta_3(_Tp __nu, _Tp __x)
+    {
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Val>::__pi;
+
+      if (__isnan(__nu) || __isnan(__x))
+	return _S_NaN;
+      else if (std::abs(__x) <= _Tp{1} / _S_pi)
+	return __theta_3_sum(__nu, __x);
+      else
+	return __theta_3_asymp(__nu, __x);
+    }
+
+  template<typename _Tp>
+    _Tp
+    __theta_4(_Tp __nu, _Tp __x)
+    {
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Val>::__pi;
+
+      if (__isnan(__nu) || __isnan(__x))
+	return _S_NaN;
+      else
+	return __theta_3(__nu + _Tp{0.5L}, __x);
+    }
+
+  template<typename _Tp>
     std::tuple<_Tp, _Tp, _Tp>
     __jacobi_sncndn(_Tp __k, _Tp __u)
     {
