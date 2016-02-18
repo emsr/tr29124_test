@@ -101,52 +101,52 @@ template<typename _Tp>
       std::cout << p << '\n';
     std::cout << "\nP values\n";
     for (int i = -100; i <= +100; ++i)
-    {
-      auto z = _Tp{0.01Q} * i;
-      std::cout << std::setw(width) << z;
-      for (const auto& p : P)
-	std::cout << std::setw(width) << p(z);
-      std::cout << '\n';
-    }
+      {
+	auto z = _Tp{0.01Q} * i;
+	std::cout << std::setw(width) << z;
+	for (const auto& p : P)
+	  std::cout << std::setw(width) << p(z);
+	std::cout << '\n';
+      }
 
     std::cout << "\nQ polynomial\n";
     for (const auto& q : Q)
       std::cout << q << '\n';
     std::cout << "\nQ values\n";
     for (int i = -100; i <= +100; ++i)
-    {
-      auto z = _Tp{0.01Q} * i;
-      std::cout << std::setw(width) << z;
-      for (const auto& q : Q)
-	std::cout << std::setw(width) << q(z);
-      std::cout << '\n';
-    }
+      {
+	auto z = _Tp{0.01Q} * i;
+	std::cout << std::setw(width) << z;
+	for (const auto& q : Q)
+	  std::cout << std::setw(width) << q(z);
+	std::cout << '\n';
+      }
 
     std::cout << "\nR polynomial\n";
     for (const auto& r : R)
       std::cout << r << '\n';
     std::cout << "\nR values\n";
     for (int i = -100; i <= +100; ++i)
-    {
-      auto z = _Tp{0.01Q} * i;
-      std::cout << std::setw(width) << z;
-      for (const auto& r : R)
-	std::cout << std::setw(width) << r(z);
-      std::cout << '\n';
-    }
+      {
+	auto z = _Tp{0.01Q} * i;
+	std::cout << std::setw(width) << z;
+	for (const auto& r : R)
+	  std::cout << std::setw(width) << r(z);
+	std::cout << '\n';
+      }
 
     std::cout << "\nS polynomial\n";
     for (const auto& s : S)
       std::cout << s << '\n';
     std::cout << "\nS values\n";
     for (int i = -100; i <= +100; ++i)
-    {
-      auto z = _Tp{0.01Q} * i;
-      std::cout << std::setw(width) << z;
-      for (const auto& s : S)
-	std::cout << std::setw(width) << s(z);
-      std::cout << '\n';
-    }
+      {
+	auto z = _Tp{0.01Q} * i;
+	std::cout << std::setw(width) << z;
+	for (const auto& s : S)
+	  std::cout << std::setw(width) << s(z);
+	std::cout << '\n';
+      }
 
     auto __nu = _Tp{20};
     const auto _S_2p13 = _Tp{1.259921049894873164767210607278228350570Q};
@@ -159,7 +159,7 @@ template<typename _Tp>
     const auto __nu43 = __nu23 * __nu23;
 
     std::cout << "\n\nTransition region Bessel functions: J_\\nu(\\nu + a\\nu^{1/3})\n";
-    std::cout << '\n'
+    std::cout << "\nnu = " << __nu << "\n"
 	      << std::setw(width) << "a"
 	      << std::setw(width) << "J_\\nu"
 	      << std::setw(width) << "N_\\nu"
@@ -233,27 +233,29 @@ template<typename _Tp>
 		  << std::setw(width) << '\n';
       }
 
-    const auto _mipi3 = std::polar(-_S_pi / _Tp{3});
-    const auto _pipi3 = std::polar(+_S_pi / _Tp{3});
+    const auto __mipi3 = std::polar(-_S_pi / _Tp{3});
+    const auto __pipi3 = std::polar(+_S_pi / _Tp{3});
     std::cout << "\n\nTransition region Bessel functions: J_\\nu(\\nu + a\\nu^{1/3})\n";
-    std::cout << '\n'
-	      << std::setw(width) << "a"
-	      << std::setw(width) << "J_\\nu"
-	      << std::setw(width) << "N_\\nu"
-	      << std::setw(width) << "J'_\\nu"
-	      << std::setw(width) << "N'_\\nu"
+    std::cout << "\nnu = " << __nu << "\n"
+	      << std::setw(2*width) << "a"
+	      << std::setw(2*width) << "J_\\nu"
+	      << std::setw(2*width) << "N_\\nu"
+	      << std::setw(2*width) << "J'_\\nu"
+	      << std::setw(2*width) << "N'_\\nu"
 	      << '\n';
+
+    const auto __eps = std::numeric_limits<_Tp>::epsilon();
     for (int __i = -100; __i <= +100; ++__i)
       {
 	auto __a = _Tp{0.005Q} * __i;
 
-	const auto __airy_argm = _S_2p13 * __a * _mipi3;
+	const std::complex<_Tp> __airy_argm = _S_2p13 * __a * __mipi3;
 	std::complex<_Tp> _Ami, _Bmi, _Amip, _Bmip;
-	std::__detail::__airy(__airy_argm, _Ami, _Bmi, _Amip, _Bmip);
+	std::__detail::__airy(__airy_argm, __eps, _Ami, _Bmi, _Amip, _Bmip);
 
-	const auto __airy_argp = _S_2p13 * __a * _pipi3;
+	const std::complex<_Tp> __airy_argp = _S_2p13 * __a * __pipi3;
 	std::complex<_Tp> _Api, _Bpi, _Apip, _Bpip;
-	std::__detail::__airy(__airy_argp, _Api, _Bpi, _Apip, _Bpip);
+	std::__detail::__airy(__airy_argp, __eps, _Api, _Bpi, _Apip, _Bpip);
 
 	auto __num2k3 = _Tp{1};
 
@@ -277,10 +279,10 @@ template<typename _Tp>
 	    __num2k3 /= __nu23;
 	  }
 
-	const auto _H1t = _S_2p43 * _mipi3 * _Ami * _H1sum1 / __nu13
-			+ _S_2p53 * _mipi3 * _Amip * _H1sum2 / __nu;
-	const auto _H2t = _S_2p43 * _pipi3 * _Api * _H2sum1 / __nu13
-			+ _S_2p53 * _pipi3 * _Apip * _H2sum2 / __nu;
+	const auto _H1t = _S_2p43 * __mipi3 * _Ami * _H1sum1 / __nu13
+			+ _S_2p53 * __mipi3 * _Amip * _H1sum2 / __nu;
+	const auto _H2t = _S_2p43 * __pipi3 * _Api * _H2sum1 / __nu13
+			+ _S_2p53 * __pipi3 * _Apip * _H2sum2 / __nu;
 
 	auto _H1psum1 = _Tp{0};
 	auto _H2psum1 = _Tp{0};
@@ -302,17 +304,17 @@ template<typename _Tp>
 	    __num2k3 /= __nu23;
 	  }
 
-	const auto _H1pt = -_S_2p53 * _mipi3 * _Amip * _H1psum1 / __nu23
-			  + _S_2p43 * _mipi3 * _Ami * _H1psum2 / __nu43;
-	const auto _H2pt = -_S_2p53 * _pipi3 * _Apip * _H2psum1 / __nu23
-			  + _S_2p43 * _pipi3 * _Api * _H2psum2 / __nu43;
+	const auto _H1pt = -_S_2p53 * __mipi3 * _Amip * _H1psum1 / __nu23
+			  + _S_2p43 * __mipi3 * _Ami * _H1psum2 / __nu43;
+	const auto _H2pt = -_S_2p53 * __pipi3 * _Apip * _H2psum1 / __nu23
+			  + _S_2p43 * __pipi3 * _Api * _H2psum2 / __nu43;
 
-	std::cout << std::setw(width) << __a
-		  << std::setw(width) << _H1t
-		  << std::setw(width) << _H2t
-		  << std::setw(width) << _H1pt
-		  << std::setw(width) << _H2pt
-		  << std::setw(width) << '\n';
+	std::cout << std::setw(2*width) << __a
+		  << std::setw(2*width) << _H1t
+		  << std::setw(2*width) << _H2t
+		  << std::setw(2*width) << _H1pt
+		  << std::setw(2*width) << _H2pt
+		  << std::setw(2*width) << '\n';
       }
   }
 
