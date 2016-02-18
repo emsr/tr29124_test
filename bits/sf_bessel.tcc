@@ -549,10 +549,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __cyl_hankel_h1(_Tp __nu, _Tp __x)
+    __cyl_hankel_1(_Tp __nu, _Tp __x)
     {
       if (__x < _Tp{0})
-	std::__throw_domain_error(__N("__cyl_hankel_h1: bad argument"));
+	std::__throw_domain_error(__N("__cyl_hankel_1: bad argument"));
       else if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x == _Tp{0})
@@ -582,10 +582,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __cyl_hankel_h2(_Tp __nu, _Tp __x)
+    __cyl_hankel_2(_Tp __nu, _Tp __x)
     {
       if (__x < _Tp{0})
-	std::__throw_domain_error(__N("__cyl_hankel_h2: bad argument"));
+	std::__throw_domain_error(__N("__cyl_hankel_2: bad argument"));
       else if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x == _Tp{0})
@@ -595,7 +595,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  std::complex<_Tp> _S_j{0, 1};
 	  _Tp _J_n, _N_n, __jp_n, __np_n;
 	  __bessel_jn(__nu, __x, _J_n, _N_n, __jp_n, __np_n);
-	  return (_J_n + _S_j * _N_n);
+	  return (_J_n - _S_j * _N_n);
 	}
     }
 
@@ -719,10 +719,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __sph_hankel_h1(unsigned int __n, _Tp __x)
+    __sph_hankel_1(unsigned int __n, _Tp __x)
     {
       if (__x < _Tp{0})
-	std::__throw_domain_error(__N("__sph_neumann: bad argument"));
+	std::__throw_domain_error(__N("__sph_hankel_1: bad argument"));
       else if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x == _Tp{0})
@@ -752,10 +752,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __sph_hankel_h2(unsigned int __n, _Tp __x)
+    __sph_hankel_2(unsigned int __n, _Tp __x)
     {
       if (__x < _Tp{0})
-	std::__throw_domain_error(__N("__sph_neumann: bad argument"));
+	std::__throw_domain_error(__N("__sph_hankel_2: bad argument"));
       else if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x == _Tp{0})
@@ -765,7 +765,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  std::complex<_Tp> _S_j{0, 1};
 	  _Tp __j_n, __n_n, __jp_n, __np_n;
 	  __sph_bessel_jn(__n, __x, __j_n, __n_n, __jp_n, __np_n);
-	  return (__j_n + _S_j * __n_n);
+	  return (__j_n - _S_j * __n_n);
 	}
     }
 

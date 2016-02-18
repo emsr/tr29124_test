@@ -52,20 +52,29 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  is to be called by another, checks for valid arguments are not
    *  made.
    *
+   *  @see Digital Library of Mathematical Finctions §9.7 Asymptotic Expansions
+   *       http://dlmf.nist.gov/9.7
+   *
    *  @param[in]  z Complex input variable set equal to the value at which
-   *    	    Ai(z) and its derivative are evaluated.
-   *    	    This function assumes abs(z) > 15
-   *    	    and |(arg(z)| < 2\pi/3.
-   *  @param[out] Ai  The value computed for Ai(z).
-   *  @param[out] Aip The value computed for Ai'(z).
+   *    	    Ai(z)abd Bi(z) and their derivative are evaluated.
+   *    	    This function assumes abs(z) > 15 and |(arg(z)| < 2\pi/3.
+   *  @param[inout] Ai  The value computed for Ai(z).
+   *  @param[inout] Aip The value computed for Ai'(z).
+   *  @param[in]    sign  The sign of the series terms amd exponent.
+   *                      The default (-1) gives the Airy Ai functions
+   *                      for |(arg(z))| < \pi.
+   *                      The value +1 gives the Airy Bi functions
+   *                      for |(arg(z))| < \pi/3.
    */
   template<typename _Tp>
     void
     __airy_asymp_absarg_ge_pio3(std::complex<_Tp> __z,
 				std::complex<_Tp>& _Ai,
-				std::complex<_Tp>& _Aip)
+				std::complex<_Tp>& _Aip,
+				int sign = -1)
     {
       constexpr _Tp _S_2d3   = _Tp{2} / _Tp{3};
+      // 1/(2 sqrt(pi)))
       constexpr _Tp _S_pmhd2 = _Tp{2.820947917738781434740397257803862929219e-01L};
       constexpr int _S_ncoeffs = 15;
       constexpr int _S_numnterms = 5;
@@ -73,7 +82,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       // Coefficients for the expansion.
       constexpr _Tp
-      _S_ck[_S_ncoeffs]
+      _S_u[_S_ncoeffs]
       {
 	0.5989251356587907e+05,
 	0.9207206599726415e+04,
@@ -93,7 +102,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       };
 
       constexpr _Tp
-      _S_dk[_S_ncoeffs]
+      _S_v[_S_ncoeffs]
       {
 	-0.6133570666385206e+05,
 	-0.9446354823095932e+04,
@@ -112,46 +121,46 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	 0.1000000000000000e+01
       };
 
-      // Compute -xi and z^(1/4).
-      auto __pw1d4 = std::sqrt(__z);
-      auto __xim = __z * __pw1d4;
-      __xim *= _S_2d3;
-      __pw1d4 = std::sqrt(__pw1d4);
+      // Compute -zeta and z^(1/4).
+      auto __z1d4 = std::sqrt(__z);
+      auto __zetam = __z * __z1d4;
+      __zetam *= _S_2d3;
+      __z1d4 = std::sqrt(__z1d4);
 
       // Compute outer factors in the expansions.
-      auto __zoutpr = std::exp(-__xim);
+      auto __zoutpr = std::exp(_Tp(sign) * __zetam);
       __zoutpr *= _S_pmhd2;
-      auto __zout = __zoutpr / __pw1d4;
-      __zoutpr *= -__pw1d4;
+      auto __zout = __zoutpr / __z1d4;
+      __zoutpr *= -__z1d4;
 
       // Determine number of terms to use.
       auto __nterm = _S_nterms[std::min(_S_numnterms - 1,
 					(int(std::abs(__z)) - 10) / 5)];
       // Initialize for modified Horner's rule evaluation of sums.
       // It is assumed that at least three terms are used.
-      __xim = -_Tp{1} / __xim;
-      auto __r = _Tp{2} * std::real(__xim);
-      auto __s = std::norm(__xim);
+      __zetam = _Tp(sign) / __zetam;
+      auto __r = _Tp{2} * std::real(__zetam);
+      auto __s = std::norm(__zetam);
       auto __index = _S_ncoeffs - __nterm;// + 1;
-      auto __al = _S_ck[__index];
-      auto __alpr = _S_dk[__index];
+      auto __al = _S_u[__index];
+      auto __alpr = _S_v[__index];
       ++__index;
-      auto __be = _S_ck[__index];
-      auto __bepr = _S_dk[__index];
+      auto __be = _S_u[__index];
+      auto __bepr = _S_v[__index];
       ++__index;
 
       for (int __k = __index; __k < _S_ncoeffs; ++__k)
 	{
 	  auto __term = __s * __al;
 	  __al = __be + __r * __al;
-	  __be = _S_ck[__k] - __term;
+	  __be = _S_u[__k] - __term;
 	  __term = __s * __alpr;
 	  __alpr = __bepr + __r * __alpr;
-	  __bepr = _S_dk[__k] - __term;
+	  __bepr = _S_v[__k] - __term;
 	}
 
-      _Ai = __zout * __al * __xim + __be;
-      _Aip = __zoutpr * __alpr * __xim + __bepr;
+      _Ai = __zout * __al * __zetam + __be;
+      _Aip = __zoutpr * __alpr * __zetam + __bepr;
 
       return;
     }
@@ -191,7 +200,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       // coefficients for the expansion.
       constexpr _Tp
-      _S_ckc[_S_ncoeffs]
+      _S_u_cos[_S_ncoeffs]
       {
 	0.2519891987160237e+08,
 	0.4195248751165511e+06,
@@ -204,7 +213,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	0.6944444444444444e-01
       };
       constexpr _Tp
-      _S_cks[_S_ncoeffs]
+      _S_u_sin[_S_ncoeffs]
       {
 	0.3148257417866826e+07,
 	0.5989251356587907e+05,
@@ -218,7 +227,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       };
 
       constexpr _Tp
-      _S_dks[_S_ncoeffs]
+      _S_v_sin[_S_ncoeffs]
       {
 	-0.2569790838391133e+08,
 	-0.4289524004000691e+06,
@@ -231,7 +240,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	-0.9722222222222222e-01
       };
       constexpr _Tp
-      _S_dkc[_S_ncoeffs]
+      _S_v_cos[_S_ncoeffs]
       {
 	-0.3214536521400865e+07,
 	-0.6133570666385206e+05,
@@ -246,16 +255,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       // Set up working value of z.
       __z = -__z;
-      // Compute xi and z^(1/4).
-      auto __pw1d4 = std::sqrt(__z);
-      auto __xi = __z * __pw1d4;
-      __xi *= _S_2d3;
-      __pw1d4 = std::sqrt(__pw1d4);
+      // Compute zeta and z^(1/4).
+      auto __z1d4 = std::sqrt(__z);
+      auto __zeta = __z * __z1d4;
+      __zeta *= _S_2d3;
+      __z1d4 = std::sqrt(__z1d4);
 
       // Compute sine and cosine factors in the expansions.
-      auto __xiarg = __xi + _S_pid4;
-      auto __sinxi = std::sin(__xiarg);
-      auto __cosxi = std::cos(__xiarg);
+      auto __zetaarg = __zeta + _S_pid4;
+      auto __sinzeta = std::sin(__zetaarg);
+      auto __coszeta = std::cos(__zetaarg);
 
       // Determine number of terms to use.
       auto __nterm = _S_nterms[std::min(_S_numnterms - 1,
@@ -268,16 +277,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __s = std::norm(__z);
       auto __index = _S_ncoeffs - __nterm;
 
-      auto __als = _S_cks[__index];
-      auto __alc = _S_ckc[__index];
-      auto __alprs = _S_dks[__index];
-      auto __alprc = _S_dkc[__index];
+      auto __als = _S_u_sin[__index];
+      auto __alc = _S_u_cos[__index];
+      auto __alprs = _S_v_sin[__index];
+      auto __alprc = _S_v_cos[__index];
       ++__index;
 
-      auto __bes = _S_cks[__index];
-      auto __bec = _S_ckc[__index];
-      auto __beprs = _S_dks[__index];
-      auto __beprc = _S_dkc[__index];
+      auto __bes = _S_u_sin[__index];
+      auto __bec = _S_u_cos[__index];
+      auto __beprs = _S_v_sin[__index];
+      auto __beprc = _S_v_cos[__index];
       ++__index;
 
       // Loop until components contributing to sums are computed.
@@ -285,26 +294,26 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  auto __term = __s * __als;
 	  __als = __bes + __r * __als;
-	  __bes = _S_cks[__k] - __term;
+	  __bes = _S_u_sin[__k] - __term;
 	  __term = __s * __alc;
 	  __alc = __bec + __r * __alc;
-	  __bec = _S_ckc[__k] - __term;
+	  __bec = _S_u_cos[__k] - __term;
 	  __term = __s * __alprs;
 	  __alprs = __beprs + __r * __alprs;
-	  __beprs = _S_dks[__k] - __term;
+	  __beprs = _S_v_sin[__k] - __term;
 	  __term = __s * __alprc;
 	  __alprc = __beprc + __r * __alprc;
-	  __beprc = _S_dkc[__k] - __term;
+	  __beprc = _S_v_cos[__k] - __term;
 	}
 
       // Complete evaluation of the Airy functions.
-      __xi = _S_zone / __xi;
-      _Ai = __sinxi * __als * __z + __bes
-           - __xi * __cosxi * __alc * __z + __bec;
-      _Ai *= _S_pimh / __pw1d4;
-      _Aip = __cosxi * __alprc * __z + __beprc
-	    + __xi * __sinxi * __alprs * __z + __beprs;
-      _Aip *= -_S_pimh * __pw1d4;
+      __zeta = _S_zone / __zeta;
+      _Ai = __sinzeta * __als * __z + __bes
+           - __zeta * __coszeta * __alc * __z + __bec;
+      _Ai *= _S_pimh / __z1d4;
+      _Aip = __coszeta * __alprc * __z + __beprc
+	   + __zeta * __sinzeta * __alprs * __z + __beprs;
+      _Aip *= -_S_pimh * __z1d4;
 
       return;
     }
@@ -400,8 +409,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     	_S_sqrt2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
 
       // Compute 1/z for use in recurrence for speed and abs(z).
-      __cmplx __1dz;
-      __safe_div(1, __z, __1dz);
+      auto __1dz = __safe_div(_Tp{1}, __z);
 
       // Initialize for forward recursion based on order 2/3.
       int __n = 0;
@@ -425,7 +433,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     	      // Recur forward one step.
     	      __p2 = __1dz * __d2n * __plast2 + __pold2;
 	    }
-	  while (__norm_L1(__p2) < __weak_test);
+	  while (__l1_norm(__p2) < __weak_test);
 
 	  // If strong convergence, then weak and strong convergence.
 	  if (__converged)
@@ -462,8 +470,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __plast1 = _S_zero;
       __plast2 = _S_zero;
       // Carefully compute 1/p2 to avoid overflow in complex divide.
-      __cmplx __p1;
-      __safe_div(1, __p2, __p1);
+      auto __p1 = __safe_div(_Tp{1}, __p2);
       __p2 = __p1;
       // Set up n dependent parameters used in normalization sum.
       auto __rnpn1 = __rn + _S_1d3;
@@ -479,10 +486,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // normalization relationship.
       auto __nend = __n - 3;
 
-      // if backward recurrence loop will be nontrivial.
+      // If backward recurrence loop will be nontrivial...
       if (__nend > 0)
 	{
-	  // Loop until backward recursion to k=1 term of normalization.
+	  // ...loop until backward recursion to k=1 term of normalization.
 	  for (int __l = 1; __l <= __nend; ++__l)
 	    {
     	      // Update n dependent quantities.
@@ -566,7 +573,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @f[
    *    E_\nu(z) = \exp{z} \sqrt{2 z/\pi} K_\nu(z), for \nu = 1/3 and \nu = 2/3
    *   @f]
-   *
    *  using a rational approximation given in
    *
    *  Luke, Y. L., Mathematical functions and their approximations,
@@ -691,7 +697,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		       - __p23 * __phi20;
 	  __phi23 /= __an2;
 
-	  // Check for convergence
+	  // Check for convergence.
 	  auto __ratnew = __phi23 / __f23;
 	  __rat1 = __phi13 / __f13;
 
@@ -748,12 +754,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  functions of orders \nu = +-1/3 and \nu +- 2/3.  That is,
    *  A(z)/B(z), Where A(z) and B(z) are cubic polynomials with
    *  real coefficients, approximates
-   *
    *   @f[
    *    \frac{\Gamma(\nu+1)}{(z/2)^nu}I_\nu(z) = _0F_1 (;\nu+1;z^2/4),
    *   @f]
-   *
-   *  Where the function on the right is a generalized Gaussian
+   *  where the function on the right is a generalized Gaussian
    *  hypergeometric function.  For |z| <= 1/4  and
    *  |arg(z)| <= pi/2, the approximations are accurate to
    *  about 16 decimals.
@@ -869,47 +873,47 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  The representations are recorded here for reference:
    *
    *   @f[
-   *    (1a) Ai(z) = \frac{\sqrt{z}}{3}(I_{-1/3}(\xi) - I_{1/3}(\xi))
+   *    (1a) Ai(z) = \frac{\sqrt{z}}{3}(I_{-1/3}(\zeta) - I_{1/3}(\zeta))
    *   @f]
    *   @f[
-   *    (1b) Bi(z) = \sqrt{\frac{z}{3}}(I_{-1/3}(\xi) + I_{1/3}(\xi))
+   *    (1b) Bi(z) = \sqrt{\frac{z}{3}}(I_{-1/3}(\zeta) + I_{1/3}(\zeta))
    *   @f]
    *
    *   @f[
-   *    (2) Ai(z) = \frac{\sqrt{z/3}}{\pi} K_{1/3}(\xi)
+   *    (2) Ai(z) = \frac{\sqrt{z/3}}{\pi} K_{1/3}(\zeta)
    *
    *      	  = \frac{2^{2/3}3^{-5/6}}{\sqrt(\pi)}
-   *    	       z \exp(-\xi) U(5/6; 5/3; 2 \xi)
+   *    	       z \exp(-\zeta) U(5/6; 5/3; 2 \zeta)
    *   @f]
    *
    *   @f[
-   *    (3a) Ai(-z)  = \frac{\sqrt{z}}{3}(J_{-1/3}(\xi) + J_{1/3}(\xi))
+   *    (3a) Ai(-z)  = \frac{\sqrt{z}}{3}(J_{-1/3}(\zeta) + J_{1/3}(\zeta))
    *   @f]
    *   @f[
-   *    (3b) Bi(-z)  = \sqrt{\frac{z}{3}}(J_{-1/3}(\xi) - J_{1/3}(\xi))
-   *   @f]
-   *
-   *   @f[
-   *    (4a) Ai'(z)  = \frac{z}{3}(I_{2/3}(\xi) - I_{-2/3}(\xi))
-   *   @f]
-   *   @f[
-   *    (4a) Bi'(z)  = \frac{z}{\sqrt{3}}(I_{-2/3}(\xi) + I_{2/3}(\xi))
+   *    (3b) Bi(-z)  = \sqrt{\frac{z}{3}}(J_{-1/3}(\zeta) - J_{1/3}(\zeta))
    *   @f]
    *
    *   @f[
-   *    (5a) Ai'(z)  = -\frac{z}{\pi\sqrt(3)} K_(2/3)(xi)
+   *    (4a) Ai'(z)  = \frac{z}{3}(I_{2/3}(\zeta) - I_{-2/3}(\zeta))
+   *   @f]
+   *   @f[
+   *    (4b) Bi'(z)  = \frac{z}{\sqrt{3}}(I_{-2/3}(\zeta) + I_{2/3}(\zeta))
+   *   @f]
+   *
+   *   @f[
+   *    (5a) Ai'(z)  = -\frac{z}{\pi\sqrt(3)} K_(2/3)(zeta)
    *
    *    	    =  -\frac{4^{2/3}3^{-7/6}}{\sqrt(\pi)}
-   *                     z^2 \exp(-\xi) U(7/6; 7/3; 2 \xi)
+   *                     z^2 \exp(-\zeta) U(7/6; 7/3; 2 \zeta)
    *   @f]
    *
    *   @f[
-   *    (6a) Ai'(-z) = \frac{z}{3}(J_{2/3}(\xi) - J_{-2/3}(\xi)) ,
+   *    (6a) Ai'(-z) = \frac{z}{3}(J_{2/3}(\zeta) - J_{-2/3}(\zeta)) ,
    *   @f]
    *   @f[
-   *    (6b) Bi'(-z) = \frac{z}{\sqrt{3}}(J_{-2/3}(\xi) + J_{2/3}(\xi)) ,
+   *    (6b) Bi'(-z) = \frac{z}{\sqrt{3}}(J_{-2/3}(\zeta) + J_{2/3}(\zeta)) ,
    *   @f]
-   *  Where \xi = - \frac{2}{3}z^{3/2} and U(a;b;z) is the confluent hypergeometric
+   *  Where \zeta = - \frac{2}{3}z^{3/2} and U(a;b;z) is the confluent hypergeometric
    *  function defined in
    *
    *  @see Stegun, I. A. and Abramowitz, M., Handbook of Mathematical Functions,
@@ -948,7 +952,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  1/3 and + or - 2/3 for z in the right half plane.  Values for
    *  the corresponding Bessel functions of the first kind are recovered
    *  via the identities
-   *
    *   @f[
    *        J_\nu(z) = exp(\nu \pi i/2) I_\nu(z exp(-\pi i/2)),
    *    	  0 <= arg(z) <= \pi/2
@@ -997,7 +1000,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __airy(const std::complex<_Tp>& __z, _Tp __eps,
            std::complex<_Tp>& _Ai,
-           std::complex<_Tp>& _Aip)
+           std::complex<_Tp>& _Aip,
+           std::complex<_Tp>& _Bi,
+           std::complex<_Tp>& _Bip)
     {
       using __cmplx = std::complex<_Tp>;
 
@@ -1028,10 +1033,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  // Check argument for right or left half plane.
 	  if (std::real(__z) >= _Tp{0})
 	    {
-	      // Argument in closed right half plane. Compute xi as defined
+	      // Argument in closed right half plane. Compute zeta as defined
 	      // in the representations in terms of Bessel functions.
 	      auto __sqrtz = std::sqrt(__z);
-	      auto __xi = _S_2d3 * __z * __sqrtz;
+	      auto __zeta = _S_2d3 * __z * __sqrtz;
 
 	      // Check for abs(z) too large for accuracy of
 	      // representations (1) and (4).
@@ -1039,12 +1044,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		{
 		  // Use rational approximation for modified Bessel functions
 		  // of orders 1/3 and 2/3.
-		  __airy_bessel_k(__xi, __eps, _Ai, _Aip);
+		  __airy_bessel_k(__zeta, __eps, _Ai, _Aip/* , _Bi, _Bip*/); // FIXME
 		  // Recover Ai(z) and Ai'(z).
 		  auto __p1d4c = std::sqrt(__sqrtz);
-		  __xi = _S_rsqpi * std::exp(-__xi);
-		  _Ai *= __xi / __p1d4c;
-		  _Aip *= -__xi * __p1d4c;
+		  __zeta = _S_rsqpi * std::exp(-__zeta);
+		  _Ai *= __zeta / __p1d4c;
+		  _Aip *= -__zeta * __p1d4c;
+		  // FIXME: _Bi *= 
+		  // FIXME: _Bip *= 
 		}
 	      else
 		{
@@ -1058,36 +1065,38 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		      // Recover Ai(z) and Ai'(z).
 		      _Ai = _S_Ai0 * _Im1d3 - __z * _S_Aip0 * _Ip1d3;
 		      _Aip = __z * __z * _S_2g2d3 * _Ip2d3 - _S_Aip0 * _Im2d3;
-		      //_Bi = 
-		      //_Bip = 
+///    (1b) Bi(z) = \sqrt{\frac{z}{3}}(I_{-1/3}(\zeta) + I_{1/3}(\zeta))
+///    (4a) Bi'(z)  = \frac{z}{\sqrt{3}}(I_{-2/3}(\zeta) + I_{2/3}(\zeta))
+		      // FIXME: _Bi =  * _Im1d3 + _S_Bi0 * _Ip1d3;
+		      // FIXME: _Bip =  * _Im2d3 + _S_Bpi0 * _Ip2d3;
 		    }
 		  else
 		    {
 		      // Use Miller's backward recurrence along with (1), (4).
 		      __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
-		      __airy_bessel_i(__xi, __eps,
+		      __airy_bessel_i(__zeta, __eps,
 				      _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
 		      // Recover Ai(z) and Ai'(z).
 		      _Ai = _S_1d3 * __sqrtz * (_Im1d3 - _Ip1d3);
 		      _Aip = _S_1d3 * __z * (_Ip2d3 - _Im2d3);
-		      //_Bi = __sqrtz * (__m2d3f * _Im2d3 * __p2d3f * _Ip2d3) / _S_sqrt3;
-		      //_Bip = 
+		      _Bi = __sqrtz * (_Im2d3 * _Ip2d3) / _S_sqrt3;
+		      _Bip = __z * (_Im2d3 + _Ip2d3) / _S_sqrt3;
 		    }
 		}
 	    }
 	  else
 	    {
-	      // Argument lies in left half plane.  Compute xi as defined
+	      // Argument lies in left half plane.  Compute zeta as defined
 	      // in the representations in terms of Bessel functions.
 	      auto __sqrtz = std::sqrt(-__z);
-	      auto __xi = -_S_2d3 * __z * __sqrtz;
+	      auto __zeta = -_S_2d3 * __z * __sqrtz;
 	      // Set up arguments to recover Bessel functions of the first kind
 	      // in (3) and (6).
-	      __cmplx __z2xi, __p1d3f, __m1d3f, __p2d3f, __m2d3f;
-	      if (std::imag(__xi) >= _Tp{0})
+	      __cmplx __z2zeta, __p1d3f, __m1d3f, __p2d3f, __m2d3f;
+	      if (std::imag(__zeta) >= _Tp{0})
 		{
 		  // Argument lies in upper half plane.
-		  __z2xi = -_S_j * __xi;
+		  __z2zeta = -_S_j * __zeta;
 		  __p1d3f = _S_eppid6;
 		  __m1d3f = _S_empid6;
 		  __p2d3f = _S_eppid3;
@@ -1096,7 +1105,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      else
 		{
 		  // Argument lies in lower half plane.
-		  __z2xi = _S_j * __xi;
+		  __z2zeta = _S_j * __zeta;
 		  __p1d3f = _S_empid6;
 		  __m1d3f = _S_eppid6;
 		  __p2d3f = _S_empid3;
@@ -1107,27 +1116,27 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      if (__absz <= _S_small)
 		{
 		  // Use rational approximation.
-		  __xi = -__z;
+		  __zeta = -__z;
 		  __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
 		  __airy_hyperg_rational(__z, _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
 		  // Recover Ai(z) and Ai'(z).
 		  _Ai = _S_Ai0 * _Im1d3 - __z * _S_Aip0 * _Ip1d3;
 		  _Aip = __z * __z * _S_2g2d3 * _Ip2d3 - _S_Aip0 * _Im2d3;
-		  //_Bi = _S_Bi0 * _Im1d3 - __z * _S_Bip0 * _Ip1d3;
-		  //_Bip = 
+		  // FIXME: _Bi = _S_Bi0 * _Im1d3 - __z * _S_Bip0 * _Ip1d3;
+		  // FIXME: _Bip = 
 		}
 	      else
 		{
 		  // Use Miller's backward recurrence.
 		  __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
-		  __airy_bessel_i(__z2xi, __eps,
+		  __airy_bessel_i(__z2zeta, __eps,
 				  _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
 		  // Recover Ai(z) and Ai'(z).
 		  _Ai = _S_1d3 * __sqrtz
 		      * (__m1d3f * _Im1d3 + __p1d3f * _Ip1d3);
 		  _Aip = _S_1d3 * __z * (__m2d3f * _Im2d3 - __p2d3f * _Ip2d3);
-		  //_Bi = __sqrtz * (__m2d3f * _Im2d3 * __p2d3f * _Ip2d3) / _S_sqrt3;
-		  //_Bip = (__z / _S_sqrt3)*(I_{2/3}(\xi) + I_{-2/3}(\xi))
+		  // FIXME: _Bi = __sqrtz * (__m2d3f * _Im2d3 * __p2d3f * _Ip2d3) / _S_sqrt3;
+		  // FIXME: _Bip = (__z / _S_sqrt3)*(I_{2/3}(\zeta) + I_{-2/3}(\zeta))
 		}
 	    }
 	}
@@ -1135,9 +1144,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{ // abs(z) is large...
 	  // Check arg(z) to see which asymptotic form is appropriate.
 	  if (std::abs(std::arg(__z)) < _Tp{2} * _S_pi / _Tp{3})
-	    __airy_asymp_absarg_ge_pio3(__z, _Ai, _Aip);
+	    __airy_asymp_absarg_ge_pio3(__z, _Ai, _Aip/* , _Bi, _Bip*/); // FIXME
 	  else
-	    __airy_asymp_absarg_lt_pio3(__z, _Ai, _Aip);
+	    __airy_asymp_absarg_lt_pio3(__z, _Ai, _Aip/* , _Bi, _Bip*/); // FIXME
 	}
       return;
   }
@@ -1148,19 +1157,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-      __airy_ai(std::complex<_Tp> __z)
-      {
-	std::complex<_Tp> _Ai, _Aip;
-	__airy(__z, __gnu_cxx::__epsilon<_Tp>(), _Ai, _Aip);
-	return _Ai;
-      }
-
-/*
-  /**
-   *  @brief  Return the complex Airy Ai function.
-   *//*
-  template<typename _Tp>
-    std::complex<_Tp>
     __airy_ai(std::complex<_Tp> __z)
     {
       std::complex<_Tp> _Ai, _Aip, _Bi, _Bip;
@@ -1168,9 +1164,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return _Ai;
     }
 
+
   /**
    *  @brief  Return the complex Airy Bi function.
-   *//*
+   */
   template<typename _Tp>
     std::complex<_Tp>
     __airy_bi(std::complex<_Tp> __z)
@@ -1179,7 +1176,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __airy(__z, _Ai, _Aip, _Bi, _Bip);
       return _Bi;
     }
-*/
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail

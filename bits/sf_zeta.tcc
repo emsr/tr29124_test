@@ -195,7 +195,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr unsigned long long _S_maxit = 100000ULL;
       constexpr _Tp _S_eps = 10 * __gnu_cxx::__epsilon<_Tp>();
       constexpr _Tp _S_pipio6
-	= 1.644934066848226436472415166646025189219L;
+	= __gnu_cxx::__math_constants<_Tp>::__pi_sqr_div_6;
       if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x > +_Tp{1})
@@ -271,35 +271,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   * @brief  Compute the Riemann zeta function @f$ \zeta(s) - 1 @f$
-   * 	     by summation for s > 1.  This is a small remainder for large s.
-   *
-   * The Riemann zeta function is defined by:
-   *  \f[
-   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
-   *  \f]
-   */
-  template<typename _Tp>
-    _Tp
-    __riemann_zeta_m_1_sum(_Tp __s)
-    {
-      // A user shouldn't get to this.
-      if (__s < _Tp{1})
-	std::__throw_domain_error(__N("Bad argument in zeta sum."));
-
-      int __k_max = std::exp(-std::log(__gnu_cxx::__epsilon<_Tp>()) / __s);
-      auto __zeta_m_1 = _Tp{0};
-      for (int __k = __k_max; __k >= 2; --__k)
-	{
-	  auto __term = std::pow(_Tp(__k), -__s);
-	  __zeta_m_1 += __term;
-	}
-
-      return __zeta_m_1;
-    }
-
-
-  /**
    *  @brief  Evaluate the Riemann zeta function @f$ \zeta(s) @f$
    *          by an alternate series for s > 0.
    *
@@ -309,26 +280,27 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __riemann_zeta_euler_maclaurin(_Tp __s)
     {
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto _S_N = 10 + __gnu_cxx::__digits10<_Tp>() / 2;
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Val>();
+      constexpr auto _S_N = 10 + __gnu_cxx::__digits10<_Val>() / _Tp{2};
       constexpr auto _S_jmax = 99;
 
-      const auto __pmax  = std::pow(_Tp(_S_N) + _Tp{1}, -__s);
-      const auto __denom = (_S_N + _Tp{1}) * (_S_N + _Tp{1});
-      auto __ans = __pmax * ((_S_N + _Tp{1}) / (__s - _Tp{1}) + _Tp{0.5L});
-      for(auto __k = 0; __k < _S_N; ++__k)
-        __ans += std::pow(__k + _Tp{1}, -__s);
+      const auto __pmax  = std::pow(_Tp{_S_N + 1}, -__s);
+      const auto __denom = _Tp{_S_N + 1} * _Tp{_S_N + 1};
+      auto __ans = __pmax * (_Tp{_S_N + 1} / (__s - _Tp{1}) + _Tp{0.5L});
+      for (auto __k = 0; __k < _S_N; ++__k)
+        __ans += std::pow(_Tp(__k + 1), -__s);
 
-      auto __fact = __pmax * __s / (_S_N + _Tp{1});
-      auto __delta_prev = __gnu_cxx::__max<_Tp>();
-      for(auto __j = 0; __j <= _S_jmax; ++__j)
+      auto __fact = __pmax * __s / _Tp{_S_N + 1};
+      auto __delta_prev = __gnu_cxx::__max<_Val>();
+      for (auto __j = 0; __j <= _S_jmax; ++__j)
         {
 	  auto __delta = _S_Euler_Maclaurin_zeta[__j + 1] * __fact;
 	  if (std::abs(__delta) > __delta_prev)
 	    break;
 	  __delta_prev = std::abs(__delta);
 	  __ans += __delta;
-	  if(std::abs(__delta / __ans) < _Tp{0.5L} * _S_eps)
+	  if (std::abs(__delta / __ans) < _Tp{0.5L} * _S_eps)
 	    break;
 	  __fact *= (__s + _Tp(2 * __j + 1)) * (__s + _Tp(2 * __j + 2))
 		  / __denom;
@@ -355,13 +327,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __riemann_zeta_alt(_Tp __s)
     {
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Val>();
       constexpr unsigned int _S_max_iter = 10000000;
-      _Tp __sgn = _Tp{1};
-      _Tp __zeta = _Tp{0};
+      auto __sgn = _Val{1};
+      auto __zeta = _Tp{0};
       for (unsigned int __i = 1; __i < _S_max_iter; ++__i)
 	{
-	  _Tp __term = __sgn / std::pow(_Tp(__i), __s);
+	  auto __term = __sgn / std::pow(_Tp(__i), __s);
 	  if (std::abs(__term) < _S_eps)
 	    break;
 	  __zeta += __term;
@@ -399,32 +372,33 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __riemann_zeta_glob(_Tp __s)
     {
+      using _Val = __num_traits_t<_Tp>;
       auto __zeta = _Tp{0};
 
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Val>();
       //  Max e exponent before overflow.
       constexpr auto __max_bincoeff
-		 = std::exp(std::numeric_limits<_Tp>::max_exponent10
-			    * std::log(_Tp{10}) - _Tp{1});
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+		 = std::exp(std::numeric_limits<_Val>::max_exponent10
+			    * std::log(_Val{10}) - _Val{1});
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Val>::__pi;
+      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Val>::__pi_half;
       //  This series works until the binomial coefficient blows up
       //  so use reflection.
-      if (__s < _Tp{0})
+      if (std::real(__s) < _Val{0})
 	{
 	  if (std::fmod(__s, _Tp{2}) == _Tp{0})
 	    return _Tp{0};
 	  else
 	    {
 	      auto __zeta = __riemann_zeta_glob(_Tp{1} - __s);
-	      __zeta *= std::pow(_Tp{2}* _S_pi, __s)
+	      __zeta *= std::pow(_Tp{2} * _S_pi, __s)
 		     * std::sin(_S_pi_2 * __s)
 		     * std::exp(__log_gamma(_Tp{1} - __s)) / _S_pi;
 	      return __zeta;
 	    }
 	}
 
-      _Tp __num = _Tp{0.25L};
+      auto __num = _Tp{0.25L};
       const unsigned int __maxit = 10000;
       __zeta = _Tp{0.5L};
       // This for loop starts at 1 because we already calculated the
@@ -433,20 +407,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  bool __punt = false;
 	  auto __term = _Tp{1};
-	  auto __bincoeff = _Tp{1};
+	  auto __bincoeff = _Val{1};
 	  // This for loop starts at 1 because we already calculated the value
 	  // of the zeroeth order in __term above.
 	  for (unsigned int __j = 1; __j <= __i; ++__j)
 	    {
-	      auto incr = _Tp(__i - __j + 1) / _Tp(__j);
+	      auto incr = _Val(__i - __j + 1) / _Tp(__j);
 	      __bincoeff *= -incr;
-	      if(std::fabs(__bincoeff) > __max_bincoeff )
+	      if(std::abs(__bincoeff) > __max_bincoeff )
 		{
 		  // This only gets hit for x << 0.
 		  __punt = true;
 		  break;
 		}
-	      __term += __bincoeff * std::pow(_Tp(1 + __j), -__s);
+	      __term += __bincoeff * std::pow(_Val(1 + __j), -__s);
 	    }
 	  if (__punt)
 	    break;
@@ -454,7 +428,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __zeta += __term;
 	  if (std::abs(__term / __zeta) < _S_eps)
 	    break;
-	  __num *= _Tp{0.5L};
+	  __num *= _Val{0.5L};
 	}
 
       __zeta /= _Tp{1} - std::pow(_Tp{2}, _Tp{1} - __s);
@@ -484,9 +458,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __riemann_zeta_product(_Tp __s)
     {
+      using _Val = __num_traits_t<_Tp>;
       extern const unsigned long __prime_list[];
 
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Val>();
       constexpr unsigned long
       _S_num_primes = sizeof(unsigned long) != 8 ? 256 : 256 + 48;
 
@@ -575,30 +550,123 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __hurwitz_zeta_euler_maclaurin(_Tp __s, _Tp __a)
     {
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
-      constexpr int _S_N = 10 + std::numeric_limits<_Tp>::digits10 / 2;
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Val>();
+      constexpr int _S_N = 10 + std::numeric_limits<_Val>::digits10 / 2;
       constexpr int _S_jmax = 99;
 
       const auto __pmax  = std::pow(_Tp{_S_N} + __a, -__s);
-      auto __ans = __pmax * ((_S_N + __a) / (__s - _Tp{1}) + _Tp{0.5L});
+      auto __ans = __pmax * ((_Tp{_S_N} + __a) / (__s - _Tp{1}) + _Tp{0.5L});
       for(auto __k = 0; __k < _S_N; ++__k)
-	__ans += std::pow(__k + __a, -__s);
+	__ans += std::pow(_Tp(__k) + __a, -__s);
 
       auto __sfact = __s;
-      auto __pfact = __pmax / (_S_N + __a);
+      auto __pfact = __pmax / (_Tp(_S_N) + __a);
       for(auto __j = 0; __j <= _S_jmax; ++__j)
 	{
-	  auto __delta = _S_Euler_Maclaurin_zeta[__j + 1] * __sfact * __pfact;
+	  auto __delta = _Tp(_S_Euler_Maclaurin_zeta[__j + 1]) * __sfact * __pfact;
 	  __ans += __delta;
-	  if(std::abs(__delta / __ans) < _Tp{0.5L} * _S_eps)
+	  if (std::abs(__delta / __ans) < _Val{0.5L} * _S_eps)
 	    break;
 	  __sfact *= (__s + _Tp(2 * __j + 1)) * (__s + _Tp(2 * __j + 2));
-	  __pfact /= (_S_N + __a) * (_S_N + __a);
+	  __pfact /= (_Tp{_S_N} + __a) * (_Tp{_S_N} + __a);
 	}
 
       return __ans;
     }
 
+  /**
+   * Table of zeta(n) - 1 from 2 - 32.
+   * MPFR - 128 bits.
+   */
+  constexpr size_t
+  _S_num_zetam1 = 33;
+
+  constexpr long double
+  _S_zetam1[_S_num_zetam1]
+  {
+    -1.5,                                           //  0
+    std::numeric_limits<long double>::infinity(),   //  1
+    6.449340668482264364724151666460251892177e-1L,  //  2
+    2.020569031595942853997381615114499907647e-1L,  //  3
+    8.232323371113819151600369654116790277462e-2L,  //  4
+    3.692775514336992633136548645703416805713e-2L,  //  5
+    1.734306198444913971451792979092052790186e-2L,  //  6
+    8.349277381922826839797549849796759599843e-3L,  //  7
+    4.077356197944339378685238508652465258950e-3L,  //  8
+    2.008392826082214417852769232412060485604e-3L,  //  9
+    9.945751278180853371459589003190170060214e-4L,  // 10
+    4.941886041194645587022825264699364686068e-4L,  // 11
+    2.460865533080482986379980477396709604160e-4L,  // 12
+    1.227133475784891467518365263573957142749e-4L,  // 13
+    6.124813505870482925854510513533374748177e-5L,  // 14
+    3.058823630702049355172851064506258762801e-5L,  // 15
+    1.528225940865187173257148763672202323739e-5L,  // 16
+    7.637197637899762273600293563029213088257e-6L,  // 17
+    3.817293264999839856461644621939730454694e-6L,  // 18
+    1.908212716553938925656957795101353258569e-6L,  // 19
+    9.539620338727961131520386834493459437919e-7L,  // 20
+    4.769329867878064631167196043730459664471e-7L,  // 21
+    2.384505027277329900036481867529949350419e-7L,  // 22
+    1.192199259653110730677887188823263872549e-7L,  // 23
+    5.960818905125947961244020793580122750393e-8L,  // 24
+    2.980350351465228018606370506936601184471e-8L,  // 25
+    1.490155482836504123465850663069862886482e-8L,  // 26
+    7.450711789835429491981004170604119454712e-9L,  // 27
+    3.725334024788457054819204018402423232885e-9L,  // 28
+    1.862659723513049006403909945416948061669e-9L,  // 29
+    9.313274324196681828717647350212198135677e-10L, // 30
+    4.656629065033784072989233251220071062704e-10L, // 31
+    2.328311833676505492001455975940495024831e-10L  // 32
+  };
+
+  /**
+   * @brief  Return the Riemann zeta function @f$ \zeta(s) - 1 @f$
+   * 	     by summation for s > 1.  This is a small remainder for large s.
+   *
+   * The Riemann zeta function is defined by:
+   *  \f[
+   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
+   *  \f]
+   */
+  template<typename _Tp>
+    _Tp
+    __riemann_zeta_m_1_sum(_Tp __s)
+    {
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      if (__s == _Tp{1})
+	return std::numeric_limits<_Val>::quiet_NaN();
+
+      int __k_max = std::min(1000000,  int(std::pow(_Tp{1} / _S_eps, _Tp{1} / __s)));
+      auto __zeta_m_1 = _Tp{0};
+      for (int __k = __k_max; __k >= 2; --__k)
+	{
+	  auto __term = std::pow(_Tp(__k), -__s);
+	  __zeta_m_1 += __term;
+	}
+
+      return __zeta_m_1;
+    }
+
+
+  /**
+   * @brief  Return the Riemann zeta function @f$ \zeta(s) - 1 @f$
+   *
+   */
+  template<typename _Tp>
+    _Tp
+    __riemann_zeta_m_1(_Tp __s)
+    {
+      if (__s == _Tp{1})
+	return std::numeric_limits<_Tp>::quiet_NaN();
+
+      auto __n = int(std::nearbyint(__s));
+      if (__s == __n && __n >= 0 && __n < _S_num_zetam1)
+	return _S_zetam1[__n];
+      else
+	return __riemann_zeta_m_1_sum(__s);
+    }
 
   /**
    *  @brief  Return the Hurwitz zeta function @f$ \zeta(s,a) @f$
@@ -617,8 +685,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline _Tp
     __hurwitz_zeta(_Tp __s, _Tp __a)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
-      constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
+      constexpr auto _S_inf = __gnu_cxx::__infinity<_Val>();
       if (__isnan(__s) || __isnan(__a))
 	return _S_NaN;
       else if (__a == _Tp{1} && __s == _Tp{1})

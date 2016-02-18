@@ -39,10 +39,28 @@ namespace __detail
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
+  /**
+   * Compute the Jacobi polynomial by recursion on x:
+   * @f[
+   *   2 k(\alpha + \beta + k) (\alpha + \beta + 2k - 2)
+   *         P^{(\alpha, \beta)}_{k}(x)
+   *     = (\alpha + \beta + 2k - 1)
+   *       ((\alpha^2 - \beta^2)
+   *        + x(\alpha + \beta + 2k - 2)(\alpha + \beta + 2k))
+   *         P^{(\alpha, \beta)}_{k-1}(x)
+   *     - 2 (\alpha + k - 1)(\beta + k - 1)(\alpha + \beta + 2k)
+   *         P^{(\alpha, \beta)}_{k-2}(x)
+   * @f]
+   */
   template<typename _Tp>
     _Tp
     __poly_jacobi(unsigned int __n, _Tp __alpha, _Tp __beta, _Tp __x)
     {
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+
+      if (__isnan(__alpha) || __isnan(__beta) || __isnan(__x))
+	return _S_NaN;
+
       auto _Pm2 = _Tp{1};
       if (__n == 0)
 	return _Pm2;
@@ -53,31 +71,50 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__n == 1)
 	return _Pm1;
 
-      _Tp _Pm0(0);
-      for (auto __j = 2; __j < __n; ++__j )
+      auto _Pm0 = _Tp{0};
+      auto __a2mb2 = __amb * __apb;
+      for (auto __k = 2; __k <= __n; ++__k )
 	{
-	  auto __japb = _Tp(__j) + __apb;
-	  auto __japb1 = __japb + _Tp{1};
-	  auto __japb2 = __japb1 + _Tp{1};
-	  auto __c = _Tp{2} * _Tp(__j + 1) * __japb * __japb1;
-	  auto __d = __japb1 * __apb * __amb;
-	  auto __e = __japb * __japb1 * __japb2;
-	  auto __f = _Tp{2} * (__j + __alpha) * (__j + __beta) * __japb2;
-
-	  if (__c == _Tp{0})
-	    std::__throw_runtime_error("poly_jacobi: error in recursion");
-	  _Pm0 = ((__d + __e * __x) * _Pm1 - __f * _Pm2) / __c;
+	  auto __apbpk = __apb + _Tp(__k);
+	  auto __apbp2k = __apbpk + _Tp(__k);
+	  auto __apbp2km1 = __apbp2k - _Tp{1};
+	  auto __apbp2km2 = __apbp2km1 - _Tp{1};
+	  auto __d = _Tp{2} * __k * __apbpk * __apbp2km2;
+	  auto __a = __apbp2km2 * __apbp2km1 * __apbp2k;
+	  auto __b = __apbp2km1 * __a2mb2;
+	  auto __c = _Tp{2} * (__alpha + _Tp(__k - 1))
+			    * (__beta + _Tp(__k - 1)) * __apbp2k;
+	  if (__d == _Tp{0})
+	    std::__throw_runtime_error("__poly_jacobi: error in recursion");
+	  _Pm0 = ((__b + __a * __x) * _Pm1 - __c * _Pm2) / __d;
 	  _Pm2 = _Pm1;
 	  _Pm1 = _Pm0;
 	}
       return _Pm0;
     }
+/*
 
+  P^{(a,b)}_{k}(z) =
+
+    (a+b+2k-1)((a-b)(a+b) + z(a+b+2k-2)(a+b+2k))
+    -------------------------------------------- P^{(a,b)}_{k-1}(z)
+             2 k(a+b+k)(a+b+2k-2)
+
+       2(a+k-1)(b+k-1)(a+b+2k)
+    -  ----------------------- P^{(a,b)}_{k-2}(z)
+	 2 k(a+b+k)(a+b+2k-2)
+
+*/
 
   template<typename _Tp>
     _Tp
     __poly_radial_jacobi(unsigned int __n, unsigned int __m, _Tp __rho)
     {
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+
+      if (__isnan(__rho))
+	return _S_NaN;
+
       if (__m > __n)
 	throw std::range_error("poly_radial_jacobi: m > n");
       else if ((__n - __m) % 2 == 1)
@@ -91,8 +128,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
     }
 
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    __zernike(unsigned int __n, int __m, _Tp __rho, _Tp __phi)
+    {
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+
+      if (__isnan(__rho) || __isnan(__phi))
+	return _S_NaN;
+      else
+        return __poly_radial_jacobi(__n, std::abs(__m), __rho)
+	     * (__m >= 0 ? std::cos(__m * __phi) : std::sin(__m * __phi));
+    }
+
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
-}
+} // namespace std
 
 #endif // _GLIBCXX_SF_JACOBI_TCC
