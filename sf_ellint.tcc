@@ -572,7 +572,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (std::abs(__k) == _Val{1})
 	return _S_NaN;
       else
-	return __ellint_rf(_Tp{0}, _Tp{1} - __k * __k, _Tp{1});
+	return __comp_ellint_rf(_Tp{1} - __k * __k, _Tp{1});
     }
 
   /**
