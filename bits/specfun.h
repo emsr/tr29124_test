@@ -74,6 +74,7 @@
 #  include <bits/sf_theta.tcc>
 #  include <bits/sf_trigint.tcc>
 #  include <bits/sf_zeta.tcc>
+#  include <bits/sf_owens_t.tcc>
 #  include <bits/sf_polylog.tcc>
 #  include <bits/sf_airy.tcc>
 #  include <bits/sf_hankel.tcc>
@@ -2046,6 +2047,114 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
       return std::__detail::__clausen<__type>(__m, __w);
+    }
+
+  // Theta_1 functions.
+
+  inline float
+  theta_1f(float __nu, float __x)
+  { return std::__detail::__theta_1<float>(__nu, __x); }
+
+  inline long double
+  theta_1l(long double __nu, long double __x)
+  { return std::__detail::__theta_1<long double>(__nu, __x); }
+
+  template<typename _Tpnu, typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tpnu, _Tp>
+    theta_1(_Tpnu __nu, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tpnu, _Tp>;
+      return std::__detail::__theta_1<__type>(__nu, __x);
+    }
+
+  // Theta_2 functions.
+
+  inline float
+  theta_2f(float __nu, float __x)
+  { return std::__detail::__theta_2<float>(__nu, __x); }
+
+  inline long double
+  theta_2l(long double __nu, long double __x)
+  { return std::__detail::__theta_2<long double>(__nu, __x); }
+
+  template<typename _Tpnu, typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tpnu, _Tp>
+    theta_2(_Tpnu __nu, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tpnu, _Tp>;
+      return std::__detail::__theta_2<__type>(__nu, __x);
+    }
+
+  // Theta_3 functions.
+
+  inline float
+  theta_3f(float __nu, float __x)
+  { return std::__detail::__theta_3<float>(__nu, __x); }
+
+  inline long double
+  theta_3l(long double __nu, long double __x)
+  { return std::__detail::__theta_3<long double>(__nu, __x); }
+
+  template<typename _Tpnu, typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tpnu, _Tp>
+    theta_3(_Tpnu __nu, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tpnu, _Tp>;
+      return std::__detail::__theta_3<__type>(__nu, __x);
+    }
+
+  // Theta_4 functions.
+
+  inline float
+  theta_4f(float __nu, float __x)
+  { return std::__detail::__theta_4<float>(__nu, __x); }
+
+  inline long double
+  theta_4l(long double __nu, long double __x)
+  { return std::__detail::__theta_4<long double>(__nu, __x); }
+
+  template<typename _Tpnu, typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tpnu, _Tp>
+    theta_4(_Tpnu __nu, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tpnu, _Tp>;
+      return std::__detail::__theta_4<__type>(__nu, __x);
+    }
+
+  // Elliptic nome function
+
+  inline float
+  ellnomef(float __x)
+  { return std::__detail::__ellnome<float>(__x); }
+
+  inline long double
+  ellnomel(long double __x)
+  { return std::__detail::__ellnome<long double>(__x); }
+
+  template<typename _Tp>
+    inline _Tp
+    ellnome(_Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__ellnome<__type>(__x);
+    }
+
+  // Owens T functions.
+
+  inline float
+  owens_tf(float __a, float __h)
+  { return std::__detail::__owens_t<float>(__a, __h); }
+
+  inline long double
+  owens_tl(long double __a, long double __h)
+  { return std::__detail::__owens_t<long double>(__a, __h); }
+
+  template<typename _Tpa, typename _Tph>
+    inline __gnu_cxx::__promote_num_t<_Tpa, _Tph>
+    owens_t(_Tpa __a, _Tph __h)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tpa, _Tph>;
+      return std::__detail::__owens_t<__type>(__a, __h);
     }
 
 #endif // __cplusplus >= 201103L

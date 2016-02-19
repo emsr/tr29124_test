@@ -72,24 +72,49 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline constexpr _Tp
-    __l1_norm(const std::complex<_Tp>& z)
-    { return std::abs(std::real(z)) + std::abs(std::imag(z)); }
+    __l1_norm(const std::complex<_Tp>& __z)
+    { return std::abs(std::real(__z)) + std::abs(std::imag(__z)); }
 
   /**
-   * Return the L2 norm modulus or the Manhattan metric distance of a complex number.
+   * Return the L2 norm modulus or the Euclidean metric distance of a complex number.
    */
   template<typename _Tp>
     inline constexpr _Tp
-    __l2_norm(const std::complex<_Tp>& z)
-    { return std::norm(z); }
+    __l2_norm(const std::complex<_Tp>& __z)
+    { return std::norm(__z); }
 
   /**
    * Return the Linf norm modulus of a complex number.
    */
   template<typename _Tp>
     inline constexpr _Tp
-    __linf_norm(const std::complex<_Tp>& z)
-    { return std::max(std::abs(std::real(z)), std::abs(std::imag(z))); }
+    __linf_norm(const std::complex<_Tp>& __z)
+    { return std::max(std::abs(std::real(__z)), std::abs(std::imag(__z))); }
+
+
+  /**
+   * Return the L1 norm modulus or the Manhattan metric distance of a real number.
+   */
+  template<typename _Tp>
+    inline constexpr _Tp
+    __l1_norm(_Tp __x)
+    { return std::abs(__x); }
+
+  /**
+   * Return the L2 norm modulus or the Euclidean metric distance of a real number.
+   */
+  template<typename _Tp>
+    inline constexpr _Tp
+    __l2_norm(_Tp __x)
+    { return std::abs(__x); }
+
+  /**
+   * Return the Linf norm modulus of a real number.
+   */
+  template<typename _Tp>
+    inline constexpr _Tp
+    __linf_norm(_Tp __x)
+    { return std::abs(__x); }
 
 
   /**
