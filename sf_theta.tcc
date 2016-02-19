@@ -223,7 +223,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     _Tp
-    __ellint_nome_series(_Tp __k)
+    __ellnome_series(_Tp __k)
     {
       auto __m = __k * __k; 
       return __m * ((_Tp{1} / _Tp{16})
@@ -239,7 +239,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     _Tp
-    __ellint_nome_k(_Tp __k)
+    __ellnome_k(_Tp __k)
     {
       constexpr auto _S_pi = _Tp{3.1415926535897932384626433832795029Q};
       auto __kp = std::sqrt((_Tp{1} - __k) * (_Tp{1} + __k));
@@ -253,18 +253,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     _Tp
-    __ellint_nome(_Tp __k)
+    __ellnome(_Tp __k)
     {
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       if (__isnan(__k))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (std::abs(__k) > _Tp{1})
-	throw std::domain_error("__ellint_nome:"
+	throw std::domain_error("__ellnome:"
 				" argument k out of range");
       else if (__k < std::pow(_Tp{67} * _S_eps, _Tp{0.125Q}))
-	return __ellint_nome_series(__k);
+	return __ellnome_series(__k);
       else
-	return __ellint_nome_k(__k);
+	return __ellnome_k(__k);
     }
 
   /**
@@ -278,7 +278,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Val>::__pi_half;
 
-      if (__isnan(__nu) || __isnan(__x))
+      if (__isnan(__k) || __isnan(__x))
 	return _S_NaN;
       else if (std::abs(__k) > _Tp{1})
 	throw std::domain_error("__theta_s:"
@@ -287,7 +287,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  auto __kc = std::sqrt((_Tp{1} - __k) * (_Tp{1} + __k));
 	  auto _Kk = __comp_ellint_1(__k);
-	  auto __q = __ellint_nome(k);
+	  auto __q = __ellnome(__k);
 	  return std::sqrt(_S_pi_2 / (__k * __kc * _Kk))
 	       * __theta_1(__q, _S_pi_2 * __x / _Kk);
 	}
@@ -304,7 +304,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Val>::__pi_half;
 
-      if (__isnan(__nu) || __isnan(__x))
+      if (__isnan(__k) || __isnan(__x))
 	return _S_NaN;
       else if (std::abs(__k) > _Tp{1})
 	throw std::domain_error("__theta_c:"
@@ -312,7 +312,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
 	{
 	  auto _Kk = __comp_ellint_2(__k);
-	  auto __q = __ellint_nome(k);
+	  auto __q = __ellnome(__k);
 	  return std::sqrt(_S_pi_2 / (__k * _Kk))
 	       * __theta_2(__q, _S_pi_2 * __x / _Kk);
 	}
@@ -329,7 +329,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Val>::__pi_half;
 
-      if (__isnan(__nu) || __isnan(__x))
+      if (__isnan(__k) || __isnan(__x))
 	return _S_NaN;
       else if (std::abs(__k) > _Tp{1})
 	throw std::domain_error("__theta_d:"
@@ -337,7 +337,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
 	{
 	  auto _Kk = __comp_ellint_2(__k);
-	  auto __q = __ellint_nome(k);
+	  auto __q = __ellnome(__k);
 	  return std::sqrt(_S_pi_2 / _Kk)
 	       * __theta_3(__q, _S_pi_2 * __x / _Kk);
 	}
@@ -354,7 +354,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Val>::__pi_half;
 
-      if (__isnan(__nu) || __isnan(__x))
+      if (__isnan(__k) || __isnan(__x))
 	return _S_NaN;
       else if (std::abs(__k) > _Tp{1})
 	throw std::domain_error("__theta_n:"
@@ -363,7 +363,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  auto __kc = std::sqrt((_Tp{1} - __k) * (_Tp{1} + __k));
 	  auto _Kk = __comp_ellint_1(__k);
-	  auto __q = __ellint_nome(k);
+	  auto __q = __ellnome(__k);
 	  return std::sqrt(_S_pi_2 / (__kc * _Kk))
 	       * __theta_4(__q, _S_pi_2 * __x / _Kk);
 	}
