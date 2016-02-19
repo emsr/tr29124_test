@@ -47,7 +47,7 @@ template<typename _Tp>
 	//	      / (216 * __s * (2 * __s - 1));
 	auto __a = _S_cn.back()
 		 * (_Tp(__s - 1) / _Tp{2} + _Tp{5} / _Tp(72 * __s));
-	auto __b = -__a * (__s + _S_1d6) / (__s - _S_1d6);
+	auto __b = -__a * _Tp(__s + _S_1d6) / _Tp(__s - _S_1d6);
 	if (std::isnan(__a) || std::isinf(__a)
 	 || std::isnan(__b) || std::isinf(__b))
 	  break;

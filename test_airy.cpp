@@ -1,4 +1,4 @@
-// $HOME/bin_specfun/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_airy test_airy.cpp gsl_wrap.cpp -lgsl -lgslcblas
+// $HOME/bin_specfun/bin/g++ -std=gnu++1z -o test_airy test_airy.cpp gsl_wrap.cpp -lgsl -lgslcblas
 
 // LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_airy
 
