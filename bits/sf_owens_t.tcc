@@ -1,0 +1,321 @@
+// TR29124 math special functions -*- C++ -*-
+
+// Copyright (C) 2016 Free Software Foundation, Inc.
+//
+// This file is part of the GNU ISO C++ Library.  This library is free
+// software; you can redistribute it and/or modify it under the
+// terms of the GNU General Public License as published by the
+// Free Software Foundation; either version 3, or (at your option)
+// any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// Under Section 7 of GPL version 3, you are granted additional
+// permissions described in the GCC Runtime Library Exception, version
+// 3.1, as published by the Free Software Foundation.
+
+// You should have received a copy of the GNU General Public License and
+// a copy of the GCC Runtime Library Exception along with this program;
+// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+// <http://www.gnu.org/licenses/>.
+
+/** @file bits/sf_owens_t.tcc
+ *  This is an internal header file, included by other library headers.
+ *  You should not attempt to use it directly.
+ */
+
+#ifndef _GLIBCXX_BITS_SF_OWENS_T_TCC
+#define _GLIBCXX_BITS_SF_OWENS_T_TCC 1
+
+#pragma GCC system_header
+
+namespace std _GLIBCXX_VISIBILITY(default)
+{
+// Implementation-space details.
+namespace __detail
+{
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
+template<typename _Tp>
+  _Tp
+  __owens_t(_Tp __a, _Tp __h)
+  {
+    constexpr _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
+    constexpr _Tp _S_a_range[7]
+    {
+      0.025,
+      0.09,
+      0.15,
+      0.36,
+      0.5,
+      0.9,
+      0.99999
+    };
+
+    constexpr _Tp _S_c2[21]
+    {
+       0.99999999999999987510,
+      -0.99999999999988796462,
+       0.99999999998290743652,
+      -0.99999999896282500134,
+       0.99999996660459362918,
+      -0.99999933986272476760,
+       0.99999125611136965852,
+      -0.99991777624463387686,
+       0.99942835555870132569,
+      -0.99697311720723000295,
+       0.98751448037275303682,
+      -0.95915857980572882813,
+       0.89246305511006708555,
+      -0.76893425990463999675,
+       0.58893528468484693250,
+      -0.38380345160440256652,
+       0.20317601701045299653,
+      -0.82813631607004984866E-01,
+       0.24167984735759576523E-01,
+      -0.44676566663971825242E-02,
+       0.39141169402373836468E-03
+    };
+
+    constexpr _Tp _S_h_range[14]
+    {
+      0.02, 0.06, 0.09, 0.125, 0.26, 0.4,  0.6,
+      1.6,  1.7,  2.33, 2.4,   3.36, 3.4,  4.8
+    };
+
+    constexpr int _S_method[18]
+    {
+      1, 1, 1, 1, 1, 1, 1, 1, 2,
+      2, 2, 3, 4, 4, 4, 4, 5, 6
+    };
+
+    constexpr int _S_ord[18]
+    {
+       2,  3,  4,  5,  7, 10, 12, 18, 10,
+      20, 30, 20,  4,  7,  8, 20, 13,  0
+    };
+
+    constexpr _Tp _S_pts[13]
+    {
+      0.35082039676451715489E-02,
+      0.31279042338030753740E-01,
+      0.85266826283219451090E-01,
+      0.16245071730812277011,
+      0.25851196049125434828,
+      0.36807553840697533536,
+      0.48501092905604697475,
+      0.60277514152618576821,
+      0.71477884217753226516,
+      0.81475510988760098605,
+      0.89711029755948965867,
+      0.95723808085944261843,
+      0.99178832974629703586
+    };
+
+    constexpr _Tp _S_sqrt_pi = 0.39894228040143267794;
+    constexpr _Tp _S_rtwopi = 0.15915494309189533577;
+
+    constexpr int _S_select[8][15]
+    {
+      {1,  1,  2, 13, 13, 13, 13, 13, 13, 13, 13, 16, 16, 16,  9},
+      {1,  2,  2,  3,  3,  5,  5, 14, 14, 15, 15, 16, 16, 16,  9},
+      {2,  2,  3,  3,  3,  5,  5, 15, 15, 15, 15, 16, 16, 16, 10},
+      {2,  2,  3,  5,  5,  5,  5,  7,  7, 16, 16, 16, 16, 16, 10},
+      {2,  3,  3,  5,  5,  6,  6,  8,  8, 17, 17, 17, 12, 12, 11},
+      {2,  3,  5,  5,  5,  6,  6,  8,  8, 17, 17, 17, 12, 12, 12},
+      {2,  3,  4,  4,  6,  6,  8,  8, 17, 17, 17, 17, 17, 12, 12},
+      {2,  3,  4,  4,  6,  6, 18, 18, 18, 18, 17, 17, 17, 12, 12}
+    };
+
+    constexpr _Tp _S_wts[13]
+    {
+      0.18831438115323502887E-01,
+      0.18567086243977649478E-01,
+      0.18042093461223385584E-01,
+      0.17263829606398753364E-01,
+      0.16243219975989856730E-01,
+      0.14994592034116704829E-01,
+      0.13535474469662088392E-01,
+      0.11886351605820165233E-01,
+      0.10070377242777431897E-01,
+      0.81130545742299586629E-02,
+      0.60419009528470238773E-02,
+      0.38862217010742057883E-02,
+      0.16793031084546090448E-02
+    };
+
+    //  Determine appropriate method from t1...t6
+
+    auto __ihint = 14;
+    for (int __i = 0; __i < 14; ++__i)
+      if (h <= _S_h_range[__i])
+	{
+	  ihint = __i;
+	  break;
+	}
+
+    auto __iaint = 7;
+    for (int __i = 0; __i < 7; ++__i)
+      if (a <= _S_a_range[i])
+	{
+	  iaint = __i;
+	  break;
+	}
+
+    auto __icode = _S_select[__iaint][__ihint];
+    auto __m = _S_ord[__icode];
+
+    if (_S_method[__icode] == 1)
+      {
+	//  t1(h, a, m) ; m = 2, 3, 4, 5, 7, 10, 12 or 18
+	//  jj = 2j - 1 ; gj = exp(-h*h/2) * (-h*h/2)**j / j!
+	//  aj = a**(2j-1) / (2*pi)
+	auto __hs = - 0.5 * __h * __h;
+	auto __dhs = std::exp(hs);
+	auto __as = a * a;
+	auto __j = 1;
+	auto __jj = 1;
+	auto __aj = _S_rtwopi * __a;
+	auto __value = _S_rtwopi * std::atan(__a);
+	auto __dj = __dhs - 1.0;
+	auto __gj = __hs * __dhs;
+
+	while (true)
+	  {
+	    __value += __dj * __aj / __jj;
+
+	    if (__m <= __j)
+              return __value;
+
+	    ++__j = __j;
+	    __jj += 2;
+	    __aj *= __as;
+	    __dj = __gj - __dj;
+	    __gj *= __hs / __j;
+	  }
+      }
+    else if (_S_method[__icode] == 2)
+      {
+	//  t2(h, a, m) ; m = 10, 20 or 30
+	//  z = (-1)^(i-1) * zi ; ii = 2i - 1
+	//  vi = (-1)^(i-1) * a^(2i-1) * exp[-(a*h)^2/2] / sqrt(2*pi)
+	auto __maxii = __m + __m + 1;
+	auto __ii = 1;
+	auto __value = 0.0;
+	auto __hs = __h * __h;
+	auto __as = -__a * __a;
+	auto __ah = __a * __h;
+	auto __vi = _S_sqrt_pi * __a * std::exp(- 0.5 * __ah * __ah);
+	auto __z = __l1_norm(__ah) / __h;
+	auto __y = 1.0 / __hs;
+
+	while (true)
+	  {
+	    __value += __z;
+
+	    if (__maxii <= __ii)
+	      {
+        	__value *= _S_sqrt_pi * std::exp(- 0.5 *__ hs);
+        	return __value;
+	      }
+
+	    __z = __y * (__vi - __ii * __z);
+	    __vi *= __as;
+	    __ii += 2;
+	  }
+      }
+    else if (_S_method[__icode] == 3)
+      {
+	//  t3(h, a, m) ; m = 20
+	//  ii = 2i - 1
+	//  vi = a**(2i-1) * exp[-(a*h)**2/2] / sqrt(2*pi)
+	auto __i = 1;
+	auto __ii = 1;
+	auto __value = 0.0;
+	auto __hs = __h * __h;
+	auto __as = __a * __a;
+	auto __ah = __a * __h;
+	auto __vi = _S_sqrt_pi * __a * std::exp(- 0.5 * __ah * __ah);
+	auto __zi = __l1_norm(__ah) / __h;
+	auto __y = 1.0 / __hs;
+
+	while (true)
+	  {
+	    __value += __zi * _S_c2[__i];
+
+	    if (__m < i)
+	      {
+        	__value *= _S_sqrt_pi * std::exp (- 0.5 * __hs);
+        	return __value;
+	      }
+
+	    __zi = __y  * (__ii * __zi - __vi);
+	    __vi *= __as;
+	    ++__i;
+	    __ii += 2;
+
+	  }
+      }
+    else if (_S_method[__icode] == 4)
+      {
+	//  t4(h, a, m) ; m = 4, 7, 8 or 20;  ii = 2i + 1
+	//  ai = a * exp[-h*h*(1+a*a)/2] * (-a*a)^i / (2*pi)
+	auto __maxii = m + m + 1;
+	auto __ii = 1;
+	auto __hs = h * h;
+	auto __as = -a * a;
+	auto __value = 0.0;
+	auto __ai = _S_rtwopi * a * std::exp(- 0.5 * hs * (1.0 - as));
+	auto __yi = 1.0;
+
+	while (true)
+	  {
+	    __value += __ai * __yi;
+
+	    if (__maxii <= ii)
+              return __value;
+
+	    __ii += 2;
+	    __yi = (1.0 - __hs * __yi) / __ii;
+	    __ai *= __as;
+	  }
+      }
+    else if (_S_method[__icode] == 5)
+      {
+	//  t5(h, a, m) ; m = 13
+	//  2m - point gaussian quadrature
+	auto __value = 0.0;
+	auto __as = __a * __a;
+	auto __hs = - 0.5 * __h * __h;
+	for (int __i = 0; __i < __m; ++__i)
+	  {
+	    auto __r = 1.0 + __as * _S_pts[__i];
+	    __value += _S_wts[__i] * std::exp(__hs * __r) / __r;
+	  }
+	__value *= __a;
+	return __value;
+      }
+    else if (_S_method[__icode] == 6)
+      {
+	//  t6(h, a);  approximation for a near 1, (a<=1)
+	auto __normh = __l2_norm(__h);
+	auto __value = 0.5 * __normh * (1.0 - __normh);
+	auto __y = 1.0 - __a;
+	auto __r = std::atan2(__y, 1.0 + __a);
+
+	if (std::abs(__r) < _S_eps)
+	  __value -= _S_rtwopi * __r * std::exp (- 0.5 * __y * __h * __h / __r);
+	return value;
+      }
+
+    return 0.0;
+  }
+
+_GLIBCXX_END_NAMESPACE_VERSION
+} // namespace __detail
+} // namespace std
+
+#endif // _GLIBCXX_BITS_SF_OWENS_T_TCC
