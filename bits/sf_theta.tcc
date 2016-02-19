@@ -41,6 +41,9 @@ namespace __detail
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
+  /**
+   *  Compute and return the \theta_1 function by series expansion.
+   */
   template<typename _Tp>
     _Tp
     __theta_2_sum(_Tp __nu, _Tp __x)
@@ -66,6 +69,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __sum / std::sqrt(_S_pi * __x);
     }
 
+  /**
+   *  Compute and return the \theta_3 function by series expansion.
+   */
   template<typename _Tp>
     _Tp
     __theta_3_sum(_Tp __nu, _Tp __x)
@@ -89,6 +95,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __sum / std::sqrt(_S_pi * __x);
     }
 
+  /**
+   *  Compute and return the \theta_3 function by series expansion.
+   */
   template<typename _Tp>
     _Tp
     __theta_2_asymp(_Tp __nu, _Tp __x)
@@ -111,6 +120,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return _Tp{2} * __sum;
     }
 
+  /**
+   *  Compute and return the \theta_3 function by asymptotic series expansion.
+   */
   template<typename _Tp>
     _Tp
     __theta_3_asymp(_Tp __nu, _Tp __x)
@@ -133,6 +145,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return _Tp{1} + _Tp{2} * __sum;
     }
 
+  /**
+   *  Return the \theta_2 function
+   */
   template<typename _Tp>
     _Tp
     __theta_2(_Tp __nu, _Tp __x)
@@ -149,6 +164,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __theta_2_asymp(__nu, __x);
     }
 
+  /**
+   *  Return the \theta_1 function
+   */
   template<typename _Tp>
     _Tp
     __theta_1(_Tp __nu, _Tp __x)
@@ -163,6 +181,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __theta_2(__nu - _Tp{0.5L}, __x);
     }
 
+  /**
+   *  Return the \theta_3 function
+   */
   template<typename _Tp>
     _Tp
     __theta_3(_Tp __nu, _Tp __x)
@@ -179,6 +200,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __theta_3_asymp(__nu, __x);
     }
 
+  /**
+   *  Return the \theta_4 function
+   */
   template<typename _Tp>
     _Tp
     __theta_4(_Tp __nu, _Tp __x)
@@ -193,6 +217,162 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __theta_3(__nu + _Tp{0.5L}, __x);
     }
 
+  /**
+   *  Use MacLaurin series to calculate the elliptic nome
+   *  given the , k.
+   */
+  template<typename _Tp>
+    _Tp
+    __ellnome_series(_Tp __k)
+    {
+      auto __m = __k * __k; 
+      return __m * ((_Tp{1} / _Tp{16})
+	   + __m * ((_Tp{1} / _Tp{32})
+	   + __m * ((_Tp{21} / _Tp{1024})
+	   + __m * ((_Tp{31} / _Tp{2048})
+	   + __m * (_Tp{6257} / _Tp{524288})))));
+    }
+
+  /**
+   *  Use the arithmetic-geometric mean to calculate the elliptic nome
+   *  given the , k.
+   */
+  template<typename _Tp>
+    _Tp
+    __ellnome_k(_Tp __k)
+    {
+      constexpr auto _S_pi = _Tp{3.1415926535897932384626433832795029Q};
+      auto __kp = std::sqrt((_Tp{1} - __k) * (_Tp{1} + __k));
+      auto __K = __comp_ellint_1(__k);
+      auto __Kp = __comp_ellint_1(__kp);
+      return std::exp(-_S_pi * __Kp / __K);
+    }
+
+  /**
+   *  Return the elliptic nome given the , k.
+   */
+  template<typename _Tp>
+    _Tp
+    __ellnome(_Tp __k)
+    {
+      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      if (__isnan(__k))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (std::abs(__k) > _Tp{1})
+	throw std::domain_error("__ellnome:"
+				" argument k out of range");
+      else if (__k < std::pow(_Tp{67} * _S_eps, _Tp{0.125Q}))
+	return __ellnome_series(__k);
+      else
+	return __ellnome_k(__k);
+    }
+
+  /**
+   *  Return the Neville \theta_s function
+   */
+  template<typename _Tp>
+    _Tp
+    __theta_s(_Tp __k, _Tp __x)
+    {
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
+      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Val>::__pi_half;
+
+      if (__isnan(__k) || __isnan(__x))
+	return _S_NaN;
+      else if (std::abs(__k) > _Tp{1})
+	throw std::domain_error("__theta_s:"
+				" argument k out of range");
+      else
+	{
+	  auto __kc = std::sqrt((_Tp{1} - __k) * (_Tp{1} + __k));
+	  auto _Kk = __comp_ellint_1(__k);
+	  auto __q = __ellnome(__k);
+	  return std::sqrt(_S_pi_2 / (__k * __kc * _Kk))
+	       * __theta_1(__q, _S_pi_2 * __x / _Kk);
+	}
+    }
+
+  /**
+   *  Return the Neville \theta_c function
+   */
+  template<typename _Tp>
+    _Tp
+    __theta_c(_Tp __k, _Tp __x)
+    {
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
+      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Val>::__pi_half;
+
+      if (__isnan(__k) || __isnan(__x))
+	return _S_NaN;
+      else if (std::abs(__k) > _Tp{1})
+	throw std::domain_error("__theta_c:"
+				" argument k out of range");
+      else
+	{
+	  auto _Kk = __comp_ellint_2(__k);
+	  auto __q = __ellnome(__k);
+	  return std::sqrt(_S_pi_2 / (__k * _Kk))
+	       * __theta_2(__q, _S_pi_2 * __x / _Kk);
+	}
+    }
+
+  /**
+   *  Return the Neville \theta_d function
+   */
+  template<typename _Tp>
+    _Tp
+    __theta_d(_Tp __k, _Tp __x)
+    {
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
+      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Val>::__pi_half;
+
+      if (__isnan(__k) || __isnan(__x))
+	return _S_NaN;
+      else if (std::abs(__k) > _Tp{1})
+	throw std::domain_error("__theta_d:"
+				" argument k out of range");
+      else
+	{
+	  auto _Kk = __comp_ellint_2(__k);
+	  auto __q = __ellnome(__k);
+	  return std::sqrt(_S_pi_2 / _Kk)
+	       * __theta_3(__q, _S_pi_2 * __x / _Kk);
+	}
+    }
+
+  /**
+   *  Return the Neville \theta_n function
+   */
+  template<typename _Tp>
+    _Tp
+    __theta_n(_Tp __k, _Tp __x)
+    {
+      using _Val = __num_traits_t<_Tp>;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
+      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Val>::__pi_half;
+
+      if (__isnan(__k) || __isnan(__x))
+	return _S_NaN;
+      else if (std::abs(__k) > _Tp{1})
+	throw std::domain_error("__theta_n:"
+				" argument k out of range");
+      else
+	{
+	  auto __kc = std::sqrt((_Tp{1} - __k) * (_Tp{1} + __k));
+	  auto _Kk = __comp_ellint_1(__k);
+	  auto __q = __ellnome(__k);
+	  return std::sqrt(_S_pi_2 / (__kc * _Kk))
+	       * __theta_4(__q, _S_pi_2 * __x / _Kk);
+	}
+    }
+
+  /**
+   *  Return a tuple of the three primary Jacobi elliptic functions:
+   *  sn(k, u), cn(k, u), dn(k, u).
+   */
   template<typename _Tp>
     std::tuple<_Tp, _Tp, _Tp>
     __jacobi_sncndn(_Tp __k, _Tp __u)
@@ -205,7 +385,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::make_tuple(_S_NaN, _S_NaN, _S_NaN);
       else if (std::abs(__k) > _Tp{1})
 	throw std::domain_error("__jacobi_sncndn:"
-			" argument k out of range");
+				" argument k out of range");
       else if (std::abs(_Tp{1} - __k) < _Tp{2} * _S_eps)
 	{
 	  auto __sn = std::tanh(__u);
