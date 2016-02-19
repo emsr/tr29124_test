@@ -35,8 +35,8 @@
 #include <math.h>
 #include <ctype.h> /* for isalnum */
 
-#include "gmp.h"
-#include "mpfr.h"
+#include <gmp.h>
+#include <mpfr.h>
 
 #if (MPFR_VERSION <= MPFR_VERSION_NUM(2,1,0))
 #error "mpfr version should be >= 2.1.0"
@@ -187,40 +187,63 @@ mpfr_ceil_dummy (mpfr_ptr rop, mpfr_srcptr op, mp_rnd_t rmode)
 struct functions fns[] =
 {
   {"abs", mpfr_abs},
-  {"log2", mpfr_log2},
-  {"log10", mpfr_log10},
-  {"log", mpfr_log},
-  {"exp", mpfr_exp},
-  {"sqrt", mpfr_sqrt},
-  {"floor", mpfr_floor_dummy},
-  {"ceil", mpfr_ceil_dummy},
-  {"sin", mpfr_sin},
-  {"cos", mpfr_cos},
-  {"tan", mpfr_tan},
-  {"asin", mpfr_asin},
   {"acos", mpfr_acos},
-  {"atan", mpfr_atan},
-  {"sinh", mpfr_sinh},
-  {"cosh", mpfr_cosh},
-  {"tanh", mpfr_tanh},
-  {"asinh", mpfr_asinh},
   {"acosh", mpfr_acosh},
+  {"asin", mpfr_asin},
+  {"asinh", mpfr_asinh},
+  {"atan", mpfr_atan},
   {"atanh", mpfr_atanh},
-  {"expm1", mpfr_expm1},
-  {"gamma", mpfr_gamma},
-  {"zeta", mpfr_zeta},
+  {"atan2", mpfr_atan2},
+  {"ceil", mpfr_ceil_dummy},
+  {"cos", mpfr_cos},
+  {"cosh", mpfr_cosh},
+  {"exp", mpfr_exp},
   {"erf", mpfr_erf},
+  {"expm1", mpfr_expm1},
+  {"floor", mpfr_floor_dummy},
+  {"gamma", mpfr_gamma},
+  {"log", mpfr_log},
+  {"log10", mpfr_log10},
+  {"log2", mpfr_log2},
+  {"pow", mpfr_pow},
+  {"sin", mpfr_sin},
+  {"sinh", mpfr_sinh},
+  {"sqrt", mpfr_sqrt},
+  {"tan", mpfr_tan},
+  {"tanh", mpfr_tanh},
+  {"zeta", mpfr_zeta},
 // 2005.0922
 // appended functions to mpfr-2.2.0
-  {"sec", mpfr_sec},
-  {"csc", mpfr_csc},
+#if (MPFR_VERSION >= MPFR_VERSION_NUM(2,2,0))
   {"cot", mpfr_cot},
-  {"sech", mpfr_sech},
-  {"csch", mpfr_csch},
   {"coth", mpfr_coth},
+  {"csc", mpfr_csc},
+  {"csch", mpfr_csch},
   {"eint", mpfr_eint},
-  {"lngamma", mpfr_lngamma},
   {"erfc", mpfr_erfc},
+  {"lngamma", mpfr_lngamma},
+  {"root", mpfr_root},
+  {"sec", mpfr_sec},
+  {"sech", mpfr_sech},
+#endif
+#if (MPFR_VERSION >= MPFR_VERSION_NUM(2,3,0))
+  {"j0", mpfr_j0},
+  {"j1", mpfr_j1},
+  {"jn", mpfr_jn},
+  {"lgamma", mpfr_lgamma},
+  {"y0", mpfr_y0},
+  {"y1", mpfr_y1},
+  {"yn", mpfr_yn},
+#endif
+  {"expm1", mpfr_expm1},
+  {"exp10", mpfr_exp10},
+  {"exp2", mpfr_exp2},
+  {"li2", mpfr_li2}, // 2.4
+#if (MPFR_VERSION >= MPFR_VERSION_NUM(3,0,0))
+  {"ai", mpfr_ai}, // 3.0
+  //{"bi", mpfr_bi},
+  {"digamma", mpfr_digamma}, // 3.0
+#endif
   {0, 0}
 };
 

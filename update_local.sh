@@ -32,6 +32,8 @@ ${tool} sf_jacobi.tcc          bits
 ${tool} sf_laguerre.tcc        bits
 ${tool} sf_legendre.tcc        bits
 ${tool} sf_mod_bessel.tcc      bits
+${tool} sf_owens_t.tcc         bits
+${tool} sf_polylog.tcc         bits
 ${tool} sf_theta.tcc           bits
 ${tool} sf_trigint.tcc         bits
 ${tool} sf_zeta.tcc            bits  

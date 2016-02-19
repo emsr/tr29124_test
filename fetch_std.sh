@@ -33,6 +33,7 @@ ${tool} ${gcc_dir}/sf_mod_bessel.tcc ./sf_mod_bessel.tcc
 ${tool} ${gcc_dir}/sf_theta.tcc      ./sf_theta.tcc
 ${tool} ${gcc_dir}/sf_trigint.tcc    ./sf_trigint.tcc
 ${tool} ${gcc_dir}/sf_zeta.tcc       ./sf_zeta.tcc
+${tool} ${gcc_dir}/sf_owens_t.tcc    ./sf_owens_t.tcc
 ${tool} ${gcc_dir}/sf_polylog.tcc    ./sf_polylog.tcc
 ${tool} ${gcc_dir}/sf_airy.tcc       ./sf_airy.tcc
 ${tool} ${gcc_dir}/sf_hankel.tcc     ./sf_hankel.tcc
