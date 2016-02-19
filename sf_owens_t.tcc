@@ -32,6 +32,8 @@
 
 #pragma GCC system_header
 
+#include <bits/complex_util.h>
+
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 // Implementation-space details.
@@ -151,17 +153,17 @@ template<typename _Tp>
 
     auto __ihint = 14;
     for (int __i = 0; __i < 14; ++__i)
-      if (h <= _S_h_range[__i])
+      if (__h <= _S_h_range[__i])
 	{
-	  ihint = __i;
+	  __ihint = __i;
 	  break;
 	}
 
     auto __iaint = 7;
     for (int __i = 0; __i < 7; ++__i)
-      if (a <= _S_a_range[i])
+      if (__a <= _S_a_range[__i])
 	{
-	  iaint = __i;
+	  __iaint = __i;
 	  break;
 	}
 
@@ -174,8 +176,8 @@ template<typename _Tp>
 	//  jj = 2j - 1 ; gj = exp(-h*h/2) * (-h*h/2)**j / j!
 	//  aj = a**(2j-1) / (2*pi)
 	auto __hs = - 0.5 * __h * __h;
-	auto __dhs = std::exp(hs);
-	auto __as = a * a;
+	auto __dhs = std::exp(__hs);
+	auto __as = __a * __a;
 	auto __j = 1;
 	auto __jj = 1;
 	auto __aj = _S_rtwopi * __a;
@@ -218,7 +220,7 @@ template<typename _Tp>
 
 	    if (__maxii <= __ii)
 	      {
-        	__value *= _S_sqrt_pi * std::exp(- 0.5 *__ hs);
+        	__value *= _S_sqrt_pi * std::exp(- 0.5 * __hs);
         	return __value;
 	      }
 
@@ -238,7 +240,7 @@ template<typename _Tp>
 	auto __hs = __h * __h;
 	auto __as = __a * __a;
 	auto __ah = __a * __h;
-	auto __vi = _S_sqrt_pi * __a * std::exp(- 0.5 * __ah * __ah);
+	auto __vi = _S_sqrt_pi * __a * std::exp(-0.5 * __ah * __ah);
 	auto __zi = __l1_norm(__ah) / __h;
 	auto __y = 1.0 / __hs;
 
@@ -246,7 +248,7 @@ template<typename _Tp>
 	  {
 	    __value += __zi * _S_c2[__i];
 
-	    if (__m < i)
+	    if (__m < __i)
 	      {
         	__value *= _S_sqrt_pi * std::exp (- 0.5 * __hs);
         	return __value;
@@ -263,19 +265,19 @@ template<typename _Tp>
       {
 	//  t4(h, a, m) ; m = 4, 7, 8 or 20;  ii = 2i + 1
 	//  ai = a * exp[-h*h*(1+a*a)/2] * (-a*a)^i / (2*pi)
-	auto __maxii = m + m + 1;
+	auto __maxii = __m + __m + 1;
 	auto __ii = 1;
-	auto __hs = h * h;
-	auto __as = -a * a;
+	auto __hs = __h * __h;
+	auto __as = -__a * __a;
 	auto __value = 0.0;
-	auto __ai = _S_rtwopi * a * std::exp(- 0.5 * hs * (1.0 - as));
+	auto __ai = _S_rtwopi * __a * std::exp(- 0.5 * __hs * (1.0 - __as));
 	auto __yi = 1.0;
 
 	while (true)
 	  {
 	    __value += __ai * __yi;
 
-	    if (__maxii <= ii)
+	    if (__maxii <= __ii)
               return __value;
 
 	    __ii += 2;
@@ -308,7 +310,7 @@ template<typename _Tp>
 
 	if (std::abs(__r) < _S_eps)
 	  __value -= _S_rtwopi * __r * std::exp (- 0.5 * __y * __h * __h / __r);
-	return value;
+	return __value;
       }
 
     return 0.0;
