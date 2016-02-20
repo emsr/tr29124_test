@@ -104,6 +104,7 @@ template<typename Real>
     using __gnu_cxx::lfactorial;
     using __gnu_cxx::lpochhammer_l;
     using __gnu_cxx::lpochhammer_u;
+    using __gnu_cxx::owens_t;
     using __gnu_cxx::pochhammer_l;
     using __gnu_cxx::pochhammer_u;
     using __gnu_cxx::psi;
@@ -1336,6 +1337,19 @@ template<typename Real>
 	     "s", fill_argument(std::make_pair(Real{1}, Real{30}),
 				std::make_pair(false, true), 146),
 	     file_dirichlet_eta, false, true, test);
+
+    // Owens T functions.
+    std::cout << "owens_t" << std::endl;
+    basename = "owens_t";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_owens_t(filename.c_str());
+    maketest(owens_t, beast::owens_t,
+	     "__gnu_cxx", basename,
+	     "h", fill_argument(std::make_pair(Real{-5}, Real{5}),
+				std::make_pair(false, true), 41),
+	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(false, true), 21),
+	     file_owens_t, true, true);
 
 #endif // STD
 

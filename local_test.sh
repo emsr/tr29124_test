@@ -97,6 +97,7 @@ ${makedir} ${text_dir}/legendre_q
 ${makedir} ${text_dir}/lfactorial
 ${makedir} ${text_dir}/lpochhammer_l
 ${makedir} ${text_dir}/lpochhammer_u
+${makedir} ${text_dir}/owens_t
 ${makedir} ${text_dir}/pochhammer_l
 ${makedir} ${text_dir}/pochhammer_u
 ${makedir} ${text_dir}/psi
@@ -149,6 +150,7 @@ ${copy} check_legendre_q.cc         ${text_dir}/legendre_q/check_value.cc
 ${copy} check_lfactorial.cc         ${text_dir}/lfactorial/check_value.cc
 ${copy} check_lpochhammer_l.cc      ${text_dir}/lpochhammer_l/check_value.cc
 ${copy} check_lpochhammer_u.cc      ${text_dir}/lpochhammer_u/check_value.cc
+${copy} check_owens_t.cc            ${text_dir}/owens_t/check_value.cc
 ${copy} check_pochhammer_l.cc       ${text_dir}/pochhammer_l/check_value.cc
 ${copy} check_pochhammer_u.cc       ${text_dir}/pochhammer_u/check_value.cc
 ${copy} check_psi.cc                ${text_dir}/psi/check_value.cc
