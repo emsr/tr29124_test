@@ -69,6 +69,7 @@ ${copy} check_legendre_q.cc         ${ext_dir}/legendre_q/check_value.cc
 ${copy} check_lfactorial.cc         ${ext_dir}/lfactorial/check_value.cc
 ${copy} check_lpochhammer_l.cc      ${ext_dir}/lpochhammer_l/check_value.cc
 ${copy} check_lpochhammer_u.cc      ${ext_dir}/lpochhammer_u/check_value.cc
+${copy} check_owens_t.cc            ${ext_dir}/owens_t/check_value.cc
 ${copy} check_pochhammer_l.cc       ${ext_dir}/pochhammer_l/check_value.cc
 ${copy} check_pochhammer_u.cc       ${ext_dir}/pochhammer_u/check_value.cc
 ${copy} check_psi.cc                ${ext_dir}/psi/check_value.cc
