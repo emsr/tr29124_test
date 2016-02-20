@@ -24,6 +24,7 @@
 #include <boost/math/special_functions/hankel.hpp>
 #include <boost/math/special_functions/expint.hpp>
 #include <boost/math/special_functions/sinc.hpp>
+#include <boost/math/special_functions/owens_t.hpp>
 
 #include "boost_wrap.h"
 
@@ -735,6 +736,13 @@ std::complex<double>
 sph_harmonic(unsigned int l, int m, double theta, double phi)
 {
   return boost::math::spherical_harmonic(l, m, theta, phi);
+}
+
+/// Owen's T function.
+double
+owens_t(double h, double a)
+{
+  return boost::math::owens_t(h, a);
 }
 
 } // namespace beast

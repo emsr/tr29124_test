@@ -313,5 +313,7 @@ double ibetac_invb(double a, double x, double p);
 
 std::complex<double> sph_harmonic(unsigned int l, int m, double theta, double phi);
 
+double owens_t(double h, double a);
+
 } // namespace beast
 
