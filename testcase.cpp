@@ -1346,9 +1346,9 @@ template<typename Real>
     maketest(owens_t, beast::owens_t,
 	     "__gnu_cxx", basename,
 	     "h", fill_argument(std::make_pair(Real{-5}, Real{5}),
-				std::make_pair(false, true), 41),
+				std::make_pair(true, true), 41),
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
-				std::make_pair(false, true), 21),
+				std::make_pair(true, true), 21),
 	     file_owens_t, true, true);
 
 #endif // STD
