@@ -2142,19 +2142,19 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Owens T functions.
 
   inline float
-  owens_tf(float __a, float __h)
-  { return std::__detail::__owens_t<float>(__a, __h); }
+  owens_tf(float __h, float __a)
+  { return std::__detail::__owens_t<float>(__h, __a); }
 
   inline long double
-  owens_tl(long double __a, long double __h)
-  { return std::__detail::__owens_t<long double>(__a, __h); }
+  owens_tl(long double __h, long double __a)
+  { return std::__detail::__owens_t<long double>(__h, __a); }
 
-  template<typename _Tpa, typename _Tph>
-    inline __gnu_cxx::__promote_num_t<_Tpa, _Tph>
-    owens_t(_Tpa __a, _Tph __h)
+  template<typename _Tph, typename _Tpa>
+    inline __gnu_cxx::__promote_num_t<_Tph, _Tpa>
+    owens_t(_Tph __h, _Tpa __a)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tpa, _Tph>;
-      return std::__detail::__owens_t<__type>(__a, __h);
+      using __type = __gnu_cxx::__promote_num_t<_Tph, _Tpa>;
+      return std::__detail::__owens_t<__type>(__h, __a);
     }
 
 #endif // __cplusplus >= 201103L

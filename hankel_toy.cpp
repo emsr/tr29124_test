@@ -1,4 +1,4 @@
-// $HOME/bin_specfun/bin/g++ -std=gnu++14 -o hankel_toy hankel_toy.cpp -lquadmath
+// $HOME/bin_specfun/bin/g++ -std=gnu++14 -o hankel_toy hankel_toy.cpp /home/ed/tr29124_test/gslextras/Fresnel/fresnel.c -lquadmath -L/usr/local/lib -lgsl -lgslcblas -ljacobi
 
 // LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./hankel_toy > hankel_toy.txt
 
