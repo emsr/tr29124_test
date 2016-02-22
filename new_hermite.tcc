@@ -159,23 +159,84 @@
       const auto _S_inv_root4_pi = _Tp{7.511255444649424828587030047762276930510e-1L};
       const auto _S_root_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
 
-      auto __htn = _S_inv_root4_pi;
+      auto __H_nm2 = _S_inv_root4_pi;
       if (__n == 0)
-	return __htn;
-      auto __htnp1 = _S_root_2 * __x * __htn;
+	return __H_nm2;
+      auto __H_nm1 = _S_root_2 * __x * __H_nm2;
       if (__n == 1)
-	return __htnp1;
+	return __H_nm1;
 
-      _Tp __htnp2;
-      for (int __i = 0; __i < __n; ++__i)
+      _Tp __H_n;
+      for (int __i = 2; __i < __n; ++__i)
 	{
-	  __htnp2 = __x * std::sqrt(_Tp{2} / _Tp(__i + 2)) * __htnp1
-		  - std::sqrt(_Tp(__i + 1) / _Tp(__i + 2)) * __htn;
-	  __htn = __htnp1;
-	  __htnp1 = __htnp2;
+	  __H_n = __x * std::sqrt(_Tp{2} / _Tp(__i)) * __H_nm1
+		- std::sqrt(_Tp(__i - 1) / _Tp(__i)) * __H_nm2;
+	  __H_nm2 = __H_nm1;
+	  __H_nm1 = __H_n;
 	}
 
-      return __htnp2;
+      return __H_n;
+    }
+
+  /**
+   *  @brief  Compute the normalized probabalists Hermite polynomial by recursion.
+   */
+  template<typename _Tp>
+    _Tp
+    __poly_hermite_prob_recursion(unsigned int __n, _Tp __x)
+    {
+      // Compute He_0.
+      auto __He_nm2 = _Tp{1};
+      if (__n == 0)
+	return __He_nm2;
+
+      // Compute He_1.
+      auto __He_nm1 = _Tp{2} * __x;
+      if (__n == 1)
+	return __He_nm1;
+
+      // Compute H_n.
+      _Tp __He_n;
+      for (unsigned int __i = 2; __i <= __n; ++__i)
+	{
+	  __He_n = __x * __He_nm1 - _Tp(__i - 1) * __He_nm2;
+	  __He_nm2 = __He_nm1;
+	  __He_nm1 = __He_n;
+	}
+
+      return __He_n;
+    }
+
+  /**
+   *  @brief  Compute the normalized probabalists Hermite polynomial by recursion.
+   */
+  template<typename _Tp>
+    _Tp
+    __poly_hermite_prob_norm_recursion(unsigned int __n, _Tp __x)
+    {
+      const auto _S_inv_root4_pi = _Tp{7.511255444649424828587030047762276930510e-1L};
+      const auto _S_root_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
+
+      // Compute He_0.
+      auto __He_nm2 = _S_inv_root4_pi;
+      if (__n == 0)
+	return __He_nm2;
+
+      // Compute He_1.
+      auto __He_nm1 = _Tp{2} * __x;
+      if (__n == 1)
+	return __He_nm1;
+
+      // Compute H_n.
+      _Tp __He_n;
+      for (unsigned int __i = 2; __i <= __n; ++__i)
+	{
+	  __He_n = (__x * __He_nm1 - _Tp(__i - 1) * __He_nm2) / std::sqrt(_Tp(__i));
+	  __He_nm2 = __He_nm1;
+	  __He_nm1 = __He_n;
+	}
+
+      return __He_n;
     }
 
 #endif // _GLIBCXX_BITS_NEW_HERMITE_TCC
