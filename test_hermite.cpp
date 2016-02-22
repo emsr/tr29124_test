@@ -1,24 +1,34 @@
-// $HOME/bin_specfun/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_hermite test_hermite.cpp
+// $HOME/bin_specfun/bin/g++ -std=gnu++1z -o test_hermite test_hermite.cpp -lquadmath
 
-// ./test_hermite > test_hermite.txt
+// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_hermite > test_hermite.txt
 
 #include <iostream>
 #include <iomanip>
 #include <cmath>
 #include <limits>
 
+#include <bits/float128.h>
 #include "new_hermite.tcc"
 
 int
 main()
 {
-  std::cout.precision(std::numeric_limits<double>::digits10);
+  std::cout.precision(std::numeric_limits<__float128>::digits10);
   std::cout.flags(std::ios::showpoint);
   auto width = 6 + std::cout.precision();
 
+  std::cout << "\f\n\n  Table of integer sqrt\n";
+  std::cout << "  =====================\n";
+  for (int n = 0; n <= 100; ++n)
+    std::cout << ' ' << std::setw(width) << std::sqrt(__float128(n)) << '\n';
+
+  std::cout.precision(std::numeric_limits<double>::digits10);
+  std::cout.flags(std::ios::showpoint);
+  width = 6 + std::cout.precision();
+
   std::cout << "\f\n\n  Examine asymptotic transition region\n";
   std::cout << "  ====================================\n";
-  for (int n = 4; n <= 50; ++n)
+  for (int n = 4; n <= 100; ++n)
     {
       auto xt = std::sqrt(2.0 * n);
       auto del = 0.2 * xt / 80;
@@ -44,6 +54,8 @@ main()
 	  std::cout << std::setw(width) << x
 		    << "  " << std::setw(width) << h
 		    << "  " << std::setw(width) << ht
+		    << "  " << std::setw(width) << ht - h
+		    << "  " << std::setw(width) << (ht - h) / h
 		    << '\n';
         }
     }
@@ -76,6 +88,8 @@ main()
           std::cout << std::setw(width) << x
 		    << "  " << std::setw(width) << h
 		    << "  " << std::setw(width) << ht
+		    << "  " << std::setw(width) << ht - h
+		    << "  " << std::setw(width) << (ht - h) / h
 		    << '\n';
         }
     }
