@@ -56,6 +56,77 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
+   *   @brief This routine computes the asymptotic modified cylindrical
+   *          Bessel and functions of order nu: \f$ I_{\nu}(x) \f$,
+   *          \f$ N_{\nu}(x) \f$.  Use this for \f$ x >> nu^2 + 1 \f$.
+   *
+   *   References:
+   *    (1) Handbook of Mathematical Functions,
+   *        ed. Milton Abramowitz and Irene A. Stegun,
+   *        Dover Publications,
+   *        Section 9 p. 364, Equations 9.2.5-9.2.10
+   *
+   *   @param  __nu  The order of the Bessel functions.
+   *   @param  __x   The argument of the Bessel functions.
+   *   @param  _Jnu  The output Bessel function of the first kind.
+   *   @param  _Knu  The output Neumann function (Bessel function of the second kind).
+   */
+  template<typename _Tp>
+    void
+    __cyl_bessel_ik_asymp(_Tp __nu, _Tp __x,
+			  _Tp & _Inu, _Tp & _Knu,
+			  _Tp & _Ipnu, _Tp & _Kpnu)
+    {
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<long double>::__pi_half;
+      const auto __2nu = _Tp{2} * __nu;
+      const auto __4nu2 = __2nu * __2nu;
+      const auto __8x = _Tp{8} * __x;
+      auto __k = 0;
+      auto __bk_xk = _Tp{1};
+      auto _Rsum = __bk_xk;
+      auto __ak_xk = _Tp{1};
+      auto _Psum = __ak_xk;
+      ++__k;
+      auto __2km1 = 1;
+      __bk_xk *= (__4nu2 + __2km1 * (__2km1 + 2)) / __8x;
+      auto _Ssum = __bk_xk;
+      __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / __8x;
+      auto _Qsum = __ak_xk;
+      do
+	{
+	  ++__k;
+	  __2km1 += 2;
+	  __bk_xk = -(__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
+	  _Rsum += __bk_xk;
+	  __ak_xk *= -(__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
+	  _Psum += __ak_xk;
+	  auto __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
+
+	  ++__k;
+	  __2km1 += 2;
+	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
+	  _Ssum += __bk_xk;
+	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
+	  _Qsum += __ak_xk;
+	  auto __convQ = std::abs(__ak_xk) < _S_eps * std::abs(_Qsum);
+
+	  if (__convP && __convQ && __k > (__nu / _Tp{2}))
+	    break;
+	}
+      while (__k < _Tp{100} * __nu);
+
+      auto __coef = std::sqrt(_Tp{1} / (_Tp{2} * _S_pi * __x));
+      _Inu = __coef * std::exp(__x) * _Psum;
+      _Knu = _S_pi * __coef * std::exp(-__x) * _Qsum;
+      _Ipnu = __coef * std::exp(__x) * _Rsum;
+      _Kpnu =  -_S_pi * __coef * std::exp(-__x) * _Ssum;
+
+      return;
+    }
+
+  /**
    *   @brief  Compute the modified Bessel functions @f$ I_\nu(x) @f$ and
    *           @f$ K_\nu(x) @f$ and their first derivatives
    *           @f$ I'_\nu(x) @f$ and @f$ K'_\nu(x) @f$ respectively.
@@ -73,34 +144,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     void
-    __bessel_ik(_Tp __nu, _Tp __x,
-		_Tp & _Inu, _Tp & _Knu, _Tp & _Ipnu, _Tp & _Kpnu)
+    __cyl_bessel_ik_steed(_Tp __nu, _Tp __x,
+			  _Tp & _Inu, _Tp & _Knu, _Tp & _Ipnu, _Tp & _Kpnu)
     {
       constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
       constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      if (__x == _Tp{0})
-	{
-	  if (__nu == _Tp{0})
-	    {
-	      _Inu = _Tp{1};
-	      _Ipnu = _Tp{0};
-	    }
-	  else if (__nu == _Tp{1})
-	    {
-	      _Inu = _Tp{0};
-	      _Ipnu = _Tp{0.5L};
-	    }
-	  else
-	    {
-	      _Inu = _Tp{0};
-	      _Ipnu = _Tp{0};
-	    }
-	  _Knu = _S_inf;
-	  _Kpnu = -_S_inf;
-	  return;
-	}
-
       constexpr auto _S_fp_min = _Tp{10} * _S_eps;
       constexpr int _S_max_iter = 15000;
       constexpr auto _S_x_min = _Tp{2};
@@ -129,7 +178,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    break;
 	}
       if (__i > _S_max_iter)
-	std::__throw_runtime_error(__N("__bessel_ik: argument x too large;"
+	std::__throw_runtime_error(__N("__cyl_bessel_ik_steed: argument x too large;"
 				       " try asymptotic expansion"));
       _Tp _Inul = _S_fp_min;
       _Tp _Ipnul = __h * _Inul;
@@ -184,7 +233,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		break;
 	    }
 	  if (__i > _S_max_iter)
-	    std::__throw_runtime_error(__N("__bessel_ik: "
+	    std::__throw_runtime_error(__N("__cyl_bessel_ik_steed: "
 					   "K-series failed to converge"));
 	  _Kmu = __sum;
 	  _Knu1 = __sum1 * __xi2;
@@ -220,7 +269,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		break;
 	    }
 	  if (__i > _S_max_iter)
-	    std::__throw_runtime_error(__N("__bessel_ik: "
+	    std::__throw_runtime_error(__N("__cyl_bessel_ik_steed: "
 					   "Steed's method failed"));
 	  __h = __a1 * __h;
 	  _Kmu = std::sqrt(_S_pi / (_Tp{2} * __x))
@@ -244,6 +293,54 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return;
     }
 
+  /**
+   * @brief  Return the modified cylindrical Bessel functions
+   * and their derivatives of order \f$ \nu \f$ by various means.
+   */
+  template<typename _Tp>
+    void
+    __cyl_bessel_ik(_Tp __nu, _Tp __x,
+		_Tp & _Inu, _Tp & _Knu, _Tp & _Ipnu, _Tp & _Kpnu)
+    {
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      if (__nu < _Tp{0})
+	{
+	  _Tp _I_mnu, _K_mnu, _Ip_mnu, _Kp_mnu;
+	  __cyl_bessel_ik(-__nu, __x, _I_mnu, _K_mnu, _Ip_mnu, _Kp_mnu);
+	  auto __arg = -__nu * _S_pi;
+	  auto __sinnupi = std::sin(__arg);
+	  auto __cosnupi = std::cos(__arg);
+	  _Inu = __cosnupi * _I_mnu - __sinnupi * _K_mnu;
+	  _Knu = __sinnupi * _I_mnu + __cosnupi * _K_mnu;
+	  _Ipnu = __cosnupi * _Ip_mnu - __sinnupi * _Kp_mnu;
+	  _Kpnu = __sinnupi * _Ip_mnu + __cosnupi * _Kp_mnu;
+	}
+      else if (__x == _Tp{0})
+	{
+	  if (__nu == _Tp{0})
+	    {
+	      _Inu = _Tp{1};
+	      _Ipnu = _Tp{0};
+	    }
+	  else if (__nu == _Tp{1})
+	    {
+	      _Inu = _Tp{0};
+	      _Ipnu = _Tp{0.5L};
+	    }
+	  else
+	    {
+	      _Inu = _Tp{0};
+	      _Ipnu = _Tp{0};
+	    }
+	  _Knu = _S_inf;
+	  _Kpnu = -_S_inf;
+	  return;
+	}
+      else if (__x > _Tp{1000})
+	__cyl_bessel_ik_asymp(__nu, __x, _Inu, _Knu, _Ipnu, _Kpnu);
+      else
+	__cyl_bessel_ik_steed(__nu, __x, _Inu, _Knu, _Ipnu, _Kpnu);
+    }
 
   /**
    *   @brief  Return the regular modified Bessel function of order
@@ -263,20 +360,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __cyl_bessel_i(_Tp __nu, _Tp __x)
     {
-      if (__nu < _Tp{0} || __x < _Tp{0})
+      if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_i: bad argument"));
       else if (__isnan(__nu) || __isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
-      else if (__x * __x < _Tp{10} * (__nu + _Tp{1}))
+      else if (__nu >= _Tp{0} && __x * __x < _Tp{10} * (__nu + _Tp{1}))
 	return __cyl_bessel_ij_series(__nu, __x, +_Tp{1}, 200);
       else
 	{
 	  _Tp _I_nu, _K_nu, _Ip_nu, _Kp_nu;
-	  __bessel_ik(__nu, __x, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
+	  __cyl_bessel_ik(__nu, __x, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
 	  return _I_nu;
 	}
     }
-
 
   /**
    *   @brief  Return the irregular modified Bessel function
@@ -289,6 +385,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @f]
    *   where for integral \f$ \nu = n \f$ a limit is taken:
    *   \f$ lim_{\nu \to n} \f$.
+   *   For negative argument we have simply:
+   *   @f[
+   *      K_{-\nu}(x) = K_{\nu}(x)
+   *   @f]
    *
    *   @param  __nu  The order of the irregular modified Bessel function.
    *   @param  __x   The argument of the irregular modified Bessel function.
@@ -298,18 +398,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __cyl_bessel_k(_Tp __nu, _Tp __x)
     {
-      if (__nu < _Tp{0} || __x < _Tp{0})
+      if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_k: Bad argument"));
       else if (__isnan(__nu) || __isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
       else
 	{
 	  _Tp _I_nu, _K_nu, _Ip_nu, _Kp_nu;
-	  __bessel_ik(__nu, __x, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
+	  __cyl_bessel_ik(__nu, __x, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
 	  return _K_nu;
 	}
     }
-
 
   /**
    *   @brief  Compute the spherical modified Bessel functions
@@ -340,7 +439,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  const auto __nu = _Tp(__n + 0.5L);
 	  _Tp _I_nu, _Ip_nu, _K_nu, _Kp_nu;
-	  __bessel_ik(__nu, __x, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
+	  __cyl_bessel_ik(__nu, __x, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
 
 	  const auto __factor = __gnu_cxx::__math_constants<_Tp>::__root_pi_div_2
 			      / std::sqrt(__x);
@@ -393,11 +492,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  _Tp _I_nu, _K_nu, _Ip_nu, _Kp_nu;
 
-	  __bessel_ik(_Tp{1} / _Tp{3}, __xi, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
+	  __cyl_bessel_ik(_Tp{1} / _Tp{3}, __xi, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
 	  _Ai = __rootz * _K_nu / (_S_sqrt3 * _S_pi);
 	  _Bi = __rootz * (_K_nu / _S_pi + _Tp{2} * _I_nu / _S_sqrt3);
 
-	  __bessel_ik(_Tp{2} / _Tp{3}, __xi, _I_nu, _Ip_nu, _K_nu, _Kp_nu);
+	  __cyl_bessel_ik(_Tp{2} / _Tp{3}, __xi, _I_nu, _Ip_nu, _K_nu, _Kp_nu);
 	  _Aip = -__z * _K_nu / (_S_sqrt3 * _S_pi);
 	  _Bip = __z * (_K_nu / _S_pi + _Tp{2} * _I_nu / _S_sqrt3);
 	}
