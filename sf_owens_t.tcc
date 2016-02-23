@@ -46,8 +46,19 @@ template<typename _Tp>
   _Tp
   __normal_cdf(_Tp __x)
   {
-    constexpr _Tp _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
-    return _Tp{0.5L} * std::erfc(-__x / _S_sqrt_2);
+    constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
+    return _Tp{0.5L} * std::erf(__x / _S_sqrt_2);
+  }
+
+/**
+ *
+ */
+template<typename _Tp>
+  _Tp
+  __normal_cdfc(_Tp __x)
+  {
+    constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
+    return _Tp{0.5L} * std::erfc(__x / _S_sqrt_2);
   }
 
 /**
@@ -325,7 +336,7 @@ template<typename _Tp>
 	else if (_S_method[__icode] == 5)
 	  {
 	    //  t5(h, a, m) ; m = 13
-	    //  2m - point gaussian quadrature
+	    //  2m - point Gaussian quadrature
 	    auto __value = _Tp{0};
 	    auto __as = __a * __a;
 	    auto __hs = - _Tp{0.5L} * __h * __h;
@@ -340,12 +351,12 @@ template<typename _Tp>
 	else if (_S_method[__icode] == 6)
 	  {
 	    //  t6(h, a);  approximation for a near 1, (a<=1)
-	    auto __normh = __normal_cdf(__h);
+	    auto __normh = __normal_cdfc(__h);
 	    auto __value = _Tp{0.5L} * __normh * (_Tp{1} - __normh);
 	    auto __y = _Tp{1} - __a;
 	    auto __r = std::atan2(__y, _Tp{1} + __a);
 
-	    if (std::abs(__r) < _S_eps)
+	    if (std::abs(__r) > _S_eps)
 	      __value -= _S_1_d_2pi * __r
 		       * std::exp (- _Tp{0.5L} * __y * __h * __h / __r);
 	    return __value;
