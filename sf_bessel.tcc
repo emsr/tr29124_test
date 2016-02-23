@@ -442,6 +442,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __cyl_bessel_jn(_Tp __nu, _Tp __x,
 		_Tp & _Jnu, _Tp & _Nnu, _Tp & _Jpnu, _Tp & _Npnu)
     {
+      constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       if (__nu < _Tp{0})
 	{
