@@ -311,7 +311,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				" argument k out of range");
       else
 	{
-	  auto _Kk = __comp_ellint_2(__k);
+	  auto _Kk = __comp_ellint_1(__k);
 	  auto __q = __ellnome(__k);
 	  return std::sqrt(_S_pi_2 / (__k * _Kk))
 	       * __theta_2(__q, _S_pi_2 * __x / _Kk);
@@ -336,7 +336,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				" argument k out of range");
       else
 	{
-	  auto _Kk = __comp_ellint_2(__k);
+	  auto _Kk = __comp_ellint_1(__k);
 	  auto __q = __ellnome(__k);
 	  return std::sqrt(_S_pi_2 / _Kk)
 	       * __theta_3(__q, _S_pi_2 * __x / _Kk);
