@@ -369,11 +369,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Jnu = __fact * _Jnul1;
       _Jpnu = __fact * _Jpnu1;
       for (int __i = 1; __i <= __n; ++__i)
-	{
-	  const auto _Nnutemp = (__mu + __i) * __xi2 * _Nnu1 - _Nmu;
-	  _Nmu = _Nnu1;
-	  _Nnu1 = _Nnutemp;
-	}
+	_Nmu = std::exchange(_Nnu1, (__mu + __i) * __xi2 * _Nnu1 - _Nmu);
       _Nnu = _Nmu;
       _Npnu = __nu * __xi * _Nmu - _Nnu1;
 
