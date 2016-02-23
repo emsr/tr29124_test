@@ -160,12 +160,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __mu2 = __mu * __mu;
       const auto __xi = _Tp{1} / __x;
       const auto __xi2 = _Tp{2} * __xi;
-      _Tp __h = __nu * __xi;
+      auto __h = __nu * __xi;
       if (__h < _S_fp_min)
 	__h = _S_fp_min;
-      _Tp __b = __xi2 * __nu;
-      _Tp __d = _Tp{0};
-      _Tp __c = __h;
+      auto __b = __xi2 * __nu;
+      auto __d = _Tp{0};
+      auto __c = __h;
       int __i;
       for (__i = 1; __i <= _S_max_iter; ++__i)
 	{
@@ -178,13 +178,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    break;
 	}
       if (__i > _S_max_iter)
-	std::__throw_runtime_error(__N("__cyl_bessel_ik_steed: argument x too large;"
-				       " try asymptotic expansion"));
-      _Tp _Inul = _S_fp_min;
-      _Tp _Ipnul = __h * _Inul;
-      _Tp _Inul1 = _Inul;
-      _Tp _Ipnu1 = _Ipnul;
-      _Tp __fact = __nu * __xi;
+	{
+	  // Don't throw with message "try asymptotic expansion" - Just do it!
+	  __cyl_bessel_ik_asymp(__nu, __x, _Inu, _Knu, _Ipnu, _Kpnu);
+	  return;
+	}
+
+      auto _Inul = _S_fp_min;
+      auto _Ipnul = __h * _Inul;
+      auto _Inul1 = _Inul;
+      auto _Ipnu1 = _Ipnul;
+      auto __fact = __nu * __xi;
       for (int __l = __n; __l >= 1; --__l)
 	{
 	  const auto _Inutemp = __fact * _Inul + _Ipnul;
@@ -193,7 +197,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Inul = _Inutemp;
 	}
 
-      _Tp __f = _Ipnul / _Inul;
+      auto __f = _Ipnul / _Inul;
       _Tp _Kmu, _Knu1;
       if (__x < _S_x_min)
 	{
@@ -202,22 +206,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __fact = (std::abs(__pimu) < _S_eps
 			    ? _Tp{1}
 			    : __pimu / std::sin(__pimu));
-	  _Tp __d = -std::log(__x2);
-	  _Tp __e = __mu * __d;
+	  auto __d = -std::log(__x2);
+	  auto __e = __mu * __d;
 	  const auto __fact2 = (std::abs(__e) < _S_eps
 			     ? _Tp{1}
 			     : std::sinh(__e) / __e);
 	  _Tp __gam1, __gam2, __gampl, __gammi;
 	  __gamma_temme(__mu, __gam1, __gam2, __gampl, __gammi);
-	  _Tp __ff = __fact
-		   * (__gam1 * std::cosh(__e) + __gam2 * __fact2 * __d);
-	  _Tp __sum = __ff;
+	  auto __ff = __fact
+		    * (__gam1 * std::cosh(__e) + __gam2 * __fact2 * __d);
+	  auto __sum = __ff;
 	  __e = std::exp(__e);
-	  _Tp __p = __e / (_Tp{2} * __gampl);
-	  _Tp __q = _Tp{1} / (_Tp{2} * __e * __gammi);
-	  _Tp __c = _Tp{1};
+	  auto __p = __e / (_Tp{2} * __gampl);
+	  auto __q = _Tp{1} / (_Tp{2} * __e * __gammi);
+	  auto __c = _Tp{1};
 	  __d = __x2 * __x2;
-	  _Tp __sum1 = __p;
+	  auto __sum1 = __p;
 	  int __i;
 	  for (__i = 1; __i <= _S_max_iter; ++__i)
 	    {
@@ -277,16 +281,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Knu1 = _Kmu * (__mu + __x + _Tp{0.5L} - __h) * __xi;
 	}
 
-      _Tp _Kpmu = __mu * __xi * _Kmu - _Knu1;
-      _Tp _Inumu = __xi / (__f * _Kmu - _Kpmu);
+      auto _Kpmu = __mu * __xi * _Kmu - _Knu1;
+      auto _Inumu = __xi / (__f * _Kmu - _Kpmu);
       _Inu = _Inumu * _Inul1 / _Inul;
       _Ipnu = _Inumu * _Ipnu1 / _Inul;
       for (int __i = 1; __i <= __n; ++__i)
-	{
-	  const auto _Knutemp = (__mu + _Tp(__i)) * __xi2 * _Knu1 + _Kmu;
-	  _Kmu = _Knu1;
-	  _Knu1 = _Knutemp;
-	}
+	_Kmu = std::exchange(_Knu1, (__mu + _Tp(__i)) * __xi2 * _Knu1 + _Kmu);
       _Knu = _Kmu;
       _Kpnu = __nu * __xi * _Kmu - _Knu1;
 
@@ -310,11 +310,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __cyl_bessel_ik(-__nu, __x, _I_mnu, _K_mnu, _Ip_mnu, _Kp_mnu);
 	  auto __arg = -__nu * _S_pi;
 	  auto __sinnupi = std::sin(__arg);
-	  auto __cosnupi = std::cos(__arg);
-	  _Inu = __cosnupi * _I_mnu - __sinnupi * _K_mnu;
-	  _Knu = __sinnupi * _I_mnu + __cosnupi * _K_mnu;
-	  _Ipnu = __cosnupi * _Ip_mnu - __sinnupi * _Kp_mnu;
-	  _Kpnu = __sinnupi * _Ip_mnu + __cosnupi * _Kp_mnu;
+	  _Inu = _I_mnu + _Tp{2} * __sinnupi * _K_mnu / _S_pi;
+	  _Knu = _K_mnu;
+	  _Ipnu = _Ip_mnu + _Tp{2} * __sinnupi * _Kp_mnu / _S_pi;
+	  _Kpnu = _Kp_mnu;
 	}
       else if (__x == _Tp{0})
 	{
@@ -557,7 +556,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		std::complex<_Tp>& __w1, std::complex<_Tp>& __w2,
 		std::complex<_Tp>& __w1p, std::complex<_Tp>& __w2p)
     {
-      constexpr _Tp _S_sqrtpi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
+      constexpr auto _S_sqrtpi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
 
       _Tp _Ai, _Bi, _Aip, _Bip;
       airy(x, &_Ai, &_Bi, &_Aip, &_Bip);
