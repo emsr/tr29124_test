@@ -98,9 +98,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  ++__k;
 	  __2km1 += 2;
-	  __bk_xk = -(__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
+	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
 	  _Rsum += __bk_xk;
-	  __ak_xk *= -(__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
+	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
 	  _Psum += __ak_xk;
 	  auto __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
 
@@ -302,6 +302,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __cyl_bessel_ik(_Tp __nu, _Tp __x,
 		_Tp & _Inu, _Tp & _Knu, _Tp & _Ipnu, _Tp & _Kpnu)
     {
+      constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       if (__nu < _Tp{0})
 	{
@@ -504,11 +505,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  _Tp _J_nu, _N_nu, _Jp_nu, _Np_nu;
 
-	  __bessel_jn(_Tp{1} / _Tp{3}, __xi, _J_nu, _N_nu, _Jp_nu, _Np_nu);
+	  __cyl_bessel_jn(_Tp{1} / _Tp{3}, __xi, _J_nu, _N_nu, _Jp_nu, _Np_nu);
 	  _Ai = +__rootz * (_J_nu - _N_nu / _S_sqrt3) / _Tp{2};
 	  _Bi = -__rootz * (_N_nu + _J_nu / _S_sqrt3) / _Tp{2};
 
-	  __bessel_jn(_Tp{2} / _Tp{3}, __xi, _J_nu, _N_nu, _Jp_nu, _Np_nu);
+	  __cyl_bessel_jn(_Tp{2} / _Tp{3}, __xi, _J_nu, _N_nu, _Jp_nu, _Np_nu);
 	  _Aip = __absz * (_N_nu / _S_sqrt3 + _J_nu) / _Tp{2};
 	  _Bip = __absz * (_J_nu / _S_sqrt3 - _N_nu) / _Tp{2};
 	}
