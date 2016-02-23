@@ -2139,6 +2139,78 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__ellnome<__type>(__x);
     }
 
+  // Neville theta_s functions.
+
+  inline float
+  theta_sf(float __k, float __x)
+  { return std::__detail::__theta_s<float>(__k, __x); }
+
+  inline long double
+  theta_sl(long double __k, long double __x)
+  { return std::__detail::__theta_s<long double>(__k, __x); }
+
+  template<typename _Tpk, typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tpk, _Tp>
+    theta_s(_Tpk __k, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tpk, _Tp>;
+      return std::__detail::__theta_s<__type>(__k, __x);
+    }
+
+  // Neville theta_c functions.
+
+  inline float
+  theta_cf(float __k, float __x)
+  { return std::__detail::__theta_c<float>(__k, __x); }
+
+  inline long double
+  theta_cl(long double __k, long double __x)
+  { return std::__detail::__theta_c<long double>(__k, __x); }
+
+  template<typename _Tpk, typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tpk, _Tp>
+    theta_c(_Tpk __k, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tpk, _Tp>;
+      return std::__detail::__theta_c<__type>(__k, __x);
+    }
+
+  // Neville theta_d functions.
+
+  inline float
+  theta_df(float __k, float __x)
+  { return std::__detail::__theta_d<float>(__k, __x); }
+
+  inline long double
+  theta_dl(long double __k, long double __x)
+  { return std::__detail::__theta_d<long double>(__k, __x); }
+
+  template<typename _Tpk, typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tpk, _Tp>
+    theta_d(_Tpk __k, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tpk, _Tp>;
+      return std::__detail::__theta_d<__type>(__k, __x);
+    }
+
+  // Neville theta_n functions.
+
+  inline float
+  theta_nf(float __k, float __x)
+  { return std::__detail::__theta_n<float>(__k, __x); }
+
+  inline long double
+  theta_nl(long double __k, long double __x)
+  { return std::__detail::__theta_n<long double>(__k, __x); }
+
+  template<typename _Tpk, typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tpk, _Tp>
+    theta_n(_Tpk __k, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tpk, _Tp>;
+      return std::__detail::__theta_n<__type>(__k, __x);
+    }
+
   // Owens T functions.
 
   inline float
