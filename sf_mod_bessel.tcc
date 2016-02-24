@@ -46,6 +46,7 @@
 #ifndef _GLIBCXX_BITS_SF_MOD_BESSEL_TCC
 #define _GLIBCXX_BITS_SF_MOD_BESSEL_TCC 1
 
+#include <utility> // For exchange
 #include <ext/math_const.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
@@ -118,10 +119,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       while (__k < _Tp{100} * __nu);
 
       auto __coef = std::sqrt(_Tp{1} / (_Tp{2} * _S_pi * __x));
-      _Inu = __coef * std::exp(__x) * _Psum;
-      _Knu = _S_pi * __coef * std::exp(-__x) * _Qsum;
-      _Ipnu = __coef * std::exp(__x) * _Rsum;
-      _Kpnu =  -_S_pi * __coef * std::exp(-__x) * _Ssum;
+      _Inu = __coef * std::exp(__x) * (_Psum - _Qsum);
+      _Knu = _S_pi * __coef * std::exp(-__x) * (_Psum + _Qsum);
+      _Ipnu = __coef * std::exp(__x) * (_Rsum - _Ssum);
+      _Kpnu =  -_S_pi * __coef * std::exp(-__x) * (_Rsum + _Ssum);
 
       return;
     }

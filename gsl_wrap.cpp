@@ -48,13 +48,13 @@ airy_bi(double x)
 
 /// Associated Laguerre polynomials.
 double
-laguerre_nm(unsigned int n, unsigned int m, double x)
+assoc_laguerre(unsigned int n, unsigned int m, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_laguerre_n_e(static_cast<int>(n), static_cast<int>(m), x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in laguerre_nm:");
+      std::ostringstream msg("Error in assoc_laguerre:");
       msg << " n=" << n << " m=" << m << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -168,13 +168,13 @@ comp_ellint_d(double k)
 
 /// Confluent hypergeometric functions.
 double
-hyperg_1F1(double a, double c, double x)
+conf_hyperg(double a, double c, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_hyperg_1F1_e(a, c, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in hyperg_1F1:");
+      std::ostringstream msg("Error in conf_hyperg:");
       msg << " a=" << a << " c=" << c << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -200,13 +200,13 @@ hyperg_0F1(double c, double x)
 
 /// Regular modified cylindrical Bessel functions.
 double
-bessel_Inu(double nu, double x)
+cyl_bessel_i(double nu, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_bessel_Inu_e(nu, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in bessel_Inu:");
+      std::ostringstream msg("Error in cyl_bessel_i:");
       msg << " nu=" << nu << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -216,13 +216,13 @@ bessel_Inu(double nu, double x)
 
 /// Cylindrical Bessel functions (of the first kind).
 double
-bessel_Jnu(double nu, double x)
+cyl_bessel_j(double nu, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_bessel_Jnu_e(nu, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in bessel_Jnu:");
+      std::ostringstream msg("Error in cyl_bessel_j:");
       msg << " nu=" << nu << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -232,13 +232,13 @@ bessel_Jnu(double nu, double x)
 
 /// Irregular modified cylindrical Bessel functions.
 double
-bessel_Knu(double nu, double x)
+cyl_bessel_k(double nu, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_bessel_Knu_e(nu, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in bessel_Knu:");
+      std::ostringstream msg("Error in cyl_bessel_k:");
       msg << " nu=" << nu << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -248,13 +248,13 @@ bessel_Knu(double nu, double x)
 
 /// Cylindrical Neumann functions.
 double
-bessel_Ynu(double nu, double x)
+cyl_neumann(double nu, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_bessel_Ynu_e(nu, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in bessel_Ynu:");
+      std::ostringstream msg("Error in cyl_neumann:");
       msg << " nu=" << nu << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -322,7 +322,7 @@ ellint_d(double k, double phi)
 
 /// Carlson elliptic integrals R_C.
 double
-ellint_RC(double x, double y)
+ellint_rc(double x, double y)
 {
   if (x == 0.0 && y == 0.0)
     return 0.0;
@@ -331,7 +331,7 @@ ellint_RC(double x, double y)
   int stat = gsl_sf_ellint_RC_e(x, y, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in ellint_RC:");
+      std::ostringstream msg("Error in ellint_rc:");
       msg << " x=" << x << " y=" << y;
       throw std::runtime_error(msg.str());
     }
@@ -341,7 +341,7 @@ ellint_RC(double x, double y)
 
 /// Carlson elliptic integrals R_D.
 double
-ellint_RD(double x, double y, double z)
+ellint_rd(double x, double y, double z)
 {
   if (x == 0.0 && y == 0.0 && z == 0.0)
     return 0.0;
@@ -350,7 +350,7 @@ ellint_RD(double x, double y, double z)
   int stat = gsl_sf_ellint_RD_e(x, y, z, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in ellint_RD:");
+      std::ostringstream msg("Error in ellint_rd:");
       msg << " x=" << x << " y=" << y << " z=" << z;
       throw std::runtime_error(msg.str());
     }
@@ -360,7 +360,7 @@ ellint_RD(double x, double y, double z)
 
 /// Carlson elliptic integrals R_F.
 double
-ellint_RF(double x, double y, double z)
+ellint_rf(double x, double y, double z)
 {
   if (x == 0.0 && y == 0.0 && z == 0.0)
     return 0.0;
@@ -369,7 +369,7 @@ ellint_RF(double x, double y, double z)
   int stat = gsl_sf_ellint_RF_e(x, y, z, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in ellint_RF:");
+      std::ostringstream msg("Error in ellint_rf:");
       msg << " x=" << x << " y=" << y << " z=" << z;
       throw std::runtime_error(msg.str());
     }
@@ -379,7 +379,7 @@ ellint_RF(double x, double y, double z)
 
 /// Carlson elliptic integrals R_J.
 double
-ellint_RJ(double x, double y, double z, double p)
+ellint_rj(double x, double y, double z, double p)
 {
   if (x == 0.0 && y == 0.0 && z == 0.0)
     return 0.0;
@@ -388,7 +388,7 @@ ellint_RJ(double x, double y, double z, double p)
   int stat = gsl_sf_ellint_RJ_e(x, y, z, p, mode, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in ellint_RJ:");
+      std::ostringstream msg("Error in ellint_rj:");
       msg << " x=" << x << " y=" << y << " z=" << z << " p=" << p;
       throw std::runtime_error(msg.str());
     }
@@ -462,13 +462,13 @@ hermite(unsigned int n, double x)
 
 /// Hypergeometric functions.
 double
-hyperg_2F1(double a, double b, double c, double x)
+hyperg(double a, double b, double c, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_hyperg_2F1_e(a, b, c, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in hyperg_2F1:");
+      std::ostringstream msg("Error in hyperg:");
       msg << " a=" << a << " b=" << b << " c=" << c << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -478,14 +478,14 @@ hyperg_2F1(double a, double b, double c, double x)
 
 /// Laguerre polynomials.
 double
-laguerre_n(unsigned int n, double x)
+laguerre(unsigned int n, double x)
 {
   int m = 0;
   gsl_sf_result result;
   int stat = gsl_sf_laguerre_n_e(static_cast<int>(n), m, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in laguerre_n:");
+      std::ostringstream msg("Error in laguerre:");
       msg << " n=" << n << " x=" << x;
       throw std::runtime_error(msg.str());
     }
