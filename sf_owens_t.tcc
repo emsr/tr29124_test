@@ -47,7 +47,7 @@ template<typename _Tp>
   __normal_cdf(_Tp __x)
   {
     constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
-    return _Tp{0.5L} * std::erf(__x / _S_sqrt_2);
+    return _Tp{0.5L} * std::erfc(__x / _S_sqrt_2);
   }
 
 /**
@@ -58,7 +58,7 @@ template<typename _Tp>
   __normal_cdfc(_Tp __x)
   {
     constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
-    return _Tp{0.5L} * std::erfc(__x / _S_sqrt_2);
+    return _Tp{0.5L} * std::erf(__x / _S_sqrt_2);
   }
 
 /**
