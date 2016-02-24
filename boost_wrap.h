@@ -9,7 +9,7 @@ double airy_ai(double x);
 double airy_bi(double x);
 
 /// Associated Laguerre polynomials.
-double laguerre_nm(unsigned int n, unsigned int m, double x);
+double assoc_laguerre(unsigned int n, unsigned int m, double x);
 
 /// Associated Legendre functions.
 double legendre_Plm(unsigned int l, unsigned int m, double x);
@@ -36,22 +36,22 @@ double comp_ellint_3(double k, double nu);
 double comp_ellint_d(double k);
 
 /// Confluent hypergeometric functions.
-double hyperg_1F1(double a, double c, double x);
+double conf_hyperg(double a, double c, double x);
 
 /// Confluent hypergeometric limit functions.
 double hyperg_0F1(double c, double x);
 
 /// Regular modified cylindrical Bessel functions.
-double bessel_Inu(double nu, double x);
+double cyl_bessel_i(double nu, double x);
 
 /// Cylindrical Bessel functions (of the first kind).
-double bessel_Jnu(double nu, double x);
+double cyl_bessel_j(double nu, double x);
 
 /// Irregular modified cylindrical Bessel functions.
-double bessel_Knu(double nu, double x);
+double cyl_bessel_k(double nu, double x);
 
 /// Cylindrical Neumann functions.
-double bessel_Ynu(double nu, double x);
+double cyl_neumann(double nu, double x);
 
 /// Elliptic integrals of the first kind.
 double ellint_1(double k, double phi);
@@ -66,19 +66,19 @@ double ellint_3(double k, double nu, double phi);
 double ellint_d(double k, double phi);
 
 /// Carlson elliptic integrals R_C.
-double ellint_RC(double x, double y);
+double ellint_rc(double x, double y);
 
 /// Carlson elliptic integrals R_D.
-double ellint_RD(double x, double y, double z);
+double ellint_rd(double x, double y, double z);
 
 /// Carlson elliptic integrals R_F.
-double ellint_RF(double x, double y, double z);
+double ellint_rf(double x, double y, double z);
 
 /// Carlson elliptic integrals R_G.
-double ellint_RG(double x, double y, double z);
+double ellint_rg(double x, double y, double z);
 
 /// Carlson elliptic integrals R_J.
-double ellint_RJ(double x, double y, double z, double p);
+double ellint_rj(double x, double y, double z, double p);
 
 /// Exponential integral Ei.
 double expint_Ei(double x);
@@ -93,10 +93,10 @@ double expint_En(unsigned int n, double x);
 double hermite(unsigned int n, double x);
 
 /// Hypergeometric functions.
-double hyperg_2F1(double a, double b, double c, double x);
+double hyperg(double a, double b, double c, double x);
 
 /// Laguerre polynomials.
-double laguerre_n(unsigned int n, double x);
+double laguerre(unsigned int n, double x);
 
 /// Legendre polynomials.
 double legendre_p(unsigned int l, double x);

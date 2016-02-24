@@ -47,7 +47,7 @@ airy_bi(double x)
 
 /// Associated Laguerre polynomials.
 double
-laguerre_nm(unsigned int n, unsigned int m, double x)
+assoc_laguerre(unsigned int n, unsigned int m, double x)
 {
   return boost::math::laguerre(n, m, x);
 }
@@ -103,7 +103,7 @@ comp_ellint_d(double k)
 
 /// Confluent hypergeometric functions.
 double
-hyperg_1F1(double a, double c, double x)
+conf_hyperg(double a, double c, double x)
 {
   return 0.0;
 }
@@ -117,28 +117,28 @@ hyperg_0F1(double c, double x)
 
 /// Regular modified cylindrical Bessel functions.
 double
-bessel_Inu(double nu, double x)
+cyl_bessel_i(double nu, double x)
 {
   return boost::math::cyl_bessel_i(nu, x);
 }
 
 /// Cylindrical Bessel functions (of the first kind).
 double
-bessel_Jnu(double nu, double x)
+cyl_bessel_j(double nu, double x)
 {
   return boost::math::cyl_bessel_j(nu, x);
 }
 
 /// Irregular modified cylindrical Bessel functions.
 double
-bessel_Knu(double nu, double x)
+cyl_bessel_k(double nu, double x)
 {
   return boost::math::cyl_bessel_k(nu, x);
 }
 
 /// Cylindrical Neumann functions.
 double
-bessel_Ynu(double nu, double x)
+cyl_neumann(double nu, double x)
 {
   return boost::math::cyl_neumann(nu, x);
 }
@@ -173,35 +173,35 @@ ellint_d(double k, double phi)
 
 /// Carlson elliptic integrals R_C.
 double
-ellint_RC(double x, double y)
+ellint_rc(double x, double y)
 {
   return boost::math::ellint_rc(x, y);
 }
 
 /// Carlson elliptic integrals R_D.
 double
-ellint_RD(double x, double y, double z)
+ellint_rd(double x, double y, double z)
 {
   return boost::math::ellint_rd(x, y, z);
 }
 
 /// Carlson elliptic integrals R_F.
 double
-ellint_RF(double x, double y, double z)
+ellint_rf(double x, double y, double z)
 {
   return boost::math::ellint_rf(x, y, z);
 }
 
 /// Carlson elliptic integrals R_G.
 double
-ellint_RG(double x, double y, double z)
+ellint_rg(double x, double y, double z)
 {
   return boost::math::ellint_rg(x, y, z);
 }
 
 /// Carlson elliptic integrals R_J.
 double
-ellint_RJ(double x, double y, double z, double p)
+ellint_rj(double x, double y, double z, double p)
 {
   return boost::math::ellint_rj(x, y, z, p);
 }
@@ -236,14 +236,14 @@ hermite(unsigned int n, double x)
 
 /// Hypergeometric functions.
 double
-hyperg_2F1(double a, double b, double c, double x)
+hyperg(double a, double b, double c, double x)
 {
   return 0.0;
 }
 
 /// Laguerre polynomials.
 double
-laguerre_n(unsigned int n, double x)
+laguerre(unsigned int n, double x)
 {
   return boost::math::laguerre(n, x);
 }
