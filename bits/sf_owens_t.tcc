@@ -44,7 +44,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
  */
 template<typename _Tp>
   _Tp
-  __normal_cdf(_Tp __x)
+  __znorm2(_Tp __x)
   {
     constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
     return _Tp{0.5L} * std::erfc(__x / _S_sqrt_2);
@@ -55,10 +55,22 @@ template<typename _Tp>
  */
 template<typename _Tp>
   _Tp
-  __normal_cdfc(_Tp __x)
+  __znorm1(_Tp __x)
   {
     constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
     return _Tp{0.5L} * std::erf(__x / _S_sqrt_2);
+  }
+
+/**
+ *  The CDF of the normal distribution.
+ *  i.e. the integrated lower tail of the normal PDF.
+ */
+template<typename _Tp>
+  _Tp
+  __gauss(_Tp __x)
+  {
+    constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
+    return _Tp{0.5L} * (_Tp{1} + std::erf(__x/_S_sqrt_2));
   }
 
 /**
@@ -80,18 +92,10 @@ template<typename _Tp>
   __owens_t(_Tp __h, _Tp __a)
   {
     constexpr _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
-    constexpr _Tp _S_a_range[7]
-    {
-      0.025L,
-      0.09L,
-      0.15L,
-      0.36L,
-      0.5L,
-      0.9L,
-      0.99999L
-    };
+    constexpr _Tp _S_min = std::numeric_limits<_Tp>::min();
 
-    constexpr _Tp _S_c2[21]
+    constexpr std::size_t _S_num_c2 = 21;
+    constexpr _Tp _S_c2[_S_num_c2]
     {
        0.99999999999999987510L,
       -0.99999999999988796462L,
@@ -122,6 +126,17 @@ template<typename _Tp>
       1.6L,  1.7L,  2.33L, 2.4L,   3.36L, 3.4L,  4.8L
     };
 
+    constexpr _Tp _S_a_range[7]
+    {
+      0.025L,
+      0.09L,
+      0.15L,
+      0.36L,
+      0.5L,
+      0.9L,
+      0.99999L
+    };
+
     constexpr int _S_select[8][15]
     {
       {0,  0,  1, 12, 12, 12, 12, 12, 12, 12, 12, 15, 15, 15,  8},
@@ -146,7 +161,9 @@ template<typename _Tp>
       20, 30, 20,  4,  7,  8, 20, 13,  0
     };
 
-    constexpr _Tp _S_pts[13]
+    constexpr std::size_t _S_num_GJ = 13;
+
+    constexpr _Tp _S_GJ_pts[_S_num_GJ]
     {
       0.35082039676451715489e-02L,
       0.31279042338030753740e-01L,
@@ -163,7 +180,7 @@ template<typename _Tp>
       0.99178832974629703586L
     };
 
-    constexpr _Tp _S_wts[13]
+    constexpr _Tp _S_GJ_wts[_S_num_GJ]
     {
       0.18831438115323502887e-01L,
       0.18567086243977649478e-01L,
@@ -189,11 +206,17 @@ template<typename _Tp>
       return -__owens_t(__h, -__a);
     else if (__a > _Tp{1})
       {
-	auto __normh = __normal_cdf(__h);
-	auto __normah = __normal_cdf(__a * __h);
+	auto __normh = __znorm2(__h);
+	auto __normah = __znorm2(__a * __h);
 	return _Tp{0.5L} * __normh + _Tp{0.5L} * __normah
 	     - __normh * __normah - __owens_t(__h * __a, _Tp{1} / __a);
       }
+    if (__h == _Tp{0})
+      return std::atan(__a) * _S_1_d_2pi;
+    if (__a == _Tp{0})
+      return _Tp{0};
+    if (__a == _Tp{1})
+      return _Tp{0.5L} * __znorm2(-__h) * __znorm2(__h);
     else
       {
 	//  Determine appropriate method from t1...t6
@@ -222,28 +245,29 @@ template<typename _Tp>
 	    //  t1(h, a, m) ; m = 2, 3, 4, 5, 7, 10, 12 or 18
 	    //  jj = 2j - 1 ; gj = exp(-h*h/2) * (-h*h/2)^j / j!
 	    //  aj = a^(2j-1) / (2*pi)
-	    auto __hs = - 0.5 * __h * __h;
-	    auto __dhs = std::exp(__hs);
-	    auto __as = __a * __a;
+	    const auto __hh = - _Tp{0.5L} * __h * __h;
+	    const auto __dhs = std::exp(__hh);
+	    const auto __aa = __a * __a;
 	    auto __j = 1;
-	    auto __jj = 1;
+	    auto __jj = _Tp{1};
 	    auto __aj = _S_1_d_2pi * __a;
-	    auto __value = _S_1_d_2pi * std::atan(__a);
-	    auto __dj = __dhs - _Tp{1};
-	    auto __gj = __hs * __dhs;
+	    auto __dj = std::expm1(__hh);
+	    auto __gj = __hh * __dhs;
 
+	    auto __value = _S_1_d_2pi * std::atan(__a);
 	    while (true)
 	      {
-		__value += __dj * __aj / __jj;
+		auto __z = __dj * __aj / __jj;
+		__value += __z;
 
-		if (__m <= __j)
+		if (__j >= __m && std::abs(__z) < _S_eps * std::abs(__value))
         	  return __value;
 
-		++__j = __j;
-		__jj += 2;
-		__aj *= __as;
+		++__j;
+		__jj += _Tp{2};
+		__aj *= __aa;
 		__dj = __gj - __dj;
-		__gj *= __hs / __j;
+		__gj *= __hh / _Tp(__j);
 	      }
 	  }
 	else if (_S_method[__icode] == 2)
@@ -253,26 +277,30 @@ template<typename _Tp>
 	    //  vi = (-1)^(i-1) * a^(2i-1) * exp[-(a*h)^2/2] / sqrt(2*pi)
 	    auto __maxii = __m + __m + 1;
 	    auto __ii = 1;
-	    auto __value = _Tp{0};
-	    auto __hs = __h * __h;
-	    auto __as = -__a * __a;
+	    const auto __hh = __h * __h;
+	    const auto __aa = -__a * __a;
+	    const auto __y = _Tp{1} / __hh;
 	    auto __ah = __a * __h;
-	    auto __vi = _S_1_d_sqrt_2pi * __a * std::exp(-0.5 * __ah * __ah);
-	    auto __z = __normal_cdf(__ah) / __h;
-	    auto __y = _Tp{1} / __hs;
+	    auto __vi = _S_1_d_sqrt_2pi * __a * std::exp(-_Tp{0.5} * __ah * __ah);
+	    auto __z = __znorm1(__ah) / __h;
+	    auto __z_prev = std::abs(__z) + _Tp{1};
 
+	    auto __value = _Tp{0};
 	    while (true)
 	      {
 		__value += __z;
 
-		if (__maxii <= __ii)
+		if (std::abs(__z) < _S_eps * std::abs(__value)
+		 || (__ii >= __maxii && std::abs(__z) > __z_prev)
+		 || std::abs(__z) < _S_eps)
 		  {
-        	    __value *= _S_1_d_sqrt_2pi * std::exp(-0.5 * __hs);
+        	    __value *= _S_1_d_sqrt_2pi * std::exp(-_Tp{0.5} * __hh);
         	    return __value;
 		  }
 
-		__z = __y * (__vi - __ii * __z);
-		__vi *= __as;
+		__z_prev = std::abs(__z);
+		__z = __y * (__vi - _Tp(__ii) * __z);
+		__vi *= __aa;
 		__ii += 2;
 	      }
 	  }
@@ -281,69 +309,62 @@ template<typename _Tp>
 	    //  t3(h, a, m) ; m = 20
 	    //  ii = 2i - 1
 	    //  vi = a^(2i-1) * exp[-(a*h)^2/2] / sqrt(2*pi)
-	    auto __i = 1;
+	    const auto __hh = __h * __h;
+	    const auto __aa = __a * __a;
+	    const auto __ah = __a * __h;
+	    const auto __y = _Tp{1} / __hh;
 	    auto __ii = 1;
-	    auto __value = _Tp{0};
-	    auto __hs = __h * __h;
-	    auto __as = __a * __a;
-	    auto __ah = __a * __h;
 	    auto __vi = _S_1_d_sqrt_2pi * __a * std::exp(-_Tp{0.5L} * __ah * __ah);
-	    auto __zi = __l1_norm(__ah) / __h;
-	    auto __y = _Tp{1} / __hs;
+	    auto __zi = __znorm1(__ah) / __h;
 
-	    while (true)
+	    auto __value = _Tp{0};
+	    for (int __i = 0; __i < _S_num_c2; ++__i)
 	      {
-		__value += __zi * _S_c2[__i - 1];
-
-		if (__m < __i)
-		  {
-        	    __value *= _S_1_d_sqrt_2pi * std::exp (-_Tp{0.5L} * __hs);
-        	    return __value;
-		  }
-
-		__zi = __y  * (__ii * __zi - __vi);
-		__vi *= __as;
-		++__i;
+		__value += __zi * _S_c2[__i];
+		__zi = __y  * (_Tp(__ii) * __zi - __vi);
+		__vi *= __aa;
 		__ii += 2;
-
 	      }
+            __value *= _S_1_d_sqrt_2pi * std::exp(-_Tp{0.5L} * __hh);
+            return __value;
 	  }
 	else if (_S_method[__icode] == 4)
 	  {
 	    //  t4(h, a, m) ; m = 4, 7, 8 or 20;  ii = 2i + 1
 	    //  ai = a * exp[-h*h*(1+a*a)/2] * (-a*a)^i / (2*pi)
-	    auto __maxii = __m + __m + 1;
+	    const auto __maxii = __m + __m + 1;
+	    const auto __hh = __h * __h;
+	    const auto __aa = -__a * __a;
 	    auto __ii = 1;
-	    auto __hs = __h * __h;
-	    auto __as = -__a * __a;
-	    auto __value = _Tp{0};
 	    auto __ai = _S_1_d_2pi * __a
-		      * std::exp(- _Tp{0.5L} * __hs * (_Tp{1} - __as));
+		      * std::exp(-_Tp{0.5L} * __hh * (_Tp{1} - __aa));
 	    auto __yi = _Tp{1};
 
+	    auto __value = __ai * __yi;
 	    while (true)
 	      {
-		__value += __ai * __yi;
-
-		if (__maxii <= __ii)
-        	  return __value;
-
 		__ii += 2;
-		__yi = (_Tp{1} - __hs * __yi) / __ii;
-		__ai *= __as;
+		__yi = (_Tp{1} - __hh * __yi) / _Tp(__ii);
+		__ai *= __aa;
+		auto __z = __ai * __yi;
+		__value += __z;
+
+		//if (__maxii <= __ii)
+		if (std::abs(__z) > _S_min && std::abs(__z) < _S_eps * std::abs(__value))
+        	  return __value;
 	      }
 	  }
 	else if (_S_method[__icode] == 5)
 	  {
 	    //  t5(h, a, m) ; m = 13
 	    //  2m - point Gaussian quadrature
+	    const auto __aa = __a * __a;
+	    const auto __hh = - _Tp{0.5L} * __h * __h;
 	    auto __value = _Tp{0};
-	    auto __as = __a * __a;
-	    auto __hs = - _Tp{0.5L} * __h * __h;
-	    for (int __i = 0; __i < __m; ++__i)
+	    for (int __i = 0; __i < _S_num_GJ; ++__i)
 	      {
-		auto __r = _Tp{1} + __as * _S_pts[__i];
-		__value += _S_wts[__i] * std::exp(__hs * __r) / __r;
+		auto __r = _Tp{1} + __aa * _S_GJ_pts[__i];
+		__value += _S_GJ_wts[__i] * std::exp(__hh * __r) / __r;
 	      }
 	    __value *= __a;
 	    return __value;
@@ -351,10 +372,10 @@ template<typename _Tp>
 	else if (_S_method[__icode] == 6)
 	  {
 	    //  t6(h, a);  approximation for a near 1, (a<=1)
-	    auto __normh = __normal_cdfc(__h);
+	    const auto __normh = __znorm2(__h);
 	    auto __value = _Tp{0.5L} * __normh * (_Tp{1} - __normh);
-	    auto __y = _Tp{1} - __a;
-	    auto __r = std::atan2(__y, _Tp{1} + __a);
+	    const auto __y = _Tp{1} - __a;
+	    const auto __r = std::atan2(__y, _Tp{1} + __a);
 
 	    if (std::abs(__r) > _S_eps)
 	      __value -= _S_1_d_2pi * __r
