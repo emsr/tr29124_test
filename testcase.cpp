@@ -152,7 +152,7 @@ template<typename Real>
     using  std::tr1::sph_neumann;
 #endif
 
-    // Unsigned integer orders for various polynomials, harmonics, and spherical bessels.
+    // Unsigned integer orders for various polynomials, harmonics.
     std::vector<unsigned int> vorder{0, 1, 2, 5, 10, 20, 50, 100};
 
     // Integer orders for various polynomials, harmonics, and spherical bessels.
@@ -162,12 +162,15 @@ template<typename Real>
     std::vector<Real> dvorder{0, 1, 2, 5, 10, 20, 50, 100};
 
     // Orders for cylindrical Bessel functions.
-    std::vector<Real> vborderd{0, Real{1.0L/3.0L},
-			       Real{0.5L}, Real{2.0L/3.0L},
-			       1, 2, 5, 10, 20, 50, 100};
+    std::vector<Real> cyl_neg_order{-5, -2, -1, -Real{2.0L/3.0L},
+				    -Real{0.5L}, -Real{1.0L/3.0L}};
+
+    std::vector<Real> cyl_order{0, Real{1.0L/3.0L},
+				Real{0.5L}, Real{2.0L/3.0L},
+				1, 2, 5, 10, 20, 50, 100};
 
     // Orders for spherical bessel functions.
-    std::vector<unsigned int> sborder{0, 1, 2, 5, 10, 20, 50, 100};
+    std::vector<unsigned int> sph_order{0, 1, 2, 5, 10, 20, 50, 100};
 
     const unsigned int num_phi = 10;
     Real phi[num_phi];
@@ -216,7 +219,7 @@ template<typename Real>
     basename = "assoc_laguerre";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_assoc_laguerre(filename.c_str());
-    maketest(assoc_laguerre, gsl::laguerre_nm,
+    maketest(assoc_laguerre, gsl::assoc_laguerre,
 	     nsname, basename,
 	     "n", vorder, "m", vorder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -293,7 +296,7 @@ template<typename Real>
     basename = "conf_hyperg";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_conf_hyperg(filename.c_str());
-    maketest(conf_hyperg, gsl::hyperg_1F1,
+    maketest(conf_hyperg, gsl::conf_hyperg,
 	     "__gnu_cxx", basename,
 	     "a", vab,
 	     "c", fill_argument(std::make_pair(Real{0}, Real{10}),
@@ -308,7 +311,7 @@ template<typename Real>
     basename = "conf_hyperg";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_conf_hyperg(filename.c_str());
-    maketest(conf_hyperg, gsl::hyperg_1F1,
+    maketest(conf_hyperg, gsl::conf_hyperg,
 	     nsname, basename,
 	     "a", vab,
 	     "c", fill_argument(std::make_pair(Real{0}, Real{10}),
@@ -324,15 +327,21 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cyl_bessel_i(filename.c_str());
     test =
-    maketest(cyl_bessel_i, gsl::bessel_Inu,
+    maketest(cyl_bessel_i, beast::cyl_bessel_i,
 	     nsname, basename,
-	     "nu", vborderd,
+	     "nu", cyl_neg_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_cyl_bessel_i, true, false);
-    maketest(cyl_bessel_i, gsl::bessel_Inu,
+    maketest(cyl_bessel_i, gsl::cyl_bessel_i,
 	     nsname, basename,
-	     "nu", vborderd,
+	     "nu", cyl_order,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(true, true), 21),
+	     file_cyl_bessel_i, false, false);
+    maketest(cyl_bessel_i, gsl::cyl_bessel_i,
+	     nsname, basename,
+	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
 	     file_cyl_bessel_i, false, true, test);
@@ -343,15 +352,21 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cyl_bessel_j(filename.c_str());
     test =
-    maketest(cyl_bessel_j, gsl::bessel_Jnu,
+    maketest(cyl_bessel_j, beast::cyl_bessel_j,
 	     nsname, basename,
-	     "nu", vborderd,
+	     "nu", cyl_neg_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_cyl_bessel_j, true, false);
-    maketest(cyl_bessel_j, gsl::bessel_Jnu,
+    maketest(cyl_bessel_j, gsl::cyl_bessel_j,
 	     nsname, basename,
-	     "nu", vborderd,
+	     "nu", cyl_order,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(true, true), 21),
+	     file_cyl_bessel_j, true, false);
+    maketest(cyl_bessel_j, gsl::cyl_bessel_j,
+	     nsname, basename,
+	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
 	     file_cyl_bessel_j, false, true, test);
@@ -363,15 +378,21 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cyl_bessel_k(filename.c_str());
     test =
-    maketest(cyl_bessel_k, gsl::bessel_Knu,
+    maketest(cyl_bessel_k, beast::cyl_bessel_k,
 	     nsname, basename,
-	     "nu", vborderd,
+	     "nu", cyl_neg_order,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(true, true), 21),
+	     file_cyl_bessel_k, true, false);
+    maketest(cyl_bessel_k, gsl::cyl_bessel_k,
+	     nsname, basename,
+	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     file_cyl_bessel_k, true, false);
-    maketest(cyl_bessel_k, gsl::bessel_Knu,
+    maketest(cyl_bessel_k, gsl::cyl_bessel_k,
 	     nsname, basename,
-	     "nu", vborderd,
+	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(false, true), 21),
 	     file_cyl_bessel_k, false, true, test);
@@ -383,15 +404,21 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cyl_neumann(filename.c_str());
     test =
-    maketest(cyl_neumann, gsl::bessel_Ynu,
+    maketest(cyl_neumann, beast::cyl_neumann,
 	     nsname, basename,
-	     "nu", vborderd,
+	     "nu", cyl_neg_order,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(true, true), 21),
+	     file_cyl_neumann, true, false);
+    maketest(cyl_neumann, gsl::cyl_neumann,
+	     nsname, basename,
+	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     file_cyl_neumann, true, false);
-    maketest(cyl_neumann, gsl::bessel_Ynu,
+    maketest(cyl_neumann, gsl::cyl_neumann,
 	     nsname, basename,
-	     "nu", vborderd,
+	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(false, true), 21),
 	     file_cyl_neumann, false, true, test);
@@ -481,7 +508,7 @@ template<typename Real>
     basename = "hyperg";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_hyperg(filename.c_str());
-    maketest(hyperg, gsl::hyperg_2F1,
+    maketest(hyperg, gsl::hyperg,
 	     "__gnu_cxx", basename,
 	     "a", vab,
 	     "b", vab,
@@ -498,7 +525,7 @@ template<typename Real>
     basename = "hyperg";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_hyperg(filename.c_str());
-    maketest(hyperg, gsl::hyperg_2F1,
+    maketest(hyperg, gsl::hyperg,
 	     nsname, basename,
 	     "a", vab,
 	     "b", vab,
@@ -514,7 +541,7 @@ template<typename Real>
     basename = "laguerre";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_laguerre(filename.c_str());
-    maketest(laguerre, gsl::laguerre_n,
+    maketest(laguerre, gsl::laguerre,
 	     nsname, basename,
 	     "n", vorder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -575,13 +602,13 @@ template<typename Real>
     test =
     maketest(sph_bessel, gsl::bessel_jl,
 	     nsname, basename,
-	     "n", sborder,
+	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_sph_bessel, true, false);
     maketest(sph_bessel, gsl::bessel_jl,
 	     nsname, basename,
-	     "n", sborder,
+	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
 	     file_sph_bessel, false, true, test);
@@ -607,13 +634,13 @@ template<typename Real>
     test =
     maketest(sph_neumann, gsl::bessel_yl,
 	     nsname, basename,
-	     "n", sborder,
+	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     file_sph_neumann, true, false);
     maketest(sph_neumann, gsl::bessel_yl,
 	     nsname, basename,
-	     "n", sborder,
+	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(false, true), 21),
 	     file_sph_neumann, false, true, test);
@@ -624,7 +651,7 @@ template<typename Real>
     basename = "ellint_rc";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rc(filename.c_str());
-    maketest(ellint_rc, gsl::ellint_RC,
+    maketest(ellint_rc, gsl::ellint_rc,
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(false, true), 11),
@@ -637,7 +664,7 @@ template<typename Real>
     basename = "ellint_rd";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rd(filename.c_str());
-    maketest(ellint_rd, gsl::ellint_RD,
+    maketest(ellint_rd, gsl::ellint_rd,
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(false, true), 11),
@@ -652,7 +679,7 @@ template<typename Real>
     basename = "ellint_rf";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rf(filename.c_str());
-    maketest(ellint_rf, gsl::ellint_RF,
+    maketest(ellint_rf, gsl::ellint_rf,
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(false, true), 11),
@@ -667,7 +694,7 @@ template<typename Real>
     basename = "ellint_rg";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rg(filename.c_str());
-    maketest(ellint_rg, beast::ellint_RG,
+    maketest(ellint_rg, beast::ellint_rg,
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(false, true), 11),
@@ -682,7 +709,7 @@ template<typename Real>
     basename = "ellint_rj";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rj(filename.c_str());
-    maketest(ellint_rj, gsl::ellint_RJ,
+    maketest(ellint_rj, gsl::ellint_rj,
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(false, true), 11),
@@ -977,13 +1004,13 @@ template<typename Real>
     test =
     maketest(sph_bessel_i, gsl::bessel_il,
 	     "__gnu_cxx", basename,
-	     "n", sborder,
+	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_sph_bessel_i, true, false);
     maketest(sph_bessel_i, gsl::bessel_il,
 	     "__gnu_cxx", basename,
-	     "n", sborder,
+	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
 	     file_sph_bessel_i, false, true, test);
@@ -996,13 +1023,13 @@ template<typename Real>
     test =
     maketest(sph_bessel_k, gsl::bessel_kl,
 	     "__gnu_cxx", basename,
-	     "n", sborder,
+	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     file_sph_bessel_k, true, false);
     maketest(sph_bessel_k, gsl::bessel_kl,
 	     "__gnu_cxx", basename,
-	     "n", sborder,
+	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(false, true), 21),
 	     file_sph_bessel_k, false, true, test);
@@ -1239,13 +1266,13 @@ template<typename Real>
     test =
     maketest(cyl_hankel_1, beast::cyl_hankel_1,
 	     "__gnu_cxx", basename,
-	     "nu", vborderd,
+	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_cyl_hankel_1, true, false);
     maketest(cyl_hankel_1, beast::cyl_hankel_1,
 	     "__gnu_cxx", basename,
-	     "nu", vborderd,
+	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
 	     file_cyl_hankel_1, false, true, test);
@@ -1258,13 +1285,13 @@ template<typename Real>
     test =
     maketest(cyl_hankel_2, beast::cyl_hankel_2,
 	     "__gnu_cxx", basename,
-	     "nu", vborderd,
+	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_cyl_hankel_2, true, false);
     maketest(cyl_hankel_2, beast::cyl_hankel_2,
 	     "__gnu_cxx", basename,
-	     "nu", vborderd,
+	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
 	     file_cyl_hankel_2, false, true, test);
@@ -1277,13 +1304,13 @@ template<typename Real>
     test =
     maketest(sph_hankel_1, beast::sph_hankel_1,
 	     "__gnu_cxx", basename,
-	     "n", sborder,
+	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_sph_hankel_1, true, false);
     maketest(sph_hankel_1, beast::sph_hankel_1,
 	     "__gnu_cxx", basename,
-	     "n", sborder,
+	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
 	     file_sph_hankel_1, false, true, test);
@@ -1296,13 +1323,13 @@ template<typename Real>
     test =
     maketest(sph_hankel_2, beast::sph_hankel_2,
 	     "__gnu_cxx", basename,
-	     "n", sborder,
+	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_sph_hankel_2, true, false);
     maketest(sph_hankel_2, beast::sph_hankel_2,
 	     "__gnu_cxx", basename,
-	     "n", sborder,
+	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
 	     file_sph_hankel_2, false, true, test);
