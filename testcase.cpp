@@ -333,12 +333,13 @@ template<typename Real>
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_cyl_bessel_i, true, false);
+    test =
     maketest(cyl_bessel_i, gsl::cyl_bessel_i,
 	     nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
-	     file_cyl_bessel_i, false, false);
+	     file_cyl_bessel_i, false, false, test);
     maketest(cyl_bessel_i, gsl::cyl_bessel_i,
 	     nsname, basename,
 	     "nu", cyl_order,
@@ -358,12 +359,13 @@ template<typename Real>
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_cyl_bessel_j, true, false);
+    test =
     maketest(cyl_bessel_j, gsl::cyl_bessel_j,
 	     nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
-	     file_cyl_bessel_j, true, false);
+	     file_cyl_bessel_j, false, false, test);
     maketest(cyl_bessel_j, gsl::cyl_bessel_j,
 	     nsname, basename,
 	     "nu", cyl_order,
@@ -384,12 +386,13 @@ template<typename Real>
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_cyl_bessel_k, true, false);
+    test =
     maketest(cyl_bessel_k, gsl::cyl_bessel_k,
 	     nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
-	     file_cyl_bessel_k, true, false);
+	     file_cyl_bessel_k, false, false, test);
     maketest(cyl_bessel_k, gsl::cyl_bessel_k,
 	     nsname, basename,
 	     "nu", cyl_order,
@@ -410,12 +413,13 @@ template<typename Real>
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_cyl_neumann, true, false);
+    test =
     maketest(cyl_neumann, gsl::cyl_neumann,
 	     nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
-	     file_cyl_neumann, true, false);
+	     file_cyl_neumann, false, false, test);
     maketest(cyl_neumann, gsl::cyl_neumann,
 	     nsname, basename,
 	     "nu", cyl_order,
@@ -1266,10 +1270,17 @@ template<typename Real>
     test =
     maketest(cyl_hankel_1, beast::cyl_hankel_1,
 	     "__gnu_cxx", basename,
-	     "nu", cyl_order,
+	     "nu", cyl_neg_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_cyl_hankel_1, true, false);
+    test =
+    maketest(cyl_hankel_1, beast::cyl_hankel_1,
+	     "__gnu_cxx", basename,
+	     "nu", cyl_order,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(true, true), 21),
+	     file_cyl_hankel_1, false, false, test);
     maketest(cyl_hankel_1, beast::cyl_hankel_1,
 	     "__gnu_cxx", basename,
 	     "nu", cyl_order,
@@ -1285,10 +1296,17 @@ template<typename Real>
     test =
     maketest(cyl_hankel_2, beast::cyl_hankel_2,
 	     "__gnu_cxx", basename,
-	     "nu", cyl_order,
+	     "nu", cyl_neg_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_cyl_hankel_2, true, false);
+    test =
+    maketest(cyl_hankel_2, beast::cyl_hankel_2,
+	     "__gnu_cxx", basename,
+	     "nu", cyl_order,
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(true, true), 21),
+	     file_cyl_hankel_2, false, false, test);
     maketest(cyl_hankel_2, beast::cyl_hankel_2,
 	     "__gnu_cxx", basename,
 	     "nu", cyl_order,
