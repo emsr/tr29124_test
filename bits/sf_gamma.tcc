@@ -2207,7 +2207,7 @@ _S_neg_double_factorial_table[999]
       else if (__n == _Tp{0})
 	return _Tp{0};
       else
-	return std::lgamma(__a + 1) - std::lgamma(__a - __n + 1);
+	return std::lgamma(__a + _Tp{1}) - std::lgamma(__a - __n + _Tp{1});
     }
 
 
@@ -2232,11 +2232,14 @@ _S_neg_double_factorial_table[999]
 	return _Tp{1};
       else
 	{
-          auto __logpoch = std::lgamma(__a + 1) - std::lgamma(__a - __n + 1);
+          auto __logpoch = std::lgamma(__a + _Tp{1})
+			 - std::lgamma(__a - __n + _Tp{1});
+	  auto __sign = __log_gamma_sign(__a + _Tp{1})
+		      * __log_gamma_sign(__a - __n + _Tp{1});
           if (__logpoch > __gnu_cxx::__log_max<_Tp>())
-            return __gnu_cxx::__infinity<_Tp>();
+            return __sign * __gnu_cxx::__infinity<_Tp>();
           else
-            return std::exp(__logpoch);
+            return __sign * std::exp(__logpoch);
 	}
     }
 
@@ -2262,7 +2265,8 @@ _S_neg_double_factorial_table[999]
       const unsigned int _S_max_iter = 100000;
       for (unsigned int __k = 0; __k < _S_max_iter; ++__k)
 	{
-	  const auto __term = (__x - _Tp{1}) / ((__k + 1) * (__k + __x));
+	  const auto __term = (__x - _Tp{1})
+			    / (_Tp(__k + 1) * (_Tp(__k) + __x));
 	  __sum += __term;
 	  if (std::abs(__term) < __gnu_cxx::__epsilon<_Tp>())
 	    break;
