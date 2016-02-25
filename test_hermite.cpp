@@ -28,19 +28,19 @@ main()
 
   std::cout << "\f\n\n  Examine asymptotic transition region\n";
   std::cout << "  ====================================\n";
-  for (int n = 4; n <= 100; ++n)
+  for (int n = 4; n <= 200; ++n)
     {
       auto xt = std::sqrt(2.0 * n);
-      auto del = 0.2 * xt / 80;
+      auto del = 0.5 * xt / 200;
       std::cout << "  " << std::setw(width) << "n = " << std::setw(width) << n << '\n';
       std::cout << "  " << std::setw(width) << "x_t = " << std::setw(width) << xt << '\n';
       std::cout << "  " << std::setw(width) << "x";
       std::cout << "  " << std::setw(width) << "Hr_" << n << "(x)";
       std::cout << "  " << std::setw(width) << "Ha_" << n << "(x)";
       std::cout << '\n';
-      for (int i = 0; i <= 81; ++i)
+      for (int i = 0; i <= 201; ++i)
         {
-          auto x = 0.9 * xt + i * del;
+          auto x = 0.75 * xt + i * del;
           auto h = __poly_hermite_recursion(n, x);
           auto ht = __poly_hermite_asymp(n, x);
 	  if (std::abs(x - xt) < del)
