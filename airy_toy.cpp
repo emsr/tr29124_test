@@ -2,7 +2,7 @@
 
 // LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.txt
 
-// g++ -std=gnu++14 -DNO_LOGBQ -I. -o airy_toy airy_toy.cpp -lquadmath
+// g++ -std=gnu++14 -Wall -Wextra -DNO_LOGBQ -I. -o airy_toy airy_toy.cpp -lquadmath
 
 // ./airy_toy > airy_toy.txt
 
@@ -45,17 +45,9 @@
     {
       using __cmplx = std::complex<_Tp>;
 
-      static constexpr auto _S_eps = __gnu_cxx::__epsilon(_Tp{});
-      static constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      static constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
-      static constexpr auto _S_Ai0 = _Tp{3.550280538878172392600631860041831763980e-1Q};
-      static constexpr auto _S_Aip0 = _Tp{2.588194037928067984051835601892039634793e-1Q};
-      //static constexpr auto _S_Bi0 = _Tp{6.149266274460007351509223690936135535960e-1Q};
-      //static constexpr auto _S_Bip0 = _Tp{8.868776642045783582807775119976424596506e-1Q};
-      static constexpr auto _S_i = __cmplx(_Tp{0}, _Tp{1});
-      static constexpr auto _S_big = _Tp{5.0Q}; // was 3.5
-
+    public: // FIXME!!!
       static constexpr int _N_FG = 200;
+    private: // FIXME!!!
       static constexpr _Tp
       _Fai[_N_FG]
       {
@@ -879,9 +871,27 @@
 
     public:
 
+      constexpr _Airy_series() = default;
+
       _AiryState<std::complex<_Tp>>
-      operator()(std::complex<_Tp> __t) const;
+      operator()(std::complex<_Tp> __t, bool __return_fock_airy = false) const;
     };
+
+  template<typename _Tp>
+    constexpr _Tp
+    _Airy_series<_Tp>::_Fai[_N_FG];
+
+  template<typename _Tp>
+    constexpr _Tp
+    _Airy_series<_Tp>::_Faip[_N_FG];
+
+  template<typename _Tp>
+    constexpr _Tp
+    _Airy_series<_Tp>::_Gai[_N_FG];
+
+  template<typename _Tp>
+    constexpr _Tp
+    _Airy_series<_Tp>::_Gaip[_N_FG];
 
   // Type-dependent limits for the arrays.
   // FIXME: Make these limits digits10-based.
@@ -899,8 +909,17 @@
    */
   template<typename _Tp>
     _AiryState<std::complex<_Tp>>
-    _Airy_series<_Tp>::operator()(std::complex<_Tp> __t) const
+    _Airy_series<_Tp>::operator()(std::complex<_Tp> __t,
+				  bool __return_fock_airy) const
     {
+      constexpr auto _S_eps = __gnu_cxx::__epsilon(_Tp{});
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
+      constexpr auto _S_Ai0 = _Tp{3.550280538878172392600631860041831763980e-1Q};
+      constexpr auto _S_Aip0 = _Tp{2.588194037928067984051835601892039634793e-1Q};
+      //constexpr auto _S_Bi0 = _Tp{6.149266274460007351509223690936135535960e-1Q};
+      //constexpr auto _S_Bip0 = _Tp{8.868776642045783582807775119976424596506e-1Q};
+      constexpr auto _S_i = __cmplx(_Tp{0}, _Tp{1});
       const auto _S_log10min = __gnu_cxx::__log10_min(_Tp{});
       const auto __log10t = std::log10(std::abs(__t));
       const auto __ttt = __t * __t * __t;
@@ -923,10 +942,6 @@
       auto _UU = std::sqrt(_Tp{3} * _S_pi)
 	      * (_S_Ai0 * _F + _S_Aip0 * _G);
       auto _VV = _S_sqrt_pi * (_S_Ai0 * _F - _S_Aip0 * _G);
-      auto _Bi = _UU / _S_sqrt_pi;
-      auto _Ai = _VV / _S_sqrt_pi;
-      auto __w1 = _UU - _S_i * _VV;
-      auto __w2 = _UU + _S_i * _VV;
 
       __term = __cmplx{1};
       auto _Fp = __cmplx{0};
@@ -945,13 +960,24 @@
 	}
       auto _UUp = std::sqrt(_Tp{3} * _S_pi)
 		* (_S_Ai0 * _Fp + _S_Aip0 * _Gp);
-      auto _VVp = _S_sqrt_pi * (_S_Ai0 * _Fp - _S_Aip0 * _Gp);
-      auto _Bip = _UUp / _S_sqrt_pi;
-      auto _Aip = _VVp / _S_sqrt_pi;
-      auto __w1p = _UUp - _S_i * _VVp;
-      auto __w2p = _UUp + _S_i * _VVp;
+	auto _VVp = _S_sqrt_pi * (_S_Ai0 * _Fp - _S_Aip0 * _Gp);
 
-      return _AiryState<std::complex<_Tp>>{__t, _Ai, _Bi, _Aip, _Bip};
+      if (!__return_fock_airy)
+	{
+	  auto _Bi = _UU / _S_sqrt_pi;
+	  auto _Ai = _VV / _S_sqrt_pi;
+	  auto _Bip = _UUp / _S_sqrt_pi;
+	  auto _Aip = _VVp / _S_sqrt_pi;
+	  return _AiryState<std::complex<_Tp>>{__t, _Ai, _Bi, _Aip, _Bip};
+	}
+      else
+	{
+	  auto __w1 = _UU - _S_i * _VV;
+	  auto __w2 = _UU + _S_i * _VV;
+	  auto __w1p = _UUp - _S_i * _VVp;
+	  auto __w2p = _UUp + _S_i * _VVp;
+	  return _AiryState<std::complex<_Tp>>{__t, __w1, __w2, __w1p, __w2p};
+	}
     }
 
   /**
@@ -962,12 +988,9 @@
     {
       using __cmplx = std::complex<_Tp>;
 
-      static constexpr auto _S_eps = __gnu_cxx::__epsilon(_Tp{});
-      static constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      static constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
-      static constexpr auto _S_i = __cmplx(_Tp{0}, _Tp{1});
-
+    public: // FIXME!!!
       static constexpr int _N_cd = 200;
+    private: // FIXME!!!
       static constexpr _Tp
       _S_cn[_N_cd]
       {
@@ -1379,9 +1402,19 @@
 
     public:
 
+      constexpr _Airy_asymp() = default;
+
       _AiryState<std::complex<_Tp>>
-      operator()(std::complex<_Tp> __t) const;
+      operator()(std::complex<_Tp> __t, bool __return_fock_airy = false) const;
     };
+
+  template<typename _Tp>
+    constexpr _Tp
+    _Airy_asymp<_Tp>::_S_cn[_N_cd];
+
+  template<typename _Tp>
+    constexpr _Tp
+    _Airy_asymp<_Tp>::_S_dn[_N_cd];
 
   // Type-dependent limits for the arrays.
   // FIXME: Make these limits digits10-based.
@@ -1395,12 +1428,17 @@
     constexpr int __max_cd<double> = 198;
 
   /**
-   *  
+   *  Return the Airy functions for a given argument using 
    */
   template<typename _Tp>
     _AiryState<std::complex<_Tp>>
-    _Airy_asymp<_Tp>::operator()(std::complex<_Tp> __t) const
+    _Airy_asymp<_Tp>::operator()(std::complex<_Tp> __t,
+				 bool __return_fock_airy) const
     {
+      constexpr auto _S_eps = __gnu_cxx::__epsilon(_Tp{});
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
+      constexpr auto _S_i = __cmplx(_Tp{0}, _Tp{1});
       const auto _S_log10min = __gnu_cxx::__log10_min(_Tp{});
       if (std::real(__t) > _Tp{0})
 	{
@@ -1478,12 +1516,16 @@
 	  auto _Bip = std::exp(+_S_i * _Tp{5} * _S_pi / _Tp{6}) * _Ai1p
 		    + std::exp(-_S_i * _Tp{5} * _S_pi / _Tp{6}) * _Ai2p;
 
-	  auto __w1 = _S_sqrt_pi * (_Bi - _S_i * _Ai);
-	  auto __w2 = _S_sqrt_pi * (_Bi + _S_i * _Ai);
-	  auto __w1p = _S_sqrt_pi * (_Bip - _S_i * _Aip);
-	  auto __w2p = _S_sqrt_pi * (_Bip + _S_i * _Aip);
-
-          return _AiryState<std::complex<_Tp>>{__t, _Ai, _Bi, _Aip, _Bip};
+	  if (__return_fock_airy)
+	    {
+	      auto __w1 = _S_sqrt_pi * (_Bi - _S_i * _Ai);
+	      auto __w2 = _S_sqrt_pi * (_Bi + _S_i * _Ai);
+	      auto __w1p = _S_sqrt_pi * (_Bip - _S_i * _Aip);
+	      auto __w2p = _S_sqrt_pi * (_Bip + _S_i * _Aip);
+	      return _AiryState<std::complex<_Tp>>{__t, __w1, __w2, __w1p, __w2p};
+	    }
+	  else
+	    return _AiryState<std::complex<_Tp>>{__t, _Ai, _Bi, _Aip, _Bip};
 	}
       else // Argument t is on or left of the imaginary axis.
 	{
@@ -1527,12 +1569,16 @@
 	  __w1p *= __pqrt * __mezeta;
 	  __w2p *= __pqrt * __pezeta;
 
-	  auto _Bi = (__w1 + __w2) / (_Tp{2} * _S_sqrt_pi);
-	  auto _Ai = (__w2 - __w1) / (_Tp{2} * _S_i * _S_sqrt_pi);
-	  auto _Bip = (__w1p + __w2p) / (_Tp{2} * _S_sqrt_pi);
-	  auto _Aip = (__w2p - __w1p) / (_Tp{2} * _S_i * _S_sqrt_pi);
-
-          return _AiryState<std::complex<_Tp>>{__t, _Ai, _Bi, _Aip, _Bip};
+	  if (__return_fock_airy)
+	    return _AiryState<std::complex<_Tp>>{__t, __w1, __w2, __w1p, __w2p};
+	  else
+	    {
+	      auto _Bi = (__w1 + __w2) / (_Tp{2} * _S_sqrt_pi);
+	      auto _Ai = (__w2 - __w1) / (_Tp{2} * _S_i * _S_sqrt_pi);
+	      auto _Bip = (__w1p + __w2p) / (_Tp{2} * _S_sqrt_pi);
+	      auto _Aip = (__w2p - __w1p) / (_Tp{2} * _S_i * _S_sqrt_pi);
+	      return _AiryState<std::complex<_Tp>>{__t, _Ai, _Bi, _Aip, _Bip};
+	    }
 	}
     }
 
@@ -1540,10 +1586,6 @@ template<typename _Tp>
   void
   run_toy()
   {
-    using __cmplx = std::complex<_Tp>;
-
-    constexpr auto _S_eps = __gnu_cxx::__epsilon(_Tp{});
-    /*constexpr*/ auto _S_log10min = __gnu_cxx::__log10_min(_Tp{});
     constexpr auto _S_1d6 = _Tp{1} / _Tp{6};
 
     std::vector<_Tp> _S_cn, _S_dn;
