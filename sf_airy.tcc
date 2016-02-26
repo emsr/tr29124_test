@@ -757,8 +757,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @f[
    *    \frac{\Gamma(\nu+1)}{(z/2)^nu}I_\nu(z) = _0F_1 (;\nu+1;z^2/4),
    *   @f]
-   *  where the function on the right is a generalized Gaussian
-   *  hypergeometric function.  For |z| <= 1/4  and
+   *  where the function on the right is a
+   *  confluent hypergeometric limit function.  For |z| <= 1/4 and
    *  |arg(z)| <= pi/2, the approximations are accurate to
    *  about 16 decimals.
    *
@@ -1063,12 +1063,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		      __airy_hyperg_rational(__z,
 					     _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
 		      // Recover Ai(z) and Ai'(z).
-		      _Ai = _S_Ai0 * _Im1d3 - __z * _S_Aip0 * _Ip1d3;
+///    (1a) Ai(z) = \frac{\sqrt{z}}{3}(I_{-1/3}(\zeta) - I_{1/3}(\zeta))
+		      _Ai = _S_Ai0 * _Im1d3 - _S_Aip0 * __z * _Ip1d3;
+///    (4a) Ai'(z)  = \frac{z}{3}(I_{2/3}(\zeta) - I_{-2/3}(\zeta))
 		      _Aip = __z * __z * _S_2g2d3 * _Ip2d3 - _S_Aip0 * _Im2d3;
 ///    (1b) Bi(z) = \sqrt{\frac{z}{3}}(I_{-1/3}(\zeta) + I_{1/3}(\zeta))
+		      _Bi = _S_Bpi0 * __z * _Im1d3 + _S_Bi0 * __z * _Ip1d3;
 ///    (4a) Bi'(z)  = \frac{z}{\sqrt{3}}(I_{-2/3}(\zeta) + I_{2/3}(\zeta))
-		      // FIXME: _Bi =  * _Im1d3 + _S_Bi0 * _Ip1d3;
-		      // FIXME: _Bip =  * _Im2d3 + _S_Bpi0 * _Ip2d3;
+		      _Bip = cbrt(_Tp{3}) * __z * __z * _Im2d3 + _S_Bpi0 * _Ip2d3;
 		    }
 		  else
 		    {
@@ -1076,7 +1078,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		      __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
 		      __airy_bessel_i(__zeta, __eps,
 				      _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
-		      // Recover Ai(z) and Ai'(z).
+		      // Recover Ai(z) and Ai'(z), Bi(z) and Bi'(z).
 		      _Ai = _S_1d3 * __sqrtz * (_Im1d3 - _Ip1d3);
 		      _Aip = _S_1d3 * __z * (_Ip2d3 - _Im2d3);
 		      _Bi = __sqrtz * (_Im2d3 * _Ip2d3) / _S_sqrt3;
@@ -1095,7 +1097,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __cmplx __z2zeta, __p1d3f, __m1d3f, __p2d3f, __m2d3f;
 	      if (std::imag(__zeta) >= _Tp{0})
 		{
-		  // Argument lies in upper half plane.
+		  // Argument lies in upper half plane - Second quadrant.
 		  __z2zeta = -_S_j * __zeta;
 		  __p1d3f = _S_eppid6;
 		  __m1d3f = _S_empid6;
@@ -1104,7 +1106,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		}
 	      else
 		{
-		  // Argument lies in lower half plane.
+		  // Argument lies in lower half plane - Third quadrant.
 		  __z2zeta = _S_j * __zeta;
 		  __p1d3f = _S_empid6;
 		  __m1d3f = _S_eppid6;
