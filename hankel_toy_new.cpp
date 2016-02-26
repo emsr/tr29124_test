@@ -137,7 +137,7 @@ template<typename _Tp>
     using __cmplx = std::complex<_Tp>;
 
     static constexpr auto _S_2pi   = _Tp{6.283185307179586476925286766559005768391L};
-    static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666666Q};
+    static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666667Q};
     static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
     static constexpr __cmplx _S_j{0, 1};
 
@@ -194,7 +194,7 @@ template<typename _Tp>
   {
     using __cmplx = std::complex<_Tp>;
 
-    static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666666Q};
+    static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666667Q};
     static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
     static constexpr __cmplx _S_j{0, 1};
 
@@ -232,7 +232,7 @@ template<typename _Tp>
   _Tp
   get_zeta(_Tp __zhat)
   {
-    static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666666Q};
+    static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666667Q};
     static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
     if (__zhat == _Tp{0})
       return std::numeric_limits<_Tp>::infinity();
