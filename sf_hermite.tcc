@@ -123,12 +123,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  // Transition region x ~ sqrt(2n).
 	  const auto __n_2 = _Tp(__n) / _Tp{2};
 	  const auto __n6th = std::pow(_Tp(__n), _Tp{1} / _Tp{6});
-	  const auto __exparg = __n_2 * std::log(__xturn) - _Tp{3} * __n_2
+	  const auto __exparg = __n * std::log(__xturn) - _Tp{3} * __n_2
 			      + __xturn * __x;
 	  const auto __airyarg = _S_sqrt_2 * (__x - __xturn) * __n6th;
 	  _Tp _Ai, _Bi, _Aip, _Bip;
 	  __airy(__airyarg, _Ai, _Bi, _Aip, _Bip);
-	  return std::sqrt(_S_sqrt_2pi) * __n6th * std::exp(__exparg) * _Ai;
+	  return _S_sqrt_2pi * __n6th * std::exp(__exparg) * _Ai;
 	}
       else if (__x < __xturn)
 	{
@@ -136,7 +136,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __theta = std::asin(__x / __xturn);
 	  const auto __2theta = _Tp{2} * __theta;
 	  const auto __n_2 = _Tp(__n) / _Tp{2};
-	  const auto __exparg = __n_2 * (std::log(__xturn)
+	  const auto __exparg = __n_2 * (_Tp{2} * std::log(__xturn)
 					- std::cos(__2theta));
 	  const auto __arg = __theta / _Tp{2}
 		+ __n_2 * (std::sin(__2theta) + __2theta - _S_pi);
