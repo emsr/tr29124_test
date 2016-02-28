@@ -1,4 +1,8 @@
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 double jv (double nu, double x);
 double jn(int n, double x);
 double j0(double x);
@@ -31,3 +35,6 @@ double hyp2f1(double a, double b, double c, double x);
 
 int airy(double x, double* ai, double* aip, double* bi, double* bip);
 
+#ifdef __cplusplus
+}
+#endif
