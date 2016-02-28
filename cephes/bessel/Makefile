@@ -56,3 +56,7 @@ struve.o: struve.c
 yn.o: yn.c
 	$(CC) -c -fPIC -I$(INC_DIR) -o yn.o yn.c
 
+
+clean:
+	rm -f *.o
+
