@@ -924,8 +924,8 @@
       const auto __log10t = std::log10(std::abs(__t));
       const auto __ttt = __t * __t * __t;
 
-      auto __term = __cmplx{1};
-      auto _F = __cmplx{1};
+      auto __term = __cmplx{_Tp{1}};
+      auto _F = __cmplx{_Tp{1}};
       auto _G = __t;
       for (int __n = 0; __n < __max_FG<_Tp>; ++__n)
 	{
@@ -943,9 +943,9 @@
 	      * (_S_Ai0 * _F + _S_Aip0 * _G);
       auto _VV = _S_sqrt_pi * (_S_Ai0 * _F - _S_Aip0 * _G);
 
-      __term = __cmplx{1};
-      auto _Fp = __cmplx{0};
-      auto _Gp = __cmplx{1};
+      __term = __cmplx{_Tp{1}};
+      auto _Fp = __cmplx{_Tp{0}};
+      auto _Gp = __cmplx{_Tp{1}};
       for (int __n = 0; __n < __max_FG<_Tp>; ++__n)
 	{
 	  if (std::abs(__t) < _S_eps)
@@ -1442,14 +1442,14 @@
       const auto _S_log10min = __gnu_cxx::__log10_min(_Tp{});
       if (std::real(__t) > _Tp{0})
 	{
-	  auto __zeta0 = (_Tp{2} / _Tp{3}) * std::pow(__t, 1.5);
+	  auto __zeta0 = (_Tp{2} / _Tp{3}) * std::pow(__t, _Tp{1.5L});
 	  auto __mqrt0 = std::pow(__t, _Tp{-0.25L});
 	  auto __pqrt0 = std::pow(__t, _Tp{+0.25L});
 	  auto __ezeta0 = std::exp(-__zeta0);
-	  auto _Ai = __cmplx{1};
-	  auto _Aip = __cmplx{1};
+	  auto _Ai = __cmplx{_Tp{1}};
+	  auto _Aip = __cmplx{_Tp{1}};
 	  auto __fact0 = -_Tp{1} / __zeta0;
-	  auto __izeta0 = __cmplx{1};
+	  auto __izeta0 = __cmplx{_Tp{1}};
 	  auto __prev_Ai0 = _Tp{1};
 	  auto __prev_Aip0 = _Tp{1};
 	  for (int __n = 0; __n < __max_cd<_Tp>; ++__n)
@@ -1476,13 +1476,13 @@
 	  auto __pqrt2 = std::pow(__t2, _Tp{+0.25L});
 	  auto __ezeta1 = std::exp(-__zeta1);
 	  auto __ezeta2 = std::exp(-__zeta2);
-	  auto _Ai1 = __cmplx{1};
-	  auto _Ai1p = __cmplx{1};
+	  auto _Ai1 = __cmplx{_Tp{1}};
+	  auto _Ai1p = __cmplx{_Tp{1}};
 	  auto _Ai2 = _Ai1;
 	  auto _Ai2p = _Ai1p;
 	  auto __sign = 1;
-	  auto __izeta1 = __cmplx{1};
-	  auto __izeta2 = __cmplx{1};
+	  auto __izeta1 = __cmplx{_Tp{1}};
+	  auto __izeta2 = __cmplx{_Tp{1}};
 	  auto __prev_Ai1 = _Tp{1};
 	  auto __prev_Ai2 = _Tp{1};
 	  auto __prev_Ai1p = _Tp{1};
@@ -1492,22 +1492,26 @@
 	      __sign *= -1;
 	      __izeta1 /= __zeta1;
 	      __izeta2 /= __zeta2;
-	      if (std::abs(_S_cn[__n] * __izeta1) > __prev_Ai1
-	       || std::abs(_S_cn[__n] * __izeta2) > __prev_Ai2
-	       || std::abs(_S_dn[__n] * __izeta1) > __prev_Ai1p
-	       || std::abs(_S_dn[__n] * __izeta2) > __prev_Ai2p)
+	      const auto __term1 = _S_cn[__n] * __izeta1;
+	      const auto __term2 = _S_cn[__n] * __izeta2;
+	      const auto __term1p = _S_dn[__n] * __izeta1;
+	      const auto __term2p = _S_dn[__n] * __izeta2;
+	      if (std::abs(__term1) > __prev_Ai1
+	       || std::abs(__term2) > __prev_Ai2
+	       || std::abs(__term1p) > __prev_Ai1p
+	       || std::abs(__term2p) > __prev_Ai2p)
 		break;
-	      __prev_Ai1 = std::abs(_S_cn[__n] * __izeta1);
-	      __prev_Ai2 = std::abs(_S_cn[__n] * __izeta2);
-	      __prev_Ai1p = std::abs(_S_dn[__n] * __izeta1);
-	      __prev_Ai2p = std::abs(_S_dn[__n] * __izeta2);
-	      _Ai1 += __sign * _S_cn[__n] * __izeta1;
-	      _Ai2 += __sign * _S_cn[__n] * __izeta2;
-	      _Ai1p += __sign * _S_dn[__n] * __izeta1;
-	      _Ai2p += __sign * _S_dn[__n] * __izeta2;
+	      __prev_Ai1 = std::abs(__term1);
+	      __prev_Ai2 = std::abs(__term2);
+	      __prev_Ai1p = std::abs(__term1p);
+	      __prev_Ai2p = std::abs(__term2p);
+	      _Ai1 += __sign * __term1;
+	      _Ai2 += __sign * __term2;
+	      _Ai1p += __sign * __term1p;
+	      _Ai2p += __sign * __term2p;
 	    }
-	  _Ai1 *= _Tp{0.5L} * __ezeta1 * __mqrt1 / _S_sqrt_pi;
-	  _Ai2 *= _Tp{0.5L} * __ezeta2 * __mqrt2 / _S_sqrt_pi;
+	  _Ai1 *= _Tp{+0.5L} * __mqrt1 * __ezeta1 / _S_sqrt_pi;
+	  _Ai2 *= _Tp{+0.5L} * __mqrt2 * __ezeta2 / _S_sqrt_pi;
 	  _Ai1p *= _Tp{-0.5L} * __pqrt1 * __ezeta1 / _S_sqrt_pi;
 	  _Ai2p *= _Tp{-0.5L} * __pqrt2 * __ezeta2 / _S_sqrt_pi;
 
@@ -1534,13 +1538,13 @@
 	  auto __pqrt = std::pow(-__t, _Tp{+0.25L});
 	  auto __mezeta = std::exp(-_S_i * (__zeta + (_S_pi / _Tp{4})));
 	  auto __pezeta = std::exp(+_S_i * (__zeta + (_S_pi / _Tp{4})));
-	  auto __w1 = __cmplx{1};
-	  auto __w2 = __cmplx{1};
+	  auto __w1 = __cmplx{_Tp{1}};
+	  auto __w2 = __cmplx{_Tp{1}};
 	  auto __w1p = +_S_i;
 	  auto __w2p = -_S_i;
-	  auto __ipn = __cmplx{1};
-	  auto __imn = __cmplx{1};
-	  auto __ixn = __cmplx{1};
+	  auto __ipn = __cmplx{_Tp{1}};
+	  auto __imn = __cmplx{_Tp{1}};
+	  auto __ixn = __cmplx{_Tp{1}};
 	  auto __prev_w1 = _Tp{1};
 	  auto __prev_w2 = _Tp{1};
 	  auto __prev_w1p = _Tp{1};
@@ -1550,19 +1554,21 @@
 	      __ipn *= +_S_i;
 	      __imn *= -_S_i;
 	      __ixn /= __zeta;
-	      if (std::abs(_S_cn[__n] * __ixn) > __prev_w1
-	       || std::abs(_S_cn[__n] * __ixn) > __prev_w2
-	       || std::abs(_S_dn[__n] * __ixn) > __prev_w1p
-	       || std::abs(_S_dn[__n] * __ixn) > __prev_w2p)
+	      const auto __term = _S_cn[__n] * __ixn;
+	      const auto __termp = _S_dn[__n] * __ixn;
+	      if (std::abs(__term) > __prev_w1
+	       || std::abs(__term) > __prev_w2
+	       || std::abs(__termp) > __prev_w1p
+	       || std::abs(__termp) > __prev_w2p)
 		break;
-	      __prev_w1 = std::abs(_S_cn[__n] * __ixn);
-	      __prev_w2 = std::abs(_S_cn[__n] * __ixn);
-	      __prev_w1p = std::abs(_S_dn[__n] * __ixn);
-	      __prev_w2p = std::abs(_S_dn[__n] * __ixn);
-	      __w1 += __ipn * _S_cn[__n] * __ixn;
-	      __w2 += __imn * _S_cn[__n] * __ixn;
-	      __w1p += +_S_i * __ipn * _S_dn[__n] * __ixn;
-	      __w2p += -_S_i * __imn * _S_dn[__n] * __ixn;
+	      __prev_w1 = std::abs(__term);
+	      __prev_w2 = std::abs(__term);
+	      __prev_w1p = std::abs(__termp);
+	      __prev_w2p = std::abs(__termp);
+	      __w1 += __ipn * __term;
+	      __w2 += __imn * __term;
+	      __w1p += +_S_i * __ipn * __termp;
+	      __w2p += -_S_i * __imn * __termp;
 	    }
 	  __w1 *= __mqrt * __mezeta;
 	  __w2 *= __mqrt * __pezeta;
