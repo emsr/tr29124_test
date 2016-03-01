@@ -46,6 +46,48 @@ template<typename _Tp>
 
     std::cout << "\n\n Theta function values and compares with Jacobi elliptic functions\n";
     std::cout << " =================================================================\n";
+    auto k = _Tp{1} / _Tp{3};
+    std::cout << '\n' << ' ' << std::setw(width) << k;
+    std::cout << '\n' << ' ' << std::setw(width) << __gnu_cxx::ellnome(k) << '\n';
+    std::cout << ' ' << std::setw(width) << "x"
+	      << ' ' << std::setw(width) << "theta_s"
+	      << ' ' << std::setw(width) << "theta_c"
+	      << ' ' << std::setw(width) << "theta_n"
+	      << ' ' << std::setw(width) << "theta_d"
+	      << ' ' << std::setw(width) << "th_s/th_n - sn"
+	      << ' ' << std::setw(width) << "th_c/th_n - cn"
+	      << ' ' << std::setw(width) << "th_d/th_n - dn"
+	      << '\n';
+    std::cout << ' ' << std::setw(width) << "------------------------"
+	      << ' ' << std::setw(width) << "------------------------"
+	      << ' ' << std::setw(width) << "------------------------"
+	      << ' ' << std::setw(width) << "------------------------"
+	      << ' ' << std::setw(width) << "------------------------"
+	      << ' ' << std::setw(width) << "------------------------"
+	      << ' ' << std::setw(width) << "------------------------"
+	      << ' ' << std::setw(width) << "------------------------"
+	      << '\n';
+    for (int j = -1000; j <= 1000; ++j)
+      {
+	auto x = _Tp(j * 0.01Q);
+	auto s = __gnu_cxx::theta_s(k, x);
+	auto c = __gnu_cxx::theta_c(k, x);
+	auto d = __gnu_cxx::theta_d(k, x);
+	auto n = __gnu_cxx::theta_n(k, x);
+	auto sncndn = std::__detail::__jacobi_sncndn(k, x);
+	std::cout << ' ' << std::setw(width) << x
+		  << ' ' << std::setw(width) << s
+		  << ' ' << std::setw(width) << c
+		  << ' ' << std::setw(width) << d
+		  << ' ' << std::setw(width) << n
+		  << ' ' << std::setw(width) << s / n - std::get<0>(sncndn)
+		  << ' ' << std::setw(width) << c / n - std::get<1>(sncndn)
+		  << ' ' << std::setw(width) << d / n - std::get<2>(sncndn)
+		  << '\n';
+      }
+
+    std::cout << "\n\n Theta function values and compares with Jacobi elliptic functions\n";
+    std::cout << " =================================================================\n";
     for (int i = -10; i <= 10; ++i)
       {
 	auto k = _Tp(i * 0.1Q);
