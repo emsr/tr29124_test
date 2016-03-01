@@ -117,7 +117,7 @@ namespace __gnu_cxx
       /**
        *  Evaluate the polynomial at the input point.
        */
-      value_type
+      constexpr value_type
       operator()(value_type __x) const
       {
 	if (this->degree() > 0)
@@ -134,7 +134,7 @@ namespace __gnu_cxx
        *  Evaluate the polynomial at the input point.
        */
       template<typename _Tp2>
-	auto
+	constexpr auto
 	operator()(_Tp2 __x) const
 	-> decltype(value_type{} * _Tp2())
 	{
@@ -277,7 +277,7 @@ namespace __gnu_cxx
 	  __res._M_coeff[__i + 1] = _M_coeff[__i] / value_type(__i + 1);
 	return __res;
       }
-
+ 
       /**
        *  Unary plus.
        */
@@ -300,7 +300,7 @@ namespace __gnu_cxx
 
       template<typename _Up>
 	_StaticPolynomial&
-	operator=(const _StaticPolynomial<_Up>& __poly)
+	operator=(const _StaticPolynomial<_Up, _Num>& __poly)
 	{
 	  if (&__poly != this)
 	    {
@@ -397,56 +397,13 @@ namespace __gnu_cxx
 	}
 
       /**
-       *  Multiply the polynomial by another polynomial.
-       */
-      template<typename _Up>
-	_StaticPolynomial&
-	operator*=(const _StaticPolynomial<_Up>& __poly)
-	{
-	  //  Test for zero size polys and do special processing?
-	  std::array<value_type, this->degree() + __poly.degree() + 1> __new_coeff;
-	  for (size_type __i = 0; __i < this->_M_coeff.size(); ++__i)
-	    for (size_type __j = 0; __j < __poly._M_coeff.size(); ++__j)
-	      __new_coeff[__i + __j] += this->_M_coeff[__i]
-				  * static_cast<value_type>(__poly._M_coeff[__j]);
-	  this->_M_coeff = __new_coeff;
-	  return *this;
-	}
-
-      /**
-       *  Divide the polynomial by another polynomial.
-       */
-      template<typename _Up>
-	_StaticPolynomial&
-	operator/=(const _StaticPolynomial<_Up>& __poly)
-	{
-	  _StaticPolynomial<value_type >__quo, __rem;
-	  divmod(*this, __poly, __quo, __rem);
-	  *this = __quo;
-	  return *this;
-	}
-
-      /**
-       *  Take the modulus of (modulate?) the polynomial relative to another polynomial.
-       */
-      template<typename _Up>
-	_StaticPolynomial&
-	operator%=(const _StaticPolynomial<_Up>& __poly)
-	{
-	  _StaticPolynomial<value_type >__quo, __rem;
-	  divmod(*this, __poly, __quo, __rem);
-	  *this = __rem;
-	  return *this;
-	}
-
-      /**
        *  Return the degree or the power of the largest coefficient.
        */
       constexpr size_type
       degree() const
       { return (this->_M_coeff.size() > 0 ? this->_M_coeff.size() - 1 : 0); }
 
-      value_type
+      constexpr value_type
       coefficient(size_type __i) const
       { return (this->_M_coeff.size() > __i ? this->_M_coeff[__i] : value_type{}); }
 
@@ -454,7 +411,7 @@ namespace __gnu_cxx
       coefficient(size_type __i, value_type __val)
       { this->_M_coeff.at(__i) = __val; }
 
-      value_type
+      constexpr value_type
       operator[](size_type __i) const
       { return this->_M_coeff[__i]; }
 
@@ -510,48 +467,46 @@ namespace __gnu_cxx
       crend() const
       { return this->_M_coeff.crend(); }
 
-      template<typename CharT, typename Traits, typename _Tp1>
-	friend std::basic_istream<CharT, Traits>&
-	operator>>(std::basic_istream<CharT, Traits>&, _StaticPolynomial<_Tp1>&);
-
       template<typename _Tp1>
 	friend bool
-	operator==(const _StaticPolynomial<_Tp1>& __pa, const _StaticPolynomial<_Tp1>& __pb);
+	operator==(const _StaticPolynomial<_Tp1, _Num>& __pa,
+		   const _StaticPolynomial<_Tp1, _Num>& __pb);
 
     private:
+
       std::array<value_type, _Num> _M_coeff;
     };
 
   /**
    *  Return the sum of a polynomial with a scalar.
    */
-  template<typename _Tp, typename _Up>
-    inline _StaticPolynomial<decltype(_Tp() + _Up())>
-    operator+(const _StaticPolynomial<_Tp>& __poly, const _Up& __x)
-    { return _StaticPolynomial<decltype(_Tp() + _Up())>(__poly) += __x; }
+  template<typename _Tp, std::size_t _Num, typename _Up>
+    inline _StaticPolynomial<decltype(_Tp() + _Up()), _Num>
+    operator+(const _StaticPolynomial<_Tp, _Num>& __poly, const _Up& __x)
+    { return _StaticPolynomial<decltype(_Tp() + _Up()), _Num>(__poly) += __x; }
 
   /**
    *  Return the difference of a polynomial with a scalar.
    */
-  template<typename _Tp, typename _Up>
-    inline _StaticPolynomial<decltype(_Tp() - _Up())>
-    operator-(const _StaticPolynomial<_Tp>& __poly, const _Up& __x)
+  template<typename _Tp, std::size_t _Num, typename _Up>
+    inline _StaticPolynomial<decltype(_Tp() - _Up()), _Num>
+    operator-(const _StaticPolynomial<_Tp, _Num>& __poly, const _Up& __x)
     { return _StaticPolynomial<decltype(_Tp() - _Up())>(__poly) -= __x; }
 
   /**
    *  Return the product of a polynomial with a scalar.
    */
-  template<typename _Tp, typename _Up>
-    inline _StaticPolynomial<decltype(_Tp() * _Up())>
-    operator*(const _StaticPolynomial<_Tp>& __poly, const _Up& __x)
+  template<typename _Tp, std::size_t _Num, typename _Up>
+    inline _StaticPolynomial<decltype(_Tp() * _Up()), _Num>
+    operator*(const _StaticPolynomial<_Tp, _Num>& __poly, const _Up& __x)
     { return _StaticPolynomial<decltype(_Tp() * _Up())>(__poly) *= __x; }
 
   /**
    *  Return the quotient of a polynomial with a scalar.
    */
-  template<typename _Tp, typename _Up>
-    inline _StaticPolynomial<decltype(_Tp() / _Up())>
-    operator/(const _StaticPolynomial<_Tp>& __poly, const _Up& __x)
+  template<typename _Tp, std::size_t _Num, typename _Up>
+    inline _StaticPolynomial<decltype(_Tp() / _Up()), _Num>
+    operator/(const _StaticPolynomial<_Tp, _Num>& __poly, const _Up& __x)
     { return _StaticPolynomial<decltype(_Tp() / _Up())>(__poly) /= __x; }
 
   /**
@@ -565,26 +520,38 @@ namespace __gnu_cxx
   /**
    *  Return the sum of two polynomials.
    */
-  template<typename _Tp, typename _Up>
-    inline _StaticPolynomial<decltype(_Tp() + _Up())>
-    operator+(const _StaticPolynomial<_Tp>& __pa, const _StaticPolynomial<_Up>& __pb)
-    { return _StaticPolynomial<decltype(_Tp() + _Up())>(__pa) += __pb; }
+  template<typename _Tp, std::size_t _NumT, typename _Up, std::size_t _NumU>
+    inline _StaticPolynomial<decltype(_Tp() + _Up()), std::max(_NumT, _NumU)>
+    operator+(const _StaticPolynomial<_Tp, _NumT>& __pa,
+	      const _StaticPolynomial<_Up, _NumU>& __pb)
+    {
+      return _StaticPolynomial<decltype(_Tp() + _Up()),
+			       std::max(_NumT, _NumU)>(__pa) += __pb;
+    }
 
   /**
    *  Return the difference of two polynomials.
    */
-  template<typename _Tp, typename _Up>
-    inline _StaticPolynomial<decltype(_Tp() - _Up())>
-    operator-(const _StaticPolynomial<_Tp>& __pa, const _StaticPolynomial<_Up>& __pb)
-    { return _StaticPolynomial<decltype(_Tp() - _Up())>(__pa) -= __pb; }
+  template<typename _Tp, std::size_t _NumT, typename _Up, std::size_t _NumU>
+    inline _StaticPolynomial<decltype(_Tp() - _Up()), std::max(_NumT, _NumU)>
+    operator-(const _StaticPolynomial<_Tp, _NumT>& __pa,
+	      const _StaticPolynomial<_Up, _NumU>& __pb)
+    {
+      return _StaticPolynomial<decltype(_Tp() - _Up()),
+			       std::max(_NumT, _NumU)>(__pa) -= __pb;
+    }
 
   /**
    *  Return the product of two polynomials.
    */
-  template<typename _Tp, typename _Up>
-    inline _StaticPolynomial<decltype(_Tp() * _Up())>
-    operator*(const _StaticPolynomial<_Tp>& __pa, const _StaticPolynomial<_Up>& __pb)
-    { return _StaticPolynomial<decltype(_Tp() * _Up())>(__pa) *= __pb; }
+  template<typename _Tp, std::size_t _NumT, typename _Up, std::size_t _NumU>
+    inline _StaticPolynomial<decltype(_Tp() * _Up()), _NumT * _NumU>
+    operator*(const _StaticPolynomial<_Tp, _NumT>& __pa,
+	      const _StaticPolynomial<_Up, _NumU>& __pb)
+    {
+      return _StaticPolynomial<decltype(_Tp() * _Up(),
+			       _NumT * _NumU)>(__pa) *= __pb;
+    }
 
   /**
    *  Return the quotient of two polynomials.
@@ -635,64 +602,18 @@ namespace __gnu_cxx
     { return _StaticPolynomial<decltype(_Tp() / _Up())>(__x) /= __poly; }
 
   /**
-   *  Write a polynomial to a stream.
-   *  The format is a parenthesized comma-delimited list of coefficients.
-   */
-  template<typename CharT, typename Traits, typename _Tp>
-    std::basic_ostream<CharT, Traits>&
-    operator<<(std::basic_ostream<CharT, Traits>& __os,
-	       const _StaticPolynomial<_Tp>& __poly)
-    {
-      int __old_prec = __os.precision(std::numeric_limits<_Tp>::max_digits10);
-      __os << "(";
-      for (size_t __i = 0; __i < __poly.degree(); ++__i)
-        __os << __poly.coefficient(__i) << ",";
-      __os << __poly.coefficient(__poly.degree());
-      __os << ")";
-      __os.precision(__old_prec);
-      return __os;
-    }
-
-  /**
-   *  Read a polynomial from a stream.
-   *  The input format can be a plain scalar (zero degree polynomial)
-   *  or a parenthesized comma-delimited list of coefficients.
-   */
-  template<typename CharT, typename Traits, typename _Tp>
-    std::basic_istream<CharT, Traits>&
-    operator>>(std::basic_istream<CharT, Traits>& __is,
-	       _StaticPolynomial<_Tp>& __poly)
-    {
-      _Tp __x;
-      CharT __ch;
-      __is >> __ch;
-      if (__ch == '(')
-	{
-	  do
-	    {
-	      __is >> __x >> __ch;
-	      __poly._M_coeff.push_back(__x);
-	    }
-	  while (__ch == ',');
-	  if (__ch != ')')
-	    __is.setstate(std::ios_base::failbit);
-	}
-      else
-	{
-	  __is.putback(__ch);
-	  __is >> __x;
-	  __poly = __x;
-	}
-      return __is;
-    }
-
-  /**
    *  Return true if two polynomials are equal.
    */
-  template<typename _Tp>
+  template<typename _Tp, std::size_t _NumA, std::size_t _NumB>
     inline bool
-    operator==(const _StaticPolynomial<_Tp>& __pa,
-	       const _StaticPolynomial<_Tp>& __pb)
+    operator==(const _StaticPolynomial<_Tp, _NumA>&,
+	       const _StaticPolynomial<_Tp, _NumB>&)
+    { return false; }
+
+  template<typename _Tp, std::size_t _Num>
+    inline bool
+    operator==(const _StaticPolynomial<_Tp, _Num>& __pa,
+	       const _StaticPolynomial<_Tp, _Num>& __pb)
     { return __pa._M_coeff == __pb._M_coeff; }
 
   /**
