@@ -1751,22 +1751,112 @@ template<typename _Tp>
       }
   }
 
+template<typename _Tp>
+  void
+  run_airy_asymp_p()
+  {
+    using __cmplx = std::complex<_Tp>;
+    _Airy_asymp<_Tp> __airy_asymp;
+
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout << std::showpoint << std::scientific;
+    auto width = 8 + std::cout.precision();
+
+    std::cout << "\n\n";
+    std::cout << std::setw(width) << "t"
+	      << std::setw(width) << "Ai"
+	      << std::setw(width) << "Bi"
+	      << std::setw(width) << "Aip"
+	      << std::setw(width) << "Bip"
+	      << std::setw(width) << "Wronskian"
+	      << '\n';
+    std::cout << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << '\n';
+    for (int i = 350; i <= 1000; ++i)
+      {
+	auto t = __cmplx{_Tp(0.01Q * i)};
+	auto airy = __airy_asymp(t);
+	std::cout << std::setw(width) << std::real(airy.z)
+		  << std::setw(width) << std::real(airy.Ai)
+		  << std::setw(width) << std::real(airy.Bi)
+		  << std::setw(width) << std::real(airy.Aip)
+		  << std::setw(width) << std::real(airy.Bip)
+		  << std::setw(width) << std::real(airy.Wronskian())
+		  << std::setw(width) << std::real(airy.true_Wronskian())
+		  << '\n';
+      }
+  }
+
+template<typename _Tp>
+  void
+  run_airy_asymp_m()
+  {
+    using __cmplx = std::complex<_Tp>;
+    _Airy_asymp<_Tp> __airy_asymp;
+
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout << std::showpoint << std::scientific;
+    auto width = 8 + std::cout.precision();
+
+    std::cout << "\n\n";
+    std::cout << std::setw(width) << "t"
+	      << std::setw(width) << "Ai"
+	      << std::setw(width) << "Bi"
+	      << std::setw(width) << "Aip"
+	      << std::setw(width) << "Bip"
+	      << std::setw(width) << "Wronskian"
+	      << '\n';
+    std::cout << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << '\n';
+    for (int i = -1000; i <= -350; ++i)
+      {
+	auto t = __cmplx{_Tp(0.01Q * i)};
+	auto airy = __airy_asymp(t);
+	std::cout << std::setw(width) << std::real(airy.z)
+		  << std::setw(width) << std::real(airy.Ai)
+		  << std::setw(width) << std::real(airy.Bi)
+		  << std::setw(width) << std::real(airy.Aip)
+		  << std::setw(width) << std::real(airy.Bip)
+		  << std::setw(width) << std::real(airy.Wronskian())
+		  << std::setw(width) << std::real(airy.true_Wronskian())
+		  << '\n';
+      }
+  }
+
 int
 main()
 {
   std::cout << "\nfloat\n=====\n";
   run_toy<float>();
+  run_airy_asymp_m<float>();
   run_airy_series<float>();
+  run_airy_asymp_p<float>();
 
   std::cout << "\ndouble\n======\n";
   run_toy<double>();
+  run_airy_asymp_m<double>();
   run_airy_series<double>();
+  run_airy_asymp_p<double>();
 
   std::cout << "\nlong double\n===========\n";
   run_toy<long double>();
+  run_airy_asymp_m<long double>();
   run_airy_series<long double>();
+  run_airy_asymp_p<long double>();
 
   std::cout << "\n__float128\n==========\n";
   run_toy<__float128>();
+  //run_airy_asymp_m<__float128>();
   //run_airy_series<__float128>();
+  //run_airy_asymp_p<__float128>();
 }
