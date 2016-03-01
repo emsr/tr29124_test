@@ -6,9 +6,9 @@ OBJS = euclid.o \
  polrt.o \
  polyn.o \
  polyr.o \
- revers.o \
+ revers.o
 
-#INC_DIR = ../128bit
+INC_DIR = ../128bit
 
 libcephes_polyn.so: $(OBJS)
 	$(CC) -shared -o libcephes_polyn.so $(OBJS)
