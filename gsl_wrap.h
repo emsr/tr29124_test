@@ -308,5 +308,8 @@ double ibeta_invb(double a, double x, double p);
 /// Inverse parameter complementary incomplete beta function.
 double ibetac_invb(double a, double x, double p);
 
+/// Clausen function of order 2.
+double clausen_2(double w);
+
 } // namespace gsl
 
