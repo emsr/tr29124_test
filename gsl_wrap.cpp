@@ -1201,7 +1201,6 @@ jacobi(unsigned int n, double alpha, double beta, double x)
     }
   else
     return result.val;
-  return 0.0;
 }
 
 /// Radial polynomials
@@ -1282,6 +1281,22 @@ double
 erfc_inv(double p)
 {
   return 0.0;
+}
+
+/// Clausen function of order 2.
+double
+clausen_2(double w)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_clausen_e(w, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in clausen_2:");
+      msg << " w=" << w;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
 }
 
 } // namespace gsl
