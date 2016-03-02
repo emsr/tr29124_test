@@ -817,7 +817,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr _Tp _S_Ai0{3.550280538878172392600631860041831763980e-1L};
       constexpr _Tp _S_Aip0{-2.588194037928067984051835601892039634793e-1L};
       constexpr _Tp _S_Bi0{6.149266274460007351509223690936135535960e-1L};
-      constexpr _Tp _S_Bip0{8.868776642045783582807775119976424596506e-1L};
+      constexpr _Tp _S_Bip0{4.482883573538263579148237103988283908668e-1L};
 
       // Check to see if z^3 will underflow and act accordingly.
       auto __zzz = __z * __z * __z;
