@@ -1843,7 +1843,7 @@
       // it is assumed that at least three terms are used.
       __z = std::pow(_S_zone / __z, _Tp(3));
       __z *= _S_9d4;
-      auto __r = -2 * std::real(__z);
+      auto __r = _Tp{-2} * std::real(__z);
       auto __s = std::norm(__z);
       auto __index = _S_ncoeffs - __nterm;
 
@@ -1908,7 +1908,8 @@
    * confluent hypergeometric limit function.
    *
    * For |z| <= 1/4 and |arg(z)| <= pi/2, the approximations
-   * are accurate to about 16 decimals.
+   * are accurate to about 1 ulp (10e-17 for double 1.0e-20 for long double).
+   * For float this range goes up to 1.5ish.
    *
    * For further details including the four term recurrence
    * relation satisfied by the numerator and denominator poly-
@@ -2347,7 +2348,7 @@ template<typename _Tp>
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
-    for (int i = -500; i <= 500; ++i)
+    for (int i = 500; i <= 1500; ++i)
       {
 	auto t = __cmplx{_Tp(0.01Q * i)};
 	auto airy1 = __airy_asymp(t);
@@ -2381,6 +2382,67 @@ template<typename _Tp>
   }
 
 
+template<typename _Tp>
+  void
+  diff_airy_asymp_m()
+  {
+    using __cmplx = std::complex<_Tp>;
+    _Airy_asymp<_Tp> __airy_asymp;
+
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout << std::showpoint << std::scientific;
+    auto width = 8 + std::cout.precision();
+
+    std::cout << "\n\nAiry Asymptotic -z Deathmatch\n";
+    std::cout << "++++++++++++++++++++++++++++++\n";
+    std::cout << std::setw(width) << "t"
+	      << std::setw(width) << "Ai"
+	      << std::setw(width) << "Aip"
+	      << std::setw(width) << "Bi"
+	      << std::setw(width) << "Bip"
+	      << std::setw(width) << "Wronskian"
+	      << '\n';
+    std::cout << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << '\n';
+    for (int i = -1500; i <= -500; ++i)
+      {
+	auto t = __cmplx{_Tp(0.01Q * i)};
+	auto airy1 = __airy_asymp(t);
+	std::cout << '\n';
+	std::cout << std::setw(width) << std::real(airy1.z)
+		  << std::setw(width) << std::real(airy1.Ai)
+		  << std::setw(width) << std::real(airy1.Aip)
+		  << std::setw(width) << std::real(airy1.Bi)
+		  << std::setw(width) << std::real(airy1.Bip)
+		  << std::setw(width) << std::real(airy1.Wronskian())
+		  << std::setw(width) << std::real(airy1.true_Wronskian())
+		  << '\n';
+	auto airy2 = __airy_asymp_absarg_lt_pio3(t);
+	std::cout << std::setw(width) << std::real(airy2.z)
+		  << std::setw(width) << std::real(airy2.Ai)
+		  << std::setw(width) << std::real(airy2.Aip)
+		  << std::setw(width) << std::real(airy2.Bi)
+		  << std::setw(width) << std::real(airy2.Bip)
+		  << std::setw(width) << std::real(airy2.Wronskian())
+		  << std::setw(width) << std::real(airy2.true_Wronskian())
+		  << '\n';
+	std::cout << std::setw(width) << ""
+		  << std::setw(width) << std::real(airy1.Ai - airy2.Ai)
+		  << std::setw(width) << std::real(airy1.Aip - airy2.Aip)
+		  << std::setw(width) << std::real(airy1.Bi - airy2.Bi)
+		  << std::setw(width) << std::real(airy1.Bip - airy2.Bip)
+		  << std::setw(width) << ""
+		  << std::setw(width) << ""
+		  << '\n';
+      }
+  }
+
+
 int
 main()
 {
@@ -2389,6 +2451,7 @@ main()
   run_airy_asymp_m<float>();
   run_airy_series<float>();
   run_airy_asymp_p<float>();
+  diff_airy_asymp_m<float>();
   diff_airy_series<float>();
   diff_airy_asymp_p<float>();
 
@@ -2397,6 +2460,7 @@ main()
   run_airy_asymp_m<double>();
   run_airy_series<double>();
   run_airy_asymp_p<double>();
+  diff_airy_asymp_m<double>();
   diff_airy_series<double>();
   diff_airy_asymp_p<double>();
 
@@ -2405,6 +2469,7 @@ main()
   run_airy_asymp_m<long double>();
   run_airy_series<long double>();
   run_airy_asymp_p<long double>();
+  diff_airy_asymp_m<long double>();
   diff_airy_series<long double>();
   diff_airy_asymp_p<long double>();
 
@@ -2413,6 +2478,7 @@ main()
   //run_airy_asymp_m<__float128>();
   //run_airy_series<__float128>();
   //run_airy_asymp_p<__float128>();
+  //diff_airy_asymp_m<__float128>();
   //diff_airy_series<__float128>();
   //diff_airy_asymp_p<__float128>();
 }
