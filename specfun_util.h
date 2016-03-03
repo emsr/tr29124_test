@@ -51,7 +51,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * A class to reach into compound numeric types to extract the
-   * value or element type.  This wil be specialized for complex
+   * value or element type.  This will be specialized for complex
    * and other types as appropriate.
    */
   template<typename _Tp>
