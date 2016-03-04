@@ -160,7 +160,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @return  The beta function.
    */
   template<typename _Tp>
-    inline _Tp
+    _Tp
     __beta(_Tp __x, _Tp __y)
     {
       if (__isnan(__x) || __isnan(__y))

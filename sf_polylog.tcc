@@ -77,7 +77,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return  true if Im(w) is zero within 5 * epsilon, false otherwize.
    */
   template<typename _Tp>
-    inline bool
+    bool
     __fpreal(const std::complex<_Tp>& __w)
     {
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
@@ -87,7 +87,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Specialize for real numbers.
   template<typename _Tp>
-    inline bool
+    bool
     __fpreal(const _Tp)
     { return true; }
 
@@ -99,7 +99,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return  true if Re(w) is zero within 5 * epsilon, false otherwize.
    */
   template<typename _Tp>
-    inline bool
+    bool
     __fpimag(const std::complex<_Tp>& __w)
     {
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
@@ -109,7 +109,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Specialize for real numbers.
   template<typename _Tp>
-    inline bool
+    bool
     __fpimag(const _Tp)
     { return false; }
 
@@ -148,7 +148,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return zeta(k)
    */
   template<typename _Tp = double> 
-  inline _Tp
+  _Tp
   evenzeta(unsigned int __k)
   {
     // The following constants were calculated with Mathematica 8
@@ -267,7 +267,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return the value of the Polylogarithm
    */
   template<typename _Tp>
-    inline std::complex<_Tp>
+    std::complex<_Tp>
     __polylog_exp_pos(unsigned int __s, _Tp __w)
     { // positive integer s
       // Optimization possibility: s are positive integers.
@@ -334,7 +334,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return  The value of the polylogarithm.
    */
   template<typename _Tp>
-    inline std::complex<_Tp>
+    std::complex<_Tp>
     __polylog_exp_neg(_Tp __s, std::complex<_Tp> __w)
     {
       constexpr auto _S_i = std::complex<_Tp>{0, 1};
@@ -438,7 +438,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return the value of the Polylogarithm.
    */
   template<typename _Tp, int __sigma>
-    inline std::complex<_Tp>
+    std::complex<_Tp>
     __polylog_exp_neg_even(unsigned int __n, std::complex<_Tp> __w)
     {
       constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
@@ -505,7 +505,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return The value of the Polylogarithm.
    */
   template<typename _Tp, int __sigma>
-    inline std::complex<_Tp>
+    std::complex<_Tp>
     __polylog_exp_neg_odd(unsigned int __n, std::complex<_Tp> __w)
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
@@ -552,7 +552,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return The value of the Polylogarithm evaluated by a suitable function.
    */
   template<typename _Tp>
-    inline std::complex<_Tp> __polylog_exp_neg(int __s, std::complex<_Tp> __w)
+    std::complex<_Tp>
+    __polylog_exp_neg(int __s, std::complex<_Tp> __w)
     { // negative integer __s
       const auto __n = -__s;
       switch (__n % 4)
@@ -590,7 +591,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return the value of the polylogarithm.
    */
   template<typename _Tp>
-    inline std::complex<_Tp>
+    std::complex<_Tp>
     __polylog_exp_pos(_Tp __s, std::complex<_Tp> __w)
     { // positive s
       constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
@@ -721,7 +722,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return the value of the polylogarithm.
    */
   template<typename _PowTp, typename _Tp>
-    inline _Tp
+    _Tp
     __polylog_exp_negative_real_part(_PowTp __s, _Tp __w)
     {
       auto __ew = std::exp(__w);
@@ -882,7 +883,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return the value of the polylogarithm.
    */
   template<typename _Tp>
-    inline std::complex<_Tp>
+    std::complex<_Tp>
     __polylog_exp_int_neg(const int __s, _Tp __w)
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
@@ -1086,7 +1087,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return  The complex value of the polylogarithm.
    */
   template<typename _Tp>
-    inline std::complex<_Tp>
+    std::complex<_Tp>
     __polylog(_Tp __s, std::complex<_Tp> __w)
     {
       if (__isnan(__s) || __isnan(__w))
@@ -1107,7 +1108,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw  std::domain_error if the argument has a significant imaginary part.
    */
   template<typename _Tp>
-    inline std::complex<_Tp>
+    std::complex<_Tp>
     __dirichlet_eta(std::complex<_Tp> __w)
     {
       if (__isnan(__w))
@@ -1125,7 +1126,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  @return  The Dirichlet eta function.
    */
   template<typename _Tp>
-    inline _Tp
+    _Tp
     __dirichlet_eta(_Tp __w)
     {
       if (__isnan(__w))
@@ -1144,7 +1145,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw  std::domain_error if the argument has a significant imaginary part.
    */
   template<typename _Tp>
-    inline _Tp
+    _Tp
     __dirichlet_beta(std::complex<_Tp> __w)
     {
       constexpr auto _S_i = std::complex<_Tp>{0, 1};
@@ -1163,7 +1164,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return  The Dirichlet Beta function of real argument.
    */
   template<typename _Tp>
-    inline _Tp
+    _Tp
     __dirichlet_beta(_Tp __w)
     {
       constexpr auto _S_i = std::complex<_Tp>{0, 1};
@@ -1181,7 +1182,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return  The complex Clausen function.
    */
   template<typename _Tp>
-    inline std::complex<_Tp>
+    std::complex<_Tp>
     __clausen(unsigned int __m, std::complex<_Tp> __w)
     {
       constexpr auto _S_i = std::complex<_Tp>{0, 1};
@@ -1193,19 +1194,44 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (__m & 1)
 	return __ple;
       else
-	return std::conj(__ple);
+	return _S_i * std::conj(__ple);
     }
 
   /**
-   * Return Clausen's sine sum Sl for positive integer order m
+   * Return Clausen's function of integer order m and real argument w.
+   * The notation and connection to polylog is from Wikipedia
+   *
+   * @param m  The integer order m >= 1.
+   * @param w  The real argument.
+   * @return  The Clausen function.
+   */
+  template<typename _Tp>
+    _Tp
+    __clausen(unsigned int __m, _Tp __w)
+    {
+      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
+      if (__isnan(__w))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__m == 0)
+	std::__throw_domain_error(__N("__clausen: Non-positive order"));
+      else if (__m & 1)
+	return std::real(__ple);
+      else
+	return std::imag(__ple);
+    }
+
+  /**
+   * Return Clausen's sine sum Sl_m for positive integer order m
    * and complex argument w.
    * The notation and connection to polylog from Wikipedia
    *
+   * @param m  The integer order m >= 1.
    * @param w  The complex argument.
-   * @return  The Clausen sine sum S_m(w),
+   * @return  The Clausen sine sum Sl_m(w),
    */
   template<typename _Tp>
-    inline _Tp
+    _Tp
     __clausen_s(unsigned int __m, std::complex<_Tp> __w)
     {
       constexpr auto _S_i = std::complex<_Tp>{0, 1};
@@ -1221,15 +1247,41 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return Clausen's cosine sum Cl for positive integer order m
+   * Return Clausen's sine sum Sl_m for positive integer order m
+   * and real argument w.
+   * The notation and connection to polylog from Wikipedia
+   *
+   * @param m  The integer order m >= 1.
+   * @param w  The complex argument.
+   * @return  The Clausen sine sum Sl_m(w),
+   */
+  template<typename _Tp>
+    _Tp
+    __clausen_s(unsigned int __m, _Tp __w)
+    {
+      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
+      if (__isnan(__w))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__m == 0)
+	std::__throw_domain_error(__N("__clausen_s: Non-positive order"));
+      else if (__m & 1)
+	return std::imag(__ple);
+      else
+	return std::real(__ple);
+    }
+
+  /**
+   * Return Clausen's cosine sum Cl_m for positive integer order m
    * and complex argument w.
    * The notation and connection to polylog from Wikipedia
    *
-   * @param w  The complex argument.
-   * @return  The Clausen cosine sum C_m(w),
+   * @param m  The integer order m >= 1.
+   * @param w  The real argument.
+   * @return  The Clausen cosine sum Cl_m(w),
    */
   template<typename _Tp>
-    inline _Tp
+    _Tp
     __clausen_c(unsigned int __m, std::complex<_Tp> __w)
     {
       constexpr auto _S_i = std::complex<_Tp>{0, 1};
@@ -1242,6 +1294,71 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::real(__ple);
       else
 	return std::imag(__ple);
+    }
+
+  /**
+   * Return Clausen's cosine sum Cl_m for positive integer order m
+   * and real argument w.
+   * The notation and connection to polylog from Wikipedia
+   *
+   * @param m  The integer order m >= 1.
+   * @param w  The real argument.
+   * @return  The real Clausen cosine sum Cl_m(w),
+   */
+  template<typename _Tp>
+    _Tp
+    __clausen_c(unsigned int __m, _Tp __w)
+    {
+      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
+      if (__isnan(__w))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__m == 0)
+	std::__throw_domain_error(__N("__clausen_c: Non-positive order"));
+      else if (__m & 1)
+	return std::real(__ple);
+      else
+	return std::imag(__ple);
+    }
+
+  /**
+   * Return the Fermi-Dirac integral of real order s and real argument w.
+   * The notation and connection to polylog from Wikipedia and DLMF.
+   *
+   * @param m  The integer order m >= 0.
+   * @param w  The real argument.
+   * @return  The real Fermi-Dirac cosine sum C_m(w),
+   */
+  template<typename _Tp>
+    _Tp
+    __fermi_dirac(_Tp __s, _Tp __w)
+    {
+      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      auto __ple = __polylog_exp(__s + _Tp{1}, __w + _S_i * _S_pi);
+      if (__isnan(__s) || __isnan(__w))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else
+	return -std::real(__ple);
+    }
+
+  /**
+   * Return the Bose-Einstein integral of real order s and real argument w.
+   * The notation and connection to polylog from Wikipedia and DLMF.
+   *
+   * @param m  The integer order m >= 0.
+   * @param w  The real argument.
+   * @return  The real Fermi-Dirac cosine sum C_m(w),
+   */
+  template<typename _Tp>
+    _Tp
+    __bose_einstein(_Tp __s, _Tp __w)
+    {
+      auto __ple = __polylog_exp(__s + _Tp{1}, __w);
+      if (__isnan(__s) || __isnan(__w))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else
+	return __ple;
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION

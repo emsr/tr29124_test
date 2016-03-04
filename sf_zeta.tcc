@@ -682,7 +682,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  @f]
    */
   template<typename _Tp>
-    inline _Tp
+    _Tp
     __hurwitz_zeta(_Tp __s, _Tp __a)
     {
       using _Val = __num_traits_t<_Tp>;
