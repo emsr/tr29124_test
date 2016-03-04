@@ -143,7 +143,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @f]
    */
   template<typename _Tp>
-    inline _Tp
+    _Tp
     __hurwitz_zeta(const _Tp __a, const _Tp __s)
     {
       return __hurwitz_zeta_glob(__a, __s);

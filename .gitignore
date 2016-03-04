@@ -109,6 +109,7 @@ test_bessel
 test_bessel_asymp
 test_beta_inc
 test_chebyshev
+test_clausen
 test_cmath
 test_comp_ellint_1
 test_complex_gamma

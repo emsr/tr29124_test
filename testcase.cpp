@@ -48,6 +48,7 @@ template<typename Real>
     using __gnu_cxx::chebyshev_u;
     using __gnu_cxx::chebyshev_v;
     using __gnu_cxx::chebyshev_w;
+    using __gnu_cxx::clausen;
     using __gnu_cxx::comp_ellint_d;
     using       std::comp_ellint_1;
     using       std::comp_ellint_2;
@@ -1395,6 +1396,18 @@ template<typename Real>
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     file_owens_t, true, true);
+
+    // Clausen_2 function.
+    std::cout << "clausen_2" << std::endl;
+    basename = "clausen_2";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_clausen_2(filename.c_str());
+    auto clausen_2 = [](Real w) -> Real { return std::real(clausen(2, w)); };
+    maketest(clausen_2, gsl::clausen_2,
+	     "__gnu_cxx", basename,
+	     "w", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(true, true), 21),
+	     file_clausen_2, true, true);
 
 #endif // STD
 
