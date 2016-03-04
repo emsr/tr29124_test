@@ -129,7 +129,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    __gnu_cxx::__promote_num_t<_Tp>
     __zernike(unsigned int __n, int __m, _Tp __rho, _Tp __phi)
     {
       constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();

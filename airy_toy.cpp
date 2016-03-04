@@ -1712,6 +1712,11 @@
 
       _Ai = __zout * __al * __zetam + __be;
       _Aip = __zoutpr * __alpr * __zetam + __bepr;
+      if (__sign == +1)
+	{
+	  _Ai *= _Tp{2};
+	  _Aip *= _Tp{2};
+	}
 
       return;
     }

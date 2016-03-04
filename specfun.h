@@ -2031,7 +2031,59 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__dirichlet_beta<__type>(__x);
     }
 
+  // Clausen S functions
+
+  inline float
+  clausen_sf(unsigned int __m, float __w)
+  { return std::__detail::__clausen_s<float>(__m, __w); }
+
+  inline long double
+  clausen_sl(unsigned int __m, long double __w)
+  { return std::__detail::__clausen_s<long double>(__m, __w); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    clausen_s(unsigned int __m, _Tp __w)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__clausen_s<__type>(__m, __w);
+    }
+
+  // Clausen C functions
+
+  inline float
+  clausen_cf(unsigned int __m, float __w)
+  { return std::__detail::__clausen_c<float>(__m, __w); }
+
+  inline long double
+  clausen_cl(unsigned int __m, long double __w)
+  { return std::__detail::__clausen_c<long double>(__m, __w); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    clausen_c(unsigned int __m, _Tp __w)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__clausen_c<__type>(__m, __w);
+    }
+
   // Clausen functions
+
+  inline float
+  clausenf(unsigned int __m, float __w)
+  { return std::__detail::__clausen<float>(__m, __w); }
+
+  inline long double
+  clausenl(unsigned int __m, long double __w)
+  { return std::__detail::__clausen<long double>(__m, __w); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    clausen(unsigned int __m, _Tp __w)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__clausen<__type>(__m, __w);
+    }
 
   inline std::complex<float>
   clausenf(unsigned int __m, std::complex<float> __w)
@@ -2043,7 +2095,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   template<typename _Tp>
     inline std::complex<__gnu_cxx::__promote_num_t<_Tp>>
-    clausen(unsigned int __m, _Tp __w)
+    clausen(unsigned int __m, std::complex<_Tp> __w)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
       return std::__detail::__clausen<__type>(__m, __w);
@@ -2227,6 +2279,42 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tph, _Tpa>;
       return std::__detail::__owens_t<__type>(__h, __a);
+    }
+
+  // Fermi-Dirac integrals.
+
+  inline float
+  fermi_diracf(float __s, float __x)
+  { return std::__detail::__fermi_dirac<float>(__s, __x); }
+
+  inline long double
+  fermi_diracl(long double __s, long double __x)
+  { return std::__detail::__fermi_dirac<long double>(__s, __x); }
+
+  template<typename _Tps, typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tps, _Tp>
+    fermi_dirac(_Tps __s, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tps, _Tp>;
+      return std::__detail::__fermi_dirac<__type>(__s, __x);
+    }
+
+  // Bose-Einstein integrals.
+
+  inline float
+  bose_einsteinf(float __s, float __x)
+  { return std::__detail::__bose_einstein<float>(__s, __x); }
+
+  inline long double
+  bose_einsteinl(long double __s, long double __x)
+  { return std::__detail::__bose_einstein<long double>(__s, __x); }
+
+  template<typename _Tps, typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tps, _Tp>
+    bose_einstein(_Tps __s, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tps, _Tp>;
+      return std::__detail::__bose_einstein<__type>(__s, __x);
     }
 
 #endif // __cplusplus >= 201103L

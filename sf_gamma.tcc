@@ -1669,7 +1669,7 @@ _S_neg_double_factorial_table[999]
    *   @return  The Bernoulli number of order n.
    */
   template<typename _Tp>
-    inline _GLIBCXX14_CONSTEXPR _Tp
+    _GLIBCXX14_CONSTEXPR _Tp
     __bernoulli(int __n)
     { return __bernoulli_series<_Tp>(__n); }
 
@@ -1681,7 +1681,7 @@ _S_neg_double_factorial_table[999]
    *   @return  The Bernoulli number of order n.
    */
   template<typename _Tp>
-    inline _GLIBCXX14_CONSTEXPR _Tp
+    _GLIBCXX14_CONSTEXPR _Tp
     __bernoulli_2n(int __n)
     { return __bernoulli_series<_Tp>(2 * __n); }
 
@@ -1914,7 +1914,7 @@ _S_neg_double_factorial_table[999]
    *  @return  The gamma function.
    */
   template<typename _Tp>
-    inline _Tp
+    _Tp
     __gamma(_Tp __x)
     {
 #if _GLIBCXX_USE_C99_MATH_TR1

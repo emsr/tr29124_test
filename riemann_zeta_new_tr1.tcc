@@ -424,7 +424,7 @@ namespace tr1
      *   @f]
      */
     template<typename _Tp>
-    inline _Tp
+    _Tp
     __hurwitz_zeta(_Tp __s, _Tp __a)
     { return __hurwitz_zeta_glob(__s, __a); }
 
