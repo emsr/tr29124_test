@@ -6,27 +6,22 @@
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
 // terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 2, or (at your option)
+// Free Software Foundation; either version 3, or (at your option)
 // any later version.
-
+//
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
+//
+// Under Section 7 of GPL version 3, you are granted additional
+// permissions described in the GCC Runtime Library Exception, version
+// 3.1, as published by the Free Software Foundation.
 
-// You should have received a copy of the GNU General Public License along
-// with this library; see the file COPYING.  If not, write to the Free
-// Software Foundation, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
-// USA.
-
-// As a special exception, you may use this file as part of a free software
-// library without restriction.  Specifically, if other files instantiate
-// templates or use macros or inline functions from this file, or you compile
-// this file and link it with other files to produce an executable, this
-// file does not by itself cause the resulting executable to be covered by
-// the GNU General Public License.  This exception does not however
-// invalidate any other reasons why the executable file might be covered by
-// the GNU General Public License.
+// You should have received a copy of the GNU General Public License and
+// a copy of the GCC Runtime Library Exception along with this program;
+// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+// <http://www.gnu.org/licenses/>.
 
 /** @file tr1/sf_mod_bessel.tcc
  *  This is an internal header file, included by other library headers.
@@ -160,7 +155,7 @@ _GLIBCXX_BEGIN_NAMESPACE(tr1)
     ///  @brief  Return the asymptotic solution of the Bessel function.
     ///
     template<typename _Tp>
-    inline _Tp
+    _Tp
     __cyl_bessel_i_asymp(const _Tp __n, const _Tp __x)
     {
 
@@ -193,7 +188,7 @@ _GLIBCXX_BEGIN_NAMESPACE(tr1)
     //  Debye functions Abramowitz & Stegun, 9.3.9-10
     //
     template<typename _Tp>
-    inline _Tp 
+    _Tp 
     __debye_u1(const std::vector<_Tp> & __tpow)
     {
       return (_Tp(3UL) * __tpow[1]
@@ -201,7 +196,7 @@ _GLIBCXX_BEGIN_NAMESPACE(tr1)
     }
 
     template<typename _Tp>
-    inline _Tp 
+    _Tp 
     __debye_u2(const std::vector<_Tp> & __tpow)
     {
       return (_Tp(81UL) * __tpow[2]
@@ -210,7 +205,7 @@ _GLIBCXX_BEGIN_NAMESPACE(tr1)
     }
 
     template<typename _Tp>
-    inline _Tp
+    _Tp
     __debye_u3(const std::vector<_Tp> & __tpow)
     {
       return (_Tp(30375UL) * __tpow[3]
@@ -220,7 +215,7 @@ _GLIBCXX_BEGIN_NAMESPACE(tr1)
     }
 
     template<typename _Tp>
-    inline _Tp
+    _Tp
     __debye_u4(const std::vector<_Tp> & __tpow)
     {
       return (_Tp(4465125UL) * __tpow[4]
@@ -231,7 +226,7 @@ _GLIBCXX_BEGIN_NAMESPACE(tr1)
     }
 
     template<typename _Tp>
-    inline _Tp
+    _Tp
     __debye_u5(const std::vector<_Tp> & __tpow)
     {
       return (_Tp(1519035525UL) * __tpow[5]
@@ -543,7 +538,7 @@ _GLIBCXX_BEGIN_NAMESPACE(tr1)
     ///          Bessel function \f$ K_{\nu} \f$.
     ///
     template<typename _Tp>
-    inline _Tp
+    _Tp
     __cyl_bessel_k_asymp(const _Tp __n, const _Tp __x)
     {
 

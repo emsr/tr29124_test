@@ -175,7 +175,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *           and argument x.
    */
   template<typename _Tp>
-    inline _Tp
+    _Tp
     __poly_hermite(unsigned int __n, _Tp __x)
     {
       if (__isnan(__x))
