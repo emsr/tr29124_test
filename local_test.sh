@@ -63,6 +63,7 @@ ${copy} check_sph_neumann.cc      ${test_dir}/21_sph_neumann/check_value.cc
 ${makedir} ${text_dir}/airy_ai
 ${makedir} ${text_dir}/airy_bi
 ${makedir} ${text_dir}/bincoef
+${makedir} ${text_dir}/clausen
 ${makedir} ${text_dir}/comp_ellint_d
 ${makedir} ${text_dir}/conf_hyperg
 ${makedir} ${text_dir}/conf_hyperg_lim
@@ -116,6 +117,7 @@ ${makedir} ${text_dir}/sph_harmonic
 ${copy} check_airy_ai.cc            ${text_dir}/airy_ai/check_value.cc
 ${copy} check_airy_bi.cc            ${text_dir}/airy_bi/check_value.cc
 ${copy} check_bincoef.cc            ${text_dir}/bincoef/check_value.cc
+${copy} check_clausen_c_2.cc        ${text_dir}/clausen/check_value.cc
 ${copy} check_comp_ellint_d.cc      ${text_dir}/comp_ellint_d/check_value.cc
 ${copy} check_conf_hyperg.cc        ${text_dir}/conf_hyperg/check_value.cc
 ${copy} check_conf_hyperg_lim.cc    ${text_dir}/conf_hyperg_lim/check_value.cc
