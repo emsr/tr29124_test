@@ -74,6 +74,9 @@ double ellint_rd(double x, double y, double z);
 /// Carlson elliptic integrals R_F.
 double ellint_rf(double x, double y, double z);
 
+/// Carlson elliptic integrals R_G.
+double ellint_rg(double x, double y, double z);
+
 /// Carlson elliptic integrals R_J.
 double ellint_rj(double x, double y, double z, double p);
 
@@ -308,8 +311,14 @@ double ibeta_invb(double a, double x, double p);
 /// Inverse parameter complementary incomplete beta function.
 double ibetac_invb(double a, double x, double p);
 
+/// Spherical harmonic functions.
+std::complex<double> sph_harmonic(unsigned int l, int m, double theta, double phi);
+
+/// Owen's T function.
+double owens_t(double h, double a);
+
 /// Clausen function of order 2.
-double clausen_2(double w);
+double clausen_c_2(double w);
 
 } // namespace gsl
 

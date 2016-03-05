@@ -34,6 +34,7 @@ ${copy} check_sph_neumann.cc      ${gcc_dir}/21_sph_neumann/check_value.cc
 ${copy} check_airy_ai.cc            ${ext_dir}/airy_ai/check_value.cc
 ${copy} check_airy_bi.cc            ${ext_dir}/airy_bi/check_value.cc
 ${copy} check_bincoef.cc            ${ext_dir}/bincoef/check_value.cc
+${copy} check_clausen_c_2.cc        ${ext_dir}/clausen/check_value.cc
 ${copy} check_comp_ellint_d.cc      ${ext_dir}/comp_ellint_d/check_value.cc
 ${copy} check_conf_hyperg.cc        ${ext_dir}/conf_hyperg/check_value.cc
 ${copy} check_conf_hyperg_lim.cc    ${ext_dir}/conf_hyperg_lim/check_value.cc
