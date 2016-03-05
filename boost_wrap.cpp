@@ -731,7 +731,7 @@ erfc_inv(double p)
   return boost::math::erfc_inv(p);
 }
 
-/// Spherical Legendre functions.
+/// Spherical harmonic functions.
 std::complex<double>
 sph_harmonic(unsigned int l, int m, double theta, double phi)
 {
@@ -743,6 +743,13 @@ double
 owens_t(double h, double a)
 {
   return boost::math::owens_t(h, a);
+}
+
+/// Clausen function of order 2.
+double
+clausen_c_2(double w)
+{
+  return 0.0;
 }
 
 } // namespace beast

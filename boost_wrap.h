@@ -311,9 +311,14 @@ double ibeta_invb(double a, double x, double p);
 /// Inverse parameter complementary incomplete beta function.
 double ibetac_invb(double a, double x, double p);
 
+/// Spherical harmonic functions.
 std::complex<double> sph_harmonic(unsigned int l, int m, double theta, double phi);
 
+/// Owen's T function.
 double owens_t(double h, double a);
+
+/// Clausen function of order 2.
+double clausen_c_2(double w);
 
 } // namespace beast
 
