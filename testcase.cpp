@@ -32,6 +32,14 @@ get_filename(const std::string & path,
   return filename;
 }
 
+
+template<typename Real>
+  auto
+  clausen_c_2(Real w)
+  -> Real
+  { return __gnu_cxx::clausen_c(2, w); };
+
+
 template<typename Real>
   void
   harness()
@@ -49,6 +57,8 @@ template<typename Real>
     using __gnu_cxx::chebyshev_v;
     using __gnu_cxx::chebyshev_w;
     using __gnu_cxx::clausen;
+    using __gnu_cxx::clausen_c;
+    using __gnu_cxx::clausen_s;
     using __gnu_cxx::comp_ellint_d;
     using       std::comp_ellint_1;
     using       std::comp_ellint_2;
@@ -1397,17 +1407,18 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     file_owens_t, true, true);
 
-    // Clausen_2 function.
-    std::cout << "clausen_2" << std::endl;
-    basename = "clausen_2";
+    // clausen_c_2 function.
+    std::cout << "clausen_c_2" << std::endl;
+    basename = "clausen_c_2";
     filename = get_filename(path, prefix, basename, "",  ".cc");
-    std::ofstream file_clausen_2(filename.c_str());
-    auto clausen_2 = [](Real w) -> Real { return std::real(clausen(2, w)); };
-    maketest(clausen_2, gsl::clausen_2,
+    std::ofstream file_clausen_c_2(filename.c_str());
+    //auto clausen_c_2 = [](Real w) -> Real { return clausen_c(2, w); };
+    //auto clausen_c_2 = std::function<Real(Real)>([](Real w) -> Real { return __gnu_cxx::clausen_c(2, w); });
+    maketest(clausen_c_2<Real>, gsl::clausen_c_2,
 	     "__gnu_cxx", basename,
-	     "w", fill_argument(std::make_pair(Real{0}, Real{5}),
-				std::make_pair(true, true), 21),
-	     file_clausen_2, true, true);
+	     "w", fill_argument(std::make_pair(Real{-10}, Real{+10}),
+				std::make_pair(true, true), 41),
+	     file_clausen_c_2, true, true);
 
 #endif // STD
 

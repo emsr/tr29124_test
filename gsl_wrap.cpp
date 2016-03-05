@@ -377,6 +377,13 @@ ellint_rf(double x, double y, double z)
     return result.val;
 }
 
+/// Carlson elliptic integrals R_G.
+double
+ellint_rg(double x, double y, double z)
+{
+  return 0.0;
+}
+
 /// Carlson elliptic integrals R_J.
 double
 ellint_rj(double x, double y, double z, double p)
@@ -1283,15 +1290,29 @@ erfc_inv(double p)
   return 0.0;
 }
 
+/// Spherical harmonic functions.
+std::complex<double>
+sph_harmonic(unsigned int l, int m, double theta, double phi)
+{
+  return 0.0;
+}
+
+/// Owen's T function.
+double
+owens_t(double h, double a)
+{
+  return 0.0;
+}
+
 /// Clausen function of order 2.
 double
-clausen_2(double w)
+clausen_c_2(double w)
 {
   gsl_sf_result result;
   int stat = gsl_sf_clausen_e(w, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in clausen_2:");
+      std::ostringstream msg("Error in clausen_c_2:");
       msg << " w=" << w;
       throw std::runtime_error(msg.str());
     }

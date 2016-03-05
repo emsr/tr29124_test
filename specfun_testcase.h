@@ -1,4 +1,4 @@
-// Copyright (C) 2015 Free Software Foundation, Inc.
+// Copyright (C) 2015-2016 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -15,7 +15,7 @@
 // with this library; see the file COPYING3.  If not see
 // <http://www.gnu.org/licenses/>.
 
-// testcase.h
+// specfun_testcase.h
 
 //
 // These are little PODs for special function inputs and
@@ -24,6 +24,8 @@
 
 #ifndef _GLIBCXX_SPECFUN_TESTCASE_H
 #define _GLIBCXX_SPECFUN_TESTCASE_H
+
+#include <complex>
 
 // Associated Laguerre polynomials.
 template<typename _Tp>
@@ -85,12 +87,31 @@ template<typename _Tp>
     _Tp f;
   };
 
+// Complete elliptic D integrals.
+template<typename _Tp>
+  struct testcase_comp_ellint_d
+  {
+    _Tp f0;
+    _Tp k;
+    _Tp f;
+  };
+
 // Confluent hypergeometric functions.
 template<typename _Tp>
   struct testcase_conf_hyperg
   {
     _Tp f0;
     _Tp a;
+    _Tp c;
+    _Tp x;
+    _Tp f;
+  };
+
+// Confluent hypergeometric functions.
+template<typename _Tp>
+  struct testcase_conf_hyperg_lim
+  {
+    _Tp f0;
     _Tp c;
     _Tp x;
     _Tp f;
@@ -173,6 +194,36 @@ template<typename _Tp>
     _Tp f0;
     _Tp k;
     _Tp nu;
+    _Tp phi;
+    _Tp f;
+  };
+
+// Elliptic D integrals.
+template<typename _Tp>
+  struct testcase_ellint_d
+  {
+    _Tp f0;
+    _Tp k;
+    _Tp phi;
+    _Tp f;
+  };
+
+// Heuman lambda functions.
+template<typename _Tp>
+  struct testcase_heuman_lambda
+  {
+    _Tp f0;
+    _Tp k;
+    _Tp phi;
+    _Tp f;
+  };
+
+// Jacobi zeta functions.
+template<typename _Tp>
+  struct testcase_jacobi_zeta
+  {
+    _Tp f0;
+    _Tp k;
     _Tp phi;
     _Tp f;
   };
@@ -700,9 +751,9 @@ template<typename _Tp>
   {
     _Tp f0;
     unsigned int n;
-    _Tp alpha;
-    _Tp beta;
-    _Tp x;
+    _Tp m;
+    _Tp rho;
+    _Tp phi;
     _Tp f;
   };
 
@@ -748,6 +799,127 @@ template<typename _Tp>
     _Tp a;
     _Tp b;
     _Tp x;
+    _Tp f;
+  };
+
+// Cylindrical Hankel functions.
+template<typename _Tp>
+  struct testcase_cyl_hankel_1
+  {
+    std::complex<_Tp> f0;
+    _Tp nu;
+    _Tp x;
+    std::complex<_Tp> f;
+  };
+
+// Cylindrical Hankel functions.
+template<typename _Tp>
+  struct testcase_cyl_hankel_2
+  {
+    std::complex<_Tp> f0;
+    _Tp nu;
+    _Tp x;
+    std::complex<_Tp> f;
+  };
+
+// Spherical Hankel functions.
+template<typename _Tp>
+  struct testcase_sph_hankel_1
+  {
+    std::complex<_Tp> f0;
+    unsigned int n;
+    _Tp x;
+    std::complex<_Tp> f;
+  };
+
+// Spherical Hankel functions.
+template<typename _Tp>
+  struct testcase_sph_hankel_2
+  {
+    std::complex<_Tp> f0;
+    unsigned int n;
+    _Tp x;
+    std::complex<_Tp> f;
+  };
+
+// Spherical Harmonic functions.
+template<typename _Tp>
+  struct testcase_sph_harmonic
+  {
+    std::complex<_Tp> f0;
+    unsigned int l;
+    int m;
+    _Tp theta;
+    _Tp phi;
+    std::complex<_Tp> f;
+  };
+
+// Jacobi polynomials.
+template<typename _Tp>
+  struct testcase_jacobi
+  {
+    _Tp f0;
+    unsigned int n;
+    _Tp alpha;
+    _Tp beta;
+    _Tp x;
+    _Tp f;
+  };
+
+// Polylogarithm functions.
+template<typename _Tp>
+  struct testcase_polylog
+  {
+    std::complex<_Tp> f0;
+    _Tp s;
+    std::complex<_Tp> w;
+    std::complex<_Tp> f;
+  };
+
+// Clausen functions.
+template<typename _Tp>
+  struct testcase_clausen
+  {
+    std::complex<_Tp> f0;
+    unsigned int m;
+    std::complex<_Tp> w;
+    std::complex<_Tp> f;
+  };
+
+// Dirichlet eta function.
+template<typename _Tp>
+  struct testcase_dirichlet_eta
+  {
+    _Tp f0;
+    _Tp w;
+    _Tp f;
+  };
+
+// Dirichlet beta function.
+template<typename _Tp>
+  struct testcase_dirichlet_beta
+  {
+    _Tp f0;
+    _Tp w;
+    _Tp f;
+  };
+
+// Owens T functions.
+template<typename _Tp>
+  struct testcase_owens_t
+  {
+    _Tp f0;
+    _Tp h;
+    _Tp a;
+    _Tp f;
+  };
+
+// Clausen Cl_2 function.
+template<typename _Tp>
+  struct testcase_clausen_c_2
+  {
+    _Tp f0;
+    _Tp w;
     _Tp f;
   };
 
