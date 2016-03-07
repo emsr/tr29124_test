@@ -1224,7 +1224,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return Clausen's sine sum Sl_m for positive integer order m
    * and complex argument w.
-   * The notation and connection to polylog from Wikipedia
+   * @see https://en.wikipedia.org/wiki/Clausen_function
    *
    * @param m  The integer order m >= 1.
    * @param w  The complex argument.
@@ -1249,7 +1249,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return Clausen's sine sum Sl_m for positive integer order m
    * and real argument w.
-   * The notation and connection to polylog from Wikipedia
+   * @see https://en.wikipedia.org/wiki/Clausen_function
    *
    * @param m  The integer order m >= 1.
    * @param w  The complex argument.
@@ -1274,7 +1274,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return Clausen's cosine sum Cl_m for positive integer order m
    * and complex argument w.
-   * The notation and connection to polylog from Wikipedia
+   * @see https://en.wikipedia.org/wiki/Clausen_function
    *
    * @param m  The integer order m >= 1.
    * @param w  The real argument.
@@ -1299,7 +1299,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return Clausen's cosine sum Cl_m for positive integer order m
    * and real argument w.
-   * The notation and connection to polylog from Wikipedia
+   * @see https://en.wikipedia.org/wiki/Clausen_function
    *
    * @param m  The integer order m >= 1.
    * @param w  The real argument.
@@ -1322,40 +1322,42 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the Fermi-Dirac integral of real order s and real argument w.
-   * The notation and connection to polylog from Wikipedia and DLMF.
+   * Return the Fermi-Dirac integral of real order s and real argument x.
+   * @see https://en.wikipedia.org/wiki/Clausen_function
+   * @see http://dlmf.nist.gov/25.12#iii
    *
-   * @param m  The integer order m >= 0.
-   * @param w  The real argument.
-   * @return  The real Fermi-Dirac cosine sum C_m(w),
+   * @param s  The order s >= 0.
+   * @param x  The real argument.
+   * @return  The real Fermi-Dirac cosine sum F_s(x),
    */
   template<typename _Tp>
     _Tp
-    __fermi_dirac(_Tp __s, _Tp __w)
+    __fermi_dirac(_Tp __s, _Tp __x)
     {
       constexpr auto _S_i = std::complex<_Tp>{0, 1};
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      auto __ple = __polylog_exp(__s + _Tp{1}, __w + _S_i * _S_pi);
-      if (__isnan(__s) || __isnan(__w))
+      auto __ple = __polylog_exp(__s + _Tp{1}, __x + _S_i * _S_pi);
+      if (__isnan(__s) || __isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	return -std::real(__ple);
     }
 
   /**
-   * Return the Bose-Einstein integral of real order s and real argument w.
-   * The notation and connection to polylog from Wikipedia and DLMF.
+   * Return the Bose-Einstein integral of real order s and real argument x.
+   * @see https://en.wikipedia.org/wiki/Clausen_function
+   * @see http://dlmf.nist.gov/25.12#iii
    *
-   * @param m  The integer order m >= 0.
-   * @param w  The real argument.
-   * @return  The real Fermi-Dirac cosine sum C_m(w),
+   * @param s  The order s >= 0.
+   * @param x  The real argument.
+   * @return  The real Fermi-Dirac cosine sum G_s(x),
    */
   template<typename _Tp>
     _Tp
-    __bose_einstein(_Tp __s, _Tp __w)
+    __bose_einstein(_Tp __s, _Tp __x)
     {
-      auto __ple = __polylog_exp(__s + _Tp{1}, __w);
-      if (__isnan(__s) || __isnan(__w))
+      auto __ple = __polylog_exp(__s + _Tp{1}, __x);
+      if (__isnan(__s) || __isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	return __ple;
