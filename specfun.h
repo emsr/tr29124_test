@@ -2280,7 +2280,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       using __type = __gnu_cxx::__promote_num_t<_Tph, _Tpa>;
       return std::__detail::__owens_t<__type>(__h, __a);
     }
-
+/*
   // Fermi-Dirac integrals.
 
   inline float
@@ -2316,7 +2316,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       using __type = __gnu_cxx::__promote_num_t<_Tps, _Tp>;
       return std::__detail::__bose_einstein<__type>(__s, __x);
     }
-
+*/
 #endif // __cplusplus >= 201103L
 
 } // namespace __gnu_cxx
