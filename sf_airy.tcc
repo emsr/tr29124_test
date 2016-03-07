@@ -44,7 +44,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief This function evaluates Ai(z) and Ai'(z) from their asymptotic
-   *  expansions for |(arg(z))| < 2*\pi/3.  For speed, the number
+   *  expansions for |arg(z)| < 2*\pi/3.  For speed, the number
    *  of terms needed to achieve about 16 decimals accuracy is tabled
    *  and determined from abs(z).
    *
@@ -57,14 +57,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    *  @param[in]  z Complex input variable set equal to the value at which
    *    	    Ai(z)abd Bi(z) and their derivative are evaluated.
-   *    	    This function assumes abs(z) > 15 and |(arg(z)| < 2\pi/3.
+   *    	    This function assumes abs(z) > 15 and |arg(z)| < 2\pi/3.
    *  @param[inout] Ai  The value computed for Ai(z).
    *  @param[inout] Aip The value computed for Ai'(z).
    *  @param[in]    sign  The sign of the series terms amd exponent.
    *                      The default (-1) gives the Airy Ai functions
-   *                      for |(arg(z))| < \pi.
+   *                      for |arg(z)| < \pi.
    *                      The value +1 gives the Airy Bi functions
-   *                      for |(arg(z))| < \pi/3.
+   *                      for |arg(z)| < \pi/3.
    */
   template<typename _Tp>
     void

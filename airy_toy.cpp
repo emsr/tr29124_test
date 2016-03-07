@@ -1592,10 +1592,10 @@
 
 
   /**
-   * @brief This function evaluates Ai(z) and Ai'(z) from their asymptotic
-   * expansions for |(arg(z))| < 2*\pi/3.  For speed, the number
-   * of terms needed to achieve about 16 decimals accuracy is tabled
-   * and determined from abs(z).
+   * @brief This function evaluates Ai(z) and Ai'(z) or Bi(z) and Bi'(z)
+   * from their asymptotic expansions for |arg(z)| < 2*\pi/3 (Roughly +x).
+   * For speed, the number of terms needed to achieve about 16 decimals accuracy
+   * is tabled and determined from abs(z).
    *
    * Note that for the sake of speed and the fact that this function
    * is to be called by another, checks for valid arguments are not
@@ -1605,15 +1605,15 @@
    * 	  http://dlmf.nist.gov/9.7
    *
    * @param[in]  z Complex input variable set equal to the value at which
-   * 		   Ai(z)abd Bi(z) and their derivative are evaluated.
-   * 		   This function assumes abs(z) > 15 and |(arg(z)| < 2\pi/3.
+   * 		   Ai(z) and Bi(z) and their derivative are evaluated.
+   * 		   This function assumes abs(z) > 15 and |arg(z)| < 2\pi/3.
    * @param[inout] Ai  The value computed for Ai(z).
    * @param[inout] Aip The value computed for Ai'(z).
    * @param[in]    sign  The sign of the series terms amd exponent.
    * 			 The default (-1) gives the Airy Ai functions
-   * 			 for |(arg(z))| < \pi.
+   * 			 for |arg(z)| < \pi.
    * 			 The value +1 gives the Airy Bi functions
-   * 			 for |(arg(z))| < \pi/3.
+   * 			 for |arg(z)| < \pi/3.
    */
   template<typename _Tp>
     void
@@ -1670,53 +1670,48 @@
 	 0.1000000000000000e+01
       };
 
-      // Compute -zeta and z^(1/4).
+      // Compute zeta and z^(1/4).
       auto __z1d4 = std::sqrt(__z);
-      auto __zetam = __z * __z1d4;
-      __zetam *= _S_2d3;
+      auto __zeta = _S_2d3 * __z * __z1d4;
       __z1d4 = std::sqrt(__z1d4);
 
       // Compute outer factors in the expansions.
-      auto __zoutpr = std::exp(_Tp(__sign) * __zetam);
-      __zoutpr *= _S_pmhd2;
-      auto __zout = __zoutpr / __z1d4;
-      __zoutpr *= -__z1d4;
+      auto __factp = std::exp(_Tp(__sign) * __zeta);
+      __factp *= _S_pmhd2;
+      auto __fact = __factp / __z1d4;
+      __factp *= -__z1d4;
+      if (__sign == +1)
+	{
+	  __fact *= _Tp{2};
+	  __factp *= _Tp{2};
+	}
 
       // Determine number of terms to use.
       auto __nterm = _S_nterms[std::min(_S_numnterms - 1,
 					(int(std::abs(__z)) - 10) / 5)];
       if (__nterm < 0 || __nterm > _S_numnterms)
-        __nterm = _S_ncoeffs;
+	__nterm = 0;
       // Initialize for modified Horner's rule evaluation of sums.
       // It is assumed that at least three terms are used.
-      __zetam = _Tp(__sign) / __zetam;
+      auto __zetam = _Tp(__sign) / __zeta;
       auto __r = _Tp{2} * std::real(__zetam);
       auto __s = std::norm(__zetam);
       auto __index = _S_ncoeffs - __nterm;// + 1;
       auto __al = _S_u[__index];
-      auto __alpr = _S_v[__index];
+      auto __alp = _S_v[__index];
       ++__index;
       auto __be = _S_u[__index];
-      auto __bepr = _S_v[__index];
+      auto __bep = _S_v[__index];
       ++__index;
 
       for (int __k = __index; __k < _S_ncoeffs; ++__k)
 	{
-	  auto __term = __s * __al;
-	  __al = __be + __r * __al;
-	  __be = _S_u[__k] - __term;
-	  __term = __s * __alpr;
-	  __alpr = __bepr + __r * __alpr;
-	  __bepr = _S_v[__k] - __term;
+	  __be = _S_u[__k] - __s * std::exchange(__al, __be + __r * __al);
+	  __bep = _S_v[__k] - __s * std::exchange(__alp, __bep + __r * __alp);
 	}
 
-      _Ai = __zout * __al * __zetam + __be;
-      _Aip = __zoutpr * __alpr * __zetam + __bepr;
-      if (__sign == +1)
-	{
-	  _Ai *= _Tp{2};
-	  _Aip *= _Tp{2};
-	}
+      _Ai = __fact * __al * __zetam + __be;
+      _Aip = __factp * __alp * __zetam + __bep;
 
       return;
     }
@@ -1724,7 +1719,7 @@
 
   /**
    * @brief This function evaluates Ai(z), Ai'(z) and Bi(z), Bi'(z)
-   *        from their asymptotic expansions for |(arg(z))| < 2*\pi/3.
+   *        from their asymptotic expansions for |arg(z)| < 2*\pi/3.
    * @param[in]  z Complex input variable set equal to the value at which
    * 		   Ai(z)abd Bi(z) and their derivative are evaluated.
    * 		   This function assumes abs(z) > 15 and |(arg(z)| < 2\pi/3.
@@ -1744,7 +1739,7 @@
 
   /**
    * @brief This function evaluates Ai(z) and Ai'(z) from their asymptotic
-   * expansions for abs(arg(-z)) < pi/3.  For speed, the number
+   * expansions for |arg(-z)| < pi/3.  For speed, the number
    * of terms needed to achieve about 16 decimals accuracy is tabled
    * and determined from abs(z).
    *
@@ -1754,7 +1749,7 @@
    *
    * @param[in] z  The value at which the Airy function and its derivative
    * 		   are evaluated.
-   * 		   This function assumes abs(z) > 15 and abs(arg(-z)) < pi/3.
+   * 		   This function assumes abs(z) > 15 and |arg(-z)| < pi/3.
    * @return A struct containing z, Ai(z), Ai'(z) and Bi(z), Bi'(z).
    */
   template<typename _Tp>
@@ -1783,7 +1778,27 @@
 	0.8776669695100169e+00,
 	0.1160990640255154e+00,
 	0.3799305912780064e-01,
-	0.6944444444444444e-01
+	0.6944444444444444e-01,
+/*
+	1.362107954526321589052986810339313e+27L,
+	4.854832179436167359995522969659059e+24L,
+	1.957062178658161503299043185284924e+22L,
+	8.995207427058378952098438694307239e+19L,
+	4.757681020363067632401403572743319e+17L,
+	2.926599219297925046400592148165286e+15L,
+	2.119699938864764905493571816510304e+13L,
+	1.834183035288325633653415468373651e+11L,
+	1.929375549182493052665328054052345e+09L,
+	2.519891987160236767557016381168582e+07L,
+	4.195248751165510686626470897960817e+05L,
+	9.207206599726414698033224087507302e+03L,
+	2.784650807776025672055514983345737e+02L,
+	1.234157333234523870642339938330245e+01L,
+	8.776669695100169164655066684332937e-01L,
+	1.160990640255154110181092538964814e-01L,
+	3.799305912780064014631915866483767e-02L,
+	6.944444444444444444444444444444445e-02L,
+*/
       };
       constexpr _Tp
       _S_u_sin[_S_ncoeffs]
@@ -1796,7 +1811,27 @@
 	0.2915913992307505e+00,
 	0.5764919041266972e-01,
 	0.3713348765432099e-01,
-	0.1000000000000000e+01
+	0.1000000000000000e+01,
+/*
+	8.011464687609593661835749240413277e+25L,
+	3.033871086594338299189753708716216e+23L,
+	1.304513299317609817937424037496177e+21L,
+	6.424049357901937699484057869724498e+18L,
+	3.659030701264312805075099317724813e+16L,
+	2.438268268797160418199984201202274e+14L,
+	1.926471158970446563579032395664927e+12L,
+	1.833576693789056765675348223590718e+10L,
+	2.142880369636803195620823884016894e+08L,
+	3.148257417866826378983145912575630e+06L,
+	5.989251356587906862599588327558073e+04L,
+	1.533169432012795615968528330529591e+03L,
+	5.562278536591708278103323749835620e+01L,
+	3.079453030173166993362480862680011e+00L,
+	2.915913992307505114690938436983388e-01L,
+	5.764919041266972133313011227963217e-02L,
+	3.713348765432098765432098765432099e-02L,
+	1.000000000000000000000000000000000e+00L,
+*/
       };
 
       constexpr _Tp
@@ -1810,7 +1845,27 @@
 	-0.9204799924129446e+00,
 	-0.1241058960272751e+00,
 	-0.4246283078989483e-01,
-	-0.9722222222222222e-01
+	-0.9722222222222222e-01,
+/*
+       -1.375142480406956245407560846801890e+27L,
+       -4.904119815775620835731518126711435e+24L,
+       -1.978219607616628114145519327828545e+22L,
+       -9.099198264365412234781657638750099e+19L,
+       -4.816782647945217540878439641969944e+17L,
+       -2.965882430295212630916036338073545e+15L,
+       -2.150644463519724977106616660546951e+13L,
+       -1.863529963852938843791870115867630e+11L,
+       -1.963523788991032752712502001911679e+09L,
+       -2.569790838391132545132402844162020e+07L,
+       -4.289524004000690702056279232746453e+05L,
+       -9.446354823095931962917203933936062e+03L,
+       -2.870332371092211077349530828987144e+02L,
+       -1.280729308073562507270352766191764e+01L,
+       -9.204799924129445709272387010397958e-01L,
+       -1.241058960272750945365995472686526e-01L,
+       -4.246283078989483310470964791952445e-02L,
+       -9.722222222222222222222222222222222e-02L,
+*/
       };
       constexpr _Tp
       _S_v_cos[_S_ncoeffs]
@@ -1823,14 +1878,33 @@
 	-0.3082537649010791e+00,
 	-0.6266216349203231e-01,
 	-0.4388503086419753e-01,
-	 0.1000000000000000e+01
+	-0.1000000000000000e+01,
+/*
+       -8.090395374187028082149401942289269e+25L,
+       -3.065639370223598386092264218755129e+23L,
+       -1.319088866907750709757953915010101e+21L,
+       -6.500984080751062701873088502894851e+18L,
+       -3.706244000635465228366390921824489e+16L,
+       -2.472369922906211612860123840379929e+14L,
+       -1.955882932389842694320697012392636e+12L,
+       -1.864393108810721585266530546676276e+10L,
+       -2.182934208321603255352054236989173e+08L,
+       -3.214536521400864829067001615998275e+06L,
+       -6.133570666385205823144156720993206e+04L,
+       -1.576357303337099717826796734206481e+03L,
+       -5.750830351391427202784792351524963e+01L,
+       -3.210493584648620907973650261091926e+00L,
+       -3.082537649010791121244706347668154e-01L,
+       -6.266216349203230579688055682568713e-02L,
+       -4.388503086419753086419753086419753e-02L,
+       -1.000000000000000000000000000000000e+00L,
+*/
       };
 
       // Set up working value of z.
-      __z = -__z;
       // Compute zeta and z^(1/4).
-      auto __z1d4 = std::sqrt(__z);
-      auto __zeta = __z * __z1d4;
+      auto __z1d4 = std::sqrt(-__z);
+      auto __zeta = -__z * __z1d4;
       __zeta *= _S_2d3;
       __z1d4 = std::sqrt(__z1d4);
 
@@ -1843,57 +1917,49 @@
       auto __nterm = _S_nterms[std::min(_S_numnterms - 1,
 					(int(std::abs(__z)) - 10) / 5)];
       if (__nterm < 0 || __nterm > _S_numnterms)
-        __nterm = _S_ncoeffs;
+	__nterm = _S_ncoeffs;
       // Initialize for modified Horner's rule evaluation of sums
       // it is assumed that at least three terms are used.
-      __z = std::pow(_S_zone / __z, _Tp(3));
-      __z *= _S_9d4;
-      auto __r = _Tp{-2} * std::real(__z);
-      auto __s = std::norm(__z);
+      auto __zetam2 = std::pow(_S_zone / -__z, _Tp(3));
+      __zetam2 *= _S_9d4;
+      auto __r = _Tp{2} * std::real(__zetam2);
+      auto __s = std::norm(__zetam2);
       auto __index = _S_ncoeffs - __nterm;
 
       auto __als = _S_u_sin[__index];
       auto __alc = _S_u_cos[__index];
-      auto __alprs = _S_v_sin[__index];
-      auto __alprc = _S_v_cos[__index];
+      auto __alps = _S_v_sin[__index];
+      auto __alpc = _S_v_cos[__index];
       ++__index;
 
       auto __bes = _S_u_sin[__index];
       auto __bec = _S_u_cos[__index];
-      auto __beprs = _S_v_sin[__index];
-      auto __beprc = _S_v_cos[__index];
+      auto __beps = _S_v_sin[__index];
+      auto __bepc = _S_v_cos[__index];
       ++__index;
 
       // Loop until components contributing to sums are computed.
       for (int __k = __index; __k < _S_ncoeffs; ++__k)
 	{
-	  auto __term = __s * __als;
-	  __als = __bes + __r * __als;
-	  __bes = _S_u_sin[__k] - __term;
-	  __term = __s * __alc;
-	  __alc = __bec + __r * __alc;
-	  __bec = _S_u_cos[__k] - __term;
-	  __term = __s * __alprs;
-	  __alprs = __beprs + __r * __alprs;
-	  __beprs = _S_v_sin[__k] - __term;
-	  __term = __s * __alprc;
-	  __alprc = __beprc + __r * __alprc;
-	  __beprc = _S_v_cos[__k] - __term;
+	  __bes = _S_u_sin[__k] - __s * std::exchange(__als, __bes + __r * __als);
+	  __bec = _S_u_cos[__k] - __s * std::exchange(__alc, __bec + __r * __alc);
+	  __beps = _S_v_sin[__k] - __s * std::exchange(__alps, __beps + __r * __alps);
+	  __bepc = _S_v_cos[__k] - __s * std::exchange(__alpc, __bepc + __r * __alpc);
 	}
 
       // Complete evaluation of the Airy functions.
       __zeta = _S_zone / __zeta;
-      auto _Ai = __sinzeta * __als * __z + __bes
-	       - __zeta * __coszeta * __alc * __z + __bec;
+      auto _Ai = __sinzeta * __als * __zetam2 + __bes
+	       - __zeta * __coszeta * __alc * __zetam2 + __bec;
       _Ai *= _S_pimh / __z1d4;
-      auto _Aip = __coszeta * __alprc * __z + __beprc
-		+ __zeta * __sinzeta * __alprs * __z + __beprs;
+      auto _Aip = __coszeta * __alpc * __z + __bepc
+		+ __zeta * __sinzeta * __alps * __z + __beps;
       _Aip *= -_S_pimh * __z1d4;
       auto _Bi = __sinzeta * __als * __z + __bes
-	       + __zeta * __coszeta * __alc * __z + __bec;
+	       + __zeta * __coszeta * __alc * __zetam2 + __bec;
       _Bi *= _S_pimh / __z1d4;
-      auto _Bip = __coszeta * __alprs * __z + __beprs
-		+ __zeta * __sinzeta * __alprc * __z + __beprc;
+      auto _Bip = __coszeta * __alps * __z + __beps
+		+ __zeta * __sinzeta * __alpc * __zetam2 + __bepc;
       _Bip *= _S_pimh * __z1d4;
 
       return _AiryState<std::complex<_Tp>>{__z, _Ai, _Aip, _Bi, _Bip};
@@ -2013,7 +2079,9 @@
 	}
     }
 
-
+/**
+ * Build various arrays for various series reps of the Airy functiosn.
+ */
 template<typename _Tp>
   void
   run_toy()
@@ -2025,7 +2093,7 @@ template<typename _Tp>
     _S_dn.push_back(-_Tp{1});
     for (int __s = 1; __s <= 200; ++__s)
       {
-        // Turn this into a recursion:
+	// Turn this into a recursion:
 	//for (int r = 0; r < 2 * s; ++r)
 	//  numer *= (2 * s + 2 * r + 1);
 	//auto __a = _S_cn.back()
