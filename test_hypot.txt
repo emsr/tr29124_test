@@ -1,0 +1,8 @@
+m123 = 3.74166
+m1big = 1e+300
+m2big = 2.23607e+300
+m3big = 3.74166e+300
+m1small = 3.60555
+m2small = 3
+m3small = 3.74166e-300
+m3zero = 0
