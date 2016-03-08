@@ -114,6 +114,7 @@ test_cmath
 test_comp_ellint_1
 test_complex_gamma
 test_complex128
+test_continued_fraction
 test_csint
 test_dawson
 test_dilog
@@ -125,6 +126,7 @@ test_hermite
 test_hankel
 test_hurwitz_zeta
 test_hurwitz_zeta_new
+test_hypot
 test_inv_erf
 test_jacobi
 test_legendre
