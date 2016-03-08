@@ -9,10 +9,10 @@
 #include <complex>
 
 /**
- *  detail: Do we want this to always have a size of at least one? a_0 = _Tp()?  YES.
+ *  detail: Do we want this to always have a size of at least one? a_0 = _Tp{}?  YES.
  *  detail: Should I punt on the initial power?  YES.
  *
- *  If high degree coefficients are zero, should I resize down?
+ *  If high degree coefficients are zero, should I resize down? YES (or provide another word for order).
  *  How to access coefficients (bikeshed)?
  *    poly[i];
  *    coefficient(i);
@@ -25,7 +25,7 @@
  *  How to handle division?
  *    operator/ and throw out remainder?
  *    operator% to return the remainder?
- *    std::pair<> div(const _Polynomial& __a, const _Polynomial& __b)
+ *    std::pair<> div(const _Polynomial& __a, const _Polynomial& __b) or remquo.
  *    void divmod(const _Polynomial& __a, const _Polynomial& __b,
  *                _Polynomial& __q, _Polynomial& __r);
  *  Should factory methods like derivative and integral be globals?
@@ -153,7 +153,7 @@ namespace __gnu_cxx
       template<typename _Tp2>
 	auto
 	operator()(_Tp2 __x) const
-	-> decltype(value_type{} * _Tp2())
+	-> decltype(value_type{} * _Tp2{})
 	{
 	  if (this->degree() > 0)
 	    {
@@ -167,15 +167,15 @@ namespace __gnu_cxx
 	}
 
       /**
-       *  The following polynomial evaluations are done using
-       *  a modified of Horner's rule which exploits the fact that
-       *  the polynomial coefficients are all real.
+       *  Evaluate this polynomial using a modification of Horner's rule which
+       *  exploits the fact that the polynomial coefficients are all real.
+       *
        *  The algorithm is discussed in detail in:
        *  Knuth, D. E., The Art of Computer Programming: Seminumerical
        *  Algorithms (Vol. 2) Third Ed., Addison-Wesley, pp 486-488, 1998.
        * 
-       *  If n is the degree of the polynomial, n - 3 multiplies are
-       *  saved and 4 * n - 6 additions are saved.
+       *  If n is the degree of the polynomial,
+       *  n - 3 multiplies and 4 * n - 6 additions are saved.
        */
       template<typename _Tp2>
 	auto
@@ -184,14 +184,12 @@ namespace __gnu_cxx
 	{
 	  const auto __r = _Tp{2} * std::real(__z);
 	  const auto __s = std::norm(__z);
-	  auto __aa = this->coefficient(this->degree());
-	  auto __bb = this->coefficient(this->degree() - 1);
-	  for (int __j = 1; __j <= this->degree(); ++__j)
-	    {
-	      auto __cc  = __s * __aa;
-	      __aa = __bb + __r * __aa;
-	      __bb = this->coefficient(this->degree() - __j) - __cc;
-	    }
+	  size_type __n = this->degree()
+	  auto __aa = this->coefficient(__n);
+	  auto __bb = this->coefficient(__n - 1);
+	  for (size_type __j = 1; __j <= __n; ++__j)
+	    __bb = this->coefficient(__n - __j)
+		 - __s * std::exchange(__aa, __bb + __r * __aa);
 	  return __aa * __z + __bb;
 	};
 
@@ -231,7 +229,7 @@ namespace __gnu_cxx
 		}
 	      //  Now put in the factorials.
 	      value_type __fact = value_type(1);
-	      for (size_t __i = 2; __i < __arr.size(); ++__i)
+	      for (size_type __n = __arr.size(), __i = 2; __i < __n; ++__i)
 		{
 		  __fact *= value_type(__i);
 		  __arr[__i] *= __fact;
@@ -255,7 +253,7 @@ namespace __gnu_cxx
               for (int __i = __sz - 2; __i >= 0; --__i)
 		{
 		  for (auto __it = std::reverse_iterator<OutIter>(__e);
-			   __it != std::reverse_iterator<OutIter>(__b) - 1; ++__it)
+		       __it != std::reverse_iterator<OutIter>(__b) - 1; ++__it)
 		    *__it = *__it * __x + *(__it + 1);
 		  *__b = *__b * __x + _M_coeff[__i];
 		}
@@ -278,7 +276,7 @@ namespace __gnu_cxx
       derivative() const
       {
 	_Polynomial __res(value_type{}, (this->degree() > 0UL ? this->degree() - 1 : 0UL));
-	for (size_type __i = 1; __i <= this->degree(); ++__i)
+	for (size_type __n = this->degree(), __i = 1; __i <= __n; ++__i)
 	  __res._M_coeff[__i - 1] = __i * _M_coeff[__i];
 	return __res;
       }
@@ -291,7 +289,7 @@ namespace __gnu_cxx
       {
 	_Polynomial __res(value_type{}, this->degree() + 1);
 	__res._M_coeff[0] = __c;
-	for (size_type __i = 0; __i <= this->degree(); ++__i)
+	for (size_type __n = this->degree(), __i = 0; __i <= __n; ++__i)
 	  __res._M_coeff[__i + 1] = _M_coeff[__i] / value_type(__i + 1);
 	return __res;
       }
@@ -299,7 +297,7 @@ namespace __gnu_cxx
       /**
        *  Unary plus.
        */
-      _Polynomial&
+      _Polynomial
       operator+() const
       { return *this; }
 
@@ -420,7 +418,7 @@ namespace __gnu_cxx
 	operator+=(const _Polynomial<_Up>& __poly)
 	{
 	  this->degree(std::max(this->degree(), __poly.degree())); // Resize if necessary.
-	  for (size_type __i = 0; __i <= __poly.degree(); ++__i)
+	  for (size_type __n = __poly.degree(), __i = 0; __i <= __n; ++__i)
 	    this->_M_coeff[__i] += static_cast<value_type>(__poly._M_coeff[__i]);
 	  return *this;
 	}
@@ -433,7 +431,7 @@ namespace __gnu_cxx
 	operator-=(const _Polynomial<_Up>& __poly)
 	{
 	  this->degree(std::max(this->degree(), __poly.degree())); // Resize if necessary.
-	  for (size_type __i = 0; __i <= __poly.degree(); ++__i)
+	  for (size_type __n = __poly.degree(), __i = 0; __i <= __n; ++__i)
 	    this->_M_coeff[__i] -= static_cast<value_type>(__poly._M_coeff[__i]);
 	  return *this;
 	}
@@ -446,9 +444,11 @@ namespace __gnu_cxx
 	operator*=(const _Polynomial<_Up>& __poly)
 	{
 	  //  Test for zero size polys and do special processing?
-	  std::vector<value_type> __new_coeff(this->degree() + __poly.degree() + 1);
-	  for (size_type __i = 0; __i < this->_M_coeff.size(); ++__i)
-	    for (size_type __j = 0; __j < __poly._M_coeff.size(); ++__j)
+	  const size_type __m = this->degree();
+	  const size_type __n = __poly.degree();
+	  std::vector<value_type> __new_coeff(__m + __n + 1);
+	  for (size_type __i = 0; __i <= __m; ++__i)
+	    for (size_type __j = 0; __j <= __n; ++__j)
 	      __new_coeff[__i + __j] += this->_M_coeff[__i]
 				  * static_cast<value_type>(__poly._M_coeff[__j]);
 	  this->_M_coeff = __new_coeff;
