@@ -13,6 +13,7 @@
 #include <iomanip>
 #include <limits>
 #include <cmath>
+#include <complex>
 #include "float128.h"
 
   /**
@@ -33,8 +34,8 @@
     _Tp
     __experfc_approx(_Tp __x)
     {
-      const auto _S_pi =  _Tp{3.1415926535897932384626433832795029Q};
-      const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797Q};
+      const auto _S_pi =  _Tp{3.1415926535897932384626433832795029L};
+      const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797L};
       auto __experfc = _S_sqrt_pi * std::sqrt(__x)
 		     + std::sqrt(_S_pi * (__x + _Tp{2})
 			       - _Tp{2} * (_S_pi - _Tp{2})
@@ -59,7 +60,7 @@
     __experfc_asymp(_Tp __x)
     {
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797Q};
+      const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797L};
       const auto __i2x = -_Tp{1} / (_Tp{2} * __x);
       auto __term = _Tp{1};
       auto __sum = __term;
@@ -93,8 +94,8 @@
     _Tp
     __experfc_cont_frac(_Tp __x)
     {
-      const auto _S_sqrt_2 = _Tp{1.414213562373095048801688724209698078569Q};
-      const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797Q};
+      const auto _S_sqrt_2 = _Tp{1.414213562373095048801688724209698078569L};
+      const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797L};
       const auto __b = std::sqrt(_Tp{2} * __x);
       auto __s = __b;
       for (int __n = 100; __n >= 1; --__n)
@@ -106,15 +107,17 @@
       return __s;
     }
 
-  // exp(x^2) erfc(x).
+  /**
+   * exp(x^2) erfc(x).
+   */
   template<typename _Tp>
     std::complex<_Tp>
     __experfc_series(std::complex<_Tp> __z,
 		     int __trunc_lo = 32, int __trunc_hi = 193,
 		     _Tp __sep = _Tp{8})
     {
-      const auto _S_pi =  _Tp{3.1415926535897932384626433832795029Q};
-      const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797Q};
+      const auto _S_pi =  _Tp{3.1415926535897932384626433832795029L};
+      const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797L};
       const auto _S_i = std::complex<_Tp>{0, 1};
 
       if (__sep < _Tp{0} || std::abs(__z) <= __sep)
@@ -125,7 +128,7 @@
 
           auto __ez2 = std::exp(__z * __z);
 
-          auto __s1 = std::erf(__x);
+          auto __s1 = erf(__x);
 
           auto __k1 = std::exp(-__y * __y);
           auto __k2 = std::exp(_Tp{2} * _S_i * __x * __y);
@@ -145,7 +148,7 @@
 		{
 		  auto __enn = _Tp(__n);
 		  auto __s3 = std::exp(-__enn * __enn / _Tp{4}) / (__enn * __enn + _Tp{4} * __x * __x);
-                  std::complex<_Tp> __s4 = _Tp{2} * __x * __k1 * __k2
+                  auto __s4 = _Tp{2} * __x * __k1 * __k2
                       - (__x + _S_i * __enn / _Tp{2}) * std::exp(-__y * (__enn + __y))
                       - (__x - _S_i * __enn / _Tp{2}) * std::exp(+__y * (__enn - __y));
                   __sum += __s3 * __s4;
@@ -186,7 +189,7 @@
     __experfc(_Tp __x)
     {
       if (__x < _Tp{3})
-	return std::exp(__x) * std::erfc(std::sqrt(__x));
+	return std::exp(__x) * erfc(std::sqrt(__x));
       else
 	return __experfc_cont_frac(__x);
     }
@@ -198,6 +201,8 @@
     _Tp
     __erfi(_Tp __p)
     {
+std::cout.precision(std::numeric_limits<_Tp>::digits10);
+auto width = 8 + std::cout.precision();
       constexpr auto _S_eps = _Tp{10} * std::numeric_limits<_Tp>::epsilon();
       // Iterate experfc(x^2).
       if (__p < _Tp{0})
@@ -205,15 +210,26 @@
       else
 	{
 	  auto __x2 = _Tp{25};
-	  while (true)
+	  auto __x2prev2 = _Tp{0}, __x2prev = _Tp{0};
+	  const auto _S_max_iter = 500;
+	  auto __iter = 0;
+	  while (++__iter < _S_max_iter)
 	    {
-	      auto __x2prev = __x2;
+		    
+	      __x2prev2 = __x2prev;
+	      __x2prev = __x2;
 	      __x2 = std::log(__experfc(__x2) / (_Tp{1} - __p));
-std::cout << __x2 << ' ' << __x2 - __x2prev << '\n';
+//std::cout
+// << ' ' << std::setw(width) << __x2
+// << ' ' << std::setw(width) << __x2 - __x2prev
+// << ' ' << std::setw(width) << __x2 - __x2prev2
+// << '\n';
 	      // If the fraction jumps < 0 just bop it back.
 	      if (__x2 < _Tp{0})
 		__x2 = -__x2;
 	      if (_S_eps > std::abs(__x2 - __x2prev) / std::abs(__x2))
+		break;
+	      if (_S_eps > std::abs(__x2 - __x2prev2) / std::abs(__x2))
 		break;
 	    }
 	  return std::sqrt(__x2);
@@ -229,8 +245,8 @@ template<typename _Tp>
   {
     //  Build the series coefficients.
     const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-    const auto _S_pi =  _Tp{3.1415926535897932384626433832795029Q};
-    const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797Q};
+    const auto _S_pi =  _Tp{3.1415926535897932384626433832795029L};
+    const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797L};
 
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     auto width = 8 + std::cout.precision();
@@ -248,6 +264,8 @@ template<typename _Tp>
 	__atemp /= _Tp(2 * __n + 1);
 	a.push_back(__atemp);
       }
+
+    std::cout << "\n\n " << std::setw(width) << "a_k" << '\n';
     for (auto __aa : a)
       std::cout << ' ' << std::setw(width) << __aa << '\n';
 
@@ -262,6 +280,8 @@ template<typename _Tp>
       }
     for (int __n = 1; __n < n_max; ++__n)
       c[__n] /= _Tp(2 * __n + 1);
+
+    std::cout << "\n\n " << std::setw(width) << "c_k" << '\n';
     for (auto __cc : c)
       std::cout << ' ' << std::setw(width) << __cc << '\n';
 
@@ -273,7 +293,7 @@ template<typename _Tp>
 	      << '\n';
     for (int __i = -100; __i <= 100; ++__i)
       {
-	auto __x = __i * _Tp{0.01Q};
+	auto __x = __i * _Tp{0.01L};
 	auto __chi = _S_sqrt_pi * __x / _Tp{2};
 	auto __chi2 = __chi * __chi;
 	auto __chip = __chi;
@@ -288,8 +308,8 @@ template<typename _Tp>
 	  }
 	std::cout << ' ' << std::setw(width) << __x
 		  << ' ' << std::setw(width) << __inverf
-		  << ' ' << std::setw(width) << std::erf(__inverf)
-		  << ' ' << std::setw(width) << std::erf(__inverf) - __x
+		  << ' ' << std::setw(width) << erf(__inverf)
+		  << ' ' << std::setw(width) << erf(__inverf) - __x
 		  << '\n';
       }
 
@@ -303,8 +323,8 @@ template<typename _Tp>
 	      << '\n';
     for (int __i = -200; __i <= 200; ++__i)
       {
-	auto __x = __i * _Tp{0.01Q};
-	auto __erfx = std::erf(__x);
+	auto __x = __i * _Tp{0.01L};
+	auto __erfx = erf(__x);
 	auto __chi = _S_sqrt_pi * __erfx / _Tp{2};
 	auto __chi2 = __chi * __chi;
 	auto __chip = __chi;
@@ -326,12 +346,19 @@ template<typename _Tp>
 		  << '\n';
       }
 
+    std::cout << "\n\n"
+	      << std::setw(width) << "x"
+	      << std::setw(width) << "approx experfc(x)"
+	      << std::setw(width) << "exp(x)erfc(rt(x))"
+	      << std::setw(width) << "cfrac experfc(x)"
+	      << std::setw(width) << "asymp experfc(x)"
+	      << '\n';
     for (int __i = 0; __i <= 5500; ++__i)
       {
-	auto __x = __i * _Tp{0.01Q};
+	auto __x = __i * _Tp{0.01L};
 	std::cout << ' ' << std::setw(width) << __x
 		  << ' ' << std::setw(width) << __experfc_approx(__x)
-		  << ' ' << std::setw(width) << std::exp(__x) * std::erfc(std::sqrt(__x))
+		  << ' ' << std::setw(width) << std::exp(__x) * erfc(std::sqrt(__x))
 		  << ' ' << std::setw(width) << __experfc_cont_frac(__x)
 		  << ' ' << std::setw(width) << __experfc_asymp(__x)
 		  << '\n';
@@ -353,7 +380,7 @@ main()
   std::cout << "  ===========\n";
   test_inv_erf<long double>();
 
-  std::cout << "\n\n  __float128\n";
-  std::cout << "  ==========\n";
-  test_inv_erf<__float128>();
+  //std::cout << "\n\n  __float128\n";
+  //std::cout << "  ==========\n";
+  //test_inv_erf<__float128>();
 }
