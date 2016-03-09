@@ -15,96 +15,96 @@
 #include <cmath>
 #include "float128.h"
 
-/**
- * Return a quick approximation to the experfc function.
- * The experfc function is defined by
- * @f[
- *   experfc(x) = exp(x)erfc(\sqrt{x})
- * @f]
- * The approximation is:
- * @f[
- *   experfc(x) = \frac{2}{\sqrt{\pi x}
- *       + \sqrt{\pi(x+2)-2(\pi-2)exp(-\sqrt(5x/7))}}
- * @f]
- * Surprisingly, this is accurate to within 0.1% over the whole range
- * [0, infty].  It is used to start agm algorithms of the experfc function.
- */
-template<typename _Tp>
-  _Tp
-  __experfc_approx(_Tp __x)
-  {
-    const auto _S_pi =  _Tp{3.1415926535897932384626433832795029Q};
-    const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797Q};
-    auto __experfc = _S_sqrt_pi * std::sqrt(__x)
-		   + std::sqrt(_S_pi * (__x + _Tp{2})
-			     - _Tp{2} * (_S_pi - _Tp{2})
-			     * std::exp(-std::sqrt(_Tp{5} * __x / _Tp{7})));
-    return _Tp{2} / __experfc;
-  }
+  /**
+   * Return a quick approximation to the experfc function.
+   * The experfc function is defined by
+   * @f[
+   *   experfc(x) = exp(x)erfc(\sqrt{x})
+   * @f]
+   * The approximation is:
+   * @f[
+   *   experfc(x) = \frac{2}{\sqrt{\pi x}
+   *       + \sqrt{\pi(x+2)-2(\pi-2)exp(-\sqrt(5x/7))}}
+   * @f]
+   * Surprisingly, this is accurate to within 0.1% over the whole range
+   * [0, infty].  It is used to start agm algorithms of the experfc function.
+   */
+  template<typename _Tp>
+    _Tp
+    __experfc_approx(_Tp __x)
+    {
+      const auto _S_pi =  _Tp{3.1415926535897932384626433832795029Q};
+      const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797Q};
+      auto __experfc = _S_sqrt_pi * std::sqrt(__x)
+		     + std::sqrt(_S_pi * (__x + _Tp{2})
+			       - _Tp{2} * (_S_pi - _Tp{2})
+			       * std::exp(-std::sqrt(_Tp{5} * __x / _Tp{7})));
+      return _Tp{2} / __experfc;
+    }
 
-/**
- * Return the experfc function by asymptotic series.
- * The experfc function is defined by
- * @f[
- *   experfc(x) = exp(x)erfc(\sqrt{x})
- * @f]
- * The asymptotic series is:
- * @f[
- *   experfc(x) = \frac{1}{\sqrt{\pi x}}
- *       \sum_{k=0}^{\infty}\frac{(2k-1)!!}{(-2x)^k}
- * @f]
- */
-template<typename _Tp>
-  _Tp
-  __experfc_asymp(_Tp __x)
-  {
-    constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-    const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797Q};
-    const auto __i2x = -_Tp{1} / (_Tp{2} * __x);
-    auto __term = _Tp{1};
-    auto __sum = __term;
-    __term *= __i2x;
-    __sum += __term;
-    for (auto __k = 2; __k < 100; ++__k)
-      {
-	__term *= _Tp(2 * __k - 1) * __i2x;
-	__sum += __term;
-	if (std::abs(__term) < _S_eps * std::abs(__sum))
-	  break;
-      }
-    return __sum / (_S_sqrt_pi * std::sqrt(__x));
-  }
+  /**
+   * Return the experfc function by asymptotic series.
+   * The experfc function is defined by
+   * @f[
+   *   experfc(x) = exp(x)erfc(\sqrt{x})
+   * @f]
+   * The asymptotic series is:
+   * @f[
+   *   experfc(x) = \frac{1}{\sqrt{\pi x}}
+   *       \sum_{k=0}^{\infty}\frac{(2k-1)!!}{(-2x)^k}
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __experfc_asymp(_Tp __x)
+    {
+      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797Q};
+      const auto __i2x = -_Tp{1} / (_Tp{2} * __x);
+      auto __term = _Tp{1};
+      auto __sum = __term;
+      __term *= __i2x;
+      __sum += __term;
+      for (auto __k = 2; __k < 100; ++__k)
+	{
+	  __term *= _Tp(2 * __k - 1) * __i2x;
+	  __sum += __term;
+	  if (std::abs(__term) < _S_eps * std::abs(__sum))
+	    break;
+	}
+      return __sum / (_S_sqrt_pi * std::sqrt(__x));
+    }
 
-/**
- * Return the experfc function by continued fraction.
- * The experfc function is defined by
- * @f[
- *   experfc(x) = exp(x)erfc(\sqrt{x})
- * @f]
- * The continued fraction is
- * @f[
- *   experfc(x) = \cfrac{\sqrt{2}\pi}{\sqrt{2x}
- *              + \cfrac{1}{\sqrt{2x}
- *              + \cfrac{2}{\sqrt{2x}
- *              + \cfrac{3}{\sqrt{2x} + ...} } } }
- * @f]
- */
-template<typename _Tp>
-  _Tp
-  __experfc_cont_frac(_Tp __x)
-  {
-    const auto _S_sqrt_2 = _Tp{1.414213562373095048801688724209698078569Q};
-    const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797Q};
-    const auto __b = std::sqrt(_Tp{2} * __x);
-    auto __s = __b;
-    for (int __n = 100; __n >= 1; --__n)
-      {
-	auto __a = _Tp(__n);
-	__s = __b + __a / __s;
-      }
-      __s = (_S_sqrt_2 / _S_sqrt_pi) / __s;
-    return __s;
-  }
+  /**
+   * Return the experfc function by continued fraction.
+   * The experfc function is defined by
+   * @f[
+   *   experfc(x) = exp(x)erfc(\sqrt{x})
+   * @f]
+   * The continued fraction is
+   * @f[
+   *   experfc(x) = \cfrac{\sqrt{2}\pi}{\sqrt{2x}
+   *              + \cfrac{1}{\sqrt{2x}
+   *              + \cfrac{2}{\sqrt{2x}
+   *              + \cfrac{3}{\sqrt{2x} + ...} } } }
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __experfc_cont_frac(_Tp __x)
+    {
+      const auto _S_sqrt_2 = _Tp{1.414213562373095048801688724209698078569Q};
+      const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797Q};
+      const auto __b = std::sqrt(_Tp{2} * __x);
+      auto __s = __b;
+      for (int __n = 100; __n >= 1; --__n)
+	{
+	  auto __a = _Tp(__n);
+	  __s = __b + __a / __s;
+	}
+	__s = (_S_sqrt_2 / _S_sqrt_pi) / __s;
+      return __s;
+    }
 
   // exp(x^2) erfc(x).
   template<typename _Tp>
@@ -178,47 +178,47 @@ template<typename _Tp>
         }
     }
 
-/**
- *
- */
-template<typename _Tp>
-  _Tp
-  __experfc(_Tp __x)
-  {
-    if (__x < _Tp{3})
-      return std::exp(__x) * std::erfc(std::sqrt(__x));
-    else
-      return __experfc_cont_frac(__x);
-  }
+  /**
+   *
+   */
+  template<typename _Tp>
+    _Tp
+    __experfc(_Tp __x)
+    {
+      if (__x < _Tp{3})
+	return std::exp(__x) * std::erfc(std::sqrt(__x));
+      else
+	return __experfc_cont_frac(__x);
+    }
 
-/**
- * Return the inverse error function.
- */
-template<typename _Tp>
-  _Tp
-  __erfi(_Tp __p)
-  {
-    constexpr auto _S_eps = _Tp{10} * std::numeric_limits<_Tp>::epsilon();
-    // Iterate experfc(x^2).
-    if (__p < _Tp{0})
-      return -__erfi(-__p);
-    else
-      {
-	auto __x2 = _Tp{25};
-	while (true)
-	  {
-	    auto __x2prev = __x2;
-	    __x2 = std::log(__experfc(__x2) / (_Tp{1} - __p));
+  /**
+   * Return the inverse error function.
+   */
+  template<typename _Tp>
+    _Tp
+    __erfi(_Tp __p)
+    {
+      constexpr auto _S_eps = _Tp{10} * std::numeric_limits<_Tp>::epsilon();
+      // Iterate experfc(x^2).
+      if (__p < _Tp{0})
+	return -__erfi(-__p);
+      else
+	{
+	  auto __x2 = _Tp{25};
+	  while (true)
+	    {
+	      auto __x2prev = __x2;
+	      __x2 = std::log(__experfc(__x2) / (_Tp{1} - __p));
 std::cout << __x2 << ' ' << __x2 - __x2prev << '\n';
-	    // If the fraction jumps < 0 just bop it back.
-	    if (__x2 < _Tp{0})
-	      __x2 = -__x2;
-	    if (_S_eps > std::abs(__x2 - __x2prev) / std::abs(__x2))
-	      break;
-	  }
-	return std::sqrt(__x2);
-      }
-  }
+	      // If the fraction jumps < 0 just bop it back.
+	      if (__x2 < _Tp{0})
+		__x2 = -__x2;
+	      if (_S_eps > std::abs(__x2 - __x2prev) / std::abs(__x2))
+		break;
+	    }
+	  return std::sqrt(__x2);
+	}
+    }
 
 /**
  * Test the inverse error function.
