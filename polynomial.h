@@ -157,17 +157,17 @@ namespace __gnu_cxx
 	{
 	  if (this->degree() > 0)
 	    {
-	      auto __poly(this->coefficient(this->degree()) * _Tp2(1));
+	      auto __poly(_Tp2{1} * this->coefficient(this->degree()));
 	      for (int __i = this->degree() - 1; __i >= 0; --__i)
 		__poly = __poly * __x + this->coefficient(__i);
 	      return __poly;
 	    }
 	  else
-	    return value_type{};
+	    return value_type{} * _Tp2{};
 	}
 
       /**
-       *  Evaluate this polynomial using a modification of Horner's rule which
+       *  Evaluate the polynomial using a modification of Horner's rule which
        *  exploits the fact that the polynomial coefficients are all real.
        *
        *  The algorithm is discussed in detail in:
@@ -184,10 +184,10 @@ namespace __gnu_cxx
 	{
 	  const auto __r = _Tp{2} * std::real(__z);
 	  const auto __s = std::norm(__z);
-	  size_type __n = this->degree()
+	  size_type __n = this->degree();
 	  auto __aa = this->coefficient(__n);
 	  auto __bb = this->coefficient(__n - 1);
-	  for (size_type __j = 1; __j <= __n; ++__j)
+	  for (size_type __j = 2; __j <= __n; ++__j)
 	    __bb = this->coefficient(__n - __j)
 		 - __s * std::exchange(__aa, __bb + __r * __aa);
 	  return __aa * __z + __bb;
