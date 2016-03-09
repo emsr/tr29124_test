@@ -1,4 +1,4 @@
-// $HOME/bin/bin/g++ -o test_polynomial test_polynomial.cpp
+// $HOME/bin/bin/g++ -g -std=gnu++1z -o test_polynomial test_polynomial.cpp
 
 // LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_polynomial
 
@@ -156,6 +156,7 @@ main()
 
   std::cout << "P = " << P << '\n';
   std::cout << "P(1) = " << P(1.0) << '\n';
-  std::cout << "P(i) = " << P(1.0i) << '\n';
+  std::cout << "P(i) = " << P(1.0i) << '\n'; // Fucked...
+  std::cout << "P(i) = " << P(std::complex<double>{0, 1}) << '\n';
 }
 
