@@ -30,13 +30,13 @@
 #ifndef _GLIBCXX_BITS_SPECFUN_H
 #define _GLIBCXX_BITS_SPECFUN_H 1
 
-#define __STDCPP_MATH_SPEC_FUNCS__ 201003L
-
-#define __cpp_lib_math_special_functions 201602
-
 #pragma GCC visibility push(default)
 
 #include <bits/c++config.h>
+
+#define __STDCPP_MATH_SPEC_FUNCS__ 201003L
+
+#define __cpp_lib_math_special_functions 201603L
 
 #if __cplusplus <= 201402L && __STDCPP_WANT_MATH_SPEC_FUNCS__ == 0
 # error include <cmath> and define __STDCPP_WANT_MATH_SPEC_FUNCS__

@@ -12,13 +12,13 @@
 #include <algorithm>
 #include <cmath>
 
+#define __cpp_lib_hypot 201603L
+
 namespace std
 {
 
-#define __cpp_lib_hypot 201603L
-
   template<typename _Tp>
-    _Tp
+    constexpr _Tp
     hypot(_Tp __x, _Tp __y, _Tp __z)
     {
       auto __abs_max = [](_Tp __a, _Tp __b)
@@ -39,23 +39,60 @@ namespace std
 
 } // namespace std
 
+template<typename _Tp>
+  void
+  test()
+  {
+    constexpr auto tiny = _Tp{8} * std::numeric_limits<double>::lowest();
+    constexpr auto huge = _Tp{0.125L} * std::numeric_limits<double>::max();
+
+    constexpr auto m123 = std::hypot(_Tp{1}, _Tp{2}, _Tp{3});
+    constexpr auto m1huge = std::hypot(huge, _Tp{2}, _Tp{3});
+    constexpr auto m2huge = std::hypot(huge, _Tp{2} * huge, _Tp{3});
+    constexpr auto m3huge = std::hypot(huge, _Tp{2} * huge, _Tp{3} * huge);
+    constexpr auto m1tiny = std::hypot(tiny, _Tp{2}, _Tp{3});
+    constexpr auto m2tiny = std::hypot(tiny, _Tp{2} * tiny, _Tp{3});
+    constexpr auto m3tiny = std::hypot(tiny, _Tp{2} * tiny, _Tp{3} * tiny);
+  }
+
 int
 main()
 {
+  std::cout.precision(std::numeric_limits<double>::digits10);
+  auto w = 8 + std::cout.precision();
+
   auto m123 = std::hypot(1.0, 2.0, 3.0);
-  std::cout << "m123 = " << m123 << '\n';
+  std::cout << "m123    = " << std::setw(w) << m123 << '\n';
+
   auto m1big = std::hypot(1.0e300, 2.0, 3.0);
-  std::cout << "m1big = " << m1big << '\n';
+  std::cout << "m1big   = " << std::setw(w) << m1big << '\n';
+
   auto m2big = std::hypot(1.0e300, 2.0e300, 3.0);
-  std::cout << "m2big = " << m2big << '\n';
+  std::cout << "m2big   = " << std::setw(w) << m2big << '\n';
+
   auto m3big = std::hypot(1.0e300, 2.0e300, 3.0e300);
-  std::cout << "m3big = " << m3big << '\n';
+  std::cout << "m3big   = " << std::setw(w) << m3big << '\n';
+
   auto m1small = std::hypot(1.0e-300, 2.0, 3.0);
-  std::cout << "m1small = " << m1small << '\n';
+  std::cout << "m1small = " << std::setw(w) << m1small << '\n';
+
   auto m2small = std::hypot(1.0e-300, 2.0e-300, 3.0);
-  std::cout << "m2small = " << m2small << '\n';
+  std::cout << "m2small = " << std::setw(w) << m2small << '\n';
+
   auto m3small = std::hypot(1.0e-300, 2.0e-300, 3.0e-300);
-  std::cout << "m3small = " << m3small << '\n';
+  std::cout << "m3small = " << std::setw(w) << m3small << '\n';
+
   auto m3zero = std::hypot(0.0, 0.0, 0.0);
-  std::cout << "m3zero = " << m3zero << '\n';
+  std::cout << "m3zero  = " << std::setw(w) << m3zero << '\n';
 }
+
+/*
+m123    =        3.74165738677394
+m1big   =                  1e+300
+m2big   =   2.23606797749979e+300
+m3big   =   3.74165738677394e+300
+m1small =        3.60555127546399
+m2small =                       3
+m3small =   3.74165738677394e-300
+m3zero  =                       0
+*/
