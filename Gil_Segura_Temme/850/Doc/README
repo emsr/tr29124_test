@@ -1,0 +1,291 @@
+PURPOSE:
+=========
+
+The purpose of this package is the computation of 
+the Real Parabolic Cylinder Functions U(a,x), V(a,x) and
+their derivatives.
+   a and x are real variables and x>=0. 
+
+THIS PACKAGE CONTAINS THE FOLLOWING FILES: 
+==========================================
+ 
+1.  cons.f90        Includes the module Someconstants for internal 
+                    global parameters
+
+2.  constants       Data file for the module Someconstants 
+
+(NOTE: In this release the contents of this file have replaced the include
+file used in cons.f90)
+
+3.  air.f90         Includes the module AiryFunction for the 
+                    computation of real Airy functions
+
+4.  parab.f90       Includes the module Parabolic for the computation 
+                    of the real Parabolic Cylinder Functions U(a,x),
+                    V(a,x) and their derivatives
+
+5.  wptest.f90      Test program for the module Parabolic
+
+Here is an example set of compiler/linker commands for building
+the programs using the GNU Fortran compiler g95. 
+Options: -c compile to object code -- don't make executable
+ 
+g95 -c cons.f90 
+g95 -c air.f90 
+g95 -c parab.f90 
+g95 -c wptest.f90 
+g95 cons.o air.o parab.o wptest.o -o wptest
+
+where wptest is the name of the executable file.
+Basically the first files are compiled as object code libraries, and
+then a program using parab (wptest) is compiled and linked to those libraries.
+
+
+DESCRIPTION OF THE MODULE PARABOLIC 
+===================================
+
+The public routine of the module Parabolic is parab, which
+computes the functions U(a,x), V(a,x) and their first
+derivatives.
+
+ CALLING SEQUENCE
+ ----------------
+
+ The calling sequence for the routine parab is the following
+
+ SUBROUTINE parab(a,x,mode,uaxx,vaxx,ierr)
+ INTEGER,  INTENT(IN) :: mode
+ REAL(r8), INTENT(IN) :: a
+ REAL(r8), INTENT(IN) :: x
+ REAL(r8), INTENT(OUT) :: uaxx(2)
+ REAL(r8), INTENT(OUT) :: vaxx(2)   
+ INTEGER,  INTENT(OUT) :: ierr
+
+ where r8 represents the available double precision 
+ arithmetics.
+
+  Inputs and outputs
+  ------------------
+  
+   INPUTS: 
+           mode --> scaling factor. If mode=0, the routine
+                    computes plain functions. If mode=1, 
+                    the routine computes scaled functions
+                                               (SEE BELOW). 
+           a    -->  order of the function
+           x    -->  argument of the function
+
+
+   OUTPUTS:  
+       
+
+           uaxx(1)   --> U(a,x)  function.
+           uaxx(2)   --> U'(a,x) function.
+           vaxx(1)   --> V(a,x)  function
+           vaxx(2)   --> V'(a,x) function
+           ierr      --> error flag. 
+                     + If ierr=0, the computation was
+                       successful. 
+                     + If ierr=1, the computation was
+                       out of range. This flag suggests the use of
+                       the scaling factor mode=1. 
+                     + If ierr=2, the argument x of the function is
+                       out of range (x<0). In this case the function 
+                       values are set to zero.
+
+
+Other routines included in the module Parabolic which are used by 
+the routine parab are:
+
+  series:   computes the PCFs using Maclaurin series.
+  expax :   computes the PCFs using asymptotic expansions
+              for large x (Poincare-type).
+  expaelem: computes the PCFs using uniform asymptotic expansions 
+              in terms of elementary functions.
+  expair:   computes the PCFs using uniform asymptotic expansions 
+              in terms of Airy functions. 
+  uvax:     computes the PCFs using integral representations.
+  recuru:   applies recurrence relations for the U function.
+  recurv:   applies recurrence relations for the V function.
+  
+
+
+The module air.f90 for the computation of Airy functions 
+(scaled for x>0) uses a Fortran 90 version of the code by 
+Fullerton (the Fortran 77 code is available at Netlib).
+
+RANGE OF COMPUTATION
+====================
+
+ The codes compute the functions U(a,x), V(a,x) and 
+ their derivatives for real a and x >=0. 
+
+ The range of computation for scaled Parabolic Cylinder
+ Functions is practically unrestricted.
+ For the plain (unscaled) functions the admissible
+ range will depend on the machine overflow/underflow 
+ parameters.
+
+ 
+ACCURACY OF THE COMPUTED FUNCTION VALUES
+=======================================
+
+ The aimed relative accuracy for scaled functions is better than 
+ 5.0e-14. Exceptions to this accuracy are the evaluation of the 
+ function near their zeros and the error caused by the evaluation 
+ of trigonometric functions of large arguments when |a|>>x.
+ The routines always produce values for which
+ the Wronskian relation
+
+   W(U(a,x),V(a,x))=U(a,x)*V'(a,x)-U'(a,x)*V(a,x)=sqrt(2/pi) 
+
+ is verified with a relative accuracy 
+ better that 5.0e-14. The accuracy of the unscaled functions 
+ is also better than 5.0e-14 for moderate values of x and a
+ (except close to the zeros), while for large x and a
+ the error is dominated by exponential and trigonometric 
+ function evaluations.
+ For IEEE standard double precision arithmetic, the
+ accuracy is better than 5.0e-13 in the computable range of 
+ unscaled PCFs (except close to the zeros). 
+  
+SCALED FUNCTIONS
+================
+
+ The routines have the option of computing scaled
+ functions. This scaling can be used to enlarge  
+ the range of computation. 
+ The scaled functions are defined as follows:
+
+  * U(a,x), U'(a,x): 
+   
+                 F1(a,x)*U(a,x),  if x^2 >= -4a
+    SU(a,x)  = 
+                 F2(a,x)*U(a,x),  if x^2 < -4a
+
+
+
+                 F1(a,x)*U'(a,x), if x^2 >= -4a                  
+    SU'(a,x) =  
+                 F2(a,x)*U'(a,x), if x^2 < -4a
+
+
+ *  V(a,x), V'(a,x): 
+   
+                 V(a,x)/F1(a,x),  if x^2 >= -4a
+    SV(a,x)  = 
+                 V(a,x)/F2(a,x),  if x^2 < -4a
+
+
+
+                 V'(a,x)/F1(a,x), if x^2 >= -4a                  
+    SV'(a,x) =  
+                 V'(a,x)/F2(a,x), if x^2 < -4a
+
+
+where
+
+    F1(a,x)=( x/2 + sqrt(x**2/4 + a) )^a * 
+             exp( x/2*sqrt(x^2/4 + a) -a/2 )
+              
+    F2(a,x)=F1(a,2*sqrt(-a))=(-a)^(a/2)*exp(-a/2)
+
+METHODS OF COMPUTATION
+====================== 
+
+The present code uses different methods of computation
+depending on the values of a and x:
+   
+When (2.5< x<12.5) and (|a|<0.7) we compute U(a,x), V(a,x)
+and their derivatives using:
+    - For U(a,x) (and its derivative), recurrence relations.   
+    - For V(a,x) (and its derivative), series when x<=10.5 
+           and recurrence relations when x>10.5
+In other cases:
+   
+    1) For a>0:
+        When x<0.185781526149...
+          For a>-0.23x*x+1.2x+18.72,
+             For a<1.0/(x*x) and x<0.005 we compute: V(a,x) and its 
+                 derivative using series; U(a,x) and its
+                 derivative using asymptotic expansions in
+                 terms of elementary functions
+             In other case, we use asymptotic expansions 
+                 in terms of elementary functions
+          For a<-0.23x*x+1.2x+18.72, we use power series
+        When 0.185781526149..<=x<3
+           For a< 3.75/x-1.25, we use power series
+           For 3.75/x-1.25 <= a<-0.23x*x+1.2x+18.72 
+             For V(a,x) and its derivative, we use 
+                        power series
+             For U(a,x) and its derivative, we use 
+                        recurrence relations         
+           For a >= -0.23x*x+1.2x+18.72, we use asymptotic 
+             expansions in terms of elementary functions 
+        When 3<x<12
+           For a< -0.23x*x+1.2x+18.72, 
+             For V(a,x) and its derivative, we use power series
+             For U(a,x) and its derivative, we use 
+                        recurrence relations
+           For a >= -0.23x*x+1.2x+18.72, we use asymptotic 
+              expansions in terms of elementary functions   
+        When x>=12
+           For a < 2.5x-30 and a<150, we use asymptotic 
+                                      expansions Poincare-type   
+           For a >= 2.5x-30 or a>150, we use asymptotic expansions
+               in terms of elementary functions
+    2) For a<0:
+        When x<0.84483298487.. 
+           For a <-0.21x*x-4.5x-40, we use asymptotic 
+               expansions in terms of elementary functions 
+           For a >=-0.21x*x-4.5x-40, we use power series
+        When 0.84483298487..<= x<3
+           For a < -0.21x*x-4.5x-40, we use asymptotic 
+              expansions in terms of elementary functions 
+           For -0.21x*x-4.5x-40<= a<-30/(x-0.3)+100/9, we use 
+              quadrature 
+           For a>=-30/(x-0.3)+100/9, we use power series
+        When 3<=x<4 
+           For a<-0.21x*x-4.5x-40, we use asymptotic 
+              expansions in terms of elementary functions 
+           For a>=-0.21x*x-4.5x-40, we use quadrature
+        When 4<=x<43/35+3sqrt(155)/7 
+           For a<-0.21x*x-4.5x-40, we use asymptotic 
+               expansions in terms of elementary functions 
+           For -0.21x*x-4.5x-40<=a< x-14, we use Airy-type 
+               asymptotic expansions
+           For a>=x-14, we use quadrature
+        When 43/35+3sqrt(155)/7<= x<12
+           For a< -0.21x*x-4.5x-40, we use asymptotic 
+              expansions in terms of elementary functions
+           For -0.21x*x-4.5x-40<=a<-7-0.14(x-4.8)**2, we use
+              Airy-type asymptotic expansions 
+           For a>= -7-0.14(x-4.8)*(x-4.8), we use quadrature
+        When 12 <=x<-4/5+2/15*sqrt(18127)
+           For a<-0.21x*x-4.5x-40, we use asymptotic 
+              expansions in terms of elementary functions
+           For -0.21x*x-4.5x-40<=a<-7-0.14(x-4.8)**2, we use 
+              Airy-type asymptotic expansions 
+           For -7-0.14(x-4.8)**2<=a<-0.23x*x+1.2x+18.72, we use
+              quadrature
+           For -0.23x*x+1.2x+18.72<=a<-2.5x+30, we use asymptotic 
+             expansions in terms of elementary functions
+           For a>=-2.5x+30, we use asymptotic expansions Poincare-type
+        When -4/5+2/15*sqrt(18127)<=x<30
+           For a<-0.21x*x-4.5x-40, we use asymptotic 
+              expansions in terms of elementary functions
+           For -0.21x*x-4.5x-40<=a<-0.23x*x+1.2x+18.72, we use 
+              Airy-type asymptotic expansions
+           For -0.23x*x+1.2x+18.72<=a<-2.5x+30, we use asymptotic 
+              expansions in terms of elementary functions
+           For a>=-2.5x+30, use asymptotic expansions Poincare-type
+        When x >= 30
+           For a< -0.295x*x+0.3x-107.5, we use asymptotic 
+             expansions in terms of elementary functions
+           For -0.295x*x+0.3x-107.5<=a<-0.1692*x*x, we use 
+             Airy-type asymptotic expansions
+           For -0.1692*x*x<=a<-2.5x+30, we use asymptotic 
+             expansions in terms of elementary functions
+           For a>=-2.5x+30, we use asymptotic expansions Poincare-type
+             when |a|<150; in other cases, we use asymptotic 
+             expansions in terms of elementary functions
