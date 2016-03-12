@@ -17,6 +17,37 @@
 #include "float128.h"
 
   /**
+   * 
+   */
+  template<typename _Tp>
+    _Tp
+    __erf_series(_Tp __x)
+    {
+      
+    }
+
+  /**
+   * 
+   */
+  template<typename _Tp>
+    _Tp
+    __experf_series(_Tp __x)
+    {
+      const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797L};
+      const auto _S_max_iter = 200;
+      const auto __x2 = __x * __x;
+      auto __term = __x;
+      auto __sum = __term;
+      for (int __k = 1; __k < _S_max_iter; ++__k)
+	{
+	  __term *= _Tp{2} * __x2 / _Tp(2 * __k + 1);
+	  __sum += __term;
+	}
+      return  _Tp{2} * __sum / _S_sqrt_pi;
+    }
+
+
+  /**
    * Return a quick approximation to the experfc function.
    * The experfc function is defined by
    * @f[
@@ -47,12 +78,12 @@
    * Return the experfc function by asymptotic series.
    * The experfc function is defined by
    * @f[
-   *   experfc(x) = exp(x)erfc(\sqrt{x})
+   *   experfc(x) = exp(x^2)erfc(x)
    * @f]
    * The asymptotic series is:
    * @f[
-   *   experfc(x) = \frac{1}{\sqrt{\pi x}}
-   *       \sum_{k=0}^{\infty}\frac{(2k-1)!!}{(-2x)^k}
+   *   experfc(x) = \frac{1}{\sqrt{\pi} x}
+   *       \sum_{k=0}^{\infty}\frac{(2k-1)!!}{(-2x^2)^k}
    * @f]
    */
   template<typename _Tp>
@@ -61,33 +92,32 @@
     {
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797L};
-      const auto __i2x = -_Tp{1} / (_Tp{2} * __x);
-      auto __term = _Tp{1};
+      const auto _S_max_iter = 200;
+      const auto __xm2 = -_Tp{1} / (_Tp{2} * __x * __x);
+      auto __term = _Tp{1} / __x;
       auto __sum = __term;
-      __term *= __i2x;
-      __sum += __term;
-      for (auto __k = 2; __k < 100; ++__k)
+      for (int __k = 1; __k < _S_max_iter; ++__k)
 	{
-	  __term *= _Tp(2 * __k - 1) * __i2x;
+	  __term *= __xm2 * _Tp(2 * __k - 1);
 	  __sum += __term;
 	  if (std::abs(__term) < _S_eps * std::abs(__sum))
 	    break;
 	}
-      return __sum / (_S_sqrt_pi * std::sqrt(__x));
+      return __sum / _S_sqrt_pi;
     }
 
   /**
    * Return the experfc function by continued fraction.
    * The experfc function is defined by
    * @f[
-   *   experfc(x) = exp(x)erfc(\sqrt{x})
+   *   experfc(x) = exp(x^2)erfc(x)
    * @f]
    * The continued fraction is
    * @f[
-   *   experfc(x) = \cfrac{\sqrt{2}\pi}{\sqrt{2x}
-   *              + \cfrac{1}{\sqrt{2x}
-   *              + \cfrac{2}{\sqrt{2x}
-   *              + \cfrac{3}{\sqrt{2x} + ...} } } }
+   *   experfc(x) = \cfrac{\sqrt{2}\pi}{\sqrt{2}x
+   *              + \cfrac{1}{\sqrt{2}x
+   *              + \cfrac{2}{\sqrt{2}x
+   *              + \cfrac{3}{\sqrt{2}x + ...} } } }
    * @f]
    */
   template<typename _Tp>
@@ -96,7 +126,7 @@
     {
       const auto _S_sqrt_2 = _Tp{1.414213562373095048801688724209698078569L};
       const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797L};
-      const auto __b = std::sqrt(_Tp{2} * __x);
+      const auto __b = std::sqrt(_Tp{2} * __x * __x);
       auto __s = __b;
       for (int __n = 100; __n >= 1; --__n)
 	{
@@ -112,7 +142,7 @@
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __experfc_series(std::complex<_Tp> __z,
+    __experfc_series_wanker(std::complex<_Tp> __z,
 		     int __trunc_lo = 32, int __trunc_hi = 193,
 		     _Tp __sep = _Tp{8})
     {
@@ -189,7 +219,7 @@
     __experfc(_Tp __x)
     {
       if (__x < _Tp{3})
-	return std::exp(__x) * erfc(std::sqrt(__x));
+	return std::exp(__x * __x) * erfc(__x);
       else
 	return __experfc_cont_frac(__x);
     }
@@ -357,8 +387,8 @@ template<typename _Tp>
       {
 	auto __x = __i * _Tp{0.01L};
 	std::cout << ' ' << std::setw(width) << __x
-		  << ' ' << std::setw(width) << __experfc_approx(__x)
-		  << ' ' << std::setw(width) << std::exp(__x) * erfc(std::sqrt(__x))
+		  << ' ' << std::setw(width) << __experfc_approx(__x * __x)
+		  << ' ' << std::setw(width) << std::exp(__x * __x) * erfc(__x)
 		  << ' ' << std::setw(width) << __experfc_cont_frac(__x)
 		  << ' ' << std::setw(width) << __experfc_asymp(__x)
 		  << '\n';
