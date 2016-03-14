@@ -27,24 +27,41 @@
     }
 
   /**
-   * 
+   * The experf function is defined by
+   * @f[
+   *   experf(x) = exp(x^2)erf(x)
+   * @f]
    */
   template<typename _Tp>
     _Tp
     __experf_series(_Tp __x)
     {
+      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797L};
       const auto _S_max_iter = 200;
-      const auto __x2 = __x * __x;
+      const auto __x2 = _Tp{2} * __x * __x;
       auto __term = __x;
       auto __sum = __term;
       for (int __k = 1; __k < _S_max_iter; ++__k)
 	{
-	  __term *= _Tp{2} * __x2 / _Tp(2 * __k + 1);
+	  __term *= __x2 / _Tp(2 * __k + 1);
 	  __sum += __term;
+	  if (std::abs(__term) < _S_eps * std::abs(__sum))
+	    break;
 	}
       return  _Tp{2} * __sum / _S_sqrt_pi;
     }
+
+  /**
+   * The experfc function is defined by
+   * @f[
+   *   experfc(x) = exp(x^2)(1 - erf(x))
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __experfc_series(_Tp __x)
+    { return _Tp{1} - __experf_series(__x); }
 
 
   /**
@@ -382,6 +399,7 @@ template<typename _Tp>
 	      << std::setw(width) << "exp(x)erfc(rt(x))"
 	      << std::setw(width) << "cfrac experfc(x)"
 	      << std::setw(width) << "asymp experfc(x)"
+	      << std::setw(width) << "series experfc(x)"
 	      << '\n';
     for (int __i = 0; __i <= 5500; ++__i)
       {
@@ -391,6 +409,7 @@ template<typename _Tp>
 		  << ' ' << std::setw(width) << std::exp(__x * __x) * erfc(__x)
 		  << ' ' << std::setw(width) << __experfc_cont_frac(__x)
 		  << ' ' << std::setw(width) << __experfc_asymp(__x)
+		  << ' ' << std::setw(width) << __experfc_series(__x)
 		  << '\n';
       }
   }
