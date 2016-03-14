@@ -69,6 +69,8 @@ ${makedir} ${text_dir}/conf_hyperg
 ${makedir} ${text_dir}/conf_hyperg_lim
 ${makedir} ${text_dir}/coshint
 ${makedir} ${text_dir}/cosint
+${makedir} ${text_dir}/cyl_hankel_1
+${makedir} ${text_dir}/cyl_hankel_2
 ${makedir} ${text_dir}/dawson
 ${makedir} ${text_dir}/dilog
 ${makedir} ${text_dir}/dirichlet_eta
@@ -108,11 +110,11 @@ ${makedir} ${text_dir}/sinhint
 ${makedir} ${text_dir}/sinint
 ${makedir} ${text_dir}/sph_bessel_i
 ${makedir} ${text_dir}/sph_bessel_k
-${makedir} ${text_dir}/cyl_hankel_1
-${makedir} ${text_dir}/cyl_hankel_2
 ${makedir} ${text_dir}/sph_hankel_1
 ${makedir} ${text_dir}/sph_hankel_2
 ${makedir} ${text_dir}/sph_harmonic
+${makedir} ${text_dir}/theta_1
+${makedir} ${text_dir}/theta_2
 
 ${copy} check_airy_ai.cc            ${text_dir}/airy_ai/check_value.cc
 ${copy} check_airy_bi.cc            ${text_dir}/airy_bi/check_value.cc
@@ -123,6 +125,8 @@ ${copy} check_conf_hyperg.cc        ${text_dir}/conf_hyperg/check_value.cc
 ${copy} check_conf_hyperg_lim.cc    ${text_dir}/conf_hyperg_lim/check_value.cc
 ${copy} check_coshint.cc            ${text_dir}/coshint/check_value.cc
 ${copy} check_cosint.cc             ${text_dir}/cosint/check_value.cc
+${copy} check_cyl_hankel_1.cc       ${text_dir}/cyl_hankel_1/check_value.cc
+${copy} check_cyl_hankel_2.cc       ${text_dir}/cyl_hankel_2/check_value.cc
 ${copy} check_dawson.cc             ${text_dir}/dawson/check_value.cc
 ${copy} check_dilog.cc              ${text_dir}/dilog/check_value.cc
 ${copy} check_dirichlet_eta.cc      ${text_dir}/dirichlet_eta/check_value.cc
@@ -162,8 +166,9 @@ ${copy} check_sinhint.cc            ${text_dir}/sinhint/check_value.cc
 ${copy} check_sinint.cc             ${text_dir}/sinint/check_value.cc
 ${copy} check_sph_bessel_i.cc       ${text_dir}/sph_bessel_i/check_value.cc
 ${copy} check_sph_bessel_k.cc       ${text_dir}/sph_bessel_k/check_value.cc
-${copy} check_cyl_hankel_1.cc       ${text_dir}/cyl_hankel_1/check_value.cc
-${copy} check_cyl_hankel_2.cc       ${text_dir}/cyl_hankel_2/check_value.cc
 ${copy} check_sph_hankel_1.cc       ${text_dir}/sph_hankel_1/check_value.cc
 ${copy} check_sph_hankel_2.cc       ${text_dir}/sph_hankel_2/check_value.cc
 ${copy} check_sph_harmonic.cc       ${text_dir}/sph_harmonic/check_value.cc
+${copy} check_theta_1.cc            ${text_dir}/theta_1/check_value.cc
+${copy} check_theta_2.cc            ${text_dir}/theta_2/check_value.cc
+

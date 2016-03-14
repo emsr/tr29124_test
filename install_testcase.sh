@@ -40,6 +40,8 @@ ${copy} check_conf_hyperg.cc        ${ext_dir}/conf_hyperg/check_value.cc
 ${copy} check_conf_hyperg_lim.cc    ${ext_dir}/conf_hyperg_lim/check_value.cc
 ${copy} check_coshint.cc            ${ext_dir}/coshint/check_value.cc
 ${copy} check_cosint.cc             ${ext_dir}/cosint/check_value.cc
+${copy} check_cyl_hankel_1.cc       ${ext_dir}/cyl_hankel_1/check_value.cc
+${copy} check_cyl_hankel_2.cc       ${ext_dir}/cyl_hankel_2/check_value.cc
 ${copy} check_dawson.cc             ${ext_dir}/dawson/check_value.cc
 ${copy} check_dirichlet_eta.cc      ${ext_dir}/dirichlet_eta/check_value.cc
 ${copy} check_dilog.cc              ${ext_dir}/dilog/check_value.cc
@@ -82,8 +84,8 @@ ${copy} check_sinint.cc             ${ext_dir}/sinint/check_value.cc
 ${copy} check_sph_bessel_i.cc       ${ext_dir}/sph_bessel_i/check_value.cc
 ${copy} check_sph_bessel_k.cc       ${ext_dir}/sph_bessel_k/check_value.cc
 ${copy} check_zernike.cc            ${ext_dir}/zernike/check_value.cc
-${copy} check_cyl_hankel_1.cc       ${ext_dir}/cyl_hankel_1/check_value.cc
-${copy} check_cyl_hankel_2.cc       ${ext_dir}/cyl_hankel_2/check_value.cc
 ${copy} check_sph_hankel_1.cc       ${ext_dir}/sph_hankel_1/check_value.cc
 ${copy} check_sph_hankel_2.cc       ${ext_dir}/sph_hankel_2/check_value.cc
 ${copy} check_sph_harmonic.cc       ${ext_dir}/sph_harmonic/check_value.cc
+${copy} check_theta_1.cc            ${ext_dir}/theta_1/check_value.cc
+${copy} check_theta_2.cc            ${ext_dir}/theta_2/check_value.cc
