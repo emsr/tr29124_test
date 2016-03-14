@@ -1849,7 +1849,7 @@ const double toler013 = 2.5000000000000020e-13;
 
 // Test data for n=128.
 // max(|f - f_GSL|): 5.6801914568161683e+287
-// max(|f - f_GSL| / |f_GSL|): 1.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.067467347247752898
 // mean(f - f_GSL): 6.3113238409068540e+286
 // variance(f - f_GSL): inf
 // stddev(f - f_GSL): inf
@@ -1870,9 +1870,9 @@ const double toler014 = 0.050000000000000003;
 //  Divergence at n=200 x=50.000000000000000 f1=inf f2=inf
 
 // Test data for n=200.
-// max(|f - f_GSL|): 9.8757526545830183e+303
-// max(|f - f_GSL| / |f_GSL|): 1.0000000000000000
-// mean(f - f_GSL): -1.4108218077975741e+303
+// max(|f - f_GSL|): 5.7956400402179068e+302
+// max(|f - f_GSL| / |f_GSL|): 0.058685552817367669
+// mean(f - f_GSL): -8.2794857717398666e+301
 // variance(f - f_GSL): inf
 // stddev(f - f_GSL): inf
 const testcase_hermite<double>

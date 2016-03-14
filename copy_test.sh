@@ -38,6 +38,8 @@ ${tool} ${text_dir}/conf_hyperg/*        ${ext_dir}/conf_hyperg
 ${tool} ${text_dir}/conf_hyperg_lim/*    ${ext_dir}/conf_hyperg_lim
 ${tool} ${text_dir}/coshint/*            ${ext_dir}/coshint
 ${tool} ${text_dir}/cosint/*             ${ext_dir}/cosint
+${tool} ${text_dir}/cyl_hankel_1/*       ${ext_dir}/cyl_hankel_1
+${tool} ${text_dir}/cyl_hankel_2/*       ${ext_dir}/cyl_hankel_2
 ${tool} ${text_dir}/dawson/*             ${ext_dir}/dawson
 ${tool} ${text_dir}/dirichlet_eta/*      ${ext_dir}/dirichlet_eta
 ${tool} ${text_dir}/dilog/*              ${ext_dir}/dilog
@@ -75,8 +77,8 @@ ${tool} ${text_dir}/sinhint/*            ${ext_dir}/sinhint
 ${tool} ${text_dir}/sinint/*             ${ext_dir}/sinint
 ${tool} ${text_dir}/sph_bessel_i/*       ${ext_dir}/sph_bessel_i
 ${tool} ${text_dir}/sph_bessel_k/*       ${ext_dir}/sph_bessel_k
-${tool} ${text_dir}/cyl_hankel_1/*       ${ext_dir}/cyl_hankel_1
-${tool} ${text_dir}/cyl_hankel_2/*       ${ext_dir}/cyl_hankel_2
 ${tool} ${text_dir}/sph_hankel_1/*       ${ext_dir}/sph_hankel_1
 ${tool} ${text_dir}/sph_hankel_2/*       ${ext_dir}/sph_hankel_2
 ${tool} ${text_dir}/sph_harmonic/*       ${ext_dir}/sph_harmonic
+${tool} ${text_dir}/theta_1/*            ${ext_dir}/theta_1
+${tool} ${text_dir}/theta_2/*            ${ext_dir}/theta_2

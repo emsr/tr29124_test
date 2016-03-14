@@ -2067,7 +2067,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__clausen_c<__type>(__m, __w);
     }
 
-  // Clausen functions
+  // Clausen functions - real argument
 
   inline float
   clausenf(unsigned int __m, float __w)
@@ -2085,6 +2085,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__clausen<__type>(__m, __w);
     }
 
+  // Clausen functions - complex argument
+
   inline std::complex<float>
   clausenf(unsigned int __m, std::complex<float> __w)
   { return std::__detail::__clausen<float>(__m, __w); }
@@ -2101,7 +2103,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__clausen<__type>(__m, __w);
     }
 
-  // Theta_1 functions.
+  // Exponential theta_1 functions.
 
   inline float
   theta_1f(float __nu, float __x)
@@ -2119,7 +2121,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__theta_1<__type>(__nu, __x);
     }
 
-  // Theta_2 functions.
+  // Exponential theta_2 functions.
 
   inline float
   theta_2f(float __nu, float __x)
@@ -2137,7 +2139,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__theta_2<__type>(__nu, __x);
     }
 
-  // Theta_3 functions.
+  // Exponential theta_3 functions.
 
   inline float
   theta_3f(float __nu, float __x)
@@ -2155,7 +2157,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__theta_3<__type>(__nu, __x);
     }
 
-  // Theta_4 functions.
+  // Exponential theta_4 functions.
 
   inline float
   theta_4f(float __nu, float __x)
