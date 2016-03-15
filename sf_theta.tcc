@@ -242,8 +242,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellnome_k(_Tp __k)
     {
       constexpr auto _S_pi = _Tp{3.1415926535897932384626433832795029Q};
-      auto __kp = std::sqrt((_Tp{1} - __k) * (_Tp{1} + __k));
       auto __K = __comp_ellint_1(__k);
+      auto __kp = std::sqrt((_Tp{1} - __k) * (_Tp{1} + __k));
       auto __Kp = __comp_ellint_1(__kp);
       return std::exp(-_S_pi * __Kp / __K);
     }
