@@ -50,6 +50,7 @@ ${tool} ${text_dir}/ellint_rd/*          ${ext_dir}/ellint_rd
 ${tool} ${text_dir}/ellint_rf/*          ${ext_dir}/ellint_rf
 ${tool} ${text_dir}/ellint_rg/*          ${ext_dir}/ellint_rg
 ${tool} ${text_dir}/ellint_rj/*          ${ext_dir}/ellint_rj
+${tool} ${text_dir}/ellnome/*            ${ext_dir}/ellnome
 ${tool} ${text_dir}/expint_e1/*          ${ext_dir}/expint_e1
 ${tool} ${text_dir}/factorial/*          ${ext_dir}/factorial
 ${tool} ${text_dir}/fresnel_c/*          ${ext_dir}/fresnel_c

@@ -19,7 +19,7 @@ template<typename _Tp>
     for (int i = 0; i <= 20; ++i)
       {
 	auto nu = _Tp(i * 0.1Q);
-	std::cout << '\n' << ' ' << std::setw(width) << nu << '\n';
+	std::cout << '\n' << " nu   = " << std::setw(width) << nu << '\n';
 	std::cout << ' ' << std::setw(width) << "x"
 		  << ' ' << std::setw(width) << "theta_1"
 		  << ' ' << std::setw(width) << "theta_2"
@@ -47,8 +47,8 @@ template<typename _Tp>
     std::cout << "\n\n Theta function values and compares with Jacobi elliptic functions\n";
     std::cout << " =================================================================\n";
     auto k = _Tp{1} / _Tp{3};
-    std::cout << '\n' << ' ' << std::setw(width) << k;
-    std::cout << '\n' << ' ' << std::setw(width) << __gnu_cxx::ellnome(k) << '\n';
+    std::cout << '\n' << " k    = " << std::setw(width) << k;
+    std::cout << '\n' << " q(k) = " << std::setw(width) << __gnu_cxx::ellnome(k) << '\n';
     std::cout << ' ' << std::setw(width) << "x"
 	      << ' ' << std::setw(width) << "theta_s"
 	      << ' ' << std::setw(width) << "theta_c"
@@ -91,8 +91,8 @@ template<typename _Tp>
     for (int i = -10; i <= 10; ++i)
       {
 	auto k = _Tp(i * 0.1Q);
-	std::cout << '\n' << ' ' << std::setw(width) << k;
-	std::cout << '\n' << ' ' << std::setw(width) << __gnu_cxx::ellnome(k) << '\n';
+	std::cout << '\n' << " k    = " << std::setw(width) << k;
+	std::cout << '\n' << " q(k) = " << std::setw(width) << __gnu_cxx::ellnome(k) << '\n';
 	std::cout << ' ' << std::setw(width) << "x"
 		  << ' ' << std::setw(width) << "theta_s"
 		  << ' ' << std::setw(width) << "theta_c"
