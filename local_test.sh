@@ -120,6 +120,7 @@ ${makedir} ${text_dir}/theta_2
 ${copy} check_airy_ai.cc            ${text_dir}/airy_ai/check_value.cc
 ${copy} check_airy_bi.cc            ${text_dir}/airy_bi/check_value.cc
 ${copy} check_bincoef.cc            ${text_dir}/bincoef/check_value.cc
+${copy} check_chi.cc                ${text_dir}/coshint/check_chi.cc
 ${copy} check_clausen_c_2.cc        ${text_dir}/clausen/check_value.cc
 ${copy} check_comp_ellint_d.cc      ${text_dir}/comp_ellint_d/check_value.cc
 ${copy} check_conf_hyperg.cc        ${text_dir}/conf_hyperg/check_value.cc
@@ -162,6 +163,7 @@ ${copy} check_owens_t.cc            ${text_dir}/owens_t/check_value.cc
 ${copy} check_pochhammer_l.cc       ${text_dir}/pochhammer_l/check_value.cc
 ${copy} check_pochhammer_u.cc       ${text_dir}/pochhammer_u/check_value.cc
 ${copy} check_psi.cc                ${text_dir}/psi/check_value.cc
+${copy} check_shi.cc                ${text_dir}/sinhint/check_shi.cc
 ${copy} check_sinc.cc               ${text_dir}/sinc/check_value.cc
 ${copy} check_sinc_pi.cc            ${text_dir}/sinc_pi/check_value.cc
 ${copy} check_sinhint.cc            ${text_dir}/sinhint/check_value.cc
