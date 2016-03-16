@@ -283,7 +283,7 @@ template<typename _Tp>
     //  Regular modified cylindrical Bessel functions.
     std::cout << "cyl_bessel_i" << std::endl;
     basename = "gsl_cyl_bessel_i";
-    runtest(gsl::bessel_Inu, basename, dborder,
+    runtest(gsl::cyl_bessel_i, basename, dborder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 			  std::make_pair(true, true), 1001));
     basename = ns + "_cyl_bessel_i";
@@ -295,7 +295,7 @@ template<typename _Tp>
     //  Cylindrical Bessel functions (of the first kind).
     std::cout << "cyl_bessel_j" << std::endl;
     basename = "gsl_cyl_bessel_j";
-    runtest(gsl::bessel_Jnu, basename, dborder,
+    runtest(gsl::cyl_bessel_j, basename, dborder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 			  std::make_pair(true, true), 1001));
     basename = ns + "_cyl_bessel_j";
@@ -307,7 +307,7 @@ template<typename _Tp>
     //  Irregular modified cylindrical Bessel functions.
     std::cout << "cyl_bessel_k" << std::endl;
     basename = "gsl_cyl_bessel_k";
-    runtest(gsl::bessel_Knu, basename, dborder,
+    runtest(gsl::cyl_bessel_k, basename, dborder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 			  std::make_pair(false, true),  // Skip the pole at the origin.
 			  1001));
@@ -320,7 +320,7 @@ template<typename _Tp>
     //  Cylindrical Neumann functions.
     std::cout << "cyl_neumann" << std::endl;
     basename = "gsl_cyl_neumann";
-    runtest(gsl::bessel_Ynu, basename, dborder,
+    runtest(gsl::cyl_neumann, basename, dborder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 			  std::make_pair(false, true),  // Skip the pole at the origin.
 			  1001));
@@ -432,7 +432,7 @@ template<typename _Tp>
     //  Laguerre polynomials.
     std::cout << "laguerre" << std::endl;
     basename = "gsl_laguerre";
-    runtest(gsl::laguerre_n, basename,
+    runtest(gsl::laguerre, basename,
 	    uiorder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 		  	  std::make_pair(true, true), 101));
@@ -458,11 +458,11 @@ template<typename _Tp>
     std::cout << "riemann_zeta" << std::endl;
     //  Skip the pole at 1.
     basename = "gsl_riemann_zeta_neg";
-    runtest(gsl::zeta, basename,
+    runtest(gsl::riemann_zeta, basename,
 	    fill_argument(std::make_pair(-10.0, 1.0),
 			  std::make_pair(true, false), 56));
     basename = "gsl_riemann_zeta_pos";
-    runtest(gsl::zeta, basename,
+    runtest(gsl::riemann_zeta, basename,
 	    fill_argument(std::make_pair(1.0, 30.0),
 			  std::make_pair(false, true), 146));
     basename = ns + "_riemann_zeta";
@@ -475,7 +475,7 @@ template<typename _Tp>
     std::cout << "hurwitz_zeta" << std::endl;
     //  Skip the pole at 1.
     basename = "gsl_hurwitz_zeta";
-    runtest(gsl::hzeta, basename,
+    runtest(gsl::hurwitz_zeta, basename,
 	    fill_argument(std::make_pair(1.0, 30.0),
 			  std::make_pair(false, true), 146),
 	    fill_argument(std::make_pair(0.0, 5.0),
@@ -529,7 +529,7 @@ template<typename _Tp>
     //  Carlson elliptic functions R_C.
     std::cout << "ellint_rc" << std::endl;
     basename = "gsl_ellint_rc";
-    runtest(gsl::ellint_RC, basename,
+    runtest(gsl::ellint_rc, basename,
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(0.0, 5.0),
@@ -544,7 +544,7 @@ template<typename _Tp>
     //  Carlson elliptic functions R_D.
     std::cout << "ellint_rd" << std::endl;
     basename = "gsl_ellint_rd";
-    runtest(gsl::ellint_RD, basename,
+    runtest(gsl::ellint_rd, basename,
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(0.0, 5.0),
@@ -563,7 +563,7 @@ template<typename _Tp>
     //  Carlson elliptic functions R_F.
     std::cout << "ellint_rf" << std::endl;
     basename = "gsl_ellint_rf";
-    runtest(gsl::ellint_RF, basename,
+    runtest(gsl::ellint_rf, basename,
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(0.0, 5.0),
@@ -582,7 +582,7 @@ template<typename _Tp>
     //  Carlson elliptic functions R_J.
     std::cout << "ellint_rj" << std::endl;
     basename = "gsl_ellint_rj";
-    runtest(gsl::ellint_RJ, basename,
+    runtest(gsl::ellint_rj, basename,
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(0.0, 5.0),
