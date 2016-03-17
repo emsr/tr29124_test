@@ -1,16 +1,17 @@
+C
 C  Iterative Aitken Delta^2
-
-      SUBROUTINE AITKEN(SOFN,N,A,LARRAY,ESTLIM)
+C
+      SUBROUTINE AITKEN(SOFN, N, A, LARRAY, ESTLIM)
         DIMENSION A(0:LARRAY)
         PARAMETER ( HUGE = 1.E+60 , TINY = 1.E-60 , TWO = 2.E0 )
         A(N) = SOFN
         IF (N .LT. 2) THEN
           ESTLIM = SOFN
         ELSE
-          LOWMAX = N/2
-          DO J = 1,LOWMAX
-            M = N - 2*J
-            DENOM = A(M+2) - TWO*A(M+1) + A(M)
+          LOWMAX = N / 2
+          DO J = 1, LOWMAX
+            M = N - 2 * J
+            DENOM = A(M + 2) - TWO * A(M + 1) + A(M)
             IF (ABS(DENOM) .LT. TINY) THEN
               A(M) = HUGE
             ELSE
