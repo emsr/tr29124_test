@@ -507,7 +507,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @return  The exponential integral.
    */
   template<typename _Tp>
-    inline _Tp
+    _Tp
     __expint(_Tp __x)
     {
       if (__isnan(__x))

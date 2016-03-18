@@ -241,9 +241,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __ellnome_k(_Tp __k)
     {
-      constexpr auto _S_pi = _Tp{3.1415926535897932384626433832795029Q};
-      auto __K = __comp_ellint_1(__k);
+      constexpr auto _S_pi = _Tp{3.1415926535897932384626433832795029L};
       auto __kp = std::sqrt((_Tp{1} - __k) * (_Tp{1} + __k));
+      auto __K = __comp_ellint_1(__k);
       auto __Kp = __comp_ellint_1(__kp);
       return std::exp(-_S_pi * __Kp / __K);
     }
@@ -261,7 +261,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (std::abs(__k) > _Tp{1})
 	throw std::domain_error("__ellnome:"
 				" argument k out of range");
-      else if (__k < std::pow(_Tp{67} * _S_eps, _Tp{0.125Q}))
+      else if (__k < std::pow(_Tp{67} * _S_eps, _Tp{0.125L}))
 	return __ellnome_series(__k);
       else
 	return __ellnome_k(__k);
