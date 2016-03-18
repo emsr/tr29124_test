@@ -75,3 +75,79 @@ template<typename _Tp>
       }
     return;
   }
+
+/**
+ * Single step of Brezinski's Theta transformation.
+ */
+template<typename _Tp>
+  _Tp
+  theta(__arj)
+  {
+    //dimension arj[larray];
+    constexpr auto _S_huge = 1.e+60;
+    constexpr auto _S_tiny = 1.e-60;
+    const auto __n = this->_M_num_terms;
+    const auto __sofn = this->_M_sum;
+    __arj[__n] = __sofn;
+    if (__n < 3)
+      return __sofn;
+    else
+      {
+	__lmax = __n / 3;
+	auto __m = __n;
+	do __l = 1, __lmax
+	  {
+	    __m -= 3;
+	    auto __diff0 = arj[__m + 1] - arj[__m];
+	    auto __diff1 = arj[__m + 2] - arj[__m + 1];
+	    auto __diff2 = arj[__m + 3] - arj[__m + 2];
+	    auto __denom = __diff2 * (__diff1 - __diff0)
+			 - __diff0 * (__diff2 - __diff1);
+	    if (std::abs(__denom) < _S_tiny)
+	      __arj[__m] = _S_huge;
+	    else
+	      __arj[__m] = __arj[__m + 1] - diff0 * __diff1 * (__diff2 - __diff1) / __denom;
+	  }
+	return __arj[__n % 3];
+      }
+  }
+
+/**
+ *
+ */
+template<typename _Tp>
+  _Tp
+  levin(__rofn, __beta, __arup, __arlo)
+  {
+    //dimension arup(0:larray), arlo(0:larray)
+    constexpr auto _S_huge = 1.e+60;
+    constexpr auto _S_tiny = 1.e-60;
+    const auto __n = this->_M_num_terms;
+    const auto __sofn = this->_M_sum;
+    __arup[__n] = __sofn / __rofn;
+    __arlo[__n] = one / __rofn;
+    if (__n > 0)
+      {
+	arup[__n - 1] = arup[__n] - arup[__n - 1];
+	arlo[__n - 1] = arlo[__n] - arlo[__n - 1];
+	if (__n > 1)
+	  {
+	    auto __bn1 = __beta + _Tp(__n - 1);
+	    auto __bn2 = __beta + _Tp(__n);
+	    auto __coef = __bn1 / __bn2;
+	    do (auto __j = 2; j <= __n; ++__j)
+	      {
+		auto __fact = (__beta + _Tp(__n - __j))
+			    * std::pow(__coef, __j - 2) / __bn2;
+		__arup[__n - __j] = __arup[__n - __j + 1]
+				  - __fact * arup[__n - __j];
+		__arlo[__n - __j] = __arlo[__n - __j + 1]
+				  - __fact * arlo[__n - __j];
+	      }
+	  }
+      }
+    if (std::abs(__arlo[0]) < _S_tiny)
+      return _S_huge;
+    else
+      return __arup[0] / __arlo[0];
+  }
