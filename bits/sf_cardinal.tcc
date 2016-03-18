@@ -47,7 +47,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  @f]
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    __gnu_cxx::__promote_num_t<_Tp>
     __sinc(_Tp __a, _Tp __x)
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
@@ -74,7 +74,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  @f]
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    __gnu_cxx::__promote_num_t<_Tp>
     __sinc_pi(_Tp __x)
     {
       if (__isnan(__x))
@@ -94,7 +94,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  @f]
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    __gnu_cxx::__promote_num_t<_Tp>
     __sinc(_Tp __x)
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
@@ -120,7 +120,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  @f]
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    __gnu_cxx::__promote_num_t<_Tp>
     __sinhc(_Tp __a, _Tp __x)
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
@@ -145,7 +145,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  @f]
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    __gnu_cxx::__promote_num_t<_Tp>
     __sinhc_pi(_Tp __x)
     {
       if (__isnan(__x))
@@ -163,7 +163,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  @f]
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    __gnu_cxx::__promote_num_t<_Tp>
     __sinhc(_Tp __x)
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;

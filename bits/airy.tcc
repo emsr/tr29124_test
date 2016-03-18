@@ -28,10 +28,10 @@ template<typename _Tp>
     constexpr auto _S_log10min = __gnu_cxx::__log10_min(_Tp{});
     constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
     constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
-    constexpr auto _S_Ai0{3.550280538878172392600631860041831763980e-1};
-    constexpr auto _S_Aip0{2.588194037928067984051835601892039634793e-1};
-    //constexpr auto _S_Bi0{6.149266274460007351509223690936135535960e-1};
-    //constexpr auto _S_Bip0{8.868776642045783582807775119976424596506e-1};
+    constexpr auto _S_Ai0{3.550280538878172392600631860041831763980e-1L};
+    constexpr auto _S_Aip0{2.588194037928067984051835601892039634793e-1L};
+    //constexpr auto _S_Bi0{6.149266274460007351509223690936135535960e-1L};
+    //constexpr auto _S_Bip0{8.868776642045783582807775119976424596506e-1L};
     constexpr auto _S_i = __cmplx(_Tp{0}, _Tp{1});
     constexpr auto _S_big = _Tp{5.0L}; // was 3.5
     constexpr int _N_FG = 40;
@@ -77,7 +77,7 @@ template<typename _Tp>
       1.178273196573925151402462136768323e-121L,
       9.146663534962933949716364980347178e-126L,
       6.739363052581000552399325803379883e-130L,
-      4.719441913572129238374878013571347e-134
+      4.719441913572129238374878013571347e-134L
     };
     constexpr _Tp _S_slope_F{-2.660L}, _S_intercept_F{-0.778L};
     constexpr _Tp
@@ -220,56 +220,56 @@ template<typename _Tp>
     constexpr _Tp
     _S_cn[_N_cd]
     {
-     0.0694444444444444444444444444444444471L,
-     0.0371334876543209876543209876543209876L,
-     0.037993059127800640146319158664837679L,
-     0.057649190412669721333130112279632168L,
-     0.116099064025515411018109253896481456L,
-     0.291591399230750511469093843698338833L,
-     0.877666969510016916465506668433293675L,
-     3.07945303017316699336248086268001127L,
-     12.3415733323452387064233993833024529L,
-     55.6227853659170827810332374983561958L,
-     278.465080777602567205551498334573594L,
-     1533.169432012795615968528330529591L,
-     9207.20659972641469803322408750729846L,
-     59892.5135658790686259958832755807077L,
-     419524.87511655106866264708979608155L,
-     3148257.41786682637898314591257562958L,
-     25198919.8716023676755701638116858171L,
-     214288036.963680319562082388401689385L,
-     1929375549.18249305266532805405234501L,
-     18335766937.8905676567534822359071795L,
-     183418303528.832563365341546837365161L,
-     1926471158970.44656357903239566492682L,
-     21196999388647.6490549357181651030291L,
-     243826826879716.041819998420120227443L,
-     2926599219297925.04640059214816528695L,
-     36590307012643128.0507509931772481271L,
-     475768102036306763.240140357274331917L,
-     6424049357901937699.48405786972449505L,
-     89952074270583789520.9843869430724226L,
-     1304513299317609817937.42403749617779L,
-     19570621786581615032990.4318528492404L,
-     303387108659433829918975.370871621708L,
-     4854832179436167359995522.96965905838L,
-     80114646876095936618357492.4041327536L,
-     1362107954526321589052986810.33931303L,
-     23839516727271056669517263368.4579391L,
-     429156044928580354617131906667.093323L,
-     7940171107576632357848623628433.81934L,
-     150877389525272924757026001047843.109L,
-     2942371035655192298256376857240313.0L,
-     58852404403882394732570383311569920.0L,
-     1.2065715991493045060301475046849856e+36L,
-     2.53399521796792404026441281983599903e+37L,
-     5.44848965474498364427686262780203958e+38L,
-     1.19875180567437086136504985315700155e+40L,
-     2.69737253375249059309270351167045845e+41L,
-     6.2043553755819329283261454857533513e+42L,
-     1.45811327534762781936220446324760688e+44L,
-     3.49967850954113040986772639836784608e+45L,
-     8.57469841483542799451063352688988237e+46L
+      0.0694444444444444444444444444444444471L,
+      0.0371334876543209876543209876543209876L,
+      0.037993059127800640146319158664837679L,
+      0.057649190412669721333130112279632168L,
+      0.116099064025515411018109253896481456L,
+      0.291591399230750511469093843698338833L,
+      0.877666969510016916465506668433293675L,
+      3.07945303017316699336248086268001127L,
+      12.3415733323452387064233993833024529L,
+      55.6227853659170827810332374983561958L,
+      278.465080777602567205551498334573594L,
+      1533.169432012795615968528330529591L,
+      9207.20659972641469803322408750729846L,
+      59892.5135658790686259958832755807077L,
+      419524.87511655106866264708979608155L,
+      3148257.41786682637898314591257562958L,
+      25198919.8716023676755701638116858171L,
+      214288036.963680319562082388401689385L,
+      1929375549.18249305266532805405234501L,
+      18335766937.8905676567534822359071795L,
+      183418303528.832563365341546837365161L,
+      1926471158970.44656357903239566492682L,
+      21196999388647.6490549357181651030291L,
+      243826826879716.041819998420120227443L,
+      2926599219297925.04640059214816528695L,
+      36590307012643128.0507509931772481271L,
+      475768102036306763.240140357274331917L,
+      6424049357901937699.48405786972449505L,
+      89952074270583789520.9843869430724226L,
+      1304513299317609817937.42403749617779L,
+      19570621786581615032990.4318528492404L,
+      303387108659433829918975.370871621708L,
+      4854832179436167359995522.96965905838L,
+      80114646876095936618357492.4041327536L,
+      1362107954526321589052986810.33931303L,
+      23839516727271056669517263368.4579391L,
+      429156044928580354617131906667.093323L,
+      7940171107576632357848623628433.81934L,
+      150877389525272924757026001047843.109L,
+      2942371035655192298256376857240313.0L,
+      58852404403882394732570383311569920.0L,
+      1.2065715991493045060301475046849856e+36L,
+      2.53399521796792404026441281983599903e+37L,
+      5.44848965474498364427686262780203958e+38L,
+      1.19875180567437086136504985315700155e+40L,
+      2.69737253375249059309270351167045845e+41L,
+      6.2043553755819329283261454857533513e+42L,
+      1.45811327534762781936220446324760688e+44L,
+      3.49967850954113040986772639836784608e+45L,
+      8.57469841483542799451063352688988237e+46L
     };
     constexpr _Tp
     _S_dn[_N_cd]
@@ -331,8 +331,8 @@ template<typename _Tp>
 	const auto __log10t = std::log10(std::abs(__t));
 	const auto __ttt = __t * __t * __t;
 
-	auto __term = __cmplx{1};
-	auto _F = __cmplx{1};
+	auto __term = __cmplx{_Tp{1}};
+	auto _F = __cmplx{_Tp{1}};
 	auto _G = __t;
 	for (int __n = 0; __n < _N_FG; ++__n)
 	  {
@@ -354,9 +354,9 @@ template<typename _Tp>
 	__w1 = _UU - _S_i * _VV;
 	__w2 = _UU + _S_i * _VV;
 
-	__term = __cmplx{1};
-	auto _Fp = __cmplx{0};
-	auto _Gp = __cmplx{1};
+	__term = __cmplx{_Tp{1}};
+	auto _Fp = __cmplx{_Tp{0}};
+	auto _Gp = __cmplx{_Tp{1}};
 	for (int __n = 0; __n < _N_FG; ++__n)
 	  {
 	    if (std::abs(__t) < _S_eps)
@@ -383,14 +383,14 @@ template<typename _Tp>
       {
 	if (std::real(__t) > _Tp{0})
 	  {
-	    auto __zeta0 = (_Tp{2} / _Tp{3}) * std::pow(__t, 1.5);
-	    auto __mqrt0 = std::pow(__t, -0.25);
-	    auto __pqrt0 = std::pow(__t, +0.25);
+	    auto __zeta0 = (_Tp{2} / _Tp{3}) * std::pow(__t, _Tp{1.5L});
+	    auto __mqrt0 = std::pow(__t, _Tp{-0.25L});
+	    auto __pqrt0 = std::pow(__t, _Tp{+0.25L});
 	    auto __ezeta0 = std::exp(-__zeta0);
-	    _Ai = __cmplx{1};
-	    _Aip = __cmplx{1};
+	    _Ai = __cmplx{_Tp{1}};
+	    _Aip = __cmplx{_Tp{1}};
 	    auto __fact0 = -_Tp{1} / __zeta0;
-	    auto __izeta0 = __cmplx{1};
+	    auto __izeta0 = __cmplx{_Tp{1}};
 	    auto __prev_Ai0 = _Tp{1};
 	    auto __prev_Aip0 = _Tp{1};
 	    for (int __n = 0; __n < _N_cd; ++__n)
@@ -404,26 +404,26 @@ template<typename _Tp>
 		_Ai += _S_cn[__n] * __izeta0;
 		_Aip += _S_dn[__n] * __izeta0;
 	      }
-	    _Ai *= 0.5 * __mqrt0 * __ezeta0 / _S_sqrt_pi;
-	    _Aip *= -0.5 * __pqrt0 * __ezeta0 / _S_sqrt_pi;
+	    _Ai *= _Tp{+0.5L} * __mqrt0 * __ezeta0 / _S_sqrt_pi;
+	    _Aip *= _Tp{-0.5L} * __pqrt0 * __ezeta0 / _S_sqrt_pi;
 
 	    auto __t1 = __t * std::exp(+_Tp{2} * _S_pi * _S_i / _Tp{3});
 	    auto __t2 = __t * std::exp(-_Tp{2} * _S_pi * _S_i / _Tp{3});
-	    auto __zeta1 = (_Tp{2} / _Tp{3}) * std::pow(__t1, 1.5);
-	    auto __zeta2 = (_Tp{2} / _Tp{3}) * std::pow(__t2, 1.5);
-	    auto __mqrt1 = std::pow(__t1, -0.25);
-	    auto __mqrt2 = std::pow(__t2, -0.25);
-	    auto __pqrt1 = std::pow(__t1, +0.25);
-	    auto __pqrt2 = std::pow(__t2, +0.25);
+	    auto __zeta1 = (_Tp{2} / _Tp{3}) * std::pow(__t1, _Tp{1.5L});
+	    auto __zeta2 = (_Tp{2} / _Tp{3}) * std::pow(__t2, _Tp{1.5L});
+	    auto __mqrt1 = std::pow(__t1, _Tp{-0.25L});
+	    auto __mqrt2 = std::pow(__t2, _Tp{-0.25L});
+	    auto __pqrt1 = std::pow(__t1, _Tp{+0.25L});
+	    auto __pqrt2 = std::pow(__t2, _Tp{+0.25L});
 	    auto __ezeta1 = std::exp(-__zeta1);
 	    auto __ezeta2 = std::exp(-__zeta2);
-	    auto _Ai1 = __cmplx{1};
-	    auto _Ai1p = __cmplx{1};
+	    auto _Ai1 = __cmplx{_Tp{1}};
+	    auto _Ai1p = __cmplx{_Tp{1}};
 	    auto _Ai2 = _Ai1;
 	    auto _Ai2p = _Ai1p;
 	    auto __sign = 1;
-	    auto __izeta1 = __cmplx{1};
-	    auto __izeta2 = __cmplx{1};
+	    auto __izeta1 = __cmplx{_Tp{1}};
+	    auto __izeta2 = __cmplx{_Tp{1}};
 	    auto __prev_Ai1 = _Tp{1};
 	    auto __prev_Ai2 = _Tp{1};
 	    auto __prev_Ai1p = _Tp{1};
@@ -433,24 +433,28 @@ template<typename _Tp>
 		__sign *= -1;
 		__izeta1 /= __zeta1;
 		__izeta2 /= __zeta2;
-		if (std::abs(_S_cn[__n] * __izeta1) > __prev_Ai1
-		 || std::abs(_S_cn[__n] * __izeta2) > __prev_Ai2
-		 || std::abs(_S_dn[__n] * __izeta1) > __prev_Ai1p
-		 || std::abs(_S_dn[__n] * __izeta2) > __prev_Ai2p)
+		const auto __term1 = _S_cn[__n] * __izeta1;
+		const auto __term2 = _S_cn[__n] * __izeta2;
+		const auto __term1p = _S_dn[__n] * __izeta1;
+		const auto __term2p = _S_dn[__n] * __izeta2;
+		if (std::abs(__term1) > __prev_Ai1
+		 || std::abs(__term2) > __prev_Ai2
+		 || std::abs(__term1p) > __prev_Ai1p
+		 || std::abs(__term2p) > __prev_Ai2p)
 		  break;
-		__prev_Ai1 = std::abs(_S_cn[__n] * __izeta1);
-		__prev_Ai2 = std::abs(_S_cn[__n] * __izeta2);
-		__prev_Ai1p = std::abs(_S_dn[__n] * __izeta1);
-		__prev_Ai2p = std::abs(_S_dn[__n] * __izeta2);
-		_Ai1 += __sign * _S_cn[__n] * __izeta1;
-		_Ai2 += __sign * _S_cn[__n] * __izeta2;
-		_Ai1p += __sign * _S_dn[__n] * __izeta1;
-		_Ai2p += __sign * _S_dn[__n] * __izeta2;
+		__prev_Ai1 = std::abs(__term1);
+		__prev_Ai2 = std::abs(__term2);
+		__prev_Ai1p = std::abs(__term1p);
+		__prev_Ai2p = std::abs(__term2p);
+		_Ai1 += __sign * __term1;
+		_Ai2 += __sign * __term2;
+		_Ai1p += __sign * __term1p;
+		_Ai2p += __sign * __term2p;
 	      }
-	    _Ai1 *= 0.5 * __ezeta1 * __mqrt1 / _S_sqrt_pi;
-	    _Ai2 *= 0.5 * __ezeta2 * __mqrt2 / _S_sqrt_pi;
-	    _Ai1p *= -0.5 * __pqrt1 * __ezeta1 / _S_sqrt_pi;
-	    _Ai2p *= -0.5 * __pqrt2 * __ezeta2 / _S_sqrt_pi;
+	    _Ai1 *= _Tp{+0.5L} * __mqrt1 * __ezeta1 / _S_sqrt_pi;
+	    _Ai2 *= _Tp{+0.5L} * __mqrt2 * __ezeta2 / _S_sqrt_pi;
+	    _Ai1p *= _Tp{-0.5L} * __pqrt1 * __ezeta1 / _S_sqrt_pi;
+	    _Ai2p *= _Tp{-0.5L} * __pqrt2 * __ezeta2 / _S_sqrt_pi;
 
 	    _Bi = std::exp(+_S_i * _S_pi / _Tp{6}) * _Ai1
 		+ std::exp(-_S_i * _S_pi / _Tp{6}) * _Ai2;
@@ -466,18 +470,18 @@ template<typename _Tp>
 	  }
 	else // Argument t is on or left of the imaginary axis.
 	  {
-	    auto __zeta = (_Tp{2} / _Tp{3}) * std::pow(-__t, 1.5);
-	    auto __mqrt = std::pow(-__t, -0.25);
-	    auto __pqrt = std::pow(-__t, +0.25);
+	    auto __zeta = (_Tp{2} / _Tp{3}) * std::pow(-__t, _Tp{1.5L});
+	    auto __mqrt = std::pow(-__t, _Tp{-0.25L});
+	    auto __pqrt = std::pow(-__t, _Tp{+0.25L});
 	    auto __mezeta = std::exp(-_S_i * (__zeta + (_S_pi / _Tp{4})));
 	    auto __pezeta = std::exp(+_S_i * (__zeta + (_S_pi / _Tp{4})));
-	    __w1 = __cmplx{1};
-	    __w2 = __cmplx{1};
+	    __w1 = __cmplx{_Tp{1}};
+	    __w2 = __cmplx{_Tp{1}};
 	    __w1p = +_S_i;
 	    __w2p = -_S_i;
-	    auto __ipn = __cmplx{1};
-	    auto __imn = __cmplx{1};
-	    auto __ixn = __cmplx{1};
+	    auto __ipn = __cmplx{_Tp{1}};
+	    auto __imn = __cmplx{_Tp{1}};
+	    auto __ixn = __cmplx{_Tp{1}};
 	    auto __prev_w1 = _Tp{1};
 	    auto __prev_w2 = _Tp{1};
 	    auto __prev_w1p = _Tp{1};
@@ -487,19 +491,21 @@ template<typename _Tp>
 		__ipn *= +_S_i;
 		__imn *= -_S_i;
 		__ixn /= __zeta;
-		if (std::abs(_S_cn[__n] * __ixn) > __prev_w1
-		 || std::abs(_S_cn[__n] * __ixn) > __prev_w2
-		 || std::abs(_S_dn[__n] * __ixn) > __prev_w1p
-		 || std::abs(_S_dn[__n] * __ixn) > __prev_w2p)
+		const auto __term = _S_cn[__n] * __ixn;
+		const auto __termp = _S_dn[__n] * __ixn;
+		if (std::abs(__term) > __prev_w1
+		 || std::abs(__term) > __prev_w2
+		 || std::abs(__termp) > __prev_w1p
+		 || std::abs(__termp) > __prev_w2p)
 		  break;
-		__prev_w1 = std::abs(_S_cn[__n] * __ixn);
-		__prev_w2 = std::abs(_S_cn[__n] * __ixn);
-		__prev_w1p = std::abs(_S_dn[__n] * __ixn);
-		__prev_w2p = std::abs(_S_dn[__n] * __ixn);
-		__w1 += __ipn * _S_cn[__n] * __ixn;
-		__w2 += __imn * _S_cn[__n] * __ixn;
-		__w1p += +_S_i * __ipn * _S_dn[__n] * __ixn;
-		__w2p += -_S_i * __imn * _S_dn[__n] * __ixn;
+		__prev_w1 = std::abs(__term);
+		__prev_w2 = std::abs(__term);
+		__prev_w1p = std::abs(__termp);
+		__prev_w2p = std::abs(__termp);
+		__w1 += __ipn * __term;
+		__w2 += __imn * __term;
+		__w1p += +_S_i * __ipn * __termp;
+		__w2p += -_S_i * __imn * __termp;
 	      }
 	    __w1 *= __mqrt * __mezeta;
 	    __w2 *= __mqrt * __pezeta;
