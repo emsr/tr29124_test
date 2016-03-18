@@ -282,7 +282,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *           degree m, and argument x.
    */
   template<typename _Tp>
-    inline _Tp
+    _Tp
     __assoc_laguerre(unsigned int __n, unsigned int __m, _Tp __x)
     { return __poly_laguerre<unsigned int, _Tp>(__n, __m, __x); }
 
@@ -302,7 +302,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *           and argument x.
    */
   template<typename _Tp>
-    inline _Tp
+    _Tp
     __laguerre(unsigned int __n, _Tp __x)
     { return __poly_laguerre<unsigned int, _Tp>(__n, 0, __x); }
 

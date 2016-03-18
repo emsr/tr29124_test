@@ -52,11 +52,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  is to be called by another, checks for valid arguments are not
    *  made.
    *
-   *  @see Digital Library of Mathematical Finctions §9.7 Asymptotic Expansions
+   *  @see Digital Library of Mathematical Finctions Sec. 9.7 Asymptotic Expansions
    *       http://dlmf.nist.gov/9.7
    *
    *  @param[in]  z Complex input variable set equal to the value at which
-   *    	    Ai(z)abd Bi(z) and their derivative are evaluated.
+   *    	    Ai(z) and Bi(z) and their derivative are evaluated.
    *    	    This function assumes abs(z) > 15 and |arg(z)| < 2\pi/3.
    *  @param[inout] Ai  The value computed for Ai(z).
    *  @param[inout] Aip The value computed for Ai'(z).
