@@ -772,7 +772,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @return  The confluent hypergeometric function.
    */
   template<typename _Tp>
-    inline _Tp
+    _Tp
     __hyperg(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
       const _Tp __a_nint = std::nearbyint(__a);

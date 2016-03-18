@@ -44,7 +44,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief This function evaluates Ai(z) and Ai'(z) from their asymptotic
-   *  expansions for |(arg(z))| < 2*\pi/3.  For speed, the number
+   *  expansions for |arg(z)| < 2*\pi/3.  For speed, the number
    *  of terms needed to achieve about 16 decimals accuracy is tabled
    *  and determined from abs(z).
    *
@@ -52,19 +52,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  is to be called by another, checks for valid arguments are not
    *  made.
    *
-   *  @see Digital Library of Mathematical Finctions §9.7 Asymptotic Expansions
+   *  @see Digital Library of Mathematical Finctions Sec. 9.7 Asymptotic Expansions
    *       http://dlmf.nist.gov/9.7
    *
    *  @param[in]  z Complex input variable set equal to the value at which
-   *    	    Ai(z)abd Bi(z) and their derivative are evaluated.
-   *    	    This function assumes abs(z) > 15 and |(arg(z)| < 2\pi/3.
+   *    	    Ai(z) and Bi(z) and their derivative are evaluated.
+   *    	    This function assumes abs(z) > 15 and |arg(z)| < 2\pi/3.
    *  @param[inout] Ai  The value computed for Ai(z).
    *  @param[inout] Aip The value computed for Ai'(z).
    *  @param[in]    sign  The sign of the series terms amd exponent.
    *                      The default (-1) gives the Airy Ai functions
-   *                      for |(arg(z))| < \pi.
+   *                      for |arg(z)| < \pi.
    *                      The value +1 gives the Airy Bi functions
-   *                      for |(arg(z))| < \pi/3.
+   *                      for |arg(z)| < \pi/3.
    */
   template<typename _Tp>
     void
@@ -757,8 +757,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @f[
    *    \frac{\Gamma(\nu+1)}{(z/2)^nu}I_\nu(z) = _0F_1 (;\nu+1;z^2/4),
    *   @f]
-   *  where the function on the right is a generalized Gaussian
-   *  hypergeometric function.  For |z| <= 1/4  and
+   *  where the function on the right is a
+   *  confluent hypergeometric limit function.  For |z| <= 1/4 and
    *  |arg(z)| <= pi/2, the approximations are accurate to
    *  about 16 decimals.
    *
@@ -781,26 +781,26 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    		  above is to be evaluated.  Since the approximation
    *    		  is of fixed order, abs(z) must be small to ensure
    *    		  sufficient accuracy of the computed results.
-   *  @param[out]  fp1d3  The approximate value of the Gauss hypergeometric
-   *    		  function related to the modified Bessel function
+   *  @param[out]  Fp1d3  The approximate value of the confluent hypergeometric
+   *    		  limit function related to the modified Bessel function
    *    		  of order +1/3.
-   *  @param[out]  fm1d3  The approximate value of the Gauss hypergeometric
-   *    		  function related to the modified Bessel function
+   *  @param[out]  Fm1d3  The approximate value of the confluent hypergeometric
+   *    		  limit function related to the modified Bessel function
    *    		  of order -1/3.
-   *  @param[out]  fp2d3  The approximate value of the Gauss hypergeometric
-   *    		  function related to the modified Bessel function
+   *  @param[out]  Fp2d3  The approximate value of the confluent hypergeometric
+   *    		  limit function related to the modified Bessel function
    *    		  of order +2/3.
-   *  @param[out]  fm2d3  The approximate value of the Gauss hypergeometric
-   *    		  function related to the modified Bessel function
+   *  @param[out]  Fm2d3  The approximate value of the confluent hypergeometric
+   *    		  limit function related to the modified Bessel function
    *    		  of order -2/3.
    */
   template<typename _Tp>
     void
     __airy_hyperg_rational(const std::complex<_Tp>& __z,
-			   std::complex<_Tp>& __fp1d3,
-			   std::complex<_Tp>& __fm1d3,
-			   std::complex<_Tp>& __fp2d3,
-			   std::complex<_Tp>& __fm2d3)
+			   std::complex<_Tp>& _Ai,
+			   std::complex<_Tp>& _Aip,
+			   std::complex<_Tp>& _Bi,
+			   std::complex<_Tp>& _Bip)
     {
       using __cmplx = std::complex<_Tp>;
 
@@ -814,16 +814,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr _Tp _S_bp2d3[4]{-110, 16830, -2019600, 139352400};
       constexpr _Tp _S_am2d3[4]{ 162, 36855,  1415232,   4481568};
       constexpr _Tp _S_bm2d3[4]{  -7,	819,   -78624,   4481568};
+      constexpr _Tp _S_Ai0{3.550280538878172392600631860041831763980e-1L};
+      constexpr _Tp _S_Aip0{-2.588194037928067984051835601892039634793e-1L};
+      constexpr _Tp _S_Bi0{6.149266274460007351509223690936135535960e-1L};
+      constexpr _Tp _S_Bip0{4.482883573538263579148237103988283908668e-1L};
 
       // Check to see if z^3 will underflow and act accordingly.
       auto __zzz = __z * __z * __z;
 
+      std::complex<_Tp> _Fp1d3, _Fm1d3, _Fp2d3, _Fm2d3;
+
       if (std::abs(__zzz) < _Tp{10} * __gnu_cxx::__min<_Tp>())
 	{
-	  __fp1d3  = _S_zone;
-	  __fm1d3 = _S_zone;
-	  __fp2d3  = _S_zone;
-	  __fm2d3 = _S_zone;
+	  _Fp1d3  = _S_zone;
+	  _Fm1d3 = _S_zone;
+	  _Fp2d3  = _S_zone;
+	  _Fm2d3 = _S_zone;
 	}
       else
 	{
@@ -854,11 +860,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 	  };
 
-	  __fp1d3 = __horner(_S_ap1d3) / __horner(_S_bp1d3);
-	  __fm1d3 = __horner(_S_am1d3) / __horner(_S_bm1d3);
-	  __fp2d3 = __horner(_S_ap2d3) / __horner(_S_bp2d3);
-	  __fm2d3 = __horner(_S_am2d3) / __horner(_S_bm2d3);
+	  _Fp1d3 = __horner(_S_ap1d3) / __horner(_S_bp1d3);
+	  _Fm1d3 = __horner(_S_am1d3) / __horner(_S_bm1d3);
+	  _Fp2d3 = __horner(_S_ap2d3) / __horner(_S_bp2d3);
+	  _Fm2d3 = __horner(_S_am2d3) / __horner(_S_bm2d3);
 	}
+
+      _Ai = _S_Ai0 * _Fm1d3 + _S_Aip0 * __z * _Fp1d3;
+      _Aip = _S_Ai0 * __z * __z * _Fp2d3 / _Tp{2} + _S_Aip0 * _Fm2d3;
+      _Bi = _S_Bi0 * _Fm1d3 + _S_Bip0 * __z * _Fp1d3;
+      _Bip = _S_Bi0 * __z * __z * _Fp2d3 / _Tp{2} + _S_Bip0 * _Fm2d3;
 
       return;
     }
@@ -1014,13 +1025,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	_S_eppid3{_Tp{0.5L},  _S_sqrt3 / _Tp{2}},
 	_S_empid3{_Tp{0.5L}, -_S_sqrt3 / _Tp{2}};
       static constexpr _Tp
-	_S_1d3{_Tp{1} / _Tp{3}},
 	_S_2d3{_Tp{2} / _Tp{3}},
-	_S_Ai0{3.550280538878172392600631860041831763980e-1L},
-	_S_Aip0{2.588194037928067984051835601892039634793e-1L},
-	_S_Bi0{6.149266274460007351509223690936135535960e-1L},
-	_S_Bip0{8.868776642045783582807775119976424596506e-1L},
-	_S_2g2d3{_S_Ai0 / 2.0L},
 	_S_rsqpi{2.820947917738781434740397257803862929219e-01L}, // 1/(2sqrt(pi))
 	_S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       static constexpr _Tp _S_small{0.25}, _S_big{15};
@@ -1059,16 +1064,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		  if (__absz <= _S_small)
 		    {
 		      // Use rational approximation along with (1) and (4).
-		      __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
-		      __airy_hyperg_rational(__z,
-					     _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
-		      // Recover Ai(z) and Ai'(z).
-		      _Ai = _S_Ai0 * _Im1d3 - __z * _S_Aip0 * _Ip1d3;
-		      _Aip = __z * __z * _S_2g2d3 * _Ip2d3 - _S_Aip0 * _Im2d3;
-///    (1b) Bi(z) = \sqrt{\frac{z}{3}}(I_{-1/3}(\zeta) + I_{1/3}(\zeta))
-///    (4a) Bi'(z)  = \frac{z}{\sqrt{3}}(I_{-2/3}(\zeta) + I_{2/3}(\zeta))
-		      // FIXME: _Bi =  * _Im1d3 + _S_Bi0 * _Ip1d3;
-		      // FIXME: _Bip =  * _Im2d3 + _S_Bpi0 * _Ip2d3;
+		      __airy_hyperg_rational(__z, _Ai, _Aip, _Bi, _Bip);
 		    }
 		  else
 		    {
@@ -1076,9 +1072,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		      __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
 		      __airy_bessel_i(__zeta, __eps,
 				      _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
-		      // Recover Ai(z) and Ai'(z).
-		      _Ai = _S_1d3 * __sqrtz * (_Im1d3 - _Ip1d3);
-		      _Aip = _S_1d3 * __z * (_Ip2d3 - _Im2d3);
+		      // Recover Ai(z) and Ai'(z), Bi(z) and Bi'(z).
+		      _Ai = __sqrtz * (_Im1d3 - _Ip1d3) / _Tp{3};
+		      _Aip = __z * (_Ip2d3 - _Im2d3) / _Tp{3};
 		      _Bi = __sqrtz * (_Im2d3 * _Ip2d3) / _S_sqrt3;
 		      _Bip = __z * (_Im2d3 + _Ip2d3) / _S_sqrt3;
 		    }
@@ -1095,7 +1091,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __cmplx __z2zeta, __p1d3f, __m1d3f, __p2d3f, __m2d3f;
 	      if (std::imag(__zeta) >= _Tp{0})
 		{
-		  // Argument lies in upper half plane.
+		  // Argument lies in the second quadrant.
 		  __z2zeta = -_S_j * __zeta;
 		  __p1d3f = _S_eppid6;
 		  __m1d3f = _S_empid6;
@@ -1104,7 +1100,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		}
 	      else
 		{
-		  // Argument lies in lower half plane.
+		  // Argument lies in the third quadrant.
 		  __z2zeta = _S_j * __zeta;
 		  __p1d3f = _S_empid6;
 		  __m1d3f = _S_eppid6;
@@ -1117,13 +1113,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		{
 		  // Use rational approximation.
 		  __zeta = -__z;
-		  __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
-		  __airy_hyperg_rational(__z, _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
-		  // Recover Ai(z) and Ai'(z).
-		  _Ai = _S_Ai0 * _Im1d3 - __z * _S_Aip0 * _Ip1d3;
-		  _Aip = __z * __z * _S_2g2d3 * _Ip2d3 - _S_Aip0 * _Im2d3;
-		  // FIXME: _Bi = _S_Bi0 * _Im1d3 - __z * _S_Bip0 * _Ip1d3;
-		  // FIXME: _Bip = 
+		  __airy_hyperg_rational(__z, _Ai, _Aip, _Bi, _Bip);
 		}
 	      else
 		{
@@ -1132,11 +1122,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		  __airy_bessel_i(__z2zeta, __eps,
 				  _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
 		  // Recover Ai(z) and Ai'(z).
-		  _Ai = _S_1d3 * __sqrtz
-		      * (__m1d3f * _Im1d3 + __p1d3f * _Ip1d3);
-		  _Aip = _S_1d3 * __z * (__m2d3f * _Im2d3 - __p2d3f * _Ip2d3);
-		  // FIXME: _Bi = __sqrtz * (__m2d3f * _Im2d3 * __p2d3f * _Ip2d3) / _S_sqrt3;
-		  // FIXME: _Bip = (__z / _S_sqrt3)*(I_{2/3}(\zeta) + I_{-2/3}(\zeta))
+		  _Ai = __sqrtz * (__m1d3f * _Im1d3 + __p1d3f * _Ip1d3) / _Tp{3};
+		  _Aip = __z * (__m2d3f * _Im2d3 - __p2d3f * _Ip2d3) / _Tp{3};
+		  // FIXME: _Bi = __sqrtz * (__m2d3f * _Im2d3 + __p2d3f * _Ip2d3) / _S_sqrt3;
+		  // FIXME: _Bip = __z * (I_{2/3}(\zeta) + I_{-2/3}(\zeta)) / _S_sqrt3
 		}
 	    }
 	}
