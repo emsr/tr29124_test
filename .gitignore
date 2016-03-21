@@ -8,6 +8,8 @@ zeta
 
 bernoulli
 
+complex_literal_bug
+
 carlson
 carlson1
 carlson2
@@ -105,6 +107,7 @@ diff_special_function
 diff_local_special_function
 testcase
 test_airy
+test_aitken
 test_bessel
 test_bessel_asymp
 test_beta_inc
