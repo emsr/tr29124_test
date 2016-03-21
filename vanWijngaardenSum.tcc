@@ -8,22 +8,28 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<typename _Tp>
-    class __vanWijngaardenSum
+    class _VanWijngaardenSum
     {
     public:
-      __vanWijngaardenSum() = default;
 
-      explicit __vanWijngaardenSum(_Tp __sum)
+      using value_type = _Tp;
+
+      _VanWijngaardenSum() = default;
+
+      explicit _VanWijngaardenSum(_Tp __sum)
       : _M_sum(__sum), _M_delta{}
       { }
 
-      __vanWijngaardenSum&
+      /** Add a new term to the sum.  */
+      _VanWijngaardenSum&
       operator+=(_Tp __term)
       {
 	if (__isnan(__term))
-	  throw std::runtime_error("__vanWijngaardenSum: bad term");
+	  throw std::runtime_error("_VanWijngaardenSum: bad term");
 	if (std::abs(__term) == std::numeric_limits<_Tp>::infinity())
-	  throw std::runtime_error("__vanWijngaardenSum: infinite term");
+	  throw std::runtime_error("_VanWijngaardenSum: infinite term");
+
+	++this->_M_num_terms;
 
 	if (this->_M_delta.size() == 0)
 	  {
@@ -51,26 +57,49 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return *this;
       }
 
-      __vanWijngaardenSum&
+      /** Subtract a new term from the sum.  */
+      _VanWijngaardenSum&
       operator-=(_Tp __term)
       { return operator+=(-__term); }
+
+      /** Return true if the sum converged.  */
+      operator
+      bool() const
+      { return !this->_M_converged; }
 
       _Tp
       operator()() const
       { return this->_M_sum; }
 
-      __vanWijngaardenSum&
-      reset(_Tp __sum = _Tp{})
+      std::size_t
+      num_terms() const
+      { return this->_M_num_terms; }
+
+      _VanWijngaardenSum&
+      reset()
       {
 	this->_M_sum = __sum;
 	this->_M_delta.clear();
+	this->_M_num_terms = 0;
+	this->_M_converged = false;
+	return *this;
+      }
+
+      _VanWijngaardenSum&
+      reset(value_type __first_term)
+      {
+	this->reset();
+	this->operator+=(__first_term);
 	return *this;
       }
 
     private:
       _Tp _M_sum;
       std::vector<_Tp> _M_delta;
+      std::size_t _M_num_terms;
+      bool _M_converged;
     };
+
 /*
 // This is an example of the conversion of a non-alternating series to an alternating one
 // for the Lerch transcendent.

@@ -116,6 +116,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 #endif
 
   /**
+
+A Sum is default constructable
+It has operator+=(Tp)
+It has operator-=(Tp)
+It has operator() -> _Tp
+It has num_terms() -> std::size_t
+
+   */
+
+  /**
    *
    */
   template<typename _Tp>
@@ -123,11 +133,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
     public:
 
+      using value_type = _Tp;
+
       _BasicSum() = default;
 
       explicit
       _BasicSum(_Tp __sum)
-      : _M_sum{__sum}, _M_term{}, _M_converged{false}
+      : _M_sum{__sum}, _M_term{}, _M_num_terms{}, _M_converged{false}
       { }
 
       _BasicSum&
@@ -139,6 +151,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      throw std::runtime_error("_BasicSum: bad term");
 	    if (std::abs(__term) == std::numeric_limits<_Tp>::infinity())
 	      throw std::runtime_error("_BasicSum: infinite term");
+	    ++this->_M_num_terms;
 	    this->_M_term = __term;
 	    this->_M_sum += this->_M_term;
 	  }
@@ -157,10 +170,33 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       operator()() const
       { return this->_M_sum; }
 
+      std::size_t
+      num_terms() const
+      { return this->_M_num_terms; }
+
+      _BasicSum&
+      reset()
+      {
+	this->_M_sum = value_type{0};
+	this->_M_term = value_type{0};
+	this->_M_num_terms = 0;
+	this->_M_converged = false;
+	return *this;
+      }
+
+      _BasicSum&
+      reset(_Tp __first_term)
+      {
+	this->reset();
+	this->operator+=(__first_term);
+	return *this;
+      }
+
     private:
 
       _Tp _M_sum;
       _Tp _M_term;
+      std::size_t _M_num_terms;
       bool _M_converged;
     };
 
@@ -172,11 +208,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
     public:
 
+      using value_type = _Tp;
+
       _KahanSum() = default;
 
       explicit
       _KahanSum(_Tp __sum)
-      : _M_sum{__sum}, _M_term{}, _M_temp{}, _M_converged{false}
+      : _M_sum{__sum}, _M_term{}, _M_temp{}, _M_num_terms{}, _M_converged{false}
       { }
 
       _KahanSum&
@@ -188,6 +226,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      throw std::runtime_error("_KahanSum: bad term");
 	    if (std::abs(__term) == std::numeric_limits<_Tp>::infinity())
 	      throw std::runtime_error("_KahanSum: infinite term");
+	    ++this->_M_num_terms;
 	    this->_M_term = __term - this->_M_temp;
 	    this->_M_temp = this->_M_sum;
 	    this->_M_sum += this->_M_term;
@@ -208,11 +247,35 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       operator()() const
       { return this->_M_sum; }
 
+      std::size_t
+      num_terms() const
+      { return this->_M_num_terms; }
+
+      _KahanSum&
+      reset()
+      {
+	this->_M_sum = value_type{0};
+	this->_M_term = value_type{0};
+	this->_M_temp = value_type{0};
+	this->_M_num_terms = 0;
+	this->_M_converged = false;
+	return *this;
+      }
+
+      _KahanSum&
+      reset(_Tp __first_term)
+      {
+	this->reset();
+	this->operator+=(__first_term);
+	return *this;
+      }
+
     private:
 
       _Tp _M_sum;
       _Tp _M_term;
       _Tp _M_temp;
+      std::size_t _M_num_terms;
       bool _M_converged;
     };
 
