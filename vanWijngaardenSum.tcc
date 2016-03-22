@@ -14,19 +14,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       using value_type = _Tp;
 
+      ///  Default constructor.
       _VanWijngaardenSum() = default;
 
-      explicit _VanWijngaardenSum(_Tp __sum)
-      : _M_sum(__sum), _M_delta{}
-      { }
+      ///  Constructor taking the first term.
+      explicit _VanWijngaardenSum(value_type __first_term)
+      : _VanWijngaardenSum{}
+      {
+	operator+=(__first_term);
+      }
 
-      /** Add a new term to the sum.  */
+      /// Add a new term to the sum.
       _VanWijngaardenSum&
-      operator+=(_Tp __term)
+      operator+=(value_type __term)
       {
 	if (__isnan(__term))
 	  throw std::runtime_error("_VanWijngaardenSum: bad term");
-	if (std::abs(__term) == std::numeric_limits<_Tp>::infinity())
+	if (std::abs(__term) == std::numeric_limits<value_type>::infinity())
 	  throw std::runtime_error("_VanWijngaardenSum: infinite term");
 
 	++this->_M_num_terms;
@@ -34,7 +38,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	if (this->_M_delta.size() == 0)
 	  {
 	    this->_M_delta.push_back(__term);
-	    this->_M_sum += _Tp{0.5L} * this->_M_delta.back();
+	    this->_M_sum += value_type{0.5L} * this->_M_delta.back();
 	  }
 	else
 	  {
@@ -44,12 +48,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    for (auto __j = 0;
 		 __j < __n - 1; ++__j)
 	      __temp = std::exchange(this->_M_delta[__j + 1],
-				_Tp{0.5L} * (this->_M_delta[__j] + __temp));
-	    auto __next = _Tp{0.5L} * (this->_M_delta.back() + __temp);
+				value_type{0.5L} * (this->_M_delta[__j] + __temp));
+	    auto __next = value_type{0.5L} * (this->_M_delta.back() + __temp);
 	    if (std::abs(__next) < std::abs(this->_M_delta.back()))
 	      {
 		this->_M_delta.push_back(__next);
-		this->_M_sum += _Tp{0.5L} * this->_M_delta.back();
+		this->_M_sum += value_type{0.5L} * this->_M_delta.back();
 	      }
 	    else
 	      this->_M_sum += __next;
@@ -57,24 +61,27 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return *this;
       }
 
-      /** Subtract a new term from the sum.  */
+      /// Subtract a new term from the sum.
       _VanWijngaardenSum&
-      operator-=(_Tp __term)
+      operator-=(value_type __term)
       { return operator+=(-__term); }
 
-      /** Return true if the sum converged.  */
+      /// Return true if the sum converged.
       operator
       bool() const
       { return !this->_M_converged; }
 
-      _Tp
+      /// Return the current value of the sum.
+      value_type
       operator()() const
       { return this->_M_sum; }
 
+      /// Return the current number of terms contributing to the sum.
       std::size_t
       num_terms() const
       { return this->_M_num_terms; }
 
+      ///  Reset the sum to it's initial state.
       _VanWijngaardenSum&
       reset()
       {
@@ -85,6 +92,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return *this;
       }
 
+      ///  Restart the sum with the first new term.
       _VanWijngaardenSum&
       reset(value_type __first_term)
       {
@@ -94,8 +102,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       }
 
     private:
-      _Tp _M_sum;
-      std::vector<_Tp> _M_delta;
+
+      value_type _M_sum;
+      std::vector<value_type> _M_delta;
       std::size_t _M_num_terms;
       bool _M_converged;
     };

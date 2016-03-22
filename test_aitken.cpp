@@ -28,11 +28,12 @@
 
       using value_type = typename _Sum::value_type;
 
+      ///  Default constructor.
       _AitkenDeltaSqaredSum()
       : _M_part_sum{_Sum{}}, _M_a{}, _M_sum{}, _M_converged{false}
       { }
 
-      /** Add a new term to the sum.  */
+      /// Add a new term to the sum.
       _AitkenDeltaSqaredSum&
       operator+=(value_type __term)
       {
@@ -44,24 +45,27 @@
 	return *this;
       }
 
-      /** Subtract a new term from the sum.  */
+      /// Subtract a new term from the sum.
       _AitkenDeltaSqaredSum&
       operator-=(value_type __term)
       { return operator+=(-__term); }
 
-      /** Return true if the sum converged.  */
+      /// Return true if the sum converged.
       operator
       bool() const
       { return !this->_M_converged; }
 
+      /// Return the current value of the sum.
       value_type
       operator()() const
       { return this->_M_sum; }
 
+      /// Return the current number of terms contributing to the sum.
       std::size_t
       num_terms() const
       { return this->_M_part_sum.num_terms; }
 
+      ///  Reset the sum to it's initial state.
       _AitkenDeltaSqaredSum&
       reset()
       {
@@ -72,6 +76,7 @@
 	return *this;
       }
 
+      ///  Restart the sum with the first new term.
       _AitkenDeltaSqaredSum&
       reset(value_type __first_term)
       {
@@ -135,11 +140,12 @@
 
       using value_type = typename _Sum::value_type;
 
+      ///  Default constructor.
       _WinnEpsilonSum()
       : _M_part_sum{_Sum{}}, _M_e{}, _M_sum{}, _M_converged{false}
       { }
 
-      /** Add a new term to the sum.  */
+      /// Add a new term to the sum.
       _WinnEpsilonSum&
       operator+=(value_type __term)
       {
@@ -151,24 +157,27 @@
 	return *this;
       }
 
-      /** Subtract a new term from the sum.  */
+      /// Subtract a new term from the sum.
       _WinnEpsilonSum&
       operator-=(value_type __term)
       { return operator+=(-__term); }
 
-      /** Return true if the sum converged.  */
+      /// Return true if the sum converged.
       operator
       bool() const
       { return !this->_M_converged; }
 
+      /// Return the current value of the sum.
       value_type
       operator()() const
       { return this->_M_sum; }
 
+      /// Return the current number of terms contributing to the sum.
       std::size_t
       num_terms() const
       { return this->_M_part_sum.num_terms; }
 
+      ///  Reset the sum to it's initial state.
       _WinnEpsilonSum&
       reset()
       {
@@ -179,6 +188,7 @@
 	return *this;
       }
 
+      ///  Restart the sum with the first new term.
       _WinnEpsilonSum&
       reset(value_type __first_term)
       {
@@ -243,11 +253,12 @@
 
       using value_type = typename _Sum::value_type;
 
+      ///  Default constructor.
       _BrezinskiThetaSum()
       : _M_part_sum{_Sum{}}, _M_arj{}, _M_sum{}, _M_converged{false}
       { }
 
-      /** Add a new term to the sum.  */
+      /// Add a new term to the sum.
       _BrezinskiThetaSum&
       operator+=(value_type __term)
       {
@@ -259,24 +270,27 @@
 	return *this;
       }
 
-      /** Subtract a new term from the sum.  */
+      /// Subtract a new term from the sum.
       _BrezinskiThetaSum&
       operator-=(value_type __term)
       { return operator+=(-__term); }
 
-      /** Return true if the sum converged.  */
+      /// Return true if the sum converged.
       operator
       bool() const
       { return !this->_M_converged; }
 
+      /// Return the current value of the sum.
       value_type
       operator()() const
       { return this->_M_sum; }
 
+      /// Return the current number of terms contributing to the sum.
       std::size_t
       num_terms() const
       { return this->_M_part_sum.num_terms; }
 
+      ///  Reset the sum to it's initial state.
       _BrezinskiThetaSum&
       reset()
       {
@@ -287,6 +301,7 @@
 	return *this;
       }
 
+      ///  Restart the sum with the first new term.
       _BrezinskiThetaSum&
       reset(value_type __first_term)
       {
@@ -355,17 +370,18 @@
 
       using value_type = typename _Sum::value_type;
 
+      ///  Default constructor.
       _LevinSum(value_type __beta = value_type{1})
       : _M_part_sum{_Sum{}}, _M_e{}, _M_beta{__beta},
 	_M_sum{}, _M_converged{false}
       { }
 
-      /** Get the beta parameter.  */
+      /// Get the beta parameter.
       value_type
       beta() const
       { return this->_M_beta; }
 
-      /** Set the beta parameter.  */
+      /// Set the beta parameter.
       _LevinSum&
       beta(value_type __beta)
       {
@@ -373,7 +389,7 @@
 	return *this;
       }
 
-      /** Add a new term to the sum.  */
+      /// Add a new term to the sum.
       _LevinSum&
       operator+=(value_type __term)
       {
@@ -385,24 +401,27 @@
 	return *this;
       }
 
-      /** Subtract a new term from the sum.  */
+      /// Subtract a new term from the sum.
       _LevinSum&
       operator-=(value_type __term)
       { return operator+=(-__term); }
 
-      /** Return true if the sum converged.  */
+      /// Return true if the sum converged.
       operator
       bool() const
       { return !this->_M_converged; }
 
+      /// Return the current value of the sum.
       value_type
       operator()() const
       { return this->_M_sum; }
 
+      /// Return the current number of terms contributing to the sum.
       std::size_t
       num_terms() const
       { return this->_M_part_sum.num_terms; }
 
+      ///  Reset the sum to it's initial state.
       _LevinSum&
       reset()
       {
@@ -413,6 +432,7 @@
 	return *this;
       }
 
+      ///  Restart the sum with the first new term.
       _LevinSum&
       reset(value_type __first_term)
       {
@@ -446,35 +466,173 @@
       const auto __n = this->_M_part_sum.num_terms() - 1;
       const auto __s_n = this->_M_part_sum();
       const auto __beta = this->_M_beta;
-      auto& __arup = this->_M_arup;
-      auto& __arlo = this->_M_arlo;
+      auto& __anum = this->_M_anum;
+      auto& __aden = this->_M_aden;
 
-      __arup.push_back(__s_n / __r_n);
-      __arlo.push_back(value_type{1} / __r_n);
+      __anum.push_back(__s_n / __r_n);
+      __aden.push_back(value_type{1} / __r_n);
       if (__n > 0)
 	{
-	  __arup[__n - 1] = __arup[__n] - __arup[__n - 1];
-	  __arlo[__n - 1] = __arlo[__n] - __arlo[__n - 1];
+	  __anum[__n - 1] = __anum[__n] - __anum[__n - 1];
+	  __aden[__n - 1] = __aden[__n] - __aden[__n - 1];
 	  if (__n > 1)
 	    {
 	      auto __bn1 = __beta + _Tp(__n - 1);
 	      auto __bn2 = __beta + _Tp(__n);
 	      auto __coef = __bn1 / __bn2;
-	      for (auto __j = 2; __j <= __n; ++__j)
+	      auto __coefp = _Tp{1};
+	      for (auto __j = 2; __j <= __n; ++__j, __coefp *= __coef)
 		{
-		  auto __fact = (__beta + _Tp(__n - __j))
-			      * std::pow(__coef, __j - 2) / __bn2;
-		  __arup[__n - __j] = __arup[__n - __j + 1]
-				    - __fact * __arup[__n - __j];
-		  __arlo[__n - __j] = __arlo[__n - __j + 1]
-				    - __fact * __arlo[__n - __j];
+		  auto __fact = (__beta + _Tp(__n - __j)) * __coefp / __bn2;
+		  __anum[__n - __j] = __anum[__n - __j + 1]
+				    - __fact * __anum[__n - __j];
+		  __aden[__n - __j] = __aden[__n - __j + 1]
+				    - __fact * __aden[__n - __j];
 		}
 	    }
 	}
-      if (std::abs(__arlo[0]) < _S_tiny)
+      if (std::abs(__aden[0]) < _S_tiny)
 	this->_M_sum = _S_huge;
       else
-	this->_M_sum = __arup[0] / __arlo[0];
+	this->_M_sum = __anum[0] / __aden[0];
+    }
+
+  /**
+   * The Levin's summation process.
+   */
+  template<typename _Sum>
+    class _WenigerSum
+    {
+    public:
+
+      using value_type = typename _Sum::value_type;
+
+      ///  Default constructor.
+      _WenigerSum(value_type __beta = value_type{1})
+      : _M_part_sum{_Sum{}}, _M_e{}, _M_beta{__beta},
+	_M_sum{}, _M_converged{false}
+      { }
+
+      /// Get the beta parameter.
+      value_type
+      beta() const
+      { return this->_M_beta; }
+
+      /// Set the beta parameter.
+      _WenigerSum&
+      beta(value_type __beta)
+      {
+	this->_M_beta = __beta;
+	return *this;
+      }
+
+      /// Add a new term to the sum.
+      _WenigerSum&
+      operator+=(value_type __term)
+      {
+	if (!this->_M_converged)
+	  {
+	    this->_M_part_sum += __term;
+	    this->_M_update();
+	  }
+	return *this;
+      }
+
+      /// Subtract a new term from the sum.
+      _WenigerSum&
+      operator-=(value_type __term)
+      { return operator+=(-__term); }
+
+      /// Return true if the sum converged.
+      operator
+      bool() const
+      { return !this->_M_converged; }
+
+      /// Return the current value of the sum.
+      value_type
+      operator()() const
+      { return this->_M_sum; }
+
+      /// Return the current number of terms contributing to the sum.
+      std::size_t
+      num_terms() const
+      { return this->_M_part_sum.num_terms; }
+
+      ///  Reset the sum to it's initial state.
+      _WenigerSum&
+      reset()
+      {
+	this->_M_part_sum.reset();
+	this->_M_e.clear();
+	this->_M_sum = value_type{0};
+	this->_M_converged = false;
+	return *this;
+      }
+
+      ///  Restart the sum with the first new term.
+      _WenigerSum&
+      reset(value_type __first_term)
+      {
+	this->reset();
+	this->operator+=(__first_term);
+	return *this;
+      }
+
+    private:
+
+      void _M_update(value_type __r_n);
+
+      _Sum _M_part_sum;
+      std::vector<value_type> _M_e;
+      value_type _M_beta;
+      value_type _M_sum;
+      bool _M_converged;
+    };
+
+  /**
+   * One step of Levin's summation process.
+   */
+  template<typename _Sum>
+    void
+    _WenigerSum<_Sum>::_M_update(value_type __r_n)
+    {
+      using _Tp = value_type;
+      constexpr auto _S_huge = __gnu_cxx::__root_max(_Tp{5}); // 1.0e+60
+      constexpr auto _S_tiny = __gnu_cxx::__root_min(_Tp{5}); // 1.0e-60;
+
+      const auto __n = this->_M_part_sum.num_terms() - 1;
+      const auto __s_n = this->_M_part_sum();
+      const auto __beta = this->_M_beta;
+      auto& __anum = this->_M_anum;
+      auto& __aden = this->_M_aden;
+
+      __anum.push_back(__s_n / __r_n);
+      __aden.push_back(value_type{1} / __r_n);
+      if (__n > 0)
+	{
+	  __anum[__n - 1] = __anum[__n] - __anum[__n - 1];
+	  __aden[__n - 1] = __aden[__n] - __aden[__n - 1];
+	  if (__n > 1)
+	    {
+	      auto __bn1 = __beta + _Tp(__n - 1);
+	      auto __bn2 = __beta + _Tp(__n);
+	      auto __coef = __bn1 / __bn2;
+	      auto __coefp = _Tp{1}
+	      for (auto __j = 2; __j <= __n; ++__j, __coefp *= __coef)
+		{
+		  auto __fact = (__beta + _Tp(__n - __j))
+			      * __coefp / __bn2;
+		  __anum[__n - __j] = __anum[__n - __j + 1]
+				    - __fact * __anum[__n - __j];
+		  __aden[__n - __j] = __aden[__n - __j + 1]
+				    - __fact * __aden[__n - __j];
+		}
+	    }
+	}
+      if (std::abs(__aden[0]) < _S_tiny)
+	this->_M_sum = _S_huge;
+      else
+	this->_M_sum = __anum[0] / __aden[0];
     }
 
 template<typename Tp>
