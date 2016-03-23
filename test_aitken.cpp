@@ -131,7 +131,7 @@
     }
 
   /**
-   * The Winn's epsilon summation process.
+   * The Winn epsilon summation process.
    */
   template<typename _Sum>
     class _WinnEpsilonSum
@@ -208,7 +208,7 @@
     };
 
   /**
-   * Single step of Winn's epsilon transformation.
+   * Single step of the Winn epsilon transformation.
    */
   template<typename _Sum>
     void
@@ -361,7 +361,7 @@
     }
 
   /**
-   * The Levin's summation process.
+   * The Levin summation process.
    */
   template<typename _Sum>
     class _LevinSum
@@ -481,13 +481,14 @@
 	      auto __bn2 = __beta + _Tp(__n);
 	      auto __coef = __bn1 / __bn2;
 	      auto __coefp = _Tp{1};
-	      for (auto __j = 2; __j <= __n; ++__j, __coefp *= __coef)
+	      for (auto __j = 2; __j <= __n; ++__j)
 		{
 		  auto __fact = (__beta + _Tp(__n - __j)) * __coefp / __bn2;
 		  __anum[__n - __j] = __anum[__n - __j + 1]
 				    - __fact * __anum[__n - __j];
 		  __aden[__n - __j] = __aden[__n - __j + 1]
 				    - __fact * __aden[__n - __j];
+		  __coefp *= __coef;
 		}
 	    }
 	}
@@ -617,8 +618,8 @@
 	      auto __bn1 = __beta + _Tp(__n - 1);
 	      auto __bn2 = __beta + _Tp(__n);
 	      auto __coef = __bn1 / __bn2;
-	      auto __coefp = _Tp{1}
-	      for (auto __j = 2; __j <= __n; ++__j, __coefp *= __coef)
+	      auto __coefp = _Tp{1};
+	      for (auto __j = 2; __j <= __n; ++__j)
 		{
 		  auto __fact = (__beta + _Tp(__n - __j))
 			      * __coefp / __bn2;
@@ -626,6 +627,7 @@
 				    - __fact * __anum[__n - __j];
 		  __aden[__n - __j] = __aden[__n - __j + 1]
 				    - __fact * __aden[__n - __j];
+		  __coefp *= __coef;
 		}
 	    }
 	}
