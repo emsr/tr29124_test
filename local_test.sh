@@ -116,6 +116,8 @@ ${makedir} ${text_dir}/sph_hankel_2
 ${makedir} ${text_dir}/sph_harmonic
 ${makedir} ${text_dir}/theta_1
 ${makedir} ${text_dir}/theta_2
+${makedir} ${text_dir}/theta_3
+${makedir} ${text_dir}/theta_4
 
 ${copy} check_airy_ai.cc            ${text_dir}/airy_ai/check_value.cc
 ${copy} check_airy_bi.cc            ${text_dir}/airy_bi/check_value.cc
@@ -175,4 +177,6 @@ ${copy} check_sph_hankel_2.cc       ${text_dir}/sph_hankel_2/check_value.cc
 ${copy} check_sph_harmonic.cc       ${text_dir}/sph_harmonic/check_value.cc
 ${copy} check_theta_1.cc            ${text_dir}/theta_1/check_value.cc
 ${copy} check_theta_2.cc            ${text_dir}/theta_2/check_value.cc
+${copy} check_theta_3.cc            ${text_dir}/theta_3/check_value.cc
+${copy} check_theta_4.cc            ${text_dir}/theta_4/check_value.cc
 

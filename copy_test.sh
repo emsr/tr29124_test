@@ -83,3 +83,5 @@ ${tool} ${text_dir}/sph_hankel_2/*       ${ext_dir}/sph_hankel_2
 ${tool} ${text_dir}/sph_harmonic/*       ${ext_dir}/sph_harmonic
 ${tool} ${text_dir}/theta_1/*            ${ext_dir}/theta_1
 ${tool} ${text_dir}/theta_2/*            ${ext_dir}/theta_2
+${tool} ${text_dir}/theta_3/*            ${ext_dir}/theta_3
+${tool} ${text_dir}/theta_4/*            ${ext_dir}/theta_4
