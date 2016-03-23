@@ -1,0 +1,4234 @@
+#include <system_error>
+#include <vector>
+#include <map>
+#include <functional>
+#include <cmath> // min, max, clamp.
+
+namespace std
+{
+namespace experimental
+{
+namespace io2d
+{
+inline namespace v1
+{
+
+  enum class io2d_error
+  {
+    success,
+    invalid_restore,
+    no_current_point,
+    invalid_matrix,
+    invalid_status,
+    null_pointer,
+    invalid_string,
+    invalid_path_data,
+    read_error,
+    write_error,
+    surface_finished,
+    invalid_dash,
+    invalid_index,
+    clip_not_representable,
+    invalid_stride,
+    user_font_immutable,
+    user_font_error,
+    invalid_clusters,
+    device_error,
+    invalid_mesh_construction,
+  };
+
+} // inline namespace v1
+} // namespace io2d
+} // namespace experimental
+
+  template<>
+    struct
+    is_error_condition_enum<experimental::io2d::io2d_error>
+    : public std::true_type
+    { };
+
+} // namespace std
+
+namespace std
+{
+namespace experimental
+{
+namespace io2d
+{
+inline namespace v1
+{
+
+  class io2d_error_category
+  : public std::error_category
+  {
+  public:
+
+    // observers:
+
+    virtual const char*
+    name() const noexcept override;
+
+    virtual string
+    message(int errVal) const override;
+
+    virtual bool
+    equivalent(int code,
+	       const std::error_condition& condition) const noexcept override;
+
+    virtual bool
+    equivalent(const std::error_code& ec, int condition) const noexcept override;
+  };
+
+  // non-member functions:
+
+  const error_category&
+  io2d_category() noexcept;
+
+} // inline namespace v1
+} // namespace io2d
+} // namespace experimental
+
+  error_condition
+  make_error_condition(experimental::io2d::io2d_error e) noexcept;
+
+  std::error_code
+  make_error_code(experimental::io2d::io2d_error e) noexcept;
+
+} // namespace std
+
+namespace std
+{
+namespace experimental
+{
+namespace io2d
+{
+inline namespace v1
+{
+
+  class rgba_color
+  {
+    // construct/copy/move/destroy:
+
+    rgba_color() noexcept;
+
+    rgba_color(double r, double g, double b, double a = 1.0);
+
+    rgba_color(double r, double g, double b, std::error_code& ec) noexcept;
+
+    rgba_color(double r, double g, double b, double a, std::error_code& ec) noexcept;
+
+    rgba_color(const rgba_color& c) noexcept;
+
+    rgba_color&
+    operator=(const rgba_color& c) noexcept;
+
+    rgba_color(rgba_color&& c) noexcept;
+
+    rgba_color&
+    operator=(rgba_color&& c) noexcept;
+
+    // modifiers:
+
+    void
+    r(double val);
+
+    void
+    r(double val, std::error_code& ec) noexcept;
+
+    void
+    g(double val);
+
+    void
+    g(double val, std::error_code& ec) noexcept;
+
+    void
+    b(double val);
+
+    void
+    b(double val, std::error_code& ec) noexcept;
+
+    void
+    a(double val);
+
+    void
+    a(double val, std::error_code& ec) noexcept;
+
+    // observers:
+
+    double
+    r() const noexcept;
+
+    double
+    g() const noexcept;
+
+    double
+    b() const noexcept;
+
+    double
+    a() const noexcept;
+
+    // static member functions:
+
+    static const rgba_color&
+    alice_blue() noexcept;
+
+    static const rgba_color&
+    antique_white() noexcept;
+
+    static const rgba_color&
+    aqua() noexcept;
+
+    static const rgba_color&
+    aquamarine() noexcept;
+
+    static const rgba_color&
+    azure() noexcept;
+
+    static const rgba_color&
+    beige() noexcept;
+
+    static const rgba_color&
+    bisque() noexcept;
+
+    static const rgba_color&
+    black() noexcept;
+
+    static const rgba_color&
+    blanched_almond() noexcept;
+
+    static const rgba_color&
+    blue() noexcept;
+
+    static const rgba_color&
+    blue_violet() noexcept;
+
+    static const rgba_color&
+    brown() noexcept;
+
+    static const rgba_color&
+    burly_wood() noexcept;
+
+    static const rgba_color&
+    cadet_blue() noexcept;
+
+    static const rgba_color&
+    chartreuse() noexcept;
+
+    static const rgba_color&
+    chocolate() noexcept;
+
+    static const rgba_color&
+    coral() noexcept;
+
+    static const rgba_color&
+    cornflower_blue() noexcept;
+
+    static const rgba_color&
+    cornsilk() noexcept;
+
+    static const rgba_color&
+    crimson() noexcept;
+
+    static const rgba_color&
+    cyan() noexcept;
+
+    static const rgba_color&
+    dark_blue() noexcept;
+
+    static const rgba_color&
+    dark_cyan() noexcept;
+
+    static const rgba_color&
+    dark_goldenrod() noexcept;
+
+    static const rgba_color&
+    dark_gray() noexcept;
+
+    static const rgba_color&
+    dark_green() noexcept;
+
+    static const rgba_color&
+    dark_grey() noexcept;
+
+    static const rgba_color&
+    dark_khaki() noexcept;
+
+    static const rgba_color&
+    dark_magenta() noexcept;
+
+    static const rgba_color&
+    dark_olive_green() noexcept;
+
+    static const rgba_color&
+    dark_orange() noexcept;
+
+    static const rgba_color&
+    dark_orchid() noexcept;
+
+    static const rgba_color&
+    dark_red() noexcept;
+
+    static const rgba_color&
+    dark_salmon() noexcept;
+
+    static const rgba_color&
+    dark_sea_green() noexcept;
+
+    static const rgba_color&
+    dark_slate_blue() noexcept;
+
+    static const rgba_color&
+    dark_slate_gray() noexcept;
+
+    static const rgba_color&
+    dark_slate_grey() noexcept;
+
+    static const rgba_color&
+    dark_turquoise() noexcept;
+
+    static const rgba_color&
+    dark_violet() noexcept;
+
+    static const rgba_color&
+    deep_pink() noexcept;
+
+    static const rgba_color&
+    deep_sky_blue() noexcept;
+
+    static const rgba_color&
+    dim_gray() noexcept;
+
+    static const rgba_color&
+    dim_grey() noexcept;
+
+    static const rgba_color&
+    dodger_blue() noexcept;
+
+    static const rgba_color&
+    firebrick() noexcept;
+
+    static const rgba_color&
+    floral_white() noexcept;
+
+    static const rgba_color&
+    forest_green() noexcept;
+
+    static const rgba_color&
+    fuchsia() noexcept;
+
+    static const rgba_color&
+    gainsboro() noexcept;
+
+    static const rgba_color&
+    ghost_white() noexcept;
+
+    static const rgba_color&
+    gold() noexcept;
+
+    static const rgba_color&
+    goldenrod() noexcept;
+
+    static const rgba_color&
+    gray() noexcept;
+
+    static const rgba_color&
+    green() noexcept;
+
+    static const rgba_color&
+    green_yellow() noexcept;
+
+    static const rgba_color&
+    grey() noexcept;
+
+    static const rgba_color&
+    honeydew() noexcept;
+
+    static const rgba_color&
+    hot_pink() noexcept;
+
+    static const rgba_color&
+    indian_red() noexcept;
+
+    static const rgba_color&
+    indigo() noexcept;
+
+    static const rgba_color&
+    ivory() noexcept;
+
+    static const rgba_color&
+    khaki() noexcept;
+
+    static const rgba_color&
+    lavender() noexcept;
+
+    static const rgba_color&
+    lavender_blush() noexcept;
+
+    static const rgba_color&
+    lawn_green() noexcept;
+
+    static const rgba_color&
+    lemon_chiffon() noexcept;
+
+    static const rgba_color&
+    light_blue() noexcept;
+
+    static const rgba_color&
+    light_coral() noexcept;
+
+    static const rgba_color&
+    light_cyan() noexcept;
+
+    static const rgba_color&
+    light_goldenrod_yellow() noexcept;
+
+    static const rgba_color&
+    light_gray() noexcept;
+
+    static const rgba_color&
+    light_green() noexcept;
+
+    static const rgba_color&
+    light_grey() noexcept;
+
+    static const rgba_color&
+    light_pink() noexcept;
+
+    static const rgba_color&
+    light_salmon() noexcept;
+
+    static const rgba_color&
+    light_sea_green() noexcept;
+
+    static const rgba_color&
+    light_sky_blue() noexcept;
+
+    static const rgba_color&
+    light_slate_gray() noexcept;
+
+    static const rgba_color&
+    light_slate_grey() noexcept;
+
+    static const rgba_color&
+    light_steel_blue() noexcept;
+
+    static const rgba_color&
+    light_yellow() noexcept;
+
+    static const rgba_color&
+    lime() noexcept;
+
+    static const rgba_color&
+    lime_green() noexcept;
+
+    static const rgba_color&
+    linen() noexcept;
+
+    static const rgba_color&
+    magenta() noexcept;
+
+    static const rgba_color&
+    maroon() noexcept;
+
+    static const rgba_color&
+    medium_aquamarine() noexcept;
+
+    static const rgba_color&
+    medium_blue() noexcept;
+
+    static const rgba_color&
+    medium_orchid() noexcept;
+
+    static const rgba_color&
+    medium_purple() noexcept;
+
+    static const rgba_color&
+    medium_sea_green() noexcept;
+
+    static const rgba_color&
+    medium_slate_blue() noexcept;
+
+    static const rgba_color&
+    medium_spring_green() noexcept;
+
+    static const rgba_color&
+    medium_turquoise() noexcept;
+
+    static const rgba_color&
+    medium_violet_red() noexcept;
+
+    static const rgba_color&
+    midnight_blue() noexcept;
+
+    static const rgba_color&
+    mint_cream() noexcept;
+
+    static const rgba_color&
+    misty_rose() noexcept;
+
+    static const rgba_color&
+    moccasin() noexcept;
+
+    static const rgba_color&
+    navajo_white() noexcept;
+
+    static const rgba_color&
+    navy() noexcept;
+
+    static const rgba_color&
+    old_lace() noexcept;
+
+    static const rgba_color&
+    olive() noexcept;
+
+    static const rgba_color&
+    olive_drab() noexcept;
+
+    static const rgba_color&
+    orange() noexcept;
+
+    static const rgba_color&
+    orange_red() noexcept;
+
+    static const rgba_color&
+    orchid() noexcept;
+
+    static const rgba_color&
+    pale_goldenrod() noexcept;
+
+    static const rgba_color&
+    pale_green() noexcept;
+
+    static const rgba_color&
+    pale_turquoise() noexcept;
+
+    static const rgba_color&
+    pale_violet_red() noexcept;
+
+    static const rgba_color&
+    papaya_whip() noexcept;
+
+    static const rgba_color&
+    peach_puff() noexcept;
+
+    static const rgba_color&
+    peru() noexcept;
+
+    static const rgba_color&
+    pink() noexcept;
+
+    static const rgba_color&
+    plum() noexcept;
+
+    static const rgba_color&
+    powder_blue() noexcept;
+
+    static const rgba_color&
+    purple() noexcept;
+
+    static const rgba_color&
+    red() noexcept;
+
+    static const rgba_color&
+    rosy_brown() noexcept;
+
+    static const rgba_color&
+    royal_blue() noexcept;
+
+    static const rgba_color&
+    saddle_brown() noexcept;
+
+    static const rgba_color&
+    salmon() noexcept;
+
+    static const rgba_color&
+    sandy_brown() noexcept;
+
+    static const rgba_color&
+    sea_green() noexcept;
+
+    static const rgba_color&
+    sea_shell() noexcept;
+
+    static const rgba_color&
+    sienna() noexcept;
+
+    static const rgba_color&
+    silver() noexcept;
+
+    static const rgba_color&
+    sky_blue() noexcept;
+
+    static const rgba_color&
+    slate_blue() noexcept;
+
+    static const rgba_color&
+    slate_gray() noexcept;
+
+    static const rgba_color&
+    slate_grey() noexcept;
+
+    static const rgba_color&
+    snow() noexcept;
+
+    static const rgba_color&
+    spring_green() noexcept;
+
+    static const rgba_color&
+    steel_blue() noexcept;
+
+    static const rgba_color&
+    tan() noexcept;
+
+    static const rgba_color&
+    teal() noexcept;
+
+    static const rgba_color&
+    thistle() noexcept;
+
+    static const rgba_color&
+    tomato() noexcept;
+
+    static const rgba_color&
+    transparent_black() noexcept;
+
+    static const rgba_color&
+    turquoise() noexcept;
+
+    static const rgba_color&
+    violet() noexcept;
+
+    static const rgba_color&
+    wheat() noexcept;
+
+    static const rgba_color&
+    white() noexcept;
+
+    static const rgba_color&
+    white_smoke() noexcept;
+
+    static const rgba_color&
+    yellow() noexcept;
+
+    static const rgba_color&
+    yellow_green() noexcept;
+
+  private:
+
+    double _M_red;
+
+    double _M_green;
+
+    double _M_blue;
+
+    double _M_alpha;
+  };
+
+  // non-member operators:
+
+  bool
+  operator==(const rgba_color& lhs, const rgba_color& rhs) noexcept;
+
+  bool
+  operator!=(const rgba_color& lhs, const rgba_color& rhs) noexcept;
+
+inline namespace literals
+{
+  // N.B. clamp would be useful here.
+  /**
+   *
+   */
+  double
+  operator""ubyte(unsigned long long int __val)
+  { std::max(0.0, std::min(1.0, static_cast<double>(__val) / 255.0)); }
+
+  /**
+   *
+   */
+  double
+  operator""unorm(long double __val)
+  { std::nearbyint(std::max(0.0, std::min(1.0, static_cast<double>(__val))) * 255.0) / 255.0; }
+
+} // inline namespace literals
+
+  /**
+   *
+   */
+  class vector_2d
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    vector_2d() noexcept
+    : _M_x{}, _M_y{}
+    { }
+
+    vector_2d(double __x, double __y) noexcept
+    : _M_x{__x}, _M_y{__y}
+    { }
+
+    vector_2d(const vector_2d& __vec) noexcept
+    : _M_x{__vec._M_x}, _M_y{__vec._M_y}
+    { }
+
+    vector_2d&
+    operator=(const vector_2d& __vec) noexcept
+    {
+      this->_M_x = __vec._M_x;
+      this->_M_y = __vec._M_y;
+      return *this;
+    }
+
+    vector_2d(vector_2d&& __vec) noexcept;
+    : _M_x{__vec._M_x}, _M_y{__vec._M_y}
+    { }
+
+    vector_2d&
+    operator=(vector_2d&& __vec) noexcept
+    {
+      this->_M_x = __vec._M_x;
+      this->_M_y = __vec._M_y;
+      return *this;
+    }
+
+    // modifiers:
+
+    void
+    x(double __value) noexcept
+    { this->_M_x = __value; }
+
+    void
+    y(double __value) noexcept
+    { this->_M_y = __value; }
+
+    // 7.5, observers:
+
+    double
+    x() const noexcept
+    { return this->_M_x; }
+ 
+    double
+    y() const noexcept
+    { return this->_M_y; }
+
+    double
+    length() const noexcept
+    { return std::hypot(this->_M_x, this->_M_y); }
+
+    double
+    dot(const vector_2d& __vec) const noexcept
+    { return this->_M_x * __vec._M_x + this->_M_y * __vec._M_y; }
+
+    vector_2d
+    to_unit() const noexcept
+    {
+      auto __len = std::hypot(this->_M_x, this->_M_y);
+      return vector_2d{this->_M_x / __len, this->_M_y / __len}
+    }
+
+    // member operators:
+
+    vector_2d&
+    operator+=(const vector_2d& __rhs) noexcept
+    {
+      this->_M_x += __rhs._M_x;
+      this->_M_y += __rhs._M_y;
+      return *this;
+    }
+
+    vector_2d&
+    operator-=(const vector_2d& __rhs) noexcept
+    {
+      this->_M_x -= __rhs._M_x;
+      this->_M_y -= __rhs._M_y;
+      return *this;
+    }
+
+    vector_2d&
+    operator*=(double __rhs) noexcept
+    {
+      this->_M_x *= __rhs;
+      this->_M_y *= __rhs;
+      return *this;
+    }
+
+  private:
+
+    double _M_x;
+    double _M_y;
+  };
+
+  // non-member operators:
+
+  inline bool
+  operator==(const vector_2d& __lhs, const vector_2d& __rhs) noexcept
+  { return __lhs._M_x == __rhs._M_x && __lhs._M_y == __rhs._M_y; }
+
+  inline bool
+  operator!=(const vector_2d& __lhs, const vector_2d& __rhs) noexcept
+  { return !(__lhs == __rhs); }
+
+  inline vector_2d
+  operator+(const vector_2d& __lhs) noexcept
+  { return __lhs; }
+
+  inline vector_2d
+  operator+(const vector_2d& __lhs, const vector_2d& __rhs) noexcept
+  { return __ret{__lhs} += __rhs; }
+
+  inline vector_2d
+  operator-(const vector_2d& __lhs) noexcept
+  { return vector_2d{-__lhs._M_x, -__lhs._M_y}; }
+
+  inline vector_2d
+  operator-(const vector_2d& __lhs, const vector_2d& __rhs) noexcept
+  { return __ret{__lhs} -= __rhs; }
+
+  inline vector_2d
+  operator*(const vector_2d& __lhs, double __rhs) noexcept
+  { return vector_2d{__rhs * __lhs._M_x, __rhs * __lhs._M_y}; }
+
+  inline vector_2d
+  operator*(double __lhs, const vector_2d& __rhs) noexcept
+  { return vector_2d{__lhs * __rhs._M_x, __lhs * __rhs._M_y}; }
+
+  /**
+   *
+   */
+  class rectangle
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    rectangle() noexcept;
+
+    rectangle(double x, double y, double width, double height) noexcept;
+
+    rectangle(const vector_2d& tl, const vector_2d& br) noexcept;
+
+    rectangle(const rectangle& r) noexcept;
+
+    rectangle&
+    operator=(const rectangle& r) noexcept;
+
+    rectangle(rectangle&& r) noexcept;
+
+    rectangle&
+    operator=(rectangle&& r) noexcept;
+
+    // modifiers:
+
+    void
+    x(double value) noexcept;
+
+    void
+    y(double value) noexcept;
+
+    void
+    width(double value) noexcept;
+
+    void
+    height(double value) noexcept;
+
+    void
+    top_left(const vector_2d& value) noexcept;
+
+    void
+    bottom_right(const vector_2d& value) noexcept;
+
+
+    // observers:
+
+    double
+    x() const noexcept;
+
+    double
+    y() const noexcept;
+
+    double
+    width() const noexcept;
+
+    double
+    height() const noexcept;
+
+    vector_2d
+    top_left() const noexcept;
+
+    vector_2d
+    bottom_right() const noexcept;
+
+  private:
+
+    double _M_x;
+    double _M_y;
+    double _M_width;
+    double _M_height;
+  };
+
+  /**
+   *
+   */
+  class matrix_2d
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    matrix_2d() noexcept;
+
+    matrix_2d(const matrix_2d& other) noexcept;
+
+    matrix_2d&
+    operator=(const matrix_2d& other) noexcept;
+
+    matrix_2d(matrix_2d&& other) noexcept;
+
+    matrix_2d&
+    operator=(matrix_2d&& other) noexcept;
+
+    matrix_2d(double v00, double v01, double v10, double v11,
+	      double v20, double v21) noexcept;
+
+    // static factory functions:
+
+    static matrix_2d
+    init_identity() noexcept;
+
+    static matrix_2d
+    init_translate(const vector_2d& value) noexcept;
+
+    static matrix_2d
+    init_scale(const vector_2d& value) noexcept;
+
+    static matrix_2d
+    init_rotate(double radians) noexcept;
+
+    static matrix_2d
+    init_shear_x(double factor) noexcept;
+
+    static matrix_2d
+    init_shear_y(double factor) noexcept;
+
+    // modifiers:
+
+    void
+    m00(double value) noexcept;
+
+    void
+    m01(double value) noexcept;
+
+    void
+    m10(double value) noexcept;
+
+    void
+    m11(double value) noexcept;
+
+    void
+    m20(double value) noexcept;
+
+    void
+    m21(double value) noexcept;
+
+    matrix_2d&
+    translate(const vector_2d& value) noexcept;
+
+    matrix_2d&
+    scale(const vector_2d& value) noexcept;
+
+    matrix_2d&
+    rotate(double radians) noexcept;
+
+    matrix_2d&
+    shear_x(double factor) noexcept;
+
+    matrix_2d&
+    shear_y(double factor) noexcept;
+
+    matrix_2d&
+    invert();
+
+    matrix_2d&
+    invert(std::error_code& ec) noexcept;
+
+    // observers:
+
+    double
+    m00() const noexcept;
+
+    double
+    m01() const noexcept;
+
+    double
+    m10() const noexcept;
+
+    double
+    m11() const noexcept;
+
+    double
+    m20() const noexcept;
+
+    double
+    m21() const noexcept;
+
+    bool
+    is_invertible const noexcept;
+
+    double
+    determinant() const;
+
+    double
+    determinant(std::error_code& ec) const noexcept;
+
+    vector_2d
+    transform_distance(const vector_2d& dist) const noexcept;
+
+    vector_2d
+    transform_point(const vector_2d& pt) const noexcept;
+
+    // 9.7, matrix_2d member operators:
+    matrix_2d&
+    operator*=(const matrix_2d& rhs) noexcept;
+
+  private:
+    double _M00;
+    double _M01;
+    double _M10;
+    double _M11;
+    double _M20;
+    double _M21;
+  };
+
+  // matrix_2d non-member operators:
+
+  matrix_2d
+  operator*(const matrix_2d& lhs, const matrix_2d& rhs) noexcept;
+
+  bool
+  operator==(const matrix_2d& lhs, const matrix_2d& rhs) noexcept;
+
+  bool
+  operator!=(const matrix_2d& lhs, const matrix_2d& rhs) noexcept;
+
+  /**
+   *
+   */
+  enum class path_data_type
+  {
+    move_to,
+    line_to,
+    curve_to,
+    new_sub_path,
+    close_path,
+    rel_move_to,
+    rel_line_to,
+    rel_curve_to,
+    arc,
+    arc_negative,
+    change_matrix,
+    change_origin
+  };
+
+  /**
+   *
+   */
+  class path_data_item
+  {
+  public:
+
+    class path_data;
+    class arc;
+    class arc_negative;
+    class change_matrix;
+    class change_origin;
+    class close_path;
+    class curve_to;
+    class line_to;
+    class move_to;
+    class new_sub_path;
+    class rel_curve_to;
+    class rel_line_to;
+    class rel_move_to;
+
+    // construct/copy/move/destroy:
+
+    path_data_item() noexcept;
+
+    path_data_item(const path_data_item& __other) noexcept;
+
+    path_data_item&
+    operator=(const path_data_item& __other) noexcept;
+
+    path_data_item(path_data_item&& __other) noexcept;
+
+    path_data_item&
+    operator=(path_data_item&& __other) noexcept;
+
+    path_data_item(const path_data_item::arc& __val) noexcept;
+
+    path_data_item(const path_data_item::arc_negative& __val) noexcept;
+
+    path_data_item(const path_data_item::change_matrix& __val) noexcept;
+
+    path_data_item(const path_data_item::change_origin& __val) noexcept;
+
+    path_data_item(const path_data_item::close_path& __val) noexcept;
+
+    path_data_item(const path_data_item::curve_to& __val) noexcept;
+
+    path_data_item(const path_data_item::rel_curve_to& __val) noexcept;
+
+    path_data_item(const path_data_item::new_sub_path& __val) noexcept;
+
+    path_data_item(const path_data_item::line_to& __val) noexcept;
+
+    path_data_item(const path_data_item::move_to& __val) noexcept;
+
+    path_data_item(const path_data_item::rel_line_to& __val) noexcept;
+
+    path_data_item(const path_data_item::rel_move_to& __val) noexcept;
+
+    // modifiers:
+
+    void
+    assign(const path_data_item::arc& __val) noexcept;
+
+    void
+    assign(const path_data_item::arc_negative& __val) noexcept;
+
+    void
+    assign(const path_data_item::change_matrix& __val) noexcept;
+
+    void
+    assign(const path_data_item::change_origin& __val) noexcept;
+
+    void
+    assign(const path_data_item::close_path& __val) noexcept;
+
+    void
+    assign(const path_data_item::curve_to& __val) noexcept;
+
+    void
+    assign(const path_data_item::rel_curve_to& __val) noexcept;
+
+    void
+    assign(const path_data_item::new_sub_path& __val) noexcept;
+
+    void
+    assign(const path_data_item::line_to& __val) noexcept;
+
+    void
+    assign(const path_data_item::move_to& __val) noexcept;
+
+    void
+    assign(const path_data_item::rel_line_to& __val) noexcept;
+
+    void
+    assign(const path_data_item::rel_move_to& __val) noexcept;
+
+    // observers:
+
+    bool
+    has_data() const noexcept;
+
+    path_data_type
+    type() const;
+
+    path_data_type
+    type(std::error_code& __ec) const noexcept;
+
+    template<typename _Tp>
+      _Tp
+      get() const;
+
+    template<typename _Tp>
+      _Tp
+      get(std::error_code& __ec) const noexcept;
+
+  private:
+
+    bool _M_has_data;
+
+    union
+    {
+      struct
+      {
+	double centerX;
+	double centerY;
+	double radius;
+	double angle1;
+	double angle2;
+      }
+      arc;
+
+      struct
+      {
+	double m00;
+	double m01;
+	double m10;
+	double m11;
+	double m20;
+	double m21;
+      }
+      matrix;
+
+      struct
+      {
+	double cpt1x;
+	double cpt1y;
+	double cpt2x;
+	double cpt2y;
+	double eptx;
+	double epty;
+      }
+      curve;
+
+      struct
+      {
+	double x;
+	double y;
+      }
+      point;
+    }
+    _M_data;
+
+    path_data_type _M_ype;
+  };
+
+  /**
+   *
+   */
+  class path_data_item::arc_negative
+  : public path_data_item::path_data
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    arc_negative() noexcept;
+
+    arc_negative(const arc_negative&) noexcept;
+
+    path_data_item::arc_negative&
+    operator=(const arc_negative&) noexcept;
+
+    arc_negative(arc_negative&&) noexcept;
+
+    path_data_item::arc_negative&
+    operator=(arc_negative&&) noexcept;
+
+    arc_negative(const vector_2d& center, double radius,
+		 double angle1, double angle2) noexcept;
+
+    // modifiers:
+
+    void
+    center(const vector_2d& value) noexcept;
+    void
+    radius(double value) noexcept;
+    void
+    angle_1(double radians) noexcept;
+    void
+    angle_2(double radians) noexcept;
+
+    // observers:
+
+    vector_2d
+    center() const noexcept;
+
+    double
+    radius() const noexcept;
+
+    double
+    angle_1() const noexcept;
+
+    double
+    angle_2() const noexcept;
+
+    virtual path_data_type
+    type() const noexcept override;
+
+  private:
+
+    vector_2d _M_center;
+
+    double _M_radius;
+
+    double _M_angle_1;
+
+    double _M_angle_2;
+  };
+
+  /**
+   *
+   */
+  class path_data_item::close_path
+  : public path_data_item::path_data
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    close_path() noexcept;
+
+    close_path(const close_path&) noexcept;
+
+    path_data_item::close_path&
+    operator=(const close_path&) noexcept;
+
+    close_path(close_path&&) noexcept;
+
+    path_data_item::close_path&
+    operator=(close_path&&) noexcept;
+
+    // 10.3.10.2, observers:
+
+    virtual path_data_type
+    type() const noexcept override;
+  };
+
+  /**
+   *
+   */
+class path_data_item::change_matrix
+ : public path_data_item::path_data
+ {
+ public:
+
+    // construct/copy/move/destroy:
+
+    change_matrix() noexcept;
+
+    change_matrix(const change_matrix&) noexcept;
+
+    path_data_item::change_matrix&
+    operator=(const change_matrix&) noexcept;
+
+    change_matrix(change_matrix&&) noexcept;
+
+    path_data_item::change_matrix&
+    operator=(change_matrix&&) noexcept;
+
+    explicit
+    change_matrix(const matrix_2d& m) noexcept;
+
+    // modifiers:
+
+    void
+    matrix(const matrix_2d& value) noexcept;
+
+    // observers:
+
+    matrix_2d
+    matrix() const noexcept;
+
+    virtual path_data_type
+    type() const noexcept override;
+
+  private:
+
+    matrix_2d _M_matrix;
+  };
+
+  /**
+   *
+   */
+  class path_data_item::change_origin
+  : public path_data_item::path_data
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    change_origin() noexcept;
+
+    change_origin(const change_origin&) noexcept;
+
+    path_data_item::change_origin&
+    operator=(const change_origin&) noexcept;
+
+    change_origin(change_origin&&) noexcept;
+
+    path_data_item::change_origin&
+    operator=(change_origin&&) noexcept;
+
+    explicit
+    change_origin(const vector_2d& pt) noexcept;
+
+    // modifiers:
+
+    void
+    origin(const vector_2d& value) noexcept;
+
+    // observers:
+
+    vector_2d origin()
+    const noexcept;
+
+    virtual path_data_type
+    type() const noexcept override;
+
+  private:
+
+    vector_2d _M_data;
+  };
+
+  /**
+   *
+   */
+  class path_data_item::curve_to
+  : public path_data_item::path_data
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    curve_to() noexcept;
+
+    curve_to(const curve_to& __curve) noexcept;
+
+    path_data_item::curve_to&
+    operator=(const curve_to& __curve) noexcept;
+
+    curve_to(curve_to&& __curve) noexcept;
+
+    path_data_item::curve_to&
+    operator=(curve_to&& __curve) noexcept;
+
+    curve_to(const vector_2d& __controlPt1,
+	     const vector_2d& __controlPt2,
+	     const vector_2d& __endPt) noexcept;
+
+    // modifiers:
+
+    void
+    control_point_1(const vector_2d& __val) noexcept;
+
+    void
+    control_point_2(const vector_2d& __val) noexcept;
+
+    void
+    end_point(const vector_2d& __val) noexcept;
+
+    // observers:
+
+    vector_2d
+    control_point_1() const noexcept;
+
+    vector_2d
+    control_point_2() const noexcept;
+
+    vector_2d
+    end_point() const noexcept;
+
+    virtual path_data_type
+    type() const noexcept override;
+
+  private:
+
+    vector_2d _M_control_pt1;
+    vector_2d _M_control_pt2;
+    vector_2d _M_end_pt;
+  };
+
+  class path_data_item::line_to
+  : public path_data_item::path_data
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    line_to() noexcept;
+
+    line_to(const line_to&) noexcept;
+
+    path_data_item::line_to&
+    operator=(const line_to&) noexcept;
+
+    line_to(line_to&&) noexcept;
+
+    path_data_item::line_to&
+    operator=(line_to&&) noexcept;
+
+    explicit
+    line_to(const vector_2d& pt) noexcept;
+
+    // modifiers:
+
+    void
+    to(const vector_2d& pt) noexcept;
+
+    // observers:
+
+    vector_2d
+    to() const noexcept;
+
+    virtual path_data_type
+    type() const noexcept override;
+
+  private:
+
+    vector_2d _M_data;
+};
+
+  /**
+   *
+   */
+  class path_data_item::move_to
+  : public path_data_item::path_data
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    move_to() noexcept;
+
+    move_to(const move_to&) noexcept;
+
+    path_data_item::move_to&
+    operator=(const move_to&) noexcept;
+
+    move_to(move_to&&) noexcept;
+
+    path_data_item::move_to&
+    operator=(move_to&&) noexcept;
+
+    explicit
+    move_to(const vector_2d& pt) noexcept;
+
+    // modifiers:
+
+    void
+    to(const vector_2d& pt) noexcept;
+
+    // observers:
+
+    vector_2d
+    to() const noexcept;
+
+    virtual path_data_type
+    type() const noexcept override;
+
+  private:
+
+    vector_2d _M_data;
+};
+
+  /**
+   *
+   */
+  class path_data_item::new_sub_path
+  : public path_data_item::path_data
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    new_sub_path() noexcept;
+
+    new_sub_path(const new_sub_path&) noexcept;
+
+    path_data_item::new_sub_path&
+    operator=(const new_sub_path&) noexcept;
+
+    new_sub_path(new_sub_path&&) noexcept;
+
+    path_data_item::new_sub_path&
+    operator=(new_sub_path&&) noexcept;
+
+    // observers:
+
+    virtual path_data_type
+    type() const noexcept override;
+  };
+
+  /**
+   *
+   */
+  class path_data_item::rel_curve_to
+  : public path_data_item::path_data
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    rel_curve_to() noexcept;
+
+    rel_curve_to(const rel_curve_to&) noexcept;
+
+    path_data_item::rel_curve_to&
+    operator=(const rel_curve_to&) noexcept;
+
+    rel_curve_to(rel_curve_to&&) noexcept;
+
+    path_data_item::rel_curve_to&
+    operator=(rel_curve_to&&) noexcept;
+
+    rel_curve_to(const vector_2d& controlPt1,
+		 const vector_2d& controlPt2,
+		 const vector_2d& endPt) noexcept;
+
+    // modifiers:
+
+    void
+    control_point_1(const vector_2d& value) noexcept;
+
+    void
+    control_point_2(const vector_2d& value) noexcept;
+
+    void
+    end_point(const vector_2d& value) noexcept;
+
+    // 10.3.17.4, observers:
+    vector_2d
+    control_point_1() const noexcept;
+
+    vector_2d
+    control_point_2() const noexcept;
+
+    vector_2d
+    end_point() const noexcept;
+
+    virtual path_data_type
+    type() const noexcept override;
+
+  private:
+
+    vector_2d _M_control_pt1;
+    vector_2d _M_control_pt2;
+    vector_2d _M_end_pt;
+  };
+
+  /**
+   *
+   */
+  class path_data_item::rel_line_to
+  : public path_data_item::path_data
+  {
+
+  public:
+
+    // construct/copy/move/destroy:
+
+    rel_line_to() noexcept;
+
+    rel_line_to(const line_to&) noexcept;
+
+    path_data_item::rel_line_to&
+    operator=(const line_to&) noexcept;
+
+    rel_line_to(line_to&&) noexcept;
+
+    path_data_item::rel_line_to&
+    operator=(line_to&&) noexcept;
+
+    explicit
+    rel_line_to(const vector_2d& pt) noexcept;
+
+    // modifiers:
+
+    void to(const vector_2d& pt) noexcept;
+
+    // observers:
+
+    vector_2d
+    to() const noexcept;
+
+    virtual path_data_type
+    type() const noexcept override;
+
+  private:
+
+    vector_2d _M_data;
+};
+
+  /**
+   *
+   */
+  class path_data_item::rel_move_to
+  : public path_data_item::path_data
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    rel_move_to() noexcept;
+
+    rel_move_to(const rel_move_to&) noexcept;
+
+    path_data_item::rel_move_to&
+    operator=(const rel_move_to&) noexcept;
+
+    rel_move_to(rel_move_to&&) noexcept;
+
+    path_data_item::rel_move_to&
+    operator=(rel_move_to&&) noexcept;
+
+    explicit
+    rel_move_to(const vector_2d& pt) noexcept;
+
+    // modifiers:
+
+    void
+    to(const vector_2d& pt) noexcept;
+
+    // observers:
+
+    vector_2d
+    to() const noexcept;
+
+    virtual path_data_type
+    type() const noexcept override;
+
+private:
+
+    vector_2d _M_data;
+};
+
+  /**
+   *
+   */
+  template<>
+    path_data_item::arc
+    path_data_item::get() const;
+
+  template<>
+    path_data_item::arc
+    path_data_item::get(std::error_code& ec) const noexcept;
+
+  template<>
+    path_data_item::arc_negative
+    path_data_item::get() const;
+
+  template<>
+    path_data_item::arc_negative
+    path_data_item::get(std::error_code& ec) const noexcept;
+
+  template<>
+    inline path_data_item::change_matrix
+    path_data_item::get() const;
+
+  template<>
+    path_data_item::change_matrix
+    path_data_item::get(std::error_code& ec) const noexcept;
+
+  template<>
+    path_data_item::change_origin
+    path_data_item::get() const;
+
+  template<>
+    path_data_item::change_origin
+    path_data_item::get(std::error_code& ec) const noexcept;
+
+  template<>
+    path_data_item::close_path
+    path_data_item::get() const;
+
+  template<>
+    path_data_item::close_path
+    path_data_item::get(std::error_code& ec) const noexcept;
+
+  template<>
+    path_data_item::curve_to
+    path_data_item::get() const;
+
+  template<>
+    path_data_item::curve_to
+    path_data_item::get(std::error_code& ec) const noexcept;
+
+  template<>
+    path_data_item::rel_curve_to
+    path_data_item::get() const;
+
+  template<>
+    path_data_item::rel_curve_to
+    path_data_item::get(std::error_code& ec) const noexcept;
+
+  template<>
+    path_data_item::new_sub_path
+    path_data_item::get() const;
+
+  template<>
+    path_data_item::new_sub_path
+    path_data_item::get(std::error_code& ec) const noexcept;
+
+  template<>
+    path_data_item::line_to
+    path_data_item::get() const;
+
+  template<>
+    path_data_item::line_to
+    path_data_item::get(std::error_code& ec) const noexcept;
+
+  template<>
+    path_data_item::move_to
+    path_data_item::get() const;
+
+  template<>
+    path_data_item::move_to
+    path_data_item::get(std::error_code& ec) const noexcept;
+
+  template<>
+    path_data_item::rel_line_to
+    path_data_item::get() const;
+
+  template<>
+    path_data_item::rel_line_to
+    path_data_item::get(std::error_code& ec) const noexcept;
+
+  template<>
+    path_data_item::rel_move_to
+    path_data_item::get() const;
+
+  template<>
+    path_data_item::rel_move_to
+    path_data_item::get(std::error_code& ec) const noexcept;
+
+  /**
+   *
+   */
+  class path
+  {
+
+  public:
+
+    // construct/copy/destroy:
+
+    path() = delete;
+
+    explicit
+    path(const path_factory& pb);
+
+    path(const path_factory& pb,
+	 std::error_code& ec) noexcept;
+
+    explicit
+    path(const std::vector<path_data_item>& p);
+
+    path(const std::vector<path_data_item>& p,
+	 std::error_code& ec) noexcept;
+
+    path(const path&) noexcept;
+
+    path&
+    operator=(const path&) noexcept;
+
+    path(path&&) noexcept;
+
+    path&
+    operator=(path&&) noexcept;
+  };
+
+  class path_factory
+  {
+  public: // missing from draft.
+
+    // construct/copy/destroy:
+
+    path_factory() noexcept;
+
+    path_factory(const path_factory&);
+
+    path_factory&
+    operator=(const path_factory&);
+
+    path_factory(path_factory&&) noexcept;
+
+    path_factory&
+    operator=(path_factory&&) noexcept;
+
+    // modifiers:
+
+    void
+    append(const path_factory& p);
+
+    void
+    append(const path_factory& p,
+	   std::error_code& ec) noexcept;
+
+    void
+    append(const std::vector<path_data_item>& p);
+
+    void
+    append(const std::vector<path_data_item>& p,
+	   std::error_code& ec) noexcept;
+
+    void
+    new_sub_path();
+
+    void
+    new_sub_path(std::error_code& ec) noexcept;
+
+    void
+    close_path();
+
+    void
+    close_path(std::error_code& ec) noexcept;
+
+    void
+    arc(const vector_2d& center,
+	double radius,
+	double angle1,
+	double angle2);
+
+    void
+    arc(const vector_2d& center,
+	double radius,
+	double angle1,
+	double angle2,
+	std::error_code& ec) noexcept;
+
+    void
+    arc_negative(const vector_2d& center,
+		 double radius,
+		 double angle1,
+		 double angle2);
+
+    void
+    arc_negative(const vector_2d& center,
+		 double radius,
+		 double angle1,
+		 double angle2,
+		 std::error_code& ec) noexcept;
+
+    void
+    curve_to(const vector_2d& pt0,
+	     const vector_2d& pt1,
+	     const vector_2d& pt2);
+
+    void
+    curve_to(const vector_2d& pt0,
+	     const vector_2d& pt1,
+	     const vector_2d& pt2,
+	     std::error_code& ec) noexcept;
+
+    void
+    line_to(const vector_2d& pt);
+
+    void
+    line_to(const vector_2d& pt,
+	    std::error_code& ec) noexcept;
+
+    void
+    move_to(const vector_2d& pt);
+
+    void
+    move_to(const vector_2d& pt,
+	    std::error_code& ec) noexcept;
+
+    void
+    rectangle(const experimental::io2d::rectangle& r);
+
+    void
+    rectangle(const experimental::io2d::rectangle& r,
+	      std::error_code& ec) noexcept;
+
+    void
+    rel_curve_to(const vector_2d& dpt0,
+		 const vector_2d& dpt1,
+		 const vector_2d& dpt2);
+
+    void
+    rel_curve_to(const vector_2d& dpt0,
+		 const vector_2d& dpt1,
+		 const vector_2d& dpt2,
+		 std::error_code& ec) noexcept;
+
+    void
+    rel_line_to(const vector_2d& dpt);
+
+    void
+    rel_line_to(const vector_2d& dpt,
+		std::error_code& ec) noexcept;
+
+    void
+    rel_move_to(const vector_2d& dpt);
+
+    void
+    rel_move_to(const vector_2d& dpt,
+		std::error_code& ec) noexcept;
+
+    void
+    transform_matrix(const matrix_2d& m);
+
+    void
+    transform_matrix(const matrix_2d& m,
+		     std::error_code& ec) noexcept;
+
+    void
+    origin(const vector_2d& pt);
+
+    void
+    origin(const vector_2d& pt,
+	   std::error_code& ec) noexcept;
+
+    void
+    clear() noexcept;
+
+    // observers:
+
+    experimental::io2d::rectangle
+    path_extents() const;
+
+    experimental::io2d::rectangle
+    path_extents(std::error_code& ec) const noexcept;
+
+    bool
+    has_current_point() const noexcept;
+
+    vector_2d
+    current_point() const;
+
+    vector_2d
+    current_point(std::error_code& ec) const noexcept;
+
+    matrix_2d
+    transform_matrix() const noexcept;
+
+    vector_2d
+    origin() const noexcept;
+
+    std::vector<path_data_item>
+    data() const;
+
+    std::vector<path_data_item>
+    data(std::error_code& ec) const noexcept;
+
+    path_data_item
+    data_item(unsigned int index) const;
+
+    path_data_item
+    data_item(unsigned int index,
+	      std::error_code& ec) const noexcept;
+
+    const std::vector<path_data_item>&
+    data_ref() const noexcept;
+
+  private:
+
+    std::vector<path_data_item> _M_data;
+
+    bool _M_has_current_point;
+
+    vector_2d _M_current_point;
+
+    vector_2d _M_last_move_to_point;
+
+    matrix_2d _M_transform_matrix;
+
+    vector_2d _M_origin;
+  };
+
+  /**
+   *
+   */
+  enum class font_slant
+  {
+    normal,
+    italic,
+    oblique
+  };
+
+  /**
+   *
+   */
+  enum class font_weight
+  {
+    normal,
+    bold
+  };
+
+  /**
+   *
+   */
+  enum class subpixel_order
+  {
+    default_subpixel_order,
+    horizontal_rgb,
+    horizontal_bgr,
+    vertical_rgb,
+    vertical_bgr
+  };
+
+  /**
+   *
+   */
+  class font_options
+  {
+  public:
+
+    // construct/copy/destroy:
+
+    font_options() noexcept;
+
+    font_options(const font_options& other) noexcept;
+
+    font_options&
+    operator=(const font_options& other) noexcept;
+
+    font_options(font_options&& other) noexcept;
+
+    font_options&
+    operator=(font_options&& other) noexcept;
+
+    font_options(std::experimental::io2d::antialias a,
+		 std::experimental::io2d::subpixel_order so) noexcept;
+
+    // modifiers:
+
+    void
+    antialias(std::experimental::io2d::antialias value) noexcept;
+
+    void
+    subpixel_order(std::experimental::io2d::subpixel_order value) noexcept;
+
+    // observers:
+
+    std::experimental::io2d::antialias
+    antialias() const noexcept;
+
+    std::experimental::io2d::subpixel_order
+    subpixel_order() const noexcept;
+
+  private:
+
+    std::experimental::io2d::antialias _M_antialias;
+
+    std::experimental::io2d::subpixel_order _M_subpixel_order;
+};
+
+  /**
+   *
+   */
+  class font_face
+  {
+  public:
+
+    typedef implementation-defined native_handle_type;
+
+    native_handle_type
+    native_handle() const noexcept;
+
+    // construct/copy/destroy:
+
+    font_face() = delete;
+
+    font_face(const font_face&) noexcept;
+
+    font_face&
+    operator=(const font_face&) noexcept;
+
+    font_face(font_face&& other) noexcept;
+
+    font_face&
+    operator=(font_face&& other) noexcept;
+
+    virtual ~font_face();
+  };
+
+  /**
+   *
+   */
+  class simple_font_face
+  : public font_face
+  {
+  public:
+
+    typedef implementation-defined native_handle_type; // exposition only
+
+    native_handle_type
+    native_handle() const noexcept; // exposition only
+
+    // construct/copy/destroy:
+
+    simple_font_face() = delete;
+
+    simple_font_face(const simple_font_face&) noexcept;
+
+    simple_font_face&
+    operator=(const simple_font_face&) noexcept;
+
+    simple_font_face(simple_font_face&& other) noexcept;
+
+    simple_font_face&
+    operator=(simple_font_face&& other) noexcept;
+
+    simple_font_face(const string& typeface,
+		     std::experimental::io2d::font_slant fs,
+		     std::experimental::io2d::font_weight fw);
+
+    simple_font_face(const string& typeface,
+		     std::experimental::io2d::font_slant fs,
+		     std::experimental::io2d::font_weight fw,
+		     std::error_code& ec) noexcept;
+
+    // observers:
+
+    string
+    typeface() const;
+
+    void
+    typeface(string& str,
+	     std::error_code& ec) const noexcept;
+
+    std::experimental::io2d::font_slant
+    font_slant() const noexcept;
+
+    std::experimental::io2d::font_weight
+    font_weight() const noexcept;
+
+  private:
+
+    string _Typeface;
+
+    std::experimental::io2d::font_slant _M_font_slant;
+
+    std::experimental::io2d::font_weight _M_font_weight;
+  };
+
+  /**
+   *
+   */
+  class font_extents
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    font_extents() noexcept;
+
+    font_extents(const font_extents& other) noexcept;
+
+    font_extents&
+    operator=(const font_extents& other) noexcept;
+
+    font_extents(font_extents&& other) noexcept;
+
+    font_extents&
+    operator=(font_extents&& other) noexcept;
+
+    font_extents(double ascent, double descent, double height) noexcept;
+
+    // modifiers:
+
+    void
+    ascent(double value) noexcept;
+
+    void
+    descent(double value) noexcept;
+
+    void
+    height(double value) noexcept;
+
+    // observers:
+
+    double
+    ascent() const noexcept;
+
+    double
+    descent() const noexcept;
+
+    double
+    height() const noexcept;
+
+  private:
+
+    double _M_asc;
+
+    double _M_desc;
+
+    double _M_height;
+  };
+
+  /**
+   *
+   */
+  class text_extents
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    text_extents() noexcept;
+
+    text_extents(const text_extents& other) noexcept;
+
+    text_extents&
+    operator=(const text_extents& other) noexcept;
+
+    text_extents(font_extents&& other) noexcept;
+
+    text_extents&
+    operator=(font_extents&& other) noexcept;
+
+    text_extents(double xBearing,
+		 double yBearing,
+		 double width,
+		 double height,
+		 double xAdvance,
+		 double yAdvance) noexcept;
+
+    // modifiers:
+
+    void
+    x_bearing(double value) noexcept;
+
+    void
+    y_bearing(double value) noexcept;
+
+    void
+    width(double value) noexcept;
+
+    void
+    height(double value) noexcept;
+
+    void
+    x_advance(double value) noexcept;
+
+    void
+    y_advance(double value) noexcept;
+
+    // observers:
+
+    double
+    x_bearing() const noexcept;
+
+    double
+    y_bearing() const noexcept;
+
+    double
+    width() const noexcept;
+
+    double
+    height() const noexcept;
+
+    double
+    x_advance() const noexcept;
+
+    double
+    y_advance() const noexcept;
+
+  private:
+
+    double _M_x_bear;
+
+    double _M_y_bear;
+
+    double _M_width;
+
+    double _M_height;
+
+    double _M_x_adv;
+
+    double _M_y_adv;
+  };
+
+  /**
+   *
+   */
+  enum class extend
+  {
+    none,
+    repeat,
+    reflect,
+    pad
+  };
+
+  /**
+   *
+   */
+  enum class filter
+  {
+    fast,
+    good,
+    best,
+    nearest,
+    bilinear
+  };
+
+  /**
+   *
+   */
+  enum class brush_type
+  {
+    solid_color,
+    surface,
+    linear,
+    radial,
+    mesh
+  };
+
+  /**
+   *
+   */
+  class brush
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    brush() = delete;
+
+    brush(const brush&) noexcept;
+
+    brush&
+    operator=(const brush&) noexcept;
+
+    brush(brush&& other) noexcept;
+
+    brush&
+    operator=(brush&& other) noexcept;
+
+    brush(const solid_color_brush_factory& f);
+
+    brush(const solid_color_brush_factory& f, std::error_code& ec) noexcept;
+
+    brush(const linear_brush_factory& f);
+
+    brush(const linear_brush_factory& f, std::error_code& ec) noexcept;
+
+    brush(const radial_brush_factory& f);
+
+    brush(const radial_brush_factory& f, std::error_code& ec) noexcept;
+
+    brush(const surface_brush_factory& f); // FIXME: Added const??
+
+    brush(const surface_brush_factory& f, std::error_code& ec) noexcept; // FIXME: Added const??
+
+    // modifiers:
+
+    void
+    extend(experimental::io2d::extend e) noexcept;
+
+    void
+    filter(experimental::io2d::filter f) noexcept;
+
+    void
+    matrix(const matrix_2d& m) noexcept;
+
+    // observers:
+
+    experimental::io2d::extend
+    extend() const noexcept;
+
+    experimental::io2d::filter
+    filter() const noexcept;
+
+    matrix_2d
+    matrix() const noexcept;
+
+    brush_type
+    type() const noexcept;
+
+  private:
+
+    experimental::io2d::extend _M_extend;
+
+    experimental::io2d::filter _M_filter;
+
+    matrix_2d _M_matrix;
+
+    brush_type _M_brush_type;
+  };
+
+  /**
+   *
+   */
+  class solid_color_brush_factory
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    solid_color_brush_factory() noexcept;
+
+    solid_color_brush_factory(const solid_color_brush_factory&) noexcept;
+
+    solid_color_brush_factory&
+    operator=(const solid_color_brush_factory&) noexcept;
+
+    solid_color_brush_factory(solid_color_brush_factory&& other) noexcept;
+
+    solid_color_brush_factory&
+    operator=(solid_color_brush_factory&& other) noexcept;
+
+    solid_color_brush_factory(const rgba_color& color) noexcept;
+
+    // modifiers:
+
+    void
+    color(const rgba_color& value) noexcept;
+
+    // observers:
+
+    rgba_color
+    color() const noexcept;
+
+  private:
+
+    rgba_color _M_color;
+  };
+
+  /**
+   *
+   */
+  class linear_brush_factory
+  {
+  public:
+
+    // types
+
+    typedef implementation-defined size_type;
+
+    // construct/copy/move/destroy:
+
+    linear_brush_factory() noexcept;
+
+    linear_brush_factory(const linear_brush_factory&);
+
+    linear_brush_factory&
+    operator=(const linear_brush_factory&);
+
+    linear_brush_factory(linear_brush_factory&& __other) noexcept;
+
+    linear_brush_factory&
+    operator=(linear_brush_factory&& __other) noexcept;
+
+    linear_brush_factory(const vector_2d& __begin,
+			 const vector_2d& __end) noexcept;
+
+    // modifiers:
+
+    void
+    add_color_stop(double offset,
+		   const rgba_color& color);
+
+    void
+    add_color_stop(double __offset,
+		   const rgba_color& __color,
+		   std::error_code& __ec) noexcept;
+
+    void
+    color_stop(size_type __index,
+	       double __offset,
+	       const rgba_color& __color);
+
+    void
+    color_stop(size_type __index,
+	       double __offset,
+	       const rgba_color& __color,
+	       std::error_code& __ec) noexcept;
+
+    void
+    begin_point(const vector_2d& __value) noexcept;
+
+    void
+    end_point(const vector_2d& __value) noexcept;
+
+    // observers:
+
+    size_type
+    color_stop_count() const noexcept;
+
+    std::tuple<double, rgba_color>
+    color_stop(size_type __index) const;
+
+    std::tuple<double, rgba_color>
+    color_stop(size_type __index,
+	       std::error_code& __ec) const noexcept;
+
+    vector_2d
+    begin_point() const noexcept;
+
+    vector_2d
+    end_point() const noexcept;
+
+  private:
+
+    vector_2d _M_begin_point;
+
+    vector_2d _M_end_point;
+
+    std::vector<std::tuple<double, rgba_color>> _M_color_stops;
+  }
+
+  /**
+   *
+   */
+  class radial_brush_factory
+  {
+  public:
+
+    // types
+
+    typedef implementation-defined size_type;
+
+    // construct/copy/move/destroy:
+
+    radial_brush_factory() noexcept;
+
+    radial_brush_factory(const radial_brush_factory&);
+
+    radial_brush_factory&
+    operator=(const radial_brush_factory&);
+
+    radial_brush_factory(radial_brush_factory&& other) noexcept;
+
+    radial_brush_factory&
+    operator=(radial_brush_factory&& other) noexcept;
+
+    radial_brush_factory(const vector_2d& center0,
+			 double radius0,
+			 const vector_2d& center1,
+			 double radius1) noexcept;
+
+    // modifiers:
+
+    void
+    add_color_stop(double offset,
+		   const rgba_color& color);
+
+    void
+    add_color_stop(double offset,
+		   const rgba_color& color,
+		   std::error_code& ec) noexcept;
+
+    void
+    color_stop(size_type index,
+	       double offset,
+	       const rgba_color& color);
+
+    void
+    color_stop(size_type index,
+	       double offset,
+	       const rgba_color& color,
+	       std::error_code& ec) noexcept;
+
+    void
+    radial_circles(const vector_2d& center0,
+		   double radius0,
+		   const vector_2d& center1,
+		   double radius1) noexcept;
+
+    // observers:
+
+    size_type
+    color_stop_count() const noexcept;
+
+    std::tuple<double, rgba_color>
+    color_stop(size_type index) const;
+
+    std::tuple<double, rgba_color>
+    color_stop(size_type index,
+	       std::error_code& ec) const noexcept;
+
+    std::tuple<vector_2d, double, vector_2d, double>
+    radial_circles() const noexcept;
+
+  private:
+
+    vector_2d _M_center0;
+
+    double _M_radius0;
+
+    vector_2d _M_center1;
+
+    double _M_radius1;
+
+    std::vector<std::tuple<double, rgba_color>> _M_color_stops;
+};
+
+  /**
+   *
+   */
+  class surface_brush_factory
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    surface_brush_factory() noexcept;
+
+    surface_brush_factory(const surface_brush_factory&) = delete;
+
+    surface_brush_factory&
+    operator=(const surface_brush_factory&) = delete;
+
+    surface_brush_factory(surface_brush_factory&& other) noexcept;
+
+    surface_brush_factory&
+    operator=(surface_brush_factory&& other) noexcept;
+
+    surface_brush_factory(experimental::io2d::surface& s);
+
+    surface_brush_factory(experimental::io2d::surface& s,
+			  std::error_code& ec) noexcept;
+
+    // modifiers:
+
+    image_surface
+    surface(experimental::io2d::surface& s);
+
+    void
+    surface(experimental::io2d::surface& s,
+	    image_surface& oldSurface,
+	    std::error_code& ec) noexcept;
+
+    void
+    surface(experimental::io2d::surface& s,
+	    std::error_code& ec) noexcept;
+
+    // observers:
+
+    bool
+    has_surface() const noexcept;
+
+    const image_surface&
+    surface() const;
+
+  private:
+
+    std::unique_ptr<image_surface> _M_surface;
+  };
+
+  /**
+   *
+   */
+  enum class antialias
+  {
+    default_antialias,
+    none,
+    gray,
+    subpixel,
+    fast,
+    good,
+    best
+  };
+
+  /**
+   *
+   */
+  enum class content
+  {
+    color,
+    alpha,
+    color_alpha
+  };
+
+  /**
+   *
+   */
+  enum class fill_rule
+  {
+    winding,
+    even_odd
+  };
+
+  /**
+   *
+   */
+  enum class line_cap
+  {
+    butt,
+    round,
+    square
+  };
+
+  /**
+   *
+   */
+  enum class line_join
+  {
+    miter,
+    round,
+    bevel
+  };
+
+  /**
+   *
+   */
+  enum class compositing_operator
+  {
+    // basic
+    over,
+    clear,
+    source,
+    in,
+    out,
+    atop,
+    dest,
+    dest_over,
+    dest_in,
+    dest_out,
+    dest_atop,
+    xor_op,
+    add,
+    saturate,
+    // blend
+    multiply,
+    screen,
+    overlay,
+    darken,
+    lighten,
+    color_dodge,
+    color_burn,
+    hard_light,
+    soft_light,
+    difference,
+    exclusion,
+    // hsl
+    hsl_hue,
+    hsl_saturation,
+    hsl_color,
+    hsl_luminosity
+  };
+
+  /**
+   *
+   */
+  enum class format
+  {
+    invalid,
+    argb32,
+    rgb24,
+    a8,
+    rgb16_565,
+    rgb30
+  };
+
+  /**
+   *
+   */
+  enum class scaling
+  {
+    letterbox,
+    uniform,
+    fill_uniform,
+    fill_exact,
+    none
+  };
+
+  /**
+   *
+   */
+  class device
+  {
+  public:
+
+    typedef implementation-defined native_handle_type;
+
+    // exposition only
+
+    native_handle_type native_handle() const noexcept;
+
+    // exposition only
+
+    device() = delete;
+
+    device(const device&) = delete;
+
+    device&
+    operator=(const device&) = delete;
+
+    device(device&& other);
+
+    device&
+    operator=(device&& other);
+
+    // modifiers:
+
+    void
+    flush() noexcept;
+
+    void
+    lock();
+
+    void
+    lock(std::error_code& ec) noexcept;
+
+    void
+    unlock();
+
+    void
+    unlock(std::error_code& ec) noexcept;
+  };
+
+  /**
+   *
+   */
+  class surface
+  {
+  public:
+
+    // constructors, assignment operators, destructors:
+
+    surface() = delete;
+
+    surface(const surface&) = delete;
+
+    surface& operator=(const surface&) = delete;
+
+    surface(surface&& other) noexcept;
+
+    surface& operator=(surface&& other) noexcept;
+
+    virtual ~surface();
+
+    // state modifiers:
+
+    virtual void
+    finish() noexcept;
+
+    void
+    flush();
+
+    void
+    flush(std::error_code& ec) noexcept;
+
+    shared_ptr<experimental::io2d::device>
+    device();
+
+    shared_ptr<experimental::io2d::device>
+    device(std::error_code& ec) noexcept;
+
+    void mark_dirty();
+
+    void mark_dirty(std::error_code& ec) noexcept;
+
+    void
+    mark_dirty(const rectangle& rect);
+
+    void
+    mark_dirty(const rectangle& rect,
+	       std::error_code& ec) noexcept;
+
+    void
+    map(const std::function<void(mapped_surface&)>& action);
+
+    void
+    map(const std::function<void(mapped_surface&, std::error_code&)>& action,
+	std::error_code& ec);
+
+    void
+    map(const std::function<void(mapped_surface&)>& action,
+	const rectangle& extents);
+
+    void
+    map(const std::function<void(mapped_surface&, std::error_code&)>& action,
+	const rectangle& extents,
+	std::error_code& ec);
+
+    virtual void
+    save();
+
+    virtual void
+    save(std::error_code& ec) noexcept;
+
+    virtual void
+    restore();
+
+    virtual void
+    restore(std::error_code& ec) noexcept;
+
+    void
+    brush(experimental::nullopt_t) noexcept;
+
+    void
+    brush(const experimental::io2d::brush& source);
+
+    void
+    brush(const experimental::io2d::brush& source,
+	  std::error_code& ec) noexcept;
+
+    void
+    antialias(experimental::io2d::antialias a) noexcept;
+
+    void
+    dashes(experimental::nullopt_t) noexcept;
+
+    void
+    dashes(const experimental::io2d::dashes& d);
+
+    void
+    dashes(const experimental::io2d::dashes& d,
+	   std::error_code& ec) noexcept;
+
+    void
+    fill_rule(experimental::io2d::fill_rule fr) noexcept;
+
+    void
+    line_cap(experimental::io2d::line_cap lc) noexcept;
+
+    void
+    line_join(experimental::io2d::line_join lj) noexcept;
+
+    void
+    line_width(double width) noexcept;
+
+    void
+    miter_limit(double limit) noexcept;
+
+    void
+    compositing_operator(experimental::io2d::compositing_operator co) noexcept;
+
+    void
+    clip(const experimental::io2d::path& p);
+
+    void
+    clip(const experimental::io2d::path& p,
+	 std::error_code& ec) noexcept;
+
+    void
+    clip_immediate();
+
+    void
+    clip_immediate(std::error_code& ec) noexcept;
+
+    void
+    path(experimental::nullopt_t) noexcept;
+
+    void
+    path(const experimental::io2d::path& p);
+
+    void
+    path(const experimental::io2d::path& p,
+	 std::error_code& ec) noexcept;
+
+    // immediate path modifiers:
+
+    experimental::io2d::path_factory&
+    immediate() noexcept;
+
+    // render modifiers:
+
+    void
+    fill();
+
+    void
+    fill(std::error_code& ec) noexcept;
+
+    void
+    fill(const rgba_color& c);
+
+    void
+    fill(const rgba_color& c,
+	 std::error_code& ec) noexcept;
+
+    void
+    fill(const experimental::io2d::brush& b);
+
+    void
+    fill(const experimental::io2d::brush& b,
+	 std::error_code& ec) noexcept;
+
+    void
+    fill(const surface& s,
+	 const vector_2d& o = vector_2d{ },
+	 extend e = extend::none,
+	 filter f = filter::good);
+
+    void
+    fill(const surface& s,
+	 std::error_code& ec,
+	 const vector_2d& o = vector_2d{ },
+	 extend e = extend::none,
+	 filter f = filter::good) noexcept;
+
+    void
+    fill(const surface& s,
+	 const matrix_2d& m,
+	 extend e = extend::none,
+	 filter f = filter::good);
+
+    void
+    fill(const surface& s,
+	 const matrix_2d& m,
+	 std::error_code& ec,
+	 extend e = extend::none,
+	 filter f = filter::good) noexcept;
+
+    void
+    fill_immediate();
+
+    void
+    fill_immediate(std::error_code& ec) noexcept;
+
+    void
+    fill_immediate(const rgba_color& c);
+
+    void
+    fill_immediate(const rgba_color& c,
+		   std::error_code& ec) noexcept;
+
+    void
+    fill_immediate(const experimental::io2d::brush& b);
+
+    void
+    fill_immediate(const experimental::io2d::brush& b,
+		   std::error_code& ec) noexcept;
+
+    void
+    fill_immediate(const surface& s,
+		   const vector_2d& o = vector_2d{ },
+		   extend e = extend::none,
+		   filter f = filter::good);
+
+    void
+    fill_immediate(const surface& s,
+		   std::error_code& ec,
+		   const vector_2d& o = vector_2d{ },
+		   extend e = extend::none,
+		   filter f = filter::good) noexcept;
+
+    void
+    fill_immediate(const surface& s,
+		   const matrix_2d& m,
+		   extend e = extend::none,
+		   filter f = filter::good);
+
+    void
+    fill_immediate(const surface& s,
+		   const matrix_2d& m,
+		   std::error_code& ec,
+		   extend e = extend::none,
+		   filter f = filter::good) noexcept;
+
+    void
+    paint();
+
+    void
+    paint(std::error_code& ec) noexcept;
+
+    void
+    paint(const rgba_color& c);
+
+    void
+    paint(const rgba_color& c,
+	  std::error_code& ec) noexcept;
+
+    void
+    paint(const experimental::io2d::brush& b);
+
+    void
+    paint(const experimental::io2d::brush& b,
+	  std::error_code& ec) noexcept;
+
+    void
+    paint(const surface& s,
+	  const vector_2d& o = vector_2d{ },
+	  extend e = extend::none,
+	  filter f = filter::good);
+
+    void
+    paint(const surface& s,
+	  std::error_code& ec,
+	  const vector_2d& o = vector_2d{ },
+	  extend e = extend::none,
+	  filter f = filter::good) noexcept;
+
+    void
+    paint(const surface& s,
+	  const matrix_2d& m,
+	  extend e = extend::none,
+	  filter f = filter::good);
+
+    void
+    paint(const surface& s,
+	  const matrix_2d& m,
+	  std::error_code& ec,
+	  extend e = extend::none,
+	  filter f = filter::good) noexcept;
+
+    void
+    paint(double alpha);
+
+    void
+    paint(double alpha,
+	  std::error_code& ec) noexcept;
+
+    void
+    paint(const rgba_color& c,
+	  double alpha);
+
+    void
+    paint(const rgba_color& c,
+	  double alpha,
+	  std::error_code& ec) noexcept;
+
+    void
+    paint(const experimental::io2d::brush& b,
+	  double alpha);
+
+    void
+    paint(const experimental::io2d::brush& b,
+	  double alpha,
+	  std::error_code& ec) noexcept;
+
+    void
+    paint(const surface& s,
+	  double alpha,
+	  const vector_2d& o = vector_2d{ },
+	  extend e = extend::none,
+	  filter f = filter::good);
+
+    void
+    paint(const surface& s,
+	  double alpha,
+	  std::error_code& ec,
+	  const vector_2d& o = vector_2d{ },
+	  extend e = extend::none,
+	  filter f = filter::good) noexcept;
+
+    void
+    paint(const surface& s,
+	  double alpha,
+	  const matrix_2d& m,
+	  extend e = extend::none,
+	  filter f = filter::good);
+
+    void
+    paint(const surface& s,
+	  double alpha,
+	  const matrix_2d& m,
+	  std::error_code& ec,
+	  extend e = extend::none,
+	  filter f = filter::good) noexcept;
+
+    void
+    stroke();
+
+    void
+    stroke(std::error_code& ec) noexcept;
+
+    void
+    stroke(const rgba_color& c);
+
+    void
+    stroke(const rgba_color& c,
+	   std::error_code& ec) noexcept;
+
+    void
+    stroke(const experimental::io2d::brush& b);
+
+    void
+    stroke(const experimental::io2d::brush& b,
+	   std::error_code& ec) noexcept;
+
+    void
+    stroke(const surface& s,
+	   const vector_2d& o = vector_2d{ },
+	   extend e = extend::none,
+	   filter f = filter::good);
+
+    void
+    stroke(const surface& s, std::error_code& ec,
+	   const vector_2d& o = vector_2d{ },
+	   extend e = extend::none,
+	   filter f = filter::good) noexcept;
+
+    void
+    stroke(const surface& s,
+	   const matrix_2d& m,
+	   extend e = extend::none,
+	   filter f = filter::good);
+
+    void
+    stroke(const surface& s,
+	   const matrix_2d& m,
+	   std::error_code& ec,
+	   extend e = extend::none,
+	   filter f = filter::good) noexcept;
+
+    void
+    stroke_immediate();
+
+    void
+    stroke_immediate(std::error_code& ec) noexcept;
+
+    void
+    stroke_immediate(const rgba_color& c);
+
+    void
+    stroke_immediate(const rgba_color& c,
+		     std::error_code& ec) noexcept;
+
+    void
+    stroke_immediate(const experimental::io2d::brush& b);
+
+    void
+    stroke_immediate(const experimental::io2d::brush& b,
+		     std::error_code& ec) noexcept;
+
+    void
+    stroke_immediate(const surface& s,
+		     const vector_2d& o = vector_2d{ },
+		     extend e = extend::none,
+		     filter f = filter::good);
+
+    void
+    stroke_immediate(const surface& s,
+		     std::error_code& ec,
+		     const vector_2d& o = vector_2d{ },
+		     extend e = extend::none,
+		     filter f = filter::good) noexcept;
+
+    void
+    stroke_immediate(const surface& s,
+		     const matrix_2d& m,
+		     extend e = extend::none,
+		     filter f = filter::good);
+
+    void
+    stroke_immediate(const surface& s,
+		     const matrix_2d& m,
+		     std::error_code& ec,
+		     extend e = extend::none,
+		     filter f = filter::good) noexcept;
+
+    // mask render modifiers:
+
+    void
+    mask(const experimental::io2d::brush& mb);
+
+    void
+    mask(const experimental::io2d::brush& mb,
+	 std::error_code& ec) noexcept;
+
+    void
+    mask(const experimental::io2d::brush& mb,
+	 const rgba_color& c);
+
+    void
+    mask(const experimental::io2d::brush& mb,
+	 const rgba_color& c,
+	 std::error_code& ec) noexcept;
+
+    void
+    mask(const experimental::io2d::brush& mb,
+	 const experimental::io2d::brush& b);
+
+    void
+    mask(const experimental::io2d::brush& mb,
+	 const experimental::io2d::brush& b,
+	 std::error_code& ec) noexcept;
+
+    void
+    mask(const experimental::io2d::brush& mb,
+	 const surface& s,
+	 const vector_2d& o = vector_2d{ },
+	 extend e = extend::none,
+	 filter f = filter::good);
+
+    void
+    mask(const experimental::io2d::brush& mb,
+	 const surface& s,
+	 std::error_code& ec,
+	 const vector_2d& o = vector_2d{ },
+	 extend e = extend::none,
+	 filter f = filter::good) noexcept;
+
+    void
+    mask(const experimental::io2d::brush& mb,
+	 const surface& s,
+	 const matrix_2d& m,
+	 extend e = extend::none
+	 filter f = filter::good);
+
+    void
+    mask(const experimental::io2d::brush& mb,
+    const surface& s,
+	 const matrix_2d& m, std::error_code& ec,
+	 extend e = extend::none,
+	 filter f = filter::good) noexcept;
+
+    void
+    mask(const surface& ms);
+
+    void
+    mask(const surface& ms,
+	 std::error_code& ec) noexcept;
+
+    void
+    mask(const surface& ms,
+	 const rgba_color& c);
+
+    void
+    mask(const surface& ms,
+	 const rgba_color& c, std::error_code& ec) noexcept;
+
+    void
+    mask(const surface& ms,
+    const experimental::io2d::brush& b);
+
+    void
+    mask(const surface& ms,
+	 const experimental::io2d::brush& b,
+	 std::error_code& ec) noexcept;
+
+    void
+    mask(const surface& ms,
+	 const surface& s,
+	 const vector_2d& o = vector_2d{ },
+	 extend e = extend::none,
+	 filter f = filter::good);
+
+    void
+    mask(const surface& ms,
+	 const surface& s,
+	 std::error_code& ec,
+	 const vector_2d& o = vector_2d{ },
+	 extend e = extend::none,
+	 filter f = filter::good) noexcept;
+
+    void
+    mask(const surface& ms,
+	 const surface& s,
+	 const matrix_2d& m,
+	 extend e = extend::none,
+	 filter f = filter::good);
+
+    void
+    mask(const surface& ms,
+	 const surface& s,
+	 const matrix_2d& m,
+	 std::error_code& ec,
+	 extend e = extend::none,
+	 filter f = filter::good) noexcept;
+
+    void
+    mask(const surface& ms,
+	 const vector_2d& mo);
+
+    void
+    mask(const surface& ms,
+	 const vector_2d& mo,
+	 std::error_code& ec) noexcept;
+
+    void
+    mask(const surface& ms,
+	 const vector_2d& mo,
+	 const rgba_color& c);
+
+    void
+    mask(const surface& ms,
+	 const vector_2d& mo,
+	 const rgba_color& c,
+	 std::error_code& ec) noexcept;
+
+    void
+    mask(const surface& ms,
+	 const vector_2d& mo,
+	 const experimental::io2d::brush& b);
+
+    void
+    mask(const surface& ms,
+	 const vector_2d& mo,
+	 const experimental::io2d::brush& b,
+	 std::error_code& ec) noexcept;
+
+    void
+    mask(const surface& ms,
+	 const vector_2d& mo,
+	 const surface& s,
+	 const vector_2d& o = vector_2d{ },
+	 extend e = extend::none,
+	 filter f = filter::good);
+
+    void
+    mask(const surface& ms,
+	 const vector_2d& mo,
+	 const surface& s,
+	 std::error_code& ec,
+	 const vector_2d& o = vector_2d{ },
+	 extend e = extend::none,
+	 filter f = filter::good) noexcept;
+
+    void
+    mask(const surface& ms,
+	 const vector_2d& mo,
+	 const surface& s,
+	 const matrix_2d& m,
+	 extend e = extend::none,
+	 filter f = filter::good);
+
+    void
+    mask(const surface& ms,
+	 const vector_2d& mo,
+	 const surface& s,
+	 const matrix_2d& m,
+	 std::error_code& ec,
+	 extend e = extend::none,
+	 filter f = filter::good) noexcept;
+
+    void
+    mask_immediate(const experimental::io2d::brush& mb);
+
+    void
+    mask_immediate(const experimental::io2d::brush& mb,
+		   std::error_code& ec) noexcept;
+
+    void
+    mask_immediate(const experimental::io2d::brush& mb,
+		   const rgba_color& c);
+
+    void
+    mask_immediate(const experimental::io2d::brush& mb,
+		   const rgba_color& c, std::error_code& ec) noexcept;
+
+    void
+    mask_immediate(const experimental::io2d::brush& mb,
+		   const experimental::io2d::brush& b);
+
+    void
+    mask_immediate(const experimental::io2d::brush& mb,
+		   const experimental::io2d::brush& b,
+		   std::error_code& ec) noexcept;
+
+    void
+    mask_immediate(const experimental::io2d::brush& mb,
+    const surface& s,
+		   const vector_2d& o = vector_2d{ },
+		   extend e = extend::none,
+		   filter f = filter::good);
+
+    void
+    mask_immediate(const experimental::io2d::brush& mb,
+    const surface& s,
+		   std::error_code& ec,
+		   const vector_2d& o = vector_2d{ },
+		   extend e = extend::none,
+		   filter f = filter::good) noexcept;
+
+    void
+    mask_immediate(const experimental::io2d::brush& mb,
+    const surface& s,
+		   const matrix_2d& m,
+		   extend e = extend::none,
+		   filter f = filter::good);
+
+    void
+    mask_immediate(const experimental::io2d::brush& mb,
+    const surface& s,
+		   const matrix_2d& m,
+		   std::error_code& ec,
+		   extend e = extend::none,
+		   filter f = filter::good) noexcept;
+
+    void
+    mask_immediate(const surface& ms);
+
+    void
+    mask_immediate(const surface& ms,
+		   std::error_code& ec) noexcept;
+
+    void
+    mask_immediate(const surface& ms,
+		   const rgba_color& c);
+
+    void
+    mask_immediate(const surface& ms,
+		   const rgba_color& c,
+		   std::error_code& ec) noexcept;
+
+    void
+    mask_immediate(const surface& ms,
+		   const experimental::io2d::brush& b);
+
+    void
+    mask_immediate(const surface& ms,
+		   const experimental::io2d::brush& b,
+		   std::error_code& ec) noexcept;
+
+    void
+    mask_immediate(const surface& ms,
+		   const surface& s,
+		   const vector_2d& o = vector_2d{ },
+		   extend e = extend::none,
+		   filter f = filter::good);
+
+    void
+    mask_immediate(const surface& ms,
+		   const surface& s,
+		   std::error_code& ec,
+		   const vector_2d& o = vector_2d{ },
+		   extend e = extend::none,
+		   filter f = filter::good) noexcept;
+
+    void
+    mask_immediate(const surface& ms,
+		   const surface& s,
+		   const matrix_2d& m,
+		   extend e = extend::none,
+		   filter f = filter::good);
+
+    void
+    mask_immediate(const surface& ms,
+		   const surface& s,
+		   const matrix_2d& m,
+		   std::error_code& ec,
+		   extend e = extend::none,
+		   filter f = filter::good) noexcept;
+
+    void
+    mask_immediate(const surface& ms,
+		   const vector_2d& mo);
+
+    void
+    mask_immediate(const surface& ms,
+		   const vector_2d& mo,
+		   std::error_code& ec) noexcept;
+
+    void
+    mask_immediate(const surface& ms,
+		   const vector_2d& mo,
+		   const rgba_color& c);
+
+    void
+    mask_immediate(const surface& ms,
+		   const vector_2d& mo,
+		   const rgba_color& c,
+		   std::error_code& ec) noexcept;
+
+    void
+    mask_immediate(const surface& ms,
+		   const vector_2d& mo,
+		   const experimental::io2d::brush& b);
+
+    void
+    mask_immediate(const surface& ms,
+		   const vector_2d& mo,
+		   const experimental::io2d::brush& b,
+		   std::error_code& ec) noexcept;
+
+    void
+    mask_immediate(const surface& ms,
+		   const vector_2d& mo,
+		   const surface& s,
+		   const vector_2d& o = vector_2d{ },
+		   extend e = extend::none,
+		   filter f = filter::good);
+
+    void
+    mask_immediate(const surface& ms,
+		   const vector_2d& mo,
+		   const surface& s,
+		   std::error_code& ec,
+		   const vector_2d& o = vector_2d{ },
+		   extend e = extend::none,
+		   filter f = filter::good) noexcept;
+
+    void
+    mask_immediate(const surface& ms,
+		   const vector_2d& mo,
+		   const surface& s,
+		   const matrix_2d& m,
+		   extend e = extend::none,
+		   filter f = filter::good);
+
+    void
+    mask_immediate(const surface& ms,
+		   const vector_2d& mo,
+		   const surface& s,
+		   const matrix_2d& m, std::error_code& ec,
+		   extend e = extend::none,
+		   filter f = filter::good) noexcept;
+
+    // text render modifiers:
+
+    vector_2d
+    render_text(const string& utf8,
+		const vector_2d& pos);
+
+    vector_2d
+    render_text(const string& utf8,
+		const vector_2d& pos,
+		std::error_code& ec) noexcept;
+
+    vector_2d
+    render_text(const string& utf8,
+		const vector_2d& pos,
+		const rgba_color& c);
+
+    vector_2d
+    render_text(const string& utf8,
+		const vector_2d& pos,
+		const rgba_color& c,
+		std::error_code& ec) noexcept;
+
+    vector_2d
+    render_text(const string& utf8,
+		const vector_2d& pos,
+		const experimental::io2d::brush& b);
+
+    vector_2d
+    render_text(const string& utf8,
+		const vector_2d& pos,
+		const experimental::io2d::brush& b,
+		std::error_code& ec) noexcept;
+
+    vector_2d
+    render_text(const string& utf8,
+		const vector_2d& pos,
+		const surface& s,
+		const vector_2d& o = vector_2d{ },
+		extend e = extend::none,
+		filter f = filter::good);
+
+    vector_2d
+    render_text(const string& utf8,
+		const vector_2d& pos,
+		const surface& s,
+		std::error_code& ec,
+		const vector_2d& o = vector_2d{ },
+		extend e = extend::none,
+		filter f = filter::good) noexcept;
+
+    vector_2d
+    render_text(const string& utf8,
+		const vector_2d& pos,
+		const surface& s, const matrix_2d& m,
+		extend e = extend::none,
+		filter f = filter::good);
+
+    vector_2d
+    render_text(const string& utf8,
+		const vector_2d& pos,
+		const surface& s, const matrix_2d& m,
+		std::error_code& ec,
+		extend e = extend::none,
+		filter f = filter::good) noexcept;
+
+    // transformation modifiers:
+
+    void
+    matrix(const matrix_2d& matrix);
+
+    void
+    matrix(const matrix_2d& matrix,
+	   std::error_code& ec) noexcept;
+
+    // font modifiers:
+
+    void
+    font_face(const string& typeface,
+	      font_slant sl, font_weight w);
+
+    void
+    font_face(const string& typeface,
+	      font_slant sl, font_weight w,
+	      std::error_code& ec) noexcept;
+
+    void
+    font_face(const experimental::io2d::font_face& f);
+
+    void
+    font_face(const experimental::io2d::font_face& f,
+	      std::error_code& ec) noexcept;
+
+    void
+    font_size(double s) noexcept;
+
+    void
+    font_matrix(const matrix_2d& m);
+
+    void
+    font_matrix(const matrix_2d& m,
+		std::error_code& ec) noexcept;
+
+    void
+    font_options(const font_options& fo) noexcept;
+
+    // state observers:
+
+    bool
+    is_finished() const noexcept;
+
+    experimental::io2d::content
+    content() const noexcept;
+
+    experimental::io2d::brush
+    brush() const noexcept;
+
+    experimental::io2d::antialias
+    antialias() const noexcept;
+
+    experimental::io2d::dashes
+    dashes() const;
+
+    experimental::io2d::dashes
+    dashes(std::error_code& ec) const noexcept;
+
+    experimental::io2d::fill_rule
+    fill_rule() const noexcept;
+
+    experimental::io2d::line_cap
+    line_cap() const noexcept;
+
+    experimental::io2d::line_join
+    line_join() const noexcept;
+
+    double
+    line_width() const noexcept;
+
+    double
+    miter_limit() const noexcept;
+
+    experimental::io2d::compositing_operator
+    compositing_operator() const noexcept;
+
+    rectangle
+    clip_extents() const noexcept;
+
+    bool
+    in_clip(const vector_2d& pt) const noexcept;
+
+    std::vector<rectangle>
+    clip_rectangles() const;
+
+    std::vector<rectangle>
+    clip_rectangles(std::error_code& ec) const noexcept;
+
+    // render observers:
+
+    rectangle
+    fill_extents() const noexcept;
+
+    rectangle
+    fill_extents_immediate() const;
+
+    rectangle
+    fill_extents_immediate(std::error_code& ec) const noexcept;
+
+    bool
+    in_fill(const vector_2d& pt) const noexcept;
+
+    bool
+    in_fill_immediate(const vector_2d& pt) const;
+
+    bool
+    in_fill_immediate(const vector_2d& pt,
+		      std::error_code& ec) const noexcept;
+
+    rectangle
+    stroke_extents() const noexcept;
+
+    rectangle
+    stroke_extents_immediate() const;
+
+    rectangle
+    stroke_extents_immediate(std::error_code& ec) const noexcept;
+
+    bool
+    in_stroke(const vector_2d& pt) const noexcept;
+
+    bool
+    in_stroke_immediate(const vector_2d& pt) const;
+
+    bool
+    in_stroke_immediate(const vector_2d& pt,
+			std::error_code& ec) const noexcept;
+ 
+    experimental::io2d::font_extents
+    font_extents() const noexcept;
+
+    experimental::io2d::text_extents
+    text_extents(const string& utf8) const;
+
+    experimental::io2d::text_extents
+    text_extents(const string& utf8,
+		 std::error_code& ec) const noexcept;
+
+    // transformation observers:
+
+    matrix_2d
+    matrix() const noexcept;
+
+    vector_2d
+    user_to_surface(const vector_2d& pt) const noexcept;
+
+    vector_2d
+    user_to_surface_distance(const vector_2d& dpt) const noexcept;
+
+    vector_2d
+    surface_to_user(const vector_2d& pt) const noexcept;
+
+    vector_2d
+    surface_to_user_distance(const vector_2d& dpt) const noexcept;
+
+    // font observers:
+
+    matrix_2d
+    font_matrix() const noexcept;
+
+    experimental::io2d::font_options
+    font_options() const noexcept;
+
+    experimental::io2d::font_face
+    font_face() const;
+
+    experimental::io2d::font_face
+    font_face(std::error_code& ec) const noexcept;
+};
+
+  /**
+   *
+   */
+  class image_surface
+  : public surface
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    image_surface() = delete;
+
+    image_surface(const image_surface&) = delete;
+
+    image_surface&
+    operator=(const image_surface&) = delete;
+
+    image_surface(image_surface&& other) noexcept;
+
+    image_surface&
+    operator=(image_surface&& other) noexcept;
+
+    image_surface(experimental::io2d::format fmt,
+		  int width, int height);
+
+    image_surface(experimental::io2d::format fmt,
+		  int width, int height,
+		  std::error_code& ec) noexcept;
+
+    image_surface(vector<unsigned char>& data,
+		  experimental::io2d::format fmt,
+		  int width, int height);
+
+    image_surface(vector<unsigned char>& data,
+		  experimental::io2d::format fmt,
+		  int width, int height, std::error_code& ec) noexcept;
+
+    virtual ~image_surface();
+
+    // modifiers:
+
+    void
+    data(const std::vector<unsigned char>& data);
+
+    void
+    data(const std::vector<unsigned char>& data, std::error_code& ec) noexcept;
+
+    std::vector<unsigned char>
+    data();
+
+    std::vector<unsigned char>
+    data(std::error_code& ec) noexcept;
+
+    // observers:
+
+    experimental::io2d::format
+    format() const noexcept;
+
+    int
+    width() const noexcept;
+
+    int
+    height() const noexcept;
+
+    int
+    stride() const noexcept;
+  };
+
+ /**
+  *
+  */
+  class display_surface
+  : public surface
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    display_surface() = delete;
+
+    display_surface(const display_surface&) = delete;
+
+    display_surface&
+    operator=(const display_surface&) = delete;
+
+    display_surface(display_surface&& other) noexcept;
+
+    display_surface&
+    operator=(display_surface&& other) noexcept;
+
+    display_surface(int preferredWidth,
+		    int preferredHeight,
+		    experimental::io2d::format preferredFormat,
+		    experimental::io2d::scaling scl = experimental::io2d::scaling::letterbox);
+
+    display_surface(int preferredWidth,
+		    int preferredHeight,
+		    experimental::io2d::format preferredFormat,
+		    std::error_code& ec,
+		    experimental::io2d::scaling scl = experimental::io2d::scaling::letterbox) noexcept;
+
+    display_surface(int preferredWidth,
+		    int preferredHeight,
+		    experimental::io2d::format preferredFormat,
+		    int preferredDisplayWidth,
+		    int preferredDisplayHeight,
+		    experimental::io2d::scaling scl = experimental::io2d::scaling::letterbox);
+
+    display_surface(int preferredWidth,
+		    int preferredHeight,
+		    experimental::io2d::format preferredFormat,
+		    int preferredDisplayWidth,
+		    int preferredDisplayHeight,
+		    std::error_code& ec,
+		    experimental::io2d::scaling scl = experimental::io2d::scaling::letterbox) noexcept;
+
+    virtual ~display_surface();
+
+    // modifiers:
+
+    virtual void
+    save() override;
+
+    virtual void
+    save(std::error_code& ec) noexcept override;
+
+    virtual void
+    restore() override;
+
+    virtual void
+    restore(std::error_code& ec) noexcept override;
+
+    void
+    draw_callback(const std::function<void(display_surface& sfc)>& fn) noexcept;
+
+    void
+    size_change_callback(const std::function<void(display_surface& sfc)>& fn) noexcept;
+
+    void
+    width(int w);
+
+    void
+    width(int w, std::error_code& ec) noexcept;
+
+    void
+    height(int h);
+
+    void
+    height(int h, std::error_code& ec) noexcept;
+
+    void
+    display_width(int w);
+
+    void
+    display_width(int w, std::error_code& ec) noexcept;
+
+    void
+    display_height(int h);
+
+    void
+    display_height(int h, std::error_code& ec) noexcept;
+
+    void
+    dimensions(int w, int h);
+
+    void
+    dimensions(int w, int h, std::error_code& ec) noexcept;
+
+    void
+    display_dimensions(int dw, int dh);
+
+    void
+    display_dimensions(int dw, int dh, std::error_code& ec) noexcept;
+
+    void
+    scaling(experimental::io2d::scaling scl) noexcept;
+
+    void
+    user_scaling_callback(
+	const std::function<experimental::io2d::rectangle(const display_surface&, bool&)>& fn) noexcept;
+
+    void
+    letterbox_brush(experimental::nullopt_t) noexcept;
+
+    void
+    letterbox_brush(const rgba_color& c);
+
+    void
+    letterbox_brush(const rgba_color& c, std::error_code& ec) noexcept;
+
+    void
+    letterbox_brush(const experimental::io2d::brush& b);
+
+    void
+    letterbox_brush(const experimental::io2d::brush& b, std::error_code& ec) noexcept;
+
+    void
+    auto_clear(bool val) noexcept;
+
+    int
+    show();
+
+    int
+    show(std::error_code& ec);
+
+    void
+    exit_show(int milliseconds);
+
+    void
+    exit_show(int milliseconds, std::error_code& ec);
+
+    // observers:
+
+    experimental::io2d::format
+    format() const noexcept;
+
+    int
+    width() const noexcept;
+
+    int
+    height() const noexcept;
+
+    int
+    display_width() const noexcept;
+
+    int
+    display_height() const noexcept;
+
+    std::tuple<int, int>
+    dimensions() const noexcept;
+
+    std::tuple<int, int>
+    display_dimensions() const noexcept;
+
+    experimental::io2d::scaling
+    scaling() const noexcept;
+
+    std::function<experimental::io2d::rectangle(const display_surface&, bool&)>
+    user_scaling_callback() const;
+
+    std::function<experimental::io2d::rectangle(const display_surface&, bool&)>
+    user_scaling_callback(std::error_code& ec) const noexcept;
+
+    experimental::io2d::brush
+    letterbox_brush() const noexcept;
+
+    bool
+    auto_clear() const noexcept;
+  };
+
+  /**
+   *
+   */
+  class mapped_surface
+  {
+  public:
+
+    // construct/copy/move/destroy:
+
+    mapped_surface() = delete;
+
+    mapped_surface(const mapped_surface&) = delete;
+
+    mapped_surface& operator=(const mapped_surface&) = delete;
+
+    mapped_surface(mapped_surface&& other) = delete;
+
+    mapped_surface& operator=(mapped_surface&& other) = delete;
+
+    ~mapped_surface();
+
+    // modifiers:
+
+    void
+    commit_changes();
+
+    void
+    commit_changes(std::error_code& ec) noexcept;
+
+    void
+    commit_changes(const rectangle& area);
+
+    void
+    commit_changes(const rectangle& area, std::error_code& ec) noexcept;
+
+    unsigned char*
+    data();
+
+    unsigned char*
+    data(std::error_code& ec) noexcept;
+
+    // observers:
+
+    const unsigned char*
+    data() const;
+
+    const unsigned char*
+    data(std::error_code& ec) const noexcept;
+
+    experimental::io2d::format
+    format() const noexcept;
+
+    int width()
+    const noexcept;
+
+    int height()
+    const noexcept;
+
+    int stride()
+    const noexcept;
+  };
+
+  /**
+   *
+   */
+  int
+  format_stride_for_width(format format, int width) noexcept;
+
+  display_surface
+  make_display_surface(int preferredWidth,
+		       int preferredHeight,
+		       format preferredFormat,
+		       scaling scl = scaling::letterbox);
+
+  display_surface
+  make_display_surface(int preferredWidth,
+		       int preferredHeight,
+		       format preferredFormat,
+		       std::error_code& ec,
+		       scaling scl = scaling::letterbox) noexcept;
+
+  display_surface
+  make_display_surface(int preferredWidth,
+		       int preferredHeight,
+		       format preferredFormat,
+		       int preferredDisplayWidth,
+		       int preferredDisplayHeight,
+		       scaling scl = scaling::letterbox);
+
+  display_surface
+  make_display_surface(int preferredWidth,
+		       int preferredHeight,
+		       format preferredFormat,
+		       int preferredDisplayWidth,
+		       int preferredDisplayHeight,
+		       std::error_code& ec,
+		       scaling scl = scaling::letterbox) noexcept;
+
+  image_surface
+  make_image_surface(format format,
+		     int width,
+		     int height);
+
+  image_surface
+  make_image_surface(format format, int width, int height,
+		     std::error_code& ec) noexcept;
+
+} // inline namespace v1
+} // namespace io2d
+} // namespace experimental
+} // namespace std
