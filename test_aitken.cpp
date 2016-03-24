@@ -422,6 +422,7 @@
       { return this->_M_part_sum.num_terms; }
 
       ///  Reset the sum to it's initial state.
+      ///  The beta parameter is unchanged.
       _LevinSum&
       reset()
       {
@@ -499,7 +500,7 @@
     }
 
   /**
-   * The Levin's summation process.
+   * The Weniger's summation process.
    */
   template<typename _Sum>
     class _WenigerSum
@@ -560,6 +561,7 @@
       { return this->_M_part_sum.num_terms; }
 
       ///  Reset the sum to it's initial state.
+      ///  The beta parameter is unchanged.
       _WenigerSum&
       reset()
       {
@@ -591,7 +593,7 @@
     };
 
   /**
-   * One step of Levin's summation process.
+   * One step of Weniger's summation process.
    */
   template<typename _Sum>
     void
