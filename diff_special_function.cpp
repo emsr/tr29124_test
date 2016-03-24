@@ -327,9 +327,9 @@ main()
   rundiff(cyl_hankel_1, beast::cyl_hankel_1, basename,
 	  "nu", cyl_order,
 	  "x", fill_argument(fill_argument(std::make_pair(Real{0}, Real{5}),
-					   std::make_pair(true, true), 21),
+					   std::make_pair(false, true), 21),
 			     fill_argument(std::make_pair(Real{0}, Real{100}),
-					   std::make_pair(true, true), 21)));
+					   std::make_pair(false, true), 21)));
 
   // Cylindrical Hankel functions of the second kind.
   std::cout << "cyl_hankel_2" << std::endl;
@@ -337,9 +337,9 @@ main()
   rundiff(cyl_hankel_2, beast::cyl_hankel_2, basename,
 	  "nu", cyl_order,
 	  "x", fill_argument(fill_argument(std::make_pair(Real{0}, Real{5}),
-					   std::make_pair(true, true), 21),
+					   std::make_pair(false, true), 21),
 			     fill_argument(std::make_pair(Real{0}, Real{100}),
-					   std::make_pair(true, true), 21)));
+					   std::make_pair(false, true), 21)));
 #endif // STD
 
 
