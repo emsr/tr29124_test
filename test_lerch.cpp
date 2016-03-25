@@ -1,10 +1,10 @@
-// $HOME/bin_specfun/bin/g++ -g -o test_lerch_transcendent test_lerch_transcendent.cpp -lquadmath
+// $HOME/bin_specfun/bin/g++ -g -o test_lerch test_lerch.cpp -lquadmath
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_lerch_transcendent > test_lerch_transcendent.txt
+// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_lerch > test_lerch.txt
 
-// g++ -std=c++14 -g -o test_lerch_transcendent test_lerch_transcendent.cpp -lquadmath
+// g++ -std=c++14 -g -o test_lerch test_lerch.cpp -lquadmath
 
-// ./test_lerch_transcendent > test_lerch_transcendent.txt
+// ./test_lerch > test_lerch.txt
 
 #define __STDCPP_WANT_MATH_SPEC_FUNCS__ 1
 
@@ -20,7 +20,7 @@
    */
   template<typename _Tp>
     _Tp
-    __lerch_transcendent_sum(_Tp __z, _Tp __s, _Tp __a)
+    __lerch_sum(_Tp __z, _Tp __s, _Tp __a)
     {
       constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
@@ -30,7 +30,7 @@
       if (__integral && __na <= 0)
 	return _S_nan;
       else if (std::abs(__z) >= _Tp{1})
-	throw std::domain_error("__lerch_transcendent_sum: |z| > 1");
+	throw std::domain_error("__lerch_sum: |z| > 1");
       else
 	{
 	  constexpr auto _S_maxit = 100000;
@@ -53,7 +53,7 @@
    */
   template<typename _Tp>
     _Tp
-    __lerch_transcendent_double_sum(_Tp __z, _Tp __s, _Tp __a)
+    __lerch_double_sum(_Tp __z, _Tp __s, _Tp __a)
     {
       constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
@@ -96,7 +96,7 @@
    */
   template<typename _Tp>
     _Tp
-    __lerch_transcendent(_Tp __z, _Tp __s, _Tp __a)
+    __lerch(_Tp __z, _Tp __s, _Tp __a)
     {
       constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
@@ -109,7 +109,7 @@
       if (__integral && __na <= 0)
 	return _S_nan;
       else
-	return __lerch_transcendent_sum(__z, __s, __a);
+	return __lerch_sum(__z, __s, __a);
     }
 
 int
@@ -128,8 +128,8 @@ main()
   for (int iz = -99; iz <= +99; ++iz)
     {
       auto z = 0.01 * iz;
-      auto lerch1 = __lerch_transcendent_sum(z, s, a);
-      auto lerch2 = __lerch_transcendent_double_sum(z, s, a);
+      auto lerch1 = __lerch_sum(z, s, a);
+      auto lerch2 = __lerch_double_sum(z, s, a);
       std::cout << ' ' << z
 		<< ' ' << lerch1
 		<< ' ' << lerch2
@@ -144,7 +144,7 @@ main()
   for (int is = -99; is <= +99; ++is)
     {
       auto s = 0.01 * is;
-      auto lerch1 = __lerch_transcendent_sum(z, s, a);
+      auto lerch1 = __lerch_sum(z, s, a);
       auto zeta = std::riemann_zeta(s);
       std::cout << ' ' << s
 		<< ' ' << lerch1
@@ -164,8 +164,8 @@ main()
 	  for (int iz = -99; iz <= +99; ++iz)
 	    {
 	      auto z = 0.01 * iz;
-	      auto lerch1 = __lerch_transcendent_sum(z, s, a);
-	      //auto lerch2 = __lerch_transcendent_double_sum(z, s, a);
+	      auto lerch1 = __lerch_sum(z, s, a);
+	      //auto lerch2 = __lerch_double_sum(z, s, a);
 	      std::cout << ' ' << z
 			<< ' ' << lerch1
 			//<< ' ' << lerch2
