@@ -37,8 +37,8 @@
 #include <specfun_testcase.h>
 
 // Test data.
-const testcase_shi<double>
-data001[19] =
+const testcase_sinhint<double>
+data001[201] =
 {
   {-1.24611449019942e+03, -1.00000000000000e+01},
   {-1.14079099896221e+03, -9.90000000000000e+00},
@@ -246,7 +246,7 @@ const double toler001 = 2.5000000000000020e-13;
 
 template<typename Tp, unsigned int Num>
   void
-  test(const testcase_shi<Tp> (&data)[Num], Tp toler)
+  test(const testcase_sinhint<Tp> (&data)[Num], Tp toler)
   {
     bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
@@ -255,7 +255,7 @@ template<typename Tp, unsigned int Num>
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = __gnu_cxx::sinhint(data[i].k);
+	const Tp f = __gnu_cxx::sinhint(data[i].x);
 	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
