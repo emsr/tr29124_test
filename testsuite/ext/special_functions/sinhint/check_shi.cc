@@ -37,7 +37,7 @@
 #include <specfun_testcase.h>
 
 // Test data.
-const testcase_shi<double>
+const testcase_sinhint<double>
 data001[19] =
 {
   {-1.24611449019942e+03, -1.00000000000000e+01},
@@ -246,7 +246,7 @@ const double toler001 = 2.5000000000000020e-13;
 
 template<typename Tp, unsigned int Num>
   void
-  test(const testcase_shi<Tp> (&data)[Num], Tp toler)
+  test(const testcase_sinhint<Tp> (&data)[Num], Tp toler)
   {
     bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
