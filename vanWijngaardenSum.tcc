@@ -20,9 +20,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       ///  Constructor taking the first term.
       explicit _VanWijngaardenSum(value_type __first_term)
       : _VanWijngaardenSum{}
-      {
-	operator+=(__first_term);
-      }
+      { operator+=(__first_term); }
 
       /// Add a new term to the sum.
       _VanWijngaardenSum&
@@ -109,6 +107,92 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       bool _M_converged;
     };
 
+//
+// A functor for a vanWijnGaarden compressor must have
+// _Tp operator[int] that returns a term in the original defining series.
+//
+template<typename _Tp>
+  class __lerch_term
+  {
+  public:
+
+    using value_type = _Tp;
+
+    __lerch_term(value_type __z, value_type __s, value_type __a)
+    : _M_z{__z}, _M_s{__s}, _M_a{__a}
+    { }
+
+    value_type
+    operator[](std::size_t __i) const
+    {
+      return std::pow(_M_z, value_type(__i))
+	   / std::pow(_M_a + value_type(__i), _M_s);
+    }
+
+  private:
+
+    value_type _M_z;
+    value_type _M_s;
+    value_type _M_a;
+  }
+
+/**
+ *  This performs the series compression on a monotone series
+ *  for the regular vanWijnGaarden sum.
+ */
+template<typename _TermFn>
+  class _VanWijngaardenCompressor
+  {
+  public:
+
+    using value_type = typename _TermFn::value_type;
+
+    _VanWijngaardenCompressor(_TermFn __term_fn)
+    : _M_term_fn{__term_fn}
+    { }
+
+    value_type
+    operator[](std::size_t __j) const
+    {
+      constexpr auto _S_min = std::numeric_limits<value_type>::min();
+      // Maximum number of iterations before 2^k overflow.
+      constexpr auto __k_max = std::numeric_limits<std::size_t>::digits;
+
+      auto __sum = value_type{};
+      auto __two2k = std::size_t{1};
+      for (auto __k = std::size_t{0}; __k < __k_max; __k += std::size_t{2})
+	{
+	  // Index for the term in the original series.
+	  auto __i = std::size_t{0};
+	  if (!__builtin_mul_overflow(__two2k, __j + 1, &__i))
+	    throw std::runtime_error("_VanWijngaardenCompressor: "
+				     "integer overflow");	  
+	  --__i;
+
+	  // Increment the sum.
+	  auto __term = __two2k * this->_M_term_fn[__i];
+	  __sum += __term;
+
+	  // Stop summation if either the sum is zero
+	  // or if |term / sum| is below requested accuracy.
+	  if (std::abs(__sum) <= _S_min
+	   || std::abs(__term / __sum) < value_type{1.0e-2} * __eps)
+	    break;
+
+	  if (!__builtin_mul_overflow(__two2k, std::size_t{2}, &__two2k))
+	    throw std::runtime_error("_VanWijngaardenCompressor: "
+				     "integer overflow");
+	}
+
+      auto __sign = (__j % 2 == 1 ? -1 : +1);
+      return __sign * __sum;
+    }
+
+  private:
+
+    _TermFn _M_term_fn;
+  };
+
 /*
 // This is an example of the conversion of a non-alternating series to an alternating one
 // for the Lerch transcendent.
@@ -117,25 +201,26 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 // I think in place of z, s, a you hand in a functor that, given j, returns the b_j coefficient.
 template<typename _Tp>
   _Tp
-  aj(_Tp __z, _Tp __s, _Tp __a, unsigned long long j, _Tp __eps)
+  aj(_Tp __z, _Tp __s, _Tp __a, unsigned long long __j, _Tp __eps)
   {
     constexpr auto _S_min = std::numeric_limits<_Tp>::min();
     // Maximum number of iterations before 2^k overflow.
     constexpr auto __k_max = std::numeric_limits<unsigned long long>::digits;
 
-    auto __sum = _Tp{}
+    auto __sum = _Tp{};
     auto __two2k = 1ULL;
     for (auto __k = 0ULL; __k < __k_max; ++__k)
       {
-	// Index for the term in the original series.	auto __ind = 0ULL;
-	if (!__builtin_mul_overflow(__two2k, __j + 1, &__ind))
+	// Index for the term in the original series.
+	auto __i = 0ULL;
+	if (!__builtin_mul_overflow(__two2k, __j + 1, &__i))
 	  throw std::runtime_error("aj: integer overflow");	  
-	--__ind;
+	--__i;
 
 	// Increment the sum.
-	auto __z2ind = std::pow(__z, __ind);
-	auto __bjk = __two2k * __z2ind / std::pow(__a + __ind, __s);
-	__sum += bjk;
+	auto __z2ind = std::pow(__z, __i);
+	auto __bjk = __two2k * __z2ind / std::pow(__a + __i, __s);
+	__sum += __bjk;
 
 	// Stop summation if either sum is zero or |term/sum|
 	// is below requested accuracy.
