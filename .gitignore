@@ -140,7 +140,7 @@ test_hypot
 test_inv_erf
 test_jacobi
 test_legendre
-test_lerch_transcendent
+test_lerch
 test_limits
 test_little_airy
 test_local_special_function
