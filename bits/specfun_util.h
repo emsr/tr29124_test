@@ -113,81 +113,146 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     { return __builtin_isnanq(__x); }
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
-#endif
+#endif // _GLIBCXX_USE_C99_MATH && !_GLIBCXX_USE_C99_FP_MACROS_DYNAMIC
+
+_GLIBCXX_END_NAMESPACE_VERSION
+} // namespace __detail
+} // namespace std
+
+namespace std _GLIBCXX_VISIBILITY(default)
+{
+namespace __detail
+{
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *
+   * A Sum is default constructable
+   * It has operator+=(Tp)
+   * It has operator-=(Tp)
+   * It has operator() -> _Tp
+   * It has operator bool()
+   * It has num_terms() -> std::size_t
+   * 
+   */
+
+  /**
+   * This is a basic naive sum.
    */
   template<typename _Tp>
     class _BasicSum
     {
     public:
 
+      using value_type = _Tp;
+
+      ///  Default constructor.
       _BasicSum() = default;
 
+      ///  Constructor taking the first term.
       explicit
-      _BasicSum(_Tp __sum)
-      : _M_sum{__sum}, _M_term{}, _M_converged{false}
-      { }
+      _BasicSum(value_type __first_term)
+      : _BasicSum{}
+      {
+	operator+=(__first_term);
+      }
 
+      /// Add a new term to the sum.
       _BasicSum&
-      operator+=(_Tp __term)
+      operator+=(value_type __term)
       {
 	if (!this->_M_converged)
 	  {
 	    if (__isnan(__term))
 	      throw std::runtime_error("_BasicSum: bad term");
-	    if (std::abs(__term) == std::numeric_limits<_Tp>::infinity())
+	    if (std::abs(__term) == std::numeric_limits<value_type>::infinity())
 	      throw std::runtime_error("_BasicSum: infinite term");
+	    ++this->_M_num_terms;
 	    this->_M_term = __term;
 	    this->_M_sum += this->_M_term;
 	  }
 	return *this;
       }
 
+      /// Subtract a new term from the sum.
       _BasicSum&
-      operator-=(_Tp __term)
+      operator-=(value_type __term)
       { return operator+=(-__term); }
 
+      /// Return true if the sum converged.
       operator
       bool() const
       { return !this->_M_converged; }
 
-      _Tp
+      /// Return the current value of the sum.
+      value_type
       operator()() const
       { return this->_M_sum; }
 
+      /// Return the current number of terms contributing to the sum.
+      std::size_t
+      num_terms() const
+      { return this->_M_num_terms; }
+
+      ///  Reset the sum to it's initial state.
+      _BasicSum&
+      reset()
+      {
+	this->_M_sum = value_type{0};
+	this->_M_term = value_type{0};
+	this->_M_num_terms = 0;
+	this->_M_converged = false;
+	return *this;
+      }
+
+      ///  Restart the sum with the first new term.
+      _BasicSum&
+      reset(value_type __first_term)
+      {
+	this->reset();
+	this->operator+=(__first_term);
+	return *this;
+      }
+
     private:
 
-      _Tp _M_sum;
-      _Tp _M_term;
+      value_type _M_sum;
+      value_type _M_term;
+      std::size_t _M_num_terms;
       bool _M_converged;
     };
 
   /**
-   *
+   * This is a Kahan sum which tries to account for roundoff error.
    */
   template<typename _Tp>
     class _KahanSum
     {
     public:
 
+      using value_type = _Tp;
+
+      ///  Default constructor.
       _KahanSum() = default;
 
+      ///  Constructor taking the first term.
       explicit
-      _KahanSum(_Tp __sum)
-      : _M_sum{__sum}, _M_term{}, _M_temp{}, _M_converged{false}
-      { }
+      _KahanSum(value_type __first_term)
+      : _KahanSum{}
+      {
+	operator+=(__first_term);
+      }
 
+      /// Add a new term to the sum.
       _KahanSum&
-      operator+=(_Tp __term)
+      operator+=(value_type __term)
       {
 	if (!this->_M_converged)
 	  {
 	    if (__isnan(__term))
 	      throw std::runtime_error("_KahanSum: bad term");
-	    if (std::abs(__term) == std::numeric_limits<_Tp>::infinity())
+	    if (std::abs(__term) == std::numeric_limits<value_type>::infinity())
 	      throw std::runtime_error("_KahanSum: infinite term");
+	    ++this->_M_num_terms;
 	    this->_M_term = __term - this->_M_temp;
 	    this->_M_temp = this->_M_sum;
 	    this->_M_sum += this->_M_term;
@@ -196,23 +261,53 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return *this;
       }
 
+      /// Subtract a new term from the sum.
       _KahanSum&
-      operator-=(_Tp __term)
+      operator-=(value_type __term)
       { return operator+=(-__term); }
 
+      /// Return true if the sum converged.
       operator
       bool() const
       { return !this->_M_converged; }
 
-      _Tp
+      /// Return the current value of the sum.
+      value_type
       operator()() const
       { return this->_M_sum; }
 
+      /// Return the current number of terms contributing to the sum.
+      std::size_t
+      num_terms() const
+      { return this->_M_num_terms; }
+
+      ///  Reset the sum to it's initial state.
+      _KahanSum&
+      reset()
+      {
+	this->_M_sum = value_type{0};
+	this->_M_term = value_type{0};
+	this->_M_temp = value_type{0};
+	this->_M_num_terms = 0;
+	this->_M_converged = false;
+	return *this;
+      }
+
+      ///  Restart the sum with the first new term.
+      _KahanSum&
+      reset(value_type __first_term)
+      {
+	this->reset();
+	this->operator+=(__first_term);
+	return *this;
+      }
+
     private:
 
-      _Tp _M_sum;
-      _Tp _M_term;
-      _Tp _M_temp;
+      value_type _M_sum;
+      value_type _M_term;
+      value_type _M_temp;
+      std::size_t _M_num_terms;
       bool _M_converged;
     };
 
