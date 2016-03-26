@@ -29,8 +29,8 @@
       const bool __integral = (std::abs(__a - _Tp(__na)) < _S_eps);
       if (__integral && __na <= 0)
 	return _S_nan;
-      else if (std::abs(__z) >= _Tp{1})
-	throw std::domain_error("__lerch_sum: |z| > 1");
+      //else if (std::abs(__z) >= _Tp{1})
+	//throw std::domain_error("__lerch_sum: |z| > 1");
       else
 	{
 	  constexpr auto _S_maxit = 100000;
@@ -43,6 +43,53 @@
 	      __sum += __term;
 	      if (std::abs(__term / __sum) < _S_eps)
 		return __sum;
+	    }
+	}
+    }
+
+  /**
+   *  blows on nonpositive integeral a.
+   */
+  template<typename _Tp>
+    _Tp
+    __lerch_vanwijngaarden_sum(_Tp __z, _Tp __s, _Tp __a)
+    {
+      constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
+      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+
+      const auto __na = std::nearbyint(__a);
+      const bool __integral = (std::abs(__a - _Tp(__na)) < _S_eps);
+      if (__integral && __na <= _S_eps)
+	return _S_nan;
+      else if (std::abs(__z) >= _Tp{1})
+	throw std::domain_error("__lerch_vanwijngaarden_sum: |z| > 1");
+      else if (__z < _Tp{0})
+	{
+	  constexpr auto _S_maxit = 100000;
+	  using __lerch_t = std::__detail::__lerch_term<_Tp>;
+	  auto __lerch_fun = __lerch_t(__z, __s, __a);
+	  std::__detail::_VanWijngaardenSum<_Tp> __sum;
+	  for (auto __k = 0; __k < _S_maxit; ++__k)
+	    {
+	      auto __temp = __lerch_fun[__k];
+	      __sum += __temp;
+	      if (std::abs(__temp / __sum) < _S_eps)
+		return __sum();
+	    }
+	}
+      else
+	{
+	  constexpr auto _S_maxit = 100000;
+	  using __lerch_t = std::__detail::__lerch_term<_Tp>;
+	  auto __lerch_fun = __lerch_t(__z, __s, __a);
+	  std::__detail::_VanWijngaardenCompressor<__lerch_t> __term(__lerch_fun);
+	  std::__detail::_VanWijngaardenSum<_Tp> __sum;
+	  for (auto __k = 0; __k < _S_maxit; ++__k)
+	    {
+	      auto __temp = __term[__k];
+	      __sum += __temp;
+	      if (std::abs(__temp / __sum) < _S_eps)
+		return __sum();
 	    }
 	}
     }
@@ -74,7 +121,7 @@
 	    {
 	      auto __term = std::pow(__a, -__s);
 	      auto __bincoef = _Tp{1};
-	      std::__detail::__vanWijngaardenSum<_Tp> __sum(__term);
+	      std::__detail::_VanWijngaardenSum<_Tp> __sum(__term);
 	      for (auto __k = 1; __k <= __n; ++__k)
 		{
 		  __bincoef *= -_Tp(__n - __k + 1) / _Tp(__k);
@@ -118,37 +165,40 @@ main()
   using Tp = double;
 
   std::cout.precision(std::numeric_limits<Tp>::digits10);
-  auto width = std::numeric_limits<Tp>::digits10 + 6;
+  auto width = 8 + std::numeric_limits<Tp>::digits10;
 
   auto s = 1.0;
   auto a = 2.0;
   std::cout << std::endl;
-  std::cout << " a = " << a << std::endl;
-  std::cout << " s = " << s << std::endl;
+  std::cout << " a = " << std::setw(width) << a << std::endl;
+  std::cout << " s = " << std::setw(width) << s << std::endl;
   for (int iz = -99; iz <= +99; ++iz)
     {
       auto z = 0.01 * iz;
       auto lerch1 = __lerch_sum(z, s, a);
-      auto lerch2 = __lerch_double_sum(z, s, a);
-      std::cout << ' ' << z
-		<< ' ' << lerch1
-		<< ' ' << lerch2
+      auto lerch2 = __lerch_vanwijngaarden_sum(z, s, a);
+      //auto lerch3 = __lerch_double_sum(z, s, a);
+      std::cout << ' ' << std::setw(width) << z
+		<< ' ' << std::setw(width) << lerch1
+		<< ' ' << std::setw(width) << lerch2
+		//<< ' ' << std::setw(width) << lerch3
+		<< ' ' << std::setw(width) << lerch2 - lerch1
 		<< std::endl;
     }
 
   auto z = 1.0;
   a = 1.0;
   std::cout << std::endl;
-  std::cout << " z = " << z << std::endl;
-  std::cout << " a = " << a << std::endl;
+  std::cout << " z = " << std::setw(width) << z << std::endl;
+  std::cout << " a = " << std::setw(width) << a << std::endl;
   for (int is = -99; is <= +99; ++is)
     {
       auto s = 0.01 * is;
       auto lerch1 = __lerch_sum(z, s, a);
       auto zeta = std::riemann_zeta(s);
-      std::cout << ' ' << s
-		<< ' ' << lerch1
-		<< ' ' << zeta
+      std::cout << ' ' << std::setw(width) << s
+		<< ' ' << std::setw(width) << lerch1
+		<< ' ' << std::setw(width) << zeta
 		<< std::endl;
     }
 
@@ -156,21 +206,27 @@ main()
   for (int ia = 1; ia <= 10; ++ia)
     {
       auto a = 1.0 * ia;
-      std::cout << "\n a = " << a << std::endl;
+      std::cout << "\n a = " << std::setw(width) << a << std::endl;
       for (int is = 0; is <= 50; ++is)
 	{
 	  auto s = 0.1 * is;
-	  std::cout << "\n s = " << s << std::endl << std::endl;
+	  std::cout << "\n s = " << std::setw(width) << s << std::endl << std::endl;
 	  for (int iz = -99; iz <= +99; ++iz)
 	    {
 	      auto z = 0.01 * iz;
 	      auto lerch1 = __lerch_sum(z, s, a);
-	      //auto lerch2 = __lerch_double_sum(z, s, a);
-	      std::cout << ' ' << z
-			<< ' ' << lerch1
-			//<< ' ' << lerch2
+	      auto lerch2 = __lerch_vanwijngaarden_sum(z, s, a);
+	      //auto lerch3 = __lerch_double_sum(z, s, a);
+	      std::cout << ' ' << std::setw(width) << z
+			<< ' ' << std::setw(width) << lerch1
+			<< ' ' << std::setw(width) << lerch2
+			//<< ' ' << std::setw(width) << lerch3
+			<< ' ' << std::setw(width) << lerch2 - lerch1
 			<< std::endl;
 	    }
 	}
     }
+
+  auto lerch1 = __lerch_vanwijngaarden_sum(-0.75, Tp{1}, Tp{2});
+  auto lerch2 = __lerch_vanwijngaarden_sum(-0.5, Tp{0}, Tp{1});
 }
