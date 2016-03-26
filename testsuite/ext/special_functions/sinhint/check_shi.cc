@@ -38,7 +38,7 @@
 
 // Test data.
 const testcase_sinhint<double>
-data001[19] =
+data001[201] =
 {
   {-1.24611449019942e+03, -1.00000000000000e+01},
   {-1.14079099896221e+03, -9.90000000000000e+00},
@@ -255,7 +255,7 @@ template<typename Tp, unsigned int Num>
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = __gnu_cxx::sinhint(data[i].k);
+	const Tp f = __gnu_cxx::sinhint(data[i].x);
 	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
