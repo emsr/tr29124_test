@@ -71,7 +71,7 @@
 	  std::__detail::_VanWijngaardenSum<_Tp> __sum;
 	  for (auto __k = 0; __k < _S_maxit; ++__k)
 	    {
-	      auto __temp = __lerch_fun[__k];
+	      auto __temp = __lerch_fun(__k);
 	      __sum += __temp;
 	      if (std::abs(__temp / __sum) < _S_eps)
 		return __sum();
