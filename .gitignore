@@ -126,6 +126,7 @@ test_complex_gamma
 test_complex128
 test_continued_fraction
 test_csint
+test_cyl_hankel
 test_dawson
 test_dilog
 test_factorial
