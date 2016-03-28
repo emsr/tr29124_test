@@ -1,26 +1,26 @@
 
-0. Use <filesystem> dammit!
+0. [] Use <filesystem> dammit!
 
-1. In mathar it turns out that
+1. [] In mathar it turns out that
 (2\pi)^k B_{2k}/(2k)! - 2 is small.  It might be worth computing... carefully.
 I think I just did this in __riemann_zeta_m_1_sum.
 I might want a starting fit for small s?
 
-2. __riemann_zeta_alt should be tested with vanWijnGaarden
+2. [] __riemann_zeta_alt should be tested with vanWijnGaarden
 
-3. Debye integrals matharr has some.
+3. [] Debye integrals matharr has some.
 
-4. test asymptotic Hermite polys - adjust the crossover width!
+4. [] test asymptotic Hermite polys - adjust the crossover width!
 
-5. I got derivs in the Bessel asymp!
+5. [] I got derivs in the Bessel asymp!
    Now I need a more principled max iteration.
 
-6. bincoeff can take real upper thing - infinitely many k
+6. [] bincoeff can take real upper thing - infinitely many k
    Think (1 + x)^{1/2}.
 
-7. Thrash long double testing!
+7. [] Thrash long double testing!
 
-8. Thrash float testing!
+8. [] Thrash float testing!
 
 9. ibeta complement
 
@@ -30,7 +30,7 @@ I might want a starting fit for small s?
     They have spherical_harmonic_[r|i]
     Note the signed m on all of them!
 
-12. Owen's T function (a stat function)
+12. [DONE] Owen's T function (a stat function)
   template <class T>
     calculated-result-type owens_t(T h, T a);
 
@@ -44,20 +44,24 @@ I might want a starting fit for small s?
     template <class T1, class T2>
       calculated-result-type ellint_d(T1 k, T2 phi);
 
-14. Expose Bernoulli numbers.
+14. [] Expose Bernoulli numbers.
 
-15. polygamma...
+15. [] polygamma...
 
-16. inverse erf and erfc.
+16. [] inverse erf and erfc.
 
-17. inverse incomplete gammas
+17. [] inverse incomplete gammas
 
-18. In testcase.tcc in the big string_view header I'd like to be able to replace
+18. [] In testcase.tcc in the big string_view header I'd like to be able to replace
 #include <specfun_testcase.h>
 with
 #include "../testcase.h"
-for TR1 test generation...
+for [] TR1 test generation...
 
-19. Tabulate riemann_zeta for integer arguments - various sums can use this.
+19. [] Tabulate riemann_zeta for integer arguments - various sums can use this.
 
-20.
+20. [DONE] Loof at test_cyl_hankel - we got issues! vu=1, z=0.01 Y bombs on steeds algorithm!
+       OK! Steeds algorithm fails for cyl_neumann for exatly nu=1 and no thoer. WTF!
+       nearbyint(nu + .5) -> nearbyint(nu).  mu = nu - n was -1.
+
+21. [] Finish experfc = exp(x*x)*erfc(x) (and maybe even sqrt(pi)*x*exp(x*x)*erfc(x))

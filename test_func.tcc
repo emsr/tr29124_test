@@ -390,11 +390,11 @@ template<typename Tp, typename Tp1>
     output.flags(std::ios::showpoint);
     int width = 8 + output.precision();
 
-    output << ' ' << std::setw(width) << arg1;
-    output << ' ' << std::setw(width) << "f1";
-    output << ' ' << std::setw(width) << "f2";
-    output << ' ' << std::setw(width) << "delta";
-    output << ' ' << std::setw(width) << "frac";
+    output << std::setw(width) << arg1;
+    output << std::setw(width) << "f1";
+    output << std::setw(width) << "f2";
+    output << std::setw(width) << "delta";
+    output << std::setw(width) << "frac";
     output << '\n';
 
     auto max_abs_diff = Val{-1};
@@ -410,19 +410,19 @@ template<typename Tp, typename Tp1>
             auto diff = f1 - f2;
             if (std::abs(diff) > max_abs_diff)
               max_abs_diff = std::abs(diff);
-            output << ' ' << std::setw(width) << x;
-            output << ' ' << std::setw(width) << f1;
-            output << ' ' << std::setw(width) << f2;
-            output << ' ' << std::setw(width) << diff;
+            output << std::setw(width) << x;
+            output << std::setw(width) << f1;
+            output << std::setw(width) << f2;
+            output << std::setw(width) << diff;
             if (std::abs(f2) > 0)
               {
         	auto frac = diff / f2;
-        	output << ' ' << std::setw(width) << frac;
+        	output << std::setw(width) << frac;
         	if (std::abs(frac) > max_abs_frac)
                   max_abs_frac = std::abs(frac);
               }
             else
-              output << ' ' << std::setw(width) << '-';
+              output << std::setw(width) << '-';
             output << '\n';
           }
 	catch (std::domain_error & err)
@@ -480,13 +480,13 @@ template<typename Tp, typename Tp1, typename Tp2>
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
 	auto x = argument1[i];
-	output << ' ' << arg1 << " = " << std::setw(width) << x << '\n';
+	output << "  " << arg1 << " = " << std::setw(width) << x << '\n';
 
-	output << ' ' << std::setw(width) << arg2;
-	output << ' ' << std::setw(width) << "f1";
-	output << ' ' << std::setw(width) << "f2";
-	output << ' ' << std::setw(width) << "delta";
-	output << ' ' << std::setw(width) << "frac";
+	output << std::setw(width) << arg2;
+	output << std::setw(width) << "f1";
+	output << std::setw(width) << "f2";
+	output << std::setw(width) << "delta";
+	output << std::setw(width) << "frac";
 	output << '\n';
 
 	auto max_abs_diff = Val{-1};
@@ -502,19 +502,19 @@ template<typename Tp, typename Tp1, typename Tp2>
         	auto diff = f1 - f2;
         	if (std::abs(diff) > max_abs_diff)
                   max_abs_diff = std::abs(diff);
-        	output << ' ' << std::setw(width) << y;
-        	output << ' ' << std::setw(width) << f1;
-        	output << ' ' << std::setw(width) << f2;
-        	output << ' ' << std::setw(width) << diff;
+        	output << std::setw(width) << y;
+        	output << std::setw(width) << f1;
+        	output << std::setw(width) << f2;
+        	output << std::setw(width) << diff;
         	if (std::abs(f2) > 0)
                   {
                     auto frac = diff / f2;
-                    output << ' ' << std::setw(width) << frac;
+                    output << std::setw(width) << frac;
                     if (std::abs(frac) > max_abs_frac)
                       max_abs_frac = std::abs(frac);
                   }
         	else
-                  output << ' ' << std::setw(width) << '-';
+                  output << std::setw(width) << '-';
         	output << '\n';
               }
             catch (std::domain_error & err)
@@ -575,18 +575,18 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
 	auto x = argument1[i];
-	output << ' ' << arg1 << " = " << std::setw(width) << x << '\n';
+	output << "  " << arg1 << " = " << std::setw(width) << x << '\n';
 
 	for (unsigned int j = 0; j < argument2.size(); ++j)
           {
             auto y = argument2[j];
-            output << ' ' << arg2 << " = " << std::setw(width) << y << '\n';
+            output << "  " << arg2 << " = " << std::setw(width) << y << '\n';
 
-            output << ' ' << std::setw(width) << arg3;
-            output << ' ' << std::setw(width) << "f1";
-            output << ' ' << std::setw(width) << "f2";
-            output << ' ' << std::setw(width) << "delta";
-            output << ' ' << std::setw(width) << "frac";
+            output << std::setw(width) << arg3;
+            output << std::setw(width) << "f1";
+            output << std::setw(width) << "f2";
+            output << std::setw(width) << "delta";
+            output << std::setw(width) << "frac";
             output << '\n';
 
 	    auto max_abs_diff = Val{-1};
@@ -602,19 +602,19 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
                     auto diff = f1 - f2;
                     if (std::abs(diff) > max_abs_diff)
                       max_abs_diff = std::abs(diff);
-                    output << ' ' << std::setw(width) << z;
-                    output << ' ' << std::setw(width) << f1;
-                    output << ' ' << std::setw(width) << f2;
-                    output << ' ' << std::setw(width) << diff;
+                    output << std::setw(width) << z;
+                    output << std::setw(width) << f1;
+                    output << std::setw(width) << f2;
+                    output << std::setw(width) << diff;
                     if (std::abs(f2) > 0)
                       {
                 	auto frac = diff / f2;
-                	output << ' ' << std::setw(width) << frac;
+                	output << std::setw(width) << frac;
                 	if (std::abs(frac) > max_abs_frac)
                           max_abs_frac = std::abs(frac);
                       }
                     else
-                      output << ' ' << std::setw(width) << '-';
+                      output << std::setw(width) << '-';
                     output << '\n';
                   }
         	catch (std::domain_error & err)
@@ -678,23 +678,23 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
 	auto w = argument1[i];
-	output << ' ' << arg1 << " = " << std::setw(width) << w << '\n';
+	output << "  " << arg1 << " = " << std::setw(width) << w << '\n';
 
 	for (unsigned int j = 0; j < argument2.size(); ++j)
           {
             auto x = argument2[j];
-            output << ' ' << arg2 << " = " << std::setw(width) << x << '\n';
+            output << "  " << arg2 << " = " << std::setw(width) << x << '\n';
 
             for (unsigned int k = 0; k < argument3.size(); ++k)
               {
         	auto y = argument3[k];
-        	output << ' ' << arg3 << " = " << std::setw(width) << y << '\n';
+        	output << "  " << arg3 << " = " << std::setw(width) << y << '\n';
 
-        	output << ' ' << std::setw(width) << arg4;
-        	output << ' ' << std::setw(width) << "f1";
-        	output << ' ' << std::setw(width) << "f2";
-        	output << ' ' << std::setw(width) << "delta";
-        	output << ' ' << std::setw(width) << "frac";
+        	output << std::setw(width) << arg4;
+        	output << std::setw(width) << "f1";
+        	output << std::setw(width) << "f2";
+        	output << std::setw(width) << "delta";
+        	output << std::setw(width) << "frac";
         	output << '\n';
 
 		auto max_abs_diff = Val{-1};
@@ -710,19 +710,19 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
                 	auto diff = f1 - f2;
                 	if (std::abs(diff) > max_abs_diff)
                           max_abs_diff = std::abs(diff);
-                	output << ' ' << std::setw(width) << z;
-                	output << ' ' << std::setw(width) << f1;
-                	output << ' ' << std::setw(width) << f2;
-                	output << ' ' << std::setw(width) << diff;
+                	output << std::setw(width) << z;
+                	output << std::setw(width) << f1;
+                	output << std::setw(width) << f2;
+                	output << std::setw(width) << diff;
                 	if (std::abs(f2) > 0)
                           {
                             auto frac = diff / f2;
-                            output << ' ' << std::setw(width) << frac;
+                            output << std::setw(width) << frac;
                             if (std::abs(frac) > max_abs_frac)
                               max_abs_frac = std::abs(frac);
                           }
                 	else
-                          output << ' ' << std::setw(width) << '-';
+                          output << std::setw(width) << '-';
                 	output << '\n';
                       }
                     catch (std::domain_error & err)
