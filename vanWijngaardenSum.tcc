@@ -7,6 +7,9 @@ namespace __detail
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
+  /**
+   *
+   */
   template<typename _Tp>
     class _VanWijngaardenSum
     {
@@ -83,7 +86,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _VanWijngaardenSum&
       reset()
       {
-	this->_M_sum = __sum;
+	this->_M_sum = value_type{};
 	this->_M_delta.clear();
 	this->_M_num_terms = 0;
 	this->_M_converged = false;
@@ -109,7 +112,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 //
 // A functor for a vanWijnGaarden compressor must have
-// _Tp operator[int] that returns a term in the original defining series.
+// _Tp operator()(int) that returns a term in the original defining series.
 //
 template<typename _Tp>
   class __lerch_term
@@ -123,7 +126,7 @@ template<typename _Tp>
     { }
 
     value_type
-    operator[](std::size_t __i) const
+    operator()(std::size_t __i) const
     {
       return std::pow(_M_z, value_type(__i))
 	   / std::pow(_M_a + value_type(__i), _M_s);
@@ -134,108 +137,66 @@ template<typename _Tp>
     value_type _M_z;
     value_type _M_s;
     value_type _M_a;
-  }
-
-/**
- *  This performs the series compression on a monotone series
- *  for the regular vanWijnGaarden sum.
- */
-template<typename _TermFn>
-  class _VanWijngaardenCompressor
-  {
-  public:
-
-    using value_type = typename _TermFn::value_type;
-
-    _VanWijngaardenCompressor(_TermFn __term_fn)
-    : _M_term_fn{__term_fn}
-    { }
-
-    value_type
-    operator[](std::size_t __j) const
-    {
-      constexpr auto _S_min = std::numeric_limits<value_type>::min();
-      // Maximum number of iterations before 2^k overflow.
-      constexpr auto __k_max = std::numeric_limits<std::size_t>::digits;
-
-      auto __sum = value_type{};
-      auto __two2k = std::size_t{1};
-      for (auto __k = std::size_t{0}; __k < __k_max; __k += std::size_t{2})
-	{
-	  // Index for the term in the original series.
-	  auto __i = std::size_t{0};
-	  if (!__builtin_mul_overflow(__two2k, __j + 1, &__i))
-	    throw std::runtime_error("_VanWijngaardenCompressor: "
-				     "integer overflow");	  
-	  --__i;
-
-	  // Increment the sum.
-	  auto __term = __two2k * this->_M_term_fn[__i];
-	  __sum += __term;
-
-	  // Stop summation if either the sum is zero
-	  // or if |term / sum| is below requested accuracy.
-	  if (std::abs(__sum) <= _S_min
-	   || std::abs(__term / __sum) < value_type{1.0e-2} * __eps)
-	    break;
-
-	  if (!__builtin_mul_overflow(__two2k, std::size_t{2}, &__two2k))
-	    throw std::runtime_error("_VanWijngaardenCompressor: "
-				     "integer overflow");
-	}
-
-      auto __sign = (__j % 2 == 1 ? -1 : +1);
-      return __sign * __sum;
-    }
-
-  private:
-
-    _TermFn _M_term_fn;
   };
 
-/*
-// This is an example of the conversion of a non-alternating series to an alternating one
-// for the Lerch transcendent.
-// Think of a way to generalize this.
-// Also, why not throw in the (-1)^j?  DONE..
-// I think in place of z, s, a you hand in a functor that, given j, returns the b_j coefficient.
-template<typename _Tp>
-  _Tp
-  aj(_Tp __z, _Tp __s, _Tp __a, unsigned long long __j, _Tp __eps)
-  {
-    constexpr auto _S_min = std::numeric_limits<_Tp>::min();
-    // Maximum number of iterations before 2^k overflow.
-    constexpr auto __k_max = std::numeric_limits<unsigned long long>::digits;
+  /**
+   *  This performs a series compression on a monotone series - converting
+   *  it to an alternating series - for the regular van Wijngaarden sum.
+   *  ADL for ctors anyone?  I'd like to put a lambda in here*
+   */
+  template<typename _TermFn>
+    class _VanWijngaardenCompressor
+    {
+    public:
 
-    auto __sum = _Tp{};
-    auto __two2k = 1ULL;
-    for (auto __k = 0ULL; __k < __k_max; ++__k)
+      _VanWijngaardenCompressor(_TermFn __term_fn)
+      : _M_term_fn{__term_fn}
+      { }
+
+      auto
+      operator[](std::size_t __j) const
       {
-	// Index for the term in the original series.
-	auto __i = 0ULL;
-	if (!__builtin_mul_overflow(__two2k, __j + 1, &__i))
-	  throw std::runtime_error("aj: integer overflow");	  
-	--__i;
+	using value_type = decltype(this->_M_term_fn(__j));
+	constexpr auto _S_min = std::numeric_limits<value_type>::min();
+	constexpr auto _S_eps = std::numeric_limits<value_type>::epsilon();
+	// Maximum number of iterations before 2^k overflow.
+	constexpr auto __k_max = std::numeric_limits<std::size_t>::digits;
 
-	// Increment the sum.
-	auto __z2ind = std::pow(__z, __i);
-	auto __bjk = __two2k * __z2ind / std::pow(__a + __i, __s);
-	__sum += __bjk;
+	auto __sum = value_type{};
+	auto __two2k = std::size_t{1};
+	for (auto __k = std::size_t{0}; __k < __k_max; __k += std::size_t{2})
+	  {
+	    // Index for the term in the original series.
+	    auto __i = std::size_t{0};
+	    if (__builtin_mul_overflow(__two2k, __j + 1, &__i))
+	      throw std::runtime_error("_VanWijngaardenCompressor: "
+				       "index overflow");	  
+	    --__i;
 
-	// Stop summation if either sum is zero or |term/sum|
-	// is below requested accuracy.
-	if (std::abs(__sum) <= _S_min || std::abs(__bjk / __sum) < 1.0e-2 * __eps)
-	  break;
+	    // Increment the sum.
+	    auto __term = __two2k * this->_M_term_fn(__i);
+	    __sum += __term;
 
-	++__k;
-	if (!__builtin_mul_overflow(__two2k, 2, &__two2k))
-	  throw std::runtime_error("aj: integer overflow");
+	    // Stop summation if either the sum is zero
+	    // or if |term / sum| is below requested accuracy.
+	    if (std::abs(__sum) <= _S_min
+	     || std::abs(__term / __sum) < value_type{1.0e-2} * _S_eps)
+	      break;
+
+	    if (__builtin_mul_overflow(__two2k, std::size_t{2}, &__two2k))
+	      throw std::runtime_error("_VanWijngaardenCompressor: "
+				       "index overflow");
+	  }
+
+	auto __sign = (__j % 2 == 1 ? -1 : +1);
+	return __sign * __sum;
       }
 
-    auto __sign = (__j % 2 == 1 ? -1 : +1);
-    return __sign * __sum;
-  }
-*/
+    private:
+
+      _TermFn _M_term_fn;
+    };
+
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 } // namespace std

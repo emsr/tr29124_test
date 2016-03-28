@@ -51,6 +51,7 @@ CHECKS = check_airy_ai \
 	 check_assoc_legendre \
 	 check_beta \
 	 check_bincoef \
+	 check_chi \
 	 check_comp_ellint_1 \
 	 check_comp_ellint_2 \
 	 check_comp_ellint_3 \
@@ -103,11 +104,13 @@ CHECKS = check_airy_ai \
 	 check_lfactorial \
 	 check_lpochhammer_l \
 	 check_lpochhammer_u \
+	 check_owens_t \
 	 check_pochhammer_l \
 	 check_pochhammer_u \
 	 check_psi \
 	 check_radpoly \
 	 check_riemann_zeta \
+	 check_shi \
 	 check_sinc \
 	 check_sinc_pi \
 	 check_sinhint \
@@ -120,6 +123,10 @@ CHECKS = check_airy_ai \
 	 check_sph_harmonic \
 	 check_sph_legendre \
 	 check_sph_neumann \
+	 check_theta_1 \
+	 check_theta_2 \
+	 check_theta_3 \
+	 check_theta_4 \
 	 check_zernike \
 	 complex_ellint_rc \
 	 complex_ellint_rd \
@@ -129,6 +136,7 @@ CHECKS = check_airy_ai \
 	 pr56216_cyl_hankel_1 \
 	 pr56216_cyl_hankel_2 \
 	 pr56216_cyl_bessel_i
+#	 check_clausen_c_2 \
 
 all: diff_special_function \
      test_special_function \
@@ -176,6 +184,99 @@ test:
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_local_special_function > test_local_special_function.txt
 
 check: $(CHECKS)
+	echo "Beginning executions of checks..." > check_out.txt 2> check_err.txt
+	echo "check_airy_ai" >> check_out.txt 2>> check_err.txt && ./check_airy_ai >> check_out.txt 2>> check_err.txt
+	echo "check_airy_bi" >> check_out.txt 2>> check_err.txt && ./check_airy_bi >> check_out.txt 2>> check_err.txt
+	echo "check_assoc_laguerre" >> check_out.txt 2>> check_err.txt && ./check_assoc_laguerre >> check_out.txt 2>> check_err.txt
+	echo "check_assoc_legendre" >> check_out.txt 2>> check_err.txt && ./check_assoc_legendre >> check_out.txt 2>> check_err.txt
+	echo "check_beta" >> check_out.txt 2>> check_err.txt && ./check_beta >> check_out.txt 2>> check_err.txt
+	echo "check_bincoef" >> check_out.txt 2>> check_err.txt && ./check_bincoef >> check_out.txt 2>> check_err.txt
+	echo "check_chi" >> check_out.txt 2>> check_err.txt && ./check_chi >> check_out.txt 2>> check_err.txt
+	#echo "check_clausen_c_2" >> check_out.txt 2>> check_err.txt && ./check_clausen_c_2 >> check_out.txt 2>> check_err.txt
+	echo "check_comp_ellint_1" >> check_out.txt 2>> check_err.txt && ./check_comp_ellint_1 >> check_out.txt 2>> check_err.txt
+	echo "check_comp_ellint_2" >> check_out.txt 2>> check_err.txt && ./check_comp_ellint_2 >> check_out.txt 2>> check_err.txt
+	echo "check_comp_ellint_3" >> check_out.txt 2>> check_err.txt && ./check_comp_ellint_3 >> check_out.txt 2>> check_err.txt
+	echo "check_comp_ellint_d" >> check_out.txt 2>> check_err.txt && ./check_comp_ellint_d >> check_out.txt 2>> check_err.txt
+	echo "check_conf_hyperg" >> check_out.txt 2>> check_err.txt && ./check_conf_hyperg >> check_out.txt 2>> check_err.txt
+	echo "check_conf_hyperg_lim" >> check_out.txt 2>> check_err.txt && ./check_conf_hyperg_lim >> check_out.txt 2>> check_err.txt
+	echo "check_coshint" >> check_out.txt 2>> check_err.txt && ./check_coshint >> check_out.txt 2>> check_err.txt
+	echo "check_cosint" >> check_out.txt 2>> check_err.txt && ./check_cosint >> check_out.txt 2>> check_err.txt
+	echo "check_cyl_bessel_i" >> check_out.txt 2>> check_err.txt && ./check_cyl_bessel_i >> check_out.txt 2>> check_err.txt
+	echo "check_cyl_bessel_j" >> check_out.txt 2>> check_err.txt && ./check_cyl_bessel_j >> check_out.txt 2>> check_err.txt
+	echo "check_cyl_bessel_k" >> check_out.txt 2>> check_err.txt && ./check_cyl_bessel_k >> check_out.txt 2>> check_err.txt
+	echo "check_cyl_hankel_1" >> check_out.txt 2>> check_err.txt && ./check_cyl_hankel_1 >> check_out.txt 2>> check_err.txt
+	echo "check_cyl_hankel_2" >> check_out.txt 2>> check_err.txt && ./check_cyl_hankel_2 >> check_out.txt 2>> check_err.txt
+	echo "check_cyl_neumann" >> check_out.txt 2>> check_err.txt && ./check_cyl_neumann >> check_out.txt 2>> check_err.txt
+	echo "check_dawson" >> check_out.txt 2>> check_err.txt && ./check_dawson >> check_out.txt 2>> check_err.txt
+	echo "check_dilog" >> check_out.txt 2>> check_err.txt && ./check_dilog >> check_out.txt 2>> check_err.txt
+	echo "check_ellint_1" >> check_out.txt 2>> check_err.txt && ./check_ellint_1 >> check_out.txt 2>> check_err.txt
+	echo "check_ellint_2" >> check_out.txt 2>> check_err.txt && ./check_ellint_2 >> check_out.txt 2>> check_err.txt
+	echo "check_ellint_3" >> check_out.txt 2>> check_err.txt && ./check_ellint_3 >> check_out.txt 2>> check_err.txt
+	echo "check_ellint_d" >> check_out.txt 2>> check_err.txt && ./check_ellint_d >> check_out.txt 2>> check_err.txt
+	echo "check_ellint_rc" >> check_out.txt 2>> check_err.txt && ./check_ellint_rc >> check_out.txt 2>> check_err.txt
+	echo "check_ellint_rd" >> check_out.txt 2>> check_err.txt && ./check_ellint_rd >> check_out.txt 2>> check_err.txt
+	echo "check_ellint_rf" >> check_out.txt 2>> check_err.txt && ./check_ellint_rf >> check_out.txt 2>> check_err.txt
+	echo "check_ellint_rg" >> check_out.txt 2>> check_err.txt && ./check_ellint_rg >> check_out.txt 2>> check_err.txt
+	echo "check_ellint_rj" >> check_out.txt 2>> check_err.txt && ./check_ellint_rj >> check_out.txt 2>> check_err.txt
+	echo "check_expint" >> check_out.txt 2>> check_err.txt && ./check_expint >> check_out.txt 2>> check_err.txt
+	echo "check_expint_e1" >> check_out.txt 2>> check_err.txt && ./check_expint_e1 >> check_out.txt 2>> check_err.txt
+	echo "check_factorial" >> check_out.txt 2>> check_err.txt && ./check_factorial >> check_out.txt 2>> check_err.txt
+	echo "check_fresnel_c" >> check_out.txt 2>> check_err.txt && ./check_fresnel_c >> check_out.txt 2>> check_err.txt
+	echo "check_fresnel_s" >> check_out.txt 2>> check_err.txt && ./check_fresnel_s >> check_out.txt 2>> check_err.txt
+	echo "check_gamma_l" >> check_out.txt 2>> check_err.txt && ./check_gamma_l >> check_out.txt 2>> check_err.txt
+	echo "check_gamma_u" >> check_out.txt 2>> check_err.txt && ./check_gamma_u >> check_out.txt 2>> check_err.txt
+	echo "check_gegenbauer" >> check_out.txt 2>> check_err.txt && ./check_gegenbauer >> check_out.txt 2>> check_err.txt
+	echo "check_hermite" >> check_out.txt 2>> check_err.txt && ./check_hermite >> check_out.txt 2>> check_err.txt
+	echo "check_heuman_lambda" >> check_out.txt 2>> check_err.txt && ./check_heuman_lambda >> check_out.txt 2>> check_err.txt
+	echo "check_hurwitz_zeta" >> check_out.txt 2>> check_err.txt && ./check_hurwitz_zeta >> check_out.txt 2>> check_err.txt
+	echo "check_hyperg" >> check_out.txt 2>> check_err.txt && ./check_hyperg >> check_out.txt 2>> check_err.txt
+	echo "check_ibeta" >> check_out.txt 2>> check_err.txt && ./check_ibeta >> check_out.txt 2>> check_err.txt
+	echo "check_jacobi" >> check_out.txt 2>> check_err.txt && ./check_jacobi >> check_out.txt 2>> check_err.txt
+	echo "check_jacobi_cn" >> check_out.txt 2>> check_err.txt && ./check_jacobi_cn >> check_out.txt 2>> check_err.txt
+	echo "check_jacobi_dn" >> check_out.txt 2>> check_err.txt && ./check_jacobi_dn >> check_out.txt 2>> check_err.txt
+	echo "check_jacobi_sn" >> check_out.txt 2>> check_err.txt && ./check_jacobi_sn >> check_out.txt 2>> check_err.txt
+	echo "check_jacobi_zeta" >> check_out.txt 2>> check_err.txt && ./check_jacobi_zeta >> check_out.txt 2>> check_err.txt
+	echo "check_laguerre" >> check_out.txt 2>> check_err.txt && ./check_laguerre >> check_out.txt 2>> check_err.txt
+	echo "check_lbincoef" >> check_out.txt 2>> check_err.txt && ./check_lbincoef >> check_out.txt 2>> check_err.txt
+	echo "check_ldouble_factorial" >> check_out.txt 2>> check_err.txt && ./check_ldouble_factorial >> check_out.txt 2>> check_err.txt
+	echo "check_legendre" >> check_out.txt 2>> check_err.txt && ./check_legendre >> check_out.txt 2>> check_err.txt
+	echo "check_legendre" >> check_out.txt 2>> check_err.txt && ./check_legendre >> check_out.txt 2>> check_err.txt
+	echo "check_legendre_q" >> check_out.txt 2>> check_err.txt && ./check_legendre_q >> check_out.txt 2>> check_err.txt
+	echo "check_lfactorial" >> check_out.txt 2>> check_err.txt && ./check_lfactorial >> check_out.txt 2>> check_err.txt
+	echo "check_lpochhammer_l" >> check_out.txt 2>> check_err.txt && ./check_lpochhammer_l >> check_out.txt 2>> check_err.txt
+	echo "check_lpochhammer_u" >> check_out.txt 2>> check_err.txt && ./check_lpochhammer_u >> check_out.txt 2>> check_err.txt
+	echo "check_owens_t" >> check_out.txt 2>> check_err.txt && ./check_owens_t >> check_out.txt 2>> check_err.txt
+	echo "check_pochhammer_l" >> check_out.txt 2>> check_err.txt && ./check_pochhammer_l >> check_out.txt 2>> check_err.txt
+	echo "check_pochhammer_u" >> check_out.txt 2>> check_err.txt && ./check_pochhammer_u >> check_out.txt 2>> check_err.txt
+	echo "check_psi" >> check_out.txt 2>> check_err.txt && ./check_psi >> check_out.txt 2>> check_err.txt
+	echo "check_radpoly" >> check_out.txt 2>> check_err.txt && ./check_radpoly >> check_out.txt 2>> check_err.txt
+	echo "check_riemann_zeta" >> check_out.txt 2>> check_err.txt && ./check_riemann_zeta >> check_out.txt 2>> check_err.txt
+	echo "check_shi" >> check_out.txt 2>> check_err.txt && ./check_shi >> check_out.txt 2>> check_err.txt
+	echo "check_sinc" >> check_out.txt 2>> check_err.txt && ./check_sinc >> check_out.txt 2>> check_err.txt
+	echo "check_sinc_pi" >> check_out.txt 2>> check_err.txt && ./check_sinc_pi >> check_out.txt 2>> check_err.txt
+	echo "check_sinhint" >> check_out.txt 2>> check_err.txt && ./check_sinhint >> check_out.txt 2>> check_err.txt
+	echo "check_sinint" >> check_out.txt 2>> check_err.txt && ./check_sinint >> check_out.txt 2>> check_err.txt
+	echo "check_sph_bessel" >> check_out.txt 2>> check_err.txt && ./check_sph_bessel >> check_out.txt 2>> check_err.txt
+	echo "check_sph_bessel_i" >> check_out.txt 2>> check_err.txt && ./check_sph_bessel_i >> check_out.txt 2>> check_err.txt
+	echo "check_sph_bessel_k" >> check_out.txt 2>> check_err.txt && ./check_sph_bessel_k >> check_out.txt 2>> check_err.txt
+	echo "check_sph_hankel_1" >> check_out.txt 2>> check_err.txt && ./check_sph_hankel_1 >> check_out.txt 2>> check_err.txt
+	echo "check_sph_hankel_2" >> check_out.txt 2>> check_err.txt && ./check_sph_hankel_2 >> check_out.txt 2>> check_err.txt
+	echo "check_sph_harmonic" >> check_out.txt 2>> check_err.txt && ./check_sph_harmonic >> check_out.txt 2>> check_err.txt
+	echo "check_sph_legendre" >> check_out.txt 2>> check_err.txt && ./check_sph_legendre >> check_out.txt 2>> check_err.txt
+	echo "check_sph_neumann" >> check_out.txt 2>> check_err.txt && ./check_sph_neumann >> check_out.txt 2>> check_err.txt
+	echo "check_theta_1" >> check_out.txt 2>> check_err.txt && ./check_theta_1 >> check_out.txt 2>> check_err.txt
+	echo "check_theta_2" >> check_out.txt 2>> check_err.txt && ./check_theta_2 >> check_out.txt 2>> check_err.txt
+	echo "check_theta_3" >> check_out.txt 2>> check_err.txt && ./check_theta_3 >> check_out.txt 2>> check_err.txt
+	echo "check_theta_4" >> check_out.txt 2>> check_err.txt && ./check_theta_4 >> check_out.txt 2>> check_err.txt
+	echo "check_zernike" >> check_out.txt 2>> check_err.txt && ./check_zernike >> check_out.txt 2>> check_err.txt
+	echo "complex_ellint_rc" >> check_out.txt 2>> check_err.txt && ./complex_ellint_rc >> check_out.txt 2>> check_err.txt
+	#echo "complex_ellint_rd" >> check_out.txt 2>> check_err.txt && ./complex_ellint_rd >> check_out.txt 2>> check_err.txt
+	#echo "complex_ellint_rf" >> check_out.txt 2>> check_err.txt && ./complex_ellint_rf >> check_out.txt 2>> check_err.txt
+	echo "complex_ellint_rg" >> check_out.txt 2>> check_err.txt && ./complex_ellint_rg >> check_out.txt 2>> check_err.txt
+	#echo "complex_ellint_rj" >> check_out.txt 2>> check_err.txt && ./complex_ellint_rj >> check_out.txt 2>> check_err.txt
+	echo "pr56216_cyl_hankel_1" >> check_out.txt 2>> check_err.txt && ./pr56216_cyl_hankel_1 >> check_out.txt 2>> check_err.txt
+	echo "pr56216_cyl_hankel_2" >> check_out.txt 2>> check_err.txt && ./pr56216_cyl_hankel_2 >> check_out.txt 2>> check_err.txt
+	echo "pr56216_cyl_bessel_i" >> check_out.txt 2>> check_err.txt && ./pr56216_cyl_bessel_i >> check_out.txt 2>> check_err.txt
 
 
 test_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
@@ -252,6 +353,12 @@ check_beta: check_beta.cc
 
 check_bincoef: check_bincoef.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_bincoef check_bincoef.cc
+
+check_chi: check_chi.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_chi check_chi.cc
+
+check_clausen_c_2: check_clausen_c_2.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_clausen_c_2 check_clausen_c_2.cc
 
 check_comp_ellint_1: check_comp_ellint_1.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_comp_ellint_1 check_comp_ellint_1.cc
@@ -406,6 +513,9 @@ check_lpochhammer_l: check_lpochhammer_l.cc
 check_lpochhammer_u: check_lpochhammer_u.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_lpochhammer_u check_lpochhammer_u.cc
 
+check_owens_t: check_owens_t.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_owens_t check_owens_t.cc
+
 check_pochhammer_l: check_pochhammer_l.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_pochhammer_l check_pochhammer_l.cc
 
@@ -420,6 +530,9 @@ check_radpoly: check_radpoly.cc
 
 check_riemann_zeta: check_riemann_zeta.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_riemann_zeta check_riemann_zeta.cc
+
+check_shi: check_shi.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_shi check_shi.cc
 
 check_sinc: check_sinc.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_sinc check_sinc.cc
@@ -456,6 +569,18 @@ check_sph_legendre: check_sph_legendre.cc
 
 check_sph_neumann: check_sph_neumann.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_sph_neumann check_sph_neumann.cc
+
+check_theta_1: check_theta_1.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_theta_1 check_theta_1.cc
+
+check_theta_2: check_theta_2.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_theta_2 check_theta_2.cc
+
+check_theta_3: check_theta_3.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_theta_3 check_theta_3.cc
+
+check_theta_4: check_theta_4.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_theta_4 check_theta_4.cc
 
 check_zernike: check_zernike.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_zernike check_zernike.cc
