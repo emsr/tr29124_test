@@ -7,6 +7,7 @@
 #include <ios>
 #include <cmath>
 #include <complex>
+#include <utility> // For exchange
 
 /**
  *  detail: Do we want this to always have a size of at least one? a_0 = _Tp{}?  YES.

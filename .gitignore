@@ -110,6 +110,7 @@ test_airy
 test_aitken
 test_bessel
 test_bessel_asymp
+test_bessel_iter
 test_beta_inc
 test_chebyshev
 test_clausen
