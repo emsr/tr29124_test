@@ -1384,12 +1384,12 @@ template<typename Real>
     std::ofstream file_dirichlet_eta(filename.c_str());
     test =
     maketest(dirichlet_eta, gsl::dirichlet_eta,
-	     nsname, basename,
+	     "__gnu_cxx", basename,
 	     "s", fill_argument(std::make_pair(Real{-10}, Real{1}),
 				std::make_pair(true, false), 56),
 	     file_dirichlet_eta, true, false);
     maketest(dirichlet_eta, gsl::dirichlet_eta,
-	     nsname, basename,
+	     "__gnu_cxx", basename,
 	     "s", fill_argument(std::make_pair(Real{1}, Real{30}),
 				std::make_pair(false, true), 146),
 	     file_dirichlet_eta, false, true, test);
