@@ -2,7 +2,10 @@
 #include <vector>
 #include <map>
 #include <functional>
+#include <memory>
+#include <limits>
 #include <cmath> // min, max, clamp.
+#include <experimental/optional> // nullopt_t?
 
 namespace std
 {
@@ -634,7 +637,7 @@ inline namespace v1
 
 inline namespace literals
 {
-  // N.B. clamp would be useful here.
+  // N.B. a std::clamp would be useful here.
   /**
    *
    */
@@ -680,7 +683,7 @@ inline namespace literals
       return *this;
     }
 
-    vector_2d(vector_2d&& __vec) noexcept;
+    vector_2d(vector_2d&& __vec) noexcept
     : _M_x{__vec._M_x}, _M_y{__vec._M_y}
     { }
 
@@ -724,7 +727,7 @@ inline namespace literals
     to_unit() const noexcept
     {
       auto __len = std::hypot(this->_M_x, this->_M_y);
-      return vector_2d{this->_M_x / __len, this->_M_y / __len}
+      return vector_2d{this->_M_x / __len, this->_M_y / __len};
     }
 
     // member operators:
@@ -763,7 +766,7 @@ inline namespace literals
 
   inline bool
   operator==(const vector_2d& __lhs, const vector_2d& __rhs) noexcept
-  { return __lhs._M_x == __rhs._M_x && __lhs._M_y == __rhs._M_y; }
+  { return __lhs.x() == __rhs.x() && __lhs.y() == __rhs.y(); }
 
   inline bool
   operator!=(const vector_2d& __lhs, const vector_2d& __rhs) noexcept
@@ -775,23 +778,31 @@ inline namespace literals
 
   inline vector_2d
   operator+(const vector_2d& __lhs, const vector_2d& __rhs) noexcept
-  { return __ret{__lhs} += __rhs; }
+  {
+    auto __ret{__lhs};
+    __ret += __rhs;
+    return __ret;
+  }
 
   inline vector_2d
   operator-(const vector_2d& __lhs) noexcept
-  { return vector_2d{-__lhs._M_x, -__lhs._M_y}; }
+  { return vector_2d{-__lhs.x(), -__lhs.y()}; }
 
   inline vector_2d
   operator-(const vector_2d& __lhs, const vector_2d& __rhs) noexcept
-  { return __ret{__lhs} -= __rhs; }
+  {
+    auto __ret{__lhs};
+    __ret -= __rhs;
+    return __ret;
+  }
 
   inline vector_2d
   operator*(const vector_2d& __lhs, double __rhs) noexcept
-  { return vector_2d{__rhs * __lhs._M_x, __rhs * __lhs._M_y}; }
+  { return vector_2d{__rhs * __lhs.x(), __rhs * __lhs.y()}; }
 
   inline vector_2d
   operator*(double __lhs, const vector_2d& __rhs) noexcept
-  { return vector_2d{__lhs * __rhs._M_x, __lhs * __rhs._M_y}; }
+  { return vector_2d{__lhs * __rhs.x(), __lhs * __rhs.y()}; }
 
   /**
    *
@@ -842,28 +853,40 @@ inline namespace literals
     // observers:
 
     double
-    x() const noexcept;
+    x() const noexcept
+    { return this->_M_x; }
 
     double
-    y() const noexcept;
+    y() const noexcept
+    { return this->_M_y; }
 
     double
-    width() const noexcept;
+    width() const noexcept
+    { return this->_M_width; }
 
     double
-    height() const noexcept;
+    height() const noexcept
+    { return this->_M_height; }
 
     vector_2d
-    top_left() const noexcept;
+    top_left() const noexcept
+    { return vector_2d{this->x(), this->y()}; }
 
     vector_2d
-    bottom_right() const noexcept;
+    bottom_right() const noexcept
+    {
+      return vector_2d{this->x() + this->width(),
+		       this->y() + this->height()};
+    }
 
   private:
 
     double _M_x;
+
     double _M_y;
+
     double _M_width;
+
     double _M_height;
   };
 
@@ -878,125 +901,225 @@ inline namespace literals
 
     matrix_2d() noexcept;
 
-    matrix_2d(const matrix_2d& other) noexcept;
+    matrix_2d(const matrix_2d& __other) noexcept;
 
     matrix_2d&
-    operator=(const matrix_2d& other) noexcept;
+    operator=(const matrix_2d& __other) noexcept;
 
-    matrix_2d(matrix_2d&& other) noexcept;
+    matrix_2d(matrix_2d&& __other) noexcept;
 
     matrix_2d&
-    operator=(matrix_2d&& other) noexcept;
+    operator=(matrix_2d&& __other) noexcept;
 
-    matrix_2d(double v00, double v01, double v10, double v11,
-	      double v20, double v21) noexcept;
+    matrix_2d(double __v00, double __v01, double __v10, double __v11,
+	      double __v20, double __v21) noexcept;
 
     // static factory functions:
 
     static matrix_2d
-    init_identity() noexcept;
+    init_identity() noexcept
+    {
+      matrix_2d __mat;
+      __mat._M00 = 1.0;
+      __mat._M11 = 1.0;
+      return __mat;
+    }
 
     static matrix_2d
-    init_translate(const vector_2d& value) noexcept;
+    init_translate(const vector_2d& __value) noexcept
+    {
+      matrix_2d __mat;
+      __mat._M20 = __value.x();
+      __mat._M21 = __value.y();
+      return __mat;
+    }
 
     static matrix_2d
-    init_scale(const vector_2d& value) noexcept;
+    init_scale(const vector_2d& __value) noexcept
+    {
+      matrix_2d __mat;
+      __mat._M00 = __value.x();
+      __mat._M11 = __value.y();
+      return __mat;
+    }
 
     static matrix_2d
-    init_rotate(double radians) noexcept;
+    init_rotate(double __radians) noexcept
+    {
+      auto __cos = std::cos(__radians);
+      auto __sin = std::sin(__radians);
+      matrix_2d __mat;
+      __mat._M00 = __cos;
+      __mat._M01 = __sin;
+      __mat._M10 = -__sin; // Active or passive?
+      __mat._M11 = __cos;
+      return __mat;
+    }
 
     static matrix_2d
-    init_shear_x(double factor) noexcept;
+    init_shear_x(double __factor) noexcept
+    {
+      matrix_2d __mat;
+
+      return __mat;
+    }
 
     static matrix_2d
-    init_shear_y(double factor) noexcept;
+    init_shear_y(double __factor) noexcept
+    {
+      matrix_2d __mat;
+
+      return __mat;
+    }
 
     // modifiers:
 
     void
-    m00(double value) noexcept;
+    m00(double __value) noexcept
+    { this->_M00 = __value; }
 
     void
-    m01(double value) noexcept;
+    m01(double __value) noexcept
+    { this->_M01 = __value; }
 
     void
-    m10(double value) noexcept;
+    m10(double __value) noexcept
+    { this->_M10 = __value; }
 
     void
-    m11(double value) noexcept;
+    m11(double __value) noexcept
+    { this->_M11 = __value; }
 
     void
-    m20(double value) noexcept;
+    m20(double __value) noexcept
+    { this->_M20 = __value; }
 
     void
-    m21(double value) noexcept;
+    m21(double __value) noexcept
+    { this->_M21 = __value; }
 
     matrix_2d&
-    translate(const vector_2d& value) noexcept;
+    translate(const vector_2d& __value) noexcept
+    {
+      return *this;
+    }
 
     matrix_2d&
-    scale(const vector_2d& value) noexcept;
+    scale(const vector_2d& __value) noexcept
+    {
+      return *this;
+    }
 
     matrix_2d&
-    rotate(double radians) noexcept;
+    rotate(double __radians) noexcept
+    {
+      return *this;
+    }
 
     matrix_2d&
-    shear_x(double factor) noexcept;
+    shear_x(double __factor) noexcept
+    {
+      return *this;
+    }
 
     matrix_2d&
-    shear_y(double factor) noexcept;
+    shear_y(double __factor) noexcept
+    {
+      return *this;
+    }
 
     matrix_2d&
-    invert();
+    invert()
+    {
+      std::error_code __ec;
+      this->invert(__ec);
+      if (__ec)
+	throw std::someexcept();
+      return *this;
+    }
 
     matrix_2d&
-    invert(std::error_code& ec) noexcept;
+    invert(std::error_code& __ec) noexcept
+    {
+      __ec.clear();
+      auto __det = this->determinant(__ec);
+      return *this;
+    }
 
     // observers:
 
     double
-    m00() const noexcept;
+    m00() const noexcept
+    { return this->_M00; }
 
     double
-    m01() const noexcept;
+    m01() const noexcept
+    { return this->_M01; }
 
     double
-    m10() const noexcept;
+    m10() const noexcept
+    { return this->_M10; }
 
     double
-    m11() const noexcept;
+    m11() const noexcept
+    { return this->_M11; }
 
     double
-    m20() const noexcept;
+    m20() const noexcept
+    { return this->_M20; }
 
     double
-    m21() const noexcept;
+    m21() const noexcept
+    { return this->_M21; }
 
     bool
-    is_invertible const noexcept;
+    is_invertible() const noexcept
+    {
+      constexpr auto _S_min = 100.0 * std::numeric_limits<double>::min();
+      return std::abs(this->determinant()) > _S_min;
+    }
 
     double
-    determinant() const;
+    determinant() const
+    {
+      std::error_code __ec;
+      auto __det = this->determinant(__ec);
+      if (__ec)
+	throw std::someexcept();
+      return __det;
+    }
 
     double
-    determinant(std::error_code& ec) const noexcept;
+    determinant(std::error_code& __ec) const noexcept
+    {
+      __ec.clear();
+      auto __det = this->_M00 * this->_M11 - this->_M01 * this->_M10;
+      return __det;
+    }
 
     vector_2d
-    transform_distance(const vector_2d& dist) const noexcept;
+    transform_distance(const vector_2d& __dist) const noexcept;
 
     vector_2d
-    transform_point(const vector_2d& pt) const noexcept;
+    transform_point(const vector_2d& __pt) const noexcept;
 
-    // 9.7, matrix_2d member operators:
+    // matrix_2d member operators:
+
     matrix_2d&
-    operator*=(const matrix_2d& rhs) noexcept;
+    operator*=(const matrix_2d& __rhs) noexcept;
 
   private:
+
     double _M00;
+
     double _M01;
+
     double _M10;
+
     double _M11;
+
     double _M20;
+
     double _M21;
   };
 
@@ -1065,67 +1188,211 @@ inline namespace literals
     path_data_item&
     operator=(path_data_item&& __other) noexcept;
 
-    path_data_item(const path_data_item::arc& __val) noexcept;
+    path_data_item(const path_data_item::arc& __val) noexcept
+    : _M_has_data{true},
+      //_M_data{__val}, // FIXME!!!
+      _M_type{path_data_type::arc}
+    { }
 
-    path_data_item(const path_data_item::arc_negative& __val) noexcept;
+    path_data_item(const path_data_item::arc_negative& __val) noexcept
+    : _M_has_data{true},
+      //_M_data{__val}, // FIXME!!!
+      _M_type{path_data_type::arc_negative}
+    { }
 
-    path_data_item(const path_data_item::change_matrix& __val) noexcept;
+    path_data_item(const path_data_item::change_matrix& __val) noexcept
+    : _M_has_data{true},
+      //_M_data{__val}, // FIXME!!!
+      _M_type{path_data_type::change_matrix}
+    { }
 
-    path_data_item(const path_data_item::change_origin& __val) noexcept;
+    path_data_item(const path_data_item::change_origin& __val) noexcept
+    : _M_has_data{true},
+      //_M_data{__val}, // FIXME!!!
+      _M_type{path_data_type::change_origin}
+    { }
 
-    path_data_item(const path_data_item::close_path& __val) noexcept;
+    path_data_item(const path_data_item::close_path& __val) noexcept
+    : _M_has_data{true},
+      //_M_data{__val}, // FIXME!!!
+      _M_type{path_data_type::close_path}
+    { }
 
-    path_data_item(const path_data_item::curve_to& __val) noexcept;
+    path_data_item(const path_data_item::curve_to& __val) noexcept
+    : _M_has_data{true},
+      //_M_data{__val}, // FIXME!!!
+      _M_type{path_data_type::curve_to}
+    { }
 
-    path_data_item(const path_data_item::rel_curve_to& __val) noexcept;
+    path_data_item(const path_data_item::rel_curve_to& __val) noexcept
+    : _M_has_data{true},
+      //_M_data{__val}, // FIXME!!!
+      _M_type{path_data_type::rel_curve_to}
+    { }
 
-    path_data_item(const path_data_item::new_sub_path& __val) noexcept;
+    path_data_item(const path_data_item::new_sub_path& __val) noexcept
+    : _M_has_data{true},
+      //_M_data{__val}, // FIXME!!!
+      _M_type{path_data_type::new_sub_path}
+    { }
 
-    path_data_item(const path_data_item::line_to& __val) noexcept;
+    path_data_item(const path_data_item::line_to& __val) noexcept
+    : _M_has_data{true},
+      //_M_data{__val}, // FIXME!!!
+      _M_type{path_data_type::line_to}
+    { }
 
-    path_data_item(const path_data_item::move_to& __val) noexcept;
+    path_data_item(const path_data_item::move_to& __val) noexcept
+    : _M_has_data{true},
+      //_M_data{__val}, // FIXME!!!
+      _M_type{path_data_type::move_to}
+    { }
 
-    path_data_item(const path_data_item::rel_line_to& __val) noexcept;
+    path_data_item(const path_data_item::rel_line_to& __val) noexcept
+    : _M_has_data{true},
+      //_M_data{__val}, // FIXME!!!
+      _M_type{path_data_type::rel_line_to}
+    { }
 
-    path_data_item(const path_data_item::rel_move_to& __val) noexcept;
+    path_data_item(const path_data_item::rel_move_to& __val) noexcept
+    : _M_has_data{true},
+      //_M_data{__val}, // FIXME!!!
+      _M_type{path_data_type::rel_move_to}
+    { }
 
     // modifiers:
 
     void
-    assign(const path_data_item::arc& __val) noexcept;
+    assign(const path_data_item::arc& __val) noexcept
+    {
+      if (reinterpret_cast<path_data_item*>(&__val) != this)
+	{
+	  this->_M_has_data = true;
+	  // FIXME
+	  this->_M_type = path_data_type::arc;
+	}
+    }
 
     void
-    assign(const path_data_item::arc_negative& __val) noexcept;
+    assign(const path_data_item::arc_negative& __val) noexcept
+    {
+      if (reinterpret_cast<path_data_item*>(&__val) != this)
+	{
+	  this->_M_has_data = true;
+	  // FIXME
+	  this->_M_type = path_data_type::arc_negative;
+	}
+    }
 
     void
-    assign(const path_data_item::change_matrix& __val) noexcept;
+    assign(const path_data_item::change_matrix& __val) noexcept
+    {
+      if (reinterpret_cast<path_data_item*>(&__val) != this)
+	{
+	  this->_M_has_data = true;
+	  // FIXME
+	  this->_M_type = path_data_type::change_matrix;
+	}
+    }
 
     void
-    assign(const path_data_item::change_origin& __val) noexcept;
+    assign(const path_data_item::change_origin& __val) noexcept
+    {
+      if (reinterpret_cast<path_data_item*>(&__val) != this)
+	{
+	  this->_M_has_data = true;
+	  // FIXME
+	  this->_M_type = path_data_type::change_origin;
+	}
+    }
 
     void
-    assign(const path_data_item::close_path& __val) noexcept;
+    assign(const path_data_item::close_path& __val) noexcept
+    {
+      if (reinterpret_cast<path_data_item*>(&__val) != this)
+	{
+	  this->_M_has_data = true;
+	  // FIXME
+	  this->_M_type = path_data_type::close_path;
+	}
+    }
 
     void
-    assign(const path_data_item::curve_to& __val) noexcept;
+    assign(const path_data_item::curve_to& __val) noexcept
+    {
+      if (reinterpret_cast<path_data_item*>(&__val) != this)
+	{
+	  this->_M_has_data = true;
+	  // FIXME
+	  this->_M_type = path_data_type::curve_to;
+	}
+    }
 
     void
-    assign(const path_data_item::rel_curve_to& __val) noexcept;
+    assign(const path_data_item::rel_curve_to& __val) noexcept
+    {
+      if (reinterpret_cast<path_data_item*>(&__val) != this)
+	{
+	  this->_M_has_data = true;
+	  // FIXME
+	  this->_M_type = path_data_type::rel_curve_to;
+	}
+    }
 
     void
-    assign(const path_data_item::new_sub_path& __val) noexcept;
+    assign(const path_data_item::new_sub_path& __val) noexcept
+    {
+      if (reinterpret_cast<path_data_item*>(&__val) != this)
+	{
+	  this->_M_has_data = true;
+	  // FIXME
+	  this->_M_type = path_data_type::new_sub_path;
+	}
+    }
 
     void
-    assign(const path_data_item::line_to& __val) noexcept;
+    assign(const path_data_item::line_to& __val) noexcept
+    {
+      if (reinterpret_cast<path_data_item*>(&__val) != this)
+	{
+	  this->_M_has_data = true;
+	  // FIXME
+	  this->_M_type = path_data_type::line_to;
+	}
+    }
 
     void
-    assign(const path_data_item::move_to& __val) noexcept;
+    assign(const path_data_item::move_to& __val) noexcept
+    {
+      if (reinterpret_cast<path_data_item*>(&__val) != this)
+	{
+	  this->_M_has_data = true;
+	  // FIXME
+	  this->_M_type = path_data_type::move_to;
+	}
+    }
 
     void
-    assign(const path_data_item::rel_line_to& __val) noexcept;
+    assign(const path_data_item::rel_line_to& __val) noexcept
+    {
+      if (reinterpret_cast<path_data_item*>(&__val) != this)
+	{
+	  this->_M_has_data = true;
+	  // FIXME
+	  this->_M_type = path_data_type::rel_line_to;
+	}
+    }
 
     void
-    assign(const path_data_item::rel_move_to& __val) noexcept;
+    assign(const path_data_item::rel_move_to& __val) noexcept
+    {
+      if (reinterpret_cast<path_data_item*>(&__val) != this)
+	{
+	  this->_M_has_data = true;
+	  // FIXME
+	  this->_M_type = path_data_type::rel_move_to;
+	}
+    }
 
     // observers:
 
@@ -1133,10 +1400,12 @@ inline namespace literals
     has_data() const noexcept;
 
     path_data_type
-    type() const;
+    type() const
+    { return _M_type; }
 
     path_data_type
-    type(std::error_code& __ec) const noexcept;
+    type(std::error_code& __ec) const noexcept
+    { return static_cast<path_data_item>(-1); } // FIXME
 
     template<typename _Tp>
       _Tp
@@ -1154,8 +1423,8 @@ inline namespace literals
     {
       struct
       {
-	double centerX;
-	double centerY;
+	double center_x;
+	double center_y;
 	double radius;
 	double angle1;
 	double angle2;
@@ -1175,12 +1444,12 @@ inline namespace literals
 
       struct
       {
-	double cpt1x;
-	double cpt1y;
-	double cpt2x;
-	double cpt2y;
-	double eptx;
-	double epty;
+	double crvpt1_x;
+	double crvpt1_y;
+	double crvpt2_x;
+	double crvpt2_y;
+	double endpt_x;
+	double endpt_y;
       }
       curve;
 
@@ -1193,7 +1462,7 @@ inline namespace literals
     }
     _M_data;
 
-    path_data_type _M_ype;
+    path_data_type _M_type;
   };
 
   /**
@@ -1206,48 +1475,63 @@ inline namespace literals
 
     // construct/copy/move/destroy:
 
-    arc_negative() noexcept;
+    arc_negative() noexcept = default;
 
-    arc_negative(const arc_negative&) noexcept;
-
-    path_data_item::arc_negative&
-    operator=(const arc_negative&) noexcept;
-
-    arc_negative(arc_negative&&) noexcept;
+    arc_negative(const arc_negative& __arc) noexcept = default;
 
     path_data_item::arc_negative&
-    operator=(arc_negative&&) noexcept;
+    operator=(const arc_negative& __arc) noexcept = default;
 
-    arc_negative(const vector_2d& center, double radius,
-		 double angle1, double angle2) noexcept;
+    arc_negative(arc_negative&&) noexcept = default;
+
+    path_data_item::arc_negative&
+    operator=(arc_negative&&) noexcept = default;
+
+    arc_negative(const vector_2d& __center, double __radius,
+		 double __angle_1, double __angle_2) noexcept
+    : _M_center{__center}, _M_radius{__radius},
+      _M_angle_1{__angle_1}, _M_angle_2{__angle_2}
+    { }
 
     // modifiers:
 
     void
-    center(const vector_2d& value) noexcept;
+    center(const vector_2d& __center) noexcept
+    { this->_M_center = __center; }
+
     void
-    radius(double value) noexcept;
+    radius(double __radius) noexcept
+    { this->_M_radius = __radius; }
+
     void
-    angle_1(double radians) noexcept;
+    angle_1(double __angle_1) noexcept
+    { this->_M_angle_1 = __angle_1; }
+
     void
-    angle_2(double radians) noexcept;
+    angle_2(double __angle_2) noexcept
+    { this->_M_angle_2 = __angle_2; }
 
     // observers:
 
     vector_2d
-    center() const noexcept;
+    center() const noexcept
+    { return this->_M_center; }
 
     double
-    radius() const noexcept;
+    radius() const noexcept
+    { return this->_M_radius; }
 
     double
-    angle_1() const noexcept;
+    angle_1() const noexcept
+    { return this->_M_angle_1; }
 
     double
-    angle_2() const noexcept;
+    angle_2() const noexcept
+    { return this->_M_angle_2; }
 
     virtual path_data_type
-    type() const noexcept override;
+    type() const noexcept override
+    { return path_data_type::arc_negative; }
 
   private:
 
@@ -1270,61 +1554,67 @@ inline namespace literals
 
     // construct/copy/move/destroy:
 
-    close_path() noexcept;
+    close_path() noexcept = default;
 
-    close_path(const close_path&) noexcept;
-
-    path_data_item::close_path&
-    operator=(const close_path&) noexcept;
-
-    close_path(close_path&&) noexcept;
+    close_path(const close_path&) noexcept = default;
 
     path_data_item::close_path&
-    operator=(close_path&&) noexcept;
+    operator=(const close_path&) noexcept = default;
 
-    // 10.3.10.2, observers:
+    close_path(close_path&&) noexcept = default;
+
+    path_data_item::close_path&
+    operator=(close_path&&) noexcept = default;
+
+    // observers:
 
     virtual path_data_type
-    type() const noexcept override;
+    type() const noexcept override
+    { return path_data_type::close_path; }
   };
 
   /**
    *
    */
-class path_data_item::change_matrix
- : public path_data_item::path_data
- {
- public:
+  class path_data_item::change_matrix
+  : public path_data_item::path_data
+  {
+  public:
 
     // construct/copy/move/destroy:
 
-    change_matrix() noexcept;
+    change_matrix() noexcept = default;
 
-    change_matrix(const change_matrix&) noexcept;
-
-    path_data_item::change_matrix&
-    operator=(const change_matrix&) noexcept;
-
-    change_matrix(change_matrix&&) noexcept;
+    change_matrix(const change_matrix&) noexcept = default;
 
     path_data_item::change_matrix&
-    operator=(change_matrix&&) noexcept;
+    operator=(const change_matrix&) noexcept = default;
+
+    change_matrix(change_matrix&&) noexcept = default;
+
+    path_data_item::change_matrix&
+    operator=(change_matrix&&) noexcept = default;
 
     explicit
-    change_matrix(const matrix_2d& m) noexcept;
+    change_matrix(const matrix_2d& __mat) noexcept
+    : _M_matrix{__mat}
+    { }
 
     // modifiers:
 
     void
-    matrix(const matrix_2d& value) noexcept;
+    matrix(const matrix_2d& __mat) noexcept
+    { this->_M_matrix = __mat; }
 
     // observers:
 
     matrix_2d
-    matrix() const noexcept;
+    matrix() const noexcept
+    { return this->_M_matrix; }
 
     virtual path_data_type
-    type() const noexcept override;
+    type() const noexcept override
+    { return path_data_type::change_matrix; }
 
   private:
 
@@ -1341,37 +1631,41 @@ class path_data_item::change_matrix
 
     // construct/copy/move/destroy:
 
-    change_origin() noexcept;
+    change_origin() noexcept = default;
 
-    change_origin(const change_origin&) noexcept;
-
-    path_data_item::change_origin&
-    operator=(const change_origin&) noexcept;
-
-    change_origin(change_origin&&) noexcept;
+    change_origin(const change_origin&) noexcept = default;
 
     path_data_item::change_origin&
-    operator=(change_origin&&) noexcept;
+    operator=(const change_origin&) noexcept = default;
+
+    change_origin(change_origin&&) noexcept = default;
+
+    path_data_item::change_origin&
+    operator=(change_origin&&) noexcept = default;
 
     explicit
-    change_origin(const vector_2d& pt) noexcept;
+    change_origin(const vector_2d& __pt) noexcept
+    : _M_origin{__pt}
+    { }
 
     // modifiers:
 
     void
-    origin(const vector_2d& value) noexcept;
+    origin(const vector_2d& __pt) noexcept;
 
     // observers:
 
-    vector_2d origin()
-    const noexcept;
+    vector_2d
+    origin() const noexcept
+    { return this->_M_origin; }
 
     virtual path_data_type
-    type() const noexcept override;
+    type() const noexcept override
+    { return path_data_type::change_origin; }
 
   private:
 
-    vector_2d _M_data;
+    vector_2d _M_origin;
   };
 
   /**
@@ -1384,51 +1678,63 @@ class path_data_item::change_matrix
 
     // construct/copy/move/destroy:
 
-    curve_to() noexcept;
+    curve_to() noexcept = default;
 
-    curve_to(const curve_to& __curve) noexcept;
-
-    path_data_item::curve_to&
-    operator=(const curve_to& __curve) noexcept;
-
-    curve_to(curve_to&& __curve) noexcept;
+    curve_to(const curve_to&) noexcept = default;
 
     path_data_item::curve_to&
-    operator=(curve_to&& __curve) noexcept;
+    operator=(const curve_to&) noexcept = default;
 
-    curve_to(const vector_2d& __controlPt1,
-	     const vector_2d& __controlPt2,
-	     const vector_2d& __endPt) noexcept;
+    curve_to(curve_to&&) noexcept = default;
+
+    path_data_item::curve_to&
+    operator=(curve_to&&) noexcept = default;
+
+    curve_to(const vector_2d& __ctrl_pt1,
+	     const vector_2d& __ctrl_pt2,
+	     const vector_2d& __end_pt) noexcept
+    : _M_control_pt1{__ctrl_pt1}, _M_control_pt2{__ctrl_pt2},
+      _M_end_pt{__end_pt}
+    { }
 
     // modifiers:
 
     void
-    control_point_1(const vector_2d& __val) noexcept;
+    control_point_1(const vector_2d& __ctrl_pt1) noexcept
+    { this->_M_control_pt1 = __ctrl_pt1; }
 
     void
-    control_point_2(const vector_2d& __val) noexcept;
+    control_point_2(const vector_2d& __ctrl_pt2) noexcept
+    { this->_M_control_pt2 = __ctrl_pt2; }
 
     void
-    end_point(const vector_2d& __val) noexcept;
+    end_point(const vector_2d& __end_pt) noexcept
+    { this->_M_end_pt = __end_pt; }
 
     // observers:
 
     vector_2d
-    control_point_1() const noexcept;
+    control_point_1() const noexcept
+    { return this->_M_control_pt1; }
 
     vector_2d
-    control_point_2() const noexcept;
+    control_point_2() const noexcept
+    { return this->_M_control_pt2; }
 
     vector_2d
-    end_point() const noexcept;
+    end_point() const noexcept
+    { return this->_M_end_pt; }
 
     virtual path_data_type
-    type() const noexcept override;
+    type() const noexcept override
+    { return path_data_type::curve_to; }
 
   private:
 
     vector_2d _M_control_pt1;
+
     vector_2d _M_control_pt2;
+
     vector_2d _M_end_pt;
   };
 
@@ -1439,38 +1745,43 @@ class path_data_item::change_matrix
 
     // construct/copy/move/destroy:
 
-    line_to() noexcept;
+    line_to() noexcept = default;
 
-    line_to(const line_to&) noexcept;
-
-    path_data_item::line_to&
-    operator=(const line_to&) noexcept;
-
-    line_to(line_to&&) noexcept;
+    line_to(const line_to&) noexcept = default;
 
     path_data_item::line_to&
-    operator=(line_to&&) noexcept;
+    operator=(const line_to&) noexcept = default;
+
+    line_to(line_to&&) noexcept = default;
+
+    path_data_item::line_to&
+    operator=(line_to&&) noexcept = default;
 
     explicit
-    line_to(const vector_2d& pt) noexcept;
+    line_to(const vector_2d& __pt) noexcept
+    : _M_point{__pt}
+    { }
 
     // modifiers:
 
     void
-    to(const vector_2d& pt) noexcept;
+    to(const vector_2d& __pt) noexcept
+    { this->_M_point = __pt; }
 
     // observers:
 
     vector_2d
-    to() const noexcept;
+    to() const noexcept
+    { return this->_M_point; }
 
     virtual path_data_type
-    type() const noexcept override;
+    type() const noexcept override
+    { return path_data_type::line_to; }
 
   private:
 
-    vector_2d _M_data;
-};
+    vector_2d _M_point;
+  };
 
   /**
    *
@@ -1482,38 +1793,43 @@ class path_data_item::change_matrix
 
     // construct/copy/move/destroy:
 
-    move_to() noexcept;
+    move_to() noexcept = default;
 
-    move_to(const move_to&) noexcept;
-
-    path_data_item::move_to&
-    operator=(const move_to&) noexcept;
-
-    move_to(move_to&&) noexcept;
+    move_to(const move_to&) noexcept = default;
 
     path_data_item::move_to&
-    operator=(move_to&&) noexcept;
+    operator=(const move_to&) noexcept = default;
+
+    move_to(move_to&&) noexcept = default;
+
+    path_data_item::move_to&
+    operator=(move_to&&) noexcept = default;
 
     explicit
-    move_to(const vector_2d& pt) noexcept;
+    move_to(const vector_2d& __pt) noexcept
+    : _M_point{__pt}
+    { }
 
     // modifiers:
 
     void
-    to(const vector_2d& pt) noexcept;
+    to(const vector_2d& pt) noexcept
+    { this->_M_point = __pt; }
 
     // observers:
 
     vector_2d
-    to() const noexcept;
+    to() const noexcept
+    { return this->_M_point; }
 
     virtual path_data_type
-    type() const noexcept override;
+    type() const noexcept override
+    { return path_data_type::move_to; }
 
   private:
 
-    vector_2d _M_data;
-};
+    vector_2d _M_point;
+  };
 
   /**
    *
@@ -1525,22 +1841,23 @@ class path_data_item::change_matrix
 
     // construct/copy/move/destroy:
 
-    new_sub_path() noexcept;
+    new_sub_path() noexcept = default;
 
-    new_sub_path(const new_sub_path&) noexcept;
-
-    path_data_item::new_sub_path&
-    operator=(const new_sub_path&) noexcept;
-
-    new_sub_path(new_sub_path&&) noexcept;
+    new_sub_path(const new_sub_path&) noexcept = default;
 
     path_data_item::new_sub_path&
-    operator=(new_sub_path&&) noexcept;
+    operator=(const new_sub_path&) noexcept = default;
+
+    new_sub_path(new_sub_path&&) noexcept = default;
+
+    path_data_item::new_sub_path&
+    operator=(new_sub_path&&) noexcept = default;
 
     // observers:
 
     virtual path_data_type
-    type() const noexcept override;
+    type() const noexcept override
+    { return path_data_type::new_sub_path; }
   };
 
   /**
@@ -1553,50 +1870,62 @@ class path_data_item::change_matrix
 
     // construct/copy/move/destroy:
 
-    rel_curve_to() noexcept;
+    rel_curve_to() noexcept = default;
 
-    rel_curve_to(const rel_curve_to&) noexcept;
-
-    path_data_item::rel_curve_to&
-    operator=(const rel_curve_to&) noexcept;
-
-    rel_curve_to(rel_curve_to&&) noexcept;
+    rel_curve_to(const rel_curve_to&) noexcept = default;
 
     path_data_item::rel_curve_to&
-    operator=(rel_curve_to&&) noexcept;
+    operator=(const rel_curve_to&) noexcept = default;
 
-    rel_curve_to(const vector_2d& controlPt1,
-		 const vector_2d& controlPt2,
-		 const vector_2d& endPt) noexcept;
+    rel_curve_to(rel_curve_to&&) noexcept = default;
+
+    path_data_item::rel_curve_to&
+    operator=(rel_curve_to&&) noexcept = default;
+
+    rel_curve_to(const vector_2d& __ctrl_pt1,
+		 const vector_2d& __ctrl_pt2,
+		 const vector_2d& __end_pt) noexcept
+    : _M_control_pt1{__ctrl_pt1}, _M_control_pt2{__ctrl_pt2},
+      _M_end_pt{__end_pt}
+    { }
 
     // modifiers:
 
     void
-    control_point_1(const vector_2d& value) noexcept;
+    control_point_1(const vector_2d& __ctrl_pt1) noexcept
+    { this->_M_control_pt1 = __ctrl_pt1; }
 
     void
-    control_point_2(const vector_2d& value) noexcept;
+    control_point_2(const vector_2d& value) noexcept
+    { this->_M_control_pt2 = __ctrl_pt2 }
 
     void
-    end_point(const vector_2d& value) noexcept;
+    end_point(const vector_2d& value) noexcept
+    { this->_M_end_pt = __end_pt; }
 
     // 10.3.17.4, observers:
     vector_2d
-    control_point_1() const noexcept;
+    control_point_1() const noexcept
+    { return this->_M_control_pt1; }
 
     vector_2d
-    control_point_2() const noexcept;
+    control_point_2() const noexcept
+    { return this->_M_control_pt2; }
 
     vector_2d
-    end_point() const noexcept;
+    end_point() const noexcept
+    { return this->_M_end_pt; }
 
     virtual path_data_type
-    type() const noexcept override;
+    type() const noexcept override
+    { return path_data_type::rel_curve_to; }
 
   private:
 
     vector_2d _M_control_pt1;
+
     vector_2d _M_control_pt2;
+
     vector_2d _M_end_pt;
   };
 
@@ -1611,37 +1940,43 @@ class path_data_item::change_matrix
 
     // construct/copy/move/destroy:
 
-    rel_line_to() noexcept;
+    rel_line_to() noexcept = default;
 
-    rel_line_to(const line_to&) noexcept;
-
-    path_data_item::rel_line_to&
-    operator=(const line_to&) noexcept;
-
-    rel_line_to(line_to&&) noexcept;
+    rel_line_to(const line_to&) noexcept = default;
 
     path_data_item::rel_line_to&
-    operator=(line_to&&) noexcept;
+    operator=(const line_to&) noexcept = default;
+
+    rel_line_to(line_to&&) noexcept = default;
+
+    path_data_item::rel_line_to&
+    operator=(line_to&&) noexcept = default;
 
     explicit
-    rel_line_to(const vector_2d& pt) noexcept;
+    rel_line_to(const vector_2d& __pt) noexcept
+    : _M_point{__pt}
+    { }
 
     // modifiers:
 
-    void to(const vector_2d& pt) noexcept;
+    void
+    to(const vector_2d& pt) noexcept;
+    { this->_M_point = __pt }
 
     // observers:
 
     vector_2d
-    to() const noexcept;
+    to() const noexcept
+    { return this->_M_point; }
 
     virtual path_data_type
-    type() const noexcept override;
+    type() const noexcept override
+    { return path_data_type::rel_line_to; }
 
   private:
 
-    vector_2d _M_data;
-};
+    vector_2d _M_point;
+  };
 
   /**
    *
@@ -1653,38 +1988,43 @@ class path_data_item::change_matrix
 
     // construct/copy/move/destroy:
 
-    rel_move_to() noexcept;
+    rel_move_to() noexcept = default;
 
-    rel_move_to(const rel_move_to&) noexcept;
-
-    path_data_item::rel_move_to&
-    operator=(const rel_move_to&) noexcept;
-
-    rel_move_to(rel_move_to&&) noexcept;
+    rel_move_to(const rel_move_to&) noexcept = default;
 
     path_data_item::rel_move_to&
-    operator=(rel_move_to&&) noexcept;
+    operator=(const rel_move_to&) noexcept = default;
+
+    rel_move_to(rel_move_to&&) noexcept = default;
+
+    path_data_item::rel_move_to&
+    operator=(rel_move_to&&) noexcept = default;
 
     explicit
-    rel_move_to(const vector_2d& pt) noexcept;
+    rel_move_to(const vector_2d& pt) noexcept
+    : _M_point{__pt}
+    { }
 
     // modifiers:
 
     void
-    to(const vector_2d& pt) noexcept;
+    to(const vector_2d& __pt) noexcept
+    { this->_M_point = __pt; }
 
     // observers:
 
     vector_2d
-    to() const noexcept;
+    to() const noexcept
+    { return this->_M_point; }
 
     virtual path_data_type
-    type() const noexcept override;
+    type() const noexcept override
+    { return path_data_type::rel_move_to; }
 
-private:
+  private:
 
-    vector_2d _M_data;
-};
+    vector_2d _M_point;
+  };
 
   /**
    *
@@ -1969,41 +2309,74 @@ private:
     // observers:
 
     experimental::io2d::rectangle
-    path_extents() const;
+    path_extents() const
+    { return this->; }
 
     experimental::io2d::rectangle
-    path_extents(std::error_code& ec) const noexcept;
+    path_extents(std::error_code& ec) const noexcept
+    { return this->; }
 
     bool
-    has_current_point() const noexcept;
+    has_current_point() const noexcept
+    { return this->; }
 
     vector_2d
-    current_point() const;
+    current_point() const
+    { return this->; }
 
     vector_2d
-    current_point(std::error_code& ec) const noexcept;
+    current_point(std::error_code& ec) const noexcept
+    { return this->; }
 
     matrix_2d
-    transform_matrix() const noexcept;
+    transform_matrix() const noexcept
+    { return this->; }
 
     vector_2d
-    origin() const noexcept;
+    origin() const noexcept
+    { return this->; }
 
     std::vector<path_data_item>
     data() const;
+    {
+      std::error_code __ec;
+      auto _ret = this->data(__ec);
+      if (__ec)
+	throw std::someexcept();
+      return __ret;
+    }
 
     std::vector<path_data_item>
-    data(std::error_code& ec) const noexcept;
+    data(std::error_code& __ec) const noexcept
+    {
+      // TODO check something?
+      __ec.clear();
+      return this->_M_data;
+    }
 
     path_data_item
-    data_item(unsigned int index) const;
+    data_item(unsigned int index) const
+    {
+      std::error_code __ec;
+      auto _ret = this->data_item(__index, __ec);
+      if (__ec)
+	throw std::someexcept();
+      return __ret;
+    }
 
     path_data_item
-    data_item(unsigned int index,
-	      std::error_code& ec) const noexcept;
+    data_item(unsigned int __index,
+	      std::error_code& __ec) const noexcept
+    {
+      __ec.clear();
+      if (__index >= this->_M_data.size())
+	__ec = 666; // FIXME
+      return this->_M_data[__index];
+    }
 
     const std::vector<path_data_item>&
-    data_ref() const noexcept;
+    data_ref() const noexcept
+    { return this->_M_data; }
 
   private:
 
@@ -2370,56 +2743,67 @@ private:
 
     brush() = delete;
 
-    brush(const brush&) noexcept;
+    brush(const brush&) noexcept = default;
 
     brush&
-    operator=(const brush&) noexcept;
+    operator=(const brush&) noexcept = default;
 
-    brush(brush&& other) noexcept;
+    brush(brush&&) noexcept = default;
 
     brush&
-    operator=(brush&& other) noexcept;
+    operator=(brush&&) noexcept = default;
 
-    brush(const solid_color_brush_factory& f);
+    brush(const solid_color_brush_factory& __fact);
 
-    brush(const solid_color_brush_factory& f, std::error_code& ec) noexcept;
+    brush(const solid_color_brush_factory& __fact,
+	  std::error_code& __ec) noexcept;
 
-    brush(const linear_brush_factory& f);
+    brush(const linear_brush_factory& __fact);
 
-    brush(const linear_brush_factory& f, std::error_code& ec) noexcept;
+    brush(const linear_brush_factory& __fact,
+	  std::error_code& __ec) noexcept;
 
-    brush(const radial_brush_factory& f);
+    brush(const radial_brush_factory& __fact);
 
-    brush(const radial_brush_factory& f, std::error_code& ec) noexcept;
+    brush(const radial_brush_factory& __fact,
+	  std::error_code& __ec) noexcept;
 
-    brush(const surface_brush_factory& f); // FIXME: Added const??
+    brush(const surface_brush_factory& __fact); // FIXME: Added const??
 
-    brush(const surface_brush_factory& f, std::error_code& ec) noexcept; // FIXME: Added const??
+    brush(const surface_brush_factory& __fact, // FIXME: Added const??
+	  std::error_code& __ec) noexcept;
 
     // modifiers:
 
     void
-    extend(experimental::io2d::extend e) noexcept;
+    extend(experimental::io2d::extend __ext) noexcept
+    { this->_M_extend = __ext; }
 
     void
-    filter(experimental::io2d::filter f) noexcept;
+    filter(experimental::io2d::filter __filt) noexcept
+    { this->_M_filter = __filt; }
 
     void
-    matrix(const matrix_2d& m) noexcept;
+    matrix(const matrix_2d& __mat) noexcept
+    { this->_M_matrix = __mat; }
 
     // observers:
 
     experimental::io2d::extend
-    extend() const noexcept;
+    extend() const noexcept
+    { return this->_M_extend; }
 
     experimental::io2d::filter
-    filter() const noexcept;
+    filter() const noexcept
+    { return this->_M_filter; }
 
     matrix_2d
-    matrix() const noexcept;
+    matrix() const noexcept
+    { return this->_M_matrix; }
 
     brush_type
-    type() const noexcept;
+    type() const noexcept
+    { return this->_M_brush_type; }
 
   private:
 
@@ -2441,24 +2825,27 @@ private:
 
     // construct/copy/move/destroy:
 
-    solid_color_brush_factory() noexcept;
+    solid_color_brush_factory() noexcept = default;
 
-    solid_color_brush_factory(const solid_color_brush_factory&) noexcept;
-
-    solid_color_brush_factory&
-    operator=(const solid_color_brush_factory&) noexcept;
-
-    solid_color_brush_factory(solid_color_brush_factory&& other) noexcept;
+    solid_color_brush_factory(const solid_color_brush_factory&) noexcept = default;
 
     solid_color_brush_factory&
-    operator=(solid_color_brush_factory&& other) noexcept;
+    operator=(const solid_color_brush_factory&) noexcept = default;
 
-    solid_color_brush_factory(const rgba_color& color) noexcept;
+    solid_color_brush_factory(solid_color_brush_factory&&) noexcept = default;
+
+    solid_color_brush_factory&
+    operator=(solid_color_brush_factory&&) noexcept = default;
+
+    solid_color_brush_factory(const rgba_color& __color) noexcept
+    : _M_color{__color}
+    { }
 
     // modifiers:
 
     void
-    color(const rgba_color& value) noexcept;
+    color(const rgba_color& __value) noexcept
+    { this->_M_color = __value; }
 
     // observers:
 
@@ -2479,70 +2866,116 @@ private:
 
     // types
 
-    typedef implementation-defined size_type;
+    typedef /*implementation-defined*/ std::size_t size_type;
 
     // construct/copy/move/destroy:
 
-    linear_brush_factory() noexcept;
+    linear_brush_factory() noexcept = default;
 
-    linear_brush_factory(const linear_brush_factory&);
-
-    linear_brush_factory&
-    operator=(const linear_brush_factory&);
-
-    linear_brush_factory(linear_brush_factory&& __other) noexcept;
+    linear_brush_factory(const linear_brush_factory&) = default;
 
     linear_brush_factory&
-    operator=(linear_brush_factory&& __other) noexcept;
+    operator=(const linear_brush_factory&) = default;
+
+    linear_brush_factory(linear_brush_factory&&) noexcept = default;
+
+    linear_brush_factory&
+    operator=(linear_brush_factory&&) noexcept = default;
 
     linear_brush_factory(const vector_2d& __begin,
-			 const vector_2d& __end) noexcept;
+			 const vector_2d& __end) noexcept
+    : _M_begin_point{__begin}, _M_end_point{__end},
+      _M_color_stops{} // FIXME? std default colorstops?
+    { }
 
     // modifiers:
 
     void
     add_color_stop(double offset,
-		   const rgba_color& color);
+		   const rgba_color& __color)
+    {
+      std::error_code __ec;
+      this->add_color_stop(__offset, __color, __ec);
+      if (__ec)
+	throw std::someexception();
+    }
 
     void
     add_color_stop(double __offset,
 		   const rgba_color& __color,
-		   std::error_code& __ec) noexcept;
+		   std::error_code& __ec) noexcept
+    {
+      //  TODO: Check offet I think.
+      __ec.clear();
+      this->_M_color_stops.emplace_back(__offset, __color);
+    }
 
     void
     color_stop(size_type __index,
 	       double __offset,
-	       const rgba_color& __color);
+	       const rgba_color& __color)
+    {
+      std::error_code __ec;
+      this->color_stop(__index, __offset, __color, __ec);
+      if (__ec)
+	throw std::someexception();
+    }
 
     void
     color_stop(size_type __index,
 	       double __offset,
 	       const rgba_color& __color,
-	       std::error_code& __ec) noexcept;
+	       std::error_code& __ec) noexcept
+    {
+      __ec.clear();
+      if (__index >= this->_M_color_stops.size())
+	__ec = 666; // FIXME
+      auto& __stop = this->_M_color_stops[__index];
+      std::get<double>(__stop) = __offset;
+      std::get<rgba_color>(__stop) = __color;
+    }
 
     void
-    begin_point(const vector_2d& __value) noexcept;
+    begin_point(const vector_2d& __value) noexcept
+    { this->_M_begin_point = __value; }
 
     void
-    end_point(const vector_2d& __value) noexcept;
+    end_point(const vector_2d& __value) noexcept
+    { this->_M_end_point; = __value; }
 
     // observers:
 
     size_type
-    color_stop_count() const noexcept;
+    color_stop_count() const noexcept
+    { return this->_M_color_stops.size(); }
 
     std::tuple<double, rgba_color>
-    color_stop(size_type __index) const;
+    color_stop(size_type __index) const
+    {
+      std::error_code __ec;
+      auto __ret = this->color_stop(__index, __ec);
+      if (__ec)
+	throw std::someexception();
+      return __ret;
+    }
 
     std::tuple<double, rgba_color>
     color_stop(size_type __index,
-	       std::error_code& __ec) const noexcept;
+	       std::error_code& __ec) const noexcept
+    {
+      __ec.clear();
+      if (__index >= _M_color_stops.size())
+	__ec = 666; // FIXME
+      return this->_M_color_stops.at(__index);
+    }
 
     vector_2d
-    begin_point() const noexcept;
+    begin_point() const noexcept
+    { return this->_M_begin_point; }
 
     vector_2d
-    end_point() const noexcept;
+    end_point() const noexcept
+    { return this->_M_end_point; }
 
   private:
 
@@ -2551,10 +2984,10 @@ private:
     vector_2d _M_end_point;
 
     std::vector<std::tuple<double, rgba_color>> _M_color_stops;
-  }
+  };
 
   /**
-   *
+   *  TODO: Why not a single radius?  Do we care if one center is outside the other circle?
    */
   class radial_brush_factory
   {
@@ -2562,66 +2995,113 @@ private:
 
     // types
 
-    typedef implementation-defined size_type;
+    typedef /*implementation-defined*/ std::size_t size_type;
 
     // construct/copy/move/destroy:
 
-    radial_brush_factory() noexcept;
+    radial_brush_factory() noexcept = default;
 
-    radial_brush_factory(const radial_brush_factory&);
-
-    radial_brush_factory&
-    operator=(const radial_brush_factory&);
-
-    radial_brush_factory(radial_brush_factory&& other) noexcept;
+    radial_brush_factory(const radial_brush_factory&) = default;
 
     radial_brush_factory&
-    operator=(radial_brush_factory&& other) noexcept;
+    operator=(const radial_brush_factory&) = default;
 
-    radial_brush_factory(const vector_2d& center0,
-			 double radius0,
-			 const vector_2d& center1,
-			 double radius1) noexcept;
+    radial_brush_factory(radial_brush_factory&&) noexcept = default;
+
+    radial_brush_factory&
+    operator=(radial_brush_factory&&) noexcept = default;
+
+    radial_brush_factory(const vector_2d& __center0, double __radius0,
+			 const vector_2d& __center1, double __radius1) noexcept
+    : _M_center0{__center0}, _M_radius0{__radius0},
+      _M_center1{__center1}, _M_radius1{__radius1},
+      _M_color_stops{} // TODO: Default color stops?
+    { }
 
     // modifiers:
 
     void
-    add_color_stop(double offset,
-		   const rgba_color& color);
+    add_color_stop(double __offset,
+		   const rgba_color& __color)
+    {
+      std::error_code __ec;
+      this->add_color_stop(__offset, __color, __ec);
+      if (__ec)
+	throw std::someexception();
+    }
 
     void
-    add_color_stop(double offset,
-		   const rgba_color& color,
-		   std::error_code& ec) noexcept;
+    add_color_stop(double __offset,
+		   const rgba_color& __color,
+		   std::error_code& __ec) noexcept
+    {
+      __ec.clear();
+      //  TODO: Check offet I think.
+      this->_M_color_stops.emplace_back(__offset, __color);
+    }
 
     void
     color_stop(size_type index,
 	       double offset,
-	       const rgba_color& color);
+	       const rgba_color& color)
+    {
+      std::error_code __ec;
+      this->color_stop(__index, __offset, __color, __ec);
+      if (__ec)
+	throw std::someexception();
+    }
 
     void
     color_stop(size_type index,
 	       double offset,
 	       const rgba_color& color,
-	       std::error_code& ec) noexcept;
+	       std::error_code& ec) noexcept
+    {
+      __ec.clear();
+      if (__index >= this->_M_color_stops.size())
+	__ec = 666; // FIXME
+      auto& __stop = this->_M_color_stops[__index];
+      std::get<double>(__stop) = __offset;
+      std::get<rgba_color>(__stop) = __color;
+    }
 
     void
     radial_circles(const vector_2d& center0,
 		   double radius0,
 		   const vector_2d& center1,
-		   double radius1) noexcept;
+		   double radius1) noexcept
+    {
+      this->_M_center0 = center0;
+      this->_M_radius0 = radius0;
+      this->_M_center1 = center1;
+      this->_M_radius1 = radius1;
+    }
 
     // observers:
 
     size_type
-    color_stop_count() const noexcept;
+    color_stop_count() const noexcept
+    { return this->_M_color_stops.size(); }
 
     std::tuple<double, rgba_color>
-    color_stop(size_type index) const;
+    color_stop(size_type index) const
+    {
+      std::error_code __ec;
+      auto __ret = this->color_stop(__index, __ec);
+      if (__ec)
+	throw std::someexception();
+      return __ret;
+    }
 
-    std::tuple<double, rgba_color>
-    color_stop(size_type index,
-	       std::error_code& ec) const noexcept;
+    std::tuple<double, __rgba_color>
+    color_stop(size_type __index,
+	       std::error_code& __ec) const noexcept
+    {
+      __ec.clear();
+      if (__index >= _M_color_stops.size())
+	__ec = 666; // FIXME
+      return this->_M_color_stops.at(__index);
+    }
 
     std::tuple<vector_2d, double, vector_2d, double>
     radial_circles() const noexcept;
@@ -2637,7 +3117,9 @@ private:
     double _M_radius1;
 
     std::vector<std::tuple<double, rgba_color>> _M_color_stops;
-};
+  };
+
+  class image_surface;
 
   /**
    *
@@ -2655,15 +3137,15 @@ private:
     surface_brush_factory&
     operator=(const surface_brush_factory&) = delete;
 
-    surface_brush_factory(surface_brush_factory&& other) noexcept;
+    surface_brush_factory(surface_brush_factory&& other) noexcept = default;
 
     surface_brush_factory&
-    operator=(surface_brush_factory&& other) noexcept;
+    operator=(surface_brush_factory&&) noexcept = default;
 
-    surface_brush_factory(experimental::io2d::surface& s);
+    surface_brush_factory(experimental::io2d::surface& __surf);
 
-    surface_brush_factory(experimental::io2d::surface& s,
-			  std::error_code& ec) noexcept;
+    surface_brush_factory(experimental::io2d::surface& __surf,
+			  std::error_code& __ec) noexcept;
 
     // modifiers:
 
@@ -2886,10 +3368,10 @@ private:
     void
     flush(std::error_code& ec) noexcept;
 
-    shared_ptr<experimental::io2d::device>
+    std::shared_ptr<experimental::io2d::device>
     device();
 
-    shared_ptr<experimental::io2d::device>
+    std::shared_ptr<experimental::io2d::device>
     device(std::error_code& ec) noexcept;
 
     void mark_dirty();

@@ -200,7 +200,9 @@ template<typename _Tp>
     constexpr _Tp _S_1_d_sqrt_2pi = 0.39894228040143267794L;
     constexpr _Tp _S_1_d_2pi = 0.15915494309189533577L;
 
-    if (__h < _Tp{0})
+    if (__isnan(__a) || __isnan(__h))
+      return std::numeric_limits<_Tp>::quiet_NaN();
+    else if (__h < _Tp{0})
       return __owens_t(-__h, __a);
     else if (__a < _Tp{0})
       return -__owens_t(__h, -__a);
