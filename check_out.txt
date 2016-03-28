@@ -1,0 +1,681 @@
+Beginning executions of checks...
+check_airy_ai
+check_airy_bi
+check_assoc_laguerre
+check_assoc_legendre
+check_beta
+check_bincoef
+check_chi
+check_comp_ellint_1
+check_comp_ellint_2
+check_comp_ellint_3
+check_comp_ellint_d
+check_conf_hyperg
+check_conf_hyperg_lim
+check_coshint
+check_cosint
+check_cyl_bessel_i
+check_cyl_bessel_j
+check_cyl_bessel_k
+check_cyl_hankel_1
+line 934  max_abs_frac = 1.86614
+line 934  max_abs_frac = 9.86638
+line 934  max_abs_frac = 19.1929
+line 934  max_abs_frac = 11.4063
+line 934  max_abs_frac = 8.24914
+line 934  max_abs_frac = 11.9271
+line 934  max_abs_frac = 22.4657
+line 934  max_abs_frac = 28.1417
+line 934  max_abs_frac = 25.595
+line 934  max_abs_frac = 31.7024
+line 934  max_abs_frac = 19.1929
+line 934  max_abs_frac = 9.86638
+line 934  max_abs_frac = 1.86614
+line 934  max_abs_frac = 1.41425
+line 934  max_abs_frac = 1.41421
+line 934  max_abs_frac = 1.41421
+line 934  max_abs_frac = 1.41421
+line 934  max_abs_frac = 29.9962
+line 934  max_abs_frac = 7.18785
+line 934  max_abs_frac = 44.1944
+line 934  max_abs_frac = 21.2734
+line 934  max_abs_frac = 22.7771
+line 934  max_abs_frac = 75.3995
+line 934  max_abs_frac = 414.377
+line 934  max_abs_frac = 48.6255
+line 934  max_abs_frac = 21.3938
+line 934  max_abs_frac = 75.9202
+line 934  max_abs_frac = 1.8676
+check_cyl_hankel_2
+line 934  max_abs_frac = 1.41371
+line 934  max_abs_frac = 11.1532
+line 934  max_abs_frac = 21.1905
+line 934  max_abs_frac = 9.41566
+line 934  max_abs_frac = 10.2373
+line 934  max_abs_frac = 13.9211
+line 934  max_abs_frac = 24.4639
+line 934  max_abs_frac = 30.1406
+line 934  max_abs_frac = 27.5935
+line 934  max_abs_frac = 29.7035
+line 934  max_abs_frac = 21.1905
+line 934  max_abs_frac = 11.1532
+line 934  max_abs_frac = 1.41371
+line 934  max_abs_frac = 1.41421
+line 934  max_abs_frac = 1.41421
+line 934  max_abs_frac = 1.41421
+line 934  max_abs_frac = 1.41421
+line 934  max_abs_frac = 27.9973
+line 934  max_abs_frac = 7.66784
+line 934  max_abs_frac = 46.1939
+line 934  max_abs_frac = 23.2714
+line 934  max_abs_frac = 20.7792
+line 934  max_abs_frac = 73.3997
+line 934  max_abs_frac = 416.377
+line 934  max_abs_frac = 46.626
+line 934  max_abs_frac = 23.3918
+line 934  max_abs_frac = 77.92
+line 934  max_abs_frac = 1.41421
+check_cyl_neumann
+check_dawson
+check_dilog
+check_ellint_1
+check_ellint_2
+check_ellint_3
+check_ellint_d
+check_ellint_rc
+check_ellint_rd
+check_ellint_rf
+check_ellint_rg
+check_ellint_rj
+check_expint
+check_expint_e1
+check_factorial
+check_fresnel_c
+check_fresnel_s
+check_gamma_l
+check_gamma_u
+check_gegenbauer
+check_hermite
+line 1917  max_abs_frac = 0.0674673
+line 1917  max_abs_frac = 0.0586856
+check_heuman_lambda
+check_hurwitz_zeta
+check_hyperg
+check_ibeta
+check_jacobi
+check_jacobi_cn
+check_jacobi_dn
+check_jacobi_sn
+check_jacobi_zeta
+check_laguerre
+check_lbincoef
+check_ldouble_factorial
+check_legendre
+check_legendre
+check_legendre_q
+check_lfactorial
+check_lpochhammer_l
+check_lpochhammer_u
+check_owens_t
+check_pochhammer_l
+check_pochhammer_u
+check_psi
+check_radpoly
+check_riemann_zeta
+check_shi
+check_sinc
+check_sinc_pi
+check_sinhint
+check_sinint
+check_sph_bessel
+check_sph_bessel_i
+check_sph_bessel_k
+check_sph_hankel_1
+line 577  max_abs_frac = 25.595
+line 577  max_abs_frac = 24.3589
+line 577  max_abs_frac = 29.2811
+line 577  max_abs_frac = 1.66664
+line 577  max_abs_frac = 1.41422
+line 577  max_abs_frac = 1.41421
+line 577  max_abs_frac = 1.41421
+line 577  max_abs_frac = 1.41421
+line 577  max_abs_frac = 44.1944
+line 577  max_abs_frac = 11.7918
+line 577  max_abs_frac = 14.6872
+line 577  max_abs_frac = 27.777
+line 577  max_abs_frac = 8.89653
+line 577  max_abs_frac = 178.48
+line 577  max_abs_frac = 12.7421
+line 577  max_abs_frac = 1.7807
+check_sph_hankel_2
+line 577  max_abs_frac = 27.5935
+line 577  max_abs_frac = 22.3608
+line 577  max_abs_frac = 31.28
+line 577  max_abs_frac = 1.41421
+line 577  max_abs_frac = 1.41421
+line 577  max_abs_frac = 1.41421
+line 577  max_abs_frac = 1.41421
+line 577  max_abs_frac = 1.41421
+line 577  max_abs_frac = 46.1939
+line 577  max_abs_frac = 9.80043
+line 577  max_abs_frac = 14.0523
+line 577  max_abs_frac = 29.7758
+line 577  max_abs_frac = 10.8862
+line 577  max_abs_frac = 180.48
+line 577  max_abs_frac = 14.7367
+line 577  max_abs_frac = 1.41421
+check_sph_harmonic
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.26625e+14
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 4.77712
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 6.74581
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 1.63312e+14
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+line 21441  max_abs_frac = 3.87861
+check_sph_legendre
+check_sph_neumann
+check_theta_1
+check_theta_2
+check_theta_3
+check_theta_4
+check_zernike
+complex_ellint_rc
+complex_ellint_rg
+pr56216_cyl_hankel_1
+pr56216_cyl_hankel_2
+pr56216_cyl_bessel_i
