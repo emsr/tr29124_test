@@ -207,7 +207,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_x_min = _Tp{2};
 
       const int __n = (__x < _S_x_min
-		    ? std::nearbyint(__nu + _Tp{0.5L})
+		    ? std::nearbyint(__nu)
 		    : std::max(0,
 			       static_cast<int>(__nu - __x + _Tp{1.5L})));
 
