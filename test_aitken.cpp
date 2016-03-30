@@ -617,19 +617,16 @@
 	  __aden[__n - 1] = __aden[__n] - __aden[__n - 1];
 	  if (__n > 1)
 	    {
-	      auto __bn1 = __beta + _Tp(__n - 1);
-	      auto __bn2 = __beta + _Tp(__n);
-	      auto __coef = __bn1 / __bn2;
-	      auto __coefp = _Tp{1};
+	      auto __bn1 = __beta + _Tp(__n - 2);
+	      auto __bn2 = __beta + _Tp(__n - 1);
 	      for (auto __j = 2; __j <= __n; ++__j)
 		{
-		  auto __fact = (__beta + _Tp(__n - __j))
-			      * __coefp / __bn2;
+		  auto __fact = __bn1 * __bn2
+			      / ((__bn1 + __j - 1) * (__bn2 + __j - 1));
 		  __anum[__n - __j] = __anum[__n - __j + 1]
 				    - __fact * __anum[__n - __j];
 		  __aden[__n - __j] = __aden[__n - __j + 1]
 				    - __fact * __aden[__n - __j];
-		  __coefp *= __coef;
 		}
 	    }
 	}
