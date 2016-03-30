@@ -7,6 +7,7 @@
 // ./test_bessel_iter > test_bessel_iter.txt
 
 #include <cmath>
+#include <limits>
 #include <iostream>
 #include <iomanip>
 #include "polynomial.h"
@@ -22,6 +23,9 @@ main()
   using _Tp = double;
   using _RatTp = __gnu_cxx::_Polynomial<__gnu_cxx::_Polynomial<_Tp>>;
 
+  std::cout.precision(std::numeric_limits<_Tp>::digits10);
+  auto w = 8 + std::cout.precision();
+
   std::vector<_RatTp> thing1;
   thing1.push_back({{0}, {_Tp{1}, _Tp{1}}});
   thing1.push_back({{-1}});
@@ -34,18 +38,28 @@ main()
     }
   for (int __k = 0; __k < 25; ++__k)
     {
-      std::cout << "nu + " << std::setw(2) << __k + 1 << ": " << thing1[2 * __k] << '\n';
-      std::cout << "nu + " << std::setw(2) << __k + 2 << ": " << thing1[2 * __k + 1] << '\n';
+      std::cout << "k = " << 2 * __k << ": " << "nu + " << std::setw(2) << __k + 1 << ": " << thing1[2 * __k] << '\n';
+      std::cout << "k = " << 2 * __k + 1 << ": " << "nu + " << std::setw(2) << __k + 2 << ": " << thing1[2 * __k + 1] << '\n';
       std::cout << '\n';
     }
 
-  for (int __i = 0; __i <= 100; ++__i)
+  for (int __i = 1; __i <= 500; ++__i)
     {
       auto x = 0.1 * __i;
       auto J24 = std::cyl_bessel_j(24.0, x);
       auto J25 = std::cyl_bessel_j(25.0, x);
       auto J0 = std::cyl_bessel_j(0.0, x);
       auto J1 = std::cyl_bessel_j(1.0, x);
+      auto ladder_J0 = thing1[46](2.0 / x)(0.0) * J24
+		     + thing1[47](2.0 / x)(0.0) * J25;
+      auto ladder_J1 = thing1[46](2.0 / x)(1.0) * J24
+		     + thing1[47](2.0 / x)(1.0) * J25;
+      std::cout << std::setw(w) << x
+		<< std::setw(w) << J0
+		<< std::setw(w) << ladder_J0
+		<< std::setw(w) << J1
+		<< std::setw(w) << ladder_J1
+		<< '\n';
     }
 
   std::vector<_RatTp> thing2;
@@ -66,7 +80,7 @@ main()
       std::cout << '\n';
     }
 
-  for (int __i = 0; __i <= 100; ++__i)
+  for (int __i = 1; __i <= 100; ++__i)
     {
       auto x = 0.1 * __i;
       auto J25 = std::cyl_bessel_j(25.0, x);
