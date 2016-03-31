@@ -295,7 +295,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    *  The f-distribution propability function is related to the incomplete beta function:
    *  @f[
-   *    Q(F|\nu_1, \nu_2) = \I_{\frac{\nu_2}{\nu_2 + \nu_1 F}}
+   *    Q(F|\nu_1, \nu_2) = I_{\frac{\nu_2}{\nu_2 + \nu_1 F}}
    *                          (\frac{\nu_2}{2}, \frac{\nu_1}{2})
    *  @f]
    */
@@ -319,7 +319,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    *  The f-distribution propability function is related to the incomplete beta function:
    *  @f[
-   *    P(F|\nu_1, \nu_2) = 1 - \I_{\frac{\nu_2}{\nu_2 + \nu_1 F}}
+   *    P(F|\nu_1, \nu_2) = 1 - I_{\frac{\nu_2}{\nu_2 + \nu_1 F}}
    *                          (\frac{\nu_2}{2}, \frac{\nu_1}{2})
    *                      = 1 - Q(F|\nu_1, \nu_2)
    *  @f]
@@ -343,7 +343,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  The binomial cumulative distribution function is related
    *  to the incomplete beta function:
    *  @f[
-   *    P(p|n, k) = \I_p(k, n-k+1)
+   *    P(p|n, k) = I_p(k, n-k+1)
    *  @f]
    */
   template<typename _Tp>
@@ -369,7 +369,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  The binomial cumulative distribution function is related
    *  to the incomplete beta function:
    *  @f[
-   *    Q(p|n, k) = \I_{1-p}(n-k+1, k)
+   *    Q(p|n, k) = I_{1-p}(n-k+1, k)
    *  @f]
    */
   template<typename _Tp>

@@ -31,7 +31,7 @@
 // ISO C++ 14882 TR29124: Mathematical Special Functions
 //
 
-// Written by Florian Goth.
+// Written by Florian Goth and Edward Smith-Rowland.
 //
 // References:
 // (1) David C. Wood, "The Computation of Polylogarithms."
@@ -324,10 +324,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Theoretical convergence is present for |w| < 2*pi.
    * We use an optimized version of
    * @f[
-   *   Li_s(e^w) = \Gamma(1-s)(-w)^(s-1) + (2\pi)^(-s)/pi A_p(w)
+   *   Li_s(e^w) = \Gamma(1-s)(-w)^(s-1) + (2\pi)^(-s)/\pi A_p(w)
    * @f]
    * @f[
-   *   A_p(w) = \sum_k \Gamma(1+k-s)/k!\Sin(\pi/2*(s-k))(w/2/\pi)^k\zeta(1+k-s)
+   *   A_p(w) = \sum_k \Gamma(1+k-s)/k!\sin(\pi/2*(s-k))(w/2/\pi)^k\zeta(1+k-s)
    * @f]
    * @param s  The index s.
    * @param w  The Argument w.
@@ -410,24 +410,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * In the template parameter sigma we transport whether p = 4k (sigma = 1)
    * or p = 4k + 2  (sigma = -1)
    * @f[
-   *   Li_p(e^w) = Gamma(1-p) (-w)^{p-1} - A_p(w) - sigma * B_p(w)
+   *   Li_p(e^w) = Gamma(1-p) (-w)^{p-1} - A_p(w) - \sigma * B_p(w)
    * @f]
    * with
    * @f[
    *   A_p(w) = 2 (2\pi)^(p-1) (-p)! / (2 \pi)^(-p/2)
    *           (1 + w^2/(4 pi^2))^{-1/2 + p/2}
-   *                          cos((1 - p) ArcTan(2 pi/ w))
+   *                          \cos((1 - p) ArcTan(2 pi/ w))
    * @f]
    * and 
    * @f[
    *   B_p(w) = - 2 (2 pi)^(p-1) \sum \limits_{k = 0}^\infty \Gamma(2 + 2k - p)
-   *           / (2k+1)! (-1)^k (w/2\pi)^(2k+1) (Zeta(2 + 2k - p) - _Tp{1})
+   *           / (2k+1)! (-1)^k (w/2\pi)^(2k+1) (\zeta(2 + 2k - p) - _Tp{1})
    * @f]
    * This is suitable for |w| < 2 pi
    * The original series is (This might be worthwhile if we use
    * the already present table of the Bernoullis)
    * @f[
-   *   Li_p(e^w) = Gamma(1-p) (-w)^{p-1} - sigma (2 \pi)^p / pi
+   *   Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} - \sigma (2 \pi)^p / pi
    *              \sum \limits_{k = 0}^\infty
    *               \Gamma(2 + 2k - p)/ (2k+1)! (-1)^k (w/2\pi)^(2k+1)
    *             \zeta(2 + 2k - p)
@@ -483,21 +483,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * or p = 3 + 4k  (sigma = -1)
    *
    * @f[
-   *   Li_p(e^w) = Gamma(1-p) * (-w)^{p-1} + sigma * A_p(w) - sigma * B_p(w)
+   *   Li_p(e^w) = \Gamma(1-p) * (-w)^{p-1} + \sigma * A_p(w) - \sigma * B_p(w)
    * @f]
    * with
    * @f[
-   *   A_p(w) = 2 (2\pi)^(p-1) * Gamma(1-p) (1 + w^2/(4 pi^2))^{-1/2 + p/2} cos((1 - p) ArcTan(2 pi/ w))
+   *   A_p(w) = 2 (2\pi)^(p-1) * \Gamma(1-p) (1 + w^2/(4 pi^2))^{-1/2 + p/2} \cos((1 - p) ArcTan(2 pi/ w))
    * @f]
    * and 
    * @f[
-   *   B_p(w) = 2 (2 pi)^(p-1) * \sum \limits_{k = 0}^\infty \Gamma(1 + 2k - p)/ (2k)! (-w^2/4/\pi^2)^k (Zeta(1 + 2k - p) - _Tp{1})
+   *   B_p(w) = 2 (2 pi)^(p-1) * \sum \limits_{k = 0}^\infty \Gamma(1 + 2k - p)/ (2k)! (-w^2/4/\pi^2)^k (\zeta(1 + 2k - p) - _Tp{1})
    * @f]
    * This is suitable for |w| < 2 pi .
    * The use of evenzeta gives a speedup of about 50
    * The original series is (This might be worthwhile if we use the already present table of the Bernoullis)
    * @f[
-   *   Li_p(e^w) = Gamma(1-p) * (-w)^{p-1} - sigma *2*(2 pi)^(p-1) * \sum \limits_{k = 0}^\infty \Gamma(1 + 2k - p)/ (2k)! (-1)^k (w/2/\pi)^(2k) Zeta(1 + 2k - p)
+   *   Li_p(e^w) = Gamma(1-p) * (-w)^{p-1} - \sigma *2*(2 pi)^(p-1) * \sum \limits_{k = 0}^\infty \Gamma(1 + 2k - p)/ (2k)! (-1)^k (w/2/\pi)^(2k) \zeta(1 + 2k - p)
    * @f]
    *
    * @param n the index n = 4k.
