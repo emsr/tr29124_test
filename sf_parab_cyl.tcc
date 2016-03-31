@@ -31,16 +31,6 @@
 // ISO C++ 14882 TR29124: Mathematical Special Functions
 //
 
-// References:
-// (1) Handbook of Mathematical Functions,
-//     ed. Milton Abramowitz and Irene A. Stegun,
-//     Dover Publications,
-//     Section 9, pp. 355-434, Section 10 pp. 435-478
-// (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
-// (3) Numerical Recipes in C, by W. H. Press, S. A. Teukolsky,
-//     W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
-//     2nd ed, pp. 240-245
-
 #ifndef _GLIBCXX_BITS_SF_PARAB_CYL_TCC
 #define _GLIBCXX_BITS_SF_PARAB_CYL_TCC 1
 

@@ -1,0 +1,52 @@
+\hypertarget{sf__mod__bessel_8tcc}{}\section{sf\+\_\+mod\+\_\+bessel.\+tcc File Reference}
+\label{sf__mod__bessel_8tcc}\index{sf\+\_\+mod\+\_\+bessel.\+tcc@{sf\+\_\+mod\+\_\+bessel.\+tcc}}
+{\ttfamily \#include $<$utility$>$}\\*
+{\ttfamily \#include $<$ext/math\+\_\+const.\+h$>$}\\*
+Include dependency graph for sf\+\_\+mod\+\_\+bessel.\+tcc\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{sf__mod__bessel_8tcc__incl}
+\end{center}
+\end{figure}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacestd}{std}
+\item 
+ \hyperlink{namespacestd_1_1____detail}{std\+::\+\_\+\+\_\+detail}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{sf__mod__bessel_8tcc_a746f247a80ce9ef275dfb1cffbabeabd}{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+M\+O\+D\+\_\+\+B\+E\+S\+S\+E\+L\+\_\+\+T\+C\+C}~1
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_aaf4b5556c6d01bad1892cb1515b22c64}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+airy} (\+\_\+\+Tp \+\_\+\+\_\+z, \+\_\+\+Tp \&\+\_\+\+Ai, \+\_\+\+Tp \&\+\_\+\+Bi, \+\_\+\+Tp \&\+\_\+\+Aip, \+\_\+\+Tp \&\+\_\+\+Bip)
+\begin{DoxyCompactList}\small\item\em Compute the Airy functions $ Ai(x) $ and $ Bi(x) $ and their first derivatives $ Ai'(x) $ and $ Bi(x) $ respectively. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a72e3392d5c03c0bc8f2b5ffb8c1304b5}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+i} (\+\_\+\+Tp \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Return the regular modified Bessel function of order $ \nu $\+: $ I_{\nu}(x) $. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_af699e7a6d31556df09f0a0db4f196cc0}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+ik} (\+\_\+\+Tp \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \&\+\_\+\+Inu, \+\_\+\+Tp \&\+\_\+\+Knu, \+\_\+\+Tp \&\+\_\+\+Ipnu, \+\_\+\+Tp \&\+\_\+\+Kpnu)
+\begin{DoxyCompactList}\small\item\em Return the modified cylindrical Bessel functions and their derivatives of order $ \nu $ by various means. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a7386732bb6f0d45bbcbccaad436797a0}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+ik\+\_\+asymp} (\+\_\+\+Tp \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \&\+\_\+\+Inu, \+\_\+\+Tp \&\+\_\+\+Knu, \+\_\+\+Tp \&\+\_\+\+Ipnu, \+\_\+\+Tp \&\+\_\+\+Kpnu)
+\begin{DoxyCompactList}\small\item\em This routine computes the asymptotic modified cylindrical Bessel and functions of order nu\+: $ I_{\nu}(x) $, $ N_{\nu}(x) $. Use this for $ x >> nu^2 + 1 $. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_aed8927c2ec079a1831da66abcfae802b}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+ik\+\_\+steed} (\+\_\+\+Tp \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \&\+\_\+\+Inu, \+\_\+\+Tp \&\+\_\+\+Knu, \+\_\+\+Tp \&\+\_\+\+Ipnu, \+\_\+\+Tp \&\+\_\+\+Kpnu)
+\begin{DoxyCompactList}\small\item\em Compute the modified Bessel functions $ I_\nu(x) $ and $ K_\nu(x) $ and their first derivatives $ I'_\nu(x) $ and $ K'_\nu(x) $ respectively. These four functions are computed together for numerical stability. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_ac9152f2369a18aa795fe24ccfa6dcf12}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+k} (\+\_\+\+Tp \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Return the irregular modified Bessel function $ K_{\nu}(x) $ of order $ \nu $. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a01114e979b23c1d1097b7f6f4a8716bd}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+fock\+\_\+airy} (\+\_\+\+Tp x, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+w1, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+w2, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+w1p, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+w2p)
+\begin{DoxyCompactList}\small\item\em Compute the Fock-\/type Airy functions $ w_1(x) $ and $ w_2(x) $ and their first derivatives $ w_1'(x) $ and $ w_2'(x) $ respectively. \[ w_1(x) = \sqrt{\pi}(Ai(x) + iBi(x)) \] \[ w_2(x) = \sqrt{\pi}(Ai(x) - iBi(x)) \]. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a35edea916ec9c8310f7d4a06618f7378}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sph\+\_\+bessel\+\_\+ik} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \&\+\_\+\+\_\+i\+\_\+n, \+\_\+\+Tp \&\+\_\+\+\_\+k\+\_\+n, \+\_\+\+Tp \&\+\_\+\+\_\+ip\+\_\+n, \+\_\+\+Tp \&\+\_\+\+\_\+kp\+\_\+n)
+\begin{DoxyCompactList}\small\item\em Compute the spherical modified Bessel functions $ i_n(x) $ and $ k_n(x) $ and their first derivatives $ i'_n(x) $ and $ k'_n(x) $ respectively. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{sf__mod__bessel_8tcc_a746f247a80ce9ef275dfb1cffbabeabd}{}\index{sf\+\_\+mod\+\_\+bessel.\+tcc@{sf\+\_\+mod\+\_\+bessel.\+tcc}!\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+M\+O\+D\+\_\+\+B\+E\+S\+S\+E\+L\+\_\+\+T\+C\+C@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+M\+O\+D\+\_\+\+B\+E\+S\+S\+E\+L\+\_\+\+T\+C\+C}}
+\index{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+M\+O\+D\+\_\+\+B\+E\+S\+S\+E\+L\+\_\+\+T\+C\+C@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+M\+O\+D\+\_\+\+B\+E\+S\+S\+E\+L\+\_\+\+T\+C\+C}!sf\+\_\+mod\+\_\+bessel.\+tcc@{sf\+\_\+mod\+\_\+bessel.\+tcc}}
+\subsubsection[{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+M\+O\+D\+\_\+\+B\+E\+S\+S\+E\+L\+\_\+\+T\+C\+C}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+M\+O\+D\+\_\+\+B\+E\+S\+S\+E\+L\+\_\+\+T\+C\+C~1}\label{sf__mod__bessel_8tcc_a746f247a80ce9ef275dfb1cffbabeabd}
+
+
+Definition at line 47 of file sf\+\_\+mod\+\_\+bessel.\+tcc.
+
