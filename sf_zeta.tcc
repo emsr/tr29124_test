@@ -31,7 +31,7 @@
 // ISO C++ 14882 TR29124: Mathematical Special Functions
 //
 
-// Written by Edward Smith-Rowland
+// Written by Edward Smith-Rowland and Florian Goth
 //
 // References:
 // (1) Handbook of Mathematical Functions,
@@ -40,6 +40,7 @@
 // (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
 // (3) Gamma, Exploring Euler's Constant, Julian Havil,
 //     Princeton, 2003.
+// (4) David C. Wood, "The Computation of Polylogarithms."
 
 #ifndef _GLIBCXX_BITS_SF_ZETA_TCC
 #define _GLIBCXX_BITS_SF_ZETA_TCC 1

@@ -21,6 +21,12 @@
 // a copy of the GCC Runtime Library Exception along with this program;
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
+
+/** @file bits/sf_hydrogen.tcc
+ *  This is an internal header file, included by other library headers.
+ *  You should not attempt to use it directly.
+ */
+
 #ifndef _GLIBCXX_BITS_SF_HYDROGEN_TCC
 #define _GLIBCXX_BITS_SF_HYDROGEN_TCC 1
 

@@ -1718,7 +1718,7 @@ _S_neg_double_factorial_table[999]
    *  @brief Return \f$\Gamma(z)\f$ by the Spouge algorithm:
    *  @f[
    *    \Gamma(z+1) = (z+a)^{z+1/2}e^{-z-a}\left[ \sqrt{2\pi}
-   *      \sum_{k=1}^{\ceil{a}+1}\frac{c_k(a)}{z+k}\right]
+   *      \sum_{k=1}^{\lceil a \rceil + 1}\frac{c_k(a)}{z+k}\right]
    *  @f]
    *  where
    *  @f[
@@ -1850,7 +1850,7 @@ _S_neg_double_factorial_table[999]
    *  @brief Return the logarithm of the binomial coefficient.
    *  The binomial coefficient is given by:
    *  @f[
-   *    \left( __n \over __k \right) = \frac{n!}{(n-k)! k!}
+   *    \binom{n}{k} = \frac{n!}{(n-k)! k!}
    *  @f]
    *
    *  @param __n The first argument of the binomial coefficient.
@@ -1876,7 +1876,7 @@ _S_neg_double_factorial_table[999]
    *  @brief Return the binomial coefficient.
    *  The binomial coefficient is given by:
    *  @f[
-   *    \left( __n \over __k \right) = \frac{n!}{(n-k)! k!}
+   *    \binom{n}{k} = \frac{n!}{(n-k)! k!}
    *  @f]
    *
    *  @param __n The first argument of the binomial coefficient.
@@ -2135,7 +2135,9 @@ _S_neg_double_factorial_table[999]
    *    ln[(a)_n] = \Gamma(a + n) - \Gamma(n), ln[(a)_0] = 0
    *  @f]
    *  Many notations exist: @f[ a^{\overline{n}} @f],
-   *   @f[ \left[ a \over n \right] @f], and others.
+   *   @f[ \left[ \begin{array}{c}
+   *       a \\
+   *       n \end{array} \right] @f], and others.
    */
   template<typename _Tp>
     _Tp
@@ -2159,7 +2161,9 @@ _S_neg_double_factorial_table[999]
    *          = \Gamma(a + n) / \Gamma(n)
    *  @f]
    *  Many notations exist: @f[ a^{\overline{n}} @f],
-   *   @f[ \left[ a \over n \right] @f], and others.
+   *   @f[ \left[ \begin{array}{c}
+   *       a \\
+   *       n \end{array} \right] @f], and others.
    */
   template<typename _Tp>
     _Tp
@@ -2196,7 +2200,9 @@ _S_neg_double_factorial_table[999]
    *    ln[(a)_n] = \Gamma(a + 1) - \Gamma(a - n + 1), ln[(a)_0] = 0
    *  @f]
    *  Many notations exist: @f[ a^{\underline{n}} @f],
-   *   @f[ \left{ a \over n \right} @f], and others.
+   *   @f[ \{ \begin{array}{c}
+   *       a \\
+   *       n \end{array} \} @f], and others.
    */
   template<typename _Tp>
     _Tp
