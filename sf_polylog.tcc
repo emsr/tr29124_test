@@ -52,9 +52,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * A function to reliably compare two floating point numbers.
    *
-   * @param a the left hand side.
-   * @param b the right hand side
-   * @return returns true if a and b are equal to zero or differ only by max(a,b)* 5* eps
+   * @param __a the left hand side.
+   * @param __b the right hand side
+   * @return returns true if a and b are equal to zero or differ only by max(a,b) * 5* eps
    */
   template<typename _Tp>
     bool
@@ -73,7 +73,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * A function to reliably test a complex number for realness.
    *
-   * @param w  The complex argument.
+   * @param __w  The complex argument.
    * @return  true if Im(w) is zero within 5 * epsilon, false otherwize.
    */
   template<typename _Tp>
@@ -95,7 +95,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * A function to reliably test a complex number for imaginaryness [?].
    *
-   * @param w  The complex argument.
+   * @param __w  The complex argument.
    * @return  true if Re(w) is zero within 5 * epsilon, false otherwize.
    */
   template<typename _Tp>
@@ -144,7 +144,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * A function to calculate the values of zeta at even positive integers.
    * For values smaller than thirty a table is used.
    *
-   * @param k an integer at which we evaluate the Riemann zeta function.
+   * @param __k an integer at which we evaluate the Riemann zeta function.
    * @return zeta(k)
    */
   template<typename _Tp = double> 
@@ -188,10 +188,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Note that this series involves a log(-x).
    * gcc and Mathematica differ in their implementation of \log(e^(i \pi)):
    * gcc: \log(e^(+- i * \pi)) = +- i \pi
-   * whereas Mathematica doesn't preserve the sign in this case: \log(e^(+- i\pi)) = +i \pi
+   * whereas Mathematica doesn't preserve the sign in this case: @f$ \log(e^(+- i\pi)) = +i \pi @f$
    *
-   * @param s the index s.
-   * @param w the argument w.
+   * @param __s the index s.
+   * @param __w the argument w.
    * @return the value of the polylogarithm.
    */
   template<typename _Tp>
@@ -255,15 +255,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *   Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) w^k/k! + (H_{s-1} - log(-w)) w^(s-1)/(s-1)!
    * @f]
-   * The radius of convergence is |w| < 2 pi.
-   * Note that this series involves a log(-x).
+   * The radius of convergence is @f$ |w| < 2 \pi @f$.
+   * Note that this series involves a @f$ \log(-x) @f$.
    * The use of evenzeta yields a speedup of about 2.5.
-   * gcc and Mathematica differ in their implementation of \log(e^(i \pi)):
-   * gcc: \log(e^(+- i \pi)) = +- i \pi
-   * whereas Mathematica doesn't preserve the sign in this case: \log(e^(+- i * \pi)) = +i \pi
+   * gcc and Mathematica differ in their implementation of @f$ \log(e^(i \pi)) @f$:
+   * gcc: @f$ \log(e^(+- i \pi)) = +- i \pi @f$
+   * whereas Mathematica doesn't preserve the sign in this case: @f$ \log(e^(+- i * \pi)) = +i \pi @f$
    *
-   * @param s the index s.
-   * @param w the argument w
+   * @param __s the index.
+   * @param __w the argument
    * @return the value of the Polylogarithm
    */
   template<typename _Tp>
@@ -321,7 +321,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * This function treats the cases of negative real index s.
-   * Theoretical convergence is present for |w| < 2*pi.
+   * Theoretical convergence is present for @f$ |w| < 2\pi @f$.
    * We use an optimized version of
    * @f[
    *   Li_s(e^w) = \Gamma(1-s)(-w)^(s-1) + (2\pi)^(-s)/\pi A_p(w)
@@ -329,8 +329,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *   A_p(w) = \sum_k \Gamma(1+k-s)/k!\sin(\pi/2*(s-k))(w/2/\pi)^k\zeta(1+k-s)
    * @f]
-   * @param s  The index s.
-   * @param w  The Argument w.
+   * @param __s  The real index
+   * @param __w  The complex argument
    * @return  The value of the polylogarithm.
    */
   template<typename _Tp>
@@ -407,8 +407,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  takes on the value zero.
    * We use that to provide an optimized series for p = 2n:
    *
-   * In the template parameter sigma we transport whether p = 4k (sigma = 1)
-   * or p = 4k + 2  (sigma = -1)
+   * In the template parameter sigma we transport whether @f$ p = 4k (sigma = 1) @f$
+   * or @f$ p = 4k + 2  (sigma = -1) @f$
    * @f[
    *   Li_p(e^w) = Gamma(1-p) (-w)^{p-1} - A_p(w) - \sigma * B_p(w)
    * @f]
@@ -423,7 +423,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   B_p(w) = - 2 (2 pi)^(p-1) \sum \limits_{k = 0}^\infty \Gamma(2 + 2k - p)
    *           / (2k+1)! (-1)^k (w/2\pi)^(2k+1) (\zeta(2 + 2k - p) - _Tp{1})
    * @f]
-   * This is suitable for |w| < 2 pi
+   * This is suitable for @f$ |w| < 2 \pi @f$
    * The original series is (This might be worthwhile if we use
    * the already present table of the Bernoullis)
    * @f[
@@ -433,8 +433,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *             \zeta(2 + 2k - p)
    * @f]
    *
-   * @param n the index n = 4k.
-   * @param w The Argument w
+   * @param __n the integral index @f$ n = 4k @f$.
+   * @param __w The complex argument w
    * @return the value of the Polylogarithm.
    */
   template<typename _Tp, int __sigma>
@@ -478,9 +478,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * This function treats the cases of negative integer index s which are odd.
    *
    * In that case the sine occuring in the expansion occasionally vanishes.
-   * We use that to provide an optimized series for p = 1 + 2k:
-   * In the template parameter sigma we transport whether p = 1 + 4k (sigma = 1)
-   * or p = 3 + 4k  (sigma = -1)
+   * We use that to provide an optimized series for @f$ p = 1 + 2k @f$:
+   * In the template parameter sigma we transport whether @f$ p = 1 + 4k (sigma = 1) @f$
+   * or @f$ p = 3 + 4k  (sigma = -1) @f$
    *
    * @f[
    *   Li_p(e^w) = \Gamma(1-p) * (-w)^{p-1} + \sigma * A_p(w) - \sigma * B_p(w)
@@ -493,15 +493,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *   B_p(w) = 2 (2 pi)^(p-1) * \sum \limits_{k = 0}^\infty \Gamma(1 + 2k - p)/ (2k)! (-w^2/4/\pi^2)^k (\zeta(1 + 2k - p) - _Tp{1})
    * @f]
-   * This is suitable for |w| < 2 pi .
+   * This is suitable for @f$ |w| < 2 \pi @f$.
    * The use of evenzeta gives a speedup of about 50
    * The original series is (This might be worthwhile if we use the already present table of the Bernoullis)
    * @f[
    *   Li_p(e^w) = Gamma(1-p) * (-w)^{p-1} - \sigma *2*(2 pi)^(p-1) * \sum \limits_{k = 0}^\infty \Gamma(1 + 2k - p)/ (2k)! (-1)^k (w/2/\pi)^(2k) \zeta(1 + 2k - p)
    * @f]
    *
-   * @param n the index n = 4k.
-   * @param w The Argument w.
+   * @param __n the integral index n = 4k.
+   * @param __w The complex argument w.
    * @return The value of the Polylogarithm.
    */
   template<typename _Tp, int __sigma>
@@ -586,8 +586,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *             \Gamma(1-s+k)\zeta(1-s+k) (w/2/\pi)^k/k!
    * @f]
    *
-   * @param s the positive real index s.
-   * @param w The argument w.
+   * @param __s the positive real index s.
+   * @param __w The complex argument w.
    * @return the value of the polylogarithm.
    */
   template<typename _Tp>
@@ -658,16 +658,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * This function implements the asymptotic series for the polylog.
-   * It is given by 2 \sum \limits_{k=0}^\infty \zeta(2k) w^{s-2k}/Gamma(s-2k+1) -i \pi w^(s-1)/Gamma(s)
-   * for Re(w) >> 1
+   * It is given by
+   * @f[
+   *    2 \sum \limits_{k=0}^\infty \zeta(2k) w^{s-2k}/\Gamma(s-2k+1) -i \pi w^(s-1)/\Gamma(s)
+   * @f]
+   * for @f$ Re(w) >> 1 @f$
    *
    * Don't check this against Mathematica 8.
-   * For real u the imaginary part of the polylog is given by Im(Li_s(e^u)) = - \pi u^{s-1}/Gamma(s)
+   * For real u the imaginary part of the polylog is given by @f$ Im(Li_s(e^u)) = - \pi u^{s-1}/\Gamma(s) @f$
    * Check this relation for any benchmark that you use.
    * The use of evenzeta leads to a speedup of about 1000.
    *
-   * @param s the index s.
-   * @param w the large argument w.
+   * @param __s the real index s.
+   * @param __w the large complex argument w.
    * @return the value of the polylogarithm.
    */
   template<typename _Tp>
@@ -711,14 +714,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Theoretical convergence for Re(w) < 0.
    *
-   * Seems to beat the other expansions for Re(w) < -pi/2 - pi/5.
+   * Seems to beat the other expansions for @f$ Re(w) < -\pi/2 - \pi/5 @f$.
    * Note that this is an implementation of the basic series:
    * @f[
    *   Li_s(e^z) = \sum_{k=1} e^(k*z) * k^(-s)
    * @f]
    *
-   * @param s is an arbitrary type, Integer or float.
-   * @param w something with a negative real part.
+   * @param __s is an arbitrary type, integral or float.
+   * @param __w something with a negative real part.
    * @return the value of the polylogarithm.
    */
   template<typename _PowTp, typename _Tp>
@@ -747,8 +750,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Here s is a positive integer and the function descends
    * into the different kernels depending on w.
    *
-   * @param s a positive integer.
-   * @param w an arbitrary complex number.
+   * @param __s a positive integer.
+   * @param __w an arbitrary complex number.
    * @return The value of the polylogarithm.
    */
   template<typename _Tp>
@@ -795,8 +798,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Here s is a positive integer and the function descends
    * into the different kernels depending on w.
    *
-   * @param s a positive integer
-   * @param w an arbitrary real argument w
+   * @param __s a positive integer
+   * @param __w an arbitrary real argument w
    * @return the value of the polylogarithm.
    */
   template<typename _Tp>
@@ -836,8 +839,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * This treats the case where s is a negative integer.
    *
-   * @param s a negative integer.
-   * @param w an arbitrary complex number
+   * @param __s a negative integer.
+   * @param __w an arbitrary complex number
    * @return the value of the polylogarith,.
    */
   template<typename _Tp>
@@ -878,8 +881,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * This treats the case where s is a negative integer and w is a real.
    *
-   * @param s a negative integer.
-   * @param w the argument.
+   * @param __s a negative integer.
+   * @param __w the argument.
    * @return the value of the polylogarithm.
    */
   template<typename _Tp>
@@ -902,8 +905,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the polylog where s is a positive real value and for complex argument.
    *
-   * @param s A positive real number.
-   * @param w the complex argument.
+   * @param __s A positive real number.
+   * @param __w the complex argument.
    * @return The value of the polylogarithm.
    */
   template<typename _Tp>
@@ -936,8 +939,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the polylog where s is a positive real value and the argument is real.
    *
-   * @param s  A positive real number tht does not reduce to an integer.
-   * @param w  The real argument w.
+   * @param __s  A positive real number tht does not reduce to an integer.
+   * @param __w  The real argument w.
    * @return  The value of the polylogarithm.
    */
   template<typename _Tp>
@@ -965,8 +968,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the polylog where s is a negative real value and for complex argument.
    * Now we branch depending on the properties of w in the specific functions
    *
-   * @param s  A negative real value that does not reduce to a negative integer.
-   * @param w  The complex argument.
+   * @param __s  A negative real value that does not reduce to a negative integer.
+   * @param __w  The complex argument.
    * @return  The value of the polylogarithm.
    */
   template<typename _Tp>
@@ -993,8 +996,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the polylog where s is a negative real value and for real argument.
    * Now we branch depending on the properties of w in the specific functions.
    *
-   * @param s  A negative real value.
-   * @param w  A real argument.
+   * @param __s  A negative real value.
+   * @param __w  A real argument.
    * @return  The value of the polylogarithm.
    */
   template<typename _Tp>
@@ -1012,15 +1015,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * This is the frontend function which calculates Li_s(e^w)
+   * This is the frontend function which calculates @f$ Li_s(e^w) @f$
    * First we branch into different parts depending on the properties of s.
    * This function is the same irrespective of a real or complex w,
    * hence the template parameter ArgType.
    *
    * @note: I *really* wish we could return a variant<Tp, std::complex<Tp>>.
    *
-   * @param s  The real order.
-   * @param w  The real or complex argument.
+   * @param __s  The real order.
+   * @param __w  The real or complex argument.
    * @return  The real or complex value of Li_s(e^w).
    */
   template<typename _Tp, typename ArgType>
@@ -1052,8 +1055,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the polylog Li_s(x) for two real arguments.
    *
-   * @param s  The real index.
-   * @param x  The real argument.
+   * @param __s  The real index.
+   * @param __x  The real argument.
    * @return The complex value of the polylogarithm.
    */
   template<typename _Tp>
@@ -1082,8 +1085,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the polylog in those cases where we can calculate it.
    *
-   * @param s  The real index.
-   * @param w  The complex argument.
+   * @param __s  The real index.
+   * @param __w  The complex argument.
    * @return  The complex value of the polylogarithm.
    */
   template<typename _Tp>
@@ -1103,7 +1106,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Currently, w must be real (complex type but negligible imaginary part.)
    * Otherwise std::domain_error is thrown.
    *
-   * @param w  The complex (but on-real-axis) argument.
+   * @param __w  The complex (but on-real-axis) argument.
    * @return  The complex Dirichlet eta function.
    * @throw  std::domain_error if the argument has a significant imaginary part.
    */
@@ -1122,7 +1125,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *  Return the Dirichlet eta function for real argument.
    *
-   *  @param w  The real argument.
+   *  @param __w  The real argument.
    *  @return  The Dirichlet eta function.
    */
   template<typename _Tp>
@@ -1140,7 +1143,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Currently, w must be real (complex type but negligible imaginary part.)
    * Otherwise std::domain_error is thrown.
    *
-   * @param w  The complex (but on-real-axis) argument.
+   * @param __w  The complex (but on-real-axis) argument.
    * @return  The Dirichlet Beta function of real argument.
    * @throw  std::domain_error if the argument has a significant imaginary part.
    */
@@ -1160,7 +1163,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the Dirichlet beta function for real argument.
    *
-   * @param w  The real argument.
+   * @param __w  The real argument.
    * @return  The Dirichlet Beta function of real argument.
    */
   template<typename _Tp>
@@ -1178,7 +1181,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return Clausen's function of integer order m and complex argument w.
    * The notation and connection to polylog is from Wikipedia
    *
-   * @param w  The complex argument.
+   * @param __w  The complex argument.
    * @return  The complex Clausen function.
    */
   template<typename _Tp>
@@ -1201,8 +1204,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return Clausen's function of integer order m and real argument w.
    * The notation and connection to polylog is from Wikipedia
    *
-   * @param m  The integer order m >= 1.
-   * @param w  The real argument.
+   * @param __m  The integer order m >= 1.
+   * @param __w  The real argument.
    * @return  The Clausen function.
    */
   template<typename _Tp>
@@ -1226,8 +1229,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * and complex argument w.
    * @see https://en.wikipedia.org/wiki/Clausen_function
    *
-   * @param m  The integer order m >= 1.
-   * @param w  The complex argument.
+   * @param __m  The integer order m >= 1.
+   * @param __w  The complex argument.
    * @return  The Clausen sine sum Sl_m(w),
    */
   template<typename _Tp>
@@ -1251,8 +1254,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * and real argument w.
    * @see https://en.wikipedia.org/wiki/Clausen_function
    *
-   * @param m  The integer order m >= 1.
-   * @param w  The complex argument.
+   * @param __m  The integer order m >= 1.
+   * @param __w  The complex argument.
    * @return  The Clausen sine sum Sl_m(w),
    */
   template<typename _Tp>
@@ -1276,8 +1279,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * and complex argument w.
    * @see https://en.wikipedia.org/wiki/Clausen_function
    *
-   * @param m  The integer order m >= 1.
-   * @param w  The real argument.
+   * @param __m  The integer order m >= 1.
+   * @param __w  The real argument.
    * @return  The Clausen cosine sum Cl_m(w),
    */
   template<typename _Tp>
@@ -1301,8 +1304,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * and real argument w.
    * @see https://en.wikipedia.org/wiki/Clausen_function
    *
-   * @param m  The integer order m >= 1.
-   * @param w  The real argument.
+   * @param __m  The integer order m >= 1.
+   * @param __w  The real argument.
    * @return  The real Clausen cosine sum Cl_m(w),
    */
   template<typename _Tp>
@@ -1326,8 +1329,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see https://en.wikipedia.org/wiki/Clausen_function
    * @see http://dlmf.nist.gov/25.12#iii
    *
-   * @param s  The order s >= 0.
-   * @param x  The real argument.
+   * @param __s  The order s >= 0.
+   * @param __x  The real argument.
    * @return  The real Fermi-Dirac cosine sum F_s(x),
    */
   template<typename _Tp>
@@ -1348,8 +1351,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see https://en.wikipedia.org/wiki/Clausen_function
    * @see http://dlmf.nist.gov/25.12#iii
    *
-   * @param s  The order s >= 0.
-   * @param x  The real argument.
+   * @param __s  The order s >= 0.
+   * @param __x  The real argument.
    * @return  The real Fermi-Dirac cosine sum G_s(x),
    */
   template<typename _Tp>

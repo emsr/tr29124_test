@@ -58,8 +58,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *   @brief This routine computes the asymptotic cylindrical Bessel
-   *          and Neumann functions of order nu: \f$ J_{\nu}(x) \f$,
-   *          \f$ N_{\nu}(x) \f$.  Use this for \f$ x >> nu^2 + 1 \f$.
+   *          and Neumann functions of order nu: @f$ J_{\nu}(x) @f$,
+   *          @f$ N_{\nu}(x) @f$.  Use this for @f$ x >> nu^2 + 1 @f$.
    *
    *   References:
    *    (1) Handbook of Mathematical Functions,
@@ -145,16 +145,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @f]
    *   where @f$ -1/2 <= \mu <= 1/2 @f$ is @f$ \mu = \nu - N @f$ and @f$ N @f$.
    *   is the nearest integer to @f$ \nu @f$.
-   *   The values of \f$ \Gamma(1 + \mu) \f$ and \f$ \Gamma(1 - \mu) \f$
+   *   The values of @f$ \Gamma(1 + \mu) @f$ and @f$ \Gamma(1 - \mu) @f$
    *   are returned as well.
    *
    *   The accuracy requirements on this are exquisite.
    *
    *   @param __mu     The input parameter of the gamma functions.
-   *   @param __gam1   The output function \f$ \Gamma_1(\mu) \f$
-   *   @param __gam2   The output function \f$ \Gamma_2(\mu) \f$
-   *   @param __gampl  The output function \f$ \Gamma(1 + \mu) \f$
-   *   @param __gammi  The output function \f$ \Gamma(1 - \mu) \f$
+   *   @param __gam1   The output function @f$ \Gamma_1(\mu) @f$
+   *   @param __gam2   The output function @f$ \Gamma_2(\mu) @f$
+   *   @param __gampl  The output function @f$ \Gamma(1 + \mu) @f$
+   *   @param __gammi  The output function @f$ \Gamma(1 - \mu) @f$
    */
   template<typename _Tp>
     void
@@ -380,7 +380,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *   @brief This routine returns the cylindrical Bessel functions
-   *          of order \f$ \nu \f$: \f$ J_{\nu} \f$ or \f$ I_{\nu} \f$
+   *          of order @f$ \nu @f$: @f$ J_{\nu} @f$ or @f$ I_{\nu} @f$
    *          by series expansion.
    *
    *   The modified cylindrical Bessel function is:
@@ -388,8 +388,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    Z_{\nu}(x) = \sum_{k=0}^{\infty}
    *              \frac{\sigma^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
    *   @f]
-   *   where \f$ \sigma = +1 \f$ or\f$  -1 \f$ for
-   *   \f$ Z = I \f$ or \f$ J \f$ respectively.
+   *   where @f$ \sigma = +1 @f$ or@f$  -1 @f$ for
+   *   @f$ Z = I @f$ or @f$ J @f$ respectively.
    *
    *   See Abramowitz & Stegun, 9.1.10
    *       Abramowitz & Stegun, 9.6.7
@@ -432,7 +432,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief  Return the cylindrical Bessel functions and their derivatives
-   * of order \f$ \nu \f$ by various means.
+   * of order @f$ \nu @f$ by various means.
    */
   template<typename _Tp>
     void
@@ -482,8 +482,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the Bessel function of order \f$ \nu \f$:
-   *           \f$ J_{\nu}(x) \f$.
+   *   @brief  Return the Bessel function of order @f$ \nu @f$:
+   *           @f$ J_{\nu}(x) @f$.
    *
    *   The cylindrical Bessel function is:
    *   @f[
@@ -515,16 +515,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the Neumann function of order \f$ \nu \f$:
-   *           \f$ N_{\nu}(x) \f$.
+   *   @brief  Return the Neumann function of order @f$ \nu @f$:
+   *           @f$ N_{\nu}(x) @f$.
    *
    *   The Neumann function is defined by:
    *   @f[
    *      N_{\nu}(x) = \frac{J_{\nu}(x) \cos \nu\pi - J_{-\nu}(x)}
    *                        {\sin \nu\pi}
    *   @f]
-   *   where for integral \f$ \nu = n \f$ a limit is taken:
-   *   \f$ lim_{\nu \to n} \f$.
+   *   where for integral @f$ \nu = n @f$ a limit is taken:
+   *   @f$ lim_{\nu \to n} @f$.
    *
    *   @param  __nu  The order of the Neumann function.
    *   @param  __x   The argument of the Neumann function.
