@@ -157,6 +157,12 @@ all: diff_special_function \
      diff_local_special_function \
      test_local_special_function
 
+
+docs:
+	rm -rf html/*
+	rm -rf latex/*
+	doxygen
+
 testcases: testcase
 	LD_LIBRARY_PATH=/home/ed/bin_specfun/lib64:$(GSL_LIB_DIR):$$LD_LIBRARY_PATH ./testcase
 
