@@ -26,5 +26,6 @@ var files =
     [ "sf_polylog.tcc", "sf__polylog_8tcc.html", "sf__polylog_8tcc" ],
     [ "sf_theta.tcc", "sf__theta_8tcc.html", "sf__theta_8tcc" ],
     [ "sf_trigint.tcc", "sf__trigint_8tcc.html", "sf__trigint_8tcc" ],
-    [ "sf_zeta.tcc", "sf__zeta_8tcc.html", "sf__zeta_8tcc" ]
+    [ "sf_zeta.tcc", "sf__zeta_8tcc.html", "sf__zeta_8tcc" ],
+    [ "specfun.h", "specfun_8h.html", "specfun_8h" ]
 ];
