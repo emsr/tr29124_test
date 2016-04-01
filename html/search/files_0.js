@@ -26,5 +26,6 @@ var searchData=
   ['sf_5fpolylog_2etcc',['sf_polylog.tcc',['../sf__polylog_8tcc.html',1,'']]],
   ['sf_5ftheta_2etcc',['sf_theta.tcc',['../sf__theta_8tcc.html',1,'']]],
   ['sf_5ftrigint_2etcc',['sf_trigint.tcc',['../sf__trigint_8tcc.html',1,'']]],
-  ['sf_5fzeta_2etcc',['sf_zeta.tcc',['../sf__zeta_8tcc.html',1,'']]]
+  ['sf_5fzeta_2etcc',['sf_zeta.tcc',['../sf__zeta_8tcc.html',1,'']]],
+  ['specfun_2eh',['specfun.h',['../specfun_8h.html',1,'']]]
 ];

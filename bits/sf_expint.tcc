@@ -252,7 +252,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  // Backward recursion is stable only for n >= x.
 	  __En = _Tp{1};
-	  const int __N = __n + 20;  // TODO: Check this starting number.
+	  /// @todo Find a principled starting number
+	  /// for the @f$ E_n(x) @f$ downward recursion.
+	  const int __N = __n + 20;
 	  _Tp __save = _Tp{0};
 	  for (int __j = __N; __j > 0; --__j)
 	    {
@@ -376,7 +378,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return -__expint_Ei(-__x);
       else if (__x < _Tp{1})
 	return __expint_E1_series(__x);
-      else if (__x < _Tp{100})  // TODO: Find a good asymptotic switch point.
+      else if (__x < _Tp{100})
+	/// @todo Find a good asymptotic switch point in @f$ E_1(x) @f$.
 	return __expint_En_cont_frac(1, __x);
       else
 	return __expint_E1_asymp(__x);

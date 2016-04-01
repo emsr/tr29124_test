@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['_5f_5fcpp_5flib_5fmath_5fspecial_5ffunctions',['__cpp_lib_math_special_functions',['../specfun_8h.html#ad3219e2507c3e671381bd3d2b67be6e4',1,'specfun.h']]],
+  ['_5f_5fstdcpp_5fmath_5fspec_5ffuncs_5f_5f',['__STDCPP_MATH_SPEC_FUNCS__',['../specfun_8h.html#a58f485f9da6a45af06142aeeb575457b',1,'specfun.h']]],
   ['_5fglibcxx_5fbits_5fsf_5fairy_5ftcc',['_GLIBCXX_BITS_SF_AIRY_TCC',['../sf__airy_8tcc.html#a2368d5b1edfb2e14f2c283d87ab89943',1,'sf_airy.tcc']]],
   ['_5fglibcxx_5fbits_5fsf_5fbessel_5ftcc',['_GLIBCXX_BITS_SF_BESSEL_TCC',['../sf__bessel_8tcc.html#abd320ef9965fd609102634f0c12d2682',1,'sf_bessel.tcc']]],
   ['_5fglibcxx_5fbits_5fsf_5fbeta_5ftcc',['_GLIBCXX_BITS_SF_BETA_TCC',['../sf__beta_8tcc.html#a41fb0de3283ace5ea2b676d932ff3d32',1,'sf_beta.tcc']]],

@@ -758,7 +758,8 @@ WARN_LOGFILE           =
 # spaces.
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = sf_airy.tcc \
+INPUT                  = specfun.h \
+			 sf_airy.tcc \
 			 sf_bessel.tcc \
 			 sf_beta.tcc \
 			 sf_cardinal.tcc \
