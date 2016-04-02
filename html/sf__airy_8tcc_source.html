@@ -155,8 +155,8 @@ $(document).ready(function(){initNavTree('sf__airy_8tcc_source.html','');});
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">   *  @brief This function evaluates Ai(z) and Ai&#39;(z) from their asymptotic</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">   *  expansions for |arg(z)| &lt; 2*\pi/3.  For speed, the number</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">   *  @brief This function evaluates @f$ Ai(z) @f$ and @f$ Ai&#39;(z) @f$ from their asymptotic</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">   *  expansions for @f$ |arg(z)| &lt; 2*\pi/3 @f$.  For speed, the number</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">   *  of terms needed to achieve about 16 decimals accuracy is tabled</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">   *  and determined from abs(z).</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">   *</span></div>
@@ -167,23 +167,23 @@ $(document).ready(function(){initNavTree('sf__airy_8tcc_source.html','');});
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">   *  @see Digital Library of Mathematical Finctions Sec. 9.7 Asymptotic Expansions</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">   *       http://dlmf.nist.gov/9.7</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">   *  @param[in]  z Complex input variable set equal to the value at which</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">   *            Ai(z) and Bi(z) and their derivative are evaluated.</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">   *            This function assumes abs(z) &gt; 15 and |arg(z)| &lt; 2\pi/3.</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">   *  @param[inout] Ai  The value computed for Ai(z).</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">   *  @param[inout] Aip The value computed for Ai&#39;(z).</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">   *  @param[in]    sign  The sign of the series terms amd exponent.</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">   *  @param[in]  __z Complex input variable set equal to the value at which</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">   *            @f$ Ai(z) @f$ and @f$ Bi(z) @f$ and their derivative are evaluated.</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">   *            This function assumes @f$ |z| &gt; 15 @f$ and @f$ |arg(z)| &lt; 2\pi/3 @f$.</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">   *  @param[inout] _Ai  The value computed for @f$ Ai(z) @f$.</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">   *  @param[inout] _Aip The value computed for @f$ Ai&#39;(z) @f$.</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">   *  @param[in]    __sign  The sign of the series terms amd exponent.</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">   *                      The default (-1) gives the Airy Ai functions</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">   *                      for |arg(z)| &lt; \pi.</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">   *                      for @f$ |arg(z)| &lt; \pi @f$.</span></div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">   *                      The value +1 gives the Airy Bi functions</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">   *                      for |arg(z)| &lt; \pi/3.</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">   *                      for @f$ |arg(z)| &lt; \pi/3 @f$.</span></div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#ac3f140083eafeac7123894c55d8383b9">   71</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#ac3f140083eafeac7123894c55d8383b9">__airy_asymp_absarg_ge_pio3</a>(std::complex&lt;_Tp&gt; __z,</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a026a02e51a93428332a607c093e8204f">   71</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a026a02e51a93428332a607c093e8204f">__airy_asymp_absarg_ge_pio3</a>(std::complex&lt;_Tp&gt; __z,</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                std::complex&lt;_Tp&gt;&amp; _Ai,</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                std::complex&lt;_Tp&gt;&amp; _Aip,</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                <span class="keywordtype">int</span> sign = -1)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                <span class="keywordtype">int</span> __sign = -1)</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    {</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      constexpr _Tp _S_2d3   = _Tp{2} / _Tp{3};</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;      <span class="comment">// 1/(2 sqrt(pi)))</span></div>
@@ -240,7 +240,7 @@ $(document).ready(function(){initNavTree('sf__airy_8tcc_source.html','');});
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;      __z1d4 = std::sqrt(__z1d4);</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;      <span class="comment">// Compute outer factors in the expansions.</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;      <span class="keyword">auto</span> __zoutpr = std::exp(_Tp(sign) * __zetam);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;      <span class="keyword">auto</span> __zoutpr = std::exp(_Tp(__sign) * __zetam);</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;      __zoutpr *= _S_pmhd2;</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;      <span class="keyword">auto</span> __zout = __zoutpr / __z1d4;</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;      __zoutpr *= -__z1d4;</div>
@@ -250,7 +250,7 @@ $(document).ready(function(){initNavTree('sf__airy_8tcc_source.html','');});
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                    (<span class="keywordtype">int</span>(std::abs(__z)) - 10) / 5)];</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;      <span class="comment">// Initialize for modified Horner&#39;s rule evaluation of sums.</span></div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;      <span class="comment">// It is assumed that at least three terms are used.</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;      __zetam = _Tp(sign) / __zetam;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;      __zetam = _Tp(__sign) / __zetam;</div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;      <span class="keyword">auto</span> __r = _Tp{2} * std::real(__zetam);</div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;      <span class="keyword">auto</span> __s = std::norm(__zetam);</div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;      <span class="keyword">auto</span> __index = _S_ncoeffs - __nterm;<span class="comment">// + 1;</span></div>
@@ -279,20 +279,20 @@ $(document).ready(function(){initNavTree('sf__airy_8tcc_source.html','');});
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment">   *  @brief This function evaluates Ai(z) and Ai&#39;(z) from their asymptotic</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment">   *  expansions for abs(arg(-z)) &lt; pi/3.  For speed, the number</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">   *  of terms needed to achieve about 16 decimals accuracy is tabled</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">   *  and determined from abs(z).</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment">   *  @brief This function evaluates @f$ Ai(z) @f$ and @f$ Ai&#39;(z) @f$ from</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment">   *  their asymptotic expansions for @f$ |arg(-z)| &lt; pi/3 @f$.  For speed,</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">   *  the number of terms needed to achieve about 16 decimals accuracy</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">   *  is tabled and determined from @f$ |z| @f$.</span></div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">   *</span></div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">   *  Note that for the sake of speed and the fact that this function</span></div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">   *  is to be called by another, checks for valid arguments are not</span></div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">   *  made.  Hence, an error return is not needed.</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment">   *  @param[in] z  The value at which the Airy function and its derivative</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment">   *                are evaluated.</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">   *            This function assumes abs(z) &gt; 15 and abs(arg(-z)) &lt; pi/3.</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment">   *  @param[out] Ai  The computed value of the Airy function Ai(z).</span></div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment">   *  @param[out] Aip The computed value of the Airy function derivative Ai&#39;(z).</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment">   *  This function assumes @f$ |z| &gt; 15 @f$ and @f$ |arg(-z)| &lt; pi/3 @f$.</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment">   *  @param[in] __z  The value at which the Airy function and its derivative</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">   *                are evaluated.</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment">   *  @param[out] _Ai  The computed value of the Airy function @f$ Ai(z) @f$.</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment">   *  @param[out] _Aip The computed value of the Airy function derivative @f$ Ai&#39;(z) @f$.</span></div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <span class="keywordtype">void</span></div>
@@ -493,12 +493,12 @@ $(document).ready(function(){initNavTree('sf__airy_8tcc_source.html','');});
 <div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;<span class="comment">   *    |x| + |y| &lt;= \sqrt(2) \sqrt(x^2 + y^2) </span></div>
 <div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;<span class="comment">   *   @f]</span></div>
 <div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;<span class="comment">   *  @param[in]  z     The argument of the modified Bessel functions.</span></div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;<span class="comment">   *  @param[in]  eps   The maximum relative error required in the results.</span></div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;<span class="comment">   *  @param[out] ip1d3 The value of I_(+1/3)(z).</span></div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;<span class="comment">   *  @param[out] im1d3 The value of I_(-1/3)(z).</span></div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;<span class="comment">   *  @param[out] ip2d3 The value of I_(+2/3)(z).</span></div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;<span class="comment">   *  @param[out] im2d3 The value of I_(-2/3)(z).</span></div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;<span class="comment">   *  @param[in]  __z     The argument of the modified Bessel functions.</span></div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;<span class="comment">   *  @param[in]  __eps   The maximum relative error required in the results.</span></div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;<span class="comment">   *  @param[out] _Ip1d3 The value of @f$ I_(+1/3)(z) @f$.</span></div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;<span class="comment">   *  @param[out] _Im1d3 The value of @f$ I_(-1/3)(z) @f$.</span></div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;<span class="comment">   *  @param[out] _Ip2d3 The value of @f$ I_(+2/3)(z) @f$.</span></div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;<span class="comment">   *  @param[out] _Im2d3 The value of @f$ I_(-2/3)(z) @f$.</span></div>
 <div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    <span class="keywordtype">void</span></div>
@@ -690,28 +690,28 @@ $(document).ready(function(){initNavTree('sf__airy_8tcc_source.html','');});
 <div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;<span class="comment">   *  Luke, Y. L., Mathematical functions and their approximations,</span></div>
 <div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;<span class="comment">   *    Academic Press, pp 366-367, 1975.</span></div>
 <div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;<span class="comment">   *  Though the approximation converges in abs(arg(z)) &lt;= pi,</span></div>
+<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;<span class="comment">   *  Though the approximation converges in @f$ |\arg(z)| &lt;= pi @f$,</span></div>
 <div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;<span class="comment">   *  The convergence weakens as abs(arg(z)) increases.  Also, in</span></div>
 <div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;<span class="comment">   *  the case of real order between 0 and 1, convergence weakens</span></div>
 <div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;<span class="comment">   *  as the order approaches 1.  For these reasons, we only use</span></div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;<span class="comment">   *  this code for |\arg(z)| &lt;= 3pi/4 and the convergence test</span></div>
+<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;<span class="comment">   *  this code for @f$ |\arg(z)| &lt;= 3pi/4 @f$ and the convergence test</span></div>
 <div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;<span class="comment">   *  is performed only for order 2/3.</span></div>
 <div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;<span class="comment">   *</span></div>
 <div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;<span class="comment">   *  The coding of this function is also influenced by the fact</span></div>
-<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;<span class="comment">   *  that it will only be used for about 2 &lt;= |z| &lt;= 15.</span></div>
+<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;<span class="comment">   *  that it will only be used for about @f$ 2 &lt;= |z| &lt;= 15 @f$.</span></div>
 <div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;<span class="comment">   *  Hence, certain considerations of overflow, underflow, and</span></div>
 <div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;<span class="comment">   *  loss of significance are unimportant for our purpose.</span></div>
 <div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;<span class="comment">   *  @param[in] z   The value for which the quantity E_nu is to be computed.</span></div>
+<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;<span class="comment">   *  @param[in] __z   The value for which the quantity E_nu is to be computed.</span></div>
 <div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;<span class="comment">   *             it is recommended that abs(z) not be too small and that</span></div>
-<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;<span class="comment">   *             |\arg(z)| &lt;= 3pi/4.</span></div>
-<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;<span class="comment">   *  @param[in] eps The maximum relative error allowable in the computed</span></div>
+<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;<span class="comment">   *             @f$ |\arg(z)| &lt;= 3pi/4 @f$.</span></div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;<span class="comment">   *  @param[in] __eps The maximum relative error allowable in the computed</span></div>
 <div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;<span class="comment">   *             results. The relative error test is based on the</span></div>
 <div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;<span class="comment">   *             comparison of successive iterates.</span></div>
-<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;<span class="comment">   *  @param[out] kp1d3  The value computed for E_{+1/3}(z).</span></div>
-<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;<span class="comment">   *  @param[out] kp2d3  The value computed for E_{+2/3}(z).</span></div>
+<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;<span class="comment">   *  @param[out] _Kp1d3  The value computed for @f$ E_{+1/3}(z) @f$.</span></div>
+<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;<span class="comment">   *  @param[out] _Kp2d3  The value computed for @f$ E_{+2/3}(z) @f$.</span></div>
 <div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;<span class="comment">   *  @note In the worst case, say, z=2 and \arg(z) = 3pi/4,</span></div>
+<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;<span class="comment">   *  @note In the worst case, say, @f$ z=2 @f$ and @f$ \arg(z) = 3pi/4 @f$,</span></div>
 <div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;<span class="comment">   *        20 iterations should give 7 or 8 decimals of accuracy.</span></div>
 <div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
@@ -863,15 +863,15 @@ $(document).ready(function(){initNavTree('sf__airy_8tcc_source.html','');});
 <div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;<span class="comment">  /**</span></div>
 <div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;<span class="comment">   *  @brief This function computes rational approximations</span></div>
 <div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;<span class="comment">   *  to the hypergeometric functions related to the modified Bessel</span></div>
-<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;<span class="comment">   *  functions of orders \nu = +-1/3 and \nu +- 2/3.  That is,</span></div>
-<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;<span class="comment">   *  A(z)/B(z), Where A(z) and B(z) are cubic polynomials with</span></div>
-<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;<span class="comment">   *  real coefficients, approximates</span></div>
+<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;<span class="comment">   *  functions of orders @f$ \nu = +-1/3 @f$ and @f$ \nu +- 2/3 @f$.  That is,</span></div>
+<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;<span class="comment">   *  @f$ A(z)/B(z) @f$, Where @f$ A(z) @f$ and @f$ B(z) @f$ are</span></div>
+<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;<span class="comment">   *  cubic polynomials with real coefficients, approximates</span></div>
 <div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;<span class="comment">   *   @f[</span></div>
 <div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;<span class="comment">   *    \frac{\Gamma(\nu+1)}{(z/2)^nu}I_\nu(z) = _0F_1 (;\nu+1;z^2/4),</span></div>
 <div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;<span class="comment">   *   @f]</span></div>
 <div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;<span class="comment">   *  where the function on the right is a</span></div>
-<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;<span class="comment">   *  confluent hypergeometric limit function.  For |z| &lt;= 1/4 and</span></div>
-<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;<span class="comment">   *  |arg(z)| &lt;= pi/2, the approximations are accurate to</span></div>
+<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;<span class="comment">   *  confluent hypergeometric limit function.  For @f$ |z| &lt;= 1/4 @f$ and</span></div>
+<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;<span class="comment">   *  @f$ |arg(z)| &lt;= pi/2 @f$, the approximations are accurate to</span></div>
 <div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;<span class="comment">   *  about 16 decimals.</span></div>
 <div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;<span class="comment">   *</span></div>
 <div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;<span class="comment">   *  For further details including the four term recurrence</span></div>
@@ -889,7 +889,7 @@ $(document).ready(function(){initNavTree('sf__airy_8tcc_source.html','');});
 <div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;<span class="comment">   *  function will be driven by another, checks that are not</span></div>
 <div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;<span class="comment">   *  absolutely necessary are not made.</span></div>
 <div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;<span class="comment">   *  @param[in]  z The argument at which the hypergeometric given</span></div>
+<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;<span class="comment">   *  @param[in]  __z   The argument at which the hypergeometric given</span></div>
 <div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;<span class="comment">   *              above is to be evaluated.  Since the approximation</span></div>
 <div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;<span class="comment">   *              is of fixed order, abs(z) must be small to ensure</span></div>
 <div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;<span class="comment">   *              sufficient accuracy of the computed results.</span></div>
@@ -988,8 +988,8 @@ $(document).ready(function(){initNavTree('sf__airy_8tcc_source.html','');});
 <div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160;</div>
 <div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;<span class="comment">   *  @brief This function computes the Airy function Ai(z) and its first</span></div>
-<div class="line"><a name="l00880"></a><span class="lineno">  880</span>&#160;<span class="comment">   *  derivative in the complex z-plane.</span></div>
+<div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;<span class="comment">   *  @brief This function computes the Airy function @f$ Ai(z) @f$</span></div>
+<div class="line"><a name="l00880"></a><span class="lineno">  880</span>&#160;<span class="comment">   *  and its first derivative in the complex z-plane.</span></div>
 <div class="line"><a name="l00881"></a><span class="lineno">  881</span>&#160;<span class="comment">   *</span></div>
 <div class="line"><a name="l00882"></a><span class="lineno">  882</span>&#160;<span class="comment">   *  The algorithm used exploits numerous representations of the</span></div>
 <div class="line"><a name="l00883"></a><span class="lineno">  883</span>&#160;<span class="comment">   *  Airy function and its derivative.</span></div>
@@ -1112,186 +1112,188 @@ $(document).ready(function(){initNavTree('sf__airy_8tcc_source.html','');});
 <div class="line"><a name="l01000"></a><span class="lineno"> 1000</span>&#160;<span class="comment">   *  @see Wimp, J., On the computation of Tricomi&#39;s psi function, Computing,</span></div>
 <div class="line"><a name="l01001"></a><span class="lineno"> 1001</span>&#160;<span class="comment">   *  Vol 13, pp 195-203, 1974.</span></div>
 <div class="line"><a name="l01002"></a><span class="lineno"> 1002</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01003"></a><span class="lineno"> 1003</span>&#160;<span class="comment">   *  @param[in] z   The argument at which the Airy function and its derivative</span></div>
+<div class="line"><a name="l01003"></a><span class="lineno"> 1003</span>&#160;<span class="comment">   *  @param[in] __z   The argument at which the Airy function and its derivative</span></div>
 <div class="line"><a name="l01004"></a><span class="lineno"> 1004</span>&#160;<span class="comment">   *             are computed.</span></div>
-<div class="line"><a name="l01005"></a><span class="lineno"> 1005</span>&#160;<span class="comment">   *  @param[in] eps Relative error required.  Currently, eps is used only</span></div>
+<div class="line"><a name="l01005"></a><span class="lineno"> 1005</span>&#160;<span class="comment">   *  @param[in] __eps Relative error required.  Currently, eps is used only</span></div>
 <div class="line"><a name="l01006"></a><span class="lineno"> 1006</span>&#160;<span class="comment">   *             in the backward recursion algorithms.</span></div>
-<div class="line"><a name="l01007"></a><span class="lineno"> 1007</span>&#160;<span class="comment">   *  @param[out] Ai  The value computed for Ai(z).</span></div>
-<div class="line"><a name="l01008"></a><span class="lineno"> 1008</span>&#160;<span class="comment">   *  @param[out] Aip The value computed for Ai&#39;(z).</span></div>
-<div class="line"><a name="l01009"></a><span class="lineno"> 1009</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l01010"></a><span class="lineno"> 1010</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l01011"></a><span class="lineno"> 1011</span>&#160;    <span class="keywordtype">void</span></div>
-<div class="line"><a name="l01012"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a6817269a446ea93bb50e7438e27c1162"> 1012</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a6817269a446ea93bb50e7438e27c1162">__airy</a>(<span class="keyword">const</span> std::complex&lt;_Tp&gt;&amp; __z, _Tp __eps,</div>
-<div class="line"><a name="l01013"></a><span class="lineno"> 1013</span>&#160;           std::complex&lt;_Tp&gt;&amp; _Ai,</div>
-<div class="line"><a name="l01014"></a><span class="lineno"> 1014</span>&#160;           std::complex&lt;_Tp&gt;&amp; _Aip,</div>
-<div class="line"><a name="l01015"></a><span class="lineno"> 1015</span>&#160;           std::complex&lt;_Tp&gt;&amp; _Bi,</div>
-<div class="line"><a name="l01016"></a><span class="lineno"> 1016</span>&#160;           std::complex&lt;_Tp&gt;&amp; _Bip)</div>
-<div class="line"><a name="l01017"></a><span class="lineno"> 1017</span>&#160;    {</div>
-<div class="line"><a name="l01018"></a><span class="lineno"> 1018</span>&#160;      <span class="keyword">using</span> __cmplx = std::complex&lt;_Tp&gt;;</div>
-<div class="line"><a name="l01019"></a><span class="lineno"> 1019</span>&#160;</div>
-<div class="line"><a name="l01020"></a><span class="lineno"> 1020</span>&#160;      <span class="keyword">static</span> constexpr _Tp</div>
-<div class="line"><a name="l01021"></a><span class="lineno"> 1021</span>&#160;    _S_sqrt3 = __gnu_cxx::__math_constants&lt;_Tp&gt;::__root_3;</div>
-<div class="line"><a name="l01022"></a><span class="lineno"> 1022</span>&#160;      <span class="keyword">static</span> constexpr __cmplx _S_j{0, 1},</div>
-<div class="line"><a name="l01023"></a><span class="lineno"> 1023</span>&#160;    _S_eppid6{_S_sqrt3 / _Tp{2},  _Tp{0.5L}},</div>
-<div class="line"><a name="l01024"></a><span class="lineno"> 1024</span>&#160;    _S_empid6{_S_sqrt3 / _Tp{2}, -_Tp{0.5L}},</div>
-<div class="line"><a name="l01025"></a><span class="lineno"> 1025</span>&#160;    _S_eppid3{_Tp{0.5L},  _S_sqrt3 / _Tp{2}},</div>
-<div class="line"><a name="l01026"></a><span class="lineno"> 1026</span>&#160;    _S_empid3{_Tp{0.5L}, -_S_sqrt3 / _Tp{2}};</div>
-<div class="line"><a name="l01027"></a><span class="lineno"> 1027</span>&#160;      <span class="keyword">static</span> constexpr _Tp</div>
-<div class="line"><a name="l01028"></a><span class="lineno"> 1028</span>&#160;    _S_2d3{_Tp{2} / _Tp{3}},</div>
-<div class="line"><a name="l01029"></a><span class="lineno"> 1029</span>&#160;    _S_rsqpi{2.820947917738781434740397257803862929219e-01L}, <span class="comment">// 1/(2sqrt(pi))</span></div>
-<div class="line"><a name="l01030"></a><span class="lineno"> 1030</span>&#160;    _S_pi = __gnu_cxx::__math_constants&lt;_Tp&gt;::__pi;</div>
-<div class="line"><a name="l01031"></a><span class="lineno"> 1031</span>&#160;      <span class="keyword">static</span> constexpr _Tp _S_small{0.25}, _S_big{15};</div>
-<div class="line"><a name="l01032"></a><span class="lineno"> 1032</span>&#160;</div>
-<div class="line"><a name="l01033"></a><span class="lineno"> 1033</span>&#160;      <span class="keyword">auto</span> __absz = std::abs(__z);</div>
-<div class="line"><a name="l01034"></a><span class="lineno"> 1034</span>&#160;      <span class="comment">// Check size of abs(z) and select appropriate methods.</span></div>
-<div class="line"><a name="l01035"></a><span class="lineno"> 1035</span>&#160;      <span class="keywordflow">if</span> (__absz &lt; _S_big)</div>
-<div class="line"><a name="l01036"></a><span class="lineno"> 1036</span>&#160;    {</div>
-<div class="line"><a name="l01037"></a><span class="lineno"> 1037</span>&#160;      <span class="comment">// Moderate or small abs(z)</span></div>
-<div class="line"><a name="l01038"></a><span class="lineno"> 1038</span>&#160;      <span class="comment">// Check argument for right or left half plane.</span></div>
-<div class="line"><a name="l01039"></a><span class="lineno"> 1039</span>&#160;      <span class="keywordflow">if</span> (std::real(__z) &gt;= _Tp{0})</div>
-<div class="line"><a name="l01040"></a><span class="lineno"> 1040</span>&#160;        {</div>
-<div class="line"><a name="l01041"></a><span class="lineno"> 1041</span>&#160;          <span class="comment">// Argument in closed right half plane. Compute zeta as defined</span></div>
-<div class="line"><a name="l01042"></a><span class="lineno"> 1042</span>&#160;          <span class="comment">// in the representations in terms of Bessel functions.</span></div>
-<div class="line"><a name="l01043"></a><span class="lineno"> 1043</span>&#160;          <span class="keyword">auto</span> __sqrtz = std::sqrt(__z);</div>
-<div class="line"><a name="l01044"></a><span class="lineno"> 1044</span>&#160;          <span class="keyword">auto</span> __zeta = _S_2d3 * __z * __sqrtz;</div>
-<div class="line"><a name="l01045"></a><span class="lineno"> 1045</span>&#160;</div>
-<div class="line"><a name="l01046"></a><span class="lineno"> 1046</span>&#160;          <span class="comment">// Check for abs(z) too large for accuracy of</span></div>
-<div class="line"><a name="l01047"></a><span class="lineno"> 1047</span>&#160;          <span class="comment">// representations (1) and (4).</span></div>
-<div class="line"><a name="l01048"></a><span class="lineno"> 1048</span>&#160;          <span class="keywordflow">if</span> (__absz &gt;= _Tp{2})</div>
-<div class="line"><a name="l01049"></a><span class="lineno"> 1049</span>&#160;        {</div>
-<div class="line"><a name="l01050"></a><span class="lineno"> 1050</span>&#160;          <span class="comment">// Use rational approximation for modified Bessel functions</span></div>
-<div class="line"><a name="l01051"></a><span class="lineno"> 1051</span>&#160;          <span class="comment">// of orders 1/3 and 2/3.</span></div>
-<div class="line"><a name="l01052"></a><span class="lineno"> 1052</span>&#160;          <a class="code" href="namespacestd_1_1____detail.html#a01098dbe1615b5be0833a7f3573f6510">__airy_bessel_k</a>(__zeta, __eps, _Ai, _Aip<span class="comment">/* , _Bi, _Bip*/</span>); <span class="comment">// FIXME</span></div>
-<div class="line"><a name="l01053"></a><span class="lineno"> 1053</span>&#160;          <span class="comment">// Recover Ai(z) and Ai&#39;(z).</span></div>
-<div class="line"><a name="l01054"></a><span class="lineno"> 1054</span>&#160;          <span class="keyword">auto</span> __p1d4c = std::sqrt(__sqrtz);</div>
-<div class="line"><a name="l01055"></a><span class="lineno"> 1055</span>&#160;          __zeta = _S_rsqpi * std::exp(-__zeta);</div>
-<div class="line"><a name="l01056"></a><span class="lineno"> 1056</span>&#160;          _Ai *= __zeta / __p1d4c;</div>
-<div class="line"><a name="l01057"></a><span class="lineno"> 1057</span>&#160;          _Aip *= -__zeta * __p1d4c;</div>
-<div class="line"><a name="l01058"></a><span class="lineno"> 1058</span>&#160;          <span class="comment">// FIXME: _Bi *= </span></div>
-<div class="line"><a name="l01059"></a><span class="lineno"> 1059</span>&#160;          <span class="comment">// FIXME: _Bip *= </span></div>
-<div class="line"><a name="l01060"></a><span class="lineno"> 1060</span>&#160;        }</div>
-<div class="line"><a name="l01061"></a><span class="lineno"> 1061</span>&#160;          <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01062"></a><span class="lineno"> 1062</span>&#160;        {</div>
-<div class="line"><a name="l01063"></a><span class="lineno"> 1063</span>&#160;          <span class="comment">// Check for abs(z) small enough for rational approximation.</span></div>
-<div class="line"><a name="l01064"></a><span class="lineno"> 1064</span>&#160;          <span class="keywordflow">if</span> (__absz &lt;= _S_small)</div>
-<div class="line"><a name="l01065"></a><span class="lineno"> 1065</span>&#160;            {</div>
-<div class="line"><a name="l01066"></a><span class="lineno"> 1066</span>&#160;              <span class="comment">// Use rational approximation along with (1) and (4).</span></div>
-<div class="line"><a name="l01067"></a><span class="lineno"> 1067</span>&#160;              <a class="code" href="namespacestd_1_1____detail.html#aedc8a8cc144aa56f72728db7d62e3e62">__airy_hyperg_rational</a>(__z, _Ai, _Aip, _Bi, _Bip);</div>
-<div class="line"><a name="l01068"></a><span class="lineno"> 1068</span>&#160;            }</div>
-<div class="line"><a name="l01069"></a><span class="lineno"> 1069</span>&#160;          <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01070"></a><span class="lineno"> 1070</span>&#160;            {</div>
-<div class="line"><a name="l01071"></a><span class="lineno"> 1071</span>&#160;              <span class="comment">// Use Miller&#39;s backward recurrence along with (1), (4).</span></div>
-<div class="line"><a name="l01072"></a><span class="lineno"> 1072</span>&#160;              __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;</div>
-<div class="line"><a name="l01073"></a><span class="lineno"> 1073</span>&#160;              <a class="code" href="namespacestd_1_1____detail.html#aee6c743187765ce9a1f9c4c9af4acf17">__airy_bessel_i</a>(__zeta, __eps,</div>
-<div class="line"><a name="l01074"></a><span class="lineno"> 1074</span>&#160;                      _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);</div>
-<div class="line"><a name="l01075"></a><span class="lineno"> 1075</span>&#160;              <span class="comment">// Recover Ai(z) and Ai&#39;(z), Bi(z) and Bi&#39;(z).</span></div>
-<div class="line"><a name="l01076"></a><span class="lineno"> 1076</span>&#160;              _Ai = __sqrtz * (_Im1d3 - _Ip1d3) / _Tp{3};</div>
-<div class="line"><a name="l01077"></a><span class="lineno"> 1077</span>&#160;              _Aip = __z * (_Ip2d3 - _Im2d3) / _Tp{3};</div>
-<div class="line"><a name="l01078"></a><span class="lineno"> 1078</span>&#160;              _Bi = __sqrtz * (_Im2d3 * _Ip2d3) / _S_sqrt3;</div>
-<div class="line"><a name="l01079"></a><span class="lineno"> 1079</span>&#160;              _Bip = __z * (_Im2d3 + _Ip2d3) / _S_sqrt3;</div>
-<div class="line"><a name="l01080"></a><span class="lineno"> 1080</span>&#160;            }</div>
-<div class="line"><a name="l01081"></a><span class="lineno"> 1081</span>&#160;        }</div>
-<div class="line"><a name="l01082"></a><span class="lineno"> 1082</span>&#160;        }</div>
-<div class="line"><a name="l01083"></a><span class="lineno"> 1083</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01084"></a><span class="lineno"> 1084</span>&#160;        {</div>
-<div class="line"><a name="l01085"></a><span class="lineno"> 1085</span>&#160;          <span class="comment">// Argument lies in left half plane.  Compute zeta as defined</span></div>
-<div class="line"><a name="l01086"></a><span class="lineno"> 1086</span>&#160;          <span class="comment">// in the representations in terms of Bessel functions.</span></div>
-<div class="line"><a name="l01087"></a><span class="lineno"> 1087</span>&#160;          <span class="keyword">auto</span> __sqrtz = std::sqrt(-__z);</div>
-<div class="line"><a name="l01088"></a><span class="lineno"> 1088</span>&#160;          <span class="keyword">auto</span> __zeta = -_S_2d3 * __z * __sqrtz;</div>
-<div class="line"><a name="l01089"></a><span class="lineno"> 1089</span>&#160;          <span class="comment">// Set up arguments to recover Bessel functions of the first kind</span></div>
-<div class="line"><a name="l01090"></a><span class="lineno"> 1090</span>&#160;          <span class="comment">// in (3) and (6).</span></div>
-<div class="line"><a name="l01091"></a><span class="lineno"> 1091</span>&#160;          __cmplx __z2zeta, __p1d3f, __m1d3f, __p2d3f, __m2d3f;</div>
-<div class="line"><a name="l01092"></a><span class="lineno"> 1092</span>&#160;          <span class="keywordflow">if</span> (std::imag(__zeta) &gt;= _Tp{0})</div>
-<div class="line"><a name="l01093"></a><span class="lineno"> 1093</span>&#160;        {</div>
-<div class="line"><a name="l01094"></a><span class="lineno"> 1094</span>&#160;          <span class="comment">// Argument lies in the second quadrant.</span></div>
-<div class="line"><a name="l01095"></a><span class="lineno"> 1095</span>&#160;          __z2zeta = -_S_j * __zeta;</div>
-<div class="line"><a name="l01096"></a><span class="lineno"> 1096</span>&#160;          __p1d3f = _S_eppid6;</div>
-<div class="line"><a name="l01097"></a><span class="lineno"> 1097</span>&#160;          __m1d3f = _S_empid6;</div>
-<div class="line"><a name="l01098"></a><span class="lineno"> 1098</span>&#160;          __p2d3f = _S_eppid3;</div>
-<div class="line"><a name="l01099"></a><span class="lineno"> 1099</span>&#160;          __m2d3f = _S_empid3;</div>
-<div class="line"><a name="l01100"></a><span class="lineno"> 1100</span>&#160;        }</div>
-<div class="line"><a name="l01101"></a><span class="lineno"> 1101</span>&#160;          <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01102"></a><span class="lineno"> 1102</span>&#160;        {</div>
-<div class="line"><a name="l01103"></a><span class="lineno"> 1103</span>&#160;          <span class="comment">// Argument lies in the third quadrant.</span></div>
-<div class="line"><a name="l01104"></a><span class="lineno"> 1104</span>&#160;          __z2zeta = _S_j * __zeta;</div>
-<div class="line"><a name="l01105"></a><span class="lineno"> 1105</span>&#160;          __p1d3f = _S_empid6;</div>
-<div class="line"><a name="l01106"></a><span class="lineno"> 1106</span>&#160;          __m1d3f = _S_eppid6;</div>
-<div class="line"><a name="l01107"></a><span class="lineno"> 1107</span>&#160;          __p2d3f = _S_empid3;</div>
-<div class="line"><a name="l01108"></a><span class="lineno"> 1108</span>&#160;          __m2d3f = _S_eppid3;</div>
-<div class="line"><a name="l01109"></a><span class="lineno"> 1109</span>&#160;        }</div>
-<div class="line"><a name="l01110"></a><span class="lineno"> 1110</span>&#160;</div>
-<div class="line"><a name="l01111"></a><span class="lineno"> 1111</span>&#160;          <span class="comment">// Use approximation depending on size of z.</span></div>
-<div class="line"><a name="l01112"></a><span class="lineno"> 1112</span>&#160;          <span class="keywordflow">if</span> (__absz &lt;= _S_small)</div>
-<div class="line"><a name="l01113"></a><span class="lineno"> 1113</span>&#160;        {</div>
-<div class="line"><a name="l01114"></a><span class="lineno"> 1114</span>&#160;          <span class="comment">// Use rational approximation.</span></div>
-<div class="line"><a name="l01115"></a><span class="lineno"> 1115</span>&#160;          __zeta = -__z;</div>
-<div class="line"><a name="l01116"></a><span class="lineno"> 1116</span>&#160;          <a class="code" href="namespacestd_1_1____detail.html#aedc8a8cc144aa56f72728db7d62e3e62">__airy_hyperg_rational</a>(__z, _Ai, _Aip, _Bi, _Bip);</div>
-<div class="line"><a name="l01117"></a><span class="lineno"> 1117</span>&#160;        }</div>
-<div class="line"><a name="l01118"></a><span class="lineno"> 1118</span>&#160;          <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01119"></a><span class="lineno"> 1119</span>&#160;        {</div>
-<div class="line"><a name="l01120"></a><span class="lineno"> 1120</span>&#160;          <span class="comment">// Use Miller&#39;s backward recurrence.</span></div>
-<div class="line"><a name="l01121"></a><span class="lineno"> 1121</span>&#160;          __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;</div>
-<div class="line"><a name="l01122"></a><span class="lineno"> 1122</span>&#160;          <a class="code" href="namespacestd_1_1____detail.html#aee6c743187765ce9a1f9c4c9af4acf17">__airy_bessel_i</a>(__z2zeta, __eps,</div>
-<div class="line"><a name="l01123"></a><span class="lineno"> 1123</span>&#160;                  _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);</div>
-<div class="line"><a name="l01124"></a><span class="lineno"> 1124</span>&#160;          <span class="comment">// Recover Ai(z) and Ai&#39;(z).</span></div>
-<div class="line"><a name="l01125"></a><span class="lineno"> 1125</span>&#160;          _Ai = __sqrtz * (__m1d3f * _Im1d3 + __p1d3f * _Ip1d3) / _Tp{3};</div>
-<div class="line"><a name="l01126"></a><span class="lineno"> 1126</span>&#160;          _Aip = __z * (__m2d3f * _Im2d3 - __p2d3f * _Ip2d3) / _Tp{3};</div>
-<div class="line"><a name="l01127"></a><span class="lineno"> 1127</span>&#160;          <span class="comment">// FIXME: _Bi = __sqrtz * (__m2d3f * _Im2d3 + __p2d3f * _Ip2d3) / _S_sqrt3;</span></div>
-<div class="line"><a name="l01128"></a><span class="lineno"> 1128</span>&#160;          <span class="comment">// FIXME: _Bip = __z * (I_{2/3}(\zeta) + I_{-2/3}(\zeta)) / _S_sqrt3</span></div>
-<div class="line"><a name="l01129"></a><span class="lineno"> 1129</span>&#160;        }</div>
-<div class="line"><a name="l01130"></a><span class="lineno"> 1130</span>&#160;        }</div>
-<div class="line"><a name="l01131"></a><span class="lineno"> 1131</span>&#160;    }</div>
-<div class="line"><a name="l01132"></a><span class="lineno"> 1132</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01133"></a><span class="lineno"> 1133</span>&#160;    { <span class="comment">// abs(z) is large...</span></div>
-<div class="line"><a name="l01134"></a><span class="lineno"> 1134</span>&#160;      <span class="comment">// Check arg(z) to see which asymptotic form is appropriate.</span></div>
-<div class="line"><a name="l01135"></a><span class="lineno"> 1135</span>&#160;      <span class="keywordflow">if</span> (std::abs(std::arg(__z)) &lt; _Tp{2} * _S_pi / _Tp{3})</div>
-<div class="line"><a name="l01136"></a><span class="lineno"> 1136</span>&#160;        <a class="code" href="namespacestd_1_1____detail.html#ac3f140083eafeac7123894c55d8383b9">__airy_asymp_absarg_ge_pio3</a>(__z, _Ai, _Aip<span class="comment">/* , _Bi, _Bip*/</span>); <span class="comment">// FIXME</span></div>
-<div class="line"><a name="l01137"></a><span class="lineno"> 1137</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01138"></a><span class="lineno"> 1138</span>&#160;        <a class="code" href="namespacestd_1_1____detail.html#a4f1c33b398ae69c55281341004da0679">__airy_asymp_absarg_lt_pio3</a>(__z, _Ai, _Aip<span class="comment">/* , _Bi, _Bip*/</span>); <span class="comment">// FIXME</span></div>
-<div class="line"><a name="l01139"></a><span class="lineno"> 1139</span>&#160;    }</div>
-<div class="line"><a name="l01140"></a><span class="lineno"> 1140</span>&#160;      <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l01141"></a><span class="lineno"> 1141</span>&#160;  }</div>
-<div class="line"><a name="l01142"></a><span class="lineno"> 1142</span>&#160;</div>
-<div class="line"><a name="l01143"></a><span class="lineno"> 1143</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l01144"></a><span class="lineno"> 1144</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01145"></a><span class="lineno"> 1145</span>&#160;<span class="comment">   *  @brief  Return the complex Airy Ai function.</span></div>
-<div class="line"><a name="l01146"></a><span class="lineno"> 1146</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l01147"></a><span class="lineno"> 1147</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l01148"></a><span class="lineno"> 1148</span>&#160;    std::complex&lt;_Tp&gt;</div>
-<div class="line"><a name="l01149"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#afd48b5702344f832a250922ac4ffb917"> 1149</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#afd48b5702344f832a250922ac4ffb917">__airy_ai</a>(std::complex&lt;_Tp&gt; __z)</div>
-<div class="line"><a name="l01150"></a><span class="lineno"> 1150</span>&#160;    {</div>
-<div class="line"><a name="l01151"></a><span class="lineno"> 1151</span>&#160;      std::complex&lt;_Tp&gt; _Ai, _Aip, _Bi, _Bip;</div>
-<div class="line"><a name="l01152"></a><span class="lineno"> 1152</span>&#160;      <a class="code" href="namespacestd_1_1____detail.html#a6817269a446ea93bb50e7438e27c1162">__airy</a>(__z, _Ai, _Aip, _Bi, _Bip);</div>
-<div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160;      <span class="keywordflow">return</span> _Ai;</div>
-<div class="line"><a name="l01154"></a><span class="lineno"> 1154</span>&#160;    }</div>
-<div class="line"><a name="l01155"></a><span class="lineno"> 1155</span>&#160;</div>
-<div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l01157"></a><span class="lineno"> 1157</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;<span class="comment">   *  @brief  Return the complex Airy Bi function.</span></div>
-<div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l01160"></a><span class="lineno"> 1160</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l01161"></a><span class="lineno"> 1161</span>&#160;    std::complex&lt;_Tp&gt;</div>
-<div class="line"><a name="l01162"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#ae5536305d721e393efe1a74f0e57653e"> 1162</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#ae5536305d721e393efe1a74f0e57653e">__airy_bi</a>(std::complex&lt;_Tp&gt; __z)</div>
-<div class="line"><a name="l01163"></a><span class="lineno"> 1163</span>&#160;    {</div>
-<div class="line"><a name="l01164"></a><span class="lineno"> 1164</span>&#160;      std::complex&lt;_Tp&gt; _Ai, _Aip, _Bi, _Bip;</div>
-<div class="line"><a name="l01165"></a><span class="lineno"> 1165</span>&#160;      <a class="code" href="namespacestd_1_1____detail.html#a6817269a446ea93bb50e7438e27c1162">__airy</a>(__z, _Ai, _Aip, _Bi, _Bip);</div>
-<div class="line"><a name="l01166"></a><span class="lineno"> 1166</span>&#160;      <span class="keywordflow">return</span> _Bi;</div>
-<div class="line"><a name="l01167"></a><span class="lineno"> 1167</span>&#160;    }</div>
-<div class="line"><a name="l01168"></a><span class="lineno"> 1168</span>&#160;</div>
-<div class="line"><a name="l01169"></a><span class="lineno"> 1169</span>&#160;_GLIBCXX_END_NAMESPACE_VERSION</div>
-<div class="line"><a name="l01170"></a><span class="lineno"> 1170</span>&#160;} <span class="comment">// namespace __detail</span></div>
-<div class="line"><a name="l01171"></a><span class="lineno"> 1171</span>&#160;} <span class="comment">// namespace std</span></div>
-<div class="line"><a name="l01172"></a><span class="lineno"> 1172</span>&#160;</div>
-<div class="line"><a name="l01173"></a><span class="lineno"> 1173</span>&#160;<span class="preprocessor">#endif // _GLIBCXX_BITS_SF_AIRY_TCC</span></div>
+<div class="line"><a name="l01007"></a><span class="lineno"> 1007</span>&#160;<span class="comment">   *  @param[out] _Ai  The value computed for Ai(z).</span></div>
+<div class="line"><a name="l01008"></a><span class="lineno"> 1008</span>&#160;<span class="comment">   *  @param[out] _Aip The value computed for Ai&#39;(z).</span></div>
+<div class="line"><a name="l01009"></a><span class="lineno"> 1009</span>&#160;<span class="comment">   *  @param[out] _Bi  The value computed for Bi(z).</span></div>
+<div class="line"><a name="l01010"></a><span class="lineno"> 1010</span>&#160;<span class="comment">   *  @param[out] _Bip The value computed for Bi&#39;(z).</span></div>
+<div class="line"><a name="l01011"></a><span class="lineno"> 1011</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l01012"></a><span class="lineno"> 1012</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l01013"></a><span class="lineno"> 1013</span>&#160;    <span class="keywordtype">void</span></div>
+<div class="line"><a name="l01014"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a6817269a446ea93bb50e7438e27c1162"> 1014</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a6817269a446ea93bb50e7438e27c1162">__airy</a>(<span class="keyword">const</span> std::complex&lt;_Tp&gt;&amp; __z, _Tp __eps,</div>
+<div class="line"><a name="l01015"></a><span class="lineno"> 1015</span>&#160;           std::complex&lt;_Tp&gt;&amp; _Ai,</div>
+<div class="line"><a name="l01016"></a><span class="lineno"> 1016</span>&#160;           std::complex&lt;_Tp&gt;&amp; _Aip,</div>
+<div class="line"><a name="l01017"></a><span class="lineno"> 1017</span>&#160;           std::complex&lt;_Tp&gt;&amp; _Bi,</div>
+<div class="line"><a name="l01018"></a><span class="lineno"> 1018</span>&#160;           std::complex&lt;_Tp&gt;&amp; _Bip)</div>
+<div class="line"><a name="l01019"></a><span class="lineno"> 1019</span>&#160;    {</div>
+<div class="line"><a name="l01020"></a><span class="lineno"> 1020</span>&#160;      <span class="keyword">using</span> __cmplx = std::complex&lt;_Tp&gt;;</div>
+<div class="line"><a name="l01021"></a><span class="lineno"> 1021</span>&#160;</div>
+<div class="line"><a name="l01022"></a><span class="lineno"> 1022</span>&#160;      <span class="keyword">static</span> constexpr _Tp</div>
+<div class="line"><a name="l01023"></a><span class="lineno"> 1023</span>&#160;    _S_sqrt3 = __gnu_cxx::__math_constants&lt;_Tp&gt;::__root_3;</div>
+<div class="line"><a name="l01024"></a><span class="lineno"> 1024</span>&#160;      <span class="keyword">static</span> constexpr __cmplx _S_j{0, 1},</div>
+<div class="line"><a name="l01025"></a><span class="lineno"> 1025</span>&#160;    _S_eppid6{_S_sqrt3 / _Tp{2},  _Tp{0.5L}},</div>
+<div class="line"><a name="l01026"></a><span class="lineno"> 1026</span>&#160;    _S_empid6{_S_sqrt3 / _Tp{2}, -_Tp{0.5L}},</div>
+<div class="line"><a name="l01027"></a><span class="lineno"> 1027</span>&#160;    _S_eppid3{_Tp{0.5L},  _S_sqrt3 / _Tp{2}},</div>
+<div class="line"><a name="l01028"></a><span class="lineno"> 1028</span>&#160;    _S_empid3{_Tp{0.5L}, -_S_sqrt3 / _Tp{2}};</div>
+<div class="line"><a name="l01029"></a><span class="lineno"> 1029</span>&#160;      <span class="keyword">static</span> constexpr _Tp</div>
+<div class="line"><a name="l01030"></a><span class="lineno"> 1030</span>&#160;    _S_2d3{_Tp{2} / _Tp{3}},</div>
+<div class="line"><a name="l01031"></a><span class="lineno"> 1031</span>&#160;    _S_rsqpi{2.820947917738781434740397257803862929219e-01L}, <span class="comment">// 1/(2sqrt(pi))</span></div>
+<div class="line"><a name="l01032"></a><span class="lineno"> 1032</span>&#160;    _S_pi = __gnu_cxx::__math_constants&lt;_Tp&gt;::__pi;</div>
+<div class="line"><a name="l01033"></a><span class="lineno"> 1033</span>&#160;      <span class="keyword">static</span> constexpr _Tp _S_small{0.25}, _S_big{15};</div>
+<div class="line"><a name="l01034"></a><span class="lineno"> 1034</span>&#160;</div>
+<div class="line"><a name="l01035"></a><span class="lineno"> 1035</span>&#160;      <span class="keyword">auto</span> __absz = std::abs(__z);</div>
+<div class="line"><a name="l01036"></a><span class="lineno"> 1036</span>&#160;      <span class="comment">// Check size of abs(z) and select appropriate methods.</span></div>
+<div class="line"><a name="l01037"></a><span class="lineno"> 1037</span>&#160;      <span class="keywordflow">if</span> (__absz &lt; _S_big)</div>
+<div class="line"><a name="l01038"></a><span class="lineno"> 1038</span>&#160;    {</div>
+<div class="line"><a name="l01039"></a><span class="lineno"> 1039</span>&#160;      <span class="comment">// Moderate or small abs(z)</span></div>
+<div class="line"><a name="l01040"></a><span class="lineno"> 1040</span>&#160;      <span class="comment">// Check argument for right or left half plane.</span></div>
+<div class="line"><a name="l01041"></a><span class="lineno"> 1041</span>&#160;      <span class="keywordflow">if</span> (std::real(__z) &gt;= _Tp{0})</div>
+<div class="line"><a name="l01042"></a><span class="lineno"> 1042</span>&#160;        {</div>
+<div class="line"><a name="l01043"></a><span class="lineno"> 1043</span>&#160;          <span class="comment">// Argument in closed right half plane. Compute zeta as defined</span></div>
+<div class="line"><a name="l01044"></a><span class="lineno"> 1044</span>&#160;          <span class="comment">// in the representations in terms of Bessel functions.</span></div>
+<div class="line"><a name="l01045"></a><span class="lineno"> 1045</span>&#160;          <span class="keyword">auto</span> __sqrtz = std::sqrt(__z);</div>
+<div class="line"><a name="l01046"></a><span class="lineno"> 1046</span>&#160;          <span class="keyword">auto</span> __zeta = _S_2d3 * __z * __sqrtz;</div>
+<div class="line"><a name="l01047"></a><span class="lineno"> 1047</span>&#160;</div>
+<div class="line"><a name="l01048"></a><span class="lineno"> 1048</span>&#160;          <span class="comment">// Check for abs(z) too large for accuracy of</span></div>
+<div class="line"><a name="l01049"></a><span class="lineno"> 1049</span>&#160;          <span class="comment">// representations (1) and (4).</span></div>
+<div class="line"><a name="l01050"></a><span class="lineno"> 1050</span>&#160;          <span class="keywordflow">if</span> (__absz &gt;= _Tp{2})</div>
+<div class="line"><a name="l01051"></a><span class="lineno"> 1051</span>&#160;        {</div>
+<div class="line"><a name="l01052"></a><span class="lineno"> 1052</span>&#160;          <span class="comment">// Use rational approximation for modified Bessel functions</span></div>
+<div class="line"><a name="l01053"></a><span class="lineno"> 1053</span>&#160;          <span class="comment">// of orders 1/3 and 2/3.</span></div>
+<div class="line"><a name="l01054"></a><span class="lineno"> 1054</span>&#160;          <a class="code" href="namespacestd_1_1____detail.html#a01098dbe1615b5be0833a7f3573f6510">__airy_bessel_k</a>(__zeta, __eps, _Ai, _Aip<span class="comment">/* , _Bi, _Bip*/</span>); <span class="comment">// FIXME</span></div>
+<div class="line"><a name="l01055"></a><span class="lineno"> 1055</span>&#160;          <span class="comment">// Recover Ai(z) and Ai&#39;(z).</span></div>
+<div class="line"><a name="l01056"></a><span class="lineno"> 1056</span>&#160;          <span class="keyword">auto</span> __p1d4c = std::sqrt(__sqrtz);</div>
+<div class="line"><a name="l01057"></a><span class="lineno"> 1057</span>&#160;          __zeta = _S_rsqpi * std::exp(-__zeta);</div>
+<div class="line"><a name="l01058"></a><span class="lineno"> 1058</span>&#160;          _Ai *= __zeta / __p1d4c;</div>
+<div class="line"><a name="l01059"></a><span class="lineno"> 1059</span>&#160;          _Aip *= -__zeta * __p1d4c;</div>
+<div class="line"><a name="l01060"></a><span class="lineno"> 1060</span>&#160;          <span class="comment">// FIXME: _Bi *= </span></div>
+<div class="line"><a name="l01061"></a><span class="lineno"> 1061</span>&#160;          <span class="comment">// FIXME: _Bip *= </span></div>
+<div class="line"><a name="l01062"></a><span class="lineno"> 1062</span>&#160;        }</div>
+<div class="line"><a name="l01063"></a><span class="lineno"> 1063</span>&#160;          <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01064"></a><span class="lineno"> 1064</span>&#160;        {</div>
+<div class="line"><a name="l01065"></a><span class="lineno"> 1065</span>&#160;          <span class="comment">// Check for abs(z) small enough for rational approximation.</span></div>
+<div class="line"><a name="l01066"></a><span class="lineno"> 1066</span>&#160;          <span class="keywordflow">if</span> (__absz &lt;= _S_small)</div>
+<div class="line"><a name="l01067"></a><span class="lineno"> 1067</span>&#160;            {</div>
+<div class="line"><a name="l01068"></a><span class="lineno"> 1068</span>&#160;              <span class="comment">// Use rational approximation along with (1) and (4).</span></div>
+<div class="line"><a name="l01069"></a><span class="lineno"> 1069</span>&#160;              <a class="code" href="namespacestd_1_1____detail.html#aedc8a8cc144aa56f72728db7d62e3e62">__airy_hyperg_rational</a>(__z, _Ai, _Aip, _Bi, _Bip);</div>
+<div class="line"><a name="l01070"></a><span class="lineno"> 1070</span>&#160;            }</div>
+<div class="line"><a name="l01071"></a><span class="lineno"> 1071</span>&#160;          <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01072"></a><span class="lineno"> 1072</span>&#160;            {</div>
+<div class="line"><a name="l01073"></a><span class="lineno"> 1073</span>&#160;              <span class="comment">// Use Miller&#39;s backward recurrence along with (1), (4).</span></div>
+<div class="line"><a name="l01074"></a><span class="lineno"> 1074</span>&#160;              __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;</div>
+<div class="line"><a name="l01075"></a><span class="lineno"> 1075</span>&#160;              <a class="code" href="namespacestd_1_1____detail.html#aee6c743187765ce9a1f9c4c9af4acf17">__airy_bessel_i</a>(__zeta, __eps,</div>
+<div class="line"><a name="l01076"></a><span class="lineno"> 1076</span>&#160;                      _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);</div>
+<div class="line"><a name="l01077"></a><span class="lineno"> 1077</span>&#160;              <span class="comment">// Recover Ai(z) and Ai&#39;(z), Bi(z) and Bi&#39;(z).</span></div>
+<div class="line"><a name="l01078"></a><span class="lineno"> 1078</span>&#160;              _Ai = __sqrtz * (_Im1d3 - _Ip1d3) / _Tp{3};</div>
+<div class="line"><a name="l01079"></a><span class="lineno"> 1079</span>&#160;              _Aip = __z * (_Ip2d3 - _Im2d3) / _Tp{3};</div>
+<div class="line"><a name="l01080"></a><span class="lineno"> 1080</span>&#160;              _Bi = __sqrtz * (_Im2d3 * _Ip2d3) / _S_sqrt3;</div>
+<div class="line"><a name="l01081"></a><span class="lineno"> 1081</span>&#160;              _Bip = __z * (_Im2d3 + _Ip2d3) / _S_sqrt3;</div>
+<div class="line"><a name="l01082"></a><span class="lineno"> 1082</span>&#160;            }</div>
+<div class="line"><a name="l01083"></a><span class="lineno"> 1083</span>&#160;        }</div>
+<div class="line"><a name="l01084"></a><span class="lineno"> 1084</span>&#160;        }</div>
+<div class="line"><a name="l01085"></a><span class="lineno"> 1085</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01086"></a><span class="lineno"> 1086</span>&#160;        {</div>
+<div class="line"><a name="l01087"></a><span class="lineno"> 1087</span>&#160;          <span class="comment">// Argument lies in left half plane.  Compute zeta as defined</span></div>
+<div class="line"><a name="l01088"></a><span class="lineno"> 1088</span>&#160;          <span class="comment">// in the representations in terms of Bessel functions.</span></div>
+<div class="line"><a name="l01089"></a><span class="lineno"> 1089</span>&#160;          <span class="keyword">auto</span> __sqrtz = std::sqrt(-__z);</div>
+<div class="line"><a name="l01090"></a><span class="lineno"> 1090</span>&#160;          <span class="keyword">auto</span> __zeta = -_S_2d3 * __z * __sqrtz;</div>
+<div class="line"><a name="l01091"></a><span class="lineno"> 1091</span>&#160;          <span class="comment">// Set up arguments to recover Bessel functions of the first kind</span></div>
+<div class="line"><a name="l01092"></a><span class="lineno"> 1092</span>&#160;          <span class="comment">// in (3) and (6).</span></div>
+<div class="line"><a name="l01093"></a><span class="lineno"> 1093</span>&#160;          __cmplx __z2zeta, __p1d3f, __m1d3f, __p2d3f, __m2d3f;</div>
+<div class="line"><a name="l01094"></a><span class="lineno"> 1094</span>&#160;          <span class="keywordflow">if</span> (std::imag(__zeta) &gt;= _Tp{0})</div>
+<div class="line"><a name="l01095"></a><span class="lineno"> 1095</span>&#160;        {</div>
+<div class="line"><a name="l01096"></a><span class="lineno"> 1096</span>&#160;          <span class="comment">// Argument lies in the second quadrant.</span></div>
+<div class="line"><a name="l01097"></a><span class="lineno"> 1097</span>&#160;          __z2zeta = -_S_j * __zeta;</div>
+<div class="line"><a name="l01098"></a><span class="lineno"> 1098</span>&#160;          __p1d3f = _S_eppid6;</div>
+<div class="line"><a name="l01099"></a><span class="lineno"> 1099</span>&#160;          __m1d3f = _S_empid6;</div>
+<div class="line"><a name="l01100"></a><span class="lineno"> 1100</span>&#160;          __p2d3f = _S_eppid3;</div>
+<div class="line"><a name="l01101"></a><span class="lineno"> 1101</span>&#160;          __m2d3f = _S_empid3;</div>
+<div class="line"><a name="l01102"></a><span class="lineno"> 1102</span>&#160;        }</div>
+<div class="line"><a name="l01103"></a><span class="lineno"> 1103</span>&#160;          <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01104"></a><span class="lineno"> 1104</span>&#160;        {</div>
+<div class="line"><a name="l01105"></a><span class="lineno"> 1105</span>&#160;          <span class="comment">// Argument lies in the third quadrant.</span></div>
+<div class="line"><a name="l01106"></a><span class="lineno"> 1106</span>&#160;          __z2zeta = _S_j * __zeta;</div>
+<div class="line"><a name="l01107"></a><span class="lineno"> 1107</span>&#160;          __p1d3f = _S_empid6;</div>
+<div class="line"><a name="l01108"></a><span class="lineno"> 1108</span>&#160;          __m1d3f = _S_eppid6;</div>
+<div class="line"><a name="l01109"></a><span class="lineno"> 1109</span>&#160;          __p2d3f = _S_empid3;</div>
+<div class="line"><a name="l01110"></a><span class="lineno"> 1110</span>&#160;          __m2d3f = _S_eppid3;</div>
+<div class="line"><a name="l01111"></a><span class="lineno"> 1111</span>&#160;        }</div>
+<div class="line"><a name="l01112"></a><span class="lineno"> 1112</span>&#160;</div>
+<div class="line"><a name="l01113"></a><span class="lineno"> 1113</span>&#160;          <span class="comment">// Use approximation depending on size of z.</span></div>
+<div class="line"><a name="l01114"></a><span class="lineno"> 1114</span>&#160;          <span class="keywordflow">if</span> (__absz &lt;= _S_small)</div>
+<div class="line"><a name="l01115"></a><span class="lineno"> 1115</span>&#160;        {</div>
+<div class="line"><a name="l01116"></a><span class="lineno"> 1116</span>&#160;          <span class="comment">// Use rational approximation.</span></div>
+<div class="line"><a name="l01117"></a><span class="lineno"> 1117</span>&#160;          __zeta = -__z;</div>
+<div class="line"><a name="l01118"></a><span class="lineno"> 1118</span>&#160;          <a class="code" href="namespacestd_1_1____detail.html#aedc8a8cc144aa56f72728db7d62e3e62">__airy_hyperg_rational</a>(__z, _Ai, _Aip, _Bi, _Bip);</div>
+<div class="line"><a name="l01119"></a><span class="lineno"> 1119</span>&#160;        }</div>
+<div class="line"><a name="l01120"></a><span class="lineno"> 1120</span>&#160;          <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01121"></a><span class="lineno"> 1121</span>&#160;        {</div>
+<div class="line"><a name="l01122"></a><span class="lineno"> 1122</span>&#160;          <span class="comment">// Use Miller&#39;s backward recurrence.</span></div>
+<div class="line"><a name="l01123"></a><span class="lineno"> 1123</span>&#160;          __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;</div>
+<div class="line"><a name="l01124"></a><span class="lineno"> 1124</span>&#160;          <a class="code" href="namespacestd_1_1____detail.html#aee6c743187765ce9a1f9c4c9af4acf17">__airy_bessel_i</a>(__z2zeta, __eps,</div>
+<div class="line"><a name="l01125"></a><span class="lineno"> 1125</span>&#160;                  _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);</div>
+<div class="line"><a name="l01126"></a><span class="lineno"> 1126</span>&#160;          <span class="comment">// Recover Ai(z) and Ai&#39;(z).</span></div>
+<div class="line"><a name="l01127"></a><span class="lineno"> 1127</span>&#160;          _Ai = __sqrtz * (__m1d3f * _Im1d3 + __p1d3f * _Ip1d3) / _Tp{3};</div>
+<div class="line"><a name="l01128"></a><span class="lineno"> 1128</span>&#160;          _Aip = __z * (__m2d3f * _Im2d3 - __p2d3f * _Ip2d3) / _Tp{3};</div>
+<div class="line"><a name="l01129"></a><span class="lineno"> 1129</span>&#160;          <span class="comment">// FIXME: _Bi = __sqrtz * (__m2d3f * _Im2d3 + __p2d3f * _Ip2d3) / _S_sqrt3;</span></div>
+<div class="line"><a name="l01130"></a><span class="lineno"> 1130</span>&#160;          <span class="comment">// FIXME: _Bip = __z * (I_{2/3}(\zeta) + I_{-2/3}(\zeta)) / _S_sqrt3</span></div>
+<div class="line"><a name="l01131"></a><span class="lineno"> 1131</span>&#160;        }</div>
+<div class="line"><a name="l01132"></a><span class="lineno"> 1132</span>&#160;        }</div>
+<div class="line"><a name="l01133"></a><span class="lineno"> 1133</span>&#160;    }</div>
+<div class="line"><a name="l01134"></a><span class="lineno"> 1134</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01135"></a><span class="lineno"> 1135</span>&#160;    { <span class="comment">// abs(z) is large...</span></div>
+<div class="line"><a name="l01136"></a><span class="lineno"> 1136</span>&#160;      <span class="comment">// Check arg(z) to see which asymptotic form is appropriate.</span></div>
+<div class="line"><a name="l01137"></a><span class="lineno"> 1137</span>&#160;      <span class="keywordflow">if</span> (std::abs(std::arg(__z)) &lt; _Tp{2} * _S_pi / _Tp{3})</div>
+<div class="line"><a name="l01138"></a><span class="lineno"> 1138</span>&#160;        <a class="code" href="namespacestd_1_1____detail.html#a026a02e51a93428332a607c093e8204f">__airy_asymp_absarg_ge_pio3</a>(__z, _Ai, _Aip<span class="comment">/* , _Bi, _Bip*/</span>); <span class="comment">// FIXME</span></div>
+<div class="line"><a name="l01139"></a><span class="lineno"> 1139</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01140"></a><span class="lineno"> 1140</span>&#160;        <a class="code" href="namespacestd_1_1____detail.html#a4f1c33b398ae69c55281341004da0679">__airy_asymp_absarg_lt_pio3</a>(__z, _Ai, _Aip<span class="comment">/* , _Bi, _Bip*/</span>); <span class="comment">// FIXME</span></div>
+<div class="line"><a name="l01141"></a><span class="lineno"> 1141</span>&#160;    }</div>
+<div class="line"><a name="l01142"></a><span class="lineno"> 1142</span>&#160;      <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l01143"></a><span class="lineno"> 1143</span>&#160;  }</div>
+<div class="line"><a name="l01144"></a><span class="lineno"> 1144</span>&#160;</div>
+<div class="line"><a name="l01145"></a><span class="lineno"> 1145</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l01146"></a><span class="lineno"> 1146</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l01147"></a><span class="lineno"> 1147</span>&#160;<span class="comment">   *  @brief  Return the complex Airy Ai function.</span></div>
+<div class="line"><a name="l01148"></a><span class="lineno"> 1148</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l01149"></a><span class="lineno"> 1149</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l01150"></a><span class="lineno"> 1150</span>&#160;    std::complex&lt;_Tp&gt;</div>
+<div class="line"><a name="l01151"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#afd48b5702344f832a250922ac4ffb917"> 1151</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#afd48b5702344f832a250922ac4ffb917">__airy_ai</a>(std::complex&lt;_Tp&gt; __z)</div>
+<div class="line"><a name="l01152"></a><span class="lineno"> 1152</span>&#160;    {</div>
+<div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160;      std::complex&lt;_Tp&gt; _Ai, _Aip, _Bi, _Bip;</div>
+<div class="line"><a name="l01154"></a><span class="lineno"> 1154</span>&#160;      <a class="code" href="namespacestd_1_1____detail.html#a6817269a446ea93bb50e7438e27c1162">__airy</a>(__z, _Ai, _Aip, _Bi, _Bip);</div>
+<div class="line"><a name="l01155"></a><span class="lineno"> 1155</span>&#160;      <span class="keywordflow">return</span> _Ai;</div>
+<div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160;    }</div>
+<div class="line"><a name="l01157"></a><span class="lineno"> 1157</span>&#160;</div>
+<div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l01160"></a><span class="lineno"> 1160</span>&#160;<span class="comment">   *  @brief  Return the complex Airy Bi function.</span></div>
+<div class="line"><a name="l01161"></a><span class="lineno"> 1161</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l01162"></a><span class="lineno"> 1162</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l01163"></a><span class="lineno"> 1163</span>&#160;    std::complex&lt;_Tp&gt;</div>
+<div class="line"><a name="l01164"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#ae5536305d721e393efe1a74f0e57653e"> 1164</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#ae5536305d721e393efe1a74f0e57653e">__airy_bi</a>(std::complex&lt;_Tp&gt; __z)</div>
+<div class="line"><a name="l01165"></a><span class="lineno"> 1165</span>&#160;    {</div>
+<div class="line"><a name="l01166"></a><span class="lineno"> 1166</span>&#160;      std::complex&lt;_Tp&gt; _Ai, _Aip, _Bi, _Bip;</div>
+<div class="line"><a name="l01167"></a><span class="lineno"> 1167</span>&#160;      <a class="code" href="namespacestd_1_1____detail.html#a6817269a446ea93bb50e7438e27c1162">__airy</a>(__z, _Ai, _Aip, _Bi, _Bip);</div>
+<div class="line"><a name="l01168"></a><span class="lineno"> 1168</span>&#160;      <span class="keywordflow">return</span> _Bi;</div>
+<div class="line"><a name="l01169"></a><span class="lineno"> 1169</span>&#160;    }</div>
+<div class="line"><a name="l01170"></a><span class="lineno"> 1170</span>&#160;</div>
+<div class="line"><a name="l01171"></a><span class="lineno"> 1171</span>&#160;_GLIBCXX_END_NAMESPACE_VERSION</div>
+<div class="line"><a name="l01172"></a><span class="lineno"> 1172</span>&#160;} <span class="comment">// namespace __detail</span></div>
+<div class="line"><a name="l01173"></a><span class="lineno"> 1173</span>&#160;} <span class="comment">// namespace std</span></div>
+<div class="line"><a name="l01174"></a><span class="lineno"> 1174</span>&#160;</div>
+<div class="line"><a name="l01175"></a><span class="lineno"> 1175</span>&#160;<span class="preprocessor">#endif // _GLIBCXX_BITS_SF_AIRY_TCC</span></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_aedc8a8cc144aa56f72728db7d62e3e62"><div class="ttname"><a href="namespacestd_1_1____detail.html#aedc8a8cc144aa56f72728db7d62e3e62">std::__detail::__airy_hyperg_rational</a></div><div class="ttdeci">void __airy_hyperg_rational(const std::complex&lt; _Tp &gt; &amp;__z, std::complex&lt; _Tp &gt; &amp;_Ai, std::complex&lt; _Tp &gt; &amp;_Aip, std::complex&lt; _Tp &gt; &amp;_Bi, std::complex&lt; _Tp &gt; &amp;_Bip)</div><div class="ttdoc">This function computes rational approximations to the hypergeometric functions related to the modifie...</div><div class="ttdef"><b>Definition:</b> <a href="sf__airy_8tcc_source.html#l00799">sf_airy.tcc:799</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a6817269a446ea93bb50e7438e27c1162"><div class="ttname"><a href="namespacestd_1_1____detail.html#a6817269a446ea93bb50e7438e27c1162">std::__detail::__airy</a></div><div class="ttdeci">void __airy(const std::complex&lt; _Tp &gt; &amp;__z, _Tp __eps, std::complex&lt; _Tp &gt; &amp;_Ai, std::complex&lt; _Tp &gt; &amp;_Aip, std::complex&lt; _Tp &gt; &amp;_Bi, std::complex&lt; _Tp &gt; &amp;_Bip)</div><div class="ttdoc">This function computes the Airy function Ai(z) and its first derivative in the complex z-plane...</div><div class="ttdef"><b>Definition:</b> <a href="sf__airy_8tcc_source.html#l01012">sf_airy.tcc:1012</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a4f1c33b398ae69c55281341004da0679"><div class="ttname"><a href="namespacestd_1_1____detail.html#a4f1c33b398ae69c55281341004da0679">std::__detail::__airy_asymp_absarg_lt_pio3</a></div><div class="ttdeci">void __airy_asymp_absarg_lt_pio3(std::complex&lt; _Tp &gt; __z, std::complex&lt; _Tp &gt; &amp;_Ai, std::complex&lt; _Tp &gt; &amp;_Aip)</div><div class="ttdoc">This function evaluates Ai(z) and Ai&#39;(z) from their asymptotic expansions for abs(arg(-z)) < pi/3...</div><div class="ttdef"><b>Definition:</b> <a href="sf__airy_8tcc_source.html#l00187">sf_airy.tcc:187</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a026a02e51a93428332a607c093e8204f"><div class="ttname"><a href="namespacestd_1_1____detail.html#a026a02e51a93428332a607c093e8204f">std::__detail::__airy_asymp_absarg_ge_pio3</a></div><div class="ttdeci">void __airy_asymp_absarg_ge_pio3(std::complex&lt; _Tp &gt; __z, std::complex&lt; _Tp &gt; &amp;_Ai, std::complex&lt; _Tp &gt; &amp;_Aip, int __sign=-1)</div><div class="ttdoc">This function evaluates  and  from their asymptotic expansions for . For speed, the number of terms n...</div><div class="ttdef"><b>Definition:</b> <a href="sf__airy_8tcc_source.html#l00071">sf_airy.tcc:71</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a6817269a446ea93bb50e7438e27c1162"><div class="ttname"><a href="namespacestd_1_1____detail.html#a6817269a446ea93bb50e7438e27c1162">std::__detail::__airy</a></div><div class="ttdeci">void __airy(const std::complex&lt; _Tp &gt; &amp;__z, _Tp __eps, std::complex&lt; _Tp &gt; &amp;_Ai, std::complex&lt; _Tp &gt; &amp;_Aip, std::complex&lt; _Tp &gt; &amp;_Bi, std::complex&lt; _Tp &gt; &amp;_Bip)</div><div class="ttdoc">This function computes the Airy function  and its first derivative in the complex z-plane...</div><div class="ttdef"><b>Definition:</b> <a href="sf__airy_8tcc_source.html#l01014">sf_airy.tcc:1014</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a4f1c33b398ae69c55281341004da0679"><div class="ttname"><a href="namespacestd_1_1____detail.html#a4f1c33b398ae69c55281341004da0679">std::__detail::__airy_asymp_absarg_lt_pio3</a></div><div class="ttdeci">void __airy_asymp_absarg_lt_pio3(std::complex&lt; _Tp &gt; __z, std::complex&lt; _Tp &gt; &amp;_Ai, std::complex&lt; _Tp &gt; &amp;_Aip)</div><div class="ttdoc">This function evaluates  and  from their asymptotic expansions for . For speed, the number of terms n...</div><div class="ttdef"><b>Definition:</b> <a href="sf__airy_8tcc_source.html#l00187">sf_airy.tcc:187</a></div></div>
 <div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> <a href="specfun_8h_source.html#l00098">specfun.h:98</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a01098dbe1615b5be0833a7f3573f6510"><div class="ttname"><a href="namespacestd_1_1____detail.html#a01098dbe1615b5be0833a7f3573f6510">std::__detail::__airy_bessel_k</a></div><div class="ttdeci">void __airy_bessel_k(const std::complex&lt; _Tp &gt; &amp;__z, _Tp __eps, std::complex&lt; _Tp &gt; &amp;_Kp1d3, std::complex&lt; _Tp &gt; &amp;_Kp2d3)</div><div class="ttdoc">Compute approximations to the modified Bessel functions of the second kind of orders 1/3 and 2/3 for ...</div><div class="ttdef"><b>Definition:</b> <a href="sf__airy_8tcc_source.html#l00607">sf_airy.tcc:607</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_ac3f140083eafeac7123894c55d8383b9"><div class="ttname"><a href="namespacestd_1_1____detail.html#ac3f140083eafeac7123894c55d8383b9">std::__detail::__airy_asymp_absarg_ge_pio3</a></div><div class="ttdeci">void __airy_asymp_absarg_ge_pio3(std::complex&lt; _Tp &gt; __z, std::complex&lt; _Tp &gt; &amp;_Ai, std::complex&lt; _Tp &gt; &amp;_Aip, int sign=-1)</div><div class="ttdoc">This function evaluates Ai(z) and Ai&#39;(z) from their asymptotic expansions for |arg(z)| < 2*/3...</div><div class="ttdef"><b>Definition:</b> <a href="sf__airy_8tcc_source.html#l00071">sf_airy.tcc:71</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_aee6c743187765ce9a1f9c4c9af4acf17"><div class="ttname"><a href="namespacestd_1_1____detail.html#aee6c743187765ce9a1f9c4c9af4acf17">std::__detail::__airy_bessel_i</a></div><div class="ttdeci">void __airy_bessel_i(const std::complex&lt; _Tp &gt; &amp;__z, _Tp __eps, std::complex&lt; _Tp &gt; &amp;_Ip1d3, std::complex&lt; _Tp &gt; &amp;_Im1d3, std::complex&lt; _Tp &gt; &amp;_Ip2d3, std::complex&lt; _Tp &gt; &amp;_Im2d3)</div><div class="ttdef"><b>Definition:</b> <a href="sf__airy_8tcc_source.html#l00393">sf_airy.tcc:393</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_ae5536305d721e393efe1a74f0e57653e"><div class="ttname"><a href="namespacestd_1_1____detail.html#ae5536305d721e393efe1a74f0e57653e">std::__detail::__airy_bi</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __airy_bi(std::complex&lt; _Tp &gt; __z)</div><div class="ttdoc">Return the complex Airy Bi function. </div><div class="ttdef"><b>Definition:</b> <a href="sf__airy_8tcc_source.html#l01162">sf_airy.tcc:1162</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_afd48b5702344f832a250922ac4ffb917"><div class="ttname"><a href="namespacestd_1_1____detail.html#afd48b5702344f832a250922ac4ffb917">std::__detail::__airy_ai</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __airy_ai(std::complex&lt; _Tp &gt; __z)</div><div class="ttdoc">Return the complex Airy Ai function. </div><div class="ttdef"><b>Definition:</b> <a href="sf__airy_8tcc_source.html#l01149">sf_airy.tcc:1149</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_ae5536305d721e393efe1a74f0e57653e"><div class="ttname"><a href="namespacestd_1_1____detail.html#ae5536305d721e393efe1a74f0e57653e">std::__detail::__airy_bi</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __airy_bi(std::complex&lt; _Tp &gt; __z)</div><div class="ttdoc">Return the complex Airy Bi function. </div><div class="ttdef"><b>Definition:</b> <a href="sf__airy_8tcc_source.html#l01164">sf_airy.tcc:1164</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_afd48b5702344f832a250922ac4ffb917"><div class="ttname"><a href="namespacestd_1_1____detail.html#afd48b5702344f832a250922ac4ffb917">std::__detail::__airy_ai</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __airy_ai(std::complex&lt; _Tp &gt; __z)</div><div class="ttdoc">Return the complex Airy Ai function. </div><div class="ttdef"><b>Definition:</b> <a href="sf__airy_8tcc_source.html#l01151">sf_airy.tcc:1151</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

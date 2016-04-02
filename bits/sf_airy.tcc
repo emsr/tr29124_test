@@ -43,8 +43,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief This function evaluates Ai(z) and Ai'(z) from their asymptotic
-   *  expansions for |arg(z)| < 2*\pi/3.  For speed, the number
+   *  @brief This function evaluates @f$ Ai(z) @f$ and @f$ Ai'(z) @f$ from their asymptotic
+   *  expansions for @f$ |arg(z)| < 2*\pi/3 @f$.  For speed, the number
    *  of terms needed to achieve about 16 decimals accuracy is tabled
    *  and determined from abs(z).
    *
@@ -55,23 +55,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  @see Digital Library of Mathematical Finctions Sec. 9.7 Asymptotic Expansions
    *       http://dlmf.nist.gov/9.7
    *
-   *  @param[in]  z Complex input variable set equal to the value at which
-   *    	    Ai(z) and Bi(z) and their derivative are evaluated.
-   *    	    This function assumes abs(z) > 15 and |arg(z)| < 2\pi/3.
-   *  @param[inout] Ai  The value computed for Ai(z).
-   *  @param[inout] Aip The value computed for Ai'(z).
-   *  @param[in]    sign  The sign of the series terms amd exponent.
+   *  @param[in]  __z Complex input variable set equal to the value at which
+   *    	    @f$ Ai(z) @f$ and @f$ Bi(z) @f$ and their derivative are evaluated.
+   *    	    This function assumes @f$ |z| > 15 @f$ and @f$ |arg(z)| < 2\pi/3 @f$.
+   *  @param[inout] _Ai  The value computed for @f$ Ai(z) @f$.
+   *  @param[inout] _Aip The value computed for @f$ Ai'(z) @f$.
+   *  @param[in]    __sign  The sign of the series terms amd exponent.
    *                      The default (-1) gives the Airy Ai functions
-   *                      for |arg(z)| < \pi.
+   *                      for @f$ |arg(z)| < \pi @f$.
    *                      The value +1 gives the Airy Bi functions
-   *                      for |arg(z)| < \pi/3.
+   *                      for @f$ |arg(z)| < \pi/3 @f$.
    */
   template<typename _Tp>
     void
     __airy_asymp_absarg_ge_pio3(std::complex<_Tp> __z,
 				std::complex<_Tp>& _Ai,
 				std::complex<_Tp>& _Aip,
-				int sign = -1)
+				int __sign = -1)
     {
       constexpr _Tp _S_2d3   = _Tp{2} / _Tp{3};
       // 1/(2 sqrt(pi)))
@@ -128,7 +128,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __z1d4 = std::sqrt(__z1d4);
 
       // Compute outer factors in the expansions.
-      auto __zoutpr = std::exp(_Tp(sign) * __zetam);
+      auto __zoutpr = std::exp(_Tp(__sign) * __zetam);
       __zoutpr *= _S_pmhd2;
       auto __zout = __zoutpr / __z1d4;
       __zoutpr *= -__z1d4;
@@ -138,7 +138,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 					(int(std::abs(__z)) - 10) / 5)];
       // Initialize for modified Horner's rule evaluation of sums.
       // It is assumed that at least three terms are used.
-      __zetam = _Tp(sign) / __zetam;
+      __zetam = _Tp(__sign) / __zetam;
       auto __r = _Tp{2} * std::real(__zetam);
       auto __s = std::norm(__zetam);
       auto __index = _S_ncoeffs - __nterm;// + 1;
@@ -167,20 +167,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief This function evaluates Ai(z) and Ai'(z) from their asymptotic
-   *  expansions for abs(arg(-z)) < pi/3.  For speed, the number
-   *  of terms needed to achieve about 16 decimals accuracy is tabled
-   *  and determined from abs(z).
+   *  @brief This function evaluates @f$ Ai(z) @f$ and @f$ Ai'(z) @f$ from
+   *  their asymptotic expansions for @f$ |arg(-z)| < pi/3 @f$.  For speed,
+   *  the number of terms needed to achieve about 16 decimals accuracy
+   *  is tabled and determined from @f$ |z| @f$.
    *
    *  Note that for the sake of speed and the fact that this function
    *  is to be called by another, checks for valid arguments are not
    *  made.  Hence, an error return is not needed.
+   *  This function assumes @f$ |z| > 15 @f$ and @f$ |arg(-z)| < pi/3 @f$.
    *
-   *  @param[in] z  The value at which the Airy function and its derivative
+   *  @param[in] __z  The value at which the Airy function and its derivative
    *                are evaluated.
-   *    	    This function assumes abs(z) > 15 and abs(arg(-z)) < pi/3.
-   *  @param[out] Ai  The computed value of the Airy function Ai(z).
-   *  @param[out] Aip The computed value of the Airy function derivative Ai'(z).
+   *  @param[out] _Ai  The computed value of the Airy function @f$ Ai(z) @f$.
+   *  @param[out] _Aip The computed value of the Airy function derivative @f$ Ai'(z) @f$.
    */
   template<typename _Tp>
     void
@@ -381,12 +381,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    |x| + |y| <= \sqrt(2) \sqrt(x^2 + y^2) 
    *   @f]
    *
-   *  @param[in]  z     The argument of the modified Bessel functions.
-   *  @param[in]  eps   The maximum relative error required in the results.
-   *  @param[out] ip1d3 The value of I_(+1/3)(z).
-   *  @param[out] im1d3 The value of I_(-1/3)(z).
-   *  @param[out] ip2d3 The value of I_(+2/3)(z).
-   *  @param[out] im2d3 The value of I_(-2/3)(z).
+   *  @param[in]  __z     The argument of the modified Bessel functions.
+   *  @param[in]  __eps   The maximum relative error required in the results.
+   *  @param[out] _Ip1d3 The value of @f$ I_(+1/3)(z) @f$.
+   *  @param[out] _Im1d3 The value of @f$ I_(-1/3)(z) @f$.
+   *  @param[out] _Ip2d3 The value of @f$ I_(+2/3)(z) @f$.
+   *  @param[out] _Im2d3 The value of @f$ I_(-2/3)(z) @f$.
    */
   template<typename _Tp>
     void
@@ -578,28 +578,28 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  Luke, Y. L., Mathematical functions and their approximations,
    *    Academic Press, pp 366-367, 1975.
    *
-   *  Though the approximation converges in abs(arg(z)) <= pi,
+   *  Though the approximation converges in @f$ |\arg(z)| <= pi @f$,
    *  The convergence weakens as abs(arg(z)) increases.  Also, in
    *  the case of real order between 0 and 1, convergence weakens
    *  as the order approaches 1.  For these reasons, we only use
-   *  this code for |\arg(z)| <= 3pi/4 and the convergence test
+   *  this code for @f$ |\arg(z)| <= 3pi/4 @f$ and the convergence test
    *  is performed only for order 2/3.
    *
    *  The coding of this function is also influenced by the fact
-   *  that it will only be used for about 2 <= |z| <= 15.
+   *  that it will only be used for about @f$ 2 <= |z| <= 15 @f$.
    *  Hence, certain considerations of overflow, underflow, and
    *  loss of significance are unimportant for our purpose.
    *
-   *  @param[in] z   The value for which the quantity E_nu is to be computed.
+   *  @param[in] __z   The value for which the quantity E_nu is to be computed.
    *    	     it is recommended that abs(z) not be too small and that
-   *    	     |\arg(z)| <= 3pi/4.
-   *  @param[in] eps The maximum relative error allowable in the computed
+   *    	     @f$ |\arg(z)| <= 3pi/4 @f$.
+   *  @param[in] __eps The maximum relative error allowable in the computed
    *    	     results. The relative error test is based on the
    *    	     comparison of successive iterates.
-   *  @param[out] kp1d3  The value computed for E_{+1/3}(z).
-   *  @param[out] kp2d3  The value computed for E_{+2/3}(z).
+   *  @param[out] _Kp1d3  The value computed for @f$ E_{+1/3}(z) @f$.
+   *  @param[out] _Kp2d3  The value computed for @f$ E_{+2/3}(z) @f$.
    *
-   *  @note In the worst case, say, z=2 and \arg(z) = 3pi/4,
+   *  @note In the worst case, say, @f$ z=2 @f$ and @f$ \arg(z) = 3pi/4 @f$,
    *        20 iterations should give 7 or 8 decimals of accuracy.
    */
   template<typename _Tp>
@@ -751,15 +751,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *  @brief This function computes rational approximations
    *  to the hypergeometric functions related to the modified Bessel
-   *  functions of orders \nu = +-1/3 and \nu +- 2/3.  That is,
-   *  A(z)/B(z), Where A(z) and B(z) are cubic polynomials with
-   *  real coefficients, approximates
+   *  functions of orders @f$ \nu = +-1/3 @f$ and @f$ \nu +- 2/3 @f$.  That is,
+   *  @f$ A(z)/B(z) @f$, Where @f$ A(z) @f$ and @f$ B(z) @f$ are
+   *  cubic polynomials with real coefficients, approximates
    *   @f[
    *    \frac{\Gamma(\nu+1)}{(z/2)^nu}I_\nu(z) = _0F_1 (;\nu+1;z^2/4),
    *   @f]
    *  where the function on the right is a
-   *  confluent hypergeometric limit function.  For |z| <= 1/4 and
-   *  |arg(z)| <= pi/2, the approximations are accurate to
+   *  confluent hypergeometric limit function.  For @f$ |z| <= 1/4 @f$ and
+   *  @f$ |arg(z)| <= pi/2 @f$, the approximations are accurate to
    *  about 16 decimals.
    *
    *  For further details including the four term recurrence
@@ -777,7 +777,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  function will be driven by another, checks that are not
    *  absolutely necessary are not made.
    *
-   *  @param[in]  z	The argument at which the hypergeometric given
+   *  @param[in]  __z	The argument at which the hypergeometric given
    *    		  above is to be evaluated.  Since the approximation
    *    		  is of fixed order, abs(z) must be small to ensure
    *    		  sufficient accuracy of the computed results.
@@ -876,8 +876,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief This function computes the Airy function Ai(z) and its first
-   *  derivative in the complex z-plane.
+   *  @brief This function computes the Airy function @f$ Ai(z) @f$
+   *  and its first derivative in the complex z-plane.
    *
    *  The algorithm used exploits numerous representations of the
    *  Airy function and its derivative.
@@ -1000,12 +1000,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  @see Wimp, J., On the computation of Tricomi's psi function, Computing,
    *  Vol 13, pp 195-203, 1974.
    *
-   *  @param[in] z   The argument at which the Airy function and its derivative
+   *  @param[in] __z   The argument at which the Airy function and its derivative
    *    	     are computed.
-   *  @param[in] eps Relative error required.  Currently, eps is used only
+   *  @param[in] __eps Relative error required.  Currently, eps is used only
    *		     in the backward recursion algorithms.
-   *  @param[out] Ai  The value computed for Ai(z).
-   *  @param[out] Aip The value computed for Ai'(z).
+   *  @param[out] _Ai  The value computed for Ai(z).
+   *  @param[out] _Aip The value computed for Ai'(z).
+   *  @param[out] _Bi  The value computed for Bi(z).
+   *  @param[out] _Bip The value computed for Bi'(z).
    */
   template<typename _Tp>
     void

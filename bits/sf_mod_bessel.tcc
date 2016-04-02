@@ -69,8 +69,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    *   @param  __nu  The order of the Bessel functions.
    *   @param  __x   The argument of the Bessel functions.
-   *   @param  _Jnu  The output Bessel function of the first kind.
-   *   @param  _Knu  The output Neumann function (Bessel function of the second kind).
+   *   @param  _Inu  The output regular modified Bessel function.
+   *   @param  _Knu  The output irregular modified Bessel function.
+   *   @param  _Ipnu  The output derivative of the regular
+   *                   modified Bessel function.
+   *   @param  _Kpnu  The output derivative of the irregular
+   *                   modified Bessel function.
    */
   template<typename _Tp>
     void
@@ -296,7 +300,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief  Return the modified cylindrical Bessel functions
-   * and their derivatives of order \f$ \nu \f$ by various means.
+   *         and their derivatives of order \f$ \nu \f$ by various means.
+   *
+   *   @param  __nu  The order of the Bessel functions.
+   *   @param  __x   The argument of the Bessel functions.
+   *   @param  _Inu  The output regular modified Bessel function.
+   *   @param  _Knu  The output irregular modified Bessel function.
+   *   @param  _Ipnu  The output derivative of the regular
+   *                   modified Bessel function.
+   *   @param  _Kpnu  The output derivative of the irregular
+   *                   modified Bessel function.
    */
   template<typename _Tp>
     void

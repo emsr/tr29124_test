@@ -328,10 +328,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  of the first and second kinds and their derivatives, using up to
    *  nterms (less than 5) to achieve relative error @c eps.
    *
-   *  @param[out] H1  The Hankel function of the first kind.
-   *  @param[out] H1p The derivative of the Hankel function of the first kind.
-   *  @param[out] H2  The Hankel function of the second kind.
-   *  @param[out] H2p The derivative of the Hankel function of the second kind.
+   *  @param[out] _H1sum  The Hankel function of the first kind.
+   *  @param[out] _H1psum The derivative of the Hankel function of the first kind.
+   *  @param[out] _H2sum  The Hankel function of the second kind.
+   *  @param[out] _H2psum The derivative of the Hankel function of the second kind.
    */
   template<typename _Tp>
     void

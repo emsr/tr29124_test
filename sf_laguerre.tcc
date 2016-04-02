@@ -58,7 +58,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   Abramowitz & Stegun, 13.5.21
    *
    *   @param __n The order of the Laguerre function.
-   *   @param __alpha The degree of the Laguerre function.
+   *   @param __alpha1 The degree of the Laguerre function.
    *   @param __x The argument of the Laguerre function.
    *   @return The value of the Laguerre function of order n,
    *           degree @f$ \alpha @f$, and argument x.
@@ -99,20 +99,26 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief  Evaluate the polynomial based on the confluent hypergeometric
-   *          function in a safe way, with no restriction on the arguments.
+   * @brief Evaluate the polynomial based on the confluent hypergeometric
+   *        function in a safe way, with no restriction on the arguments.
    *
-   *   The associated Laguerre function is defined by
-   *   @f[
-   *       L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!}
-   *                       _1F_1(-n; \alpha + 1; x)
-   *   @f]
-   *   where @f$ (\alpha)_n @f$ is the Pochhammer symbol and
-   *   @f$ _1F_1(a; c; x) @f$ is the confluent hypergeometric function.
+   * The associated Laguerre function is defined by
+   * @f[
+   *    L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!}
+   * 		       _1F_1(-n; \alpha + 1; x)
+   * @f]
+   * where @f$ (\alpha)_n @f$ is the Pochhammer symbol and
+   * @f$ _1F_1(a; c; x) @f$ is the confluent hypergeometric function.
    *
-   *  This function assumes x != 0.
+   * This function assumes x != 0.
    *
-   *  This is from the GNU Scientific Library.
+   * This is from the GNU Scientific Library.
+   *
+   * @param __n The order of the Laguerre function.
+   * @param __alpha1 The degree of the Laguerre function.
+   * @param __x The argument of the Laguerre function.
+   * @return The value of the Laguerre function of order n,
+   * 	     degree @f$ \alpha @f$, and argument x.
    */
   template<typename _Tpa, typename _Tp>
     _Tp
@@ -142,33 +148,33 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief This routine returns the associated Laguerre polynomial
-   *          of order @f$ n @f$, degree @f$ \alpha @f$: @f$ L_n^\alpha(x) @f$
-   *          by recursion.
+   * @brief This routine returns the associated Laguerre polynomial
+   * 	    of order @c n, degree @c @f$ \alpha @f$: @f$ L_n^\alpha(x) @f$
+   * 	    by recursion.
    *
-   *   The associated Laguerre function is defined by
-   *   @f[
-   *       L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!}
-   *                       _1F_1(-n; \alpha + 1; x)
-   *   @f]
-   *   where @f$ (\alpha)_n @f$ is the Pochhammer symbol and
-   *   @f$ _1F_1(a; c; x) @f$ is the confluent hypergeometric function.
+   * The associated Laguerre function is defined by
+   * @f[
+   *   L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!}
+   *                  _1F_1(-n; \alpha + 1; x)
+   * @f]
+   * where @f$ (\alpha)_n @f$ is the Pochhammer symbol and
+   * @f$ _1F_1(a; c; x) @f$ is the confluent hypergeometric function.
    *
-   *   The associated Laguerre polynomial is defined for integral
-   *   @f$ \alpha = m @f$ by:
-   *   @f[
-   *       L_n^m(x) = (-1)^m \frac{d^m}{dx^m} L_{n + m}(x)
-   *   @f]
-   *   where the Laguerre polynomial is defined by:
-   *   @f[
-   *       L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
-   *   @f]
+   * The associated Laguerre polynomial is defined for integral
+   * @f$ \alpha = m @f$ by:
+   * @f[
+   *    L_n^m(x) = (-1)^m \frac{d^m}{dx^m} L_{n + m}(x)
+   * @f]
+   * where the Laguerre polynomial is defined by:
+   * @f[
+   *    L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
+   * @f]
    *
-   *   @param __n The order of the Laguerre function.
-   *   @param __alpha The degree of the Laguerre function.
-   *   @param __x The argument of the Laguerre function.
-   *   @return The value of the Laguerre function of order n,
-   *           degree @f$ \alpha @f$, and argument x.
+   * @param __n The order of the Laguerre function.
+   * @param __alpha1 The degree of the Laguerre function.
+   * @param __x The argument of the Laguerre function.
+   * @return The value of the Laguerre function of order n,
+   * 	     degree @f$ \alpha @f$, and argument x.
    */
   template<typename _Tpa, typename _Tp>
     _Tp
@@ -202,32 +208,32 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief This routine returns the associated Laguerre polynomial
-   *          of order n, degree @f$ \alpha @f$: @f$ L_n^alpha(x) @f$.
+   * @brief This routine returns the associated Laguerre polynomial
+   * 	    of order n, degree @f$ \alpha @f$: @f$ L_n^alpha(x) @f$.
    *
-   *   The associated Laguerre function is defined by
-   *   @f[
-   *       L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!}
-   *                       _1F_1(-n; \alpha + 1; x)
-   *   @f]
-   *   where @f$ (\alpha)_n @f$ is the Pochhammer symbol and
-   *   @f$ _1F_1(a; c; x) @f$ is the confluent hypergeometric function.
+   * The associated Laguerre function is defined by
+   * @f[
+   *    L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!}
+   * 			_1F_1(-n; \alpha + 1; x)
+   * @f]
+   * where @f$ (\alpha)_n @f$ is the Pochhammer symbol and
+   * @f$ _1F_1(a; c; x) @f$ is the confluent hypergeometric function.
    *
-   *   The associated Laguerre polynomial is defined for integral
-   *   @f$ \alpha = m @f$ by:
-   *   @f[
-   *       L_n^m(x) = (-1)^m \frac{d^m}{dx^m} L_{n + m}(x)
-   *   @f]
-   *   where the Laguerre polynomial is defined by:
-   *   @f[
-   *       L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
-   *   @f]
+   * The associated Laguerre polynomial is defined for integral
+   * @f$ \alpha = m @f$ by:
+   * @f[
+   * 	 L_n^m(x) = (-1)^m \frac{d^m}{dx^m} L_{n + m}(x)
+   * @f]
+   * where the Laguerre polynomial is defined by:
+   * @f[
+   * 	 L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
+   * @f]
    *
-   *   @param __n The order of the Laguerre function.
-   *   @param __alpha The degree of the Laguerre function.
-   *   @param __x The argument of the Laguerre function.
-   *   @return The value of the Laguerre function of order n,
-   *           degree @f$ \alpha @f$, and argument x.
+   * @param __n The order of the Laguerre function.
+   * @param __alpha1 The degree of the Laguerre function.
+   * @param __x The argument of the Laguerre function.
+   * @return The value of the Laguerre function of order n,
+   *         degree @f$ \alpha @f$, and argument x.
    */
   template<typename _Tpa, typename _Tp>
     _Tp
@@ -262,24 +268,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief This routine returns the associated Laguerre polynomial
-   *          of order n, degree m: @f$ L_n^m(x) @f$.
+   * @brief This routine returns the associated Laguerre polynomial
+   * 	    of order n, degree m: @f$ L_n^m(x) @f$.
    *
-   *   The associated Laguerre polynomial is defined for integral
-   *   @f$ \alpha = m @f$ by:
-   *   @f[
-   *       L_n^m(x) = (-1)^m \frac{d^m}{dx^m} L_{n + m}(x)
-   *   @f]
-   *   where the Laguerre polynomial is defined by:
-   *   @f[
-   *       L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
-   *   @f]
+   * The associated Laguerre polynomial is defined for integral
+   * @f$ \alpha = m @f$ by:
+   * @f[
+   * 	 L_n^m(x) = (-1)^m \frac{d^m}{dx^m} L_{n + m}(x)
+   * @f]
+   * where the Laguerre polynomial is defined by:
+   * @f[
+   * 	 L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
+   * @f]
    *
-   *   @param __n The order of the Laguerre polynomial.
-   *   @param __m The degree of the Laguerre polynomial.
-   *   @param __x The argument of the Laguerre polynomial.
-   *   @return The value of the associated Laguerre polynomial of order n,
-   *           degree m, and argument x.
+   * @param __n The order
+   * @param __m The degree
+   * @param __x The argument
+   * @return The value of the associated Laguerre polynomial of order n,
+   *         degree m, and argument x.
    */
   template<typename _Tp>
     _Tp
@@ -288,18 +294,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief This routine returns the Laguerre polynomial
-   *          of order n: @f$ L_n(x) @f$.
+   * @brief This routine returns the Laguerre polynomial
+   * 	    of order n: @f$ L_n(x) @f$.
    *
-   *   The Laguerre polynomial is defined by:
-   *   @f[
-   *       L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
-   *   @f]
+   * The Laguerre polynomial is defined by:
+   * @f[
+   *    L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
+   * @f]
    *
-   *   @param __n The order of the Laguerre polynomial.
-   *   @param __x The argument of the Laguerre polynomial.
-   *   @return The value of the Laguerre polynomial of order n
-   *           and argument x.
+   * @param __n The order of the Laguerre polynomial.
+   * @param __x The argument of the Laguerre polynomial.
+   * @return The value of the Laguerre polynomial of order n
+   * 	     and argument x.
    */
   template<typename _Tp>
     _Tp
