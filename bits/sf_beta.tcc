@@ -291,7 +291,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *  @brief  Return the F-distribution propability function.
    *  This returns the probability that the observed chi-square for a correct model
-   *  exceeds the value $f[ \chi^2 $f].
+   *  exceeds the value @f$ \chi^2 @f$.
    *
    *  The f-distribution propability function is related to the incomplete beta function:
    *  @f[
@@ -315,7 +315,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *  @brief  Return the F-distribution propability function.
    *  This returns the probability that the observed chi-square for a correct model
-   *  exceeds the value $f[ \chi^2 $f].
+   *  exceeds the value @f$ \chi^2 @f$.
    *
    *  The f-distribution propability function is related to the incomplete beta function:
    *  @f[

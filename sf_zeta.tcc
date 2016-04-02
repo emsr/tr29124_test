@@ -57,9 +57,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  Coefficients for Euler-Maclaurin summation of zeta functions.
-   *    \f[
+   *    @f[
    *      B_{2j} / (2j)!
-   *    \f]
+   *    @f]
    *  where @f$ B_k @f$ are the Bernoulli numbers.
    */
   constexpr size_t _Num_Euler_Maclaurin_zeta = 100;
@@ -173,21 +173,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *         by summation for x <= 1.
    *
    *  The Riemann zeta function is defined by:
-   *   \f[
+   *   @f[
    *     Li_2(x) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
-   *   \f]
+   *   @f]
    *  For |x| near 1 use the reflection formulae:
-   *   \f[
+   *   @f[
    *     Li_2(-x) + Li_2(1-x) = \frac{\pi^2}{6} - \ln(x) \ln(1-x)
-   *   \f]
-   *   \f[
+   *   @f]
+   *   @f[
    *     Li_2(-x) - Li_2(1-x) - \frac{1}{2}Li_2(1-x^2)
    *         = -\frac{\pi^2}{12} - \ln(x) \ln(1-x)
-   *   \f]
+   *   @f]
    *  For x < 1 use the reflection formula:
-   *   \f[
+   *   @f[
    *     Li_2(1-x) - Li_2(1-\frac{1}{1-x}) - \frac{1}{2}(\ln(x))^2
-   *   \f]
+   *   @f]
    */
   template<typename _Tp>
     _Tp
@@ -241,13 +241,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	     by summation for s > 1.
    *
    * The Riemann zeta function is defined by:
-   *  \f[
+   *  @f[
    * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
-   *  \f]
+   *  @f]
    * For s < 1 use the reflection formula:
-   *  \f[
+   *  @f[
    * 	\zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
-   *  \f]
+   *  @f]
    */
   template<typename _Tp>
     _Tp
@@ -316,13 +316,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *          by an alternate series for s > 0.
    *
    *  The Riemann zeta function is defined by:
-   *   \f[
+   *   @f[
    *     \zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
-   *   \f]
+   *   @f]
    *  For s < 1 use the reflection formula:
-   *   \f[
+   *   @f[
    *     \zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
-   *   \f]
+   *   @f]
    */
   template<typename _Tp>
     _Tp
@@ -353,21 +353,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *          Then the convergence of the > 0 sum gets better.
    *
    *  The series is:
-   *   \f[
+   *   @f[
    *     \zeta(s) = \frac{1}{1-2^{1-s}}
    *    	    \sum_{n=0}^{\infty} \frac{1}{2^{n+1}}
    *    	    \sum_{k=0}^{n} (-1)^k \frac{n!}{(n-k)!k!} (k+1)^{-s}
-   *   \f]
+   *   @f]
    *  Havil 2003, p. 206.
    *
    *  The Riemann zeta function is defined by:
-   *   \f[
+   *   @f[
    *     \zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
-   *   \f]
+   *   @f]
    *  For s < 1 use the reflection formula:
-   *   \f[
+   *   @f[
    *     \zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
-   *   \f]
+   *   @f]
    */
   template<typename _Tp>
     _Tp
@@ -441,19 +441,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *  @brief  Compute the Riemann zeta function @f$ \zeta(s) @f$
    *      using the product over prime factors.
-   *   \f[
+   *   @f[
    *     \zeta(s) = \Pi_{i=1}^\infty \frac{1}{1 - p_i^{-s}}
-   *   \f]
+   *   @f]
    *   where @f$ {p_i} @f$ are the prime numbers.
    *
    *  The Riemann zeta function is defined by:
-   *   \f[
+   *   @f[
    *     \zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
-   *   \f]
+   *   @f]
    *  For s < 1 use the reflection formula:
-   *   \f[
+   *   @f[
    *     \zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
-   *   \f]
+   *   @f]
    */
   template<typename _Tp>
     _Tp
@@ -485,15 +485,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  @brief  Return the Riemann zeta function @f$ \zeta(s) @f$.
    *
    *  The Riemann zeta function is defined by:
-   *   \f[
+   *   @f[
    *     \zeta(s) = \sum_{k=1}^{\infty} k^{-s} for s > 1
    *    	    \frac{(2\pi)^s}{pi} sin(\frac{\pi s}{2})
    *    	    \Gamma (1 - s) \zeta (1 - s) for s < 1
-   *   \f]
+   *   @f]
    *  For s < 1 use the reflection formula:
-   *   \f[
+   *   @f[
    *     \zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
-   *   \f]
+   *   @f]
    */
   template<typename _Tp>
     _Tp
@@ -626,9 +626,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	     by summation for s > 1.  This is a small remainder for large s.
    *
    * The Riemann zeta function is defined by:
-   *  \f[
+   *  @f[
    * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
-   *  \f]
+   *  @f]
    */
   template<typename _Tp>
     _Tp

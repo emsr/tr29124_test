@@ -18,15 +18,15 @@ enum \{ \hyperlink{namespacestd_1_1____detail_a354c633cb3e397eae4c31776b2d67923a
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_aaf4b5556c6d01bad1892cb1515b22c64}{\+\_\+\+\_\+airy} (\+\_\+\+Tp \+\_\+\+\_\+z, \+\_\+\+Tp \&\+\_\+\+Ai, \+\_\+\+Tp \&\+\_\+\+Bi, \+\_\+\+Tp \&\+\_\+\+Aip, \+\_\+\+Tp \&\+\_\+\+Bip)
 \begin{DoxyCompactList}\small\item\em Compute the Airy functions $ Ai(x) $ and $ Bi(x) $ and their first derivatives $ Ai'(x) $ and $ Bi(x) $ respectively. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a6817269a446ea93bb50e7438e27c1162}{\+\_\+\+\_\+airy} (const std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+z, \+\_\+\+Tp \+\_\+\+\_\+eps, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Ai, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Aip, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Bi, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Bip)
-\begin{DoxyCompactList}\small\item\em This function computes the Airy function Ai(z) and its first derivative in the complex z-\/plane. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This function computes the Airy function $ Ai(z) $ and its first derivative in the complex z-\/plane. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_afd48b5702344f832a250922ac4ffb917}{\+\_\+\+\_\+airy\+\_\+ai} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z)
 \begin{DoxyCompactList}\small\item\em Return the complex Airy Ai function. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a2473fe60310e9480137e3b66d3944f15}{\+\_\+\+\_\+airy\+\_\+arg} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+num2d3, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+zeta, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+argp, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+argm)
 \begin{DoxyCompactList}\small\item\em Compute the arguments for the Airy function evaluations carefully to prevent premature overflow. Note that the major work here is in {\ttfamily safe\+\_\+div}. A faster, but less safe implementation can be obtained without use of safe\+\_\+div. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_ac3f140083eafeac7123894c55d8383b9}{\+\_\+\+\_\+airy\+\_\+asymp\+\_\+absarg\+\_\+ge\+\_\+pio3} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Ai, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Aip, int sign=-\/1)
-\begin{DoxyCompactList}\small\item\em This function evaluates Ai(z) and Ai\textquotesingle{}(z) from their asymptotic expansions for $\vert$arg(z)$\vert$ $<$ 2$\ast$/3. For speed, the number of terms needed to achieve about 16 decimals accuracy is tabled and determined from abs(z). \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a026a02e51a93428332a607c093e8204f}{\+\_\+\+\_\+airy\+\_\+asymp\+\_\+absarg\+\_\+ge\+\_\+pio3} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Ai, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Aip, int \+\_\+\+\_\+sign=-\/1)
+\begin{DoxyCompactList}\small\item\em This function evaluates $ Ai(z) $ and $ Ai'(z) $ from their asymptotic expansions for $ |arg(z)| < 2*\pi/3 $. For speed, the number of terms needed to achieve about 16 decimals accuracy is tabled and determined from abs(z). \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a4f1c33b398ae69c55281341004da0679}{\+\_\+\+\_\+airy\+\_\+asymp\+\_\+absarg\+\_\+lt\+\_\+pio3} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Ai, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Aip)
-\begin{DoxyCompactList}\small\item\em This function evaluates Ai(z) and Ai\textquotesingle{}(z) from their asymptotic expansions for abs(arg(-\/z)) $<$ pi/3. For speed, the number of terms needed to achieve about 16 decimals accuracy is tabled and determined from abs(z). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This function evaluates $ Ai(z) $ and $ Ai'(z) $ from their asymptotic expansions for $ |arg(-z)| < pi/3 $. For speed, the number of terms needed to achieve about 16 decimals accuracy is tabled and determined from $ |z| $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_aee6c743187765ce9a1f9c4c9af4acf17}{\+\_\+\+\_\+airy\+\_\+bessel\+\_\+i} (const std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+z, \+\_\+\+Tp \+\_\+\+\_\+eps, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Ip1d3, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Im1d3, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Ip2d3, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Im2d3)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a01098dbe1615b5be0833a7f3573f6510}{\+\_\+\+\_\+airy\+\_\+bessel\+\_\+k} (const std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+z, \+\_\+\+Tp \+\_\+\+\_\+eps, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Kp1d3, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Kp2d3)
@@ -34,7 +34,7 @@ enum \{ \hyperlink{namespacestd_1_1____detail_a354c633cb3e397eae4c31776b2d67923a
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_ae5536305d721e393efe1a74f0e57653e}{\+\_\+\+\_\+airy\+\_\+bi} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z)
 \begin{DoxyCompactList}\small\item\em Return the complex Airy Bi function. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_aedc8a8cc144aa56f72728db7d62e3e62}{\+\_\+\+\_\+airy\+\_\+hyperg\+\_\+rational} (const std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+z, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Ai, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Aip, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Bi, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Bip)
-\begin{DoxyCompactList}\small\item\em This function computes rational approximations to the hypergeometric functions related to the modified Bessel functions of orders  = +-\/1/3 and  +-\/ 2/3. That is, A(z)/\+B(z), Where A(z) and B(z) are cubic polynomials with real coefficients, approximates \[ \frac{\Gamma(\nu+1)}{(z/2)^nu}I_\nu(z) = _0F_1 (;\nu+1;z^2/4), \] where the function on the right is a confluent hypergeometric limit function. For $\vert$z$\vert$ $<$= 1/4 and $\vert$arg(z)$\vert$ $<$= pi/2, the approximations are accurate to about 16 decimals. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This function computes rational approximations to the hypergeometric functions related to the modified Bessel functions of orders $ \nu = +-1/3 $ and $ \nu +- 2/3 $. That is, $ A(z)/B(z) $, Where $ A(z) $ and $ B(z) $ are cubic polynomials with real coefficients, approximates \[ \frac{\Gamma(\nu+1)}{(z/2)^nu}I_\nu(z) = _0F_1 (;\nu+1;z^2/4), \] where the function on the right is a confluent hypergeometric limit function. For $ |z| <= 1/4 $ and $ |arg(z)| <= pi/2 $, the approximations are accurate to about 16 decimals. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a7d47c4512f7c6914f5504fde6ffa31fb}{\+\_\+\+\_\+assoc\+\_\+laguerre} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em This routine returns the associated Laguerre polynomial of order n, degree m\+: $ L_n^m(x) $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a8b31886e334427566b1b00d71052191b}{\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+x)
@@ -148,11 +148,11 @@ enum \{ \hyperlink{namespacestd_1_1____detail_a354c633cb3e397eae4c31776b2d67923a
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_ac9152f2369a18aa795fe24ccfa6dcf12}{\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+k} (\+\_\+\+Tp \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Return the irregular modified Bessel function $ K_{\nu}(x) $ of order $ \nu $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_aac3fc60c1210e8f2ae3cf05cdc7bad84}{\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+1} (\+\_\+\+Tp \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
-\begin{DoxyCompactList}\small\item\em Return the cylindrical Hankel function of the first kind $ h^{(1)}_n(x) $. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Return the cylindrical Hankel function of the first kind $ H^{(1)}_\nu(x) $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a9904b6007ef78ef777ac8345f6e47960}{\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+1} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+nu, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z)
 \begin{DoxyCompactList}\small\item\em Return the complex cylindrical Hankel function of the first kind. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a98615677d4042ef02fe2faf326f1a614}{\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+2} (\+\_\+\+Tp \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
-\begin{DoxyCompactList}\small\item\em Return the cylindrical Hankel function of the second kind $ h^{(1)}_n(x) $. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Return the cylindrical Hankel function of the second kind $ H^{(2)}_nu(x) $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a3a8bdfd85729c705dec2586dfa5b275b}{\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+2} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+nu, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z)
 \begin{DoxyCompactList}\small\item\em Return the complex cylindrical Hankel function of the second kind. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_ac73a4e3b8ac311760c998277aadb0fcb}{\+\_\+\+\_\+cyl\+\_\+neumann} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+nu, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z)
@@ -238,9 +238,9 @@ enum \{ \hyperlink{namespacestd_1_1____detail_a354c633cb3e397eae4c31776b2d67923a
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a75b6c98f991ef9265e69c27feb554276}{\+\_\+\+\_\+expint\+\_\+large\+\_\+n} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Return the exponential integral $ E_n(x) $ for large order. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+G\+L\+I\+B\+C\+X\+X14\+\_\+\+C\+O\+N\+S\+T\+E\+X\+P\+R \+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a6864e83328d0ac8f2c26e8ac4a0a3e35}{\+\_\+\+\_\+f\+\_\+cdf} (\+\_\+\+Tp \+\_\+\+\_\+\+F, unsigned int \+\_\+\+\_\+nu1, unsigned int \+\_\+\+\_\+nu2)
-\begin{DoxyCompactList}\small\item\em Return the F-\/distribution propability function. This returns the probability that the observed chi-\/square for a correct model exceeds the value \$f\mbox{[} $^\wedge$2 \$f\mbox{]}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Return the F-\/distribution propability function. This returns the probability that the observed chi-\/square for a correct model exceeds the value $ \chi^2 $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+G\+L\+I\+B\+C\+X\+X14\+\_\+\+C\+O\+N\+S\+T\+E\+X\+P\+R \+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a0dd37941ab4f7d2ac376d59d62554c1f}{\+\_\+\+\_\+f\+\_\+cdfc} (\+\_\+\+Tp \+\_\+\+\_\+\+F, unsigned int \+\_\+\+\_\+nu1, unsigned int \+\_\+\+\_\+nu2)
-\begin{DoxyCompactList}\small\item\em Return the F-\/distribution propability function. This returns the probability that the observed chi-\/square for a correct model exceeds the value \$f\mbox{[} $^\wedge$2 \$f\mbox{]}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Return the F-\/distribution propability function. This returns the probability that the observed chi-\/square for a correct model exceeds the value $ \chi^2 $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+G\+L\+I\+B\+C\+X\+X14\+\_\+\+C\+O\+N\+S\+T\+E\+X\+P\+R \+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a8de5d6069cbef126684be0800f47f8b2}{\+\_\+\+\_\+factorial} (unsigned int \+\_\+\+\_\+n)
 \begin{DoxyCompactList}\small\item\em Return the factorial of the integer n. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a6057422cd4e359f44dcdb6cffc26128f}{\+\_\+\+\_\+fermi\+\_\+dirac} (\+\_\+\+Tp \+\_\+\+\_\+s, \+\_\+\+Tp \+\_\+\+\_\+x)
@@ -378,7 +378,7 @@ enum \{ \hyperlink{namespacestd_1_1____detail_a354c633cb3e397eae4c31776b2d67923a
 {\footnotesize template$<$typename \+\_\+\+Tpa , typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a1f9e78deb2bcc73511c77dcb1cdcf4c8}{\+\_\+\+\_\+poly\+\_\+laguerre\+\_\+large\+\_\+n} (unsigned \+\_\+\+\_\+n, \+\_\+\+Tpa \+\_\+\+\_\+alpha1, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em This routine returns the associated Laguerre polynomial of order $ n $, degree $ \alpha $ for large n. Abramowitz \& Stegun, 13.\+5.\+21. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tpa , typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a6d3a7499bd109d5c0ea01e85f3165730}{\+\_\+\+\_\+poly\+\_\+laguerre\+\_\+recursion} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tpa \+\_\+\+\_\+alpha1, \+\_\+\+Tp \+\_\+\+\_\+x)
-\begin{DoxyCompactList}\small\item\em This routine returns the associated Laguerre polynomial of order $ n $, degree $ \alpha $\+: $ L_n^\alpha(x) $ by recursion. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This routine returns the associated Laguerre polynomial of order {\ttfamily n}, degree {\ttfamily $ \alpha $}\+: $ L_n^\alpha(x) $ by recursion. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_ad340d3fb1a429356292e7dcf61348c8a}{\+\_\+\+\_\+poly\+\_\+legendre\+\_\+p} (unsigned int \+\_\+\+\_\+l, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Return the Legendre polynomial by upward recursion on order $ l $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_aa810a501ad591480559e9f10d1b18e0f}{\+\_\+\+\_\+poly\+\_\+legendre\+\_\+q} (unsigned int \+\_\+\+\_\+l, \+\_\+\+Tp \+\_\+\+\_\+x)
@@ -478,7 +478,7 @@ enum \{ \hyperlink{namespacestd_1_1____detail_a354c633cb3e397eae4c31776b2d67923a
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a35edea916ec9c8310f7d4a06618f7378}{\+\_\+\+\_\+sph\+\_\+bessel\+\_\+ik} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \&\+\_\+\+\_\+i\+\_\+n, \+\_\+\+Tp \&\+\_\+\+\_\+k\+\_\+n, \+\_\+\+Tp \&\+\_\+\+\_\+ip\+\_\+n, \+\_\+\+Tp \&\+\_\+\+\_\+kp\+\_\+n)
 \begin{DoxyCompactList}\small\item\em Compute the spherical modified Bessel functions $ i_n(x) $ and $ k_n(x) $ and their first derivatives $ i'_n(x) $ and $ k'_n(x) $ respectively. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a4fb8d05af806e03645480c0fcb3a0a19}{\+\_\+\+\_\+sph\+\_\+bessel\+\_\+jn} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \&\+\_\+\+\_\+j\+\_\+n, \+\_\+\+Tp \&\+\_\+\+\_\+n\+\_\+n, \+\_\+\+Tp \&\+\_\+\+\_\+jp\+\_\+n, \+\_\+\+Tp \&\+\_\+\+\_\+np\+\_\+n)
-\begin{DoxyCompactList}\small\item\em Compute the spherical Bessel $ j_n(x) $ and Neumann $ n_n(x) $ functions and their first derivatives $ j'_n(x) $ and $ n'_n(x) $ respectively. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Compute the spherical Bessel $ j_n(x) $ and Neumann $ n_n(x) $ functions and their first derivatives $ j_n(x) $ and $ n'_n(x) $ respectively. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_ae666168f9ede5a09dbae92598b7b14e4}{\+\_\+\+\_\+sph\+\_\+hankel} (unsigned int \+\_\+\+\_\+n, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+H1, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+H1p, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+H2, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+H2p)
 \begin{DoxyCompactList}\small\item\em Helper to compute complex spherical Hankel functions and their derivatives. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_adcc174fe4cb03d428f19abcae8012b50}{\+\_\+\+\_\+sph\+\_\+hankel\+\_\+1} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
@@ -486,7 +486,7 @@ enum \{ \hyperlink{namespacestd_1_1____detail_a354c633cb3e397eae4c31776b2d67923a
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a887838c407a7cdb7c4ee145a18d2aa12}{\+\_\+\+\_\+sph\+\_\+hankel\+\_\+1} (unsigned int \+\_\+\+\_\+n, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z)
 \begin{DoxyCompactList}\small\item\em Return the complex spherical Hankel function of the first kind. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a89fe914f377a138d37369d13bda1162e}{\+\_\+\+\_\+sph\+\_\+hankel\+\_\+2} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
-\begin{DoxyCompactList}\small\item\em Return the spherical Hankel function of the second kind $ h^{(1)}_n(x) $. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Return the spherical Hankel function of the second kind $ h^{(2)}_n(x) $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_ade83ff0131b8880428cbd58028d89bc5}{\+\_\+\+\_\+sph\+\_\+hankel\+\_\+2} (unsigned int \+\_\+\+\_\+n, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z)
 \begin{DoxyCompactList}\small\item\em Return the complex spherical Hankel function of the second kind. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a31b9beb882431d61d439862de0366eec}{\+\_\+\+\_\+sph\+\_\+harmonic} (unsigned int \+\_\+\+\_\+l, int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+theta, \+\_\+\+Tp \+\_\+\+\_\+phi)
@@ -624,7 +624,7 @@ Compute the Airy functions $ Ai(x) $ and $ Bi(x) $ and their first derivatives $
 \end{DoxyParams}
 
 
-Definition at line 473 of file sf\+\_\+mod\+\_\+bessel.\+tcc.
+Definition at line 486 of file sf\+\_\+mod\+\_\+bessel.\+tcc.
 
 
 
@@ -644,7 +644,7 @@ References \+\_\+\+\_\+cyl\+\_\+bessel\+\_\+ik(), and \+\_\+\+\_\+cyl\+\_\+besse
 )}\label{namespacestd_1_1____detail_a6817269a446ea93bb50e7438e27c1162}
 
 
-This function computes the Airy function Ai(z) and its first derivative in the complex z-\/plane. 
+This function computes the Airy function $ Ai(z) $ and its first derivative in the complex z-\/plane. 
 
 The algorithm used exploits numerous representations of the Airy function and its derivative. The representations are recorded here for reference\+:
 
@@ -702,18 +702,22 @@ Wimp, J., On the computation of Tricomi\textquotesingle{}s psi function, Computi
 \end{DoxySeeAlso}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em z} & The argument at which the Airy function and its derivative are computed. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The argument at which the Airy function and its derivative are computed. \\
 \hline
-\mbox{\tt in}  & {\em eps} & Relative error required. Currently, eps is used only in the backward recursion algorithms. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+eps} & Relative error required. Currently, eps is used only in the backward recursion algorithms. \\
 \hline
-\mbox{\tt out}  & {\em Ai} & The value computed for Ai(z). \\
+\mbox{\tt out}  & {\em \+\_\+\+Ai} & The value computed for Ai(z). \\
 \hline
-\mbox{\tt out}  & {\em Aip} & The value computed for Ai\textquotesingle{}(z). \\
+\mbox{\tt out}  & {\em \+\_\+\+Aip} & The value computed for Ai\textquotesingle{}(z). \\
+\hline
+\mbox{\tt out}  & {\em \+\_\+\+Bi} & The value computed for Bi(z). \\
+\hline
+\mbox{\tt out}  & {\em \+\_\+\+Bip} & The value computed for Bi\textquotesingle{}(z). \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 1012 of file sf\+\_\+airy.\+tcc.
+Definition at line 1014 of file sf\+\_\+airy.\+tcc.
 
 
 
@@ -736,7 +740,7 @@ Return the complex Airy Ai function.
 
 
 
-Definition at line 1149 of file sf\+\_\+airy.\+tcc.
+Definition at line 1151 of file sf\+\_\+airy.\+tcc.
 
 
 
@@ -758,13 +762,13 @@ Compute the arguments for the Airy function evaluations carefully to prevent pre
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em num2d3} & nu$^\wedge$(-\/2/3) -\/ output from hankel\+\_\+params. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+num2d3} & nu$^\wedge$(-\/2/3) -\/ output from hankel\+\_\+params. \\
 \hline
-\mbox{\tt in}  & {\em zeta} & zeta in the uniform asymptotic expansions -\/ output from hankel\+\_\+params. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+zeta} & zeta in the uniform asymptotic expansions -\/ output from hankel\+\_\+params. \\
 \hline
-\mbox{\tt out}  & {\em argp} & exp(+2$\ast$pi$\ast$i/3) $\ast$ nu$^\wedge$(2/3) $\ast$ zeta. \\
+\mbox{\tt out}  & {\em \+\_\+\+\_\+argp} & exp(+2$\ast$pi$\ast$i/3) $\ast$ nu$^\wedge$(2/3) $\ast$ zeta. \\
 \hline
-\mbox{\tt out}  & {\em argm} & exp(-\/2$\ast$pi$\ast$i/3) $\ast$ nu$^\wedge$(2/3) $\ast$ zeta. \\
+\mbox{\tt out}  & {\em \+\_\+\+\_\+argm} & exp(-\/2$\ast$pi$\ast$i/3) $\ast$ nu$^\wedge$(2/3) $\ast$ zeta. \\
 \hline
 \end{DoxyParams}
 
@@ -780,19 +784,19 @@ Definition at line 241 of file sf\+\_\+hankel.\+tcc.
 
 Referenced by \+\_\+\+\_\+hankel\+\_\+uniform\+\_\+outer().
 
-\hypertarget{namespacestd_1_1____detail_ac3f140083eafeac7123894c55d8383b9}{}\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+airy\+\_\+asymp\+\_\+absarg\+\_\+ge\+\_\+pio3@{\+\_\+\+\_\+airy\+\_\+asymp\+\_\+absarg\+\_\+ge\+\_\+pio3}}
+\hypertarget{namespacestd_1_1____detail_a026a02e51a93428332a607c093e8204f}{}\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+airy\+\_\+asymp\+\_\+absarg\+\_\+ge\+\_\+pio3@{\+\_\+\+\_\+airy\+\_\+asymp\+\_\+absarg\+\_\+ge\+\_\+pio3}}
 \index{\+\_\+\+\_\+airy\+\_\+asymp\+\_\+absarg\+\_\+ge\+\_\+pio3@{\+\_\+\+\_\+airy\+\_\+asymp\+\_\+absarg\+\_\+ge\+\_\+pio3}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
 \subsubsection[{\+\_\+\+\_\+airy\+\_\+asymp\+\_\+absarg\+\_\+ge\+\_\+pio3}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ void std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+airy\+\_\+asymp\+\_\+absarg\+\_\+ge\+\_\+pio3 (
 \begin{DoxyParamCaption}
 \item[{std\+::complex$<$ \+\_\+\+Tp $>$}]{\+\_\+\+\_\+z, }
 \item[{std\+::complex$<$ \+\_\+\+Tp $>$ \&}]{\+\_\+\+Ai, }
 \item[{std\+::complex$<$ \+\_\+\+Tp $>$ \&}]{\+\_\+\+Aip, }
-\item[{int}]{sign = {\ttfamily -\/1}}
+\item[{int}]{\+\_\+\+\_\+sign = {\ttfamily -\/1}}
 \end{DoxyParamCaption}
-)}\label{namespacestd_1_1____detail_ac3f140083eafeac7123894c55d8383b9}
+)}\label{namespacestd_1_1____detail_a026a02e51a93428332a607c093e8204f}
 
 
-This function evaluates Ai(z) and Ai\textquotesingle{}(z) from their asymptotic expansions for $\vert$arg(z)$\vert$ $<$ 2$\ast$/3. For speed, the number of terms needed to achieve about 16 decimals accuracy is tabled and determined from abs(z). 
+This function evaluates $ Ai(z) $ and $ Ai'(z) $ from their asymptotic expansions for $ |arg(z)| < 2*\pi/3 $. For speed, the number of terms needed to achieve about 16 decimals accuracy is tabled and determined from abs(z). 
 
 Note that for the sake of speed and the fact that this function is to be called by another, checks for valid arguments are not made.
 
@@ -801,13 +805,13 @@ Digital Library of Mathematical Finctions Sec. 9.\+7 Asymptotic Expansions \href
 \end{DoxySeeAlso}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em z} & Complex input variable set equal to the value at which Ai(z) and Bi(z) and their derivative are evaluated. This function assumes abs(z) $>$ 15 and $\vert$arg(z)$\vert$ $<$ 2/3. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & Complex input variable set equal to the value at which $ Ai(z) $ and $ Bi(z) $ and their derivative are evaluated. This function assumes $ |z| > 15 $ and $ |arg(z)| < 2\pi/3 $. \\
 \hline
-\mbox{\tt in,out}  & {\em Ai} & The value computed for Ai(z). \\
+\mbox{\tt in,out}  & {\em \+\_\+\+Ai} & The value computed for $ Ai(z) $. \\
 \hline
-\mbox{\tt in,out}  & {\em Aip} & The value computed for Ai\textquotesingle{}(z). \\
+\mbox{\tt in,out}  & {\em \+\_\+\+Aip} & The value computed for $ Ai'(z) $. \\
 \hline
-\mbox{\tt in}  & {\em sign} & The sign of the series terms amd exponent. The default (-\/1) gives the Airy Ai functions for $\vert$arg(z)$\vert$ $<$ . The value +1 gives the Airy Bi functions for $\vert$arg(z)$\vert$ $<$ /3. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+sign} & The sign of the series terms amd exponent. The default (-\/1) gives the Airy Ai functions for $ |arg(z)| < \pi $. The value +1 gives the Airy Bi functions for $ |arg(z)| < \pi/3 $. \\
 \hline
 \end{DoxyParams}
 
@@ -829,17 +833,17 @@ Referenced by \+\_\+\+\_\+airy().
 )}\label{namespacestd_1_1____detail_a4f1c33b398ae69c55281341004da0679}
 
 
-This function evaluates Ai(z) and Ai\textquotesingle{}(z) from their asymptotic expansions for abs(arg(-\/z)) $<$ pi/3. For speed, the number of terms needed to achieve about 16 decimals accuracy is tabled and determined from abs(z). 
+This function evaluates $ Ai(z) $ and $ Ai'(z) $ from their asymptotic expansions for $ |arg(-z)| < pi/3 $. For speed, the number of terms needed to achieve about 16 decimals accuracy is tabled and determined from $ |z| $. 
 
-Note that for the sake of speed and the fact that this function is to be called by another, checks for valid arguments are not made. Hence, an error return is not needed.
+Note that for the sake of speed and the fact that this function is to be called by another, checks for valid arguments are not made. Hence, an error return is not needed. This function assumes $ |z| > 15 $ and $ |arg(-z)| < pi/3 $.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em z} & The value at which the Airy function and its derivative are evaluated. This function assumes abs(z) $>$ 15 and abs(arg(-\/z)) $<$ pi/3. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The value at which the Airy function and its derivative are evaluated. \\
 \hline
-\mbox{\tt out}  & {\em Ai} & The computed value of the Airy function Ai(z). \\
+\mbox{\tt out}  & {\em \+\_\+\+Ai} & The computed value of the Airy function $ Ai(z) $. \\
 \hline
-\mbox{\tt out}  & {\em Aip} & The computed value of the Airy function derivative Ai\textquotesingle{}(z). \\
+\mbox{\tt out}  & {\em \+\_\+\+Aip} & The computed value of the Airy function derivative $ Ai'(z) $. \\
 \hline
 \end{DoxyParams}
 
@@ -886,17 +890,17 @@ Cody implements the algorithm of Sookne for fractional order and nonnegative rea
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em z} & The argument of the modified Bessel functions. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The argument of the modified Bessel functions. \\
 \hline
-\mbox{\tt in}  & {\em eps} & The maximum relative error required in the results. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+eps} & The maximum relative error required in the results. \\
 \hline
-\mbox{\tt out}  & {\em ip1d3} & The value of I\+\_\+(+1/3)(z). \\
+\mbox{\tt out}  & {\em \+\_\+\+Ip1d3} & The value of $ I_(+1/3)(z) $. \\
 \hline
-\mbox{\tt out}  & {\em im1d3} & The value of I\+\_\+(-\/1/3)(z). \\
+\mbox{\tt out}  & {\em \+\_\+\+Im1d3} & The value of $ I_(-1/3)(z) $. \\
 \hline
-\mbox{\tt out}  & {\em ip2d3} & The value of I\+\_\+(+2/3)(z). \\
+\mbox{\tt out}  & {\em \+\_\+\+Ip2d3} & The value of $ I_(+2/3)(z) $. \\
 \hline
-\mbox{\tt out}  & {\em im2d3} & The value of I\+\_\+(-\/2/3)(z). \\
+\mbox{\tt out}  & {\em \+\_\+\+Im2d3} & The value of $ I_(-2/3)(z) $. \\
 \hline
 \end{DoxyParams}
 
@@ -925,27 +929,23 @@ This routine computes \[ E_\nu(z) = \exp{z} \sqrt{2 z/\pi} K_\nu(z), for \nu = 1
 
 Luke, Y. L., Mathematical functions and their approximations, Academic Press, pp 366-\/367, 1975.
 
-Though the approximation converges in abs(arg(z)) $<$= pi, The convergence weakens as abs(arg(z)) increases. Also, in the case of real order between 0 and 1, convergence weakens as the order approaches 1. For these reasons, we only use this code for $\vert$\begin{DoxyItemize}
-\item (z)$\vert$ $<$= 3pi/4 and the convergence test is performed only for order 2/3.\end{DoxyItemize}
-The coding of this function is also influenced by the fact that it will only be used for about 2 $<$= $\vert$z$\vert$ $<$= 15. Hence, certain considerations of overflow, underflow, and loss of significance are unimportant for our purpose.
+Though the approximation converges in $ |\arg(z)| <= pi $, The convergence weakens as abs(arg(z)) increases. Also, in the case of real order between 0 and 1, convergence weakens as the order approaches 1. For these reasons, we only use this code for $ |\arg(z)| <= 3pi/4 $ and the convergence test is performed only for order 2/3.
+
+The coding of this function is also influenced by the fact that it will only be used for about $ 2 <= |z| <= 15 $. Hence, certain considerations of overflow, underflow, and loss of significance are unimportant for our purpose.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em z} & The value for which the quantity E\+\_\+nu is to be computed. it is recommended that abs(z) not be too small and that $\vert$\begin{DoxyItemize}
-\item (z)$\vert$ $<$= 3pi/4. \end{DoxyItemize}
-\\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The value for which the quantity E\+\_\+nu is to be computed. it is recommended that abs(z) not be too small and that $ |\arg(z)| <= 3pi/4 $. \\
 \hline
-\mbox{\tt in}  & {\em eps} & The maximum relative error allowable in the computed results. The relative error test is based on the comparison of successive iterates. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+eps} & The maximum relative error allowable in the computed results. The relative error test is based on the comparison of successive iterates. \\
 \hline
-\mbox{\tt out}  & {\em kp1d3} & The value computed for E\+\_\+\{+1/3\}(z). \\
+\mbox{\tt out}  & {\em \+\_\+\+Kp1d3} & The value computed for $ E_{+1/3}(z) $. \\
 \hline
-\mbox{\tt out}  & {\em kp2d3} & The value computed for E\+\_\+\{+2/3\}(z).\\
+\mbox{\tt out}  & {\em \+\_\+\+Kp2d3} & The value computed for $ E_{+2/3}(z) $.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
-In the worst case, say, z=2 and \begin{DoxyItemize}
-\item (z) = 3pi/4, 20 iterations should give 7 or 8 decimals of accuracy. \end{DoxyItemize}
-
+In the worst case, say, $ z=2 $ and $ \arg(z) = 3pi/4 $, 20 iterations should give 7 or 8 decimals of accuracy. 
 \end{DoxyNote}
 
 
@@ -968,7 +968,7 @@ Return the complex Airy Bi function.
 
 
 
-Definition at line 1162 of file sf\+\_\+airy.\+tcc.
+Definition at line 1164 of file sf\+\_\+airy.\+tcc.
 
 
 
@@ -987,7 +987,7 @@ References \+\_\+\+\_\+airy().
 )}\label{namespacestd_1_1____detail_aedc8a8cc144aa56f72728db7d62e3e62}
 
 
-This function computes rational approximations to the hypergeometric functions related to the modified Bessel functions of orders  = +-\/1/3 and  +-\/ 2/3. That is, A(z)/\+B(z), Where A(z) and B(z) are cubic polynomials with real coefficients, approximates \[ \frac{\Gamma(\nu+1)}{(z/2)^nu}I_\nu(z) = _0F_1 (;\nu+1;z^2/4), \] where the function on the right is a confluent hypergeometric limit function. For $\vert$z$\vert$ $<$= 1/4 and $\vert$arg(z)$\vert$ $<$= pi/2, the approximations are accurate to about 16 decimals. 
+This function computes rational approximations to the hypergeometric functions related to the modified Bessel functions of orders $ \nu = +-1/3 $ and $ \nu +- 2/3 $. That is, $ A(z)/B(z) $, Where $ A(z) $ and $ B(z) $ are cubic polynomials with real coefficients, approximates \[ \frac{\Gamma(\nu+1)}{(z/2)^nu}I_\nu(z) = _0F_1 (;\nu+1;z^2/4), \] where the function on the right is a confluent hypergeometric limit function. For $ |z| <= 1/4 $ and $ |arg(z)| <= pi/2 $, the approximations are accurate to about 16 decimals. 
 
 For further details including the four term recurrence relation satisfied by the numerator and denominator poly-\/ nomials in the higher order approximants, see
 
@@ -999,7 +999,7 @@ Note also that for the sake of speed and the fact that this function will be dri
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em z} & The argument at which the hypergeometric given above is to be evaluated. Since the approximation is of fixed order, abs(z) must be small to ensure sufficient accuracy of the computed results. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The argument at which the hypergeometric given above is to be evaluated. Since the approximation is of fixed order, abs(z) must be small to ensure sufficient accuracy of the computed results. \\
 \hline
 \mbox{\tt out}  & {\em Fp1d3} & The approximate value of the confluent hypergeometric limit function related to the modified Bessel function of order +1/3. \\
 \hline
@@ -1035,11 +1035,11 @@ The associated Laguerre polynomial is defined for integral $ \alpha = m $ by\+: 
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+n} & The order of the Laguerre polynomial. \\
+{\em \+\_\+\+\_\+n} & The order \\
 \hline
-{\em \+\_\+\+\_\+m} & The degree of the Laguerre polynomial. \\
+{\em \+\_\+\+\_\+m} & The degree \\
 \hline
-{\em \+\_\+\+\_\+x} & The argument of the Laguerre polynomial. \\
+{\em \+\_\+\+\_\+x} & The argument \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -1047,7 +1047,7 @@ The value of the associated Laguerre polynomial of order n, degree m, and argume
 \end{DoxyReturn}
 
 
-Definition at line 286 of file sf\+\_\+laguerre.\+tcc.
+Definition at line 292 of file sf\+\_\+laguerre.\+tcc.
 
 
 
@@ -1070,11 +1070,11 @@ The associated Legendre function is derived from the Legendre function $ P_l(x) 
 
 
 \begin{DoxyParams}{Parameters}
-{\em l} & The order of the associated Legendre function. $ l >= 0 $. \\
+{\em \+\_\+\+\_\+l} & The order of the associated Legendre function. $ l >= 0 $. \\
 \hline
-{\em m} & The order of the associated Legendre function. $ m <= l $. \\
+{\em \+\_\+\+\_\+m} & The order of the associated Legendre function. $ m <= l $. \\
 \hline
-{\em x} & The argument of the associated Legendre function. $ |x| <= 1 $. \\
+{\em \+\_\+\+\_\+x} & The argument of the associated Legendre function. $ |x| <= 1 $. \\
 \hline
 \end{DoxyParams}
 
@@ -1409,9 +1409,9 @@ Return the Bose-\/\+Einstein integral of real order s and real argument x. \begi
 \end{DoxySeeAlso}
 
 \begin{DoxyParams}{Parameters}
-{\em s} & The order s $>$= 0. \\
+{\em \+\_\+\+\_\+s} & The order s $>$= 0. \\
 \hline
-{\em x} & The real argument. \\
+{\em \+\_\+\+\_\+x} & The real argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -1419,7 +1419,7 @@ The real Fermi-\/\+Dirac cosine sum G\+\_\+s(x),
 \end{DoxyReturn}
 
 
-Definition at line 1357 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1360 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -1654,7 +1654,7 @@ Return Clausen\textquotesingle{}s function of integer order m and complex argume
 
 
 \begin{DoxyParams}{Parameters}
-{\em w} & The complex argument. \\
+{\em \+\_\+\+\_\+w} & The complex argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -1662,7 +1662,7 @@ The complex Clausen function.
 \end{DoxyReturn}
 
 
-Definition at line 1186 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1189 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -1680,9 +1680,9 @@ Return Clausen\textquotesingle{}s function of integer order m and real argument 
 
 
 \begin{DoxyParams}{Parameters}
-{\em m} & The integer order m $>$= 1. \\
+{\em \+\_\+\+\_\+m} & The integer order m $>$= 1. \\
 \hline
-{\em w} & The real argument. \\
+{\em \+\_\+\+\_\+w} & The real argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -1690,7 +1690,7 @@ The Clausen function.
 \end{DoxyReturn}
 
 
-Definition at line 1210 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1213 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -1709,9 +1709,9 @@ Return Clausen\textquotesingle{}s cosine sum Cl\+\_\+m for positive integer orde
 \end{DoxySeeAlso}
 
 \begin{DoxyParams}{Parameters}
-{\em m} & The integer order m $>$= 1. \\
+{\em \+\_\+\+\_\+m} & The integer order m $>$= 1. \\
 \hline
-{\em w} & The real argument. \\
+{\em \+\_\+\+\_\+w} & The real argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -1719,7 +1719,7 @@ The Clausen cosine sum Cl\+\_\+m(w),
 \end{DoxyReturn}
 
 
-Definition at line 1285 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1288 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -1738,9 +1738,9 @@ Return Clausen\textquotesingle{}s cosine sum Cl\+\_\+m for positive integer orde
 \end{DoxySeeAlso}
 
 \begin{DoxyParams}{Parameters}
-{\em m} & The integer order m $>$= 1. \\
+{\em \+\_\+\+\_\+m} & The integer order m $>$= 1. \\
 \hline
-{\em w} & The real argument. \\
+{\em \+\_\+\+\_\+w} & The real argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -1748,7 +1748,7 @@ The real Clausen cosine sum Cl\+\_\+m(w),
 \end{DoxyReturn}
 
 
-Definition at line 1310 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1313 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -1767,9 +1767,9 @@ Return Clausen\textquotesingle{}s sine sum Sl\+\_\+m for positive integer order 
 \end{DoxySeeAlso}
 
 \begin{DoxyParams}{Parameters}
-{\em m} & The integer order m $>$= 1. \\
+{\em \+\_\+\+\_\+m} & The integer order m $>$= 1. \\
 \hline
-{\em w} & The complex argument. \\
+{\em \+\_\+\+\_\+w} & The complex argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -1777,7 +1777,7 @@ The Clausen sine sum Sl\+\_\+m(w),
 \end{DoxyReturn}
 
 
-Definition at line 1235 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1238 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -1796,9 +1796,9 @@ Return Clausen\textquotesingle{}s sine sum Sl\+\_\+m for positive integer order 
 \end{DoxySeeAlso}
 
 \begin{DoxyParams}{Parameters}
-{\em m} & The integer order m $>$= 1. \\
+{\em \+\_\+\+\_\+m} & The integer order m $>$= 1. \\
 \hline
-{\em w} & The complex argument. \\
+{\em \+\_\+\+\_\+w} & The complex argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -1806,7 +1806,7 @@ The Clausen sine sum Sl\+\_\+m(w),
 \end{DoxyReturn}
 
 
-Definition at line 1260 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1263 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -2157,9 +2157,9 @@ Return the complex cylindrical Bessel function.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em nu} & The order for which the cylindrical Bessel function is evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+nu} & The order for which the cylindrical Bessel function is evaluated. \\
 \hline
-\mbox{\tt in}  & {\em z} & The argument at which the cylindrical Bessel function is evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The argument at which the cylindrical Bessel function is evaluated. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -2199,7 +2199,7 @@ The output regular modified Bessel function.
 \end{DoxyReturn}
 
 
-Definition at line 362 of file sf\+\_\+mod\+\_\+bessel.\+tcc.
+Definition at line 375 of file sf\+\_\+mod\+\_\+bessel.\+tcc.
 
 
 
@@ -2264,8 +2264,23 @@ Referenced by \+\_\+\+\_\+cyl\+\_\+bessel\+\_\+i(), and \+\_\+\+\_\+cyl\+\_\+bes
 Return the modified cylindrical Bessel functions and their derivatives of order $ \nu $ by various means. 
 
 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+nu} & The order of the Bessel functions. \\
+\hline
+{\em \+\_\+\+\_\+x} & The argument of the Bessel functions. \\
+\hline
+{\em \+\_\+\+Inu} & The output regular modified Bessel function. \\
+\hline
+{\em \+\_\+\+Knu} & The output irregular modified Bessel function. \\
+\hline
+{\em \+\_\+\+Ipnu} & The output derivative of the regular modified Bessel function. \\
+\hline
+{\em \+\_\+\+Kpnu} & The output derivative of the irregular modified Bessel function. \\
+\hline
+\end{DoxyParams}
 
-Definition at line 303 of file sf\+\_\+mod\+\_\+bessel.\+tcc.
+
+Definition at line 316 of file sf\+\_\+mod\+\_\+bessel.\+tcc.
 
 
 
@@ -2299,14 +2314,18 @@ References\+: (1) Handbook of Mathematical Functions, ed. Milton Abramowitz and 
 \hline
 {\em \+\_\+\+\_\+x} & The argument of the Bessel functions. \\
 \hline
-{\em \+\_\+\+Jnu} & The output Bessel function of the first kind. \\
+{\em \+\_\+\+Inu} & The output regular modified Bessel function. \\
 \hline
-{\em \+\_\+\+Knu} & The output Neumann function (Bessel function of the second kind). \\
+{\em \+\_\+\+Knu} & The output irregular modified Bessel function. \\
+\hline
+{\em \+\_\+\+Ipnu} & The output derivative of the regular modified Bessel function. \\
+\hline
+{\em \+\_\+\+Kpnu} & The output derivative of the irregular modified Bessel function. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 77 of file sf\+\_\+mod\+\_\+bessel.\+tcc.
+Definition at line 81 of file sf\+\_\+mod\+\_\+bessel.\+tcc.
 
 
 
@@ -2345,7 +2364,7 @@ Compute the modified Bessel functions $ I_\nu(x) $ and $ K_\nu(x) $ and their fi
 \end{DoxyParams}
 
 
-Definition at line 148 of file sf\+\_\+mod\+\_\+bessel.\+tcc.
+Definition at line 152 of file sf\+\_\+mod\+\_\+bessel.\+tcc.
 
 
 
@@ -2521,7 +2540,7 @@ The output irregular modified Bessel function.
 \end{DoxyReturn}
 
 
-Definition at line 400 of file sf\+\_\+mod\+\_\+bessel.\+tcc.
+Definition at line 413 of file sf\+\_\+mod\+\_\+bessel.\+tcc.
 
 
 
@@ -2537,13 +2556,13 @@ References \+\_\+\+\_\+cyl\+\_\+bessel\+\_\+ik().
 )}\label{namespacestd_1_1____detail_aac3fc60c1210e8f2ae3cf05cdc7bad84}
 
 
-Return the cylindrical Hankel function of the first kind $ h^{(1)}_n(x) $. 
+Return the cylindrical Hankel function of the first kind $ H^{(1)}_\nu(x) $. 
 
-The cylindrical Hankel function of the first kind is defined by\+: \[ H^{(1)}_n(x) = J_n(x) + i N_n(x) \]
+The cylindrical Hankel function of the first kind is defined by\+: \[ H^{(1)}_\nu(x) = J_\nu(x) + i N_\nu(x) \]
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+n} & The order of the spherical Neumann function. \\
+{\em \+\_\+\+\_\+nu} & The order of the spherical Neumann function. \\
 \hline
 {\em \+\_\+\+\_\+x} & The argument of the spherical Neumann function. \\
 \hline
@@ -2573,9 +2592,9 @@ Return the complex cylindrical Hankel function of the first kind.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em nu} & The order for which the cylindrical Hankel function of the first kind is evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+nu} & The order for which the cylindrical Hankel function of the first kind is evaluated. \\
 \hline
-\mbox{\tt in}  & {\em z} & The argument at which the cylindrical Hankel function of the first kind is evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The argument at which the cylindrical Hankel function of the first kind is evaluated. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -2599,13 +2618,13 @@ References \+\_\+\+\_\+hankel().
 )}\label{namespacestd_1_1____detail_a98615677d4042ef02fe2faf326f1a614}
 
 
-Return the cylindrical Hankel function of the second kind $ h^{(1)}_n(x) $. 
+Return the cylindrical Hankel function of the second kind $ H^{(2)}_nu(x) $. 
 
-The cylindrical Hankel function of the second kind is defined by\+: \[ H^{(2)}_n(x) = J_n(x) - i N_n(x) \]
+The cylindrical Hankel function of the second kind is defined by\+: \[ H^{(2)}_\nu(x) = J_\nu(x) - i N_\nu(x) \]
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+n} & The order of the spherical Neumann function. \\
+{\em \+\_\+\+\_\+nu} & The order of the spherical Neumann function. \\
 \hline
 {\em \+\_\+\+\_\+x} & The argument of the spherical Neumann function. \\
 \hline
@@ -2635,9 +2654,9 @@ Return the complex cylindrical Hankel function of the second kind.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em nu} & The order for which the cylindrical Hankel function of the second kind is evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+nu} & The order for which the cylindrical Hankel function of the second kind is evaluated. \\
 \hline
-\mbox{\tt in}  & {\em z} & The argument at which the cylindrical Hankel function of the second kind is evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The argument at which the cylindrical Hankel function of the second kind is evaluated. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -2665,9 +2684,9 @@ Return the complex cylindrical Neumann function.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em nu} & The order for which the cylindrical Neumann function is evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+nu} & The order for which the cylindrical Neumann function is evaluated. \\
 \hline
-\mbox{\tt in}  & {\em z} & The argument at which the cylindrical Neumann function is evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The argument at which the cylindrical Neumann function is evaluated. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -2815,7 +2834,7 @@ Return the Dirichlet beta function. Currently, w must be real (complex type but 
 
 
 \begin{DoxyParams}{Parameters}
-{\em w} & The complex (but on-\/real-\/axis) argument. \\
+{\em \+\_\+\+\_\+w} & The complex (but on-\/real-\/axis) argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -2828,7 +2847,7 @@ The Dirichlet Beta function of real argument.
 \end{DoxyExceptions}
 
 
-Definition at line 1149 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1152 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -2845,7 +2864,7 @@ Return the Dirichlet beta function for real argument.
 
 
 \begin{DoxyParams}{Parameters}
-{\em w} & The real argument. \\
+{\em \+\_\+\+\_\+w} & The real argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -2853,7 +2872,7 @@ The Dirichlet Beta function of real argument.
 \end{DoxyReturn}
 
 
-Definition at line 1168 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1171 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -2870,7 +2889,7 @@ Return the Dirichlet eta function. Currently, w must be real (complex type but n
 
 
 \begin{DoxyParams}{Parameters}
-{\em w} & The complex (but on-\/real-\/axis) argument. \\
+{\em \+\_\+\+\_\+w} & The complex (but on-\/real-\/axis) argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -2883,7 +2902,7 @@ The complex Dirichlet eta function.
 \end{DoxyExceptions}
 
 
-Definition at line 1112 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1115 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -2900,7 +2919,7 @@ Return the Dirichlet eta function for real argument.
 
 
 \begin{DoxyParams}{Parameters}
-{\em w} & The real argument. \\
+{\em \+\_\+\+\_\+w} & The real argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -2908,7 +2927,7 @@ The Dirichlet eta function.
 \end{DoxyReturn}
 
 
-Definition at line 1130 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1133 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -3807,7 +3826,7 @@ Definition at line 440 of file sf\+\_\+expint.\+tcc.
 )}\label{namespacestd_1_1____detail_a6864e83328d0ac8f2c26e8ac4a0a3e35}
 
 
-Return the F-\/distribution propability function. This returns the probability that the observed chi-\/square for a correct model exceeds the value \$f\mbox{[} $^\wedge$2 \$f\mbox{]}. 
+Return the F-\/distribution propability function. This returns the probability that the observed chi-\/square for a correct model exceeds the value $ \chi^2 $. 
 
 The f-\/distribution propability function is related to the incomplete beta function\+: \[ Q(F|\nu_1, \nu_2) = I_{\frac{\nu_2}{\nu_2 + \nu_1 F}} (\frac{\nu_2}{2}, \frac{\nu_1}{2}) \] 
 
@@ -3828,7 +3847,7 @@ References \+\_\+\+\_\+beta\+\_\+inc().
 )}\label{namespacestd_1_1____detail_a0dd37941ab4f7d2ac376d59d62554c1f}
 
 
-Return the F-\/distribution propability function. This returns the probability that the observed chi-\/square for a correct model exceeds the value \$f\mbox{[} $^\wedge$2 \$f\mbox{]}. 
+Return the F-\/distribution propability function. This returns the probability that the observed chi-\/square for a correct model exceeds the value $ \chi^2 $. 
 
 The f-\/distribution propability function is related to the incomplete beta function\+: \[ P(F|\nu_1, \nu_2) = 1 - I_{\frac{\nu_2}{\nu_2 + \nu_1 F}} (\frac{\nu_2}{2}, \frac{\nu_1}{2}) = 1 - Q(F|\nu_1, \nu_2) \] 
 
@@ -3876,9 +3895,9 @@ Return the Fermi-\/\+Dirac integral of real order s and real argument x. \begin{
 \end{DoxySeeAlso}
 
 \begin{DoxyParams}{Parameters}
-{\em s} & The order s $>$= 0. \\
+{\em \+\_\+\+\_\+s} & The order s $>$= 0. \\
 \hline
-{\em x} & The real argument. \\
+{\em \+\_\+\+\_\+x} & The real argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -3886,7 +3905,7 @@ The real Fermi-\/\+Dirac cosine sum F\+\_\+s(x),
 \end{DoxyReturn}
 
 
-Definition at line 1335 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1338 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -3922,7 +3941,7 @@ Compute the Fock-\/type Airy functions $ w_1(x) $ and $ w_2(x) $ and their first
 \end{DoxyParams}
 
 
-Definition at line 556 of file sf\+\_\+mod\+\_\+bessel.\+tcc.
+Definition at line 569 of file sf\+\_\+mod\+\_\+bessel.\+tcc.
 
 \hypertarget{namespacestd_1_1____detail_acefbc7637e41168e49d6230df9c5127f}{}\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+fpequal@{\+\_\+\+\_\+fpequal}}
 \index{\+\_\+\+\_\+fpequal@{\+\_\+\+\_\+fpequal}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
@@ -3936,13 +3955,13 @@ A function to reliably compare two floating point numbers.
 
 
 \begin{DoxyParams}{Parameters}
-{\em a} & the left hand side. \\
+{\em \+\_\+\+\_\+a} & the left hand side. \\
 \hline
-{\em b} & the right hand side \\
+{\em \+\_\+\+\_\+b} & the right hand side \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-returns true if a and b are equal to zero or differ only by max(a,b)$\ast$ 5$\ast$ eps 
+returns true if a and b are equal to zero or differ only by max(a,b) $\ast$ 5$\ast$ eps 
 \end{DoxyReturn}
 
 
@@ -3963,7 +3982,7 @@ A function to reliably test a complex number for imaginaryness \mbox{[}?\mbox{]}
 
 
 \begin{DoxyParams}{Parameters}
-{\em w} & The complex argument. \\
+{\em \+\_\+\+\_\+w} & The complex argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -3999,7 +4018,7 @@ A function to reliably test a complex number for realness.
 
 
 \begin{DoxyParams}{Parameters}
-{\em w} & The complex argument. \\
+{\em \+\_\+\+\_\+w} & The complex argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -4318,17 +4337,17 @@ Definition at line 44 of file sf\+\_\+gegenbauer.\+tcc.
 )}\label{namespacestd_1_1____detail_a55f221be4308a6e366968d5cf3b840c2}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em nu} & The order for which the Hankel functions are evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+nu} & The order for which the Hankel functions are evaluated. \\
 \hline
-\mbox{\tt in}  & {\em z} & The argument at which the Hankel functions are evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The argument at which the Hankel functions are evaluated. \\
 \hline
-\mbox{\tt out}  & {\em H1} & The Hankel function of the first kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H1} & The Hankel function of the first kind. \\
 \hline
-\mbox{\tt out}  & {\em H1p} & The derivative of the Hankel function of the first kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H1p} & The derivative of the Hankel function of the first kind. \\
 \hline
-\mbox{\tt out}  & {\em H2} & The Hankel function of the second kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H2} & The Hankel function of the second kind. \\
 \hline
-\mbox{\tt out}  & {\em H2p} & The derivative of the Hankel function of the second kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H2p} & The derivative of the Hankel function of the second kind. \\
 \hline
 \end{DoxyParams}
 
@@ -4361,17 +4380,17 @@ Referenced by \+\_\+\+\_\+cyl\+\_\+bessel(), \+\_\+\+\_\+cyl\+\_\+hankel\+\_\+1(
 )}\label{namespacestd_1_1____detail_a4d1fa9f2ae57056ac102a33c2ddbe9c3}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em nu} & The order for which the Hankel functions are evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+nu} & The order for which the Hankel functions are evaluated. \\
 \hline
-\mbox{\tt in}  & {\em z} & The argument at which the Hankel functions are evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The argument at which the Hankel functions are evaluated. \\
 \hline
-\mbox{\tt out}  & {\em H1} & The Hankel function of the first kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H1} & The Hankel function of the first kind. \\
 \hline
-\mbox{\tt out}  & {\em H1p} & The derivative of the Hankel function of the first kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H1p} & The derivative of the Hankel function of the first kind. \\
 \hline
-\mbox{\tt out}  & {\em H2} & The Hankel function of the second kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H2} & The Hankel function of the second kind. \\
 \hline
-\mbox{\tt out}  & {\em H2p} & The derivative of the Hankel function of the second kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H2p} & The derivative of the Hankel function of the second kind. \\
 \hline
 \end{DoxyParams}
 
@@ -4432,17 +4451,17 @@ This routine computes the uniform asymptotic approximations of the Hankel functi
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em nu} & The order for which the Hankel functions are evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+nu} & The order for which the Hankel functions are evaluated. \\
 \hline
-\mbox{\tt in}  & {\em z} & The argument at which the Hankel functions are evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The argument at which the Hankel functions are evaluated. \\
 \hline
-\mbox{\tt out}  & {\em H1} & The Hankel function of the first kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H1} & The Hankel function of the first kind. \\
 \hline
-\mbox{\tt out}  & {\em H1p} & The derivative of the Hankel function of the first kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H1p} & The derivative of the Hankel function of the first kind. \\
 \hline
-\mbox{\tt out}  & {\em H2} & The Hankel function of the second kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H2} & The Hankel function of the second kind. \\
 \hline
-\mbox{\tt out}  & {\em H2p} & The derivative of the Hankel function of the second kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H2p} & The derivative of the Hankel function of the second kind. \\
 \hline
 \end{DoxyParams}
 
@@ -4475,17 +4494,17 @@ Compute approximate values for the Hankel functions of the first and second kind
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em nu} & The order for which the Hankel functions are evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+nu} & The order for which the Hankel functions are evaluated. \\
 \hline
-\mbox{\tt in}  & {\em z} & The argument at which the Hankel functions are evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The argument at which the Hankel functions are evaluated. \\
 \hline
-\mbox{\tt out}  & {\em H1} & The Hankel function of the first kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H1} & The Hankel function of the first kind. \\
 \hline
-\mbox{\tt out}  & {\em H1p} & The derivative of the Hankel function of the first kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H1p} & The derivative of the Hankel function of the first kind. \\
 \hline
-\mbox{\tt out}  & {\em H2} & The Hankel function of the second kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H2} & The Hankel function of the second kind. \\
 \hline
-\mbox{\tt out}  & {\em H2p} & The derivative of the Hankel function of the second kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H2p} & The derivative of the Hankel function of the second kind. \\
 \hline
 \end{DoxyParams}
 
@@ -4570,13 +4589,13 @@ Compute the sums in appropriate linear combinations appearing in Olver\textquote
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt out}  & {\em H1} & The Hankel function of the first kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H1sum} & The Hankel function of the first kind. \\
 \hline
-\mbox{\tt out}  & {\em H1p} & The derivative of the Hankel function of the first kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H1psum} & The derivative of the Hankel function of the first kind. \\
 \hline
-\mbox{\tt out}  & {\em H2} & The Hankel function of the second kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H2sum} & The Hankel function of the second kind. \\
 \hline
-\mbox{\tt out}  & {\em H2p} & The derivative of the Hankel function of the second kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H2psum} & The derivative of the Hankel function of the second kind. \\
 \hline
 \end{DoxyParams}
 
@@ -4813,7 +4832,7 @@ Referenced by \+\_\+\+\_\+hyperg(), and \+\_\+\+\_\+hyperg\+\_\+reflect().
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+u}
 \end{DoxyParamCaption}
 )}\label{namespacestd_1_1____detail_a98915d9bbc58112db7ffef2753313a63}
-Return a tuple of the three primary Jacobi elliptic functions\+: sn(k, u), cn(k, u), dn(k, u). 
+Return a tuple of the three primary Jacobi elliptic functions\+: $ sn(k, u), cn(k, u), dn(k, u) $. 
 
 Definition at line 378 of file sf\+\_\+theta.\+tcc.
 
@@ -4859,7 +4878,7 @@ The value of the Laguerre polynomial of order n and argument x.
 \end{DoxyReturn}
 
 
-Definition at line 306 of file sf\+\_\+laguerre.\+tcc.
+Definition at line 312 of file sf\+\_\+laguerre.\+tcc.
 
 \hypertarget{namespacestd_1_1____detail_a152324942f37ae3c6fc65aec1f17049e}{}\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+log\+\_\+bincoef@{\+\_\+\+\_\+log\+\_\+bincoef}}
 \index{\+\_\+\+\_\+log\+\_\+bincoef@{\+\_\+\+\_\+log\+\_\+bincoef}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
@@ -5470,7 +5489,7 @@ The associated Laguerre polynomial is defined for integral $ \alpha = m $ by\+: 
 \begin{DoxyParams}{Parameters}
 {\em \+\_\+\+\_\+n} & The order of the Laguerre function. \\
 \hline
-{\em \+\_\+\+\_\+alpha} & The degree of the Laguerre function. \\
+{\em \+\_\+\+\_\+alpha1} & The degree of the Laguerre function. \\
 \hline
 {\em \+\_\+\+\_\+x} & The argument of the Laguerre function. \\
 \hline
@@ -5480,7 +5499,7 @@ The value of the Laguerre function of order n, degree $ \alpha $, and argument x
 \end{DoxyReturn}
 
 
-Definition at line 234 of file sf\+\_\+laguerre.\+tcc.
+Definition at line 240 of file sf\+\_\+laguerre.\+tcc.
 
 
 
@@ -5503,9 +5522,23 @@ The associated Laguerre function is defined by \[ L_n^\alpha(x) = \frac{(\alpha 
 
 This function assumes x != 0.
 
-This is from the G\+N\+U Scientific Library. 
+This is from the G\+N\+U Scientific Library.
 
-Definition at line 119 of file sf\+\_\+laguerre.\+tcc.
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+n} & The order of the Laguerre function. \\
+\hline
+{\em \+\_\+\+\_\+alpha1} & The degree of the Laguerre function. \\
+\hline
+{\em \+\_\+\+\_\+x} & The argument of the Laguerre function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the Laguerre function of order n, degree $ \alpha $, and argument x. 
+\end{DoxyReturn}
+
+
+Definition at line 125 of file sf\+\_\+laguerre.\+tcc.
 
 
 
@@ -5528,7 +5561,7 @@ This routine returns the associated Laguerre polynomial of order $ n $, degree $
 \begin{DoxyParams}{Parameters}
 {\em \+\_\+\+\_\+n} & The order of the Laguerre function. \\
 \hline
-{\em \+\_\+\+\_\+alpha} & The degree of the Laguerre function. \\
+{\em \+\_\+\+\_\+alpha1} & The degree of the Laguerre function. \\
 \hline
 {\em \+\_\+\+\_\+x} & The argument of the Laguerre function. \\
 \hline
@@ -5559,7 +5592,7 @@ Referenced by \+\_\+\+\_\+poly\+\_\+laguerre().
 )}\label{namespacestd_1_1____detail_a6d3a7499bd109d5c0ea01e85f3165730}
 
 
-This routine returns the associated Laguerre polynomial of order $ n $, degree $ \alpha $\+: $ L_n^\alpha(x) $ by recursion. 
+This routine returns the associated Laguerre polynomial of order {\ttfamily n}, degree {\ttfamily $ \alpha $}\+: $ L_n^\alpha(x) $ by recursion. 
 
 The associated Laguerre function is defined by \[ L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!} _1F_1(-n; \alpha + 1; x) \] where $ (\alpha)_n $ is the Pochhammer symbol and $ _1F_1(a; c; x) $ is the confluent hypergeometric function.
 
@@ -5569,7 +5602,7 @@ The associated Laguerre polynomial is defined for integral $ \alpha = m $ by\+: 
 \begin{DoxyParams}{Parameters}
 {\em \+\_\+\+\_\+n} & The order of the Laguerre function. \\
 \hline
-{\em \+\_\+\+\_\+alpha} & The degree of the Laguerre function. \\
+{\em \+\_\+\+\_\+alpha1} & The degree of the Laguerre function. \\
 \hline
 {\em \+\_\+\+\_\+x} & The argument of the Laguerre function. \\
 \hline
@@ -5579,7 +5612,7 @@ The value of the Laguerre function of order n, degree $ \alpha $, and argument x
 \end{DoxyReturn}
 
 
-Definition at line 175 of file sf\+\_\+laguerre.\+tcc.
+Definition at line 181 of file sf\+\_\+laguerre.\+tcc.
 
 
 
@@ -5601,9 +5634,9 @@ The Legendre function of order $ l $ and argument $ x $, $ P_l(x) $, is defined 
 
 
 \begin{DoxyParams}{Parameters}
-{\em l} & The order of the Legendre polynomial. $l >= 0$. \\
+{\em \+\_\+\+\_\+l} & The order of the Legendre polynomial. $l >= 0$. \\
 \hline
-{\em x} & The argument of the Legendre polynomial. $|x| <= 1$. \\
+{\em \+\_\+\+\_\+x} & The argument of the Legendre polynomial. $|x| <= 1$. \\
 \hline
 \end{DoxyParams}
 
@@ -5630,9 +5663,9 @@ The Legendre function of order $ l $ and argument $ x $, $ Q_l(x) $, is defined 
 
 
 \begin{DoxyParams}{Parameters}
-{\em l} & The order of the Legendre polynomial. $l >= 0$. \\
+{\em \+\_\+\+\_\+l} & The order of the Legendre polynomial. $l >= 0$. \\
 \hline
-{\em x} & The argument of the Legendre polynomial. $|x| <= 1$. \\
+{\em \+\_\+\+\_\+x} & The argument of the Legendre polynomial. $|x| <= 1$. \\
 \hline
 \end{DoxyParams}
 
@@ -5672,9 +5705,9 @@ Return the polylog Li\+\_\+s(x) for two real arguments.
 
 
 \begin{DoxyParams}{Parameters}
-{\em s} & The real index. \\
+{\em \+\_\+\+\_\+s} & The real index. \\
 \hline
-{\em x} & The real argument. \\
+{\em \+\_\+\+\_\+x} & The real argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -5682,7 +5715,7 @@ The complex value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 1061 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1064 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -5704,9 +5737,9 @@ Return the polylog in those cases where we can calculate it.
 
 
 \begin{DoxyParams}{Parameters}
-{\em s} & The real index. \\
+{\em \+\_\+\+\_\+s} & The real index. \\
 \hline
-{\em w} & The complex argument. \\
+{\em \+\_\+\+\_\+w} & The complex argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -5714,7 +5747,7 @@ The complex value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 1091 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1094 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -5728,16 +5761,16 @@ References \+\_\+\+\_\+fpequal(), \+\_\+\+\_\+polylog(), and \+\_\+\+\_\+polylog
 \item[{Arg\+Type}]{\+\_\+\+\_\+w}
 \end{DoxyParamCaption}
 )}\label{namespacestd_1_1____detail_ad01c033a96c9f185216d6c9f9db49c99}
-This is the frontend function which calculates Li\+\_\+s(e$^\wedge$w) First we branch into different parts depending on the properties of s. This function is the same irrespective of a real or complex w, hence the template parameter Arg\+Type.
+This is the frontend function which calculates $ Li_s(e^w) $ First we branch into different parts depending on the properties of s. This function is the same irrespective of a real or complex w, hence the template parameter Arg\+Type.
 
 \begin{DoxyNote}{Note}
 \+: I {\itshape really} wish we could return a variant$<$Tp, std\+::complex$<$\+Tp$>$$>$.
 \end{DoxyNote}
 
 \begin{DoxyParams}{Parameters}
-{\em s} & The real order. \\
+{\em \+\_\+\+\_\+s} & The real order. \\
 \hline
-{\em w} & The real or complex argument. \\
+{\em \+\_\+\+\_\+w} & The real or complex argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -5745,7 +5778,7 @@ The real or complex value of Li\+\_\+s(e$^\wedge$w).
 \end{DoxyReturn}
 
 
-Definition at line 1028 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1031 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -5763,15 +5796,15 @@ Referenced by \+\_\+\+\_\+bose\+\_\+einstein(), \+\_\+\+\_\+clausen(), \+\_\+\+\
 \item[{std\+::complex$<$ \+\_\+\+Tp $>$}]{\+\_\+\+\_\+w}
 \end{DoxyParamCaption}
 )}\label{namespacestd_1_1____detail_a84b83a6be0a236fbcbbdea9078e8ca58}
-This function implements the asymptotic series for the polylog. It is given by 2  \{k=0\}$^\wedge$ (2k) w$^\wedge$\{s-\/2k\}/\+Gamma(s-\/2k+1) -\/i  w$^\wedge$(s-\/1)/\+Gamma(s) for Re(w) $>$$>$ 1
+This function implements the asymptotic series for the polylog. It is given by \[ 2 \sum \limits_{k=0}^\infty \zeta(2k) w^{s-2k}/\Gamma(s-2k+1) -i \pi w^(s-1)/\Gamma(s) \] for $ Re(w) >> 1 $
 
-Don\textquotesingle{}t check this against Mathematica 8. For real u the imaginary part of the polylog is given by Im(\+Li\+\_\+s(e$^\wedge$u)) = -\/  u$^\wedge$\{s-\/1\}/\+Gamma(s) Check this relation for any benchmark that you use. The use of evenzeta leads to a speedup of about 1000.
+Don\textquotesingle{}t check this against Mathematica 8. For real u the imaginary part of the polylog is given by $ Im(Li_s(e^u)) = - \pi u^{s-1}/\Gamma(s) $ Check this relation for any benchmark that you use. The use of evenzeta leads to a speedup of about 1000.
 
 
 \begin{DoxyParams}{Parameters}
-{\em s} & the index s. \\
+{\em \+\_\+\+\_\+s} & the real index s. \\
 \hline
-{\em w} & the large argument w. \\
+{\em \+\_\+\+\_\+w} & the large complex argument w. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -5779,7 +5812,7 @@ the value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 675 of file sf\+\_\+polylog.\+tcc.
+Definition at line 678 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -5801,9 +5834,9 @@ This treats the case where s is a negative integer.
 
 
 \begin{DoxyParams}{Parameters}
-{\em s} & a negative integer. \\
+{\em \+\_\+\+\_\+s} & a negative integer. \\
 \hline
-{\em w} & an arbitrary complex number \\
+{\em \+\_\+\+\_\+w} & an arbitrary complex number \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -5811,7 +5844,7 @@ the value of the polylogarith,.
 \end{DoxyReturn}
 
 
-Definition at line 845 of file sf\+\_\+polylog.\+tcc.
+Definition at line 848 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -5833,9 +5866,9 @@ This treats the case where s is a negative integer and w is a real.
 
 
 \begin{DoxyParams}{Parameters}
-{\em s} & a negative integer. \\
+{\em \+\_\+\+\_\+s} & a negative integer. \\
 \hline
-{\em w} & the argument. \\
+{\em \+\_\+\+\_\+w} & the argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -5843,7 +5876,7 @@ the value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 887 of file sf\+\_\+polylog.\+tcc.
+Definition at line 890 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -5861,9 +5894,9 @@ Here s is a positive integer and the function descends into the different kernel
 
 
 \begin{DoxyParams}{Parameters}
-{\em s} & a positive integer. \\
+{\em \+\_\+\+\_\+s} & a positive integer. \\
 \hline
-{\em w} & an arbitrary complex number. \\
+{\em \+\_\+\+\_\+w} & an arbitrary complex number. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -5871,7 +5904,7 @@ The value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 756 of file sf\+\_\+polylog.\+tcc.
+Definition at line 759 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -5893,9 +5926,9 @@ Here s is a positive integer and the function descends into the different kernel
 
 
 \begin{DoxyParams}{Parameters}
-{\em s} & a positive integer \\
+{\em \+\_\+\+\_\+s} & a positive integer \\
 \hline
-{\em w} & an arbitrary real argument w \\
+{\em \+\_\+\+\_\+w} & an arbitrary real argument w \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -5903,7 +5936,7 @@ the value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 804 of file sf\+\_\+polylog.\+tcc.
+Definition at line 807 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -5917,11 +5950,11 @@ References \+\_\+\+\_\+fpequal(), \+\_\+\+\_\+polylog\+\_\+exp\+\_\+asymp(), \+\
 \item[{std\+::complex$<$ \+\_\+\+Tp $>$}]{\+\_\+\+\_\+w}
 \end{DoxyParamCaption}
 )}\label{namespacestd_1_1____detail_a07b26b8c7ff467310e4e1df6e3efd893}
-This function treats the cases of negative real index s. Theoretical convergence is present for $\vert$w$\vert$ $<$ 2$\ast$pi. We use an optimized version of \[ Li_s(e^w) = \Gamma(1-s)(-w)^(s-1) + (2\pi)^(-s)/\pi A_p(w) \] \[ A_p(w) = \sum_k \Gamma(1+k-s)/k!\sin(\pi/2*(s-k))(w/2/\pi)^k\zeta(1+k-s) \] 
+This function treats the cases of negative real index s. Theoretical convergence is present for $ |w| < 2\pi $. We use an optimized version of \[ Li_s(e^w) = \Gamma(1-s)(-w)^(s-1) + (2\pi)^(-s)/\pi A_p(w) \] \[ A_p(w) = \sum_k \Gamma(1+k-s)/k!\sin(\pi/2*(s-k))(w/2/\pi)^k\zeta(1+k-s) \] 
 \begin{DoxyParams}{Parameters}
-{\em s} & The index s. \\
+{\em \+\_\+\+\_\+s} & The real index \\
 \hline
-{\em w} & The Argument w. \\
+{\em \+\_\+\+\_\+w} & The complex argument \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -5979,13 +6012,13 @@ This function treats the cases of negative integer index s which are multiples o
 
 In that case the sine occuring in the expansion occasionally takes on the value zero. We use that to provide an optimized series for p = 2n\+:
 
-In the template parameter sigma we transport whether p = 4k (sigma = 1) or p = 4k + 2 (sigma = -\/1) \[ Li_p(e^w) = Gamma(1-p) (-w)^{p-1} - A_p(w) - \sigma * B_p(w) \] with \[ A_p(w) = 2 (2\pi)^(p-1) (-p)! / (2 \pi)^(-p/2) (1 + w^2/(4 pi^2))^{-1/2 + p/2} \cos((1 - p) ArcTan(2 pi/ w)) \] and \[ B_p(w) = - 2 (2 pi)^(p-1) \sum \limits_{k = 0}^\infty \Gamma(2 + 2k - p) / (2k+1)! (-1)^k (w/2\pi)^(2k+1) (\zeta(2 + 2k - p) - _Tp{1}) \] This is suitable for $\vert$w$\vert$ $<$ 2 pi The original series is (This might be worthwhile if we use the already present table of the Bernoullis) \[ Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} - \sigma (2 \pi)^p / pi \sum \limits_{k = 0}^\infty \Gamma(2 + 2k - p)/ (2k+1)! (-1)^k (w/2\pi)^(2k+1) \zeta(2 + 2k - p) \]
+In the template parameter sigma we transport whether $ p = 4k (sigma = 1) $ or $ p = 4k + 2 (sigma = -1) $ \[ Li_p(e^w) = Gamma(1-p) (-w)^{p-1} - A_p(w) - \sigma * B_p(w) \] with \[ A_p(w) = 2 (2\pi)^(p-1) (-p)! / (2 \pi)^(-p/2) (1 + w^2/(4 pi^2))^{-1/2 + p/2} \cos((1 - p) ArcTan(2 pi/ w)) \] and \[ B_p(w) = - 2 (2 pi)^(p-1) \sum \limits_{k = 0}^\infty \Gamma(2 + 2k - p) / (2k+1)! (-1)^k (w/2\pi)^(2k+1) (\zeta(2 + 2k - p) - _Tp{1}) \] This is suitable for $ |w| < 2 \pi $ The original series is (This might be worthwhile if we use the already present table of the Bernoullis) \[ Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} - \sigma (2 \pi)^p / pi \sum \limits_{k = 0}^\infty \Gamma(2 + 2k - p)/ (2k+1)! (-1)^k (w/2\pi)^(2k+1) \zeta(2 + 2k - p) \]
 
 
 \begin{DoxyParams}{Parameters}
-{\em n} & the index n = 4k. \\
+{\em \+\_\+\+\_\+n} & the integral index $ n = 4k $. \\
 \hline
-{\em w} & The Argument w \\
+{\em \+\_\+\+\_\+w} & The complex argument w \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -6013,15 +6046,15 @@ Referenced by \+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg().
 )}\label{namespacestd_1_1____detail_a114ec67e6802a402064b16a9a77f0863}
 This function treats the cases of negative integer index s which are odd.
 
-In that case the sine occuring in the expansion occasionally vanishes. We use that to provide an optimized series for p = 1 + 2k\+: In the template parameter sigma we transport whether p = 1 + 4k (sigma = 1) or p = 3 + 4k (sigma = -\/1)
+In that case the sine occuring in the expansion occasionally vanishes. We use that to provide an optimized series for $ p = 1 + 2k $\+: In the template parameter sigma we transport whether $ p = 1 + 4k (sigma = 1) $ or $ p = 3 + 4k (sigma = -1) $
 
-\[ Li_p(e^w) = \Gamma(1-p) * (-w)^{p-1} + \sigma * A_p(w) - \sigma * B_p(w) \] with \[ A_p(w) = 2 (2\pi)^(p-1) * \Gamma(1-p) (1 + w^2/(4 pi^2))^{-1/2 + p/2} \cos((1 - p) ArcTan(2 pi/ w)) \] and \[ B_p(w) = 2 (2 pi)^(p-1) * \sum \limits_{k = 0}^\infty \Gamma(1 + 2k - p)/ (2k)! (-w^2/4/\pi^2)^k (\zeta(1 + 2k - p) - _Tp{1}) \] This is suitable for $\vert$w$\vert$ $<$ 2 pi . The use of evenzeta gives a speedup of about 50 The original series is (This might be worthwhile if we use the already present table of the Bernoullis) \[ Li_p(e^w) = Gamma(1-p) * (-w)^{p-1} - \sigma *2*(2 pi)^(p-1) * \sum \limits_{k = 0}^\infty \Gamma(1 + 2k - p)/ (2k)! (-1)^k (w/2/\pi)^(2k) \zeta(1 + 2k - p) \]
+\[ Li_p(e^w) = \Gamma(1-p) * (-w)^{p-1} + \sigma * A_p(w) - \sigma * B_p(w) \] with \[ A_p(w) = 2 (2\pi)^(p-1) * \Gamma(1-p) (1 + w^2/(4 pi^2))^{-1/2 + p/2} \cos((1 - p) ArcTan(2 pi/ w)) \] and \[ B_p(w) = 2 (2 pi)^(p-1) * \sum \limits_{k = 0}^\infty \Gamma(1 + 2k - p)/ (2k)! (-w^2/4/\pi^2)^k (\zeta(1 + 2k - p) - _Tp{1}) \] This is suitable for $ |w| < 2 \pi $. The use of evenzeta gives a speedup of about 50 The original series is (This might be worthwhile if we use the already present table of the Bernoullis) \[ Li_p(e^w) = Gamma(1-p) * (-w)^{p-1} - \sigma *2*(2 pi)^(p-1) * \sum \limits_{k = 0}^\infty \Gamma(1 + 2k - p)/ (2k)! (-1)^k (w/2/\pi)^(2k) \zeta(1 + 2k - p) \]
 
 
 \begin{DoxyParams}{Parameters}
-{\em n} & the index n = 4k. \\
+{\em \+\_\+\+\_\+n} & the integral index n = 4k. \\
 \hline
-{\em w} & The Argument w. \\
+{\em \+\_\+\+\_\+w} & The complex argument w. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -6049,13 +6082,13 @@ Referenced by \+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg().
 )}\label{namespacestd_1_1____detail_a466240361bcf30941d84a8fc3cd91cf9}
 Theoretical convergence for Re(w) $<$ 0.
 
-Seems to beat the other expansions for Re(w) $<$ -\/pi/2 -\/ pi/5. Note that this is an implementation of the basic series\+: \[ Li_s(e^z) = \sum_{k=1} e^(k*z) * k^(-s) \]
+Seems to beat the other expansions for $ Re(w) < -\pi/2 - \pi/5 $. Note that this is an implementation of the basic series\+: \[ Li_s(e^z) = \sum_{k=1} e^(k*z) * k^(-s) \]
 
 
 \begin{DoxyParams}{Parameters}
-{\em s} & is an arbitrary type, Integer or float. \\
+{\em \+\_\+\+\_\+s} & is an arbitrary type, integral or float. \\
 \hline
-{\em w} & something with a negative real part. \\
+{\em \+\_\+\+\_\+w} & something with a negative real part. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -6063,7 +6096,7 @@ the value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 726 of file sf\+\_\+polylog.\+tcc.
+Definition at line 729 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -6083,13 +6116,13 @@ Referenced by \+\_\+\+\_\+polylog\+\_\+exp(), \+\_\+\+\_\+polylog\+\_\+exp\+\_\+
 )}\label{namespacestd_1_1____detail_a0327d2970eba3a0a2d73c71c7a77701c}
 This function treats the cases of positive integer index s.
 
-\[ Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) w^k/k! + (H_{s-1} - log(-w)) w^(s-1)/(s-1)! \] The radius of convergence is $\vert$w$\vert$ $<$ 2 pi. Note that this series involves a log(-\/x). gcc and Mathematica differ in their implementation of (e$^\wedge$(i ))\+: gcc\+: (e$^\wedge$(+-\/ i $\ast$ )) = +-\/ i  whereas Mathematica doesn\textquotesingle{}t preserve the sign in this case\+: (e$^\wedge$(+-\/ i)) = +i 
+\[ Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) w^k/k! + (H_{s-1} - log(-w)) w^(s-1)/(s-1)! \] The radius of convergence is $\vert$w$\vert$ $<$ 2 pi. Note that this series involves a log(-\/x). gcc and Mathematica differ in their implementation of (e$^\wedge$(i ))\+: gcc\+: (e$^\wedge$(+-\/ i $\ast$ )) = +-\/ i  whereas Mathematica doesn\textquotesingle{}t preserve the sign in this case\+: $ \log(e^(+- i\pi)) = +i \pi $
 
 
 \begin{DoxyParams}{Parameters}
-{\em s} & the index s. \\
+{\em \+\_\+\+\_\+s} & the index s. \\
 \hline
-{\em w} & the argument w. \\
+{\em \+\_\+\+\_\+w} & the argument w. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -6117,13 +6150,13 @@ Referenced by \+\_\+\+\_\+polylog\+\_\+exp\+\_\+int\+\_\+pos(), and \+\_\+\+\_\+
 )}\label{namespacestd_1_1____detail_ab13a4be6685dd222b654da3297342d7e}
 This function treats the cases of positive integer index s for real w.
 
-This specialization is worthwhile to catch the differing behaviour of log(x). \[ Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) w^k/k! + (H_{s-1} - log(-w)) w^(s-1)/(s-1)! \] The radius of convergence is $\vert$w$\vert$ $<$ 2 pi. Note that this series involves a log(-\/x). The use of evenzeta yields a speedup of about 2.\+5. gcc and Mathematica differ in their implementation of (e$^\wedge$(i ))\+: gcc\+: (e$^\wedge$(+-\/ i )) = +-\/ i  whereas Mathematica doesn\textquotesingle{}t preserve the sign in this case\+: (e$^\wedge$(+-\/ i $\ast$ )) = +i 
+This specialization is worthwhile to catch the differing behaviour of log(x). \[ Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) w^k/k! + (H_{s-1} - log(-w)) w^(s-1)/(s-1)! \] The radius of convergence is $ |w| < 2 \pi $. Note that this series involves a $ \log(-x) $. The use of evenzeta yields a speedup of about 2.\+5. gcc and Mathematica differ in their implementation of $ \log(e^(i \pi)) $\+: gcc\+: $ \log(e^(+- i \pi)) = +- i \pi $ whereas Mathematica doesn\textquotesingle{}t preserve the sign in this case\+: $ \log(e^(+- i * \pi)) = +i \pi $
 
 
 \begin{DoxyParams}{Parameters}
-{\em s} & the index s. \\
+{\em \+\_\+\+\_\+s} & the index. \\
 \hline
-{\em w} & the argument w \\
+{\em \+\_\+\+\_\+w} & the argument \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -6151,9 +6184,9 @@ The defining series is \[ Li_s(e^w) = A_s(w) + B_s(w) + \Gamma(1-s)(-w)^(s-1) \]
 
 
 \begin{DoxyParams}{Parameters}
-{\em s} & the positive real index s. \\
+{\em \+\_\+\+\_\+s} & the positive real index s. \\
 \hline
-{\em w} & The argument w. \\
+{\em \+\_\+\+\_\+w} & The complex argument w. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -6179,9 +6212,9 @@ Return the polylog where s is a negative real value and for complex argument. No
 
 
 \begin{DoxyParams}{Parameters}
-{\em s} & A negative real value that does not reduce to a negative integer. \\
+{\em \+\_\+\+\_\+s} & A negative real value that does not reduce to a negative integer. \\
 \hline
-{\em w} & The complex argument. \\
+{\em \+\_\+\+\_\+w} & The complex argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -6189,7 +6222,7 @@ The value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 974 of file sf\+\_\+polylog.\+tcc.
+Definition at line 977 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -6211,9 +6244,9 @@ Return the polylog where s is a negative real value and for real argument. Now w
 
 
 \begin{DoxyParams}{Parameters}
-{\em s} & A negative real value. \\
+{\em \+\_\+\+\_\+s} & A negative real value. \\
 \hline
-{\em w} & A real argument. \\
+{\em \+\_\+\+\_\+w} & A real argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -6221,7 +6254,7 @@ The value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 1002 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1005 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -6239,9 +6272,9 @@ Return the polylog where s is a positive real value and for complex argument.
 
 
 \begin{DoxyParams}{Parameters}
-{\em s} & A positive real number. \\
+{\em \+\_\+\+\_\+s} & A positive real number. \\
 \hline
-{\em w} & the complex argument. \\
+{\em \+\_\+\+\_\+w} & the complex argument. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -6249,7 +6282,7 @@ The value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 911 of file sf\+\_\+polylog.\+tcc.
+Definition at line 914 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -6271,9 +6304,9 @@ Return the polylog where s is a positive real value and the argument is real.
 
 
 \begin{DoxyParams}{Parameters}
-{\em s} & A positive real number tht does not reduce to an integer. \\
+{\em \+\_\+\+\_\+s} & A positive real number tht does not reduce to an integer. \\
 \hline
-{\em w} & The real argument w. \\
+{\em \+\_\+\+\_\+w} & The real argument w. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -6281,7 +6314,7 @@ The value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 945 of file sf\+\_\+polylog.\+tcc.
+Definition at line 948 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -6777,9 +6810,9 @@ Return the complex spherical Bessel function.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em n} & The order for which the spherical Bessel function is evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+n} & The order for which the spherical Bessel function is evaluated. \\
 \hline
-\mbox{\tt in}  & {\em z} & The argument at which the spherical Bessel function is evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The argument at which the spherical Bessel function is evaluated. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -6826,7 +6859,7 @@ Compute the spherical modified Bessel functions $ i_n(x) $ and $ k_n(x) $ and th
 \end{DoxyParams}
 
 
-Definition at line 432 of file sf\+\_\+mod\+\_\+bessel.\+tcc.
+Definition at line 445 of file sf\+\_\+mod\+\_\+bessel.\+tcc.
 
 
 
@@ -6846,7 +6879,7 @@ References \+\_\+\+\_\+cyl\+\_\+bessel\+\_\+ik().
 )}\label{namespacestd_1_1____detail_a4fb8d05af806e03645480c0fcb3a0a19}
 
 
-Compute the spherical Bessel $ j_n(x) $ and Neumann $ n_n(x) $ functions and their first derivatives $ j'_n(x) $ and $ n'_n(x) $ respectively. 
+Compute the spherical Bessel $ j_n(x) $ and Neumann $ n_n(x) $ functions and their first derivatives $ j_n(x) $ and $ n'_n(x) $ respectively. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -6893,17 +6926,17 @@ Helper to compute complex spherical Hankel functions and their derivatives.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em n} & The order for which the spherical Hankel functions are evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+n} & The order for which the spherical Hankel functions are evaluated. \\
 \hline
-\mbox{\tt in}  & {\em z} & The argument at which the spherical Hankel functions are evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The argument at which the spherical Hankel functions are evaluated. \\
 \hline
-\mbox{\tt out}  & {\em H1} & The spherical Hankel function of the first kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H1} & The spherical Hankel function of the first kind. \\
 \hline
-\mbox{\tt out}  & {\em H1p} & The derivative of the spherical Hankel function of the first kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H1p} & The derivative of the spherical Hankel function of the first kind. \\
 \hline
-\mbox{\tt out}  & {\em H2} & The spherical Hankel function of the second kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H2} & The spherical Hankel function of the second kind. \\
 \hline
-\mbox{\tt out}  & {\em H2p} & The derivative of the spherical Hankel function of the second kind. \\
+\mbox{\tt out}  & {\em \+\_\+\+H2p} & The derivative of the spherical Hankel function of the second kind. \\
 \hline
 \end{DoxyParams}
 
@@ -6964,9 +6997,9 @@ Return the complex spherical Hankel function of the first kind.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em n} & The order for which the spherical Hankel function of the first kind is evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+n} & The order for which the spherical Hankel function of the first kind is evaluated. \\
 \hline
-\mbox{\tt in}  & {\em z} & The argument at which the spherical Hankel function of the first kind is evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The argument at which the spherical Hankel function of the first kind is evaluated. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -6990,7 +7023,7 @@ References \+\_\+\+\_\+sph\+\_\+hankel().
 )}\label{namespacestd_1_1____detail_a89fe914f377a138d37369d13bda1162e}
 
 
-Return the spherical Hankel function of the second kind $ h^{(1)}_n(x) $. 
+Return the spherical Hankel function of the second kind $ h^{(2)}_n(x) $. 
 
 The spherical Hankel function of the second kind is defined by\+: \[ h^{(2)}_n(x) = j_n(x) - i n_n(x) \]
 
@@ -7026,9 +7059,9 @@ Return the complex spherical Hankel function of the second kind.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em n} & The order for which the spherical Hankel function of the second kind is evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+n} & The order for which the spherical Hankel function of the second kind is evaluated. \\
 \hline
-\mbox{\tt in}  & {\em z} & The argument at which the spherical Hankel function of the second kind is evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The argument at which the spherical Hankel function of the second kind is evaluated. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -7060,13 +7093,13 @@ The spherical harmonic function of $ l $, $ m $, and $ \theta $, $ \phi $ is def
 
 
 \begin{DoxyParams}{Parameters}
-{\em l} & The order of the spherical harmonic function. $ l >= 0 $. \\
+{\em \+\_\+\+\_\+l} & The order of the spherical harmonic function. $ l >= 0 $. \\
 \hline
-{\em m} & The order of the spherical harmonic function. $ m <= l $. \\
+{\em \+\_\+\+\_\+m} & The order of the spherical harmonic function. $ m <= l $. \\
 \hline
-{\em theta} & The radian polar angle argument of the spherical harmonic function. \\
+{\em \+\_\+\+\_\+theta} & The radian polar angle argument of the spherical harmonic function. \\
 \hline
-{\em phi} & The radian azimuthal angle argument of the spherical harmonic function. \\
+{\em \+\_\+\+\_\+phi} & The radian azimuthal angle argument of the spherical harmonic function. \\
 \hline
 \end{DoxyParams}
 
@@ -7096,11 +7129,11 @@ This function differs from the associated Legendre function by argument ( $x = \
 
 
 \begin{DoxyParams}{Parameters}
-{\em l} & The order of the spherical associated Legendre function. $ l >= 0 $. \\
+{\em \+\_\+\+\_\+l} & The order of the spherical associated Legendre function. $ l >= 0 $. \\
 \hline
-{\em m} & The order of the spherical associated Legendre function. $ m <= l $. \\
+{\em \+\_\+\+\_\+m} & The order of the spherical associated Legendre function. $ m <= l $. \\
 \hline
-{\em theta} & The radian polar angle argument of the spherical associated Legendre function. \\
+{\em \+\_\+\+\_\+theta} & The radian polar angle argument of the spherical associated Legendre function. \\
 \hline
 \end{DoxyParams}
 
@@ -7161,9 +7194,9 @@ Return the complex spherical Neumann function.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em n} & The order for which the spherical Neumann function is evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+n} & The order for which the spherical Neumann function is evaluated. \\
 \hline
-\mbox{\tt in}  & {\em z} & The argument at which the spherical Neumann function is evaluated. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The argument at which the spherical Neumann function is evaluated. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -7225,7 +7258,7 @@ References \+\_\+\+\_\+beta\+\_\+inc().
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )}\label{namespacestd_1_1____detail_af7f54a82d2e5f0d8758cf53ebb2500e8}
-Return the  function 
+Return the $ \theta_1 $ function 
 
 Definition at line 172 of file sf\+\_\+theta.\+tcc.
 
@@ -7245,7 +7278,7 @@ Referenced by \+\_\+\+\_\+theta\+\_\+s().
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )}\label{namespacestd_1_1____detail_ae783991fe49b94dff4ac9e3ebb446d4f}
-Return the  function 
+Return the $ \theta_2 $ function 
 
 Definition at line 153 of file sf\+\_\+theta.\+tcc.
 
@@ -7265,7 +7298,7 @@ Referenced by \+\_\+\+\_\+theta\+\_\+1(), and \+\_\+\+\_\+theta\+\_\+c().
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )}\label{namespacestd_1_1____detail_ac7207ce23916e29df96b3b2159b55150}
-Compute and return the  function by series expansion. 
+Compute and return the $ \theta_2 $ function by series expansion. 
 
 Definition at line 103 of file sf\+\_\+theta.\+tcc.
 
@@ -7281,7 +7314,7 @@ Referenced by \+\_\+\+\_\+theta\+\_\+2().
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )}\label{namespacestd_1_1____detail_af434f6a07d92577f40f352aa3d44483c}
-Compute and return the  function by series expansion. 
+Compute and return the $ \theta_1 $ function by series expansion. 
 
 Definition at line 49 of file sf\+\_\+theta.\+tcc.
 
@@ -7297,7 +7330,7 @@ Referenced by \+\_\+\+\_\+theta\+\_\+2().
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )}\label{namespacestd_1_1____detail_a6f965c639307555e5979b954a11ca0b8}
-Return the  function 
+Return the $ \theta_3 $ function 
 
 Definition at line 189 of file sf\+\_\+theta.\+tcc.
 
@@ -7317,7 +7350,7 @@ Referenced by \+\_\+\+\_\+theta\+\_\+4(), and \+\_\+\+\_\+theta\+\_\+d().
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )}\label{namespacestd_1_1____detail_a975a9a52a8a483849dd0877c24ca5d74}
-Compute and return the  function by asymptotic series expansion. 
+Compute and return the $ \theta_3 $ function by asymptotic series expansion. 
 
 Definition at line 128 of file sf\+\_\+theta.\+tcc.
 
@@ -7333,7 +7366,7 @@ Referenced by \+\_\+\+\_\+theta\+\_\+3().
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )}\label{namespacestd_1_1____detail_a3dc1b5188464b81b6acbb2983ef0f77c}
-Compute and return the  function by series expansion. 
+Compute and return the $ \theta_3 $ function by series expansion. 
 
 Definition at line 77 of file sf\+\_\+theta.\+tcc.
 
@@ -7349,7 +7382,7 @@ Referenced by \+\_\+\+\_\+theta\+\_\+3().
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )}\label{namespacestd_1_1____detail_a274d3801b84bcaad13c274c8bab32bcc}
-Return the  function 
+Return the $ \theta_4 $ function 
 
 Definition at line 208 of file sf\+\_\+theta.\+tcc.
 
@@ -7369,7 +7402,7 @@ Referenced by \+\_\+\+\_\+theta\+\_\+n().
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )}\label{namespacestd_1_1____detail_af95cdf16bfcf6c138d621b0c518a3299}
-Return the Neville  function 
+Return the Neville $ \theta_c $ function 
 
 Definition at line 301 of file sf\+\_\+theta.\+tcc.
 
@@ -7385,7 +7418,7 @@ References \+\_\+\+\_\+comp\+\_\+ellint\+\_\+1(), \+\_\+\+\_\+ellnome(), and \+\
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )}\label{namespacestd_1_1____detail_ad4ca29063a2f624e185592497d37a670}
-Return the Neville  function 
+Return the Neville $ \theta_d $ function 
 
 Definition at line 326 of file sf\+\_\+theta.\+tcc.
 
@@ -7401,7 +7434,7 @@ References \+\_\+\+\_\+comp\+\_\+ellint\+\_\+1(), \+\_\+\+\_\+ellnome(), and \+\
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )}\label{namespacestd_1_1____detail_aace76210c8f70761bb14ab602b88d027}
-Return the Neville  function 
+Return the Neville $ \theta_n $ function 
 
 Definition at line 351 of file sf\+\_\+theta.\+tcc.
 
@@ -7417,7 +7450,7 @@ References \+\_\+\+\_\+comp\+\_\+ellint\+\_\+1(), \+\_\+\+\_\+ellnome(), and \+\
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )}\label{namespacestd_1_1____detail_aeac5da2d394fafe6432871abf5c05413}
-Return the Neville  function 
+Return the Neville $ \theta_s $ function 
 
 Definition at line 275 of file sf\+\_\+theta.\+tcc.
 
@@ -7484,7 +7517,7 @@ A function to calculate the values of zeta at even positive integers. For values
 
 
 \begin{DoxyParams}{Parameters}
-{\em k} & an integer at which we evaluate the Riemann zeta function. \\
+{\em \+\_\+\+\_\+k} & an integer at which we evaluate the Riemann zeta function. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

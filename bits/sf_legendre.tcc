@@ -65,8 +65,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *     P_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l}
    *   @f]
    *
-   *   @param  l  The order of the Legendre polynomial.  @f$l >= 0@f$.
-   *   @param  x  The argument of the Legendre polynomial.  @f$|x| <= 1@f$.
+   *   @param  __l  The order of the Legendre polynomial.  @f$l >= 0@f$.
+   *   @param  __x  The argument of the Legendre polynomial.  @f$|x| <= 1@f$.
    */
   template<typename _Tp>
     _Tp
@@ -115,8 +115,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *     Q_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l}
    *   @f]
    *
-   *   @param  l  The order of the Legendre polynomial.  @f$l >= 0@f$.
-   *   @param  x  The argument of the Legendre polynomial.  @f$|x| <= 1@f$.
+   *   @param  __l  The order of the Legendre polynomial.  @f$l >= 0@f$.
+   *   @param  __x  The argument of the Legendre polynomial.  @f$|x| <= 1@f$.
    */
   template<typename _Tp>
     _Tp
@@ -163,11 +163,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *     P_l^m(x) = (1 - x^2)^{m/2}\frac{d^m}{dx^m}P_l(x)
    *   @f]
    *
-   *   @param  l  The order of the associated Legendre function.
+   *   @param  __l  The order of the associated Legendre function.
    *              @f$ l >= 0 @f$.
-   *   @param  m  The order of the associated Legendre function.
+   *   @param  __m  The order of the associated Legendre function.
    *              @f$ m <= l @f$.
-   *   @param  x  The argument of the associated Legendre function.
+   *   @param  __x  The argument of the associated Legendre function.
    *              @f$ |x| <= 1 @f$.
    */
   template<typename _Tp>
@@ -241,11 +241,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   and so this function is stable for larger differences of @f$ l @f$
    *   and @f$ m @f$.
    *
-   *   @param  l  The order of the spherical associated Legendre function.
+   *   @param  __l  The order of the spherical associated Legendre function.
    *              @f$ l >= 0 @f$.
-   *   @param  m  The order of the spherical associated Legendre function.
+   *   @param  __m  The order of the spherical associated Legendre function.
    *              @f$ m <= l @f$.
-   *   @param  theta  The radian polar angle argument
+   *   @param  __theta  The radian polar angle argument
    *                  of the spherical associated Legendre function.
    */
   template<typename _Tp>
@@ -336,13 +336,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *                     P_l^{|m|}(\cos\theta) \exp^{im\phi}
    *   @f]
    *
-   *   @param  l  The order of the spherical harmonic function.
+   *   @param  __l  The order of the spherical harmonic function.
    *              @f$ l >= 0 @f$.
-   *   @param  m  The order of the spherical harmonic function.
+   *   @param  __m  The order of the spherical harmonic function.
    *              @f$ m <= l @f$.
-   *   @param  theta  The radian polar angle argument
+   *   @param  __theta  The radian polar angle argument
    *                  of the spherical harmonic function.
-   *   @param  phi    The radian azimuthal angle argument
+   *   @param  __phi    The radian azimuthal angle argument
    *                  of the spherical harmonic function.
    */
   template<typename _Tp>

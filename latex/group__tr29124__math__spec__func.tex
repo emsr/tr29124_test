@@ -99,11 +99,11 @@ float \hyperlink{group__tr29124__math__spec__func_gada763419b0e21b38e38daa8b6eb5
 \item 
 long double \hyperlink{group__tr29124__math__spec__func_gaaf8b141edf9163b37ea4f2ed3e0191fc}{std\+::laguerrel} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+type \hyperlink{group__tr29124__math__spec__func_ga351a4a545c0e3f9e6ff5c0d4ff42d2e5}{std\+::legendre} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+type \hyperlink{group__tr29124__math__spec__func_gaf6eac7fcb98e25b8f3f7d1b95fa7add8}{std\+::legendre} (unsigned int \+\_\+\+\_\+l, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_ga83fc3b5f0ad76f4e6c3ccf13b1cacaae}{std\+::legendref} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
+float \hyperlink{group__tr29124__math__spec__func_gaed94e3c664c99f5204da75be75aeac21}{std\+::legendref} (unsigned int \+\_\+\+\_\+l, float \+\_\+\+\_\+x)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_gaeef497447af817a86522cd8f209d5291}{std\+::legendrel} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
+long double \hyperlink{group__tr29124__math__spec__func_ga1b39bc22e3cc4860d08eb54099460391}{std\+::legendrel} (unsigned int \+\_\+\+\_\+l, long double \+\_\+\+\_\+x)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+type \hyperlink{group__tr29124__math__spec__func_ga67a6bfed9b6ab692e8c798b674431424}{std\+::riemann\+\_\+zeta} (\+\_\+\+Tp \+\_\+\+\_\+s)
 \item 
@@ -144,9 +144,33 @@ A collection of advanced mathematical special functions.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga377bb7e038c464a27dfe0573fd2d7b33}
+Return the associated Laguerre polynomial of order {\ttfamily n}, degree {\ttfamily m\+:} $ L_n^m(x) $.
 
 
-Definition at line 122 of file specfun.\+h.
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+n} & The order \\
+\hline
+{\em \+\_\+\+\_\+m} & The degree \\
+\hline
+{\em \+\_\+\+\_\+x} & The argument Return the associated Laguerre polynomial of order n, degree $ \alpha $\+: $ L_n^alpha(x) $.\\
+\hline
+\end{DoxyParams}
+The associated Laguerre function is defined by \[ L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!} _1F_1(-n; \alpha + 1; x) \] where $ (\alpha)_n $ is the Pochhammer symbol and $ _1F_1(a; c; x) $ is the confluent hypergeometric function.
+
+The associated Laguerre polynomial is defined for integral $ \alpha = m $ by\+: \[ L_n^m(x) = (-1)^m \frac{d^m}{dx^m} L_{n + m}(x) \] where the Laguerre polynomial is defined by\+: \[ L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x}) \]
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+n} & The order of the Laguerre function. \\
+\hline
+{\em \+\_\+\+\_\+m} & The degree of the Laguerre function. \\
+\hline
+{\em \+\_\+\+\_\+x} & The argument of the Laguerre function. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 166 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gaf83d98f350a1cfcebee6a1f723cf90d2}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!assoc\+\_\+laguerref@{assoc\+\_\+laguerref}}
 \index{assoc\+\_\+laguerref@{assoc\+\_\+laguerref}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -157,9 +181,14 @@ Definition at line 122 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gaf83d98f350a1cfcebee6a1f723cf90d2}
+Return the associated Laguerre polynomial of order {\ttfamily n}, degree {\ttfamily m\+:} $ L_n^m(x) $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga377bb7e038c464a27dfe0573fd2d7b33}{assoc\+\_\+laguerre} for more details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 113 of file specfun.\+h.
+Definition at line 119 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gac8e245671fb2df5de5fd978d03081f6c}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!assoc\+\_\+laguerrel@{assoc\+\_\+laguerrel}}
 \index{assoc\+\_\+laguerrel@{assoc\+\_\+laguerrel}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -170,9 +199,14 @@ Definition at line 113 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gac8e245671fb2df5de5fd978d03081f6c}
+Return the associated Laguerre polynomial of order {\ttfamily n}, degree {\ttfamily m\+:} $ L_n^m(x) $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga377bb7e038c464a27dfe0573fd2d7b33}{assoc\+\_\+laguerre} for more details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 117 of file specfun.\+h.
+Definition at line 129 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga355349f79119c1fd1e2a9351cec57f0f}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!assoc\+\_\+legendre@{assoc\+\_\+legendre}}
 \index{assoc\+\_\+legendre@{assoc\+\_\+legendre}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -183,9 +217,22 @@ Definition at line 117 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga355349f79119c1fd1e2a9351cec57f0f}
+Return the associated Legendre function of order {\ttfamily l} and degree {\ttfamily m}.
+
+The associated Legendre function is derived from the Legendre function $ P_l(x) $ by the Rodrigues formula\+: \[ P_l^m(x) = (1 - x^2)^{m/2}\frac{d^m}{dx^m}P_l(x) \]
 
 
-Definition at line 140 of file specfun.\+h.
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+l} & The order of the associated Legendre function. $ l >= 0 $. \\
+\hline
+{\em \+\_\+\+\_\+m} & The order of the associated Legendre function. $ m <= l $. \\
+\hline
+{\em \+\_\+\+\_\+x} & The argument of the associated Legendre function. $ |x| <= 1 $. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 210 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga3ced07ddd24bf4af56e2712d148e7f57}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!assoc\+\_\+legendref@{assoc\+\_\+legendref}}
 \index{assoc\+\_\+legendref@{assoc\+\_\+legendref}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -196,9 +243,14 @@ Definition at line 140 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga3ced07ddd24bf4af56e2712d148e7f57}
+Return the associated Legendre function of order {\ttfamily l} and degree {\ttfamily m}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga355349f79119c1fd1e2a9351cec57f0f}{assoc\+\_\+legendre} for more details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 131 of file specfun.\+h.
+Definition at line 180 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga55977b425a539146f060dec1c8003344}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!assoc\+\_\+legendrel@{assoc\+\_\+legendrel}}
 \index{assoc\+\_\+legendrel@{assoc\+\_\+legendrel}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -209,9 +261,14 @@ Definition at line 131 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga55977b425a539146f060dec1c8003344}
+Return the associated Legendre function of order {\ttfamily l} and degree {\ttfamily m}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga355349f79119c1fd1e2a9351cec57f0f}{assoc\+\_\+legendre} for more details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 135 of file specfun.\+h.
+Definition at line 189 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gab8661bda2963e98e66bb5a9dc5378ead}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!beta@{beta}}
 \index{beta@{beta}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -223,7 +280,7 @@ Definition at line 135 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gab8661bda2963e98e66bb5a9dc5378ead}
 
 
-Definition at line 158 of file specfun.\+h.
+Definition at line 231 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gaf577572796d25206ee269c429d04400b}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!betaf@{betaf}}
 \index{betaf@{betaf}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -235,7 +292,7 @@ Definition at line 158 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gaf577572796d25206ee269c429d04400b}
 
 
-Definition at line 149 of file specfun.\+h.
+Definition at line 219 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga66de58126badd203360010f431fe7f63}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!betal@{betal}}
 \index{betal@{betal}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -247,7 +304,7 @@ Definition at line 149 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga66de58126badd203360010f431fe7f63}
 
 
-Definition at line 153 of file specfun.\+h.
+Definition at line 223 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gac559500c604c43ea943d593c9ad9d289}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!comp\+\_\+ellint\+\_\+1@{comp\+\_\+ellint\+\_\+1}}
 \index{comp\+\_\+ellint\+\_\+1@{comp\+\_\+ellint\+\_\+1}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -258,7 +315,7 @@ Definition at line 153 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gac559500c604c43ea943d593c9ad9d289}
 
 
-Definition at line 176 of file specfun.\+h.
+Definition at line 252 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga7fb5be999a8125cf7e55e630eb8444a1}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!comp\+\_\+ellint\+\_\+1f@{comp\+\_\+ellint\+\_\+1f}}
 \index{comp\+\_\+ellint\+\_\+1f@{comp\+\_\+ellint\+\_\+1f}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -269,7 +326,7 @@ Definition at line 176 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga7fb5be999a8125cf7e55e630eb8444a1}
 
 
-Definition at line 167 of file specfun.\+h.
+Definition at line 240 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga7247d3dd77c1ff5df3c059fed862dc48}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!comp\+\_\+ellint\+\_\+1l@{comp\+\_\+ellint\+\_\+1l}}
 \index{comp\+\_\+ellint\+\_\+1l@{comp\+\_\+ellint\+\_\+1l}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -280,7 +337,7 @@ Definition at line 167 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga7247d3dd77c1ff5df3c059fed862dc48}
 
 
-Definition at line 171 of file specfun.\+h.
+Definition at line 244 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga22fcc678829f0daf2de257896378e7e0}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!comp\+\_\+ellint\+\_\+2@{comp\+\_\+ellint\+\_\+2}}
 \index{comp\+\_\+ellint\+\_\+2@{comp\+\_\+ellint\+\_\+2}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -291,7 +348,7 @@ Definition at line 171 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga22fcc678829f0daf2de257896378e7e0}
 
 
-Definition at line 194 of file specfun.\+h.
+Definition at line 273 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga21700f2f125c42b1f1da1f9c7eea1135}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!comp\+\_\+ellint\+\_\+2f@{comp\+\_\+ellint\+\_\+2f}}
 \index{comp\+\_\+ellint\+\_\+2f@{comp\+\_\+ellint\+\_\+2f}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -302,7 +359,7 @@ Definition at line 194 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga21700f2f125c42b1f1da1f9c7eea1135}
 
 
-Definition at line 185 of file specfun.\+h.
+Definition at line 261 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga47b647ec386c8d4b18a030c97842df18}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!comp\+\_\+ellint\+\_\+2l@{comp\+\_\+ellint\+\_\+2l}}
 \index{comp\+\_\+ellint\+\_\+2l@{comp\+\_\+ellint\+\_\+2l}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -313,7 +370,7 @@ Definition at line 185 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga47b647ec386c8d4b18a030c97842df18}
 
 
-Definition at line 189 of file specfun.\+h.
+Definition at line 265 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gad833404645e24b7f0598a640ff92d623}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!comp\+\_\+ellint\+\_\+3@{comp\+\_\+ellint\+\_\+3}}
 \index{comp\+\_\+ellint\+\_\+3@{comp\+\_\+ellint\+\_\+3}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -325,7 +382,7 @@ Definition at line 189 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gad833404645e24b7f0598a640ff92d623}
 
 
-Definition at line 212 of file specfun.\+h.
+Definition at line 294 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga76834d3112f777703330892303267a39}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!comp\+\_\+ellint\+\_\+3f@{comp\+\_\+ellint\+\_\+3f}}
 \index{comp\+\_\+ellint\+\_\+3f@{comp\+\_\+ellint\+\_\+3f}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -337,7 +394,7 @@ Definition at line 212 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga76834d3112f777703330892303267a39}
 
 
-Definition at line 203 of file specfun.\+h.
+Definition at line 282 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga1ca081fee102cd0d4d6b091285e495e5}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!comp\+\_\+ellint\+\_\+3l@{comp\+\_\+ellint\+\_\+3l}}
 \index{comp\+\_\+ellint\+\_\+3l@{comp\+\_\+ellint\+\_\+3l}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -349,7 +406,7 @@ Definition at line 203 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga1ca081fee102cd0d4d6b091285e495e5}
 
 
-Definition at line 207 of file specfun.\+h.
+Definition at line 286 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga1c9b5a5c36f000a4f0a55f7fcc486cb0}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!cyl\+\_\+bessel\+\_\+i@{cyl\+\_\+bessel\+\_\+i}}
 \index{cyl\+\_\+bessel\+\_\+i@{cyl\+\_\+bessel\+\_\+i}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -359,9 +416,20 @@ Definition at line 207 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga1c9b5a5c36f000a4f0a55f7fcc486cb0}
+Return the regular modified Bessel function of order $ \nu $\+: $ I_{\nu}(x) $.
+
+The regular modified cylindrical Bessel function is\+: \[ I_{\nu}(x) = \sum_{k=0}^{\infty} \frac{(x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)} \]
 
 
-Definition at line 230 of file specfun.\+h.
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+nu} & The order of the regular modified Bessel function. \\
+\hline
+{\em \+\_\+\+\_\+x} & The argument of the regular modified Bessel function. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 337 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gaaf738427d4da0bda66bc2274dfb853a7}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!cyl\+\_\+bessel\+\_\+if@{cyl\+\_\+bessel\+\_\+if}}
 \index{cyl\+\_\+bessel\+\_\+if@{cyl\+\_\+bessel\+\_\+if}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -371,9 +439,14 @@ Definition at line 230 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gaaf738427d4da0bda66bc2274dfb853a7}
+Return the regular modified Bessel function $ I_{\nu}(x) $ of order $ \nu $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga1c9b5a5c36f000a4f0a55f7fcc486cb0}{cyl\+\_\+bessel\+\_\+i} for setails. 
+\end{DoxySeeAlso}
 
 
-Definition at line 221 of file specfun.\+h.
+Definition at line 309 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gab7962629216d03efb8ecaa3f70c6878f}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!cyl\+\_\+bessel\+\_\+il@{cyl\+\_\+bessel\+\_\+il}}
 \index{cyl\+\_\+bessel\+\_\+il@{cyl\+\_\+bessel\+\_\+il}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -383,9 +456,14 @@ Definition at line 221 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gab7962629216d03efb8ecaa3f70c6878f}
+Return the regular modified Bessel function $ I_{\nu}(x) $ of order $ \nu $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga1c9b5a5c36f000a4f0a55f7fcc486cb0}{cyl\+\_\+bessel\+\_\+i} for setails. 
+\end{DoxySeeAlso}
 
 
-Definition at line 225 of file specfun.\+h.
+Definition at line 319 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga47e21a13b6d68d0d7f057699bd3b3ce0}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!cyl\+\_\+bessel\+\_\+j@{cyl\+\_\+bessel\+\_\+j}}
 \index{cyl\+\_\+bessel\+\_\+j@{cyl\+\_\+bessel\+\_\+j}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -395,9 +473,20 @@ Definition at line 225 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga47e21a13b6d68d0d7f057699bd3b3ce0}
+Return the Bessel function of order $ \nu $\+: $ J_{\nu}(x) $.
+
+The cylindrical Bessel function is\+: \[ J_{\nu}(x) = \sum_{k=0}^{\infty} \frac{(-1)^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)} \]
 
 
-Definition at line 248 of file specfun.\+h.
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+nu} & The order of the Bessel function. \\
+\hline
+{\em \+\_\+\+\_\+x} & The argument of the Bessel function. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 380 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga15731a7bccd6351d28353e3c4c2a2d23}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!cyl\+\_\+bessel\+\_\+jf@{cyl\+\_\+bessel\+\_\+jf}}
 \index{cyl\+\_\+bessel\+\_\+jf@{cyl\+\_\+bessel\+\_\+jf}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -407,9 +496,14 @@ Definition at line 248 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga15731a7bccd6351d28353e3c4c2a2d23}
+Return the Bessel function of the first kind $ J_{\nu}(x) $ of order $ \nu $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga47e21a13b6d68d0d7f057699bd3b3ce0}{cyl\+\_\+bessel\+\_\+j} for setails. 
+\end{DoxySeeAlso}
 
 
-Definition at line 239 of file specfun.\+h.
+Definition at line 352 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gade8e94a80520a8b628b2d658755b25c0}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!cyl\+\_\+bessel\+\_\+jl@{cyl\+\_\+bessel\+\_\+jl}}
 \index{cyl\+\_\+bessel\+\_\+jl@{cyl\+\_\+bessel\+\_\+jl}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -419,9 +513,14 @@ Definition at line 239 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gade8e94a80520a8b628b2d658755b25c0}
+Return the Bessel function of the first kind $ J_{\nu}(x) $ of order $ \nu $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga47e21a13b6d68d0d7f057699bd3b3ce0}{cyl\+\_\+bessel\+\_\+j} for setails. 
+\end{DoxySeeAlso}
 
 
-Definition at line 243 of file specfun.\+h.
+Definition at line 362 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga76dcd3884620955680112aca0d327ada}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!cyl\+\_\+bessel\+\_\+k@{cyl\+\_\+bessel\+\_\+k}}
 \index{cyl\+\_\+bessel\+\_\+k@{cyl\+\_\+bessel\+\_\+k}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -431,9 +530,20 @@ Definition at line 243 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga76dcd3884620955680112aca0d327ada}
+Return the irregular modified Bessel function $ K_{\nu}(x) $ of order $ \nu $.
+
+The irregular modified Bessel function is defined by\+: \[ K_{\nu}(x) = \frac{\pi}{2} \frac{I_{-\nu}(x) - I_{\nu}(x)}{\sin \nu\pi} \] where for integral $ \nu = n $ a limit is taken\+: $ lim_{\nu \to n} $. For negative argument we have simply\+: \[ K_{-\nu}(x) = K_{\nu}(x) \]
 
 
-Definition at line 266 of file specfun.\+h.
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+nu} & The order of the irregular modified Bessel function. \\
+\hline
+{\em \+\_\+\+\_\+x} & The argument of the irregular modified Bessel function. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 429 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga1f50047f9aab0ec8b1a1615fe9fbe32f}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!cyl\+\_\+bessel\+\_\+kf@{cyl\+\_\+bessel\+\_\+kf}}
 \index{cyl\+\_\+bessel\+\_\+kf@{cyl\+\_\+bessel\+\_\+kf}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -443,9 +553,14 @@ Definition at line 266 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga1f50047f9aab0ec8b1a1615fe9fbe32f}
+Return the irregular modified Bessel function $ K_{\nu}(x) $ of order $ \nu $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga76dcd3884620955680112aca0d327ada}{cyl\+\_\+bessel\+\_\+k} for setails. 
+\end{DoxySeeAlso}
 
 
-Definition at line 257 of file specfun.\+h.
+Definition at line 395 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gac35194b926270d7857d651e06198c7d3}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!cyl\+\_\+bessel\+\_\+kl@{cyl\+\_\+bessel\+\_\+kl}}
 \index{cyl\+\_\+bessel\+\_\+kl@{cyl\+\_\+bessel\+\_\+kl}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -455,9 +570,14 @@ Definition at line 257 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gac35194b926270d7857d651e06198c7d3}
+Return the irregular modified Bessel function $ K_{\nu}(x) $ of order $ \nu $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga76dcd3884620955680112aca0d327ada}{cyl\+\_\+bessel\+\_\+k} for setails. 
+\end{DoxySeeAlso}
 
 
-Definition at line 261 of file specfun.\+h.
+Definition at line 405 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga5b7c72ab85e361cbd73f1a3b5f0725a6}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!cyl\+\_\+neumann@{cyl\+\_\+neumann}}
 \index{cyl\+\_\+neumann@{cyl\+\_\+neumann}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -467,9 +587,20 @@ Definition at line 261 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga5b7c72ab85e361cbd73f1a3b5f0725a6}
+Return the Neumann function of order $ \nu $\+: $ N_{\nu}(x) $.
+
+The Neumann function is defined by\+: \[ N_{\nu}(x) = \frac{J_{\nu}(x) \cos \nu\pi - J_{-\nu}(x)} {\sin \nu\pi} \] where for integral $ \nu = n $ a limit is taken\+: $ lim_{\nu \to n} $.
 
 
-Definition at line 284 of file specfun.\+h.
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+nu} & The order of the Neumann function. \\
+\hline
+{\em \+\_\+\+\_\+x} & The argument of the Neumann function. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 474 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga604c13e8f2bb7cd3c7c91d8b19d6b13a}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!cyl\+\_\+neumannf@{cyl\+\_\+neumannf}}
 \index{cyl\+\_\+neumannf@{cyl\+\_\+neumannf}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -479,9 +610,14 @@ Definition at line 284 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga604c13e8f2bb7cd3c7c91d8b19d6b13a}
+Return the Neumann function of order $ \nu $\+: $ N_{\nu}(x) $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga5b7c72ab85e361cbd73f1a3b5f0725a6}{cyl\+\_\+neumann} for setails. 
+\end{DoxySeeAlso}
 
 
-Definition at line 275 of file specfun.\+h.
+Definition at line 444 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gaf8986bae9a523c48d861d233835bda8f}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!cyl\+\_\+neumannl@{cyl\+\_\+neumannl}}
 \index{cyl\+\_\+neumannl@{cyl\+\_\+neumannl}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -491,9 +627,14 @@ Definition at line 275 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gaf8986bae9a523c48d861d233835bda8f}
+Return the Neumann function of order $ \nu $\+: $ N_{\nu}(x) $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga5b7c72ab85e361cbd73f1a3b5f0725a6}{cyl\+\_\+neumann} for setails. 
+\end{DoxySeeAlso}
 
 
-Definition at line 279 of file specfun.\+h.
+Definition at line 454 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gae6b3df5556f38a7d72f9b4457d856f9c}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!ellint\+\_\+1@{ellint\+\_\+1}}
 \index{ellint\+\_\+1@{ellint\+\_\+1}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -505,7 +646,7 @@ Definition at line 279 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gae6b3df5556f38a7d72f9b4457d856f9c}
 
 
-Definition at line 302 of file specfun.\+h.
+Definition at line 495 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga308d23d70f4b5e848eb7a4173628ef3b}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!ellint\+\_\+1f@{ellint\+\_\+1f}}
 \index{ellint\+\_\+1f@{ellint\+\_\+1f}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -517,7 +658,7 @@ Definition at line 302 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga308d23d70f4b5e848eb7a4173628ef3b}
 
 
-Definition at line 293 of file specfun.\+h.
+Definition at line 483 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga795383fa51e02351000b410b478d824f}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!ellint\+\_\+1l@{ellint\+\_\+1l}}
 \index{ellint\+\_\+1l@{ellint\+\_\+1l}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -529,7 +670,7 @@ Definition at line 293 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga795383fa51e02351000b410b478d824f}
 
 
-Definition at line 297 of file specfun.\+h.
+Definition at line 487 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gad6dd71db2b3f90d24ff49bf8cf37bc37}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!ellint\+\_\+2@{ellint\+\_\+2}}
 \index{ellint\+\_\+2@{ellint\+\_\+2}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -541,7 +682,7 @@ Definition at line 297 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gad6dd71db2b3f90d24ff49bf8cf37bc37}
 
 
-Definition at line 320 of file specfun.\+h.
+Definition at line 516 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga594a730163c6228c75b152462700062b}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!ellint\+\_\+2f@{ellint\+\_\+2f}}
 \index{ellint\+\_\+2f@{ellint\+\_\+2f}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -553,7 +694,7 @@ Definition at line 320 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga594a730163c6228c75b152462700062b}
 
 
-Definition at line 311 of file specfun.\+h.
+Definition at line 504 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga5c791332d374a809d8ca16c69a1a30f5}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!ellint\+\_\+2l@{ellint\+\_\+2l}}
 \index{ellint\+\_\+2l@{ellint\+\_\+2l}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -565,7 +706,7 @@ Definition at line 311 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga5c791332d374a809d8ca16c69a1a30f5}
 
 
-Definition at line 315 of file specfun.\+h.
+Definition at line 508 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga20832e3a67d25cc3d415cafc88019ac3}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!ellint\+\_\+3@{ellint\+\_\+3}}
 \index{ellint\+\_\+3@{ellint\+\_\+3}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -578,7 +719,7 @@ Definition at line 315 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga20832e3a67d25cc3d415cafc88019ac3}
 
 
-Definition at line 338 of file specfun.\+h.
+Definition at line 537 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga1a80bd2c15bc9fbecda2630a9e9409e7}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!ellint\+\_\+3f@{ellint\+\_\+3f}}
 \index{ellint\+\_\+3f@{ellint\+\_\+3f}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -591,7 +732,7 @@ Definition at line 338 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga1a80bd2c15bc9fbecda2630a9e9409e7}
 
 
-Definition at line 329 of file specfun.\+h.
+Definition at line 525 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gaa8c0e5864df8769021a7f3e21a30c5d2}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!ellint\+\_\+3l@{ellint\+\_\+3l}}
 \index{ellint\+\_\+3l@{ellint\+\_\+3l}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -604,7 +745,7 @@ Definition at line 329 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gaa8c0e5864df8769021a7f3e21a30c5d2}
 
 
-Definition at line 333 of file specfun.\+h.
+Definition at line 529 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga88ba17f5d050a6973ca4db1bf6e90590}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!expint@{expint}}
 \index{expint@{expint}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -615,7 +756,7 @@ Definition at line 333 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga88ba17f5d050a6973ca4db1bf6e90590}
 
 
-Definition at line 356 of file specfun.\+h.
+Definition at line 558 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga5842816f6eed2594e0a327df4e4a2a47}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!expintf@{expintf}}
 \index{expintf@{expintf}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -626,7 +767,7 @@ Definition at line 356 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga5842816f6eed2594e0a327df4e4a2a47}
 
 
-Definition at line 347 of file specfun.\+h.
+Definition at line 546 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga1329130b32328d0666e290ee5931fa4f}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!expintl@{expintl}}
 \index{expintl@{expintl}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -637,7 +778,7 @@ Definition at line 347 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga1329130b32328d0666e290ee5931fa4f}
 
 
-Definition at line 351 of file specfun.\+h.
+Definition at line 550 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga97632b8bf77c323b2369e8d327965bdf}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!hermite@{hermite}}
 \index{hermite@{hermite}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -649,7 +790,7 @@ Definition at line 351 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga97632b8bf77c323b2369e8d327965bdf}
 
 
-Definition at line 374 of file specfun.\+h.
+Definition at line 579 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga94dae7444bb349e33057a92932db8abe}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!hermitef@{hermitef}}
 \index{hermitef@{hermitef}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -661,7 +802,7 @@ Definition at line 374 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga94dae7444bb349e33057a92932db8abe}
 
 
-Definition at line 365 of file specfun.\+h.
+Definition at line 567 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga21f8e312ee3e65286f86bf141b0f32e0}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!hermitel@{hermitel}}
 \index{hermitel@{hermitel}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -673,7 +814,7 @@ Definition at line 365 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga21f8e312ee3e65286f86bf141b0f32e0}
 
 
-Definition at line 369 of file specfun.\+h.
+Definition at line 571 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gacae65579b397fddcd27954380d364a58}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!laguerre@{laguerre}}
 \index{laguerre@{laguerre}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -683,9 +824,20 @@ Definition at line 369 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gacae65579b397fddcd27954380d364a58}
+Returns the Laguerre polynomial of order {\ttfamily n}, and argument {\ttfamily x\+:} $ L_n(x) $.
+
+The Laguerre polynomial is defined by\+: \[ L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x}) \]
 
 
-Definition at line 392 of file specfun.\+h.
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+n} & The order of the Laguerre function. \\
+\hline
+{\em \+\_\+\+\_\+x} & The argument of the Laguerre function. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 621 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gada763419b0e21b38e38daa8b6eb56a8c}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!laguerref@{laguerref}}
 \index{laguerref@{laguerref}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -695,9 +847,14 @@ Definition at line 392 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gada763419b0e21b38e38daa8b6eb56a8c}
+Returns the associated Laguerre polynomial of order n, degree $ \alpha $\+: $ L_n^alpha(x) $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_gacae65579b397fddcd27954380d364a58}{laguerre} for more details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 383 of file specfun.\+h.
+Definition at line 594 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gaaf8b141edf9163b37ea4f2ed3e0191fc}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!laguerrel@{laguerrel}}
 \index{laguerrel@{laguerrel}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -707,45 +864,71 @@ Definition at line 383 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gaaf8b141edf9163b37ea4f2ed3e0191fc}
+Returns the associated Laguerre polynomial of order n, degree $ \alpha $\+: $ L_n^alpha(x) $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_gacae65579b397fddcd27954380d364a58}{laguerre} for more details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 387 of file specfun.\+h.
+Definition at line 604 of file specfun.\+h.
 
-\hypertarget{group__tr29124__math__spec__func_ga351a4a545c0e3f9e6ff5c0d4ff42d2e5}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!legendre@{legendre}}
+\hypertarget{group__tr29124__math__spec__func_gaf6eac7fcb98e25b8f3f7d1b95fa7add8}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!legendre@{legendre}}
 \index{legendre@{legendre}!Mathematical Special Functions@{Mathematical Special Functions}}
 \subsubsection[{legendre}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote$<$\+\_\+\+Tp$>$\+::\+\_\+\+\_\+type std\+::legendre (
 \begin{DoxyParamCaption}
-\item[{unsigned int}]{\+\_\+\+\_\+n, }
+\item[{unsigned int}]{\+\_\+\+\_\+l, }
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga351a4a545c0e3f9e6ff5c0d4ff42d2e5}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gaf6eac7fcb98e25b8f3f7d1b95fa7add8}
+Return the Legendre polynomial by upward recursion on order $ l $.
+
+The Legendre function of order $ l $ and argument $ x $, $ P_l(x) $, is defined by\+: \[ P_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l} \]
 
 
-Definition at line 410 of file specfun.\+h.
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+l} & The order $l >= 0$ \\
+\hline
+{\em \+\_\+\+\_\+x} & The argument $|x| <= 1$ \\
+\hline
+\end{DoxyParams}
 
-\hypertarget{group__tr29124__math__spec__func_ga83fc3b5f0ad76f4e6c3ccf13b1cacaae}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!legendref@{legendref}}
+
+Definition at line 664 of file specfun.\+h.
+
+\hypertarget{group__tr29124__math__spec__func_gaed94e3c664c99f5204da75be75aeac21}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!legendref@{legendref}}
 \index{legendref@{legendref}!Mathematical Special Functions@{Mathematical Special Functions}}
 \subsubsection[{legendref}]{\setlength{\rightskip}{0pt plus 5cm}float std\+::legendref (
 \begin{DoxyParamCaption}
-\item[{unsigned int}]{\+\_\+\+\_\+n, }
+\item[{unsigned int}]{\+\_\+\+\_\+l, }
 \item[{float}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga83fc3b5f0ad76f4e6c3ccf13b1cacaae}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gaed94e3c664c99f5204da75be75aeac21}
+Return the Legendre polynomial by upward recursion on order $ l $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_gaf6eac7fcb98e25b8f3f7d1b95fa7add8}{legendre} for more details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 401 of file specfun.\+h.
+Definition at line 636 of file specfun.\+h.
 
-\hypertarget{group__tr29124__math__spec__func_gaeef497447af817a86522cd8f209d5291}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!legendrel@{legendrel}}
+\hypertarget{group__tr29124__math__spec__func_ga1b39bc22e3cc4860d08eb54099460391}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!legendrel@{legendrel}}
 \index{legendrel@{legendrel}!Mathematical Special Functions@{Mathematical Special Functions}}
 \subsubsection[{legendrel}]{\setlength{\rightskip}{0pt plus 5cm}long double std\+::legendrel (
 \begin{DoxyParamCaption}
-\item[{unsigned int}]{\+\_\+\+\_\+n, }
+\item[{unsigned int}]{\+\_\+\+\_\+l, }
 \item[{long double}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gaeef497447af817a86522cd8f209d5291}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga1b39bc22e3cc4860d08eb54099460391}
+Return the Legendre polynomial by upward recursion on order $ l $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_gaf6eac7fcb98e25b8f3f7d1b95fa7add8}{legendre} for more details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 405 of file specfun.\+h.
+Definition at line 646 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga67a6bfed9b6ab692e8c798b674431424}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!riemann\+\_\+zeta@{riemann\+\_\+zeta}}
 \index{riemann\+\_\+zeta@{riemann\+\_\+zeta}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -754,9 +937,18 @@ Definition at line 405 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+s}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga67a6bfed9b6ab692e8c798b674431424}
+Return the Riemann zeta function $ \zeta(s) $.
+
+The Riemann zeta function is defined by\+: \[ \zeta(s) = \sum_{k=1}^{\infty} k^{-s} for s > 1 \frac{(2\pi)^s}{pi} sin(\frac{\pi s}{2}) \Gamma (1 - s) \zeta (1 - s) for s < 1 \] For s $<$ 1 use the reflection formula\+: \[ \zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s) \]
 
 
-Definition at line 428 of file specfun.\+h.
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+s} & The argument {\ttfamily s} != 1 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 708 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gaf92063315061a56d3e2c4053156d968e}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!riemann\+\_\+zetaf@{riemann\+\_\+zetaf}}
 \index{riemann\+\_\+zetaf@{riemann\+\_\+zetaf}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -765,9 +957,14 @@ Definition at line 428 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+s}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gaf92063315061a56d3e2c4053156d968e}
+Return the Riemann zeta function $ \zeta(s) $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga67a6bfed9b6ab692e8c798b674431424}{riemann\+\_\+zeta} for more details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 419 of file specfun.\+h.
+Definition at line 678 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga1e92da3b878d75270f38d3ec9b513086}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!riemann\+\_\+zetal@{riemann\+\_\+zetal}}
 \index{riemann\+\_\+zetal@{riemann\+\_\+zetal}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -776,9 +973,14 @@ Definition at line 419 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+s}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga1e92da3b878d75270f38d3ec9b513086}
+Return the Riemann zeta function $ \zeta(s) $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga67a6bfed9b6ab692e8c798b674431424}{riemann\+\_\+zeta} for more details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 423 of file specfun.\+h.
+Definition at line 687 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga478e517ed975bcb256de230e64f0fda5}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!sph\+\_\+bessel@{sph\+\_\+bessel}}
 \index{sph\+\_\+bessel@{sph\+\_\+bessel}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -788,9 +990,20 @@ Definition at line 423 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga478e517ed975bcb256de230e64f0fda5}
+Return the spherical Bessel function $ j_n(x) $ of order n.
+
+The spherical Bessel function is defined by\+: \[ j_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} J_{n+1/2}(x) \]
 
 
-Definition at line 446 of file specfun.\+h.
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+n} & The order of the spherical Bessel function. \\
+\hline
+{\em \+\_\+\+\_\+x} & The argument of the spherical Bessel function. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 747 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga534e36e1dcefad8daec98920db16eec4}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!sph\+\_\+besself@{sph\+\_\+besself}}
 \index{sph\+\_\+besself@{sph\+\_\+besself}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -800,9 +1013,14 @@ Definition at line 446 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga534e36e1dcefad8daec98920db16eec4}
+Return the spherical Bessel function $ j_n(x) $ of order n.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga478e517ed975bcb256de230e64f0fda5}{sph\+\_\+bessel} for more details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 437 of file specfun.\+h.
+Definition at line 722 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga11d72b1af81ce9da3c878a25087ee927}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!sph\+\_\+bessell@{sph\+\_\+bessell}}
 \index{sph\+\_\+bessell@{sph\+\_\+bessell}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -812,9 +1030,14 @@ Definition at line 437 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga11d72b1af81ce9da3c878a25087ee927}
+Return the spherical Bessel function $ j_n(x) $ of order n.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga478e517ed975bcb256de230e64f0fda5}{sph\+\_\+bessel} for more details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 441 of file specfun.\+h.
+Definition at line 731 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga573842c12247b87746b548f1945755a8}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!sph\+\_\+legendre@{sph\+\_\+legendre}}
 \index{sph\+\_\+legendre@{sph\+\_\+legendre}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -825,9 +1048,22 @@ Definition at line 441 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+theta}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga573842c12247b87746b548f1945755a8}
+Return the spherical Legendre function of non-\/negative integral degree {\ttfamily l} and order {\ttfamily n} and real angle $ \theta $ in radians.
+
+The spherical Legendre function is defined by \[ Y_l^m(\theta,\phi) = (-1)^m[\frac{(2l+1)}{4\pi} \frac{(l-m)!}{(l+m)!}] P_l^m(\cos\theta) \exp^{im\phi} \]
 
 
-Definition at line 464 of file specfun.\+h.
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+l} & The non-\/negative order $ l >= 0 $. \\
+\hline
+{\em \+\_\+\+\_\+m} & The non-\/negative degree $ m >= 0 $ and $ m <= l $. \\
+\hline
+{\em \+\_\+\+\_\+theta} & The radian polar angle argument \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 792 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_gaae635d28c06a3be2679901b382090852}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!sph\+\_\+legendref@{sph\+\_\+legendref}}
 \index{sph\+\_\+legendref@{sph\+\_\+legendref}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -838,9 +1074,14 @@ Definition at line 464 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+theta}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_gaae635d28c06a3be2679901b382090852}
+Return the spherical Legendre function of non-\/negative integral degree {\ttfamily l} and order {\ttfamily n} and float angle $ \theta $ in radians.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga573842c12247b87746b548f1945755a8}{sph\+\_\+legendre} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 455 of file specfun.\+h.
+Definition at line 762 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga2f6618dea1847f09fd67f3c974c1910d}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!sph\+\_\+legendrel@{sph\+\_\+legendrel}}
 \index{sph\+\_\+legendrel@{sph\+\_\+legendrel}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -851,9 +1092,14 @@ Definition at line 455 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+theta}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga2f6618dea1847f09fd67f3c974c1910d}
+Return the spherical Legendre function of non-\/negative integral degree {\ttfamily l} and order {\ttfamily n} and long double angle $ \theta $ in radians.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga573842c12247b87746b548f1945755a8}{sph\+\_\+legendre} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 459 of file specfun.\+h.
+Definition at line 772 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga1cf4362a67ab5bae9e6b69c867e85371}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!sph\+\_\+neumann@{sph\+\_\+neumann}}
 \index{sph\+\_\+neumann@{sph\+\_\+neumann}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -863,9 +1109,20 @@ Definition at line 459 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga1cf4362a67ab5bae9e6b69c867e85371}
+Return the spherical Neumann function of non-\/negative integral order {\ttfamily n} and non-\/negative real argument {\ttfamily x}.
+
+The spherical Neumann function is defined by \[ \]
 
 
-Definition at line 482 of file specfun.\+h.
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+n} & \\
+\hline
+{\em \+\_\+\+\_\+x} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 834 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga789143122fa99536329bc2d1b1aac2f0}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!sph\+\_\+neumannf@{sph\+\_\+neumannf}}
 \index{sph\+\_\+neumannf@{sph\+\_\+neumannf}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -875,9 +1132,14 @@ Definition at line 482 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga789143122fa99536329bc2d1b1aac2f0}
+Return the spherical Neumann function of non-\/negative integral order {\ttfamily n} and non-\/negative real argument {\ttfamily x}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga1cf4362a67ab5bae9e6b69c867e85371}{sph\+\_\+neumann} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 473 of file specfun.\+h.
+Definition at line 807 of file specfun.\+h.
 
 \hypertarget{group__tr29124__math__spec__func_ga3cededa9b6e4601f190c3811e6aabfd6}{}\index{Mathematical Special Functions@{Mathematical Special Functions}!sph\+\_\+neumannl@{sph\+\_\+neumannl}}
 \index{sph\+\_\+neumannl@{sph\+\_\+neumannl}!Mathematical Special Functions@{Mathematical Special Functions}}
@@ -887,7 +1149,12 @@ Definition at line 473 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__tr29124__math__spec__func_ga3cededa9b6e4601f190c3811e6aabfd6}
+Return the spherical Neumann function of non-\/negative integral order {\ttfamily n} and non-\/negative real argument {\ttfamily x}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__tr29124__math__spec__func_ga1cf4362a67ab5bae9e6b69c867e85371}{sph\+\_\+neumann} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 477 of file specfun.\+h.
+Definition at line 817 of file specfun.\+h.
 
