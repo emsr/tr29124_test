@@ -549,14 +549,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *   @brief  Return the cylindrical Hankel function of the first kind
-   *           @f$ h^{(1)}_n(x) @f$.
+   *           @f$ H^{(1)}_\nu(x) @f$.
    *
    *   The cylindrical Hankel function of the first kind is defined by:
    *   @f[
-   *     H^{(1)}_n(x) = J_n(x) + i N_n(x)
+   *     H^{(1)}_\nu(x) = J_\nu(x) + i N_\nu(x)
    *   @f]
    *
-   *   @param  __n  The order of the spherical Neumann function.
+   *   @param  __nu  The order of the spherical Neumann function.
    *   @param  __x  The argument of the spherical Neumann function.
    *   @return  The output spherical Neumann function.
    */
@@ -585,14 +585,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *   @brief  Return the cylindrical Hankel function of the second kind
-   *           @f$ h^{(1)}_n(x) @f$.
+   *           @f$ H^{(2)}_nu(x) @f$.
    *
    *   The cylindrical Hankel function of the second kind is defined by:
    *   @f[
-   *     H^{(2)}_n(x) = J_n(x) - i N_n(x)
+   *     H^{(2)}_\nu(x) = J_\nu(x) - i N_\nu(x)
    *   @f]
    *
-   *   @param  __n  The order of the spherical Neumann function.
+   *   @param  __nu  The order of the spherical Neumann function.
    *   @param  __x  The argument of the spherical Neumann function.
    *   @return  The output spherical Neumann function.
    */
@@ -622,7 +622,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    *   @brief  Compute the spherical Bessel @f$ j_n(x) @f$
    *           and Neumann @f$ n_n(x) @f$ functions and their first
-   *           derivatives @f$ j'_n(x) @f$ and @f$ n'_n(x) @f$
+   *           derivatives @f$ j_n(x) @f$ and @f$ n'_n(x) @f$
    *           respectively.
    *
    *   @param  __n  The order of the spherical Bessel function.
@@ -758,7 +758,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *   @brief  Return the spherical Hankel function of the second kind
-   *           @f$ h^{(1)}_n(x) @f$.
+   *           @f$ h^{(2)}_n(x) @f$.
    *
    *   The spherical Hankel function of the second kind is defined by:
    *   @f[

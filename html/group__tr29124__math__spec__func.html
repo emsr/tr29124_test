@@ -221,13 +221,13 @@ Functions</h2></td></tr>
 <tr class="separator:gada763419b0e21b38e38daa8b6eb56a8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaaf8b141edf9163b37ea4f2ed3e0191fc"><td class="memItemLeft" align="right" valign="top">long double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__tr29124__math__spec__func.html#gaaf8b141edf9163b37ea4f2ed3e0191fc">std::laguerrel</a> (unsigned int __n, long double __x)</td></tr>
 <tr class="separator:gaaf8b141edf9163b37ea4f2ed3e0191fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga351a4a545c0e3f9e6ff5c0d4ff42d2e5"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:ga351a4a545c0e3f9e6ff5c0d4ff42d2e5"><td class="memTemplItemLeft" align="right" valign="top">__gnu_cxx::__promote&lt; _Tp &gt;::__type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__tr29124__math__spec__func.html#ga351a4a545c0e3f9e6ff5c0d4ff42d2e5">std::legendre</a> (unsigned int __n, _Tp __x)</td></tr>
-<tr class="separator:ga351a4a545c0e3f9e6ff5c0d4ff42d2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga83fc3b5f0ad76f4e6c3ccf13b1cacaae"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__tr29124__math__spec__func.html#ga83fc3b5f0ad76f4e6c3ccf13b1cacaae">std::legendref</a> (unsigned int __n, float __x)</td></tr>
-<tr class="separator:ga83fc3b5f0ad76f4e6c3ccf13b1cacaae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaeef497447af817a86522cd8f209d5291"><td class="memItemLeft" align="right" valign="top">long double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__tr29124__math__spec__func.html#gaeef497447af817a86522cd8f209d5291">std::legendrel</a> (unsigned int __n, long double __x)</td></tr>
-<tr class="separator:gaeef497447af817a86522cd8f209d5291"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf6eac7fcb98e25b8f3f7d1b95fa7add8"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
+<tr class="memitem:gaf6eac7fcb98e25b8f3f7d1b95fa7add8"><td class="memTemplItemLeft" align="right" valign="top">__gnu_cxx::__promote&lt; _Tp &gt;::__type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__tr29124__math__spec__func.html#gaf6eac7fcb98e25b8f3f7d1b95fa7add8">std::legendre</a> (unsigned int __l, _Tp __x)</td></tr>
+<tr class="separator:gaf6eac7fcb98e25b8f3f7d1b95fa7add8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaed94e3c664c99f5204da75be75aeac21"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__tr29124__math__spec__func.html#gaed94e3c664c99f5204da75be75aeac21">std::legendref</a> (unsigned int __l, float __x)</td></tr>
+<tr class="separator:gaed94e3c664c99f5204da75be75aeac21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1b39bc22e3cc4860d08eb54099460391"><td class="memItemLeft" align="right" valign="top">long double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__tr29124__math__spec__func.html#ga1b39bc22e3cc4860d08eb54099460391">std::legendrel</a> (unsigned int __l, long double __x)</td></tr>
+<tr class="separator:ga1b39bc22e3cc4860d08eb54099460391"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga67a6bfed9b6ab692e8c798b674431424"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
 <tr class="memitem:ga67a6bfed9b6ab692e8c798b674431424"><td class="memTemplItemLeft" align="right" valign="top">__gnu_cxx::__promote&lt; _Tp &gt;::__type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__tr29124__math__spec__func.html#ga67a6bfed9b6ab692e8c798b674431424">std::riemann_zeta</a> (_Tp __s)</td></tr>
 <tr class="separator:ga67a6bfed9b6ab692e8c798b674431424"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -299,8 +299,35 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the associated Laguerre polynomial of order <code>n</code>, degree <code>m:</code> <img class="formulaInl" alt="$ L_n^m(x) $" src="form_0.png"/>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__n</td><td>The order </td></tr>
+    <tr><td class="paramname">__m</td><td>The degree </td></tr>
+    <tr><td class="paramname">__x</td><td>The argument Return the associated Laguerre polynomial of order n, degree <img class="formulaInl" alt="$ \alpha $" src="form_1.png"/>: <img class="formulaInl" alt="$ L_n^alpha(x) $" src="form_2.png"/>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The associated Laguerre function is defined by </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!} _1F_1(-n; \alpha + 1; x) \]" src="form_3.png"/>
+</p>
+<p> where <img class="formulaInl" alt="$ (\alpha)_n $" src="form_4.png"/> is the Pochhammer symbol and <img class="formulaInl" alt="$ _1F_1(a; c; x) $" src="form_5.png"/> is the confluent hypergeometric function.</p>
+<p>The associated Laguerre polynomial is defined for integral <img class="formulaInl" alt="$ \alpha = m $" src="form_6.png"/> by: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ L_n^m(x) = (-1)^m \frac{d^m}{dx^m} L_{n + m}(x) \]" src="form_7.png"/>
+</p>
+<p> where the Laguerre polynomial is defined by: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x}) \]" src="form_8.png"/>
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__n</td><td>The order of the Laguerre function. </td></tr>
+    <tr><td class="paramname">__m</td><td>The degree of the Laguerre function. </td></tr>
+    <tr><td class="paramname">__x</td><td>The argument of the Laguerre function. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00122">122</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00166">166</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -341,8 +368,10 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the associated Laguerre polynomial of order <code>n</code>, degree <code>m:</code> <img class="formulaInl" alt="$ L_n^m(x) $" src="form_0.png"/>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga377bb7e038c464a27dfe0573fd2d7b33">assoc_laguerre</a> for more details. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00113">113</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00119">119</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -383,8 +412,10 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the associated Laguerre polynomial of order <code>n</code>, degree <code>m:</code> <img class="formulaInl" alt="$ L_n^m(x) $" src="form_0.png"/>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga377bb7e038c464a27dfe0573fd2d7b33">assoc_laguerre</a> for more details. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00117">117</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00129">129</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -427,8 +458,20 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the associated Legendre function of order <code>l</code> and degree <code>m</code>.</p>
+<p>The associated Legendre function is derived from the Legendre function <img class="formulaInl" alt="$ P_l(x) $" src="form_9.png"/> by the Rodrigues formula: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ P_l^m(x) = (1 - x^2)^{m/2}\frac{d^m}{dx^m}P_l(x) \]" src="form_10.png"/>
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__l</td><td>The order of the associated Legendre function. <img class="formulaInl" alt="$ l >= 0 $" src="form_11.png"/>. </td></tr>
+    <tr><td class="paramname">__m</td><td>The order of the associated Legendre function. <img class="formulaInl" alt="$ m <= l $" src="form_12.png"/>. </td></tr>
+    <tr><td class="paramname">__x</td><td>The argument of the associated Legendre function. <img class="formulaInl" alt="$ |x| <= 1 $" src="form_13.png"/>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00140">140</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00210">210</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -469,8 +512,10 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the associated Legendre function of order <code>l</code> and degree <code>m</code>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga355349f79119c1fd1e2a9351cec57f0f">assoc_legendre</a> for more details. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00131">131</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00180">180</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -511,8 +556,10 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the associated Legendre function of order <code>l</code> and degree <code>m</code>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga355349f79119c1fd1e2a9351cec57f0f">assoc_legendre</a> for more details. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00135">135</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00189">189</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -550,7 +597,7 @@ template&lt;typename _Tpx , typename _Tpy &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00158">158</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00231">231</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -586,7 +633,7 @@ template&lt;typename _Tpx , typename _Tpy &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00149">149</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00219">219</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -622,7 +669,7 @@ template&lt;typename _Tpx , typename _Tpy &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00153">153</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00223">223</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -650,7 +697,7 @@ template&lt;typename _Tp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00176">176</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00252">252</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -676,7 +723,7 @@ template&lt;typename _Tp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00167">167</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00240">240</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -702,7 +749,7 @@ template&lt;typename _Tp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00171">171</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00244">244</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -730,7 +777,7 @@ template&lt;typename _Tp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00194">194</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00273">273</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -756,7 +803,7 @@ template&lt;typename _Tp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00185">185</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00261">261</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -782,7 +829,7 @@ template&lt;typename _Tp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00189">189</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00265">265</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -820,7 +867,7 @@ template&lt;typename _Tp , typename _Tpn &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00212">212</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00294">294</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -856,7 +903,7 @@ template&lt;typename _Tp , typename _Tpn &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00203">203</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00282">282</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -892,7 +939,7 @@ template&lt;typename _Tp , typename _Tpn &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00207">207</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00286">286</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -929,8 +976,19 @@ template&lt;typename _Tpnu , typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the regular modified Bessel function of order <img class="formulaInl" alt="$ \nu $" src="form_15.png"/>: <img class="formulaInl" alt="$ I_{\nu}(x) $" src="form_14.png"/>.</p>
+<p>The regular modified cylindrical Bessel function is: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ I_{\nu}(x) = \sum_{k=0}^{\infty} \frac{(x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)} \]" src="form_16.png"/>
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__nu</td><td>The order of the regular modified Bessel function. </td></tr>
+    <tr><td class="paramname">__x</td><td>The argument of the regular modified Bessel function. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00230">230</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00337">337</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -965,8 +1023,10 @@ template&lt;typename _Tpnu , typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the regular modified Bessel function <img class="formulaInl" alt="$ I_{\nu}(x) $" src="form_14.png"/> of order <img class="formulaInl" alt="$ \nu $" src="form_15.png"/>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga1c9b5a5c36f000a4f0a55f7fcc486cb0">cyl_bessel_i</a> for setails. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00221">221</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00309">309</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1001,8 +1061,10 @@ template&lt;typename _Tpnu , typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the regular modified Bessel function <img class="formulaInl" alt="$ I_{\nu}(x) $" src="form_14.png"/> of order <img class="formulaInl" alt="$ \nu $" src="form_15.png"/>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga1c9b5a5c36f000a4f0a55f7fcc486cb0">cyl_bessel_i</a> for setails. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00225">225</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00319">319</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1039,8 +1101,19 @@ template&lt;typename _Tpnu , typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the Bessel function of order <img class="formulaInl" alt="$ \nu $" src="form_15.png"/>: <img class="formulaInl" alt="$ J_{\nu}(x) $" src="form_17.png"/>.</p>
+<p>The cylindrical Bessel function is: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ J_{\nu}(x) = \sum_{k=0}^{\infty} \frac{(-1)^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)} \]" src="form_18.png"/>
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__nu</td><td>The order of the Bessel function. </td></tr>
+    <tr><td class="paramname">__x</td><td>The argument of the Bessel function. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00248">248</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00380">380</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1075,8 +1148,10 @@ template&lt;typename _Tpnu , typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the Bessel function of the first kind <img class="formulaInl" alt="$ J_{\nu}(x) $" src="form_17.png"/> of order <img class="formulaInl" alt="$ \nu $" src="form_15.png"/>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga47e21a13b6d68d0d7f057699bd3b3ce0">cyl_bessel_j</a> for setails. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00239">239</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00352">352</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1111,8 +1186,10 @@ template&lt;typename _Tpnu , typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the Bessel function of the first kind <img class="formulaInl" alt="$ J_{\nu}(x) $" src="form_17.png"/> of order <img class="formulaInl" alt="$ \nu $" src="form_15.png"/>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga47e21a13b6d68d0d7f057699bd3b3ce0">cyl_bessel_j</a> for setails. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00243">243</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00362">362</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1149,8 +1226,22 @@ template&lt;typename _Tpnu , typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the irregular modified Bessel function <img class="formulaInl" alt="$ K_{\nu}(x) $" src="form_19.png"/> of order <img class="formulaInl" alt="$ \nu $" src="form_15.png"/>.</p>
+<p>The irregular modified Bessel function is defined by: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ K_{\nu}(x) = \frac{\pi}{2} \frac{I_{-\nu}(x) - I_{\nu}(x)}{\sin \nu\pi} \]" src="form_20.png"/>
+</p>
+<p> where for integral <img class="formulaInl" alt="$ \nu = n $" src="form_21.png"/> a limit is taken: <img class="formulaInl" alt="$ lim_{\nu \to n} $" src="form_22.png"/>. For negative argument we have simply: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ K_{-\nu}(x) = K_{\nu}(x) \]" src="form_23.png"/>
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__nu</td><td>The order of the irregular modified Bessel function. </td></tr>
+    <tr><td class="paramname">__x</td><td>The argument of the irregular modified Bessel function. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00266">266</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00429">429</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1185,8 +1276,10 @@ template&lt;typename _Tpnu , typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the irregular modified Bessel function <img class="formulaInl" alt="$ K_{\nu}(x) $" src="form_19.png"/> of order <img class="formulaInl" alt="$ \nu $" src="form_15.png"/>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga76dcd3884620955680112aca0d327ada">cyl_bessel_k</a> for setails. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00257">257</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00395">395</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1221,8 +1314,10 @@ template&lt;typename _Tpnu , typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the irregular modified Bessel function <img class="formulaInl" alt="$ K_{\nu}(x) $" src="form_19.png"/> of order <img class="formulaInl" alt="$ \nu $" src="form_15.png"/>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga76dcd3884620955680112aca0d327ada">cyl_bessel_k</a> for setails. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00261">261</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00405">405</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1259,8 +1354,20 @@ template&lt;typename _Tpnu , typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the Neumann function of order <img class="formulaInl" alt="$ \nu $" src="form_15.png"/>: <img class="formulaInl" alt="$ N_{\nu}(x) $" src="form_24.png"/>.</p>
+<p>The Neumann function is defined by: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ N_{\nu}(x) = \frac{J_{\nu}(x) \cos \nu\pi - J_{-\nu}(x)} {\sin \nu\pi} \]" src="form_25.png"/>
+</p>
+<p> where for integral <img class="formulaInl" alt="$ \nu = n $" src="form_21.png"/> a limit is taken: <img class="formulaInl" alt="$ lim_{\nu \to n} $" src="form_22.png"/>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__nu</td><td>The order of the Neumann function. </td></tr>
+    <tr><td class="paramname">__x</td><td>The argument of the Neumann function. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00284">284</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00474">474</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1295,8 +1402,10 @@ template&lt;typename _Tpnu , typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the Neumann function of order <img class="formulaInl" alt="$ \nu $" src="form_15.png"/>: <img class="formulaInl" alt="$ N_{\nu}(x) $" src="form_24.png"/>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga5b7c72ab85e361cbd73f1a3b5f0725a6">cyl_neumann</a> for setails. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00275">275</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00444">444</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1331,8 +1440,10 @@ template&lt;typename _Tpnu , typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the Neumann function of order <img class="formulaInl" alt="$ \nu $" src="form_15.png"/>: <img class="formulaInl" alt="$ N_{\nu}(x) $" src="form_24.png"/>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga5b7c72ab85e361cbd73f1a3b5f0725a6">cyl_neumann</a> for setails. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00279">279</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00454">454</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1370,7 +1481,7 @@ template&lt;typename _Tp , typename _Tpp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00302">302</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00495">495</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1406,7 +1517,7 @@ template&lt;typename _Tp , typename _Tpp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00293">293</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00483">483</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1442,7 +1553,7 @@ template&lt;typename _Tp , typename _Tpp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00297">297</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00487">487</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1480,7 +1591,7 @@ template&lt;typename _Tp , typename _Tpp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00320">320</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00516">516</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1516,7 +1627,7 @@ template&lt;typename _Tp , typename _Tpp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00311">311</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00504">504</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1552,7 +1663,7 @@ template&lt;typename _Tp , typename _Tpp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00315">315</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00508">508</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1596,7 +1707,7 @@ template&lt;typename _Tp , typename _Tpn , typename _Tpp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00338">338</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00537">537</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1638,7 +1749,7 @@ template&lt;typename _Tp , typename _Tpn , typename _Tpp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00329">329</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00525">525</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1680,7 +1791,7 @@ template&lt;typename _Tp , typename _Tpn , typename _Tpp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00333">333</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00529">529</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1708,7 +1819,7 @@ template&lt;typename _Tp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00356">356</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00558">558</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1734,7 +1845,7 @@ template&lt;typename _Tp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00347">347</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00546">546</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1760,7 +1871,7 @@ template&lt;typename _Tp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00351">351</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00550">550</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1798,7 +1909,7 @@ template&lt;typename _Tp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00374">374</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00579">579</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1834,7 +1945,7 @@ template&lt;typename _Tp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00365">365</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00567">567</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1870,7 +1981,7 @@ template&lt;typename _Tp &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00369">369</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00571">571</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1907,8 +2018,19 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Returns the Laguerre polynomial of order <code>n</code>, and argument <code>x:</code> <img class="formulaInl" alt="$ L_n(x) $" src="form_26.png"/>.</p>
+<p>The Laguerre polynomial is defined by: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x}) \]" src="form_8.png"/>
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__n</td><td>The order of the Laguerre function. </td></tr>
+    <tr><td class="paramname">__x</td><td>The argument of the Laguerre function. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00392">392</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00621">621</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1943,8 +2065,10 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Returns the associated Laguerre polynomial of order n, degree <img class="formulaInl" alt="$ \alpha $" src="form_1.png"/>: <img class="formulaInl" alt="$ L_n^alpha(x) $" src="form_2.png"/>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#gacae65579b397fddcd27954380d364a58">laguerre</a> for more details. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00383">383</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00594">594</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -1979,12 +2103,14 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Returns the associated Laguerre polynomial of order n, degree <img class="formulaInl" alt="$ \alpha $" src="form_1.png"/>: <img class="formulaInl" alt="$ L_n^alpha(x) $" src="form_2.png"/>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#gacae65579b397fddcd27954380d364a58">laguerre</a> for more details. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00387">387</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00604">604</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ga351a4a545c0e3f9e6ff5c0d4ff42d2e5"></a>
+<a class="anchor" id="gaf6eac7fcb98e25b8f3f7d1b95fa7add8"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -1997,7 +2123,7 @@ template&lt;typename _Tp &gt; </div>
           <td class="memname">__gnu_cxx::__promote&lt;_Tp&gt;::__type std::legendre </td>
           <td>(</td>
           <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>__n</em>, </td>
+          <td class="paramname"><em>__l</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2017,12 +2143,23 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the Legendre polynomial by upward recursion on order <img class="formulaInl" alt="$ l $" src="form_27.png"/>.</p>
+<p>The Legendre function of order <img class="formulaInl" alt="$ l $" src="form_27.png"/> and argument <img class="formulaInl" alt="$ x $" src="form_28.png"/>, <img class="formulaInl" alt="$ P_l(x) $" src="form_9.png"/>, is defined by: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ P_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l} \]" src="form_29.png"/>
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__l</td><td>The order <img class="formulaInl" alt="$l >= 0$" src="form_30.png"/> </td></tr>
+    <tr><td class="paramname">__x</td><td>The argument <img class="formulaInl" alt="$|x| <= 1$" src="form_31.png"/> </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00410">410</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00664">664</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ga83fc3b5f0ad76f4e6c3ccf13b1cacaae"></a>
+<a class="anchor" id="gaed94e3c664c99f5204da75be75aeac21"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -2033,7 +2170,7 @@ template&lt;typename _Tp &gt; </div>
           <td class="memname">float std::legendref </td>
           <td>(</td>
           <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>__n</em>, </td>
+          <td class="paramname"><em>__l</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2053,12 +2190,14 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the Legendre polynomial by upward recursion on order <img class="formulaInl" alt="$ l $" src="form_27.png"/>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#gaf6eac7fcb98e25b8f3f7d1b95fa7add8">legendre</a> for more details. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00401">401</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00636">636</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="gaeef497447af817a86522cd8f209d5291"></a>
+<a class="anchor" id="ga1b39bc22e3cc4860d08eb54099460391"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -2069,7 +2208,7 @@ template&lt;typename _Tp &gt; </div>
           <td class="memname">long double std::legendrel </td>
           <td>(</td>
           <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>__n</em>, </td>
+          <td class="paramname"><em>__l</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2089,8 +2228,10 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the Legendre polynomial by upward recursion on order <img class="formulaInl" alt="$ l $" src="form_27.png"/>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#gaf6eac7fcb98e25b8f3f7d1b95fa7add8">legendre</a> for more details. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00405">405</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00646">646</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -2117,8 +2258,21 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the Riemann zeta function <img class="formulaInl" alt="$ \zeta(s) $" src="form_32.png"/>.</p>
+<p>The Riemann zeta function is defined by: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \zeta(s) = \sum_{k=1}^{\infty} k^{-s} for s > 1 \frac{(2\pi)^s}{pi} sin(\frac{\pi s}{2}) \Gamma (1 - s) \zeta (1 - s) for s < 1 \]" src="form_33.png"/>
+</p>
+<p> For s &lt; 1 use the reflection formula: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s) \]" src="form_34.png"/>
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__s</td><td>The argument <code>s</code> != 1 </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00428">428</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00708">708</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -2143,8 +2297,10 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the Riemann zeta function <img class="formulaInl" alt="$ \zeta(s) $" src="form_32.png"/>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga67a6bfed9b6ab692e8c798b674431424">riemann_zeta</a> for more details. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00419">419</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00678">678</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -2169,8 +2325,10 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the Riemann zeta function <img class="formulaInl" alt="$ \zeta(s) $" src="form_32.png"/>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga67a6bfed9b6ab692e8c798b674431424">riemann_zeta</a> for more details. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00423">423</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00687">687</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -2207,8 +2365,19 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the spherical Bessel function <img class="formulaInl" alt="$ j_n(x) $" src="form_35.png"/> of order n.</p>
+<p>The spherical Bessel function is defined by: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ j_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} J_{n+1/2}(x) \]" src="form_36.png"/>
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__n</td><td>The order of the spherical Bessel function. </td></tr>
+    <tr><td class="paramname">__x</td><td>The argument of the spherical Bessel function. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00446">446</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00747">747</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -2243,8 +2412,10 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the spherical Bessel function <img class="formulaInl" alt="$ j_n(x) $" src="form_35.png"/> of order n.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga478e517ed975bcb256de230e64f0fda5">sph_bessel</a> for more details. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00437">437</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00722">722</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -2279,8 +2450,10 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the spherical Bessel function <img class="formulaInl" alt="$ j_n(x) $" src="form_35.png"/> of order n.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga478e517ed975bcb256de230e64f0fda5">sph_bessel</a> for more details. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00441">441</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00731">731</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -2323,8 +2496,20 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the spherical Legendre function of non-negative integral degree <code>l</code> and order <code>n</code> and real angle <img class="formulaInl" alt="$ \theta $" src="form_37.png"/> in radians.</p>
+<p>The spherical Legendre function is defined by </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ Y_l^m(\theta,\phi) = (-1)^m[\frac{(2l+1)}{4\pi} \frac{(l-m)!}{(l+m)!}] P_l^m(\cos\theta) \exp^{im\phi} \]" src="form_38.png"/>
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__l</td><td>The non-negative order <img class="formulaInl" alt="$ l >= 0 $" src="form_11.png"/>. </td></tr>
+    <tr><td class="paramname">__m</td><td>The non-negative degree <img class="formulaInl" alt="$ m >= 0 $" src="form_39.png"/> and <img class="formulaInl" alt="$ m <= l $" src="form_12.png"/>. </td></tr>
+    <tr><td class="paramname">__theta</td><td>The radian polar angle argument </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00464">464</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00792">792</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -2365,8 +2550,10 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the spherical Legendre function of non-negative integral degree <code>l</code> and order <code>n</code> and float angle <img class="formulaInl" alt="$ \theta $" src="form_37.png"/> in radians.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga573842c12247b87746b548f1945755a8">sph_legendre</a> for details. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00455">455</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00762">762</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -2407,8 +2594,10 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the spherical Legendre function of non-negative integral degree <code>l</code> and order <code>n</code> and long double angle <img class="formulaInl" alt="$ \theta $" src="form_37.png"/> in radians.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga573842c12247b87746b548f1945755a8">sph_legendre</a> for details. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00459">459</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00772">772</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -2445,8 +2634,19 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the spherical Neumann function of non-negative integral order <code>n</code> and non-negative real argument <code>x</code>.</p>
+<p>The spherical Neumann function is defined by </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \]" src="form_40.png"/>
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__n</td><td></td></tr>
+    <tr><td class="paramname">__x</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00482">482</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00834">834</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -2481,8 +2681,10 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the spherical Neumann function of non-negative integral order <code>n</code> and non-negative real argument <code>x</code>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga1cf4362a67ab5bae9e6b69c867e85371">sph_neumann</a> for details. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00473">473</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00807">807</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
@@ -2517,8 +2719,10 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the spherical Neumann function of non-negative integral order <code>n</code> and non-negative real argument <code>x</code>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__tr29124__math__spec__func.html#ga1cf4362a67ab5bae9e6b69c867e85371">sph_neumann</a> for details. </dd></dl>
 
-<p>Definition at line <a class="el" href="specfun_8h_source.html#l00477">477</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
+<p>Definition at line <a class="el" href="specfun_8h_source.html#l00817">817</a> of file <a class="el" href="specfun_8h_source.html">specfun.h</a>.</p>
 
 </div>
 </div>
