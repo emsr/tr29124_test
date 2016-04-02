@@ -1000,12 +1000,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  @see Wimp, J., On the computation of Tricomi's psi function, Computing,
    *  Vol 13, pp 195-203, 1974.
    *
-   *  @param[in] z   The argument at which the Airy function and its derivative
+   *  @param[in] __z   The argument at which the Airy function and its derivative
    *    	     are computed.
-   *  @param[in] eps Relative error required.  Currently, eps is used only
+   *  @param[in] __eps Relative error required.  Currently, eps is used only
    *		     in the backward recursion algorithms.
-   *  @param[out] Ai  The value computed for Ai(z).
-   *  @param[out] Aip The value computed for Ai'(z).
+   *  @param[out] _Ai  The value computed for Ai(z).
+   *  @param[out] _Aip The value computed for Ai'(z).
+   *  @param[out] _Bi  The value computed for Bi(z).
+   *  @param[out] _Bip The value computed for Bi'(z).
    */
   template<typename _Tp>
     void

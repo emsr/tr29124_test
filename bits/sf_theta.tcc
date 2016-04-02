@@ -42,7 +42,7 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *  Compute and return the \theta_1 function by series expansion.
+   *  Compute and return the @f$ \theta_1 @f$ function by series expansion.
    */
   template<typename _Tp>
     _Tp
@@ -70,7 +70,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Compute and return the \theta_3 function by series expansion.
+   *  Compute and return the @f$ \theta_3 @f$ function by series expansion.
    */
   template<typename _Tp>
     _Tp
@@ -96,7 +96,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Compute and return the \theta_3 function by series expansion.
+   *  Compute and return the @f$ \theta_2 @f$ function by series expansion.
    */
   template<typename _Tp>
     _Tp
@@ -121,7 +121,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Compute and return the \theta_3 function by asymptotic series expansion.
+   *  Compute and return the @f$ \theta_3 @f$ function by asymptotic series expansion.
    */
   template<typename _Tp>
     _Tp
@@ -146,7 +146,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the \theta_2 function
+   *  Return the @f$ \theta_2 @f$ function
    */
   template<typename _Tp>
     _Tp
@@ -165,7 +165,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the \theta_1 function
+   *  Return the @f$ \theta_1 @f$ function
    */
   template<typename _Tp>
     _Tp
@@ -182,7 +182,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the \theta_3 function
+   *  Return the @f$ \theta_3 @f$ function
    */
   template<typename _Tp>
     _Tp
@@ -201,7 +201,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the \theta_4 function
+   *  Return the @f$ \theta_4 @f$ function
    */
   template<typename _Tp>
     _Tp
@@ -268,7 +268,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the Neville \theta_s function
+   *  Return the Neville @f$ \theta_s @f$ function
    */
   template<typename _Tp>
     _Tp
@@ -294,7 +294,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the Neville \theta_c function
+   *  Return the Neville @f$ \theta_c @f$ function
    */
   template<typename _Tp>
     _Tp
@@ -319,7 +319,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the Neville \theta_d function
+   *  Return the Neville @f$ \theta_d @f$ function
    */
   template<typename _Tp>
     _Tp
@@ -344,7 +344,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the Neville \theta_n function
+   *  Return the Neville @f$ \theta_n @f$ function
    */
   template<typename _Tp>
     _Tp
@@ -371,7 +371,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  Return a tuple of the three primary Jacobi elliptic functions:
-   *  sn(k, u), cn(k, u), dn(k, u).
+   *  @f$ sn(k, u), cn(k, u), dn(k, u) @f$.
    */
   template<typename _Tp>
     std::tuple<_Tp, _Tp, _Tp>

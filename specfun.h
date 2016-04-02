@@ -109,16 +109,57 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Associated Laguerre polynomials
 
+  /**
+   * Return the associated Laguerre polynomial of order @c n,
+   * degree @c m: @f$ L_n^m(x) @f$.
+   *
+   * @see assoc_laguerre for more details.
+   */
   inline float
   assoc_laguerref(unsigned int __n, unsigned int __m, float __x)
   { return __detail::__assoc_laguerre<float>(__n, __m, __x); }
 
+  /**
+   * Return the associated Laguerre polynomial of order @c n,
+   * degree @c m: @f$ L_n^m(x) @f$.
+   *
+   * @see assoc_laguerre for more details.
+   */
   inline long double
   assoc_laguerrel(unsigned int __n, unsigned int __m, long double __x)
   { return __detail::__assoc_laguerre<long double>(__n, __m, __x); }
 
   /**
-   * 
+   * Return the associated Laguerre polynomial of order @c n,
+   * degree @c m: @f$ L_n^m(x) @f$.
+   *
+   * @param __n The order
+   * @param __m The degree
+   * @param __x The argument
+   * Return the associated Laguerre polynomial
+   * of order n, degree @f$ \alpha @f$: @f$ L_n^alpha(x) @f$.
+   *
+   * The associated Laguerre function is defined by
+   * @f[
+   * 	 L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!}
+   * 			 _1F_1(-n; \alpha + 1; x)
+   * @f]
+   * where @f$ (\alpha)_n @f$ is the Pochhammer symbol and
+   * @f$ _1F_1(a; c; x) @f$ is the confluent hypergeometric function.
+   *
+   * The associated Laguerre polynomial is defined for integral
+   * @f$ \alpha = m @f$ by:
+   * @f[
+   * 	 L_n^m(x) = (-1)^m \frac{d^m}{dx^m} L_{n + m}(x)
+   * @f]
+   * where the Laguerre polynomial is defined by:
+   * @f[
+   * 	 L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
+   * @f]
+   *
+   * @param __n The order of the Laguerre function.
+   * @param __m The degree of the Laguerre function.
+   * @param __x The argument of the Laguerre function.
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -130,16 +171,39 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Associated Legendre functions
 
+  /**
+   * Return the associated Legendre function of order @c l and degree @c m.
+   *
+   * @see assoc_legendre for more details.
+   */
   inline float
   assoc_legendref(unsigned int __l, unsigned int __m, float __x)
   { return __detail::__assoc_legendre_p<float>(__l, __m, __x); }
 
+  /**
+   * Return the associated Legendre function of order @c l and degree @c m.
+   *
+   * @see assoc_legendre for more details.
+   */
   inline long double
   assoc_legendrel(unsigned int __l, unsigned int __m, long double __x)
   { return __detail::__assoc_legendre_p<long double>(__l, __m, __x); }
 
   /**
-   * 
+   * Return the associated Legendre function of order @c l and degree @c m.
+   *
+   * The associated Legendre function is derived from the Legendre function
+   * @f$ P_l(x) @f$ by the Rodrigues formula:
+   * @f[
+   *   P_l^m(x) = (1 - x^2)^{m/2}\frac{d^m}{dx^m}P_l(x)
+   * @f]
+   *
+   * @param  __l  The order of the associated Legendre function.
+   * 		@f$ l >= 0 @f$.
+   * @param  __m  The order of the associated Legendre function.
+   * 		@f$ m <= l @f$.
+   * @param  __x  The argument of the associated Legendre function.
+   * 		@f$ |x| <= 1 @f$.
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -235,16 +299,38 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Regular modified cylindrical Bessel functions
 
+  /**
+   * Return the regular modified Bessel function
+   * \f$ I_{\nu}(x) \f$ of order \f$ \nu \f$.
+   *
+   * @see cyl_bessel_i for setails.
+   */
   inline float
   cyl_bessel_if(float __nu, float __x)
   { return __detail::__cyl_bessel_i<float>(__nu, __x); }
 
+  /**
+   * Return the regular modified Bessel function
+   * \f$ I_{\nu}(x) \f$ of order \f$ \nu \f$.
+   *
+   * @see cyl_bessel_i for setails.
+   */
   inline long double
   cyl_bessel_il(long double __nu, long double __x)
   { return __detail::__cyl_bessel_i<long double>(__nu, __x); }
 
   /**
-   * 
+   * Return the regular modified Bessel function of order
+   * \f$ \nu \f$: \f$ I_{\nu}(x) \f$.
+   *
+   *   The regular modified cylindrical Bessel function is:
+   *   @f[
+   *    I_{\nu}(x) = \sum_{k=0}^{\infty}
+   *              \frac{(x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
+   *   @f]
+   *
+   *   @param  __nu  The order of the regular modified Bessel function.
+   *   @param  __x   The argument of the regular modified Bessel function.
    */
   template<typename _Tpnu, typename _Tp>
     inline typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type
@@ -256,16 +342,38 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Cylindrical Bessel functions (of the first kind)
 
+  /**
+   * Return the Bessel function of the first kind
+   * \f$ J_{\nu}(x) \f$ of order \f$ \nu \f$.
+   *
+   * @see cyl_bessel_j for setails.
+   */
   inline float
   cyl_bessel_jf(float __nu, float __x)
   { return __detail::__cyl_bessel_j<float>(__nu, __x); }
 
+  /**
+   * Return the Bessel function of the first kind
+   * \f$ J_{\nu}(x) \f$ of order \f$ \nu \f$.
+   *
+   * @see cyl_bessel_j for setails.
+   */
   inline long double
   cyl_bessel_jl(long double __nu, long double __x)
   { return __detail::__cyl_bessel_j<long double>(__nu, __x); }
 
   /**
-   * 
+   * Return the Bessel function of order @f$ \nu @f$:
+   * @f$ J_{\nu}(x) @f$.
+   *
+   * The cylindrical Bessel function is:
+   * @f[
+   *    J_{\nu}(x) = \sum_{k=0}^{\infty}
+   *              \frac{(-1)^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
+   * @f]
+   *
+   * @param  __nu  The order of the Bessel function.
+   * @param  __x   The argument of the Bessel function.
    */
   template<typename _Tpnu, typename _Tp>
     inline typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type
@@ -277,16 +385,44 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Irregular modified cylindrical Bessel functions
 
+  /**
+   * Return the irregular modified Bessel function
+   * \f$ K_{\nu}(x) \f$ of order \f$ \nu \f$.
+   *
+   * @see cyl_bessel_k for setails.
+   */
   inline float
   cyl_bessel_kf(float __nu, float __x)
   { return __detail::__cyl_bessel_k<float>(__nu, __x); }
 
+  /**
+   * Return the irregular modified Bessel function
+   * \f$ K_{\nu}(x) \f$ of order \f$ \nu \f$.
+   *
+   * @see cyl_bessel_k for setails.
+   */
   inline long double
   cyl_bessel_kl(long double __nu, long double __x)
   { return __detail::__cyl_bessel_k<long double>(__nu, __x); }
 
   /**
-   * 
+   * Return the irregular modified Bessel function
+   * \f$ K_{\nu}(x) \f$ of order \f$ \nu \f$.
+   *
+   *   The irregular modified Bessel function is defined by:
+   *   @f[
+   *      K_{\nu}(x) = \frac{\pi}{2}
+   *                   \frac{I_{-\nu}(x) - I_{\nu}(x)}{\sin \nu\pi}
+   *   @f]
+   *   where for integral \f$ \nu = n \f$ a limit is taken:
+   *   \f$ lim_{\nu \to n} \f$.
+   *   For negative argument we have simply:
+   *   @f[
+   *      K_{-\nu}(x) = K_{\nu}(x)
+   *   @f]
+   *
+   *   @param  __nu  The order of the irregular modified Bessel function.
+   *   @param  __x   The argument of the irregular modified Bessel function.
    */
   template<typename _Tpnu, typename _Tp>
     inline typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type
@@ -298,16 +434,40 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Cylindrical Neumann functions
 
+  /**
+   * Return the Neumann function of order @f$ \nu @f$:
+   * @f$ N_{\nu}(x) @f$.
+   *
+   * @see cyl_neumann for setails.
+   */
   inline float
   cyl_neumannf(float __nu, float __x)
   { return __detail::__cyl_neumann_n<float>(__nu, __x); }
 
+  /**
+   * Return the Neumann function of order @f$ \nu @f$:
+   * @f$ N_{\nu}(x) @f$.
+   *
+   * @see cyl_neumann for setails.
+   */
   inline long double
   cyl_neumannl(long double __nu, long double __x)
   { return __detail::__cyl_neumann_n<long double>(__nu, __x); }
 
   /**
-   * 
+   * Return the Neumann function of order @f$ \nu @f$:
+   * @f$ N_{\nu}(x) @f$.
+   *
+   * The Neumann function is defined by:
+   *   @f[
+   *      N_{\nu}(x) = \frac{J_{\nu}(x) \cos \nu\pi - J_{-\nu}(x)}
+   *                        {\sin \nu\pi}
+   *   @f]
+   * where for integral @f$ \nu = n @f$ a limit is taken:
+   * @f$ lim_{\nu \to n} @f$.
+   *
+   * @param  __nu  The order of the Neumann function.
+   * @param  __x   The argument of the Neumann function.
    */
   template<typename _Tpnu, typename _Tp>
     inline typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type
@@ -424,16 +584,37 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Laguerre polynomials
 
+  /**
+   * Returns the associated Laguerre polynomial
+   * of order n, degree @f$ \alpha @f$: @f$ L_n^alpha(x) @f$.
+   *
+   * @see laguerre for more details.
+   */
   inline float
   laguerref(unsigned int __n, float __x)
   { return __detail::__laguerre<float>(__n, __x); }
 
+  /**
+   * Returns the associated Laguerre polynomial
+   * of order n, degree @f$ \alpha @f$: @f$ L_n^alpha(x) @f$.
+   *
+   * @see laguerre for more details.
+   */
   inline long double
   laguerrel(unsigned int __n, long double __x)
   { return __detail::__laguerre<long double>(__n, __x); }
 
   /**
-   * 
+   * Returns the Laguerre polynomial
+   * of order @c n, and argument @c x: @f$ L_n(x) @f$.
+   *
+   * The Laguerre polynomial is defined by:
+   * @f[
+   * 	 L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
+   * @f]
+   *
+   * @param __n The order of the Laguerre function.
+   * @param __x The argument of the Laguerre function.
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -445,37 +626,82 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Legendre polynomials
 
+  /**
+   * Return the Legendre polynomial by upward recursion
+   * on order @f$ l @f$.
+   *
+   * @see legendre for more details.
+   */
   inline float
-  legendref(unsigned int __n, float __x)
-  { return __detail::__poly_legendre_p<float>(__n, __x); }
-
-  inline long double
-  legendrel(unsigned int __n, long double __x)
-  { return __detail::__poly_legendre_p<long double>(__n, __x); }
+  legendref(unsigned int __l, float __x)
+  { return __detail::__poly_legendre_p<float>(__l, __x); }
 
   /**
-   * 
+   * Return the Legendre polynomial by upward recursion
+   * on order @f$ l @f$.
+   *
+   * @see legendre for more details.
+   */
+  inline long double
+  legendrel(unsigned int __l, long double __x)
+  { return __detail::__poly_legendre_p<long double>(__l, __x); }
+
+  /**
+   * Return the Legendre polynomial by upward recursion
+   * on order @f$ l @f$.
+   *
+   * The Legendre function of order @f$ l @f$ and argument @f$ x @f$,
+   * @f$ P_l(x) @f$, is defined by:
+   * @f[
+   *   P_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l}
+   * @f]
+   *
+   * @param  __l  The order @f$l >= 0@f$
+   * @param  __x  The argument @f$|x| <= 1@f$
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
-    legendre(unsigned int __n, _Tp __x)
+    legendre(unsigned int __l, _Tp __x)
     {
       typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
-      return __detail::__poly_legendre_p<__type>(__n, __x);
+      return __detail::__poly_legendre_p<__type>(__l, __x);
     }
 
   // Riemann zeta functions
 
+  /**
+   * Return the Riemann zeta function @f$ \zeta(s) @f$.
+   *
+   * @see riemann_zeta for more details.
+   */
   inline float
   riemann_zetaf(float __s)
   { return __detail::__riemann_zeta<float>(__s); }
 
+  /**
+   * Return the Riemann zeta function @f$ \zeta(s) @f$.
+   *
+   * @see riemann_zeta for more details.
+   */
   inline long double
   riemann_zetal(long double __s)
   { return __detail::__riemann_zeta<long double>(__s); }
 
   /**
-   * 
+   * Return the Riemann zeta function @f$ \zeta(s) @f$.
+   *
+   * The Riemann zeta function is defined by:
+   * @f[
+   * 	\zeta(s) = \sum_{k=1}^{\infty} k^{-s} for s > 1
+   * 		   \frac{(2\pi)^s}{pi} sin(\frac{\pi s}{2})
+   * 		   \Gamma (1 - s) \zeta (1 - s) for s < 1
+   * @f]
+   * For s < 1 use the reflection formula:
+   * @f[
+   * 	\zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
+   * @f]
+   *
+   * @param __s The argument @c s != 1
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -487,16 +713,34 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Spherical Bessel functions
 
+  /**
+   * Return the spherical Bessel function @f$ j_n(x) @f$ of order n.
+   *
+   * @see sph_bessel for more details.
+   */
   inline float
   sph_besself(unsigned int __n, float __x)
   { return __detail::__sph_bessel<float>(__n, __x); }
 
+  /**
+   * Return the spherical Bessel function @f$ j_n(x) @f$ of order n.
+   *
+   * @see sph_bessel for more details.
+   */
   inline long double
   sph_bessell(unsigned int __n, long double __x)
   { return __detail::__sph_bessel<long double>(__n, __x); }
 
   /**
-   * 
+   * Return the spherical Bessel function @f$ j_n(x) @f$ of order n.
+   *
+   * The spherical Bessel function is defined by:
+   * @f[
+   *  j_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} J_{n+1/2}(x)
+   * @f]
+   *
+   * @param  __n  The order of the spherical Bessel function.
+   * @param  __x  The argument of the spherical Bessel function.
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -532,14 +776,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the spherical Legendre function of non-negative integral
    * degree @c l and order @c n and real angle @f$ \theta @f$ in radians.
    *
-   * The spherical Neumann function is defined by
+   * The spherical Legendre function is defined by
    * @f[
-   *    
+   *  Y_l^m(\theta,\phi) = (-1)^m[\frac{(2l+1)}{4\pi}
+   *                              \frac{(l-m)!}{(l+m)!}]
+   *                   P_l^m(\cos\theta) \exp^{im\phi}
    * @f]
    *
-   * @param __l 
-   * @param __m 
-   * @param __theta 
+   * @param __l The non-negative order @f$ l >= 0 @f$.
+   * @param __m The non-negative degree @f$ m >= 0 @f$ and @f$ m <= l @f$.
+   * @param __theta The radian polar angle argument
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -2624,16 +2870,37 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Cylindrical Hankel functions of the first kind.
 
+  /**
+   * Return the complex cylindrical Hankel function of the first kind
+   * of complex order @c @f$ \nu @f$ and complex argument @c x.
+   *
+   * @see cyl_hankel_1 for more details.
+   */
   inline std::complex<float>
   cyl_hankel_1f(std::complex<float> __nu, std::complex<float> __x)
   { return std::__detail::__cyl_hankel_1<float>(__nu, __x); }
 
+  /**
+   * Return the complex cylindrical Hankel function of the first kind
+   * of complex order @c @f$ \nu @f$ and complex argument @c x.
+   *
+   * @see cyl_hankel_1 for more details.
+   */
   inline std::complex<long double>
   cyl_hankel_1l(std::complex<long double> __nu, std::complex<long double> __x)
   { return std::__detail::__cyl_hankel_1<long double>(__nu, __x); }
 
   /**
-   * 
+   * Return the complex cylindrical Hankel function of the first kind
+   * of complex order @c @f$ \nu @f$ and complex argument @c x.
+   *
+   * The cylindrical Hankel function of the first kind is defined by
+   * @f[
+   *    H^{(1)}_\nu(x) = J_\nu(x) + i N_\nu(x)
+   * @f]
+   *
+   * @param __nu The complex order
+   * @param __x The complex argument
    */
   template<typename _Tpnu, typename _Tp>
     inline std::complex<__gnu_cxx::__promote_num_t<_Tpnu, _Tp>>
@@ -2645,10 +2912,22 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Cylindrical Hankel functions of the second kind.
 
+  /**
+   * Return the complex cylindrical Hankel function of the second kind
+   * of complex order @c @f$ \nu @f$ and complex argument @c x.
+   *
+   * @see cyl_hankel_2 for more details.
+   */
   inline std::complex<float>
   cyl_hankel_2f(std::complex<float> __nu, std::complex<float> __x)
   { return std::__detail::__cyl_hankel_2<float>(__nu, __x); }
 
+  /**
+   * Return the complex cylindrical Hankel function of the second kind
+   * of complex order @c @f$ \nu @f$ and complex argument @c x.
+   *
+   * @see cyl_hankel_2 for more details.
+   */
   inline std::complex<long double>
   cyl_hankel_2l(std::complex<long double> __nu, std::complex<long double> __x)
   { return std::__detail::__cyl_hankel_2<long double>(__nu, __x); }
@@ -2657,9 +2936,9 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * Return the complex cylindrical Hankel function of the second kind
    * of complex order @c @f$ \nu @f$ and complex argument @c x.
    *
-   * The spherical Hankel function of the first kind is defined by
+   * The cylindrical Hankel function of the second kind is defined by
    * @f[
-   *    
+   *    H^{(2)}_\nu(x) = J_\nu(x) - i N_\nu(x)
    * @f]
    *
    * @param __nu The complex order
@@ -2689,7 +2968,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The spherical Hankel function of the first kind is defined by
    * @f[
-   *    
+   *    h^{(1)}_n(x) = j_n(x) + i n_n(x)
    * @f]
    *
    * @param __n The integral order >= 0
@@ -2717,9 +2996,9 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * Return the complex spherical Hankel function of the second kind
    * of non-negative order @c n and complex argument @c x.
    *
-   * The spherical Hankel function of the first kind is defined by
+   * The spherical Hankel function of the second kind is defined by
    * @f[
-   *    
+   *    h^{(2)}_n(x) = j_n(x) - i n_n(x)
    * @f]
    *
    * @param __n The integral order >= 0
@@ -2763,9 +3042,11 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * Return the complex spherical harmonic function of degree @c l, order @c m,
    * and real zenith angle @f$ \theta @f$, and real azimuth angle @c @f$ \phi @f$.
    *
-   * The spherical harmonic function is defined by
+   * The spherical harmonic function is defined by:
    * @f[
-   *    
+   *    Y_l^m(\theta,\phi) = (-1)^m[\frac{(2l+1)}{4\pi}
+   *                                \frac{(l-m)!}{(l+m)!}]
+   *                     P_l^{|m|}(\cos\theta) \exp^{im\phi}
    * @f]
    *
    * @param __l The order
