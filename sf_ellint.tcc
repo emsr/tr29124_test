@@ -56,25 +56,25 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *   @brief  Return the Carlson elliptic function
-   *           @f$ R_C(x,y) = R_F(x,y,y) @f$ where @f$ R_F(x,y,z) @f$
-   *           is the Carlson elliptic function of the first kind.
+   * @brief  Return the Carlson elliptic function
+   * 	     @f$ R_C(x,y) = R_F(x,y,y) @f$ where @f$ R_F(x,y,z) @f$
+   * 	     is the Carlson elliptic function of the first kind.
    *
-   *   The Carlson elliptic function is defined by:
-   *   @f[
-   *       R_C(x,y) = \frac{1}{2} \int_0^\infty
-   *                 \frac{dt}{(t + x)^{1/2}(t + y)}
-   *   @f]
+   * The Carlson elliptic function is defined by:
+   * @f[
+   * 	 R_C(x,y) = \frac{1}{2} \int_0^\infty
+   * 		   \frac{dt}{(t + x)^{1/2}(t + y)}
+   * @f]
    *
-   *   Based on Carlson's algorithms:
-   *   -  B. C. Carlson Numer. Math. 33, 1 (1979)
-   *   -  B. C. Carlson, Special Functions of Applied Mathematics (1977)
-   *   -  Numerical Recipes in C, 2nd ed, pp. 261-269,
-   *      by Press, Teukolsky, Vetterling, Flannery (1992)
+   * Based on Carlson's algorithms:
+   * -  B. C. Carlson Numer. Math. 33, 1 (1979)
+   * -  B. C. Carlson, Special Functions of Applied Mathematics (1977)
+   * -  Numerical Recipes in C, 2nd ed, pp. 261-269,
+   * 	by Press, Teukolsky, Vetterling, Flannery (1992)
    *
-   *   @param  __x  The first argument.
-   *   @param  __y  The second argument.
-   *   @return  The Carlson elliptic function.
+   * @param  __x  The first argument.
+   * @param  __y  The second argument.
+   * @return  The Carlson elliptic function.
    */
   template<typename _Tp>
     _Tp
@@ -136,27 +136,27 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Return the Carlson elliptic function of the second kind
-   *           @f$ R_D(x,y,z) = R_J(x,y,z,z) @f$ where
-   *           @f$ R_J(x,y,z,p) @f$ is the Carlson elliptic function
-   *           of the third kind.
+   * @brief  Return the Carlson elliptic function of the second kind
+   * 	     @f$ R_D(x,y,z) = R_J(x,y,z,z) @f$ where
+   * 	     @f$ R_J(x,y,z,p) @f$ is the Carlson elliptic function
+   * 	     of the third kind.
    *
-   *   The Carlson elliptic function of the second kind is defined by:
-   *   @f[
-   *       R_D(x,y,z) = \frac{3}{2} \int_0^\infty
-   *                 \frac{dt}{(t + x)^{1/2}(t + y)^{1/2}(t + z)^{3/2}}
-   *   @f]
+   * The Carlson elliptic function of the second kind is defined by:
+   * @f[
+   * 	 R_D(x,y,z) = \frac{3}{2} \int_0^\infty
+   * 		   \frac{dt}{(t + x)^{1/2}(t + y)^{1/2}(t + z)^{3/2}}
+   * @f]
    *
-   *   Based on Carlson's algorithms:
-   *   -  B. C. Carlson Numer. Math. 33, 1 (1979)
-   *   -  B. C. Carlson, Special Functions of Applied Mathematics (1977)
-   *   -  Numerical Recipes in C, 2nd ed, pp. 261-269,
-   *      by Press, Teukolsky, Vetterling, Flannery (1992)
+   * Based on Carlson's algorithms:
+   * -  B. C. Carlson Numer. Math. 33, 1 (1979)
+   * -  B. C. Carlson, Special Functions of Applied Mathematics (1977)
+   * -  Numerical Recipes in C, 2nd ed, pp. 261-269,
+   * 	by Press, Teukolsky, Vetterling, Flannery (1992)
    *
-   *   @param  __x  The first of two symmetric arguments.
-   *   @param  __y  The second of two symmetric arguments.
-   *   @param  __z  The third argument.
-   *   @return  The Carlson elliptic function of the second kind.
+   * @param  __x  The first of two symmetric arguments.
+   * @param  __y  The second of two symmetric arguments.
+   * @param  __z  The third argument.
+   * @return  The Carlson elliptic function of the second kind.
    */
   template<typename _Tp>
     _Tp
@@ -258,19 +258,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief Return the Carlson elliptic function @f$ R_F(x,y,z) @f$
-   *          of the first kind.
+   * @brief Return the Carlson elliptic function @f$ R_F(x,y,z) @f$
+   * 	    of the first kind.
    *
-   *   The Carlson elliptic function of the first kind is defined by:
-   *   @f[
-   *       R_F(x,y,z) = \frac{1}{2} \int_0^\infty
-   *                 \frac{dt}{(t + x)^{1/2}(t + y)^{1/2}(t + z)^{1/2}}
-   *   @f]
+   * The Carlson elliptic function of the first kind is defined by:
+   * @f[
+   * 	 R_F(x,y,z) = \frac{1}{2} \int_0^\infty
+   * 		   \frac{dt}{(t + x)^{1/2}(t + y)^{1/2}(t + z)^{1/2}}
+   * @f]
    *
-   *   @param  __x  The first of three symmetric arguments.
-   *   @param  __y  The second of three symmetric arguments.
-   *   @param  __z  The third of three symmetric arguments.
-   *   @return  The Carlson elliptic function of the first kind.
+   * @param  __x  The first of three symmetric arguments.
+   * @param  __y  The second of three symmetric arguments.
+   * @param  __z  The third of three symmetric arguments.
+   * @return  The Carlson elliptic function of the first kind.
    */
   template<typename _Tp>
     _Tp
@@ -381,26 +381,26 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Return the symmetric Carlson elliptic function of the second kind
-   *           @f$ R_G(x,y,z) @f$.
+   * @brief  Return the symmetric Carlson elliptic function of the second kind
+   * 	     @f$ R_G(x,y,z) @f$.
    *
-   *   The Carlson symmetric elliptic function of the second kind is defined by:
-   *   @f[
-   *       R_G(x,y,z) = \frac{1}{4} \int_0^\infty
-   *                 dt t [(t + x)(t + y)(t + z)]^{-1/2}
-   *                 (\frac{x}{t + x} + \frac{y}{t + y} + \frac{z}{t + z})
-   *   @f]
+   * The Carlson symmetric elliptic function of the second kind is defined by:
+   * @f[
+   * 	 R_G(x,y,z) = \frac{1}{4} \int_0^\infty
+   * 		   dt t [(t + x)(t + y)(t + z)]^{-1/2}
+   * 		   (\frac{x}{t + x} + \frac{y}{t + y} + \frac{z}{t + z})
+   * @f]
    *
-   *   Based on Carlson's algorithms:
-   *   -  B. C. Carlson Numer. Math. 33, 1 (1979)
-   *   -  B. C. Carlson, Special Functions of Applied Mathematics (1977)
-   *   -  Numerical Recipes in C, 2nd ed, pp. 261-269,
-   *      by Press, Teukolsky, Vetterling, Flannery (1992)
+   * Based on Carlson's algorithms:
+   * -  B. C. Carlson Numer. Math. 33, 1 (1979)
+   * -  B. C. Carlson, Special Functions of Applied Mathematics (1977)
+   * -  Numerical Recipes in C, 2nd ed, pp. 261-269,
+   * 	by Press, Teukolsky, Vetterling, Flannery (1992)
    *
-   *   @param  __x  The first of three symmetric arguments.
-   *   @param  __y  The second of three symmetric arguments.
-   *   @param  __z  The third of three symmetric arguments.
-   *   @return  The Carlson symmetric elliptic function of the second kind.
+   * @param  __x  The first of three symmetric arguments.
+   * @param  __y  The second of three symmetric arguments.
+   * @param  __z  The third of three symmetric arguments.
+   * @return  The Carlson symmetric elliptic function of the second kind.
    */
 
   template<typename _Tp>
@@ -430,26 +430,26 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Return the Carlson elliptic function @f$ R_J(x,y,z,p) @f$
-   *           of the third kind.
+   * @brief  Return the Carlson elliptic function @f$ R_J(x,y,z,p) @f$
+   * 	     of the third kind.
    *
-   *   The Carlson elliptic function of the third kind is defined by:
-   *   @f[
-   *       R_J(x,y,z,p) = \frac{3}{2} \int_0^\infty
-   *       \frac{dt}{(t + x)^{1/2}(t + y)^{1/2}(t + z)^{1/2}(t + p)}
-   *   @f]
+   * The Carlson elliptic function of the third kind is defined by:
+   * @f[
+   * 	 R_J(x,y,z,p) = \frac{3}{2} \int_0^\infty
+   * 	 \frac{dt}{(t + x)^{1/2}(t + y)^{1/2}(t + z)^{1/2}(t + p)}
+   * @f]
    *
-   *   Based on Carlson's algorithms:
-   *   -  B. C. Carlson Numer. Math. 33, 1 (1979)
-   *   -  B. C. Carlson, Special Functions of Applied Mathematics (1977)
-   *   -  Numerical Recipes in C, 2nd ed, pp. 261-269,
-   *      by Press, Teukolsky, Vetterling, Flannery (1992)
+   * Based on Carlson's algorithms:
+   * -  B. C. Carlson Numer. Math. 33, 1 (1979)
+   * -  B. C. Carlson, Special Functions of Applied Mathematics (1977)
+   * -  Numerical Recipes in C, 2nd ed, pp. 261-269,
+   * 	by Press, Teukolsky, Vetterling, Flannery (1992)
    *
-   *   @param  __x  The first of three symmetric arguments.
-   *   @param  __y  The second of three symmetric arguments.
-   *   @param  __z  The third of three symmetric arguments.
-   *   @param  __p  The fourth argument.
-   *   @return  The Carlson elliptic function of the fourth kind.
+   * @param  __x  The first of three symmetric arguments.
+   * @param  __y  The second of three symmetric arguments.
+   * @param  __z  The third of three symmetric arguments.
+   * @param  __p  The fourth argument.
+   * @return  The Carlson elliptic function of the fourth kind.
    */
   template<typename _Tp>
     _Tp
@@ -546,19 +546,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Return the complete elliptic integral of the first kind
-   *           @f$ K(k) @f$ using the Carlson formulation.
+   * @brief  Return the complete elliptic integral of the first kind
+   * @f$ K(k) @f$ using the Carlson formulation.
    *
-   *   The complete elliptic integral of the first kind is defined as
-   *   @f[
-   *     K(k) = F(k,\pi/2) = \int_0^{\pi/2}\frac{d\theta}
-   *                                           {\sqrt{1 - k^2 sin^2\theta}}
-   *   @f]
-   *   where @f$ F(k,\phi) @f$ is the incomplete elliptic integral of the
-   *   first kind.
+   * The complete elliptic integral of the first kind is defined as
+   * @f[
+   *   K(k) = F(k,\pi/2) = \int_0^{\pi/2}\frac{d\theta}
+   * 					     {\sqrt{1 - k^2 sin^2\theta}}
+   * @f]
+   * where @f$ F(k,\phi) @f$ is the incomplete elliptic integral of the
+   * first kind.
    *
-   *   @param  __k  The argument of the complete elliptic function.
-   *   @return  The complete elliptic function of the first kind.
+   * @param  __k  The argument of the complete elliptic function.
+   * @return  The complete elliptic function of the first kind.
    */
   template<typename _Tp>
     _Tp
@@ -576,18 +576,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Return the incomplete elliptic integral of the first kind
-   *           @f$ F(k,\phi) @f$ using the Carlson formulation.
+   * @brief  Return the incomplete elliptic integral of the first kind
+   * @f$ F(k,\phi) @f$ using the Carlson formulation.
    *
-   *   The incomplete elliptic integral of the first kind is defined as
-   *   @f[
-   *     F(k,\phi) = \int_0^{\phi}\frac{d\theta}
-   *                                   {\sqrt{1 - k^2 sin^2\theta}}
-   *   @f]
+   * The incomplete elliptic integral of the first kind is defined as
+   * @f[
+   *   F(k,\phi) = \int_0^{\phi}\frac{d\theta}
+   * 				     {\sqrt{1 - k^2 sin^2\theta}}
+   * @f]
    *
-   *   @param  __k  The argument of the elliptic function.
-   *   @param  __phi  The integral limit argument of the elliptic function.
-   *   @return  The elliptic function of the first kind.
+   * @param  __k  The argument of the elliptic function.
+   * @param  __phi  The integral limit argument of the elliptic function.
+   * @return  The elliptic function of the first kind.
    */
   template<typename _Tp>
     _Tp
@@ -622,16 +622,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Return the complete elliptic integral of the second kind
-   *           @f$ E(k) @f$ using the Carlson formulation.
+   * @brief  Return the complete elliptic integral of the second kind
+   * 	     @f$ E(k) @f$ using the Carlson formulation.
    *
-   *   The complete elliptic integral of the second kind is defined as
-   *   @f[
-   *     E(k,\pi/2) = \int_0^{\pi/2}\sqrt{1 - k^2 sin^2\theta}
-   *   @f]
+   * The complete elliptic integral of the second kind is defined as
+   * @f[
+   *   E(k,\pi/2) = \int_0^{\pi/2}\sqrt{1 - k^2 sin^2\theta}
+   * @f]
    *
-   *   @param  __k  The argument of the complete elliptic function.
-   *   @return  The complete elliptic function of the second kind.
+   * @param  __k  The argument of the complete elliptic function.
+   * @return  The complete elliptic function of the second kind.
    */
   template<typename _Tp>
     _Tp
@@ -656,17 +656,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Return the incomplete elliptic integral of the second kind
-   *           @f$ E(k,\phi) @f$ using the Carlson formulation.
+   * @brief  Return the incomplete elliptic integral of the second kind
+   * @f$ E(k,\phi) @f$ using the Carlson formulation.
    *
-   *   The incomplete elliptic integral of the second kind is defined as
-   *   @f[
-   *     E(k,\phi) = \int_0^{\phi} \sqrt{1 - k^2 sin^2\theta}
-   *   @f]
+   * The incomplete elliptic integral of the second kind is defined as
+   * @f[
+   *   E(k,\phi) = \int_0^{\phi} \sqrt{1 - k^2 sin^2\theta}
+   * @f]
    *
-   *   @param  __k  The argument of the elliptic function.
-   *   @param  __phi  The integral limit argument of the elliptic function.
-   *   @return  The elliptic function of the second kind.
+   * @param  __k  The argument of the elliptic function.
+   * @param  __phi  The integral limit argument of the elliptic function.
+   * @return  The elliptic function of the second kind.
    */
   template<typename _Tp>
     _Tp
@@ -707,20 +707,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief Return the complete elliptic integral of the third kind
-   *          @f$ \Pi(k,\nu) = \Pi(k,\nu,\pi/2) @f$ using the
-   *          Carlson formulation.
+   * @brief Return the complete elliptic integral of the third kind
+   * @f$ \Pi(k,\nu) = \Pi(k,\nu,\pi/2) @f$ using the
+   * Carlson formulation.
    *
-   *   The complete elliptic integral of the third kind is defined as
-   *   @f[
-   *     \Pi(k,\nu) = \int_0^{\pi/2}
-   *                   \frac{d\theta}
-   *                 {(1 - \nu \sin^2\theta)\sqrt{1 - k^2 \sin^2\theta}}
-   *   @f]
+   * The complete elliptic integral of the third kind is defined as
+   * @f[
+   *   \Pi(k,\nu) = \int_0^{\pi/2}
+   * 		     \frac{d\theta}
+   * 		   {(1 - \nu \sin^2\theta)\sqrt{1 - k^2 \sin^2\theta}}
+   * @f]
    *
-   *   @param  __k  The argument of the elliptic function.
-   *   @param  __nu  The second argument of the elliptic function.
-   *   @return  The complete elliptic function of the third kind.
+   * @param  __k  The argument of the elliptic function.
+   * @param  __nu  The second argument of the elliptic function.
+   * @return  The complete elliptic function of the third kind.
    */
   template<typename _Tp>
     _Tp
@@ -747,21 +747,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief Return the incomplete elliptic integral of the third kind
-   *          @f$ \Pi(k,\nu,\phi) @f$ using the Carlson formulation.
+   * @brief Return the incomplete elliptic integral of the third kind
+   * @f$ \Pi(k,\nu,\phi) @f$ using the Carlson formulation.
    *
-   *   The incomplete elliptic integral of the third kind is defined as
-   *   @f[
-   *     \Pi(k,\nu,\phi) = \int_0^{\phi}
-   *                       \frac{d\theta}
-   *                            {(1 - \nu \sin^2\theta)
-   *                             \sqrt{1 - k^2 \sin^2\theta}}
-   *   @f]
+   * The incomplete elliptic integral of the third kind is defined as
+   * @f[
+   *   \Pi(k,\nu,\phi) = \int_0^{\phi}
+   * 			 \frac{d\theta}
+   * 			      {(1 - \nu \sin^2\theta)
+   * 			       \sqrt{1 - k^2 \sin^2\theta}}
+   * @f]
    *
-   *   @param  __k  The argument of the elliptic function.
-   *   @param  __nu  The second argument of the elliptic function.
-   *   @param  __phi  The integral limit argument of the elliptic function.
-   *   @return  The elliptic function of the third kind.
+   * @param  __k  The argument of the elliptic function.
+   * @param  __nu  The second argument of the elliptic function.
+   * @param  __phi  The integral limit argument of the elliptic function.
+   * @return  The elliptic function of the third kind.
    */
   template<typename _Tp>
     _Tp

@@ -777,22 +777,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  function will be driven by another, checks that are not
    *  absolutely necessary are not made.
    *
-   *  @param[in]  __z	The argument at which the hypergeometric given
-   *    		  above is to be evaluated.  Since the approximation
-   *    		  is of fixed order, abs(z) must be small to ensure
-   *    		  sufficient accuracy of the computed results.
-   *  @param[out]  Fp1d3  The approximate value of the confluent hypergeometric
-   *    		  limit function related to the modified Bessel function
-   *    		  of order +1/3.
-   *  @param[out]  Fm1d3  The approximate value of the confluent hypergeometric
-   *    		  limit function related to the modified Bessel function
-   *    		  of order -1/3.
-   *  @param[out]  Fp2d3  The approximate value of the confluent hypergeometric
-   *    		  limit function related to the modified Bessel function
-   *    		  of order +2/3.
-   *  @param[out]  Fm2d3  The approximate value of the confluent hypergeometric
-   *    		  limit function related to the modified Bessel function
-   *    		  of order -2/3.
+   *  @param[in] __z The argument at which the hypergeometric given
+   *    		above is to be evaluated.  Since the approximation
+   *    		is of fixed order, @f$ |z| @f$ must be small to ensure
+   *    		sufficient accuracy of the computed results.
+   *  @param[out] _Ai  The Airy function @f$ Ai(z) @f$.
+   *  @param[out] _Aip The Airy function derivative @f$ Ai'(z) @f$.
+   *  @param[out] _Bi  The Airy function @f$ Bi(z) @f$.
+   *  @param[out] _Bip The Airy function derivative @f$ Bi'(z) @f$.
    */
   template<typename _Tp>
     void
@@ -822,8 +814,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Check to see if z^3 will underflow and act accordingly.
       auto __zzz = __z * __z * __z;
 
+      // The confluent hypergeometric limit functions related to
+      // the modified Bessel functions of order +1/3, -1/3, +2/3, and -2/3
+      // respectively.
       std::complex<_Tp> _Fp1d3, _Fm1d3, _Fp2d3, _Fm2d3;
-
       if (std::abs(__zzz) < _Tp{10} * __gnu_cxx::__min<_Tp>())
 	{
 	  _Fp1d3  = _S_zone;
@@ -924,8 +918,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @f[
    *    (6b) Bi'(-z) = \frac{z}{\sqrt{3}}(J_{-2/3}(\zeta) + J_{2/3}(\zeta)) ,
    *   @f]
-   *  Where \zeta = - \frac{2}{3}z^{3/2} and U(a;b;z) is the confluent hypergeometric
-   *  function defined in
+   *  Where @f$ \zeta = - \frac{2}{3}z^{3/2} @f$ and @f$ U(a;b;z) @f$ is
+   *  the confluent hypergeometric function defined in
    *
    *  @see Stegun, I. A. and Abramowitz, M., Handbook of Mathematical Functions,
    *    Natl. Bureau of Standards, AMS 55, pp 504-515, 1964.

@@ -40,7 +40,7 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *  @brief Compute the Dawson integral using the series expansion.
+   * @brief Compute the Dawson integral using the series expansion.
    */
   template<typename _Tp>
     _Tp
@@ -63,8 +63,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief Compute the Dawson integral using a sampling theorem
-   *    representation.
+   * @brief Compute the Dawson integral using a sampling theorem
+   * representation.
    */
   template<typename _Tp>
     _Tp
@@ -215,7 +215,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief Compute the Dawson integral.
+   * @brief Compute the Dawson integral.
    */
   template<typename _Tp>
     _Tp

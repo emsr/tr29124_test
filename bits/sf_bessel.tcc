@@ -57,20 +57,22 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *   @brief This routine computes the asymptotic cylindrical Bessel
-   *          and Neumann functions of order nu: @f$ J_{\nu}(x) @f$,
-   *          @f$ N_{\nu}(x) @f$.  Use this for @f$ x >> nu^2 + 1 @f$.
+   * @brief This routine computes the asymptotic cylindrical Bessel
+   * 	    and Neumann functions of order nu: @f$ J_{\nu}(x) @f$,
+   * 	    @f$ N_{\nu}(x) @f$.  Use this for @f$ x >> nu^2 + 1 @f$.
    *
-   *   References:
-   *    (1) Handbook of Mathematical Functions,
-   *        ed. Milton Abramowitz and Irene A. Stegun,
-   *        Dover Publications,
-   *        Section 9 p. 364, Equations 9.2.5-9.2.10
+   * References:
+   *  (1) Handbook of Mathematical Functions,
+   * 	  ed. Milton Abramowitz and Irene A. Stegun,
+   * 	  Dover Publications,
+   * 	  Section 9 p. 364, Equations 9.2.5-9.2.10
    *
-   *   @param  __nu  The order of the Bessel functions.
-   *   @param  __x   The argument of the Bessel functions.
-   *   @param  _Jnu  The output Bessel function of the first kind.
-   *   @param  _Nnu  The output Neumann function (Bessel function of the second kind).
+   * @param  __nu  The order of the Bessel functions.
+   * @param  __x   The argument of the Bessel functions.
+   * @param[out]  _Jnu  The Bessel function of the first kind.
+   * @param[out]  _Nnu  The Neumann function (Bessel function of the second kind).
+   * @param[out]  _Jpnu  The Bessel function of the first kind.
+   * @param[out]  _Npnu  The Neumann function (Bessel function of the second kind).
    */
   template<typename _Tp>
     void
@@ -132,29 +134,29 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief Compute the gamma functions required by the Temme series
-   *          expansions of @f$ N_\nu(x) @f$ and @f$ K_\nu(x) @f$.
-   *   @f[
-   *     \Gamma_1 = \frac{1}{2\mu}
-   *                [\frac{1}{\Gamma(1 - \mu)} - \frac{1}{\Gamma(1 + \mu)}]
-   *   @f]
-   *   and
-   *   @f[
-   *     \Gamma_2 = \frac{1}{2}
-   *                [\frac{1}{\Gamma(1 - \mu)} + \frac{1}{\Gamma(1 + \mu)}]
-   *   @f]
-   *   where @f$ -1/2 <= \mu <= 1/2 @f$ is @f$ \mu = \nu - N @f$ and @f$ N @f$.
-   *   is the nearest integer to @f$ \nu @f$.
-   *   The values of @f$ \Gamma(1 + \mu) @f$ and @f$ \Gamma(1 - \mu) @f$
-   *   are returned as well.
+   * @brief Compute the gamma functions required by the Temme series
+   * 	    expansions of @f$ N_\nu(x) @f$ and @f$ K_\nu(x) @f$.
+   * @f[
+   *   \Gamma_1 = \frac{1}{2\mu}
+   * 		  [\frac{1}{\Gamma(1 - \mu)} - \frac{1}{\Gamma(1 + \mu)}]
+   * @f]
+   * and
+   * @f[
+   *   \Gamma_2 = \frac{1}{2}
+   * 		  [\frac{1}{\Gamma(1 - \mu)} + \frac{1}{\Gamma(1 + \mu)}]
+   * @f]
+   * where @f$ -1/2 <= \mu <= 1/2 @f$ is @f$ \mu = \nu - N @f$ and @f$ N @f$.
+   * is the nearest integer to @f$ \nu @f$.
+   * The values of @f$ \Gamma(1 + \mu) @f$ and @f$ \Gamma(1 - \mu) @f$
+   * are returned as well.
    *
-   *   The accuracy requirements on this are exquisite.
+   * The accuracy requirements on this are exquisite.
    *
-   *   @param __mu     The input parameter of the gamma functions.
-   *   @param __gam1   The output function @f$ \Gamma_1(\mu) @f$
-   *   @param __gam2   The output function @f$ \Gamma_2(\mu) @f$
-   *   @param __gampl  The output function @f$ \Gamma(1 + \mu) @f$
-   *   @param __gammi  The output function @f$ \Gamma(1 - \mu) @f$
+   * @param __mu     The input parameter of the gamma functions.
+   * @param[out] __gam1   The output function @f$ \Gamma_1(\mu) @f$
+   * @param[out] __gam2   The output function @f$ \Gamma_2(\mu) @f$
+   * @param[out] __gampl  The output function @f$ \Gamma(1 + \mu) @f$
+   * @param[out] __gammi  The output function @f$ \Gamma(1 - \mu) @f$
    */
   template<typename _Tp>
     void
@@ -177,18 +179,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Compute the Bessel @f$ J_\nu(x) @f$ and Neumann
-   *           @f$ N_\nu(x) @f$ functions and their first derivatives
-   *           @f$ J'_\nu(x) @f$ and @f$ N'_\nu(x) @f$ respectively.
-   *           These four functions are computed together for numerical
-   *           stability.
+   * @brief  Compute the Bessel @f$ J_\nu(x) @f$ and Neumann
+   * 	     @f$ N_\nu(x) @f$ functions and their first derivatives
+   * 	     @f$ J'_\nu(x) @f$ and @f$ N'_\nu(x) @f$ respectively.
+   * 	     These four functions are computed together for numerical
+   * 	     stability.
    *
-   *   @param  __nu  The order of the Bessel functions.
-   *   @param  __x   The argument of the Bessel functions.
-   *   @param  _Jnu  The output Bessel function of the first kind.
-   *   @param  _Nnu  The output Neumann function (Bessel function of the second kind).
-   *   @param  _Jpnu  The output derivative of the Bessel function of the first kind.
-   *   @param  _Npnu  The output derivative of the Neumann function.
+   * @param __nu The order of the Bessel functions.
+   * @param __x  The argument of the Bessel functions.
+   * @param[out] _Jnu The output Bessel function of the first kind.
+   * @param[out] _Nnu The output Neumann function (Bessel function of the second kind).
+   * @param[out] _Jpnu The output derivative of the Bessel function of the first kind.
+   * @param[out] _Npnu The output derivative of the Neumann function.
    */
   template<typename _Tp>
     void
@@ -379,31 +381,32 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief This routine returns the cylindrical Bessel functions
-   *          of order @f$ \nu @f$: @f$ J_{\nu} @f$ or @f$ I_{\nu} @f$
-   *          by series expansion.
+   * @brief This routine returns the cylindrical Bessel functions
+   * 	    of order @f$ \nu @f$: @f$ J_{\nu} @f$ or @f$ I_{\nu} @f$
+   * 	    by series expansion.
    *
-   *   The modified cylindrical Bessel function is:
-   *   @f[
-   *    Z_{\nu}(x) = \sum_{k=0}^{\infty}
-   *              \frac{\sigma^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
-   *   @f]
-   *   where @f$ \sigma = +1 @f$ or@f$  -1 @f$ for
-   *   @f$ Z = I @f$ or @f$ J @f$ respectively.
+   * The modified cylindrical Bessel function is:
+   * @f[
+   *  Z_{\nu}(x) = \sum_{k=0}^{\infty}
+   * 		\frac{\sigma^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
+   * @f]
+   * where @f$ \sigma = +1 @f$ or@f$  -1 @f$ for
+   * @f$ Z = I @f$ or @f$ J @f$ respectively.
    *
-   *   See Abramowitz & Stegun, 9.1.10
-   *       Abramowitz & Stegun, 9.6.7
-   *    (1) Handbook of Mathematical Functions,
-   *        ed. Milton Abramowitz and Irene A. Stegun,
-   *        Dover Publications,
-   *        Equation 9.1.10 p. 360 and Equation 9.6.10 p. 375
+   * See Abramowitz & Stegun, 9.1.10
+   * 	 Abramowitz & Stegun, 9.6.7
+   *  (1) Handbook of Mathematical Functions,
+   * 	  ed. Milton Abramowitz and Irene A. Stegun,
+   * 	  Dover Publications,
+   * 	  Equation 9.1.10 p. 360 and Equation 9.6.10 p. 375
    *
-   *   @param  __nu  The order of the Bessel function.
-   *   @param  __x   The argument of the Bessel function.
-   *   @param  __sgn  The sign of the alternate terms
-   *                  -1 for the Bessel function of the first kind.
-   *                  +1 for the modified Bessel function of the first kind.
-   *   @return  The output Bessel function.
+   * @param  __nu  The order of the Bessel function.
+   * @param  __x   The argument of the Bessel function.
+   * @param  __sgn  The sign of the alternate terms
+   * 		    -1 for the Bessel function of the first kind.
+   * 		    +1 for the modified Bessel function of the first kind.
+   * @param  __max_iter  The maximum number of iterations for sum.
+   * @return  The output Bessel function.
    */
   template<typename _Tp>
     _Tp
@@ -482,18 +485,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the Bessel function of order @f$ \nu @f$:
-   *           @f$ J_{\nu}(x) @f$.
+   * @brief  Return the Bessel function of order @f$ \nu @f$:
+   * 	     @f$ J_{\nu}(x) @f$.
    *
-   *   The cylindrical Bessel function is:
-   *   @f[
-   *    J_{\nu}(x) = \sum_{k=0}^{\infty}
-   *              \frac{(-1)^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
-   *   @f]
+   * The cylindrical Bessel function is:
+   * @f[
+   *  J_{\nu}(x) = \sum_{k=0}^{\infty}
+   * 		\frac{(-1)^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
+   * @f]
    *
-   *   @param  __nu  The order of the Bessel function.
-   *   @param  __x   The argument of the Bessel function.
-   *   @return  The output Bessel function.
+   * @param  __nu  The order of the Bessel function.
+   * @param  __x   The argument of the Bessel function.
+   * @return  The output Bessel function.
    */
   template<typename _Tp>
     _Tp
@@ -515,20 +518,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the Neumann function of order @f$ \nu @f$:
-   *           @f$ N_{\nu}(x) @f$.
+   * @brief  Return the Neumann function of order @f$ \nu @f$:
+   * 	     @f$ N_{\nu}(x) @f$.
    *
-   *   The Neumann function is defined by:
-   *   @f[
-   *      N_{\nu}(x) = \frac{J_{\nu}(x) \cos \nu\pi - J_{-\nu}(x)}
-   *                        {\sin \nu\pi}
-   *   @f]
-   *   where for integral @f$ \nu = n @f$ a limit is taken:
-   *   @f$ lim_{\nu \to n} @f$.
+   * The Neumann function is defined by:
+   * @f[
+   * 	N_{\nu}(x) = \frac{J_{\nu}(x) \cos \nu\pi - J_{-\nu}(x)}
+   * 			  {\sin \nu\pi}
+   * @f]
+   * where for integral @f$ \nu = n @f$ a limit is taken:
+   * @f$ lim_{\nu \to n} @f$.
    *
-   *   @param  __nu  The order of the Neumann function.
-   *   @param  __x   The argument of the Neumann function.
-   *   @return  The output Neumann function.
+   * @param  __nu  The order of the Neumann function.
+   * @param  __x   The argument of the Neumann function.
+   * @return  The output Neumann function.
    */
   template<typename _Tp>
     _Tp
@@ -548,17 +551,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the cylindrical Hankel function of the first kind
-   *           @f$ H^{(1)}_\nu(x) @f$.
+   * @brief  Return the cylindrical Hankel function of the first kind
+   * 	     @f$ H^{(1)}_\nu(x) @f$.
    *
-   *   The cylindrical Hankel function of the first kind is defined by:
-   *   @f[
-   *     H^{(1)}_\nu(x) = J_\nu(x) + i N_\nu(x)
-   *   @f]
+   * The cylindrical Hankel function of the first kind is defined by:
+   * @f[
+   *   H^{(1)}_\nu(x) = J_\nu(x) + i N_\nu(x)
+   * @f]
    *
-   *   @param  __nu  The order of the spherical Neumann function.
-   *   @param  __x  The argument of the spherical Neumann function.
-   *   @return  The output spherical Neumann function.
+   * @param  __nu  The order of the spherical Neumann function.
+   * @param  __x  The argument of the spherical Neumann function.
+   * @return  The output spherical Neumann function.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -620,17 +623,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Compute the spherical Bessel @f$ j_n(x) @f$
-   *           and Neumann @f$ n_n(x) @f$ functions and their first
-   *           derivatives @f$ j_n(x) @f$ and @f$ n'_n(x) @f$
-   *           respectively.
+   * @brief  Compute the spherical Bessel @f$ j_n(x) @f$
+   * 	     and Neumann @f$ n_n(x) @f$ functions and their first
+   * 	     derivatives @f$ j_n(x) @f$ and @f$ n'_n(x) @f$
+   * 	     respectively.
    *
-   *   @param  __n  The order of the spherical Bessel function.
-   *   @param  __x  The argument of the spherical Bessel function.
-   *   @param  __j_n  The output spherical Bessel function.
-   *   @param  __n_n  The output spherical Neumann function.
-   *   @param  __jp_n The output derivative of the spherical Bessel function.
-   *   @param  __np_n The output derivative of the spherical Neumann function.
+   * @param  __n  The order of the spherical Bessel function.
+   * @param  __x  The argument of the spherical Bessel function.
+   * @param[out]  __j_n  The output spherical Bessel function.
+   * @param[out]  __n_n  The output spherical Neumann function.
+   * @param[out]  __jp_n The output derivative of the spherical Bessel function.
+   * @param[out]  __np_n The output derivative of the spherical Neumann function.
    */
   template<typename _Tp>
     void
@@ -655,17 +658,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the spherical Bessel function
-   *           @f$ j_n(x) @f$ of order n.
+   * @brief  Return the spherical Bessel function
+   * 	     @f$ j_n(x) @f$ of order n.
    *
-   *   The spherical Bessel function is defined by:
-   *   @f[
-   *    j_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} J_{n+1/2}(x)
-   *   @f]
+   * The spherical Bessel function is defined by:
+   * @f[
+   *  j_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} J_{n+1/2}(x)
+   * @f]
    *
-   *   @param  __n  The order of the spherical Bessel function.
-   *   @param  __x  The argument of the spherical Bessel function.
-   *   @return  The output spherical Bessel function.
+   * @param  __n  The order of the spherical Bessel function.
+   * @param  __x  The argument of the spherical Bessel function.
+   * @return  The output spherical Bessel function.
    */
   template<typename _Tp>
     _Tp
@@ -692,17 +695,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the spherical Neumann function
-   *           @f$ n_n(x) @f$.
+   * @brief  Return the spherical Neumann function
+   * 	     @f$ n_n(x) @f$.
    *
-   *   The spherical Neumann function is defined by:
-   *   @f[
-   *    n_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} N_{n+1/2}(x)
-   *   @f]
+   * The spherical Neumann function is defined by:
+   * @f[
+   *  n_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} N_{n+1/2}(x)
+   * @f]
    *
-   *   @param  __n  The order of the spherical Neumann function.
-   *   @param  __x  The argument of the spherical Neumann function.
-   *   @return  The output spherical Neumann function.
+   * @param  __n  The order of the spherical Neumann function.
+   * @param  __x  The argument of the spherical Neumann function.
+   * @return  The output spherical Neumann function.
    */
   template<typename _Tp>
     _Tp
@@ -724,17 +727,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the spherical Hankel function of the first kind
-   *           @f$ h^{(1)}_n(x) @f$.
+   * @brief  Return the spherical Hankel function of the first kind
+   * 	     @f$ h^{(1)}_n(x) @f$.
    *
-   *   The spherical Hankel function of the first kind is defined by:
-   *   @f[
-   *     h^{(1)}_n(x) = j_n(x) + i n_n(x)
-   *   @f]
+   * The spherical Hankel function of the first kind is defined by:
+   * @f[
+   *   h^{(1)}_n(x) = j_n(x) + i n_n(x)
+   * @f]
    *
-   *   @param  __n  The order of the spherical Neumann function.
-   *   @param  __x  The argument of the spherical Neumann function.
-   *   @return  The output spherical Neumann function.
+   * @param  __n  The order of the spherical Neumann function.
+   * @param  __x  The argument of the spherical Neumann function.
+   * @return  The output spherical Neumann function.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -757,17 +760,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the spherical Hankel function of the second kind
-   *           @f$ h^{(2)}_n(x) @f$.
+   * @brief  Return the spherical Hankel function of the second kind
+   * 	     @f$ h^{(2)}_n(x) @f$.
    *
-   *   The spherical Hankel function of the second kind is defined by:
-   *   @f[
-   *     h^{(2)}_n(x) = j_n(x) - i n_n(x)
-   *   @f]
+   * The spherical Hankel function of the second kind is defined by:
+   * @f[
+   *   h^{(2)}_n(x) = j_n(x) - i n_n(x)
+   * @f]
    *
-   *   @param  __n  The order of the spherical Neumann function.
-   *   @param  __x  The argument of the spherical Neumann function.
-   *   @return  The output spherical Neumann function.
+   * @param  __n  The order of the spherical Neumann function.
+   * @param  __x  The argument of the spherical Neumann function.
+   * @return  The output spherical Neumann function.
    */
   template<typename _Tp>
     std::complex<_Tp>

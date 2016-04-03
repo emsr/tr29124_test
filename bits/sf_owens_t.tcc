@@ -83,8 +83,8 @@ template<typename _Tp>
  * @see Patefield, M. and Tandy, D.
  *      "Fast and accurate Calculation of Owen's T-Function",
  *      Journal of Statistical Software, 5 (5), 1 - 25 (2000)
- * @param[in]  h  The scale parameter.
- * @param[in]  a  The integration limit.
+ * @param[in]  __h  The scale parameter.
+ * @param[in]  __a  The integration limit.
  * @return The owens T function.
  */
 template<typename _Tp>
