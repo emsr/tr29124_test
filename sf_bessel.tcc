@@ -658,16 +658,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   * @brief  Return the spherical Bessel function
-   * 	     @f$ j_n(x) @f$ of order n.
+   * @brief  Return the spherical Bessel function @f$ j_n(x) @f$ of order n
+   * and non-negative real argument @c x.
    *
    * The spherical Bessel function is defined by:
    * @f[
-   *  j_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} J_{n+1/2}(x)
+   *   j_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} J_{n+1/2}(x)
    * @f]
    *
-   * @param  __n  The order of the spherical Bessel function.
-   * @param  __x  The argument of the spherical Bessel function.
+   * @param  __n  The non-negative integral order
+   * @param  __x  The non-negative real argument
    * @return  The output spherical Bessel function.
    */
   template<typename _Tp>
@@ -695,8 +695,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   * @brief  Return the spherical Neumann function
-   * 	     @f$ n_n(x) @f$.
+   * @brief  Return the spherical Neumann function @f$ n_n(x) @f$ of order n
+   * and non-negative real argument @c x.
    *
    * The spherical Neumann function is defined by:
    * @f[
@@ -768,8 +768,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   h^{(2)}_n(x) = j_n(x) - i n_n(x)
    * @f]
    *
-   * @param  __n  The order of the spherical Neumann function.
-   * @param  __x  The argument of the spherical Neumann function.
+   * @param  __n  The non-negative integral order
+   * @param  __x  The non-negative real argument
    * @return  The output spherical Neumann function.
    */
   template<typename _Tp>

@@ -22,7 +22,6 @@ var searchData=
   ['sf_5flegendre_2etcc',['sf_legendre.tcc',['../sf__legendre_8tcc.html',1,'']]],
   ['sf_5fmod_5fbessel_2etcc',['sf_mod_bessel.tcc',['../sf__mod__bessel_8tcc.html',1,'']]],
   ['sf_5fowens_5ft_2etcc',['sf_owens_t.tcc',['../sf__owens__t_8tcc.html',1,'']]],
-  ['sf_5fparab_5fcyl_2etcc',['sf_parab_cyl.tcc',['../sf__parab__cyl_8tcc.html',1,'']]],
   ['sf_5fpolylog_2etcc',['sf_polylog.tcc',['../sf__polylog_8tcc.html',1,'']]],
   ['sf_5ftheta_2etcc',['sf_theta.tcc',['../sf__theta_8tcc.html',1,'']]],
   ['sf_5ftrigint_2etcc',['sf_trigint.tcc',['../sf__trigint_8tcc.html',1,'']]],

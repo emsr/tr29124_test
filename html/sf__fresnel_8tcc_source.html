@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>TR29124 C++ Special Math Functions: sf_fresnel.tcc Source File</title>
+<title>TR29124 C++ Special Math Functions: bits/sf_fresnel.tcc Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -258,67 +258,69 @@ $(document).ready(function(){initNavTree('sf__fresnel_8tcc_source.html','');});
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment">   *  @brief This function returns the Fresnel cosine and sine integrals</span></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment">   *    as a complex number $f[ C(x) + iS(x) $f].</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment">   * @brief Return the Fresnel cosine and sine integrals</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment">   * as a complex number $f[ C(x) + iS(x) $f].</span></div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">   *  The Fresnel cosine integral is defined by:</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">   *  @f[</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment">   *      C(x) = \int_0^x \cos(\frac{\pi}{2}t^2) dt</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="comment">   *  @f]</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">   * The Fresnel cosine integral is defined by:</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">   * @f[</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment">   *     C(x) = \int_0^x \cos(\frac{\pi}{2}t^2) dt</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="comment">   * @f]</span></div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">   *  The Fresnel sine integral is defined by:</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">   *  @f[</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">   *      S(x) = \int_0^x \sin(\frac{\pi}{2}t^2) dt</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">   *  @f]</span></div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    std::complex&lt;_Tp&gt;</div>
-<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a322045015cfbde5a45e7718d533de60d">  164</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a322045015cfbde5a45e7718d533de60d">__fresnel</a>(<span class="keyword">const</span> _Tp __x)</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    {</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;      constexpr <span class="keyword">auto</span> _S_fp_min = __gnu_cxx::__min&lt;_Tp&gt;();</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;      constexpr <span class="keyword">auto</span> _S_x_min = _Tp{1.5L};</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;      constexpr <span class="keyword">auto</span> _S_NaN = __gnu_cxx::__quiet_NaN&lt;_Tp&gt;();</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;      <span class="keywordflow">if</span> (__isnan(__x))</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keywordflow">return</span> std::complex&lt;_Tp&gt;{_S_NaN, _S_NaN};</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;      <span class="keyword">auto</span> _Cf = _Tp{0};</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;      <span class="keyword">auto</span> _Sf = _Tp{0};</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;      <span class="keyword">const</span> _Tp __ax = std::abs(__x);</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;      <span class="keywordflow">if</span> (__ax &lt; std::sqrt(_S_fp_min))</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    {</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;      _Cf = __ax;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;      _Sf = _Tp{0};</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    }</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__ax &lt; _S_x_min)</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#aae7775bc46d621e54fb9d994c2f35e2a">__fresnel_series</a>(__ax, _Cf, _Sf);</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#aeae8420e2fa1671f004066525adc99b6">__fresnel_cont_frac</a>(__ax, _Cf, _Sf);</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;      <span class="keywordflow">if</span> (__x &lt; _Tp{0})</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    {</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;      _Cf = -_Cf;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;      _Sf = -_Sf;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    }</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;      <span class="keywordflow">return</span> std::complex&lt;_Tp&gt;(_Cf, _Sf);</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    }</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;_GLIBCXX_END_NAMESPACE_VERSION</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;} <span class="comment">// namespace __detail</span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;}</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="preprocessor">#endif // _GLIBCXX_SF_FRESNEL_TCC</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">   * The Fresnel sine integral is defined by:</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">   * @f[</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">   *     S(x) = \int_0^x \sin(\frac{\pi}{2}t^2) dt</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">   * @f]</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="comment">   * @param __x The argument</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    std::complex&lt;_Tp&gt;</div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a322045015cfbde5a45e7718d533de60d">  166</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a322045015cfbde5a45e7718d533de60d">__fresnel</a>(<span class="keyword">const</span> _Tp __x)</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    {</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;      constexpr <span class="keyword">auto</span> _S_fp_min = __gnu_cxx::__min&lt;_Tp&gt;();</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;      constexpr <span class="keyword">auto</span> _S_x_min = _Tp{1.5L};</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;      constexpr <span class="keyword">auto</span> _S_NaN = __gnu_cxx::__quiet_NaN&lt;_Tp&gt;();</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;      <span class="keywordflow">if</span> (__isnan(__x))</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="keywordflow">return</span> std::complex&lt;_Tp&gt;{_S_NaN, _S_NaN};</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;      <span class="keyword">auto</span> _Cf = _Tp{0};</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;      <span class="keyword">auto</span> _Sf = _Tp{0};</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;      <span class="keyword">const</span> _Tp __ax = std::abs(__x);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;      <span class="keywordflow">if</span> (__ax &lt; std::sqrt(_S_fp_min))</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    {</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;      _Cf = __ax;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;      _Sf = _Tp{0};</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    }</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__ax &lt; _S_x_min)</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#aae7775bc46d621e54fb9d994c2f35e2a">__fresnel_series</a>(__ax, _Cf, _Sf);</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#aeae8420e2fa1671f004066525adc99b6">__fresnel_cont_frac</a>(__ax, _Cf, _Sf);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;      <span class="keywordflow">if</span> (__x &lt; _Tp{0})</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    {</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;      _Cf = -_Cf;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;      _Sf = -_Sf;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    }</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;      <span class="keywordflow">return</span> std::complex&lt;_Tp&gt;(_Cf, _Sf);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    }</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;_GLIBCXX_END_NAMESPACE_VERSION</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;} <span class="comment">// namespace __detail</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;}</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="preprocessor">#endif // _GLIBCXX_SF_FRESNEL_TCC</span></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_aeae8420e2fa1671f004066525adc99b6"><div class="ttname"><a href="namespacestd_1_1____detail.html#aeae8420e2fa1671f004066525adc99b6">std::__detail::__fresnel_cont_frac</a></div><div class="ttdeci">void __fresnel_cont_frac(const _Tp __ax, _Tp &amp;_Cf, _Tp &amp;_Sf)</div><div class="ttdoc">This function computes the Fresnel cosine and sine integrals by continued fractions for positive argu...</div><div class="ttdef"><b>Definition:</b> <a href="sf__fresnel_8tcc_source.html#l00105">sf_fresnel.tcc:105</a></div></div>
 <div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> <a href="specfun_8h_source.html#l00098">specfun.h:98</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_aae7775bc46d621e54fb9d994c2f35e2a"><div class="ttname"><a href="namespacestd_1_1____detail.html#aae7775bc46d621e54fb9d994c2f35e2a">std::__detail::__fresnel_series</a></div><div class="ttdeci">void __fresnel_series(const _Tp __ax, _Tp &amp;_Cf, _Tp &amp;_Sf)</div><div class="ttdoc">This function returns the Fresnel cosine and sine integrals as a pair by series expansion for positiv...</div><div class="ttdef"><b>Definition:</b> <a href="sf__fresnel_8tcc_source.html#l00048">sf_fresnel.tcc:48</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a322045015cfbde5a45e7718d533de60d"><div class="ttname"><a href="namespacestd_1_1____detail.html#a322045015cfbde5a45e7718d533de60d">std::__detail::__fresnel</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __fresnel(const _Tp __x)</div><div class="ttdoc">This function returns the Fresnel cosine and sine integrals as a complex number $f[ C(x) + iS(x) $f]...</div><div class="ttdef"><b>Definition:</b> <a href="sf__fresnel_8tcc_source.html#l00164">sf_fresnel.tcc:164</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a322045015cfbde5a45e7718d533de60d"><div class="ttname"><a href="namespacestd_1_1____detail.html#a322045015cfbde5a45e7718d533de60d">std::__detail::__fresnel</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __fresnel(const _Tp __x)</div><div class="ttdoc">Return the Fresnel cosine and sine integrals as a complex number $f[ C(x) + iS(x) $f]...</div><div class="ttdef"><b>Definition:</b> <a href="sf__fresnel_8tcc_source.html#l00166">sf_fresnel.tcc:166</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="sf__fresnel_8tcc.html">sf_fresnel.tcc</a></li>
+    <li class="navelem"><a class="el" href="dir_4cb89d43f92538ff4356f1c340b21854.html">bits</a></li><li class="navelem"><a class="el" href="sf__fresnel_8tcc.html">sf_fresnel.tcc</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>

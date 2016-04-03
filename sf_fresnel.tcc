@@ -146,18 +146,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief This function returns the Fresnel cosine and sine integrals
-   *    as a complex number $f[ C(x) + iS(x) $f].
+   * @brief Return the Fresnel cosine and sine integrals
+   * as a complex number $f[ C(x) + iS(x) $f].
    *
-   *  The Fresnel cosine integral is defined by:
-   *  @f[
-   *      C(x) = \int_0^x \cos(\frac{\pi}{2}t^2) dt
-   *  @f]
+   * The Fresnel cosine integral is defined by:
+   * @f[
+   * 	 C(x) = \int_0^x \cos(\frac{\pi}{2}t^2) dt
+   * @f]
    *
-   *  The Fresnel sine integral is defined by:
-   *  @f[
-   *      S(x) = \int_0^x \sin(\frac{\pi}{2}t^2) dt
-   *  @f]
+   * The Fresnel sine integral is defined by:
+   * @f[
+   * 	 S(x) = \int_0^x \sin(\frac{\pi}{2}t^2) dt
+   * @f]
+   *
+   * @param __x The argument
    */
   template <typename _Tp>
     std::complex<_Tp>
