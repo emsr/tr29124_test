@@ -58,16 +58,16 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *   @brief  Return the beta function: \f$B(x,y)\f$.
+   * @brief  Return the beta function: @f$ B(x,y) @f$.
    *
-   *   The beta function is defined by
-   *   @f[
-   *     B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
-   *   @f]
+   * The beta function is defined by
+   * @f[
+   *   B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+   * @f]
    *
-   *   @param __x The first argument of the beta function.
-   *   @param __y The second argument of the beta function.
-   *   @return  The beta function.
+   * @param __x The first argument of the beta function.
+   * @param __y The second argument of the beta function.
+   * @return  The beta function.
    */
   template<typename _Tp>
     _Tp
@@ -90,17 +90,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Return the beta function \f$B(x,y)\f$ using
-   *           the log gamma functions.
+   * @brief  Return the beta function @f$B(x,y)@f$ using
+   *	     the log gamma functions.
    *
-   *   The beta function is defined by
-   *   @f[
-   *     B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
-   *   @f]
+   * The beta function is defined by
+   * @f[
+   *   B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+   * @f]
    *
-   *   @param __x The first argument of the beta function.
-   *   @param __y The second argument of the beta function.
-   *   @return  The beta function.
+   * @param __x The first argument of the beta function.
+   * @param __y The second argument of the beta function.
+   * @return  The beta function.
    */
   template<typename _Tp>
     _Tp
@@ -115,17 +115,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the beta function \f$B(x,y)\f$ using
-   *           the product form.
+   * @brief  Return the beta function @f$B(x,y)@f$ using
+   *	     the product form.
    *
-   *   The beta function is defined by
-   *   @f[
-   *     B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
-   *   @f]
+   * The beta function is defined by
+   * @f[
+   *   B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+   * @f]
    *
-   *   @param __x The first argument of the beta function.
-   *   @param __y The second argument of the beta function.
-   *   @return  The beta function.
+   * @param __x The first argument of the beta function.
+   * @param __y The second argument of the beta function.
+   * @return  The beta function.
    */
   template<typename _Tp>
     _Tp
@@ -148,16 +148,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the beta function \f$ B(x,y) \f$.
+   * @brief  Return the beta function @f$ B(x,y) @f$.
    *
-   *   The beta function is defined by
-   *   @f[
-   *     B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
-   *   @f]
+   * The beta function is defined by
+   * @f[
+   *   B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+   * @f]
    *
-   *   @param __x The first argument of the beta function.
-   *   @param __y The second argument of the beta function.
-   *   @return  The beta function.
+   * @param __x The first argument of the beta function.
+   * @param __y The second argument of the beta function.
+   * @return  The beta function.
    */
   template<typename _Tp>
     _Tp
@@ -249,13 +249,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief  Return the Students T probability function.
+   * @brief  Return the Students T probability function.
    *
-   *  The students T propability function is related to the incomplete beta function:
-   *  @f[
-   *    A(t|\nu) = 1 - I_{\frac{\nu}{\nu + t^2}}(\frac{\nu}{2}, \frac{1}{2})
-   *    A(t|\nu) = 
-   *  @f]
+   * The students T propability function is related to the incomplete beta function:
+   * @f[
+   *   A(t|\nu) = 1 - I_{\frac{\nu}{\nu + t^2}}(\frac{\nu}{2}, \frac{1}{2})
+   *   A(t|\nu) = 
+   * @f]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
@@ -269,13 +269,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief  Return the complement of the Students T probability function.
+   * @brief  Return the complement of the Students T probability function.
    *
-   *  The complement of the students T propability function is:
-   *  @f[
-   *    A_c(t|\nu) = I_{\frac{\nu}{\nu + t^2}}(\frac{\nu}{2}, \frac{1}{2})
-   *               = 1 - A(t|\nu)
-   *  @f]
+   * The complement of the students T propability function is:
+   * @f[
+   *   A_c(t|\nu) = I_{\frac{\nu}{\nu + t^2}}(\frac{\nu}{2}, \frac{1}{2})
+   * 		  = 1 - A(t|\nu)
+   * @f]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
@@ -289,15 +289,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief  Return the F-distribution propability function.
-   *  This returns the probability that the observed chi-square for a correct model
-   *  exceeds the value @f$ \chi^2 @f$.
+   * @brief  Return the F-distribution propability function.
+   * This returns the probability that the observed chi-square for a correct model
+   * exceeds the value @f$ \chi^2 @f$.
    *
-   *  The f-distribution propability function is related to the incomplete beta function:
-   *  @f[
-   *    Q(F|\nu_1, \nu_2) = I_{\frac{\nu_2}{\nu_2 + \nu_1 F}}
-   *                          (\frac{\nu_2}{2}, \frac{\nu_1}{2})
-   *  @f]
+   * The f-distribution propability function is related to the incomplete beta function:
+   * @f[
+   *   Q(F|\nu_1, \nu_2) = I_{\frac{\nu_2}{\nu_2 + \nu_1 F}}
+   * 			     (\frac{\nu_2}{2}, \frac{\nu_1}{2})
+   * @f]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
@@ -313,16 +313,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief  Return the F-distribution propability function.
-   *  This returns the probability that the observed chi-square for a correct model
-   *  exceeds the value @f$ \chi^2 @f$.
+   * @brief  Return the F-distribution propability function.
+   * This returns the probability that the observed chi-square for a correct model
+   * exceeds the value @f$ \chi^2 @f$.
    *
-   *  The f-distribution propability function is related to the incomplete beta function:
-   *  @f[
-   *    P(F|\nu_1, \nu_2) = 1 - I_{\frac{\nu_2}{\nu_2 + \nu_1 F}}
-   *                          (\frac{\nu_2}{2}, \frac{\nu_1}{2})
-   *                      = 1 - Q(F|\nu_1, \nu_2)
-   *  @f]
+   * The f-distribution propability function is related to the incomplete beta function:
+   * @f[
+   *   P(F|\nu_1, \nu_2) = 1 - I_{\frac{\nu_2}{\nu_2 + \nu_1 F}}
+   * 			     (\frac{\nu_2}{2}, \frac{\nu_1}{2})
+   * 			 = 1 - Q(F|\nu_1, \nu_2)
+   * @f]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
@@ -338,13 +338,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief  Return the binomial cumulative distribution function.
+   * @brief  Return the binomial cumulative distribution function.
    *
-   *  The binomial cumulative distribution function is related
-   *  to the incomplete beta function:
-   *  @f[
-   *    P(p|n, k) = I_p(k, n-k+1)
-   *  @f]
+   * The binomial cumulative distribution function is related
+   * to the incomplete beta function:
+   * @f[
+   *   P(p|n, k) = I_p(k, n-k+1)
+   * @f]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
@@ -364,13 +364,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief  Return the complementary binomial cumulative distribution function.
+   * @brief  Return the complementary binomial cumulative distribution function.
    *
-   *  The binomial cumulative distribution function is related
-   *  to the incomplete beta function:
-   *  @f[
-   *    Q(p|n, k) = I_{1-p}(n-k+1, k)
-   *  @f]
+   * The binomial cumulative distribution function is related
+   * to the incomplete beta function:
+   * @f[
+   *   Q(p|n, k) = I_{1-p}(n-k+1, k)
+   * @f]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp

@@ -311,7 +311,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   This works and it's pretty fast.
    *
    *   @param  __a  The first @a numerator parameter.
-   *   @param  __a  The second @a numerator parameter.
+   *   @param  __b  The second @a numerator parameter.
    *   @param  __c  The @a denominator parameter.
    *   @param  __x  The argument of the confluent hypergeometric function.
    *   @return  The confluent hypergeometric function.
@@ -766,7 +766,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @f]
    *
    *   @param  __a  The first @a numerator parameter.
-   *   @param  __a  The second @a numerator parameter.
+   *   @param  __b  The second @a numerator parameter.
    *   @param  __c  The @a denominator parameter.
    *   @param  __x  The argument of the confluent hypergeometric function.
    *   @return  The confluent hypergeometric function.

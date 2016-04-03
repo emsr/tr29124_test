@@ -58,8 +58,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *   @brief This routine computes the asymptotic modified cylindrical
-   *          Bessel and functions of order nu: \f$ I_{\nu}(x) \f$,
-   *          \f$ N_{\nu}(x) \f$.  Use this for \f$ x >> nu^2 + 1 \f$.
+   *          Bessel and functions of order nu: @f$ I_{\nu}(x) @f$,
+   *          @f$ N_{\nu}(x) @f$.  Use this for @f$ x >> nu^2 + 1 @f$.
    *
    *   References:
    *    (1) Handbook of Mathematical Functions,
@@ -300,7 +300,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief  Return the modified cylindrical Bessel functions
-   *         and their derivatives of order \f$ \nu \f$ by various means.
+   *         and their derivatives of order @f$ \nu @f$ by various means.
    *
    *   @param  __nu  The order of the Bessel functions.
    *   @param  __x   The argument of the Bessel functions.
@@ -358,7 +358,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *   @brief  Return the regular modified Bessel function of order
-   *           \f$ \nu \f$: \f$ I_{\nu}(x) \f$.
+   *           @f$ \nu @f$: @f$ I_{\nu}(x) @f$.
    *
    *   The regular modified cylindrical Bessel function is:
    *   @f[
@@ -390,15 +390,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *   @brief  Return the irregular modified Bessel function
-   *           \f$ K_{\nu}(x) \f$ of order \f$ \nu \f$.
+   *           @f$ K_{\nu}(x) @f$ of order @f$ \nu @f$.
    *
    *   The irregular modified Bessel function is defined by:
    *   @f[
    *      K_{\nu}(x) = \frac{\pi}{2}
    *                   \frac{I_{-\nu}(x) - I_{\nu}(x)}{\sin \nu\pi}
    *   @f]
-   *   where for integral \f$ \nu = n \f$ a limit is taken:
-   *   \f$ lim_{\nu \to n} \f$.
+   *   where for integral @f$ \nu = n @f$ a limit is taken:
+   *   @f$ lim_{\nu \to n} @f$.
    *   For negative argument we have simply:
    *   @f[
    *      K_{-\nu}(x) = K_{\nu}(x)
@@ -473,7 +473,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *           derivatives @f$ Ai'(x) @f$ and @f$ Bi(x) @f$
    *           respectively.
    *
-   *   @param  __x  The argument of the Airy functions.
+   *   @param  __z  The argument of the Airy functions.
    *   @param  _Ai  The output Airy function of the first kind.
    *   @param  _Bi  The output Airy function of the second kind.
    *   @param  _Aip  The output derivative of the Airy function
@@ -545,35 +545,35 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Compute the Fock-type Airy functions
-   *           @f$ w_1(x) @f$ and @f$ w_2(x) @f$ and their first
-   *           derivatives @f$ w_1'(x) @f$ and @f$ w_2'(x) @f$
-   *           respectively.
-   *   @f[
-   *     w_1(x) = \sqrt{\pi}(Ai(x) + iBi(x))
-   *   @f]
-   *   @f[
-   *     w_2(x) = \sqrt{\pi}(Ai(x) - iBi(x))
-   *   @f]
+   * @brief  Compute the Fock-type Airy functions
+   * 	     @f$ w_1(x) @f$ and @f$ w_2(x) @f$ and their first
+   * 	     derivatives @f$ w_1'(x) @f$ and @f$ w_2'(x) @f$
+   * 	     respectively.
+   * @f[
+   *   w_1(x) = \sqrt{\pi}(Ai(x) + iBi(x))
+   * @f]
+   * @f[
+   *   w_2(x) = \sqrt{\pi}(Ai(x) - iBi(x))
+   * @f]
    *
-   *   @param  __x   The argument of the Airy functions.
-   *   @param  __w1  The output Fock-type Airy function of the first kind.
-   *   @param  __w2  The output Fock-type Airy function of the second kind.
-   *   @param  __w1p  The output derivative of the Fock-type Airy function
-   *                  of the first kind.
-   *   @param  __w2p  The output derivative of the Fock-type Airy function
-   *                  of the second kind.
+   * @param  __x   The argument of the Airy functions.
+   * @param  __w1  The output Fock-type Airy function of the first kind.
+   * @param  __w2  The output Fock-type Airy function of the second kind.
+   * @param  __w1p  The output derivative of the Fock-type Airy function
+   * 		    of the first kind.
+   * @param  __w2p  The output derivative of the Fock-type Airy function
+   * 		    of the second kind.
    */
   template<typename _Tp>
     void
-    __fock_airy(_Tp x,
+    __fock_airy(_Tp __x,
 		std::complex<_Tp>& __w1, std::complex<_Tp>& __w2,
 		std::complex<_Tp>& __w1p, std::complex<_Tp>& __w2p)
     {
       constexpr auto _S_sqrtpi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
 
       _Tp _Ai, _Bi, _Aip, _Bip;
-      airy(x, &_Ai, &_Bi, &_Aip, &_Bip);
+      airy(__x, &_Ai, &_Bi, &_Aip, &_Bip);
 
       __w1 = _S_sqrtpi * std::complex<_Tp>(_Ai, _Bi);
       __w2 = _S_sqrtpi * std::complex<_Tp>(_Ai, -_Bi);

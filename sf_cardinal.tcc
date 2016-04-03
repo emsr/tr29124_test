@@ -41,10 +41,10 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *  @brief Return the generalized sinus cardinal function
-   *  @f[
-   *    sinc_a(x) = \frac{\sin(\pi x / a)}{(\pi x / a)}
-   *  @f]
+   * @brief Return the generalized sinus cardinal function
+   * @f[
+   *   sinc_a(x) = \frac{\sin(\pi x / a)}{(\pi x / a)}
+   * @f]
    */
   template<typename _Tp>
     __gnu_cxx::__promote_num_t<_Tp>
@@ -68,10 +68,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief Return the unnormalized sinus cardinal function
-   *  @f[
-   *    sinc_\pi(x) = \frac{\sin(x)}{x}
-   *  @f]
+   * @brief Return the unnormalized sinus cardinal function
+   * @f[
+   *   sinc_\pi(x) = \frac{\sin(x)}{x}
+   * @f]
    */
   template<typename _Tp>
     __gnu_cxx::__promote_num_t<_Tp>
@@ -88,10 +88,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief Return the normalized sinus cardinal function
-   *  @f[
-   *    sinc(x) = \frac{\sin(\pi x)}{\pi x}
-   *  @f]
+   * @brief Return the normalized sinus cardinal function
+   * @f[
+   *   sinc(x) = \frac{\sin(\pi x)}{\pi x}
+   * @f]
    */
   template<typename _Tp>
     __gnu_cxx::__promote_num_t<_Tp>
@@ -114,10 +114,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief Return the generalized hyperbolic sinus cardinal function
-   *  @f[
-   *    sinhc_a(x) = \frac{\sinh(\pi x / a)}{\pi x / a}
-   *  @f]
+   * @brief Return the generalized hyperbolic sinus cardinal function
+   * @f[
+   *   sinhc_a(x) = \frac{\sinh(\pi x / a)}{\pi x / a}
+   * @f]
    */
   template<typename _Tp>
     __gnu_cxx::__promote_num_t<_Tp>
@@ -139,10 +139,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief Return the unnormalized hyperbolic sinus cardinal function
-   *  @f[
-   *    sinhc_\pi(x) = \frac{\sinh(x)}{x}
-   *  @f]
+   * @brief Return the unnormalized hyperbolic sinus cardinal function
+   * @f[
+   *   sinhc_\pi(x) = \frac{\sinh(x)}{x}
+   * @f]
    */
   template<typename _Tp>
     __gnu_cxx::__promote_num_t<_Tp>
@@ -157,10 +157,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief Return the normalized hyperbolic sinus cardinal function
-   *  @f[
-   *    sinhc(x) = \frac{\sinh(\pi x)}{\pi x}
-   *  @f]
+   * @brief Return the normalized hyperbolic sinus cardinal function
+   * @f[
+   *   sinhc(x) = \frac{\sinh(\pi x)}{\pi x}
+   * @f]
    */
   template<typename _Tp>
     __gnu_cxx::__promote_num_t<_Tp>

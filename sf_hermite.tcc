@@ -51,18 +51,18 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *   @brief This routine returns the Hermite polynomial
-   *          of order n: \f$ H_n(x) \f$ by recursion on n.
+   * @brief This routine returns the Hermite polynomial
+   * 	    of order n: @f$ H_n(x) @f$ by recursion on n.
    *
-   *   The Hermite polynomial is defined by:
-   *   @f[
-   *     H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
-   *   @f]
+   * The Hermite polynomial is defined by:
+   * @f[
+   *   H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
+   * @f]
    *
-   *   @param __n The order of the Hermite polynomial.
-   *   @param __x The argument of the Hermite polynomial.
-   *   @return The value of the Hermite polynomial of order n
-   *           and argument x.
+   * @param __n The order of the Hermite polynomial.
+   * @param __x The argument of the Hermite polynomial.
+   * @return The value of the Hermite polynomial of order n
+   * 	     and argument x.
    */
   template<typename _Tp>
     _Tp
@@ -91,22 +91,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief This routine returns the Hermite polynomial
-   *          of large order n: \f$ H_n(x) \f$.  We assume here
-   *          that x >= 0.
+   * @brief This routine returns the Hermite polynomial
+   * 	    of large order n: @f$ H_n(x) @f$.  We assume here
+   * 	    that x >= 0.
    *
-   *   The Hermite polynomial is defined by:
-   *   @f[
-   *     H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
-   *   @f]
+   * The Hermite polynomial is defined by:
+   * @f[
+   *   H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
+   * @f]
    *
-   *  @see "Asymptotic analysis of the Hermite polynomials
-   *        from their differential-difference equation", 
-   *        Diego Dominici, arXiv:math/0601078v1 [math.CA] 4 Jan 2006
-   *   @param __n The order of the Hermite polynomial.
-   *   @param __x The argument of the Hermite polynomial.
-   *   @return The value of the Hermite polynomial of order n
-   *           and argument x.
+   * see "Asymptotic analysis of the Hermite polynomials
+   * 	  from their differential-difference equation", 
+   * 	  Diego Dominici, arXiv:math/0601078v1 [math.CA] 4 Jan 2006
+   * @param __n The order of the Hermite polynomial.
+   * @param __x The argument of the Hermite polynomial.
+   * @return The value of the Hermite polynomial of order n
+   * 	     and argument x.
    */
   template<typename _Tp>
     _Tp
@@ -156,23 +156,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief This routine returns the Hermite polynomial
-   *          of order n: \f$ H_n(x) \f$.
+   * @brief This routine returns the Hermite polynomial
+   * 	    of order n: @f$ H_n(x) @f$.
    *
-   *   The Hermite polynomial is defined by:
-   *   @f[
-   *     H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
-   *   @f]
+   * The Hermite polynomial is defined by:
+   * @f[
+   *   H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
+   * @f]
    *
-   *   The Hermite polynomial obeys a reflection formula:
-   *   @f[
-   *     H_n(-x) = (-1)^n H_n(x)
-   *   @f]
+   * The Hermite polynomial obeys a reflection formula:
+   * @f[
+   *   H_n(-x) = (-1)^n H_n(x)
+   * @f]
    *
-   *   @param __n The order of the Hermite polynomial.
-   *   @param __x The argument of the Hermite polynomial.
-   *   @return The value of the Hermite polynomial of order n
-   *           and argument x.
+   * @param __n The order of the Hermite polynomial.
+   * @param __x The argument of the Hermite polynomial.
+   * @return The value of the Hermite polynomial of order n
+   * 	     and argument x.
    */
   template<typename _Tp>
     _Tp
