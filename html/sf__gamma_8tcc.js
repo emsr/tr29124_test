@@ -25,7 +25,7 @@ var sf__gamma_8tcc =
     [ "__log_gamma_bernoulli", "sf__gamma_8tcc.html#ac13e31ebcd3c99d6a7cad9010e039315", null ],
     [ "__log_gamma_lanczos", "sf__gamma_8tcc.html#a45d7248fb07a96bc70546b0817a4564e", null ],
     [ "__log_gamma_sign", "sf__gamma_8tcc.html#ac091f187fbe5efdbc912ec9ca38ba25f", null ],
-    [ "__log_gamma_spouge", "sf__gamma_8tcc.html#a79e431e1143f1e0480fdc030d839ee31", null ],
+    [ "__log_gamma_spouge", "sf__gamma_8tcc.html#adf0ab4fe086fff067e7c9e11104562b1", null ],
     [ "__log_pochhammer_l", "sf__gamma_8tcc.html#a287ee67c3a3214ed32d161bede80fbf4", null ],
     [ "__log_pochhammer_u", "sf__gamma_8tcc.html#a562403a92b80066d306b054eb319460b", null ],
     [ "__pochhammer_l", "sf__gamma_8tcc.html#a475c47b66346d11f519b43abb775e08a", null ],

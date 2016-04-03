@@ -58,57 +58,59 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   * @brief  Return the beta function: @f$ B(x,y) @f$.
+   * @brief  Return the beta function: @f$ B(a,b) @f$.
    *
    * The beta function is defined by
    * @f[
-   *   B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+   *   B(a,b) = \int_0^1 t^{a - 1} (1 - t)^{b - 1} dt
+   *          = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
    * @f]
    *
-   * @param __x The first argument of the beta function.
-   * @param __y The second argument of the beta function.
+   * @param __a The first argument of the beta function.
+   * @param __b The second argument of the beta function.
    * @return  The beta function.
    */
   template<typename _Tp>
     _Tp
-    __beta_gamma(_Tp __x, _Tp __y)
+    __beta_gamma(_Tp __a, _Tp __b)
     {
 
       _Tp __bet;
-      if (__x > __y)
+      if (__a > __b)
 	{
-	  __bet = __gamma(__x) / __gamma(__x + __y);
-	  __bet *= __gamma(__y);
+	  __bet = __gamma(__a) / __gamma(__a + __b);
+	  __bet *= __gamma(__b);
 	}
       else
 	{
-	  __bet = __gamma(__y) / __gamma(__x + __y);
-	  __bet *= __gamma(__x);
+	  __bet = __gamma(__b) / __gamma(__a + __b);
+	  __bet *= __gamma(__a);
 	}
 
       return __bet;
     }
 
   /**
-   * @brief  Return the beta function @f$B(x,y)@f$ using
+   * @brief  Return the beta function @f$B(a,b)@f$ using
    *	     the log gamma functions.
    *
    * The beta function is defined by
    * @f[
-   *   B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+   *   B(a,b) = \int_0^1 t^{a - 1} (1 - t)^{b - 1} dt
+   *          = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
    * @f]
    *
-   * @param __x The first argument of the beta function.
-   * @param __y The second argument of the beta function.
+   * @param __a The first argument of the beta function.
+   * @param __b The second argument of the beta function.
    * @return  The beta function.
    */
   template<typename _Tp>
     _Tp
-    __beta_lgamma(_Tp __x, _Tp __y)
+    __beta_lgamma(_Tp __a, _Tp __b)
     {
-      _Tp __bet = __log_gamma(__x)
-		+ __log_gamma(__y)
-		- __log_gamma(__x + __y);
+      _Tp __bet = __log_gamma(__a)
+		+ __log_gamma(__b)
+		- __log_gamma(__a + __b);
       __bet = std::exp(__bet);
       return __bet;
     }
@@ -120,26 +122,32 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The beta function is defined by
    * @f[
-   *   B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+   *   B(a,b) = \int_0^1 t^{a - 1} (1 - t)^{b - 1} dt
+   *          = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
+   * @f]
+   * Here, we employ the product form:
+   * @f[
+   *   B(a,b) = \frac{a + b}{a b} \prod_{k=1}^{\infty}
+   *            \frac{1 + (a + b) / k}{(1 + a / k) (1 + b / k)}
    * @f]
    *
-   * @param __x The first argument of the beta function.
-   * @param __y The second argument of the beta function.
+   * @param __a The first argument of the beta function.
+   * @param __b The second argument of the beta function.
    * @return  The beta function.
    */
   template<typename _Tp>
     _Tp
-    __beta_product(_Tp __x, _Tp __y)
+    __beta_product(_Tp __a, _Tp __b)
     {
 
-      _Tp __bet = (__x + __y) / (__x * __y);
+      _Tp __bet = (__a + __b) / (__a * __b);
 
-      const unsigned int __max_iter = 1000000;
+      const unsigned int _S_max_iter = 1000000;
 
-      for (unsigned int __k = 1; __k < __max_iter; ++__k)
+      for (unsigned int __k = 1; __k < _S_max_iter; ++__k)
 	{
-	  _Tp __term = (_Tp{1} + (__x + __y) / __k)
-		     / ((_Tp{1} + __x / __k) * (_Tp{1} + __y / __k));
+	  _Tp __term = (_Tp{1} + (__a + __b) / __k)
+		     / ((_Tp{1} + __a / __k) * (_Tp{1} + __b / __k));
 	  __bet *= __term;
 	}
 
@@ -148,28 +156,38 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   * @brief  Return the beta function @f$ B(x,y) @f$.
+   * @brief  Return the beta function @f$ B(a,b) @f$.
    *
    * The beta function is defined by
    * @f[
-   *   B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+   *   B(a,b) = \int_0^1 t^{a - 1} (1 - t)^{b - 1} dt
+   *          = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
    * @f]
    *
-   * @param __x The first argument of the beta function.
-   * @param __y The second argument of the beta function.
+   * @param __a The first argument of the beta function.
+   * @param __b The second argument of the beta function.
    * @return  The beta function.
    */
   template<typename _Tp>
     _Tp
-    __beta(_Tp __x, _Tp __y)
+    __beta(_Tp __a, _Tp __b)
     {
-      if (__isnan(__x) || __isnan(__y))
+      if (__isnan(__a) || __isnan(__b))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
       else
-	return __beta_lgamma(__x, __y);
+	return __beta_lgamma(__a, __b);
     }
 
 
+  /**
+   * Return the regularized incomplete beta function, @f$ I_x(a,b) @f$,
+   * of arguments @c a, @c b, and @c x.
+   *
+   *
+   * @param __a The first parameter
+   * @param __b The second parameter
+   * @param __x The argument
+   */
   template<typename _Tp>
     _Tp
     __beta_inc_cont_frac(_Tp __a, _Tp __b, _Tp __x)
@@ -220,7 +238,25 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				 "continued fractions failed to converge");
     }
 
-
+  /**
+   * Return the regularized incomplete beta function, @f$ I_x(a,b) @f$,
+   * of arguments @c a, @c b, and @c x.
+   *
+   * The regularized incomplete beta function is defined by:
+   * @f[
+   *   I_x(a,b) = \frac{B_x(a,b)}{B(a,b)}
+   * @f]
+   * where
+   * @f[
+   *   B_x(a,b) = \int_0^x t^{a - 1} (1 - t)^{b - 1} dt
+   * @f]
+   * is the non-regularized beta function and @f$ B(a,b) @f$
+   * is the usual beta function.
+   *
+   * @param __a The first parameter
+   * @param __b The second parameter
+   * @param __x The argument
+   */
   template<typename _Tp>
     _Tp
     __beta_inc(_Tp __a, _Tp __b, _Tp __x)
@@ -256,6 +292,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   A(t|\nu) = 1 - I_{\frac{\nu}{\nu + t^2}}(\frac{\nu}{2}, \frac{1}{2})
    *   A(t|\nu) = 
    * @f]
+   *
+   * @param __t 
+   * @param __nu 
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
@@ -276,6 +315,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   A_c(t|\nu) = I_{\frac{\nu}{\nu + t^2}}(\frac{\nu}{2}, \frac{1}{2})
    * 		  = 1 - A(t|\nu)
    * @f]
+   *
+   * @param __t 
+   * @param __nu 
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
@@ -298,6 +340,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   Q(F|\nu_1, \nu_2) = I_{\frac{\nu_2}{\nu_2 + \nu_1 F}}
    * 			     (\frac{\nu_2}{2}, \frac{\nu_1}{2})
    * @f]
+   *
+   * @param __nu1 
+   * @param __nu2 
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
@@ -323,6 +368,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 			     (\frac{\nu_2}{2}, \frac{\nu_1}{2})
    * 			 = 1 - Q(F|\nu_1, \nu_2)
    * @f]
+   *
+   * @param __F 
+   * @param __nu1 
+   * @param __nu2 
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
@@ -345,6 +394,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *   P(p|n, k) = I_p(k, n-k+1)
    * @f]
+   *
+   * @param __p 
+   * @param __n 
+   * @param __k 
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
@@ -371,6 +424,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *   Q(p|n, k) = I_{1-p}(n-k+1, k)
    * @f]
+   *
+   * @param __p 
+   * @param __n 
+   * @param __k 
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp

@@ -1,12 +1,20 @@
-\hypertarget{sf__gamma_8tcc}{}\section{sf\+\_\+gamma.\+tcc File Reference}
-\label{sf__gamma_8tcc}\index{sf\+\_\+gamma.\+tcc@{sf\+\_\+gamma.\+tcc}}
+\hypertarget{sf__gamma_8tcc}{}\section{bits/sf\+\_\+gamma.tcc File Reference}
+\label{sf__gamma_8tcc}\index{bits/sf\+\_\+gamma.\+tcc@{bits/sf\+\_\+gamma.\+tcc}}
 {\ttfamily \#include $<$ext/math\+\_\+const.\+h$>$}\\*
 Include dependency graph for sf\+\_\+gamma.\+tcc\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=172pt]{sf__gamma_8tcc__incl}
+\includegraphics[width=178pt]{sf__gamma_8tcc__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{sf__gamma_8tcc__dep__incl}
 \end{center}
 \end{figure}
 \subsection*{Classes}
@@ -75,7 +83,7 @@ struct \hyperlink{structstd_1_1____detail_1_1__Factorial__table}{std\+::\+\_\+\+
 \begin{DoxyCompactList}\small\item\em Return $log(\Gamma(x))$ by the Lanczos method. This method dominates all others on the positive axis I think. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_ac091f187fbe5efdbc912ec9ca38ba25f}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+log\+\_\+gamma\+\_\+sign} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Return the sign of $ \Gamma(x) $. At nonpositive integers zero is returned. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+G\+L\+I\+B\+C\+X\+X14\+\_\+\+C\+O\+N\+S\+T\+E\+X\+P\+R \+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a79e431e1143f1e0480fdc030d839ee31}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+log\+\_\+gamma\+\_\+spouge} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+G\+L\+I\+B\+C\+X\+X14\+\_\+\+C\+O\+N\+S\+T\+E\+X\+P\+R \+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_adf0ab4fe086fff067e7c9e11104562b1}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+log\+\_\+gamma\+\_\+spouge} (\+\_\+\+Tp \+\_\+\+\_\+z)
 \begin{DoxyCompactList}\small\item\em Return $\Gamma(z)$ by the Spouge algorithm\+: \[ \Gamma(z+1) = (z+a)^{z+1/2}e^{-z-a}\left[ \sqrt{2\pi} \sum_{k=1}^{\lceil a \rceil + 1}\frac{c_k(a)}{z+k}\right] \] where \[ c_k(a) = \frac{(-1)^{k-1}}{(k-1)!}(a-k)^{k-1/2}e^{a-k} \] and the error is bounded by \[ \epsilon(a) < a^{-1/2}(2\pi)^{-a-1/2} \]. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a287ee67c3a3214ed32d161bede80fbf4}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+log\+\_\+pochhammer\+\_\+l} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+n)
 \begin{DoxyCompactList}\small\item\em Return the logarithm of the lower Pochhammer symbol or the falling factorial function. The lower Pochammer symbol is defined by \[ (a)_n = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1 = \Gamma(a + 1) / \Gamma(a - n + 1) \] In particular, \$f\mbox{[} (n)\+\_\+n = n! \$f\mbox{]}. Thus this function returns \[ ln[(a)_n] = \Gamma(a + 1) - \Gamma(a - n + 1), ln[(a)_0] = 0 \] Many notations exist\+: \[ a^{\underline{n}} \], \[ \{ \begin{array}{c} a \\ n \end{array} \} \], and others. \end{DoxyCompactList}\item 
@@ -127,6 +135,9 @@ constexpr \+\_\+\+Factorial\+\_\+table$<$ long double $>$ \hyperlink{namespacest
 {\footnotesize template$<$$>$ }\\constexpr std\+::size\+\_\+t \hyperlink{namespacestd_1_1____detail_a2ef051ec96e521e71489d2327d11c22a}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+S\+\_\+num\+\_\+neg\+\_\+double\+\_\+factorials$<$ long double $>$} = 999
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+This is an internal header file, included by other library headers. Do not attempt to use it directly. Instead, include $<$cmath$>$. 
 
 \subsection{Macro Definition Documentation}
 \hypertarget{sf__gamma_8tcc_accc383e52e4dc6eebfd313a52961b49b}{}\index{sf\+\_\+gamma.\+tcc@{sf\+\_\+gamma.\+tcc}!\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+G\+A\+M\+M\+A\+\_\+\+T\+C\+C@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+G\+A\+M\+M\+A\+\_\+\+T\+C\+C}}
