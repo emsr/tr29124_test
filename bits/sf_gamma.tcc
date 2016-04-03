@@ -1663,7 +1663,7 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *   @brief This returns Bernoulli number \f$B_n\f$.
+   *   @brief This returns Bernoulli number @f$B_n@f$.
    *
    *   @param __n the order n of the Bernoulli number.
    *   @return  The Bernoulli number of order n.
@@ -1675,7 +1675,7 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *   @brief This returns Bernoulli number \f$B_n\f$.
+   *   @brief This returns Bernoulli number @f$B_n@f$.
    *
    *   @param __n the order n of the Bernoulli number.
    *   @return  The Bernoulli number of order n.
@@ -1687,7 +1687,7 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *  @brief Return \f$log(\Gamma(x))\f$ by asymptotic expansion
+   *  @brief Return @f$log(\Gamma(x))@f$ by asymptotic expansion
    *         with Bernoulli number coefficients.  This is like
    *         Sterling's approximation.
    *
@@ -1715,7 +1715,7 @@ _S_neg_double_factorial_table[999]
     }
 
   /**
-   *  @brief Return \f$\Gamma(z)\f$ by the Spouge algorithm:
+   *  @brief Return @f$\Gamma(z)@f$ by the Spouge algorithm:
    *  @f[
    *    \Gamma(z+1) = (z+a)^{z+1/2}e^{-z-a}\left[ \sqrt{2\pi}
    *      \sum_{k=1}^{\lceil a \rceil + 1}\frac{c_k(a)}{z+k}\right]
@@ -1736,7 +1736,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __log_gamma_spouge(_Tp __x)
+    __log_gamma_spouge(_Tp __z)
     {
       return 0.0;
     }
@@ -1744,7 +1744,7 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *  @brief Return \f$log(\Gamma(x))\f$ by the Lanczos method.
+   *  @brief Return @f$log(\Gamma(x))@f$ by the Lanczos method.
    *         This method dominates all others on the positive axis I think.
    *
    *  @param __x The argument of the log of the gamma function.
@@ -1787,9 +1787,9 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *  @brief Return \f$ log(|\Gamma(x)|) \f$.
-   *         This will return values even for \f$ x < 0 \f$.
-   *         To recover the sign of \f$ \Gamma(x) \f$ for
+   *  @brief Return @f$ log(|\Gamma(x)|) @f$.
+   *         This will return values even for @f$ x < 0 @f$.
+   *         To recover the sign of @f$ \Gamma(x) @f$ for
    *         any argument use @a __log_gamma_sign.
    *
    *  @param __x The argument of the log of the gamma function.
@@ -1820,7 +1820,7 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *   @brief Return the sign of \f$ \Gamma(x) \f$.
+   *   @brief Return the sign of @f$ \Gamma(x) @f$.
    *          At nonpositive integers zero is returned.
    *
    *   @param __x The argument of the gamma function.
@@ -1908,7 +1908,7 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *  @brief Return \f$ \Gamma(x) \f$.
+   *  @brief Return @f$ \Gamma(x) @f$.
    *
    *  @param __x The argument of the gamma function.
    *  @return  The gamma function.

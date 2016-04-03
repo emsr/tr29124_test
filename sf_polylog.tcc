@@ -54,7 +54,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @param __a the left hand side.
    * @param __b the right hand side
-   * @return returns true if a and b are equal to zero or differ only by max(a,b) * 5* eps
+   * @return returns true if a and b are equal to zero
+   *         or differ only by @f$ max(a,b) * 5* eps @f$
    */
   template<typename _Tp>
     bool
@@ -65,7 +66,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       bool __retval = true;
       if ((__a != _Tp{0}) || (__b != _Tp{0}))
 	// Looks mean, but is necessary that the next line has sense.
-	__retval = (std::abs(__a - __b) < std::max(std::abs(__a), std::abs(__b)) * _S_tol);
+	__retval = (std::abs(__a - __b) < std::max(std::abs(__a),
+						   std::abs(__b)) * _S_tol);
       return __retval;
     }
 
@@ -74,7 +76,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * A function to reliably test a complex number for realness.
    *
    * @param __w  The complex argument.
-   * @return  true if Im(w) is zero within 5 * epsilon, false otherwize.
+   * @return  @c true if @f$ Im(w) @f$ is zero within @f$ 5 * epsilon @f$,
+   *          @c false otherwize.
    */
   template<typename _Tp>
     bool
@@ -96,7 +99,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * A function to reliably test a complex number for imaginaryness [?].
    *
    * @param __w  The complex argument.
-   * @return  true if Re(w) is zero within 5 * epsilon, false otherwize.
+   * @return  @c true if @f$ Re(w) @f$ is zero within @f$ 5 * epsilon @f$,
+   *          @c false otherwize.
    */
   template<typename _Tp>
     bool
@@ -145,7 +149,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * For values smaller than thirty a table is used.
    *
    * @param __k an integer at which we evaluate the Riemann zeta function.
-   * @return zeta(k)
+   * @return @f$ zeta(k) @f$
    */
   template<typename _Tp = double> 
   _Tp
@@ -182,13 +186,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * This function treats the cases of positive integer index s.
    *
    * @f[
-   *   Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) w^k/k! + (H_{s-1} - log(-w)) w^(s-1)/(s-1)!
+   *   Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) w^k/k!
+   *             + (H_{s-1} - log(-w)) w^(s-1)/(s-1)!
    * @f]
-   * The radius of convergence is |w| < 2 pi.
-   * Note that this series involves a log(-x).
-   * gcc and Mathematica differ in their implementation of \log(e^(i \pi)):
-   * gcc: \log(e^(+- i * \pi)) = +- i \pi
-   * whereas Mathematica doesn't preserve the sign in this case: @f$ \log(e^(+- i\pi)) = +i \pi @f$
+   * The radius of convergence is @f$ |w| < 2 pi @f$.
+   * Note that this series involves a @f$ \log(-x) @f$.
+   * gcc and Mathematica differ in their implementation
+   * of @f$ \log(e^(i \pi)) @f$:
+   * gcc: @f$ \log(e^(+- i * \pi)) = +- i \pi @f$
+   * whereas Mathematica doesn't preserve the sign in this case:
+   * @f$ \log(e^(+- i\pi)) = +i \pi @f$
    *
    * @param __s the index s.
    * @param __w the argument w.
@@ -253,7 +260,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * This specialization is worthwhile to catch the differing behaviour of log(x).
    * @f[
-   *   Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) w^k/k! + (H_{s-1} - log(-w)) w^(s-1)/(s-1)!
+   *   Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) w^k/k!
+   *             + (H_{s-1} - log(-w)) w^(s-1)/(s-1)!
    * @f]
    * The radius of convergence is @f$ |w| < 2 \pi @f$.
    * Note that this series involves a @f$ \log(-x) @f$.
@@ -547,8 +555,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * This function treats the cases of negative integer index s and branches accordingly
    *
-   * @param s the integer index s.
-   * @param w The Argument w
+   * @param __s the integer index s.
+   * @param __w The Argument w
    * @return The value of the Polylogarithm evaluated by a suitable function.
    */
   template<typename _Tp>
@@ -1178,9 +1186,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return Clausen's function of integer order m and complex argument w.
+   * Return Clausen's function of integer order m and complex argument @c w.
    * The notation and connection to polylog is from Wikipedia
    *
+   * @param __m  The non-negative integral order.
    * @param __w  The complex argument.
    * @return  The complex Clausen function.
    */

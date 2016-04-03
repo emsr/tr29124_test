@@ -482,18 +482,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief  Return the Riemann zeta function @f$ \zeta(s) @f$.
+   * @brief  Return the Riemann zeta function @f$ \zeta(s) @f$.
    *
-   *  The Riemann zeta function is defined by:
-   *   @f[
-   *     \zeta(s) = \sum_{k=1}^{\infty} k^{-s} for s > 1
-   *    	    \frac{(2\pi)^s}{pi} sin(\frac{\pi s}{2})
-   *    	    \Gamma (1 - s) \zeta (1 - s) for s < 1
-   *   @f]
-   *  For s < 1 use the reflection formula:
-   *   @f[
-   *     \zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
-   *   @f]
+   * The Riemann zeta function is defined by:
+   * @f[
+   * 	\zeta(s) = \sum_{k=1}^{\infty} k^{-s} \hbox{ for } s > 1 \\
+   * 		   \frac{(2\pi)^s}{\pi} \sin(\frac{\pi s}{2})
+   * 		   \Gamma(1 - s) \zeta(1 - s) \hbox{ for } s < 1
+   * @f]
+   * For s < 1 use the reflection formula:
+   * @f[
+   * 	\zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -541,11 +541,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief  Return the Hurwitz zeta function @f$ \zeta(s,a) @f$
-   *          for all s != 1 and x > -1.
-   *  @see An efficient algorithm for accelerating the convergence
-   *       of oscillatory series, useful for computing the
-   *       polylogarithm and Hurwitz zeta functions, Linas Vep\u0160tas
+   * @brief  Return the Hurwitz zeta function @f$ \zeta(s,a) @f$
+   * 	     for all s != 1 and x > -1.
+   * @see An efficient algorithm for accelerating the convergence
+   * 	  of oscillatory series, useful for computing the
+   * 	  polylogarithm and Hurwitz zeta functions, Linas Vep\u0160tas
    */
   template<typename _Tp>
     _Tp
@@ -670,17 +670,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief  Return the Hurwitz zeta function @f$ \zeta(s,a) @f$
-   *          for all s != 1 and a > -1.
+   * @brief  Return the Hurwitz zeta function @f$ \zeta(s,a) @f$
+   * for all s != 1 and a > -1.
    *
-   *  The Hurwitz zeta function is defined by:
-   *  @f[
-   *    \zeta(s,a) = \sum_{n=0}^{\infty} \frac{1}{(n+a)^s}
-   *  @f]
-   *  The Riemann zeta function is a special case:
-   *  @f[
-   *    \zeta(s) = \zeta(s,1)
-   *  @f]
+   * The Hurwitz zeta function is defined by:
+   * @f[
+   *   \zeta(s,a) = \sum_{n=0}^{\infty} \frac{1}{(n+a)^s}
+   * @f]
+   * The Riemann zeta function is a special case:
+   * @f[
+   *   \zeta(s) = \zeta(s,1)
+   * @f]
+   *
+   * @param __s The argument
+   * @param __a The scale parameter
    */
   template<typename _Tp>
     _Tp
