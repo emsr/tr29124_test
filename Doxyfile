@@ -228,7 +228,9 @@ TAB_SIZE               = 4
 # "Side Effects:". You can put \n's in the value part of an alias to insert
 # newlines.
 
-ALIASES                =
+ALIASES                = "doctodo=@todo\nNeeds documentation! See http://gcc.gnu.org/onlinedocs/libstdc++/manual/documentation_style.html" \
+                         "headername{1}=Instead, include \<\1\>." \
+                         "headername{2}=Instead, include \<\1\> or \<\2\>."
 
 # This tag can be used to specify a number of word-keyword mappings (TCL only).
 # A mapping has the form "name=value". For example adding "class=itcl::class"
@@ -281,7 +283,7 @@ OPTIMIZE_OUTPUT_VHDL   = NO
 # Note that for custom extensions you also need to set FILE_PATTERNS otherwise
 # the files are not read by doxygen.
 
-EXTENSION_MAPPING      = h=C++ tcc=C++ cpp=C++
+EXTENSION_MAPPING      = no_extension=C++ h=C++ tcc=C++ cpp=C++
 
 # If the MARKDOWN_SUPPORT tag is enabled then doxygen pre-processes all comments
 # according to the Markdown format, which allows for more readable
@@ -730,7 +732,7 @@ WARN_IF_DOC_ERROR      = YES
 # parameter documentation, but not about the absence of documentation.
 # The default value is: NO.
 
-WARN_NO_PARAMDOC       = NO
+WARN_NO_PARAMDOC       = YES
 
 # The WARN_FORMAT tag determines the format of the warning messages that doxygen
 # can produce. The string should contain the $file, $line, and $text tags, which
@@ -781,7 +783,6 @@ INPUT                  = bits/specfun.h \
 			 bits/sf_legendre.tcc \
 			 bits/sf_mod_bessel.tcc \
 			 bits/sf_owens_t.tcc \
-			 bits/sf_parab_cyl.tcc \
 			 bits/sf_polylog.tcc \
 			 bits/sf_theta.tcc \
 			 bits/sf_trigint.tcc \
@@ -1052,7 +1053,7 @@ COLS_IN_ALPHA_INDEX    = 5
 # while generating the index headers.
 # This tag requires that the tag ALPHABETICAL_INDEX is set to YES.
 
-IGNORE_PREFIX          =
+IGNORE_PREFIX          = __
 
 #---------------------------------------------------------------------------
 # Configuration options related to the HTML output

@@ -167,7 +167,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Associated Legendre functions
 
   /**
-   * Return the associated Legendre function of order @c l and degree @c m
+   * Return the associated Legendre function of degree @c l and order @c m
    * for @c float argument.
    *
    * @see assoc_legendre for more details.
@@ -177,7 +177,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__assoc_legendre_p<float>(__l, __m, __x); }
 
   /**
-   * Return the associated Legendre function of order @c l and degree @c m.
+   * Return the associated Legendre function of degree @c l and order @c m.
    *
    * @see assoc_legendre for more details.
    */
@@ -186,7 +186,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__assoc_legendre_p<long double>(__l, __m, __x); }
 
   /**
-   * Return the associated Legendre function of order @c l and degree @c m.
+   * Return the associated Legendre function of degree @c l and order @c m.
    *
    * The associated Legendre function is derived from the Legendre function
    * @f$ P_l(x) @f$ by the Rodrigues formula:
@@ -194,7 +194,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   P_l^m(x) = (1 - x^2)^{m/2}\frac{d^m}{dx^m}P_l(x)
    * @f]
    *
-   * @param  __l  The order of the associated Legendre function.
+   * @param  __l  The degree of the associated Legendre function.
    * 		@f$ l >= 0 @f$.
    * @param  __m  The order of the associated Legendre function.
    * 		@f$ m <= l @f$.
@@ -212,30 +212,31 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Beta functions
 
   inline float
-  betaf(float __x, float __y)
-  { return __detail::__beta<float>(__x, __y); }
+  betaf(float __a, float __b)
+  { return __detail::__beta<float>(__a, __b); }
 
   inline long double
-  betal(long double __x, long double __y)
-  { return __detail::__beta<long double>(__x, __y); }
+  betal(long double __a, long double __b)
+  { return __detail::__beta<long double>(__a, __b); }
 
   /**
-   * Return the beta function: \f$B(x,y)\f$.
+   * Return the beta function: \f$B(a,b)\f$.
    *
    * The beta function is defined by
    * @f[
-   *   B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+   *   B(a,b) = \int_0^1 t^{a - 1} (1 - t)^{b - 1} dt
+   *          = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
    * @f]
    *
-   * @param __x The first argument of the beta function.
-   * @param __y The second argument of the beta function.
+   * @param __a The first argument of the beta function.
+   * @param __b The second argument of the beta function.
    */
-  template<typename _Tpx, typename _Tpy>
-    inline typename __gnu_cxx::__promote_2<_Tpx, _Tpy>::__type
-    beta(_Tpx __x, _Tpy __y)
+  template<typename _Tpa, typename _Tpb>
+    inline typename __gnu_cxx::__promote_2<_Tpa, _Tpb>::__type
+    beta(_Tpa __a, _Tpb __b)
     {
-      typedef typename __gnu_cxx::__promote_2<_Tpx, _Tpy>::__type __type;
-      return __detail::__beta<__type>(__x, __y);
+      typedef typename __gnu_cxx::__promote_2<_Tpa, _Tpb>::__type __type;
+      return __detail::__beta<__type>(__a, __b);
     }
 
   // Complete elliptic integrals of the first kind
@@ -271,7 +272,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * where @f$ F(k,\phi) @f$ is the incomplete elliptic integral of the
    * first kind.
    *
-   * @param  __k  The argument of the complete elliptic function.
+   * @param  __k  The modulus
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -310,7 +311,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   E(k,\pi/2) = \int_0^{\pi/2}\sqrt{1 - k^2 sin^2\theta}
    * @f]
    *
-   * @param  __k  The argument of the complete elliptic function.
+   * @param  __k  The modulus
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -354,8 +355,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 		   {(1 - \nu \sin^2\theta)\sqrt{1 - k^2 \sin^2\theta}}
    * @f]
    *
-   * @param  __k  The argument of the elliptic function.
-   * @param  __nu  The second argument of the elliptic function.
+   * @param  __k  The modulus of the elliptic function.
+   * @param  __nu  The argument of the elliptic function.
    */
   template<typename _Tp, typename _Tpn>
     inline typename __gnu_cxx::__promote_2<_Tp, _Tpn>::__type
@@ -576,7 +577,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 				     {\sqrt{1 - k^2 sin^2\theta}}
    * @f]
    *
-   * @param  __k  The argument of the elliptic function.
+   * @param  __k  The modulus of the elliptic function.
    * @param  __phi  The integral limit argument of the elliptic function.
    */
   template<typename _Tp, typename _Tpp>
@@ -664,7 +665,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 			  \sqrt{1 - k^2 \sin^2\theta}}
    * @f]
    *
-   * @param  __k  The argument of the elliptic function.
+   * @param  __k  The modulus of the elliptic function.
    * @param  __nu  The second argument of the elliptic function.
    * @param  __phi  The integral limit argument of the elliptic function.
    * @return  The elliptic function of the third kind.
@@ -765,7 +766,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Returns the Laguerre polynomial
-   * of order @c n: @f$ L_n(x) @f$ for @c float argument.
+   * of degree @c n: @f$ L_n(x) @f$ for @c float argument.
    *
    * @see laguerre for more details.
    */
@@ -775,7 +776,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Returns the Laguerre polynomial
-   * of order @c n: @f$ L_n(x) @f$.
+   * of degree @c n: @f$ L_n(x) @f$.
    *
    * @see laguerre for more details.
    */
@@ -785,7 +786,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Returns the Laguerre polynomial
-   * of order @c n, and argument @c x: @f$ L_n(x) @f$.
+   * of degree @c n, and argument @c x: @f$ L_n(x) @f$.
    *
    * The Laguerre polynomial is defined by:
    * @f[
@@ -807,7 +808,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Legendre polynomial by upward recursion
-   * on order @f$ l @f$ for @c float argument.
+   * on degree @f$ l @f$ for @c float argument.
    *
    * @see legendre for more details.
    */
@@ -817,7 +818,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Legendre polynomial by upward recursion
-   * on order @f$ l @f$.
+   * on degree @f$ l @f$.
    *
    * @see legendre for more details.
    */
@@ -827,7 +828,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Legendre polynomial by upward recursion
-   * on order @f$ l @f$.
+   * on degree @f$ l @f$.
    *
    * The Legendre function of order @f$ l @f$ and argument @f$ x @f$,
    * @f$ P_l(x) @f$, is defined by:
@@ -919,8 +920,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  j_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} J_{n+1/2}(x)
    * @f]
    *
-   * @param  __n  The order of the spherical Bessel function.
-   * @param  __x  The argument of the spherical Bessel function.
+   * @param  __n  The non-negative integral order
+   * @param  __x  The non-negative real argument
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -934,7 +935,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the spherical Legendre function of non-negative integral
-   * degree @c l and order @c n and float angle @f$ \theta @f$ in radians.
+   * degree @c l and order @c m and float angle @f$ \theta @f$ in radians.
    *
    * @see sph_legendre for details.
    */
@@ -944,7 +945,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the spherical Legendre function of non-negative integral
-   * degree @c l and order @c n and long double angle @f$ \theta @f$ in radians.
+   * degree @c l and order @c m and long double angle @f$ \theta @f$ in radians.
    *
    * @see sph_legendre for details.
    */
@@ -954,7 +955,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the spherical Legendre function of non-negative integral
-   * degree @c l and order @c n and real angle @f$ \theta @f$ in radians.
+   * degree @c l and order @c m and real angle @f$ \theta @f$ in radians.
    *
    * The spherical Legendre function is defined by
    * @f[
@@ -1003,11 +1004,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The spherical Neumann function is defined by
    * @f[
-   *    
+   *    n_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} N_{n+1/2}(x)
    * @f]
    *
-   * @param __n 
-   * @param __x 
+   * @param  __n  The non-negative integral order
+   * @param  __x  The non-negative real argument
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -2501,11 +2502,18 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The regularized incomplete beta function is defined by
    * @f[
-   *    I_x(a, b) = 
+   *    I_x(a, b) = \frac{B_x(a,b)}{B(a,b)}
+   * @f]
+   * where
+   * @f[
+   *   B_x(a,b) = \int_0^x t^{a - 1} (1 - t)^{b - 1} dt
+   * @f]
+   * is the non-regularized beta function and @f$ B(a,b) @f$
+   * is the usual beta function.
    * @f]
    *
-   * @param __a The parameter
-   * @param __b The parameter
+   * @param __a The first parameter
+   * @param __b The second parameter
    * @param __x The argument
    */
   template<typename _Ta, typename _Tb, typename _Tp>
@@ -2530,7 +2538,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * Return the regularized complementary incomplete beta function
    * of parameters @c a, @c b, and argument @c x.
    *
-   * The regularized incomplete beta function is defined by
+   * The regularized complementary incomplete beta function is defined by
    * @f[
    *    I_x(a, b) = I_x(a, b)
    * @f]
@@ -2562,7 +2570,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The Fresnel sine integral is defined by
    * @f[
-   *    
+   *    S(x) = \int_0^x \sin(\frac{\pi}{2}t^2) dt
    * @f]
    *
    * @param __x The argument
@@ -2590,7 +2598,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The Fresnel cosine integral is defined by
    * @f[
-   *    
+   *    C(x) = \int_0^x \cos(\frac{\pi}{2}t^2) dt
    * @f]
    *
    * @param __x The argument
@@ -2605,16 +2613,37 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Dawson integral
 
+  /**
+   * Return the Dawson integral, @f$ F(x) @f$, for @c float argument @c x.
+   *
+   * @see dawson for details.
+   */
   inline float
   dawsonf(float __x)
   { return std::__detail::__dawson<float>(__x); }
 
+  /**
+   * Return the Dawson integral, @f$ F(x) @f$, for @c long double argument @c x.
+   *
+   * @see dawson for details.
+   */
   inline long double
   dawsonl(long double __x)
   { return std::__detail::__dawson<long double>(__x); }
 
   /**
-   * 
+   * Return the Dawson integral, @f$ F(x) @f$, for real argument @c x.
+   *
+   * The Dawson integral is defined by:
+   * @f[
+   *    F(x) = e^{-x^2}\int_0^x e^{y^2}dy
+   * @f]
+   * and it's derivative is:
+   * @f[
+   *    F'(x) = 1 - 2xF(x)
+   * @f]
+   *
+   * @param __x The argument @f$ -inf < x < inf @f$.
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>

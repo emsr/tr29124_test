@@ -56,11 +56,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  Coefficients for Euler-Maclaurin summation of zeta functions.
-   *    @f[
-   *      B_{2j} / (2j)!
-   *    @f]
-   *  where @f$ B_k @f$ are the Bernoulli numbers.
+   * Coefficients for Euler-Maclaurin summation of zeta functions.
+   * @f[
+   *    B_{2j} / (2j)!
+   * @f]
+   * where @f$ B_k @f$ are the Bernoulli numbers.
    */
   constexpr size_t _Num_Euler_Maclaurin_zeta = 100;
   constexpr long double
@@ -272,10 +272,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief  Evaluate the Riemann zeta function @f$ \zeta(s) @f$
-   *          by an alternate series for s > 0.
+   * @brief  Evaluate the Riemann zeta function @f$ \zeta(s) @f$
+   * 	     by an alternate series for s > 0.
    *
-   *  This is a specialization of the code for the Hurwitz zeta function.
+   * This is a specialization of the code for the Hurwitz zeta function.
    */
   template<typename _Tp>
     _Tp
@@ -312,17 +312,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief  Evaluate the Riemann zeta function @f$ \zeta(s) @f$
-   *          by an alternate series for s > 0.
+   * @brief  Evaluate the Riemann zeta function @f$ \zeta(s) @f$
+   * 	     by an alternate series for s > 0.
    *
-   *  The Riemann zeta function is defined by:
-   *   @f[
-   *     \zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
-   *   @f]
-   *  For s < 1 use the reflection formula:
-   *   @f[
-   *     \zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
-   *   @f]
+   * The Riemann zeta function is defined by:
+   * @f[
+   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
+   * @f]
+   * For s < 1 use the reflection formula:
+   * @f[
+   * 	\zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -348,26 +348,26 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief  Evaluate the Riemann zeta function by series for all s != 1.
-   *          Convergence is great until largish negative numbers.
-   *          Then the convergence of the > 0 sum gets better.
+   * @brief  Evaluate the Riemann zeta function by series for all s != 1.
+   * 	     Convergence is great until largish negative numbers.
+   * 	     Then the convergence of the > 0 sum gets better.
    *
-   *  The series is:
-   *   @f[
-   *     \zeta(s) = \frac{1}{1-2^{1-s}}
-   *    	    \sum_{n=0}^{\infty} \frac{1}{2^{n+1}}
-   *    	    \sum_{k=0}^{n} (-1)^k \frac{n!}{(n-k)!k!} (k+1)^{-s}
-   *   @f]
-   *  Havil 2003, p. 206.
+   * The series is:
+   * @f[
+   * 	\zeta(s) = \frac{1}{1-2^{1-s}}
+   * 		   \sum_{n=0}^{\infty} \frac{1}{2^{n+1}}
+   * 		   \sum_{k=0}^{n} (-1)^k \frac{n!}{(n-k)!k!} (k+1)^{-s}
+   * @f]
+   * Havil 2003, p. 206.
    *
-   *  The Riemann zeta function is defined by:
-   *   @f[
-   *     \zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
-   *   @f]
-   *  For s < 1 use the reflection formula:
-   *   @f[
-   *     \zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
-   *   @f]
+   * The Riemann zeta function is defined by:
+   * @f[
+   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
+   * @f]
+   * For s < 1 use the reflection formula:
+   * @f[
+   * 	\zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -439,21 +439,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief  Compute the Riemann zeta function @f$ \zeta(s) @f$
-   *      using the product over prime factors.
-   *   @f[
-   *     \zeta(s) = \Pi_{i=1}^\infty \frac{1}{1 - p_i^{-s}}
-   *   @f]
-   *   where @f$ {p_i} @f$ are the prime numbers.
+   * @brief  Compute the Riemann zeta function @f$ \zeta(s) @f$
+   * 	 using the product over prime factors.
    *
-   *  The Riemann zeta function is defined by:
-   *   @f[
-   *     \zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
-   *   @f]
-   *  For s < 1 use the reflection formula:
-   *   @f[
-   *     \zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
-   *   @f]
+   * @f[
+   * 	\zeta(s) = \Pi_{i=1}^\infty \frac{1}{1 - p_i^{-s}}
+   * @f]
+   * where @f$ {p_i} @f$ are the prime numbers.
+   *
+   * The Riemann zeta function is defined by:
+   * @f[
+   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
+   * @f]
+   * For s < 1 use the reflection formula:
+   * @f[
+   * 	\zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
+   * @f]
+   *
+   * @param __s The argument
    */
   template<typename _Tp>
     _Tp
@@ -494,6 +497,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    * 	\zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
    * @f]
+   *
+   * @param __s The argument
    */
   template<typename _Tp>
     _Tp
@@ -542,10 +547,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief  Return the Hurwitz zeta function @f$ \zeta(s,a) @f$
-   * 	     for all s != 1 and x > -1.
+   * 	     for all s != 1 and a > -1.
    * @see An efficient algorithm for accelerating the convergence
    * 	  of oscillatory series, useful for computing the
    * 	  polylogarithm and Hurwitz zeta functions, Linas Vep\u0160tas
+   *
+   * @param __s The argument @f$ s != 1 @f$
+   * @param __a The scale parameter @f$ a > -1 @f$
    */
   template<typename _Tp>
     _Tp
@@ -626,9 +634,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	     by summation for s > 1.  This is a small remainder for large s.
    *
    * The Riemann zeta function is defined by:
-   *  @f[
+   * @f[
    * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
-   *  @f]
+   * @f]
+   *
+   * @param __s The argument @f$ s != 1 @f$
    */
   template<typename _Tp>
     _Tp
@@ -654,6 +664,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * @brief  Return the Riemann zeta function @f$ \zeta(s) - 1 @f$
    *
+   *
+   * @param __s The argument @f$ s != 1 @f$
    */
   template<typename _Tp>
     _Tp
@@ -682,8 +694,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   \zeta(s) = \zeta(s,1)
    * @f]
    *
-   * @param __s The argument
-   * @param __a The scale parameter
+   * @param __s The argument @f$ s != 1 @f$
+   * @param __a The scale parameter @f$ a > -1 @f$
    */
   template<typename _Tp>
     _Tp

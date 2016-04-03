@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>TR29124 C++ Special Math Functions: sf_hermite.tcc Source File</title>
+<title>TR29124 C++ Special Math Functions: bits/sf_hermite.tcc Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -163,18 +163,18 @@ $(document).ready(function(){initNavTree('sf__hermite_8tcc_source.html','');});
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;_GLIBCXX_BEGIN_NAMESPACE_VERSION</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">   *   @brief This routine returns the Hermite polynomial</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">   *          of order n: \f$ H_n(x) \f$ by recursion on n.</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">   * @brief This routine returns the Hermite polynomial</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">   *        of order n: @f$ H_n(x) @f$ by recursion on n.</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">   *   The Hermite polynomial is defined by:</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">   *   @f[</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">   *     H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">   *   @f]</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">   * The Hermite polynomial is defined by:</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">   * @f[</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">   *   H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">   * @f]</span></div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">   *   @param __n The order of the Hermite polynomial.</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">   *   @param __x The argument of the Hermite polynomial.</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">   *   @return The value of the Hermite polynomial of order n</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">   *           and argument x.</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">   * @param __n The order of the Hermite polynomial.</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">   * @param __x The argument of the Hermite polynomial.</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">   * @return The value of the Hermite polynomial of order n</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">   *         and argument x.</span></div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    _Tp</div>
@@ -203,22 +203,22 @@ $(document).ready(function(){initNavTree('sf__hermite_8tcc_source.html','');});
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">   *   @brief This routine returns the Hermite polynomial</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">   *          of large order n: \f$ H_n(x) \f$.  We assume here</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">   *          that x &gt;= 0.</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">   * @brief This routine returns the Hermite polynomial</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">   *        of large order n: @f$ H_n(x) @f$.  We assume here</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">   *        that x &gt;= 0.</span></div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">   *   The Hermite polynomial is defined by:</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">   *   @f[</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">   *     H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">   *   @f]</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">   * The Hermite polynomial is defined by:</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">   * @f[</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">   *   H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">   * @f]</span></div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">   *  @see &quot;Asymptotic analysis of the Hermite polynomials</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">   *        from their differential-difference equation&quot;, </span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">   *        Diego Dominici, arXiv:math/0601078v1 [math.CA] 4 Jan 2006</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">   *   @param __n The order of the Hermite polynomial.</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">   *   @param __x The argument of the Hermite polynomial.</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">   *   @return The value of the Hermite polynomial of order n</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">   *           and argument x.</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">   * see &quot;Asymptotic analysis of the Hermite polynomials</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">   *      from their differential-difference equation&quot;, </span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">   *      Diego Dominici, arXiv:math/0601078v1 [math.CA] 4 Jan 2006</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">   * @param __n The order of the Hermite polynomial.</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">   * @param __x The argument of the Hermite polynomial.</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">   * @return The value of the Hermite polynomial of order n</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">   *         and argument x.</span></div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    _Tp</div>
@@ -268,23 +268,23 @@ $(document).ready(function(){initNavTree('sf__hermite_8tcc_source.html','');});
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">   *   @brief This routine returns the Hermite polynomial</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">   *          of order n: \f$ H_n(x) \f$.</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">   * @brief This routine returns the Hermite polynomial</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">   *        of order n: @f$ H_n(x) @f$.</span></div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="comment">   *   The Hermite polynomial is defined by:</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="comment">   *   @f[</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="comment">   *     H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment">   *   @f]</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="comment">   * The Hermite polynomial is defined by:</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="comment">   * @f[</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="comment">   *   H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment">   * @f]</span></div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment">   *   The Hermite polynomial obeys a reflection formula:</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment">   *   @f[</span></div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="comment">   *     H_n(-x) = (-1)^n H_n(x)</span></div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment">   *   @f]</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment">   * The Hermite polynomial obeys a reflection formula:</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment">   * @f[</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="comment">   *   H_n(-x) = (-1)^n H_n(x)</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment">   * @f]</span></div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">   *   @param __n The order of the Hermite polynomial.</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">   *   @param __x The argument of the Hermite polynomial.</span></div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">   *   @return The value of the Hermite polynomial of order n</span></div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">   *           and argument x.</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">   * @param __n The order of the Hermite polynomial.</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">   * @param __x The argument of the Hermite polynomial.</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">   * @return The value of the Hermite polynomial of order n</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">   *         and argument x.</span></div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    _Tp</div>
@@ -305,7 +305,7 @@ $(document).ready(function(){initNavTree('sf__hermite_8tcc_source.html','');});
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;} <span class="comment">// namespace std</span></div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="preprocessor">#endif // _GLIBCXX_BITS_SF_HERMITE_TCC</span></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a6817269a446ea93bb50e7438e27c1162"><div class="ttname"><a href="namespacestd_1_1____detail.html#a6817269a446ea93bb50e7438e27c1162">std::__detail::__airy</a></div><div class="ttdeci">void __airy(const std::complex&lt; _Tp &gt; &amp;__z, _Tp __eps, std::complex&lt; _Tp &gt; &amp;_Ai, std::complex&lt; _Tp &gt; &amp;_Aip, std::complex&lt; _Tp &gt; &amp;_Bi, std::complex&lt; _Tp &gt; &amp;_Bip)</div><div class="ttdoc">This function computes the Airy function  and its first derivative in the complex z-plane...</div><div class="ttdef"><b>Definition:</b> <a href="sf__airy_8tcc_source.html#l01014">sf_airy.tcc:1014</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a6817269a446ea93bb50e7438e27c1162"><div class="ttname"><a href="namespacestd_1_1____detail.html#a6817269a446ea93bb50e7438e27c1162">std::__detail::__airy</a></div><div class="ttdeci">void __airy(const std::complex&lt; _Tp &gt; &amp;__z, _Tp __eps, std::complex&lt; _Tp &gt; &amp;_Ai, std::complex&lt; _Tp &gt; &amp;_Aip, std::complex&lt; _Tp &gt; &amp;_Bi, std::complex&lt; _Tp &gt; &amp;_Bip)</div><div class="ttdoc">This function computes the Airy function  and its first derivative in the complex z-plane...</div><div class="ttdef"><b>Definition:</b> <a href="sf__airy_8tcc_source.html#l01008">sf_airy.tcc:1008</a></div></div>
 <div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> <a href="specfun_8h_source.html#l00098">specfun.h:98</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a4dbbb56aec75c28da046df01112ba2d0"><div class="ttname"><a href="namespacestd_1_1____detail.html#a4dbbb56aec75c28da046df01112ba2d0">std::__detail::__poly_hermite_recursion</a></div><div class="ttdeci">_Tp __poly_hermite_recursion(unsigned int __n, _Tp __x)</div><div class="ttdoc">This routine returns the Hermite polynomial of order n:  by recursion on n. </div><div class="ttdef"><b>Definition:</b> <a href="sf__hermite_8tcc_source.html#l00069">sf_hermite.tcc:69</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a34d8e6d2be42c2e9abb21a3090725912"><div class="ttname"><a href="namespacestd_1_1____detail.html#a34d8e6d2be42c2e9abb21a3090725912">std::__detail::__poly_hermite_asymp</a></div><div class="ttdeci">_Tp __poly_hermite_asymp(unsigned int __n, _Tp __x)</div><div class="ttdoc">This routine returns the Hermite polynomial of large order n: . We assume here that x >= 0...</div><div class="ttdef"><b>Definition:</b> <a href="sf__hermite_8tcc_source.html#l00113">sf_hermite.tcc:113</a></div></div>
@@ -315,7 +315,7 @@ $(document).ready(function(){initNavTree('sf__hermite_8tcc_source.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="sf__hermite_8tcc.html">sf_hermite.tcc</a></li>
+    <li class="navelem"><a class="el" href="dir_4cb89d43f92538ff4356f1c340b21854.html">bits</a></li><li class="navelem"><a class="el" href="sf__hermite_8tcc.html">sf_hermite.tcc</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>

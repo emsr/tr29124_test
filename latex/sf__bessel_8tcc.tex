@@ -1,5 +1,5 @@
-\hypertarget{sf__bessel_8tcc}{}\section{sf\+\_\+bessel.\+tcc File Reference}
-\label{sf__bessel_8tcc}\index{sf\+\_\+bessel.\+tcc@{sf\+\_\+bessel.\+tcc}}
+\hypertarget{sf__bessel_8tcc}{}\section{bits/sf\+\_\+bessel.tcc File Reference}
+\label{sf__bessel_8tcc}\index{bits/sf\+\_\+bessel.\+tcc@{bits/sf\+\_\+bessel.\+tcc}}
 {\ttfamily \#include $<$utility$>$}\\*
 {\ttfamily \#include $<$ext/math\+\_\+const.\+h$>$}\\*
 Include dependency graph for sf\+\_\+bessel.\+tcc\+:
@@ -8,6 +8,14 @@ Include dependency graph for sf\+\_\+bessel.\+tcc\+:
 \begin{center}
 \leavevmode
 \includegraphics[width=230pt]{sf__bessel_8tcc__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{sf__bessel_8tcc__dep__incl}
 \end{center}
 \end{figure}
 \subsection*{Namespaces}
@@ -44,7 +52,7 @@ Include dependency graph for sf\+\_\+bessel.\+tcc\+:
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a101d608648b7ecb3d1c7a8500f902e6c}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+temme} (\+\_\+\+Tp \+\_\+\+\_\+mu, \+\_\+\+Tp \&\+\_\+\+\_\+gam1, \+\_\+\+Tp \&\+\_\+\+\_\+gam2, \+\_\+\+Tp \&\+\_\+\+\_\+gampl, \+\_\+\+Tp \&\+\_\+\+\_\+gammi)
 \begin{DoxyCompactList}\small\item\em Compute the gamma functions required by the Temme series expansions of $ N_\nu(x) $ and $ K_\nu(x) $. \[ \Gamma_1 = \frac{1}{2\mu} [\frac{1}{\Gamma(1 - \mu)} - \frac{1}{\Gamma(1 + \mu)}] \] and \[ \Gamma_2 = \frac{1}{2} [\frac{1}{\Gamma(1 - \mu)} + \frac{1}{\Gamma(1 + \mu)}] \] where $ -1/2 <= \mu <= 1/2 $ is $ \mu = \nu - N $ and $ N $. is the nearest integer to $ \nu $. The values of $ \Gamma(1 + \mu) $ and $ \Gamma(1 - \mu) $ are returned as well. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_ac2ae8a144f79bd793e1b5d80a3b082b1}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sph\+\_\+bessel} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
-\begin{DoxyCompactList}\small\item\em Return the spherical Bessel function $ j_n(x) $ of order n. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Return the spherical Bessel function $ j_n(x) $ of order n and non-\/negative real argument {\ttfamily x}. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a4fb8d05af806e03645480c0fcb3a0a19}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sph\+\_\+bessel\+\_\+jn} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \&\+\_\+\+\_\+j\+\_\+n, \+\_\+\+Tp \&\+\_\+\+\_\+n\+\_\+n, \+\_\+\+Tp \&\+\_\+\+\_\+jp\+\_\+n, \+\_\+\+Tp \&\+\_\+\+\_\+np\+\_\+n)
 \begin{DoxyCompactList}\small\item\em Compute the spherical Bessel $ j_n(x) $ and Neumann $ n_n(x) $ functions and their first derivatives $ j_n(x) $ and $ n'_n(x) $ respectively. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_adcc174fe4cb03d428f19abcae8012b50}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sph\+\_\+hankel\+\_\+1} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
@@ -52,8 +60,11 @@ Include dependency graph for sf\+\_\+bessel.\+tcc\+:
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a89fe914f377a138d37369d13bda1162e}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sph\+\_\+hankel\+\_\+2} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Return the spherical Hankel function of the second kind $ h^{(2)}_n(x) $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a94ac68003333b86b157a3b1e6ce44830}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sph\+\_\+neumann} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
-\begin{DoxyCompactList}\small\item\em Return the spherical Neumann function $ n_n(x) $. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Return the spherical Neumann function $ n_n(x) $ of order n and non-\/negative real argument {\ttfamily x}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+This is an internal header file, included by other library headers. Do not attempt to use it directly. Instead, include $<$cmath$>$. 
 
 \subsection{Macro Definition Documentation}
 \hypertarget{sf__bessel_8tcc_abd320ef9965fd609102634f0c12d2682}{}\index{sf\+\_\+bessel.\+tcc@{sf\+\_\+bessel.\+tcc}!\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+B\+E\+S\+S\+E\+L\+\_\+\+T\+C\+C@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+B\+E\+S\+S\+E\+L\+\_\+\+T\+C\+C}}
