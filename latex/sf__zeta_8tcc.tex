@@ -1,5 +1,5 @@
-\hypertarget{sf__zeta_8tcc}{}\section{sf\+\_\+zeta.\+tcc File Reference}
-\label{sf__zeta_8tcc}\index{sf\+\_\+zeta.\+tcc@{sf\+\_\+zeta.\+tcc}}
+\hypertarget{sf__zeta_8tcc}{}\section{bits/sf\+\_\+zeta.tcc File Reference}
+\label{sf__zeta_8tcc}\index{bits/sf\+\_\+zeta.\+tcc@{bits/sf\+\_\+zeta.\+tcc}}
 {\ttfamily \#include $<$ext/math\+\_\+const.\+h$>$}\\*
 Include dependency graph for sf\+\_\+zeta.\+tcc\+:
 \nopagebreak
@@ -7,6 +7,14 @@ Include dependency graph for sf\+\_\+zeta.\+tcc\+:
 \begin{center}
 \leavevmode
 \includegraphics[width=172pt]{sf__zeta_8tcc__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{sf__zeta_8tcc__dep__incl}
 \end{center}
 \end{figure}
 \subsection*{Namespaces}
@@ -29,7 +37,7 @@ Include dependency graph for sf\+\_\+zeta.\+tcc\+:
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a63aafed798ada71b2cc58e84a6652169}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+hurwitz\+\_\+zeta} (\+\_\+\+Tp \+\_\+\+\_\+s, \+\_\+\+Tp \+\_\+\+\_\+a)
 \begin{DoxyCompactList}\small\item\em Return the Hurwitz zeta function $ \zeta(s,a) $ for all s != 1 and a $>$ -\/1. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a56c55858723fe9e0c541f0e77572b58d}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+hurwitz\+\_\+zeta\+\_\+euler\+\_\+maclaurin} (\+\_\+\+Tp \+\_\+\+\_\+s, \+\_\+\+Tp \+\_\+\+\_\+a)
-\begin{DoxyCompactList}\small\item\em Return the Hurwitz zeta function $ \zeta(s,a) $ for all s != 1 and x $>$ -\/1. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Return the Hurwitz zeta function $ \zeta(s,a) $ for all s != 1 and a $>$ -\/1. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a2be77d9bdd1b8b463be44a0e7558bc2a}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+riemann\+\_\+zeta} (\+\_\+\+Tp \+\_\+\+\_\+s)
 \begin{DoxyCompactList}\small\item\em Return the Riemann zeta function $ \zeta(s) $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a4b3f83cafed65af679eedcf37fefff00}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+alt} (\+\_\+\+Tp \+\_\+\+\_\+s)
@@ -43,7 +51,7 @@ Include dependency graph for sf\+\_\+zeta.\+tcc\+:
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a3985751e758b45d726ea8dec0450ca1e}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+m\+\_\+1\+\_\+sum} (\+\_\+\+Tp \+\_\+\+\_\+s)
 \begin{DoxyCompactList}\small\item\em Return the Riemann zeta function $ \zeta(s) - 1 $ by summation for s $>$ 1. This is a small remainder for large s. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a917935f42a21af90b78a19ea81349129}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+product} (\+\_\+\+Tp \+\_\+\+\_\+s)
-\begin{DoxyCompactList}\small\item\em Compute the Riemann zeta function $ \zeta(s) $ using the product over prime factors. \[ \zeta(s) = \Pi_{i=1}^\infty \frac{1}{1 - p_i^{-s}} \] where $ {p_i} $ are the prime numbers. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Compute the Riemann zeta function $ \zeta(s) $ using the product over prime factors. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a417dc216465f02bb7ef055fa0e4e1f0b}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+sum} (\+\_\+\+Tp \+\_\+\+\_\+s)
 \begin{DoxyCompactList}\small\item\em Compute the Riemann zeta function $ \zeta(s) $ by summation for s $>$ 1. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
@@ -58,6 +66,9 @@ constexpr size\+\_\+t \hyperlink{namespacestd_1_1____detail_a807e36c2aec3a9f27fd
 constexpr long double \hyperlink{namespacestd_1_1____detail_a22ed80d9e5c3bc79e61a3cdb8e79a462}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+S\+\_\+zetam1} \mbox{[}\+\_\+\+S\+\_\+num\+\_\+zetam1\mbox{]}
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+This is an internal header file, included by other library headers. Do not attempt to use it directly. Instead, include $<$cmath$>$. 
 
 \subsection{Macro Definition Documentation}
 \hypertarget{sf__zeta_8tcc_a23ad81fae0dc2d916125d596553c5dfc}{}\index{sf\+\_\+zeta.\+tcc@{sf\+\_\+zeta.\+tcc}!\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+Z\+E\+T\+A\+\_\+\+T\+C\+C@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+Z\+E\+T\+A\+\_\+\+T\+C\+C}}

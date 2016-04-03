@@ -1,2 +1,27 @@
-<map id="specfun.h" name="specfun.h">
+<map id="bits/specfun.h" name="bits/specfun.h">
+<area shape="rect" id="node13" href="$sf__gamma_8tcc.html" title="bits/sf_gamma.tcc" alt="" coords="927,87,1058,114"/>
+<area shape="rect" id="node14" href="$sf__bessel_8tcc.html" title="bits/sf_bessel.tcc" alt="" coords="3513,87,3638,114"/>
+<area shape="rect" id="node16" href="$sf__beta_8tcc.html" title="bits/sf_beta.tcc" alt="" coords="1082,87,1194,114"/>
+<area shape="rect" id="node17" href="$sf__cardinal_8tcc.html" title="bits/sf_cardinal.tcc" alt="" coords="448,87,580,114"/>
+<area shape="rect" id="node18" href="$sf__chebyshev_8tcc.html" title="bits/sf_chebyshev.tcc" alt="" coords="1219,87,1369,114"/>
+<area shape="rect" id="node19" href="$sf__dawson_8tcc.html" title="bits/sf_dawson.tcc" alt="" coords="1393,87,1525,114"/>
+<area shape="rect" id="node20" href="$sf__ellint_8tcc.html" title="bits/sf_ellint.tcc" alt="" coords="1550,87,1665,114"/>
+<area shape="rect" id="node21" href="$sf__expint_8tcc.html" title="bits/sf_expint.tcc" alt="" coords="1689,87,1811,114"/>
+<area shape="rect" id="node22" href="$sf__fresnel_8tcc.html" title="bits/sf_fresnel.tcc" alt="" coords="1836,87,1963,114"/>
+<area shape="rect" id="node23" href="$sf__gegenbauer_8tcc.html" title="bits/sf_gegenbauer.tcc" alt="" coords="1987,87,2142,114"/>
+<area shape="rect" id="node24" href="$sf__hyperg_8tcc.html" title="bits/sf_hyperg.tcc" alt="" coords="2167,87,2293,114"/>
+<area shape="rect" id="node25" href="$sf__hypint_8tcc.html" title="bits/sf_hypint.tcc" alt="" coords="2318,87,2441,114"/>
+<area shape="rect" id="node26" href="$sf__jacobi_8tcc.html" title="bits/sf_jacobi.tcc" alt="" coords="2465,87,2587,114"/>
+<area shape="rect" id="node27" href="$sf__laguerre_8tcc.html" title="bits/sf_laguerre.tcc" alt="" coords="2611,87,2745,114"/>
+<area shape="rect" id="node28" href="$sf__legendre_8tcc.html" title="bits/sf_legendre.tcc" alt="" coords="2769,87,2905,114"/>
+<area shape="rect" id="node29" href="$sf__hydrogen_8tcc.html" title="bits/sf_hydrogen.tcc" alt="" coords="4672,87,4812,114"/>
+<area shape="rect" id="node30" href="$sf__mod__bessel_8tcc.html" title="bits/sf_mod_bessel.tcc" alt="" coords="3662,87,3819,114"/>
+<area shape="rect" id="node31" href="$sf__hermite_8tcc.html" title="bits/sf_hermite.tcc" alt="" coords="2929,87,3059,114"/>
+<area shape="rect" id="node32" href="$sf__theta_8tcc.html" title="bits/sf_theta.tcc" alt="" coords="736,87,852,114"/>
+<area shape="rect" id="node35" href="$sf__trigint_8tcc.html" title="bits/sf_trigint.tcc" alt="" coords="3083,87,3201,114"/>
+<area shape="rect" id="node36" href="$sf__zeta_8tcc.html" title="bits/sf_zeta.tcc" alt="" coords="3225,87,3337,114"/>
+<area shape="rect" id="node37" href="$sf__owens__t_8tcc.html" title="bits/sf_owens_t.tcc" alt="" coords="4837,87,4973,114"/>
+<area shape="rect" id="node38" href="$sf__polylog_8tcc.html" title="bits/sf_polylog.tcc" alt="" coords="3361,87,3489,114"/>
+<area shape="rect" id="node39" href="$sf__airy_8tcc.html" title="bits/sf_airy.tcc" alt="" coords="604,87,712,114"/>
+<area shape="rect" id="node40" href="$sf__hankel_8tcc.html" title="bits/sf_hankel.tcc" alt="" coords="247,87,373,114"/>
 </map>

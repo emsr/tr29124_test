@@ -557,7 +557,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * where @f$ F(k,\phi) @f$ is the incomplete elliptic integral of the
    * first kind.
    *
-   * @param  __k  The argument of the complete elliptic function.
+   * @param  __k  The modulus of the complete elliptic function.
    * @return  The complete elliptic function of the first kind.
    */
   template<typename _Tp>
@@ -630,7 +630,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   E(k,\pi/2) = \int_0^{\pi/2}\sqrt{1 - k^2 sin^2\theta}
    * @f]
    *
-   * @param  __k  The argument of the complete elliptic function.
+   * @param  __k  The modulus of the complete elliptic function.
    * @return  The complete elliptic function of the second kind.
    */
   template<typename _Tp>

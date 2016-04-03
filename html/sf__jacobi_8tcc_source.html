@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>TR29124 C++ Special Math Functions: sf_jacobi.tcc Source File</title>
+<title>TR29124 C++ Special Math Functions: bits/sf_jacobi.tcc Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -166,7 +166,7 @@ $(document).ready(function(){initNavTree('sf__jacobi_8tcc_source.html','');});
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    _Tp</div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a7fcc47c397903ac177380517e94153c6">   57</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a7fcc47c397903ac177380517e94153c6">__poly_jacobi</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __n, _Tp __alpha, _Tp <a class="code" href="namespacestd_1_1____detail.html#a9feb903bc05fc45e7d03457df1953a9a">__beta</a>, _Tp __x)</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a7fcc47c397903ac177380517e94153c6">   57</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a7fcc47c397903ac177380517e94153c6">__poly_jacobi</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __n, _Tp __alpha, _Tp <a class="code" href="namespacestd_1_1____detail.html#a090d2f0920e0d208c467609b2a81d717">__beta</a>, _Tp __x)</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    {</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;      constexpr <span class="keyword">auto</span> _S_NaN = __gnu_cxx::__quiet_NaN&lt;_Tp&gt;();</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
@@ -177,8 +177,8 @@ $(document).ready(function(){initNavTree('sf__jacobi_8tcc_source.html','');});
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      <span class="keywordflow">if</span> (__n == 0)</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">return</span> _Pm2;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;      <span class="keyword">auto</span> __apb = __alpha + <a class="code" href="namespacestd_1_1____detail.html#a9feb903bc05fc45e7d03457df1953a9a">__beta</a>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      <span class="keyword">auto</span> __amb = __alpha - <a class="code" href="namespacestd_1_1____detail.html#a9feb903bc05fc45e7d03457df1953a9a">__beta</a>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;      <span class="keyword">auto</span> __apb = __alpha + <a class="code" href="namespacestd_1_1____detail.html#a090d2f0920e0d208c467609b2a81d717">__beta</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      <span class="keyword">auto</span> __amb = __alpha - <a class="code" href="namespacestd_1_1____detail.html#a090d2f0920e0d208c467609b2a81d717">__beta</a>;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;      <span class="keyword">auto</span> _Pm1 = (__amb + (_Tp{2} + __apb) * __x) / _Tp{2};</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;      <span class="keywordflow">if</span> (__n == 1)</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">return</span> _Pm1;</div>
@@ -258,9 +258,9 @@ $(document).ready(function(){initNavTree('sf__jacobi_8tcc_source.html','');});
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;} <span class="comment">// namespace std</span></div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor">#endif // _GLIBCXX_SF_JACOBI_TCC</span></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a9feb903bc05fc45e7d03457df1953a9a"><div class="ttname"><a href="namespacestd_1_1____detail.html#a9feb903bc05fc45e7d03457df1953a9a">std::__detail::__beta</a></div><div class="ttdeci">_Tp __beta(_Tp __x, _Tp __y)</div><div class="ttdoc">Return the beta function . </div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00164">sf_beta.tcc:164</a></div></div>
 <div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> <a href="specfun_8h_source.html#l00098">specfun.h:98</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_aa7d33201bdf73b58250d6a7ede44e896"><div class="ttname"><a href="namespacestd_1_1____detail.html#aa7d33201bdf73b58250d6a7ede44e896">std::__detail::__zernike</a></div><div class="ttdeci">__gnu_cxx::__promote_num_t&lt; _Tp &gt; __zernike(unsigned int __n, int __m, _Tp __rho, _Tp __phi)</div><div class="ttdef"><b>Definition:</b> <a href="sf__jacobi_8tcc_source.html#l00133">sf_jacobi.tcc:133</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a090d2f0920e0d208c467609b2a81d717"><div class="ttname"><a href="namespacestd_1_1____detail.html#a090d2f0920e0d208c467609b2a81d717">std::__detail::__beta</a></div><div class="ttdeci">_Tp __beta(_Tp __a, _Tp __b)</div><div class="ttdoc">Return the beta function . </div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00173">sf_beta.tcc:173</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a7fcc47c397903ac177380517e94153c6"><div class="ttname"><a href="namespacestd_1_1____detail.html#a7fcc47c397903ac177380517e94153c6">std::__detail::__poly_jacobi</a></div><div class="ttdeci">_Tp __poly_jacobi(unsigned int __n, _Tp __alpha, _Tp __beta, _Tp __x)</div><div class="ttdef"><b>Definition:</b> <a href="sf__jacobi_8tcc_source.html#l00057">sf_jacobi.tcc:57</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_af325d47042bc9661bbde61b13f368fec"><div class="ttname"><a href="namespacestd_1_1____detail.html#af325d47042bc9661bbde61b13f368fec">std::__detail::__poly_radial_jacobi</a></div><div class="ttdeci">_Tp __poly_radial_jacobi(unsigned int __n, unsigned int __m, _Tp __rho)</div><div class="ttdef"><b>Definition:</b> <a href="sf__jacobi_8tcc_source.html#l00111">sf_jacobi.tcc:111</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -268,7 +268,7 @@ $(document).ready(function(){initNavTree('sf__jacobi_8tcc_source.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="sf__jacobi_8tcc.html">sf_jacobi.tcc</a></li>
+    <li class="navelem"><a class="el" href="dir_4cb89d43f92538ff4356f1c340b21854.html">bits</a></li><li class="navelem"><a class="el" href="sf__jacobi_8tcc.html">sf_jacobi.tcc</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>

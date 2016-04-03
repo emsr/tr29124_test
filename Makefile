@@ -162,6 +162,7 @@ docs:
 	rm -rf html/*
 	rm -rf latex/*
 	doxygen
+	cd latex && make
 
 testcases: testcase
 	LD_LIBRARY_PATH=/home/ed/bin_specfun/lib64:$(GSL_LIB_DIR):$$LD_LIBRARY_PATH ./testcase

@@ -18,7 +18,6 @@ var searchData=
   ['_5fglibcxx_5fbits_5fsf_5flegendre_5ftcc',['_GLIBCXX_BITS_SF_LEGENDRE_TCC',['../sf__legendre_8tcc.html#adf9a610f8b35f611eab3b1894e967c9f',1,'sf_legendre.tcc']]],
   ['_5fglibcxx_5fbits_5fsf_5fmod_5fbessel_5ftcc',['_GLIBCXX_BITS_SF_MOD_BESSEL_TCC',['../sf__mod__bessel_8tcc.html#a746f247a80ce9ef275dfb1cffbabeabd',1,'sf_mod_bessel.tcc']]],
   ['_5fglibcxx_5fbits_5fsf_5fowens_5ft_5ftcc',['_GLIBCXX_BITS_SF_OWENS_T_TCC',['../sf__owens__t_8tcc.html#a5986cbb2c459a5e859ffe2fe1fa7cd25',1,'sf_owens_t.tcc']]],
-  ['_5fglibcxx_5fbits_5fsf_5fparab_5fcyl_5ftcc',['_GLIBCXX_BITS_SF_PARAB_CYL_TCC',['../sf__parab__cyl_8tcc.html#a132aa9631b9dba6c29027d48adf79d81',1,'sf_parab_cyl.tcc']]],
   ['_5fglibcxx_5fbits_5fsf_5fpolylog_5ftcc',['_GLIBCXX_BITS_SF_POLYLOG_TCC',['../sf__polylog_8tcc.html#ab6c10ff949c404f48f72645a3fe8a674',1,'sf_polylog.tcc']]],
   ['_5fglibcxx_5fbits_5fsf_5fzeta_5ftcc',['_GLIBCXX_BITS_SF_ZETA_TCC',['../sf__zeta_8tcc.html#a23ad81fae0dc2d916125d596553c5dfc',1,'sf_zeta.tcc']]],
   ['_5fglibcxx_5fsf_5fchebyshev_5ftcc',['_GLIBCXX_SF_CHEBYSHEV_TCC',['../sf__chebyshev_8tcc.html#a4a6b0a9b7599b04e1e7316ab679fa7f5',1,'sf_chebyshev.tcc']]],

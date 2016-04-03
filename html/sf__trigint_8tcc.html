@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>TR29124 C++ Special Math Functions: sf_trigint.tcc File Reference</title>
+<title>TR29124 C++ Special Math Functions: bits/sf_trigint.tcc File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -119,9 +119,16 @@ $(document).ready(function(){initNavTree('sf__trigint_8tcc.html','');});
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for sf_trigint.tcc:</div>
 <div class="dyncontent">
-<div class="center"><img src="sf__trigint_8tcc__incl.png" border="0" usemap="#sf__trigint_8tcc" alt=""/></div>
-<map name="sf__trigint_8tcc" id="sf__trigint_8tcc">
+<div class="center"><img src="sf__trigint_8tcc__incl.png" border="0" usemap="#bits_2sf__trigint_8tcc" alt=""/></div>
+<map name="bits_2sf__trigint_8tcc" id="bits_2sf__trigint_8tcc">
 </map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="sf__trigint_8tcc__dep__incl.png" border="0" usemap="#bits_2sf__trigint_8tccdep" alt=""/></div>
+<map name="bits_2sf__trigint_8tccdep" id="bits_2sf__trigint_8tccdep">
+<area shape="rect" id="node2" href="specfun_8h.html" title="bits/specfun.h" alt="" coords="13,80,117,107"/></map>
 </div>
 </div>
 <p><a href="sf__trigint_8tcc_source.html">Go to the source code of this file.</a></p>
@@ -149,22 +156,26 @@ Enumerations</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a53bf807a99eef68cdb6f917c7ca085bf"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
 <tr class="memitem:a53bf807a99eef68cdb6f917c7ca085bf"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; _Tp, _Tp &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a53bf807a99eef68cdb6f917c7ca085bf">std::__detail::__sincosint</a> (_Tp __x)</td></tr>
-<tr class="memdesc:a53bf807a99eef68cdb6f917c7ca085bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the sine <img class="formulaInl" alt="$ Si(x) $" src="form_230.png"/> and cosine <img class="formulaInl" alt="$ Ci(x) $" src="form_229.png"/> integrals as a <code>pair</code>.  <a href="#a53bf807a99eef68cdb6f917c7ca085bf">More...</a><br /></td></tr>
+<tr class="memdesc:a53bf807a99eef68cdb6f917c7ca085bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the sine <img class="formulaInl" alt="$ Si(x) $" src="form_257.png"/> and cosine <img class="formulaInl" alt="$ Ci(x) $" src="form_256.png"/> integrals as a <code>pair</code>.  <a href="#a53bf807a99eef68cdb6f917c7ca085bf">More...</a><br /></td></tr>
 <tr class="separator:a53bf807a99eef68cdb6f917c7ca085bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a976c3ff52c54001de3d409900c9bcb9c"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
 <tr class="memitem:a976c3ff52c54001de3d409900c9bcb9c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a976c3ff52c54001de3d409900c9bcb9c">std::__detail::__sincosint_asymp</a> (_Tp __t, _Tp &amp;_Si, _Tp &amp;_Ci)</td></tr>
-<tr class="memdesc:a976c3ff52c54001de3d409900c9bcb9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function computes the sine <img class="formulaInl" alt="$ Si(x) $" src="form_230.png"/> and cosine <img class="formulaInl" alt="$ Ci(x) $" src="form_229.png"/> integrals by asymptotic series summation for positive argument.  <a href="#a976c3ff52c54001de3d409900c9bcb9c">More...</a><br /></td></tr>
+<tr class="memdesc:a976c3ff52c54001de3d409900c9bcb9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function computes the sine <img class="formulaInl" alt="$ Si(x) $" src="form_257.png"/> and cosine <img class="formulaInl" alt="$ Ci(x) $" src="form_256.png"/> integrals by asymptotic series summation for positive argument.  <a href="#a976c3ff52c54001de3d409900c9bcb9c">More...</a><br /></td></tr>
 <tr class="separator:a976c3ff52c54001de3d409900c9bcb9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a211f552bca2944f64e3a1f5593690fda"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
 <tr class="memitem:a211f552bca2944f64e3a1f5593690fda"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a211f552bca2944f64e3a1f5593690fda">std::__detail::__sincosint_cont_frac</a> (_Tp __t, _Tp &amp;_Si, _Tp &amp;_Ci)</td></tr>
-<tr class="memdesc:a211f552bca2944f64e3a1f5593690fda"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function computes the sine <img class="formulaInl" alt="$ Si(x) $" src="form_230.png"/> and cosine <img class="formulaInl" alt="$ Ci(x) $" src="form_229.png"/> integrals by continued fraction for positive argument.  <a href="#a211f552bca2944f64e3a1f5593690fda">More...</a><br /></td></tr>
+<tr class="memdesc:a211f552bca2944f64e3a1f5593690fda"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function computes the sine <img class="formulaInl" alt="$ Si(x) $" src="form_257.png"/> and cosine <img class="formulaInl" alt="$ Ci(x) $" src="form_256.png"/> integrals by continued fraction for positive argument.  <a href="#a211f552bca2944f64e3a1f5593690fda">More...</a><br /></td></tr>
 <tr class="separator:a211f552bca2944f64e3a1f5593690fda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea85e0044476065ed4a067f1aa9647cb"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
 <tr class="memitem:aea85e0044476065ed4a067f1aa9647cb"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#aea85e0044476065ed4a067f1aa9647cb">std::__detail::__sincosint_series</a> (_Tp __t, _Tp &amp;_Si, _Tp &amp;_Ci)</td></tr>
-<tr class="memdesc:aea85e0044476065ed4a067f1aa9647cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function computes the sine <img class="formulaInl" alt="$ Si(x) $" src="form_230.png"/> and cosine <img class="formulaInl" alt="$ Ci(x) $" src="form_229.png"/> integrals by series summation for positive argument.  <a href="#aea85e0044476065ed4a067f1aa9647cb">More...</a><br /></td></tr>
+<tr class="memdesc:aea85e0044476065ed4a067f1aa9647cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function computes the sine <img class="formulaInl" alt="$ Si(x) $" src="form_257.png"/> and cosine <img class="formulaInl" alt="$ Ci(x) $" src="form_256.png"/> integrals by series summation for positive argument.  <a href="#aea85e0044476065ed4a067f1aa9647cb">More...</a><br /></td></tr>
 <tr class="separator:aea85e0044476065ed4a067f1aa9647cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is an internal header file, included by other library headers. Do not attempt to use it directly. Instead, include &lt;cmath&gt;. </p>
+
+<p>Definition in file <a class="el" href="sf__trigint_8tcc_source.html">sf_trigint.tcc</a>.</p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="afde1ee684ded2155f3a3b305a31bb18e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -184,7 +195,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="sf__trigint_8tcc.html">sf_trigint.tcc</a></li>
+    <li class="navelem"><a class="el" href="dir_4cb89d43f92538ff4356f1c340b21854.html">bits</a></li><li class="navelem"><a class="el" href="sf__trigint_8tcc.html">sf_trigint.tcc</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>

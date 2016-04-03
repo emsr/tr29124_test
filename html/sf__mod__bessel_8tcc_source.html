@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>TR29124 C++ Special Math Functions: sf_mod_bessel.tcc Source File</title>
+<title>TR29124 C++ Special Math Functions: bits/sf_mod_bessel.tcc Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -170,8 +170,8 @@ $(document).ready(function(){initNavTree('sf__mod__bessel_8tcc_source.html','');
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">  /**</span></div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">   *   @brief This routine computes the asymptotic modified cylindrical</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">   *          Bessel and functions of order nu: \f$ I_{\nu}(x) \f$,</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">   *          \f$ N_{\nu}(x) \f$.  Use this for \f$ x &gt;&gt; nu^2 + 1 \f$.</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">   *          Bessel and functions of order nu: @f$ I_{\nu}(x) @f$,</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">   *          @f$ N_{\nu}(x) @f$.  Use this for @f$ x &gt;&gt; nu^2 + 1 @f$.</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">   *</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">   *   References:</span></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">   *    (1) Handbook of Mathematical Functions,</span></div>
@@ -412,7 +412,7 @@ $(document).ready(function(){initNavTree('sf__mod__bessel_8tcc_source.html','');
 <div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<span class="comment">  /**</span></div>
 <div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<span class="comment">   * @brief  Return the modified cylindrical Bessel functions</span></div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;<span class="comment">   *         and their derivatives of order \f$ \nu \f$ by various means.</span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;<span class="comment">   *         and their derivatives of order @f$ \nu @f$ by various means.</span></div>
 <div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;<span class="comment">   *</span></div>
 <div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="comment">   *   @param  __nu  The order of the Bessel functions.</span></div>
 <div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="comment">   *   @param  __x   The argument of the Bessel functions.</span></div>
@@ -470,7 +470,7 @@ $(document).ready(function(){initNavTree('sf__mod__bessel_8tcc_source.html','');
 <div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="comment">  /**</span></div>
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="comment">   *   @brief  Return the regular modified Bessel function of order</span></div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="comment">   *           \f$ \nu \f$: \f$ I_{\nu}(x) \f$.</span></div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="comment">   *           @f$ \nu @f$: @f$ I_{\nu}(x) @f$.</span></div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="comment">   *</span></div>
 <div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="comment">   *   The regular modified cylindrical Bessel function is:</span></div>
 <div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="comment">   *   @f[</span></div>
@@ -502,15 +502,15 @@ $(document).ready(function(){initNavTree('sf__mod__bessel_8tcc_source.html','');
 <div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;<span class="comment">  /**</span></div>
 <div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<span class="comment">   *   @brief  Return the irregular modified Bessel function</span></div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="comment">   *           \f$ K_{\nu}(x) \f$ of order \f$ \nu \f$.</span></div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="comment">   *           @f$ K_{\nu}(x) @f$ of order @f$ \nu @f$.</span></div>
 <div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;<span class="comment">   *</span></div>
 <div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="comment">   *   The irregular modified Bessel function is defined by:</span></div>
 <div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;<span class="comment">   *   @f[</span></div>
 <div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;<span class="comment">   *      K_{\nu}(x) = \frac{\pi}{2}</span></div>
 <div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;<span class="comment">   *                   \frac{I_{-\nu}(x) - I_{\nu}(x)}{\sin \nu\pi}</span></div>
 <div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;<span class="comment">   *   @f]</span></div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;<span class="comment">   *   where for integral \f$ \nu = n \f$ a limit is taken:</span></div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;<span class="comment">   *   \f$ lim_{\nu \to n} \f$.</span></div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;<span class="comment">   *   where for integral @f$ \nu = n @f$ a limit is taken:</span></div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;<span class="comment">   *   @f$ lim_{\nu \to n} @f$.</span></div>
 <div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;<span class="comment">   *   For negative argument we have simply:</span></div>
 <div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;<span class="comment">   *   @f[</span></div>
 <div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;<span class="comment">   *      K_{-\nu}(x) = K_{\nu}(x)</span></div>
@@ -585,7 +585,7 @@ $(document).ready(function(){initNavTree('sf__mod__bessel_8tcc_source.html','');
 <div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;<span class="comment">   *           derivatives @f$ Ai&#39;(x) @f$ and @f$ Bi(x) @f$</span></div>
 <div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;<span class="comment">   *           respectively.</span></div>
 <div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;<span class="comment">   *   @param  __x  The argument of the Airy functions.</span></div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;<span class="comment">   *   @param  __z  The argument of the Airy functions.</span></div>
 <div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;<span class="comment">   *   @param  _Ai  The output Airy function of the first kind.</span></div>
 <div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;<span class="comment">   *   @param  _Bi  The output Airy function of the second kind.</span></div>
 <div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;<span class="comment">   *   @param  _Aip  The output derivative of the Airy function</span></div>
@@ -657,35 +657,35 @@ $(document).ready(function(){initNavTree('sf__mod__bessel_8tcc_source.html','');
 <div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;    }</div>
 <div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;<span class="comment">   *   @brief  Compute the Fock-type Airy functions</span></div>
-<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;<span class="comment">   *           @f$ w_1(x) @f$ and @f$ w_2(x) @f$ and their first</span></div>
-<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;<span class="comment">   *           derivatives @f$ w_1&#39;(x) @f$ and @f$ w_2&#39;(x) @f$</span></div>
-<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;<span class="comment">   *           respectively.</span></div>
-<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;<span class="comment">   *   @f[</span></div>
-<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;<span class="comment">   *     w_1(x) = \sqrt{\pi}(Ai(x) + iBi(x))</span></div>
-<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;<span class="comment">   *   @f]</span></div>
-<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;<span class="comment">   *   @f[</span></div>
-<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;<span class="comment">   *     w_2(x) = \sqrt{\pi}(Ai(x) - iBi(x))</span></div>
-<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;<span class="comment">   *   @f]</span></div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;<span class="comment">   * @brief  Compute the Fock-type Airy functions</span></div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;<span class="comment">   *         @f$ w_1(x) @f$ and @f$ w_2(x) @f$ and their first</span></div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;<span class="comment">   *         derivatives @f$ w_1&#39;(x) @f$ and @f$ w_2&#39;(x) @f$</span></div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;<span class="comment">   *         respectively.</span></div>
+<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;<span class="comment">   * @f[</span></div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;<span class="comment">   *   w_1(x) = \sqrt{\pi}(Ai(x) + iBi(x))</span></div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;<span class="comment">   * @f]</span></div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;<span class="comment">   * @f[</span></div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;<span class="comment">   *   w_2(x) = \sqrt{\pi}(Ai(x) - iBi(x))</span></div>
+<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;<span class="comment">   * @f]</span></div>
 <div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;<span class="comment">   *   @param  __x   The argument of the Airy functions.</span></div>
-<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;<span class="comment">   *   @param  __w1  The output Fock-type Airy function of the first kind.</span></div>
-<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;<span class="comment">   *   @param  __w2  The output Fock-type Airy function of the second kind.</span></div>
-<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;<span class="comment">   *   @param  __w1p  The output derivative of the Fock-type Airy function</span></div>
-<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;<span class="comment">   *                  of the first kind.</span></div>
-<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;<span class="comment">   *   @param  __w2p  The output derivative of the Fock-type Airy function</span></div>
-<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;<span class="comment">   *                  of the second kind.</span></div>
+<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;<span class="comment">   * @param  __x   The argument of the Airy functions.</span></div>
+<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;<span class="comment">   * @param  __w1  The output Fock-type Airy function of the first kind.</span></div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;<span class="comment">   * @param  __w2  The output Fock-type Airy function of the second kind.</span></div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;<span class="comment">   * @param  __w1p  The output derivative of the Fock-type Airy function</span></div>
+<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;<span class="comment">   *            of the first kind.</span></div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;<span class="comment">   * @param  __w2p  The output derivative of the Fock-type Airy function</span></div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;<span class="comment">   *            of the second kind.</span></div>
 <div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;    <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00569"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a01114e979b23c1d1097b7f6f4a8716bd">  569</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a01114e979b23c1d1097b7f6f4a8716bd">__fock_airy</a>(_Tp x,</div>
+<div class="line"><a name="l00569"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a96ccd15b0c375170be157136faa47387">  569</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a96ccd15b0c375170be157136faa47387">__fock_airy</a>(_Tp __x,</div>
 <div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;        std::complex&lt;_Tp&gt;&amp; __w1, std::complex&lt;_Tp&gt;&amp; __w2,</div>
 <div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;        std::complex&lt;_Tp&gt;&amp; __w1p, std::complex&lt;_Tp&gt;&amp; __w2p)</div>
 <div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;    {</div>
 <div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;      constexpr <span class="keyword">auto</span> _S_sqrtpi = __gnu_cxx::__math_constants&lt;_Tp&gt;::__root_pi;</div>
 <div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;</div>
 <div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;      _Tp _Ai, _Bi, _Aip, _Bip;</div>
-<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;      airy(x, &amp;_Ai, &amp;_Bi, &amp;_Aip, &amp;_Bip);</div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;      airy(__x, &amp;_Ai, &amp;_Bi, &amp;_Aip, &amp;_Bip);</div>
 <div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;</div>
 <div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;      __w1 = _S_sqrtpi * std::complex&lt;_Tp&gt;(_Ai, _Bi);</div>
 <div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;      __w2 = _S_sqrtpi * std::complex&lt;_Tp&gt;(_Ai, -_Bi);</div>
@@ -698,24 +698,24 @@ $(document).ready(function(){initNavTree('sf__mod__bessel_8tcc_source.html','');
 <div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;} <span class="comment">// namespace std</span></div>
 <div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;</div>
 <div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;<span class="preprocessor">#endif // _GLIBCXX_BITS_SF_MOD_BESSEL_TCC</span></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a96ccd15b0c375170be157136faa47387"><div class="ttname"><a href="namespacestd_1_1____detail.html#a96ccd15b0c375170be157136faa47387">std::__detail::__fock_airy</a></div><div class="ttdeci">void __fock_airy(_Tp __x, std::complex&lt; _Tp &gt; &amp;__w1, std::complex&lt; _Tp &gt; &amp;__w2, std::complex&lt; _Tp &gt; &amp;__w1p, std::complex&lt; _Tp &gt; &amp;__w2p)</div><div class="ttdoc">Compute the Fock-type Airy functions  and  and their first derivatives  and  respectively.  . </div><div class="ttdef"><b>Definition:</b> <a href="sf__mod__bessel_8tcc_source.html#l00569">sf_mod_bessel.tcc:569</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a35edea916ec9c8310f7d4a06618f7378"><div class="ttname"><a href="namespacestd_1_1____detail.html#a35edea916ec9c8310f7d4a06618f7378">std::__detail::__sph_bessel_ik</a></div><div class="ttdeci">void __sph_bessel_ik(unsigned int __n, _Tp __x, _Tp &amp;__i_n, _Tp &amp;__k_n, _Tp &amp;__ip_n, _Tp &amp;__kp_n)</div><div class="ttdoc">Compute the spherical modified Bessel functions  and  and their first derivatives  and  respectively...</div><div class="ttdef"><b>Definition:</b> <a href="sf__mod__bessel_8tcc_source.html#l00445">sf_mod_bessel.tcc:445</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a6817269a446ea93bb50e7438e27c1162"><div class="ttname"><a href="namespacestd_1_1____detail.html#a6817269a446ea93bb50e7438e27c1162">std::__detail::__airy</a></div><div class="ttdeci">void __airy(const std::complex&lt; _Tp &gt; &amp;__z, _Tp __eps, std::complex&lt; _Tp &gt; &amp;_Ai, std::complex&lt; _Tp &gt; &amp;_Aip, std::complex&lt; _Tp &gt; &amp;_Bi, std::complex&lt; _Tp &gt; &amp;_Bip)</div><div class="ttdoc">This function computes the Airy function  and its first derivative in the complex z-plane...</div><div class="ttdef"><b>Definition:</b> <a href="sf__airy_8tcc_source.html#l01014">sf_airy.tcc:1014</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a01114e979b23c1d1097b7f6f4a8716bd"><div class="ttname"><a href="namespacestd_1_1____detail.html#a01114e979b23c1d1097b7f6f4a8716bd">std::__detail::__fock_airy</a></div><div class="ttdeci">void __fock_airy(_Tp x, std::complex&lt; _Tp &gt; &amp;__w1, std::complex&lt; _Tp &gt; &amp;__w2, std::complex&lt; _Tp &gt; &amp;__w1p, std::complex&lt; _Tp &gt; &amp;__w2p)</div><div class="ttdoc">Compute the Fock-type Airy functions  and  and their first derivatives  and  respectively.  . </div><div class="ttdef"><b>Definition:</b> <a href="sf__mod__bessel_8tcc_source.html#l00569">sf_mod_bessel.tcc:569</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a6817269a446ea93bb50e7438e27c1162"><div class="ttname"><a href="namespacestd_1_1____detail.html#a6817269a446ea93bb50e7438e27c1162">std::__detail::__airy</a></div><div class="ttdeci">void __airy(const std::complex&lt; _Tp &gt; &amp;__z, _Tp __eps, std::complex&lt; _Tp &gt; &amp;_Ai, std::complex&lt; _Tp &gt; &amp;_Aip, std::complex&lt; _Tp &gt; &amp;_Bi, std::complex&lt; _Tp &gt; &amp;_Bip)</div><div class="ttdoc">This function computes the Airy function  and its first derivative in the complex z-plane...</div><div class="ttdef"><b>Definition:</b> <a href="sf__airy_8tcc_source.html#l01008">sf_airy.tcc:1008</a></div></div>
 <div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> <a href="specfun_8h_source.html#l00098">specfun.h:98</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_ac9152f2369a18aa795fe24ccfa6dcf12"><div class="ttname"><a href="namespacestd_1_1____detail.html#ac9152f2369a18aa795fe24ccfa6dcf12">std::__detail::__cyl_bessel_k</a></div><div class="ttdeci">_Tp __cyl_bessel_k(_Tp __nu, _Tp __x)</div><div class="ttdoc">Return the irregular modified Bessel function  of order . </div><div class="ttdef"><b>Definition:</b> <a href="sf__mod__bessel_8tcc_source.html#l00413">sf_mod_bessel.tcc:413</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a72e3392d5c03c0bc8f2b5ffb8c1304b5"><div class="ttname"><a href="namespacestd_1_1____detail.html#a72e3392d5c03c0bc8f2b5ffb8c1304b5">std::__detail::__cyl_bessel_i</a></div><div class="ttdeci">_Tp __cyl_bessel_i(_Tp __nu, _Tp __x)</div><div class="ttdoc">Return the regular modified Bessel function of order : . </div><div class="ttdef"><b>Definition:</b> <a href="sf__mod__bessel_8tcc_source.html#l00375">sf_mod_bessel.tcc:375</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_aed8927c2ec079a1831da66abcfae802b"><div class="ttname"><a href="namespacestd_1_1____detail.html#aed8927c2ec079a1831da66abcfae802b">std::__detail::__cyl_bessel_ik_steed</a></div><div class="ttdeci">void __cyl_bessel_ik_steed(_Tp __nu, _Tp __x, _Tp &amp;_Inu, _Tp &amp;_Knu, _Tp &amp;_Ipnu, _Tp &amp;_Kpnu)</div><div class="ttdoc">Compute the modified Bessel functions  and  and their first derivatives  and  respectively. These four functions are computed together for numerical stability. </div><div class="ttdef"><b>Definition:</b> <a href="sf__mod__bessel_8tcc_source.html#l00152">sf_mod_bessel.tcc:152</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_ab53542ee39a31a43794a08a6cf008912"><div class="ttname"><a href="namespacestd_1_1____detail.html#ab53542ee39a31a43794a08a6cf008912">std::__detail::__cyl_bessel_jn</a></div><div class="ttdeci">void __cyl_bessel_jn(_Tp __nu, _Tp __x, _Tp &amp;_Jnu, _Tp &amp;_Nnu, _Tp &amp;_Jpnu, _Tp &amp;_Npnu)</div><div class="ttdoc">Return the cylindrical Bessel functions and their derivatives of order  by various means...</div><div class="ttdef"><b>Definition:</b> <a href="sf__bessel_8tcc_source.html#l00439">sf_bessel.tcc:439</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_ab53542ee39a31a43794a08a6cf008912"><div class="ttname"><a href="namespacestd_1_1____detail.html#ab53542ee39a31a43794a08a6cf008912">std::__detail::__cyl_bessel_jn</a></div><div class="ttdeci">void __cyl_bessel_jn(_Tp __nu, _Tp __x, _Tp &amp;_Jnu, _Tp &amp;_Nnu, _Tp &amp;_Jpnu, _Tp &amp;_Npnu)</div><div class="ttdoc">Return the cylindrical Bessel functions and their derivatives of order  by various means...</div><div class="ttdef"><b>Definition:</b> <a href="sf__bessel_8tcc_source.html#l00442">sf_bessel.tcc:442</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_af699e7a6d31556df09f0a0db4f196cc0"><div class="ttname"><a href="namespacestd_1_1____detail.html#af699e7a6d31556df09f0a0db4f196cc0">std::__detail::__cyl_bessel_ik</a></div><div class="ttdeci">void __cyl_bessel_ik(_Tp __nu, _Tp __x, _Tp &amp;_Inu, _Tp &amp;_Knu, _Tp &amp;_Ipnu, _Tp &amp;_Kpnu)</div><div class="ttdoc">Return the modified cylindrical Bessel functions and their derivatives of order  by various means...</div><div class="ttdef"><b>Definition:</b> <a href="sf__mod__bessel_8tcc_source.html#l00316">sf_mod_bessel.tcc:316</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a101d608648b7ecb3d1c7a8500f902e6c"><div class="ttname"><a href="namespacestd_1_1____detail.html#a101d608648b7ecb3d1c7a8500f902e6c">std::__detail::__gamma_temme</a></div><div class="ttdeci">void __gamma_temme(_Tp __mu, _Tp &amp;__gam1, _Tp &amp;__gam2, _Tp &amp;__gampl, _Tp &amp;__gammi)</div><div class="ttdoc">Compute the gamma functions required by the Temme series expansions of  and .  and  where  is  and ...</div><div class="ttdef"><b>Definition:</b> <a href="sf__bessel_8tcc_source.html#l00161">sf_bessel.tcc:161</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a8b52f1f93a90b9ed2504521e0ea440f5"><div class="ttname"><a href="namespacestd_1_1____detail.html#a8b52f1f93a90b9ed2504521e0ea440f5">std::__detail::__cyl_bessel_ij_series</a></div><div class="ttdeci">_Tp __cyl_bessel_ij_series(_Tp __nu, _Tp __x, _Tp __sgn, unsigned int __max_iter)</div><div class="ttdoc">This routine returns the cylindrical Bessel functions of order :  or  by series expansion. </div><div class="ttdef"><b>Definition:</b> <a href="sf__bessel_8tcc_source.html#l00410">sf_bessel.tcc:410</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a101d608648b7ecb3d1c7a8500f902e6c"><div class="ttname"><a href="namespacestd_1_1____detail.html#a101d608648b7ecb3d1c7a8500f902e6c">std::__detail::__gamma_temme</a></div><div class="ttdeci">void __gamma_temme(_Tp __mu, _Tp &amp;__gam1, _Tp &amp;__gam2, _Tp &amp;__gampl, _Tp &amp;__gammi)</div><div class="ttdoc">Compute the gamma functions required by the Temme series expansions of  and .  and  where  is  and ...</div><div class="ttdef"><b>Definition:</b> <a href="sf__bessel_8tcc_source.html#l00163">sf_bessel.tcc:163</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a8b52f1f93a90b9ed2504521e0ea440f5"><div class="ttname"><a href="namespacestd_1_1____detail.html#a8b52f1f93a90b9ed2504521e0ea440f5">std::__detail::__cyl_bessel_ij_series</a></div><div class="ttdeci">_Tp __cyl_bessel_ij_series(_Tp __nu, _Tp __x, _Tp __sgn, unsigned int __max_iter)</div><div class="ttdoc">This routine returns the cylindrical Bessel functions of order :  or  by series expansion. </div><div class="ttdef"><b>Definition:</b> <a href="sf__bessel_8tcc_source.html#l00413">sf_bessel.tcc:413</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a7386732bb6f0d45bbcbccaad436797a0"><div class="ttname"><a href="namespacestd_1_1____detail.html#a7386732bb6f0d45bbcbccaad436797a0">std::__detail::__cyl_bessel_ik_asymp</a></div><div class="ttdeci">void __cyl_bessel_ik_asymp(_Tp __nu, _Tp __x, _Tp &amp;_Inu, _Tp &amp;_Knu, _Tp &amp;_Ipnu, _Tp &amp;_Kpnu)</div><div class="ttdoc">This routine computes the asymptotic modified cylindrical Bessel and functions of order nu: ...</div><div class="ttdef"><b>Definition:</b> <a href="sf__mod__bessel_8tcc_source.html#l00081">sf_mod_bessel.tcc:81</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="sf__mod__bessel_8tcc.html">sf_mod_bessel.tcc</a></li>
+    <li class="navelem"><a class="el" href="dir_4cb89d43f92538ff4356f1c340b21854.html">bits</a></li><li class="navelem"><a class="el" href="sf__mod__bessel_8tcc.html">sf_mod_bessel.tcc</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
