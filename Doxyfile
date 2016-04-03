@@ -758,34 +758,34 @@ WARN_LOGFILE           = doxywarn.txt
 # spaces.
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = specfun.h \
-			 sf_airy.tcc \
-			 sf_bessel.tcc \
-			 sf_beta.tcc \
-			 sf_cardinal.tcc \
-			 sf_chebyshev.tcc \
-			 sf_dawson.tcc \
-			 sf_ellint.tcc \
-			 sf_expint.tcc \
-			 sf_fresnel.tcc \
-			 sf_gamma.tcc \
-			 sf_gegenbauer.tcc \
-			 sf_hankel_new.tcc \
-			 sf_hankel.tcc \
-			 sf_hermite.tcc \
-			 sf_hydrogen.tcc \
-			 sf_hyperg.tcc \
-			 sf_hypint.tcc \
-			 sf_jacobi.tcc \
-			 sf_laguerre.tcc \
-			 sf_legendre.tcc \
-			 sf_mod_bessel.tcc \
-			 sf_owens_t.tcc \
-			 sf_parab_cyl.tcc \
-			 sf_polylog.tcc \
-			 sf_theta.tcc \
-			 sf_trigint.tcc \
-			 sf_zeta.tcc
+INPUT                  = bits/specfun.h \
+			 bits/sf_airy.tcc \
+			 bits/sf_bessel.tcc \
+			 bits/sf_beta.tcc \
+			 bits/sf_cardinal.tcc \
+			 bits/sf_chebyshev.tcc \
+			 bits/sf_dawson.tcc \
+			 bits/sf_ellint.tcc \
+			 bits/sf_expint.tcc \
+			 bits/sf_fresnel.tcc \
+			 bits/sf_gamma.tcc \
+			 bits/sf_gegenbauer.tcc \
+			 bits/sf_hankel_new.tcc \
+			 bits/sf_hankel.tcc \
+			 bits/sf_hermite.tcc \
+			 bits/sf_hydrogen.tcc \
+			 bits/sf_hyperg.tcc \
+			 bits/sf_hypint.tcc \
+			 bits/sf_jacobi.tcc \
+			 bits/sf_laguerre.tcc \
+			 bits/sf_legendre.tcc \
+			 bits/sf_mod_bessel.tcc \
+			 bits/sf_owens_t.tcc \
+			 bits/sf_parab_cyl.tcc \
+			 bits/sf_polylog.tcc \
+			 bits/sf_theta.tcc \
+			 bits/sf_trigint.tcc \
+			 bits/sf_zeta.tcc
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses

@@ -146,7 +146,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the @f$ \theta_2 @f$ function
+   * Return the exponential theta-2 function of period @c nu and argument @c x.
+   *
+   * The exponential theta-2 function is defined by
+   * @f[
+   *    \theta_2(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
+   *    (-1)^j \exp\left( \frac{-(\nu + j)^2}{x} \right)
+   * @f]
+   *
+   * @param __nu The periodic (period = 2) argument
+   * @param __x The argument
    */
   template<typename _Tp>
     _Tp
@@ -165,7 +174,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the @f$ \theta_1 @f$ function
+   * Return the exponential theta-1 function of period @c nu and argument @c x.
+   *
+   * The Neville theta-1 function is defined by
+   * @f[
+   *    \theta_1(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
+   *    (-1)^j \exp\left( \frac{-(\nu + j - 1/2)^2}{x} \right)
+   * @f]
+   *
+   * @param __nu The periodic (period = 2) argument
+   * @param __x The argument
    */
   template<typename _Tp>
     _Tp
@@ -182,7 +200,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the @f$ \theta_3 @f$ function
+   * Return the exponential theta-3 function of period @c nu and argument @c x.
+   *
+   * The exponential theta-3 function is defined by
+   * @f[
+   *    \theta_3(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
+   *    \exp\left( \frac{-(\nu+j)^2}{x} \right)
+   * @f]
+   *
+   * @param __nu The periodic (period = 1) argument
+   * @param __x The argument
    */
   template<typename _Tp>
     _Tp
@@ -201,7 +228,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the @f$ \theta_4 @f$ function
+   * Return the exponential theta-2 function of period @c nu and argument @c x.
+   *
+   * The exponential theta-2 function is defined by
+   * @f[
+   *    \theta_2(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
+   *    (-1)^j \exp\left( \frac{-(\nu + j)^2}{x} \right)
+   * @f]
+   *
+   * @param __nu The periodic (period = 2) argument
+   * @param __x The argument
    */
   template<typename _Tp>
     _Tp
@@ -249,7 +285,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the elliptic nome given the , k.
+   * Return the elliptic nome given the modulus @c k.
    */
   template<typename _Tp>
     _Tp
@@ -268,7 +304,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the Neville @f$ \theta_s @f$ function
+   * Return the Neville @f$ \theta_s @f$ function
    */
   template<typename _Tp>
     _Tp
@@ -294,7 +330,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the Neville @f$ \theta_c @f$ function
+   * Return the Neville @f$ \theta_c @f$ function
    */
   template<typename _Tp>
     _Tp
@@ -319,7 +355,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the Neville @f$ \theta_d @f$ function
+   * Return the Neville @f$ \theta_d @f$ function
    */
   template<typename _Tp>
     _Tp
@@ -344,7 +380,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the Neville @f$ \theta_n @f$ function
+   * Return the Neville @f$ \theta_n @f$ function
    */
   template<typename _Tp>
     _Tp
@@ -370,8 +406,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return a tuple of the three primary Jacobi elliptic functions:
-   *  @f$ sn(k, u), cn(k, u), dn(k, u) @f$.
+   * Return a tuple of the three primary Jacobi elliptic functions:
+   * @f$ sn(k, u), cn(k, u), dn(k, u) @f$.
    */
   template<typename _Tp>
     std::tuple<_Tp, _Tp, _Tp>
