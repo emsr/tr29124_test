@@ -38,11 +38,11 @@
 
 
 // Test data for n=0.
-// max(|f - f_GSL|): 4.4408920985006262e-16
+// max(|f - f_GSL|): 1.3322676295501878e-15
 // max(|f - f_GSL| / |f_GSL|): 4.8209634107822837e-15
-// mean(f - f_GSL): -7.3031858338623581e-17
-// variance(f - f_GSL): 6.2035884029301465e-36
-// stddev(f - f_GSL): 2.4907003840145337e-18
+// mean(f - f_GSL): 2.4806545706468343e-17
+// variance(f - f_GSL): 4.2181233491990142e-34
+// stddev(f - f_GSL): 2.0538070379660828e-17
 const testcase_sph_neumann<double>
 data001[20] =
 {
@@ -102,11 +102,11 @@ data002[20] =
 const double toler002 = 2.5000000000000020e-13;
 
 // Test data for n=2.
-// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL|): 7.1054273576010019e-15
 // max(|f - f_GSL| / |f_GSL|): 2.4702749396271158e-15
-// mean(f - f_GSL): -2.9803416679019533e-15
-// variance(f - f_GSL): 5.1998317985460192e-31
-// stddev(f - f_GSL): 7.2109859232604382e-16
+// mean(f - f_GSL): -6.4887331618912471e-16
+// variance(f - f_GSL): 2.9696899867965245e-32
+// stddev(f - f_GSL): 1.7232788476612031e-16
 const testcase_sph_neumann<double>
 data003[20] =
 {
@@ -167,10 +167,10 @@ const double toler004 = 2.5000000000000020e-13;
 
 // Test data for n=10.
 // max(|f - f_GSL|): 0.50000000000000000
-// max(|f - f_GSL| / |f_GSL|): 1.2712694703401436e-15
-// mean(f - f_GSL): -0.025036064438653759
-// variance(f - f_GSL): 3.4727583969724927e-05
-// stddev(f - f_GSL): 0.0058930114516879172
+// max(|f - f_GSL| / |f_GSL|): 1.5255233644081723e-15
+// mean(f - f_GSL): -0.025048373589424067
+// variance(f - f_GSL): 3.4761742015848689e-05
+// stddev(f - f_GSL): 0.0058959089219431373
 const testcase_sph_neumann<double>
 data005[20] =
 {
@@ -200,7 +200,7 @@ const double toler005 = 2.5000000000000020e-13;
 // Test data for n=20.
 // max(|f - f_GSL|): 2.9514790517935283e+20
 // max(|f - f_GSL| / |f_GSL|): 1.9896573344672978e-15
-// mean(f - f_GSL): -1.4757416361011208e+19
+// mean(f - f_GSL): -1.4757416361014618e+19
 // variance(f - f_GSL): inf
 // stddev(f - f_GSL): inf
 const testcase_sph_neumann<double>
