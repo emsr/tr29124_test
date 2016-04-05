@@ -11,6 +11,8 @@ CXX_INC_DIR = $(CXX_INST_DIR)/include/c++/6.0.0/bits
 CXX_LIB_DIR = $(CXX_INST_DIR)/lib64
 CXX_TEST_INC_DIR = $(CXX_SRC_DIR)/libstdc++-v3/testsuite/util
 
+LERCH_DIR = lerchphi/Source
+
 GSL_DIR = /usr/local
 GSL_INC_DIR = $(GSL_DIR)/include
 GSL_LIB_DIR = $(GSL_DIR)/lib
@@ -289,8 +291,8 @@ check: $(CHECKS)
 test_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
 	$(CXX) -o test_special_function -I$(GSL_INC_DIR) test_special_function.cpp gsl_wrap.cpp -lquadmath $(GSL_LIBS)
 
-diff_special_function: diff_special_function.cpp gsl_wrap.h gsl_wrap.cpp boost_wrap.h boost_wrap.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
-	$(CXX) -o diff_special_function -I$(GSL_INC_DIR) diff_special_function.cpp gsl_wrap.cpp boost_wrap.cpp -lquadmath $(GSL_LIBS)
+diff_special_function: diff_special_function.cpp gsl_wrap.h gsl_wrap.cpp boost_wrap.h boost_wrap.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
+	$(CXX) -o diff_special_function -I$(GSL_INC_DIR) diff_special_function.cpp gsl_wrap.cpp boost_wrap.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath $(GSL_LIBS)
 
 #  You need gnu to get __float128!
 test_local_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc sf_*.tcc
@@ -299,8 +301,8 @@ test_local_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tc
 diff_local_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tcc sf_*.tcc
 	$(HOME)/bin/bin/g++ -std=gnu++14 -g -DLOCAL -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -I$(HOME)/gcc_specfun/libstdc++-v3/include -I$(GSL_INC_DIR) -o diff_local_special_function diff_special_function.cpp gsl_wrap.cpp $(GSL_LIBS) -lquadmath
 
-testcase: testcase.cpp testcase.tcc gsl_wrap.h gsl_wrap.cpp boost_wrap.h boost_wrap.cpp $(CXX_INC_DIR)/sf_*.tcc
-	$(CXX) -o testcase -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp gsl_wrap.cpp boost_wrap.cpp $(GSL_LIBS) $(BOOST_LIBS)
+testcase: testcase.cpp testcase.tcc gsl_wrap.h gsl_wrap.cpp boost_wrap.h boost_wrap.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(CXX_INC_DIR)/sf_*.tcc
+	$(CXX) -o testcase -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp gsl_wrap.cpp boost_wrap.cpp $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS)
 
 test_limits: test_limits.cpp
 	$(CXX) -o test_limits test_limits.cpp
