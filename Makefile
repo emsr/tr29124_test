@@ -13,6 +13,8 @@ CXX_TEST_INC_DIR = $(CXX_SRC_DIR)/libstdc++-v3/testsuite/util
 
 LERCH_DIR = lerchphi/Source
 
+FAD_DIR = Faddeeva
+
 GSL_DIR = /usr/local
 GSL_INC_DIR = $(GSL_DIR)/include
 GSL_LIB_DIR = $(GSL_DIR)/lib
@@ -149,6 +151,7 @@ all: diff_special_function \
      hankel_toy_new \
      test_airy \
      test_csint \
+     test_Faddeeva \
      test_fresnel \
      test_hermite \
      test_limits \
@@ -178,6 +181,7 @@ tests: test_special_function
 test:
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_airy > test_airy.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_csint > test_csint.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(FAD_DIR)/test_Faddeeva > $(FAD_DIR)/test_Faddeeva.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_fresnel > test_fresnel.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_hermite > test_hermite.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_limits > test_limits.txt
@@ -315,6 +319,9 @@ test_airy: test_airy.cpp sf_airy.tcc gsl_wrap.cpp
 
 test_csint: test_csint.cpp csint.tcc
 	$(CXX) -o test_csint test_csint.cpp
+
+test_Faddeeva: $(FAD_DIR)/Faddeeva.h $(FAD_DIR)/Faddeeva.cpp
+	$(CXX) -DTEST_FADDEEVA -o $(FAD_DIR)/test_Faddeeva  $(FAD_DIR)/Faddeeva.cpp
 
 test_fresnel: test_fresnel.cpp fresnel.tcc
 	$(CXX) -o test_fresnel test_fresnel.cpp
