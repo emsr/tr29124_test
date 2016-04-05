@@ -813,41 +813,59 @@ inline namespace literals
 
     // construct/copy/move/destroy:
 
-    rectangle() noexcept;
+    rectangle() noexcept = default;
 
-    rectangle(double x, double y, double width, double height) noexcept;
+    rectangle(double __x, double __y, double __width, double __height) noexcept
+    : _M_x{__x}, _M_y{__y},
+      _M_width{__width}, _M_height{__height}
+    { }
 
-    rectangle(const vector_2d& tl, const vector_2d& br) noexcept;
+    rectangle(const vector_2d& __tl, const vector_2d& __br) noexcept
+    : _M_x{__tl.x()}, _M_y{__tl.y()},
+      _M_width{__br.x() - tl.x()}, _M_height{__br.y() - __tl.y()}
+    { }
 
-    rectangle(const rectangle& r) noexcept;
+    rectangle(const rectangle&) noexcept = default;
 
     rectangle&
-    operator=(const rectangle& r) noexcept;
+    operator=(const rectangle&) noexcept = default;
 
-    rectangle(rectangle&& r) noexcept;
+    rectangle(rectangle&&) noexcept = default;
 
     rectangle&
-    operator=(rectangle&& r) noexcept;
+    operator=(rectangle&&) noexcept = default;
 
     // modifiers:
 
     void
-    x(double value) noexcept;
+    x(double __x) noexcept
+    { this->_M_x = __x; }
 
     void
-    y(double value) noexcept;
+    y(double __y) noexcept
+    { this->_M_y = __y; }
 
     void
-    width(double value) noexcept;
+    width(double __width) noexcept
+    { this->_M_width = __width; }
 
     void
-    height(double value) noexcept;
+    height(double __height) noexcept
+    { this->_M_height = __height; }
 
     void
-    top_left(const vector_2d& value) noexcept;
+    top_left(const vector_2d& __tl) noexcept
+    {
+      this->_M_x = __tl.x();
+      this->_M_y = __tl.y();
+    }
 
     void
-    bottom_right(const vector_2d& value) noexcept;
+    bottom_right(const vector_2d& __value) noexcept
+    {
+      this->_M_width = __br.x() - this->_M_x;
+      this->_M_height = __br.y() - this->_M_y;
+    }
 
 
     // observers:
@@ -899,20 +917,28 @@ inline namespace literals
 
     // construct/copy/move/destroy:
 
-    matrix_2d() noexcept;
+    matrix_2d() noexcept
+    : _M00{}, _M01{},
+      _M10{}, _M11{},
+      _M20{}, _M21{}
+    { }
 
-    matrix_2d(const matrix_2d& __other) noexcept;
+    matrix_2d(const matrix_2d&) noexcept = default;
 
     matrix_2d&
-    operator=(const matrix_2d& __other) noexcept;
+    operator=(const matrix_2d&) noexcept = default;
 
-    matrix_2d(matrix_2d&& __other) noexcept;
+    matrix_2d(matrix_2d&&) noexcept = default;
 
     matrix_2d&
-    operator=(matrix_2d&& __other) noexcept;
+    operator=(matrix_2d&&) noexcept = default;
 
     matrix_2d(double __v00, double __v01, double __v10, double __v11,
-	      double __v20, double __v21) noexcept;
+	      double __v20, double __v21) noexcept
+    : _M00{__v00}, _M01{__v01},
+      _M10{__v10}, _M11{__v11},
+      _M20{__v20}, _M21{__v21}
+    { }
 
     // static factory functions:
 
@@ -975,28 +1001,28 @@ inline namespace literals
     // modifiers:
 
     void
-    m00(double __value) noexcept
-    { this->_M00 = __value; }
+    m00(double __v00) noexcept
+    { this->_M00 = __v00; }
 
     void
-    m01(double __value) noexcept
-    { this->_M01 = __value; }
+    m01(double __v01) noexcept
+    { this->_M01 = __v01; }
 
     void
-    m10(double __value) noexcept
-    { this->_M10 = __value; }
+    m10(double __v10) noexcept
+    { this->_M10 = __v10; }
 
     void
-    m11(double __value) noexcept
-    { this->_M11 = __value; }
+    m11(double __v11) noexcept
+    { this->_M11 = __v11; }
 
     void
-    m20(double __value) noexcept
-    { this->_M20 = __value; }
+    m20(double __v20) noexcept
+    { this->_M20 = __v20; }
 
     void
-    m21(double __value) noexcept
-    { this->_M21 = __value; }
+    m21(double __v21) noexcept
+    { this->_M21 = __v21; }
 
     matrix_2d&
     translate(const vector_2d& __value) noexcept
