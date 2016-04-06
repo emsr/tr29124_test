@@ -1219,39 +1219,39 @@ inline namespace literals
 
     path_data_item(const path_data_item::arc& __val) noexcept
     : _M_has_data{true},
-      _M_data.arc.centerX{__val.center().x()},
-      _M_data.arc.centerY{__val.center().y()},
-      _M_data.arc.radius{__val.radius()},
-      _M_data.arc.angle1{__val.angle_1()},
-      _M_data.arc.angle2{__val.angle_2()},
+      _M_data.arc._M_centerX{__val.center().x()},
+      _M_data.arc._M_centerY{__val.center().y()},
+      _M_data.arc._M_radius{__val.radius()},
+      _M_data.arc._M_angle1{__val.angle_1()},
+      _M_data.arc._M_angle2{__val.angle_2()},
       _M_type{path_data_type::arc}
     { }
 
     path_data_item(const path_data_item::arc_negative& __val) noexcept
     : _M_has_data{true},
-      _M_data.arc.centerX{__val.center().x()},
-      _M_data.arc.centerY{__val.center().y()},
-      _M_data.arc.radius{__val.radius()},
-      _M_data.arc.angle1{__val.angle_1()},
-      _M_data.arc.angle2{__val.angle_2()},
+      _M_data.arc._M_centerX{__val.center().x()},
+      _M_data.arc._M_centerY{__val.center().y()},
+      _M_data.arc._M_radius{__val.radius()},
+      _M_data.arc._M_angle1{__val.angle_1()},
+      _M_data.arc._M_angle2{__val.angle_2()},
       _M_type{path_data_type::arc_negative}
     { }
 
     path_data_item(const path_data_item::change_matrix& __val) noexcept
     : _M_has_data{true},
-      _M_data.matrix.m00{__val.matrix().m00()},
-      _M_data.matrix.m01{__val.matrix().m01()},
-      _M_data.matrix.m10{__val.matrix().m10()},
-      _M_data.matrix.m11{__val.matrix().m11()},
-      _M_data.matrix.m20{__val.matrix().m20()},
-      _M_data.matrix.m21{__val.matrix().m21()},
+      _M_data.matrix._M_m00{__val.matrix().m00()},
+      _M_data.matrix._M_m01{__val.matrix().m01()},
+      _M_data.matrix._M_m10{__val.matrix().m10()},
+      _M_data.matrix._M_m11{__val.matrix().m11()},
+      _M_data.matrix._M_m20{__val.matrix().m20()},
+      _M_data.matrix._M_m21{__val.matrix().m21()},
       _M_type{path_data_type::change_matrix}
     { }
 
     path_data_item(const path_data_item::change_origin& __val) noexcept
     : _M_has_data{true},
-      _M_data.point.x{__val.origin().x()},
-      _M_data.point.y{__val.origin().y()},
+      _M_data.point._M_x{__val.origin().x()},
+      _M_data.point._M_y{__val.origin().y()},
       _M_type{path_data_type::change_origin}
     { }
 
@@ -1262,23 +1262,23 @@ inline namespace literals
 
     path_data_item(const path_data_item::curve_to& __val) noexcept
     : _M_has_data{true},
-      _M_data.curve.cpt1x{__val.control_point_1().x()},
-      _M_data.curve.cpt1y{__val.control_point_1().y()},
-      _M_data.curve.cpt2x{__val.control_point_2().x()},
-      _M_data.curve.cpt2y{__val.control_point_2().y()},
-      _M_data.curve.eptx{__val.end_point().x()},
-      _M_data.curve.epty{__val.end_point().y()},
+      _M_data.curve._M_cpt1x{__val.control_point_1().x()},
+      _M_data.curve._M_cpt1y{__val.control_point_1().y()},
+      _M_data.curve._M_cpt2x{__val.control_point_2().x()},
+      _M_data.curve._M_cpt2y{__val.control_point_2().y()},
+      _M_data.curve._M_eptx{__val.end_point().x()},
+      _M_data.curve._M_epty{__val.end_point().y()},
       _M_type{path_data_type::curve_to}
     { }
 
     path_data_item(const path_data_item::rel_curve_to& __val) noexcept
     : _M_has_data{true},
-      _M_data.curve.cpt1x{__val.control_point_1().x()},
-      _M_data.curve.cpt1y{__val.control_point_1().y()},
-      _M_data.curve.cpt2x{__val.control_point_2().x()},
-      _M_data.curve.cpt2y{__val.control_point_2().y()},
-      _M_data.curve.eptx{__val.end_point().x()},
-      _M_data.curve.epty{__val.end_point().y()},
+      _M_data.curve._M_cpt1x{__val.control_point_1().x()},
+      _M_data.curve._M_cpt1y{__val.control_point_1().y()},
+      _M_data.curve._M_cpt2x{__val.control_point_2().x()},
+      _M_data.curve._M_cpt2y{__val.control_point_2().y()},
+      _M_data.curve._M_eptx{__val.end_point().x()},
+      _M_data.curve._M_epty{__val.end_point().y()},
       _M_type{path_data_type::rel_curve_to}
     { }
 
@@ -1289,29 +1289,29 @@ inline namespace literals
 
     path_data_item(const path_data_item::line_to& __val) noexcept
     : _M_has_data{true},
-      _M_data.point.x{__val.to().x()},
-      _M_data.point.y{__val.to().y()},
+      _M_data.point._M_x{__val.to().x()},
+      _M_data.point._M_y{__val.to().y()},
       _M_type{path_data_type::line_to}
     { }
 
     path_data_item(const path_data_item::move_to& __val) noexcept
     : _M_has_data{true},
-      _M_data.point.x{__val.to().x()},
-      _M_data.point.y{__val.to().y()},
+      _M_data.point._M_x{__val.to().x()},
+      _M_data.point._M_y{__val.to().y()},
       _M_type{path_data_type::move_to}
     { }
 
     path_data_item(const path_data_item::rel_line_to& __val) noexcept
     : _M_has_data{true},
-      _M_data.point.x{__val.to().x()},
-      _M_data.point.y{__val.to().y()},
+      _M_data.point._M_x{__val.to().x()},
+      _M_data.point._M_y{__val.to().y()},
       _M_type{path_data_type::rel_line_to}
     { }
 
     path_data_item(const path_data_item::rel_move_to& __val) noexcept
     : _M_has_data{true},
-      _M_data.point.x{__val.to().x()},
-      _M_data.point.y{__val.to().y()},
+      _M_data.point._M_x{__val.to().x()},
+      _M_data.point._M_y{__val.to().y()},
       _M_type{path_data_type::rel_move_to}
     { }
 
@@ -1320,159 +1320,123 @@ inline namespace literals
     void
     assign(const path_data_item::arc& __val) noexcept
     {
-      if (reinterpret_cast<path_data_item*>(&__val) != this)
-	{
-	  this->_M_has_data = true;
-	  this->_M_data.arc.centerX = __val.center().x();
-	  this->_M_data.arc.centerY = __val.center().y();
-	  this->_M_data.arc.radius = __val.radius();
-	  this->_M_data.arc.angle1 = __val.angle_1();
-	  this->_M_data.arc.angle2 = __val.angle_2();
-	  this->_M_type = path_data_type::arc;
-	}
+      this->_M_has_data = true;
+      this->_M_data.arc._M_centerX = __val.center().x();
+      this->_M_data.arc._M_centerY = __val.center().y();
+      this->_M_data.arc._M_radius = __val.radius();
+      this->_M_data.arc._M_angle1 = __val.angle_1();
+      this->_M_data.arc._M_angle2 = __val.angle_2();
+      this->_M_type = path_data_type::arc;
     }
 
     void
     assign(const path_data_item::arc_negative& __val) noexcept
     {
-      if (reinterpret_cast<path_data_item*>(&__val) != this)
-	{
-	  this->_M_has_data = true;
-	  this->_M_data.arc.centerX = __val.center().x();
-	  this->_M_data.arc.centerY = __val.center().y();
-	  this->_M_data.arc.radius = __val.radius();
-	  this->_M_data.arc.angle1 = __val.angle_1();
-	  this->_M_data.arc.angle2 = __val.angle_2();
-	  this->_M_type = path_data_type::arc_negative;
-	}
+      this->_M_has_data = true;
+      this->_M_data.arc._M_centerX = __val.center().x();
+      this->_M_data.arc._M_centerY = __val.center().y();
+      this->_M_data.arc._M_radius = __val.radius();
+      this->_M_data.arc._M_angle1 = __val.angle_1();
+      this->_M_data.arc._M_angle2 = __val.angle_2();
+      this->_M_type = path_data_type::arc_negative;
     }
 
     void
     assign(const path_data_item::change_matrix& __val) noexcept
     {
-      if (reinterpret_cast<path_data_item*>(&__val) != this)
-	{
-	  this->_M_has_data = true;
-	  this->_M_data.matrix.m00 = __val.matrix().m00();
-	  this->_M_data.matrix.m01 = __val.matrix().m01();
-	  this->_M_data.matrix.m10 = __val.matrix().m10();
-	  this->_M_data.matrix.m11 = __val.matrix().m11();
-	  this->_M_data.matrix.m20 = __val.matrix().m20();
-	  this->_M_data.matrix.m21 = __val.matrix().m21();
-	  this->_M_type = path_data_type::change_matrix;
-	}
+      this->_M_has_data = true;
+      this->_M_data.matrix._M_m00 = __val.matrix().m00();
+      this->_M_data.matrix._M_m01 = __val.matrix().m01();
+      this->_M_data.matrix._M_m10 = __val.matrix().m10();
+      this->_M_data.matrix._M_m11 = __val.matrix().m11();
+      this->_M_data.matrix._M_m20 = __val.matrix().m20();
+      this->_M_data.matrix._M_m21 = __val.matrix().m21();
+      this->_M_type = path_data_type::change_matrix;
     }
 
     void
     assign(const path_data_item::change_origin& __val) noexcept
     {
-      if (reinterpret_cast<path_data_item*>(&__val) != this)
-	{
-	  this->_M_has_data = true;
-	  this->_M_data.point.x = __val.origin().x();
-	  this->_M_data.point.y = __val.origin().y();
-	  this->_M_type = path_data_type::change_origin;
-	}
+      this->_M_has_data = true;
+      this->_M_data.point._M_x = __val.origin().x();
+      this->_M_data.point._M_y = __val.origin().y();
+      this->_M_type = path_data_type::change_origin;
     }
 
     void
     assign(const path_data_item::close_path& __val) noexcept
     {
-      if (reinterpret_cast<path_data_item*>(&__val) != this)
-	{
-	  this->_M_has_data = true;
-	  this->_M_type = path_data_type::close_path;
-	}
+      this->_M_has_data = true;
+      this->_M_type = path_data_type::close_path;
     }
 
     void
     assign(const path_data_item::curve_to& __val) noexcept
     {
-      if (reinterpret_cast<path_data_item*>(&__val) != this)
-	{
-	  this->_M_has_data = true;
-	  this->_M_data.curve.cpt1x = __val.control_point_1().x();
-	  this->_M_data.curve.cpt1y = __val.control_point_1().y();
-	  this->_M_data.curve.cpt2x = __val.control_point_2().x();
-	  this->_M_data.curve.cpt2y = __val.control_point_2().y();
-	  this->_M_data.curve.eptx = __val.end_point().x();
-	  this->_M_data.curve.epty = __val.end_point().y();
-	  this->_M_type = path_data_type::curve_to;
-	}
+      this->_M_has_data = true;
+      this->_M_data.curve._M_cpt1x = __val.control_point_1().x();
+      this->_M_data.curve._M_cpt1y = __val.control_point_1().y();
+      this->_M_data.curve._M_cpt2x = __val.control_point_2().x();
+      this->_M_data.curve._M_cpt2y = __val.control_point_2().y();
+      this->_M_data.curve._M_eptx = __val.end_point().x();
+      this->_M_data.curve._M_epty = __val.end_point().y();
+      this->_M_type = path_data_type::curve_to;
     }
 
     void
     assign(const path_data_item::rel_curve_to& __val) noexcept
     {
-      if (reinterpret_cast<path_data_item*>(&__val) != this)
-	{
-	  this->_M_has_data = true;
-	  this->_M_data.curve.cpt1x = __val.control_point_1().x();
-	  this->_M_data.curve.cpt1y = __val.control_point_1().y();
-	  this->_M_data.curve.cpt2x = __val.control_point_2().x();
-	  this->_M_data.curve.cpt2y = __val.control_point_2().y();
-	  this->_M_data.curve.eptx = __val.end_point().x();
-	  this->_M_data.curve.epty = __val.end_point().y();
-	  this->_M_type = path_data_type::rel_curve_to;
-	}
+      this->_M_has_data = true;
+      this->_M_data.curve._M_cpt1x = __val.control_point_1().x();
+      this->_M_data.curve._M_cpt1y = __val.control_point_1().y();
+      this->_M_data.curve._M_cpt2x = __val.control_point_2().x();
+      this->_M_data.curve._M_cpt2y = __val.control_point_2().y();
+      this->_M_data.curve._M_eptx = __val.end_point().x();
+      this->_M_data.curve._M_epty = __val.end_point().y();
+      this->_M_type = path_data_type::rel_curve_to;
     }
 
     void
     assign(const path_data_item::new_sub_path& __val) noexcept
     {
-      if (reinterpret_cast<path_data_item*>(&__val) != this)
-	{
-	  this->_M_has_data = true;
-	  this->_M_type = path_data_type::new_sub_path;
-	}
+      this->_M_has_data = true;
+      this->_M_type = path_data_type::new_sub_path;
     }
 
     void
     assign(const path_data_item::line_to& __val) noexcept
     {
-      if (reinterpret_cast<path_data_item*>(&__val) != this)
-	{
-	  this->_M_has_data = true;
-	  this->_M_data.point.x = __val.to().x();
-	  this->_M_data.point.y = __val.to().y();
-	  this->_M_type = path_data_type::line_to;
-	}
+      this->_M_has_data = true;
+      this->_M_data.point._M_x = __val.to().x();
+      this->_M_data.point._M_y = __val.to().y();
+      this->_M_type = path_data_type::line_to;
     }
 
     void
     assign(const path_data_item::move_to& __val) noexcept
     {
-      if (reinterpret_cast<path_data_item*>(&__val) != this)
-	{
-	  this->_M_has_data = true;
-	  this->_M_data.point.x = __val.to().x();
-	  this->_M_data.point.y = __val.to().y();
-	  this->_M_type = path_data_type::move_to;
-	}
+      this->_M_has_data = true;
+      this->_M_data.point._M_x = __val.to().x();
+      this->_M_data.point._M_y = __val.to().y();
+      this->_M_type = path_data_type::move_to;
     }
 
     void
     assign(const path_data_item::rel_line_to& __val) noexcept
     {
-      if (reinterpret_cast<path_data_item*>(&__val) != this)
-	{
-	  this->_M_has_data = true;
-	  this->_M_data.point.x = __val.to().x();
-	  this->_M_data.point.y = __val.to().y();
-	  this->_M_type = path_data_type::rel_line_to;
-	}
+      this->_M_has_data = true;
+      this->_M_data.point._M_x = __val.to().x();
+      this->_M_data.point._M_y = __val.to().y();
+      this->_M_type = path_data_type::rel_line_to;
     }
 
     void
     assign(const path_data_item::rel_move_to& __val) noexcept
     {
-      if (reinterpret_cast<path_data_item*>(&__val) != this)
-	{
-	  this->_M_has_data = true;
-	  this->_M_data.point.x = __val.to().x();
-	  this->_M_data.point.y = __val.to().y();
-	  this->_M_type = path_data_type::rel_move_to;
-	}
+      this->_M_has_data = true;
+      this->_M_data.point._M_x = __val.to().x();
+      this->_M_data.point._M_y = __val.to().y();
+      this->_M_type = path_data_type::rel_move_to;
     }
 
     // observers:
@@ -1505,40 +1469,40 @@ inline namespace literals
     {
       struct
       {
-	double center_x;
-	double center_y;
-	double radius;
-	double angle1;
-	double angle2;
+	double _M_center_x;
+	double _M_center_y;
+	double _M_radius;
+	double _M_angle1;
+	double _M_angle2;
       }
       arc;
 
       struct
       {
-	double m00;
-	double m01;
-	double m10;
-	double m11;
-	double m20;
-	double m21;
+	double _M_m00;
+	double _M_m01;
+	double _M_m10;
+	double _M_m11;
+	double _M_m20;
+	double _M_m21;
       }
       matrix;
 
       struct
       {
-	double crvpt1_x;
-	double crvpt1_y;
-	double crvpt2_x;
-	double crvpt2_y;
-	double endpt_x;
-	double endpt_y;
+	double _M_crvpt1_x;
+	double _M_crvpt1_y;
+	double _M_crvpt2_x;
+	double _M_crvpt2_y;
+	double _M_endpt_x;
+	double _M_endpt_y;
       }
       curve;
 
       struct
       {
-	double x;
-	double y;
+	double _M_x;
+	double _M_y;
       }
       point;
     }
