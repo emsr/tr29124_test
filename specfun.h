@@ -107,6 +107,42 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @{
    */
 
+  /**
+   * @mainpage Mathematical Special Functions
+   *
+   * @section Intro
+   * The first significant library upgrade on the road to C++2011, TR1,
+   * included a set of 23 mathematical functions that significntly extended
+   * the standard trancendental functions inherited from C and declared in
+   * <cmath>.
+   * http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2005/n1836.pdf
+   * Although most components from TR1 were adopted for C++11 these
+   * math function were left behind out of concern for implementability.
+   * The math functions were published as a separate international standard.
+   * http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2010/n3060.pdf
+   *
+   * @section Implementation
+   *
+   * Our implementation centers around template functions that provide...
+   *
+   * @section Bibliography
+   *
+   * @see Abramowitz and Stegun: Handbook of Mathematical Functions,
+   * with Formulas, Graphs, and Mathematical Tables
+   * Edited by Milton Abramowitz and Irene A. Stegun,
+   * National Bureau of Standards  Applied Mathematics Series - 55
+   * Issued June 1964, Tenth Printing, December 1972, with corrections
+   * Electronic versions of A&S abound including both pdf and navigable html.
+   * @see for example  http://people.math.sfu.ca/~cbm/aands/
+   *
+   * @see The old A&S has been redone as the
+   * NIST Digital Library of Mathematical Functions: http://dlmf.nist.gov/
+   * This version is far more navigable and includes more recent work.
+   *
+   * @see An Atlas of Functions: with Equator, the Atlas Function Calculator
+   * 2nd Edition, by Oldham, Keith B., Myland, Jan, Spanier, Jerome
+   */
+
   // Associated Laguerre polynomials
 
   /**
