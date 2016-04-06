@@ -385,7 +385,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief Return the complete elliptic integral of the third kind
-   * @f$ \Pi(k,\nu) @f$ for @c long double modulus @c k.
+   * @f$ \Pi(k,\nu) @f$ for <tt>long double</tt> modulus @c k.
    *
    * @see comp_ellint_3 for details.
    */
@@ -429,7 +429,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the regular modified Bessel function @f$ I_{\nu}(x) @f$
-   * of @c long double order @f$ \nu @f$ and argument @f$ x @f$.
+   * of <tt>long double</tt> order @f$ \nu @f$ and argument @f$ x @f$.
    *
    * @see cyl_bessel_i for setails.
    */
@@ -472,7 +472,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Bessel function of the first kind @f$ J_{\nu}(x) @f$
-   * of @c long double order @f$ \nu @f$ and argument @f$ x @f$.
+   * of <tt>long double</tt> order @f$ \nu @f$ and argument @f$ x @f$.
    *
    * @see cyl_bessel_j for setails.
    */
@@ -515,7 +515,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the irregular modified Bessel function @f$ K_{\nu}(x) @f$
-   * of @c long double order @f$ \nu @f$ for @c and argument @f$ x @f$.
+   * of <tt>long double</tt> order @f$ \nu @f$ for @c and argument @f$ x @f$.
    *
    * @see cyl_bessel_k for setails.
    */
@@ -564,7 +564,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Neumann function @f$ N_{\nu}(x) @f$
-   * of @c long double order @f$ \nu @f$ and argument @f$ x @f$.
+   * of <tt>long double</tt> order @f$ \nu @f$ and argument @f$ x @f$.
    *
    * @see cyl_neumann for setails.
    */
@@ -609,7 +609,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the incomplete elliptic integral of the first kind @f$ E(k,\phi) @f$
-   * for @c long double modulus @f$ k @f$ and angle @f$ \phi @f$.
+   * for <tt>long double</tt> modulus @f$ k @f$ and angle @f$ \phi @f$.
    *
    * @see ellint_1 for details.
    */
@@ -747,7 +747,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential integral @f$ Ei(x) @f$
-   * for @c long double argument @c x.
+   * for <tt>long double</tt> argument @c x.
    *
    * @see expint for details.
    */
@@ -756,7 +756,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__expint<long double>(__x); }
 
   /**
-   * Return the exponential integral @f$ Ei(x) @f$ for @c lreal argument @c x.
+   * Return the exponential integral @f$ Ei(x) @f$ for @c real argument @c x.
    *
    * The exponential integral is given by
    * \f[
@@ -787,7 +787,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Hermite polynomial of order n, @f$ H_n(x) @f$,
-   * for @c long double argument @c x.
+   * for <tt>long double</tt> argument @c x.
    *
    * @see hermite for details.
    */
@@ -834,7 +834,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Returns the Laguerre polynomial @f$ L_n(x) @f$
-   * of degree @c n and @c long double argument @c x.
+   * of degree @c n and <tt>long double</tt> argument @c x.
    *
    * @see laguerre for more details.
    */
@@ -876,7 +876,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Legendre polynomial @f$ P_l(x) @f$ of degree @f$ l @f$
-   * for @c long double argument.
+   * for <tt>long double</tt> argument.
    *
    * @see legendre for more details.
    */
@@ -919,7 +919,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Riemann zeta function @f$ \zeta(s) @f$
-   * for @c long double argument @f$ s @f$.
+   * for <tt>long double</tt> argument @f$ s @f$.
    *
    * @see riemann_zeta for more details.
    */
@@ -966,7 +966,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the spherical Bessel function @f$ j_n(x) @f$ of order n
-   * for @c long double argument.
+   * for <tt>long double</tt> argument.
    *
    * @see sph_bessel for more details.
    */
@@ -1008,7 +1008,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the spherical Legendre function of non-negative integral
-   * degree @c l and order @c m and @c long double angle @f$ \theta @f$
+   * degree @c l and order @c m and <tt>long double</tt> angle @f$ \theta @f$
    * in radians.
    *
    * @see sph_legendre for details.
@@ -1054,7 +1054,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the spherical Neumann function of non-negative integral order @c n
-   * and non-negative @c long double argument @c x.
+   * and non-negative <tt>long double</tt> argument @c x.
    *
    * @see sph_neumann for details.
    */
@@ -1112,7 +1112,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the confluent hypergeometric function @f$ {}_1F_1(a;c;x) @f$
-   * of @c long double numeratorial parameter @c a,
+   * of <tt>long double</tt> numeratorial parameter @c a,
    * denominatorial parameter @c c, and argument @c x.
    *
    * @see conf_hyperg for details.
@@ -1160,7 +1160,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$
-   * of @ long double numeratorial parameters @c a and @c b,
+   * of <tt>long double</tt> numeratorial parameters @c a and @c b,
    * denominatorial parameter @c c, and argument @c x.
    *
    * @see hyperg for details.
@@ -1211,7 +1211,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the confluent hypergeometric limit function @f$ {}_0F_1(;c;x) @f$
-   * of @c long double numeratorial parameter @c c and argument @c x.
+   * of <tt>long double</tt> numeratorial parameter @c c and argument @c x.
    *
    * @see conf_hyperg_lim for details.
    */
@@ -2699,7 +2699,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__dawson<float>(__x); }
 
   /**
-   * Return the Dawson integral, @f$ F(x) @f$, for @c long double argument @c x.
+   * Return the Dawson integral, @f$ F(x) @f$, for <tt>long double</tt> argument @c x.
    *
    * @see dawson for details.
    */
