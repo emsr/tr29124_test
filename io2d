@@ -79,7 +79,7 @@ inline namespace v1
 	       const std::error_condition& condition) const noexcept override;
 
     virtual bool
-    equivalent(const std::error_code& ec, int condition) const noexcept override;
+    equivalent(const std::error_code& __ec, int condition) const noexcept override;
   };
 
   // non-member functions:
@@ -116,9 +116,9 @@ inline namespace v1
 
     rgba_color(double r, double g, double b, double a = 1.0);
 
-    rgba_color(double r, double g, double b, std::error_code& ec) noexcept;
+    rgba_color(double r, double g, double b, std::error_code& __ec) noexcept;
 
-    rgba_color(double r, double g, double b, double a, std::error_code& ec) noexcept;
+    rgba_color(double r, double g, double b, double a, std::error_code& __ec) noexcept;
 
     rgba_color(const rgba_color& c) noexcept;
 
@@ -136,25 +136,25 @@ inline namespace v1
     r(double val);
 
     void
-    r(double val, std::error_code& ec) noexcept;
+    r(double val, std::error_code& __ec) noexcept;
 
     void
     g(double val);
 
     void
-    g(double val, std::error_code& ec) noexcept;
+    g(double val, std::error_code& __ec) noexcept;
 
     void
     b(double val);
 
     void
-    b(double val, std::error_code& ec) noexcept;
+    b(double val, std::error_code& __ec) noexcept;
 
     void
     a(double val);
 
     void
-    a(double val, std::error_code& ec) noexcept;
+    a(double val, std::error_code& __ec) noexcept;
 
     // observers:
 
@@ -822,7 +822,7 @@ inline namespace literals
 
     rectangle(const vector_2d& __tl, const vector_2d& __br) noexcept
     : _M_x{__tl.x()}, _M_y{__tl.y()},
-      _M_width{__br.x() - tl.x()}, _M_height{__br.y() - __tl.y()}
+      _M_width{__br.x() - __tl.x()}, _M_height{__br.y() - __tl.y()}
     { }
 
     rectangle(const rectangle&) noexcept = default;
@@ -861,7 +861,7 @@ inline namespace literals
     }
 
     void
-    bottom_right(const vector_2d& __value) noexcept
+    bottom_right(const vector_2d& __br) noexcept
     {
       this->_M_width = __br.x() - this->_M_x;
       this->_M_height = __br.y() - this->_M_y;
@@ -952,51 +952,28 @@ inline namespace literals
     }
 
     static matrix_2d
-    init_translate(const vector_2d& __value) noexcept
-    {
-      matrix_2d __mat;
-      __mat._M20 = __value.x();
-      __mat._M21 = __value.y();
-      return __mat;
-    }
+    init_translate(const vector_2d& __delta) noexcept
+    { return matrix_2d{0.0, 0.0, 0.0, 0.0, __delta.x(), __delta.y()}; }
 
     static matrix_2d
-    init_scale(const vector_2d& __value) noexcept
-    {
-      matrix_2d __mat;
-      __mat._M00 = __value.x();
-      __mat._M11 = __value.y();
-      return __mat;
-    }
+    init_scale(const vector_2d& __scale) noexcept
+    { return matrix_2d{__scale.x(), 0.0, 0.0, __scale.y(), 0.0, 0.0}; }
 
     static matrix_2d
     init_rotate(double __radians) noexcept
     {
       auto __cos = std::cos(__radians);
       auto __sin = std::sin(__radians);
-      matrix_2d __mat;
-      __mat._M00 = __cos;
-      __mat._M01 = __sin;
-      __mat._M10 = -__sin; // Active or passive?
-      __mat._M11 = __cos;
-      return __mat;
+      return matrix_2d{__cos, __sin, -__sin, __cos, 0.0, 0.0};
     }
 
     static matrix_2d
-    init_shear_x(double __factor) noexcept
-    {
-      matrix_2d __mat;
-
-      return __mat;
-    }
+    init_shear_x(double __shear_x) noexcept
+    { return matrix_2d{1.0, 0.0, __shear_x, 1.0, 0.0, 0.0}; }
 
     static matrix_2d
-    init_shear_y(double __factor) noexcept
-    {
-      matrix_2d __mat;
-
-      return __mat;
-    }
+    init_shear_y(double __shear_y) noexcept
+    { return matrix_2d{1.0, __shear_y, 0.0, 1.0, 0.0, 0.0}; }
 
     // modifiers:
 
@@ -1102,7 +1079,11 @@ inline namespace literals
     is_invertible() const noexcept
     {
       constexpr auto _S_min = 100.0 * std::numeric_limits<double>::min();
-      return std::abs(this->determinant()) > _S_min;
+
+      return std::isfinite(this->_M00) && std::isfinite(this->_M01)
+	  && std::isfinite(this->_M10) && std::isfinite(this->_M11)
+	  && std::isfinite(this->_M20) && std::isfinite(this->_M21)
+	  && std::abs(this->determinant()) > _S_min;
     }
 
     double
@@ -1152,13 +1133,33 @@ inline namespace literals
   // matrix_2d non-member operators:
 
   matrix_2d
-  operator*(const matrix_2d& lhs, const matrix_2d& rhs) noexcept;
+  operator*(const matrix_2d& __lhs, const matrix_2d& __rhs) noexcept
+  {
+    return matrix_2d
+      {
+	__lhs.m00() * __rhs.m00() + __lhs.m01() * __rhs.m10(),
+	__lhs.m00() * __rhs.m01() + __lhs.m01() * __rhs.m11(),
+	__lhs.m10() * __rhs.m00() + __lhs.m11() * __rhs.m10(),
+	__lhs.m10() * __rhs.m01() + __lhs.m11() * __rhs.m11(),
+	__lhs.m20() * __rhs.m00() + __lhs.m21() * __rhs.m10() + __lhs.m20(),
+	__lhs.m20() * __rhs.m01() + __lhs.m21() * __rhs.m11() + __lhs.m21()
+      };
+  }
 
   bool
-  operator==(const matrix_2d& lhs, const matrix_2d& rhs) noexcept;
+  operator==(const matrix_2d& __lhs, const matrix_2d& __rhs) noexcept
+  {
+    return __lhs.m00() == __rhs.m00()
+	&& __lhs.m01() == __rhs.m01()
+	&& __lhs.m10() == __rhs.m10()
+	&& __lhs.m11() == __rhs.m11()
+	&& __lhs.m20() == __rhs.m20()
+	&& __lhs.m21() == __rhs.m21();
+  }
 
   bool
-  operator!=(const matrix_2d& lhs, const matrix_2d& rhs) noexcept;
+  operator!=(const matrix_2d& __lhs, const matrix_2d& __rhs) noexcept
+  { return !(__lhs == __rhs); }
 
   /**
    *
@@ -1202,87 +1203,115 @@ inline namespace literals
 
     // construct/copy/move/destroy:
 
-    path_data_item() noexcept;
+    path_data_item() noexcept
+    : _M_has_data{false}
+    { }
 
-    path_data_item(const path_data_item& __other) noexcept;
-
-    path_data_item&
-    operator=(const path_data_item& __other) noexcept;
-
-    path_data_item(path_data_item&& __other) noexcept;
+    path_data_item(const path_data_item& __other) noexcept = default;
 
     path_data_item&
-    operator=(path_data_item&& __other) noexcept;
+    operator=(const path_data_item& __other) noexcept = default;
+
+    path_data_item(path_data_item&& __other) noexcept = default;
+
+    path_data_item&
+    operator=(path_data_item&& __other) noexcept = default;
 
     path_data_item(const path_data_item::arc& __val) noexcept
     : _M_has_data{true},
-      //_M_data{__val}, // FIXME!!!
+      _M_data.arc.centerX{__val.center().x()},
+      _M_data.arc.centerY{__val.center().y()},
+      _M_data.arc.radius{__val.radius()},
+      _M_data.arc.angle1{__val.angle_1()},
+      _M_data.arc.angle2{__val.angle_2()},
       _M_type{path_data_type::arc}
     { }
 
     path_data_item(const path_data_item::arc_negative& __val) noexcept
     : _M_has_data{true},
-      //_M_data{__val}, // FIXME!!!
+      _M_data.arc.centerX{__val.center().x()},
+      _M_data.arc.centerY{__val.center().y()},
+      _M_data.arc.radius{__val.radius()},
+      _M_data.arc.angle1{__val.angle_1()},
+      _M_data.arc.angle2{__val.angle_2()},
       _M_type{path_data_type::arc_negative}
     { }
 
     path_data_item(const path_data_item::change_matrix& __val) noexcept
     : _M_has_data{true},
-      //_M_data{__val}, // FIXME!!!
+      _M_data.matrix.m00{__val.matrix().m00()},
+      _M_data.matrix.m01{__val.matrix().m01()},
+      _M_data.matrix.m10{__val.matrix().m10()},
+      _M_data.matrix.m11{__val.matrix().m11()},
+      _M_data.matrix.m20{__val.matrix().m20()},
+      _M_data.matrix.m21{__val.matrix().m21()},
       _M_type{path_data_type::change_matrix}
     { }
 
     path_data_item(const path_data_item::change_origin& __val) noexcept
     : _M_has_data{true},
-      //_M_data{__val}, // FIXME!!!
+      _M_data.point.x{__val.origin().x()},
+      _M_data.point.y{__val.origin().y()},
       _M_type{path_data_type::change_origin}
     { }
 
     path_data_item(const path_data_item::close_path& __val) noexcept
     : _M_has_data{true},
-      //_M_data{__val}, // FIXME!!!
       _M_type{path_data_type::close_path}
     { }
 
     path_data_item(const path_data_item::curve_to& __val) noexcept
     : _M_has_data{true},
-      //_M_data{__val}, // FIXME!!!
+      _M_data.curve.cpt1x{__val.control_point_1().x()},
+      _M_data.curve.cpt1y{__val.control_point_1().y()},
+      _M_data.curve.cpt2x{__val.control_point_2().x()},
+      _M_data.curve.cpt2y{__val.control_point_2().y()},
+      _M_data.curve.eptx{__val.end_point().x()},
+      _M_data.curve.epty{__val.end_point().y()},
       _M_type{path_data_type::curve_to}
     { }
 
     path_data_item(const path_data_item::rel_curve_to& __val) noexcept
     : _M_has_data{true},
-      //_M_data{__val}, // FIXME!!!
+      _M_data.curve.cpt1x{__val.control_point_1().x()},
+      _M_data.curve.cpt1y{__val.control_point_1().y()},
+      _M_data.curve.cpt2x{__val.control_point_2().x()},
+      _M_data.curve.cpt2y{__val.control_point_2().y()},
+      _M_data.curve.eptx{__val.end_point().x()},
+      _M_data.curve.epty{__val.end_point().y()},
       _M_type{path_data_type::rel_curve_to}
     { }
 
     path_data_item(const path_data_item::new_sub_path& __val) noexcept
     : _M_has_data{true},
-      //_M_data{__val}, // FIXME!!!
       _M_type{path_data_type::new_sub_path}
     { }
 
     path_data_item(const path_data_item::line_to& __val) noexcept
     : _M_has_data{true},
-      //_M_data{__val}, // FIXME!!!
+      _M_data.point.x{__val.to().x()},
+      _M_data.point.y{__val.to().y()},
       _M_type{path_data_type::line_to}
     { }
 
     path_data_item(const path_data_item::move_to& __val) noexcept
     : _M_has_data{true},
-      //_M_data{__val}, // FIXME!!!
+      _M_data.point.x{__val.to().x()},
+      _M_data.point.y{__val.to().y()},
       _M_type{path_data_type::move_to}
     { }
 
     path_data_item(const path_data_item::rel_line_to& __val) noexcept
     : _M_has_data{true},
-      //_M_data{__val}, // FIXME!!!
+      _M_data.point.x{__val.to().x()},
+      _M_data.point.y{__val.to().y()},
       _M_type{path_data_type::rel_line_to}
     { }
 
     path_data_item(const path_data_item::rel_move_to& __val) noexcept
     : _M_has_data{true},
-      //_M_data{__val}, // FIXME!!!
+      _M_data.point.x{__val.to().x()},
+      _M_data.point.y{__val.to().y()},
       _M_type{path_data_type::rel_move_to}
     { }
 
@@ -1294,7 +1323,11 @@ inline namespace literals
       if (reinterpret_cast<path_data_item*>(&__val) != this)
 	{
 	  this->_M_has_data = true;
-	  // FIXME
+	  this->_M_data.arc.centerX = __val.center().x();
+	  this->_M_data.arc.centerY = __val.center().y();
+	  this->_M_data.arc.radius = __val.radius();
+	  this->_M_data.arc.angle1 = __val.angle_1();
+	  this->_M_data.arc.angle2 = __val.angle_2();
 	  this->_M_type = path_data_type::arc;
 	}
     }
@@ -1305,7 +1338,11 @@ inline namespace literals
       if (reinterpret_cast<path_data_item*>(&__val) != this)
 	{
 	  this->_M_has_data = true;
-	  // FIXME
+	  this->_M_data.arc.centerX = __val.center().x();
+	  this->_M_data.arc.centerY = __val.center().y();
+	  this->_M_data.arc.radius = __val.radius();
+	  this->_M_data.arc.angle1 = __val.angle_1();
+	  this->_M_data.arc.angle2 = __val.angle_2();
 	  this->_M_type = path_data_type::arc_negative;
 	}
     }
@@ -1316,7 +1353,12 @@ inline namespace literals
       if (reinterpret_cast<path_data_item*>(&__val) != this)
 	{
 	  this->_M_has_data = true;
-	  // FIXME
+	  this->_M_data.matrix.m00 = __val.matrix().m00();
+	  this->_M_data.matrix.m01 = __val.matrix().m01();
+	  this->_M_data.matrix.m10 = __val.matrix().m10();
+	  this->_M_data.matrix.m11 = __val.matrix().m11();
+	  this->_M_data.matrix.m20 = __val.matrix().m20();
+	  this->_M_data.matrix.m21 = __val.matrix().m21();
 	  this->_M_type = path_data_type::change_matrix;
 	}
     }
@@ -1327,7 +1369,8 @@ inline namespace literals
       if (reinterpret_cast<path_data_item*>(&__val) != this)
 	{
 	  this->_M_has_data = true;
-	  // FIXME
+	  this->_M_data.point.x = __val.origin().x();
+	  this->_M_data.point.y = __val.origin().y();
 	  this->_M_type = path_data_type::change_origin;
 	}
     }
@@ -1338,7 +1381,6 @@ inline namespace literals
       if (reinterpret_cast<path_data_item*>(&__val) != this)
 	{
 	  this->_M_has_data = true;
-	  // FIXME
 	  this->_M_type = path_data_type::close_path;
 	}
     }
@@ -1349,7 +1391,12 @@ inline namespace literals
       if (reinterpret_cast<path_data_item*>(&__val) != this)
 	{
 	  this->_M_has_data = true;
-	  // FIXME
+	  this->_M_data.curve.cpt1x = __val.control_point_1().x();
+	  this->_M_data.curve.cpt1y = __val.control_point_1().y();
+	  this->_M_data.curve.cpt2x = __val.control_point_2().x();
+	  this->_M_data.curve.cpt2y = __val.control_point_2().y();
+	  this->_M_data.curve.eptx = __val.end_point().x();
+	  this->_M_data.curve.epty = __val.end_point().y();
 	  this->_M_type = path_data_type::curve_to;
 	}
     }
@@ -1360,7 +1407,12 @@ inline namespace literals
       if (reinterpret_cast<path_data_item*>(&__val) != this)
 	{
 	  this->_M_has_data = true;
-	  // FIXME
+	  this->_M_data.curve.cpt1x = __val.control_point_1().x();
+	  this->_M_data.curve.cpt1y = __val.control_point_1().y();
+	  this->_M_data.curve.cpt2x = __val.control_point_2().x();
+	  this->_M_data.curve.cpt2y = __val.control_point_2().y();
+	  this->_M_data.curve.eptx = __val.end_point().x();
+	  this->_M_data.curve.epty = __val.end_point().y();
 	  this->_M_type = path_data_type::rel_curve_to;
 	}
     }
@@ -1371,7 +1423,6 @@ inline namespace literals
       if (reinterpret_cast<path_data_item*>(&__val) != this)
 	{
 	  this->_M_has_data = true;
-	  // FIXME
 	  this->_M_type = path_data_type::new_sub_path;
 	}
     }
@@ -1382,7 +1433,8 @@ inline namespace literals
       if (reinterpret_cast<path_data_item*>(&__val) != this)
 	{
 	  this->_M_has_data = true;
-	  // FIXME
+	  this->_M_data.point.x = __val.to().x();
+	  this->_M_data.point.y = __val.to().y();
 	  this->_M_type = path_data_type::line_to;
 	}
     }
@@ -1393,7 +1445,8 @@ inline namespace literals
       if (reinterpret_cast<path_data_item*>(&__val) != this)
 	{
 	  this->_M_has_data = true;
-	  // FIXME
+	  this->_M_data.point.x = __val.to().x();
+	  this->_M_data.point.y = __val.to().y();
 	  this->_M_type = path_data_type::move_to;
 	}
     }
@@ -1404,7 +1457,8 @@ inline namespace literals
       if (reinterpret_cast<path_data_item*>(&__val) != this)
 	{
 	  this->_M_has_data = true;
-	  // FIXME
+	  this->_M_data.point.x = __val.to().x();
+	  this->_M_data.point.y = __val.to().y();
 	  this->_M_type = path_data_type::rel_line_to;
 	}
     }
@@ -1415,7 +1469,8 @@ inline namespace literals
       if (reinterpret_cast<path_data_item*>(&__val) != this)
 	{
 	  this->_M_has_data = true;
-	  // FIXME
+	  this->_M_data.point.x = __val.to().x();
+	  this->_M_data.point.y = __val.to().y();
 	  this->_M_type = path_data_type::rel_move_to;
 	}
     }
@@ -1423,11 +1478,12 @@ inline namespace literals
     // observers:
 
     bool
-    has_data() const noexcept;
+    has_data() const noexcept
+    { return this->_M_has_data; }
 
     path_data_type
     type() const
-    { return _M_type; }
+    { return this->_M_type; }
 
     path_data_type
     type(std::error_code& __ec) const noexcept
@@ -2057,11 +2113,13 @@ inline namespace literals
    */
   template<>
     path_data_item::arc
-    path_data_item::get() const;
+    path_data_item::get() const
+    {
+      std::error_code& __ec;
 
   template<>
     path_data_item::arc
-    path_data_item::get(std::error_code& ec) const noexcept;
+    path_data_item::get(std::error_code& __ec) const noexcept;
 
   template<>
     path_data_item::arc_negative
@@ -2069,7 +2127,7 @@ inline namespace literals
 
   template<>
     path_data_item::arc_negative
-    path_data_item::get(std::error_code& ec) const noexcept;
+    path_data_item::get(std::error_code& __ec) const noexcept;
 
   template<>
     inline path_data_item::change_matrix
@@ -2077,7 +2135,7 @@ inline namespace literals
 
   template<>
     path_data_item::change_matrix
-    path_data_item::get(std::error_code& ec) const noexcept;
+    path_data_item::get(std::error_code& __ec) const noexcept;
 
   template<>
     path_data_item::change_origin
@@ -2085,7 +2143,7 @@ inline namespace literals
 
   template<>
     path_data_item::change_origin
-    path_data_item::get(std::error_code& ec) const noexcept;
+    path_data_item::get(std::error_code& __ec) const noexcept;
 
   template<>
     path_data_item::close_path
@@ -2093,7 +2151,7 @@ inline namespace literals
 
   template<>
     path_data_item::close_path
-    path_data_item::get(std::error_code& ec) const noexcept;
+    path_data_item::get(std::error_code& __ec) const noexcept;
 
   template<>
     path_data_item::curve_to
@@ -2101,7 +2159,7 @@ inline namespace literals
 
   template<>
     path_data_item::curve_to
-    path_data_item::get(std::error_code& ec) const noexcept;
+    path_data_item::get(std::error_code& __ec) const noexcept;
 
   template<>
     path_data_item::rel_curve_to
@@ -2109,7 +2167,7 @@ inline namespace literals
 
   template<>
     path_data_item::rel_curve_to
-    path_data_item::get(std::error_code& ec) const noexcept;
+    path_data_item::get(std::error_code& __ec) const noexcept;
 
   template<>
     path_data_item::new_sub_path
@@ -2117,7 +2175,7 @@ inline namespace literals
 
   template<>
     path_data_item::new_sub_path
-    path_data_item::get(std::error_code& ec) const noexcept;
+    path_data_item::get(std::error_code& __ec) const noexcept;
 
   template<>
     path_data_item::line_to
@@ -2125,7 +2183,7 @@ inline namespace literals
 
   template<>
     path_data_item::line_to
-    path_data_item::get(std::error_code& ec) const noexcept;
+    path_data_item::get(std::error_code& __ec) const noexcept;
 
   template<>
     path_data_item::move_to
@@ -2133,7 +2191,7 @@ inline namespace literals
 
   template<>
     path_data_item::move_to
-    path_data_item::get(std::error_code& ec) const noexcept;
+    path_data_item::get(std::error_code& __ec) const noexcept;
 
   template<>
     path_data_item::rel_line_to
@@ -2141,7 +2199,7 @@ inline namespace literals
 
   template<>
     path_data_item::rel_line_to
-    path_data_item::get(std::error_code& ec) const noexcept;
+    path_data_item::get(std::error_code& __ec) const noexcept;
 
   template<>
     path_data_item::rel_move_to
@@ -2149,7 +2207,7 @@ inline namespace literals
 
   template<>
     path_data_item::rel_move_to
-    path_data_item::get(std::error_code& ec) const noexcept;
+    path_data_item::get(std::error_code& __ec) const noexcept;
 
   /**
    *
@@ -2167,13 +2225,13 @@ inline namespace literals
     path(const path_factory& pb);
 
     path(const path_factory& pb,
-	 std::error_code& ec) noexcept;
+	 std::error_code& __ec) noexcept;
 
     explicit
     path(const std::vector<path_data_item>& p);
 
     path(const std::vector<path_data_item>& p,
-	 std::error_code& ec) noexcept;
+	 std::error_code& __ec) noexcept;
 
     path(const path&) noexcept;
 
@@ -2211,26 +2269,26 @@ inline namespace literals
 
     void
     append(const path_factory& p,
-	   std::error_code& ec) noexcept;
+	   std::error_code& __ec) noexcept;
 
     void
     append(const std::vector<path_data_item>& p);
 
     void
     append(const std::vector<path_data_item>& p,
-	   std::error_code& ec) noexcept;
+	   std::error_code& __ec) noexcept;
 
     void
     new_sub_path();
 
     void
-    new_sub_path(std::error_code& ec) noexcept;
+    new_sub_path(std::error_code& __ec) noexcept;
 
     void
     close_path();
 
     void
-    close_path(std::error_code& ec) noexcept;
+    close_path(std::error_code& __ec) noexcept;
 
     void
     arc(const vector_2d& center,
@@ -2243,7 +2301,7 @@ inline namespace literals
 	double radius,
 	double angle1,
 	double angle2,
-	std::error_code& ec) noexcept;
+	std::error_code& __ec) noexcept;
 
     void
     arc_negative(const vector_2d& center,
@@ -2256,7 +2314,7 @@ inline namespace literals
 		 double radius,
 		 double angle1,
 		 double angle2,
-		 std::error_code& ec) noexcept;
+		 std::error_code& __ec) noexcept;
 
     void
     curve_to(const vector_2d& pt0,
@@ -2267,28 +2325,28 @@ inline namespace literals
     curve_to(const vector_2d& pt0,
 	     const vector_2d& pt1,
 	     const vector_2d& pt2,
-	     std::error_code& ec) noexcept;
+	     std::error_code& __ec) noexcept;
 
     void
     line_to(const vector_2d& pt);
 
     void
     line_to(const vector_2d& pt,
-	    std::error_code& ec) noexcept;
+	    std::error_code& __ec) noexcept;
 
     void
     move_to(const vector_2d& pt);
 
     void
     move_to(const vector_2d& pt,
-	    std::error_code& ec) noexcept;
+	    std::error_code& __ec) noexcept;
 
     void
     rectangle(const experimental::io2d::rectangle& r);
 
     void
     rectangle(const experimental::io2d::rectangle& r,
-	      std::error_code& ec) noexcept;
+	      std::error_code& __ec) noexcept;
 
     void
     rel_curve_to(const vector_2d& dpt0,
@@ -2299,35 +2357,35 @@ inline namespace literals
     rel_curve_to(const vector_2d& dpt0,
 		 const vector_2d& dpt1,
 		 const vector_2d& dpt2,
-		 std::error_code& ec) noexcept;
+		 std::error_code& __ec) noexcept;
 
     void
     rel_line_to(const vector_2d& dpt);
 
     void
     rel_line_to(const vector_2d& dpt,
-		std::error_code& ec) noexcept;
+		std::error_code& __ec) noexcept;
 
     void
     rel_move_to(const vector_2d& dpt);
 
     void
     rel_move_to(const vector_2d& dpt,
-		std::error_code& ec) noexcept;
+		std::error_code& __ec) noexcept;
 
     void
     transform_matrix(const matrix_2d& m);
 
     void
     transform_matrix(const matrix_2d& m,
-		     std::error_code& ec) noexcept;
+		     std::error_code& __ec) noexcept;
 
     void
     origin(const vector_2d& pt);
 
     void
     origin(const vector_2d& pt,
-	   std::error_code& ec) noexcept;
+	   std::error_code& __ec) noexcept;
 
     void
     clear() noexcept;
@@ -2339,7 +2397,7 @@ inline namespace literals
     { return this->; }
 
     experimental::io2d::rectangle
-    path_extents(std::error_code& ec) const noexcept
+    path_extents(std::error_code& __ec) const noexcept
     { return this->; }
 
     bool
@@ -2351,7 +2409,7 @@ inline namespace literals
     { return this->; }
 
     vector_2d
-    current_point(std::error_code& ec) const noexcept
+    current_point(std::error_code& __ec) const noexcept
     { return this->; }
 
     matrix_2d
@@ -2560,7 +2618,7 @@ inline namespace literals
     simple_font_face(const string& typeface,
 		     std::experimental::io2d::font_slant fs,
 		     std::experimental::io2d::font_weight fw,
-		     std::error_code& ec) noexcept;
+		     std::error_code& __ec) noexcept;
 
     // observers:
 
@@ -2569,7 +2627,7 @@ inline namespace literals
 
     void
     typeface(string& str,
-	     std::error_code& ec) const noexcept;
+	     std::error_code& __ec) const noexcept;
 
     std::experimental::io2d::font_slant
     font_slant() const noexcept;
@@ -3081,7 +3139,7 @@ inline namespace literals
     color_stop(size_type index,
 	       double offset,
 	       const rgba_color& color,
-	       std::error_code& ec) noexcept
+	       std::error_code& __ec) noexcept
     {
       __ec.clear();
       if (__index >= this->_M_color_stops.size())
@@ -3181,11 +3239,11 @@ inline namespace literals
     void
     surface(experimental::io2d::surface& s,
 	    image_surface& oldSurface,
-	    std::error_code& ec) noexcept;
+	    std::error_code& __ec) noexcept;
 
     void
     surface(experimental::io2d::surface& s,
-	    std::error_code& ec) noexcept;
+	    std::error_code& __ec) noexcept;
 
     // observers:
 
@@ -3353,13 +3411,13 @@ inline namespace literals
     lock();
 
     void
-    lock(std::error_code& ec) noexcept;
+    lock(std::error_code& __ec) noexcept;
 
     void
     unlock();
 
     void
-    unlock(std::error_code& ec) noexcept;
+    unlock(std::error_code& __ec) noexcept;
   };
 
   /**
@@ -3392,31 +3450,31 @@ inline namespace literals
     flush();
 
     void
-    flush(std::error_code& ec) noexcept;
+    flush(std::error_code& __ec) noexcept;
 
     std::shared_ptr<experimental::io2d::device>
     device();
 
     std::shared_ptr<experimental::io2d::device>
-    device(std::error_code& ec) noexcept;
+    device(std::error_code& __ec) noexcept;
 
     void mark_dirty();
 
-    void mark_dirty(std::error_code& ec) noexcept;
+    void mark_dirty(std::error_code& __ec) noexcept;
 
     void
     mark_dirty(const rectangle& rect);
 
     void
     mark_dirty(const rectangle& rect,
-	       std::error_code& ec) noexcept;
+	       std::error_code& __ec) noexcept;
 
     void
     map(const std::function<void(mapped_surface&)>& action);
 
     void
     map(const std::function<void(mapped_surface&, std::error_code&)>& action,
-	std::error_code& ec);
+	std::error_code& __ec);
 
     void
     map(const std::function<void(mapped_surface&)>& action,
@@ -3425,19 +3483,19 @@ inline namespace literals
     void
     map(const std::function<void(mapped_surface&, std::error_code&)>& action,
 	const rectangle& extents,
-	std::error_code& ec);
+	std::error_code& __ec);
 
     virtual void
     save();
 
     virtual void
-    save(std::error_code& ec) noexcept;
+    save(std::error_code& __ec) noexcept;
 
     virtual void
     restore();
 
     virtual void
-    restore(std::error_code& ec) noexcept;
+    restore(std::error_code& __ec) noexcept;
 
     void
     brush(experimental::nullopt_t) noexcept;
@@ -3447,7 +3505,7 @@ inline namespace literals
 
     void
     brush(const experimental::io2d::brush& source,
-	  std::error_code& ec) noexcept;
+	  std::error_code& __ec) noexcept;
 
     void
     antialias(experimental::io2d::antialias a) noexcept;
@@ -3460,7 +3518,7 @@ inline namespace literals
 
     void
     dashes(const experimental::io2d::dashes& d,
-	   std::error_code& ec) noexcept;
+	   std::error_code& __ec) noexcept;
 
     void
     fill_rule(experimental::io2d::fill_rule fr) noexcept;
@@ -3485,13 +3543,13 @@ inline namespace literals
 
     void
     clip(const experimental::io2d::path& p,
-	 std::error_code& ec) noexcept;
+	 std::error_code& __ec) noexcept;
 
     void
     clip_immediate();
 
     void
-    clip_immediate(std::error_code& ec) noexcept;
+    clip_immediate(std::error_code& __ec) noexcept;
 
     void
     path(experimental::nullopt_t) noexcept;
@@ -3501,7 +3559,7 @@ inline namespace literals
 
     void
     path(const experimental::io2d::path& p,
-	 std::error_code& ec) noexcept;
+	 std::error_code& __ec) noexcept;
 
     // immediate path modifiers:
 
@@ -3514,21 +3572,21 @@ inline namespace literals
     fill();
 
     void
-    fill(std::error_code& ec) noexcept;
+    fill(std::error_code& __ec) noexcept;
 
     void
     fill(const rgba_color& c);
 
     void
     fill(const rgba_color& c,
-	 std::error_code& ec) noexcept;
+	 std::error_code& __ec) noexcept;
 
     void
     fill(const experimental::io2d::brush& b);
 
     void
     fill(const experimental::io2d::brush& b,
-	 std::error_code& ec) noexcept;
+	 std::error_code& __ec) noexcept;
 
     void
     fill(const surface& s,
@@ -3538,7 +3596,7 @@ inline namespace literals
 
     void
     fill(const surface& s,
-	 std::error_code& ec,
+	 std::error_code& __ec,
 	 const vector_2d& o = vector_2d{ },
 	 extend e = extend::none,
 	 filter f = filter::good) noexcept;
@@ -3552,7 +3610,7 @@ inline namespace literals
     void
     fill(const surface& s,
 	 const matrix_2d& m,
-	 std::error_code& ec,
+	 std::error_code& __ec,
 	 extend e = extend::none,
 	 filter f = filter::good) noexcept;
 
@@ -3560,21 +3618,21 @@ inline namespace literals
     fill_immediate();
 
     void
-    fill_immediate(std::error_code& ec) noexcept;
+    fill_immediate(std::error_code& __ec) noexcept;
 
     void
     fill_immediate(const rgba_color& c);
 
     void
     fill_immediate(const rgba_color& c,
-		   std::error_code& ec) noexcept;
+		   std::error_code& __ec) noexcept;
 
     void
     fill_immediate(const experimental::io2d::brush& b);
 
     void
     fill_immediate(const experimental::io2d::brush& b,
-		   std::error_code& ec) noexcept;
+		   std::error_code& __ec) noexcept;
 
     void
     fill_immediate(const surface& s,
@@ -3584,7 +3642,7 @@ inline namespace literals
 
     void
     fill_immediate(const surface& s,
-		   std::error_code& ec,
+		   std::error_code& __ec,
 		   const vector_2d& o = vector_2d{ },
 		   extend e = extend::none,
 		   filter f = filter::good) noexcept;
@@ -3598,7 +3656,7 @@ inline namespace literals
     void
     fill_immediate(const surface& s,
 		   const matrix_2d& m,
-		   std::error_code& ec,
+		   std::error_code& __ec,
 		   extend e = extend::none,
 		   filter f = filter::good) noexcept;
 
@@ -3606,21 +3664,21 @@ inline namespace literals
     paint();
 
     void
-    paint(std::error_code& ec) noexcept;
+    paint(std::error_code& __ec) noexcept;
 
     void
     paint(const rgba_color& c);
 
     void
     paint(const rgba_color& c,
-	  std::error_code& ec) noexcept;
+	  std::error_code& __ec) noexcept;
 
     void
     paint(const experimental::io2d::brush& b);
 
     void
     paint(const experimental::io2d::brush& b,
-	  std::error_code& ec) noexcept;
+	  std::error_code& __ec) noexcept;
 
     void
     paint(const surface& s,
@@ -3630,7 +3688,7 @@ inline namespace literals
 
     void
     paint(const surface& s,
-	  std::error_code& ec,
+	  std::error_code& __ec,
 	  const vector_2d& o = vector_2d{ },
 	  extend e = extend::none,
 	  filter f = filter::good) noexcept;
@@ -3644,7 +3702,7 @@ inline namespace literals
     void
     paint(const surface& s,
 	  const matrix_2d& m,
-	  std::error_code& ec,
+	  std::error_code& __ec,
 	  extend e = extend::none,
 	  filter f = filter::good) noexcept;
 
@@ -3653,7 +3711,7 @@ inline namespace literals
 
     void
     paint(double alpha,
-	  std::error_code& ec) noexcept;
+	  std::error_code& __ec) noexcept;
 
     void
     paint(const rgba_color& c,
@@ -3662,7 +3720,7 @@ inline namespace literals
     void
     paint(const rgba_color& c,
 	  double alpha,
-	  std::error_code& ec) noexcept;
+	  std::error_code& __ec) noexcept;
 
     void
     paint(const experimental::io2d::brush& b,
@@ -3671,7 +3729,7 @@ inline namespace literals
     void
     paint(const experimental::io2d::brush& b,
 	  double alpha,
-	  std::error_code& ec) noexcept;
+	  std::error_code& __ec) noexcept;
 
     void
     paint(const surface& s,
@@ -3683,7 +3741,7 @@ inline namespace literals
     void
     paint(const surface& s,
 	  double alpha,
-	  std::error_code& ec,
+	  std::error_code& __ec,
 	  const vector_2d& o = vector_2d{ },
 	  extend e = extend::none,
 	  filter f = filter::good) noexcept;
@@ -3699,7 +3757,7 @@ inline namespace literals
     paint(const surface& s,
 	  double alpha,
 	  const matrix_2d& m,
-	  std::error_code& ec,
+	  std::error_code& __ec,
 	  extend e = extend::none,
 	  filter f = filter::good) noexcept;
 
@@ -3707,21 +3765,21 @@ inline namespace literals
     stroke();
 
     void
-    stroke(std::error_code& ec) noexcept;
+    stroke(std::error_code& __ec) noexcept;
 
     void
     stroke(const rgba_color& c);
 
     void
     stroke(const rgba_color& c,
-	   std::error_code& ec) noexcept;
+	   std::error_code& __ec) noexcept;
 
     void
     stroke(const experimental::io2d::brush& b);
 
     void
     stroke(const experimental::io2d::brush& b,
-	   std::error_code& ec) noexcept;
+	   std::error_code& __ec) noexcept;
 
     void
     stroke(const surface& s,
@@ -3730,7 +3788,7 @@ inline namespace literals
 	   filter f = filter::good);
 
     void
-    stroke(const surface& s, std::error_code& ec,
+    stroke(const surface& s, std::error_code& __ec,
 	   const vector_2d& o = vector_2d{ },
 	   extend e = extend::none,
 	   filter f = filter::good) noexcept;
@@ -3744,7 +3802,7 @@ inline namespace literals
     void
     stroke(const surface& s,
 	   const matrix_2d& m,
-	   std::error_code& ec,
+	   std::error_code& __ec,
 	   extend e = extend::none,
 	   filter f = filter::good) noexcept;
 
@@ -3752,21 +3810,21 @@ inline namespace literals
     stroke_immediate();
 
     void
-    stroke_immediate(std::error_code& ec) noexcept;
+    stroke_immediate(std::error_code& __ec) noexcept;
 
     void
     stroke_immediate(const rgba_color& c);
 
     void
     stroke_immediate(const rgba_color& c,
-		     std::error_code& ec) noexcept;
+		     std::error_code& __ec) noexcept;
 
     void
     stroke_immediate(const experimental::io2d::brush& b);
 
     void
     stroke_immediate(const experimental::io2d::brush& b,
-		     std::error_code& ec) noexcept;
+		     std::error_code& __ec) noexcept;
 
     void
     stroke_immediate(const surface& s,
@@ -3776,7 +3834,7 @@ inline namespace literals
 
     void
     stroke_immediate(const surface& s,
-		     std::error_code& ec,
+		     std::error_code& __ec,
 		     const vector_2d& o = vector_2d{ },
 		     extend e = extend::none,
 		     filter f = filter::good) noexcept;
@@ -3790,7 +3848,7 @@ inline namespace literals
     void
     stroke_immediate(const surface& s,
 		     const matrix_2d& m,
-		     std::error_code& ec,
+		     std::error_code& __ec,
 		     extend e = extend::none,
 		     filter f = filter::good) noexcept;
 
@@ -3801,7 +3859,7 @@ inline namespace literals
 
     void
     mask(const experimental::io2d::brush& mb,
-	 std::error_code& ec) noexcept;
+	 std::error_code& __ec) noexcept;
 
     void
     mask(const experimental::io2d::brush& mb,
@@ -3810,7 +3868,7 @@ inline namespace literals
     void
     mask(const experimental::io2d::brush& mb,
 	 const rgba_color& c,
-	 std::error_code& ec) noexcept;
+	 std::error_code& __ec) noexcept;
 
     void
     mask(const experimental::io2d::brush& mb,
@@ -3819,7 +3877,7 @@ inline namespace literals
     void
     mask(const experimental::io2d::brush& mb,
 	 const experimental::io2d::brush& b,
-	 std::error_code& ec) noexcept;
+	 std::error_code& __ec) noexcept;
 
     void
     mask(const experimental::io2d::brush& mb,
@@ -3831,7 +3889,7 @@ inline namespace literals
     void
     mask(const experimental::io2d::brush& mb,
 	 const surface& s,
-	 std::error_code& ec,
+	 std::error_code& __ec,
 	 const vector_2d& o = vector_2d{ },
 	 extend e = extend::none,
 	 filter f = filter::good) noexcept;
@@ -3846,7 +3904,7 @@ inline namespace literals
     void
     mask(const experimental::io2d::brush& mb,
     const surface& s,
-	 const matrix_2d& m, std::error_code& ec,
+	 const matrix_2d& m, std::error_code& __ec,
 	 extend e = extend::none,
 	 filter f = filter::good) noexcept;
 
@@ -3855,7 +3913,7 @@ inline namespace literals
 
     void
     mask(const surface& ms,
-	 std::error_code& ec) noexcept;
+	 std::error_code& __ec) noexcept;
 
     void
     mask(const surface& ms,
@@ -3863,7 +3921,7 @@ inline namespace literals
 
     void
     mask(const surface& ms,
-	 const rgba_color& c, std::error_code& ec) noexcept;
+	 const rgba_color& c, std::error_code& __ec) noexcept;
 
     void
     mask(const surface& ms,
@@ -3872,7 +3930,7 @@ inline namespace literals
     void
     mask(const surface& ms,
 	 const experimental::io2d::brush& b,
-	 std::error_code& ec) noexcept;
+	 std::error_code& __ec) noexcept;
 
     void
     mask(const surface& ms,
@@ -3884,7 +3942,7 @@ inline namespace literals
     void
     mask(const surface& ms,
 	 const surface& s,
-	 std::error_code& ec,
+	 std::error_code& __ec,
 	 const vector_2d& o = vector_2d{ },
 	 extend e = extend::none,
 	 filter f = filter::good) noexcept;
@@ -3900,7 +3958,7 @@ inline namespace literals
     mask(const surface& ms,
 	 const surface& s,
 	 const matrix_2d& m,
-	 std::error_code& ec,
+	 std::error_code& __ec,
 	 extend e = extend::none,
 	 filter f = filter::good) noexcept;
 
@@ -3911,7 +3969,7 @@ inline namespace literals
     void
     mask(const surface& ms,
 	 const vector_2d& mo,
-	 std::error_code& ec) noexcept;
+	 std::error_code& __ec) noexcept;
 
     void
     mask(const surface& ms,
@@ -3922,7 +3980,7 @@ inline namespace literals
     mask(const surface& ms,
 	 const vector_2d& mo,
 	 const rgba_color& c,
-	 std::error_code& ec) noexcept;
+	 std::error_code& __ec) noexcept;
 
     void
     mask(const surface& ms,
@@ -3933,7 +3991,7 @@ inline namespace literals
     mask(const surface& ms,
 	 const vector_2d& mo,
 	 const experimental::io2d::brush& b,
-	 std::error_code& ec) noexcept;
+	 std::error_code& __ec) noexcept;
 
     void
     mask(const surface& ms,
@@ -3947,7 +4005,7 @@ inline namespace literals
     mask(const surface& ms,
 	 const vector_2d& mo,
 	 const surface& s,
-	 std::error_code& ec,
+	 std::error_code& __ec,
 	 const vector_2d& o = vector_2d{ },
 	 extend e = extend::none,
 	 filter f = filter::good) noexcept;
@@ -3965,7 +4023,7 @@ inline namespace literals
 	 const vector_2d& mo,
 	 const surface& s,
 	 const matrix_2d& m,
-	 std::error_code& ec,
+	 std::error_code& __ec,
 	 extend e = extend::none,
 	 filter f = filter::good) noexcept;
 
@@ -3974,7 +4032,7 @@ inline namespace literals
 
     void
     mask_immediate(const experimental::io2d::brush& mb,
-		   std::error_code& ec) noexcept;
+		   std::error_code& __ec) noexcept;
 
     void
     mask_immediate(const experimental::io2d::brush& mb,
@@ -3982,7 +4040,7 @@ inline namespace literals
 
     void
     mask_immediate(const experimental::io2d::brush& mb,
-		   const rgba_color& c, std::error_code& ec) noexcept;
+		   const rgba_color& c, std::error_code& __ec) noexcept;
 
     void
     mask_immediate(const experimental::io2d::brush& mb,
@@ -3991,7 +4049,7 @@ inline namespace literals
     void
     mask_immediate(const experimental::io2d::brush& mb,
 		   const experimental::io2d::brush& b,
-		   std::error_code& ec) noexcept;
+		   std::error_code& __ec) noexcept;
 
     void
     mask_immediate(const experimental::io2d::brush& mb,
@@ -4003,7 +4061,7 @@ inline namespace literals
     void
     mask_immediate(const experimental::io2d::brush& mb,
     const surface& s,
-		   std::error_code& ec,
+		   std::error_code& __ec,
 		   const vector_2d& o = vector_2d{ },
 		   extend e = extend::none,
 		   filter f = filter::good) noexcept;
@@ -4019,7 +4077,7 @@ inline namespace literals
     mask_immediate(const experimental::io2d::brush& mb,
     const surface& s,
 		   const matrix_2d& m,
-		   std::error_code& ec,
+		   std::error_code& __ec,
 		   extend e = extend::none,
 		   filter f = filter::good) noexcept;
 
@@ -4028,7 +4086,7 @@ inline namespace literals
 
     void
     mask_immediate(const surface& ms,
-		   std::error_code& ec) noexcept;
+		   std::error_code& __ec) noexcept;
 
     void
     mask_immediate(const surface& ms,
@@ -4037,7 +4095,7 @@ inline namespace literals
     void
     mask_immediate(const surface& ms,
 		   const rgba_color& c,
-		   std::error_code& ec) noexcept;
+		   std::error_code& __ec) noexcept;
 
     void
     mask_immediate(const surface& ms,
@@ -4046,7 +4104,7 @@ inline namespace literals
     void
     mask_immediate(const surface& ms,
 		   const experimental::io2d::brush& b,
-		   std::error_code& ec) noexcept;
+		   std::error_code& __ec) noexcept;
 
     void
     mask_immediate(const surface& ms,
@@ -4058,7 +4116,7 @@ inline namespace literals
     void
     mask_immediate(const surface& ms,
 		   const surface& s,
-		   std::error_code& ec,
+		   std::error_code& __ec,
 		   const vector_2d& o = vector_2d{ },
 		   extend e = extend::none,
 		   filter f = filter::good) noexcept;
@@ -4074,7 +4132,7 @@ inline namespace literals
     mask_immediate(const surface& ms,
 		   const surface& s,
 		   const matrix_2d& m,
-		   std::error_code& ec,
+		   std::error_code& __ec,
 		   extend e = extend::none,
 		   filter f = filter::good) noexcept;
 
@@ -4085,7 +4143,7 @@ inline namespace literals
     void
     mask_immediate(const surface& ms,
 		   const vector_2d& mo,
-		   std::error_code& ec) noexcept;
+		   std::error_code& __ec) noexcept;
 
     void
     mask_immediate(const surface& ms,
@@ -4096,7 +4154,7 @@ inline namespace literals
     mask_immediate(const surface& ms,
 		   const vector_2d& mo,
 		   const rgba_color& c,
-		   std::error_code& ec) noexcept;
+		   std::error_code& __ec) noexcept;
 
     void
     mask_immediate(const surface& ms,
@@ -4107,7 +4165,7 @@ inline namespace literals
     mask_immediate(const surface& ms,
 		   const vector_2d& mo,
 		   const experimental::io2d::brush& b,
-		   std::error_code& ec) noexcept;
+		   std::error_code& __ec) noexcept;
 
     void
     mask_immediate(const surface& ms,
@@ -4121,7 +4179,7 @@ inline namespace literals
     mask_immediate(const surface& ms,
 		   const vector_2d& mo,
 		   const surface& s,
-		   std::error_code& ec,
+		   std::error_code& __ec,
 		   const vector_2d& o = vector_2d{ },
 		   extend e = extend::none,
 		   filter f = filter::good) noexcept;
@@ -4138,7 +4196,7 @@ inline namespace literals
     mask_immediate(const surface& ms,
 		   const vector_2d& mo,
 		   const surface& s,
-		   const matrix_2d& m, std::error_code& ec,
+		   const matrix_2d& m, std::error_code& __ec,
 		   extend e = extend::none,
 		   filter f = filter::good) noexcept;
 
@@ -4151,7 +4209,7 @@ inline namespace literals
     vector_2d
     render_text(const string& utf8,
 		const vector_2d& pos,
-		std::error_code& ec) noexcept;
+		std::error_code& __ec) noexcept;
 
     vector_2d
     render_text(const string& utf8,
@@ -4162,7 +4220,7 @@ inline namespace literals
     render_text(const string& utf8,
 		const vector_2d& pos,
 		const rgba_color& c,
-		std::error_code& ec) noexcept;
+		std::error_code& __ec) noexcept;
 
     vector_2d
     render_text(const string& utf8,
@@ -4173,7 +4231,7 @@ inline namespace literals
     render_text(const string& utf8,
 		const vector_2d& pos,
 		const experimental::io2d::brush& b,
-		std::error_code& ec) noexcept;
+		std::error_code& __ec) noexcept;
 
     vector_2d
     render_text(const string& utf8,
@@ -4187,7 +4245,7 @@ inline namespace literals
     render_text(const string& utf8,
 		const vector_2d& pos,
 		const surface& s,
-		std::error_code& ec,
+		std::error_code& __ec,
 		const vector_2d& o = vector_2d{ },
 		extend e = extend::none,
 		filter f = filter::good) noexcept;
@@ -4203,7 +4261,7 @@ inline namespace literals
     render_text(const string& utf8,
 		const vector_2d& pos,
 		const surface& s, const matrix_2d& m,
-		std::error_code& ec,
+		std::error_code& __ec,
 		extend e = extend::none,
 		filter f = filter::good) noexcept;
 
@@ -4214,7 +4272,7 @@ inline namespace literals
 
     void
     matrix(const matrix_2d& matrix,
-	   std::error_code& ec) noexcept;
+	   std::error_code& __ec) noexcept;
 
     // font modifiers:
 
@@ -4225,14 +4283,14 @@ inline namespace literals
     void
     font_face(const string& typeface,
 	      font_slant sl, font_weight w,
-	      std::error_code& ec) noexcept;
+	      std::error_code& __ec) noexcept;
 
     void
     font_face(const experimental::io2d::font_face& f);
 
     void
     font_face(const experimental::io2d::font_face& f,
-	      std::error_code& ec) noexcept;
+	      std::error_code& __ec) noexcept;
 
     void
     font_size(double s) noexcept;
@@ -4242,7 +4300,7 @@ inline namespace literals
 
     void
     font_matrix(const matrix_2d& m,
-		std::error_code& ec) noexcept;
+		std::error_code& __ec) noexcept;
 
     void
     font_options(const font_options& fo) noexcept;
@@ -4265,7 +4323,7 @@ inline namespace literals
     dashes() const;
 
     experimental::io2d::dashes
-    dashes(std::error_code& ec) const noexcept;
+    dashes(std::error_code& __ec) const noexcept;
 
     experimental::io2d::fill_rule
     fill_rule() const noexcept;
@@ -4295,7 +4353,7 @@ inline namespace literals
     clip_rectangles() const;
 
     std::vector<rectangle>
-    clip_rectangles(std::error_code& ec) const noexcept;
+    clip_rectangles(std::error_code& __ec) const noexcept;
 
     // render observers:
 
@@ -4306,7 +4364,7 @@ inline namespace literals
     fill_extents_immediate() const;
 
     rectangle
-    fill_extents_immediate(std::error_code& ec) const noexcept;
+    fill_extents_immediate(std::error_code& __ec) const noexcept;
 
     bool
     in_fill(const vector_2d& pt) const noexcept;
@@ -4316,7 +4374,7 @@ inline namespace literals
 
     bool
     in_fill_immediate(const vector_2d& pt,
-		      std::error_code& ec) const noexcept;
+		      std::error_code& __ec) const noexcept;
 
     rectangle
     stroke_extents() const noexcept;
@@ -4325,7 +4383,7 @@ inline namespace literals
     stroke_extents_immediate() const;
 
     rectangle
-    stroke_extents_immediate(std::error_code& ec) const noexcept;
+    stroke_extents_immediate(std::error_code& __ec) const noexcept;
 
     bool
     in_stroke(const vector_2d& pt) const noexcept;
@@ -4335,7 +4393,7 @@ inline namespace literals
 
     bool
     in_stroke_immediate(const vector_2d& pt,
-			std::error_code& ec) const noexcept;
+			std::error_code& __ec) const noexcept;
  
     experimental::io2d::font_extents
     font_extents() const noexcept;
@@ -4345,7 +4403,7 @@ inline namespace literals
 
     experimental::io2d::text_extents
     text_extents(const string& utf8,
-		 std::error_code& ec) const noexcept;
+		 std::error_code& __ec) const noexcept;
 
     // transformation observers:
 
@@ -4376,7 +4434,7 @@ inline namespace literals
     font_face() const;
 
     experimental::io2d::font_face
-    font_face(std::error_code& ec) const noexcept;
+    font_face(std::error_code& __ec) const noexcept;
 };
 
   /**
@@ -4406,7 +4464,7 @@ inline namespace literals
 
     image_surface(experimental::io2d::format fmt,
 		  int width, int height,
-		  std::error_code& ec) noexcept;
+		  std::error_code& __ec) noexcept;
 
     image_surface(vector<unsigned char>& data,
 		  experimental::io2d::format fmt,
@@ -4414,7 +4472,7 @@ inline namespace literals
 
     image_surface(vector<unsigned char>& data,
 		  experimental::io2d::format fmt,
-		  int width, int height, std::error_code& ec) noexcept;
+		  int width, int height, std::error_code& __ec) noexcept;
 
     virtual ~image_surface();
 
@@ -4424,13 +4482,13 @@ inline namespace literals
     data(const std::vector<unsigned char>& data);
 
     void
-    data(const std::vector<unsigned char>& data, std::error_code& ec) noexcept;
+    data(const std::vector<unsigned char>& data, std::error_code& __ec) noexcept;
 
     std::vector<unsigned char>
     data();
 
     std::vector<unsigned char>
-    data(std::error_code& ec) noexcept;
+    data(std::error_code& __ec) noexcept;
 
     // observers:
 
@@ -4477,7 +4535,7 @@ inline namespace literals
     display_surface(int preferredWidth,
 		    int preferredHeight,
 		    experimental::io2d::format preferredFormat,
-		    std::error_code& ec,
+		    std::error_code& __ec,
 		    experimental::io2d::scaling scl = experimental::io2d::scaling::letterbox) noexcept;
 
     display_surface(int preferredWidth,
@@ -4492,7 +4550,7 @@ inline namespace literals
 		    experimental::io2d::format preferredFormat,
 		    int preferredDisplayWidth,
 		    int preferredDisplayHeight,
-		    std::error_code& ec,
+		    std::error_code& __ec,
 		    experimental::io2d::scaling scl = experimental::io2d::scaling::letterbox) noexcept;
 
     virtual ~display_surface();
@@ -4503,13 +4561,13 @@ inline namespace literals
     save() override;
 
     virtual void
-    save(std::error_code& ec) noexcept override;
+    save(std::error_code& __ec) noexcept override;
 
     virtual void
     restore() override;
 
     virtual void
-    restore(std::error_code& ec) noexcept override;
+    restore(std::error_code& __ec) noexcept override;
 
     void
     draw_callback(const std::function<void(display_surface& sfc)>& fn) noexcept;
@@ -4521,37 +4579,37 @@ inline namespace literals
     width(int w);
 
     void
-    width(int w, std::error_code& ec) noexcept;
+    width(int w, std::error_code& __ec) noexcept;
 
     void
     height(int h);
 
     void
-    height(int h, std::error_code& ec) noexcept;
+    height(int h, std::error_code& __ec) noexcept;
 
     void
     display_width(int w);
 
     void
-    display_width(int w, std::error_code& ec) noexcept;
+    display_width(int w, std::error_code& __ec) noexcept;
 
     void
     display_height(int h);
 
     void
-    display_height(int h, std::error_code& ec) noexcept;
+    display_height(int h, std::error_code& __ec) noexcept;
 
     void
     dimensions(int w, int h);
 
     void
-    dimensions(int w, int h, std::error_code& ec) noexcept;
+    dimensions(int w, int h, std::error_code& __ec) noexcept;
 
     void
     display_dimensions(int dw, int dh);
 
     void
-    display_dimensions(int dw, int dh, std::error_code& ec) noexcept;
+    display_dimensions(int dw, int dh, std::error_code& __ec) noexcept;
 
     void
     scaling(experimental::io2d::scaling scl) noexcept;
@@ -4567,13 +4625,13 @@ inline namespace literals
     letterbox_brush(const rgba_color& c);
 
     void
-    letterbox_brush(const rgba_color& c, std::error_code& ec) noexcept;
+    letterbox_brush(const rgba_color& c, std::error_code& __ec) noexcept;
 
     void
     letterbox_brush(const experimental::io2d::brush& b);
 
     void
-    letterbox_brush(const experimental::io2d::brush& b, std::error_code& ec) noexcept;
+    letterbox_brush(const experimental::io2d::brush& b, std::error_code& __ec) noexcept;
 
     void
     auto_clear(bool val) noexcept;
@@ -4582,13 +4640,13 @@ inline namespace literals
     show();
 
     int
-    show(std::error_code& ec);
+    show(std::error_code& __ec);
 
     void
     exit_show(int milliseconds);
 
     void
-    exit_show(int milliseconds, std::error_code& ec);
+    exit_show(int milliseconds, std::error_code& __ec);
 
     // observers:
 
@@ -4620,7 +4678,7 @@ inline namespace literals
     user_scaling_callback() const;
 
     std::function<experimental::io2d::rectangle(const display_surface&, bool&)>
-    user_scaling_callback(std::error_code& ec) const noexcept;
+    user_scaling_callback(std::error_code& __ec) const noexcept;
 
     experimental::io2d::brush
     letterbox_brush() const noexcept;
@@ -4656,19 +4714,19 @@ inline namespace literals
     commit_changes();
 
     void
-    commit_changes(std::error_code& ec) noexcept;
+    commit_changes(std::error_code& __ec) noexcept;
 
     void
     commit_changes(const rectangle& area);
 
     void
-    commit_changes(const rectangle& area, std::error_code& ec) noexcept;
+    commit_changes(const rectangle& area, std::error_code& __ec) noexcept;
 
     unsigned char*
     data();
 
     unsigned char*
-    data(std::error_code& ec) noexcept;
+    data(std::error_code& __ec) noexcept;
 
     // observers:
 
@@ -4676,7 +4734,7 @@ inline namespace literals
     data() const;
 
     const unsigned char*
-    data(std::error_code& ec) const noexcept;
+    data(std::error_code& __ec) const noexcept;
 
     experimental::io2d::format
     format() const noexcept;
@@ -4707,7 +4765,7 @@ inline namespace literals
   make_display_surface(int preferredWidth,
 		       int preferredHeight,
 		       format preferredFormat,
-		       std::error_code& ec,
+		       std::error_code& __ec,
 		       scaling scl = scaling::letterbox) noexcept;
 
   display_surface
@@ -4724,7 +4782,7 @@ inline namespace literals
 		       format preferredFormat,
 		       int preferredDisplayWidth,
 		       int preferredDisplayHeight,
-		       std::error_code& ec,
+		       std::error_code& __ec,
 		       scaling scl = scaling::letterbox) noexcept;
 
   image_surface
@@ -4734,7 +4792,7 @@ inline namespace literals
 
   image_surface
   make_image_surface(format format, int width, int height,
-		     std::error_code& ec) noexcept;
+		     std::error_code& __ec) noexcept;
 
 } // inline namespace v1
 } // namespace io2d
