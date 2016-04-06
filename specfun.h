@@ -212,7 +212,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Beta functions
 
   /**
-   * Return the beta function, \f$B(a,b)\f$, for @c float parameters @c a, @c b.
+   * Return the beta function, @f$B(a,b)@f$, for @c float parameters @c a, @c b.
    *
    * @see beta for more details.
    */
@@ -221,7 +221,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__beta<float>(__a, __b); }
 
   /**
-   * Return the beta function, \f$B(a,b)\f$, for long double
+   * Return the beta function, @f$B(a,b)@f$, for long double
    * parameters @c a, @c b.
    *
    * @see beta for more details.
@@ -231,7 +231,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__beta<long double>(__a, __b); }
 
   /**
-   * Return the beta function, \f$B(a,b)\f$, for real parameters @c a, @c b.
+   * Return the beta function, @f$B(a,b)@f$, for real parameters @c a, @c b.
    *
    * The beta function is defined by
    * @f[
@@ -382,8 +382,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Regular modified cylindrical Bessel functions
 
   /**
-   * Return the regular modified Bessel function \f$ I_{\nu}(x) \f$
-   * of @c float order \f$ \nu \f$ and argument f$ x \f$.
+   * Return the regular modified Bessel function @f$ I_{\nu}(x) @f$
+   * of @c float order @f$ \nu @f$ and argument @f$ x @f$.
    *
    * @see cyl_bessel_i for setails.
    */
@@ -392,8 +392,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__cyl_bessel_i<float>(__nu, __x); }
 
   /**
-   * Return the regular modified Bessel function \f$ I_{\nu}(x) \f$
-   * of @c long double order \f$ \nu \f$ and argument f$ x \f$.
+   * Return the regular modified Bessel function @f$ I_{\nu}(x) @f$
+   * of @c long double order @f$ \nu @f$ and argument @f$ x @f$.
    *
    * @see cyl_bessel_i for setails.
    */
@@ -402,8 +402,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__cyl_bessel_i<long double>(__nu, __x); }
 
   /**
-   * Return the regular modified Bessel function \f$ I_{\nu}(x) \f$
-   * of real order \f$ \nu \f$ and argument f$ x \f$.
+   * Return the regular modified Bessel function @f$ I_{\nu}(x) @f$
+   * of real order @f$ \nu @f$ and argument @f$ x @f$.
    *
    * The regular modified cylindrical Bessel function is:
    * @f[
@@ -425,8 +425,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Cylindrical Bessel functions (of the first kind)
 
   /**
-   * Return the Bessel function of the first kind \f$ J_{\nu}(x) \f$
-   * of @c float order \f$ \nu \f$ and argument \f$ x \f$.
+   * Return the Bessel function of the first kind @f$ J_{\nu}(x) @f$
+   * of @c float order @f$ \nu @f$ and argument @f$ x @f$.
    *
    * @see cyl_bessel_j for setails.
    */
@@ -435,8 +435,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__cyl_bessel_j<float>(__nu, __x); }
 
   /**
-   * Return the Bessel function of the first kind \f$ J_{\nu}(x) \f$
-   * of @c long double order \f$ \nu \f$ and argument \f$ x \f$.
+   * Return the Bessel function of the first kind @f$ J_{\nu}(x) @f$
+   * of @c long double order @f$ \nu @f$ and argument @f$ x @f$.
    *
    * @see cyl_bessel_j for setails.
    */
@@ -468,8 +468,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Irregular modified cylindrical Bessel functions
 
   /**
-   * Return the irregular modified Bessel function \f$ K_{\nu}(x) \f$
-   * of @c float order \f$ \nu \f$ for @c and argument \f$ x \f$.
+   * Return the irregular modified Bessel function @f$ K_{\nu}(x) @f$
+   * of @c float order @f$ \nu @f$ for @c and argument @f$ x @f$.
    *
    * @see cyl_bessel_k for setails.
    */
@@ -478,8 +478,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__cyl_bessel_k<float>(__nu, __x); }
 
   /**
-   * Return the irregular modified Bessel function \f$ K_{\nu}(x) \f$
-   * of @c long double order \f$ \nu \f$ for @c and argument \f$ x \f$.
+   * Return the irregular modified Bessel function @f$ K_{\nu}(x) @f$
+   * of @c long double order @f$ \nu @f$ for @c and argument @f$ x @f$.
    *
    * @see cyl_bessel_k for setails.
    */
@@ -488,16 +488,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__cyl_bessel_k<long double>(__nu, __x); }
 
   /**
-   * Return the irregular modified Bessel function \f$ K_{\nu}(x) \f$
-   * of real order \f$ \nu \f$ and argument \f$ x \f$.
+   * Return the irregular modified Bessel function @f$ K_{\nu}(x) @f$
+   * of real order @f$ \nu @f$ and argument @f$ x @f$.
    *
    * The irregular modified Bessel function is defined by:
    * @f[
    * 	K_{\nu}(x) = \frac{\pi}{2}
    * 		     \frac{I_{-\nu}(x) - I_{\nu}(x)}{\sin \nu\pi}
    * @f]
-   * where for integral \f$ \nu = n \f$ a limit is taken:
-   * \f$ lim_{\nu \to n} \f$.
+   * where for integral @f$ \nu = n @f$ a limit is taken:
+   * @f$ lim_{\nu \to n} @f$.
    * For negative argument we have simply:
    * @f[
    * 	K_{-\nu}(x) = K_{\nu}(x)
