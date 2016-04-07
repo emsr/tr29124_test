@@ -1,6 +1,11 @@
 var NAVTREE =
 [
   [ "TR29124 C++ Special Math Functions", "index.html", [
+    [ "Mathematical Special Functions", "index.html", [
+      [ "Intro", "index.html#Intro", null ],
+      [ "Implementation", "index.html#Implementation", null ],
+      [ "Bibliography", "index.html#Bibliography", null ]
+    ] ],
     [ "Todo List", "todo.html", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", null, [
@@ -34,9 +39,9 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "group__gnu__math__spec__func.html#gad7e60d39a8b57a427eb8ca31c8d09e10",
-"sf__expint_8tcc.html#a0282700710ec07b8ca095fe2ec140d6e",
-"sf__zeta_8tcc.html#a5083a0c9fce3299593ca22e7dbaeaf19",
-"specfun_8h.html#gaa745d7f2edde060ed2f22817ad89df1f"
+"sf__ellint_8tcc.html#add5220a1ab03915e4a45dc547bb8eef6",
+"sf__zeta_8tcc.html#a23ad81fae0dc2d916125d596553c5dfc",
+"specfun_8h.html#gaa3d0b9a177eb6666b6fbfa85d85650d0"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
