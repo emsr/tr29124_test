@@ -133,7 +133,7 @@ var searchData=
   ['_5f_5fhankel_5funiform_5fouter',['__hankel_uniform_outer',['../namespacestd_1_1____detail.html#a099751f2a153283d91f19d6efa52117a',1,'std::__detail']]],
   ['_5f_5fhankel_5funiform_5fsum',['__hankel_uniform_sum',['../namespacestd_1_1____detail.html#a561dc02bc44b2dba376d6047289563c7',1,'std::__detail']]],
   ['_5f_5fheuman_5flambda',['__heuman_lambda',['../namespacestd_1_1____detail.html#a90938823a16cabc06031ebf209066a94',1,'std::__detail']]],
-  ['_5f_5fhurwitz_5fzeta',['__hurwitz_zeta',['../namespacestd_1_1____detail.html#a63aafed798ada71b2cc58e84a6652169',1,'std::__detail']]],
+  ['_5f_5fhurwitz_5fzeta',['__hurwitz_zeta',['../namespacestd_1_1____detail.html#a8381d5cd047b45387ab2d0ef3591171c',1,'std::__detail::__hurwitz_zeta(const _Tp __s, std::complex&lt; _Tp &gt; __a)'],['../namespacestd_1_1____detail.html#a63aafed798ada71b2cc58e84a6652169',1,'std::__detail::__hurwitz_zeta(_Tp __s, _Tp __a)']]],
   ['_5f_5fhurwitz_5fzeta_5feuler_5fmaclaurin',['__hurwitz_zeta_euler_maclaurin',['../namespacestd_1_1____detail.html#a56c55858723fe9e0c541f0e77572b58d',1,'std::__detail']]],
   ['_5f_5fhydrogen',['__hydrogen',['../namespacestd_1_1____detail.html#af8bd1ad6980e19dce3ee9eb518bc90fa',1,'std::__detail']]],
   ['_5f_5fhyperg',['__hyperg',['../namespacestd_1_1____detail.html#a316589a60d5e5f50201c2d42b980678c',1,'std::__detail']]],

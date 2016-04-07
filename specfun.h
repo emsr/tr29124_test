@@ -100,14 +100,6 @@ namespace std _GLIBCXX_VISIBILITY(default)
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   * @defgroup tr29124_math_spec_func Mathematical Special Functions
-   * @ingroup numerics
-   *
-   * A collection of advanced mathematical special functions.
-   * @{
-   */
-
-  /**
    * @mainpage Mathematical Special Functions
    *
    * @section Intro
@@ -141,6 +133,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @see An Atlas of Functions: with Equator, the Atlas Function Calculator
    * 2nd Edition, by Oldham, Keith B., Myland, Jan, Spanier, Jerome
+   */
+
+  /**
+   * @defgroup tr29124_math_spec_func Mathematical Special Functions
+   * @ingroup numerics
+   *
+   * A collection of advanced mathematical special functions.
+   * @{
    */
 
   // Associated Laguerre polynomials

@@ -20,6 +20,7 @@ var sf__polylog_8tcc =
     [ "__fpimag", "sf__polylog_8tcc.html#a962bc8055b3948b6e2bebf34f86d9263", null ],
     [ "__fpreal", "sf__polylog_8tcc.html#ab78bb436e256ef9a3f64fa2a1ce25fb1", null ],
     [ "__fpreal", "sf__polylog_8tcc.html#a52087623539a401ded28ef1ca8fbcd04", null ],
+    [ "__hurwitz_zeta", "sf__polylog_8tcc.html#a8381d5cd047b45387ab2d0ef3591171c", null ],
     [ "__polylog", "sf__polylog_8tcc.html#a17fb8cea11706f319aaea277188a29c8", null ],
     [ "__polylog", "sf__polylog_8tcc.html#aa14e3ca6e4bee5ac1f1e5e1c2cee1d5a", null ],
     [ "__polylog_exp", "sf__polylog_8tcc.html#ad01c033a96c9f185216d6c9f9db49c99", null ],

@@ -49,7 +49,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  
+   * Compute the Debye region in te complex plane.
    */
   template<typename _Tp>
     void
@@ -103,9 +103,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief Compute parameters depending on z and nu that appear
-   *  in the uniform asymptotic expansions of the Hankel functions
-   *  and their derivatives, except the arguments to the Airy functions.
+   * @brief Compute parameters depending on z and nu that appear
+   * in the uniform asymptotic expansions of the Hankel functions
+   * and their derivatives, except the arguments to the Airy functions.
    */
   template<typename _Tp>
     void
@@ -200,17 +200,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief Compute the arguments for the Airy function evaluations
-   *  carefully to prevent premature overflow.  Note that the
-   *  major work here is in @c safe_div.  A faster, but less safe
-   *  implementation can be obtained without use of safe_div.
+   * @brief Compute the arguments for the Airy function evaluations
+   * carefully to prevent premature overflow.  Note that the
+   * major work here is in @c safe_div.  A faster, but less safe
+   * implementation can be obtained without use of safe_div.
    *
-   *  @param[in]  num2d3  nu^(-2/3) - output from hankel_params.
-   *  @param[in]  zeta    zeta in the uniform asymptotic expansions - output
-   *			  from hankel_params.
-   *  @param[out]  argp  exp(+2*pi*i/3) * nu^(2/3) * zeta.
-   *  @param[out]  argm  exp(-2*pi*i/3) * nu^(2/3) * zeta.
-   *  @throws  std::runtime_error.
+   * @param[in] __num2d3 nu^(-2/3) - output from hankel_params.
+   * @param[in] __zeta   zeta in the uniform asymptotic expansions - output
+   *    		 from hankel_params.
+   * @param[out] __argp exp(+2*pi*i/3) * nu^(2/3) * zeta.
+   * @param[out] __argm exp(-2*pi*i/3) * nu^(2/3) * zeta.
+   * @throws std::runtime_error.
    */
   template<typename _Tp>
     void
@@ -235,11 +235,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief Compute outer factors and associated functions of @c z and @c nu
-   *  appearing in Olver's uniform asymptotic expansions of the
-   *  Hankel functions of the first and second kinds and their derivatives.
-   *  The various functions of z and nu returned by @c hankel_uniform_outer
-   *  are available for use in computing further terms in the expansions.
+   * @brief Compute outer factors and associated functions of @c z and @c nu
+   * appearing in Olver's uniform asymptotic expansions of the
+   * Hankel functions of the first and second kinds and their derivatives.
+   * The various functions of z and nu returned by @c hankel_uniform_outer
+   * are available for use in computing further terms in the expansions.
    */
   template<typename _Tp>
     void
@@ -292,15 +292,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief Compute the sums in appropriate linear combinations appearing
-   *  in Olver's uniform asymptotic expansions for the Hankel functions
-   *  of the first and second kinds and their derivatives, using up to
-   *  nterms (less than 5) to achieve relative error @c eps.
+   * @brief Compute the sums in appropriate linear combinations appearing
+   * in Olver's uniform asymptotic expansions for the Hankel functions
+   * of the first and second kinds and their derivatives, using up to
+   * nterms (less than 5) to achieve relative error @c eps.
    *
-   *  @param[out] H1  The Hankel function of the first kind.
-   *  @param[out] H1p The derivative of the Hankel function of the first kind.
-   *  @param[out] H2  The Hankel function of the second kind.
-   *  @param[out] H2p The derivative of the Hankel function of the second kind.
+   * @param[out] _H1sum  The Hankel function of the first kind.
+   * @param[out] _H1psum The derivative of the Hankel function of the first kind.
+   * @param[out] _H2sum  The Hankel function of the second kind.
+   * @param[out] _H2psum The derivative of the Hankel function of the second kind.
    */
   template<typename _Tp>
     void
@@ -740,16 +740,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief Compute approximate values for the Hankel functions
-   *  of the first and second kinds using Olver's uniform asymptotic
-   *  expansion to of order @c nu along with their derivatives.
+   * @brief Compute approximate values for the Hankel functions
+   * of the first and second kinds using Olver's uniform asymptotic
+   * expansion to of order @c nu along with their derivatives.
    *
-   *  @param[in]  nu  The order for which the Hankel functions are evaluated.
-   *  @param[in]  z   The argument at which the Hankel functions are evaluated.
-   *  @param[out] H1  The Hankel function of the first kind.
-   *  @param[out] H1p The derivative of the Hankel function of the first kind.
-   *  @param[out] H2  The Hankel function of the second kind.
-   *  @param[out] H2p The derivative of the Hankel function of the second kind.
+   * @param[in]  __nu The order for which the Hankel functions are evaluated.
+   * @param[in]  __z  The argument at which the Hankel functions are evaluated.
+   * @param[out] _H1  The Hankel function of the first kind.
+   * @param[out] _H1p The derivative of the Hankel function of the first kind.
+   * @param[out] _H2  The Hankel function of the second kind.
+   * @param[out] _H2p The derivative of the Hankel function of the second kind.
    */
   template<typename _Tp>
     void
@@ -822,21 +822,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief
-   *  This routine computes the uniform asymptotic approximations
-   *  of the Hankel functions and their derivatives including a patch
-   *  for the case when the order equals or nearly equals the argument.
-   *  At such points, Olver's expressions have zero denominators (and
-   *  numerators) resulting in numerical problems.  This routine
-   *  averages results from four surrounding points in the complex plane
-   *  to obtain the result in such cases.
+   * @brief This routine computes the uniform asymptotic approximations
+   * of the Hankel functions and their derivatives including a patch
+   * for the case when the order equals or nearly equals the argument.
+   * At such points, Olver's expressions have zero denominators (and
+   * numerators) resulting in numerical problems.  This routine
+   * averages results from four surrounding points in the complex plane
+   * to obtain the result in such cases.
    *
-   *  @param[in]  nu  The order for which the Hankel functions are evaluated.
-   *  @param[in]  z   The argument at which the Hankel functions are evaluated.
-   *  @param[out] H1  The Hankel function of the first kind.
-   *  @param[out] H1p The derivative of the Hankel function of the first kind.
-   *  @param[out] H2  The Hankel function of the second kind.
-   *  @param[out] H2p The derivative of the Hankel function of the second kind.
+   * @param[in]  __nu The order for which the Hankel functions are evaluated.
+   * @param[in]  __z  The argument at which the Hankel functions are evaluated.
+   * @param[out] _H1  The Hankel function of the first kind.
+   * @param[out] _H1p The derivative of the Hankel function of the first kind.
+   * @param[out] _H2  The Hankel function of the second kind.
+   * @param[out] _H2p The derivative of the Hankel function of the second kind.
    */
   template<typename _Tp>
     void
@@ -882,12 +881,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *
-   *  @param[in]  nu  The order for which the Hankel functions are evaluated.
-   *  @param[in]  z   The argument at which the Hankel functions are evaluated.
-   *  @param[out] H1  The Hankel function of the first kind.
-   *  @param[out] H1p The derivative of the Hankel function of the first kind.
-   *  @param[out] H2  The Hankel function of the second kind.
-   *  @param[out] H2p The derivative of the Hankel function of the second kind.
+   * @param[in]  __nu The order for which the Hankel functions are evaluated.
+   * @param[in]  __z  The argument at which the Hankel functions are evaluated.
+   * @param[in] __alpha
+   * @param[in] __indexr
+   * @param[out] __aorb
+   * @param[out] __morn
+   * @param[out] _H1  The Hankel function of the first kind.
+   * @param[out] _H1p The derivative of the Hankel function of the first kind.
+   * @param[out] _H2  The Hankel function of the second kind.
+   * @param[out] _H2p The derivative of the Hankel function of the second kind.
    */
   template<typename _Tp>
     void
@@ -1050,12 +1053,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *
-   *  @param[in]  nu  The order for which the Hankel functions are evaluated.
-   *  @param[in]  z   The argument at which the Hankel functions are evaluated.
-   *  @param[out] H1  The Hankel function of the first kind.
-   *  @param[out] H1p The derivative of the Hankel function of the first kind.
-   *  @param[out] H2  The Hankel function of the second kind.
-   *  @param[out] H2p The derivative of the Hankel function of the second kind.
+   * @param[in]  __nu  The order for which the Hankel functions are evaluated.
+   * @param[in]  __z   The argument at which the Hankel functions are evaluated.
+   * @param[out] _H1  The Hankel function of the first kind.
+   * @param[out] _H1p The derivative of the Hankel function of the first kind.
+   * @param[out] _H2  The Hankel function of the second kind.
+   * @param[out] _H2p The derivative of the Hankel function of the second kind.
    */
   template<typename _Tp>
     void
@@ -1114,11 +1117,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief  Return the complex cylindrical Hankel function of the first kind.
+   * @brief Return the complex cylindrical Hankel function of the first kind.
    *
-   *  @param[in]  nu  The order for which the cylindrical Hankel function of the first kind is evaluated.
-   *  @param[in]  z   The argument at which the cylindrical Hankel function of the first kind is evaluated.
-   *  @return  The complex cylindrical Hankel function of the first kind.
+   * @param[in] __nu The order for which the cylindrical Hankel function of the first kind is evaluated.
+   * @param[in] __z  The argument at which the cylindrical Hankel function of the first kind is evaluated.
+   * @return The complex cylindrical Hankel function of the first kind.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1130,11 +1133,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief  Return the complex cylindrical Hankel function of the second kind.
+   * @brief Return the complex cylindrical Hankel function of the second kind.
    *
-   *  @param[in]  nu  The order for which the cylindrical Hankel function of the second kind is evaluated.
-   *  @param[in]  z   The argument at which the cylindrical Hankel function of the second kind is evaluated.
-   *  @return  The complex cylindrical Hankel function of the second kind.
+   * @param[in] __nu The order for which the cylindrical Hankel function of the second kind is evaluated.
+   * @param[in] __z  The argument at which the cylindrical Hankel function of the second kind is evaluated.
+   * @return The complex cylindrical Hankel function of the second kind.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1146,11 +1149,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief  Return the complex cylindrical Bessel function.
+   * @brief  Return the complex cylindrical Bessel function.
    *
-   *  @param[in]  nu  The order for which the cylindrical Bessel function is evaluated.
-   *  @param[in]  z   The argument at which the cylindrical Bessel function is evaluated.
-   *  @return  The complex cylindrical Bessel function.
+   * @param[in] __nu The order for which the cylindrical Bessel function is evaluated.
+   * @param[in] __z  The argument at which the cylindrical Bessel function is evaluated.
+   * @return The complex cylindrical Bessel function.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1162,11 +1165,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief  Return the complex cylindrical Neumann function.
+   * @brief  Return the complex cylindrical Neumann function.
    *
-   *  @param[in]  nu  The order for which the cylindrical Neumann function is evaluated.
-   *  @param[in]  z   The argument at which the cylindrical Neumann function is evaluated.
-   *  @return  The complex cylindrical Neumann function.
+   * @param[in] __nu The order for which the cylindrical Neumann function is evaluated.
+   * @param[in] __z  The argument at which the cylindrical Neumann function is evaluated.
+   * @return The complex cylindrical Neumann function.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1178,15 +1181,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief  Helper to compute complex spherical Hankel functions
-   *	      and their derivatives.
+   * @brief  Helper to compute complex spherical Hankel functions
+   *         and their derivatives.
    *
-   *  @param[in]  n  The order for which the spherical Hankel functions are evaluated.
-   *  @param[in]  z  The argument at which the spherical Hankel functions are evaluated.
-   *  @param[out] H1  The spherical Hankel function of the first kind.
-   *  @param[out] H1p The derivative of the spherical Hankel function of the first kind.
-   *  @param[out] H2  The spherical Hankel function of the second kind.
-   *  @param[out] H2p The derivative of the spherical Hankel function of the second kind.
+   * @param[in]  __n  The order for which the spherical Hankel functions are evaluated.
+   * @param[in]  __z  The argument at which the spherical Hankel functions are evaluated.
+   * @param[out] _H1  The spherical Hankel function of the first kind.
+   * @param[out] _H1p The derivative of the spherical Hankel function of the first kind.
+   * @param[out] _H2  The spherical Hankel function of the second kind.
+   * @param[out] _H2p The derivative of the spherical Hankel function of the second kind.
    */
   template<typename _Tp>
     void
@@ -1206,11 +1209,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief  Return the complex spherical Hankel function of the first kind.
+   * @brief  Return the complex spherical Hankel function of the first kind.
    *
-   *  @param[in]  n  The order for which the spherical Hankel function of the first kind is evaluated.
-   *  @param[in]  z  The argument at which the spherical Hankel function of the first kind is evaluated.
-   *  @return  The complex spherical Hankel function of the first kind.
+   * @param[in] __n The order for which the spherical Hankel function of the first kind is evaluated.
+   * @param[in] __z The argument at which the spherical Hankel function of the first kind is evaluated.
+   * @return The complex spherical Hankel function of the first kind.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1222,11 +1225,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief  Return the complex spherical Hankel function of the second kind.
+   * @brief  Return the complex spherical Hankel function of the second kind.
    *
-   *  @param[in]  n  The order for which the spherical Hankel function of the second kind is evaluated.
-   *  @param[in]  z  The argument at which the spherical Hankel function of the second kind is evaluated.
-   *  @return  The complex spherical Hankel function of the second kind.
+   * @param[in] __n The order for which the spherical Hankel function of the second kind is evaluated.
+   * @param[in] __z The argument at which the spherical Hankel function of the second kind is evaluated.
+   * @return The complex spherical Hankel function of the second kind.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1238,11 +1241,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief  Return the complex spherical Bessel function.
+   * @brief  Return the complex spherical Bessel function.
    *
-   *  @param[in]  n  The order for which the spherical Bessel function is evaluated.
-   *  @param[in]  z  The argument at which the spherical Bessel function is evaluated.
-   *  @return  The complex spherical Bessel function.
+   * @param[in] __n The order for which the spherical Bessel function is evaluated.
+   * @param[in] __z The argument at which the spherical Bessel function is evaluated.
+   * @return The complex spherical Bessel function.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1254,11 +1257,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  @brief  Return the complex spherical Neumann function.
+   * @brief  Return the complex spherical Neumann function.
    *
-   *  @param[in]  n  The order for which the spherical Neumann function is evaluated.
-   *  @param[in]  z  The argument at which the spherical Neumann function is evaluated.
-   *  @return  The complex spherical Neumann function.
+   * @param[in] __n The order for which the spherical Neumann function is evaluated.
+   * @param[in] __z The argument at which the spherical Neumann function is evaluated.
+   * @return The complex spherical Neumann function.
    */
   template<typename _Tp>
     std::complex<_Tp>
