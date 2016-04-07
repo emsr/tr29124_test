@@ -1222,301 +1222,331 @@ $(document).ready(function(){initNavTree('sf__polylog_8tcc_source.html','');});
 <div class="line"><a name="l01110"></a><span class="lineno"> 1110</span>&#160;    }</div>
 <div class="line"><a name="l01111"></a><span class="lineno"> 1111</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l01112"></a><span class="lineno"> 1112</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01113"></a><span class="lineno"> 1113</span>&#160;<span class="comment">   * Return the Dirichlet eta function.</span></div>
-<div class="line"><a name="l01114"></a><span class="lineno"> 1114</span>&#160;<span class="comment">   * Currently, w must be real (complex type but negligible imaginary part.)</span></div>
-<div class="line"><a name="l01115"></a><span class="lineno"> 1115</span>&#160;<span class="comment">   * Otherwise std::domain_error is thrown.</span></div>
-<div class="line"><a name="l01116"></a><span class="lineno"> 1116</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01117"></a><span class="lineno"> 1117</span>&#160;<span class="comment">   * @param __w  The complex (but on-real-axis) argument.</span></div>
-<div class="line"><a name="l01118"></a><span class="lineno"> 1118</span>&#160;<span class="comment">   * @return  The complex Dirichlet eta function.</span></div>
-<div class="line"><a name="l01119"></a><span class="lineno"> 1119</span>&#160;<span class="comment">   * @throw  std::domain_error if the argument has a significant imaginary part.</span></div>
-<div class="line"><a name="l01120"></a><span class="lineno"> 1120</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l01121"></a><span class="lineno"> 1121</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l01122"></a><span class="lineno"> 1122</span>&#160;    std::complex&lt;_Tp&gt;</div>
-<div class="line"><a name="l01123"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#ac00ca43b3035da757d982b43d2c59bc1"> 1123</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#ac00ca43b3035da757d982b43d2c59bc1">__dirichlet_eta</a>(std::complex&lt;_Tp&gt; __w)</div>
-<div class="line"><a name="l01124"></a><span class="lineno"> 1124</span>&#160;    {</div>
-<div class="line"><a name="l01125"></a><span class="lineno"> 1125</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
-<div class="line"><a name="l01126"></a><span class="lineno"> 1126</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
-<div class="line"><a name="l01127"></a><span class="lineno"> 1127</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="namespacestd_1_1____detail.html#acefbc7637e41168e49d6230df9c5127f">__fpequal</a>(std::imag(__w), _Tp{0}))</div>
-<div class="line"><a name="l01128"></a><span class="lineno"> 1128</span>&#160;    <span class="keywordflow">return</span> -<a class="code" href="namespacestd_1_1____detail.html#a17fb8cea11706f319aaea277188a29c8">__polylog</a>(__w.real(), _Tp{-1});</div>
-<div class="line"><a name="l01129"></a><span class="lineno"> 1129</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01130"></a><span class="lineno"> 1130</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__dirichlet_eta: Bad argument&quot;</span>));</div>
-<div class="line"><a name="l01131"></a><span class="lineno"> 1131</span>&#160;    }</div>
-<div class="line"><a name="l01132"></a><span class="lineno"> 1132</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l01133"></a><span class="lineno"> 1133</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01134"></a><span class="lineno"> 1134</span>&#160;<span class="comment">   *  Return the Dirichlet eta function for real argument.</span></div>
-<div class="line"><a name="l01135"></a><span class="lineno"> 1135</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01136"></a><span class="lineno"> 1136</span>&#160;<span class="comment">   *  @param __w  The real argument.</span></div>
-<div class="line"><a name="l01137"></a><span class="lineno"> 1137</span>&#160;<span class="comment">   *  @return  The Dirichlet eta function.</span></div>
-<div class="line"><a name="l01138"></a><span class="lineno"> 1138</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l01139"></a><span class="lineno"> 1139</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l01140"></a><span class="lineno"> 1140</span>&#160;    _Tp</div>
-<div class="line"><a name="l01141"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#acd1e2a576d04658c6332df91cdaacd6e"> 1141</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#ac00ca43b3035da757d982b43d2c59bc1">__dirichlet_eta</a>(_Tp __w)</div>
-<div class="line"><a name="l01142"></a><span class="lineno"> 1142</span>&#160;    {</div>
-<div class="line"><a name="l01143"></a><span class="lineno"> 1143</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
-<div class="line"><a name="l01144"></a><span class="lineno"> 1144</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
-<div class="line"><a name="l01145"></a><span class="lineno"> 1145</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01146"></a><span class="lineno"> 1146</span>&#160;    <span class="keywordflow">return</span> -std::real(<a class="code" href="namespacestd_1_1____detail.html#a17fb8cea11706f319aaea277188a29c8">__polylog</a>(__w, _Tp{-1}));</div>
-<div class="line"><a name="l01147"></a><span class="lineno"> 1147</span>&#160;    }</div>
-<div class="line"><a name="l01148"></a><span class="lineno"> 1148</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l01149"></a><span class="lineno"> 1149</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01150"></a><span class="lineno"> 1150</span>&#160;<span class="comment">   * Return the Dirichlet beta function.</span></div>
-<div class="line"><a name="l01151"></a><span class="lineno"> 1151</span>&#160;<span class="comment">   * Currently, w must be real (complex type but negligible imaginary part.)</span></div>
-<div class="line"><a name="l01152"></a><span class="lineno"> 1152</span>&#160;<span class="comment">   * Otherwise std::domain_error is thrown.</span></div>
-<div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01154"></a><span class="lineno"> 1154</span>&#160;<span class="comment">   * @param __w  The complex (but on-real-axis) argument.</span></div>
-<div class="line"><a name="l01155"></a><span class="lineno"> 1155</span>&#160;<span class="comment">   * @return  The Dirichlet Beta function of real argument.</span></div>
-<div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160;<span class="comment">   * @throw  std::domain_error if the argument has a significant imaginary part.</span></div>
-<div class="line"><a name="l01157"></a><span class="lineno"> 1157</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160;    _Tp</div>
-<div class="line"><a name="l01160"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#ae2e1407cd73ed7ca37c9085971d64787"> 1160</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#ae2e1407cd73ed7ca37c9085971d64787">__dirichlet_beta</a>(std::complex&lt;_Tp&gt; __w)</div>
-<div class="line"><a name="l01161"></a><span class="lineno"> 1161</span>&#160;    {</div>
-<div class="line"><a name="l01162"></a><span class="lineno"> 1162</span>&#160;      constexpr <span class="keyword">auto</span> _S_i = std::complex&lt;_Tp&gt;{0, 1};</div>
-<div class="line"><a name="l01163"></a><span class="lineno"> 1163</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
-<div class="line"><a name="l01164"></a><span class="lineno"> 1164</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
-<div class="line"><a name="l01165"></a><span class="lineno"> 1165</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="namespacestd_1_1____detail.html#acefbc7637e41168e49d6230df9c5127f">__fpequal</a>(std::imag(__w), _Tp{0}))</div>
-<div class="line"><a name="l01166"></a><span class="lineno"> 1166</span>&#160;    <span class="keywordflow">return</span> std::imag(<a class="code" href="namespacestd_1_1____detail.html#a17fb8cea11706f319aaea277188a29c8">__polylog</a>(__w.real(), _S_i));</div>
-<div class="line"><a name="l01167"></a><span class="lineno"> 1167</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01168"></a><span class="lineno"> 1168</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__dirichlet_beta: Bad argument.&quot;</span>));</div>
-<div class="line"><a name="l01169"></a><span class="lineno"> 1169</span>&#160;    }</div>
-<div class="line"><a name="l01170"></a><span class="lineno"> 1170</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l01171"></a><span class="lineno"> 1171</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01172"></a><span class="lineno"> 1172</span>&#160;<span class="comment">   * Return the Dirichlet beta function for real argument.</span></div>
-<div class="line"><a name="l01173"></a><span class="lineno"> 1173</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01174"></a><span class="lineno"> 1174</span>&#160;<span class="comment">   * @param __w  The real argument.</span></div>
-<div class="line"><a name="l01175"></a><span class="lineno"> 1175</span>&#160;<span class="comment">   * @return  The Dirichlet Beta function of real argument.</span></div>
-<div class="line"><a name="l01176"></a><span class="lineno"> 1176</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l01177"></a><span class="lineno"> 1177</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l01178"></a><span class="lineno"> 1178</span>&#160;    _Tp</div>
-<div class="line"><a name="l01179"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a6cedea78253fd4d6da481c681a2eed72"> 1179</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#ae2e1407cd73ed7ca37c9085971d64787">__dirichlet_beta</a>(_Tp __w)</div>
-<div class="line"><a name="l01180"></a><span class="lineno"> 1180</span>&#160;    {</div>
-<div class="line"><a name="l01181"></a><span class="lineno"> 1181</span>&#160;      constexpr <span class="keyword">auto</span> _S_i = std::complex&lt;_Tp&gt;{0, 1};</div>
-<div class="line"><a name="l01182"></a><span class="lineno"> 1182</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
-<div class="line"><a name="l01183"></a><span class="lineno"> 1183</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
-<div class="line"><a name="l01184"></a><span class="lineno"> 1184</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01185"></a><span class="lineno"> 1185</span>&#160;    <span class="keywordflow">return</span> std::imag(<a class="code" href="namespacestd_1_1____detail.html#a17fb8cea11706f319aaea277188a29c8">__polylog</a>(__w, _S_i));</div>
-<div class="line"><a name="l01186"></a><span class="lineno"> 1186</span>&#160;    }</div>
-<div class="line"><a name="l01187"></a><span class="lineno"> 1187</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l01188"></a><span class="lineno"> 1188</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01189"></a><span class="lineno"> 1189</span>&#160;<span class="comment">   * Return Clausen&#39;s function of integer order m and complex argument @c w.</span></div>
-<div class="line"><a name="l01190"></a><span class="lineno"> 1190</span>&#160;<span class="comment">   * The notation and connection to polylog is from Wikipedia</span></div>
-<div class="line"><a name="l01191"></a><span class="lineno"> 1191</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01192"></a><span class="lineno"> 1192</span>&#160;<span class="comment">   * @param __m  The non-negative integral order.</span></div>
-<div class="line"><a name="l01193"></a><span class="lineno"> 1193</span>&#160;<span class="comment">   * @param __w  The complex argument.</span></div>
-<div class="line"><a name="l01194"></a><span class="lineno"> 1194</span>&#160;<span class="comment">   * @return  The complex Clausen function.</span></div>
-<div class="line"><a name="l01195"></a><span class="lineno"> 1195</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l01196"></a><span class="lineno"> 1196</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l01197"></a><span class="lineno"> 1197</span>&#160;    std::complex&lt;_Tp&gt;</div>
-<div class="line"><a name="l01198"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a260f2c50d0164a55dab6a95217ced893"> 1198</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a260f2c50d0164a55dab6a95217ced893">__clausen</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __m, std::complex&lt;_Tp&gt; __w)</div>
-<div class="line"><a name="l01199"></a><span class="lineno"> 1199</span>&#160;    {</div>
-<div class="line"><a name="l01200"></a><span class="lineno"> 1200</span>&#160;      constexpr <span class="keyword">auto</span> _S_i = std::complex&lt;_Tp&gt;{0, 1};</div>
-<div class="line"><a name="l01201"></a><span class="lineno"> 1201</span>&#160;      <span class="keyword">auto</span> __ple = <a class="code" href="namespacestd_1_1____detail.html#ad01c033a96c9f185216d6c9f9db49c99">__polylog_exp</a>(_Tp(__m), _S_i * __w);</div>
-<div class="line"><a name="l01202"></a><span class="lineno"> 1202</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
-<div class="line"><a name="l01203"></a><span class="lineno"> 1203</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
-<div class="line"><a name="l01204"></a><span class="lineno"> 1204</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m == 0)</div>
-<div class="line"><a name="l01205"></a><span class="lineno"> 1205</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__clausen: Non-positive order&quot;</span>));</div>
-<div class="line"><a name="l01206"></a><span class="lineno"> 1206</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m &amp; 1)</div>
-<div class="line"><a name="l01207"></a><span class="lineno"> 1207</span>&#160;    <span class="keywordflow">return</span> __ple;</div>
-<div class="line"><a name="l01208"></a><span class="lineno"> 1208</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01209"></a><span class="lineno"> 1209</span>&#160;    <span class="keywordflow">return</span> _S_i * std::conj(__ple);</div>
-<div class="line"><a name="l01210"></a><span class="lineno"> 1210</span>&#160;    }</div>
-<div class="line"><a name="l01211"></a><span class="lineno"> 1211</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l01212"></a><span class="lineno"> 1212</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01213"></a><span class="lineno"> 1213</span>&#160;<span class="comment">   * Return Clausen&#39;s function of integer order m and real argument w.</span></div>
-<div class="line"><a name="l01214"></a><span class="lineno"> 1214</span>&#160;<span class="comment">   * The notation and connection to polylog is from Wikipedia</span></div>
-<div class="line"><a name="l01215"></a><span class="lineno"> 1215</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01216"></a><span class="lineno"> 1216</span>&#160;<span class="comment">   * @param __m  The integer order m &gt;= 1.</span></div>
-<div class="line"><a name="l01217"></a><span class="lineno"> 1217</span>&#160;<span class="comment">   * @param __w  The real argument.</span></div>
-<div class="line"><a name="l01218"></a><span class="lineno"> 1218</span>&#160;<span class="comment">   * @return  The Clausen function.</span></div>
-<div class="line"><a name="l01219"></a><span class="lineno"> 1219</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l01220"></a><span class="lineno"> 1220</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l01221"></a><span class="lineno"> 1221</span>&#160;    _Tp</div>
-<div class="line"><a name="l01222"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a12dab8bfc7bc5554fe0db5d1777d9887"> 1222</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a260f2c50d0164a55dab6a95217ced893">__clausen</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __m, _Tp __w)</div>
-<div class="line"><a name="l01223"></a><span class="lineno"> 1223</span>&#160;    {</div>
-<div class="line"><a name="l01224"></a><span class="lineno"> 1224</span>&#160;      constexpr <span class="keyword">auto</span> _S_i = std::complex&lt;_Tp&gt;{0, 1};</div>
-<div class="line"><a name="l01225"></a><span class="lineno"> 1225</span>&#160;      <span class="keyword">auto</span> __ple = <a class="code" href="namespacestd_1_1____detail.html#ad01c033a96c9f185216d6c9f9db49c99">__polylog_exp</a>(_Tp(__m), _S_i * __w);</div>
-<div class="line"><a name="l01226"></a><span class="lineno"> 1226</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
-<div class="line"><a name="l01227"></a><span class="lineno"> 1227</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
-<div class="line"><a name="l01228"></a><span class="lineno"> 1228</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m == 0)</div>
-<div class="line"><a name="l01229"></a><span class="lineno"> 1229</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__clausen: Non-positive order&quot;</span>));</div>
-<div class="line"><a name="l01230"></a><span class="lineno"> 1230</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m &amp; 1)</div>
-<div class="line"><a name="l01231"></a><span class="lineno"> 1231</span>&#160;    <span class="keywordflow">return</span> std::real(__ple);</div>
-<div class="line"><a name="l01232"></a><span class="lineno"> 1232</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01233"></a><span class="lineno"> 1233</span>&#160;    <span class="keywordflow">return</span> std::imag(__ple);</div>
-<div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;    }</div>
-<div class="line"><a name="l01235"></a><span class="lineno"> 1235</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l01236"></a><span class="lineno"> 1236</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01237"></a><span class="lineno"> 1237</span>&#160;<span class="comment">   * Return Clausen&#39;s sine sum Sl_m for positive integer order m</span></div>
-<div class="line"><a name="l01238"></a><span class="lineno"> 1238</span>&#160;<span class="comment">   * and complex argument w.</span></div>
-<div class="line"><a name="l01239"></a><span class="lineno"> 1239</span>&#160;<span class="comment">   * @see https://en.wikipedia.org/wiki/Clausen_function</span></div>
-<div class="line"><a name="l01240"></a><span class="lineno"> 1240</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01241"></a><span class="lineno"> 1241</span>&#160;<span class="comment">   * @param __m  The integer order m &gt;= 1.</span></div>
-<div class="line"><a name="l01242"></a><span class="lineno"> 1242</span>&#160;<span class="comment">   * @param __w  The complex argument.</span></div>
-<div class="line"><a name="l01243"></a><span class="lineno"> 1243</span>&#160;<span class="comment">   * @return  The Clausen sine sum Sl_m(w),</span></div>
-<div class="line"><a name="l01244"></a><span class="lineno"> 1244</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l01245"></a><span class="lineno"> 1245</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l01246"></a><span class="lineno"> 1246</span>&#160;    _Tp</div>
-<div class="line"><a name="l01247"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a19bb52bc473e5c3811281acbbdefa869"> 1247</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a19bb52bc473e5c3811281acbbdefa869">__clausen_s</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __m, std::complex&lt;_Tp&gt; __w)</div>
-<div class="line"><a name="l01248"></a><span class="lineno"> 1248</span>&#160;    {</div>
-<div class="line"><a name="l01249"></a><span class="lineno"> 1249</span>&#160;      constexpr <span class="keyword">auto</span> _S_i = std::complex&lt;_Tp&gt;{0, 1};</div>
-<div class="line"><a name="l01250"></a><span class="lineno"> 1250</span>&#160;      <span class="keyword">auto</span> __ple = <a class="code" href="namespacestd_1_1____detail.html#ad01c033a96c9f185216d6c9f9db49c99">__polylog_exp</a>(_Tp(__m), _S_i * __w);</div>
-<div class="line"><a name="l01251"></a><span class="lineno"> 1251</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
-<div class="line"><a name="l01252"></a><span class="lineno"> 1252</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
-<div class="line"><a name="l01253"></a><span class="lineno"> 1253</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m == 0)</div>
-<div class="line"><a name="l01254"></a><span class="lineno"> 1254</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__clausen_s: Non-positive order&quot;</span>));</div>
-<div class="line"><a name="l01255"></a><span class="lineno"> 1255</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m &amp; 1)</div>
-<div class="line"><a name="l01256"></a><span class="lineno"> 1256</span>&#160;    <span class="keywordflow">return</span> std::imag(__ple);</div>
-<div class="line"><a name="l01257"></a><span class="lineno"> 1257</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01258"></a><span class="lineno"> 1258</span>&#160;    <span class="keywordflow">return</span> std::real(__ple);</div>
-<div class="line"><a name="l01259"></a><span class="lineno"> 1259</span>&#160;    }</div>
-<div class="line"><a name="l01260"></a><span class="lineno"> 1260</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l01261"></a><span class="lineno"> 1261</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01262"></a><span class="lineno"> 1262</span>&#160;<span class="comment">   * Return Clausen&#39;s sine sum Sl_m for positive integer order m</span></div>
-<div class="line"><a name="l01263"></a><span class="lineno"> 1263</span>&#160;<span class="comment">   * and real argument w.</span></div>
-<div class="line"><a name="l01264"></a><span class="lineno"> 1264</span>&#160;<span class="comment">   * @see https://en.wikipedia.org/wiki/Clausen_function</span></div>
-<div class="line"><a name="l01265"></a><span class="lineno"> 1265</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01266"></a><span class="lineno"> 1266</span>&#160;<span class="comment">   * @param __m  The integer order m &gt;= 1.</span></div>
-<div class="line"><a name="l01267"></a><span class="lineno"> 1267</span>&#160;<span class="comment">   * @param __w  The complex argument.</span></div>
-<div class="line"><a name="l01268"></a><span class="lineno"> 1268</span>&#160;<span class="comment">   * @return  The Clausen sine sum Sl_m(w),</span></div>
-<div class="line"><a name="l01269"></a><span class="lineno"> 1269</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l01270"></a><span class="lineno"> 1270</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l01271"></a><span class="lineno"> 1271</span>&#160;    _Tp</div>
-<div class="line"><a name="l01272"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a1b8a79cb99cbbe5ebbbc16a1dfa7d2c1"> 1272</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a19bb52bc473e5c3811281acbbdefa869">__clausen_s</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __m, _Tp __w)</div>
-<div class="line"><a name="l01273"></a><span class="lineno"> 1273</span>&#160;    {</div>
-<div class="line"><a name="l01274"></a><span class="lineno"> 1274</span>&#160;      constexpr <span class="keyword">auto</span> _S_i = std::complex&lt;_Tp&gt;{0, 1};</div>
-<div class="line"><a name="l01275"></a><span class="lineno"> 1275</span>&#160;      <span class="keyword">auto</span> __ple = <a class="code" href="namespacestd_1_1____detail.html#ad01c033a96c9f185216d6c9f9db49c99">__polylog_exp</a>(_Tp(__m), _S_i * __w);</div>
-<div class="line"><a name="l01276"></a><span class="lineno"> 1276</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
-<div class="line"><a name="l01277"></a><span class="lineno"> 1277</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
-<div class="line"><a name="l01278"></a><span class="lineno"> 1278</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m == 0)</div>
-<div class="line"><a name="l01279"></a><span class="lineno"> 1279</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__clausen_s: Non-positive order&quot;</span>));</div>
-<div class="line"><a name="l01280"></a><span class="lineno"> 1280</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m &amp; 1)</div>
-<div class="line"><a name="l01281"></a><span class="lineno"> 1281</span>&#160;    <span class="keywordflow">return</span> std::imag(__ple);</div>
-<div class="line"><a name="l01282"></a><span class="lineno"> 1282</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01283"></a><span class="lineno"> 1283</span>&#160;    <span class="keywordflow">return</span> std::real(__ple);</div>
-<div class="line"><a name="l01284"></a><span class="lineno"> 1284</span>&#160;    }</div>
-<div class="line"><a name="l01285"></a><span class="lineno"> 1285</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l01286"></a><span class="lineno"> 1286</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01287"></a><span class="lineno"> 1287</span>&#160;<span class="comment">   * Return Clausen&#39;s cosine sum Cl_m for positive integer order m</span></div>
-<div class="line"><a name="l01288"></a><span class="lineno"> 1288</span>&#160;<span class="comment">   * and complex argument w.</span></div>
-<div class="line"><a name="l01289"></a><span class="lineno"> 1289</span>&#160;<span class="comment">   * @see https://en.wikipedia.org/wiki/Clausen_function</span></div>
-<div class="line"><a name="l01290"></a><span class="lineno"> 1290</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01291"></a><span class="lineno"> 1291</span>&#160;<span class="comment">   * @param __m  The integer order m &gt;= 1.</span></div>
-<div class="line"><a name="l01292"></a><span class="lineno"> 1292</span>&#160;<span class="comment">   * @param __w  The real argument.</span></div>
-<div class="line"><a name="l01293"></a><span class="lineno"> 1293</span>&#160;<span class="comment">   * @return  The Clausen cosine sum Cl_m(w),</span></div>
-<div class="line"><a name="l01294"></a><span class="lineno"> 1294</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l01295"></a><span class="lineno"> 1295</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l01296"></a><span class="lineno"> 1296</span>&#160;    _Tp</div>
-<div class="line"><a name="l01297"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a06b95eeefe47e8899e2e0a6bbd3ad31b"> 1297</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a06b95eeefe47e8899e2e0a6bbd3ad31b">__clausen_c</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __m, std::complex&lt;_Tp&gt; __w)</div>
-<div class="line"><a name="l01298"></a><span class="lineno"> 1298</span>&#160;    {</div>
-<div class="line"><a name="l01299"></a><span class="lineno"> 1299</span>&#160;      constexpr <span class="keyword">auto</span> _S_i = std::complex&lt;_Tp&gt;{0, 1};</div>
-<div class="line"><a name="l01300"></a><span class="lineno"> 1300</span>&#160;      <span class="keyword">auto</span> __ple = <a class="code" href="namespacestd_1_1____detail.html#ad01c033a96c9f185216d6c9f9db49c99">__polylog_exp</a>(_Tp(__m), _S_i * __w);</div>
-<div class="line"><a name="l01301"></a><span class="lineno"> 1301</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
-<div class="line"><a name="l01302"></a><span class="lineno"> 1302</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
-<div class="line"><a name="l01303"></a><span class="lineno"> 1303</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m == 0)</div>
-<div class="line"><a name="l01304"></a><span class="lineno"> 1304</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__clausen_c: Non-positive order&quot;</span>));</div>
-<div class="line"><a name="l01305"></a><span class="lineno"> 1305</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m &amp; 1)</div>
-<div class="line"><a name="l01306"></a><span class="lineno"> 1306</span>&#160;    <span class="keywordflow">return</span> std::real(__ple);</div>
-<div class="line"><a name="l01307"></a><span class="lineno"> 1307</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01308"></a><span class="lineno"> 1308</span>&#160;    <span class="keywordflow">return</span> std::imag(__ple);</div>
-<div class="line"><a name="l01309"></a><span class="lineno"> 1309</span>&#160;    }</div>
-<div class="line"><a name="l01310"></a><span class="lineno"> 1310</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l01311"></a><span class="lineno"> 1311</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01312"></a><span class="lineno"> 1312</span>&#160;<span class="comment">   * Return Clausen&#39;s cosine sum Cl_m for positive integer order m</span></div>
-<div class="line"><a name="l01313"></a><span class="lineno"> 1313</span>&#160;<span class="comment">   * and real argument w.</span></div>
-<div class="line"><a name="l01314"></a><span class="lineno"> 1314</span>&#160;<span class="comment">   * @see https://en.wikipedia.org/wiki/Clausen_function</span></div>
-<div class="line"><a name="l01315"></a><span class="lineno"> 1315</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01316"></a><span class="lineno"> 1316</span>&#160;<span class="comment">   * @param __m  The integer order m &gt;= 1.</span></div>
-<div class="line"><a name="l01317"></a><span class="lineno"> 1317</span>&#160;<span class="comment">   * @param __w  The real argument.</span></div>
-<div class="line"><a name="l01318"></a><span class="lineno"> 1318</span>&#160;<span class="comment">   * @return  The real Clausen cosine sum Cl_m(w),</span></div>
-<div class="line"><a name="l01319"></a><span class="lineno"> 1319</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l01320"></a><span class="lineno"> 1320</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l01321"></a><span class="lineno"> 1321</span>&#160;    _Tp</div>
-<div class="line"><a name="l01322"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a44f2a2f49402b847c8408da5b18f8107"> 1322</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a06b95eeefe47e8899e2e0a6bbd3ad31b">__clausen_c</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __m, _Tp __w)</div>
-<div class="line"><a name="l01323"></a><span class="lineno"> 1323</span>&#160;    {</div>
-<div class="line"><a name="l01324"></a><span class="lineno"> 1324</span>&#160;      constexpr <span class="keyword">auto</span> _S_i = std::complex&lt;_Tp&gt;{0, 1};</div>
-<div class="line"><a name="l01325"></a><span class="lineno"> 1325</span>&#160;      <span class="keyword">auto</span> __ple = <a class="code" href="namespacestd_1_1____detail.html#ad01c033a96c9f185216d6c9f9db49c99">__polylog_exp</a>(_Tp(__m), _S_i * __w);</div>
-<div class="line"><a name="l01326"></a><span class="lineno"> 1326</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
-<div class="line"><a name="l01327"></a><span class="lineno"> 1327</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
-<div class="line"><a name="l01328"></a><span class="lineno"> 1328</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m == 0)</div>
-<div class="line"><a name="l01329"></a><span class="lineno"> 1329</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__clausen_c: Non-positive order&quot;</span>));</div>
-<div class="line"><a name="l01330"></a><span class="lineno"> 1330</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m &amp; 1)</div>
-<div class="line"><a name="l01331"></a><span class="lineno"> 1331</span>&#160;    <span class="keywordflow">return</span> std::real(__ple);</div>
-<div class="line"><a name="l01332"></a><span class="lineno"> 1332</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01333"></a><span class="lineno"> 1333</span>&#160;    <span class="keywordflow">return</span> std::imag(__ple);</div>
-<div class="line"><a name="l01334"></a><span class="lineno"> 1334</span>&#160;    }</div>
-<div class="line"><a name="l01335"></a><span class="lineno"> 1335</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l01336"></a><span class="lineno"> 1336</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01337"></a><span class="lineno"> 1337</span>&#160;<span class="comment">   * Return the Fermi-Dirac integral of real order s and real argument x.</span></div>
-<div class="line"><a name="l01338"></a><span class="lineno"> 1338</span>&#160;<span class="comment">   * @see https://en.wikipedia.org/wiki/Clausen_function</span></div>
-<div class="line"><a name="l01339"></a><span class="lineno"> 1339</span>&#160;<span class="comment">   * @see http://dlmf.nist.gov/25.12#iii</span></div>
-<div class="line"><a name="l01340"></a><span class="lineno"> 1340</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01341"></a><span class="lineno"> 1341</span>&#160;<span class="comment">   * @param __s  The order s &gt;= 0.</span></div>
-<div class="line"><a name="l01342"></a><span class="lineno"> 1342</span>&#160;<span class="comment">   * @param __x  The real argument.</span></div>
-<div class="line"><a name="l01343"></a><span class="lineno"> 1343</span>&#160;<span class="comment">   * @return  The real Fermi-Dirac cosine sum F_s(x),</span></div>
-<div class="line"><a name="l01344"></a><span class="lineno"> 1344</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l01345"></a><span class="lineno"> 1345</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l01346"></a><span class="lineno"> 1346</span>&#160;    _Tp</div>
-<div class="line"><a name="l01347"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a6057422cd4e359f44dcdb6cffc26128f"> 1347</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a6057422cd4e359f44dcdb6cffc26128f">__fermi_dirac</a>(_Tp __s, _Tp __x)</div>
-<div class="line"><a name="l01348"></a><span class="lineno"> 1348</span>&#160;    {</div>
-<div class="line"><a name="l01349"></a><span class="lineno"> 1349</span>&#160;      constexpr <span class="keyword">auto</span> _S_i = std::complex&lt;_Tp&gt;{0, 1};</div>
-<div class="line"><a name="l01350"></a><span class="lineno"> 1350</span>&#160;      constexpr <span class="keyword">auto</span> _S_pi = __gnu_cxx::__math_constants&lt;_Tp&gt;::__pi;</div>
-<div class="line"><a name="l01351"></a><span class="lineno"> 1351</span>&#160;      <span class="keyword">auto</span> __ple = <a class="code" href="namespacestd_1_1____detail.html#ad01c033a96c9f185216d6c9f9db49c99">__polylog_exp</a>(__s + _Tp{1}, __x + _S_i * _S_pi);</div>
-<div class="line"><a name="l01352"></a><span class="lineno"> 1352</span>&#160;      <span class="keywordflow">if</span> (__isnan(__s) || __isnan(__x))</div>
-<div class="line"><a name="l01353"></a><span class="lineno"> 1353</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
-<div class="line"><a name="l01354"></a><span class="lineno"> 1354</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01355"></a><span class="lineno"> 1355</span>&#160;    <span class="keywordflow">return</span> -std::real(__ple);</div>
-<div class="line"><a name="l01356"></a><span class="lineno"> 1356</span>&#160;    }</div>
-<div class="line"><a name="l01357"></a><span class="lineno"> 1357</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l01358"></a><span class="lineno"> 1358</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01359"></a><span class="lineno"> 1359</span>&#160;<span class="comment">   * Return the Bose-Einstein integral of real order s and real argument x.</span></div>
-<div class="line"><a name="l01360"></a><span class="lineno"> 1360</span>&#160;<span class="comment">   * @see https://en.wikipedia.org/wiki/Clausen_function</span></div>
-<div class="line"><a name="l01361"></a><span class="lineno"> 1361</span>&#160;<span class="comment">   * @see http://dlmf.nist.gov/25.12#iii</span></div>
-<div class="line"><a name="l01362"></a><span class="lineno"> 1362</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01363"></a><span class="lineno"> 1363</span>&#160;<span class="comment">   * @param __s  The order s &gt;= 0.</span></div>
-<div class="line"><a name="l01364"></a><span class="lineno"> 1364</span>&#160;<span class="comment">   * @param __x  The real argument.</span></div>
-<div class="line"><a name="l01365"></a><span class="lineno"> 1365</span>&#160;<span class="comment">   * @return  The real Fermi-Dirac cosine sum G_s(x),</span></div>
-<div class="line"><a name="l01366"></a><span class="lineno"> 1366</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l01367"></a><span class="lineno"> 1367</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l01368"></a><span class="lineno"> 1368</span>&#160;    _Tp</div>
-<div class="line"><a name="l01369"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a4c199ebf92e53a3ae9c27c2c79d65e21"> 1369</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a4c199ebf92e53a3ae9c27c2c79d65e21">__bose_einstein</a>(_Tp __s, _Tp __x)</div>
-<div class="line"><a name="l01370"></a><span class="lineno"> 1370</span>&#160;    {</div>
-<div class="line"><a name="l01371"></a><span class="lineno"> 1371</span>&#160;      <span class="keyword">auto</span> __ple = <a class="code" href="namespacestd_1_1____detail.html#ad01c033a96c9f185216d6c9f9db49c99">__polylog_exp</a>(__s + _Tp{1}, __x);</div>
-<div class="line"><a name="l01372"></a><span class="lineno"> 1372</span>&#160;      <span class="keywordflow">if</span> (__isnan(__s) || __isnan(__x))</div>
-<div class="line"><a name="l01373"></a><span class="lineno"> 1373</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
-<div class="line"><a name="l01374"></a><span class="lineno"> 1374</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01375"></a><span class="lineno"> 1375</span>&#160;    <span class="keywordflow">return</span> __ple;</div>
-<div class="line"><a name="l01376"></a><span class="lineno"> 1376</span>&#160;    }</div>
-<div class="line"><a name="l01377"></a><span class="lineno"> 1377</span>&#160;</div>
-<div class="line"><a name="l01378"></a><span class="lineno"> 1378</span>&#160;_GLIBCXX_END_NAMESPACE_VERSION</div>
-<div class="line"><a name="l01379"></a><span class="lineno"> 1379</span>&#160;} <span class="comment">// namespace __detail</span></div>
-<div class="line"><a name="l01380"></a><span class="lineno"> 1380</span>&#160;} <span class="comment">// namespace std</span></div>
-<div class="line"><a name="l01381"></a><span class="lineno"> 1381</span>&#160;</div>
-<div class="line"><a name="l01382"></a><span class="lineno"> 1382</span>&#160;<span class="preprocessor">#endif // _GLIBCXX_BITS_SF_POLYLOG_TCC</span></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a19bb52bc473e5c3811281acbbdefa869"><div class="ttname"><a href="namespacestd_1_1____detail.html#a19bb52bc473e5c3811281acbbdefa869">std::__detail::__clausen_s</a></div><div class="ttdeci">_Tp __clausen_s(unsigned int __m, std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l01247">sf_polylog.tcc:1247</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_ae2e1407cd73ed7ca37c9085971d64787"><div class="ttname"><a href="namespacestd_1_1____detail.html#ae2e1407cd73ed7ca37c9085971d64787">std::__detail::__dirichlet_beta</a></div><div class="ttdeci">_Tp __dirichlet_beta(std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l01160">sf_polylog.tcc:1160</a></div></div>
+<div class="line"><a name="l01113"></a><span class="lineno"> 1113</span>&#160;<span class="comment">   * Return the Hurwitz Zeta function for real s</span></div>
+<div class="line"><a name="l01114"></a><span class="lineno"> 1114</span>&#160;<span class="comment">   * and complex a.</span></div>
+<div class="line"><a name="l01115"></a><span class="lineno"> 1115</span>&#160;<span class="comment">   * @param s __s</span></div>
+<div class="line"><a name="l01116"></a><span class="lineno"> 1116</span>&#160;<span class="comment">   * @param x __a</span></div>
+<div class="line"><a name="l01117"></a><span class="lineno"> 1117</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l01118"></a><span class="lineno"> 1118</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l01119"></a><span class="lineno"> 1119</span>&#160;    std::complex&lt;FPType&gt;</div>
+<div class="line"><a name="l01120"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a8381d5cd047b45387ab2d0ef3591171c"> 1120</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a8381d5cd047b45387ab2d0ef3591171c">__hurwitz_zeta</a>(<span class="keyword">const</span> _Tp __s, std::complex&lt;_Tp&gt; __a)</div>
+<div class="line"><a name="l01121"></a><span class="lineno"> 1121</span>&#160;    {</div>
+<div class="line"><a name="l01122"></a><span class="lineno"> 1122</span>&#160;      <span class="keywordflow">if</span> ((__a.imag() &gt;= _Tp{0} &amp;&amp; (__a.real() &gt;= _Tp{0} &amp;&amp; __a.real() &lt;  _Tp{1}))</div>
+<div class="line"><a name="l01123"></a><span class="lineno"> 1123</span>&#160;       || (__a.imag() &lt;  _Tp{0} &amp;&amp; (__a.real() &gt;  _Tp{0} &amp;&amp; __a.real() &lt;= _Tp{1})))</div>
+<div class="line"><a name="l01124"></a><span class="lineno"> 1124</span>&#160;        {</div>
+<div class="line"><a name="l01125"></a><span class="lineno"> 1125</span>&#160;      constexpr <span class="keyword">auto</span> __tp = 2.0 * M_PI;</div>
+<div class="line"><a name="l01126"></a><span class="lineno"> 1126</span>&#160;      _Tp __t = _Tp{1} - __s;</div>
+<div class="line"><a name="l01127"></a><span class="lineno"> 1127</span>&#160;      <span class="keyword">auto</span> __lpe = PolyLog_Exp(__t, std::complex&lt;FPType&gt;(_Tp{0}, __tp) * __a);</div>
+<div class="line"><a name="l01128"></a><span class="lineno"> 1128</span>&#160;      <span class="comment">//FIXME: This prefactor is prone to overflow</span></div>
+<div class="line"><a name="l01129"></a><span class="lineno"> 1129</span>&#160;      <span class="comment">//FIXME: positive integer orders s ??? </span></div>
+<div class="line"><a name="l01130"></a><span class="lineno"> 1130</span>&#160;      <span class="keywordflow">return</span> std::tgamma(__t)</div>
+<div class="line"><a name="l01131"></a><span class="lineno"> 1131</span>&#160;           * std::pow(__tp, -__t)</div>
+<div class="line"><a name="l01132"></a><span class="lineno"> 1132</span>&#160;           * (lpe * std::exp(std::complex&lt;FPType&gt;(_Tp{0}, -M_PI/2.0 * t))</div>
+<div class="line"><a name="l01133"></a><span class="lineno"> 1133</span>&#160;       + std::conj(lpe) * std::exp(std::complex&lt;FPType&gt;(_Tp{0}, M_PI/2.0 * t)) );</div>
+<div class="line"><a name="l01134"></a><span class="lineno"> 1134</span>&#160;        }</div>
+<div class="line"><a name="l01135"></a><span class="lineno"> 1135</span>&#160;      <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l01136"></a><span class="lineno"> 1136</span>&#160;        {</div>
+<div class="line"><a name="l01137"></a><span class="lineno"> 1137</span>&#160;      std::cout&lt;&lt;<span class="stringliteral">&quot;domain not (yet) supported!!&quot;</span>&lt;&lt;std::endl;</div>
+<div class="line"><a name="l01138"></a><span class="lineno"> 1138</span>&#160;      std::__throw_domain_error(__N(<span class="stringliteral">&quot;__hurwitz_zeta: Bad argument to&quot;</span>));</div>
+<div class="line"><a name="l01139"></a><span class="lineno"> 1139</span>&#160;        }</div>
+<div class="line"><a name="l01140"></a><span class="lineno"> 1140</span>&#160;    }<span class="comment"></span></div>
+<div class="line"><a name="l01141"></a><span class="lineno"> 1141</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l01142"></a><span class="lineno"> 1142</span>&#160;<span class="comment">   * Return the Dirichlet eta function.</span></div>
+<div class="line"><a name="l01143"></a><span class="lineno"> 1143</span>&#160;<span class="comment">   * Currently, w must be real (complex type but negligible imaginary part.)</span></div>
+<div class="line"><a name="l01144"></a><span class="lineno"> 1144</span>&#160;<span class="comment">   * Otherwise std::domain_error is thrown.</span></div>
+<div class="line"><a name="l01145"></a><span class="lineno"> 1145</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l01146"></a><span class="lineno"> 1146</span>&#160;<span class="comment">   * @param __w  The complex (but on-real-axis) argument.</span></div>
+<div class="line"><a name="l01147"></a><span class="lineno"> 1147</span>&#160;<span class="comment">   * @return  The complex Dirichlet eta function.</span></div>
+<div class="line"><a name="l01148"></a><span class="lineno"> 1148</span>&#160;<span class="comment">   * @throw  std::domain_error if the argument has a significant imaginary part.</span></div>
+<div class="line"><a name="l01149"></a><span class="lineno"> 1149</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l01150"></a><span class="lineno"> 1150</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l01151"></a><span class="lineno"> 1151</span>&#160;    std::complex&lt;_Tp&gt;</div>
+<div class="line"><a name="l01152"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#ac00ca43b3035da757d982b43d2c59bc1"> 1152</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#ac00ca43b3035da757d982b43d2c59bc1">__dirichlet_eta</a>(std::complex&lt;_Tp&gt; __w)</div>
+<div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160;    {</div>
+<div class="line"><a name="l01154"></a><span class="lineno"> 1154</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
+<div class="line"><a name="l01155"></a><span class="lineno"> 1155</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
+<div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="namespacestd_1_1____detail.html#acefbc7637e41168e49d6230df9c5127f">__fpequal</a>(std::imag(__w), _Tp{0}))</div>
+<div class="line"><a name="l01157"></a><span class="lineno"> 1157</span>&#160;    <span class="keywordflow">return</span> -<a class="code" href="namespacestd_1_1____detail.html#a17fb8cea11706f319aaea277188a29c8">__polylog</a>(__w.real(), _Tp{-1});</div>
+<div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__dirichlet_eta: Bad argument&quot;</span>));</div>
+<div class="line"><a name="l01160"></a><span class="lineno"> 1160</span>&#160;    }</div>
+<div class="line"><a name="l01161"></a><span class="lineno"> 1161</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l01162"></a><span class="lineno"> 1162</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l01163"></a><span class="lineno"> 1163</span>&#160;<span class="comment">   *  Return the Dirichlet eta function for real argument.</span></div>
+<div class="line"><a name="l01164"></a><span class="lineno"> 1164</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l01165"></a><span class="lineno"> 1165</span>&#160;<span class="comment">   *  @param __w  The real argument.</span></div>
+<div class="line"><a name="l01166"></a><span class="lineno"> 1166</span>&#160;<span class="comment">   *  @return  The Dirichlet eta function.</span></div>
+<div class="line"><a name="l01167"></a><span class="lineno"> 1167</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l01168"></a><span class="lineno"> 1168</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l01169"></a><span class="lineno"> 1169</span>&#160;    _Tp</div>
+<div class="line"><a name="l01170"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#acd1e2a576d04658c6332df91cdaacd6e"> 1170</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#ac00ca43b3035da757d982b43d2c59bc1">__dirichlet_eta</a>(_Tp __w)</div>
+<div class="line"><a name="l01171"></a><span class="lineno"> 1171</span>&#160;    {</div>
+<div class="line"><a name="l01172"></a><span class="lineno"> 1172</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
+<div class="line"><a name="l01173"></a><span class="lineno"> 1173</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
+<div class="line"><a name="l01174"></a><span class="lineno"> 1174</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01175"></a><span class="lineno"> 1175</span>&#160;    <span class="keywordflow">return</span> -std::real(<a class="code" href="namespacestd_1_1____detail.html#a17fb8cea11706f319aaea277188a29c8">__polylog</a>(__w, _Tp{-1}));</div>
+<div class="line"><a name="l01176"></a><span class="lineno"> 1176</span>&#160;    }</div>
+<div class="line"><a name="l01177"></a><span class="lineno"> 1177</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l01178"></a><span class="lineno"> 1178</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l01179"></a><span class="lineno"> 1179</span>&#160;<span class="comment">   * Return the Dirichlet beta function.</span></div>
+<div class="line"><a name="l01180"></a><span class="lineno"> 1180</span>&#160;<span class="comment">   * Currently, w must be real (complex type but negligible imaginary part.)</span></div>
+<div class="line"><a name="l01181"></a><span class="lineno"> 1181</span>&#160;<span class="comment">   * Otherwise std::domain_error is thrown.</span></div>
+<div class="line"><a name="l01182"></a><span class="lineno"> 1182</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l01183"></a><span class="lineno"> 1183</span>&#160;<span class="comment">   * @param __w  The complex (but on-real-axis) argument.</span></div>
+<div class="line"><a name="l01184"></a><span class="lineno"> 1184</span>&#160;<span class="comment">   * @return  The Dirichlet Beta function of real argument.</span></div>
+<div class="line"><a name="l01185"></a><span class="lineno"> 1185</span>&#160;<span class="comment">   * @throw  std::domain_error if the argument has a significant imaginary part.</span></div>
+<div class="line"><a name="l01186"></a><span class="lineno"> 1186</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l01187"></a><span class="lineno"> 1187</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l01188"></a><span class="lineno"> 1188</span>&#160;    _Tp</div>
+<div class="line"><a name="l01189"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#ae2e1407cd73ed7ca37c9085971d64787"> 1189</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#ae2e1407cd73ed7ca37c9085971d64787">__dirichlet_beta</a>(std::complex&lt;_Tp&gt; __w)</div>
+<div class="line"><a name="l01190"></a><span class="lineno"> 1190</span>&#160;    {</div>
+<div class="line"><a name="l01191"></a><span class="lineno"> 1191</span>&#160;      constexpr <span class="keyword">auto</span> _S_i = std::complex&lt;_Tp&gt;{0, 1};</div>
+<div class="line"><a name="l01192"></a><span class="lineno"> 1192</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
+<div class="line"><a name="l01193"></a><span class="lineno"> 1193</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
+<div class="line"><a name="l01194"></a><span class="lineno"> 1194</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="namespacestd_1_1____detail.html#acefbc7637e41168e49d6230df9c5127f">__fpequal</a>(std::imag(__w), _Tp{0}))</div>
+<div class="line"><a name="l01195"></a><span class="lineno"> 1195</span>&#160;    <span class="keywordflow">return</span> std::imag(<a class="code" href="namespacestd_1_1____detail.html#a17fb8cea11706f319aaea277188a29c8">__polylog</a>(__w.real(), _S_i));</div>
+<div class="line"><a name="l01196"></a><span class="lineno"> 1196</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01197"></a><span class="lineno"> 1197</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__dirichlet_beta: Bad argument.&quot;</span>));</div>
+<div class="line"><a name="l01198"></a><span class="lineno"> 1198</span>&#160;    }</div>
+<div class="line"><a name="l01199"></a><span class="lineno"> 1199</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l01200"></a><span class="lineno"> 1200</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l01201"></a><span class="lineno"> 1201</span>&#160;<span class="comment">   * Return the Dirichlet beta function for real argument.</span></div>
+<div class="line"><a name="l01202"></a><span class="lineno"> 1202</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l01203"></a><span class="lineno"> 1203</span>&#160;<span class="comment">   * @param __w  The real argument.</span></div>
+<div class="line"><a name="l01204"></a><span class="lineno"> 1204</span>&#160;<span class="comment">   * @return  The Dirichlet Beta function of real argument.</span></div>
+<div class="line"><a name="l01205"></a><span class="lineno"> 1205</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l01206"></a><span class="lineno"> 1206</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l01207"></a><span class="lineno"> 1207</span>&#160;    _Tp</div>
+<div class="line"><a name="l01208"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a6cedea78253fd4d6da481c681a2eed72"> 1208</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#ae2e1407cd73ed7ca37c9085971d64787">__dirichlet_beta</a>(_Tp __w)</div>
+<div class="line"><a name="l01209"></a><span class="lineno"> 1209</span>&#160;    {</div>
+<div class="line"><a name="l01210"></a><span class="lineno"> 1210</span>&#160;      constexpr <span class="keyword">auto</span> _S_i = std::complex&lt;_Tp&gt;{0, 1};</div>
+<div class="line"><a name="l01211"></a><span class="lineno"> 1211</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
+<div class="line"><a name="l01212"></a><span class="lineno"> 1212</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
+<div class="line"><a name="l01213"></a><span class="lineno"> 1213</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01214"></a><span class="lineno"> 1214</span>&#160;    <span class="keywordflow">return</span> std::imag(<a class="code" href="namespacestd_1_1____detail.html#a17fb8cea11706f319aaea277188a29c8">__polylog</a>(__w, _S_i));</div>
+<div class="line"><a name="l01215"></a><span class="lineno"> 1215</span>&#160;    }</div>
+<div class="line"><a name="l01216"></a><span class="lineno"> 1216</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l01217"></a><span class="lineno"> 1217</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l01218"></a><span class="lineno"> 1218</span>&#160;<span class="comment">   * Return Clausen&#39;s function of integer order m and complex argument @c w.</span></div>
+<div class="line"><a name="l01219"></a><span class="lineno"> 1219</span>&#160;<span class="comment">   * The notation and connection to polylog is from Wikipedia</span></div>
+<div class="line"><a name="l01220"></a><span class="lineno"> 1220</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l01221"></a><span class="lineno"> 1221</span>&#160;<span class="comment">   * @param __m  The non-negative integral order.</span></div>
+<div class="line"><a name="l01222"></a><span class="lineno"> 1222</span>&#160;<span class="comment">   * @param __w  The complex argument.</span></div>
+<div class="line"><a name="l01223"></a><span class="lineno"> 1223</span>&#160;<span class="comment">   * @return  The complex Clausen function.</span></div>
+<div class="line"><a name="l01224"></a><span class="lineno"> 1224</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l01225"></a><span class="lineno"> 1225</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l01226"></a><span class="lineno"> 1226</span>&#160;    std::complex&lt;_Tp&gt;</div>
+<div class="line"><a name="l01227"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a260f2c50d0164a55dab6a95217ced893"> 1227</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a260f2c50d0164a55dab6a95217ced893">__clausen</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __m, std::complex&lt;_Tp&gt; __w)</div>
+<div class="line"><a name="l01228"></a><span class="lineno"> 1228</span>&#160;    {</div>
+<div class="line"><a name="l01229"></a><span class="lineno"> 1229</span>&#160;      constexpr <span class="keyword">auto</span> _S_i = std::complex&lt;_Tp&gt;{0, 1};</div>
+<div class="line"><a name="l01230"></a><span class="lineno"> 1230</span>&#160;      <span class="keyword">auto</span> __ple = <a class="code" href="namespacestd_1_1____detail.html#ad01c033a96c9f185216d6c9f9db49c99">__polylog_exp</a>(_Tp(__m), _S_i * __w);</div>
+<div class="line"><a name="l01231"></a><span class="lineno"> 1231</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
+<div class="line"><a name="l01232"></a><span class="lineno"> 1232</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
+<div class="line"><a name="l01233"></a><span class="lineno"> 1233</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m == 0)</div>
+<div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__clausen: Non-positive order&quot;</span>));</div>
+<div class="line"><a name="l01235"></a><span class="lineno"> 1235</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m &amp; 1)</div>
+<div class="line"><a name="l01236"></a><span class="lineno"> 1236</span>&#160;    <span class="keywordflow">return</span> __ple;</div>
+<div class="line"><a name="l01237"></a><span class="lineno"> 1237</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01238"></a><span class="lineno"> 1238</span>&#160;    <span class="keywordflow">return</span> _S_i * std::conj(__ple);</div>
+<div class="line"><a name="l01239"></a><span class="lineno"> 1239</span>&#160;    }</div>
+<div class="line"><a name="l01240"></a><span class="lineno"> 1240</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l01241"></a><span class="lineno"> 1241</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l01242"></a><span class="lineno"> 1242</span>&#160;<span class="comment">   * Return Clausen&#39;s function of integer order m and real argument w.</span></div>
+<div class="line"><a name="l01243"></a><span class="lineno"> 1243</span>&#160;<span class="comment">   * The notation and connection to polylog is from Wikipedia</span></div>
+<div class="line"><a name="l01244"></a><span class="lineno"> 1244</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l01245"></a><span class="lineno"> 1245</span>&#160;<span class="comment">   * @param __m  The integer order m &gt;= 1.</span></div>
+<div class="line"><a name="l01246"></a><span class="lineno"> 1246</span>&#160;<span class="comment">   * @param __w  The real argument.</span></div>
+<div class="line"><a name="l01247"></a><span class="lineno"> 1247</span>&#160;<span class="comment">   * @return  The Clausen function.</span></div>
+<div class="line"><a name="l01248"></a><span class="lineno"> 1248</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l01249"></a><span class="lineno"> 1249</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l01250"></a><span class="lineno"> 1250</span>&#160;    _Tp</div>
+<div class="line"><a name="l01251"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a12dab8bfc7bc5554fe0db5d1777d9887"> 1251</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a260f2c50d0164a55dab6a95217ced893">__clausen</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __m, _Tp __w)</div>
+<div class="line"><a name="l01252"></a><span class="lineno"> 1252</span>&#160;    {</div>
+<div class="line"><a name="l01253"></a><span class="lineno"> 1253</span>&#160;      constexpr <span class="keyword">auto</span> _S_i = std::complex&lt;_Tp&gt;{0, 1};</div>
+<div class="line"><a name="l01254"></a><span class="lineno"> 1254</span>&#160;      <span class="keyword">auto</span> __ple = <a class="code" href="namespacestd_1_1____detail.html#ad01c033a96c9f185216d6c9f9db49c99">__polylog_exp</a>(_Tp(__m), _S_i * __w);</div>
+<div class="line"><a name="l01255"></a><span class="lineno"> 1255</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
+<div class="line"><a name="l01256"></a><span class="lineno"> 1256</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
+<div class="line"><a name="l01257"></a><span class="lineno"> 1257</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m == 0)</div>
+<div class="line"><a name="l01258"></a><span class="lineno"> 1258</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__clausen: Non-positive order&quot;</span>));</div>
+<div class="line"><a name="l01259"></a><span class="lineno"> 1259</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m &amp; 1)</div>
+<div class="line"><a name="l01260"></a><span class="lineno"> 1260</span>&#160;    <span class="keywordflow">return</span> std::real(__ple);</div>
+<div class="line"><a name="l01261"></a><span class="lineno"> 1261</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01262"></a><span class="lineno"> 1262</span>&#160;    <span class="keywordflow">return</span> std::imag(__ple);</div>
+<div class="line"><a name="l01263"></a><span class="lineno"> 1263</span>&#160;    }</div>
+<div class="line"><a name="l01264"></a><span class="lineno"> 1264</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l01265"></a><span class="lineno"> 1265</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l01266"></a><span class="lineno"> 1266</span>&#160;<span class="comment">   * Return Clausen&#39;s sine sum Sl_m for positive integer order m</span></div>
+<div class="line"><a name="l01267"></a><span class="lineno"> 1267</span>&#160;<span class="comment">   * and complex argument w.</span></div>
+<div class="line"><a name="l01268"></a><span class="lineno"> 1268</span>&#160;<span class="comment">   * @see https://en.wikipedia.org/wiki/Clausen_function</span></div>
+<div class="line"><a name="l01269"></a><span class="lineno"> 1269</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l01270"></a><span class="lineno"> 1270</span>&#160;<span class="comment">   * @param __m  The integer order m &gt;= 1.</span></div>
+<div class="line"><a name="l01271"></a><span class="lineno"> 1271</span>&#160;<span class="comment">   * @param __w  The complex argument.</span></div>
+<div class="line"><a name="l01272"></a><span class="lineno"> 1272</span>&#160;<span class="comment">   * @return  The Clausen sine sum Sl_m(w),</span></div>
+<div class="line"><a name="l01273"></a><span class="lineno"> 1273</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l01274"></a><span class="lineno"> 1274</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l01275"></a><span class="lineno"> 1275</span>&#160;    _Tp</div>
+<div class="line"><a name="l01276"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a19bb52bc473e5c3811281acbbdefa869"> 1276</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a19bb52bc473e5c3811281acbbdefa869">__clausen_s</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __m, std::complex&lt;_Tp&gt; __w)</div>
+<div class="line"><a name="l01277"></a><span class="lineno"> 1277</span>&#160;    {</div>
+<div class="line"><a name="l01278"></a><span class="lineno"> 1278</span>&#160;      constexpr <span class="keyword">auto</span> _S_i = std::complex&lt;_Tp&gt;{0, 1};</div>
+<div class="line"><a name="l01279"></a><span class="lineno"> 1279</span>&#160;      <span class="keyword">auto</span> __ple = <a class="code" href="namespacestd_1_1____detail.html#ad01c033a96c9f185216d6c9f9db49c99">__polylog_exp</a>(_Tp(__m), _S_i * __w);</div>
+<div class="line"><a name="l01280"></a><span class="lineno"> 1280</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
+<div class="line"><a name="l01281"></a><span class="lineno"> 1281</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
+<div class="line"><a name="l01282"></a><span class="lineno"> 1282</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m == 0)</div>
+<div class="line"><a name="l01283"></a><span class="lineno"> 1283</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__clausen_s: Non-positive order&quot;</span>));</div>
+<div class="line"><a name="l01284"></a><span class="lineno"> 1284</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m &amp; 1)</div>
+<div class="line"><a name="l01285"></a><span class="lineno"> 1285</span>&#160;    <span class="keywordflow">return</span> std::imag(__ple);</div>
+<div class="line"><a name="l01286"></a><span class="lineno"> 1286</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01287"></a><span class="lineno"> 1287</span>&#160;    <span class="keywordflow">return</span> std::real(__ple);</div>
+<div class="line"><a name="l01288"></a><span class="lineno"> 1288</span>&#160;    }</div>
+<div class="line"><a name="l01289"></a><span class="lineno"> 1289</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l01290"></a><span class="lineno"> 1290</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l01291"></a><span class="lineno"> 1291</span>&#160;<span class="comment">   * Return Clausen&#39;s sine sum Sl_m for positive integer order m</span></div>
+<div class="line"><a name="l01292"></a><span class="lineno"> 1292</span>&#160;<span class="comment">   * and real argument w.</span></div>
+<div class="line"><a name="l01293"></a><span class="lineno"> 1293</span>&#160;<span class="comment">   * @see https://en.wikipedia.org/wiki/Clausen_function</span></div>
+<div class="line"><a name="l01294"></a><span class="lineno"> 1294</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l01295"></a><span class="lineno"> 1295</span>&#160;<span class="comment">   * @param __m  The integer order m &gt;= 1.</span></div>
+<div class="line"><a name="l01296"></a><span class="lineno"> 1296</span>&#160;<span class="comment">   * @param __w  The complex argument.</span></div>
+<div class="line"><a name="l01297"></a><span class="lineno"> 1297</span>&#160;<span class="comment">   * @return  The Clausen sine sum Sl_m(w),</span></div>
+<div class="line"><a name="l01298"></a><span class="lineno"> 1298</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l01299"></a><span class="lineno"> 1299</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l01300"></a><span class="lineno"> 1300</span>&#160;    _Tp</div>
+<div class="line"><a name="l01301"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a1b8a79cb99cbbe5ebbbc16a1dfa7d2c1"> 1301</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a19bb52bc473e5c3811281acbbdefa869">__clausen_s</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __m, _Tp __w)</div>
+<div class="line"><a name="l01302"></a><span class="lineno"> 1302</span>&#160;    {</div>
+<div class="line"><a name="l01303"></a><span class="lineno"> 1303</span>&#160;      constexpr <span class="keyword">auto</span> _S_i = std::complex&lt;_Tp&gt;{0, 1};</div>
+<div class="line"><a name="l01304"></a><span class="lineno"> 1304</span>&#160;      <span class="keyword">auto</span> __ple = <a class="code" href="namespacestd_1_1____detail.html#ad01c033a96c9f185216d6c9f9db49c99">__polylog_exp</a>(_Tp(__m), _S_i * __w);</div>
+<div class="line"><a name="l01305"></a><span class="lineno"> 1305</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
+<div class="line"><a name="l01306"></a><span class="lineno"> 1306</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
+<div class="line"><a name="l01307"></a><span class="lineno"> 1307</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m == 0)</div>
+<div class="line"><a name="l01308"></a><span class="lineno"> 1308</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__clausen_s: Non-positive order&quot;</span>));</div>
+<div class="line"><a name="l01309"></a><span class="lineno"> 1309</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m &amp; 1)</div>
+<div class="line"><a name="l01310"></a><span class="lineno"> 1310</span>&#160;    <span class="keywordflow">return</span> std::imag(__ple);</div>
+<div class="line"><a name="l01311"></a><span class="lineno"> 1311</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01312"></a><span class="lineno"> 1312</span>&#160;    <span class="keywordflow">return</span> std::real(__ple);</div>
+<div class="line"><a name="l01313"></a><span class="lineno"> 1313</span>&#160;    }</div>
+<div class="line"><a name="l01314"></a><span class="lineno"> 1314</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l01315"></a><span class="lineno"> 1315</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l01316"></a><span class="lineno"> 1316</span>&#160;<span class="comment">   * Return Clausen&#39;s cosine sum Cl_m for positive integer order m</span></div>
+<div class="line"><a name="l01317"></a><span class="lineno"> 1317</span>&#160;<span class="comment">   * and complex argument w.</span></div>
+<div class="line"><a name="l01318"></a><span class="lineno"> 1318</span>&#160;<span class="comment">   * @see https://en.wikipedia.org/wiki/Clausen_function</span></div>
+<div class="line"><a name="l01319"></a><span class="lineno"> 1319</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l01320"></a><span class="lineno"> 1320</span>&#160;<span class="comment">   * @param __m  The integer order m &gt;= 1.</span></div>
+<div class="line"><a name="l01321"></a><span class="lineno"> 1321</span>&#160;<span class="comment">   * @param __w  The real argument.</span></div>
+<div class="line"><a name="l01322"></a><span class="lineno"> 1322</span>&#160;<span class="comment">   * @return  The Clausen cosine sum Cl_m(w),</span></div>
+<div class="line"><a name="l01323"></a><span class="lineno"> 1323</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l01324"></a><span class="lineno"> 1324</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l01325"></a><span class="lineno"> 1325</span>&#160;    _Tp</div>
+<div class="line"><a name="l01326"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a06b95eeefe47e8899e2e0a6bbd3ad31b"> 1326</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a06b95eeefe47e8899e2e0a6bbd3ad31b">__clausen_c</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __m, std::complex&lt;_Tp&gt; __w)</div>
+<div class="line"><a name="l01327"></a><span class="lineno"> 1327</span>&#160;    {</div>
+<div class="line"><a name="l01328"></a><span class="lineno"> 1328</span>&#160;      constexpr <span class="keyword">auto</span> _S_i = std::complex&lt;_Tp&gt;{0, 1};</div>
+<div class="line"><a name="l01329"></a><span class="lineno"> 1329</span>&#160;      <span class="keyword">auto</span> __ple = <a class="code" href="namespacestd_1_1____detail.html#ad01c033a96c9f185216d6c9f9db49c99">__polylog_exp</a>(_Tp(__m), _S_i * __w);</div>
+<div class="line"><a name="l01330"></a><span class="lineno"> 1330</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
+<div class="line"><a name="l01331"></a><span class="lineno"> 1331</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
+<div class="line"><a name="l01332"></a><span class="lineno"> 1332</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m == 0)</div>
+<div class="line"><a name="l01333"></a><span class="lineno"> 1333</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__clausen_c: Non-positive order&quot;</span>));</div>
+<div class="line"><a name="l01334"></a><span class="lineno"> 1334</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m &amp; 1)</div>
+<div class="line"><a name="l01335"></a><span class="lineno"> 1335</span>&#160;    <span class="keywordflow">return</span> std::real(__ple);</div>
+<div class="line"><a name="l01336"></a><span class="lineno"> 1336</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01337"></a><span class="lineno"> 1337</span>&#160;    <span class="keywordflow">return</span> std::imag(__ple);</div>
+<div class="line"><a name="l01338"></a><span class="lineno"> 1338</span>&#160;    }</div>
+<div class="line"><a name="l01339"></a><span class="lineno"> 1339</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l01340"></a><span class="lineno"> 1340</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l01341"></a><span class="lineno"> 1341</span>&#160;<span class="comment">   * Return Clausen&#39;s cosine sum Cl_m for positive integer order m</span></div>
+<div class="line"><a name="l01342"></a><span class="lineno"> 1342</span>&#160;<span class="comment">   * and real argument w.</span></div>
+<div class="line"><a name="l01343"></a><span class="lineno"> 1343</span>&#160;<span class="comment">   * @see https://en.wikipedia.org/wiki/Clausen_function</span></div>
+<div class="line"><a name="l01344"></a><span class="lineno"> 1344</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l01345"></a><span class="lineno"> 1345</span>&#160;<span class="comment">   * @param __m  The integer order m &gt;= 1.</span></div>
+<div class="line"><a name="l01346"></a><span class="lineno"> 1346</span>&#160;<span class="comment">   * @param __w  The real argument.</span></div>
+<div class="line"><a name="l01347"></a><span class="lineno"> 1347</span>&#160;<span class="comment">   * @return  The real Clausen cosine sum Cl_m(w),</span></div>
+<div class="line"><a name="l01348"></a><span class="lineno"> 1348</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l01349"></a><span class="lineno"> 1349</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l01350"></a><span class="lineno"> 1350</span>&#160;    _Tp</div>
+<div class="line"><a name="l01351"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a44f2a2f49402b847c8408da5b18f8107"> 1351</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a06b95eeefe47e8899e2e0a6bbd3ad31b">__clausen_c</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __m, _Tp __w)</div>
+<div class="line"><a name="l01352"></a><span class="lineno"> 1352</span>&#160;    {</div>
+<div class="line"><a name="l01353"></a><span class="lineno"> 1353</span>&#160;      constexpr <span class="keyword">auto</span> _S_i = std::complex&lt;_Tp&gt;{0, 1};</div>
+<div class="line"><a name="l01354"></a><span class="lineno"> 1354</span>&#160;      <span class="keyword">auto</span> __ple = <a class="code" href="namespacestd_1_1____detail.html#ad01c033a96c9f185216d6c9f9db49c99">__polylog_exp</a>(_Tp(__m), _S_i * __w);</div>
+<div class="line"><a name="l01355"></a><span class="lineno"> 1355</span>&#160;      <span class="keywordflow">if</span> (__isnan(__w))</div>
+<div class="line"><a name="l01356"></a><span class="lineno"> 1356</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
+<div class="line"><a name="l01357"></a><span class="lineno"> 1357</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m == 0)</div>
+<div class="line"><a name="l01358"></a><span class="lineno"> 1358</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__clausen_c: Non-positive order&quot;</span>));</div>
+<div class="line"><a name="l01359"></a><span class="lineno"> 1359</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__m &amp; 1)</div>
+<div class="line"><a name="l01360"></a><span class="lineno"> 1360</span>&#160;    <span class="keywordflow">return</span> std::real(__ple);</div>
+<div class="line"><a name="l01361"></a><span class="lineno"> 1361</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01362"></a><span class="lineno"> 1362</span>&#160;    <span class="keywordflow">return</span> std::imag(__ple);</div>
+<div class="line"><a name="l01363"></a><span class="lineno"> 1363</span>&#160;    }</div>
+<div class="line"><a name="l01364"></a><span class="lineno"> 1364</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l01365"></a><span class="lineno"> 1365</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l01366"></a><span class="lineno"> 1366</span>&#160;<span class="comment">   * Return the Fermi-Dirac integral of real order s and real argument x.</span></div>
+<div class="line"><a name="l01367"></a><span class="lineno"> 1367</span>&#160;<span class="comment">   * @see https://en.wikipedia.org/wiki/Clausen_function</span></div>
+<div class="line"><a name="l01368"></a><span class="lineno"> 1368</span>&#160;<span class="comment">   * @see http://dlmf.nist.gov/25.12#iii</span></div>
+<div class="line"><a name="l01369"></a><span class="lineno"> 1369</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l01370"></a><span class="lineno"> 1370</span>&#160;<span class="comment">   * @param __s  The order s &gt;= 0.</span></div>
+<div class="line"><a name="l01371"></a><span class="lineno"> 1371</span>&#160;<span class="comment">   * @param __x  The real argument.</span></div>
+<div class="line"><a name="l01372"></a><span class="lineno"> 1372</span>&#160;<span class="comment">   * @return  The real Fermi-Dirac cosine sum F_s(x),</span></div>
+<div class="line"><a name="l01373"></a><span class="lineno"> 1373</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l01374"></a><span class="lineno"> 1374</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l01375"></a><span class="lineno"> 1375</span>&#160;    _Tp</div>
+<div class="line"><a name="l01376"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a6057422cd4e359f44dcdb6cffc26128f"> 1376</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a6057422cd4e359f44dcdb6cffc26128f">__fermi_dirac</a>(_Tp __s, _Tp __x)</div>
+<div class="line"><a name="l01377"></a><span class="lineno"> 1377</span>&#160;    {</div>
+<div class="line"><a name="l01378"></a><span class="lineno"> 1378</span>&#160;      constexpr <span class="keyword">auto</span> _S_i = std::complex&lt;_Tp&gt;{0, 1};</div>
+<div class="line"><a name="l01379"></a><span class="lineno"> 1379</span>&#160;      constexpr <span class="keyword">auto</span> _S_pi = __gnu_cxx::__math_constants&lt;_Tp&gt;::__pi;</div>
+<div class="line"><a name="l01380"></a><span class="lineno"> 1380</span>&#160;      <span class="keyword">auto</span> __ple = <a class="code" href="namespacestd_1_1____detail.html#ad01c033a96c9f185216d6c9f9db49c99">__polylog_exp</a>(__s + _Tp{1}, __x + _S_i * _S_pi);</div>
+<div class="line"><a name="l01381"></a><span class="lineno"> 1381</span>&#160;      <span class="keywordflow">if</span> (__isnan(__s) || __isnan(__x))</div>
+<div class="line"><a name="l01382"></a><span class="lineno"> 1382</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
+<div class="line"><a name="l01383"></a><span class="lineno"> 1383</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01384"></a><span class="lineno"> 1384</span>&#160;    <span class="keywordflow">return</span> -std::real(__ple);</div>
+<div class="line"><a name="l01385"></a><span class="lineno"> 1385</span>&#160;    }</div>
+<div class="line"><a name="l01386"></a><span class="lineno"> 1386</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l01387"></a><span class="lineno"> 1387</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l01388"></a><span class="lineno"> 1388</span>&#160;<span class="comment">   * Return the Bose-Einstein integral of real order s and real argument x.</span></div>
+<div class="line"><a name="l01389"></a><span class="lineno"> 1389</span>&#160;<span class="comment">   * @see https://en.wikipedia.org/wiki/Clausen_function</span></div>
+<div class="line"><a name="l01390"></a><span class="lineno"> 1390</span>&#160;<span class="comment">   * @see http://dlmf.nist.gov/25.12#iii</span></div>
+<div class="line"><a name="l01391"></a><span class="lineno"> 1391</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l01392"></a><span class="lineno"> 1392</span>&#160;<span class="comment">   * @param __s  The order s &gt;= 0.</span></div>
+<div class="line"><a name="l01393"></a><span class="lineno"> 1393</span>&#160;<span class="comment">   * @param __x  The real argument.</span></div>
+<div class="line"><a name="l01394"></a><span class="lineno"> 1394</span>&#160;<span class="comment">   * @return  The real Fermi-Dirac cosine sum G_s(x),</span></div>
+<div class="line"><a name="l01395"></a><span class="lineno"> 1395</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l01396"></a><span class="lineno"> 1396</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l01397"></a><span class="lineno"> 1397</span>&#160;    _Tp</div>
+<div class="line"><a name="l01398"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a4c199ebf92e53a3ae9c27c2c79d65e21"> 1398</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a4c199ebf92e53a3ae9c27c2c79d65e21">__bose_einstein</a>(_Tp __s, _Tp __x)</div>
+<div class="line"><a name="l01399"></a><span class="lineno"> 1399</span>&#160;    {</div>
+<div class="line"><a name="l01400"></a><span class="lineno"> 1400</span>&#160;      <span class="keyword">auto</span> __ple = <a class="code" href="namespacestd_1_1____detail.html#ad01c033a96c9f185216d6c9f9db49c99">__polylog_exp</a>(__s + _Tp{1}, __x);</div>
+<div class="line"><a name="l01401"></a><span class="lineno"> 1401</span>&#160;      <span class="keywordflow">if</span> (__isnan(__s) || __isnan(__x))</div>
+<div class="line"><a name="l01402"></a><span class="lineno"> 1402</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
+<div class="line"><a name="l01403"></a><span class="lineno"> 1403</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01404"></a><span class="lineno"> 1404</span>&#160;    <span class="keywordflow">return</span> __ple;</div>
+<div class="line"><a name="l01405"></a><span class="lineno"> 1405</span>&#160;    }</div>
+<div class="line"><a name="l01406"></a><span class="lineno"> 1406</span>&#160;</div>
+<div class="line"><a name="l01407"></a><span class="lineno"> 1407</span>&#160;_GLIBCXX_END_NAMESPACE_VERSION</div>
+<div class="line"><a name="l01408"></a><span class="lineno"> 1408</span>&#160;} <span class="comment">// namespace __detail</span></div>
+<div class="line"><a name="l01409"></a><span class="lineno"> 1409</span>&#160;} <span class="comment">// namespace std</span></div>
+<div class="line"><a name="l01410"></a><span class="lineno"> 1410</span>&#160;</div>
+<div class="line"><a name="l01411"></a><span class="lineno"> 1411</span>&#160;<span class="preprocessor">#endif // _GLIBCXX_BITS_SF_POLYLOG_TCC</span></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a19bb52bc473e5c3811281acbbdefa869"><div class="ttname"><a href="namespacestd_1_1____detail.html#a19bb52bc473e5c3811281acbbdefa869">std::__detail::__clausen_s</a></div><div class="ttdeci">_Tp __clausen_s(unsigned int __m, std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l01276">sf_polylog.tcc:1276</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_ae2e1407cd73ed7ca37c9085971d64787"><div class="ttname"><a href="namespacestd_1_1____detail.html#ae2e1407cd73ed7ca37c9085971d64787">std::__detail::__dirichlet_beta</a></div><div class="ttdeci">_Tp __dirichlet_beta(std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l01189">sf_polylog.tcc:1189</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_af7e0c042cba3c3ffc60844b1e0d545a6"><div class="ttname"><a href="namespacestd_1_1____detail.html#af7e0c042cba3c3ffc60844b1e0d545a6">std::__detail::__polylog_exp_int_neg</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __polylog_exp_int_neg(const int __s, std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l00856">sf_polylog.tcc:856</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a2be77d9bdd1b8b463be44a0e7558bc2a"><div class="ttname"><a href="namespacestd_1_1____detail.html#a2be77d9bdd1b8b463be44a0e7558bc2a">std::__detail::__riemann_zeta</a></div><div class="ttdeci">_Tp __riemann_zeta(_Tp __s)</div><div class="ttdoc">Return the Riemann zeta function . </div><div class="ttdef"><b>Definition:</b> <a href="sf__zeta_8tcc_source.html#l00505">sf_zeta.tcc:505</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a84b83a6be0a236fbcbbdea9078e8ca58"><div class="ttname"><a href="namespacestd_1_1____detail.html#a84b83a6be0a236fbcbbdea9078e8ca58">std::__detail::__polylog_exp_asymp</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __polylog_exp_asymp(const _Tp __s, std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l00686">sf_polylog.tcc:686</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a114ec67e6802a402064b16a9a77f0863"><div class="ttname"><a href="namespacestd_1_1____detail.html#a114ec67e6802a402064b16a9a77f0863">std::__detail::__polylog_exp_neg_odd</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __polylog_exp_neg_odd(unsigned int __n, std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l00517">sf_polylog.tcc:517</a></div></div>
 <div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> <a href="specfun_8h_source.html#l00098">specfun.h:98</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a260f2c50d0164a55dab6a95217ced893"><div class="ttname"><a href="namespacestd_1_1____detail.html#a260f2c50d0164a55dab6a95217ced893">std::__detail::__clausen</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __clausen(unsigned int __m, std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l01198">sf_polylog.tcc:1198</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a6057422cd4e359f44dcdb6cffc26128f"><div class="ttname"><a href="namespacestd_1_1____detail.html#a6057422cd4e359f44dcdb6cffc26128f">std::__detail::__fermi_dirac</a></div><div class="ttdeci">_Tp __fermi_dirac(_Tp __s, _Tp __x)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l01347">sf_polylog.tcc:1347</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a260f2c50d0164a55dab6a95217ced893"><div class="ttname"><a href="namespacestd_1_1____detail.html#a260f2c50d0164a55dab6a95217ced893">std::__detail::__clausen</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __clausen(unsigned int __m, std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l01227">sf_polylog.tcc:1227</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a6057422cd4e359f44dcdb6cffc26128f"><div class="ttname"><a href="namespacestd_1_1____detail.html#a6057422cd4e359f44dcdb6cffc26128f">std::__detail::__fermi_dirac</a></div><div class="ttdeci">_Tp __fermi_dirac(_Tp __s, _Tp __x)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l01376">sf_polylog.tcc:1376</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a8381d5cd047b45387ab2d0ef3591171c"><div class="ttname"><a href="namespacestd_1_1____detail.html#a8381d5cd047b45387ab2d0ef3591171c">std::__detail::__hurwitz_zeta</a></div><div class="ttdeci">std::complex&lt; FPType &gt; __hurwitz_zeta(const _Tp __s, std::complex&lt; _Tp &gt; __a)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l01120">sf_polylog.tcc:1120</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a28317fd26d839f4e1cea72be3418508e"><div class="ttname"><a href="namespacestd_1_1____detail.html#a28317fd26d839f4e1cea72be3418508e">std::__detail::__polylog_exp_int_pos</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __polylog_exp_int_pos(const unsigned int __s, std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l00767">sf_polylog.tcc:767</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_afc1fa8ae4623bdc71b3bf21671f68e38"><div class="ttname"><a href="namespacestd_1_1____detail.html#afc1fa8ae4623bdc71b3bf21671f68e38">std::__detail::__clamp_pi</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __clamp_pi(std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l00123">sf_polylog.tcc:123</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_acefbc7637e41168e49d6230df9c5127f"><div class="ttname"><a href="namespacestd_1_1____detail.html#acefbc7637e41168e49d6230df9c5127f">std::__detail::__fpequal</a></div><div class="ttdeci">bool __fpequal(const _Tp &amp;__a, const _Tp &amp;__b)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l00062">sf_polylog.tcc:62</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_affdff8c867d264b62a64427e53f5b9aa"><div class="ttname"><a href="namespacestd_1_1____detail.html#affdff8c867d264b62a64427e53f5b9aa">std::__detail::__polylog_exp_neg_even</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __polylog_exp_neg_even(unsigned int __n, std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l00450">sf_polylog.tcc:450</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_ab27023a3d94393d41c994000b2c16684"><div class="ttname"><a href="namespacestd_1_1____detail.html#ab27023a3d94393d41c994000b2c16684">std::__detail::__polylog_exp_real_pos</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __polylog_exp_real_pos(_Tp __s, std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l00922">sf_polylog.tcc:922</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a06b95eeefe47e8899e2e0a6bbd3ad31b"><div class="ttname"><a href="namespacestd_1_1____detail.html#a06b95eeefe47e8899e2e0a6bbd3ad31b">std::__detail::__clausen_c</a></div><div class="ttdeci">_Tp __clausen_c(unsigned int __m, std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l01297">sf_polylog.tcc:1297</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a06b95eeefe47e8899e2e0a6bbd3ad31b"><div class="ttname"><a href="namespacestd_1_1____detail.html#a06b95eeefe47e8899e2e0a6bbd3ad31b">std::__detail::__clausen_c</a></div><div class="ttdeci">_Tp __clausen_c(unsigned int __m, std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l01326">sf_polylog.tcc:1326</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a49702394cf9b45acfa5b84f232078a9b"><div class="ttname"><a href="namespacestd_1_1____detail.html#a49702394cf9b45acfa5b84f232078a9b">std::__detail::__clamp_0_m2pi</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __clamp_0_m2pi(std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l00136">sf_polylog.tcc:136</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a07b26b8c7ff467310e4e1df6e3efd893"><div class="ttname"><a href="namespacestd_1_1____detail.html#a07b26b8c7ff467310e4e1df6e3efd893">std::__detail::__polylog_exp_neg</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __polylog_exp_neg(_Tp __s, std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l00346">sf_polylog.tcc:346</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a466240361bcf30941d84a8fc3cd91cf9"><div class="ttname"><a href="namespacestd_1_1____detail.html#a466240361bcf30941d84a8fc3cd91cf9">std::__detail::__polylog_exp_negative_real_part</a></div><div class="ttdeci">_Tp __polylog_exp_negative_real_part(_PowTp __s, _Tp __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l00737">sf_polylog.tcc:737</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a4c199ebf92e53a3ae9c27c2c79d65e21"><div class="ttname"><a href="namespacestd_1_1____detail.html#a4c199ebf92e53a3ae9c27c2c79d65e21">std::__detail::__bose_einstein</a></div><div class="ttdeci">_Tp __bose_einstein(_Tp __s, _Tp __x)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l01369">sf_polylog.tcc:1369</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a4c199ebf92e53a3ae9c27c2c79d65e21"><div class="ttname"><a href="namespacestd_1_1____detail.html#a4c199ebf92e53a3ae9c27c2c79d65e21">std::__detail::__bose_einstein</a></div><div class="ttdeci">_Tp __bose_einstein(_Tp __s, _Tp __x)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l01398">sf_polylog.tcc:1398</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_af59bd2be508cc6a421ddf5dd70c93d97"><div class="ttname"><a href="namespacestd_1_1____detail.html#af59bd2be508cc6a421ddf5dd70c93d97">std::__detail::evenzeta</a></div><div class="ttdeci">_Tp evenzeta(unsigned int __k)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l00156">sf_polylog.tcc:156</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_abe2e38af779623f338c77dc46ac673bd"><div class="ttname"><a href="namespacestd_1_1____detail.html#abe2e38af779623f338c77dc46ac673bd">std::__detail::__polylog_exp_real_neg</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __polylog_exp_real_neg(_Tp __s, std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l00985">sf_polylog.tcc:985</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_ad01c033a96c9f185216d6c9f9db49c99"><div class="ttname"><a href="namespacestd_1_1____detail.html#ad01c033a96c9f185216d6c9f9db49c99">std::__detail::__polylog_exp</a></div><div class="ttdeci">__gnu_cxx::__promote_num_t&lt; std::complex&lt; _Tp &gt;, ArgType &gt; __polylog_exp(_Tp __s, ArgType __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l01039">sf_polylog.tcc:1039</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a990a8fb06307793ceae4c3c288f8b876"><div class="ttname"><a href="namespacestd_1_1____detail.html#a990a8fb06307793ceae4c3c288f8b876">std::__detail::__fpimag</a></div><div class="ttdeci">bool __fpimag(const std::complex&lt; _Tp &gt; &amp;__w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l00107">sf_polylog.tcc:107</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a17fb8cea11706f319aaea277188a29c8"><div class="ttname"><a href="namespacestd_1_1____detail.html#a17fb8cea11706f319aaea277188a29c8">std::__detail::__polylog</a></div><div class="ttdeci">_Tp __polylog(_Tp __s, _Tp __x)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l01072">sf_polylog.tcc:1072</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_ac00ca43b3035da757d982b43d2c59bc1"><div class="ttname"><a href="namespacestd_1_1____detail.html#ac00ca43b3035da757d982b43d2c59bc1">std::__detail::__dirichlet_eta</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __dirichlet_eta(std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l01123">sf_polylog.tcc:1123</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_ac00ca43b3035da757d982b43d2c59bc1"><div class="ttname"><a href="namespacestd_1_1____detail.html#ac00ca43b3035da757d982b43d2c59bc1">std::__detail::__dirichlet_eta</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __dirichlet_eta(std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l01152">sf_polylog.tcc:1152</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a0327d2970eba3a0a2d73c71c7a77701c"><div class="ttname"><a href="namespacestd_1_1____detail.html#a0327d2970eba3a0a2d73c71c7a77701c">std::__detail::__polylog_exp_pos</a></div><div class="ttdeci">std::complex&lt; _Tp &gt; __polylog_exp_pos(unsigned int __s, std::complex&lt; _Tp &gt; __w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l00206">sf_polylog.tcc:206</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_ab78bb436e256ef9a3f64fa2a1ce25fb1"><div class="ttname"><a href="namespacestd_1_1____detail.html#ab78bb436e256ef9a3f64fa2a1ce25fb1">std::__detail::__fpreal</a></div><div class="ttdeci">bool __fpreal(const std::complex&lt; _Tp &gt; &amp;__w)</div><div class="ttdef"><b>Definition:</b> <a href="sf__polylog_8tcc_source.html#l00084">sf_polylog.tcc:84</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a174bfa28eeb176b90ff251b5affbecb2"><div class="ttname"><a href="namespacestd_1_1____detail.html#a174bfa28eeb176b90ff251b5affbecb2">std::__detail::__riemann_zeta_m_1</a></div><div class="ttdeci">_Tp __riemann_zeta_m_1(_Tp __s)</div><div class="ttdoc">Return the Riemann zeta function . </div><div class="ttdef"><b>Definition:</b> <a href="sf__zeta_8tcc_source.html#l00672">sf_zeta.tcc:672</a></div></div>
