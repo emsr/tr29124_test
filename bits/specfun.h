@@ -100,6 +100,14 @@ namespace std _GLIBCXX_VISIBILITY(default)
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
+   * @defgroup tr29124_math_spec_func Mathematical Special Functions
+   * @ingroup numerics
+   *
+   * A collection of advanced mathematical special functions.
+   * @{
+   */
+
+  /**
    * @mainpage Mathematical Special Functions
    *
    * @section Intro
@@ -113,11 +121,69 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The math functions were published as a separate international standard.
    * http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2010/n3060.pdf
    *
-   * @section Implementation
+   * @section Contents
+   * The folowing functions are implemented in namespace @c std:
+   *  - @ref assoc_laguerre "assoc_laguerre - Associated Laguerre functions"
+   *  - @ref assoc_legendre "assoc_legendre - Associated Legendre functions"
+   *  - @ref beta "beta - Beta functions"
+   *  - @ref comp_ellint_1 "comp_ellint_1 - Complete elliptic functions of the first kind"
+   *  - @ref comp_ellint_2 "comp_ellint_2 - Complete elliptic functions of the second kind"
+   *  - @ref comp_ellint_3 "comp_ellint_3 - Complete elliptic functions of the third kind"
+   *  - @ref cyl_bessel_i "cyl_bessel_i - Regular modified cylindrical Bessel functions"
+   *  - @ref cyl_bessel_j "cyl_bessel_j - Cylindrical Bessel functions of the first kind"
+   *  - @ref cyl_bessel_k "cyl_bessel_k - Irregular modified cylindrical Bessel functions"
+   *  - @ref cyl_neumann "cyl_neumann - Cylindrical Neumann functions or Cylindrical Bessel functions of the second kind"
+   *  - @ref ellint_1 "ellint_1 - Incomplete elliptic functions of the first kind"
+   *  - @ref ellint_2 "ellint_2 - Incomplete elliptic functions of the second kind"
+   *  - @ref ellint_3 "ellint_3 - Incomplete elliptic functions of the third kind"
+   *  - @ref expint "expint - The exponential integral"
+   *  - @ref hermite "hermite - Hermite polynomials"
+   *  - @ref laguerre "laguerre - Laguerre functions"
+   *  - @ref legendre "legendre - Legendre polynomials"
+   *  - @ref riemann_zeta "riemann_zeta - The Riemann zeta function"
+   *  - @ref sph_bessel "sph_bessel - Spherical Bessel functions"
+   *  - @ref sph_legendre "sph_legendre - Spherical Legendre functions"
+   *  - @ref sph_neumann "sph_neumann - Spherical Neumann functions"
    *
-   * Our implementation centers around template functions that provide...
+   * The hypergeometric function were stricken from the TR29124 and C++17
+   * versions of this math library but since they were in the TR1 version
+   * over implementation concerns and sice they are popular we kept them
+   * but in namespace @c __gnu_cxx:
+   *  - @ref conf_hyperg "conf_hyperg - Confluent hypergeometric functions"
+   *  - @ref hyperg "hyperg - Hypergeometric functions"
    *
-   * @section Bibliography
+   * @section "General Features"
+   *
+   * @subsection "Argument Promotion"
+   * The arguments suppled to the non-suffixed functions will be promoted
+   * according to the following rules:
+   * 1. If any argument intended to be floating opint is given an integral value
+   * That integral value is promoted to double.
+   * 2. All floating point arguments are promoted up to the largest floating
+   *    point precision among them.
+   *
+   * @subsection "NaN Arguments"
+   * If any of the floating point arguments supplied to these functions is
+   * invalid or NaN (std::numeric_limits<Tp>::quiet_NaN),
+   * the value NaN is returned.
+   *
+   * @section "Implementation"
+   *
+   * We strive to implement the underlying math with type generic algorithms
+   * to the greatest extent possible.  In practice, the function are thin
+   * wrappers that dispatch to function templates. Type dependence is
+   * controlled with std::numeric_limits and functions thereof.
+   *
+   * We don't promote *c float to *c double or *c double to <tt>long double</tt>
+   * reflexively.  The goal is for float functions to operate more quickly,
+   * at the cost of float accuracy and possibly a smaller domain of validity.
+   * Similaryly, <tt>long double</tt> should give you more dynamic range
+   * and slightly more pecision than @c double on many systems.
+   *
+   * @section "Testing"
+   *
+   *
+   * @section "General Bibliography"
    *
    * @see Abramowitz and Stegun: Handbook of Mathematical Functions,
    * with Formulas, Graphs, and Mathematical Tables
@@ -133,14 +199,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @see An Atlas of Functions: with Equator, the Atlas Function Calculator
    * 2nd Edition, by Oldham, Keith B., Myland, Jan, Spanier, Jerome
-   */
-
-  /**
-   * @defgroup tr29124_math_spec_func Mathematical Special Functions
-   * @ingroup numerics
    *
-   * A collection of advanced mathematical special functions.
-   * @{
+   * @see Asymptotics and Special Functions by Frank W. J. Olver,
+   * Academic Press, 1974
+   *
+   * @see Numerical Recipes in C, The Art of Scientific Computing,
+   * by William H. Press, Second Ed., Saul A. Teukolsky,
+   * William T. Vetterling, and Brian P. Flannery,
+   * Cambridge University Press, 1992
+   *
+   * @see The Special Functions and Their Approximations: Volumes 1 and 2,
+   * by Yudell L. Luke, Academic Press, 1969
    */
 
   // Associated Laguerre polynomials
@@ -2495,20 +2564,32 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Hurwitz zeta functions
 
+  /**
+   * Return the Hurwitz zeta function of @c float argument @c s,
+   * and parameter @c a.
+   *
+   * @see hurwitz_zeta for details.
+   */
   inline float
   hurwitz_zetaf(float __s, float __a)
   { return std::__detail::__hurwitz_zeta<float>(__s, __a); }
 
+  /**
+   * Return the Hurwitz zeta function of <tt>long double</tt> argument @c s,
+   * and parameter @c a.
+   *
+   * @see hurwitz_zeta for details.
+   */
   inline long double
   hurwitz_zetal(long double __s, long double __a)
   { return std::__detail::__hurwitz_zeta<long double>(__s, __a); }
 
   /**
-   * Return the Hurwitz zeta function of argument @c s, and parameter @c a.
+   * Return the Hurwitz zeta function of real argument @c s, and parameter @c a.
    *
    * The the Hurwitz zeta function is defined by
    * @f[
-   *    \zeta(s, a) = 
+   *    \zeta(s, a) = \sum_{n=0}^{\infty}\frac{1}{(a + n)^s}
    * @f]
    *
    * @param __s The argument
@@ -2517,6 +2598,20 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   template<typename _Tp, typename _Up>
     inline __gnu_cxx::__promote_num_t<_Tp, _Up>
     hurwitz_zeta(_Tp __s, _Up __a)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp, _Up>;
+      return std::__detail::__hurwitz_zeta<__type>(__s, __a);
+    }
+
+  /**
+   * Return the Hurwitz zeta function of real argument @c s,
+   * and complex parameter @c a.
+   *
+   * @see hurwitz_zeta for details.
+   */
+  template<typename _Tp, typename _Up>
+    std::complex<_Tp>
+    hurwitz_zeta(_Tp __s, std::complex<_Up> __a)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp, _Up>;
       return std::__detail::__hurwitz_zeta<__type>(__s, __a);
