@@ -1116,13 +1116,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __hurwitz_zeta(const _Tp __s, std::complex<_Tp> __a)
+    __hurwitz_zeta(_Tp __s, std::complex<_Tp> __a)
     {
       using __cmplx = std::complex<_Tp>;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_2pi = _Tp{2} * _S_pi;
       constexpr auto _S_i2pi = __cmplx{0, _S_2pi};
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Val>::__pi_half;
+      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
       if ((__a.imag() >= _Tp{0}
 		&& (__a.real() >= _Tp{0} && __a.real() <  _Tp{1}))
        || (__a.imag() <  _Tp{0}
@@ -1135,7 +1135,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  return std::tgamma(__t)
 	       * std::pow(_S_2pi, -__t)
 	       * (__lpe * std::exp(__cmplx(_Tp{0}, -_S_pi_2 * __t))
-	   + std::conj(__lpe) * std::exp(__cmplx<_Tp>(_Tp{0}, _S_pi_2 * __t)));
+	   + std::conj(__lpe) * std::exp(__cmplx(_Tp{0}, _S_pi_2 * __t)));
         }
       else 
         std::__throw_domain_error(__N("__hurwitz_zeta: Bad argument"));
