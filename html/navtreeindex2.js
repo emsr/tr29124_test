@@ -1,5 +1,12 @@
 var NAVTREEINDEX2 =
 {
+"sf__ellint_8tcc.html#a9c6ea96cd5d6907fce278010b992499a":[5,0,0,6,9],
+"sf__ellint_8tcc.html#aa17b1b382a89552f49fbb8c5eda1d50f":[5,0,0,6,12],
+"sf__ellint_8tcc.html#aa349fe5bcf36d29cfacf6cd3e8aa65b0":[5,0,0,6,7],
+"sf__ellint_8tcc.html#aa7d81e41240a6d031414c6b117889e36":[5,0,0,6,15],
+"sf__ellint_8tcc.html#aaceff1eb320e0602afee36c60b80f87a":[5,0,0,6,18],
+"sf__ellint_8tcc.html#ac05883415a662fc6f9855dd8d1da921f":[5,0,0,6,16],
+"sf__ellint_8tcc.html#ad3687a38e74e5fbf08265501add0b56a":[5,0,0,6,8],
 "sf__ellint_8tcc.html#add5220a1ab03915e4a45dc547bb8eef6":[5,0,0,6,4],
 "sf__ellint_8tcc.html#afe05ce66130b5f47389137c3f9aa6949":[5,0,0,6,19],
 "sf__ellint_8tcc_source.html":[5,0,0,6],
@@ -195,7 +202,7 @@ var NAVTREEINDEX2 =
 "sf__polylog_8tcc.html#a6057422cd4e359f44dcdb6cffc26128f":[5,0,0,22,14],
 "sf__polylog_8tcc.html#a6cedea78253fd4d6da481c681a2eed72":[5,0,0,22,11],
 "sf__polylog_8tcc.html#a7d1d29f2a53007e83c70e9ef805d0ffa":[5,0,0,22,26],
-"sf__polylog_8tcc.html#a8381d5cd047b45387ab2d0ef3591171c":[5,0,0,22,20],
+"sf__polylog_8tcc.html#a7eb061915bad44dd29443b3476eaa7a0":[5,0,0,22,20],
 "sf__polylog_8tcc.html#a84b83a6be0a236fbcbbdea9078e8ca58":[5,0,0,22,24],
 "sf__polylog_8tcc.html#a962bc8055b3948b6e2bebf34f86d9263":[5,0,0,22,17],
 "sf__polylog_8tcc.html#a990a8fb06307793ceae4c3c288f8b876":[5,0,0,22,16],
@@ -242,12 +249,5 @@ var NAVTREEINDEX2 =
 "sf__trigint_8tcc.html#a211f552bca2944f64e3a1f5593690fda":[5,0,0,24,5],
 "sf__trigint_8tcc.html#a354c633cb3e397eae4c31776b2d67923a0fef08e2967964a1421753c5d738c838":[5,0,0,24,1],
 "sf__trigint_8tcc.html#a354c633cb3e397eae4c31776b2d67923a4b5ea0190e37e477a2874e231190489e":[5,0,0,24,2],
-"sf__trigint_8tcc.html#a53bf807a99eef68cdb6f917c7ca085bf":[5,0,0,24,3],
-"sf__trigint_8tcc.html#a976c3ff52c54001de3d409900c9bcb9c":[5,0,0,24,4],
-"sf__trigint_8tcc.html#aea85e0044476065ed4a067f1aa9647cb":[5,0,0,24,6],
-"sf__trigint_8tcc.html#afde1ee684ded2155f3a3b305a31bb18e":[5,0,0,24,0],
-"sf__trigint_8tcc_source.html":[5,0,0,24],
-"sf__zeta_8tcc.html":[5,0,0,25],
-"sf__zeta_8tcc.html#a174bfa28eeb176b90ff251b5affbecb2":[5,0,0,25,8],
-"sf__zeta_8tcc.html#a22ed80d9e5c3bc79e61a3cdb8e79a462":[5,0,0,25,15]
+"sf__trigint_8tcc.html#a53bf807a99eef68cdb6f917c7ca085bf":[5,0,0,24,3]
 };

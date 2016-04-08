@@ -6,7 +6,7 @@ var searchData=
   ['heuman_5flambda',['heuman_lambda',['../group__gnu__math__spec__func.html#ga3b606d8617459ef7e5d340db1bae13ec',1,'__gnu_cxx']]],
   ['heuman_5flambdaf',['heuman_lambdaf',['../group__gnu__math__spec__func.html#ga10cf5d54d985aa3a58cb197601040ac8',1,'__gnu_cxx']]],
   ['heuman_5flambdal',['heuman_lambdal',['../group__gnu__math__spec__func.html#gadadaeb83b3d9c2fccd33ab8ec3188df5',1,'__gnu_cxx']]],
-  ['hurwitz_5fzeta',['hurwitz_zeta',['../group__gnu__math__spec__func.html#gaed8e8bb0f1755fa7b0786d02ed574347',1,'__gnu_cxx']]],
+  ['hurwitz_5fzeta',['hurwitz_zeta',['../group__gnu__math__spec__func.html#gaed8e8bb0f1755fa7b0786d02ed574347',1,'__gnu_cxx::hurwitz_zeta(_Tp __s, _Up __a)'],['../group__gnu__math__spec__func.html#gaa7f0d1fbba9d2ce07a30d907302d527f',1,'__gnu_cxx::hurwitz_zeta(_Tp __s, std::complex&lt; _Up &gt; __a)']]],
   ['hurwitz_5fzetaf',['hurwitz_zetaf',['../group__gnu__math__spec__func.html#gaa745d7f2edde060ed2f22817ad89df1f',1,'__gnu_cxx']]],
   ['hurwitz_5fzetal',['hurwitz_zetal',['../group__gnu__math__spec__func.html#gad8f2cfc7e198755968bae35d46b49d5a',1,'__gnu_cxx']]],
   ['hyperg',['hyperg',['../group__gnu__math__spec__func.html#gaf52cf49736c63b0bb000be98b53c221f',1,'__gnu_cxx']]],

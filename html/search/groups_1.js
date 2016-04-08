@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mathematical_20special_20functions',['Mathematical Special Functions',['../group__tr29124__math__spec__func.html',1,'']]]
+  ['gnu_20extended_20mathematical_20special_20functions',['GNU Extended Mathematical Special Functions',['../group__gnu__math__spec__func.html',1,'']]]
 ];

@@ -1,6 +1,54 @@
-\hypertarget{index_Intro}{}\section{Intro}\label{index_Intro}
-The first significant library upgrade on the road to C++2011, T\+R1, included a set of 23 mathematical functions that significntly extended the standard trancendental functions inherited from C and declared in $<$cmath$>$. \href{http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2005/n1836.pdf}{\tt http\+://www.\+open-\/std.\+org/\+J\+T\+C1/\+S\+C22/\+W\+G21/docs/papers/2005/n1836.\+pdf} Although most components from T\+R1 were adopted for C++11 these math function were left behind out of concern for implementability. The math functions were published as a separate international standard. \href{http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2010/n3060.pdf}{\tt http\+://www.\+open-\/std.\+org/\+J\+T\+C1/\+S\+C22/\+W\+G21/docs/papers/2010/n3060.\+pdf}\hypertarget{index_Implementation}{}\section{Implementation}\label{index_Implementation}
-Our implementation centers around template functions that provide...\hypertarget{index_Bibliography}{}\section{Bibliography}\label{index_Bibliography}
+\hypertarget{index_intro}{}\section{Introduction and History}\label{index_intro}
+The first significant library upgrade on the road to C++2011, \href{http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2005/n1836.pdf}{\tt T\+R1}, included a set of 23 mathematical functions that significntly extended the standard trancendental functions inherited from C and declared in $<$cmath$>$.
+
+Although most components from T\+R1 were eventually adopted for C++11 these math function were left behind out of concern for implementability. The math functions were published as a separate international standard \href{http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2010/n3060.pdf}{\tt I\+S 29124 -\/ Extensions to the C++ Library to Support Mathematical Special Functions}.
+
+For C++17 these functions were incorporated into the main standard.\hypertarget{index_contents}{}\section{Contents}\label{index_contents}
+The folowing functions are implemented in namespace {\ttfamily std\+:} 
+\begin{DoxyItemize}
+\item \hyperlink{group__tr29124__math__spec__func_ga377bb7e038c464a27dfe0573fd2d7b33}{assoc\+\_\+laguerre -\/ Associated Laguerre functions}
+\item \hyperlink{group__tr29124__math__spec__func_ga355349f79119c1fd1e2a9351cec57f0f}{assoc\+\_\+legendre -\/ Associated Legendre functions}
+\item \hyperlink{group__tr29124__math__spec__func_ga6a7220c87c942db48b18b527d92bbd2d}{beta -\/ Beta functions}
+\item \hyperlink{group__tr29124__math__spec__func_gac559500c604c43ea943d593c9ad9d289}{comp\+\_\+ellint\+\_\+1 -\/ Complete elliptic functions of the first kind}
+\item \hyperlink{group__tr29124__math__spec__func_ga22fcc678829f0daf2de257896378e7e0}{comp\+\_\+ellint\+\_\+2 -\/ Complete elliptic functions of the second kind}
+\item \hyperlink{group__tr29124__math__spec__func_gad833404645e24b7f0598a640ff92d623}{comp\+\_\+ellint\+\_\+3 -\/ Complete elliptic functions of the third kind}
+\item \hyperlink{group__tr29124__math__spec__func_ga1c9b5a5c36f000a4f0a55f7fcc486cb0}{cyl\+\_\+bessel\+\_\+i -\/ Regular modified cylindrical Bessel functions}
+\item \hyperlink{group__tr29124__math__spec__func_ga47e21a13b6d68d0d7f057699bd3b3ce0}{cyl\+\_\+bessel\+\_\+j -\/ Cylindrical Bessel functions of the first kind}
+\item \hyperlink{group__tr29124__math__spec__func_ga76dcd3884620955680112aca0d327ada}{cyl\+\_\+bessel\+\_\+k -\/ Irregular modified cylindrical Bessel functions}
+\item \hyperlink{group__tr29124__math__spec__func_ga5b7c72ab85e361cbd73f1a3b5f0725a6}{cyl\+\_\+neumann -\/ Cylindrical Neumann functions or Cylindrical Bessel functions of the second kind}
+\item \hyperlink{group__tr29124__math__spec__func_gae6b3df5556f38a7d72f9b4457d856f9c}{ellint\+\_\+1 -\/ Incomplete elliptic functions of the first kind}
+\item \hyperlink{group__tr29124__math__spec__func_gad6dd71db2b3f90d24ff49bf8cf37bc37}{ellint\+\_\+2 -\/ Incomplete elliptic functions of the second kind}
+\item \hyperlink{group__tr29124__math__spec__func_ga20832e3a67d25cc3d415cafc88019ac3}{ellint\+\_\+3 -\/ Incomplete elliptic functions of the third kind}
+\item \hyperlink{group__tr29124__math__spec__func_ga88ba17f5d050a6973ca4db1bf6e90590}{expint -\/ The exponential integral}
+\item \hyperlink{group__tr29124__math__spec__func_ga97632b8bf77c323b2369e8d327965bdf}{hermite -\/ Hermite polynomials}
+\item \hyperlink{group__tr29124__math__spec__func_gacae65579b397fddcd27954380d364a58}{laguerre -\/ Laguerre functions}
+\item \hyperlink{group__tr29124__math__spec__func_gaf6eac7fcb98e25b8f3f7d1b95fa7add8}{legendre -\/ Legendre polynomials}
+\item \hyperlink{group__tr29124__math__spec__func_ga67a6bfed9b6ab692e8c798b674431424}{riemann\+\_\+zeta -\/ The Riemann zeta function}
+\item \hyperlink{group__tr29124__math__spec__func_ga478e517ed975bcb256de230e64f0fda5}{sph\+\_\+bessel -\/ Spherical Bessel functions}
+\item \hyperlink{group__tr29124__math__spec__func_ga573842c12247b87746b548f1945755a8}{sph\+\_\+legendre -\/ Spherical Legendre functions}
+\item \hyperlink{group__tr29124__math__spec__func_ga1cf4362a67ab5bae9e6b69c867e85371}{sph\+\_\+neumann -\/ Spherical Neumann functions}
+\end{DoxyItemize}
+
+The hypergeometric functions were stricken from the T\+R29124 and C++17 versions of this math library because of implementation concerns. However, since they were in the T\+R1 version and since they are popular we kept them as an extension in namespace {\ttfamily \hyperlink{namespace____gnu__cxx}{\+\_\+\+\_\+gnu\+\_\+cxx}\+:} 
+\begin{DoxyItemize}
+\item conf\+\_\+hyperg -\/ Confluent hypergeometric functions
+\item hyperg -\/ Hypergeometric functions
+\end{DoxyItemize}\hypertarget{index_general}{}\section{General Features}\label{index_general}
+\hypertarget{index_promotion}{}\subsection{Argument Promotion}\label{index_promotion}
+The arguments suppled to the non-\/suffixed functions will be promoted according to the following rules\+:
+\begin{DoxyEnumerate}
+\item If any argument intended to be floating opint is given an integral value That integral value is promoted to double.
+\item All floating point arguments are promoted up to the largest floating point precision among them.
+\end{DoxyEnumerate}\hypertarget{index_NaN}{}\subsection{Na\+N Arguments}\label{index_NaN}
+If any of the floating point arguments supplied to these functions is invalid or Na\+N (std\+::numeric\+\_\+limits$<$\+Tp$>$\+::quiet\+\_\+\+Na\+N), the value Na\+N is returned.\hypertarget{index_impl}{}\section{Implementation}\label{index_impl}
+We strive to implement the underlying math with type generic algorithms to the greatest extent possible. In practice, the function are thin wrappers that dispatch to function templates. Type dependence is controlled with std\+::numeric\+\_\+limits and functions thereof.
+
+We don\textquotesingle{}t promote $\ast$c float to $\ast$c double or $\ast$c double to {\ttfamily long double} reflexively. The goal is for float functions to operate more quickly, at the cost of float accuracy and possibly a smaller domain of validity. Similaryly, {\ttfamily long double} should give you more dynamic range and slightly more pecision than {\ttfamily double} on many systems.\hypertarget{index_testing}{}\section{Testing}\label{index_testing}
+These functions have been tested against equivalent implementations from the \href{http://www.gnu.org/software/gsl}{\tt Gnu Scientific Library, G\+S\+L} and $<$a href="\href{http://www.boost.org/doc/libs/1_60_0/libs/math/doc/html/index.html}{\tt http\+://www.\+boost.\+org/doc/libs/1\+\_\+60\+\_\+0/libs/math/doc/html/index.\+html}$>$Boost and the ratio \[ \frac{|f - f_{test}|}{|f_{test}|} \] is generally found to be within 10$^\wedge$-\/15 for 64-\/bit double on linux-\/x86\+\_\+64 systems over most of the ranges of validity.
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]Provide accuracy comparisons on a per-\/function basis for a small number of targets.\end{DoxyRefDesc}
+\hypertarget{index_bibliography}{}\section{General Bibliography}\label{index_bibliography}
 \begin{DoxySeeAlso}{See also}
 Abramowitz and Stegun\+: Handbook of Mathematical Functions, with Formulas, Graphs, and Mathematical Tables Edited by Milton Abramowitz and Irene A. Stegun, National Bureau of Standards Applied Mathematics Series -\/ 55 Issued June 1964, Tenth Printing, December 1972, with corrections Electronic versions of A\&S abound including both pdf and navigable html. 
 
@@ -8,5 +56,11 @@ for example \href{http://people.math.sfu.ca/~cbm/aands/}{\tt http\+://people.\+m
 
 The old A\&S has been redone as the N\+I\+S\+T Digital Library of Mathematical Functions\+: \href{http://dlmf.nist.gov/}{\tt http\+://dlmf.\+nist.\+gov/} This version is far more navigable and includes more recent work.
 
-An Atlas of Functions\+: with Equator, the Atlas Function Calculator 2nd Edition, by Oldham, Keith B., Myland, Jan, Spanier, Jerome 
+An Atlas of Functions\+: with Equator, the Atlas Function Calculator 2nd Edition, by Oldham, Keith B., Myland, Jan, Spanier, Jerome
+
+Asymptotics and Special Functions by Frank W. J. Olver, Academic Press, 1974
+
+Numerical Recipes in C, The Art of Scientific Computing, by William H. Press, Second Ed., Saul A. Teukolsky, William T. Vetterling, and Brian P. Flannery, Cambridge University Press, 1992
+
+The Special Functions and Their Approximations\+: Volumes 1 and 2, by Yudell L. Luke, Academic Press, 1969 
 \end{DoxySeeAlso}
