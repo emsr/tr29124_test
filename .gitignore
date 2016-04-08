@@ -159,6 +159,7 @@ test_promote_num
 test_psi
 test_rational
 test_special_function
+test_sph_hankel
 test_theta
 
 hankel_transition
