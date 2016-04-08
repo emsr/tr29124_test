@@ -64,5 +64,7 @@ var searchData=
   ['cyl_5fhankel_5f2l',['cyl_hankel_2l',['../group__gnu__math__spec__func.html#ga4babb91ca6906f237e8bd1f0f1a10509',1,'__gnu_cxx::cyl_hankel_2l(long double __nu, long double __z)'],['../group__gnu__math__spec__func.html#ga1ac6434925254bd02e108f5a4e52b34d',1,'__gnu_cxx::cyl_hankel_2l(std::complex&lt; long double &gt; __nu, std::complex&lt; long double &gt; __x)']]],
   ['cyl_5fneumann',['cyl_neumann',['../group__tr29124__math__spec__func.html#ga5b7c72ab85e361cbd73f1a3b5f0725a6',1,'std']]],
   ['cyl_5fneumannf',['cyl_neumannf',['../group__tr29124__math__spec__func.html#ga604c13e8f2bb7cd3c7c91d8b19d6b13a',1,'std']]],
-  ['cyl_5fneumannl',['cyl_neumannl',['../group__tr29124__math__spec__func.html#gaf8986bae9a523c48d861d233835bda8f',1,'std']]]
+  ['cyl_5fneumannl',['cyl_neumannl',['../group__tr29124__math__spec__func.html#gaf8986bae9a523c48d861d233835bda8f',1,'std']]],
+  ['c_2b_2b_20mathematical_20special_20functions',['C++ Mathematical Special Functions',['../group__math__spec__func.html',1,'']]],
+  ['c_2b_2b17_2fis29124_20mathematical_20special_20functions',['C++17/IS29124 Mathematical Special Functions',['../group__tr29124__math__spec__func.html',1,'']]]
 ];
