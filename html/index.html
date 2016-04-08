@@ -104,21 +104,77 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="title">Mathematical Special Functions </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="Intro"></a>
-Intro</h1>
-<p>The first significant library upgrade on the road to C++2011, TR1, included a set of 23 mathematical functions that significntly extended the standard trancendental functions inherited from C and declared in &lt;cmath&gt;. <a href="http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2005/n1836.pdf">http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2005/n1836.pdf</a> Although most components from TR1 were adopted for C++11 these math function were left behind out of concern for implementability. The math functions were published as a separate international standard. <a href="http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2010/n3060.pdf">http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2010/n3060.pdf</a></p>
-<h1><a class="anchor" id="Implementation"></a>
+<div class="textblock"><h1><a class="anchor" id="intro"></a>
+Introduction and History</h1>
+<p>The first significant library upgrade on the road to C++2011, <a href="http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2005/n1836.pdf">TR1</a>, included a set of 23 mathematical functions that significntly extended the standard trancendental functions inherited from C and declared in &lt;cmath&gt;.</p>
+<p>Although most components from TR1 were eventually adopted for C++11 these math function were left behind out of concern for implementability. The math functions were published as a separate international standard <a href="http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2010/n3060.pdf">IS 29124 - Extensions to the C++ Library to Support Mathematical Special Functions</a>.</p>
+<p>For C++17 these functions were incorporated into the main standard.</p>
+<h1><a class="anchor" id="contents"></a>
+Contents</h1>
+<p>The folowing functions are implemented in namespace <code>std:</code> </p><ul>
+<li><a class="el" href="group__tr29124__math__spec__func.html#ga377bb7e038c464a27dfe0573fd2d7b33">assoc_laguerre - Associated Laguerre functions</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#ga355349f79119c1fd1e2a9351cec57f0f">assoc_legendre - Associated Legendre functions</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#ga6a7220c87c942db48b18b527d92bbd2d">beta - Beta functions</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#gac559500c604c43ea943d593c9ad9d289">comp_ellint_1 - Complete elliptic functions of the first kind</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#ga22fcc678829f0daf2de257896378e7e0">comp_ellint_2 - Complete elliptic functions of the second kind</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#gad833404645e24b7f0598a640ff92d623">comp_ellint_3 - Complete elliptic functions of the third kind</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#ga1c9b5a5c36f000a4f0a55f7fcc486cb0">cyl_bessel_i - Regular modified cylindrical Bessel functions</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#ga47e21a13b6d68d0d7f057699bd3b3ce0">cyl_bessel_j - Cylindrical Bessel functions of the first kind</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#ga76dcd3884620955680112aca0d327ada">cyl_bessel_k - Irregular modified cylindrical Bessel functions</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#ga5b7c72ab85e361cbd73f1a3b5f0725a6">cyl_neumann - Cylindrical Neumann functions or Cylindrical Bessel functions of the second kind</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#gae6b3df5556f38a7d72f9b4457d856f9c">ellint_1 - Incomplete elliptic functions of the first kind</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#gad6dd71db2b3f90d24ff49bf8cf37bc37">ellint_2 - Incomplete elliptic functions of the second kind</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#ga20832e3a67d25cc3d415cafc88019ac3">ellint_3 - Incomplete elliptic functions of the third kind</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#ga88ba17f5d050a6973ca4db1bf6e90590">expint - The exponential integral</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#ga97632b8bf77c323b2369e8d327965bdf">hermite - Hermite polynomials</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#gacae65579b397fddcd27954380d364a58">laguerre - Laguerre functions</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#gaf6eac7fcb98e25b8f3f7d1b95fa7add8">legendre - Legendre polynomials</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#ga67a6bfed9b6ab692e8c798b674431424">riemann_zeta - The Riemann zeta function</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#ga478e517ed975bcb256de230e64f0fda5">sph_bessel - Spherical Bessel functions</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#ga573842c12247b87746b548f1945755a8">sph_legendre - Spherical Legendre functions</a></li>
+<li><a class="el" href="group__tr29124__math__spec__func.html#ga1cf4362a67ab5bae9e6b69c867e85371">sph_neumann - Spherical Neumann functions</a></li>
+</ul>
+<p>The hypergeometric functions were stricken from the TR29124 and C++17 versions of this math library because of implementation concerns. However, since they were in the TR1 version and since they are popular we kept them as an extension in namespace <code><a class="el" href="namespace____gnu__cxx.html">__gnu_cxx</a>:</code> </p><ul>
+<li>conf_hyperg - Confluent hypergeometric functions</li>
+<li>hyperg - Hypergeometric functions</li>
+</ul>
+<h1><a class="anchor" id="general"></a>
+General Features</h1>
+<h2><a class="anchor" id="promotion"></a>
+Argument Promotion</h2>
+<p>The arguments suppled to the non-suffixed functions will be promoted according to the following rules:</p><ol type="1">
+<li>If any argument intended to be floating opint is given an integral value That integral value is promoted to double.</li>
+<li>All floating point arguments are promoted up to the largest floating point precision among them.</li>
+</ol>
+<h2><a class="anchor" id="NaN"></a>
+NaN Arguments</h2>
+<p>If any of the floating point arguments supplied to these functions is invalid or NaN (std::numeric_limits&lt;Tp&gt;::quiet_NaN), the value NaN is returned.</p>
+<h1><a class="anchor" id="impl"></a>
 Implementation</h1>
-<p>Our implementation centers around template functions that provide...</p>
-<h1><a class="anchor" id="Bibliography"></a>
-Bibliography</h1>
+<p>We strive to implement the underlying math with type generic algorithms to the greatest extent possible. In practice, the function are thin wrappers that dispatch to function templates. Type dependence is controlled with std::numeric_limits and functions thereof.</p>
+<p>We don't promote *c float to *c double or *c double to <code>long double</code> reflexively. The goal is for float functions to operate more quickly, at the cost of float accuracy and possibly a smaller domain of validity. Similaryly, <code>long double</code> should give you more dynamic range and slightly more pecision than <code>double</code> on many systems.</p>
+<h1><a class="anchor" id="testing"></a>
+Testing</h1>
+<p>These functions have been tested against equivalent implementations from the <a href="http://www.gnu.org/software/gsl">Gnu Scientific Library, GSL</a> and &lt;a href="<a href="http://www.boost.org/doc/libs/1_60_0/libs/math/doc/html/index.html">http://www.boost.org/doc/libs/1_60_0/libs/math/doc/html/index.html</a>&gt;Boost and the ratio </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \frac{|f - f_{test}|}{|f_{test}|} \]" src="form_0.png"/>
+</p>
+<p> is generally found to be within 10^-15 for 64-bit double on linux-x86_64 systems over most of the ranges of validity.</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Provide accuracy comparisons on a per-function basis for a small number of targets.</dd></dl>
+<h1><a class="anchor" id="bibliography"></a>
+General Bibliography</h1>
 <dl class="section see"><dt>See also</dt><dd>Abramowitz and Stegun: Handbook of Mathematical Functions, with Formulas, Graphs, and Mathematical Tables Edited by Milton Abramowitz and Irene A. Stegun, National Bureau of Standards Applied Mathematics Series - 55 Issued June 1964, Tenth Printing, December 1972, with corrections Electronic versions of A&amp;S abound including both pdf and navigable html. </dd>
 <dd>
 for example <a href="http://people.math.sfu.ca/~cbm/aands/">http://people.math.sfu.ca/~cbm/aands/</a></dd>
 <dd>
 The old A&amp;S has been redone as the NIST Digital Library of Mathematical Functions: <a href="http://dlmf.nist.gov/">http://dlmf.nist.gov/</a> This version is far more navigable and includes more recent work.</dd>
 <dd>
-An Atlas of Functions: with Equator, the Atlas Function Calculator 2nd Edition, by Oldham, Keith B., Myland, Jan, Spanier, Jerome </dd></dl>
+An Atlas of Functions: with Equator, the Atlas Function Calculator 2nd Edition, by Oldham, Keith B., Myland, Jan, Spanier, Jerome</dd>
+<dd>
+Asymptotics and Special Functions by Frank W. J. Olver, Academic Press, 1974</dd>
+<dd>
+Numerical Recipes in C, The Art of Scientific Computing, by William H. Press, Second Ed., Saul A. Teukolsky, William T. Vetterling, and Brian P. Flannery, Cambridge University Press, 1992</dd>
+<dd>
+The Special Functions and Their Approximations: Volumes 1 and 2, by Yudell L. Luke, Academic Press, 1969 </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

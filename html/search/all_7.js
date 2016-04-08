@@ -14,5 +14,6 @@ var searchData=
   ['gamma_5ful',['gamma_ul',['../group__gnu__math__spec__func.html#gae2c9ff364ba758f0f41a5b71d2c9e755',1,'__gnu_cxx']]],
   ['gegenbauer',['gegenbauer',['../group__gnu__math__spec__func.html#gaf295fecea6e26f1caeb7aa1560e9b7ee',1,'__gnu_cxx']]],
   ['gegenbauerf',['gegenbauerf',['../group__gnu__math__spec__func.html#ga0f16dd9c771c8c177f377381b6e3387c',1,'__gnu_cxx']]],
-  ['gegenbauerl',['gegenbauerl',['../group__gnu__math__spec__func.html#gabf1644841deefbb162ade9fa508591cb',1,'__gnu_cxx']]]
+  ['gegenbauerl',['gegenbauerl',['../group__gnu__math__spec__func.html#gabf1644841deefbb162ade9fa508591cb',1,'__gnu_cxx']]],
+  ['gnu_20extended_20mathematical_20special_20functions',['GNU Extended Mathematical Special Functions',['../group__gnu__math__spec__func.html',1,'']]]
 ];

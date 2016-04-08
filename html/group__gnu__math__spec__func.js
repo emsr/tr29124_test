@@ -154,6 +154,7 @@ var group__gnu__math__spec__func =
     [ "heuman_lambdaf", "group__gnu__math__spec__func.html#ga10cf5d54d985aa3a58cb197601040ac8", null ],
     [ "heuman_lambdal", "group__gnu__math__spec__func.html#gadadaeb83b3d9c2fccd33ab8ec3188df5", null ],
     [ "hurwitz_zeta", "group__gnu__math__spec__func.html#gaed8e8bb0f1755fa7b0786d02ed574347", null ],
+    [ "hurwitz_zeta", "group__gnu__math__spec__func.html#gaa7f0d1fbba9d2ce07a30d907302d527f", null ],
     [ "hurwitz_zetaf", "group__gnu__math__spec__func.html#gaa745d7f2edde060ed2f22817ad89df1f", null ],
     [ "hurwitz_zetal", "group__gnu__math__spec__func.html#gad8f2cfc7e198755968bae35d46b49d5a", null ],
     [ "hyperg", "group__gnu__math__spec__func.html#gaf52cf49736c63b0bb000be98b53c221f", null ],

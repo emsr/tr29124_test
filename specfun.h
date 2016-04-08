@@ -100,7 +100,7 @@ namespace std _GLIBCXX_VISIBILITY(default)
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   * @defgroup tr29124_math_spec_func Mathematical Special Functions
+   * @defgroup math_spec_func C++ Mathematical Special Functions
    * @ingroup numerics
    *
    * A collection of advanced mathematical special functions.
@@ -110,51 +110,56 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * @mainpage Mathematical Special Functions
    *
-   * @section Intro
-   * The first significant library upgrade on the road to C++2011, TR1,
-   * included a set of 23 mathematical functions that significntly extended
-   * the standard trancendental functions inherited from C and declared in
-   * <cmath>.
-   * http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2005/n1836.pdf
-   * Although most components from TR1 were adopted for C++11 these
+   * @section intro Introduction and History
+   * The first significant library upgrade on the road to C++2011,
+   * <a href="http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2005/n1836.pdf">
+   * TR1</a>, included a set of 23 mathematical functions that significntly
+   * extended the standard trancendental functions inherited from C and declared
+   * in @<cmath@>.
+   *
+   * Although most components from TR1 were eventually adopted for C++11 these
    * math function were left behind out of concern for implementability.
-   * The math functions were published as a separate international standard.
-   * http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2010/n3060.pdf
+   * The math functions were published as a separate international standard
+   * <a href="http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2010/n3060.pdf">
+   * IS 29124 - Extensions to the C++ Library to Support Mathematical Special
+   * Functions</a>.
    *
-   * @section Contents
+   * For C++17 these functions were incorporated into the main standard.
+   *
+   * @section contents Contents
    * The folowing functions are implemented in namespace @c std:
-   *  - @ref assoc_laguerre "assoc_laguerre - Associated Laguerre functions"
-   *  - @ref assoc_legendre "assoc_legendre - Associated Legendre functions"
-   *  - @ref beta "beta - Beta functions"
-   *  - @ref comp_ellint_1 "comp_ellint_1 - Complete elliptic functions of the first kind"
-   *  - @ref comp_ellint_2 "comp_ellint_2 - Complete elliptic functions of the second kind"
-   *  - @ref comp_ellint_3 "comp_ellint_3 - Complete elliptic functions of the third kind"
-   *  - @ref cyl_bessel_i "cyl_bessel_i - Regular modified cylindrical Bessel functions"
-   *  - @ref cyl_bessel_j "cyl_bessel_j - Cylindrical Bessel functions of the first kind"
-   *  - @ref cyl_bessel_k "cyl_bessel_k - Irregular modified cylindrical Bessel functions"
-   *  - @ref cyl_neumann "cyl_neumann - Cylindrical Neumann functions or Cylindrical Bessel functions of the second kind"
-   *  - @ref ellint_1 "ellint_1 - Incomplete elliptic functions of the first kind"
-   *  - @ref ellint_2 "ellint_2 - Incomplete elliptic functions of the second kind"
-   *  - @ref ellint_3 "ellint_3 - Incomplete elliptic functions of the third kind"
-   *  - @ref expint "expint - The exponential integral"
-   *  - @ref hermite "hermite - Hermite polynomials"
-   *  - @ref laguerre "laguerre - Laguerre functions"
-   *  - @ref legendre "legendre - Legendre polynomials"
-   *  - @ref riemann_zeta "riemann_zeta - The Riemann zeta function"
-   *  - @ref sph_bessel "sph_bessel - Spherical Bessel functions"
-   *  - @ref sph_legendre "sph_legendre - Spherical Legendre functions"
-   *  - @ref sph_neumann "sph_neumann - Spherical Neumann functions"
+   * - @ref assoc_laguerre "assoc_laguerre - Associated Laguerre functions"
+   * - @ref assoc_legendre "assoc_legendre - Associated Legendre functions"
+   * - @ref beta "beta - Beta functions"
+   * - @ref comp_ellint_1 "comp_ellint_1 - Complete elliptic functions of the first kind"
+   * - @ref comp_ellint_2 "comp_ellint_2 - Complete elliptic functions of the second kind"
+   * - @ref comp_ellint_3 "comp_ellint_3 - Complete elliptic functions of the third kind"
+   * - @ref cyl_bessel_i "cyl_bessel_i - Regular modified cylindrical Bessel functions"
+   * - @ref cyl_bessel_j "cyl_bessel_j - Cylindrical Bessel functions of the first kind"
+   * - @ref cyl_bessel_k "cyl_bessel_k - Irregular modified cylindrical Bessel functions"
+   * - @ref cyl_neumann "cyl_neumann - Cylindrical Neumann functions or Cylindrical Bessel functions of the second kind"
+   * - @ref ellint_1 "ellint_1 - Incomplete elliptic functions of the first kind"
+   * - @ref ellint_2 "ellint_2 - Incomplete elliptic functions of the second kind"
+   * - @ref ellint_3 "ellint_3 - Incomplete elliptic functions of the third kind"
+   * - @ref expint "expint - The exponential integral"
+   * - @ref hermite "hermite - Hermite polynomials"
+   * - @ref laguerre "laguerre - Laguerre functions"
+   * - @ref legendre "legendre - Legendre polynomials"
+   * - @ref riemann_zeta "riemann_zeta - The Riemann zeta function"
+   * - @ref sph_bessel "sph_bessel - Spherical Bessel functions"
+   * - @ref sph_legendre "sph_legendre - Spherical Legendre functions"
+   * - @ref sph_neumann "sph_neumann - Spherical Neumann functions"
    *
-   * The hypergeometric function were stricken from the TR29124 and C++17
-   * versions of this math library but since they were in the TR1 version
-   * over implementation concerns and sice they are popular we kept them
-   * but in namespace @c __gnu_cxx:
-   *  - @ref conf_hyperg "conf_hyperg - Confluent hypergeometric functions"
-   *  - @ref hyperg "hyperg - Hypergeometric functions"
+   * The hypergeometric functions were stricken from the TR29124 and C++17
+   * versions of this math library because of implementation concerns.
+   * However, since they were in the TR1 version and since they are popular
+   * we kept them as an extension in namespace @c __gnu_cxx:
+   * - @ref conf_hyperg "conf_hyperg - Confluent hypergeometric functions"
+   * - @ref hyperg "hyperg - Hypergeometric functions"
    *
-   * @section "General Features"
+   * @section general General Features
    *
-   * @subsection "Argument Promotion"
+   * @subsection promotion Argument Promotion
    * The arguments suppled to the non-suffixed functions will be promoted
    * according to the following rules:
    * 1. If any argument intended to be floating opint is given an integral value
@@ -162,12 +167,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 2. All floating point arguments are promoted up to the largest floating
    *    point precision among them.
    *
-   * @subsection "NaN Arguments"
+   * @subsection NaN NaN Arguments
    * If any of the floating point arguments supplied to these functions is
    * invalid or NaN (std::numeric_limits<Tp>::quiet_NaN),
    * the value NaN is returned.
    *
-   * @section "Implementation"
+   * @section impl Implementation
    *
    * We strive to implement the underlying math with type generic algorithms
    * to the greatest extent possible.  In practice, the function are thin
@@ -180,10 +185,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Similaryly, <tt>long double</tt> should give you more dynamic range
    * and slightly more pecision than @c double on many systems.
    *
-   * @section "Testing"
+   * @section testing Testing
    *
+   * These functions have been tested against equivalent implementations
+   * from the <a href="http://www.gnu.org/software/gsl">
+   * Gnu Scientific Library, GSL</a> and
+   * <a href="http://www.boost.org/doc/libs/1_60_0/libs/math/doc/html/index.html>Boost</a>
+   * and the ratio
+   * @f[
+   *   \frac{|f - f_{test}|}{|f_{test}|}
+   * @f]
+   * is generally found to be within 10^-15 for 64-bit double on linux-x86_64 systems
+   * over most of the ranges of validity.
+   * 
+   * @todo Provide accuracy comparisons on a per-function basis for a small
+   *       number of targets.
    *
-   * @section "General Bibliography"
+   * @section bibliography General Bibliography
    *
    * @see Abramowitz and Stegun: Handbook of Mathematical Functions,
    * with Formulas, Graphs, and Mathematical Tables
@@ -212,6 +230,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * by Yudell L. Luke, Academic Press, 1969
    */
 
+  /** @} */ // math_spec_func
+
+  /**
+   * @defgroup tr29124_math_spec_func C++17/IS29124 Mathematical Special Functions
+   * @ingroup math_spec_func
+   *
+   * A collection of advanced mathematical special functions for C++17
+   * and IS29124.
+   * @{
+   */
+
   // Associated Laguerre polynomials
 
   /**
@@ -235,8 +264,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__assoc_laguerre<long double>(__n, __m, __x); }
 
   /**
-   * Return the associated Laguerre polynomial of order @c n,
-   * degree @c m: @f$ L_n^m(x) @f$.
+   * Return the associated Laguerre polynomial of nonnegative order @c n,
+   * nonnegative degree @c m and real argument @c x: @f$ L_n^m(x) @f$.
    *
    * The associated Laguerre function of real degree @f$ \alpha @f$,
    * @f$ L_n^\alpha(x) @f$, is defined by
@@ -256,10 +285,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    * 	 L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
    * @f]
+   * and @f$ x >= 0 @f$.
+   * @see laguerre for details of the Laguerre function of degree @c n
    *
-   * @param __n The order of the Laguerre function.
-   * @param __m The degree of the Laguerre function.
-   * @param __x The argument of the Laguerre function.
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param __n The order of the Laguerre function, <tt>__n >= 0</tt>.
+   * @param __m The degree of the Laguerre function, <tt>__m >= 0</tt>.
+   * @param __x The argument of the Laguerre function, <tt>__x >= 0</tt>.
+   * @throw std::domain_error if <tt>__x < 0</tt>.
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -298,13 +331,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *   P_l^m(x) = (1 - x^2)^{m/2}\frac{d^m}{dx^m}P_l(x)
    * @f]
+   * @see legendre for details of the Legendre function of degree @c l
    *
-   * @param  __l  The degree of the associated Legendre function.
-   * 		@f$ l >= 0 @f$.
-   * @param  __m  The order of the associated Legendre function.
-   * 		@f$ m <= l @f$.
-   * @param  __x  The argument of the associated Legendre function.
-   * 		@f$ |x| <= 1 @f$.
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __l  The degree <tt>__l >= 0</tt>.
+   * @param  __m  The order <tt>__m <= l</tt>.
+   * @param  __x  The argument, <tt>abs(__x) <= 1</tt>.
+   * @throw std::domain_error if <tt>abs(__x) > 1</tt>.
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -317,7 +350,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Beta functions
 
   /**
-   * Return the beta function, @f$B(a,b)@f$, for @c float parameters @c a, @c b.
+   * Return the beta function, @f$ B(a,b) @f$, for @c float parameters @c a, @c b.
    *
    * @see beta for more details.
    */
@@ -343,9 +376,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   B(a,b) = \int_0^1 t^{a - 1} (1 - t)^{b - 1} dt
    *          = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
    * @f]
+   * where @f$ x > 0 @f$ and @f$ y > 0 @f$
    *
-   * @param __a The first argument of the beta function.
-   * @param __b The second argument of the beta function.
+   * @tparam _Tpa The floating-point type of the parameter @c __a.
+   * @tparam _Tpb The floating-point type of the parameter @c __b.
+   * @param __a The first argument of the beta function, <tt> __a > 0 </tt>.
+   * @param __b The second argument of the beta function, <tt> __b > 0 </tt>.
+   * @throw std::domain_error if <tt> __a < 0 </tt> or <tt> __b < 0 </tt>.
    */
   template<typename _Tpa, typename _Tpb>
     inline typename __gnu_cxx::__promote_2<_Tpa, _Tpb>::__type
@@ -387,9 +424,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 					     {\sqrt{1 - k^2 sin^2\theta}}
    * @f]
    * where @f$ F(k,\phi) @f$ is the incomplete elliptic integral of the
-   * first kind.
+   * first kind and the modulus @f$ |k| <= 1 @f$.
+   * @see ellint_1 for details of the incomplete elliptic function
+   * of the first kind.
    *
-   * @param  __k  The modulus
+   * @tparam _Tp The floating-point type of the modulus @c __k.
+   * @param  __k  The modulus, <tt> abs(__k) <= 1 </tt>
+   * @throw std::domain_error if <tt> abs(__k) > 1 </tt>.
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -427,10 +468,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The complete elliptic integral of the second kind is defined as
    * @f[
-   *   E(k,\pi/2) = \int_0^{\pi/2}\sqrt{1 - k^2 sin^2\theta}
+   *   E(k) = E(k,\pi/2) = \int_0^{\pi/2}\sqrt{1 - k^2 sin^2\theta}
    * @f]
+   * where @f$ E(k,\phi) @f$ is the incomplete elliptic integral of the
+   * second kind and the modulus @f$ |k| <= 1 @f$.
+   * @see ellint_2 for details of the incomplete elliptic function
+   * of the second kind.
    *
-   * @param  __k  The modulus
+   * @tparam _Tp The floating-point type of the modulus @c __k.
+   * @param  __k  The modulus, @c abs(__k) <= 1
+   * @throw std::domain_error if @c abs(__k) > 1.
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -468,13 +515,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The complete elliptic integral of the third kind is defined as
    * @f[
-   *   \Pi(k,\nu) = \int_0^{\pi/2}
+   *   \Pi(k,\nu) = \Pi(k,\nu,\pi/2) = \int_0^{\pi/2}
    * 		     \frac{d\theta}
    * 		   {(1 - \nu \sin^2\theta)\sqrt{1 - k^2 \sin^2\theta}}
    * @f]
+   * where @f$ \Pi(k,\nu,\phi) @f$ is the incomplete elliptic integral of the
+   * second kind and the modulus @f$ |k| <= 1 @f$.
+   * @see ellint_3 for details of the incomplete elliptic function
+   * of the third kind.
    *
-   * @param  __k  The modulus of the elliptic function.
-   * @param  __nu  The argument of the elliptic function.
+   * @tparam _Tp The floating-point type of the modulus @c __k.
+   * @tparam _Tpn The floating-point type of the argument @c __nu.
+   * @param  __k  The modulus, @c abs(__k) <= 1
+   * @param  __nu  The argument
+   * @throw std::domain_error if @c abs(__k) > 1.
    */
   template<typename _Tp, typename _Tpn>
     inline typename __gnu_cxx::__promote_2<_Tp, _Tpn>::__type
@@ -488,7 +542,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the regular modified Bessel function @f$ I_{\nu}(x) @f$
-   * of @c float order @f$ \nu @f$ and argument @f$ x @f$.
+   * for @c float order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
    *
    * @see cyl_bessel_i for setails.
    */
@@ -498,7 +552,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the regular modified Bessel function @f$ I_{\nu}(x) @f$
-   * of <tt>long double</tt> order @f$ \nu @f$ and argument @f$ x @f$.
+   * for <tt>long double</tt> order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
    *
    * @see cyl_bessel_i for setails.
    */
@@ -508,16 +562,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the regular modified Bessel function @f$ I_{\nu}(x) @f$
-   * of real order @f$ \nu @f$ and argument @f$ x @f$.
+   * for real order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
    *
    * The regular modified cylindrical Bessel function is:
    * @f[
-   *  I_{\nu}(x) = \sum_{k=0}^{\infty}
+   *  I_{\nu}(x) = i^{-\nu}J_\nu(ix) = \sum_{k=0}^{\infty}
    * 		\frac{(x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
    * @f]
    *
-   * @param  __nu  The order of the regular modified Bessel function.
-   * @param  __x   The argument of the regular modified Bessel function.
+   * @tparam _Tpnu The floating-point type of the order @c __nu.
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __nu  The order
+   * @param  __x   The argument, <tt> __x >= 0 </tt>
+   * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tpnu, typename _Tp>
     inline typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type
@@ -531,7 +588,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Bessel function of the first kind @f$ J_{\nu}(x) @f$
-   * of @c float order @f$ \nu @f$ and argument @f$ x @f$.
+   * for @c float order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
    *
    * @see cyl_bessel_j for setails.
    */
@@ -541,7 +598,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Bessel function of the first kind @f$ J_{\nu}(x) @f$
-   * of <tt>long double</tt> order @f$ \nu @f$ and argument @f$ x @f$.
+   * for <tt>long double</tt> order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
    *
    * @see cyl_bessel_j for setails.
    */
@@ -551,7 +608,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Bessel function @f$ J_{\nu}(x) @f$ of real order @f$ \nu @f$
-   * and argument @f$ x @f$.
+   * and argument @f$ x >= 0 @f$.
    *
    * The cylindrical Bessel function is:
    * @f[
@@ -559,8 +616,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *              \frac{(-1)^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
    * @f]
    *
-   * @param  __nu  The order of the Bessel function.
-   * @param  __x   The argument of the Bessel function.
+   * @tparam _Tpnu The floating-point type of the order @c __nu.
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __nu  The order
+   * @param  __x   The argument, <tt> __x >= 0 </tt>
+   * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tpnu, typename _Tp>
     inline typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type
@@ -574,7 +634,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the irregular modified Bessel function @f$ K_{\nu}(x) @f$
-   * of @c float order @f$ \nu @f$ for @c and argument @f$ x @f$.
+   * for @c float order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
    *
    * @see cyl_bessel_k for setails.
    */
@@ -584,7 +644,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the irregular modified Bessel function @f$ K_{\nu}(x) @f$
-   * of <tt>long double</tt> order @f$ \nu @f$ for @c and argument @f$ x @f$.
+   * for <tt>long double</tt> order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
    *
    * @see cyl_bessel_k for setails.
    */
@@ -608,8 +668,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	K_{-\nu}(x) = K_{\nu}(x)
    * @f]
    *
-   * @param  __nu  The order of the irregular modified Bessel function.
-   * @param  __x   The argument of the irregular modified Bessel function.
+   * @tparam _Tpnu The floating-point type of the order @c __nu.
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __nu  The order
+   * @param  __x   The argument, <tt> __x >= 0 </tt>
+   * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tpnu, typename _Tp>
     inline typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type
@@ -643,18 +706,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Neumann function @f$ N_{\nu}(x) @f$
-   * of real order @f$ \nu @f$ and argument @f$ x @f$.
+   * of real order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
    *
    * The Neumann function is defined by:
    * @f[
    *    N_{\nu}(x) = \frac{J_{\nu}(x) \cos \nu\pi - J_{-\nu}(x)}
    *                      {\sin \nu\pi}
    * @f]
-   * where for integral @f$ \nu = n @f$ a limit is taken:
-   * @f$ lim_{\nu \to n} @f$.
+   * where @f$ x >= 0 @f$ and for integral order @f$ \nu = n @f$
+   * a limit is taken: @f$ lim_{\nu \to n} @f$.
    *
-   * @param  __nu  The order of the Neumann function.
-   * @param  __x   The argument of the Neumann function.
+   * @tparam _Tpnu The floating-point type of the order @c __nu.
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __nu  The order
+   * @param  __x   The argument, <tt> __x >= 0 </tt>
+   * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tpnu, typename _Tp>
     inline typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type
@@ -698,8 +764,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * For  @f$ \phi= \pi/2 @f$ this becomes the complete elliptic integral of
    * the first kind, @f$ K(k) @f$.  @see comp_ellint_1.
    *
-   * @param  __k  The modulus of the elliptic function.
-   * @param  __phi  The integral limit argument of the elliptic function.
+   * @tparam _Tp The floating-point type of the modulus @c __k.
+   * @tparam _Tpp The floating-point type of the angle @c __phi.
+   * @param  __k  The modulus, <tt> abs(__k) <= 1 </tt>
+   * @param  __phi  The integral limit argument in radians
+   * @throw std::domain_error if <tt> abs(__k) > 1 </tt>.
    */
   template<typename _Tp, typename _Tpp>
     inline typename __gnu_cxx::__promote_2<_Tp, _Tpp>::__type
@@ -742,9 +811,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * For  @f$ \phi= \pi/2 @f$ this becomes the complete elliptic integral of
    * the second kind, @f$ E(k) @f$.  @see comp_ellint_2.
    *
-   * @param  __k  The argument of the elliptic function.
-   * @param  __phi  The integral limit argument of the elliptic function.
+   * @tparam _Tp The floating-point type of the modulus @c __k.
+   * @tparam _Tpp The floating-point type of the angle @c __phi.
+   * @param  __k  The modulus, <tt> abs(__k) <= 1 </tt>
+   * @param  __phi  The integral limit argument in radians
    * @return  The elliptic function of the second kind.
+   * @throw std::domain_error if <tt> abs(__k) > 1 </tt>.
    */
   template<typename _Tp, typename _Tpp>
     inline typename __gnu_cxx::__promote_2<_Tp, _Tpp>::__type
@@ -790,10 +862,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * For  @f$ \phi= \pi/2 @f$ this becomes the complete elliptic integral of
    * the third kind, @f$ \Pi(k,\nu) @f$.  @see comp_ellint_3.
    *
-   * @param  __k  The modulus of the elliptic function.
-   * @param  __nu  The second argument of the elliptic function.
-   * @param  __phi  The integral limit argument of the elliptic function.
+   * @tparam _Tp The floating-point type of the modulus @c __k.
+   * @tparam _Tpn The floating-point type of the argument @c __nu.
+   * @tparam _Tpp The floating-point type of the angle @c __phi.
+   * @param  __k  The modulus, <tt> abs(__k) <= 1 </tt>
+   * @param  __nu  The second argument
+   * @param  __phi  The integral limit argument in radians
    * @return  The elliptic function of the third kind.
+   * @throw std::domain_error if <tt> abs(__k) > 1 </tt>.
    */
   template<typename _Tp, typename _Tpn, typename _Tpp>
     inline typename __gnu_cxx::__promote_3<_Tp, _Tpn, _Tpp>::__type
@@ -832,6 +908,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   Ei(x) = -\int_{-x}^\infty \frac{e^t}{t} dt
    * \f]
    *
+   * @tparam _Tp The floating-point type of the argument @c __x.
    * @param  __x  The argument of the exponential integral function.
    */
   template<typename _Tp>
@@ -845,8 +922,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Hermite polynomials
 
   /**
-   * Return the Hermite polynomial of order n, @f$ H_n(x) @f$,
-   * for float argument @c x.
+   * Return the Hermite polynomial @f$ H_n(x) @f$ of nonnegative order n
+   * and float argument @c x.
    *
    * @see hermite for details.
    */
@@ -855,8 +932,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__poly_hermite<float>(__n, __x); }
 
   /**
-   * Return the Hermite polynomial of order n, @f$ H_n(x) @f$,
-   * for <tt>long double</tt> argument @c x.
+   * Return the Hermite polynomial @f$ H_n(x) @f$ of nonnegative order n
+   * and <tt>long double</tt> argument @c x.
    *
    * @see hermite for details.
    */
@@ -865,8 +942,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__poly_hermite<long double>(__n, __x); }
 
   /**
-   * Return the Hermite polynomial of order n, @f$ H_n(x) @f$,
-   * for @c real argument @c x.
+   * Return the Hermite polynomial @f$ H_n(x) @f$ of order n
+   * and @c real argument @c x.
    *
    * The Hermite polynomial is defined by:
    * @f[
@@ -878,6 +955,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   H_n(-x) = (-1)^n H_n(x)
    * @f]
    *
+   * @tparam _Tp The floating-point type of the argument @c __x.
    * @param __n The order
    * @param __x The argument
    */
@@ -892,8 +970,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Laguerre polynomials
 
   /**
-   * Returns the Laguerre polynomial @f$ L_n(x) @f$
-   * of degree @c n and @c float argument @c x.
+   * Returns the Laguerre polynomial @f$ L_n(x) @f$ of nonnegative degree @c n
+   * and @c float argument  @f$ x >= 0 @f$.
    *
    * @see laguerre for more details.
    */
@@ -902,8 +980,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__laguerre<float>(__n, __x); }
 
   /**
-   * Returns the Laguerre polynomial @f$ L_n(x) @f$
-   * of degree @c n and <tt>long double</tt> argument @c x.
+   * Returns the Laguerre polynomial @f$ L_n(x) @f$ of nonnegative degree @c n
+   * and <tt>long double</tt> argument @f$ x >= 0 @f$.
    *
    * @see laguerre for more details.
    */
@@ -912,16 +990,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__laguerre<long double>(__n, __x); }
 
   /**
-   * Returns the Laguerre polynomial
-   * of degree @c n, and argument @c x: @f$ L_n(x) @f$.
+   * Returns the Laguerre polynomial @f$ L_n(x) @f$
+   * of nonnegative degree @c n and real argument @f$ x >= 0 @f$.
    *
    * The Laguerre polynomial is defined by:
    * @f[
    * 	 L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
    * @f]
    *
-   * @param __n The order of the Laguerre function.
-   * @param __x The argument of the Laguerre function.
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param __n The nonnegative order
+   * @param __x The argument <tt> __x >= 0 </tt>
+   * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -934,8 +1014,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Legendre polynomials
 
   /**
-   * Return the Legendre polynomial @f$ P_l(x) @f$ of degree @f$ l @f$
-   * for @c float argument.
+   * Return the Legendre polynomial @f$ P_l(x) @f$ of nonnegative
+   * degree @f$ l @f$ and @c float argument @f$ |x| <= 0 @f$.
    *
    * @see legendre for more details.
    */
@@ -944,8 +1024,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__poly_legendre_p<float>(__l, __x); }
 
   /**
-   * Return the Legendre polynomial @f$ P_l(x) @f$ of degree @f$ l @f$
-   * for <tt>long double</tt> argument.
+   * Return the Legendre polynomial @f$ P_l(x) @f$ of nonnegative
+   * degree @f$ l @f$ and <tt>long double</tt> argument @f$ |x| <= 0 @f$.
    *
    * @see legendre for more details.
    */
@@ -954,8 +1034,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__poly_legendre_p<long double>(__l, __x); }
 
   /**
-   * Return the Legendre polynomial @f$ P_l(x) @f$ of degree @f$ l @f$
-   * for @c real argument.
+   * Return the Legendre polynomial @f$ P_l(x) @f$ of nonnegative
+   * degree @f$ l @f$ and real argument @f$ |x| <= 0 @f$.
    *
    * The Legendre function of order @f$ l @f$ and argument @f$ x @f$,
    * @f$ P_l(x) @f$, is defined by:
@@ -963,8 +1043,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   P_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l}
    * @f]
    *
-   * @param  __l  The degree @f$l >= 0@f$
-   * @param  __x  The argument @f$|x| <= 1@f$
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param __l The degree @f$ l >= 0 @f$
+   * @param __x The argument @c abs(__x) <= 1
+   * @throw std::domain_error if @c abs(__x) > 1
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -1002,16 +1084,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Riemann zeta function is defined by:
    * @f[
-   * 	\zeta(s) = \sum_{k=1}^{\infty} k^{-s} for s > 1
-   * 		   \frac{(2\pi)^s}{pi} sin(\frac{\pi s}{2})
-   * 		   \Gamma (1 - s) \zeta (1 - s) for s < 1
+   * 	\zeta(s) = \sum_{k=1}^{\infty} k^{-s} \hbox{ for } s > 1
+   * @f]
+   * and
+   * @f[
+   * 	\zeta(s) = \frac{1}{1-2^{1-s}}\sum_{k=1}^{\infty}(-1)^{k-1}k^{-s}
+   *              \hbox{ for } 0 <= s <= 1
    * @f]
    * For s < 1 use the reflection formula:
    * @f[
-   * 	\zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
+   * 	\zeta(s) = 2^s \pi^{s-1} \sin(\frac{\pi s}{2}) \Gamma(1-s) \zeta(1-s)
    * @f]
    *
-   * @param __s The argument @c s != 1
+   * @tparam _Tp The floating-point type of the argument @c __s.
+   * @param __s The argument <tt> s != 1 </tt>
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -1024,8 +1110,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Spherical Bessel functions
 
   /**
-   * Return the spherical Bessel function @f$ j_n(x) @f$ of order n
-   * for @c float argument.
+   * Return the spherical Bessel function @f$ j_n(x) @f$ of nonnegative order n
+   * and @c float argument @f$ x >= 0 @f$.
    *
    * @see sph_bessel for more details.
    */
@@ -1034,8 +1120,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__sph_bessel<float>(__n, __x); }
 
   /**
-   * Return the spherical Bessel function @f$ j_n(x) @f$ of order n
-   * for <tt>long double</tt> argument.
+   * Return the spherical Bessel function @f$ j_n(x) @f$ of nonnegative order n
+   * and <tt>long double</tt> argument @f$ x >= 0 @f$.
    *
    * @see sph_bessel for more details.
    */
@@ -1044,16 +1130,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__sph_bessel<long double>(__n, __x); }
 
   /**
-   * Return the spherical Bessel function @f$ j_n(x) @f$ of order n
-   * for real argument @f$ x >= 0 @f$.
+   * Return the spherical Bessel function @f$ j_n(x) @f$ of nonnegative order n
+   * and real argument @f$ x >= 0 @f$.
    *
    * The spherical Bessel function is defined by:
    * @f[
    *  j_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} J_{n+1/2}(x)
    * @f]
    *
-   * @param  __n  The non-negative integral order
-   * @param  __x  The non-negative real argument
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __n  The integral order <tt> n >= 0 </tt>
+   * @param  __x  The real argument <tt> x >= 0 </tt>
+   * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -1066,7 +1154,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Spherical associated Legendre functions
 
   /**
-   * Return the spherical Legendre function of non-negative integral
+   * Return the spherical Legendre function of nonnegative integral
    * degree @c l and order @c m and float angle @f$ \theta @f$ in radians.
    *
    * @see sph_legendre for details.
@@ -1076,7 +1164,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__sph_legendre<float>(__l, __m, __theta); }
 
   /**
-   * Return the spherical Legendre function of non-negative integral
+   * Return the spherical Legendre function of nonnegative integral
    * degree @c l and order @c m and <tt>long double</tt> angle @f$ \theta @f$
    * in radians.
    *
@@ -1087,7 +1175,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__sph_legendre<long double>(__l, __m, __theta); }
 
   /**
-   * Return the spherical Legendre function of non-negative integral
+   * Return the spherical Legendre function of nonnegative integral
    * degree @c l and order @c m and real angle @f$ \theta @f$ in radians.
    *
    * The spherical Legendre function is defined by
@@ -1097,8 +1185,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *                   P_l^m(\cos\theta) \exp^{im\phi}
    * @f]
    *
-   * @param __l The non-negative order @f$ l >= 0 @f$.
-   * @param __m The non-negative degree @f$ m >= 0 @f$ and @f$ m <= l @f$.
+   * @tparam _Tp The floating-point type of the angle @c __theta.
+   * @param __l The order <tt> __l >= 0 </tt>
+   * @param __m The degree <tt> __m >= 0 </tt> and <tt> __m <= __l </tt>
    * @param __theta The radian polar angle argument
    */
   template<typename _Tp>
@@ -1112,8 +1201,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Spherical Neumann functions
 
   /**
-   * Return the spherical Neumann function of non-negative integral order @c n
-   * and non-negative @c float argument @c x.
+   * Return the spherical Neumann function of integral order @f$ n >= 0 @f$
+   * and @c float argument @f$ x >= 0 @f$.
    *
    * @see sph_neumann for details.
    */
@@ -1122,8 +1211,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__sph_neumann<float>(__n, __x); }
 
   /**
-   * Return the spherical Neumann function of non-negative integral order @c n
-   * and non-negative <tt>long double</tt> argument @c x.
+   * Return the spherical Neumann function of integral order @f$ n >= 0 @f$
+   * and <tt>long double</tt> @f$ x >= 0 @f$.
    *
    * @see sph_neumann for details.
    */
@@ -1132,16 +1221,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__sph_neumann<long double>(__n, __x); }
 
   /**
-   * Return the spherical Neumann function of non-negative integral order @c n
-   * and non-negative real argument @c x.
+   * Return the spherical Neumann function of integral order @f$ n >= 0 @f$
+   * and real argument @f$ x >= 0 @f$.
    *
    * The spherical Neumann function is defined by
    * @f[
    *    n_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} N_{n+1/2}(x)
    * @f]
    *
-   * @param  __n  The non-negative integral order
-   * @param  __x  The non-negative real argument
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __n  The integral order <tt> n >= 0 </tt>
+   * @param  __x  The real argument <tt> __x >= 0 </tt>
+   * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
@@ -1151,7 +1242,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__sph_neumann<__type>(__n, __x);
     }
 
-  /* @} */ // tr29124_math_spec_func
+  /** @} */ // tr29124_math_spec_func
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
@@ -1159,10 +1250,10 @@ _GLIBCXX_END_NAMESPACE_VERSION
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
   /**
-   * @defgroup gnu_math_spec_func Extended Mathematical Special Functions
-   * @ingroup numerics
+   * @defgroup gnu_math_spec_func GNU Extended Mathematical Special Functions
+   * @ingroup math_spec_func
    *
-   * A collection of advanced mathematical special functions.
+   * An extended collection of advanced mathematical special functions for GNU.
    * @{
    */
 
@@ -2253,16 +2344,36 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Dilogarithm functions
 
+  /**
+   * Return the dilogarithm function @f$ \psi(z) @f$
+   * for @c float argument.
+   *
+   * @see dilog for details.
+   */
   inline float
   dilogf(float __x)
   { return std::__detail::__dilog<float>(__x); }
 
+  /**
+   * Return the dilogarithm function @f$ \psi(z) @f$
+   * for <tt>long double</tt> argument.
+   *
+   * @see dilog for details.
+   */
   inline long double
   dilogl(long double __x)
   { return std::__detail::__dilog<long double>(__x); }
 
   /**
-   * 
+   * Return the dilogarithm function @f$ \psi(z) @f$
+   * for real argument.
+   *
+   * The dilogarithm is defined by:
+   * @f[
+   *    Li_2(x) = \sum_{k=1}^{\infty}\frac{x^k}{k^2}
+   * @f]
+   *
+   * @param __x The argument.
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
@@ -2274,16 +2385,38 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Complete Carlson elliptic R_F functions
 
+  /**
+   * Return the complete Carlson elliptic function @f$ R_F(x,y,z) @f$
+   * for @c float arguments.
+   *
+   * @see comp_ellint_rf for details.
+   */
   inline float
   comp_ellint_rf(float __x, float __y)
   { return std::__detail::__comp_ellint_rf<float>(__x, __y); }
 
+  /**
+   * Return the complete Carlson elliptic function @f$ R_F(x,y) @f$
+   * for <tt>long double</tt> arguments.
+   *
+   * @see comp_ellint_rf for details.
+   */
   inline long double
   comp_ellint_rf(long double __x, long double __y)
   { return std::__detail::__comp_ellint_rf<long double>(__x, __y); }
 
   /**
-   * 
+   * Return the complete Carlson elliptic function @f$ R_F(x,y) @f$
+   * for real arguments.
+   *
+   * The complete Carlson elliptic function of the first kind is defined by:
+   * @f[
+   *    R_F(x,y) = R_F(x,y,y) = \frac{1}{2} \int_0^\infty
+   *                 \frac{dt}{(t + x)^{1/2}(t + y)}
+   * @f]
+   *
+   * @param  __x  The first argument.
+   * @param  __y  The second argument.
    */
   template<typename _Tx, typename _Ty>
     inline __gnu_cxx::__promote_num_t<_Tx, _Ty>
@@ -2294,7 +2427,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     }
 
   /**
-   * Return the Carlson elliptic function @f$ R_F(x,y,z) @f$.
+   * Return the Carlson elliptic function @f$ R_F(x,y,z) @f$
+   * of the first kind for @c float arguments.
    *
    * @see ellint_rf for details.
    */
@@ -2305,7 +2439,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__ellint_rf<float>(__x, __y, __z); }
 
   /**
-   * Return the Carlson elliptic function @f$ R_F(x,y,z) @f$.
+   * Return the Carlson elliptic function @f$ R_F(x,y,z) @f$
+   * of the first kind for <tt>long double</tt> arguments.
    *
    * @see ellint_rf for details.
    */
@@ -2315,7 +2450,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Carlson elliptic function @f$ R_F(x,y,z) @f$
-   * of the first kind.
+   * of the first kind for real arguments.
    *
    * The Carlson elliptic function of the first kind is defined by:
    * @f[
@@ -2503,7 +2638,18 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__comp_ellint_rg<long double>(__x, __y); }
 
   /**
-   * 
+   * Return the complete Carlson elliptic function @f$ R_G(x,y) @f$
+   * for real arguments.
+   *
+   * The complete Carlson elliptic function is defined by:
+   * @f[
+   *    R_G(x,y) = R_G(x,y,y) = \frac{1}{4} \int_0^\infty
+   *            dt t (t + x)^{-1/2}(t + y)^{-1}
+   *         (\frac{x}{t + x} + \frac{2y}{t + y})
+   * @f]
+   *
+   * @param  __x  The first argument.
+   * @param  __y  The second argument.
    */
   template<typename _Tx, typename _Ty>
     inline __gnu_cxx::__promote_num_t<_Tx, _Ty>
@@ -2542,7 +2688,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *    R_G(x,y,z) = \frac{1}{4} \int_0^\infty
    *            dt t [(t + x)(t + y)(t + z)]^{-1/2}
    *         (\frac{x}{t + x} + \frac{y}{t + y} + \frac{z}{t + z})
-   *  @f]
+   * @f]
    *
    * Based on Carlson's algorithms:
    * -  B. C. Carlson Numer. Math. 33, 1 (1979)
@@ -2681,7 +2827,6 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @f]
    * is the non-regularized beta function and @f$ B(a,b) @f$
    * is the usual beta function.
-   * @f]
    *
    * @param __a The first parameter
    * @param __b The second parameter
@@ -3494,7 +3639,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex spherical Hankel function of the first kind
-   * of non-negative order @c n and complex argument @c x.
+   * of nonnegative order @c n and complex argument @c x.
    *
    * The spherical Hankel function of the first kind is defined by
    * @f[
@@ -3524,7 +3669,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex spherical Hankel function of the second kind
-   * of non-negative order @c n and complex argument @c x.
+   * of nonnegative order @c n and complex argument @c x.
    *
    * The spherical Hankel function of the second kind is defined by
    * @f[
@@ -4260,7 +4405,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 */
 #endif // __cplusplus >= 201103L
 
-  /* @} */ // gnu_math_spec_func
+  /** @} */ // gnu_math_spec_func
 
 } // namespace __gnu_cxx
 

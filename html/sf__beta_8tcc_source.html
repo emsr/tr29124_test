@@ -410,7 +410,7 @@ $(document).ready(function(){initNavTree('sf__beta_8tcc_source.html','');});
 <div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    _GLIBCXX14_CONSTEXPR _Tp</div>
-<div class="line"><a name="l00301"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a89f7ee0534b6e11b801dc4f84c749bbd">  301</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a89f7ee0534b6e11b801dc4f84c749bbd">__students_t_cdf</a>(_Tp __t, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __nu)</div>
+<div class="line"><a name="l00301"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a2befa454884fc961c2e4ac6f88ca41d8">  301</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a2befa454884fc961c2e4ac6f88ca41d8">__student_t_cdf</a>(_Tp __t, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __nu)</div>
 <div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    {</div>
 <div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;      <span class="keywordflow">if</span> (__isnan(__t))</div>
 <div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
@@ -433,7 +433,7 @@ $(document).ready(function(){initNavTree('sf__beta_8tcc_source.html','');});
 <div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    _GLIBCXX14_CONSTEXPR _Tp</div>
-<div class="line"><a name="l00324"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a4f44edc56879cb0d396726be8ea66828">  324</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a4f44edc56879cb0d396726be8ea66828">__students_t_cdfc</a>(_Tp __t, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __nu)</div>
+<div class="line"><a name="l00324"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a56c99cb6011ea5a79b2c87cb077da3cf">  324</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a56c99cb6011ea5a79b2c87cb077da3cf">__student_t_cdfc</a>(_Tp __t, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __nu)</div>
 <div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    {</div>
 <div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;      <span class="keywordflow">if</span> (__isnan(__t))</div>
 <div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
@@ -453,130 +453,131 @@ $(document).ready(function(){initNavTree('sf__beta_8tcc_source.html','');});
 <div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;<span class="comment">   *                 (\frac{\nu_2}{2}, \frac{\nu_1}{2})</span></div>
 <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;<span class="comment">   * @f]</span></div>
 <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="comment">   * @param __nu1 </span></div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<span class="comment">   * @param __nu2 </span></div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    _GLIBCXX14_CONSTEXPR _Tp</div>
-<div class="line"><a name="l00349"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a6864e83328d0ac8f2c26e8ac4a0a3e35">  349</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a6864e83328d0ac8f2c26e8ac4a0a3e35">__f_cdf</a>(_Tp __F, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __nu1, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __nu2)</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    {</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;      <span class="keywordflow">if</span> (__isnan(__F))</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__F &lt; _Tp{0})</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__f_cdf: F is negative&quot;</span>));</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacestd_1_1____detail.html#aedfe43a9c0065cc3883df50536a625e4">__beta_inc</a>(_Tp(__nu2) / _Tp{2}, _Tp(__nu1) / _Tp{2},</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;              _Tp(__nu2) / (_Tp(__nu2) + __nu1 * __F));</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    }</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="comment">   * @brief  Return the F-distribution propability function.</span></div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="comment">   * This returns the probability that the observed chi-square for a correct model</span></div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="comment">   * exceeds the value @f$ \chi^2 @f$.</span></div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;<span class="comment">   * The f-distribution propability function is related to the incomplete beta function:</span></div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;<span class="comment">   * @f[</span></div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;<span class="comment">   *   P(F|\nu_1, \nu_2) = 1 - I_{\frac{\nu_2}{\nu_2 + \nu_1 F}}</span></div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;<span class="comment">   *                 (\frac{\nu_2}{2}, \frac{\nu_1}{2})</span></div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;<span class="comment">   *             = 1 - Q(F|\nu_1, \nu_2)</span></div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;<span class="comment">   * @f]</span></div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;<span class="comment">   * @param __F </span></div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;<span class="comment">   * @param __nu1 </span></div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;<span class="comment">   * @param __nu2 </span></div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    _GLIBCXX14_CONSTEXPR _Tp</div>
-<div class="line"><a name="l00378"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a0dd37941ab4f7d2ac376d59d62554c1f">  378</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a0dd37941ab4f7d2ac376d59d62554c1f">__f_cdfc</a>(_Tp __F, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __nu1, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __nu2)</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    {</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;      <span class="keywordflow">if</span> (__isnan(__F))</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__F &lt; _Tp{0})</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__f_cdfc: F is negative&quot;</span>));</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacestd_1_1____detail.html#aedfe43a9c0065cc3883df50536a625e4">__beta_inc</a>(_Tp(__nu1) / _Tp{2}, _Tp(__nu2) / _Tp{2},</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;              __nu1 * __F / (_Tp(__nu2) + __nu1 * __F));</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    }</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;<span class="comment">   * @brief  Return the binomial cumulative distribution function.</span></div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<span class="comment">   * The binomial cumulative distribution function is related</span></div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="comment">   * to the incomplete beta function:</span></div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;<span class="comment">   * @f[</span></div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="comment">   *   P(p|n, k) = I_p(k, n-k+1)</span></div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;<span class="comment">   * @f]</span></div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;<span class="comment">   * @param __p </span></div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;<span class="comment">   * @param __n </span></div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;<span class="comment">   * @param __k </span></div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    _GLIBCXX14_CONSTEXPR _Tp</div>
-<div class="line"><a name="l00404"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#afecc4328cf5d707a7ff08b6da33d257a">  404</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#afecc4328cf5d707a7ff08b6da33d257a">__binomial_cdf</a>(_Tp __p, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __n, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __k)</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    {</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;      <span class="keywordflow">if</span> (__isnan(__p))</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__p &lt; _Tp{0} || __p &gt; _Tp{1})</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__binomial_cdf: &quot;</span></div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;                      <span class="stringliteral">&quot;probability is out of range&quot;</span>));</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__k == 0)</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    <span class="keywordflow">return</span> _Tp{1};</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__k &gt; __n)</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    <span class="keywordflow">return</span> _Tp{0};</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacestd_1_1____detail.html#aedfe43a9c0065cc3883df50536a625e4">__beta_inc</a>(_Tp(__k), _Tp(__n - __k - 1), __p);</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    }</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;<span class="comment">   * @brief  Return the complementary binomial cumulative distribution function.</span></div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;<span class="comment">   * The binomial cumulative distribution function is related</span></div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;<span class="comment">   * to the incomplete beta function:</span></div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;<span class="comment">   * @f[</span></div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;<span class="comment">   *   Q(p|n, k) = I_{1-p}(n-k+1, k)</span></div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;<span class="comment">   * @f]</span></div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;<span class="comment">   * @param __p </span></div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;<span class="comment">   * @param __n </span></div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;<span class="comment">   * @param __k </span></div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    _GLIBCXX14_CONSTEXPR _Tp</div>
-<div class="line"><a name="l00434"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a7ed292577794cc81c29830b69afcbd15">  434</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a7ed292577794cc81c29830b69afcbd15">__binomial_cdfc</a>(_Tp __p, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __n, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __k)</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;    {</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;      <span class="keywordflow">if</span> (__isnan(__p))</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__p &lt; _Tp{0} || __p &gt; _Tp{1})</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__binomial_cdfc: &quot;</span></div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;                      <span class="stringliteral">&quot;probability is out of range&quot;</span>));</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__k == 0)</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    <span class="keywordflow">return</span> _Tp{1};</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__k &gt; __n)</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    <span class="keywordflow">return</span> _Tp{0};</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacestd_1_1____detail.html#aedfe43a9c0065cc3883df50536a625e4">__beta_inc</a>(_Tp(__n - __k - 1), _Tp(__k), _Tp{1} - __p);</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    }</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;_GLIBCXX_END_NAMESPACE_VERSION</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;} <span class="comment">// namespace __detail</span></div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;} <span class="comment">// namespace std</span></div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;<span class="preprocessor">#endif // __GLIBCXX_BITS_SF_BETA_TCC</span></div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="comment">   * @param __nu1 The number of degrees of freedom of sample 1</span></div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<span class="comment">   * @param __nu2 The number of degrees of freedom of sample 2</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="comment">   * @param __F The F statistic</span></div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    _GLIBCXX14_CONSTEXPR _Tp</div>
+<div class="line"><a name="l00350"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a6f2d0b2934d673be285590f6abc7470a">  350</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a6f2d0b2934d673be285590f6abc7470a">__fisher_f_cdf</a>(_Tp __F, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __nu1, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __nu2)</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    {</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;      <span class="keywordflow">if</span> (__isnan(__F))</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__F &lt; _Tp{0})</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__f_cdf: F is negative&quot;</span>));</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacestd_1_1____detail.html#aedfe43a9c0065cc3883df50536a625e4">__beta_inc</a>(_Tp(__nu2) / _Tp{2}, _Tp(__nu1) / _Tp{2},</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;              _Tp(__nu2) / (_Tp(__nu2) + __nu1 * __F));</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    }</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="comment">   * @brief  Return the F-distribution propability function.</span></div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="comment">   * This returns the probability that the observed chi-square for a correct model</span></div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="comment">   * exceeds the value @f$ \chi^2 @f$.</span></div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;<span class="comment">   * The f-distribution propability function is related to the incomplete beta function:</span></div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;<span class="comment">   * @f[</span></div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;<span class="comment">   *   P(F|\nu_1, \nu_2) = 1 - I_{\frac{\nu_2}{\nu_2 + \nu_1 F}}</span></div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;<span class="comment">   *                 (\frac{\nu_2}{2}, \frac{\nu_1}{2})</span></div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;<span class="comment">   *             = 1 - Q(F|\nu_1, \nu_2)</span></div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;<span class="comment">   * @f]</span></div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;<span class="comment">   * @param __F </span></div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;<span class="comment">   * @param __nu1 </span></div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;<span class="comment">   * @param __nu2 </span></div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    _GLIBCXX14_CONSTEXPR _Tp</div>
+<div class="line"><a name="l00379"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a0fc592b494090a67e5910109f6700d25">  379</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a0fc592b494090a67e5910109f6700d25">__fisher_f_cdfc</a>(_Tp __F, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __nu1, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __nu2)</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    {</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;      <span class="keywordflow">if</span> (__isnan(__F))</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__F &lt; _Tp{0})</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__f_cdfc: F is negative&quot;</span>));</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacestd_1_1____detail.html#aedfe43a9c0065cc3883df50536a625e4">__beta_inc</a>(_Tp(__nu1) / _Tp{2}, _Tp(__nu2) / _Tp{2},</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;              __nu1 * __F / (_Tp(__nu2) + __nu1 * __F));</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    }</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;<span class="comment">   * @brief  Return the binomial cumulative distribution function.</span></div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="comment">   * The binomial cumulative distribution function is related</span></div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;<span class="comment">   * to the incomplete beta function:</span></div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="comment">   * @f[</span></div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;<span class="comment">   *   P(p|n, k) = I_p(k, n-k+1)</span></div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;<span class="comment">   * @f]</span></div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;<span class="comment">   * @param __p </span></div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;<span class="comment">   * @param __n </span></div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;<span class="comment">   * @param __k </span></div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    _GLIBCXX14_CONSTEXPR _Tp</div>
+<div class="line"><a name="l00405"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#afecc4328cf5d707a7ff08b6da33d257a">  405</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#afecc4328cf5d707a7ff08b6da33d257a">__binomial_cdf</a>(_Tp __p, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __n, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __k)</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    {</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;      <span class="keywordflow">if</span> (__isnan(__p))</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__p &lt; _Tp{0} || __p &gt; _Tp{1})</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__binomial_cdf: &quot;</span></div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;                      <span class="stringliteral">&quot;probability is out of range&quot;</span>));</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__k == 0)</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    <span class="keywordflow">return</span> _Tp{1};</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__k &gt; __n)</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    <span class="keywordflow">return</span> _Tp{0};</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacestd_1_1____detail.html#aedfe43a9c0065cc3883df50536a625e4">__beta_inc</a>(_Tp(__k), _Tp(__n - __k - 1), __p);</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    }</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;<span class="comment">   * @brief  Return the complementary binomial cumulative distribution function.</span></div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;<span class="comment">   * The binomial cumulative distribution function is related</span></div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;<span class="comment">   * to the incomplete beta function:</span></div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;<span class="comment">   * @f[</span></div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;<span class="comment">   *   Q(p|n, k) = I_{1-p}(n-k+1, k)</span></div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;<span class="comment">   * @f]</span></div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;<span class="comment">   * @param __p </span></div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;<span class="comment">   * @param __n </span></div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;<span class="comment">   * @param __k </span></div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;    _GLIBCXX14_CONSTEXPR _Tp</div>
+<div class="line"><a name="l00435"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a7ed292577794cc81c29830b69afcbd15">  435</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a7ed292577794cc81c29830b69afcbd15">__binomial_cdfc</a>(_Tp __p, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __n, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __k)</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    {</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;      <span class="keywordflow">if</span> (__isnan(__p))</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    <span class="keywordflow">return</span> std::numeric_limits&lt;_Tp&gt;::quiet_NaN();</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__p &lt; _Tp{0} || __p &gt; _Tp{1})</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    std::__throw_domain_error(__N(<span class="stringliteral">&quot;__binomial_cdfc: &quot;</span></div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;                      <span class="stringliteral">&quot;probability is out of range&quot;</span>));</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__k == 0)</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    <span class="keywordflow">return</span> _Tp{1};</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (__k &gt; __n)</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    <span class="keywordflow">return</span> _Tp{0};</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacestd_1_1____detail.html#aedfe43a9c0065cc3883df50536a625e4">__beta_inc</a>(_Tp(__n - __k - 1), _Tp(__k), _Tp{1} - __p);</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    }</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;_GLIBCXX_END_NAMESPACE_VERSION</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;} <span class="comment">// namespace __detail</span></div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;} <span class="comment">// namespace std</span></div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;<span class="preprocessor">#endif // __GLIBCXX_BITS_SF_BETA_TCC</span></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a93cfa67cc3f14564925ed3153e055cd1"><div class="ttname"><a href="namespacestd_1_1____detail.html#a93cfa67cc3f14564925ed3153e055cd1">std::__detail::__beta_gamma</a></div><div class="ttdeci">_Tp __beta_gamma(_Tp __a, _Tp __b)</div><div class="ttdoc">Return the beta function: . </div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00075">sf_beta.tcc:75</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a0fc592b494090a67e5910109f6700d25"><div class="ttname"><a href="namespacestd_1_1____detail.html#a0fc592b494090a67e5910109f6700d25">std::__detail::__fisher_f_cdfc</a></div><div class="ttdeci">_GLIBCXX14_CONSTEXPR _Tp __fisher_f_cdfc(_Tp __F, unsigned int __nu1, unsigned int __nu2)</div><div class="ttdoc">Return the F-distribution propability function. This returns the probability that the observed chi-sq...</div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00379">sf_beta.tcc:379</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_aedfe43a9c0065cc3883df50536a625e4"><div class="ttname"><a href="namespacestd_1_1____detail.html#aedfe43a9c0065cc3883df50536a625e4">std::__detail::__beta_inc</a></div><div class="ttdeci">_Tp __beta_inc(_Tp __a, _Tp __b, _Tp __x)</div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00262">sf_beta.tcc:262</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a0dd37941ab4f7d2ac376d59d62554c1f"><div class="ttname"><a href="namespacestd_1_1____detail.html#a0dd37941ab4f7d2ac376d59d62554c1f">std::__detail::__f_cdfc</a></div><div class="ttdeci">_GLIBCXX14_CONSTEXPR _Tp __f_cdfc(_Tp __F, unsigned int __nu1, unsigned int __nu2)</div><div class="ttdoc">Return the F-distribution propability function. This returns the probability that the observed chi-sq...</div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00378">sf_beta.tcc:378</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_aa8be6df2c5d12d0d1cb1f02a6b3592ef"><div class="ttname"><a href="namespacestd_1_1____detail.html#aa8be6df2c5d12d0d1cb1f02a6b3592ef">std::__detail::__log_gamma</a></div><div class="ttdeci">_Tp __log_gamma(_Tp __x)</div><div class="ttdoc">Return . This will return values even for . To recover the sign of  for any argument use __log_gamma_...</div><div class="ttdef"><b>Definition:</b> <a href="sf__gamma_8tcc_source.html#l01800">sf_gamma.tcc:1800</a></div></div>
 <div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> <a href="specfun_8h_source.html#l00098">specfun.h:98</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a4f44edc56879cb0d396726be8ea66828"><div class="ttname"><a href="namespacestd_1_1____detail.html#a4f44edc56879cb0d396726be8ea66828">std::__detail::__students_t_cdfc</a></div><div class="ttdeci">_GLIBCXX14_CONSTEXPR _Tp __students_t_cdfc(_Tp __t, unsigned int __nu)</div><div class="ttdoc">Return the complement of the Students T probability function. </div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00324">sf_beta.tcc:324</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a2befa454884fc961c2e4ac6f88ca41d8"><div class="ttname"><a href="namespacestd_1_1____detail.html#a2befa454884fc961c2e4ac6f88ca41d8">std::__detail::__student_t_cdf</a></div><div class="ttdeci">_GLIBCXX14_CONSTEXPR _Tp __student_t_cdf(_Tp __t, unsigned int __nu)</div><div class="ttdoc">Return the Students T probability function. </div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00301">sf_beta.tcc:301</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a090d2f0920e0d208c467609b2a81d717"><div class="ttname"><a href="namespacestd_1_1____detail.html#a090d2f0920e0d208c467609b2a81d717">std::__detail::__beta</a></div><div class="ttdeci">_Tp __beta(_Tp __a, _Tp __b)</div><div class="ttdoc">Return the beta function . </div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00173">sf_beta.tcc:173</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_afecc4328cf5d707a7ff08b6da33d257a"><div class="ttname"><a href="namespacestd_1_1____detail.html#afecc4328cf5d707a7ff08b6da33d257a">std::__detail::__binomial_cdf</a></div><div class="ttdeci">_GLIBCXX14_CONSTEXPR _Tp __binomial_cdf(_Tp __p, unsigned int __n, unsigned int __k)</div><div class="ttdoc">Return the binomial cumulative distribution function. </div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00404">sf_beta.tcc:404</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_afecc4328cf5d707a7ff08b6da33d257a"><div class="ttname"><a href="namespacestd_1_1____detail.html#afecc4328cf5d707a7ff08b6da33d257a">std::__detail::__binomial_cdf</a></div><div class="ttdeci">_GLIBCXX14_CONSTEXPR _Tp __binomial_cdf(_Tp __p, unsigned int __n, unsigned int __k)</div><div class="ttdoc">Return the binomial cumulative distribution function. </div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00405">sf_beta.tcc:405</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a56c99cb6011ea5a79b2c87cb077da3cf"><div class="ttname"><a href="namespacestd_1_1____detail.html#a56c99cb6011ea5a79b2c87cb077da3cf">std::__detail::__student_t_cdfc</a></div><div class="ttdeci">_GLIBCXX14_CONSTEXPR _Tp __student_t_cdfc(_Tp __t, unsigned int __nu)</div><div class="ttdoc">Return the complement of the Students T probability function. </div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00324">sf_beta.tcc:324</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a6f2d0b2934d673be285590f6abc7470a"><div class="ttname"><a href="namespacestd_1_1____detail.html#a6f2d0b2934d673be285590f6abc7470a">std::__detail::__fisher_f_cdf</a></div><div class="ttdeci">_GLIBCXX14_CONSTEXPR _Tp __fisher_f_cdf(_Tp __F, unsigned int __nu1, unsigned int __nu2)</div><div class="ttdoc">Return the F-distribution propability function. This returns the probability that the observed chi-sq...</div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00350">sf_beta.tcc:350</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_aa0e76080654c918631595a7da642913f"><div class="ttname"><a href="namespacestd_1_1____detail.html#aa0e76080654c918631595a7da642913f">std::__detail::__gamma</a></div><div class="ttdeci">_Tp __gamma(_Tp __x)</div><div class="ttdoc">Return . </div><div class="ttdef"><b>Definition:</b> <a href="sf__gamma_8tcc_source.html#l01918">sf_gamma.tcc:1918</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a6864e83328d0ac8f2c26e8ac4a0a3e35"><div class="ttname"><a href="namespacestd_1_1____detail.html#a6864e83328d0ac8f2c26e8ac4a0a3e35">std::__detail::__f_cdf</a></div><div class="ttdeci">_GLIBCXX14_CONSTEXPR _Tp __f_cdf(_Tp __F, unsigned int __nu1, unsigned int __nu2)</div><div class="ttdoc">Return the F-distribution propability function. This returns the probability that the observed chi-sq...</div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00349">sf_beta.tcc:349</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_aed463a2b0bee0dcf6c9a63ed1dad7ed6"><div class="ttname"><a href="namespacestd_1_1____detail.html#aed463a2b0bee0dcf6c9a63ed1dad7ed6">std::__detail::__beta_inc_cont_frac</a></div><div class="ttdeci">_Tp __beta_inc_cont_frac(_Tp __a, _Tp __b, _Tp __x)</div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00193">sf_beta.tcc:193</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_ac4f233100713779d93e4eee7665bd0a5"><div class="ttname"><a href="namespacestd_1_1____detail.html#ac4f233100713779d93e4eee7665bd0a5">std::__detail::__beta_lgamma</a></div><div class="ttdeci">_Tp __beta_lgamma(_Tp __a, _Tp __b)</div><div class="ttdoc">Return the beta function  using the log gamma functions. </div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00109">sf_beta.tcc:109</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a89f7ee0534b6e11b801dc4f84c749bbd"><div class="ttname"><a href="namespacestd_1_1____detail.html#a89f7ee0534b6e11b801dc4f84c749bbd">std::__detail::__students_t_cdf</a></div><div class="ttdeci">_GLIBCXX14_CONSTEXPR _Tp __students_t_cdf(_Tp __t, unsigned int __nu)</div><div class="ttdoc">Return the Students T probability function. </div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00301">sf_beta.tcc:301</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a7ed292577794cc81c29830b69afcbd15"><div class="ttname"><a href="namespacestd_1_1____detail.html#a7ed292577794cc81c29830b69afcbd15">std::__detail::__binomial_cdfc</a></div><div class="ttdeci">_GLIBCXX14_CONSTEXPR _Tp __binomial_cdfc(_Tp __p, unsigned int __n, unsigned int __k)</div><div class="ttdoc">Return the complementary binomial cumulative distribution function. </div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00434">sf_beta.tcc:434</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a7ed292577794cc81c29830b69afcbd15"><div class="ttname"><a href="namespacestd_1_1____detail.html#a7ed292577794cc81c29830b69afcbd15">std::__detail::__binomial_cdfc</a></div><div class="ttdeci">_GLIBCXX14_CONSTEXPR _Tp __binomial_cdfc(_Tp __p, unsigned int __n, unsigned int __k)</div><div class="ttdoc">Return the complementary binomial cumulative distribution function. </div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00435">sf_beta.tcc:435</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a9baa688a27befab7fa48ccfb4a87a9ca"><div class="ttname"><a href="namespacestd_1_1____detail.html#a9baa688a27befab7fa48ccfb4a87a9ca">std::__detail::__beta_product</a></div><div class="ttdeci">_Tp __beta_product(_Tp __a, _Tp __b)</div><div class="ttdoc">Return the beta function  using the product form. </div><div class="ttdef"><b>Definition:</b> <a href="sf__beta_8tcc_source.html#l00140">sf_beta.tcc:140</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
