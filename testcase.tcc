@@ -261,29 +261,6 @@ template<>
     suffix()
     { return std::string("Q"); }
   };
-/*
-template<>
-  template<typename Tp>
-    struct type_strings<std::complex<Tp>>
-    {
-      static std::string
-      type()
-      {
-	if (_S_type.length() == 0)
-	  _S_type = "std::complex<" + type_strings<Tp>::type() + ">";
-	return _S_type;
-      }
-      static const std::string
-      suffix()
-      { return std::string(""); }
-    private:
-      static std::string _S_type;
-    };
-
-template<typename Tp>
-  std::string
-  type_strings<std::complex<Tp>>::_S_type;
-*/
 
 // Fuck me.  I'm too stupid to do this right.
 template<>
@@ -549,6 +526,9 @@ template<typename Tp, typename Tp1>
 	bool tol_ok = false;
 	const auto min_tol = Val{1.0e-3L};
 	const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
+	std::string tname;
+	if (ret_complex)
+	  tname = type_strings<Tp>::type();
 	std::ostringstream dataname;
 	dataname.fill('0');
 	dataname << "data" << std::setw(3) << test;
@@ -565,7 +545,7 @@ template<typename Tp, typename Tp1>
 	output.fill(' ');
 	for (unsigned int i = 0; i < crud.size(); ++i)
 	  {
-	    output << "  { " << std::get<0>(crud[i]) << type_strings<Tp>::suffix();
+	    output << "  { " << tname << std::get<0>(crud[i]) << type_strings<Tp>::suffix();
 	    output << ", " << std::get<1>(crud[i]) << type_strings<Tp>::suffix();
 	    output << " },\n";
 	  }
@@ -581,6 +561,7 @@ template<typename Tp, typename Tp1>
 	std::string structname = "testcase_";
 	structname += funcname;
 	structname += "<Tp>";
+
 	std::string tname = "Tp";
 	if (ret_complex)
 	  tname = "std::complex<Tp>";
@@ -734,6 +715,9 @@ template<typename Tp, typename Tp1, typename Tp2>
 	    bool tol_ok = false;
 	    const auto min_tol = Val{1.0e-3L};
 	    const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
+	    std::string tname;
+	    if (ret_complex)
+	      tname = type_strings<Tp>::type();
 	    std::ostringstream dataname;
 	    dataname.fill('0');
 	    dataname << "data" << std::setw(3) << test;
@@ -750,7 +734,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 	    output.fill(' ');
 	    for (unsigned int j = 0; j < crud.size(); ++j)
 	      {
-		output << "  { " << std::get<0>(crud[j]) << type_strings<Tp>::suffix();
+		output << "  { " << tname << std::get<0>(crud[j]) << type_strings<Tp>::suffix();
 		output << ", " << std::get<1>(crud[j]) << type_strings<Tp>::suffix();
 		output << ", " << std::get<2>(crud[j]) << type_strings<Tp>::suffix();
 		output << " },\n";
@@ -768,6 +752,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 	std::string structname = "testcase_";
 	structname += funcname;
 	structname += "<Tp>";
+
 	std::string tname = "Tp";
 	if (ret_complex)
 	  tname = "std::complex<Tp>";
@@ -927,6 +912,9 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		bool tol_ok = false;
 		const auto min_tol = Val{1.0e-3L};
 		const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
+		std::string tname;
+		if (ret_complex)
+		  tname = type_strings<Tp>::type();
 		std::ostringstream dataname;
 		dataname.fill('0');
 		dataname << "data" << std::setw(3) << test;
@@ -944,7 +932,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		output.fill(' ');
 		for (unsigned int k = 0; k < crud.size(); ++k)
 		  {
-		    output << "  { " << std::get<0>(crud[k]) << type_strings<Tp>::suffix();
+		    output << "  { " << tname << std::get<0>(crud[k]) << type_strings<Tp>::suffix();
 		    output << ", " << std::get<1>(crud[k]) << type_strings<Tp>::suffix();
 		    output << ", " << std::get<2>(crud[k]) << type_strings<Tp>::suffix();
 		    output << ", \n";
@@ -966,6 +954,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 	std::string structname = "testcase_";
 	structname += funcname;
 	structname += "<Tp>";
+
 	std::string tname = "Tp";
 	if (ret_complex)
 	  tname = "std::complex<Tp>";
@@ -1134,6 +1123,9 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		    bool tol_ok = false;
 		    const auto min_tol = Val{1.0e-3L};
 		    const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
+		    std::string tname;
+		    if (ret_complex)
+		      tname = type_strings<Tp>::type();
 		    std::ostringstream dataname;
 		    dataname.fill('0');
 		    dataname << "data" << std::setw(3) << test;
@@ -1152,7 +1144,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		    output.fill(' ');
 		    for (unsigned int l = 0; l < crud.size(); ++l)
 		      {
-			output << "  { " << std::get<0>(crud[l]) << type_strings<Tp>::suffix();
+			output << "  { " << tname << std::get<0>(crud[l]) << type_strings<Tp>::suffix();
 			output << ", " << std::get<1>(crud[l]) << type_strings<Tp>::suffix();
 			output << ", " << std::get<2>(crud[l]) << type_strings<Tp>::suffix();
 			output << ", \n";
@@ -1175,6 +1167,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 	std::string structname = "testcase_";
 	structname += funcname;
 	structname += "<Tp>";
+
 	std::string tname = "Tp";
 	if (ret_complex)
 	  tname = "std::complex<Tp>";
