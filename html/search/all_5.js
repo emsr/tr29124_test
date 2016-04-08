@@ -51,6 +51,5 @@ var searchData=
   ['expint_5fenf',['expint_enf',['../group__gnu__math__spec__func.html#gaf62278eb2899eaffab68a79dadb15612',1,'__gnu_cxx']]],
   ['expint_5fenl',['expint_enl',['../group__gnu__math__spec__func.html#gaa3d0b9a177eb6666b6fbfa85d85650d0',1,'__gnu_cxx']]],
   ['expintf',['expintf',['../group__tr29124__math__spec__func.html#ga5842816f6eed2594e0a327df4e4a2a47',1,'std']]],
-  ['expintl',['expintl',['../group__tr29124__math__spec__func.html#ga1329130b32328d0666e290ee5931fa4f',1,'std']]],
-  ['extended_20mathematical_20special_20functions',['Extended Mathematical Special Functions',['../group__gnu__math__spec__func.html',1,'']]]
+  ['expintl',['expintl',['../group__tr29124__math__spec__func.html#ga1329130b32328d0666e290ee5931fa4f',1,'std']]]
 ];

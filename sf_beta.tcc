@@ -298,7 +298,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __students_t_cdf(_Tp __t, unsigned int __nu)
+    __student_t_cdf(_Tp __t, unsigned int __nu)
     {
       if (__isnan(__t))
 	return std::numeric_limits<_Tp>::quiet_NaN();
@@ -321,7 +321,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __students_t_cdfc(_Tp __t, unsigned int __nu)
+    __student_t_cdfc(_Tp __t, unsigned int __nu)
     {
       if (__isnan(__t))
 	return std::numeric_limits<_Tp>::quiet_NaN();
@@ -341,12 +341,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 			     (\frac{\nu_2}{2}, \frac{\nu_1}{2})
    * @f]
    *
-   * @param __nu1 
-   * @param __nu2 
+   * @param __nu1 The number of degrees of freedom of sample 1
+   * @param __nu2 The number of degrees of freedom of sample 2
+   * @param __F The F statistic
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __f_cdf(_Tp __F, unsigned int __nu1, unsigned int __nu2)
+    __fisher_f_cdf(_Tp __F, unsigned int __nu1, unsigned int __nu2)
     {
       if (__isnan(__F))
 	return std::numeric_limits<_Tp>::quiet_NaN();
@@ -375,7 +376,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __f_cdfc(_Tp __F, unsigned int __nu1, unsigned int __nu2)
+    __fisher_f_cdfc(_Tp __F, unsigned int __nu1, unsigned int __nu2)
     {
       if (__isnan(__F))
 	return std::numeric_limits<_Tp>::quiet_NaN();

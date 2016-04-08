@@ -1111,8 +1111,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Hurwitz Zeta function for real s and complex a.
-   * @param s __s
-   * @param x __a
+   * @param __s The real argument
+   * @param __a The complex parameter
    */
   template<typename _Tp>
     std::complex<_Tp>
