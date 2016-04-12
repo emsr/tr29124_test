@@ -2,40 +2,57 @@
 
 tool="cp -f"
 
-${tool} math_const.h           ext
+src_dir="$HOME/gcc_specfun/libstdc++-v3/include"
+if [ -d "$1" ]; then 
+  src_dir="$1"
+fi
+src_impl_dir="${src_dir}/bits"
+src_ext_dir="${src_dir}/ext"
 
-${tool} airy.tcc               bits
-${tool} complex_util.h         bits
-${tool} complex_util.tcc       bits
-${tool} complex128.h           bits
-${tool} float128.h             bits
-${tool} float128.tcc           bits
-${tool} numeric_limits.h       bits
-${tool} sf_airy.tcc            bits
-${tool} sf_bessel.tcc          bits
-${tool} sf_beta.tcc            bits
-${tool} sf_cardinal.tcc        bits
-${tool} sf_chebyshev.tcc       bits
-${tool} sf_dawson.tcc          bits
-${tool} sf_ellint.tcc          bits
-${tool} sf_expint.tcc          bits
-${tool} sf_fresnel.tcc         bits
-${tool} sf_gamma.tcc           bits
-${tool} sf_gegenbauer.tcc      bits
-${tool} sf_hankel.tcc          bits
-${tool} sf_hankel_new.tcc      bits
-${tool} sf_hermite.tcc         bits
-${tool} sf_hydrogen.tcc        bits
-${tool} sf_hyperg.tcc          bits
-${tool} sf_hypint.tcc          bits
-${tool} sf_jacobi.tcc          bits
-${tool} sf_laguerre.tcc        bits
-${tool} sf_legendre.tcc        bits
-${tool} sf_mod_bessel.tcc      bits
-${tool} sf_owens_t.tcc         bits
-${tool} sf_polylog.tcc         bits
-${tool} sf_theta.tcc           bits
-${tool} sf_trigint.tcc         bits
-${tool} sf_zeta.tcc            bits  
-${tool} specfun.h              bits
-${tool} specfun_util.h         bits
+dst_dir="."
+if [ -d "$2" ]; then 
+  dst_dir="$2"
+fi
+dst_impl_dir="${dst_dir}/bits"
+dst_ext_dir="${dst_dir}/ext"
+
+${tool} "${src_dir}/cmath"                       "${dst_dir}"
+
+${tool} "${src_ext_dir}/math_const.h"            "${dst_ext_dir}"
+${tool} "${src_ext_dir}/cmath"                   "${dst_ext_dir}"
+
+#${tool} "${src_impl_dir}/airy.tcc"               "${dst_impl_dir}"
+${tool} "${src_impl_dir}/complex_util.h"         "${dst_impl_dir}"
+${tool} "${src_impl_dir}/complex_util.tcc"       "${dst_impl_dir}"
+${tool} "${src_impl_dir}/complex128.h"           "${dst_impl_dir}"
+${tool} "${src_impl_dir}/float128.h"             "${dst_impl_dir}"
+${tool} "${src_impl_dir}/float128.tcc"           "${dst_impl_dir}"
+${tool} "${src_impl_dir}/numeric_limits.h"       "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_airy.tcc"            "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_bessel.tcc"          "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_beta.tcc"            "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_cardinal.tcc"        "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_chebyshev.tcc"       "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_dawson.tcc"          "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_ellint.tcc"          "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_expint.tcc"          "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_fresnel.tcc"         "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_gamma.tcc"           "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_gegenbauer.tcc"      "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_hankel.tcc"          "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_hankel_new.tcc"      "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_hermite.tcc"         "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_hydrogen.tcc"        "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_hyperg.tcc"          "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_hypint.tcc"          "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_jacobi.tcc"          "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_laguerre.tcc"        "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_legendre.tcc"        "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_mod_bessel.tcc"      "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_owens_t.tcc"         "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_polylog.tcc"         "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_theta.tcc"           "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_trigint.tcc"         "${dst_impl_dir}"
+${tool} "${src_impl_dir}/sf_zeta.tcc"            "${dst_impl_dir}" 
+${tool} "${src_impl_dir}/specfun.h"              "${dst_impl_dir}"
+${tool} "${src_impl_dir}/specfun_util.h"         "${dst_impl_dir}"
