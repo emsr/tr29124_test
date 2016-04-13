@@ -40,16 +40,16 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   * Compute the Jacobi polynomial by recursion on x:
+   * Compute the Jacobi polynomial by recursion on @c n:
    * @f[
-   *   2 k(\alpha + \beta + k) (\alpha + \beta + 2k - 2)
-   *         P^{(\alpha, \beta)}_{k}(x)
-   *     = (\alpha + \beta + 2k - 1)
+   *   2 n(\alpha + \beta + n) (\alpha + \beta + 2n - 2)
+   *         P^{(\alpha, \beta)}_{n}(x)
+   *     = (\alpha + \beta + 2n - 1)
    *       ((\alpha^2 - \beta^2)
-   *        + x(\alpha + \beta + 2k - 2)(\alpha + \beta + 2k))
-   *         P^{(\alpha, \beta)}_{k-1}(x)
-   *     - 2 (\alpha + k - 1)(\beta + k - 1)(\alpha + \beta + 2k)
-   *         P^{(\alpha, \beta)}_{k-2}(x)
+   *        + x(\alpha + \beta + 2n - 2)(\alpha + \beta + 2n))
+   *         P^{(\alpha, \beta)}_{n-1}(x)
+   *     - 2 (\alpha + n - 1)(\beta + n - 1)(\alpha + \beta + 2n)
+   *         P^{(\alpha, \beta)}_{n-2}(x)
    * @f]
    */
   template<typename _Tp>
@@ -106,6 +106,28 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 */
 
+  /**
+   * Return the radial polynomial @f$ R_n^m(\rho) @f$ for non-negative
+   * degree @f$ n @f$, order @f$ m <= n @f$, and real radial
+   * argument @f$ \rho @f$.
+   *
+   * The radial polynomials are defined by 
+   * @f[
+   *     R_n^m(\rho) = \sum_{k=0}^{\frac{n-m}{2}}
+   *       \frac{(-1)^k(n-k)!}{k!(\frac{n+m}{2}-k)!(\frac{n-m}{2}-k)!}
+   *       \rho^{n-2k}
+   * @f]
+   * for @f$ n - m @f$ even and identically 0 for @f$ n - m @f$ odd.
+   * The radial polynomials can be related to the Jacobi polynomials:
+   * @f[
+   *    R_n^m(\rho) = 
+   * @f]
+   * @see jacobi for details on the Jacobi polynomials.
+   *
+   * @tparam _Tp The real type of the radial coordinate
+   * @param __n The non-negative degree.
+   * @param __m The non-negative azimuthal order
+   */
   template<typename _Tp>
     _Tp
     __poly_radial_jacobi(unsigned int __n, unsigned int __m, _Tp __rho)
@@ -128,6 +150,29 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
     }
 
+  /**
+   * Return the Zernicke polynomial @f$ Z_n^m(\rho,\phi) @f$
+   * for non-negative degree @f$ n @f$, signed order @f$ m @f$,
+   * and real radial argument @f$ \rho @f$ and azimuthal angle @f$ \phi @f$.
+   *
+   * The even Zernicke polynomials are defined by:
+   * @f[
+   *    Z_n^m(\rho,\phi) = R_n^m(\rho)\cos(m\phi)
+   * @f]
+   * and the odd Zernicke polynomials are defined by:
+   * @f[
+   *    Z_n^{-m}(\rho,\phi) = R_n^m(\rho)\sin(m\phi)
+   * @f]
+   * for non-negative degree @f$ m @f$ and @f$ m <= n @f$
+   * and where @f$ R_n^m(\rho) @f$ is the radial polynomial
+   * (@see __poly_radial_jacobi).
+   *
+   * @tparam _Tp The real type of the radial coordinate and azimuthal angle
+   * @param __n The non-negative degree.
+   * @param __m The azimuthal order
+   * @param __rho The radial coordinate
+   * @param __phi The azimuthal angle
+   */
   template<typename _Tp>
     __gnu_cxx::__promote_num_t<_Tp>
     __zernike(unsigned int __n, int __m, _Tp __rho, _Tp __phi)
