@@ -24,7 +24,7 @@
 
 /** @file bits/specfun.h
  * This is an internal header file, included by other library headers.
- * You should not attempt to use it directly. @headername{cmath}
+ * Do not attempt to use it directly. @headername{cmath}
  */
 
 #ifndef _GLIBCXX_BITS_SPECFUN_H
@@ -113,12 +113,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @section intro Introduction and History
    * The first significant library upgrade on the road to C++2011,
    * <a href="http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2005/n1836.pdf">
-   * TR1</a>, included a set of 23 mathematical functions that significntly
-   * extended the standard trancendental functions inherited from C and declared
+   * TR1</a>, included a set of 23 mathematical functions that significantly
+   * extended the standard transcendental functions inherited from C and declared
    * in @<cmath@>.
    *
    * Although most components from TR1 were eventually adopted for C++11 these
-   * math function were left behind out of concern for implementability.
+   * math functions were left behind out of concern for implementability.
    * The math functions were published as a separate international standard
    * <a href="http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2010/n3060.pdf">
    * IS 29124 - Extensions to the C++ Library to Support Mathematical Special
@@ -127,7 +127,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * For C++17 these functions were incorporated into the main standard.
    *
    * @section contents Contents
-   * The folowing functions are implemented in namespace @c std:
+   * The following functions are implemented in namespace @c std:
    * - @ref assoc_laguerre "assoc_laguerre - Associated Laguerre functions"
    * - @ref assoc_legendre "assoc_legendre - Associated Legendre functions"
    * - @ref beta "beta - Beta functions"
@@ -162,7 +162,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @subsection promotion Argument Promotion
    * The arguments suppled to the non-suffixed functions will be promoted
    * according to the following rules:
-   * 1. If any argument intended to be floating opint is given an integral value
+   * 1. If any argument intended to be floating point is given an integral value
    * That integral value is promoted to double.
    * 2. All floating point arguments are promoted up to the largest floating
    *    point precision among them.
@@ -175,13 +175,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @section impl Implementation
    *
    * We strive to implement the underlying math with type generic algorithms
-   * to the greatest extent possible.  In practice, the function are thin
+   * to the greatest extent possible.  In practice, the functions are thin
    * wrappers that dispatch to function templates. Type dependence is
    * controlled with std::numeric_limits and functions thereof.
    *
-   * We don't promote *c float to *c double or *c double to <tt>long double</tt>
-   * reflexively.  The goal is for float functions to operate more quickly,
-   * at the cost of float accuracy and possibly a smaller domain of validity.
+   * We don't promote @c float to @c double or @c double to <tt>long double</tt>
+   * reflexively.  The goal is for @c float functions to operate more quickly,
+   * at the cost of @c float accuracy and possibly a smaller domain of validity.
    * Similaryly, <tt>long double</tt> should give you more dynamic range
    * and slightly more pecision than @c double on many systems.
    *
@@ -376,7 +376,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   B(a,b) = \int_0^1 t^{a - 1} (1 - t)^{b - 1} dt
    *          = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
    * @f]
-   * where @f$ x > 0 @f$ and @f$ y > 0 @f$
+   * where @f$ a > 0 @f$ and @f$ b > 0 @f$
    *
    * @tparam _Tpa The floating-point type of the parameter @c __a.
    * @tparam _Tpb The floating-point type of the parameter @c __b.
@@ -3782,67 +3782,78 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Dirichlet eta function
 
   /**
-   * Return the Dirichlet eta function of real argument @c x.
+   * Return the Dirichlet eta function of real argument @c s.
    *
    * @see dirichlet_eta for details.
    */
   inline float
-  dirichlet_etaf(float __x)
-  { return std::__detail::__dirichlet_eta<float>(__x); }
+  dirichlet_etaf(float __s)
+  { return std::__detail::__dirichlet_eta<float>(__s); }
 
   /**
-   * Return the Dirichlet eta function of real argument @c x.
+   * Return the Dirichlet eta function of real argument @c s.
    *
    * @see dirichlet_eta for details.
    */
   inline long double
-  dirichlet_etal(long double __x)
-  { return std::__detail::__dirichlet_eta<long double>(__x); }
+  dirichlet_etal(long double __s)
+  { return std::__detail::__dirichlet_eta<long double>(__s); }
 
   /**
-   * Return the Dirichlet eta function of real argument @c x.
+   * Return the Dirichlet eta function of real argument @c s.
    *
    * The Dirichlet eta function is defined by
    * @f[
-   *    
+   *    \eta(s) = \sum_{k=1}^\infty \frac{(-1)^k}{k^s}
+   *    = \left( 1 - 2^{1-s} \right) \zeta(s)
+   * @f]
+   * An important reflection formula is:
+   * @f[
+   *    \eta(-s) = 2 \frac{1-2^{-s-1}}{1-2^{-s}} \pi^{-s-1} 
+   *              s \sin(\frac{\pi s}{2}) \Gamma(s) \eta(s+1)
    * @f]
    *
-   * @param __x 
+   * @param __s 
    */
   template<typename _Tp>
     inline _Tp
-    dirichlet_eta(_Tp __x)
+    dirichlet_eta(_Tp __s)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      return std::__detail::__dirichlet_eta<__type>(__x);
+      return std::__detail::__dirichlet_eta<__type>(__s);
     }
 
   // Dirichlet beta function
 
   inline float
-  dirichlet_betaf(float __x)
-  { return std::__detail::__dirichlet_beta<float>(__x); }
+  dirichlet_betaf(float __s)
+  { return std::__detail::__dirichlet_beta<float>(__s); }
 
   inline long double
-  dirichlet_betal(long double __x)
-  { return std::__detail::__dirichlet_beta<long double>(__x); }
+  dirichlet_betal(long double __s)
+  { return std::__detail::__dirichlet_beta<long double>(__s); }
 
   /**
-   * Return the Dirichlet beta function of real argument @c x.
+   * Return the Dirichlet beta function of real argument @c s.
    *
-   * The Dirichlet beta function is defined by
+   * The Dirichlet beta function is defined by:
    * @f[
-   *    
+   *    \beta(s) = \sum_{k=0}^\infty \frac{(-1)^k}{(2k+1)^s}
+   * @f]
+   * An important reflection formula is:
+   * @f[
+   *    \beta(1-s) = \left( \frac{2}{\pi}\right)^s \sin(\frac{\pi s}{2})
+   *               \Gamma(s) \beta(s)
    * @f]
    *
-   * @param __x 
+   * @param __s 
    */
   template<typename _Tp>
     inline _Tp
-    dirichlet_beta(_Tp __x)
+    dirichlet_beta(_Tp __s)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      return std::__detail::__dirichlet_beta<__type>(__x);
+      return std::__detail::__dirichlet_beta<__type>(__s);
     }
 
   // Clausen S functions
