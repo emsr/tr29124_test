@@ -31,11 +31,6 @@ test01()
   double j1 = std::cyl_bessel_j(1.0, 0.0);
   double i1 = std::cyl_bessel_i(1.0, 0.0);
 
-  std::cerr << " nu=" << 0.0 << " z=" << 0.0 << " cyl_bessel_j=" << j0 << '\n';
-  std::cerr << " nu=" << 0.0 << " z=" << 0.0 << " cyl_bessel_i=" << i0 << '\n';
-  std::cerr << " nu=" << 1.0 << " z=" << 0.0 << " cyl_bessel_j=" << j1 << '\n';
-  std::cerr << " nu=" << 1.0 << " z=" << 0.0 << " cyl_bessel_i=" << i1 << '\n';
-
   bool test [[gnu::unused]] = true;
   VERIFY(j0 == 1.0);
   VERIFY(i0 == 1.0);
