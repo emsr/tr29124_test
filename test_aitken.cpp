@@ -363,7 +363,7 @@
   /**
    * The Levin summation process.
    */
-  template<typename _Sum>
+  template<typename _RemainderModel, typename _Sum>
     class _LevinSum
     {
     public:
@@ -444,6 +444,14 @@
 
     private:
 
+      const _RemainderModel&
+      _M_self() const
+      { return static_cast<const _RemainderModel&>(*this); }
+
+      _RemainderModel&
+      _M_self()
+      { return static_cast<_RemainderModel&>(*this); }
+
       void _M_update(value_type __r_n);
 
       _Sum _M_part_sum;
@@ -456,9 +464,9 @@
   /**
    * One step of Levin's summation process.
    */
-  template<typename _Sum>
+  template<typename _RemainderModel, typename _Sum>
     void
-    _LevinSum<_Sum>::_M_update(value_type __r_n)
+    _LevinSum<_RemainderModel, _Sum>::_M_update(value_type __r_n)
     {
       using _Tp = value_type;
       constexpr auto _S_huge = __gnu_cxx::__root_max(_Tp{5}); // 1.0e+60
@@ -502,7 +510,7 @@
   /**
    * The Weniger's summation process.
    */
-  template<typename _Sum>
+  template<typename _RemainderModel, typename _Sum>
     class _WenigerSum
     {
     public:
@@ -583,6 +591,14 @@
 
     private:
 
+      const _RemainderModel&
+      _M_self() const
+      { return static_cast<const _RemainderModel&>(*this); }
+
+      _RemainderModel&
+      _M_self()
+      { return static_cast<_RemainderModel&>(*this); }
+
       void _M_update(value_type __r_n);
 
       _Sum _M_part_sum;
@@ -595,9 +611,9 @@
   /**
    * One step of Weniger's summation process.
    */
-  template<typename _Sum>
+  template<typename _RemainderModel, typename _Sum>
     void
-    _WenigerSum<_Sum>::_M_update(value_type __r_n)
+    _WenigerSum<_RemainderModel, _Sum>::_M_update(value_type __r_n)
     {
       using _Tp = value_type;
       constexpr auto _S_huge = __gnu_cxx::__root_max(_Tp{5}); // 1.0e+60
