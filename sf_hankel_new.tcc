@@ -223,14 +223,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr auto __expp = __cmplx{-0.5L,  0.8660254037844386467637231707529361834727L};
       static constexpr auto __expm = __cmplx{-0.5L, -0.8660254037844386467637231707529361834727L};
 
-      if (__safe_div(__zeta, __num2d3, __argm))
+      try
 	{
+	  __argm = __safe_div(__num2d3, __zeta);
 	  __argp = __expp * __argm;
 	  __argm = __expm * __argm;
 	}
-      else
-	std::__throw_runtime_error(__N("__airy_arg: unable to"
-				       " compute Airy function arguments"));
+      catch (...)
+	{
+	   std::__throw_runtime_error(__N("__airy_arg: unable to"
+				          " compute Airy function arguments"));
+	}
     }
 
 
@@ -258,8 +261,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr __cmplx __e2pd3{-0.5L,  0.8660254037844386467637231707529361834727L};
       static constexpr __cmplx __d2pd3{-0.5L, -0.8660254037844386467637231707529361834727L};
 
-      if (__safe_div(__z, __nu, __zhat))
+      try
 	{
+	  __zhat = __safe_div(__z, __nu);
 	  // Try to compute other nu and z dependent parameters except args to Airy functions.
 	  __cmplx __num4d3, __nup2, __zeta, __zetaphf, __zetamhf;
 	  __hankel_params(__nu, __zhat, __p, __p2, __nup2,
@@ -273,8 +277,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 	  // Compute Airy functions and derivatives.
 	  __cmplx _Aipp, _Aimp;
-	  __airy(__argp, __eps, _Aip, _Aipp);
-	  __airy(__argm, __eps, _Aim, _Aimp);
+	  __cmplx _Bi, _Bip;
+	  __airy(__argp, __eps, _Aip, _Aipp, _Bi, _Bip);
+	  __airy(__argm, __eps, _Aim, _Aimp, _Bi, _Bip);
 	  // Compute partial outer terms in expansions.
 	  __o4dp = -__zetamhf * __num4d3 * __e2pd3 * _Aipp;
 	  __o4dm = -__zetamhf * __num4d3 * __d2pd3 * _Aimp;
@@ -283,9 +288,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __od2m = -__zetaphf * __num2d3 * _Aim;
 	  __od0dm = __d2pd3 * _Aimp;
 	}
-      else
-	std::__throw_runtime_error(__N("__hankel_uniform_outer: "
-				       "unable to compute z/nu"));
+      catch (...)
+	{
+	  std::__throw_runtime_error(__N("__hankel_uniform_outer: "
+					 "unable to compute z/nu"));
+	}
 
       return;
     }
@@ -297,6 +304,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * of the first and second kinds and their derivatives, using up to
    * nterms (less than 5) to achieve relative error @c eps.
    *
+   * @param[in] __p      
+   * @param[in] __p2     
+   * @param[in] __num2   
+   * @param[in] __zetam3hf 
+   * @param[in] _Aip     The Airy function value @f$ Ai() @f$.
+   * @param[in] __o4dp   
+   * @param[in] _Aim     The Airy function value @f$ Ai() @f$.
+   * @param[in] __o4dm   
+   * @param[in] __od2p   
+   * @param[in] __od0dp  
+   * @param[in] __od2m   
+   * @param[in] __od0dm  
+   * @param[in] __eps    The error tolerance
    * @param[out] _H1sum  The Hankel function of the first kind.
    * @param[out] _H1psum The derivative of the Hankel function of the first kind.
    * @param[out] _H2sum  The Hankel function of the second kind.
@@ -305,14 +325,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     void
     __hankel_uniform_sum(std::complex<_Tp> __p, std::complex<_Tp> __p2,
-			std::complex<_Tp> __num2, std::complex<_Tp> __zetam3hf,
-			std::complex<_Tp> _Aip, std::complex<_Tp> __o4dp,
-			std::complex<_Tp> _Aim, std::complex<_Tp> __o4dm,
-			std::complex<_Tp> __od2p, std::complex<_Tp> __od0dp,
-			std::complex<_Tp> __od2m, std::complex<_Tp> __od0dm,
-			_Tp __eps,
-			std::complex<_Tp>& _H1sum, std::complex<_Tp>& _H1psum,
-			std::complex<_Tp>& _H2sum, std::complex<_Tp>& _H2psum)
+			 std::complex<_Tp> __num2, std::complex<_Tp> __zetam3hf,
+			 std::complex<_Tp> _Aip, std::complex<_Tp> __o4dp,
+			 std::complex<_Tp> _Aim, std::complex<_Tp> __o4dm,
+			 std::complex<_Tp> __od2p, std::complex<_Tp> __od0dp,
+			 std::complex<_Tp> __od2m, std::complex<_Tp> __od0dm,
+			 _Tp __eps,
+			 std::complex<_Tp>& _H1sum, std::complex<_Tp>& _H1psum,
+			 std::complex<_Tp>& _H2sum, std::complex<_Tp>& _H2psum)
     {
       using __cmplx = std::complex<_Tp>;
 
@@ -557,18 +577,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // respectively.  These recurring factors are included as appropriate
       // in the outer factors, thus saving repeated multiplications by them.
       auto _A0 = __zone;
-      auto _A = __u[1]
+      auto _Ak = __u[1]
 	      + __zetam3hf * (_S_mu[1] * __zetam3hf + _S_mu[0] * __u[0]);
       auto _B0 = __u[0] + _S_lambda[0] * __zetam3hf;
-      auto _B = __u[2] + __zetam3hf * (__zetam3hf * (_S_lambda[2] * __zetam3hf
+      auto _Bk = __u[2] + __zetam3hf * (__zetam3hf * (_S_lambda[2] * __zetam3hf
 					 + _S_lambda[1] * __u[0])
 		     + _S_lambda[0] * __u[1]);
       auto _C0 = __v[0] + _S_mu[0] * __zetam3hf;
-      auto _C = __v[2] + __zetam3hf * (__zetam3hf * (_S_mu[2] * __zetam3hf
+      auto _Ck = __v[2] + __zetam3hf * (__zetam3hf * (_S_mu[2] * __zetam3hf
 					 + _S_mu[1] * __v[0])
 		     + _S_mu[0] * __v[1]);
       auto _D0 = __zone;
-      auto _D = __v[1] + __zetam3hf * (_S_lambda[1] * __zetam3hf
+      auto _Dk = __v[1] + __zetam3hf * (_S_lambda[1] * __zetam3hf
 			+ _S_lambda[0] * __v[0]);
 
       // Compute sum of first two terms to initialize the Kahan summing scheme.
@@ -576,10 +596,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _KahanSum<std::complex<_Tp>> _Bsum(_B0);
       _KahanSum<std::complex<_Tp>> _Csum(_C0);
       _KahanSum<std::complex<_Tp>> _Dsum(_D0);
-      _Asum += _A * __num2;
-      _Bsum += _B * __num2;
-      _Csum += _C * __num2;
-      _Dsum += _D * __num2;
+      _Asum += _Ak * __num2;
+      _Bsum += _Bk * __num2;
+      _Csum += _Ck * __num2;
+      _Dsum += _Dk * __num2;
 
       // Combine sums in form appearing in expansions.
       _H1sum = _Aip * _Asum() + __o4dp * _Bsum();
@@ -675,36 +695,36 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __indexp += __i2kp1 + 3;
 
 	  // Start Horner's rule evaluation of A, B, C, and D polynomials.
-	  _A = _S_mu[__i2k] * __zetam3hf + _S_mu[__i2km1] * __u[0];
-	  _D = _S_lambda[__i2k] * __zetam3hf + _S_lambda[__i2km1] * __v[0];
-	  _B = _S_lambda[__i2kp1] * __zetam3hf + _S_lambda[__i2k] * __u[0];
-	  _C = _S_mu[__i2kp1] * __zetam3hf + _S_mu[__i2k] * __v[0];
+	  _Ak = _S_mu[__i2k] * __zetam3hf + _S_mu[__i2km1] * __u[0];
+	  _Dk = _S_lambda[__i2k] * __zetam3hf + _S_lambda[__i2km1] * __v[0];
+	  _Bk = _S_lambda[__i2kp1] * __zetam3hf + _S_lambda[__i2k] * __u[0];
+	  _Ck = _S_mu[__i2kp1] * __zetam3hf + _S_mu[__i2k] * __v[0];
 
 	  // Do partial Horner's rule evaluations of A, B, C, and D.
 	  for(auto __l = 1; __l <= __i2km1; ++__l)
 	    {
 	      auto __i2kl = __i2km1 - __l;
-	      _A = _A * __zetam3hf + _S_mu[__i2kl] * __u[__l];
-	      _D = _D * __zetam3hf + _S_lambda[__i2kl] * __v[__l];
+	      _Ak = _Ak * __zetam3hf + _S_mu[__i2kl] * __u[__l];
+	      _Dk = _Dk * __zetam3hf + _S_lambda[__i2kl] * __v[__l];
 	      __i2kl = __i2k - __l;
-	      _B = _B * __zetam3hf + _S_lambda[__i2kl] * __u[__l];
-	      _C = _C * __zetam3hf + _S_mu[__i2kl] * __v[__l];
+	      _Bk = _Bk * __zetam3hf + _S_lambda[__i2kl] * __u[__l];
+	      _Ck = _Ck * __zetam3hf + _S_mu[__i2kl] * __v[__l];
 	    }
 
 	  // Complete the evaluations of A, B, C, and D.
-	  _A = _A * __zetam3hf + __u[__i2k];
-	  _D = _D * __zetam3hf + __v[__i2k];
-	  _B = __zetam3hf
-	       * (_B * __zetam3hf + _S_lambda[0] * __u[__i2k]) + __u[__i2kp1];
-	  _C = __zetam3hf
-	       * (_C * __zetam3hf + _S_mu[0] * __v[__i2k]) + __v[__i2kp1];
+	  _Ak = _Ak * __zetam3hf + __u[__i2k];
+	  _Dk = _Dk * __zetam3hf + __v[__i2k];
+	  _Bk = __zetam3hf
+	      * (_Bk * __zetam3hf + _S_lambda[0] * __u[__i2k]) + __u[__i2kp1];
+	  _Ck = __zetam3hf
+	      * (_Ck * __zetam3hf + _S_mu[0] * __v[__i2k]) + __v[__i2kp1];
 
 	  // Evaluate new terms for sums.
 	  __num2k *= __num2;
-	  _Asum += _A * __num2k;
-	  _Bsum += _B * __num2k;
-	  _Csum += _C * __num2k;
-	  _Dsum += _D * __num2k;
+	  _Asum += _Ak * __num2k;
+	  _Bsum += _Bk * __num2k;
+	  _Csum += _Ck * __num2k;
+	  _Dsum += _Dk * __num2k;
 
 	  // Combine sums in form appearing in expansions.
 	  _H1sum  = _Aip  * _Asum()  + __o4dp * _Bsum();
@@ -744,8 +764,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * of the first and second kinds using Olver's uniform asymptotic
    * expansion to of order @c nu along with their derivatives.
    *
-   * @param[in]  __nu The order for which the Hankel functions are evaluated.
-   * @param[in]  __z  The argument at which the Hankel functions are evaluated.
+   * @param[in] __nu The order for which the Hankel functions are evaluated.
+   * @param[in] __z  The argument at which the Hankel functions are evaluated.
    * @param[out] _H1  The Hankel function of the first kind.
    * @param[out] _H1p The derivative of the Hankel function of the first kind.
    * @param[out] _H2  The Hankel function of the second kind.
@@ -830,8 +850,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * averages results from four surrounding points in the complex plane
    * to obtain the result in such cases.
    *
-   * @param[in]  __nu The order for which the Hankel functions are evaluated.
-   * @param[in]  __z  The argument at which the Hankel functions are evaluated.
+   * @param[in] __nu The order for which the Hankel functions are evaluated.
+   * @param[in] __z  The argument at which the Hankel functions are evaluated.
    * @param[out] _H1  The Hankel function of the first kind.
    * @param[out] _H1p The derivative of the Hankel function of the first kind.
    * @param[out] _H2  The Hankel function of the second kind.
@@ -881,8 +901,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *
-   * @param[in]  __nu The order for which the Hankel functions are evaluated.
-   * @param[in]  __z  The argument at which the Hankel functions are evaluated.
+   * @param[in] __nu The order for which the Hankel functions are evaluated.
+   * @param[in] __z  The argument at which the Hankel functions are evaluated.
    * @param[in] __alpha
    * @param[in] __indexr
    * @param[out] __aorb
@@ -1053,8 +1073,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *
-   * @param[in]  __nu  The order for which the Hankel functions are evaluated.
-   * @param[in]  __z   The argument at which the Hankel functions are evaluated.
+   * @param[in] __nu The order for which the Hankel functions are evaluated.
+   * @param[in] __z  The argument at which the Hankel functions are evaluated.
    * @param[out] _H1  The Hankel function of the first kind.
    * @param[out] _H1p The derivative of the Hankel function of the first kind.
    * @param[out] _H2  The Hankel function of the second kind.
@@ -1149,7 +1169,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * @brief  Return the complex cylindrical Bessel function.
+   * @brief Return the complex cylindrical Bessel function.
    *
    * @param[in] __nu The order for which the cylindrical Bessel function is evaluated.
    * @param[in] __z  The argument at which the cylindrical Bessel function is evaluated.
@@ -1165,7 +1185,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * @brief  Return the complex cylindrical Neumann function.
+   * @brief Return the complex cylindrical Neumann function.
    *
    * @param[in] __nu The order for which the cylindrical Neumann function is evaluated.
    * @param[in] __z  The argument at which the cylindrical Neumann function is evaluated.
@@ -1181,11 +1201,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * @brief  Helper to compute complex spherical Hankel functions
-   *         and their derivatives.
+   * @brief Helper to compute complex spherical Hankel functions
+   *        and their derivatives.
    *
-   * @param[in]  __n  The order for which the spherical Hankel functions are evaluated.
-   * @param[in]  __z  The argument at which the spherical Hankel functions are evaluated.
+   * @param[in] __n The order for which the spherical Hankel functions are evaluated.
+   * @param[in] __z The argument at which the spherical Hankel functions are evaluated.
    * @param[out] _H1  The spherical Hankel function of the first kind.
    * @param[out] _H1p The derivative of the spherical Hankel function of the first kind.
    * @param[out] _H2  The spherical Hankel function of the second kind.
@@ -1209,7 +1229,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * @brief  Return the complex spherical Hankel function of the first kind.
+   * @brief Return the complex spherical Hankel function of the first kind.
    *
    * @param[in] __n The order for which the spherical Hankel function of the first kind is evaluated.
    * @param[in] __z The argument at which the spherical Hankel function of the first kind is evaluated.
@@ -1225,7 +1245,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * @brief  Return the complex spherical Hankel function of the second kind.
+   * @brief Return the complex spherical Hankel function of the second kind.
    *
    * @param[in] __n The order for which the spherical Hankel function of the second kind is evaluated.
    * @param[in] __z The argument at which the spherical Hankel function of the second kind is evaluated.
@@ -1241,7 +1261,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * @brief  Return the complex spherical Bessel function.
+   * @brief Return the complex spherical Bessel function.
    *
    * @param[in] __n The order for which the spherical Bessel function is evaluated.
    * @param[in] __z The argument at which the spherical Bessel function is evaluated.
@@ -1257,7 +1277,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * @brief  Return the complex spherical Neumann function.
+   * @brief Return the complex spherical Neumann function.
    *
    * @param[in] __n The order for which the spherical Neumann function is evaluated.
    * @param[in] __z The argument at which the spherical Neumann function is evaluated.
