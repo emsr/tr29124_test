@@ -140,7 +140,7 @@ data001[101] =
   {2.28190210130364e-01, 9.90000000000000e-01},
   {1.00000000000000e+00, 1.00000000000000e+00},
 };
-const double toler011 = 2.5000000000000029e-13;
+const double toler001 = 2.5000000000000020e-13;
 
 template<typename Tp, unsigned int Num>
   void
