@@ -114,61 +114,110 @@ inline namespace v1
 
     rgba_color() noexcept;
 
-    rgba_color(double r, double g, double b, double a = 1.0);
+    rgba_color(double __r, double __g, double __b, double __a = 1.0)
+    : _M_red{__r}, _M_green{__g}, _M_blue{__b}, _M_alpha{__a}
+    { }
 
-    rgba_color(double r, double g, double b, std::error_code& __ec) noexcept;
+    rgba_color(double __r, double __g, double __b,
+	       std::error_code& __ec) noexcept
+    : _M_red{__r}, _M_green{__g}, _M_blue{__b}, _M_alpha{1.0}
+    { }
 
-    rgba_color(double r, double g, double b, double a, std::error_code& __ec) noexcept;
+    rgba_color(double __r, double __g, double __b, double __a,
+	       std::error_code& __ec) noexcept
+    : _M_red{__r}, _M_green{__g}, _M_blue{__b}, _M_alpha{__a}
+    {
+    }
 
-    rgba_color(const rgba_color& c) noexcept;
+    rgba_color(const rgba_color& __c) noexcept = default;
 
     rgba_color&
-    operator=(const rgba_color& c) noexcept;
+    operator=(const rgba_color& __c) noexcept = default;
 
-    rgba_color(rgba_color&& c) noexcept;
+    rgba_color(rgba_color&& __c) noexcept = default;
 
     rgba_color&
-    operator=(rgba_color&& c) noexcept;
+    operator=(rgba_color&& __c) noexcept = default;
 
     // modifiers:
 
     void
-    r(double val);
+    r(double __val)
+    {
+      std::error_code __ec;
+      this->r(__val);
+      if (__ec)
+        throw std::someexcept("");
+    }
 
     void
-    r(double val, std::error_code& __ec) noexcept;
+    r(double __val, std::error_code& __ec) noexcept
+    {
+      ;
+    }
 
     void
-    g(double val);
+    g(double __val)
+    {
+      std::error_code __ec;
+      this->g(__val);
+      if (__ec)
+        throw std::someexcept("");
+    }
 
     void
-    g(double val, std::error_code& __ec) noexcept;
+    g(double __val, std::error_code& __ec) noexcept
+    {
+      ;
+    }
 
     void
-    b(double val);
+    b(double __val)
+    {
+      std::error_code __ec;
+      this->b(__val);
+      if (__ec)
+        throw std::someexcept("");
+    }
 
     void
-    b(double val, std::error_code& __ec) noexcept;
+    b(double __val, std::error_code& __ec) noexcept
+    {
+      ;
+    }
 
     void
-    a(double val);
+    a(double __val)
+    {
+      std::error_code __ec;
+      this->a(__val);
+      if (__ec)
+        throw std::someexcept("");
+    }
 
     void
-    a(double val, std::error_code& __ec) noexcept;
+    a(double val, std::error_code& __ec) noexcept
+    {
+      ;
+    }
 
     // observers:
 
     double
-    r() const noexcept;
+    r() const noexcept
+    { return this->_M_red; }
 
     double
-    g() const noexcept;
+    g() const noexcept
+    { return this->_M_green; }
 
     double
-    b() const noexcept;
+    b() const noexcept
+    { return this->_M_blue; }
 
     double
-    a() const noexcept;
+    a() const noexcept
+    { return this->_M_alpha; }
 
     // static member functions:
 
@@ -626,27 +675,183 @@ inline namespace v1
 
     double _M_alpha;
   };
+  { 240ubyte, 248ubyte, 255ubyte, 255ubyte } // alice_blue
+  { 250ubyte, 235ubyte, 215ubyte, 255ubyte } // antique_white
+  {   0ubyte, 255ubyte, 255ubyte, 255ubyte } // aqua
+  { 127ubyte, 255ubyte, 212ubyte, 255ubyte } // aquamarine
+  { 240ubyte, 255ubyte, 255ubyte, 255ubyte } // azure
+  { 245ubyte, 245ubyte, 220ubyte, 255ubyte } // beige
+  { 255ubyte, 228ubyte, 196ubyte, 255ubyte } // bisque
+  {   0ubyte,   0ubyte,   0ubyte, 255ubyte } // black
+  { 255ubyte, 235ubyte, 205ubyte, 255ubyte } // blanched_almond
+  {   0ubyte,   0ubyte, 255ubyte, 255ubyte } // blue
+  { 138ubyte,  43ubyte, 226ubyte, 255ubyte } // blue_violet
+  { 165ubyte,  42ubyte,  42ubyte, 255ubyte } // brown
+  { 222ubyte, 184ubyte, 135ubyte, 255ubyte } // burly_wood
+  {  95ubyte, 158ubyte, 160ubyte, 255ubyte } // cadet_blue
+  { 127ubyte, 255ubyte,   0ubyte, 255ubyte } // chartreuse
+  { 210ubyte, 105ubyte,  30ubyte, 255ubyte } // chocolate
+  { 255ubyte, 127ubyte,  80ubyte, 255ubyte } // coral
+  { 100ubyte, 149ubyte, 237ubyte, 255ubyte } // cornflower_blue
+  { 255ubyte, 248ubyte, 220ubyte, 255ubyte } // cornsilk
+  { 220ubyte,  20ubyte,  60ubyte, 255ubyte } // crimson
+  {   0ubyte, 255ubyte, 255ubyte, 255ubyte } // cyan
+  {   0ubyte,   0ubyte, 139ubyte, 255ubyte } // dark_blue
+  {   0ubyte, 139ubyte, 139ubyte, 255ubyte } // dark_cyan
+  { 184ubyte, 134ubyte,  11ubyte, 255ubyte } // dark_goldenrod
+  { 169ubyte, 169ubyte, 169ubyte, 255ubyte } // dark_gray
+  {   0ubyte, 100ubyte,   0ubyte, 255ubyte } // dark_green
+  { 169ubyte, 169ubyte, 169ubyte, 255ubyte } // dark_grey
+  { 189ubyte, 183ubyte, 107ubyte, 255ubyte } // dark_khaki
+  { 139ubyte,   0ubyte, 139ubyte, 255ubyte } // dark_magenta
+  {  85ubyte, 107ubyte,  47ubyte, 255ubyte } // dark_olive_green
+  { 255ubyte, 140ubyte,   0ubyte, 255ubyte } // dark_orange
+  { 153ubyte,  50ubyte, 204ubyte, 255ubyte } // dark_orchid
+  { 139ubyte,   0ubyte,   0ubyte, 255ubyte } // dark_red
+  { 233ubyte, 150ubyte, 122ubyte, 255ubyte } // dark_salmon
+  { 143ubyte, 188ubyte, 143ubyte, 255ubyte } // dark_sea_green
+  {  72ubyte,  61ubyte, 139ubyte, 255ubyte } // dark_slate_blue
+  {  47ubyte,  79ubyte,  79ubyte, 255ubyte } // dark_slate_gray
+  {  47ubyte,  79ubyte,  79ubyte, 255ubyte } // dark_slate_grey
+  {   0ubyte, 206ubyte, 209ubyte, 255ubyte } // dark_turquoise
+  { 148ubyte,   0ubyte, 211ubyte, 255ubyte } // dark_violet
+  { 255ubyte,  20ubyte, 147ubyte, 255ubyte } // deep_pink
+  {   0ubyte, 191ubyte, 255ubyte, 255ubyte } // deep_sky_blue
+  { 105ubyte, 105ubyte, 105ubyte, 255ubyte } // dim_gray
+  { 105ubyte, 105ubyte, 105ubyte, 255ubyte } // dim_grey
+  {  30ubyte, 144ubyte, 255ubyte, 255ubyte } // dodger_blue
+  { 178ubyte, 34ubyte,   34ubyte, 255ubyte } // firebrick
+  { 255ubyte, 250ubyte, 240ubyte, 255ubyte } // floral_white
+  {  34ubyte, 139ubyte,  34ubyte, 255ubyte } // forest_green
+  { 255ubyte,   0ubyte, 255ubyte, 255ubyte } // fuchsia
+  { 220ubyte, 220ubyte, 220ubyte, 255ubyte } // gainsboro
+  { 248ubyte, 248ubyte, 255ubyte, 255ubyte } // ghost_white
+  { 255ubyte, 215ubyte,   0ubyte, 255ubyte } // gold
+  { 218ubyte, 165ubyte,  32ubyte, 255ubyte } // goldenrod
+  { 128ubyte, 128ubyte, 128ubyte, 255ubyte } // gray
+  {   0ubyte, 128ubyte,   0ubyte, 255ubyte } // green
+  { 173ubyte, 255ubyte,  47ubyte, 255ubyte } // green_yellow
+  { 128ubyte, 128ubyte, 128ubyte, 255ubyte } // grey
+  { 240ubyte, 255ubyte, 240ubyte, 255ubyte } // honeydew
+  { 255ubyte, 105ubyte, 180ubyte, 255ubyte } // hot_pink
+  { 205ubyte,  92ubyte,  92ubyte, 255ubyte } // indian_red
+  { 75ubyte,    0ubyte, 130ubyte, 255ubyte } // indigo
+  { 255ubyte, 255ubyte, 240ubyte, 255ubyte } // ivory
+  { 240ubyte, 230ubyte, 140ubyte, 255ubyte } // khaki
+  { 230ubyte, 230ubyte, 250ubyte, 255ubyte } // lavender
+  { 255ubyte, 240ubyte, 245ubyte, 255ubyte } // lavender_blush
+  { 124ubyte, 252ubyte,   0ubyte, 255ubyte } // lawn_green
+  { 255ubyte, 250ubyte, 205ubyte, 255ubyte } // lemon_chiffon
+  { 173ubyte, 216ubyte, 230ubyte, 255ubyte } // light_blue
+  { 240ubyte, 128ubyte, 128ubyte, 255ubyte } // light_coral
+  { 224ubyte, 255ubyte, 255ubyte, 255ubyte } // light_cyan
+  { 250ubyte, 250ubyte, 210ubyte, 255ubyte } // light_goldenrod_yellow
+  { 211ubyte, 211ubyte, 211ubyte, 255ubyte } // light_gray
+  { 144ubyte, 238ubyte, 144ubyte, 255ubyte } // light_green
+  { 211ubyte, 211ubyte, 211ubyte, 255ubyte } // light_grey
+  { 255ubyte, 182ubyte, 193ubyte, 255ubyte } // light_pink
+  { 255ubyte, 160ubyte, 122ubyte, 255ubyte } // light_salmon
+  {  32ubyte, 178ubyte, 170ubyte, 255ubyte } // light_sea_green
+  { 135ubyte, 206ubyte, 250ubyte, 255ubyte } // light_sky_blue
+  { 119ubyte, 136ubyte, 153ubyte, 255ubyte } // light_slate_gray
+  { 119ubyte, 136ubyte, 153ubyte, 255ubyte } // light_slate_grey
+  { 176ubyte, 196ubyte, 222ubyte, 255ubyte } // light_steel_blue
+  { 255ubyte, 255ubyte, 224ubyte, 255ubyte } // light_yellow
+  {   0ubyte, 255ubyte,   0ubyte, 255ubyte } // lime
+  {  50ubyte, 205ubyte,  50ubyte, 255ubyte } // lime_green
+  { 250ubyte, 240ubyte, 230ubyte, 255ubyte } // linen
+  { 255ubyte,   0ubyte, 255ubyte, 255ubyte } // magenta
+  { 128ubyte,   0ubyte,   0ubyte, 255ubyte } // maroon
+  { 102ubyte, 205ubyte, 170ubyte, 255ubyte } // medium_aquamarine
+  {   0ubyte,   0ubyte, 205ubyte, 255ubyte } // medium_blue
+  { 186ubyte,  85ubyte, 211ubyte, 255ubyte } // medium_orchid
+  { 147ubyte, 112ubyte, 219ubyte, 255ubyte } // medium_purple
+  {  60ubyte, 179ubyte, 113ubyte, 255ubyte } // medium_sea_green
+  { 123ubyte, 104ubyte, 238ubyte, 255ubyte } // medium_slate_blue
+  {   0ubyte, 250ubyte, 154ubyte, 255ubyte } // medium_spring_green
+  {  72ubyte, 209ubyte, 204ubyte, 255ubyte } // medium_turquoise
+  { 199ubyte,  21ubyte, 133ubyte, 255ubyte } // medium_violet_red
+  {  25ubyte,  25ubyte, 112ubyte, 255ubyte } // midnight_blue
+  { 245ubyte, 255ubyte, 250ubyte, 255ubyte } // mint_cream
+  { 255ubyte, 228ubyte, 225ubyte, 255ubyte } // misty_rose
+  { 255ubyte, 228ubyte, 181ubyte, 255ubyte } // moccasin
+  { 255ubyte, 222ubyte, 173ubyte, 255ubyte } // navajo_white
+  {   0ubyte,   0ubyte, 128ubyte, 255ubyte } // navy
+  { 253ubyte, 245ubyte, 230ubyte, 255ubyte } // old_lace
+  { 128ubyte, 128ubyte,   0ubyte, 255ubyte } // olive
+  { 107ubyte, 142ubyte,  35ubyte, 255ubyte } // olive_drab
+  { 255ubyte, 165ubyte,   0ubyte, 255ubyte } // orange
+  { 255ubyte,  69ubyte,   0ubyte, 255ubyte } // orange_red
+  { 218ubyte, 112ubyte, 214ubyte, 255ubyte } // orchid
+  { 238ubyte, 232ubyte, 170ubyte, 255ubyte } // pale_goldenrod
+  { 152ubyte, 251ubyte, 152ubyte, 255ubyte } // pale_green
+  { 175ubyte, 238ubyte, 238ubyte, 255ubyte } // pale_turquoise
+  { 219ubyte, 112ubyte, 147ubyte, 255ubyte } // pale_violet_red
+  { 255ubyte, 239ubyte, 213ubyte, 255ubyte } // papaya_whip
+  { 255ubyte, 218ubyte, 185ubyte, 255ubyte } // peach_puff
+  { 205ubyte, 133ubyte,  63ubyte, 255ubyte } // peru
+  { 255ubyte, 192ubyte, 203ubyte, 255ubyte } // pink
+  { 221ubyte, 160ubyte, 221ubyte, 255ubyte } // plum
+  { 176ubyte, 224ubyte, 230ubyte, 255ubyte } // powder_blue
+  { 128ubyte,   0ubyte, 128ubyte, 255ubyte } // purple
+  { 255ubyte,   0ubyte,   0ubyte, 255ubyte } // red
+  { 188ubyte, 143ubyte, 143ubyte, 255ubyte } // rosy_brown
+  {  65ubyte, 105ubyte, 225ubyte, 255ubyte } // royal_blue
+  { 139ubyte,  69ubyte,  19ubyte, 255ubyte } // saddle_brown
+  { 250ubyte, 128ubyte, 114ubyte, 255ubyte } // salmon
+  { 244ubyte, 164ubyte,  96ubyte, 255ubyte } // sandy_brown
+  {  46ubyte, 139ubyte,  87ubyte, 255ubyte } // sea_green
+  { 255ubyte, 245ubyte, 238ubyte, 255ubyte } // sea_shell
+  { 160ubyte,  82ubyte,  45ubyte, 255ubyte } // sienna
+  { 192ubyte, 192ubyte, 192ubyte, 255ubyte } // silver
+  { 135ubyte, 206ubyte, 235ubyte, 255ubyte } // sky_blue
+  { 106ubyte, 90ubyte, 205ubyte, 255ubyte } // slate_blue
+  { 112ubyte, 128ubyte, 144ubyte, 255ubyte } // slate_gray
+  { 112ubyte, 128ubyte, 144ubyte, 255ubyte } // slate_grey
+  { 255ubyte, 250ubyte, 250ubyte, 255ubyte } // snow
+  {   0ubyte, 255ubyte, 127ubyte, 255ubyte } // spring_green
+  {  70ubyte, 130ubyte, 180ubyte, 255ubyte } // steel_blue
+  { 210ubyte, 180ubyte, 140ubyte, 255ubyte } // tan
+  {   0ubyte, 128ubyte, 128ubyte, 255ubyte } // teal
+  { 216ubyte, 191ubyte, 216ubyte, 255ubyte } // thistle
+  { 255ubyte,  99ubyte,  71ubyte, 255ubyte } // tomato
+  {   0ubyte,   0ubyte,   0ubyte,   0ubyte } // transparent_black
+  {  64ubyte, 244ubyte, 208ubyte, 255ubyte } // turquoise
+  { 238ubyte, 130ubyte, 238ubyte, 255ubyte } // violet
+  { 245ubyte, 222ubyte, 179ubyte, 255ubyte } // wheat
+  { 255ubyte, 255ubyte, 255ubyte, 255ubyte } // white
+  { 245ubyte, 245ubyte, 245ubyte, 255ubyte } // white_smoke
+  { 255ubyte, 255ubyte,   0ubyte, 255ubyte } // yellow
+  { 154ubyte, 205ubyte,  50ubyte, 255ubyte } // yellow_green
+
 
   // non-member operators:
 
   bool
-  operator==(const rgba_color& lhs, const rgba_color& rhs) noexcept;
+  operator==(const rgba_color& __lhs, const rgba_color& __rhs) noexcept
+  {
+    return __lhs.r() = __rhs.r()
+        && __lhs.g() = __rhs.g()
+        && __lhs.b() = __rhs.b()
+        && __lhs.a() = __rhs.a();
+  }
 
   bool
-  operator!=(const rgba_color& lhs, const rgba_color& rhs) noexcept;
+  operator!=(const rgba_color& __lhs, const rgba_color& __rhs) noexcept
+  { return !(__lhs == __rhs); }
 
 inline namespace literals
 {
   // N.B. a std::clamp would be useful here.
   /**
-   *
+   * 
    */
   double
   operator""ubyte(unsigned long long int __val)
   { std::max(0.0, std::min(1.0, static_cast<double>(__val) / 255.0)); }
 
   /**
-   *
+   * 
    */
   double
   operator""unorm(long double __val)
@@ -655,7 +860,7 @@ inline namespace literals
 } // inline namespace literals
 
   /**
-   *
+   * 
    */
   class vector_2d
   {
@@ -4536,35 +4741,35 @@ inline namespace literals
     image_surface&
     operator=(const image_surface&) = delete;
 
-    image_surface(image_surface&& other) noexcept;
+    image_surface(image_surface&& other) noexcept = default;
 
     image_surface&
-    operator=(image_surface&& other) noexcept;
+    operator=(image_surface&& other) noexcept = default;
 
-    image_surface(experimental::io2d::format fmt,
-		  int width, int height);
+    image_surface(experimental::io2d::format __fmt,
+		  int __width, int __height);
 
-    image_surface(experimental::io2d::format fmt,
-		  int width, int height,
+    image_surface(experimental::io2d::format __fmt,
+		  int __width, int __height,
 		  std::error_code& __ec) noexcept;
 
-    image_surface(vector<unsigned char>& data,
-		  experimental::io2d::format fmt,
-		  int width, int height);
+    image_surface(std::vector<unsigned char>& __data,
+		  experimental::io2d::format __fmt,
+		  int __width, int __height);
 
-    image_surface(vector<unsigned char>& data,
-		  experimental::io2d::format fmt,
-		  int width, int height, std::error_code& __ec) noexcept;
+    image_surface(std::vector<unsigned char>& __data,
+		  experimental::io2d::format __fmt,
+		  int __width, int __height, std::error_code& __ec) noexcept;
 
     virtual ~image_surface();
 
     // modifiers:
 
     void
-    data(const std::vector<unsigned char>& data);
+    data(const std::vector<unsigned char>& __data);
 
     void
-    data(const std::vector<unsigned char>& data, std::error_code& __ec) noexcept;
+    data(const std::vector<unsigned char>& __data, std::error_code& __ec) noexcept;
 
     std::vector<unsigned char>
     data();
@@ -4604,36 +4809,36 @@ inline namespace literals
     display_surface&
     operator=(const display_surface&) = delete;
 
-    display_surface(display_surface&& other) noexcept;
+    display_surface(display_surface&& other) noexcept = default;
 
     display_surface&
-    operator=(display_surface&& other) noexcept;
+    operator=(display_surface&& other) noexcept = default;
 
-    display_surface(int preferredWidth,
-		    int preferredHeight,
-		    experimental::io2d::format preferredFormat,
-		    experimental::io2d::scaling scl = experimental::io2d::scaling::letterbox);
+    display_surface(int __pref_width,
+		    int __pref_height,
+		    experimental::io2d::format __pref_fmt,
+		    experimental::io2d::scaling  __scl = experimental::io2d::scaling::letterbox);
 
-    display_surface(int preferredWidth,
-		    int preferredHeight,
-		    experimental::io2d::format preferredFormat,
+    display_surface(int __pref_width,
+		    int __pref_height,
+		    experimental::io2d::format __pref_fmt,
 		    std::error_code& __ec,
-		    experimental::io2d::scaling scl = experimental::io2d::scaling::letterbox) noexcept;
+		    experimental::io2d::scaling  __scl = experimental::io2d::scaling::letterbox) noexcept;
 
-    display_surface(int preferredWidth,
-		    int preferredHeight,
-		    experimental::io2d::format preferredFormat,
-		    int preferredDisplayWidth,
-		    int preferredDisplayHeight,
-		    experimental::io2d::scaling scl = experimental::io2d::scaling::letterbox);
+    display_surface(int __pref_width,
+		    int __pref_height,
+		    experimental::io2d::format __pref_fmt,
+		    int __pref_disp_width,
+		    int __pref_disp_height,
+		    experimental::io2d::scaling __scl = experimental::io2d::scaling::letterbox);
 
-    display_surface(int preferredWidth,
-		    int preferredHeight,
-		    experimental::io2d::format preferredFormat,
-		    int preferredDisplayWidth,
-		    int preferredDisplayHeight,
+    display_surface(int __pref_width,
+		    int __pref_height,
+		    experimental::io2d::format __pref_fmt,
+		    int __pref_disp_width,
+		    int __pref_disp_height,
 		    std::error_code& __ec,
-		    experimental::io2d::scaling scl = experimental::io2d::scaling::letterbox) noexcept;
+		    experimental::io2d::scaling __scl = experimental::io2d::scaling::letterbox) noexcept;
 
     virtual ~display_surface();
 
@@ -4652,71 +4857,71 @@ inline namespace literals
     restore(std::error_code& __ec) noexcept override;
 
     void
-    draw_callback(const std::function<void(display_surface& sfc)>& fn) noexcept;
+    draw_callback(const std::function<void(display_surface&)>& __fn) noexcept;
 
     void
-    size_change_callback(const std::function<void(display_surface& sfc)>& fn) noexcept;
+    size_change_callback(const std::function<void(display_surface&)>& __fn) noexcept;
 
     void
-    width(int w);
+    width(int __w);
 
     void
-    width(int w, std::error_code& __ec) noexcept;
+    width(int __w, std::error_code& __ec) noexcept;
 
     void
-    height(int h);
+    height(int __h);
 
     void
-    height(int h, std::error_code& __ec) noexcept;
+    height(int __h, std::error_code& __ec) noexcept;
 
     void
-    display_width(int w);
+    display_width(int __w);
 
     void
-    display_width(int w, std::error_code& __ec) noexcept;
+    display_width(int __w, std::error_code& __ec) noexcept;
 
     void
-    display_height(int h);
+    display_height(int __h);
 
     void
-    display_height(int h, std::error_code& __ec) noexcept;
+    display_height(int __h, std::error_code& __ec) noexcept;
 
     void
-    dimensions(int w, int h);
+    dimensions(int __w, int __h);
 
     void
-    dimensions(int w, int h, std::error_code& __ec) noexcept;
+    dimensions(int __w, int __h, std::error_code& __ec) noexcept;
 
     void
-    display_dimensions(int dw, int dh);
+    display_dimensions(int __dw, int __dh);
 
     void
-    display_dimensions(int dw, int dh, std::error_code& __ec) noexcept;
+    display_dimensions(int __dw, int __dh, std::error_code& __ec) noexcept;
 
     void
-    scaling(experimental::io2d::scaling scl) noexcept;
+    scaling(experimental::io2d::scaling __scl) noexcept;
 
     void
     user_scaling_callback(
-	const std::function<experimental::io2d::rectangle(const display_surface&, bool&)>& fn) noexcept;
+	const std::function<experimental::io2d::rectangle(const display_surface&, bool&)>& __fn) noexcept;
 
     void
     letterbox_brush(experimental::nullopt_t) noexcept;
 
     void
-    letterbox_brush(const rgba_color& c);
+    letterbox_brush(const rgba_color& __c);
 
     void
-    letterbox_brush(const rgba_color& c, std::error_code& __ec) noexcept;
+    letterbox_brush(const rgba_color& __c, std::error_code& __ec) noexcept;
 
     void
-    letterbox_brush(const experimental::io2d::brush& b);
+    letterbox_brush(const experimental::io2d::brush& __b);
 
     void
-    letterbox_brush(const experimental::io2d::brush& b, std::error_code& __ec) noexcept;
+    letterbox_brush(const experimental::io2d::brush& __b, std::error_code& __ec) noexcept;
 
     void
-    auto_clear(bool val) noexcept;
+    auto_clear(bool __val) noexcept;
 
     int
     show();
@@ -4725,10 +4930,10 @@ inline namespace literals
     show(std::error_code& __ec);
 
     void
-    exit_show(int milliseconds);
+    exit_show(int __milliseconds);
 
     void
-    exit_show(int milliseconds, std::error_code& __ec);
+    exit_show(int __milliseconds, std::error_code& __ec);
 
     // observers:
 
@@ -4784,9 +4989,9 @@ inline namespace literals
 
     mapped_surface& operator=(const mapped_surface&) = delete;
 
-    mapped_surface(mapped_surface&& other) = delete;
+    mapped_surface(mapped_surface&& __other) = delete;
 
-    mapped_surface& operator=(mapped_surface&& other) = delete;
+    mapped_surface& operator=(mapped_surface&& __other) = delete;
 
     ~mapped_surface();
 
@@ -4799,10 +5004,10 @@ inline namespace literals
     commit_changes(std::error_code& __ec) noexcept;
 
     void
-    commit_changes(const rectangle& area);
+    commit_changes(const rectangle& __area);
 
     void
-    commit_changes(const rectangle& area, std::error_code& __ec) noexcept;
+    commit_changes(const rectangle& __area, std::error_code& __ec) noexcept;
 
     unsigned char*
     data();
@@ -4821,59 +5026,77 @@ inline namespace literals
     experimental::io2d::format
     format() const noexcept;
 
-    int width()
-    const noexcept;
+    int
+    width() const noexcept;
 
-    int height()
-    const noexcept;
+    int
+    height() const noexcept;
 
-    int stride()
-    const noexcept;
+    int
+    stride() const noexcept;
   };
 
   /**
    *
    */
   int
-  format_stride_for_width(format format, int width) noexcept;
+  format_stride_for_width(format __format, int __width) noexcept;
 
   display_surface
-  make_display_surface(int preferredWidth,
-		       int preferredHeight,
-		       format preferredFormat,
-		       scaling scl = scaling::letterbox);
+  make_display_surface(int __pref_width,
+		       int __pref_height,
+		       format __pref_fmt,
+		       scaling scl = scaling::letterbox)
+  {
+    std::error_code __ec;
+    auto __dsrf = make_display_surface(__pref_width, __pref_height, __pref_fmt,
+				       __ec, __scl);
+    if (__ec)
+      throw std::someexcept("");
+    return __dsrf;
+  }
 
   display_surface
-  make_display_surface(int preferredWidth,
-		       int preferredHeight,
-		       format preferredFormat,
+  make_display_surface(int __pref_width,
+		       int __pref_height,
+		       format __pref_fmt,
 		       std::error_code& __ec,
 		       scaling scl = scaling::letterbox) noexcept;
 
   display_surface
-  make_display_surface(int preferredWidth,
-		       int preferredHeight,
-		       format preferredFormat,
-		       int preferredDisplayWidth,
-		       int preferredDisplayHeight,
-		       scaling scl = scaling::letterbox);
+  make_display_surface(int __pref_width,
+		       int __pref_height,
+		       format __pref_fmt,
+		       int __pref_disp_width,
+		       int __pref_disp_height,
+		       scaling scl = scaling::letterbox)
+  {
+    std::error_code __ec;
+    auto __dsrf = make_display_surface(__pref_width, __pref_height, __pref_fmt,
+		       __pref_disp_width, __pref_disp_height, __ec, __scl);
+    if (__ec)
+      throw std::someexcept("");
+    return __dsrf;
+  }
 
   display_surface
-  make_display_surface(int preferredWidth,
-		       int preferredHeight,
-		       format preferredFormat,
-		       int preferredDisplayWidth,
-		       int preferredDisplayHeight,
+  make_display_surface(int __pref_width,
+		       int __pref_height,
+		       format __pref_fmt,
+		       int __pref_disp_width,
+		       int __pref_disp_height,
 		       std::error_code& __ec,
-		       scaling scl = scaling::letterbox) noexcept;
+		       scaling __scl = scaling::letterbox) noexcept;
 
   image_surface
-  make_image_surface(format format,
-		     int width,
-		     int height);
+  make_image_surface(format __format,
+		     int __width,
+		     int __height);
 
   image_surface
-  make_image_surface(format format, int width, int height,
+  make_image_surface(format __format,
+		     int __width,
+		     int __height,
 		     std::error_code& __ec) noexcept;
 
 } // inline namespace v1
