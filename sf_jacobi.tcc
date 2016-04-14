@@ -127,6 +127,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @tparam _Tp The real type of the radial coordinate
    * @param __n The non-negative degree.
    * @param __m The non-negative azimuthal order
+   * @param __rho The radial argument
    */
   template<typename _Tp>
     _Tp

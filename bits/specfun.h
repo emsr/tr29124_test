@@ -2199,16 +2199,44 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Cylindrical Hankel functions of the first kind
 
+  /**
+   * Return the cylindrical Hankel function of the first kind
+   * @f$ H^{(1)}_\nu(x) @f$ of @c float order @f$ \nu @f$
+   * and argument @f$ x >= 0 @f$.
+   *
+   * @see cyl_hankel_1 for details.
+   */
   inline std::complex<float>
   cyl_hankel_1f(float __nu, float __z)
   { return std::__detail::__cyl_hankel_1<float>(__nu, __z); }
 
+  /**
+   * Return the cylindrical Hankel function of the first kind
+   * @f$ H^{(1)}_\nu(x) @f$ of <tt>long double</tt> order @f$ \nu @f$
+   * and argument @f$ x >= 0 @f$.
+   *
+   * @see cyl_hankel_1 for details.
+   */
   inline std::complex<long double>
   cyl_hankel_1l(long double __nu, long double __z)
   { return std::__detail::__cyl_hankel_1<long double>(__nu, __z); }
 
   /**
-   * 
+   * Return the cylindrical Hankel function of the first kind
+   * @f$ H^{(1)}_n(x) @f$ of real order @f$ \nu @f$
+   * and argument @f$ x >= 0 @f$.
+   *
+   * The cylindrical Hankel function of the first kind is defined by:
+   * @f[
+   *    H^{(1)}_\nu(x) = \left(\frac{\pi}{2x} \right) ^{1/2}
+   *       \left[ J_{n+1/2}(x) + iN_{n+1/2}(x) \right]
+   * @f]
+   * where @f$ J_\nu(x) @f$ and @f$ N_\nu(x) @f$ are the cylindrical Bessel
+   * and Neumann functions respectively (@see cyl_bessel and cyl_neumann).
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __nu The real order
+   * @param __z The real argument
    */
   template<typename _Tpnu, typename _Tp>
     inline std::complex<__gnu_cxx::__promote_num_t<_Tpnu, _Tp>>
@@ -2220,16 +2248,44 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Cylindrical Hankel functions of the second kind
 
+  /**
+   * Return the cylindrical Hankel function of the second kind
+   * @f$ H^{(2)}_\nu(x) @f$ of @c float order @f$ \nu @f$
+   * and argument @f$ x >= 0 @f$.
+   *
+   * @see cyl_hankel_2 for details.
+   */
   inline std::complex<float>
   cyl_hankel_2f(float __nu, float __z)
   { return std::__detail::__cyl_hankel_2<float>(__nu, __z); }
 
+  /**
+   * Return the cylindrical Hankel function of the second kind
+   * @f$ H^{(2)}_\nu(x) @f$ of <tt>long double</tt> order @f$ \nu @f$
+   * and argument @f$ x >= 0 @f$.
+   *
+   * @see cyl_hankel_2 for details.
+   */
   inline std::complex<long double>
   cyl_hankel_2l(long double __nu, long double __z)
   { return std::__detail::__cyl_hankel_2<long double>(__nu, __z); }
 
   /**
-   * 
+   * Return the cylindrical Hankel function of the second kind
+   * @f$ H^{(2)}_n(x) @f$ of real order @f$ \nu @f$
+   * and argument @f$ x >= 0 @f$.
+   *
+   * The cylindrical Hankel function of the second kind is defined by:
+   * @f[
+   *    H^{(2)}_\nu(x) = \left(\frac{\pi}{2x} \right) ^{1/2}
+   *       \left[ J_{n+1/2}(x) - iN_{n+1/2}(x) \right]
+   * @f]
+   * where @f$ J_\nu(x) @f$ and @f$ N_\nu(x) @f$ are the cylindrical Bessel
+   * and Neumann functions respectively (@see cyl_bessel and cyl_neumann).
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __nu The real order
+   * @param __z The real argument
    */
   template<typename _Tpnu, typename _Tp>
     inline std::complex<__gnu_cxx::__promote_num_t<_Tpnu, _Tp>>
@@ -2241,16 +2297,38 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Spherical Hankel functions of the first kind
 
+  /**
+   * Return the spherical Hankel function of the first kind @f$ h^{(1)}_n(x) @f$
+   * of nonnegative order n and @c float argument @f$ x >= 0 @f$.
+   *
+   * @see sph_hankel_1 for details.
+   */
   inline std::complex<float>
   sph_hankel_1f(unsigned int __n, float __z)
   { return std::__detail::__sph_hankel_1<float>(__n, __z); }
 
+  /**
+   * Return the spherical Hankel function of the first kind @f$ h^{(1)}_n(x) @f$
+   * of nonnegative order n and @c <tt>long double</tt> argument @f$ x >= 0 @f$.
+   *
+   * @see sph_hankel_1 for details.
+   */
   inline std::complex<long double>
   sph_hankel_1l(unsigned int __n, long double __z)
   { return std::__detail::__sph_hankel_1<long double>(__n, __z); }
 
   /**
-   * 
+   * Return the spherical Hankel function of the first kind @f$ h^{(1)}_n(x) @f$
+   * of nonnegative order @f$ n @f$ and real argument @f$ x >= 0 @f$.
+   *
+   * The spherical Hankel function of the first kind is defined by:
+   * @f[
+   *    h^{(1)}_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} H^{(1)}_{n+1/2}(x)
+   * @f]
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __n The non-negative order
+   * @param __z The real argument
    */
   template<typename _Tp>
     inline std::complex<__gnu_cxx::__promote_num_t<_Tp>>
@@ -2262,16 +2340,38 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Spherical Hankel functions of the second kind
 
+  /**
+   * Return the spherical Hankel function of the second kind @f$ h^{(2)}_n(x)@f$
+   * of nonnegative order n and @c float argument @f$ x >= 0 @f$.
+   *
+   * @see sph_hankel_2 for details.
+   */
   inline std::complex<float>
   sph_hankel_2f(unsigned int __n, float __z)
   { return std::__detail::__sph_hankel_2<float>(__n, __z); }
 
+  /**
+   * Return the spherical Hankel function of the second kind @f$ h^{(2)}_n(x)@f$
+   * of nonnegative order n and @c <tt>long double</tt> argument @f$ x >= 0 @f$.
+   *
+   * @see sph_hankel_2 for details.
+   */
   inline std::complex<long double>
   sph_hankel_2l(unsigned int __n, long double __z)
   { return std::__detail::__sph_hankel_2<long double>(__n, __z); }
 
   /**
-   * 
+   * Return the spherical Hankel function of the second kind @f$ h^{(2)}_n(x)@f$
+   * of nonnegative order @f$ n @f$ and real argument @f$ x >= 0 @f$.
+   *
+   * The spherical Hankel function of the second kind is defined by:
+   * @f[
+   *    h^{(2)}_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} H^{(2)}_{n+1/2}(x)
+   * @f]
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __n The non-negative order
+   * @param __z The real argument
    */
   template<typename _Tp>
     inline std::complex<__gnu_cxx::__promote_num_t<_Tp>>
@@ -2283,6 +2383,12 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Modified spherical Bessel functions of the first kind
 
+  /**
+   * Return the regular modified spherical Bessel function @f$ i_n(x) @f$
+   * of nonnegative order n and @c float argument @f$ x >= 0 @f$.
+   *
+   * @see sph_bessel_i for details.
+   */
   inline float
   sph_bessel_if(unsigned int __n, float __x)
   {
@@ -2292,6 +2398,12 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     return __i_n;
   }
 
+  /**
+   * Return the regular modified spherical Bessel function @f$ i_n(x) @f$
+   * of nonnegative order n and <tt>long double</tt> argument @f$ x >= 0 @f$.
+   *
+   * @see sph_bessel_i for details.
+   */
   inline long double
   sph_bessel_il(unsigned int __n, long double __x)
   {
@@ -2302,7 +2414,18 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   }
 
   /**
-   * 
+   * Return the regular modified spherical Bessel function @f$ i_n(x) @f$
+   * of nonnegative order n and real argument @f$ x >= 0 @f$.
+   *
+   * The spherical Bessel function is defined by:
+   * @f[
+   *  i_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} I_{n+1/2}(x)
+   * @f]
+   *
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __n  The integral order <tt> n >= 0 </tt>
+   * @param  __x  The real argument <tt> x >= 0 </tt>
+   * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
@@ -2317,6 +2440,12 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Modified spherical Bessel functions of the second kind
 
+  /**
+   * Return the irregular modified spherical Bessel function @f$ k_n(x) @f$
+   * of nonnegative order n and @c float argument @f$ x >= 0 @f$.
+   *
+   * @see sph_bessel_k for more details.
+   */
   inline float
   sph_bessel_kf(unsigned int __n, float __x)
   {
@@ -2326,6 +2455,12 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     return __k_n;
   }
 
+  /**
+   * Return the irregular modified spherical Bessel function @f$ k_n(x) @f$
+   * of nonnegative order n and <tt>long double</tt> argument @f$ x >= 0 @f$.
+   *
+   * @see sph_bessel_k for more details.
+   */
   inline long double
   sph_bessel_kl(unsigned int __n, long double __x)
   {
@@ -2336,7 +2471,18 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   }
 
   /**
-   * 
+   * Return the irregular modified spherical Bessel function @f$ k_n(x) @f$
+   * of nonnegative order n and real argument @f$ x >= 0 @f$.
+   *
+   * The spherical Bessel function is defined by:
+   * @f[
+   *  k_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} K_{n+1/2}(x)
+   * @f]
+   *
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __n  The integral order <tt> n >= 0 </tt>
+   * @param  __x  The real argument <tt> x >= 0 </tt>
+   * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
@@ -2351,6 +2497,11 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Airy functions of the first kind
 
+  /**
+   * Return the Airy function @f$ Ai(x) @f$ for @c float argument @f$ x @f$.
+   *
+   * @see airy_ai for details.
+   */
   inline float
   airy_aif(float __x)
   {
@@ -2359,6 +2510,12 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     return __Ai;
   }
 
+  /**
+   * Return the Airy function @f$ Ai(x) @f$ for <tt>long double</tt>
+   * argument @f$ x @f$.
+   *
+   * @see airy_ai for details.
+   */
   inline long double
   airy_ail(long double __x)
   {
@@ -2368,7 +2525,15 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   }
 
   /**
-   * 
+   * Return the Airy function @f$ Ai(x) @f$ of real argument @f$ x @f$.
+   *
+   * The Airy function is defined by:
+   * @f[
+   *    Ai(x) = \frac{1}{\pi}\int_0^\infty \cos(\frac{t^3}{3} + xt)dt
+   * @f]
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __x The argument
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
@@ -2382,6 +2547,11 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Airy functions of the second kind
 
+  /**
+   * Return the Airy function @f$ Bi(x) @f$ for @c float argument @f$ x @f$.
+   *
+   * @see airy_bi for details.
+   */
   inline float
   airy_bif(float __x)
   {
@@ -2390,6 +2560,12 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     return __Bi;
   }
 
+  /**
+   * Return the Airy function @f$ Bi(x) @f$ for <tt>long double</tt>
+   * argument @f$ x @f$.
+   *
+   * @see airy_bi for details.
+   */
   inline long double
   airy_bil(long double __x)
   {
@@ -2399,7 +2575,16 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   }
 
   /**
-   * 
+   * Return the Airy function @f$ Bi(x) @f$ of real argument @f$ x @f$.
+   *
+   * The Airy function is defined by:
+   * @f[
+   *    Bi(x) = frac{1}{\pi}\int_0^\infty \left[ 
+   *           \exp(-\frac{t^3}{3} + xt) \sin(\frac{t^3}{3} + xt) \right] dt
+   * @f]
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __x The argument
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>

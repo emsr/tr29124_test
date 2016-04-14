@@ -652,6 +652,115 @@
 	this->_M_sum = __anum[0] / __aden[0];
     }
 
+
+  /**
+   * 
+   */
+  template<typename _Tp>
+    struct _RemainderTerm
+    {
+      using value_type = _Tp;
+
+      value_type term;
+      value_type remainder;
+    };
+
+
+  /**
+   * 
+   */
+  template<typename _Tp>
+    class _ExplicitRemainderModel
+    {
+    public:
+
+      using value_type = _Tp;
+
+      constexpr _ExplicitRemainderModel()
+      : _M_n{0}
+      { }
+
+      void
+      operator<<(value_type __term) const
+      {
+	if (this->_M_n < 2)
+	  {
+	    this->_M_term[this->_M_n] = __term;
+	    ++this->_M_n;
+	  }
+	else
+	  /* error */;
+      }
+
+      operator bool() const
+      { return this->_M_n == 2; }
+
+      _RemainderTerm<value_type>
+      operator()()
+      {
+	this->_M_n = 0;
+	return _RemainderTerm<value_type>{this->_M_term[0], this->_M_term[1]};
+      }
+
+    private:
+
+      int _M_n;
+      std::array<value_type, 2> _M_term;
+    };
+
+
+  /**
+   * 
+   */
+  template<typename _Tp>
+    class _URemainderModel
+    {
+    public:
+
+      using value_type = _Tp;
+
+      constexpr _URemainderModel()
+      : _M_ok{false}
+      { }
+
+      constexpr void
+      operator<<(value_type __term) const
+      {
+	if (!this->_M_ok)
+	  {
+	    this->_M_term = __term;
+	    this->_M_ok = true;
+	  }
+	else
+	  /* error */;
+      }
+
+      constexpr operator bool() const
+      { return this->_M_ok; }
+
+      _RemainderTerm<value_type>
+      constexpr operator()()
+      {
+	this->_M_ok = false;
+	return _RemainderTerm<value_type>{this->_M_term, this->_M_term};
+      }
+
+    private:
+
+      bool _M_ok;
+      value_type _M_term;
+    };
+
+
+  /**
+   * The Weniger's Upsilon summation process.
+   */
+  template<typename _Sum>
+    struct _WenigerUpsilonSum : public _WenigerSum<_WenigerUpsilonSum, _Sum>
+    {
+    };
+
+
 template<typename Tp>
   void
   test()
@@ -725,6 +834,7 @@ template<typename Tp>
 	//LS += term;
       }
   }
+
 
 int
 main()
