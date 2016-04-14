@@ -360,10 +360,15 @@
 	}
     }
 
+  // These sequence transformations depend on the provision of remainder estimates.
+  // The update methods do not depend on the remainder model and could be provided
+  // in CRTP derived classes.
+
   /**
    * The Levin summation process.
    */
-  template<typename _RemainderModel, typename _Sum>
+  template<typename _Sum,
+	   typename _RemainderModel = _ExplicitRemainderModel<typename _Sum::value_type>>
     class _LevinSum
     {
     public:
@@ -373,7 +378,7 @@
       ///  Default constructor.
       _LevinSum(value_type __beta = value_type{1})
       : _M_part_sum{_Sum{}}, _M_e{}, _M_beta{__beta},
-	_M_sum{}, _M_converged{false}
+	_M_sum{}, _M_converged{false}, _M_rem_mdl{}
       { }
 
       /// Get the beta parameter.
@@ -395,8 +400,13 @@
       {
 	if (!this->_M_converged)
 	  {
-	    this->_M_part_sum += __term;
-	    this->_M_update();
+	    this->_M_rem_mdl << __term;
+	    if (this->_M_rem_mdl)
+	      {
+		auto __thing = this->_M_rem_mdl();
+		this->_M_part_sum += __thing.term;
+		this->_M_update(__thing.remainder);
+	      }
 	  }
 	return *this;
       }
@@ -430,6 +440,7 @@
 	this->_M_e.clear();
 	this->_M_sum = value_type{0};
 	this->_M_converged = false;
+	this->_M_rem_mdl.reset();
 	return *this;
       }
 
@@ -459,14 +470,15 @@
       value_type _M_beta;
       value_type _M_sum;
       bool _M_converged;
+      _RemainderModel _M_rem_mdl;
     };
 
   /**
    * One step of Levin's summation process.
    */
-  template<typename _RemainderModel, typename _Sum>
+  template<typename _Sum, typename _RemainderModel>
     void
-    _LevinSum<_RemainderModel, _Sum>::_M_update(value_type __r_n)
+    _LevinSum<_Sum, _RemainderModel>::_M_update(value_type __r_n)
     {
       using _Tp = value_type;
       constexpr auto _S_huge = __gnu_cxx::__root_max(_Tp{5}); // 1.0e+60
@@ -510,7 +522,8 @@
   /**
    * The Weniger's summation process.
    */
-  template<typename _RemainderModel, typename _Sum>
+  template<typename _Sum,
+	   typename _RemainderModel = _ExplicitRemainderModel<typename _Sum::value_type>>
     class _WenigerSum
     {
     public:
@@ -520,7 +533,7 @@
       ///  Default constructor.
       _WenigerSum(value_type __beta = value_type{1})
       : _M_part_sum{_Sum{}}, _M_e{}, _M_beta{__beta},
-	_M_sum{}, _M_converged{false}
+	_M_sum{}, _M_converged{false}, _M_rem_mdl{}
       { }
 
       /// Get the beta parameter.
@@ -542,8 +555,13 @@
       {
 	if (!this->_M_converged)
 	  {
-	    this->_M_part_sum += __term;
-	    this->_M_update();
+	    this->_M_rem_mdl << __term;
+	    if (this->_M_rem_mdl)
+	      {
+		auto __thing = this->_M_rem_mdl();
+		this->_M_part_sum += __thing.term;
+		this->_M_update(__thing.remainder);
+	      }
 	  }
 	return *this;
       }
@@ -577,6 +595,7 @@
 	this->_M_e.clear();
 	this->_M_sum = value_type{0};
 	this->_M_converged = false;
+	this->_M_rem_mdl.reset();
 	return *this;
       }
 
@@ -591,14 +610,6 @@
 
     private:
 
-      const _RemainderModel&
-      _M_self() const
-      { return static_cast<const _RemainderModel&>(*this); }
-
-      _RemainderModel&
-      _M_self()
-      { return static_cast<_RemainderModel&>(*this); }
-
       void _M_update(value_type __r_n);
 
       _Sum _M_part_sum;
@@ -606,14 +617,15 @@
       value_type _M_beta;
       value_type _M_sum;
       bool _M_converged;
+      _RemainderModel _M_rem_mdl;
     };
 
   /**
    * One step of Weniger's summation process.
    */
-  template<typename _RemainderModel, typename _Sum>
+  template<typename _Sum, typename _RemainderModel>
     void
-    _WenigerSum<_RemainderModel, _Sum>::_M_update(value_type __r_n)
+    _WenigerSum<_Sum, _RemainderModel>::_M_update(value_type __r_n)
     {
       using _Tp = value_type;
       constexpr auto _S_huge = __gnu_cxx::__root_max(_Tp{5}); // 1.0e+60
@@ -667,7 +679,9 @@
 
 
   /**
-   * 
+   * This class implements an explicit remainder model where
+   * the caller supplies the corresponding ramainder estimate after the
+   * corresponding term.
    */
   template<typename _Tp>
     class _ExplicitRemainderModel
@@ -702,6 +716,13 @@
 	return _RemainderTerm<value_type>{this->_M_term[0], this->_M_term[1]};
       }
 
+      _ExplicitRemainderModel&
+      reset()
+      {
+	this->_M_n = 0;
+	return *this;
+      }
+
     private:
 
       int _M_n;
@@ -710,7 +731,10 @@
 
 
   /**
-   * 
+   * This class implements the Levin U remainder model.
+   * The remainder for term @f$ s_n @f$ is @f$ (n + \beta)a_n @f$
+   * or in terms of the backward difference of the partial sums
+   * @f$ (n + \beta)(s_n - s_{n-1}) @f$.
    */
   template<typename _Tp>
     class _URemainderModel
@@ -719,7 +743,56 @@
 
       using value_type = _Tp;
 
-      constexpr _URemainderModel()
+      constexpr _TRemainderModel(value_type __beta)
+      : _M_n{0}, _M_beta{__beta}
+      { }
+
+      constexpr void
+      operator<<(value_type __term) const
+      {
+	this->_M_term = __term;
+	++this->_M_n;
+      }
+
+      constexpr operator bool() const
+      { return this->_M_n > 0; }
+
+      _RemainderTerm<value_type>
+      constexpr operator()()
+      {
+	this->_M_ok = false;
+	return _RemainderTerm<value_type>{this->_M_term,
+				(this->_M_n + this->_M_beta) * this->_M_term};
+      }
+
+      _URemainderModel&
+      reset()
+      {
+	this->_M_n = 0;
+	return *this;
+      }
+
+    private:
+
+      int _M_n;
+      value_type _M_term;
+      value_type _M_beta;
+    };
+
+
+  /**
+   * This class implements the Levin D remainder model.
+   * The remainder for term @f$ s_n @f$ is the current term @f$ a_n @f$
+   * or the backward difference of the partial sums @f$ s_n - s_{n-1} @f$.
+   */
+  template<typename _Tp>
+    class _TRemainderModel
+    {
+    public:
+
+      using value_type = _Tp;
+
+      constexpr _TRemainderModel()
       : _M_ok{false}
       { }
 
@@ -745,6 +818,13 @@
 	return _RemainderTerm<value_type>{this->_M_term, this->_M_term};
       }
 
+      _TRemainderModel&
+      reset()
+      {
+	this->_M_ok = false;
+	return *this;
+      }
+
     private:
 
       bool _M_ok;
@@ -753,12 +833,76 @@
 
 
   /**
-   * The Weniger's Upsilon summation process.
+   * This class implements the Levin D remainder model.
+   * The remainder for term @f$ s_n @f$ is simply the next term @f$ a_{n+1} @f$
+   * or the forward difference of the partial sums @f$ s_{n+1} - s_n @f$.
+   */
+  template<typename _Tp>
+    class _DRemainderModel
+    {
+    public:
+
+      using value_type = _Tp;
+
+      constexpr _DRemainderModel()
+      : _M_n{0}
+      { }
+
+      void
+      operator<<(value_type __term) const
+      {
+	this->_M_term[(this->_M_n) % 2] = __term;
+	++this->_M_n;
+      }
+
+      operator bool() const
+      { return this->_M_n > 0; }
+
+      _RemainderTerm<value_type>
+      operator()()
+      {
+	return _RemainderTerm<value_type>{this->_M_term[(this->_M_n) % 2],
+					  this->_M_term[(this->_M_n + 1) % 2]};
+      }
+
+      _DRemainderModel&
+      reset()
+      {
+	this->_M_n = 0;
+	return *this;
+      }
+
+    private:
+
+      int _M_n;
+      std::array<value_type, 2> _M_term;
+    };
+
+  // Specializations for specific remainder models.
+
+  /**
+   * The Levin's T summation process.
    */
   template<typename _Sum>
-    struct _WenigerUpsilonSum : public _WenigerSum<_WenigerUpsilonSum, _Sum>
-    {
-    };
+    using _LevinTSum = _LevinSum<_Sum, _TRemainderModel<typename _Sum::value_type>>;
+
+  /**
+   * The Levin's D summation process.
+   */
+  template<typename _Sum>
+    using _LevinDSum = _LevinSum<_Sum, _DRemainderModel<typename _Sum::value_type>>;
+
+  /**
+   * The Weniger's Tau summation process.
+   */
+  template<typename _Sum>
+    using _WenigerTauSum = _WenigerSum<_Sum, _TRemainderModel<typename _Sum::value_type>>;
+
+  /**
+   * The Weniger's Delta summation process.
+   */
+  template<typename _Sum>
+    using _WenigerDeltaSum = _WenigerSum<_Sum, _DRemainderModel<typename _Sum::value_type>>;
 
 
 template<typename Tp>
