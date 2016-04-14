@@ -360,309 +360,10 @@
 	}
     }
 
+
   // These sequence transformations depend on the provision of remainder estimates.
   // The update methods do not depend on the remainder model and could be provided
   // in CRTP derived classes.
-
-  /**
-   * The Levin summation process.
-   */
-  template<typename _Sum,
-	   typename _RemainderModel = _ExplicitRemainderModel<typename _Sum::value_type>>
-    class _LevinSum
-    {
-    public:
-
-      using value_type = typename _Sum::value_type;
-
-      ///  Default constructor.
-      _LevinSum(value_type __beta = value_type{1})
-      : _M_part_sum{_Sum{}}, _M_e{}, _M_beta{__beta},
-	_M_sum{}, _M_converged{false}, _M_rem_mdl{}
-      { }
-
-      /// Get the beta parameter.
-      value_type
-      beta() const
-      { return this->_M_beta; }
-
-      /// Set the beta parameter.
-      _LevinSum&
-      beta(value_type __beta)
-      {
-	this->_M_beta = __beta;
-	return *this;
-      }
-
-      /// Add a new term to the sum.
-      _LevinSum&
-      operator+=(value_type __term)
-      {
-	if (!this->_M_converged)
-	  {
-	    this->_M_rem_mdl << __term;
-	    if (this->_M_rem_mdl)
-	      {
-		auto __thing = this->_M_rem_mdl();
-		this->_M_part_sum += __thing.term;
-		this->_M_update(__thing.remainder);
-	      }
-	  }
-	return *this;
-      }
-
-      /// Subtract a new term from the sum.
-      _LevinSum&
-      operator-=(value_type __term)
-      { return operator+=(-__term); }
-
-      /// Return true if the sum converged.
-      operator
-      bool() const
-      { return !this->_M_converged; }
-
-      /// Return the current value of the sum.
-      value_type
-      operator()() const
-      { return this->_M_sum; }
-
-      /// Return the current number of terms contributing to the sum.
-      std::size_t
-      num_terms() const
-      { return this->_M_part_sum.num_terms; }
-
-      ///  Reset the sum to it's initial state.
-      ///  The beta parameter is unchanged.
-      _LevinSum&
-      reset()
-      {
-	this->_M_part_sum.reset();
-	this->_M_e.clear();
-	this->_M_sum = value_type{0};
-	this->_M_converged = false;
-	this->_M_rem_mdl.reset();
-	return *this;
-      }
-
-      ///  Restart the sum with the first new term.
-      _LevinSum&
-      reset(value_type __first_term)
-      {
-	this->reset();
-	this->operator+=(__first_term);
-	return *this;
-      }
-
-    private:
-
-      const _RemainderModel&
-      _M_self() const
-      { return static_cast<const _RemainderModel&>(*this); }
-
-      _RemainderModel&
-      _M_self()
-      { return static_cast<_RemainderModel&>(*this); }
-
-      void _M_update(value_type __r_n);
-
-      _Sum _M_part_sum;
-      std::vector<value_type> _M_e;
-      value_type _M_beta;
-      value_type _M_sum;
-      bool _M_converged;
-      _RemainderModel _M_rem_mdl;
-    };
-
-  /**
-   * One step of Levin's summation process.
-   */
-  template<typename _Sum, typename _RemainderModel>
-    void
-    _LevinSum<_Sum, _RemainderModel>::_M_update(value_type __r_n)
-    {
-      using _Tp = value_type;
-      constexpr auto _S_huge = __gnu_cxx::__root_max(_Tp{5}); // 1.0e+60
-      constexpr auto _S_tiny = __gnu_cxx::__root_min(_Tp{5}); // 1.0e-60;
-
-      const auto __n = this->_M_part_sum.num_terms() - 1;
-      const auto __s_n = this->_M_part_sum();
-      const auto __beta = this->_M_beta;
-      auto& __anum = this->_M_anum;
-      auto& __aden = this->_M_aden;
-
-      __anum.push_back(__s_n / __r_n);
-      __aden.push_back(value_type{1} / __r_n);
-      if (__n > 0)
-	{
-	  __anum[__n - 1] = __anum[__n] - __anum[__n - 1];
-	  __aden[__n - 1] = __aden[__n] - __aden[__n - 1];
-	  if (__n > 1)
-	    {
-	      auto __bn1 = __beta + _Tp(__n - 1);
-	      auto __bn2 = __beta + _Tp(__n);
-	      auto __coef = __bn1 / __bn2;
-	      auto __coefp = _Tp{1};
-	      for (auto __j = 2; __j <= __n; ++__j)
-		{
-		  auto __fact = (__beta + _Tp(__n - __j)) * __coefp / __bn2;
-		  __anum[__n - __j] = __anum[__n - __j + 1]
-				    - __fact * __anum[__n - __j];
-		  __aden[__n - __j] = __aden[__n - __j + 1]
-				    - __fact * __aden[__n - __j];
-		  __coefp *= __coef;
-		}
-	    }
-	}
-      if (std::abs(__aden[0]) < _S_tiny)
-	this->_M_sum = _S_huge;
-      else
-	this->_M_sum = __anum[0] / __aden[0];
-    }
-
-  /**
-   * The Weniger's summation process.
-   */
-  template<typename _Sum,
-	   typename _RemainderModel = _ExplicitRemainderModel<typename _Sum::value_type>>
-    class _WenigerSum
-    {
-    public:
-
-      using value_type = typename _Sum::value_type;
-
-      ///  Default constructor.
-      _WenigerSum(value_type __beta = value_type{1})
-      : _M_part_sum{_Sum{}}, _M_e{}, _M_beta{__beta},
-	_M_sum{}, _M_converged{false}, _M_rem_mdl{}
-      { }
-
-      /// Get the beta parameter.
-      value_type
-      beta() const
-      { return this->_M_beta; }
-
-      /// Set the beta parameter.
-      _WenigerSum&
-      beta(value_type __beta)
-      {
-	this->_M_beta = __beta;
-	return *this;
-      }
-
-      /// Add a new term to the sum.
-      _WenigerSum&
-      operator+=(value_type __term)
-      {
-	if (!this->_M_converged)
-	  {
-	    this->_M_rem_mdl << __term;
-	    if (this->_M_rem_mdl)
-	      {
-		auto __thing = this->_M_rem_mdl();
-		this->_M_part_sum += __thing.term;
-		this->_M_update(__thing.remainder);
-	      }
-	  }
-	return *this;
-      }
-
-      /// Subtract a new term from the sum.
-      _WenigerSum&
-      operator-=(value_type __term)
-      { return operator+=(-__term); }
-
-      /// Return true if the sum converged.
-      operator
-      bool() const
-      { return !this->_M_converged; }
-
-      /// Return the current value of the sum.
-      value_type
-      operator()() const
-      { return this->_M_sum; }
-
-      /// Return the current number of terms contributing to the sum.
-      std::size_t
-      num_terms() const
-      { return this->_M_part_sum.num_terms; }
-
-      ///  Reset the sum to it's initial state.
-      ///  The beta parameter is unchanged.
-      _WenigerSum&
-      reset()
-      {
-	this->_M_part_sum.reset();
-	this->_M_e.clear();
-	this->_M_sum = value_type{0};
-	this->_M_converged = false;
-	this->_M_rem_mdl.reset();
-	return *this;
-      }
-
-      ///  Restart the sum with the first new term.
-      _WenigerSum&
-      reset(value_type __first_term)
-      {
-	this->reset();
-	this->operator+=(__first_term);
-	return *this;
-      }
-
-    private:
-
-      void _M_update(value_type __r_n);
-
-      _Sum _M_part_sum;
-      std::vector<value_type> _M_e;
-      value_type _M_beta;
-      value_type _M_sum;
-      bool _M_converged;
-      _RemainderModel _M_rem_mdl;
-    };
-
-  /**
-   * One step of Weniger's summation process.
-   */
-  template<typename _Sum, typename _RemainderModel>
-    void
-    _WenigerSum<_Sum, _RemainderModel>::_M_update(value_type __r_n)
-    {
-      using _Tp = value_type;
-      constexpr auto _S_huge = __gnu_cxx::__root_max(_Tp{5}); // 1.0e+60
-      constexpr auto _S_tiny = __gnu_cxx::__root_min(_Tp{5}); // 1.0e-60;
-
-      const auto __n = this->_M_part_sum.num_terms() - 1;
-      const auto __s_n = this->_M_part_sum();
-      const auto __beta = this->_M_beta;
-      auto& __anum = this->_M_anum;
-      auto& __aden = this->_M_aden;
-
-      __anum.push_back(__s_n / __r_n);
-      __aden.push_back(value_type{1} / __r_n);
-      if (__n > 0)
-	{
-	  __anum[__n - 1] = __anum[__n] - __anum[__n - 1];
-	  __aden[__n - 1] = __aden[__n] - __aden[__n - 1];
-	  if (__n > 1)
-	    {
-	      auto __bn1 = __beta + _Tp(__n - 2);
-	      auto __bn2 = __beta + _Tp(__n - 1);
-	      for (auto __j = 2; __j <= __n; ++__j)
-		{
-		  auto __fact = __bn1 * __bn2
-			      / ((__bn1 + __j - 1) * (__bn2 + __j - 1));
-		  __anum[__n - __j] = __anum[__n - __j + 1]
-				    - __fact * __anum[__n - __j];
-		  __aden[__n - __j] = __aden[__n - __j + 1]
-				    - __fact * __aden[__n - __j];
-		}
-	    }
-	}
-      if (std::abs(__aden[0]) < _S_tiny)
-	this->_M_sum = _S_huge;
-      else
-	this->_M_sum = __anum[0] / __aden[0];
-    }
 
 
   /**
@@ -695,7 +396,7 @@
       { }
 
       void
-      operator<<(value_type __term) const
+      operator<<(value_type __term)
       {
 	if (this->_M_n < 2)
 	  {
@@ -743,12 +444,12 @@
 
       using value_type = _Tp;
 
-      constexpr _TRemainderModel(value_type __beta)
-      : _M_n{0}, _M_beta{__beta}
+      constexpr _URemainderModel(value_type __beta)
+      : _M_n{0}, _M_term{}, _M_beta{__beta}
       { }
 
       constexpr void
-      operator<<(value_type __term) const
+      operator<<(value_type __term)
       {
 	this->_M_term = __term;
 	++this->_M_n;
@@ -797,7 +498,7 @@
       { }
 
       constexpr void
-      operator<<(value_type __term) const
+      operator<<(value_type __term)
       {
 	if (!this->_M_ok)
 	  {
@@ -849,7 +550,7 @@
       { }
 
       void
-      operator<<(value_type __term) const
+      operator<<(value_type __term)
       {
 	this->_M_term[(this->_M_n) % 2] = __term;
 	++this->_M_n;
@@ -877,6 +578,313 @@
       int _M_n;
       std::array<value_type, 2> _M_term;
     };
+
+
+  /**
+   * The Levin summation process.
+   */
+  template<typename _Sum,
+	   typename _RemainderModel = _ExplicitRemainderModel<typename _Sum::value_type>>
+    class _LevinSum
+    {
+    public:
+
+      using value_type = typename _Sum::value_type;
+
+      ///  Default constructor.
+      _LevinSum(value_type __beta = value_type{1})
+      : _M_part_sum{_Sum{}}, _M_num{}, _M_den{},
+	_M_beta{__beta},
+	_M_sum{}, _M_converged{false}, _M_rem_mdl{}
+      { }
+
+      /// Get the beta parameter.
+      value_type
+      beta() const
+      { return this->_M_beta; }
+
+      /// Set the beta parameter.
+      _LevinSum&
+      beta(value_type __beta)
+      {
+	this->_M_beta = __beta;
+	return *this;
+      }
+
+      /// Add a new term to the sum.
+      _LevinSum&
+      operator+=(value_type __term)
+      {
+	if (!this->_M_converged)
+	  {
+	    this->_M_rem_mdl << __term;
+	    if (this->_M_rem_mdl)
+	      {
+		auto __thing = this->_M_rem_mdl();
+		this->_M_part_sum += __thing.term;
+		this->_M_update(__thing.remainder);
+	      }
+	  }
+	return *this;
+      }
+
+      /// Subtract a new term from the sum.
+      _LevinSum&
+      operator-=(value_type __term)
+      { return operator+=(-__term); }
+
+      /// Return true if the sum converged.
+      operator
+      bool() const
+      { return !this->_M_converged; }
+
+      /// Return the current value of the sum.
+      value_type
+      operator()() const
+      { return this->_M_sum; }
+
+      /// Return the current number of terms contributing to the sum.
+      std::size_t
+      num_terms() const
+      { return this->_M_part_sum.num_terms; }
+
+      ///  Reset the sum to it's initial state.
+      ///  The beta parameter is unchanged.
+      _LevinSum&
+      reset()
+      {
+	this->_M_part_sum.reset();
+	this->_M_num.clear();
+	this->_M_den.clear();
+	this->_M_sum = value_type{0};
+	this->_M_converged = false;
+	this->_M_rem_mdl.reset();
+	return *this;
+      }
+
+      ///  Restart the sum with the first new term.
+      _LevinSum&
+      reset(value_type __first_term)
+      {
+	this->reset();
+	this->operator+=(__first_term);
+	return *this;
+      }
+
+    private:
+
+      const _RemainderModel&
+      _M_self() const
+      { return static_cast<const _RemainderModel&>(*this); }
+
+      _RemainderModel&
+      _M_self()
+      { return static_cast<_RemainderModel&>(*this); }
+
+      void _M_update(value_type __r_n);
+
+      _Sum _M_part_sum;
+      std::vector<value_type> _M_num;
+      std::vector<value_type> _M_den;
+      value_type _M_beta;
+      value_type _M_sum;
+      bool _M_converged;
+      _RemainderModel _M_rem_mdl;
+    };
+
+  /**
+   * One step of Levin's summation process.
+   */
+  template<typename _Sum, typename _RemainderModel>
+    void
+    _LevinSum<_Sum, _RemainderModel>::_M_update(value_type __r_n)
+    {
+      using _Tp = value_type;
+      constexpr auto _S_huge = __gnu_cxx::__root_max(_Tp{5}); // 1.0e+60
+      constexpr auto _S_tiny = __gnu_cxx::__root_min(_Tp{5}); // 1.0e-60;
+
+      const auto __n = this->_M_part_sum.num_terms() - 1;
+      const auto __s_n = this->_M_part_sum();
+      const auto __beta = this->_M_beta;
+      auto& __anum = this->_M_num;
+      auto& __aden = this->_M_den;
+
+      __anum.push_back(__s_n / __r_n);
+      __aden.push_back(value_type{1} / __r_n);
+      if (__n > 0)
+	{
+	  __anum[__n - 1] = __anum[__n] - __anum[__n - 1];
+	  __aden[__n - 1] = __aden[__n] - __aden[__n - 1];
+	  if (__n > 1)
+	    {
+	      auto __bn1 = __beta + _Tp(__n - 1);
+	      auto __bn2 = __beta + _Tp(__n);
+	      auto __coef = __bn1 / __bn2;
+	      auto __coefp = _Tp{1};
+	      for (auto __j = 2; __j <= __n; ++__j)
+		{
+		  auto __fact = (__beta + _Tp(__n - __j)) * __coefp / __bn2;
+		  __anum[__n - __j] = __anum[__n - __j + 1]
+				    - __fact * __anum[__n - __j];
+		  __aden[__n - __j] = __aden[__n - __j + 1]
+				    - __fact * __aden[__n - __j];
+		  __coefp *= __coef;
+		}
+	    }
+	}
+      if (std::abs(__aden[0]) < _S_tiny)
+	this->_M_sum = _S_huge;
+      else
+	this->_M_sum = __anum[0] / __aden[0];
+    }
+
+  /**
+   * The Weniger's summation process.
+   */
+  template<typename _Sum,
+	   typename _RemainderModel = _ExplicitRemainderModel<typename _Sum::value_type>>
+    class _WenigerSum
+    {
+    public:
+
+      using value_type = typename _Sum::value_type;
+
+      ///  Default constructor.
+      _WenigerSum(value_type __beta = value_type{1})
+      : _M_part_sum{_Sum{}}, _M_num{}, _M_den{},
+	_M_beta{__beta},
+	_M_sum{}, _M_converged{false}, _M_rem_mdl{}
+      { }
+
+      /// Get the beta parameter.
+      value_type
+      beta() const
+      { return this->_M_beta; }
+
+      /// Set the beta parameter.
+      _WenigerSum&
+      beta(value_type __beta)
+      {
+	this->_M_beta = __beta;
+	return *this;
+      }
+
+      /// Add a new term to the sum.
+      _WenigerSum&
+      operator+=(value_type __term)
+      {
+	if (!this->_M_converged)
+	  {
+	    this->_M_rem_mdl << __term;
+	    if (this->_M_rem_mdl)
+	      {
+		auto __thing = this->_M_rem_mdl();
+		this->_M_part_sum += __thing.term;
+		this->_M_update(__thing.remainder);
+	      }
+	  }
+	return *this;
+      }
+
+      /// Subtract a new term from the sum.
+      _WenigerSum&
+      operator-=(value_type __term)
+      { return operator+=(-__term); }
+
+      /// Return true if the sum converged.
+      operator
+      bool() const
+      { return !this->_M_converged; }
+
+      /// Return the current value of the sum.
+      value_type
+      operator()() const
+      { return this->_M_sum; }
+
+      /// Return the current number of terms contributing to the sum.
+      std::size_t
+      num_terms() const
+      { return this->_M_part_sum.num_terms; }
+
+      ///  Reset the sum to it's initial state.
+      ///  The beta parameter is unchanged.
+      _WenigerSum&
+      reset()
+      {
+	this->_M_part_sum.reset();
+	this->_M_num.clear();
+	this->_M_den.clear();
+	this->_M_sum = value_type{0};
+	this->_M_converged = false;
+	this->_M_rem_mdl.reset();
+	return *this;
+      }
+
+      ///  Restart the sum with the first new term.
+      _WenigerSum&
+      reset(value_type __first_term)
+      {
+	this->reset();
+	this->operator+=(__first_term);
+	return *this;
+      }
+
+    private:
+
+      void _M_update(value_type __r_n);
+
+      _Sum _M_part_sum;
+      std::vector<value_type> _M_num;
+      std::vector<value_type> _M_den;
+      value_type _M_beta;
+      value_type _M_sum;
+      bool _M_converged;
+      _RemainderModel _M_rem_mdl;
+    };
+
+  /**
+   * One step of Weniger's summation process.
+   */
+  template<typename _Sum, typename _RemainderModel>
+    void
+    _WenigerSum<_Sum, _RemainderModel>::_M_update(value_type __r_n)
+    {
+      using _Tp = value_type;
+      constexpr auto _S_huge = __gnu_cxx::__root_max(_Tp{5}); // 1.0e+60
+      constexpr auto _S_tiny = __gnu_cxx::__root_min(_Tp{5}); // 1.0e-60;
+
+      const auto __n = this->_M_part_sum.num_terms() - 1;
+      const auto __s_n = this->_M_part_sum();
+      const auto __beta = this->_M_beta;
+      auto& __anum = this->_M_num;
+      auto& __aden = this->_M_den;
+
+      __anum.push_back(__s_n / __r_n);
+      __aden.push_back(value_type{1} / __r_n);
+      if (__n > 0)
+	{
+	  __anum[__n - 1] = __anum[__n] - __anum[__n - 1];
+	  __aden[__n - 1] = __aden[__n] - __aden[__n - 1];
+	  if (__n > 1)
+	    {
+	      auto __bn1 = __beta + _Tp(__n - 2);
+	      auto __bn2 = __beta + _Tp(__n - 1);
+	      for (auto __j = 2; __j <= __n; ++__j)
+		{
+		  auto __fact = __bn1 * __bn2
+			      / ((__bn1 + __j - 1) * (__bn2 + __j - 1));
+		  __anum[__n - __j] = __anum[__n - __j + 1]
+				    - __fact * __anum[__n - __j];
+		  __aden[__n - __j] = __aden[__n - __j + 1]
+				    - __fact * __aden[__n - __j];
+		}
+	    }
+	}
+      if (std::abs(__aden[0]) < _S_tiny)
+	this->_M_sum = _S_huge;
+      else
+	this->_M_sum = __anum[0] / __aden[0];
+    }
 
   // Specializations for specific remainder models.
 
@@ -918,7 +926,7 @@ template<typename Tp>
     _WinnEpsilonSum<std::__detail::_BasicSum<Tp>> WBS;
     _WinnEpsilonSum<std::__detail::_KahanSum<Tp>> WKS;
     _BrezinskiThetaSum<std::__detail::_BasicSum<Tp>> BBS;
-    //_LevinSum<std::__detail::_BasicSum<Tp>> LS;
+    _LevinTSum<std::__detail::_BasicSum<Tp>> LTS;
 
     auto s = Tp{1.2};
     auto zeta = Tp{5.591582441177750776536563193423143277642L};
@@ -932,7 +940,7 @@ template<typename Tp>
 	WBS += term;
 	WKS += term;
 	BBS += term;
-	//LS += term;
+	LTS += term;
 	std::cout << std::setw(w) << k
 		  << std::setw(w) << BS()
 		  << std::setw(w) << ABS()
@@ -940,7 +948,7 @@ template<typename Tp>
 		  << std::setw(w) << WBS()
 		  << std::setw(w) << WKS()
 		  << std::setw(w) << BBS()
-	  	  //<< std::setw(w) << LS()
+	  	  << std::setw(w) << LTS()
 		  << '\n';
       }
 
@@ -956,7 +964,7 @@ template<typename Tp>
     WBS.reset(term);
     WKS.reset(term);
     BBS.reset(term);
-    //LS.reset(term);
+    LTS.reset(term);
     for (auto k = 1; k < 100; ++k)
       {
 	std::cout << std::setw(w) << (k - 1)
@@ -966,7 +974,7 @@ template<typename Tp>
 		  << std::setw(w) << WBS()
 		  << std::setw(w) << WKS()
 		  << std::setw(w) << BBS()
-		  //<< std::setw(w) << LS()
+		  << std::setw(w) << LTS()
 		  << '\n';
 	term *= (a + k - 1) * (b + k - 1) * z / k;
 	BS += term;
@@ -975,7 +983,7 @@ template<typename Tp>
 	WBS += term;
 	WKS += term;
 	BBS += term;
-	//LS += term;
+	LTS += term;
       }
   }
 
