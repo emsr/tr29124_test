@@ -1084,12 +1084,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Riemann zeta function is defined by:
    * @f[
-   * 	\zeta(s) = \sum_{k=1}^{\infty} k^{-s} \hbox{ for } s > 1
+   * 	\zeta(s) = \sum_{k=1}^{\infty} k^{-s} \mbox{ for } s > 1
    * @f]
    * and
    * @f[
    * 	\zeta(s) = \frac{1}{1-2^{1-s}}\sum_{k=1}^{\infty}(-1)^{k-1}k^{-s}
-   *              \hbox{ for } 0 <= s <= 1
+   *              \mbox{ for } 0 <= s <= 1
    * @f]
    * For s < 1 use the reflection formula:
    * @f[

@@ -489,9 +489,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Riemann zeta function is defined by:
    * @f[
-   * 	\zeta(s) = \sum_{k=1}^{\infty} k^{-s} \hbox{ for } s > 1 \\
+   * 	\zeta(s) = \sum_{k=1}^{\infty} k^{-s} \mbox{ for } s > 1 \\
    * 		   \frac{(2\pi)^s}{\pi} \sin(\frac{\pi s}{2})
-   * 		   \Gamma(1 - s) \zeta(1 - s) \hbox{ for } s < 1
+   * 		   \Gamma(1 - s) \zeta(1 - s) \mbox{ for } s < 1
    * @f]
    * For s < 1 use the reflection formula:
    * @f[
