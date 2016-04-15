@@ -592,10 +592,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			+ _S_lambda[0] * __v[0]);
 
       // Compute sum of first two terms to initialize the Kahan summing scheme.
-      _KahanSum<std::complex<_Tp>> _Asum(_A0);
-      _KahanSum<std::complex<_Tp>> _Bsum(_B0);
-      _KahanSum<std::complex<_Tp>> _Csum(_C0);
-      _KahanSum<std::complex<_Tp>> _Dsum(_D0);
+      __gnu_cxx::_KahanSum<std::complex<_Tp>> _Asum(_A0);
+      __gnu_cxx::_KahanSum<std::complex<_Tp>> _Bsum(_B0);
+      __gnu_cxx::_KahanSum<std::complex<_Tp>> _Csum(_C0);
+      __gnu_cxx::_KahanSum<std::complex<_Tp>> _Dsum(_D0);
       _Asum += _Ak * __num2;
       _Bsum += _Bk * __num2;
       _Csum += _Ck * __num2;
