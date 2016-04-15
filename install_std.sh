@@ -16,7 +16,7 @@ fi
 dst_impl_dir="${dst_dir}/bits"
 dst_ext_dir="${dst_dir}/ext"
 
-${tool} "${src_dir}/cmath"                  "${dst_dir}/cmath"
+#${tool} "${src_dir}/cmath"                  "${dst_dir}/cmath"
 
 # This should go to dst_ext_dir and ext/cmath overwritten also.
 #${tool} "${src_ext_dir}/math_const.h"       "${dst_impl_dir}/math_const.h"
@@ -55,3 +55,6 @@ ${tool} "${src_impl_dir}/sf_owens_t.tcc"    "${dst_impl_dir}/sf_owens_t.tcc"
 ${tool} "${src_impl_dir}/sf_polylog.tcc"    "${dst_impl_dir}/sf_polylog.tcc"
 ${tool} "${src_impl_dir}/sf_airy.tcc"       "${dst_impl_dir}/sf_airy.tcc"
 ${tool} "${src_impl_dir}/sf_hankel.tcc"     "${dst_impl_dir}/sf_hankel.tcc"
+${tool} "${src_impl_dir}/summation.h"       "${dst_impl_dir}/summation.h"
+${tool} "${src_impl_dir}/summation.tcc"     "${dst_impl_dir}/summation.tcc"
+

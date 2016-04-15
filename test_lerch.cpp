@@ -13,7 +13,36 @@
 #include <iostream>
 #include <iomanip>
 #include "float128.h"
-#include "vanWijngaardenSum.tcc"
+#include <bits/summation.h>
+
+  //
+  // A functor for a vanWijnGaarden compressor must have
+  // _Tp operator()(int) that returns a term in the original defining series.
+  //
+  template<typename _Tp>
+    class __lerch_term
+    {
+    public:
+
+      using value_type = _Tp;
+
+      __lerch_term(value_type __z, value_type __s, value_type __a)
+      : _M_z{__z}, _M_s{__s}, _M_a{__a}
+      { }
+
+      value_type
+      operator()(std::size_t __i) const
+      {
+	return std::pow(_M_z, value_type(__i))
+	     / std::pow(_M_a + value_type(__i), _M_s);
+      }
+
+    private:
+
+      value_type _M_z;
+      value_type _M_s;
+      value_type _M_a;
+    };
 
   /**
    *  blows on nonpositive integeral a.
@@ -66,9 +95,9 @@
       else if (__z < _Tp{0})
 	{
 	  constexpr auto _S_maxit = 100000;
-	  using __lerch_t = std::__detail::__lerch_term<_Tp>;
+	  using __lerch_t = __lerch_term<_Tp>;
 	  auto __lerch_fun = __lerch_t(__z, __s, __a);
-	  std::__detail::_VanWijngaardenSum<_Tp> __sum;
+	  __gnu_cxx::_VanWijngaardenSum<_Tp> __sum;
 	  for (auto __k = 0; __k < _S_maxit; ++__k)
 	    {
 	      auto __temp = __lerch_fun(__k);
@@ -80,10 +109,10 @@
       else
 	{
 	  constexpr auto _S_maxit = 100000;
-	  using __lerch_t = std::__detail::__lerch_term<_Tp>;
+	  using __lerch_t = __lerch_term<_Tp>;
 	  auto __lerch_fun = __lerch_t(__z, __s, __a);
-	  std::__detail::_VanWijngaardenCompressor<__lerch_t> __term(__lerch_fun);
-	  std::__detail::_VanWijngaardenSum<_Tp> __sum;
+	  __gnu_cxx::_VanWijngaardenCompressor<__lerch_t> __term(__lerch_fun);
+	  __gnu_cxx::_VanWijngaardenSum<_Tp> __sum;
 	  for (auto __k = 0; __k < _S_maxit; ++__k)
 	    {
 	      auto __temp = __term[__k];
@@ -121,7 +150,7 @@
 	    {
 	      auto __term = std::pow(__a, -__s);
 	      auto __bincoef = _Tp{1};
-	      std::__detail::_VanWijngaardenSum<_Tp> __sum(__term);
+	      __gnu_cxx::_VanWijngaardenSum<_Tp> __sum(__term);
 	      for (auto __k = 1; __k <= __n; ++__k)
 		{
 		  __bincoef *= -_Tp(__n - __k + 1) / _Tp(__k);
