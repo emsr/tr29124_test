@@ -28,11 +28,16 @@ template<typename Tp>
     __gnu_cxx::_AitkenDeltaSqaredSum<__gnu_cxx::_KahanSum<Tp>> AKS;
     __gnu_cxx::_WinnEpsilonSum<__gnu_cxx::_BasicSum<Tp>> WBS;
     __gnu_cxx::_WinnEpsilonSum<__gnu_cxx::_KahanSum<Tp>> WKS;
-    __gnu_cxx::_BrezinskiThetaSum<__gnu_cxx::_BasicSum<Tp>> BBS;
+    __gnu_cxx::_BrezinskiThetaSum<__gnu_cxx::_BasicSum<Tp>> BTS;
     __gnu_cxx::_LevinTSum<__gnu_cxx::_BasicSum<Tp>> LTS;
     __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<Tp>> WDS;
+    __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<Tp>> WDvW;
 
     auto s = Tp{1.2};
+    auto zetaterm = [s](Tp k){ return std::pow(k + Tp{1}, -s); };
+
+    auto VwT = __gnu_cxx::__make_VanWijngaardenCompressor(zetaterm);
+
     auto zeta = Tp{5.591582441177750776536563193423143277642L};
     std::cout << "\n\nzeta(1.2) = 5.59158244117775077653\n";
     for (auto k = 0; k < 100; ++k)
@@ -43,18 +48,20 @@ template<typename Tp>
 	AKS += term;
 	WBS += term;
 	WKS += term;
-	BBS += term;
+	BTS += term;
 	LTS += term;
 	WDS += term;
+	WDvW += VwT[k];
 	std::cout << std::setw(w) << k
 		  << std::setw(w) << BS()
 		  << std::setw(w) << ABS()
 		  << std::setw(w) << AKS()
 		  << std::setw(w) << WBS()
 		  << std::setw(w) << WKS()
-		  << std::setw(w) << BBS()
+		  << std::setw(w) << BTS()
 	  	  << std::setw(w) << LTS()
 	  	  << std::setw(w) << WDS()
+	  	  << std::setw(w) << WDvW()
 		  << '\n';
       }
 
@@ -69,7 +76,7 @@ template<typename Tp>
     AKS.reset(term);
     WBS.reset(term);
     WKS.reset(term);
-    BBS.reset(term);
+    BTS.reset(term);
     LTS.reset(term);
     WDS.reset(term);
     for (auto k = 1; k < 100; ++k)
@@ -80,7 +87,7 @@ template<typename Tp>
 		  << std::setw(w) << AKS()
 		  << std::setw(w) << WBS()
 		  << std::setw(w) << WKS()
-		  << std::setw(w) << BBS()
+		  << std::setw(w) << BTS()
 		  << std::setw(w) << LTS()
 		  << std::setw(w) << WDS()
 		  << '\n';
@@ -90,7 +97,7 @@ template<typename Tp>
 	AKS += term;
 	WBS += term;
 	WKS += term;
-	BBS += term;
+	BTS += term;
 	LTS += term;
 	WDS += term;
       }

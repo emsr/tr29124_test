@@ -169,6 +169,27 @@
 
   /**
    *  blows on nonpositive integeral a.
+   *  As usual, the binomial coefficient kills this for practical purposes.
+   */
+  template<typename _Tp>
+    _Tp
+    __lerch_delta_vanwijngaarden_sum(_Tp __z, _Tp __s, _Tp __a)
+    {
+      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto _S_maxit = 1000;
+      __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<_Tp>> _WDvW;
+      auto _VwT = __gnu_cxx::__make_VanWijngaardenCompressor(__lerch_term<_Tp>(__z, __s, __a));
+      for (auto __k = 0; __k < _S_maxit; ++__k)
+	{
+	  auto __term = _VwT[__k];
+	  _WDvW += __term;
+	  if (std::abs(__term) < _S_eps * std::abs(_WDvW()))
+	    return _WDvW();
+	}
+    }
+
+  /**
+   *  blows on nonpositive integeral a.
    */
   template<typename _Tp>
     _Tp
@@ -207,10 +228,12 @@ main()
       auto lerch1 = __lerch_sum(z, s, a);
       auto lerch2 = __lerch_vanwijngaarden_sum(z, s, a);
       //auto lerch3 = __lerch_double_sum(z, s, a);
+      auto lerch4 = __lerch_delta_vanwijngaarden_sum(z, s, a);
       std::cout << ' ' << std::setw(width) << z
 		<< ' ' << std::setw(width) << lerch1
 		<< ' ' << std::setw(width) << lerch2
 		//<< ' ' << std::setw(width) << lerch3
+		<< ' ' << std::setw(width) << lerch4
 		<< ' ' << std::setw(width) << lerch2 - lerch1
 		<< std::endl;
     }
@@ -246,10 +269,12 @@ main()
 	      auto lerch1 = __lerch_sum(z, s, a);
 	      auto lerch2 = __lerch_vanwijngaarden_sum(z, s, a);
 	      //auto lerch3 = __lerch_double_sum(z, s, a);
+	      auto lerch4 = __lerch_delta_vanwijngaarden_sum(z, s, a);
 	      std::cout << ' ' << std::setw(width) << z
 			<< ' ' << std::setw(width) << lerch1
 			<< ' ' << std::setw(width) << lerch2
 			//<< ' ' << std::setw(width) << lerch3
+			<< ' ' << std::setw(width) << lerch4
 			<< ' ' << std::setw(width) << lerch2 - lerch1
 			<< std::endl;
 	    }
