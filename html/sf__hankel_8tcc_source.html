@@ -341,12 +341,12 @@ $(document).ready(function(){initNavTree('sf__hankel_8tcc_source.html','');});
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="comment">   * major work here is in @c safe_div.  A faster, but less safe</span></div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="comment">   * implementation can be obtained without use of safe_div.</span></div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="comment">   * @param[in]  __num2d3  nu^(-2/3) - output from hankel_params.</span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="comment">   * @param[in]  __zeta    zeta in the uniform asymptotic expansions - output</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="comment">   * @param[in] __num2d3 nu^(-2/3) - output from hankel_params.</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="comment">   * @param[in] __zeta   zeta in the uniform asymptotic expansions - output</span></div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment">   *             from hankel_params.</span></div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="comment">   * @param[out]  __argp  exp(+2*pi*i/3) * nu^(2/3) * zeta.</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment">   * @param[out]  __argm  exp(-2*pi*i/3) * nu^(2/3) * zeta.</span></div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment">   * @throws  std::runtime_error.</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="comment">   * @param[out] __argp exp(+2*pi*i/3) * nu^(2/3) * zeta.</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment">   * @param[out] __argm exp(-2*pi*i/3) * nu^(2/3) * zeta.</span></div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment">   * @throws std::runtime_error.</span></div>
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <span class="keywordtype">void</span></div>
@@ -713,25 +713,25 @@ $(document).ready(function(){initNavTree('sf__hankel_8tcc_source.html','');});
 <div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;      <span class="comment">// respectively.  These recurring factors are included as appropriate</span></div>
 <div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;      <span class="comment">// in the outer factors, thus saving repeated multiplications by them.</span></div>
 <div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;      <span class="keyword">auto</span> _A0 = __zone;</div>
-<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;      <span class="keyword">auto</span> _A = __u[1]</div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;      <span class="keyword">auto</span> _Ak = __u[1]</div>
 <div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;          + __zetam3hf * (_S_mu[1] * __zetam3hf + _S_mu[0] * __u[0]);</div>
 <div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;      <span class="keyword">auto</span> _B0 = __u[0] + _S_lambda[0] * __zetam3hf;</div>
-<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;      <span class="keyword">auto</span> _B = __u[2] + __zetam3hf * (__zetam3hf * (_S_lambda[2] * __zetam3hf</div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;      <span class="keyword">auto</span> _Bk = __u[2] + __zetam3hf * (__zetam3hf * (_S_lambda[2] * __zetam3hf</div>
 <div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;                     + _S_lambda[1] * __u[0])</div>
 <div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;             + _S_lambda[0] * __u[1]);</div>
 <div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;      <span class="keyword">auto</span> _C0 = __v[0] + _S_mu[0] * __zetam3hf;</div>
-<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;      <span class="keyword">auto</span> _C = __v[2] + __zetam3hf * (__zetam3hf * (_S_mu[2] * __zetam3hf</div>
+<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;      <span class="keyword">auto</span> _Ck = __v[2] + __zetam3hf * (__zetam3hf * (_S_mu[2] * __zetam3hf</div>
 <div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;                     + _S_mu[1] * __v[0])</div>
 <div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;             + _S_mu[0] * __v[1]);</div>
 <div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;      <span class="keyword">auto</span> _D0 = __zone;</div>
-<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;      <span class="keyword">auto</span> _D = __v[1] + __zetam3hf * (_S_lambda[1] * __zetam3hf</div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;      <span class="keyword">auto</span> _Dk = __v[1] + __zetam3hf * (_S_lambda[1] * __zetam3hf</div>
 <div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;            + _S_lambda[0] * __v[0]);</div>
 <div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;</div>
 <div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;      <span class="comment">// Compute terms.</span></div>
-<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;      <span class="keyword">auto</span> _Aterm = _A * __num2;</div>
-<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;      <span class="keyword">auto</span> _Bterm = _B * __num2;</div>
-<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;      <span class="keyword">auto</span> _Cterm = _C * __num2;</div>
-<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;      <span class="keyword">auto</span> _Dterm = _D * __num2;</div>
+<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;      <span class="keyword">auto</span> _Aterm = _Ak * __num2;</div>
+<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;      <span class="keyword">auto</span> _Bterm = _Bk * __num2;</div>
+<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;      <span class="keyword">auto</span> _Cterm = _Ck * __num2;</div>
+<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;      <span class="keyword">auto</span> _Dterm = _Dk * __num2;</div>
 <div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;      <span class="comment">// Compute sum of first two terms to initialize the Kahan summing scheme.</span></div>
 <div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;      <span class="keyword">auto</span> _Asum = _A0 + _Aterm;</div>
 <div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;      <span class="keyword">auto</span> _Atemp = _Aterm - (_Asum - _A0);</div>
@@ -835,36 +835,36 @@ $(document).ready(function(){initNavTree('sf__hankel_8tcc_source.html','');});
 <div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;      __indexp += __i2kp1 + 3;</div>
 <div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;</div>
 <div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;      <span class="comment">// Start Horner&#39;s rule evaluation of A, B, C, and D polynomials.</span></div>
-<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;      _A = _S_mu[__i2k] * __zetam3hf + _S_mu[__i2km1] * __u[0];</div>
-<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;      _D = _S_lambda[__i2k] * __zetam3hf + _S_lambda[__i2km1] * __v[0];</div>
-<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;      _B = _S_lambda[__i2kp1] * __zetam3hf + _S_lambda[__i2k] * __u[0];</div>
-<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;      _C = _S_mu[__i2kp1] * __zetam3hf + _S_mu[__i2k] * __v[0];</div>
+<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;      _Ak = _S_mu[__i2k] * __zetam3hf + _S_mu[__i2km1] * __u[0];</div>
+<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;      _Dk = _S_lambda[__i2k] * __zetam3hf + _S_lambda[__i2km1] * __v[0];</div>
+<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;      _Bk = _S_lambda[__i2kp1] * __zetam3hf + _S_lambda[__i2k] * __u[0];</div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;      _Ck = _S_mu[__i2kp1] * __zetam3hf + _S_mu[__i2k] * __v[0];</div>
 <div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;</div>
 <div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;      <span class="comment">// Do partial Horner&#39;s rule evaluations of A, B, C, and D.</span></div>
 <div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;      <span class="keywordflow">for</span>(<span class="keyword">auto</span> __l = 1; __l &lt;= __i2km1; ++__l)</div>
 <div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;        {</div>
 <div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;          <span class="keyword">auto</span> __i2kl = __i2km1 - __l;</div>
-<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;          _A = _A * __zetam3hf + _S_mu[__i2kl] * __u[__l];</div>
-<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;          _D = _D * __zetam3hf + _S_lambda[__i2kl] * __v[__l];</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;          _Ak = _Ak * __zetam3hf + _S_mu[__i2kl] * __u[__l];</div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;          _Dk = _Dk * __zetam3hf + _S_lambda[__i2kl] * __v[__l];</div>
 <div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;          __i2kl = __i2k - __l;</div>
-<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;          _B = _B * __zetam3hf + _S_lambda[__i2kl] * __u[__l];</div>
-<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;          _C = _C * __zetam3hf + _S_mu[__i2kl] * __v[__l];</div>
+<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;          _Bk = _Bk * __zetam3hf + _S_lambda[__i2kl] * __u[__l];</div>
+<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;          _Ck = _Ck * __zetam3hf + _S_mu[__i2kl] * __v[__l];</div>
 <div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;        }</div>
 <div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;</div>
 <div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;      <span class="comment">// Complete the evaluations of A, B, C, and D.</span></div>
-<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;      _A = _A * __zetam3hf + __u[__i2k];</div>
-<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;      _D = _D * __zetam3hf + __v[__i2k];</div>
-<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;      _B = __zetam3hf</div>
-<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;           * (_B * __zetam3hf + _S_lambda[0] * __u[__i2k]) + __u[__i2kp1];</div>
-<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;      _C = __zetam3hf</div>
-<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;           * (_C * __zetam3hf + _S_mu[0] * __v[__i2k]) + __v[__i2kp1];</div>
+<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;      _Ak = _Ak * __zetam3hf + __u[__i2k];</div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;      _Dk = _Dk * __zetam3hf + __v[__i2k];</div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;      _Bk = __zetam3hf</div>
+<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;          * (_Bk * __zetam3hf + _S_lambda[0] * __u[__i2k]) + __u[__i2kp1];</div>
+<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;      _Ck = __zetam3hf</div>
+<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;          * (_Ck * __zetam3hf + _S_mu[0] * __v[__i2k]) + __v[__i2kp1];</div>
 <div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;</div>
 <div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;      <span class="comment">// Evaluate new terms for sums.</span></div>
 <div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;      __num2k *= __num2;</div>
-<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;      _Aterm = _A * __num2k + _Atemp;</div>
-<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;      _Bterm = _B * __num2k + _Btemp;</div>
-<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;      _Cterm = _C * __num2k + _Ctemp;</div>
-<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;      _Dterm = _D * __num2k + _Dtemp;</div>
+<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;      _Aterm = _Ak * __num2k + _Atemp;</div>
+<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;      _Bterm = _Bk * __num2k + _Btemp;</div>
+<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;      _Cterm = _Ck * __num2k + _Ctemp;</div>
+<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;      _Dterm = _Dk * __num2k + _Dtemp;</div>
 <div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;</div>
 <div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;      <span class="comment">// Update sums using Kahan summing scheme.</span></div>
 <div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;      _Atemp = _Asum;</div>
@@ -918,8 +918,8 @@ $(document).ready(function(){initNavTree('sf__hankel_8tcc_source.html','');});
 <div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;<span class="comment">   * of the first and second kinds using Olver&#39;s uniform asymptotic</span></div>
 <div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;<span class="comment">   * expansion to of order @c nu along with their derivatives.</span></div>
 <div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;<span class="comment">   * @param[in]  __nu  The order for which the Hankel functions are evaluated.</span></div>
-<div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;<span class="comment">   * @param[in]  __z   The argument at which the Hankel functions are evaluated.</span></div>
+<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;<span class="comment">   * @param[in] __nu The order for which the Hankel functions are evaluated.</span></div>
+<div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;<span class="comment">   * @param[in] __z  The argument at which the Hankel functions are evaluated.</span></div>
 <div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;<span class="comment">   * @param[out] _H1  The Hankel function of the first kind.</span></div>
 <div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;<span class="comment">   * @param[out] _H1p The derivative of the Hankel function of the first kind.</span></div>
 <div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;<span class="comment">   * @param[out] _H2  The Hankel function of the second kind.</span></div>
@@ -1004,8 +1004,8 @@ $(document).ready(function(){initNavTree('sf__hankel_8tcc_source.html','');});
 <div class="line"><a name="l00892"></a><span class="lineno">  892</span>&#160;<span class="comment">   * averages results from four surrounding points in the complex plane</span></div>
 <div class="line"><a name="l00893"></a><span class="lineno">  893</span>&#160;<span class="comment">   * to obtain the result in such cases.</span></div>
 <div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00895"></a><span class="lineno">  895</span>&#160;<span class="comment">   * @param[in]  __nu  The order for which the Hankel functions are evaluated.</span></div>
-<div class="line"><a name="l00896"></a><span class="lineno">  896</span>&#160;<span class="comment">   * @param[in]  __z   The argument at which the Hankel functions are evaluated.</span></div>
+<div class="line"><a name="l00895"></a><span class="lineno">  895</span>&#160;<span class="comment">   * @param[in] __nu The order for which the Hankel functions are evaluated.</span></div>
+<div class="line"><a name="l00896"></a><span class="lineno">  896</span>&#160;<span class="comment">   * @param[in] __z  The argument at which the Hankel functions are evaluated.</span></div>
 <div class="line"><a name="l00897"></a><span class="lineno">  897</span>&#160;<span class="comment">   * @param[out] _H1  The Hankel function of the first kind.</span></div>
 <div class="line"><a name="l00898"></a><span class="lineno">  898</span>&#160;<span class="comment">   * @param[out] _H1p The derivative of the Hankel function of the first kind.</span></div>
 <div class="line"><a name="l00899"></a><span class="lineno">  899</span>&#160;<span class="comment">   * @param[out] _H2  The Hankel function of the second kind.</span></div>
@@ -1055,8 +1055,8 @@ $(document).ready(function(){initNavTree('sf__hankel_8tcc_source.html','');});
 <div class="line"><a name="l00943"></a><span class="lineno">  943</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00944"></a><span class="lineno">  944</span>&#160;<span class="comment">  /**</span></div>
 <div class="line"><a name="l00945"></a><span class="lineno">  945</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00946"></a><span class="lineno">  946</span>&#160;<span class="comment">   * @param[in]  __nu  The order for which the Hankel functions are evaluated.</span></div>
-<div class="line"><a name="l00947"></a><span class="lineno">  947</span>&#160;<span class="comment">   * @param[in]  __z   The argument at which the Hankel functions are evaluated.</span></div>
+<div class="line"><a name="l00946"></a><span class="lineno">  946</span>&#160;<span class="comment">   * @param[in] __nu The order for which the Hankel functions are evaluated.</span></div>
+<div class="line"><a name="l00947"></a><span class="lineno">  947</span>&#160;<span class="comment">   * @param[in] __z  The argument at which the Hankel functions are evaluated.</span></div>
 <div class="line"><a name="l00948"></a><span class="lineno">  948</span>&#160;<span class="comment">   * @param[in] __alpha</span></div>
 <div class="line"><a name="l00949"></a><span class="lineno">  949</span>&#160;<span class="comment">   * @param[in] __indexr</span></div>
 <div class="line"><a name="l00950"></a><span class="lineno">  950</span>&#160;<span class="comment">   * @param[out] __aorb</span></div>
@@ -1227,8 +1227,8 @@ $(document).ready(function(){initNavTree('sf__hankel_8tcc_source.html','');});
 <div class="line"><a name="l01115"></a><span class="lineno"> 1115</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l01116"></a><span class="lineno"> 1116</span>&#160;<span class="comment">  /**</span></div>
 <div class="line"><a name="l01117"></a><span class="lineno"> 1117</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01118"></a><span class="lineno"> 1118</span>&#160;<span class="comment">   * @param[in]  __nu  The order for which the Hankel functions are evaluated.</span></div>
-<div class="line"><a name="l01119"></a><span class="lineno"> 1119</span>&#160;<span class="comment">   * @param[in]  __z   The argument at which the Hankel functions are evaluated.</span></div>
+<div class="line"><a name="l01118"></a><span class="lineno"> 1118</span>&#160;<span class="comment">   * @param[in] __nu The order for which the Hankel functions are evaluated.</span></div>
+<div class="line"><a name="l01119"></a><span class="lineno"> 1119</span>&#160;<span class="comment">   * @param[in] __z  The argument at which the Hankel functions are evaluated.</span></div>
 <div class="line"><a name="l01120"></a><span class="lineno"> 1120</span>&#160;<span class="comment">   * @param[out] _H1  The Hankel function of the first kind.</span></div>
 <div class="line"><a name="l01121"></a><span class="lineno"> 1121</span>&#160;<span class="comment">   * @param[out] _H1p The derivative of the Hankel function of the first kind.</span></div>
 <div class="line"><a name="l01122"></a><span class="lineno"> 1122</span>&#160;<span class="comment">   * @param[out] _H2  The Hankel function of the second kind.</span></div>
@@ -1291,11 +1291,11 @@ $(document).ready(function(){initNavTree('sf__hankel_8tcc_source.html','');});
 <div class="line"><a name="l01179"></a><span class="lineno"> 1179</span>&#160;</div>
 <div class="line"><a name="l01180"></a><span class="lineno"> 1180</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l01181"></a><span class="lineno"> 1181</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01182"></a><span class="lineno"> 1182</span>&#160;<span class="comment">   * @brief  Return the complex cylindrical Hankel function of the first kind.</span></div>
+<div class="line"><a name="l01182"></a><span class="lineno"> 1182</span>&#160;<span class="comment">   * @brief Return the complex cylindrical Hankel function of the first kind.</span></div>
 <div class="line"><a name="l01183"></a><span class="lineno"> 1183</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01184"></a><span class="lineno"> 1184</span>&#160;<span class="comment">   * @param[in]  __nu  The order for which the cylindrical Hankel function of the first kind is evaluated.</span></div>
-<div class="line"><a name="l01185"></a><span class="lineno"> 1185</span>&#160;<span class="comment">   * @param[in]  __z   The argument at which the cylindrical Hankel function of the first kind is evaluated.</span></div>
-<div class="line"><a name="l01186"></a><span class="lineno"> 1186</span>&#160;<span class="comment">   * @return  The complex cylindrical Hankel function of the first kind.</span></div>
+<div class="line"><a name="l01184"></a><span class="lineno"> 1184</span>&#160;<span class="comment">   * @param[in] __nu The order for which the cylindrical Hankel function of the first kind is evaluated.</span></div>
+<div class="line"><a name="l01185"></a><span class="lineno"> 1185</span>&#160;<span class="comment">   * @param[in] __z  The argument at which the cylindrical Hankel function of the first kind is evaluated.</span></div>
+<div class="line"><a name="l01186"></a><span class="lineno"> 1186</span>&#160;<span class="comment">   * @return The complex cylindrical Hankel function of the first kind.</span></div>
 <div class="line"><a name="l01187"></a><span class="lineno"> 1187</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l01188"></a><span class="lineno"> 1188</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l01189"></a><span class="lineno"> 1189</span>&#160;    std::complex&lt;_Tp&gt;</div>
@@ -1307,11 +1307,11 @@ $(document).ready(function(){initNavTree('sf__hankel_8tcc_source.html','');});
 <div class="line"><a name="l01195"></a><span class="lineno"> 1195</span>&#160;    }</div>
 <div class="line"><a name="l01196"></a><span class="lineno"> 1196</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l01197"></a><span class="lineno"> 1197</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01198"></a><span class="lineno"> 1198</span>&#160;<span class="comment">   * @brief  Return the complex cylindrical Hankel function of the second kind.</span></div>
+<div class="line"><a name="l01198"></a><span class="lineno"> 1198</span>&#160;<span class="comment">   * @brief Return the complex cylindrical Hankel function of the second kind.</span></div>
 <div class="line"><a name="l01199"></a><span class="lineno"> 1199</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01200"></a><span class="lineno"> 1200</span>&#160;<span class="comment">   * @param[in]  __nu  The order for which the cylindrical Hankel function of the second kind is evaluated.</span></div>
-<div class="line"><a name="l01201"></a><span class="lineno"> 1201</span>&#160;<span class="comment">   * @param[in]  __z   The argument at which the cylindrical Hankel function of the second kind is evaluated.</span></div>
-<div class="line"><a name="l01202"></a><span class="lineno"> 1202</span>&#160;<span class="comment">   * @return  The complex cylindrical Hankel function of the second kind.</span></div>
+<div class="line"><a name="l01200"></a><span class="lineno"> 1200</span>&#160;<span class="comment">   * @param[in] __nu The order for which the cylindrical Hankel function of the second kind is evaluated.</span></div>
+<div class="line"><a name="l01201"></a><span class="lineno"> 1201</span>&#160;<span class="comment">   * @param[in] __z  The argument at which the cylindrical Hankel function of the second kind is evaluated.</span></div>
+<div class="line"><a name="l01202"></a><span class="lineno"> 1202</span>&#160;<span class="comment">   * @return The complex cylindrical Hankel function of the second kind.</span></div>
 <div class="line"><a name="l01203"></a><span class="lineno"> 1203</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l01204"></a><span class="lineno"> 1204</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l01205"></a><span class="lineno"> 1205</span>&#160;    std::complex&lt;_Tp&gt;</div>
@@ -1323,11 +1323,11 @@ $(document).ready(function(){initNavTree('sf__hankel_8tcc_source.html','');});
 <div class="line"><a name="l01211"></a><span class="lineno"> 1211</span>&#160;    }</div>
 <div class="line"><a name="l01212"></a><span class="lineno"> 1212</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l01213"></a><span class="lineno"> 1213</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01214"></a><span class="lineno"> 1214</span>&#160;<span class="comment">   * @brief  Return the complex cylindrical Bessel function.</span></div>
+<div class="line"><a name="l01214"></a><span class="lineno"> 1214</span>&#160;<span class="comment">   * @brief Return the complex cylindrical Bessel function.</span></div>
 <div class="line"><a name="l01215"></a><span class="lineno"> 1215</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01216"></a><span class="lineno"> 1216</span>&#160;<span class="comment">   * @param[in]  __nu  The order for which the cylindrical Bessel function is evaluated.</span></div>
-<div class="line"><a name="l01217"></a><span class="lineno"> 1217</span>&#160;<span class="comment">   * @param[in]  __z   The argument at which the cylindrical Bessel function is evaluated.</span></div>
-<div class="line"><a name="l01218"></a><span class="lineno"> 1218</span>&#160;<span class="comment">   * @return  The complex cylindrical Bessel function.</span></div>
+<div class="line"><a name="l01216"></a><span class="lineno"> 1216</span>&#160;<span class="comment">   * @param[in] __nu The order for which the cylindrical Bessel function is evaluated.</span></div>
+<div class="line"><a name="l01217"></a><span class="lineno"> 1217</span>&#160;<span class="comment">   * @param[in] __z  The argument at which the cylindrical Bessel function is evaluated.</span></div>
+<div class="line"><a name="l01218"></a><span class="lineno"> 1218</span>&#160;<span class="comment">   * @return The complex cylindrical Bessel function.</span></div>
 <div class="line"><a name="l01219"></a><span class="lineno"> 1219</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l01220"></a><span class="lineno"> 1220</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l01221"></a><span class="lineno"> 1221</span>&#160;    std::complex&lt;_Tp&gt;</div>
@@ -1339,11 +1339,11 @@ $(document).ready(function(){initNavTree('sf__hankel_8tcc_source.html','');});
 <div class="line"><a name="l01227"></a><span class="lineno"> 1227</span>&#160;    }</div>
 <div class="line"><a name="l01228"></a><span class="lineno"> 1228</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l01229"></a><span class="lineno"> 1229</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01230"></a><span class="lineno"> 1230</span>&#160;<span class="comment">   * @brief  Return the complex cylindrical Neumann function.</span></div>
+<div class="line"><a name="l01230"></a><span class="lineno"> 1230</span>&#160;<span class="comment">   * @brief Return the complex cylindrical Neumann function.</span></div>
 <div class="line"><a name="l01231"></a><span class="lineno"> 1231</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01232"></a><span class="lineno"> 1232</span>&#160;<span class="comment">   * @param[in]  __nu  The order for which the cylindrical Neumann function is evaluated.</span></div>
-<div class="line"><a name="l01233"></a><span class="lineno"> 1233</span>&#160;<span class="comment">   * @param[in]  __z   The argument at which the cylindrical Neumann function is evaluated.</span></div>
-<div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;<span class="comment">   * @return  The complex cylindrical Neumann function.</span></div>
+<div class="line"><a name="l01232"></a><span class="lineno"> 1232</span>&#160;<span class="comment">   * @param[in] __nu The order for which the cylindrical Neumann function is evaluated.</span></div>
+<div class="line"><a name="l01233"></a><span class="lineno"> 1233</span>&#160;<span class="comment">   * @param[in] __z  The argument at which the cylindrical Neumann function is evaluated.</span></div>
+<div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;<span class="comment">   * @return The complex cylindrical Neumann function.</span></div>
 <div class="line"><a name="l01235"></a><span class="lineno"> 1235</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l01236"></a><span class="lineno"> 1236</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l01237"></a><span class="lineno"> 1237</span>&#160;    std::complex&lt;_Tp&gt;</div>
@@ -1355,11 +1355,11 @@ $(document).ready(function(){initNavTree('sf__hankel_8tcc_source.html','');});
 <div class="line"><a name="l01243"></a><span class="lineno"> 1243</span>&#160;    }</div>
 <div class="line"><a name="l01244"></a><span class="lineno"> 1244</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l01245"></a><span class="lineno"> 1245</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01246"></a><span class="lineno"> 1246</span>&#160;<span class="comment">   * @brief  Helper to compute complex spherical Hankel functions</span></div>
-<div class="line"><a name="l01247"></a><span class="lineno"> 1247</span>&#160;<span class="comment">   *         and their derivatives.</span></div>
+<div class="line"><a name="l01246"></a><span class="lineno"> 1246</span>&#160;<span class="comment">   * @brief Helper to compute complex spherical Hankel functions</span></div>
+<div class="line"><a name="l01247"></a><span class="lineno"> 1247</span>&#160;<span class="comment">   *        and their derivatives.</span></div>
 <div class="line"><a name="l01248"></a><span class="lineno"> 1248</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01249"></a><span class="lineno"> 1249</span>&#160;<span class="comment">   * @param[in]  __n  The order for which the spherical Hankel functions are evaluated.</span></div>
-<div class="line"><a name="l01250"></a><span class="lineno"> 1250</span>&#160;<span class="comment">   * @param[in]  __z  The argument at which the spherical Hankel functions are evaluated.</span></div>
+<div class="line"><a name="l01249"></a><span class="lineno"> 1249</span>&#160;<span class="comment">   * @param[in] __n The order for which the spherical Hankel functions are evaluated.</span></div>
+<div class="line"><a name="l01250"></a><span class="lineno"> 1250</span>&#160;<span class="comment">   * @param[in] __z The argument at which the spherical Hankel functions are evaluated.</span></div>
 <div class="line"><a name="l01251"></a><span class="lineno"> 1251</span>&#160;<span class="comment">   * @param[out] _H1  The spherical Hankel function of the first kind.</span></div>
 <div class="line"><a name="l01252"></a><span class="lineno"> 1252</span>&#160;<span class="comment">   * @param[out] _H1p The derivative of the spherical Hankel function of the first kind.</span></div>
 <div class="line"><a name="l01253"></a><span class="lineno"> 1253</span>&#160;<span class="comment">   * @param[out] _H2  The spherical Hankel function of the second kind.</span></div>
@@ -1383,11 +1383,11 @@ $(document).ready(function(){initNavTree('sf__hankel_8tcc_source.html','');});
 <div class="line"><a name="l01271"></a><span class="lineno"> 1271</span>&#160;    }</div>
 <div class="line"><a name="l01272"></a><span class="lineno"> 1272</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l01273"></a><span class="lineno"> 1273</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01274"></a><span class="lineno"> 1274</span>&#160;<span class="comment">   * @brief  Return the complex spherical Hankel function of the first kind.</span></div>
+<div class="line"><a name="l01274"></a><span class="lineno"> 1274</span>&#160;<span class="comment">   * @brief Return the complex spherical Hankel function of the first kind.</span></div>
 <div class="line"><a name="l01275"></a><span class="lineno"> 1275</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01276"></a><span class="lineno"> 1276</span>&#160;<span class="comment">   * @param[in]  __n  The order for which the spherical Hankel function of the first kind is evaluated.</span></div>
-<div class="line"><a name="l01277"></a><span class="lineno"> 1277</span>&#160;<span class="comment">   * @param[in]  __z  The argument at which the spherical Hankel function of the first kind is evaluated.</span></div>
-<div class="line"><a name="l01278"></a><span class="lineno"> 1278</span>&#160;<span class="comment">   * @return  The complex spherical Hankel function of the first kind.</span></div>
+<div class="line"><a name="l01276"></a><span class="lineno"> 1276</span>&#160;<span class="comment">   * @param[in] __n The order for which the spherical Hankel function of the first kind is evaluated.</span></div>
+<div class="line"><a name="l01277"></a><span class="lineno"> 1277</span>&#160;<span class="comment">   * @param[in] __z The argument at which the spherical Hankel function of the first kind is evaluated.</span></div>
+<div class="line"><a name="l01278"></a><span class="lineno"> 1278</span>&#160;<span class="comment">   * @return The complex spherical Hankel function of the first kind.</span></div>
 <div class="line"><a name="l01279"></a><span class="lineno"> 1279</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l01280"></a><span class="lineno"> 1280</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l01281"></a><span class="lineno"> 1281</span>&#160;    std::complex&lt;_Tp&gt;</div>
@@ -1399,11 +1399,11 @@ $(document).ready(function(){initNavTree('sf__hankel_8tcc_source.html','');});
 <div class="line"><a name="l01287"></a><span class="lineno"> 1287</span>&#160;    }</div>
 <div class="line"><a name="l01288"></a><span class="lineno"> 1288</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l01289"></a><span class="lineno"> 1289</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01290"></a><span class="lineno"> 1290</span>&#160;<span class="comment">   * @brief  Return the complex spherical Hankel function of the second kind.</span></div>
+<div class="line"><a name="l01290"></a><span class="lineno"> 1290</span>&#160;<span class="comment">   * @brief Return the complex spherical Hankel function of the second kind.</span></div>
 <div class="line"><a name="l01291"></a><span class="lineno"> 1291</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01292"></a><span class="lineno"> 1292</span>&#160;<span class="comment">   * @param[in]  __n  The order for which the spherical Hankel function of the second kind is evaluated.</span></div>
-<div class="line"><a name="l01293"></a><span class="lineno"> 1293</span>&#160;<span class="comment">   * @param[in]  __z  The argument at which the spherical Hankel function of the second kind is evaluated.</span></div>
-<div class="line"><a name="l01294"></a><span class="lineno"> 1294</span>&#160;<span class="comment">   * @return  The complex spherical Hankel function of the second kind.</span></div>
+<div class="line"><a name="l01292"></a><span class="lineno"> 1292</span>&#160;<span class="comment">   * @param[in] __n The order for which the spherical Hankel function of the second kind is evaluated.</span></div>
+<div class="line"><a name="l01293"></a><span class="lineno"> 1293</span>&#160;<span class="comment">   * @param[in] __z The argument at which the spherical Hankel function of the second kind is evaluated.</span></div>
+<div class="line"><a name="l01294"></a><span class="lineno"> 1294</span>&#160;<span class="comment">   * @return The complex spherical Hankel function of the second kind.</span></div>
 <div class="line"><a name="l01295"></a><span class="lineno"> 1295</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l01296"></a><span class="lineno"> 1296</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l01297"></a><span class="lineno"> 1297</span>&#160;    std::complex&lt;_Tp&gt;</div>
@@ -1415,11 +1415,11 @@ $(document).ready(function(){initNavTree('sf__hankel_8tcc_source.html','');});
 <div class="line"><a name="l01303"></a><span class="lineno"> 1303</span>&#160;    }</div>
 <div class="line"><a name="l01304"></a><span class="lineno"> 1304</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l01305"></a><span class="lineno"> 1305</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01306"></a><span class="lineno"> 1306</span>&#160;<span class="comment">   * @brief  Return the complex spherical Bessel function.</span></div>
+<div class="line"><a name="l01306"></a><span class="lineno"> 1306</span>&#160;<span class="comment">   * @brief Return the complex spherical Bessel function.</span></div>
 <div class="line"><a name="l01307"></a><span class="lineno"> 1307</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01308"></a><span class="lineno"> 1308</span>&#160;<span class="comment">   * @param[in]  __n  The order for which the spherical Bessel function is evaluated.</span></div>
-<div class="line"><a name="l01309"></a><span class="lineno"> 1309</span>&#160;<span class="comment">   * @param[in]  __z  The argument at which the spherical Bessel function is evaluated.</span></div>
-<div class="line"><a name="l01310"></a><span class="lineno"> 1310</span>&#160;<span class="comment">   * @return  The complex spherical Bessel function.</span></div>
+<div class="line"><a name="l01308"></a><span class="lineno"> 1308</span>&#160;<span class="comment">   * @param[in] __n The order for which the spherical Bessel function is evaluated.</span></div>
+<div class="line"><a name="l01309"></a><span class="lineno"> 1309</span>&#160;<span class="comment">   * @param[in] __z The argument at which the spherical Bessel function is evaluated.</span></div>
+<div class="line"><a name="l01310"></a><span class="lineno"> 1310</span>&#160;<span class="comment">   * @return The complex spherical Bessel function.</span></div>
 <div class="line"><a name="l01311"></a><span class="lineno"> 1311</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l01312"></a><span class="lineno"> 1312</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l01313"></a><span class="lineno"> 1313</span>&#160;    std::complex&lt;_Tp&gt;</div>
@@ -1431,11 +1431,11 @@ $(document).ready(function(){initNavTree('sf__hankel_8tcc_source.html','');});
 <div class="line"><a name="l01319"></a><span class="lineno"> 1319</span>&#160;    }</div>
 <div class="line"><a name="l01320"></a><span class="lineno"> 1320</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l01321"></a><span class="lineno"> 1321</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l01322"></a><span class="lineno"> 1322</span>&#160;<span class="comment">   * @brief  Return the complex spherical Neumann function.</span></div>
+<div class="line"><a name="l01322"></a><span class="lineno"> 1322</span>&#160;<span class="comment">   * @brief Return the complex spherical Neumann function.</span></div>
 <div class="line"><a name="l01323"></a><span class="lineno"> 1323</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l01324"></a><span class="lineno"> 1324</span>&#160;<span class="comment">   * @param[in]  __n  The order for which the spherical Neumann function is evaluated.</span></div>
-<div class="line"><a name="l01325"></a><span class="lineno"> 1325</span>&#160;<span class="comment">   * @param[in]  __z  The argument at which the spherical Neumann function is evaluated.</span></div>
-<div class="line"><a name="l01326"></a><span class="lineno"> 1326</span>&#160;<span class="comment">   * @return  The complex spherical Neumann function.</span></div>
+<div class="line"><a name="l01324"></a><span class="lineno"> 1324</span>&#160;<span class="comment">   * @param[in] __n The order for which the spherical Neumann function is evaluated.</span></div>
+<div class="line"><a name="l01325"></a><span class="lineno"> 1325</span>&#160;<span class="comment">   * @param[in] __z The argument at which the spherical Neumann function is evaluated.</span></div>
+<div class="line"><a name="l01326"></a><span class="lineno"> 1326</span>&#160;<span class="comment">   * @return The complex spherical Neumann function.</span></div>
 <div class="line"><a name="l01327"></a><span class="lineno"> 1327</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l01328"></a><span class="lineno"> 1328</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l01329"></a><span class="lineno"> 1329</span>&#160;    std::complex&lt;_Tp&gt;</div>
