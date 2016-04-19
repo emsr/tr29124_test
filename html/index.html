@@ -106,12 +106,12 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="intro"></a>
 Introduction and History</h1>
-<p>The first significant library upgrade on the road to C++2011, <a href="http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2005/n1836.pdf">TR1</a>, included a set of 23 mathematical functions that significntly extended the standard trancendental functions inherited from C and declared in &lt;cmath&gt;.</p>
-<p>Although most components from TR1 were eventually adopted for C++11 these math function were left behind out of concern for implementability. The math functions were published as a separate international standard <a href="http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2010/n3060.pdf">IS 29124 - Extensions to the C++ Library to Support Mathematical Special Functions</a>.</p>
+<p>The first significant library upgrade on the road to C++2011, <a href="http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2005/n1836.pdf">TR1</a>, included a set of 23 mathematical functions that significantly extended the standard transcendental functions inherited from C and declared in &lt;cmath&gt;.</p>
+<p>Although most components from TR1 were eventually adopted for C++11 these math functions were left behind out of concern for implementability. The math functions were published as a separate international standard <a href="http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2010/n3060.pdf">IS 29124 - Extensions to the C++ Library to Support Mathematical Special Functions</a>.</p>
 <p>For C++17 these functions were incorporated into the main standard.</p>
 <h1><a class="anchor" id="contents"></a>
 Contents</h1>
-<p>The folowing functions are implemented in namespace <code>std:</code> </p><ul>
+<p>The following functions are implemented in namespace <code>std:</code> </p><ul>
 <li><a class="el" href="group__tr29124__math__spec__func.html#ga377bb7e038c464a27dfe0573fd2d7b33">assoc_laguerre - Associated Laguerre functions</a></li>
 <li><a class="el" href="group__tr29124__math__spec__func.html#ga355349f79119c1fd1e2a9351cec57f0f">assoc_legendre - Associated Legendre functions</a></li>
 <li><a class="el" href="group__tr29124__math__spec__func.html#ga6a7220c87c942db48b18b527d92bbd2d">beta - Beta functions</a></li>
@@ -143,7 +143,7 @@ General Features</h1>
 <h2><a class="anchor" id="promotion"></a>
 Argument Promotion</h2>
 <p>The arguments suppled to the non-suffixed functions will be promoted according to the following rules:</p><ol type="1">
-<li>If any argument intended to be floating opint is given an integral value That integral value is promoted to double.</li>
+<li>If any argument intended to be floating point is given an integral value That integral value is promoted to double.</li>
 <li>All floating point arguments are promoted up to the largest floating point precision among them.</li>
 </ol>
 <h2><a class="anchor" id="NaN"></a>
@@ -151,8 +151,8 @@ NaN Arguments</h2>
 <p>If any of the floating point arguments supplied to these functions is invalid or NaN (std::numeric_limits&lt;Tp&gt;::quiet_NaN), the value NaN is returned.</p>
 <h1><a class="anchor" id="impl"></a>
 Implementation</h1>
-<p>We strive to implement the underlying math with type generic algorithms to the greatest extent possible. In practice, the function are thin wrappers that dispatch to function templates. Type dependence is controlled with std::numeric_limits and functions thereof.</p>
-<p>We don't promote *c float to *c double or *c double to <code>long double</code> reflexively. The goal is for float functions to operate more quickly, at the cost of float accuracy and possibly a smaller domain of validity. Similaryly, <code>long double</code> should give you more dynamic range and slightly more pecision than <code>double</code> on many systems.</p>
+<p>We strive to implement the underlying math with type generic algorithms to the greatest extent possible. In practice, the functions are thin wrappers that dispatch to function templates. Type dependence is controlled with std::numeric_limits and functions thereof.</p>
+<p>We don't promote <code>float</code> to <code>double</code> or <code>double</code> to <code>long double</code> reflexively. The goal is for <code>float</code> functions to operate more quickly, at the cost of <code>float</code> accuracy and possibly a smaller domain of validity. Similaryly, <code>long double</code> should give you more dynamic range and slightly more pecision than <code>double</code> on many systems.</p>
 <h1><a class="anchor" id="testing"></a>
 Testing</h1>
 <p>These functions have been tested against equivalent implementations from the <a href="http://www.gnu.org/software/gsl">Gnu Scientific Library, GSL</a> and &lt;a href="<a href="http://www.boost.org/doc/libs/1_60_0/libs/math/doc/html/index.html">http://www.boost.org/doc/libs/1_60_0/libs/math/doc/html/index.html</a>&gt;Boost and the ratio </p><p class="formulaDsp">
