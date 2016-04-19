@@ -168,8 +168,7 @@
     }
 
   /**
-   *  blows on nonpositive integeral a.
-   *  As usual, the binomial coefficient kills this for practical purposes.
+   *  Try the WenigerDelta<MonotoneVanWijngaarden> composition.
    */
   template<typename _Tp>
     _Tp
@@ -216,6 +215,19 @@ main()
 
   std::cout.precision(std::numeric_limits<Tp>::digits10);
   auto width = 8 + std::numeric_limits<Tp>::digits10;
+
+  auto test01 = 1.0000000000000000e+00 - __lerch_delta_vanwijngaarden_sum(-1.0000000000000000e+00,  2.0000000000000000e+00,  1.0000000000000000e+00);
+  auto test02 = 1.0000000000000000e+00 - __lerch_delta_vanwijngaarden_sum( 9.9999000000000005e-01,  2.0000000000000000e+00, -1.0000000000000000e+00);
+  auto test03 = 1.0000000000000000e+00 - __lerch_delta_vanwijngaarden_sum( 9.9999000000000005e-01,  2.2999999999999998e+00, -1.5000000000000000e+00);
+  auto test04 = 1.0000000000000000e+00 - __lerch_delta_vanwijngaarden_sum( 9.9999998999999995e-01,  1.0000000000000000e+00,  1.0000000000000000e+00);
+  auto test05 = 1.6448253852467796e+00 - __lerch_delta_vanwijngaarden_sum( 9.9999000000000005e-01,  2.0000000000000000e+00,  1.0000000000000000e+00);
+  auto test06 = 8.2246832662591696e-01 - __lerch_delta_vanwijngaarden_sum(-9.9999000000000005e-01,  2.0000000000000000e+00,  1.0000000000000000e+00);
+  auto test07 = 9.5971489709979654e-04 - __lerch_delta_vanwijngaarden_sum( 9.9999000000000005e-01,  2.0000000000000000e+00,  1.0000000000000000e+03);
+  auto test08 = 1.4275808137603091e-01 - __lerch_delta_vanwijngaarden_sum( 2.9999999999999999e-01,  2.0000000000000000e+00, -4.5000000000000000e+00);
+  auto test09 = 1.0000025000111110e+00 - __lerch_delta_vanwijngaarden_sum( 1.0000000000000001e-05,  2.0000000000000000e+00,  1.0000000000000000e+00);
+  auto test10 = 9.9998425044098438e-01 - __lerch_delta_vanwijngaarden_sum(-6.3000000000000000e-05,  2.0000000000000000e+00,  1.0000000000000000e+00);
+  auto test11 = 6.5909228798196373e-01 - __lerch_delta_vanwijngaarden_sum( 3.4709929976435479e-06,  1.0000000000000000e+00,  1.5172413793103448e+00);
+  auto test12 = 2.5880201290103731e+17 - __lerch_delta_vanwijngaarden_sum( 2.9999999999999997e-04,  2.0000000000000000e+00, -3.0000000000000102e+00);
 
   auto s = 1.0;
   auto a = 2.0;
