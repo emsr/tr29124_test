@@ -175,17 +175,17 @@ float \hyperlink{group__gnu__math__spec__func_ga901091e0e7ce7d6113ae6a86f4865a92
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gae90c13ee690ebaf10a18a900fe2646f9}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dilogl} (long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{group__gnu__math__spec__func_ga87f600ab9980dea8c3d06c70adba58f3}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+beta} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{group__gnu__math__spec__func_ga87466a2d429a2815d794acc21c882b08}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+beta} (\+\_\+\+Tp \+\_\+\+\_\+s)
 \item 
-float \hyperlink{group__gnu__math__spec__func_ga33e76ff6f8c24c530ad5941ce384d3dd}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+betaf} (float \+\_\+\+\_\+x)
+float \hyperlink{group__gnu__math__spec__func_ga9bb40e20b18e3eb822e70af955940830}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+betaf} (float \+\_\+\+\_\+s)
 \item 
-long double \hyperlink{group__gnu__math__spec__func_ga210f1cc30defa00ceb6213054893df42}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+betal} (long double \+\_\+\+\_\+x)
+long double \hyperlink{group__gnu__math__spec__func_gaed6fd85a4577f4de66d74742a1850a13}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+betal} (long double \+\_\+\+\_\+s)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{group__gnu__math__spec__func_ga31b1fde4c1d62963c478d3464adb3283}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+eta} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{group__gnu__math__spec__func_gae46e26e4107675d285c79a2d6202e6c7}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+eta} (\+\_\+\+Tp \+\_\+\+\_\+s)
 \item 
-float \hyperlink{group__gnu__math__spec__func_gaf4d7781d0d5e6071b2edd26b30d1c3f9}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+etaf} (float \+\_\+\+\_\+x)
+float \hyperlink{group__gnu__math__spec__func_ga6f05d076600b1de9193e586cf89547c9}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+etaf} (float \+\_\+\+\_\+s)
 \item 
-long double \hyperlink{group__gnu__math__spec__func_ga1b7fa6ad635973504ef5caaa3fa4d44e}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+etal} (long double \+\_\+\+\_\+x)
+long double \hyperlink{group__gnu__math__spec__func_ga408e2267b648f29445522dbafb7a0e1a}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+etal} (long double \+\_\+\+\_\+s)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga206cdf1ae7f9a0df3048af18892b8ba8}{\+\_\+\+\_\+gnu\+\_\+cxx\+::double\+\_\+factorial} (int \+\_\+\+\_\+n)
 \item 
@@ -623,9 +623,23 @@ Definition at line 1629 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga8eff81346e95e9987002ea52fe1e29a7}
+Return the Airy function $ Ai(x) $ of real argument $ x $.
+
+The Airy function is defined by\+: \[ Ai(x) = \frac{1}{\pi}\int_0^\infty \cos(\frac{t^3}{3} + xt)dt \]
 
 
-Definition at line 2243 of file specfun.\+h.
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Tp} & The real type of the argument \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+x} & The argument \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 2540 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaf317ba724c44b3a8271fe341d9870173}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!airy\+\_\+aif@{airy\+\_\+aif}}
 \index{airy\+\_\+aif@{airy\+\_\+aif}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -634,9 +648,14 @@ Definition at line 2243 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaf317ba724c44b3a8271fe341d9870173}
+Return the Airy function $ Ai(x) $ for {\ttfamily float} argument $ x $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga8eff81346e95e9987002ea52fe1e29a7}{airy\+\_\+ai} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 2223 of file specfun.\+h.
+Definition at line 2506 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga800fdb61c672ae1831f4ca4250d657de}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!airy\+\_\+ail@{airy\+\_\+ail}}
 \index{airy\+\_\+ail@{airy\+\_\+ail}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -645,9 +664,14 @@ Definition at line 2223 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga800fdb61c672ae1831f4ca4250d657de}
+Return the Airy function $ Ai(x) $ for {\ttfamily long double} argument $ x $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga8eff81346e95e9987002ea52fe1e29a7}{airy\+\_\+ai} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 2231 of file specfun.\+h.
+Definition at line 2520 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga65253611eb5aec804f9021b085be2a48}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!airy\+\_\+bi@{airy\+\_\+bi}}
 \index{airy\+\_\+bi@{airy\+\_\+bi}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -656,9 +680,23 @@ Definition at line 2231 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga65253611eb5aec804f9021b085be2a48}
+Return the Airy function $ Bi(x) $ of real argument $ x $.
+
+The Airy function is defined by\+: \[ Bi(x) = frac{1}{\pi}\int_0^\infty \left[ \exp(-\frac{t^3}{3} + xt) \sin(\frac{t^3}{3} + xt) \right] dt \]
 
 
-Definition at line 2274 of file specfun.\+h.
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Tp} & The real type of the argument \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+x} & The argument \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 2591 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga2ade465827bdba7370abbcce78e54912}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!airy\+\_\+bif@{airy\+\_\+bif}}
 \index{airy\+\_\+bif@{airy\+\_\+bif}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -667,9 +705,14 @@ Definition at line 2274 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga2ade465827bdba7370abbcce78e54912}
+Return the Airy function $ Bi(x) $ for {\ttfamily float} argument $ x $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga65253611eb5aec804f9021b085be2a48}{airy\+\_\+bi} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 2254 of file specfun.\+h.
+Definition at line 2556 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga59240b3f40177e5187f3f194f624f0f8}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!airy\+\_\+bil@{airy\+\_\+bil}}
 \index{airy\+\_\+bil@{airy\+\_\+bil}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -678,9 +721,14 @@ Definition at line 2254 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga59240b3f40177e5187f3f194f624f0f8}
+Return the Airy function $ Bi(x) $ for {\ttfamily long double} argument $ x $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga65253611eb5aec804f9021b085be2a48}{airy\+\_\+bi} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 2262 of file specfun.\+h.
+Definition at line 2570 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga3fc87e918adf978bfdc26a182af0e6ed}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!bernoulli@{bernoulli}}
 \index{bernoulli@{bernoulli}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -700,7 +748,7 @@ The Bernoulli numbers are defined by \[ \]
 \end{DoxyParams}
 
 
-Definition at line 3239 of file specfun.\+h.
+Definition at line 3556 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gabcd77f012ae74989c4bb9ca61978481d}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!bernoullif@{bernoullif}}
 \index{bernoullif@{bernoullif}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -711,7 +759,7 @@ Definition at line 3239 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gabcd77f012ae74989c4bb9ca61978481d}
 
 
-Definition at line 3220 of file specfun.\+h.
+Definition at line 3537 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaac8f04abfdd6b744d11cb73ec1f564b1}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!bernoullil@{bernoullil}}
 \index{bernoullil@{bernoullil}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -722,7 +770,7 @@ Definition at line 3220 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaac8f04abfdd6b744d11cb73ec1f564b1}
 
 
-Definition at line 3224 of file specfun.\+h.
+Definition at line 3541 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga57a15003ded8e0e808b21d4a17a7803e}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!bincoef@{bincoef}}
 \index{bincoef@{bincoef}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -734,7 +782,7 @@ Definition at line 3224 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga57a15003ded8e0e808b21d4a17a7803e}
 
 
-Definition at line 3190 of file specfun.\+h.
+Definition at line 3507 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga20ff8c4c82808c78c299634d02f3f8bd}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!bincoeff@{bincoeff}}
 \index{bincoeff@{bincoeff}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -746,7 +794,7 @@ Definition at line 3190 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga20ff8c4c82808c78c299634d02f3f8bd}
 
 
-Definition at line 3178 of file specfun.\+h.
+Definition at line 3495 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga6874da4660b1ef35c03e28bf09e81796}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!bincoefl@{bincoefl}}
 \index{bincoefl@{bincoefl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -758,7 +806,7 @@ Definition at line 3178 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga6874da4660b1ef35c03e28bf09e81796}
 
 
-Definition at line 3182 of file specfun.\+h.
+Definition at line 3499 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gad8769048d3a0eb2adcfcfeaa10af37fe}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!chebyshev\+\_\+t@{chebyshev\+\_\+t}}
 \index{chebyshev\+\_\+t@{chebyshev\+\_\+t}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -774,9 +822,9 @@ The Chebyshev polynomials of the first kind is defined by \[ \]
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+n} & \\
+{\em \+\_\+\+\_\+n} & The degree \\
 \hline
-{\em \+\_\+\+\_\+x} & \\
+{\em \+\_\+\+\_\+x} & The argument \\
 \hline
 \end{DoxyParams}
 
@@ -831,9 +879,9 @@ The Chebyshev polynomials of the second kind is defined by \[ \]
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+n} & \\
+{\em \+\_\+\+\_\+n} & The degree \\
 \hline
-{\em \+\_\+\+\_\+x} & \\
+{\em \+\_\+\+\_\+x} & The argument \\
 \hline
 \end{DoxyParams}
 
@@ -888,9 +936,9 @@ The Chebyshev polynomials of the third kind is defined by \[ \]
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+n} & \\
+{\em \+\_\+\+\_\+n} & The degree \\
 \hline
-{\em \+\_\+\+\_\+x} & \\
+{\em \+\_\+\+\_\+x} & The argument \\
 \hline
 \end{DoxyParams}
 
@@ -945,9 +993,9 @@ The Chebyshev polynomials of the fourth kind is defined by \[ \]
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+n} & \\
+{\em \+\_\+\+\_\+n} & The degree \\
 \hline
-{\em \+\_\+\+\_\+x} & \\
+{\em \+\_\+\+\_\+x} & The argument \\
 \hline
 \end{DoxyParams}
 
@@ -1009,7 +1057,7 @@ The Clausen function is defined by \[ \]
 \end{DoxyParams}
 
 
-Definition at line 3959 of file specfun.\+h.
+Definition at line 4287 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga154f5baa4a7799557b7e7d32dfc73285}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!clausen@{clausen}}
 \index{clausen@{clausen}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1021,7 +1069,7 @@ Definition at line 3959 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga154f5baa4a7799557b7e7d32dfc73285}
 
 
-Definition at line 3980 of file specfun.\+h.
+Definition at line 4308 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga2e89f9758322054738dacf686f6ce974}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!clausen\+\_\+c@{clausen\+\_\+c}}
 \index{clausen\+\_\+c@{clausen\+\_\+c}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1044,7 +1092,7 @@ The Clausen cosine function is defined by \[ \]
 \end{DoxyParams}
 
 
-Definition at line 3920 of file specfun.\+h.
+Definition at line 4248 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga515b9b6bca8f97e696ac5be85a44b3bd}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!clausen\+\_\+cf@{clausen\+\_\+cf}}
 \index{clausen\+\_\+cf@{clausen\+\_\+cf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1061,7 +1109,7 @@ Return the Clausen cosine function of order {\ttfamily m} and real argument {\tt
 \end{DoxySeeAlso}
 
 
-Definition at line 3895 of file specfun.\+h.
+Definition at line 4223 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga5ff89833dc529ca3de5099e1b9c8525f}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!clausen\+\_\+cl@{clausen\+\_\+cl}}
 \index{clausen\+\_\+cl@{clausen\+\_\+cl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1078,7 +1126,7 @@ Return the Clausen cosine function of order {\ttfamily m} and real argument {\tt
 \end{DoxySeeAlso}
 
 
-Definition at line 3904 of file specfun.\+h.
+Definition at line 4232 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga124827c09e71d83eb11b9e3282739475}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!clausen\+\_\+s@{clausen\+\_\+s}}
 \index{clausen\+\_\+s@{clausen\+\_\+s}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1101,7 +1149,7 @@ The Clausen sine function is defined by \[ \]
 \end{DoxyParams}
 
 
-Definition at line 3881 of file specfun.\+h.
+Definition at line 4209 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga2308b5828b5a8003d16cfa0f90826f94}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!clausen\+\_\+sf@{clausen\+\_\+sf}}
 \index{clausen\+\_\+sf@{clausen\+\_\+sf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1118,7 +1166,7 @@ Return the Clausen sine function of order {\ttfamily m} and real argument {\ttfa
 \end{DoxySeeAlso}
 
 
-Definition at line 3856 of file specfun.\+h.
+Definition at line 4184 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga6eb205278e3807367b62e07c3f39d915}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!clausen\+\_\+sl@{clausen\+\_\+sl}}
 \index{clausen\+\_\+sl@{clausen\+\_\+sl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1135,7 +1183,7 @@ Return the Clausen sine function of order {\ttfamily m} and real argument {\ttfa
 \end{DoxySeeAlso}
 
 
-Definition at line 3865 of file specfun.\+h.
+Definition at line 4193 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga9e228490e55e7936f77ae7a5ef9821dc}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!clausenf@{clausenf}}
 \index{clausenf@{clausenf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1152,7 +1200,7 @@ Return the Clausen function of integer order {\ttfamily m} and complex argument 
 \end{DoxySeeAlso}
 
 
-Definition at line 3934 of file specfun.\+h.
+Definition at line 4262 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga769ee593c5f1c1d8148abb9bebe50821}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!clausenf@{clausenf}}
 \index{clausenf@{clausenf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1164,7 +1212,7 @@ Definition at line 3934 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga769ee593c5f1c1d8148abb9bebe50821}
 
 
-Definition at line 3968 of file specfun.\+h.
+Definition at line 4296 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaac0a4d039044c04cd26c9b8559c441fd}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!clausenl@{clausenl}}
 \index{clausenl@{clausenl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1181,7 +1229,7 @@ Return the Clausen function of integer order {\ttfamily m} and complex argument 
 \end{DoxySeeAlso}
 
 
-Definition at line 3943 of file specfun.\+h.
+Definition at line 4271 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga6e1e9929ace5a66d970c308554473a26}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!clausenl@{clausenl}}
 \index{clausenl@{clausenl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1193,7 +1241,7 @@ Definition at line 3943 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga6e1e9929ace5a66d970c308554473a26}
 
 
-Definition at line 3972 of file specfun.\+h.
+Definition at line 4300 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gad0fb35dfc5aef8ba2ba5fb88da1192c7}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!comp\+\_\+ellint\+\_\+d@{comp\+\_\+ellint\+\_\+d}}
 \index{comp\+\_\+ellint\+\_\+d@{comp\+\_\+ellint\+\_\+d}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1213,7 +1261,7 @@ The complete Legendre elliptic integral D is defined by \[ D(k) = \int_0^{\pi/2}
 \end{DoxyParams}
 
 
-Definition at line 3388 of file specfun.\+h.
+Definition at line 3705 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga34ac6488b0e7531d5d4b7a8e31ff864e}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!comp\+\_\+ellint\+\_\+df@{comp\+\_\+ellint\+\_\+df}}
 \index{comp\+\_\+ellint\+\_\+df@{comp\+\_\+ellint\+\_\+df}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1224,7 +1272,7 @@ Definition at line 3388 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga34ac6488b0e7531d5d4b7a8e31ff864e}
 
 
-Definition at line 3369 of file specfun.\+h.
+Definition at line 3686 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga494931ec0a271b79f1fdcfdf929e3138}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!comp\+\_\+ellint\+\_\+dl@{comp\+\_\+ellint\+\_\+dl}}
 \index{comp\+\_\+ellint\+\_\+dl@{comp\+\_\+ellint\+\_\+dl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1235,7 +1283,7 @@ Definition at line 3369 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga494931ec0a271b79f1fdcfdf929e3138}
 
 
-Definition at line 3373 of file specfun.\+h.
+Definition at line 3690 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga55ae30b4f8ff15017d18a80050e14e38}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!comp\+\_\+ellint\+\_\+rf@{comp\+\_\+ellint\+\_\+rf}}
 \index{comp\+\_\+ellint\+\_\+rf@{comp\+\_\+ellint\+\_\+rf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1252,7 +1300,7 @@ Return the complete Carlson elliptic function $ R_F(x,y,z) $ for {\ttfamily floa
 \end{DoxySeeAlso}
 
 
-Definition at line 2395 of file specfun.\+h.
+Definition at line 2712 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gae1d468487f1711e91719a9c6392f3c35}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!comp\+\_\+ellint\+\_\+rf@{comp\+\_\+ellint\+\_\+rf}}
 \index{comp\+\_\+ellint\+\_\+rf@{comp\+\_\+ellint\+\_\+rf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1269,7 +1317,7 @@ Return the complete Carlson elliptic function $ R_F(x,y) $ for {\ttfamily long d
 \end{DoxySeeAlso}
 
 
-Definition at line 2405 of file specfun.\+h.
+Definition at line 2722 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga98dd868dcb97e26971dfa8ac4db24df3}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!comp\+\_\+ellint\+\_\+rf@{comp\+\_\+ellint\+\_\+rf}}
 \index{comp\+\_\+ellint\+\_\+rf@{comp\+\_\+ellint\+\_\+rf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1292,7 +1340,7 @@ The complete Carlson elliptic function of the first kind is defined by\+: \[ R_F
 \end{DoxyParams}
 
 
-Definition at line 2423 of file specfun.\+h.
+Definition at line 2740 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga978f8eec6e5edc918b243925dbacb65b}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!comp\+\_\+ellint\+\_\+rg@{comp\+\_\+ellint\+\_\+rg}}
 \index{comp\+\_\+ellint\+\_\+rg@{comp\+\_\+ellint\+\_\+rg}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1309,7 +1357,7 @@ Return the Carlson complementary elliptic function $ R_G(x,y) $.
 \end{DoxySeeAlso}
 
 
-Definition at line 2628 of file specfun.\+h.
+Definition at line 2945 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaca5fa8ee8125afc8f35ec6b27806e873}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!comp\+\_\+ellint\+\_\+rg@{comp\+\_\+ellint\+\_\+rg}}
 \index{comp\+\_\+ellint\+\_\+rg@{comp\+\_\+ellint\+\_\+rg}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1326,7 +1374,7 @@ Return the Carlson complementary elliptic function $ R_G(x,y) $.
 \end{DoxySeeAlso}
 
 
-Definition at line 2637 of file specfun.\+h.
+Definition at line 2954 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga2c65744cf12dc54d7176258f791a87da}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!comp\+\_\+ellint\+\_\+rg@{comp\+\_\+ellint\+\_\+rg}}
 \index{comp\+\_\+ellint\+\_\+rg@{comp\+\_\+ellint\+\_\+rg}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1349,7 +1397,7 @@ The complete Carlson elliptic function is defined by\+: \[ R_G(x,y) = R_G(x,y,y)
 \end{DoxyParams}
 
 
-Definition at line 2656 of file specfun.\+h.
+Definition at line 2973 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga2e17ccbbc4cbb99c987e875531d4a3de}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!conf\+\_\+hyperg@{conf\+\_\+hyperg}}
 \index{conf\+\_\+hyperg@{conf\+\_\+hyperg}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1577,9 +1625,26 @@ Definition at line 1536 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+z}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga385def5d98679e243626fb78a841795b}
+Return the cylindrical Hankel function of the first kind $ H^{(1)}_n(x) $ of real order $ \nu $ and argument $ x >= 0 $.
+
+The cylindrical Hankel function of the first kind is defined by\+: \[ H^{(1)}_\nu(x) = \left(\frac{\pi}{2x} \right) ^{1/2} \left[ J_{n+1/2}(x) + iN_{n+1/2}(x) \right] \] where $ J_\nu(x) $ and $ N_\nu(x) $ are the cylindrical Bessel and Neumann functions respectively (\begin{DoxySeeAlso}{See also}
+cyl\+\_\+bessel and cyl\+\_\+neumann).
+\end{DoxySeeAlso}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Tp} & The real type of the argument \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+nu} & The real order \\
+\hline
+{\em \+\_\+\+\_\+z} & The real argument \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 2083 of file specfun.\+h.
+Definition at line 2243 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga41f7964d4177b4299caf3769271814d2}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!cyl\+\_\+hankel\+\_\+1@{cyl\+\_\+hankel\+\_\+1}}
 \index{cyl\+\_\+hankel\+\_\+1@{cyl\+\_\+hankel\+\_\+1}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1602,7 +1667,7 @@ The cylindrical Hankel function of the first kind is defined by \[ H^{(1)}_\nu(x
 \end{DoxyParams}
 
 
-Definition at line 3582 of file specfun.\+h.
+Definition at line 3899 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga89758ed03e56567baa62b90cc4784f71}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!cyl\+\_\+hankel\+\_\+1f@{cyl\+\_\+hankel\+\_\+1f}}
 \index{cyl\+\_\+hankel\+\_\+1f@{cyl\+\_\+hankel\+\_\+1f}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1612,9 +1677,14 @@ Definition at line 3582 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+z}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga89758ed03e56567baa62b90cc4784f71}
+Return the cylindrical Hankel function of the first kind $ H^{(1)}_\nu(x) $ of {\ttfamily float} order $ \nu $ and argument $ x >= 0 $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga385def5d98679e243626fb78a841795b}{cyl\+\_\+hankel\+\_\+1} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 2071 of file specfun.\+h.
+Definition at line 2210 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga810e021a3f11c1b2253c15c6f4d41143}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!cyl\+\_\+hankel\+\_\+1f@{cyl\+\_\+hankel\+\_\+1f}}
 \index{cyl\+\_\+hankel\+\_\+1f@{cyl\+\_\+hankel\+\_\+1f}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1631,7 +1701,7 @@ Return the complex cylindrical Hankel function of the first kind of complex orde
 \end{DoxySeeAlso}
 
 
-Definition at line 3555 of file specfun.\+h.
+Definition at line 3872 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gacb49c66b4267fbc56906db02f14365f2}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!cyl\+\_\+hankel\+\_\+1l@{cyl\+\_\+hankel\+\_\+1l}}
 \index{cyl\+\_\+hankel\+\_\+1l@{cyl\+\_\+hankel\+\_\+1l}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1641,9 +1711,14 @@ Definition at line 3555 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+z}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gacb49c66b4267fbc56906db02f14365f2}
+Return the cylindrical Hankel function of the first kind $ H^{(1)}_\nu(x) $ of {\ttfamily long double} order $ \nu $ and argument $ x >= 0 $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga385def5d98679e243626fb78a841795b}{cyl\+\_\+hankel\+\_\+1} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 2075 of file specfun.\+h.
+Definition at line 2221 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga6900f79ec70673bcb001538aec74e07c}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!cyl\+\_\+hankel\+\_\+1l@{cyl\+\_\+hankel\+\_\+1l}}
 \index{cyl\+\_\+hankel\+\_\+1l@{cyl\+\_\+hankel\+\_\+1l}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1660,7 +1735,7 @@ Return the complex cylindrical Hankel function of the first kind of complex orde
 \end{DoxySeeAlso}
 
 
-Definition at line 3565 of file specfun.\+h.
+Definition at line 3882 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga307fd77aa8f0ed2028a9fab88976ca54}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!cyl\+\_\+hankel\+\_\+2@{cyl\+\_\+hankel\+\_\+2}}
 \index{cyl\+\_\+hankel\+\_\+2@{cyl\+\_\+hankel\+\_\+2}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1670,9 +1745,26 @@ Definition at line 3565 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+z}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga307fd77aa8f0ed2028a9fab88976ca54}
+Return the cylindrical Hankel function of the second kind $ H^{(2)}_n(x) $ of real order $ \nu $ and argument $ x >= 0 $.
+
+The cylindrical Hankel function of the second kind is defined by\+: \[ H^{(2)}_\nu(x) = \left(\frac{\pi}{2x} \right) ^{1/2} \left[ J_{n+1/2}(x) - iN_{n+1/2}(x) \right] \] where $ J_\nu(x) $ and $ N_\nu(x) $ are the cylindrical Bessel and Neumann functions respectively (\begin{DoxySeeAlso}{See also}
+cyl\+\_\+bessel and cyl\+\_\+neumann).
+\end{DoxySeeAlso}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Tp} & The real type of the argument \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+nu} & The real order \\
+\hline
+{\em \+\_\+\+\_\+z} & The real argument \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 2104 of file specfun.\+h.
+Definition at line 2292 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gafb943392dd7cee0114fca8d36cb1318e}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!cyl\+\_\+hankel\+\_\+2@{cyl\+\_\+hankel\+\_\+2}}
 \index{cyl\+\_\+hankel\+\_\+2@{cyl\+\_\+hankel\+\_\+2}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1695,7 +1787,7 @@ The cylindrical Hankel function of the second kind is defined by \[ H^{(2)}_\nu(
 \end{DoxyParams}
 
 
-Definition at line 3624 of file specfun.\+h.
+Definition at line 3941 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga2b75361870975c47d57bed71b4064ce7}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!cyl\+\_\+hankel\+\_\+2f@{cyl\+\_\+hankel\+\_\+2f}}
 \index{cyl\+\_\+hankel\+\_\+2f@{cyl\+\_\+hankel\+\_\+2f}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1705,9 +1797,14 @@ Definition at line 3624 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+z}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga2b75361870975c47d57bed71b4064ce7}
+Return the cylindrical Hankel function of the second kind $ H^{(2)}_\nu(x) $ of {\ttfamily float} order $ \nu $ and argument $ x >= 0 $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga307fd77aa8f0ed2028a9fab88976ca54}{cyl\+\_\+hankel\+\_\+2} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 2092 of file specfun.\+h.
+Definition at line 2259 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gae21f9d09b937eaf9729982da5a382f20}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!cyl\+\_\+hankel\+\_\+2f@{cyl\+\_\+hankel\+\_\+2f}}
 \index{cyl\+\_\+hankel\+\_\+2f@{cyl\+\_\+hankel\+\_\+2f}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1724,7 +1821,7 @@ Return the complex cylindrical Hankel function of the second kind of complex ord
 \end{DoxySeeAlso}
 
 
-Definition at line 3597 of file specfun.\+h.
+Definition at line 3914 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga4babb91ca6906f237e8bd1f0f1a10509}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!cyl\+\_\+hankel\+\_\+2l@{cyl\+\_\+hankel\+\_\+2l}}
 \index{cyl\+\_\+hankel\+\_\+2l@{cyl\+\_\+hankel\+\_\+2l}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1734,9 +1831,14 @@ Definition at line 3597 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+z}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga4babb91ca6906f237e8bd1f0f1a10509}
+Return the cylindrical Hankel function of the second kind $ H^{(2)}_\nu(x) $ of {\ttfamily long double} order $ \nu $ and argument $ x >= 0 $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga307fd77aa8f0ed2028a9fab88976ca54}{cyl\+\_\+hankel\+\_\+2} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 2096 of file specfun.\+h.
+Definition at line 2270 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga1ac6434925254bd02e108f5a4e52b34d}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!cyl\+\_\+hankel\+\_\+2l@{cyl\+\_\+hankel\+\_\+2l}}
 \index{cyl\+\_\+hankel\+\_\+2l@{cyl\+\_\+hankel\+\_\+2l}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1753,7 +1855,7 @@ Return the complex cylindrical Hankel function of the second kind of complex ord
 \end{DoxySeeAlso}
 
 
-Definition at line 3607 of file specfun.\+h.
+Definition at line 3924 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga30e46cb24428cfdb858c52fec431dee4}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!dawson@{dawson}}
 \index{dawson@{dawson}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1773,7 +1875,7 @@ The Dawson integral is defined by\+: \[ F(x) = e^{-x^2}\int_0^x e^{y^2}dy \] and
 \end{DoxyParams}
 
 
-Definition at line 2966 of file specfun.\+h.
+Definition at line 3283 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga0a1b8e6760b8c7869127d41d96209318}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!dawsonf@{dawsonf}}
 \index{dawsonf@{dawsonf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1789,7 +1891,7 @@ Return the Dawson integral, $ F(x) $, for {\ttfamily float} argument {\ttfamily 
 \end{DoxySeeAlso}
 
 
-Definition at line 2938 of file specfun.\+h.
+Definition at line 3255 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga6647a7444ff9c7c1f2a8ed36761bfeb2}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!dawsonl@{dawsonl}}
 \index{dawsonl@{dawsonl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1805,7 +1907,7 @@ Return the Dawson integral, $ F(x) $, for {\ttfamily long double} argument {\ttf
 \end{DoxySeeAlso}
 
 
-Definition at line 2947 of file specfun.\+h.
+Definition at line 3264 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga6c698fd735df9d76905e2cad97f2316a}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!digamma@{digamma}}
 \index{digamma@{digamma}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1816,7 +1918,7 @@ Definition at line 2947 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga6c698fd735df9d76905e2cad97f2316a}
 
 
-Definition at line 2339 of file specfun.\+h.
+Definition at line 2656 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gadb2a40ca78a0d909126734c75eabd86f}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!digammaf@{digammaf}}
 \index{digammaf@{digammaf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1827,7 +1929,7 @@ Definition at line 2339 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gadb2a40ca78a0d909126734c75eabd86f}
 
 
-Definition at line 2327 of file specfun.\+h.
+Definition at line 2644 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gae081ad08e1a42ffaad63b87b9f579dcf}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!digammal@{digammal}}
 \index{digammal@{digammal}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1838,7 +1940,7 @@ Definition at line 2327 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gae081ad08e1a42ffaad63b87b9f579dcf}
 
 
-Definition at line 2331 of file specfun.\+h.
+Definition at line 2648 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga8fceba3ecc618971e0e3c089d8dc49cf}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!dilog@{dilog}}
 \index{dilog@{dilog}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1858,7 +1960,7 @@ The dilogarithm is defined by\+: \[ Li_2(x) = \sum_{k=1}^{\infty}\frac{x^k}{k^2}
 \end{DoxyParams}
 
 
-Definition at line 2380 of file specfun.\+h.
+Definition at line 2697 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga901091e0e7ce7d6113ae6a86f4865a92}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!dilogf@{dilogf}}
 \index{dilogf@{dilogf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1874,7 +1976,7 @@ Return the dilogarithm function $ \psi(z) $ for {\ttfamily float} argument.
 \end{DoxySeeAlso}
 
 
-Definition at line 2354 of file specfun.\+h.
+Definition at line 2671 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gae90c13ee690ebaf10a18a900fe2646f9}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!dilogl@{dilogl}}
 \index{dilogl@{dilogl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1890,101 +1992,101 @@ Return the dilogarithm function $ \psi(z) $ for {\ttfamily long double} argument
 \end{DoxySeeAlso}
 
 
-Definition at line 2364 of file specfun.\+h.
+Definition at line 2681 of file specfun.\+h.
 
-\hypertarget{group__gnu__math__spec__func_ga87f600ab9980dea8c3d06c70adba58f3}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!dirichlet\+\_\+beta@{dirichlet\+\_\+beta}}
+\hypertarget{group__gnu__math__spec__func_ga87466a2d429a2815d794acc21c882b08}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!dirichlet\+\_\+beta@{dirichlet\+\_\+beta}}
 \index{dirichlet\+\_\+beta@{dirichlet\+\_\+beta}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
 \subsubsection[{dirichlet\+\_\+beta}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ \+\_\+\+Tp \+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+beta (
 \begin{DoxyParamCaption}
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
+\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+s}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga87f600ab9980dea8c3d06c70adba58f3}
-Return the Dirichlet beta function of real argument {\ttfamily x}.
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga87466a2d429a2815d794acc21c882b08}
+Return the Dirichlet beta function of real argument {\ttfamily s}.
 
-The Dirichlet beta function is defined by \[ \]
+The Dirichlet beta function is defined by\+: \[ \beta(s) = \sum_{k=0}^\infty \frac{(-1)^k}{(2k+1)^s} \] An important reflection formula is\+: \[ \beta(1-s) = \left( \frac{2}{\pi}\right)^s \sin(\frac{\pi s}{2}) \Gamma(s) \beta(s) \]
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+x} & \\
+{\em \+\_\+\+\_\+s} & \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 3842 of file specfun.\+h.
+Definition at line 4170 of file specfun.\+h.
 
-\hypertarget{group__gnu__math__spec__func_ga33e76ff6f8c24c530ad5941ce384d3dd}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!dirichlet\+\_\+betaf@{dirichlet\+\_\+betaf}}
+\hypertarget{group__gnu__math__spec__func_ga9bb40e20b18e3eb822e70af955940830}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!dirichlet\+\_\+betaf@{dirichlet\+\_\+betaf}}
 \index{dirichlet\+\_\+betaf@{dirichlet\+\_\+betaf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
 \subsubsection[{dirichlet\+\_\+betaf}]{\setlength{\rightskip}{0pt plus 5cm}float \+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+betaf (
 \begin{DoxyParamCaption}
-\item[{float}]{\+\_\+\+\_\+x}
+\item[{float}]{\+\_\+\+\_\+s}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga33e76ff6f8c24c530ad5941ce384d3dd}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga9bb40e20b18e3eb822e70af955940830}
 
 
-Definition at line 3823 of file specfun.\+h.
+Definition at line 4146 of file specfun.\+h.
 
-\hypertarget{group__gnu__math__spec__func_ga210f1cc30defa00ceb6213054893df42}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!dirichlet\+\_\+betal@{dirichlet\+\_\+betal}}
+\hypertarget{group__gnu__math__spec__func_gaed6fd85a4577f4de66d74742a1850a13}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!dirichlet\+\_\+betal@{dirichlet\+\_\+betal}}
 \index{dirichlet\+\_\+betal@{dirichlet\+\_\+betal}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
 \subsubsection[{dirichlet\+\_\+betal}]{\setlength{\rightskip}{0pt plus 5cm}long double \+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+betal (
 \begin{DoxyParamCaption}
-\item[{long double}]{\+\_\+\+\_\+x}
+\item[{long double}]{\+\_\+\+\_\+s}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga210f1cc30defa00ceb6213054893df42}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaed6fd85a4577f4de66d74742a1850a13}
 
 
-Definition at line 3827 of file specfun.\+h.
+Definition at line 4150 of file specfun.\+h.
 
-\hypertarget{group__gnu__math__spec__func_ga31b1fde4c1d62963c478d3464adb3283}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!dirichlet\+\_\+eta@{dirichlet\+\_\+eta}}
+\hypertarget{group__gnu__math__spec__func_gae46e26e4107675d285c79a2d6202e6c7}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!dirichlet\+\_\+eta@{dirichlet\+\_\+eta}}
 \index{dirichlet\+\_\+eta@{dirichlet\+\_\+eta}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
 \subsubsection[{dirichlet\+\_\+eta}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ \+\_\+\+Tp \+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+eta (
 \begin{DoxyParamCaption}
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
+\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+s}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga31b1fde4c1d62963c478d3464adb3283}
-Return the Dirichlet eta function of real argument {\ttfamily x}.
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gae46e26e4107675d285c79a2d6202e6c7}
+Return the Dirichlet eta function of real argument {\ttfamily s}.
 
-The Dirichlet eta function is defined by \[ \]
+The Dirichlet eta function is defined by \[ \eta(s) = \sum_{k=1}^\infty \frac{(-1)^k}{k^s} = \left( 1 - 2^{1-s} \right) \zeta(s) \] An important reflection formula is\+: \[ \eta(-s) = 2 \frac{1-2^{-s-1}}{1-2^{-s}} \pi^{-s-1} s \sin(\frac{\pi s}{2}) \Gamma(s) \eta(s+1) \]
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+x} & \\
+{\em \+\_\+\+\_\+s} & \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 3814 of file specfun.\+h.
+Definition at line 4137 of file specfun.\+h.
 
-\hypertarget{group__gnu__math__spec__func_gaf4d7781d0d5e6071b2edd26b30d1c3f9}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!dirichlet\+\_\+etaf@{dirichlet\+\_\+etaf}}
+\hypertarget{group__gnu__math__spec__func_ga6f05d076600b1de9193e586cf89547c9}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!dirichlet\+\_\+etaf@{dirichlet\+\_\+etaf}}
 \index{dirichlet\+\_\+etaf@{dirichlet\+\_\+etaf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
 \subsubsection[{dirichlet\+\_\+etaf}]{\setlength{\rightskip}{0pt plus 5cm}float \+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+etaf (
 \begin{DoxyParamCaption}
-\item[{float}]{\+\_\+\+\_\+x}
+\item[{float}]{\+\_\+\+\_\+s}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaf4d7781d0d5e6071b2edd26b30d1c3f9}
-Return the Dirichlet eta function of real argument {\ttfamily x}.
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga6f05d076600b1de9193e586cf89547c9}
+Return the Dirichlet eta function of real argument {\ttfamily s}.
 
 \begin{DoxySeeAlso}{See also}
-\hyperlink{group__gnu__math__spec__func_ga31b1fde4c1d62963c478d3464adb3283}{dirichlet\+\_\+eta} for details. 
+\hyperlink{group__gnu__math__spec__func_gae46e26e4107675d285c79a2d6202e6c7}{dirichlet\+\_\+eta} for details. 
 \end{DoxySeeAlso}
 
 
-Definition at line 3790 of file specfun.\+h.
+Definition at line 4107 of file specfun.\+h.
 
-\hypertarget{group__gnu__math__spec__func_ga1b7fa6ad635973504ef5caaa3fa4d44e}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!dirichlet\+\_\+etal@{dirichlet\+\_\+etal}}
+\hypertarget{group__gnu__math__spec__func_ga408e2267b648f29445522dbafb7a0e1a}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!dirichlet\+\_\+etal@{dirichlet\+\_\+etal}}
 \index{dirichlet\+\_\+etal@{dirichlet\+\_\+etal}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
 \subsubsection[{dirichlet\+\_\+etal}]{\setlength{\rightskip}{0pt plus 5cm}long double \+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+etal (
 \begin{DoxyParamCaption}
-\item[{long double}]{\+\_\+\+\_\+x}
+\item[{long double}]{\+\_\+\+\_\+s}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga1b7fa6ad635973504ef5caaa3fa4d44e}
-Return the Dirichlet eta function of real argument {\ttfamily x}.
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga408e2267b648f29445522dbafb7a0e1a}
+Return the Dirichlet eta function of real argument {\ttfamily s}.
 
 \begin{DoxySeeAlso}{See also}
-\hyperlink{group__gnu__math__spec__func_ga31b1fde4c1d62963c478d3464adb3283}{dirichlet\+\_\+eta} for details. 
+\hyperlink{group__gnu__math__spec__func_gae46e26e4107675d285c79a2d6202e6c7}{dirichlet\+\_\+eta} for details. 
 \end{DoxySeeAlso}
 
 
-Definition at line 3799 of file specfun.\+h.
+Definition at line 4116 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga206cdf1ae7f9a0df3048af18892b8ba8}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!double\+\_\+factorial@{double\+\_\+factorial}}
 \index{double\+\_\+factorial@{double\+\_\+factorial}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -1995,7 +2097,7 @@ Definition at line 3799 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga206cdf1ae7f9a0df3048af18892b8ba8}
 
 
-Definition at line 3127 of file specfun.\+h.
+Definition at line 3444 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga85ec284e603f32d18970bbdbb12d5150}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!double\+\_\+factorialf@{double\+\_\+factorialf}}
 \index{double\+\_\+factorialf@{double\+\_\+factorialf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2006,7 +2108,7 @@ Definition at line 3127 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga85ec284e603f32d18970bbdbb12d5150}
 
 
-Definition at line 3115 of file specfun.\+h.
+Definition at line 3432 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga0366730a4a775256217ef1cd9d0c3a04}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!double\+\_\+factoriall@{double\+\_\+factoriall}}
 \index{double\+\_\+factoriall@{double\+\_\+factoriall}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2017,7 +2119,7 @@ Definition at line 3115 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga0366730a4a775256217ef1cd9d0c3a04}
 
 
-Definition at line 3119 of file specfun.\+h.
+Definition at line 3436 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gac1210d62b8e17df7c68cce463850a98f}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+cel@{ellint\+\_\+cel}}
 \index{ellint\+\_\+cel@{ellint\+\_\+cel}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2046,7 +2148,7 @@ The Bulirsch complete elliptic integral is defined by \[ \]
 \end{DoxyParams}
 
 
-Definition at line 3540 of file specfun.\+h.
+Definition at line 3857 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga6d8fbef7853cf37de11278b1ff7127e8}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+celf@{ellint\+\_\+celf}}
 \index{ellint\+\_\+celf@{ellint\+\_\+celf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2060,7 +2162,7 @@ Definition at line 3540 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga6d8fbef7853cf37de11278b1ff7127e8}
 
 
-Definition at line 3517 of file specfun.\+h.
+Definition at line 3834 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaa5add699fb2b4b02e63f8725a3a79750}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+cell@{ellint\+\_\+cell}}
 \index{ellint\+\_\+cell@{ellint\+\_\+cell}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2074,7 +2176,7 @@ Definition at line 3517 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaa5add699fb2b4b02e63f8725a3a79750}
 
 
-Definition at line 3521 of file specfun.\+h.
+Definition at line 3838 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga6a594ffefbe4f238f98fa2190b03795f}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+d@{ellint\+\_\+d}}
 \index{ellint\+\_\+d@{ellint\+\_\+d}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2097,7 +2199,7 @@ The Legendre elliptic integral D is defined by \[ D(k,\phi) = \int_0^\phi \frac{
 \end{DoxyParams}
 
 
-Definition at line 3417 of file specfun.\+h.
+Definition at line 3734 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga02ed50be21fdd84ad6bed003f94a9e69}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+df@{ellint\+\_\+df}}
 \index{ellint\+\_\+df@{ellint\+\_\+df}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2109,7 +2211,7 @@ Definition at line 3417 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga02ed50be21fdd84ad6bed003f94a9e69}
 
 
-Definition at line 3397 of file specfun.\+h.
+Definition at line 3714 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaa34bcb8e316f2e8b2b2bf48cd89abd98}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+dl@{ellint\+\_\+dl}}
 \index{ellint\+\_\+dl@{ellint\+\_\+dl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2121,7 +2223,7 @@ Definition at line 3397 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaa34bcb8e316f2e8b2b2bf48cd89abd98}
 
 
-Definition at line 3401 of file specfun.\+h.
+Definition at line 3718 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaf47c2f4fec36c1be5c5e2887269593f0}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+el1@{ellint\+\_\+el1}}
 \index{ellint\+\_\+el1@{ellint\+\_\+el1}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2144,7 +2246,7 @@ The Bulirsch elliptic integral of the first kind is defined by \[ \]
 \end{DoxyParams}
 
 
-Definition at line 3446 of file specfun.\+h.
+Definition at line 3763 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga8d8342bb4f42c7fe09b5589c54d4e713}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+el1f@{ellint\+\_\+el1f}}
 \index{ellint\+\_\+el1f@{ellint\+\_\+el1f}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2156,7 +2258,7 @@ Definition at line 3446 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga8d8342bb4f42c7fe09b5589c54d4e713}
 
 
-Definition at line 3426 of file specfun.\+h.
+Definition at line 3743 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaeed1201e421be410460739048cba5cd8}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+el1l@{ellint\+\_\+el1l}}
 \index{ellint\+\_\+el1l@{ellint\+\_\+el1l}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2168,7 +2270,7 @@ Definition at line 3426 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaeed1201e421be410460739048cba5cd8}
 
 
-Definition at line 3430 of file specfun.\+h.
+Definition at line 3747 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga1a6bd1d29fe62172ddb40e200a2d0d1f}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+el2@{ellint\+\_\+el2}}
 \index{ellint\+\_\+el2@{ellint\+\_\+el2}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2197,7 +2299,7 @@ The Bulirsch elliptic integral of the second kind is defined by \[ \]
 \end{DoxyParams}
 
 
-Definition at line 3478 of file specfun.\+h.
+Definition at line 3795 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga0bf7469fe7ac92e9a2ffa0f92ea62248}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+el2f@{ellint\+\_\+el2f}}
 \index{ellint\+\_\+el2f@{ellint\+\_\+el2f}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2211,7 +2313,7 @@ Definition at line 3478 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga0bf7469fe7ac92e9a2ffa0f92ea62248}
 
 
-Definition at line 3455 of file specfun.\+h.
+Definition at line 3772 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga491439a09e6000659444f52dc3c9f215}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+el2l@{ellint\+\_\+el2l}}
 \index{ellint\+\_\+el2l@{ellint\+\_\+el2l}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2225,7 +2327,7 @@ Definition at line 3455 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga491439a09e6000659444f52dc3c9f215}
 
 
-Definition at line 3459 of file specfun.\+h.
+Definition at line 3776 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga62f3a824cc224012ed4328a2d3709dcc}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+el3@{ellint\+\_\+el3}}
 \index{ellint\+\_\+el3@{ellint\+\_\+el3}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2251,7 +2353,7 @@ The Bulirsch elliptic integral of the third kind is defined by \[ \]
 \end{DoxyParams}
 
 
-Definition at line 3508 of file specfun.\+h.
+Definition at line 3825 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga66131a8ecc14b5228a73a01121f60a35}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+el3f@{ellint\+\_\+el3f}}
 \index{ellint\+\_\+el3f@{ellint\+\_\+el3f}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2264,7 +2366,7 @@ Definition at line 3508 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga66131a8ecc14b5228a73a01121f60a35}
 
 
-Definition at line 3487 of file specfun.\+h.
+Definition at line 3804 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga0d90e66f799a2ebe4bec43eef0d53355}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+el3l@{ellint\+\_\+el3l}}
 \index{ellint\+\_\+el3l@{ellint\+\_\+el3l}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2277,7 +2379,7 @@ Definition at line 3487 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga0d90e66f799a2ebe4bec43eef0d53355}
 
 
-Definition at line 3491 of file specfun.\+h.
+Definition at line 3808 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga183d78859b56f93237567e6322164832}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+rc@{ellint\+\_\+rc}}
 \index{ellint\+\_\+rc@{ellint\+\_\+rc}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2307,7 +2409,7 @@ Based on Carlson\textquotesingle{}s algorithms\+:
 \end{DoxyParams}
 
 
-Definition at line 2515 of file specfun.\+h.
+Definition at line 2832 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaad5316092224ec3d92b66e79ef266adf}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+rcf@{ellint\+\_\+rcf}}
 \index{ellint\+\_\+rcf@{ellint\+\_\+rcf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2324,7 +2426,7 @@ Return the Carlson elliptic function $ R_C(x,y) $.
 \end{DoxySeeAlso}
 
 
-Definition at line 2481 of file specfun.\+h.
+Definition at line 2798 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga9b2f1cdeacd3615c702a77d995a0129c}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+rcl@{ellint\+\_\+rcl}}
 \index{ellint\+\_\+rcl@{ellint\+\_\+rcl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2341,7 +2443,7 @@ Return the Carlson elliptic function $ R_C(x,y) $.
 \end{DoxySeeAlso}
 
 
-Definition at line 2490 of file specfun.\+h.
+Definition at line 2807 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga812c4f543575006c6b555d1385b88d90}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+rd@{ellint\+\_\+rd}}
 \index{ellint\+\_\+rd@{ellint\+\_\+rd}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2374,7 +2476,7 @@ Based on Carlson\textquotesingle{}s algorithms\+:
 \end{DoxyParams}
 
 
-Definition at line 2614 of file specfun.\+h.
+Definition at line 2931 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga52e7cc797b9d199b7468cdbec6505357}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+rdf@{ellint\+\_\+rdf}}
 \index{ellint\+\_\+rdf@{ellint\+\_\+rdf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2392,7 +2494,7 @@ Return the Carlson elliptic function $ R_D(x,y,z) $.
 \end{DoxySeeAlso}
 
 
-Definition at line 2578 of file specfun.\+h.
+Definition at line 2895 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga68a38a5f320a7184cec4b120ddef6a65}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+rdl@{ellint\+\_\+rdl}}
 \index{ellint\+\_\+rdl@{ellint\+\_\+rdl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2410,7 +2512,7 @@ Return the Carlson elliptic function $ R_D(x,y,z) $.
 \end{DoxySeeAlso}
 
 
-Definition at line 2587 of file specfun.\+h.
+Definition at line 2904 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gad276bd7533a87ca6d658cebc00a11b0a}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+rf@{ellint\+\_\+rf}}
 \index{ellint\+\_\+rf@{ellint\+\_\+rf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2436,7 +2538,7 @@ The Carlson elliptic function of the first kind is defined by\+: \[ R_F(x,y,z) =
 \end{DoxyParams}
 
 
-Definition at line 2467 of file specfun.\+h.
+Definition at line 2784 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga39acf5c69a85f9b687478b32847156da}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+rff@{ellint\+\_\+rff}}
 \index{ellint\+\_\+rff@{ellint\+\_\+rff}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2454,7 +2556,7 @@ Return the Carlson elliptic function $ R_F(x,y,z) $ of the first kind for {\ttfa
 \end{DoxySeeAlso}
 
 
-Definition at line 2438 of file specfun.\+h.
+Definition at line 2755 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga38dd36b3db5bbe5da516d0cbe3ff1f21}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+rfl@{ellint\+\_\+rfl}}
 \index{ellint\+\_\+rfl@{ellint\+\_\+rfl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2472,7 +2574,7 @@ Return the Carlson elliptic function $ R_F(x,y,z) $ of the first kind for {\ttfa
 \end{DoxySeeAlso}
 
 
-Definition at line 2448 of file specfun.\+h.
+Definition at line 2765 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga9d3d53ace67dfa6126118fb780095a1f}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+rg@{ellint\+\_\+rg}}
 \index{ellint\+\_\+rg@{ellint\+\_\+rg}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2505,7 +2607,7 @@ Based on Carlson\textquotesingle{}s algorithms\+:
 \end{DoxyParams}
 
 
-Definition at line 2705 of file specfun.\+h.
+Definition at line 3022 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga7a4ab348bf312a3425501ac8a3d16494}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+rgf@{ellint\+\_\+rgf}}
 \index{ellint\+\_\+rgf@{ellint\+\_\+rgf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2523,7 +2625,7 @@ Return the Carlson elliptic function $ R_G(x,y) $.
 \end{DoxySeeAlso}
 
 
-Definition at line 2670 of file specfun.\+h.
+Definition at line 2987 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga563455d515ed845988552432108a21be}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+rgl@{ellint\+\_\+rgl}}
 \index{ellint\+\_\+rgl@{ellint\+\_\+rgl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2541,7 +2643,7 @@ Return the Carlson elliptic function $ R_G(x,y) $.
 \end{DoxySeeAlso}
 
 
-Definition at line 2679 of file specfun.\+h.
+Definition at line 2996 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga61c6d7f5b930400eeb8de455667d4292}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+rj@{ellint\+\_\+rj}}
 \index{ellint\+\_\+rj@{ellint\+\_\+rj}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2577,7 +2679,7 @@ Based on Carlson\textquotesingle{}s algorithms\+:
 \end{DoxyParams}
 
 
-Definition at line 2564 of file specfun.\+h.
+Definition at line 2881 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gace85b5190b04f57493878c5d672cfabd}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+rjf@{ellint\+\_\+rjf}}
 \index{ellint\+\_\+rjf@{ellint\+\_\+rjf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2596,7 +2698,7 @@ Return the Carlson elliptic function $ R_J(x,y,z,p) $.
 \end{DoxySeeAlso}
 
 
-Definition at line 2529 of file specfun.\+h.
+Definition at line 2846 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gab5405f1669b3ce8b560dc33aa5b97287}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellint\+\_\+rjl@{ellint\+\_\+rjl}}
 \index{ellint\+\_\+rjl@{ellint\+\_\+rjl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2615,7 +2717,7 @@ Return the Carlson elliptic function $ R_J(x,y,z,p) $.
 \end{DoxySeeAlso}
 
 
-Definition at line 2538 of file specfun.\+h.
+Definition at line 2855 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga7bfb34f8b5c0ed7c72040f9cb7034bba}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellnome@{ellnome}}
 \index{ellnome@{ellnome}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2635,7 +2737,7 @@ The elliptic nome function is defined by \[ \]
 \end{DoxyParams}
 
 
-Definition at line 4168 of file specfun.\+h.
+Definition at line 4496 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gad3ba08e5843ea0ec2bb9ddde3033adff}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellnomef@{ellnomef}}
 \index{ellnomef@{ellnomef}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2646,7 +2748,7 @@ Definition at line 4168 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gad3ba08e5843ea0ec2bb9ddde3033adff}
 
 
-Definition at line 4149 of file specfun.\+h.
+Definition at line 4477 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga0774570b24f654f8ae39e1865613a4e2}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ellnomel@{ellnomel}}
 \index{ellnomel@{ellnomel}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2657,7 +2759,7 @@ Definition at line 4149 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga0774570b24f654f8ae39e1865613a4e2}
 
 
-Definition at line 4153 of file specfun.\+h.
+Definition at line 4481 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga3696fc269b543a908d47bad7e98256e7}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!expint\+\_\+e1@{expint\+\_\+e1}}
 \index{expint\+\_\+e1@{expint\+\_\+e1}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2668,7 +2770,7 @@ Definition at line 4153 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga3696fc269b543a908d47bad7e98256e7}
 
 
-Definition at line 2982 of file specfun.\+h.
+Definition at line 3299 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gad6d75fcefac4a20b52f29d9b1bc3a57d}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!expint\+\_\+e1f@{expint\+\_\+e1f}}
 \index{expint\+\_\+e1f@{expint\+\_\+e1f}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2679,7 +2781,7 @@ Definition at line 2982 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gad6d75fcefac4a20b52f29d9b1bc3a57d}
 
 
-Definition at line 2973 of file specfun.\+h.
+Definition at line 3290 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga18cb55f0e83a9e369afaf5bae9e0772c}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!expint\+\_\+e1l@{expint\+\_\+e1l}}
 \index{expint\+\_\+e1l@{expint\+\_\+e1l}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2690,7 +2792,7 @@ Definition at line 2973 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga18cb55f0e83a9e369afaf5bae9e0772c}
 
 
-Definition at line 2977 of file specfun.\+h.
+Definition at line 3294 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga46e6f84b809d0128b6596f0040927089}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!expint\+\_\+en@{expint\+\_\+en}}
 \index{expint\+\_\+en@{expint\+\_\+en}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2702,7 +2804,7 @@ Definition at line 2977 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga46e6f84b809d0128b6596f0040927089}
 
 
-Definition at line 3001 of file specfun.\+h.
+Definition at line 3318 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaf62278eb2899eaffab68a79dadb15612}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!expint\+\_\+enf@{expint\+\_\+enf}}
 \index{expint\+\_\+enf@{expint\+\_\+enf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2714,7 +2816,7 @@ Definition at line 3001 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaf62278eb2899eaffab68a79dadb15612}
 
 
-Definition at line 2989 of file specfun.\+h.
+Definition at line 3306 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaa3d0b9a177eb6666b6fbfa85d85650d0}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!expint\+\_\+enl@{expint\+\_\+enl}}
 \index{expint\+\_\+enl@{expint\+\_\+enl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2726,7 +2828,7 @@ Definition at line 2989 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaa3d0b9a177eb6666b6fbfa85d85650d0}
 
 
-Definition at line 2993 of file specfun.\+h.
+Definition at line 3310 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gafdb75898f433c95eec50d8effbf94fb4}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!factorial@{factorial}}
 \index{factorial@{factorial}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2737,7 +2839,7 @@ Definition at line 2993 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gafdb75898f433c95eec50d8effbf94fb4}
 
 
-Definition at line 3106 of file specfun.\+h.
+Definition at line 3423 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga5a288283a8ed63e1d2b0145f313a5378}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!factorialf@{factorialf}}
 \index{factorialf@{factorialf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2748,7 +2850,7 @@ Definition at line 3106 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga5a288283a8ed63e1d2b0145f313a5378}
 
 
-Definition at line 3094 of file specfun.\+h.
+Definition at line 3411 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga0904e504fdc3c8b9b6f5c66a73531584}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!factoriall@{factoriall}}
 \index{factoriall@{factoriall}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2759,7 +2861,7 @@ Definition at line 3094 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga0904e504fdc3c8b9b6f5c66a73531584}
 
 
-Definition at line 3098 of file specfun.\+h.
+Definition at line 3415 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga7ecb0071ad3172d53276a967f9b702fc}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!fresnel\+\_\+c@{fresnel\+\_\+c}}
 \index{fresnel\+\_\+c@{fresnel\+\_\+c}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2779,7 +2881,7 @@ The Fresnel cosine integral is defined by \[ C(x) = \int_0^x \cos(\frac{\pi}{2}t
 \end{DoxyParams}
 
 
-Definition at line 2924 of file specfun.\+h.
+Definition at line 3241 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga02ca7579d5aef96cba69e38e988e7a42}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!fresnel\+\_\+cf@{fresnel\+\_\+cf}}
 \index{fresnel\+\_\+cf@{fresnel\+\_\+cf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2790,7 +2892,7 @@ Definition at line 2924 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga02ca7579d5aef96cba69e38e988e7a42}
 
 
-Definition at line 2905 of file specfun.\+h.
+Definition at line 3222 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaa3f82a7569d61c2f7c194d2e64b616f8}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!fresnel\+\_\+cl@{fresnel\+\_\+cl}}
 \index{fresnel\+\_\+cl@{fresnel\+\_\+cl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2801,7 +2903,7 @@ Definition at line 2905 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaa3f82a7569d61c2f7c194d2e64b616f8}
 
 
-Definition at line 2909 of file specfun.\+h.
+Definition at line 3226 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaff40a89f169b1a8962ed0e75587c488b}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!fresnel\+\_\+s@{fresnel\+\_\+s}}
 \index{fresnel\+\_\+s@{fresnel\+\_\+s}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2821,7 +2923,7 @@ The Fresnel sine integral is defined by \[ S(x) = \int_0^x \sin(\frac{\pi}{2}t^2
 \end{DoxyParams}
 
 
-Definition at line 2896 of file specfun.\+h.
+Definition at line 3213 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga73450b8fd4abd5d8d3191dd6cbcda808}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!fresnel\+\_\+sf@{fresnel\+\_\+sf}}
 \index{fresnel\+\_\+sf@{fresnel\+\_\+sf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2832,7 +2934,7 @@ Definition at line 2896 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga73450b8fd4abd5d8d3191dd6cbcda808}
 
 
-Definition at line 2877 of file specfun.\+h.
+Definition at line 3194 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga5d6ac976fa316df9b943f92bafe1407d}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!fresnel\+\_\+sl@{fresnel\+\_\+sl}}
 \index{fresnel\+\_\+sl@{fresnel\+\_\+sl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2843,7 +2945,7 @@ Definition at line 2877 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga5d6ac976fa316df9b943f92bafe1407d}
 
 
-Definition at line 2881 of file specfun.\+h.
+Definition at line 3198 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gab3a75d57386806857b5f97c45b4ced6e}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!gamma\+\_\+l@{gamma\+\_\+l}}
 \index{gamma\+\_\+l@{gamma\+\_\+l}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2855,7 +2957,7 @@ Definition at line 2881 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gab3a75d57386806857b5f97c45b4ced6e}
 
 
-Definition at line 2318 of file specfun.\+h.
+Definition at line 2635 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga3afdb94b9c107fe72386899ad84bc532}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!gamma\+\_\+lf@{gamma\+\_\+lf}}
 \index{gamma\+\_\+lf@{gamma\+\_\+lf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2867,7 +2969,7 @@ Definition at line 2318 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga3afdb94b9c107fe72386899ad84bc532}
 
 
-Definition at line 2306 of file specfun.\+h.
+Definition at line 2623 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga80c72bee8364398f65c05e5147e03d80}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!gamma\+\_\+ll@{gamma\+\_\+ll}}
 \index{gamma\+\_\+ll@{gamma\+\_\+ll}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2879,7 +2981,7 @@ Definition at line 2306 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga80c72bee8364398f65c05e5147e03d80}
 
 
-Definition at line 2310 of file specfun.\+h.
+Definition at line 2627 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga7b31929f8a2368cff4d4304e3fd8a7be}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!gamma\+\_\+p@{gamma\+\_\+p}}
 \index{gamma\+\_\+p@{gamma\+\_\+p}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2891,7 +2993,7 @@ Definition at line 2310 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga7b31929f8a2368cff4d4304e3fd8a7be}
 
 
-Definition at line 3281 of file specfun.\+h.
+Definition at line 3598 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gac9a59be05877d3c14fa95bebcf15e8df}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!gamma\+\_\+pf@{gamma\+\_\+pf}}
 \index{gamma\+\_\+pf@{gamma\+\_\+pf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2903,7 +3005,7 @@ Definition at line 3281 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gac9a59be05877d3c14fa95bebcf15e8df}
 
 
-Definition at line 3269 of file specfun.\+h.
+Definition at line 3586 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaa37f4adf9942ce8e095f440963b330a6}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!gamma\+\_\+pl@{gamma\+\_\+pl}}
 \index{gamma\+\_\+pl@{gamma\+\_\+pl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2915,7 +3017,7 @@ Definition at line 3269 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaa37f4adf9942ce8e095f440963b330a6}
 
 
-Definition at line 3273 of file specfun.\+h.
+Definition at line 3590 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga6f8b617b9cbd4a822ee3328530372c9d}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!gamma\+\_\+q@{gamma\+\_\+q}}
 \index{gamma\+\_\+q@{gamma\+\_\+q}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2927,7 +3029,7 @@ Definition at line 3273 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga6f8b617b9cbd4a822ee3328530372c9d}
 
 
-Definition at line 3302 of file specfun.\+h.
+Definition at line 3619 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga3ee8d2c40b904952538709cbb0e664a4}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!gamma\+\_\+qf@{gamma\+\_\+qf}}
 \index{gamma\+\_\+qf@{gamma\+\_\+qf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2939,7 +3041,7 @@ Definition at line 3302 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga3ee8d2c40b904952538709cbb0e664a4}
 
 
-Definition at line 3290 of file specfun.\+h.
+Definition at line 3607 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga5364a098596681809294d25741539ffc}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!gamma\+\_\+ql@{gamma\+\_\+ql}}
 \index{gamma\+\_\+ql@{gamma\+\_\+ql}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2951,7 +3053,7 @@ Definition at line 3290 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga5364a098596681809294d25741539ffc}
 
 
-Definition at line 3294 of file specfun.\+h.
+Definition at line 3611 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga60911c010897719711d563edf69df44a}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!gamma\+\_\+u@{gamma\+\_\+u}}
 \index{gamma\+\_\+u@{gamma\+\_\+u}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2963,7 +3065,7 @@ Definition at line 3294 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga60911c010897719711d563edf69df44a}
 
 
-Definition at line 2297 of file specfun.\+h.
+Definition at line 2614 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaed277602032a21acc09655467482eec9}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!gamma\+\_\+uf@{gamma\+\_\+uf}}
 \index{gamma\+\_\+uf@{gamma\+\_\+uf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2975,7 +3077,7 @@ Definition at line 2297 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaed277602032a21acc09655467482eec9}
 
 
-Definition at line 2285 of file specfun.\+h.
+Definition at line 2602 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gae2c9ff364ba758f0f41a5b71d2c9e755}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!gamma\+\_\+ul@{gamma\+\_\+ul}}
 \index{gamma\+\_\+ul@{gamma\+\_\+ul}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2987,7 +3089,7 @@ Definition at line 2285 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gae2c9ff364ba758f0f41a5b71d2c9e755}
 
 
-Definition at line 2289 of file specfun.\+h.
+Definition at line 2606 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaf295fecea6e26f1caeb7aa1560e9b7ee}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!gegenbauer@{gegenbauer}}
 \index{gegenbauer@{gegenbauer}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -2998,9 +3100,29 @@ Definition at line 2289 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaf295fecea6e26f1caeb7aa1560e9b7ee}
+Return the Gegenbauer polynomial $ C_n^{\alpha}(x) $ of degree {\ttfamily n} and real order $ \alpha $ and argument {\ttfamily x}.
+
+The Gegenbauer polynomials are generated by a three-\/term recursion relation\+: \[ C_n^{\alpha}(x) = \frac{1}{n}\left[ 2x(n+\alpha-1)C_{n-1}^{\alpha}(x) - (n+2\alpha-2)C_{n-2}^{\alpha}(x) \right] \] and $ C_0^{\alpha}(x) = 1 $, $ C_1^{\alpha}(x) = 2\alpha x $.
 
 
-Definition at line 1978 of file specfun.\+h.
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Talpha} & The real type of the order \\
+\hline
+{\em \+\_\+\+Tp} & The real type of the argument \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+n} & The non-\/negative integral degree \\
+\hline
+{\em \+\_\+\+\_\+alpha} & The real order \\
+\hline
+{\em \+\_\+\+\_\+x} & The real argument \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 2043 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga0f16dd9c771c8c177f377381b6e3387c}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!gegenbauerf@{gegenbauerf}}
 \index{gegenbauerf@{gegenbauerf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3011,9 +3133,14 @@ Definition at line 1978 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga0f16dd9c771c8c177f377381b6e3387c}
+Return the Gegenbauer polynomial $ C_n^{\alpha}(x) $ of degree {\ttfamily n} and {\ttfamily float} order $ \alpha $ and argument {\ttfamily x}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_gaf295fecea6e26f1caeb7aa1560e9b7ee}{gegenbauer} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 1966 of file specfun.\+h.
+Definition at line 2011 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gabf1644841deefbb162ade9fa508591cb}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!gegenbauerl@{gegenbauerl}}
 \index{gegenbauerl@{gegenbauerl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3024,9 +3151,14 @@ Definition at line 1966 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gabf1644841deefbb162ade9fa508591cb}
+Return the Gegenbauer polynomial $ C_n^{\alpha}(x) $ of degree {\ttfamily n} and {\ttfamily long double} order $ \alpha $ and argument {\ttfamily x}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_gaf295fecea6e26f1caeb7aa1560e9b7ee}{gegenbauer} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 1970 of file specfun.\+h.
+Definition at line 2021 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga3b606d8617459ef7e5d340db1bae13ec}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!heuman\+\_\+lambda@{heuman\+\_\+lambda}}
 \index{heuman\+\_\+lambda@{heuman\+\_\+lambda}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3049,7 +3181,7 @@ The complete Heuman lambda function is defined by \[ \]
 \end{DoxyParams}
 
 
-Definition at line 3360 of file specfun.\+h.
+Definition at line 3677 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga10cf5d54d985aa3a58cb197601040ac8}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!heuman\+\_\+lambdaf@{heuman\+\_\+lambdaf}}
 \index{heuman\+\_\+lambdaf@{heuman\+\_\+lambdaf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3061,7 +3193,7 @@ Definition at line 3360 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga10cf5d54d985aa3a58cb197601040ac8}
 
 
-Definition at line 3340 of file specfun.\+h.
+Definition at line 3657 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gadadaeb83b3d9c2fccd33ab8ec3188df5}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!heuman\+\_\+lambdal@{heuman\+\_\+lambdal}}
 \index{heuman\+\_\+lambdal@{heuman\+\_\+lambdal}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3073,7 +3205,7 @@ Definition at line 3340 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gadadaeb83b3d9c2fccd33ab8ec3188df5}
 
 
-Definition at line 3344 of file specfun.\+h.
+Definition at line 3661 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaed8e8bb0f1755fa7b0786d02ed574347}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!hurwitz\+\_\+zeta@{hurwitz\+\_\+zeta}}
 \index{hurwitz\+\_\+zeta@{hurwitz\+\_\+zeta}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3096,7 +3228,7 @@ The the Hurwitz zeta function is defined by \[ \zeta(s, a) = \sum_{n=0}^{\infty}
 \end{DoxyParams}
 
 
-Definition at line 2746 of file specfun.\+h.
+Definition at line 3063 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaa7f0d1fbba9d2ce07a30d907302d527f}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!hurwitz\+\_\+zeta@{hurwitz\+\_\+zeta}}
 \index{hurwitz\+\_\+zeta@{hurwitz\+\_\+zeta}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3113,7 +3245,7 @@ Return the Hurwitz zeta function of real argument {\ttfamily s}, and complex par
 \end{DoxySeeAlso}
 
 
-Definition at line 2760 of file specfun.\+h.
+Definition at line 3077 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaa745d7f2edde060ed2f22817ad89df1f}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!hurwitz\+\_\+zetaf@{hurwitz\+\_\+zetaf}}
 \index{hurwitz\+\_\+zetaf@{hurwitz\+\_\+zetaf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3130,7 +3262,7 @@ Return the Hurwitz zeta function of {\ttfamily float} argument {\ttfamily s}, an
 \end{DoxySeeAlso}
 
 
-Definition at line 2720 of file specfun.\+h.
+Definition at line 3037 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gad8f2cfc7e198755968bae35d46b49d5a}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!hurwitz\+\_\+zetal@{hurwitz\+\_\+zetal}}
 \index{hurwitz\+\_\+zetal@{hurwitz\+\_\+zetal}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3147,7 +3279,7 @@ Return the Hurwitz zeta function of {\ttfamily long double} argument {\ttfamily 
 \end{DoxySeeAlso}
 
 
-Definition at line 2730 of file specfun.\+h.
+Definition at line 3047 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaf52cf49736c63b0bb000be98b53c221f}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!hyperg@{hyperg}}
 \index{hyperg@{hyperg}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3240,7 +3372,7 @@ The regularized incomplete beta function is defined by \[ I_x(a, b) = \frac{B_x(
 \end{DoxyParams}
 
 
-Definition at line 2837 of file specfun.\+h.
+Definition at line 3154 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga474e422dce07316da26bb2c2579b7968}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ibetac@{ibetac}}
 \index{ibetac@{ibetac}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3266,7 +3398,7 @@ The regularized complementary incomplete beta function is defined by \[ I_x(a, b
 \end{DoxyParams}
 
 
-Definition at line 2868 of file specfun.\+h.
+Definition at line 3185 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gabd7fa090deead18b167c26b8994b9f53}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ibetacf@{ibetacf}}
 \index{ibetacf@{ibetacf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3279,7 +3411,7 @@ Definition at line 2868 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gabd7fa090deead18b167c26b8994b9f53}
 
 
-Definition at line 2846 of file specfun.\+h.
+Definition at line 3163 of file specfun.\+h.
 
 
 
@@ -3296,7 +3428,7 @@ References \+\_\+\+\_\+gnu\+\_\+cxx\+::ibetaf().
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga48995d537b82e426362a4831ffa1be39}
 
 
-Definition at line 2850 of file specfun.\+h.
+Definition at line 3167 of file specfun.\+h.
 
 
 
@@ -3315,7 +3447,7 @@ Return the regularized incomplete beta function of parameters {\ttfamily a}, {\t
 
 See ibeta for details. 
 
-Definition at line 2803 of file specfun.\+h.
+Definition at line 3120 of file specfun.\+h.
 
 
 
@@ -3334,7 +3466,7 @@ Return the regularized incomplete beta function of parameters {\ttfamily a}, {\t
 
 See ibeta for details. 
 
-Definition at line 2813 of file specfun.\+h.
+Definition at line 3130 of file specfun.\+h.
 
 
 
@@ -3350,9 +3482,33 @@ Referenced by \+\_\+\+\_\+gnu\+\_\+cxx\+::ibetacl().
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gac7be4bf3c7588f932ce754ee340d0338}
+Return the Jacobi polynomial $ P_n^{(\alpha,\beta)}(x) $ of degree {\ttfamily n} and {\ttfamily float} orders $ \alpha, \beta $ and argument {\ttfamily x}.
+
+The Jacobi polynomials are generated by a three-\/term recursion relation\+: \[ 2 n(\alpha + \beta + n) (\alpha + \beta + 2n - 2) P^{(\alpha, \beta)}_{n}(x) = (\alpha + \beta + 2n - 1) ((\alpha^2 - \beta^2) + x(\alpha + \beta + 2n - 2)(\alpha + \beta + 2n)) P^{(\alpha, \beta)}_{n-1}(x) - 2 (\alpha + n - 1)(\beta + n - 1)(\alpha + \beta + 2n) P^{(\alpha, \beta)}_{n-2}(x) \] where $ P_0^{(\alpha,\beta)}(x) = 1 $ and $ P_1^{(\alpha,\beta)}(x) = ((\alpha-\beta) + (2 + (\alpha+\beta)) * x) / 2 $.
 
 
-Definition at line 1957 of file specfun.\+h.
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Talpha} & The real type of the order $ \alpha $ \\
+\hline
+{\em \+\_\+\+Tbeta} & The real type of the order $ \beta $ \\
+\hline
+{\em \+\_\+\+Tp} & The real type of the argument \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+n} & The non-\/negative integral degree \\
+\hline
+{\em \+\_\+\+\_\+alpha} & The real order \\
+\hline
+{\em \+\_\+\+\_\+beta} & The real order \\
+\hline
+{\em \+\_\+\+\_\+x} & The real argument \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1996 of file specfun.\+h.
 
 
 
@@ -3550,7 +3706,7 @@ The Jacobi zeta function is defined by \[ \]
 \end{DoxyParams}
 
 
-Definition at line 3331 of file specfun.\+h.
+Definition at line 3648 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaedb6b352331c67b9dea73660e2045668}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!jacobi\+\_\+zetaf@{jacobi\+\_\+zetaf}}
 \index{jacobi\+\_\+zetaf@{jacobi\+\_\+zetaf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3562,7 +3718,7 @@ Definition at line 3331 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaedb6b352331c67b9dea73660e2045668}
 
 
-Definition at line 3311 of file specfun.\+h.
+Definition at line 3628 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga9db158df9459aa12c840724338753913}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!jacobi\+\_\+zetal@{jacobi\+\_\+zetal}}
 \index{jacobi\+\_\+zetal@{jacobi\+\_\+zetal}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3574,7 +3730,7 @@ Definition at line 3311 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga9db158df9459aa12c840724338753913}
 
 
-Definition at line 3315 of file specfun.\+h.
+Definition at line 3632 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga450db12e06d6993d169afab5b3f6d0b8}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!jacobif@{jacobif}}
 \index{jacobif@{jacobif}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3586,9 +3742,14 @@ Definition at line 3315 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga450db12e06d6993d169afab5b3f6d0b8}
+Return the Jacobi polynomial $ P_n^{(\alpha,\beta)}(x) $ of degree {\ttfamily n} and {\ttfamily float} orders $ \alpha, \beta $ and argument {\ttfamily x}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_gac7be4bf3c7588f932ce754ee340d0338}{jacobi} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 1945 of file specfun.\+h.
+Definition at line 1952 of file specfun.\+h.
 
 
 
@@ -3604,9 +3765,14 @@ References std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+beta().
 \item[{long double}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga2898a5ebf451eaf259ecfcdd171aa72b}
+Return the Jacobi polynomial $ P_n^{(\alpha,\beta)}(x) $ of degree {\ttfamily n} and {\ttfamily {\ttfamily long} double} orders $ \alpha, \beta $ and argument {\ttfamily x}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_gac7be4bf3c7588f932ce754ee340d0338}{jacobi} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 1949 of file specfun.\+h.
+Definition at line 1963 of file specfun.\+h.
 
 
 
@@ -3622,7 +3788,7 @@ References std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+beta().
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gab3eab510cd484f6ec75e968b1d98b818}
 
 
-Definition at line 3211 of file specfun.\+h.
+Definition at line 3528 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gab48439faacd87f02d088a04e7cee0853}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!lbincoeff@{lbincoeff}}
 \index{lbincoeff@{lbincoeff}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3634,7 +3800,7 @@ Definition at line 3211 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gab48439faacd87f02d088a04e7cee0853}
 
 
-Definition at line 3199 of file specfun.\+h.
+Definition at line 3516 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gab5b5d92a2a522aaef999106f5d602163}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!lbincoefl@{lbincoefl}}
 \index{lbincoefl@{lbincoefl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3646,7 +3812,7 @@ Definition at line 3199 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gab5b5d92a2a522aaef999106f5d602163}
 
 
-Definition at line 3203 of file specfun.\+h.
+Definition at line 3520 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gac97a4a380940765948e0663fbc119544}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ldouble\+\_\+factorial@{ldouble\+\_\+factorial}}
 \index{ldouble\+\_\+factorial@{ldouble\+\_\+factorial}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3657,7 +3823,7 @@ Definition at line 3203 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gac97a4a380940765948e0663fbc119544}
 
 
-Definition at line 3169 of file specfun.\+h.
+Definition at line 3486 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga33ecc59a7ff139b483cebf42ecd4fe79}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ldouble\+\_\+factorialf@{ldouble\+\_\+factorialf}}
 \index{ldouble\+\_\+factorialf@{ldouble\+\_\+factorialf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3668,7 +3834,7 @@ Definition at line 3169 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga33ecc59a7ff139b483cebf42ecd4fe79}
 
 
-Definition at line 3157 of file specfun.\+h.
+Definition at line 3474 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gae8fa4b4866cfd20349c985b33ed2936e}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!ldouble\+\_\+factoriall@{ldouble\+\_\+factoriall}}
 \index{ldouble\+\_\+factoriall@{ldouble\+\_\+factoriall}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3679,7 +3845,7 @@ Definition at line 3157 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gae8fa4b4866cfd20349c985b33ed2936e}
 
 
-Definition at line 3161 of file specfun.\+h.
+Definition at line 3478 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gac0bb3b5a3229e7b7f80982785ff8f477}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!legendre\+\_\+q@{legendre\+\_\+q}}
 \index{legendre\+\_\+q@{legendre\+\_\+q}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3691,7 +3857,7 @@ Definition at line 3161 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gac0bb3b5a3229e7b7f80982785ff8f477}
 
 
-Definition at line 3260 of file specfun.\+h.
+Definition at line 3577 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaedb2871cec8f0f160524205e9083621d}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!legendre\+\_\+qf@{legendre\+\_\+qf}}
 \index{legendre\+\_\+qf@{legendre\+\_\+qf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3703,7 +3869,7 @@ Definition at line 3260 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaedb2871cec8f0f160524205e9083621d}
 
 
-Definition at line 3248 of file specfun.\+h.
+Definition at line 3565 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga35de372a666b6d530d4b3704ff4a878b}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!legendre\+\_\+ql@{legendre\+\_\+ql}}
 \index{legendre\+\_\+ql@{legendre\+\_\+ql}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3715,7 +3881,7 @@ Definition at line 3248 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga35de372a666b6d530d4b3704ff4a878b}
 
 
-Definition at line 3252 of file specfun.\+h.
+Definition at line 3569 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga17b1dc664e1ab95213c340f2453b09e3}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!lfactorial@{lfactorial}}
 \index{lfactorial@{lfactorial}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3726,7 +3892,7 @@ Definition at line 3252 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga17b1dc664e1ab95213c340f2453b09e3}
 
 
-Definition at line 3148 of file specfun.\+h.
+Definition at line 3465 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga65af05c4093d4895a564a8d67e389a9b}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!lfactorialf@{lfactorialf}}
 \index{lfactorialf@{lfactorialf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3737,7 +3903,7 @@ Definition at line 3148 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga65af05c4093d4895a564a8d67e389a9b}
 
 
-Definition at line 3136 of file specfun.\+h.
+Definition at line 3453 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga3a0c196f34916dc68c29c89f26cbe1ee}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!lfactoriall@{lfactoriall}}
 \index{lfactoriall@{lfactoriall}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3748,7 +3914,7 @@ Definition at line 3136 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga3a0c196f34916dc68c29c89f26cbe1ee}
 
 
-Definition at line 3140 of file specfun.\+h.
+Definition at line 3457 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga5c80d417c0fbd41cc9ef0d6f663f9a66}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!logint@{logint}}
 \index{logint@{logint}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3812,7 +3978,7 @@ Definition at line 1460 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga5a60fbbf559aa86dfe918d9ef23e8a74}
 
 
-Definition at line 3043 of file specfun.\+h.
+Definition at line 3360 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gafb9f3fc457d83f83769297fb172397d6}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!lpochhammer\+\_\+lf@{lpochhammer\+\_\+lf}}
 \index{lpochhammer\+\_\+lf@{lpochhammer\+\_\+lf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3824,7 +3990,7 @@ Definition at line 3043 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gafb9f3fc457d83f83769297fb172397d6}
 
 
-Definition at line 3031 of file specfun.\+h.
+Definition at line 3348 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga6ba405212d353633ef5ee41f683c4630}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!lpochhammer\+\_\+ll@{lpochhammer\+\_\+ll}}
 \index{lpochhammer\+\_\+ll@{lpochhammer\+\_\+ll}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3836,7 +4002,7 @@ Definition at line 3031 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga6ba405212d353633ef5ee41f683c4630}
 
 
-Definition at line 3035 of file specfun.\+h.
+Definition at line 3352 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga85e5565a30599065b8ccbc499c5d0d85}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!lpochhammer\+\_\+u@{lpochhammer\+\_\+u}}
 \index{lpochhammer\+\_\+u@{lpochhammer\+\_\+u}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3848,7 +4014,7 @@ Definition at line 3035 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga85e5565a30599065b8ccbc499c5d0d85}
 
 
-Definition at line 3022 of file specfun.\+h.
+Definition at line 3339 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga023cc1af92f09d35fc84a19119108980}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!lpochhammer\+\_\+uf@{lpochhammer\+\_\+uf}}
 \index{lpochhammer\+\_\+uf@{lpochhammer\+\_\+uf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3860,7 +4026,7 @@ Definition at line 3022 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga023cc1af92f09d35fc84a19119108980}
 
 
-Definition at line 3010 of file specfun.\+h.
+Definition at line 3327 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga44db837251d1d0db819b0215c98f569e}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!lpochhammer\+\_\+ul@{lpochhammer\+\_\+ul}}
 \index{lpochhammer\+\_\+ul@{lpochhammer\+\_\+ul}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3872,7 +4038,7 @@ Definition at line 3010 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga44db837251d1d0db819b0215c98f569e}
 
 
-Definition at line 3014 of file specfun.\+h.
+Definition at line 3331 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga7a52e8d5df5b110810c4bdba78a9d2ae}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!owens\+\_\+t@{owens\+\_\+t}}
 \index{owens\+\_\+t@{owens\+\_\+t}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3895,7 +4061,7 @@ The Owens T function is defined by \[ T(h,a) = \frac{1}{2\pi}\int_0^a \frac{\exp
 \end{DoxyParams}
 
 
-Definition at line 4364 of file specfun.\+h.
+Definition at line 4692 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gac24d32e9b072c4953654d5559f992871}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!owens\+\_\+tf@{owens\+\_\+tf}}
 \index{owens\+\_\+tf@{owens\+\_\+tf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3912,7 +4078,7 @@ Return the Owens T function function of thing {\ttfamily h} and argument {\ttfam
 \end{DoxySeeAlso}
 
 
-Definition at line 4338 of file specfun.\+h.
+Definition at line 4666 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga7a8bc60dc0ef4a009586872eb7cac2d0}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!owens\+\_\+tl@{owens\+\_\+tl}}
 \index{owens\+\_\+tl@{owens\+\_\+tl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3929,7 +4095,7 @@ Return the Owens T function function of thing {\ttfamily h} and argument {\ttfam
 \end{DoxySeeAlso}
 
 
-Definition at line 4347 of file specfun.\+h.
+Definition at line 4675 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gafed029416c3c440fea35a3a135991436}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!pochhammer\+\_\+l@{pochhammer\+\_\+l}}
 \index{pochhammer\+\_\+l@{pochhammer\+\_\+l}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3941,7 +4107,7 @@ Definition at line 4347 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gafed029416c3c440fea35a3a135991436}
 
 
-Definition at line 3085 of file specfun.\+h.
+Definition at line 3402 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga66c7ea176dad7f06f19cc80e860f333c}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!pochhammer\+\_\+lf@{pochhammer\+\_\+lf}}
 \index{pochhammer\+\_\+lf@{pochhammer\+\_\+lf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3953,7 +4119,7 @@ Definition at line 3085 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga66c7ea176dad7f06f19cc80e860f333c}
 
 
-Definition at line 3073 of file specfun.\+h.
+Definition at line 3390 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gadec5630d81fc1d3f6f61146a2d16fafc}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!pochhammer\+\_\+ll@{pochhammer\+\_\+ll}}
 \index{pochhammer\+\_\+ll@{pochhammer\+\_\+ll}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3965,7 +4131,7 @@ Definition at line 3073 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gadec5630d81fc1d3f6f61146a2d16fafc}
 
 
-Definition at line 3077 of file specfun.\+h.
+Definition at line 3394 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga4cadb141501737e85c8d6511fe3d3b94}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!pochhammer\+\_\+u@{pochhammer\+\_\+u}}
 \index{pochhammer\+\_\+u@{pochhammer\+\_\+u}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3977,7 +4143,7 @@ Definition at line 3077 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga4cadb141501737e85c8d6511fe3d3b94}
 
 
-Definition at line 3064 of file specfun.\+h.
+Definition at line 3381 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga520a93cbd1963b22679e865f29f36331}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!pochhammer\+\_\+uf@{pochhammer\+\_\+uf}}
 \index{pochhammer\+\_\+uf@{pochhammer\+\_\+uf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -3989,7 +4155,7 @@ Definition at line 3064 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga520a93cbd1963b22679e865f29f36331}
 
 
-Definition at line 3052 of file specfun.\+h.
+Definition at line 3369 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga169c9e8f9d84e51187a0fe4ecaba0947}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!pochhammer\+\_\+ul@{pochhammer\+\_\+ul}}
 \index{pochhammer\+\_\+ul@{pochhammer\+\_\+ul}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4001,7 +4167,7 @@ Definition at line 3052 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga169c9e8f9d84e51187a0fe4ecaba0947}
 
 
-Definition at line 3056 of file specfun.\+h.
+Definition at line 3373 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gafbe8ee0e3edd53cd5cd421e9b913f6b9}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!polylog@{polylog}}
 \index{polylog@{polylog}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4024,7 +4190,7 @@ The polylogarithm function is defined by \[ \]
 \end{DoxyParams}
 
 
-Definition at line 3776 of file specfun.\+h.
+Definition at line 4093 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga5376edb72358b777035a78b929deb49f}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!polylogf@{polylogf}}
 \index{polylogf@{polylogf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4041,7 +4207,7 @@ Return the complex polylogarithm function of real thing {\ttfamily s} and comple
 \end{DoxySeeAlso}
 
 
-Definition at line 3749 of file specfun.\+h.
+Definition at line 4066 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga9eb79e506eda210610bc59c1912b4d0f}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!polylogl@{polylogl}}
 \index{polylogl@{polylogl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4058,7 +4224,7 @@ Return the complex polylogarithm function of real thing {\ttfamily s} and comple
 \end{DoxySeeAlso}
 
 
-Definition at line 3759 of file specfun.\+h.
+Definition at line 4076 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga850cdad2e428a553e5adf2474a6a385a}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!psi@{psi}}
 \index{psi@{psi}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4078,7 +4244,7 @@ The the psi or digamma function is defined by \[ \psi(x) = \]
 \end{DoxyParams}
 
 
-Definition at line 2788 of file specfun.\+h.
+Definition at line 3105 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga47ae74abfaa3f549eed4a87b1b63449d}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!psif@{psif}}
 \index{psif@{psif}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4089,7 +4255,7 @@ Definition at line 2788 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga47ae74abfaa3f549eed4a87b1b63449d}
 
 
-Definition at line 2769 of file specfun.\+h.
+Definition at line 3086 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaaf230aedcb20a1c5a43fc71132bb0dc1}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!psil@{psil}}
 \index{psil@{psil}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4100,7 +4266,7 @@ Definition at line 2769 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaaf230aedcb20a1c5a43fc71132bb0dc1}
 
 
-Definition at line 2773 of file specfun.\+h.
+Definition at line 3090 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga2a415dff236d6e4c36150bd5958eaf78}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!radpoly@{radpoly}}
 \index{radpoly@{radpoly}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4111,9 +4277,26 @@ Definition at line 2773 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+rho}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga2a415dff236d6e4c36150bd5958eaf78}
+Return the radial polynomial $ R_n^m(\rho) $ for non-\/negative degree $ n $, order $ m <= n $, and real radial argument $ \rho $.
+
+The radial polynomials are defined by \[ R_n^m(\rho) = \sum_{k=0}^{\frac{n-m}{2}} \frac{(-1)^k(n-k)!}{k!(\frac{n+m}{2}-k)!(\frac{n-m}{2}-k)!} \rho^{n-2k} \] for $ n - m $ even and identically 0 for $ n - m $ odd. The radial polynomials can be related to the Jacobi polynomials\+: \[ R_n^m(\rho) = \] \begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_gac7be4bf3c7588f932ce754ee340d0338}{jacobi} for details on the Jacobi polynomials.
+\end{DoxySeeAlso}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Tp} & The real type of the radial coordinate \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+n} & The non-\/negative degree. \\
+\hline
+{\em \+\_\+\+\_\+m} & The non-\/negative azimuthal order \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 2020 of file specfun.\+h.
+Definition at line 2152 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga8a98d7c7c14f1aadff90123a114fa2c9}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!radpolyf@{radpolyf}}
 \index{radpolyf@{radpolyf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4124,9 +4307,14 @@ Definition at line 2020 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+rho}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga8a98d7c7c14f1aadff90123a114fa2c9}
+Return the radial polynomial $ R_n^m(\rho) $ for non-\/negative degree $ n $, order $ m <= n $, and {\ttfamily float} radial argument $ \rho $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga2a415dff236d6e4c36150bd5958eaf78}{radpoly} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 2008 of file specfun.\+h.
+Definition at line 2114 of file specfun.\+h.
 
 
 
@@ -4141,9 +4329,14 @@ References std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+poly\+\_\+radial\+\_\+jacobi
 \item[{long double}]{\+\_\+\+\_\+rho}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga377febebd1096400897170bb7a76cd3a}
+Return the radial polynomial $ R_n^m(\rho) $ for non-\/negative degree $ n $, order $ m <= n $, and {\ttfamily long double} radial argument $ \rho $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga2a415dff236d6e4c36150bd5958eaf78}{radpoly} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 2012 of file specfun.\+h.
+Definition at line 2125 of file specfun.\+h.
 
 
 
@@ -4224,7 +4417,7 @@ Definition at line 1432 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gad6975a69b8e40a6237b4124b459c6181}
 
 
-Definition at line 2062 of file specfun.\+h.
+Definition at line 2194 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga59ba25b4276fea8c628629420b522b15}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sinhc\+\_\+pi@{sinhc\+\_\+pi}}
 \index{sinhc\+\_\+pi@{sinhc\+\_\+pi}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4235,7 +4428,7 @@ Definition at line 2062 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga59ba25b4276fea8c628629420b522b15}
 
 
-Definition at line 2041 of file specfun.\+h.
+Definition at line 2173 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga26e54504db6541550266140f5264acbe}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sinhc\+\_\+pif@{sinhc\+\_\+pif}}
 \index{sinhc\+\_\+pif@{sinhc\+\_\+pif}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4246,7 +4439,7 @@ Definition at line 2041 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga26e54504db6541550266140f5264acbe}
 
 
-Definition at line 2029 of file specfun.\+h.
+Definition at line 2161 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaa572bf7633f457c86cef65bfd6ec4ad9}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sinhc\+\_\+pil@{sinhc\+\_\+pil}}
 \index{sinhc\+\_\+pil@{sinhc\+\_\+pil}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4257,7 +4450,7 @@ Definition at line 2029 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaa572bf7633f457c86cef65bfd6ec4ad9}
 
 
-Definition at line 2033 of file specfun.\+h.
+Definition at line 2165 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gadaa7ea78625cc2eeb70213a50719813d}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sinhcf@{sinhcf}}
 \index{sinhcf@{sinhcf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4268,7 +4461,7 @@ Definition at line 2033 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gadaa7ea78625cc2eeb70213a50719813d}
 
 
-Definition at line 2050 of file specfun.\+h.
+Definition at line 2182 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga7467a001bb18ef8bff0a7e9927bab356}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sinhcl@{sinhcl}}
 \index{sinhcl@{sinhcl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4279,7 +4472,7 @@ Definition at line 2050 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga7467a001bb18ef8bff0a7e9927bab356}
 
 
-Definition at line 2054 of file specfun.\+h.
+Definition at line 2186 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga19941fbce9fb8e097eb757761f9326db}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sinhint@{sinhint}}
 \index{sinhint@{sinhint}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4393,9 +4586,30 @@ Definition at line 1498 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga93454a071a189f7cc9e79078526aa3fd}
+Return the regular modified spherical Bessel function $ i_n(x) $ of nonnegative order n and real argument $ x >= 0 $.
+
+The spherical Bessel function is defined by\+: \[ i_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} I_{n+1/2}(x) \]
 
 
-Definition at line 2177 of file specfun.\+h.
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Tp} & The floating-\/point type of the argument {\ttfamily \+\_\+\+\_\+x}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+n} & The integral order {\ttfamily  n $>$= 0 } \\
+\hline
+{\em \+\_\+\+\_\+x} & The real argument {\ttfamily  x $>$= 0 } \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::domain\+\_\+error} & if {\ttfamily  \+\_\+\+\_\+x $<$ 0 }. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 2432 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gacc6738f18c1ba19452b9dd814d11c00c}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+bessel\+\_\+if@{sph\+\_\+bessel\+\_\+if}}
 \index{sph\+\_\+bessel\+\_\+if@{sph\+\_\+bessel\+\_\+if}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4405,9 +4619,14 @@ Definition at line 2177 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gacc6738f18c1ba19452b9dd814d11c00c}
+Return the regular modified spherical Bessel function $ i_n(x) $ of nonnegative order n and {\ttfamily float} argument $ x >= 0 $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga93454a071a189f7cc9e79078526aa3fd}{sph\+\_\+bessel\+\_\+i} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 2155 of file specfun.\+h.
+Definition at line 2393 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaf4392d9ed177913febdcbfccb947dbca}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+bessel\+\_\+il@{sph\+\_\+bessel\+\_\+il}}
 \index{sph\+\_\+bessel\+\_\+il@{sph\+\_\+bessel\+\_\+il}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4417,9 +4636,14 @@ Definition at line 2155 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaf4392d9ed177913febdcbfccb947dbca}
+Return the regular modified spherical Bessel function $ i_n(x) $ of nonnegative order n and {\ttfamily long double} argument $ x >= 0 $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga93454a071a189f7cc9e79078526aa3fd}{sph\+\_\+bessel\+\_\+i} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 2164 of file specfun.\+h.
+Definition at line 2408 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga737e6fe2f7f4acb6fcc6bccfe2a4c254}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+bessel\+\_\+k@{sph\+\_\+bessel\+\_\+k}}
 \index{sph\+\_\+bessel\+\_\+k@{sph\+\_\+bessel\+\_\+k}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4429,9 +4653,30 @@ Definition at line 2164 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga737e6fe2f7f4acb6fcc6bccfe2a4c254}
+Return the irregular modified spherical Bessel function $ k_n(x) $ of nonnegative order n and real argument $ x >= 0 $.
+
+The spherical Bessel function is defined by\+: \[ k_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} K_{n+1/2}(x) \]
 
 
-Definition at line 2211 of file specfun.\+h.
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Tp} & The floating-\/point type of the argument {\ttfamily \+\_\+\+\_\+x}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+n} & The integral order {\ttfamily  n $>$= 0 } \\
+\hline
+{\em \+\_\+\+\_\+x} & The real argument {\ttfamily  x $>$= 0 } \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::domain\+\_\+error} & if {\ttfamily  \+\_\+\+\_\+x $<$ 0 }. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 2489 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaf886e8f8dfd2af0c4a9c5929d193d12f}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+bessel\+\_\+kf@{sph\+\_\+bessel\+\_\+kf}}
 \index{sph\+\_\+bessel\+\_\+kf@{sph\+\_\+bessel\+\_\+kf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4441,9 +4686,14 @@ Definition at line 2211 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gaf886e8f8dfd2af0c4a9c5929d193d12f}
+Return the irregular modified spherical Bessel function $ k_n(x) $ of nonnegative order n and {\ttfamily float} argument $ x >= 0 $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga737e6fe2f7f4acb6fcc6bccfe2a4c254}{sph\+\_\+bessel\+\_\+k} for more details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 2189 of file specfun.\+h.
+Definition at line 2450 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga22f6a73e50e7020a7c2fa64ce1b9be41}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+bessel\+\_\+kl@{sph\+\_\+bessel\+\_\+kl}}
 \index{sph\+\_\+bessel\+\_\+kl@{sph\+\_\+bessel\+\_\+kl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4453,9 +4703,14 @@ Definition at line 2189 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga22f6a73e50e7020a7c2fa64ce1b9be41}
+Return the irregular modified spherical Bessel function $ k_n(x) $ of nonnegative order n and {\ttfamily long double} argument $ x >= 0 $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga737e6fe2f7f4acb6fcc6bccfe2a4c254}{sph\+\_\+bessel\+\_\+k} for more details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 2198 of file specfun.\+h.
+Definition at line 2465 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga9440f3f92ebc56bd77d64853390247f6}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+hankel\+\_\+1@{sph\+\_\+hankel\+\_\+1}}
 \index{sph\+\_\+hankel\+\_\+1@{sph\+\_\+hankel\+\_\+1}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4465,9 +4720,25 @@ Definition at line 2198 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+z}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga9440f3f92ebc56bd77d64853390247f6}
+Return the spherical Hankel function of the first kind $ h^{(1)}_n(x) $ of nonnegative order $ n $ and real argument $ x >= 0 $.
+
+The spherical Hankel function of the first kind is defined by\+: \[ h^{(1)}_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} H^{(1)}_{n+1/2}(x) \]
 
 
-Definition at line 2125 of file specfun.\+h.
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Tp} & The real type of the argument \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+n} & The non-\/negative order \\
+\hline
+{\em \+\_\+\+\_\+z} & The real argument \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 2335 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga0bf6e485b5ec9d1ae4ab604137216d70}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+hankel\+\_\+1@{sph\+\_\+hankel\+\_\+1}}
 \index{sph\+\_\+hankel\+\_\+1@{sph\+\_\+hankel\+\_\+1}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4490,7 +4761,7 @@ The spherical Hankel function of the first kind is defined by \[ h^{(1)}_n(x) = 
 \end{DoxyParams}
 
 
-Definition at line 3654 of file specfun.\+h.
+Definition at line 3971 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga70d4fc01069f3f0ac0e3b52fe1dffea4}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+hankel\+\_\+1f@{sph\+\_\+hankel\+\_\+1f}}
 \index{sph\+\_\+hankel\+\_\+1f@{sph\+\_\+hankel\+\_\+1f}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4500,9 +4771,14 @@ Definition at line 3654 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+z}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga70d4fc01069f3f0ac0e3b52fe1dffea4}
+Return the spherical Hankel function of the first kind $ h^{(1)}_n(x) $ of nonnegative order n and {\ttfamily float} argument $ x >= 0 $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga9440f3f92ebc56bd77d64853390247f6}{sph\+\_\+hankel\+\_\+1} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 2113 of file specfun.\+h.
+Definition at line 2307 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gadbb875cd50abb62ac75386143486bb2c}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+hankel\+\_\+1f@{sph\+\_\+hankel\+\_\+1f}}
 \index{sph\+\_\+hankel\+\_\+1f@{sph\+\_\+hankel\+\_\+1f}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4514,7 +4790,7 @@ Definition at line 2113 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gadbb875cd50abb62ac75386143486bb2c}
 
 
-Definition at line 3633 of file specfun.\+h.
+Definition at line 3950 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga6e77fd5cddfbd57d9120b20fc6c30e6f}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+hankel\+\_\+1l@{sph\+\_\+hankel\+\_\+1l}}
 \index{sph\+\_\+hankel\+\_\+1l@{sph\+\_\+hankel\+\_\+1l}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4524,9 +4800,14 @@ Definition at line 3633 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+z}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga6e77fd5cddfbd57d9120b20fc6c30e6f}
+Return the spherical Hankel function of the first kind $ h^{(1)}_n(x) $ of nonnegative order n and {\ttfamily {\ttfamily long} double} argument $ x >= 0 $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga9440f3f92ebc56bd77d64853390247f6}{sph\+\_\+hankel\+\_\+1} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 2117 of file specfun.\+h.
+Definition at line 2317 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga3e9d889d8f2e4792e892b12b1f5948b9}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+hankel\+\_\+1l@{sph\+\_\+hankel\+\_\+1l}}
 \index{sph\+\_\+hankel\+\_\+1l@{sph\+\_\+hankel\+\_\+1l}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4538,7 +4819,7 @@ Definition at line 2117 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga3e9d889d8f2e4792e892b12b1f5948b9}
 
 
-Definition at line 3637 of file specfun.\+h.
+Definition at line 3954 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga4f112ebd12bfbea7f0eea9275a1209ac}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+hankel\+\_\+2@{sph\+\_\+hankel\+\_\+2}}
 \index{sph\+\_\+hankel\+\_\+2@{sph\+\_\+hankel\+\_\+2}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4548,9 +4829,25 @@ Definition at line 3637 of file specfun.\+h.
 \item[{\+\_\+\+Tp}]{\+\_\+\+\_\+z}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga4f112ebd12bfbea7f0eea9275a1209ac}
+Return the spherical Hankel function of the second kind $ h^{(2)}_n(x)$ of nonnegative order $ n $ and real argument $ x >= 0 $.
+
+The spherical Hankel function of the second kind is defined by\+: \[ h^{(2)}_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} H^{(2)}_{n+1/2}(x) \]
 
 
-Definition at line 2146 of file specfun.\+h.
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Tp} & The real type of the argument \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+n} & The non-\/negative order \\
+\hline
+{\em \+\_\+\+\_\+z} & The real argument \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 2378 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga54a1b7896a7218bfe0fb7f422af62122}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+hankel\+\_\+2@{sph\+\_\+hankel\+\_\+2}}
 \index{sph\+\_\+hankel\+\_\+2@{sph\+\_\+hankel\+\_\+2}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4573,7 +4870,7 @@ The spherical Hankel function of the second kind is defined by \[ h^{(2)}_n(x) =
 \end{DoxyParams}
 
 
-Definition at line 3684 of file specfun.\+h.
+Definition at line 4001 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga9496b81f94b8ba0162cf45df72be1e71}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+hankel\+\_\+2f@{sph\+\_\+hankel\+\_\+2f}}
 \index{sph\+\_\+hankel\+\_\+2f@{sph\+\_\+hankel\+\_\+2f}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4583,9 +4880,14 @@ Definition at line 3684 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+z}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga9496b81f94b8ba0162cf45df72be1e71}
+Return the spherical Hankel function of the second kind $ h^{(2)}_n(x)$ of nonnegative order n and {\ttfamily float} argument $ x >= 0 $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga4f112ebd12bfbea7f0eea9275a1209ac}{sph\+\_\+hankel\+\_\+2} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 2134 of file specfun.\+h.
+Definition at line 2350 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga4c3194b71831b265811f987cbbf6e031}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+hankel\+\_\+2f@{sph\+\_\+hankel\+\_\+2f}}
 \index{sph\+\_\+hankel\+\_\+2f@{sph\+\_\+hankel\+\_\+2f}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4597,7 +4899,7 @@ Definition at line 2134 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga4c3194b71831b265811f987cbbf6e031}
 
 
-Definition at line 3663 of file specfun.\+h.
+Definition at line 3980 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga6d3ead73a4f0bfeeb0aa1fd99daaf3b1}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+hankel\+\_\+2l@{sph\+\_\+hankel\+\_\+2l}}
 \index{sph\+\_\+hankel\+\_\+2l@{sph\+\_\+hankel\+\_\+2l}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4607,9 +4909,14 @@ Definition at line 3663 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+z}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga6d3ead73a4f0bfeeb0aa1fd99daaf3b1}
+Return the spherical Hankel function of the second kind $ h^{(2)}_n(x)$ of nonnegative order n and {\ttfamily {\ttfamily long} double} argument $ x >= 0 $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga4f112ebd12bfbea7f0eea9275a1209ac}{sph\+\_\+hankel\+\_\+2} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 2138 of file specfun.\+h.
+Definition at line 2360 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga3d9d9aaceba455a5ddc79d178ee1cb6d}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+hankel\+\_\+2l@{sph\+\_\+hankel\+\_\+2l}}
 \index{sph\+\_\+hankel\+\_\+2l@{sph\+\_\+hankel\+\_\+2l}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4621,7 +4928,7 @@ Definition at line 2138 of file specfun.\+h.
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga3d9d9aaceba455a5ddc79d178ee1cb6d}
 
 
-Definition at line 3667 of file specfun.\+h.
+Definition at line 3984 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga28f1390a0366bc8c9780918d9720146b}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+harmonic@{sph\+\_\+harmonic}}
 \index{sph\+\_\+harmonic@{sph\+\_\+harmonic}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4650,7 +4957,7 @@ The spherical harmonic function is defined by\+: \[ Y_l^m(\theta,\phi) = (-1)^m[
 \end{DoxyParams}
 
 
-Definition at line 3734 of file specfun.\+h.
+Definition at line 4051 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga062b1156f5646fe42719439bb3dcc9e5}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+harmonicf@{sph\+\_\+harmonicf}}
 \index{sph\+\_\+harmonicf@{sph\+\_\+harmonicf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4669,7 +4976,7 @@ Return the complex spherical harmonic function of degree {\ttfamily l}, order {\
 \end{DoxySeeAlso}
 
 
-Definition at line 3699 of file specfun.\+h.
+Definition at line 4016 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga414c8374b4579aa14e38f5401304b6fa}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!sph\+\_\+harmonicl@{sph\+\_\+harmonicl}}
 \index{sph\+\_\+harmonicl@{sph\+\_\+harmonicl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4688,7 +4995,7 @@ Return the complex spherical harmonic function of degree {\ttfamily l}, order {\
 \end{DoxySeeAlso}
 
 
-Definition at line 3710 of file specfun.\+h.
+Definition at line 4027 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga936eef7d11580bef855f98789bbbfe50}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+1@{theta\+\_\+1}}
 \index{theta\+\_\+1@{theta\+\_\+1}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4711,7 +5018,7 @@ The Neville theta-\/1 function is defined by \[ \theta_1(\nu,x) = \frac{1}{\sqrt
 \end{DoxyParams}
 
 
-Definition at line 4020 of file specfun.\+h.
+Definition at line 4348 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga5bbf256b875da28132f9049f5984cb14}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+1f@{theta\+\_\+1f}}
 \index{theta\+\_\+1f@{theta\+\_\+1f}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4728,7 +5035,7 @@ Return the exponential theta-\/1 function of period {\ttfamily nu} and argument 
 \end{DoxySeeAlso}
 
 
-Definition at line 3994 of file specfun.\+h.
+Definition at line 4322 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga3520684c78771ffa57180060c8b6d1ca}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+1l@{theta\+\_\+1l}}
 \index{theta\+\_\+1l@{theta\+\_\+1l}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4745,7 +5052,7 @@ Return the exponential theta-\/1 function of period {\ttfamily nu} and argument 
 \end{DoxySeeAlso}
 
 
-Definition at line 4003 of file specfun.\+h.
+Definition at line 4331 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga762aa79fc6c6320d7c6290359a42c2bc}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+2@{theta\+\_\+2}}
 \index{theta\+\_\+2@{theta\+\_\+2}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4768,7 +5075,7 @@ The exponential theta-\/2 function is defined by \[ \theta_2(\nu,x) = \frac{1}{\
 \end{DoxyParams}
 
 
-Definition at line 4060 of file specfun.\+h.
+Definition at line 4388 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga78e832796aedf5159b142801e1184392}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+2f@{theta\+\_\+2f}}
 \index{theta\+\_\+2f@{theta\+\_\+2f}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4785,7 +5092,7 @@ Return the exponential theta-\/2 function of period {\ttfamily nu} and argument 
 \end{DoxySeeAlso}
 
 
-Definition at line 4034 of file specfun.\+h.
+Definition at line 4362 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gac5a30c772d4888442665945e7f3fa017}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+2l@{theta\+\_\+2l}}
 \index{theta\+\_\+2l@{theta\+\_\+2l}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4802,7 +5109,7 @@ Return the exponential theta-\/2 function of period {\ttfamily nu} and argument 
 \end{DoxySeeAlso}
 
 
-Definition at line 4043 of file specfun.\+h.
+Definition at line 4371 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga1383b7486de1e177f19c45411ed957c3}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+3@{theta\+\_\+3}}
 \index{theta\+\_\+3@{theta\+\_\+3}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4825,7 +5132,7 @@ The exponential theta-\/3 function is defined by \[ \theta_3(\nu,x) = \frac{1}{\
 \end{DoxyParams}
 
 
-Definition at line 4100 of file specfun.\+h.
+Definition at line 4428 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga9a7c967d2a456f1a6aceee9a53f024b1}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+3f@{theta\+\_\+3f}}
 \index{theta\+\_\+3f@{theta\+\_\+3f}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4842,7 +5149,7 @@ Return the exponential theta-\/3 function of period {\ttfamily nu} and argument 
 \end{DoxySeeAlso}
 
 
-Definition at line 4074 of file specfun.\+h.
+Definition at line 4402 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaf88874ff6c69940d2191f7947d2ea119}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+3l@{theta\+\_\+3l}}
 \index{theta\+\_\+3l@{theta\+\_\+3l}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4859,7 +5166,7 @@ Return the exponential theta-\/3 function of period {\ttfamily nu} and argument 
 \end{DoxySeeAlso}
 
 
-Definition at line 4083 of file specfun.\+h.
+Definition at line 4411 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga7b4afc32eb3f1d7c49662cd37af56a20}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+4@{theta\+\_\+4}}
 \index{theta\+\_\+4@{theta\+\_\+4}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4882,7 +5189,7 @@ The exponential theta-\/4 function is defined by \[ \theta_4(\nu,x) = \frac{1}{\
 \end{DoxyParams}
 
 
-Definition at line 4140 of file specfun.\+h.
+Definition at line 4468 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga0c5cbf87e304844ed4c3423be5ca09a5}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+4f@{theta\+\_\+4f}}
 \index{theta\+\_\+4f@{theta\+\_\+4f}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4899,7 +5206,7 @@ Return the exponential theta-\/4 function of period {\ttfamily nu} and argument 
 \end{DoxySeeAlso}
 
 
-Definition at line 4114 of file specfun.\+h.
+Definition at line 4442 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaaf63a80e90cdcdd66ebb18cd3a84afae}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+4l@{theta\+\_\+4l}}
 \index{theta\+\_\+4l@{theta\+\_\+4l}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4916,7 +5223,7 @@ Return the exponential theta-\/4 function of period {\ttfamily nu} and argument 
 \end{DoxySeeAlso}
 
 
-Definition at line 4123 of file specfun.\+h.
+Definition at line 4451 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gad2326374205feca04a9996af0a4ebd2a}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+c@{theta\+\_\+c}}
 \index{theta\+\_\+c@{theta\+\_\+c}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4939,7 +5246,7 @@ The Neville theta-\/c function is defined by \[ \]
 \end{DoxyParams}
 
 
-Definition at line 4246 of file specfun.\+h.
+Definition at line 4574 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga409f898afeaad5e25726ad552cfe6946}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+cf@{theta\+\_\+cf}}
 \index{theta\+\_\+cf@{theta\+\_\+cf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4956,7 +5263,7 @@ Return the Neville theta-\/c function of modulus {\ttfamily k} and argument {\tt
 \end{DoxySeeAlso}
 
 
-Definition at line 4221 of file specfun.\+h.
+Definition at line 4549 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga0531098c628999cf396217ff997cfdda}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+cl@{theta\+\_\+cl}}
 \index{theta\+\_\+cl@{theta\+\_\+cl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4973,7 +5280,7 @@ Return the Neville theta-\/c function of modulus {\ttfamily k} and argument {\tt
 \end{DoxySeeAlso}
 
 
-Definition at line 4230 of file specfun.\+h.
+Definition at line 4558 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga030a1ea3efa82f6fbaeac0ed2d6191c2}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+d@{theta\+\_\+d}}
 \index{theta\+\_\+d@{theta\+\_\+d}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -4996,7 +5303,7 @@ The Neville theta-\/d function is defined by \[ \]
 \end{DoxyParams}
 
 
-Definition at line 4285 of file specfun.\+h.
+Definition at line 4613 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gad2dc6fcaf54d25cbfaad082623941118}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+df@{theta\+\_\+df}}
 \index{theta\+\_\+df@{theta\+\_\+df}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -5013,7 +5320,7 @@ Return the Neville theta-\/d function of modulus {\ttfamily k} and argument {\tt
 \end{DoxySeeAlso}
 
 
-Definition at line 4260 of file specfun.\+h.
+Definition at line 4588 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gacce4474168b9638ebeaad1c7b351fa04}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+dl@{theta\+\_\+dl}}
 \index{theta\+\_\+dl@{theta\+\_\+dl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -5030,7 +5337,7 @@ Return the Neville theta-\/d function of modulus {\ttfamily k} and argument {\tt
 \end{DoxySeeAlso}
 
 
-Definition at line 4269 of file specfun.\+h.
+Definition at line 4597 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gaa2791768016201c6dab2984bf04ec4b4}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+n@{theta\+\_\+n}}
 \index{theta\+\_\+n@{theta\+\_\+n}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -5053,7 +5360,7 @@ The Neville theta-\/n function is defined by \[ \]
 \end{DoxyParams}
 
 
-Definition at line 4324 of file specfun.\+h.
+Definition at line 4652 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga5298a95e02bd909d55e59c1f2a0b51f8}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+nf@{theta\+\_\+nf}}
 \index{theta\+\_\+nf@{theta\+\_\+nf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -5070,7 +5377,7 @@ Return the Neville theta-\/n function of modulus {\ttfamily k} and argument {\tt
 \end{DoxySeeAlso}
 
 
-Definition at line 4299 of file specfun.\+h.
+Definition at line 4627 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga907f6c147387d55d2dfccbc58d1f1bc5}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+nl@{theta\+\_\+nl}}
 \index{theta\+\_\+nl@{theta\+\_\+nl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -5087,7 +5394,7 @@ Return the Neville theta-\/n function of modulus {\ttfamily k} and argument {\tt
 \end{DoxySeeAlso}
 
 
-Definition at line 4308 of file specfun.\+h.
+Definition at line 4636 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga6eea3110c964e5d065d99f2e58a1ed56}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+s@{theta\+\_\+s}}
 \index{theta\+\_\+s@{theta\+\_\+s}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -5110,7 +5417,7 @@ The Neville theta-\/s function is defined by \[ \]
 \end{DoxyParams}
 
 
-Definition at line 4207 of file specfun.\+h.
+Definition at line 4535 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga5e69cf30c9a4cc057accc43e8c4bf7a3}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+sf@{theta\+\_\+sf}}
 \index{theta\+\_\+sf@{theta\+\_\+sf}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -5127,7 +5434,7 @@ Return the Neville theta-\/s function of modulus {\ttfamily k} and argument {\tt
 \end{DoxySeeAlso}
 
 
-Definition at line 4182 of file specfun.\+h.
+Definition at line 4510 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gac574077067a4e7b24a0a9ff2d537d885}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!theta\+\_\+sl@{theta\+\_\+sl}}
 \index{theta\+\_\+sl@{theta\+\_\+sl}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -5144,7 +5451,7 @@ Return the Neville theta-\/s function of modulus {\ttfamily k} and argument {\tt
 \end{DoxySeeAlso}
 
 
-Definition at line 4191 of file specfun.\+h.
+Definition at line 4519 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gac43d89238752ed88927867236ab8c6a8}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!zernike@{zernike}}
 \index{zernike@{zernike}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -5156,9 +5463,32 @@ Definition at line 4191 of file specfun.\+h.
 \item[{\+\_\+\+Tphi}]{\+\_\+\+\_\+phi}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gac43d89238752ed88927867236ab8c6a8}
+Return the Zernicke polynomial $ Z_n^m(\rho,\phi) $ for non-\/negative degree $ n $, signed order $ m $, and real radial argument $ \rho $ and azimuthal angle $ \phi $.
+
+The even Zernicke polynomials are defined by\+: \[ Z_n^m(\rho,\phi) = R_n^m(\rho)\cos(m\phi) \] and the odd Zernicke polynomials are defined by\+: \[ Z_n^{-m}(\rho,\phi) = R_n^m(\rho)\sin(m\phi) \] for non-\/negative degree $ m $ and $ m <= n $ and where $ R_n^m(\rho) $ is the radial polynomial (\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_ga2a415dff236d6e4c36150bd5958eaf78}{radpoly}).
+\end{DoxySeeAlso}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Trho} & The real type of the radial coordinate \\
+\hline
+{\em \+\_\+\+Tphi} & The real type of the azimuthal angle \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+n} & The non-\/negative degree. \\
+\hline
+{\em \+\_\+\+\_\+m} & The (signed) azimuthal order \\
+\hline
+{\em \+\_\+\+\_\+rho} & The radial coordinate \\
+\hline
+{\em \+\_\+\+\_\+phi} & The azimuthal angle \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 1999 of file specfun.\+h.
+Definition at line 2098 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_gababce1066ecef7258070b9b7fcea975f}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!zernikef@{zernikef}}
 \index{zernikef@{zernikef}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -5170,9 +5500,14 @@ Definition at line 1999 of file specfun.\+h.
 \item[{float}]{\+\_\+\+\_\+phi}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_gababce1066ecef7258070b9b7fcea975f}
+Return the Zernicke polynomial $ Z_n^m(\rho,\phi) $ for non-\/negative degree $ n $, signed order $ m $, and real radial argument $ \rho $ and azimuthal angle $ \phi $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_gac43d89238752ed88927867236ab8c6a8}{zernike} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 1987 of file specfun.\+h.
+Definition at line 2059 of file specfun.\+h.
 
 \hypertarget{group__gnu__math__spec__func_ga9236dd8545b448da9cb05dd8b7cf6811}{}\index{G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}!zernikel@{zernikel}}
 \index{zernikel@{zernikel}!G\+N\+U Extended Mathematical Special Functions@{G\+N\+U Extended Mathematical Special Functions}}
@@ -5184,7 +5519,12 @@ Definition at line 1987 of file specfun.\+h.
 \item[{long double}]{\+\_\+\+\_\+phi}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{group__gnu__math__spec__func_ga9236dd8545b448da9cb05dd8b7cf6811}
+Return the Zernicke polynomial $ Z_n^m(\rho,\phi) $ for non-\/negative degree $ n $, signed order $ m $, and real radial argument $ \rho $ and azimuthal angle $ \phi $.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__gnu__math__spec__func_gac43d89238752ed88927867236ab8c6a8}{zernike} for details. 
+\end{DoxySeeAlso}
 
 
-Definition at line 1991 of file specfun.\+h.
+Definition at line 2070 of file specfun.\+h.
 

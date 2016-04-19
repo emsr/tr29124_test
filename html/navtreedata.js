@@ -44,10 +44,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"group__gnu__math__spec__func.html#gad6d75fcefac4a20b52f29d9b1bc3a57d",
+"group__gnu__math__spec__func.html#gad7e60d39a8b57a427eb8ca31c8d09e10",
 "sf__ellint_8tcc.html#a9c6ea96cd5d6907fce278010b992499a",
 "sf__trigint_8tcc.html#a976c3ff52c54001de3d409900c9bcb9c",
-"specfun_8h.html#ga9d3d53ace67dfa6126118fb780095a1f"
+"specfun_8h.html#ga9db158df9459aa12c840724338753913"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

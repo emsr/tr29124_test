@@ -633,7 +633,7 @@ template&lt;typename _Tpa , typename _Tpb &gt; </div>
 <p>The beta function is defined by </p><p class="formulaDsp">
 <img class="formulaDsp" alt="\[ B(a,b) = \int_0^1 t^{a - 1} (1 - t)^{b - 1} dt = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)} \]" src="form_15.png"/>
 </p>
-<p> where <img class="formulaInl" alt="$ x > 0 $" src="form_16.png"/> and <img class="formulaInl" alt="$ y > 0 $" src="form_17.png"/></p>
+<p> where <img class="formulaInl" alt="$ a > 0 $" src="form_16.png"/> and <img class="formulaInl" alt="$ b > 0 $" src="form_17.png"/></p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">_Tpa</td><td>The floating-point type of the parameter <code>__a</code>. </td></tr>
@@ -2623,10 +2623,10 @@ template&lt;typename _Tp &gt; </div>
 </div><div class="memdoc">
 <p>Return the Riemann zeta function <img class="formulaInl" alt="$ \zeta(s) $" src="form_58.png"/> for real argument <img class="formulaInl" alt="$ s $" src="form_59.png"/>.</p>
 <p>The Riemann zeta function is defined by: </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ \zeta(s) = \sum_{k=1}^{\infty} k^{-s} \hbox{ for } s > 1 \]" src="form_60.png"/>
+<img class="formulaDsp" alt="\[ \zeta(s) = \sum_{k=1}^{\infty} k^{-s} \mbox{ for } s > 1 \]" src="form_60.png"/>
 </p>
 <p> and </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ \zeta(s) = \frac{1}{1-2^{1-s}}\sum_{k=1}^{\infty}(-1)^{k-1}k^{-s} \hbox{ for } 0 <= s <= 1 \]" src="form_61.png"/>
+<img class="formulaDsp" alt="\[ \zeta(s) = \frac{1}{1-2^{1-s}}\sum_{k=1}^{\infty}(-1)^{k-1}k^{-s} \mbox{ for } 0 <= s <= 1 \]" src="form_61.png"/>
 </p>
 <p> For s &lt; 1 use the reflection formula: </p><p class="formulaDsp">
 <img class="formulaDsp" alt="\[ \zeta(s) = 2^s \pi^{s-1} \sin(\frac{\pi s}{2}) \Gamma(1-s) \zeta(1-s) \]" src="form_62.png"/>
