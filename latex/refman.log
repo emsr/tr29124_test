@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.3.12)  8 APR 2016 17:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.3.12)  19 APR 2016 13:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1546,378 +1546,475 @@ LaTeX Font Info:    Font shape `T1/phv/b/it' in size <7> not available
 (Font)              Font shape `T1/phv/b/sl' tried instead on input line 606.
 LaTeX Font Info:    Font shape `T1/phv/b/sl' will be
 (Font)              scaled to size 6.29996pt on input line 606.
-[46] [47]
-Underfull \hbox (badness 10000) detected at line 796
+[46]
+Underfull \hbox (badness 10000) detected at line 653
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 813
+Underfull \hbox (badness 10000) detected at line 669
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 853
-[][][]
- []
-
-[48]
-Underfull \hbox (badness 10000) detected at line 870
+Underfull \hbox (badness 10000) detected at line 710
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 910
+Underfull \hbox (badness 10000) detected at line 726
+[][][]
+ []
+
+[47] [48]
+Underfull \hbox (badness 10000) detected at line 844
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 927
+Underfull \hbox (badness 10000) detected at line 861
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 901
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 918
 [][][]
  []
 
 [49]
-Underfull \hbox (badness 10000) detected at line 967
+Underfull \hbox (badness 10000) detected at line 958
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 984
+Underfull \hbox (badness 10000) detected at line 975
 [][][]
  []
 
 [50]
-Underfull \hbox (badness 10000) detected at line 1059
+Underfull \hbox (badness 10000) detected at line 1015
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1076
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 1116
+Underfull \hbox (badness 10000) detected at line 1032
 [][][]
  []
 
 [51]
-Underfull \hbox (badness 10000) detected at line 1133
+Underfull \hbox (badness 10000) detected at line 1107
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1150
+Underfull \hbox (badness 10000) detected at line 1124
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1179
+Underfull \hbox (badness 10000) detected at line 1164
 [][][]
  []
 
 [52]
-Underfull \hbox (badness 10000) detected at line 1250
+Underfull \hbox (badness 10000) detected at line 1181
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1267
+Underfull \hbox (badness 10000) detected at line 1198
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 1227
 [][][]
  []
 
 [53]
-Underfull \hbox (badness 10000) detected at line 1307
+Underfull \hbox (badness 10000) detected at line 1298
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1324
+Underfull \hbox (badness 10000) detected at line 1315
 [][][]
  []
 
 [54]
-Underfull \hbox (badness 10000) detected at line 1413
+Underfull \hbox (badness 10000) detected at line 1355
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1430
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 1448
+Underfull \hbox (badness 10000) detected at line 1372
 [][][]
  []
 
 [55]
-Underfull \hbox (badness 10000) detected at line 1466
+Underfull \hbox (badness 10000) detected at line 1461
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1513
+Underfull \hbox (badness 10000) detected at line 1478
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 1496
 [][][]
  []
 
 [56]
-Underfull \hbox (badness 10000) detected at line 1549
+Underfull \hbox (badness 10000) detected at line 1514
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1565
+Underfull \hbox (badness 10000) detected at line 1561
 [][][]
  []
 
 [57]
-Underfull \hbox (badness 10000) detected at line 1629
+Underfull \hbox (badness 10000) detected at line 1597
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1658
+Underfull \hbox (badness 10000) detected at line 1613
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 1630
 [][][]
  []
 
 [58]
-Underfull \hbox (badness 10000) detected at line 1722
+Underfull \hbox (badness 10000) detected at line 1682
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1751
+Underfull \hbox (badness 10000) detected at line 1699
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1787
+Underfull \hbox (badness 10000) detected at line 1716
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 1733
 [][][]
  []
 
 [59]
-Underfull \hbox (badness 10000) detected at line 1803
+Underfull \hbox (badness 10000) detected at line 1750
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1872
+Underfull \hbox (badness 10000) detected at line 1802
 [][][]
  []
 
 [60]
-Underfull \hbox (badness 10000) detected at line 1888
+Underfull \hbox (badness 10000) detected at line 1819
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1966
+Underfull \hbox (badness 10000) detected at line 1836
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 1853
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 1889
 [][][]
  []
 
 [61]
-Underfull \hbox (badness 10000) detected at line 1982
-[][][]
- []
-
-[62] [63] [64]
-Underfull \hbox (badness 10000) detected at line 2322
+Underfull \hbox (badness 10000) detected at line 1905
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2339
+Underfull \hbox (badness 10000) detected at line 1974
 [][][]
  []
 
-[65]
-Underfull \hbox (badness 10000) detected at line 2390
+[62]
+Underfull \hbox (badness 10000) detected at line 1990
 [][][]
  []
 
-
-Underfull \hbox (badness 10000) detected at line 2408
-[][][]
- []
-
-[66]
-Underfull \hbox (badness 10000) detected at line 2452
+[63]
+Underfull \hbox (badness 10000) detected at line 2068
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2470
+Underfull \hbox (badness 10000) detected at line 2084
+[][][]
+ []
+
+[64] [65] [66]
+Underfull \hbox (badness 10000) detected at line 2424
 [][][]
  []
 
 [67]
-Underfull \hbox (badness 10000) detected at line 2521
+Underfull \hbox (badness 10000) detected at line 2441
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2539
+Underfull \hbox (badness 10000) detected at line 2492
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 2594
+Underfull \hbox (badness 10000) detected at line 2510
 [][][]
  []
 
 [68]
-Underfull \hbox (badness 10000) detected at line 2613
-[][][]
- []
-
-[69] [70] [71] [72]
-Underfull \hbox (badness 10000) detected at line 3111
+Underfull \hbox (badness 10000) detected at line 2554
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 3128
+Underfull \hbox (badness 10000) detected at line 2572
 [][][]
  []
 
-[73]
-Underfull \hbox (badness 10000) detected at line 3145
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 3193
+[69]
+Underfull \hbox (badness 10000) detected at line 2623
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 3212
+Underfull \hbox (badness 10000) detected at line 2641
 [][][]
  []
 
-[74] [75]
-Underfull \hbox (badness 10000) detected at line 3394
+[70]
+Underfull \hbox (badness 10000) detected at line 2696
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 3411
+Underfull \hbox (badness 10000) detected at line 2715
+[][][]
+ []
+
+[71] [72] [73] [74] [75]
+Underfull \hbox (badness 10000) detected at line 3138
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 3156
 [][][]
  []
 
 [76]
-Underfull \hbox (badness 10000) detected at line 3451
+Underfull \hbox (badness 10000) detected at line 3243
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 3468
+Underfull \hbox (badness 10000) detected at line 3260
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 3277
 [][][]
  []
 
 [77]
-Underfull \hbox (badness 10000) detected at line 3508
+Underfull \hbox (badness 10000) detected at line 3325
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 3525
+Underfull \hbox (badness 10000) detected at line 3344
 [][][]
  []
 
 [78] [79]
-Underfull \hbox (badness 10000) detected at line 3782
-[][][]
+Overfull \hbox (141.40506pt too wide) detected at line 3487
+\OT1/cmr/m/n/10 2\OML/cmm/m/it/10 n\OT1/cmr/m/n/10 (\OML/cmm/m/it/10  \OT1/cmr
+/m/n/10 + \OML/cmm/m/it/10 ^^L \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 n\OT1/cmr/m/n
+/10 )(\OML/cmm/m/it/10  \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 ^^L \OT1/cmr/m/n/10
+ + 2\OML/cmm/m/it/10 n \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 2)\OML/cmm/m/it/10 
+P[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) = (\OML/cmm/m/it/10  \
+OT1/cmr/m/n/10 + \OML/cmm/m/it/10 ^^L \OT1/cmr/m/n/10 + 2\OML/cmm/m/it/10 n \OM
+S/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1)((\OML/cmm/m/it/10 [] \OMS/cmsy/m/n/10 ^^@
+ \OML/cmm/m/it/10 ^^L[]\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 x\OT1/cmr/m/n/10 (\
+OML/cmm/m/it/10  \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 ^^L \OT1/cmr/m/n/10 + 2\OM
+L/cmm/m/it/10 n \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 2)(\OML/cmm/m/it/10  \OT1
+/cmr/m/n/10 + \OML/cmm/m/it/10 ^^L \OT1/cmr/m/n/10 + 2\OML/cmm/m/it/10 n\OT1/cm
+r/m/n/10 ))\OML/cmm/m/it/10 P[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/
+10 ) \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 2(\OML/cmm/m/it/10  \OT1/cmr/m/n/10 
++ \OML/cmm/m/it/10 n \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1)(\OML/cmm/m/it/10 ^
+^L \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 n \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1)
+(\OML/cmm/m/it/10  \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 ^^L \OT1/cmr/m/n/10 + 2\
+OML/cmm/m/it/10 n\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 P[]\OT1/cmr/m/n/10 (\OML/cmm
+/m/it/10 x\OT1/cmr/m/n/10 )
  []
 
 
-Underfull \hbox (badness 10000) detected at line 3798
+Underfull \hbox (badness 10000) detected at line 3550
 [][][]
  []
 
 [80]
-Underfull \hbox (badness 10000) detected at line 3910
+Underfull \hbox (badness 10000) detected at line 3567
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 3927
+Underfull \hbox (badness 10000) detected at line 3607
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 3624
 [][][]
  []
 
 [81]
-Underfull \hbox (badness 10000) detected at line 4039
+Underfull \hbox (badness 10000) detected at line 3664
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 3681
 [][][]
  []
 
 [82]
-Underfull \hbox (badness 10000) detected at line 4056
-[][][]
- []
-
-[83] [84]
-Underfull \hbox (badness 10000) detected at line 4313
+Underfull \hbox (badness 10000) detected at line 3747
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 4329
+Underfull \hbox (badness 10000) detected at line 3770
 [][][]
  []
 
+[83]
+Underfull \hbox (badness 10000) detected at line 3948
+[][][]
+ []
 
-Underfull \hbox (badness 10000) detected at line 4365
+[84]
+Underfull \hbox (badness 10000) detected at line 3964
 [][][]
  []
 
 [85]
-Underfull \hbox (badness 10000) detected at line 4381
-[][][]
- []
-
-[86] [87]
-Underfull \hbox (badness 10000) detected at line 4667
+Underfull \hbox (badness 10000) detected at line 4076
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 4686
+Underfull \hbox (badness 10000) detected at line 4093
+[][][]
+ []
+
+[86]
+Underfull \hbox (badness 10000) detected at line 4205
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 4222
+[][][]
+ []
+
+[87]
+Underfull \hbox (badness 10000) detected at line 4282
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 4312
 [][][]
  []
 
 [88]
-Underfull \hbox (badness 10000) detected at line 4726
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 4743
+Underfull \hbox (badness 10000) detected at line 4334
 [][][]
  []
 
 [89]
-Underfull \hbox (badness 10000) detected at line 4783
+Underfull \hbox (badness 10000) detected at line 4506
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 4800
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 4840
+Underfull \hbox (badness 10000) detected at line 4522
 [][][]
  []
 
 [90]
-Underfull \hbox (badness 10000) detected at line 4857
+Underfull \hbox (badness 10000) detected at line 4558
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 4897
+Underfull \hbox (badness 10000) detected at line 4574
+[][][]
+ []
+
+[91]
+Underfull \hbox (badness 10000) detected at line 4624
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 4641
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 4691
+[][][]
+ []
+
+[92]
+Underfull \hbox (badness 10000) detected at line 4708
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 4776
+[][][]
+ []
+
+[93]
+Underfull \hbox (badness 10000) detected at line 4805
+[][][]
+ []
+
+[94]
+Underfull \hbox (badness 10000) detected at line 4885
 [][][]
  []
 
@@ -1926,68 +2023,133 @@ Underfull \hbox (badness 10000) detected at line 4914
 [][][]
  []
 
-[91]
-Underfull \hbox (badness 10000) detected at line 4954
+[95]
+Underfull \hbox (badness 10000) detected at line 4974
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 4971
+Underfull \hbox (badness 10000) detected at line 4993
+[][][]
+ []
+
+[96]
+Underfull \hbox (badness 10000) detected at line 5033
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 5011
-[][][]
- []
-
-[92]
-Underfull \hbox (badness 10000) detected at line 5028
+Underfull \hbox (badness 10000) detected at line 5050
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 5068
+Underfull \hbox (badness 10000) detected at line 5090
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 5085
+Underfull \hbox (badness 10000) detected at line 5107
 [][][]
  []
 
-[93]
-Underfull \hbox (badness 10000) detected at line 5125
+[97]
+Underfull \hbox (badness 10000) detected at line 5147
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 5142
+Underfull \hbox (badness 10000) detected at line 5164
 [][][]
  []
 
-) [94]
+[98]
+Underfull \hbox (badness 10000) detected at line 5204
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 5221
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 5261
+[][][]
+ []
+
+[99]
+Underfull \hbox (badness 10000) detected at line 5278
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 5318
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 5335
+[][][]
+ []
+
+[100]
+Underfull \hbox (badness 10000) detected at line 5375
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 5392
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 5432
+[][][]
+ []
+
+[101]
+Underfull \hbox (badness 10000) detected at line 5449
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 5468
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 5505
+[][][]
+ []
+
+[102]
+Underfull \hbox (badness 10000) detected at line 5524
+[][][]
+ []
+
+) [103] [104
+
+
+]
 Chapter 8.
-(./namespace____gnu__cxx.tex [95
-
-
-] [96] [97] [98] [99] [100] [101])
-(./namespacestd.tex [102] [103]) (./namespacestd_1_1____detail.tex [104]
+(./namespace____gnu__cxx.tex [105] [106] [107] [108] [109] [110] [111])
+(./namespacestd.tex [112] [113]) (./namespacestd_1_1____detail.tex [114]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
 (Font)              Font shape `T1/pcr/m/sl' tried instead on input line 25.
 
-[105] [106] [107] [108] [109] [110]
+[115] [116] [117] [118] [119] [120]
 LaTeX Font Info:    Font shape `TS1/phv/m/it' in size <9> not available
 (Font)              Font shape `TS1/phv/m/sl' tried instead on input line 235.
 LaTeX Font Info:    Font shape `TS1/phv/m/sl' will be
 (Font)              scaled to size 8.09995pt on input line 235.
- [111] [112] [113] [114] [115] [116]
-[117] [118] [119] [120] [121]
+ [121] [122] [123] [124] [125] [126]
+[127] [128] [129] [130] [131]
 Underfull \hbox (badness 10000) detected at line 570
 [][][]
  []
 
-[122] [123]
+[132] [133]
 Underfull \hbox (badness 10000) detected at line 651
 [][][]
  []
@@ -2017,27 +2179,27 @@ Underfull \hbox (badness 10000) detected at line 688
 [][][]
  []
 
-[124]
+[134]
 
 LaTeX Font Warning: Font shape `T1/pcr/bc/it' undefined
 (Font)              using `T1/pcr/bc/n' instead on input line 784.
 
-[125]
+[135]
 Underfull \hbox (badness 10000) detected at line 791
 [][][]
  []
 
-[126] [127]
+[136] [137]
 Underfull \hbox (badness 10000) detected at line 935
 [][][]
  []
 
-[128]
+[138]
 Underfull \hbox (badness 10000) detected at line 1033
 [][][]
  []
 
-[129]
+[139]
 Underfull \hbox (badness 10000) detected at line 1092
 [][][]
  []
@@ -2052,7 +2214,7 @@ Underfull \hbox (badness 10000) detected at line 1140
 [][][]
  []
 
-[130]
+[140]
 Underfull \hbox (badness 10000) detected at line 1168
 [][][]
  []
@@ -2062,12 +2224,12 @@ Underfull \hbox (badness 10000) detected at line 1204
 [][][]
  []
 
-[131]
+[141]
 Underfull \hbox (badness 10000) detected at line 1298
 [][][]
  []
 
-[132]
+[142]
 Underfull \hbox (badness 10000) detected at line 1334
 [][][]
  []
@@ -2077,7 +2239,7 @@ Underfull \hbox (badness 10000) detected at line 1360
 [][][]
  []
 
-[133]
+[143]
 Underfull \hbox (badness 10000) detected at line 1439
 [][][]
  []
@@ -2087,12 +2249,12 @@ Underfull \hbox (badness 10000) detected at line 1451
 [][][]
  []
 
-[134] [135]
+[144] [145]
 Underfull \hbox (badness 10000) detected at line 1696
 [][][]
  []
 
-[136]
+[146]
 Underfull \hbox (badness 10000) detected at line 1724
 [][][]
  []
@@ -2117,7 +2279,7 @@ Underfull \hbox (badness 10000) detected at line 1782
 [][][]
  []
 
-[137]
+[147]
 Underfull \hbox (badness 10000) detected at line 1801
 [][][]
  []
@@ -2137,7 +2299,7 @@ Underfull \hbox (badness 10000) detected at line 1840
 [][][]
  []
 
-[138]
+[148]
 Underfull \hbox (badness 10000) detected at line 1869
 [][][]
  []
@@ -2152,7 +2314,7 @@ Underfull \hbox (badness 10000) detected at line 1938
 [][][]
  []
 
-[139]
+[149]
 Underfull \hbox (badness 10000) detected at line 2022
 [][][]
  []
@@ -2162,7 +2324,7 @@ Underfull \hbox (badness 10000) detected at line 2052
 [][][]
  []
 
-[140]
+[150]
 Underfull \hbox (badness 10000) detected at line 2086
 [][][]
  []
@@ -2172,7 +2334,7 @@ Underfull \hbox (badness 10000) detected at line 2142
 [][][]
  []
 
-[141]
+[151]
 Underfull \hbox (badness 10000) detected at line 2171
 [][][]
  []
@@ -2182,7 +2344,7 @@ Underfull \hbox (badness 10000) detected at line 2201
 [][][]
  []
 
-[142]
+[152]
 Underfull \hbox (badness 10000) detected at line 2233
 [][][]
  []
@@ -2192,17 +2354,17 @@ Underfull \hbox (badness 10000) detected at line 2273
 [][][]
  []
 
-[143] [144]
+[153] [154]
 Underfull \hbox (badness 10000) detected at line 2436
 [][][]
  []
 
-[145]
+[155]
 Underfull \hbox (badness 10000) detected at line 2580
 [][][]
  []
 
-[146]
+[156]
 Underfull \hbox (badness 10000) detected at line 2612
 [][][]
  []
@@ -2217,7 +2379,7 @@ Underfull \hbox (badness 10000) detected at line 2674
 [][][]
  []
 
-[147]
+[157]
 Underfull \hbox (badness 10000) detected at line 2704
 [][][]
  []
@@ -2232,7 +2394,7 @@ Underfull \hbox (badness 10000) detected at line 2766
 [][][]
  []
 
-[148] [149]
+[158] [159]
 Underfull \hbox (badness 10000) detected at line 2889
 [][][]
  []
@@ -2242,7 +2404,7 @@ Underfull \hbox (badness 10000) detected at line 2919
 [][][]
  []
 
-[150]
+[160]
 Underfull \hbox (badness 10000) detected at line 2944
 [][][]
  []
@@ -2252,7 +2414,7 @@ Underfull \hbox (badness 10000) detected at line 2974
 [][][]
  []
 
-[151]
+[161]
 Underfull \hbox (badness 10000) detected at line 3025
 [][][]
  []
@@ -2267,7 +2429,7 @@ Underfull \hbox (badness 10000) detected at line 3092
 [][][]
  []
 
-[152] [153]
+[162] [163]
 Underfull \hbox (badness 10000) detected at line 3216
 [][][]
  []
@@ -2277,7 +2439,7 @@ Underfull \hbox (badness 10000) detected at line 3258
 [][][]
  []
 
-[154]
+[164]
 Underfull \hbox (badness 10000) detected at line 3293
 [][][]
  []
@@ -2287,12 +2449,12 @@ Underfull \hbox (badness 10000) detected at line 3339
 [][][]
  []
 
-[155]
+[165]
 Underfull \hbox (badness 10000) detected at line 3384
 [][][]
  []
 
-[156]
+[166]
 Underfull \hbox (badness 10000) detected at line 3473
 [][][]
  []
@@ -2307,7 +2469,7 @@ Underfull \hbox (badness 10000) detected at line 3540
 [][][]
  []
 
-[157]
+[167]
 Underfull \hbox (badness 10000) detected at line 3565
 [][][]
  []
@@ -2317,7 +2479,7 @@ Underfull \hbox (badness 10000) detected at line 3604
 [][][]
  []
 
-[158]
+[168]
 Underfull \hbox (badness 10000) detected at line 3633
 [][][]
  []
@@ -2332,7 +2494,7 @@ Underfull \hbox (badness 10000) detected at line 3695
 [][][]
  []
 
-[159]
+[169]
 Underfull \hbox (badness 10000) detected at line 3724
 [][][]
  []
@@ -2342,7 +2504,7 @@ Underfull \hbox (badness 10000) detected at line 3756
 [][][]
  []
 
-[160]
+[170]
 Underfull \hbox (badness 10000) detected at line 3788
 [][][]
  []
@@ -2357,7 +2519,7 @@ Underfull \hbox (badness 10000) detected at line 3860
 [][][]
  []
 
-[161]
+[171]
 Underfull \hbox (badness 10000) detected at line 3898
 [][][]
  []
@@ -2367,12 +2529,12 @@ Underfull \hbox (badness 10000) detected at line 3910
 [][][]
  []
 
-[162]
+[172]
 Underfull \hbox (badness 10000) detected at line 4034
 [][][]
  []
 
-[163]
+[173]
 Underfull \hbox (badness 10000) detected at line 4059
 [][][]
  []
@@ -2382,444 +2544,453 @@ Underfull \hbox (badness 10000) detected at line 4095
 [][][]
  []
 
-[164]
+[174]
 Underfull \hbox (badness 10000) detected at line 4207
 [][][]
  []
 
-[165] [166] [167] [168]
-Underfull \vbox (badness 2229) has occurred while \output is active []
+[175] [176] [177]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [169]
-[170]
-Underfull \hbox (badness 10000) detected at line 4807
-[][][]
- []
-
-[171]
-Underfull \hbox (badness 10000) detected at line 4877
-[][][]
- []
-
-[172]
-Underfull \hbox (badness 10000) detected at line 4969
-[][][]
- []
-
-[173]
-Underfull \hbox (badness 10000) detected at line 5029
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 5055
-[][][]
- []
-
-[174]
-Underfull \hbox (badness 10000) detected at line 5139
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 5170
-[][][]
- []
-
-[175]
-Underfull \hbox (badness 10000) detected at line 5193
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 5220
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 5242
-[][][]
- []
-
-[176]
-Underfull \hbox (badness 10000) detected at line 5250
-[][][]
- []
-
-[177]
-Underfull \hbox (badness 10000) detected at line 5311
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 5332
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 5342
-[][][]
- []
-
-[178]
-Underfull \hbox (badness 10000) detected at line 5412
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 5445
-[][][]
- []
-
-[179]
-Underfull \hbox (badness 10000) detected at line 5481
-[][][]
- []
-
-
-Overfull \hbox (137.0715pt too wide) detected at line 5502
-\OT1/cmr/m/n/10 2\OML/cmm/m/it/10 k\OT1/cmr/m/n/10 (\OML/cmm/m/it/10  \OT1/cmr
-/m/n/10 + \OML/cmm/m/it/10 ^^L \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 k\OT1/cmr/m/n
-/10 )(\OML/cmm/m/it/10  \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 ^^L \OT1/cmr/m/n/10
- + 2\OML/cmm/m/it/10 k \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 2)\OML/cmm/m/it/10 
-P[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) = (\OML/cmm/m/it/10  \
-OT1/cmr/m/n/10 + \OML/cmm/m/it/10 ^^L \OT1/cmr/m/n/10 + 2\OML/cmm/m/it/10 k \OM
-S/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1)((\OML/cmm/m/it/10 [] \OMS/cmsy/m/n/10 ^^@
- \OML/cmm/m/it/10 ^^L[]\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 x\OT1/cmr/m/n/10 (\
-OML/cmm/m/it/10  \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 ^^L \OT1/cmr/m/n/10 + 2\OM
-L/cmm/m/it/10 k \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 2)(\OML/cmm/m/it/10  \OT1
-/cmr/m/n/10 + \OML/cmm/m/it/10 ^^L \OT1/cmr/m/n/10 + 2\OML/cmm/m/it/10 k\OT1/cm
-r/m/n/10 ))\OML/cmm/m/it/10 P[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/
-10 ) \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 2(\OML/cmm/m/it/10  \OT1/cmr/m/n/10 
-+ \OML/cmm/m/it/10 k \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1)(\OML/cmm/m/it/10 ^
-^L \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 k \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1)
-(\OML/cmm/m/it/10  \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 ^^L \OT1/cmr/m/n/10 + 2\
-OML/cmm/m/it/10 k\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 P[]\OT1/cmr/m/n/10 (\OML/cmm
-/m/it/10 x\OT1/cmr/m/n/10 )
- []
-
-[180]
-Underfull \hbox (badness 10000) detected at line 5540
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 5579
+ [178]
+[179] [180]
+Underfull \hbox (badness 10000) detected at line 4827
 [][][]
  []
 
 [181]
-Underfull \hbox (badness 10000) detected at line 5612
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 5653
+Underfull \hbox (badness 10000) detected at line 4897
 [][][]
  []
 
 [182]
-Underfull \hbox (badness 10000) detected at line 5756
+Underfull \hbox (badness 10000) detected at line 4989
 [][][]
  []
 
 [183]
-Underfull \hbox (badness 10000) detected at line 5788
+Underfull \hbox (badness 10000) detected at line 5049
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 5809
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 5819
+Underfull \hbox (badness 10000) detected at line 5075
 [][][]
  []
 
 [184]
-Underfull \hbox (badness 10000) detected at line 5853
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 5885
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 5917
+Underfull \hbox (badness 10000) detected at line 5159
 [][][]
  []
 
 [185]
-Underfull \hbox (badness 10000) detected at line 5945
+Underfull \hbox (badness 10000) detected at line 5190
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 5977
+Underfull \hbox (badness 10000) detected at line 5213
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6003
+Underfull \hbox (badness 10000) detected at line 5240
 [][][]
  []
 
 [186]
-Underfull \hbox (badness 10000) detected at line 6035
+Underfull \hbox (badness 10000) detected at line 5262
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6067
+Underfull \hbox (badness 10000) detected at line 5270
 [][][]
  []
 
 [187]
-Underfull \hbox (badness 10000) detected at line 6103
+Underfull \hbox (badness 10000) detected at line 5331
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 5352
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 5362
 [][][]
  []
 
 [188]
-Underfull \hbox (badness 10000) detected at line 6137
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 6171
+Underfull \hbox (badness 10000) detected at line 5432
 [][][]
  []
 
 [189]
-Underfull \hbox (badness 10000) detected at line 6205
+Underfull \hbox (badness 10000) detected at line 5465
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6235
+Underfull \hbox (badness 10000) detected at line 5501
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6263
-[][][]
+Overfull \hbox (141.40506pt too wide) detected at line 5522
+\OT1/cmr/m/n/10 2\OML/cmm/m/it/10 n\OT1/cmr/m/n/10 (\OML/cmm/m/it/10  \OT1/cmr
+/m/n/10 + \OML/cmm/m/it/10 ^^L \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 n\OT1/cmr/m/n
+/10 )(\OML/cmm/m/it/10  \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 ^^L \OT1/cmr/m/n/10
+ + 2\OML/cmm/m/it/10 n \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 2)\OML/cmm/m/it/10 
+P[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) = (\OML/cmm/m/it/10  \
+OT1/cmr/m/n/10 + \OML/cmm/m/it/10 ^^L \OT1/cmr/m/n/10 + 2\OML/cmm/m/it/10 n \OM
+S/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1)((\OML/cmm/m/it/10 [] \OMS/cmsy/m/n/10 ^^@
+ \OML/cmm/m/it/10 ^^L[]\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 x\OT1/cmr/m/n/10 (\
+OML/cmm/m/it/10  \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 ^^L \OT1/cmr/m/n/10 + 2\OM
+L/cmm/m/it/10 n \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 2)(\OML/cmm/m/it/10  \OT1
+/cmr/m/n/10 + \OML/cmm/m/it/10 ^^L \OT1/cmr/m/n/10 + 2\OML/cmm/m/it/10 n\OT1/cm
+r/m/n/10 ))\OML/cmm/m/it/10 P[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/
+10 ) \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 2(\OML/cmm/m/it/10  \OT1/cmr/m/n/10 
++ \OML/cmm/m/it/10 n \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1)(\OML/cmm/m/it/10 ^
+^L \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 n \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1)
+(\OML/cmm/m/it/10  \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 ^^L \OT1/cmr/m/n/10 + 2\
+OML/cmm/m/it/10 n\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 P[]\OT1/cmr/m/n/10 (\OML/cmm
+/m/it/10 x\OT1/cmr/m/n/10 )
  []
 
 [190]
-Underfull \hbox (badness 10000) detected at line 6295
+Underfull \hbox (badness 10000) detected at line 5560
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6323
+Underfull \hbox (badness 10000) detected at line 5599
 [][][]
  []
 
 [191]
-Underfull \hbox (badness 10000) detected at line 6355
+Underfull \hbox (badness 10000) detected at line 5632
 [][][]
  []
 
-[192] [193] [194] [195] [196]
-Underfull \hbox (badness 10000) detected at line 6827
+
+Underfull \hbox (badness 10000) detected at line 5673
+[][][]
+ []
+
+[192]
+Underfull \hbox (badness 10000) detected at line 5749
+[][][]
+ []
+
+[193] [194]
+Underfull \hbox (badness 10000) detected at line 5795
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 5827
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 5848
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 5858
+[][][]
+ []
+
+[195]
+Underfull \hbox (badness 10000) detected at line 5892
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 5924
+[][][]
+ []
+
+[196]
+Underfull \hbox (badness 10000) detected at line 5956
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 5984
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 6016
 [][][]
  []
 
 [197]
-Underfull \hbox (badness 10000) detected at line 6859
+Underfull \hbox (badness 10000) detected at line 6042
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6889
+Underfull \hbox (badness 10000) detected at line 6074
 [][][]
  []
 
 [198]
-Underfull \hbox (badness 10000) detected at line 7046
+Underfull \hbox (badness 10000) detected at line 6106
 [][][]
  []
 
-[199] [200]
-Underfull \hbox (badness 10000) detected at line 7076
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 7108
+[199]
+Underfull \hbox (badness 10000) detected at line 6142
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 7138
+Underfull \hbox (badness 10000) detected at line 6176
 [][][]
  []
 
-[201] [202]
-Underfull \hbox (badness 10000) detected at line 7243
+[200]
+Underfull \hbox (badness 10000) detected at line 6210
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 7273
+Underfull \hbox (badness 10000) detected at line 6244
 [][][]
  []
 
-[203] [204] [205] [206]
-Underfull \hbox (badness 10000) detected at line 7656
+[201]
+Underfull \hbox (badness 10000) detected at line 6274
 [][][]
  []
 
-[207]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7730.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7730.
+Underfull \hbox (badness 10000) detected at line 6302
+[][][]
+ []
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7730.
+Underfull \hbox (badness 10000) detected at line 6334
+[][][]
+ []
+
+[202]
+Underfull \hbox (badness 10000) detected at line 6362
+[][][]
+ []
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7730.
+Underfull \hbox (badness 10000) detected at line 6394
+[][][]
+ []
+
+[203] [204] [205] [206] [207] [208] [209]
+Underfull \hbox (badness 10000) detected at line 6866
+[][][]
+ []
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7737.
+Underfull \hbox (badness 10000) detected at line 6898
+[][][]
+ []
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7737.
+Underfull \hbox (badness 10000) detected at line 6928
+[][][]
+ []
+
+[210] [211] [212]
+Underfull \hbox (badness 10000) detected at line 7085
+[][][]
+ []
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7737.
+Underfull \hbox (badness 10000) detected at line 7115
+[][][]
+ []
+
+[213]
+Underfull \hbox (badness 10000) detected at line 7147
+[][][]
+ []
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7737.
+Underfull \hbox (badness 10000) detected at line 7177
+[][][]
+ []
+
+[214]
+Underfull \hbox (badness 10000) detected at line 7282
+[][][]
+ []
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7744.
+Underfull \hbox (badness 10000) detected at line 7312
+[][][]
+ []
 
+[215] [216] [217] [218]
+Underfull \hbox (badness 10000) detected at line 7645
+[][][]
+ []
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7744.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7744.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7744.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7758.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7758.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7758.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7758.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7765.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7765.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7765.
+[219] [220]
+Underfull \hbox (badness 10000) detected at line 7716
+[][][]
+ []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7765.
+(hyperref)                removing `math shift' on input line 7790.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7772.
+(hyperref)                removing `math shift' on input line 7790.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7772.
+(hyperref)                removing `math shift' on input line 7790.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7772.
+(hyperref)                removing `math shift' on input line 7790.
+
+[221]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7797.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7772.
+(hyperref)                removing `math shift' on input line 7797.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7786.
+(hyperref)                removing `math shift' on input line 7797.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7786.
+(hyperref)                removing `math shift' on input line 7797.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7786.
+(hyperref)                removing `math shift' on input line 7804.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7786.
+(hyperref)                removing `math shift' on input line 7804.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7793.
+(hyperref)                removing `math shift' on input line 7804.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7793.
+(hyperref)                removing `math shift' on input line 7804.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7793.
+(hyperref)                removing `math shift' on input line 7818.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7793.
-
-[208]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7800.
+(hyperref)                removing `math shift' on input line 7818.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7800.
+(hyperref)                removing `math shift' on input line 7818.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7800.
+(hyperref)                removing `math shift' on input line 7818.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 7800.
+(hyperref)                removing `math shift' on input line 7825.
 
-) [209] [210
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7825.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7825.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7825.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7832.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7832.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7832.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7832.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7846.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7846.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7846.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7846.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7853.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7853.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7853.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7853.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7860.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7860.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7860.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7860.
+
+[222]) [223] [224
 
 ]
 Chapter 9.
@@ -2840,119 +3011,119 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1.
 
-) [211] [212
+) [225] [226
 
 ]
 Chapter 10.
 (./sf__airy_8tcc.tex
-<sf__airy_8tcc__incl.pdf, id=6885, 178.6675pt x 156.585pt>
+<sf__airy_8tcc__incl.pdf, id=6971, 178.6675pt x 156.585pt>
 File: sf__airy_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__airy_8tcc__incl.pdf>
 Package pdftex.def Info: sf__airy_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 178.0pt x 156.00879pt.
 
-<sf__airy_8tcc__dep__incl.pdf, id=6886, 161.60374pt x 156.585pt>
+<sf__airy_8tcc__dep__incl.pdf, id=6972, 161.60374pt x 156.585pt>
 File: sf__airy_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__airy_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__airy_8tcc__dep__incl.pdf used on input line 17.
 (pdftex.def)             Requested size: 161.0pt x 156.00879pt.
- [213 <./sf__airy_8tcc__incl.pdf> <./sf__airy_8tcc__dep__incl.pdf
+ [227 <./sf__airy_8tcc__incl.pdf> <./sf__airy_8tcc__dep__incl.pdf
 
 pdfTeX warning: pdflatex (file ./sf__airy_8tcc__dep__incl.pdf): PDF inclusion: 
 multiple pdfs with page group included in a single page
->] [214]) (./sf__bessel_8tcc.tex
-<sf__bessel_8tcc__incl.pdf, id=6921, 230.8625pt x 156.585pt>
+>] [228]) (./sf__bessel_8tcc.tex
+<sf__bessel_8tcc__incl.pdf, id=7008, 230.8625pt x 156.585pt>
 File: sf__bessel_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__bessel_8tcc__incl.pdf>
 Package pdftex.def Info: sf__bessel_8tcc__incl.pdf used on input line 10.
 (pdftex.def)             Requested size: 230.0pt x 156.00162pt.
 
-<sf__bessel_8tcc__dep__incl.pdf, id=6922, 174.6525pt x 156.585pt>
+<sf__bessel_8tcc__dep__incl.pdf, id=7009, 174.6525pt x 156.585pt>
 File: sf__bessel_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__bessel_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__bessel_8tcc__dep__incl.pdf used on input line 18.
 (pdftex.def)             Requested size: 174.0pt x 156.00879pt.
- [215 <./sf__bessel_8tcc__incl.pdf> <./sf__bessel_8tcc__dep__incl.pdf
+ [229 <./sf__bessel_8tcc__incl.pdf> <./sf__bessel_8tcc__dep__incl.pdf
 
 pdfTeX warning: pdflatex (file ./sf__bessel_8tcc__dep__incl.pdf): PDF inclusion
 : multiple pdfs with page group included in a single page
->] [216]) (./sf__beta_8tcc.tex
-<sf__beta_8tcc__incl.pdf, id=6963, 172.645pt x 156.585pt>
+>] [230]) (./sf__beta_8tcc.tex
+<sf__beta_8tcc__incl.pdf, id=7051, 172.645pt x 156.585pt>
 File: sf__beta_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__beta_8tcc__incl.pdf>
 Package pdftex.def Info: sf__beta_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 172.0pt x 156.00162pt.
 
-<sf__beta_8tcc__dep__incl.pdf, id=6964, 164.615pt x 156.585pt>
+<sf__beta_8tcc__dep__incl.pdf, id=7052, 164.615pt x 156.585pt>
 File: sf__beta_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__beta_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__beta_8tcc__dep__incl.pdf used on input line 17.
 (pdftex.def)             Requested size: 164.0pt x 156.004pt.
- [217 <./sf__beta_8tcc__incl.pdf>] [218 <./sf__beta_8tcc__dep__incl.pdf>]) (./s
+ [231 <./sf__beta_8tcc__incl.pdf>] [232 <./sf__beta_8tcc__dep__incl.pdf>]) (./s
 f__cardinal_8tcc.tex
-<sf__cardinal_8tcc__incl.pdf, id=7006, 179.67125pt x 156.585pt>
+<sf__cardinal_8tcc__incl.pdf, id=7092, 179.67125pt x 156.585pt>
 File: sf__cardinal_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__cardinal_8tcc__incl.pdf>
 Package pdftex.def Info: sf__cardinal_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 179.0pt x 156.01117pt.
 
-<sf__cardinal_8tcc__dep__incl.pdf, id=7007, 179.67125pt x 156.585pt>
+<sf__cardinal_8tcc__dep__incl.pdf, id=7093, 179.67125pt x 156.585pt>
 File: sf__cardinal_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__cardinal_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__cardinal_8tcc__dep__incl.pdf used on input line 17
 .
 (pdftex.def)             Requested size: 179.0pt x 156.01117pt.
- [219 <./sf__cardinal_8tcc__incl.pdf>]
-[220 <./sf__cardinal_8tcc__dep__incl.pdf>]) (./sf__chebyshev_8tcc.tex
-<sf__chebyshev_8tcc__incl.pdf, id=7041, 193.72375pt x 156.585pt>
+ [233 <./sf__cardinal_8tcc__incl.pdf>]
+[234 <./sf__cardinal_8tcc__dep__incl.pdf>]) (./sf__chebyshev_8tcc.tex
+<sf__chebyshev_8tcc__incl.pdf, id=7128, 193.72375pt x 156.585pt>
 File: sf__chebyshev_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__chebyshev_8tcc__incl.pdf>
 Package pdftex.def Info: sf__chebyshev_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 193.0pt x 156.00162pt.
 
-<sf__chebyshev_8tcc__dep__incl.pdf, id=7042, 193.72375pt x 156.585pt>
+<sf__chebyshev_8tcc__dep__incl.pdf, id=7129, 193.72375pt x 156.585pt>
 File: sf__chebyshev_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__chebyshev_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__chebyshev_8tcc__dep__incl.pdf used on input line 1
 7.
 (pdftex.def)             Requested size: 193.0pt x 156.00162pt.
- [221 <./sf__chebyshev_8tcc__incl.pdf>]) (./sf__dawson_8tcc.tex
-<sf__dawson_8tcc__incl.pdf, id=7061, 179.67125pt x 156.585pt>
+ [235 <./sf__chebyshev_8tcc__incl.pdf>]) (./sf__dawson_8tcc.tex
+<sf__dawson_8tcc__incl.pdf, id=7149, 179.67125pt x 156.585pt>
 File: sf__dawson_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__dawson_8tcc__incl.pdf>
 Package pdftex.def Info: sf__dawson_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 179.0pt x 156.01117pt.
- [222 <./sf__chebyshev_8tcc__dep__incl.pdf>]
-<sf__dawson_8tcc__dep__incl.pdf, id=7076, 179.67125pt x 156.585pt>
+ [236 <./sf__chebyshev_8tcc__dep__incl.pdf>]
+<sf__dawson_8tcc__dep__incl.pdf, id=7164, 179.67125pt x 156.585pt>
 File: sf__dawson_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__dawson_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__dawson_8tcc__dep__incl.pdf used on input line 17.
 (pdftex.def)             Requested size: 179.0pt x 156.01117pt.
- [223 <./sf__dawson_8tcc__incl.pdf> <./sf__dawson_8tcc__dep__incl.pdf
+ [237 <./sf__dawson_8tcc__incl.pdf> <./sf__dawson_8tcc__dep__incl.pdf
 
 pdfTeX warning: pdflatex (file ./sf__dawson_8tcc__dep__incl.pdf): PDF inclusion
 : multiple pdfs with page group included in a single page
 >]) (./sf__ellint_8tcc.tex
-<sf__ellint_8tcc__incl.pdf, id=7104, 172.645pt x 156.585pt>
+<sf__ellint_8tcc__incl.pdf, id=7190, 172.645pt x 156.585pt>
 File: sf__ellint_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__ellint_8tcc__incl.pdf>
 Package pdftex.def Info: sf__ellint_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 172.0pt x 156.00162pt.
 
-<sf__ellint_8tcc__dep__incl.pdf, id=7105, 166.6225pt x 156.585pt>
+<sf__ellint_8tcc__dep__incl.pdf, id=7191, 166.6225pt x 156.585pt>
 File: sf__ellint_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__ellint_8tcc__dep__incl.pdf>
@@ -2961,87 +3132,87 @@ Package pdftex.def Info: sf__ellint_8tcc__dep__incl.pdf used on input line 17.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [224 <./sf__ellint_8tcc__incl.pdf>] [225 <./sf__ellint_8tcc__dep__incl.pdf>])
+ [238 <./sf__ellint_8tcc__incl.pdf>] [239 <./sf__ellint_8tcc__dep__incl.pdf>])
 (./sf__expint_8tcc.tex
-<sf__expint_8tcc__incl.pdf, id=7154, 172.645pt x 156.585pt>
+<sf__expint_8tcc__incl.pdf, id=7241, 172.645pt x 156.585pt>
 File: sf__expint_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__expint_8tcc__incl.pdf>
 Package pdftex.def Info: sf__expint_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 172.0pt x 156.00162pt.
- [226]
-<sf__expint_8tcc__dep__incl.pdf, id=7159, 172.645pt x 156.585pt>
+ [240]
+<sf__expint_8tcc__dep__incl.pdf, id=7246, 172.645pt x 156.585pt>
 File: sf__expint_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__expint_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__expint_8tcc__dep__incl.pdf used on input line 17.
 (pdftex.def)             Requested size: 172.0pt x 156.00162pt.
- [227 <./sf__expint_8tcc__incl.pdf> <./sf__expint_8tcc__dep__incl.pdf
+ [241 <./sf__expint_8tcc__incl.pdf> <./sf__expint_8tcc__dep__incl.pdf
 
 pdfTeX warning: pdflatex (file ./sf__expint_8tcc__dep__incl.pdf): PDF inclusion
 : multiple pdfs with page group included in a single page
->] [228]) (./sf__fresnel_8tcc.tex
-<sf__fresnel_8tcc__incl.pdf, id=7203, 175.65625pt x 156.585pt>
+>] [242]) (./sf__fresnel_8tcc.tex
+<sf__fresnel_8tcc__incl.pdf, id=7290, 175.65625pt x 156.585pt>
 File: sf__fresnel_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__fresnel_8tcc__incl.pdf>
 Package pdftex.def Info: sf__fresnel_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 175.0pt x 156.01117pt.
 
-<sf__fresnel_8tcc__dep__incl.pdf, id=7204, 175.65625pt x 156.585pt>
+<sf__fresnel_8tcc__dep__incl.pdf, id=7291, 175.65625pt x 156.585pt>
 File: sf__fresnel_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__fresnel_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__fresnel_8tcc__dep__incl.pdf used on input line 17.
 
 (pdftex.def)             Requested size: 175.0pt x 156.01117pt.
- [229 <./sf__fresnel_8tcc__incl.pdf> <./sf__fresnel_8tcc__dep__incl.pdf
+ [243 <./sf__fresnel_8tcc__incl.pdf> <./sf__fresnel_8tcc__dep__incl.pdf
 
 pdfTeX warning: pdflatex (file ./sf__fresnel_8tcc__dep__incl.pdf): PDF inclusio
 n: multiple pdfs with page group included in a single page
 >]) (./sf__gamma_8tcc.tex
-<sf__gamma_8tcc__incl.pdf, id=7228, 178.6675pt x 156.585pt>
+<sf__gamma_8tcc__incl.pdf, id=7314, 178.6675pt x 156.585pt>
 File: sf__gamma_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__gamma_8tcc__incl.pdf>
 Package pdftex.def Info: sf__gamma_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 178.0pt x 156.00879pt.
 
-<sf__gamma_8tcc__dep__incl.pdf, id=7229, 178.6675pt x 156.585pt>
+<sf__gamma_8tcc__dep__incl.pdf, id=7315, 178.6675pt x 156.585pt>
 File: sf__gamma_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__gamma_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__gamma_8tcc__dep__incl.pdf used on input line 17.
 (pdftex.def)             Requested size: 178.0pt x 156.00879pt.
- [230 <./sf__gamma_8tcc__incl.pdf>] [231 <./sf__gamma_8tcc__dep__incl.pdf>] [23
-2] [233] [234]) (./sf__gegenbauer_8tcc.tex
-[235] <sf__gegenbauer_8tcc__incl.pdf, id=7328, 196.735pt x 156.585pt>
+ [244 <./sf__gamma_8tcc__incl.pdf>] [245 <./sf__gamma_8tcc__dep__incl.pdf>] [24
+6] [247] [248]) (./sf__gegenbauer_8tcc.tex
+[249] <sf__gegenbauer_8tcc__incl.pdf, id=7414, 196.735pt x 156.585pt>
 File: sf__gegenbauer_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__gegenbauer_8tcc__incl.pdf>
 Package pdftex.def Info: sf__gegenbauer_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 196.0pt x 155.99922pt.
 
-<sf__gegenbauer_8tcc__dep__incl.pdf, id=7329, 196.735pt x 156.585pt>
+<sf__gegenbauer_8tcc__dep__incl.pdf, id=7415, 196.735pt x 156.585pt>
 File: sf__gegenbauer_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__gegenbauer_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__gegenbauer_8tcc__dep__incl.pdf used on input line 
 17.
 (pdftex.def)             Requested size: 196.0pt x 155.99922pt.
- [236 <./sf__gegenbauer_8tcc__incl.pdf> <./sf__gegenbauer_8tcc__dep__incl.pdf
+ [250 <./sf__gegenbauer_8tcc__incl.pdf> <./sf__gegenbauer_8tcc__dep__incl.pdf
 
 pdfTeX warning: pdflatex (file ./sf__gegenbauer_8tcc__dep__incl.pdf): PDF inclu
 sion: multiple pdfs with page group included in a single page
 >]) (./sf__hankel_8tcc.tex
-<sf__hankel_8tcc__incl.pdf, id=7352, 371.3875pt x 156.585pt>
+<sf__hankel_8tcc__incl.pdf, id=7439, 371.3875pt x 156.585pt>
 File: sf__hankel_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__hankel_8tcc__incl.pdf>
 Package pdftex.def Info: sf__hankel_8tcc__incl.pdf used on input line 12.
 (pdftex.def)             Requested size: 350.0pt x 147.56981pt.
 
-<sf__hankel_8tcc__dep__incl.pdf, id=7353, 174.6525pt x 156.585pt>
+<sf__hankel_8tcc__dep__incl.pdf, id=7440, 174.6525pt x 156.585pt>
 File: sf__hankel_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__hankel_8tcc__dep__incl.pdf>
@@ -3050,51 +3221,51 @@ Package pdftex.def Info: sf__hankel_8tcc__dep__incl.pdf used on input line 20.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [237 <./sf__hankel_8tcc__incl.pdf>] [238 <./sf__hankel_8tcc__dep__incl.pdf>] [
-239])
+ [251 <./sf__hankel_8tcc__incl.pdf>] [252 <./sf__hankel_8tcc__dep__incl.pdf>] [
+253])
 (./sf__hankel__new_8tcc.tex
-<sf__hankel__new_8tcc__incl.pdf, id=7404, 449.68pt x 156.585pt>
+<sf__hankel__new_8tcc__incl.pdf, id=7492, 449.68pt x 156.585pt>
 File: sf__hankel__new_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__hankel__new_8tcc__incl.pdf>
 Package pdftex.def Info: sf__hankel__new_8tcc__incl.pdf used on input line 13.
 (pdftex.def)             Requested size: 350.0pt x 121.88014pt.
-) (./sf__hermite_8tcc.tex [240 <./sf__hankel__new_8tcc__incl.pdf>]
-<sf__hermite_8tcc__incl.pdf, id=7419, 178.6675pt x 156.585pt>
+) (./sf__hermite_8tcc.tex [254 <./sf__hankel__new_8tcc__incl.pdf>]
+<sf__hermite_8tcc__incl.pdf, id=7506, 178.6675pt x 156.585pt>
 File: sf__hermite_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__hermite_8tcc__incl.pdf>
 Package pdftex.def Info: sf__hermite_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 178.0pt x 156.00879pt.
 
-<sf__hermite_8tcc__dep__incl.pdf, id=7420, 178.6675pt x 156.585pt>
+<sf__hermite_8tcc__dep__incl.pdf, id=7507, 178.6675pt x 156.585pt>
 File: sf__hermite_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__hermite_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__hermite_8tcc__dep__incl.pdf used on input line 17.
 
 (pdftex.def)             Requested size: 178.0pt x 156.00879pt.
- [241 <./sf__hermite_8tcc__incl.pdf> <./sf__hermite_8tcc__dep__incl.pdf
+ [255 <./sf__hermite_8tcc__incl.pdf> <./sf__hermite_8tcc__dep__incl.pdf
 
 pdfTeX warning: pdflatex (file ./sf__hermite_8tcc__dep__incl.pdf): PDF inclusio
 n: multiple pdfs with page group included in a single page
 >]) (./sf__hydrogen_8tcc.tex
-<sf__hydrogen_8tcc__dep__incl.pdf, id=7447, 185.69376pt x 156.585pt>
+<sf__hydrogen_8tcc__dep__incl.pdf, id=7534, 185.69376pt x 156.585pt>
 File: sf__hydrogen_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__hydrogen_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__hydrogen_8tcc__dep__incl.pdf used on input line 8.
 
 (pdftex.def)             Requested size: 185.0pt x 156.004pt.
- [242 <./sf__hydrogen_8tcc__dep__incl.pdf>]) (./sf__hyperg_8tcc.tex
-<sf__hyperg_8tcc__incl.pdf, id=7465, 175.65625pt x 156.585pt>
+ [256 <./sf__hydrogen_8tcc__dep__incl.pdf>]) (./sf__hyperg_8tcc.tex
+<sf__hyperg_8tcc__incl.pdf, id=7552, 175.65625pt x 156.585pt>
 File: sf__hyperg_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__hyperg_8tcc__incl.pdf>
 Package pdftex.def Info: sf__hyperg_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 175.0pt x 156.01117pt.
 
-<sf__hyperg_8tcc__dep__incl.pdf, id=7466, 175.65625pt x 156.585pt>
+<sf__hyperg_8tcc__dep__incl.pdf, id=7553, 175.65625pt x 156.585pt>
 File: sf__hyperg_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__hyperg_8tcc__dep__incl.pdf>
@@ -3103,16 +3274,16 @@ Package pdftex.def Info: sf__hyperg_8tcc__dep__incl.pdf used on input line 17.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [243 <./sf__hyperg_8tcc__incl.pdf>] [244 <./sf__hyperg_8tcc__dep__incl.pdf>])
+ [257 <./sf__hyperg_8tcc__incl.pdf>] [258 <./sf__hyperg_8tcc__dep__incl.pdf>])
 (./sf__hypint_8tcc.tex
-<sf__hypint_8tcc__incl.pdf, id=7504, 172.645pt x 156.585pt>
+<sf__hypint_8tcc__incl.pdf, id=7591, 172.645pt x 156.585pt>
 File: sf__hypint_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__hypint_8tcc__incl.pdf>
 Package pdftex.def Info: sf__hypint_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 172.0pt x 156.00162pt.
 
-<sf__hypint_8tcc__dep__incl.pdf, id=7505, 172.645pt x 156.585pt>
+<sf__hypint_8tcc__dep__incl.pdf, id=7592, 172.645pt x 156.585pt>
 File: sf__hypint_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__hypint_8tcc__dep__incl.pdf>
@@ -3121,8 +3292,8 @@ Package pdftex.def Info: sf__hypint_8tcc__dep__incl.pdf used on input line 17.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [245 <./sf__hypint_8tcc__incl.pdf>]) (./sf__jacobi_8tcc.tex [246 <./sf__hypint
-_8tcc__dep__incl.pdf>] <sf__jacobi_8tcc__incl.pdf, id=7537, 172.645pt x 156.585
+ [259 <./sf__hypint_8tcc__incl.pdf>]) (./sf__jacobi_8tcc.tex [260 <./sf__hypint
+_8tcc__dep__incl.pdf>] <sf__jacobi_8tcc__incl.pdf, id=7624, 172.645pt x 156.585
 pt>
 File: sf__jacobi_8tcc__incl.pdf Graphic file (type pdf)
 
@@ -3130,25 +3301,25 @@ File: sf__jacobi_8tcc__incl.pdf Graphic file (type pdf)
 Package pdftex.def Info: sf__jacobi_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 172.0pt x 156.00162pt.
 
-<sf__jacobi_8tcc__dep__incl.pdf, id=7538, 171.64125pt x 156.585pt>
+<sf__jacobi_8tcc__dep__incl.pdf, id=7625, 171.64125pt x 156.585pt>
 File: sf__jacobi_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__jacobi_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__jacobi_8tcc__dep__incl.pdf used on input line 17.
 (pdftex.def)             Requested size: 171.0pt x 155.99922pt.
- [247 <./sf__jacobi_8tcc__incl.pdf> <./sf__jacobi_8tcc__dep__incl.pdf
+ [261 <./sf__jacobi_8tcc__incl.pdf> <./sf__jacobi_8tcc__dep__incl.pdf
 
 pdfTeX warning: pdflatex (file ./sf__jacobi_8tcc__dep__incl.pdf): PDF inclusion
 : multiple pdfs with page group included in a single page
 >]) (./sf__laguerre_8tcc.tex
-<sf__laguerre_8tcc__incl.pdf, id=7565, 180.675pt x 156.585pt>
+<sf__laguerre_8tcc__incl.pdf, id=7652, 180.675pt x 156.585pt>
 File: sf__laguerre_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__laguerre_8tcc__incl.pdf>
 Package pdftex.def Info: sf__laguerre_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 180.0pt x 156.00162pt.
 
-<sf__laguerre_8tcc__dep__incl.pdf, id=7566, 180.675pt x 156.585pt>
+<sf__laguerre_8tcc__dep__incl.pdf, id=7653, 180.675pt x 156.585pt>
 File: sf__laguerre_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__laguerre_8tcc__dep__incl.pdf>
@@ -3158,49 +3329,49 @@ Package pdftex.def Info: sf__laguerre_8tcc__dep__incl.pdf used on input line 17
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [248 <./sf__laguerre_8tcc__incl.pdf>] [249 <./sf__laguerre_8tcc__dep__incl.pdf
+ [262 <./sf__laguerre_8tcc__incl.pdf>] [263 <./sf__laguerre_8tcc__dep__incl.pdf
 >])
 (./sf__legendre_8tcc.tex
-<sf__legendre_8tcc__incl.pdf, id=7600, 182.6825pt x 156.585pt>
+<sf__legendre_8tcc__incl.pdf, id=7687, 182.6825pt x 156.585pt>
 File: sf__legendre_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__legendre_8tcc__incl.pdf>
 Package pdftex.def Info: sf__legendre_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 182.0pt x 156.0064pt.
 
-<sf__legendre_8tcc__dep__incl.pdf, id=7601, 182.6825pt x 156.585pt>
+<sf__legendre_8tcc__dep__incl.pdf, id=7688, 182.6825pt x 156.585pt>
 File: sf__legendre_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__legendre_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__legendre_8tcc__dep__incl.pdf used on input line 17
 .
 (pdftex.def)             Requested size: 182.0pt x 156.0064pt.
- [250 <./sf__legendre_8tcc__incl.pdf> <./sf__legendre_8tcc__dep__incl.pdf
+ [264 <./sf__legendre_8tcc__incl.pdf> <./sf__legendre_8tcc__dep__incl.pdf
 
 pdfTeX warning: pdflatex (file ./sf__legendre_8tcc__dep__incl.pdf): PDF inclusi
 on: multiple pdfs with page group included in a single page
 >]) (./sf__mod__bessel_8tcc.tex
-<sf__mod__bessel_8tcc__incl.pdf, id=7627, 230.8625pt x 156.585pt>
+<sf__mod__bessel_8tcc__incl.pdf, id=7713, 230.8625pt x 156.585pt>
 File: sf__mod__bessel_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__mod__bessel_8tcc__incl.pdf>
 Package pdftex.def Info: sf__mod__bessel_8tcc__incl.pdf used on input line 10.
 (pdftex.def)             Requested size: 230.0pt x 156.00162pt.
- [251]
-<sf__mod__bessel_8tcc__dep__incl.pdf, id=7635, 198.7425pt x 156.585pt>
+ [265]
+<sf__mod__bessel_8tcc__dep__incl.pdf, id=7722, 198.7425pt x 156.585pt>
 File: sf__mod__bessel_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__mod__bessel_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__mod__bessel_8tcc__dep__incl.pdf used on input line
  18.
 (pdftex.def)             Requested size: 198.0pt x 156.004pt.
- [252 <./sf__mod__bessel_8tcc__incl.pdf> <./sf__mod__bessel_8tcc__dep__incl.pdf
+ [266 <./sf__mod__bessel_8tcc__incl.pdf> <./sf__mod__bessel_8tcc__dep__incl.pdf
 
 
 pdfTeX warning: pdflatex (file ./sf__mod__bessel_8tcc__dep__incl.pdf): PDF incl
 usion: multiple pdfs with page group included in a single page
 >]) (./sf__owens__t_8tcc.tex
-<sf__owens__t_8tcc__dep__incl.pdf, id=7666, 182.6825pt x 156.585pt>
+<sf__owens__t_8tcc__dep__incl.pdf, id=7754, 182.6825pt x 156.585pt>
 File: sf__owens__t_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__owens__t_8tcc__dep__incl.pdf>
@@ -3210,46 +3381,46 @@ Package pdftex.def Info: sf__owens__t_8tcc__dep__incl.pdf used on input line 8.
 
 Underfull \vbox (badness 1867) has occurred while \output is active []
 
- [253])
+ [267])
 (./sf__polylog_8tcc.tex
-<sf__polylog_8tcc__incl.pdf, id=7679, 176.66pt x 156.585pt>
+<sf__polylog_8tcc__incl.pdf, id=7766, 176.66pt x 156.585pt>
 File: sf__polylog_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__polylog_8tcc__incl.pdf>
 Package pdftex.def Info: sf__polylog_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 176.0pt x 156.00162pt.
- [254 <./sf__owens__t_8tcc__dep__incl.pdf>]
-<sf__polylog_8tcc__dep__incl.pdf, id=7694, 176.66pt x 156.585pt>
+ [268 <./sf__owens__t_8tcc__dep__incl.pdf>]
+<sf__polylog_8tcc__dep__incl.pdf, id=7781, 176.66pt x 156.585pt>
 File: sf__polylog_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__polylog_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__polylog_8tcc__dep__incl.pdf used on input line 17.
 
 (pdftex.def)             Requested size: 176.0pt x 156.00162pt.
- [255 <./sf__polylog_8tcc__incl.pdf> <./sf__polylog_8tcc__dep__incl.pdf
+ [269 <./sf__polylog_8tcc__incl.pdf> <./sf__polylog_8tcc__dep__incl.pdf
 
 pdfTeX warning: pdflatex (file ./sf__polylog_8tcc__dep__incl.pdf): PDF inclusio
 n: multiple pdfs with page group included in a single page
->] [256]) (./sf__theta_8tcc.tex
-<sf__theta_8tcc__incl.pdf, id=7763, 291.0875pt x 156.585pt>
+>] [270]) (./sf__theta_8tcc.tex
+<sf__theta_8tcc__incl.pdf, id=7849, 291.0875pt x 156.585pt>
 File: sf__theta_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__theta_8tcc__incl.pdf>
 Package pdftex.def Info: sf__theta_8tcc__incl.pdf used on input line 11.
 (pdftex.def)             Requested size: 290.0pt x 156.01117pt.
- [257]
-<sf__theta_8tcc__dep__incl.pdf, id=7768, 167.62625pt x 156.585pt>
+ [271]
+<sf__theta_8tcc__dep__incl.pdf, id=7856, 167.62625pt x 156.585pt>
 File: sf__theta_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__theta_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__theta_8tcc__dep__incl.pdf used on input line 19.
 (pdftex.def)             Requested size: 167.0pt x 155.99922pt.
- [258 <./sf__theta_8tcc__incl.pdf> <./sf__theta_8tcc__dep__incl.pdf
+ [272 <./sf__theta_8tcc__incl.pdf> <./sf__theta_8tcc__dep__incl.pdf
 
 pdfTeX warning: pdflatex (file ./sf__theta_8tcc__dep__incl.pdf): PDF inclusion:
  multiple pdfs with page group included in a single page
 >]) (./sf__trigint_8tcc.tex
-<sf__trigint_8tcc__incl.pdf, id=7807, 172.645pt x 156.585pt>
+<sf__trigint_8tcc__incl.pdf, id=7895, 172.645pt x 156.585pt>
 File: sf__trigint_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__trigint_8tcc__incl.pdf>
@@ -3258,35 +3429,35 @@ Package pdftex.def Info: sf__trigint_8tcc__incl.pdf used on input line 9.
 
 Underfull \vbox (badness 5622) has occurred while \output is active []
 
- [259]
-<sf__trigint_8tcc__dep__incl.pdf, id=7813, 169.63374pt x 156.585pt>
+ [273]
+<sf__trigint_8tcc__dep__incl.pdf, id=7900, 169.63374pt x 156.585pt>
 File: sf__trigint_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__trigint_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__trigint_8tcc__dep__incl.pdf used on input line 17.
 
 (pdftex.def)             Requested size: 169.0pt x 156.0064pt.
- [260 <./sf__trigint_8tcc__incl.pdf> <./sf__trigint_8tcc__dep__incl.pdf
+ [274 <./sf__trigint_8tcc__incl.pdf> <./sf__trigint_8tcc__dep__incl.pdf
 
 pdfTeX warning: pdflatex (file ./sf__trigint_8tcc__dep__incl.pdf): PDF inclusio
 n: multiple pdfs with page group included in a single page
 >]) (./sf__zeta_8tcc.tex
-<sf__zeta_8tcc__incl.pdf, id=7843, 172.645pt x 156.585pt>
+<sf__zeta_8tcc__incl.pdf, id=7929, 172.645pt x 156.585pt>
 File: sf__zeta_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__zeta_8tcc__incl.pdf>
 Package pdftex.def Info: sf__zeta_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 172.0pt x 156.00162pt.
 
-<sf__zeta_8tcc__dep__incl.pdf, id=7844, 164.615pt x 156.585pt>
+<sf__zeta_8tcc__dep__incl.pdf, id=7930, 164.615pt x 156.585pt>
 File: sf__zeta_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__zeta_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__zeta_8tcc__dep__incl.pdf used on input line 17.
 (pdftex.def)             Requested size: 164.0pt x 156.004pt.
- [261 <./sf__zeta_8tcc__incl.pdf>] [262 <./sf__zeta_8tcc__dep__incl.pdf>]) (./s
+ [275 <./sf__zeta_8tcc__incl.pdf>] [276 <./sf__zeta_8tcc__dep__incl.pdf>]) (./s
 pecfun_8h.tex
-<specfun_8h__incl.pdf, id=7888, 3820.2725pt x 223.83624pt>
+<specfun_8h__incl.pdf, id=7975, 3820.2725pt x 223.83624pt>
 File: specfun_8h__incl.pdf Graphic file (type pdf)
 
 <use specfun_8h__incl.pdf>
@@ -3295,14 +3466,14 @@ Package pdftex.def Info: specfun_8h__incl.pdf used on input line 40.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [263]
-[264 <./specfun_8h__incl.pdf>] [265] [266] [267] [268] [269] [270] [271]
-[272] [273]) [274] (./refman.ind [275
+ [277]
+[278 <./specfun_8h__incl.pdf>] [279] [280] [281] [282] [283] [284] [285]
+[286] [287]) [288] (./refman.ind [289
 
 
 
-] [276] [277] [278] [279] [280] [281]
-[282] [283] [284] [285] [286] [287] [288] [289] [290] [291] [292])
+] [290] [291] [292] [293] [294] [295]
+[296] [297] [298] [299] [300] [301] [302] [303] [304] [305] [306])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 207.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 207.
 
@@ -3320,10 +3491,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 207.
  ) 
 Here is how much of TeX's memory you used:
- 17566 strings out of 495000
- 321952 string characters out of 6181169
- 376743 words of memory out of 5000000
- 18516 multiletter control sequences out of 15000+600000
+ 17612 strings out of 495000
+ 322415 string characters out of 6181169
+ 376126 words of memory out of 5000000
+ 18548 multiletter control sequences out of 15000+600000
  80383 words of font info for 105 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  48i,17n,43p,4610b,818s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -3342,20 +3513,20 @@ re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8
-a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/urw/helvetic/uhvbo8ac.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/hel
-vetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8
-a.pfb>
-Output written on refman.pdf (316 pages, 1177579 bytes).
+pe1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
+helvetic/uhvbo8ac.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/u
+hvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on refman.pdf (330 pages, 1215004 bytes).
 PDF statistics:
- 10163 PDF objects out of 10688 (max. 8388607)
- 9611 compressed objects within 97 object streams
- 1876 named destinations out of 2073 (max. 500000)
+ 10253 PDF objects out of 10688 (max. 8388607)
+ 9686 compressed objects within 97 object streams
+ 1890 named destinations out of 2073 (max. 500000)
  6458 words of extra memory for PDF output out of 10000 (max. 10000000)
 

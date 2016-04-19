@@ -1,10 +1,10 @@
 \hypertarget{index_intro}{}\section{Introduction and History}\label{index_intro}
-The first significant library upgrade on the road to C++2011, \href{http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2005/n1836.pdf}{\tt T\+R1}, included a set of 23 mathematical functions that significntly extended the standard trancendental functions inherited from C and declared in $<$cmath$>$.
+The first significant library upgrade on the road to C++2011, \href{http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2005/n1836.pdf}{\tt T\+R1}, included a set of 23 mathematical functions that significantly extended the standard transcendental functions inherited from C and declared in $<$cmath$>$.
 
-Although most components from T\+R1 were eventually adopted for C++11 these math function were left behind out of concern for implementability. The math functions were published as a separate international standard \href{http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2010/n3060.pdf}{\tt I\+S 29124 -\/ Extensions to the C++ Library to Support Mathematical Special Functions}.
+Although most components from T\+R1 were eventually adopted for C++11 these math functions were left behind out of concern for implementability. The math functions were published as a separate international standard \href{http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2010/n3060.pdf}{\tt I\+S 29124 -\/ Extensions to the C++ Library to Support Mathematical Special Functions}.
 
 For C++17 these functions were incorporated into the main standard.\hypertarget{index_contents}{}\section{Contents}\label{index_contents}
-The folowing functions are implemented in namespace {\ttfamily std\+:} 
+The following functions are implemented in namespace {\ttfamily std\+:} 
 \begin{DoxyItemize}
 \item \hyperlink{group__tr29124__math__spec__func_ga377bb7e038c464a27dfe0573fd2d7b33}{assoc\+\_\+laguerre -\/ Associated Laguerre functions}
 \item \hyperlink{group__tr29124__math__spec__func_ga355349f79119c1fd1e2a9351cec57f0f}{assoc\+\_\+legendre -\/ Associated Legendre functions}
@@ -37,13 +37,13 @@ The hypergeometric functions were stricken from the T\+R29124 and C++17 versions
 \hypertarget{index_promotion}{}\subsection{Argument Promotion}\label{index_promotion}
 The arguments suppled to the non-\/suffixed functions will be promoted according to the following rules\+:
 \begin{DoxyEnumerate}
-\item If any argument intended to be floating opint is given an integral value That integral value is promoted to double.
+\item If any argument intended to be floating point is given an integral value That integral value is promoted to double.
 \item All floating point arguments are promoted up to the largest floating point precision among them.
 \end{DoxyEnumerate}\hypertarget{index_NaN}{}\subsection{Na\+N Arguments}\label{index_NaN}
 If any of the floating point arguments supplied to these functions is invalid or Na\+N (std\+::numeric\+\_\+limits$<$\+Tp$>$\+::quiet\+\_\+\+Na\+N), the value Na\+N is returned.\hypertarget{index_impl}{}\section{Implementation}\label{index_impl}
-We strive to implement the underlying math with type generic algorithms to the greatest extent possible. In practice, the function are thin wrappers that dispatch to function templates. Type dependence is controlled with std\+::numeric\+\_\+limits and functions thereof.
+We strive to implement the underlying math with type generic algorithms to the greatest extent possible. In practice, the functions are thin wrappers that dispatch to function templates. Type dependence is controlled with std\+::numeric\+\_\+limits and functions thereof.
 
-We don\textquotesingle{}t promote $\ast$c float to $\ast$c double or $\ast$c double to {\ttfamily long double} reflexively. The goal is for float functions to operate more quickly, at the cost of float accuracy and possibly a smaller domain of validity. Similaryly, {\ttfamily long double} should give you more dynamic range and slightly more pecision than {\ttfamily double} on many systems.\hypertarget{index_testing}{}\section{Testing}\label{index_testing}
+We don\textquotesingle{}t promote {\ttfamily float} to {\ttfamily double} or {\ttfamily double} to {\ttfamily long double} reflexively. The goal is for {\ttfamily float} functions to operate more quickly, at the cost of {\ttfamily float} accuracy and possibly a smaller domain of validity. Similaryly, {\ttfamily long double} should give you more dynamic range and slightly more pecision than {\ttfamily double} on many systems.\hypertarget{index_testing}{}\section{Testing}\label{index_testing}
 These functions have been tested against equivalent implementations from the \href{http://www.gnu.org/software/gsl}{\tt Gnu Scientific Library, G\+S\+L} and $<$a href="\href{http://www.boost.org/doc/libs/1_60_0/libs/math/doc/html/index.html}{\tt http\+://www.\+boost.\+org/doc/libs/1\+\_\+60\+\_\+0/libs/math/doc/html/index.\+html}$>$Boost and the ratio \[ \frac{|f - f_{test}|}{|f_{test}|} \] is generally found to be within 10$^\wedge$-\/15 for 64-\/bit double on linux-\/x86\+\_\+64 systems over most of the ranges of validity.
 
 \begin{DoxyRefDesc}{Todo}
