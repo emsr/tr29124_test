@@ -9,7 +9,8 @@ fi
 src_impl_dir="${src_dir}/bits"
 src_ext_dir="${src_dir}/ext"
 
-dst_dir="$HOME/bin_specfun/include/c++/6.0.0"
+#dst_dir="$HOME/bin_specfun/include/c++/6.0.0"
+dst_dir="$HOME/bin_specfun/include/c++/7.0.0"
 if [ -d "$2" ]; then 
   dst_dir="$2"
 fi

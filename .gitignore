@@ -193,3 +193,6 @@ gslextras/Jacobi/jacobi-0.9.2/src/Makefile
 gslextras/Jacobi/jacobi-0.9.2/test/Makefile
 
 lerchphi/Tests/test
+
+Gil_Segura_Temme/850/Fortran90/Dp/Src2.0/someconstants.mod
+Gil_Segura_Temme/tor_harm/tor_harm
