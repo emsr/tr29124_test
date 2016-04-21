@@ -61,6 +61,7 @@ ${copy} check_fresnel_s.cc          ${ext_dir}/fresnel_s/check_value.cc
 ${copy} check_gamma_l.cc            ${ext_dir}/gamma_l/check_value.cc
 ${copy} check_gamma_u.cc            ${ext_dir}/gamma_u/check_value.cc
 ${copy} check_gegenbauer.cc         ${ext_dir}/gegenbauer/check_value.cc
+${copy} check_heuman_lambda.cc      ${ext_dir}/heuman_lambda/check_value.cc
 ${copy} check_hurwitz_zeta.cc       ${ext_dir}/hurwitz_zeta/check_value.cc
 ${copy} check_hyperg.cc             ${ext_dir}/hyperg/check_value.cc
 ${copy} check_ibeta.cc              ${ext_dir}/ibeta/check_value.cc
