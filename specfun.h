@@ -4058,6 +4058,46 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Polylogarithm functions
 
   /**
+   * Return the real polylogarithm function of real thing @c s
+   * and real argument @c w.
+   *
+   * @see polylog for details.
+   */
+  inline float
+  polylogf(float __s, float __w)
+  { return std::__detail::__polylog<float>(__s, __w); }
+
+  /**
+   * Return the complex polylogarithm function of real thing @c s
+   * and complex argument @c w.
+   *
+   * @see polylog for details.
+   */
+  inline long double
+  polylogl(long double __s, long double __w)
+  { return std::__detail::__polylog<long double>(__s, __w); }
+
+  /**
+   * Return the complex polylogarithm function of real thing @c s
+   * and complex argument @c w.
+   *
+   * The polylogarithm function is defined by
+   * @f[
+   *    
+   * @f]
+   *
+   * @param __s 
+   * @param __w 
+   */
+  template<typename _Tp, typename _Wp>
+    inline __gnu_cxx::__promote_num_t<_Tp, _Wp>
+    polylog(_Tp __s, _Wp __w)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp, _Wp>;
+      return std::__detail::__polylog<__type>(__s, __w);
+    }
+
+  /**
    * Return the complex polylogarithm function of real thing @c s
    * and complex argument @c w.
    *
@@ -4089,11 +4129,11 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __s 
    * @param __w 
    */
-  template<typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_num_t<_Tp>>
+  template<typename _Tp, typename _Wp>
+    inline std::complex<__gnu_cxx::__promote_num_t<_Tp, _Wp>>
     polylog(_Tp __s, std::complex<_Tp> __w)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_num_t<_Tp, _Wp>;
       return std::__detail::__polylog<__type>(__s, __w);
     }
 
