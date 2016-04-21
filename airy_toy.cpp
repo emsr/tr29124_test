@@ -16,6 +16,7 @@
 #include <bits/numeric_limits.h>
 #include <bits/specfun_util.h>
 #include <bits/complex_util.h>
+#include <bits/summation.h>
 
   template<typename _Tp>
     struct _AiryState
@@ -905,7 +906,22 @@
     constexpr int __max_FG<double> = 79;
 
   /**
-   *  
+   * Return the Airy functions by using the series expansions in terms of
+   * the auxilliary functions
+   * @f[
+   *    fai(x) = \sum_{k=0}^\infty \frac{(2k+1)!!!x^{3k}}{(2k+1)!}
+   * @f]
+   * @f[
+   *    gai(x) = \sum_{k=0}^\infty \frac{(2k+2)!!!x^{3k+1}}{(2k+2)!}
+   * @f]
+   * @f[
+   *    Ai(x) = Ai(0)fai(x) + Ai'(0)gai(x)
+   * @f]
+   * where @f$ Ai(0) = 3^{-2/3}/\Gamma(2/3) @f$, @f$ Ai'(0) = -3{-1/2}Bi'(0) @f$
+   * @f[
+   *    Bi(x) = Bi(0)fai(x) + Bi'(0)gai(x)
+   * @f]
+   * wnere @f$ Bi(0) = 3^{1/2}Ai(0) @f$, @f$ Bi'(0) = 3^{1/6}/\Gamma(1/3) @f$
    */
   template<typename _Tp>
     _AiryState<std::complex<_Tp>>
@@ -1432,7 +1448,8 @@
     _Airy_asymp<_Tp>::_S_dn[_Airy_asymp<_Tp>::_N_cd];
 
   /**
-   *  Return the Airy functions for a given argument using 
+   *  Return the Airy functions for a given argument using asymptotic series.
+   *
    */
   template<typename _Tp>
     _AiryState<std::complex<_Tp>>
