@@ -2146,6 +2146,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @tparam _Tp The real type of the radial coordinate
    * @param __n The non-negative degree.
    * @param __m The non-negative azimuthal order
+   * @param __rho The radial argument
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
