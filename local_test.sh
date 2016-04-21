@@ -89,6 +89,7 @@ ${makedir} ${text_dir}/fresnel_s
 ${makedir} ${text_dir}/gamma_l
 ${makedir} ${text_dir}/gamma_u
 ${makedir} ${text_dir}/gegenbauer
+${makedir} ${text_dir}/heuman_lambda
 ${makedir} ${text_dir}/hurwitz_zeta
 ${makedir} ${text_dir}/hyperg
 ${makedir} ${text_dir}/ibeta
@@ -105,6 +106,7 @@ ${makedir} ${text_dir}/owens_t
 ${makedir} ${text_dir}/pochhammer_l
 ${makedir} ${text_dir}/pochhammer_u
 ${makedir} ${text_dir}/psi
+${makedir} ${text_dir}/radpoly
 ${makedir} ${text_dir}/sinc
 ${makedir} ${text_dir}/sinc_pi
 ${makedir} ${text_dir}/sinhint
@@ -149,6 +151,7 @@ ${copy} check_fresnel_s.cc          ${text_dir}/fresnel_s/check_value.cc
 ${copy} check_gamma_l.cc            ${text_dir}/gamma_l/check_value.cc
 ${copy} check_gamma_u.cc            ${text_dir}/gamma_u/check_value.cc
 ${copy} check_gegenbauer.cc         ${text_dir}/gegenbauer/check_value.cc
+${copy} check_heuman_lambda.cc      ${text_dir}/heuman_lambda/check_value.cc
 ${copy} check_hurwitz_zeta.cc       ${text_dir}/hurwitz_zeta/check_value.cc
 ${copy} check_hyperg.cc             ${text_dir}/hyperg/check_value.cc
 ${copy} check_ibeta.cc              ${text_dir}/ibeta/check_value.cc
@@ -164,6 +167,7 @@ ${copy} check_lpochhammer_u.cc      ${text_dir}/lpochhammer_u/check_value.cc
 ${copy} check_owens_t.cc            ${text_dir}/owens_t/check_value.cc
 ${copy} check_pochhammer_l.cc       ${text_dir}/pochhammer_l/check_value.cc
 ${copy} check_pochhammer_u.cc       ${text_dir}/pochhammer_u/check_value.cc
+${copy} check_radpoly.cc            ${text_dir}/radpoly/check_value.cc
 ${copy} check_psi.cc                ${text_dir}/psi/check_value.cc
 ${copy} check_shi.cc                ${text_dir}/sinhint/check_shi.cc
 ${copy} check_sinc.cc               ${text_dir}/sinc/check_value.cc
