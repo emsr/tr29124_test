@@ -95,3 +95,4 @@ ${copy} check_theta_1.cc            ${ext_dir}/theta_1/check_value.cc
 ${copy} check_theta_2.cc            ${ext_dir}/theta_2/check_value.cc
 ${copy} check_theta_3.cc            ${ext_dir}/theta_3/check_value.cc
 ${copy} check_theta_4.cc            ${ext_dir}/theta_4/check_value.cc
+${copy} check_zernike.cc            ${ext_dir}/zernike/check_value.cc
