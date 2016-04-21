@@ -891,7 +891,7 @@ template<typename _Tp>
   struct testcase_dirichlet_eta
   {
     _Tp f0;
-    _Tp w;
+    _Tp s;
     _Tp f;
   };
 
@@ -900,7 +900,7 @@ template<typename _Tp>
   struct testcase_dirichlet_beta
   {
     _Tp f0;
-    _Tp w;
+    _Tp s;
     _Tp f;
   };
 
@@ -920,6 +920,55 @@ template<typename _Tp>
   {
     _Tp f0;
     _Tp w;
+    _Tp f;
+  };
+
+// Exponential theta_1 functions.
+template<typename _Tp>
+  struct testcase_theta_1
+  {
+    _Tp f0;
+    _Tp nu;
+    _Tp x;
+    _Tp f;
+  };
+
+// Exponential theta_2 functions.
+template<typename _Tp>
+  struct testcase_theta_2
+  {
+    _Tp f0;
+    _Tp nu;
+    _Tp x;
+    _Tp f;
+  };
+
+// Exponential theta_3 functions.
+template<typename _Tp>
+  struct testcase_theta_3
+  {
+    _Tp f0;
+    _Tp nu;
+    _Tp x;
+    _Tp f;
+  };
+
+// Exponential theta_4 functions.
+template<typename _Tp>
+  struct testcase_theta_4
+  {
+    _Tp f0;
+    _Tp nu;
+    _Tp x;
+    _Tp f;
+  };
+
+// Elliptic nome.
+template<typename _Tp>
+  struct testcase_ellnome
+  {
+    _Tp f0;
+    _Tp k;
     _Tp f;
   };
 
