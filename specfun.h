@@ -3534,10 +3534,17 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Bernoulli numbers
 
+  /**
+   * Return the Bernoulli number of integer order @c n as a @c float.
+   */
   inline float
   bernoullif(unsigned int __n)
   { return std::__detail::__bernoulli<float>(__n); }
 
+  /**
+   * Return the Bernoulli number of integer order @c n as a
+   * <tt>long double</tt>.
+   */
   inline long double
   bernoullil(unsigned int __n)
   { return std::__detail::__bernoulli<long double>(__n); }
@@ -3562,13 +3569,25 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Legendre functions of the second kind
 
+  /**
+   * Return the Legendre function of the second kind @f$ Q_l(x) @f$ for
+   * @c float argument.
+   *
+   * @see legendre_q for details.
+   */
   inline float
   legendre_qf(unsigned int __n, float __x)
-  { return std::__detail::__poly_legendre_q<float>(__n, __x); }
+  { return std::__detail::__legendre_q<float>(__n, __x); }
 
+  /**
+   * Return the Legendre function of the second kind @f$ Q_l(x) @f$ for
+   * @c <tt>long double</tt> argument.
+   *
+   * @see legendre_q for details.
+   */
   inline long double
   legendre_ql(unsigned int __n, long double __x)
-  { return std::__detail::__poly_legendre_q<long double>(__n, __x); }
+  { return std::__detail::__legendre_q<long double>(__n, __x); }
 
   /**
    * 
@@ -3578,7 +3597,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     legendre_q(unsigned int __n, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      return std::__detail::__poly_legendre_q<__type>(__n, __x);
+      return std::__detail::__legendre_q<__type>(__n, __x);
     }
 
   // Scaled lower incomplete gamma

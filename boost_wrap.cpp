@@ -255,7 +255,7 @@ legendre_p(unsigned int l, double x)
   return boost::math::legendre_p(l, x);
 }
 
-/// Legendre polynomials of the second kind.
+/// Legendre functions of the second kind.
 double
 legendre_q(unsigned int l, double x)
 {
