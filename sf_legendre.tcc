@@ -106,24 +106,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Return the Legendre function of the second kind
-   *           by upward recursion on order @f$ l @f$.
+   * @brief Return the Legendre function of the second kind
+   *        by upward recursion on order @f$ l @f$.
    *
-   *   The Legendre function of order @f$ l @f$ and argument @f$ x @f$,
-   *   @f$ Q_l(x) @f$, is defined by:
-   *   @f[
-   *     Q_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l}
-   *   @f]
+   * The Legendre function of the second kind of order @f$ l @f$
+   * and argument @f$ x @f$, @f$ Q_l(x) @f$, is defined by:
+   * @f[
+   *   Q_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l}
+   * @f]
    *
-   *   @param  __l  The order of the Legendre polynomial.  @f$l >= 0@f$.
-   *   @param  __x  The argument of the Legendre polynomial.  @f$|x| <= 1@f$.
+   * @param __l The order of the Legendre function.  @f$l >= 0@f$.
+   * @param __x The argument of the Legendre function.  @f$|x| <= 1@f$.
    */
   template<typename _Tp>
     _Tp
-    __poly_legendre_q(unsigned int __l, _Tp __x)
+    __legendre_q(unsigned int __l, _Tp __x)
     {
       if ((__x < -_Tp{1}) || (__x > +_Tp{1}))
-	std::__throw_domain_error(__N("__poly_legendre_q: argument out of range"));
+	std::__throw_domain_error(__N("__legendre_q: argument out of range"));
       else if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (__x == +_Tp{1})
