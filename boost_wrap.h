@@ -318,7 +318,7 @@ std::complex<double> sph_harmonic(unsigned int l, int m, double theta, double ph
 double owens_t(double h, double a);
 
 /// Clausen function of order 2.
-double clausen_c_2(double w);
+double clausen_c(unsigned int m, double w);
 
 } // namespace beast
 
