@@ -24,13 +24,6 @@
 #include "test_func.tcc"
 
 
-template<typename Real>
-  auto
-  clausen_c_2(Real w)
-  -> Real
-  { return __gnu_cxx::clausen_c(2, w); };
-
-
 ///
 ///
 ///
@@ -1011,14 +1004,14 @@ main()
 	    "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 			       std::make_pair(true, true), 21));
 
-/*
-    // clausen_c_2 function.
-    std::cout << "clausen_c_2" << std::endl;
-    basename = "diff_clausen_c_2";
-    rundiff(clausen_c_2<Real>, gsl::clausen_c_2, basename,
+    // clausen_c function.
+    std::cout << "clausen_c" << std::endl;
+    basename = "diff_clausen_c";
+    rundiff(clausen_c<Real>, gsl::clausen_c, basename,
+	    "m", fill_argument(std::make_pair(2U, 2U),
+			       std::make_pair(true, true), 1));
 	    "w", fill_argument(std::make_pair(Real{-10}, Real{+10}),
 			       std::make_pair(true, true), 41));
-*/
 
 #endif // STD
 

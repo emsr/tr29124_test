@@ -141,7 +141,7 @@ CHECKS = check_airy_ai \
 	 pr56216_cyl_hankel_1 \
 	 pr56216_cyl_hankel_2 \
 	 pr56216_cyl_bessel_i
-#	 check_clausen_c_2 \
+#	 check_clausen_c \
 
 all: diff_special_function \
      test_special_function \
@@ -206,7 +206,7 @@ check: $(CHECKS)
 	echo "check_beta" >> check_out.txt 2>> check_err.txt && ./check_beta >> check_out.txt 2>> check_err.txt
 	echo "check_bincoef" >> check_out.txt 2>> check_err.txt && ./check_bincoef >> check_out.txt 2>> check_err.txt
 	echo "check_chi" >> check_out.txt 2>> check_err.txt && ./check_chi >> check_out.txt 2>> check_err.txt
-	#echo "check_clausen_c_2" >> check_out.txt 2>> check_err.txt && ./check_clausen_c_2 >> check_out.txt 2>> check_err.txt
+	#echo "check_clausen_c" >> check_out.txt 2>> check_err.txt && ./check_clausen_c >> check_out.txt 2>> check_err.txt
 	echo "check_comp_ellint_1" >> check_out.txt 2>> check_err.txt && ./check_comp_ellint_1 >> check_out.txt 2>> check_err.txt
 	echo "check_comp_ellint_2" >> check_out.txt 2>> check_err.txt && ./check_comp_ellint_2 >> check_out.txt 2>> check_err.txt
 	echo "check_comp_ellint_3" >> check_out.txt 2>> check_err.txt && ./check_comp_ellint_3 >> check_out.txt 2>> check_err.txt
@@ -374,8 +374,8 @@ check_bincoef: check_bincoef.cc
 check_chi: check_chi.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_chi check_chi.cc
 
-check_clausen_c_2: check_clausen_c_2.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_clausen_c_2 check_clausen_c_2.cc
+check_clausen_c: check_clausen_c.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_clausen_c check_clausen_c.cc
 
 check_comp_ellint_1: check_comp_ellint_1.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o check_comp_ellint_1 check_comp_ellint_1.cc
