@@ -1609,28 +1609,29 @@
 
 
   /**
-   * @brief This function evaluates Ai(z) and Ai'(z) or Bi(z) and Bi'(z)
-   * from their asymptotic expansions for |arg(z)| < 2*\pi/3 (Roughly +x).
+   * @brief This function evaluates @f$ Ai(z) @f$ and @f$ Ai'(z) @f$
+   * or @f$ Bi(z) @f$ and @f$ Bi'(z) @f$ from their asymptotic expansions
+   * for @f$ |arg(z)| < 2*\pi/3 @f$ (Roughly +x).
    * For speed, the number of terms needed to achieve about 16 decimals accuracy
-   * is tabled and determined from abs(z).
+   * is tabled and determined from @f$ |z| @f$.
    *
-   * Note that for the sake of speed and the fact that this function
-   * is to be called by another, checks for valid arguments are not
+   * Note that for speed and since this function
+   * is called by another, checks for valid arguments are not
    * made.
    *
-   * @see Digital Library of Mathematical Finctions §9.7 Asymptotic Expansions
+   * @see Digital Library of Mathematical Functions §9.7 Asymptotic Expansions
    * 	  http://dlmf.nist.gov/9.7
    *
    * @param[in]  z Complex input variable set equal to the value at which
-   * 		   Ai(z) and Bi(z) and their derivative are evaluated.
-   * 		   This function assumes abs(z) > 15 and |arg(z)| < 2\pi/3.
-   * @param[inout] Ai  The value computed for Ai(z).
-   * @param[inout] Aip The value computed for Ai'(z).
-   * @param[in]    sign  The sign of the series terms amd exponent.
-   * 			 The default (-1) gives the Airy Ai functions
-   * 			 for |arg(z)| < \pi.
-   * 			 The value +1 gives the Airy Bi functions
-   * 			 for |arg(z)| < \pi/3.
+   * 		   @f$ Ai(z) @f$ or @f$ Bi(z) @f$ and their derivative are evaluated.
+   * 		   This function assumes @f$ |z| > 15 @f$ and @f$ |arg(z)| < 2\pi/3 @f$.
+   * @param[inout] Ai  The value computed for @f$ Ai(z) @f$ or @f$ Ai'(x) @f$.
+   * @param[inout] Aip The value computed for @f$ Ai'(z) @f$ or @f$ Bi'(x) @f$.
+   * @param[in]    sign  The sign of the series terms and exponent.
+   * 			 The default (-1) gives the Airy @f$ Ai(x) @f$
+   * 			 and @f$ Ai'(x) @f$ functions for @f$ |arg(z)| < \pi @f$.
+   * 			 The value +1 gives the Airy @f$ Bi(x) @f$
+   * 			 and @f$ Bi'(x) @f$ functions for @f$ |arg(z)| < \pi/3 @f$.
    */
   template<typename _Tp>
     void
@@ -1735,12 +1736,12 @@
 
 
   /**
-   * @brief This function evaluates Ai(z), Ai'(z) and Bi(z), Bi'(z)
-   *        from their asymptotic expansions for |arg(z)| < 2*\pi/3.
+   * @brief This function evaluates @f$ Ai(z), Ai'(z) @f$ and @f$ Bi(z), Bi'(z) @f$
+   *        from their asymptotic expansions for @f$ |arg(z)| < 2*\pi/3 @f$.
    * @param[in]  z Complex input variable set equal to the value at which
    * 		   Ai(z)abd Bi(z) and their derivative are evaluated.
-   * 		   This function assumes abs(z) > 15 and |(arg(z)| < 2\pi/3.
-   * @return A struct containing z, Ai(z), Ai'(z) and Bi(z), Bi'(z).
+   * 		   This function assumes @f$ |z| > 15 @f$ and @f$ |(arg(z)| < 2\pi/3 @f$.
+   * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
    */
   template<typename _Tp>
     _AiryState<std::complex<_Tp>>
@@ -1755,19 +1756,19 @@
 
 
   /**
-   * @brief This function evaluates Ai(z) and Ai'(z) from their asymptotic
-   * expansions for |arg(-z)| < pi/3.  For speed, the number
-   * of terms needed to achieve about 16 decimals accuracy is tabled
-   * and determined from abs(z).
+   * @brief This function evaluates @f$ Ai(z) @f$ and @f$ Ai'(z) @f$
+   * from their asymptotic expansions for @f$ |arg(-z)| < \pi/3 @f$.
+   * For speed, the number of terms needed to achieve about 16 decimals
+   * accuracy is tabled and determined for @f$ |z| @f$.
+   * This function assumes @f$ |z| > 15 @f$ and @f$ |arg(-z)| < \pi/3 @f$.
    *
-   * Note that for the sake of speed and the fact that this function
-   * is to be called by another, checks for valid arguments are not
+   * Note that for speed and since this function
+   * is called by another, checks for valid arguments are not
    * made.  Hence, an error return is not needed.
    *
-   * @param[in] z  The value at which the Airy function and its derivative
+   * @param[in] z  The value at which the Airy function and their derivatives
    * 		   are evaluated.
-   * 		   This function assumes abs(z) > 15 and |arg(-z)| < pi/3.
-   * @return A struct containing z, Ai(z), Ai'(z) and Bi(z), Bi'(z).
+   * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
    */
   template<typename _Tp>
     _AiryState<std::complex<_Tp>>
@@ -1986,16 +1987,16 @@
   /**
    * @brief This function computes rational approximations
    * to the hypergeometric functions related to the modified Bessel
-   * functions of orders \nu = +-1/3 and \nu +- 2/3.  That is,
-   * A(z)/B(z), Where A(z) and B(z) are cubic polynomials with
-   * real coefficients, approximates
+   * functions of orders @f$ \nu = +-1/3 @f$ and @f$ \nu +- 2/3 @f$.  That is,
+   * @f$ A(z)/B(z) @f$, Where @f$ A(z) @f$ and @f$ B(z) @f$ are cubic polynomials
+   * with real coefficients, approximates
    *  @f[
    *   \frac{\Gamma(\nu+1)}{(z/2)^nu}I_\nu(z) = _0F_1 (;\nu+1;z^2/4),
    *  @f]
    * where the function on the right is a
    * confluent hypergeometric limit function.
    *
-   * For |z| <= 1/4 and |arg(z)| <= pi/2, the approximations
+   * For @f$ |z| <= 1/4 @f$ and @f$ |arg(z)| <= \pi/2 @f$, the approximations
    * are accurate to about 1 ulp (10e-17 for double 1.0e-20 for long double).
    * For float this range goes up to 1.5ish.
    *
@@ -2010,15 +2011,14 @@
    * other useful expressions in the event one wants to extend
    * this function to incorporate higher order approximants.
    *
-   * Note also that for the sake of speed and the fact that this
-   * function will be driven by another, checks that are not
-   * absolutely necessary are not made.
+   * Note also that for speed and since this function is called by another,
+   * checks that are not absolutely necessary are not made.
    *
-   * @param[in]  z     The argument at which the hypergeometric given
-   * 		       above is to be evaluated.  Since the approximation
-   * 		       is of fixed order, abs(z) must be small to ensure
-   * 		       sufficient accuracy of the computed results.
-   * @return A struct containing z, Ai(z), Ai'(z) and Bi(z), Bi'(z).
+   * @param[in] z The argument at which the hypergeometric given
+   * 		  above is to be evaluated.  Since the approximation
+   * 		  is of fixed order, @f$ |z| @f$ must be small to ensure
+   * 		  sufficient accuracy of the computed results.
+   * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
    */
   template<typename _Tp>
     _AiryState<std::complex<_Tp>>
@@ -2532,6 +2532,36 @@ template<typename _Tp>
       }
   }
 
+
+template<typename _Tp>
+  void
+  diff_airy_asymp_urectum()
+  {
+    using __cmplx = std::complex<_Tp>;
+    _WenigerDeltaSum<_KahanSum<__cmplx>> _Asum(_Tp{1});
+    _WenigerDeltaSum<_KahanSum<__cmplx>> _Bsum(_Tp{1});
+    _WenigerDeltaSum<_KahanSum<__cmplx>> _Csum(_Tp{1});
+    _WenigerDeltaSum<_KahanSum<__cmplx>> _Dsum(_Tp{1});
+    const auto __gamp1d6 = std::tgamma(_Tp{1}/_Tp{6});
+    const auto __gamp5d6 = std::tgamma(_Tp{5}/_Tp{6});
+    const auto __gamm1d6 = std::tgamma(_Tp{-1}/_Tp{6});
+    const auto __gamp7d6 = std::tgamma(_Tp{7}/_Tp{6});
+    auto __sign = _Tp{1};
+    auto __numerAB = _Tp{1};
+    auto __numerCD = _Tp{1};
+    auto __denom = _Tp{1};
+    for (int __k = 1; __k < 1000; ++__k)
+      {
+	__sign = -__sign;
+	__numerAB *= (__k + _Tp{1}/_Tp{6}) * (__k + _Tp{5}/_Tp{6});
+	__numerCD *= (__k - _Tp{1}/_Tp{6}) * (__k + _Tp{7}/_Tp{6});
+	__denom *= _Tp{2 * __k} * __zeta;
+	_Asum += __sign * __numerAB / __denom;
+	_Bsum += __numerAB / __denom;
+	_Csum += __sign * __numerCD / __denom;
+	_Dsum += __numerCD / __denom;
+      }
+  }
 
 int
 main()

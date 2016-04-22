@@ -101,7 +101,7 @@ double laguerre(unsigned int n, double x);
 /// Legendre polynomials.
 double legendre_p(unsigned int l, double x);
 
-/// Legendre polynomials of the second kind.
+/// Legendre functions of the second kind.
 double legendre_q(unsigned int l, double x);
 
 /// Riemann zeta function.

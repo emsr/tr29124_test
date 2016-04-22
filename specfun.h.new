@@ -1597,18 +1597,18 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   inline float
   legendre_qf(unsigned int __n, float __x)
-  { return std::__detail::__poly_legendre_q<float>(__n, __x); }
+  { return std::__detail::__legendre_q<float>(__n, __x); }
 
   inline long double
   legendre_ql(unsigned int __n, long double __x)
-  { return std::__detail::__poly_legendre_q<long double>(__n, __x); }
+  { return std::__detail::__legendre_q<long double>(__n, __x); }
 
   template<typename _Tp>
     inline typename __gnu_cxx::__promote<_Tp>::__type
     legendre_q(unsigned int __n, _Tp __x)
     {
       typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
-      return std::__detail::__poly_legendre_q<__type>(__n, __x);
+      return std::__detail::__legendre_q<__type>(__n, __x);
     }
 
 #endif // __cplusplus >= 201103L
