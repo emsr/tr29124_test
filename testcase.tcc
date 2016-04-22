@@ -333,18 +333,24 @@ template<typename Tp>
   std::vector<Tp>
   fill_argument(const std::pair<Tp,Tp> & range,
 		const std::pair<bool,bool> & inclusive,
-		unsigned int num_steps)
+		unsigned int num_points)
   {
     std::vector<Tp> argument;
 
-    for (unsigned int i = 0; i < num_steps; ++i)
+    if (num_points == 1)
+      {
+	argument.push_back(range.first);
+	return argument;
+      }
+
+    for (unsigned int i = 0; i < num_points; ++i)
       {
 	if (i == 0 && ! inclusive.first)
 	  continue;
-	if (i == num_steps - 1 && ! inclusive.second)
+	if (i == num_points - 1 && ! inclusive.second)
 	  continue;
 
-	Tp x = range.first + i * (range.second - range.first) / (num_steps - 1);
+	Tp x = range.first + i * (range.second - range.first) / (num_points - 1);
 	if (range.first <= range.second)
 	  {
 	    if (x < range.first)
