@@ -398,7 +398,7 @@ namespace __gnu_cxx
 
   inline __float128
   legendre_qq(unsigned int __n, __float128 __x)
-  { return std::__detail::__poly_legendre_q<__float128>(__n, __x); }
+  { return std::__detail::__legendre_q<__float128>(__n, __x); }
 
   inline __float128
   gamma_pq(__float128 __a, __float128 __x)
