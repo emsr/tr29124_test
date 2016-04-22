@@ -747,7 +747,7 @@ owens_t(double h, double a)
 
 /// Clausen function of order 2.
 double
-clausen_c_2(double w)
+clausen_c(unsigned int m, double w)
 {
   return 0.0;
 }

@@ -1306,13 +1306,15 @@ owens_t(double h, double a)
 
 /// Clausen function of order 2.
 double
-clausen_c_2(double w)
+clausen_c(unsigned int m, double w)
 {
+  if (m != 2)
+    return 0.0;
   gsl_sf_result result;
   int stat = gsl_sf_clausen_e(w, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in clausen_c_2:");
+      std::ostringstream msg("Error in clausen_c:");
       msg << " w=" << w;
       throw std::runtime_error(msg.str());
     }
