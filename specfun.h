@@ -1403,10 +1403,16 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Unnormalized sinus cardinal functions
 
+  /**
+   * 
+   */
   inline float
   sinc_pif(float __x)
   { return std::__detail::__sinc_pi<float>(__x); }
 
+  /**
+   * 
+   */
   inline long double
   sinc_pil(long double __x)
   { return std::__detail::__sinc_pi<long double>(__x); }
@@ -1424,14 +1430,23 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Normalized sinus cardinal functions
 
+  /**
+   * 
+   */
   inline float
   sincf(float __x)
   { return std::__detail::__sinc<float>(__x); }
 
+  /**
+   * 
+   */
   inline long double
   sincl(long double __x)
   { return std::__detail::__sinc<long double>(__x); }
 
+  /**
+   * 
+   */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
     sinc(_Tp __x)
@@ -1465,10 +1480,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The logarithmic integral is defined by
    * @f[
-   *    
+   *    li(x) = \int_0^x \frac{dt}{ln(t)}
    * @f]
    *
-   * @param __x 
+   * @param __x The real upper integration limit
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
@@ -1481,7 +1496,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Sine integrals
 
   /**
-   * Return the sine integral of argument @c x.
+   * Return the sine integral @f$ Si(x) @f$ of @c float argument @f$ x @f$.
    *
    * @see sinint for details.
    */
@@ -1490,7 +1505,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__sincosint<float>(__x).first; }
 
   /**
-   * Return the sine integral of argument @c x.
+   * Return the sine integral @f$ Si(x) @f$ of <tt>long double</tt>
+   * argument @f$ x @f$.
    *
    * @see sinint for details.
    */
@@ -1499,14 +1515,14 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__sincosint<long double>(__x).first; }
 
   /**
-   * Return the sine integral of argument @c x.
+   * Return the sine integral @f$ Si(x) @f$ of real argument @f$ x @f$.
    *
    * The sine integral is defined by
    * @f[
-   *    
+   *    Si(x) = \int_0^x \frac{sin(t)}{t}dt
    * @f]
    *
-   * @param __x The argument
+   * @param __x The real upper integration limit
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
@@ -1519,7 +1535,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Cosine integrals
 
   /**
-   * Return the cosine integral of argument @c x.
+   * Return the cosine integral @f$ Ci(x) @f$ of @c float argument @f$ x @f$.
    *
    * @see cosint for details.
    */
@@ -1528,7 +1544,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__sincosint<float>(__x).second; }
 
   /**
-   * Return the cosine integral of argument @c x.
+   * Return the cosine integral @f$ Ci(x) @f$ of <tt>long double</tt>
+   * argument @f$ x @f$.
    *
    * @see cosint for details.
    */
@@ -1537,14 +1554,15 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__sincosint<long double>(__x).second; }
 
   /**
-   * Return the cosine integral of argument @c x.
+   * Return the cosine integral @f$ Ci(x) @f$ of real argument @f$ x @f$.
    *
    * The cosine integral is defined by
    * @f[
-   *    
+   *    Ci(x) = -\int_x^\infty \frac{cos(t)}{t}dt
+   *     = \gamma_E + ln(x) + \int_0^x \frac{cos(t)-1}{t}dt
    * @f]
    *
-   * @param __x The argument
+   * @param __x The real upper integration limit
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
@@ -1557,7 +1575,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Hyperbolic sine integrals
 
   /**
-   * Return the hyperbolic sine integral of argument @c x.
+   * Return the hyperbolic sine integral of @c float argument @f$ x @f$.
    *
    * @see sinhint for details.
    */
@@ -1566,7 +1584,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__sinhint<float>(__x); }
 
   /**
-   * Return the hyperbolic sine integral of argument @c x.
+   * Return the hyperbolic sine integral @f$ Shi(x) @f$ of <tt>long double</tt>
+   * argument @f$ x @f$.
    *
    * @see sinhint for details.
    */
@@ -1575,11 +1594,12 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__sinhint<long double>(__x); }
 
   /**
-   * Return the hyperbolic sine integral of argument @c x.
+   * Return the hyperbolic sine integral @f$ Shi(x) @f$ of real
+   * argument @f$ x @f$.
    *
    * The sine hyperbolic integral is defined by
    * @f[
-   *    
+   *    Shi(x) = \int_0^x \frac{sinh(t)}{t}dt
    * @f]
    *
    * @param __x The argument
@@ -1599,7 +1619,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__coshint<float>(__x); }
 
   /**
-   * Return the hyperbolic cosine integral of argument @c x.
+   * Return the hyperbolic cosine integral of @c float argument @f$ x @f$.
    *
    * @see coshint for details.
    */
@@ -1612,7 +1632,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The hyperbolic cosine integral is defined by
    * @f[
-   *    
+   *    Chi(x) = -\int_x^\infty \frac{cosh(t)}{t}dt
+   *     = \gamma_E + ln(x) + \int_0^x \frac{cosh(t)-1}{t}dt
    * @f]
    *
    * @param __x The argument
@@ -3536,6 +3557,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Bernoulli number of integer order @c n as a @c float.
+   *
+   * @see bernoulli for details.
    */
   inline float
   bernoullif(unsigned int __n)
@@ -3544,6 +3567,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   /**
    * Return the Bernoulli number of integer order @c n as a
    * <tt>long double</tt>.
+   *
+   * @see bernoulli for details.
    */
   inline long double
   bernoullil(unsigned int __n)
