@@ -1,4 +1,4 @@
-_// TR29124 math special functions -*- C++ -*-
+// TR29124 math special functions -*- C++ -*-
 
 // Copyright (C) 2016 Free Software Foundation, Inc.
 //
