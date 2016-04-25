@@ -68,7 +68,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     _Tp
-    __dawson_const_frac(_Tp __x)
+    __dawson_cont_frac(_Tp __x)
     {
       constexpr auto _S_1_sqrtpi{0.5641895835477562869480794515607726L};
       constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
@@ -240,7 +240,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (std::abs(__x) < _S_x_min)
 	return __dawson_series(__x);
       else
-	return __dawson_const_frac(__x);
+	return __dawson_cont_frac(__x);
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION

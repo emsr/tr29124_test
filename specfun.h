@@ -1336,7 +1336,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The hypergeometric function is defined by
    * @f[
-   *    {}_2F_1(a;c;x) = \sum_{n=0}^{\infty} \frac{(a)_n (b)_n x^n}{(c)_n n!}
+   *    {}_2F_1(a,b;c;x) = \sum_{n=0}^{\infty} \frac{(a)_n (b)_n x^n}{(c)_n n!}
    * @f]
    * where the Pochhammer symbol is @f$ (x)_k = (x)(x+1)...(x+k-1) @f$,
    * @f$ (x)_0 = 1 @f$
@@ -2551,7 +2551,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The Airy function is defined by:
    * @f[
-   *    Ai(x) = \frac{1}{\pi}\int_0^\infty \cos(\frac{t^3}{3} + xt)dt
+   *    Ai(x) = \frac{1}{\pi}\int_0^\infty
+   *      \cos \left(\frac{t^3}{3} + xt \right)dt
    * @f]
    *
    * @tparam _Tp The real type of the argument
@@ -2601,8 +2602,9 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The Airy function is defined by:
    * @f[
-   *    Bi(x) = frac{1}{\pi}\int_0^\infty \left[ 
-   *           \exp(-\frac{t^3}{3} + xt) \sin(\frac{t^3}{3} + xt) \right] dt
+   *    Bi(x) = \frac{1}{\pi}\int_0^\infty \left[ 
+   *           \exp \left(-\frac{t^3}{3} + xt \right)
+   *          + \sin \left(\frac{t^3}{3} + xt \right) \right] dt
    * @f]
    *
    * @tparam _Tp The real type of the argument

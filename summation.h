@@ -33,6 +33,7 @@
 #pragma GCC visibility push(default)
 
 #include <bits/c++config.h>
+#include <bits/complex_util.h> // for complex __isnan
 
 #pragma GCC system_header
 
@@ -76,7 +77,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       {
 	if (!this->_M_converged)
 	  {
-	    if (__isnan(__term))
+	    if (std::__detail::__isnan(__term))
 	      throw std::runtime_error("_BasicSum: bad term");
 	    if (std::abs(__term) == std::numeric_limits<value_type>::infinity())
 	      throw std::runtime_error("_BasicSum: infinite term");
@@ -162,7 +163,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       {
 	if (!this->_M_converged)
 	  {
-	    if (__isnan(__term))
+	    if (std::__detail::__isnan(__term))
 	      throw std::runtime_error("_KahanSum: bad term");
 	    if (std::abs(__term) == std::numeric_limits<value_type>::infinity())
 	      throw std::runtime_error("_KahanSum: infinite term");

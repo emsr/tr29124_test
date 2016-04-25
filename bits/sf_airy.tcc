@@ -23,8 +23,8 @@
 // <http://www.gnu.org/licenses/>.
 
 /** @file bits/sf_airy.tcc
- *  This is an internal header file, included by other library headers.
- *  You should not attempt to use it directly.
+ * This is an internal header file, included by other library headers.
+ * You should not attempt to use it directly.
  */
 
 #ifndef _GLIBCXX_BITS_SF_AIRY_TCC
@@ -43,28 +43,28 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief This function evaluates @f$ Ai(z) @f$ and @f$ Ai'(z) @f$ from their asymptotic
-   *  expansions for @f$ |arg(z)| < 2*\pi/3 @f$.  For speed, the number
-   *  of terms needed to achieve about 16 decimals accuracy is tabled
-   *  and determined from abs(z).
+   * @brief This function evaluates @f$ Ai(z) @f$ and @f$ Ai'(z) @f$ from their asymptotic
+   * expansions for @f$ |arg(z)| < 2*\pi/3 @f$.  For speed, the number
+   * of terms needed to achieve about 16 decimals accuracy is tabled
+   * and determined from abs(z).
    *
-   *  Note that for the sake of speed and the fact that this function
-   *  is to be called by another, checks for valid arguments are not
-   *  made.
+   * Note that for speed and since this function
+   * is called by another, checks for valid arguments are not
+   * made.
    *
-   *  @see Digital Library of Mathematical Finctions Sec. 9.7 Asymptotic Expansions
-   *       http://dlmf.nist.gov/9.7
+   * @see Digital Library of Mathematical Functions Sec. 9.7 Asymptotic Expansions
+   *     http://dlmf.nist.gov/9.7
    *
-   *  @param[in]  __z Complex input variable set equal to the value at which
-   *    	    @f$ Ai(z) @f$ and @f$ Bi(z) @f$ and their derivative are evaluated.
-   *    	    This function assumes @f$ |z| > 15 @f$ and @f$ |arg(z)| < 2\pi/3 @f$.
-   *  @param[inout] _Ai  The value computed for @f$ Ai(z) @f$.
-   *  @param[inout] _Aip The value computed for @f$ Ai'(z) @f$.
-   *  @param[in]    __sign  The sign of the series terms amd exponent.
-   *                      The default (-1) gives the Airy Ai functions
-   *                      for @f$ |arg(z)| < \pi @f$.
-   *                      The value +1 gives the Airy Bi functions
-   *                      for @f$ |arg(z)| < \pi/3 @f$.
+   * @param[in]  __z Complex input variable set equal to the value at which
+   *  	    @f$ Ai(z) @f$ and @f$ Bi(z) @f$ and their derivative are evaluated.
+   *  	    This function assumes @f$ |z| > 15 @f$ and @f$ |arg(z)| < 2\pi/3 @f$.
+   * @param[inout] _Ai  The value computed for @f$ Ai(z) @f$.
+   * @param[inout] _Aip The value computed for @f$ Ai'(z) @f$.
+   * @param[in]    __sign  The sign of the series terms amd exponent.
+   *                    The default (-1) gives the Airy Ai functions
+   *                    for @f$ |arg(z)| < \pi @f$.
+   *                    The value +1 gives the Airy Bi functions
+   *                    for @f$ |arg(z)| < \pi/3 @f$.
    */
   template<typename _Tp>
     void
@@ -167,20 +167,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief This function evaluates @f$ Ai(z) @f$ and @f$ Ai'(z) @f$ from
-   *  their asymptotic expansions for @f$ |arg(-z)| < pi/3 @f$.  For speed,
-   *  the number of terms needed to achieve about 16 decimals accuracy
-   *  is tabled and determined from @f$ |z| @f$.
+   * @brief This function evaluates @f$ Ai(z) @f$ and @f$ Ai'(z) @f$ from
+   * their asymptotic expansions for @f$ |arg(-z)| < pi/3 @f$.  For speed,
+   * the number of terms needed to achieve about 16 decimals accuracy
+   * is tabled and determined from @f$ |z| @f$.
    *
-   *  Note that for the sake of speed and the fact that this function
-   *  is to be called by another, checks for valid arguments are not
-   *  made.  Hence, an error return is not needed.
-   *  This function assumes @f$ |z| > 15 @f$ and @f$ |arg(-z)| < pi/3 @f$.
+   * Note that for speed and since this function is called by another,
+   * checks for valid arguments are not made.
+   * This function assumes @f$ |z| > 15 @f$ and @f$ |arg(-z)| < pi/3 @f$.
    *
-   *  @param[in] __z  The value at which the Airy function and its derivative
-   *                are evaluated.
-   *  @param[out] _Ai  The computed value of the Airy function @f$ Ai(z) @f$.
-   *  @param[out] _Aip The computed value of the Airy function derivative @f$ Ai'(z) @f$.
+   * @param[in] __z  The value at which the Airy function and its derivative
+   *              are evaluated.
+   * @param[out] _Ai  The computed value of the Airy function @f$ Ai(z) @f$.
+   * @param[out] _Aip The computed value of the Airy function derivative @f$ Ai'(z) @f$.
    */
   template<typename _Tp>
     void
@@ -320,73 +319,71 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  Compute the modified Bessel functions of the first kind of
-   *  orders +-1/3 and +-2/3 needed to compute the Airy functions
-   *  and their derivatives from their representation in terms of the
-   *  modified Bessel functions.  This function is only used for z
-   *  less than two in modulus and in the closed right half plane.
-   *  This stems from the fact that the values of the modified 
-   *  Bessel functions occuring in the representations of the Airy
-   *  functions and their derivatives are almost equal for z large
-   *  in the right half plane.  This means that loss of significance
-   *  occurs if these representations are used for z to large in
-   *  magnitude.  This algorithm is also not used for z too small,
-   *  since a low order rational approximation can be used instead.
+   * Compute the modified Bessel functions of the first kind of
+   * orders +-1/3 and +-2/3 needed to compute the Airy functions
+   * and their derivatives from their representation in terms of the
+   * modified Bessel functions.  This function is only used for z
+   * less than two in modulus and in the closed right half plane.
+   * This stems from the fact that the values of the modified 
+   * Bessel functions occuring in the representations of the Airy
+   * functions and their derivatives are almost equal for z large
+   * in the right half plane.  This means that loss of significance
+   * occurs if these representations are used for z to large in
+   * magnitude.  This algorithm is also not used for z too small,
+   * since a low order rational approximation can be used instead.
    *
-   *  This routine is an implementation of a modified version of
-   *  Miller's backward recurrence algorithm for computation by
-   *  from the recurrence relation
-   *   @f[
-   *    I_{\nu-1} = (2\nu/z)I_\nu + I_{\nu+1}
-   *   @f]
+   * This routine is an implementation of a modified version of
+   * Miller's backward recurrence algorithm for computation by
+   * from the recurrence relation
+   * @f[
+   *  I_{\nu-1} = (2\nu/z)I_\nu + I_{\nu+1}
+   * @f]
+   * satisfied by the modified Bessel functions of the first kind.
+   * the normalization relationship used is
+   * @f[
+   *  \frac{z/2)^\nu e^z}{\Gamma(\nu+1)} = I_\nu(z)
+   *    + 2\sum_{k=1}^{\infty}\frac{(k+\nu)\Gamma(2\nu+k)}{k!\Gamma(1+2\nu)}
+   *                  I_{\nu+k}(z).
+   * @f]
    *
-   *  satisfied by the modified Bessel functions of the first kind.
-   *  the normalization relationship used is
-   *   @f[
-   *    \frac{z/2)^\nu e^z}{\Gamma(\nu+1)} = I_\nu(z)
-   *      + 2\sum_{k=1}^{\infty}\frac{(k+\nu)\Gamma(2\nu+k)}{k!\Gamma(1+2\nu)}
-   *                    I_{\nu+k}(z).
-   *   @f]
+   * This modification of the algorithm is given in part in
    *
-   *  This modification of the algorithm is given in part in
+   * Olver, F. W. J. and Sookne, D. J., Note on Backward Recurrence
+   * Algorithms, Math. of Comp., Vol. 26, no. 120, Oct. 1972.
    *
-   *  Olver, F. W. J. and Sookne, D. J., Note on Backward Recurrence
-   *    Algorithms, Math. of Comp., Vol. 26, no. 120, Oct. 1972.
+   * And further elaborated for the Bessel functions in
    *
-   *  And further elaborated for the Bessel functions in
+   * Sookne, D. J., Bessel Functions I and J of Complex Argument 
+   * and Integer Order, J. Res. NBS - Series B, Vol 77B, Nos.
+   * 3 & 4, July-December, 1973.
    *
-   *  Sookne, D. J., Bessel Functions I and J of Complex Argument 
-   *    and Integer Order, J. Res. NBS - Series B, Vol 77B, Nos.
-   *    3 & 4, July-December, 1973.
+   * Insight was also gained from
    *
-   *  Insight was also gained from
+   * Cody, W. J., Preliminary Report on Software for the Modified
+   *  Bessel Functions of the First Kind, Argonne National
+   *  Laboratory, Applied Mathematics Division, Tech. Memo. 
+   *  No. 357, August, 1980.
    *
-   *  Cody, W. J., Preliminary Report on Software for the Modified
-   *    Bessel Functions of the First Kind, Argonne National
-   *    Laboratory, Applied Mathematics Division, Tech. Memo. 
-   *    No. 357, August, 1980.
+   * Cody implements the algorithm of Sookne for fractional order
+   * and nonnegative real argument.  Like Cody, we do not change
+   * the convergence testing mechanism in any substantial way.
+   * However, we do trim the overhead by making the additional
+   * assumption that performing the convergence test for the
+   * functions of order 2/3 will suffice for order 1/3 as well.
+   * This assumption has not been established by rigourous
+   * analysis at this time.  For speed the convergence
+   * tests are performed in the 1-norm instead of the usual Euclidean
+   * norm used in the complex plane using the inequality
+   * @f[
+   *  |x| + |y| <= \sqrt(2) \sqrt(x^2 + y^2) 
+   * @f]
    *
-   *  Cody implements the algorithm of Sookne for fractional order
-   *  and nonnegative real argument.  Like Cody, we do not change
-   *  the convergence testing mechanism in any substantial way.
-   *  However, we do trim the overhead by making the additional
-   *  assumption that performing the convergence test for the
-   *  functions of order 2/3 will suffice for order 1/3 as well.
-   *  This assumption has not been established by rigourous
-   *  analysis at this time.  For the sake of speed the convergence
-   *  tests are performed in the 1-norm instead of the usual Euclidean
-   *  norm used in the complex plane using the inequality
-   *
-   *   @f[
-   *    |x| + |y| <= \sqrt(2) \sqrt(x^2 + y^2) 
-   *   @f]
-   *
-   *  @param[in]  __z     The argument of the modified Bessel functions.
-   *  @param[in]  __eps   The maximum relative error required in the results.
-   *  @param[out] _Ip1d3 The value of @f$ I_(+1/3)(z) @f$.
-   *  @param[out] _Im1d3 The value of @f$ I_(-1/3)(z) @f$.
-   *  @param[out] _Ip2d3 The value of @f$ I_(+2/3)(z) @f$.
-   *  @param[out] _Im2d3 The value of @f$ I_(-2/3)(z) @f$.
+   * @param[in]  __z     The argument of the modified Bessel functions.
+   * @param[in]  __eps   The maximum relative error required in the results.
+   * @param[out] _Ip1d3 The value of @f$ I_(+1/3)(z) @f$.
+   * @param[out] _Im1d3 The value of @f$ I_(-1/3)(z) @f$.
+   * @param[out] _Ip2d3 The value of @f$ I_(+2/3)(z) @f$.
+   * @param[out] _Im2d3 The value of @f$ I_(-2/3)(z) @f$.
    */
   template<typename _Tp>
     void
@@ -566,41 +563,41 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief Compute approximations to the modified Bessel functions
-   *  of the second kind of orders 1/3 and 2/3 for moderate arguments.
+   * @brief Compute approximations to the modified Bessel functions
+   * of the second kind of orders 1/3 and 2/3 for moderate arguments.
    *
-   *  This routine computes
-   *   @f[
-   *    E_\nu(z) = \exp{z} \sqrt{2 z/\pi} K_\nu(z), for \nu = 1/3 and \nu = 2/3
-   *   @f]
-   *  using a rational approximation given in
+   * This routine computes
+   * @f[
+   *  E_\nu(z) = \exp{z} \sqrt{2 z/\pi} K_\nu(z), for \nu = 1/3 and \nu = 2/3
+   * @f]
+   * using a rational approximation given in
    *
-   *  Luke, Y. L., Mathematical functions and their approximations,
-   *    Academic Press, pp 366-367, 1975.
+   * Luke, Y. L., Mathematical functions and their approximations,
+   *  Academic Press, pp 366-367, 1975.
    *
-   *  Though the approximation converges in @f$ |\arg(z)| <= pi @f$,
-   *  The convergence weakens as abs(arg(z)) increases.  Also, in
-   *  the case of real order between 0 and 1, convergence weakens
-   *  as the order approaches 1.  For these reasons, we only use
-   *  this code for @f$ |\arg(z)| <= 3pi/4 @f$ and the convergence test
-   *  is performed only for order 2/3.
+   * Though the approximation converges in @f$ |\arg(z)| <= pi @f$,
+   * The convergence weakens as abs(arg(z)) increases.  Also, in
+   * the case of real order between 0 and 1, convergence weakens
+   * as the order approaches 1.  For these reasons, we only use
+   * this code for @f$ |\arg(z)| <= 3pi/4 @f$ and the convergence test
+   * is performed only for order 2/3.
    *
-   *  The coding of this function is also influenced by the fact
-   *  that it will only be used for about @f$ 2 <= |z| <= 15 @f$.
-   *  Hence, certain considerations of overflow, underflow, and
-   *  loss of significance are unimportant for our purpose.
+   * The coding of this function is also influenced by the fact
+   * that it will only be used for about @f$ 2 <= |z| <= 15 @f$.
+   * Hence, certain considerations of overflow, underflow, and
+   * loss of significance are unimportant for our purpose.
    *
-   *  @param[in] __z   The value for which the quantity E_nu is to be computed.
-   *    	     it is recommended that abs(z) not be too small and that
-   *    	     @f$ |\arg(z)| <= 3pi/4 @f$.
-   *  @param[in] __eps The maximum relative error allowable in the computed
-   *    	     results. The relative error test is based on the
-   *    	     comparison of successive iterates.
-   *  @param[out] _Kp1d3  The value computed for @f$ E_{+1/3}(z) @f$.
-   *  @param[out] _Kp2d3  The value computed for @f$ E_{+2/3}(z) @f$.
+   * @param[in] __z The value for which the quantity E_nu is to be computed.
+   *  	     it is recommended that abs(z) not be too small and that
+   *   	     @f$ |\arg(z)| <= 3pi/4 @f$.
+   * @param[in] __eps The maximum relative error allowable in the computed
+   *   	     results. The relative error test is based on the
+   *   	     comparison of successive iterates.
+   * @param[out] _Kp1d3 The value computed for @f$ E_{+1/3}(z) @f$.
+   * @param[out] _Kp2d3 The value computed for @f$ E_{+2/3}(z) @f$.
    *
-   *  @note In the worst case, say, @f$ z=2 @f$ and @f$ \arg(z) = 3pi/4 @f$,
-   *        20 iterations should give 7 or 8 decimals of accuracy.
+   * @note In the worst case, say, @f$ z=2 @f$ and @f$ \arg(z) = 3pi/4 @f$,
+   * 20 iterations should give 7 or 8 decimals of accuracy.
    */
   template<typename _Tp>
     void
@@ -749,42 +746,41 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief This function computes rational approximations
-   *  to the hypergeometric functions related to the modified Bessel
-   *  functions of orders @f$ \nu = +-1/3 @f$ and @f$ \nu +- 2/3 @f$.  That is,
-   *  @f$ A(z)/B(z) @f$, Where @f$ A(z) @f$ and @f$ B(z) @f$ are
-   *  cubic polynomials with real coefficients, approximates
-   *   @f[
-   *    \frac{\Gamma(\nu+1)}{(z/2)^nu}I_\nu(z) = _0F_1 (;\nu+1;z^2/4),
-   *   @f]
-   *  where the function on the right is a
-   *  confluent hypergeometric limit function.  For @f$ |z| <= 1/4 @f$ and
-   *  @f$ |arg(z)| <= pi/2 @f$, the approximations are accurate to
-   *  about 16 decimals.
+   * @brief This function computes rational approximations
+   * to the hypergeometric functions related to the modified Bessel
+   * functions of orders @f$ \nu = +-1/3 @f$ and @f$ \nu +- 2/3 @f$.  That is,
+   * @f$ A(z)/B(z) @f$, Where @f$ A(z) @f$ and @f$ B(z) @f$ are
+   * cubic polynomials with real coefficients, approximates
+   * @f[
+   *  \frac{\Gamma(\nu+1)}{(z/2)^nu}I_\nu(z) = _0F_1 (;\nu+1;z^2/4),
+   * @f]
+   * where the function on the right is a
+   * confluent hypergeometric limit function.  For @f$ |z| <= 1/4 @f$ and
+   * @f$ |arg(z)| <= pi/2 @f$, the approximations are accurate to
+   * about 16 decimals.
    *
-   *  For further details including the four term recurrence
-   *  relation satisfied by the numerator and denominator poly-
-   *  nomials in the higher order approximants, see
+   * For further details including the four term recurrence
+   * relation satisfied by the numerator and denominator poly-
+   * nomials in the higher order approximants, see
    *
-   *  Luke, Y.L., Mathematical Functions and their Approximations,
-   *  Academic Press, pp 361-363, 1975.
+   * Luke, Y.L., Mathematical Functions and their Approximations,
+   * Academic Press, pp 361-363, 1975.
    *
-   *  An asymptotic expression for the error is given as well as
-   *  other useful expressions in the event one wants to extend
-   *  this function to incorporate higher order approximants.
+   * An asymptotic expression for the error is given as well as
+   * other useful expressions in the event one wants to extend
+   * this function to incorporate higher order approximants.
    *
-   *  Note also that for the sake of speed and the fact that this
-   *  function will be driven by another, checks that are not
-   *  absolutely necessary are not made.
+   * Note also that for speed and since this function is called by another,
+   * checks that are not absolutely necessary are not made.
    *
-   *  @param[in] __z The argument at which the hypergeometric given
-   *    		above is to be evaluated.  Since the approximation
-   *    		is of fixed order, @f$ |z| @f$ must be small to ensure
-   *    		sufficient accuracy of the computed results.
-   *  @param[out] _Ai  The Airy function @f$ Ai(z) @f$.
-   *  @param[out] _Aip The Airy function derivative @f$ Ai'(z) @f$.
-   *  @param[out] _Bi  The Airy function @f$ Bi(z) @f$.
-   *  @param[out] _Bip The Airy function derivative @f$ Bi'(z) @f$.
+   * @param[in] __z The argument at which the hypergeometric given
+   *  		above is to be evaluated.  Since the approximation
+   *  		is of fixed order, @f$ |z| @f$ must be small to ensure
+   *  		sufficient accuracy of the computed results.
+   * @param[out] _Ai  The Airy function @f$ Ai(z) @f$.
+   * @param[out] _Aip The Airy function derivative @f$ Ai'(z) @f$.
+   * @param[out] _Bi  The Airy function @f$ Bi(z) @f$.
+   * @param[out] _Bip The Airy function derivative @f$ Bi'(z) @f$.
    */
   template<typename _Tp>
     void
@@ -870,138 +866,136 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief This function computes the Airy function @f$ Ai(z) @f$
-   *  and its first derivative in the complex z-plane.
+   * @brief This function computes the Airy function @f$ Ai(z) @f$
+   * and its first derivative in the complex z-plane.
    *
-   *  The algorithm used exploits numerous representations of the
-   *  Airy function and its derivative.
-   *  The representations are recorded here for reference:
+   * The algorithm used exploits numerous representations of the
+   * Airy function and its derivative.
+   * The representations are recorded here for reference:
    *
-   *   @f[
-   *    (1a) Ai(z) = \frac{\sqrt{z}}{3}(I_{-1/3}(\zeta) - I_{1/3}(\zeta))
-   *   @f]
-   *   @f[
-   *    (1b) Bi(z) = \sqrt{\frac{z}{3}}(I_{-1/3}(\zeta) + I_{1/3}(\zeta))
-   *   @f]
+   * @f[
+   *  (1a) Ai(z) = \frac{\sqrt{z}}{3}(I_{-1/3}(\zeta) - I_{1/3}(\zeta))
+   * @f]
+   * @f[
+   *  (1b) Bi(z) = \sqrt{\frac{z}{3}}(I_{-1/3}(\zeta) + I_{1/3}(\zeta))
+   * @f]
    *
-   *   @f[
-   *    (2) Ai(z) = \frac{\sqrt{z/3}}{\pi} K_{1/3}(\zeta)
+   * @f[
+   *  (2) Ai(z) = \frac{\sqrt{z/3}}{\pi} K_{1/3}(\zeta)
    *
-   *      	  = \frac{2^{2/3}3^{-5/6}}{\sqrt(\pi)}
-   *    	       z \exp(-\zeta) U(5/6; 5/3; 2 \zeta)
-   *   @f]
+   *    	  = \frac{2^{2/3}3^{-5/6}}{\sqrt(\pi)}
+   *  	       z \exp(-\zeta) U(5/6; 5/3; 2 \zeta)
+   * @f]
    *
-   *   @f[
-   *    (3a) Ai(-z)  = \frac{\sqrt{z}}{3}(J_{-1/3}(\zeta) + J_{1/3}(\zeta))
-   *   @f]
-   *   @f[
-   *    (3b) Bi(-z)  = \sqrt{\frac{z}{3}}(J_{-1/3}(\zeta) - J_{1/3}(\zeta))
-   *   @f]
+   * @f[
+   *  (3a) Ai(-z)  = \frac{\sqrt{z}}{3}(J_{-1/3}(\zeta) + J_{1/3}(\zeta))
+   * @f]
+   * @f[
+   *  (3b) Bi(-z)  = \sqrt{\frac{z}{3}}(J_{-1/3}(\zeta) - J_{1/3}(\zeta))
+   * @f]
    *
-   *   @f[
-   *    (4a) Ai'(z)  = \frac{z}{3}(I_{2/3}(\zeta) - I_{-2/3}(\zeta))
-   *   @f]
-   *   @f[
-   *    (4b) Bi'(z)  = \frac{z}{\sqrt{3}}(I_{-2/3}(\zeta) + I_{2/3}(\zeta))
-   *   @f]
+   * @f[
+   *  (4a) Ai'(z)  = \frac{z}{3}(I_{2/3}(\zeta) - I_{-2/3}(\zeta))
+   * @f]
+   * @f[
+   *  (4b) Bi'(z)  = \frac{z}{\sqrt{3}}(I_{-2/3}(\zeta) + I_{2/3}(\zeta))
+   * @f]
    *
-   *   @f[
-   *    (5a) Ai'(z)  = -\frac{z}{\pi\sqrt(3)} K_(2/3)(zeta)
+   * @f[
+   *  (5a) Ai'(z)  = -\frac{z}{\pi\sqrt(3)} K_(2/3)(zeta)
    *
-   *    	    =  -\frac{4^{2/3}3^{-7/6}}{\sqrt(\pi)}
-   *                     z^2 \exp(-\zeta) U(7/6; 7/3; 2 \zeta)
-   *   @f]
+   *  	    =  -\frac{4^{2/3}3^{-7/6}}{\sqrt(\pi)}
+   *                   z^2 \exp(-\zeta) U(7/6; 7/3; 2 \zeta)
+   * @f]
    *
-   *   @f[
-   *    (6a) Ai'(-z) = \frac{z}{3}(J_{2/3}(\zeta) - J_{-2/3}(\zeta)) ,
-   *   @f]
-   *   @f[
-   *    (6b) Bi'(-z) = \frac{z}{\sqrt{3}}(J_{-2/3}(\zeta) + J_{2/3}(\zeta)) ,
-   *   @f]
-   *  Where @f$ \zeta = - \frac{2}{3}z^{3/2} @f$ and @f$ U(a;b;z) @f$ is
-   *  the confluent hypergeometric function defined in
+   * @f[
+   *  (6a) Ai'(-z) = \frac{z}{3}(J_{2/3}(\zeta) - J_{-2/3}(\zeta)) ,
+   * @f]
+   * @f[
+   *  (6b) Bi'(-z) = \frac{z}{\sqrt{3}}(J_{-2/3}(\zeta) + J_{2/3}(\zeta)) ,
+   * @f]
+   * Where @f$ \zeta = - \frac{2}{3}z^{3/2} @f$ and @f$ U(a;b;z) @f$ is
+   * the confluent hypergeometric function defined in
    *
-   *  @see Stegun, I. A. and Abramowitz, M., Handbook of Mathematical Functions,
-   *    Natl. Bureau of Standards, AMS 55, pp 504-515, 1964.
+   * @see Stegun, I. A. and Abramowitz, M., Handbook of Mathematical Functions,
+   *  Natl. Bureau of Standards, AMS 55, pp 504-515, 1964.
    *
-   *  The asymptotic expansions derivable from these representations and
-   *  Hankel's asymptotic expansions for the Bessel functions are used for
-   *  large modulus of z.  The implementation has taken advantage of the
-   *  error bounds given in
+   * The asymptotic expansions derivable from these representations and
+   * Hankel's asymptotic expansions for the Bessel functions are used for
+   * large modulus of z.  The implementation has taken advantage of the
+   * error bounds given in
    *
-   *  @see Olver, F. W. J., Error Bounds for Asymptotic Expansions,
-   *  with an Application to Cylinder Functions of Large Argument,
-   *  in Asymptotic Solutions of Differential Equations (Wilcox, Ed.),
-   *  Wiley and Sons, pp 163-183, 1964
+   * @see Olver, F. W. J., Error Bounds for Asymptotic Expansions,
+   * with an Application to Cylinder Functions of Large Argument,
+   * in Asymptotic Solutions of Differential Equations (Wilcox, Ed.),
+   * Wiley and Sons, pp 163-183, 1964
    *
-   *  and
+   * @see Olver, F. W. J., Asymptotics and Special Functions, Academic Press,
+   * pp 266-268, 1974.
    *
-   *  @see Olver, F. W. J., Asymptotics and Special Functions, Academic Press,
-   *  pp 266-268, 1974.
+   * For small modulus of z, a rational approximation is used.  This
+   * approximant is derived from
    *
-   *  For small modulus of z, a rational approximation is used.  This
-   *  approximant is derived from
+   * Luke, Y. L., Mathematical Functions and their Approximations,
+   * Academic Press, pp 361-363, 1975.
    *
-   *  Luke, Y. L., Mathematical Functions and their Approximations,
-   *  Academic Press, pp 361-363, 1975.
+   * The identities given below are for Bessel functions of the first
+   * kind in terms of modified Bessel functions of the first kind are
+   * also used with the rational approximant.
    *
-   *  The identities given below are for Bessel functions of the first
-   *  kind in terms of modified Bessel functions of the first kind are
-   *  also used with the rational approximant.
-
-   *  For moderate modulus of z, three techniques are used.  Two use
-   *  a backward recursion algorithm with (1), (3), (4), and (6). The
-   *  third uses the confluent hypergeometric representations given by
-   *  (2) and (5).  The backward recursion algorithm generates values of
-   *  the modified Bessel functions of the first kind of orders + or -
-   *  1/3 and + or - 2/3 for z in the right half plane.  Values for
-   *  the corresponding Bessel functions of the first kind are recovered
-   *  via the identities
-   *   @f[
-   *        J_\nu(z) = exp(\nu \pi i/2) I_\nu(z exp(-\pi i/2)),
-   *    	  0 <= arg(z) <= \pi/2
-   *   @f]
-   *  and
-   *   @f[
-   *        J_\nu(z) = exp(-\nu \pi i/2) I_\nu(z exp(\pi i/2)),
-   *    	 -\pi/2 <= arg(z) < 0 .
-   *   @f]
+   * For moderate modulus of z, three techniques are used.  Two use
+   * a backward recursion algorithm with (1), (3), (4), and (6). The
+   * third uses the confluent hypergeometric representations given by
+   * (2) and (5).  The backward recursion algorithm generates values of
+   * the modified Bessel functions of the first kind of orders + or -
+   * 1/3 and + or - 2/3 for z in the right half plane.  Values for
+   * the corresponding Bessel functions of the first kind are recovered
+   * via the identities
+   * @f[
+   *      J_\nu(z) = exp(\nu \pi i/2) I_\nu(z exp(-\pi i/2)),
+   *  	  0 <= arg(z) <= \pi/2
+   * @f]
+   * and
+   * @f[
+   *      J_\nu(z) = exp(-\nu \pi i/2) I_\nu(z exp(\pi i/2)),
+   *  	 -\pi/2 <= arg(z) < 0 .
+   * @f]
    *
-   *  The particular backward recursion algorithm used is discussed in 
+   * The particular backward recursion algorithm used is discussed in 
    *
-   *  @see Olver, F. W. J, Numerical solution of second-order linear
-   *  difference equations, NBS J. Res., Series B, VOL 71B,
-   *  pp 111-129, 1967.
+   * @see Olver, F. W. J, Numerical solution of second-order linear
+   * difference equations, NBS J. Res., Series B, VOL 71B,
+   * pp 111-129, 1967.
    *
-   *  @see Olver, F. W. J. and Sookne, D. J., Note on backward recurrence
-   *  algorithms, Math. Comp. Vol 26, No. 120, pp 941-947,
-   *  Oct. 1972
+   * @see Olver, F. W. J. and Sookne, D. J., Note on backward recurrence
+   * algorithms, Math. Comp. Vol 26, No. 120, pp 941-947,
+   * Oct. 1972
    *
-   *  @see Sookne, D. J., Bessel Functions I and J of Complex Argument and
-   *  Integer Order, NBS J. Res., Series B, Vol 77B, Nos 3& 4,
-   *  pp 111-113, July-December, 1973. 
+   * @see Sookne, D. J., Bessel Functions I and J of Complex Argument and
+   * Integer Order, NBS J. Res., Series B, Vol 77B, Nos 3& 4,
+   * pp 111-113, July-December, 1973. 
    *
-   *  The following paper was also useful
+   * The following paper was also useful
    *
-   *  @see Cody, W. J., Preliminary report on software for the modified
-   *  Bessel functions of the first kind, Applied Mathematics
-   *  Division, Argonne National Laboratory, Tech. Memo. no. 357.
+   * @see Cody, W. J., Preliminary report on software for the modified
+   * Bessel functions of the first kind, Applied Mathematics
+   * Division, Argonne National Laboratory, Tech. Memo. no. 357.
    *
-   *  A backward recursion algorithm is also used to compute the
-   *  confluent hypergeometric function.  The recursion relations
-   *  and a convergence theorem are given in
+   * A backward recursion algorithm is also used to compute the
+   * confluent hypergeometric function.  The recursion relations
+   * and a convergence theorem are given in
    *
-   *  @see Wimp, J., On the computation of Tricomi's psi function, Computing,
-   *  Vol 13, pp 195-203, 1974.
+   * @see Wimp, J., On the computation of Tricomi's psi function, Computing,
+   * Vol 13, pp 195-203, 1974.
    *
-   *  @param[in] __z   The argument at which the Airy function and its derivative
-   *    	     are computed.
-   *  @param[in] __eps Relative error required.  Currently, eps is used only
+   * @param[in] __z   The argument at which the Airy function and its derivative
+   *  	     are computed.
+   * @param[in] __eps Relative error required.  Currently, eps is used only
    *		     in the backward recursion algorithms.
-   *  @param[out] _Ai  The value computed for Ai(z).
-   *  @param[out] _Aip The value computed for Ai'(z).
-   *  @param[out] _Bi  The value computed for Bi(z).
-   *  @param[out] _Bip The value computed for Bi'(z).
+   * @param[out] _Ai  The value computed for Ai(z).
+   * @param[out] _Aip The value computed for Ai'(z).
+   * @param[out] _Bi  The value computed for Bi(z).
+   * @param[out] _Bip The value computed for Bi'(z).
    */
   template<typename _Tp>
     void
@@ -1138,7 +1132,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief  Return the complex Airy Ai function.
+   * @brief  Return the complex Airy Ai function.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1151,7 +1145,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *  @brief  Return the complex Airy Bi function.
+   * @brief  Return the complex Airy Bi function.
    */
   template<typename _Tp>
     std::complex<_Tp>
