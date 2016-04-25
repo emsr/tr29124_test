@@ -2533,29 +2533,35 @@ template<typename _Tp>
   }
 
 
-template<typename _Tp>
+template<typename _Sum>
   void
-  diff_airy_asymp_urectum()
+  airy_asymp()
   {
-    using __cmplx = std::complex<_Tp>;
-    _WenigerDeltaSum<_KahanSum<__cmplx>> _Asum(_Tp{1});
-    _WenigerDeltaSum<_KahanSum<__cmplx>> _Bsum(_Tp{1});
-    _WenigerDeltaSum<_KahanSum<__cmplx>> _Csum(_Tp{1});
-    _WenigerDeltaSum<_KahanSum<__cmplx>> _Dsum(_Tp{1});
-    const auto __gamp1d6 = std::tgamma(_Tp{1}/_Tp{6});
-    const auto __gamp5d6 = std::tgamma(_Tp{5}/_Tp{6});
-    const auto __gamm1d6 = std::tgamma(_Tp{-1}/_Tp{6});
-    const auto __gamp7d6 = std::tgamma(_Tp{7}/_Tp{6});
+    using __cmplx = typename _Sum::value_type;
+    using _Tp = typename __cmplx::value_type;
+    constexpr int _S_max_iter = 1000;
+
+    // Shut the compiler - what do I want here though?
+    __cmplx __zeta{};
+
+    _Sum _Asum(_Tp{1});
+    _Sum _Bsum(_Tp{1});
+    _Sum _Csum(_Tp{1});
+    _Sum _Dsum(_Tp{1});
+    const auto __gamp1d6 = std::tgamma(_Tp{1} / _Tp{6});
+    const auto __gamp5d6 = std::tgamma(_Tp{5} / _Tp{6});
+    const auto __gamm1d6 = std::tgamma(_Tp{-1} / _Tp{6});
+    const auto __gamp7d6 = std::tgamma(_Tp{7} / _Tp{6});
     auto __sign = _Tp{1};
     auto __numerAB = _Tp{1};
     auto __numerCD = _Tp{1};
-    auto __denom = _Tp{1};
-    for (int __k = 1; __k < 1000; ++__k)
+    auto __denom = __cmplx{1};
+    for (int __k = 1; __k < _S_max_iter; ++__k)
       {
 	__sign = -__sign;
-	__numerAB *= (__k + _Tp{1}/_Tp{6}) * (__k + _Tp{5}/_Tp{6});
-	__numerCD *= (__k - _Tp{1}/_Tp{6}) * (__k + _Tp{7}/_Tp{6});
-	__denom *= _Tp{2 * __k} * __zeta;
+	__numerAB *= (__k + _Tp{1} / _Tp{6}) * (__k + _Tp{5} / _Tp{6});
+	__numerCD *= (__k - _Tp{1} / _Tp{6}) * (__k + _Tp{7} / _Tp{6});
+	__denom *= __cmplx(2 * __k) * __zeta;
 	_Asum += __sign * __numerAB / __denom;
 	_Bsum += __numerAB / __denom;
 	_Csum += __sign * __numerCD / __denom;
@@ -2601,4 +2607,16 @@ main()
   //diff_airy_asymp_m<__float128>();
   //diff_airy_series<__float128>();
   //diff_airy_asymp_p<__float128>();
+
+  using __fcmplx = std::complex<float>;
+  using __fsum_t = __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_KahanSum<__fcmplx>>;
+  airy_asymp<__fsum_t>();
+
+  using __cmplx = std::complex<double>;
+  using __sum_t = __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_KahanSum<__cmplx>>;
+  airy_asymp<__sum_t>();
+
+  using __lcmplx = std::complex<long double>;
+  using __lsum_t = __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_KahanSum<__lcmplx>>;
+  airy_asymp<__lsum_t>();
 }

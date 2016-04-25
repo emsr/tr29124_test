@@ -131,8 +131,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _AitkenDeltaSqaredSum<_Sum>::_M_update()
     {
       using _Tp = value_type;
-      constexpr auto _S_huge = __gnu_cxx::__root_max(_Tp{5}); // 1.0e+60
-      constexpr auto _S_tiny = __gnu_cxx::__root_min(_Tp{5}); // 1.0e-60;
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+      constexpr auto _S_huge = __gnu_cxx::__root_max(_Val{5}); // 1.0e+60
+      constexpr auto _S_tiny = __gnu_cxx::__root_min(_Val{5}); // 1.0e-60;
 
       const auto __n = this->_M_part_sum.num_terms() - 1;
       const auto __s_n = this->_M_part_sum();
@@ -169,8 +170,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _WinnEpsilonSum<_Sum>::_M_update()
     {
       using _Tp = value_type;
-      constexpr auto _S_huge = __gnu_cxx::__root_max(_Tp{5}); // 1.0e+60
-      constexpr auto _S_tiny = __gnu_cxx::__root_min(_Tp{5}); // 1.0e-60;
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+      constexpr auto _S_huge = __gnu_cxx::__root_max(_Val{5}); // 1.0e+60
+      constexpr auto _S_tiny = __gnu_cxx::__root_min(_Val{5}); // 1.0e-60;
 
       const auto __n = this->_M_part_sum.num_terms() - 1;
       const auto __s_n = this->_M_part_sum();
@@ -205,8 +207,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _BrezinskiThetaSum<_Sum>::_M_update()
     {
       using _Tp = value_type;
-      constexpr auto _S_huge = __gnu_cxx::__root_max(_Tp{5}); // 1.0e+60
-      constexpr auto _S_tiny = __gnu_cxx::__root_min(_Tp{5}); // 1.0e-60;
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+      constexpr auto _S_huge = __gnu_cxx::__root_max(_Val{5}); // 1.0e+60
+      constexpr auto _S_tiny = __gnu_cxx::__root_min(_Val{5}); // 1.0e-60;
 
       const auto __n = this->_M_part_sum.num_terms() - 1;
       const auto __s_n = this->_M_part_sum();
@@ -245,8 +248,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _LevinSum<_Sum, _RemainderModel>::_M_update(value_type __r_n)
     {
       using _Tp = value_type;
-      constexpr auto _S_huge = __gnu_cxx::__root_max(_Tp{5}); // 1.0e+60
-      constexpr auto _S_tiny = __gnu_cxx::__root_min(_Tp{5}); // 1.0e-60;
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+      constexpr auto _S_huge = __gnu_cxx::__root_max(_Val{5}); // 1.0e+60
+      constexpr auto _S_tiny = __gnu_cxx::__root_min(_Val{5}); // 1.0e-60;
 
       const auto __n = this->_M_part_sum.num_terms() - 1;
       const auto __s_n = this->_M_part_sum();
@@ -291,8 +295,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _WenigerSum<_Sum, _RemainderModel>::_M_update(value_type __r_n)
     {
       using _Tp = value_type;
-      constexpr auto _S_huge = __gnu_cxx::__root_max(_Tp{5}); // 1.0e+60
-      constexpr auto _S_tiny = __gnu_cxx::__root_min(_Tp{5}); // 1.0e-60;
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+      constexpr auto _S_huge = __gnu_cxx::__root_max(_Val{5}); // 1.0e+60
+      constexpr auto _S_tiny = __gnu_cxx::__root_min(_Val{5}); // 1.0e-60;
 
       const auto __n = this->_M_part_sum.num_terms() - 1;
       const auto __s_n = this->_M_part_sum();
@@ -313,7 +318,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      for (auto __j = 2; __j <= __n; ++__j)
 		{
 		  auto __fact = __bn1 * __bn2
-			      / ((__bn1 + __j - 1) * (__bn2 + __j - 1));
+			   / ((__bn1 + _Tp(__j - 1)) * (__bn2 + _Tp(__j - 1)));
 		  __anum[__n - __j] = __anum[__n - __j + 1]
 				    - __fact * __anum[__n - __j];
 		  __aden[__n - __j] = __aden[__n - __j + 1]
