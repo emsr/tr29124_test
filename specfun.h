@@ -1594,14 +1594,15 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__sinhint<long double>(__x); }
 
   /**
-   * Return the hyperbolic sine integral @f$ Shi(x) @f$ of real
-   * argument @f$ x @f$.
+   * Return the hyperbolic sine integral @f$ Shi(x) @f$
+   * of real argument @f$ x @f$.
    *
-   * The sine hyperbolic integral is defined by
+   * The hyperbolic sine integral is defined by
    * @f[
    *    Shi(x) = \int_0^x \frac{sinh(t)}{t}dt
    * @f]
    *
+   * @tparam _Tp The type of the real argument
    * @param __x The argument
    */
   template<typename _Tp>
@@ -1614,12 +1615,18 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Hyperbolic cosine integrals
 
+  /**
+   * Return the hyperbolic cosine integral of @c float argument @f$ x @f$.
+   *
+   * @see coshint for details.
+   */
   inline float
   coshintf(float __x)
   { return std::__detail::__coshint<float>(__x); }
 
   /**
-   * Return the hyperbolic cosine integral of @c float argument @f$ x @f$.
+   * Return the hyperbolic cosine integral @f$ Chi(x) @f$
+   * of <tt>long double</tt> argument @f$ x @f$.
    *
    * @see coshint for details.
    */
@@ -1628,7 +1635,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__coshint<long double>(__x); }
 
   /**
-   * Return the hyperbolic cosine integral of argument @c x.
+   * Return the hyperbolic cosine integral @f$ Chi(x) @f$
+   * of real argument @c x.
    *
    * The hyperbolic cosine integral is defined by
    * @f[
@@ -1636,7 +1644,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *     = \gamma_E + ln(x) + \int_0^x \frac{cosh(t)-1}{t}dt
    * @f]
    *
-   * @param __x The argument
+   * @tparam _Tp The type of the real argument
+   * @param __x The real argument
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
@@ -1657,7 +1666,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Jacobi elliptic sn functions.
 
   /**
-   * Return the Jacobi elliptic @c sn integral of modulus @c k and argument @c u.
+   * Return the Jacobi elliptic @f$ sn(k,u) @f$ integral
+   * of real modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * @see jacobi_sn for details.
    */
@@ -1669,7 +1679,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   }
 
   /**
-   * Return the Jacobi elliptic @c sn integral of modulus @c k and argument @c u.
+   * Return the Jacobi elliptic @f$ sn(k,u) @f$ integral
+   * of real modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * @see jacobi_sn for details.
    */
@@ -1681,15 +1692,18 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   }
 
   /**
-   * Return the Jacobi elliptic @c sn integral of modulus @c k and argument @c u.
+   * Return the Jacobi elliptic @f$ sn(k,u) @f$ integral
+   * of real modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * The Jacobi elliptic @c sn integral is defined by
    * @f[
    *    
    * @f]
    *
-   * @param __k The modulus
-   * @param __u The argument
+   * @tparam _Kp The type of the real modulus
+   * @tparam _Up The type of the real argument
+   * @param __k The real modulus
+   * @param __u The real argument
    */
   template<typename _Kp, typename _Up>
     inline __gnu_cxx::__promote_num_t<_Kp, _Up>
@@ -1703,7 +1717,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Jacobi elliptic cn functions.
 
   /**
-   * Return the Jacobi elliptic @c cn integral of modulus @c k and argument @c u.
+   * Return the Jacobi elliptic @f$ cn(k,u) @f$ integral
+   * of real modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * @see jacobi_cn for details.
    */
@@ -1715,7 +1730,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   }
 
   /**
-   * Return the Jacobi elliptic @c cn integral of modulus @c k and argument @c u.
+   * Return the Jacobi elliptic @f$ cn(k,u) @f$ integral
+   * of real modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * @see jacobi_cn for details.
    */
@@ -1727,15 +1743,18 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   }
 
   /**
-   * Return the Jacobi elliptic @c cn integral of modulus @c k and argument @c u.
+   * Return the Jacobi elliptic @f$ cn(k,u) @f$ integral
+   * of real modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * The Jacobi elliptic @c cn integral is defined by
    * @f[
    *    
    * @f]
    *
-   * @param __k The modulus
-   * @param __u The argument
+   * @tparam _Kp The type of the real modulus
+   * @tparam _Up The type of the real argument
+   * @param __k The real modulus
+   * @param __u The real argument
    */
   template<typename _Kp, typename _Up>
     inline __gnu_cxx::__promote_num_t<_Kp, _Up>
@@ -1749,7 +1768,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Jacobi elliptic dn functions.
 
   /**
-   * Return the Jacobi elliptic @c dn integral of modulus @c k and argument @c u.
+   * Return the Jacobi elliptic @f$ dn(k,u) @f$ integral
+   * of real modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * @see jacobi_dn for details.
    */
@@ -1761,7 +1781,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   }
 
   /**
-   * Return the Jacobi elliptic @c dn integral of modulus @c k and argument @c u.
+   * Return the Jacobi elliptic @f$ dn(k,u) @f$ integral
+   * of real modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * @see jacobi_dn for details.
    */
@@ -1773,15 +1794,18 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   }
 
   /**
-   * Return the Jacobi elliptic @c dn integral of modulus @c k and argument @c u.
+   * Return the Jacobi elliptic @f$ dn(k,u) @f$ integral
+   * of real modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * The Jacobi elliptic @c dn integral is defined by
    * @f[
    *    
    * @f]
    *
-   * @param __k The modulus
-   * @param __u The argument
+   * @tparam _Kp The type of the real modulus
+   * @tparam _Up The type of the real argument
+   * @param __k The real modulus
+   * @param __u The real argument
    */
   template<typename _Kp, typename _Up>
     inline __gnu_cxx::__promote_num_t<_Kp, _Up>
@@ -1795,8 +1819,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Chebyshev polynomials of the first kind
 
   /**
-   * Return the Chebyshev polynomials of the first kind of order @c n
-   * and argument @c x.
+   * Return the Chebyshev polynomials of the first kind @f$ T_n(x) @f$
+   * of non-negative order @f$ n @f$ and @c float argument @f$ x @f$.
    *
    * @see chebyshev_t for details.
    */
@@ -1805,8 +1829,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__chebyshev_t<float>(__n, __x); }
 
   /**
-   * Return the Chebyshev polynomials of the first kind of order @c n
-   * and argument @c x.
+   * Return the Chebyshev polynomials of the first kind @f$ T_n(x) @f$
+   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
    *
    * @see chebyshev_t for details.
    */
@@ -1815,16 +1839,18 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__chebyshev_t<long double>(__n, __x); }
 
   /**
-   * Return the Chebyshev polynomials of the first kind of order @c n
-   * and argument @c x.
+   * Return the Chebyshev polynomial of the first kind @f$ T_n(x) @f$
+   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
    *
-   * The Chebyshev polynomials of the first kind is defined by
+   * The Chebyshev polynomial of the first kind is defined by:
    * @f[
-   *    
+   *    T_n(x) = \cos(n \theta)
    * @f]
+   * where @f$ \theta = \arccos(x) @f$, @f$ -1 <= x <= +1 @f$.
    *
-   * @param __n The degree
-   * @param __x The argument
+   * @tparam _Tp The real type of the argument
+   * @param __n The non-negative integral order
+   * @param __x The real argument @f$ -1 <= x <= +1 @f$
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
@@ -1837,8 +1863,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Chebyshev polynomials of the second kind
 
   /**
-   * Return the Chebyshev polynomials of the second kind of order @c n
-   * and argument @c x.
+   * Return the Chebyshev polynomials of the second kind @f$ U_n(x) @f$
+   * of non-negative order @f$ n @f$ and @c float argument @f$ x @f$.
    *
    * @see chebyshev_u for details.
    */
@@ -1847,8 +1873,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__chebyshev_u<float>(__n, __x); }
 
   /**
-   * Return the Chebyshev polynomials of the second kind of order @c n
-   * and argument @c x.
+   * Return the Chebyshev polynomials of the second kind  @f$ U_n(x) @f$
+   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
    *
    * @see chebyshev_u for details.
    */
@@ -1857,16 +1883,18 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__chebyshev_u<long double>(__n, __x); }
 
   /**
-   * Return the Chebyshev polynomials of the second kind of order @c n
-   * and argument @c x.
+   * Return the Chebyshev polynomial of the second kind @f$ U_n(x) @f$
+   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
    *
-   * The Chebyshev polynomials of the second kind is defined by
+   * The Chebyshev polynomial of the second kind is defined by:
    * @f[
-   *    
+   *    U_n(x) = \frac{\sin \left[(n+1)\theta \right]}{\sin(\theta)}
    * @f]
+   * where @f$ \theta = \arccos(x) @f$, @f$ -1 <= x <= +1 @f$.
    *
-   * @param __n The degree
-   * @param __x The argument
+   * @tparam _Tp The real type of the argument
+   * @param __n The non-negative integral order
+   * @param __x The real argument @f$ -1 <= x <= +1 @f$
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
@@ -1879,8 +1907,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Chebyshev polynomials of the third kind
 
   /**
-   * Return the Chebyshev polynomials of the third kind of order @c n
-   * and argument @c x.
+   * Return the Chebyshev polynomials of the third kind @f$ V_n(x) @f$
+   * of non-negative order @f$ n @f$ and @c float argument @f$ x @f$.
    *
    * @see chebyshev_v for details.
    */
@@ -1889,8 +1917,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__chebyshev_v<float>(__n, __x); }
 
   /**
-   * Return the Chebyshev polynomials of the third kind of order @c n
-   * and argument @c x.
+   * Return the Chebyshev polynomials of the third kind @f$ V_n(x) @f$
+   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
    *
    * @see chebyshev_v for details.
    */
@@ -1899,16 +1927,19 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__chebyshev_v<long double>(__n, __x); }
 
   /**
-   * Return the Chebyshev polynomials of the third kind of order @c n
-   * and argument @c x.
+   * Return the Chebyshev polynomial of the third kind @f$ V_n(x) @f$
+   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
    *
-   * The Chebyshev polynomials of the third kind is defined by
+   * The Chebyshev polynomial of the third kind is defined by:
    * @f[
-   *    
+   *    V_n(x) = \frac{\cos \left[ \left(n+\frac{1}{2}\right)\theta \right]}
+   *                  {\cos \left(\frac{\theta}{2}\right)}
    * @f]
+   * where @f$ \theta = \arccos(x) @f$, @f$ -1 <= x <= +1 @f$.
    *
-   * @param __n The degree
-   * @param __x The argument
+   * @tparam _Tp The real type of the argument
+   * @param __n The non-negative integral order
+   * @param __x The real argument @f$ -1 <= x <= +1 @f$
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
@@ -1921,8 +1952,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Chebyshev polynomials of the fourth kind
 
   /**
-   * Return the Chebyshev polynomials of the fourth kind of order @c n
-   * and argument @c x.
+   * Return the Chebyshev polynomials of the fourth kind @f$ W_n(x) @f$
+   * of non-negative order @f$ n @f$ and @c float argument @f$ x @f$.
    *
    * @see chebyshev_w for details.
    */
@@ -1931,8 +1962,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__chebyshev_w<float>(__n, __x); }
 
   /**
-   * Return the Chebyshev polynomials of the fourth kind of order @c n
-   * and argument @c x.
+   * Return the Chebyshev polynomials of the fourth kind @f$ W_n(x) @f$
+   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
    *
    * @see chebyshev_w for details.
    */
@@ -1941,16 +1972,19 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__chebyshev_w<long double>(__n, __x); }
 
   /**
-   * Return the Chebyshev polynomials of the fourth kind of order @c n
-   * and argument @c x.
+   * Return the Chebyshev polynomial of the fourth kind @f$ W_n(x) @f$
+   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
    *
-   * The Chebyshev polynomials of the fourth kind is defined by
+   * The Chebyshev polynomial of the fourth kind is defined by:
    * @f[
-   *    
+   *    W_n(x) = \frac{\sin \left[ \left(n+\frac{1}{2}\right)\theta \right]}
+   *                  {\sin \left(\frac{\theta}{2}\right)}
    * @f]
+   * where @f$ \theta = \arccos(x) @f$, @f$ -1 <= x <= +1 @f$.
    *
-   * @param __n The degree
-   * @param __x The argument
+   * @tparam _Tp The real type of the argument
+   * @param __n The non-negative integral order
+   * @param __x The real argument @f$ -1 <= x <= +1 @f$
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
@@ -1964,7 +1998,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Jacobi polynomial @f$ P_n^{(\alpha,\beta)}(x) @f$
-   * of degree @c n and @c float orders @f$ \alpha, \beta @f$
+   * of degree @c n and @c float orders @f$ \alpha, \beta > -1 @f$
    * and argument @c x.
    *
    * @see jacobi for details.
@@ -1975,7 +2009,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Jacobi polynomial @f$ P_n^{(\alpha,\beta)}(x) @f$
-   * of degree @c n and @c <tt>long double</tt> orders @f$ \alpha, \beta @f$
+   * of degree @c n and @c <tt>long double</tt> orders @f$ \alpha, \beta > -1 @f$
    * and argument @c x.
    *
    * @see jacobi for details.
@@ -1986,7 +2020,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Jacobi polynomial @f$ P_n^{(\alpha,\beta)}(x) @f$
-   * of degree @c n and @c float orders @f$ \alpha, \beta @f$
+   * of degree @c n and @c float orders @f$ \alpha, \beta > -1 @f$
    * and argument @c x.
    *
    * The Jacobi polynomials are generated by a three-term recursion relation:
@@ -2024,7 +2058,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Gegenbauer polynomial @f$ C_n^{\alpha}(x) @f$ of degree @c n
-   * and @c float order @f$ \alpha @f$ and argument @c x.
+   * and @c float order @f$ \alpha > -1/2, \alpha \neq 0 @f$ and argument @c x.
    *
    * @see gegenbauer for details.
    */
@@ -2034,7 +2068,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Gegenbauer polynomial @f$ C_n^{\alpha}(x) @f$ of degree @c n
-   * and <tt>long double</tt> order @f$ \alpha @f$ and argument @c x.
+   * and <tt>long double</tt> order @f$ \alpha > -1/2, \alpha \neq 0 @f$
+   * and argument @c x.
    *
    * @see gegenbauer for details.
    */
@@ -2044,7 +2079,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Gegenbauer polynomial @f$ C_n^{\alpha}(x) @f$ of degree @c n
-   * and real order @f$ \alpha @f$ and argument @c x.
+   * and real order @f$ \alpha > -1/2, \alpha \neq 0 @f$ and argument @c x.
    *
    * The Gegenbauer polynomials are generated by a three-term recursion relation:
    * @f[
@@ -3684,9 +3719,14 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The Jacobi zeta function is defined by
    * @f[
-   *    
+   *    \Zeta(m,\phi) = E(m,\phi) - \frac{E(m)F(m,\phi)}{K(m)}
    * @f]
+   * where @f$ E(m,\phi) @f$ is the elliptic function of the second kind,
+   * @f$ E(m) @f$ is the complete ellitic function of the second kind,
+   * and @f$ F(m,\phi) @f$ is the elliptic function of the first kind.
    *
+   * @tparam _Tk the real type of the modulus
+   * @tparam _Tphi the real type of the angle limit
    * @param __k The modulus
    * @param __phi The angle
    */
@@ -3709,13 +3749,19 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__heuman_lambda<long double>(__k, __phi); }
 
   /**
-   * Return the Heuman lambda function of @c k and @f$ @c \phi @f$.
+   * Return the Heuman lambda function @f$ \Lambda(k,\phi) @f$
+   * of modulus @f$ k @f$ and angular limit @f$ \phi @f$.
    *
    * The complete Heuman lambda function is defined by
    * @f[
-   *    
+   *    \Lambda(k,\phi) = \frac{F(1-m,\phi)}{K(1-m)}
+   *    + \frac{2}{\pi} K(m) Z(1-m,\phi)
    * @f]
+   * where @f$ m = k^2 @f$, @f$ K(k) @f$ is the complete elliptic function
+   * of the first kind, and @f$ Z(k,phi) @f$ is the Jacobi zeta function.
    *
+   * @tparam _Tk the floating-point type of the modulus
+   * @tparam _Tphi the floating-point type of the angular limit argument
    * @param __k The modulus
    * @param __phi The angle
    */
@@ -3738,7 +3784,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__comp_ellint_d<long double>(__k); }
 
   /**
-   * Return the complete Legendre elliptic integral D of @c k and @c @f$ \phi @f$.
+   * Return the complete Legendre elliptic integral @f$ D(k,\phi) @f$
+   * of modulus @c k and angular limit @f$ \phi @f$.
    *
    * The complete Legendre elliptic integral D is defined by
    * @f[
@@ -3766,7 +3813,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__ellint_d<long double>(__k, __phi); }
 
   /**
-   * Return the incomplete Legendre elliptic integral D of @c k and @c @f$ \phi @f$.
+   * Return the incomplete Legendre elliptic integral D of @c k and @f$ \phi @f$.
    *
    * The Legendre elliptic integral D is defined by
    * @f[
@@ -3799,7 +3846,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The Bulirsch elliptic integral of the first kind is defined by
    * @f[
-   *    
+   *    el(x,k_c) = el2(x,k_c,1,1) = \int_0^{\arctan x} \frac{1+1\tan^2\theta}
+   *           {\sqrt{(1+\tan^2\theta)(1+k_c^2\tan^2\theta)}}d\theta
    * @f]
    *
    * @param __x The argument
@@ -3829,7 +3877,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The Bulirsch elliptic integral of the second kind is defined by
    * @f[
-   *    
+   *    el2(x,k_c,a,b) = \int_0^{\arctan x} \frac{a+b\tan^2\theta}
+   *           {\sqrt{(1+\tan^2\theta)(1+k_c^2\tan^2\theta)}}d\theta
    * @f]
    *
    * @param __x The argument
@@ -3860,7 +3909,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The Bulirsch elliptic integral of the third kind is defined by
    * @f[
-   *    
+   *    el3(x,k_c,p) = \int_0^{\arctan x} \frac{d\theta}
+   *          {(cos^2\theta+p\sin^2\theta)\sqrt{cos^2\theta+k_c^2\sin^2\theta}}
    * @f]
    *
    * @param __x The 
@@ -3891,7 +3941,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The Bulirsch complete elliptic integral is defined by
    * @f[
-   *    
+   *    cel(kc,p,a,b)=\int_0^{\pi/2} \frac{a\cos^2\theta + b\sin^2\theta}
+   *                                      {cos^2\theta + p\sin^2\theta}
+   *                                 \frac{d\theta}
+   *                                    {\sqrt{cos^2\theta + k_c^2\sin^2\thet}}
    * @f]
    *
    * @param __k_c The complementary modulus @f$ k_c = \sqrt(1 - k^2) @f$
@@ -3911,7 +3964,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex cylindrical Hankel function of the first kind
-   * of complex order @c @f$ \nu @f$ and complex argument @c x.
+   * of complex order @f$ \nu @f$ and complex argument @c x.
    *
    * @see cyl_hankel_1 for more details.
    */
@@ -3921,7 +3974,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex cylindrical Hankel function of the first kind
-   * of complex order @c @f$ \nu @f$ and complex argument @c x.
+   * of complex order @f$ \nu @f$ and complex argument @c x.
    *
    * @see cyl_hankel_1 for more details.
    */
@@ -3931,7 +3984,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex cylindrical Hankel function of the first kind
-   * of complex order @c @f$ \nu @f$ and complex argument @c x.
+   * of complex order @f$ \nu @f$ and complex argument @c x.
    *
    * The cylindrical Hankel function of the first kind is defined by
    * @f[
@@ -3953,7 +4006,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex cylindrical Hankel function of the second kind
-   * of complex order @c @f$ \nu @f$ and complex argument @c x.
+   * of complex order @f$ \nu @f$ and complex argument @c x.
    *
    * @see cyl_hankel_2 for more details.
    */
@@ -3963,7 +4016,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex cylindrical Hankel function of the second kind
-   * of complex order @c @f$ \nu @f$ and complex argument @c x.
+   * of complex order @f$ \nu @f$ and complex argument @c x.
    *
    * @see cyl_hankel_2 for more details.
    */
@@ -3973,7 +4026,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex cylindrical Hankel function of the second kind
-   * of complex order @c @f$ \nu @f$ and complex argument @c x.
+   * of complex order @f$ \nu @f$ and complex argument @c x.
    *
    * The cylindrical Hankel function of the second kind is defined by
    * @f[
@@ -4007,8 +4060,11 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The spherical Hankel function of the first kind is defined by
    * @f[
-   *    h^{(1)}_n(x) = j_n(x) + i n_n(x)
+   *    h^{(1)}_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} H^{(1)}_{n+1/2}(x)
+   *                 = j_n(x) + i n_n(x)
    * @f]
+   * where @f$ j_n(x) @f$ and @f$ n_n(x) @f$ are the spherical Bessel
+   * and Neumann functions respectively.
    *
    * @param __n The integral order >= 0
    * @param __x The complex argument
@@ -4037,8 +4093,11 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The spherical Hankel function of the second kind is defined by
    * @f[
-   *    h^{(2)}_n(x) = j_n(x) - i n_n(x)
+   *    h^{(2)}_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} H^{(2)}_{n+1/2}(x)
+   *                 = j_n(x) - i n_n(x)
    * @f]
+   * where @f$ j_n(x) @f$ and @f$ n_n(x) @f$ are the spherical Bessel
+   * and Neumann functions respectively.
    *
    * @param __n The integral order >= 0
    * @param __x The complex argument
@@ -4055,7 +4114,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex spherical harmonic function of degree @c l, order @c m,
-   * and real zenith angle @f$ \theta @f$, and real azimuth angle @c @f$ \phi @f$.
+   * and real zenith angle @f$ \theta @f$, and real azimuth angle @f$ \phi @f$.
    *
    * @see sph_harmonic for details.
    */
@@ -4066,7 +4125,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex spherical harmonic function of degree @c l, order @c m,
-   * and real zenith angle @f$ \theta @f$, and real azimuth angle @c @f$ \phi @f$.
+   * and real zenith angle @f$ \theta @f$, and real azimuth angle @f$ \phi @f$.
    *
    * @see sph_harmonic for details.
    */
@@ -4079,7 +4138,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex spherical harmonic function of degree @c l, order @c m,
-   * and real zenith angle @f$ \theta @f$, and real azimuth angle @c @f$ \phi @f$.
+   * and real zenith angle @f$ \theta @f$, and real azimuth angle @f$ \phi @f$.
    *
    * The spherical harmonic function is defined by:
    * @f[
