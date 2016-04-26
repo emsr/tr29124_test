@@ -53,15 +53,17 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *   @brief This routine returns the associated Laguerre polynomial
-   *          of order @f$ n @f$, degree @f$ \alpha @f$ for large n.
-   *   Abramowitz & Stegun, 13.5.21
+   * @brief This routine returns the associated Laguerre polynomial
+   *        of order @f$ n @f$, degree @f$ \alpha > -1 @f$ for large n.
+   * Abramowitz & Stegun, 13.5.21
    *
-   *   @param __n The order of the Laguerre function.
-   *   @param __alpha1 The degree of the Laguerre function.
-   *   @param __x The argument of the Laguerre function.
-   *   @return The value of the Laguerre function of order n,
-   *           degree @f$ \alpha @f$, and argument x.
+   * @tparam _Tpa The type of the degree.
+   * @tparam _Tp The type of the parameter.
+   * @param __n The order of the Laguerre function.
+   * @param __alpha1 The degree of the Laguerre function.
+   * @param __x The argument of the Laguerre function.
+   * @return The value of the Laguerre function of order n,
+   *         degree @f$ \alpha @f$, and argument x.
    *
    *  This is from the GNU Scientific Library.
    */
@@ -114,6 +116,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * This is from the GNU Scientific Library.
    *
+   * @tparam _Tpa The type of the degree.
+   * @tparam _Tp The type of the parameter.
    * @param __n The order of the Laguerre function.
    * @param __alpha1 The degree of the Laguerre function.
    * @param __x The argument of the Laguerre function.
@@ -170,6 +174,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
    * @f]
    *
+   * @tparam _Tpa The type of the degree.
+   * @tparam _Tp The type of the parameter.
    * @param __n The order of the Laguerre function.
    * @param __alpha1 The degree of the Laguerre function.
    * @param __x The argument of the Laguerre function.
@@ -229,6 +235,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	 L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
    * @f]
    *
+   * @tparam _Tpa The type of the degree.
+   * @tparam _Tp The type of the parameter.
    * @param __n The order of the Laguerre function.
    * @param __alpha1 The degree of the Laguerre function.
    * @param __x The argument of the Laguerre function.
@@ -281,6 +289,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	 L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
    * @f]
    *
+   * @tparam _Tp The type of the parameter
    * @param __n The order
    * @param __m The degree
    * @param __x The argument

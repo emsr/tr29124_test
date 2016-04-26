@@ -39,6 +39,19 @@ namespace __detail
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
+  /**
+   * Return a Chebyshev polynomial of non-negative order @f$ n @f$
+   * and real argument @f$ x @f$ by the recursion
+   * @f[
+   *    C_n(x) = 2xC_{n-1} - C_{n-2}
+   * @f]
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __n The non-negative integral order
+   * @param __x The real argument @f$ -1 <= x <= +1 @f$
+   * @param _C0 The value of the zeroth-order Chebyshev polynomial at @f$ x @f$
+   * @param _C1 The value of the first-order Chebyshev polynomial at @f$ x @f$
+   */
   template<typename _Tp>
     _Tp
     __chebyshev_recur(unsigned int __n, _Tp __x, _Tp _C0, _Tp _C1)
@@ -53,6 +66,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return _Ck;
     }
 
+  /**
+   * Return the Chebyshev polynomial of the first kind @f$ T_n(x) @f$
+   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
+   *
+   * The Chebyshev polynomial of the first kind is defined by:
+   * @f[
+   *    T_n(x) = \cos(n \theta)
+   * @f]
+   * where @f$ \theta = \arccos(x) @f$, @f$ -1 <= x <= +1 @f$.
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __n The non-negative integral order
+   * @param __x The real argument @f$ -1 <= x <= +1 @f$
+   */
   template<typename _Tp>
     _Tp
     __chebyshev_t(unsigned int __n, _Tp __x)
@@ -68,6 +95,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __chebyshev_recur(__n, __x, _T0, _T1);
     }
 
+  /**
+   * Return the Chebyshev polynomial of the second kind @f$ U_n(x) @f$
+   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
+   *
+   * The Chebyshev polynomial of the second kind is defined by:
+   * @f[
+   *    U_n(x) = \frac{\sin \left[(n+1)\theta \right]}{\sin(\theta)}
+   * @f]
+   * where @f$ \theta = \arccos(x) @f$, @f$ -1 <= x <= +1 @f$.
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __n The non-negative integral order
+   * @param __x The real argument @f$ -1 <= x <= +1 @f$
+   */
   template<typename _Tp>
     _Tp
     __chebyshev_u(unsigned int __n, _Tp __x)
@@ -83,6 +124,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __chebyshev_recur(__n, __x, _U0, _U1);
     }
 
+  /**
+   * Return the Chebyshev polynomial of the third kind @f$ V_n(x) @f$
+   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
+   *
+   * The Chebyshev polynomial of the third kind is defined by:
+   * @f[
+   *    V_n(x) = \frac{\cos \left[ \left(n+\frac{1}{2}\right)\theta \right]}
+   *                  {\cos \left(\frac{\theta}{2}\right)}
+   * @f]
+   * where @f$ \theta = \arccos(x) @f$, @f$ -1 <= x <= +1 @f$.
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __n The non-negative integral order
+   * @param __x The real argument @f$ -1 <= x <= +1 @f$
+   */
   template<typename _Tp>
     _Tp
     __chebyshev_v(unsigned int __n, _Tp __x)
@@ -98,6 +154,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __chebyshev_recur(__n, __x, _V0, _V1);
     }
 
+  /**
+   * Return the Chebyshev polynomial of the fourth kind @f$ W_n(x) @f$
+   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
+   *
+   * The Chebyshev polynomial of the fourth kind is defined by:
+   * @f[
+   *    W_n(x) = \frac{\sin \left[ \left(n+\frac{1}{2}\right)\theta \right]}
+   *                  {\sin \left(\frac{\theta}{2}\right)}
+   * @f]
+   * where @f$ \theta = \arccos(x) @f$, @f$ -1 <= x <= +1 @f$.
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __n The non-negative integral order
+   * @param __x The real argument @f$ -1 <= x <= +1 @f$
+   */
   template<typename _Tp>
     _Tp
     __chebyshev_w(unsigned int __n, _Tp __x)
