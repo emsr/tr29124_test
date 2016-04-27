@@ -3822,17 +3822,29 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Legendre elliptic integrals D.
 
+  /**
+   * Return the incomplete Legendre elliptic integral @f$ D(k, \phi) @f$
+   * of @c float modulus @f$ k @f$ and angular limit @f$ \phi @f$.
+   *
+   * @see ellint_d for details.
+   */
   inline float
   ellint_df(float __k, float __phi)
   { return std::__detail::__ellint_d<float>(__k, __phi); }
 
+  /**
+   * Return the incomplete Legendre elliptic integral @f$ D(k, \phi) @f$
+   * of <tt>long double</tt> modulus @f$ k @f$ and angular limit @f$ \phi @f$.
+   *
+   * @see ellint_d for details.
+   */
   inline long double
   ellint_dl(long double __k, long double __phi)
   { return std::__detail::__ellint_d<long double>(__k, __phi); }
 
   /**
    * Return the incomplete Legendre elliptic integral @f$ D(k,\phi) @f$
-   * of modulus @f$ k @f$ and angular limit @f$ \phi @f$.
+   * of real modulus @f$ k @f$ and angular limit @f$ \phi @f$.
    *
    * The Legendre elliptic integral D is defined by
    * @f[
@@ -3854,7 +3866,9 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Bulirsch elliptic integrals of the first kind.
 
   /**
-   * Return the Bulirsch elliptic integral of the first kind.
+   * Return the Bulirsch elliptic integral @f$ el1(x,k_c) @f$
+   * of the first kind of @c float tangent limit @f$ x @f$
+   * and complementary modulus @f$ k_c @f$.
    *
    * @see ellint_el1 for details.
    */
@@ -3863,7 +3877,9 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__ellint_el1<float>(__x, __k_c); }
 
   /**
-   * Return the Bulirsch elliptic integral of the first kind.
+   * Return the Bulirsch elliptic integral @f$ el1(x,k_c) @f$
+   * of the first kind of real tangent limit @f$ x @f$
+   * and complementary modulus @f$ k_c @f$.
    *
    * @see ellint_el1 for details.
    */
@@ -3872,7 +3888,9 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__ellint_el1<long double>(__x, __k_c); }
 
   /**
-   * Return the Bulirsch elliptic integral of the first kind.
+   * Return the Bulirsch elliptic integral @f$ el1(x,k_c) @f$
+   * of the first kind of real tangent limit @f$ x @f$
+   * and complementary modulus @f$ k_c @f$.
    *
    * The Bulirsch elliptic integral of the first kind is defined by
    * @f[
@@ -3880,7 +3898,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *           {\sqrt{(1+\tan^2\theta)(1+k_c^2\tan^2\theta)}}d\theta
    * @f]
    *
-   * @param __x The argument
+   * @param __x The tangent of the angular integration limit
    * @param __k_c The complementary modulus @f$ k_c = \sqrt{1 - k^2} @f$
    */
   template<typename _Tp, typename _Tk>
@@ -3894,18 +3912,20 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Bulirsch elliptic integrals of the second kind.
 
   /**
-   * Return the Bulirsch elliptic integral of the second kind.
+   * Return the Bulirsch elliptic integral of the second kind
+   * @f$ el2(x,k_c,a,b) @f$.
    *
-   *
+   * @see ellint_el2 for details.
    */
   inline float
   ellint_el2f(float __x, float __k_c, float __a, float __b)
   { return std::__detail::__ellint_el2<float>(__x, __k_c, __a, __b); }
 
   /**
-   * Return the Bulirsch elliptic integral of the second kind.
+   * Return the Bulirsch elliptic integral of the second kind
+   * @f$ el2(x,k_c,a,b) @f$.
    *
-   *
+   * @see ellint_el2 for details.
    */
   inline long double
   ellint_el2l(long double __x, long double __k_c,
@@ -3913,7 +3933,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__ellint_el2<long double>(__x, __k_c, __a, __b); }
 
   /**
-   * Return the Bulirsch elliptic integral of the second kind.
+   * Return the Bulirsch elliptic integral of the second kind
+   * @f$ el2(x,k_c,a,b) @f$.
    *
    * The Bulirsch elliptic integral of the second kind is defined by
    * @f[
@@ -3921,10 +3942,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *           {\sqrt{(1+\tan^2\theta)(1+k_c^2\tan^2\theta)}}d\theta
    * @f]
    *
-   * @param __x The argument
+   * @param __x The tangent of the angular integration limit
    * @param __k_c The complementary modulus @f$ k_c = \sqrt{1 - k^2} @f$
-   * @param __a The 
-   * @param __b The 
+   * @param __a The  parameter
+   * @param __b The  parameter
    */
   template<typename _Tp, typename _Tk, typename _Ta, typename _Tb>
     inline __gnu_cxx::__promote_num_t<_Tp, _Tk, _Ta, _Tb>
@@ -3936,16 +3957,32 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Bulirsch elliptic integrals of the third kind.
 
+  /**
+   * Return the Bulirsch elliptic integral of the third kind
+   * @f$ el3(x,k_c,p) @f$ of @c float tangent limit @f$ x @f$,
+   * complementary modulus @f$ k_c @f$, and parameter @f$ p @f$.
+   *
+   * @see ellint_el3 for details.
+   */
   inline float
   ellint_el3f(float __x, float __k_c, float __p)
   { return std::__detail::__ellint_el3<float>(__x, __k_c, __p); }
 
+  /**
+   * Return the Bulirsch elliptic integral of the third kind
+   * @f$ el3(x,k_c,p) @f$ of <tt>long double</tt> tangent limit @f$ x @f$,
+   * complementary modulus @f$ k_c @f$, and parameter @f$ p @f$.
+   *
+   * @see ellint_el3 for details.
+   */
   inline long double
   ellint_el3l(long double __x, long double __k_c, long double __p)
   { return std::__detail::__ellint_el3<long double>(__x, __k_c, __p); }
 
   /**
-   * Return the Bulirsch elliptic integral of the third kind of ...
+   * Return the Bulirsch elliptic integral of the third kind
+   * @f$ el3(x,k_c,p) @f$ of real tangent limit @f$ x @f$,
+   * complementary modulus @f$ k_c @f$, and parameter @f$ p @f$.
    *
    * The Bulirsch elliptic integral of the third kind is defined by
    * @f[
@@ -3953,9 +3990,9 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *          {(cos^2\theta+p\sin^2\theta)\sqrt{cos^2\theta+k_c^2\sin^2\theta}}
    * @f]
    *
-   * @param __x The 
+   * @param __x The tangent of the angular integration limit
    * @param __k_c The complementary modulus @f$ k_c = \sqrt{1 - k^2} @f$
-   * @param __p The 
+   * @param __p The paramenter
    */
   template<typename _Tx, typename _Tk, typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tx, _Tk, _Tp>
@@ -3967,29 +4004,43 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Bulirsch complete elliptic integrals.
 
+  /**
+   * Return the Bulirsch complete elliptic integral @f$ cel(k_c,p,a,b) @f$
+   * of real complementary modulus @f$ k_c @f$, and parameters @f$ p @f$,
+   * @f$ a @f$, and @f$ b @f$.
+   *
+   * @see ellint_cel for details.
+   */
   inline float
   ellint_celf(float __k_c, float __p, float __a, float __b)
   { return std::__detail::__ellint_cel<float>(__k_c, __p, __a, __b); }
 
+  /**
+   * Return the Bulirsch complete elliptic integral @f$ cel(k_c,p,a,b) @f$.
+   *
+   * @see ellint_cel for details.
+   */
   inline long double
   ellint_cell(long double __k_c, long double __p,
 	      long double __a, long double __b)
   { return std::__detail::__ellint_cel<long double>(__k_c, __p, __a, __b); }
 
   /**
-   * Return the Bulirsch complete elliptic integral of ...
+   * Return the Bulirsch complete elliptic integral @f$ cel(k_c,p,a,b) @f$
+   * of real complementary modulus @f$ k_c @f$, and parameters @f$ p @f$,
+   * @f$ a @f$, and @f$ b @f$.
    *
    * The Bulirsch complete elliptic integral is defined by
    * @f[
-   *    cel(kc,p,a,b)=\int_0^{\pi/2}
+   *    cel(k_c,p,a,b)=\int_0^{\pi/2}
    *        \frac{a\cos^2\theta + b\sin^2\theta}{cos^2\theta + p\sin^2\theta}
    *        \frac{d\theta}{\sqrt{cos^2\theta + k_c^2\sin^2\theta}}
    * @f]
    *
    * @param __k_c The complementary modulus @f$ k_c = \sqrt{1 - k^2} @f$
-   * @param __p The 
-   * @param __a The 
-   * @param __b The 
+   * @param __p The  parameter
+   * @param __a The  parameter
+   * @param __b The  parameter
    */
   template<typename _Tk, typename _Tp, typename _Ta, typename _Tb>
     inline __gnu_cxx::__promote_num_t<_Tk, _Tp, _Ta, _Tb>
@@ -4003,7 +4054,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex cylindrical Hankel function of the first kind
-   * of complex order @f$ \nu @f$ and complex argument @c x.
+   * @f$ H^{(1)}_\nu(x) @f$ of <tt>std::complex<float></tt> order @f$ \nu @f$
+   * and argument @f$ x @f$.
    *
    * @see cyl_hankel_1 for more details.
    */
@@ -4013,7 +4065,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex cylindrical Hankel function of the first kind
-   * of complex order @f$ \nu @f$ and complex argument @c x.
+   * @f$ H^{(1)}_\nu(x) @f$ of <tt>std::complex<long double></tt>
+   * order @f$ \nu @f$ and argument @f$ x @f$.
    *
    * @see cyl_hankel_1 for more details.
    */
@@ -4023,13 +4076,16 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex cylindrical Hankel function of the first kind
-   * of complex order @f$ \nu @f$ and complex argument @c x.
+   * @f$ H^{(1)}_\nu(x) @f$ of complex order @f$ \nu @f$
+   * and argument @f$ x @f$.
    *
    * The cylindrical Hankel function of the first kind is defined by
    * @f[
    *    H^{(1)}_\nu(x) = J_\nu(x) + i N_\nu(x)
    * @f]
    *
+   * @tparam _Tpnu The complex type of the order
+   * @tparam _Tp The complex type of the argument
    * @param __nu The complex order
    * @param __x The complex argument
    */
@@ -4045,7 +4101,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex cylindrical Hankel function of the second kind
-   * of complex order @f$ \nu @f$ and complex argument @c x.
+   * @f$ H^{(2)}_\nu(x) @f$ of <tt>std::complex<float></tt> order @f$ \nu @f$
+   * and argument @f$ x @f$.
    *
    * @see cyl_hankel_2 for more details.
    */
@@ -4055,7 +4112,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex cylindrical Hankel function of the second kind
-   * of complex order @f$ \nu @f$ and complex argument @c x.
+   * @f$ H^{(2)}_\nu(x) @f$ of <tt>std::complex<long double></tt>
+   * order @f$ \nu @f$ and argument @f$ x @f$.
    *
    * @see cyl_hankel_2 for more details.
    */
@@ -4065,13 +4123,16 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex cylindrical Hankel function of the second kind
-   * of complex order @f$ \nu @f$ and complex argument @c x.
+   * @f$ H^{(2)}_\nu(x) @f$ of complex order @f$ \nu @f$
+   * and argument @f$ x @f$.
    *
    * The cylindrical Hankel function of the second kind is defined by
    * @f[
    *    H^{(2)}_\nu(x) = J_\nu(x) - i N_\nu(x)
    * @f]
    *
+   * @tparam _Tpnu The complex type of the order
+   * @tparam _Tp The complex type of the argument
    * @param __nu The complex order
    * @param __x The complex argument
    */
@@ -4085,17 +4146,32 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Spherical Hankel functions of the first kind.
 
+  /**
+   * Return the complex spherical Hankel function of the first kind
+   * @f$ h^{(1)}_n(x) @f$ of non-negative integral @f$ n @f$
+   * and <tt>std::complex<float></tt> argument @f$ x @f$.
+   *
+   * @see sph_hankel_1 for more details.
+   */
   inline std::complex<float>
   sph_hankel_1f(unsigned int __n, std::complex<float> __x)
   { return std::__detail::__sph_hankel_1<float>(__n, __x); }
 
+  /**
+   * Return the complex spherical Hankel function of the first kind
+   * @f$ h^{(1)}_n(x) @f$ of non-negative integral @f$ n @f$
+   * and <tt>std::complex<long double></tt> argument @f$ x @f$.
+   *
+   * @see sph_hankel_1 for more details.
+   */
   inline std::complex<long double>
   sph_hankel_1l(unsigned int __n, std::complex<long double> __x)
   { return std::__detail::__sph_hankel_1<long double>(__n, __x); }
 
   /**
    * Return the complex spherical Hankel function of the first kind
-   * of nonnegative order @c n and complex argument @c x.
+   * @f$ h^{(1)}_n(x) @f$ of non-negative integral @f$ n @f$
+   * and complex argument @f$ x @f$.
    *
    * The spherical Hankel function of the first kind is defined by
    * @f[
@@ -4118,17 +4194,32 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Spherical Hankel functions of the second kind.
 
+  /**
+   * Return the complex spherical Hankel function of the second kind
+   * @f$ h^{(2)}_n(x) @f$ of non-negative integral @f$ n @f$
+   * and <tt>std::complex<float></tt> argument @f$ x @f$.
+   *
+   * @see sph_hankel_2 for more details.
+   */
   inline std::complex<float>
   sph_hankel_2f(unsigned int __n, std::complex<float> __x)
   { return std::__detail::__sph_hankel_2<float>(__n, __x); }
 
+  /**
+   * Return the complex spherical Hankel function of the second kind
+   * @f$ h^{(2)}_n(x) @f$ of non-negative integral @f$ n @f$
+   * and <tt>std::complex<long double></tt> argument @f$ x @f$.
+   *
+   * @see sph_hankel_2 for more details.
+   */
   inline std::complex<long double>
   sph_hankel_2l(unsigned int __n, std::complex<long double> __x)
   { return std::__detail::__sph_hankel_2<long double>(__n, __x); }
 
   /**
    * Return the complex spherical Hankel function of the second kind
-   * of nonnegative order @c n and complex argument @c x.
+   * @f$ h^{(2)}_n(x) @f$ of nonnegative order @f$ n @f$
+   * and complex argument @c x.
    *
    * The spherical Hankel function of the second kind is defined by
    * @f[
@@ -4153,7 +4244,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex spherical harmonic function of degree @c l, order @c m,
-   * and real zenith angle @f$ \theta @f$, and real azimuth angle @f$ \phi @f$.
+   * and @c float zenith angle @f$ \theta @f$, and azimuth angle @f$ \phi @f$.
    *
    * @see sph_harmonic for details.
    */
@@ -4164,7 +4255,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex spherical harmonic function of degree @c l, order @c m,
-   * and real zenith angle @f$ \theta @f$, and real azimuth angle @f$ \phi @f$.
+   * and <tt>long double</tt> zenith angle @f$ \theta @f$,
+   * and azimuth angle @f$ \phi @f$.
    *
    * @see sph_harmonic for details.
    */
@@ -4177,7 +4269,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex spherical harmonic function of degree @c l, order @c m,
-   * and real zenith angle @f$ \theta @f$, and real azimuth angle @f$ \phi @f$.
+   * and real zenith angle @f$ \theta @f$, and azimuth angle @f$ \phi @f$.
    *
    * The spherical harmonic function is defined by:
    * @f[

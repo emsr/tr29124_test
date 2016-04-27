@@ -428,14 +428,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * and 
    * @f[
-   *   B_p(w) = - 2 (2 pi)^(p-1) \sum \limits_{k = 0}^\infty \Gamma(2 + 2k - p)
-   *           / (2k+1)! (-1)^k (w/2\pi)^(2k+1) (\zeta(2 + 2k - p) - _Tp{1})
+   *   B_p(w) = - 2 (2 \pi)^(p-1) \sum \limits_{k = 0}^\infty \Gamma(2 + 2k - p)
+   *           / (2k+1)! (-1)^k (w/2\pi)^(2k+1) (\zeta(2 + 2k - p) - 1)
    * @f]
    * This is suitable for @f$ |w| < 2 \pi @f$
    * The original series is (This might be worthwhile if we use
    * the already present table of the Bernoullis)
    * @f[
-   *   Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} - \sigma (2 \pi)^p / pi
+   *   Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} - \sigma (2 \pi)^p /\pi
    *              \sum \limits_{k = 0}^\infty
    *               \Gamma(2 + 2k - p)/ (2k+1)! (-1)^k (w/2\pi)^(2k+1)
    *             \zeta(2 + 2k - p)
@@ -487,25 +487,25 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * In that case the sine occuring in the expansion occasionally vanishes.
    * We use that to provide an optimized series for @f$ p = 1 + 2k @f$:
-   * In the template parameter sigma we transport whether @f$ p = 1 + 4k (sigma = 1) @f$
-   * or @f$ p = 3 + 4k  (sigma = -1) @f$
+   * In the template parameter sigma we transport whether @f$ p = 1 + 4k (\sigma = 1) @f$
+   * or @f$ p = 3 + 4k  (\sigma = -1) @f$
    *
    * @f[
-   *   Li_p(e^w) = \Gamma(1-p) * (-w)^{p-1} + \sigma * A_p(w) - \sigma * B_p(w)
+   *   Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} + \sigma * A_p(w) - \sigma * B_p(w)
    * @f]
    * with
    * @f[
-   *   A_p(w) = 2 (2\pi)^(p-1) * \Gamma(1-p) (1 + w^2/(4 pi^2))^{-1/2 + p/2} \cos((1 - p) ArcTan(2 pi/ w))
+   *   A_p(w) = 2 (2\pi)^(p-1) \Gamma(1-p) (1 + w^2/(4 \pi^2))^{-1/2 + p/2} \cos((1 - p) ArcTan(2 pi/ w))
    * @f]
    * and 
    * @f[
-   *   B_p(w) = 2 (2 pi)^(p-1) * \sum \limits_{k = 0}^\infty \Gamma(1 + 2k - p)/ (2k)! (-w^2/4/\pi^2)^k (\zeta(1 + 2k - p) - _Tp{1})
+   *   B_p(w) = 2 (2 pi)^(p-1) \sum \limits_{k = 0}^\infty \Gamma(1 + 2k - p)/ (2k)! (-w^2/4/\pi^2)^k (\zeta(1 + 2k - p) - _Tp{1})
    * @f]
    * This is suitable for @f$ |w| < 2 \pi @f$.
    * The use of evenzeta gives a speedup of about 50
    * The original series is (This might be worthwhile if we use the already present table of the Bernoullis)
    * @f[
-   *   Li_p(e^w) = Gamma(1-p) * (-w)^{p-1} - \sigma *2*(2 pi)^(p-1) * \sum \limits_{k = 0}^\infty \Gamma(1 + 2k - p)/ (2k)! (-1)^k (w/2/\pi)^(2k) \zeta(1 + 2k - p)
+   *   Li_p(e^w) =\Gamma(1-p) * (-w)^{p-1} - \sigma 2(2 \pi)^(p-1) * \sum \limits_{k = 0}^\infty \Gamma(1 + 2k - p)/ (2k)! (-1)^k (w/2/\pi)^(2k) \zeta(1 + 2k - p)
    * @f]
    *
    * @param __n the integral index n = 4k.
@@ -683,7 +683,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __polylog_exp_asymp(const _Tp __s, std::complex<_Tp> __w)
+    __polylog_exp_asymp(_Tp __s, std::complex<_Tp> __w)
     { // asymptotic expansion
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       // wgamma = w^(s-1) / Gamma(s)
@@ -764,7 +764,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __polylog_exp_int_pos(const unsigned int __s, std::complex<_Tp> __w)
+    __polylog_exp_int_pos(unsigned int __s, std::complex<_Tp> __w)
     {
       constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
@@ -812,7 +812,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __polylog_exp_int_pos(const unsigned int __s, _Tp __w)
+    __polylog_exp_int_pos(unsigned int __s, _Tp __w)
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
@@ -853,7 +853,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __polylog_exp_int_neg(const int __s, std::complex<_Tp> __w)
+    __polylog_exp_int_neg(int __s, std::complex<_Tp> __w)
     {
       constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
