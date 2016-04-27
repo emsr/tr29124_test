@@ -118,11 +118,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *       \rho^{n-2k}
    * @f]
    * for @f$ n - m @f$ even and identically 0 for @f$ n - m @f$ odd.
-   * The radial polynomials can be related to the Jacobi polynomials:
+   * The radial polynomials can be related to the Zernike polynomials:
    * @f[
-   *    R_n^m(\rho) = 
+   *    Z_n^m(\rho,\phi) = R_n^m(\rho) \cos(m\phi)
    * @f]
-   * @see jacobi for details on the Jacobi polynomials.
+   * @f[
+   *    Z_n^{-m}(\rho,\phi) = R_n^m(\rho) \sin(m\phi)
+   * @f]
+   * for non-negative  @f$ m, n @f$.
+   * @see zernike for details on the Zernike polynomials.
    *
    * @tparam _Tp The real type of the radial coordinate
    * @param __n The non-negative degree.
