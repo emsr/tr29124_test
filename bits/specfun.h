@@ -244,8 +244,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Associated Laguerre polynomials
 
   /**
-   * Return the associated Laguerre polynomial of order @c n,
-   * degree @c m: @f$ L_n^m(x) @f$ for @c float argument.
+   * Return the associated Laguerre polynomial @f$ L_n^m(x) @f$
+   * of order @f$ n @f$, degree @f$ m @f$, and @c float argument @f$ x @f$.
    *
    * @see assoc_laguerre for more details.
    */
@@ -254,8 +254,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__assoc_laguerre<float>(__n, __m, __x); }
 
   /**
-   * Return the associated Laguerre polynomial of order @c n,
-   * degree @c m: @f$ L_n^m(x) @f$.
+   * Return the associated Laguerre polynomial @f$ L_n^m(x) @f$
+   * of order @f$ n @f$, degree @f$ m @f$ and <tt>long double</tt>
+   * argument @f$ x @f$.
    *
    * @see assoc_laguerre for more details.
    */
@@ -264,8 +265,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__assoc_laguerre<long double>(__n, __m, __x); }
 
   /**
-   * Return the associated Laguerre polynomial of nonnegative order @c n,
-   * nonnegative degree @c m and real argument @c x: @f$ L_n^m(x) @f$.
+   * Return the associated Laguerre polynomial @f$ L_n^m(x) @f$
+   * of nonnegative order @f$ n @f$, nonnegative degree @f$ m @f$
+   * and real argument @f$ x @f$.
    *
    * The associated Laguerre function of real degree @f$ \alpha @f$,
    * @f$ L_n^\alpha(x) @f$, is defined by
@@ -305,8 +307,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Associated Legendre functions
 
   /**
-   * Return the associated Legendre function of degree @c l and order @c m
-   * for @c float argument.
+   * Return the associated Legendre function @f$ P_l^m(x) @f$
+   * of degree @f$ l @f$, order @f$ m @f$, and @c float argument @f$ x @f$.
    *
    * @see assoc_legendre for more details.
    */
@@ -315,7 +317,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__assoc_legendre_p<float>(__l, __m, __x); }
 
   /**
-   * Return the associated Legendre function of degree @c l and order @c m.
+   * Return the associated Legendre function @f$ P_l^m(x) @f$
+   * of degree @f$ l @f$, order @f$ m @f$, and @c <tt>long double</tt>
+   * argument @f$ x @f$.
    *
    * @see assoc_legendre for more details.
    */
@@ -324,7 +328,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__assoc_legendre_p<long double>(__l, __m, __x); }
 
   /**
-   * Return the associated Legendre function of degree @c l and order @c m.
+   * Return the associated Legendre function @f$ P_l^m(x) @f$
+   * of degree @f$ l @f$, order @f$ m @f$, and real argument @f$ x @f$.
    *
    * The associated Legendre function is derived from the Legendre function
    * @f$ P_l(x) @f$ by the Rodrigues formula:
@@ -396,7 +401,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complete elliptic integral of the first kind @f$ E(k) @f$
-   * for @c float modulus @c k.
+   * for @c float modulus @f$ k @f$.
    *
    * @see comp_ellint_1 for details.
    */
@@ -406,7 +411,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complete elliptic integral of the first kind @f$ E(k) @f$
-   * for long double modulus @c k.
+   * for long double modulus @f$ k @f$.
    *
    * @see comp_ellint_1 for details.
    */
@@ -444,7 +449,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complete elliptic integral of the second kind @f$ E(k) @f$
-   * for @c float modulus @c k.
+   * for @c float modulus @f$ k @f$.
    *
    * @see comp_ellint_2 for details.
    */
@@ -454,7 +459,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complete elliptic integral of the second kind @f$ E(k) @f$
-   * for long double modulus @c k.
+   * for <tt>long double</tt> modulus @f$ k @f$.
    *
    * @see comp_ellint_2 for details.
    */
@@ -464,7 +469,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complete elliptic integral of the second kind @f$ E(k) @f$
-   * for real modulus @c k.
+   * for real modulus @f$ k @f$.
    *
    * The complete elliptic integral of the second kind is defined as
    * @f[
@@ -476,7 +481,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * of the second kind.
    *
    * @tparam _Tp The floating-point type of the modulus @c __k.
-   * @param  __k  The modulus, @c abs(__k) <= 1
+   * @param  __k The modulus, @c abs(__k) <= 1
    * @throw std::domain_error if @c abs(__k) > 1.
    */
   template<typename _Tp>
@@ -491,7 +496,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief Return the complete elliptic integral of the third kind
-   * @f$ \Pi(k,\nu) @f$ for @c float modulus @c k.
+   * @f$ \Pi(k,\nu) @f$ for @c float modulus @f$ k @f$.
    *
    * @see comp_ellint_3 for details.
    */
@@ -511,7 +516,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complete elliptic integral of the third kind
-   * @f$ \Pi(k,\nu) = \Pi(k,\nu,\pi/2) @f$ for real modulus @c k.
+   * @f$ \Pi(k,\nu) = \Pi(k,\nu,\pi/2) @f$ for real modulus @f$ k @f$.
    *
    * The complete elliptic integral of the third kind is defined as
    * @f[
@@ -3719,7 +3724,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The Jacobi zeta function is defined by
    * @f[
-   *    \Zeta(m,\phi) = E(m,\phi) - \frac{E(m)F(m,\phi)}{K(m)}
+   *    Z(m,\phi) = E(m,\phi) - \frac{E(m)F(m,\phi)}{K(m)}
    * @f]
    * where @f$ E(m,\phi) @f$ is the elliptic function of the second kind,
    * @f$ E(m) @f$ is the complete ellitic function of the second kind,
@@ -3775,24 +3780,37 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Complete Legendre elliptic integral D.
 
+  /**
+   * Return the complete Legendre elliptic integral @f$ D(k) @f$
+   * of @c float modulus @f$ k @f$.
+   *
+   * @see comp_ellint_d for details.
+   */
   inline float
   comp_ellint_df(float __k)
   { return std::__detail::__comp_ellint_d<float>(__k); }
 
+  /**
+   * Return the complete Legendre elliptic integral @f$ D(k) @f$
+   * of <tt>long double</tt> modulus @f$ k @f$.
+   *
+   * @see comp_ellint_d for details.
+   */
   inline long double
   comp_ellint_dl(long double __k)
   { return std::__detail::__comp_ellint_d<long double>(__k); }
 
   /**
-   * Return the complete Legendre elliptic integral @f$ D(k,\phi) @f$
-   * of modulus @c k and angular limit @f$ \phi @f$.
+   * Return the complete Legendre elliptic integral @f$ D(k) @f$
+   * of real modulus @f$ k @f$.
    *
    * The complete Legendre elliptic integral D is defined by
    * @f[
    *    D(k) = \int_0^{\pi/2} \frac{\sin^2\theta d\theta}{\sqrt{1-k^2sin2\theta}}
    * @f]
    *
-   * @param __k The modulus @f$ -1 <= k <= +1 @f$
+   * @tparam _Tk The type of the modulus @c k
+   * @param __k The modulus <tt>-1 <= __k <= +1</tt>
    */
   template<typename _Tk>
     inline __gnu_cxx::__promote_num_t<_Tk>
@@ -3813,14 +3831,16 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__ellint_d<long double>(__k, __phi); }
 
   /**
-   * Return the incomplete Legendre elliptic integral D of @c k and @f$ \phi @f$.
+   * Return the incomplete Legendre elliptic integral @f$ D(k,\phi) @f$
+   * of modulus @f$ k @f$ and angular limit @f$ \phi @f$.
    *
    * The Legendre elliptic integral D is defined by
    * @f[
-   *    D(k,\phi) = \int_0^\phi \frac{\sin^2\theta d\theta}{\sqrt{1-k^2sin2\theta}}
+   *    D(k,\phi) = \int_0^\phi
+   *         \frac{\sin^2\theta d\theta}{\sqrt{1-k^2sin^2\theta}}
    * @f]
    *
-   * @param __k The modulus @f$ -1 <= k <= +1 @f$
+   * @param __k The modulus <tt>-1 <= __k <= +1</tt>
    * @param __phi The angle
    */
   template<typename _Tk, typename _Tphi>
@@ -3833,25 +3853,35 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Bulirsch elliptic integrals of the first kind.
 
+  /**
+   * Return the Bulirsch elliptic integral of the first kind.
+   *
+   * @see ellint_el1 for details.
+   */
   inline float
   ellint_el1f(float __x, float __k_c)
   { return std::__detail::__ellint_el1<float>(__x, __k_c); }
 
+  /**
+   * Return the Bulirsch elliptic integral of the first kind.
+   *
+   * @see ellint_el1 for details.
+   */
   inline long double
   ellint_el1l(long double __x, long double __k_c)
   { return std::__detail::__ellint_el1<long double>(__x, __k_c); }
 
   /**
-   * Return the Bulirsch elliptic integral of the first kind of ...
+   * Return the Bulirsch elliptic integral of the first kind.
    *
    * The Bulirsch elliptic integral of the first kind is defined by
    * @f[
-   *    el(x,k_c) = el2(x,k_c,1,1) = \int_0^{\arctan x} \frac{1+1\tan^2\theta}
+   *    el1(x,k_c) = el2(x,k_c,1,1) = \int_0^{\arctan x} \frac{1+1\tan^2\theta}
    *           {\sqrt{(1+\tan^2\theta)(1+k_c^2\tan^2\theta)}}d\theta
    * @f]
    *
    * @param __x The argument
-   * @param __k_c The complementary modulus @f$ k_c = \sqrt(1 - k^2) @f$
+   * @param __k_c The complementary modulus @f$ k_c = \sqrt{1 - k^2} @f$
    */
   template<typename _Tp, typename _Tk>
     inline __gnu_cxx::__promote_num_t<_Tp, _Tk>
@@ -3863,17 +3893,27 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Bulirsch elliptic integrals of the second kind.
 
+  /**
+   * Return the Bulirsch elliptic integral of the second kind.
+   *
+   *
+   */
   inline float
   ellint_el2f(float __x, float __k_c, float __a, float __b)
   { return std::__detail::__ellint_el2<float>(__x, __k_c, __a, __b); }
 
+  /**
+   * Return the Bulirsch elliptic integral of the second kind.
+   *
+   *
+   */
   inline long double
   ellint_el2l(long double __x, long double __k_c,
 	      long double __a, long double __b)
   { return std::__detail::__ellint_el2<long double>(__x, __k_c, __a, __b); }
 
   /**
-   * Return the Bulirsch elliptic integral of the second kind of ...
+   * Return the Bulirsch elliptic integral of the second kind.
    *
    * The Bulirsch elliptic integral of the second kind is defined by
    * @f[
@@ -3882,7 +3922,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @f]
    *
    * @param __x The argument
-   * @param __k_c The complementary modulus @f$ k_c = \sqrt(1 - k^2) @f$
+   * @param __k_c The complementary modulus @f$ k_c = \sqrt{1 - k^2} @f$
    * @param __a The 
    * @param __b The 
    */
@@ -3914,7 +3954,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @f]
    *
    * @param __x The 
-   * @param __k_c The complementary modulus @f$ k_c = \sqrt(1 - k^2) @f$
+   * @param __k_c The complementary modulus @f$ k_c = \sqrt{1 - k^2} @f$
    * @param __p The 
    */
   template<typename _Tx, typename _Tk, typename _Tp>
@@ -3941,13 +3981,12 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The Bulirsch complete elliptic integral is defined by
    * @f[
-   *    cel(kc,p,a,b)=\int_0^{\pi/2} \frac{a\cos^2\theta + b\sin^2\theta}
-   *                                      {cos^2\theta + p\sin^2\theta}
-   *                                 \frac{d\theta}
-   *                                    {\sqrt{cos^2\theta + k_c^2\sin^2\thet}}
+   *    cel(kc,p,a,b)=\int_0^{\pi/2}
+   *        \frac{a\cos^2\theta + b\sin^2\theta}{cos^2\theta + p\sin^2\theta}
+   *        \frac{d\theta}{\sqrt{cos^2\theta + k_c^2\sin^2\theta}}
    * @f]
    *
-   * @param __k_c The complementary modulus @f$ k_c = \sqrt(1 - k^2) @f$
+   * @param __k_c The complementary modulus @f$ k_c = \sqrt{1 - k^2} @f$
    * @param __p The 
    * @param __a The 
    * @param __b The 
@@ -4288,16 +4327,26 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Dirichlet beta function
 
+  /**
+   * Return the Dirichlet beta function of real argument @f$ s @f$.
+   *
+   * @see dirichlet_beta for details.
+   */
   inline float
   dirichlet_betaf(float __s)
   { return std::__detail::__dirichlet_beta<float>(__s); }
 
+  /**
+   * Return the Dirichlet beta function of real argument @f$ s @f$.
+   *
+   * @see dirichlet_beta for details.
+   */
   inline long double
   dirichlet_betal(long double __s)
   { return std::__detail::__dirichlet_beta<long double>(__s); }
 
   /**
-   * Return the Dirichlet beta function of real argument @c s.
+   * Return the Dirichlet beta function of real argument @f$ s @f$.
    *
    * The Dirichlet beta function is defined by:
    * @f[
@@ -4322,7 +4371,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Clausen S functions
 
   /**
-   * Return the Clausen sine function of order @c m and real argument @c x.
+   * Return the Clausen sine function of order @f$ m @f$ and real argument @f$ x @f$.
    *
    * @see clausen_s for details.
    */
@@ -4331,7 +4380,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__clausen_s<float>(__m, __w); }
 
   /**
-   * Return the Clausen sine function of order @c m and real argument @c x.
+   * Return the Clausen sine function of order @f$ m @f$ and real argument @f$ x @f$.
    *
    * @see clausen_s for details.
    */
@@ -4340,7 +4389,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__clausen_s<long double>(__m, __w); }
 
   /**
-   * Return the Clausen sine function of order @c m and real argument @c x.
+   * Return the Clausen sine function @f$  @f$ of order @f$ m @f$ and real argument @f$ x @f$.
    *
    * The Clausen sine function is defined by
    * @f[
@@ -4361,7 +4410,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Clausen C functions
 
   /**
-   * Return the Clausen cosine function of order @c m and real argument @c x.
+   * Return the Clausen cosine function @f$  @f$ of order @f$ m @f$ and real argument @f$ x @f$.
    *
    * @see clausen_c for details.
    */
@@ -4370,7 +4419,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__clausen_c<float>(__m, __w); }
 
   /**
-   * Return the Clausen cosine function of order @c m and real argument @c x.
+   * Return the Clausen cosine function @f$  @f$ of order @f$ m @f$ and real argument @f$ x @f$.
    *
    * @see clausen_c for details.
    */
@@ -4379,7 +4428,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__clausen_c<long double>(__m, __w); }
 
   /**
-   * Return the Clausen cosine function of order @c m and real argument @c x.
+   * Return the Clausen cosine function @f$  @f$ of order @f$ m @f$ and real argument @f$ x @f$.
    *
    * The Clausen cosine function is defined by
    * @f[
@@ -4400,7 +4449,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Clausen functions - real argument
 
   /**
-   * Return the Clausen function of integer order @c m and complex argument @c w.
+   * Return the Clausen function @f$  @f$ of integer order @f$ m @f$ and complex argument @f$ w @f$.
    *
    * @see clausen for details.
    */
@@ -4409,7 +4458,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__clausen<float>(__m, __w); }
 
   /**
-   * Return the Clausen function of integer order @c m and complex argument @c w.
+   * Return the Clausen function @f$  @f$ of integer order @f$ m @f$ and complex argument @f$ w @f$.
    *
    * @see clausen for details.
    */
@@ -4418,7 +4467,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__clausen<long double>(__m, __w); }
 
   /**
-   * Return the Clausen function of integer order @c m and complex argument @c w.
+   * Return the Clausen function @f$  @f$ of integer order @f$ m @f$ and complex argument @f$ w @f$.
    *
    * The Clausen function is defined by
    * @f[
@@ -4460,7 +4509,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Exponential theta_1 functions.
 
   /**
-   * Return the exponential theta-1 function of period @c nu and argument @c x.
+   * Return the exponential theta-1 function @f$ \theta_1(\nu,x) @f$
+   * of period @f$ nu @f$ and argument @f$ x @f$.
    *
    * @see theta_1 for details.
    */
@@ -4469,7 +4519,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__theta_1<float>(__nu, __x); }
 
   /**
-   * Return the exponential theta-1 function of period @c nu and argument @c x.
+   * Return the exponential theta-1 function @f$ \theta_1(\nu,x) @f$
+   * of period @f$ nu @f$ and argument @f$ x @f$.
    *
    * @see theta_1 for details.
    */
@@ -4478,7 +4529,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__theta_1<long double>(__nu, __x); }
 
   /**
-   * Return the exponential theta-1 function of period @c nu and argument @c x.
+   * Return the exponential theta-1 function @f$ \theta_1(\nu,x) @f$
+   * of period @f$ nu @f$ and argument @f$ x @f$.
    *
    * The Neville theta-1 function is defined by
    * @f[
@@ -4500,7 +4552,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Exponential theta_2 functions.
 
   /**
-   * Return the exponential theta-2 function of period @c nu and argument @c x.
+   * Return the exponential theta-2 function @f$ \theta_2(\nu,x) @f$
+   * of period @f$ nu @f$ and argument @f$ x @f$.
    *
    * @see theta_2 for details.
    */
@@ -4509,7 +4562,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__theta_2<float>(__nu, __x); }
 
   /**
-   * Return the exponential theta-2 function of period @c nu and argument @c x.
+   * Return the exponential theta-2 function @f$ \theta_2(\nu,x) @f$
+   * of period @f$ nu @f$ and argument @f$ x @f$.
    *
    * @see theta_2 for details.
    */
@@ -4518,7 +4572,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__theta_2<long double>(__nu, __x); }
 
   /**
-   * Return the exponential theta-2 function of period @c nu and argument @c x.
+   * Return the exponential theta-2 function @f$ \theta_2(\nu,x) @f$
+   * of period @f$ nu @f$ and argument @f$ x @f$.
    *
    * The exponential theta-2 function is defined by
    * @f[
@@ -4540,7 +4595,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Exponential theta_3 functions.
 
   /**
-   * Return the exponential theta-3 function of period @c nu and argument @c x.
+   * Return the exponential theta-3 function @f$ \theta_3(\nu,x) @f$
+   * of period @f$ nu @f$ and argument @f$ x @f$.
    *
    * @see theta_3 for details.
    */
@@ -4549,7 +4605,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__theta_3<float>(__nu, __x); }
 
   /**
-   * Return the exponential theta-3 function of period @c nu and argument @c x.
+   * Return the exponential theta-3 function @f$ \theta_3(\nu,x) @f$
+   * of period @f$ nu @f$ and argument @f$ x @f$.
    *
    * @see theta_3 for details.
    */
@@ -4558,7 +4615,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__theta_3<long double>(__nu, __x); }
 
   /**
-   * Return the exponential theta-3 function of period @c nu and argument @c x.
+   * Return the exponential theta-3 function @f$ \theta_3(\nu,x) @f$
+   * of period @f$ nu @f$ and argument @f$ x @f$.
    *
    * The exponential theta-3 function is defined by
    * @f[
@@ -4580,7 +4638,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Exponential theta_4 functions.
 
   /**
-   * Return the exponential theta-4 function of period @c nu and argument @c x.
+   * Return the exponential theta-4 function @f$ \theta_4(\nu,x) @f$
+   * of period @f$ nu @f$ and argument @f$ x @f$.
    *
    * @see theta_4 for details.
    */
@@ -4589,7 +4648,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__theta_4<float>(__nu, __x); }
 
   /**
-   * Return the exponential theta-4 function of period @c nu and argument @c x.
+   * Return the exponential theta-4 function @f$ \theta_4(\nu,x) @f$
+   * of period @f$ nu @f$ and argument @f$ x @f$.
    *
    * @see theta_4 for details.
    */
@@ -4598,7 +4658,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__theta_4<long double>(__nu, __x); }
 
   /**
-   * Return the exponential theta-4 function of period @c nu and argument @c x.
+   * Return the exponential theta-4 function @f$ \theta_4(\nu,x) @f$
+   * of period @f$ nu @f$ and argument @f$ x @f$.
    *
    * The exponential theta-4 function is defined by
    * @f[
@@ -4619,20 +4680,32 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Elliptic nome function
 
+  /**
+   * Return the elliptic nome function @f$ q(k) @f$
+   * of modulus @f$ k @f$.
+   *
+   * @see ellnome for details.
+   */
   inline float
   ellnomef(float __k)
   { return std::__detail::__ellnome<float>(__k); }
 
+  /**
+   * Return the elliptic nome function @f$ q(k) @f$
+   * of <tt>long double</tt> modulus @f$ k @f$.
+   *
+   * @see ellnome for details.
+   */
   inline long double
   ellnomel(long double __k)
   { return std::__detail::__ellnome<long double>(__k); }
 
   /**
-   * Return the elliptic nome function of modulus @c k.
+   * Return the elliptic nome function @f$ q(k) @f$ of modulus @f$ k @f$.
    *
    * The elliptic nome function is defined by
    * @f[
-   *    
+   *    q(k) = 
    * @f]
    *
    * @param __k The modulus @f$ -1 <= k <= +1 @f$
@@ -4648,7 +4721,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Neville theta_s functions.
 
   /**
-   * Return the Neville theta-s function of modulus @c k and argument @c x.
+   * Return the Neville theta-s function @f$ \theta_s(k,x) @f$
+   * of modulus @f$ k @f$ and argument @f$ x @f$.
    *
    * @see theta_s for details.
    */
@@ -4657,7 +4731,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__theta_s<float>(__k, __x); }
 
   /**
-   * Return the Neville theta-s function of modulus @c k and argument @c x.
+   * Return the Neville theta-s function @f$ \theta_s(k,x) @f$
+   * of <tt>long double</tt> modulus @f$ k @f$ and argument @f$ x @f$.
    *
    * @see theta_s for details.
    */
@@ -4666,7 +4741,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__theta_s<long double>(__k, __x); }
 
   /**
-   * Return the Neville theta-s function of modulus @c k and argument @c x.
+   * Return the Neville theta-s function @f$ \theta_s(k,x) @f$
+   * of modulus @f$ k @f$ and argument @f$ x @f$.
    *
    * The Neville theta-s function is defined by
    * @f[
@@ -4687,7 +4763,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Neville theta_c functions.
 
   /**
-   * Return the Neville theta-c function of modulus @c k and argument @c x.
+   * Return the Neville theta-c function @f$ \theta_c(k,x) @f$
+   * of modulus @f$ k @f$ and argument @f$ x @f$.
    *
    * @see theta_c for details.
    */
@@ -4696,7 +4773,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__theta_c<float>(__k, __x); }
 
   /**
-   * Return the Neville theta-c function of modulus @c k and argument @c x.
+   * Return the Neville theta-c function @f$ \theta_c(k,x) @f$
+   * of <tt>long double</tt> modulus @f$ k @f$ and argument @f$ x @f$.
    *
    * @see theta_c for details.
    */
@@ -4705,7 +4783,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__theta_c<long double>(__k, __x); }
 
   /**
-   * Return the Neville theta-c function of modulus @c k and argument @c x.
+   * Return the Neville theta-c function @f$ \theta_c(k,x) @f$
+   * of modulus @f$ k @f$ and argument @f$ x @f$.
    *
    * The Neville theta-c function is defined by
    * @f[
@@ -4726,7 +4805,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Neville theta_d functions.
 
   /**
-   * Return the Neville theta-d function of modulus @c k and argument @c x.
+   * Return the Neville theta-d function @f$ \theta_d(k,x) @f$
+   * of modulus @c k and argument @c x.
    *
    * @see theta_d for details.
    */
@@ -4735,7 +4815,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__theta_d<float>(__k, __x); }
 
   /**
-   * Return the Neville theta-d function of modulus @c k and argument @c x.
+   * Return the Neville theta-d function @f$ \theta_d(k,x) @f$
+   * of <tt>long double</tt> modulus @c k and argument @c x.
    *
    * @see theta_d for details.
    */
@@ -4744,11 +4825,12 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__theta_d<long double>(__k, __x); }
 
   /**
-   * Return the Neville theta-d function of modulus @c k and argument @c x.
+   * Return the Neville theta-d function @f$ \theta_d(k,x) @f$
+   * of modulus @c k and argument @c x.
    *
    * The Neville theta-d function is defined by
    * @f[
-   *    
+   *    \theta_d(k,x) = 
    * @f]
    *
    * @param __k The modulus @f$ -1 <= k <= +1 @f$
@@ -4765,7 +4847,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Neville theta_n functions.
 
   /**
-   * Return the Neville theta-n function of modulus @c k and argument @c x.
+   * Return the Neville theta-n function @f$ \theta_n(k,x) @f$
+   * of modulus @f$ k @f$ and argument @f$ x @f$.
    *
    * @see theta_n for details.
    */
@@ -4774,7 +4857,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__theta_n<float>(__k, __x); }
 
   /**
-   * Return the Neville theta-n function of modulus @c k and argument @c x.
+   * Return the Neville theta-n function @f$ \theta_n(k,x) @f$
+   * of <tt>long double</tt> modulus @f$ k @f$ and argument @f$ x @f$.
    *
    * @see theta_n for details.
    */
@@ -4783,11 +4867,12 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__theta_n<long double>(__k, __x); }
 
   /**
-   * Return the Neville theta-n function of modulus @c k and argument @c x.
+   * Return the Neville theta-n function @f$ \theta_n(k,x) @f$
+   * of modulus @f$ k @f$ and argument @f$ x @f$.
    *
    * The Neville theta-n function is defined by
    * @f[
-   *    
+   *    \theta_n(k,x) = 
    * @f]
    *
    * @param __k The modulus @f$ -1 <= k <= +1 @f$
@@ -4804,7 +4889,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Owens T functions.
 
   /**
-   * Return the Owens T function function of thing @c h and argument @c a.
+   * Return the Owens T function @f$ T(h,a) @f$
+   * of shape factor @f$ h @f$ and integration limit @f$ a @f$.
    *
    * @see owens_t for details.
    */
@@ -4813,7 +4899,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__owens_t<float>(__h, __a); }
 
   /**
-   * Return the Owens T function function of thing @c h and argument @c a.
+   * Return the Owens T function @f$ T(h,a) @f$ of <tt>long double</tt>
+   * shape factor @f$ h @f$ and integration limit @f$ a @f$.
    *
    * @see owens_t for details.
    */
@@ -4822,7 +4909,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__owens_t<long double>(__h, __a); }
 
   /**
-   * Return the Owens T function of thing1 @c h and thing2 @c a.
+   * Return the Owens T function @f$ T(h,a) @f$ of shape factor @f$ h @f$
+   * and integration limit @f$ a @f$.
    *
    * The Owens T function is defined by
    * @f[
@@ -4831,7 +4919,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @f]
    *
    * @param __h The shape factor
-   * @param __a The integration lomit
+   * @param __a The integration limit
    */
   template<typename _Tph, typename _Tpa>
     inline __gnu_cxx::__promote_num_t<_Tph, _Tpa>
