@@ -1,6 +1,6 @@
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
 //
-// Copyright (C) 2013-2016 Free Software Foundation, Inc.
+// Copyright (C) 2016 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -17,33 +17,30 @@
 // with this library; see the file COPYING3.  If not see
 // <http://www.gnu.org/licenses/>.
 
-// PR libstdc++/56216 - Crash of Bessel functions at x==0!
-
 #include <testsuite_hooks.h>
 #include <cmath>
-#include <limits>
+#include <iostream>
 
 void
 test01()
 {
   const double inf = std::numeric_limits<double>::infinity();
-  std::complex<double> h10 = __gnu_cxx::cyl_hankel_1(0.0, 0.0);
-  double h10r = std::real(h10);
-  double h10i = std::imag(h10);
-  std::complex<double> h11 = __gnu_cxx::cyl_hankel_1(1.0, 0.0);
-  double h11r = std::real(h11);
-  double h11i = std::imag(h11);
+  double jm1o2 = std::cyl_bessel_j(-0.5, 0.0);
+  double jm1 = std::cyl_bessel_j(-1.0, 0.0);
+  double jm3o2 = std::cyl_bessel_j(-1.5, 0.0);
+  double jm2 = std::cyl_bessel_j(-2.0, 0.0);
 
   bool test [[gnu::unused]] = true;
-  VERIFY(h10r == 1.0);
-  VERIFY(h10i == -inf);
-  VERIFY(h11r == 0.0);
-  VERIFY(h11i == -inf);
+  VERIFY(jm1o2 == inf);
+  VERIFY(jm1 == 0.0);
+  VERIFY(jm3o2 == -inf);
+  VERIFY(jm2 == 0.0);
 }
 
 int
 main()
 {
   test01();
+
   return 0;
 }
