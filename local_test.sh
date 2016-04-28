@@ -74,9 +74,9 @@ ${makedir} ${text_dir}/cyl_hankel_1
 ${makedir} ${text_dir}/cyl_hankel_2
 ${makedir} ${text_dir}/dawson
 ${makedir} ${text_dir}/dilog
-#${makedir} ${text_dir}/dirichlet_beta
+${makedir} ${text_dir}/dirichlet_beta
 ${makedir} ${text_dir}/dirichlet_eta
-#${makedir} ${text_dir}/dirichlet_lambda
+${makedir} ${text_dir}/dirichlet_lambda
 ${makedir} ${text_dir}/double_factorial
 ${makedir} ${text_dir}/ellint_d
 ${makedir} ${text_dir}/ellint_rc
@@ -96,6 +96,7 @@ ${makedir} ${text_dir}/heuman_lambda
 ${makedir} ${text_dir}/hurwitz_zeta
 ${makedir} ${text_dir}/hyperg
 ${makedir} ${text_dir}/ibeta
+${makedir} ${text_dir}/jacobi
 ${makedir} ${text_dir}/jacobi_sn
 ${makedir} ${text_dir}/jacobi_cn
 ${makedir} ${text_dir}/jacobi_dn
@@ -141,9 +142,9 @@ ${copy} check_cyl_hankel_2.cc       ${text_dir}/cyl_hankel_2/check_value.cc
 ${copy} pr56216_cyl_hankel_2.cc     ${text_dir}/cyl_hankel_2/pr56216.cc
 ${copy} check_dawson.cc             ${text_dir}/dawson/check_value.cc
 ${copy} check_dilog.cc              ${text_dir}/dilog/check_value.cc
-#${copy} check_dirichlet_beta.cc     ${text_dir}/dirichlet_beta/check_value.cc
+${copy} check_dirichlet_beta.cc     ${text_dir}/dirichlet_beta/check_value.cc
 ${copy} check_dirichlet_eta.cc      ${text_dir}/dirichlet_eta/check_value.cc
-#${copy} check_dirichlet_lambda.cc   ${text_dir}/dirichlet_lambda/check_value.cc
+${copy} check_dirichlet_lambda.cc   ${text_dir}/dirichlet_lambda/check_value.cc
 ${copy} check_double_factorial.cc   ${text_dir}/double_factorial/check_value.cc
 ${copy} check_ellint_d.cc           ${text_dir}/ellint_d/check_value.cc
 ${copy} check_ellint_rc.cc          ${text_dir}/ellint_rc/check_value.cc
