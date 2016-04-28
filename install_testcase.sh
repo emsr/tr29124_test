@@ -15,6 +15,7 @@ ${copy} check_comp_ellint_1.cc    ${gcc_dir}/04_comp_ellint_1/check_value.cc
 ${copy} check_comp_ellint_2.cc    ${gcc_dir}/05_comp_ellint_2/check_value.cc
 ${copy} check_comp_ellint_3.cc    ${gcc_dir}/06_comp_ellint_3/check_value.cc
 ${copy} check_cyl_bessel_i.cc     ${gcc_dir}/07_cyl_bessel_i/check_value.cc
+${copy} pr56216_cyl_bessel_i.cc   ${test_dir}/07_cyl_bessel_i/pr56216.cc
 ${copy} check_cyl_bessel_j.cc     ${gcc_dir}/08_cyl_bessel_j/check_value.cc
 ${copy} check_cyl_bessel_k.cc     ${gcc_dir}/09_cyl_bessel_k/check_value.cc
 ${copy} check_cyl_neumann.cc      ${gcc_dir}/10_cyl_neumann/check_value.cc
@@ -42,10 +43,12 @@ ${copy} check_conf_hyperg_lim.cc    ${ext_dir}/conf_hyperg_lim/check_value.cc
 ${copy} check_coshint.cc            ${ext_dir}/coshint/check_value.cc
 ${copy} check_cosint.cc             ${ext_dir}/cosint/check_value.cc
 ${copy} check_cyl_hankel_1.cc       ${ext_dir}/cyl_hankel_1/check_value.cc
+${copy} pr56216_cyl_hankel_1.cc     ${ext_dir}/cyl_hankel_1/pr56216.cc
 ${copy} check_cyl_hankel_2.cc       ${ext_dir}/cyl_hankel_2/check_value.cc
+${copy} pr56216_cyl_hankel_2.cc     ${ext_dir}/cyl_hankel_2/pr56216.cc
 ${copy} check_dawson.cc             ${ext_dir}/dawson/check_value.cc
-${copy} check_dirichlet_eta.cc      ${ext_dir}/dirichlet_eta/check_value.cc
 ${copy} check_dilog.cc              ${ext_dir}/dilog/check_value.cc
+${copy} check_dirichlet_eta.cc      ${ext_dir}/dirichlet_eta/check_value.cc
 ${copy} check_double_factorial.cc   ${ext_dir}/double_factorial/check_value.cc
 ${copy} check_ellint_d.cc           ${ext_dir}/ellint_d/check_value.cc
 ${copy} check_ellint_rc.cc          ${ext_dir}/ellint_rc/check_value.cc
@@ -87,7 +90,6 @@ ${copy} check_sinhint.cc            ${ext_dir}/sinhint/check_value.cc
 ${copy} check_sinint.cc             ${ext_dir}/sinint/check_value.cc
 ${copy} check_sph_bessel_i.cc       ${ext_dir}/sph_bessel_i/check_value.cc
 ${copy} check_sph_bessel_k.cc       ${ext_dir}/sph_bessel_k/check_value.cc
-${copy} check_zernike.cc            ${ext_dir}/zernike/check_value.cc
 ${copy} check_sph_hankel_1.cc       ${ext_dir}/sph_hankel_1/check_value.cc
 ${copy} check_sph_hankel_2.cc       ${ext_dir}/sph_hankel_2/check_value.cc
 ${copy} check_sph_harmonic.cc       ${ext_dir}/sph_harmonic/check_value.cc

@@ -44,6 +44,7 @@ ${copy} check_comp_ellint_1.cc    ${test_dir}/04_comp_ellint_1/check_value.cc
 ${copy} check_comp_ellint_2.cc    ${test_dir}/05_comp_ellint_2/check_value.cc
 ${copy} check_comp_ellint_3.cc    ${test_dir}/06_comp_ellint_3/check_value.cc
 ${copy} check_cyl_bessel_i.cc     ${test_dir}/07_cyl_bessel_i/check_value.cc
+${copy} pr56216_cyl_bessel_i.cc   ${test_dir}/07_cyl_bessel_i/pr56216.cc
 ${copy} check_cyl_bessel_j.cc     ${test_dir}/08_cyl_bessel_j/check_value.cc
 ${copy} check_cyl_bessel_k.cc     ${test_dir}/09_cyl_bessel_k/check_value.cc
 ${copy} check_cyl_neumann.cc      ${test_dir}/10_cyl_neumann/check_value.cc
@@ -133,7 +134,9 @@ ${copy} check_conf_hyperg_lim.cc    ${text_dir}/conf_hyperg_lim/check_value.cc
 ${copy} check_coshint.cc            ${text_dir}/coshint/check_value.cc
 ${copy} check_cosint.cc             ${text_dir}/cosint/check_value.cc
 ${copy} check_cyl_hankel_1.cc       ${text_dir}/cyl_hankel_1/check_value.cc
+${copy} pr56216_cyl_hankel_1.cc     ${test_dir}/cyl_hankel_1/pr56216.cc
 ${copy} check_cyl_hankel_2.cc       ${text_dir}/cyl_hankel_2/check_value.cc
+${copy} pr56216_cyl_hankel_2.cc     ${test_dir}/cyl_hankel_2/pr56216.cc
 ${copy} check_dawson.cc             ${text_dir}/dawson/check_value.cc
 ${copy} check_dilog.cc              ${text_dir}/dilog/check_value.cc
 ${copy} check_dirichlet_eta.cc      ${text_dir}/dirichlet_eta/check_value.cc
@@ -156,6 +159,7 @@ ${copy} check_heuman_lambda.cc      ${text_dir}/heuman_lambda/check_value.cc
 ${copy} check_hurwitz_zeta.cc       ${text_dir}/hurwitz_zeta/check_value.cc
 ${copy} check_hyperg.cc             ${text_dir}/hyperg/check_value.cc
 ${copy} check_ibeta.cc              ${text_dir}/ibeta/check_value.cc
+${copy} check_jacobi.cc             ${text_dir}/jacobi/check_value.cc
 ${copy} check_jacobi_sn.cc          ${text_dir}/jacobi_sn/check_value.cc
 ${copy} check_jacobi_cn.cc          ${text_dir}/jacobi_cn/check_value.cc
 ${copy} check_jacobi_dn.cc          ${text_dir}/jacobi_dn/check_value.cc
