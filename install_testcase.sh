@@ -15,10 +15,12 @@ ${copy} check_comp_ellint_1.cc    ${gcc_dir}/04_comp_ellint_1/check_value.cc
 ${copy} check_comp_ellint_2.cc    ${gcc_dir}/05_comp_ellint_2/check_value.cc
 ${copy} check_comp_ellint_3.cc    ${gcc_dir}/06_comp_ellint_3/check_value.cc
 ${copy} check_cyl_bessel_i.cc     ${gcc_dir}/07_cyl_bessel_i/check_value.cc
-${copy} pr56216_cyl_bessel_i.cc   ${test_dir}/07_cyl_bessel_i/pr56216.cc
+${copy} pr56216_cyl_bessel_i.cc   ${gcc_dir}/07_cyl_bessel_i/pr56216.cc
 ${copy} check_cyl_bessel_j.cc     ${gcc_dir}/08_cyl_bessel_j/check_value.cc
+${copy} origin_bessel_j.cc        ${gcc_dir}/08_cyl_bessel_j/check_origin.cc
 ${copy} check_cyl_bessel_k.cc     ${gcc_dir}/09_cyl_bessel_k/check_value.cc
 ${copy} check_cyl_neumann.cc      ${gcc_dir}/10_cyl_neumann/check_value.cc
+${copy} origin_neumann.cc         ${gcc_dir}/10_cyl_neumann/check_origin.cc
 ${copy} check_ellint_1.cc         ${gcc_dir}/11_ellint_1/check_value.cc
 ${copy} check_ellint_2.cc         ${gcc_dir}/12_ellint_2/check_value.cc
 ${copy} check_ellint_3.cc         ${gcc_dir}/13_ellint_3/check_value.cc
@@ -48,7 +50,9 @@ ${copy} check_cyl_hankel_2.cc       ${ext_dir}/cyl_hankel_2/check_value.cc
 ${copy} pr56216_cyl_hankel_2.cc     ${ext_dir}/cyl_hankel_2/pr56216.cc
 ${copy} check_dawson.cc             ${ext_dir}/dawson/check_value.cc
 ${copy} check_dilog.cc              ${ext_dir}/dilog/check_value.cc
+#${copy} check_dirichlet_beta.cc     ${ext_dir}/dirichlet_beta/check_value.cc
 ${copy} check_dirichlet_eta.cc      ${ext_dir}/dirichlet_eta/check_value.cc
+#${copy} check_dirichlet_lambda.cc   ${ext_dir}/dirichlet_lambda/check_value.cc
 ${copy} check_double_factorial.cc   ${ext_dir}/double_factorial/check_value.cc
 ${copy} check_ellint_d.cc           ${ext_dir}/ellint_d/check_value.cc
 ${copy} check_ellint_rc.cc          ${ext_dir}/ellint_rc/check_value.cc
