@@ -1009,7 +1009,7 @@ main()
     basename = "diff_clausen_c";
     rundiff(clausen_c<Real>, gsl::clausen_c, basename,
 	    "m", fill_argument(std::make_pair(2U, 2U),
-			       std::make_pair(true, true), 1));
+			       std::make_pair(true, true), 1),
 	    "w", fill_argument(std::make_pair(Real{-10}, Real{+10}),
 			       std::make_pair(true, true), 41));
 
