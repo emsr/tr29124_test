@@ -180,7 +180,7 @@ $(document).ready(function(){initNavTree('sf__dawson_8tcc_source.html','');});
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">   */</span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    _Tp</div>
-<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a3fe9fa143beb1a5d9f8ca18b3783f650">   71</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a3fe9fa143beb1a5d9f8ca18b3783f650">__dawson_const_frac</a>(_Tp __x)</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="namespacestd_1_1____detail.html#a3ad3b7b4dcebdf69778dbf7a5ba2427c">   71</a></span>&#160;    <a class="code" href="namespacestd_1_1____detail.html#a3ad3b7b4dcebdf69778dbf7a5ba2427c">__dawson_cont_frac</a>(_Tp __x)</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    {</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;      constexpr <span class="keyword">auto</span> _S_1_sqrtpi{0.5641895835477562869480794515607726L};</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;      constexpr <span class="keyword">auto</span> _S_eps = __gnu_cxx::__epsilon&lt;_Tp&gt;();</div>
@@ -352,7 +352,7 @@ $(document).ready(function(){initNavTree('sf__dawson_8tcc_source.html','');});
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (std::abs(__x) &lt; _S_x_min)</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacestd_1_1____detail.html#a033d91cc1c67280385ff3d1d809a21d1">__dawson_series</a>(__x);</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacestd_1_1____detail.html#a3fe9fa143beb1a5d9f8ca18b3783f650">__dawson_const_frac</a>(__x);</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacestd_1_1____detail.html#a3ad3b7b4dcebdf69778dbf7a5ba2427c">__dawson_cont_frac</a>(__x);</div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    }</div>
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;_GLIBCXX_END_NAMESPACE_VERSION</div>
@@ -362,8 +362,8 @@ $(document).ready(function(){initNavTree('sf__dawson_8tcc_source.html','');});
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="preprocessor">#endif // _GLIBCXX_SF_DAWSON_TCC</span></div>
 <div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> <a href="specfun_8h_source.html#l00098">specfun.h:98</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a6384fb4c5af31b41a38c120869a548c7"><div class="ttname"><a href="namespacestd_1_1____detail.html#a6384fb4c5af31b41a38c120869a548c7">std::__detail::__dawson</a></div><div class="ttdeci">_Tp __dawson(_Tp __x)</div><div class="ttdoc">Return the Dawson integral, , for real argument x. </div><div class="ttdef"><b>Definition:</b> <a href="sf__dawson_8tcc_source.html#l00233">sf_dawson.tcc:233</a></div></div>
+<div class="ttc" id="namespacestd_1_1____detail_html_a3ad3b7b4dcebdf69778dbf7a5ba2427c"><div class="ttname"><a href="namespacestd_1_1____detail.html#a3ad3b7b4dcebdf69778dbf7a5ba2427c">std::__detail::__dawson_cont_frac</a></div><div class="ttdeci">_Tp __dawson_cont_frac(_Tp __x)</div><div class="ttdoc">Compute the Dawson integral using a sampling theorem representation. </div><div class="ttdef"><b>Definition:</b> <a href="sf__dawson_8tcc_source.html#l00071">sf_dawson.tcc:71</a></div></div>
 <div class="ttc" id="namespacestd_1_1____detail_html_a033d91cc1c67280385ff3d1d809a21d1"><div class="ttname"><a href="namespacestd_1_1____detail.html#a033d91cc1c67280385ff3d1d809a21d1">std::__detail::__dawson_series</a></div><div class="ttdeci">_Tp __dawson_series(_Tp __x)</div><div class="ttdoc">Compute the Dawson integral using the series expansion. </div><div class="ttdef"><b>Definition:</b> <a href="sf__dawson_8tcc_source.html#l00047">sf_dawson.tcc:47</a></div></div>
-<div class="ttc" id="namespacestd_1_1____detail_html_a3fe9fa143beb1a5d9f8ca18b3783f650"><div class="ttname"><a href="namespacestd_1_1____detail.html#a3fe9fa143beb1a5d9f8ca18b3783f650">std::__detail::__dawson_const_frac</a></div><div class="ttdeci">_Tp __dawson_const_frac(_Tp __x)</div><div class="ttdoc">Compute the Dawson integral using a sampling theorem representation. </div><div class="ttdef"><b>Definition:</b> <a href="sf__dawson_8tcc_source.html#l00071">sf_dawson.tcc:71</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
