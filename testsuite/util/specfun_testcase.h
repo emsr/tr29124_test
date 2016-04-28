@@ -904,6 +904,15 @@ template<typename _Tp>
     _Tp f;
   };
 
+// Dirichlet lambda function.
+template<typename _Tp>
+  struct testcase_dirichlet_lambda
+  {
+    _Tp f0;
+    _Tp s;
+    _Tp f;
+  };
+
 // Owens T functions.
 template<typename _Tp>
   struct testcase_owens_t
