@@ -442,6 +442,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __cyl_bessel_jn(_Tp __nu, _Tp __x,
 		_Tp & _Jnu, _Tp & _Nnu, _Tp & _Jpnu, _Tp & _Npnu)
     {
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
       constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       if (__nu < _Tp{0})
@@ -451,10 +452,29 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __arg = -__nu * _S_pi;
 	  auto __sinnupi = std::sin(__arg);
 	  auto __cosnupi = std::cos(__arg);
-	  _Jnu = __cosnupi * _J_mnu - __sinnupi * _N_mnu;
-	  _Nnu = __sinnupi * _J_mnu + __cosnupi * _N_mnu;
-	  _Jpnu = __cosnupi * _Jp_mnu - __sinnupi * _Np_mnu;
-	  _Npnu = __sinnupi * _Jp_mnu + __cosnupi * _Np_mnu;
+	  if (std::abs(__sinnupi) < _S_eps)
+	    { // Carefully preserve +-inf.
+	      auto __sign = std::copysign(_Tp{1}, __cosnupi);
+	      _Jnu = __sign * _J_mnu;
+	      _Nnu = __sign * _N_mnu;
+	      _Jpnu = __sign * _Jp_mnu;
+	      _Npnu = __sign * _Np_mnu;
+	    }
+	  else if (std::abs(__cosnupi) < _S_eps)
+	    { // Carefully preserve +-inf.
+	      auto __sign = std::copysign(_Tp{1}, __sinnupi);
+	      _Jnu = -__sign * _N_mnu;
+	      _Nnu = __sign * _J_mnu;
+	      _Jpnu = -__sign * _Np_mnu;
+	      _Npnu = __sign * _Jp_mnu;
+	    }
+	  else
+	    {
+	      _Jnu = __cosnupi * _J_mnu - __sinnupi * _N_mnu;
+	      _Nnu = __sinnupi * _J_mnu + __cosnupi * _N_mnu;
+	      _Jpnu = __cosnupi * _Jp_mnu - __sinnupi * _Np_mnu;
+	      _Npnu = __sinnupi * _Jp_mnu + __cosnupi * _Np_mnu;
+	    }
 	}
       else if (__x == _Tp{0})
 	{
