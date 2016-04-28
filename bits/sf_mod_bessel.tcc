@@ -314,8 +314,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     void
     __cyl_bessel_ik(_Tp __nu, _Tp __x,
-		_Tp & _Inu, _Tp & _Knu, _Tp & _Ipnu, _Tp & _Kpnu)
+		    _Tp & _Inu, _Tp & _Knu, _Tp & _Ipnu, _Tp & _Kpnu)
     {
+      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
       constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       if (__nu < _Tp{0})
@@ -324,10 +325,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __cyl_bessel_ik(-__nu, __x, _I_mnu, _K_mnu, _Ip_mnu, _Kp_mnu);
 	  auto __arg = -__nu * _S_pi;
 	  auto __sinnupi = std::sin(__arg);
-	  _Inu = _I_mnu + _Tp{2} * __sinnupi * _K_mnu / _S_pi;
-	  _Knu = _K_mnu;
-	  _Ipnu = _Ip_mnu + _Tp{2} * __sinnupi * _Kp_mnu / _S_pi;
-	  _Kpnu = _Kp_mnu;
+	  if (std::abs(__sinnupi) < _S_eps)
+	    { // Carefully preserve +-inf.
+	      _Inu = _I_mnu;
+	      _Knu = _K_mnu;
+	      _Ipnu = _Ip_mnu;
+	      _Kpnu = _Kp_mnu;
+	    }
+	  else
+	    {
+	      _Inu = _I_mnu + _Tp{2} * __sinnupi * _K_mnu / _S_pi;
+	      _Knu = _K_mnu;
+	      _Ipnu = _Ip_mnu + _Tp{2} * __sinnupi * _Kp_mnu / _S_pi;
+	      _Kpnu = _Kp_mnu;
+	    }
 	}
       else if (__x == _Tp{0})
 	{
