@@ -31,8 +31,39 @@ The following functions are implemented in namespace {\ttfamily std\+:}
 
 The hypergeometric functions were stricken from the T\+R29124 and C++17 versions of this math library because of implementation concerns. However, since they were in the T\+R1 version and since they are popular we kept them as an extension in namespace {\ttfamily \hyperlink{namespace____gnu__cxx}{\+\_\+\+\_\+gnu\+\_\+cxx}\+:} 
 \begin{DoxyItemize}
-\item conf\+\_\+hyperg -\/ Confluent hypergeometric functions
-\item hyperg -\/ Hypergeometric functions
+\item \hyperlink{group__gnu__math__spec__func_ga2e17ccbbc4cbb99c987e875531d4a3de}{conf\+\_\+hyperg -\/ Confluent hypergeometric functions}
+\item \hyperlink{group__gnu__math__spec__func_gaf52cf49736c63b0bb000be98b53c221f}{hyperg -\/ Hypergeometric functions}
+\end{DoxyItemize}
+
+In addition a large number of new functions are added as extensions\+:
+\begin{DoxyItemize}
+\item \hyperlink{group__gnu__math__spec__func_ga8eff81346e95e9987002ea52fe1e29a7}{airy\+\_\+ai -\/ }
+\item \hyperlink{group__gnu__math__spec__func_ga65253611eb5aec804f9021b085be2a48}{airy\+\_\+bi -\/ }
+\item \hyperlink{group__gnu__math__spec__func_ga57a15003ded8e0e808b21d4a17a7803e}{bincoef -\/ }
+\item \hyperlink{group__gnu__math__spec__func_gad8769048d3a0eb2adcfcfeaa10af37fe}{chebyshev\+\_\+t -\/ }
+\item \hyperlink{group__gnu__math__spec__func_ga59e3a6dd4d614f6e158a0a56fa25a0b1}{chebyshev\+\_\+u -\/ }
+\item \hyperlink{group__gnu__math__spec__func_gaf5e47fa5f24acf2aac6c7a1187ee6be1}{chebyshev\+\_\+v -\/ }
+\item \hyperlink{group__gnu__math__spec__func_gae283d165c5a058fff7a0f83a2a66b4c2}{chebyshev\+\_\+w -\/ }
+\item \hyperlink{group__gnu__math__spec__func_ga5a7016834baf2dd1b57c9dfcfa3436f0}{clausen -\/ }
+\item \hyperlink{group__gnu__math__spec__func_ga2e89f9758322054738dacf686f6ce974}{clausen\+\_\+c -\/ }
+\item \hyperlink{group__gnu__math__spec__func_ga124827c09e71d83eb11b9e3282739475}{clausen\+\_\+s -\/ }
+\item \hyperlink{group__gnu__math__spec__func_gad0fb35dfc5aef8ba2ba5fb88da1192c7}{comp\+\_\+ellint\+\_\+d -\/ }
+\item \hyperlink{group__gnu__math__spec__func_gab923b5a9e67469a5145d7bfcb20b3396}{conf\+\_\+hyperg\+\_\+lim -\/ }
+\item \hyperlink{group__gnu__math__spec__func_gaceef7e29a05055fa1e1300301f51f139}{coshint -\/ }
+\item \hyperlink{group__gnu__math__spec__func_gafa310665ffc65012269f6f90cb573502}{cosint -\/ }
+\item \hyperlink{group__gnu__math__spec__func_ga385def5d98679e243626fb78a841795b}{cyl\+\_\+hankel\+\_\+1 -\/ }
+\item \hyperlink{group__gnu__math__spec__func_ga307fd77aa8f0ed2028a9fab88976ca54}{cyl\+\_\+hankel\+\_\+2 -\/ }
+\item \hyperlink{group__gnu__math__spec__func_ga30e46cb24428cfdb858c52fec431dee4}{dawson -\/ }
+\item \hyperlink{group__gnu__math__spec__func_ga8fceba3ecc618971e0e3c089d8dc49cf}{dilog -\/ }
+\item \hyperlink{group__gnu__math__spec__func_ga87466a2d429a2815d794acc21c882b08}{dirichlet\+\_\+beta -\/ }
+\item \hyperlink{group__gnu__math__spec__func_gae46e26e4107675d285c79a2d6202e6c7}{dirichlet\+\_\+eta -\/ }
+\item \hyperlink{group__gnu__math__spec__func_ga206cdf1ae7f9a0df3048af18892b8ba8}{double\+\_\+factorial -\/ }
+\item \hyperlink{group__gnu__math__spec__func_ga6a594ffefbe4f238f98fa2190b03795f}{ellint\+\_\+d -\/ }
+\item \hyperlink{group__gnu__math__spec__func_ga183d78859b56f93237567e6322164832}{ellint\+\_\+rc -\/ }
+\item \hyperlink{group__gnu__math__spec__func_ga812c4f543575006c6b555d1385b88d90}{ellint\+\_\+rd -\/ }
+\item \hyperlink{group__gnu__math__spec__func_gad276bd7533a87ca6d658cebc00a11b0a}{ellint\+\_\+rf -\/ }
+\item \hyperlink{group__gnu__math__spec__func_ga9d3d53ace67dfa6126118fb780095a1f}{ellint\+\_\+rg -\/ }
+\item \hyperlink{group__gnu__math__spec__func_ga61c6d7f5b930400eeb8de455667d4292}{ellint\+\_\+rj -\/ }
 \end{DoxyItemize}\hypertarget{index_general}{}\section{General Features}\label{index_general}
 \hypertarget{index_promotion}{}\subsection{Argument Promotion}\label{index_promotion}
 The arguments suppled to the non-\/suffixed functions will be promoted according to the following rules\+:
