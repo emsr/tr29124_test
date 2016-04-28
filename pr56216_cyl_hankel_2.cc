@@ -25,13 +25,19 @@
 void
 test01()
 {
-  const double eps = 5.0 * std::numeric_limits<double>::epsilon();
+  const double inf = std::numeric_limits<double>::infinity();
   std::complex<double> h20 = __gnu_cxx::cyl_hankel_2(0.0, 0.0);
+  double h20r = std::real(h20);
+  double h20i = std::imag(h20);
   std::complex<double> h21 = __gnu_cxx::cyl_hankel_2(1.0, 0.0);
+  double h21r = std::real(h21);
+  double h21i = std::imag(h21);
 
   bool test [[gnu::unused]] = true;
-  VERIFY(h20 == 1.0);
-  VERIFY(h21 == 0.0);
+  VERIFY(h20r == 1.0);
+  VERIFY(h20i == inf);
+  VERIFY(h21r == 0.0);
+  VERIFY(h21i == inf);
 }
 
 int
