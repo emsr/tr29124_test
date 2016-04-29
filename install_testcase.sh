@@ -20,7 +20,7 @@ ${copy} check_cyl_bessel_j.cc     ${gcc_dir}/08_cyl_bessel_j/check_value.cc
 ${copy} origin_bessel_j.cc        ${gcc_dir}/08_cyl_bessel_j/check_origin.cc
 ${copy} check_cyl_bessel_k.cc     ${gcc_dir}/09_cyl_bessel_k/check_value.cc
 ${copy} check_cyl_neumann.cc      ${gcc_dir}/10_cyl_neumann/check_value.cc
-${copy} origin_neumann.cc         ${gcc_dir}/10_cyl_neumann/check_origin.cc
+${copy} origin_cyl_neumann.cc     ${gcc_dir}/10_cyl_neumann/check_origin.cc
 ${copy} check_ellint_1.cc         ${gcc_dir}/11_ellint_1/check_value.cc
 ${copy} check_ellint_2.cc         ${gcc_dir}/12_ellint_2/check_value.cc
 ${copy} check_ellint_3.cc         ${gcc_dir}/13_ellint_3/check_value.cc
