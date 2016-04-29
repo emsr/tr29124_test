@@ -46,8 +46,10 @@ ${copy} check_comp_ellint_3.cc    ${test_dir}/06_comp_ellint_3/check_value.cc
 ${copy} check_cyl_bessel_i.cc     ${test_dir}/07_cyl_bessel_i/check_value.cc
 ${copy} pr56216_cyl_bessel_i.cc   ${test_dir}/07_cyl_bessel_i/pr56216.cc
 ${copy} check_cyl_bessel_j.cc     ${test_dir}/08_cyl_bessel_j/check_value.cc
+${copy} origin_bessel_j.cc        ${test_dir}/08_cyl_bessel_j/check_origin.cc
 ${copy} check_cyl_bessel_k.cc     ${test_dir}/09_cyl_bessel_k/check_value.cc
 ${copy} check_cyl_neumann.cc      ${test_dir}/10_cyl_neumann/check_value.cc
+${copy} origin_cyl_neumann.cc     ${test_dir}/10_cyl_neumann/check_origin.cc
 ${copy} check_ellint_1.cc         ${test_dir}/11_ellint_1/check_value.cc
 ${copy} check_ellint_2.cc         ${test_dir}/12_ellint_2/check_value.cc
 ${copy} check_ellint_3.cc         ${test_dir}/13_ellint_3/check_value.cc
