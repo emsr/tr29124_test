@@ -991,7 +991,7 @@ main()
   std::cout << std::endl;
 
   std::cout << "R_G(0, 16, 16) = 2E(0) = pi = " << __gnu_cxx::__ellint_rg(0.0, 16.0, 16.0) << std::endl;  //  3.1415926535898
-  std::cout << "R_G(2, 3, 4) = " << __gnu_cxx::__ellint_rg(2, 3, 4) << std::endl;  //  1.725503020692
+  std::cout << "R_G(2, 3, 4) = " << __gnu_cxx::__ellint_rg(2, 3, 4) << std::endl;  //  1.7255030280692
   std::cout << "R_G(0, i, -i) = " << __gnu_cxx::__ellint_rg(std::complex<double>(0.0,0.0),
 						 std::complex<double>(0.0,1.0),
 						 std::complex<double>(0.0,-1.0)) << std::endl;  //  0.42360654239699
