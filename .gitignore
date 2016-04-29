@@ -109,7 +109,7 @@ pr56216_cyl_hankel_1
 pr56216_cyl_hankel_2
 pr56216_cyl_bessel_i
 origin_bessel_j
-origin_neumann
+origin_cyl_neumann
 
 complex_literal_arith
 diff_special_function
