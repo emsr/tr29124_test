@@ -1,7 +1,1 @@
-/home/ed/tr29124_test/bits/specfun.h:2129: warning: The following parameters of __gnu_cxx::radpoly(unsigned int __n, unsigned int __m, _Tp __rho) are not documented:
-  parameter '__rho'
 /home/ed/tr29124_test/bits/sf_zeta.tcc:551: warning: Found unknown command `\u0160tas'
-/home/ed/tr29124_test/bits/specfun.h:157: warning: unable to resolve reference to `conf_hyperg' for \ref command
-/home/ed/tr29124_test/bits/specfun.h:158: warning: unable to resolve reference to `hyperg' for \ref command
-/home/ed/tr29124_test/bits/specfun.h:157: warning: unable to resolve reference to `conf_hyperg' for \ref command
-/home/ed/tr29124_test/bits/specfun.h:158: warning: unable to resolve reference to `hyperg' for \ref command

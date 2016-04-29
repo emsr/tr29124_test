@@ -35,7 +35,7 @@ test01()
   VERIFY(nm1o4 == -inf);
   VERIFY(nm1o2 == 0.0);
   VERIFY(nm1 == inf);
-  VERIFY(nm3o2 == 0.0)
+  VERIFY(nm3o2 == 0.0);
   VERIFY(nm2 == -inf);
 }
 
