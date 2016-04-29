@@ -140,7 +140,9 @@ CHECKS = check_airy_ai \
 	 complex_ellint_rj \
 	 pr56216_cyl_hankel_1 \
 	 pr56216_cyl_hankel_2 \
-	 pr56216_cyl_bessel_i
+	 pr56216_cyl_bessel_i \
+	 origin_bessel_j \
+	 origin_neumann
 #	 check_clausen_c \
 
 all: diff_special_function \
@@ -291,6 +293,8 @@ check: $(CHECKS)
 	echo "pr56216_cyl_hankel_1" >> check_out.txt 2>> check_err.txt && ./pr56216_cyl_hankel_1 >> check_out.txt 2>> check_err.txt
 	echo "pr56216_cyl_hankel_2" >> check_out.txt 2>> check_err.txt && ./pr56216_cyl_hankel_2 >> check_out.txt 2>> check_err.txt
 	echo "pr56216_cyl_bessel_i" >> check_out.txt 2>> check_err.txt && ./pr56216_cyl_bessel_i >> check_out.txt 2>> check_err.txt
+	echo "origin_bessel_j" >> check_out.txt 2>> check_err.txt && ./origin_bessel_j >> check_out.txt 2>> check_err.txt
+	echo "origin_neumann" >> check_out.txt 2>> check_err.txt && ./origin_neumann >> check_out.txt 2>> check_err.txt
 
 
 test_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
@@ -625,6 +629,12 @@ pr56216_cyl_hankel_2: pr56216_cyl_hankel_2.cc
 
 pr56216_cyl_bessel_i: pr56216_cyl_bessel_i.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o pr56216_cyl_bessel_i pr56216_cyl_bessel_i.cc
+
+origin_bessel_j: origin_bessel_j.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o origin_bessel_j origin_bessel_j.cc
+
+origin_neumann: origin_neumann.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D__TEST_DEBUG -o origin_neumann origin_neumann.cc
 
 
 tarball:
