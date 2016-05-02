@@ -38,11 +38,11 @@
 
 
 // Test data for x=0.50000000000000000, y=0.0000000000000000.
-// max(|f - f_GSL|): 9.9920072216264089e-16
-// max(|f - f_GSL| / |f_GSL|): 1.1668190245934081e-15
-// mean(f - f_GSL): 1.0092936587501423e-17
-// variance(f - f_GSL): 5.9276621997431141e-33
-// stddev(f - f_GSL): 7.6991312495262180e-17
+// max(|f - f_Boost|): 9.9920072216264089e-16
+// max(|f - f_Boost| / |f_Boost|): 1.1668190245934081e-15
+// mean(f - f_Boost): 1.0092936587501423e-17
+// variance(f - f_Boost): 5.9276621997431141e-33
+// stddev(f - f_Boost): 7.6991312495262180e-17
 const testcase_ellint_rg<double>
 data001[11] =
 {
@@ -72,11 +72,11 @@ data001[11] =
 const double toler001 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=0.50000000000000000.
-// max(|f - f_GSL|): 5.5511151231257827e-16
-// max(|f - f_GSL| / |f_GSL|): 5.6880277356092571e-16
-// mean(f - f_GSL): -1.7157992198752419e-16
-// variance(f - f_GSL): 8.1687443168482614e-33
-// stddev(f - f_GSL): 9.0381105972699084e-17
+// max(|f - f_Boost|): 5.5511151231257827e-16
+// max(|f - f_Boost| / |f_Boost|): 5.6880277356092571e-16
+// mean(f - f_Boost): -1.7157992198752419e-16
+// variance(f - f_Boost): 8.1687443168482614e-33
+// stddev(f - f_Boost): 9.0381105972699084e-17
 const testcase_ellint_rg<double>
 data002[11] =
 {
@@ -106,11 +106,11 @@ data002[11] =
 const double toler002 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=1.0000000000000000.
-// max(|f - f_GSL|): 3.3306690738754696e-16
-// max(|f - f_GSL| / |f_GSL|): 4.1037669837954626e-16
-// mean(f - f_GSL): -7.0650556112509961e-17
-// variance(f - f_GSL): 5.4906511869076109e-34
-// stddev(f - f_GSL): 2.3432138585514575e-17
+// max(|f - f_Boost|): 3.3306690738754696e-16
+// max(|f - f_Boost| / |f_Boost|): 4.1037669837954626e-16
+// mean(f - f_Boost): -7.0650556112509961e-17
+// variance(f - f_Boost): 5.4906511869076109e-34
+// stddev(f - f_Boost): 2.3432138585514575e-17
 const testcase_ellint_rg<double>
 data003[11] =
 {
@@ -140,11 +140,11 @@ data003[11] =
 const double toler003 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=1.5000000000000000.
-// max(|f - f_GSL|): 2.2204460492503131e-16
-// max(|f - f_GSL| / |f_GSL|): 2.0751039930508887e-16
-// mean(f - f_GSL): 7.0650556112509961e-17
-// variance(f - f_GSL): 9.4237503024271437e-33
-// stddev(f - f_GSL): 9.7076002711417530e-17
+// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost| / |f_Boost|): 2.0751039930508887e-16
+// mean(f - f_Boost): 7.0650556112509961e-17
+// variance(f - f_Boost): 9.4237503024271437e-33
+// stddev(f - f_Boost): 9.7076002711417530e-17
 const testcase_ellint_rg<double>
 data004[11] =
 {
@@ -174,11 +174,11 @@ data004[11] =
 const double toler004 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=2.0000000000000000.
-// max(|f - f_GSL|): 9.9920072216264089e-16
-// max(|f - f_GSL| / |f_GSL|): 1.1668190245934081e-15
-// mean(f - f_GSL): -5.0464682937507114e-17
-// variance(f - f_GSL): 1.7043429500584645e-32
-// stddev(f - f_GSL): 1.3055048640500979e-16
+// max(|f - f_Boost|): 9.9920072216264089e-16
+// max(|f - f_Boost| / |f_Boost|): 1.1668190245934081e-15
+// mean(f - f_Boost): -5.0464682937507114e-17
+// variance(f - f_Boost): 1.7043429500584645e-32
+// stddev(f - f_Boost): 1.3055048640500979e-16
 const testcase_ellint_rg<double>
 data005[11] =
 {
@@ -208,11 +208,11 @@ data005[11] =
 const double toler005 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=2.5000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.6858287213944870e-16
-// mean(f - f_GSL): -5.0464682937507114e-17
-// variance(f - f_GSL): 3.2383636592169380e-33
-// stddev(f - f_GSL): 5.6906622279106831e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.6858287213944870e-16
+// mean(f - f_Boost): -5.0464682937507114e-17
+// variance(f - f_Boost): 3.2383636592169380e-33
+// stddev(f - f_Boost): 5.6906622279106831e-17
 const testcase_ellint_rg<double>
 data006[11] =
 {
@@ -242,11 +242,11 @@ data006[11] =
 const double toler006 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=3.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 4.4381130140574458e-16
-// mean(f - f_GSL): -1.6148698540002277e-16
-// variance(f - f_GSL): 2.8685851098945884e-33
-// stddev(f - f_GSL): 5.3559173909747602e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 4.4381130140574458e-16
+// mean(f - f_Boost): -1.6148698540002277e-16
+// variance(f - f_Boost): 2.8685851098945884e-33
+// stddev(f - f_Boost): 5.3559173909747602e-17
 const testcase_ellint_rg<double>
 data007[11] =
 {
@@ -276,11 +276,11 @@ data007[11] =
 const double toler007 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=3.5000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.2081494202212855e-16
-// mean(f - f_GSL): 2.0185873175002847e-17
-// variance(f - f_GSL): 6.4543164972628244e-33
-// stddev(f - f_GSL): 8.0338760864621409e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.2081494202212855e-16
+// mean(f - f_Boost): 2.0185873175002847e-17
+// variance(f - f_Boost): 6.4543164972628244e-33
+// stddev(f - f_Boost): 8.0338760864621409e-17
 const testcase_ellint_rg<double>
 data008[11] =
 {
@@ -310,11 +310,11 @@ data008[11] =
 const double toler008 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=4.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.7788015988203232e-16
-// mean(f - f_GSL): -1.2111523905001707e-16
-// variance(f - f_GSL): 1.1205410585525736e-33
-// stddev(f - f_GSL): 3.3474483693592253e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.7788015988203232e-16
+// mean(f - f_Boost): -1.2111523905001707e-16
+// variance(f - f_Boost): 1.1205410585525736e-33
+// stddev(f - f_Boost): 3.3474483693592253e-17
 const testcase_ellint_rg<double>
 data009[11] =
 {
@@ -344,11 +344,11 @@ data009[11] =
 const double toler009 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=4.5000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.6994751106643259e-16
-// mean(f - f_GSL): 1.0092936587501423e-16
-// variance(f - f_GSL): 1.1205410585525736e-33
-// stddev(f - f_GSL): 3.3474483693592253e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.6994751106643259e-16
+// mean(f - f_Boost): 1.0092936587501423e-16
+// variance(f - f_Boost): 1.1205410585525736e-33
+// stddev(f - f_Boost): 3.3474483693592253e-17
 const testcase_ellint_rg<double>
 data010[11] =
 {
@@ -378,11 +378,11 @@ data010[11] =
 const double toler010 = 2.5000000000000020e-13;
 
 // Test data for x=0.50000000000000000, y=5.0000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 3.6489127383954372e-16
-// mean(f - f_GSL): -2.8260222445003984e-16
-// variance(f - f_GSL): 1.6180612885499163e-32
-// stddev(f - f_GSL): 1.2720303803565055e-16
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 3.6489127383954372e-16
+// mean(f - f_Boost): -2.8260222445003984e-16
+// variance(f - f_Boost): 1.6180612885499163e-32
+// stddev(f - f_Boost): 1.2720303803565055e-16
 const testcase_ellint_rg<double>
 data011[11] =
 {
@@ -412,11 +412,11 @@ data011[11] =
 const double toler011 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=0.0000000000000000.
-// max(|f - f_GSL|): 1.3322676295501878e-15
-// max(|f - f_GSL| / |f_GSL|): 1.1000875262766293e-15
-// mean(f - f_GSL): 8.0743492700011387e-17
-// variance(f - f_GSL): 1.0084869526973163e-32
-// stddev(f - f_GSL): 1.0042345108077676e-16
+// max(|f - f_Boost|): 1.3322676295501878e-15
+// max(|f - f_Boost| / |f_Boost|): 1.1000875262766293e-15
+// mean(f - f_Boost): 8.0743492700011387e-17
+// variance(f - f_Boost): 1.0084869526973163e-32
+// stddev(f - f_Boost): 1.0042345108077676e-16
 const testcase_ellint_rg<double>
 data012[11] =
 {
@@ -446,11 +446,11 @@ data012[11] =
 const double toler012 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=0.50000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 4.1037669837954626e-16
-// mean(f - f_GSL): -1.1102230246251565e-16
-// variance(f - f_GSL): 1.2202692127637526e-32
-// stddev(f - f_GSL): 1.1046579618885443e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 4.1037669837954626e-16
+// mean(f - f_Boost): -1.1102230246251565e-16
+// variance(f - f_Boost): 1.2202692127637526e-32
+// stddev(f - f_Boost): 1.1046579618885443e-16
 const testcase_ellint_rg<double>
 data013[11] =
 {
@@ -480,11 +480,11 @@ data013[11] =
 const double toler013 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=1.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.0027475881479154e-16
-// mean(f - f_GSL): 1.0092936587501423e-17
-// variance(f - f_GSL): 2.2690956435689614e-32
-// stddev(f - f_GSL): 1.5063517662116514e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.0027475881479154e-16
+// mean(f - f_Boost): 1.0092936587501423e-17
+// variance(f - f_Boost): 2.2690956435689614e-32
+// stddev(f - f_Boost): 1.5063517662116514e-16
 const testcase_ellint_rg<double>
 data014[11] =
 {
@@ -514,11 +514,11 @@ data014[11] =
 const double toler014 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=1.5000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.8522163719602998e-16
-// mean(f - f_GSL): 1.5139404881252134e-16
-// variance(f - f_GSL): 2.5212173817432907e-33
-// stddev(f - f_GSL): 5.0211725540388379e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.8522163719602998e-16
+// mean(f - f_Boost): 1.5139404881252134e-16
+// variance(f - f_Boost): 2.5212173817432907e-33
+// stddev(f - f_Boost): 5.0211725540388379e-17
 const testcase_ellint_rg<double>
 data015[11] =
 {
@@ -548,11 +548,11 @@ data015[11] =
 const double toler015 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=2.0000000000000000.
-// max(|f - f_GSL|): 2.2204460492503131e-16
-// max(|f - f_GSL| / |f_GSL|): 2.3249540174363008e-16
-// mean(f - f_GSL): -6.0557619525008534e-17
-// variance(f - f_GSL): 4.0339478107892652e-34
-// stddev(f - f_GSL): 2.0084690216155352e-17
+// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost| / |f_Boost|): 2.3249540174363008e-16
+// mean(f - f_Boost): -6.0557619525008534e-17
+// variance(f - f_Boost): 4.0339478107892652e-34
+// stddev(f - f_Boost): 2.0084690216155352e-17
 const testcase_ellint_rg<double>
 data016[11] =
 {
@@ -582,11 +582,11 @@ data016[11] =
 const double toler016 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=2.5000000000000000.
-// max(|f - f_GSL|): 2.2204460492503131e-16
-// max(|f - f_GSL| / |f_GSL|): 2.1631285670444427e-16
-// mean(f - f_GSL): 0.0000000000000000
-// variance(f - f_GSL): 3.3345203606509031e-65
-// stddev(f - f_GSL): 5.7745305962051180e-33
+// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost| / |f_Boost|): 2.1631285670444427e-16
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 3.3345203606509031e-65
+// stddev(f - f_Boost): 5.7745305962051180e-33
 const testcase_ellint_rg<double>
 data017[11] =
 {
@@ -616,11 +616,11 @@ data017[11] =
 const double toler017 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=3.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.9346402103071314e-16
-// mean(f - f_GSL): 2.0185873175002847e-17
-// variance(f - f_GSL): 6.4543164972628244e-33
-// stddev(f - f_GSL): 8.0338760864621409e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.9346402103071314e-16
+// mean(f - f_Boost): 2.0185873175002847e-17
+// variance(f - f_Boost): 6.4543164972628244e-33
+// stddev(f - f_Boost): 8.0338760864621409e-17
 const testcase_ellint_rg<double>
 data018[11] =
 {
@@ -650,11 +650,11 @@ data018[11] =
 const double toler018 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=3.5000000000000000.
-// max(|f - f_GSL|): 2.2204460492503131e-16
-// max(|f - f_GSL| / |f_GSL|): 1.5927565112396011e-16
-// mean(f - f_GSL): 6.0557619525008534e-17
-// variance(f - f_GSL): 4.0339478107892652e-34
-// stddev(f - f_GSL): 2.0084690216155352e-17
+// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost| / |f_Boost|): 1.5927565112396011e-16
+// mean(f - f_Boost): 6.0557619525008534e-17
+// variance(f - f_Boost): 4.0339478107892652e-34
+// stddev(f - f_Boost): 2.0084690216155352e-17
 const testcase_ellint_rg<double>
 data019[11] =
 {
@@ -684,11 +684,11 @@ data019[11] =
 const double toler019 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=4.0000000000000000.
-// max(|f - f_GSL|): 1.3322676295501878e-15
-// max(|f - f_GSL| / |f_GSL|): 1.1000875262766293e-15
-// mean(f - f_GSL): 1.6148698540002277e-16
-// variance(f - f_GSL): 1.6180612885499163e-32
-// stddev(f - f_GSL): 1.2720303803565055e-16
+// max(|f - f_Boost|): 1.3322676295501878e-15
+// max(|f - f_Boost| / |f_Boost|): 1.1000875262766293e-15
+// mean(f - f_Boost): 1.6148698540002277e-16
+// variance(f - f_Boost): 1.6180612885499163e-32
+// stddev(f - f_Boost): 1.2720303803565055e-16
 const testcase_ellint_rg<double>
 data020[11] =
 {
@@ -718,11 +718,11 @@ data020[11] =
 const double toler020 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=4.5000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 3.7032414928027897e-16
-// mean(f - f_GSL): 1.0092936587501423e-16
-// variance(f - f_GSL): 1.6135791243157061e-33
-// stddev(f - f_GSL): 4.0169380432310705e-17
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 3.7032414928027897e-16
+// mean(f - f_Boost): 1.0092936587501423e-16
+// variance(f - f_Boost): 1.6135791243157061e-33
+// stddev(f - f_Boost): 4.0169380432310705e-17
 const testcase_ellint_rg<double>
 data021[11] =
 {
@@ -752,11 +752,11 @@ data021[11] =
 const double toler021 = 2.5000000000000020e-13;
 
 // Test data for x=1.0000000000000000, y=5.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.0027475881479154e-16
-// mean(f - f_GSL): -1.8167285857502563e-16
-// variance(f - f_GSL): 7.5748575558153970e-33
-// stddev(f - f_GSL): 8.7033657603339855e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.0027475881479154e-16
+// mean(f - f_Boost): -1.8167285857502563e-16
+// variance(f - f_Boost): 7.5748575558153970e-33
+// stddev(f - f_Boost): 8.7033657603339855e-17
 const testcase_ellint_rg<double>
 data022[11] =
 {
@@ -786,11 +786,11 @@ data022[11] =
 const double toler022 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=0.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 4.0141239853959483e-16
-// mean(f - f_GSL): -2.0185873175002847e-17
-// variance(f - f_GSL): 2.3710648798972457e-32
-// stddev(f - f_GSL): 1.5398262499052436e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 4.0141239853959483e-16
+// mean(f - f_Boost): -2.0185873175002847e-17
+// variance(f - f_Boost): 2.3710648798972457e-32
+// stddev(f - f_Boost): 1.5398262499052436e-16
 const testcase_ellint_rg<double>
 data023[11] =
 {
@@ -820,11 +820,11 @@ data023[11] =
 const double toler023 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=0.50000000000000000.
-// max(|f - f_GSL|): 2.2204460492503131e-16
-// max(|f - f_GSL| / |f_GSL|): 2.0751039930508887e-16
-// mean(f - f_GSL): 7.0650556112509961e-17
-// variance(f - f_GSL): 9.4237503024271437e-33
-// stddev(f - f_GSL): 9.7076002711417530e-17
+// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost| / |f_Boost|): 2.0751039930508887e-16
+// mean(f - f_Boost): 7.0650556112509961e-17
+// variance(f - f_Boost): 9.4237503024271437e-33
+// stddev(f - f_Boost): 9.7076002711417530e-17
 const testcase_ellint_rg<double>
 data024[11] =
 {
@@ -854,11 +854,11 @@ data024[11] =
 const double toler024 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=1.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.8522163719602998e-16
-// mean(f - f_GSL): 1.3120817563751851e-16
-// variance(f - f_GSL): 1.3726627967269025e-32
-// stddev(f - f_GSL): 1.1716069292757288e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.8522163719602998e-16
+// mean(f - f_Boost): 1.3120817563751851e-16
+// variance(f - f_Boost): 1.3726627967269025e-32
+// stddev(f - f_Boost): 1.1716069292757288e-16
 const testcase_ellint_rg<double>
 data025[11] =
 {
@@ -888,11 +888,11 @@ data025[11] =
 const double toler025 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=1.5000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 4.7386219455716186e-16
-// mean(f - f_GSL): 3.1288103421254413e-16
-// variance(f - f_GSL): 1.0768399572690232e-32
-// stddev(f - f_GSL): 1.0377089945013599e-16
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 4.7386219455716186e-16
+// mean(f - f_Boost): 3.1288103421254413e-16
+// variance(f - f_Boost): 1.0768399572690232e-32
+// stddev(f - f_Boost): 1.0377089945013599e-16
 const testcase_ellint_rg<double>
 data026[11] =
 {
@@ -922,11 +922,11 @@ data026[11] =
 const double toler026 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=2.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.7516853333436488e-16
-// mean(f - f_GSL): -2.0185873175002847e-17
-// variance(f - f_GSL): 4.4821642342102945e-33
-// stddev(f - f_GSL): 6.6948967387184506e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.7516853333436488e-16
+// mean(f - f_Boost): -2.0185873175002847e-17
+// variance(f - f_Boost): 4.4821642342102945e-33
+// stddev(f - f_Boost): 6.6948967387184506e-17
 const testcase_ellint_rg<double>
 data027[11] =
 {
@@ -956,11 +956,11 @@ data027[11] =
 const double toler027 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=2.5000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 4.0141239853959483e-16
-// mean(f - f_GSL): 6.0557619525008534e-17
-// variance(f - f_GSL): 1.6180612885499163e-32
-// stddev(f - f_GSL): 1.2720303803565055e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 4.0141239853959483e-16
+// mean(f - f_Boost): 6.0557619525008534e-17
+// variance(f - f_Boost): 1.6180612885499163e-32
+// stddev(f - f_Boost): 1.2720303803565055e-16
 const testcase_ellint_rg<double>
 data028[11] =
 {
@@ -990,11 +990,11 @@ data028[11] =
 const double toler028 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=3.0000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 4.7386219455716186e-16
-// mean(f - f_GSL): 2.4223047810003414e-16
-// variance(f - f_GSL): 4.4821642342102945e-33
-// stddev(f - f_GSL): 6.6948967387184506e-17
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 4.7386219455716186e-16
+// mean(f - f_Boost): 2.4223047810003414e-16
+// variance(f - f_Boost): 4.4821642342102945e-33
+// stddev(f - f_Boost): 6.6948967387184506e-17
 const testcase_ellint_rg<double>
 data029[11] =
 {
@@ -1024,11 +1024,11 @@ data029[11] =
 const double toler029 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=3.5000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 4.5667426534972601e-16
-// mean(f - f_GSL): 2.4223047810003414e-16
-// variance(f - f_GSL): 4.4821642342102943e-35
-// stddev(f - f_GSL): 6.6948967387184503e-18
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 4.5667426534972601e-16
+// mean(f - f_Boost): 2.4223047810003414e-16
+// variance(f - f_Boost): 4.4821642342102943e-35
+// stddev(f - f_Boost): 6.6948967387184503e-18
 const testcase_ellint_rg<double>
 data030[11] =
 {
@@ -1058,11 +1058,11 @@ data030[11] =
 const double toler030 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=4.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.0718583646021026e-16
-// mean(f - f_GSL): 2.0185873175002846e-16
-// variance(f - f_GSL): 4.4821642342102945e-33
-// stddev(f - f_GSL): 6.6948967387184506e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.0718583646021026e-16
+// mean(f - f_Boost): 2.0185873175002846e-16
+// variance(f - f_Boost): 4.4821642342102945e-33
+// stddev(f - f_Boost): 6.6948967387184506e-17
 const testcase_ellint_rg<double>
 data031[11] =
 {
@@ -1092,11 +1092,11 @@ data031[11] =
 const double toler031 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=4.5000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.7516853333436488e-16
-// mean(f - f_GSL): 1.8167285857502563e-16
-// variance(f - f_GSL): 3.6305530297103385e-33
-// stddev(f - f_GSL): 6.0254070648466048e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.7516853333436488e-16
+// mean(f - f_Boost): 1.8167285857502563e-16
+// variance(f - f_Boost): 3.6305530297103385e-33
+// stddev(f - f_Boost): 6.0254070648466048e-17
 const testcase_ellint_rg<double>
 data032[11] =
 {
@@ -1126,11 +1126,11 @@ data032[11] =
 const double toler032 = 2.5000000000000020e-13;
 
 // Test data for x=1.5000000000000000, y=5.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.1989601330140799e-16
-// mean(f - f_GSL): 8.0743492700011387e-17
-// variance(f - f_GSL): 3.0299430223261588e-32
-// stddev(f - f_GSL): 1.7406731520667971e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.1989601330140799e-16
+// mean(f - f_Boost): 8.0743492700011387e-17
+// variance(f - f_Boost): 3.0299430223261588e-32
+// stddev(f - f_Boost): 1.7406731520667971e-16
 const testcase_ellint_rg<double>
 data033[11] =
 {
@@ -1160,11 +1160,11 @@ data033[11] =
 const double toler033 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=0.0000000000000000.
-// max(|f - f_GSL|): 9.9920072216264089e-16
-// max(|f - f_GSL| / |f_GSL|): 1.1668190245934081e-15
-// mean(f - f_GSL): 1.5139404881252134e-16
-// variance(f - f_GSL): 2.5212173817432907e-33
-// stddev(f - f_GSL): 5.0211725540388379e-17
+// max(|f - f_Boost|): 9.9920072216264089e-16
+// max(|f - f_Boost| / |f_Boost|): 1.1668190245934081e-15
+// mean(f - f_Boost): 1.5139404881252134e-16
+// variance(f - f_Boost): 2.5212173817432907e-33
+// stddev(f - f_Boost): 5.0211725540388379e-17
 const testcase_ellint_rg<double>
 data034[11] =
 {
@@ -1194,11 +1194,11 @@ data034[11] =
 const double toler034 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=0.50000000000000000.
-// max(|f - f_GSL|): 9.9920072216264089e-16
-// max(|f - f_GSL| / |f_GSL|): 1.1668190245934081e-15
-// mean(f - f_GSL): -9.0836429287512813e-17
-// variance(f - f_GSL): 1.3726627967269025e-32
-// stddev(f - f_GSL): 1.1716069292757288e-16
+// max(|f - f_Boost|): 9.9920072216264089e-16
+// max(|f - f_Boost| / |f_Boost|): 1.1668190245934081e-15
+// mean(f - f_Boost): -9.0836429287512813e-17
+// variance(f - f_Boost): 1.3726627967269025e-32
+// stddev(f - f_Boost): 1.1716069292757288e-16
 const testcase_ellint_rg<double>
 data035[11] =
 {
@@ -1228,11 +1228,11 @@ data035[11] =
 const double toler035 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=1.0000000000000000.
-// max(|f - f_GSL|): 2.2204460492503131e-16
-// max(|f - f_GSL| / |f_GSL|): 2.3249540174363008e-16
-// mean(f - f_GSL): -6.0557619525008534e-17
-// variance(f - f_GSL): 4.0339478107892652e-34
-// stddev(f - f_GSL): 2.0084690216155352e-17
+// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost| / |f_Boost|): 2.3249540174363008e-16
+// mean(f - f_Boost): -6.0557619525008534e-17
+// variance(f - f_Boost): 4.0339478107892652e-34
+// stddev(f - f_Boost): 2.0084690216155352e-17
 const testcase_ellint_rg<double>
 data036[11] =
 {
@@ -1262,11 +1262,11 @@ data036[11] =
 const double toler036 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=1.5000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.7516853333436488e-16
-// mean(f - f_GSL): 0.0000000000000000
-// variance(f - f_GSL): 5.4234187233944562e-33
-// stddev(f - f_GSL): 7.3643864125902951e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.7516853333436488e-16
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 5.4234187233944562e-33
+// stddev(f - f_Boost): 7.3643864125902951e-17
 const testcase_ellint_rg<double>
 data037[11] =
 {
@@ -1296,11 +1296,11 @@ data037[11] =
 const double toler037 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=2.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.9982076145732839e-16
-// mean(f - f_GSL): -8.0743492700011387e-17
-// variance(f - f_GSL): 7.1714627747364710e-34
-// stddev(f - f_GSL): 2.6779586954873801e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.9982076145732839e-16
+// mean(f - f_Boost): -8.0743492700011387e-17
+// variance(f - f_Boost): 7.1714627747364710e-34
+// stddev(f - f_Boost): 2.6779586954873801e-17
 const testcase_ellint_rg<double>
 data038[11] =
 {
@@ -1330,11 +1330,11 @@ data038[11] =
 const double toler038 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=2.5000000000000000.
-// max(|f - f_GSL|): 2.2204460492503131e-16
-// max(|f - f_GSL| / |f_GSL|): 1.8862328053263070e-16
-// mean(f - f_GSL): 0.0000000000000000
-// variance(f - f_GSL): 5.4234187233944562e-33
-// stddev(f - f_GSL): 7.3643864125902951e-17
+// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost| / |f_Boost|): 1.8862328053263070e-16
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 5.4234187233944562e-33
+// stddev(f - f_Boost): 7.3643864125902951e-17
 const testcase_ellint_rg<double>
 data039[11] =
 {
@@ -1364,11 +1364,11 @@ data039[11] =
 const double toler039 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=3.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.5851540220306851e-16
-// mean(f - f_GSL): -4.0371746350005693e-17
-// variance(f - f_GSL): 7.5748575558153970e-33
-// stddev(f - f_GSL): 8.7033657603339855e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.5851540220306851e-16
+// mean(f - f_Boost): -4.0371746350005693e-17
+// variance(f - f_Boost): 7.5748575558153970e-33
+// stddev(f - f_Boost): 8.7033657603339855e-17
 const testcase_ellint_rg<double>
 data040[11] =
 {
@@ -1398,11 +1398,11 @@ data040[11] =
 const double toler040 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=3.5000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.2081494202212855e-16
-// mean(f - f_GSL): -2.0185873175002847e-17
-// variance(f - f_GSL): 4.4821642342102945e-33
-// stddev(f - f_GSL): 6.6948967387184506e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.2081494202212855e-16
+// mean(f - f_Boost): -2.0185873175002847e-17
+// variance(f - f_Boost): 4.4821642342102945e-33
+// stddev(f - f_Boost): 6.6948967387184506e-17
 const testcase_ellint_rg<double>
 data041[11] =
 {
@@ -1432,11 +1432,11 @@ data041[11] =
 const double toler041 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=4.0000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 4.1037669837954626e-16
-// mean(f - f_GSL): -8.0743492700011387e-17
-// variance(f - f_GSL): 1.0084869526973163e-32
-// stddev(f - f_GSL): 1.0042345108077676e-16
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 4.1037669837954626e-16
+// mean(f - f_Boost): -8.0743492700011387e-17
+// variance(f - f_Boost): 1.0084869526973163e-32
+// stddev(f - f_Boost): 1.0042345108077676e-16
 const testcase_ellint_rg<double>
 data042[11] =
 {
@@ -1466,11 +1466,11 @@ data042[11] =
 const double toler042 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=4.5000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.7516853333436488e-16
-// mean(f - f_GSL): 6.0557619525008534e-17
-// variance(f - f_GSL): 4.0339478107892652e-34
-// stddev(f - f_GSL): 2.0084690216155352e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.7516853333436488e-16
+// mean(f - f_Boost): 6.0557619525008534e-17
+// variance(f - f_Boost): 4.0339478107892652e-34
+// stddev(f - f_Boost): 2.0084690216155352e-17
 const testcase_ellint_rg<double>
 data043[11] =
 {
@@ -1500,11 +1500,11 @@ data043[11] =
 const double toler043 = 2.5000000000000020e-13;
 
 // Test data for x=2.0000000000000000, y=5.0000000000000000.
-// max(|f - f_GSL|): 2.2204460492503131e-16
-// max(|f - f_GSL| / |f_GSL|): 1.4481752991054461e-16
-// mean(f - f_GSL): -6.0557619525008534e-17
-// variance(f - f_GSL): 2.8685851098945884e-33
-// stddev(f - f_GSL): 5.3559173909747602e-17
+// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost| / |f_Boost|): 1.4481752991054461e-16
+// mean(f - f_Boost): -6.0557619525008534e-17
+// variance(f - f_Boost): 2.8685851098945884e-33
+// stddev(f - f_Boost): 5.3559173909747602e-17
 const testcase_ellint_rg<double>
 data044[11] =
 {
@@ -1534,11 +1534,11 @@ data044[11] =
 const double toler044 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=0.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 4.0141239853959483e-16
-// mean(f - f_GSL): 5.0464682937507114e-17
-// variance(f - f_GSL): 3.2383636592169380e-33
-// stddev(f - f_GSL): 5.6906622279106831e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 4.0141239853959483e-16
+// mean(f - f_Boost): 5.0464682937507114e-17
+// variance(f - f_Boost): 3.2383636592169380e-33
+// stddev(f - f_Boost): 5.6906622279106831e-17
 const testcase_ellint_rg<double>
 data045[11] =
 {
@@ -1568,11 +1568,11 @@ data045[11] =
 const double toler045 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=0.50000000000000000.
-// max(|f - f_GSL|): 2.2204460492503131e-16
-// max(|f - f_GSL| / |f_GSL|): 1.8429143606972435e-16
-// mean(f - f_GSL): -5.0464682937507114e-17
-// variance(f - f_GSL): 3.2383636592169380e-33
-// stddev(f - f_GSL): 5.6906622279106831e-17
+// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost| / |f_Boost|): 1.8429143606972435e-16
+// mean(f - f_Boost): -5.0464682937507114e-17
+// variance(f - f_Boost): 3.2383636592169380e-33
+// stddev(f - f_Boost): 5.6906622279106831e-17
 const testcase_ellint_rg<double>
 data046[11] =
 {
@@ -1602,11 +1602,11 @@ data046[11] =
 const double toler046 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=1.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.8453613071738680e-16
-// mean(f - f_GSL): -4.0371746350005693e-17
-// variance(f - f_GSL): 1.7928656936841177e-34
-// stddev(f - f_GSL): 1.3389793477436901e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.8453613071738680e-16
+// mean(f - f_Boost): -4.0371746350005693e-17
+// variance(f - f_Boost): 1.7928656936841177e-34
+// stddev(f - f_Boost): 1.3389793477436901e-17
 const testcase_ellint_rg<double>
 data047[11] =
 {
@@ -1636,11 +1636,11 @@ data047[11] =
 const double toler047 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=1.5000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 4.0141239853959483e-16
-// mean(f - f_GSL): 6.0557619525008534e-17
-// variance(f - f_GSL): 1.6180612885499163e-32
-// stddev(f - f_GSL): 1.2720303803565055e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 4.0141239853959483e-16
+// mean(f - f_Boost): 6.0557619525008534e-17
+// variance(f - f_Boost): 1.6180612885499163e-32
+// stddev(f - f_Boost): 1.2720303803565055e-16
 const testcase_ellint_rg<double>
 data048[11] =
 {
@@ -1670,11 +1670,11 @@ data048[11] =
 const double toler048 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=2.0000000000000000.
-// max(|f - f_GSL|): 2.2204460492503131e-16
-// max(|f - f_GSL| / |f_GSL|): 1.8862328053263070e-16
-// mean(f - f_GSL): 0.0000000000000000
-// variance(f - f_GSL): 5.4234187233944562e-33
-// stddev(f - f_GSL): 7.3643864125902951e-17
+// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost| / |f_Boost|): 1.8862328053263070e-16
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 5.4234187233944562e-33
+// stddev(f - f_Boost): 7.3643864125902951e-17
 const testcase_ellint_rg<double>
 data049[11] =
 {
@@ -1704,11 +1704,11 @@ data049[11] =
 const double toler049 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=2.5000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 4.0807886338533324e-16
-// mean(f - f_GSL): -1.0092936587501423e-16
-// variance(f - f_GSL): 3.5140167596208710e-32
-// stddev(f - f_GSL): 1.8745710868411660e-16
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 4.0807886338533324e-16
+// mean(f - f_Boost): -1.0092936587501423e-16
+// variance(f - f_Boost): 3.5140167596208710e-32
+// stddev(f - f_Boost): 1.8745710868411660e-16
 const testcase_ellint_rg<double>
 data050[11] =
 {
@@ -1738,11 +1738,11 @@ data050[11] =
 const double toler050 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=3.0000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 4.0807886338533324e-16
-// mean(f - f_GSL): -2.0185873175002847e-17
-// variance(f - f_GSL): 4.4821642342102943e-35
-// stddev(f - f_GSL): 6.6948967387184503e-18
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 4.0807886338533324e-16
+// mean(f - f_Boost): -2.0185873175002847e-17
+// variance(f - f_Boost): 4.4821642342102943e-35
+// stddev(f - f_Boost): 6.6948967387184503e-18
 const testcase_ellint_rg<double>
 data051[11] =
 {
@@ -1772,11 +1772,11 @@ data051[11] =
 const double toler051 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=3.5000000000000000.
-// max(|f - f_GSL|): 0.0000000000000000
-// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
-// mean(f - f_GSL): 0.0000000000000000
-// variance(f - f_GSL): 0.0000000000000000
-// stddev(f - f_GSL): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_ellint_rg<double>
 data052[11] =
 {
@@ -1806,11 +1806,11 @@ data052[11] =
 const double toler052 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=4.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.8453613071738680e-16
-// mean(f - f_GSL): -4.0371746350005693e-17
-// variance(f - f_GSL): 1.7928656936841177e-34
-// stddev(f - f_GSL): 1.3389793477436901e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.8453613071738680e-16
+// mean(f - f_Boost): -4.0371746350005693e-17
+// variance(f - f_Boost): 1.7928656936841177e-34
+// stddev(f - f_Boost): 1.3389793477436901e-17
 const testcase_ellint_rg<double>
 data053[11] =
 {
@@ -1840,11 +1840,11 @@ data053[11] =
 const double toler053 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=4.5000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 3.4133419099114535e-16
-// mean(f - f_GSL): 1.6148698540002277e-16
-// variance(f - f_GSL): 4.0339478107892652e-34
-// stddev(f - f_GSL): 2.0084690216155352e-17
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 3.4133419099114535e-16
+// mean(f - f_Boost): 1.6148698540002277e-16
+// variance(f - f_Boost): 4.0339478107892652e-34
+// stddev(f - f_Boost): 2.0084690216155352e-17
 const testcase_ellint_rg<double>
 data054[11] =
 {
@@ -1874,11 +1874,11 @@ data054[11] =
 const double toler054 = 2.5000000000000020e-13;
 
 // Test data for x=2.5000000000000000, y=5.0000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 3.6705207758343726e-16
-// mean(f - f_GSL): 2.0185873175002847e-17
-// variance(f - f_GSL): 4.4821642342102943e-35
-// stddev(f - f_GSL): 6.6948967387184503e-18
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 3.6705207758343726e-16
+// mean(f - f_Boost): 2.0185873175002847e-17
+// variance(f - f_Boost): 4.4821642342102943e-35
+// stddev(f - f_Boost): 6.6948967387184503e-18
 const testcase_ellint_rg<double>
 data055[11] =
 {
@@ -1908,11 +1908,11 @@ data055[11] =
 const double toler055 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=0.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 4.4381130140574458e-16
-// mean(f - f_GSL): -6.0557619525008534e-17
-// variance(f - f_GSL): 2.8685851098945884e-33
-// stddev(f - f_GSL): 5.3559173909747602e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 4.4381130140574458e-16
+// mean(f - f_Boost): -6.0557619525008534e-17
+// variance(f - f_Boost): 2.8685851098945884e-33
+// stddev(f - f_Boost): 5.3559173909747602e-17
 const testcase_ellint_rg<double>
 data056[11] =
 {
@@ -1942,11 +1942,11 @@ data056[11] =
 const double toler056 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=0.50000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 4.4381130140574458e-16
-// mean(f - f_GSL): -1.2111523905001707e-16
-// variance(f - f_GSL): 1.6135791243157061e-33
-// stddev(f - f_GSL): 4.0169380432310705e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 4.4381130140574458e-16
+// mean(f - f_Boost): -1.2111523905001707e-16
+// variance(f - f_Boost): 1.6135791243157061e-33
+// stddev(f - f_Boost): 4.0169380432310705e-17
 const testcase_ellint_rg<double>
 data057[11] =
 {
@@ -1976,11 +1976,11 @@ data057[11] =
 const double toler057 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=1.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.0430533284930570e-16
-// mean(f - f_GSL): 6.0557619525008534e-17
-// variance(f - f_GSL): 8.7850418990521774e-33
-// stddev(f - f_GSL): 9.3728554342058301e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.0430533284930570e-16
+// mean(f - f_Boost): 6.0557619525008534e-17
+// variance(f - f_Boost): 8.7850418990521774e-33
+// stddev(f - f_Boost): 9.3728554342058301e-17
 const testcase_ellint_rg<double>
 data058[11] =
 {
@@ -2010,11 +2010,11 @@ data058[11] =
 const double toler058 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=1.5000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 4.7386219455716186e-16
-// mean(f - f_GSL): 2.0185873175002846e-16
-// variance(f - f_GSL): 6.4543164972628244e-33
-// stddev(f - f_GSL): 8.0338760864621409e-17
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 4.7386219455716186e-16
+// mean(f - f_Boost): 2.0185873175002846e-16
+// variance(f - f_Boost): 6.4543164972628244e-33
+// stddev(f - f_Boost): 8.0338760864621409e-17
 const testcase_ellint_rg<double>
 data059[11] =
 {
@@ -2044,11 +2044,11 @@ data059[11] =
 const double toler059 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=2.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.5851540220306851e-16
-// mean(f - f_GSL): 0.0000000000000000
-// variance(f - f_GSL): 5.4234187233944562e-33
-// stddev(f - f_GSL): 7.3643864125902951e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.5851540220306851e-16
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 5.4234187233944562e-33
+// stddev(f - f_Boost): 7.3643864125902951e-17
 const testcase_ellint_rg<double>
 data060[11] =
 {
@@ -2078,11 +2078,11 @@ data060[11] =
 const double toler060 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=2.5000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 4.0807886338533324e-16
-// mean(f - f_GSL): -6.0557619525008534e-17
-// variance(f - f_GSL): 4.0339478107892652e-34
-// stddev(f - f_GSL): 2.0084690216155352e-17
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 4.0807886338533324e-16
+// mean(f - f_Boost): -6.0557619525008534e-17
+// variance(f - f_Boost): 4.0339478107892652e-34
+// stddev(f - f_Boost): 2.0084690216155352e-17
 const testcase_ellint_rg<double>
 data061[11] =
 {
@@ -2112,11 +2112,11 @@ data061[11] =
 const double toler061 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=3.0000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 4.2313424563065397e-16
-// mean(f - f_GSL): 3.8353159032505408e-16
-// variance(f - f_GSL): 2.8685851098945884e-33
-// stddev(f - f_GSL): 5.3559173909747602e-17
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 4.2313424563065397e-16
+// mean(f - f_Boost): 3.8353159032505408e-16
+// variance(f - f_Boost): 2.8685851098945884e-33
+// stddev(f - f_Boost): 5.3559173909747602e-17
 const testcase_ellint_rg<double>
 data062[11] =
 {
@@ -2146,11 +2146,11 @@ data062[11] =
 const double toler062 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=3.5000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 3.7443719776960903e-16
-// mean(f - f_GSL): 1.0092936587501423e-16
-// variance(f - f_GSL): 1.6135791243157061e-33
-// stddev(f - f_GSL): 4.0169380432310705e-17
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 3.7443719776960903e-16
+// mean(f - f_Boost): 1.0092936587501423e-16
+// variance(f - f_Boost): 1.6135791243157061e-33
+// stddev(f - f_Boost): 4.0169380432310705e-17
 const testcase_ellint_rg<double>
 data063[11] =
 {
@@ -2180,11 +2180,11 @@ data063[11] =
 const double toler063 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=4.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.2712846483748399e-16
-// mean(f - f_GSL): 8.0743492700011387e-17
-// variance(f - f_GSL): 1.4522212118841354e-32
-// stddev(f - f_GSL): 1.2050814129693210e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.2712846483748399e-16
+// mean(f - f_Boost): 8.0743492700011387e-17
+// variance(f - f_Boost): 1.4522212118841354e-32
+// stddev(f - f_Boost): 1.2050814129693210e-16
 const testcase_ellint_rg<double>
 data064[11] =
 {
@@ -2214,11 +2214,11 @@ data064[11] =
 const double toler064 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=4.5000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 3.3361172389919440e-16
-// mean(f - f_GSL): 1.4130111222501992e-16
-// variance(f - f_GSL): 3.7695001209708575e-32
-// stddev(f - f_GSL): 1.9415200542283506e-16
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 3.3361172389919440e-16
+// mean(f - f_Boost): 1.4130111222501992e-16
+// variance(f - f_Boost): 3.7695001209708575e-32
+// stddev(f - f_Boost): 1.9415200542283506e-16
 const testcase_ellint_rg<double>
 data065[11] =
 {
@@ -2248,11 +2248,11 @@ data065[11] =
 const double toler065 = 2.5000000000000020e-13;
 
 // Test data for x=3.0000000000000000, y=5.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.5223344027919215e-16
-// mean(f - f_GSL): -2.0185873175002847e-17
-// variance(f - f_GSL): 1.9766344272867397e-32
-// stddev(f - f_GSL): 1.4059283151308747e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.5223344027919215e-16
+// mean(f - f_Boost): -2.0185873175002847e-17
+// variance(f - f_Boost): 1.9766344272867397e-32
+// stddev(f - f_Boost): 1.4059283151308747e-16
 const testcase_ellint_rg<double>
 data066[11] =
 {
@@ -2282,11 +2282,11 @@ data066[11] =
 const double toler066 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=0.0000000000000000.
-// max(|f - f_GSL|): 1.5543122344752192e-15
-// max(|f - f_GSL| / |f_GSL|): 1.0222415523931669e-15
-// mean(f - f_GSL): 1.8167285857502563e-16
-// variance(f - f_GSL): 1.7928656936841178e-32
-// stddev(f - f_GSL): 1.3389793477436901e-16
+// max(|f - f_Boost|): 1.5543122344752192e-15
+// max(|f - f_Boost| / |f_Boost|): 1.0222415523931669e-15
+// mean(f - f_Boost): 1.8167285857502563e-16
+// variance(f - f_Boost): 1.7928656936841178e-32
+// stddev(f - f_Boost): 1.3389793477436901e-16
 const testcase_ellint_rg<double>
 data067[11] =
 {
@@ -2316,11 +2316,11 @@ data067[11] =
 const double toler067 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=0.50000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.2081494202212855e-16
-// mean(f - f_GSL): 2.0185873175002847e-17
-// variance(f - f_GSL): 6.4543164972628244e-33
-// stddev(f - f_GSL): 8.0338760864621409e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.2081494202212855e-16
+// mean(f - f_Boost): 2.0185873175002847e-17
+// variance(f - f_Boost): 6.4543164972628244e-33
+// stddev(f - f_Boost): 8.0338760864621409e-17
 const testcase_ellint_rg<double>
 data068[11] =
 {
@@ -2350,11 +2350,11 @@ data068[11] =
 const double toler068 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=1.0000000000000000.
-// max(|f - f_GSL|): 2.2204460492503131e-16
-// max(|f - f_GSL| / |f_GSL|): 1.5927565112396011e-16
-// mean(f - f_GSL): 2.0185873175002847e-17
-// variance(f - f_GSL): 4.4821642342102943e-35
-// stddev(f - f_GSL): 6.6948967387184503e-18
+// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost| / |f_Boost|): 1.5927565112396011e-16
+// mean(f - f_Boost): 2.0185873175002847e-17
+// variance(f - f_Boost): 4.4821642342102943e-35
+// stddev(f - f_Boost): 6.6948967387184503e-18
 const testcase_ellint_rg<double>
 data069[11] =
 {
@@ -2384,11 +2384,11 @@ data069[11] =
 const double toler069 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=1.5000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 4.5667426534972601e-16
-// mean(f - f_GSL): 2.6241635127503701e-16
-// variance(f - f_GSL): 3.6305530297103385e-33
-// stddev(f - f_GSL): 6.0254070648466048e-17
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 4.5667426534972601e-16
+// mean(f - f_Boost): 2.6241635127503701e-16
+// variance(f - f_Boost): 3.6305530297103385e-33
+// stddev(f - f_Boost): 6.0254070648466048e-17
 const testcase_ellint_rg<double>
 data070[11] =
 {
@@ -2418,11 +2418,11 @@ data070[11] =
 const double toler070 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=2.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.2081494202212855e-16
-// mean(f - f_GSL): -2.0185873175002847e-17
-// variance(f - f_GSL): 4.4821642342102945e-33
-// stddev(f - f_GSL): 6.6948967387184506e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.2081494202212855e-16
+// mean(f - f_Boost): -2.0185873175002847e-17
+// variance(f - f_Boost): 4.4821642342102945e-33
+// stddev(f - f_Boost): 6.6948967387184506e-17
 const testcase_ellint_rg<double>
 data071[11] =
 {
@@ -2452,11 +2452,11 @@ data071[11] =
 const double toler071 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=2.5000000000000000.
-// max(|f - f_GSL|): 0.0000000000000000
-// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
-// mean(f - f_GSL): 0.0000000000000000
-// variance(f - f_GSL): 0.0000000000000000
-// stddev(f - f_GSL): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_ellint_rg<double>
 data072[11] =
 {
@@ -2486,11 +2486,11 @@ data072[11] =
 const double toler072 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=3.0000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 3.7443719776960903e-16
-// mean(f - f_GSL): 1.2111523905001707e-16
-// variance(f - f_GSL): 1.1474340439578354e-32
-// stddev(f - f_GSL): 1.0711834781949520e-16
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 3.7443719776960903e-16
+// mean(f - f_Boost): 1.2111523905001707e-16
+// variance(f - f_Boost): 1.1474340439578354e-32
+// stddev(f - f_Boost): 1.0711834781949520e-16
 const testcase_ellint_rg<double>
 data073[11] =
 {
@@ -2520,11 +2520,11 @@ data073[11] =
 const double toler073 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=3.5000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 3.9818037642744585e-16
-// mean(f - f_GSL): 1.4130111222501992e-16
-// variance(f - f_GSL): 2.1962604747630443e-33
-// stddev(f - f_GSL): 4.6864277171029150e-17
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 3.9818037642744585e-16
+// mean(f - f_Boost): 1.4130111222501992e-16
+// variance(f - f_Boost): 2.1962604747630443e-33
+// stddev(f - f_Boost): 4.6864277171029150e-17
 const testcase_ellint_rg<double>
 data074[11] =
 {
@@ -2554,11 +2554,11 @@ data074[11] =
 const double toler074 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=4.0000000000000000.
-// max(|f - f_GSL|): 1.5543122344752192e-15
-// max(|f - f_GSL| / |f_GSL|): 1.0222415523931669e-15
-// mean(f - f_GSL): 2.8260222445003984e-16
-// variance(f - f_GSL): 5.8088848475365417e-32
-// stddev(f - f_GSL): 2.4101628259386419e-16
+// max(|f - f_Boost|): 1.5543122344752192e-15
+// max(|f - f_Boost| / |f_Boost|): 1.0222415523931669e-15
+// mean(f - f_Boost): 2.8260222445003984e-16
+// variance(f - f_Boost): 5.8088848475365417e-32
+// stddev(f - f_Boost): 2.4101628259386419e-16
 const testcase_ellint_rg<double>
 data075[11] =
 {
@@ -2588,11 +2588,11 @@ data075[11] =
 const double toler075 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=4.5000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 3.3324095745747585e-16
-// mean(f - f_GSL): 2.0185873175002846e-16
-// variance(f - f_GSL): 6.4543164972628244e-33
-// stddev(f - f_GSL): 8.0338760864621409e-17
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 3.3324095745747585e-16
+// mean(f - f_Boost): 2.0185873175002846e-16
+// variance(f - f_Boost): 6.4543164972628244e-33
+// stddev(f - f_Boost): 8.0338760864621409e-17
 const testcase_ellint_rg<double>
 data076[11] =
 {
@@ -2622,11 +2622,11 @@ data076[11] =
 const double toler076 = 2.5000000000000020e-13;
 
 // Test data for x=3.5000000000000000, y=5.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.1779975642541134e-16
-// mean(f - f_GSL): -8.0743492700011387e-17
-// variance(f - f_GSL): 1.4522212118841354e-32
-// stddev(f - f_GSL): 1.2050814129693210e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.1779975642541134e-16
+// mean(f - f_Boost): -8.0743492700011387e-17
+// variance(f - f_Boost): 1.4522212118841354e-32
+// stddev(f - f_Boost): 1.2050814129693210e-16
 const testcase_ellint_rg<double>
 data077[11] =
 {
@@ -2656,11 +2656,11 @@ data077[11] =
 const double toler077 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=0.0000000000000000.
-// max(|f - f_GSL|): 1.5543122344752192e-15
-// max(|f - f_GSL| / |f_GSL|): 1.1000875262766293e-15
-// mean(f - f_GSL): 2.0185873175002846e-16
-// variance(f - f_GSL): 1.9766344272867397e-32
-// stddev(f - f_GSL): 1.4059283151308747e-16
+// max(|f - f_Boost|): 1.5543122344752192e-15
+// max(|f - f_Boost| / |f_Boost|): 1.1000875262766293e-15
+// mean(f - f_Boost): 2.0185873175002846e-16
+// variance(f - f_Boost): 1.9766344272867397e-32
+// stddev(f - f_Boost): 1.4059283151308747e-16
 const testcase_ellint_rg<double>
 data078[11] =
 {
@@ -2690,11 +2690,11 @@ data078[11] =
 const double toler078 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=0.50000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.7788015988203232e-16
-// mean(f - f_GSL): -1.2111523905001707e-16
-// variance(f - f_GSL): 1.1205410585525736e-33
-// stddev(f - f_GSL): 3.3474483693592253e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.7788015988203232e-16
+// mean(f - f_Boost): -1.2111523905001707e-16
+// variance(f - f_Boost): 1.1205410585525736e-33
+// stddev(f - f_Boost): 3.3474483693592253e-17
 const testcase_ellint_rg<double>
 data079[11] =
 {
@@ -2724,11 +2724,11 @@ data079[11] =
 const double toler079 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=1.0000000000000000.
-// max(|f - f_GSL|): 1.3322676295501878e-15
-// max(|f - f_GSL| / |f_GSL|): 1.1000875262766293e-15
-// mean(f - f_GSL): 1.4130111222501992e-16
-// variance(f - f_GSL): 1.4522212118841354e-32
-// stddev(f - f_GSL): 1.2050814129693210e-16
+// max(|f - f_Boost|): 1.3322676295501878e-15
+// max(|f - f_Boost| / |f_Boost|): 1.1000875262766293e-15
+// mean(f - f_Boost): 1.4130111222501992e-16
+// variance(f - f_Boost): 1.4522212118841354e-32
+// stddev(f - f_Boost): 1.2050814129693210e-16
 const testcase_ellint_rg<double>
 data080[11] =
 {
@@ -2758,11 +2758,11 @@ data080[11] =
 const double toler080 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=1.5000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.0718583646021026e-16
-// mean(f - f_GSL): 2.0185873175002846e-16
-// variance(f - f_GSL): 4.4821642342102945e-33
-// stddev(f - f_GSL): 6.6948967387184506e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.0718583646021026e-16
+// mean(f - f_Boost): 2.0185873175002846e-16
+// variance(f - f_Boost): 4.4821642342102945e-33
+// stddev(f - f_Boost): 6.6948967387184506e-17
 const testcase_ellint_rg<double>
 data081[11] =
 {
@@ -2792,11 +2792,11 @@ data081[11] =
 const double toler081 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=2.0000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 4.1037669837954626e-16
-// mean(f - f_GSL): -8.0743492700011387e-17
-// variance(f - f_GSL): 1.0084869526973163e-32
-// stddev(f - f_GSL): 1.0042345108077676e-16
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 4.1037669837954626e-16
+// mean(f - f_Boost): -8.0743492700011387e-17
+// variance(f - f_Boost): 1.0084869526973163e-32
+// stddev(f - f_Boost): 1.0042345108077676e-16
 const testcase_ellint_rg<double>
 data082[11] =
 {
@@ -2826,11 +2826,11 @@ data082[11] =
 const double toler082 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=2.5000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.9732973861154346e-16
-// mean(f - f_GSL): -1.0092936587501423e-16
-// variance(f - f_GSL): 1.1205410585525736e-33
-// stddev(f - f_GSL): 3.3474483693592253e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.9732973861154346e-16
+// mean(f - f_Boost): -1.0092936587501423e-16
+// variance(f - f_Boost): 1.1205410585525736e-33
+// stddev(f - f_Boost): 3.3474483693592253e-17
 const testcase_ellint_rg<double>
 data083[11] =
 {
@@ -2860,11 +2860,11 @@ data083[11] =
 const double toler083 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=3.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.2712846483748399e-16
-// mean(f - f_GSL): 1.0092936587501423e-16
-// variance(f - f_GSL): 1.2953454636867752e-32
-// stddev(f - f_GSL): 1.1381324455821366e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.2712846483748399e-16
+// mean(f - f_Boost): 1.0092936587501423e-16
+// variance(f - f_Boost): 1.2953454636867752e-32
+// stddev(f - f_Boost): 1.1381324455821366e-16
 const testcase_ellint_rg<double>
 data084[11] =
 {
@@ -2894,11 +2894,11 @@ data084[11] =
 const double toler084 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=3.5000000000000000.
-// max(|f - f_GSL|): 1.5543122344752192e-15
-// max(|f - f_GSL| / |f_GSL|): 1.0222415523931669e-15
-// mean(f - f_GSL): 2.4223047810003414e-16
-// variance(f - f_GSL): 5.1813818547471008e-32
-// stddev(f - f_GSL): 2.2762648911642732e-16
+// max(|f - f_Boost|): 1.5543122344752192e-15
+// max(|f - f_Boost| / |f_Boost|): 1.0222415523931669e-15
+// mean(f - f_Boost): 2.4223047810003414e-16
+// variance(f - f_Boost): 5.1813818547471008e-32
+// stddev(f - f_Boost): 2.2762648911642732e-16
 const testcase_ellint_rg<double>
 data085[11] =
 {
@@ -2928,11 +2928,11 @@ data085[11] =
 const double toler085 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=4.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.5151737474509584e-16
-// mean(f - f_GSL): 1.4130111222501992e-16
-// variance(f - f_GSL): 1.0084869526973163e-32
-// stddev(f - f_GSL): 1.0042345108077676e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.5151737474509584e-16
+// mean(f - f_Boost): 1.4130111222501992e-16
+// variance(f - f_Boost): 1.0084869526973163e-32
+// stddev(f - f_Boost): 1.0042345108077676e-16
 const testcase_ellint_rg<double>
 data086[11] =
 {
@@ -2962,11 +2962,11 @@ data086[11] =
 const double toler086 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=4.5000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 3.3324095745747585e-16
-// mean(f - f_GSL): 2.4223047810003414e-16
-// variance(f - f_GSL): 6.4543164972628244e-33
-// stddev(f - f_GSL): 8.0338760864621409e-17
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 3.3324095745747585e-16
+// mean(f - f_Boost): 2.4223047810003414e-16
+// variance(f - f_Boost): 6.4543164972628244e-33
+// stddev(f - f_Boost): 8.0338760864621409e-17
 const testcase_ellint_rg<double>
 data087[11] =
 {
@@ -2996,11 +2996,11 @@ data087[11] =
 const double toler087 = 2.5000000000000020e-13;
 
 // Test data for x=4.0000000000000000, y=5.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.1779975642541134e-16
-// mean(f - f_GSL): -4.0371746350005693e-17
-// variance(f - f_GSL): 1.7928656936841177e-34
-// stddev(f - f_GSL): 1.3389793477436901e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.1779975642541134e-16
+// mean(f - f_Boost): -4.0371746350005693e-17
+// variance(f - f_Boost): 1.7928656936841177e-34
+// stddev(f - f_Boost): 1.3389793477436901e-17
 const testcase_ellint_rg<double>
 data088[11] =
 {
@@ -3030,11 +3030,11 @@ data088[11] =
 const double toler088 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=0.0000000000000000.
-// max(|f - f_GSL|): 2.2204460492503131e-16
-// max(|f - f_GSL| / |f_GSL|): 1.8796618068226289e-16
-// mean(f - f_GSL): -8.0743492700011387e-17
-// variance(f - f_GSL): 7.1714627747364710e-34
-// stddev(f - f_GSL): 2.6779586954873801e-17
+// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost| / |f_Boost|): 1.8796618068226289e-16
+// mean(f - f_Boost): -8.0743492700011387e-17
+// variance(f - f_Boost): 7.1714627747364710e-34
+// stddev(f - f_Boost): 2.6779586954873801e-17
 const testcase_ellint_rg<double>
 data089[11] =
 {
@@ -3064,11 +3064,11 @@ data089[11] =
 const double toler089 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=0.50000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.6994751106643259e-16
-// mean(f - f_GSL): 1.0092936587501423e-16
-// variance(f - f_GSL): 1.1205410585525736e-33
-// stddev(f - f_GSL): 3.3474483693592253e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.6994751106643259e-16
+// mean(f - f_Boost): 1.0092936587501423e-16
+// variance(f - f_Boost): 1.1205410585525736e-33
+// stddev(f - f_Boost): 3.3474483693592253e-17
 const testcase_ellint_rg<double>
 data090[11] =
 {
@@ -3098,11 +3098,11 @@ data090[11] =
 const double toler090 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=1.0000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 3.7032414928027897e-16
-// mean(f - f_GSL): 1.2111523905001707e-16
-// variance(f - f_GSL): 1.1205410585525736e-33
-// stddev(f - f_GSL): 3.3474483693592253e-17
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 3.7032414928027897e-16
+// mean(f - f_Boost): 1.2111523905001707e-16
+// variance(f - f_Boost): 1.1205410585525736e-33
+// stddev(f - f_Boost): 3.3474483693592253e-17
 const testcase_ellint_rg<double>
 data091[11] =
 {
@@ -3132,11 +3132,11 @@ data091[11] =
 const double toler091 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=1.5000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.7516853333436488e-16
-// mean(f - f_GSL): 1.4130111222501992e-16
-// variance(f - f_GSL): 2.1962604747630443e-33
-// stddev(f - f_GSL): 4.6864277171029150e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.7516853333436488e-16
+// mean(f - f_Boost): 1.4130111222501992e-16
+// variance(f - f_Boost): 2.1962604747630443e-33
+// stddev(f - f_Boost): 4.6864277171029150e-17
 const testcase_ellint_rg<double>
 data092[11] =
 {
@@ -3166,11 +3166,11 @@ data092[11] =
 const double toler092 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=2.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.7516853333436488e-16
-// mean(f - f_GSL): 2.0185873175002847e-17
-// variance(f - f_GSL): 4.4821642342102943e-35
-// stddev(f - f_GSL): 6.6948967387184503e-18
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.7516853333436488e-16
+// mean(f - f_Boost): 2.0185873175002847e-17
+// variance(f - f_Boost): 4.4821642342102943e-35
+// stddev(f - f_Boost): 6.6948967387184503e-18
 const testcase_ellint_rg<double>
 data093[11] =
 {
@@ -3200,11 +3200,11 @@ data093[11] =
 const double toler093 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=2.5000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 3.4133419099114535e-16
-// mean(f - f_GSL): 1.4130111222501992e-16
-// variance(f - f_GSL): 7.1714627747364710e-34
-// stddev(f - f_GSL): 2.6779586954873801e-17
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 3.4133419099114535e-16
+// mean(f - f_Boost): 1.4130111222501992e-16
+// variance(f - f_Boost): 7.1714627747364710e-34
+// stddev(f - f_Boost): 2.6779586954873801e-17
 const testcase_ellint_rg<double>
 data094[11] =
 {
@@ -3234,11 +3234,11 @@ data094[11] =
 const double toler094 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=3.0000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 3.3361172389919440e-16
-// mean(f - f_GSL): 1.6148698540002277e-16
-// variance(f - f_GSL): 4.0339478107892652e-32
-// stddev(f - f_GSL): 2.0084690216155352e-16
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 3.3361172389919440e-16
+// mean(f - f_Boost): 1.6148698540002277e-16
+// variance(f - f_Boost): 4.0339478107892652e-32
+// stddev(f - f_Boost): 2.0084690216155352e-16
 const testcase_ellint_rg<double>
 data095[11] =
 {
@@ -3268,11 +3268,11 @@ data095[11] =
 const double toler095 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=3.5000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 3.3324095745747585e-16
-// mean(f - f_GSL): 1.8167285857502563e-16
-// variance(f - f_GSL): 7.5748575558153970e-33
-// stddev(f - f_GSL): 8.7033657603339855e-17
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 3.3324095745747585e-16
+// mean(f - f_Boost): 1.8167285857502563e-16
+// variance(f - f_Boost): 7.5748575558153970e-33
+// stddev(f - f_Boost): 8.7033657603339855e-17
 const testcase_ellint_rg<double>
 data096[11] =
 {
@@ -3302,11 +3302,11 @@ data096[11] =
 const double toler096 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=4.0000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 3.3324095745747585e-16
-// mean(f - f_GSL): 2.4223047810003414e-16
-// variance(f - f_GSL): 6.4543164972628244e-33
-// stddev(f - f_GSL): 8.0338760864621409e-17
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 3.3324095745747585e-16
+// mean(f - f_Boost): 2.4223047810003414e-16
+// variance(f - f_Boost): 6.4543164972628244e-33
+// stddev(f - f_Boost): 8.0338760864621409e-17
 const testcase_ellint_rg<double>
 data097[11] =
 {
@@ -3336,11 +3336,11 @@ data097[11] =
 const double toler097 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=4.5000000000000000.
-// max(|f - f_GSL|): 8.8817841970012523e-16
-// max(|f - f_GSL| / |f_GSL|): 4.1869132231567339e-16
-// mean(f - f_GSL): 2.8260222445003984e-16
-// variance(f - f_GSL): 8.7850418990521774e-33
-// stddev(f - f_GSL): 9.3728554342058301e-17
+// max(|f - f_Boost|): 8.8817841970012523e-16
+// max(|f - f_Boost| / |f_Boost|): 4.1869132231567339e-16
+// mean(f - f_Boost): 2.8260222445003984e-16
+// variance(f - f_Boost): 8.7850418990521774e-33
+// stddev(f - f_Boost): 9.3728554342058301e-17
 const testcase_ellint_rg<double>
 data098[11] =
 {
@@ -3370,11 +3370,11 @@ data098[11] =
 const double toler098 = 2.5000000000000020e-13;
 
 // Test data for x=4.5000000000000000, y=5.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.1803151870638527e-16
-// mean(f - f_GSL): 0.0000000000000000
-// variance(f - f_GSL): 4.8155341884589442e-253
-// stddev(f - f_GSL): 6.9394050094074669e-127
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.1803151870638527e-16
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 4.8155341884589442e-253
+// stddev(f - f_Boost): 6.9394050094074669e-127
 const testcase_ellint_rg<double>
 data099[11] =
 {
@@ -3404,11 +3404,11 @@ data099[11] =
 const double toler099 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=0.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.1989601330140799e-16
-// mean(f - f_GSL): -2.0185873175002847e-17
-// variance(f - f_GSL): 6.4543164972628244e-33
-// stddev(f - f_GSL): 8.0338760864621409e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.1989601330140799e-16
+// mean(f - f_Boost): -2.0185873175002847e-17
+// variance(f - f_Boost): 6.4543164972628244e-33
+// stddev(f - f_Boost): 8.0338760864621409e-17
 const testcase_ellint_rg<double>
 data100[11] =
 {
@@ -3438,11 +3438,11 @@ data100[11] =
 const double toler100 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=0.50000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 3.6489127383954372e-16
-// mean(f - f_GSL): -2.6241635127503701e-16
-// variance(f - f_GSL): 1.7928656936841178e-32
-// stddev(f - f_GSL): 1.3389793477436901e-16
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 3.6489127383954372e-16
+// mean(f - f_Boost): -2.6241635127503701e-16
+// variance(f - f_Boost): 1.7928656936841178e-32
+// stddev(f - f_Boost): 1.3389793477436901e-16
 const testcase_ellint_rg<double>
 data101[11] =
 {
@@ -3472,11 +3472,11 @@ data101[11] =
 const double toler101 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=1.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.1550667470722052e-16
-// mean(f - f_GSL): -2.2204460492503131e-16
-// variance(f - f_GSL): 5.4234187233944562e-33
-// stddev(f - f_GSL): 7.3643864125902951e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.1550667470722052e-16
+// mean(f - f_Boost): -2.2204460492503131e-16
+// variance(f - f_Boost): 5.4234187233944562e-33
+// stddev(f - f_Boost): 7.3643864125902951e-17
 const testcase_ellint_rg<double>
 data102[11] =
 {
@@ -3506,11 +3506,11 @@ data102[11] =
 const double toler102 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=1.5000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.1989601330140799e-16
-// mean(f - f_GSL): 2.0185873175002847e-17
-// variance(f - f_GSL): 2.3710648798972457e-32
-// stddev(f - f_GSL): 1.5398262499052436e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.1989601330140799e-16
+// mean(f - f_Boost): 2.0185873175002847e-17
+// variance(f - f_Boost): 2.3710648798972457e-32
+// stddev(f - f_Boost): 1.5398262499052436e-16
 const testcase_ellint_rg<double>
 data103[11] =
 {
@@ -3540,11 +3540,11 @@ data103[11] =
 const double toler103 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=2.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.8963505982108922e-16
-// mean(f - f_GSL): -8.0743492700011387e-17
-// variance(f - f_GSL): 2.1962604747630443e-33
-// stddev(f - f_GSL): 4.6864277171029150e-17
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.8963505982108922e-16
+// mean(f - f_Boost): -8.0743492700011387e-17
+// variance(f - f_Boost): 2.1962604747630443e-33
+// stddev(f - f_Boost): 4.6864277171029150e-17
 const testcase_ellint_rg<double>
 data104[11] =
 {
@@ -3574,11 +3574,11 @@ data104[11] =
 const double toler104 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=2.5000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 3.6705207758343726e-16
-// mean(f - f_GSL): 2.0185873175002847e-17
-// variance(f - f_GSL): 4.4821642342102943e-35
-// stddev(f - f_GSL): 6.6948967387184503e-18
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 3.6705207758343726e-16
+// mean(f - f_Boost): 2.0185873175002847e-17
+// variance(f - f_Boost): 4.4821642342102943e-35
+// stddev(f - f_Boost): 6.6948967387184503e-18
 const testcase_ellint_rg<double>
 data105[11] =
 {
@@ -3608,11 +3608,11 @@ data105[11] =
 const double toler105 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=3.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.1803151870638527e-16
-// mean(f - f_GSL): -6.0557619525008534e-17
-// variance(f - f_GSL): 1.6180612885499163e-32
-// stddev(f - f_GSL): 1.2720303803565055e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.1803151870638527e-16
+// mean(f - f_Boost): -6.0557619525008534e-17
+// variance(f - f_Boost): 1.6180612885499163e-32
+// stddev(f - f_Boost): 1.2720303803565055e-16
 const testcase_ellint_rg<double>
 data106[11] =
 {
@@ -3642,11 +3642,11 @@ data106[11] =
 const double toler106 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=3.5000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.4569341514425340e-16
-// mean(f - f_GSL): -4.0371746350005693e-17
-// variance(f - f_GSL): 1.7928656936841178e-32
-// stddev(f - f_GSL): 1.3389793477436901e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.4569341514425340e-16
+// mean(f - f_Boost): -4.0371746350005693e-17
+// variance(f - f_Boost): 1.7928656936841178e-32
+// stddev(f - f_Boost): 1.3389793477436901e-16
 const testcase_ellint_rg<double>
 data107[11] =
 {
@@ -3676,11 +3676,11 @@ data107[11] =
 const double toler107 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=4.0000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.1779975642541134e-16
-// mean(f - f_GSL): -2.0185873175002847e-17
-// variance(f - f_GSL): 4.4821642342102943e-35
-// stddev(f - f_GSL): 6.6948967387184503e-18
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.1779975642541134e-16
+// mean(f - f_Boost): -2.0185873175002847e-17
+// variance(f - f_Boost): 4.4821642342102943e-35
+// stddev(f - f_Boost): 6.6948967387184503e-18
 const testcase_ellint_rg<double>
 data108[11] =
 {
@@ -3710,11 +3710,11 @@ data108[11] =
 const double toler108 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=4.5000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.1803151870638527e-16
-// mean(f - f_GSL): 0.0000000000000000
-// variance(f - f_GSL): 4.8155341884589442e-253
-// stddev(f - f_GSL): 6.9394050094074669e-127
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 2.1803151870638527e-16
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 4.8155341884589442e-253
+// stddev(f - f_Boost): 6.9394050094074669e-127
 const testcase_ellint_rg<double>
 data109[11] =
 {
@@ -3744,11 +3744,11 @@ data109[11] =
 const double toler109 = 2.5000000000000020e-13;
 
 // Test data for x=5.0000000000000000, y=5.0000000000000000.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 3.6489127383954372e-16
-// mean(f - f_GSL): -1.8167285857502563e-16
-// variance(f - f_GSL): 7.5748575558153970e-33
-// stddev(f - f_GSL): 8.7033657603339855e-17
+// max(|f - f_Boost|): 6.6613381477509392e-16
+// max(|f - f_Boost| / |f_Boost|): 3.6489127383954372e-16
+// mean(f - f_Boost): -1.8167285857502563e-16
+// variance(f - f_Boost): 7.5748575558153970e-33
+// stddev(f - f_Boost): 8.7033657603339855e-17
 const testcase_ellint_rg<double>
 data110[11] =
 {

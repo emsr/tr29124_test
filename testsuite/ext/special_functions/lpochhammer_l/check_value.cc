@@ -39,11 +39,11 @@
 //  Failure at a=0.25000000000000000 x=2.0000000000000000 f1=-1.6739764335716716 f2=nan
 
 // Test data for a=0.25000000000000000.
-// max(|f - f_GSL|): 0.0000000000000000
-// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
-// mean(f - f_GSL): 0.0000000000000000
-// variance(f - f_GSL): 0.0000000000000000
-// stddev(f - f_GSL): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_lpochhammer_l<double>
 data001[2] =
 {
@@ -54,11 +54,11 @@ const double toler001 = 2.5000000000000020e-13;
 //  Failure at a=0.50000000000000000 x=2.0000000000000000 f1=-1.3862943611198906 f2=nan
 
 // Test data for a=0.50000000000000000.
-// max(|f - f_GSL|): 0.0000000000000000
-// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
-// mean(f - f_GSL): 0.0000000000000000
-// variance(f - f_GSL): 0.0000000000000000
-// stddev(f - f_GSL): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_lpochhammer_l<double>
 data002[2] =
 {
@@ -69,11 +69,11 @@ const double toler002 = 2.5000000000000020e-13;
 //  Failure at a=0.75000000000000000 x=2.0000000000000000 f1=-1.6739764335716716 f2=nan
 
 // Test data for a=0.75000000000000000.
-// max(|f - f_GSL|): 0.0000000000000000
-// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
-// mean(f - f_GSL): 0.0000000000000000
-// variance(f - f_GSL): 0.0000000000000000
-// stddev(f - f_GSL): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_lpochhammer_l<double>
 data003[2] =
 {
@@ -85,11 +85,11 @@ const double toler003 = 2.5000000000000020e-13;
 //  Failure at a=1.2500000000000000 x=5.0000000000000000 f1=0.12038381735644080 f2=nan
 
 // Test data for a=1.2500000000000000.
-// max(|f - f_GSL|): 0.0000000000000000
-// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
-// mean(f - f_GSL): 0.0000000000000000
-// variance(f - f_GSL): 0.0000000000000000
-// stddev(f - f_GSL): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_lpochhammer_l<double>
 data004[3] =
 {
@@ -101,11 +101,11 @@ const double toler004 = 2.5000000000000020e-13;
 //  Failure at a=1.5000000000000000 x=5.0000000000000000 f1=0.34092658697059330 f2=nan
 
 // Test data for a=1.5000000000000000.
-// max(|f - f_GSL|): 0.0000000000000000
-// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
-// mean(f - f_GSL): 0.0000000000000000
-// variance(f - f_GSL): 0.0000000000000000
-// stddev(f - f_GSL): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_lpochhammer_l<double>
 data005[3] =
 {
@@ -117,11 +117,11 @@ const double toler005 = 2.5000000000000020e-13;
 //  Failure at a=1.7500000000000000 x=5.0000000000000000 f1=-0.080286878105710169 f2=nan
 
 // Test data for a=1.7500000000000000.
-// max(|f - f_GSL|): 0.0000000000000000
-// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
-// mean(f - f_GSL): 0.0000000000000000
-// variance(f - f_GSL): 0.0000000000000000
-// stddev(f - f_GSL): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_lpochhammer_l<double>
 data006[3] =
 {
@@ -133,11 +133,11 @@ const double toler006 = 2.5000000000000020e-13;
 //  Divergence at a=2.0000000000000000 x=5.0000000000000000 f1=-inf f2=-inf
 
 // Test data for a=2.0000000000000000.
-// max(|f - f_GSL|): 0.0000000000000000
-// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
-// mean(f - f_GSL): 0.0000000000000000
-// variance(f - f_GSL): 0.0000000000000000
-// stddev(f - f_GSL): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_lpochhammer_l<double>
 data007[3] =
 {
@@ -149,11 +149,11 @@ const double toler007 = 2.5000000000000020e-13;
 //  Failure at a=2.2500000000000000 x=10.000000000000000 f1=7.4699568512953363 f2=nan
 
 // Test data for a=2.2500000000000000.
-// max(|f - f_GSL|): 1.1102230246251565e-16
-// max(|f - f_GSL| / |f_GSL|): 1.3828200209296628e-15
-// mean(f - f_GSL): -2.7755575615628914e-17
-// variance(f - f_GSL): 3.0814879110195774e-33
-// stddev(f - f_GSL): 5.5511151231257827e-17
+// max(|f - f_Boost|): 1.1102230246251565e-16
+// max(|f - f_Boost| / |f_Boost|): 1.3828200209296628e-15
+// mean(f - f_Boost): -2.7755575615628914e-17
+// variance(f - f_Boost): 3.0814879110195774e-33
+// stddev(f - f_Boost): 5.5511151231257827e-17
 const testcase_lpochhammer_l<double>
 data008[4] =
 {
@@ -166,11 +166,11 @@ const double toler008 = 2.5000000000000020e-13;
 //  Failure at a=2.5000000000000000 x=10.000000000000000 f1=7.5906079532564057 f2=nan
 
 // Test data for a=2.5000000000000000.
-// max(|f - f_GSL|): 2.2204460492503131e-16
-// max(|f - f_GSL| / |f_GSL|): 6.5129741537049407e-16
-// mean(f - f_GSL): 5.5511151231257827e-17
-// variance(f - f_GSL): 1.2325951644078309e-32
-// stddev(f - f_GSL): 1.1102230246251565e-16
+// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost| / |f_Boost|): 6.5129741537049407e-16
+// mean(f - f_Boost): 5.5511151231257827e-17
+// variance(f - f_Boost): 1.2325951644078309e-32
+// stddev(f - f_Boost): 1.1102230246251565e-16
 const testcase_lpochhammer_l<double>
 data009[4] =
 {
@@ -183,11 +183,11 @@ const double toler009 = 2.5000000000000020e-13;
 //  Failure at a=2.7500000000000000 x=10.000000000000000 f1=7.0476975532025836 f2=nan
 
 // Test data for a=2.7500000000000000.
-// max(|f - f_GSL|): 5.5511151231257827e-17
-// max(|f - f_GSL| / |f_GSL|): 4.6111805099930103e-16
-// mean(f - f_GSL): 1.3877787807814457e-17
-// variance(f - f_GSL): 7.7037197775489434e-34
-// stddev(f - f_GSL): 2.7755575615628914e-17
+// max(|f - f_Boost|): 5.5511151231257827e-17
+// max(|f - f_Boost| / |f_Boost|): 4.6111805099930103e-16
+// mean(f - f_Boost): 1.3877787807814457e-17
+// variance(f - f_Boost): 7.7037197775489434e-34
+// stddev(f - f_Boost): 2.7755575615628914e-17
 const testcase_lpochhammer_l<double>
 data010[4] =
 {
@@ -200,11 +200,11 @@ const double toler010 = 2.5000000000000020e-13;
 //  Divergence at a=3.0000000000000000 x=5.0000000000000000 f1=-inf f2=-inf
 
 // Test data for a=3.0000000000000000.
-// max(|f - f_GSL|): 2.2204460492503131e-16
-// max(|f - f_GSL| / |f_GSL|): 2.0211370946362213e-16
-// mean(f - f_GSL): -7.4014868308343765e-17
-// variance(f - f_GSL): 4.1086505480261029e-33
-// stddev(f - f_GSL): 6.4098756212785461e-17
+// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost| / |f_Boost|): 2.0211370946362213e-16
+// mean(f - f_Boost): -7.4014868308343765e-17
+// variance(f - f_Boost): 4.1086505480261029e-33
+// stddev(f - f_Boost): 6.4098756212785461e-17
 const testcase_lpochhammer_l<double>
 data011[3] =
 {
@@ -216,11 +216,11 @@ const double toler011 = 2.5000000000000020e-13;
 //  Failure at a=3.2500000000000000 x=5.0000000000000000 f1=0.53875233030051328 f2=nan
 
 // Test data for a=3.2500000000000000.
-// max(|f - f_GSL|): 2.2204460492503131e-16
-// max(|f - f_GSL| / |f_GSL|): 1.8838812512077047e-16
-// mean(f - f_GSL): 1.4802973661668753e-16
-// variance(f - f_GSL): 4.1086505480261029e-33
-// stddev(f - f_GSL): 6.4098756212785461e-17
+// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost| / |f_Boost|): 1.8838812512077047e-16
+// mean(f - f_Boost): 1.4802973661668753e-16
+// variance(f - f_Boost): 4.1086505480261029e-33
+// stddev(f - f_Boost): 6.4098756212785461e-17
 const testcase_lpochhammer_l<double>
 data012[3] =
 {
@@ -232,11 +232,11 @@ const double toler012 = 2.5000000000000020e-13;
 //  Failure at a=3.5000000000000000 x=5.0000000000000000 f1=1.1882244473577970 f2=nan
 
 // Test data for a=3.5000000000000000.
-// max(|f - f_GSL|): 0.0000000000000000
-// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
-// mean(f - f_GSL): 0.0000000000000000
-// variance(f - f_GSL): 0.0000000000000000
-// stddev(f - f_GSL): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_lpochhammer_l<double>
 data013[3] =
 {
@@ -248,11 +248,11 @@ const double toler013 = 2.5000000000000020e-13;
 //  Failure at a=3.7500000000000000 x=5.0000000000000000 f1=1.2189961060245509 f2=nan
 
 // Test data for a=3.7500000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 3.3598429938164902e-16
-// mean(f - f_GSL): 1.4802973661668753e-16
-// variance(f - f_GSL): 1.6434602192104412e-32
-// stddev(f - f_GSL): 1.2819751242557092e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 3.3598429938164902e-16
+// mean(f - f_Boost): 1.4802973661668753e-16
+// variance(f - f_Boost): 1.6434602192104412e-32
+// stddev(f - f_Boost): 1.2819751242557092e-16
 const testcase_lpochhammer_l<double>
 data014[3] =
 {
@@ -264,11 +264,11 @@ const double toler014 = 2.5000000000000020e-13;
 //  Divergence at a=4.0000000000000000 x=5.0000000000000000 f1=-inf f2=-inf
 
 // Test data for a=4.0000000000000000.
-// max(|f - f_GSL|): 2.2204460492503131e-16
-// max(|f - f_GSL| / |f_GSL|): 1.6017132519074588e-16
-// mean(f - f_GSL): 7.4014868308343765e-17
-// variance(f - f_GSL): 4.1086505480261029e-33
-// stddev(f - f_GSL): 6.4098756212785461e-17
+// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost| / |f_Boost|): 1.6017132519074588e-16
+// mean(f - f_Boost): 7.4014868308343765e-17
+// variance(f - f_Boost): 4.1086505480261029e-33
+// stddev(f - f_Boost): 6.4098756212785461e-17
 const testcase_lpochhammer_l<double>
 data015[3] =
 {
@@ -280,11 +280,11 @@ const double toler015 = 2.5000000000000020e-13;
 //  Failure at a=4.2500000000000000 x=10.000000000000000 f1=6.4367884708796108 f2=nan
 
 // Test data for a=4.2500000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 1.9534543667769627e-16
-// mean(f - f_GSL): 1.1102230246251565e-16
-// variance(f - f_GSL): 4.9303806576313238e-32
-// stddev(f - f_GSL): 2.2204460492503131e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 1.9534543667769627e-16
+// mean(f - f_Boost): 1.1102230246251565e-16
+// variance(f - f_Boost): 4.9303806576313238e-32
+// stddev(f - f_Boost): 2.2204460492503131e-16
 const testcase_lpochhammer_l<double>
 data016[4] =
 {
@@ -297,11 +297,11 @@ const double toler016 = 2.5000000000000020e-13;
 //  Failure at a=4.5000000000000000 x=10.000000000000000 f1=6.7708980493880322 f2=nan
 
 // Test data for a=4.5000000000000000.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 1.3117586666076012e-16
-// mean(f - f_GSL): 1.1102230246251565e-16
-// variance(f - f_GSL): 4.9303806576313238e-32
-// stddev(f - f_GSL): 2.2204460492503131e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost| / |f_Boost|): 1.3117586666076012e-16
+// mean(f - f_Boost): 1.1102230246251565e-16
+// variance(f - f_Boost): 4.9303806576313238e-32
+// stddev(f - f_Boost): 2.2204460492503131e-16
 const testcase_lpochhammer_l<double>
 data017[4] =
 {
@@ -314,11 +314,11 @@ const double toler017 = 2.5000000000000020e-13;
 //  Failure at a=4.7500000000000000 x=10.000000000000000 f1=6.4367884708796108 f2=nan
 
 // Test data for a=4.7500000000000000.
-// max(|f - f_GSL|): 8.8817841970012523e-16
-// max(|f - f_GSL| / |f_GSL|): 5.7002309632442003e-16
-// mean(f - f_GSL): -2.2204460492503131e-16
-// variance(f - f_GSL): 2.1912802922805882e-32
-// stddev(f - f_GSL): 1.4802973661668753e-16
+// max(|f - f_Boost|): 8.8817841970012523e-16
+// max(|f - f_Boost| / |f_Boost|): 5.7002309632442003e-16
+// mean(f - f_Boost): -2.2204460492503131e-16
+// variance(f - f_Boost): 2.1912802922805882e-32
+// stddev(f - f_Boost): 1.4802973661668753e-16
 const testcase_lpochhammer_l<double>
 data018[4] =
 {
@@ -331,11 +331,11 @@ const double toler018 = 2.5000000000000020e-13;
 //  Divergence at a=5.0000000000000000 x=10.000000000000000 f1=-inf f2=-inf
 
 // Test data for a=5.0000000000000000.
-// max(|f - f_GSL|): 2.2204460492503131e-16
-// max(|f - f_GSL| / |f_GSL|): 1.3796407007040920e-16
-// mean(f - f_GSL): -5.5511151231257827e-17
-// variance(f - f_GSL): 1.3695501826753676e-33
-// stddev(f - f_GSL): 3.7007434154171883e-17
+// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost| / |f_Boost|): 1.3796407007040920e-16
+// mean(f - f_Boost): -5.5511151231257827e-17
+// variance(f - f_Boost): 1.3695501826753676e-33
+// stddev(f - f_Boost): 3.7007434154171883e-17
 const testcase_lpochhammer_l<double>
 data019[4] =
 {

@@ -205,6 +205,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 				std::make_pair(true, true), 41),
+	     "GSL",
 	     file_airy_ai);
 
     std::cout << "airy_bi" << std::endl;
@@ -215,6 +216,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 				std::make_pair(true, true), 41),
+	     "GSL",
 	     file_airy_bi);
 #endif // STD
 
@@ -228,6 +230,7 @@ template<typename Real>
 	     "n", vorder, "m", vorder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 11),
+	     "GSL",
 	     file_assoc_laguerre);
 
     // Associated Legendre functions.
@@ -240,6 +243,7 @@ template<typename Real>
 	     "l", vorder, "m", vorder,
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(true, true), 21),
+	     "GSL",
 	     file_assoc_legendre);
 
     // Beta function.
@@ -253,6 +257,7 @@ template<typename Real>
 				std::make_pair(false, true), 11),
 	     "y", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(false, true), 11),
+	     "GSL",
 	     file_beta);
 
     // Complete elliptic integrals of the first kind.
@@ -265,6 +270,7 @@ template<typename Real>
 	     nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
+	     "GSL",
 	     file_comp_ellint_1);
 
     // Complete elliptic integrals of the second kind.
@@ -277,6 +283,7 @@ template<typename Real>
 	     nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
+	     "GSL",
 	     file_comp_ellint_2);
 
     // Complete elliptic integrals of the third kind.
@@ -291,6 +298,7 @@ template<typename Real>
 				std::make_pair(false, false), 21),
 	     "nu", fill_argument(std::make_pair(Real{0}, Real{1}),
 				 std::make_pair(true, false), 11),
+	     "GSL",
 	     file_comp_ellint_3);
 
 #if STD
@@ -307,6 +315,7 @@ template<typename Real>
 				std::make_pair(false, true), 11),
 	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 				std::make_pair(true, true), 21),
+	     "GSL",
 	     file_conf_hyperg);
 #else
     // Confluent hypergeometric functions.
@@ -322,6 +331,7 @@ template<typename Real>
 				std::make_pair(false, true), 11),
 	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 				std::make_pair(true, true), 21),
+	     "GSL",
 	     file_conf_hyperg);
 #endif // STD
 
@@ -336,6 +346,7 @@ template<typename Real>
 	     "nu", cyl_neg_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
+	     "Boost",
 	     file_cyl_bessel_i, true, false);
     test =
     maketest(cyl_bessel_i, gsl::cyl_bessel_i,
@@ -343,12 +354,14 @@ template<typename Real>
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
+	     "GSL",
 	     file_cyl_bessel_i, false, false, test);
     maketest(cyl_bessel_i, gsl::cyl_bessel_i,
 	     nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
+	     "GSL",
 	     file_cyl_bessel_i, false, true, test);
 
     // Cylindrical Bessel functions (of the first kind).
@@ -362,6 +375,7 @@ template<typename Real>
 	     "nu", cyl_neg_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
+	     "Boost",
 	     file_cyl_bessel_j, true, false);
     test =
     maketest(cyl_bessel_j, gsl::cyl_bessel_j,
@@ -369,12 +383,14 @@ template<typename Real>
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
+	     "GSL",
 	     file_cyl_bessel_j, false, false, test);
     maketest(cyl_bessel_j, gsl::cyl_bessel_j,
 	     nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
+	     "GSL",
 	     file_cyl_bessel_j, false, true, test);
 
     // Irregular modified cylindrical Bessel functions.
@@ -389,6 +405,7 @@ template<typename Real>
 	     "nu", cyl_neg_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
+	     "Boost",
 	     file_cyl_bessel_k, true, false);
     test =
     maketest(cyl_bessel_k, gsl::cyl_bessel_k,
@@ -396,12 +413,14 @@ template<typename Real>
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
+	     "GSL",
 	     file_cyl_bessel_k, false, false, test);
     maketest(cyl_bessel_k, gsl::cyl_bessel_k,
 	     nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(false, true), 21),
+	     "GSL",
 	     file_cyl_bessel_k, false, true, test);
 
     // Cylindrical Neumann functions.
@@ -416,6 +435,7 @@ template<typename Real>
 	     "nu", cyl_neg_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
+	     "Boost",
 	     file_cyl_neumann, true, false);
     test =
     maketest(cyl_neumann, gsl::cyl_neumann,
@@ -423,12 +443,14 @@ template<typename Real>
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
+	     "GSL",
 	     file_cyl_neumann, false, false, test);
     maketest(cyl_neumann, gsl::cyl_neumann,
 	     nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(false, true), 21),
+	     "GSL",
 	     file_cyl_neumann, false, true, test);
 
     // Elliptic integrals of the first kind.
@@ -442,6 +464,7 @@ template<typename Real>
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
 	     "phi", vphid,
+	     "GSL",
 	     file_ellint_1);
 
     // Elliptic integrals of the second kind.
@@ -455,6 +478,7 @@ template<typename Real>
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
 	     "phi", vphid,
+	     "GSL",
 	     file_ellint_2);
 
     // Elliptic integrals of the third kind.
@@ -470,6 +494,7 @@ template<typename Real>
 	     "nu", fill_argument(std::make_pair(Real{0}, Real{1}),
 				 std::make_pair(true, false), 11),
 	     "phi", vphid,
+	     "GSL",
 	     file_ellint_3);
 
     // Exponential integral.
@@ -483,11 +508,13 @@ template<typename Real>
 	     nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{-50}, Real{0}),
 				std::make_pair(true, false), 51),
+	     "GSL",
 	     file_expint, true, false);
     maketest(expint, gsl::expint_Ei,
 	     nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{50}),
 				std::make_pair(false, true), 51),
+	     "GSL",
 	     file_expint, false, true, test);
 
     // Hermite polynomials
@@ -501,11 +528,13 @@ template<typename Real>
 	     "n", vorder,
 	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 				std::make_pair(true, true), 201),
+	     "GSL",
 	     file_hermite, true, false);
     maketest(hermite, gsl::hermite,
 	     nsname, basename,
 	     "n", {8, 18, 32, 50, 72, 128, 200, 1250, 5000},
 	     "x", {4.0, 6.0, 8.0, 10.0, 12.0, 16.0, 20.0, 50.0, 100.0},
+	     "GSL",
 	     file_hermite, false, true, test);
 
 #if STD
@@ -524,6 +553,7 @@ template<typename Real>
 				std::make_pair(false, true), 6),
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(true, false), 21),
+	     "GSL",
 	     file_hyperg);
 #else
     // Hypergeometric functions.
@@ -541,6 +571,7 @@ template<typename Real>
 				std::make_pair(false, true), 6),
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(true, false), 21),
+	     "GSL",
 	     file_hyperg);
 #endif // STD
 
@@ -554,6 +585,7 @@ template<typename Real>
 	     "n", vorder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
+	     "GSL",
 	     file_laguerre);
 
     // Legendre polynomials.
@@ -566,6 +598,7 @@ template<typename Real>
 	     "l", vorder,
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(true, true), 21),
+	     "GSL",
 	     file_legendre);
 
     // Riemann zeta function.
@@ -579,11 +612,13 @@ template<typename Real>
 	     nsname, basename,
 	     "s", fill_argument(std::make_pair(Real{-10}, Real{1}),
 				std::make_pair(true, false), 56),
+	     "GSL",
 	     file_riemann_zeta, true, false);
     maketest(riemann_zeta, gsl::riemann_zeta,
 	     nsname, basename,
 	     "s", fill_argument(std::make_pair(Real{1}, Real{30}),
 				std::make_pair(false, true), 146),
+	     "GSL",
 	     file_riemann_zeta, false, true, test);
 
 #if STD
@@ -599,6 +634,7 @@ template<typename Real>
 				std::make_pair(false, true), 146),
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 26),
+	     "GSL",
 	     file_hurwitz_zeta);
 #endif // STD
 
@@ -613,12 +649,14 @@ template<typename Real>
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
+	     "GSL",
 	     file_sph_bessel, true, false);
     maketest(sph_bessel, gsl::bessel_jl,
 	     nsname, basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
+	     "GSL",
 	     file_sph_bessel, false, true, test);
 
     // Spherical Legendre functions.
@@ -631,6 +669,7 @@ template<typename Real>
 	     "l", vorder, "m", vorder,
 	     "theta", fill_argument(std::make_pair(Real{0}, static_cast<Real>(M_PI)),
 				    std::make_pair(true, true), 21),
+	     "GSL",
 	     file_sph_legendre);
 
     // Spherical Neumann functions.
@@ -645,12 +684,14 @@ template<typename Real>
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
+	     "GSL",
 	     file_sph_neumann, true, false);
     maketest(sph_neumann, gsl::bessel_yl,
 	     nsname, basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(false, true), 21),
+	     "GSL",
 	     file_sph_neumann, false, true, test);
 
 #if STD
@@ -665,6 +706,7 @@ template<typename Real>
 				std::make_pair(false, true), 11),
 	     "y", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(false, true), 11),
+	     "GSL",
 	     file_ellint_rc);
 
     // Carlson elliptic functions R_D.
@@ -680,6 +722,7 @@ template<typename Real>
 				std::make_pair(true, true), 11),
 	     "z", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(true, true), 11),
+	     "GSL",
 	     file_ellint_rd);
 
     // Carlson elliptic functions R_F.
@@ -695,6 +738,7 @@ template<typename Real>
 				std::make_pair(true, true), 11),
 	     "z", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(true, true), 11),
+	     "GSL",
 	     file_ellint_rf);
 
     // Carlson elliptic functions R_G.
@@ -710,6 +754,7 @@ template<typename Real>
 				std::make_pair(true, true), 11),
 	     "z", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(true, true), 11),
+	     "Boost",
 	     file_ellint_rg);
 
     // Carlson elliptic functions R_J.
@@ -727,6 +772,7 @@ template<typename Real>
 				std::make_pair(true, true), 11),
 	     "p", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(false, true), 11),
+	     "GSL",
 	     file_ellint_rj);
 
     // Dilogarithm functions.
@@ -738,6 +784,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 				std::make_pair(true, true), 41),
+	     "GSL",
 	     file_dilog);
 
     // Upper incomplete Gamma functions.
@@ -751,6 +798,7 @@ template<typename Real>
 				std::make_pair(false, true), 11),
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 11),
+	     "GSL",
 	     file_gamma_u);
 
     // Lower incomplete Gamma functions.
@@ -764,6 +812,7 @@ template<typename Real>
 				std::make_pair(false, true), 11),
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 11),
+	     "GSL",
 	     file_gamma_l);
 
     // Incomplete Beta functions.
@@ -779,6 +828,7 @@ template<typename Real>
 				std::make_pair(true, false), 11),
 	     "x", fill_argument(std::make_pair(Real{0}, Real{1}),
 				std::make_pair(false, false), 21),
+	     "GSL",
 	     file_ibeta);
 
     // Digamma or psi functions.
@@ -791,11 +841,13 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{-9.9375}, +Real{10.0625}),
 				std::make_pair(true, true), 801),
+	     "GSL",
 	     file_psi, true, false);
     maketest(psi, gsl::psi,
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{1}, Real{100}),
 				std::make_pair(true, true), 199),
+	     "GSL",
 	     file_psi, false, true, test);
 
     // Sine integral or Si functions.
@@ -807,6 +859,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{+10}),
 				std::make_pair(false, true), 101),
+	     "GSL",
 	     file_sinint);
 
     // Cosine integral or Ci functions.
@@ -818,6 +871,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{+10}),
 				std::make_pair(false, true), 101),
+	     "GSL",
 	     file_cosint);
 
     // Hyperbolic sine integral or Shi functions.
@@ -829,6 +883,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{+5}),
 				std::make_pair(false, true), 101),
+	     "GSL",
 	     file_sinhint);
 
     // Hyperbolic cosine integral or Chi functions.
@@ -840,6 +895,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{+5}),
 				std::make_pair(false, true), 101),
+	     "GSL",
 	     file_coshint);
 
     // Dawson integral.
@@ -851,6 +907,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{+20}),
 				std::make_pair(false, true), 201),
+	     "GSL",
 	     file_dawson);
 
     // Jacobian elliptic integrals.
@@ -864,6 +921,7 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     "u", fill_argument(std::make_pair(Real{-5}, Real{+5}),
 				std::make_pair(true, true), 101),
+	     "GSL",
 	     file_jacobi_sn);
 
     // Jacobian elliptic integrals.
@@ -877,6 +935,7 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     "u", fill_argument(std::make_pair(Real{-5}, Real{+5}),
 				std::make_pair(true, true), 101),
+	     "GSL",
 	     file_jacobi_cn);
 
     // Jacobian elliptic integrals.
@@ -890,6 +949,7 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     "u", fill_argument(std::make_pair(Real{-5}, Real{+5}),
 				std::make_pair(true, true), 101),
+	     "GSL",
 	     file_jacobi_dn);
 
     // Exponential integral E1.
@@ -899,17 +959,17 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_expint_e1(filename.c_str());
     test =
-    maketest(expint_e1,
-	     gsl::expint_E1,
+    maketest(expint_e1, gsl::expint_E1,
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{-50}, Real{0}),
 				std::make_pair(true, false), 51),
+	     "GSL",
 	     file_expint_e1, true, false);
-    maketest(expint_e1,
-	     gsl::expint_E1,
+    maketest(expint_e1, gsl::expint_E1,
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{50}),
 				std::make_pair(false, true), 51),
+	     "GSL",
 	     file_expint_e1, false, true, test);
 
     // Fresnel cosine integral.
@@ -921,6 +981,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{-20}, Real{+20}),
 				std::make_pair(false, true), 401),
+	     "GSL",
 	     file_fresnel_c);
 
     // Fresnel sine integral.
@@ -932,6 +993,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{-20}, Real{+20}),
 				std::make_pair(false, true), 401),
+	     "GSL",
 	     file_fresnel_s);
 
     // Normalized sine cardinal function.
@@ -943,6 +1005,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{-20}, Real{+20}),
 				std::make_pair(true, true), 401),
+	     "GSL",
 	     file_sinc);
 
     // Unnormalized sine cardinal function.
@@ -954,6 +1017,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{-20}, Real{+20}),
 				std::make_pair(true, true), 401),
+	     "GSL",
 	     file_sinc_pi);
 
     // Log upper Pochhammer symbol.
@@ -966,6 +1030,7 @@ template<typename Real>
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     "x", {1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0},
+	     "Boost",
 	     file_lpochhammer_u, true, true);
 
     // Log lower Pochhammer symbol.
@@ -978,6 +1043,7 @@ template<typename Real>
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     "x", {0.0, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0},
+	     "Boost",
 	     file_lpochhammer_l, true, true);
 
     // Upper Pochhammer symbols (see boost::rising_factorial).
@@ -990,6 +1056,7 @@ template<typename Real>
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     "x", dvorder,
+	     "Boost",
 	     file_pochhammer_u, true, true);
 
     // Lower Pochhammer symbols (see boost::falling_factorial).
@@ -1002,6 +1069,7 @@ template<typename Real>
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     "x", {0.0, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0},
+	     "Boost",
 	     file_pochhammer_l, true, true);
 
     // Regular modified spherical bessel functions.
@@ -1015,12 +1083,14 @@ template<typename Real>
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
+	     "GSL",
 	     file_sph_bessel_i, true, false);
     maketest(sph_bessel_i, gsl::bessel_il,
 	     "__gnu_cxx", basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
+	     "GSL",
 	     file_sph_bessel_i, false, true, test);
 
     // Irregular modified spherical bessel functions.
@@ -1034,12 +1104,14 @@ template<typename Real>
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
+	     "GSL",
 	     file_sph_bessel_k, true, false);
     maketest(sph_bessel_k, gsl::bessel_kl,
 	     "__gnu_cxx", basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(false, true), 21),
+	     "GSL",
 	     file_sph_bessel_k, false, true, test);
 
     // Legendre functions of the second kind.
@@ -1052,6 +1124,7 @@ template<typename Real>
 	     "l", vorder,
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
+	     "GSL",
 	     file_legendre_q);
 
     // Factorial.
@@ -1063,6 +1136,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "n", fill_argument(std::make_pair(0U, 50U),
 				std::make_pair(true, true), 51),
+	     "GSL",
 	     file_factorial);
 
     // Log factorial.
@@ -1074,6 +1148,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "n", fill_argument(std::make_pair(0U, 500U),
 				std::make_pair(true, true), 501),
+	     "GSL",
 	     file_lfactorial);
 
     // Double factorial.
@@ -1085,6 +1160,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "n", fill_argument(std::make_pair(0, 50),
 				std::make_pair(true, true), 51),
+	     "GSL",
 	     file_double_factorial);
 
     // Log double factorial.
@@ -1096,6 +1172,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "n", fill_argument(std::make_pair(0, 500),
 				std::make_pair(true, true), 501),
+	     "GSL",
 	     file_ldouble_factorial);
 
     // Binomial coefficient.
@@ -1109,6 +1186,7 @@ template<typename Real>
 				std::make_pair(true, true), 51),
 	     "k", fill_argument(std::make_pair(0U, 50U),
 				std::make_pair(true, true), 51),
+	     "GSL",
 	     file_bincoef);
 
     // Log binomial coefficient.
@@ -1122,6 +1200,7 @@ template<typename Real>
 				std::make_pair(true, true), 201),
 	     "k", fill_argument(std::make_pair(0U, 200U),
 				std::make_pair(true, true), 201),
+	     "GSL",
 	     file_lbincoef);
 
     // Gegenbauer polynomials.
@@ -1136,6 +1215,7 @@ template<typename Real>
 				    std::make_pair(true, true), 11),
              "x", fill_argument(std::make_pair(Real{0}, Real{20}),
 				std::make_pair(true, true), 41),
+	     "GSL",
 	     file_gegenbauer);
 
     // Chebyshev polynomials of the first kind.
@@ -1149,6 +1229,7 @@ template<typename Real>
 	     "n", {0U, 1U, 5U, 8U, 10U, 20U, 40U, 100U},
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{+1}),
 				std::make_pair(true, true), 21),
+	     "GSL",
 	     file_chebyshev_t);
 */
     // Chebyshev polynomials of the second kind.
@@ -1174,6 +1255,7 @@ template<typename Real>
 				   std::make_pair(true, true), 21),
              "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 				   std::make_pair(true, true), 41),
+	     "GSL",
 	     file_jacobi);
 
     // Radial polynomials.
@@ -1186,6 +1268,7 @@ template<typename Real>
 	     "n", vorder, "m", vorder,
              "rho", fill_argument(std::make_pair(Real{0}, Real{1}),
 				  std::make_pair(true, true), 21),
+	     "GSL",
 	     file_radpoly);
 
     // Zernike polynomials.
@@ -1199,6 +1282,7 @@ template<typename Real>
              "rho", fill_argument(std::make_pair(Real{0}, Real{1}),
 				  std::make_pair(true, true), 21),
              "phi", vphid,
+	     "GSL",
 	     file_zernike);
 
     // Confluent hypergeometric limit functions.
@@ -1213,6 +1297,7 @@ template<typename Real>
 				std::make_pair(false, true), 11),
 	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 				std::make_pair(true, true), 21),
+	     "GSL",
 	     file_conf_hyperg_lim);
 
     // Heuman lambda functions.
@@ -1226,6 +1311,7 @@ template<typename Real>
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
 	     "phi", vphid,
+	     "Boost",
 	     file_heuman_lambda);
 
     // Elliptic D integrals.
@@ -1239,6 +1325,7 @@ template<typename Real>
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
 	     "phi", vphid,
+	     "Boost",
 	     file_ellint_d);
 
     // Complementary elliptic D integrals.
@@ -1251,6 +1338,7 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
+	     "Boost",
 	     file_comp_ellint_d);
 
     // Jacobi zeta functions.
@@ -1264,6 +1352,7 @@ template<typename Real>
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
 	     "phi", vphid,
+	     "Boost",
 	     file_jacobi_zeta);
 
     // Cylindrical Hankel functions of the first kind.
@@ -1277,6 +1366,7 @@ template<typename Real>
 	     "nu", cyl_neg_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
+	     "Boost",
 	     file_cyl_hankel_1, true, false);
     test =
     maketest(cyl_hankel_1, beast::cyl_hankel_1,
@@ -1284,12 +1374,14 @@ template<typename Real>
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
+	     "Boost",
 	     file_cyl_hankel_1, false, false, test);
     maketest(cyl_hankel_1, beast::cyl_hankel_1,
 	     "__gnu_cxx", basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
+	     "Boost",
 	     file_cyl_hankel_1, false, true, test);
 
     // Cylindrical Hankel functions of the second kind.
@@ -1303,6 +1395,7 @@ template<typename Real>
 	     "nu", cyl_neg_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
+	     "Boost",
 	     file_cyl_hankel_2, true, false);
     test =
     maketest(cyl_hankel_2, beast::cyl_hankel_2,
@@ -1310,12 +1403,14 @@ template<typename Real>
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
+	     "Boost",
 	     file_cyl_hankel_2, false, false, test);
     maketest(cyl_hankel_2, beast::cyl_hankel_2,
 	     "__gnu_cxx", basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
+	     "Boost",
 	     file_cyl_hankel_2, false, true, test);
 
     // Spherical Hankel functions of the first kind.
@@ -1329,12 +1424,14 @@ template<typename Real>
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
+	     "Boost",
 	     file_sph_hankel_1, true, false);
     maketest(sph_hankel_1, beast::sph_hankel_1,
 	     "__gnu_cxx", basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
+	     "Boost",
 	     file_sph_hankel_1, false, true, test);
 
     // Spherical Hankel functions of the second kind.
@@ -1348,12 +1445,14 @@ template<typename Real>
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
+	     "Boost",
 	     file_sph_hankel_2, true, false);
     maketest(sph_hankel_2, beast::sph_hankel_2,
 	     "__gnu_cxx", basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
+	     "Boost",
 	     file_sph_hankel_2, false, true, test);
 
     // Spherical harmonic functions.
@@ -1367,6 +1466,7 @@ template<typename Real>
 	     "theta", fill_argument(std::make_pair(Real{0}, static_cast<Real>(M_PI)),
 				    std::make_pair(true, true), 21),
 	     "phi", vphid,
+	     "Boost",
 	     file_sph_harmonic);
 
     // Dirichlet eta function.
@@ -1380,11 +1480,13 @@ template<typename Real>
 	     "__gnu_cxx", basename,
 	     "s", fill_argument(std::make_pair(Real{-10}, Real{1}),
 				std::make_pair(true, false), 56),
+	     "GSL",
 	     file_dirichlet_eta, true, false);
     maketest(dirichlet_eta, gsl::dirichlet_eta,
 	     "__gnu_cxx", basename,
 	     "s", fill_argument(std::make_pair(Real{1}, Real{30}),
 				std::make_pair(false, true), 146),
+	     "GSL",
 	     file_dirichlet_eta, false, true, test);
 
     // Owens T functions.
@@ -1398,6 +1500,7 @@ template<typename Real>
 				std::make_pair(true, true), 41),
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
+	     "Boost",
 	     file_owens_t, true, true);
 
     // clausen_c function.
@@ -1411,6 +1514,7 @@ template<typename Real>
 				std::make_pair(true, true), 1),
 	     "w", fill_argument(std::make_pair(Real{-10}, Real{+10}),
 				std::make_pair(true, true), 41),
+	     "GSL",
 	     file_clausen_c, true, true);
 
 #endif // STD

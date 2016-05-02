@@ -40,11 +40,11 @@
 //  Divergence at nu=-2.0000000000000000 x=0.0000000000000000 f1=-inf f2=0.0000000000000000
 
 // Test data for nu=-1.0000000000000000.
-// max(|f - f_GSL|): 1.5987211554602254e-14
-// max(|f - f_GSL| / |f_GSL|): 1.3049853164470476e-15
-// mean(f - f_GSL): -1.7234890763228620e-15
-// variance(f - f_GSL): 1.5206761323330726e-30
-// stddev(f - f_GSL): 1.2331569779768805e-15
+// max(|f - f_Boost|): 1.5987211554602254e-14
+// max(|f - f_Boost| / |f_Boost|): 1.3049853164470476e-15
+// mean(f - f_Boost): -1.7234890763228620e-15
+// variance(f - f_Boost): 1.5206761323330726e-30
+// stddev(f - f_Boost): 1.2331569779768805e-15
 const testcase_cyl_bessel_i<double>
 data001[21] =
 {
