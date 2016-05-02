@@ -449,6 +449,7 @@ template<typename Tp, typename Tp1>
 	   const std::string & nsname,
 	   const std::string & funcname,
 	   const std::string & arg1, const std::vector<Tp1> & argument1,
+	   const std::string & bline,
 	   std::ostream & output,
 	   bool write_header = true, bool write_main = true, unsigned int test = 1)
   {
@@ -541,11 +542,11 @@ template<typename Tp, typename Tp1>
 	dataname.fill(' ');
 	output << '\n';
 	output << "// Test data.\n";
-	output << "// max(|f - f_GSL|): " << abs_stats.max() << '\n';
-	output << "// max(|f - f_GSL| / |f_GSL|): " << max_abs_frac << '\n';
-	output << "// mean(f - f_GSL): " << raw_stats.mean() << '\n';
-	output << "// variance(f - f_GSL): " << raw_stats.variance() << '\n';
-	output << "// stddev(f - f_GSL): " << raw_stats.std_deviation() << '\n';
+	output << "// max(|f - f_" << bline << "|): " << abs_stats.max() << '\n';
+	output << "// max(|f - f_" << bline << "| / |f_" << bline << "|): " << max_abs_frac << '\n';
+	output << "// mean(f - f_" << bline << "): " << raw_stats.mean() << '\n';
+	output << "// variance(f - f_" << bline << "): " << raw_stats.variance() << '\n';
+	output << "// stddev(f - f_" << bline << "): " << raw_stats.std_deviation() << '\n';
 	output.fill('0');
 	output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
 	output.fill(' ');
@@ -634,6 +635,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 	   const std::string & funcname,
 	   const std::string & arg1, const std::vector<Tp1> & argument1,
 	   const std::string & arg2, const std::vector<Tp2> & argument2,
+	   const std::string & bline,
 	   std::ostream & output,
 	   bool write_header = true, bool write_main = true, unsigned int test = 1)
   {
@@ -730,11 +732,11 @@ template<typename Tp, typename Tp1, typename Tp2>
 	    dataname.fill(' ');
 	    output << '\n';
 	    output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]) << ".\n";
-	    output << "// max(|f - f_GSL|): " << abs_stats.max() << '\n';
-	    output << "// max(|f - f_GSL| / |f_GSL|): " << max_abs_frac << '\n';
-	    output << "// mean(f - f_GSL): " << raw_stats.mean() << '\n';
-	    output << "// variance(f - f_GSL): " << raw_stats.variance() << '\n';
-	    output << "// stddev(f - f_GSL): " << raw_stats.std_deviation() << '\n';
+	    output << "// max(|f - f_" << bline << "|): " << abs_stats.max() << '\n';
+	    output << "// max(|f - f_" << bline << "| / |f_" << bline << "|): " << max_abs_frac << '\n';
+	    output << "// mean(f - f_" << bline << "): " << raw_stats.mean() << '\n';
+	    output << "// variance(f - f_" << bline << "): " << raw_stats.variance() << '\n';
+	    output << "// stddev(f - f_" << bline << "): " << raw_stats.std_deviation() << '\n';
 	    output.fill('0');
 	    output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
 	    output.fill(' ');
@@ -824,6 +826,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 	   const std::string & arg1, const std::vector<Tp1> & argument1,
 	   const std::string & arg2, const std::vector<Tp2> & argument2,
 	   const std::string & arg3, const std::vector<Tp3> & argument3,
+	   const std::string & bline,
 	   std::ostream & output,
 	   bool write_header = true, bool write_main = true, unsigned int test = 1)
   {
@@ -928,11 +931,11 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		output << '\n';
 		output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]);
 		output << ", " << arg2 << '=' << std::get<2>(crud[0]) << ".\n";
-		output << "// max(|f - f_GSL|): " << abs_stats.max() << '\n';
-		output << "// max(|f - f_GSL| / |f_GSL|): " << max_abs_frac << '\n';
-		output << "// mean(f - f_GSL): " << raw_stats.mean() << '\n';
-		output << "// variance(f - f_GSL): " << raw_stats.variance() << '\n';
-		output << "// stddev(f - f_GSL): " << raw_stats.std_deviation() << '\n';
+		output << "// max(|f - f_" << bline << "|): " << abs_stats.max() << '\n';
+		output << "// max(|f - f_" << bline << "| / |f_" << bline << "|): " << max_abs_frac << '\n';
+		output << "// mean(f - f_" << bline << "): " << raw_stats.mean() << '\n';
+		output << "// variance(f - f_" << bline << "): " << raw_stats.variance() << '\n';
+		output << "// stddev(f - f_" << bline << "): " << raw_stats.std_deviation() << '\n';
 		output.fill('0');
 		output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
 		output.fill(' ');
@@ -1028,6 +1031,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 	   const std::string & arg2, const std::vector<Tp2> & argument2,
 	   const std::string & arg3, const std::vector<Tp3> & argument3,
 	   const std::string & arg4, const std::vector<Tp4> & argument4,
+	   const std::string & bline,
 	   std::ostream & output,
 	   bool write_header = true, bool write_main = true, unsigned int test = 1)
   {
@@ -1140,11 +1144,11 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		    output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]);
 		    output << ", " << arg2 << '=' << std::get<2>(crud[0]);
 		    output << ", " << arg3 << '=' << std::get<3>(crud[0]) << ".\n";
-		    output << "// max(|f - f_GSL|): " << abs_stats.max() << '\n';
-		    output << "// max(|f - f_GSL| / |f_GSL|): " << max_abs_frac << '\n';
-		    output << "// mean(f - f_GSL): " << raw_stats.mean() << '\n';
-		    output << "// variance(f - f_GSL): " << raw_stats.variance() << '\n';
-		    output << "// stddev(f - f_GSL): " << raw_stats.std_deviation() << '\n';
+		    output << "// max(|f - f_" << bline << "|): " << abs_stats.max() << '\n';
+		    output << "// max(|f - f_" << bline << "| / |f_" << bline << "|): " << max_abs_frac << '\n';
+		    output << "// mean(f - f_" << bline << "): " << raw_stats.mean() << '\n';
+		    output << "// variance(f - f_" << bline << "): " << raw_stats.variance() << '\n';
+		    output << "// stddev(f - f_" << bline << "): " << raw_stats.std_deviation() << '\n';
 		    output.fill('0');
 		    output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
 		    output.fill(' ');
