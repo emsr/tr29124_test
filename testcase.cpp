@@ -195,7 +195,7 @@ template<typename Real>
     std::string filename;
 
 #if STD
-    // Airy functions.
+    // Airy functions of the first kind.
     std::cout << "airy_ai" << std::endl;
     basename = "airy_ai";
     filename = get_filename(path, prefix, basename, "",  ".cc");
@@ -208,6 +208,7 @@ template<typename Real>
 	     "GSL",
 	     file_airy_ai);
 
+    // Airy functions of the second kind.
     std::cout << "airy_bi" << std::endl;
     basename = "airy_bi";
     filename = get_filename(path, prefix, basename, "",  ".cc");
@@ -246,7 +247,7 @@ template<typename Real>
 	     "GSL",
 	     file_assoc_legendre);
 
-    // Beta function.
+    // Beta functions.
     std::cout << "beta" << std::endl;
     basename = "beta";
     filename = get_filename(path, prefix, basename, "",  ".cc");
@@ -622,7 +623,7 @@ template<typename Real>
 	     file_riemann_zeta, false, true, test);
 
 #if STD
-    // Hurwitz zeta function.
+    // Hurwitz zeta functions.
     std::cout << "hurwitz_zeta" << std::endl;
     // Skip the pole at 1.
     basename = "hurwitz_zeta";
