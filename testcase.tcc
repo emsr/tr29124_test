@@ -451,7 +451,7 @@ template<typename Tp, typename Tp1>
 	   const std::string & arg1, const std::vector<Tp1> & argument1,
 	   const std::string & bline,
 	   std::ostream & output,
-	   bool write_header = true, bool write_main = true, unsigned int test = 1)
+	   bool write_header = true, bool write_main = true, unsigned int start_test = 1)
   {
     using Val = __num_traits_t<Tp>;
 
@@ -487,6 +487,8 @@ template<typename Tp, typename Tp1>
     _Statistics<Tp> raw_stats;
     _Statistics<decltype(std::abs(Tp{}))> abs_stats;
     auto max_abs_frac = Val{-1};
+    auto num_divergences = 0;
+    std::tuple<Tp, Tp, Tp1> last_divergence;
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
 	const auto x = argument1[i];
@@ -495,22 +497,28 @@ template<typename Tp, typename Tp1>
 	  {
 	    const auto f1 = function1(x);
 	    const auto f2 = function2(x);
+
 	    if (std::abs(f1) == inf || std::abs(f2) == inf)
 	      {
-		output << "//  Divergence at"
-		       << " " << arg1 << "=" << x
-		       << " f1=" << f1
-		       << " f2=" << f2 << '\n';
-		break;
+		++num_divergences;
+		last_divergence = std::make_tuple(f1, f2, x);
+		if (num_divergences <= 3)
+		  output << "//  Divergence at"
+			 << " " << arg1 << "=" << x
+			 << " f=" << f1
+			 << " f_" << bline << "=" << f2 << '\n';
+		continue;
 	      }
+
 	    if (std::isnan(std::real(f1)) || std::isnan(std::real(f2)))
 	      {
 		output << "//  Failure at"
 		       << " " << arg1 << "=" << x
-		       << " f1=" << f1
-		       << " f2=" << f2 << '\n';
+		       << " f=" << f1
+		       << " f_" << bline << "=" << f2 << '\n';
 		break;
 	      }
+
 	    const auto diff = f1 - f2;
 	    raw_stats << diff;
 	    abs_stats << std::abs(diff);
@@ -527,6 +535,16 @@ template<typename Tp, typename Tp1>
 	    continue;
 	  }
       }
+    if (num_divergences > 0)
+      {
+	if (num_divergences > 4)
+	  output << "//  ...\n";
+	output << "//  Divergence at"
+	       << " " << arg1 << "=" << std::get<2>(last_divergence)
+	       << " f=" << std::get<0>(last_divergence)
+	       << " f_" << bline << "=" << std::get<1>(last_divergence) << '\n';
+	num_divergences = 0;
+      }
 
     if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
       {
@@ -538,7 +556,7 @@ template<typename Tp, typename Tp1>
 	  tname = type_strings<Tp>::type();
 	std::ostringstream dataname;
 	dataname.fill('0');
-	dataname << "data" << std::setw(3) << test;
+	dataname << "data" << std::setw(3) << start_test;
 	dataname.fill(' ');
 	output << '\n';
 	output << "// Test data.\n";
@@ -558,9 +576,9 @@ template<typename Tp, typename Tp1>
 	  }
 	output << "};\n";
 	output.fill('0');
-	output << "const " << numname << " toler" << std::setw(3) << test << " = " << frac_toler << ";\n";
+	output << "const " << numname << " toler" << std::setw(3) << start_test << " = " << frac_toler << ";\n";
 	output.fill(' ');
-	++test;
+	++start_test;
       }
 
     if (write_main)
@@ -611,7 +629,7 @@ template<typename Tp, typename Tp1>
 	output << "main()\n";
 	output << "{\n";
 	output.fill('0');
-	for (unsigned int t = 1; t < test; ++t)
+	for (unsigned int t = 1; t < start_test; ++t)
 	  output << "  test(data" << std::setw(3) << t << ", toler" << std::setw(3) << t << ");\n";
 	output.fill(' ');
 	output << "  return 0;\n";
@@ -620,7 +638,7 @@ template<typename Tp, typename Tp1>
 
     output.flush();
 
-    return test;
+    return start_test;
   }
 
 
@@ -637,7 +655,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 	   const std::string & arg2, const std::vector<Tp2> & argument2,
 	   const std::string & bline,
 	   std::ostream & output,
-	   bool write_header = true, bool write_main = true, unsigned int test = 1)
+	   bool write_header = true, bool write_main = true, unsigned int start_test = 1)
   {
     using Val = __num_traits_t<Tp>;
 
@@ -673,6 +691,8 @@ template<typename Tp, typename Tp1, typename Tp2>
 	std::vector<std::tuple<Tp, Tp1, Tp2>> crud;
 	_Statistics<Tp> raw_stats;
 	_Statistics<decltype(std::abs(Tp{}))> abs_stats;
+	auto num_divergences = 0;
+	std::tuple<Tp, Tp, Tp1, Tp2> last_divergence;
 
 	auto max_abs_frac = Val{-1};
 	for (unsigned int j = 0; j < argument2.size(); ++j)
@@ -685,22 +705,27 @@ template<typename Tp, typename Tp1, typename Tp2>
 		const auto f2 = function2(x, y);
 		if (std::abs(f1) == inf || std::abs(f2) == inf)
 		  {
-		    output << "//  Divergence at"
-			   << " " << arg1 << "=" << x
-			   << " " << arg2 << "=" << y
-			   << " f1=" << f1
-			   << " f2=" << f2 << '\n';
-		    break;
+		    ++num_divergences;
+		    last_divergence = std::make_tuple(f1, f2, x, y);
+		    if (num_divergences <= 3)
+		      output << "//  Divergence at"
+			     << " " << arg1 << "=" << x
+			     << " " << arg2 << "=" << y
+			     << " f=" << f1
+			     << " f_" << bline << "=" << f2 << '\n';
+		    continue;
 		  }
+
 		if (std::isnan(std::real(f1)) || std::isnan(std::real(f2)))
 		  {
 		    output << "//  Failure at"
 			   << " " << arg1 << "=" << x
 			   << " " << arg2 << "=" << y
-			   << " f1=" << f1
-			   << " f2=" << f2 << '\n';
+			   << " f=" << f1
+			   << " f_" << bline << "=" << f2 << '\n';
 		    break;
 		  }
+
 		const auto diff = f1 - f2;
 		raw_stats << diff;
 		abs_stats << std::abs(diff);
@@ -717,6 +742,17 @@ template<typename Tp, typename Tp1, typename Tp2>
 		continue;
 	      }
 	  }
+	if (num_divergences > 0)
+	  {
+	    if (num_divergences > 4)
+	      output << "//  ...\n";
+	    output << "//  Divergence at"
+		   << " " << arg1 << "=" << std::get<2>(last_divergence)
+		   << " " << arg2 << "=" << std::get<3>(last_divergence)
+		   << " f=" << std::get<0>(last_divergence)
+		   << " f_" << bline << "=" << std::get<1>(last_divergence) << '\n';
+	    num_divergences = 0;
+	  }
 
 	if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
 	  {
@@ -728,7 +764,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 	      tname = type_strings<Tp>::type();
 	    std::ostringstream dataname;
 	    dataname.fill('0');
-	    dataname << "data" << std::setw(3) << test;
+	    dataname << "data" << std::setw(3) << start_test;
 	    dataname.fill(' ');
 	    output << '\n';
 	    output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]) << ".\n";
@@ -749,9 +785,9 @@ template<typename Tp, typename Tp1, typename Tp2>
 	      }
 	    output << "};\n";
 	    output.fill('0');
-	    output << "const " << numname << " toler" << std::setw(3) << test << " = " << frac_toler << ";\n";
+	    output << "const " << numname << " toler" << std::setw(3) << start_test << " = " << frac_toler << ";\n";
 	    output.fill(' ');
-	    ++test;
+	    ++start_test;
 	  }
       }
 
@@ -801,7 +837,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 	output << "main()\n";
 	output << "{\n";
 	output.fill('0');
-	for (unsigned int t = 1; t < test; ++t)
+	for (unsigned int t = 1; t < start_test; ++t)
 	  output << "  test(data" << std::setw(3) << t << ", toler" << std::setw(3) << t << ");\n";
 	output.fill(' ');
 	output << "  return 0;\n";
@@ -810,7 +846,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 
     output.flush();
 
-    return test;
+    return start_test;
   }
 
 
@@ -828,7 +864,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 	   const std::string & arg3, const std::vector<Tp3> & argument3,
 	   const std::string & bline,
 	   std::ostream & output,
-	   bool write_header = true, bool write_main = true, unsigned int test = 1)
+	   bool write_header = true, bool write_main = true, unsigned int start_test = 1)
   {
     using Val = __num_traits_t<Tp>;
 
@@ -869,6 +905,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 	    std::vector<std::tuple<Tp, Tp1, Tp2, Tp3>> crud;
 	    _Statistics<Tp> raw_stats;
 	    _Statistics<decltype(std::abs(Tp{}))> abs_stats;
+	    auto num_divergences = 0;
+	    std::tuple<Tp, Tp, Tp1, Tp2, Tp3> last_divergence;
 
 	    auto max_abs_frac = Val{-1};
 	    for (unsigned int k = 0; k < argument3.size(); ++k)
@@ -881,24 +919,29 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		    const auto f2 = function2(x, y, z);
 		    if (std::abs(f1) == inf || std::abs(f2) == inf)
 		      {
-			output << "//  Divergence at"
-			       << " " << arg1 << "=" << x
-			       << " " << arg2 << "=" << y
-			       << " " << arg3 << "=" << z
-			       << " f1=" << f1
-			       << " f2=" << f2 << '\n';
-			break;
+			++num_divergences;
+			last_divergence = std::make_tuple(f1, f2, x, y, z);
+			if (num_divergences <= 3)
+			  output << "//  Divergence at"
+				 << " " << arg1 << "=" << x
+				 << " " << arg2 << "=" << y
+				 << " " << arg3 << "=" << z
+				 << " f=" << f1
+				 << " f_" << bline << "=" << f2 << '\n';
+			continue;
 		      }
+
 		    if (std::isnan(std::real(f1)) || std::isnan(std::real(f2)))
 		      {
 			output << "//  Failure at"
 			       << " " << arg1 << "=" << x
 			       << " " << arg2 << "=" << y
 			       << " " << arg3 << "=" << z
-			       << " f1=" << f1
-			       << " f2=" << f2 << '\n';
+			       << " f=" << f1
+			       << " f_" << bline << "=" << f2 << '\n';
 			break;
 		      }
+
 		    const auto diff = f1 - f2;
 		    raw_stats << diff;
 		    abs_stats << std::abs(diff);
@@ -915,6 +958,18 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		    continue;
 		  }
 	      }
+	    if (num_divergences > 0)
+	      {
+		if (num_divergences > 4)
+		  output << "//  ...\n";
+		output << "//  Divergence at"
+		       << " " << arg1 << "=" << std::get<2>(last_divergence)
+		       << " " << arg2 << "=" << std::get<3>(last_divergence)
+		       << " " << arg3 << "=" << std::get<4>(last_divergence)
+		       << " f=" << std::get<0>(last_divergence)
+		       << " f_" << bline << "=" << std::get<1>(last_divergence) << '\n';
+		num_divergences = 0;
+	      }
 
 	    if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
 	      {
@@ -926,7 +981,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		  tname = type_strings<Tp>::type();
 		std::ostringstream dataname;
 		dataname.fill('0');
-		dataname << "data" << std::setw(3) << test;
+		dataname << "data" << std::setw(3) << start_test;
 		dataname.fill(' ');
 		output << '\n';
 		output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]);
@@ -950,9 +1005,9 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		  }
 		output << "};\n";
 		output.fill('0');
-		output << "const " << numname << " toler" << std::setw(3) << test << " = " << frac_toler << ";\n";
+		output << "const " << numname << " toler" << std::setw(3) << start_test << " = " << frac_toler << ";\n";
 		output.fill(' ');
-		++test;
+		++start_test;
 	      }
 	  }
       }
@@ -1005,7 +1060,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 	output << "main()\n";
 	output << "{\n";
 	output.fill('0');
-	for (unsigned int t = 1; t < test; ++t)
+	for (unsigned int t = 1; t < start_test; ++t)
 	  output << "  test(data" << std::setw(3) << t << ", toler" << std::setw(3) << t << ");\n";
 	output.fill(' ');
 	output << "  return 0;\n";
@@ -1014,7 +1069,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 
     output.flush();
 
-    return test;
+    return start_test;
   }
 
 
@@ -1033,7 +1088,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 	   const std::string & arg4, const std::vector<Tp4> & argument4,
 	   const std::string & bline,
 	   std::ostream & output,
-	   bool write_header = true, bool write_main = true, unsigned int test = 1)
+	   bool write_header = true, bool write_main = true, unsigned int start_test = 1)
   {
     using Val = __num_traits_t<Tp>;
 
@@ -1079,6 +1134,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		std::vector<std::tuple<Tp, Tp1, Tp2, Tp3, Tp4>> crud;
 		_Statistics<Tp> raw_stats;
 		_Statistics<decltype(std::abs(Tp{}))> abs_stats;
+		auto num_divergences = 0;
+		std::tuple<Tp, Tp, Tp1, Tp2, Tp3, Tp4> last_divergence;
 
 		auto max_abs_frac = Val{-1};
 		for (unsigned int l = 0; l < argument4.size(); ++l)
@@ -1091,15 +1148,19 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 			const auto f2 = function2(w, x, y, z);
 			if (std::abs(f1) == inf || std::abs(f2) == inf)
 			  {
-			    output << "//  Divergence at"
-				   << " " << arg1 << "=" << w
-				   << " " << arg2 << "=" << x
-				   << " " << arg3 << "=" << y
-				   << " " << arg4 << "=" << z
-				   << " f1=" << f1
-				   << " f2=" << f2 << '\n';
-			    break;
+			    ++num_divergences;
+			    last_divergence = std::make_tuple(f1, f2, w, x, y, z);
+			    if (num_divergences <= 3)
+			      output << "//  Divergence at"
+				     << " " << arg1 << "=" << w
+				     << " " << arg2 << "=" << x
+				     << " " << arg3 << "=" << y
+				     << " " << arg4 << "=" << z
+				     << " f=" << f1
+				     << " f_" << bline << "=" << f2 << '\n';
+			    continue;
 			  }
+
 			if (std::isnan(std::real(f1)) || std::isnan(std::real(f2)))
 			  {
 			    output << "//  Failure at"
@@ -1107,10 +1168,11 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 				   << " " << arg1 << "=" << x
 				   << " " << arg3 << "=" << y
 				   << " " << arg4 << "=" << z
-				   << " f1=" << f1
-				   << " f2=" << f2 << '\n';
+				   << " f=" << f1
+				   << " f_" << bline << "=" << f2 << '\n';
 			    break;
 			  }
+
 			const auto diff = f1 - f2;
 			raw_stats << diff;
 			abs_stats << std::abs(diff);
@@ -1127,6 +1189,19 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 			continue;
 		      }
 		  }
+		if (num_divergences > 0)
+		  {
+		    if (num_divergences > 4)
+		      output << "//  ...\n";
+		    output << "//  Divergence at"
+			   << " " << arg1 << "=" << std::get<2>(last_divergence)
+			   << " " << arg2 << "=" << std::get<3>(last_divergence)
+			   << " " << arg3 << "=" << std::get<4>(last_divergence)
+			   << " " << arg4 << "=" << std::get<5>(last_divergence)
+			   << " f=" << std::get<0>(last_divergence)
+			   << " f_" << bline << "=" << std::get<1>(last_divergence) << '\n';
+		    num_divergences = 0;
+		  }
 
 		if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
 		 {
@@ -1138,7 +1213,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		      tname = type_strings<Tp>::type();
 		    std::ostringstream dataname;
 		    dataname.fill('0');
-		    dataname << "data" << std::setw(3) << test;
+		    dataname << "data" << std::setw(3) << start_test;
 		    dataname.fill(' ');
 		    output << '\n';
 		    output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]);
@@ -1164,9 +1239,9 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		      }
 		    output << "};\n";
 		    output.fill('0');
-		    output << "const " << numname << " toler" << std::setw(3) << test << " = " << frac_toler << ";\n";
+		    output << "const " << numname << " toler" << std::setw(3) << start_test << " = " << frac_toler << ";\n";
 		    output.fill(' ');
-		    ++test;
+		    ++start_test;
 		  }
 	      }
 	  }
@@ -1219,7 +1294,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 	output << "main()\n";
 	output << "{\n";
 	output.fill('0');
-	for (unsigned int t = 1; t < test; ++t)
+	for (unsigned int t = 1; t < start_test; ++t)
 	  output << "  test(data" << std::setw(3) << t << ", toler" << std::setw(3) << t << ");\n";
 	output.fill(' ');
 	output << "  return 0;\n";
@@ -1228,7 +1303,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 
     output.flush();
 
-    return test;
+    return start_test;
   }
 
 #endif // TESTCASE_TCC

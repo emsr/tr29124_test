@@ -1,1 +1,3 @@
 /home/ed/tr29124_test/bits/sf_zeta.tcc:551: warning: Found unknown command `\u0160tas'
+/home/ed/tr29124_test/bits/specfun.h:181: warning: unable to resolve reference to `__gnu_cxx::dirichlet_lambda' for \ref command
+/home/ed/tr29124_test/bits/specfun.h:181: warning: unable to resolve reference to `__gnu_cxx::dirichlet_lambda' for \ref command
