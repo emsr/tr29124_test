@@ -2547,10 +2547,10 @@ template<typename _Sum>
     auto __expz = std::exp(__z);
     auto __z1o4 = std::pow(__z, _Val{0.25L});
 
-    _Sum _Asum(_Val{1});
-    _Sum _Bsum(_Val{1});
-    _Sum _Csum(_Val{1});
-    _Sum _Dsum(_Val{1});
+    _Sum _Asum(_Tp{1});
+    _Sum _Bsum(_Tp{1});
+    _Sum _Csum(_Tp{1});
+    _Sum _Dsum(_Tp{1});
     //const auto __gamp1d6 = std::tgamma(_Val{1} / _Val{6});//5.566316001780235204250096895207726111408
     //const auto __gamp5d6 = std::tgamma(_Val{5} / _Val{6});//1.128787029908125961260901090258842013324
     //const auto __gamm1d6 = std::tgamma(_Val{-1} / _Val{6});//-6.772722179448755767565406541553052079967
@@ -2585,7 +2585,7 @@ template<typename _Sum>
     auto _Bi = _Val{-2} * _S_sqrt_pi * __z1o4 * _Bsum() / __expz;
     auto _Aip = _Val{+2} * _S_sqrt_pi * _Csum() / __z1o4 / __expz;
     auto _Bip = _Val{-2} * _S_sqrt_pi * __expz * _Dsum() / __z1o4;
-    return _AiryState<_Tp>{__zeta, _Ai, _Bi, _Aip, _Bip};
+    return _AiryState<_Tp>{__z, _Ai, _Bi, _Aip, _Bip};
   }
 
 
