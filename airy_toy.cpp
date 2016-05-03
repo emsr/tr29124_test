@@ -2535,49 +2535,57 @@ template<typename _Tp>
 
 template<typename _Sum>
   _AiryState<typename _Sum::value_type>
-  airy_asymp(typename _Sum::value_type __zeta)
+  airy_asymp(typename _Sum::value_type __z)
   {
-    using __cmplx = typename _Sum::value_type;
-    using _Tp = typename __cmplx::value_type;
+    using _Tp = typename _Sum::value_type;
+    using _Val = std::__detail::__num_traits_t<_Tp>;
     constexpr int _S_max_iter = 1000;
-    constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+    constexpr auto _S_eps = std::numeric_limits<_Val>::epsilon();
+    constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Val>::__root_pi;
 
-    _Sum _Asum(_Tp{1});
-    _Sum _Bsum(_Tp{1});
-    _Sum _Csum(_Tp{1});
-    _Sum _Dsum(_Tp{1});
-    const auto __gamp1d6 = std::tgamma(_Tp{1} / _Tp{6});//5.566316001780235204250096895207726111408
-    const auto __gamp5d6 = std::tgamma(_Tp{5} / _Tp{6});//1.128787029908125961260901090258842013324
-    const auto __gamm1d6 = std::tgamma(_Tp{-1} / _Tp{6});//-6.772722179448755767565406541553052079967
-    const auto __gamp7d6 = std::tgamma(_Tp{7} / _Tp{6});//9.277193336300392007083494825346210185670e-1
+    auto __zeta = _Val{2} * std::pow(__z, _Val{3} / _Val{2}) / _Val{3};
+    auto __expz = std::exp(__z);
+    auto __z1o4 = std::pow(__z, _Val{0.25L});
+
+    _Sum _Asum(_Val{1});
+    _Sum _Bsum(_Val{1});
+    _Sum _Csum(_Val{1});
+    _Sum _Dsum(_Val{1});
+    //const auto __gamp1d6 = std::tgamma(_Val{1} / _Val{6});//5.566316001780235204250096895207726111408
+    //const auto __gamp5d6 = std::tgamma(_Val{5} / _Val{6});//1.128787029908125961260901090258842013324
+    //const auto __gamm1d6 = std::tgamma(_Val{-1} / _Val{6});//-6.772722179448755767565406541553052079967
+    //const auto __gamp7d6 = std::tgamma(_Val{7} / _Val{6});//9.277193336300392007083494825346210185670e-1
     // gamma(1/6) * gamma(5/6) = 2pi
     // gamma(-1/6) * gamma(7/6) = -2pi
     // gamma(-1/6) * gamma(1/6) = -12pi
-    auto __sign = _Tp{1};
-    auto __numerAB = _Tp{1};
-    auto __numerCD = _Tp{1};
-    auto __denom = __cmplx{1};
+    auto __sign = _Val{1};
+    auto __numer = _Val{1};
+    auto __denom = _Tp{1};
     for (int __k = 1; __k < _S_max_iter; ++__k)
       {
 	__sign = -__sign;
-	__numerAB *= (__k + _Tp{1} / _Tp{6}) * (__k + _Tp{5} / _Tp{6});
-	__numerCD *= (__k - _Tp{1} / _Tp{6}) * (__k + _Tp{7} / _Tp{6});
-	__denom *= __cmplx(2 * __k) * __zeta;
-	auto _Aterm = __sign * __numerAB / __denom;
+	__numer *= _Val(__k + _Val{1} / _Val{6})
+		 * _Val(__k - _Val{1} / _Val{6});
+	__denom *= _Tp(2 * __k) * __zeta;
+	auto _Aterm = __sign * __numer / __denom;
 	_Asum += _Aterm;
-	auto _Bterm = __numerAB / __denom;
+	auto _Bterm = __numer / __denom;
 	_Bsum += _Bterm;
-	auto _Cterm = __sign * __numerCD / __denom;
+	auto _Cterm = __sign * __numer / __denom;
 	_Csum += _Cterm;
-	auto _Dterm = __numerCD / __denom;
+	auto _Dterm = __numer / __denom;
 	_Dsum += _Dterm;
-        if (_Asum() * _S_eps < _Aterm
-	 && _Bsum() * _S_eps < _Bterm
-	 && _Csum() * _S_eps < _Cterm
-	 && _Dsum() * _S_eps < _Dterm)
+        if (std::abs(_Asum()) * _S_eps < std::abs(_Aterm)
+	 && std::abs(_Bsum()) * _S_eps < std::abs(_Bterm)
+	 && std::abs(_Csum()) * _S_eps < std::abs(_Cterm)
+	 && std::abs(_Dsum()) * _S_eps < std::abs(_Dterm))
 	  break;
       }
-    return _AiryState<__cmplx>{__zeta, _Asum(), _Bsum(), _Csum(), _Dsum()};
+    auto _Ai = _Val{-2} * _S_sqrt_pi * __z1o4 *__expz * _Asum();
+    auto _Bi = _Val{-2} * _S_sqrt_pi * __z1o4 * _Bsum() / __expz;
+    auto _Aip = _Val{+2} * _S_sqrt_pi * _Csum() / __z1o4 / __expz;
+    auto _Bip = _Val{-2} * _S_sqrt_pi * __expz * _Dsum() / __z1o4;
+    return _AiryState<_Tp>{__zeta, _Ai, _Bi, _Aip, _Bip};
   }
 
 
@@ -2585,10 +2593,10 @@ template<typename _Sum>
   void
   diff_airy_asymp()
   {
-    using __cmplx = typename _Sum::value_type;
-    using _Tp = typename __cmplx::value_type;
+    using _Tp = typename _Sum::value_type;
+    using _Val = typename _Tp::value_type;
 
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<_Val>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -2610,7 +2618,7 @@ template<typename _Sum>
 	      << '\n';
     for (int i = -1500; i <= -500; ++i)
       {
-	auto t = __cmplx{_Tp(0.01Q * i)};
+	auto t = _Tp{_Val(0.01Q * i)};
 	auto airy1 = airy_asymp<_Sum>(t);
 	std::cout << '\n';
 	std::cout << std::setw(width) << std::real(airy1.z)
@@ -2658,7 +2666,7 @@ template<typename _Sum>
 	      << '\n';
     for (int i = 500; i <= 1500; ++i)
       {
-	auto t = __cmplx{_Tp(0.01Q * i)};
+	auto t = _Tp{_Val(0.01Q * i)};
 	auto airy1 = airy_asymp<_Sum>(t);
 	std::cout << '\n';
 	std::cout << std::setw(width) << std::real(airy1.z)
