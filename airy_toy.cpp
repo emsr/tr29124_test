@@ -2534,24 +2534,25 @@ template<typename _Tp>
 
 
 template<typename _Sum>
-  void
-  airy_asymp()
+  _AiryState<typename _Sum::value_type>
+  airy_asymp(typename _Sum::value_type __zeta)
   {
     using __cmplx = typename _Sum::value_type;
     using _Tp = typename __cmplx::value_type;
     constexpr int _S_max_iter = 1000;
-
-    // Shut the compiler - what do I want here though?
-    __cmplx __zeta{};
+    constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
 
     _Sum _Asum(_Tp{1});
     _Sum _Bsum(_Tp{1});
     _Sum _Csum(_Tp{1});
     _Sum _Dsum(_Tp{1});
-    const auto __gamp1d6 = std::tgamma(_Tp{1} / _Tp{6});
-    const auto __gamp5d6 = std::tgamma(_Tp{5} / _Tp{6});
-    const auto __gamm1d6 = std::tgamma(_Tp{-1} / _Tp{6});
-    const auto __gamp7d6 = std::tgamma(_Tp{7} / _Tp{6});
+    const auto __gamp1d6 = std::tgamma(_Tp{1} / _Tp{6});//5.566316001780235204250096895207726111408
+    const auto __gamp5d6 = std::tgamma(_Tp{5} / _Tp{6});//1.128787029908125961260901090258842013324
+    const auto __gamm1d6 = std::tgamma(_Tp{-1} / _Tp{6});//-6.772722179448755767565406541553052079967
+    const auto __gamp7d6 = std::tgamma(_Tp{7} / _Tp{6});//9.277193336300392007083494825346210185670e-1
+    // gamma(1/6) * gamma(5/6) = 2pi
+    // gamma(-1/6) * gamma(7/6) = -2pi
+    // gamma(-1/6) * gamma(1/6) = -12pi
     auto __sign = _Tp{1};
     auto __numerAB = _Tp{1};
     auto __numerCD = _Tp{1};
@@ -2562,12 +2563,132 @@ template<typename _Sum>
 	__numerAB *= (__k + _Tp{1} / _Tp{6}) * (__k + _Tp{5} / _Tp{6});
 	__numerCD *= (__k - _Tp{1} / _Tp{6}) * (__k + _Tp{7} / _Tp{6});
 	__denom *= __cmplx(2 * __k) * __zeta;
-	_Asum += __sign * __numerAB / __denom;
-	_Bsum += __numerAB / __denom;
-	_Csum += __sign * __numerCD / __denom;
-	_Dsum += __numerCD / __denom;
+	auto _Aterm = __sign * __numerAB / __denom;
+	_Asum += _Aterm;
+	auto _Bterm = __numerAB / __denom;
+	_Bsum += _Bterm;
+	auto _Cterm = __sign * __numerCD / __denom;
+	_Csum += _Cterm;
+	auto _Dterm = __numerCD / __denom;
+	_Dsum += _Dterm;
+        if (_Asum() * _S_eps < _Aterm
+	 && _Bsum() * _S_eps < _Bterm
+	 && _Csum() * _S_eps < _Cterm
+	 && _Dsum() * _S_eps < _Dterm)
+	  break;
+      }
+    return _AiryState<__cmplx>{__zeta, _Asum(), _Bsum(), _Csum(), _Dsum()};
+  }
+
+
+template<typename _Sum>
+  void
+  diff_airy_asymp()
+  {
+    using __cmplx = typename _Sum::value_type;
+    using _Tp = typename __cmplx::value_type;
+
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout << std::showpoint << std::scientific;
+    auto width = 8 + std::cout.precision();
+
+    std::cout << "\n\nAiry Asymptotic -z Deathmatch\n";
+    std::cout << "++++++++++++++++++++++++++++++\n";
+    std::cout << std::setw(width) << "t"
+	      << std::setw(width) << "Ai"
+	      << std::setw(width) << "Aip"
+	      << std::setw(width) << "Bi"
+	      << std::setw(width) << "Bip"
+	      << std::setw(width) << "Wronskian"
+	      << '\n';
+    std::cout << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << '\n';
+    for (int i = -1500; i <= -500; ++i)
+      {
+	auto t = __cmplx{_Tp(0.01Q * i)};
+	auto airy1 = airy_asymp<_Sum>(t);
+	std::cout << '\n';
+	std::cout << std::setw(width) << std::real(airy1.z)
+		  << std::setw(width) << std::real(airy1.Ai)
+		  << std::setw(width) << std::real(airy1.Aip)
+		  << std::setw(width) << std::real(airy1.Bi)
+		  << std::setw(width) << std::real(airy1.Bip)
+		  << std::setw(width) << std::real(airy1.Wronskian())
+		  << std::setw(width) << std::real(airy1.true_Wronskian())
+		  << '\n';
+	auto airy2 = __airy_asymp_absarg_lt_pio3(t);
+	std::cout << std::setw(width) << std::real(airy2.z)
+		  << std::setw(width) << std::real(airy2.Ai)
+		  << std::setw(width) << std::real(airy2.Aip)
+		  << std::setw(width) << std::real(airy2.Bi)
+		  << std::setw(width) << std::real(airy2.Bip)
+		  << std::setw(width) << std::real(airy2.Wronskian())
+		  << std::setw(width) << std::real(airy2.true_Wronskian())
+		  << '\n';
+	std::cout << std::setw(width) << ""
+		  << std::setw(width) << std::real(airy1.Ai - airy2.Ai)
+		  << std::setw(width) << std::real(airy1.Aip - airy2.Aip)
+		  << std::setw(width) << std::real(airy1.Bi - airy2.Bi)
+		  << std::setw(width) << std::real(airy1.Bip - airy2.Bip)
+		  << std::setw(width) << ""
+		  << std::setw(width) << ""
+		  << '\n';
+      }
+
+    std::cout << "\n\nAiry Asymptotic +z Deathmatch\n";
+    std::cout << "++++++++++++++++++++++++++++++\n";
+    std::cout << std::setw(width) << "t"
+	      << std::setw(width) << "Ai"
+	      << std::setw(width) << "Aip"
+	      << std::setw(width) << "Bi"
+	      << std::setw(width) << "Bip"
+	      << std::setw(width) << "Wronskian"
+	      << '\n';
+    std::cout << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << '\n';
+    for (int i = 500; i <= 1500; ++i)
+      {
+	auto t = __cmplx{_Tp(0.01Q * i)};
+	auto airy1 = airy_asymp<_Sum>(t);
+	std::cout << '\n';
+	std::cout << std::setw(width) << std::real(airy1.z)
+		  << std::setw(width) << std::real(airy1.Ai)
+		  << std::setw(width) << std::real(airy1.Aip)
+		  << std::setw(width) << std::real(airy1.Bi)
+		  << std::setw(width) << std::real(airy1.Bip)
+		  << std::setw(width) << std::real(airy1.Wronskian())
+		  << std::setw(width) << std::real(airy1.true_Wronskian())
+		  << '\n';
+	auto airy2 = __airy_asymp_absarg_ge_pio3(t);
+	std::cout << std::setw(width) << std::real(airy2.z)
+		  << std::setw(width) << std::real(airy2.Ai)
+		  << std::setw(width) << std::real(airy2.Aip)
+		  << std::setw(width) << std::real(airy2.Bi)
+		  << std::setw(width) << std::real(airy2.Bip)
+		  << std::setw(width) << std::real(airy2.Wronskian())
+		  << std::setw(width) << std::real(airy2.true_Wronskian())
+		  << '\n';
+	std::cout << std::setw(width) << ""
+		  << std::setw(width) << std::real(airy1.Ai - airy2.Ai)
+		  << std::setw(width) << std::real(airy1.Aip - airy2.Aip)
+		  << std::setw(width) << std::real(airy1.Bi - airy2.Bi)
+		  << std::setw(width) << std::real(airy1.Bip - airy2.Bip)
+		  << std::setw(width) << ""
+		  << std::setw(width) << ""
+		  << '\n';
       }
   }
+
 
 int
 main()
@@ -2610,13 +2731,13 @@ main()
 
   using __fcmplx = std::complex<float>;
   using __fsum_t = __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_KahanSum<__fcmplx>>;
-  airy_asymp<__fsum_t>();
+  diff_airy_asymp<__fsum_t>();
 
   using __cmplx = std::complex<double>;
   using __sum_t = __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_KahanSum<__cmplx>>;
-  airy_asymp<__sum_t>();
+  diff_airy_asymp<__sum_t>();
 
   using __lcmplx = std::complex<long double>;
   using __lsum_t = __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_KahanSum<__lcmplx>>;
-  airy_asymp<__lsum_t>();
+  diff_airy_asymp<__lsum_t>();
 }
