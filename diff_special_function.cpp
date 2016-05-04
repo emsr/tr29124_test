@@ -289,18 +289,6 @@ main()
 	    "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 			       std::make_pair(true, true), 201));
 
-#if STD
-    // Confluent hypergeometric limit functions.
-    // Skip the singularity at c = 0.
-    std::cout << "conf_hyperg_lim" << std::endl;
-    basename = "conf_hyperg_lim";
-    rundiff(conf_hyperg_lim, gsl::hyperg_0F1, basename,
-	    "c", fill_argument(std::make_pair(Real{0}, Real{10}),
-			       std::make_pair(false, true), 11),
-	    "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
-			       std::make_pair(true, true), 21));
-#endif // STD
-
 
     //  Regular modified cylindrical Bessel functions.
     std::cout << "cyl_bessel_i" << std::endl;
