@@ -9,7 +9,6 @@ comp_ellint_1
 comp_ellint_2
 comp_ellint_3
 conf_hyperg
-conf_hyperg_lim
 cyl_bessel_i
 cyl_bessel_j
 cyl_bessel_k
@@ -78,3 +77,4 @@ comp_ellint_d
 jacobi_zeta
 sph_harmonic
 owens_t
+clausen_c
