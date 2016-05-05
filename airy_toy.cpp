@@ -70,6 +70,7 @@ br ''
     {
       using __cmplx = std::complex<_Tp>;
 
+      static constexpr auto _S_2pi   = _Tp{6.283185307179586476925286766559005768391L};
       static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666667Q};
       static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
       static constexpr __cmplx _S_j{0, 1};
@@ -80,6 +81,30 @@ br ''
       auto __xi = std::log(_Tp{1} + __w) - std::log(__y) - __w;
 
       auto __logxi = std::log(__xi);
+      // Prepare to adjust logarithm of xi to appropriate Riemann sheet.
+      auto __npi = _Tp{0};
+
+      // Find adjustment necessary to get on proper Riemann sheet.
+      if (std::imag(__y) == _Tp{0}) // zhat is real.
+	{
+	  if (std::real(__y) > _Tp{1})
+	    __npi = _S_2pi;
+	}
+      else // zhat is not real.
+	{
+	  // zhat is in upper half-plane.
+	  if (std::imag(__y) > _Tp{0})
+	    {
+	      // xi lies in upper half-plane.
+	      if (std::imag(__xi) > _Tp{0})
+		__npi = -_S_2pi;
+	      else
+		__npi = +_S_2pi;
+	    }
+	}
+
+      // Adjust logarithm of xi.
+      __logxi += __npi * _S_j;
 
       // Compute ln(zeta), zeta.
       auto __logzeta = _S_2d3 * __logxi + _S_lncon;
