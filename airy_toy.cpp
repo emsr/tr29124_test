@@ -2873,6 +2873,66 @@ template<typename _Sum>
   }
 
 
+template<typename _Tp>
+  void
+  diff_zeta()
+  {
+    using _Cmplx = std::complex<_Tp>;
+
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout << std::showpoint << std::scientific;
+    auto width = 4 + 2 * (8 + std::cout.precision());
+
+    std::cout << "\n\nZeta -z Deathmatch\n";
+    std::cout << "++++++++++++++++++++++++++++++\n";
+    std::cout << std::setw(width) << "y"
+	      << std::setw(width) << "zeta"
+	      << std::setw(width) << "zeta"
+	      << std::setw(width) << "delta"
+	      << '\n';
+    std::cout << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << '\n';
+    for (int i = -1500; i <= -1; ++i)
+      {
+	auto y = _Cmplx{_Tp(0.01Q * i)};
+	auto zeta_c = get_zeta(y);
+	auto zeta_r = get_zeta(std::real(y));
+	std::cout << std::setw(width) << y
+		  << std::setw(width) << zeta_c
+		  << std::setw(width) << zeta_r
+		  << std::setw(width) << zeta_c - zeta_r
+		  << '\n';
+      }
+
+    std::cout << "\n\nZeta +z Deathmatch\n";
+    std::cout << "++++++++++++++++++++++++++++++\n";
+    std::cout << std::setw(width) << "y"
+	      << std::setw(width) << "Ai"
+	      << std::setw(width) << "Aip"
+	      << std::setw(width) << "delta"
+	      << '\n';
+    std::cout << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << '\n';
+    for (int i = 1; i <= 1500; ++i)
+      {
+	auto y = _Cmplx{_Tp(0.01Q * i)};
+	auto zeta_c = get_zeta(y);
+	auto zeta_r = get_zeta(std::real(y));
+	std::cout << std::setw(width) << y
+		  << std::setw(width) << zeta_c
+		  << std::setw(width) << zeta_r
+		  << std::setw(width) << zeta_c - zeta_r
+		  << '\n';
+      }
+  }
+
+
 int
 main()
 {
@@ -2928,4 +2988,7 @@ main()
 
   std::cout << "\ndouble\n======\n";
   run_airy_asymp<__sum>();
+
+  std::cout << "\ndouble\n======\n";
+  diff_zeta<double>();
 }
