@@ -25,19 +25,24 @@ br ''
 #include <bits/summation.h>
 
 
+  /**
+   * This computes zeta for real y >= 0.
+   */
   template<typename _Tp>
     _Tp
     get_zeta(_Tp __y)
     {
       static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666667Q};
       static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
-      if (__y == _Tp{0})
+      if (__y < _Tp{0})
+	throw std::range_error("get_zeta: negative argument");
+      else if (__y == _Tp{0})
 	return std::numeric_limits<_Tp>::infinity();
       else if (__y <= _Tp{1})
 	{
 	  auto __w = std::sqrt((_Tp{1} + __y) * (_Tp{1} - __y));
-	  // Compute xi = ln(1 + (1 - y^2)^(1/2)) - ln(y) - (1 - y^2)^(1/2) = (2/3)(zeta)^(3/2)
-	  // using default branch of logarithm and square root.
+	  // Compute xi = (2/3)(zeta)^(3/2)
+	  //            = ln(1 + (1 - y^2)^(1/2)) - ln(y) - (1 - y^2)^(1/2).
 	  auto __xi = std::log(_Tp{1} + __w) - std::log(__y) - __w;
 
 	  auto __logxi = std::log(__xi);
@@ -50,8 +55,7 @@ br ''
       else
 	{
 	  auto __w = std::sqrt((__y + _Tp{1}) * (__y - _Tp{1}));
-	  // Compute xi = (y^2 - 1)^(1/2) - arcsec(y) = (2/3)(-zeta)^(3/2)
-	  // using default branch of logarithm and square root.
+	  // Compute xi = (y^2 - 1)^(1/2) - arcsec(y) = (2/3)(-zeta)^(3/2).
 	  auto __xi = __w - std::acos(_Tp{1} / __y);
 
 	  auto __logxi = std::log(__xi);
@@ -64,19 +68,24 @@ br ''
     }
 
 
+  /**
+   *
+   */
   template<typename _Tp>
     std::complex<_Tp>
     get_zeta(std::complex<_Tp> __y)
     {
       using __cmplx = std::complex<_Tp>;
 
-      static constexpr auto _S_2pi   = _Tp{6.283185307179586476925286766559005768391L};
-      static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666667Q};
-      static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
-      static constexpr __cmplx _S_j{0, 1};
+      constexpr auto _S_2pi   = _Tp{6.2831853071795864769252867665590057683Q};
+      constexpr auto _S_2d3   = _Tp{0.66666666666666666666666666666666666667Q};
+      // lncon = -(2/3)ln(2/3).
+      constexpr auto _S_lncon = _Tp{0.27031007207210958798534207697623275772Q};
+      constexpr __cmplx _S_j{0, 1};
 
       auto __w = std::sqrt((_Tp{1} + __y) * (_Tp{1} - __y));
-      // Compute xi = ln(1 + (1 - y^2)^(1/2)) - ln(y) - (1 - y^2)^(1/2) = (2/3)(zeta)^(3/2)
+      // Compute xi = (2/3)(zeta)^(3/2)
+      //            = ln(1 + (1 - y^2)^(1/2)) - ln(y) - (1 - y^2)^(1/2)
       // using default branch of logarithm and square root.
       auto __xi = std::log(_Tp{1} + __w) - std::log(__y) - __w;
 
@@ -85,16 +94,15 @@ br ''
       auto __npi = _Tp{0};
 
       // Find adjustment necessary to get on proper Riemann sheet.
-      if (std::imag(__y) == _Tp{0}) // zhat is real.
-	{
+      if (std::imag(__y) == _Tp{0})
+	{ // y is real.
 	  if (std::real(__y) > _Tp{1})
 	    __npi = _S_2pi;
 	}
-      else // zhat is not real.
-	{
-	  // zhat is in upper half-plane.
+      else
+	{ // y is not real.
 	  if (std::imag(__y) > _Tp{0})
-	    {
+	    { // y is in upper half-plane.
 	      // xi lies in upper half-plane.
 	      if (std::imag(__xi) > _Tp{0})
 		__npi = -_S_2pi;
@@ -113,6 +121,9 @@ br ''
     }
 
 
+  /**
+   *
+   */
   template<typename _Tp>
     struct _AiryState
     {
@@ -132,6 +143,7 @@ br ''
       true_Wronskian()
       { return _Val{1} / __gnu_cxx::__math_constants<_Val>::__pi; }
     };
+
 
   /**
    *  
@@ -1091,6 +1103,7 @@ br ''
 	}
     }
 
+
   /**
    *  
    */
@@ -1541,6 +1554,7 @@ br ''
   template<typename _Tp>
     constexpr _Tp
     _Airy_asymp<_Tp>::_S_dn[_Airy_asymp<_Tp>::_N_cd];
+
 
   /**
    *  Return the Airy functions for a given argument using asymptotic series.
@@ -2192,6 +2206,9 @@ br ''
     }
 
 
+  /**
+   *
+   */
 template<typename _Sum>
   _AiryState<typename _Sum::value_type>
   airy_asymp(typename _Sum::value_type __z)
@@ -2263,12 +2280,15 @@ template<typename _Sum>
   }
 
 
-template<typename _Tp>
-  _AiryState<_Tp>
-  airy(_Tp __z)
-  {
-    
-  }
+  /**
+   *
+   */
+  template<typename _Tp>
+    _AiryState<_Tp>
+    airy(_Tp __z)
+    {
+      
+    }
 
 
 /**
@@ -2882,13 +2902,13 @@ template<typename _Tp>
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 4 + 2 * (8 + std::cout.precision());
-
+/*
     std::cout << "\n\nZeta -z Deathmatch\n";
     std::cout << "++++++++++++++++++++++++++++++\n";
     std::cout << std::setw(width) << "y"
-	      << std::setw(width) << "zeta"
-	      << std::setw(width) << "zeta"
-	      << std::setw(width) << "delta"
+	      << std::setw(width) << "zeta_c"
+	      << std::setw(width) << "zeta_r"
+	      << std::setw(width) << "delta_zeta"
 	      << '\n';
     std::cout << std::setw(width) << "========="
 	      << std::setw(width) << "========="
@@ -2906,13 +2926,13 @@ template<typename _Tp>
 		  << std::setw(width) << zeta_c - zeta_r
 		  << '\n';
       }
-
+*/
     std::cout << "\n\nZeta +z Deathmatch\n";
     std::cout << "++++++++++++++++++++++++++++++\n";
     std::cout << std::setw(width) << "y"
-	      << std::setw(width) << "Ai"
-	      << std::setw(width) << "Aip"
-	      << std::setw(width) << "delta"
+	      << std::setw(width) << "zeta_c"
+	      << std::setw(width) << "zeta_r"
+	      << std::setw(width) << "delta_zeta"
 	      << '\n';
     std::cout << std::setw(width) << "========="
 	      << std::setw(width) << "========="
