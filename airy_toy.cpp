@@ -2230,8 +2230,12 @@ template<typename _Sum>
     const auto __beta = _Tp{1};
     _Sum _Asum(__beta);
     _Sum _Bsum(__beta);
+    _Sum _Csum(__beta);
+    _Sum _Dsum(__beta);
     _Asum += _Tp{1};
     _Bsum += _Tp{1};
+    _Csum += _Tp{1};
+    _Dsum += _Tp{1};
     //const auto __gamp1d6 = std::tgamma(_Val{1} / _Val{6});//5.566316001780235204250096895207726111408
     //const auto __gamp5d6 = std::tgamma(_Val{5} / _Val{6});//1.128787029908125961260901090258842013324
     //const auto __gamm1d6 = std::tgamma(_Val{-1} / _Val{6});//-6.772722179448755767565406541553052079967
@@ -2240,26 +2244,35 @@ template<typename _Sum>
     // gamma(-1/6) * gamma(7/6) = -2pi
     // gamma(-1/6) * gamma(1/6) = -12pi
     auto __sign = _Val{1};
-    auto __numer = _Val{1};
+    auto __numerAB = _Val{1};
+    auto __numerCD = _Val{1};
     auto __denom = _Tp{1};
     for (int __k = 1; __k < _S_max_iter; ++__k)
       {
 	__sign = -__sign;
-	__numer *= _Val(__k + _Val{1} / _Val{6})
-		 * _Val(__k - _Val{1} / _Val{6});
+	__numerAB *= _Val(__k + _Val{1} / _Val{6})
+		   * _Val(__k + _Val{5} / _Val{6});
+	__numerCD *= _Val(__k + _Val{1} / _Val{6})
+		   * _Val(__k + _Val{7} / _Val{6});
 	__denom *= _Tp(2 * __k) * __zeta;
-	auto _Aterm = __sign * __numer / __denom;
+	auto _Aterm = __sign * __numerAB / __denom;
 	_Asum += _Aterm;
-	auto _Bterm = __numer / __denom;
+	auto _Bterm = __numerAB / __denom;
 	_Bsum += _Bterm;
+	auto _Cterm = __sign * __numerCD / __denom;
+	_Csum += _Cterm;
+	auto _Dterm = __numerCD / __denom;
+	_Dsum += _Dterm;
 	if (std::abs(_Asum()) * _S_eps < std::abs(_Aterm)
-	 && std::abs(_Bsum()) * _S_eps < std::abs(_Bterm))
+	 && std::abs(_Bsum()) * _S_eps < std::abs(_Bterm)
+	 && std::abs(_Csum()) * _S_eps < std::abs(_Cterm)
+	 && std::abs(_Dsum()) * _S_eps < std::abs(_Dterm))
 	  break;
       }
     auto _AA = _Val{0.5L} * _Asum() / _S_sqrt_pi / __z1o4 /__expzeta;
     auto _BB = _Val{0.5L} * __expzeta * _Bsum() / _S_sqrt_pi / __z1o4;
-    auto _CC = _Val{-0.5L} * __z1o4 * _Asum() / _S_sqrt_pi / __expzeta;
-    auto _DD = _Val{0.5L} * __z1o4 * __expzeta * _Bsum() / _S_sqrt_pi;
+    auto _CC = _Val{-0.5L} * __z1o4 * _Csum() / _S_sqrt_pi / __expzeta;
+    auto _DD = _Val{0.5L} * __z1o4 * __expzeta * _Dsum() / _S_sqrt_pi;
     auto __argz = std::arg(__z);
     //auto __absz = std::abs(__z);
     auto _Ai = _AA;
@@ -3009,6 +3022,10 @@ main()
   std::cout << "\ndouble\n======\n";
   run_airy_asymp<__sum>();
 
+  std::cout << "\nfloat\n======\n";
+  diff_zeta<float>();
   std::cout << "\ndouble\n======\n";
   diff_zeta<double>();
+  std::cout << "\nlong double\n======\n";
+  diff_zeta<long double>();
 }
