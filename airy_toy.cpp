@@ -8,7 +8,7 @@ br main
 br ''
 */
 
-// g++ -std=gnu++14 -Wall -Wextra -DNO_LOGBQ -I. -o airy_toy airy_toy.cpp -lquadmath
+// g++ -std=gnu++14 -g -Wall -Wextra -DNO_LOGBQ -I. -o airy_toy airy_toy.cpp -lquadmath
 
 // ./airy_toy > airy_toy.txt
 
@@ -32,10 +32,11 @@ br ''
     _Tp
     get_zeta(_Tp __y)
     {
-      static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666667Q};
-      static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
+      constexpr auto _S_2d3   = _Tp{0.66666666666666666666666666666666666667Q};
+      // lncon = -(2/3)ln(2/3)
+      constexpr auto _S_lncon = _Tp{0.27031007207210958798534207697623275772Q};
       if (__y < _Tp{0})
-	throw std::range_error("get_zeta: negative argument");
+	std::__throw_range_error("get_zeta: negative argument");
       else if (__y == _Tp{0})
 	return std::numeric_limits<_Tp>::infinity();
       else if (__y <= _Tp{1})
