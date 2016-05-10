@@ -1738,11 +1738,11 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     _GLIBCXX_JACOBI_DN
   };
 
-  // Jacobi elliptic sn functions.
+  // Jacobi elliptic sine amplitude functions.
 
   /**
    * Return the Jacobi elliptic @f$ sn(k,u) @f$ integral
-   * of real modulus @f$ k @f$ and argument @f$ u @f$.
+   * of @c float modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * @see jacobi_sn for details.
    */
@@ -1755,7 +1755,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Jacobi elliptic @f$ sn(k,u) @f$ integral
-   * of real modulus @f$ k @f$ and argument @f$ u @f$.
+   * of <tt>long double</tt> modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * @see jacobi_sn for details.
    */
@@ -1772,8 +1772,9 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The Jacobi elliptic @c sn integral is defined by
    * @f[
-   *    
+   *    \sin(\phi) = sn(k, F(k,\phi))
    * @f]
+   * where @f$ F(k,\phi) @f$ is the elliptic integral of the first kind.
    *
    * @tparam _Kp The type of the real modulus
    * @tparam _Up The type of the real argument
@@ -1789,11 +1790,11 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 		(std::__detail::__jacobi_sncndn<__type>(__k, __u));
     }
 
-  // Jacobi elliptic cn functions.
+  // Jacobi elliptic cosine amplitude functions.
 
   /**
    * Return the Jacobi elliptic @f$ cn(k,u) @f$ integral
-   * of real modulus @f$ k @f$ and argument @f$ u @f$.
+   * of @c float modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * @see jacobi_cn for details.
    */
@@ -1806,7 +1807,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Jacobi elliptic @f$ cn(k,u) @f$ integral
-   * of real modulus @f$ k @f$ and argument @f$ u @f$.
+   * of <tt>long double</tt> modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * @see jacobi_cn for details.
    */
@@ -1823,8 +1824,9 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The Jacobi elliptic @c cn integral is defined by
    * @f[
-   *    
+   *    \cos(\phi) = cn(k, F(k,\phi))
    * @f]
+   * where @f$ F(k,\phi) @f$ is the elliptic integral of the first kind.
    *
    * @tparam _Kp The type of the real modulus
    * @tparam _Up The type of the real argument
@@ -1840,11 +1842,11 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 		(std::__detail::__jacobi_sncndn<__type>(__k, __u));
     }
 
-  // Jacobi elliptic dn functions.
+  // Jacobi elliptic delta amplitude functions.
 
   /**
    * Return the Jacobi elliptic @f$ dn(k,u) @f$ integral
-   * of real modulus @f$ k @f$ and argument @f$ u @f$.
+   * of @c float modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * @see jacobi_dn for details.
    */
@@ -1857,7 +1859,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Jacobi elliptic @f$ dn(k,u) @f$ integral
-   * of real modulus @f$ k @f$ and argument @f$ u @f$.
+   * of <tt>long double</tt> modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * @see jacobi_dn for details.
    */
@@ -1874,8 +1876,9 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The Jacobi elliptic @c dn integral is defined by
    * @f[
-   *    
+   *    \sqrt{1 - k^2\sin(\phi)} = dn(k, F(k,\phi))
    * @f]
+   * where @f$ F(k,\phi) @f$ is the elliptic integral of the first kind.
    *
    * @tparam _Kp The type of the real modulus
    * @tparam _Up The type of the real argument
