@@ -78,6 +78,36 @@ br ''
     {
       using __cmplx = std::complex<_Tp>;
 
+      constexpr auto _S_2d3   = _Tp{0.66666666666666666666666666666666666667Q};
+      constexpr auto _S_lncon = _Tp{0.27031007207210958798534207697623275772Q};
+      constexpr __cmplx _S_j{0, 1};
+
+      if (std::real(__y) <= _Tp{1})
+	{
+	  auto __w = std::sqrt((_Tp{1} + __y) * (_Tp{1} - __y));
+	  auto __xi = std::log(_Tp{1} + __w) - std::log(__y) - __w;
+	  auto __logzeta = _S_2d3 * std::log(__xi) + _S_lncon; // ln(zeta)
+	  return std::exp(__logzeta);
+	}
+      else
+	{
+	  auto __w = std::sqrt((__y + _Tp{1}) * (__y - _Tp{1}));
+	  auto __xi = __w - std::acos(_Tp{1} / __y);
+	  auto __logmzeta = _S_2d3 * std::log(__xi) + _S_lncon; // ln(-zeta)
+	  return -std::exp(__logmzeta); // -zeta
+	}
+    }
+
+
+  /**
+   *
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    get_zeta_old(std::complex<_Tp> __y)
+    {
+      using __cmplx = std::complex<_Tp>;
+
       constexpr auto _S_2pi   = _Tp{6.2831853071795864769252867665590057683Q};
       constexpr auto _S_2d3   = _Tp{0.66666666666666666666666666666666666667Q};
       // lncon = -(2/3)ln(2/3).
@@ -2253,7 +2283,7 @@ template<typename _Sum>
 	__sign = -__sign;
 	__numerAB *= _Val(__k + _Val{1} / _Val{6})
 		   * _Val(__k + _Val{5} / _Val{6});
-	__numerCD *= _Val(__k + _Val{1} / _Val{6})
+	__numerCD *= _Val(__k - _Val{1} / _Val{6})
 		   * _Val(__k + _Val{7} / _Val{6});
 	__denom *= _Tp(2 * __k) * __zeta;
 	auto _Aterm = __sign * __numerAB / __denom;
