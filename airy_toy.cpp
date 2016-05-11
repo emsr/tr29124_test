@@ -26,7 +26,7 @@ br ''
 
 
   /**
-   * This computes zeta for real y >= 0.
+   * This computes @f$ zeta = \frac{2}{3}y^{3/2} @f$ for real y >= 0.
    */
   template<typename _Tp>
     _Tp
@@ -70,7 +70,7 @@ br ''
 
 
   /**
-   *
+   * This computes @f$ zeta = \frac{2}{3}y^{3/2} @f$ for complex y.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -100,7 +100,7 @@ br ''
 
 
   /**
-   *
+   * This computes @f$ zeta = \frac{2}{3}y^{3/2} @f$ for complex y.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1010,10 +1010,26 @@ br ''
 
     public:
 
+      static constexpr _Tp _S_eps = __gnu_cxx::__epsilon(_Tp{});
+      static constexpr _Tp _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      static constexpr _Tp _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
+      static constexpr _Tp _S_Ai0 = _Tp{3.550280538878172392600631860041831763980e-1Q};
+      static constexpr _Tp _S_Aip0 = _Tp{-2.588194037928067984051835601892039634793e-1Q};
+      static constexpr _Tp _S_Bi0 = _Tp{6.149266274460007351509223690936135535960e-1Q};
+      static constexpr _Tp _S_Bip0 = _Tp{4.482883573538263579148237103988283908668e-1Q};
+      static constexpr __cmplx _S_i{_Tp{0}, _Tp{1}};
+      static constexpr _Tp _S_log10min = __gnu_cxx::__log10_min(_Tp{});
+
       constexpr _Airy_series() = default;
 
       _AiryState<std::complex<_Tp>>
       operator()(std::complex<_Tp> __t, bool __return_fock_airy = false) const;
+
+      _AiryState<std::complex<_Tp>>
+      Ai(std::complex<_Tp> __t) const;
+
+      _AiryState<std::complex<_Tp>>
+      Bi(std::complex<_Tp> __t) const;
     };
 
   template<typename _Tp>
@@ -1043,6 +1059,42 @@ br ''
   template<>
     constexpr int __max_FG<double> = 79;
 
+  template<typename _Tp>
+    constexpr _Tp
+    _Airy_series<_Tp>::_S_eps;
+
+  template<typename _Tp>
+    constexpr _Tp
+    _Airy_series<_Tp>::_S_pi;
+
+  template<typename _Tp>
+    constexpr _Tp
+    _Airy_series<_Tp>::_S_sqrt_pi;
+
+  template<typename _Tp>
+    constexpr _Tp
+    _Airy_series<_Tp>::_S_Ai0;
+
+  template<typename _Tp>
+    constexpr _Tp
+    _Airy_series<_Tp>::_S_Aip0;
+
+  template<typename _Tp>
+    constexpr _Tp
+    _Airy_series<_Tp>::_S_Bi0;
+
+  template<typename _Tp>
+    constexpr _Tp
+    _Airy_series<_Tp>::_S_Bip0;
+
+  template<typename _Tp>
+    constexpr std::complex<_Tp>
+    _Airy_series<_Tp>::_S_i;
+
+  template<typename _Tp>
+    constexpr _Tp
+    _Airy_series<_Tp>::_S_log10min;
+
   /**
    * Return the Airy functions by using the series expansions in terms of
    * the auxilliary functions
@@ -1055,26 +1107,17 @@ br ''
    * @f[
    *    Ai(x) = Ai(0)fai(x) + Ai'(0)gai(x)
    * @f]
-   * where @f$ Ai(0) = 3^{-2/3}/\Gamma(2/3) @f$, @f$ Ai'(0) = -3{-1/2}Bi'(0) @f$
    * @f[
    *    Bi(x) = Bi(0)fai(x) + Bi'(0)gai(x)
    * @f]
-   * wnere @f$ Bi(0) = 3^{1/2}Ai(0) @f$, @f$ Bi'(0) = 3^{1/6}/\Gamma(1/3) @f$
+   * where @f$ Ai(0) = 3^{-2/3}/\Gamma(2/3) @f$, @f$ Ai'(0) = -3{-1/2}Bi'(0) @f$
+   * and @f$ Bi(0) = 3^{1/2}Ai(0) @f$, @f$ Bi'(0) = 3^{1/6}/\Gamma(1/3) @f$
    */
   template<typename _Tp>
     _AiryState<std::complex<_Tp>>
     _Airy_series<_Tp>::operator()(std::complex<_Tp> __t,
 				  bool __return_fock_airy) const
     {
-      constexpr auto _S_eps = __gnu_cxx::__epsilon(_Tp{});
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
-      constexpr auto _S_Ai0 = _Tp{3.550280538878172392600631860041831763980e-1Q};
-      constexpr auto _S_Aip0 = _Tp{2.588194037928067984051835601892039634793e-1Q};
-      //constexpr auto _S_Bi0 = _Tp{6.149266274460007351509223690936135535960e-1Q};
-      //constexpr auto _S_Bip0 = _Tp{4.482883573538263579148237103988283908668e-1Q};
-      constexpr auto _S_i = __cmplx(_Tp{0}, _Tp{1});
-      const auto _S_log10min = __gnu_cxx::__log10_min(_Tp{});
       const auto __log10t = std::log10(std::abs(__t));
       const auto __ttt = __t * __t * __t;
 
@@ -1093,9 +1136,8 @@ br ''
 	  _F += _Fai[__n] * __term;
 	  _G += _Gai[__n] * __term * __t;
 	}
-      auto _UU = std::sqrt(_Tp{3} * _S_pi)
-	      * (_S_Ai0 * _F + _S_Aip0 * _G);
-      auto _VV = _S_sqrt_pi * (_S_Ai0 * _F - _S_Aip0 * _G);
+      auto _UU = _S_sqrt_pi * (_S_Bi0 * _F + _S_Bip0 * _G);
+      auto _VV = _S_sqrt_pi * (_S_Ai0 * _F + _S_Aip0 * _G);
 
       __term = __cmplx{_Tp{1}};
       auto _Fp = __cmplx{_Tp{0}};
@@ -1112,9 +1154,8 @@ br ''
 	  _Fp += _Faip[__n] * __term / __t;
 	  _Gp += _Gaip[__n] * __term;
 	}
-      auto _UUp = std::sqrt(_Tp{3} * _S_pi)
-		* (_S_Ai0 * _Fp + _S_Aip0 * _Gp);
-	auto _VVp = _S_sqrt_pi * (_S_Ai0 * _Fp - _S_Aip0 * _Gp);
+      auto _UUp = _S_sqrt_pi * (_S_Bi0 * _Fp + _S_Bip0 * _Gp);
+      auto _VVp = _S_sqrt_pi * (_S_Ai0 * _Fp + _S_Aip0 * _Gp);
 
       if (!__return_fock_airy)
 	{
@@ -1132,6 +1173,89 @@ br ''
 	  auto __w2p = _UUp + _S_i * _VVp;
 	  return _AiryState<std::complex<_Tp>>{__t, __w1, __w1p, __w2, __w2p};
 	}
+    }
+
+  /**
+   * Return the Airy function of the first kind and its derivative
+   * by using the series expansions in terms of the auxilliary functions
+   * @f[
+   *    fai(x) = \sum_{k=0}^\infty \frac{(2k+1)!!!x^{3k}}{(2k+1)!}
+   * @f]
+   * @f[
+   *    gai(x) = \sum_{k=0}^\infty \frac{(2k+2)!!!x^{3k+1}}{(2k+2)!}
+   * @f]
+   * where @f$ Ai(0) = 3^{-2/3}/\Gamma(2/3) @f$, @f$ Ai'(0) = -3{-1/2}Bi'(0) @f$
+   * @f[
+   *    Ai(x) = Ai(0)fai(x) + Ai'(0)gai(x)
+   * @f]
+   * where @f$ Ai(0) = 3^{-2/3}/\Gamma(2/3) @f$, @f$ Ai'(0) = -3{-1/2}Bi'(0) @f$
+   * and @f$ Bi(0) = 3^{1/2}Ai(0) @f$, @f$ Bi'(0) = 3^{1/6}/\Gamma(1/3) @f$
+   */
+  template<typename _Tp>
+    _AiryState<std::complex<_Tp>>
+    _Airy_series<_Tp>::Ai(std::complex<_Tp> __t) const
+    {
+      const auto __log10t = std::log10(std::abs(__t));
+      const auto __ttt = __t * __t * __t;
+
+      auto __termF = _S_Ai0 * __cmplx{_Tp{1}};
+      auto __termG = _S_Aip0 * __t;
+      auto _Ai = __termF + __termG;
+      if (std::abs(__t) >= _S_eps)
+	for (int __n = 0; __n < __max_FG<_Tp>; ++__n)
+	  {
+	    auto __xx = __log10t * (3 * (__n + 1) + 1)
+		      + _S_slope_G * __n + _S_intercept_G;
+	    if (__xx < _S_log10min)
+	      break;
+	    __termF *= __ttt;
+	    __termG *= __ttt;
+	    _Ai += _Fai[__n] * __termF + _Gai[__n] * __termG;
+	  }
+
+      __termF = _S_Ai0 * __cmplx{_Tp{1}};
+      __termG = _S_Aip0 * __cmplx{_Tp{1}};
+      auto _Aip = __termG;
+      if (std::abs(__t) >= _S_eps)
+	{
+	  __termF *= __t * __t;
+	  __termG *= __ttt;
+	  _Aip += _Faip[0] * __termF + _Gaip[0] * __termG;
+	  for (int __n = 1; __n < __max_FG<_Tp>; ++__n)
+	    {
+	      auto __xx = __log10t * 3 * (__n + 1)
+			+ _S_slope_Gp * __n + _S_intercept_Gp;
+	      if (__xx < _S_log10min)
+		break;
+	      __termF *= __ttt;
+	      __termG *= __ttt;
+	      _Aip += _Faip[__n] * __termF + _Gaip[__n] * __termG;
+	    }
+	}
+
+      return _AiryState<__cmplx>{__t, _Ai, _Aip, __cmplx{}, __cmplx{}};
+    }
+
+  /**
+   * Return the Airy function of the second kind and its derivative
+   * by using the series expansions in terms of the auxilliary functions
+   * @f[
+   *    fai(x) = \sum_{k=0}^\infty \frac{(2k+1)!!!x^{3k}}{(2k+1)!}
+   * @f]
+   * @f[
+   *    gai(x) = \sum_{k=0}^\infty \frac{(2k+2)!!!x^{3k+1}}{(2k+2)!}
+   * @f]
+   * where @f$ Ai(0) = 3^{-2/3}/\Gamma(2/3) @f$, @f$ Ai'(0) = -3{-1/2}Bi'(0) @f$
+   * @f[
+   *    Bi(x) = Bi(0)fai(x) + Bi'(0)gai(x)
+   * @f]
+   * where @f$ Ai(0) = 3^{-2/3}/\Gamma(2/3) @f$, @f$ Ai'(0) = -3{-1/2}Bi'(0) @f$
+   * and @f$ Bi(0) = 3^{1/2}Ai(0) @f$, @f$ Bi'(0) = 3^{1/6}/\Gamma(1/3) @f$
+   */
+  template<typename _Tp>
+    _AiryState<std::complex<_Tp>>
+    _Airy_series<_Tp>::Bi(std::complex<_Tp> __t) const
+    {
     }
 
 
@@ -2253,7 +2377,6 @@ template<typename _Sum>
     constexpr auto _S_pi_6 = _S_pi_3 / _Val{2};
     constexpr auto _S_i = _Tp{0, 1};
 
-    //auto __zeta = _Val{2} * std::pow(__z, _Val{3} / _Val{2}) / _Val{3};
     auto __zeta = get_zeta(__z);
     auto __expzeta = std::exp(__zeta);
     auto __z1o4 = std::pow(__z, _Val{0.25L});
@@ -2267,13 +2390,6 @@ template<typename _Sum>
     _Bsum += _Tp{1};
     _Csum += _Tp{1};
     _Dsum += _Tp{1};
-    //const auto __gamp1d6 = std::tgamma(_Val{1} / _Val{6});//5.566316001780235204250096895207726111408
-    //const auto __gamp5d6 = std::tgamma(_Val{5} / _Val{6});//1.128787029908125961260901090258842013324
-    //const auto __gamm1d6 = std::tgamma(_Val{-1} / _Val{6});//-6.772722179448755767565406541553052079967
-    //const auto __gamp7d6 = std::tgamma(_Val{7} / _Val{6});//9.277193336300392007083494825346210185670e-1
-    // gamma(1/6) * gamma(5/6) = 2pi
-    // gamma(-1/6) * gamma(7/6) = -2pi
-    // gamma(-1/6) * gamma(1/6) = -12pi
     auto __sign = _Val{1};
     auto __numerAB = _Val{1};
     auto __numerCD = _Val{1};
@@ -2325,13 +2441,20 @@ template<typename _Sum>
 
 
   /**
-   *
+   * Return the Airy functions for complex argument.
    */
   template<typename _Tp>
     _AiryState<_Tp>
-    airy(_Tp __z)
+    airy(_Tp __y)
     {
-      
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
+      constexpr auto _S_cNaN = _Tp(_S_NaN, _S_NaN);
+
+      if (__isnan(__y))
+	return _AiryState<_Tp>(__y, _S_cNaN, _S_cNaN, _S_cNaN, _S_cNaN);
+      else if (std::abs(__y) < _Tp{5})
+	return __airy_series(__y);
     }
 
 
