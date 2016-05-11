@@ -1030,6 +1030,11 @@ br ''
 
       _AiryState<std::complex<_Tp>>
       Bi(std::complex<_Tp> __t) const;
+
+    private:
+
+      std::pair<std::complex<_Tp>, std::complex<_Tp>>
+      _S_AiBi(std::complex<_Tp> __t, std::pair<_Tp, _Tp> _Z0);
     };
 
   template<typename _Tp>
@@ -1195,45 +1200,10 @@ br ''
     _AiryState<std::complex<_Tp>>
     _Airy_series<_Tp>::Ai(std::complex<_Tp> __t) const
     {
-      const auto __log10t = std::log10(std::abs(__t));
-      const auto __ttt = __t * __t * __t;
-
-      auto __termF = _S_Ai0 * __cmplx{_Tp{1}};
-      auto __termG = _S_Aip0 * __t;
-      auto _Ai = __termF + __termG;
-      if (std::abs(__t) >= _S_eps)
-	for (int __n = 0; __n < __max_FG<_Tp>; ++__n)
-	  {
-	    auto __xx = __log10t * (3 * (__n + 1) + 1)
-		      + _S_slope_G * __n + _S_intercept_G;
-	    if (__xx < _S_log10min)
-	      break;
-	    __termF *= __ttt;
-	    __termG *= __ttt;
-	    _Ai += _Fai[__n] * __termF + _Gai[__n] * __termG;
-	  }
-
-      __termF = _S_Ai0 * __cmplx{_Tp{1}};
-      __termG = _S_Aip0 * __cmplx{_Tp{1}};
-      auto _Aip = __termG;
-      if (std::abs(__t) >= _S_eps)
-	{
-	  __termF *= __t * __t;
-	  __termG *= __ttt;
-	  _Aip += _Faip[0] * __termF + _Gaip[0] * __termG;
-	  for (int __n = 1; __n < __max_FG<_Tp>; ++__n)
-	    {
-	      auto __xx = __log10t * 3 * (__n + 1)
-			+ _S_slope_Gp * __n + _S_intercept_Gp;
-	      if (__xx < _S_log10min)
-		break;
-	      __termF *= __ttt;
-	      __termG *= __ttt;
-	      _Aip += _Faip[__n] * __termF + _Gaip[__n] * __termG;
-	    }
-	}
-
-      return _AiryState<__cmplx>{__t, _Ai, _Aip, __cmplx{}, __cmplx{}};
+      __cmplx _Ai, _Aip;
+      std::tie(_Ai, _Aip) = _S_AiBi(__t, std::make_pair(_S_Ai0, _S_Aip0));
+      __cmplx _Bi{}, _Bip{};
+      return _AiryState<__cmplx>{__t, _Ai, _Aip, _Bi, _Bip};
     }
 
   /**
@@ -1256,6 +1226,55 @@ br ''
     _AiryState<std::complex<_Tp>>
     _Airy_series<_Tp>::Bi(std::complex<_Tp> __t) const
     {
+      __cmplx _Bi, _Bip;
+      std::tie(_Bi, _Bip) = _S_AiBi(__t, std::make_pair(_S_Bi0, _S_Bip0));
+      __cmplx _Ai{}, _Aip{};
+      return _AiryState<__cmplx>{__t, _Ai, _Aip, _Bi, _Bip};
+    }
+
+  template<typename _Tp>
+    std::pair<std::complex<_Tp>, std::complex<_Tp>>
+    _Airy_series<_Tp>::_S_AiBi(std::complex<_Tp> __t, std::pair<_Tp, _Tp> _Z0)
+    {
+      const auto __log10t = std::log10(std::abs(__t));
+      const auto __ttt = __t * __t * __t;
+
+      auto __termF = _Z0.first * __cmplx{_Tp{1}};
+      auto __termG = _Z0.second * __t;
+      auto _Ai = __termF + __termG;
+      if (std::abs(__t) >= _S_eps)
+	for (int __n = 0; __n < __max_FG<_Tp>; ++__n)
+	  {
+	    auto __xx = __log10t * (3 * (__n + 1) + 1)
+		      + _S_slope_G * __n + _S_intercept_G;
+	    if (__xx < _S_log10min)
+	      break;
+	    __termF *= __ttt;
+	    __termG *= __ttt;
+	    _Ai += _Fai[__n] * __termF + _Gai[__n] * __termG;
+	  }
+
+      __termF = _Z0.first * __cmplx{_Tp{1}};
+      __termG = _Z0.second * __cmplx{_Tp{1}};
+      auto _Aip = __termG;
+      if (std::abs(__t) >= _S_eps)
+	{
+	  __termF *= __t * __t;
+	  __termG *= __ttt;
+	  _Aip += _Faip[0] * __termF + _Gaip[0] * __termG;
+	  for (int __n = 1; __n < __max_FG<_Tp>; ++__n)
+	    {
+	      auto __xx = __log10t * 3 * (__n + 1)
+			+ _S_slope_Gp * __n + _S_intercept_Gp;
+	      if (__xx < _S_log10min)
+		break;
+	      __termF *= __ttt;
+	      __termG *= __ttt;
+	      _Aip += _Faip[__n] * __termF + _Gaip[__n] * __termG;
+	    }
+	}
+
+      return std::make_pair(_Ai, _Aip);
     }
 
 
@@ -2439,6 +2458,14 @@ template<typename _Sum>
     return _AiryState<_Tp>{__z, _Ai, _Aip, _Bi, _Bip};
   }
 
+  template<typename _Tp>
+    _AiryState<_Tp>
+    airy_series_ai(_Tp __y)
+    { return _Airy_series<_Tp>::_S_Ai(__y); }
+  template<typename _Tp>
+    _AiryState<_Tp>
+    airy_series_bi(_Tp __y)
+    { return _Airy_series<_Tp>::_S_Bi(__y); }
 
   /**
    * Return the Airy functions for complex argument.
@@ -2453,8 +2480,25 @@ template<typename _Sum>
 
       if (__isnan(__y))
 	return _AiryState<_Tp>(__y, _S_cNaN, _S_cNaN, _S_cNaN, _S_cNaN);
-      else if (std::abs(__y) < _Tp{5})
-	return __airy_series(__y);
+
+      auto __absy = std::abs(__y);
+      auto __absargy = std::abs(std::arg(__y));
+      _AiryState<_Tp> _Bi;
+      if (__absy < _Val{5}
+       || __absy < _Val{15} && __absargy < _S_pi_3)
+	_Bi = _Airy_series<_Tp>::_S_Bi(__y);
+      else if (__absy < _Val{15})
+	;
+      else
+        {
+	  if ()
+	}
+
+      _AiryState<_Tp> _Ai;
+      if (__absy < _Val{5} + _Val{15} * __absargy / _S_pi && __absargy < _S_2pi_3
+       || __absy < _Val{15} && __absargy >= _S_2pi_3)
+	_Ai = _Airy_series<_Tp>::_S_Ai(__y);
+      else if ()
     }
 
 
