@@ -286,10 +286,10 @@ check: $(CHECKS)
 	echo "check_theta_4" >> check_out.txt 2>> check_err.txt && ./check_theta_4 >> check_out.txt 2>> check_err.txt
 	echo "check_zernike" >> check_out.txt 2>> check_err.txt && ./check_zernike >> check_out.txt 2>> check_err.txt
 	echo "complex_ellint_rc" >> check_out.txt 2>> check_err.txt && ./complex_ellint_rc >> check_out.txt 2>> check_err.txt
-	#echo "complex_ellint_rd" >> check_out.txt 2>> check_err.txt && ./complex_ellint_rd >> check_out.txt 2>> check_err.txt
-	#echo "complex_ellint_rf" >> check_out.txt 2>> check_err.txt && ./complex_ellint_rf >> check_out.txt 2>> check_err.txt
+	echo "complex_ellint_rd" >> check_out.txt 2>> check_err.txt && ./complex_ellint_rd >> check_out.txt 2>> check_err.txt
+	echo "complex_ellint_rf" >> check_out.txt 2>> check_err.txt && ./complex_ellint_rf >> check_out.txt 2>> check_err.txt
 	echo "complex_ellint_rg" >> check_out.txt 2>> check_err.txt && ./complex_ellint_rg >> check_out.txt 2>> check_err.txt
-	#echo "complex_ellint_rj" >> check_out.txt 2>> check_err.txt && ./complex_ellint_rj >> check_out.txt 2>> check_err.txt
+	echo "complex_ellint_rj" >> check_out.txt 2>> check_err.txt && ./complex_ellint_rj >> check_out.txt 2>> check_err.txt
 	echo "pr56216_cyl_hankel_1" >> check_out.txt 2>> check_err.txt && ./pr56216_cyl_hankel_1 >> check_out.txt 2>> check_err.txt
 	echo "pr56216_cyl_hankel_2" >> check_out.txt 2>> check_err.txt && ./pr56216_cyl_hankel_2 >> check_out.txt 2>> check_err.txt
 	echo "pr56216_cyl_bessel_i" >> check_out.txt 2>> check_err.txt && ./pr56216_cyl_bessel_i >> check_out.txt 2>> check_err.txt
