@@ -2477,28 +2477,39 @@ template<typename _Sum>
       using _Val = std::__detail::__num_traits_t<_Tp>;
       constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
       constexpr auto _S_cNaN = _Tp(_S_NaN, _S_NaN);
+      constexpr auto _S_2pi_3 = _Val{2} * _S_pi_3;
 
       if (__isnan(__y))
 	return _AiryState<_Tp>(__y, _S_cNaN, _S_cNaN, _S_cNaN, _S_cNaN);
 
       auto __absy = std::abs(__y);
       auto __absargy = std::abs(std::arg(__y));
+
       _AiryState<_Tp> _Bi;
       if (__absy < _Val{5}
        || __absy < _Val{15} && __absargy < _S_pi_3)
 	_Bi = _Airy_series<_Tp>::_S_Bi(__y);
       else if (__absy < _Val{15})
-	;
+	Bi = _Val{2} * asymp_accel_B(__y) + _S_i * asymp_accel_A(__y);
       else
         {
-	  if ()
+	  Bi = _Val{2} * asymp_accel_B(__y);
+	  if (__absargy > _S_pi_6)
+	    Bi += _S_i * asymp_accel_A(__y)
 	}
 
       _AiryState<_Tp> _Ai;
       if (__absy < _Val{5} + _Val{15} * __absargy / _S_pi && __absargy < _S_2pi_3
        || __absy < _Val{15} && __absargy >= _S_2pi_3)
 	_Ai = _Airy_series<_Tp>::_S_Ai(__y);
-      else if ()
+      else if (__absy < _Val{15})
+	_Ai = asymp_accel_A(__y); // A(__y)
+      else
+	{
+	  _Ai = asymp_A(__y); // A(__y)
+	  if (__absargy >= _Val{5} * _S_pi_6)
+	    _Ai += _S_i * asymp_B(__y)
+	}
     }
 
 
