@@ -2323,6 +2323,7 @@ br ''
       constexpr _Tp _S_Aip0{-2.588194037928067984051835601892039634793e-1L};
       constexpr _Tp _S_Bi0{6.149266274460007351509223690936135535960e-1L};
       constexpr _Tp _S_Bip0{4.482883573538263579148237103988283908668e-1L};
+      constexpr _Tp _S_Hi0{4.099510849640004901006149127290757023959e-1L};
 
       // Check to see if z^3 will underflow and act accordingly.
       auto __zzz = __z * __z * __z;
@@ -2379,13 +2380,49 @@ br ''
 	}
     }
 
+/**
+ * Class to manage the asymptotic series for Airy functions.
+ */
+template<typename _Sum>
+  class _Airy_asymp_series
+  {
+  public:
 
-  /**
-   *
-   */
+    using value_type = _Sum::value_type;
+    using scalar_type = std::__detail::__num_traits_t<_Tp>;
+
+    _Airy_asymp_series(_Sum __proto)
+    : _M_Asum(__proto),
+      _M_Bsum(__proto),
+      _M_Csum(__proto),
+      _M_Dsum(__proto)
+    { }
+    _Airy_asymp_series(const _Airy_asymp_series&) = default;
+    _Airy_asymp_series(_Airy_asymp_series&&) = default;
+
+    _Airy_state<value_type>
+    operator()(value_type __y);
+
+  private:
+
+    _Sum _M_Asum;
+    _Sum _M_Bsum;
+    _Sum _M_Csum;
+    _Sum _M_Dsum;
+  }
+
+template<typename _Sum>
+  _AiryState<typename _Airy_asymp_series<_Sum>::value_type>
+  _Airy_asymp_series<_Sum>::operator()(typename _Sum::value_type __y)
+  {
+  }
+
+/**
+ *
+ */
 template<typename _Sum>
   _AiryState<typename _Sum::value_type>
-  airy_asymp(typename _Sum::value_type __z)
+  airy_asymp(typename _Sum::value_type __y)
   {
     using _Tp = typename _Sum::value_type;
     using _Val = std::__detail::__num_traits_t<_Tp>;
@@ -2396,9 +2433,9 @@ template<typename _Sum>
     constexpr auto _S_pi_6 = _S_pi_3 / _Val{2};
     constexpr auto _S_i = _Tp{0, 1};
 
-    auto __zeta = get_zeta(__z);
+    auto __zeta = get_zeta(__y);
     auto __expzeta = std::exp(__zeta);
-    auto __z1o4 = std::pow(__z, _Val{0.25L});
+    auto __y1o4 = std::pow(__y, _Val{0.25L});
 
     const auto __beta = _Tp{1};
     _Sum _Asum(__beta);
@@ -2435,12 +2472,14 @@ template<typename _Sum>
 	 && std::abs(_Dsum()) * _S_eps < std::abs(_Dterm))
 	  break;
       }
-    auto _AA = _Val{0.5L} * _Asum() / _S_sqrt_pi / __z1o4 /__expzeta;
-    auto _BB = _Val{0.5L} * __expzeta * _Bsum() / _S_sqrt_pi / __z1o4;
-    auto _CC = _Val{-0.5L} * __z1o4 * _Csum() / _S_sqrt_pi / __expzeta;
-    auto _DD = _Val{0.5L} * __z1o4 * __expzeta * _Dsum() / _S_sqrt_pi;
-    auto __argz = std::arg(__z);
-    //auto __absz = std::abs(__z);
+    auto _AA = _Val{0.5L} * _Asum() / _S_sqrt_pi / __y1o4 /__expzeta;
+    auto _BB = _Val{0.5L} * __expzeta * _Bsum() / _S_sqrt_pi / __y1o4;
+    auto _CC = _Val{-0.5L} * __y1o4 * _Csum() / _S_sqrt_pi / __expzeta;
+    auto _DD = _Val{0.5L} * __y1o4 * __expzeta * _Dsum() / _S_sqrt_pi;
+
+    auto __absargy = std::abs(std::arg(__y));
+    auto __absy = std::abs(__y);
+
     auto _Ai = _AA;
     auto _Bi = _Val{2} * _BB;
     auto _Aip = _CC;
@@ -2455,17 +2494,50 @@ template<typename _Sum>
 	_Bi += _S_i * _AA;
 	_Bip += _S_i * _CC;
       }
-    return _AiryState<_Tp>{__z, _Ai, _Aip, _Bi, _Bip};
+    return _AiryState<_Tp>{__y, _Ai, _Aip, _Bi, _Bip};
   }
 
-  template<typename _Tp>
-    _AiryState<_Tp>
-    airy_series_ai(_Tp __y)
-    { return _Airy_series<_Tp>::_S_Ai(__y); }
-  template<typename _Tp>
-    _AiryState<_Tp>
-    airy_series_bi(_Tp __y)
-    { return _Airy_series<_Tp>::_S_Bi(__y); }
+/**
+ * Class to manage the asymptotic expansions for Airy functions.
+ * The parameters describing the various regions are adjustable.
+ */
+template<typename _Tp>
+  class _Airy_asymp
+  {
+  public:
+
+    using value_type = _Tp;
+    using scalar_type = std::__detail::__num_traits_t<_Tp>;
+
+    _Airy_asymp() = default;
+    _Airy_asymp_series(const _Airy_asymp_series&) = default;
+    _Airy_asymp_series(_Airy_asymp_series&&) = default;
+
+    _Airy_state<value_type>
+    operator()(value_type __y);
+
+    value_type inner_radius{5};
+    value_type outer_radius{15};
+  }
+
+template<typename _Tp>
+  _AiryState<_Tp>
+  _Airy_asymp<_Tp>::operator()(typename value_type __y)
+  {
+    using _OuterSum = __gnu_cxx::_KahanSum<value_type>;
+    using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
+
+    auto __absargy = std::abs(std::arg(__y));
+    auto __absy = std::abs(__y);
+
+    if (__absy < inner_radius)
+      throw std::range_error("_Airy_asymp: |y| is too small");
+    else if (__absy < outer_radius)
+      {
+	auto __beta = scalar_type{1};
+        _Airy_asymp_series<_InnerSum>(_InnerSum(__beta));
+      }
+  }
 
   /**
    * Return the Airy functions for complex argument.
