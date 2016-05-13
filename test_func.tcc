@@ -120,10 +120,10 @@ template<typename Tp>
 ///
 template<typename Tp, typename Tp1>
   void
-  runtest(Tp function(const Tp1),
+  runtest(Tp function(Tp1),
           const std::string & basename,
           const std::vector<Tp1> & argument1,
-          const bool verbose = false)
+          bool verbose = false)
   {
     std::string filename = testdirname + basename + filename_end<Tp>::suffix();
 
@@ -167,11 +167,11 @@ template<typename Tp, typename Tp1>
 ///
 template<typename Tp, typename Tp1, typename Tp2>
   void
-  runtest(Tp function(const Tp1, const Tp2),
+  runtest(Tp function(Tp1, Tp2),
           const std::string & basename,
           const std::vector<Tp1> & argument1,
           const std::vector<Tp2> & argument2,
-          const bool verbose = false)
+          bool verbose = false)
   {
     std::string filename = testdirname + basename + filename_end<Tp>::suffix();
 
@@ -229,12 +229,12 @@ template<typename Tp, typename Tp1, typename Tp2>
 ///
 template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
   void
-  runtest(Tp function(const Tp1, const Tp2, const Tp3),
+  runtest(Tp function(Tp1, Tp2, Tp3),
           const std::string & basename,
           const std::vector<Tp1> & argument1,
           const std::vector<Tp2> & argument2,
           const std::vector<Tp3> & argument3,
-          const bool verbose = false)
+          bool verbose = false)
   {
     std::string filename = testdirname + basename + filename_end<Tp>::suffix();
 
@@ -298,13 +298,13 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 ///
 template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
   void
-  runtest(Tp function(const Tp1, const Tp2, const Tp3, const Tp4),
+  runtest(Tp function(Tp1, Tp2, Tp3, Tp4),
           const std::string & basename,
           const std::vector<Tp1> & argument1,
           const std::vector<Tp2> & argument2,
           const std::vector<Tp3> & argument3,
           const std::vector<Tp4> & argument4,
-          const bool verbose = false)
+          bool verbose = false)
   {
     std::string filename = testdirname + basename + filename_end<Tp>::suffix();
 
@@ -375,11 +375,11 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 ///
 template<typename Tp, typename Tp1>
   void
-  rundiff(Tp function1(const Tp1),
-          Tp function2(const Tp1),
+  rundiff(Tp function1(Tp1),
+          Tp function2(Tp1),
           const std::string & basename, const std::string & arg1,
           const std::vector<Tp1> & argument1,
-          const bool verbose = false)
+          bool verbose = false)
   {
     using Val = num_traits_t<Tp>;
 
@@ -461,12 +461,12 @@ template<typename Tp, typename Tp1>
 ///
 template<typename Tp, typename Tp1, typename Tp2>
   void
-  rundiff(Tp function1(const Tp1, const Tp2),
-          Tp function2(const Tp1, const Tp2),
+  rundiff(Tp function1(Tp1, Tp2),
+          Tp function2(Tp1, Tp2),
           const std::string & basename,
           const std::string & arg1, const std::vector<Tp1> & argument1,
           const std::string & arg2, const std::vector<Tp2> & argument2,
-          const bool verbose = false)
+          bool verbose = false)
   {
     using Val = num_traits_t<Tp>;
 
@@ -555,13 +555,13 @@ template<typename Tp, typename Tp1, typename Tp2>
 ///
 template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
   void
-  rundiff(Tp function1(const Tp1, const Tp2, const Tp3),
-          Tp function2(const Tp1, const Tp2, const Tp3),
+  rundiff(Tp function1(Tp1, Tp2, Tp3),
+          Tp function2(Tp1, Tp2, Tp3),
           const std::string & basename,
           const std::string & arg1, const std::vector<Tp1> & argument1,
           const std::string & arg2, const std::vector<Tp2> & argument2,
           const std::string & arg3, const std::vector<Tp3> & argument3,
-          const bool verbose = false)
+          bool verbose = false)
   {
     using Val = num_traits_t<Tp>;
 
@@ -657,14 +657,14 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 ///
 template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
   void
-  rundiff(Tp function1(const Tp1, const Tp2, const Tp3, const Tp4),
-          Tp function2(const Tp1, const Tp2, const Tp3, const Tp4),
+  rundiff(Tp function1(Tp1, Tp2, Tp3, Tp4),
+          Tp function2(Tp1, Tp2, Tp3, Tp4),
           const std::string & basename,
           const std::string & arg1, const std::vector<Tp1> & argument1,
           const std::string & arg2, const std::vector<Tp2> & argument2,
           const std::string & arg3, const std::vector<Tp3> & argument3,
           const std::string & arg4, const std::vector<Tp4> & argument4,
-          const bool verbose = false)
+          bool verbose = false)
   {
     using Val = num_traits_t<Tp>;
 
