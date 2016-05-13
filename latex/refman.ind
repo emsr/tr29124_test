@@ -1336,17 +1336,17 @@
     \subitem {jacobi\+\_\+cnf}, \hyperpage{86}
     \subitem {jacobi\+\_\+cnl}, \hyperpage{86}
     \subitem {jacobi\+\_\+dn}, \hyperpage{86}
-    \subitem {jacobi\+\_\+dnf}, \hyperpage{86}
+    \subitem {jacobi\+\_\+dnf}, \hyperpage{87}
     \subitem {jacobi\+\_\+dnl}, \hyperpage{87}
     \subitem {jacobi\+\_\+sn}, \hyperpage{87}
     \subitem {jacobi\+\_\+snf}, \hyperpage{87}
     \subitem {jacobi\+\_\+snl}, \hyperpage{87}
-    \subitem {jacobi\+\_\+zeta}, \hyperpage{87}
+    \subitem {jacobi\+\_\+zeta}, \hyperpage{88}
     \subitem {jacobi\+\_\+zetaf}, \hyperpage{88}
     \subitem {jacobi\+\_\+zetal}, \hyperpage{88}
     \subitem {jacobif}, \hyperpage{88}
     \subitem {jacobil}, \hyperpage{88}
-    \subitem {lbincoef}, \hyperpage{88}
+    \subitem {lbincoef}, \hyperpage{89}
     \subitem {lbincoeff}, \hyperpage{89}
     \subitem {lbincoefl}, \hyperpage{89}
     \subitem {ldouble\+\_\+factorial}, \hyperpage{89}
@@ -1354,31 +1354,31 @@
     \subitem {ldouble\+\_\+factoriall}, \hyperpage{89}
     \subitem {legendre\+\_\+q}, \hyperpage{89}
     \subitem {legendre\+\_\+qf}, \hyperpage{89}
-    \subitem {legendre\+\_\+ql}, \hyperpage{89}
-    \subitem {lfactorial}, \hyperpage{89}
+    \subitem {legendre\+\_\+ql}, \hyperpage{90}
+    \subitem {lfactorial}, \hyperpage{90}
     \subitem {lfactorialf}, \hyperpage{90}
     \subitem {lfactoriall}, \hyperpage{90}
     \subitem {logint}, \hyperpage{90}
     \subitem {logintf}, \hyperpage{90}
     \subitem {logintl}, \hyperpage{90}
-    \subitem {lpochhammer\+\_\+l}, \hyperpage{90}
-    \subitem {lpochhammer\+\_\+lf}, \hyperpage{90}
+    \subitem {lpochhammer\+\_\+l}, \hyperpage{91}
+    \subitem {lpochhammer\+\_\+lf}, \hyperpage{91}
     \subitem {lpochhammer\+\_\+ll}, \hyperpage{91}
     \subitem {lpochhammer\+\_\+u}, \hyperpage{91}
     \subitem {lpochhammer\+\_\+uf}, \hyperpage{91}
     \subitem {lpochhammer\+\_\+ul}, \hyperpage{91}
     \subitem {owens\+\_\+t}, \hyperpage{91}
-    \subitem {owens\+\_\+tf}, \hyperpage{91}
-    \subitem {owens\+\_\+tl}, \hyperpage{91}
+    \subitem {owens\+\_\+tf}, \hyperpage{92}
+    \subitem {owens\+\_\+tl}, \hyperpage{92}
     \subitem {pochhammer\+\_\+l}, \hyperpage{92}
     \subitem {pochhammer\+\_\+lf}, \hyperpage{92}
     \subitem {pochhammer\+\_\+ll}, \hyperpage{92}
     \subitem {pochhammer\+\_\+u}, \hyperpage{92}
     \subitem {pochhammer\+\_\+uf}, \hyperpage{92}
     \subitem {pochhammer\+\_\+ul}, \hyperpage{92}
-    \subitem {polylog}, \hyperpage{92, 93}
+    \subitem {polylog}, \hyperpage{93}
     \subitem {polylogf}, \hyperpage{93}
-    \subitem {polylogl}, \hyperpage{93}
+    \subitem {polylogl}, \hyperpage{93, 94}
     \subitem {psi}, \hyperpage{94}
     \subitem {psif}, \hyperpage{94}
     \subitem {psil}, \hyperpage{94}
@@ -1389,7 +1389,7 @@
     \subitem {sinc\+\_\+pi}, \hyperpage{95}
     \subitem {sinc\+\_\+pif}, \hyperpage{95}
     \subitem {sinc\+\_\+pil}, \hyperpage{95}
-    \subitem {sincf}, \hyperpage{95}
+    \subitem {sincf}, \hyperpage{96}
     \subitem {sincl}, \hyperpage{96}
     \subitem {sinhc}, \hyperpage{96}
     \subitem {sinhc\+\_\+pi}, \hyperpage{96}
@@ -1570,7 +1570,7 @@
 		\hyperpage{86}
   \item {jacobi\+\_\+dnf}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
-		\hyperpage{86}
+		\hyperpage{87}
   \item {jacobi\+\_\+dnl}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
 		\hyperpage{87}
@@ -1585,7 +1585,7 @@
 		\hyperpage{87}
   \item {jacobi\+\_\+zeta}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
-		\hyperpage{87}
+		\hyperpage{88}
   \item {jacobi\+\_\+zetaf}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
 		\hyperpage{88}
@@ -1612,7 +1612,7 @@
 		\hyperpage{35}
   \item {lbincoef}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
-		\hyperpage{88}
+		\hyperpage{89}
   \item {lbincoeff}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
 		\hyperpage{89}
@@ -1639,7 +1639,7 @@
 		\hyperpage{89}
   \item {legendre\+\_\+ql}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
-		\hyperpage{89}
+		\hyperpage{90}
   \item {legendref}
     \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
 		\hyperpage{35}
@@ -1648,7 +1648,7 @@
 		\hyperpage{35}
   \item {lfactorial}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
-		\hyperpage{89}
+		\hyperpage{90}
   \item {lfactorialf}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
 		\hyperpage{90}
@@ -1666,10 +1666,10 @@
 		\hyperpage{90}
   \item {lpochhammer\+\_\+l}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
-		\hyperpage{90}
+		\hyperpage{91}
   \item {lpochhammer\+\_\+lf}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
-		\hyperpage{90}
+		\hyperpage{91}
   \item {lpochhammer\+\_\+ll}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
 		\hyperpage{91}
@@ -1690,10 +1690,10 @@
 		\hyperpage{91}
   \item {owens\+\_\+tf}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
-		\hyperpage{91}
+		\hyperpage{92}
   \item {owens\+\_\+tl}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
-		\hyperpage{91}
+		\hyperpage{92}
 
   \indexspace
 
@@ -1717,13 +1717,13 @@
 		\hyperpage{92}
   \item {polylog}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
-		\hyperpage{92, 93}
+		\hyperpage{93}
   \item {polylogf}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
 		\hyperpage{93}
   \item {polylogl}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
-		\hyperpage{93}
+		\hyperpage{93, 94}
   \item {psi}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
 		\hyperpage{94}
@@ -1851,7 +1851,7 @@
 		\hyperpage{95}
   \item {sincf}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
-		\hyperpage{95}
+		\hyperpage{96}
   \item {sincl}
     \subitem {G\+N\+U Extended Mathematical Special Functions}, 
 		\hyperpage{96}
