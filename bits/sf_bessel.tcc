@@ -414,23 +414,33 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			   unsigned int __max_iter)
     {
       constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
-      const auto __x2 = __x / _Tp{2};
-      _Tp __fact = __nu * std::log(__x2);
-      __fact -= __log_gamma(__nu + _Tp{1});
-      __fact = std::exp(__fact);
-      const auto __xx4 = __sgn * __x2 * __x2;
-      _Tp _Jn = _Tp{1};
-      _Tp __term = _Tp{1};
-
-      for (unsigned int __i = 1; __i < __max_iter; ++__i)
+      if (__x < _S_eps)
 	{
-	  __term *= __xx4 / (_Tp(__i) * (__nu + _Tp(__i)));
-	  _Jn += __term;
-	  if (std::abs(__term / _Jn) < _S_eps)
-	    break;
+	  if (__nu == _Tp{0})
+	    return _Tp{1};
+	  else
+	    return _Tp{0};
 	}
+      else
+	{
+	  const auto __x2 = __x / _Tp{2};
 
-      return __fact * _Jn;
+	  _Tp __fact = __nu * std::log(__x2);
+	  __fact -= __log_gamma(__nu + _Tp{1});
+	  __fact = std::exp(__fact);
+	  const auto __xx4 = __sgn * __x2 * __x2;
+	  _Tp _Jn = _Tp{1};
+	  _Tp __term = _Tp{1};
+	  for (unsigned int __i = 1; __i < __max_iter; ++__i)
+	    {
+	      __term *= __xx4 / (_Tp(__i) * (__nu + _Tp(__i)));
+	      _Jn += __term;
+	      if (std::abs(__term / _Jn) < _S_eps)
+		break;
+	    }
+
+	  return __fact * _Jn;
+	}
     }
 
   /**
