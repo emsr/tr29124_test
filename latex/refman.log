@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.3.12)  2 MAY 2016 18:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.3.12)  10 MAY 2016 12:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1998,22 +1998,22 @@ Underfull \hbox (badness 10000) detected at line 3837
 [][][]
  []
 
-
+[87]
 Underfull \hbox (badness 10000) detected at line 3854
 [][][]
  []
 
-[87]
+
 Underfull \hbox (badness 10000) detected at line 3927
 [][][]
  []
 
-
+[88]
 Underfull \hbox (badness 10000) detected at line 3950
 [][][]
  []
 
-[88]
+[89]
 Underfull \hbox (badness 10000) detected at line 4052
 [][][]
  []
@@ -2023,22 +2023,22 @@ Underfull \hbox (badness 10000) detected at line 4069
 [][][]
  []
 
-[89]
+
 Underfull \hbox (badness 10000) detected at line 4138
 [][][]
  []
 
-
+[90]
 Underfull \hbox (badness 10000) detected at line 4154
 [][][]
  []
 
-[90]
+[91]
 Underfull \hbox (badness 10000) detected at line 4266
 [][][]
  []
 
-[91]
+
 Underfull \hbox (badness 10000) detected at line 4283
 [][][]
  []
@@ -2053,22 +2053,22 @@ Underfull \hbox (badness 10000) detected at line 4435
 [][][]
  []
 
-
+[93]
 Underfull \hbox (badness 10000) detected at line 4452
 [][][]
  []
 
-[93]
+
 Underfull \hbox (badness 10000) detected at line 4469
 [][][]
  []
 
-
+[94]
 Underfull \hbox (badness 10000) detected at line 4529
 [][][]
  []
 
-[94]
+
 Underfull \hbox (badness 10000) detected at line 4561
 [][][]
  []
@@ -3624,7 +3624,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 207.
 Here is how much of TeX's memory you used:
  17666 strings out of 495000
  323406 string characters out of 6181169
- 376395 words of memory out of 5000000
+ 376397 words of memory out of 5000000
  18584 multiletter control sequences out of 15000+600000
  80383 words of font info for 105 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -3654,7 +3654,7 @@ exlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf
 /type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
 helvetic/uhvbo8ac.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/u
 hvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (342 pages, 1247473 bytes).
+Output written on refman.pdf (342 pages, 1250118 bytes).
 PDF statistics:
  10435 PDF objects out of 10688 (max. 8388607)
  9854 compressed objects within 99 object streams
