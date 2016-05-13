@@ -40,8 +40,8 @@ check_gamma_l
 check_gamma_u
 check_gegenbauer
 check_hermite
-line 1917  max_abs_frac = 0.0674673
-line 1917  max_abs_frac = 0.0586856
+line 1927  max_abs_frac = 0.0674673
+line 1927  max_abs_frac = 0.0586856
 check_heuman_lambda
 check_hurwitz_zeta
 check_hyperg
@@ -85,7 +85,10 @@ check_theta_3
 check_theta_4
 check_zernike
 complex_ellint_rc
+complex_ellint_rd
+complex_ellint_rf
 complex_ellint_rg
+complex_ellint_rj
 pr56216_cyl_hankel_1
 pr56216_cyl_hankel_2
 pr56216_cyl_bessel_i
