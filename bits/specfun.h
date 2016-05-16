@@ -78,6 +78,7 @@
 #  include <bits/sf_polylog.tcc>
 #  include <bits/sf_airy.tcc>
 #  include <bits/sf_hankel.tcc>
+#  include <bits/sf_distributions.tcc>
 #else
 #  include <tr1/type_traits>
 #  include <tr1/cmath>
