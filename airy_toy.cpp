@@ -1022,14 +1022,14 @@ br ''
 
       constexpr _Airy_series() = default;
 
-      _AiryState<std::complex<_Tp>>
-      operator()(std::complex<_Tp> __t, bool __return_fock_airy = false) const;
+      static _AiryState<std::complex<_Tp>>
+      operator()(std::complex<_Tp> __t, bool __return_fock_airy = false);
 
-      _AiryState<std::complex<_Tp>>
-      Ai(std::complex<_Tp> __t) const;
+      static std::pair<std::complex<_Tp>, std::complex<_Tp>>
+      Ai(std::complex<_Tp> __t);
 
-      _AiryState<std::complex<_Tp>>
-      Bi(std::complex<_Tp> __t) const;
+      static std::pair<std::complex<_Tp>, std::complex<_Tp>>
+      Bi(std::complex<_Tp> __t);
 
     private:
 
@@ -1121,7 +1121,7 @@ br ''
   template<typename _Tp>
     _AiryState<std::complex<_Tp>>
     _Airy_series<_Tp>::operator()(std::complex<_Tp> __t,
-				  bool __return_fock_airy) const
+				  bool __return_fock_airy)
     {
       const auto __log10t = std::log10(std::abs(__t));
       const auto __ttt = __t * __t * __t;
@@ -1197,14 +1197,9 @@ br ''
    * and @f$ Bi(0) = 3^{1/2}Ai(0) @f$, @f$ Bi'(0) = 3^{1/6}/\Gamma(1/3) @f$
    */
   template<typename _Tp>
-    _AiryState<std::complex<_Tp>>
-    _Airy_series<_Tp>::Ai(std::complex<_Tp> __t) const
-    {
-      __cmplx _Ai, _Aip;
-      std::tie(_Ai, _Aip) = _S_AiBi(__t, std::make_pair(_S_Ai0, _S_Aip0));
-      __cmplx _Bi{}, _Bip{};
-      return _AiryState<__cmplx>{__t, _Ai, _Aip, _Bi, _Bip};
-    }
+    std::pair<std::complex<_Tp>, std::complex<_Tp>>
+    _Airy_series<_Tp>::Ai(std::complex<_Tp> __t)
+    { return _S_AiBi(__t, std::make_pair(_S_Ai0, _S_Aip0)); }
 
   /**
    * Return the Airy function of the second kind and its derivative
@@ -1223,14 +1218,9 @@ br ''
    * and @f$ Bi(0) = 3^{1/2}Ai(0) @f$, @f$ Bi'(0) = 3^{1/6}/\Gamma(1/3) @f$
    */
   template<typename _Tp>
-    _AiryState<std::complex<_Tp>>
-    _Airy_series<_Tp>::Bi(std::complex<_Tp> __t) const
-    {
-      __cmplx _Bi, _Bip;
-      std::tie(_Bi, _Bip) = _S_AiBi(__t, std::make_pair(_S_Bi0, _S_Bip0));
-      __cmplx _Ai{}, _Aip{};
-      return _AiryState<__cmplx>{__t, _Ai, _Aip, _Bi, _Bip};
-    }
+    std::pair<std::complex<_Tp>, std::complex<_Tp>>
+    _Airy_series<_Tp>::Bi(std::complex<_Tp> __t)
+    { return _S_AiBi(__t, std::make_pair(_S_Bi0, _S_Bip0)); }
 
   template<typename _Tp>
     std::pair<std::complex<_Tp>, std::complex<_Tp>>
@@ -2388,8 +2378,8 @@ template<typename _Sum>
   {
   public:
 
-    using value_type = _Sum::value_type;
-    using scalar_type = std::__detail::__num_traits_t<_Tp>;
+    using value_type = typename _Sum::value_type;
+    using scalar_type = std::__detail::__num_traits_t<value_type>;
 
     _Airy_asymp_series(_Sum __proto)
     : _M_Asum(__proto),
@@ -2400,189 +2390,206 @@ template<typename _Sum>
     _Airy_asymp_series(const _Airy_asymp_series&) = default;
     _Airy_asymp_series(_Airy_asymp_series&&) = default;
 
-    _Airy_state<value_type>
+    _AiryState<value_type>
     operator()(value_type __y);
 
   private:
+
+    static constexpr int _S_max_iter = 10000;
+    static constexpr auto _S_eps = std::numeric_limits<scalar_type>::epsilon();
 
     _Sum _M_Asum;
     _Sum _M_Bsum;
     _Sum _M_Csum;
     _Sum _M_Dsum;
-  }
+  };
 
+//template<typename _Sum>
+//  constexpr int
+//  _Airy_asymp_series<_Sum>::_S_max_iter;
+
+//template<typename _Sum>
+//  constexpr typename _Airy_asymp_series<_Sum>::scalar_type
+//  _Airy_asymp_series<_Sum>::_S_eps;
+
+
+/**
+ * Return an AiryState vector containin, not actual Airy functions, but
+ * four asymptotic series:
+ */
 template<typename _Sum>
   _AiryState<typename _Airy_asymp_series<_Sum>::value_type>
   _Airy_asymp_series<_Sum>::operator()(typename _Sum::value_type __y)
   {
-  }
+    using __cmplx = value_type;
+    using __scal = scalar_type;
 
-/**
- *
- */
-template<typename _Sum>
-  _AiryState<typename _Sum::value_type>
-  airy_asymp(typename _Sum::value_type __y)
-  {
-    using _Tp = typename _Sum::value_type;
-    using _Val = std::__detail::__num_traits_t<_Tp>;
-    constexpr int _S_max_iter = 10000;
-    constexpr auto _S_eps = std::numeric_limits<_Val>::epsilon();
-    constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Val>::__root_pi;
-    constexpr auto _S_pi_3 = __gnu_cxx::__math_constants<_Val>::__pi_third;
-    constexpr auto _S_pi_6 = _S_pi_3 / _Val{2};
-    constexpr auto _S_i = _Tp{0, 1};
+    _M_Asum.reset(1);
+    _M_Bsum.reset(1);
+    _M_Csum.reset(1);
+    _M_Dsum.reset(1);
 
     auto __zeta = get_zeta(__y);
-    auto __expzeta = std::exp(__zeta);
-    auto __y1o4 = std::pow(__y, _Val{0.25L});
-
-    const auto __beta = _Tp{1};
-    _Sum _Asum(__beta);
-    _Sum _Bsum(__beta);
-    _Sum _Csum(__beta);
-    _Sum _Dsum(__beta);
-    _Asum += _Tp{1};
-    _Bsum += _Tp{1};
-    _Csum += _Tp{1};
-    _Dsum += _Tp{1};
-    auto __sign = _Val{1};
-    auto __numerAB = _Val{1};
-    auto __numerCD = _Val{1};
-    auto __denom = _Tp{1};
+    auto __sign = __scal{1};
+    auto __numerAB = __scal{1};
+    auto __numerCD = __scal{1};
+    auto __denom = __cmplx{1};
     for (int __k = 1; __k < _S_max_iter; ++__k)
       {
 	__sign = -__sign;
-	__numerAB *= _Val(__k + _Val{1} / _Val{6})
-		   * _Val(__k + _Val{5} / _Val{6});
-	__numerCD *= _Val(__k - _Val{1} / _Val{6})
-		   * _Val(__k + _Val{7} / _Val{6});
-	__denom *= _Tp(2 * __k) * __zeta;
+	__numerAB *= __scal(__k + __scal{1} / __scal{6})
+		   * __scal(__k + __scal{5} / __scal{6});
+	__numerCD *= __scal(__k - __scal{1} / __scal{6})
+		   * __scal(__k + __scal{7} / __scal{6});
+	__denom *= __cmplx(2 * __k) * __zeta;
 	auto _Aterm = __sign * __numerAB / __denom;
-	_Asum += _Aterm;
+	_M_Asum += _Aterm;
 	auto _Bterm = __numerAB / __denom;
-	_Bsum += _Bterm;
+	_M_Bsum += _Bterm;
 	auto _Cterm = __sign * __numerCD / __denom;
-	_Csum += _Cterm;
+	_M_Csum += _Cterm;
 	auto _Dterm = __numerCD / __denom;
-	_Dsum += _Dterm;
-	if (std::abs(_Asum()) * _S_eps < std::abs(_Aterm)
-	 && std::abs(_Bsum()) * _S_eps < std::abs(_Bterm)
-	 && std::abs(_Csum()) * _S_eps < std::abs(_Cterm)
-	 && std::abs(_Dsum()) * _S_eps < std::abs(_Dterm))
+	_M_Dsum += _Dterm;
+	if (std::abs(_M_Asum()) * _S_eps < std::abs(_Aterm)
+	 && std::abs(_M_Bsum()) * _S_eps < std::abs(_Bterm)
+	 && std::abs(_M_Csum()) * _S_eps < std::abs(_Cterm)
+	 && std::abs(_M_Dsum()) * _S_eps < std::abs(_Dterm))
 	  break;
       }
-    auto _AA = _Val{0.5L} * _Asum() / _S_sqrt_pi / __y1o4 /__expzeta;
-    auto _BB = _Val{0.5L} * __expzeta * _Bsum() / _S_sqrt_pi / __y1o4;
-    auto _CC = _Val{-0.5L} * __y1o4 * _Csum() / _S_sqrt_pi / __expzeta;
-    auto _DD = _Val{0.5L} * __y1o4 * __expzeta * _Dsum() / _S_sqrt_pi;
 
-    auto __absargy = std::abs(std::arg(__y));
-    auto __absy = std::abs(__y);
-
-    auto _Ai = _AA;
-    auto _Bi = _Val{2} * _BB;
-    auto _Aip = _CC;
-    auto _Bip = _Val{2} * _DD;
-    if (std::abs(__argz) > _Val{5} * _S_pi_6)
-      {
-	_Ai += _S_i * _BB;
-	_Aip += _S_i * _DD;
-      }
-    if (std::abs(__argz) > _S_pi_6)
-      {
-	_Bi += _S_i * _AA;
-	_Bip += _S_i * _CC;
-      }
-    return _AiryState<_Tp>{__y, _Ai, _Aip, _Bi, _Bip};
+    return _AiryState<value_type>(__y, _M_Asum(), _M_Csum(),
+				       _M_Bsum(), _M_Dsum());
   }
+
 
 /**
  * Class to manage the asymptotic expansions for Airy functions.
  * The parameters describing the various regions are adjustable.
  */
 template<typename _Tp>
-  class _Airy_asymp
+  class _Airy_asymp_new
   {
   public:
 
     using value_type = _Tp;
-    using scalar_type = std::__detail::__num_traits_t<_Tp>;
+    using scalar_type = std::__detail::__num_traits_t<value_type>;
+    static constexpr auto _S_pi = __gnu_cxx::__math_constants<scalar_type>::__pi;
+    static constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<scalar_type>::__root_pi;
+    static constexpr auto _S_pi_3 = __gnu_cxx::__math_constants<scalar_type>::__pi_third;
+    static constexpr auto _S_2pi_3 = scalar_type{2} * _S_pi_3;
+    static constexpr auto _S_pi_6 = _S_pi_3 / scalar_type{2};
+    static constexpr auto _S_5pi_6 = scalar_type{5} * _S_pi_6;
+    static constexpr auto _S_i = value_type{0, 1};
 
-    _Airy_asymp() = default;
-    _Airy_asymp_series(const _Airy_asymp_series&) = default;
-    _Airy_asymp_series(_Airy_asymp_series&&) = default;
+    _Airy_asymp_new() = default;
+    _Airy_asymp_new(const _Airy_asymp_new&) = default;
+    _Airy_asymp_new(_Airy_asymp_new&&) = default;
 
-    _Airy_state<value_type>
+    _AiryState<value_type>
     operator()(value_type __y);
 
-    value_type inner_radius{5};
-    value_type outer_radius{15};
-  }
+    scalar_type inner_radius{5};
+    scalar_type outer_radius{15};
+  };
 
+//template<typename _Tp>
+//  typename _Airy_asymp_new<_Tp>::scalar_type
+//  _Airy_asymp_new<_Tp>::_S_sqrt_pi;
+
+//template<typename _Tp>
+//  typename _Airy_asymp_new<_Tp>::scalar_type
+//  _Airy_asymp_new<_Tp>::_S_pi_3;
+
+//template<typename _Tp>
+//  typename _Airy_asymp_new<_Tp>::scalar_type
+//  _Airy_asymp_new<_Tp>::_S_pi_6;
+
+//template<typename _Tp>
+//  typename _Airy_asymp_new<_Tp>::value_type
+//  _Airy_asymp_new<_Tp>::_S_i;
+
+/**
+ * Return the Airy functions for complex argument.
+ */
 template<typename _Tp>
   _AiryState<_Tp>
-  _Airy_asymp<_Tp>::operator()(typename value_type __y)
+  _Airy_asymp_new<_Tp>::operator()(value_type __y)
   {
-    using _OuterSum = __gnu_cxx::_KahanSum<value_type>;
+    using __cmplx = value_type;
+    using __scal = scalar_type;
+
+    using _OuterSum = __gnu_cxx::_KahanSum<__cmplx>;
     using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
+
+    constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<__scal>();
+    constexpr auto _S_cNaN = __cmplx(_S_NaN, _S_NaN);
+
+    if (std::__detail::__isnan(__y))
+      return _AiryState<_Tp>(__y, _S_cNaN, _S_cNaN, _S_cNaN, _S_cNaN);
 
     auto __absargy = std::abs(std::arg(__y));
     auto __absy = std::abs(__y);
 
-    if (__absy < inner_radius)
-      throw std::range_error("_Airy_asymp: |y| is too small");
+    _AiryState<_Tp> __sums;
+    if (__absy < outer_radius)
+      {
+	auto __beta = __scal{1};
+        __sums = _Airy_asymp_series<_InnerSum>(_InnerSum(__beta));
+      }
+    else
+      __sums = _Airy_asymp_series<_OuterSum>(_OuterSum{});
+
+    auto __zeta = get_zeta(__y);
+    auto __expzeta = std::exp(__zeta);
+    auto __y1o4 = std::pow(__y, __scal{0.25L});
+    auto _AA = __scal{0.5L} * __sums.Ai / _S_sqrt_pi / __y1o4 /__expzeta;
+    auto _BB = __scal{0.5L} * __expzeta * __sums.Bi / _S_sqrt_pi / __y1o4;
+    auto _CC = __scal{-0.5L} * __y1o4 * __sums.Aip / _S_sqrt_pi / __expzeta;
+    auto _DD = __scal{0.5L} * __y1o4 * __expzeta * __sums.Bip / _S_sqrt_pi;
+
+    __cmplx _Bi, _Bip;
+    if (__absy < inner_radius
+        || (__absy < outer_radius && __absargy < _S_pi_3))
+      std::tie(_Bi, _Bip) = _Airy_series<_Tp>::Bi(__y);
     else if (__absy < outer_radius)
       {
-	auto __beta = scalar_type{1};
-        _Airy_asymp_series<_InnerSum>(_InnerSum(__beta));
+        _Bi = __scal{2} * _BB + _S_i * _AA;
+        _Bip = __scal{2} * _DD + _S_i * _CC;
       }
+    else
+      {
+	_Bi = __scal{2} * _BB;
+	_Bip = __scal{2} * _DD;
+	if (__absargy > _S_pi_6)
+	  {
+	    _Bi += _S_i * _AA;
+	    _Bip += _S_i * _CC;
+	  }
+      }
+
+    __cmplx _Ai, _Aip;
+    if ((__absy < inner_radius
+	        + outer_radius * __absargy / _S_pi && __absargy < _S_2pi_3)
+        || (__absy < outer_radius && __absargy >= _S_2pi_3))
+      std::tie(_Ai, _Aip) = _Airy_series<_Tp>::Ai(__y);
+    else if (__absy < outer_radius)
+      {
+        _Ai = _AA;
+        _Aip = _CC;
+      }
+    else
+      {
+	_Ai = _AA;
+	_Aip = _CC;
+	if (__absargy >= _S_5pi_6)
+	  {
+	    _Ai += _S_i * _BB;
+	    _Aip += _S_i * _DD;
+	  }
+      }
+
+    return _AiryState<_Tp>{__y, _Ai, _Aip, _Bi, _Bip};
   }
-
-  /**
-   * Return the Airy functions for complex argument.
-   */
-  template<typename _Tp>
-    _AiryState<_Tp>
-    airy(_Tp __y)
-    {
-      using _Val = std::__detail::__num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
-      constexpr auto _S_cNaN = _Tp(_S_NaN, _S_NaN);
-      constexpr auto _S_2pi_3 = _Val{2} * _S_pi_3;
-
-      if (__isnan(__y))
-	return _AiryState<_Tp>(__y, _S_cNaN, _S_cNaN, _S_cNaN, _S_cNaN);
-
-      auto __absy = std::abs(__y);
-      auto __absargy = std::abs(std::arg(__y));
-
-      _AiryState<_Tp> _Bi;
-      if (__absy < _Val{5}
-       || __absy < _Val{15} && __absargy < _S_pi_3)
-	_Bi = _Airy_series<_Tp>::_S_Bi(__y);
-      else if (__absy < _Val{15})
-	Bi = _Val{2} * asymp_accel_B(__y) + _S_i * asymp_accel_A(__y);
-      else
-        {
-	  Bi = _Val{2} * asymp_accel_B(__y);
-	  if (__absargy > _S_pi_6)
-	    Bi += _S_i * asymp_accel_A(__y)
-	}
-
-      _AiryState<_Tp> _Ai;
-      if (__absy < _Val{5} + _Val{15} * __absargy / _S_pi && __absargy < _S_2pi_3
-       || __absy < _Val{15} && __absargy >= _S_2pi_3)
-	_Ai = _Airy_series<_Tp>::_S_Ai(__y);
-      else if (__absy < _Val{15})
-	_Ai = asymp_accel_A(__y); // A(__y)
-      else
-	{
-	  _Ai = asymp_A(__y); // A(__y)
-	  if (__absargy >= _Val{5} * _S_pi_6)
-	    _Ai += _S_i * asymp_B(__y)
-	}
-    }
 
 
 /**
@@ -2715,8 +2722,8 @@ template<typename _Tp>
   void
   run_airy_series()
   {
-    using __cmplx = std::complex<_Tp>;
-    _Airy_series<_Tp> __airy_series;
+    using cmplx = std::complex<_Tp>;
+    _Airy_series<_Tp> airy_series;
 
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
@@ -2739,8 +2746,8 @@ template<typename _Tp>
 	      << '\n';
     for (int i = -500; i <= 500; ++i)
       {
-	auto t = __cmplx{_Tp(0.01Q * i)};
-	auto airy = __airy_series(t);
+	auto t = cmplx{_Tp(0.01Q * i)};
+	auto airy = airy_series(t);
 	std::cout << std::setw(width) << std::real(airy.z)
 		  << std::setw(width) << std::real(airy.Ai)
 		  << std::setw(width) << std::real(airy.Aip)
@@ -2838,16 +2845,17 @@ template<typename _Tp>
   }
 
 
-template<typename _Sum>
+template<typename _Tp>
   void
   run_airy_asymp()
   {
-    using _Tp = typename _Sum::value_type;
     using _Val = typename _Tp::value_type;
 
     std::cout.precision(std::numeric_limits<_Val>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
+
+    _Airy_asymp_new<_Tp> airy_asymp;
 
     std::cout << "\n\n";
     std::cout << std::setw(width) << "t"
@@ -2867,7 +2875,7 @@ template<typename _Sum>
     for (int i = -1000; i <= -350; ++i)
       {
 	auto t = _Tp(0.01Q * i);
-	auto airy = airy_asymp<_Sum>(t);
+	auto airy = airy_asymp(t);
 	std::cout << std::setw(width) << std::real(airy.z)
 		  << std::setw(width) << std::real(airy.Ai)
 		  << std::setw(width) << std::real(airy.Aip)
@@ -2880,7 +2888,7 @@ template<typename _Sum>
     for (int i = 350; i <= 1000; ++i)
       {
 	auto t = _Tp(0.01Q * i);
-	auto airy = airy_asymp<_Sum>(t);
+	auto airy = airy_asymp(t);
 	std::cout << std::setw(width) << std::real(airy.z)
 		  << std::setw(width) << std::real(airy.Ai)
 		  << std::setw(width) << std::real(airy.Aip)
@@ -3078,16 +3086,17 @@ template<typename _Tp>
   }
 
 
-template<typename _Sum>
+template<typename _Tp>
   void
   diff_airy_asymp()
   {
-    using _Tp = typename _Sum::value_type;
     using _Val = typename _Tp::value_type;
 
     std::cout.precision(std::numeric_limits<_Val>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
+
+    _Airy_asymp_new<_Tp> airy_asymp;
 
     std::cout << "\n\nAiry Asymptotic -z Deathmatch\n";
     std::cout << "++++++++++++++++++++++++++++++\n";
@@ -3108,7 +3117,7 @@ template<typename _Sum>
     for (int i = -1500; i <= -500; ++i)
       {
 	auto t = _Tp{_Val(0.01Q * i)};
-	auto airy1 = airy_asymp<_Sum>(t);
+	auto airy1 = airy_asymp(t);
 	std::cout << '\n';
 	std::cout << std::setw(width) << std::real(airy1.z)
 		  << std::setw(width) << std::real(airy1.Ai)
@@ -3156,7 +3165,7 @@ template<typename _Sum>
     for (int i = 500; i <= 1500; ++i)
       {
 	auto t = _Tp{_Val(0.01Q * i)};
-	auto airy1 = airy_asymp<_Sum>(t);
+	auto airy1 = airy_asymp(t);
 	std::cout << '\n';
 	std::cout << std::setw(width) << std::real(airy1.z)
 		  << std::setw(width) << std::real(airy1.Ai)
@@ -3287,21 +3296,18 @@ main()
 
   std::cout << "\nfloat\n=====\n\n";
   using __fcmplx = std::complex<float>;
-  using __fsum = __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_KahanSum<__fcmplx>>;
-  diff_airy_asymp<__fsum>();
+  diff_airy_asymp<__fcmplx>();
 
   std::cout << "\ndouble\n======\n";
   using __cmplx = std::complex<double>;
-  using __sum = __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_KahanSum<__cmplx>>;
-  diff_airy_asymp<__sum>();
+  diff_airy_asymp<__cmplx>();
 
   std::cout << "\nlong double\n===========\n";
   using __lcmplx = std::complex<long double>;
-  using __lsum = __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_KahanSum<__lcmplx>>;
-  diff_airy_asymp<__lsum>();
+  diff_airy_asymp<__lcmplx>();
 
   std::cout << "\ndouble\n======\n";
-  run_airy_asymp<__sum>();
+  run_airy_asymp<__cmplx>();
 
   std::cout << "\nfloat\n======\n";
   diff_zeta<float>();
