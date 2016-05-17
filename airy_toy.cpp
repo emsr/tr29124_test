@@ -125,17 +125,16 @@ br ''
       auto __npi = _Tp{0};
 
       // Find adjustment necessary to get on proper Riemann sheet.
-      if (std::imag(__y) == _Tp{0})
-	{ // y is real.
+      if (std::imag(__y) == _Tp{0}) // y is real...
+	{
 	  if (std::real(__y) > _Tp{1})
 	    __npi = _S_2pi;
 	}
-      else
-	{ // y is not real.
-	  if (std::imag(__y) > _Tp{0})
-	    { // y is in upper half-plane.
-	      // xi lies in upper half-plane.
-	      if (std::imag(__xi) > _Tp{0})
+      else // y is not real...
+	{
+	  if (std::imag(__y) > _Tp{0}) // y is in upper half-plane...
+	    {
+	      if (std::imag(__xi) > _Tp{0}) // xi lies in upper half-plane.
 		__npi = -_S_2pi;
 	      else
 		__npi = +_S_2pi;
@@ -1434,8 +1433,6 @@ br ''
       static constexpr __cmplx _S_i{_Tp{0}, _Tp{1}};
       static constexpr _Tp _S_log10min = __gnu_cxx::__log10_min(_Tp{});
 
-      constexpr _Airy_series() = default;
-
       static _AiryState<std::complex<_Tp>>
       Airy(std::complex<_Tp> __t);
 
@@ -1457,7 +1454,7 @@ br ''
       _S_Airy(std::complex<_Tp> __t, bool __return_fock_airy = false);
 
       std::pair<std::complex<_Tp>, std::complex<_Tp>>
-      _S_AiBi(std::complex<_Tp> __t, std::pair<_Tp, _Tp> _Z0);
+      static _S_AiBi(std::complex<_Tp> __t, std::pair<_Tp, _Tp> _Z0);
     };
 
   template<typename _Tp>
@@ -3002,7 +2999,7 @@ template<typename _Sum>
     auto _CC = __scal{-0.5L} * __y1o4 * _M_Csum() / _S_sqrt_pi / __expzeta;
     auto _DD = __scal{0.5L} * __y1o4 * __expzeta * _M_Dsum() / _S_sqrt_pi;
 
-    return _AiryState<value_type>(__y, _AA, _CC, _BB, _DD);
+    return _AiryState<value_type>{__y, _AA, _CC, _BB, _DD};
   }
 
 
@@ -3069,7 +3066,7 @@ template<typename _Tp>
     constexpr auto _S_cNaN = __cmplx(_S_NaN, _S_NaN);
 
     if (std::__detail::__isnan(__y))
-      return _AiryState<_Tp>(__y, _S_cNaN, _S_cNaN, _S_cNaN, _S_cNaN);
+      return _AiryState<_Tp>{__y, _S_cNaN, _S_cNaN, _S_cNaN, _S_cNaN};
 
     auto __absargy = std::abs(std::arg(__y));
     auto __absy = std::abs(__y);
@@ -3078,7 +3075,7 @@ template<typename _Tp>
     if (__absy < outer_radius)
       {
 	auto __beta = __scal{1};
-        _Airy_asymp_series<_InnerSum> __asymp(_InnerSum(__beta));
+        _Airy_asymp_series<_InnerSum> __asymp(_InnerSum{__beta});
 	__sums = __asymp(__y);
       }
     else
