@@ -3059,6 +3059,7 @@ template<typename _Tp>
 
     auto __absargy = std::abs(std::arg(__y));
     auto __absy = std::abs(__y);
+    auto __sign = std::copysign(__scal{1}, std::arg(__y));
 
     _AiryState<_Tp> __sums;
     if (__absy >= inner_radius)
@@ -3082,8 +3083,8 @@ template<typename _Tp>
       std::tie(_Bi, _Bip) = _Airy_series<__scal>::Bi(__y);
     else if (__absy < outer_radius)
       {
-        _Bi = __scal{2} * __sums.Bi + _S_i * __sums.Ai;
-        _Bip = __scal{2} * __sums.Bip + _S_i * __sums.Aip;
+        _Bi = __scal{2} * __sums.Bi + __sign * _S_i * __sums.Ai;
+        _Bip = __scal{2} * __sums.Bip + __sign * _S_i * __sums.Aip;
       }
     else
       {
@@ -3091,8 +3092,8 @@ template<typename _Tp>
 	_Bip = __scal{2} * __sums.Bip;
 	if (__absargy > _S_pi_6)
 	  {
-	    _Bi += _S_i * __sums.Ai;
-	    _Bip += _S_i * __sums.Aip;
+	    _Bi += __sign * _S_i * __sums.Ai;
+	    _Bip += __sign * _S_i * __sums.Aip;
 	  }
       }
 
@@ -3112,8 +3113,8 @@ template<typename _Tp>
 	_Aip = __sums.Aip;
 	if (__absargy >= _S_5pi_6)
 	  {
-	    _Ai += _S_i * __sums.Bi;
-	    _Aip += _S_i * __sums.Bip;
+	    _Ai += __sign * _S_i * __sums.Bi;
+	    _Aip += __sign * _S_i * __sums.Bip;
 	  }
       }
 
