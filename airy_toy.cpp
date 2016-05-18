@@ -14,9 +14,11 @@ br ''
 
 #include <limits>
 #include <iostream>
+#include <fstream>
 #include <iomanip>
 #include <vector>
 #include <complex>
+#include <string>
 #include <ext/math_const.h>
 #include <bits/float128.h>
 #include <bits/numeric_limits.h>
@@ -1561,6 +1563,8 @@ br ''
    * @f]
    * where @f$ Ai(0) = 3^{-2/3}/\Gamma(2/3) @f$, @f$ Ai'(0) = -3{-1/2}Bi'(0) @f$
    * and @f$ Bi(0) = 3^{1/2}Ai(0) @f$, @f$ Bi'(0) = 3^{1/6}/\Gamma(1/3) @f$
+   *
+   * @tparam _Tp A real type
    */
   template<typename _Tp>
     _AiryState<std::complex<_Tp>>
@@ -1639,6 +1643,8 @@ br ''
    * @f]
    * where @f$ Ai(0) = 3^{-2/3}/\Gamma(2/3) @f$, @f$ Ai'(0) = -3{-1/2}Bi'(0) @f$
    * and @f$ Bi(0) = 3^{1/2}Ai(0) @f$, @f$ Bi'(0) = 3^{1/6}/\Gamma(1/3) @f$
+   *
+   * @tparam _Tp A real type
    */
   template<typename _Tp>
     std::pair<std::complex<_Tp>, std::complex<_Tp>>
@@ -1660,6 +1666,8 @@ br ''
    * @f]
    * where @f$ Ai(0) = 3^{-2/3}/\Gamma(2/3) @f$, @f$ Ai'(0) = -3{-1/2}Bi'(0) @f$
    * and @f$ Bi(0) = 3^{1/2}Ai(0) @f$, @f$ Bi'(0) = 3^{1/6}/\Gamma(1/3) @f$
+   *
+   * @tparam _Tp A real type
    */
   template<typename _Tp>
     std::pair<std::complex<_Tp>, std::complex<_Tp>>
@@ -1683,6 +1691,8 @@ br ''
    * @f]
    * where @f$ Ai(0) = 3^{-2/3}/\Gamma(2/3) @f$, @f$ Ai'(0) = -3{-1/2}Bi'(0) @f$
    * and @f$ Bi(0) = 3^{1/2}Ai(0) @f$, @f$ Bi'(0) = 3^{1/6}/\Gamma(1/3) @f$
+   *
+   * @tparam _Tp A real type
    */
   template<typename _Tp>
     std::pair<std::complex<_Tp>, std::complex<_Tp>>
@@ -1735,6 +1745,8 @@ br ''
 
   /**
    * 
+   *
+   * @tparam _Tp A real type
    */
   template<typename _Tp>
     std::pair<std::complex<_Tp>, std::complex<_Tp>>
@@ -1783,6 +1795,8 @@ br ''
 
   /**
    * 
+   *
+   * @tparam _Tp A real type
    */
   template<typename _Tp>
     _AiryState<std::complex<_Tp>>
@@ -1791,6 +1805,8 @@ br ''
 
   /**
    * 
+   *
+   * @tparam _Tp A real type
    */
   template<typename _Tp>
     _AiryState<std::complex<_Tp>>
@@ -1800,6 +1816,8 @@ br ''
 
   /**
    *  
+   *
+   * @tparam _Tp A real type
    */
   template<typename _Tp>
     class _Airy_asymp
@@ -2253,6 +2271,8 @@ br ''
   /**
    *  Return the Airy functions for a given argument using asymptotic series.
    *
+   *
+   * @tparam _Tp A real type
    */
   template<typename _Tp>
     _AiryState<std::complex<_Tp>>
@@ -2425,10 +2445,11 @@ br ''
    * @see Digital Library of Mathematical Functions §9.7 Asymptotic Expansions
    * 	  http://dlmf.nist.gov/9.7
    *
-   * @param[in]  z Complex input variable set equal to the value at which
-   * 		   @f$ Ai(z) @f$ or @f$ Bi(z) @f$ and their derivative are evaluated.
+   * @tparam _Tp A real type
+   * @param[in]  z Complex arument at which @f$ Ai(z) @f$ or @f$ Bi(z) @f$
+   * 		   and their derivative are evaluated.
    * 		   This function assumes @f$ |z| > 15 @f$ and @f$ |arg(z)| < 2\pi/3 @f$.
-   * @param[inout] Ai  The value computed for @f$ Ai(z) @f$ or @f$ Ai'(x) @f$.
+   * @param[inout] Ai  The value computed for @f$ Ai(z) @f$ or @f$ Bi(x) @f$.
    * @param[inout] Aip The value computed for @f$ Ai'(z) @f$ or @f$ Bi'(x) @f$.
    * @param[in]    sign  The sign of the series terms and exponent.
    * 			 The default (-1) gives the Airy @f$ Ai(x) @f$
@@ -2539,11 +2560,14 @@ br ''
 
 
   /**
-   * @brief This function evaluates @f$ Ai(z), Ai'(z) @f$ and @f$ Bi(z), Bi'(z) @f$
-   *        from their asymptotic expansions for @f$ |arg(z)| < 2*\pi/3 @f$.
-   * @param[in]  z Complex input variable set equal to the value at which
-   * 		   Ai(z)abd Bi(z) and their derivative are evaluated.
-   * 		   This function assumes @f$ |z| > 15 @f$ and @f$ |(arg(z)| < 2\pi/3 @f$.
+   * @brief This function evaluates @f$ Ai(z), Ai'(z) @f$
+   *        and @f$ Bi(z), Bi'(z) @f$ from their asymptotic expansions
+   *        for @f$ |arg(z)| < 2*\pi/3 @f$.
+   *
+   * @tparam _Tp A real type
+   * @param[in]  z Complex argument at which Ai(z) and Bi(z)
+   * 		   and their derivative are evaluated. This function
+   * 		   assumes @f$ |z| > 15 @f$ and @f$ |(arg(z)| < 2\pi/3 @f$.
    * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
    */
   template<typename _Tp>
@@ -2569,6 +2593,7 @@ br ''
    * is called by another, checks for valid arguments are not
    * made.  Hence, an error return is not needed.
    *
+   * @tparam _Tp A real type
    * @param[in] z  The value at which the Airy function and their derivatives
    * 		   are evaluated.
    * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
@@ -2583,7 +2608,8 @@ br ''
       constexpr _Tp _S_pid4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
 
       constexpr std::complex<_Tp> _S_zone{1};
-      constexpr int _S_ncoeffs = 9;
+      constexpr int _S_ncoeffs = 18;
+      /// @todo Revisit these numbers of terms for the Airy asymptotic expansions.
       constexpr int _S_numnterms = 5;
       constexpr int _S_nterms[_S_numnterms]{ _S_ncoeffs, 7, 6, 6, 5 };
 
@@ -2591,16 +2617,6 @@ br ''
       constexpr _Tp
       _S_u_cos[_S_ncoeffs]
       {
-	0.2519891987160237e+08,
-	0.4195248751165511e+06,
-	0.9207206599726415e+04,
-	0.2784650807776026e+03,
-	0.1234157333234524e+02,
-	0.8776669695100169e+00,
-	0.1160990640255154e+00,
-	0.3799305912780064e-01,
-	0.6944444444444444e-01,
-/*
 	1.362107954526321589052986810339313e+27L,
 	4.854832179436167359995522969659059e+24L,
 	1.957062178658161503299043185284924e+22L,
@@ -2619,21 +2635,10 @@ br ''
 	1.160990640255154110181092538964814e-01L,
 	3.799305912780064014631915866483767e-02L,
 	6.944444444444444444444444444444445e-02L,
-*/
       };
       constexpr _Tp
       _S_u_sin[_S_ncoeffs]
       {
-	0.3148257417866826e+07,
-	0.5989251356587907e+05,
-	0.1533169432012796e+04,
-	0.5562278536591708e+02,
-	0.3079453030173167e+01,
-	0.2915913992307505e+00,
-	0.5764919041266972e-01,
-	0.3713348765432099e-01,
-	0.1000000000000000e+01,
-/*
 	8.011464687609593661835749240413277e+25L,
 	3.033871086594338299189753708716216e+23L,
 	1.304513299317609817937424037496177e+21L,
@@ -2652,22 +2657,11 @@ br ''
 	5.764919041266972133313011227963217e-02L,
 	3.713348765432098765432098765432099e-02L,
 	1.000000000000000000000000000000000e+00L,
-*/
       };
 
       constexpr _Tp
       _S_v_sin[_S_ncoeffs]
       {
-	-0.2569790838391133e+08,
-	-0.4289524004000691e+06,
-	-0.9446354823095932e+04,
-	-0.2870332371092211e+03,
-	-0.1280729308073563e+02,
-	-0.9204799924129446e+00,
-	-0.1241058960272751e+00,
-	-0.4246283078989483e-01,
-	-0.9722222222222222e-01,
-/*
        -1.375142480406956245407560846801890e+27L,
        -4.904119815775620835731518126711435e+24L,
        -1.978219607616628114145519327828545e+22L,
@@ -2686,21 +2680,10 @@ br ''
        -1.241058960272750945365995472686526e-01L,
        -4.246283078989483310470964791952445e-02L,
        -9.722222222222222222222222222222222e-02L,
-*/
       };
       constexpr _Tp
       _S_v_cos[_S_ncoeffs]
       {
-	-0.3214536521400865e+07,
-	-0.6133570666385206e+05,
-	-0.1576357303337100e+04,
-	-0.5750830351391427e+02,
-	-0.3210493584648621e+01,
-	-0.3082537649010791e+00,
-	-0.6266216349203231e-01,
-	-0.4388503086419753e-01,
-	-0.1000000000000000e+01,
-/*
        -8.090395374187028082149401942289269e+25L,
        -3.065639370223598386092264218755129e+23L,
        -1.319088866907750709757953915010101e+21L,
@@ -2719,7 +2702,6 @@ br ''
        -6.266216349203230579688055682568713e-02L,
        -4.388503086419753086419753086419753e-02L,
        -1.000000000000000000000000000000000e+00L,
-*/
       };
 
       // Set up working value of z.
@@ -2817,6 +2799,7 @@ br ''
    * Note also that for speed and since this function is called by another,
    * checks that are not absolutely necessary are not made.
    *
+   * @tparam _Tp A real type
    * @param[in] z The argument at which the hypergeometric given
    * 		  above is to be evaluated.  Since the approximation
    * 		  is of fixed order, @f$ |z| @f$ must be small to ensure
@@ -2831,6 +2814,7 @@ br ''
 
       constexpr __cmplx _S_zone{1};
 
+      /// @todo Find out how to extend these rational approximations if te Airy functions.
       constexpr _Tp _S_ap1d3[4]{  81, 32400,  2585520,  37920960};
       constexpr _Tp _S_bp1d3[4]{ -35,  5040,  -574560,  37920960};
       constexpr _Tp _S_am1d3[4]{  81, 22680,  1156680,   7711200};
@@ -2901,6 +2885,8 @@ br ''
 
 /**
  * Class to manage the asymptotic series for Airy functions.
+ *
+ * @tparam _Sum A sum type
  */
 template<typename _Sum>
   class _Airy_asymp_series
@@ -2909,7 +2895,7 @@ template<typename _Sum>
 
     using value_type = typename _Sum::value_type;
     using scalar_type = std::__detail::__num_traits_t<value_type>;
-    static constexpr auto _S_sqrt_pi
+    static constexpr scalar_type _S_sqrt_pi
 	 = __gnu_cxx::__math_constants<scalar_type>::__root_pi;
 
     _Airy_asymp_series(_Sum __proto)
@@ -2927,7 +2913,7 @@ template<typename _Sum>
   private:
 
     static constexpr int _S_max_iter = 10000;
-    static constexpr auto _S_eps = std::numeric_limits<scalar_type>::epsilon();
+    static constexpr scalar_type _S_eps = std::numeric_limits<scalar_type>::epsilon();
 
     _Sum _M_Asum;
     _Sum _M_Bsum;
@@ -2935,22 +2921,24 @@ template<typename _Sum>
     _Sum _M_Dsum;
   };
 
-//template<typename _Sum>
-//  constexpr int
-//  _Airy_asymp_series<_Sum>::_S_max_iter;
+template<typename _Sum>
+  constexpr int
+  _Airy_asymp_series<_Sum>::_S_max_iter;
 
-//template<typename _Sum>
-//  constexpr typename _Airy_asymp_series<_Sum>::scalar_type
-//  _Airy_asymp_series<_Sum>::_S_eps;
+template<typename _Sum>
+  constexpr typename _Airy_asymp_series<_Sum>::scalar_type
+  _Airy_asymp_series<_Sum>::_S_eps;
 
-//template<typename _Sum>
-//  constexpr typename _Airy_asymp_series<_Sum>::scalar_type
-//  _Airy_asymp_series<_Sum>::_S_sqrt_pi;
+template<typename _Sum>
+  constexpr typename _Airy_asymp_series<_Sum>::scalar_type
+  _Airy_asymp_series<_Sum>::_S_sqrt_pi;
 
 
 /**
- * Return an AiryState vector containin, not actual Airy functions, but
- * four asymptotic series:
+ * Return an _AiryState containing, not actual Airy functions, but
+ * four asymptotic Airy components:
+ *
+ * @tparam _Sum A sum type
  */
 template<typename _Sum>
   _AiryState<typename _Airy_asymp_series<_Sum>::value_type>
@@ -2964,7 +2952,8 @@ template<typename _Sum>
     _M_Csum.reset(__scal{1});
     _M_Dsum.reset(__scal{1});
 
-    auto __zeta = get_zeta(__y);
+    //auto __zeta = get_zeta(__y);
+    auto __zeta = __scal{2} * std::pow(__y, __scal{1.5L}) / __scal{3};
     auto __sign = __scal{1};
     auto __numerAB = __scal{1};
     auto __numerCD = __scal{1};
@@ -2994,7 +2983,7 @@ template<typename _Sum>
 
     auto __expzeta = std::exp(__zeta);
     auto __y1o4 = std::pow(__y, __scal{0.25L});
-    auto _AA = __scal{0.5L} * _M_Asum() / _S_sqrt_pi / __y1o4 /__expzeta;
+    auto _AA = __scal{0.5L} * _M_Asum() / _S_sqrt_pi / __y1o4 / __expzeta;
     auto _BB = __scal{0.5L} * __expzeta * _M_Bsum() / _S_sqrt_pi / __y1o4;
     auto _CC = __scal{-0.5L} * __y1o4 * _M_Csum() / _S_sqrt_pi / __expzeta;
     auto _DD = __scal{0.5L} * __y1o4 * __expzeta * _M_Dsum() / _S_sqrt_pi;
@@ -3014,13 +3003,13 @@ template<typename _Tp>
 
     using value_type = _Tp;
     using scalar_type = std::__detail::__num_traits_t<value_type>;
-    static constexpr auto _S_pi = __gnu_cxx::__math_constants<scalar_type>::__pi;
-    static constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<scalar_type>::__root_pi;
-    static constexpr auto _S_pi_3 = __gnu_cxx::__math_constants<scalar_type>::__pi_third;
-    static constexpr auto _S_2pi_3 = scalar_type{2} * _S_pi_3;
-    static constexpr auto _S_pi_6 = _S_pi_3 / scalar_type{2};
-    static constexpr auto _S_5pi_6 = scalar_type{5} * _S_pi_6;
-    static constexpr auto _S_i = value_type{0, 1};
+    static constexpr scalar_type _S_pi = __gnu_cxx::__math_constants<scalar_type>::__pi;
+    static constexpr scalar_type _S_sqrt_pi = __gnu_cxx::__math_constants<scalar_type>::__root_pi;
+    static constexpr scalar_type _S_pi_3 = __gnu_cxx::__math_constants<scalar_type>::__pi_third;
+    static constexpr scalar_type _S_2pi_3 = scalar_type{2} * _S_pi_3;
+    static constexpr scalar_type _S_pi_6 = _S_pi_3 / scalar_type{2};
+    static constexpr scalar_type _S_5pi_6 = scalar_type{5} * _S_pi_6;
+    static constexpr value_type _S_i = value_type{0, 1};
 
     _Airy() = default;
     _Airy(const _Airy&) = default;
@@ -3033,21 +3022,21 @@ template<typename _Tp>
     scalar_type outer_radius{15};
   };
 
-//template<typename _Tp>
-//  typename _Airy<_Tp>::scalar_type
-//  _Airy<_Tp>::_S_sqrt_pi;
+template<typename _Tp>
+  constexpr typename _Airy<_Tp>::scalar_type
+  _Airy<_Tp>::_S_sqrt_pi;
 
-//template<typename _Tp>
-//  typename _Airy<_Tp>::scalar_type
-//  _Airy<_Tp>::_S_pi_3;
+template<typename _Tp>
+  constexpr typename _Airy<_Tp>::scalar_type
+  _Airy<_Tp>::_S_pi_3;
 
-//template<typename _Tp>
-//  typename _Airy<_Tp>::scalar_type
-//  _Airy<_Tp>::_S_pi_6;
+template<typename _Tp>
+  constexpr typename _Airy<_Tp>::scalar_type
+  _Airy<_Tp>::_S_pi_6;
 
-//template<typename _Tp>
-//  typename _Airy<_Tp>::value_type
-//  _Airy<_Tp>::_S_i;
+template<typename _Tp>
+  constexpr typename _Airy<_Tp>::value_type
+  _Airy<_Tp>::_S_i;
 
 /**
  * Return the Airy functions for complex argument.
@@ -3072,22 +3061,25 @@ template<typename _Tp>
     auto __absy = std::abs(__y);
 
     _AiryState<_Tp> __sums;
-    if (__absy < outer_radius)
+    if (__absy >= inner_radius)
       {
-	auto __beta = __scal{1};
-        _Airy_asymp_series<_InnerSum> __asymp(_InnerSum{__beta});
-	__sums = __asymp(__y);
-      }
-    else
-      {
-        _Airy_asymp_series<_OuterSum> __asymp(_OuterSum{});
-        __sums = __asymp(__y);
+	if (__absy < outer_radius)
+	  {
+	    auto __beta = __scal{1};
+            _Airy_asymp_series<_InnerSum> __asymp(_InnerSum{__beta});
+	    __sums = __asymp(__y);
+	  }
+	else
+	  {
+            _Airy_asymp_series<_OuterSum> __asymp(_OuterSum{});
+            __sums = __asymp(__y);
+	  }
       }
 
     __cmplx _Bi, _Bip;
     if (__absy < inner_radius
         || (__absy < outer_radius && __absargy < _S_pi_3))
-      std::tie(_Bi, _Bip) = _Airy_series<_Tp>::Bi(__y);
+      std::tie(_Bi, _Bip) = _Airy_series<__scal>::Bi(__y);
     else if (__absy < outer_radius)
       {
         _Bi = __scal{2} * __sums.Bi + _S_i * __sums.Ai;
@@ -3108,7 +3100,7 @@ template<typename _Tp>
     if ((__absy < inner_radius
 	        + outer_radius * __absargy / _S_pi && __absargy < _S_2pi_3)
         || (__absy < outer_radius && __absargy >= _S_2pi_3))
-      std::tie(_Ai, _Aip) = _Airy_series<_Tp>::Ai(__y);
+      std::tie(_Ai, _Aip) = _Airy_series<__scal>::Ai(__y);
     else if (__absy < outer_radius)
       {
         _Ai = __sums.Ai;
@@ -3383,9 +3375,9 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  run_airy_asymp()
+  run_airy()
   {
-    using _Val = typename _Tp::value_type;
+    using _Val = std::__detail::__num_traits_t<_Tp>;
 
     std::cout.precision(std::numeric_limits<_Val>::digits10);
     std::cout << std::showpoint << std::scientific;
@@ -3434,7 +3426,7 @@ template<typename _Tp>
 		  << std::setw(width) << std::real(airy.true_Wronskian())
 		  << '\n';
       }
-      std::cout << std::endl;
+    std::cout << std::endl;
   }
 
 
@@ -3623,15 +3615,15 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  diff_airy_asymp()
+  diff_airy()
   {
-    using _Val = typename _Tp::value_type;
+    using _Val = std::__detail::__num_traits_t<_Tp>;
 
     std::cout.precision(std::numeric_limits<_Val>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    _Airy<_Tp> airy_asymp;
+    _Airy<_Tp> airy;
 
     std::cout << "\n\nAiry Asymptotic -z Deathmatch\n";
     std::cout << "++++++++++++++++++++++++++++++\n";
@@ -3652,7 +3644,7 @@ template<typename _Tp>
     for (int i = -1500; i <= -500; ++i)
       {
 	auto t = _Tp{_Val(0.01Q * i)};
-	auto airy1 = airy_asymp(t);
+	auto airy1 = airy(t);
 	std::cout << '\n';
 	std::cout << std::setw(width) << std::real(airy1.z)
 		  << std::setw(width) << std::real(airy1.Ai)
@@ -3700,7 +3692,7 @@ template<typename _Tp>
     for (int i = 500; i <= 1500; ++i)
       {
 	auto t = _Tp{_Val(0.01Q * i)};
-	auto airy1 = airy_asymp(t);
+	auto airy1 = airy(t);
 	std::cout << '\n';
 	std::cout << std::setw(width) << std::real(airy1.z)
 		  << std::setw(width) << std::real(airy1.Ai)
@@ -3735,7 +3727,7 @@ template<typename _Tp>
   void
   diff_zeta()
   {
-    using _Cmplx = std::complex<_Tp>;
+    using Cmplx = std::complex<_Tp>;
 
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
@@ -3755,7 +3747,7 @@ template<typename _Tp>
 	      << '\n';
     for (int i = -1500; i <= -1; ++i)
       {
-	auto y = _Cmplx{_Tp(0.01Q * i)};
+	auto y = Cmplx{_Tp(0.01Q * i)};
 	auto zeta_c = get_zeta(y);
 	auto zeta_r = get_zeta(std::real(y));
 	std::cout << std::setw(width) << y
@@ -3779,7 +3771,7 @@ template<typename _Tp>
 	      << '\n';
     for (int i = 1; i <= 1500; ++i)
       {
-	auto y = _Cmplx{_Tp(0.01Q * i)};
+	auto y = Cmplx{_Tp(0.01Q * i)};
 	auto zeta_c = get_zeta(y);
 	auto zeta_r = get_zeta(std::real(y));
 	std::cout << std::setw(width) << y
@@ -3788,6 +3780,54 @@ template<typename _Tp>
 		  << std::setw(width) << zeta_c - zeta_r
 		  << '\n';
       }
+  }
+
+
+template<typename _Tp>
+  void
+  plot_airy(std::string filename)
+  {
+    using _Val = std::__detail::__num_traits_t<_Tp>;
+
+    auto data = std::ofstream(filename);
+
+    data.precision(std::numeric_limits<_Val>::digits10);
+    data << std::showpoint << std::scientific;
+    auto width = 8 + data.precision();
+
+    _Airy<_Tp> airy;
+
+    data << "\n\n";
+    data << "#"
+	 << std::setw(width) << "t"
+	 << std::setw(width) << "Ai"
+	 << std::setw(width) << "Aip"
+	 << std::setw(width) << "Bi"
+	 << std::setw(width) << "Bip"
+	 << std::setw(width) << "Wronskian"
+	 << '\n';
+    data << "#"
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << '\n';
+    for (int i = -2000; i <= +500; ++i)
+      {
+	auto t = _Tp(0.01Q * i);
+	auto airy0 = airy(t);
+	data << std::setw(width) << std::real(airy0.z)
+	     << std::setw(width) << std::real(airy0.Ai)
+	     << std::setw(width) << std::real(airy0.Aip)
+	     << std::setw(width) << std::real(airy0.Bi)
+	     << std::setw(width) << std::real(airy0.Bip)
+	     << std::setw(width) << std::real(airy0.Wronskian())
+	     << std::setw(width) << std::real(airy0.true_Wronskian())
+	     << '\n';
+      }
+    data << std::endl;
   }
 
 
@@ -3830,19 +3870,19 @@ main()
   //diff_airy_asymp_p<__float128>();
 
   std::cout << "\nfloat\n=====\n\n";
-  using __fcmplx = std::complex<float>;
-  diff_airy_asymp<__fcmplx>();
+  using fcmplx = std::complex<float>;
+  diff_airy<fcmplx>();
 
   std::cout << "\ndouble\n======\n";
-  using __cmplx = std::complex<double>;
-  diff_airy_asymp<__cmplx>();
+  using cmplx = std::complex<double>;
+  diff_airy<cmplx>();
 
   std::cout << "\nlong double\n===========\n";
-  using __lcmplx = std::complex<long double>;
-  diff_airy_asymp<__lcmplx>();
+  using lcmplx = std::complex<long double>;
+  diff_airy<lcmplx>();
 
   std::cout << "\ndouble\n======\n";
-  run_airy_asymp<__cmplx>();
+  run_airy<cmplx>();
 
   std::cout << "\nfloat\n======\n";
   diff_zeta<float>();
@@ -3850,4 +3890,11 @@ main()
   diff_zeta<double>();
   std::cout << "\nlong double\n======\n";
   diff_zeta<long double>();
+
+  std::cout << "\nfloat\n======\n";
+  plot_airy<fcmplx>("plot/airy_float.txt");
+  std::cout << "\ndouble\n======\n";
+  plot_airy<cmplx>("plot/airy_double.txt");
+  std::cout << "\nlong double\n======\n";
+  plot_airy<lcmplx>("plot/airy_long_double.txt");
 }
