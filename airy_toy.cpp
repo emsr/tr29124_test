@@ -1450,6 +1450,9 @@ br ''
       static std::pair<std::complex<_Tp>, std::complex<_Tp>>
       Hi(std::complex<_Tp> __t);
 
+      static std::pair<std::complex<_Tp>, std::complex<_Tp>>
+      Gi(std::complex<_Tp> __t);
+
     private:
 
       static _AiryState<std::complex<_Tp>>
@@ -1675,7 +1678,7 @@ br ''
     { return _S_AiBi(__t, std::make_pair(_S_Bi0, _S_Bip0)); }
 
   /**
-   * Return the Airy functions by using the series expansions in terms of
+   * Return the Scorer function by using the series expansions in terms of
    * the auxilliary functions
    * @f[
    *    fai(x) = \sum_{k=0}^\infty \frac{(2k+1)!!!x^{3k}}{(2k+1)!}
@@ -1684,13 +1687,13 @@ br ''
    *    gai(x) = \sum_{k=0}^\infty \frac{(2k+2)!!!x^{3k+1}}{(2k+2)!}
    * @f]
    * @f[
-   *    Ai(x) = Ai(0)fai(x) + Ai'(0)gai(x)
+   *    hai(x) = \sum_{k=0}^\infty \frac{(2k+3)!!!x^{3k+2}}{(2k+3)!}
    * @f]
    * @f[
-   *    Bi(x) = Bi(0)fai(x) + Bi'(0)gai(x)
+   *    Hi(x) = Hi(0)\left(fai(x) + gai(x) + hai(x)\right)
    * @f]
-   * where @f$ Ai(0) = 3^{-2/3}/\Gamma(2/3) @f$, @f$ Ai'(0) = -3{-1/2}Bi'(0) @f$
-   * and @f$ Bi(0) = 3^{1/2}Ai(0) @f$, @f$ Bi'(0) = 3^{1/6}/\Gamma(1/3) @f$
+   * where @f$ Hi(0) = 2/(3^{7/6}\Gamma(2/3)) @f$
+   *   and @f$ Hi'(0) = 2/(3^{5/6}\Gamma(1/3)) @f$.
    *
    * @tparam _Tp A real type
    */
@@ -1741,6 +1744,23 @@ br ''
       auto _Hip = _S_Hip0 * (_Fp + _Gp + _Hp);
 
       return std::make_pair(_Hi, _Hip);
+    }
+
+  /**
+   * Return the Scorer function @f$ Gi(x) @f$ by using the series expansions of
+   * the Scorer function @f$ Hi(x) @f$, the Airy function of the second kind
+   * @f$ Bi(x) @f$, and the relation:
+   * @f[
+   *    Gi(x) + Hi(x) = Bi(x)
+   * @f]
+   */
+  template<typename _Tp>
+    std::pair<std::complex<_Tp>, std::complex<_Tp>>
+    _Airy_series<_Tp>::Gi(std::complex<_Tp> __t)
+    {
+      auto __bi = _S_AiBi(__t, std::make_pair(_S_Bi0, _S_Bip0));
+      auto __hi = Hi(__t);
+      return std::make_pair(__bi.first - __hi.first, __bi.second - __hi.second);
     }
 
   /**
@@ -3783,7 +3803,9 @@ template<typename _Tp>
       }
   }
 
-
+/**
+ * 
+ */
 template<typename _Tp>
   void
   plot_airy(std::string filename)
@@ -3828,7 +3850,64 @@ template<typename _Tp>
 	     << std::setw(width) << std::real(airy0.true_Wronskian())
 	     << '\n';
       }
-    data << std::endl;
+    data << '\n';
+  }
+
+/**
+ * 
+ */
+template<typename _Tp>
+  void
+  splot_airy(std::string filename)
+  {
+    using _Val = std::__detail::__num_traits_t<_Tp>;
+
+    auto data = std::ofstream(filename);
+
+    data.precision(std::numeric_limits<_Val>::digits10);
+    data << std::showpoint << std::scientific;
+    auto width = 8 + data.precision();
+
+    _Airy<_Tp> airy;
+
+    data << "\n\n";
+    data << "#"
+	 << std::setw(width) << "t"
+	 << std::setw(width) << "Ai"
+	 << std::setw(width) << "Aip"
+	 << std::setw(width) << "Bi"
+	 << std::setw(width) << "Bip"
+	 << std::setw(width) << "Wronskian"
+	 << '\n';
+    data << "#"
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << '\n';
+    for (int i = -2000; i <= +500; ++i)
+      {
+	for (int j = -500; j <= +500; ++j)
+	  {
+	    auto t = _Tp(0.05Q * i, 0.05Q * j);
+	    auto airy0 = airy(t);
+	    data << std::setw(width) << std::real(airy0.z)
+		 << std::setw(width) << std::imag(airy0.z)
+		 << std::setw(width) << std::real(airy0.Ai)
+		 << std::setw(width) << std::imag(airy0.Ai)
+		 << std::setw(width) << std::abs(airy0.Ai)
+		 << std::setw(width) << std::arg(airy0.Ai)
+		 << std::setw(width) << std::real(airy0.Bi)
+		 << std::setw(width) << std::imag(airy0.Bi)
+		 << std::setw(width) << std::abs(airy0.Bi)
+		 << std::setw(width) << std::arg(airy0.Bi)
+		 << '\n';
+	  }
+	data << '\n';
+      }
+    data << '\n';
   }
 
 
@@ -3898,4 +3977,7 @@ main()
   plot_airy<cmplx>("plot/airy_double.txt");
   std::cout << "\nlong double\n======\n";
   plot_airy<lcmplx>("plot/airy_long_double.txt");
+
+  std::cout << "\nlong double\n======\n";
+  splot_airy<lcmplx>("plot/airy_complex_long_double.txt");
 }
