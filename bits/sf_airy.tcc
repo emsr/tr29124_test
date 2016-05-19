@@ -874,45 +874,47 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The representations are recorded here for reference:
    *
    * @f[
-   *  (1a) Ai(z) = \frac{\sqrt{z}}{3}(I_{-1/3}(\zeta) - I_{1/3}(\zeta))
+   * \mbox{ (1a)    } Ai(z) = \frac{\sqrt{z}}{3}
+   *                          \left[I_{-1/3}(\zeta) - I_{1/3}(\zeta)\right]
    * @f]
    * @f[
-   *  (1b) Bi(z) = \sqrt{\frac{z}{3}}(I_{-1/3}(\zeta) + I_{1/3}(\zeta))
-   * @f]
-   *
-   * @f[
-   *  (2) Ai(z) = \frac{\sqrt{z/3}}{\pi} K_{1/3}(\zeta)
-   *
-   *    	  = \frac{2^{2/3}3^{-5/6}}{\sqrt(\pi)}
-   *  	       z \exp(-\zeta) U(5/6; 5/3; 2 \zeta)
-   * @f]
-   *
-   * @f[
-   *  (3a) Ai(-z)  = \frac{\sqrt{z}}{3}(J_{-1/3}(\zeta) + J_{1/3}(\zeta))
+   * \mbox{ (1b)    } Bi(z) = \sqrt{\frac{z}{3}}
+   *                          \left[I_{-1/3}(\zeta) + I_{1/3}(\zeta)\right]
    * @f]
    * @f[
-   *  (3b) Bi(-z)  = \sqrt{\frac{z}{3}}(J_{-1/3}(\zeta) - J_{1/3}(\zeta))
-   * @f]
-   *
-   * @f[
-   *  (4a) Ai'(z)  = \frac{z}{3}(I_{2/3}(\zeta) - I_{-2/3}(\zeta))
+   * \mbox{ (2)     } Ai(z) = \frac{\sqrt{z/3}}{\pi} K_{1/3}(\zeta)
+   *    	            = \frac{2^{2/3}3^{-5/6}}{\sqrt(\pi)}
+   *  	                      z \exp(-\zeta) U(5/6; 5/3; 2 \zeta)
    * @f]
    * @f[
-   *  (4b) Bi'(z)  = \frac{z}{\sqrt{3}}(I_{-2/3}(\zeta) + I_{2/3}(\zeta))
+   * \mbox{ (3a)    } Ai(-z) = \frac{\sqrt{z}}{3}
+   *                           \left[J_{-1/3}(\zeta) + J_{1/3}(\zeta)\right]
+   * @f]
+   * @f[
+   * \mbox{ (3b)    } Bi(-z) = \sqrt{\frac{z}{3}}
+   *                           \left[J_{-1/3}(\zeta) - J_{1/3}(\zeta)\right]
    * @f]
    *
    * @f[
-   *  (5a) Ai'(z)  = -\frac{z}{\pi\sqrt(3)} K_(2/3)(zeta)
-   *
-   *  	    =  -\frac{4^{2/3}3^{-7/6}}{\sqrt(\pi)}
-   *                   z^2 \exp(-\zeta) U(7/6; 7/3; 2 \zeta)
-   * @f]
-   *
-   * @f[
-   *  (6a) Ai'(-z) = \frac{z}{3}(J_{2/3}(\zeta) - J_{-2/3}(\zeta)) ,
+   * \mbox{ (4a)    } Ai'(z) = \frac{z}{3}
+   *                           \left[I_{2/3}(\zeta) - I_{-2/3}(\zeta)\right]
    * @f]
    * @f[
-   *  (6b) Bi'(-z) = \frac{z}{\sqrt{3}}(J_{-2/3}(\zeta) + J_{2/3}(\zeta)) ,
+   * \mbox{ (4b)    } Bi'(z) = \frac{z}{\sqrt{3}}
+   *                           \left[I_{-2/3}(\zeta) + I_{2/3}(\zeta)\right]
+   * @f]
+   * @f[
+   * \mbox{ (5a)    } Ai'(z) = -\frac{z}{\pi\sqrt{3}} K_{2/3}(\zeta)
+   *  	                     = -\frac{4^{2/3}3^{-7/6}}{\sqrt{\pi}}
+   *                         	z^2 \exp(-\zeta) U(7/6; 7/3; 2 \zeta)
+   * @f]
+   * @f[
+   * \mbox{ (6a)    } Ai'(-z) = \frac{z}{3}
+   *                 \left[J_{2/3}(\zeta) - J_{-2/3}(\zeta)\right]
+   * @f]
+   * @f[
+   * \mbox{ (6b)    } Bi'(-z) = \frac{z}{\sqrt{3}}
+   *                 \left[J_{-2/3}(\zeta) + J_{2/3}(\zeta)\right]
    * @f]
    * Where @f$ \zeta = - \frac{2}{3}z^{3/2} @f$ and @f$ U(a;b;z) @f$ is
    * the confluent hypergeometric function defined in
@@ -952,13 +954,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * the corresponding Bessel functions of the first kind are recovered
    * via the identities
    * @f[
-   *      J_\nu(z) = exp(\nu \pi i/2) I_\nu(z exp(-\pi i/2)),
+   *      J_\nu(z) = e^{i\nu\pi/2} I_\nu(z e^{-i\pi/2}),
    *  	  0 <= arg(z) <= \pi/2
    * @f]
    * and
    * @f[
-   *      J_\nu(z) = exp(-\nu \pi i/2) I_\nu(z exp(\pi i/2)),
-   *  	 -\pi/2 <= arg(z) < 0 .
+   *      J_\nu(z) = e^{-\nu i\pi/2} I_\nu(z e^{i\pi/2}),
+   *  	 -\pi/2 <= arg(z) < 0.
    * @f]
    *
    * The particular backward recursion algorithm used is discussed in 
