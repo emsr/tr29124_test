@@ -1550,14 +1550,15 @@ br ''
     _Airy_series<_Tp>::_S_log10min;
 
   /**
-   * Return the Airy functions by using the series expansions in terms of
-   * the auxilliary functions
+   * Return the Airy functions by using the series expansions of
+   * the auxilliary Airy functions:
    * @f[
    *    fai(x) = \sum_{k=0}^\infty \frac{(2k+1)!!!x^{3k}}{(2k+1)!}
    * @f]
    * @f[
    *    gai(x) = \sum_{k=0}^\infty \frac{(2k+2)!!!x^{3k+1}}{(2k+2)!}
    * @f]
+   * The Airy functions are then defined by:
    * @f[
    *    Ai(x) = Ai(0)fai(x) + Ai'(0)gai(x)
    * @f]
@@ -1633,14 +1634,14 @@ br ''
 
   /**
    * Return the Airy function of the first kind and its derivative
-   * by using the series expansions in terms of the auxilliary functions
+   * by using the series expansions of the auxilliary Airy functions:
    * @f[
    *    fai(x) = \sum_{k=0}^\infty \frac{(2k+1)!!!x^{3k}}{(2k+1)!}
    * @f]
    * @f[
    *    gai(x) = \sum_{k=0}^\infty \frac{(2k+2)!!!x^{3k+1}}{(2k+2)!}
    * @f]
-   * where @f$ Ai(0) = 3^{-2/3}/\Gamma(2/3) @f$, @f$ Ai'(0) = -3{-1/2}Bi'(0) @f$
+   * The Airy function of the first kind is then defined by:
    * @f[
    *    Ai(x) = Ai(0)fai(x) + Ai'(0)gai(x)
    * @f]
@@ -1656,14 +1657,14 @@ br ''
 
   /**
    * Return the Airy function of the second kind and its derivative
-   * by using the series expansions in terms of the auxilliary functions
+   * by using the series expansions of the auxilliary Airy functions:
    * @f[
    *    fai(x) = \sum_{k=0}^\infty \frac{(2k+1)!!!x^{3k}}{(2k+1)!}
    * @f]
    * @f[
    *    gai(x) = \sum_{k=0}^\infty \frac{(2k+2)!!!x^{3k+1}}{(2k+2)!}
    * @f]
-   * where @f$ Ai(0) = 3^{-2/3}/\Gamma(2/3) @f$, @f$ Ai'(0) = -3{-1/2}Bi'(0) @f$
+   * The Airy function of the second kind is then defined by:
    * @f[
    *    Bi(x) = Bi(0)fai(x) + Bi'(0)gai(x)
    * @f]
@@ -1678,8 +1679,8 @@ br ''
     { return _S_AiBi(__t, std::make_pair(_S_Bi0, _S_Bip0)); }
 
   /**
-   * Return the Scorer function by using the series expansions in terms of
-   * the auxilliary functions
+   * Return the Scorer function by using the series expansions of
+   * the auxilliary Airy functions:
    * @f[
    *    fai(x) = \sum_{k=0}^\infty \frac{(2k+1)!!!x^{3k}}{(2k+1)!}
    * @f]
@@ -1689,6 +1690,7 @@ br ''
    * @f[
    *    hai(x) = \sum_{k=0}^\infty \frac{(2k+3)!!!x^{3k+2}}{(2k+3)!}
    * @f]
+   * The Scorer function is then defined by:
    * @f[
    *    Hi(x) = Hi(0)\left(fai(x) + gai(x) + hai(x)\right)
    * @f]
@@ -1753,6 +1755,8 @@ br ''
    * @f[
    *    Gi(x) + Hi(x) = Bi(x)
    * @f]
+   *
+   * @tparam _Tp A real type
    */
   template<typename _Tp>
     std::pair<std::complex<_Tp>, std::complex<_Tp>>
@@ -1764,7 +1768,9 @@ br ''
     }
 
   /**
-   * 
+   * Return the Airy function of either the first or second kind and it's derivative
+   * by series expansion as a pair of complex numbers.  The type of function is determined
+   * by the input value of the function and it's derivative at the origin.
    *
    * @tparam _Tp A real type
    */
@@ -1835,7 +1841,8 @@ br ''
 
 
   /**
-   *  
+   * A class encapsulating the asymptotic expansions of various Airy functions
+   * and thier derivatives.
    *
    * @tparam _Tp A real type
    */
@@ -3101,7 +3108,7 @@ template<typename _Tp>
             __sums = __asymp(__y);
 	  }
       }
-auto __2d3 = __scal{2.0L/3.0L};
+/*HACK*/auto __2d3 = __scal{2.0L/3.0L};
     __cmplx _Bi, _Bip;
     if (__absy < inner_radius
         || (__absy < outer_radius && __absargy < _S_pi_3))
@@ -3110,8 +3117,8 @@ auto __2d3 = __scal{2.0L/3.0L};
       {
         _Bi = __scal{2} * __sums.Bi + __sign * _S_i * __sums.Ai;
         _Bip = __scal{2} * __sums.Bip + __sign * _S_i * __sums.Aip;
-_Bi *= __2d3;
-_Bip *= __2d3;
+/*HACK*/_Bi *= __2d3;
+/*HACK*/_Bip *= __2d3;
       }
     else
       {
@@ -3122,8 +3129,8 @@ _Bip *= __2d3;
 	    _Bi += __sign * _S_i * __sums.Ai;
 	    _Bip += __sign * _S_i * __sums.Aip;
 	  }
-_Bi *= __2d3;
-_Bip *= __2d3;
+/*HACK*/_Bi *= __2d3;
+/*HACK*/_Bip *= __2d3;
       }
 
     __cmplx _Ai, _Aip;
@@ -3367,6 +3374,9 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
+    std::cout << "\n\nPrint various arrays used in Airy asymptotic expansions\n";
+    std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+
     std::cout << "\nc[" << _S_cn.size() << "]\n";
     for (const auto& c : _S_cn)
       std::cout << c << '\n';
@@ -3469,6 +3479,9 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
+    std::cout << "\n\nPrint Airy functions computed by series expansions\n";
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+
     std::cout << "\n\n";
     std::cout << std::setw(width) << "t"
 	      << std::setw(width) << "Ai"
@@ -3510,6 +3523,9 @@ template<typename _Tp>
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
+
+    std::cout << "\n\nPrint Airy functions computed by asymptotic series expansions for positive z\n";
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
 
     std::cout << "\n\n";
     std::cout << std::setw(width) << "t"
@@ -3553,6 +3569,9 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
+    std::cout << "\n\nPrint Airy functions computed by asymptotic series expansions for negative z\n";
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+
     std::cout << "\n\n";
     std::cout << std::setw(width) << "t"
 	      << std::setw(width) << "Ai"
@@ -3581,7 +3600,7 @@ template<typename _Tp>
 		  << std::setw(width) << std::real(airy.true_Wronskian())
 		  << '\n';
       }
-      std::cout << std::endl;
+    std::cout << '\n';
   }
 
 
@@ -3597,12 +3616,15 @@ template<typename _Tp>
 
     _Airy<_Tp> airy_asymp;
 
+    std::cout << "\n\nPrint Airy functions computed by various means for all 'real' z\n";
+    std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+
     std::cout << "\n\n";
     std::cout << std::setw(width) << "t"
 	      << std::setw(width) << "Ai"
-	      << std::setw(width) << "Aip"
+	      << std::setw(width) << "Ai'"
 	      << std::setw(width) << "Bi"
-	      << std::setw(width) << "Bip"
+	      << std::setw(width) << "Bi'"
 	      << std::setw(width) << "Wronskian"
 	      << '\n';
     std::cout << std::setw(width) << "========="
@@ -3612,7 +3634,7 @@ template<typename _Tp>
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
-    for (int i = -1000; i <= -350; ++i)
+    for (int i = -1000; i <= +1000; ++i)
       {
 	auto t = _Tp(0.01Q * i);
 	auto airy = airy_asymp(t);
@@ -3625,20 +3647,54 @@ template<typename _Tp>
 		  << std::setw(width) << std::real(airy.true_Wronskian())
 		  << '\n';
       }
-    for (int i = 350; i <= 1000; ++i)
+    std::cout << '\n';
+  }
+
+
+template<typename _Tp>
+  void
+  run_scorer()
+  {
+    using _Val = std::__detail::__num_traits_t<_Tp>;
+
+    std::cout.precision(std::numeric_limits<_Val>::digits10);
+    std::cout << std::showpoint << std::scientific;
+    auto width = 8 + std::cout.precision();
+
+    _Scorer<_Tp> scorer_asymp;
+
+    std::cout << "\n\nPrint Scorer functions computed by various means for all 'real' z\n";
+    std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+
+    std::cout << "\n\n";
+    std::cout << std::setw(width) << "t"
+	      << std::setw(width) << "Gi"
+	      << std::setw(width) << "Gi'"
+	      << std::setw(width) << "Hi"
+	      << std::setw(width) << "Hi'"
+	      << std::setw(width) << "Wronskian"
+	      << '\n';
+    std::cout << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << '\n';
+    for (int i = -1000; i <= +1000; ++i)
       {
 	auto t = _Tp(0.01Q * i);
-	auto airy = airy_asymp(t);
-	std::cout << std::setw(width) << std::real(airy.z)
-		  << std::setw(width) << std::real(airy.Ai)
-		  << std::setw(width) << std::real(airy.Aip)
-		  << std::setw(width) << std::real(airy.Bi)
-		  << std::setw(width) << std::real(airy.Bip)
-		  << std::setw(width) << std::real(airy.Wronskian())
-		  << std::setw(width) << std::real(airy.true_Wronskian())
+	auto scorer = scorer_asymp(t);
+	std::cout << std::setw(width) << std::real(scorer.z)
+		  << std::setw(width) << std::real(scorer.Ai)
+		  << std::setw(width) << std::real(scorer.Aip)
+		  << std::setw(width) << std::real(scorer.Bi)
+		  << std::setw(width) << std::real(scorer.Bip)
+		  << std::setw(width) << std::real(scorer.Wronskian())
+		  << std::setw(width) << std::real(scorer.true_Wronskian())
 		  << '\n';
       }
-    std::cout << std::endl;
+    std::cout << '\n';
   }
 
 
@@ -3699,7 +3755,7 @@ template<typename _Tp>
 		  << std::setw(width) << ""
 		  << '\n';
       }
-      std::cout << std::endl;
+    std::cout << '\n';
   }
 
 
