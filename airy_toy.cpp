@@ -2325,7 +2325,7 @@ br ''
 	    {
 	      __izeta0 *= __fact0;
 	      if (std::abs(_S_cn[__n] * __izeta0) > __prev_Ai0
-	       || std::abs(_S_dn[__n] * __izeta0) > __prev_Aip0)
+		  || std::abs(_S_dn[__n] * __izeta0) > __prev_Aip0)
 		break;
 	      __prev_Ai0 = std::abs(_S_cn[__n] * __izeta0);
 	      __prev_Aip0 = std::abs(_S_dn[__n] * __izeta0);
@@ -2366,9 +2366,9 @@ br ''
 	      const auto __term1p = _S_dn[__n] * __izeta1;
 	      const auto __term2p = _S_dn[__n] * __izeta2;
 	      if (std::abs(__term1) > __prev_Ai1
-	       || std::abs(__term2) > __prev_Ai2
-	       || std::abs(__term1p) > __prev_Ai1p
-	       || std::abs(__term2p) > __prev_Ai2p)
+		  || std::abs(__term2) > __prev_Ai2
+		  || std::abs(__term1p) > __prev_Ai1p
+		  || std::abs(__term2p) > __prev_Ai2p)
 		break;
 	      __prev_Ai1 = std::abs(__term1);
 	      __prev_Ai2 = std::abs(__term2);
@@ -2567,21 +2567,23 @@ br ''
       auto __r = _Tp{2} * std::real(__zetam);
       auto __s = std::norm(__zetam);
       auto __index = _S_ncoeffs - __nterm;// + 1;
-      auto __al = _S_u[__index];
-      auto __alp = _S_v[__index];
+      auto __alpha = _S_u[__index];
+      auto __alphap = _S_v[__index];
       ++__index;
-      auto __be = _S_u[__index];
-      auto __bep = _S_v[__index];
+      auto __beta = _S_u[__index];
+      auto __betap = _S_v[__index];
       ++__index;
 
       for (int __k = __index; __k < _S_ncoeffs; ++__k)
 	{
-	  __be = _S_u[__k] - __s * std::exchange(__al, __be + __r * __al);
-	  __bep = _S_v[__k] - __s * std::exchange(__alp, __bep + __r * __alp);
+	  __beta = _S_u[__k]
+	         - __s * std::exchange(__alpha, __beta + __r * __alpha);
+	  __betap = _S_v[__k]
+	         - __s * std::exchange(__alphap, __betap + __r * __alphap);
 	}
 
-      _Ai = __fact * __al * __zetam + __be;
-      _Aip = __factp * __alp * __zetam + __bep;
+      _Ai = __fact * __alpha * __zetam + __beta;
+      _Aip = __factp * __alphap * __zetam + __betap;
 
       return;
     }
@@ -2757,40 +2759,44 @@ br ''
       auto __s = std::norm(__zetam2);
       auto __index = _S_ncoeffs - __nterm;
 
-      auto __als = _S_u_sin[__index];
-      auto __alc = _S_u_cos[__index];
-      auto __alps = _S_v_sin[__index];
-      auto __alpc = _S_v_cos[__index];
+      auto __alphas = _S_u_sin[__index];
+      auto __alphac = _S_u_cos[__index];
+      auto __alphaps = _S_v_sin[__index];
+      auto __alphapc = _S_v_cos[__index];
       ++__index;
 
-      auto __bes = _S_u_sin[__index];
-      auto __bec = _S_u_cos[__index];
-      auto __beps = _S_v_sin[__index];
-      auto __bepc = _S_v_cos[__index];
+      auto __betas = _S_u_sin[__index];
+      auto __betac = _S_u_cos[__index];
+      auto __betaps = _S_v_sin[__index];
+      auto __betapc = _S_v_cos[__index];
       ++__index;
 
       // Loop until components contributing to sums are computed.
       for (int __k = __index; __k < _S_ncoeffs; ++__k)
 	{
-	  __bes = _S_u_sin[__k] - __s * std::exchange(__als, __bes + __r * __als);
-	  __bec = _S_u_cos[__k] - __s * std::exchange(__alc, __bec + __r * __alc);
-	  __beps = _S_v_sin[__k] - __s * std::exchange(__alps, __beps + __r * __alps);
-	  __bepc = _S_v_cos[__k] - __s * std::exchange(__alpc, __bepc + __r * __alpc);
+	  __betas = _S_u_sin[__k]
+		  - __s * std::exchange(__alphas, __betas + __r * __alphas);
+	  __betac = _S_u_cos[__k]
+		  - __s * std::exchange(__alphac, __betac + __r * __alphac);
+	  __betaps = _S_v_sin[__k]
+		   - __s * std::exchange(__alphaps, __betaps + __r * __alphaps);
+	  __betapc = _S_v_cos[__k]
+		   - __s * std::exchange(__alphapc, __betapc + __r * __alphapc);
 	}
 
       // Complete evaluation of the Airy functions.
       __zeta = _S_zone / __zeta;
-      auto _Ai = __sinzeta * __als * __zetam2 + __bes
-	       - __zeta * __coszeta * __alc * __zetam2 + __bec;
+      auto _Ai = __sinzeta * __alphas * __zetam2 + __betas
+	       - __zeta * __coszeta * __alphac * __zetam2 + __betac;
       _Ai *= _S_pimh / __z1d4;
-      auto _Aip = __coszeta * __alpc * __z + __bepc
-		+ __zeta * __sinzeta * __alps * __z + __beps;
+      auto _Aip = __coszeta * __alphapc * __z + __betapc
+		+ __zeta * __sinzeta * __alphaps * __z + __betaps;
       _Aip *= -_S_pimh * __z1d4;
-      auto _Bi = __sinzeta * __als * __z + __bes
-	       + __zeta * __coszeta * __alc * __zetam2 + __bec;
+      auto _Bi = __sinzeta * __alphas * __z + __betas
+	       + __zeta * __coszeta * __alphac * __zetam2 + __betac;
       _Bi *= _S_pimh / __z1d4;
-      auto _Bip = __coszeta * __alps * __z + __beps
-		+ __zeta * __sinzeta * __alpc * __zetam2 + __bepc;
+      auto _Bip = __coszeta * __alphaps * __z + __betaps
+		+ __zeta * __sinzeta * __alphapc * __zetam2 + __betapc;
       _Bip *= _S_pimh * __z1d4;
 
       return _AiryState<std::complex<_Tp>>{__z, _Ai, _Aip, _Bi, _Bip};
@@ -3021,6 +3027,34 @@ template<typename _Sum>
   }
 
 
+template<typename _Tp>
+  struct _Airy_default_radii
+  {};
+
+template<>
+  struct _Airy_default_radii<float>
+  {
+
+    constexpr static float inner_radius{2.5F};
+    constexpr static float outer_radius{6.5F};
+  };
+
+template<>
+  struct _Airy_default_radii<double>
+  {
+
+    constexpr static double inner_radius{3.5};
+    constexpr static double outer_radius{12.0};
+  };
+
+template<>
+  struct _Airy_default_radii<long double>
+  {
+
+    constexpr static long double inner_radius{5.0L};
+    constexpr static long double outer_radius{15.0L};
+  };
+
 /**
  * Class to manage the asymptotic expansions for Airy functions.
  * The parameters describing the various regions are adjustable.
@@ -3050,8 +3084,8 @@ template<typename _Tp>
     _AiryState<value_type>
     operator()(value_type __y);
 
-    scalar_type inner_radius{5};
-    scalar_type outer_radius{15};
+    scalar_type inner_radius{_Airy_default_radii<scalar_type>::inner_radius};
+    scalar_type outer_radius{_Airy_default_radii<scalar_type>::outer_radius};
   };
 
 template<typename _Tp>
@@ -3108,7 +3142,7 @@ template<typename _Tp>
             __sums = __asymp(__y);
 	  }
       }
-/*HACK*/auto __2d3 = __scal{2.0L/3.0L};
+
     __cmplx _Bi, _Bip;
     if (__absy < inner_radius
         || (__absy < outer_radius && __absargy < _S_pi_3))
@@ -3117,8 +3151,11 @@ template<typename _Tp>
       {
         _Bi = __scal{2} * __sums.Bi + __sign * _S_i * __sums.Ai;
         _Bip = __scal{2} * __sums.Bip + __sign * _S_i * __sums.Aip;
-/*HACK*/_Bi *= __2d3;
-/*HACK*/_Bip *= __2d3;
+	if (__absargy > _S_5pi_6)
+	  {
+	    _Bi -= __sums.Bi;
+	    _Bip -= __sums.Bip;
+	  }
       }
     else
       {
@@ -3129,8 +3166,11 @@ template<typename _Tp>
 	    _Bi += __sign * _S_i * __sums.Ai;
 	    _Bip += __sign * _S_i * __sums.Aip;
 	  }
-/*HACK*/_Bi *= __2d3;
-/*HACK*/_Bip *= __2d3;
+	if (__absargy > _S_5pi_6)
+	  {
+	    _Bi -= __sums.Bi;
+	    _Bip -= __sums.Bip;
+	  }
       }
 
     __cmplx _Ai, _Aip;
@@ -3185,7 +3225,7 @@ template<typename _Sum>
 
     static constexpr int _S_max_iter = 10000;
     static constexpr scalar_type _S_eps
-	 = std::numeric_limits<scalar_type>::epsilon();
+	 = scalar_type{0.01L} * std::numeric_limits<scalar_type>::epsilon();
 
     _Sum _M_Hsum;
     _Sum _M_Hpsum;
@@ -3227,12 +3267,12 @@ template<typename _Sum>
     auto __denom = __cmplx{1};
     for (int __k = 1; __k < _S_max_iter; ++__k)
       {
-	__numer *= __scal(3 * __k + __scal{1})
-		 * __scal(3 * __k + __scal{2});
+	__numer *= __scal(3 * __k + 1)
+		 * __scal(3 * __k + 2);
 	__denom *= __yyy;
 	auto _Hterm = __numer / __denom;
 	_M_Hsum += _Hterm;
-	_Hterm *= __scal(__k + __scal{1}) / __scal(__k);
+	_Hterm *= __scal(__k + 1) / __scal(__k);
 	_M_Hpsum += _Hterm;
 	if (std::abs(_M_Hsum()) * _S_eps < std::abs(_Hterm))
 	  break;
@@ -4319,4 +4359,5 @@ main()
   plot_airy<lcmplx>("plot/airy_long_double.txt");
 
   splot_airy<cmplx>("plot/airy_complex_double.txt");
+  splot_airy<lcmplx>("plot/airy_complex_long_double.txt");
 }
