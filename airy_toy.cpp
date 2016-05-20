@@ -4097,7 +4097,7 @@ template<typename _Tp>
 	     << std::setw(width) << std::real(airy0.true_Wronskian())
 	     << '\n';
       }
-    data << '\n';
+    data << "\n\n";
   }
 
 /**
@@ -4117,39 +4117,135 @@ template<typename _Tp>
 
     _Airy<_Tp> airy;
 
-    data << "\n\n";
-    data << "#"
-	 << std::setw(width) << "t"
-	 << std::setw(width) << "Ai"
-	 << std::setw(width) << "Aip"
-	 << std::setw(width) << "Bi"
-	 << std::setw(width) << "Bip"
-	 << std::setw(width) << "Wronskian"
-	 << '\n';
-    data << "#"
-	 << std::setw(width) << "========="
-	 << std::setw(width) << "========="
-	 << std::setw(width) << "========="
-	 << std::setw(width) << "========="
-	 << std::setw(width) << "========="
-	 << std::setw(width) << "========="
-	 << '\n';
-    for (int i = -2000; i <= +500; ++i)
+    for (int i = -200; i <= +50; ++i)
       {
-	for (int j = -500; j <= +500; ++j)
+	for (int j = -50; j <= +50; ++j)
 	  {
 	    auto t = _Tp(0.10Q * i, 0.10Q * j);
 	    auto airy0 = airy(t);
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
-		 //<< std::setw(width) << std::real(airy0.Ai)
-		 //<< std::setw(width) << std::imag(airy0.Ai)
 		 << std::setw(width) << std::abs(airy0.Ai)
-		 //<< std::setw(width) << std::arg(airy0.Ai)
-		 //<< std::setw(width) << std::real(airy0.Bi)
-		 //<< std::setw(width) << std::imag(airy0.Bi)
+		 << '\n';
+	  }
+	data << '\n';
+      }
+    data << '\n';
+
+    for (int i = -200; i <= +50; ++i)
+      {
+	for (int j = -50; j <= +50; ++j)
+	  {
+	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto airy0 = airy(t);
+	    data << std::setw(width) << std::real(airy0.z)
+		 << std::setw(width) << std::imag(airy0.z)
+		 << std::setw(width) << std::real(airy0.Ai)
+		 << '\n';
+	  }
+	data << '\n';
+      }
+    data << '\n';
+
+    for (int i = -200; i <= +50; ++i)
+      {
+	for (int j = -50; j <= +50; ++j)
+	  {
+	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto airy0 = airy(t);
+	    data << std::setw(width) << std::real(airy0.z)
+		 << std::setw(width) << std::imag(airy0.z)
+		 << std::setw(width) << std::imag(airy0.Ai)
+		 << '\n';
+	  }
+	data << '\n';
+      }
+    data << '\n';
+
+    for (int i = -200; i <= +50; ++i)
+      {
+	for (int j = -50; j <= +50; ++j)
+	  {
+	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto airy0 = airy(t);
+	    data << std::setw(width) << std::real(airy0.z)
+		 << std::setw(width) << std::imag(airy0.z)
+		 << std::setw(width) << std::arg(airy0.Ai)
+		 << '\n';
+	  }
+	data << '\n';
+      }
+    data << '\n';
+
+    for (int i = -200; i <= +50; ++i)
+      {
+	for (int j = -50; j <= +50; ++j)
+	  {
+	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto airy0 = airy(t);
+	    data << std::setw(width) << std::real(airy0.z)
+		 << std::setw(width) << std::imag(airy0.z)
 		 << std::setw(width) << std::abs(airy0.Bi)
-		 //<< std::setw(width) << std::arg(airy0.Bi)
+		 << '\n';
+	  }
+	data << '\n';
+      }
+    data << '\n';
+
+    for (int i = -200; i <= +50; ++i)
+      {
+	for (int j = -50; j <= +50; ++j)
+	  {
+	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto airy0 = airy(t);
+	    data << std::setw(width) << std::real(airy0.z)
+		 << std::setw(width) << std::imag(airy0.z)
+		 << std::setw(width) << std::real(airy0.Bi)
+		 << '\n';
+	  }
+	data << '\n';
+      }
+    data << '\n';
+
+    for (int i = -200; i <= +50; ++i)
+      {
+	for (int j = -50; j <= +50; ++j)
+	  {
+	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto airy0 = airy(t);
+	    data << std::setw(width) << std::real(airy0.z)
+		 << std::setw(width) << std::imag(airy0.z)
+		 << std::setw(width) << std::imag(airy0.Bi)
+		 << '\n';
+	  }
+	data << '\n';
+      }
+    data << '\n';
+
+    for (int i = -200; i <= +50; ++i)
+      {
+	for (int j = -50; j <= +50; ++j)
+	  {
+	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto airy0 = airy(t);
+	    data << std::setw(width) << std::real(airy0.z)
+	         << std::setw(width) << std::imag(airy0.z)
+		 << std::setw(width) << std::arg(airy0.Bi)
+		 << '\n';
+	  }
+	data << '\n';
+      }
+    data << '\n';
+
+    for (int i = -200; i <= +50; ++i)
+      {
+	for (int j = -50; j <= +50; ++j)
+	  {
+	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto airy0 = airy(t);
+	    data << std::setw(width) << std::real(airy0.z)
+		 << std::setw(width) << std::imag(airy0.z)
+		 << std::setw(width) << std::abs(airy0.Wronskian())
 		 << '\n';
 	  }
 	data << '\n';
