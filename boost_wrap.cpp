@@ -312,42 +312,42 @@ gamma_l(double a, double x)
 
 /// Normalized upper incomplete gamma functions.
 double
-gamma_q(double a, double x)
+qgamma(double a, double x)
 {
   return boost::math::gamma_q(a, x);
 }
 
 /// Inverse normalized upper incomplete gamma functions.
 double
-gamma_q_inv(double a, double q)
+qgamma_inv(double a, double q)
 {
   return boost::math::gamma_q_inv(a, q);
 }
 
 /// Inverse parameter normalized upper incomplete gamma functions.
 double
-gamma_q_inva(double a, double q)
+qgamma_inva(double a, double q)
 {
   return boost::math::gamma_q_inva(a, q);
 }
 
 /// Normalized lower incomplete gamma functions.
 double
-gamma_p(double a, double x)
+pgamma(double a, double x)
 {
   return boost::math::gamma_p(a, x);
 }
 
 /// Inverse normalized lower incomplete gamma functions.
 double
-gamma_p_inv(double a, double q)
+pgamma_inv(double a, double q)
 {
   return boost::math::gamma_p_inv(a, q);
 }
 
 /// Inverse parameter normalized lower incomplete gamma functions.
 double
-gamma_p_inva(double a, double q)
+pgamma_inva(double a, double q)
 {
   return boost::math::gamma_p_inva(a, q);
 }

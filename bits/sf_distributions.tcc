@@ -78,7 +78,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_domain_error(__N("__chi_squared_cdf: "
 				      "chi-squared is negative"));
       else
-	return __gamma_p(_Tp(__nu) / _Tp{2}, __chi2 / _Tp{2});
+	return __pgamma(_Tp(__nu) / _Tp{2}, __chi2 / _Tp{2});
     }
 
   /**
@@ -102,7 +102,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_domain_error(__N("__chi_square_pdfc: "
 				      "chi-squared is negative"));
       else
-	return __gamma_q(_Tp(__nu) / _Tp{2}, __chi2 / _Tp{2});
+	return __qgamma(_Tp(__nu) / _Tp{2}, __chi2 / _Tp{2});
     }
 
   /**
