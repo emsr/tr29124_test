@@ -387,6 +387,26 @@ template<typename _Tp>
     _Tp f;
   };
 
+// Regularized upper incomplete gamma functions.
+template<typename _Tp>
+  struct testcase_qgamma
+  {
+    _Tp f0;
+    _Tp a;
+    _Tp x;
+    _Tp f;
+  };
+
+// Regularized lower incomplete gamma functions.
+template<typename _Tp>
+  struct testcase_pgamma
+  {
+    _Tp f0;
+    _Tp a;
+    _Tp x;
+    _Tp f;
+  };
+
 // Dilogarithm functions.
 template<typename _Tp>
   struct testcase_dilog
