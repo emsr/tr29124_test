@@ -642,7 +642,7 @@ gamma_l(double a, double x)
   int stat = gsl_sf_gamma_e(a, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in gamma_q:");
+      std::ostringstream msg("Error in gamma_l:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -652,13 +652,13 @@ gamma_l(double a, double x)
 
 /// Normalized incomlete gamma functions.
 double
-gamma_q(double a, double x)
+qgamma(double a, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_gamma_inc_Q_e(a, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in gamma_q:");
+      std::ostringstream msg("Error in qgamma:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -668,13 +668,13 @@ gamma_q(double a, double x)
 
 /// Normalized incomlete gamma functions.
 double
-gamma_p(double a, double x)
+pgamma(double a, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_gamma_inc_P_e(a, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in gamma_p:");
+      std::ostringstream msg("Error in pgamma:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
