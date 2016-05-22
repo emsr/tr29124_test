@@ -109,9 +109,11 @@ ${makedir} ${text_dir}/lfactorial
 ${makedir} ${text_dir}/lpochhammer_l
 ${makedir} ${text_dir}/lpochhammer_u
 ${makedir} ${text_dir}/owens_t
+${makedir} ${text_dir}/pgamma
 ${makedir} ${text_dir}/pochhammer_l
 ${makedir} ${text_dir}/pochhammer_u
 ${makedir} ${text_dir}/psi
+${makedir} ${text_dir}/qgamma
 ${makedir} ${text_dir}/radpoly
 ${makedir} ${text_dir}/sinc
 ${makedir} ${text_dir}/sinc_pi
@@ -177,10 +179,12 @@ ${copy} check_lfactorial.cc         ${text_dir}/lfactorial/check_value.cc
 ${copy} check_lpochhammer_l.cc      ${text_dir}/lpochhammer_l/check_value.cc
 ${copy} check_lpochhammer_u.cc      ${text_dir}/lpochhammer_u/check_value.cc
 ${copy} check_owens_t.cc            ${text_dir}/owens_t/check_value.cc
+${copy} check_pgamma.cc             ${text_dir}/pgamma/check_value.cc
 ${copy} check_pochhammer_l.cc       ${text_dir}/pochhammer_l/check_value.cc
 ${copy} check_pochhammer_u.cc       ${text_dir}/pochhammer_u/check_value.cc
-${copy} check_radpoly.cc            ${text_dir}/radpoly/check_value.cc
 ${copy} check_psi.cc                ${text_dir}/psi/check_value.cc
+${copy} check_qgamma.cc             ${text_dir}/qgamma/check_value.cc
+${copy} check_radpoly.cc            ${text_dir}/radpoly/check_value.cc
 ${copy} check_shi.cc                ${text_dir}/sinhint/check_shi.cc
 ${copy} check_sinc.cc               ${text_dir}/sinc/check_value.cc
 ${copy} check_sinc_pi.cc            ${text_dir}/sinc_pi/check_value.cc

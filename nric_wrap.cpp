@@ -184,12 +184,12 @@ bessel_yl(unsigned int n, double x)
 
 /// Normalized incomplete gamma functions.
 double
-gamma_inc_Q(double a, double x)
+qgamma(double a, double x)
 { return gamma_q(a, x); }
 
 /// Complementary normalized incomplete gamma functions.
 double
-gamma_inc_P(double a, double x)
+pgamma(double a, double x)
 { return gamma_p(a, x); }
 
 /// Non-normalized incomplete gamma functions.

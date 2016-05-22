@@ -2010,7 +2010,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __gamma_p(_Tp __a, _Tp __x)
+    __pgamma(_Tp __a, _Tp __x)
     {
       constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
 
@@ -2018,7 +2018,7 @@ _S_neg_double_factorial_table[999]
 	return _S_NaN;
 
       if (__x < _Tp{0} || __a <= _Tp{0})
-	throw std::domain_error("gamma_p: invalid arguments");
+	throw std::domain_error("pgamma: invalid arguments");
 
       if (__x < __a + _Tp{1})
 	return __gamma_series(__a, __x).first;
@@ -2041,7 +2041,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __gamma_q(_Tp __a, _Tp __x)
+    __qgamma(_Tp __a, _Tp __x)
     {
       constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
 
@@ -2049,7 +2049,7 @@ _S_neg_double_factorial_table[999]
 	return _S_NaN;
 
       if (__x < _Tp{0} || __a <= _Tp{0})
-	throw std::domain_error("__gamma_q: invalid arguments");
+	throw std::domain_error("__qgamma: invalid arguments");
 
       if (__x < __a + _Tp{1})
 	return _Tp{1} - __gamma_series(__a, __x).first;

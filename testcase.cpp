@@ -86,8 +86,6 @@ template<typename Real>
     using __gnu_cxx::fresnel_c;
     using __gnu_cxx::fresnel_s;
     using __gnu_cxx::gamma_l;
-    using __gnu_cxx::gamma_p;
-    using __gnu_cxx::gamma_q;
     using __gnu_cxx::gamma_u;
     using __gnu_cxx::gegenbauer;
     using       std::hermite;
@@ -109,9 +107,11 @@ template<typename Real>
     using __gnu_cxx::lpochhammer_l;
     using __gnu_cxx::lpochhammer_u;
     using __gnu_cxx::owens_t;
+    using __gnu_cxx::pgamma;
     using __gnu_cxx::pochhammer_l;
     using __gnu_cxx::pochhammer_u;
     using __gnu_cxx::psi;
+    using __gnu_cxx::qgamma;
     using __gnu_cxx::radpoly;
     using       std::riemann_zeta;
     using __gnu_cxx::sinhc;
@@ -815,6 +815,34 @@ template<typename Real>
 				std::make_pair(true, true), 11),
 	     "GSL",
 	     file_gamma_l);
+
+    // Lower regularized incomplete Gamma functions.
+    std::cout << "pgamma" << std::endl;
+    basename = "pgamma";
+    filename = get_filename(path, prefix, basename, "", ".cc");
+    std::ofstream file_pgamma(filename.c_str());
+    maketest(pgamma, gsl::pgamma,
+	     "__gnu_cxx", basename,
+	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(false, true), 11),
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(true, true), 11),
+	     "GSL",
+	     file_pgamma);
+
+    // Upper regularized incomplete Gamma functions.
+    std::cout << "qgamma" << std::endl;
+    basename = "qgamma";
+    filename = get_filename(path, prefix, basename, "", ".cc");
+    std::ofstream file_qgamma(filename.c_str());
+    maketest(qgamma, gsl::qgamma,
+	     "__gnu_cxx", basename,
+	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(false, true), 11),
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(true, true), 11),
+	     "GSL",
+	     file_qgamma);
 
     // Incomplete Beta functions.
     std::cout << "ibeta" << std::endl;
