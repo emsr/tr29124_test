@@ -77,9 +77,11 @@ check_lfactorial
 check_lpochhammer_l
 check_lpochhammer_u
 check_owens_t
+check_pgamma
 check_pochhammer_l
 check_pochhammer_u
 check_psi
+check_qgamma
 check_radpoly
 check_riemann_zeta
 check_shi
