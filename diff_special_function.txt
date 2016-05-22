@@ -1,4 +1,4 @@
-airy_a
+airy_ai
 airy_bi
 assoc_laguerre
 assoc_legendre

@@ -192,8 +192,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::fresnel_c "fresnel_c - Fresnel cosine integrals"
    * - @ref __gnu_cxx::fresnel_s "fresnel_s - Fresnel sine integrals"
    * - @ref __gnu_cxx::gamma_l "gamma_l - Lower incomplete gamma functions"
-   * - @ref __gnu_cxx::gamma_p "gamma_p - Regularized lower incomplete gamma functions"
-   * - @ref __gnu_cxx::gamma_q "gamma_q - Regularized upper incomplete gamma functions"
+   * - @ref __gnu_cxx::pgamma "pgamma - Regularized lower incomplete gamma functions"
+   * - @ref __gnu_cxx::qgamma "qgamma - Regularized upper incomplete gamma functions"
    * - @ref __gnu_cxx::gamma_u "gamma_u - upper incomplete gamma functions"
    * - @ref __gnu_cxx::gegenbauer "gegenbauer - Gegenbauer polynomials"
    * - @ref __gnu_cxx::heuman_lambda "heuman_lambda - Heuman lambda functions"
@@ -3744,43 +3744,43 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Scaled lower incomplete gamma
 
   inline float
-  gamma_pf(float __a, float __x)
-  { return std::__detail::__gamma_p<float>(__a, __x); }
+  pgammaf(float __a, float __x)
+  { return std::__detail::__pgamma<float>(__a, __x); }
 
   inline long double
-  gamma_pl(long double __a, long double __x)
-  { return std::__detail::__gamma_p<long double>(__a, __x); }
+  pgammal(long double __a, long double __x)
+  { return std::__detail::__pgamma<long double>(__a, __x); }
 
   /**
    * 
    */
   template<typename _Ta, typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Ta, _Tp>
-    gamma_p(_Ta __a, _Tp __x)
+    pgamma(_Ta __a, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_num_t<_Ta, _Tp>;
-      return std::__detail::__gamma_p<__type>(__a, __x);
+      return std::__detail::__pgamma<__type>(__a, __x);
     }
 
   // Scaled upper incomplete gamma
 
   inline float
-  gamma_qf(float __a, float __x)
-  { return std::__detail::__gamma_q<float>(__a, __x); }
+  qgammaf(float __a, float __x)
+  { return std::__detail::__qgamma<float>(__a, __x); }
 
   inline long double
-  gamma_ql(long double __a, long double __x)
-  { return std::__detail::__gamma_q<long double>(__a, __x); }
+  qgammal(long double __a, long double __x)
+  { return std::__detail::__qgamma<long double>(__a, __x); }
 
   /**
    * 
    */
   template<typename _Ta, typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Ta, _Tp>
-    gamma_q(_Ta __a,_Tp  __x)
+    qgamma(_Ta __a,_Tp  __x)
     {
       using __type = __gnu_cxx::__promote_num_t<_Ta, _Tp>;
-      return std::__detail::__gamma_q<__type>(__a, __x);
+      return std::__detail::__qgamma<__type>(__a, __x);
     }
 
   // Jacobi zeta functions.

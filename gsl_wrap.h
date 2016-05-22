@@ -126,22 +126,22 @@ double bessel_yl(unsigned int n, double x);
 double gamma_l(double a, double x);
 
 /// Normalized upper incomplete gamma functions.
-double gamma_q(double a, double x);
+double qgamma(double a, double x);
 
 /// Inverse normalized upper incomplete gamma functions.
-double gamma_q_inv(double a, double q);
+double qgamma_inv(double a, double q);
 
 /// Inverse parameter normalized upper incomplete gamma functions.
-double gamma_q_inva(double x, double q);
+double qgamma_inva(double x, double q);
 
 /// Normalized lower incomplete gamma functions.
-double gamma_p(double a, double x);
+double pgamma(double a, double x);
 
 /// Inverse normalized lower incomplete gamma functions.
-double gamma_p_inv(double a, double q);
+double pgamma_inv(double a, double q);
 
 /// Inverse parameter normalized lower incomplete gamma functions.
-double gamma_p_inva(double x, double q);
+double pgamma_inva(double x, double q);
 
 /// Non-normalized (upper) incomplete gamma functions. (See Boost tgamma(a, x)).
 double gamma_u(double a, double x);

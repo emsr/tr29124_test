@@ -115,8 +115,6 @@ main()
     using __gnu_cxx::fresnel_c;
     using __gnu_cxx::fresnel_s;
     using __gnu_cxx::gamma_l;
-    using __gnu_cxx::gamma_p;
-    using __gnu_cxx::gamma_q;
     using __gnu_cxx::gamma_u;
     using __gnu_cxx::gegenbauer;
     using       std::hermite;	 
@@ -138,9 +136,11 @@ main()
     using __gnu_cxx::lpochhammer_l;
     using __gnu_cxx::lpochhammer_u;
     using __gnu_cxx::owens_t;
+    using __gnu_cxx::pgamma;
     using __gnu_cxx::pochhammer_l;
     using __gnu_cxx::pochhammer_u;
     using __gnu_cxx::psi;
+    using __gnu_cxx::qgamma;
     using __gnu_cxx::radpoly;
     using       std::riemann_zeta;
     using __gnu_cxx::sinhc;
@@ -186,7 +186,7 @@ main()
 
 #if STD
     //  Airy Ai functions.
-    std::cout << "airy_a" << std::endl;
+    std::cout << "airy_ai" << std::endl;
     basename = "diff_airy_ai";
     rundiff(airy_ai, gsl::airy_ai, basename,
 	    "x", fill_argument(std::make_pair(Real{-10}, Real{+10}),
