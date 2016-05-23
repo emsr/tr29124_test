@@ -569,9 +569,10 @@ template<typename _Tp>
   };
 
 template<typename _Tp>
-  struct testcase_expint_e1
+  struct testcase_expint_en
   {
     _Tp f0;
+    unsigned int n;
     _Tp x;
     _Tp f;
   };

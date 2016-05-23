@@ -83,7 +83,7 @@ CHECKS = check_airy_ai \
 	 check_ellint_rg \
 	 check_ellint_rj \
 	 check_expint \
-	 check_expint_e1 \
+	 check_expint_en \
 	 check_factorial \
 	 check_fresnel_c \
 	 check_fresnel_s \
@@ -237,7 +237,7 @@ check: $(CHECKS)
 	echo "check_ellint_rg" >> check_out.txt 2>> check_err.txt && ./check_ellint_rg >> check_out.txt 2>> check_err.txt
 	echo "check_ellint_rj" >> check_out.txt 2>> check_err.txt && ./check_ellint_rj >> check_out.txt 2>> check_err.txt
 	echo "check_expint" >> check_out.txt 2>> check_err.txt && ./check_expint >> check_out.txt 2>> check_err.txt
-	echo "check_expint_e1" >> check_out.txt 2>> check_err.txt && ./check_expint_e1 >> check_out.txt 2>> check_err.txt
+	echo "check_expint_en" >> check_out.txt 2>> check_err.txt && ./check_expint_en >> check_out.txt 2>> check_err.txt
 	echo "check_factorial" >> check_out.txt 2>> check_err.txt && ./check_factorial >> check_out.txt 2>> check_err.txt
 	echo "check_fresnel_c" >> check_out.txt 2>> check_err.txt && ./check_fresnel_c >> check_out.txt 2>> check_err.txt
 	echo "check_fresnel_s" >> check_out.txt 2>> check_err.txt && ./check_fresnel_s >> check_out.txt 2>> check_err.txt
@@ -463,8 +463,8 @@ check_ellint_rj: check_ellint_rj.cc
 check_expint: check_expint.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_expint check_expint.cc
 
-check_expint_e1: check_expint_e1.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_expint_e1 check_expint_e1.cc
+check_expint_en: check_expint_en.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_expint_en check_expint_en.cc
 
 check_factorial: check_factorial.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_factorial check_factorial.cc
