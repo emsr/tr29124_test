@@ -187,7 +187,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::ellint_rf "ellint_rf - Carlson elliptic functions R_F"
    * - @ref __gnu_cxx::ellint_rg "ellint_rg - Carlson elliptic functions R_G"
    * - @ref __gnu_cxx::ellint_rj "ellint_rj - Carlson elliptic functions R_J"
-   * - @ref __gnu_cxx::expint_e1 "expint_e1 - "
+   * - @ref __gnu_cxx::expint "expint - Exponential integrals"
    * - @ref __gnu_cxx::factorial "factorial - Factorials"
    * - @ref __gnu_cxx::fresnel_c "fresnel_c - Fresnel cosine integrals"
    * - @ref __gnu_cxx::fresnel_s "fresnel_s - Fresnel sine integrals"
@@ -3424,36 +3424,47 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__dawson<__type>(__x);
     }
 
+  //  Exponential integrals
+
+  /**
+   * Return the exponential integral @f$ E_n(x) @f$ for integral
+   * order @f$ n @f$ and @c float argument @c x.
+   *
+   * @see expint for details.
+   */
   inline float
-  expint_e1f(float __x)
-  { return std::__detail::__expint_E1<float>(__x); }
-
-  inline long double
-  expint_e1l(long double __x)
-  { return std::__detail::__expint_E1<long double>(__x); }
-
-  template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
-    expint_e1(_Tp __x)
-    {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
-      return std::__detail::__expint_E1<__type>(__x);
-    }
-
-  inline float
-  expint_enf(unsigned int __n, float __x)
+  expintf(unsigned int __n, float __x)
   { return std::__detail::__expint<float>(__n, __x); }
 
+  /**
+   * Return the exponential integral @f$ E_n(x) @f$ for integral
+   * order @f$ n @f$ and <tt>long double</tt> argument @c x.
+   *
+   * @see expint for details.
+   */
   inline long double
-  expint_enl(unsigned int __n, long double __x)
+  expintl(unsigned int __n, long double __x)
   { return std::__detail::__expint<long double>(__n, __x); }
 
   /**
-   * 
+   * Return the exponential integral @f$ E_n(x) @f$ of integral
+   * order @f$ n @f$ and real argument @f$ x @f$.
+   * The exponential integral is defined by:
+   * @f[
+   *    E_n(x) = \int_1^\infty \frac{e^{-tx}}{t^n}dt
+   * @f]
+   * In particular
+   * @f[
+   *    E_1(x) = \int_1^\infty \frac{e^{-tx}}{t}dt = -Ei(-x)
+   * @f]
+   *
+   * @tparam _Tp The real type of te argument
+   * @param __n The integral order
+   * @param __x The real argument
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
-    expint_en(unsigned int __n, _Tp __x)
+    expint(unsigned int __n, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_num_t<_Tp>;
       return std::__detail::__expint<__type>(__n, __x);

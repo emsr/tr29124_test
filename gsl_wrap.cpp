@@ -405,29 +405,13 @@ ellint_rj(double x, double y, double z, double p)
 
 /// Exponential integral Ei.
 double
-expint_Ei(double x)
+expint(double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_expint_Ei_e(x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in expint_Ei:");
-      msg << " x=" << x;
-      throw std::runtime_error(msg.str());
-    }
-  else
-    return result.val;
-}
-
-/// Exponential integral E_1.
-double
-expint_E1(double x)
-{
-  gsl_sf_result result;
-  int stat = gsl_sf_expint_E1_e(x, &result);
-  if (stat != GSL_SUCCESS)
-    {
-      std::ostringstream msg("Error in expint_E1:");
+      std::ostringstream msg("Error in expint:");
       msg << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -437,13 +421,13 @@ expint_E1(double x)
 
 /// Exponential integrals E_n.
 double
-expint_En(int n, double x)
+expint(unsigned int n, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_expint_En_e(n, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in expint_En:");
+      std::ostringstream msg("Error in expint:");
       msg << " n=" << n << " x=" << x;
       throw std::runtime_error(msg.str());
     }
