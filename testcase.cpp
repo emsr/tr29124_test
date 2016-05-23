@@ -81,7 +81,7 @@ template<typename Real>
     using __gnu_cxx::ellint_rg;
     using __gnu_cxx::ellint_rj;
     using       std::expint;
-    using __gnu_cxx::expint_e1;
+    using __gnu_cxx::expint;
     using __gnu_cxx::factorial;
     using __gnu_cxx::fresnel_c;
     using __gnu_cxx::fresnel_s;
@@ -505,13 +505,13 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_expint(filename.c_str());
     test =
-    maketest(expint, gsl::expint_Ei,
+    maketest(expint, gsl::expint,
 	     nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{-50}, Real{0}),
 				std::make_pair(true, false), 51),
 	     "GSL",
 	     file_expint, true, false);
-    maketest(expint, gsl::expint_Ei,
+    maketest(expint, gsl::expint,
 	     nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{50}),
 				std::make_pair(false, true), 51),
@@ -939,7 +939,7 @@ template<typename Real>
 	     "GSL",
 	     file_dawson);
 
-    // Jacobian elliptic integrals.
+    // Jacobian elliptic sine amplitude integrals.
     std::cout << "jacobi_sn" << std::endl;
     basename = "jacobi_sn";
     filename = get_filename(path, prefix, basename, "",  ".cc");
@@ -953,7 +953,7 @@ template<typename Real>
 	     "GSL",
 	     file_jacobi_sn);
 
-    // Jacobian elliptic integrals.
+    // Jacobian elliptic cosine amplitude integrals.
     std::cout << "jacobi_cn" << std::endl;
     basename = "jacobi_cn";
     filename = get_filename(path, prefix, basename, "",  ".cc");
@@ -967,7 +967,7 @@ template<typename Real>
 	     "GSL",
 	     file_jacobi_cn);
 
-    // Jacobian elliptic integrals.
+    // Jacobian elliptic delta amplitude integrals.
     std::cout << "jacobi_dn" << std::endl;
     basename = "jacobi_dn";
     filename = get_filename(path, prefix, basename, "",  ".cc");
@@ -981,25 +981,19 @@ template<typename Real>
 	     "GSL",
 	     file_jacobi_dn);
 
-    // Exponential integral E1.
+    // Exponential integral En.
     // Skip the pole at 0.
-    std::cout << "expint_e1" << std::endl;
-    basename = "expint_e1";
-    filename = get_filename(path, prefix, basename, "", ".cc");
-    std::ofstream file_expint_e1(filename.c_str());
-    test =
-    maketest(expint_e1, gsl::expint_E1,
+    std::cout << "expint_en" << std::endl;
+    basename = "expint";
+    filename = get_filename(path, prefix, basename, "_en", ".cc");
+    std::ofstream file_expint_en(filename.c_str());
+    maketest(expint, gsl::expint,
 	     "__gnu_cxx", basename,
-	     "x", fill_argument(std::make_pair(Real{-50}, Real{0}),
-				std::make_pair(true, false), 51),
-	     "GSL",
-	     file_expint_e1, true, false);
-    maketest(expint_e1, gsl::expint_E1,
-	     "__gnu_cxx", basename,
+	     "n", {0, 1, 2, 3, 5},
 	     "x", fill_argument(std::make_pair(Real{0}, Real{50}),
 				std::make_pair(false, true), 51),
 	     "GSL",
-	     file_expint_e1, false, true, test);
+	     file_expint_en);
 
     // Fresnel cosine integral.
     std::cout << "fresnel_c" << std::endl;

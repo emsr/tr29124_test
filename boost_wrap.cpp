@@ -208,21 +208,14 @@ ellint_rj(double x, double y, double z, double p)
 
 /// Exponential integral Ei.
 double
-expint_Ei(double x)
+expint(double x)
 {
   return boost::math::expint(x);
 }
 
-/// Exponential integral E_1.
-double
-expint_E1(double x)
-{
-  return boost::math::expint(1, x);
-}
-
 /// Exponential integrals E_n.
 double
-expint_En(unsigned int n, double x)
+expint(unsigned int n, double x)
 {
   return boost::math::expint(n, x);
 }
