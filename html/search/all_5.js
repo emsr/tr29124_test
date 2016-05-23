@@ -43,13 +43,7 @@ var searchData=
   ['ellnomef',['ellnomef',['../group__gnu__math__spec__func.html#gad3ba08e5843ea0ec2bb9ddde3033adff',1,'__gnu_cxx']]],
   ['ellnomel',['ellnomel',['../group__gnu__math__spec__func.html#ga0774570b24f654f8ae39e1865613a4e2',1,'__gnu_cxx']]],
   ['evenzeta',['evenzeta',['../namespacestd_1_1____detail.html#af59bd2be508cc6a421ddf5dd70c93d97',1,'std::__detail']]],
-  ['expint',['expint',['../group__tr29124__math__spec__func.html#ga88ba17f5d050a6973ca4db1bf6e90590',1,'std']]],
-  ['expint_5fe1',['expint_e1',['../group__gnu__math__spec__func.html#ga3696fc269b543a908d47bad7e98256e7',1,'__gnu_cxx']]],
-  ['expint_5fe1f',['expint_e1f',['../group__gnu__math__spec__func.html#gad6d75fcefac4a20b52f29d9b1bc3a57d',1,'__gnu_cxx']]],
-  ['expint_5fe1l',['expint_e1l',['../group__gnu__math__spec__func.html#ga18cb55f0e83a9e369afaf5bae9e0772c',1,'__gnu_cxx']]],
-  ['expint_5fen',['expint_en',['../group__gnu__math__spec__func.html#ga46e6f84b809d0128b6596f0040927089',1,'__gnu_cxx']]],
-  ['expint_5fenf',['expint_enf',['../group__gnu__math__spec__func.html#gaf62278eb2899eaffab68a79dadb15612',1,'__gnu_cxx']]],
-  ['expint_5fenl',['expint_enl',['../group__gnu__math__spec__func.html#gaa3d0b9a177eb6666b6fbfa85d85650d0',1,'__gnu_cxx']]],
-  ['expintf',['expintf',['../group__tr29124__math__spec__func.html#ga5842816f6eed2594e0a327df4e4a2a47',1,'std']]],
-  ['expintl',['expintl',['../group__tr29124__math__spec__func.html#ga1329130b32328d0666e290ee5931fa4f',1,'std']]]
+  ['expint',['expint',['../group__tr29124__math__spec__func.html#ga88ba17f5d050a6973ca4db1bf6e90590',1,'std::expint()'],['../group__gnu__math__spec__func.html#ga9f04033823155e7690779d432d9f1922',1,'__gnu_cxx::expint()']]],
+  ['expintf',['expintf',['../group__tr29124__math__spec__func.html#ga5842816f6eed2594e0a327df4e4a2a47',1,'std::expintf()'],['../group__gnu__math__spec__func.html#ga85751691a29807d99e990fcba61312f3',1,'__gnu_cxx::expintf()']]],
+  ['expintl',['expintl',['../group__tr29124__math__spec__func.html#ga1329130b32328d0666e290ee5931fa4f',1,'std::expintl()'],['../group__gnu__math__spec__func.html#ga720ca0b275784c8b82193f427a2b3553',1,'__gnu_cxx::expintl()']]]
 ];

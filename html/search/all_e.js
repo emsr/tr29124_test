@@ -1,5 +1,8 @@
 var searchData=
 [
+  ['pgamma',['pgamma',['../group__gnu__math__spec__func.html#gadfb8f84381f7ac3c8d6519961d675c40',1,'__gnu_cxx']]],
+  ['pgammaf',['pgammaf',['../group__gnu__math__spec__func.html#ga980f118a42eabd526da7988d96bf16a0',1,'__gnu_cxx']]],
+  ['pgammal',['pgammal',['../group__gnu__math__spec__func.html#gab7975808066fe4a4c05823c57d4c5e73',1,'__gnu_cxx']]],
   ['pochhammer_5fl',['pochhammer_l',['../group__gnu__math__spec__func.html#gafed029416c3c440fea35a3a135991436',1,'__gnu_cxx']]],
   ['pochhammer_5flf',['pochhammer_lf',['../group__gnu__math__spec__func.html#ga66c7ea176dad7f06f19cc80e860f333c',1,'__gnu_cxx']]],
   ['pochhammer_5fll',['pochhammer_ll',['../group__gnu__math__spec__func.html#gadec5630d81fc1d3f6f61146a2d16fafc',1,'__gnu_cxx']]],
