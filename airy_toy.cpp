@@ -4358,6 +4358,7 @@ main()
   plot_airy<cmplx>("plot/airy_double.txt");
   plot_airy<lcmplx>("plot/airy_long_double.txt");
 
+  splot_airy<fcmplx>("plot/airy_complex_float.txt");
   splot_airy<cmplx>("plot/airy_complex_double.txt");
   splot_airy<lcmplx>("plot/airy_complex_long_double.txt");
 }
