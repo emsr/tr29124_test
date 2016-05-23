@@ -229,11 +229,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * major work here is in @c safe_div.  A faster, but less safe
    * implementation can be obtained without use of safe_div.
    *
-   * @param[in] __num2d3 nu^{-2/3} - output from hankel_params.
+   * @param[in] __num2d3 @f$ \nu^{-2/3} @f$ - output from hankel_params
    * @param[in] __zeta   zeta in the uniform asymptotic expansions - output
-   *    		 from hankel_params.
-   * @param[out] __argp e^{+i2\pi/3} \nu^{2/3} \zeta.
-   * @param[out] __argm e^{-i2\pi/3} \nu^{2/3} \zeta.
+   *    		 from hankel_params
+   * @param[out] __argp @f$ e^{+i2\pi/3} \nu^{2/3} \zeta @f$
+   * @param[out] __argm @f$ e^{-i2\pi/3} \nu^{2/3} \zeta @f$
    * @throws std::runtime_error.
    */
   template<typename _Tp>
