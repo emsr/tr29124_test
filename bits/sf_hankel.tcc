@@ -234,7 +234,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    		 from hankel_params
    * @param[out] __argp @f$ e^{+i2\pi/3} \nu^{2/3} \zeta @f$
    * @param[out] __argm @f$ e^{-i2\pi/3} \nu^{2/3} \zeta @f$
-   * @throws std::runtime_error.
+   * @throws std::runtime_error if unable to compute Airy function arguments
    */
   template<typename _Tp>
     void
