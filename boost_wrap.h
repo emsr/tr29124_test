@@ -81,13 +81,10 @@ double ellint_rg(double x, double y, double z);
 double ellint_rj(double x, double y, double z, double p);
 
 /// Exponential integral Ei.
-double expint_Ei(double x);
-
-/// Exponential integral E_1.
-double expint_E1(double x);
+double expint(double x);
 
 /// Exponential integrals E_n.
-double expint_En(unsigned int n, double x);
+double expint(unsigned int n, double x);
 
 /// Hermite polynomials.
 double hermite(unsigned int n, double x);
@@ -138,10 +135,10 @@ double qgamma_inva(double x, double q);
 double pgamma(double a, double x);
 
 /// Inverse normalized lower incomplete gamma functions.
-double pgamma_inv(double a, double q);
+double pgamma_inv(double a, double p);
 
 /// Inverse parameter normalized lower incomplete gamma functions.
-double pgamma_inva(double x, double q);
+double pgamma_inva(double x, double p);
 
 /// Non-normalized (upper) incomplete gamma functions. (See Boost tgamma(a, x)).
 double gamma_u(double a, double x);
@@ -291,25 +288,25 @@ double jacobi_zeta(double k, double phi);
 double erf_inv(double p);
 
 /// Inverse complementary error function.
-double erfc(double p);
+double erfc_inv(double q);
 
 /// Inverse incomplete beta function.
 double ibeta_inv(double a, double b, double p);
 
 /// Inverse complementary incomplete beta function.
-double ibetac_inv(double a, double b, double p);
+double ibetac_inv(double a, double b, double q);
 
 /// Inverse parameter incomplete beta function.
 double ibeta_inva(double b, double x, double p);
 
 /// Inverse parameter complementary incomplete beta function.
-double ibetac_inva(double b, double x, double p);
+double ibetac_inva(double b, double x, double q);
 
 /// Inverse parameter incomplete beta function.
 double ibeta_invb(double a, double x, double p);
 
 /// Inverse parameter complementary incomplete beta function.
-double ibetac_invb(double a, double x, double p);
+double ibetac_invb(double a, double x, double q);
 
 /// Spherical harmonic functions.
 std::complex<double> sph_harmonic(unsigned int l, int m, double theta, double phi);

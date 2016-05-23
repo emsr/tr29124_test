@@ -58,14 +58,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp> _Tp __expint_E1(_Tp);
 
   /**
-   * @brief Return the exponential integral @f$ E_1(x) @f$
-   * 	    by series summation.  This should be good
-   * 	    for @f$ x < 1 @f$.
+   * @brief Return the exponential integral @f$ E_1(x) @f$ by series summation.
+   * 	    This should be good for @f$ x < 1 @f$.
    *
    * The exponential integral is given by
-   * 	    \f[
-   * 	      E_1(x) = \int_{1}^{\infty} \frac{e^{-xt}}{t} dt
-   * 	    \f]
+   *  @f[
+   *    E_1(x) = \int_{1}^{\infty} \frac{e^{-xt}}{t} dt
+   *  @f]
    *
    * @param  __x  The argument of the exponential integral function.
    * @return  The exponential integral.
@@ -100,9 +99,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	    by asymptotic expansion.
    *
    * The exponential integral is given by
-   * 	    \f[
-   * 	      E_1(x) = \int_{1}^\infty \frac{e^{-xt}}{t} dt
-   * 	    \f]
+   * @f[
+   *   E_1(x) = \int_{1}^\infty \frac{e^{-xt}}{t} dt
+   * @f]
    *
    * @param  __x  The argument of the exponential integral function.
    * @return  The exponential integral.
@@ -132,13 +131,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   * @brief Return the exponential integral @f$ E_n(x) @f$
-   * 	    by series summation.
+   * @brief Return the exponential integral @f$ E_n(x) @f$ by series summation.
    *
    * The exponential integral is given by
-   * 	    \f[
-   * 	      E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
-   * 	    \f]
+   * @f[
+   *   E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
+   * @f]
    *
    * @param  __n  The order of the exponential integral function.
    * @param  __x  The argument of the exponential integral function.
@@ -182,9 +180,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	    by continued fractions.
    *
    * The exponential integral is given by
-   * 	    \f[
-   * 	      E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
-   * 	    \f]
+   * @f[
+   *   E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
+   * @f]
    *
    * @param  __n  The order of the exponential integral function.
    * @param  __x  The argument of the exponential integral function.
@@ -222,14 +220,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   * @brief Return the exponential integral @f$ E_n(x) @f$
-   * 	    by recursion.  Use upward recursion for @f$ x < n @f$
+   * @brief Return the exponential integral @f$ E_n(x) @f$ by recursion.
+   * 	    Use upward recursion for @f$ x < n @f$
    * 	    and downward recursion (Miller's algorithm) otherwise.
    *
    * The exponential integral is given by
-   * 	    \f[
-   * 	      E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
-   * 	    \f]
+   * @f[
+   *   E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
+   * @f]
    *
    * @param  __n  The order of the exponential integral function.
    * @param  __x  The argument of the exponential integral function.
@@ -270,13 +268,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * @brief Return the exponential integral @f$ Ei(x) @f$
-   * 	    by series summation.
+   * @brief Return the exponential integral @f$ Ei(x) @f$ by series summation.
    *
    * The exponential integral is given by
-   * 	    \f[
-   * 	      Ei(x) = -\int_{-x}^\infty \frac{e^t}{t} dt
-   * 	    \f]
+   * @f[
+   *   Ei(x) = -\int_{-x}^\infty \frac{e^t}{t} dt
+   * @f]
    *
    * @param  __x  The argument of the exponential integral function.
    * @return  The exponential integral.
@@ -306,9 +303,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	    by asymptotic expansion.
    *
    * The exponential integral is given by
-   * 	    \f[
-   * 	      Ei(x) = -\int_{-x}^\infty \frac{e^t}{t} dt
-   * 	    \f]
+   * @f[
+   *   Ei(x) = -\int_{-x}^\infty \frac{e^t}{t} dt
+   * @f]
    *
    * @param  __x  The argument of the exponential integral function.
    * @return  The exponential integral.
@@ -339,9 +336,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @brief Return the exponential integral @f$ Ei(x) @f$.
    *
    * The exponential integral is given by
-   * 	    \f[
-   * 	      Ei(x) = -\int_{-x}^\infty \frac{e^t}{t} dt
-   * 	    \f]
+   * @f[
+   *   Ei(x) = -\int_{-x}^\infty \frac{e^t}{t} dt
+   * @f]
    *
    * @param  __x  The argument of the exponential integral function.
    * @return  The exponential integral.
@@ -363,9 +360,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @brief Return the exponential integral @f$ E_1(x) @f$.
    *
    * The exponential integral is given by
-   * 	    \f[
-   * 	      E_1(x) = \int_{1}^\infty \frac{e^{-xt}}{t} dt
-   * 	    \f]
+   * @f[
+   *   E_1(x) = \int_{1}^\infty \frac{e^{-xt}}{t} dt
+   * @f]
    *
    * @param  __x  The argument of the exponential integral function.
    * @return  The exponential integral.
@@ -391,9 +388,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	    for large argument.
    *
    * The exponential integral is given by
-   * 	    \f[
-   * 	      E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
-   * 	    \f]
+   * @f[
+   *   E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
+   * @f]
    *
    * This is something of an extension.
    *
@@ -425,9 +422,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	    for large order.
    *
    * The exponential integral is given by
-   * 	    \f[
+   * 	    @f[
    * 	      E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
-   * 	    \f]
+   * 	    @f]
    *
    * This is something of an extension.
    *
@@ -460,10 +457,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @brief Return the exponential integral @f$ E_n(x) @f$.
    *
    * The exponential integral is given by
-   * 	    \f[
-   * 	      E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
-   * 	    \f]
-   * This is something of an extension.
+   * 	@f[
+   * 	  E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
+   * 	@f]
    *
    * @param  __n  The order of the exponential integral function.
    * @param  __x  The argument of the exponential integral function.
@@ -480,7 +476,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __gnu_cxx::__infinity<_Tp>();
       else
 	{
-	  auto __E0 = std::exp(__x) / __x;
+	  auto __E0 = std::exp(-__x) / __x;
 	  if (__n == 0)
 	    return __E0;
 
@@ -502,9 +498,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @brief Return the exponential integral @f$ Ei(x) @f$.
    *
    * The exponential integral is given by
-   * \f[
+   * @f[
    *   Ei(x) = -\int_{-x}^\infty \frac{e^t}{t} dt
-   * \f]
+   * @f]
    *
    * @param  __x  The argument of the exponential integral function.
    * @return  The exponential integral.
@@ -523,9 +519,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @brief Return the logarithmic integral @f$ li(x) @f$.
    *
    * The logarithmic integral is given by
-   * \f[
+   * @f[
    *   li(x) = Ei(\log(x))
-   * \f]
+   * @f]
    *
    * @param  __x  The argument of the logarithmic integral function.
    * @return  The logarithmic integral.
@@ -546,9 +542,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @brief Return the hyperbolic cosine integral @f$ li(x) @f$.
    *
    * The hyperbolic cosine integral is given by
-   * \f[
+   * @f[
    *   Chi(x) = (Ei(x) - E_1(x))/ 2
-   * \f]
+   * @f]
    *
    * @param  __x  The argument of the hyperbolic cosine integral function.
    * @return  The hyperbolic cosine integral.
@@ -569,9 +565,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @brief Return the hyperbolic sine integral @f$ li(x) @f$.
    *
    * The hyperbolic sine integral is given by
-   * \f[
+   * @f[
    *   Shi(x) = (Ei(x) - E_1(x))/ 2
-   * \f]
+   * @f]
    *
    * @param  __x  The argument of the hyperbolic sine integral function.
    * @return  The hyperbolic sine integral.
