@@ -4576,7 +4576,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Clausen S functions
 
   /**
-   * Return the Clausen sine function of order @f$ m @f$ and real argument @f$ x @f$.
+   * Return the Clausen sine function @f$ S_n(w) @f$ of order @f$ m @f$
+   * and @c float argument @f$ w @f$.
    *
    * @see clausen_s for details.
    */
@@ -4585,7 +4586,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__clausen_s<float>(__m, __w); }
 
   /**
-   * Return the Clausen sine function of order @f$ m @f$ and real argument @f$ x @f$.
+   * Return the Clausen sine function @f$ S_n(w) @f$ of order @f$ m @f$
+   * and <tt>long double</tt> argument @f$ w @f$.
    *
    * @see clausen_s for details.
    */
@@ -4594,15 +4596,17 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__clausen_s<long double>(__m, __w); }
 
   /**
-   * Return the Clausen sine function @f$  @f$ of order @f$ m @f$ and real argument @f$ x @f$.
+   * Return the Clausen sine function @f$ S_n(w) @f$ of order @f$ m @f$
+   * and real argument @f$ w @f$.
    *
    * The Clausen sine function is defined by
    * @f[
-   *    
+   *    S_n(w) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^n}
    * @f]
    *
-   * @param __m 
-   * @param __w 
+   * @tparam _Tp The real type of the argument
+   * @param __m The unsigned integer order
+   * @param __w The real argument
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
@@ -4615,7 +4619,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Clausen C functions
 
   /**
-   * Return the Clausen cosine function @f$  @f$ of order @f$ m @f$ and real argument @f$ x @f$.
+   * Return the Clausen cosine function @f$ C_n(w) @f$ of order @f$ m @f$
+   * and @c float argument @f$ w @f$.
    *
    * @see clausen_c for details.
    */
@@ -4624,7 +4629,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__clausen_c<float>(__m, __w); }
 
   /**
-   * Return the Clausen cosine function @f$  @f$ of order @f$ m @f$ and real argument @f$ x @f$.
+   * Return the Clausen cosine function @f$ C_n(w) @f$ of order @f$ m @f$
+   * and <tt>long double</tt> argument @f$ w @f$.
    *
    * @see clausen_c for details.
    */
@@ -4633,15 +4639,17 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__clausen_c<long double>(__m, __w); }
 
   /**
-   * Return the Clausen cosine function @f$  @f$ of order @f$ m @f$ and real argument @f$ x @f$.
+   * Return the Clausen cosine function @f$ C_n(w) @f$ of order @f$ m @f$
+   * and real argument @f$ w @f$.
    *
    * The Clausen cosine function is defined by
    * @f[
-   *    
+   *    C_n(w) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^n}
    * @f]
    *
-   * @param __m 
-   * @param __w 
+   * @tparam _Tp The real type of the argument
+   * @param __m The unsigned integer order
+   * @param __w The real argument
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
@@ -4654,7 +4662,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Clausen functions - real argument
 
   /**
-   * Return the Clausen function @f$  @f$ of integer order @f$ m @f$ and complex argument @f$ w @f$.
+   * Return the Clausen function @f$ Cl_n(w) @f$ of integer order @f$ m @f$
+   * and @c float argument @f$ w @f$.
    *
    * @see clausen for details.
    */
@@ -4663,7 +4672,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__clausen<float>(__m, __w); }
 
   /**
-   * Return the Clausen function @f$  @f$ of integer order @f$ m @f$ and complex argument @f$ w @f$.
+   * Return the Clausen function @f$ Cl_n(w) @f$ of integer order @f$ m @f$
+   * and <tt>long double</tt> argument @f$ w @f$.
    *
    * @see clausen for details.
    */
@@ -4672,14 +4682,17 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__clausen<long double>(__m, __w); }
 
   /**
-   * Return the Clausen function @f$  @f$ of integer order @f$ m @f$ and complex argument @f$ w @f$.
+   * Return the Clausen function @f$ Cl_n(w) @f$ of integer order @f$ m @f$
+   * and real argument @f$ w @f$.
    *
    * The Clausen function is defined by
    * @f[
-   *    
+   *    Cl_n(w) = S_n(w) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^n} \mbox{ for even } m
+   * = C_n(w) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^n} \mbox{ for odd } m
    * @f]
    *
-   * @param __m 
+   * @tparam _Tp The real type of the argument
+   * @param __m The integral order
    * @param __w The complex argument
    */
   template<typename _Tp>
@@ -4692,16 +4705,39 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Clausen functions - complex argument
 
+  /**
+   * Return the Clausen function @f$ Cl_n(w) @f$ of integer order @f$ m @f$
+   * and <tt>std::complex<float></tt> argument @f$ w @f$.
+   *
+   * @see clausen for details.
+   */
   inline std::complex<float>
   clausenf(unsigned int __m, std::complex<float> __w)
   { return std::__detail::__clausen<float>(__m, __w); }
 
+  /**
+   * Return the Clausen function @f$ Cl_n(w) @f$ of integer order @f$ m @f$
+   * and <tt>std::complex<long double></tt> argument @f$ w @f$.
+   *
+   * @see clausen for details.
+   */
   inline std::complex<long double>
   clausenl(unsigned int __m, std::complex<long double> __w)
   { return std::__detail::__clausen<long double>(__m, __w); }
 
   /**
-   * 
+   * Return the Clausen function @f$ Cl_n(w) @f$ of integer order @f$ m @f$
+   * and complex argument @f$ w @f$.
+   *
+   * The Clausen function is defined by
+   * @f[
+   *    Cl_n(w) = S_n(w) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^n} \mbox{ for even } m
+   * = C_n(w) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^n} \mbox{ for odd } m
+   * @f]
+   *
+   * @tparam _Tp The real type of the complex components
+   * @param __m The integral order
+   * @param __w The complex argument
    */
   template<typename _Tp>
     inline std::complex<__gnu_cxx::__promote_num_t<_Tp>>
@@ -4910,9 +4946,11 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The elliptic nome function is defined by
    * @f[
-   *    q(k) = 
+   *    q(k) = \exp \left(-\pi\frac{K(k)}{K(\sqrt{1-k^2})} \right)
    * @f]
+   * where @f$ K(k) @f$ is the complete elliptic function of the first kind.
    *
+   * @tparam _Tp The real type of the modulus
    * @param __k The modulus @f$ -1 <= k <= +1 @f$
    */
   template<typename _Tp>
