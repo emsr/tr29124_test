@@ -3077,12 +3077,15 @@ template<typename _Tp>
     static constexpr scalar_type _S_5pi_6 = scalar_type{5} * _S_pi_6;
     static constexpr value_type _S_i = value_type{0, 1};
 
-    _Airy() = default;
+    static constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<scalar_type>();
+    static constexpr auto _S_cNaN = value_type(_S_NaN, _S_NaN);
+
+    constexpr _Airy() = default;
     _Airy(const _Airy&) = default;
     _Airy(_Airy&&) = default;
 
-    _AiryState<value_type>
-    operator()(value_type __y);
+    constexpr _AiryState<value_type>
+    operator()(value_type __y) const;
 
     scalar_type inner_radius{_Airy_default_radii<scalar_type>::inner_radius};
     scalar_type outer_radius{_Airy_default_radii<scalar_type>::outer_radius};
@@ -3108,17 +3111,14 @@ template<typename _Tp>
  * Return the Airy functions for complex argument.
  */
 template<typename _Tp>
-  _AiryState<_Tp>
-  _Airy<_Tp>::operator()(typename _Airy<_Tp>::value_type __y)
+  constexpr _AiryState<_Tp>
+  _Airy<_Tp>::operator()(typename _Airy<_Tp>::value_type __y) const
   {
     using __cmplx = value_type;
     using __scal = scalar_type;
 
     using _OuterSum = __gnu_cxx::_KahanSum<__cmplx>;
     using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
-
-    constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<__scal>();
-    constexpr auto _S_cNaN = __cmplx(_S_NaN, _S_NaN);
 
     if (std::__detail::__isnan(__y))
       return _AiryState<_Tp>{__y, _S_cNaN, _S_cNaN, _S_cNaN, _S_cNaN};
@@ -3299,9 +3299,15 @@ template<typename _Tp>
     static constexpr scalar_type _S_pi_3
 	 = __gnu_cxx::__math_constants<scalar_type>::__pi_third;
     static constexpr scalar_type _S_2pi_3 = scalar_type{2} * _S_pi_3;
+    static constexpr scalar_type _S_pi_6 = _S_pi_3 / scalar_type{2};
+    static constexpr scalar_type _S_5pi_6 = scalar_type{5} * _S_pi_6;
+    static constexpr value_type _S_i = value_type{0, 1};
 
-    _AiryState<value_type>
-    operator()(value_type __y);
+    static constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<scalar_type>();
+    static constexpr auto _S_cNaN = value_type{_S_NaN, _S_NaN};
+
+    constexpr _AiryState<value_type>
+    operator()(value_type __y) const;
 
     scalar_type inner_radius{5};
     scalar_type outer_radius{15};
@@ -3311,12 +3317,16 @@ template<typename _Tp>
   constexpr typename _Scorer<_Tp>::scalar_type
   _Scorer<_Tp>::_S_pi_3;
 
+template<typename _Tp>
+  constexpr typename _Scorer<_Tp>::value_type
+  _Scorer<_Tp>::_S_i;
+
 /**
  * Return the Scorer functions for complex argument.
  */
 template<typename _Tp>
-  _AiryState<_Tp>
-  _Scorer<_Tp>::operator()(typename _Scorer<_Tp>::value_type __y)
+  constexpr _AiryState<_Tp>
+  _Scorer<_Tp>::operator()(typename _Scorer<_Tp>::value_type __y) const
   {
     using __cmplx = value_type;
     using __scal = scalar_type;
@@ -3324,16 +3334,13 @@ template<typename _Tp>
     using _OuterSum = __gnu_cxx::_KahanSum<__cmplx>;
     using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
 
-    constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<__scal>();
-    constexpr auto _S_cNaN = __cmplx(_S_NaN, _S_NaN);
-
     if (std::__detail::__isnan(__y))
       return _AiryState<_Tp>{__y, _S_cNaN, _S_cNaN, _S_cNaN, _S_cNaN};
 
     auto __absargy = std::abs(std::arg(__y));
     auto __absy = std::abs(__y);
     auto __sign = std::copysign(__scal{1}, std::arg(__y));
-/*
+
     _AiryState<_Tp> __airy_sums;
     std::pair<_Tp, _Tp> __scorer_sums;
     if (__absy >= inner_radius)
@@ -3355,6 +3362,8 @@ template<typename _Tp>
 	  }
       }
 
+    /// @todo This is cut and paste from _Airy.
+    /// The latter should have individual calls for Ai, Bi.
     __cmplx _Bi, _Bip;
     if (__absy < inner_radius
         || (__absy < outer_radius && __absargy < _S_pi_3))
@@ -3363,6 +3372,11 @@ template<typename _Tp>
       {
         _Bi = __scal{2} * __airy_sums.Bi + __sign * _S_i * __airy_sums.Ai;
         _Bip = __scal{2} * __airy_sums.Bip + __sign * _S_i * __airy_sums.Aip;
+	if (__absargy > _S_5pi_6)
+	  {
+	    _Bi -= __airy_sums.Bi;
+	    _Bip -= __airy_sums.Bip;
+	  }
       }
     else
       {
@@ -3373,10 +3387,29 @@ template<typename _Tp>
 	    _Bi += __sign * _S_i * __airy_sums.Ai;
 	    _Bip += __sign * _S_i * __airy_sums.Aip;
 	  }
+	if (__absargy > _S_5pi_6)
+	  {
+	    _Bi -= __airy_sums.Bi;
+	    _Bip -= __airy_sums.Bip;
+	  }
       }
 
-    return _AiryState<_Tp>{__y, _Ai, _Aip, _Bi, _Bip};
-*/
+    if (__absargy > _S_2pi_3)
+      {
+        auto _Hi = __scorer_sums.first;
+        auto _Hip = __scorer_sums.second;
+	auto _Gi = _Bi - _Hi;
+        auto _Gip = _Bip - _Hip;
+	return _AiryState<_Tp>{__y, _Gi, _Gip, _Hi, _Hip};
+      }
+    else
+      {
+        auto _Gi = -__scorer_sums.first;
+        auto _Gip = -__scorer_sums.second;
+	auto _Hi = _Bi - _Gi;
+        auto _Hip = _Bip - _Gip;
+	return _AiryState<_Tp>{__y, _Gi, _Gip, _Hi, _Hip};
+      }
   }
 
 
@@ -4293,6 +4326,56 @@ template<typename _Tp>
     data << '\n';
   }
 
+/**
+ * 
+ */
+template<typename _Tp>
+  void
+  plot_scorer(std::string filename)
+  {
+    using _Val = std::__detail::__num_traits_t<_Tp>;
+
+    auto data = std::ofstream(filename);
+
+    data.precision(std::numeric_limits<_Val>::digits10);
+    data << std::showpoint << std::scientific;
+    auto width = 8 + data.precision();
+
+    _Scorer<_Tp> scorer;
+
+    data << "\n\n";
+    data << "#"
+	 << std::setw(width) << "t"
+	 << std::setw(width) << "Gi"
+	 << std::setw(width) << "Gip"
+	 << std::setw(width) << "Hi"
+	 << std::setw(width) << "Hip"
+	 << std::setw(width) << "Wronskian"
+	 << '\n';
+    data << "#"
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << '\n';
+    for (int i = -2000; i <= +500; ++i)
+      {
+	auto t = _Tp(0.01Q * i);
+	auto scorer0 = scorer(t);
+	data << std::setw(width) << std::real(scorer0.z)
+	     << std::setw(width) << std::real(scorer0.Ai)
+	     << std::setw(width) << std::real(scorer0.Aip)
+	     << std::setw(width) << std::real(scorer0.Bi)
+	     << std::setw(width) << std::real(scorer0.Bip)
+	     << std::setw(width) << std::real(scorer0.Wronskian())
+	     << std::setw(width) << std::real(scorer0.true_Wronskian())
+	     << '\n';
+      }
+    data << "\n\n";
+  }
+
 
 int
 main()
@@ -4361,4 +4444,8 @@ main()
   splot_airy<fcmplx>("plot/airy_complex_float.txt");
   splot_airy<cmplx>("plot/airy_complex_double.txt");
   splot_airy<lcmplx>("plot/airy_complex_long_double.txt");
+
+  std::cout << "\ndouble\n======\n";
+  run_scorer<cmplx>();
+  plot_scorer<cmplx>("plot/scorer_double.txt");
 }
