@@ -24,6 +24,19 @@
                 	  '' using 1:5 with lines title 'Bi'''"
 
 
+/usr/local/bin/gnuplot --persist -e "plot [-20.0:1.0][-1.0:+1.0] \
+ 'plot/scorer_double.txt' using 1:2 with lines title 'Gi', \
+                	  '' using 1:4 with lines title 'Hi'"
+
+/usr/local/bin/gnuplot --persist -e "plot [-20.0:5.0][-1.5:+1.5] \
+ 'plot/scorer_double.txt' using 1:2 with lines title 'Gi', \
+                	  '' using 1:3 with lines title 'Gi'''"
+
+/usr/local/bin/gnuplot --persist -e "plot [-20.0:5.0][-1.5:+1.5] \
+ 'plot/scorer_double.txt' using 1:4 with lines title 'Hi', \
+                	  '' using 1:5 with lines title 'Hi'''"
+
+
 /usr/local/bin/gnuplot --persist -e "splot [-20.0:5.0][-5.0:5.0][-1.5:+1.5] \
  'plot/airy_complex_double.txt' title 'Ai'"
 
