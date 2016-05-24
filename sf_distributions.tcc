@@ -482,12 +482,49 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
+   * @brief  Return the binomial probability mass function.
+   *
+   * The binomial cumulative distribution function is related
+   * to the incomplete beta function:
+   * @f[
+   *   f(k|n,p) = \binom{n}{k}p^k(1-p)^{n-k}
+   * @f]
+   *
+   * @param __p 
+   * @param __n 
+   * @param __k 
+   */
+  template<typename _Tp>
+    _Tp
+    __binomial_pdf(_Tp __p, unsigned int __n, unsigned int __k)
+    {
+      if (__isnan(__p))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__p < _Tp{0} || __p > _Tp{1})
+	std::__throw_domain_error(__N("__binomial_cdf: "
+				      "probability is out of range"));
+      else if (__k > __n)
+	return _Tp{0};
+      else if (__n == 0)
+	return _Tp{1};
+      else if (__k == 0)
+	return std::pow(_Tp{1} - __p, __n);
+      else if (__k == __n)
+	return std::pow(__p, __n);
+      else
+	return __bincoef(__n, __k)
+	     * std::pow(__p, __k)
+	     * std::pow(_Tp{1} - __p, __n - __k)
+    }
+
+
+  /**
    * @brief  Return the binomial cumulative distribution function.
    *
    * The binomial cumulative distribution function is related
    * to the incomplete beta function:
    * @f[
-   *   P(p|n, k) = I_p(k, n-k+1)
+   *   P(k|n,p) = I_p(k, n-k+1)
    * @f]
    *
    * @param __p 
@@ -517,7 +554,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The binomial cumulative distribution function is related
    * to the incomplete beta function:
    * @f[
-   *   Q(p|n, k) = I_{1-p}(n-k+1, k)
+   *   Q(k|n,p) = I_{1-p}(n-k+1, k)
    * @f]
    *
    * @param __p 
