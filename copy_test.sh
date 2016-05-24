@@ -74,6 +74,7 @@ ${tool} ${text_dir}/pochhammer_l/*       ${ext_dir}/pochhammer_l
 ${tool} ${text_dir}/pochhammer_u/*       ${ext_dir}/pochhammer_u
 ${tool} ${text_dir}/psi/*                ${ext_dir}/psi
 ${tool} ${text_dir}/sinc/*               ${ext_dir}/sinc
+${tool} ${text_dir}/sinc_pi/*            ${ext_dir}/sinc_pi
 ${tool} ${text_dir}/sinhint/*            ${ext_dir}/sinhint
 ${tool} ${text_dir}/sinint/*             ${ext_dir}/sinint
 ${tool} ${text_dir}/sph_bessel_i/*       ${ext_dir}/sph_bessel_i

@@ -1019,7 +1019,7 @@ template<typename Real>
 	     "GSL",
 	     file_fresnel_s);
 
-    // Normalized sine cardinal function.
+    // Normalized sinus cardinal function.
     std::cout << "sinc" << std::endl;
     basename = "sinc";
     filename = get_filename(path, prefix, basename, "",  ".cc");
@@ -1031,7 +1031,7 @@ template<typename Real>
 	     "GSL",
 	     file_sinc);
 
-    // Unnormalized sine cardinal function.
+    // Sinus cardinal function.
     std::cout << "sinc_pi" << std::endl;
     basename = "sinc_pi";
     filename = get_filename(path, prefix, basename, "",  ".cc");

@@ -507,7 +507,7 @@ sinc_pi(double x)
   return boost::math::sinc_pi(x);
 }
 
-/// Sinus cardinal function.
+/// Normalized sinus cardinal function.
 double
 sinc(double x)
 {
@@ -521,7 +521,7 @@ sinhc_pi(double x)
   return std::sinh(x) / x;
 }
 
-/// Hyperbolic sinus cardinal function.
+/// Normalized hyperbolic sinus cardinal function.
 double
 sinhc(double x)
 {
