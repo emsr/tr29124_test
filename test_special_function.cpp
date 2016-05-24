@@ -756,7 +756,18 @@ template<typename Real>
 	    fill_argument(std::make_pair(Real{0}, Real{+5}),
 	        	  std::make_pair(false, true), 101));
 
-    //  Sine cardinal function.
+    //  Normalized sinus cardinal function.
+    std::cout << "gsl_sinc" << std::endl;
+    basename = "sinc";
+    runtest(gsl::sinc, basename,
+	    fill_argument(std::make_pair(-20.0, +20.0),
+			  std::make_pair(false, true), 401));
+    basename = ns + "_sinc";
+    runtest(sinc, basename,
+	    fill_argument(std::make_pair(Real{20}, Real{+20}),
+	        	  std::make_pair(false, true), 401));
+
+    //  Sinus cardinal function.
     std::cout << "gsl_sinc_pi" << std::endl;
     basename = "sinc_pi";
     runtest(gsl::sinc_pi, basename,

@@ -334,7 +334,7 @@ namespace __gnu_cxx
 
   inline __float128
   ibetacq(__float128 __a, __float128 __b, __float128 __x)
-  { return 1.0F - ibetaq(__a, __b, __x); }
+  { return 1.0Q - ibetaq(__a, __b, __x); }
 
   inline __float128
   fresnel_sq(__float128 __x)
@@ -349,8 +349,8 @@ namespace __gnu_cxx
   { return std::__detail::__dawson<__float128>(__x); }
 
   inline __float128
-  expint_e1q(__float128 __x)
-  { return std::__detail::__expint_E1<__float128>(__x); }
+  expintq(unsigned int __n, __float128 __x)
+  { return std::__detail::__expint<__float128>(__n, __x); }
 
   inline __float128
   expint_enq(unsigned int __n, __float128 __x)

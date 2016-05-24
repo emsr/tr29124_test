@@ -3,6 +3,7 @@
 *.o
 *.exe
 a.out
+*.ppu
 
 zeta
 

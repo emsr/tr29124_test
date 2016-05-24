@@ -919,7 +919,7 @@ sinc_pi(double x)
     return result.val;
 }
 
-/// Sinus cardinal function.
+/// Normalized sinus cardinal function.
 double
 sinc(double x)
 {
@@ -942,7 +942,7 @@ sinhc_pi(double x)
   return 0.0;
 }
 
-/// Hyperbolic sinus cardinal function.
+/// Normalized hyperbolic sinus cardinal function.
 double
 sinhc(double x)
 {
