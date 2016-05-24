@@ -197,13 +197,13 @@ double fresnel_s(double x);
 /// Sinus cardinal function.
 double sinc_pi(double x);
 
-/// Sinus cardinal function.
+/// Normalized sinus cardinal function.
 double sinc(double x);
 
 /// Hyperbolic sinus cardinal function.
 double sinhc_pi(double x);
 
-/// Hyperbolic sinus cardinal function.
+/// Normalized hyperbolic sinus cardinal function.
 double sinhc(double x);
 
 /// Log upper Pochhammer symbol.

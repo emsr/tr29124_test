@@ -217,8 +217,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::radpoly "radpoly - Radial polynomials"
    * - @ref __gnu_cxx::sinhc "sinhc - Hyperbolic sinus cardinal function"
    * - @ref __gnu_cxx::sinhc_pi "sinhc_pi - "
-   * - @ref __gnu_cxx::sinc "sinc - Sinus cardinal function"
-   * - @ref __gnu_cxx::sinc_pi "sinc_pi - "
+   * - @ref __gnu_cxx::sinc "sinc - Normalized sinus cardinal function"
+   * - @ref __gnu_cxx::sinc_pi "sinc_pi - Sinus cardinal function"
    * - @ref __gnu_cxx::sinhint "sinhint - Hyperbolic sine integral"
    * - @ref __gnu_cxx::sinint "sinint - Sine integral"
    * - @ref __gnu_cxx::sph_bessel_i "sph_bessel_i - Spherical regular modified Bessel functions"
@@ -1477,24 +1477,38 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__conf_hyperg_lim<__type>(__c, __x);
     }
 
-  // Unnormalized sinus cardinal functions
+  // Sinus cardinal functions
 
   /**
-   * 
+   * Return the sinus cardinal function @f$ sinc_\pi(x) @f$
+   * for @c float argument @c __x.
+   *
+   * @see sinc_pi for details.
    */
   inline float
   sinc_pif(float __x)
   { return std::__detail::__sinc_pi<float>(__x); }
 
   /**
-   * 
+   * Return the sinus cardinal function @f$ sinc_\pi(x) @f$
+   * for <tt>long double</tt> argument @c __x.
+   *
+   * @see sinc_pi for details.
    */
   inline long double
   sinc_pil(long double __x)
   { return std::__detail::__sinc_pi<long double>(__x); }
 
   /**
-   * 
+   * Return the sinus cardinal function @f$ sinc_\pi(x) @f$
+   * for real argument @c __x.
+   * The sinus cardinal function is defined by:
+   * @f[
+   *    sinc_\pi(x) = \frac{sin(x)}{x}
+   * @f]
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __x The argument
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
@@ -1507,21 +1521,35 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Normalized sinus cardinal functions
 
   /**
-   * 
+   * Return the normalized sinus cardinal function @f$ sinc(x) @f$
+   * for @c float argument @c __x.
+   *
+   * @see sinc for details.
    */
   inline float
   sincf(float __x)
   { return std::__detail::__sinc<float>(__x); }
 
   /**
-   * 
+   * Return the normalized sinus cardinal function @f$ sinc(x) @f$
+   * for <tt>long double</tt> argument @c __x.
+   *
+   * @see sinc for details.
    */
   inline long double
   sincl(long double __x)
   { return std::__detail::__sinc<long double>(__x); }
 
   /**
-   * 
+   * Return the normalized sinus cardinal function @f$ sinc(x) @f$
+   * for real argument @c __x.
+   * The normalized sinus cardinal function is defined by:
+   * @f[
+   *    sinc(x) = \frac{sin(\pi x)}{\pi x}
+   * @f]
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __x The argument
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_num_t<_Tp>
