@@ -44,6 +44,7 @@
 /usr/local/bin/gnuplot
 set xzeroaxis
 set yzeroaxis
+set grid
 
 plot [-20.0:5.0][-1.0:+1.0] "plot/airy_float.txt" using 1:2 with lines title "Ai(x)", "" using 1:4 with lines title "Bi(x)"
 plot [-20.0:5.0][-1.5:+1.5] "plot/airy_float.txt" using 1:2 with lines title "Ai(x)", "" using 1:3 with lines title "Ai'(x)"
