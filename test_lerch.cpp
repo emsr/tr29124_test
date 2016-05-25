@@ -177,13 +177,27 @@
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       constexpr auto _S_maxit = 1000;
       __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<_Tp>> _WDvW;
-      auto _VwT = __gnu_cxx::__make_VanWijngaardenCompressor(__lerch_term<_Tp>(__z, __s, __a));
-      for (auto __k = 0; __k < _S_maxit; ++__k)
+      if (__z >= _Tp{0})
 	{
-	  auto __term = _VwT[__k];
-	  _WDvW += __term;
-	  if (std::abs(__term) < _S_eps * std::abs(_WDvW()))
-	    return _WDvW();
+	  auto _VwT = __gnu_cxx::__make_VanWijngaardenCompressor(__lerch_term<_Tp>(__z, __s, __a));
+	  for (auto __k = 0; __k < _S_maxit; ++__k)
+	    {
+	      auto __term = _VwT[__k];
+	      _WDvW += __term;
+	      if (std::abs(__term) < _S_eps * std::abs(_WDvW()))
+		return _WDvW();
+	    }
+	}
+      else
+	{
+	  auto _LT = __lerch_term<_Tp>(__z, __s, __a);
+	  for (auto __k = 0; __k < _S_maxit; ++__k)
+	    {
+	      auto __term = _LT(__k);
+	      _WDvW += __term;
+	      if (std::abs(__term) < _S_eps * std::abs(_WDvW()))
+		return _WDvW();
+	    }
 	}
     }
 
@@ -208,6 +222,31 @@
 	return __lerch_sum(__z, __s, __a);
     }
 
+struct lerch_testcase
+{
+  double phi;
+  double z;
+  double s;
+  double a;
+};
+
+lerch_testcase
+lerch_tests[12]
+{
+  { 1.0000000000000000e+00, -1.0000000000000000e+00,  2.0000000000000000e+00,  1.0000000000000000e+00},
+  { 1.0000000000000000e+00,  9.9999000000000005e-01,  2.0000000000000000e+00, -1.0000000000000000e+00},
+  { 1.0000000000000000e+00,  9.9999000000000005e-01,  2.2999999999999998e+00, -1.5000000000000000e+00},
+  { 1.0000000000000000e+00,  9.9999998999999995e-01,  1.0000000000000000e+00,  1.0000000000000000e+00},
+  { 1.6448253852467796e+00,  9.9999000000000005e-01,  2.0000000000000000e+00,  1.0000000000000000e+00},
+  { 8.2246832662591696e-01, -9.9999000000000005e-01,  2.0000000000000000e+00,  1.0000000000000000e+00},
+  { 9.5971489709979654e-04,  9.9999000000000005e-01,  2.0000000000000000e+00,  1.0000000000000000e+03},
+  { 1.4275808137603091e-01,  2.9999999999999999e-01,  2.0000000000000000e+00, -4.5000000000000000e+00},
+  { 1.0000025000111110e+00,  1.0000000000000001e-05,  2.0000000000000000e+00,  1.0000000000000000e+00},
+  { 9.9998425044098438e-01, -6.3000000000000000e-05,  2.0000000000000000e+00,  1.0000000000000000e+00},
+  { 6.5909228798196373e-01,  3.4709929976435479e-06,  1.0000000000000000e+00,  1.5172413793103448e+00},
+  { 2.5880201290103731e+17,  2.9999999999999997e-04,  2.0000000000000000e+00, -3.0000000000000102e+00},
+};
+
 int
 main()
 {
@@ -216,18 +255,41 @@ main()
   std::cout.precision(std::numeric_limits<Tp>::digits10);
   auto width = 8 + std::numeric_limits<Tp>::digits10;
 
-  auto test01 = 1.0000000000000000e+00 - __lerch_delta_vanwijngaarden_sum(-1.0000000000000000e+00,  2.0000000000000000e+00,  1.0000000000000000e+00);
-  auto test02 = 1.0000000000000000e+00 - __lerch_delta_vanwijngaarden_sum( 9.9999000000000005e-01,  2.0000000000000000e+00, -1.0000000000000000e+00);
-  auto test03 = 1.0000000000000000e+00 - __lerch_delta_vanwijngaarden_sum( 9.9999000000000005e-01,  2.2999999999999998e+00, -1.5000000000000000e+00);
-  auto test04 = 1.0000000000000000e+00 - __lerch_delta_vanwijngaarden_sum( 9.9999998999999995e-01,  1.0000000000000000e+00,  1.0000000000000000e+00);
-  auto test05 = 1.6448253852467796e+00 - __lerch_delta_vanwijngaarden_sum( 9.9999000000000005e-01,  2.0000000000000000e+00,  1.0000000000000000e+00);
-  auto test06 = 8.2246832662591696e-01 - __lerch_delta_vanwijngaarden_sum(-9.9999000000000005e-01,  2.0000000000000000e+00,  1.0000000000000000e+00);
-  auto test07 = 9.5971489709979654e-04 - __lerch_delta_vanwijngaarden_sum( 9.9999000000000005e-01,  2.0000000000000000e+00,  1.0000000000000000e+03);
-  auto test08 = 1.4275808137603091e-01 - __lerch_delta_vanwijngaarden_sum( 2.9999999999999999e-01,  2.0000000000000000e+00, -4.5000000000000000e+00);
-  auto test09 = 1.0000025000111110e+00 - __lerch_delta_vanwijngaarden_sum( 1.0000000000000001e-05,  2.0000000000000000e+00,  1.0000000000000000e+00);
-  auto test10 = 9.9998425044098438e-01 - __lerch_delta_vanwijngaarden_sum(-6.3000000000000000e-05,  2.0000000000000000e+00,  1.0000000000000000e+00);
-  auto test11 = 6.5909228798196373e-01 - __lerch_delta_vanwijngaarden_sum( 3.4709929976435479e-06,  1.0000000000000000e+00,  1.5172413793103448e+00);
-  auto test12 = 2.5880201290103731e+17 - __lerch_delta_vanwijngaarden_sum( 2.9999999999999997e-04,  2.0000000000000000e+00, -3.0000000000000102e+00);
+  std::cout << "case " << std::setw(2) << "i"
+	    << std::setw(width) << "z"
+	    << std::setw(width) << "a"
+	    << std::setw(width) << "s"
+	    << std::setw(width) << "phi"
+	    << std::setw(width) << "phi"
+	    << std::setw(width) << "delta-phi\n";
+  std::cout << "---- " << std::setw(2) << "-"
+	    << std::setw(width) << "-"
+	    << std::setw(width) << "-"
+	    << std::setw(width) << "-"
+	    << std::setw(width) << "---"
+	    << std::setw(width) << "---"
+	    << std::setw(width) << "---------\n";
+  for (int i = 0; i < 12; ++i)
+    {
+      const auto& tcase = lerch_tests[i];
+      std::cout << "case " << std::setw(2) << i + 1
+                << std::setw(width) << tcase.z
+                << std::setw(width) << tcase.a
+                << std::setw(width) << tcase.s
+                << std::setw(width) << tcase.phi;
+      try
+      {
+	auto phi = __lerch_delta_vanwijngaarden_sum(tcase.z,  tcase.a,  tcase.s);
+	auto test = tcase.phi - phi;
+	std::cout << std::setw(width) << phi
+                  << std::setw(width) << test;
+      }
+      catch (...)
+      {
+	std::cout << "fail";
+      }
+      std::cout << std::endl;
+    }
 
   auto s = 1.0;
   auto a = 2.0;
