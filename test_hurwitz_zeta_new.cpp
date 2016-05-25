@@ -12,7 +12,7 @@
 #include <iomanip>
 #include <vector>
 #include "float128.h"
-#include "vanWijngaardenSum.tcc"
+#include "summation.h"
 
   //  From sf_gamma.tcc
   template<typename _Tp>
