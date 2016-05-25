@@ -10,7 +10,7 @@
 #include <iomanip>
 #include <limits>
 #include <ext/cmath>
-#include "specfun_local.h"
+#include "bits/specfun.h"
 #include "gsl_wrap.h"
 
 double

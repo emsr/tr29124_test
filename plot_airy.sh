@@ -1,5 +1,5 @@
 
-/usr/local/bin/gnuplot --persist -e "plot \
+/usr/local/bin/gnuplot --persist -e "plot [-20.0:5.0][-1.5:+1.5] \
  'plot/airy_float.txt' using 1:2 with lines title 'Ai', \
         	    '' using 1:3 with lines title 'Ai''', \
         	    '' using 1:4 with lines title 'Bi', \
@@ -11,7 +11,7 @@
         	     '' using 1:4 with lines title 'Bi', \
         	     '' using 1:5 with lines title 'Bi'''"
 
-/usr/local/bin/gnuplot --persist -e "plot [-20.0:1.0][-1.0:+1.0] \
+/usr/local/bin/gnuplot --persist -e "plot [-20.0:5.0][-1.0:+1.0] \
  'plot/airy_long_double.txt' using 1:2 with lines title 'Ai', \
                 	  '' using 1:4 with lines title 'Bi'"
 
@@ -24,7 +24,7 @@
                 	  '' using 1:5 with lines title 'Bi'''"
 
 
-/usr/local/bin/gnuplot --persist -e "plot [-20.0:1.0][-1.0:+1.0] \
+/usr/local/bin/gnuplot --persist -e "plot [-20.0:5.0][-1.0:+1.0] \
  'plot/scorer_double.txt' using 1:2 with lines title 'Gi', \
                 	  '' using 1:4 with lines title 'Hi'"
 
@@ -41,19 +41,25 @@
  'plot/airy_complex_double.txt' title 'Ai'"
 
 
+/usr/local/bin/gnuplot
+set xzeroaxis
+set yzeroaxis
 
+plot [-20.0:5.0][-1.0:+1.0] "plot/airy_float.txt" using 1:2 with lines title "Ai(x)", "" using 1:4 with lines title "Bi(x)"
+plot [-20.0:5.0][-1.5:+1.5] "plot/airy_float.txt" using 1:2 with lines title "Ai(x)", "" using 1:3 with lines title "Ai'(x)"
+plot [-20.0:5.0][-1.5:+1.5] "plot/airy_float.txt" using 1:4 with lines title "Bi(x)", "" using 1:5 with lines title "Bi'(x)"
 
-plot [-20.0:5.0][-1.0:+1.0] 'plot/airy_float.txt' using 1:2 with lines title 'Ai(x)', '' using 1:4 with lines title 'Bi(x)'
-plot [-20.0:5.0][-1.5:+1.5] 'plot/airy_float.txt' using 1:2 with lines title 'Ai(x)',  '' using 1:3 with lines title 'Ai''(x)'
-plot [-20.0:5.0][-1.5:+1.5] 'plot/airy_float.txt' using 1:4 with lines title 'Bi(x)',  '' using 1:5 with lines title 'Bi''(x)'
+plot [-20.0:5.0][-1.0:+1.0] "plot/airy_double.txt" using 1:2 with lines title "Ai(x)", "" using 1:4 with lines title "Bi(x)"
+plot [-20.0:5.0][-1.5:+1.5] "plot/airy_double.txt" using 1:2 with lines title "Ai(x)", "" using 1:3 with lines title "Ai'(x)"
+plot [-20.0:5.0][-1.5:+1.5] "plot/airy_double.txt" using 1:4 with lines title "Bi(x)", "" using 1:5 with lines title "Bi'(x)"
 
-plot [-20.0:5.0][-1.0:+1.0] 'plot/airy_double.txt' using 1:2 with lines title 'Ai(x)', '' using 1:4 with lines title 'Bi(x)'
-plot [-20.0:5.0][-1.5:+1.5] 'plot/airy_double.txt' using 1:2 with lines title 'Ai(x)',  '' using 1:3 with lines title 'Ai''(x)'
-plot [-20.0:5.0][-1.5:+1.5] 'plot/airy_double.txt' using 1:4 with lines title 'Bi(x)',  '' using 1:5 with lines title 'Bi''(x)'
+plot [-20.0:5.0][-1.0:+1.0] "plot/airy_long_double.txt" using 1:2 with lines title "Ai(x)", "" using 1:4 with lines title "Bi(x)"
+plot [-20.0:5.0][-1.5:+1.5] "plot/airy_long_double.txt" using 1:2 with lines title "Ai(x)", "" using 1:3 with lines title "Ai'(x)"
+plot [-20.0:5.0][-1.5:+1.5] "plot/airy_long_double.txt" using 1:4 with lines title "Bi(x)", "" using 1:5 with lines title "Bi'(x)"
 
-plot [-20.0:5.0][-1.0:+1.0] 'plot/airy_long_double.txt' using 1:2 with lines title 'Ai(x)', '' using 1:4 with lines title 'Bi(x)'
-plot [-20.0:5.0][-1.5:+1.5] 'plot/airy_long_double.txt' using 1:2 with lines title 'Ai(x)',  '' using 1:3 with lines title 'Ai''(x)'
-plot [-20.0:5.0][-1.5:+1.5] 'plot/airy_long_double.txt' using 1:4 with lines title 'Bi(x)',  '' using 1:5 with lines title 'Bi''(x)'
+plot [-20.0:5.0][-1.0:+1.0] "plot/scorer_double.txt" using 1:2 with lines title "Gi", "" using 1:4 with lines title "Hi"
+plot [-20.0:5.0][-1.5:+1.5] "plot/scorer_double.txt" using 1:2 with lines title "Gi", "" using 1:3 with lines title "Gi'"
+plot [-20.0:5.0][-1.5:+1.5] "plot/scorer_double.txt" using 1:4 with lines title "Hi", "" using 1:5 with lines title "Hi'"
 
 
 /usr/local/bin/gnuplot

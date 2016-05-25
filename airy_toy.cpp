@@ -1447,11 +1447,8 @@ br ''
       static std::pair<std::complex<_Tp>, std::complex<_Tp>>
       Bi(std::complex<_Tp> __t);
 
-      static std::pair<std::complex<_Tp>, std::complex<_Tp>>
-      Hi(std::complex<_Tp> __t);
-
-      static std::pair<std::complex<_Tp>, std::complex<_Tp>>
-      Gi(std::complex<_Tp> __t);
+      static _AiryState<std::complex<_Tp>>
+      Scorer(std::complex<_Tp> __t);
 
     private:
 
@@ -1679,7 +1676,7 @@ br ''
     { return _S_AiBi(__t, std::make_pair(_S_Bi0, _S_Bip0)); }
 
   /**
-   * Return the Scorer function by using the series expansions of
+   * Return the Scorer functions by using the series expansions of
    * the auxilliary Airy functions:
    * @f[
    *    fai(x) = \sum_{k=0}^\infty \frac{(2k+1)!!!x^{3k}}{(2k+1)!}
@@ -1696,12 +1693,16 @@ br ''
    * @f]
    * where @f$ Hi(0) = 2/(3^{7/6}\Gamma(2/3)) @f$
    *   and @f$ Hi'(0) = 2/(3^{5/6}\Gamma(1/3)) @f$.
+   * The other Scorer function is found from the identity
+   * @f[
+   *    Gi(x) + Hi(x) = Bi(x)
+   * @f]
    *
    * @tparam _Tp A real type
    */
   template<typename _Tp>
-    std::pair<std::complex<_Tp>, std::complex<_Tp>>
-    _Airy_series<_Tp>::Hi(std::complex<_Tp> __t)
+    _AiryState<std::complex<_Tp>>
+    _Airy_series<_Tp>::Scorer(std::complex<_Tp> __t)
     {
       const auto __log10t = std::log10(std::abs(__t));
       const auto __ttt = __t * __t * __t;
@@ -1744,27 +1745,12 @@ br ''
 
       auto _Hi = _S_Hi0 * (_F + _G + _H);
       auto _Hip = _S_Hip0 * (_Fp + _Gp + _Hp);
+      auto _Bi = _S_Bi0 * _F + _S_Bip0 * _G;
+      auto _Bip = _S_Bi0 * _Fp + _S_Bip0 * _Gp;
+      auto _Gi = _Bi - _Hi;
+      auto _Gip = _Bip - _Hip;
 
-      return std::make_pair(_Hi, _Hip);
-    }
-
-  /**
-   * Return the Scorer function @f$ Gi(x) @f$ by using the series expansions of
-   * the Scorer function @f$ Hi(x) @f$, the Airy function of the second kind
-   * @f$ Bi(x) @f$, and the relation:
-   * @f[
-   *    Gi(x) + Hi(x) = Bi(x)
-   * @f]
-   *
-   * @tparam _Tp A real type
-   */
-  template<typename _Tp>
-    std::pair<std::complex<_Tp>, std::complex<_Tp>>
-    _Airy_series<_Tp>::Gi(std::complex<_Tp> __t)
-    {
-      auto __bi = _S_AiBi(__t, std::make_pair(_S_Bi0, _S_Bip0));
-      auto __hi = Hi(__t);
-      return std::make_pair(__bi.first - __hi.first, __bi.second - __hi.second);
+      return _AiryState<std::complex<_Tp>>{__t, _Gi, _Gip, _Hi, _Hip};
     }
 
   /**
@@ -3133,24 +3119,24 @@ template<typename _Tp>
 	if (__absy < outer_radius)
 	  {
 	    auto __beta = __scal{1};
-            _Airy_asymp_series<_InnerSum> __asymp(_InnerSum{__beta});
+	    _Airy_asymp_series<_InnerSum> __asymp(_InnerSum{__beta});
 	    __sums = __asymp(__y);
 	  }
 	else
 	  {
-            _Airy_asymp_series<_OuterSum> __asymp(_OuterSum{});
-            __sums = __asymp(__y);
+	    _Airy_asymp_series<_OuterSum> __asymp(_OuterSum{});
+	    __sums = __asymp(__y);
 	  }
       }
 
     __cmplx _Bi, _Bip;
     if (__absy < inner_radius
-        || (__absy < outer_radius && __absargy < _S_pi_3))
+	|| (__absy < outer_radius && __absargy < _S_pi_3))
       std::tie(_Bi, _Bip) = _Airy_series<__scal>::Bi(__y);
     else if (__absy < outer_radius)
       {
-        _Bi = __scal{2} * __sums.Bi + __sign * _S_i * __sums.Ai;
-        _Bip = __scal{2} * __sums.Bip + __sign * _S_i * __sums.Aip;
+	_Bi = __scal{2} * __sums.Bi + __sign * _S_i * __sums.Ai;
+	_Bip = __scal{2} * __sums.Bip + __sign * _S_i * __sums.Aip;
 	if (__absargy > _S_5pi_6)
 	  {
 	    _Bi -= __sums.Bi;
@@ -3176,12 +3162,12 @@ template<typename _Tp>
     __cmplx _Ai, _Aip;
     if ((__absy < inner_radius
 	        + outer_radius * __absargy / _S_pi && __absargy < _S_2pi_3)
-        || (__absy < outer_radius && __absargy >= _S_2pi_3))
+	|| (__absy < outer_radius && __absargy >= _S_2pi_3))
       std::tie(_Ai, _Aip) = _Airy_series<__scal>::Ai(__y);
     else if (__absy < outer_radius)
       {
-        _Ai = __sums.Ai;
-        _Aip = __sums.Aip;
+	_Ai = __sums.Ai;
+	_Aip = __sums.Aip;
       }
     else
       {
@@ -3198,7 +3184,7 @@ template<typename _Tp>
   }
 
 /**
- * Class to manage the asymptotic series for Airy functions.
+ * Class to manage the asymptotic series for Scorer functions.
  *
  * @tparam _Sum A sum type
  */
@@ -3245,7 +3231,7 @@ template<typename _Sum>
 
 
 /**
- * Return the asymptotic expansion of the Scorer Hi function.
+ * Return the asymptotic expansion of the Scorer Hi function and its derivaive.
  *
  * @tparam _Sum A sum type
  */
@@ -3348,16 +3334,16 @@ template<typename _Tp>
 	if (__absy < outer_radius)
 	  {
 	    auto __beta = __scal{1};
-            _Airy_asymp_series<_InnerSum> __airy(_InnerSum{__beta});
-            _Scorer_asymp_series<_InnerSum> __scorer(_InnerSum{__beta});
+	    _Airy_asymp_series<_InnerSum> __airy(_InnerSum{__beta});
 	    __airy_sums = __airy(__y);
+	    _Scorer_asymp_series<_InnerSum> __scorer(_InnerSum{__beta});
 	    __scorer_sums = __scorer(__y);
 	  }
 	else
 	  {
-            _Airy_asymp_series<_OuterSum> __asymp(_OuterSum{});
-            _Scorer_asymp_series<_OuterSum> __scorer(_OuterSum{});
-            __airy_sums = __asymp(__y);
+	    _Airy_asymp_series<_OuterSum> __asymp(_OuterSum{});
+	    __airy_sums = __asymp(__y);
+	    _Scorer_asymp_series<_OuterSum> __scorer(_OuterSum{});
 	    __scorer_sums = __scorer(__y);
 	  }
       }
@@ -3366,12 +3352,12 @@ template<typename _Tp>
     /// The latter should have individual calls for Ai, Bi.
     __cmplx _Bi, _Bip;
     if (__absy < inner_radius
-        || (__absy < outer_radius && __absargy < _S_pi_3))
+	|| (__absy < outer_radius && __absargy < _S_pi_3))
       std::tie(_Bi, _Bip) = _Airy_series<__scal>::Bi(__y);
     else if (__absy < outer_radius)
       {
-        _Bi = __scal{2} * __airy_sums.Bi + __sign * _S_i * __airy_sums.Ai;
-        _Bip = __scal{2} * __airy_sums.Bip + __sign * _S_i * __airy_sums.Aip;
+	_Bi = __scal{2} * __airy_sums.Bi + __sign * _S_i * __airy_sums.Ai;
+	_Bip = __scal{2} * __airy_sums.Bip + __sign * _S_i * __airy_sums.Aip;
 	if (__absargy > _S_5pi_6)
 	  {
 	    _Bi -= __airy_sums.Bi;
@@ -3394,21 +3380,28 @@ template<typename _Tp>
 	  }
       }
 
-    if (__absargy > _S_2pi_3)
+    if (__absy < inner_radius)
       {
-        auto _Hi = __scorer_sums.first;
-        auto _Hip = __scorer_sums.second;
-	auto _Gi = _Bi - _Hi;
-        auto _Gip = _Bip - _Hip;
-	return _AiryState<_Tp>{__y, _Gi, _Gip, _Hi, _Hip};
+	return _Airy_series<__scal>::Scorer(__y);
       }
     else
       {
-        auto _Gi = -__scorer_sums.first;
-        auto _Gip = -__scorer_sums.second;
-	auto _Hi = _Bi - _Gi;
-        auto _Hip = _Bip - _Gip;
-	return _AiryState<_Tp>{__y, _Gi, _Gip, _Hi, _Hip};
+	if (__absargy < _S_2pi_3)
+	  {
+	    auto _Hi = __scorer_sums.first;
+ 	    auto _Hip = __scorer_sums.second;
+	    auto _Gi = _Bi - _Hi;
+	    auto _Gip = _Bip - _Hip;
+	    return _AiryState<_Tp>{__y, _Gi, _Gip, _Hi, _Hip};
+	  }
+	else
+	  {
+	    auto _Gi = -__scorer_sums.first;
+	    auto _Gip = -__scorer_sums.second;
+	    auto _Hi = _Bi - _Gi;
+	    auto _Hip = _Bip - _Gip;
+	    return _AiryState<_Tp>{__y, _Gi, _Gip, _Hi, _Hip};
+	  }
       }
   }
 
