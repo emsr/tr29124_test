@@ -1716,7 +1716,7 @@ br ''
 	  if (std::abs(__t) < _S_eps)
 	    break;
 	  auto __xx = __log10t * (3 * (__n + 1) + 1)
-		    + _S_slope_G * __n + _S_intercept_G;
+		    + _S_slope_H * __n + _S_intercept_H;
 	  if (__xx < _S_log10min)
 	    break;
 	  __term *= __ttt;
@@ -1728,13 +1728,13 @@ br ''
       __term = __cmplx{_Tp{1}};
       auto _Fp = __cmplx{_Tp{0}};
       auto _Gp = __cmplx{_Tp{1}};
-      auto _Hp = __cmplx{_Tp{1}};
+      auto _Hp = __t;
       for (int __n = 0; __n < __max_FG<_Tp>; ++__n)
 	{
 	  if (std::abs(__t) < _S_eps)
 	    break;
 	  auto __xx = __log10t * 3 * (__n + 1)
-		    + _S_slope_Gp * __n + _S_intercept_Gp;
+		    + _S_slope_Hp * __n + _S_intercept_Hp;
 	  if (__xx < _S_log10min)
 	    break;
 	  __term *= __ttt;
@@ -3022,7 +3022,7 @@ template<>
   {
 
     constexpr static float inner_radius{2.5F};
-    constexpr static float outer_radius{6.5F};
+    constexpr static float outer_radius{6.0F};
   };
 
 template<>
@@ -3576,6 +3576,7 @@ template<typename _Tp>
 		  << std::setw(width) << std::real(airy.true_Wronskian())
 		  << '\n';
       }
+    std::cout << std::endl;
   }
 
 
@@ -3621,6 +3622,7 @@ template<typename _Tp>
 		  << std::setw(width) << std::real(airy.true_Wronskian())
 		  << '\n';
       }
+    std::cout << std::endl;
   }
 
 
@@ -3666,7 +3668,7 @@ template<typename _Tp>
 		  << std::setw(width) << std::real(airy.true_Wronskian())
 		  << '\n';
       }
-    std::cout << '\n';
+    std::cout << std::endl;
   }
 
 
@@ -3713,7 +3715,7 @@ template<typename _Tp>
 		  << std::setw(width) << std::real(airy.true_Wronskian())
 		  << '\n';
       }
-    std::cout << '\n';
+    std::cout << std::endl;
   }
 
 
@@ -3760,7 +3762,50 @@ template<typename _Tp>
 		  << std::setw(width) << std::real(scorer.true_Wronskian())
 		  << '\n';
       }
-    std::cout << '\n';
+    std::cout << std::endl;
+  }
+
+template<typename _Tp>
+  void
+  run_scorer_series()
+  {
+    using __cmplx = std::complex<_Tp>;
+
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout << std::showpoint << std::scientific;
+    auto width = 4 + 2 * (8 + std::cout.precision());
+
+    std::cout << "\n\nScorer Series Deathmatch\n";
+    std::cout << "++++++++++++++++++++++++++++++++\n";
+    std::cout << std::setw(width) << "t"
+	      << std::setw(width) << "Gi"
+	      << std::setw(width) << "Gip"
+	      << std::setw(width) << "Hi"
+	      << std::setw(width) << "Hip"
+	      << std::setw(width) << "Wronskian"
+	      << '\n';
+    std::cout << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << '\n';
+
+    for (int i = -500; i <= +500; ++i)
+      {
+	auto t = __cmplx{_Tp(0.01Q * i)};
+	auto airy1 = _Airy_series<_Tp>::Scorer(t);
+	std::cout << std::setw(width) << airy1.z
+		  << std::setw(width) << airy1.Ai
+		  << std::setw(width) << airy1.Aip
+		  << std::setw(width) << airy1.Bi
+		  << std::setw(width) << airy1.Bip
+		  << std::setw(width) << airy1.Wronskian()
+		  << std::setw(width) << airy1.true_Wronskian()
+		  << '\n';
+      }
+    std::cout << std::endl;
   }
 
 
@@ -3821,7 +3866,7 @@ template<typename _Tp>
 		  << std::setw(width) << ""
 		  << '\n';
       }
-    std::cout << '\n';
+    std::cout << std::endl;
   }
 
 
@@ -3883,6 +3928,7 @@ template<typename _Tp>
 		  << std::setw(width) << ""
 		  << '\n';
       }
+    std::cout << std::endl;
   }
 
 
@@ -3944,6 +3990,7 @@ template<typename _Tp>
 		  << std::setw(width) << ""
 		  << '\n';
       }
+    std::cout << std::endl;
   }
 
 
@@ -4054,6 +4101,7 @@ template<typename _Tp>
 		  << std::setw(width) << ""
 		  << '\n';
       }
+    std::cout << std::endl;
   }
 
 
@@ -4114,6 +4162,7 @@ template<typename _Tp>
 		  << std::setw(width) << zeta_c - zeta_r
 		  << '\n';
       }
+    std::cout << std::endl;
   }
 
 /**
@@ -4441,4 +4490,7 @@ main()
   std::cout << "\ndouble\n======\n";
   run_scorer<cmplx>();
   plot_scorer<cmplx>("plot/scorer_double.txt");
+
+  run_scorer_series<double>();
+
 }
