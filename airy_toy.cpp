@@ -3021,7 +3021,7 @@ template<>
   struct _Airy_default_radii<float>
   {
 
-    constexpr static float inner_radius{2.5F};
+    constexpr static float inner_radius{2.0F};
     constexpr static float outer_radius{6.0F};
   };
 
@@ -3029,7 +3029,7 @@ template<>
   struct _Airy_default_radii<double>
   {
 
-    constexpr static double inner_radius{3.5};
+    constexpr static double inner_radius{4.0};
     constexpr static double outer_radius{12.0};
   };
 
@@ -3295,8 +3295,8 @@ template<typename _Tp>
     constexpr _AiryState<value_type>
     operator()(value_type __y) const;
 
-    scalar_type inner_radius{5};
-    scalar_type outer_radius{15};
+    scalar_type inner_radius{_Airy_default_radii<scalar_type>::inner_radius};
+    scalar_type outer_radius{_Airy_default_radii<scalar_type>::outer_radius};
   };
 
 template<typename _Tp>
@@ -3386,7 +3386,7 @@ template<typename _Tp>
       }
     else
       {
-	if (__absargy < _S_2pi_3)
+	if (__absargy >= _S_2pi_3)
 	  {
 	    auto _Hi = __scorer_sums.first;
  	    auto _Hip = __scorer_sums.second;
