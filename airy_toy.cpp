@@ -1,4 +1,4 @@
-// $HOME/bin_specfun/bin/g++ -std=gnu++14 -g -Wall -Wextra -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
+// $HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
 
 // LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 
@@ -25,6 +25,7 @@ br ''
 #include <bits/specfun_util.h>
 #include <bits/complex_util.h>
 #include <bits/summation.h>
+#include <experimental/array> // For make_array
 
 
   /**
@@ -1456,8 +1457,13 @@ br ''
       static std::pair<std::complex<_Tp>, std::complex<_Tp>>
       Bi(std::complex<_Tp> __t);
 
+      static std::array<std::complex<_Tp>, 7>
+      FGH(std::complex<_Tp> __t);
+
       static _AiryState<std::complex<_Tp>>
       Scorer(std::complex<_Tp> __t);
+      static _AiryState<std::complex<_Tp>>
+      Scorer2(std::complex<_Tp> __t);
 
     private:
 
@@ -1495,13 +1501,13 @@ br ''
   // Type-dependent limits for the arrays.
   // FIXME: Make these limits digits10-based.
   template<typename _Tp>
-    constexpr int __max_FG = _Airy_series<_Tp>::_N_FGH;
+    constexpr int __max_FGH = _Airy_series<_Tp>::_N_FGH;
 
   template<>
-    constexpr int __max_FG<float> = 15;
+    constexpr int __max_FGH<float> = 15;
 
   template<>
-    constexpr int __max_FG<double> = 79;
+    constexpr int __max_FGH<double> = 79;
 
   template<typename _Tp>
     constexpr _Tp
@@ -1587,7 +1593,7 @@ br ''
       auto __term = __cmplx{_Tp{1}};
       auto _F = __cmplx{_Tp{1}};
       auto _G = __t;
-      for (int __n = 0; __n < __max_FG<_Tp>; ++__n)
+      for (int __n = 0; __n < __max_FGH<_Tp>; ++__n)
 	{
 	  if (std::abs(__t) < _S_eps)
 	    break;
@@ -1605,7 +1611,7 @@ br ''
       __term = __cmplx{_Tp{1}};
       auto _Fp = __cmplx{_Tp{0}};
       auto _Gp = __cmplx{_Tp{1}};
-      for (int __n = 0; __n < __max_FG<_Tp>; ++__n)
+      for (int __n = 0; __n < __max_FGH<_Tp>; ++__n)
 	{
 	  if (std::abs(__t) < _S_eps)
 	    break;
@@ -1685,6 +1691,67 @@ br ''
     { return _S_AiBi(__t, std::make_pair(_S_Bi0, _S_Bip0)); }
 
   /**
+   * Return the auxilliary Airy functions:
+   * @f[
+   *    fai(x) = \sum_{k=0}^\infty \frac{(2k+1)!!!x^{3k}}{(2k+1)!}
+   * @f]
+   * @f[
+   *    gai(x) = \sum_{k=0}^\infty \frac{(2k+2)!!!x^{3k+1}}{(2k+2)!}
+   * @f]
+   * @f[
+   *    hai(x) = \sum_{k=0}^\infty \frac{(2k+3)!!!x^{3k+2}}{(2k+3)!}
+   * @f]
+   *
+   * @tparam _Tp A real type
+   */
+  template<typename _Tp>
+    std::array<std::complex<_Tp>, 7>
+    _Airy_series<_Tp>::FGH(std::complex<_Tp> __t)
+    {
+      const auto __log10t = std::log10(std::abs(__t));
+      const auto __tt = __t * __t;
+      const auto __ttt = __t * __tt;
+
+      auto __term = __cmplx{_Tp{1}};
+      auto _F = __cmplx{_Tp{1}};
+      auto _G = __t;
+      auto _H = __t * __t / _Tp{2};
+      for (int __n = 0; __n < __max_FGH<_Tp>; ++__n)
+	{
+	  if (std::abs(__t) < _S_eps)
+	    break;
+	  auto __xx = __log10t * (3 * (__n + 2) + 1)
+		    + _S_slope_H * __n + _S_intercept_H;
+	  if (__xx < _S_log10min)
+	    break;
+	  __term *= __ttt;
+	  _F += _Fai[__n] * __term;
+	  _G += _Gai[__n] * __term * __t;
+	  _H += _Hai[__n] * __term * __tt;
+	}
+
+      __term = __cmplx{_Tp{1}};
+      auto _Fp = __cmplx{_Tp{0}};
+      auto _Gp = __cmplx{_Tp{1}};
+      auto _Hp = __t;
+      for (int __n = 0; __n < __max_FGH<_Tp>; ++__n)
+	{
+	  if (std::abs(__t) < _S_eps)
+	    break;
+	  auto __xx = __log10t * 3 * (__n + 2)
+		    + _S_slope_Hp * __n + _S_intercept_Hp;
+	  if (__xx < _S_log10min)
+	    break;
+	  __term *= __ttt;
+	  _Fp += _Faip[__n] * __term / __t;
+	  _Gp += _Gaip[__n] * __term;
+	  _Hp += _Haip[__n] * __term * __t;
+	}
+
+      return std::experimental::make_array(__t, _F, _G, _H, _Fp, _Gp, _Hp);
+    }
+
+  /**
    * Return the Scorer functions by using the series expansions of
    * the auxilliary Airy functions:
    * @f[
@@ -1721,7 +1788,7 @@ br ''
       auto _F = __cmplx{_Tp{1}};
       auto _G = __t;
       auto _H = __t * __t / _Tp{2};
-      for (int __n = 0; __n < __max_FG<_Tp>; ++__n)
+      for (int __n = 0; __n < __max_FGH<_Tp>; ++__n)
 	{
 	  if (std::abs(__t) < _S_eps)
 	    break;
@@ -1739,7 +1806,7 @@ br ''
       auto _Fp = __cmplx{_Tp{0}};
       auto _Gp = __cmplx{_Tp{1}};
       auto _Hp = __t;
-      for (int __n = 0; __n < __max_FG<_Tp>; ++__n)
+      for (int __n = 0; __n < __max_FGH<_Tp>; ++__n)
 	{
 	  if (std::abs(__t) < _S_eps)
 	    break;
@@ -1759,6 +1826,33 @@ br ''
       auto _Bip = _S_Bi0 * _Fp + _S_Bip0 * _Gp;
       auto _Gi = _Bi - _Hi;
       auto _Gip = _Bip - _Hip;
+
+      return _AiryState<std::complex<_Tp>>{__t, _Gi, _Gip, _Hi, _Hip};
+    }
+  template<typename _Tp>
+    _AiryState<std::complex<_Tp>>
+    _Airy_series<_Tp>::Scorer2(std::complex<_Tp> __t)
+    {
+      const auto __log10t = std::log10(std::abs(__t));
+
+      auto _Hi = __cmplx{_Tp{1}};
+      auto _Hip = __cmplx{_Tp{1}};
+      auto _Gi = __cmplx{_Tp{1}};
+      auto _Gip = __cmplx{_Tp{1}};
+      for (int __n = 0; __n < __max_FGH<_Tp>; ++__n)
+	{
+	  if (std::abs(__t) < _S_eps)
+	    break;
+	  auto __xx = __log10t * 3 * (__n + 2)
+		    + _S_slope_Hp * __n + _S_intercept_Hp;
+	  if (__xx < _S_log10min)
+	    break;
+	}
+
+      _Gi *= __cmplx{_Tp{1}};
+      _Gip *= __cmplx{_Tp{1}};
+      _Hi *= __cmplx{_Tp{1}};
+      _Hip *= __cmplx{_Tp{1}};
 
       return _AiryState<std::complex<_Tp>>{__t, _Gi, _Gip, _Hi, _Hip};
     }
@@ -1782,7 +1876,7 @@ br ''
       auto __termG = _Z0.second * __t;
       auto _Ai = __termF + __termG;
       if (std::abs(__t) >= _S_eps)
-	for (int __n = 0; __n < __max_FG<_Tp>; ++__n)
+	for (int __n = 0; __n < __max_FGH<_Tp>; ++__n)
 	  {
 	    auto __xx = __log10t * (3 * (__n + 1) + 1)
 		      + _S_slope_G * __n + _S_intercept_G;
@@ -1801,7 +1895,7 @@ br ''
 	  __termF *= __t * __t;
 	  __termG *= __ttt;
 	  _Aip += _Faip[0] * __termF + _Gaip[0] * __termG;
-	  for (int __n = 1; __n < __max_FG<_Tp>; ++__n)
+	  for (int __n = 1; __n < __max_FGH<_Tp>; ++__n)
 	    {
 	      auto __xx = __log10t * 3 * (__n + 1)
 			+ _S_slope_Gp * __n + _S_intercept_Gp;
@@ -4432,6 +4526,56 @@ template<typename _Tp>
     data << "\n\n";
   }
 
+/**
+ * 
+ */
+template<typename _Tp>
+  void
+  plot_fgh(std::string filename)
+  {
+    using _Val = std::__detail::__num_traits_t<_Tp>;
+
+    auto data = std::ofstream(filename);
+
+    data.precision(std::numeric_limits<_Val>::digits10);
+    data << std::showpoint << std::scientific;
+    auto width = 8 + data.precision();
+
+    data << "\n\n";
+    data << "#"
+	 << std::setw(width) << "t"
+	 << std::setw(width) << "fai"
+	 << std::setw(width) << "fai'"
+	 << std::setw(width) << "gai"
+	 << std::setw(width) << "gai'"
+	 << std::setw(width) << "hai"
+	 << std::setw(width) << "hai'"
+	 << '\n';
+    data << "#"
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << '\n';
+    for (int i = -2000; i <= +500; ++i)
+      {
+	auto t = _Tp(0.01Q * i);
+	auto fgh0 = _Airy_series<_Tp>::FGH(t);
+	data << std::setw(width) << std::real(fgh0[0])
+	     << std::setw(width) << std::real(fgh0[1])
+	     << std::setw(width) << std::real(fgh0[2])
+	     << std::setw(width) << std::real(fgh0[3])
+	     << std::setw(width) << std::real(fgh0[4])
+	     << std::setw(width) << std::real(fgh0[5])
+	     << std::setw(width) << std::real(fgh0[6])
+	     << '\n';
+      }
+    data << "\n\n";
+  }
+
 
 int
 main()
@@ -4504,6 +4648,7 @@ main()
   std::cout << "\ndouble\n======\n";
   run_scorer<cmplx>();
   plot_scorer<cmplx>("plot/scorer_double.txt");
+  plot_fgh<cmplx>("plot/fgh_double.txt");
 
   run_scorer_series<double>();
 
