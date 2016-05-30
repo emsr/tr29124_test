@@ -46,6 +46,13 @@ set xzeroaxis
 set yzeroaxis
 set grid
 
+plot [-5.0:2.0][-1.5:+1.5] "plot/fgh_double.txt" using 1:2 with lines title "fai", "" using 1:3 with lines title "gai", "" using 1:4 with lines title "hai"
+plot [-5.0:2.0][-1.5:+1.5] "plot/fgh_double.txt" using 1:5 with lines title "faip", "" using 1:6 with lines title "faip'", "" using 1:7 with lines title "hai"
+
+plot [-20.0:5.0][-1.0:+1.0] "plot/scorer_double.txt" using 1:2 with lines title "Gi", "" using 1:4 with lines title "Hi"
+plot [-20.0:5.0][-1.5:+1.5] "plot/scorer_double.txt" using 1:2 with lines title "Gi", "" using 1:3 with lines title "Gi'"
+plot [-20.0:5.0][-1.5:+1.5] "plot/scorer_double.txt" using 1:4 with lines title "Hi", "" using 1:5 with lines title "Hi'"
+
 plot [-20.0:5.0][-1.0:+1.0] "plot/airy_float.txt" using 1:2 with lines title "Ai(x)", "" using 1:4 with lines title "Bi(x)"
 plot [-20.0:5.0][-1.5:+1.5] "plot/airy_float.txt" using 1:2 with lines title "Ai(x)", "" using 1:3 with lines title "Ai'(x)"
 plot [-20.0:5.0][-1.5:+1.5] "plot/airy_float.txt" using 1:4 with lines title "Bi(x)", "" using 1:5 with lines title "Bi'(x)"
@@ -57,10 +64,6 @@ plot [-20.0:5.0][-1.5:+1.5] "plot/airy_double.txt" using 1:4 with lines title "B
 plot [-20.0:5.0][-1.0:+1.0] "plot/airy_long_double.txt" using 1:2 with lines title "Ai(x)", "" using 1:4 with lines title "Bi(x)"
 plot [-20.0:5.0][-1.5:+1.5] "plot/airy_long_double.txt" using 1:2 with lines title "Ai(x)", "" using 1:3 with lines title "Ai'(x)"
 plot [-20.0:5.0][-1.5:+1.5] "plot/airy_long_double.txt" using 1:4 with lines title "Bi(x)", "" using 1:5 with lines title "Bi'(x)"
-
-plot [-20.0:5.0][-1.0:+1.0] "plot/scorer_double.txt" using 1:2 with lines title "Gi", "" using 1:4 with lines title "Hi"
-plot [-20.0:5.0][-1.5:+1.5] "plot/scorer_double.txt" using 1:2 with lines title "Gi", "" using 1:3 with lines title "Gi'"
-plot [-20.0:5.0][-1.5:+1.5] "plot/scorer_double.txt" using 1:4 with lines title "Hi", "" using 1:5 with lines title "Hi'"
 
 
 /usr/local/bin/gnuplot
