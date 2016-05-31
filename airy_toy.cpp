@@ -25,7 +25,6 @@ br ''
 #include <bits/specfun_util.h>
 #include <bits/complex_util.h>
 #include <bits/summation.h>
-#include <experimental/array> // For make_array
 
 
   /**
@@ -175,6 +174,24 @@ br ''
       static constexpr _Val
       true_Wronskian()
       { return _Val{1} / __gnu_cxx::__math_constants<_Val>::__pi; }
+    };
+
+
+  /**
+   *
+   */
+  template<typename _Tp>
+    struct _AiryAuxilliaryState
+    {
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+
+      _Tp z;
+      _Tp fai;
+      _Tp faip;
+      _Tp gai;
+      _Tp gaip;
+      _Tp hai;
+      _Tp haip;
     };
 
 
@@ -1457,7 +1474,7 @@ br ''
       static std::pair<std::complex<_Tp>, std::complex<_Tp>>
       Bi(std::complex<_Tp> __t);
 
-      static std::array<std::complex<_Tp>, 7>
+      static _AiryAuxilliaryState<std::complex<_Tp>>
       FGH(std::complex<_Tp> __t);
 
       static _AiryState<std::complex<_Tp>>
@@ -1705,7 +1722,7 @@ br ''
    * @tparam _Tp A real type
    */
   template<typename _Tp>
-    std::array<std::complex<_Tp>, 7>
+    _AiryAuxilliaryState<std::complex<_Tp>>
     _Airy_series<_Tp>::FGH(std::complex<_Tp> __t)
     {
       const auto __log10t = std::log10(std::abs(__t));
@@ -1748,7 +1765,7 @@ br ''
 	  _Hp += _Haip[__n] * __term * __t;
 	}
 
-      return std::experimental::make_array(__t, _F, _G, _H, _Fp, _Gp, _Hp);
+      return _AiryAuxilliaryState<std::complex<_Tp>>{__t, _F, _G, _H, _Fp, _Gp, _Hp};
     }
 
   /**
@@ -1829,6 +1846,10 @@ br ''
 
       return _AiryState<std::complex<_Tp>>{__t, _Gi, _Gip, _Hi, _Hip};
     }
+
+  /**
+   * Return the Scorer functions by using the series expansions.
+   */
   template<typename _Tp>
     _AiryState<std::complex<_Tp>>
     _Airy_series<_Tp>::Scorer2(std::complex<_Tp> __t)
@@ -4563,14 +4584,14 @@ template<typename _Tp>
     for (int i = -2000; i <= +500; ++i)
       {
 	auto t = _Tp(0.01Q * i);
-	auto fgh0 = _Airy_series<_Tp>::FGH(t);
-	data << std::setw(width) << std::real(fgh0[0])
-	     << std::setw(width) << std::real(fgh0[1])
-	     << std::setw(width) << std::real(fgh0[2])
-	     << std::setw(width) << std::real(fgh0[3])
-	     << std::setw(width) << std::real(fgh0[4])
-	     << std::setw(width) << std::real(fgh0[5])
-	     << std::setw(width) << std::real(fgh0[6])
+	auto fgh0 = _Airy_series<_Val>::FGH(t);
+	data << std::setw(width) << std::real(fgh0.z)
+	     << std::setw(width) << std::real(fgh0.fai)
+	     << std::setw(width) << std::real(fgh0.faip)
+	     << std::setw(width) << std::real(fgh0.gai)
+	     << std::setw(width) << std::real(fgh0.gaip)
+	     << std::setw(width) << std::real(fgh0.hai)
+	     << std::setw(width) << std::real(fgh0.haip)
 	     << '\n';
       }
     data << "\n\n";
