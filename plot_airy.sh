@@ -47,7 +47,7 @@ set yzeroaxis
 set grid
 
 plot [-5.0:2.0][-1.5:+1.5] "plot/fgh_double.txt" using 1:2 with lines title "fai", "" using 1:3 with lines title "gai", "" using 1:4 with lines title "hai"
-plot [-5.0:2.0][-1.5:+1.5] "plot/fgh_double.txt" using 1:5 with lines title "fai'", "" using 1:6 with lines title "gai'", "" using 1:7 with lines title "hai'"
+plot [-5.0:2.0][-2.5:+2.5] "plot/fgh_double.txt" using 1:5 with lines title "fai'", "" using 1:6 with lines title "gai'", "" using 1:7 with lines title "hai'"
 
 plot [-20.0:5.0][-1.0:+1.0] "plot/scorer_double.txt" using 1:2 with lines title "Gi", "" using 1:4 with lines title "Hi"
 plot [-20.0:5.0][-1.5:+1.5] "plot/scorer_double.txt" using 1:2 with lines title "Gi", "" using 1:3 with lines title "Gi'"
