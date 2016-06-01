@@ -196,6 +196,61 @@ br ''
 
 
   /**
+   * This class sanely manages  Pochhammer symbols @f$ (\alpha)_k @f$ such as
+   * those araising in series expansions of Bessel and related functions.
+   * Often we have factors such as:
+   * @f[
+   *   \Gamma\left(\frac{k+1}{3}\right) = \Gamma\left(\frac{1}{3}\right)
+   *              \left(\frac{1}{3}\right)_k
+   * @f]
+   * This class will offer the correct answer for @f$ k=0 @f$ and an
+   * iterator-like facade.
+   */
+  template<typename _Tp>
+    struct _Poch
+    {
+    public:
+
+      _Poch()
+      : _M_alpha{_Tp{1}}, _M_k{0}, _M_poch{_Tp{1}}
+      { }
+
+      _Poch(_Tp __alpha)
+      : _M_alpha{__alpha}, _M_k{0}, _M_poch{_Tp{1}}
+      { }
+
+      operator _Tp() const
+      { return this->_M_poch; }
+
+      _Tp
+      operator()() const
+      { return this->_M_poch; }
+
+      _Poch&
+      operator++()
+      {
+	this->_M_poch *= _Tp(this->_M_k) + this->_M_alpha;
+	++this->_M_k;
+	return *this;
+      }
+
+      _Poch
+      operator++(int)
+      {
+        _Poch __ret(*this);
+	this->operator++();
+	return __ret;
+      }
+
+    private:
+
+      _Tp _M_alpha;
+      unsigned _M_k;
+      _Tp _M_poch;
+    };
+
+
+  /**
    *  
    */
   template<typename _Tp>
@@ -1849,31 +1904,66 @@ br ''
 
   /**
    * Return the Scorer functions by using the series expansions.
+   * @f[
+   *    Hi(x) = \frac{3^{-2/3}}{\pi} \sum_{k=0}^\infty
+   *                     \Gamma\left(\frac{k+1}{3}\right) \frac{3^{1/3}x}{k!}
+   * @f]
+   * @f[
+   *    Hi'(x) = \frac{3^{-1/3}}{\pi} \sum_{k=0}^\infty
+   *                     \Gamma\left(\frac{k+2}{3}\right) \frac{3^{1/3}x}{k!}
+   * @f]
+   * @f[
+   *    Gi(x) = \frac{3^{-2/3}}{\pi} \sum_{k=0}^\infty
+   *                     \cos\left(\frac{2k-1}{3}\pi\right)
+   *                     \Gamma\left(\frac{k+1}{3}\right) \frac{3^{1/3}x}{k!}
+   * @f]
+   * @f[
+   *    Gi'(x) = \frac{3^{-1/3}}{\pi} \sum_{k=0}^\infty
+   *                     \cos\left(\frac{2k+1}{3}\pi\right)
+   *                     \Gamma\left(\frac{k+2}{3}\right) \frac{3^{1/3}x}{k!}
+   * @f]
    */
   template<typename _Tp>
     _AiryState<std::complex<_Tp>>
     _Airy_series<_Tp>::Scorer2(std::complex<_Tp> __t)
     {
-      const auto __log10t = std::log10(std::abs(__t));
-
-      auto _Hi = __cmplx{_Tp{1}};
-      auto _Hip = __cmplx{_Tp{1}};
-      auto _Gi = __cmplx{_Tp{1}};
-      auto _Gip = __cmplx{_Tp{1}};
-      for (int __n = 0; __n < __max_FGH<_Tp>; ++__n)
+      constexpr auto _S_cbrt3 = std::cbrt(_Tp{3});//__gnu_cxx::__math_constants<_Tp>::__root_3;
+      constexpr auto _S_1d3 = _Tp{1} / _Tp{3};
+      constexpr auto _S_2d3 = _Tp{2} / _Tp{3};
+      const auto __s = _S_cbrt3 * __t;
+      const std::array<_Tp, 3>
+	__cos{ _Tp{1} / _Tp{2}, _Tp{-1}, _Tp{-1} / _Tp{2} };
+      auto _Hi = __cmplx{std::tgamma(_S_1d3)};
+      auto _Hip = __cmplx{std::tgamma(_S_2d3)};
+      auto _Gi = __cmplx{__cos[2] * std::tgamma(_S_1d3)};
+      auto _Gip = __cmplx{__cos[0] * std::tgamma(_S_2d3)};
+      auto __term = __cmplx(_Tp{1});
+      auto __termp = __cmplx(_Tp{1});
+      for (int __k = 1; __k < __max_FGH<_Tp>; ++__k)
 	{
-	  if (std::abs(__t) < _S_eps)
+	  __term *= __s / _Tp(__k);
+	  __termp *= __s / _Tp(__k);
+	  if (std::abs(__term) < _S_eps)
 	    break;
-	  auto __xx = __log10t * 3 * (__n + 2)
-		    + _S_slope_Hp * __n + _S_intercept_Hp;
-	  if (__xx < _S_log10min)
-	    break;
+
+	  const auto __gam = std::tgamma(_Tp(__k + 1) /_Tp{3});
+	  const auto __gamp = std::tgamma(_Tp(__k + 2) /_Tp{3});
+	  _Hi += __gam * __term;
+	  _Hip += __gamp * __termp;
+	  _Gi += __cos[(__k + 2) % 3] * __gam * __term;
+	  _Gip += __cos[__k % 3] * __gamp * __termp;
+	  //__term *= _Tp(__k - 1 + _S_1d3) * __s / _Tp(__k);
+	  //__termp *= _Tp(__k - 1 + _S_2d3) * __s / _Tp(__k);
 	}
 
-      _Gi *= __cmplx{_Tp{1}};
-      _Gip *= __cmplx{_Tp{1}};
-      _Hi *= __cmplx{_Tp{1}};
-      _Hip *= __cmplx{_Tp{1}};
+      //const auto __fact = std::tgamma(_S_1d3) / (_S_cbrt3 * _S_cbrt3 * _S_pi);
+      //const auto __factp = std::tgamma(_S_2d3) / (_S_cbrt3 * _S_pi);
+      const auto __fact = _Tp{1} / (_S_cbrt3 * _S_cbrt3 * _S_pi);
+      const auto __factp = _Tp{1} / (_S_cbrt3 * _S_pi);
+      _Gi *= __fact;
+      _Gip *= __factp;
+      _Hi *= __fact;
+      _Hip *= __factp;
 
       return _AiryState<std::complex<_Tp>>{__t, _Gi, _Gip, _Hi, _Hip};
     }
@@ -3510,9 +3600,7 @@ template<typename _Tp>
       }
 
     if (__absy < inner_radius)
-      {
-	return _Airy_series<__scal>::Scorer(__y);
-      }
+      return _Airy_series<__scal>::Scorer2(__y);
     else
       {
 	if (__absargy >= _S_2pi_3)
