@@ -1932,7 +1932,7 @@ br ''
       constexpr auto _S_2d3 = _Tp{2} / _Tp{3};
       const auto __s = _S_cbrt3 * __t;
       const std::array<_Tp, 3>
-	__cos{ _Tp{1} / _Tp{2}, _Tp{-1}, _Tp{-1} / _Tp{2} };
+	__cos{ _Tp{1} / _Tp{2}, _Tp{-1}, _Tp{1} / _Tp{2} };
       auto _Hi = __cmplx{std::tgamma(_S_1d3)};
       auto _Hip = __cmplx{std::tgamma(_S_2d3)};
       auto _Gi = __cmplx{__cos[2] * std::tgamma(_S_1d3)};
