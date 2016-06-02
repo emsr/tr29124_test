@@ -67,12 +67,12 @@
       auto __struve = __term;
       for (int __k = 1; __k < 100; ++__k)
 	{
-      	  __term *= _Tp(__k - 1 + 0.5L) * (_Tp(__k - 1 + 0.5L) - __nu) / __xx4;
+      	  __term *= _Tp(__k - 1 + 0.5L) / (_Tp(-__k - 1 + 0.5L) + __nu) / __xx4;
 	  __struve += __term;
 	  if (std::abs(__term) < _S_eps * std::abs(__struve))
 	    break;
 	}
-      __struve *= _Tp{2} * std::pow(__x2, __nu + _Tp{1})
+      __struve *= _Tp(__sign) * _Tp{2} * std::pow(__x2, __nu - _Tp{1})
 		/ std::__detail::__gamma(__nu + _Tp{0.5L}) / _S_sqrt_pi;
 
       return __struve;
@@ -86,7 +86,7 @@
   template<typename _Tp>
     _Tp
     __struve_k(_Tp __nu, _Tp __x)
-    { return __struve_asymp(__nu, __x, -1); }
+    { return __struve_asymp(__nu, __x, +1); }
 
   template<typename _Tp>
     _Tp
@@ -96,7 +96,7 @@
   template<typename _Tp>
     _Tp
     __struve_m(_Tp __nu, _Tp __x)
-    { return __struve_asymp(__nu, __x, +1); }
+    { return __struve_asymp(__nu, __x, -1); }
 
 
 /**
