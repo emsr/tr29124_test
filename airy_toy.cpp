@@ -1,4 +1,4 @@
-// $HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
+// $HOME/bin_specfun/bin/g++ -std=gnu++14 -g -Wall -Wextra -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
 
 // LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 
@@ -1852,50 +1852,12 @@ br ''
     _AiryState<std::complex<_Tp>>
     _Airy_series<_Tp>::Scorer(std::complex<_Tp> __t)
     {
-      const auto __log10t = std::log10(std::abs(__t));
-      const auto __tt = __t * __t;
-      const auto __ttt = __t * __tt;
+      auto aux = FGH(__t);
 
-      auto __term = __cmplx{_Tp{1}};
-      auto _F = __cmplx{_Tp{1}};
-      auto _G = __t;
-      auto _H = __t * __t / _Tp{2};
-      for (int __n = 0; __n < __max_FGH<_Tp>; ++__n)
-	{
-	  if (std::abs(__t) < _S_eps)
-	    break;
-	  auto __xx = __log10t * (3 * (__n + 2) + 1)
-		    + _S_slope_H * __n + _S_intercept_H;
-	  if (__xx < _S_log10min)
-	    break;
-	  __term *= __ttt;
-	  _F += _Fai[__n] * __term;
-	  _G += _Gai[__n] * __term * __t;
-	  _H += _Hai[__n] * __term * __tt;
-	}
-
-      __term = __cmplx{_Tp{1}};
-      auto _Fp = __cmplx{_Tp{0}};
-      auto _Gp = __cmplx{_Tp{1}};
-      auto _Hp = __t;
-      for (int __n = 0; __n < __max_FGH<_Tp>; ++__n)
-	{
-	  if (std::abs(__t) < _S_eps)
-	    break;
-	  auto __xx = __log10t * 3 * (__n + 2)
-		    + _S_slope_Hp * __n + _S_intercept_Hp;
-	  if (__xx < _S_log10min)
-	    break;
-	  __term *= __ttt;
-	  _Fp += _Faip[__n] * __term / __t;
-	  _Gp += _Gaip[__n] * __term;
-	  _Hp += _Haip[__n] * __term * __t;
-	}
-
-      auto _Hi = _S_Hi0 * (_F + _G + _H);
-      auto _Hip = _S_Hip0 * (_Fp + _Gp + _Hp);
-      auto _Bi = _S_Bi0 * _F + _S_Bip0 * _G;
-      auto _Bip = _S_Bi0 * _Fp + _S_Bip0 * _Gp;
+      auto _Hi = _S_Hi0 * (aux.fai + aux.gai + aux.hai);
+      auto _Hip = _S_Hip0 * (aux.faip + aux.gaip + aux.haip);
+      auto _Bi = _S_Bi0 * aux.fai + _S_Bip0 * aux.gai;
+      auto _Bip = _S_Bi0 * aux.faip + _S_Bip0 * aux.gaip;
       auto _Gi = _Bi - _Hi;
       auto _Gip = _Bip - _Hip;
 
@@ -1952,8 +1914,6 @@ br ''
 	  _Hip += __gamp * __termp;
 	  _Gi += __cos[(__k + 2) % 3] * __gam * __term;
 	  _Gip += __cos[__k % 3] * __gamp * __termp;
-	  //__term *= _Tp(__k - 1 + _S_1d3) * __s / _Tp(__k);
-	  //__termp *= _Tp(__k - 1 + _S_2d3) * __s / _Tp(__k);
 	}
 
       //const auto __fact = std::tgamma(_S_1d3) / (_S_cbrt3 * _S_cbrt3 * _S_pi);
@@ -3600,7 +3560,7 @@ template<typename _Tp>
       }
 
     if (__absy < inner_radius)
-      return _Airy_series<__scal>::Scorer2(__y);
+      return _Airy_series<__scal>::Scorer(__y);
     else
       {
 	if (__absargy >= _S_2pi_3)
