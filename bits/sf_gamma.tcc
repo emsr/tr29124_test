@@ -1918,7 +1918,7 @@ _S_neg_double_factorial_table[999]
     __gamma(_Tp __x)
     {
 #if _GLIBCXX_USE_C99_MATH_TR1
-      return std::lgamma(__x);
+      return std::tgamma(__x);
 #else
       return std::exp(__log_gamma(__x));
 #endif
