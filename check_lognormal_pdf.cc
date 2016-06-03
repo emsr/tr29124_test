@@ -1018,7 +1018,7 @@ const double toler009 = 2.5000000000000020e-13;
 
 template<typename Tp, unsigned int Num>
   void
-  test(const testcase_ellint_rd<Tp> (&data)[Num], Tp toler)
+  test(const testcase_lognormal_pdf<Tp> (&data)[Num], Tp toler)
   {
     bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();

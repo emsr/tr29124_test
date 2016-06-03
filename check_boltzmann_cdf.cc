@@ -36,7 +36,7 @@
 #include <specfun_testcase.h>
 
 // mu = 1.0
-const testcase_ellint_rd<double>
+const testcase_boltzmann_cdf<double>
 test001[101]
 {
   {0.00000000000000e+00, 1.00000000000000e+00, 0.00000000000000e+00},
@@ -144,7 +144,7 @@ test001[101]
 const double toler001 = 2.5000000000000020e-13;
 
 // mu = 2.0
-const testcase_ellint_rd<double>
+const testcase_boltzmann_cdf<double>
 test002[101]
 {
   {0.00000000000000e+00, 2.00000000000000e+00, 0.00000000000000e+00},
@@ -252,7 +252,7 @@ test002[101]
 const double toler002 = 2.5000000000000020e-13;
 
 // mu = 5.0
-const testcase_ellint_rd<double>
+const testcase_boltzmann_cdf<double>
 test003[101]
 {
   {0.00000000000000e+00, 5.00000000000000e+00, 0.00000000000000e+00},
@@ -361,7 +361,7 @@ const double toler003 = 2.5000000000000020e-13;
 
 template<typename Tp, unsigned int Num>
   void
-  test(const testcase_ellint_rd<Tp> (&data)[Num], Tp toler)
+  test(const testcase_boltzmann_cdf<Tp> (&data)[Num], Tp toler)
   {
     bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
