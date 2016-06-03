@@ -20,6 +20,11 @@
 #include <bits/complex_util.h>
 #include <bits/summation.h>
 
+namespace std
+{
+namespace __detail
+{
+
   /**
    * 
    */
@@ -92,9 +97,9 @@
 	return __struve_series(__nu, __x, -1);
       else
 	{
-	  auto _N = __cyl_neumann_n(__nu, __x);
-	  auto _K = __struve_asymp(__nu, __x, +1);
-	  return _K + _N;
+	  auto _Nnu = __cyl_neumann_n(__nu, __x);
+	  auto _Knu = __struve_asymp(__nu, __x, +1);
+	  return _Knu + _Nnu;
 	}
     }
 
@@ -112,9 +117,9 @@
 	return __struve_asymp(__nu, __x, +1);
       else
 	{
-	  auto _N = __cyl_neumann_n(__nu, __x);
-	  auto _H = __struve_series(__nu, __x, -1);
-	  return _H - _N;
+	  auto _Nnu = __cyl_neumann_n(__nu, __x);
+	  auto _Hnu = __struve_series(__nu, __x, -1);
+	  return _Hnu - _Nnu;
 	}
     }
 
@@ -132,9 +137,9 @@
 	return __struve_series(__nu, __x, +1);
       else
 	{
-	  auto _I = __cyl_bessel_i(__nu, __x);
-	  auto _M = __struve_asymp(__nu, __x, -1);
-	  return _M + _I;
+	  auto _Inu = __cyl_bessel_i(__nu, __x);
+	  auto _Mnu = __struve_asymp(__nu, __x, -1);
+	  return _Mnu + _Inu;
 	}
     }
 
@@ -152,12 +157,203 @@
 	return __struve_asymp(__nu, __x, -1);
       else
 	{
-	  auto _I = __cyl_bessel_i(__nu, __x);
-	  auto _L = __struve_series(__nu, __x, +1);
-	  return _L - _I;
+	  auto _Inu = __cyl_bessel_i(__nu, __x);
+	  auto _Lnu = __struve_series(__nu, __x, +1);
+	  return _Lnu - _Inu;
 	}
     }
 
+} // namespace __detail
+} // namespace std
+
+namespace __gnu_cxx
+{
+
+  // Struve functions (of the first kind)
+
+  /**
+   * Return the Struve function of the first kind @f$ H_{\nu}(x) @f$
+   * for @c float order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
+   *
+   * @see struve_h for setails.
+   */
+  inline float
+  struve_hf(float __nu, float __x)
+  { return std::__detail::__struve_h<float>(__nu, __x); }
+
+  /**
+   * Return the Struve function of the first kind @f$ H_{\nu}(x) @f$
+   * for <tt>long double</tt> order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
+   *
+   * @see struve_h for setails.
+   */
+  inline long double
+  struve_hl(long double __nu, long double __x)
+  { return std::__detail::__struve_h<long double>(__nu, __x); }
+
+  /**
+   * Return the Struve function @f$ H_{\nu}(x) @f$ of real order @f$ \nu @f$
+   * and argument @f$ x >= 0 @f$.
+   *
+   * The Struve function is:
+   * @f[
+   *    H_{\nu}(x) = \sum_{k=0}^{\infty}
+   *              \frac{(-1)^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
+   * @f]
+   *
+   * @tparam _Tpnu The floating-point type of the order @c __nu.
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __nu  The order
+   * @param  __x   The argument, <tt> __x >= 0 </tt>
+   * @throw std::domain_error if <tt> __x < 0 </tt>.
+   */
+  template<typename _Tpnu, typename _Tp>
+    inline typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type
+    struve_h(_Tpnu __nu, _Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type __type;
+      return std::__detail::__struve_h<__type>(__nu, __x);
+    }
+
+  // Struve functions (of the second kind)
+
+  /**
+   * Return the Struve function of the first kind @f$ K_{\nu}(x) @f$
+   * for @c float order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
+   *
+   * @see struve_k for setails.
+   */
+  inline float
+  struve_kf(float __nu, float __x)
+  { return std::__detail::__struve_k<float>(__nu, __x); }
+
+  /**
+   * Return the Struve function of the first kind @f$ K_{\nu}(x) @f$
+   * for <tt>long double</tt> order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
+   *
+   * @see struve_k for setails.
+   */
+  inline long double
+  struve_kl(long double __nu, long double __x)
+  { return std::__detail::__struve_k<long double>(__nu, __x); }
+
+  /**
+   * Return the Struve function @f$ K_{\nu}(x) @f$ of real order @f$ \nu @f$
+   * and argument @f$ x >= 0 @f$.
+   *
+   * The Struve function is:
+   * @f[
+   *    K_{\nu}(x) = \sum_{k=0}^{\infty}
+   *              \frac{(-1)^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
+   * @f]
+   *
+   * @tparam _Tpnu The floating-point type of the order @c __nu.
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __nu  The order
+   * @param  __x   The argument, <tt> __x >= 0 </tt>
+   * @throw std::domain_error if <tt> __x < 0 </tt>.
+   */
+  template<typename _Tpnu, typename _Tp>
+    inline typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type
+    struve_k(_Tpnu __nu, _Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type __type;
+      return std::__detail::__struve_k<__type>(__nu, __x);
+    }
+
+  // Modified Struve functions (of the first kind)
+
+  /**
+   * Return the modified Struve function of the first kind @f$ L_{\nu}(x) @f$
+   * for @c float order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
+   *
+   * @see struve_l for setails.
+   */
+  inline float
+  struve_lf(float __nu, float __x)
+  { return std::__detail::__struve_l<float>(__nu, __x); }
+
+  /**
+   * Return the modified Struve function of the first kind @f$ L_{\nu}(x) @f$
+   * for <tt>long double</tt> order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
+   *
+   * @see struve_l for setails.
+   */
+  inline long double
+  struve_ll(long double __nu, long double __x)
+  { return std::__detail::__struve_l<long double>(__nu, __x); }
+
+  /**
+   * Return the modified Struve function @f$ L_{\nu}(x) @f$ of real order @f$ \nu @f$
+   * and argument @f$ x >= 0 @f$.
+   *
+   * The modified Struve function is:
+   * @f[
+   *    L_{\nu}(x) = \sum_{k=0}^{\infty}
+   *              \frac{(-1)^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
+   * @f]
+   *
+   * @tparam _Tpnu The floating-point type of the order @c __nu.
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __nu  The order
+   * @param  __x   The argument, <tt> __x >= 0 </tt>
+   * @throw std::domain_error if <tt> __x < 0 </tt>.
+   */
+  template<typename _Tpnu, typename _Tp>
+    inline typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type
+    struve_l(_Tpnu __nu, _Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type __type;
+      return std::__detail::__struve_l<__type>(__nu, __x);
+    }
+
+  // Modified Struve functions (of the second kind)
+
+  /**
+   * Return the modified Struve function of the first kind @f$ M_{\nu}(x) @f$
+   * for @c float order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
+   *
+   * @see struve_m for setails.
+   */
+  inline float
+  struve_mf(float __nu, float __x)
+  { return std::__detail::__struve_m<float>(__nu, __x); }
+
+  /**
+   * Return the modified Struve function of the first kind @f$ M_{\nu}(x) @f$
+   * for <tt>long double</tt> order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
+   *
+   * @see struve_m for setails.
+   */
+  inline long double
+  struve_ml(long double __nu, long double __x)
+  { return std::__detail::__struve_m<long double>(__nu, __x); }
+
+  /**
+   * Return the modified Struve function @f$ M_{\nu}(x) @f$ of real order @f$ \nu @f$
+   * and argument @f$ x >= 0 @f$.
+   *
+   * The modified Struve function is:
+   * @f[
+   *    M_{\nu}(x) = \sum_{k=0}^{\infty}
+   *              \frac{(-1)^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
+   * @f]
+   *
+   * @tparam _Tpnu The floating-point type of the order @c __nu.
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __nu  The order
+   * @param  __x   The argument, <tt> __x >= 0 </tt>
+   * @throw std::domain_error if <tt> __x < 0 </tt>.
+   */
+  template<typename _Tpnu, typename _Tp>
+    inline typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type
+    struve_m(_Tpnu __nu, _Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type __type;
+      return std::__detail::__struve_m<__type>(__nu, __x);
+    }
+
+} // namespace __gnu_cxx
 
 /**
  * 
@@ -193,14 +389,13 @@ template<typename _Tp>
 	  {
 	    auto nu = _Tp(1.0Q * n);
 	    data << '\t'
-		 << std::setw(width) << __struve_h(nu, t)
-		 << std::setw(width) << __struve_l(nu, t);
+		 << std::setw(width) << __gnu_cxx::struve_h(nu, t)
+		 << std::setw(width) << __gnu_cxx::struve_l(nu, t);
 	  }
 	data << '\n';
       }
     data << "\n\n";
   }
-
 
 int
 main()
