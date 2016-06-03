@@ -37,7 +37,7 @@
 
 // mu = 1
 // sigma = 1
-const testcase_ellint_rd<double>
+const testcase_normal_pdf<double>
 test001[101]
 {
   {2.41970724519143e-01, 1.00000000000000e+00, 1.00000000000000e+00, 0.00000000000000e+00},
@@ -146,7 +146,7 @@ const double toler001 = 2.5000000000000020e-13;
 
 // mu = 1
 // sigma = 2
-const testcase_ellint_rd<double>
+const testcase_normal_pdf<double>
 test002[101]
 {
   {1.76032663382150e-01, 1.00000000000000e+00, 2.00000000000000e+00, 0.00000000000000e+00},
@@ -255,7 +255,7 @@ const double toler002 = 2.5000000000000020e-13;
 
 // mu = 1
 // sigma = 5
-const testcase_ellint_rd<double>
+const testcase_normal_pdf<double>
 test003[101]
 {
   {7.82085387950912e-02, 1.00000000000000e+00, 5.00000000000000e+00, 0.00000000000000e+00},
@@ -364,7 +364,7 @@ const double toler003 = 2.5000000000000020e-13;
 
 // mu = 2
 // sigma = 1
-const testcase_ellint_rd<double>
+const testcase_normal_pdf<double>
 test004[101]
 {
   {5.39909665131881e-02, 2.00000000000000e+00, 1.00000000000000e+00, 0.00000000000000e+00},
@@ -473,7 +473,7 @@ const double toler004 = 2.5000000000000020e-13;
 
 // mu = 2
 // sigma = 2
-const testcase_ellint_rd<double>
+const testcase_normal_pdf<double>
 test005[101]
 {
   {1.20985362259572e-01, 2.00000000000000e+00, 2.00000000000000e+00, 0.00000000000000e+00},
@@ -582,7 +582,7 @@ const double toler005 = 2.5000000000000020e-13;
 
 // mu = 2
 // sigma = 5
-const testcase_ellint_rd<double>
+const testcase_normal_pdf<double>
 test006[101]
 {
   {7.36540280606647e-02, 2.00000000000000e+00, 5.00000000000000e+00, 0.00000000000000e+00},
@@ -691,7 +691,7 @@ const double toler006 = 2.5000000000000020e-13;
 
 // mu = 5
 // sigma = 1
-const testcase_ellint_rd<double>
+const testcase_normal_pdf<double>
 test007[101]
 {
   {1.48671951473430e-06, 5.00000000000000e+00, 1.00000000000000e+00, 0.00000000000000e+00},
@@ -800,7 +800,7 @@ const double toler007 = 2.5000000000000020e-13;
 
 // mu = 5
 // sigma = 2
-const testcase_ellint_rd<double>
+const testcase_normal_pdf<double>
 test008[101]
 {
   {8.76415024678427e-03, 5.00000000000000e+00, 2.00000000000000e+00, 0.00000000000000e+00},
@@ -909,7 +909,7 @@ const double toler008 = 2.5000000000000020e-13;
 
 // mu = 5
 // sigma = 5
-const testcase_ellint_rd<double>
+const testcase_normal_pdf<double>
 test009[101]
 {
   {4.83941449038287e-02, 5.00000000000000e+00, 5.00000000000000e+00, 0.00000000000000e+00},
@@ -1018,7 +1018,7 @@ const double toler009 = 2.5000000000000020e-13;
 
 template<typename Tp, unsigned int Num>
   void
-  test(const testcase_ellint_rd<Tp> (&data)[Num], Tp toler)
+  test(const testcase_normal_pdf<Tp> (&data)[Num], Tp toler)
   {
     bool test __attribute__((unused)) = true;
     const Tp eps = std::numeric_limits<Tp>::epsilon();
