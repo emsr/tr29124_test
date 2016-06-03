@@ -81,22 +81,82 @@
   template<typename _Tp>
     _Tp
     __struve_h(_Tp __nu, _Tp __x)
-    { return __struve_series(__nu, __x, -1); }
+    {
+      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
+      constexpr auto _S_max = _Tp{20};
+      if (__x < _Tp{0})
+	std::__throw_domain_error(__N("__struve_h: bad argument"));
+      else if (__isnan(__nu) || __isnan(__x))
+	return _S_nan;
+      else if (std::abs(__x) < _S_max)
+	return __struve_series(__nu, __x, -1);
+      else
+	{
+	  auto _N = __cyl_neumann_n(__nu, __x);
+	  auto _K = __struve_asymp(__nu, __x, +1);
+	  return _K + _N;
+	}
+    }
 
   template<typename _Tp>
     _Tp
     __struve_k(_Tp __nu, _Tp __x)
-    { return __struve_asymp(__nu, __x, +1); }
+    {
+      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
+      constexpr auto _S_max = _Tp{20};
+      if (__x < _Tp{0})
+	std::__throw_domain_error(__N("__struve_k: bad argument"));
+      else if (__isnan(__nu) || __isnan(__x))
+	return _S_nan;
+      else if (std::abs(__x) >= _S_max)
+	return __struve_asymp(__nu, __x, +1);
+      else
+	{
+	  auto _N = __cyl_neumann_n(__nu, __x);
+	  auto _H = __struve_series(__nu, __x, -1);
+	  return _H - _N;
+	}
+    }
 
   template<typename _Tp>
     _Tp
     __struve_l(_Tp __nu, _Tp __x)
-    { return __struve_series(__nu, __x, +1); }
+    {
+      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
+      constexpr auto _S_max = _Tp{20};
+      if (__x < _Tp{0})
+	std::__throw_domain_error(__N("__struve_l: bad argument"));
+      else if (__isnan(__nu) || __isnan(__x))
+	return _S_nan;
+      else if (std::abs(__x) < _S_max)
+	return __struve_series(__nu, __x, +1);
+      else
+	{
+	  auto _I = __cyl_bessel_i(__nu, __x);
+	  auto _M = __struve_asymp(__nu, __x, -1);
+	  return _M + _I;
+	}
+    }
 
   template<typename _Tp>
     _Tp
     __struve_m(_Tp __nu, _Tp __x)
-    { return __struve_asymp(__nu, __x, -1); }
+    {
+      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
+      constexpr auto _S_max = _Tp{20};
+      if (__x < _Tp{0})
+	std::__throw_domain_error(__N("__struve_k: bad argument"));
+      else if (__isnan(__nu) || __isnan(__x))
+	return _S_nan;
+      else if (std::abs(__x) >= _S_max)
+	return __struve_asymp(__nu, __x, -1);
+      else
+	{
+	  auto _I = __cyl_bessel_i(__nu, __x);
+	  auto _L = __struve_series(__nu, __x, +1);
+	  return _L - _I;
+	}
+    }
 
 
 /**

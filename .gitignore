@@ -166,6 +166,7 @@ test_psi
 test_rational
 test_special_function
 test_sph_hankel
+test_struve_new
 test_theta
 
 hankel_transition
