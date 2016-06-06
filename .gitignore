@@ -2,6 +2,7 @@
 *.a
 *.o
 *.exe
+*.dll
 a.out
 *.ppu
 
