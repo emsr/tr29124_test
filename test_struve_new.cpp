@@ -77,7 +77,7 @@ namespace __detail
 	  if (std::abs(__term) < _S_eps * std::abs(__struve))
 	    break;
 	}
-      __struve *= _Tp(__sign) * _Tp{2} * std::pow(__x2, __nu - _Tp{1})
+      __struve *= _Tp(__sign) * std::pow(__x2, __nu - _Tp{1})
 		/ std::__detail::__gamma(__nu + _Tp{0.5L}) / _S_sqrt_pi;
 
       return __struve;
@@ -381,7 +381,7 @@ template<typename _Tp>
 	 << std::setw(width) << "========="
 	 << std::setw(width) << "========="
 	 << '\n';
-    for (int i = 0; i <= +2000; ++i)
+    for (int i = 0; i <= +3000; ++i)
       {
 	auto t = _Tp(0.01Q * i);
 	data << std::setw(width) << t;
@@ -402,6 +402,7 @@ main()
 {
   //using cmplx = std::complex<double>;
   plot_struve<double>("plot/struve_double.txt");
+  plot_struve<long double>("plot/struve_long_double.txt");
 
   return 0;
 }
