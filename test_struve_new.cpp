@@ -434,7 +434,7 @@ template<typename _Tp>
 	 << std::setw(width) << "========="
 	 << std::setw(width) << "========="
 	 << '\n';
-    for (int i = 0; i <= +2000; ++i)
+    for (int i = 0; i <= +3000; ++i)
       {
 	auto t = _Tp(0.01Q * i);
 	data << std::setw(width) << t;
@@ -472,6 +472,7 @@ main()
 
   //using cmplx = std::complex<double>;
   plot_struve<double>("plot/struve_double.txt");
+  plot_struve<long double>("plot/struve_long_double.txt");
 
   return 0;
 }

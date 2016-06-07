@@ -66,8 +66,11 @@ plot [-20.0:5.0][-1.0:+1.0] "plot/airy_long_double.txt" using 1:2 with lines tit
 plot [-20.0:5.0][-1.5:+1.5] "plot/airy_long_double.txt" using 1:2 with lines title "Ai(x)", "" using 1:3 with lines title "Ai'(x)"
 plot [-20.0:5.0][-1.5:+1.5] "plot/airy_long_double.txt" using 1:4 with lines title "Bi(x)", "" using 1:5 with lines title "Bi'(x)"
 
-plot [0.0:20.0][-0.5:+4.5] "plot/struve_double.txt" using 1:2 with lines title "H_0", "" using 1:4 with lines title "H_1", "" using 1:6 with lines title "H_2", "" using 1:8 with lines title "H_3"
+plot [0.0:30.0][-0.5:+6.0] "plot/struve_double.txt" using 1:2 with lines title "H_0", "" using 1:4 with lines title "H_1", "" using 1:6 with lines title "H_2", "" using 1:8 with lines title "H_3"
 plot [0.0:5.0][-0.5:+4.5] "plot/struve_double.txt" using 1:3 with lines title "L_0", "" using 1:5 with lines title "L_1", "" using 1:7 with lines title "L_2", "" using 1:9 with lines title "L_3"
+
+plot [0.0:30.0][-0.5:+6.0] "plot/struve_long_double.txt" using 1:2 with lines title "H_0", "" using 1:4 with lines title "H_1", "" using 1:6 with lines title "H_2", "" using 1:8 with lines title "H_3"
+plot [0.0:5.0][-0.5:+4.5] "plot/struve_long_double.txt" using 1:3 with lines title "L_0", "" using 1:5 with lines title "L_1", "" using 1:7 with lines title "L_2", "" using 1:9 with lines title "L_3"
 
 
 /usr/local/bin/gnuplot
