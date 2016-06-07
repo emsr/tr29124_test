@@ -1928,6 +1928,41 @@ br ''
       return _AiryState<std::complex<_Tp>>{__t, _Gi, _Gip, _Hi, _Hip};
     }
 
+  template<typename _Tp>
+    void
+    run_Scorer2()
+    {
+      std::cout.precision(std::numeric_limits<_Tp>::digits10);
+      std::cout << std::showpoint << std::scientific;
+      auto width = 8 + std::cout.precision();
+
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_cbrt3 = std::cbrt(_Tp{3});
+      constexpr auto _S_1d3 = _Tp{1} / _Tp{3};
+      constexpr auto _S_2d3 = _Tp{2} / _Tp{3};
+      auto _Hi = std::tgamma(_S_1d3);
+      auto _Hip = std::tgamma(_S_2d3);
+      auto __term = _Tp{1};
+      auto __termp = _Tp{1};
+      for (int __k = 1; __k < __max_FGH<_Tp>; ++__k)
+	{
+          std::cout << std::setw(width) << _Hi;
+          if (__k % 3 == 0)
+	    std::cout << '\n';
+	  __term *= _S_cbrt3 / _Tp(__k);
+	  __termp *= _S_cbrt3 / _Tp(__k);
+	  const auto __gam = std::tgamma(_Tp(__k + 1) /_Tp{3});
+	  const auto __gamp = std::tgamma(_Tp(__k + 2) /_Tp{3});
+	  _Hi += __gam * __term;
+	  _Hip += __gamp * __termp;
+	}
+
+      const auto __fact = _Tp{1} / (_S_cbrt3 * _S_cbrt3 * _S_pi);
+      const auto __factp = _Tp{1} / (_S_cbrt3 * _S_pi);
+      _Hi *= __fact;
+      _Hip *= __factp;
+    }
+
   /**
    * Return the Airy function of either the first or second kind and it's
    * derivative by series expansion as a pair of complex numbers.  The type
@@ -4721,4 +4756,5 @@ main()
 
   run_scorer_series<double>();
 
+  run_Scorer2<double>();
 }
