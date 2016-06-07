@@ -449,7 +449,7 @@ template<typename _Tp>
       }
     data << "\n\n";
 
-    for (int i = 0; i <= +2000; ++i)
+    for (int i = 0; i <= +3000; ++i)
       {
 	auto t = _Tp(0.01Q * i);
 	data << std::setw(width) << t;
@@ -468,9 +468,12 @@ template<typename _Tp>
 int
 main()
 {
+  test_struve_transition<float>();
   test_struve_transition<double>();
+  test_struve_transition<long double>();
 
   //using cmplx = std::complex<double>;
+  plot_struve<float>("plot/struve_float.txt");
   plot_struve<double>("plot/struve_double.txt");
   plot_struve<long double>("plot/struve_long_double.txt");
 
