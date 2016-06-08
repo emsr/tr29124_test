@@ -81,7 +81,7 @@ namespace __gnu_cxx
 	}
 
       /**
-       *  .
+       *  Create a polynomial of just one constant term.
        */
       explicit
       _Polynomial(value_type __a, size_type __degree = 0)
