@@ -237,6 +237,7 @@ namespace __gnu_cxx
 		}
 	    }
 	}
+
       /**
        *  Evaluate the polynomial and its derivatives at the point x.
        *  The values are placed in the output range starting with the
@@ -569,6 +570,7 @@ namespace __gnu_cxx
 	operator==(const _Polynomial<_Tp1>& __pa, const _Polynomial<_Tp1>& __pb);
 
     private:
+
       std::vector<value_type> _M_coeff;
     };
 
