@@ -25,6 +25,7 @@ br ''
 #include <bits/specfun_util.h>
 #include <bits/complex_util.h>
 #include <bits/summation.h>
+#include "polynomial.h"
 
 
   /**
@@ -3407,10 +3408,17 @@ br ''
 
       _AiryState<std::complex<_Tp>>
       operator()(std::complex<_Tp> __t, bool __return_fock_airy = false) const;
+
+      _AiryState<std::complex<_Tp>>
+      _S_absarg_ge_pio3(std::complex<_Tp> __z) const;
+
+    private:
+      std::pair<std::complex<_Tp>, std::complex<_Tp>>
+      _S_absarg_ge_pio3_help(std::complex<_Tp> __z, int __sign = -1) const;
     };
 
   /**
-   *  Return the Airy functions for a given argument using asymptotic series.
+   * Return the Airy functions for a given argument using asymptotic series.
    *
    *
    * @tparam _Tp A real type
@@ -3573,7 +3581,6 @@ br ''
 	}
     }
 
-
   /**
    * @brief This function evaluates @f$ Ai(z) @f$ and @f$ Ai'(z) @f$
    * or @f$ Bi(z) @f$ and @f$ Bi'(z) @f$ from their asymptotic expansions
@@ -3599,6 +3606,109 @@ br ''
    * 			 @f$ Ai'(x) @f$ functions for @f$ |arg(z)| < \pi @f$.
    * 			 The value +1 gives the Airy @f$ Bi(x) @f$ and
    * 			 @f$ Bi'(x) @f$ functions for @f$ |arg(z)| < \pi/3 @f$.
+   * @return A pair containing the Airy function @f$ Ai(z) @f$ or @f$ Bi(x) @f$
+   *         and the derivative @f$ Ai'(z) @f$ or @f$ Bi'(x) @f$
+   */
+  template<typename _Tp>
+    std::pair<std::complex<_Tp>, std::complex<_Tp>>
+    _Airy_asymp<_Tp>::_S_absarg_ge_pio3_help(std::complex<_Tp> __z,
+					     int __sign) const
+    {
+      constexpr _Tp _S_2d3   = _Tp{2} / _Tp{3};
+      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
+      constexpr _Tp _S_pmhd2 = _Tp{1} / (_Tp{2} * _S_sqrt_pi);
+      constexpr int _S_numnterms = 5;
+      constexpr int
+      _S_nterms[_S_numnterms]
+      { _Airy_asymp_data<_Tp>::_S_max_cd, 12, 11, 11, 9 };
+
+      // Compute zeta and z^(1/4).
+      auto __z1d4 = std::sqrt(__z);
+      auto __zeta = _S_2d3 * __z * __z1d4;
+      __z1d4 = std::sqrt(__z1d4);
+
+      // Compute outer factors in the expansions.
+      auto __factp = std::exp(_Tp(__sign) * __zeta);
+      __factp *= _S_pmhd2;
+      auto __fact = __factp / __z1d4;
+      __factp *= -__z1d4;
+      if (__sign == +1)
+	{
+	  __fact *= _Tp{2};
+	  __factp *= _Tp{2};
+	}
+
+      // Determine number of terms to use.
+      auto __nterm = _S_nterms[std::min(_Airy_asymp_data<_Tp>::_S_max_cd - 1,
+					(int(std::abs(__z)) - 10) / 5)];
+      if (__nterm < 0 || __nterm > _Airy_asymp_data<_Tp>::_S_max_cd)
+	__nterm = 0;
+      // Initialize for modified Horner's rule evaluation of sums.
+      // It is assumed that at least three terms are used.
+      auto __zetam = _Tp(__sign) / __zeta;
+
+      __gnu_cxx::_Polynomial<_Tp>
+	__cpoly(std::begin(_Airy_asymp_data<_Tp>::_S_c),
+		std::begin(_Airy_asymp_data<_Tp>::_S_c) + __nterm);
+      auto _Ai = __cpoly(__zetam);
+
+      __gnu_cxx::_Polynomial<_Tp>
+	__dpoly(std::begin(_Airy_asymp_data<_Tp>::_S_d),
+		std::begin(_Airy_asymp_data<_Tp>::_S_d) + __nterm);
+      auto _Aip = __dpoly(__zetam);
+
+      return std::make_pair(_Ai, _Aip);
+    }
+
+
+  /**
+   * @brief This function evaluates @f$ Ai(z), Ai'(z) @f$
+   *        and @f$ Bi(z), Bi'(z) @f$ from their asymptotic expansions
+   *        for @f$ |arg(z)| < 2*\pi/3 @f$.
+   *
+   * @tparam _Tp A real type
+   * @param[in]  z Complex argument at which Ai(z) and Bi(z)
+   * 		   and their derivative are evaluated. This function
+   * 		   assumes @f$ |z| > 15 @f$ and @f$ |(arg(z)| < 2\pi/3 @f$.
+   * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
+   */
+  template<typename _Tp>
+    _AiryState<std::complex<_Tp>>
+    _Airy_asymp<_Tp>::_S_absarg_ge_pio3(std::complex<_Tp> __z) const
+    {
+      std::complex<_Tp> _Ai, _Aip;
+      _S_absarg_ge_pio3_help(__z, _Ai, _Aip, -1);
+      std::complex<_Tp> _Bi, _Bip;
+      _S_absarg_ge_pio3_help(__z, _Bi, _Bip, +1);
+      return _AiryState<std::complex<_Tp>>{__z, _Ai, _Aip, _Bi, _Bip};
+    }
+
+
+  /**
+   * @brief This function evaluates @f$ Ai(z) @f$ and @f$ Ai'(z) @f$
+   * or @f$ Bi(z) @f$ and @f$ Bi'(z) @f$ from their asymptotic expansions
+   * for @f$ |arg(z)| < 2*\pi/3 @f$ (Roughly +x).
+   * For speed, the number of terms needed to achieve about 16 decimals accuracy
+   * is tabled and determined from @f$ |z| @f$.
+   *
+   * Note that for speed and since this function
+   * is called by another, checks for valid arguments are not
+   * made.
+   *
+   * @see Digital Library of Mathematical Functions §9.7 Asymptotic Expansions
+   * 	  http://dlmf.nist.gov/9.7
+   *
+   * @tparam _Tp A real type
+   * @param[in]  z Complex arument at which @f$ Ai(z) @f$ or @f$ Bi(z) @f$
+   * 		   and their derivative are evaluated. This function assumes
+   * 		   @f$ |z| > 15 @f$ and @f$ |arg(z)| < 2\pi/3 @f$.
+   * @param[out] Ai  The value computed for @f$ Ai(z) @f$ or @f$ Bi(x) @f$.
+   * @param[out] Aip The value computed for @f$ Ai'(z) @f$ or @f$ Bi'(x) @f$.
+   * @param[in] sign  The sign of the series terms and exponent.
+   * 			 The default (-1) gives the Airy @f$ Ai(x) @f$ and
+   * 			 @f$ Ai'(x) @f$ functions for @f$ |arg(z)| < \pi @f$.
+   * 			 The value +1 gives the Airy @f$ Bi(x) @f$ and
+   * 			 @f$ Bi'(x) @f$ functions for @f$ |arg(z)| < \pi/3 @f$.
    */
   template<typename _Tp>
     void
@@ -3608,9 +3718,8 @@ br ''
 				     int __sign = -1)
     {
       constexpr _Tp _S_2d3   = _Tp{2} / _Tp{3};
-      // 1/(2 sqrt(pi)))
-      constexpr _Tp _S_pmhd2
-	 = _Tp{2.820947917738781434740397257803862929219e-01L};
+      constexpr _Tp _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
+      constexpr _Tp _S_pmhd2 = _Tp{1} / (_Tp{2} * _S_sqrt_pi);
       constexpr int _S_ncoeffs = 15;
       constexpr int _S_numnterms = 5;
       constexpr int _S_nterms[5]{ _S_ncoeffs, 12, 11, 11, 9 };
@@ -3750,7 +3859,8 @@ br ''
     {
       constexpr _Tp _S_2d3 {_Tp{2} / _Tp{3}};
       constexpr _Tp _S_9d4 {_Tp{9} / _Tp{4}};
-      constexpr _Tp _S_pimh{5.641895835477562869480794515607725858438e-01L};
+      constexpr _Tp _S_pimh
+	= _Tp{1} / __gnu_cxx::__math_constants<_Tp>::__root_pi;
       constexpr _Tp _S_pid4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
 
       constexpr std::complex<_Tp> _S_zone{1};
@@ -3851,7 +3961,6 @@ br ''
        -1.000000000000000000000000000000000e+00L,
       };
 
-      // Set up working value of z.
       // Compute zeta and z^(1/4).
       auto __z1d4 = std::sqrt(-__z);
       auto __zeta = -__z * __z1d4;
@@ -3888,7 +3997,6 @@ br ''
       auto __betapc = _S_v_cos[__index];
       ++__index;
 
-      // Loop until components contributing to sums are computed.
       for (int __k = __index; __k < _S_ncoeffs; ++__k)
 	{
 	  __betas = _S_u_sin[__k]
