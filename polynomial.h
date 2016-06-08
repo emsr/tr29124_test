@@ -272,6 +272,42 @@ namespace __gnu_cxx
 	}
 
       /**
+       *  Evaluate the even part of the polynomial at the input point.
+       */
+      value_type
+      even(value_type __x) const
+      {
+	if (this->degree() > 0)
+	  {
+	    auto __odd = this->degree() % 2;
+	    value_type __poly(this->coefficient(this->degree() - __odd));
+	    for (int __i = this->degree() - __odd - 2; __i >= 0; __i -= 2)
+	      __poly = __poly * __x * __x + this->coefficient(__i);
+	    return __poly;
+	  }
+	else
+	  return value_type{};
+      }
+
+      /**
+       *  Evaluate the odd part of the polynomial at the input point.
+       */
+      value_type
+      odd(value_type __x) const
+      {
+	if (this->degree() > 0)
+	  {
+	    auto __even = (this->degree() % 2 == 0 ? 1 : 0);
+	    value_type __poly(this->coefficient(this->degree() - __even));
+	    for (int __i = this->degree() - __even - 2; __i >= 0; __i -= 2)
+	      __poly = __poly * __x * __x + this->coefficient(__i);
+	    return __poly * __x;
+	  }
+	else
+	  return value_type{};
+      }
+
+      /**
        *  Return the derivative of the polynomial.
        */
       _Polynomial
@@ -790,30 +826,3 @@ namespace __gnu_cxx
 
 } // namespace __gnu_cxx
 
-/*
-//  Here is another idea from boost.
-namespace __gnu_cxx
-{
-
-  template<typename _Tp, size_t _Num, size_t _K>
-    constexpr _Tp
-    _Polynomial_eval_help(const std::array<_Tp, _Num>& __arr, _Tp __x)
-    { return _Polynomial_eval_help<_Tp, _Num, _K - 1>(__arr, __x) * __x + __arr[_K]; }
-
-  template<typename _Tp, size_t _Num>
-    constexpr _Tp
-    _Polynomial_eval_help<_Tp, _Num, 0>(const std::array<_Tp, _Num>& __arr, _Tp __x)
-    { return _Tp(1); }
-
-  template<typename _Tp, size_t _Num>
-    constexpr _Tp
-    _Polynomial_eval(const std::array<_Tp, _Num>& __arr, _Tp __x)
-    { return _Polynomial_eval_help<_Tp, _Num, _Num - 1>(__arr, __x); }
-
-  template<typename _Tp>
-    constexpr _Tp
-    _Polynomial_eval<_Tp, 0>(const std::array<_Tp, 0>& __arr, _Tp __x)
-    { return _Tp(0); }
-
-} // namespace __gnu_cxx
-*/
