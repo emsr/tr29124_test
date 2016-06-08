@@ -4192,7 +4192,7 @@ template<typename _Tp>
     static constexpr value_type _S_i = value_type{0, 1};
 
     static constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<scalar_type>();
-    static constexpr auto _S_caN = value_type(_S_NaN, _S_NaN);
+    static constexpr auto _S_cNaN = value_type(_S_NaN, _S_NaN);
 
     constexpr _Airy() = default;
     _Airy(const _Airy&) = default;
@@ -4235,7 +4235,7 @@ template<typename _Tp>
     using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
 
     if (std::__detail::__isnan(__y))
-      return _AiryState<_Tp>{__y, _S_caN, _S_caN, _S_caN, _S_caN};
+      return _AiryState<_Tp>{__y, _S_cNaN, _S_cNaN, _S_cNaN, _S_cNaN};
 
     auto __absargy = std::abs(std::arg(__y));
     auto __absy = std::abs(__y);
@@ -4417,7 +4417,7 @@ template<typename _Tp>
     static constexpr value_type _S_i = value_type{0, 1};
 
     static constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<scalar_type>();
-    static constexpr auto _S_caN = value_type{_S_NaN, _S_NaN};
+    static constexpr auto _S_cNaN = value_type{_S_NaN, _S_NaN};
 
     constexpr _AiryState<value_type>
     operator()(value_type __y) const;
@@ -4448,62 +4448,28 @@ template<typename _Tp>
     using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
 
     if (std::__detail::__isnan(__y))
-      return _AiryState<_Tp>{__y, _S_caN, _S_caN, _S_caN, _S_caN};
+      return _AiryState<_Tp>{__y, _S_cNaN, _S_cNaN, _S_cNaN, _S_cNaN};
 
     auto __absargy = std::abs(std::arg(__y));
     auto __absy = std::abs(__y);
-    auto __sign = std::copysign(__scal{1}, std::arg(__y));
 
-    _AiryState<_Tp> __airy_sums;
+    _AiryState<_Tp> __airy_sums = _Airy<_Tp>()(__y);
+    auto _Bi = __airy_sums.Bi;
+    auto _Bip = __airy_sums.Bip;
+
     std::pair<_Tp, _Tp> __scorer_sums;
     if (__absy >= inner_radius)
       {
 	if (__absy < outer_radius)
 	  {
 	    auto __beta = __scal{1};
-	    _Airy_asymp_series<_InnerSum> __airy(_InnerSum{__beta});
-	    __airy_sums = __airy(__y);
 	    _Scorer_asymp_series<_InnerSum> __scorer(_InnerSum{__beta});
 	    __scorer_sums = __scorer(__y);
 	  }
 	else
 	  {
-	    _Airy_asymp_series<_OuterSum> __asymp(_OuterSum{});
-	    __airy_sums = __asymp(__y);
 	    _Scorer_asymp_series<_OuterSum> __scorer(_OuterSum{});
 	    __scorer_sums = __scorer(__y);
-	  }
-      }
-
-    /// @todo This is cut and paste from _Airy.
-    /// The latter should have individual calls for Ai, Bi.
-    __cmplx _Bi, _Bip;
-    if (__absy < inner_radius
-	|| (__absy < outer_radius && __absargy < _S_pi_3))
-      std::tie(_Bi, _Bip) = _Airy_series<__scal>::_S_Bi(__y);
-    else if (__absy < outer_radius)
-      {
-	_Bi = __scal{2} * __airy_sums.Bi + __sign * _S_i * __airy_sums.Ai;
-	_Bip = __scal{2} * __airy_sums.Bip + __sign * _S_i * __airy_sums.Aip;
-	if (__absargy > _S_5pi_6)
-	  {
-	    _Bi -= __airy_sums.Bi;
-	    _Bip -= __airy_sums.Bip;
-	  }
-      }
-    else
-      {
-	_Bi = __scal{2} * __airy_sums.Bi;
-	_Bip = __scal{2} * __airy_sums.Bip;
-	if (__absargy > _S_pi_6)
-	  {
-	    _Bi += __sign * _S_i * __airy_sums.Ai;
-	    _Bip += __sign * _S_i * __airy_sums.Aip;
-	  }
-	if (__absargy > _S_5pi_6)
-	  {
-	    _Bi -= __airy_sums.Bi;
-	    _Bip -= __airy_sums.Bip;
 	  }
       }
 
