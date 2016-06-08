@@ -82,7 +82,7 @@ namespace __gnu_cxx
 	}
 
       /**
-       *  .
+       *  Create a polynomial of just one constant term.
        */
       constexpr explicit
       _StaticPolynomial(value_type __a, size_type __degree = 0)
