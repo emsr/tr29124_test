@@ -2,11 +2,16 @@
 
 // LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 
-// /usr/local/bin/gdb ./airy_toy
-/*
-br main
-br ''
-*/
+
+// $HOME/bin_specfun/bin/g++ -std=gnu++14 -DOLD -g -Wall -Wextra -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
+
+// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new.old
+
+// $HOME/bin_specfun/bin/g++ -std=gnu++14 -UOLD -g -Wall -Wextra -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
+
+// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new.new
+
+
 
 // g++ -std=gnu++14 -g -Wall -Wextra -DNO_LOGBQ -I. -o airy_toy airy_toy.cpp -lquadmath
 
@@ -1889,41 +1894,6 @@ br ''
       return _AiryState<std::complex<_Tp>>{__t, _Gi, _Gip, _Hi, _Hip};
     }
 
-  template<typename _Tp>
-    void
-    run_Scorer2()
-    {
-      std::cout.precision(std::numeric_limits<_Tp>::digits10);
-      std::cout << std::showpoint << std::scientific;
-      auto width = 8 + std::cout.precision();
-
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_cbrt3 = std::cbrt(_Tp{3});
-      constexpr auto _S_1d3 = _Tp{1} / _Tp{3};
-      constexpr auto _S_2d3 = _Tp{2} / _Tp{3};
-      auto _Hi = std::tgamma(_S_1d3);
-      auto _Hip = std::tgamma(_S_2d3);
-      auto __term = _Tp{1};
-      auto __termp = _Tp{1};
-      for (int __k = 1; __k < __max_FGH<_Tp>; ++__k)
-	{
-          std::cout << std::setw(width) << _Hi;
-          if (__k % 3 == 0)
-	    std::cout << '\n';
-	  __term *= _S_cbrt3 / _Tp(__k);
-	  __termp *= _S_cbrt3 / _Tp(__k);
-	  const auto __gam = std::tgamma(_Tp(__k + 1) /_Tp{3});
-	  const auto __gamp = std::tgamma(_Tp(__k + 2) /_Tp{3});
-	  _Hi += __gam * __term;
-	  _Hip += __gamp * __termp;
-	}
-
-      const auto __fact = _Tp{1} / (_S_cbrt3 * _S_cbrt3 * _S_pi);
-      const auto __factp = _Tp{1} / (_S_cbrt3 * _S_pi);
-      _Hi *= __fact;
-      _Hip *= __factp;
-    }
-
   /**
    * Return the Airy function of either the first or second kind and it's
    * derivative by series expansion as a pair of complex numbers.  The type
@@ -3412,6 +3382,9 @@ br ''
       _AiryState<std::complex<_Tp>>
       _S_absarg_ge_pio3(std::complex<_Tp> __z) const;
 
+      _AiryState<std::complex<_Tp>>
+      _S_absarg_lt_pio3(std::complex<_Tp> __z) const;
+
     private:
       std::pair<std::complex<_Tp>, std::complex<_Tp>>
       _S_absarg_ge_pio3_help(std::complex<_Tp> __z, int __sign = -1) const;
@@ -3614,18 +3587,15 @@ br ''
     _Airy_asymp<_Tp>::_S_absarg_ge_pio3_help(std::complex<_Tp> __z,
 					     int __sign) const
     {
-      constexpr _Tp _S_2d3   = _Tp{2} / _Tp{3};
       constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
       constexpr _Tp _S_pmhd2 = _Tp{1} / (_Tp{2} * _S_sqrt_pi);
-      constexpr int _S_numnterms = 5;
+      constexpr int _S_num_nterms = 5;
       constexpr int
-      _S_nterms[_S_numnterms]
-      { _Airy_asymp_data<_Tp>::_S_max_cd, 12, 11, 11, 9 };
+      _S_nterms[_S_num_nterms]
+      {_Airy_asymp_data<_Tp>::_S_max_cd, 24, 22, 22, 18};
 
-      // Compute zeta and z^(1/4).
-      auto __z1d4 = std::sqrt(__z);
-      auto __zeta = _S_2d3 * __z * __z1d4;
-      __z1d4 = std::sqrt(__z1d4);
+      auto __zeta = _Tp{2} * std::pow(__z, _Tp{1.5L}) / _Tp{3};
+      auto __z1d4 = std::pow(__z, _Tp{0.25L});
 
       // Compute outer factors in the expansions.
       auto __factp = std::exp(_Tp(__sign) * __zeta);
@@ -3639,23 +3609,22 @@ br ''
 	}
 
       // Determine number of terms to use.
-      auto __nterm = _S_nterms[std::min(_Airy_asymp_data<_Tp>::_S_max_cd - 1,
-					(int(std::abs(__z)) - 10) / 5)];
-      if (__nterm < 0 || __nterm > _Airy_asymp_data<_Tp>::_S_max_cd)
-	__nterm = 0;
-      // Initialize for modified Horner's rule evaluation of sums.
-      // It is assumed that at least three terms are used.
+      auto __iterm = std::min(_S_num_nterms - 1, (int(std::abs(__z)) - 10) / 5);
+      if (__iterm < 0 || __iterm >= _S_num_nterms)
+	__iterm = 0;
+      auto __nterm = _S_nterms[__iterm];
+      // Power series is in terms of +-1 / \zeta.
       auto __zetam = _Tp(__sign) / __zeta;
 
       __gnu_cxx::_Polynomial<_Tp>
 	__cpoly(std::begin(_Airy_asymp_data<_Tp>::_S_c),
 		std::begin(_Airy_asymp_data<_Tp>::_S_c) + __nterm);
-      auto _Ai = __cpoly(__zetam);
+      auto _Ai = __fact * __cpoly(__zetam);
 
       __gnu_cxx::_Polynomial<_Tp>
 	__dpoly(std::begin(_Airy_asymp_data<_Tp>::_S_d),
 		std::begin(_Airy_asymp_data<_Tp>::_S_d) + __nterm);
-      auto _Aip = __dpoly(__zetam);
+      auto _Aip = __factp * __dpoly(__zetam);
 
       return std::make_pair(_Ai, _Aip);
     }
@@ -3677,10 +3646,85 @@ br ''
     _Airy_asymp<_Tp>::_S_absarg_ge_pio3(std::complex<_Tp> __z) const
     {
       std::complex<_Tp> _Ai, _Aip;
-      _S_absarg_ge_pio3_help(__z, _Ai, _Aip, -1);
+      std::tie(_Ai, _Aip) = _S_absarg_ge_pio3_help(__z, -1);
       std::complex<_Tp> _Bi, _Bip;
-      _S_absarg_ge_pio3_help(__z, _Bi, _Bip, +1);
+      std::tie(_Bi, _Bip) = _S_absarg_ge_pio3_help(__z, +1);
       return _AiryState<std::complex<_Tp>>{__z, _Ai, _Aip, _Bi, _Bip};
+    }
+
+
+  /**
+   * @brief This function evaluates @f$ Ai(z) @f$ and @f$ Ai'(z) @f$
+   * from their asymptotic expansions for @f$ |arg(-z)| < \pi/3 @f$.
+   * For speed, the number of terms needed to achieve about 16 decimals
+   * accuracy is tabled and determined for @f$ |z| @f$.
+   * This function assumes @f$ |z| > 15 @f$ and @f$ |arg(-z)| < \pi/3 @f$.
+   *
+   * Note that for speed and since this function
+   * is called by another, checks for valid arguments are not
+   * made.  Hence, an error return is not needed.
+   *
+   * @tparam _Tp A real type
+   * @param[in] z  The value at which the Airy function and their derivatives
+   * 		   are evaluated.
+   * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
+   */
+  template<typename _Tp>
+    _AiryState<std::complex<_Tp>>
+    _Airy_asymp<_Tp>::_S_absarg_lt_pio3(std::complex<_Tp> __z) const
+    {
+      constexpr _Tp _S_pimh
+	= _Tp{1} / __gnu_cxx::__math_constants<_Tp>::__root_pi;
+      constexpr _Tp _S_pid4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
+
+      constexpr std::complex<_Tp> _S_zone{1};
+      /// @todo Revisit these numbers of terms for the Airy asymptotic
+      /// expansions.
+      constexpr int _S_num_nterms = 5;
+      constexpr int
+      _S_nterms[_S_num_nterms]
+      {_Airy_asymp_data<_Tp>::_S_max_cd, 28, 24, 24, 20};
+
+      auto __zeta = _Tp{2} * std::pow(-__z, _Tp{1.5L}) / _Tp{3};
+      auto __z1d4 = std::pow(-__z, _Tp{0.25L});
+
+      auto __zetaarg = __zeta - _S_pid4;
+      auto __sinzeta = std::sin(__zetaarg);
+      auto __coszeta = std::cos(__zetaarg);
+
+      // Determine number of terms to use.
+      auto __iterm = std::min(_S_num_nterms - 1, (int(std::abs(__z)) - 10) / 5);
+      if (__iterm < 0 || __iterm >= _S_num_nterms)
+	__iterm = 0;
+      auto __nterm = _S_nterms[__iterm];
+      // Power series is in terms of 1 / \zeta^2.
+      auto __zetam2 = _Tp{1} / (__zeta * __zeta);
+
+      __gnu_cxx::_Polynomial<_Tp>
+	__cpoly(std::begin(_Airy_asymp_data<_Tp>::_S_c),
+		std::begin(_Airy_asymp_data<_Tp>::_S_c) + __nterm);
+
+      __gnu_cxx::_Polynomial<_Tp>
+	__dpoly(std::begin(_Airy_asymp_data<_Tp>::_S_d),
+		std::begin(_Airy_asymp_data<_Tp>::_S_d) + __nterm);
+
+      // Complete evaluation of the Airy functions.
+      __zeta = _S_zone / __zeta;
+      auto _Ai = __coszeta * __cpoly.even(__zetam2)
+	       + __sinzeta * __cpoly.odd(__zetam2);
+      _Ai *= _S_pimh / __z1d4;
+      auto _Aip = __sinzeta * __dpoly.even(__zetam2)
+		- __coszeta * __dpoly.odd(__zetam2);
+      _Aip *= _S_pimh * __z1d4;
+      auto _Bi = -__sinzeta * __cpoly.even(__zetam2)
+	       + __coszeta * __cpoly.odd(__zetam2);
+      _Bi *= _S_pimh / __z1d4;
+      auto _Bip = __coszeta * __dpoly.even(__zetam2)
+		+ __sinzeta * __dpoly.odd(__zetam2);
+      _Bip *= _S_pimh * __z1d4;
+
+      // I think we're computing d/d(-z) above.
+      return _AiryState<std::complex<_Tp>>{__z, _Ai, -_Aip, _Bi, -_Bip};
     }
 
 
@@ -3721,8 +3765,8 @@ br ''
       constexpr _Tp _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
       constexpr _Tp _S_pmhd2 = _Tp{1} / (_Tp{2} * _S_sqrt_pi);
       constexpr int _S_ncoeffs = 15;
-      constexpr int _S_numnterms = 5;
-      constexpr int _S_nterms[5]{ _S_ncoeffs, 12, 11, 11, 9 };
+      constexpr int _S_num_nterms = 5;
+      constexpr int _S_nterms[_S_num_nterms]{ _S_ncoeffs, 12, 11, 11, 9 };
 
       // Coefficients for the expansion.
       constexpr _Tp
@@ -3782,9 +3826,9 @@ br ''
 	}
 
       // Determine number of terms to use.
-      auto __nterm = _S_nterms[std::min(_S_numnterms - 1,
+      auto __nterm = _S_nterms[std::min(_S_num_nterms - 1,
 					(int(std::abs(__z)) - 10) / 5)];
-      if (__nterm < 0 || __nterm > _S_numnterms)
+      if (__nterm < 0 || __nterm > _S_num_nterms)
 	__nterm = 0;
       // Initialize for modified Horner's rule evaluation of sums.
       // It is assumed that at least three terms are used.
@@ -3867,8 +3911,8 @@ br ''
       constexpr int _S_ncoeffs = 18;
       /// @todo Revisit these numbers of terms for the Airy asymptotic
       /// expansions.
-      constexpr int _S_numnterms = 5;
-      constexpr int _S_nterms[_S_numnterms]{ _S_ncoeffs, 7, 6, 6, 5 };
+      constexpr int _S_num_nterms = 5;
+      constexpr int _S_nterms[_S_num_nterms]{ _S_ncoeffs, 7, 6, 6, 5 };
 
       // coefficients for the expansion.
       constexpr _Tp
@@ -3973,9 +4017,9 @@ br ''
       auto __coszeta = std::cos(__zetaarg);
 
       // Determine number of terms to use.
-      auto __nterm = _S_nterms[std::min(_S_numnterms - 1,
+      auto __nterm = _S_nterms[std::min(_S_num_nterms - 1,
 					(int(std::abs(__z)) - 10) / 5)];
-      if (__nterm < 0 || __nterm > _S_numnterms)
+      if (__nterm < 0 || __nterm > _S_num_nterms)
 	__nterm = _S_ncoeffs;
       // Initialize for modified Horner's rule evaluation of sums
       // it is assumed that at least three terms are used.
@@ -4619,12 +4663,14 @@ template<typename _Tp>
     _S_d.push_back(-_Tp{1});
     for (int __s = 1; __s <= 200; ++__s)
       {
-	// Turn this into a recursion:
-	//for (int r = 0; r < 2 * s; ++r)
-	//  numer *= (2 * s + 2 * r + 1);
-	//auto __a = _S_c.back()
-	//	 * (6 * __s - 5) * (6 * __s - 3) * (6 * __s - 1)
-	//	      / (216 * __s * (2 * __s - 1));
+	// Turn this:
+	//  for (int r = 0; r < 2 * s; ++r)
+	//    numer *= (2 * s + 2 * r + 1);
+	// and this:
+	//  auto __a = _S_c.back()
+	//	   * (6 * __s - 5) * (6 * __s - 3) * (6 * __s - 1)
+	//	        / (216 * __s * (2 * __s - 1));
+	// into a recursion:
 	auto __a = _S_c.back()
 		 * (_Tp(__s - 1) / _Tp{2} + _Tp{5} / _Tp(72 * __s));
 	auto __b = -__a * _Tp(__s + _S_1d6) / _Tp(__s - _S_1d6);
@@ -4689,7 +4735,6 @@ template<typename _Tp>
 	//__Fai_denom *= (3ULL * __k - 2ULL) * (3ULL * __k - 1ULL) * (3ULL * __k);
 	//__Fai_numer *= 1ULL + 3ULL * (__k - 1ULL);
 	__Fai_denom *= (3ULL * __k - 1ULL) * (3ULL * __k);
-	//__Fai_numer *= 1ULL;
 	if (__Fai_numer / __Fai_denom < _Tp{10} * _S_min)
 	  break;
 	_Fai.push_back(__Fai_numer / __Fai_denom);
@@ -4699,7 +4744,6 @@ template<typename _Tp>
 	//__Gai_denom *= (3ULL * __k - 1ULL) * (3ULL * __k) * (3ULL * __k + 1ULL);
 	//__Gai_numer *= 2ULL + 3ULL * (__k - 1ULL);
 	__Gai_denom *= (3ULL * __k) * (3ULL * __k + 1ULL);
-	//__Gai_numer *= 1ULL;
 	_Gai.push_back(__Gai_numer / __Gai_denom);
 	_Gaip.push_back((3ULL * __k + 1ULL) * _Gai.back());
 
@@ -4707,7 +4751,6 @@ template<typename _Tp>
 	//__Hai_denom *= (3ULL * __k) * (3ULL * __k + 1ULL) * (3ULL * __k + 2ULL);
 	//__Hai_numer *= 3ULL + 3ULL * (__k - 1ULL);
 	__Hai_denom *= (3ULL * __k + 1ULL) * (3ULL * __k + 2ULL);
-	//__Hai_numer *= 1ULL;
 	_Hai.push_back(__Hai_numer / __Hai_denom);
 	_Haip.push_back((3ULL * __k + 2ULL) * _Hai.back());
       }
@@ -5096,7 +5139,7 @@ template<typename _Tp>
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
-    for (int i = 500; i <= 1500; ++i)
+    for (int i = 500; i <= 2000; ++i)
       {
 	auto t = __cmplx{_Tp(0.01Q * i)};
 	auto airy1 = __airy_asymp(t);
@@ -5109,7 +5152,11 @@ template<typename _Tp>
 		  << std::setw(width) << std::real(airy1.Wronskian())
 		  << std::setw(width) << std::real(airy1.true_Wronskian())
 		  << '\n';
+#ifdef OLD
 	auto airy2 = __airy_asymp_absarg_ge_pio3(t);
+#else
+	auto airy2 = __airy_asymp._S_absarg_ge_pio3(t);
+#endif
 	std::cout << std::setw(width) << std::real(airy2.z)
 		  << std::setw(width) << std::real(airy2.Ai)
 		  << std::setw(width) << std::real(airy2.Aip)
@@ -5158,7 +5205,7 @@ template<typename _Tp>
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
-    for (int i = -1500; i <= -500; ++i)
+    for (int i = -2000; i <= -500; ++i)
       {
 	auto t = __cmplx{_Tp(0.01Q * i)};
 	auto airy1 = __airy_asymp(t);
@@ -5171,7 +5218,11 @@ template<typename _Tp>
 		  << std::setw(width) << std::real(airy1.Wronskian())
 		  << std::setw(width) << std::real(airy1.true_Wronskian())
 		  << '\n';
+#ifdef OLD
 	auto airy2 = __airy_asymp_absarg_lt_pio3(t);
+#else
+	auto airy2 = __airy_asymp._S_absarg_lt_pio3(t);
+#endif
 	std::cout << std::setw(width) << std::real(airy2.z)
 		  << std::setw(width) << std::real(airy2.Ai)
 		  << std::setw(width) << std::real(airy2.Aip)
@@ -5439,7 +5490,7 @@ template<typename _Tp>
 	    auto airy0 = airy(t);
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
-		 << std::setw(width) << std::abs(airy0.Ai)
+		 << std::setw(width) << std::pow(std::abs(airy0.Ai), _Val{1} / _Val{6})
 		 << '\n';
 	  }
 	data << '\n';
@@ -5499,7 +5550,7 @@ template<typename _Tp>
 	    auto airy0 = airy(t);
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
-		 << std::setw(width) << std::abs(airy0.Bi)
+		 << std::setw(width) << std::pow(std::abs(airy0.Bi), _Val{1} / _Val{6})
 		 << '\n';
 	  }
 	data << '\n';
@@ -5666,6 +5717,42 @@ template<typename _Tp>
       }
     data << "\n\n";
   }
+
+  template<typename _Tp>
+    void
+    run_Scorer2()
+    {
+      std::cout.precision(std::numeric_limits<_Tp>::digits10);
+      std::cout << std::showpoint << std::scientific;
+      auto width = 8 + std::cout.precision();
+
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_cbrt3 = std::cbrt(_Tp{3});
+      constexpr auto _S_1d3 = _Tp{1} / _Tp{3};
+      constexpr auto _S_2d3 = _Tp{2} / _Tp{3};
+      auto _Hi = std::tgamma(_S_1d3);
+      auto _Hip = std::tgamma(_S_2d3);
+      auto __term = _Tp{1};
+      auto __termp = _Tp{1};
+      std::cout << std::setw(width) << __term;
+      for (int __k = 1; __k < __max_FGH<_Tp>; ++__k)
+	{
+	  if (__k % 3 == 0)
+	    std::cout << '\n';
+	  __term *= _S_cbrt3 / _Tp(__k);
+	  __termp *= _S_cbrt3 / _Tp(__k);
+	  const auto __gam = std::tgamma(_Tp(__k + 1) /_Tp{3}) / std::tgamma(_S_1d3);
+	  const auto __gamp = std::tgamma(_Tp(__k + 2) /_Tp{3}) / std::tgamma(_S_2d3);
+	  _Hi += __gam * __term;
+	  _Hip += __gamp * __termp;
+	  std::cout << std::setw(width) << __gam * __term;
+	}
+
+      const auto __fact = _Tp{1} / (_S_cbrt3 * _S_cbrt3 * _S_pi);
+      const auto __factp = _Tp{1} / (_S_cbrt3 * _S_pi);
+      _Hi *= __fact;
+      _Hip *= __factp;
+    }
 
 
 int

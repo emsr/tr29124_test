@@ -110,7 +110,7 @@ main()
     using __gnu_cxx::ellint_rg;
     using __gnu_cxx::ellint_rj;
     using       std::expint;	 
-    using __gnu_cxx::expint_e1;
+    using __gnu_cxx::expint;
     using __gnu_cxx::factorial;
     using __gnu_cxx::fresnel_c;
     using __gnu_cxx::fresnel_s;
@@ -388,11 +388,11 @@ main()
     //  Skip the pole at 0.
     std::cout << "expint" << std::endl;
     basename = "diff_expint_neg";
-    rundiff(expint, gsl::expint_Ei, basename,
+    rundiff(expint, gsl::expint, basename,
 	    "x", fill_argument(std::make_pair(Real{-50}, Real{0}),
 			       std::make_pair(true, false), 51));
     basename = "diff_expint_pos";
-    rundiff(expint, gsl::expint_Ei, basename,
+    rundiff(expint, gsl::expint, basename,
 	    "x", fill_argument(std::make_pair(Real{0}, Real{50}),
 			       std::make_pair(false, true), 51));
 
@@ -657,10 +657,11 @@ main()
 	     "u", fill_argument(std::make_pair(Real{-5}, Real{+5}),
 				std::make_pair(true, true), 101));
 
-    //  Exponential integral E1.
-    std::cout << "expint_e1" << std::endl;
-    basename = "diff_expint_e1";
-    rundiff(expint_e1, gsl::expint_E1, basename,
+    //  Exponential integral E_n.
+    std::cout << "expint" << std::endl;
+    basename = "diff_expint_en";
+    rundiff(expint, gsl::expint, basename,
+	    "n", {0, 1, 2, 3, 5},
 	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
 			       std::make_pair(false, true), 101));
 

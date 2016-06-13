@@ -45,7 +45,7 @@ dawson
 jacobi_sn
 jacobi_cn
 jacobi_dn
-expint_e1
+expint
 fresnel_c
 fresnel_s
 dawson
