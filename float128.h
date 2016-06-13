@@ -211,7 +211,9 @@ namespace std
   modf(__float128 __x, __float128* __iptr) _GLIBCXX_USE_NOEXCEPT
   { return modfq(__x, __iptr); }
 
-  using ::nanq;
+  inline __float128
+  nanq(const char* __str) _GLIBCXX_USE_NOEXCEPT
+  { return __builtin_nanq(__str); }
 
   inline __float128
   nearbyint(__float128 __x) _GLIBCXX_USE_NOEXCEPT
@@ -362,15 +364,14 @@ namespace std
 	= denorm_present;
       static _GLIBCXX_USE_CONSTEXPR bool has_denorm_loss = true;
 
-      static /*_GLIBCXX_CONSTEXPR*/ __float128
-      infinity() _GLIBCXX_USE_NOEXCEPT { return __builtin_huge_valq(); }
+      static _GLIBCXX_CONSTEXPR __float128
+      infinity() _GLIBCXX_USE_NOEXCEPT { return __builtin_infq(); }
 
-      // TODO: We probably could have this be constexpr in libquadmath.
-      static /*_GLIBCXX_CONSTEXPR*/ __float128 
-      quiet_NaN() _GLIBCXX_USE_NOEXCEPT { return nanq(""); }
+      static _GLIBCXX_CONSTEXPR __float128 
+      quiet_NaN() _GLIBCXX_USE_NOEXCEPT { return __builtin_nanq(""); }
 
-      static /*_GLIBCXX_CONSTEXPR*/ __float128 
-      signaling_NaN() _GLIBCXX_USE_NOEXCEPT { return quiet_NaN(); }
+      static _GLIBCXX_CONSTEXPR __float128 
+      signaling_NaN() _GLIBCXX_USE_NOEXCEPT { return __builtin_nansq(""); }
 
       static _GLIBCXX_CONSTEXPR __float128 
       denorm_min() _GLIBCXX_USE_NOEXCEPT { return FLT128_DENORM_MIN; }
@@ -533,12 +534,12 @@ namespace __gnu_cxx
     { return std::numeric_limits<__float128>::infinity(); }
 
   template<>
-    /*_GLIBCXX_CONSTEXPR*/ __float128
+    _GLIBCXX_CONSTEXPR __float128
     __quiet_NaN<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<__float128>::quiet_NaN(); }
 
   template<>
-    /*_GLIBCXX_CONSTEXPR*/ __float128
+    _GLIBCXX_CONSTEXPR __float128
     __signaling_NaN<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<__float128>::signaling_NaN(); }
 

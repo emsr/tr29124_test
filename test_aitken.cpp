@@ -36,7 +36,7 @@ template<typename Tp>
     auto s = Tp{1.2};
     auto zetaterm = [s](Tp k){ return std::pow(k + Tp{1}, -s); };
 
-    auto VwT = __gnu_cxx::__make_VanWijngaardenCompressor(zetaterm);
+    auto VwT = __gnu_cxx::_VanWijngaardenCompressor<decltype(zetaterm)>(zetaterm);
 
     auto zeta = Tp{5.591582441177750776536563193423143277642L};
     std::cout << "\n\nzeta(1.2) = 5.59158244117775077653\n";

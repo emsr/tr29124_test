@@ -308,6 +308,76 @@ namespace __gnu_cxx
       }
 
       /**
+       *  Evaluate the even part of the polynomial using a modification
+       *  of Horner's rule which exploits the fact that the polynomial
+       *  coefficients are all real.
+       *
+       *  The algorithm is discussed in detail in:
+       *  Knuth, D. E., The Art of Computer Programming: Seminumerical
+       *  Algorithms (Vol. 2) Third Ed., Addison-Wesley, pp 486-488, 1998.
+       * 
+       *  If n is the degree of the polynomial,
+       *  n - 3 multiplies and 4 * n - 6 additions are saved.
+       */
+      template<typename _Tp2>
+	auto
+	even(std::complex<_Tp2> __z) const
+	-> decltype(value_type{} * std::complex<_Tp2>{})
+	{
+	  if (this->degree() > 0)
+	    {
+	      const auto __zz = __z * __z;
+	      const auto __r = _Tp{2} * std::real(__zz);
+	      const auto __s = std::norm(__zz);
+	      auto __odd = this->degree() % 2;
+	      size_type __n = this->degree() - __odd;
+	      auto __aa = this->coefficient(__n);
+	      auto __bb = this->coefficient(__n - 2);
+	      for (size_type __j = 4; __j <= __n; __j += 2)
+		__bb = this->coefficient(__n - __j)
+		     - __s * std::exchange(__aa, __bb + __r * __aa);
+	      return __aa * __zz + __bb;
+	    }
+	  else
+	    return decltype(value_type{} * std::complex<_Tp2>{}){};
+	};
+
+      /**
+       *  Evaluate the odd part of the polynomial using a modification
+       *  of Horner's rule which exploits the fact that the polynomial
+       *  coefficients are all real.
+       *
+       *  The algorithm is discussed in detail in:
+       *  Knuth, D. E., The Art of Computer Programming: Seminumerical
+       *  Algorithms (Vol. 2) Third Ed., Addison-Wesley, pp 486-488, 1998.
+       * 
+       *  If n is the degree of the polynomial,
+       *  n - 3 multiplies and 4 * n - 6 additions are saved.
+       */
+      template<typename _Tp2>
+	auto
+	odd(std::complex<_Tp2> __z) const
+	-> decltype(value_type{} * std::complex<_Tp2>{})
+	{
+	  if (this->degree() > 0)
+	    {
+	      const auto __zz = __z * __z;
+	      const auto __r = _Tp{2} * std::real(__zz);
+	      const auto __s = std::norm(__zz);
+	      auto __even = (this->degree() % 2 == 0 ? 1 : 0);
+	      size_type __n = this->degree() - __even;
+	      auto __aa = this->coefficient(__n);
+	      auto __bb = this->coefficient(__n - 2);
+	      for (size_type __j = 4; __j <= __n; __j += 2)
+		__bb = this->coefficient(__n - __j)
+		     - __s * std::exchange(__aa, __bb + __r * __aa);
+	      return __z * (__aa * __zz + __bb);
+	    }
+	  else
+	    return decltype(value_type{} * std::complex<_Tp2>{}){};
+	};
+
+      /**
        *  Return the derivative of the polynomial.
        */
       _Polynomial

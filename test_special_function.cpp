@@ -105,7 +105,7 @@ template<typename Real>
     using __gnu_cxx::ellint_rg;
     using __gnu_cxx::ellint_rj;
     using       std::expint;
-    using __gnu_cxx::expint_e1;
+    using __gnu_cxx::expint;
     using __gnu_cxx::factorial;
     using __gnu_cxx::fresnel_c;
     using __gnu_cxx::fresnel_s;
@@ -410,11 +410,11 @@ template<typename Real>
     std::cout << "expint" << std::endl;
     //  Skip the pole at 0.
     basename = "gsl_expint_neg";
-    runtest(gsl::expint_Ei, basename,
+    runtest(gsl::expint, basename,
 	    fill_argument(std::make_pair(-50.0, 0.0),
 			  std::make_pair(true, false), 51));
     basename = "gsl_expint_pos";
-    runtest(gsl::expint_Ei, basename,
+    runtest(gsl::expint, basename,
 	    fill_argument(std::make_pair(0.0, 50.0),
 			  std::make_pair(false, true), 51));
     basename = ns + "_expint";
@@ -745,14 +745,14 @@ template<typename Real>
 	    fill_argument(std::make_pair(Real{0}, Real{+5}),
 	        	  std::make_pair(false, true), 101));
 
-    //  Exponential integral E1.
-    std::cout << "gsl_expint_e1" << std::endl;
-    basename = "expint_e1";
-    runtest(gsl::expint_E1, basename,
+    //  Exponential integral E_n.
+    std::cout << "gsl_expint_en" << std::endl;
+    basename = "expint_en";
+    runtest(gsl::expint, basename,
 	    fill_argument(std::make_pair(0.0, +5.0),
 			  std::make_pair(false, true), 101));
-    basename = ns + "_expint_e1";
-    runtest(expint_e1, basename,
+    basename = ns + "_expint_en";
+    runtest(expint, basename,
 	    fill_argument(std::make_pair(Real{0}, Real{+5}),
 	        	  std::make_pair(false, true), 101));
 
