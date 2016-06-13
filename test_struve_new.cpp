@@ -44,6 +44,8 @@ namespace __detail
       auto __xx4 = _Tp(__sign) * __x2 * __x2;
       auto __term = _Tp{1};
       auto __struve = __term;
+      //auto __struve = __gnu_cxx::_BasicSum<_Tp>(_Tp{1});
+      //auto __struve = __gnu_cxx::_VanWijngaardenSum<Tp>(_Tp{1});
       for (int __k = 1; __k < _S_max_iter; ++__k)
 	{
       	  __term *= __xx4 / _Tp(__k + 0.5L) / (__nu + _Tp(__k + 0.5L));
@@ -75,7 +77,10 @@ namespace __detail
       auto __x2 = __x / _Tp{2};
       auto __xx4 = _Tp(__sign) * __x2 * __x2;
       auto __term = _Tp{1};
-      auto __struve = __term;
+      //auto __struve = __term;
+      auto __struve = __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<_Tp>>(_Tp{1});
+      //auto __struve = __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<Tp>>(_Tp{1});
+      __struve += __term;
       for (int __k = 1; __k < _S_max_iter; ++__k)
 	{
       	  __term *= _Tp(__k - 0.5L) / (_Tp(-__k - 0.5L) + __nu) / __xx4;
@@ -83,10 +88,10 @@ namespace __detail
 	  if (std::abs(__term) < _S_eps * std::abs(__struve))
 	    break;
 	}
-      __struve *= _Tp(__sign) * std::pow(__x2, __nu - _Tp{1})
-		/ std::__detail::__gamma(__nu + _Tp{0.5L}) / _S_sqrt_pi;
+      auto __fact = _Tp(__sign) * std::pow(__x2, __nu - _Tp{1})
+		  / std::__detail::__gamma(__nu + _Tp{0.5L}) / _S_sqrt_pi;
 
-      return __struve;
+      return __fact * __struve();
     }
 
   /**
