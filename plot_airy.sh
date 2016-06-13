@@ -86,11 +86,11 @@ splot [-20.0:5.0][-5.0:5.0][-1.5:+1.5] "plot/airy_complex_double.txt" title "Ai"
 set hidden3d
 
 
-splot [-20:5][-5:5][0:2] "plot/airy_complex_double.txt" index 0 with lines title "|Ai(z)|^{1/6}"
+splot [-5:5][-5:5][0:12] "plot/airy_complex_double.txt" index 0 with lines title "|Ai(z)|^{1/6}"
 splot [-20:5][-5:5][-2:2] "plot/airy_complex_double.txt" index 1 with lines title "Re[Ai(z)]"
 splot [-20:5][-5:5][-2:2] "plot/airy_complex_double.txt" index 2 with lines title "Im[Ai(z)]"
 splot [-20:5][-5:5][-3.2:+3.2] "plot/airy_complex_double.txt" index 3 with lines title "Arg[Ai(z)]"
-splot [-20:5][-5:5][0:2] "plot/airy_complex_double.txt" index 4 with lines title "|Bi(z)|^{1/6}"
+splot [-5:5][-5:5][0:12] "plot/airy_complex_double.txt" index 4 with lines title "|Bi(z)|^{1/6}"
 splot [-20:5][-5:5][-2:2] "plot/airy_complex_double.txt" index 5 with lines title "Re[Bi(z)]"
 splot [-20:5][-5:5][-2:2] "plot/airy_complex_double.txt" index 6 with lines title "Im[Bi(z)]"
 splot [-20:5][-5:5][-3.2:+3.2] "plot/airy_complex_double.txt" index 7 with lines title "Arg[Bi(z)]"
