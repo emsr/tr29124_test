@@ -449,7 +449,7 @@ template<typename Tp, typename Tp1>
 	   const std::string & nsname,
 	   const std::string & funcname,
 	   const std::string & arg1, const std::vector<Tp1> & argument1,
-	   const std::string & bline,
+	   const std::string & baseline,
 	   std::ostream & output,
 	   bool write_header = true, bool write_main = true, unsigned int start_test = 1)
   {
@@ -506,7 +506,7 @@ template<typename Tp, typename Tp1>
 		  output << "//  Divergence at"
 			 << " " << arg1 << "=" << x
 			 << " f=" << f1
-			 << " f_" << bline << "=" << f2 << '\n';
+			 << " f_" << baseline << "=" << f2 << '\n';
 		continue;
 	      }
 
@@ -515,7 +515,7 @@ template<typename Tp, typename Tp1>
 		output << "//  Failure at"
 		       << " " << arg1 << "=" << x
 		       << " f=" << f1
-		       << " f_" << bline << "=" << f2 << '\n';
+		       << " f_" << baseline << "=" << f2 << '\n';
 		break;
 	      }
 
@@ -542,7 +542,7 @@ template<typename Tp, typename Tp1>
 	output << "//  Divergence at"
 	       << " " << arg1 << "=" << std::get<2>(last_divergence)
 	       << " f=" << std::get<0>(last_divergence)
-	       << " f_" << bline << "=" << std::get<1>(last_divergence) << '\n';
+	       << " f_" << baseline << "=" << std::get<1>(last_divergence) << '\n';
 	num_divergences = 0;
       }
 
@@ -560,11 +560,11 @@ template<typename Tp, typename Tp1>
 	dataname.fill(' ');
 	output << '\n';
 	output << "// Test data.\n";
-	output << "// max(|f - f_" << bline << "|): " << abs_stats.max() << '\n';
-	output << "// max(|f - f_" << bline << "| / |f_" << bline << "|): " << max_abs_frac << '\n';
-	output << "// mean(f - f_" << bline << "): " << raw_stats.mean() << '\n';
-	output << "// variance(f - f_" << bline << "): " << raw_stats.variance() << '\n';
-	output << "// stddev(f - f_" << bline << "): " << raw_stats.std_deviation() << '\n';
+	output << "// max(|f - f_" << baseline << "|): " << abs_stats.max() << '\n';
+	output << "// max(|f - f_" << baseline << "| / |f_" << baseline << "|): " << max_abs_frac << '\n';
+	output << "// mean(f - f_" << baseline << "): " << raw_stats.mean() << '\n';
+	output << "// variance(f - f_" << baseline << "): " << raw_stats.variance() << '\n';
+	output << "// stddev(f - f_" << baseline << "): " << raw_stats.std_deviation() << '\n';
 	output.fill('0');
 	output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
 	output.fill(' ');
@@ -653,7 +653,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 	   const std::string & funcname,
 	   const std::string & arg1, const std::vector<Tp1> & argument1,
 	   const std::string & arg2, const std::vector<Tp2> & argument2,
-	   const std::string & bline,
+	   const std::string & baseline,
 	   std::ostream & output,
 	   bool write_header = true, bool write_main = true, unsigned int start_test = 1)
   {
@@ -712,7 +712,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 			     << " " << arg1 << "=" << x
 			     << " " << arg2 << "=" << y
 			     << " f=" << f1
-			     << " f_" << bline << "=" << f2 << '\n';
+			     << " f_" << baseline << "=" << f2 << '\n';
 		    continue;
 		  }
 
@@ -722,7 +722,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 			   << " " << arg1 << "=" << x
 			   << " " << arg2 << "=" << y
 			   << " f=" << f1
-			   << " f_" << bline << "=" << f2 << '\n';
+			   << " f_" << baseline << "=" << f2 << '\n';
 		    break;
 		  }
 
@@ -750,7 +750,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 		   << " " << arg1 << "=" << std::get<2>(last_divergence)
 		   << " " << arg2 << "=" << std::get<3>(last_divergence)
 		   << " f=" << std::get<0>(last_divergence)
-		   << " f_" << bline << "=" << std::get<1>(last_divergence) << '\n';
+		   << " f_" << baseline << "=" << std::get<1>(last_divergence) << '\n';
 	    num_divergences = 0;
 	  }
 
@@ -768,11 +768,11 @@ template<typename Tp, typename Tp1, typename Tp2>
 	    dataname.fill(' ');
 	    output << '\n';
 	    output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]) << ".\n";
-	    output << "// max(|f - f_" << bline << "|): " << abs_stats.max() << '\n';
-	    output << "// max(|f - f_" << bline << "| / |f_" << bline << "|): " << max_abs_frac << '\n';
-	    output << "// mean(f - f_" << bline << "): " << raw_stats.mean() << '\n';
-	    output << "// variance(f - f_" << bline << "): " << raw_stats.variance() << '\n';
-	    output << "// stddev(f - f_" << bline << "): " << raw_stats.std_deviation() << '\n';
+	    output << "// max(|f - f_" << baseline << "|): " << abs_stats.max() << '\n';
+	    output << "// max(|f - f_" << baseline << "| / |f_" << baseline << "|): " << max_abs_frac << '\n';
+	    output << "// mean(f - f_" << baseline << "): " << raw_stats.mean() << '\n';
+	    output << "// variance(f - f_" << baseline << "): " << raw_stats.variance() << '\n';
+	    output << "// stddev(f - f_" << baseline << "): " << raw_stats.std_deviation() << '\n';
 	    output.fill('0');
 	    output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
 	    output.fill(' ');
@@ -862,7 +862,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 	   const std::string & arg1, const std::vector<Tp1> & argument1,
 	   const std::string & arg2, const std::vector<Tp2> & argument2,
 	   const std::string & arg3, const std::vector<Tp3> & argument3,
-	   const std::string & bline,
+	   const std::string & baseline,
 	   std::ostream & output,
 	   bool write_header = true, bool write_main = true, unsigned int start_test = 1)
   {
@@ -927,7 +927,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 				 << " " << arg2 << "=" << y
 				 << " " << arg3 << "=" << z
 				 << " f=" << f1
-				 << " f_" << bline << "=" << f2 << '\n';
+				 << " f_" << baseline << "=" << f2 << '\n';
 			continue;
 		      }
 
@@ -938,7 +938,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 			       << " " << arg2 << "=" << y
 			       << " " << arg3 << "=" << z
 			       << " f=" << f1
-			       << " f_" << bline << "=" << f2 << '\n';
+			       << " f_" << baseline << "=" << f2 << '\n';
 			break;
 		      }
 
@@ -967,7 +967,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		       << " " << arg2 << "=" << std::get<3>(last_divergence)
 		       << " " << arg3 << "=" << std::get<4>(last_divergence)
 		       << " f=" << std::get<0>(last_divergence)
-		       << " f_" << bline << "=" << std::get<1>(last_divergence) << '\n';
+		       << " f_" << baseline << "=" << std::get<1>(last_divergence) << '\n';
 		num_divergences = 0;
 	      }
 
@@ -986,11 +986,11 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		output << '\n';
 		output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]);
 		output << ", " << arg2 << '=' << std::get<2>(crud[0]) << ".\n";
-		output << "// max(|f - f_" << bline << "|): " << abs_stats.max() << '\n';
-		output << "// max(|f - f_" << bline << "| / |f_" << bline << "|): " << max_abs_frac << '\n';
-		output << "// mean(f - f_" << bline << "): " << raw_stats.mean() << '\n';
-		output << "// variance(f - f_" << bline << "): " << raw_stats.variance() << '\n';
-		output << "// stddev(f - f_" << bline << "): " << raw_stats.std_deviation() << '\n';
+		output << "// max(|f - f_" << baseline << "|): " << abs_stats.max() << '\n';
+		output << "// max(|f - f_" << baseline << "| / |f_" << baseline << "|): " << max_abs_frac << '\n';
+		output << "// mean(f - f_" << baseline << "): " << raw_stats.mean() << '\n';
+		output << "// variance(f - f_" << baseline << "): " << raw_stats.variance() << '\n';
+		output << "// stddev(f - f_" << baseline << "): " << raw_stats.std_deviation() << '\n';
 		output.fill('0');
 		output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
 		output.fill(' ');
@@ -1086,7 +1086,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 	   const std::string & arg2, const std::vector<Tp2> & argument2,
 	   const std::string & arg3, const std::vector<Tp3> & argument3,
 	   const std::string & arg4, const std::vector<Tp4> & argument4,
-	   const std::string & bline,
+	   const std::string & baseline,
 	   std::ostream & output,
 	   bool write_header = true, bool write_main = true, unsigned int start_test = 1)
   {
@@ -1157,7 +1157,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 				     << " " << arg3 << "=" << y
 				     << " " << arg4 << "=" << z
 				     << " f=" << f1
-				     << " f_" << bline << "=" << f2 << '\n';
+				     << " f_" << baseline << "=" << f2 << '\n';
 			    continue;
 			  }
 
@@ -1169,7 +1169,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 				   << " " << arg3 << "=" << y
 				   << " " << arg4 << "=" << z
 				   << " f=" << f1
-				   << " f_" << bline << "=" << f2 << '\n';
+				   << " f_" << baseline << "=" << f2 << '\n';
 			    break;
 			  }
 
@@ -1199,7 +1199,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 			   << " " << arg3 << "=" << std::get<4>(last_divergence)
 			   << " " << arg4 << "=" << std::get<5>(last_divergence)
 			   << " f=" << std::get<0>(last_divergence)
-			   << " f_" << bline << "=" << std::get<1>(last_divergence) << '\n';
+			   << " f_" << baseline << "=" << std::get<1>(last_divergence) << '\n';
 		    num_divergences = 0;
 		  }
 
@@ -1219,11 +1219,11 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		    output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]);
 		    output << ", " << arg2 << '=' << std::get<2>(crud[0]);
 		    output << ", " << arg3 << '=' << std::get<3>(crud[0]) << ".\n";
-		    output << "// max(|f - f_" << bline << "|): " << abs_stats.max() << '\n';
-		    output << "// max(|f - f_" << bline << "| / |f_" << bline << "|): " << max_abs_frac << '\n';
-		    output << "// mean(f - f_" << bline << "): " << raw_stats.mean() << '\n';
-		    output << "// variance(f - f_" << bline << "): " << raw_stats.variance() << '\n';
-		    output << "// stddev(f - f_" << bline << "): " << raw_stats.std_deviation() << '\n';
+		    output << "// max(|f - f_" << baseline << "|): " << abs_stats.max() << '\n';
+		    output << "// max(|f - f_" << baseline << "| / |f_" << baseline << "|): " << max_abs_frac << '\n';
+		    output << "// mean(f - f_" << baseline << "): " << raw_stats.mean() << '\n';
+		    output << "// variance(f - f_" << baseline << "): " << raw_stats.variance() << '\n';
+		    output << "// stddev(f - f_" << baseline << "): " << raw_stats.std_deviation() << '\n';
 		    output.fill('0');
 		    output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
 		    output.fill(' ');
