@@ -17,16 +17,6 @@
 #include "float128.h"
 
   /**
-   * 
-   */
-  template<typename _Tp>
-    _Tp
-    __erf_series(_Tp __x)
-    {
-      
-    }
-
-  /**
    * The experf function is defined by
    * @f[
    *   experf(x) = exp(x^2)erf(x)
@@ -194,10 +184,13 @@
               for (unsigned __n = 1; __n <= __trunc_lo; ++__n)
 		{
 		  auto __enn = _Tp(__n);
-		  auto __s3 = std::exp(-__enn * __enn / _Tp{4}) / (__enn * __enn + _Tp{4} * __x * __x);
+		  auto __s3 = std::exp(-__enn * __enn / _Tp{4})
+			    / (__enn * __enn + _Tp{4} * __x * __x);
                   auto __s4 = _Tp{2} * __x * __k1 * __k2
-                      - (__x + _S_i * __enn / _Tp{2}) * std::exp(-__y * (__enn + __y))
-                      - (__x - _S_i * __enn / _Tp{2}) * std::exp(+__y * (__enn - __y));
+			    - (__x + _S_i * __enn / _Tp{2})
+			     * std::exp(-__y * (__enn + __y))
+			    - (__x - _S_i * __enn / _Tp{2})
+			     * std::exp(+__y * (__enn - __y));
                   __sum += __s3 * __s4;
 		}
               __retval += _Tp{2} * __sum / _S_pi;
@@ -274,9 +267,9 @@ auto width = 8 + std::cout.precision();
 	      // If the fraction jumps < 0 just bop it back.
 	      if (__x2 < _Tp{0})
 		__x2 = -__x2;
-	      if (_S_eps > std::abs(__x2 - __x2prev) / std::abs(__x2))
+	      if (_S_eps * std::abs(__x2) > std::abs(__x2 - __x2prev))
 		break;
-	      if (_S_eps > std::abs(__x2 - __x2prev2) / std::abs(__x2))
+	      if (_S_eps * std::abs(__x2) > std::abs(__x2 - __x2prev2))
 		break;
 	    }
 	  return std::sqrt(__x2);
