@@ -167,6 +167,7 @@ test_psi
 test_rational
 test_special_function
 test_sph_hankel
+test_static_polynomial
 test_struve_new
 test_theta
 
@@ -176,6 +177,7 @@ hankel_toy128
 hankel_toy_new
 airy_toy
 airy_toy_old
+airy_toy_new
 
 zeta_glob_deathmatch
 
