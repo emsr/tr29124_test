@@ -3,13 +3,13 @@
 // LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 
 
-// $HOME/bin_specfun/bin/g++ -std=gnu++14 -DOLD -g -Wall -Wextra -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
+// $HOME/bin_specfun/bin/g++ -std=gnu++14 -DOLD -g -Wall -Wextra -o airy_toy_old airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new.old
+// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./airy_toy_old > airy_toy.new.old
 
-// $HOME/bin_specfun/bin/g++ -std=gnu++14 -UOLD -g -Wall -Wextra -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
+// $HOME/bin_specfun/bin/g++ -std=gnu++14 -UOLD -g -Wall -Wextra -o airy_toy_new airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new.new
+// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_toy.new.new
 
 
 
@@ -5733,7 +5733,8 @@ template<typename _Tp>
       const auto _S_gam_2d3 = std::tgamma(_S_2d3);
       auto __term = _Tp{1};
       auto __termp = _Tp{1};
-      std::cout << std::setw(width) << __term;
+      std::cout << std::setw(width) << __term
+		<< std::setw(width) << __termp;
       for (int __k = 1; __k < 3 * __max_FGH<_Tp>; ++__k)
 	{
 	  if (__k % 3 == 0)
