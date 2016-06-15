@@ -1,7 +1,7 @@
-
-// $HOME/bin_specfun/bin/g++ -std=c++14 -o test_beta_inc test_beta_inc.cpp
-
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_beta_inc
+/*
+$HOME/bin_tr29124/bin/g++ -std=c++14 -o test_beta_inc test_beta_inc.cpp
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_beta_inc
+*/
 
 #include <cmath>
 #include <limits>

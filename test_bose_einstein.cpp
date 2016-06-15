@@ -1,6 +1,7 @@
-// $HOME/bin_specfun/bin/g++ -std=gnu++1z -o test_bose_einstein test_bose_einstein.cpp gsl_wrap.cpp -lgsl -lgslcblas
-
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_bose_einstein
+/*
+$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_bose_einstein test_bose_einstein.cpp gsl_wrap.cpp -lgsl -lgslcblas
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_bose_einstein
+*/
 
 #include <iostream>
 #include <iomanip>

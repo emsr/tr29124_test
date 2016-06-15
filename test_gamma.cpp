@@ -1,10 +1,10 @@
-// $HOME/bin_specfun/bin/g++ -o test_gamma test_gamma.cpp -lquadmath
+/*
+$HOME/bin_tr29124/bin/g++ -o test_gamma test_gamma.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_gamma > test_gamma.txt
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_gamma > test_gamma.txt
-
-// g++ -std=gnu++14 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp -lquadmath
-
-// ./test_gamma > test_gamma.txt
+g++ -std=gnu++14 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp -lquadmath
+./test_gamma > test_gamma.txt
+*/
 
 #include <vector>
 #include <iostream>

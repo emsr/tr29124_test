@@ -1,10 +1,10 @@
-// $HOME/bin_specfun/bin/g++ -std=gnu++1z -o test_aitken test_aitken.cpp
+/*
+$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_aitken test_aitken.cpp
+./test_aitken > test_aitken.txt
 
-// ./test_aitken > test_aitken.txt
-
-// g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_aitken test_aitken.cpp
-
-// ./test_aitken > test_aitken.txt
+g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_aitken test_aitken.cpp
+./test_aitken > test_aitken.txt
+*/
 
 #include <cmath>
 #include <cstdlib>

@@ -1,6 +1,7 @@
-// $HOME/bin_specfun/bin/g++ -std=gnu++1z -o test_theta test_theta.cpp
-
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_theta > test_theta.txt
+/*
+$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_theta test_theta.cpp
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_theta > test_theta.txt
+*/
 
 #include <iostream>
 #include <iomanip>
