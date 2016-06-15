@@ -1,6 +1,9 @@
+#!/bin/bash
+
+suffix="_specfun"
 
 #  This speeds up things like crazy!!!
-cd ~/obj_specfun/x86_64-pc-linux-gnu/libstdc++-v3/testsuite
+cd ~/obj${suffix}/x86_64-pc-linux-gnu/libstdc++-v3/testsuite
 make -k check RUNTESTFLAGS="conformance.exp=check_value.cc"
 
 #  Directories alsowork!!!
