@@ -1,16 +1,10 @@
-// $HOME/bin_specfun/bin/g++ -std=gnu++14 -g -Wall -Wextra -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
-
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
-
-// /usr/local/bin/gdb ./airy_toy
 /*
-br main
-br ''
+$HOME/bin_tr29124/bin/g++ -std=gnu++14 -g -Wall -Wextra -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
+
+g++ -std=gnu++14 -Wall -Wextra -DNO_LOGBQ -I. -o airy_toy airy_toy.cpp -lquadmath
+./airy_toy > airy_toy.txt
 */
-
-// g++ -std=gnu++14 -Wall -Wextra -DNO_LOGBQ -I. -o airy_toy airy_toy.cpp -lquadmath
-
-// ./airy_toy > airy_toy.txt
 
 #include <limits>
 #include <iostream>

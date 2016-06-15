@@ -1,10 +1,10 @@
-// $HOME/bin_specfun/bin/g++ -std=c++1z -Wall -Wextra -o test_little_airy test_little_airy.cpp gsl_wrap.cpp -lgsl -lgslcblas 2> err.txt
+/*
+$HOME/bin_tr29124/bin/g++ -std=c++1z -Wall -Wextra -o test_little_airy test_little_airy.cpp gsl_wrap.cpp -lgsl -lgslcblas 2> err.txt
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_little_airy > test_little_airy.txt
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_little_airy > test_little_airy.txt
-
-// g++ -std=c++14 -DNO_CBRT -DNO_LOGBQ -Wall -Wextra -o test_little_airy test_little_airy.cpp gsl_wrap.cpp -lgsl -lgslcblas 2> err.txt
-
-// ./test_little_airy > test_little_airy.txt
+g++ -std=c++14 -DNO_CBRT -DNO_LOGBQ -Wall -Wextra -o test_little_airy test_little_airy.cpp gsl_wrap.cpp -lgsl -lgslcblas 2> err.txt
+./test_little_airy > test_little_airy.txt
+*/
 
 #include <iostream>
 #include <iomanip>

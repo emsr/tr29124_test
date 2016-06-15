@@ -1,10 +1,10 @@
-// $HOME/bin_specfun/bin/g++ -g -o test_lerch test_lerch.cpp -lquadmath
+/*
+$HOME/bin_tr29124/bin/g++ -g -o test_lerch test_lerch.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_lerch > test_lerch.txt
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_lerch > test_lerch.txt
-
-// g++ -std=c++14 -g -o test_lerch test_lerch.cpp -lquadmath
-
-// ./test_lerch > test_lerch.txt
+g++ -std=c++14 -g -o test_lerch test_lerch.cpp -lquadmath
+./test_lerch > test_lerch.txt
+*/
 
 #define __STDCPP_WANT_MATH_SPEC_FUNCS__ 1
 

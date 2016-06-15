@@ -1,6 +1,7 @@
-// $HOME/bin_specfun/bin/g++ -std=gnu++1z -o test_owens_t test_owens_t.cpp boost_wrap.cpp
-
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_owens_t > test_owens_t.txt
+/*
+$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_owens_t test_owens_t.cpp boost_wrap.cpp
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_owens_t > test_owens_t.txt
+*/
 
 #include <limits>
 #include <iostream>

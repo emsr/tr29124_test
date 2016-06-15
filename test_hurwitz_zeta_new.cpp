@@ -1,10 +1,10 @@
-// $HOME/bin_specfun/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
+/*
+$HOME/bin_tr29124/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
-
-// g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
-
-// ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
+g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
+./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
+*/
 
 #include <ext/cmath>
 #include <limits>

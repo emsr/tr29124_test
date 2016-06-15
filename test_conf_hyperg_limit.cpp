@@ -1,10 +1,10 @@
-// $HOME/bin_specfun/bin/g++ -Wall -Wextra -o test_conf_hyperg_limit test_conf_hyperg_limit.cpp gsl_wrap.cpp -lgsl -lgslcblas 2> err.txt
+/*
+$HOME/bin_tr29124/bin/g++ -Wall -Wextra -o test_conf_hyperg_limit test_conf_hyperg_limit.cpp gsl_wrap.cpp -lgsl -lgslcblas 2> err.txt
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_conf_hyperg_limit > test_conf_hyperg_limit.txt
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_conf_hyperg_limit > test_conf_hyperg_limit.txt
-
-// g++ -std=c++14 -DNO_CBRT -DNO_LOGBQ -Wall -Wextra -o test_conf_hyperg_limit test_conf_hyperg_limit.cpp gsl_wrap.cpp -lgsl -lgslcblas 2> err.txt
-
-// ./test_conf_hyperg_limit > test_conf_hyperg_limit.txt
+g++ -std=c++14 -DNO_CBRT -DNO_LOGBQ -Wall -Wextra -o test_conf_hyperg_limit test_conf_hyperg_limit.cpp gsl_wrap.cpp -lgsl -lgslcblas 2> err.txt
+./test_conf_hyperg_limit > test_conf_hyperg_limit.txt
+*/
 
 #include <cmath>
 #include <limits>

@@ -1,6 +1,7 @@
-// $HOME/bin_specfun/bin/g++ -std=gnu++1z -o test_comp_ellint_1 test_comp_ellint_1.cpp -lquadmath
-
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_comp_ellint_1 > test_comp_ellint_1.txt
+/*
+$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_comp_ellint_1 test_comp_ellint_1.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_comp_ellint_1 > test_comp_ellint_1.txt
+*/
 
 #include <cmath>
 #include <iostream>

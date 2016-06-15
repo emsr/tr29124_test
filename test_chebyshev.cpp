@@ -1,14 +1,13 @@
-// $HOME/bin_specfun/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_chebyshev test_chebyshev.cpp -lquadmath 2> err.txt
+/*
+$HOME/bin_tr29124/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_chebyshev test_chebyshev.cpp -lquadmath 2> err.txt
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_chebyshev
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_chebyshev
+$HOME/bin/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_chebyshev test_chebyshev.cpp -lquadmath 2> err.txt
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_chebyshev
 
-// $HOME/bin/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_chebyshev test_chebyshev.cpp -lquadmath 2> err.txt
-
-// LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_chebyshev
-
-// g++ -std=gnu++14 -o test_chebyshev test_chebyshev.cpp -lquadmath 2> err.txt
-
-// ./test_chebyshev
+g++ -std=gnu++14 -o test_chebyshev test_chebyshev.cpp -lquadmath 2> err.txt
+./test_chebyshev
+*/
 
 #include <iostream>
 #include <iomanip>

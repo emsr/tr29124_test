@@ -1,6 +1,7 @@
-// $HOME/bin_specfun/bin/g++ -std=gnu++1z -o test_pochhammer_l test_pochhammer_l.cpp boost_wrap.cpp
-
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_pochhammer_l > test_pochhammer_l.txt
+// $HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_pochhammer_l test_pochhammer_l.cpp boost_wrap.cpp
+/*
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_pochhammer_l > test_pochhammer_l.txt
+*/
 
 #include <limits>
 #include <vector>
