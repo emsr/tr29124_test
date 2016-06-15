@@ -1,10 +1,10 @@
-// $HOME/bin_specfun/bin/g++ -std=gnu++1z -o test_airy test_airy.cpp gsl_wrap.cpp -lgsl -lgslcblas
+/*
+$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_airy test_airy.cpp gsl_wrap.cpp -lgsl -lgslcblas
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_airy
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_airy
-
-// g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_airy test_airy.cpp gsl_wrap.cpp -lgsl -lgslcblas
-
-// ./test_airy
+g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_airy test_airy.cpp gsl_wrap.cpp -lgsl -lgslcblas
+./test_airy
+*/
 
 #include <iostream>
 #include <iomanip>

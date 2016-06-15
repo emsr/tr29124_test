@@ -1,8 +1,10 @@
-// $HOME/bin_specfun/bin/g++ -std=gnu++14 -Wall -Wextra -o complex_literal_arith complex_literal_arith.cpp
+/*
+$HOME/bin_tr29124/bin/g++ -std=gnu++14 -Wall -Wextra -o complex_literal_arith complex_literal_arith.cpp
 
-// $HOME/bin/bin/g++ -std=gnu++14 -Wall -Wextra -o complex_literal_arith complex_literal_arith.cpp
+$HOME/bin/bin/g++ -std=gnu++14 -Wall -Wextra -o complex_literal_arith complex_literal_arith.cpp
 
-// $HOME/bin-5/bin/g++ -std=gnu++14 -Wall -Wextra -o complex_literal_arith complex_literal_arith.cpp
+$HOME/bin-5/bin/g++ -std=gnu++14 -Wall -Wextra -o complex_literal_arith complex_literal_arith.cpp
+*/
 
 #include <complex>
 

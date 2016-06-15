@@ -1,10 +1,10 @@
-// $HOME/bin_specfun/bin/g++ -g -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath boost_wrap.cpp
+/*
+$HOME/bin_tr29124/bin/g++ -g -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath boost_wrap.cpp
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_cyl_hankel > test_cyl_hankel.txt
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_cyl_hankel > test_cyl_hankel.txt
-
-// g++ -std=c++14 -g -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath
-
-// ./test_cyl_hankel > test_cyl_hankel.txt
+g++ -std=c++14 -g -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath
+./test_cyl_hankel > test_cyl_hankel.txt
+*/
 
 #define __STDCPP_WANT_MATH_SPEC_FUNCS__ 1
 

@@ -1,6 +1,7 @@
-// $HOME/bin_specfun/bin/g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_polylog test_polylog.cpp
-
-// ./test_polylog > test_polylog.txt
+/*
+$HOME/bin_tr29124/bin/g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_polylog test_polylog.cpp
+./test_polylog > test_polylog.txt
+*/
 
 #include <iostream>
 #include <iomanip>

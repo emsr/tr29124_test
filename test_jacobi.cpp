@@ -1,6 +1,7 @@
-// $HOME/bin_specfun/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I/usr/local/include/boost -o test_jacobi test_jacobi.cpp
-
-// ./test_jacobi > test_jacobi.txt
+/*
+$HOME/bin_tr29124/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I/usr/local/include/boost -o test_jacobi test_jacobi.cpp
+./test_jacobi > test_jacobi.txt
+*/
 
 #include <iostream>
 #include <iomanip>

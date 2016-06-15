@@ -1,10 +1,10 @@
-// $HOME/bin_specfun/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -g -Wall -Wextra -o test_struve_new test_struve_new.cpp -L$HOME/bin/lib64 -lquadmath
+/*
+$HOME/bin_tr29124/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -g -Wall -Wextra -o test_struve_new test_struve_new.cpp -L$HOME/bin/lib64 -lquadmath
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_struve_new > test_struve_new.new
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_struve_new > test_struve_new.new
-
-// g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -Wall -Wextra -o test_struve_new test_struve_new.cpp
-
-// ./test_struve_new > test_struve_new.txt
+g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -Wall -Wextra -o test_struve_new test_struve_new.cpp
+./test_struve_new > test_struve_new.txt
+*/
 
 #include <cmath> // There are issues with <complex> inclusion if this isn't uphere!
 #include <limits>

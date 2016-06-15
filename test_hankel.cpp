@@ -1,7 +1,7 @@
-
-// $HOME/bin_specfun/bin/g++ -std=gnu++1z -Wall -Wextra -o test_hankel test_hankel.cpp -lquadmath
-
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_hankel > test_hankel.txt
+/*
+$HOME/bin_tr29124/bin/g++ -std=gnu++1z -Wall -Wextra -o test_hankel test_hankel.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_hankel > test_hankel.txt
+*/
 
 #include <iostream>
 #include <iomanip>

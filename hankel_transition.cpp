@@ -1,10 +1,10 @@
-// $HOME/bin_specfun/bin/g++ -g -std=gnu++1z -o hankel_transition hankel_transition.cpp -L$HOME/bin/lib64 -lquadmath
+/*
+$HOME/bin_tr29124/bin/g++ -g -std=gnu++1z -o hankel_transition hankel_transition.cpp -L$HOME/bin/lib64 -lquadmath
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./hankel_transition > hankel_transition.txt
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./hankel_transition > hankel_transition.txt
-
-// g++ -std=gnu++14 -DNO_CBRT -o hankel_transition hankel_transition.cpp -lquadmath
-
-// ./hankel_transition > hankel_transition.txt
+g++ -std=gnu++14 -DNO_CBRT -o hankel_transition hankel_transition.cpp -lquadmath
+./hankel_transition > hankel_transition.txt
+*/
 
 #include <limits>
 #include <iostream>
