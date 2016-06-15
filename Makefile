@@ -168,7 +168,7 @@ all: diff_special_function \
      test_local_special_function
 
 
-docs:
+docs: bits/*
 	rm -rf html/*
 	rm -rf latex/*
 	doxygen

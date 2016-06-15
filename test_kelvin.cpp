@@ -1,0 +1,84 @@
+/*
+g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
+./test_kelvin > test_kelvin.txt
+*/
+
+#include <limits>
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <bits/summation.h>
+
+  template<typename _Tp>
+    _Tp
+    kelvin_bex_series(_Tp __x, int __sign)
+    {
+      constexpr auto _S_1d2 = _Tp{1} / _Tp{2};
+      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto _S_maxiter = 1000;
+      const auto __xd4 = __x / _Tp{4};
+      const auto __tmp = __xd4 * __xd4;
+      const auto __y = __tmp * __tmp;
+      auto __fact = _Tp{1};
+      auto __term = _Tp{1};
+      __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<_Tp>> __bex;
+      __bex += __term;
+      for (auto __k = 1; __k < _S_maxiter; ++__k)
+	{
+	  __fact *= __k * (__k - _S_1d2);
+	  __term *= __sign * __y / (__fact * __fact);
+	  __bex += __term;
+	  if (std::abs(__term) < _S_eps * std::abs(__bex()))
+	    break;
+	}
+      return __bex();
+    }
+
+  template<typename _Tp>
+    _Tp
+    kelvin_ber_series(_Tp __x)
+    { return kelvin_bex_series(__x, -1); }
+
+  template<typename _Tp>
+    _Tp
+    kelvin_bei_series(_Tp __x)
+    { return kelvin_bex_series(__x, +1); }
+
+
+template<typename _Tp>
+  run_kelvin()
+  {
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout << std::showpoint << std::scientific;
+    auto width = 8 + std::cout.precision();
+
+    std::cout << "\n\nPrint Kelvin functions computed by series expansions\n";
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+
+    std::cout << "\n\n";
+    std::cout << std::setw(width) << "x"
+	      << std::setw(width) << "ber"
+	      << std::setw(width) << "bei"
+	      << '\n';
+    std::cout << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << '\n';
+    for (int i = -100; i <= 200; ++i)
+      {
+	auto x = _Tp(0.1) * i;
+	auto ber = kelvin_ber_series(x);
+	auto bei = kelvin_bei_series(x);
+	std::cout << std::setw(width) << x
+		  << std::setw(width) << ber
+		  << std::setw(width) << bei
+		  << '\n';
+      }
+    std::cout << std::endl;
+  }
+
+int
+main()
+{
+  run_kelvin<double>();
+}
