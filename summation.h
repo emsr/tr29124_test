@@ -32,6 +32,8 @@
 
 #pragma GCC visibility push(default)
 
+#include <vector>
+#include <array>
 #include <bits/c++config.h>
 #include <bits/complex_util.h> // for complex __isnan
 
