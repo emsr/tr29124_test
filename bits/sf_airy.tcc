@@ -3493,7 +3493,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * for @f$ |arg(z)| < 2*\pi/3 @f$ i.e. roughly along the negative real axis.
    *
    * @tparam _Tp A real type
-   * @param[in]  z Complex argument at which Ai(z) and Bi(z)
+   * @param[in]  __z Complex argument at which Ai(z) and Bi(z)
    * 		   and their derivative are evaluated. This function
    * 		   assumes @f$ |z| > 15 @f$ and @f$ |(arg(z)| < 2\pi/3 @f$.
    * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
