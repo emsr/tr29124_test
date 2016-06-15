@@ -300,17 +300,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __airy_arg(__num2d3, __zeta, __argp, __argm);
 
 	  // Compute Airy functions and derivatives.
-	  __cmplx _Aipp, _Aimp;
-	  __cmplx _Bi, _Bip;
-	  __airy(__argp, __eps, _Aip, _Aipp, _Bi, _Bip);
-	  __airy(__argm, __eps, _Aim, _Aimp, _Bi, _Bip);
+	  auto __airyp = _Airy<std::complex<_Tp>>()(__argp);
+	  auto __airym = _Airy<std::complex<_Tp>>()(__argm);
 	  // Compute partial outer terms in expansions.
-	  __o4dp = -__zetamhf * __num4d3 * __e2pd3 * _Aipp;
-	  __o4dm = -__zetamhf * __num4d3 * __d2pd3 * _Aimp;
-	  __od2p = -__zetaphf * __num2d3 * _Aip;
-	  __od0dp = __e2pd3 * _Aipp;
-	  __od2m = -__zetaphf * __num2d3 * _Aim;
-	  __od0dm = __d2pd3 * _Aimp;
+	  __o4dp = -__zetamhf * __num4d3 * __e2pd3 * __airyp.Aip;
+	  __o4dm = -__zetamhf * __num4d3 * __d2pd3 * __airym.Aip;
+	  __od2p = -__zetaphf * __num2d3 * __airyp.Ai;
+	  __od0dp = __e2pd3 * __airyp.Aip;
+	  __od2m = -__zetaphf * __num2d3 * __airym.Ai;
+	  __od0dm = __d2pd3 * __airym.Aip;
 	}
       catch (...)
 	{
