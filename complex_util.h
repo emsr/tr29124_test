@@ -35,6 +35,8 @@
 #include <complex>
 #include <ratio>
 #include <limits>
+#include <bits/specfun_util.h>
+#include <bits/numeric_limits.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
