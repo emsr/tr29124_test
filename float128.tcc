@@ -27,8 +27,8 @@
  *  Do not attempt to use it directly. @headername{xxxxx}
  */
 
-#ifndef FLOAT128_TCC
-#define FLOAT128_TCC 1
+#ifndef _GLIBCXX_BITS_FLOAT128_TCC
+#define _GLIBCXX_BITS_FLOAT128_TCC 1
 
 #pragma GCC system_header
 
@@ -95,4 +95,4 @@ namespace std
 
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
-#endif // FLOAT128_TCC
+#endif // _GLIBCXX_BITS_FLOAT128_TCC

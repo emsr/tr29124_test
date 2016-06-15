@@ -27,9 +27,10 @@
  *  Do not attempt to use it directly. @headername{cmath}
  */
 
-#ifndef _GLIBCXX_SF_TRIGINT_TCC
-#define _GLIBCXX_SF_TRIGINT_TCC 1
+#ifndef _GLIBCXX_BITS_SF_TRIGINT_TCC
+#define _GLIBCXX_BITS_SF_TRIGINT_TCC 1
 
+#include <complex>
 #include <ext/math_const.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
@@ -76,8 +77,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__del - _Tp{1}) < _S_eps)
 	    break;
 	  if (__i > _S_max_iter)
-	    std::__throw_runtime_error("__sincosint_cont_frac: "
-				   "continued fraction evaluation failed");
+	    std::__throw_runtime_error(__N("__sincosint_cont_frac: "
+				      "continued fraction evaluation failed"));
 	  ++__i;
 	}
       __h *= std::polar(_Tp{1}, -__t);
@@ -140,8 +141,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __odd = !__odd;
 	      ++__k;
 	      if (__k > _S_max_iter)
-		std::__throw_runtime_error("__sincosint_series: "
-					"series evaluation failed");
+		std::__throw_runtime_error(__N("__sincosint_series: "
+					       "series evaluation failed"));
 	    }
 	}
       _Si = __sums;
@@ -194,7 +195,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __even = !__even;
 
 	  if (__k > _S_max_iter)
-	    std::__throw_runtime_error("__sincosint_asymp: series evaluation failed");
+	    std::__throw_runtime_error(__N("__sincosint_asymp: "
+	    				   "Series evaluation failed"));
 	  ++__k;
 	}
 
@@ -254,4 +256,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 } // namespace std
 
-#endif // _GLIBCXX_SF_TRIGINT_TCC
+#endif // _GLIBCXX_BITS_SF_TRIGINT_TCC

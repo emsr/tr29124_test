@@ -27,9 +27,10 @@
  *  Do not attempt to use it directly. @headername{cmath}
  */
 
-#ifndef _GLIBCXX_SF_FRESNEL_TCC
-#define _GLIBCXX_SF_FRESNEL_TCC 1
+#ifndef _GLIBCXX_BITS_SF_FRESNEL_TCC
+#define _GLIBCXX_BITS_SF_FRESNEL_TCC 1
 
+#include <complex>
 #include <ext/math_const.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
@@ -87,7 +88,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __n += 2;
 	}
       if (__k > _S_max_iter)
-	std::__throw_runtime_error("__fresnel_series: series evaluation failed");
+	std::__throw_runtime_error(__N("__fresnel_series: "
+				       "series evaluation failed"));
 
       _Cf = _Csum;
       _Sf = _Ssum;
@@ -131,8 +133,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    break;
 	}
       if (__k > _S_max_iter)
-	std::__throw_runtime_error("__fresnel_cont_frac: "
-				 "continued fraction evaluation failed");
+	std::__throw_runtime_error(__N("__fresnel_cont_frac: "
+				       "continued fraction evaluation failed"));
 
       __h *= std::complex<_Tp>(__ax, -__ax);
       auto __phase = std::polar(_Tp{1}, __pix2/_Tp{2});
@@ -198,4 +200,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 }
 
-#endif // _GLIBCXX_SF_FRESNEL_TCC
+#endif // _GLIBCXX_BITS_SF_FRESNEL_TCC
