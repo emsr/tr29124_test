@@ -32,6 +32,8 @@
 
 #pragma GCC system_header
 
+#include <complex>
+
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 // Implementation-space details.

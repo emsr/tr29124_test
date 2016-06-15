@@ -27,9 +27,10 @@
  *  Do not attempt to use it directly. @headername{cmath}
  */
 
-#ifndef _GLIBCXX_SF_HYPINT_TCC
-#define _GLIBCXX_SF_HYPINT_TCC 1
+#ifndef _GLIBCXX_BITS_SF_HYPINT_TCC
+#define _GLIBCXX_BITS_SF_HYPINT_TCC 1
 
+#include <complex>
 #include <ext/math_const.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
@@ -71,8 +72,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__del.real() - _Tp{1}) + std::abs(__del.imag()) < _S_eps)
 	    break;
 	  if (__i > _S_max_iter)
-	    std::__throw_runtime_error("__chshint_cont_frac: "
-				       "continued fraction evaluation failed");
+	    std::__throw_runtime_error(__N("__chshint_cont_frac: "
+				       "Continued fraction evaluation failed"));
 	  ++__i;
 	}
       __h *= std::polar(_Tp{1}, -__t);
@@ -133,7 +134,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __odd = !__odd;
 	      ++__k;
 	      if (__k > _S_max_iter)
-		std::__throw_runtime_error("__chshint_series: series evaluation failed");
+		std::__throw_runtime_error(__N("__chshint_series: "
+					       "Series evaluation failed"));
 	    }
 	}
       _Chi = _S_gamma_e + std::log(__t) + _Csum;
@@ -186,4 +188,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 }
 
-#endif // _GLIBCXX_SF_HYPINT_TCC
+#endif // _GLIBCXX_BITS_SF_HYPINT_TCC

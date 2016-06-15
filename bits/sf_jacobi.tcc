@@ -27,8 +27,8 @@
  *  Do not attempt to use it directly. @headername{cmath}
  */
 
-#ifndef _GLIBCXX_SF_JACOBI_TCC
-#define _GLIBCXX_SF_JACOBI_TCC 1
+#ifndef _GLIBCXX_BITS_SF_JACOBI_TCC
+#define _GLIBCXX_BITS_SF_JACOBI_TCC 1
 
 #include <ext/math_const.h>
 
@@ -85,7 +85,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __c = _Tp{2} * (__alpha + _Tp(__k - 1))
 			    * (__beta + _Tp(__k - 1)) * __apbp2k;
 	  if (__d == _Tp{0})
-	    std::__throw_runtime_error("__poly_jacobi: error in recursion");
+	    std::__throw_runtime_error(__N("__poly_jacobi: "
+					   "Failure in recursion"));
 	  _Pm0 = ((__b + __a * __x) * _Pm1 - __c * _Pm2) / __d;
 	  _Pm2 = _Pm1;
 	  _Pm1 = _Pm0;
@@ -143,7 +144,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return _S_NaN;
 
       if (__m > __n)
-	throw std::range_error("poly_radial_jacobi: m > n");
+	std::__throw_range_error(__N("poly_radial_jacobi: order > degree"));
       else if ((__n - __m) % 2 == 1)
 	return _Tp{0};
       else
@@ -195,4 +196,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 } // namespace std
 
-#endif // _GLIBCXX_SF_JACOBI_TCC
+#endif // _GLIBCXX_BITS_SF_JACOBI_TCC

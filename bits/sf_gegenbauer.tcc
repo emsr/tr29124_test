@@ -27,8 +27,8 @@
  *  Do not attempt to use it directly. @headername{cmath}
  */
 
-#ifndef _GLIBCXX_SF_GEGENBAUER_TCC
-#define _GLIBCXX_SF_GEGENBAUER_TCC 1
+#ifndef _GLIBCXX_BITS_SF_GEGENBAUER_TCC
+#define _GLIBCXX_BITS_SF_GEGENBAUER_TCC 1
 
 #include <ext/math_const.h>
 
@@ -88,4 +88,4 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 } // namespace __detail
 } // namespace std
 
-#endif // _GLIBCXX_SF_GEGENBAUER_TCC
+#endif // _GLIBCXX_BITS_SF_GEGENBAUER_TCC

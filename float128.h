@@ -27,8 +27,8 @@
  *  Do not attempt to use it directly. @headername{xxxxx}
  */
 
-#ifndef FLOAT128_H
-#define FLOAT128_H 1
+#ifndef _GLIBCXX_BITS_FLOAT128_H
+#define _GLIBCXX_BITS_FLOAT128_H 1
 
 #pragma GCC system_header
 
@@ -686,4 +686,4 @@ namespace __gnu_cxx
 
 #include "float128.tcc"
 
-#endif // FLOAT128_H
+#endif // _GLIBCXX_BITS_FLOAT128_H

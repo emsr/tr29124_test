@@ -1935,7 +1935,7 @@ _S_neg_double_factorial_table[999]
       _Tp __lngam = std::lgamma(__a);
 
       if (__x < _Tp{0})
-	throw std::domain_error("gamma_series: argument less than 0");
+	std::__throw_domain_error(__N("gamma_series: argument less than 0"));
       else if (__x == _Tp{0})
 	return std::make_pair(_Tp{0}, __lngam);
       else
@@ -1954,7 +1954,8 @@ _S_neg_double_factorial_table[999]
 		  return std::make_pair(__gamser, __lngam);
 		}
 	    }
-	  throw std::logic_error("__gamma_series: a too large, itmax too small in routine.");
+	  std::__throw_logic_error(__N("__gamma_series: "
+	  			"a too large, itmax too small in routine."));
 	}
     }
 
@@ -1992,7 +1993,8 @@ _S_neg_double_factorial_table[999]
 	      return std::make_pair(__gamcf, __lngam);
 	    }
 	}
-      throw std::logic_error("__gamma_cont_fraction: a too large, itmax too small in routine.");
+      std::__throw_logic_error(__N("__gamma_cont_fraction: "
+				   "a too large, itmax too small in routine."));
     }
 
 
@@ -2018,7 +2020,7 @@ _S_neg_double_factorial_table[999]
 	return _S_NaN;
 
       if (__x < _Tp{0} || __a <= _Tp{0})
-	throw std::domain_error("pgamma: invalid arguments");
+	std::__throw_domain_error("pgamma: invalid arguments");
 
       if (__x < __a + _Tp{1})
 	return __gamma_series(__a, __x).first;
@@ -2049,7 +2051,7 @@ _S_neg_double_factorial_table[999]
 	return _S_NaN;
 
       if (__x < _Tp{0} || __a <= _Tp{0})
-	throw std::domain_error("__qgamma: invalid arguments");
+	std::__throw_domain_error("__qgamma: invalid arguments");
 
       if (__x < __a + _Tp{1})
 	return _Tp{1} - __gamma_series(__a, __x).first;
@@ -2075,7 +2077,7 @@ _S_neg_double_factorial_table[999]
 	return _S_NaN;
 
       if (__x < _Tp{0} || __a <= _Tp{0})
-	throw std::domain_error("__gamma_l: invalid arguments");
+	std::__throw_domain_error("__gamma_l: invalid arguments");
 
       if (__x < __a + _Tp{1})
       {
@@ -2107,7 +2109,7 @@ _S_neg_double_factorial_table[999]
 	return _S_NaN;
 
       if (__x < _Tp{0} || __a <= _Tp{0})
-	throw std::domain_error("__gamma_u: invalid arguments");
+	std::__throw_domain_error("__gamma_u: invalid arguments");
 
       if (__x < __a + _Tp{1})
       {

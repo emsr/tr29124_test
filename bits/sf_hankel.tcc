@@ -27,8 +27,8 @@
  *  You should not attempt to use it directly.
  */
 
-#ifndef _GLIBCXX_BITS_SF_HANKEL_NEW_TCC
-#define _GLIBCXX_BITS_SF_HANKEL_NEW_TCC 1
+#ifndef _GLIBCXX_BITS_SF_HANKEL_TCC
+#define _GLIBCXX_BITS_SF_HANKEL_TCC 1
 
 #pragma GCC system_header
 
@@ -1294,4 +1294,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 } // namespace std
 
-#endif // _GLIBCXX_BITS_SF_HANKEL_NEW_TCC
+#endif // _GLIBCXX_BITS_SF_HANKEL_TCC
