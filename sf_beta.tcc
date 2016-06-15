@@ -234,8 +234,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__del - _Tp{1}) < _S_eps)
 	    return __h;
 	}
-      std::__throw_runtime_error("__beta_inc_cont_frac: "
-				 "continued fractions failed to converge");
+      std::__throw_runtime_error(__N("__beta_inc_cont_frac: "
+				 "continued fractions failed to converge"));
     }
 
   /**
@@ -267,7 +267,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return _S_NaN;
 
       if (__x < _Tp{0} || __x > _Tp{1})
-	std::__throw_domain_error("__beta_inc: argument out of range");
+	std::__throw_domain_error(__N("__beta_inc: argument out of range"));
       else if (__x == _Tp{0} || __x == _Tp{1})
 	return _Tp{0};
       else

@@ -27,8 +27,8 @@
  *  Do not attempt to use it directly. @headername{cmath}
  */
 
-#ifndef _GLIBCXX_SF_THETA_TCC
-#define _GLIBCXX_SF_THETA_TCC 1
+#ifndef _GLIBCXX_BITS_SF_THETA_TCC
+#define _GLIBCXX_BITS_SF_THETA_TCC 1
 
 #include <vector>
 #include <tuple>
@@ -295,8 +295,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__k))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (std::abs(__k) > _Tp{1})
-	throw std::domain_error("__ellnome:"
-				" argument k out of range");
+	std::__throw_domain_error(__N("__ellnome:"
+				      " argument k out of range"));
       else if (__k < std::pow(_Tp{67} * _S_eps, _Tp{0.125L}))
 	return __ellnome_series(__k);
       else
@@ -317,8 +317,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__k) || __isnan(__x))
 	return _S_NaN;
       else if (std::abs(__k) > _Tp{1})
-	throw std::domain_error("__theta_s:"
-				" argument k out of range");
+	std::__throw_domain_error(__N("__theta_s:"
+				      " argument k out of range"));
       else
 	{
 	  auto __kc = std::sqrt((_Tp{1} - __k) * (_Tp{1} + __k));
@@ -343,8 +343,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__k) || __isnan(__x))
 	return _S_NaN;
       else if (std::abs(__k) > _Tp{1})
-	throw std::domain_error("__theta_c:"
-				" argument k out of range");
+	std::__throw_domain_error(__N("__theta_c:"
+				      " argument k out of range"));
       else
 	{
 	  auto _Kk = __comp_ellint_1(__k);
@@ -368,8 +368,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__k) || __isnan(__x))
 	return _S_NaN;
       else if (std::abs(__k) > _Tp{1})
-	throw std::domain_error("__theta_d:"
-				" argument k out of range");
+	std::__throw_domain_error(__N("__theta_d:"
+				      " argument k out of range"));
       else
 	{
 	  auto _Kk = __comp_ellint_1(__k);
@@ -393,8 +393,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__k) || __isnan(__x))
 	return _S_NaN;
       else if (std::abs(__k) > _Tp{1})
-	throw std::domain_error("__theta_n:"
-				" argument k out of range");
+	std::__throw_domain_error(__N("__theta_n:"
+				      " argument k out of range"));
       else
 	{
 	  auto __kc = std::sqrt((_Tp{1} - __k) * (_Tp{1} + __k));
@@ -420,8 +420,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__k) || __isnan(__u))
 	return std::make_tuple(_S_NaN, _S_NaN, _S_NaN);
       else if (std::abs(__k) > _Tp{1})
-	throw std::domain_error("__jacobi_sncndn:"
-				" argument k out of range");
+	std::__throw_domain_error(__N("__jacobi_sncndn:"
+				      " argument k out of range"));
       else if (std::abs(_Tp{1} - __k) < _Tp{2} * _S_eps)
 	{
 	  auto __sn = std::tanh(__u);
@@ -501,4 +501,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 } // namespace std
 
-#endif // _GLIBCXX_SF_THETA_TCC
+#endif // _GLIBCXX_BITS_SF_THETA_TCC

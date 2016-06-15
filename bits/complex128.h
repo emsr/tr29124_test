@@ -1,6 +1,6 @@
 // -*- C++ -*- header.
 
-// Copyright (C) 2015 Free Software Foundation, Inc.
+// Copyright (C) 2016 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -27,8 +27,8 @@
  *  Do not attempt to use it directly. @headername{xxxxx}
  */
 
-#ifndef COMPLEX128_H
-#define COMPLEX128_H 1
+#ifndef _GLIBCXX_BITS_COMPLEX128_H
+#define _GLIBCXX_BITS_COMPLEX128_H 1
 
 #pragma GCC system_header
 
@@ -500,4 +500,4 @@ inline namespace complex_literals {
 
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
-#endif // COMPLEX128_H
+#endif // _GLIBCXX_BITS_COMPLEX128_H
