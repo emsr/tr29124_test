@@ -25,8 +25,8 @@ template<typename _Tp>
 	  if (std::abs(__del - _Tp{1}) < _S_eps)
 	    break;
 	  if (__i > _S_max_iter)
-	    std::__throw_runtime_error("_LentzContinuedFraction: "
-				   "continued fraction evaluation failed");
+	    std::__throw_runtime_error(__N"_LentzContinuedFraction: "
+				   "continued fraction evaluation failed"));
 	  ++__i;
 	}
       __h *= std::polar(_Tp{1}, -__t);

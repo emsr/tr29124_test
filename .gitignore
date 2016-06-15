@@ -148,6 +148,7 @@ test_hypot
 test_inv_erf
 test_jacobi
 test_jacobi_inv
+test_kelvin
 test_legendre
 test_lerch
 test_limits
