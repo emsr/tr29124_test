@@ -1,10 +1,10 @@
-// $HOME/bin_specfun/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_inv_erf test_inv_erf.cpp -lquadmath
+/*
+$HOME/bin_tr29124/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_inv_erf test_inv_erf.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_inv_erf > test_inv_erf.txt
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_inv_erf > test_inv_erf.txt
-
-// g++ -std=c++1z -o test_inv_erf test_inv_erf.cpp
-
-// ./test_inv_erf.exe > test_inv_erf.txt
+g++ -std=c++1z -o test_inv_erf test_inv_erf.cpp
+./test_inv_erf.exe > test_inv_erf.txt
+*/
 
 // AAOF pp. 408-409.
 

@@ -1,7 +1,7 @@
-
-// $HOME/bin_specfun/bin/g++ -std=gnu++17 -g -o test_inv_ibeta test_inv_ibeta.cpp
-
-// ./test_inv_ibeta > test_inv_ibeta.txt
+/*
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -o test_inv_ibeta test_inv_ibeta.cpp
+./test_inv_ibeta > test_inv_ibeta.txt
+*/
 
 #include <ext/cmath>
 #include <iostream>

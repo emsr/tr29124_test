@@ -1,10 +1,10 @@
-// $HOME/bin_specfun/bin/g++ -std=gnu++14 -g -Wall -Wextra -o test_hypot test_hypot.cpp -L$HOME/bin/lib64 -lquadmath
+/*
+$HOME/bin_tr29124/bin/g++ -std=gnu++14 -g -Wall -Wextra -o test_hypot test_hypot.cpp -L$HOME/bin/lib64 -lquadmath
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_hypot > test_hypot.txt
 
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_hypot > test_hypot.txt
-
-// g++ -std=gnu++14 -Wall -Wextra -DNO_LOGBQ -I. -o test_hypot test_hypot.cpp -lquadmath
-
-// ./test_hypot > test_hypot.txt
+g++ -std=gnu++14 -Wall -Wextra -DNO_LOGBQ -I. -o test_hypot test_hypot.cpp -lquadmath
+./test_hypot > test_hypot.txt
+*/
 
 #include <limits>
 #include <iostream>

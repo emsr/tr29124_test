@@ -1,4 +1,6 @@
-// $HOME/bin_tr29124/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_math_h test_math_h.cpp
+/*
+$HOME/bin_tr29124/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_math_h test_math_h.cpp
+*/
 
 #include <math.h>
 

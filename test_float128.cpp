@@ -1,7 +1,7 @@
-
-// $HOME/bin_specfun/bin/g++ -o test_float128 test_float128.cpp -lquadmath
-
-// LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_float128
+/*
+$HOME/bin_tr29124/bin/g++ -o test_float128 test_float128.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_float128
+*/
 
 #include <limits>
 #include <iostream>

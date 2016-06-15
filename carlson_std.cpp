@@ -1,5 +1,6 @@
-
-// $HOME/bin_specfun/bin/g++ -g -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o carlson_std carlson_std.cpp
+/*
+$HOME/bin_tr29124/bin/g++ -g -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o carlson_std carlson_std.cpp
+*/
 
 #include <ext/cmath>
 #include <iostream>
