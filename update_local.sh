@@ -20,6 +20,7 @@ ${tool} "${src_dir}/c_global/cmath"         "${dst_dir}"
 
 ${tool} "${src_ext_dir}/math_const.h"       "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/cmath"              "${dst_ext_dir}"
+${tool} "${src_ext_dir}/polynomial.h"       "${dst_ext_dir}"
 
 #${tool} "${src_impl_dir}/airy.tcc"          "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/complex_util.h"    "${dst_impl_dir}"
