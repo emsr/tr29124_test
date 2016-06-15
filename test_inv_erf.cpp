@@ -82,6 +82,43 @@
     }
 
   /**
+   * Return scaled repeated integrals of the erfc function by asymptotic series.
+   * The experfc function is defined by
+   * @f[
+   *   experfc(k, x) = exp(x^2)I^k erfc(x)
+   * @f]
+   * where the integral of the comlementary error function is:
+   * @f[
+   *   I^k erfc(x) = \frac{2}{k!\sqrt{\pi}}
+   *       \int_{x}^{\infty}(t-x)^ke^{-t^2}dt
+   * @f]
+   * @see Cuyt, et.al. 13.3.2
+   */
+  template<typename _Tp>
+    _Tp
+    __experfc_asymp(int __k, _Tp __x)
+    {
+      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797L};
+      const auto _S_max_iter = 200;
+      const auto __2x = _Tp{2} * __x;
+      const auto __2xm2 = -_Tp{1} / (__2x * __2x);
+      auto __term = _Tp{1};
+      auto __sum = __term;
+      auto __kfact = std::__detail::__factorial<_Tp>(__k);
+      for (int __m = 1; __m < _S_max_iter; ++__m)
+	{
+	  __term *= __2xm2 * _Tp(__k + 2 * __m) * _Tp(__k + 2 * __m - 1)
+		  / _Tp(__m) / __kfact;
+	  __sum += __term;
+	  if (std::abs(__term) < _S_eps * std::abs(__sum))
+	    break;
+	}
+      const auto __fact = _Tp{2} / std::pow(__2x, _Tp(__k + 1)) / _S_sqrt_pi;
+      return __fact * __sum;
+    }
+
+  /**
    * Return the experfc function by asymptotic series.
    * The experfc function is defined by
    * @f[
