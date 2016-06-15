@@ -33,6 +33,8 @@
 #pragma GCC system_header
 
 #include <vector>
+#include <utility> // For exchange
+#include <bits/complex_util.h>
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
@@ -45,10 +47,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _VanWijngaardenSum<_Tp>&
     _VanWijngaardenSum<_Tp>::operator+=(value_type __term)
     {
-      if (__isnan(__term))
-	throw std::runtime_error("_VanWijngaardenSum: bad term");
+      if (std::__detail::__isnan(__term))
+	std::__throw_runtime_error(__N("_VanWijngaardenSum: bad term"));
       if (std::abs(__term) == std::numeric_limits<value_type>::infinity())
-	throw std::runtime_error("_VanWijngaardenSum: infinite term");
+	std::__throw_runtime_error(__N("_VanWijngaardenSum: infinite term"));
 
       ++this->_M_num_terms;
 
@@ -100,8 +102,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  // Index for the term in the original series.
 	  auto __i = std::size_t{0};
 	  if (__builtin_mul_overflow(__two2k, __j + 1, &__i))
-	    throw std::runtime_error("_VanWijngaardenCompressor: "
-				     "index overflow");	  
+	    std::__throw_runtime_error(__N("_VanWijngaardenCompressor: "
+					   "index overflow"));	  
 	  --__i;
 
 	  // Increment the sum.
@@ -115,8 +117,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    break;
 
 	  if (__builtin_mul_overflow(__two2k, std::size_t{2}, &__two2k))
-	    throw std::runtime_error("_VanWijngaardenCompressor: "
-				     "index overflow");
+	    std::__throw_runtime_error(__N("_VanWijngaardenCompressor: "
+					   "index overflow"));
 	}
 
       auto __sign = (__j % 2 == 1 ? -1 : +1);

@@ -32,6 +32,7 @@
 
 #pragma GCC visibility push(default)
 
+#include <complex>
 #include <vector>
 #include <array>
 #include <bits/c++config.h>
@@ -80,9 +81,9 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 	if (!this->_M_converged)
 	  {
 	    if (std::__detail::__isnan(__term))
-	      throw std::runtime_error("_BasicSum: bad term");
+	      std::__throw_runtime_error(__N("_BasicSum: bad term"));
 	    if (std::abs(__term) == std::numeric_limits<value_type>::infinity())
-	      throw std::runtime_error("_BasicSum: infinite term");
+	      std::__throw_runtime_error(__N("_BasicSum: infinite term"));
 	    ++this->_M_num_terms;
 	    this->_M_term = __term;
 	    this->_M_sum += this->_M_term;
@@ -166,9 +167,9 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 	if (!this->_M_converged)
 	  {
 	    if (std::__detail::__isnan(__term))
-	      throw std::runtime_error("_KahanSum: bad term");
+	      std::__throw_runtime_error(__N("_KahanSum: bad term"));
 	    if (std::abs(__term) == std::numeric_limits<value_type>::infinity())
-	      throw std::runtime_error("_KahanSum: infinite term");
+	      std::__throw_runtime_error(__N("_KahanSum: infinite term"));
 	    ++this->_M_num_terms;
 	    this->_M_term = __term - this->_M_temp;
 	    this->_M_temp = this->_M_sum;

@@ -46,6 +46,7 @@
 #ifndef _GLIBCXX_BITS_SF_ELLINT_TCC
 #define _GLIBCXX_BITS_SF_ELLINT_TCC 1
 
+#include <complex>
 #include <ext/math_const.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)

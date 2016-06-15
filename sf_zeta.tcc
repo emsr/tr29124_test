@@ -229,7 +229,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      if (std::abs(__term) < _S_eps)
 		break;
 	      if (__i + 1 == _S_maxit)
-		std::__throw_runtime_error("__dilog: sum failed");
+		std::__throw_runtime_error(__N("__dilog: sum failed"));
 	    }
 	  return __sum;
 	}
@@ -255,7 +255,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       // A user shouldn't get to this.
       if (__s < _Tp{1})
-	std::__throw_domain_error(__N("Bad argument in zeta sum."));
+	std::__throw_domain_error(__N("__riemann_zeta_sum: "
+				      "Bad argument in zeta sum."));
 
       constexpr unsigned int _S_max_iter = 10000;
       auto __zeta = _Tp{1};

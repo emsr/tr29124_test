@@ -46,6 +46,7 @@
 #ifndef _GLIBCXX_BITS_SF_MOD_BESSEL_TCC
 #define _GLIBCXX_BITS_SF_MOD_BESSEL_TCC 1
 
+#include <complex>
 #include <utility> // For exchange
 #include <ext/math_const.h>
 

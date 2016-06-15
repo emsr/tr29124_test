@@ -27,8 +27,8 @@
  *  Do not attempt to use it directly. @headername{cmath}
  */
 
-#ifndef _GLIBCXX_SF_DAWSON_TCC
-#define _GLIBCXX_SF_DAWSON_TCC 1
+#ifndef _GLIBCXX_BITS_SF_DAWSON_TCC
+#define _GLIBCXX_BITS_SF_DAWSON_TCC 1
 
 #include <ext/math_const.h>
 
@@ -247,4 +247,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 }
 
-#endif // _GLIBCXX_SF_DAWSON_TCC
+#endif // _GLIBCXX_BITS_SF_DAWSON_TCC
