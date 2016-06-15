@@ -1,8 +1,9 @@
 #!/bin/bash
 
 tool="cp -f"
+suffix="_specfun"
 
-src_dir="$HOME/gcc_specfun/libstdc++-v3/include"
+src_dir="$HOME/gcc${suffix}/libstdc++-v3/include"
 if [ -d "$1" ]; then 
   src_dir="$1"
 fi
