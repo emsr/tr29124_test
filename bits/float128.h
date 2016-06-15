@@ -529,7 +529,7 @@ namespace __gnu_cxx
     { return std::numeric_limits<__float128>::has_denorm_loss; }
 
   template<>
-    /*_GLIBCXX_CONSTEXPR*/ __float128
+    _GLIBCXX_CONSTEXPR __float128
     __infinity<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<__float128>::infinity(); }
 
