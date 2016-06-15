@@ -27,8 +27,8 @@
  *  You should not attempt to use it directly.
  */
 
-#ifndef _GLIBCXX_BITS_SF_HANKEL_TCC
-#define _GLIBCXX_BITS_SF_HANKEL_TCC 1
+#ifndef _GLIBCXX_BITS_SF_HANKEL_NEW_TCC
+#define _GLIBCXX_BITS_SF_HANKEL_NEW_TCC 1
 
 #pragma GCC system_header
 
@@ -36,7 +36,9 @@
 #include <limits>
 #include <vector>
 
-#include <bits/complex_util.h>
+//#include <bits/complex_util.h>
+#include "specfun_util.h"
+#include "complex_util.h"
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -135,46 +137,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Separate real and imaginary parts of zhat.
       auto __rezhat = std::real(__zhat);
       auto __imzhat = std::imag(__zhat);
-      auto __abs_rezhat = std::abs(__rezhat);
-      auto __abs_imzhat = std::abs(__imzhat);
-
-      // If 1 - zhat^2 can be computed without overflow.
-      if (__abs_rezhat < _S_sqrt_max && __abs_imzhat < _S_sqrt_max)
-	{
-	  // Find max and min of abs(dx) and abs(dy).
-	  auto __du = __abs_rezhat;
-	  auto __dv = __abs_imzhat;
-	  if (__du < __dv)
-	    std::swap(__du, __dv);
-	  if (__du >= _S_1d2 && __dv > _S_inf / (_Tp{2} * __du))
-	    std::__throw_runtime_error(__N("__hankel_params: "
-					   "unable to compute 1-zhat^2"));
-	}
-      else
-	std::__throw_runtime_error(__N("__hankel_params: "
-				       "unable to compute 1-zhat^2"));
 
       // Compute 1 - zhat^2 and related constants.
-      auto __w = __cmplx{_Tp{1} - (__rezhat - __imzhat) * (__rezhat + __imzhat),
-			-_Tp{2} * __rezhat * __imzhat};
+      auto __w = __cmplx{_Tp{1}} - __safe_sqr(__zhat);
       __w = std::sqrt(__w);
       __p = _Tp{1} / __w;
       __p2 = __p * __p;
 
-      // If nu^2 can be computed without overflow.
-      if (std::abs(__nu) <= _S_sqrt_max)
-	{
-	  __nup2 = __nu * __nu;
-	  __num2 = _Tp{1} / __nup2;
-	  // Compute nu^(-1/3), nu^(-2/3), nu^(-4/3).
-	  __num4d3 = -std::log(__nu);
-	  __num1d3 = std::exp(_S_1d3 * __num4d3);
-	  __num2d3 = std::exp(_S_2d3 * __num4d3);
-	  __num4d3 = std::exp(_S_4d3 * __num4d3);
-	}
-      else
-	std::__throw_runtime_error(__N("__hankel_params: "
-				       "unable to compute nu^2"));
+      __nup2 = __safe_sqr(__nu);
+      __num2 = _Tp{1} / __nup2;
+      // Compute nu^(-1/3), nu^(-2/3), nu^(-4/3).
+      __num4d3 = -std::log(__nu);
+      __num1d3 = std::exp(_S_1d3 * __num4d3);
+      __num2d3 = std::exp(_S_2d3 * __num4d3);
+      __num4d3 = std::exp(_S_4d3 * __num4d3);
 
       // Compute xi = ln(1+(1-zhat^2)^(1/2)) - ln(zhat) - (1-zhat^2)^(1/2)
       // using default branch of logarithm and square root.
@@ -613,26 +589,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto _Dk = __v[1] + __zetam3hf * (_S_lambda[1] * __zetam3hf
 			+ _S_lambda[0] * __v[0]);
 
-      // Compute terms.
-      auto _Aterm = _Ak * __num2;
-      auto _Bterm = _Bk * __num2;
-      auto _Cterm = _Ck * __num2;
-      auto _Dterm = _Dk * __num2;
       // Compute sum of first two terms to initialize the Kahan summing scheme.
-      auto _Asum = _A0 + _Aterm;
-      auto _Atemp = _Aterm - (_Asum - _A0);
-      auto _Bsum = _B0 + _Bterm;
-      auto _Btemp = _Bterm - (_Bsum - _B0);
-      auto _Csum = _C0 + _Cterm;
-      auto _Ctemp = _Cterm - (_Csum - _C0);
-      auto _Dsum = _D0 + _Dterm;
-      auto _Dtemp = _Dterm - (_Dsum - _D0);
+      __gnu_cxx::_KahanSum<std::complex<_Tp>> _Asum(_A0);
+      __gnu_cxx::_KahanSum<std::complex<_Tp>> _Bsum(_B0);
+      __gnu_cxx::_KahanSum<std::complex<_Tp>> _Csum(_C0);
+      __gnu_cxx::_KahanSum<std::complex<_Tp>> _Dsum(_D0);
+      _Asum += _Ak * __num2;
+      _Bsum += _Bk * __num2;
+      _Csum += _Ck * __num2;
+      _Dsum += _Dk * __num2;
 
       // Combine sums in form appearing in expansions.
-      _H1sum = _Aip * _Asum + __o4dp * _Bsum;
-      _H2sum = _Aim * _Asum + __o4dm * _Bsum;
-      _H1psum = __od2p * _Csum + __od0dp * _Dsum;
-      _H2psum = __od2m * _Csum + __od0dm * _Dsum;
+      _H1sum = _Aip * _Asum() + __o4dp * _Bsum();
+      _H2sum = _Aim * _Asum() + __o4dm * _Bsum();
+      _H1psum = __od2p * _Csum() + __od0dp * _Dsum();
+      _H2psum = __od2m * _Csum() + __od0dm * _Dsum();
+
       auto _H1save = _Aip * _A0 + __o4dp * _B0;
       auto _H2save = _Aim * _A0 + __o4dm * _B0;
       auto _H1psave = __od2p * _C0 + __od0dp * _D0;
@@ -747,30 +719,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 	  // Evaluate new terms for sums.
 	  __num2k *= __num2;
-	  _Aterm = _Ak * __num2k + _Atemp;
-	  _Bterm = _Bk * __num2k + _Btemp;
-	  _Cterm = _Ck * __num2k + _Ctemp;
-	  _Dterm = _Dk * __num2k + _Dtemp;
-
-	  // Update sums using Kahan summing scheme.
-	  _Atemp = _Asum;
-	  _Asum += _Aterm;
-	  _Atemp = _Aterm - (_Asum - _Atemp);
-	  _Btemp = _Bsum;
-	  _Bsum += _Bterm;
-	  _Btemp = _Bterm - (_Bsum - _Btemp);
-	  _Ctemp = _Csum;
-	  _Csum += _Cterm;
-	  _Ctemp = _Cterm - (_Csum - _Ctemp);
-	  _Dtemp = _Dsum;
-	  _Dsum += _Dterm;
-	  _Dtemp = _Dterm - (_Dsum - _Dtemp);
+	  _Asum += _Ak * __num2k;
+	  _Bsum += _Bk * __num2k;
+	  _Csum += _Ck * __num2k;
+	  _Dsum += _Dk * __num2k;
 
 	  // Combine sums in form appearing in expansions.
-	  _H1sum  = _Aip  * _Asum  + __o4dp * _Bsum;
-	  _H2sum  = _Aim  * _Asum  + __o4dm * _Bsum;
-	  _H1psum = __od2p * _Csum + __od0dp * _Dsum;
-	  _H2psum = __od2m * _Csum + __od0dm * _Dsum;
+	  _H1sum  = _Aip  * _Asum()  + __o4dp * _Bsum();
+	  _H2sum  = _Aim  * _Asum()  + __o4dm * _Bsum();
+	  _H1psum = __od2p * _Csum() + __od0dp * _Dsum();
+	  _H2psum = __od2m * _Csum() + __od0dm * _Dsum();
 
 	  // If convergence criteria met this term, see if it was before.
 	  if (__l1_norm(_H1sum - _H1save) < __eps * __l1_norm(_H1sum)
@@ -1336,4 +1294,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 } // namespace std
 
-#endif // _GLIBCXX_BITS_SF_HANKEL_TCC
+#endif // _GLIBCXX_BITS_SF_HANKEL_NEW_TCC
