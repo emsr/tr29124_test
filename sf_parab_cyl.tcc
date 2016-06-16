@@ -84,7 +84,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __parabolic_cylinder_series(_Tp __a, _Tp __z)
     {
       const auto __zz = __z * __z;
-      auto __ezz4 = std::exp(-__zz / _Tp{4});
+      const auto __ezz4 = std::exp(-__zz / _Tp{4});
       auto __term1 = _Tp{1};
       auto __sum1 = term1;
       auto __term2 = __z;
@@ -114,6 +114,30 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::pair<_Tp>
     __parabolic_cylinder_asymp(_Tp __a, _Tp __z)
     {
+      constexpr auto _S_max_iter = 1000;
+      constexpr auto _S_1d2 = _Tp{1} / _Tp{2};
+      const auto __zz = __z * __z;
+      const auto __i2zz = _Tp{1} / (_Tp{2} * __z * __z);
+      const auto __ezz4 = std::exp(-__zz / _Tp{4});
+      const auto __pow = std::pow(__z, -__a - _S_1d2);
+      auto __term1 = _Tp{1};
+      auto __sum1 = __term1;
+      auto __term2 = _Tp{1};
+      auto __sum2 = __term2;
+      for (auto __s = 1; __s < _S_max_iter; ++s)
+	{
+	  __term1 *= -(__a + _S_1d2 + 2 * (__s - 1)) * (__a + _S_1d2 + 2 * (__s - 1) + 1) * __i2zz / __s;
+	  __sum1 += __term1;
+	  __term2 *= (__a - _S_1d2 + 2 * (__s - 1)) * (__a - _S_1d2 + 2 * (__s - 1) + 1) * __i2zz / __s;
+	  __sum2 += __term2;
+	  if (std::abs(__term1) < _S_eps * std::abs(__sum1)
+	   && std::abs(__term2) < _S_eps * std::abs(__sum2))
+	    break;
+	}
+      _U = __ezz4 * __pow * __sum1;
+      _V = _S_2dsqrt_pi * __sum2 / __ezz4 / __pow / __z;
+
+      return std::make_pair(_U, _V);
     }
 
   /**
