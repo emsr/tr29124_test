@@ -1,7 +1,7 @@
 #!  /bin/bash
 
 tool="cp -f"
-suffix="_specfun"
+suffix="_tr29124"
 
 base_dir="$HOME/gcc${suffix}"
 test_dir="${base_dir}/libstdc++-v3/testsuite"

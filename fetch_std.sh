@@ -1,7 +1,7 @@
 #!/bin/bash
 
 tool="cp -f"
-suffix="_specfun"
+suffix="_tr29124"
 
 src_dir="$HOME/gcc${suffix}/libstdc++-v3/include"
 if [ -d "$1" ]; then 
