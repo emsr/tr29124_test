@@ -85,10 +85,10 @@ namespace __gnu_cxx
        *  @todo Should we grab these from _M_coeff (i.e. std::vector<_Tp>)?
        */
       using value_type = typename std::vector<_Tp>::value_type;
-      using reference = typename std::vector<_Tp>::reference;
-      using const_reference = typename std::vector<_Tp>::const_reference;
-      using pointer = typename std::vector<_Tp>::pointer;
-      using const_pointer = typename std::vector<_Tp>::const_pointer;
+      using reference = typename std::vector<value_type>::reference;
+      using const_reference = typename std::vector<value_type>::const_reference;
+      using pointer = typename std::vector<value_type>::pointer;
+      using const_pointer = typename std::vector<value_type>::const_pointer;
       using iterator = typename std::vector<value_type>::iterator;
       using const_iterator = typename std::vector<value_type>::const_iterator;
       using reverse_iterator = typename std::vector<value_type>::reverse_iterator;
