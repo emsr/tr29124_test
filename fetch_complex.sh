@@ -1,7 +1,7 @@
 #!  /bin/bash
 
 tool="cp -f"
-suffix="_specfun"
+suffix="_tr29124"
 
 ${tool} ../gcc${suffix}/libstdc++-v3/testsuite/ext/special_functions/ellint_rc/complex.cc complex_ellint_rc.cc 
 ${tool} ../gcc${suffix}/libstdc++-v3/testsuite/ext/special_functions/ellint_rd/complex.cc complex_ellint_rd.cc 

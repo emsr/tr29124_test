@@ -1,5 +1,5 @@
 
-suffix="_specfun"
+suffix="_tr29124"
 tool="$HOME/bin${suffix}/bin/g++ -I/home/ed/gcc${suffix}/libstdc++-v3/testsuite/util -D__STDCPP_WANT_MATH_SPEC_FUNCS__"
 
 srcs=`find /home/ed/gcc${suffix}/libstdc++-v3/testsuite/special_functions -name \*.cc`

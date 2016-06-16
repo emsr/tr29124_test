@@ -1,7 +1,7 @@
 #!/bin/bash
 
 test_dir="$HOME/tr29124_test/testsuite/special_functions"
-gcc_dir="$HOME/gcc_specfun/libstdc++-v3/testsuite/special_functions"
+gcc_dir="$HOME/gcc_tr29124/libstdc++-v3/testsuite/special_functions"
 
 tool="cp -f"
 
@@ -28,7 +28,7 @@ ${tool} ${test_dir}/20_sph_legendre/*   ${gcc_dir}/20_sph_legendre/
 ${tool} ${test_dir}/21_sph_neumann/*    ${gcc_dir}/21_sph_neumann/
 
 text_dir="$HOME/tr29124_test/testsuite/ext/special_functions"
-ext_dir="$HOME/gcc_specfun/libstdc++-v3/testsuite/ext/special_functions"
+ext_dir="$HOME/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions"
 
 ${tool} ${text_dir}/airy_ai/*            ${ext_dir}/airy_ai
 ${tool} ${text_dir}/airy_bi/*            ${ext_dir}/airy_bi
