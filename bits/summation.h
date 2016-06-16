@@ -115,8 +115,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       _BasicSum&
       reset()
       {
-	this->_M_sum = value_type{0};
-	this->_M_term = value_type{0};
+	this->_M_sum = value_type{};
+	this->_M_term = value_type{};
 	this->_M_num_terms = 0;
 	this->_M_converged = false;
 	return *this;
@@ -203,9 +203,9 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       _KahanSum&
       reset()
       {
-	this->_M_sum = value_type{0};
-	this->_M_term = value_type{0};
-	this->_M_temp = value_type{0};
+	this->_M_sum = value_type{};
+	this->_M_term = value_type{};
+	this->_M_temp = value_type{};
 	this->_M_num_terms = 0;
 	this->_M_converged = false;
 	return *this;
@@ -374,7 +374,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       {
 	this->_M_part_sum.reset();
 	this->_M_a.clear();
-	this->_M_sum = value_type{0};
+	this->_M_sum = value_type{};
 	this->_M_converged = false;
 	return *this;
       }
@@ -451,7 +451,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       {
 	this->_M_part_sum.reset();
 	this->_M_e.clear();
-	this->_M_sum = value_type{0};
+	this->_M_sum = value_type{};
 	this->_M_converged = false;
 	return *this;
       }
@@ -528,7 +528,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       {
 	this->_M_part_sum.reset();
 	this->_M_arj.clear();
-	this->_M_sum = value_type{0};
+	this->_M_sum = value_type{};
 	this->_M_converged = false;
 	return *this;
       }
@@ -899,7 +899,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 	this->_M_part_sum.reset();
 	this->_M_num.clear();
 	this->_M_den.clear();
-	this->_M_sum = value_type{0};
+	this->_M_sum = value_type{};
 	this->_M_converged = false;
 	this->_M_rem_mdl.reset();
 	return *this;
@@ -1011,7 +1011,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 	this->_M_part_sum.reset();
 	this->_M_num.clear();
 	this->_M_den.clear();
-	this->_M_sum = value_type{0};
+	this->_M_sum = value_type{};
 	this->_M_converged = false;
 	this->_M_rem_mdl.reset();
 	return *this;
