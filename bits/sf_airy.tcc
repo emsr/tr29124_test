@@ -3524,7 +3524,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * made.  Hence, an error return is not needed.
    *
    * @tparam _Tp A real type
-   * @param[in] z  The value at which the Airy function and their derivatives
+   * @param[in] __z  The value at which the Airy function and their derivatives
    * 		   are evaluated.
    * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
    */
