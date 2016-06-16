@@ -12,7 +12,6 @@ var dir_4cb89d43f92538ff4356f1c340b21854 =
     [ "sf_gamma.tcc", "sf__gamma_8tcc.html", "sf__gamma_8tcc" ],
     [ "sf_gegenbauer.tcc", "sf__gegenbauer_8tcc.html", "sf__gegenbauer_8tcc" ],
     [ "sf_hankel.tcc", "sf__hankel_8tcc.html", "sf__hankel_8tcc" ],
-    [ "sf_hankel_new.tcc", "sf__hankel__new_8tcc.html", "sf__hankel__new_8tcc" ],
     [ "sf_hermite.tcc", "sf__hermite_8tcc.html", "sf__hermite_8tcc" ],
     [ "sf_hydrogen.tcc", "sf__hydrogen_8tcc.html", "sf__hydrogen_8tcc" ],
     [ "sf_hyperg.tcc", "sf__hyperg_8tcc.html", "sf__hyperg_8tcc" ],

@@ -1,0 +1,164 @@
+\hypertarget{classstd_1_1____detail_1_1__Airy__asymp}{}\section{std\+:\+:\+\_\+\+\_\+detail\+:\+:\+\_\+\+Airy\+\_\+asymp$<$ \+\_\+\+Tp $>$ Class Template Reference}
+\label{classstd_1_1____detail_1_1__Airy__asymp}\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp$<$ \+\_\+\+Tp $>$@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp$<$ \+\_\+\+Tp $>$}}
+
+
+Inheritance diagram for std\+:\+:\+\_\+\+\_\+detail\+:\+:\+\_\+\+Airy\+\_\+asymp$<$ \+\_\+\+Tp $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{classstd_1_1____detail_1_1__Airy__asymp__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for std\+:\+:\+\_\+\+\_\+detail\+:\+:\+\_\+\+Airy\+\_\+asymp$<$ \+\_\+\+Tp $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{classstd_1_1____detail_1_1__Airy__asymp__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{classstd_1_1____detail_1_1__Airy__asymp_a5b480a849dafb98256e445a475813db1}{\+\_\+\+\_\+cmplx} = std\+::complex$<$ \+\_\+\+Tp $>$
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \hyperlink{classstd_1_1____detail_1_1__Airy__asymp_a93f2010a2c48be2f38445420ba019a52}{\+\_\+\+Airy\+\_\+asymp} ()=default
+\item 
+\hyperlink{structstd_1_1____detail_1_1__AiryState}{\+\_\+\+Airy\+State}$<$ std\+::complex$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{classstd_1_1____detail_1_1__Airy__asymp_a245564e7a1e3d653674c38629c4cb0e8}{\+\_\+\+S\+\_\+absarg\+\_\+ge\+\_\+pio3} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z) const 
+\begin{DoxyCompactList}\small\item\em This function evaluates $ Ai(z), Ai'(z) $ and $ Bi(z), Bi'(z) $ from their asymptotic expansions for $ |arg(z)| < 2*\pi/3 $ i.\+e. roughly along the negative real axis. \end{DoxyCompactList}\item 
+\hyperlink{structstd_1_1____detail_1_1__AiryState}{\+\_\+\+Airy\+State}$<$ std\+::complex$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{classstd_1_1____detail_1_1__Airy__asymp_a6ae932883f0b6cfe86c6e7beda807385}{\+\_\+\+S\+\_\+absarg\+\_\+lt\+\_\+pio3} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z) const 
+\begin{DoxyCompactList}\small\item\em This function evaluates $ Ai(z) $ and $ Ai'(z) $ from their asymptotic expansions for $ |arg(-z)| < \pi/3 $ i.\+e. roughly along the negative real axis. \end{DoxyCompactList}\item 
+\hyperlink{structstd_1_1____detail_1_1__AiryState}{\+\_\+\+Airy\+State}$<$ std\+::complex$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{classstd_1_1____detail_1_1__Airy__asymp_a02b787a1a0da15547e29a6c6fafad0e7}{operator()} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+t, bool \+\_\+\+\_\+return\+\_\+fock\+\_\+airy=false) const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Tp$>$\\*
+class std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp$<$ \+\_\+\+Tp $>$}
+
+A class encapsulating the asymptotic expansions of Airy functions and thier derivatives.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Tp} & A real type \\
+\hline
+\end{DoxyTemplParams}
+
+
+Definition at line 3231 of file sf\+\_\+airy.\+tcc.
+
+
+
+\subsection{Member Typedef Documentation}
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}!\+\_\+\+\_\+cmplx@{\+\_\+\+\_\+cmplx}}
+\index{\+\_\+\+\_\+cmplx@{\+\_\+\+\_\+cmplx}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+cmplx}{__cmplx}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ using {\bf std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}$<$ \+\_\+\+Tp $>$\+::{\bf \+\_\+\+\_\+cmplx} =  std\+::complex$<$\+\_\+\+Tp$>$}\hypertarget{classstd_1_1____detail_1_1__Airy__asymp_a5b480a849dafb98256e445a475813db1}{}\label{classstd_1_1____detail_1_1__Airy__asymp_a5b480a849dafb98256e445a475813db1}
+
+
+Definition at line 3236 of file sf\+\_\+airy.\+tcc.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}!\+\_\+\+Airy\+\_\+asymp@{\+\_\+\+Airy\+\_\+asymp}}
+\index{\+\_\+\+Airy\+\_\+asymp@{\+\_\+\+Airy\+\_\+asymp}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}}
+\subsubsection[{\texorpdfstring{\+\_\+\+Airy\+\_\+asymp()=default}{_Airy_asymp()=default}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ constexpr {\bf std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}$<$ \+\_\+\+Tp $>$\+::{\bf \+\_\+\+Airy\+\_\+asymp} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [default]}}\hypertarget{classstd_1_1____detail_1_1__Airy__asymp_a93f2010a2c48be2f38445420ba019a52}{}\label{classstd_1_1____detail_1_1__Airy__asymp_a93f2010a2c48be2f38445420ba019a52}
+
+
+\subsection{Member Function Documentation}
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}!\+\_\+\+S\+\_\+absarg\+\_\+ge\+\_\+pio3@{\+\_\+\+S\+\_\+absarg\+\_\+ge\+\_\+pio3}}
+\index{\+\_\+\+S\+\_\+absarg\+\_\+ge\+\_\+pio3@{\+\_\+\+S\+\_\+absarg\+\_\+ge\+\_\+pio3}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}}
+\subsubsection[{\texorpdfstring{\+\_\+\+S\+\_\+absarg\+\_\+ge\+\_\+pio3(std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z) const }{_S_absarg_ge_pio3(std::complex< _Tp > __z) const }}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ {\bf \+\_\+\+Airy\+State}$<$ std\+::complex$<$ \+\_\+\+Tp $>$ $>$ {\bf std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+S\+\_\+absarg\+\_\+ge\+\_\+pio3 (
+\begin{DoxyParamCaption}
+\item[{std\+::complex$<$ \+\_\+\+Tp $>$}]{\+\_\+\+\_\+z}
+\end{DoxyParamCaption}
+) const}\hypertarget{classstd_1_1____detail_1_1__Airy__asymp_a245564e7a1e3d653674c38629c4cb0e8}{}\label{classstd_1_1____detail_1_1__Airy__asymp_a245564e7a1e3d653674c38629c4cb0e8}
+
+
+This function evaluates $ Ai(z), Ai'(z) $ and $ Bi(z), Bi'(z) $ from their asymptotic expansions for $ |arg(z)| < 2*\pi/3 $ i.\+e. roughly along the negative real axis. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Tp} & A real type \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & Complex argument at which Ai(z) and Bi(z) and their derivative are evaluated. This function assumes $ |z| > 15 $ and $ |(arg(z)| < 2\pi/3 $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A struct containing $ z, Ai(z), Ai'(z), Bi(z), Bi'(z) $. 
+\end{DoxyReturn}
+
+
+Definition at line 3503 of file sf\+\_\+airy.\+tcc.
+
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}!\+\_\+\+S\+\_\+absarg\+\_\+lt\+\_\+pio3@{\+\_\+\+S\+\_\+absarg\+\_\+lt\+\_\+pio3}}
+\index{\+\_\+\+S\+\_\+absarg\+\_\+lt\+\_\+pio3@{\+\_\+\+S\+\_\+absarg\+\_\+lt\+\_\+pio3}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}}
+\subsubsection[{\texorpdfstring{\+\_\+\+S\+\_\+absarg\+\_\+lt\+\_\+pio3(std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z) const }{_S_absarg_lt_pio3(std::complex< _Tp > __z) const }}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ {\bf \+\_\+\+Airy\+State}$<$ std\+::complex$<$ \+\_\+\+Tp $>$ $>$ {\bf std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+S\+\_\+absarg\+\_\+lt\+\_\+pio3 (
+\begin{DoxyParamCaption}
+\item[{std\+::complex$<$ \+\_\+\+Tp $>$}]{\+\_\+\+\_\+z}
+\end{DoxyParamCaption}
+) const}\hypertarget{classstd_1_1____detail_1_1__Airy__asymp_a6ae932883f0b6cfe86c6e7beda807385}{}\label{classstd_1_1____detail_1_1__Airy__asymp_a6ae932883f0b6cfe86c6e7beda807385}
+
+
+This function evaluates $ Ai(z) $ and $ Ai'(z) $ from their asymptotic expansions for $ |arg(-z)| < \pi/3 $ i.\+e. roughly along the negative real axis. 
+
+For speed, the number of terms needed to achieve about 16 decimals accuracy is tabled and determined for $ |z| $. This function assumes $ |z| > 15 $ and $ |arg(-z)| < \pi/3 $.
+
+Note that for speed and since this function is called by another, checks for valid arguments are not made. Hence, an error return is not needed.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Tp} & A real type \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em \+\_\+\+\_\+z} & The value at which the Airy function and their derivatives are evaluated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A struct containing $ z, Ai(z), Ai'(z), Bi(z), Bi'(z) $. 
+\end{DoxyReturn}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000003}{Todo}]Revisit these numbers of terms for the Airy asymptotic expansions. \end{DoxyRefDesc}
+
+
+Definition at line 3533 of file sf\+\_\+airy.\+tcc.
+
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}!operator()@{operator()}}
+\index{operator()@{operator()}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}}
+\subsubsection[{\texorpdfstring{operator()(std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+t, bool \+\_\+\+\_\+return\+\_\+fock\+\_\+airy=false) const }{operator()(std::complex< _Tp > __t, bool __return_fock_airy=false) const }}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ {\bf \+\_\+\+Airy\+State}$<$ std\+::complex$<$ \+\_\+\+Tp $>$ $>$ {\bf std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}$<$ \+\_\+\+Tp $>$\+::operator() (
+\begin{DoxyParamCaption}
+\item[{std\+::complex$<$ \+\_\+\+Tp $>$}]{\+\_\+\+\_\+t, }
+\item[{bool}]{\+\_\+\+\_\+return\+\_\+fock\+\_\+airy = {\ttfamily false}}
+\end{DoxyParamCaption}
+) const}\hypertarget{classstd_1_1____detail_1_1__Airy__asymp_a02b787a1a0da15547e29a6c6fafad0e7}{}\label{classstd_1_1____detail_1_1__Airy__asymp_a02b787a1a0da15547e29a6c6fafad0e7}
+Return the Airy functions for a given argument using asymptotic series.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Tp} & A real type \\
+\hline
+\end{DoxyTemplParams}
+
+
+Definition at line 3262 of file sf\+\_\+airy.\+tcc.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+bits/\hyperlink{sf__airy_8tcc}{sf\+\_\+airy.\+tcc}\end{DoxyCompactItemize}

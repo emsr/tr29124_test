@@ -1,6 +1,7 @@
 var searchData=
 [
   ['_5f_5fdetail',['__detail',['../namespacestd_1_1____detail.html',1,'std']]],
+  ['scalar_5ftype',['scalar_type',['../classstd_1_1____detail_1_1__Airy__asymp__series.html#a17ec74b13ebc38d5531bf27cd31684fb',1,'std::__detail::_Airy_asymp_series::scalar_type()'],['../classstd_1_1____detail_1_1__Airy.html#a266cdfcc86b36c8743fd0e102387e1f0',1,'std::__detail::_Airy::scalar_type()']]],
   ['sf_5fairy_2etcc',['sf_airy.tcc',['../sf__airy_8tcc.html',1,'']]],
   ['sf_5fbessel_2etcc',['sf_bessel.tcc',['../sf__bessel_8tcc.html',1,'']]],
   ['sf_5fbeta_2etcc',['sf_beta.tcc',['../sf__beta_8tcc.html',1,'']]],
@@ -13,7 +14,6 @@ var searchData=
   ['sf_5fgamma_2etcc',['sf_gamma.tcc',['../sf__gamma_8tcc.html',1,'']]],
   ['sf_5fgegenbauer_2etcc',['sf_gegenbauer.tcc',['../sf__gegenbauer_8tcc.html',1,'']]],
   ['sf_5fhankel_2etcc',['sf_hankel.tcc',['../sf__hankel_8tcc.html',1,'']]],
-  ['sf_5fhankel_5fnew_2etcc',['sf_hankel_new.tcc',['../sf__hankel__new_8tcc.html',1,'']]],
   ['sf_5fhermite_2etcc',['sf_hermite.tcc',['../sf__hermite_8tcc.html',1,'']]],
   ['sf_5fhydrogen_2etcc',['sf_hydrogen.tcc',['../sf__hydrogen_8tcc.html',1,'']]],
   ['sf_5fhyperg_2etcc',['sf_hyperg.tcc',['../sf__hyperg_8tcc.html',1,'']]],

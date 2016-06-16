@@ -6,11 +6,5 @@ var sf__beta_8tcc =
     [ "__beta_inc", "sf__beta_8tcc.html#aedfe43a9c0065cc3883df50536a625e4", null ],
     [ "__beta_inc_cont_frac", "sf__beta_8tcc.html#aed463a2b0bee0dcf6c9a63ed1dad7ed6", null ],
     [ "__beta_lgamma", "sf__beta_8tcc.html#ac4f233100713779d93e4eee7665bd0a5", null ],
-    [ "__beta_product", "sf__beta_8tcc.html#a9baa688a27befab7fa48ccfb4a87a9ca", null ],
-    [ "__binomial_cdf", "sf__beta_8tcc.html#afecc4328cf5d707a7ff08b6da33d257a", null ],
-    [ "__binomial_cdfc", "sf__beta_8tcc.html#a7ed292577794cc81c29830b69afcbd15", null ],
-    [ "__fisher_f_cdf", "sf__beta_8tcc.html#a6f2d0b2934d673be285590f6abc7470a", null ],
-    [ "__fisher_f_cdfc", "sf__beta_8tcc.html#a0fc592b494090a67e5910109f6700d25", null ],
-    [ "__student_t_cdf", "sf__beta_8tcc.html#a2befa454884fc961c2e4ac6f88ca41d8", null ],
-    [ "__student_t_cdfc", "sf__beta_8tcc.html#a56c99cb6011ea5a79b2c87cb077da3cf", null ]
+    [ "__beta_product", "sf__beta_8tcc.html#a9baa688a27befab7fa48ccfb4a87a9ca", null ]
 ];

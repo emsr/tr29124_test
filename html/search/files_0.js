@@ -12,7 +12,6 @@ var searchData=
   ['sf_5fgamma_2etcc',['sf_gamma.tcc',['../sf__gamma_8tcc.html',1,'']]],
   ['sf_5fgegenbauer_2etcc',['sf_gegenbauer.tcc',['../sf__gegenbauer_8tcc.html',1,'']]],
   ['sf_5fhankel_2etcc',['sf_hankel.tcc',['../sf__hankel_8tcc.html',1,'']]],
-  ['sf_5fhankel_5fnew_2etcc',['sf_hankel_new.tcc',['../sf__hankel__new_8tcc.html',1,'']]],
   ['sf_5fhermite_2etcc',['sf_hermite.tcc',['../sf__hermite_8tcc.html',1,'']]],
   ['sf_5fhydrogen_2etcc',['sf_hydrogen.tcc',['../sf__hydrogen_8tcc.html',1,'']]],
   ['sf_5fhyperg_2etcc',['sf_hyperg.tcc',['../sf__hyperg_8tcc.html',1,'']]],

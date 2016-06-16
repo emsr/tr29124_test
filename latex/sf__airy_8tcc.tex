@@ -1,12 +1,14 @@
 \hypertarget{sf__airy_8tcc}{}\section{bits/sf\+\_\+airy.tcc File Reference}
 \label{sf__airy_8tcc}\index{bits/sf\+\_\+airy.\+tcc@{bits/sf\+\_\+airy.\+tcc}}
 {\ttfamily \#include $<$bits/complex\+\_\+util.\+h$>$}\\*
+{\ttfamily \#include $<$bits/summation.\+h$>$}\\*
+{\ttfamily \#include $<$ext/polynomial.\+h$>$}\\*
 Include dependency graph for sf\+\_\+airy.\+tcc\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=178pt]{sf__airy_8tcc__incl}
+\includegraphics[width=350pt]{sf__airy_8tcc__incl}
 \end{center}
 \end{figure}
 This graph shows which files directly or indirectly include this file\+:
@@ -17,6 +19,39 @@ This graph shows which files directly or indirectly include this file\+:
 \includegraphics[width=161pt]{sf__airy_8tcc__dep__incl}
 \end{center}
 \end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classstd_1_1____detail_1_1__Airy}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy$<$ \+\_\+\+Tp $>$}
+\item 
+class \hyperlink{classstd_1_1____detail_1_1__Airy__asymp}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp$<$ \+\_\+\+Tp $>$}
+\item 
+struct \hyperlink{structstd_1_1____detail_1_1__Airy__asymp__data}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+data$<$ \+\_\+\+Tp $>$}
+\item 
+struct \hyperlink{structstd_1_1____detail_1_1__Airy__asymp__data_3_01____float128_01_4}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+data$<$ \+\_\+\+\_\+float128 $>$}
+\item 
+struct \hyperlink{structstd_1_1____detail_1_1__Airy__asymp__data_3_01double_01_4}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+data$<$ double $>$}
+\item 
+struct \hyperlink{structstd_1_1____detail_1_1__Airy__asymp__data_3_01float_01_4}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+data$<$ float $>$}
+\item 
+struct \hyperlink{structstd_1_1____detail_1_1__Airy__asymp__data_3_01long_01double_01_4}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+data$<$ long double $>$}
+\item 
+class \hyperlink{classstd_1_1____detail_1_1__Airy__asymp__series}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series$<$ \+\_\+\+Sum $>$}
+\item 
+struct \hyperlink{structstd_1_1____detail_1_1__Airy__default__radii}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+default\+\_\+radii$<$ \+\_\+\+Tp $>$}
+\item 
+struct \hyperlink{structstd_1_1____detail_1_1__Airy__default__radii_3_01double_01_4}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+default\+\_\+radii$<$ double $>$}
+\item 
+struct \hyperlink{structstd_1_1____detail_1_1__Airy__default__radii_3_01float_01_4}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+default\+\_\+radii$<$ float $>$}
+\item 
+struct \hyperlink{structstd_1_1____detail_1_1__Airy__default__radii_3_01long_01double_01_4}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+default\+\_\+radii$<$ long double $>$}
+\item 
+class \hyperlink{classstd_1_1____detail_1_1__Airy__series}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series$<$ \+\_\+\+Tp $>$}
+\item 
+struct \hyperlink{structstd_1_1____detail_1_1__AiryAuxilliaryState}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+Auxilliary\+State$<$ \+\_\+\+Tp $>$}
+\item 
+struct \hyperlink{structstd_1_1____detail_1_1__AiryState}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State$<$ \+\_\+\+Tp $>$}
+\end{DoxyCompactItemize}
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -32,22 +67,19 @@ This graph shows which files directly or indirectly include this file\+:
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a6817269a446ea93bb50e7438e27c1162}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+airy} (const std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+z, \+\_\+\+Tp \+\_\+\+\_\+eps, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Ai, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Aip, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Bi, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Bip)
-\begin{DoxyCompactList}\small\item\em This function computes the Airy function $ Ai(z) $ and its first derivative in the complex z-\/plane. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_afd48b5702344f832a250922ac4ffb917}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+airy\+\_\+ai} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z)
 \begin{DoxyCompactList}\small\item\em Return the complex Airy Ai function. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a026a02e51a93428332a607c093e8204f}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+airy\+\_\+asymp\+\_\+absarg\+\_\+ge\+\_\+pio3} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Ai, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Aip, int \+\_\+\+\_\+sign=-\/1)
-\begin{DoxyCompactList}\small\item\em This function evaluates $ Ai(z) $ and $ Ai'(z) $ from their asymptotic expansions for $ |arg(z)| < 2*\pi/3 $. For speed, the number of terms needed to achieve about 16 decimals accuracy is tabled and determined from abs(z). \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a4f1c33b398ae69c55281341004da0679}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+airy\+\_\+asymp\+\_\+absarg\+\_\+lt\+\_\+pio3} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Ai, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Aip)
-\begin{DoxyCompactList}\small\item\em This function evaluates $ Ai(z) $ and $ Ai'(z) $ from their asymptotic expansions for $ |arg(-z)| < pi/3 $. For speed, the number of terms needed to achieve about 16 decimals accuracy is tabled and determined from $ |z| $. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_aee6c743187765ce9a1f9c4c9af4acf17}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+airy\+\_\+bessel\+\_\+i} (const std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+z, \+\_\+\+Tp \+\_\+\+\_\+eps, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Ip1d3, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Im1d3, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Ip2d3, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Im2d3)
-\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a01098dbe1615b5be0833a7f3573f6510}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+airy\+\_\+bessel\+\_\+k} (const std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+z, \+\_\+\+Tp \+\_\+\+\_\+eps, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Kp1d3, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Kp2d3)
-\begin{DoxyCompactList}\small\item\em Compute approximations to the modified Bessel functions of the second kind of orders 1/3 and 2/3 for moderate arguments. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_ae5536305d721e393efe1a74f0e57653e}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+airy\+\_\+bi} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z)
-\begin{DoxyCompactList}\small\item\em Return the complex Airy Bi function. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_aedc8a8cc144aa56f72728db7d62e3e62}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+airy\+\_\+hyperg\+\_\+rational} (const std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+z, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Ai, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Aip, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Bi, std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+Bip)
-\begin{DoxyCompactList}\small\item\em This function computes rational approximations to the hypergeometric functions related to the modified Bessel functions of orders $ \nu = +-1/3 $ and $ \nu +- 2/3 $. That is, $ A(z)/B(z) $, Where $ A(z) $ and $ B(z) $ are cubic polynomials with real coefficients, approximates \[ \frac{\Gamma(\nu+1)}{(z/2)^nu}I_\nu(z) = _0F_1 (;\nu+1;z^2/4), \] where the function on the right is a confluent hypergeometric limit function. For $ |z| <= 1/4 $ and $ |arg(z)| <= pi/2 $, the approximations are accurate to about 16 decimals. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Return the complex Airy Bi function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\constexpr int \hyperlink{namespacestd_1_1____detail_ae3ef7007b55cd83fa162820c809a2995}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+max\+\_\+\+F\+GH} = \+\_\+\+Airy\+\_\+series$<$\+\_\+\+Tp$>$\+::\+\_\+\+N\+\_\+\+F\+GH
+\item 
+{\footnotesize template$<$$>$ }\\constexpr int \hyperlink{namespacestd_1_1____detail_ac945c3d1897eb356e75d379f67367a4b}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+max\+\_\+\+F\+G\+H$<$ double $>$} = 79
+\item 
+{\footnotesize template$<$$>$ }\\constexpr int \hyperlink{namespacestd_1_1____detail_a67195934ce49105fd7b765e669a5a2a0}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+max\+\_\+\+F\+G\+H$<$ float $>$} = 15
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
