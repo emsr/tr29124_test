@@ -1,0 +1,123 @@
+\hypertarget{classstd_1_1____detail_1_1__Airy__asymp__series}{}\section{std\+:\+:\+\_\+\+\_\+detail\+:\+:\+\_\+\+Airy\+\_\+asymp\+\_\+series$<$ \+\_\+\+Sum $>$ Class Template Reference}
+\label{classstd_1_1____detail_1_1__Airy__asymp__series}\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series$<$ \+\_\+\+Sum $>$@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series$<$ \+\_\+\+Sum $>$}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{classstd_1_1____detail_1_1__Airy__asymp__series_a17ec74b13ebc38d5531bf27cd31684fb}{scalar\+\_\+type} = std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+num\+\_\+traits\+\_\+t$<$ \hyperlink{classstd_1_1____detail_1_1__Airy__asymp__series_a729a698f23629a2f94b6ef71f377efc5}{value\+\_\+type} $>$
+\item 
+using \hyperlink{classstd_1_1____detail_1_1__Airy__asymp__series_a729a698f23629a2f94b6ef71f377efc5}{value\+\_\+type} = typename \+\_\+\+Sum\+::value\+\_\+type
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classstd_1_1____detail_1_1__Airy__asymp__series_a2768b3e101876b969b606cbde8b2e133}{\+\_\+\+Airy\+\_\+asymp\+\_\+series} (\+\_\+\+Sum \+\_\+\+\_\+proto)
+\item 
+\hyperlink{classstd_1_1____detail_1_1__Airy__asymp__series_a48eab98c05f50ad5b5f00f1ad9628e14}{\+\_\+\+Airy\+\_\+asymp\+\_\+series} (const \hyperlink{classstd_1_1____detail_1_1__Airy__asymp__series}{\+\_\+\+Airy\+\_\+asymp\+\_\+series} \&)=default
+\item 
+\hyperlink{classstd_1_1____detail_1_1__Airy__asymp__series_a967f89ea4dfc21c982fdc61315ea720d}{\+\_\+\+Airy\+\_\+asymp\+\_\+series} (\hyperlink{classstd_1_1____detail_1_1__Airy__asymp__series}{\+\_\+\+Airy\+\_\+asymp\+\_\+series} \&\&)=default
+\item 
+\hyperlink{structstd_1_1____detail_1_1__AiryState}{\+\_\+\+Airy\+State}$<$ \hyperlink{classstd_1_1____detail_1_1__Airy__asymp__series_a729a698f23629a2f94b6ef71f377efc5}{value\+\_\+type} $>$ \hyperlink{classstd_1_1____detail_1_1__Airy__asymp__series_acd5ce4d332334a4f669a981d588b417c}{operator()} (\hyperlink{classstd_1_1____detail_1_1__Airy__asymp__series_a729a698f23629a2f94b6ef71f377efc5}{value\+\_\+type} \+\_\+\+\_\+y)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr \hyperlink{classstd_1_1____detail_1_1__Airy__asymp__series_a17ec74b13ebc38d5531bf27cd31684fb}{scalar\+\_\+type} \hyperlink{classstd_1_1____detail_1_1__Airy__asymp__series_a0a4d017f86429e22f5939e689e7b93ca}{\+\_\+\+S\+\_\+sqrt\+\_\+pi} = \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+math\+\_\+constants$<$\hyperlink{classstd_1_1____detail_1_1__Airy__asymp__series_a17ec74b13ebc38d5531bf27cd31684fb}{scalar\+\_\+type}$>$\+::\+\_\+\+\_\+root\+\_\+pi
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Sum$>$\\*
+class std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series$<$ \+\_\+\+Sum $>$}
+
+Class to manage the asymptotic series for Airy functions.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Sum} & A sum type \\
+\hline
+\end{DoxyTemplParams}
+
+
+Definition at line 3596 of file sf\+\_\+airy.\+tcc.
+
+
+
+\subsection{Member Typedef Documentation}
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}!scalar\+\_\+type@{scalar\+\_\+type}}
+\index{scalar\+\_\+type@{scalar\+\_\+type}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}}
+\subsubsection[{\texorpdfstring{scalar\+\_\+type}{scalar_type}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Sum$>$ using {\bf std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}$<$ \+\_\+\+Sum $>$\+::{\bf scalar\+\_\+type} =  std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+num\+\_\+traits\+\_\+t$<${\bf value\+\_\+type}$>$}\hypertarget{classstd_1_1____detail_1_1__Airy__asymp__series_a17ec74b13ebc38d5531bf27cd31684fb}{}\label{classstd_1_1____detail_1_1__Airy__asymp__series_a17ec74b13ebc38d5531bf27cd31684fb}
+
+
+Definition at line 3601 of file sf\+\_\+airy.\+tcc.
+
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}!value\+\_\+type@{value\+\_\+type}}
+\index{value\+\_\+type@{value\+\_\+type}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}}
+\subsubsection[{\texorpdfstring{value\+\_\+type}{value_type}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Sum$>$ using {\bf std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}$<$ \+\_\+\+Sum $>$\+::{\bf value\+\_\+type} =  typename \+\_\+\+Sum\+::value\+\_\+type}\hypertarget{classstd_1_1____detail_1_1__Airy__asymp__series_a729a698f23629a2f94b6ef71f377efc5}{}\label{classstd_1_1____detail_1_1__Airy__asymp__series_a729a698f23629a2f94b6ef71f377efc5}
+
+
+Definition at line 3600 of file sf\+\_\+airy.\+tcc.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}!\+\_\+\+Airy\+\_\+asymp\+\_\+series@{\+\_\+\+Airy\+\_\+asymp\+\_\+series}}
+\index{\+\_\+\+Airy\+\_\+asymp\+\_\+series@{\+\_\+\+Airy\+\_\+asymp\+\_\+series}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}}
+\subsubsection[{\texorpdfstring{\+\_\+\+Airy\+\_\+asymp\+\_\+series(\+\_\+\+Sum \+\_\+\+\_\+proto)}{_Airy_asymp_series(_Sum __proto)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Sum$>$ {\bf std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}$<$ \+\_\+\+Sum $>$\+::{\bf \+\_\+\+Airy\+\_\+asymp\+\_\+series} (
+\begin{DoxyParamCaption}
+\item[{\+\_\+\+Sum}]{\+\_\+\+\_\+proto}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classstd_1_1____detail_1_1__Airy__asymp__series_a2768b3e101876b969b606cbde8b2e133}{}\label{classstd_1_1____detail_1_1__Airy__asymp__series_a2768b3e101876b969b606cbde8b2e133}
+
+
+Definition at line 3605 of file sf\+\_\+airy.\+tcc.
+
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}!\+\_\+\+Airy\+\_\+asymp\+\_\+series@{\+\_\+\+Airy\+\_\+asymp\+\_\+series}}
+\index{\+\_\+\+Airy\+\_\+asymp\+\_\+series@{\+\_\+\+Airy\+\_\+asymp\+\_\+series}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}}
+\subsubsection[{\texorpdfstring{\+\_\+\+Airy\+\_\+asymp\+\_\+series(const \+\_\+\+Airy\+\_\+asymp\+\_\+series \&)=default}{_Airy_asymp_series(const _Airy_asymp_series &)=default}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Sum$>$ {\bf std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}$<$ \+\_\+\+Sum $>$\+::{\bf \+\_\+\+Airy\+\_\+asymp\+\_\+series} (
+\begin{DoxyParamCaption}
+\item[{const {\bf \+\_\+\+Airy\+\_\+asymp\+\_\+series}$<$ \+\_\+\+Sum $>$ \&}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [default]}}\hypertarget{classstd_1_1____detail_1_1__Airy__asymp__series_a48eab98c05f50ad5b5f00f1ad9628e14}{}\label{classstd_1_1____detail_1_1__Airy__asymp__series_a48eab98c05f50ad5b5f00f1ad9628e14}
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}!\+\_\+\+Airy\+\_\+asymp\+\_\+series@{\+\_\+\+Airy\+\_\+asymp\+\_\+series}}
+\index{\+\_\+\+Airy\+\_\+asymp\+\_\+series@{\+\_\+\+Airy\+\_\+asymp\+\_\+series}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}}
+\subsubsection[{\texorpdfstring{\+\_\+\+Airy\+\_\+asymp\+\_\+series(\+\_\+\+Airy\+\_\+asymp\+\_\+series \&\&)=default}{_Airy_asymp_series(_Airy_asymp_series &&)=default}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Sum$>$ {\bf std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}$<$ \+\_\+\+Sum $>$\+::{\bf \+\_\+\+Airy\+\_\+asymp\+\_\+series} (
+\begin{DoxyParamCaption}
+\item[{{\bf \+\_\+\+Airy\+\_\+asymp\+\_\+series}$<$ \+\_\+\+Sum $>$ \&\&}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [default]}}\hypertarget{classstd_1_1____detail_1_1__Airy__asymp__series_a967f89ea4dfc21c982fdc61315ea720d}{}\label{classstd_1_1____detail_1_1__Airy__asymp__series_a967f89ea4dfc21c982fdc61315ea720d}
+
+
+\subsection{Member Function Documentation}
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}!operator()@{operator()}}
+\index{operator()@{operator()}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}}
+\subsubsection[{\texorpdfstring{operator()(value\+\_\+type \+\_\+\+\_\+y)}{operator()(value_type __y)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Sum$>$ {\bf \+\_\+\+Airy\+State}$<$ typename {\bf \+\_\+\+Airy\+\_\+asymp\+\_\+series}$<$ \+\_\+\+Sum $>$\+::{\bf value\+\_\+type} $>$ {\bf std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}$<$ \+\_\+\+Sum $>$\+::operator() (
+\begin{DoxyParamCaption}
+\item[{{\bf value\+\_\+type}}]{\+\_\+\+\_\+y}
+\end{DoxyParamCaption}
+)}\hypertarget{classstd_1_1____detail_1_1__Airy__asymp__series_acd5ce4d332334a4f669a981d588b417c}{}\label{classstd_1_1____detail_1_1__Airy__asymp__series_acd5ce4d332334a4f669a981d588b417c}
+Return an \hyperlink{structstd_1_1____detail_1_1__AiryState}{\+\_\+\+Airy\+State} containing, not actual Airy functions, but four asymptotic Airy components\+:
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Sum} & A sum type \\
+\hline
+\end{DoxyTemplParams}
+
+
+Definition at line 3650 of file sf\+\_\+airy.\+tcc.
+
+
+
+\subsection{Member Data Documentation}
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}!\+\_\+\+S\+\_\+sqrt\+\_\+pi@{\+\_\+\+S\+\_\+sqrt\+\_\+pi}}
+\index{\+\_\+\+S\+\_\+sqrt\+\_\+pi@{\+\_\+\+S\+\_\+sqrt\+\_\+pi}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}}
+\subsubsection[{\texorpdfstring{\+\_\+\+S\+\_\+sqrt\+\_\+pi}{_S_sqrt_pi}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Sum$>$ constexpr {\bf \+\_\+\+Airy\+\_\+asymp\+\_\+series}$<$ \+\_\+\+Sum $>$\+::{\bf scalar\+\_\+type} {\bf std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}$<$ \+\_\+\+Sum $>$\+::\+\_\+\+S\+\_\+sqrt\+\_\+pi = \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+math\+\_\+constants$<${\bf scalar\+\_\+type}$>$\+::\+\_\+\+\_\+root\+\_\+pi\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classstd_1_1____detail_1_1__Airy__asymp__series_a0a4d017f86429e22f5939e689e7b93ca}{}\label{classstd_1_1____detail_1_1__Airy__asymp__series_a0a4d017f86429e22f5939e689e7b93ca}
+
+
+Definition at line 3603 of file sf\+\_\+airy.\+tcc.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+bits/\hyperlink{sf__airy_8tcc}{sf\+\_\+airy.\+tcc}\end{DoxyCompactItemize}

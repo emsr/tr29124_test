@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['gai',['gai',['../structstd_1_1____detail_1_1__AiryAuxilliaryState.html#a7e0297ccb071de8b62071733b3339291',1,'std::__detail::_AiryAuxilliaryState']]],
+  ['gaip',['gaip',['../structstd_1_1____detail_1_1__AiryAuxilliaryState.html#a6bf0ccf2ea90395d1a035ac068a8e3d4',1,'std::__detail::_AiryAuxilliaryState']]],
   ['gamma_5fl',['gamma_l',['../group__gnu__math__spec__func.html#gab3a75d57386806857b5f97c45b4ced6e',1,'__gnu_cxx']]],
   ['gamma_5flf',['gamma_lf',['../group__gnu__math__spec__func.html#ga3afdb94b9c107fe72386899ad84bc532',1,'__gnu_cxx']]],
   ['gamma_5fll',['gamma_ll',['../group__gnu__math__spec__func.html#ga80c72bee8364398f65c05e5147e03d80',1,'__gnu_cxx']]],

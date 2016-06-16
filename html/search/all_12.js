@@ -24,5 +24,6 @@ var searchData=
   ['theta_5fs',['theta_s',['../group__gnu__math__spec__func.html#ga6eea3110c964e5d065d99f2e58a1ed56',1,'__gnu_cxx']]],
   ['theta_5fsf',['theta_sf',['../group__gnu__math__spec__func.html#ga5e69cf30c9a4cc057accc43e8c4bf7a3',1,'__gnu_cxx']]],
   ['theta_5fsl',['theta_sl',['../group__gnu__math__spec__func.html#gac574077067a4e7b24a0a9ff2d537d885',1,'__gnu_cxx']]],
-  ['todo_20list',['Todo List',['../todo.html',1,'']]]
+  ['todo_20list',['Todo List',['../todo.html',1,'']]],
+  ['true_5fwronskian',['true_Wronskian',['../structstd_1_1____detail_1_1__AiryState.html#a7eb0cbdf39102c8bb2165a67fdf493f5',1,'std::__detail::_AiryState']]]
 ];
