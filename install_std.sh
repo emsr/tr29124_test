@@ -10,7 +10,6 @@ fi
 src_impl_dir="${src_dir}/bits"
 src_ext_dir="${src_dir}/ext"
 
-#dst_dir="$HOME/bin${suffix}/include/c++/6.0.0"
 dst_dir="$HOME/bin${suffix}/include/c++/7.0.0"
 if [ -d "$2" ]; then 
   dst_dir="$2"
@@ -18,10 +17,6 @@ fi
 dst_impl_dir="${dst_dir}/bits"
 dst_ext_dir="${dst_dir}/ext"
 
-#${tool} "${src_dir}/cmath"                  "${dst_dir}/cmath"
-
-# This should go to dst_ext_dir and ext/cmath overwritten also.
-#${tool} "${src_ext_dir}/math_const.h"       "${dst_impl_dir}/math_const.h"
 ${tool} "${src_ext_dir}/math_const.h"       "${dst_ext_dir}/math_const.h"
 ${tool} "${src_ext_dir}/cmath"              "${dst_ext_dir}/cmath"
 ${tool} "${src_ext_dir}/polynomial.h"       "${dst_ext_dir}"
@@ -38,7 +33,7 @@ ${tool} "${src_impl_dir}/sf_beta.tcc"       "${dst_impl_dir}/sf_beta.tcc"
 ${tool} "${src_impl_dir}/sf_cardinal.tcc"   "${dst_impl_dir}/sf_cardinal.tcc"
 ${tool} "${src_impl_dir}/sf_chebyshev.tcc"  "${dst_impl_dir}/sf_chebyshev.tcc"
 ${tool} "${src_impl_dir}/sf_dawson.tcc"     "${dst_impl_dir}/sf_dawson.tcc"
-${tool} "${src_impl_dir}/sf_distributions.tcc"  "${dst_impl_dir}/sf_distributions.tcc"
+${tool} "${src_impl_dir}/sf_distributions.tcc" "${dst_impl_dir}/sf_distributions.tcc"
 ${tool} "${src_impl_dir}/sf_ellint.tcc"     "${dst_impl_dir}/sf_ellint.tcc"
 ${tool} "${src_impl_dir}/sf_expint.tcc"     "${dst_impl_dir}/sf_expint.tcc"
 ${tool} "${src_impl_dir}/sf_fresnel.tcc"    "${dst_impl_dir}/sf_fresnel.tcc"
