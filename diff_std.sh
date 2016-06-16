@@ -1,8 +1,8 @@
 #!/bin/bash
 
 tool="kdiff3"
-gcc_dir="$HOME/gcc_specfun/libstdc++-v3/include/bits"
-ext_dir="$HOME/gcc_specfun/libstdc++-v3/include/ext"
+gcc_dir="$HOME/gcc_tr29124/libstdc++-v3/include/bits"
+ext_dir="$HOME/gcc_tr29124/libstdc++-v3/include/ext"
 
 ${tool} ./specfun_util.h    ${gcc_dir}/specfun_util.h
 ${tool} ./specfun.h         ${gcc_dir}/specfun.h

@@ -1,6 +1,6 @@
 tool="svn mv"
-gcc_dir="$HOME/gcc_specfun/libstdc++-v3/include/bits"
-lib_dir="$HOME/gcc_specfun/libstdc++-v3"
+gcc_dir="$HOME/gcc_tr29124/libstdc++-v3/include/bits"
+lib_dir="$HOME/gcc_tr29124/libstdc++-v3"
 files="include/Makefile.in
  include/bits/poly_laguerre.tcc
  include/bits/exp_integral.tcc
