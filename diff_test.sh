@@ -1,7 +1,7 @@
 #!/bin/bash
 
 test_dir="$HOME/tr29124_test/testsuite/special_functions"
-gcc_dir="$HOME/gcc_specfun/libstdc++-v3/testsuite/special_functions"
+gcc_dir="$HOME/gcc_tr29124/libstdc++-v3/testsuite/special_functions"
 
 tool="kdiff3"
 

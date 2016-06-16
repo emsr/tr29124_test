@@ -2,8 +2,8 @@
 
 tool="kdiff3"
 
-tr29124_dir="$HOME/gcc_specfun/libstdc++-v3/testsuite/special_functions"
-ext_dir="$HOME/gcc_specfun/libstdc++-v3/testsuite/ext/special_functions"
+tr29124_dir="$HOME/gcc_tr29124/libstdc++-v3/testsuite/special_functions"
+ext_dir="$HOME/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions"
 
 #tr29124_dir="$HOME/gcc_tr29124/libstdc++-v3/testsuite/special_functions"
 #ext_dir="$HOME/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions"

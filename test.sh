@@ -1,6 +1,6 @@
 #!/bin/bash
 
-suffix="_specfun"
+suffix="_tr29124"
 
 #  This speeds up things like crazy!!!
 cd ~/obj${suffix}/x86_64-pc-linux-gnu/libstdc++-v3/testsuite
