@@ -1,4 +1,4 @@
-#!  /bin/bash
+#!/bin/bash
 
 tool="cp -f"
 suffix="_tr29124"
