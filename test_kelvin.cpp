@@ -25,8 +25,8 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
       __bex += __term;
       for (auto __k = 1; __k < _S_maxiter; ++__k)
 	{
-	  __fact *= __k * (__k - _S_1d2);
-	  __term *= __sign * __y / (__fact * __fact);
+	  __fact *= __k * (__k + __sign * _S_1d2);
+	  __term *= -__y / __fact / __fact;
 	  __bex += __term;
 	  if (std::abs(__term) < _S_eps * std::abs(__bex()))
 	    break;
@@ -42,10 +42,11 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
   template<typename _Tp>
     _Tp
     kelvin_bei_series(_Tp __x)
-    { return kelvin_bex_series(__x, +1); }
+    { return __x * __x * kelvin_bex_series(__x, +1) / _Tp{4}; }
 
 
 template<typename _Tp>
+  void
   run_kelvin()
   {
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
