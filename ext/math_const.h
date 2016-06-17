@@ -26,8 +26,8 @@
  *  This file is a GNU extension to the Standard C++ Library.
  */
 
-#ifndef _EXT_MATH_CONST
-#define _EXT_MATH_CONST 1
+#ifndef _EXT_MATH_CONST_H
+#define _EXT_MATH_CONST_H 1
 
 #pragma GCC system_header
 
@@ -182,4 +182,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 
 #endif // C++11
 
-#endif // _EXT_MATH_CONST
+#endif // _EXT_MATH_CONST_H
