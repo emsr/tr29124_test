@@ -21,7 +21,8 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
       const auto __y = __tmp * __tmp;
       auto __fact = _Tp{1};
       auto __term = _Tp{1};
-      __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<_Tp>> __bex;
+      //__gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<_Tp>> __bex;
+      __gnu_cxx::_BasicSum<_Tp> __bex;
       __bex += __term;
       for (auto __k = 1; __k < _S_maxiter; ++__k)
 	{
