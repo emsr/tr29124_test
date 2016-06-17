@@ -1,4 +1,6 @@
-#include <bits/polynomial.h>
+
+#include <iostream>
+#include <ext/polynomial.h>
 
 #ifndef _EXT_RATPOLY_HPP
 #define _EXT_RATPOLY_HPP 1
@@ -17,7 +19,7 @@ namespace __gnu_cxx
        *  Typedefs.
        *  @todo Should we grab these from _M_coeff (i.e. std::vector<_Tp>)?
        */
-      using polynomial_type = typename _Polynomial<_Tp>;
+      using polynomial_type = _Polynomial<_Tp>;
       using value_type = typename polynomial_type::value_type;
       using reference = typename polynomial_type::reference;
       using const_reference = typename polynomial_type::const_reference;
@@ -40,10 +42,10 @@ namespace __gnu_cxx
       /**
        *  Copy ctor.
        */
-      _RationalPolynomial(const _Polynomial&) = default;
+      _RationalPolynomial(const _RationalPolynomial&) = default;
 
-      _RationalPolynomial(const _Polynomial<_Up>& __num,
-      			  const _Polynomial<_Up>& __den)
+      _RationalPolynomial(const _Polynomial<_Tp>& __num,
+      			  const _Polynomial<_Tp>& __den)
       : _M_num(__num), _M_den(__den)
       { }
 
@@ -80,8 +82,8 @@ namespace __gnu_cxx
       _RationalPolynomial&
       operator+=(const _RationalPolynomial& __x)
       {
-        this->_M_num = this->_M_num * __x._M_den + this->_M_den * __x._M_num;
-        this->_M_den *= __x._M_den;
+        this->numer() = this->numer() * __x.denom() + this->denom() * __x.numer();
+        this->denom() *= __x.denom();
 	return *this;
       }
 
@@ -91,8 +93,8 @@ namespace __gnu_cxx
       _RationalPolynomial&
       operator-=(const _RationalPolynomial& __x)
       {
-        this->_M_num = this->_M_num * __x._M_den - this->_M_den * __x._M_num;
-        this->_M_den *= __x._M_den;
+        this->numer() = this->numer() * __x.denom() - this->denom() * __x.numer();
+        this->denom() *= __x.denom();
 	return *this;
       }
 
@@ -102,8 +104,8 @@ namespace __gnu_cxx
       _RationalPolynomial&
       operator*=(const _RationalPolynomial& __x)
       {
-	this->_M_num *= __x._M_num;
-	this->_M_den *= __x._M_den;
+	this->numer() *= __x.numer();
+	this->denom() *= __x.denom();
 	return *this;
       }
 
@@ -113,13 +115,73 @@ namespace __gnu_cxx
       _RationalPolynomial&
       operator/=(const _RationalPolynomial& __x)
       {
-	this->_M_num *= __x._M_den;
-	this->_M_den *= __x._M_num;
+	this->numer() *= __x.denom();
+	this->denom() *= __x.numer();
 	return *this;
       }
 
+      const _Polynomial<value_type>&
+      numer() const
+      { return this->_M_num; }
+
+      _Polynomial<value_type>&
+      numer()
+      { return this->_M_num; }
+
+      const _Polynomial<value_type>&
+      denom() const
+      { return this->_M_den; }
+
+      _Polynomial<value_type>&
+      denom()
+      { return this->_M_den; }
+
     private:
+
       _Polynomial<value_type> _M_num;
       _Polynomial<value_type> _M_den;
+    };
+
+  /**
+   *  Write a polynomial to a stream.
+   *  The format is a parenthesized comma-delimited list of coefficients.
+   */
+  template<typename CharT, typename Traits, typename _Tp>
+    std::basic_ostream<CharT, Traits>&
+    operator<<(std::basic_ostream<CharT, Traits>& __os, const _RationalPolynomial<_Tp>& __poly)
+    {
+      __os << __poly.numer() << "/" << __poly.denom();
+      return __os;
     }
+
+  /**
+   *  Read a polynomial from a stream.
+   *  The input format can be a plain scalar (zero degree polynomial)
+   *  or a parenthesized comma-delimited list of coefficients.
+   */
+  template<typename CharT, typename Traits, typename _Tp>
+    std::basic_istream<CharT, Traits>&
+    operator>>(std::basic_istream<CharT, Traits>& __is, _RationalPolynomial<_Tp>& __poly)
+    {
+      _Polynomial<_Tp> __numer, __denom;
+      __is >> __numer;
+      if (!__is.fail())
+	{
+	  CharT __ch;
+	  __is >> __ch;
+	  if (__ch != '/')
+	    __is.setstate(std::ios_base::failbit);
+	  else
+	    {
+	      __is >> __denom;
+	      if (!__is.fail())
+		{
+		  __poly.numer() = __numer;
+		  __poly.denom() = __denom;
+		}
+	    }
+	}
+      return __is;
+    }
+
 #endif // _EXT_RATPOLY_HPP

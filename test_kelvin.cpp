@@ -60,8 +60,12 @@ template<typename _Tp>
     std::cout << std::setw(width) << "x"
 	      << std::setw(width) << "ber"
 	      << std::setw(width) << "bei"
+	      << std::setw(width) << "ker"
+	      << std::setw(width) << "kei"
 	      << '\n';
     std::cout << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
