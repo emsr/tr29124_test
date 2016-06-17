@@ -8,6 +8,12 @@ rm -rf "testsuite"
 utildir="testsuite/util"
 test_dir="testsuite/special_functions"
 text_dir="testsuite/ext/special_functions"
+tr1_dir="testsuite/tr1/5_numerical_facilities/special_functions"
+
+# This is a hack
+tool="cp -f"
+suffix="_tr29124"
+src_dir="$HOME/gcc${suffix}/libstdc++-v3"
 
 
 ${makedir} ${test_dir}/01_assoc_laguerre
@@ -31,7 +37,6 @@ ${makedir} ${test_dir}/18_riemann_zeta
 ${makedir} ${test_dir}/19_sph_bessel
 ${makedir} ${test_dir}/20_sph_legendre
 ${makedir} ${test_dir}/21_sph_neumann
-
 
 ${makedir} ${utildir}
 
@@ -201,3 +206,83 @@ ${copy} check_theta_3.cc            ${text_dir}/theta_3/check_value.cc
 ${copy} check_theta_4.cc            ${text_dir}/theta_4/check_value.cc
 ${copy} check_zernike.cc            ${text_dir}/zernike/check_value.cc
 
+
+${makedir} ${tr1_dir}
+
+${copy} testcase.h ${tr1_dir}
+
+${makedir} ${tr1_dir}/01_assoc_laguerre
+${makedir} ${tr1_dir}/02_assoc_legendre
+${makedir} ${tr1_dir}/03_beta
+${makedir} ${tr1_dir}/04_comp_ellint_1
+${makedir} ${tr1_dir}/05_comp_ellint_2
+${makedir} ${tr1_dir}/06_comp_ellint_3
+${makedir} ${tr1_dir}/07_conf_hyperg
+${makedir} ${tr1_dir}/08_cyl_bessel_i
+${makedir} ${tr1_dir}/09_cyl_bessel_j
+${makedir} ${tr1_dir}/10_cyl_bessel_k/airy.cc
+${makedir} ${tr1_dir}/11_cyl_neumann
+${makedir} ${tr1_dir}/12_ellint_1
+${makedir} ${tr1_dir}/13_ellint_2
+${makedir} ${tr1_dir}/14_ellint_3
+${makedir} ${tr1_dir}/15_expint
+${makedir} ${tr1_dir}/16_hermite
+${makedir} ${tr1_dir}/17_hyperg
+${makedir} ${tr1_dir}/18_laguerre
+${makedir} ${tr1_dir}/19_legendre
+${makedir} ${tr1_dir}/20_riemann_zeta
+${makedir} ${tr1_dir}/21_sph_bessel
+${makedir} ${tr1_dir}/22_sph_legendre
+${makedir} ${tr1_dir}/23_sph_neumann
+
+#${copy} tr1_check_assoc_laguerre.cc   ${tr1_dir}/01_assoc_laguerre/check_value.cc
+#${copy} tr1_check_assoc_legendre.cc   ${tr1_dir}/02_assoc_legendre/check_value.cc
+#${copy} tr1_check_beta.cc             ${tr1_dir}/03_beta/check_value.cc
+#${copy} tr1_check_comp_ellint_1.cc    ${tr1_dir}/04_comp_ellint_1/check_value.cc
+#${copy} tr1_check_comp_ellint_2.cc    ${tr1_dir}/05_comp_ellint_2/check_value.cc
+#${copy} tr1_check_comp_ellint_3.cc    ${tr1_dir}/06_comp_ellint_3/check_value.cc
+#${copy} tr1_check_conf_hyperg.cc      ${tr1_dir}/07_conf_hyperg/check_value.cc
+#${copy} tr1_check_cyl_bessel_i.cc     ${tr1_dir}/08_cyl_bessel_i/check_value.cc
+#${copy} tr1_check_cyl_bessel_j.cc     ${tr1_dir}/09_cyl_bessel_j/check_value.cc
+#${copy} tr1_check_cyl_bessel_k.cc     ${tr1_dir}/10_cyl_bessel_k/check_value.cc
+#${copy} tr1_check_cyl_neumann.cc      ${tr1_dir}/11_cyl_neumann/check_value.cc
+#${copy} tr1_check_ellint_1.cc         ${tr1_dir}/12_ellint_1/check_value.cc
+#${copy} tr1_check_ellint_2.cc         ${tr1_dir}/13_ellint_2/check_value.cc
+#${copy} tr1_check_ellint_3.cc         ${tr1_dir}/14_ellint_3/check_value.cc
+#${copy} tr1_check_expint_neg.cc       ${tr1_dir}/15_expint/check_value_neg.cc
+#${copy} tr1_check_expint_pos.cc       ${tr1_dir}/15_expint/check_value_pos.cc
+#${copy} tr1_check_hermite.cc          ${tr1_dir}/16_hermite/check_value.cc
+#${copy} tr1_check_hyperg.cc           ${tr1_dir}/17_hyperg/check_value.cc
+#${copy} tr1_check_laguerre.cc         ${tr1_dir}/18_laguerre/check_value.cc
+#${copy} tr1_check_legendre.cc         ${tr1_dir}/19_legendre/check_value.cc
+#${copy} tr1_check_riemann_zeta_neg.cc ${tr1_dir}/20_riemann_zeta/check_value_neg.cc
+#${copy} tr1_check_riemann_zeta_pos.cc ${tr1_dir}/20_riemann_zeta/check_value_pos.cc
+#${copy} tr1_check_sph_bessel.cc       ${tr1_dir}/21_sph_bessel/check_value.cc
+#${copy} tr1_check_sph_legendre.cc     ${tr1_dir}/22_sph_legendre/check_value.cc
+#${copy} tr1_check_sph_neumann.cc      ${tr1_dir}/23_sph_neumann/check_value.cc
+
+${tool} ${src_dir}/${tr1_dir}/01_assoc_laguerre/check_value.cc   ${tr1_dir}/01_assoc_laguerre/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/02_assoc_legendre/check_value.cc   ${tr1_dir}/02_assoc_legendre/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/03_beta/check_value.cc		 ${tr1_dir}/03_beta/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/04_comp_ellint_1/check_value.cc	 ${tr1_dir}/04_comp_ellint_1/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/05_comp_ellint_2/check_value.cc	 ${tr1_dir}/05_comp_ellint_2/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/06_comp_ellint_3/check_value.cc	 ${tr1_dir}/06_comp_ellint_3/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/07_conf_hyperg/check_value.cc	 ${tr1_dir}/07_conf_hyperg/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/08_cyl_bessel_i/check_value.cc	 ${tr1_dir}/08_cyl_bessel_i/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/09_cyl_bessel_j/check_value.cc	 ${tr1_dir}/09_cyl_bessel_j/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/10_cyl_bessel_k/check_value.cc	 ${tr1_dir}/10_cyl_bessel_k/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/11_cyl_neumann/check_value.cc	 ${tr1_dir}/11_cyl_neumann/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/12_ellint_1/check_value.cc	 ${tr1_dir}/12_ellint_1/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/13_ellint_2/check_value.cc	 ${tr1_dir}/13_ellint_2/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/14_ellint_3/check_value.cc	 ${tr1_dir}/14_ellint_3/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/15_expint/check_value_neg.cc	 ${tr1_dir}/15_expint/check_value_neg.cc
+${tool} ${src_dir}/${tr1_dir}/15_expint/check_value_pos.cc	 ${tr1_dir}/15_expint/check_value_pos.cc
+${tool} ${src_dir}/${tr1_dir}/16_hermite/check_value.cc 	 ${tr1_dir}/16_hermite/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/17_hyperg/check_value.cc  	 ${tr1_dir}/17_hyperg/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/18_laguerre/check_value.cc	 ${tr1_dir}/18_laguerre/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/19_legendre/check_value.cc	 ${tr1_dir}/19_legendre/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/20_riemann_zeta/check_value_neg.cc ${tr1_dir}/20_riemann_zeta/check_value_neg.cc
+${tool} ${src_dir}/${tr1_dir}/20_riemann_zeta/check_value_pos.cc ${tr1_dir}/20_riemann_zeta/check_value_pos.cc
+${tool} ${src_dir}/${tr1_dir}/21_sph_bessel/check_value.cc	 ${tr1_dir}/21_sph_bessel/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/22_sph_legendre/check_value.cc	 ${tr1_dir}/22_sph_legendre/check_value.cc
+${tool} ${src_dir}/${tr1_dir}/23_sph_neumann/check_value.cc	 ${tr1_dir}/23_sph_neumann/check_value.cc
