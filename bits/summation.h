@@ -353,7 +353,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       /// Subtract a new term from the sum.
       _AitkenDeltaSqaredSum&
       operator-=(value_type __term)
-      { return operator+=(-__term); }
+      { return this->operator+=(-__term); }
 
       /// Return true if the sum converged.
       operator
@@ -430,7 +430,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       /// Subtract a new term from the sum.
       _WinnEpsilonSum&
       operator-=(value_type __term)
-      { return operator+=(-__term); }
+      { return this->operator+=(-__term); }
 
       /// Return true if the sum converged.
       operator
@@ -507,7 +507,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       /// Subtract a new term from the sum.
       _BrezinskiThetaSum&
       operator-=(value_type __term)
-      { return operator+=(-__term); }
+      { return this->operator+=(-__term); }
 
       /// Return true if the sum converged.
       operator
@@ -877,7 +877,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       /// Subtract a new term from the sum.
       _LevinSum&
       operator-=(value_type __term)
-      { return operator+=(-__term); }
+      { return this->operator+=(-__term); }
 
       /// Return true if the sum converged.
       operator
@@ -990,7 +990,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       /// Subtract a new term from the sum.
       _WenigerSum&
       operator-=(value_type __term)
-      { return operator+=(-__term); }
+      { return this->operator+=(-__term); }
 
       /// Return true if the sum converged.
       operator
