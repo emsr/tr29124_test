@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_airy test_airy.cpp gsl_wrap.cpp -lgsl -lgslcblas
+$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_airy test_airy.cpp gsl_wrap.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c -lgsl -lgslcblas -ljacobi
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_airy
 
-g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_airy test_airy.cpp gsl_wrap.cpp -lgsl -lgslcblas
+g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_airy test_airy.cpp gsl_wrap.cpp -lgsl -lgslcblas -ljacobi
 ./test_airy
 */
 
@@ -497,6 +497,6 @@ main()
   new_bessel_chunk(nu, x, J, Y, Jp, Yp);
   std::cout << "NEW: Jnu=" << J << '\n';
   std::cout << "NEW: Nnu=" << Y << '\n';
-  std::cout << "GSL: Jnu=" << gsl::bessel_Jnu(nu, x) << '\n';
-  std::cout << "GSL: Nnu=" << gsl::bessel_Ynu(nu, x) << '\n';
+  std::cout << "GSL: Jnu=" << gsl::cyl_bessel_j(nu, x) << '\n';
+  std::cout << "GSL: Nnu=" << gsl::cyl_neumann(nu, x) << '\n';
 }

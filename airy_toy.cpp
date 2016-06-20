@@ -28,7 +28,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++14 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 #include <bits/specfun_util.h>
 #include <bits/complex_util.h>
 #include <bits/summation.h>
-#include "polynomial.h"
+#include <ext/polynomial.h>
 
 
   /**
