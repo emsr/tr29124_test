@@ -9,6 +9,8 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
 #include <iomanip>
 #include <bits/summation.h>
 
+bool WRITE_TERM = false;
+
   template<typename _Tp>
     _Tp
     kelvin_bex_series(_Tp __x, int __sign)
@@ -21,6 +23,8 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
       const auto __y = __tmp * __tmp;
       auto __fact = _Tp{1};
       auto __term = _Tp{1};
+if (WRITE_TERM)
+  std::cout << __term << '\n';
       //__gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<_Tp>> __bex;
       __gnu_cxx::_BasicSum<_Tp> __bex;
       __bex += __term;
@@ -28,6 +32,8 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
 	{
 	  __fact *= __k * (__k + __sign * _S_1d2);
 	  __term *= -__y / __fact / __fact;
+if (WRITE_TERM)
+  std::cout << __term << '\n';
 	  __bex += __term;
 	  if (std::abs(__term) < _S_eps * std::abs(__bex()))
 	    break;
@@ -39,6 +45,7 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
     std::pair<_Tp, _Tp>
     kelvin_series(_Tp __x)
     {
+      constexpr auto _S_gamma_e = __gnu_cxx::__math_constants<_Tp>::__gamma_e;
       constexpr auto _S_1d2 = _Tp{1} / _Tp{2};
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       constexpr auto _S_maxiter = 1000;
@@ -49,8 +56,11 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
       auto __termr = _Tp{1};
       auto __facti = _Tp{1};
       auto __termi = _Tp{1};
-      //__gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<_Tp>> __bex;
-      __gnu_cxx::_BasicSum<_Tp> __ber, __bei;
+if (WRITE_TERM)
+  std::cout << __termr << '\t' << __termi << '\n';
+      __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<_Tp>>
+        __ber, __bei, __ker, __kei;
+      //__gnu_cxx::_BasicSum<_Tp> __ber, __bei, __ker, __kei;
       __ber += __termr;
       __bei += __termi;
       for (auto __k = 1; __k < _S_maxiter; ++__k)
@@ -58,8 +68,11 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
 	  __factr *= _Tp{2} * __k * (_Tp{2} * __k - 1);
 	  __termr *= -__y / __factr / __factr;
 	  __ber += __termr;
-	  __facti = __factr * (_Tp{2} * __k + 1);
+	  __facti = __factr * (_Tp{2} * __k + 1) / (_Tp{2} * __k - 1);
 	  __termi *= -__y / __facti / __facti;
+	  __bei += __termi;
+if (WRITE_TERM)
+  std::cout << __termr << '\t' << __termi << '\n';
 	  if (std::abs(__termr) < _S_eps * std::abs(__ber()))
 	    break;
 	}
@@ -84,6 +97,12 @@ template<typename _Tp>
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
+
+    auto ber0 = kelvin_ber_series(_Tp{});
+
+WRITE_TERM=true;
+    auto ber1 = kelvin_ber_series(_Tp{1});
+WRITE_TERM=false;
 
     std::cout << "\n\nPrint Kelvin functions computed by series expansions\n";
     std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
@@ -122,6 +141,12 @@ template<typename _Tp>
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
+
+    auto ber0 = kelvin_series(_Tp{});
+
+WRITE_TERM=true;
+    auto ber1 = kelvin_series(_Tp{1});
+WRITE_TERM=false;
 
     std::cout << "\n\nPrint Kelvin functions computed by series expansions\n";
     std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
