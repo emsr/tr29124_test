@@ -262,7 +262,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       __anum.push_back(__s_n / __r_n);
       __aden.push_back(value_type{1} / __r_n);
-      if (__n > 0)
+      if (__n == 0)
+	this->_M_sum = __s_n;
+      else
 	{
 	  __anum[__n - 1] = __anum[__n] - __anum[__n - 1];
 	  __aden[__n - 1] = __aden[__n] - __aden[__n - 1];
@@ -282,11 +284,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		  __coefp *= __coef;
 		}
 	    }
+	  if (std::abs(__aden[0]) < _S_tiny)
+	    this->_M_sum = _S_huge;
+	  else
+	    this->_M_sum = __anum[0] / __aden[0];
 	}
-      if (std::abs(__aden[0]) < _S_tiny)
-	this->_M_sum = _S_huge;
-      else
-	this->_M_sum = __anum[0] / __aden[0];
     }
 
   /**
@@ -309,7 +311,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       __anum.push_back(__s_n / __r_n);
       __aden.push_back(value_type{1} / __r_n);
-      if (__n > 0)
+      if (__n == 0)
+	this->_M_sum = __s_n;
+      else
 	{
 	  __anum[__n - 1] = __anum[__n] - __anum[__n - 1];
 	  __aden[__n - 1] = __aden[__n] - __aden[__n - 1];
@@ -327,11 +331,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				    - __fact * __aden[__n - __j];
 		}
 	    }
+	  if (std::abs(__aden[0]) < _S_tiny)
+	    this->_M_sum = _S_huge;
+	  else
+	    this->_M_sum = __anum[0] / __aden[0];
 	}
-      if (std::abs(__aden[0]) < _S_tiny)
-	this->_M_sum = _S_huge;
-      else
-	this->_M_sum = __anum[0] / __aden[0];
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION

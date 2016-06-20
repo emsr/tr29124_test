@@ -9,6 +9,8 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
 #include <iomanip>
 #include <bits/summation.h>
 
+bool WRITE_TERM = false;
+
   template<typename _Tp>
     _Tp
     kelvin_bex_series(_Tp __x, int __sign)
@@ -21,12 +23,17 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
       const auto __y = __tmp * __tmp;
       auto __fact = _Tp{1};
       auto __term = _Tp{1};
+if (WRITE_TERM)
+  std::cout << __term << '\n';
       __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<_Tp>> __bex;
+      //__gnu_cxx::_BasicSum<_Tp> __bex;
       __bex += __term;
       for (auto __k = 1; __k < _S_maxiter; ++__k)
 	{
 	  __fact *= __k * (__k + __sign * _S_1d2);
 	  __term *= -__y / __fact / __fact;
+if (WRITE_TERM)
+  std::cout << __term << '\n';
 	  __bex += __term;
 	  if (std::abs(__term) < _S_eps * std::abs(__bex()))
 	    break;
@@ -52,6 +59,12 @@ template<typename _Tp>
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
+
+    auto ber0 = kelvin_ber_series(_Tp{});
+
+WRITE_TERM=true;
+    auto ber1 = kelvin_ber_series(_Tp{1});
+WRITE_TERM=false;
 
     std::cout << "\n\nPrint Kelvin functions computed by series expansions\n";
     std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
