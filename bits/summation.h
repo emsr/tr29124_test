@@ -64,15 +64,15 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       using value_type = _Tp;
 
       ///  Default constructor.
-      _BasicSum() = default;
+      _BasicSum()
+      : _M_sum{}, _M_term{}, _M_num_terms{0}, _M_converged{false}
+      { }
 
       ///  Constructor taking the first term.
       explicit
       _BasicSum(value_type __first_term)
       : _BasicSum{}
-      {
-	operator+=(__first_term);
-      }
+      { this->operator+=(__first_term); }
 
       /// Add a new term to the sum.
       _BasicSum&
@@ -94,7 +94,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       /// Subtract a new term from the sum.
       _BasicSum&
       operator-=(value_type __term)
-      { return operator+=(-__term); }
+      { return this->operator+=(-__term); }
 
       /// Return true if the sum converged.
       operator
@@ -150,15 +150,15 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       using value_type = _Tp;
 
       ///  Default constructor.
-      _KahanSum() = default;
+      _KahanSum()
+      : _M_sum{}, _M_term{}, _M_temp{}, _M_num_terms{0}, _M_converged{false}
+      { }
 
       ///  Constructor taking the first term.
       explicit
       _KahanSum(value_type __first_term)
       : _KahanSum{}
-      {
-	operator+=(__first_term);
-      }
+      { this->operator+=(__first_term); }
 
       /// Add a new term to the sum.
       _KahanSum&
@@ -182,7 +182,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       /// Subtract a new term from the sum.
       _KahanSum&
       operator-=(value_type __term)
-      { return operator+=(-__term); }
+      { return this->operator+=(-__term); }
 
       /// Return true if the sum converged.
       operator
@@ -240,12 +240,14 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       using value_type = _Tp;
 
       ///  Default constructor.
-      _VanWijngaardenSum() = default;
+      _VanWijngaardenSum()
+      : _M_sum{}, _M_delta{}, _M_num_terms{0}, _M_converged{false}
+      { }
 
       ///  Constructor taking the first term.
       explicit _VanWijngaardenSum(value_type __first_term)
       : _VanWijngaardenSum{}
-      { operator+=(__first_term); }
+      { this->operator+=(__first_term); }
 
       /// Add a new term to the sum.
       _VanWijngaardenSum&
@@ -254,7 +256,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       /// Subtract a new term from the sum.
       _VanWijngaardenSum&
       operator-=(value_type __term)
-      { return operator+=(-__term); }
+      { return this->operator+=(-__term); }
 
       /// Return true if the sum converged.
       operator
@@ -553,9 +555,9 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     };
 
 
-  // These sequence transformations depend on the provision of remainder estimates.
-  // The update methods do not depend on the remainder model and could be provided
-  // in CRTP derived classes.
+  // These sequence transformations depend on the provision of remainder
+  // estimates. The update methods do not depend on the remainder model
+  // and could be provided in CRTP derived classes.
 
 
   /**
@@ -566,8 +568,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     {
       using value_type = _Tp;
 
-      value_type term;
-      value_type remainder;
+      value_type term = value_type{};
+      value_type remainder = value_type{};
     };
 
 
@@ -827,7 +829,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * The Levin summation process.
    */
   template<typename _Sum,
-	   typename _RemainderModel = _ExplicitRemainderModel<typename _Sum::value_type>>
+	   typename _RemainderModel
+		      = _ExplicitRemainderModel<typename _Sum::value_type>>
     class _LevinSum
     {
     public:
@@ -939,7 +942,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * The Weniger's summation process.
    */
   template<typename _Sum,
-	   typename _RemainderModel = _ExplicitRemainderModel<typename _Sum::value_type>>
+	   typename _RemainderModel
+		      = _ExplicitRemainderModel<typename _Sum::value_type>>
     class _WenigerSum
     {
     public:
@@ -1042,40 +1046,46 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Specializations for specific remainder models.
 
   /**
-   * The Levin's T summation process.
+   * The Levin T summation process.
    */
   template<typename _Sum>
-    using _LevinTSum = _LevinSum<_Sum, _TRemainderModel<typename _Sum::value_type>>;
+    using _LevinTSum
+      = _LevinSum<_Sum, _TRemainderModel<typename _Sum::value_type>>;
 
   /**
-   * The Levin's D summation process.
+   * The Levin D summation process.
    */
   template<typename _Sum>
-    using _LevinDSum = _LevinSum<_Sum, _DRemainderModel<typename _Sum::value_type>>;
+    using _LevinDSum
+      = _LevinSum<_Sum, _DRemainderModel<typename _Sum::value_type>>;
 
   /**
-   * The Levin's V summation process.
+   * The Levin V summation process.
    */
   template<typename _Sum>
-    using _LevinUSum = _LevinSum<_Sum, _VRemainderModel<typename _Sum::value_type>>;
+    using _LevinUSum
+      = _LevinSum<_Sum, _VRemainderModel<typename _Sum::value_type>>;
 
   /**
-   * The Weniger's Tau summation process.
+   * The Weniger Tau summation process.
    */
   template<typename _Sum>
-    using _WenigerTauSum = _WenigerSum<_Sum, _TRemainderModel<typename _Sum::value_type>>;
+    using _WenigerTauSum
+      = _WenigerSum<_Sum, _TRemainderModel<typename _Sum::value_type>>;
 
   /**
-   * The Weniger's Delta summation process.
+   * The Weniger Delta summation process.
    */
   template<typename _Sum>
-    using _WenigerDeltaSum = _WenigerSum<_Sum, _DRemainderModel<typename _Sum::value_type>>;
+    using _WenigerDeltaSum
+      = _WenigerSum<_Sum, _DRemainderModel<typename _Sum::value_type>>;
 
   /**
-   * The Weniger's Phi summation process.
+   * The Weniger Phi summation process.
    */
   template<typename _Sum>
-    using _WenigerPhiSum = _WenigerSum<_Sum, _VRemainderModel<typename _Sum::value_type>>;
+    using _WenigerPhiSum
+      = _WenigerSum<_Sum, _VRemainderModel<typename _Sum::value_type>>;
 
 } // namespace __gnu_cxx
 

@@ -17,10 +17,11 @@ namespace __gnu_cxx
     public:
       /**
        *  Typedefs.
-       *  @todo Should we grab these from _M_coeff (i.e. std::vector<_Tp>)?
        */
       using polynomial_type = _Polynomial<_Tp>;
       using value_type = typename polynomial_type::value_type;
+// The above should be _Polynomial<_Tp>to be consistent with rational.h
+/* These might not make sense.
       using reference = typename polynomial_type::reference;
       using const_reference = typename polynomial_type::const_reference;
       using pointer = typename polynomial_type::pointer;
@@ -29,6 +30,7 @@ namespace __gnu_cxx
       using const_iterator = typename polynomial_type::const_iterator;
       using reverse_iterator = typename polynomial_type::reverse_iterator;
       using const_reverse_iterator = typename polynomial_type::const_reverse_iterator;
+*/
       using size_type = typename polynomial_type::size_type;
       using difference_type = typename polynomial_type::difference_type;
 
@@ -183,5 +185,7 @@ namespace __gnu_cxx
 	}
       return __is;
     }
+
+} // namespace __gnu_cxx
 
 #endif // _EXT_RATPOLY_HPP

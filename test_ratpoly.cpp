@@ -1,9 +1,13 @@
+// $HOME/bin_tr29124/bin/g++ -g -std=gnu++17 -o test_ratpoly test_ratpoly.cpp
+
+// LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_ratpoly
+
 // $HOME/bin/bin/g++ -g -std=gnu++1z -I. -o test_ratpoly test_ratpoly.cpp
 
 // LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_ratpoly
 
 
-#include <ratpoly.h>
+#include "ratpoly.h"
 #include <iostream>
 #include <complex>
 #include <sstream>
@@ -13,7 +17,7 @@ main()
 {
   __gnu_cxx::_Polynomial<double> P({0.0, 1.0, 2.0, 3.0});
   __gnu_cxx::_Polynomial<double> Q({2.0, 1.0});
-  _RationalPolynomial R(P, Q);
+  __gnu_cxx::_RationalPolynomial<double> R(P, Q);
 
   std::cout << "R = " << R << '\n';
 
