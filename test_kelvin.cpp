@@ -220,7 +220,7 @@ WRITE_TERM=false;
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
-    for (int i = -100; i <= 200; ++i)
+    for (int i = 0; i <= 200; ++i)
       {
 	auto x = _Tp(0.1) * i;
 	auto ber = kelvin_ber_series(x);
@@ -267,7 +267,7 @@ WRITE_TERM=false;
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
-    for (int i = -100; i <= 200; ++i)
+    for (int i = 0; i <= 200; ++i)
       {
 	auto x = _Tp(0.1) * i;
 	auto ke = kelvin_series(x);
@@ -285,5 +285,5 @@ WRITE_TERM=false;
 int
 main()
 {
-  run_kelvin2<double>();
+  run_kelvin2<long double>();
 }
