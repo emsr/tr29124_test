@@ -1,9 +1,9 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_aitken test_aitken.cpp
-./test_aitken > test_aitken.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_summation test_summation.cpp
+./test_summation > test_summation.txt
 
-g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_aitken test_aitken.cpp
-./test_aitken > test_aitken.txt
+g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_summation test_summation.cpp
+./test_summation > test_summation.txt
 */
 
 #include <cmath>
