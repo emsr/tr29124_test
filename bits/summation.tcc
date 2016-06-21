@@ -64,10 +64,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __temp = this->_M_delta[0];
 	  this->_M_delta[0] = __term;
 	  auto __n = this->_M_delta.size();
-	  for (auto __j = 0;
-	       __j < __n - 1; ++__j)
+	  for (auto __j = 0; __j < __n - 1; ++__j)
 	    __temp = std::exchange(this->_M_delta[__j + 1],
-			      value_type{0.5L} * (this->_M_delta[__j] + __temp));
+			     value_type{0.5L} * (this->_M_delta[__j] + __temp));
 	  auto __next = value_type{0.5L} * (this->_M_delta.back() + __temp);
 	  if (std::abs(__next) < std::abs(this->_M_delta.back()))
 	    {
@@ -77,6 +76,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  else
 	    this->_M_sum += __next;
 	}
+/*
+      lasteps = std::abs(sum - lastval);
+      if (lasteps <= eps)
+	++ncv;
+      if (ncv >= 2)
+	this->_M_converged = true;
+//return (lastval = sum);
+*/
       return *this;
     }
 

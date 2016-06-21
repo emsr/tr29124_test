@@ -120,7 +120,6 @@ diff_special_function
 diff_local_special_function
 testcase
 test_airy
-test_aitken
 test_bessel
 test_bessel_asymp
 test_bessel_iter
@@ -170,6 +169,7 @@ test_special_function
 test_sph_hankel
 test_static_polynomial
 test_struve_new
+test_summation
 test_theta
 
 hankel_transition
