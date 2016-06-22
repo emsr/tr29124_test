@@ -89,17 +89,16 @@ if (WRITE_TERM)
       const auto __xd2 = __x / _Tp{2};
       const auto __xxd4 = __xd2 * __xd2;
       const auto __y = __xxd4 * __xxd4;
-      auto __factr = _Tp{1};
+      auto __fact = _Tp{1};
       auto __termr = _Tp{1};
-      auto __facti = _Tp{1};
       auto __termi = _Tp{1};
 if (WRITE_TERM)
   std::cout << __termr << '\t' << __termi << '\n';
       //__gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<_Tp>>
       //  __ber, __bei, __ker, __kei;
       //__gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<_Tp>> _H_n;
-      __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<_Tp>> __ber, __bei, __ker, __kei, _H_n;
-      //__gnu_cxx::_BasicSum<_Tp> __ber, __bei, __ker, __kei, _H_n;
+      //__gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<_Tp>> __ber, __bei, __ker, __kei, _H_n;
+      __gnu_cxx::_BasicSum<_Tp> __ber, __bei, __ker, __kei, _H_n;
       __ber += __termr;
       __ker += __termr;
       __bei += __termi;
@@ -107,15 +106,15 @@ if (WRITE_TERM)
       _H_n += _Tp{1};
       for (auto __k = 1; __k < _S_maxiter; ++__k)
 	{
-	  __factr *= _Tp{2} * __k * (_Tp{2} * __k - 1);
-	  __termr *= -__y / __factr / __factr;
+	  __fact *= _Tp(2 * __k);
+	  __termr *= -__y / __fact / __fact;
 	  __ber += __termr;
 
 	  _H_n += _Tp{1} / _Tp(2 * __k);
 	  __ker += __termr * _H_n();
 
-	  __facti = __factr * (_Tp{2} * __k + 1) / (_Tp{2} * __k - 1);
-	  __termi *= -__y / __facti / __facti;
+	  __fact *= _Tp(2 * __k + 1);
+	  __termi *= -__y / __fact / __fact;
 	  __bei += __termi;
 
 	  _H_n += _Tp{1} / _Tp(2 * __k + 1);
@@ -128,8 +127,8 @@ if (WRITE_TERM)
 	}
       auto __ln = std::log(__x / _Tp{2}) + _S_gamma_e;
       return _KelvinState<_Tp>{_Tp{0}, __x, __ber(), __xxd4 * __bei(),
-      			-__ln * __ber() + _S_pi_4 * __xxd4 * __bei() + __ker(),
-			-__ln * __xxd4 * __bei() - _S_pi_4 * __ber() + __xxd4 * __kei()};
+		-__ln * __ber() + _S_pi_4 * __xxd4 * __bei() + __ker(),
+		-__ln * __xxd4 * __bei() - _S_pi_4 * __ber() + __xxd4 * __kei()};
     }
 
 
@@ -148,11 +147,10 @@ if (WRITE_TERM)
       const auto __xd2 = __x / _Tp{2};
       const auto __xxd4 = __xd2 * __xd2;
       const auto __y = __xxd4 * __xxd4;
-      auto __factr = _Tp{1};
+      auto __fact = _Tp{1};
       auto __termr = _Tp{1};
       auto __ber = __termr;
       auto __ker = __termr;
-      auto __facti = _Tp{1};
       auto __termi = _Tp{1};
       auto __bei = __termi;
       auto __kei = __termi;
@@ -161,15 +159,15 @@ if (WRITE_TERM)
   std::cout << __termr << '\t' << __termi << '\n';
       for (auto __k = 1; __k < _S_maxiter; ++__k)
 	{
-	  __factr *= _Tp{2} * __k * (_Tp{2} * __k - 1);
-	  __termr *= -__y / __factr / __factr;
+	  __fact *= _Tp(2 * __k);
+	  __termr *= -__y / __fact / __fact;
 	  __ber += __termr;
 
 	  _H_n += _Tp{1} / _Tp(2 * __k);
 	  __ker += __termr * _H_n;
 
-	  __facti = __factr * (_Tp{2} * __k + 1) / (_Tp{2} * __k - 1);
-	  __termi *= -__y / __facti / __facti;
+	  __fact *= _Tp(2 * __k + 1);
+	  __termi *= -__y / __fact / __fact;
 	  __bei += __termi;
 
 	  _H_n += _Tp{1} / _Tp(2 * __k + 1);
@@ -182,8 +180,8 @@ if (WRITE_TERM)
 	}
       auto __ln = std::log(__x / _Tp{2}) + _S_gamma_e;
       return _KelvinState<_Tp>{_Tp{0}, __x, __ber, __xxd4 * __bei,
-      			-__ln * __ber + _S_pi_4 * __xxd4 * __bei + __ker,
-			-__ln * __xxd4 * __bei - _S_pi_4 * __ber + __xxd4 * __kei};
+		-__ln * __ber + _S_pi_4 * __xxd4 * __bei + __ker,
+		-__ln * __xxd4 * __bei - _S_pi_4 * __ber + __xxd4 * __kei};
     }
 
 
@@ -245,10 +243,10 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    auto ke0 = kelvin_series(_Tp{});
+    auto ke0 = kelvin_series2(_Tp{});
 
 WRITE_TERM=true;
-    auto ke1 = kelvin_series(_Tp{1});
+    auto ke1 = kelvin_series2(_Tp{1});
 WRITE_TERM=false;
 
     std::cout << "\n\nPrint Kelvin functions computed by series expansions\n";
@@ -270,7 +268,7 @@ WRITE_TERM=false;
     for (int i = 0; i <= 200; ++i)
       {
 	auto x = _Tp(0.1) * i;
-	auto ke = kelvin_series(x);
+	auto ke = kelvin_series2(x);
 	std::cout << std::setw(width) << ke.__x
 		  << std::setw(width) << ke.__ber
 		  << std::setw(width) << ke.__bei

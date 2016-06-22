@@ -79,8 +79,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 /*
       lasteps = std::abs(sum - lastval);
       if (lasteps <= eps)
-	++ncv;
-      if (ncv >= 2)
+	++_M_num_convergences;
+      if (_M_num_convergences >= 2)
 	this->_M_converged = true;
 //return (lastval = sum);
 */
@@ -209,7 +209,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Perform one step of Brezinski's Theta transformation.
+   * Perform one step of the Brezinski Theta transformation.
    */
   template<typename _Sum>
     void
@@ -250,7 +250,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Perform one step of Levin's summation process.
+   * Perform one step of the Levin summation process.
    */
   template<typename _Sum, typename _RemainderModel>
     void
@@ -299,7 +299,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Perform one step of Weniger's summation process.
+   * Perform one step of the Weniger summation process.
    */
   template<typename _Sum, typename _RemainderModel>
     void
