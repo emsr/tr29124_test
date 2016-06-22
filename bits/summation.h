@@ -778,7 +778,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * This class implements the Levin V remainder model.
    * The remainder for term @f$ s_n @f$ is
    * @f[
-   *   r_n = \frac{a_n a_{n+1}}{a_n + a_{n+1}}
+   *   r_n = \frac{a_n a_{n+1}}{a_n - a_{n+1}}
    * @f]
    */
   template<typename _Tp>
@@ -808,7 +808,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 	auto __anp1 = this->_M_term[(this->_M_n + 1) % 2];
 	auto __an = this->_M_term[(this->_M_n) % 2];
 	return _RemainderTerm<value_type>{__an,
-					  __an * __anp1 / (__an + __anp1)};
+					  __an * __anp1 / (__an - __anp1)};
       }
 
       _VRemainderModel&
@@ -939,7 +939,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     };
 
   /**
-   * The Weniger's summation process.
+   * The Weniger summation process.
    */
   template<typename _Sum,
 	   typename _RemainderModel
