@@ -40,6 +40,28 @@ template<typename Tp>
 
     auto zeta = Tp{5.591582441177750776536563193423143277642L};
     std::cout << "\n\nzeta(1.2) = 5.59158244117775077653\n";
+    std::cout << std::setw(w) << "k"
+	      << std::setw(w) << "Basic"
+	      << std::setw(w) << "Aitken-Basic"
+	      << std::setw(w) << "Aitken-Kahan"
+	      << std::setw(w) << "Winn-Basic"
+	      << std::setw(w) << "Winn-Kahan"
+	      << std::setw(w) << "BrezinskiT-Basic"
+	      << std::setw(w) << "LevinT-Basic"
+	      << std::setw(w) << "WenigerD-Basic"
+	      << std::setw(w) << "WenigerD-vW"
+	      << '\n';
+    std::cout << std::setw(w) << "----------------"
+	      << std::setw(w) << "----------------"
+	      << std::setw(w) << "----------------"
+	      << std::setw(w) << "----------------"
+	      << std::setw(w) << "----------------"
+	      << std::setw(w) << "----------------"
+	      << std::setw(w) << "----------------"
+	      << std::setw(w) << "----------------"
+	      << std::setw(w) << "----------------"
+	      << std::setw(w) << "----------------"
+	      << '\n';
     for (auto k = 0; k < 100; ++k)
       {
 	auto term = std::pow(k + 1, -s);
@@ -79,6 +101,26 @@ template<typename Tp>
     BTS.reset(term);
     LTS.reset(term);
     WDS.reset(term);
+    std::cout << std::setw(w) << "k"
+	      << std::setw(w) << "Basic"
+	      << std::setw(w) << "Aitken-Basic"
+	      << std::setw(w) << "Aitken-Kahan"
+	      << std::setw(w) << "Winn-Basic"
+	      << std::setw(w) << "Winn-Kahan"
+	      << std::setw(w) << "BrezinskiT-Basic"
+	      << std::setw(w) << "LevinT-Basic"
+	      << std::setw(w) << "WenigerD-Basic"
+	      << '\n';
+    std::cout << std::setw(w) << "----------------"
+	      << std::setw(w) << "----------------"
+	      << std::setw(w) << "----------------"
+	      << std::setw(w) << "----------------"
+	      << std::setw(w) << "----------------"
+	      << std::setw(w) << "----------------"
+	      << std::setw(w) << "----------------"
+	      << std::setw(w) << "----------------"
+	      << std::setw(w) << "----------------"
+	      << '\n';
     for (auto k = 1; k < 100; ++k)
       {
 	std::cout << std::setw(w) << (k - 1)
