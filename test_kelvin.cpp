@@ -13,6 +13,21 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
 bool WRITE_TERM = false;
 
 
+  /**
+   * Data structure for Kelvin functions.
+   */
+  template<typename _Tp>
+    struct _KelvinState
+    {
+      _Tp __nu;
+      _Tp __x;
+      _Tp __ber;
+      _Tp __bei;
+      _Tp __ker;
+      _Tp __kei;
+    };
+
+
   /*
    *
    */
@@ -26,7 +41,6 @@ bool WRITE_TERM = false;
       const auto __xd4 = __x / _Tp{4};
       const auto __tmp = __xd4 * __xd4;
       const auto __y = __tmp * __tmp;
-      auto __fact = _Tp{1};
       auto __term = _Tp{1};
 if (WRITE_TERM)
   std::cout << __term << '\n';
@@ -35,7 +49,7 @@ if (WRITE_TERM)
       __bex += __term;
       for (auto __k = 1; __k < _S_maxiter; ++__k)
 	{
-	  __fact *= __k * (__k + __sign * _S_1d2);
+	  auto __fact = __k * (__k + __sign * _S_1d2);
 	  __term *= -__y / __fact / __fact;
 if (WRITE_TERM)
   std::cout << __term << '\n';
@@ -63,21 +77,6 @@ if (WRITE_TERM)
     _Tp
     kelvin_bei_series(_Tp __x)
     { return __x * __x * kelvin_bex_series(__x, +1) / _Tp{4}; }
-
-
-  /**
-   * Data structure for Kelvin functions.
-   */
-  template<typename _Tp>
-    struct _KelvinState
-    {
-      _Tp __nu;
-      _Tp __x;
-      _Tp __ber;
-      _Tp __bei;
-      _Tp __ker;
-      _Tp __kei;
-    };
 
 
   /**
@@ -118,7 +117,6 @@ if (WRITE_TERM)
       const auto __xd2 = __x / _Tp{2};
       const auto __xxd4 = __xd2 * __xd2;
       const auto __y = __xxd4 * __xxd4;
-      auto __fact = _Tp{1};
       auto __termr = _Tp{1};
       auto __termi = _Tp{1};
 if (WRITE_TERM)
@@ -135,15 +133,15 @@ if (WRITE_TERM)
       _H_n += _Tp{1};
       for (auto __k = 1; __k < _S_maxiter; ++__k)
 	{
-	  __fact *= _Tp(2 * __k);
-	  __termr *= -__y / __fact / __fact;
+	  auto __factr = _Tp{1} / _Tp(2 * __k - 1) / _Tp(2 * __k);
+	  __termr *= -__y * __factr * __factr;
 	  __ber += __termr;
 
 	  _H_n += _Tp{1} / _Tp(2 * __k);
 	  __ker += __termr * _H_n();
 
-	  __fact *= _Tp(2 * __k + 1);
-	  __termi *= -__y / __fact / __fact;
+	  auto __facti = _Tp{1} / _Tp(2 * __k) / _Tp(2 * __k + 1);
+	  __termi *= -__y * __facti * __facti;
 	  __bei += __termi;
 
 	  _H_n += _Tp{1} / _Tp(2 * __k + 1);
@@ -182,7 +180,6 @@ if (WRITE_TERM)
       const auto __xrt2 = __x / _S_sqrt_2;
       auto __barg = __xrt2 - _S_1d2 * _S_pi_4;
       auto __karg = -__xrt2 - _S_1d2 * _S_pi_4;
-      auto __fact = _Tp{1};
       __gnu_cxx::_BasicSum<std::complex<_Tp>> __be, __ke;
       __be += std::polar(__term, __barg);
       __ke += std::polar(__term, __karg);
@@ -190,8 +187,8 @@ if (WRITE_TERM)
 	{
 	  __barg -= _S_pi_4;
 	  __karg += _S_3pi_4;
-	  __fact *=  _Tp(2 * __k) * _Tp(2 * __k - 1) / _Tp(__k);
-	  __term *= __y / __fact / __fact / __k;
+	  auto __fact =  _Tp(2 * __k) * _Tp(2 * __k - 1) / _Tp(__k);
+	  __term *= __y * __fact * __fact / __k;
 	  __be += std::polar(__term, __barg);
 	  __ke += std::polar(__term, __karg);
 	}
@@ -214,7 +211,7 @@ if (WRITE_TERM)
    */
   template<typename _Tp>
     _KelvinState<_Tp>
-    kelvin_series(_Tp __nu, _Tp __x)
+    __kelvin_series(_Tp __nu, _Tp __x)
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
@@ -255,61 +252,9 @@ if (WRITE_TERM)
 	  const auto __cot = _Tp{1} / std::tan(__nupi);
 	  return _KelvinState<_Tp>{__nu, __x,
 	  	std::real(__be()), std::imag(__be()),
-		0,0};
+		0,
+		0};
 	}
-    }
-
-
-  /**
-   * Compute the Kelvin functions by series expansion.
-   */
-  template<typename _Tp>
-    _KelvinState<_Tp>
-    kelvin_series2(_Tp __x)
-    {
-      constexpr auto _S_gamma_e = __gnu_cxx::__math_constants<_Tp>::__gamma_e;
-      constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
-      constexpr auto _S_1d2 = _Tp{1} / _Tp{2};
-      constexpr auto _S_eps = _Tp{0.01} * std::numeric_limits<_Tp>::epsilon();
-      constexpr auto _S_maxiter = 1000;
-      const auto __xd2 = __x / _Tp{2};
-      const auto __xxd4 = __xd2 * __xd2;
-      const auto __y = __xxd4 * __xxd4;
-      auto __fact = _Tp{1};
-      auto __termr = _Tp{1};
-      auto __ber = __termr;
-      auto __ker = __termr;
-      auto __termi = _Tp{1};
-      auto __bei = __termi;
-      auto __kei = __termi;
-      auto _H_n = _Tp{1};
-if (WRITE_TERM)
-  std::cout << __termr << '\t' << __termi << '\n';
-      for (auto __k = 1; __k < _S_maxiter; ++__k)
-	{
-	  __fact *= _Tp(2 * __k);
-	  __termr *= -__y / __fact / __fact;
-	  __ber += __termr;
-
-	  _H_n += _Tp{1} / _Tp(2 * __k);
-	  __ker += __termr * _H_n;
-
-	  __fact *= _Tp(2 * __k + 1);
-	  __termi *= -__y / __fact / __fact;
-	  __bei += __termi;
-
-	  _H_n += _Tp{1} / _Tp(2 * __k + 1);
-	  __kei += __termi * _H_n;
-
-if (WRITE_TERM)
-  std::cout << __termr << '\t' << __termi << '\n';
-	  if (std::abs(__termr) < _S_eps * std::abs(__ber))
-	    break;
-	}
-      auto __ln = std::log(__x / _Tp{2}) + _S_gamma_e;
-      return _KelvinState<_Tp>{_Tp{0}, __x, __ber, __xxd4 * __bei,
-		-__ln * __ber + _S_pi_4 * __xxd4 * __bei + __ker,
-		-__ln * __xxd4 * __bei - _S_pi_4 * __ber + __xxd4 * __kei};
     }
 
 
@@ -348,7 +293,7 @@ WRITE_TERM=false;
 	      << '\n';
     for (int i = 0; i <= 200; ++i)
       {
-	auto x = _Tp(0.1) * i;
+	auto x = _Tp(0.1L) * i;
 	auto ber = kelvin_ber_series(x);
 	auto bei = kelvin_bei_series(x);
 	std::cout << std::setw(width) << x
@@ -371,10 +316,10 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    auto ke0 = kelvin_series2(_Tp{});
+    auto ke0 = kelvin_series(_Tp{});
 
 WRITE_TERM=true;
-    auto ke1 = kelvin_series2(_Tp{1});
+    auto ke1 = kelvin_series(_Tp{1});
 WRITE_TERM=false;
 
     std::cout << "\n\nPrint Kelvin functions computed by series expansions\n";
@@ -395,8 +340,8 @@ WRITE_TERM=false;
 	      << '\n';
     for (int i = 0; i <= 200; ++i)
       {
-	auto x = _Tp(0.1) * i;
-	auto ke = kelvin_series2(x);
+	auto x = _Tp(0.1L) * i;
+	auto ke = kelvin_series(x);
 	std::cout << std::setw(width) << ke.__x
 		  << std::setw(width) << ke.__ber
 		  << std::setw(width) << ke.__bei
@@ -412,4 +357,5 @@ int
 main()
 {
   run_kelvin2<long double>();
+  run_kelvin<long double>();
 }
