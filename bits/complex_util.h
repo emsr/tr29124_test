@@ -68,6 +68,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __isnan(const std::complex<_Tp>& __z)
     { return __isnan(std::real(__z)) || __isnan(std::imag(__z)); }
 
+  /**
+   * Return true if one component of a complex number is inf.
+   */
+  template<typename _Tp>
+    inline bool
+    __isinf(const std::complex<_Tp>& __z)
+    { return __isinf(std::real(__z)) || __isinf(std::imag(__z)); }
+
 
   /**
    * Return the L1 norm modulus or the Manhattan metric distance of a complex number.
