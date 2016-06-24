@@ -115,6 +115,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 #endif // _GLIBCXX_USE_C99_MATH && !_GLIBCXX_USE_C99_FP_MACROS_DYNAMIC
 
+  /**
+   * Return true if the number is inf.
+   * This is overloaded elsewhere for complex.
+   */
+  template<typename _Tp>
+    inline bool
+    __isinf(const _Tp __x)
+    { return std::isinf(__x); }
+
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 } // namespace std
