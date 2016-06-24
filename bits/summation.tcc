@@ -49,7 +49,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (std::__detail::__isnan(__term))
 	std::__throw_runtime_error(__N("_VanWijngaardenSum: bad term"));
-      if (std::abs(__term) == std::numeric_limits<value_type>::infinity())
+      if (std::__detail::__isinf(__term))
 	std::__throw_runtime_error(__N("_VanWijngaardenSum: infinite term"));
 
       ++this->_M_num_terms;
