@@ -36,7 +36,7 @@
 #include <vector>
 #include <array>
 #include <bits/c++config.h>
-#include <bits/complex_util.h> // for complex __isnan
+#include <bits/complex_util.h> // for complex __isnan, __isinf
 
 #pragma GCC system_header
 
@@ -82,7 +82,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 	  {
 	    if (std::__detail::__isnan(__term))
 	      std::__throw_runtime_error(__N("_BasicSum: bad term"));
-	    if (std::abs(__term) == std::numeric_limits<value_type>::infinity())
+	    if (std::__detail::__isinf(__term))
 	      std::__throw_runtime_error(__N("_BasicSum: infinite term"));
 	    ++this->_M_num_terms;
 	    this->_M_term = __term;
@@ -168,7 +168,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 	  {
 	    if (std::__detail::__isnan(__term))
 	      std::__throw_runtime_error(__N("_KahanSum: bad term"));
-	    if (std::abs(__term) == std::numeric_limits<value_type>::infinity())
+	    if (std::__detail::__isinf(__term))
 	      std::__throw_runtime_error(__N("_KahanSum: infinite term"));
 	    ++this->_M_num_terms;
 	    this->_M_term = __term - this->_M_temp;

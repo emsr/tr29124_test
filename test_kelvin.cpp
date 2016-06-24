@@ -38,7 +38,7 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
    */
   template<typename _Tp>
     _Tp
-    kelvin_bex_series(_Tp __x, int __sign)
+    __kelvin_bex_series(_Tp __x, int __sign)
     {
       constexpr auto _S_1d2 = _Tp{1} / _Tp{2};
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
@@ -67,7 +67,7 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
    */
   template<typename _Tp>
     _Tp
-    kelvin_kex_series(_Tp __x, int __sign)
+    __kelvin_kex_series(_Tp __x, int __sign)
     {
       constexpr auto _S_1d2 = _Tp{1} / _Tp{2};
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
@@ -104,8 +104,8 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
    */
   template<typename _Tp>
     _Tp
-    kelvin_ber_series(_Tp __x)
-    { return kelvin_bex_series(__x, -1); }
+    __kelvin_ber_series(_Tp __x)
+    { return __kelvin_bex_series(__x, -1); }
 
 
   /**
@@ -113,8 +113,8 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
    */
   template<typename _Tp>
     _Tp
-    kelvin_bei_series(_Tp __x)
-    { return __x * __x * kelvin_bex_series(__x, +1) / _Tp{4}; }
+    __kelvin_bei_series(_Tp __x)
+    { return __x * __x * __kelvin_bex_series(__x, +1) / _Tp{4}; }
 
 
   /**
@@ -122,13 +122,13 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
    */
   template<typename _Tp>
     _Tp
-    kelvin_ker_series(_Tp __x)
+    __kelvin_ker_series(_Tp __x)
     {
       constexpr auto _S_gamma_e = __gnu_cxx::__math_constants<_Tp>::__gamma_e;
       constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
-      auto __ker = kelvin_kex_series(__x, -1);
-      auto __ber = kelvin_bex_series(__x, -1);
-      auto __bei = kelvin_bex_series(__x, +1);
+      auto __ker = __kelvin_kex_series(__x, -1);
+      auto __ber = __kelvin_bex_series(__x, -1);
+      auto __bei = __kelvin_bex_series(__x, +1);
       auto __xxd4 = __x * __x / _Tp{4};
       auto __ln = std::log(__x / _Tp{2}) + _S_gamma_e;
       return -__ln * __ber + _S_pi_4 * __xxd4 * __bei + __ker - _Tp{1};
@@ -140,13 +140,13 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
    */
   template<typename _Tp>
     _Tp
-    kelvin_kei_series(_Tp __x)
+    __kelvin_kei_series(_Tp __x)
     {
       constexpr auto _S_gamma_e = __gnu_cxx::__math_constants<_Tp>::__gamma_e;
       constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
-      auto __kei = kelvin_kex_series(__x, +1);
-      auto __ber = kelvin_bex_series(__x, -1);
-      auto __bei = kelvin_bex_series(__x, +1);
+      auto __kei = __kelvin_kex_series(__x, +1);
+      auto __ber = __kelvin_bex_series(__x, -1);
+      auto __bei = __kelvin_bex_series(__x, +1);
       auto __xxd4 = __x * __x / _Tp{4};
       auto __ln = std::log(__x / _Tp{2}) + _S_gamma_e;
       return -__ln * __xxd4 * __bei - _S_pi_4 * __ber + __xxd4 * __kei;
@@ -181,7 +181,7 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
    */
   template<typename _Tp>
     _KelvinState<_Tp>
-    kelvin_series(_Tp __x)
+    __kelvin_series(_Tp __x)
     {
       constexpr auto _S_gamma_e = __gnu_cxx::__math_constants<_Tp>::__gamma_e;
       constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
@@ -234,7 +234,7 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
    */
   template<typename _Tp>
     _KelvinState<_Tp>
-    kelvin_asymp(_Tp __x)
+    __kelvin_asymp(_Tp __x)
     {
       constexpr auto _S_j = std::complex<_Tp>{0, 1};
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
@@ -339,7 +339,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    auto ber0 = kelvin_ber_series(_Tp{});
+    auto ber0 = __kelvin_ber_series(_Tp{});
 
     std::cout << "\n\nPrint Kelvin functions computed by series expansions\n";
     std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
@@ -360,10 +360,10 @@ template<typename _Tp>
     for (int i = 0; i <= 200; ++i)
       {
 	auto x = _Tp(0.1L) * i;
-	auto ber = kelvin_ber_series(x);
-	auto bei = kelvin_bei_series(x);
-	auto ker = kelvin_ker_series(x);
-	auto kei = kelvin_kei_series(x);
+	auto ber = __kelvin_ber_series(x);
+	auto bei = __kelvin_bei_series(x);
+	auto ker = __kelvin_ker_series(x);
+	auto kei = __kelvin_kei_series(x);
 	std::cout << std::setw(width) << x
 		  << std::setw(width) << ber
 		  << std::setw(width) << bei
@@ -386,7 +386,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    auto ke0 = kelvin_series(_Tp{});
+    auto ke0 = __kelvin_series(_Tp{});
 
     std::cout << "\n\nPrint Kelvin functions computed by series expansions\n";
     std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
@@ -407,7 +407,7 @@ template<typename _Tp>
     for (int i = 0; i <= 200; ++i)
       {
 	auto x = _Tp(0.1L) * i;
-	auto ke = kelvin_series(x);
+	auto ke = __kelvin_series(x);
 	std::cout << std::setw(width) << ke.__x
 		  << std::setw(width) << ke.__ber
 		  << std::setw(width) << ke.__bei
@@ -497,10 +497,10 @@ template<typename _Tp>
 	 << '\n';
     for (int i = 0; i <= +2000; ++i)
       {
-	auto t = _Tp(0.01Q * i);
-	auto kv = kelvin_series(t);
-	auto exf = std::exp(t / _S_sqrt_2);
-	auto rt2x = _S_sqrt_2 * std::sqrt(t);
+	auto x = _Tp(0.01Q * i);
+	auto kv = __kelvin_series(x);
+	auto exf = std::exp(x / _S_sqrt_2);
+	auto rt2x = _S_sqrt_2 * std::sqrt(x);
 	data << std::setw(width) << kv.__x
 	     << std::setw(width) << _S_sqrt_pi * rt2x * kv.__ber / exf
 	     << std::setw(width) << _S_sqrt_pi * rt2x * kv.__bei / exf
@@ -512,6 +512,60 @@ template<typename _Tp>
   }
 
 
+/**
+ * 
+ */
+template<typename _Tp>
+  void
+  plot_kelvin_order(std::string filename)
+  {
+    constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
+    constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
+
+    auto data = std::ofstream(filename);
+
+    data.precision(std::numeric_limits<_Tp>::digits10);
+    data << std::showpoint << std::scientific;
+    auto width = 8 + data.precision();
+
+    data << "\n\n";
+    data << "#"
+	 << std::setw(width) << "x"
+	 << std::setw(width) << "ber"
+	 << std::setw(width) << "bei"
+	 << std::setw(width) << "ker"
+	 << std::setw(width) << "kei"
+	 << std::setw(width) << "Wronskian"
+	 << '\n';
+    data << "#"
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << std::setw(width) << "========="
+	 << '\n';
+
+    std::vector<_Tp> nuv{_Tp{0.0L}, _Tp{0.5L}, _Tp{1.0L}, _Tp{1.5L}, _Tp{2.0L}, _Tp{5.0L}};
+    for (auto nu : nuv)
+      {
+	for (int i = 0; i <= +2000; ++i)
+	  {
+	    auto x = _Tp(0.01Q * i);
+	    auto kv = __kelvin_series(nu, x);
+	    auto exf = std::exp(x / _S_sqrt_2);
+	    auto rt2x = _S_sqrt_2 * std::sqrt(x);
+	    data << std::setw(width) << kv.__x
+		 << std::setw(width) << _S_sqrt_pi * rt2x * kv.__ber / exf
+		 << std::setw(width) << _S_sqrt_pi * rt2x * kv.__bei / exf
+		 << std::setw(width) << rt2x * exf * kv.__ker / _S_sqrt_pi
+		 << std::setw(width) << rt2x * exf * kv.__kei / _S_sqrt_pi
+		 << '\n';
+	  }
+	data << "\n\n";
+      }
+  }
+
+
 int
 main()
 {
@@ -519,4 +573,5 @@ main()
   run_kelvin2<long double>();
   run_kelvin<long double>();
   plot_kelvin<double>("plot/kelvin_double.txt");
+  plot_kelvin_order<double>("plot/kelvin_order_double.txt");
 }
