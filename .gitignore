@@ -168,7 +168,7 @@ test_rational
 test_special_function
 test_sph_hankel
 test_static_polynomial
-test_struve_new
+test_struve
 test_summation
 test_theta
 
