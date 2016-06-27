@@ -250,6 +250,7 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
       const auto __xrt2 = __x / _S_sqrt_2;
       auto __barg = __xrt2 - _S_1d2 * _S_pi_4;
       auto __karg = -__xrt2 - _S_1d2 * _S_pi_4;
+      //__gnu_cxx::_BasicSum<std::complex<_Tp>> __be, __ke;
       __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<std::complex<_Tp>>> __be, __ke;
       __be += std::polar(__term, __barg);
       __ke += std::polar(__term, __karg);
@@ -258,13 +259,21 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
 	  __barg -= _S_pi_4;
 	  __karg += _S_3pi_4;
 	  auto __fact =  _Tp(2 * __k) * _Tp(2 * __k - 1) / _Tp(__k);
-	  __term *= __y * __fact * __fact / _Tp(__k);
+	  auto __next = __y * __fact * __fact / _Tp(__k);
+	  if (std::abs(__next) > _Tp{1})
+	    break;
+	  __term *= __next;
 	  __be += std::polar(__term, __barg);
 	  __ke += std::polar(__term, __karg);
 
 	  if (std::abs(__term) < _S_eps * std::abs(__be()))
 	    break;
 	}
+std::cerr.precision(18);
+std::cerr << "  " << __x << "  "
+	  << "  " << std::setw(40) << __be() << "  " << std::setw(20) << std::abs(__be())
+	  << "  " << std::setw(40) << __ke() << "  " << std::setw(20) << std::abs(__ke())
+	  << "  " << std::setw(40) << __be()*__ke() << '\n';
       const auto __exp = std::exp(__xrt2);
       const auto __rt = std::sqrt(_Tp{2} * __x);
       const auto __kfact = _S_sqrt_pi / __rt / __exp;
@@ -355,6 +364,7 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
       const auto __xrt2 = __x / _S_sqrt_2;
       auto __barg = __xrt2 + __nu * _S_pi_2 - _S_pi_8;
       auto __karg = __xrt2 + __nu * _S_pi_2 + _S_pi_8;
+      //__gnu_cxx::_BasicSum<std::complex<_Tp>> __be, __ke;
       __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<std::complex<_Tp>>> __be, __ke;
       __be += std::polar(__bterm, __barg);
       __ke += std::polar(__kterm, __karg);
@@ -364,7 +374,10 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
 	  __karg += _S_pi_4;
 	  auto __fact = (_Tp(__k) - _Tp{0.5L} - __nu)
 		      * (_Tp(__k) - _Tp{0.5L} + __nu) / _Tp(__k);
-	  __bterm *= __y * __fact;
+	  auto __next = __y * __fact;
+	  if (std::abs(__next) > _Tp{1})
+	    break;
+	  __bterm *= __next;
 	  __kterm *= -__bterm;
 	  __be += std::polar(__bterm, __barg);
 	  __ke += std::polar(__kterm, __karg);
@@ -372,6 +385,11 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
 	  if (std::abs(__bterm) < _S_eps * std::abs(__be()))
 	    break;
 	}
+std::cerr.precision(18);
+std::cerr << "  " << __x << "  "
+	  << "  " << std::setw(40) << __be() << "  " << std::setw(20) << std::abs(__be())
+	  << "  " << std::setw(40) << __ke() << "  " << std::setw(20) << std::abs(__ke())
+	  << "  " << std::setw(40) << __be()*__ke() << '\n';
       const auto __exp = std::exp(__xrt2);
       const auto __rt = std::sqrt(_Tp{2} * __x);
       const auto __kfact = _S_sqrt_pi / __rt / __exp;
@@ -492,17 +510,25 @@ template<typename _Tp>
     std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++\n";
 
     std::cout << "\n\n";
-    std::cout << std::setw(width) << "x"
-	      << std::setw(width) << "ber"
-	      << std::setw(width) << "bei"
-	      << std::setw(width) << "ker"
-	      << std::setw(width) << "kei"
+    std::cout << "  " << std::setw(width) << "x"
+	      << "  " << std::setw(width) << "ber asymp"
+	      << "  " << std::setw(width) << "ber series"
+	      << "  " << std::setw(width) << "bei asymp"
+	      << "  " << std::setw(width) << "bei series"
+	      << "  " << std::setw(width) << "ker asymp"
+	      << "  " << std::setw(width) << "ker series"
+	      << "  " << std::setw(width) << "kei asymp"
+	      << "  " << std::setw(width) << "kei series"
 	      << '\n';
-    std::cout << std::setw(width) << "========="
-	      << std::setw(width) << "========="
-	      << std::setw(width) << "========="
-	      << std::setw(width) << "========="
-	      << std::setw(width) << "========="
+    std::cout << "  " << std::setw(width) << "============="
+	      << "  " << std::setw(width) << "============="
+	      << "  " << std::setw(width) << "============="
+	      << "  " << std::setw(width) << "============="
+	      << "  " << std::setw(width) << "============="
+	      << "  " << std::setw(width) << "============="
+	      << "  " << std::setw(width) << "============="
+	      << "  " << std::setw(width) << "============="
+	      << "  " << std::setw(width) << "============="
 	      << '\n';
     for (int i = 200; i <= 400; ++i)
       {
@@ -510,10 +536,14 @@ template<typename _Tp>
 	auto kes = __kelvin_series(x);
 	auto kea = __kelvin_asymp(x);
 	std::cout << "  " << std::setw(width) << kes.__x
-		  << "  " << std::setw(width) << (kea.__ber - kes.__ber) / std::abs(kes.__ber)
-		  << "  " << std::setw(width) << (kea.__bei - kes.__bei) / std::abs(kes.__bei)
-		  << "  " << std::setw(width) << (kea.__ker - kes.__ker) / std::abs(kes.__ker)
-		  << "  " << std::setw(width) << (kea.__kei - kes.__kei) / std::abs(kes.__kei)
+		  << "  " << std::setw(width) << kea.__ber
+		  << "  " << std::setw(width) << kes.__ber
+		  << "  " << std::setw(width) << kea.__bei
+		  << "  " << std::setw(width) << kes.__bei
+		  << "  " << std::setw(width) << kea.__ker
+		  << "  " << std::setw(width) << kes.__ker
+		  << "  " << std::setw(width) << kea.__kei
+		  << "  " << std::setw(width) << kes.__kei
 		  << '\n';
       }
     std::cout << std::endl;
