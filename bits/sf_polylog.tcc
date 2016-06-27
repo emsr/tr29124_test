@@ -42,6 +42,7 @@
 
 #include <complex>
 #include <ext/math_const.h>
+#include <ext/math_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -49,74 +50,6 @@ namespace std _GLIBCXX_VISIBILITY(default)
 namespace __detail
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-  /**
-   * A function to reliably compare two floating point numbers.
-   *
-   * @param __a the left hand side.
-   * @param __b the right hand side
-   * @return returns true if a and b are equal to zero
-   *         or differ only by @f$ max(a,b) * 5* eps @f$
-   */
-  template<typename _Tp>
-    bool
-    __fpequal(const _Tp& __a, const _Tp& __b)
-    {
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      constexpr auto _S_tol = _Tp{5} * _S_eps;
-      bool __retval = true;
-      if ((__a != _Tp{0}) || (__b != _Tp{0}))
-	// Looks mean, but is necessary that the next line has sense.
-	__retval = (std::abs(__a - __b) < std::max(std::abs(__a),
-						   std::abs(__b)) * _S_tol);
-      return __retval;
-    }
-
-
-  /**
-   * A function to reliably test a complex number for realness.
-   *
-   * @param __w  The complex argument.
-   * @return  @c true if @f$ Im(w) @f$ is zero within @f$ 5 * epsilon @f$,
-   *          @c false otherwize.
-   */
-  template<typename _Tp>
-    bool
-    __fpreal(const std::complex<_Tp>& __w)
-    {
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      constexpr auto _S_tol = _Tp{5} * _S_eps;
-      return __fpequal(std::imag(__w), _Tp{0});
-    }
-
-  // Specialize for real numbers.
-  template<typename _Tp>
-    bool
-    __fpreal(const _Tp)
-    { return true; }
-
-
-  /**
-   * A function to reliably test a complex number for imaginaryness [?].
-   *
-   * @param __w  The complex argument.
-   * @return  @c true if @f$ Re(w) @f$ is zero within @f$ 5 * epsilon @f$,
-   *          @c false otherwize.
-   */
-  template<typename _Tp>
-    bool
-    __fpimag(const std::complex<_Tp>& __w)
-    {
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      constexpr auto _S_tol = _Tp{5} * _S_eps;
-      return __fpequal(std::real(__w), _Tp{0});
-    }
-
-  // Specialize for real numbers.
-  template<typename _Tp>
-    bool
-    __fpimag(const _Tp)
-    { return false; }
 
 
   template<typename _Tp>
@@ -174,7 +107,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       1.0000002384505027277329900,
       1.0000000596081890512594796,
       1.0000000149015548283650412,
-      1.0000000037253340247884571,   
+      1.0000000037253340247884571,
     };
     constexpr auto __maxk = 2 * sizeof(__data) / sizeof(_Tp);
     if (__k < __maxk)
@@ -250,7 +183,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
           __fac *= __rzarg / _Tp(__rzarg + __s)
 	      * (__rzarg + 1) / _Tp(__rzarg + __s + 1);
           ++__j;
-          __terminate = (__fpequal(std::abs(__res - __pref * __term), std::abs(__res)) || (__j > __maxit));
+          __terminate = (__gnu_cxx::__fpequal(std::abs(__res - __pref * __term), std::abs(__res)) || (__j > __maxit));
           __res -= __pref * __term;
 	}
       return __res;
@@ -320,9 +253,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __rz = evenzeta<_Tp>(__rzarg);
 	  auto __term = __rz * __fac * __w2;
 	  __w2 *= __upfac;
-	  __fac *= __rzarg / (__rzarg + __s) * (__rzarg + _Tp{1}) / (__rzarg + __s + _Tp{1});
+	  __fac *= __rzarg / (__rzarg + __s)
+		 * (__rzarg + _Tp{1}) / (__rzarg + __s + _Tp{1});
 	  ++__j;
-	  __terminate = (__fpequal(std::abs(__res - __pref * __term), std::abs(__res)) || (__j > __maxit));
+	  __terminate
+	    = (__gnu_cxx::__fpequal(std::abs(__res - __pref * __term),
+				    std::abs(__res)) || (__j > __maxit));
 	  __res -= __pref * __term;
 	}
       return std::complex<_Tp>(__res, std::imag(__imagtemp));
@@ -402,7 +338,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __w2 *= __wup;
 	  ++__j;
 	  __gam  *= __rzarg / (__j); // equal to 1/(j+1) since we have incremented j in the line above
-	  __terminate = (__fpequal(std::abs(__res + __pref * __term), std::abs(__res)) || (__j > __maxit));
+	  __terminate
+	    = (__gnu_cxx::__fpequal(std::abs(__res + __pref * __term),
+				    std::abs(__res)) || (__j > __maxit));
 	  __res += __pref * __term;
 	}
       return __res;
@@ -475,8 +413,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		 * _Tp(2 * __k + 2 + __n) / _Tp(2 * __k + 1 + 1);
 	  __wup *= __wq;
 	  __terminate = (__k > __maxit)
-		     || __fpequal(std::abs(__res - __pref * __term),
-				  std::abs(__res));
+		     || __gnu_cxx::__fpequal(std::abs(__res - __pref * __term),
+					     std::abs(__res));
 	  __res -= __pref * __term;
 	  ++__k;
 	}
@@ -545,8 +483,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __term = (__gam * __riemann_zeta_m_1<_Tp>(__zk + 2 + __np)) * __wup;
 	  __wup *= __wq;
 	  __terminate = __k > __maxit
-		     || __fpequal(std::abs(__res - __pref * __term),
-				  std::abs(__res));
+		     || __gnu_cxx::__fpequal(std::abs(__res - __pref * __term),
+					     std::abs(__res));
 	  __res -= __pref * __term;
 	  ++__k;
 	}
@@ -657,8 +595,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
           __w2 *= __wup;
           __gam *= __zetaarg / _Tp(1 + __idx);
           ++__j;
-          __terminate = (__fpequal(std::abs(__res + __pref * __term),
-				   std::abs(__res))
+          __terminate = (__gnu_cxx::__fpequal(std::abs(__res + __pref * __term),
+					      std::abs(__res))
 		     || (__j > __maxit));
           __res += __pref * __term;
 	}
@@ -706,7 +644,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __term = evenzeta<_Tp>(2 * __k) * __wgamma;
           if (std::abs(__term) > std::abs(__oldterm))
 	    __terminate = true; // Termination due to failure of asymptotic expansion
-          if (__fpequal(std::abs(__res + _Tp{2} * __term), std::abs(__res)))
+          if (__gnu_cxx::__fpequal(std::abs(__res + _Tp{2} * __term), std::abs(__res)))
 	    __terminate = true; // Precision goal reached.
           if (__k > __maxiter)
 	    __terminate = true; // Stop the iteration somewhen
@@ -748,7 +686,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __ew *= __up;
 	  _Tp __temp = std::pow(__k, __s); // This saves us a type conversion
 	  auto __term = __ew / __temp;
-	  __terminate = (__fpequal(std::abs(__res + __term), std::abs(__res))) || (__k > __maxiter);
+	  __terminate
+	    = (__gnu_cxx::__fpequal(std::abs(__res + __term),
+				    std::abs(__res))) || (__k > __maxiter);
 	  __res += __term;
 	  ++__k;
 	}
@@ -772,7 +712,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
       auto __rw = __w.real();
       auto __iw = __w.imag();
-      if (__fpreal(__w) && __fpequal(std::remainder(__iw, _S_2pi), _Tp{0}))
+      if (__fpreal(__w)
+	  && __gnu_cxx::__fpequal(std::remainder(__iw, _S_2pi), _Tp{0}))
 	{
 	  if (__s > 1)
 	    return std::__detail::__riemann_zeta(_Tp(__s));
@@ -817,7 +758,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
-      if (__fpequal(__w, _Tp{0}))
+      if (__gnu_cxx::__fpequal(__w, _Tp{0}))
 	{
 	  if (__s > 1)
 	    return std::__detail::__riemann_zeta(_Tp(__s));
@@ -859,12 +800,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
-      if ((((-__s) & 1) == 0) && __fpequal(std::real(__w), _Tp{0}))
+      if ((((-__s) & 1) == 0) && __gnu_cxx::__fpequal(std::real(__w), _Tp{0}))
 	{
 	  // Now s is odd and w on the unit-circle.
 	  auto __iw = imag(__w);  //get imaginary part
 	  auto __rem = std::remainder(__iw, _S_2pi);
-	  if (__fpequal(std::abs(__rem), _Tp{0.5L}))
+	  if (__gnu_cxx::__fpequal(std::abs(__rem), _Tp{0.5L}))
 	    // Due to: Li_{-n}(-1) + (-1)^n Li_{-n}(1/-1) = 0.
 	    return _Tp{0};
 	  else
@@ -902,7 +843,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5})  ) // Choose the exponentially converging series
 	return __polylog_exp_negative_real_part(__s, std::complex<_Tp>(__w));
-      else if (__fpequal(__w, _Tp{0}))
+      else if (__gnu_cxx::__fpequal(__w, _Tp{0}))
 	return std::numeric_limits<_Tp>::infinity();
       else if (__w < _Tp{6}) // Arbitrary transition point...
 	return __polylog_exp_neg(__s, std::complex<_Tp>(__w));
@@ -927,7 +868,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
       auto __rw = __w.real();
       auto __iw = __w.imag();
-      if (__fpreal(__w) && __fpequal(std::remainder(__iw, _S_2pi), _Tp{0}))
+      if (__fpreal(__w)
+	  && __gnu_cxx::__fpequal(std::remainder(__iw, _S_2pi), _Tp{0}))
 	{
 	  if (__s > _Tp{1})
 	    return std::__detail::__riemann_zeta(__s);
@@ -958,7 +900,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
-      if (__fpequal(__w, _Tp{0}))
+      if (__gnu_cxx::__fpequal(__w, _Tp{0}))
 	{
           if (__s > _Tp{1})
 	    return std::__detail::__riemann_zeta(__s);
@@ -1043,7 +985,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__s > _Tp{25}) // Cutoff chosen by some testing on the real axis.
 	return __polylog_exp_negative_real_part(__s, __w);
-      else if (__fpequal<_Tp>(std::rint(__s), __s))
+      else if (__gnu_cxx::__fpequal<_Tp>(std::rint(__s), __s))
 	{
           // In this branch of the if statement, s is an integer
           int __p = int(std::lrint(__s));
@@ -1074,7 +1016,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__isnan(__s) || __isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__fpequal(__x, _Tp{0}))
+      else if (__gnu_cxx::__fpequal(__x, _Tp{0}))
 	return _Tp{0}; // According to Mathematica
       else if (__x < _Tp{0})
 	{ // Use the reflection formula to access negative values.
@@ -1104,7 +1046,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__isnan(__s) || __isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__fpequal(std::imag(__w), _Tp{0}))
+      else if (__gnu_cxx::__fpequal(std::imag(__w), _Tp{0}))
 	return __polylog(__s, std::real(__w));
       else
 	return __polylog_exp(__s, std::log(__w));
@@ -1157,7 +1099,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__fpequal(std::imag(__w), _Tp{0}))
+      else if (__gnu_cxx::__fpequal(std::imag(__w), _Tp{0}))
 	return -__polylog(__w.real(), _Tp{-1});
       else
 	std::__throw_domain_error(__N("__dirichlet_eta: Bad argument"));
@@ -1195,7 +1137,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_i = std::complex<_Tp>{0, 1};
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__fpequal(std::imag(__w), _Tp{0}))
+      else if (__gnu_cxx::__fpequal(std::imag(__w), _Tp{0}))
 	return std::imag(__polylog(__w.real(), _S_i));
       else
 	std::__throw_domain_error(__N("__dirichlet_beta: Bad argument."));
