@@ -3,21 +3,21 @@
 tool="cp -f"
 suffix="_tr29124"
 
-src_dir="$HOME/gcc${suffix}/libstdc++-v3/include"
+src_dir="."
 if [ -d "$1" ]; then 
   src_dir="$1"
 fi
 src_impl_dir="${src_dir}/bits"
 src_ext_dir="${src_dir}/ext"
 
-dst_dir="."
+dst_dir="$HOME/gcc${suffix}/libstdc++-v3/include"
 if [ -d "$2" ]; then 
   dst_dir="$2"
 fi
 dst_impl_dir="${dst_dir}/bits"
 dst_ext_dir="${dst_dir}/ext"
 
-${tool} "${src_dir}/c_global/cmath"             "${dst_dir}"
+#${tool} "${src_dir}/c_global/cmath"             "${dst_dir}"
 
 ${tool} "${src_ext_dir}/math_const.h"           "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/math_util.h"            "${dst_ext_dir}"

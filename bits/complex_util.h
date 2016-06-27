@@ -203,6 +203,46 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __safe_sqr(const std::complex<_Tp>& __z);
 
+
+  /**
+   * A function to reliably test a complex number for realness.
+   *
+   * @param __w  The complex argument
+   * @param __mul The multiplier for numeric epsilon for comparison tolerance
+   * @return  @c true if @f$ Im(w) @f$ is zero within @f$ mul * epsilon @f$,
+   *          @c false otherwize.
+   */
+  template<typename _Tp>
+    bool
+    __fpreal(const std::complex<_Tp>& __w, const _Tp __mul = _Tp{5})
+    { return __fpequal(std::imag(__w), _Tp{0}, __mul); }
+
+  // Specialize for real numbers.
+  template<typename _Tp>
+    bool
+    __fpreal(const _Tp)
+    { return true; }
+
+
+  /**
+   * A function to reliably test a complex number for imaginaryness [?].
+   *
+   * @param __w  The complex argument
+   * @param __mul The multiplier for numeric epsilon for comparison tolerance
+   * @return  @c true if @f$ Re(w) @f$ is zero within @f$ mul * epsilon @f$,
+   *          @c false otherwize.
+   */
+  template<typename _Tp>
+    bool
+    __fpimag(const std::complex<_Tp>& __w, const _Tp __mul = _Tp{5})
+    { return __fpequal(std::real(__w), _Tp{0}, __mul); }
+
+  // Specialize for real numbers.
+  template<typename _Tp>
+    bool
+    __fpimag(const _Tp)
+    { return false; }
+
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 } // namespace std
