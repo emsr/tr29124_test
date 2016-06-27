@@ -18,6 +18,7 @@ dst_impl_dir="${dst_dir}/bits"
 dst_ext_dir="${dst_dir}/ext"
 
 ${tool} "${src_ext_dir}/math_const.h"       "${dst_ext_dir}/math_const.h"
+${tool} "${src_ext_dir}/math_util.h"        "${dst_ext_dir}/math_util.h"
 ${tool} "${src_ext_dir}/cmath"              "${dst_ext_dir}/cmath"
 ${tool} "${src_ext_dir}/polynomial.h"       "${dst_ext_dir}"
 
