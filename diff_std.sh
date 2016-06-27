@@ -8,6 +8,7 @@ ${tool} ext/   ${ext_dir}/
 ${tool} bits/  ${gcc_dir}/
 
 ${tool} ext/math_const.h           ${ext_dir}/math_const.h
+${tool} ext/math_util.h            ${ext_dir}/math_util.h
 ${tool} ext/polynomial.h           ${ext_dir}/polynomial.h
 ${tool} ext/cmath                  ${gcc_dir}/cmath
 ${tool} bits/specfun_util.h        ${gcc_dir}/specfun_util.h
