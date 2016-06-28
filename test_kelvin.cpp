@@ -1,6 +1,6 @@
 /*
 g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
-./test_kelvin > test_kelvin.txt
+./test_kelvin > test_kelvin.txt 2> test_kelvin.err
 */
 
 #include <limits>
@@ -236,6 +236,7 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
     _KelvinState<_Tp>
     __kelvin_asymp(_Tp __x)
     {
+std::cerr << '\n';
       constexpr auto _S_j = std::complex<_Tp>{0, 1};
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
@@ -347,6 +348,7 @@ std::cerr << "  " << __x << "  "
     _KelvinState<_Tp>
     __kelvin_asymp(_Tp __nu, _Tp __x)
     {
+std::cerr << '\n';
       constexpr auto _S_j = std::complex<_Tp>{0, 1};
       constexpr auto _S_1d2 = _Tp{1} / _Tp{2};
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
@@ -619,7 +621,7 @@ template<typename _Tp>
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
-    for (int i = 500; i <= 1000; ++i)
+    for (int i = 200; i <= 400; ++i)
       {
 	auto x = _Tp(0.1L) * i;
 	auto kes = __kelvin_series(nu, x);
