@@ -9,7 +9,8 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
 #include <iomanip>
 #include <complex>
 #include <bits/summation.h>
-
+#include <bits/sf_gamma.tcc>
+#include <ext/math_util.h>
 
   /**
    * Data structure for Kelvin functions.
@@ -303,10 +304,10 @@ std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfac
       constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
       constexpr auto _S_3pi_4 = _Tp{3} * _S_pi_4;
       constexpr auto _2dpi = _Tp{2} / _S_pi;
+      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       constexpr auto _S_maxiter = 1000;
       if (__n < 0)
 	{
-	  const auto __npi = __nu * _S_pi;
 	  const auto _Cnp = _Tp(1 - 2 * (__n & 1));
 	  auto _Kv = __kelvin_series(-__n, __x);
 	  return _KelvinState<_Tp>{__n, __x,
@@ -338,8 +339,8 @@ std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfac
 		break;
 	    }
 	  const auto __pow = std::pow(__xd2, __n);
-	  auto __bex = __pow * __bep()
-		     / std::tgamma(_Tp{1} + __n);
+	  auto __bex = __pow * __be()
+		     / std::__detail::__factorial<_Tp>(1 + __n);
 	  auto __kex = -std::log(__xd2) * __bex + _S_j * _S_pi_4 * __bex
 		       + __ke1() / __pow / _Tp{2}
 		       + __pow * __ke2() / _Tp{2};
@@ -351,7 +352,7 @@ std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfac
 
 
   /**
-   * Compute the Kelvin functions of order  by series expansion.
+   * Compute the Kelvin functions of order @f$ \nu @f$ by series expansion.
    */
   template<typename _Tp>
     _KelvinState<_Tp>
@@ -365,37 +366,52 @@ std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfac
       constexpr auto _2dpi = _Tp{2} / _S_pi;
       constexpr auto _S_maxiter = 1000;
 
+      if (__gnu_cxx::__fpinteger(__nu))
+	{
+	  auto __n = std::nearbyint(__nu);
+	  return __kelvin_series(__n, __x);
+	}
+      else
+	{
 	  const auto __xd2 = __x / _Tp{2};
 	  const auto __y = __xd2 * __xd2;
-	  __gnu_cxx::_BasicSum<std::complex<_Tp>> __bep, __bem;
+
+	  __gnu_cxx::_BasicSum<std::complex<_Tp>> __bep;
 	  auto __termp = _Tp{1};
 	  auto __argp = _S_3pi_4 * __nu;
 	  __bep += std::polar(__termp, __argp);
-	  auto __termm = _Tp{1};
-	  auto __argm = -_S_3pi_4 * __nu;
-	  __bem += std::polar(__termm, __argm);
 	  for (auto __k = 1; __k < _S_maxiter; ++__k)
 	    {
 	      __argp += _S_pi_2;
 	      auto __factp = (_Tp(__k) + __nu) * _Tp(__k);
 	      __termp *= __y / __factp;
 	      __bep += std::polar(__termp, __argp);
+	    }
+	  auto __bex = std::pow(__xd2, __nu) * __bep()
+		     / std::tgamma(_Tp{1} + __nu);
 
+	  __gnu_cxx::_BasicSum<std::complex<_Tp>> __bem;
+	  auto __termm = _Tp{1};
+	  auto __argm = -_S_3pi_4 * __nu;
+	  __bem += std::polar(__termm, __argm);
+	  for (auto __k = 1; __k < _S_maxiter; ++__k)
+	    {
 	      __argm += _S_pi_2;
 	      auto __factm = (_Tp(__k) - __nu) * _Tp(__k);
 	      __termm *= __y / __factm;
 	      __bem += std::polar(__termm, __argm);
 	    }
-	  auto __bex = std::pow(__xd2, __nu) * __bep()
-		     / std::tgamma(_Tp{1} + __nu);
 	  auto __bey = std::pow(__xd2, -__nu) * __bem()
 		     / std::tgamma(_Tp{1} - __nu);
+	  const auto __nupi = __nu * _S_pi;
 	  const auto __csc = _Tp{1} / std::sin(__nupi);
 	  const auto __cot = _Tp{1} / std::tan(__nupi);
 	  auto __kex = _S_pi_2 * (__csc * __bey - __cot * __bex + _S_j * __bex);
+
 	  return _KelvinState<_Tp>{__nu, __x,
 				   std::real(__bex), std::imag(__bex),
 				   std::real(__kex), std::imag(__kex)};
+	}
 
     }
 

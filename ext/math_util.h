@@ -45,21 +45,35 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __a The left hand side
    * @param __b The right hand side
    * @param __mul The multiplier for numeric epsilon for comparison
-   * @return returns true if a and b are equal to zero
+   * @return @c true if a and b are equal to zero
    *         or differ only by @f$ max(a,b) * mul * epsilon @f$
    */
   template<typename _Tp>
-    bool
-    __fpequal(const _Tp& __a, const _Tp& __b, const _Tp __mul = _Tp{5})
+    inline bool
+    __fpequal(_Tp __a, _Tp __b, _Tp __mul = _Tp{5})
     {
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      constexpr auto _S_tol = __mul * _S_eps;
+      const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto _S_tol = __mul * _S_eps;
       bool __retval = true;
       if ((__a != _Tp{0}) || (__b != _Tp{0}))
 	// Looks mean, but is necessary that the next line has sense.
 	__retval = (std::abs(__a - __b) < std::max(std::abs(__a),
 						   std::abs(__b)) * _S_tol);
       return __retval;
+    }
+
+  /**
+   * A function to reliably detect if a floating point number is an integer.
+   *
+   * @param __a The floating point number
+   * @return @c true if a is an integer within mul * epsilon.
+   */
+  template<typename _Tp>
+    inline bool
+    __fpinteger(_Tp __a, _Tp __mul = _Tp{5})
+    {
+      auto __n = std::nearbyint(__a);
+      return __fpequal(__a, _Tp(__n), __mul);
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
