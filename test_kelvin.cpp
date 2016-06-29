@@ -310,7 +310,7 @@ std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfac
 	{
 	  const auto _Cnp = _Tp(1 - 2 * (__n & 1));
 	  auto _Kv = __kelvin_series(-__n, __x);
-	  return _KelvinState<_Tp>{__n, __x,
+	  return _KelvinState<_Tp>{_Tp(__n), __x,
 	  			   _Cnp * _Kv.__ber, _Cnp * _Kv.__bei,
 				   _Cnp * _Kv.__ker, _Cnp * _Kv.__kei};
 	}
@@ -318,33 +318,63 @@ std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfac
 	{
 	  const auto __xd2 = __x / _Tp{2};
 	  const auto __y = __xd2 * __xd2;
-	  __gnu_cxx::_BasicSum<std::complex<_Tp>> __be, __ke1, __ke2;
-	  auto __term = _Tp{1};
-	  auto __arg = _S_3pi_4 * __n;
-	  __be += std::polar(__term, __arg);
-	  __ke1 += std::polar(__term, __arg);
-	  __ke2 += std::polar(__term, __arg);
-	  for (auto __k = 1; __k < std::min(__n, _S_maxiter); ++__k)
+	  __gnu_cxx::_BasicSum<std::complex<_Tp>> __be;
+	  auto __bterm = _Tp{1};
+	  auto __barg = _S_3pi_4 * __n;
+	  __be += std::polar(__bterm, __barg);
+	  for (auto __k = 1; __k < _S_maxiter; ++__k)
 	    {
-	      __arg += _S_pi_2;
-	      auto __fact = (_Tp(__k) + __n) * _Tp(__k);
-	      __term *= __y / __fact;
-	      __be += std::polar(__term, __arg);
-	      if (__k < __n)
-	        {
-		  auto __fact1 = _Tp() / _Tp(__k);
-		  __ke1 += std::polar(__term, __arg);
-		}
-	      if (std::abs(__term) < _S_eps * std::abs(__be()))
+	      auto __bfact = (_Tp(__k) + __n) * _Tp(__k);
+	      __bterm *= __y / __bfact;
+	      __barg += _S_pi_2;
+	      __be += std::polar(__bterm, __barg);
+	      if (std::abs(__bterm) < _S_eps * std::abs(__be()))
 		break;
 	    }
+
+	  __gnu_cxx::_BasicSum<std::complex<_Tp>> __ke1;
+	  if (__n > 0)
+	    {
+	      auto __kterm1 = _Tp{1};
+	      auto __karg1 = _S_3pi_4 * __n;
+	      __ke1 += std::polar(__kterm1, -__karg1);
+	      for (auto __k = 1; __k < __n - 1; ++__k)
+		{
+		  auto __fact1 = _Tp(__n - 1 - __k) * _Tp(__k);
+		  __kterm1 *= __y / __fact1;
+		  __karg1 += _S_pi_2;
+		  __ke1 += std::polar(__kterm1, -__karg1);
+		}
+	      __kterm1 *= __y / (__n - 1);
+	      __karg1 += _S_pi_2;
+	      __ke1 += std::polar(__kterm1, -__karg1);
+	    }
+
+	  __gnu_cxx::_BasicSum<std::complex<_Tp>> __ke2;
+	  auto __hsum2 = std::__detail::__harmonic_number<_Tp>(1)
+		       + std::__detail::__harmonic_number<_Tp>(1 + __n);
+	  auto __kterm2 = _Tp{1};
+	  auto __karg2 = _S_3pi_4 * __n;
+	  __ke2 += std::polar(__kterm2, __karg2);
+	  for (auto __k = 1; __k < _S_maxiter; ++__k)
+	    {
+	      __hsum2 += _Tp{1} / _Tp(1 + __k) + _Tp{1} / _Tp(1 + __n + __k);
+	      auto __fact2 = _Tp(__n - 1 - __k) * __hsum2 / _Tp(__k);
+	      __kterm2 *= __y * __fact2;
+	      __karg2 += _S_pi_2;
+	      __ke2 += std::polar(__kterm2, __karg2);
+	      if (std::abs(__kterm2) < _S_eps * std::abs(__ke2()))
+		break;
+	    }
+
+	  const auto __nfact = std::__detail::__factorial<_Tp>(__n);
 	  const auto __pow = std::pow(__xd2, __n);
-	  auto __bex = __pow * __be()
-		     / std::__detail::__factorial<_Tp>(1 + __n);
-	  auto __kex = -std::log(__xd2) * __bex + _S_j * _S_pi_4 * __bex
-		       + __ke1() / __pow / _Tp{2}
-		       + __pow * __ke2() / _Tp{2};
-	  return _KelvinState<_Tp>{__n, __x,
+	  auto __bex = __pow * __be() / __nfact;
+	  auto __kex = -std::log(__xd2) * __bex - _S_j * _S_pi_4 * __bex
+		+ __ke1() / __pow / _Tp{2}
+		  / (__n > 0 ? std::__detail::__factorial<_Tp>(__n - 1) : 1);
+		+ __pow * __ke2() / __nfact / _Tp{2};
+	  return _KelvinState<_Tp>{_Tp(__n), __x,
 				   std::real(__bex), std::imag(__bex),
 				   std::real(__kex), std::imag(__kex)};
 	}
@@ -368,7 +398,7 @@ std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfac
 
       if (__gnu_cxx::__fpinteger(__nu))
 	{
-	  auto __n = std::nearbyint(__nu);
+	  int __n = std::nearbyint(__nu);
 	  return __kelvin_series(__n, __x);
 	}
       else
@@ -382,9 +412,9 @@ std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfac
 	  __bep += std::polar(__termp, __argp);
 	  for (auto __k = 1; __k < _S_maxiter; ++__k)
 	    {
-	      __argp += _S_pi_2;
 	      auto __factp = (_Tp(__k) + __nu) * _Tp(__k);
 	      __termp *= __y / __factp;
+	      __argp += _S_pi_2;
 	      __bep += std::polar(__termp, __argp);
 	    }
 	  auto __bex = std::pow(__xd2, __nu) * __bep()
@@ -396,9 +426,9 @@ std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfac
 	  __bem += std::polar(__termm, __argm);
 	  for (auto __k = 1; __k < _S_maxiter; ++__k)
 	    {
-	      __argm += _S_pi_2;
 	      auto __factm = (_Tp(__k) - __nu) * _Tp(__k);
 	      __termm *= __y / __factm;
+	      __argm += _S_pi_2;
 	      __bem += std::polar(__termm, __argm);
 	    }
 	  auto __bey = std::pow(__xd2, -__nu) * __bem()
@@ -712,6 +742,48 @@ template<typename _Tp>
   }
 
 
+/*
+ *
+ */
+template<typename _Tp>
+  void
+  run_kelvin4(int n = 0)
+  {
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout << std::showpoint << std::scientific;
+    auto width = 8 + std::cout.precision();
+
+    std::cout << "\n\nPrint Kelvin functions computed by series expansions, n = " << n << '\n';
+    std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+
+    std::cout << "\n\n";
+    std::cout << std::setw(width) << "x"
+	      << std::setw(width) << "ber"
+	      << std::setw(width) << "bei"
+	      << std::setw(width) << "ker"
+	      << std::setw(width) << "kei"
+	      << '\n';
+    std::cout << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << '\n';
+    for (int i = 0; i <= 200; ++i)
+      {
+	auto x = _Tp(0.1L) * i;
+	auto ke = __kelvin_series(n, x);
+	std::cout << std::setw(width) << ke.__x
+		  << std::setw(width) << ke.__ber
+		  << std::setw(width) << ke.__bei
+		  << std::setw(width) << ke.__ker
+		  << std::setw(width) << ke.__kei
+		  << '\n';
+      }
+    std::cout << std::endl;
+  }
+
+
 /**
  * 
  */
@@ -844,6 +916,7 @@ template<typename _Tp>
 int
 main()
 {
+  run_kelvin4<long double>();
   run_kelvin3<long double>();
   run_kelvin2<long double>();
   run_kelvin<long double>();

@@ -2325,11 +2325,11 @@ _S_neg_double_factorial_table[999]
     __harmonic_number(unsigned int __n)
     {
       if (__n <= _S_num_harmonic_numer)
-	return _Tp{_S_harmonic_numer[__n - 1]} / _Tp{_S_harmonic_denom[__n - 1]};
+	return _Tp(_S_harmonic_numer[__n - 1]) / _Tp(_S_harmonic_denom[__n - 1]);
       else
         {
 	  unsigned int __k = _S_num_harmonic_numer - 1;
-	  auto _H_k = _Tp{_S_harmonic_numer[__k]} / _Tp{_S_harmonic_denom[__k]};
+	  auto _H_k = _Tp(_S_harmonic_numer[__k]) / _Tp(_S_harmonic_denom[__k]);
           for (__k = _S_num_harmonic_numer; __k <= __n; ++__k)
 	    _H_k += _Tp{1} / _Tp(__k);
 	}
