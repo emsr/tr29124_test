@@ -1,6 +1,6 @@
 /*
-g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
-./test_kelvin > test_kelvin.txt 2> test_kelvin.err
+g++ -std=gnu++14 -g -Wall -Wextra -I. -o test_kelvin test_kelvin.cpp
+./test_kelvin > test_kelvin.txt
 */
 
 #include <limits>
@@ -186,7 +186,6 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
     {
       constexpr auto _S_gamma_e = __gnu_cxx::__math_constants<_Tp>::__gamma_e;
       constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
-      constexpr auto _S_1d2 = _Tp{1} / _Tp{2};
       constexpr auto _S_eps = _Tp{0.01L} * std::numeric_limits<_Tp>::epsilon();
       constexpr auto _S_maxiter = 1000;
       const auto __xd2 = __x / _Tp{2};
@@ -271,18 +270,12 @@ g++ -std=gnu++14 -g -I. -o test_kelvin test_kelvin.cpp
 	  if (std::abs(__term) < _S_eps * std::abs(__be()))
 	    break;
 	}
-std::cerr.precision(18);
-std::cerr << "  " << __x << "  "
-	  << "  " << std::setw(40) << __be() << "  " << std::setw(20) << std::abs(__be())
-	  << "  " << std::setw(40) << __ke() << "  " << std::setw(20) << std::abs(__ke())
-	  << "  " << std::setw(40) << __be() * __ke();
       const auto __exp = std::exp(__xrt2);
       const auto __rt = std::sqrt(_Tp{2} * __x);
       const auto __kfact = _S_sqrt_pi / __rt / __exp;
       const auto __kex = __kfact * __ke();
       const auto __bfact = __exp / _S_sqrt_pi / __rt;
       const auto __bex = __bfact * __be() + _S_j * __kex / _S_pi;
-std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfact << '\n';
       return _KelvinState<_Tp>{_Tp{0}, __x,
 			       __bfact * std::real(__bex),
 			       __bfact * std::imag(__bex),
@@ -299,11 +292,9 @@ std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfac
     __kelvin_series(int __n, _Tp __x)
     {
       constexpr auto _S_j = std::complex<_Tp>{0, 1};
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
       constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
       constexpr auto _S_3pi_4 = _Tp{3} * _S_pi_4;
-      constexpr auto _2dpi = _Tp{2} / _S_pi;
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       constexpr auto _S_maxiter = 1000;
       if (__n < 0)
@@ -346,25 +337,27 @@ std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfac
 		  __karg1 += _S_pi_2;
 		  __ke1 += std::polar(__kterm1, -__karg1);
 		}
-	      __kterm1 *= __y / (__n - 1);
-	      __karg1 += _S_pi_2;
-	      __ke1 += std::polar(__kterm1, -__karg1);
+	      if (__n > 1)
+		{
+		  __kterm1 *= __y / (__n - 1);
+		  __karg1 += _S_pi_2;
+		  __ke1 += std::polar(__kterm1, -__karg1);
+		}
 	    }
 
 	  __gnu_cxx::_BasicSum<std::complex<_Tp>> __ke2;
 	  auto __hsum2 = std::__detail::__psi<_Tp>(1)
 		       + std::__detail::__psi<_Tp>(1 + __n);
-	  auto __kterm2 = __hsum2;
+	  auto __kterm2 = _Tp{1};
 	  auto __karg2 = _S_3pi_4 * __n;
-	  __ke2 += std::polar(__kterm2, __karg2);
+	  __ke2 += std::polar(__hsum2 * __kterm2, __karg2);
 	  for (auto __k = 1; __k < _S_maxiter; ++__k)
 	    {
 	      __hsum2 += _Tp{1} / _Tp(1 + __k) + _Tp{1} / _Tp(1 + __n + __k);
-	      auto __fact2 = _Tp(__n - 1 - __k) * __hsum2 / _Tp(__k);
-	      __kterm2 *= __y * __fact2;
+	      __kterm2 *= __y / _Tp(__k) /  _Tp(__n + __k);
 	      __karg2 += _S_pi_2;
-	      __ke2 += std::polar(__kterm2, __karg2);
-	      if (std::abs(__kterm2) < _S_eps * std::abs(__ke2()))
+	      __ke2 += std::polar(__hsum2 * __kterm2, __karg2);
+	      if (std::abs(__hsum2 * __kterm2) < _S_eps * std::abs(__ke2()))
 		break;
 	    }
 
@@ -373,8 +366,9 @@ std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfac
 	  auto __bex = __pow * __be() / __nfact;
 	  auto __kex = -std::log(__xd2) * __bex - _S_j * _S_pi_4 * __bex
 		+ __ke1() / __pow / _Tp{2}
-		  / (__n > 0 ? std::__detail::__factorial<_Tp>(__n - 1) : 1);
-		+ __pow * __ke2() / __nfact / _Tp{2};
+		  / (__n > 0 ? std::__detail::__factorial<_Tp>(__n - 1) : 1)
+		+ __pow * __ke2() / __nfact / _Tp{2}
+		- _Tp{1}; // I needed this for ker(x) too.
 	  return _KelvinState<_Tp>{_Tp(__n), __x,
 				   std::real(__bex), std::imag(__bex),
 				   std::real(__kex), std::imag(__kex)};
@@ -394,7 +388,6 @@ std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfac
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
       constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
       constexpr auto _S_3pi_4 = _Tp{3} * _S_pi_4;
-      constexpr auto _2dpi = _Tp{2} / _S_pi;
       constexpr auto _S_maxiter = 1000;
 
       if (__gnu_cxx::__fpinteger(__nu))
@@ -443,7 +436,6 @@ std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfac
 				   std::real(__bex), std::imag(__bex),
 				   std::real(__kex), std::imag(__kex)};
 	}
-
     }
 
 
@@ -460,7 +452,6 @@ std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfac
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
       constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
       constexpr auto _S_pi_8 = _S_1d2 * _S_pi_4;
-      constexpr auto _S_3pi_4 = _Tp{3} * _S_pi_4;
       constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
       constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
@@ -492,18 +483,12 @@ std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfac
 	  if (std::abs(__bterm) < _S_eps * std::abs(__be()))
 	    break;
 	}
-std::cerr.precision(18);
-std::cerr << "  " << __x << "  "
-	  << "  " << std::setw(40) << __be() << "  " << std::setw(20) << std::abs(__be())
-	  << "  " << std::setw(40) << __ke() << "  " << std::setw(20) << std::abs(__ke())
-	  << "  " << std::setw(40) << __be()*__ke();
       const auto __exp = std::exp(__xrt2);
       const auto __rt = _S_sqrt_2 * std::sqrt(__x);
       const auto __kfact = _S_sqrt_pi / __rt / __exp;
       const auto __kex = __kfact * __ke();
       const auto __bfact = __exp / _S_sqrt_pi / __rt;
       const auto __bex = __bfact * __be() + _S_j * __kex / _S_pi;
-std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfact << '\n';
       return _KelvinState<_Tp>{__nu, __x,
 			       __bfact * std::real(__bex),
 			       __bfact * std::imag(__bex),
@@ -523,7 +508,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    auto ber0 = __kelvin_ber_series(_Tp{});
+    __kelvin_ber_series(_Tp{});
 
     std::cout << "\n\nPrint Kelvin functions computed by series expansions\n";
     std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
@@ -570,7 +555,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    auto ke0 = __kelvin_series(_Tp{});
+    __kelvin_series(_Tp{});
 
     std::cout << "\n\nPrint Kelvin functions computed by series expansions\n";
     std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
