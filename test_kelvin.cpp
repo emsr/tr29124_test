@@ -318,6 +318,7 @@ std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfac
 	{
 	  const auto __xd2 = __x / _Tp{2};
 	  const auto __y = __xd2 * __xd2;
+
 	  __gnu_cxx::_BasicSum<std::complex<_Tp>> __be;
 	  auto __bterm = _Tp{1};
 	  auto __barg = _S_3pi_4 * __n;
@@ -351,9 +352,9 @@ std::cerr << "  " << std::setw(20) << __bfact << "  " << std::setw(20) << __kfac
 	    }
 
 	  __gnu_cxx::_BasicSum<std::complex<_Tp>> __ke2;
-	  auto __hsum2 = std::__detail::__harmonic_number<_Tp>(1)
-		       + std::__detail::__harmonic_number<_Tp>(1 + __n);
-	  auto __kterm2 = _Tp{1};
+	  auto __hsum2 = std::__detail::__psi<_Tp>(1)
+		       + std::__detail::__psi<_Tp>(1 + __n);
+	  auto __kterm2 = __hsum2;
 	  auto __karg2 = _S_3pi_4 * __n;
 	  __ke2 += std::polar(__kterm2, __karg2);
 	  for (auto __k = 1; __k < _S_maxiter; ++__k)
