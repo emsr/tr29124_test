@@ -70,7 +70,7 @@
 #  include <bits/sf_legendre.tcc>
 #  include <bits/sf_hydrogen.tcc> // Needs __sph_legendre.
 #  include <bits/sf_mod_bessel.tcc>
-#  include <bits/sf_hermite.tcc> // Needs __airy.
+#  include <bits/sf_hermite.tcc>
 #  include <bits/sf_theta.tcc>
 #  include <bits/sf_trigint.tcc>
 #  include <bits/sf_zeta.tcc>
@@ -3486,7 +3486,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *    E_1(x) = \int_1^\infty \frac{e^{-tx}}{t}dt = -Ei(-x)
    * @f]
    *
-   * @tparam _Tp The real type of te argument
+   * @tparam _Tp The real type of the argument
    * @param __n The integral order
    * @param __x The real argument
    */

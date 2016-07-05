@@ -37,6 +37,7 @@
 #include <limits>
 #include <bits/specfun_util.h>
 #include <bits/numeric_limits.h>
+#include <ext/math_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -215,7 +216,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     bool
     __fpreal(const std::complex<_Tp>& __w, const _Tp __mul = _Tp{5})
-    { return __fpequal(std::imag(__w), _Tp{0}, __mul); }
+    { return __gnu_cxx::__fpequal(std::imag(__w), _Tp{0}, __mul); }
 
   // Specialize for real numbers.
   template<typename _Tp>
@@ -235,7 +236,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     bool
     __fpimag(const std::complex<_Tp>& __w, const _Tp __mul = _Tp{5})
-    { return __fpequal(std::real(__w), _Tp{0}, __mul); }
+    { return __gnu_cxx::__fpequal(std::real(__w), _Tp{0}, __mul); }
 
   // Specialize for real numbers.
   template<typename _Tp>
@@ -283,14 +284,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     struct is_complex : public std::false_type
     { };
 
+  /**
+   * Type introspection for complex.
+   */
   template<>
     template<typename _Tp>
       struct is_complex<std::complex<_Tp>> : public std::true_type
       { };
 
+  /**
+   * Type introspection for complex.
+   */
   template<typename _Tp>
     using is_complex_t = typename is_complex<_Tp>::type;
 
+  /**
+   * Type introspection for complex.
+   */
   template<typename _Tp>
     constexpr bool is_complex_v = is_complex<_Tp>::value;
 
