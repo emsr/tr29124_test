@@ -2332,6 +2332,7 @@ _S_neg_double_factorial_table[999]
 	  auto _H_k = _Tp(_S_harmonic_numer[__k]) / _Tp(_S_harmonic_denom[__k]);
           for (__k = _S_num_harmonic_numer; __k <= __n; ++__k)
 	    _H_k += _Tp{1} / _Tp(__k);
+	  return _H_k;
 	}
     }
 
