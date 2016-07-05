@@ -1908,10 +1908,14 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *  @brief Return @f$ \Gamma(x) @f$.
+   * @brief Return the gamma function @f$ \Gamma(x) @f$.
+   * The gamma function is defined by:
+   * @f[
+   *   \Gamma(a) = \int_0^\infty e^{-t}t^{a-1}dt  (a > 0)
+   * @f]
    *
-   *  @param __x The argument of the gamma function.
-   *  @return  The gamma function.
+   * @param __x The argument of the gamma function.
+   * @return  The gamma function.
    */
   template<typename _Tp>
     _Tp
@@ -1925,6 +1929,9 @@ _S_neg_double_factorial_table[999]
     }
 
 
+  /**
+   * @brief Return the incomplete gamma function by series summation.
+   */
   template<typename _Tp>
     std::pair<_Tp, _Tp>
     __gamma_series(_Tp __a, _Tp __x)
@@ -1959,7 +1966,9 @@ _S_neg_double_factorial_table[999]
 	}
     }
 
-
+  /**
+   * @brief Return the incomplete gamma function by continued fraction.
+   */
   template<typename _Tp>
     std::pair<_Tp, _Tp>
     __gamma_cont_frac(_Tp __a, _Tp __x)
@@ -1999,16 +2008,16 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *  @brief  Return the regularized lower incomplete gamma function.
-   *  The regularized lower incomplete gamma function is defined by
-   *  @f[
-   *    P(a,x) = \frac{\gamma(a,x)}{\Gamma(a)}
-   *  @f]
-   *  where @f$ \Gamma(a) @f$ is the gamma function and
-   *  @f[
-   *    \gamma(a,x) = \int_0^x e^{-t}t^{a-1}dt  (a > 0)
-   *  @f]
-   *  is the lower incomplete gamma function.
+   * @brief  Return the regularized lower incomplete gamma function.
+   * The regularized lower incomplete gamma function is defined by
+   * @f[
+   *   P(a,x) = \frac{\gamma(a,x)}{\Gamma(a)}
+   * @f]
+   * where @f$ \Gamma(a) @f$ is the gamma function and
+   * @f[
+   *   \gamma(a,x) = \int_0^x e^{-t}t^{a-1}dt  (a > 0)
+   * @f]
+   * is the lower incomplete gamma function.
    */
   template<typename _Tp>
     _Tp
@@ -2030,16 +2039,16 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *  @brief  Return the regularized upper incomplete gamma function.
-   *  The regularized upper incomplete gamma function is defined by
-   *  @f[
-   *    Q(a,x) = \frac{\Gamma(a,x)}{\Gamma(a)}
-   *  @f]
-   *  where @f$ \Gamma(a) @f$ is the gamma function and
-   *  @f[
-   *    \Gamma(a,x) = \int_x^\infty e^{-t}t^{a-1}dt  (a > 0)
-   *  @f]
-   *  is the upper incomplete gamma function.
+   * @brief  Return the regularized upper incomplete gamma function.
+   * The regularized upper incomplete gamma function is defined by
+   * @f[
+   *   Q(a,x) = \frac{\Gamma(a,x)}{\Gamma(a)}
+   * @f]
+   * where @f$ \Gamma(a) @f$ is the gamma function and
+   * @f[
+   *   \Gamma(a,x) = \int_x^\infty e^{-t}t^{a-1}dt  (a > 0)
+   * @f]
+   * is the upper incomplete gamma function.
    */
   template<typename _Tp>
     _Tp
@@ -2061,11 +2070,11 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *  @brief  Return the lower incomplete gamma function.
-   *  The lower incomplete gamma function is defined by
-   *  @f[
-   *    \gamma(a,x) = \int_0^x e^{-t}t^{a-1}dt  (a > 0)
-   *  @f]
+   * @brief  Return the lower incomplete gamma function.
+   * The lower incomplete gamma function is defined by
+   * @f[
+   *   \gamma(a,x) = \int_0^x e^{-t}t^{a-1}dt  (a > 0)
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -2093,11 +2102,11 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *  @brief  Return the upper incomplete gamma function.
-   *  The lower incomplete gamma function is defined by
-   *  @f[
-   *    \Gamma(a,x) = \int_x^\infty e^{-t}t^{a-1}dt  (a > 0)
-   *  @f]
+   * @brief  Return the upper incomplete gamma function.
+   * The lower incomplete gamma function is defined by
+   * @f[
+   *   \Gamma(a,x) = \int_x^\infty e^{-t}t^{a-1}dt  (a > 0)
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -2125,21 +2134,21 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *  @brief  Return the logarithm of the (upper) Pochhammer symbol
-   *  or the rising factorial function.
-   *  The Pochammer symbol is defined by
-   *  @f[
-   *    (a)_n = \prod_{k=0}^{n-1} (a + k), (a)_0 = 1
-   *          = \Gamma(a + n) / \Gamma(n)
-   *  @f]
-   *  Thus this function returns
-   *  @f[
-   *    ln[(a)_n] = \Gamma(a + n) - \Gamma(n), ln[(a)_0] = 0
-   *  @f]
-   *  Many notations exist: @f[ a^{\overline{n}} @f],
-   *   @f[ \left[ \begin{array}{c}
-   *       a \\
-   *       n \end{array} \right] @f], and others.
+   * @brief  Return the logarithm of the (upper) Pochhammer symbol
+   * or the rising factorial function.
+   * The Pochammer symbol is defined by
+   * @f[
+   *   (a)_n = \prod_{k=0}^{n-1} (a + k), (a)_0 = 1
+   *	     = \Gamma(a + n) / \Gamma(n)
+   * @f]
+   * Thus this function returns
+   * @f[
+   *   ln[(a)_n] = \Gamma(a + n) - \Gamma(n), ln[(a)_0] = 0
+   * @f]
+   * Many notations exist: @f[ a^{\overline{n}} @f],
+   *  @f[ \left[ \begin{array}{c}
+   *	  a \\
+   *	  n \end{array} \right] @f], and others.
    */
   template<typename _Tp>
     _Tp
@@ -2155,17 +2164,17 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *  @brief  Return the (upper) Pochhammer function
-   *  or the rising factorial function.
-   *  The Pochammer symbol is defined by
-   *  @f[
-   *    (a)_n = \prod_{k=0}^{n-1} (a + k), (a)_0 = 1
-   *          = \Gamma(a + n) / \Gamma(n)
-   *  @f]
-   *  Many notations exist: @f[ a^{\overline{n}} @f],
-   *   @f[ \left[ \begin{array}{c}
-   *       a \\
-   *       n \end{array} \right] @f], and others.
+   * @brief  Return the (upper) Pochhammer function
+   * or the rising factorial function.
+   * The Pochammer symbol is defined by
+   * @f[
+   *   (a)_n = \prod_{k=0}^{n-1} (a + k), (a)_0 = 1
+   *	     = \Gamma(a + n) / \Gamma(n)
+   * @f]
+   * Many notations exist: @f[ a^{\overline{n}} @f],
+   *  @f[ \left[ \begin{array}{c}
+   *	  a \\
+   *	  n \end{array} \right] @f], and others.
    */
   template<typename _Tp>
     _Tp
@@ -2189,22 +2198,22 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *  @brief  Return the logarithm of the lower Pochhammer symbol
-   *  or the falling factorial function.
-   *  The lower Pochammer symbol is defined by
-   *  @f[
-   *    (a)_n = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1
-   *          = \Gamma(a + 1) / \Gamma(a - n + 1)
-   *  @f]
-   *  In particular, $f[ (n)_n = n! $f].
-   *  Thus this function returns
-   *  @f[
-   *    ln[(a)_n] = \Gamma(a + 1) - \Gamma(a - n + 1), ln[(a)_0] = 0
-   *  @f]
-   *  Many notations exist: @f[ a^{\underline{n}} @f],
-   *   @f[ \{ \begin{array}{c}
-   *       a \\
-   *       n \end{array} \} @f], and others.
+   * @brief  Return the logarithm of the lower Pochhammer symbol
+   * or the falling factorial function.
+   * The lower Pochammer symbol is defined by
+   * @f[
+   *   (a)_n = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1
+   *	     = \Gamma(a + 1) / \Gamma(a - n + 1)
+   * @f]
+   * In particular, $f[ (n)_n = n! $f].
+   * Thus this function returns
+   * @f[
+   *   ln[(a)_n] = \Gamma(a + 1) - \Gamma(a - n + 1), ln[(a)_0] = 0
+   * @f]
+   * Many notations exist: @f[ a^{\underline{n}} @f],
+   *  @f[ \{ \begin{array}{c}
+   *	  a \\
+   *	  n \end{array} \} @f], and others.
    */
   template<typename _Tp>
     _Tp
@@ -2220,14 +2229,14 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *  @brief  Return the logarithm of the lower Pochhammer symbol
-   *  or the falling factorial function.
-   *  The lower Pochammer symbol is defined by
-   *  @f[
-   *    (a)_n = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1
-   *          = \Gamma(a + 1) / \Gamma(a - n + 1)
-   *  @f]
-   *  In particular, $f[ (n)_n = n! $f].
+   * @brief  Return the logarithm of the lower Pochhammer symbol
+   * or the falling factorial function.
+   * The lower Pochammer symbol is defined by
+   * @f[
+   *   (a)_n = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1
+   *	     = \Gamma(a + 1) / \Gamma(a - n + 1)
+   * @f]
+   * In particular, $f[ (n)_n = n! $f].
    */
   template<typename _Tp>
     _Tp
@@ -2330,7 +2339,7 @@ _S_neg_double_factorial_table[999]
         {
 	  unsigned int __k = _S_num_harmonic_numer - 1;
 	  auto _H_k = _Tp(_S_harmonic_numer[__k]) / _Tp(_S_harmonic_denom[__k]);
-          for (__k = _S_num_harmonic_numer; __k <= __n; ++__k)
+	  for (__k = _S_num_harmonic_numer; __k <= __n; ++__k)
 	    _H_k += _Tp{1} / _Tp(__k);
 	  return _H_k;
 	}
@@ -2338,15 +2347,16 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *  @brief  Return the digamma function of integral argument.
-   *  The digamma or @f$ \psi(x) @f$ function is defined by
-   *  @f[
-   *    \psi(x) = \frac{\Gamma'(x)}{\Gamma(x)}
-   *  @f]
-   *  The digamma series for integral argument is given by:
-   *  @f[
-   *    \psi(n) = -\gamma_E + \sum_{k=1}^{\infty} \frac{1}{k}
-   *  @f]
+   * @brief  Return the digamma function of integral argument.
+   * The digamma or @f$ \psi(x) @f$ function is defined as the logarithmic
+   * derivative of the gamma function:
+   * @f[
+   *   \psi(x) = \frac{\Gamma'(x)}{\Gamma(x)}
+   * @f]
+   * The digamma series for integral argument is given by:
+   * @f[
+   *   \psi(n) = -\gamma_E + \sum_{k=1}^{\infty} \frac{1}{k}
+   * @f]
    * The latter sum is called the harmonic number, @f$ H_n @f$.
    */
   template<typename _Tp>
@@ -2358,17 +2368,17 @@ _S_neg_double_factorial_table[999]
     }
 
   /**
-   *  @brief  Return the digamma function by series expansion.
-   *  The digamma or @f$ \psi(x) @f$ function is defined by
-   *  @f[
-   *    \psi(x) = \frac{\Gamma'(x)}{\Gamma(x)}
-   *  @f]
+   * @brief  Return the digamma function by series expansion.
+   * The digamma or @f$ \psi(x) @f$ function is defined by
+   * @f[
+   *   \psi(x) = \frac{\Gamma'(x)}{\Gamma(x)}
+   * @f]
    *
-   *  The series is given by:
-   *  @f[
-   *    \psi(x) = -\gamma_E - \frac{1}{x}
-   *    	 \sum_{k=1}^{\infty} \frac{x - 1}{(k + 1)(x + k)}
-   *  @f]
+   * The series is given by:
+   * @f[
+   *   \psi(x) = -\gamma_E - \frac{1}{x}
+   *		\sum_{k=1}^{\infty} \frac{x - 1}{(k + 1)(x + k)}
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -2389,17 +2399,17 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *  @brief  Return the digamma function for large argument.
-   *  The digamma or @f$ \psi(x) @f$ function is defined by
-   *  @f[
-   *    \psi(x) = \frac{\Gamma'(x)}{\Gamma(x)}
-   *  @f]
+   * @brief  Return the digamma function for large argument.
+   * The digamma or @f$ \psi(x) @f$ function is defined by
+   * @f[
+   *   \psi(x) = \frac{\Gamma'(x)}{\Gamma(x)}
+   * @f]
    *
-   *  The asymptotic series is given by:
-   *  @f[
-   *    \psi(x) = \ln(x) - \frac{1}{2x}
-   *    	- \sum_{n=1}^{\infty} \frac{B_{2n}}{2 n x^{2n}}
-   *  @f]
+   * The asymptotic series is given by:
+   * @f[
+   *   \psi(x) = \ln(x) - \frac{1}{2x}
+   *	       - \sum_{n=1}^{\infty} \frac{B_{2n}}{2 n x^{2n}}
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -2422,15 +2432,15 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *  @brief  Return the digamma function.
-   *  The digamma or @f$ \psi(x) @f$ function is defined by
-   *  @f[
-   *    \psi(x) = \frac{\Gamma'(x)}{\Gamma(x)}
-   *  @f]
-   *  For negative argument the reflection formula is used:
-   *  @f[
-   *    \psi(x) = \psi(1-x) - \pi \cot(\pi x)
-   *  @f]
+   * @brief  Return the digamma function.
+   * The digamma or @f$ \psi(x) @f$ function is defined by
+   * @f[
+   *   \psi(x) = \frac{\Gamma'(x)}{\Gamma(x)}
+   * @f]
+   * For negative argument the reflection formula is used:
+   * @f[
+   *   \psi(x) = \psi(1-x) - \pi \cot(\pi x)
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -2490,12 +2500,12 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *  @brief  Return the polygamma function @f$ \psi^{(n)}(x) @f$.
+   * @brief  Return the polygamma function @f$ \psi^{(n)}(x) @f$.
    *
-   *  The polygamma function is related to the Hurwitz zeta function:
-   *  @f[
-   *    \psi^{(n)}(x) = (-1)^{n+1} m! \zeta(m+1,x)
-   *  @f]
+   * The polygamma function is related to the Hurwitz zeta function:
+   * @f[
+   *   \psi^{(n)}(x) = (-1)^{n+1} m! \zeta(m+1,x)
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -2517,12 +2527,12 @@ _S_neg_double_factorial_table[999]
     }
 
   /**
-   *  @brief  Return the factorial of the integer n.
+   * @brief  Return the factorial of the integer n.
    *
-   *  The factorial is:
-   *  @f[
-   *    n! = 1 2 ... (n-1) n, 0! = 1
-   *  @f]
+   * The factorial is:
+   * @f[
+   *   n! = 1 2 ... (n-1) n, 0! = 1
+   * @f]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
@@ -2535,12 +2545,12 @@ _S_neg_double_factorial_table[999]
     }
 
   /**
-   *  @brief  Return the logarithm of the factorial of the integer n.
+   * @brief  Return the logarithm of the factorial of the integer n.
    *
-   *  The factorial is:
-   *  @f[
-   *    n! = 1 2 ... (n-1) n, 0! = 1
-   *  @f]
+   * The factorial is:
+   * @f[
+   *   n! = 1 2 ... (n-1) n, 0! = 1
+   * @f]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
@@ -2564,22 +2574,22 @@ _S_neg_double_factorial_table[999]
     }
 
   /**
-   *  @brief  Return the double factorial of the integer n.
+   * @brief  Return the double factorial of the integer n.
    *
-   *  The double factorial is defined for integral n by:
-   *  @f[
-   *    n!! = 1 3 5 ... (n-2) n, n odd
-   *    n!! = 2 4 6 ... (n-2) n, n even
-   *    -1!! = 1
-   *    0!! = 1
-   *  @f]
-   *  The double factorial is defined for odd negative integers
-   *  in the obvious way:
-   *  @f[
-   *    (-2m - 1)!! = 1 / (1 (-1) (-3) ... (-2m + 1) (-2m - 1))
-   *        = \frac{(-1)^m}{(2m-1)!!}
-   *  @f]
-   *  for $f[ n = -2m - 1 $f].
+   * The double factorial is defined for integral n by:
+   * @f[
+   *   n!! = 1 3 5 ... (n-2) n, n odd
+   *   n!! = 2 4 6 ... (n-2) n, n even
+   *   -1!! = 1
+   *   0!! = 1
+   * @f]
+   * The double factorial is defined for odd negative integers
+   * in the obvious way:
+   * @f[
+   *   (-2m - 1)!! = 1 / (1 (-1) (-3) ... (-2m + 1) (-2m - 1))
+   *	   = \frac{(-1)^m}{(2m-1)!!}
+   * @f]
+   * for $f[ n = -2m - 1 $f].
    */
   // I must watch neg log double factorial.  Or do the log_t thing.
   template<typename _Tp>
@@ -2600,22 +2610,22 @@ _S_neg_double_factorial_table[999]
     }
 
   /**
-   *  @brief  Return the logarithm of the double factorial of the integer n.
+   * @brief  Return the logarithm of the double factorial of the integer n.
    *
-   *  The double factorial is defined for integral n by:
-   *  @f[
-   *    n!! = 1 3 5 ... (n-2) n, n odd
-   *    n!! = 2 4 6 ... (n-2) n, n even
-   *    -1!! = 1
-   *    0!! = 1
-   *  @f]
-   *  The double factorial is defined for odd negative integers
-   *  in the obvious way:
-   *  @f[
-   *    (-2m - 1)!! = 1 / (1 (-1) (-3) ... (-2m + 1) (-2m - 1))
-   *        = \frac{(-1)^m}{(2m-1)!!}
-   *  @f]
-   *  for $f[ n = -2m - 1 $f].
+   * The double factorial is defined for integral n by:
+   * @f[
+   *   n!! = 1 3 5 ... (n-2) n, n odd
+   *   n!! = 2 4 6 ... (n-2) n, n even
+   *   -1!! = 1
+   *   0!! = 1
+   * @f]
+   * The double factorial is defined for odd negative integers
+   * in the obvious way:
+   * @f[
+   *   (-2m - 1)!! = 1 / (1 (-1) (-3) ... (-2m + 1) (-2m - 1))
+   *	   = \frac{(-1)^m}{(2m-1)!!}
+   * @f]
+   * for $f[ n = -2m - 1 $f].
    */
   // I should do a signed version.  Or do the log_t thing.
   template<typename _Tp>

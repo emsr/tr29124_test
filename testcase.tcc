@@ -55,22 +55,36 @@ R"(// This can take long on simulators, timing out the test.
 #endif
 )";
 
-// This is in boost:
+/**
+ * Introspection class to detect if a type is std::complex.
+ */
 template<typename _Tp>
   struct is_complex : public std::false_type
   { };
 
+/**
+ * Introspection class to detect if a type is std::complex.
+ */
 template<>
   template<typename _Tp>
     struct is_complex<std::complex<_Tp>> : public std::true_type
     { };
 
+/**
+ * Introspection type to detect if a type is std::complex.
+ */
 template<typename _Tp>
   using is_complex_t = typename is_complex<_Tp>::type;
 
+/**
+ * Introspection variable template to detect if a type is std::complex.
+ */
 template<typename _Tp>
   constexpr bool is_complex_v = is_complex<_Tp>::value;
 
+/**
+ * A sane operator< for complex numbers.
+ */
 template<typename _Tp, typename _Up>
   constexpr bool
   operator<(const std::complex<_Tp>& __y, const std::complex<_Up>& __z)
@@ -83,6 +97,9 @@ template<typename _Tp, typename _Up>
       return __y.imag() < __z.imag();
   }
 
+/**
+ * A sane operator< for complex numbers.
+ */
 template<typename _Tp, typename _Up>
   constexpr bool
   operator<(const std::complex<_Tp>& __y, _Up __z)
@@ -95,6 +112,9 @@ template<typename _Tp, typename _Up>
       return __y.imag() < _Up{};
   }
 
+/**
+ * A sane operator< for complex numbers.
+ */
 template<typename _Tp, typename _Up>
   constexpr bool
   operator<(_Tp __y, const std::complex<_Up>& __z)
@@ -107,20 +127,77 @@ template<typename _Tp, typename _Up>
       return _Tp{} < __z.imag();
   }
 
+/**
+ * A sane operator> for complex numbers.
+ */
 template<typename _Tp, typename _Up>
   constexpr bool
   operator>(const std::complex<_Tp>& __y, const std::complex<_Up>& __z)
-  { return !operator<(__y, __z); }
+  { return operator<(__z, __y); }
 
+/**
+ * A sane operator> for complex numbers.
+ */
 template<typename _Tp, typename _Up>
   constexpr bool
   operator>(const std::complex<_Tp>& __y, _Up __z)
-  { return !operator<(__y, __z); }
+  { return operator<(__z, __y); }
 
+/**
+ * A sane operator> for complex numbers.
+ */
 template<typename _Tp, typename _Up>
   constexpr bool
   operator>(_Tp __y, const std::complex<_Up>& __z)
+  { return operator<(__z, __y); }
+
+/**
+ * A sane operator>= for complex numbers.
+ */
+template<typename _Tp, typename _Up>
+  constexpr bool
+  operator>=(const std::complex<_Tp>& __y, const std::complex<_Up>& __z)
   { return !operator<(__y, __z); }
+
+/**
+ * A sane operator>= for complex numbers.
+ */
+template<typename _Tp, typename _Up>
+  constexpr bool
+  operator>=(const std::complex<_Tp>& __y, _Up __z)
+  { return !operator<(__y, __z); }
+
+/**
+ * A sane operator>= for complex numbers.
+ */
+template<typename _Tp, typename _Up>
+  constexpr bool
+  operator>=(_Tp __y, const std::complex<_Up>& __z)
+  { return !operator<(__y, __z); }
+
+/**
+ * A sane operator<= for complex numbers.
+ */
+template<typename _Tp, typename _Up>
+  constexpr bool
+  operator<=(const std::complex<_Tp>& __y, const std::complex<_Up>& __z)
+  { return !operator>(__y, __z); }
+
+/**
+ * A sane operator<= for complex numbers.
+ */
+template<typename _Tp, typename _Up>
+  constexpr bool
+  operator<=(const std::complex<_Tp>& __y, _Up __z)
+  { return !operator>(__y, __z); }
+
+/**
+ * A sane operator<= for complex numbers.
+ */
+template<typename _Tp, typename _Up>
+  constexpr bool
+  operator<=(_Tp __y, const std::complex<_Up>& __z)
+  { return !operator>(__y, __z); }
 
 /**
  *  Incremental computation of statistics.
