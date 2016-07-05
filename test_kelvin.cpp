@@ -823,7 +823,8 @@ namespace __gnu_cxx
    * The Kelvin functions @f$ ber_\nu(x) @f$ and @f$ bei_\nu(x) @f$
    * are defined by:
    * @f[
-   *    J_\nu(\frac{x-ix}{\sqrt{2}}) = ber_\nu(x) + i bei_\nu(x)
+   *    J_\nu(\frac{x-ix}{\sqrt{2}}) = J_\nu(xe^{i3\pi/4})
+   *     = ber_\nu(x) + i bei_\nu(x)
    * @f]
    * where J_\nu(x) is the Bessel function of the first kind.
    *
@@ -865,7 +866,8 @@ namespace __gnu_cxx
    * The Kelvin functions @f$ bei_\nu(x) @f$ and @f$ bei_\nu(x) @f$
    * are defined by:
    * @f[
-   *    J_\nu(\frac{x-ix}{\sqrt{2}}) = ber_\nu(x) + i bei_\nu(x)
+   *    J_\nu(\frac{x-ix}{\sqrt{2}}) = J_\nu(xe^{i3\pi/4})
+   *     = ber_\nu(x) + i bei_\nu(x)
    * @f]
    * where J_\nu(x) is the Bessel function of the first kind.
    *
@@ -907,9 +909,10 @@ namespace __gnu_cxx
    * The Kelvin functions @f$ ker_\nu(x) @f$ and @f$ kei_\nu(x) @f$
    * are defined by:
    * @f[
-   *    J_\nu(\frac{x-ix}{\sqrt{2}}) = ker_\nu(x) + i kei_\nu(x)
+   *    K_\nu(\frac{x+ix}{\sqrt{2}}) = K_\nu(xe^{i\pi/4})
+   *     = ker_\nu(x) + i kei_\nu(x)
    * @f]
-   * where J_\nu(x) is the Bessel function of the first kind.
+   * where K_\nu(x) is the regular modified Bessel function.
    *
    * @tparam _Tp The real type of the argument
    * @param __nu The real order
@@ -949,9 +952,10 @@ namespace __gnu_cxx
    * The Kelvin functions @f$ kei_\nu(x) @f$ and @f$ kei_\nu(x) @f$
    * are defined by:
    * @f[
-   *    J_\nu(\frac{x-ix}{\sqrt{2}}) = ker_\nu(x) + i kei_\nu(x)
+   *    K_\nu(\frac{x+ix}{\sqrt{2}}) = K_\nu(xe^{i\pi/4})
+   *     = ker_\nu(x) + i kei_\nu(x)
    * @f]
-   * where J_\nu(x) is the Bessel function of the first kind.
+   * where K_\nu(x) is the regular modified Bessel function.
    *
    * @tparam _Tp The real type of the argument
    * @param __nu The real order
@@ -968,12 +972,12 @@ namespace __gnu_cxx
 } // namespace __gnu_cxx
 
 
-/*
- *
+/**
+ * Run Kelvin with individual sums: __kelvin_ber_series, etc.
  */
 template<typename _Tp>
   void
-  run_kelvin()
+  run_kelvin1()
   {
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
@@ -1015,8 +1019,8 @@ template<typename _Tp>
   }
 
 
-/*
- *
+/**
+ * Run Kelvin with __kelvin_series which combines sums.
  */
 template<typename _Tp>
   void
@@ -1059,8 +1063,8 @@ template<typename _Tp>
   }
 
 
-/*
- *
+/**
+ * Diff Kelvin __kelvin_asymp with __kelvin_series.
  */
 template<typename _Tp>
   void
@@ -1114,8 +1118,8 @@ template<typename _Tp>
   }
 
 
-/*
- *
+/**
+ * Run Kelvin with __kelvin_series(nu, x) which combines sums for general order.
  */
 template<typename _Tp>
   void
@@ -1156,8 +1160,8 @@ template<typename _Tp>
   }
 
 
-/*
- *
+/**
+ * Diff Kelvin __kelvin_asymp(nu, x) with __kelvin_series(nu, x) for general order.
  */
 template<typename _Tp>
   void
@@ -1199,8 +1203,8 @@ template<typename _Tp>
   }
 
 
-/*
- *
+/**
+ * Run Kelvin with __kelvin_series(n, x) which combines sums for integral order.
  */
 template<typename _Tp>
   void
@@ -1242,7 +1246,7 @@ template<typename _Tp>
 
 
 /**
- * 
+ * Plot the scaled Kelvin functions.
  */
 template<typename _Tp>
   void
@@ -1304,7 +1308,7 @@ template<typename _Tp>
 
 
 /**
- * 
+ * Plot the scaled Kelvin functions for orders 0, 1/2, 1, 3/2, 2, 5.
  */
 template<typename _Tp>
   void
