@@ -12,6 +12,11 @@ g++ -std=gnu++14 -g -Wall -Wextra -I. -o test_kelvin test_kelvin.cpp
 #include <bits/sf_gamma.tcc>
 #include <ext/math_util.h>
 
+namespace std
+{
+namespace __detail
+{
+
   /**
    * Data structure for Kelvin functions.
    */
@@ -104,7 +109,7 @@ g++ -std=gnu++14 -g -Wall -Wextra -I. -o test_kelvin test_kelvin.cpp
    * Return the Kelvin function @f$ ber(x) @f$ for real argument @c x.
    */
   template<typename _Tp>
-    _Tp
+    inline _Tp
     __kelvin_ber_series(_Tp __x)
     { return __kelvin_bex_series(__x, -1); }
 
@@ -113,7 +118,7 @@ g++ -std=gnu++14 -g -Wall -Wextra -I. -o test_kelvin test_kelvin.cpp
    * Return the Kelvin function @f$ bei(x) @f$ for real argument @c x.
    */
   template<typename _Tp>
-    _Tp
+    inline _Tp
     __kelvin_bei_series(_Tp __x)
     { return __x * __x * __kelvin_bex_series(__x, +1) / _Tp{4}; }
 
@@ -277,11 +282,41 @@ g++ -std=gnu++14 -g -Wall -Wextra -I. -o test_kelvin test_kelvin.cpp
       const auto __bfact = __exp / _S_sqrt_pi / __rt;
       const auto __bex = __bfact * __be() + _S_j * __kex / _S_pi;
       return _KelvinState<_Tp>{_Tp{0}, __x,
-			       __bfact * std::real(__bex),
-			       __bfact * std::imag(__bex),
-			       __kfact * std::real(__kex),
-			       __kfact * std::imag(__kex)};
+			       std::real(__bex), std::imag(__bex),
+			       std::real(__kex), std::imag(__kex)};
     }
+
+  /**
+   * Compute the Kelvin functions by asymptotic series expansion.
+   */
+  template<typename _Tp>
+    inline _Tp
+    __kelvin_ber_asymp(_Tp __x)
+    { return __kelvin_asymp(__x).__ber; }
+
+  /**
+   * Compute the Kelvin functions by asymptotic series expansion.
+   */
+  template<typename _Tp>
+    inline _Tp
+    __kelvin_bei_asymp(_Tp __x)
+    { return __kelvin_asymp(__x).__bei; }
+
+  /**
+   * Compute the Kelvin functions by asymptotic series expansion.
+   */
+  template<typename _Tp>
+    inline _Tp
+    __kelvin_ker_asymp(_Tp __x)
+    { return __kelvin_asymp(__x).__ker; }
+
+  /**
+   * Compute the Kelvin functions by asymptotic series expansion.
+   */
+  template<typename _Tp>
+    inline _Tp
+    __kelvin_kei_asymp(_Tp __x)
+    { return __kelvin_asymp(__x).__kei; }
 
 
   /**
@@ -312,7 +347,7 @@ g++ -std=gnu++14 -g -Wall -Wextra -I. -o test_kelvin test_kelvin.cpp
 
 	  __gnu_cxx::_BasicSum<std::complex<_Tp>> __be;
 	  auto __bterm = _Tp{1};
-	  auto __barg = _S_3pi_4 * __n;
+	  auto __barg = _S_3pi_4 * _Tp(__n);
 	  __be += std::polar(__bterm, __barg);
 	  for (auto __k = 1; __k < _S_maxiter; ++__k)
 	    {
@@ -328,7 +363,7 @@ g++ -std=gnu++14 -g -Wall -Wextra -I. -o test_kelvin test_kelvin.cpp
 	  if (__n > 0)
 	    {
 	      auto __kterm1 = _Tp{1};
-	      auto __karg1 = _S_3pi_4 * __n;
+	      auto __karg1 = _S_3pi_4 * _Tp(__n);
 	      __ke1 += std::polar(__kterm1, -__karg1);
 	      for (auto __k = 1; __k < __n - 1; ++__k)
 		{
@@ -339,17 +374,16 @@ g++ -std=gnu++14 -g -Wall -Wextra -I. -o test_kelvin test_kelvin.cpp
 		}
 	      if (__n > 1)
 		{
-		  __kterm1 *= __y / (__n - 1);
+		  __kterm1 *= __y / _Tp(__n - 1);
 		  __karg1 += _S_pi_2;
 		  __ke1 += std::polar(__kterm1, -__karg1);
 		}
 	    }
 
 	  __gnu_cxx::_BasicSum<std::complex<_Tp>> __ke2;
-	  auto __hsum2 = std::__detail::__psi<_Tp>(1)
-		       + std::__detail::__psi<_Tp>(1 + __n);
+	  auto __hsum2 = __psi<_Tp>(1) + __psi<_Tp>(1 + __n);
 	  auto __kterm2 = _Tp{1};
-	  auto __karg2 = _S_3pi_4 * __n;
+	  auto __karg2 = _S_3pi_4 * _Tp(__n);
 	  __ke2 += std::polar(__hsum2 * __kterm2, __karg2);
 	  for (auto __k = 1; __k < _S_maxiter; ++__k)
 	    {
@@ -361,12 +395,12 @@ g++ -std=gnu++14 -g -Wall -Wextra -I. -o test_kelvin test_kelvin.cpp
 		break;
 	    }
 
-	  const auto __nfact = std::__detail::__factorial<_Tp>(__n);
-	  const auto __pow = std::pow(__xd2, __n);
+	  const auto __nfact = __factorial<_Tp>(__n);
+	  const auto __pow = std::pow(__xd2, _Tp(__n));
 	  auto __bex = __pow * __be() / __nfact;
 	  auto __kex = -std::log(__xd2) * __bex - _S_j * _S_pi_4 * __bex
 		+ __ke1() / __pow / _Tp{2}
-		  / (__n > 0 ? std::__detail::__factorial<_Tp>(__n - 1) : 1)
+		  / (__n > 0 ? __factorial<_Tp>(__n - 1) : _Tp{1})
 		+ __pow * __ke2() / __nfact / _Tp{2}
 		- _Tp{1}; // I needed this for ker(x) too.
 	  return _KelvinState<_Tp>{_Tp(__n), __x,
@@ -490,11 +524,448 @@ g++ -std=gnu++14 -g -Wall -Wextra -I. -o test_kelvin test_kelvin.cpp
       const auto __bfact = __exp / _S_sqrt_pi / __rt;
       const auto __bex = __bfact * __be() + _S_j * __kex / _S_pi;
       return _KelvinState<_Tp>{__nu, __x,
-			       __bfact * std::real(__bex),
-			       __bfact * std::imag(__bex),
-			       __kfact * std::real(__kex),
-			       -__kfact * std::imag(__kex)};
+			       std::real(__bex), std::imag(__bex),
+			       std::real(__kex), -std::imag(__kex)};
     }
+
+  /**
+   * Compute the Kelvin function @f$ ber(x)@f$.
+   */
+  template<typename _Tp>
+    inline _Tp
+    __kelvin_ber(_Tp __x)
+    {
+      if (std::abs(__x) < _Tp{26})
+	return __kelvin_ber_series(__x);
+      else
+	return __kelvin_ber_asymp(__x);
+    }
+
+  /**
+   * Compute the Kelvin function @f$ bei(x)@f$.
+   */
+  template<typename _Tp>
+    inline _Tp
+    __kelvin_bei(_Tp __x)
+    {
+      if (std::abs(__x) < _Tp{26})
+	return __kelvin_bei_series(__x);
+      else
+	return __kelvin_bei_asymp(__x);
+    }
+
+  /**
+   * Compute the Kelvin function @f$ ker(x)@f$.
+   */
+  template<typename _Tp>
+    inline _Tp
+    __kelvin_ker(_Tp __x)
+    {
+      if (std::abs(__x) < _Tp{5})
+	return __kelvin_ker_series(__x);
+      else
+	return __kelvin_ker_asymp(__x);
+    }
+
+  /**
+   * Compute the Kelvin function @f$ kei(x)@f$.
+   */
+  template<typename _Tp>
+    inline _Tp
+    __kelvin_kei(_Tp __x)
+    {
+      if (std::abs(__x) < _Tp{5})
+	return __kelvin_kei_series(__x);
+      else
+	return __kelvin_kei_asymp(__x);
+    }
+
+  /**
+   * Compute the Kelvin function @f$ ber_\nu(x)@f$.
+   */
+  template<typename _Tp>
+    inline _Tp
+    __kelvin_ber(_Tp __nu, _Tp __x)
+    {
+      if (std::abs(__x) < _Tp{26})
+	return __kelvin_series(__nu, __x).__ber;
+      else
+	return __kelvin_asymp(__nu, __x).__ber;
+    }
+
+  /**
+   * Compute the Kelvin function @f$ bei_\nu(x)@f$.
+   */
+  template<typename _Tp>
+    inline _Tp
+    __kelvin_bei(_Tp __nu, _Tp __x)
+    {
+      if (std::abs(__x) < _Tp{26})
+	return __kelvin_series(__nu, __x).__bei;
+      else
+	return __kelvin_asymp(__nu, __x).__bei;
+    }
+
+  /**
+   * Compute the Kelvin function @f$ ker_\nu(x)@f$.
+   */
+  template<typename _Tp>
+    inline _Tp
+    __kelvin_ker(_Tp __nu, _Tp __x)
+    {
+      if (std::abs(__x) < _Tp{5})
+	return __kelvin_series(__nu, __x).__ker;
+      else
+	return __kelvin_asymp(__nu, __x).__ker;
+    }
+
+  /**
+   * Compute the Kelvin function @f$ kei_\nu(x)@f$.
+   */
+  template<typename _Tp>
+    inline _Tp
+    __kelvin_kei(_Tp __nu, _Tp __x)
+    {
+      if (std::abs(__x) < _Tp{5})
+	return __kelvin_series(__nu, __x).__kei;
+      else
+	return __kelvin_asymp(__nu, __x).__kei;
+    }
+
+} // namespace __detail
+} // namespace std
+
+namespace __gnu_cxx
+{
+
+
+  //  Kelvin functions
+
+  /**
+   * Return the Kelvin function @f$ ber(x) @f$ for @c float argument @c x.
+   *
+   * @see kelvin_ber for details.
+   */
+  inline float
+  kelvin_berf(float __x)
+  { return std::__detail::__kelvin_ber<float>(__x); }
+
+  /**
+   * Return the Kelvin function @f$ ber(x) @f$
+   * for <tt>long double</tt> argument @c x.
+   *
+   * @see kelvin_ber for details.
+   */
+  inline long double
+  kelvin_berl(long double __x)
+  { return std::__detail::__kelvin_ber<long double>(__x); }
+
+  /**
+   * Return the Kelvin function @f$ ber(x) @f$ for @c real argument @c x.
+   *
+   * Kelvin integrals @f$ ber(x) @f$ and @f$ bei(x) @f$ are given by
+   * \f[
+   *   J_0(\frac{x-ix}{\sqrt{2}}) = ber(x) + i bei(x)
+   * \f]
+   * where @f$ J_0(x) @f$ is the Bessel function of the first kind.
+   *
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __x  The argument of the Kelvin function
+   */
+  template<typename _Tp>
+    inline typename __gnu_cxx::__promote<_Tp>::__type
+    kelvin_ber(_Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      return std::__detail::__kelvin_ber<__type>(__x);
+    }
+
+  /**
+   * Return the Kelvin function @f$ bei(x) @f$ for @c float argument @c x.
+   *
+   * @see kelvin_bei for details.
+   */
+  inline float
+  kelvin_beif(float __x)
+  { return std::__detail::__kelvin_bei<float>(__x); }
+
+  /**
+   * Return the Kelvin function @f$ bei(x) @f$
+   * for <tt>long double</tt> argument @c x.
+   *
+   * @see kelvin_bei for details.
+   */
+  inline long double
+  kelvin_beil(long double __x)
+  { return std::__detail::__kelvin_bei<long double>(__x); }
+
+  /**
+   * Return the Kelvin function @f$ bei(x) @f$ for @c real argument @c x.
+   *
+   * Kelvin integrals @f$ bei(x) @f$ and @f$ bei(x) @f$ are given by
+   * \f[
+   *   J_0(\frac{x-ix}{\sqrt{2}}) = ber(x) + i bei(x)
+   * \f]
+   * where @f$ J_0(x) @f$ is the Bessel function of the first kind.
+   *
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __x  The argument of the Kelvin function
+   */
+  template<typename _Tp>
+    inline typename __gnu_cxx::__promote<_Tp>::__type
+    kelvin_bei(_Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      return std::__detail::__kelvin_bei<__type>(__x);
+    }
+
+  /**
+   * Return the Kelvin function @f$ ker(x) @f$ for @c float argument @c x.
+   *
+   * @see kelvin_ker for details.
+   */
+  inline float
+  kelvin_kerf(float __x)
+  { return std::__detail::__kelvin_ker<float>(__x); }
+
+  /**
+   * Return the Kelvin function @f$ ker(x) @f$
+   * for <tt>long double</tt> argument @c x.
+   *
+   * @see kelvin_ker for details.
+   */
+  inline long double
+  kelvin_kerl(long double __x)
+  { return std::__detail::__kelvin_ker<long double>(__x); }
+
+  /**
+   * Return the Kelvin function @f$ ker(x) @f$ for @c real argument @c x.
+   *
+   * Kelvin integrals @f$ ker(x) @f$ and @f$ kei(x) @f$ are given by
+   * \f[
+   *   J_0(\frac{x-ix}{\sqrt{2}}) = ker(x) + i kei(x)
+   * \f]
+   * where @f$ J_0(x) @f$ is the Bessel function of the first kind.
+   *
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __x  The argument of the Kelvin function
+   */
+  template<typename _Tp>
+    inline typename __gnu_cxx::__promote<_Tp>::__type
+    kelvin_ker(_Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      return std::__detail::__kelvin_ker<__type>(__x);
+    }
+
+  /**
+   * Return the Kelvin function @f$ kei(x) @f$ for @c float argument @c x.
+   *
+   * @see kelvin_kei for details.
+   */
+  inline float
+  kelvin_keif(float __x)
+  { return std::__detail::__kelvin_kei<float>(__x); }
+
+  /**
+   * Return the Kelvin function @f$ kei(x) @f$
+   * for <tt>long double</tt> argument @c x.
+   *
+   * @see kelvin_kei for details.
+   */
+  inline long double
+  kelvin_keil(long double __x)
+  { return std::__detail::__kelvin_kei<long double>(__x); }
+
+  /**
+   * Return the Kelvin function @f$ kei(x) @f$ for @c real argument @c x.
+   *
+   * Kelvin integrals @f$ kei(x) @f$ and @f$ kei(x) @f$ are given by
+   * \f[
+   *   J_0(\frac{x-ix}{\sqrt{2}}) = ker(x) + i kei(x)
+   * \f]
+   * where @f$ J_0(x) @f$ is the Bessel function of the first kind.
+   *
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __x  The argument of the Kelvin function
+   */
+  template<typename _Tp>
+    inline typename __gnu_cxx::__promote<_Tp>::__type
+    kelvin_kei(_Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      return std::__detail::__kelvin_kei<__type>(__x);
+    }
+
+  /**
+   * Return the Kelvin function @f$ ber_\nu(x) @f$ for float
+   * order @f$ \nu @f$ and argument @c x.
+   *
+   * @see kelvin_ber for details.
+   */
+  inline float
+  kelvin_berf(float __nu, float __x)
+  { return std::__detail::__kelvin_ber<float>(__nu, __x); }
+
+  /**
+   * Return the Kelvin function @f$ ber_\nu(x) @f$ for <tt>long double</tt>
+   * order @f$ \nu @f$ and argument @c x.
+   *
+   * @see kelvin_ber for details.
+   */
+  inline long double
+  kelvin_berl(long double __nu, long double __x)
+  { return std::__detail::__kelvin_ber<long double>(__nu, __x); }
+
+  /**
+   * Return the Kelvin function @f$ ber_\nu(x) @f$ of real
+   * order @f$ \nu @f$ and argument @f$ x @f$.
+   * The Kelvin functions @f$ ber_\nu(x) @f$ and @f$ bei_\nu(x) @f$
+   * are defined by:
+   * @f[
+   *    J_\nu(\frac{x-ix}{\sqrt{2}}) = ber_\nu(x) + i bei_\nu(x)
+   * @f]
+   * where J_\nu(x) is the Bessel function of the first kind.
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __nu The real order
+   * @param __x The real argument
+   */
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    kelvin_ber(_Tp __nu, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__kelvin_ber<__type>(__nu, __x);
+    }
+
+  /**
+   * Return the Kelvin function @f$ bei_\nu(x) @f$ for float
+   * order @f$ \nu @f$ and argument @c x.
+   *
+   * @see kelvin_bei for details.
+   */
+  inline float
+  kelvin_beif(float __nu, float __x)
+  { return std::__detail::__kelvin_bei<float>(__nu, __x); }
+
+  /**
+   * Return the Kelvin function @f$ bei_\nu(x) @f$ for <tt>long double</tt>
+   * order @f$ \nu @f$ and argument @c x.
+   *
+   * @see kelvin_bei for details.
+   */
+  inline long double
+  kelvin_beil(long double __nu, long double __x)
+  { return std::__detail::__kelvin_bei<long double>(__nu, __x); }
+
+  /**
+   * Return the Kelvin function @f$ bei_\nu(x) @f$ of real
+   * order @f$ \nu @f$ and argument @f$ x @f$.
+   * The Kelvin functions @f$ bei_\nu(x) @f$ and @f$ bei_\nu(x) @f$
+   * are defined by:
+   * @f[
+   *    J_\nu(\frac{x-ix}{\sqrt{2}}) = ber_\nu(x) + i bei_\nu(x)
+   * @f]
+   * where J_\nu(x) is the Bessel function of the first kind.
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __nu The real order
+   * @param __x The real argument
+   */
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    kelvin_bei(_Tp __nu, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__kelvin_bei<__type>(__nu, __x);
+    }
+
+  /**
+   * Return the Kelvin function @f$ ker_\nu(x) @f$ for float
+   * order @f$ \nu @f$ and argument @c x.
+   *
+   * @see kelvin_ker for details.
+   */
+  inline float
+  kelvin_kerf(float __nu, float __x)
+  { return std::__detail::__kelvin_ker<float>(__nu, __x); }
+
+  /**
+   * Return the Kelvin function @f$ ker_\nu(x) @f$ for <tt>long double</tt>
+   * order @f$ \nu @f$ and argument @c x.
+   *
+   * @see kelvin_ker for details.
+   */
+  inline long double
+  kelvin_kerl(long double __nu, long double __x)
+  { return std::__detail::__kelvin_ker<long double>(__nu, __x); }
+
+  /**
+   * Return the Kelvin function @f$ ker_\nu(x) @f$ of real
+   * order @f$ \nu @f$ and argument @f$ x @f$.
+   * The Kelvin functions @f$ ker_\nu(x) @f$ and @f$ kei_\nu(x) @f$
+   * are defined by:
+   * @f[
+   *    J_\nu(\frac{x-ix}{\sqrt{2}}) = ker_\nu(x) + i kei_\nu(x)
+   * @f]
+   * where J_\nu(x) is the Bessel function of the first kind.
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __nu The real order
+   * @param __x The real argument
+   */
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    kelvin_ker(_Tp __nu, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__kelvin_ker<__type>(__nu, __x);
+    }
+
+  /**
+   * Return the Kelvin function @f$ kei_\nu(x) @f$ for float
+   * order @f$ \nu @f$ and argument @c x.
+   *
+   * @see kelvin_kei for details.
+   */
+  inline float
+  kelvin_keif(float __nu, float __x)
+  { return std::__detail::__kelvin_kei<float>(__nu, __x); }
+
+  /**
+   * Return the Kelvin function @f$ kei_\nu(x) @f$ for <tt>long double</tt>
+   * order @f$ \nu @f$ and argument @c x.
+   *
+   * @see kelvin_kei for details.
+   */
+  inline long double
+  kelvin_keil(long double __nu, long double __x)
+  { return std::__detail::__kelvin_kei<long double>(__nu, __x); }
+
+  /**
+   * Return the Kelvin function @f$ kei_\nu(x) @f$ of real
+   * order @f$ \nu @f$ and argument @f$ x @f$.
+   * The Kelvin functions @f$ kei_\nu(x) @f$ and @f$ kei_\nu(x) @f$
+   * are defined by:
+   * @f[
+   *    J_\nu(\frac{x-ix}{\sqrt{2}}) = ker_\nu(x) + i kei_\nu(x)
+   * @f]
+   * where J_\nu(x) is the Bessel function of the first kind.
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __nu The real order
+   * @param __x The real argument
+   */
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_num_t<_Tp>
+    kelvin_kei(_Tp __nu, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      return std::__detail::__kelvin_kei<__type>(__nu, __x);
+    }
+
+} // namespace __gnu_cxx
 
 
 /*
@@ -508,7 +979,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    __kelvin_ber_series(_Tp{});
+    std::__detail::__kelvin_ber_series(_Tp{});
 
     std::cout << "\n\nPrint Kelvin functions computed by series expansions\n";
     std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
@@ -529,10 +1000,10 @@ template<typename _Tp>
     for (int i = 0; i <= 200; ++i)
       {
 	auto x = _Tp(0.1L) * i;
-	auto ber = __kelvin_ber_series(x);
-	auto bei = __kelvin_bei_series(x);
-	auto ker = __kelvin_ker_series(x);
-	auto kei = __kelvin_kei_series(x);
+	auto ber = std::__detail::__kelvin_ber_series(x);
+	auto bei = std::__detail::__kelvin_bei_series(x);
+	auto ker = std::__detail::__kelvin_ker_series(x);
+	auto kei = std::__detail::__kelvin_kei_series(x);
 	std::cout << std::setw(width) << x
 		  << std::setw(width) << ber
 		  << std::setw(width) << bei
@@ -555,7 +1026,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    __kelvin_series(_Tp{});
+    std::__detail::__kelvin_series(_Tp{});
 
     std::cout << "\n\nPrint Kelvin functions computed by series expansions\n";
     std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
@@ -576,7 +1047,7 @@ template<typename _Tp>
     for (int i = 0; i <= 200; ++i)
       {
 	auto x = _Tp(0.1L) * i;
-	auto ke = __kelvin_series(x);
+	auto ke = std::__detail::__kelvin_series(x);
 	std::cout << std::setw(width) << ke.__x
 		  << std::setw(width) << ke.__ber
 		  << std::setw(width) << ke.__bei
@@ -623,11 +1094,11 @@ template<typename _Tp>
 	      << "  " << std::setw(width) << "============="
 	      << "  " << std::setw(width) << "============="
 	      << '\n';
-    for (int i = 200; i <= 400; ++i)
+    for (int i = 50; i <= 400; ++i)
       {
 	auto x = _Tp(0.1L) * i;
-	auto kes = __kelvin_series(x);
-	auto kea = __kelvin_asymp(x);
+	auto kes = std::__detail::__kelvin_series(x);
+	auto kea = std::__detail::__kelvin_asymp(x);
 	std::cout << "  " << std::setw(width) << kes.__x
 		  << "  " << std::setw(width) << kea.__ber
 		  << "  " << std::setw(width) << kes.__ber
@@ -673,7 +1144,7 @@ template<typename _Tp>
     for (int i = 0; i <= 200; ++i)
       {
 	auto x = _Tp(0.1L) * i;
-	auto ke = __kelvin_series(nu, x);
+	auto ke = std::__detail::__kelvin_series(nu, x);
 	std::cout << std::setw(width) << ke.__x
 		  << std::setw(width) << ke.__ber
 		  << std::setw(width) << ke.__bei
@@ -712,11 +1183,11 @@ template<typename _Tp>
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
-    for (int i = 200; i <= 400; ++i)
+    for (int i = 50; i <= 400; ++i)
       {
 	auto x = _Tp(0.1L) * i;
-	auto kes = __kelvin_series(nu, x);
-	auto kea = __kelvin_asymp(nu, x);
+	auto kes = std::__detail::__kelvin_series(nu, x);
+	auto kea = std::__detail::__kelvin_asymp(nu, x);
 	std::cout << "  " << std::setw(width) << kes.__x
 		  << "  " << std::setw(width) << (kea.__ber - kes.__ber) / std::abs(kes.__ber)
 		  << "  " << std::setw(width) << (kea.__bei - kes.__bei) / std::abs(kes.__bei)
@@ -758,7 +1229,7 @@ template<typename _Tp>
     for (int i = 0; i <= 200; ++i)
       {
 	auto x = _Tp(0.1L) * i;
-	auto ke = __kelvin_series(n, x);
+	auto ke = std::__detail::__kelvin_series(n, x);
 	std::cout << std::setw(width) << ke.__x
 		  << std::setw(width) << ke.__ber
 		  << std::setw(width) << ke.__bei
@@ -805,7 +1276,7 @@ template<typename _Tp>
     for (int i = 0; i <= +2000; ++i)
       {
 	auto x = _Tp(0.01Q * i);
-	auto kv = __kelvin_series(x);
+	auto kv = std::__detail::__kelvin_series(x);
 	auto exf = std::exp(x / _S_sqrt_2);
 	auto rt2x = _S_sqrt_2 * std::sqrt(x);
 	data << std::setw(width) << kv.__x
@@ -818,14 +1289,14 @@ template<typename _Tp>
     for (int i = 2001; i <= +4000; ++i)
       {
 	auto x = _Tp(0.01Q * i);
-	auto kv = __kelvin_asymp(x);
+	auto kv = std::__detail::__kelvin_asymp(x);
 	auto exf = std::exp(x / _S_sqrt_2);
 	auto rt2x = _S_sqrt_2 * std::sqrt(x);
 	data << std::setw(width) << kv.__x
-	     << std::setw(width) << _S_sqrt_pi * _S_sqrt_pi * rt2x * rt2x * kv.__ber / exf / exf
-	     << std::setw(width) << _S_sqrt_pi * _S_sqrt_pi * rt2x * rt2x * kv.__bei / exf / exf
-	     << std::setw(width) << rt2x * rt2x * exf * exf * kv.__ker / _S_sqrt_pi / _S_sqrt_pi
-	     << std::setw(width) << rt2x * rt2x * exf * exf * kv.__kei / _S_sqrt_pi / _S_sqrt_pi
+	     << std::setw(width) << _S_sqrt_pi * rt2x * kv.__ber / exf
+	     << std::setw(width) << _S_sqrt_pi * rt2x * kv.__bei / exf
+	     << std::setw(width) << rt2x * exf * kv.__ker / _S_sqrt_pi
+	     << std::setw(width) << rt2x * exf * kv.__kei / _S_sqrt_pi
 	     << '\n';
       }
     data << "\n\n";
@@ -871,7 +1342,7 @@ template<typename _Tp>
 	for (int i = 0; i <= 2000; ++i)
 	  {
 	    auto x = _Tp(0.01Q * i);
-	    auto kv = __kelvin_series(nu, x);
+	    auto kv = std::__detail::__kelvin_series(nu, x);
 	    auto exf = std::exp(x / _S_sqrt_2);
 	    auto rt2x = _S_sqrt_2 * std::sqrt(x);
 	    data << std::setw(width) << kv.__x
@@ -884,14 +1355,14 @@ template<typename _Tp>
 	for (int i = 2001; i <= 4000; ++i)
 	  {
 	    auto x = _Tp(0.01Q * i);
-	    auto kv = __kelvin_asymp(nu, x);
+	    auto kv = std::__detail::__kelvin_asymp(nu, x);
 	    auto exf = std::exp(x / _S_sqrt_2);
 	    auto rt2x = _S_sqrt_2 * std::sqrt(x);
 	    data << std::setw(width) << kv.__x
-		 << std::setw(width) << _S_sqrt_pi * _S_sqrt_pi * rt2x * rt2x * kv.__ber / exf / exf
-		 << std::setw(width) << _S_sqrt_pi * _S_sqrt_pi * rt2x * rt2x * kv.__bei / exf / exf
-		 << std::setw(width) << rt2x * rt2x * exf * exf * kv.__ker / _S_sqrt_pi / _S_sqrt_pi
-		 << std::setw(width) << rt2x * rt2x * exf * exf * kv.__kei / _S_sqrt_pi / _S_sqrt_pi
+		 << std::setw(width) << _S_sqrt_pi * rt2x * kv.__ber / exf
+		 << std::setw(width) << _S_sqrt_pi * rt2x * kv.__bei / exf
+		 << std::setw(width) << rt2x * exf * kv.__ker / _S_sqrt_pi
+		 << std::setw(width) << rt2x * exf * kv.__kei / _S_sqrt_pi
 		 << '\n';
 	  }
 	data << "\n\n";
