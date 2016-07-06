@@ -1380,7 +1380,7 @@ main()
   run_kelvin4<long double>();
   run_kelvin3<long double>();
   run_kelvin2<long double>();
-  run_kelvin<long double>();
+  run_kelvin1<long double>();
   plot_kelvin<double>("plot/kelvin_double.txt");
   plot_kelvin_order<double>("plot/kelvin_order_double.txt");
   diff_kelvin2<long double>();
