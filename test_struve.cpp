@@ -6,7 +6,7 @@ g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -Wall -Wextra -o test_
 ./test_struve > test_struve.txt
 */
 
-#include <cmath> // There are issues with <complex> inclusion if this isn't uphere!
+#include <cmath> // There are issues with <complex> inclusion if this isn't up here!
 #include <limits>
 #include <iostream>
 #include <fstream>
@@ -26,8 +26,9 @@ namespace __detail
 {
 
   /**
-   * Return either the Struve function of the first kind @f$ \boldmath{H}_\nu(x) @f$
-   * or the modified Struve function of the first kind @f$ \boldmath{L}_\nu(x) @f$
+   * Return either the Struve function of the first kind
+   * @f$ \boldmath{H}_\nu(x) @f$ or the modified Struve function
+   * of the first kind @f$ \boldmath{L}_\nu(x) @f$
    * depending on whether @c sign is -1 or +1 respectively.
    */
   template<typename _Tp>
@@ -60,8 +61,9 @@ namespace __detail
     }
 
   /**
-   * Return either the Struve function of the second kind @f$ \boldmath{K}_\nu(x) @f$
-   * or the modified Struve function of the second kind @f$ \boldmath{M}_\nu(x) @f$
+   * Return either the Struve function of the second kind
+   * @f$ \boldmath{K}_\nu(x) @f$ or the modified Struve function
+   * of the second kind @f$ \boldmath{M}_\nu(x) @f$
    * depending on whether @c sign is +1 or -1 respectively.
    */
   template<typename _Tp>
@@ -95,7 +97,8 @@ namespace __detail
     }
 
   /**
-   * Return the Struve function of the first kind @f$ \boldmath{H}_\nu(x) @f$.
+   * Return the Struve function of the first kind
+   * @f$ \boldmath{H}_\nu(x) @f$.
    */
   template<typename _Tp>
     _Tp
@@ -119,7 +122,8 @@ namespace __detail
     }
 
   /**
-   * Return the modified Struve function of the first kind @f$ \boldmath{L}_\nu(x) @f$.
+   * Return the Struve function of the second kind
+   * @f$ \boldmath{K}_\nu(x) @f$.
    */
   template<typename _Tp>
     _Tp
@@ -143,7 +147,8 @@ namespace __detail
     }
 
   /**
-   * Return the modified Struve function of the first kind @f$ \boldmath{L}_\nu(x) @f$.
+   * Return the modified Struve function of the first kind
+   * @f$ \boldmath{L}_\nu(x) @f$.
    */
   template<typename _Tp>
     _Tp
@@ -167,7 +172,8 @@ namespace __detail
     }
 
   /**
-   * Return the modified Struve function of the second kind @f$ \boldmath{M}_\nu(x) @f$.
+   * Return the modified Struve function of the second kind
+   * @f$ \boldmath{M}_\nu(x) @f$.
    */
   template<typename _Tp>
     _Tp
@@ -383,6 +389,9 @@ namespace __gnu_cxx
 } // namespace __gnu_cxx
 
 
+/**
+ * Take a hard look at the series/asymptotic transition.
+ */
 template<typename _Tp>
   void
   test_struve_transition()
@@ -413,8 +422,9 @@ template<typename _Tp>
     std::cout << "\n\n";
   }
 
+
 /**
- * 
+ * Plot the Struve functions.
  */
 template<typename _Tp>
   void
@@ -469,6 +479,7 @@ template<typename _Tp>
       }
     data << "\n\n";
   }
+
 
 int
 main()
