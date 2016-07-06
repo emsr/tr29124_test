@@ -535,7 +535,9 @@ namespace __detail
     inline _Tp
     __kelvin_ber(_Tp __x)
     {
-      if (std::abs(__x) < _Tp{26})
+      if (__isnan(__x))
+	return __gnu_cxx::__quiet_NaN<_Tp>();
+      else if (std::abs(__x) < _Tp{26})
 	return __kelvin_ber_series(__x);
       else
 	return __kelvin_ber_asymp(__x);
@@ -548,7 +550,9 @@ namespace __detail
     inline _Tp
     __kelvin_bei(_Tp __x)
     {
-      if (std::abs(__x) < _Tp{26})
+      if (__isnan(__x))
+	return __gnu_cxx::__quiet_NaN<_Tp>();
+      else if (std::abs(__x) < _Tp{26})
 	return __kelvin_bei_series(__x);
       else
 	return __kelvin_bei_asymp(__x);
@@ -561,7 +565,9 @@ namespace __detail
     inline _Tp
     __kelvin_ker(_Tp __x)
     {
-      if (std::abs(__x) < _Tp{5})
+      if (__isnan(__x))
+	return __gnu_cxx::__quiet_NaN<_Tp>();
+      else if (std::abs(__x) < _Tp{5})
 	return __kelvin_ker_series(__x);
       else
 	return __kelvin_ker_asymp(__x);
@@ -574,7 +580,9 @@ namespace __detail
     inline _Tp
     __kelvin_kei(_Tp __x)
     {
-      if (std::abs(__x) < _Tp{5})
+      if (__isnan(__x))
+	return __gnu_cxx::__quiet_NaN<_Tp>();
+      else if (std::abs(__x) < _Tp{5})
 	return __kelvin_kei_series(__x);
       else
 	return __kelvin_kei_asymp(__x);
@@ -587,7 +595,9 @@ namespace __detail
     inline _Tp
     __kelvin_ber(_Tp __nu, _Tp __x)
     {
-      if (std::abs(__x) < _Tp{26})
+      if (__isnan(__nu) || __isnan(__x))
+	return __gnu_cxx::__quiet_NaN<_Tp>();
+      else if (std::abs(__x) < _Tp{26})
 	return __kelvin_series(__nu, __x).__ber;
       else
 	return __kelvin_asymp(__nu, __x).__ber;
@@ -600,7 +610,9 @@ namespace __detail
     inline _Tp
     __kelvin_bei(_Tp __nu, _Tp __x)
     {
-      if (std::abs(__x) < _Tp{26})
+      if (__isnan(__nu) || __isnan(__x))
+	return __gnu_cxx::__quiet_NaN<_Tp>();
+      else if (std::abs(__x) < _Tp{26})
 	return __kelvin_series(__nu, __x).__bei;
       else
 	return __kelvin_asymp(__nu, __x).__bei;
@@ -613,7 +625,9 @@ namespace __detail
     inline _Tp
     __kelvin_ker(_Tp __nu, _Tp __x)
     {
-      if (std::abs(__x) < _Tp{5})
+      if (__isnan(__nu) || __isnan(__x))
+	return __gnu_cxx::__quiet_NaN<_Tp>();
+      else if (std::abs(__x) < _Tp{5})
 	return __kelvin_series(__nu, __x).__ker;
       else
 	return __kelvin_asymp(__nu, __x).__ker;
@@ -626,7 +640,9 @@ namespace __detail
     inline _Tp
     __kelvin_kei(_Tp __nu, _Tp __x)
     {
-      if (std::abs(__x) < _Tp{5})
+      if (__isnan(__nu) || __isnan(__x))
+	return __gnu_cxx::__quiet_NaN<_Tp>();
+      else if (std::abs(__x) < _Tp{5})
 	return __kelvin_series(__nu, __x).__kei;
       else
 	return __kelvin_asymp(__nu, __x).__kei;
