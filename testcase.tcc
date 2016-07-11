@@ -283,110 +283,110 @@ template<typename Tp>
 template<typename Tp>
   struct type_strings
   {
-    static const std::string
+    static const std::experimental::string_view
     type()
-    { return std::string(""); }
+    { return std::experimental::string_view(""); }
 
-    static const std::string
+    static const std::experimental::string_view
     suffix()
-    { return std::string(""); }
+    { return std::experimental::string_view(""); }
   };
 
 template<>
   struct type_strings<float>
   {
-    static const std::string
+    static const std::experimental::string_view
     type()
     { return std::string("float"); }
 
-    static const std::string
+    static const std::experimental::string_view
     suffix()
-    { return std::string("F"); }
+    { return std::experimental::string_view("F"); }
   };
 
 template<>
   struct type_strings<double>
   {
-    static const std::string
+    static const std::experimental::string_view
     type()
-    { return std::string("double"); }
+    { return std::experimental::string_view("double"); }
 
-    static const std::string
+    static const std::experimental::string_view
     suffix()
-    { return std::string(""); }
+    { return std::experimental::string_view(""); }
   };
 
 template<>
   struct type_strings<long double>
   {
-    static const std::string
+    static const std::experimental::string_view
     type()
-    { return std::string("long double"); }
+    { return std::experimental::string_view("long double"); }
 
-    static const std::string
+    static const std::experimental::string_view
     suffix()
-    { return std::string("L"); }
+    { return std::experimental::string_view("L"); }
   };
 
 template<>
   struct type_strings<__float128>
   {
-    static const std::string
+    static const std::experimental::string_view
     type()
-    { return std::string("__float128"); }
+    { return std::experimental::string_view("__float128"); }
 
-    static const std::string
+    static const std::experimental::string_view
     suffix()
-    { return std::string("Q"); }
+    { return std::experimental::string_view("Q"); }
   };
 
 // Fuck me.  I'm too stupid to do this right.
 template<>
   struct type_strings<std::complex<float>>
   {
-    static const std::string
+    static const std::experimental::string_view
     type()
-    { return std::string("std::complex<float>"); }
+    { return std::experimental::string_view("std::complex<float>"); }
 
-    static const std::string
+    static const std::experimental::string_view
     suffix()
-    { return std::string(""); }
+    { return std::experimental::string_view(""); }
   };
 
 template<>
   struct type_strings<std::complex<double>>
   {
-    static const std::string
+    static const std::experimental::string_view
     type()
-    { return std::string("std::complex<double>"); }
+    { return std::experimental::string_view("std::complex<double>"); }
 
-    static const std::string
+    static const std::experimental::string_view
     suffix()
-    { return std::string(""); }
+    { return std::experimental::string_view(""); }
   };
 
 template<>
   struct type_strings<std::complex<long double>>
   {
-    static const std::string
+    static const std::experimental::string_view
     type()
-    { return std::string("std::complex<long double>"); }
+    { return std::experimental::string_view("std::complex<long double>"); }
 
-    static const std::string
+    static const std::experimental::string_view
     suffix()
-    { return std::string(""); }
+    { return std::experimental::string_view(""); }
   };
 
 template<>
   struct type_strings<std::complex<__float128>>
   {
-    static const std::string
+    static const std::experimental::string_view
     type()
-    { return std::string("std::complex<__float128>"); }
+    { return std::experimental::string_view("std::complex<__float128>"); }
 
-    static const std::string
+    static const std::experimental::string_view
     suffix()
-    { return std::string(""); }
+    { return std::experimental::string_view(""); }
   };
 
 
@@ -634,20 +634,32 @@ template<typename Ret, typename... Arg>
 	     test_function<Ret, Arg...> test,
 	     baseline_function<Ret, Arg...> base,
 	     mask_function<Arg...> mask,
-	     argument<Arg>...,
+	     argument<Arg>... arg,
 	     std::ostream & out)
     : test_structname(structname),
       function1(test.function),
-      function2(base.function)
+      function2(base.function),
+      maskfunction(mask),
+      argument(arg)
     {}
 
     void
     operator()() const
-    { run_poo<Ret, Arg...>(); }
+    {
+      output << boilerplate << '\n';
+      run_poo<Ret, Arg...>();
+      output <<  << '\n';
+    }
 
     std::string test_structname;
 
   private:
+
+    std::ostringstream get_funcall();
+    template<typename RetX, typename ArgX1, typename... ArgX>
+      void get_funcall_help(std::ostringstream &);
+    template<typename RetX, typename ArgX>
+      void get_funcall_help(std::ostringstream &);
 
     template<typename RetX, typename ArgX1, typename... ArgX>
       void
@@ -660,6 +672,9 @@ template<typename Ret, typename... Arg>
     unsigned int start_test = 1;
     Ret (*function1)(Arg...);
     Ret (*function2)(Arg...);
+    bool (*mask_function)(Arg...);
+    std::tuple<argument<Arg>...> argument;
+    const std::tuple_size<argument<Arg>...> arity;
   };
 
 template<typename Ret, typename... Arg>
@@ -667,7 +682,7 @@ template<typename Ret, typename... Arg>
     void
     testcase<Ret, Arg...>::run_poo()
     {
-	run_poo<RetX, ArgX...>();
+      run_poo<RetX, ArgX...>();
     }
 
 template<typename Ret, typename... Arg>
@@ -698,6 +713,37 @@ template<typename Ret, typename... Arg>
       constexpr auto inf = std::numeric_limits<Val>::infinity();
       constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
       constexpr auto ret_complex = is_complex_v<RetX>;
+
+      std::string numname = type_strings<Val>::type();
+      structname = test_structname + '<' + numname + '>';
+    }
+
+template<typename Ret, typename... Arg>
+  std::ostringstream
+  get_funcall()
+  {
+    std::ostringstream funcall;
+    funcall /*<< nsname << "::"*/
+	    << funcname << templparm << "(";
+    get_funcall_help<Ret, Arg...>();
+    return funcall;
+  }
+  
+template<typename Ret, typename... Arg>
+  template<typename RetX, typename ArgX1, typename... ArgX>
+    void
+    get_funcall_help(std::ostringstream & funcall)
+    {
+      funcall << "data[i]." << arg1 << ", "
+	      << get_funcall_help<RetX, ArgX...>();
+    }
+
+template<typename Ret, typename... Arg>
+  template<typename RetX, typename ArgX>
+    void
+    get_funcall_help(std::ostringstream & funcall)
+    {
+      funcall << "data[i]." << arg1 << ");\n";
     }
 
 
