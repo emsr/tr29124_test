@@ -634,21 +634,31 @@ template<typename Ret, typename... Arg>
 	     test_function<Ret, Arg...> test,
 	     baseline_function<Ret, Arg...> base,
 	     mask_function<Arg...> mask,
-	     argument<Arg>... arg,
-	     std::ostream & out)
+	     argument<Arg>... arg)
     : test_structname(structname),
-      function1(test.function),
-      function2(base.function),
-      maskfunction(mask),
-      argument(arg)
-    {}
+      testfun(test),
+      basefun(base),
+      maskfun(mask),
+      function1(testfun.function),
+      function2(basefun.function),
+      range(arg...)
+    {
+      funcall = get_funcall();
+    }
 
     void
-    operator()() const
+    operator()(std::ostream & output) const
     {
+      // Some targets take too long for riemann zeta.
+      bool riemann_zeta_limits = (testfun.name == "riemann_zeta");
+
       output << boilerplate << '\n';
-      run_poo<Ret, Arg...>();
-      output <<  << '\n';
+      output << "//  " << testfun.name << '\n' << '\n';
+      if (riemann_zeta_limits)
+	output << riemann_limits << '\n';
+      output << header;
+
+      run_poo<std::index_sequence_for<Arg...>{}>();
     }
 
     std::string test_structname;
@@ -661,78 +671,65 @@ template<typename Ret, typename... Arg>
     template<typename RetX, typename ArgX>
       void get_funcall_help(std::ostringstream &);
 
-    template<typename RetX, typename ArgX1, typename... ArgX>
+    template<std::size_t... Index>
       void
-      run_poo();
-
-    template<typename RetX, typename ArgX>
-      void
-      run_poo();
+      run_poo(std::ostringstream &, std::index_sequence<Index...>);
 
     unsigned int start_test = 1;
+    test_function<Ret, Arg...> testfun;
+    baseline_function<Ret, Arg...> basefun;
+    mask_function<Arg...> maskfun;
     Ret (*function1)(Arg...);
     Ret (*function2)(Arg...);
-    bool (*mask_function)(Arg...);
-    std::tuple<argument<Arg>...> argument;
+    std::tuple<argument<Arg>...> range;
+    std::ostringstream funcall;
     const std::tuple_size<argument<Arg>...> arity;
   };
 
 template<typename Ret, typename... Arg>
-  template<typename RetX, typename ArgX1, typename... ArgX>
+  template<std::size_t... Index>
     void
-    testcase<Ret, Arg...>::run_poo()
+    testcase<Ret, Arg...>::
+    run_poo(std::ostringstream & output, std::index_sequence<Index...>)
     {
-      run_poo<RetX, ArgX...>();
-    }
-
-template<typename Ret, typename... Arg>
-  template<typename RetX, typename ArgX>
-    void
-    testcase<Ret, Arg...>::run_poo()
-    {
-      using Val = __num_traits_t<RetX>;
+      using Val = __num_traits_t<Ret>;
 
       const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
       output.flags(std::ios::showpoint);
 
-      bool riemann_zeta_limits = (funcname == "riemann_zeta");
-
+      // Some functions taking only integral arguments must have explicit template args.
       std::string templparm;
       if (!std::experimental::is_floating_point_v<ArgX>)
 	templparm += "<Tp>";
 
-      if (write_header)
-	output << boilerplate << '\n';
-      output << "//  " << funcname << '\n' << '\n';
-      if (riemann_zeta_limits)
-	output << riemann_limits << '\n';
-      if (write_header)
-	output << header;
-
       constexpr auto eps = std::numeric_limits<Val>::epsilon();
       constexpr auto inf = std::numeric_limits<Val>::infinity();
       constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-      constexpr auto ret_complex = is_complex_v<RetX>;
+      constexpr auto ret_complex = is_complex_v<Ret>;
 
-      std::string numname = type_strings<Val>::type();
-      structname = test_structname + '<' + numname + '>';
+      auto numname = type_strings<Val>::type().to_string();
+      auto structname = test_structname + '<' + numname + '>';
+      //run_poo<Index - 1>(output);
     }
 
+/**
+ * Build the function call string for the test suite.
+ */
 template<typename Ret, typename... Arg>
   std::ostringstream
-  get_funcall()
+  testcase<Ret, Arg...>::get_funcall()
   {
     std::ostringstream funcall;
     funcall /*<< nsname << "::"*/
-	    << funcname << templparm << "(";
-    get_funcall_help<Ret, Arg...>();
+	    << testfun.name << templparm << "(";
+    get_funcall_help<Ret, Arg...>(funcall);
     return funcall;
   }
-  
+
 template<typename Ret, typename... Arg>
   template<typename RetX, typename ArgX1, typename... ArgX>
     void
-    get_funcall_help(std::ostringstream & funcall)
+    testcase<Ret, Arg...>::get_funcall_help(std::ostringstream & funcall)
     {
       funcall << "data[i]." << arg1 << ", "
 	      << get_funcall_help<RetX, ArgX...>();
@@ -741,7 +738,7 @@ template<typename Ret, typename... Arg>
 template<typename Ret, typename... Arg>
   template<typename RetX, typename ArgX>
     void
-    get_funcall_help(std::ostringstream & funcall)
+    testcase<Ret, Arg...>::get_funcall_help(std::ostringstream & funcall)
     {
       funcall << "data[i]." << arg1 << ");\n";
     }
@@ -787,7 +784,7 @@ template<typename Tp, typename Tp1>
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
     constexpr auto ret_complex = is_complex_v<Tp>;
 
-    std::string numname = type_strings<Val>::type();
+    auto numname = type_strings<Val>::type().to_string();
 
     std::string structname = "testcase_";
     structname += funcname;
@@ -863,7 +860,7 @@ template<typename Tp, typename Tp1>
 	const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 	std::string tname;
 	if (ret_complex)
-	  tname = type_strings<Tp>::type();
+	  tname = type_strings<Tp>::type().to_string();
 	std::ostringstream dataname;
 	dataname.fill('0');
 	dataname << "data" << std::setw(3) << start_test;
@@ -988,7 +985,7 @@ template<typename Tp, typename Tp1, typename Tp2>
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
     constexpr auto ret_complex = is_complex_v<Tp>;
 
-    std::string numname = type_strings<Val>::type();
+    auto numname = type_strings<Val>::type().to_string();
 
     std::string structname = "testcase_";
     structname += funcname;
@@ -1071,7 +1068,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 	    const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 	    std::string tname;
 	    if (ret_complex)
-	      tname = type_strings<Tp>::type();
+	      tname = type_strings<Tp>::type().to_string();
 	    std::ostringstream dataname;
 	    dataname.fill('0');
 	    dataname << "data" << std::setw(3) << start_test;
@@ -1198,7 +1195,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
     constexpr auto ret_complex = is_complex_v<Tp>;
 
-    std::string numname = type_strings<Val>::type();
+    auto numname = type_strings<Val>::type().to_string();
 
     std::string structname = "testcase_";
     structname += funcname;
@@ -1288,7 +1285,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 		std::string tname;
 		if (ret_complex)
-		  tname = type_strings<Tp>::type();
+		  tname = type_strings<Tp>::type().to_string();
 		std::ostringstream dataname;
 		dataname.fill('0');
 		dataname << "data" << std::setw(3) << start_test;
@@ -1423,7 +1420,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
     constexpr auto ret_complex = is_complex_v<Tp>;
 
-    std::string numname = type_strings<Val>::type();
+    auto numname = type_strings<Val>::type().to_string();
 
     std::string structname = "testcase_";
     structname += funcname;
@@ -1520,7 +1517,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		    const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 		    std::string tname;
 		    if (ret_complex)
-		      tname = type_strings<Tp>::type();
+		      tname = type_strings<Tp>::type().to_string();
 		    std::ostringstream dataname;
 		    dataname.fill('0');
 		    dataname << "data" << std::setw(3) << start_test;
