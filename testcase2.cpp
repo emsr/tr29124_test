@@ -196,8 +196,8 @@ template<typename Real>
 	      baseline_function<Real, Real>("GSL", "gsl::airy_ai", gsl::airy_ai),
 	      mask_function<Real>([](Real){ return true; }),
 	      argument<Real>("x", fill_argument(std::make_pair(Real{-10}, Real{10}),
-						std::make_pair(true, true), 41)),
-	      fairy_ai);
+						std::make_pair(true, true), 41)));
+    xairy_ai(fairy_ai);
 
 #endif // STD
 
