@@ -318,7 +318,7 @@ test_local_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tc
 diff_local_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tcc sf_*.tcc
 	$(HOME)/bin/bin/g++ -std=gnu++14 -g -DLOCAL -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -I$(HOME)/gcc_specfun/libstdc++-v3/include -I$(GSL_INC_DIR) -o diff_local_special_function diff_special_function.cpp gsl_wrap.cpp $(GSL_LIBS) -lquadmath
 
-testcase2: testcase2.cpp testcase.tcc gsl_wrap.h gsl_wrap.cpp boost_wrap.h boost_wrap.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(CXX_INC_DIR)/sf_*.tcc
+testcase2: testcase2.cpp testcase2.tcc gsl_wrap.h gsl_wrap.cpp boost_wrap.h boost_wrap.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(CXX_INC_DIR)/sf_*.tcc
 	$(CXX) -o testcase2 -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase2.cpp gsl_wrap.cpp boost_wrap.cpp $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS)
 
 testcase: testcase.cpp testcase.tcc gsl_wrap.h gsl_wrap.cpp boost_wrap.h boost_wrap.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(CXX_INC_DIR)/sf_*.tcc
