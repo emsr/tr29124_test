@@ -127,39 +127,9 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Regular modified cylindrical Bessel functions.
-template<typename _Tp>
-  struct testcase_cyl_bessel_i
-  {
-    _Tp f0;
-    _Tp nu;
-    _Tp x;
-    _Tp f;
-  };
-
 // Cylindrical Bessel functions (of the first kind).
 template<typename _Tp>
-  struct testcase_cyl_bessel_j
-  {
-    _Tp f0;
-    _Tp nu;
-    _Tp x;
-    _Tp f;
-  };
-
-// Irregular modified cylindrical Bessel functions.
-template<typename _Tp>
-  struct testcase_cyl_bessel_k
-  {
-    _Tp f0;
-    _Tp nu;
-    _Tp x;
-    _Tp f;
-  };
-
-// Cylindrical Neumann functions.
-template<typename _Tp>
-  struct testcase_cyl_neumann
+  struct testcase_cyl_bessel
   {
     _Tp f0;
     _Tp nu;
@@ -308,26 +278,6 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Regular modified spherical Bessel functions.
-template<typename _Tp>
-  struct testcase_sph_bessel_i
-  {
-    _Tp f0;
-    unsigned int n;
-    _Tp x;
-    _Tp f;
-  };
-
-// Irregular modified spherical Bessel functions.
-template<typename _Tp>
-  struct testcase_sph_bessel_k
-  {
-    _Tp f0;
-    unsigned int n;
-    _Tp x;
-    _Tp f;
-  };
-
 // Spherical Legendre functions.
 template<typename _Tp>
   struct testcase_sph_legendre
@@ -339,37 +289,18 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Spherical Neumann functions.
+// Airy functions.
 template<typename _Tp>
-  struct testcase_sph_neumann
-  {
-    _Tp f0;
-    unsigned int n;
-    _Tp x;
-    _Tp f;
-  };
-
-// Airy Ai functions.
-template<typename _Tp>
-  struct testcase_airy_ai
+  struct testcase_airy
   {
     _Tp f0;
     _Tp x;
     _Tp f;
   };
 
-// Airy Bi functions.
+// Incomplete gamma functions.
 template<typename _Tp>
-  struct testcase_airy_bi
-  {
-    _Tp f0;
-    _Tp x;
-    _Tp f;
-  };
-
-// Upper incomplete gamma functions.
-template<typename _Tp>
-  struct testcase_gamma_u
+  struct testcase_gamma_inc
   {
     _Tp f0;
     _Tp a;
@@ -377,29 +308,9 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Lower incomplete gamma functions.
+// Regularized incomplete gamma functions.
 template<typename _Tp>
-  struct testcase_gamma_l
-  {
-    _Tp f0;
-    _Tp a;
-    _Tp x;
-    _Tp f;
-  };
-
-// Regularized upper incomplete gamma functions.
-template<typename _Tp>
-  struct testcase_qgamma
-  {
-    _Tp f0;
-    _Tp a;
-    _Tp x;
-    _Tp f;
-  };
-
-// Regularized lower incomplete gamma functions.
-template<typename _Tp>
-  struct testcase_pgamma
+  struct testcase_xgamma
   {
     _Tp f0;
     _Tp a;
@@ -541,26 +452,9 @@ template<typename _Tp>
     _Tp f;
   };
 
+// Jacobi elliptic functions.
 template<typename _Tp>
-  struct testcase_jacobi_sn
-  {
-    _Tp f0;
-    _Tp k;
-    _Tp u;
-    _Tp f;
-  };
-
-template<typename _Tp>
-  struct testcase_jacobi_cn
-  {
-    _Tp f0;
-    _Tp k;
-    _Tp u;
-    _Tp f;
-  };
-
-template<typename _Tp>
-  struct testcase_jacobi_dn
+  struct testcase_jacobi_xn
   {
     _Tp f0;
     _Tp k;
@@ -577,16 +471,9 @@ template<typename _Tp>
     _Tp f;
   };
 
+// Fresnel functions
 template<typename _Tp>
-  struct testcase_fresnel_c
-  {
-    _Tp f0;
-    _Tp x;
-    _Tp f;
-  };
-
-template<typename _Tp>
-  struct testcase_fresnel_s
+  struct testcase_fresnel
   {
     _Tp f0;
     _Tp x;
@@ -649,17 +536,7 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Legendre functions of the second kind.
-template<typename _Tp>
-  struct testcase_legendre_q
-  {
-    _Tp f0;
-    unsigned int l;
-    _Tp x;
-    _Tp f;
-  };
-
-// Factorial.
+// Factorial type functions.
 template<typename _Tp>
   struct testcase_factorial
   {
@@ -668,46 +545,9 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Log factorial.
-template<typename _Tp>
-  struct testcase_lfactorial
-  {
-    _Tp f0;
-    unsigned int n;
-    _Tp f;
-  };
-
-// Double factorial.
-template<typename _Tp>
-  struct testcase_double_factorial
-  {
-    _Tp f0;
-    unsigned int n;
-    _Tp f;
-  };
-
-// Log double factorial.
-template<typename _Tp>
-  struct testcase_ldouble_factorial
-  {
-    _Tp f0;
-    unsigned int n;
-    _Tp f;
-  };
-
-// Binomial coefficient.
+// Binomial coefficients.
 template<typename _Tp>
   struct testcase_bincoef
-  {
-    _Tp f0;
-    unsigned int n;
-    unsigned int k;
-    _Tp f;
-  };
-
-// Log binomial coefficient.
-template<typename _Tp>
-  struct testcase_lbincoef
   {
     _Tp f0;
     unsigned int n;
@@ -726,39 +566,9 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Chebyshev polynomials of the first kind.
+// Chebyshev polynomials.
 template<typename _Tp>
-  struct testcase_chebyshev_t
-  {
-    _Tp f0;
-    unsigned int n;
-    _Tp x;
-    _Tp f;
-  };
-
-// Chebyshev polynomials of the second kind.
-template<typename _Tp>
-  struct testcase_chebyshev_u
-  {
-    _Tp f0;
-    unsigned int n;
-    _Tp x;
-    _Tp f;
-  };
-
-// Chebyshev polynomials of the third kind.
-template<typename _Tp>
-  struct testcase_chebyshev_v
-  {
-    _Tp f0;
-    unsigned int n;
-    _Tp x;
-    _Tp f;
-  };
-
-// Chebyshev polynomials of the fourth kind.
-template<typename _Tp>
-  struct testcase_chebyshev_w
+  struct testcase_chebyshev
   {
     _Tp f0;
     unsigned int n;
@@ -789,7 +599,7 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Incomplete beta function.
+// Incomplete beta functions.
 template<typename _Tp>
   struct testcase_ibeta
   {
@@ -800,30 +610,9 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Complementary beta function.
-template<typename _Tp>
-  struct testcase_ibetac
-  {
-    _Tp f0;
-    _Tp a;
-    _Tp b;
-    _Tp x;
-    _Tp f;
-  };
-
 // Cylindrical Hankel functions.
 template<typename _Tp>
-  struct testcase_cyl_hankel_1
-  {
-    std::complex<_Tp> f0;
-    _Tp nu;
-    _Tp x;
-    std::complex<_Tp> f;
-  };
-
-// Cylindrical Hankel functions.
-template<typename _Tp>
-  struct testcase_cyl_hankel_2
+  struct testcase_cyl_hankel
   {
     std::complex<_Tp> f0;
     _Tp nu;
@@ -833,17 +622,7 @@ template<typename _Tp>
 
 // Spherical Hankel functions.
 template<typename _Tp>
-  struct testcase_sph_hankel_1
-  {
-    std::complex<_Tp> f0;
-    unsigned int n;
-    _Tp x;
-    std::complex<_Tp> f;
-  };
-
-// Spherical Hankel functions.
-template<typename _Tp>
-  struct testcase_sph_hankel_2
+  struct testcase_sph_hankel
   {
     std::complex<_Tp> f0;
     unsigned int n;
@@ -942,39 +721,9 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Exponential theta_1 functions.
+// Exponential theta_N functions.
 template<typename _Tp>
-  struct testcase_theta_1
-  {
-    _Tp f0;
-    _Tp nu;
-    _Tp x;
-    _Tp f;
-  };
-
-// Exponential theta_2 functions.
-template<typename _Tp>
-  struct testcase_theta_2
-  {
-    _Tp f0;
-    _Tp nu;
-    _Tp x;
-    _Tp f;
-  };
-
-// Exponential theta_3 functions.
-template<typename _Tp>
-  struct testcase_theta_3
-  {
-    _Tp f0;
-    _Tp nu;
-    _Tp x;
-    _Tp f;
-  };
-
-// Exponential theta_4 functions.
-template<typename _Tp>
-  struct testcase_theta_4
+  struct testcase_theta
   {
     _Tp f0;
     _Tp nu;
