@@ -538,17 +538,17 @@ template<typename Ret, typename... Arg>
 
   public:
 
-    testcase(const std::string & structname,
-	     test_function<Ret, Arg...> test,
+    testcase(test_function<Ret, Arg...> test,
 	     baseline_function<Ret, Arg...> base,
 	     mask_function<Arg...> mask,
+	     const std::string & structname,
 	     argument<Arg>... arg)
-    : _M_structname(structname),
-      _M_testfun(test),
+    : _M_testfun(test),
       _M_basefun(base),
       _M_maskfun(mask),
       _M_function1(_M_testfun.function),
       _M_function2(_M_basefun.function),
+      _M_structname(structname),
       _M_range(arg...)
     {
       funcall = get_funcall();

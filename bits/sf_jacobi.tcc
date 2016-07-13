@@ -158,8 +158,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Zernicke polynomial @f$ Z_n^m(\rho,\phi) @f$
-   * for non-negative degree @f$ n @f$, signed order @f$ m @f$,
-   * and real radial argument @f$ \rho @f$ and azimuthal angle @f$ \phi @f$.
+   * for non-negative integral degree @f$ n @f$, signed integral order
+   * @f$ m @f$, and real radial argument @f$ \rho @f$ and azimuthal angle
+   * @f$ \phi @f$.
    *
    * The even Zernicke polynomials are defined by:
    * @f[
@@ -174,8 +175,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * (@see __poly_radial_jacobi).
    *
    * @tparam _Tp The real type of the radial coordinate and azimuthal angle
-   * @param __n The non-negative degree.
-   * @param __m The azimuthal order
+   * @param __n The non-negative integral degree.
+   * @param __m The integral azimuthal order
    * @param __rho The radial coordinate
    * @param __phi The azimuthal angle
    */
