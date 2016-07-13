@@ -17,7 +17,7 @@
 #include "gsl_wrap.h"
 #include "boost_wrap.h"
 
-#include "testcase.tcc"
+#include "testcase2.tcc"
 
 std::string
 get_filename(const std::string & path,
