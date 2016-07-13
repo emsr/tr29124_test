@@ -191,10 +191,10 @@ template<typename Real>
     // Airy functions of the first kind.
     std::ofstream fairy_ai(path + prefix + "airy_ai" + ".cc");
     testcase<Real, Real>
-      xairy_ai("testcase_airy",
-	      test_function<Real, Real>("airy_ai", airy_ai),
+      xairy_ai(test_function<Real, Real>("airy_ai", airy_ai),
 	      baseline_function<Real, Real>("GSL", "gsl::airy_ai", gsl::airy_ai),
 	      mask_function<Real>([](Real){ return true; }),
+	      "testcase_airy",
 	      argument<Real>("x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 						std::make_pair(true, true), 41)));
     xairy_ai(fairy_ai);
