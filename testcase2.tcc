@@ -5,6 +5,7 @@
 #include <sstream>
 #include <experimental/type_traits>
 #include <experimental/string_view>
+#include "complex_compare.h" // For the Statistics min/max (maybe rethink that there)
 
 const std::experimental::string_view boilerplate = 
 R"(// { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
@@ -281,7 +282,7 @@ template<>
    *  @param  __hi   An upper limit of arbitrary type.
    *  @return max(__val, __lo) if __val < __hi or min(__val, __hi) otherwise.
    */
-  template<class _Tp>
+  template<typename _Tp>
     constexpr const _Tp&
     clamp(const _Tp& __val, const _Tp& __lo, const _Tp& __hi)
     {
@@ -301,7 +302,7 @@ template<>
    *  @return max(__val, __lo, __comp) if __comp(__val, __hi)
    *          or min(__val, __hi, __comp) otherwise.
    */
-  template<class _Tp, class Compare>
+  template<typename _Tp, typename _Compare>
     constexpr const _Tp&
     clamp(const _Tp& __val, const _Tp& __lo, const _Tp& __hi, _Compare __comp)
     {
@@ -331,7 +332,7 @@ template<typename Tp>
 ///
 template<typename Tp>
   std::vector<Tp>
-  fill_argument(const std::pair<Tp,Tp> & range,
+  fill_argument(const std::pair<Tp,Tp> & _M_range,
 		const std::pair<bool,bool> & inclusive,
 		unsigned int num_points)
   {
@@ -339,13 +340,13 @@ template<typename Tp>
 
     if (num_points == 1)
       {
-	argument.push_back(range.first);
+	argument.push_back(_M_range.first);
 	return argument;
       }
 
-    auto delta = (range.second - range.first) / (num_points - 1);
-    auto min = std::min(range.first, range.second);
-    auto max = std::max(range.first, range.second);
+    auto delta = (_M_range.second - _M_range.first) / (num_points - 1);
+    auto min = std::min(_M_range.first, _M_range.second);
+    auto max = std::max(_M_range.first, _M_range.second);
     auto clamp = [min, max](Tp x)
 		 -> Tp
 		 {
@@ -363,7 +364,7 @@ template<typename Tp>
 	if (i == num_points - 1 && ! inclusive.second)
 	  continue;
 
-	argument.push_back(clamp(range.first + i * delta));
+	argument.push_back(clamp(_M_range.first + i * delta));
       }
 
     return argument;
@@ -527,6 +528,7 @@ template<typename Ret, typename... Arg>
   
   };
 
+
 /**
  * A class for testcases.
  */
@@ -541,25 +543,30 @@ template<typename Ret, typename... Arg>
 	     baseline_function<Ret, Arg...> base,
 	     mask_function<Arg...> mask,
 	     argument<Arg>... arg)
-    : test_structname(structname),
-      testfun(test),
-      basefun(base),
-      maskfun(mask),
-      function1(testfun.function),
-      function2(basefun.function),
-      range(arg...)
+    : _M_structname(structname),
+      _M_testfun(test),
+      _M_basefun(base),
+      _M_maskfun(mask),
+      _M_function1(_M_testfun.function),
+      _M_function2(_M_basefun.function),
+      _M_range(arg...)
     {
       funcall = get_funcall();
+
+      // Some functions taking only integral arguments must have explicit template args.
+      templparm;
+      if (!std::experimental::is_floating_point_v<ArgX>)
+	templparm += "<Tp>";
     }
 
     void
     operator()(std::ostream & output) const
     {
       // Some targets take too long for riemann zeta.
-      bool riemann_zeta_limits = (testfun.name == "riemann_zeta");
+      bool riemann_zeta_limits = (_M_testfun.name == "riemann_zeta");
 
       output << boilerplate << '\n';
-      output << "//  " << testfun.name << '\n' << '\n';
+      output << "//  " << _M_testfun.name << '\n' << '\n';
       if (riemann_zeta_limits)
 	output << riemann_limits << '\n';
       output << header;
@@ -567,7 +574,6 @@ template<typename Ret, typename... Arg>
       run_poo<std::index_sequence_for<Arg...>{}>();
     }
 
-    std::string test_structname;
 
   private:
 
@@ -581,14 +587,16 @@ template<typename Ret, typename... Arg>
       void
       run_poo(std::ostringstream &, std::index_sequence<Index...>);
 
-    unsigned int start_test = 1;
-    test_function<Ret, Arg...> testfun;
-    baseline_function<Ret, Arg...> basefun;
-    mask_function<Arg...> maskfun;
-    Ret (*function1)(Arg...);
-    Ret (*function2)(Arg...);
-    std::tuple<argument<Arg>...> range;
+    std::string _M_structname;
+    unsigned int _M_start_test = 1;
+    test_function<Ret, Arg...> _M_testfun;
+    baseline_function<Ret, Arg...> _M_basefun;
+    mask_function<Arg...> _M_maskfun;
+    Ret (*_M_function1)(Arg...);
+    Ret (*_M_function2)(Arg...);
+    std::tuple<argument<Arg>...> _M_range;
     std::ostringstream funcall;
+    std::string templparm;
     const std::tuple_size<argument<Arg>...> arity;
   };
 
@@ -603,10 +611,6 @@ template<typename Ret, typename... Arg>
       const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
       output.flags(std::ios::showpoint);
 
-      // Some functions taking only integral arguments must have explicit template args.
-      std::string templparm;
-      if (!std::experimental::is_floating_point_v<ArgX>)
-	templparm += "<Tp>";
 
       constexpr auto eps = std::numeric_limits<Val>::epsilon();
       constexpr auto inf = std::numeric_limits<Val>::infinity();
@@ -614,7 +618,7 @@ template<typename Ret, typename... Arg>
       constexpr auto ret_complex = is_complex_v<Ret>;
 
       auto numname = type_strings<Val>::type().to_string();
-      auto structname = test_structname + '<' + numname + '>';
+      auto structname = _M_structname + '<' + numname + '>';
       //run_poo<Index - 1>(output);
     }
 
@@ -627,7 +631,7 @@ template<typename Ret, typename... Arg>
   {
     std::ostringstream funcall;
     funcall /*<< nsname << "::"*/
-	    << testfun.name << templparm << "(";
+	    << _M_testfun.name << templparm << "(";
     get_funcall_help<Ret, Arg...>(funcall);
     return funcall;
   }
@@ -705,7 +709,7 @@ template<typename Ret, typename... Arg>
     output << "main()\n";
     output << "{\n";
     output.fill('0');
-    for (unsigned int t = 1; t < start_test; ++t)
+    for (unsigned int t = 1; t < _M_start_test; ++t)
       output << "  test(data" << std::setw(3) << t << ", toler" << std::setw(3) << t << ");\n";
     output.fill(' ');
     output << "  return 0;\n";
@@ -720,14 +724,14 @@ template<typename Ret, typename... Arg>
 ///
 template<typename Tp, typename Tp1>
   unsigned int
-  maketest(Tp function1(Tp1),
-	   Tp function2(Tp1),
+  maketest(Tp _M_function1(Tp1),
+	   Tp _M_function2(Tp1),
 	   const std::string & nsname,
 	   const std::string & funcname,
 	   const std::string & arg1, const std::vector<Tp1> & argument1,
 	   const std::string & baseline,
 	   std::ostream & output,
-	   bool write_header = true, bool write_main = true, unsigned int start_test = 1)
+	   bool write_header = true, bool write_main = true, unsigned int _M_start_test = 1)
   {
     using Val = __num_traits_t<Tp>;
 
@@ -771,8 +775,8 @@ template<typename Tp, typename Tp1>
 
 	try
 	  {
-	    const auto f1 = function1(x);
-	    const auto f2 = function2(x);
+	    const auto f1 = _M_function1(x);
+	    const auto f2 = _M_function2(x);
 
 	    if (std::abs(f1) == inf || std::abs(f2) == inf)
 	      {
@@ -832,7 +836,7 @@ template<typename Tp, typename Tp1>
 	  tname = type_strings<Tp>::type().to_string();
 	std::ostringstream dataname;
 	dataname.fill('0');
-	dataname << "data" << std::setw(3) << start_test;
+	dataname << "data" << std::setw(3) << _M_start_test;
 	dataname.fill(' ');
 	output << '\n';
 	output << "// Test data.\n";
@@ -852,9 +856,9 @@ template<typename Tp, typename Tp1>
 	  }
 	output << "};\n";
 	output.fill('0');
-	output << "const " << numname << " toler" << std::setw(3) << start_test << " = " << frac_toler << ";\n";
+	output << "const " << numname << " toler" << std::setw(3) << _M_start_test << " = " << frac_toler << ";\n";
 	output.fill(' ');
-	++start_test;
+	++_M_start_test;
       }
 
     if (write_main)
@@ -905,7 +909,7 @@ template<typename Tp, typename Tp1>
 	output << "main()\n";
 	output << "{\n";
 	output.fill('0');
-	for (unsigned int t = 1; t < start_test; ++t)
+	for (unsigned int t = 1; t < _M_start_test; ++t)
 	  output << "  test(data" << std::setw(3) << t << ", toler" << std::setw(3) << t << ");\n";
 	output.fill(' ');
 	output << "  return 0;\n";
@@ -914,7 +918,7 @@ template<typename Tp, typename Tp1>
 
     output.flush();
 
-    return start_test;
+    return _M_start_test;
   }
 
 
@@ -923,15 +927,15 @@ template<typename Tp, typename Tp1>
 ///
 template<typename Tp, typename Tp1, typename Tp2>
   unsigned int
-  maketest(Tp function1(Tp1,Tp2),
-	   Tp function2(Tp1,Tp2),
+  maketest(Tp _M_function1(Tp1,Tp2),
+	   Tp _M_function2(Tp1,Tp2),
 	   const std::string & nsname,
 	   const std::string & funcname,
 	   const std::string & arg1, const std::vector<Tp1> & argument1,
 	   const std::string & arg2, const std::vector<Tp2> & argument2,
 	   const std::string & baseline,
 	   std::ostream & output,
-	   bool write_header = true, bool write_main = true, unsigned int start_test = 1)
+	   bool write_header = true, bool write_main = true, unsigned int _M_start_test = 1)
   {
     using Val = __num_traits_t<Tp>;
 
@@ -977,8 +981,8 @@ template<typename Tp, typename Tp1, typename Tp2>
 
 	    try
 	      {
-		const auto f1 = function1(x, y);
-		const auto f2 = function2(x, y);
+		const auto f1 = _M_function1(x, y);
+		const auto f2 = _M_function2(x, y);
 		if (std::abs(f1) == inf || std::abs(f2) == inf)
 		  {
 		    ++num_divergences;
@@ -1040,7 +1044,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 	      tname = type_strings<Tp>::type().to_string();
 	    std::ostringstream dataname;
 	    dataname.fill('0');
-	    dataname << "data" << std::setw(3) << start_test;
+	    dataname << "data" << std::setw(3) << _M_start_test;
 	    dataname.fill(' ');
 	    output << '\n';
 	    output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]) << ".\n";
@@ -1061,9 +1065,9 @@ template<typename Tp, typename Tp1, typename Tp2>
 	      }
 	    output << "};\n";
 	    output.fill('0');
-	    output << "const " << numname << " toler" << std::setw(3) << start_test << " = " << frac_toler << ";\n";
+	    output << "const " << numname << " toler" << std::setw(3) << _M_start_test << " = " << frac_toler << ";\n";
 	    output.fill(' ');
-	    ++start_test;
+	    ++_M_start_test;
 	  }
       }
 
@@ -1113,7 +1117,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 	output << "main()\n";
 	output << "{\n";
 	output.fill('0');
-	for (unsigned int t = 1; t < start_test; ++t)
+	for (unsigned int t = 1; t < _M_start_test; ++t)
 	  output << "  test(data" << std::setw(3) << t << ", toler" << std::setw(3) << t << ");\n";
 	output.fill(' ');
 	output << "  return 0;\n";
@@ -1122,7 +1126,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 
     output.flush();
 
-    return start_test;
+    return _M_start_test;
   }
 
 #endif // TESTCASE2_TCC

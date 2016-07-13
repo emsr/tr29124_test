@@ -5,6 +5,7 @@
 #include <sstream>
 #include <experimental/type_traits>
 #include <experimental/string_view>
+#include "complex_compare.h" // For the Statistics min/max (maybe rethink that there)
 
 const std::experimental::string_view boilerplate = 
 R"(// { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
@@ -301,7 +302,7 @@ template<>
    *  @return max(__val, __lo, __comp) if __comp(__val, __hi)
    *          or min(__val, __hi, __comp) otherwise.
    */
-  template<class _Tp, class Compare>
+  template<class _Tp, class _Compare>
     constexpr const _Tp&
     clamp(const _Tp& __val, const _Tp& __lo, const _Tp& __hi, _Compare __comp)
     {
