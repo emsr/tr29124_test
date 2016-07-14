@@ -31,10 +31,10 @@
 template<typename _Tp>
   struct testcase_assoc_laguerre
   {
-    _Tp f0;
     unsigned int n;
     unsigned int m;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -42,10 +42,10 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_assoc_legendre
   {
-    _Tp f0;
     unsigned int l;
     unsigned int m;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -53,9 +53,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_beta
   {
-    _Tp f0;
     _Tp x;
     _Tp y;
+    _Tp f0;
     _Tp f;
   };
 
@@ -63,8 +63,8 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_comp_ellint_1
   {
-    _Tp f0;
     _Tp k;
+    _Tp f0;
     _Tp f;
   };
 
@@ -72,8 +72,8 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_comp_ellint_2
   {
-    _Tp f0;
     _Tp k;
+    _Tp f0;
     _Tp f;
   };
 
@@ -81,9 +81,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_comp_ellint_3
   {
-    _Tp f0;
     _Tp k;
     _Tp nu;
+    _Tp f0;
     _Tp f;
   };
 
@@ -91,8 +91,8 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_comp_ellint_d
   {
-    _Tp f0;
     _Tp k;
+    _Tp f0;
     _Tp f;
   };
 
@@ -100,10 +100,10 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_conf_hyperg
   {
-    _Tp f0;
     _Tp a;
     _Tp c;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -111,9 +111,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_conf_hyperg_lim
   {
-    _Tp f0;
     _Tp c;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -121,9 +121,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_cyl_bessel
   {
-    _Tp f0;
     _Tp nu;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -131,9 +131,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_cyl_bessel
   {
-    _Tp f0;
     _Tp nu;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -141,9 +141,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_ellint_1
   {
-    _Tp f0;
     _Tp k;
     _Tp phi;
+    _Tp f0;
     _Tp f;
   };
 
@@ -151,9 +151,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_ellint_2
   {
-    _Tp f0;
     _Tp k;
     _Tp phi;
+    _Tp f0;
     _Tp f;
   };
 
@@ -161,10 +161,10 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_ellint_3
   {
-    _Tp f0;
     _Tp k;
     _Tp nu;
     _Tp phi;
+    _Tp f0;
     _Tp f;
   };
 
@@ -172,9 +172,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_ellint_d
   {
-    _Tp f0;
     _Tp k;
     _Tp phi;
+    _Tp f0;
     _Tp f;
   };
 
@@ -182,9 +182,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_heuman_lambda
   {
-    _Tp f0;
     _Tp k;
     _Tp phi;
+    _Tp f0;
     _Tp f;
   };
 
@@ -192,9 +192,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_jacobi_zeta
   {
-    _Tp f0;
     _Tp k;
     _Tp phi;
+    _Tp f0;
     _Tp f;
   };
 
@@ -202,8 +202,8 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_expint
   {
-    _Tp f0;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -211,9 +211,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_hermite
   {
-    _Tp f0;
     unsigned int n;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -221,11 +221,11 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_hyperg
   {
-    _Tp f0;
     _Tp a;
     _Tp b;
     _Tp c;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -233,9 +233,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_laguerre
   {
-    _Tp f0;
     unsigned int n;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -243,9 +243,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_legendre
   {
-    _Tp f0;
     unsigned int l;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -253,8 +253,8 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_riemann_zeta
   {
-    _Tp f0;
     _Tp s;
+    _Tp f0;
     _Tp f;
   };
 
@@ -262,9 +262,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_hurwitz_zeta
   {
-    _Tp f0;
     _Tp s;
     _Tp a;
+    _Tp f0;
     _Tp f;
   };
 
@@ -272,9 +272,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_sph_bessel
   {
-    _Tp f0;
     unsigned int n;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -282,10 +282,10 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_sph_legendre
   {
-    _Tp f0;
     unsigned int l;
     unsigned int m;
     _Tp theta;
+    _Tp f0;
     _Tp f;
   };
 
@@ -293,8 +293,8 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_airy
   {
-    _Tp f0;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -302,9 +302,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_gamma_inc
   {
-    _Tp f0;
     _Tp a;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -312,9 +312,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_xgamma
   {
-    _Tp f0;
     _Tp a;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -322,8 +322,8 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_dilog
   {
-    _Tp f0;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -331,124 +331,124 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_gamma
   {
-    _Tp f0;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
 template<typename _Tp>
   struct testcase_ellint_rc
   {
-    _Tp f0;
     _Tp x;
     _Tp y;
+    _Tp f0;
     _Tp f;
   };
 
 template<typename _Tp>
   struct testcase_ellint_rd
   {
-    _Tp f0;
     _Tp x;
     _Tp y;
     _Tp z;
+    _Tp f0;
     _Tp f;
   };
 
 template<typename _Tp>
   struct testcase_comp_ellint_rf
   {
-    _Tp f0;
     _Tp x;
     _Tp y;
+    _Tp f0;
     _Tp f;
   };
 
 template<typename _Tp>
   struct testcase_ellint_rf
   {
-    _Tp f0;
     _Tp x;
     _Tp y;
     _Tp z;
+    _Tp f0;
     _Tp f;
   };
 
 template<typename _Tp>
   struct testcase_comp_ellint_rg
   {
-    _Tp f0;
     _Tp x;
     _Tp y;
+    _Tp f0;
     _Tp f;
   };
 
 template<typename _Tp>
   struct testcase_ellint_rg
   {
-    _Tp f0;
     _Tp x;
     _Tp y;
     _Tp z;
+    _Tp f0;
     _Tp f;
   };
 
 template<typename _Tp>
   struct testcase_ellint_rj
   {
-    _Tp f0;
     _Tp x;
     _Tp y;
     _Tp z;
     _Tp p;
+    _Tp f0;
     _Tp f;
   };
 
 template<typename _Tp>
   struct testcase_psi
   {
-    _Tp f0;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
 template<typename _Tp>
   struct testcase_sinint
   {
-    _Tp f0;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
 template<typename _Tp>
   struct testcase_cosint
   {
-    _Tp f0;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
 template<typename _Tp>
   struct testcase_sinhint
   {
-    _Tp f0;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
 template<typename _Tp>
   struct testcase_coshint
   {
-    _Tp f0;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
 template<typename _Tp>
   struct testcase_dawson
   {
-    _Tp f0;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -456,18 +456,18 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_jacobi_xn
   {
-    _Tp f0;
     _Tp k;
     _Tp u;
+    _Tp f0;
     _Tp f;
   };
 
 template<typename _Tp>
   struct testcase_expint_en
   {
-    _Tp f0;
     unsigned int n;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -475,24 +475,24 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_fresnel
   {
-    _Tp f0;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
 template<typename _Tp>
   struct testcase_sinc
   {
-    _Tp f0;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
 template<typename _Tp>
   struct testcase_sinc_pi
   {
-    _Tp f0;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -500,9 +500,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_lpochhammer_u
   {
-    _Tp f0;
     _Tp a;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -510,9 +510,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_pochhammer_u
   {
-    _Tp f0;
     _Tp a;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -520,9 +520,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_lpochhammer_l
   {
-    _Tp f0;
     _Tp a;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -530,9 +530,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_pochhammer_l
   {
-    _Tp f0;
     _Tp a;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -540,8 +540,8 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_factorial
   {
-    _Tp f0;
     unsigned int n;
+    _Tp f0;
     _Tp f;
   };
 
@@ -549,9 +549,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_bincoef
   {
-    _Tp f0;
     unsigned int n;
     unsigned int k;
+    _Tp f0;
     _Tp f;
   };
 
@@ -559,10 +559,10 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_gegenbauer
   {
-    _Tp f0;
     unsigned int n;
     _Tp alpha;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -570,9 +570,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_chebyshev
   {
-    _Tp f0;
     unsigned int n;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -580,11 +580,11 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_zernike
   {
-    _Tp f0;
     unsigned int n;
     int m;
     _Tp rho;
     _Tp phi;
+    _Tp f0;
     _Tp f;
   };
 
@@ -592,10 +592,10 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_radpoly
   {
-    _Tp f0;
     unsigned int n;
     int m;
     _Tp rho;
+    _Tp f0;
     _Tp f;
   };
 
@@ -603,10 +603,10 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_ibeta
   {
-    _Tp f0;
     _Tp a;
     _Tp b;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -614,9 +614,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_cyl_hankel
   {
-    std::complex<_Tp> f0;
     _Tp nu;
     _Tp x;
+    std::complex<_Tp> f0;
     std::complex<_Tp> f;
   };
 
@@ -624,9 +624,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_sph_hankel
   {
-    std::complex<_Tp> f0;
     unsigned int n;
     _Tp x;
+    std::complex<_Tp> f0;
     std::complex<_Tp> f;
   };
 
@@ -634,11 +634,11 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_sph_harmonic
   {
-    std::complex<_Tp> f0;
     unsigned int l;
     int m;
     _Tp theta;
     _Tp phi;
+    std::complex<_Tp> f0;
     std::complex<_Tp> f;
   };
 
@@ -646,11 +646,11 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_jacobi
   {
-    _Tp f0;
     unsigned int n;
     _Tp alpha;
     _Tp beta;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -658,9 +658,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_polylog
   {
-    std::complex<_Tp> f0;
     _Tp s;
     std::complex<_Tp> w;
+    std::complex<_Tp> f0;
     std::complex<_Tp> f;
   };
 
@@ -668,9 +668,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_clausen
   {
-    std::complex<_Tp> f0;
     unsigned int m;
     std::complex<_Tp> w;
+    std::complex<_Tp> f0;
     std::complex<_Tp> f;
   };
 
@@ -678,8 +678,8 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_dirichlet_eta
   {
-    _Tp f0;
     _Tp s;
+    _Tp f0;
     _Tp f;
   };
 
@@ -687,8 +687,8 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_dirichlet_beta
   {
-    _Tp f0;
     _Tp s;
+    _Tp f0;
     _Tp f;
   };
 
@@ -696,8 +696,8 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_dirichlet_lambda
   {
-    _Tp f0;
     _Tp s;
+    _Tp f0;
     _Tp f;
   };
 
@@ -705,9 +705,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_owens_t
   {
-    _Tp f0;
     _Tp h;
     _Tp a;
+    _Tp f0;
     _Tp f;
   };
 
@@ -715,9 +715,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_clausen_c
   {
-    _Tp f0;
     unsigned int m;
     _Tp w;
+    _Tp f0;
     _Tp f;
   };
 
@@ -725,9 +725,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_theta
   {
-    _Tp f0;
     _Tp nu;
     _Tp x;
+    _Tp f0;
     _Tp f;
   };
 
@@ -735,8 +735,8 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_ellnome
   {
-    _Tp f0;
     _Tp k;
+    _Tp f0;
     _Tp f;
   };
 
