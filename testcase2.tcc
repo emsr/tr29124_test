@@ -481,27 +481,6 @@ template<typename Ret, typename... Arg>
   
   };
 
-/**
- * A class for a mask function
- * - the function that returns false if the combination of argument values
- *   is not to be tested and true otherwise..
- */
-template<typename... Arg>
-  class mask_function
-  {
-
-  public:
-
-    mask_function(bool mfunc(Arg...))
-    : mask(mfunc)
-    {}
-
-    bool
-    operator()(Arg... args)
-    { return mask(args...); }
-
-    bool (*mask)(Arg...);
-  };
 
 /**
  * A class for baseline function - the function that is a baseline.
@@ -532,7 +511,7 @@ template<typename Ret, typename... Arg>
 /**
  * A class for testcases.
  */
-template<typename Ret, typename... Arg>
+template<typename MaskFun, typename Ret, typename... Arg>
   class testcase
   {
 
@@ -540,7 +519,7 @@ template<typename Ret, typename... Arg>
 
     testcase(test_function<Ret, Arg...> test,
 	     baseline_function<Ret, Arg...> base,
-	     mask_function<Arg...> mask,
+	     MaskFun mask,
 	     const std::string & structname,
 	     argument<Arg>... arg)
     : _M_testfun(test),
@@ -554,16 +533,17 @@ template<typename Ret, typename... Arg>
       funcall = get_funcall();
 
       // Some functions taking only integral arguments must have explicit template args.
-      templparm;
-      if (!std::experimental::is_floating_point_v<ArgX>)
-	templparm += "<Tp>";
+      auto _M_all_integral = (std::experimental::is_floating_point_v<Arg> && ...);
+      if (_M_all_integral)
+	_M_templparm += "<Tp>";
     }
 
     void
     operator()(std::ostream & output) const
     {
       // Some targets take too long for riemann zeta.
-      bool riemann_zeta_limits = (_M_testfun.name == "riemann_zeta");
+      bool riemann_zeta_limits
+	= (_M_arity == 1 && _M_testfun.name == "riemann_zeta");
 
       output << boilerplate << '\n';
       output << "//  " << _M_testfun.name << '\n' << '\n';
@@ -585,77 +565,88 @@ template<typename Ret, typename... Arg>
     template<typename RetX, typename ArgX>
       void get_funcall_help(std::ostringstream &);
 
-    void
-    run_poo(std::ostream &, const std::tuple<Arg...>&);
+    template<std::size_t Index = 0>
+      std::enable_if_t<Index == sizeof...(Arg), void>
+      run_poo(std::ostream &);
+
+    template<std::size_t Index = 0>
+      std::enable_if_t<Index < sizeof...(Arg), void>
+      run_poo(std::ostream &);
 
     std::string _M_structname;
     unsigned int _M_start_test = 1;
     test_function<Ret, Arg...> _M_testfun;
     baseline_function<Ret, Arg...> _M_basefun;
-    mask_function<Arg...> _M_maskfun;
+    MaskFun _M_maskfun;
     Ret (*_M_function1)(Arg...);
     Ret (*_M_function2)(Arg...);
     std::tuple<argument<Arg>...> _M_range;
     std::ostringstream funcall;
-    std::string templparm;
-    const std::tuple_size<argument<Arg>...> arity;
+    std::string _M_templparm;
+    const std::tuple_size<argument<Arg>...> _M_arity;
+    bool _M_all_integral = true;
   };
 
-template<std::size_t I = 0, typename Ret, typename... Arg>
-  std::enable_if_t<I == sizeof...(Arg), void>
-  testcase<Ret, Arg...>::
-  run_poo(std::ostringstream & output)
-  {}
+template<typename MaskFun, typename Ret, typename... Arg>
+  template<std::size_t Index>
+    std::enable_if_t<Index == sizeof...(Arg), void>
+    testcase<MaskFun, Ret, Arg...>::
+    run_poo(std::ostream & output)
+    {}
 
-template<std::size_t I = 0, typename Ret, typename... Arg>
-  std::enable_if_t<I < sizeof...(Arg), void>
-  testcase<Ret, Arg...>::
-  run_poo(std::ostream & output)
-  {
-    using Val = __num_traits_t<Ret>;
+template<typename MaskFun, typename Ret, typename... Arg>
+  template<std::size_t Index>
+    std::enable_if_t<Index < sizeof...(Arg), void>
+    testcase<MaskFun, Ret, Arg...>::
+    run_poo(std::ostream & output)
+    {
+      using Val = __num_traits_t<Ret>;
 
-    const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
-    output.flags(std::ios::showpoint);
+      const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
+      output.flags(std::ios::showpoint);
 
-    
 
-    constexpr auto eps = std::numeric_limits<Val>::epsilon();
-    constexpr auto inf = std::numeric_limits<Val>::infinity();
-    constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-    constexpr auto ret_complex = is_complex_v<Ret>;
 
-    auto numname = type_strings<Val>::type().to_string();
-    auto structname = _M_structname + '<' + numname + '>';
-    run_poo<Index + 1>(output);
-  }
+      constexpr auto eps = std::numeric_limits<Val>::epsilon();
+      constexpr auto inf = std::numeric_limits<Val>::infinity();
+      constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
+      constexpr auto ret_complex = is_complex_v<Ret>;
+
+      auto numname = type_strings<Val>::type().to_string();
+      auto structname = _M_structname + '<' + numname + '>';
+      run_poo<Index + 1>(output);
+    }
 
 /**
  * Build the function call string for the test suite.
  */
-template<typename Ret, typename... Arg>
+template<typename MaskFun, typename Ret, typename... Arg>
   std::ostringstream
-  testcase<Ret, Arg...>::get_funcall()
+  testcase<MaskFun, Ret, Arg...>::
+  get_funcall()
   {
     std::ostringstream funcall;
     funcall /*<< nsname << "::"*/
-	    << _M_testfun.name << templparm << "(";
+	    << _M_testfun.name << _M_templparm << "(";
     get_funcall_help<Ret, Arg...>(funcall);
     return funcall;
   }
 
-template<typename Ret, typename... Arg>
+template<typename MaskFun, typename Ret, typename... Arg>
   template<typename RetX, typename ArgX1, typename... ArgX>
     void
-    testcase<Ret, Arg...>::get_funcall_help(std::ostringstream & funcall)
+    testcase<MaskFun, Ret, Arg...>::
+    get_funcall_help(std::ostringstream & funcall)
     {
       funcall << "data[i]." << arg1 << ", "
 	      << get_funcall_help<RetX, ArgX...>();
     }
 
-template<typename Ret, typename... Arg>
+template<typename MaskFun, typename Ret, typename... Arg>
   template<typename RetX, typename ArgX>
     void
-    testcase<Ret, Arg...>::get_funcall_help(std::ostringstream & funcall)
+    testcase<MaskFun, Ret, Arg...>::
+    get_funcall_help(std::ostringstream & funcall)
     {
       funcall << "data[i]." << arg1 << ");\n";
     }
@@ -663,9 +654,9 @@ template<typename Ret, typename... Arg>
 /**
  * Write the test case main function.
  */
-template<typename Ret, typename... Arg>
+template<typename MaskFun, typename Ret, typename... Arg>
   void
-  testcase<Ret, Arg...>::
+  testcase<MaskFun, Ret, Arg...>::
   write_main(std::ostream & output,
 	     bool riemann_zeta_limits,
 	     std::experimental::string_view funcall)
@@ -747,9 +738,9 @@ template<typename Tp, typename Tp1>
 
     bool riemann_zeta_limits = (funcname == "riemann_zeta");
 
-    std::string templparm;
+    std::string _M_templparm;
     if (!std::experimental::is_floating_point_v<Tp1>)
-      templparm += "<Tp>";
+      _M_templparm += "<Tp>";
 
     if (write_header)
       output << boilerplate << '\n';
@@ -897,7 +888,7 @@ template<typename Tp, typename Tp1>
 	  output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "      {\n";
-	output << "\tconst " << ret_tname << " f = " << nsname << "::" << funcname << templparm << "(data[i]." << arg1 << ");\n";
+	output << "\tconst " << ret_tname << " f = " << nsname << "::" << funcname << _M_templparm << "(data[i]." << arg1 << ");\n";
 	output << "\tconst " << ret_tname << " f0 = data[i].f0;\n";
 	output << "\tconst " << ret_tname << " diff = f - f0;\n";
 	output << "\tif (std::abs(diff) > max_abs_diff)\n";
@@ -951,10 +942,10 @@ template<typename Tp, typename Tp1, typename Tp2>
     const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
 
-    std::string templparm;
+    std::string _M_templparm;
     if (!std::experimental::is_floating_point_v<Tp1>
      && !std::experimental::is_floating_point_v<Tp2>)
-      templparm += "<Tp>";
+      _M_templparm += "<Tp>";
 
     if (write_header)
       output << boilerplate << '\n';
@@ -1106,7 +1097,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 	output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "      {\n";
-	output << "\tconst " << ret_tname << " f = " << nsname << "::" << funcname << templparm << '('
+	output << "\tconst " << ret_tname << " f = " << nsname << "::" << funcname << _M_templparm << '('
 	       << "data[i]." << arg1 << ", data[i]." << arg2 << ");\n";
 	output << "\tconst " << ret_tname << " f0 = data[i].f0;\n";
 	output << "\tconst " << ret_tname << " diff = f - f0;\n";
