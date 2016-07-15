@@ -478,9 +478,24 @@ template<typename Ret, typename... Arg>
     Ret (*function)(Arg...);
 
   private:
-  
+
   };
 
+#if __cpp_concepts > 0
+/**
+ * A concept for mask functions.
+ */
+template<typename Mask, typename... Arg)
+  concept bool
+  Mask()
+  requires(Fun mask, Arg... args)
+  {
+    { mask(args...) } -> bool;
+  };
+#  define CONCEPT_MASK Mask
+#else
+#  define CONCEPT_MASK typename
+#endif
 
 /**
  * A class for baseline function - the function that is a baseline.
@@ -1130,6 +1145,8 @@ template<typename Tp, typename Tp1, typename Tp2>
 
     return _M_start_test;
   }
+
+#undef CONCEPT_MASK
 
 #endif // TESTCASE2_TCC
 
