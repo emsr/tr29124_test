@@ -772,7 +772,7 @@ template<typename _Tp>
   {
     _Tp f0;
     unsigned int n;
-    _Tp m;
+    int m;
     _Tp rho;
     _Tp phi;
     _Tp f;
@@ -789,19 +789,7 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Zernicke polynomials.
-template<typename _Tp>
-  struct testcase_zernicke
-  {
-    _Tp f0;
-    unsigned int n;
-    int m;
-    _Tp rho;
-    _Tp phi;
-    _Tp f;
-  };
-
-// Beta function.
+// Incomplete beta function.
 template<typename _Tp>
   struct testcase_ibeta
   {
