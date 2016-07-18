@@ -1,3 +1,8 @@
+
+/*
+/home/ed/bin_tr29124/bin/g++ -std=gnu++17 -fconcepts -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o testcase2 -I/usr/local/include -I/usr/local/include testcase2.cpp gsl_wrap.cpp boost_wrap.cpp lerchphi/Source/lerchphi.cpp /home/ed/tr29124_test/gslextras/Fresnel/fresnel.c -L/usr/local/lib -lgsl -lgslcblas -ljacobi
+*/
+
 #ifndef TESTCASE2_TCC
 #define TESTCASE2_TCC 1
 
@@ -485,7 +490,7 @@ template<typename Ret, typename... Arg>
 /**
  * A concept for mask functions.
  */
-template<typename Mask, typename... Arg)
+template<typename Fun, typename... Arg>
   concept bool
   Mask()
   requires(Fun mask, Arg... args)
@@ -526,7 +531,7 @@ template<typename Ret, typename... Arg>
 /**
  * A class for testcases.
  */
-template<typename MaskFun, typename Ret, typename... Arg>
+template<CONCEPT_MASK MaskFun, typename Ret, typename... Arg>
   class testcase
   {
 
@@ -558,7 +563,7 @@ template<typename MaskFun, typename Ret, typename... Arg>
     {
       // Some targets take too long for riemann zeta.
       bool riemann_zeta_limits
-	= (_M_arity == 1 && _M_testfun.name == "riemann_zeta");
+	= (_S_arity == 1 && _M_testfun.name == "riemann_zeta");
 
       output << boilerplate << '\n';
       output << "//  " << _M_testfun.name << '\n' << '\n';
@@ -588,6 +593,8 @@ template<typename MaskFun, typename Ret, typename... Arg>
       std::enable_if_t<Index < sizeof...(Arg), void>
       run_poo(std::ostream &);
 
+    static const auto _S_arity = sizeof...(Arg);
+
     std::string _M_structname;
     unsigned int _M_start_test = 1;
     test_function<Ret, Arg...> _M_testfun;
@@ -598,7 +605,6 @@ template<typename MaskFun, typename Ret, typename... Arg>
     std::tuple<argument<Arg>...> _M_range;
     std::ostringstream funcall;
     std::string _M_templparm;
-    const std::tuple_size<argument<Arg>...> _M_arity;
     bool _M_all_integral = true;
   };
 
@@ -1076,7 +1082,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 		output << "  { ";
 		output << std::get<0>(crud[j]) << type_strings<Tp>::suffix() << ", ";
 		output << std::get<1>(crud[j]) << type_strings<Tp>::suffix() << ", ";
-		output <<  << ret_tname;
+		output << "FIXME" << ret_tname;
 		output << std::get<2>(crud[j]) << type_strings<Tp>::suffix();
 		output << " },\n";
 	      }
