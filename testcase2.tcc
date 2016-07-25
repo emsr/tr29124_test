@@ -279,45 +279,6 @@ template<>
   };
 
 
-  /**
-   *  @brief  Returns the value clamped between lo and hi.
-   *  @ingroup sorting_algorithms
-   *  @param  __val  A value of arbitrary type.
-   *  @param  __lo   A lower limit of arbitrary type.
-   *  @param  __hi   An upper limit of arbitrary type.
-   *  @return max(__val, __lo) if __val < __hi or min(__val, __hi) otherwise.
-   */
-  template<typename _Tp>
-    constexpr const _Tp&
-    clamp(const _Tp& __val, const _Tp& __lo, const _Tp& __hi)
-    {
-      if (__val < __hi)
-	return ::std::max(__val, __lo);
-      else
-	return ::std::min(__val, __hi);
-    }
-
-  /**
-   *  @brief  Returns the value clamped between lo and hi.
-   *  @ingroup sorting_algorithms
-   *  @param  __val   A value of arbitrary type.
-   *  @param  __lo    A lower limit of arbitrary type.
-   *  @param  __hi    An upper limit of arbitrary type.
-   *  @param  __comp  A comparison functor.
-   *  @return max(__val, __lo, __comp) if __comp(__val, __hi)
-   *          or min(__val, __hi, __comp) otherwise.
-   */
-  template<typename _Tp, typename _Compare>
-    constexpr const _Tp&
-    clamp(const _Tp& __val, const _Tp& __lo, const _Tp& __hi, _Compare __comp)
-    {
-      if (__comp(__val, __hi))
-	return ::std::max(__val, __lo, __comp);
-      else
-	return ::std::min(__val, __hi, __comp);
-    }
-
-
 ///
 ///  @brief  Append two testcase vectors.
 ///
