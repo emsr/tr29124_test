@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <experimental/string_view>
+#include <experimental/filesystem>
 #include <vector>
 #include <stdexcept>
 #include <cmath>
@@ -190,13 +191,12 @@ template<typename Real>
 #if STD
     // Airy functions of the first kind.
     std::ofstream fairy_ai(path + prefix + "airy_ai" + ".cc");
-    testcase<Real, Real>
-      xairy_ai(test_function<Real, Real>("airy_ai", airy_ai),
-	      baseline_function<Real, Real>("GSL", "gsl::airy_ai", gsl::airy_ai),
-	      [](Real){ return true; },
-	      "testcase_airy",
-	      argument<Real>("x", fill_argument(std::make_pair(Real{-10}, Real{10}),
-						std::make_pair(true, true), 41)));
+    auto xairy_ai = make_testcase2(test_function<Real, Real>("__gnu_cxx::airy_ai", airy_ai),
+			baseline_function<Real, Real>("GSL", "gsl::airy_ai", gsl::airy_ai),
+			[](Real){ return true; },
+			"testcase_airy",
+			argument<Real>("x", fill_argument(std::make_pair(Real{-10}, Real{10}),
+							  std::make_pair(true, true), 41)));
     xairy_ai(fairy_ai);
 
 #endif // STD
