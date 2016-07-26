@@ -402,6 +402,53 @@ template<typename Tp>
     return Tp(50.0L) * tol;
   }
 
+#if __cpp_concepts > 0
+
+/**
+ * A concept for mask functions.
+ */
+template<typename Fun, typename... Arg>
+  concept bool
+  Mask()
+  requires(Fun mask, Arg... args)
+  {
+    { mask(args...) } -> bool;
+  };
+#  define CONCEPT_MASK Mask
+
+/**
+ * A concept for test functions.
+ */
+template<typename Fun, typename Ret, typename... Arg>
+  concept bool
+  TestFun()
+  requires(Fun test, Arg... args)
+  {
+    //typename ::funcname;
+    { test(args...) } -> Ret;
+  };
+#  define CONCEPT_TESTFUN TestFun
+
+/**
+ * A concept for baseline functions.
+ */
+template<typename Fun, typename Ret, typename... Arg>
+  concept bool
+  BaselineFun()
+  requires(Fun baseline, Arg... args)
+  {
+    //typename ::source;
+    //typename ::funcname;
+    { baseline(args...) } -> Ret;
+  };
+#  define CONCEPT_BASELINEFUN BaselineFun
+
+#else // Remember to #undef these below.
+#  define CONCEPT_MASK typename
+#  define CONCEPT_TESTFUN typename
+#  define CONCEPT_BASELINEFUN typename
+#endif
+
 /**
  * A class for function arguments.
  */
@@ -411,13 +458,13 @@ template<typename Arg>
 
   public:
 
-    argument(const std::string & arg,
+    argument(std::experimental::string_view arg,
 	     const std::vector<Arg> & val)
     : name(arg),
       value(val)
     {}
 
-    std::string name;
+    std::experimental::string_view name;
     std::vector<Arg> value;
     std::vector<Arg> error;
 
@@ -434,34 +481,18 @@ template<typename Ret, typename... Arg>
 
   public:
 
-    test_function(const std::string & name,
+    test_function(std::experimental::string_view name,
 		  Ret func(Arg...))
     : funcname(name),
       function(func)
     {}
 
-    std::string funcname;
+    std::experimental::string_view funcname;
     Ret (*function)(Arg...);
 
   private:
 
   };
-
-#if __cpp_concepts > 0
-/**
- * A concept for mask functions.
- */
-template<typename Fun, typename... Arg>
-  concept bool
-  Mask()
-  requires(Fun mask, Arg... args)
-  {
-    { mask(args...) } -> bool;
-  };
-#  define CONCEPT_MASK Mask
-#else
-#  define CONCEPT_MASK typename
-#endif
 
 /**
  * A class for baseline function - the function that is a baseline.
@@ -472,20 +503,20 @@ template<typename Ret, typename... Arg>
 
   public:
 
-    baseline_function(const std::string & src,
-		      const std::string & name,
+    baseline_function(std::experimental::string_view src,
+		      std::experimental::string_view name,
 		      Ret func(Arg...))
     : source(src),
       funcname(name),
       function(func)
     {}
 
-    std::string source;
-    std::string funcname;
+    std::experimental::string_view source;
+    std::experimental::string_view funcname;
     Ret (*function)(Arg...);
 
   private:
-  
+
   };
 
 
@@ -493,15 +524,15 @@ template<typename Ret, typename... Arg>
  * A class for testcases.
  */
 template<CONCEPT_MASK MaskFun, typename Ret, typename... Arg>
-  class testcase
+  class testcase2
   {
 
   public:
 
-    testcase(test_function<Ret, Arg...> test,
+    testcase2(test_function<Ret, Arg...> test,
 	     baseline_function<Ret, Arg...> base,
 	     MaskFun mask,
-	     const std::string & structname,
+	     std::experimental::string_view structname,
 	     argument<Arg>... arg)
     : _M_testfun(test),
       _M_basefun(base),
@@ -514,9 +545,9 @@ template<CONCEPT_MASK MaskFun, typename Ret, typename... Arg>
       funcall = get_funcall();
 
       // Some functions taking only integral arguments must have explicit template args.
-      auto _M_all_integral = (std::experimental::is_floating_point_v<Arg> && ...);
+      auto _M_all_integral = !(std::experimental::is_floating_point_v<Arg> || ...);
       if (_M_all_integral)
-	_M_templparm += "<Tp>";
+	_M_templparm += "<Ret>";
     }
 
     void
@@ -524,15 +555,15 @@ template<CONCEPT_MASK MaskFun, typename Ret, typename... Arg>
     {
       // Some targets take too long for riemann zeta.
       bool riemann_zeta_limits
-	= (_S_arity == 1 && _M_testfun.name == "riemann_zeta");
+	= (_S_arity == 1 && _M_testfun.funcname == "riemann_zeta");
 
       output << boilerplate << '\n';
-      output << "//  " << _M_testfun.name << '\n' << '\n';
+      output << "//  " << _M_testfun.funcname << '\n' << '\n';
       if (riemann_zeta_limits)
 	output << riemann_limits << '\n';
       output << header;
 
-      run_poo(output, std::tuple<Arg...>());
+      write_test_data(output, std::index_sequence_for<Arg...>{});
 
       write_main(output, riemann_zeta_limits, get_funcall().str());
     }
@@ -540,23 +571,21 @@ template<CONCEPT_MASK MaskFun, typename Ret, typename... Arg>
 
   private:
 
-    std::ostringstream get_funcall();
-    template<typename RetX, typename ArgX1, typename... ArgX>
-      void get_funcall_help(std::ostringstream &);
-    template<typename RetX, typename ArgX>
-      void get_funcall_help(std::ostringstream &);
+    std::ostringstream get_funcall() const;
 
-    template<std::size_t Index = 0>
-      std::enable_if_t<Index == sizeof...(Arg), void>
-      run_poo(std::ostream &);
+    template<std::size_t... Index>
+      void get_funcall_help(std::ostringstream &, std::index_sequence<Index...>) const;
 
-    template<std::size_t Index = 0>
-      std::enable_if_t<Index < sizeof...(Arg), void>
-      run_poo(std::ostream &);
+    template<std::size_t... Index>
+      void write_test_data(std::ostream &, std::index_sequence<Index...>) const;
 
     static const auto _S_arity = sizeof...(Arg);
 
-    std::string _M_structname;
+    void write_main(std::ostream & output,
+		    bool riemann_zeta_limits,
+		    std::experimental::string_view funcall) const;
+
+    std::experimental::string_view _M_structname;
     unsigned int _M_start_test = 1;
     test_function<Ret, Arg...> _M_testfun;
     baseline_function<Ret, Arg...> _M_basefun;
@@ -569,18 +598,25 @@ template<CONCEPT_MASK MaskFun, typename Ret, typename... Arg>
     bool _M_all_integral = true;
   };
 
-template<typename MaskFun, typename Ret, typename... Arg>
-  template<std::size_t Index>
-    std::enable_if_t<Index == sizeof...(Arg), void>
-    testcase<MaskFun, Ret, Arg...>::
-    run_poo(std::ostream & output)
-    {}
+/**
+ * A testcase maker - ADL to the rescue.
+ */
+template<CONCEPT_MASK MaskFun, typename Ret, typename... Arg>
+  testcase2<MaskFun, Ret, Arg...>
+  make_testcase2(test_function<Ret, Arg...> test,
+		 baseline_function<Ret, Arg...> base,
+		 MaskFun mask,
+		 std::experimental::string_view structname,
+		 argument<Arg>... arg)
+  {
+    return testcase2<MaskFun, Ret, Arg...>(test, base, mask, structname, arg...);
+  }
 
 template<typename MaskFun, typename Ret, typename... Arg>
-  template<std::size_t Index>
-    std::enable_if_t<Index < sizeof...(Arg), void>
-    testcase<MaskFun, Ret, Arg...>::
-    run_poo(std::ostream & output)
+  template<std::size_t... Index>
+    void
+    testcase2<MaskFun, Ret, Arg...>::
+    write_test_data(std::ostream & output, std::index_sequence<Index...>) const
     {
       using Val = __num_traits_t<Ret>;
 
@@ -595,8 +631,8 @@ template<typename MaskFun, typename Ret, typename... Arg>
       constexpr auto ret_complex = is_complex_v<Ret>;
 
       auto numname = type_strings<Val>::type().to_string();
-      auto structname = _M_structname + '<' + numname + '>';
-      run_poo<Index + 1>(output);
+      auto structname = _M_structname.to_string() + '<' + numname + '>';
+      //write_test_data<Index + 1>(output);
     }
 
 /**
@@ -604,33 +640,29 @@ template<typename MaskFun, typename Ret, typename... Arg>
  */
 template<typename MaskFun, typename Ret, typename... Arg>
   std::ostringstream
-  testcase<MaskFun, Ret, Arg...>::
-  get_funcall()
+  testcase2<MaskFun, Ret, Arg...>::
+  get_funcall() const
   {
     std::ostringstream funcall;
-    funcall /*<< nsname << "::"*/
-	    << _M_testfun.name << _M_templparm << "(";
-    get_funcall_help<Ret, Arg...>(funcall);
+    funcall << _M_testfun.funcname << _M_templparm << '(';
+    get_funcall_help(funcall, std::index_sequence_for<Arg...>{});
+    funcall << ')';
     return funcall;
   }
 
 template<typename MaskFun, typename Ret, typename... Arg>
-  template<typename RetX, typename ArgX1, typename... ArgX>
+  template<std::size_t... Index>
     void
-    testcase<MaskFun, Ret, Arg...>::
-    get_funcall_help(std::ostringstream & funcall)
+    testcase2<MaskFun, Ret, Arg...>::
+    get_funcall_help(std::ostringstream & funcall, std::index_sequence<Index...>) const
     {
-      funcall << "data[i]." << arg1 << ", "
-	      << get_funcall_help<RetX, ArgX...>();
-    }
-
-template<typename MaskFun, typename Ret, typename... Arg>
-  template<typename RetX, typename ArgX>
-    void
-    testcase<MaskFun, Ret, Arg...>::
-    get_funcall_help(std::ostringstream & funcall)
-    {
-      funcall << "data[i]." << arg1 << ");\n";
+      using swallow = int[]; // guaranties left to right order
+      (void)swallow
+      {
+	(void(funcall << (Index > 0 ? ", " : "")
+		      << "data[i]."
+		      << std::get<Index>(_M_range).name), 0)...
+      };
     }
 
 /**
@@ -638,30 +670,27 @@ template<typename MaskFun, typename Ret, typename... Arg>
  */
 template<typename MaskFun, typename Ret, typename... Arg>
   void
-  testcase<MaskFun, Ret, Arg...>::
+  testcase2<MaskFun, Ret, Arg...>::
   write_main(std::ostream & output,
 	     bool riemann_zeta_limits,
-	     std::experimental::string_view funcall)
+	     std::experimental::string_view funcall) const
   {
-    std::string structname = "testcase_";
-    structname += funcname;
-    structname += "<Tp>";
-
-    std::string ret_tname = "Tp";
+    constexpr auto ret_complex = is_complex_v<Ret>;
+    std::string ret_tname = "Ret";
     if (ret_complex)
-      ret_tname = "std::complex<Tp>";
+      ret_tname = "std::complex<Ret>";
 
     output << '\n';
-    output << "template<typename Tp, unsigned int Num>\n";
+    output << "template<typename Ret, unsigned int Num>\n";
     output.fill('0');
     output << "  void\n";
-    output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
+    output << "  test(const " << _M_structname << "<Ret> (&data)[Num], Ret toler)\n";
     output.fill(' ');
     output << "  {\n";
     output << "    bool test __attribute__((unused)) = true;\n";
-    output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
-    output << "    Tp max_abs_diff = -Tp(1);\n";
-    output << "    Tp max_abs_frac = -Tp(1);\n";
+    output << "    const Ret eps = std::numeric_limits<Ret>::epsilon();\n";
+    output << "    Ret max_abs_diff = -Ret(1);\n";
+    output << "    Ret max_abs_frac = -Ret(1);\n";
     if (riemann_zeta_limits)
       output << "    unsigned int num_datum = MAX_ITERATIONS;\n";
     else
@@ -673,8 +702,8 @@ template<typename MaskFun, typename Ret, typename... Arg>
     output << "\tconst " << ret_tname << " diff = f - f0;\n";
     output << "\tif (std::abs(diff) > max_abs_diff)\n";
     output << "\t  max_abs_diff = std::abs(diff);\n";
-    output << "\tif (std::abs(f0) > Tp(10) * eps\n";
-    output << "\t && std::abs(f) > Tp(10) * eps)\n";
+    output << "\tif (std::abs(f0) > Ret(10) * eps\n";
+    output << "\t && std::abs(f) > Ret(10) * eps)\n";
     output << "\t  {\n";
     output << "\t    const " << ret_tname << " frac = diff / f0;\n";
     output << "\t    if (std::abs(frac) > max_abs_frac)\n";
@@ -696,423 +725,8 @@ template<typename MaskFun, typename Ret, typename... Arg>
     output << "}\n";
   }
 
-
-
-
-///
-///  @brief  Difference two one-argument functions.
-///
-template<typename Tp, typename Tp1>
-  unsigned int
-  maketest(Tp _M_function1(Tp1),
-	   Tp _M_function2(Tp1),
-	   const std::string & nsname,
-	   const std::string & funcname,
-	   const std::string & arg1, const std::vector<Tp1> & argument1,
-	   const std::string & baseline,
-	   std::ostream & output,
-	   bool write_header = true, bool write_main = true, unsigned int _M_start_test = 1)
-  {
-    using Val = __num_traits_t<Tp>;
-
-    const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
-    output.flags(std::ios::showpoint);
-
-    bool riemann_zeta_limits = (funcname == "riemann_zeta");
-
-    std::string _M_templparm;
-    if (!std::experimental::is_floating_point_v<Tp1>)
-      _M_templparm += "<Tp>";
-
-    if (write_header)
-      output << boilerplate << '\n';
-    output << "//  " << funcname << '\n' << '\n';
-    if (riemann_zeta_limits)
-      output << riemann_limits << '\n';
-    if (write_header)
-      output << header;
-
-    constexpr auto eps = std::numeric_limits<Val>::epsilon();
-    constexpr auto inf = std::numeric_limits<Val>::infinity();
-    constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-    constexpr auto ret_complex = is_complex_v<Tp>;
-
-    auto numname = type_strings<Val>::type().to_string();
-
-    std::string structname = "testcase_";
-    structname += funcname;
-    structname += '<' + numname + '>';
-
-    std::vector<std::tuple<Tp, Tp1>> crud;
-    _Statistics<Tp> raw_stats;
-    _Statistics<decltype(std::abs(Tp{}))> abs_stats;
-    auto max_abs_frac = Val{-1};
-    auto num_divergences = 0;
-    std::tuple<Tp, Tp, Tp1> last_divergence;
-    for (unsigned int i = 0; i < argument1.size(); ++i)
-      {
-	const auto x = argument1[i];
-
-	try
-	  {
-	    const auto f1 = _M_function1(x);
-	    const auto f2 = _M_function2(x);
-
-	    if (std::abs(f1) == inf || std::abs(f2) == inf)
-	      {
-		++num_divergences;
-		last_divergence = std::make_tuple(f1, f2, x);
-		if (num_divergences <= 3)
-		  output << "//  Divergence at"
-			 << " " << arg1 << "=" << x
-			 << " f=" << f1
-			 << " f_" << baseline << "=" << f2 << '\n';
-		continue;
-	      }
-
-	    if (std::isnan(std::real(f1)) || std::isnan(std::real(f2)))
-	      {
-		output << "//  Failure at"
-		       << " " << arg1 << "=" << x
-		       << " f=" << f1
-		       << " f_" << baseline << "=" << f2 << '\n';
-		break;
-	      }
-
-	    const auto diff = f1 - f2;
-	    raw_stats << diff;
-	    abs_stats << std::abs(diff);
-	    if (std::abs(f2) > Val{10} * eps && std::abs(f1) > Val{10} * eps)
-	      {
-		const auto frac = diff / f2;
-		if (std::abs(frac) > max_abs_frac)
-		  max_abs_frac = std::abs(frac);
-	      }
-	    crud.push_back(std::tuple<Tp, Tp1>(f2, x));
-	  }
-	catch (...)
-	  {
-	    continue;
-	  }
-      }
-    if (num_divergences > 0)
-      {
-	if (num_divergences > 4)
-	  output << "//  ...\n";
-	output << "//  Divergence at"
-	       << " " << arg1 << "=" << std::get<2>(last_divergence)
-	       << " f=" << std::get<0>(last_divergence)
-	       << " f_" << baseline << "=" << std::get<1>(last_divergence) << '\n';
-	num_divergences = 0;
-      }
-
-    if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
-      {
-	bool tol_ok = false;
-	const auto min_tol = Val{1.0e-3L};
-	const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
-	std::string ret_tname;
-	if (ret_complex)
-	  ret_tname = type_strings<Tp>::type().to_string();
-	std::ostringstream dataname;
-	dataname.fill('0');
-	dataname << "data" << std::setw(3) << _M_start_test;
-	dataname.fill(' ');
-	output << '\n';
-	output << "// Test data.\n";
-	output << "// max(|f - f_" << baseline << "|): " << abs_stats.max() << '\n';
-	output << "// max(|f - f_" << baseline << "| / |f_" << baseline << "|): " << max_abs_frac << '\n';
-	output << "// mean(f - f_" << baseline << "): " << raw_stats.mean() << '\n';
-	output << "// variance(f - f_" << baseline << "): " << raw_stats.variance() << '\n';
-	output << "// stddev(f - f_" << baseline << "): " << raw_stats.std_deviation() << '\n';
-	output.fill('0');
-	output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
-	output.fill(' ');
-	for (unsigned int i = 0; i < crud.size(); ++i)
-	  {
-	    output << "  { ";
-	    output << std::get<0>(crud[i]) << type_strings<Tp>::suffix() << ", ";
-	    output << ret_tname;
-	    output << std::get<1>(crud[i]) << type_strings<Tp>::suffix();
-	    output << " },\n";
-	  }
-	output << "};\n";
-	output.fill('0');
-	output << "const " << numname << " toler" << std::setw(3) << _M_start_test << " = " << frac_toler << ";\n";
-	output.fill(' ');
-	++_M_start_test;
-      }
-
-    if (write_main)
-      {
-	std::string structname = "testcase_";
-	structname += funcname;
-	structname += "<Tp>";
-
-	std::string ret_tname = "Tp";
-	if (ret_complex)
-	  ret_tname = "std::complex<Tp>";
-
-	output << '\n';
-	output << "template<typename Tp, unsigned int Num>\n";
-	output.fill('0');
-	output << "  void\n";
-	output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
-	output.fill(' ');
-	output << "  {\n";
-	output << "    bool test __attribute__((unused)) = true;\n";
-	output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
-	output << "    Tp max_abs_diff = -Tp(1);\n";
-	output << "    Tp max_abs_frac = -Tp(1);\n";
-	if (riemann_zeta_limits)
-	  output << "    unsigned int num_datum = MAX_ITERATIONS;\n";
-	else
-	  output << "    unsigned int num_datum = Num;\n";
-	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
-	output << "      {\n";
-	output << "\tconst " << ret_tname << " f = " << nsname << "::" << funcname << _M_templparm << "(data[i]." << arg1 << ");\n";
-	output << "\tconst " << ret_tname << " f0 = data[i].f0;\n";
-	output << "\tconst " << ret_tname << " diff = f - f0;\n";
-	output << "\tif (std::abs(diff) > max_abs_diff)\n";
-	output << "\t  max_abs_diff = std::abs(diff);\n";
-	output << "\tif (std::abs(f0) > Tp(10) * eps\n";
-	output << "\t && std::abs(f) > Tp(10) * eps)\n";
-	output << "\t  {\n";
-	output << "\t    const " << ret_tname << " frac = diff / f0;\n";
-	output << "\t    if (std::abs(frac) > max_abs_frac)\n";
-	output << "\t      max_abs_frac = std::abs(frac);\n";
-	output << "\t  }\n";
-	output << "      }\n";
-	output << "    VERIFY(max_abs_frac < toler);\n";
-	output << "  }\n";
-
-	output << '\n';
-	output << "int\n";
-	output << "main()\n";
-	output << "{\n";
-	output.fill('0');
-	for (unsigned int t = 1; t < _M_start_test; ++t)
-	  output << "  test(data" << std::setw(3) << t << ", toler" << std::setw(3) << t << ");\n";
-	output.fill(' ');
-	output << "  return 0;\n";
-	output << "}\n";
-      }
-
-    output.flush();
-
-    return _M_start_test;
-  }
-
-
-///
-///  @brief  Difference two two-argument functions.
-///
-template<typename Tp, typename Tp1, typename Tp2>
-  unsigned int
-  maketest(Tp _M_function1(Tp1,Tp2),
-	   Tp _M_function2(Tp1,Tp2),
-	   const std::string & nsname,
-	   const std::string & funcname,
-	   const std::string & arg1, const std::vector<Tp1> & argument1,
-	   const std::string & arg2, const std::vector<Tp2> & argument2,
-	   const std::string & baseline,
-	   std::ostream & output,
-	   bool write_header = true, bool write_main = true, unsigned int _M_start_test = 1)
-  {
-    using Val = __num_traits_t<Tp>;
-
-    const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
-    output.flags(std::ios::showpoint);
-
-    std::string _M_templparm;
-    if (!std::experimental::is_floating_point_v<Tp1>
-     && !std::experimental::is_floating_point_v<Tp2>)
-      _M_templparm += "<Tp>";
-
-    if (write_header)
-      output << boilerplate << '\n';
-    output << "//  " << funcname << '\n';
-    if (write_header)
-      output << header << '\n';
-
-    constexpr auto eps = std::numeric_limits<Val>::epsilon();
-    constexpr auto inf = std::numeric_limits<Val>::infinity();
-    constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-    constexpr auto ret_complex = is_complex_v<Tp>;
-
-    auto numname = type_strings<Val>::type().to_string();
-
-    std::string structname = "testcase_";
-    structname += funcname;
-    structname += '<' + numname + '>';
-
-    for (unsigned int i = 0; i < argument1.size(); ++i)
-      {
-	const auto x = argument1[i];
-
-	std::vector<std::tuple<Tp, Tp1, Tp2>> crud;
-	_Statistics<Tp> raw_stats;
-	_Statistics<decltype(std::abs(Tp{}))> abs_stats;
-	auto num_divergences = 0;
-	std::tuple<Tp, Tp, Tp1, Tp2> last_divergence;
-
-	auto max_abs_frac = Val{-1};
-	for (unsigned int j = 0; j < argument2.size(); ++j)
-	  {
-	    const auto y = argument2[j];
-
-	    try
-	      {
-		const auto f1 = _M_function1(x, y);
-		const auto f2 = _M_function2(x, y);
-		if (std::abs(f1) == inf || std::abs(f2) == inf)
-		  {
-		    ++num_divergences;
-		    last_divergence = std::make_tuple(f1, f2, x, y);
-		    if (num_divergences <= 3)
-		      output << "//  Divergence at"
-			     << " " << arg1 << "=" << x
-			     << " " << arg2 << "=" << y
-			     << " f=" << f1
-			     << " f_" << baseline << "=" << f2 << '\n';
-		    continue;
-		  }
-
-		if (std::isnan(std::real(f1)) || std::isnan(std::real(f2)))
-		  {
-		    output << "//  Failure at"
-			   << " " << arg1 << "=" << x
-			   << " " << arg2 << "=" << y
-			   << " f=" << f1
-			   << " f_" << baseline << "=" << f2 << '\n';
-		    break;
-		  }
-
-		const auto diff = f1 - f2;
-		raw_stats << diff;
-		abs_stats << std::abs(diff);
-		if (std::abs(f2) > Val{10} * eps && std::abs(f1) > Val{10} * eps)
-		  {
-		    const auto frac = diff / f2;
-		    if (std::abs(frac) > max_abs_frac)
-		      max_abs_frac = std::abs(frac);
-		  }
-		crud.push_back(std::tuple<Tp, Tp1, Tp2>(f2, x, y));
-	      }
-	    catch (...)
-	      {
-		continue;
-	      }
-	  }
-	if (num_divergences > 0)
-	  {
-	    if (num_divergences > 4)
-	      output << "//  ...\n";
-	    output << "//  Divergence at"
-		   << " " << arg1 << "=" << std::get<2>(last_divergence)
-		   << " " << arg2 << "=" << std::get<3>(last_divergence)
-		   << " f=" << std::get<0>(last_divergence)
-		   << " f_" << baseline << "=" << std::get<1>(last_divergence) << '\n';
-	    num_divergences = 0;
-	  }
-
-	if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
-	  {
-	    bool tol_ok = false;
-	    const auto min_tol = Val{1.0e-3L};
-	    const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
-	    std::string ret_tname;
-	    if (ret_complex)
-	      ret_tname = type_strings<Tp>::type().to_string();
-	    std::ostringstream dataname;
-	    dataname.fill('0');
-	    dataname << "data" << std::setw(3) << _M_start_test;
-	    dataname.fill(' ');
-	    output << '\n';
-	    output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]) << ".\n";
-	    output << "// max(|f - f_" << baseline << "|): " << abs_stats.max() << '\n';
-	    output << "// max(|f - f_" << baseline << "| / |f_" << baseline << "|): " << max_abs_frac << '\n';
-	    output << "// mean(f - f_" << baseline << "): " << raw_stats.mean() << '\n';
-	    output << "// variance(f - f_" << baseline << "): " << raw_stats.variance() << '\n';
-	    output << "// stddev(f - f_" << baseline << "): " << raw_stats.std_deviation() << '\n';
-	    output.fill('0');
-	    output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
-	    output.fill(' ');
-	    for (unsigned int j = 0; j < crud.size(); ++j)
-	      {
-		output << "  { ";
-		output << std::get<0>(crud[j]) << type_strings<Tp>::suffix() << ", ";
-		output << std::get<1>(crud[j]) << type_strings<Tp>::suffix() << ", ";
-		output << "FIXME" << ret_tname;
-		output << std::get<2>(crud[j]) << type_strings<Tp>::suffix();
-		output << " },\n";
-	      }
-	    output << "};\n";
-	    output.fill('0');
-	    output << "const " << numname << " toler" << std::setw(3) << _M_start_test << " = " << frac_toler << ";\n";
-	    output.fill(' ');
-	    ++_M_start_test;
-	  }
-      }
-
-    if (write_main)
-      {
-	std::string structname = "testcase_";
-	structname += funcname;
-	structname += "<Tp>";
-
-	std::string ret_tname = "Tp";
-	if (ret_complex)
-	  ret_tname = "std::complex<Tp>";
-
-	output << '\n';
-	output << "template<typename Tp, unsigned int Num>\n";
-	output.fill('0');
-	output << "  void\n";
-	output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
-	output.fill(' ');
-	output << "  {\n";
-	output << "    bool test __attribute__((unused)) = true;\n";
-	output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
-	output << "    Tp max_abs_diff = -Tp(1);\n";
-	output << "    Tp max_abs_frac = -Tp(1);\n";
-	output << "    unsigned int num_datum = Num;\n";
-	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
-	output << "      {\n";
-	output << "\tconst " << ret_tname << " f = " << nsname << "::" << funcname << _M_templparm << '('
-	       << "data[i]." << arg1 << ", data[i]." << arg2 << ");\n";
-	output << "\tconst " << ret_tname << " f0 = data[i].f0;\n";
-	output << "\tconst " << ret_tname << " diff = f - f0;\n";
-	output << "\tif (std::abs(diff) > max_abs_diff)\n";
-	output << "\t  max_abs_diff = std::abs(diff);\n";
-	output << "\tif (std::abs(f0) > Tp(10) * eps\n";
-	output << "\t && std::abs(f) > Tp(10) * eps)\n";
-	output << "\t  {\n";
-	output << "\t    const " << ret_tname << " frac = diff / f0;\n";
-	output << "\t    if (std::abs(frac) > max_abs_frac)\n";
-	output << "\t      max_abs_frac = std::abs(frac);\n";
-	output << "\t  }\n";
-	output << "      }\n";
-	output << "    VERIFY(max_abs_frac < toler);\n";
-	output << "  }\n";
-	output << '\n';
-
-	output << "int\n";
-	output << "main()\n";
-	output << "{\n";
-	output.fill('0');
-	for (unsigned int t = 1; t < _M_start_test; ++t)
-	  output << "  test(data" << std::setw(3) << t << ", toler" << std::setw(3) << t << ");\n";
-	output.fill(' ');
-	output << "  return 0;\n";
-	output << "}\n";
-      }
-
-    output.flush();
-
-    return _M_start_test;
-  }
-
+#undef CONCEPT_BASELINEFUN
+#undef CONCEPT_TESTFUN
 #undef CONCEPT_MASK
 
 #endif // TESTCASE2_TCC
