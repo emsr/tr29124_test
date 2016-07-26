@@ -439,18 +439,18 @@ template<typename Tp>
 ///
 ///  @brief  Difference two one-argument functions.
 ///
-template<typename Tp, typename Tp1>
+template<typename Ret, typename Arg1>
   unsigned int
-  maketest(Tp function1(Tp1),
-	   Tp function2(Tp1),
+  maketest(Ret function1(Arg1),
+	   Ret function2(Arg1),
 	   const std::string & nsname,
 	   const std::string & funcname,
-	   const std::string & arg1, const std::vector<Tp1> & argument1,
+	   const std::string & arg1, const std::vector<Arg1> & argument1,
 	   const std::string & baseline,
 	   std::ostream & output,
 	   bool write_header = true, bool write_main = true, unsigned int start_test = 1)
   {
-    using Val = __num_traits_t<Tp>;
+    using Val = __num_traits_t<Ret>;
 
     const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
@@ -458,8 +458,8 @@ template<typename Tp, typename Tp1>
     bool riemann_zeta_limits = (funcname == "riemann_zeta");
 
     std::string templparm;
-    if (!std::experimental::is_floating_point_v<Tp1>)
-      templparm += "<Tp>";
+    if (!std::experimental::is_floating_point_v<Arg1>)
+      templparm += "<Ret>";
 
     if (write_header)
       output << boilerplate << '\n';
@@ -472,7 +472,7 @@ template<typename Tp, typename Tp1>
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-    constexpr auto ret_complex = is_complex_v<Tp>;
+    constexpr auto ret_complex = is_complex_v<Ret>;
 
     auto numname = type_strings<Val>::type().to_string();
 
@@ -480,15 +480,14 @@ template<typename Tp, typename Tp1>
     structname += funcname;
     structname += '<' + numname + '>';
 
-    std::vector<std::tuple<Tp, Tp1>> crud;
-    _Statistics<Tp> raw_stats;
-    _Statistics<decltype(std::abs(Tp{}))> abs_stats;
+    std::vector<std::tuple<Ret, Arg1>> crud;
+    _Statistics<Ret> raw_stats;
+    _Statistics<decltype(std::abs(Ret{}))> abs_stats;
     auto max_abs_frac = Val{-1};
     auto num_divergences = 0;
-    std::tuple<Tp, Tp, Tp1> last_divergence;
-    for (unsigned int i = 0; i < argument1.size(); ++i)
+    std::tuple<Ret, Ret, Arg1> last_divergence;
+    for (const auto x : argument1)
       {
-	const auto x = argument1[i];
 
 	try
 	  {
@@ -525,7 +524,7 @@ template<typename Tp, typename Tp1>
 		if (std::abs(frac) > max_abs_frac)
 		  max_abs_frac = std::abs(frac);
 	      }
-	    crud.push_back(std::tuple<Tp, Tp1>(f2, x));
+	    crud.emplace_back(f2, x);
 	  }
 	catch (...)
 	  {
@@ -550,7 +549,7 @@ template<typename Tp, typename Tp1>
 	const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 	std::string tname;
 	if (ret_complex)
-	  tname = type_strings<Tp>::type().to_string();
+	  tname = type_strings<Ret>::type().to_string();
 	std::ostringstream dataname;
 	dataname.fill('0');
 	dataname << "data" << std::setw(3) << start_test;
@@ -567,8 +566,8 @@ template<typename Tp, typename Tp1>
 	output.fill(' ');
 	for (unsigned int i = 0; i < crud.size(); ++i)
 	  {
-	    output << "  { " << tname << std::get<0>(crud[i]) << type_strings<Tp>::suffix();
-	    output << ", " << std::get<1>(crud[i]) << type_strings<Tp>::suffix();
+	    output << "  { " << tname << std::get<0>(crud[i]) << type_strings<Ret>::suffix();
+	    output << ", " << std::get<1>(crud[i]) << type_strings<Ret>::suffix();
 	    output << " },\n";
 	  }
 	output << "};\n";
@@ -582,23 +581,23 @@ template<typename Tp, typename Tp1>
       {
 	std::string structname = "testcase_";
 	structname += funcname;
-	structname += "<Tp>";
+	structname += "<Ret>";
 
-	std::string tname = "Tp";
+	std::string tname = "Ret";
 	if (ret_complex)
-	  tname = "std::complex<Tp>";
+	  tname = "std::complex<Ret>";
 
 	output << '\n';
-	output << "template<typename Tp, unsigned int Num>\n";
+	output << "template<typename Ret, unsigned int Num>\n";
 	output.fill('0');
 	output << "  void\n";
-	output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
+	output << "  test(const " << structname << " (&data)[Num], Ret toler)\n";
 	output.fill(' ');
 	output << "  {\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
-	output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
-	output << "    Tp max_abs_diff = -Tp(1);\n";
-	output << "    Tp max_abs_frac = -Tp(1);\n";
+	output << "    const Ret eps = std::numeric_limits<Ret>::epsilon();\n";
+	output << "    Ret max_abs_diff = -Ret(1);\n";
+	output << "    Ret max_abs_frac = -Ret(1);\n";
 	if (riemann_zeta_limits)
 	  output << "    unsigned int num_datum = MAX_ITERATIONS;\n";
 	else
@@ -610,8 +609,8 @@ template<typename Tp, typename Tp1>
 	output << "\tconst " << tname << " diff = f - f0;\n";
 	output << "\tif (std::abs(diff) > max_abs_diff)\n";
 	output << "\t  max_abs_diff = std::abs(diff);\n";
-	output << "\tif (std::abs(f0) > Tp(10) * eps\n";
-	output << "\t && std::abs(f) > Tp(10) * eps)\n";
+	output << "\tif (std::abs(f0) > Ret(10) * eps\n";
+	output << "\t && std::abs(f) > Ret(10) * eps)\n";
 	output << "\t  {\n";
 	output << "\t    const " << tname << " frac = diff / f0;\n";
 	output << "\t    if (std::abs(frac) > max_abs_frac)\n";
@@ -642,27 +641,27 @@ template<typename Tp, typename Tp1>
 ///
 ///  @brief  Difference two two-argument functions.
 ///
-template<typename Tp, typename Tp1, typename Tp2>
+template<typename Ret, typename Arg1, typename Arg2>
   unsigned int
-  maketest(Tp function1(Tp1,Tp2),
-	   Tp function2(Tp1,Tp2),
+  maketest(Ret function1(Arg1,Arg2),
+	   Ret function2(Arg1,Arg2),
 	   const std::string & nsname,
 	   const std::string & funcname,
-	   const std::string & arg1, const std::vector<Tp1> & argument1,
-	   const std::string & arg2, const std::vector<Tp2> & argument2,
+	   const std::string & arg1, const std::vector<Arg1> & argument1,
+	   const std::string & arg2, const std::vector<Arg2> & argument2,
 	   const std::string & baseline,
 	   std::ostream & output,
 	   bool write_header = true, bool write_main = true, unsigned int start_test = 1)
   {
-    using Val = __num_traits_t<Tp>;
+    using Val = __num_traits_t<Ret>;
 
     const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
 
     std::string templparm;
-    if (!std::experimental::is_floating_point_v<Tp1>
-     && !std::experimental::is_floating_point_v<Tp2>)
-      templparm += "<Tp>";
+    if (!std::experimental::is_floating_point_v<Arg1>
+     && !std::experimental::is_floating_point_v<Arg2>)
+      templparm += "<Ret>";
 
     if (write_header)
       output << boilerplate << '\n';
@@ -673,7 +672,7 @@ template<typename Tp, typename Tp1, typename Tp2>
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-    constexpr auto ret_complex = is_complex_v<Tp>;
+    constexpr auto ret_complex = is_complex_v<Ret>;
 
     auto numname = type_strings<Val>::type().to_string();
 
@@ -681,20 +680,18 @@ template<typename Tp, typename Tp1, typename Tp2>
     structname += funcname;
     structname += '<' + numname + '>';
 
-    for (unsigned int i = 0; i < argument1.size(); ++i)
+    for (const auto x : argument1)
       {
-	const auto x = argument1[i];
 
-	std::vector<std::tuple<Tp, Tp1, Tp2>> crud;
-	_Statistics<Tp> raw_stats;
-	_Statistics<decltype(std::abs(Tp{}))> abs_stats;
+	std::vector<std::tuple<Ret, Arg1, Arg2>> crud;
+	_Statistics<Ret> raw_stats;
+	_Statistics<decltype(std::abs(Ret{}))> abs_stats;
 	auto num_divergences = 0;
-	std::tuple<Tp, Tp, Tp1, Tp2> last_divergence;
+	std::tuple<Ret, Ret, Arg1, Arg2> last_divergence;
 
 	auto max_abs_frac = Val{-1};
-	for (unsigned int j = 0; j < argument2.size(); ++j)
+	for (const auto y : argument2)
 	  {
-	    const auto y = argument2[j];
 
 	    try
 	      {
@@ -732,7 +729,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 		    if (std::abs(frac) > max_abs_frac)
 		      max_abs_frac = std::abs(frac);
 		  }
-		crud.push_back(std::tuple<Tp, Tp1, Tp2>(f2, x, y));
+		crud.emplace_back(f2, x, y);
 	      }
 	    catch (...)
 	      {
@@ -758,7 +755,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 	    const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 	    std::string tname;
 	    if (ret_complex)
-	      tname = type_strings<Tp>::type().to_string();
+	      tname = type_strings<Ret>::type().to_string();
 	    std::ostringstream dataname;
 	    dataname.fill('0');
 	    dataname << "data" << std::setw(3) << start_test;
@@ -775,9 +772,9 @@ template<typename Tp, typename Tp1, typename Tp2>
 	    output.fill(' ');
 	    for (unsigned int j = 0; j < crud.size(); ++j)
 	      {
-		output << "  { " << tname << std::get<0>(crud[j]) << type_strings<Tp>::suffix();
-		output << ", " << std::get<1>(crud[j]) << type_strings<Tp>::suffix();
-		output << ", " << std::get<2>(crud[j]) << type_strings<Tp>::suffix();
+		output << "  { " << tname << std::get<0>(crud[j]) << type_strings<Ret>::suffix();
+		output << ", " << std::get<1>(crud[j]) << type_strings<Ret>::suffix();
+		output << ", " << std::get<2>(crud[j]) << type_strings<Ret>::suffix();
 		output << " },\n";
 	      }
 	    output << "};\n";
@@ -792,23 +789,23 @@ template<typename Tp, typename Tp1, typename Tp2>
       {
 	std::string structname = "testcase_";
 	structname += funcname;
-	structname += "<Tp>";
+	structname += "<Ret>";
 
-	std::string tname = "Tp";
+	std::string tname = "Ret";
 	if (ret_complex)
-	  tname = "std::complex<Tp>";
+	  tname = "std::complex<Ret>";
 
 	output << '\n';
-	output << "template<typename Tp, unsigned int Num>\n";
+	output << "template<typename Ret, unsigned int Num>\n";
 	output.fill('0');
 	output << "  void\n";
-	output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
+	output << "  test(const " << structname << " (&data)[Num], Ret toler)\n";
 	output.fill(' ');
 	output << "  {\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
-	output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
-	output << "    Tp max_abs_diff = -Tp(1);\n";
-	output << "    Tp max_abs_frac = -Tp(1);\n";
+	output << "    const Ret eps = std::numeric_limits<Ret>::epsilon();\n";
+	output << "    Ret max_abs_diff = -Ret(1);\n";
+	output << "    Ret max_abs_frac = -Ret(1);\n";
 	output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "      {\n";
@@ -818,8 +815,8 @@ template<typename Tp, typename Tp1, typename Tp2>
 	output << "\tconst " << tname << " diff = f - f0;\n";
 	output << "\tif (std::abs(diff) > max_abs_diff)\n";
 	output << "\t  max_abs_diff = std::abs(diff);\n";
-	output << "\tif (std::abs(f0) > Tp(10) * eps\n";
-	output << "\t && std::abs(f) > Tp(10) * eps)\n";
+	output << "\tif (std::abs(f0) > Ret(10) * eps\n";
+	output << "\t && std::abs(f) > Ret(10) * eps)\n";
 	output << "\t  {\n";
 	output << "\t    const " << tname << " frac = diff / f0;\n";
 	output << "\t    if (std::abs(frac) > max_abs_frac)\n";
@@ -850,29 +847,29 @@ template<typename Tp, typename Tp1, typename Tp2>
 ///
 ///  @brief  Difference two three-argument functions.
 ///
-template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
+template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
   unsigned int
-  maketest(Tp function1(Tp1,Tp2,Tp3),
-	   Tp function2(Tp1,Tp2,Tp3),
+  maketest(Ret function1(Arg1,Arg2,Arg3),
+	   Ret function2(Arg1,Arg2,Arg3),
 	   const std::string & nsname,
 	   const std::string & funcname,
-	   const std::string & arg1, const std::vector<Tp1> & argument1,
-	   const std::string & arg2, const std::vector<Tp2> & argument2,
-	   const std::string & arg3, const std::vector<Tp3> & argument3,
+	   const std::string & arg1, const std::vector<Arg1> & argument1,
+	   const std::string & arg2, const std::vector<Arg2> & argument2,
+	   const std::string & arg3, const std::vector<Arg3> & argument3,
 	   const std::string & baseline,
 	   std::ostream & output,
 	   bool write_header = true, bool write_main = true, unsigned int start_test = 1)
   {
-    using Val = __num_traits_t<Tp>;
+    using Val = __num_traits_t<Ret>;
 
     const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
 
     std::string templparm;
-    if (!std::experimental::is_floating_point_v<Tp1>
-     && !std::experimental::is_floating_point_v<Tp2>
-     && !std::experimental::is_floating_point_v<Tp3>)
-      templparm += "<Tp>";
+    if (!std::experimental::is_floating_point_v<Arg1>
+     && !std::experimental::is_floating_point_v<Arg2>
+     && !std::experimental::is_floating_point_v<Arg3>)
+      templparm += "<Ret>";
 
     if (write_header)
       output << boilerplate << '\n';
@@ -883,7 +880,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-    constexpr auto ret_complex = is_complex_v<Tp>;
+    constexpr auto ret_complex = is_complex_v<Ret>;
 
     auto numname = type_strings<Val>::type().to_string();
 
@@ -891,24 +888,21 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
     structname += funcname;
     structname += '<' + numname + '>';
 
-    for (unsigned int i = 0; i < argument1.size(); ++i)
+    for (const auto x : argument1)
       {
-	const auto x = argument1[i];
 
-	for (unsigned int j = 0; j < argument2.size(); ++j)
+	for (const auto y : argument2)
 	  {
-	    const auto y = argument2[j];
 
-	    std::vector<std::tuple<Tp, Tp1, Tp2, Tp3>> crud;
-	    _Statistics<Tp> raw_stats;
-	    _Statistics<decltype(std::abs(Tp{}))> abs_stats;
+	    std::vector<std::tuple<Ret, Arg1, Arg2, Arg3>> crud;
+	    _Statistics<Ret> raw_stats;
+	    _Statistics<decltype(std::abs(Ret{}))> abs_stats;
 	    auto num_divergences = 0;
-	    std::tuple<Tp, Tp, Tp1, Tp2, Tp3> last_divergence;
+	    std::tuple<Ret, Ret, Arg1, Arg2, Arg3> last_divergence;
 
 	    auto max_abs_frac = Val{-1};
-	    for (unsigned int k = 0; k < argument3.size(); ++k)
+	    for (const auto z : argument3)
 	      {
-		const auto z = argument3[k];
 
 		try
 		  {
@@ -948,7 +942,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 			if (std::abs(frac) > max_abs_frac)
 			  max_abs_frac = std::abs(frac);
 		      }
-		    crud.push_back(std::tuple<Tp, Tp1, Tp2, Tp3>(f2, x, y, z));
+		    crud.emplace_back(f2, x, y, z);
 		  }
 		catch (...)
 		  {
@@ -975,7 +969,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 		std::string tname;
 		if (ret_complex)
-		  tname = type_strings<Tp>::type().to_string();
+		  tname = type_strings<Ret>::type().to_string();
 		std::ostringstream dataname;
 		dataname.fill('0');
 		dataname << "data" << std::setw(3) << start_test;
@@ -993,11 +987,11 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 		output.fill(' ');
 		for (unsigned int k = 0; k < crud.size(); ++k)
 		  {
-		    output << "  { " << tname << std::get<0>(crud[k]) << type_strings<Tp>::suffix();
-		    output << ", " << std::get<1>(crud[k]) << type_strings<Tp>::suffix();
-		    output << ", " << std::get<2>(crud[k]) << type_strings<Tp>::suffix();
+		    output << "  { " << tname << std::get<0>(crud[k]) << type_strings<Ret>::suffix();
+		    output << ", " << std::get<1>(crud[k]) << type_strings<Ret>::suffix();
+		    output << ", " << std::get<2>(crud[k]) << type_strings<Ret>::suffix();
 		    output << ", \n";
-		    output << "\t  " << std::get<3>(crud[k]) << type_strings<Tp>::suffix();
+		    output << "\t  " << std::get<3>(crud[k]) << type_strings<Ret>::suffix();
 		    output << " },\n";
 		  }
 		output << "};\n";
@@ -1014,23 +1008,23 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
       {
 	std::string structname = "testcase_";
 	structname += funcname;
-	structname += "<Tp>";
+	structname += "<Ret>";
 
-	std::string tname = "Tp";
+	std::string tname = "Ret";
 	if (ret_complex)
-	  tname = "std::complex<Tp>";
+	  tname = "std::complex<Ret>";
 
 	output << '\n';
-	output << "template<typename Tp, unsigned int Num>\n";
+	output << "template<typename Ret, unsigned int Num>\n";
 	output.fill('0');
 	output << "  void\n";
-	output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
+	output << "  test(const " << structname << " (&data)[Num], Ret toler)\n";
 	output.fill(' ');
 	output << "  {\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
-	output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
-	output << "    Tp max_abs_diff = -Tp(1);\n";
-	output << "    Tp max_abs_frac = -Tp(1);\n";
+	output << "    const Ret eps = std::numeric_limits<Ret>::epsilon();\n";
+	output << "    Ret max_abs_diff = -Ret(1);\n";
+	output << "    Ret max_abs_frac = -Ret(1);\n";
 	output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "  	 {\n";
@@ -1041,8 +1035,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 	output << "\tconst " << tname << " diff = f - f0;\n";
 	output << "\tif (std::abs(diff) > max_abs_diff)\n";
 	output << "\t  max_abs_diff = std::abs(diff);\n";
-	output << "\tif (std::abs(f0) > Tp(10) * eps\n";
-	output << "\t && std::abs(f) > Tp(10) * eps)\n";
+	output << "\tif (std::abs(f0) > Ret(10) * eps\n";
+	output << "\t && std::abs(f) > Ret(10) * eps)\n";
 	output << "\t  {\n";
 	output << "\t    const " << tname << " frac = diff / f0;\n";
 	output << "\t    if (std::abs(frac) > max_abs_frac)\n";
@@ -1073,31 +1067,31 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 ///
 ///  @brief  Difference two four-argument functions.
 ///
-template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
+template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg4>
   unsigned int
-  maketest(Tp function1(Tp1,Tp2,Tp3,Tp4),
-	   Tp function2(Tp1,Tp2,Tp3,Tp4),
+  maketest(Ret function1(Arg1,Arg2,Arg3,Arg4),
+	   Ret function2(Arg1,Arg2,Arg3,Arg4),
 	   const std::string & nsname,
 	   const std::string & funcname,
-	   const std::string & arg1, const std::vector<Tp1> & argument1,
-	   const std::string & arg2, const std::vector<Tp2> & argument2,
-	   const std::string & arg3, const std::vector<Tp3> & argument3,
-	   const std::string & arg4, const std::vector<Tp4> & argument4,
+	   const std::string & arg1, const std::vector<Arg1> & argument1,
+	   const std::string & arg2, const std::vector<Arg2> & argument2,
+	   const std::string & arg3, const std::vector<Arg3> & argument3,
+	   const std::string & arg4, const std::vector<Arg4> & argument4,
 	   const std::string & baseline,
 	   std::ostream & output,
 	   bool write_header = true, bool write_main = true, unsigned int start_test = 1)
   {
-    using Val = __num_traits_t<Tp>;
+    using Val = __num_traits_t<Ret>;
 
     const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
 
     std::string templparm;
-    if (!std::experimental::is_floating_point_v<Tp1>
-     && !std::experimental::is_floating_point_v<Tp2>
-     && !std::experimental::is_floating_point_v<Tp3>
-     && !std::experimental::is_floating_point_v<Tp4>)
-      templparm += "<Tp>";
+    if (!std::experimental::is_floating_point_v<Arg1>
+     && !std::experimental::is_floating_point_v<Arg2>
+     && !std::experimental::is_floating_point_v<Arg3>
+     && !std::experimental::is_floating_point_v<Arg4>)
+      templparm += "<Ret>";
 
     if (write_header)
       output << boilerplate << '\n';
@@ -1108,7 +1102,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-    constexpr auto ret_complex = is_complex_v<Tp>;
+    constexpr auto ret_complex = is_complex_v<Ret>;
 
     auto numname = type_strings<Val>::type().to_string();
 
@@ -1116,28 +1110,24 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
     structname += funcname;
     structname += '<' + numname + '>';
 
-    for (unsigned int i = 0; i < argument1.size(); ++i)
+    for (const auto w : argument1)
       {
-	const auto w = argument1[i];
 
-	for (unsigned int j = 0; j < argument2.size(); ++j)
+	for (const auto x : argument2)
 	  {
-	    const auto x = argument2[j];
 
-	    for (unsigned int k = 0; k < argument3.size(); ++k)
+	    for (const auto y : argument3)
 	      {
-		const auto y = argument3[k];
 
-		std::vector<std::tuple<Tp, Tp1, Tp2, Tp3, Tp4>> crud;
-		_Statistics<Tp> raw_stats;
-		_Statistics<decltype(std::abs(Tp{}))> abs_stats;
+		std::vector<std::tuple<Ret, Arg1, Arg2, Arg3, Arg4>> crud;
+		_Statistics<Ret> raw_stats;
+		_Statistics<decltype(std::abs(Ret{}))> abs_stats;
 		auto num_divergences = 0;
-		std::tuple<Tp, Tp, Tp1, Tp2, Tp3, Tp4> last_divergence;
+		std::tuple<Ret, Ret, Arg1, Arg2, Arg3, Arg4> last_divergence;
 
 		auto max_abs_frac = Val{-1};
-		for (unsigned int l = 0; l < argument4.size(); ++l)
+		for (const auto z : argument4)
 		  {
-		    const auto z = argument4[l];
 
 		    try
 		      {
@@ -1179,7 +1169,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 			    if (std::abs(frac) > max_abs_frac)
 			      max_abs_frac = std::abs(frac);
 			  }
-			crud.push_back(std::tuple<Tp, Tp1, Tp2, Tp3, Tp4>(f2, w, x, y, z));
+			crud.emplace_back(f2, w, x, y, z);
 		      }
 		    catch (...)
 		      {
@@ -1207,7 +1197,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		    const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 		    std::string tname;
 		    if (ret_complex)
-		      tname = type_strings<Tp>::type().to_string();
+		      tname = type_strings<Ret>::type().to_string();
 		    std::ostringstream dataname;
 		    dataname.fill('0');
 		    dataname << "data" << std::setw(3) << start_test;
@@ -1226,12 +1216,12 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 		    output.fill(' ');
 		    for (unsigned int l = 0; l < crud.size(); ++l)
 		      {
-			output << "  { " << tname << std::get<0>(crud[l]) << type_strings<Tp>::suffix();
-			output << ", " << std::get<1>(crud[l]) << type_strings<Tp>::suffix();
-			output << ", " << std::get<2>(crud[l]) << type_strings<Tp>::suffix();
+			output << "  { " << tname << std::get<0>(crud[l]) << type_strings<Ret>::suffix();
+			output << ", " << std::get<1>(crud[l]) << type_strings<Ret>::suffix();
+			output << ", " << std::get<2>(crud[l]) << type_strings<Ret>::suffix();
 			output << ", \n";
-			output << "\t  " << std::get<3>(crud[l]) << type_strings<Tp>::suffix();
-			output << ", " << std::get<4>(crud[l]) << type_strings<Tp>::suffix();
+			output << "\t  " << std::get<3>(crud[l]) << type_strings<Ret>::suffix();
+			output << ", " << std::get<4>(crud[l]) << type_strings<Ret>::suffix();
 			output << " },\n";
 		      }
 		    output << "};\n";
@@ -1248,23 +1238,23 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
       {
 	std::string structname = "testcase_";
 	structname += funcname;
-	structname += "<Tp>";
+	structname += "<Ret>";
 
-	std::string tname = "Tp";
+	std::string tname = "Ret";
 	if (ret_complex)
-	  tname = "std::complex<Tp>";
+	  tname = "std::complex<Ret>";
 
 	output << '\n';
-	output << "template<typename Tp, unsigned int Num>\n";
+	output << "template<typename Ret, unsigned int Num>\n";
 	output.fill('0');
 	output << "  void\n";
-	output << "  test(const " << structname << " (&data)[Num], Tp toler)\n";
+	output << "  test(const " << structname << " (&data)[Num], Ret toler)\n";
 	output.fill(' ');
 	output << "  {\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
-	output << "    const Tp eps = std::numeric_limits<Tp>::epsilon();\n";
-	output << "    Tp max_abs_diff = -Tp(1);\n";
-	output << "    Tp max_abs_frac = -Tp(1);\n";
+	output << "    const Ret eps = std::numeric_limits<Ret>::epsilon();\n";
+	output << "    Ret max_abs_diff = -Ret(1);\n";
+	output << "    Ret max_abs_frac = -Ret(1);\n";
 	output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "      {\n";
@@ -1275,8 +1265,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 	output << "\tconst " << tname << " diff = f - f0;\n";
 	output << "\tif (std::abs(diff) > max_abs_diff)\n";
 	output << "\t  max_abs_diff = std::abs(diff);\n";
-	output << "\tif (std::abs(f0) > Tp(10) * eps\n";
-	output << "\t && std::abs(f) > Tp(10) * eps)\n";
+	output << "\tif (std::abs(f0) > Ret(10) * eps\n";
+	output << "\t && std::abs(f) > Ret(10) * eps)\n";
 	output << "\t  {\n";
 	output << "\t    const " << tname << " frac = diff / f0;\n";
 	output << "\t    if (std::abs(frac) > max_abs_frac)\n";
