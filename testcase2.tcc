@@ -663,6 +663,8 @@ template<typename MaskFun, typename Ret, typename... Arg>
 		      << "data[i]."
 		      << std::get<Index>(_M_range).name), 0)...
       };
+      // Could we do this with fold expressions?
+      //(funcall << (Index > 0 ? ", " : "") << "data[i].") << std::get<Index>(_M_range).name << ...;
     }
 
 /**
