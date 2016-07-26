@@ -550,26 +550,26 @@ data016[20] =
 };
 const double toler016 = 5.0000000000000039e-13;
 
-template<typename Tp, unsigned int Num>
+template<typename Ret, unsigned int Num>
   void
-  test(const testcase_sph_hankel_2<Tp> (&data)[Num], Tp toler)
+  test(const testcase_sph_hankel_2<Ret> (&data)[Num], Ret toler)
   {
     bool test __attribute__((unused)) = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
+    const Ret eps = std::numeric_limits<Ret>::epsilon();
+    Ret max_abs_diff = -Ret(1);
+    Ret max_abs_frac = -Ret(1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const std::complex<Tp> f = __gnu_cxx::sph_hankel_2(data[i].n, data[i].x);
-	const std::complex<Tp> f0 = data[i].f0;
-	const std::complex<Tp> diff = f - f0;
+	const std::complex<Ret> f = __gnu_cxx::sph_hankel_2(data[i].n, data[i].x);
+	const std::complex<Ret> f0 = data[i].f0;
+	const std::complex<Ret> diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
+	if (std::abs(f0) > Ret(10) * eps
+	 && std::abs(f) > Ret(10) * eps)
 	  {
-	    const std::complex<Tp> frac = diff / f0;
+	    const std::complex<Ret> frac = diff / f0;
 	    if (std::abs(frac) > max_abs_frac)
 	      max_abs_frac = std::abs(frac);
 	  }
