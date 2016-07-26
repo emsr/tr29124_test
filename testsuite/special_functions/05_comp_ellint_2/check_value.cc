@@ -40,9 +40,9 @@
 // Test data.
 // max(|f - f_GSL|): 6.6613381477509392e-16
 // max(|f - f_GSL| / |f_GSL|): 4.4233707954398090e-16
-// mean(f - f_GSL): 1.0517902338554114e-16
-// variance(f - f_GSL): 6.4873429705675309e-34
-// stddev(f - f_GSL): 2.5470262995437506e-17
+// mean(f - f_GSL): 8.1805907077643109e-17
+// variance(f - f_GSL): 1.6218357426418829e-32
+// stddev(f - f_GSL): 1.2735131497718752e-16
 const testcase_comp_ellint_2<double>
 data001[19] =
 {
@@ -51,43 +51,43 @@ data001[19] =
   { 1.3556611355719554, -0.69999999999999996 },
   { 1.4180833944487241, -0.59999999999999998 },
   { 1.4674622093394274, -0.50000000000000000 },
-  { 1.5059416123600402, -0.40000000000000002 },
-  { 1.5348334649232491, -0.30000000000000004 },
+  { 1.5059416123600404, -0.39999999999999991 },
+  { 1.5348334649232491, -0.29999999999999993 },
   { 1.5549685462425291, -0.19999999999999996 },
   { 1.5668619420216685, -0.099999999999999978 },
   { 1.5707963267948966, 0.0000000000000000 },
   { 1.5668619420216685, 0.10000000000000009 },
-  { 1.5549685462425291, 0.19999999999999996 },
+  { 1.5549685462425289, 0.20000000000000018 },
   { 1.5348334649232491, 0.30000000000000004 },
-  { 1.5059416123600404, 0.39999999999999991 },
+  { 1.5059416123600402, 0.40000000000000013 },
   { 1.4674622093394274, 0.50000000000000000 },
   { 1.4180833944487241, 0.60000000000000009 },
-  { 1.3556611355719554, 0.69999999999999996 },
+  { 1.3556611355719554, 0.70000000000000018 },
   { 1.2763499431699064, 0.80000000000000004 },
-  { 1.1716970527816144, 0.89999999999999991 },
+  { 1.1716970527816144, 0.90000000000000013 },
 };
 const double toler001 = 2.5000000000000020e-13;
 
-template<typename Tp, unsigned int Num>
+template<typename Ret, unsigned int Num>
   void
-  test(const testcase_comp_ellint_2<Tp> (&data)[Num], Tp toler)
+  test(const testcase_comp_ellint_2<Ret> (&data)[Num], Ret toler)
   {
     bool test __attribute__((unused)) = true;
-    const Tp eps = std::numeric_limits<Tp>::epsilon();
-    Tp max_abs_diff = -Tp(1);
-    Tp max_abs_frac = -Tp(1);
+    const Ret eps = std::numeric_limits<Ret>::epsilon();
+    Ret max_abs_diff = -Ret(1);
+    Ret max_abs_frac = -Ret(1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Tp f = std::comp_ellint_2(data[i].k);
-	const Tp f0 = data[i].f0;
-	const Tp diff = f - f0;
+	const Ret f = std::comp_ellint_2(data[i].k);
+	const Ret f0 = data[i].f0;
+	const Ret diff = f - f0;
 	if (std::abs(diff) > max_abs_diff)
 	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Tp(10) * eps
-	 && std::abs(f) > Tp(10) * eps)
+	if (std::abs(f0) > Ret(10) * eps
+	 && std::abs(f) > Ret(10) * eps)
 	  {
-	    const Tp frac = diff / f0;
+	    const Ret frac = diff / f0;
 	    if (std::abs(frac) > max_abs_frac)
 	      max_abs_frac = std::abs(frac);
 	  }
