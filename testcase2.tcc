@@ -7,6 +7,7 @@
 #include <experimental/string_view>
 #include "complex_compare.h" // For the Statistics min/max (maybe rethink that there)
 #include "statistics.h"
+#include "spaceship.h"
 
 const std::experimental::string_view boilerplate = 
 R"(// { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
@@ -486,8 +487,17 @@ template<CONCEPT_MASK MaskFun, typename Ret, typename... Arg>
     template<std::size_t... Index>
       void write_test_data(std::ostream &, std::index_sequence<Index...>) const;
 
-    template<std::size_t Index>
-      void write_test_data_help(std::ostream &) const;
+    //template<std::size_t Index, _Spaceship_t<std::size_t> Sign = _Spaceship<std::size_t>{}(Index + 1, testcase2::_S_arity)>
+    //  struct Test_Data_Help;
+    template<std::size_t Index, _SpaceshipType<std::size_t, _Spaceship_t<std::size_t>>r SignTp>
+      struct Test_Data_Help;
+
+    //template<std::size_t Index, _Spaceship_t<std::size_t> Sign>
+    //  friend class Test_Data_Help<Index, Sign>;
+    //template<std::size_t Index>
+    //  friend class Test_Data_Help<Index, _Spaceship_t<std::size_t>{+1}>;
+    //template<std::size_t Index>
+    //  friend class Test_Data_Help<Index, _Spaceship_t<std::size_t>{0}>;
 
     static const auto _S_arity = sizeof...(Arg);
 
@@ -532,21 +542,11 @@ template<typename MaskFun, typename Ret, typename... Arg>
     write_test_data(std::ostream & output, std::index_sequence<Index...>) const
     {
       using Val = __num_traits_t<Ret>;
-      constexpr auto eps = std::numeric_limits<Val>::epsilon();
-      constexpr auto inf = std::numeric_limits<Val>::infinity();
-      constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-      constexpr auto ret_complex = is_complex_v<Ret>;
 
       const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
       output.flags(std::ios::showpoint);
 
-
-      write_test_data_help<0>(output);
-
-
-      auto numname = type_strings<Val>::type().to_string();
-      auto structname = _M_structname.to_string() + '<' + numname + '>';
-      //write_test_data<Index + 1>(output);
+      Test_Data_Help<0, _Spaceship<std::size_t>{}(1, _S_arity)>{}(output);
     }
 
 /**
@@ -554,9 +554,35 @@ template<typename MaskFun, typename Ret, typename... Arg>
  */
 template<typename MaskFun, typename Ret, typename... Arg>
   template<std::size_t Index>
+    struct testcase2<MaskFun, Ret, Arg...>::
+    Test_Data_Help<Index, _Spaceship_t<std::size_t>{+1}>
+    {
+      void
+      operator()(std::ostream & output) const
+      {
+        for (const auto x : std::get<Index>(_M_range).value)
+	  Test_Data_Help<Index + 1, _Spaceship<std::size_t>{}(Index + 1, _S_arity)>(output);
+      }
+    };
+
+/**
+ * Generate and write the test data.  Accumulate statistics.
+ */
+template<typename MaskFun, typename Ret, typename... Arg>
+  template<std::size_t Index>
+    struct testcase2<MaskFun, Ret, Arg...>::
+    Test_Data_Help<Index, _Spaceship_t<std::size_t>{0}>
+    {
+      void
+      operator()(std::ostream & output) const;
+    };
+
+template<typename MaskFun, typename Ret, typename... Arg>
+  template<std::size_t Index>
     void
     testcase2<MaskFun, Ret, Arg...>::
-    write_test_data_help(std::ostream & output) const
+    Test_Data_Help<Index, _Spaceship_t<std::size_t>{0}>::
+    operator()(std::ostream & output) const
     {
       using Val = __num_traits_t<Ret>;
       constexpr auto eps = std::numeric_limits<Val>::epsilon();
@@ -564,116 +590,105 @@ template<typename MaskFun, typename Ret, typename... Arg>
       constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
       constexpr auto ret_complex = is_complex_v<Ret>;
 
-      const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
-      output.flags(std::ios::showpoint);
-
       auto numname = type_strings<Val>::type().to_string();
       auto structname = _M_structname.to_string() + '<' + numname + '>';
       auto baseline = _M_basefun.source;
       auto arg = std::get<Index>(_M_range).name;
 
-      if (Index + 1 < _S_arity)
+      std::vector<std::tuple<Ret, Arg...>> crud;
+      _Statistics<Ret> raw_stats;
+      _Statistics<decltype(std::abs(Ret{}))> abs_stats;
+      auto num_divergences = 0;
+      std::tuple<Ret, Ret, Arg...> last_divergence;
+      auto max_abs_frac = Val{-1};
+      for (const auto x : std::get<Index>(_M_range).value)
 	{
-	  for (const auto x : std::get<Index>(_M_range).value)
-	    write_test_data_help<Index + 1>(output);
-	}
-      else if (Index + 1 == _S_arity)
-	{
-	  std::vector<std::tuple<Ret, Arg...>> crud;
-	  _Statistics<Ret> raw_stats;
-	  _Statistics<decltype(std::abs(Ret{}))> abs_stats;
-	  auto num_divergences = 0;
-	  std::tuple<Ret, Ret, Arg...> last_divergence;
-	  auto max_abs_frac = Val{-1};
-	  for (const auto x : std::get<Index>(_M_range).value)
+	  try
 	    {
-	      try
+	      const auto f1 = _M_function1(x);
+	      const auto f2 = _M_function2(x);
+
+	      if (std::abs(f1) == inf || std::abs(f2) == inf)
 		{
-		  const auto f1 = _M_function1(x);
-		  const auto f2 = _M_function2(x);
-
-		  if (std::abs(f1) == inf || std::abs(f2) == inf)
-		    {
-		      ++num_divergences;
-		      last_divergence = std::make_tuple(f1, f2, x);
-		      if (num_divergences <= 3)
-			output << "//  Divergence at"
-			       << " " << arg << "=" << x
-			       << " f=" << f1
-			       << " f_" << baseline << "=" << f2 << '\n';
-		      continue;
-		    }
-
-		  if (std::isnan(std::real(f1)) || std::isnan(std::real(f2)))
-		    {
-		      output << "//  Failure at"
-			     << " " << arg << "=" << x
-			     << " f=" << f1
-			     << " f_" << baseline << "=" << f2 << '\n';
-		      break;
-		    }
-
-		  const auto diff = f1 - f2;
-		  raw_stats << diff;
-		  abs_stats << std::abs(diff);
-		  if (std::abs(f2) > Val{10} * eps && std::abs(f1) > Val{10} * eps)
-		    {
-		      const auto frac = diff / f2;
-		      if (std::abs(frac) > max_abs_frac)
-			max_abs_frac = std::abs(frac);
-		    }
-		  crud.emplace_back(f2, x);
-		}
-	      catch (...)
-		{
+		  ++num_divergences;
+		  last_divergence = std::make_tuple(f1, f2, x);
+		  if (num_divergences <= 3)
+		    output << "//  Divergence at"
+			   << " " << arg << "=" << x
+			   << " f=" << f1
+			   << " f_" << baseline << "=" << f2 << '\n';
 		  continue;
 		}
-	    }
-	  if (num_divergences > 0)
-	    {
-	      if (num_divergences > 4)
-		output << "//  ...\n";
-	      output << "//  Divergence at"
-		     << " " << arg << "=" << std::get<2>(last_divergence)
-		     << " f=" << std::get<0>(last_divergence)
-		     << " f_" << baseline << "=" << std::get<1>(last_divergence) << '\n';
-	      num_divergences = 0;
-	    }
 
-	  if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
-	    {
-	      bool tol_ok = false;
-	      const auto min_tol = Val{1.0e-3L};
-	      const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
-	      std::string tname;
-	      if (ret_complex)
-		tname = type_strings<Ret>::type().to_string();
-	      std::ostringstream dataname;
-	      dataname.fill('0');
-	      dataname << "data" << std::setw(3) << _M_start_test;
-	      dataname.fill(' ');
-	      output << '\n';
-	      output << "// Test data.\n";
-	      output << "// max(|f - f_" << baseline << "|): " << abs_stats.max() << '\n';
-	      output << "// max(|f - f_" << baseline << "| / |f_" << baseline << "|): " << max_abs_frac << '\n';
-	      output << "// mean(f - f_" << baseline << "): " << raw_stats.mean() << '\n';
-	      output << "// variance(f - f_" << baseline << "): " << raw_stats.variance() << '\n';
-	      output << "// stddev(f - f_" << baseline << "): " << raw_stats.std_deviation() << '\n';
-	      output.fill('0');
-	      output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
-	      output.fill(' ');
-	      for (unsigned int i = 0; i < crud.size(); ++i)
+	      if (std::isnan(std::real(f1)) || std::isnan(std::real(f2)))
 		{
-		  output << "  { " << tname << std::get<0>(crud[i]) << type_strings<Ret>::suffix();
-		  output << ", " << std::get<1>(crud[i]) << type_strings<Ret>::suffix();
-		  output << " },\n";
+		  output << "//  Failure at"
+			 << " " << arg << "=" << x
+			 << " f=" << f1
+			 << " f_" << baseline << "=" << f2 << '\n';
+		  break;
 		}
-	      output << "};\n";
-	      output.fill('0');
-	      output << "const " << numname << " toler" << std::setw(3) << _M_start_test << " = " << frac_toler << ";\n";
-	      output.fill(' ');
-	      ++_M_start_test;
+
+	      const auto diff = f1 - f2;
+	      raw_stats << diff;
+	      abs_stats << std::abs(diff);
+	      if (std::abs(f2) > Val{10} * eps && std::abs(f1) > Val{10} * eps)
+		{
+		  const auto frac = diff / f2;
+		  if (std::abs(frac) > max_abs_frac)
+		    max_abs_frac = std::abs(frac);
+		}
+	      crud.emplace_back(f2, x);
 	    }
+	  catch (...)
+	    {
+	      continue;
+	    }
+	}
+      if (num_divergences > 0)
+	{
+	  if (num_divergences > 4)
+	    output << "//  ...\n";
+	  output << "//  Divergence at"
+		 << " " << arg << "=" << std::get<2>(last_divergence)
+		 << " f=" << std::get<0>(last_divergence)
+		 << " f_" << baseline << "=" << std::get<1>(last_divergence) << '\n';
+	  num_divergences = 0;
+	}
+
+      if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
+	{
+	  bool tol_ok = false;
+	  const auto min_tol = Val{1.0e-3L};
+	  const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
+	  std::string tname;
+	  if (ret_complex)
+	    tname = type_strings<Ret>::type().to_string();
+	  std::ostringstream dataname;
+	  dataname.fill('0');
+	  dataname << "data" << std::setw(3) << _M_start_test;
+	  dataname.fill(' ');
+	  output << '\n';
+	  output << "// Test data.\n";
+	  output << "// max(|f - f_" << baseline << "|): " << abs_stats.max() << '\n';
+	  output << "// max(|f - f_" << baseline << "| / |f_" << baseline << "|): " << max_abs_frac << '\n';
+	  output << "// mean(f - f_" << baseline << "): " << raw_stats.mean() << '\n';
+	  output << "// variance(f - f_" << baseline << "): " << raw_stats.variance() << '\n';
+	  output << "// stddev(f - f_" << baseline << "): " << raw_stats.std_deviation() << '\n';
+	  output.fill('0');
+	  output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
+	  output.fill(' ');
+	  for (unsigned int i = 0; i < crud.size(); ++i)
+	    {
+	      output << "  { " << tname << std::get<0>(crud[i]) << type_strings<Ret>::suffix();
+	      output << ", " << std::get<1>(crud[i]) << type_strings<Ret>::suffix();
+	      output << " },\n";
+	    }
+	  output << "};\n";
+	  output.fill('0');
+	  output << "const " << numname << " toler" << std::setw(3) << _M_start_test << " = " << frac_toler << ";\n";
+	  output.fill(' ');
+	  ++_M_start_test;
 	}
     }
 
@@ -774,4 +789,3 @@ template<typename MaskFun, typename Ret, typename... Arg>
 #undef CONCEPT_MASK
 
 #endif // TESTCASE2_TCC
-
