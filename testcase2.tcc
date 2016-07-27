@@ -1,8 +1,3 @@
-
-/*
-/home/ed/bin_tr29124/bin/g++ -std=gnu++17 -fconcepts -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o testcase2 -I/usr/local/include -I/usr/local/include testcase2.cpp gsl_wrap.cpp boost_wrap.cpp lerchphi/Source/lerchphi.cpp /home/ed/tr29124_test/gslextras/Fresnel/fresnel.c -L/usr/local/lib -lgsl -lgslcblas -ljacobi
-*/
-
 #ifndef TESTCASE2_TCC
 #define TESTCASE2_TCC 1
 
@@ -11,6 +6,7 @@
 #include <experimental/type_traits>
 #include <experimental/string_view>
 #include "complex_compare.h" // For the Statistics min/max (maybe rethink that there)
+#include "statistics.h"
 
 const std::experimental::string_view boilerplate = 
 R"(// { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
@@ -61,95 +57,6 @@ R"(// This can take long on simulators, timing out the test.
 #define MAX_ITERATIONS (sizeof(data001) / sizeof(testcase_riemann_zeta<double>))
 #endif
 )";
-
-/**
- * Introspection class to detect if a type is std::complex.
- */
-template<typename _Tp>
-  struct is_complex : public std::false_type
-  { };
-
-/**
- * Introspection class to detect if a type is std::complex.
- */
-template<>
-  template<typename _Tp>
-    struct is_complex<std::complex<_Tp>> : public std::true_type
-    { };
-
-/**
- * Introspection type to detect if a type is std::complex.
- */
-template<typename _Tp>
-  using is_complex_t = typename is_complex<_Tp>::type;
-
-/**
- * Introspection variable template to detect if a type is std::complex.
- */
-template<typename _Tp>
-  constexpr bool is_complex_v = is_complex<_Tp>::value;
-
-/**
- *  Incremental computation of statistics.
- */
-template<typename _Tp>
-  struct _Statistics
-  {
-    _Statistics&
-    operator<<(_Tp __diff)
-    {
-      ++_M_count;
-      auto __old_mean = _M_mean;
-      _M_mean = (_M_type(__diff) + _M_type(_M_count - 1) * _M_mean) / _M_type(_M_count);
-      auto __del_mean = _M_mean - __old_mean;
-      auto __del_diff = _M_type(__diff) - _M_mean;
-      if (_M_count > 1)
-	_M_variance = (_M_type(_M_count - 2) * _M_variance * _M_variance
-		    + _M_type(_M_count - 1) * __del_mean * __del_mean
-		    + __del_diff * __del_diff) / _M_type(_M_count - 1);
-      if (__diff < _M_min)
-	_M_min = __diff;
-      if (__diff > _M_max)
-	_M_max = __diff;
-
-      return *this;
-    }
-
-    static constexpr bool _M_is_complex = is_complex_v<_Tp>;
-
-    using _M_type = std::conditional_t<is_complex_v<_Tp>,
-				       std::complex<long double>, long double>;
-
-    _Tp
-    count() const
-    { return _Tp(_M_count); }
-
-    _Tp
-    mean() const
-    { return _Tp(_M_mean); }
-
-    _Tp
-    variance() const
-    { return _Tp(_M_variance); }
-
-    _Tp
-    std_deviation() const
-    { return _Tp(std::sqrt(_M_variance)); }
-
-    _Tp
-    min() const
-    { return _Tp(_M_min); }
-
-    _Tp
-    max() const
-    { return _Tp(_M_max); }
-
-    std::size_t _M_count = 0;
-    _M_type _M_mean = 0;
-    _M_type _M_variance = 0;
-    _M_type _M_min = std::numeric_limits<long double>::max();
-    _M_type _M_max = std::numeric_limits<long double>::lowest();
-  };
 
 
 /// A class to abstract the scalar data type in a generic way.
@@ -298,7 +205,7 @@ template<typename Tp>
 ///
 template<typename Tp>
   std::vector<Tp>
-  fill_argument(const std::pair<Tp,Tp> & _M_range,
+  fill_argument(const std::pair<Tp,Tp> & range,
 		const std::pair<bool,bool> & inclusive,
 		unsigned int num_points)
   {
@@ -306,13 +213,13 @@ template<typename Tp>
 
     if (num_points == 1)
       {
-	argument.push_back(_M_range.first);
+	argument.push_back(range.first);
 	return argument;
       }
 
-    auto delta = (_M_range.second - _M_range.first) / (num_points - 1);
-    auto min = std::min(_M_range.first, _M_range.second);
-    auto max = std::max(_M_range.first, _M_range.second);
+    auto delta = (range.second - range.first) / (num_points - 1);
+    auto min = std::min(range.first, range.second);
+    auto max = std::max(range.first, range.second);
     auto clamp = [min, max](Tp x)
 		 -> Tp
 		 {
@@ -330,7 +237,7 @@ template<typename Tp>
 	if (i == num_points - 1 && ! inclusive.second)
 	  continue;
 
-	argument.push_back(clamp(_M_range.first + i * delta));
+	argument.push_back(clamp(range.first + i * delta));
       }
 
     return argument;
@@ -579,6 +486,9 @@ template<CONCEPT_MASK MaskFun, typename Ret, typename... Arg>
     template<std::size_t... Index>
       void write_test_data(std::ostream &, std::index_sequence<Index...>) const;
 
+    template<std::size_t Index>
+      void write_test_data_help(std::ostream &) const;
+
     static const auto _S_arity = sizeof...(Arg);
 
     void write_main(std::ostream & output,
@@ -586,7 +496,7 @@ template<CONCEPT_MASK MaskFun, typename Ret, typename... Arg>
 		    std::experimental::string_view funcall) const;
 
     std::experimental::string_view _M_structname;
-    unsigned int _M_start_test = 1;
+    mutable unsigned int _M_start_test = 1;
     test_function<Ret, Arg...> _M_testfun;
     baseline_function<Ret, Arg...> _M_basefun;
     MaskFun _M_maskfun;
@@ -612,6 +522,9 @@ template<CONCEPT_MASK MaskFun, typename Ret, typename... Arg>
     return testcase2<MaskFun, Ret, Arg...>(test, base, mask, structname, arg...);
   }
 
+/**
+ * Generate and write the test data.  Accumulate statistics.
+ */
 template<typename MaskFun, typename Ret, typename... Arg>
   template<std::size_t... Index>
     void
@@ -619,20 +532,149 @@ template<typename MaskFun, typename Ret, typename... Arg>
     write_test_data(std::ostream & output, std::index_sequence<Index...>) const
     {
       using Val = __num_traits_t<Ret>;
-
-      const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
-      output.flags(std::ios::showpoint);
-
-
-
       constexpr auto eps = std::numeric_limits<Val>::epsilon();
       constexpr auto inf = std::numeric_limits<Val>::infinity();
       constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
       constexpr auto ret_complex = is_complex_v<Ret>;
 
+      const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
+      output.flags(std::ios::showpoint);
+
+
+      write_test_data_help<0>(output);
+
+
       auto numname = type_strings<Val>::type().to_string();
       auto structname = _M_structname.to_string() + '<' + numname + '>';
       //write_test_data<Index + 1>(output);
+    }
+
+/**
+ * Generate and write the test data.  Accumulate statistics.
+ */
+template<typename MaskFun, typename Ret, typename... Arg>
+  template<std::size_t Index>
+    void
+    testcase2<MaskFun, Ret, Arg...>::
+    write_test_data_help(std::ostream & output) const
+    {
+      using Val = __num_traits_t<Ret>;
+      constexpr auto eps = std::numeric_limits<Val>::epsilon();
+      constexpr auto inf = std::numeric_limits<Val>::infinity();
+      constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
+      constexpr auto ret_complex = is_complex_v<Ret>;
+
+      const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
+      output.flags(std::ios::showpoint);
+
+      auto numname = type_strings<Val>::type().to_string();
+      auto structname = _M_structname.to_string() + '<' + numname + '>';
+      auto baseline = _M_basefun.source;
+      auto arg = std::get<Index>(_M_range).name;
+
+      if (Index + 1 < _S_arity)
+	{
+	  for (const auto x : std::get<Index>(_M_range).value)
+	    write_test_data_help<Index + 1>(output);
+	}
+      else if (Index + 1 == _S_arity)
+	{
+	  std::vector<std::tuple<Ret, Arg...>> crud;
+	  _Statistics<Ret> raw_stats;
+	  _Statistics<decltype(std::abs(Ret{}))> abs_stats;
+	  auto num_divergences = 0;
+	  std::tuple<Ret, Ret, Arg...> last_divergence;
+	  auto max_abs_frac = Val{-1};
+	  for (const auto x : std::get<Index>(_M_range).value)
+	    {
+	      try
+		{
+		  const auto f1 = _M_function1(x);
+		  const auto f2 = _M_function2(x);
+
+		  if (std::abs(f1) == inf || std::abs(f2) == inf)
+		    {
+		      ++num_divergences;
+		      last_divergence = std::make_tuple(f1, f2, x);
+		      if (num_divergences <= 3)
+			output << "//  Divergence at"
+			       << " " << arg << "=" << x
+			       << " f=" << f1
+			       << " f_" << baseline << "=" << f2 << '\n';
+		      continue;
+		    }
+
+		  if (std::isnan(std::real(f1)) || std::isnan(std::real(f2)))
+		    {
+		      output << "//  Failure at"
+			     << " " << arg << "=" << x
+			     << " f=" << f1
+			     << " f_" << baseline << "=" << f2 << '\n';
+		      break;
+		    }
+
+		  const auto diff = f1 - f2;
+		  raw_stats << diff;
+		  abs_stats << std::abs(diff);
+		  if (std::abs(f2) > Val{10} * eps && std::abs(f1) > Val{10} * eps)
+		    {
+		      const auto frac = diff / f2;
+		      if (std::abs(frac) > max_abs_frac)
+			max_abs_frac = std::abs(frac);
+		    }
+		  crud.emplace_back(f2, x);
+		}
+	      catch (...)
+		{
+		  continue;
+		}
+	    }
+	  if (num_divergences > 0)
+	    {
+	      if (num_divergences > 4)
+		output << "//  ...\n";
+	      output << "//  Divergence at"
+		     << " " << arg << "=" << std::get<2>(last_divergence)
+		     << " f=" << std::get<0>(last_divergence)
+		     << " f_" << baseline << "=" << std::get<1>(last_divergence) << '\n';
+	      num_divergences = 0;
+	    }
+
+	  if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
+	    {
+	      bool tol_ok = false;
+	      const auto min_tol = Val{1.0e-3L};
+	      const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
+	      std::string tname;
+	      if (ret_complex)
+		tname = type_strings<Ret>::type().to_string();
+	      std::ostringstream dataname;
+	      dataname.fill('0');
+	      dataname << "data" << std::setw(3) << _M_start_test;
+	      dataname.fill(' ');
+	      output << '\n';
+	      output << "// Test data.\n";
+	      output << "// max(|f - f_" << baseline << "|): " << abs_stats.max() << '\n';
+	      output << "// max(|f - f_" << baseline << "| / |f_" << baseline << "|): " << max_abs_frac << '\n';
+	      output << "// mean(f - f_" << baseline << "): " << raw_stats.mean() << '\n';
+	      output << "// variance(f - f_" << baseline << "): " << raw_stats.variance() << '\n';
+	      output << "// stddev(f - f_" << baseline << "): " << raw_stats.std_deviation() << '\n';
+	      output.fill('0');
+	      output << "const " << structname << '\n' << dataname.str() << '[' << crud.size() << "] =\n{\n";
+	      output.fill(' ');
+	      for (unsigned int i = 0; i < crud.size(); ++i)
+		{
+		  output << "  { " << tname << std::get<0>(crud[i]) << type_strings<Ret>::suffix();
+		  output << ", " << std::get<1>(crud[i]) << type_strings<Ret>::suffix();
+		  output << " },\n";
+		}
+	      output << "};\n";
+	      output.fill('0');
+	      output << "const " << numname << " toler" << std::setw(3) << _M_start_test << " = " << frac_toler << ";\n";
+	      output.fill(' ');
+	      ++_M_start_test;
+	    }
+	}
     }
 
 /**
@@ -663,8 +705,8 @@ template<typename MaskFun, typename Ret, typename... Arg>
 		      << "data[i]."
 		      << std::get<Index>(_M_range).name), 0)...
       };
-      // Could we do this with fold expressions?
-      //(funcall << (Index > 0 ? ", " : "") << "data[i].") << std::get<Index>(_M_range).name << ...;
+      // This actually should work:
+      //((funcall << (Index > 0 ? ", " : "") << "data[i].") << std::get<Index>(_M_range).name << ...);
     }
 
 /**
