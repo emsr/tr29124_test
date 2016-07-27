@@ -362,7 +362,6 @@ template<typename Ret, typename Arg1>
     std::tuple<Ret, Ret, Arg1> last_divergence;
     for (const auto x : argument1)
       {
-
 	try
 	  {
 	    const auto f1 = function1(x);
@@ -556,7 +555,6 @@ template<typename Ret, typename Arg1, typename Arg2>
 
     for (const auto x : argument1)
       {
-
 	std::vector<std::tuple<Ret, Arg1, Arg2>> crud;
 	_Statistics<Ret> raw_stats;
 	_Statistics<decltype(std::abs(Ret{}))> abs_stats;
@@ -566,7 +564,6 @@ template<typename Ret, typename Arg1, typename Arg2>
 	auto max_abs_frac = Val{-1};
 	for (const auto y : argument2)
 	  {
-
 	    try
 	      {
 		const auto f1 = function1(x, y);
@@ -764,10 +761,8 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
 
     for (const auto x : argument1)
       {
-
 	for (const auto y : argument2)
 	  {
-
 	    std::vector<std::tuple<Ret, Arg1, Arg2, Arg3>> crud;
 	    _Statistics<Ret> raw_stats;
 	    _Statistics<decltype(std::abs(Ret{}))> abs_stats;
@@ -777,7 +772,6 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
 	    auto max_abs_frac = Val{-1};
 	    for (const auto z : argument3)
 	      {
-
 		try
 		  {
 		    const auto f1 = function1(x, y, z);
@@ -986,13 +980,10 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
 
     for (const auto w : argument1)
       {
-
 	for (const auto x : argument2)
 	  {
-
 	    for (const auto y : argument3)
 	      {
-
 		std::vector<std::tuple<Ret, Arg1, Arg2, Arg3, Arg4>> crud;
 		_Statistics<Ret> raw_stats;
 		_Statistics<decltype(std::abs(Ret{}))> abs_stats;
@@ -1002,7 +993,6 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
 		auto max_abs_frac = Val{-1};
 		for (const auto z : argument4)
 		  {
-
 		    try
 		      {
 			const auto f1 = function1(w, x, y, z);
@@ -1168,4 +1158,3 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
   }
 
 #endif // TESTCASE_TCC
-
