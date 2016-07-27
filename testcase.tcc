@@ -6,6 +6,7 @@
 #include <experimental/type_traits>
 #include <experimental/string_view>
 #include "complex_compare.h" // For the Statistics min/max (maybe rethink that there)
+#include "statistics.h"
 
 const std::experimental::string_view boilerplate = 
 R"(// { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
@@ -56,95 +57,6 @@ R"(// This can take long on simulators, timing out the test.
 #define MAX_ITERATIONS (sizeof(data001) / sizeof(testcase_riemann_zeta<double>))
 #endif
 )";
-
-/**
- * Introspection class to detect if a type is std::complex.
- */
-template<typename _Tp>
-  struct is_complex : public std::false_type
-  { };
-
-/**
- * Introspection class to detect if a type is std::complex.
- */
-template<>
-  template<typename _Tp>
-    struct is_complex<std::complex<_Tp>> : public std::true_type
-    { };
-
-/**
- * Introspection type to detect if a type is std::complex.
- */
-template<typename _Tp>
-  using is_complex_t = typename is_complex<_Tp>::type;
-
-/**
- * Introspection variable template to detect if a type is std::complex.
- */
-template<typename _Tp>
-  constexpr bool is_complex_v = is_complex<_Tp>::value;
-
-/**
- *  Incremental computation of statistics.
- */
-template<typename _Tp>
-  struct _Statistics
-  {
-    _Statistics&
-    operator<<(_Tp __diff)
-    {
-      ++_M_count;
-      auto __old_mean = _M_mean;
-      _M_mean = (_M_type(__diff) + _M_type(_M_count - 1) * _M_mean) / _M_type(_M_count);
-      auto __del_mean = _M_mean - __old_mean;
-      auto __del_diff = _M_type(__diff) - _M_mean;
-      if (_M_count > 1)
-	_M_variance = (_M_type(_M_count - 2) * _M_variance * _M_variance
-		    + _M_type(_M_count - 1) * __del_mean * __del_mean
-		    + __del_diff * __del_diff) / _M_type(_M_count - 1);
-      if (__diff < _M_min)
-	_M_min = __diff;
-      if (__diff > _M_max)
-	_M_max = __diff;
-
-      return *this;
-    }
-
-    static constexpr bool _M_is_complex = is_complex_v<_Tp>;
-
-    using _M_type = std::conditional_t<is_complex_v<_Tp>,
-				       std::complex<long double>, long double>;
-
-    _Tp
-    count() const
-    { return _Tp(_M_count); }
-
-    _Tp
-    mean() const
-    { return _Tp(_M_mean); }
-
-    _Tp
-    variance() const
-    { return _Tp(_M_variance); }
-
-    _Tp
-    std_deviation() const
-    { return _Tp(std::sqrt(_M_variance)); }
-
-    _Tp
-    min() const
-    { return _Tp(_M_min); }
-
-    _Tp
-    max() const
-    { return _Tp(_M_max); }
-
-    std::size_t _M_count = 0;
-    _M_type _M_mean = 0;
-    _M_type _M_variance = 0;
-    _M_type _M_min = std::numeric_limits<long double>::max();
-    _M_type _M_max = std::numeric_limits<long double>::lowest();
-  };
 
 
 /// A class to abstract the scalar data type in a generic way.
@@ -273,44 +185,6 @@ template<>
     { return std::experimental::string_view(""); }
   };
 
-
-  /**
-   *  @brief  Returns the value clamped between lo and hi.
-   *  @ingroup sorting_algorithms
-   *  @param  __val  A value of arbitrary type.
-   *  @param  __lo   A lower limit of arbitrary type.
-   *  @param  __hi   An upper limit of arbitrary type.
-   *  @return max(__val, __lo) if __val < __hi or min(__val, __hi) otherwise.
-   */
-  template<class _Tp>
-    constexpr const _Tp&
-    clamp(const _Tp& __val, const _Tp& __lo, const _Tp& __hi)
-    {
-      if (__val < __hi)
-	return ::std::max(__val, __lo);
-      else
-	return ::std::min(__val, __hi);
-    }
-
-  /**
-   *  @brief  Returns the value clamped between lo and hi.
-   *  @ingroup sorting_algorithms
-   *  @param  __val   A value of arbitrary type.
-   *  @param  __lo    A lower limit of arbitrary type.
-   *  @param  __hi    An upper limit of arbitrary type.
-   *  @param  __comp  A comparison functor.
-   *  @return max(__val, __lo, __comp) if __comp(__val, __hi)
-   *          or min(__val, __hi, __comp) otherwise.
-   */
-  template<class _Tp, class _Compare>
-    constexpr const _Tp&
-    clamp(const _Tp& __val, const _Tp& __lo, const _Tp& __hi, _Compare __comp)
-    {
-      if (__comp(__val, __hi))
-	return ::std::max(__val, __lo, __comp);
-      else
-	return ::std::min(__val, __hi, __comp);
-    }
 
 ///
 ///  @brief  Append two testcase vectors.
