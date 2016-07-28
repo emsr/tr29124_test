@@ -62,20 +62,20 @@ R"(// This can take long on simulators, timing out the test.
 
 /// A class to abstract the scalar data type in a generic way.
 template<typename Tp>
-  struct __num_traits
+  struct num_traits
   {
     using __value_type = Tp;
   };
 
 template<>
   template<typename Tp>
-    struct __num_traits<std::complex<Tp>>
+    struct num_traits<std::complex<Tp>>
     {
       using __value_type = typename std::complex<Tp>::value_type;
     };
 
 template<typename Tp>
-  using __num_traits_t = typename __num_traits<Tp>::__value_type;
+  using num_traits_t = typename num_traits<Tp>::__value_type;
 
 template<typename Tp>
   struct type_strings
@@ -243,7 +243,7 @@ template<typename Tp>
   Tp
   get_tolerance(Tp delta, Tp min_tol, bool & ok)
   {
-    using Val = __num_traits_t<Tp>;
+    using Val = num_traits_t<Tp>;
 
     const auto abs_delta = std::abs(delta);
     //  Make this some number larger because you lose some accuracy writing and reading.
@@ -304,16 +304,44 @@ template<typename Tp>
 #if __cpp_concepts > 0
 
 /**
+ * A concept for arguments.
+ */
+template<typename Arg>
+  concept bool
+  Argument()
+  requires(Arg arg)
+  {
+    //typename ::name;
+    //typename ::value;
+    //typename ::error;
+    { arg.value[0] } -> Arg;
+    { arg.error[0] } -> Arg;
+  };
+#  define CONCEPT_ARGUMENT Argument
+
+/**
  * A concept for mask functions.
  */
 template<typename Fun, typename... Arg>
   concept bool
-  Mask()
+  MaskFunction()
   requires(Fun mask, Arg... args)
   {
     { mask(args...) } -> bool;
   };
-#  define CONCEPT_MASK Mask
+#  define CONCEPT_MASK MaskFunction
+
+/**
+ * A concept for special functions.
+ */
+template<typename Fun, typename Ret, typename... Arg>
+  concept bool
+  SpecialFunction()
+  requires(Fun specfun, typename Ret, Arg... args)
+  {
+    { mask(specfun...) } -> Ret;
+  };
+#  define CONCEPT_SPECFUN SpecialFunction
 
 /**
  * A concept for test functions.
@@ -323,6 +351,7 @@ template<typename Fun, typename Ret, typename... Arg>
   TestFun()
   requires(Fun test, Arg... args)
   {
+    SpecialFunction<Fun, Ret, Arg...>;
     //typename ::funcname;
     { test(args...) } -> Ret;
   };
@@ -343,7 +372,9 @@ template<typename Fun, typename Ret, typename... Arg>
 #  define CONCEPT_BASELINEFUN BaselineFun
 
 #else // Remember to #undef these below.
+#  define CONCEPT_ARGUMENT typename
 #  define CONCEPT_MASK typename
+#  define CONCEPT_SPECFUN typename
 #  define CONCEPT_TESTFUN typename
 #  define CONCEPT_BASELINEFUN typename
 #endif
@@ -373,7 +404,6 @@ template<typename Arg>
 
 /**
  * A class for test function - the function to be tested.
- */
 template<typename Ret, typename... Arg>
   struct test_function
   {
@@ -392,6 +422,25 @@ template<typename Ret, typename... Arg>
   make_test_function(std::experimental::string_view name,
 		     Ret func(Arg...))
   { return test_function<Ret, Arg...>(name, func); }
+ */
+template<CONCEPT_SPECFUN Fun>
+  struct test_function
+  {
+    test_function(std::experimental::string_view name,
+		  Fun func)
+    : funcname(name),
+      function(func)
+    {}
+
+    std::experimental::string_view funcname;
+    Fun function;
+  };
+
+template<CONCEPT_SPECFUN Fun>
+  test_function<Fun>
+  make_test_function(std::experimental::string_view name,
+		     Fun func)
+  { return test_function<Fun>(name, func); }
 
 /**
  * A class for baseline function - the function that is a baseline.
@@ -423,17 +472,18 @@ template<typename Ret, typename... Arg>
 /**
  * A class for testcases.
  */
-template<CONCEPT_MASK MaskFun, typename Ret, typename... Arg>
+template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN BaselineFun,
+         typename Ret, CONCEPT_ARGUMENT... Arg>
   class testcase2
   {
 
   public:
 
-    testcase2(test_function<Ret, Arg...> test,
-	      baseline_function<Ret, Arg...> base,
+    testcase2(test_function<TestFun> test,
+	      baseline_function<BaselineFun> base,
 	      MaskFun mask,
 	      std::experimental::string_view structname,
-	      argument<Arg>... arg)
+	      Arg... arg)
     : _M_testfun(test),
       _M_basefun(base),
       _M_maskfun(mask),
@@ -489,8 +539,8 @@ template<CONCEPT_MASK MaskFun, typename Ret, typename... Arg>
 
     std::experimental::string_view _M_structname;
     mutable unsigned int _M_start_test = 1;
-    test_function<Ret, Arg...> _M_testfun;
-    baseline_function<Ret, Arg...> _M_basefun;
+    test_function<TestFun> _M_testfun;
+    baseline_function<BaselineFun> _M_basefun;
     MaskFun _M_maskfun;
     Ret (*_M_function1)(Arg...);
     Ret (*_M_function2)(Arg...);
@@ -503,27 +553,29 @@ template<CONCEPT_MASK MaskFun, typename Ret, typename... Arg>
 /**
  * A testcase maker - ADL to the rescue.
  */
-template<CONCEPT_MASK MaskFun, typename Ret, typename... Arg>
-  testcase2<MaskFun, Ret, Arg...>
-  make_testcase2(test_function<Ret, Arg...> test,
-		 baseline_function<Ret, Arg...> base,
+template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN BaselineFun,
+         typename Ret, CONCEPT_ARGUMENT... Arg>
+  testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>
+  make_testcase2(test_function<TestFun> test,
+		 baseline_function<BaselineFun> base,
 		 MaskFun mask,
 		 std::experimental::string_view structname,
-		 argument<Arg>... arg)
+		 Arg... arg)
   {
-    return testcase2<MaskFun, Ret, Arg...>(test, base, mask, structname, arg...);
+    return testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>(test, base, mask, structname, arg...);
   }
 
 /**
  * Generate and write the test data.  Accumulate statistics.
  */
-template<typename MaskFun, typename Ret, typename... Arg>
+template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN BaselineFun,
+         typename Ret, CONCEPT_ARGUMENT... Arg>
   template<std::size_t... Index>
     void
-    testcase2<MaskFun, Ret, Arg...>::
+    testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>::
     write_test_data(std::ostream & output, std::index_sequence<Index...>) const
     {
-      using Val = __num_traits_t<Ret>;
+      using Val = num_traits_t<Ret>;
 
       const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
       output.flags(std::ios::showpoint);
@@ -536,15 +588,16 @@ template<typename MaskFun, typename Ret, typename... Arg>
 /**
  * Generate and write the test data.  Accumulate statistics.
  */
-template<typename MaskFun, typename Ret, typename... Arg>
+template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN BaselineFun,
+         typename Ret, CONCEPT_ARGUMENT... Arg>
   template<std::size_t Index>
-    struct testcase2<MaskFun, Ret, Arg...>::
+    struct testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>::
     Test_Data_Help<Index, _SpaceLess<std::size_t>>
     {
       void
-      operator()(std::ostream & output, const testcase2<MaskFun, Ret, Arg...> & outer) const
+      operator()(std::ostream & output, const testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...> & outer) const
       {
-	using Outer = testcase2<MaskFun, Ret, Arg...>;
+	using Outer = testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>;
 	constexpr auto Sign = _Spaceship<std::size_t>{}(Index + 1, Outer::_S_arity);
 	using Saucer = _SpaceshipType<std::size_t, Sign>;
         for (const auto x : std::get<Index>(outer._M_range).value)
@@ -555,23 +608,25 @@ template<typename MaskFun, typename Ret, typename... Arg>
 /**
  * Generate and write the test data.  Accumulate statistics.
  */
-template<typename MaskFun, typename Ret, typename... Arg>
+template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN BaselineFun,
+         typename Ret, CONCEPT_ARGUMENT... Arg>
   template<std::size_t Index>
-    struct testcase2<MaskFun, Ret, Arg...>::
+    struct testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>::
     Test_Data_Help<Index, _SpaceEqual<std::size_t>>
     {
       void
-      operator()(std::ostream &, const testcase2<MaskFun, Ret, Arg...> &) const;
+      operator()(std::ostream &, const testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...> &) const;
     };
 
-template<typename MaskFun, typename Ret, typename... Arg>
+template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN BaselineFun,
+         typename Ret, CONCEPT_ARGUMENT... Arg>
   template<std::size_t Index>
     void
-    testcase2<MaskFun, Ret, Arg...>::
+    testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>::
     Test_Data_Help<Index, _SpaceEqual<std::size_t>>::
-    operator()(std::ostream & output, const testcase2<MaskFun, Ret, Arg...> & outer) const
+    operator()(std::ostream & output, const testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...> & outer) const
     {
-      using Val = __num_traits_t<Ret>;
+      using Val = num_traits_t<Ret>;
       constexpr auto eps = std::numeric_limits<Val>::epsilon();
       constexpr auto inf = std::numeric_limits<Val>::infinity();
       constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
@@ -682,9 +737,10 @@ template<typename MaskFun, typename Ret, typename... Arg>
 /**
  * Build the function call string for the test suite.
  */
-template<typename MaskFun, typename Ret, typename... Arg>
+template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN BaselineFun,
+         typename Ret, CONCEPT_ARGUMENT... Arg>
   std::ostringstream
-  testcase2<MaskFun, Ret, Arg...>::
+  testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>::
   get_funcall() const
   {
     std::ostringstream funcall;
@@ -694,10 +750,11 @@ template<typename MaskFun, typename Ret, typename... Arg>
     return funcall;
   }
 
-template<typename MaskFun, typename Ret, typename... Arg>
+template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN BaselineFun,
+         typename Ret, CONCEPT_ARGUMENT... Arg>
   template<std::size_t... Index>
     void
-    testcase2<MaskFun, Ret, Arg...>::
+    testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>::
     get_funcall_help(std::ostringstream & funcall, std::index_sequence<Index...>) const
     {
       using swallow = int[]; // guaranties left to right order
@@ -714,9 +771,10 @@ template<typename MaskFun, typename Ret, typename... Arg>
 /**
  * Write the test case main function.
  */
-template<typename MaskFun, typename Ret, typename... Arg>
+template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN BaselineFun,
+         typename Ret, CONCEPT_ARGUMENT... Arg>
   void
-  testcase2<MaskFun, Ret, Arg...>::
+  testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>::
   write_main(std::ostream & output,
 	     bool riemann_zeta_limits,
 	     std::experimental::string_view funcall) const
@@ -773,6 +831,7 @@ template<typename MaskFun, typename Ret, typename... Arg>
 
 #undef CONCEPT_BASELINEFUN
 #undef CONCEPT_TESTFUN
+#undef CONCEPT_SPECFUN
 #undef CONCEPT_MASK
 
 #endif // TESTCASE2_TCC
