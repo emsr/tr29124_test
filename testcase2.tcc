@@ -192,7 +192,7 @@ template<>
 ///
 template<typename Tp>
   std::vector<Tp>
-  fill_argument(std::vector<Tp>&& arg, std::vector<Tp>&& more)
+  fill2(std::vector<Tp>&& arg, std::vector<Tp>&& more)
   {
     std::vector<Tp> ret;
     ret.reserve(arg.size() + more.size());
@@ -206,21 +206,19 @@ template<typename Tp>
 ///
 template<typename Tp>
   std::vector<Tp>
-  fill_argument(const std::pair<Tp,Tp> & range,
-		const std::pair<bool,bool> & inclusive,
-		unsigned int num_points)
+  fill2(Tp start, Tp stop, unsigned int num_points)
   {
     std::vector<Tp> argument;
 
     if (num_points == 1)
       {
-	argument.push_back(range.first);
+	argument.push_back(start);
 	return argument;
       }
 
-    auto delta = (range.second - range.first) / (num_points - 1);
-    auto min = std::min(range.first, range.second);
-    auto max = std::max(range.first, range.second);
+    auto delta = (stop - start) / (num_points - 1);
+    auto min = std::min(start, stop);
+    auto max = std::max(start, stop);
     auto clamp = [min, max](Tp x)
 		 -> Tp
 		 {
@@ -232,14 +230,7 @@ template<typename Tp>
 		     return x;
 		 };
     for (unsigned int i = 0; i < num_points; ++i)
-      {
-	if (i == 0 && ! inclusive.first)
-	  continue;
-	if (i == num_points - 1 && ! inclusive.second)
-	  continue;
-
-	argument.push_back(clamp(range.first + i * delta));
-      }
+      argument.push_back(clamp(start + i * delta));
 
     return argument;
   }
@@ -361,11 +352,8 @@ template<typename Fun, typename Ret, typename... Arg>
  * A class for function arguments.
  */
 template<typename Arg>
-  class argument
+  struct argument
   {
-
-  public:
-
     argument(std::experimental::string_view arg,
 	     const std::vector<Arg> & val)
     : name(arg),
@@ -375,20 +363,20 @@ template<typename Arg>
     std::experimental::string_view name;
     std::vector<Arg> value;
     std::vector<Arg> error;
-
-  private:
-
   };
+
+template<typename Arg>
+  argument<Arg>
+  make_argument(std::experimental::string_view name,
+		const std::vector<Arg> & val)
+  { return argument<Arg>(name, val); }
 
 /**
  * A class for test function - the function to be tested.
  */
 template<typename Ret, typename... Arg>
-  class test_function
+  struct test_function
   {
-
-  public:
-
     test_function(std::experimental::string_view name,
 		  Ret func(Arg...))
     : funcname(name),
@@ -397,20 +385,20 @@ template<typename Ret, typename... Arg>
 
     std::experimental::string_view funcname;
     Ret (*function)(Arg...);
-
-  private:
-
   };
+
+template<typename Ret, typename... Arg>
+  test_function<Ret, Arg...>
+  make_test_function(std::experimental::string_view name,
+		     Ret func(Arg...))
+  { return test_function<Ret, Arg...>(name, func); }
 
 /**
  * A class for baseline function - the function that is a baseline.
  */
 template<typename Ret, typename... Arg>
-  class baseline_function
+  struct baseline_function
   {
-
-  public:
-
     baseline_function(std::experimental::string_view src,
 		      std::experimental::string_view name,
 		      Ret func(Arg...))
@@ -422,10 +410,14 @@ template<typename Ret, typename... Arg>
     std::experimental::string_view source;
     std::experimental::string_view funcname;
     Ret (*function)(Arg...);
-
-  private:
-
   };
+
+template<typename Ret, typename... Arg>
+  baseline_function<Ret, Arg...>
+  make_baseline_function(std::experimental::string_view src,
+			 std::experimental::string_view name,
+			 Ret func(Arg...))
+  { return baseline_function<Ret, Arg...>(src, name, func); }
 
 
 /**
@@ -438,10 +430,10 @@ template<CONCEPT_MASK MaskFun, typename Ret, typename... Arg>
   public:
 
     testcase2(test_function<Ret, Arg...> test,
-	     baseline_function<Ret, Arg...> base,
-	     MaskFun mask,
-	     std::experimental::string_view structname,
-	     argument<Arg>... arg)
+	      baseline_function<Ret, Arg...> base,
+	      MaskFun mask,
+	      std::experimental::string_view structname,
+	      argument<Arg>... arg)
     : _M_testfun(test),
       _M_basefun(base),
       _M_maskfun(mask),
@@ -476,8 +468,9 @@ template<CONCEPT_MASK MaskFun, typename Ret, typename... Arg>
       write_main(output, riemann_zeta_limits, get_funcall().str());
     }
 
-
   private:
+
+    static const auto _S_arity = sizeof...(Arg);
 
     std::ostringstream get_funcall() const;
 
@@ -487,19 +480,8 @@ template<CONCEPT_MASK MaskFun, typename Ret, typename... Arg>
     template<std::size_t... Index>
       void write_test_data(std::ostream &, std::index_sequence<Index...>) const;
 
-    //template<std::size_t Index, _Spaceship_t<std::size_t> Sign = _Spaceship<std::size_t>{}(Index + 1, testcase2::_S_arity)>
-    //  struct Test_Data_Help;
-    template<std::size_t Index, _SpaceshipType<std::size_t, _Spaceship_t<std::size_t>>r SignTp>
+    template<std::size_t Index, typename Saucer>
       struct Test_Data_Help;
-
-    //template<std::size_t Index, _Spaceship_t<std::size_t> Sign>
-    //  friend class Test_Data_Help<Index, Sign>;
-    //template<std::size_t Index>
-    //  friend class Test_Data_Help<Index, _Spaceship_t<std::size_t>{+1}>;
-    //template<std::size_t Index>
-    //  friend class Test_Data_Help<Index, _Spaceship_t<std::size_t>{0}>;
-
-    static const auto _S_arity = sizeof...(Arg);
 
     void write_main(std::ostream & output,
 		    bool riemann_zeta_limits,
@@ -546,7 +528,9 @@ template<typename MaskFun, typename Ret, typename... Arg>
       const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
       output.flags(std::ios::showpoint);
 
-      Test_Data_Help<0, _Spaceship<std::size_t>{}(1, _S_arity)>{}(output);
+      constexpr auto Sign = _Spaceship<std::size_t>{}(1, _S_arity);
+      using Saucer = _SpaceshipType<std::size_t, Sign>;
+      Test_Data_Help<0, Saucer>{}(output, *this);
     }
 
 /**
@@ -555,13 +539,16 @@ template<typename MaskFun, typename Ret, typename... Arg>
 template<typename MaskFun, typename Ret, typename... Arg>
   template<std::size_t Index>
     struct testcase2<MaskFun, Ret, Arg...>::
-    Test_Data_Help<Index, _Spaceship_t<std::size_t>{+1}>
+    Test_Data_Help<Index, _SpaceLess<std::size_t>>
     {
       void
-      operator()(std::ostream & output) const
+      operator()(std::ostream & output, const testcase2<MaskFun, Ret, Arg...> & outer) const
       {
-        for (const auto x : std::get<Index>(_M_range).value)
-	  Test_Data_Help<Index + 1, _Spaceship<std::size_t>{}(Index + 1, _S_arity)>(output);
+	using Outer = testcase2<MaskFun, Ret, Arg...>;
+	constexpr auto Sign = _Spaceship<std::size_t>{}(Index + 1, Outer::_S_arity);
+	using Saucer = _SpaceshipType<std::size_t, Sign>;
+        for (const auto x : std::get<Index>(outer._M_range).value)
+	  Test_Data_Help<Index + 1, Saucer>{}(output, outer);
       }
     };
 
@@ -571,18 +558,18 @@ template<typename MaskFun, typename Ret, typename... Arg>
 template<typename MaskFun, typename Ret, typename... Arg>
   template<std::size_t Index>
     struct testcase2<MaskFun, Ret, Arg...>::
-    Test_Data_Help<Index, _Spaceship_t<std::size_t>{0}>
+    Test_Data_Help<Index, _SpaceEqual<std::size_t>>
     {
       void
-      operator()(std::ostream & output) const;
+      operator()(std::ostream &, const testcase2<MaskFun, Ret, Arg...> &) const;
     };
 
 template<typename MaskFun, typename Ret, typename... Arg>
   template<std::size_t Index>
     void
     testcase2<MaskFun, Ret, Arg...>::
-    Test_Data_Help<Index, _Spaceship_t<std::size_t>{0}>::
-    operator()(std::ostream & output) const
+    Test_Data_Help<Index, _SpaceEqual<std::size_t>>::
+    operator()(std::ostream & output, const testcase2<MaskFun, Ret, Arg...> & outer) const
     {
       using Val = __num_traits_t<Ret>;
       constexpr auto eps = std::numeric_limits<Val>::epsilon();
@@ -591,9 +578,9 @@ template<typename MaskFun, typename Ret, typename... Arg>
       constexpr auto ret_complex = is_complex_v<Ret>;
 
       auto numname = type_strings<Val>::type().to_string();
-      auto structname = _M_structname.to_string() + '<' + numname + '>';
-      auto baseline = _M_basefun.source;
-      auto arg = std::get<Index>(_M_range).name;
+      auto structname = outer._M_structname.to_string() + '<' + numname + '>';
+      auto baseline = outer._M_basefun.source;
+      auto arg = std::get<Index>(outer._M_range).name;
 
       std::vector<std::tuple<Ret, Arg...>> crud;
       _Statistics<Ret> raw_stats;
@@ -601,12 +588,12 @@ template<typename MaskFun, typename Ret, typename... Arg>
       auto num_divergences = 0;
       std::tuple<Ret, Ret, Arg...> last_divergence;
       auto max_abs_frac = Val{-1};
-      for (const auto x : std::get<Index>(_M_range).value)
+      for (const auto x : std::get<Index>(outer._M_range).value)
 	{
 	  try
 	    {
-	      const auto f1 = _M_function1(x);
-	      const auto f2 = _M_function2(x);
+	      const auto f1 = outer._M_function1(x);
+	      const auto f2 = outer._M_function2(x);
 
 	      if (std::abs(f1) == inf || std::abs(f2) == inf)
 		{
@@ -666,7 +653,7 @@ template<typename MaskFun, typename Ret, typename... Arg>
 	    tname = type_strings<Ret>::type().to_string();
 	  std::ostringstream dataname;
 	  dataname.fill('0');
-	  dataname << "data" << std::setw(3) << _M_start_test;
+	  dataname << "data" << std::setw(3) << outer._M_start_test;
 	  dataname.fill(' ');
 	  output << '\n';
 	  output << "// Test data.\n";
@@ -686,9 +673,9 @@ template<typename MaskFun, typename Ret, typename... Arg>
 	    }
 	  output << "};\n";
 	  output.fill('0');
-	  output << "const " << numname << " toler" << std::setw(3) << _M_start_test << " = " << frac_toler << ";\n";
+	  output << "const " << numname << " toler" << std::setw(3) << outer._M_start_test << " = " << frac_toler << ";\n";
 	  output.fill(' ');
-	  ++_M_start_test;
+	  ++outer._M_start_test;
 	}
     }
 
