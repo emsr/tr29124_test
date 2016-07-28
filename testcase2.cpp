@@ -190,20 +190,42 @@ template<typename Real>
 
     const std::string path = ".";
     const std::string prefix = "/check_";
+    auto outfile = [path, prefix](const char * fun)
+		   -> std::string
+		   { return std::string(path + prefix + fun + ".cc"); };
 
 #if STD
     // Airy functions of the first kind.
-    std::ofstream fairy_ai(path + prefix + "airy_ai" + ".cc");
-    auto xairy_ai = make_testcase2(test_function<Real, Real>("__gnu_cxx::airy_ai", airy_ai),
-			baseline_function<Real, Real>("GSL", "gsl::airy_ai", gsl::airy_ai),
-			[](Real){ return true; },
-			"testcase_airy",
-			argument<Real>("x", fill_argument(std::make_pair(Real{-10}, Real{10}),
-							  std::make_pair(true, true), 41)));
-    xairy_ai(fairy_ai);
+    auto test_airy_ai = 
+    make_testcase2(make_test_function("__gnu_cxx::airy_ai", airy_ai),
+		   make_baseline_function("GSL", "gsl::airy_ai", gsl::airy_ai),
+		   [](Real){ return true; },
+		   "testcase_airy",
+		   make_argument("x", fill2(Real{-10}, Real{10}, 41)));
+    std::ofstream file_airy_ai(outfile("airy_ai"));
+    test_airy_ai(file_airy_ai);
 
+    // Airy functions of the second kind.
+    auto test_airy_bi = 
+    make_testcase2(make_test_function("__gnu_cxx::airy_bi", airy_bi),
+		   make_baseline_function("GSL", "gsl::airy_bi", gsl::airy_bi),
+		   [](Real){ return true; },
+		   "testcase_airy",
+		   make_argument("x", fill2(Real{-10}, Real{10}, 41)));
+    std::ofstream file_airy_bi(outfile("airy_bi"));
+    test_airy_bi(file_airy_bi);
 #endif // STD
 
+    // Associated Laguerre polynomials.
+    auto test_assoc_laguerre = 
+    make_testcase2(make_test_function("std::assoc_laguerre", assoc_laguerre),
+		   make_baseline_function("GSL", "gsl::assoc_laguerre", gsl::assoc_laguerre),
+		   [](unsigned, unsigned, Real){ return true; },
+		   "testcase_assoc_laguerre",
+		   make_argument("n", vorder), make_argument("m", vorder),
+		   make_argument("x", fill2(Real{-10}, Real{10}, 41)));
+    std::ofstream file_assoc_laguerre(outfile("assoc_laguerre"));
+    test_assoc_laguerre(file_assoc_laguerre);
   }
 
 
