@@ -76,6 +76,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __fpequal(__a, _Tp(__n), __mul);
     }
 
+  /**
+   * A function to reliably detect if a floating point number is a half-integer.
+   *
+   * @param __a The floating point number
+   * @return @c true if 2*a is an integer within mul * epsilon.
+   */
+  template<typename _Tp>
+    inline bool
+    __fp_half_integer(_Tp __a, _Tp __mul = _Tp{5})
+    {
+      auto __n = std::nearbyint(_Tp(2) * __a);
+      return __fpequal(_Tp(2) * __a, _Tp(__n), __mul);
+    }
+
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
