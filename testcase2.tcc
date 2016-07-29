@@ -308,8 +308,8 @@ template<typename Tp>
  */
 template<typename Arg>
   concept bool
-  Argument()
-  requires(Arg arg)
+  Argument
+  = requires(Arg arg)
   {
     //typename ::name;
     //typename ::value;
@@ -324,7 +324,7 @@ template<typename Arg>
  */
 template<typename Fun, typename... Arg>
   concept bool
-  MaskFunction()
+  MaskFunction =
   requires(Fun mask, Arg... args)
   {
     { mask(args...) } -> bool;
@@ -336,10 +336,10 @@ template<typename Fun, typename... Arg>
  */
 template<typename Fun, typename Ret, typename... Arg>
   concept bool
-  SpecialFunction()
-  requires(Fun specfun, typename Ret, Arg... args)
+  SpecialFunction =
+  requires(Fun specfun, Arg... args)
   {
-    { mask(specfun...) } -> Ret;
+    { specfun(args...) } -> Ret;
   };
 #  define CONCEPT_SPECFUN SpecialFunction
 
@@ -348,28 +348,28 @@ template<typename Fun, typename Ret, typename... Arg>
  */
 template<typename Fun, typename Ret, typename... Arg>
   concept bool
-  TestFun()
+  TestFunction =
   requires(Fun test, Arg... args)
   {
     SpecialFunction<Fun, Ret, Arg...>;
     //typename ::funcname;
     { test(args...) } -> Ret;
   };
-#  define CONCEPT_TESTFUN TestFun
+#  define CONCEPT_TESTFUN TestFunction
 
 /**
  * A concept for baseline functions.
  */
 template<typename Fun, typename Ret, typename... Arg>
   concept bool
-  BaselineFun()
+  BaselineFunction =
   requires(Fun baseline, Arg... args)
   {
     //typename ::source;
     //typename ::funcname;
     { baseline(args...) } -> Ret;
   };
-#  define CONCEPT_BASELINEFUN BaselineFun
+#  define CONCEPT_BASELINEFUN BaselineFunction
 
 #else // Remember to #undef these below.
 #  define CONCEPT_ARGUMENT typename
@@ -404,6 +404,8 @@ template<typename Arg>
 
 /**
  * A class for test function - the function to be tested.
+ */
+/*
 template<typename Ret, typename... Arg>
   struct test_function
   {
@@ -422,7 +424,7 @@ template<typename Ret, typename... Arg>
   make_test_function(std::experimental::string_view name,
 		     Ret func(Arg...))
   { return test_function<Ret, Arg...>(name, func); }
- */
+*/
 template<CONCEPT_SPECFUN Fun>
   struct test_function
   {
@@ -472,7 +474,7 @@ template<typename Ret, typename... Arg>
 /**
  * A class for testcases.
  */
-template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN BaselineFun,
+template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_BASELINEFUN BaselineFun,
          typename Ret, CONCEPT_ARGUMENT... Arg>
   class testcase2
   {
@@ -553,7 +555,7 @@ template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN Baseline
 /**
  * A testcase maker - ADL to the rescue.
  */
-template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN BaselineFun,
+template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_BASELINEFUN BaselineFun,
          typename Ret, CONCEPT_ARGUMENT... Arg>
   testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>
   make_testcase2(test_function<TestFun> test,
@@ -568,7 +570,7 @@ template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN Baseline
 /**
  * Generate and write the test data.  Accumulate statistics.
  */
-template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN BaselineFun,
+template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_BASELINEFUN BaselineFun,
          typename Ret, CONCEPT_ARGUMENT... Arg>
   template<std::size_t... Index>
     void
@@ -588,7 +590,7 @@ template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN Baseline
 /**
  * Generate and write the test data.  Accumulate statistics.
  */
-template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN BaselineFun,
+template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_BASELINEFUN BaselineFun,
          typename Ret, CONCEPT_ARGUMENT... Arg>
   template<std::size_t Index>
     struct testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>::
@@ -608,7 +610,7 @@ template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN Baseline
 /**
  * Generate and write the test data.  Accumulate statistics.
  */
-template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN BaselineFun,
+template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_BASELINEFUN BaselineFun,
          typename Ret, CONCEPT_ARGUMENT... Arg>
   template<std::size_t Index>
     struct testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>::
@@ -618,7 +620,7 @@ template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN Baseline
       operator()(std::ostream &, const testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...> &) const;
     };
 
-template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN BaselineFun,
+template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_BASELINEFUN BaselineFun,
          typename Ret, CONCEPT_ARGUMENT... Arg>
   template<std::size_t Index>
     void
@@ -737,7 +739,7 @@ template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN Baseline
 /**
  * Build the function call string for the test suite.
  */
-template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN BaselineFun,
+template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_BASELINEFUN BaselineFun,
          typename Ret, CONCEPT_ARGUMENT... Arg>
   std::ostringstream
   testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>::
@@ -750,7 +752,7 @@ template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN Baseline
     return funcall;
   }
 
-template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN BaselineFun,
+template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_BASELINEFUN BaselineFun,
          typename Ret, CONCEPT_ARGUMENT... Arg>
   template<std::size_t... Index>
     void
@@ -771,7 +773,7 @@ template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN Baseline
 /**
  * Write the test case main function.
  */
-template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_SPECFUN BaselineFun,
+template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_BASELINEFUN BaselineFun,
          typename Ret, CONCEPT_ARGUMENT... Arg>
   void
   testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>::
