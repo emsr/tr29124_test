@@ -7,7 +7,7 @@ CXX_INST_DIR = $(HOME)/bin$(SUFFIX)
 CXX_SRC_DIR = $(HOME)/gcc$(SUFFIX)
 
 CXX = $(CXX_INST_DIR)/bin/g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__
-CXX17 = $(CXX_INST_DIR)/bin/g++ -std=gnu++17 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+CXX17 = $(CXX_INST_DIR)/bin/g++ -std=gnu++17 -fconcepts -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__
 CXX_INC_DIR = $(CXX_INST_DIR)/include/c++/7.0.0/bits
 CXX_LIB_DIR = $(CXX_INST_DIR)/lib64
 CXX_TEST_INC_DIR = $(CXX_SRC_DIR)/libstdc++-v3/testsuite/util
