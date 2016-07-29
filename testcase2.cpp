@@ -1,5 +1,5 @@
 /*
-/home/ESmith-rowland/bin/bin/g++ -std=gnu++17 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o testcase2 -I/usr/local/include -I/usr/local/include testcase2.cpp gsl_wrap.cpp boost_wrap.cpp lerchphi/Source/lerchphi.cpp /home/ESmith-rowland/tr29124_test/gslextras/Fresnel/fresnel.c -L/usr/local/lib -lgsl -lgslcblas -ljacobi
+/home/ESmith-rowland/bin/bin/g++ -std=gnu++17 -fconcepts -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o testcase2 -I/usr/local/include -I/usr/local/include testcase2.cpp gsl_wrap.cpp boost_wrap.cpp lerchphi/Source/lerchphi.cpp /home/ESmith-rowland/tr29124_test/gslextras/Fresnel/fresnel.c -L/usr/local/lib -lgsl -lgslcblas -ljacobi
 */
 #include <iostream>
 #include <sstream>
@@ -22,19 +22,6 @@
 #include "boost_wrap.h"
 
 #include "testcase2.tcc"
-
-std::string
-get_filename(const std::string & path,
-	     const std::string & prefix,
-	     const std::string & basename,
-	     const std::string & extra,
-	     const std::string & suffix)
-{
-  auto filename = path + "/" + prefix;
-  filename += basename + extra + suffix;
-
-  return filename;
-}
 
 
 template<typename Real>
