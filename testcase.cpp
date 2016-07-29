@@ -1526,7 +1526,7 @@ template<typename Real>
 	     "Boost",
 	     file_owens_t, true, true);
 
-    // clausen_c function.
+    // Clausen C function.
     std::cout << "clausen_c" << std::endl;
     basename = "clausen_c";
     filename = get_filename(path, prefix, basename, "",  ".cc");
