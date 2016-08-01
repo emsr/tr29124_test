@@ -6,9 +6,9 @@ namespace experimental {
   template<typename DataType, typename... Properties>
     struct array_ref;
 
-  template<typename DataType , typename... Properties, typename... SliceSpecifiers>
+  template<typename DataType, typename... Properties, typename... SliceSpecifiers>
     array_ref</* deduced */>
-    subarray(const array_ref<DataType, Properties... >&, SliceSpecifiers...) noexcept;
+    subarray(const array_ref<DataType, Properties...>&, SliceSpecifiers...) noexcept;
 
 } // namespace experimental
 } // namespace std
@@ -19,7 +19,7 @@ namespace experimental {
 namespace array_property {
 
   template<typename>
-    struct is_array_property /* = std::integral_constant<bool,?> */;
+    struct is_array_property = std::bool_constant<false>;
 
   template<typename T>
     using is_array_property_v = is_array_property<T>::value;
@@ -38,6 +38,7 @@ namespace array_property {
 
   template<typename T>
     struct is_layout;
+
   template<typename T>
     constexpr bool is_layout_v = is_layout<T>::value;
 
@@ -56,6 +57,7 @@ namespace array_property {
 
   // subarray support
   struct all_type {};
+
   constexpr all_type all = all_type();
 
 } // namespace array_property
@@ -66,39 +68,48 @@ namespace std {
 namespace experimental {
 namespace array_property {
 
-template<typename IntegralType, IntegralType... Dims>
-  struct dimension_typed
-  {
-    // types
-    using size_type  = std::size_t;
-    using value_type = IntegralType;
+  template<typename IntegralType, IntegralType... Dims>
+    struct dimension_typed
+    {
+      // types
+      using size_type  = std::size_t;
+      using value_type = IntegralType;
 
-    // constructors, copy, assignment, destructor
+      // constructors, copy, assignment, destructor
 
-    constexpr dimension_typed() noexcept;
+      constexpr dimension_typed() noexcept;
 
-    template <typename... IntegralArgs>
-      constexpr dimension_typed(IntegralArgs... dynamic_dims) noexcept;
+      template<typename... IntegralArgs>
+	constexpr dimension_typed(IntegralArgs... dynamic_dims) noexcept;
 
-    constexpr dimension_typed(dimension_typed&& rhs) noexcept;
-    constexpr dimension_typed(dimension_typed const& rhs) noexcept;
-    dimension_typed& operator=(dimension_typed&& rhs) noexcept;
-    dimension_typed& operator=(const dimension_typed& rhs) noexcept;
+      constexpr dimension_typed(dimension_typed&& rhs) noexcept;
 
-    ~dimension();
+      constexpr dimension_typed(dimension_typed const& rhs) noexcept;
 
-    // observers
+      dimension_typed&
+      operator=(dimension_typed&& rhs) noexcept;
 
-    static constexpr size_type rank() noexcept;
-    static constexpr size_type rank_dynamic() noexcept;
+      dimension_typed&
+      operator=(const dimension_typed& rhs) noexcept;
 
-    template<size_type ith>
-    static constexpr value_type static_extent() noexcept;
+      ~dimension();
 
-    constexpr value_type extent(size_type ith) const noexcept;
+      // observers
 
-    constexpr value_type size() const noexcept;
-  };
+      static constexpr size_type
+      rank() noexcept;
+
+      static constexpr size_type
+      rank_dynamic() noexcept;
+
+      template<size_type ith>
+	static constexpr value_type
+	static_extent() noexcept;
+
+      constexpr value_type extent(size_type ith) const noexcept;
+
+      constexpr value_type size() const noexcept;
+    };
 
 } // namespace array_property
 } // namespace experimental
@@ -107,42 +118,58 @@ template<typename IntegralType, IntegralType... Dims>
 
 struct /* layout_concept */ {
 
-  template< typename DimensionType >
-  struct mapping : DimensionType {
+  template<typename DimensionType>
+    struct mapping : DimensionType
+    {
 
-    // types and constants
+      // types and constants
 
-    static constexpr bool is_always_unique     = /* layout specific */ ;
-    static constexpr bool is_always_contiguous = /* layout specific */ ;
-    static constexpr bool is_always_regular    = /* layout specific */ ;
+      static constexpr bool is_always_unique     = /* layout specific */;
+      static constexpr bool is_always_contiguous = /* layout specific */;
+      static constexpr bool is_always_regular    = /* layout specific */;
 
-    // constructors, copy, assignment, destructor
+      // constructors, copy, assignment, destructor
 
-    constexpr mapping() noexcept ;
-    constexpr mapping( mapping && ) noexcept ;
-    constexpr mapping( mapping const &) noexcept ;
-    mapping & operator = ( mapping && ) noexcept ;
-    mapping & operator = ( mapping const &) noexcept ;
+      constexpr mapping() noexcept;
 
-    constexpr explicit mapping( layout_concept const & );
+      constexpr mapping(mapping &&) noexcept;
 
-    template< typename ... IntegralArgs >
-    constexpr mapping( IntegralArgs ... dynamic_dimensions );
+      constexpr mapping(mapping const &) noexcept;
 
-    // observers
+      mapping&
+      operator=(mapping&&) noexcept;
 
-    constexpr bool is_unique() const noexcept ;
-    constexpr bool is_contiguous() const noexcept ;
-    constexpr bool is_regular() noexcept ;
+      mapping&
+      operator=(mapping const&) noexcept;
 
-    constexpr value_type span() const noexcept ;
-    constexpr value_type stride( size_type ith ) const noexcept ;
+      constexpr explicit mapping(layout_concept const&);
 
-    // mapping operator
+      template<typename... IntegralArgs>
+	constexpr mapping(IntegralArgs ... dynamic_dimensions);
 
-    template< typename ... IntegralArgs >
-    constexpr value_type operator()( IntegralArgs ... indices ) const noexcept ;
-  };
+      // observers
+
+      constexpr bool
+      is_unique() const noexcept;
+
+      constexpr bool
+      is_contiguous() const noexcept;
+
+      constexpr bool
+      is_regular() noexcept;
+
+      constexpr value_type
+      span() const noexcept;
+
+      constexpr value_type
+      stride(size_type ith) const noexcept;
+
+      // mapping operator
+
+      template<typename... IntegralArgs>
+      constexpr value_type
+      operator()(IntegralArgs ... indices) const noexcept;
+    };
 };
 
 
@@ -150,90 +177,135 @@ namespace std {
 namespace experimental {
 
   template<typename DataType, typename... Properties>
-  struct array_ref
-  {
-    // types
+    struct array_ref
+    {
+      // types
 
-    using layout     = /* deduced from Properties... */;
-    using value_type = /* deduced from DataType */;
-    using reference  = /* deduced from DataType and Properties... */;
-    using pointer    = /* deduced from DataType */;
-    using size_type  = /* implementation defined */;
+      using layout     = /* deduced from Properties... */;
+      using value_type = /* deduced from DataType */;
+      using reference  = /* deduced from DataType and Properties... */;
+      using pointer    = /* deduced from DataType */;
+      using size_type  = /* implementation defined */;
 
-    using iterator               = /* deduced from DataType */;
-    using const_iterator         = /* deduced from DataType */;
-    using reverse_iterator       = reverse_iterator<iterator>;
-    using const_reverse_iterator = reverse_iterator<const_iterator>;
+      using iterator               = /* deduced from DataType */;
+      using const_iterator         = /* deduced from DataType */;
+      using reverse_iterator       = reverse_iterator<iterator>;
+      using const_reverse_iterator = reverse_iterator<const_iterator>;
 
-    // constructors, copy, assignment, and destructor
+      // constructors, copy, assignment, and destructor
 
-    constexpr array_ref() noexcept;
-    constexpr array_ref(array_ref&& rhs) noexcept;
-    constexpr array_ref(array_ref const& rhs) noexcept;
-    array_ref& operator=(array_ref&& rhs) noexcept;
-    array_ref& operator=(array_ref const& rhs) noexcept;
+      constexpr
+      array_ref() noexcept;
 
-    template <typename... IntegralArgs>
-    explicit constexpr array_ref(pointer p, IntegralArgs... dynamic_dims) noexcept;
+      constexpr
+      array_ref(array_ref&& rhs) noexcept;
 
-    explicit constexpr array_ref(pointer p, layout const&) noexcept;
+      constexpr
+      array_ref(array_ref const& rhs) noexcept;
 
-    template <typename UType, typename... UProperties>
-    constexpr array_ref(array_ref<UType, UProperties...> const& rhs) noexcept;
+      array_ref&
+      operator=(array_ref&& rhs) noexcept;
 
-    template <typename UType, typename... UProperties>
-    array_ref& operator=(array_ref<UType , UProperties...> const& rhs) noexcept;
+      array_ref&
+      operator=(array_ref const& rhs) noexcept;
 
-    ~array_ref() noexcept;
+      template<typename... IntegralArgs>
+	explicit constexpr
+	array_ref(pointer p, IntegralArgs... dynamic_dims) noexcept;
 
-    // observers of domain index space
+      explicit constexpr
+	array_ref(pointer p, layout const&) noexcept;
 
-    static constexpr size_type rank() noexcept;
-    static constexpr size_type rank_dynamic() noexcept;
+      template<typename UType, typename... UProperties>
+	constexpr
+	array_ref(array_ref<UType, UProperties...> const& rhs) noexcept;
 
-    constexpr size_type size() const noexcept;
+      template<typename UType, typename... UProperties>
+	array_ref&
+	operator=(array_ref<UType, UProperties...> const& rhs) noexcept;
 
-    constexpr size_type extent(size_type ith) const noexcept;
+      ~array_ref() noexcept;
 
-    // observers of mapping from domain index space to range value space
+      // observers of domain index space
 
-    static constexpr bool is_always_unique     = /* deduced */;
-    static constexpr bool is_always_contiguous = /* deduced */;
-    static constexpr bool is_always_regular    = /* deduced */;
+      static constexpr size_type
+      rank() noexcept;
 
-    constexpr bool is_unique() const noexcept;
-    constexpr bool is_contiguous() const noexcept;
-    constexpr bool is_regular() noexcept;
+      static constexpr size_type
+      rank_dynamic() noexcept;
 
-    constexpr size_type stride(size_type rank) const noexcept;
+      constexpr size_type
+      size() const noexcept;
 
-    constexpr size_type span() const noexcept;
+      constexpr size_type
+      extent(size_type ith) const noexcept;
 
-    template <typename... IntegralArgs>
-    static constexpr size_type required_span(IntegralArgs... dynamic_dims) const noexcept;
+      // observers of mapping from domain index space to range value space
 
-    static constexpr size_type required_span(layout const&) const noexcept;
+      static constexpr bool is_always_unique     = /* deduced */;
+      static constexpr bool is_always_contiguous = /* deduced */;
+      static constexpr bool is_always_regular    = /* deduced */;
 
-    // element and data access
+      constexpr bool
+      is_unique() const noexcept;
 
-    constexpr pointer data() const noexcept;
+      constexpr bool
+      is_contiguous() const noexcept;
 
-    template <typename... IntegralArgs>
-    reference operator()(IntegralArgs... indices) const noexcept;
+      constexpr bool
+      is_regular() noexcept;
 
-    reference operator[](size_type idx) const noexcept;
+      constexpr size_type
+      stride(size_type rank) const noexcept;
 
-    // iterator support, requires is_contiguous
+      constexpr size_type
+      span() const noexcept;
 
-    constexpr iterator begin() const noexcept;
-    constexpr iterator end()   const noexcept;
-    constexpr const_iterator cbegin() const noexcept;
-    constexpr const_iterator cend()   const noexcept;
-    constexpr reverse_iterator rbegin() const noexcept;
-    constexpr reverse_iterator rend()   const noexcept;
-    constexpr const_reverse_iterator crbegin() const noexcept;
-    constexpr const_reverse_iterator crend()   const noexcept;
-  };
+      template<typename... IntegralArgs>
+	static constexpr size_type
+	required_span(IntegralArgs... dynamic_dims) const noexcept;
+
+      static constexpr size_type
+      required_span(layout const&) const noexcept;
+
+      // element and data access
+
+      constexpr pointer
+      data() const noexcept;
+
+      template<typename... IntegralArgs>
+      reference
+      operator()(IntegralArgs... indices) const noexcept;
+
+      reference
+      operator[](size_type idx) const noexcept;
+
+      // iterator support, requires is_contiguous
+
+      constexpr iterator
+      begin() const noexcept;
+
+      constexpr iterator
+      end()   const noexcept;
+
+      constexpr const_iterator
+      cbegin() const noexcept;
+
+      constexpr const_iterator
+      cend()   const noexcept;
+
+      constexpr reverse_iterator
+      rbegin() const noexcept;
+
+      constexpr reverse_iterator
+      rend()   const noexcept;
+
+      constexpr const_reverse_iterator
+      crbegin() const noexcept;
+
+      constexpr const_reverse_iterator
+      crend()   const noexcept;
+    };
 
 } // namespace experimental
 } // namespace std
