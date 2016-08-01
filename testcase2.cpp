@@ -439,25 +439,25 @@ template<typename Real>
 #if STD
     // Hurwitz zeta functions.
     // Skip the pole at 1.
-    auto test_hurwutz_zeta = 
-    make_testcase2(make_test_function("std::hurwutz_zeta", hurwutz_zeta),
-		   make_baseline_function("GSL", "gsl::hurwutz_zeta", gsl::hurwutz_zeta),
-		   [](Real x){ return (x == 1 ? false : true); },
+    auto test_hurwitz_zeta = 
+    make_testcase2(make_test_function("std::hurwitz_zeta", hurwitz_zeta),
+		   make_baseline_function("GSL", "gsl::hurwitz_zeta", gsl::hurwitz_zeta),
+		   [](Real s, Real){ return (s == 1 ? false : true); },
 		   make_argument("s", fill2(Real{-10}, Real{+30}, 205)),
 		   make_argument("a", fill2(Real{0}, Real{5}, 26)));
-    std::ofstream file_hurwutz_zeta(outfile("hurwutz_zeta"));
-    test_hurwutz_zeta(file_hurwutz_zeta);
+    std::ofstream file_hurwitz_zeta(outfile("hurwitz_zeta"));
+    test_hurwitz_zeta(file_hurwitz_zeta);
 #endif // STD
 
     // Spherical Bessel functions.
-    auto test_sph_bessel_j = 
-    make_testcase2(make_test_function("std::sph_bessel_j", sph_bessel_j),
-		   make_baseline_function("GSL", "gsl::sph_bessel_j", gsl::sph_bessel_j),
+    auto test_sph_bessel = 
+    make_testcase2(make_test_function("std::sph_bessel", sph_bessel),
+		   make_baseline_function("GSL", "gsl::sph_bessel", gsl::sph_bessel),
 		   [](unsigned, Real){ return true; },
 		   make_argument("n", sph_order),
 		   make_argument("x", fill2(Real{0}, Real{5}, 21)));
-    std::ofstream file_sph_bessel_j(outfile("sph_bessel_j"));
-    test_sph_bessel_j(file_sph_bessel_j);
+    std::ofstream file_sph_bessel(outfile("sph_bessel"));
+    test_sph_bessel(file_sph_bessel);
 
     // Spherical Legendre functions.
     auto test_sph_legendre = 
@@ -482,7 +482,7 @@ template<typename Real>
     // Spherical harmonic functions.
     auto test_sph_harmonic = 
     make_testcase2(make_test_function("std::sph_harmonic", sph_harmonic),
-		   make_baseline_function("GSL", "gsl::sph_harmonic", gsl::harmonic_sphPlm),
+		   make_baseline_function("GSL", "gsl::sph_harmonic", gsl::sph_harmonic),
 		   [](unsigned, unsigned, Real, Real){ return true; },
 		   make_argument("l", vorder), make_argument("m", vorder),
 		   make_argument("theta", fill2(Real{0}, static_cast<Real>(M_PI), 21)),
