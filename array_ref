@@ -36,6 +36,14 @@ namespace array_property {
   struct layout_left;
   struct layout_stride;
 
+  // I'm specializing these.
+  template<>
+    struct is_array_property<layout_right> : std::bool_constant<true>;
+  template<>
+    struct is_array_property<layout_left> : std::bool_constant<true>;
+  template<>
+    struct is_array_property<layout_stride> : std::bool_constant<true>;
+
   template<typename T>
     struct is_layout;
 
@@ -142,7 +150,8 @@ struct /* layout_concept */ {
       mapping&
       operator=(mapping const&) noexcept;
 
-      constexpr explicit mapping(layout_concept const&);
+      constexpr explicit
+      mapping(layout_concept const&);
 
       template<typename... IntegralArgs>
 	constexpr mapping(IntegralArgs ... dynamic_dimensions);
