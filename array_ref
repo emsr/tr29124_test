@@ -19,7 +19,7 @@ namespace experimental {
 namespace array_property {
 
   template<typename>
-    struct is_array_property = std::bool_constant<false>;
+    struct is_array_property : std::bool_constant<false>;
 
   template<typename T>
     using is_array_property_v = is_array_property<T>::value;
@@ -50,7 +50,7 @@ namespace array_property {
 
   // Assignability property
   template<class array_ref_V, class array_ref_U>
-    struct is_assignable /* : std::integral_constant<bool,?> {} */;
+    struct is_assignable : std::bool_constant<false> {};
 
   template<class array_ref_V, class array_ref_U>
     using is_assignable_v = is_assignable<array_ref_V, array_ref_U>::value;
