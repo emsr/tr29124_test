@@ -105,18 +105,22 @@ namespace array_property {
       // observers
 
       static constexpr size_type
-      rank() noexcept;
+      rank() noexcept
+      { return sizeof...(IntegralType); }
 
       static constexpr size_type
-      rank_dynamic() noexcept;
+      rank_dynamic() noexcept
+      { return (0 + (Dims == 0 ? 1 : 0)...); }
 
       template<size_type ith>
 	static constexpr value_type
 	static_extent() noexcept;
 
-      constexpr value_type extent(size_type ith) const noexcept;
+      constexpr value_type
+      extent(size_type ith) const noexcept;
 
-      constexpr value_type size() const noexcept;
+      constexpr value_type
+      size() const noexcept;
     };
 
 } // namespace array_property
@@ -176,8 +180,8 @@ struct /* layout_concept */ {
       // mapping operator
 
       template<typename... IntegralArgs>
-      constexpr value_type
-      operator()(IntegralArgs ... indices) const noexcept;
+        constexpr value_type
+        operator()(IntegralArgs ... indices) const noexcept;
     };
 };
 
@@ -283,8 +287,8 @@ namespace experimental {
       data() const noexcept;
 
       template<typename... IntegralArgs>
-      reference
-      operator()(IntegralArgs... indices) const noexcept;
+        reference
+        operator()(IntegralArgs... indices) const noexcept;
 
       reference
       operator[](size_type idx) const noexcept;
@@ -295,25 +299,25 @@ namespace experimental {
       begin() const noexcept;
 
       constexpr iterator
-      end()   const noexcept;
+      end() const noexcept;
 
       constexpr const_iterator
       cbegin() const noexcept;
 
       constexpr const_iterator
-      cend()   const noexcept;
+      cend() const noexcept;
 
       constexpr reverse_iterator
       rbegin() const noexcept;
 
       constexpr reverse_iterator
-      rend()   const noexcept;
+      rend() const noexcept;
 
       constexpr const_reverse_iterator
       crbegin() const noexcept;
 
       constexpr const_reverse_iterator
-      crend()   const noexcept;
+      crend() const noexcept;
     };
 
 } // namespace experimental
