@@ -1511,10 +1511,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     sinc_pi(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__sinc_pi<__type>(__x);
     }
 
@@ -1552,10 +1552,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     sinc(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__sinc<__type>(__x);
     }
 
@@ -1590,10 +1590,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The real upper integration limit
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     logint(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__logint<__type>(__x);
     }
 
@@ -1629,10 +1629,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The real upper integration limit
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     sinint(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__sincosint<__type>(__x).first;
     }
 
@@ -1669,10 +1669,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The real upper integration limit
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     cosint(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__sincosint<__type>(__x).second;
     }
 
@@ -1710,10 +1710,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     sinhint(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__sinhint<__type>(__x);
     }
 
@@ -1752,10 +1752,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The real argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     coshint(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__coshint<__type>(__x);
     }
 
@@ -1811,10 +1811,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __u The real argument
    */
   template<typename _Kp, typename _Up>
-    inline __gnu_cxx::__promote_num_t<_Kp, _Up>
+    inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
     jacobi_sn(_Kp __k, _Up __u)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Kp, _Up>;
+      using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
       return std::get<_GLIBCXX_JACOBI_SN>
 		(std::__detail::__jacobi_sncndn<__type>(__k, __u));
     }
@@ -1863,10 +1863,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __u The real argument
    */
   template<typename _Kp, typename _Up>
-    inline __gnu_cxx::__promote_num_t<_Kp, _Up>
+    inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
     jacobi_cn(_Kp __k, _Up __u)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Kp, _Up>;
+      using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
       return std::get<_GLIBCXX_JACOBI_CN>
 		(std::__detail::__jacobi_sncndn<__type>(__k, __u));
     }
@@ -1915,10 +1915,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __u The real argument
    */
   template<typename _Kp, typename _Up>
-    inline __gnu_cxx::__promote_num_t<_Kp, _Up>
+    inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
     jacobi_dn(_Kp __k, _Up __u)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Kp, _Up>;
+      using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
       return std::get<_GLIBCXX_JACOBI_DN>
 		(std::__detail::__jacobi_sncndn<__type>(__k, __u));
     }
@@ -1960,10 +1960,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The real argument @f$ -1 <= x <= +1 @f$
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     chebyshev_t(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__chebyshev_t<__type>(__n, __x);
     }
 
@@ -2004,10 +2004,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The real argument @f$ -1 <= x <= +1 @f$
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     chebyshev_u(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__chebyshev_u<__type>(__n, __x);
     }
 
@@ -2049,10 +2049,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The real argument @f$ -1 <= x <= +1 @f$
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     chebyshev_v(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__chebyshev_v<__type>(__n, __x);
     }
 
@@ -2094,10 +2094,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The real argument @f$ -1 <= x <= +1 @f$
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     chebyshev_w(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__chebyshev_w<__type>(__n, __x);
     }
 
@@ -2154,10 +2154,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The real argument
    */
   template<typename _Talpha, typename _Tbeta, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Talpha, _Tbeta, _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Talpha, _Tbeta, _Tp>
     jacobi(unsigned __n, _Talpha __alpha, _Tbeta __beta, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Talpha, _Tbeta, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Talpha, _Tbeta, _Tp>;
       return std::__detail::__poly_jacobi<__type>(__n, __alpha, __beta, __x);
     }
 
@@ -2202,10 +2202,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The real argument
    */
   template<typename _Talpha, typename _Tp>
-    inline typename __gnu_cxx::__promote_num_t<_Talpha, _Tp>
+    inline typename __gnu_cxx::__promote_fp_t<_Talpha, _Tp>
     gegenbauer(unsigned int __n, _Talpha __alpha, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Talpha, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Talpha, _Tp>;
       return std::__detail::__gegenbauer_poly<__type>(__n, __alpha, __x);
     }
 
@@ -2257,10 +2257,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __phi The azimuthal angle
    */
   template<typename _Trho, typename _Tphi>
-    inline __gnu_cxx::__promote_num_t<_Trho, _Tphi>
+    inline __gnu_cxx::__promote_fp_t<_Trho, _Tphi>
     zernike(unsigned int __n, int __m, _Trho __rho, _Tphi __phi)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Trho, _Tphi>;
+      using __type = __gnu_cxx::__promote_fp_t<_Trho, _Tphi>;
       return std::__detail::__zernike<__type>(__n, __m, __rho, __phi);
     }
 
@@ -2312,10 +2312,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __rho The radial argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     radpoly(unsigned int __n, unsigned int __m, _Tp __rho)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__poly_radial_jacobi<__type>(__n, __m, __rho);
     }
 
@@ -2333,10 +2333,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * 
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     sinhc_pi(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__sinhc_pi<__type>(__x);
     }
 
@@ -2354,10 +2354,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * 
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     sinhc(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__sinhc<__type>(__x);
     }
 
@@ -2403,10 +2403,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __z The real argument
    */
   template<typename _Tpnu, typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_num_t<_Tpnu, _Tp>>
+    inline std::complex<__gnu_cxx::__promote_fp_t<_Tpnu, _Tp>>
     cyl_hankel_1(_Tpnu __nu, _Tp __z)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
       return std::__detail::__cyl_hankel_1<__type>(__nu, __z);
     }
 
@@ -2452,10 +2452,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __z The real argument
    */
   template<typename _Tpnu, typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_num_t<_Tpnu, _Tp>>
+    inline std::complex<__gnu_cxx::__promote_fp_t<_Tpnu, _Tp>>
     cyl_hankel_2(_Tpnu __nu, _Tp __z)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
       return std::__detail::__cyl_hankel_2<__type>(__nu, __z);
     }
 
@@ -2495,10 +2495,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __z The real argument
    */
   template<typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_num_t<_Tp>>
+    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp>>
     sph_hankel_1(unsigned int __n, _Tp __z)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__sph_hankel_1<__type>(__n, __z);
     }
 
@@ -2538,10 +2538,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __z The real argument
    */
   template<typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_num_t<_Tp>>
+    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp>>
     sph_hankel_2(unsigned int __n, _Tp __z)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__sph_hankel_2<__type>(__n, __z);
     }
 
@@ -2592,10 +2592,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     sph_bessel_i(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       __type __i_n, __k_n, __ip_n, __kp_n;
       std::__detail::__sph_bessel_ik<__type>(__n, __x,
         				     __i_n, __k_n, __ip_n, __kp_n);
@@ -2649,10 +2649,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     sph_bessel_k(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       __type __i_n, __k_n, __ip_n, __kp_n;
       std::__detail::__sph_bessel_ik<__type>(__n, __x,
         				     __i_n, __k_n, __ip_n, __kp_n);
@@ -2701,10 +2701,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     airy_ai(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       __type __Ai, __Bi, __Aip, __Bip;
       std::__detail::__airy<__type>(__x, __Ai, __Bi, __Aip, __Bip);
       return __Ai;
@@ -2753,10 +2753,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     airy_bi(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       __type __Ai, __Bi, __Aip, __Bip;
       std::__detail::__airy<__type>(__x, __Ai, __Bi, __Aip, __Bip);
       return __Bi;
@@ -2776,10 +2776,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * 
    */
   template<typename _Tn, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tn, _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tn, _Tp>
     gamma_u(_Tn __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tn, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tn, _Tp>;
       return std::__detail::__gamma_u<__type>(__n, __x);
     }
 
@@ -2797,10 +2797,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * 
    */
   template<typename _Tn, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tn, _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tn, _Tp>
     gamma_l(_Tn __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tn, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tn, _Tp>;
       return std::__detail::__gamma_l<__type>(__n, __x);
     }
 
@@ -2818,10 +2818,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * 
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     digamma(_Tp __z)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__psi<__type>(__z);
     }
 
@@ -2859,10 +2859,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     dilog(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__dilog<__type>(__x);
     }
 
@@ -2902,10 +2902,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param  __y  The second argument.
    */
   template<typename _Tx, typename _Ty>
-    inline __gnu_cxx::__promote_num_t<_Tx, _Ty>
+    inline __gnu_cxx::__promote_fp_t<_Tx, _Ty>
     comp_ellint_rf(_Tx __x, _Ty __y)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tx, _Ty>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tx, _Ty>;
       return std::__detail::__comp_ellint_rf<__type>(__x, __y);
     }
 
@@ -2946,10 +2946,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param  __z  The third of three symmetric arguments.
    */
   template<typename _Tp, typename _Up, typename _Vp>
-    inline __gnu_cxx::__promote_num_t<_Tp, _Up, _Vp>
+    inline __gnu_cxx::__promote_fp_t<_Tp, _Up, _Vp>
     ellint_rf(_Tp __x, _Up __y, _Vp __z)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp, _Up, _Vp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Up, _Vp>;
       return std::__detail::__ellint_rf<__type>(__x, __y, __z);
     }
 
@@ -2994,10 +2994,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param  __y  The second argument.
    */
   template<typename _Tp, typename _Up>
-    inline __gnu_cxx::__promote_num_t<_Tp, _Up>
+    inline __gnu_cxx::__promote_fp_t<_Tp, _Up>
     ellint_rc(_Tp __x, _Up __y)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp, _Up>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Up>;
       return std::__detail::__ellint_rc<__type>(__x, __y);
     }
 
@@ -3043,10 +3043,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param  __p  The fourth argument.
    */
   template<typename _Tp, typename _Up, typename _Vp, typename _Wp>
-    inline __gnu_cxx::__promote_num_t<_Tp, _Up, _Vp, _Wp>
+    inline __gnu_cxx::__promote_fp_t<_Tp, _Up, _Vp, _Wp>
     ellint_rj(_Tp __x, _Up __y, _Vp __z, _Wp __p)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp, _Up, _Vp, _Wp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Up, _Vp, _Wp>;
       return std::__detail::__ellint_rj<__type>(__x, __y, __z, __p);
     }
 
@@ -3093,10 +3093,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param  __z  The third argument.
    */
   template<typename _Tp, typename _Up, typename _Vp>
-    inline __gnu_cxx::__promote_num_t<_Tp, _Up, _Vp>
+    inline __gnu_cxx::__promote_fp_t<_Tp, _Up, _Vp>
     ellint_rd(_Tp __x, _Up __y, _Vp __z)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp, _Up, _Vp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Up, _Vp>;
       return std::__detail::__ellint_rd<__type>(__x, __y, __z);
     }
 
@@ -3135,10 +3135,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param  __y  The second argument.
    */
   template<typename _Tx, typename _Ty>
-    inline __gnu_cxx::__promote_num_t<_Tx, _Ty>
+    inline __gnu_cxx::__promote_fp_t<_Tx, _Ty>
     comp_ellint_rg(_Tx __x, _Ty __y)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tx, _Ty>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tx, _Ty>;
       return std::__detail::__comp_ellint_rg<__type>(__x, __y);
     }
 
@@ -3184,10 +3184,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param  __z  The third of three symmetric arguments.
    */
   template<typename _Tp, typename _Up, typename _Vp>
-    inline __gnu_cxx::__promote_num_t<_Tp, _Up, _Vp>
+    inline __gnu_cxx::__promote_fp_t<_Tp, _Up, _Vp>
     ellint_rg(_Tp __x, _Up __y, _Vp __z)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp, _Up, _Vp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Up, _Vp>;
       return std::__detail::__ellint_rg<__type>(__x, __y, __z);
     }
 
@@ -3225,10 +3225,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __a The parameter
    */
   template<typename _Tp, typename _Up>
-    inline __gnu_cxx::__promote_num_t<_Tp, _Up>
+    inline __gnu_cxx::__promote_fp_t<_Tp, _Up>
     hurwitz_zeta(_Tp __s, _Up __a)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp, _Up>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Up>;
       return std::__detail::__hurwitz_zeta<__type>(__s, __a);
     }
 
@@ -3242,7 +3242,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     std::complex<_Tp>
     hurwitz_zeta(_Tp __s, std::complex<_Up> __a)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp, _Up>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Up>;
       return std::__detail::__hurwitz_zeta<__type>(__s, __a);
     }
 
@@ -3267,10 +3267,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The parameter
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     psi(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__psi<__type>(__x);
     }
 
@@ -3316,10 +3316,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument
    */
   template<typename _Ta, typename _Tb, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Ta, _Tb, _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>
     ibeta(_Ta __a, _Tb __b, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Ta, _Tb, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>;
       return std::__detail::__beta_inc<__type>(__a, __b, __x);
     }
 
@@ -3347,10 +3347,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument
    */
   template<typename _Ta, typename _Tb, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Ta, _Tb, _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>
     ibetac(_Ta __a, _Tb __b, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Ta, _Tb, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>;
       return __type(1) - ibeta<__type>(__a, __b, __x);
     }
 
@@ -3375,10 +3375,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     fresnel_s(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::imag(std::__detail::__fresnel<__type>(__x));
     }
 
@@ -3403,10 +3403,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     fresnel_c(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::real(std::__detail::__fresnel<__type>(__x));
     }
 
@@ -3445,10 +3445,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument @f$ -inf < x < inf @f$.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     dawson(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__dawson<__type>(__x);
     }
 
@@ -3491,10 +3491,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The real argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     expint(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__expint<__type>(__n, __x);
     }
 
@@ -3512,10 +3512,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * 
    */
   template<typename _Tp, typename _Tn>
-    inline __gnu_cxx::__promote_num_t<_Tp, _Tn>
+    inline __gnu_cxx::__promote_fp_t<_Tp, _Tn>
     lpochhammer_u(_Tp __a, _Tn __n)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tn>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tn>;
       return std::__detail::__log_pochhammer_u<__type>(__a, __n);
     }
 
@@ -3533,10 +3533,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * 
    */
   template<typename _Tp, typename _Tn>
-    inline __gnu_cxx::__promote_num_t<_Tp, _Tn>
+    inline __gnu_cxx::__promote_fp_t<_Tp, _Tn>
     lpochhammer_l(_Tp __a, _Tn __n)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tn>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tn>;
       return std::__detail::__log_pochhammer_l<__type>(__a, __n);
     }
 
@@ -3554,10 +3554,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * 
    */
   template<typename _Tp, typename _Tn>
-    inline __gnu_cxx::__promote_num_t<_Tp, _Tn>
+    inline __gnu_cxx::__promote_fp_t<_Tp, _Tn>
     pochhammer_u(_Tp __a, _Tn __n)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tn>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tn>;
       return std::__detail::__pochhammer_u<__type>(__a, __n);
     }
 
@@ -3575,10 +3575,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * 
    */
   template<typename _Tp, typename _Tn>
-    inline __gnu_cxx::__promote_num_t<_Tp, _Tn>
+    inline __gnu_cxx::__promote_fp_t<_Tp, _Tn>
     pochhammer_l(_Tp __a, _Tn __n)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tn>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tn>;
       return std::__detail::__pochhammer_l<__type>(__a, __n);
     }
 
@@ -3596,10 +3596,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * 
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     factorial(unsigned int __n)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__factorial<__type>(__n);
     }
 
@@ -3617,10 +3617,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * 
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     double_factorial(int __n)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__double_factorial<__type>(__n);
     }
 
@@ -3638,10 +3638,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * 
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     lfactorial(unsigned int __n)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__log_factorial<__type>(__n);
     }
 
@@ -3659,10 +3659,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * 
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     ldouble_factorial(int __n)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__log_double_factorial<__type>(__n);
     }
 
@@ -3680,10 +3680,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * 
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     bincoef(unsigned int __n, unsigned int __k)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__bincoef<__type>(__n, __k);
     }
 
@@ -3701,10 +3701,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * 
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     lbincoef(unsigned int __n, unsigned int __k)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__log_bincoef<__type>(__n, __k);
     }
 
@@ -3740,10 +3740,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __n The order.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     bernoulli(unsigned int __n)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__bernoulli<__type>(__n);
     }
 
@@ -3773,10 +3773,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * 
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     legendre_q(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__legendre_q<__type>(__n, __x);
     }
 
@@ -3794,10 +3794,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * 
    */
   template<typename _Ta, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Ta, _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Ta, _Tp>
     pgamma(_Ta __a, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Ta, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tp>;
       return std::__detail::__pgamma<__type>(__a, __x);
     }
 
@@ -3815,10 +3815,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * 
    */
   template<typename _Ta, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Ta, _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Ta, _Tp>
     qgamma(_Ta __a,_Tp  __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Ta, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tp>;
       return std::__detail::__qgamma<__type>(__a, __x);
     }
 
@@ -3849,10 +3849,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __phi The angle
    */
   template<typename _Tk, typename _Tphi>
-    inline __gnu_cxx::__promote_num_t<_Tk, _Tphi>
+    inline __gnu_cxx::__promote_fp_t<_Tk, _Tphi>
     jacobi_zeta(_Tk __k, _Tphi __phi)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tk, _Tphi>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tk, _Tphi>;
       return std::__detail::__jacobi_zeta<__type>(__k, __phi);
     }
 
@@ -3884,10 +3884,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __phi The angle
    */
   template<typename _Tk, typename _Tphi>
-    inline __gnu_cxx::__promote_num_t<_Tk, _Tphi>
+    inline __gnu_cxx::__promote_fp_t<_Tk, _Tphi>
     heuman_lambda(_Tk __k, _Tphi __phi)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tk, _Tphi>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tk, _Tphi>;
       return std::__detail::__heuman_lambda<__type>(__k, __phi);
     }
 
@@ -3926,10 +3926,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __k The modulus <tt>-1 <= __k <= +1</tt>
    */
   template<typename _Tk>
-    inline __gnu_cxx::__promote_num_t<_Tk>
+    inline __gnu_cxx::__promote_fp_t<_Tk>
     comp_ellint_d(_Tk __k)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tk>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tk>;
       return std::__detail::__comp_ellint_d<__type>(__k);
     }
 
@@ -3969,10 +3969,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __phi The angle
    */
   template<typename _Tk, typename _Tphi>
-    inline __gnu_cxx::__promote_num_t<_Tk, _Tphi>
+    inline __gnu_cxx::__promote_fp_t<_Tk, _Tphi>
     ellint_d(_Tk __k, _Tphi __phi)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tk, _Tphi>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tk, _Tphi>;
       return std::__detail::__ellint_d<__type>(__k, __phi);
     }
 
@@ -4015,10 +4015,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __k_c The complementary modulus @f$ k_c = \sqrt{1 - k^2} @f$
    */
   template<typename _Tp, typename _Tk>
-    inline __gnu_cxx::__promote_num_t<_Tp, _Tk>
+    inline __gnu_cxx::__promote_fp_t<_Tp, _Tk>
     ellint_el1(_Tp __x, _Tk __k_c)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tk>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tk>;
       return std::__detail::__ellint_el1<__type>(__x, __k_c);
     }
 
@@ -4061,10 +4061,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __b The  parameter
    */
   template<typename _Tp, typename _Tk, typename _Ta, typename _Tb>
-    inline __gnu_cxx::__promote_num_t<_Tp, _Tk, _Ta, _Tb>
+    inline __gnu_cxx::__promote_fp_t<_Tp, _Tk, _Ta, _Tb>
     ellint_el2(_Tp __x, _Tk __k_c, _Ta __a, _Tb __b)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp, _Tk, _Ta, _Tb>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tk, _Ta, _Tb>;
       return std::__detail::__ellint_el2<__type>(__x, __k_c, __a, __b);
     }
 
@@ -4108,10 +4108,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __p The paramenter
    */
   template<typename _Tx, typename _Tk, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tx, _Tk, _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tx, _Tk, _Tp>
     ellint_el3(_Tx __x, _Tk __k_c, _Tp __p)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tx, _Tk, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tx, _Tk, _Tp>;
       return std::__detail::__ellint_el3<__type>(__x, __k_c, __p);
     }
 
@@ -4156,10 +4156,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __b The  parameter
    */
   template<typename _Tk, typename _Tp, typename _Ta, typename _Tb>
-    inline __gnu_cxx::__promote_num_t<_Tk, _Tp, _Ta, _Tb>
+    inline __gnu_cxx::__promote_fp_t<_Tk, _Tp, _Ta, _Tb>
     ellint_cel(_Tk __k_c, _Tp __p, _Ta __a, _Tb __b)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tk, _Tp, _Ta, _Tb>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tk, _Tp, _Ta, _Tb>;
       return std::__detail::__ellint_cel<__type>(__k_c, __p, __a, __b);
     }
 
@@ -4203,10 +4203,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The complex argument
    */
   template<typename _Tpnu, typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_num_t<_Tpnu, _Tp>>
+    inline std::complex<__gnu_cxx::__promote_fp_t<_Tpnu, _Tp>>
     cyl_hankel_1(std::complex<_Tpnu> __nu, std::complex<_Tp> __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
       return std::__detail::__cyl_hankel_1<__type>(__nu, __x);
     }
 
@@ -4250,10 +4250,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The complex argument
    */
   template<typename _Tpnu, typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_num_t<_Tpnu, _Tp>>
+    inline std::complex<__gnu_cxx::__promote_fp_t<_Tpnu, _Tp>>
     cyl_hankel_2(std::complex<_Tpnu> __nu, std::complex<_Tp> __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
       return std::__detail::__cyl_hankel_2<__type>(__nu, __x);
     }
 
@@ -4298,10 +4298,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The complex argument
    */
   template<typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_num_t<_Tp>>
+    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp>>
     sph_hankel_1(unsigned int __n, std::complex<_Tp> __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__sph_hankel_1<__type>(__n, __x);
     }
 
@@ -4346,10 +4346,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The complex argument
    */
   template<typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_num_t<_Tp>>
+    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp>>
     sph_hankel_2(unsigned int __n, std::complex<_Tp> __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__sph_hankel_2<__type>(__n, __x);
     }
 
@@ -4397,10 +4397,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __phi The azimuth angle in radians
    */
   template<typename _Ttheta, typename _Tphi>
-    inline std::complex<__gnu_cxx::__promote_num_t<_Ttheta, _Tphi>>
+    inline std::complex<__gnu_cxx::__promote_fp_t<_Ttheta, _Tphi>>
     sph_harmonic(unsigned int __l, int __m, _Ttheta __theta, _Tphi __phi)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Ttheta, _Tphi>;
+      using __type = __gnu_cxx::__promote_fp_t<_Ttheta, _Tphi>;
       return std::__detail::__sph_harmonic<__type>(__l, __m, __theta, __phi);
     }
 
@@ -4439,10 +4439,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __w 
    */
   template<typename _Tp, typename _Wp>
-    inline __gnu_cxx::__promote_num_t<_Tp, _Wp>
+    inline __gnu_cxx::__promote_fp_t<_Tp, _Wp>
     polylog(_Tp __s, _Wp __w)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp, _Wp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Wp>;
       return std::__detail::__polylog<__type>(__s, __w);
     }
 
@@ -4479,10 +4479,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __w 
    */
   template<typename _Tp, typename _Wp>
-    inline std::complex<__gnu_cxx::__promote_num_t<_Tp, _Wp>>
+    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp, _Wp>>
     polylog(_Tp __s, std::complex<_Tp> __w)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp, _Wp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Wp>;
       return std::__detail::__polylog<__type>(__s, __w);
     }
 
@@ -4526,7 +4526,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     inline _Tp
     dirichlet_eta(_Tp __s)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__dirichlet_eta<__type>(__s);
     }
 
@@ -4569,7 +4569,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     inline _Tp
     dirichlet_beta(_Tp __s)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__dirichlet_beta<__type>(__s);
     }
 
@@ -4609,10 +4609,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __w The real argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     clausen_s(unsigned int __m, _Tp __w)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__clausen_s<__type>(__m, __w);
     }
 
@@ -4652,10 +4652,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __w The real argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     clausen_c(unsigned int __m, _Tp __w)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__clausen_c<__type>(__m, __w);
     }
 
@@ -4696,10 +4696,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __w The complex argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
     clausen(unsigned int __m, _Tp __w)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__clausen<__type>(__m, __w);
     }
 
@@ -4740,10 +4740,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __w The complex argument
    */
   template<typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_num_t<_Tp>>
+    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp>>
     clausen(unsigned int __m, std::complex<_Tp> __w)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__clausen<__type>(__m, __w);
     }
 
@@ -4783,10 +4783,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument
    */
   template<typename _Tpnu, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tpnu, _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>
     theta_1(_Tpnu __nu, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
       return std::__detail::__theta_1<__type>(__nu, __x);
     }
 
@@ -4826,10 +4826,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument
    */
   template<typename _Tpnu, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tpnu, _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>
     theta_2(_Tpnu __nu, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
       return std::__detail::__theta_2<__type>(__nu, __x);
     }
 
@@ -4869,10 +4869,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument
    */
   template<typename _Tpnu, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tpnu, _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>
     theta_3(_Tpnu __nu, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
       return std::__detail::__theta_3<__type>(__nu, __x);
     }
 
@@ -4912,10 +4912,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument
    */
   template<typename _Tpnu, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tpnu, _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>
     theta_4(_Tpnu __nu, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
       return std::__detail::__theta_4<__type>(__nu, __x);
     }
 
@@ -4957,7 +4957,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     inline _Tp
     ellnome(_Tp __k)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__ellnome<__type>(__k);
     }
 
@@ -4996,10 +4996,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument
    */
   template<typename _Tpk, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tpk, _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tpk, _Tp>
     theta_s(_Tpk __k, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tpk, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tpk, _Tp>;
       return std::__detail::__theta_s<__type>(__k, __x);
     }
 
@@ -5038,10 +5038,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument
    */
   template<typename _Tpk, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tpk, _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tpk, _Tp>
     theta_c(_Tpk __k, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tpk, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tpk, _Tp>;
       return std::__detail::__theta_c<__type>(__k, __x);
     }
 
@@ -5080,10 +5080,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument
    */
   template<typename _Tpk, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tpk, _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tpk, _Tp>
     theta_d(_Tpk __k, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tpk, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tpk, _Tp>;
       return std::__detail::__theta_d<__type>(__k, __x);
     }
 
@@ -5122,10 +5122,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __x The argument
    */
   template<typename _Tpk, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tpk, _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tpk, _Tp>
     theta_n(_Tpk __k, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tpk, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tpk, _Tp>;
       return std::__detail::__theta_n<__type>(__k, __x);
     }
 
@@ -5165,10 +5165,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @param __a The integration limit
    */
   template<typename _Tph, typename _Tpa>
-    inline __gnu_cxx::__promote_num_t<_Tph, _Tpa>
+    inline __gnu_cxx::__promote_fp_t<_Tph, _Tpa>
     owens_t(_Tph __h, _Tpa __a)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tph, _Tpa>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tph, _Tpa>;
       return std::__detail::__owens_t<__type>(__h, __a);
     }
 /*
@@ -5183,10 +5183,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__fermi_dirac<long double>(__s, __x); }
 
   template<typename _Tps, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tps, _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tps, _Tp>
     fermi_dirac(_Tps __s, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tps, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tps, _Tp>;
       return std::__detail::__fermi_dirac<__type>(__s, __x);
     }
 
@@ -5201,10 +5201,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__bose_einstein<long double>(__s, __x); }
 
   template<typename _Tps, typename _Tp>
-    inline __gnu_cxx::__promote_num_t<_Tps, _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tps, _Tp>
     bose_einstein(_Tps __s, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tps, _Tp>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tps, _Tp>;
       return std::__detail::__bose_einstein<__type>(__s, __x);
     }
 */

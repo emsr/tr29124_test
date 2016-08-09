@@ -978,7 +978,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return  The real or complex value of Li_s(e^w).
    */
   template<typename _Tp, typename ArgType>
-    __gnu_cxx::__promote_num_t<std::complex<_Tp>, ArgType>
+    __gnu_cxx::__promote_fp_t<std::complex<_Tp>, ArgType>
     __polylog_exp(_Tp __s, ArgType __w)
     {
       if (__isnan(__s) || __isnan(__w))
