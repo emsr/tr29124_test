@@ -31,10 +31,10 @@ g++ -std=gnu++17 -g -Wall -Wextra -DNO_LOGBQ -I. -o test_jacobi_inv test_jacobi_
    * 
    */
   template<typename _Tk, typename _Tv>
-    __gnu_cxx::__promote_num_t<_Tk, _Tv>
+    __gnu_cxx::__promote_fp_t<_Tk, _Tv>
     jacobi_acn(_Tk __k, _Tv __v)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tk, _Tv>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tk, _Tv>;
       return std::ellint_1<__type>(__k, std::acos(__v));
     }
 
@@ -58,10 +58,10 @@ g++ -std=gnu++17 -g -Wall -Wextra -DNO_LOGBQ -I. -o test_jacobi_inv test_jacobi_
    * 
    */
   template<typename _Tk, typename _Tv>
-    __gnu_cxx::__promote_num_t<_Tk, _Tv>
+    __gnu_cxx::__promote_fp_t<_Tk, _Tv>
     jacobi_asn(_Tk __k, _Tv __v)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tk, _Tv>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tk, _Tv>;
       return std::ellint_1<__type>(__k, std::asin(__v));
     }
 
@@ -85,10 +85,10 @@ g++ -std=gnu++17 -g -Wall -Wextra -DNO_LOGBQ -I. -o test_jacobi_inv test_jacobi_
    * 
    */
   template<typename _Tk, typename _Tv>
-    __gnu_cxx::__promote_num_t<_Tk, _Tv>
+    __gnu_cxx::__promote_fp_t<_Tk, _Tv>
     jacobi_adn(_Tk __k, _Tv __v)
     {
-      using __type = __gnu_cxx::__promote_num_t<_Tk, _Tv>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tk, _Tv>;
       auto __root = std::sqrt(__type{1} - __v * __v);
       return std::ellint_1<__type>(__k, std::asin(__root / __k));
     }

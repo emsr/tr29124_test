@@ -46,7 +46,7 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 //
-// The base definitions of __num_traits, __promote_num,
+// The base definitions of __num_traits, __promote_fp,
 // and __isnan reside in ext/specfun_util.h
 //
 
@@ -269,12 +269,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<>
     template<typename _Tp>
-      struct __promote_help<std::complex<_Tp>, false>
+      struct __promote_fp_help<std::complex<_Tp>, false>
       {
       private:
 	using __vtype = typename std::complex<_Tp>::value_type;
       public:
-	using __type = decltype(std::complex<__promote_help_t<__vtype>>{});
+	using __type = decltype(std::complex<__promote_fp_help_t<__vtype>>{});
       };
 
   /**
