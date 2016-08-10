@@ -65,3 +65,7 @@ for [] TR1 test generation...
        nearbyint(nu + .5) -> nearbyint(nu).  mu = nu - n was -1.
 
 21. [] Finish experfc = exp(x*x)*erfc(x) (and maybe even sqrt(pi)*x*exp(x*x)*erfc(x))
+
+22. [] ../LambertW has a very good static polynomial I think - with static Horner.
+
+23. [] We have both psi *and* digamma!  Pick one!
