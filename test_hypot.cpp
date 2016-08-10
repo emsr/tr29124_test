@@ -2,8 +2,8 @@
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -o test_hypot test_hypot.cpp -L$HOME/bin/lib64 -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_hypot > test_hypot.txt
 
-$HOME/binbin/g++ -std=gnu++17 -g -Wall -Wextra -o test_hypot test_hypot.cpp -L$HOME/bin/lib64 -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_hypot > test_hypot.txt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hypot test_hypot.cpp -L$HOME/bin/lib64 -lquadmath
+./test_hypot > test_hypot.txt
 
 g++ -std=gnu++14 -Wall -Wextra -DNO_LOGBQ -I. -o test_hypot test_hypot.cpp -lquadmath
 ./test_hypot > test_hypot.txt
@@ -25,6 +25,9 @@ namespace __detail
 #if LAMBDA
   /**
    * Return the three-dimensional hypoteneuse of @c x, @c y, @c z
+   * @f[
+   *    hypot(x,y,z) = \sqrt{x^2 + y^2 + z^2}
+   * @f]
    * avoiding underflow/overflow with small/large arguments.
    */
   template<typename _Tp>
@@ -56,6 +59,9 @@ namespace __detail
 #else
   /**
    * Return the three-dimensional hypoteneuse of @c x, @c y, @c z
+   * @f[
+   *    hypot(x,y,z) = \sqrt{x^2 + y^2 + z^2}
+   * @f]
    * avoiding underflow/overflow with small/large arguments.
    */
   template<typename _Tp>
@@ -171,6 +177,9 @@ main()
 
 /*
 m123    =        3.74165738677394
+m1inf   =                     inf
+m2inf   =                     inf
+m3inf   =                     inf
 m1big   =                  1e+300
 m2big   =   2.23606797749979e+300
 m3big   =   3.74165738677394e+300
@@ -178,4 +187,5 @@ m1small =        3.60555127546399
 m2small =                       3
 m3small =   3.74165738677394e-300
 m3zero  =                       0
+m236    =                       7
 */
