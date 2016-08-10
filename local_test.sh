@@ -12,7 +12,12 @@ tr1_dir="testsuite/tr1/5_numerical_facilities/special_functions"
 
 # This is a hack
 tool="cp -f"
+
 suffix="_tr29124"
+if [ $# -ge 1 ]; then
+  suffix="$1"
+fi
+
 src_dir="$HOME/gcc${suffix}/libstdc++-v3"
 
 

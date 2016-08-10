@@ -2,13 +2,18 @@
 
 tool="kdiff3"
 
-tr29124_dir="$HOME/gcc_tr29124/libstdc++-v3/testsuite/special_functions"
-ext_dir="$HOME/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions"
+suffix="_tr29124"
+if [ $# -ge 1 ]; then
+  suffix="$1"
+fi
 
-#tr29124_dir="$HOME/gcc_tr29124/libstdc++-v3/testsuite/special_functions"
-#ext_dir="$HOME/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions"
+tr29124_dir="$HOME/gcc${suffix}/libstdc++-v3/testsuite/special_functions"
+ext_dir="$HOME/gcc${suffix}/libstdc++-v3/testsuite/ext/special_functions"
 
-tr1_dir="$HOME/gcc_tr29124/libstdc++-v3/testsuite/tr1/5_numerical_facilities/special_functions"
+#tr29124_dir="$HOME/gcc${suffix}/libstdc++-v3/testsuite/special_functions"
+#ext_dir="$HOME/gcc${suffix}/libstdc++-v3/testsuite/ext/special_functions"
+
+tr1_dir="$HOME/gcc${suffix}/libstdc++-v3/testsuite/tr1/5_numerical_facilities/special_functions"
 
 ${tool} ${tr29124_dir}/01_assoc_laguerre/	${tr1_dir}/01_assoc_laguerre/
 ${tool} ${tr29124_dir}/02_assoc_legendre/	${tr1_dir}/02_assoc_legendre/

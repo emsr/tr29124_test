@@ -1,7 +1,13 @@
 #!/bin/bash
 
 tool="kdiff3"
-gcc_dir="$HOME/gcc_tr29124/libstdc++-v3/include/tr1"
+
+suffix="_tr29124"
+if [ $# -ge 1 ]; then
+  suffix="$1"
+fi
+
+gcc_dir="$HOME/gcc${suffix}/libstdc++-v3/include/tr1"
 
 ${tool} ./special_function_util.h  ${gcc_dir}/special_function_util.h
 ${tool} ./special_function.h	   ${gcc_dir}/special_function.h

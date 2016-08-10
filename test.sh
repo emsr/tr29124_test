@@ -1,6 +1,9 @@
 #!/bin/bash
 
 suffix="_tr29124"
+if [ $# -ge 1 ]; then
+  suffix="$1"
+fi
 
 #  This speeds up things like crazy!!!
 cd ~/obj${suffix}/x86_64-pc-linux-gnu/libstdc++-v3/testsuite

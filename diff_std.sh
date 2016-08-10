@@ -1,8 +1,14 @@
 #!/bin/bash
 
 tool="kdiff3"
-gcc_dir="$HOME/gcc_tr29124/libstdc++-v3/include/bits"
-ext_dir="$HOME/gcc_tr29124/libstdc++-v3/include/ext"
+
+suffix="_tr29124"
+if [ $# -ge 1 ]; then
+  suffix="$1"
+fi
+
+gcc_dir="$HOME/gcc${suffix}/libstdc++-v3/include/bits"
+ext_dir="$HOME/gcc${suffix}/libstdc++-v3/include/ext"
 
 ${tool} ext/   ${ext_dir}/
 ${tool} bits/  ${gcc_dir}/
