@@ -1,7 +1,11 @@
 #!/bin/bash
 
 tool="cp -f"
+
 suffix="_tr29124"
+if [ $# -ge 1 ]; then
+  suffix="$1"
+fi
 
 src_dir="$HOME/gcc${suffix}/libstdc++-v3/include"
 if [ -d "$1" ]; then 
