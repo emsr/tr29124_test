@@ -302,6 +302,32 @@ template<typename Tp>
   }
 
 /**
+ * A concept for mask functions.
+ */
+template<typename Fun, typename... Arg>
+  concept bool
+  MaskFunction()
+  {
+    return requires(Fun mask, Arg... args)
+    {
+      { mask(args...) } -> bool;
+    };
+  }
+
+/**
+ * A concept for special functions.
+ */
+template<typename Fun, typename Ret, typename... Arg>
+  concept bool
+  SpecialFunction()
+  {
+    return requires(Fun specfun, Arg... args)
+    {
+      { specfun(args...) } -> Ret;
+    };
+  }
+
+/**
  * A class for function argument sets.
  */
 template<typename Arg>
@@ -328,7 +354,9 @@ template<typename Arg>
 /**
  * A class for test function - the function to be tested.
  */
-template<typename TestFun>
+template<typename TestFun,
+	 typename Ret, typename... Arg>
+requires SpecialFunction<TestFun, Ret, Arg...>()
   struct test_function
   {
     test_function(std::string_view name,
@@ -341,16 +369,20 @@ template<typename TestFun>
     TestFun function;
   };
 
-template<typename TestFun>
-  test_function<TestFun>
+template<typename TestFun,
+	 typename Ret, typename... Arg>
+requires SpecialFunction<TestFun, Ret, Arg...>()
+  test_function<TestFun, Ret, Arg...>
   make_test_function(std::string_view name,
 		     TestFun func)
-  { return test_function<TestFun>(name, func); }
+  { return test_function<TestFun, Ret, Arg...>(name, func); }
 
 /**
  * A class for baseline function - the function that is a baseline.
  */
-template<typename BaselineFun>
+template<typename BaselineFun,
+	 typename Ret, typename... Arg>
+requires SpecialFunction<BaselineFun, Ret, Arg...>()
   struct baseline_function
   {
     baseline_function(std::string_view src,
@@ -366,25 +398,31 @@ template<typename BaselineFun>
     BaselineFun function;
   };
 
-template<typename BaselineFun>
-  baseline_function<BaselineFun>
+template<typename BaselineFun,
+	 typename Ret, typename... Arg>
+requires SpecialFunction<BaselineFun, Ret, Arg...>()
+  baseline_function<BaselineFun, Ret, Arg...>
   make_baseline_function(std::string_view src,
 			 std::string_view name,
 			 BaselineFun func)
-  { return baseline_function<BaselineFun>(src, name, func); }
+  { return baseline_function<BaselineFun, Ret, Arg...>(src, name, func); }
 
 
 /**
  * A class for testcases.
  */
-template<typename MaskFun, typename TestFun, typename BaselineFun, typename... Arg>
+template<typename MaskFun, typename TestFun, typename BaselineFun,
+	 typename Ret, typename... Arg>
+requires MaskFunction<MaskFun, Arg...>()
+      && SpecialFunction<TestFun, Ret, Arg...>()
+      && SpecialFunction<BaselineFun, Ret, Arg...>()
   class testcase2
   {
 
   public:
 
-    testcase2(test_function<TestFun> test,
-	      baseline_function<BaselineFun> base,
+    testcase2(test_function<TestFun, Ret, Arg...> test,
+	      baseline_function<BaselineFun, Ret, Arg...> base,
 	      MaskFun mask,
 	      std::string_view structname,
 	      Arg... arg)
@@ -441,8 +479,8 @@ template<typename MaskFun, typename TestFun, typename BaselineFun, typename... A
 
     std::string_view _M_structname;
     mutable unsigned int _M_start_test = 1;
-    test_function<TestFun> _M_testfun;
-    baseline_function<BaselineFun> _M_basefun;
+    test_function<TestFun, Ret, Arg...> _M_testfun;
+    baseline_function<BaselineFun, Ret, Arg...> _M_basefun;
     MaskFun _M_maskfun;
     std::tuple<argument<Arg>...> _M_range;
     std::ostringstream funcall;
@@ -453,27 +491,29 @@ template<typename MaskFun, typename TestFun, typename BaselineFun, typename... A
 /**
  * A testcase maker - ADL to the rescue.
  */
-template<typename MaskFun, typename TestFun, typename BaselineFun, typename... Arg>
-  testcase2<MaskFun, TestFun, BaselineFun, Arg...>
-  make_testcase2(test_function<TestFun> test,
-		 baseline_function<BaselineFun> base,
+template<typename MaskFun, typename TestFun, typename BaselineFun,
+	 typename Ret, typename... Arg>
+  testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>
+  make_testcase2(test_function<TestFun, Ret, Arg...> test,
+		 baseline_function<BaselineFun, Ret, Arg...> base,
 		 MaskFun mask,
 		 std::string_view structname,
-		 Arg... arg)
+		 Ret ret, argument<Arg>... arg)
   {
-    return testcase2<MaskFun, TestFun, BaselineFun, Arg...>(test, base, mask, structname, arg...);
+    return testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>(test, base, mask, structname, arg...);
   }
 
 /**
  * Generate and write the test data.  Accumulate statistics.
  */
-template<typename MaskFun, typename TestFun, typename BaselineFun, typename... Arg>
+template<typename MaskFun, typename TestFun, typename BaselineFun,
+	 typename Ret, typename... Arg>
   template<std::size_t... Index>
     void
-    testcase2<MaskFun, TestFun, BaselineFun, Arg...>::
+    testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>::
     write_test_data(std::ostream & output, std::index_sequence<Index...>) const
     {
-      using Ret = decltype(TestFun(Arg{}.value[0]...));
+      //using Ret = decltype(TestFun(Arg{}.value[0]...));
       using Val = num_traits_t<Ret>;
 
       const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
@@ -487,15 +527,16 @@ template<typename MaskFun, typename TestFun, typename BaselineFun, typename... A
 /**
  * Generate and write the test data.  Accumulate statistics.
  */
-template<typename MaskFun, typename TestFun, typename BaselineFun, typename... Arg>
+template<typename MaskFun, typename TestFun, typename BaselineFun,
+	 typename Ret, typename... Arg>
   template<std::size_t Index>
-    struct testcase2<MaskFun, TestFun, BaselineFun, Arg...>::
+    struct testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>::
     Test_Data_Help<Index, _SpaceLess<std::size_t>>
     {
       void
-      operator()(std::ostream & output, const testcase2<MaskFun, TestFun, BaselineFun, Arg...> & outer) const
+      operator()(std::ostream & output, const testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...> & outer) const
       {
-	using Outer = testcase2<MaskFun, TestFun, BaselineFun, Arg...>;
+	using Outer = testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>;
 	constexpr auto Sign = _Spaceship<std::size_t>{}(Index + 1, Outer::_S_arity);
 	using Saucer = _SpaceshipType<std::size_t, Sign>;
         for (const auto x : std::get<Index>(outer._M_range).value)
@@ -506,23 +547,25 @@ template<typename MaskFun, typename TestFun, typename BaselineFun, typename... A
 /**
  * Generate and write the test data.  Accumulate statistics.
  */
-template<typename MaskFun, typename TestFun, typename BaselineFun, typename... Arg>
+template<typename MaskFun, typename TestFun, typename BaselineFun,
+	 typename Ret, typename... Arg>
   template<std::size_t Index>
-    struct testcase2<MaskFun, TestFun, BaselineFun, Arg...>::
+    struct testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>::
     Test_Data_Help<Index, _SpaceEqual<std::size_t>>
     {
       void
-      operator()(std::ostream &, const testcase2<MaskFun, TestFun, BaselineFun, Arg...> &) const;
+      operator()(std::ostream &, const testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...> &) const;
     };
 
-template<typename MaskFun, typename TestFun, typename BaselineFun, typename... Arg>
+template<typename MaskFun, typename TestFun, typename BaselineFun,
+	 typename Ret, typename... Arg>
   template<std::size_t Index>
     void
-    testcase2<MaskFun, TestFun, BaselineFun, Arg...>::
+    testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>::
     Test_Data_Help<Index, _SpaceEqual<std::size_t>>::
-    operator()(std::ostream & output, const testcase2<MaskFun, TestFun, BaselineFun, Arg...> & outer) const
+    operator()(std::ostream & output, const testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...> & outer) const
     {
-      using Ret = decltype(TestFun(Arg{}.value[0]...));
+      //using Ret = decltype(TestFun(Arg{}.value[0]...));
       using Val = num_traits_t<Ret>;
       constexpr auto eps = std::numeric_limits<Val>::epsilon();
       constexpr auto inf = std::numeric_limits<Val>::infinity();
@@ -634,9 +677,10 @@ template<typename MaskFun, typename TestFun, typename BaselineFun, typename... A
 /**
  * Build the function call string for the test suite.
  */
-template<typename MaskFun, typename TestFun, typename BaselineFun, typename... Arg>
+template<typename MaskFun, typename TestFun, typename BaselineFun,
+	 typename Ret, typename... Arg>
   std::ostringstream
-  testcase2<MaskFun, TestFun, BaselineFun, Arg...>::
+  testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>::
   get_funcall() const
   {
     std::ostringstream funcall;
@@ -646,10 +690,11 @@ template<typename MaskFun, typename TestFun, typename BaselineFun, typename... A
     return funcall;
   }
 
-template<typename MaskFun, typename TestFun, typename BaselineFun, typename... Arg>
+template<typename MaskFun, typename TestFun, typename BaselineFun,
+	 typename Ret, typename... Arg>
   template<std::size_t... Index>
     void
-    testcase2<MaskFun, TestFun, BaselineFun, Arg...>::
+    testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>::
     get_funcall_help(std::ostringstream & funcall, std::index_sequence<Index...>) const
     {
       using swallow = int[]; // guaranties left to right order
@@ -666,14 +711,15 @@ template<typename MaskFun, typename TestFun, typename BaselineFun, typename... A
 /**
  * Write the test case main function.
  */
-template<typename MaskFun, typename TestFun, typename BaselineFun, typename... Arg>
+template<typename MaskFun, typename TestFun, typename BaselineFun,
+	 typename Ret, typename... Arg>
   void
-  testcase2<MaskFun, TestFun, BaselineFun, Arg...>::
+  testcase2<MaskFun, TestFun, BaselineFun, Ret, Arg...>::
   write_main(std::ostream & output,
 	     bool riemann_zeta_limits,
 	     std::string_view funcall) const
   {
-    using Ret = decltype(TestFun(Arg{}.value[0]...));
+    //using Ret = decltype(TestFun(Arg{}.value[0]...));
     constexpr auto ret_complex = is_complex_v<Ret>;
     std::string ret_tname = "Ret";
     if (ret_complex)
