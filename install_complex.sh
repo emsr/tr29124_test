@@ -1,7 +1,11 @@
 #!/bin/bash
 
 tool="cp -f"
+
 suffix="_tr29124"
+if [ $# -ge 1 ]; then
+  suffix="$1"
+fi
 
 ${tool} complex_ellint_rc.cc ../gcc${suffix}/libstdc++-v3/testsuite/ext/special_functions/ellint_rc/complex.cc 
 ${tool} complex_ellint_rd.cc ../gcc${suffix}/libstdc++-v3/testsuite/ext/special_functions/ellint_rd/complex.cc 

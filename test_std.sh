@@ -1,5 +1,9 @@
 
 suffix="_tr29124"
+if [ $# -ge 1 ]; then
+  suffix="$1"
+fi
+
 tool="$HOME/bin${suffix}/bin/g++ -I/home/ed/gcc${suffix}/libstdc++-v3/testsuite/util -D__STDCPP_WANT_MATH_SPEC_FUNCS__"
 
 srcs=`find /home/ed/gcc${suffix}/libstdc++-v3/testsuite/special_functions -name \*.cc`

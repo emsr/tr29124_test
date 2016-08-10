@@ -2,16 +2,19 @@
 
 tool="cp -f"
 suffix="_tr29124"
+if [ $# -ge 1 ]; then
+  suffix="$1"
+fi
 
 src_dir="."
-if [ -d "$1" ]; then 
+if [ -d "$1" ]; then
   src_dir="$1"
 fi
 src_impl_dir="${src_dir}/bits"
 src_ext_dir="${src_dir}/ext"
 
 dst_dir="$HOME/gcc${suffix}/libstdc++-v3/include"
-if [ -d "$2" ]; then 
+if [ -d "$2" ]; then
   dst_dir="$2"
 fi
 dst_impl_dir="${dst_dir}/bits"
