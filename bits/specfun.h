@@ -426,7 +426,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Beta functions
 
   /**
-   * Return the beta function, @f$ B(a,b) @f$, for @c float parameters @c a, @c b.
+   * Return the beta function, @f$ B(a,b) @f$, for @c float parameters @f$ a @f$, @f$ b @f$.
    *
    * @see beta for more details.
    */
@@ -436,7 +436,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the beta function, @f$B(a,b)@f$, for long double
-   * parameters @c a, @c b.
+   * parameters @f$ a @f$, @f$ b @f$.
    *
    * @see beta for more details.
    */
@@ -445,7 +445,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__beta<long double>(__a, __b); }
 
   /**
-   * Return the beta function, @f$B(a,b)@f$, for real parameters @c a, @c b.
+   * Return the beta function, @f$B(a,b)@f$, for real parameters @f$ a @f$, @f$ b @f$.
    *
    * The beta function is defined by
    * @f[
@@ -482,7 +482,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complete elliptic integral of the first kind @f$ E(k) @f$
-   * for long double modulus @f$ k @f$.
+   * for <tt>long double</tt> modulus @f$ k @f$.
    *
    * @see comp_ellint_1 for details.
    */
@@ -492,7 +492,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complete elliptic integral of the first kind
-   * @f$ K(k) @f$ for real modulus @c k.
+   * @f$ K(k) @f$ for real modulus @f$ k @f$.
    *
    * The complete elliptic integral of the first kind is defined as
    * @f[
@@ -552,7 +552,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * of the second kind.
    *
    * @tparam _Tp The floating-point type of the modulus @c __k.
-   * @param  __k The modulus, @c abs(__k) <= 1
+   * @param  __k  The modulus, @c abs(__k) <= 1
    * @throw std::domain_error if @c abs(__k) > 1.
    */
   template<typename _Tp>
@@ -577,7 +577,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief Return the complete elliptic integral of the third kind
-   * @f$ \Pi(k,\nu) @f$ for <tt>long double</tt> modulus @c k.
+   * @f$ \Pi(k,\nu) @f$ for <tt>long double</tt> modulus @f$ k @f$.
    *
    * @see comp_ellint_3 for details.
    */
@@ -958,7 +958,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Exponential integrals
 
   /**
-   * Return the exponential integral @f$ Ei(x) @f$ for @c float argument @c x.
+   * Return the exponential integral @f$ Ei(x) @f$ for @c float argument @f$ x @f$.
    *
    * @see expint for details.
    */
@@ -968,7 +968,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential integral @f$ Ei(x) @f$
-   * for <tt>long double</tt> argument @c x.
+   * for <tt>long double</tt> argument @f$ x @f$.
    *
    * @see expint for details.
    */
@@ -977,7 +977,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__expint<long double>(__x); }
 
   /**
-   * Return the exponential integral @f$ Ei(x) @f$ for @c real argument @c x.
+   * Return the exponential integral @f$ Ei(x) @f$ for @c real argument @f$ x @f$.
    *
    * The exponential integral is given by
    * \f[
@@ -999,7 +999,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Hermite polynomial @f$ H_n(x) @f$ of nonnegative order n
-   * and float argument @c x.
+   * and float argument @f$ x @f$.
    *
    * @see hermite for details.
    */
@@ -1009,7 +1009,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Hermite polynomial @f$ H_n(x) @f$ of nonnegative order n
-   * and <tt>long double</tt> argument @c x.
+   * and <tt>long double</tt> argument @f$ x @f$.
    *
    * @see hermite for details.
    */
@@ -1019,7 +1019,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Hermite polynomial @f$ H_n(x) @f$ of order n
-   * and @c real argument @c x.
+   * and @c real argument @f$ x @f$.
    *
    * The Hermite polynomial is defined by:
    * @f[
@@ -1067,7 +1067,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Returns the Laguerre polynomial @f$ L_n(x) @f$
-   * of nonnegative degree @c n and real argument @f$ x >= 0 @f$.
+   * of nonnegative degree @f$ n @f$ and real argument @f$ x >= 0 @f$.
    *
    * The Laguerre polynomial is defined by:
    * @f[
@@ -1231,7 +1231,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the spherical Legendre function of nonnegative integral
-   * degree @c l and order @c m and float angle @f$ \theta @f$ in radians.
+   * degree @f$ l @f$ and order @f$ m @f$ and float angle @f$ \theta @f$ in radians.
    *
    * @see sph_legendre for details.
    */
@@ -1241,7 +1241,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the spherical Legendre function of nonnegative integral
-   * degree @c l and order @c m and <tt>long double</tt> angle @f$ \theta @f$
+   * degree @f$ l @f$ and order @f$ m @f$ and <tt>long double</tt> angle @f$ \theta @f$
    * in radians.
    *
    * @see sph_legendre for details.
@@ -1252,7 +1252,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the spherical Legendre function of nonnegative integral
-   * degree @c l and order @c m and real angle @f$ \theta @f$ in radians.
+   * degree @f$ l @f$ and order @f$ m @f$ and real angle @f$ \theta @f$ in radians.
    *
    * The spherical Legendre function is defined by
    * @f[
@@ -1325,6 +1325,7 @@ _GLIBCXX_END_NAMESPACE_VERSION
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
+
   /**
    * @defgroup gnu_math_spec_func GNU Extended Mathematical Special Functions
    * @ingroup math_spec_func
@@ -1337,8 +1338,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the confluent hypergeometric function @f$ {}_1F_1(a;c;x) @f$
-   * of @c float numeratorial parameter @c a, denominatorial parameter @c c,
-   * and argument @c x.
+   * of @c float numeratorial parameter @f$ a @f$, denominatorial parameter @f$ c @f$,
+   * and argument @f$ x @f$.
    *
    * @see conf_hyperg for details.
    */
@@ -1348,8 +1349,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the confluent hypergeometric function @f$ {}_1F_1(a;c;x) @f$
-   * of <tt>long double</tt> numeratorial parameter @c a,
-   * denominatorial parameter @c c, and argument @c x.
+   * of <tt>long double</tt> numeratorial parameter @f$ a @f$,
+   * denominatorial parameter @f$ c @f$, and argument @f$ x @f$.
    *
    * @see conf_hyperg for details.
    */
@@ -1359,8 +1360,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the confluent hypergeometric function @f$ {}_1F_1(a;c;x) @f$
-   * of real numeratorial parameter @c a, denominatorial parameter @c c,
-   * and argument @c x.
+   * of real numeratorial parameter @f$ a @f$, denominatorial parameter @f$ c @f$,
+   * and argument @f$ x @f$.
    *
    * The confluent hypergeometric function is defined by
    * @f[
@@ -1385,8 +1386,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$
-   * of @ float numeratorial parameters @c a and @c b,
-   * denominatorial parameter @c c, and argument @c x.
+   * of @ float numeratorial parameters @f$ a @f$ and @f$ b @f$,
+   * denominatorial parameter @f$ c @f$, and argument @f$ x @f$.
    *
    * @see hyperg for details.
    */
@@ -1396,8 +1397,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$
-   * of <tt>long double</tt> numeratorial parameters @c a and @c b,
-   * denominatorial parameter @c c, and argument @c x.
+   * of <tt>long double</tt> numeratorial parameters @f$ a @f$ and @f$ b @f$,
+   * denominatorial parameter @f$ c @f$, and argument @f$ x @f$.
    *
    * @see hyperg for details.
    */
@@ -1407,8 +1408,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$
-   * of real numeratorial parameters @c a and @c b,
-   * denominatorial parameter @c c, and argument @c x.
+   * of real numeratorial parameters @f$ a @f$ and @f$ b @f$,
+   * denominatorial parameter @f$ c @f$, and argument @f$ x @f$.
    *
    * The hypergeometric function is defined by
    * @f[
@@ -1437,7 +1438,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the confluent hypergeometric limit function @f$ {}_0F_1(;c;x) @f$
-   * of @c float numeratorial parameter @c c and argument @c x.
+   * of @c float numeratorial parameter @f$ c @f$ and argument @f$ x @f$.
    *
    * @see conf_hyperg_lim for details.
    */
@@ -1447,7 +1448,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the confluent hypergeometric limit function @f$ {}_0F_1(;c;x) @f$
-   * of <tt>long double</tt> numeratorial parameter @c c and argument @c x.
+   * of <tt>long double</tt> numeratorial parameter @f$ c @f$ and argument @f$ x @f$.
    *
    * @see conf_hyperg_lim for details.
    */
@@ -1457,7 +1458,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the confluent hypergeometric limit function @f$ {}_0F_1(;c;x) @f$
-   * of real numeratorial parameter @c c and argument @c x.
+   * of real numeratorial parameter @f$ c @f$ and argument @f$ x @f$.
    *
    * The confluent hypergeometric limit function is defined by
    * @f[
@@ -1562,7 +1563,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Logarithmic integrals
 
   /**
-   * Return the logarithmic integral of argument @c x.
+   * Return the logarithmic integral of argument @f$ x @f$.
    *
    * @see logint for details.
    */
@@ -1571,7 +1572,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__logint<float>(__x); }
 
   /**
-   * Return the logarithmic integral of argument @c x.
+   * Return the logarithmic integral of argument @f$ x @f$.
    *
    * @see logint for details.
    */
@@ -1580,7 +1581,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__logint<long double>(__x); }
 
   /**
-   * Return the logarithmic integral of argument @c x.
+   * Return the logarithmic integral of argument @f$ x @f$.
    *
    * The logarithmic integral is defined by
    * @f[
@@ -1740,7 +1741,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the hyperbolic cosine integral @f$ Chi(x) @f$
-   * of real argument @c x.
+   * of real argument @f$ x @f$.
    *
    * The hyperbolic cosine integral is defined by
    * @f[
@@ -2105,8 +2106,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Jacobi polynomial @f$ P_n^{(\alpha,\beta)}(x) @f$
-   * of degree @c n and @c float orders @f$ \alpha, \beta > -1 @f$
-   * and argument @c x.
+   * of degree @f$ n @f$ and @c float orders @f$ \alpha, \beta > -1 @f$
+   * and argument @f$ x @f$.
    *
    * @see jacobi for details.
    */
@@ -2116,8 +2117,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Jacobi polynomial @f$ P_n^{(\alpha,\beta)}(x) @f$
-   * of degree @c n and @c <tt>long double</tt> orders @f$ \alpha, \beta > -1 @f$
-   * and argument @c x.
+   * of degree @f$ n @f$ and @c <tt>long double</tt> orders @f$ \alpha, \beta > -1 @f$
+   * and argument @f$ x @f$.
    *
    * @see jacobi for details.
    */
@@ -2127,8 +2128,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Jacobi polynomial @f$ P_n^{(\alpha,\beta)}(x) @f$
-   * of degree @c n and @c float orders @f$ \alpha, \beta > -1 @f$
-   * and argument @c x.
+   * of degree @f$ n @f$ and @c float orders @f$ \alpha, \beta > -1 @f$
+   * and argument @f$ x @f$.
    *
    * The Jacobi polynomials are generated by a three-term recursion relation:
    * @f[
@@ -2165,7 +2166,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Gegenbauer polynomial @f$ C_n^{\alpha}(x) @f$ of degree @c n
-   * and @c float order @f$ \alpha > -1/2, \alpha \neq 0 @f$ and argument @c x.
+   * and @c float order @f$ \alpha > -1/2, \alpha \neq 0 @f$ and argument @f$ x @f$.
    *
    * @see gegenbauer for details.
    */
@@ -2176,7 +2177,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   /**
    * Return the Gegenbauer polynomial @f$ C_n^{\alpha}(x) @f$ of degree @c n
    * and <tt>long double</tt> order @f$ \alpha > -1/2, \alpha \neq 0 @f$
-   * and argument @c x.
+   * and argument @f$ x @f$.
    *
    * @see gegenbauer for details.
    */
@@ -2186,7 +2187,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Gegenbauer polynomial @f$ C_n^{\alpha}(x) @f$ of degree @c n
-   * and real order @f$ \alpha > -1/2, \alpha \neq 0 @f$ and argument @c x.
+   * and real order @f$ \alpha > -1/2, \alpha \neq 0 @f$ and argument @f$ x @f$.
    *
    * The Gegenbauer polynomials are generated by a three-term recursion relation:
    * @f[
@@ -3234,8 +3235,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Hurwitz zeta functions
 
   /**
-   * Return the Hurwitz zeta function of @c float argument @c s,
-   * and parameter @c a.
+   * Return the Hurwitz zeta function of @c float argument @f$ s @f$,
+   * and parameter @f$ a @f$.
    *
    * @see hurwitz_zeta for details.
    */
@@ -3244,8 +3245,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__hurwitz_zeta<float>(__s, __a); }
 
   /**
-   * Return the Hurwitz zeta function of <tt>long double</tt> argument @c s,
-   * and parameter @c a.
+   * Return the Hurwitz zeta function of <tt>long double</tt> argument @f$ s @f$,
+   * and parameter @f$ a @f$.
    *
    * @see hurwitz_zeta for details.
    */
@@ -3254,7 +3255,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__hurwitz_zeta<long double>(__s, __a); }
 
   /**
-   * Return the Hurwitz zeta function of real argument @c s, and parameter @c a.
+   * Return the Hurwitz zeta function of real argument @f$ s @f$, and parameter @f$ a @f$.
    *
    * The the Hurwitz zeta function is defined by
    * @f[
@@ -3273,8 +3274,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     }
 
   /**
-   * Return the Hurwitz zeta function of real argument @c s,
-   * and complex parameter @c a.
+   * Return the Hurwitz zeta function of real argument @f$ s @f$,
+   * and complex parameter @f$ a @f$.
    *
    * @see hurwitz_zeta for details.
    */
@@ -3297,7 +3298,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__psi<long double>(__x); }
 
   /**
-   * Return the psi or digamma function of argument @c x.
+   * Return the psi or digamma function of argument @f$ x @f$.
    *
    * The the psi or digamma function is defined by
    * @f[
@@ -3317,8 +3318,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Incomplete beta functions
 
   /**
-   * Return the regularized incomplete beta function of parameters @c a, @c b,
-   * and argument @c x.
+   * Return the regularized incomplete beta function of parameters @f$ a @f$, @f$ b @f$,
+   * and argument @f$ x @f$.
    *
    * See ibeta for details.
    */
@@ -3327,8 +3328,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__beta_inc<float>(__a, __b, __x); }
 
   /**
-   * Return the regularized incomplete beta function of parameters @c a, @c b,
-   * and argument @c x.
+   * Return the regularized incomplete beta function of parameters @f$ a @f$, @f$ b @f$,
+   * and argument @f$ x @f$.
    *
    * See ibeta for details.
    */
@@ -3337,8 +3338,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__beta_inc<long double>(__a, __b, __x); }
 
   /**
-   * Return the regularized incomplete beta function of parameters @c a, @c b,
-   * and argument @c x.
+   * Return the regularized incomplete beta function of parameters @f$ a @f$, @f$ b @f$,
+   * and argument @f$ x @f$.
    *
    * The regularized incomplete beta function is defined by
    * @f[
@@ -3375,7 +3376,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the regularized complementary incomplete beta function
-   * of parameters @c a, @c b, and argument @c x.
+   * of parameters @f$ a @f$, @f$ b @f$, and argument @f$ x @f$.
    *
    * The regularized complementary incomplete beta function is defined by
    * @f[
@@ -3405,7 +3406,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::imag(std::__detail::__fresnel<long double>(__x)); }
 
   /**
-   * Return the Fresnel sine integral of argument @c x.
+   * Return the Fresnel sine integral of argument @f$ x @f$.
    *
    * The Fresnel sine integral is defined by
    * @f[
@@ -3433,7 +3434,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::real(std::__detail::__fresnel<long double>(__x)); }
 
   /**
-   * Return the Fresnel cosine integral of argument @c x.
+   * Return the Fresnel cosine integral of argument @f$ x @f$.
    *
    * The Fresnel cosine integral is defined by
    * @f[
@@ -3453,7 +3454,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Dawson integral
 
   /**
-   * Return the Dawson integral, @f$ F(x) @f$, for @c float argument @c x.
+   * Return the Dawson integral, @f$ F(x) @f$, for @c float argument @f$ x @f$.
    *
    * @see dawson for details.
    */
@@ -3462,7 +3463,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__dawson<float>(__x); }
 
   /**
-   * Return the Dawson integral, @f$ F(x) @f$, for <tt>long double</tt> argument @c x.
+   * Return the Dawson integral, @f$ F(x) @f$, for <tt>long double</tt> argument @f$ x @f$.
    *
    * @see dawson for details.
    */
@@ -3471,7 +3472,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__dawson<long double>(__x); }
 
   /**
-   * Return the Dawson integral, @f$ F(x) @f$, for real argument @c x.
+   * Return the Dawson integral, @f$ F(x) @f$, for real argument @f$ x @f$.
    *
    * The Dawson integral is defined by:
    * @f[
@@ -3496,7 +3497,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the exponential integral @f$ E_n(x) @f$ for integral
-   * order @f$ n @f$ and @c float argument @c x.
+   * order @f$ n @f$ and @c float argument @f$ x @f$.
    *
    * @see expint for details.
    */
@@ -3506,7 +3507,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the exponential integral @f$ E_n(x) @f$ for integral
-   * order @f$ n @f$ and <tt>long double</tt> argument @c x.
+   * order @f$ n @f$ and <tt>long double</tt> argument @f$ x @f$.
    *
    * @see expint for details.
    */
@@ -3751,7 +3752,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Bernoulli numbers
 
   /**
-   * Return the Bernoulli number of integer order @c n as a @c float.
+   * Return the Bernoulli number of integer order @f$ n @f$ as a @c float.
    *
    * @see bernoulli for details.
    */
@@ -3760,7 +3761,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__bernoulli<float>(__n); }
 
   /**
-   * Return the Bernoulli number of integer order @c n as a
+   * Return the Bernoulli number of integer order @f$ n @f$ as a
    * <tt>long double</tt>.
    *
    * @see bernoulli for details.
@@ -3770,7 +3771,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__bernoulli<long double>(__n); }
 
   /**
-   * Return the Bernoulli number of integer order @c n.
+   * Return the Bernoulli number of integer order @f$ n @f$.
    *
    * The Bernoulli numbers are defined by
    * @f[
@@ -3889,7 +3890,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__jacobi_zeta<long double>(__k, __phi); }
 
   /**
-   * Return the Jacobi zeta function of @c k and @f$ @c \phi @f$.
+   * Return the Jacobi zeta function of @f$ k @f$ and @f$ \phi @f$.
    *
    * The Jacobi zeta function is defined by
    * @f[
@@ -4388,7 +4389,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   /**
    * Return the complex spherical Hankel function of the second kind
    * @f$ h^{(2)}_n(x) @f$ of nonnegative order @f$ n @f$
-   * and complex argument @c x.
+   * and complex argument @f$ x @f$.
    *
    * The spherical Hankel function of the second kind is defined by
    * @f[
@@ -4412,7 +4413,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Spherical harmonic functions
 
   /**
-   * Return the complex spherical harmonic function of degree @c l, order @c m,
+   * Return the complex spherical harmonic function of degree @f$ l @f$, order @f$ m @f$,
    * and @c float zenith angle @f$ \theta @f$, and azimuth angle @f$ \phi @f$.
    *
    * @see sph_harmonic for details.
@@ -4423,7 +4424,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__sph_harmonic<float>(__l, __m, __theta, __phi); }
 
   /**
-   * Return the complex spherical harmonic function of degree @c l, order @c m,
+   * Return the complex spherical harmonic function of degree @f$ l @f$, order @f$ m @f$,
    * and <tt>long double</tt> zenith angle @f$ \theta @f$,
    * and azimuth angle @f$ \phi @f$.
    *
@@ -4437,7 +4438,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   }
 
   /**
-   * Return the complex spherical harmonic function of degree @c l, order @c m,
+   * Return the complex spherical harmonic function of degree @f$ l @f$, order @f$ m @f$,
    * and real zenith angle @f$ \theta @f$, and azimuth angle @f$ \phi @f$.
    *
    * The spherical harmonic function is defined by:
@@ -4464,7 +4465,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the real polylogarithm function of real thing @c s
-   * and real argument @c w.
+   * and real argument @f$ w @f$.
    *
    * @see polylog for details.
    */
@@ -4474,7 +4475,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex polylogarithm function of real thing @c s
-   * and complex argument @c w.
+   * and complex argument @f$ w @f$.
    *
    * @see polylog for details.
    */
@@ -4484,7 +4485,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex polylogarithm function of real thing @c s
-   * and complex argument @c w.
+   * and complex argument @f$ w @f$.
    *
    * The polylogarithm function is defined by
    * @f[
@@ -4504,7 +4505,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex polylogarithm function of real thing @c s
-   * and complex argument @c w.
+   * and complex argument @f$ w @f$.
    *
    * @see polylog for details.
    */
@@ -4514,7 +4515,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex polylogarithm function of real thing @c s
-   * and complex argument @c w.
+   * and complex argument @f$ w @f$.
    *
    * @see polylog for details.
    */
@@ -4524,7 +4525,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the complex polylogarithm function of real thing @c s
-   * and complex argument @c w.
+   * and complex argument @f$ w @f$.
    *
    * The polylogarithm function is defined by
    * @f[
@@ -4545,7 +4546,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Dirichlet eta function
 
   /**
-   * Return the Dirichlet eta function of real argument @c s.
+   * Return the Dirichlet eta function of real argument @f$ s @f$.
    *
    * @see dirichlet_eta for details.
    */
@@ -4554,7 +4555,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__dirichlet_eta<float>(__s); }
 
   /**
-   * Return the Dirichlet eta function of real argument @c s.
+   * Return the Dirichlet eta function of real argument @f$ s @f$.
    *
    * @see dirichlet_eta for details.
    */
@@ -4563,7 +4564,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__dirichlet_eta<long double>(__s); }
 
   /**
-   * Return the Dirichlet eta function of real argument @c s.
+   * Return the Dirichlet eta function of real argument @f$ s @f$.
    *
    * The Dirichlet eta function is defined by
    * @f[
@@ -5105,7 +5106,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Neville theta-d function @f$ \theta_d(k,x) @f$
-   * of modulus @c k and argument @c x.
+   * of modulus @f$ k @f$ and argument @f$ x @f$.
    *
    * @see theta_d for details.
    */
@@ -5115,7 +5116,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Neville theta-d function @f$ \theta_d(k,x) @f$
-   * of <tt>long double</tt> modulus @c k and argument @c x.
+   * of <tt>long double</tt> modulus @f$ k @f$ and argument @f$ x @f$.
    *
    * @see theta_d for details.
    */
@@ -5125,7 +5126,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   /**
    * Return the Neville theta-d function @f$ \theta_d(k,x) @f$
-   * of modulus @c k and argument @c x.
+   * of modulus @f$ k @f$ and argument @f$ x @f$.
    *
    * The Neville theta-d function is defined by
    * @f[
@@ -5264,6 +5265,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__bose_einstein<__type>(__s, __x);
     }
 */
+
 #endif // __cplusplus >= 201103L
 
   /** @} */ // gnu_math_spec_func
