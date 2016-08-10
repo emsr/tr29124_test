@@ -1,7 +1,11 @@
 #!  /bin/bash
 
 tool="cp -f"
+
 suffix="_tr29124"
+if [ $# -ge 1 ]; then
+  suffix="$1"
+fi
 
 base_dir="$HOME/gcc${suffix}"
 test_dir="${base_dir}/libstdc++-v3/testsuite"

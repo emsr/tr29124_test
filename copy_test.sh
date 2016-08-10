@@ -1,9 +1,15 @@
 #!/bin/bash
 
-test_dir="$HOME/tr29124_test/testsuite/special_functions"
-gcc_dir="$HOME/gcc_tr29124/libstdc++-v3/testsuite/special_functions"
-
 tool="cp -f"
+
+suffix="_tr29124"
+if [ $# -ge 1 ]; then
+  suffix="$1"
+fi
+
+test_dir="$HOME/tr29124_test/testsuite/special_functions"
+
+gcc_dir="$HOME/gcc${suffix}/libstdc++-v3/testsuite/special_functions"
 
 ${tool} ${test_dir}/01_assoc_laguerre/* ${gcc_dir}/01_assoc_laguerre/
 ${tool} ${test_dir}/02_assoc_legendre/* ${gcc_dir}/02_assoc_legendre/
@@ -28,7 +34,7 @@ ${tool} ${test_dir}/20_sph_legendre/*   ${gcc_dir}/20_sph_legendre/
 ${tool} ${test_dir}/21_sph_neumann/*    ${gcc_dir}/21_sph_neumann/
 
 text_dir="$HOME/tr29124_test/testsuite/ext/special_functions"
-ext_dir="$HOME/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions"
+ext_dir="$HOME/gcc${suffix}/libstdc++-v3/testsuite/ext/special_functions"
 
 ${tool} ${text_dir}/airy_ai/*            ${ext_dir}/airy_ai
 ${tool} ${text_dir}/airy_bi/*            ${ext_dir}/airy_bi

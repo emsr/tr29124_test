@@ -1,9 +1,14 @@
 #!/bin/bash
 
-test_dir="$HOME/tr29124_test/testsuite/special_functions"
-tr1_dir="$HOME/gcc_tr29124/libstdc++-v3/testsuite/tr1/5_numerical_facilities/special_functions"
-
 tool="kdiff3"
+
+suffix="_tr29124"
+if [ $# -ge 1 ]; then
+  suffix="$1"
+fi
+
+test_dir="$HOME/tr29124_test/testsuite/special_functions"
+tr1_dir="$HOME/gcc${suffix}/libstdc++-v3/testsuite/tr1/5_numerical_facilities/special_functions"
 
 ${tool} ${test_dir}/01_assoc_laguerre/ ${tr1_dir}/01_assoc_laguerre/
 ${tool} ${test_dir}/02_assoc_legendre/ ${tr1_dir}/02_assoc_legendre/
