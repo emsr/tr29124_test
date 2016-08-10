@@ -2321,16 +2321,36 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Unnormalized hyperbolic sinus cardinal functions
 
+  /**
+   * Return the hyperbolic sinus cardinal function @f$ sinhc_\pi(x) @f$
+   * for @c float argument @c __x.
+   *
+   * @see sinhc_pi for details.
+   */
   inline float
   sinhc_pif(float __x)
   { return std::__detail::__sinhc_pi<float>(__x); }
 
+  /**
+   * Return the hyperbolic sinus cardinal function @f$ sinhc_\pi(x) @f$
+   * for <tt>long double</tt> argument @c __x.
+   *
+   * @see sinhc_pi for details.
+   */
   inline long double
   sinhc_pil(long double __x)
   { return std::__detail::__sinhc_pi<long double>(__x); }
 
   /**
-   * 
+   * Return the hyperbolic sinus cardinal function @f$ sinhc_\pi(x) @f$
+   * for real argument @c __x.
+   * The sinus cardinal function is defined by:
+   * @f[
+   *    sinhc_\pi(x) = \frac{sinh(x)}{x}
+   * @f]
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __x The argument
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
@@ -2342,16 +2362,36 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Normalized hyperbolic sinus cardinal functions
 
+  /**
+   * Return the normalized hyperbolic sinus cardinal function @f$ sinhc(x) @f$
+   * for @c float argument @c __x.
+   *
+   * @see sinhc for details.
+   */
   inline float
   sinhcf(float __x)
   { return std::__detail::__sinhc<float>(__x); }
 
+  /**
+   * Return the normalized hyperbolic sinus cardinal function @f$ sinhc(x) @f$
+   * for <tt>long double</tt> argument @c __x.
+   *
+   * @see sinhc for details.
+   */
   inline long double
   sinhcl(long double __x)
   { return std::__detail::__sinhc<long double>(__x); }
 
   /**
-   * 
+   * Return the normalized hyperbolic sinus cardinal function @f$ sinc(x) @f$
+   * for real argument @c __x.
+   * The normalized hyperbolic sinus cardinal function is defined by:
+   * @f[
+   *    sinhc(x) = \frac{sinh(\pi x)}{\pi x}
+   * @f]
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __x The argument
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
@@ -2909,14 +2949,14 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__comp_ellint_rf<__type>(__x, __y);
     }
 
+  // Carlson elliptic R_F functions
+
   /**
    * Return the Carlson elliptic function @f$ R_F(x,y,z) @f$
    * of the first kind for @c float arguments.
    *
    * @see ellint_rf for details.
    */
-  // Carlson elliptic R_F functions
-
   inline float
   ellint_rff(float __x, float __y, float __z)
   { return std::__detail::__ellint_rf<float>(__x, __y, __z); }
@@ -3750,8 +3790,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Legendre functions of the second kind
 
   /**
-   * Return the Legendre function of the second kind @f$ Q_l(x) @f$ for
-   * @c float argument.
+   * Return the Legendre function of the second kind @f$ Q_l(x) @f$
+   * of nonnegative degree @f$ l @f$ and @c float argument.
    *
    * @see legendre_q for details.
    */
@@ -3760,8 +3800,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__legendre_q<float>(__n, __x); }
 
   /**
-   * Return the Legendre function of the second kind @f$ Q_l(x) @f$ for
-   * @c <tt>long double</tt> argument.
+   * Return the Legendre function of the second kind @f$ Q_l(x) @f$
+   * of nonnegative degree @f$ l @f$ and <tt>long double</tt> argument.
    *
    * @see legendre_q for details.
    */
@@ -3770,7 +3810,23 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__legendre_q<long double>(__n, __x); }
 
   /**
-   * 
+   * Return the Legendre function of the second kind @f$ Q_l(x) @f$ of
+   * nonnegative degree @f$ l @f$ and real argument @f$ |x| <= 0 @f$.
+   *
+   * The Legendre function of the second kind of order @f$ l @f$
+   * and argument @f$ x @f$, @f$ Q_l(x) @f$, is defined by:
+   * @f[
+   *   Q_l(x) = \frac{1}{2} \log{\frac{x+1}{x-1}} P_l(x)
+   *           - \sum_{k=0}^{l-1}\frac{(l+k)!}{(l-k)!(k!)^2s^k}
+   *             \left[\psi(l+1) - \psi(k+1)\right](x-1)^k
+   * @f]
+   * where @f$ P_l(x) @f$ is the Legendre polynomial of degree @f$ l @f$
+   * and @f$ \psi(x) @f$ is the psi or dilogarithm function.
+   *
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param __l The degree @f$ l >= 0 @f$
+   * @param __x The argument @c abs(__x) <= 1
+   * @throw std::domain_error if @c abs(__x) > 1
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
