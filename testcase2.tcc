@@ -5,6 +5,7 @@
 #include <sstream>
 #include <type_traits>
 #include <string_view>
+#include <algorithm> // For clamp.
 #include "complex_compare.h" // For the Statistics min/max (maybe rethink that there)
 #include "statistics.h"
 #include "spaceship.h"
@@ -137,7 +138,6 @@ template<>
     { return std::string_view("Q"); }
   };
 
-// Fuck me.  I'm too stupid to do this right.
 template<>
   struct type_strings<std::complex<float>>
   {
@@ -221,14 +221,7 @@ template<typename Tp>
     auto max = std::max(start, stop);
     auto clamp = [min, max](Tp x)
 		 -> Tp
-		 {
-		   if (x < min)
-		     return min;
-		   else if (x > max)
-		     return max;
-		   else
-		     return x;
-		 };
+		 { return std::clamp(x, min, max); };
     for (unsigned int i = 0; i < num_points; ++i)
       argument.push_back(clamp(start + i * delta));
 
