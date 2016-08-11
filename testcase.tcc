@@ -136,7 +136,6 @@ template<>
     { return std::experimental::string_view("Q"); }
   };
 
-// Fuck me.  I'm too stupid to do this right.
 template<>
   struct type_strings<std::complex<float>>
   {
