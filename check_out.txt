@@ -6,6 +6,7 @@ check_assoc_legendre
 check_beta
 check_bincoef
 check_chi
+check_clausen_c
 check_comp_ellint_1
 check_comp_ellint_2
 check_comp_ellint_3
@@ -32,7 +33,10 @@ check_ellint_rf
 check_ellint_rg
 check_ellint_rj
 check_expint
-check_expint_e1
+check_expint_en
+line 374  max_abs_frac = 0.477378
+line 374  max_abs_frac = 0.461079
+line 374  max_abs_frac = 0.627033
 check_factorial
 check_fresnel_c
 check_fresnel_s
@@ -43,6 +47,7 @@ check_hermite
 line 1927  max_abs_frac = 0.0674673
 line 1927  max_abs_frac = 0.0586856
 check_heuman_lambda
+line 469  max_abs_frac = 0.977903
 check_hurwitz_zeta
 check_hyperg
 check_ibeta

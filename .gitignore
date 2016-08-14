@@ -26,6 +26,7 @@ check_assoc_legendre
 check_beta
 check_bincoef
 check_chi
+check_clausen_c
 check_comp_ellint_1
 check_comp_ellint_2
 check_comp_ellint_3
@@ -114,6 +115,8 @@ pr56216_cyl_hankel_2
 pr56216_cyl_bessel_i
 origin_bessel_j
 origin_cyl_neumann
+
+clamp_2
 
 complex_literal_arith
 diff_special_function

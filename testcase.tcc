@@ -316,6 +316,7 @@ template<typename Ret, typename Arg1>
   unsigned int
   maketest(Ret function1(Arg1),
 	   Ret function2(Arg1),
+	   const std::string & test_struct_name,
 	   const std::string & nsname,
 	   const std::string & funcname,
 	   const std::string & arg1, const std::vector<Arg1> & argument1,
@@ -349,8 +350,7 @@ template<typename Ret, typename Arg1>
 
     auto numname = type_strings<Val>::type().to_string();
 
-    std::string structname = "testcase_";
-    structname += funcname;
+    std::string structname = test_struct_name;
     structname += '<' + numname + '>';
 
     std::vector<std::tuple<Ret, Arg1>> crud;
@@ -451,8 +451,7 @@ template<typename Ret, typename Arg1>
 
     if (write_main)
       {
-	std::string structname = "testcase_";
-	structname += funcname;
+	std::string structname = test_struct_name;
 	structname += "<Ret>";
 
 	std::string tname = "Ret";
@@ -517,6 +516,7 @@ template<typename Ret, typename Arg1, typename Arg2>
   unsigned int
   maketest(Ret function1(Arg1,Arg2),
 	   Ret function2(Arg1,Arg2),
+	   const std::string & test_struct_name,
 	   const std::string & nsname,
 	   const std::string & funcname,
 	   const std::string & arg1, const std::vector<Arg1> & argument1,
@@ -548,8 +548,7 @@ template<typename Ret, typename Arg1, typename Arg2>
 
     auto numname = type_strings<Val>::type().to_string();
 
-    std::string structname = "testcase_";
-    structname += funcname;
+    std::string structname = test_struct_name;
     structname += '<' + numname + '>';
 
     for (const auto x : argument1)
@@ -657,8 +656,7 @@ template<typename Ret, typename Arg1, typename Arg2>
 
     if (write_main)
       {
-	std::string structname = "testcase_";
-	structname += funcname;
+	std::string structname = test_struct_name;
 	structname += "<Ret>";
 
 	std::string tname = "Ret";
@@ -721,6 +719,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
   unsigned int
   maketest(Ret function1(Arg1,Arg2,Arg3),
 	   Ret function2(Arg1,Arg2,Arg3),
+	   const std::string & test_struct_name,
 	   const std::string & nsname,
 	   const std::string & funcname,
 	   const std::string & arg1, const std::vector<Arg1> & argument1,
@@ -754,8 +753,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
 
     auto numname = type_strings<Val>::type().to_string();
 
-    std::string structname = "testcase_";
-    structname += funcname;
+    std::string structname = test_struct_name;
     structname += '<' + numname + '>';
 
     for (const auto x : argument1)
@@ -873,8 +871,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
 
     if (write_main)
       {
-	std::string structname = "testcase_";
-	structname += funcname;
+	std::string structname = test_struct_name;
 	structname += "<Ret>";
 
 	std::string tname = "Ret";
@@ -938,6 +935,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
   unsigned int
   maketest(Ret function1(Arg1,Arg2,Arg3,Arg4),
 	   Ret function2(Arg1,Arg2,Arg3,Arg4),
+	   const std::string & test_struct_name,
 	   const std::string & nsname,
 	   const std::string & funcname,
 	   const std::string & arg1, const std::vector<Arg1> & argument1,
@@ -973,8 +971,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
 
     auto numname = type_strings<Val>::type().to_string();
 
-    std::string structname = "testcase_";
-    structname += funcname;
+    std::string structname = test_struct_name;
     structname += '<' + numname + '>';
 
     for (const auto w : argument1)
@@ -1099,8 +1096,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
 
     if (write_main)
       {
-	std::string structname = "testcase_";
-	structname += funcname;
+	std::string structname = test_struct_name;
 	structname += "<Ret>";
 
 	std::string tname = "Ret";
