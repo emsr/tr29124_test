@@ -43,7 +43,7 @@
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
 // stddev(f - f_GSL): 0.0000000000000000
-const testcase_expint<double>
+const testcase_expint_en<double>
 data001[50] =
 {
   { 0.36787944117144233, 0, 1.0000000000000000 },
@@ -105,7 +105,7 @@ const double toler001 = 2.5000000000000020e-13;
 // mean(f - f_GSL): -1.0184926479400409e-17
 // variance(f - f_GSL): 2.1601984046395587e-36
 // stddev(f - f_GSL): 1.4697613427490732e-18
-const testcase_expint<double>
+const testcase_expint_en<double>
 data002[50] =
 {
   { 0.21938393439552029, 1, 1.0000000000000000 },
@@ -167,7 +167,7 @@ const double toler002 = 2.5000000000000020e-13;
 // mean(f - f_GSL): 0.0017090589369308906
 // variance(f - f_GSL): 6.0826377482305943e-08
 // stddev(f - f_GSL): 0.00024663004172708957
-const testcase_expint<double>
+const testcase_expint_en<double>
 data003[50] =
 {
   { 0.14849550677592205, 2, 1.0000000000000000 },
@@ -229,7 +229,7 @@ const double toler003 = 0.050000000000000003;
 // mean(f - f_GSL): 0.0010343457584883191
 // variance(f - f_GSL): 2.2279699594039385e-08
 // stddev(f - f_GSL): 0.00014926385896806832
-const testcase_expint<double>
+const testcase_expint_en<double>
 data004[50] =
 {
   { 0.10969196719776028, 3, 1.0000000000000000 },
@@ -291,7 +291,7 @@ const double toler004 = 0.050000000000000003;
 // mean(f - f_GSL): 0.00042330551520721620
 // variance(f - f_GSL): 3.7315193657951815e-09
 // stddev(f - f_GSL): 6.1086163456180331e-05
-const testcase_expint<double>
+const testcase_expint_en<double>
 data005[50] =
 {
   { 0.070454237461720332, 5, 1.0000000000000000 },
@@ -349,7 +349,7 @@ const double toler005 = 0.050000000000000003;
 
 template<typename Ret, unsigned int Num>
   void
-  test(const testcase_expint<Ret> (&data)[Num], Ret toler)
+  test(const testcase_expint_en<Ret> (&data)[Num], Ret toler)
   {
     bool test __attribute__((unused)) = true;
     const Ret eps = std::numeric_limits<Ret>::epsilon();
