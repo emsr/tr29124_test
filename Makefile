@@ -143,12 +143,12 @@ CHECKS = check_airy_ai \
 	 complex_ellint_rf \
 	 complex_ellint_rg \
 	 complex_ellint_rj \
+	 check_clausen_c \
 	 pr56216_cyl_hankel_1 \
 	 pr56216_cyl_hankel_2 \
 	 pr56216_cyl_bessel_i \
 	 origin_bessel_j \
-	 origin_cyl_neumann
-#	 check_clausen_c \
+	 origin_cyl_neumann \
 
 all: diff_special_function \
      test_special_function \
@@ -217,7 +217,7 @@ check: $(CHECKS)
 	echo "check_beta" >> check_out.txt 2>> check_err.txt && ./check_beta >> check_out.txt 2>> check_err.txt
 	echo "check_bincoef" >> check_out.txt 2>> check_err.txt && ./check_bincoef >> check_out.txt 2>> check_err.txt
 	echo "check_chi" >> check_out.txt 2>> check_err.txt && ./check_chi >> check_out.txt 2>> check_err.txt
-	#echo "check_clausen_c" >> check_out.txt 2>> check_err.txt && ./check_clausen_c >> check_out.txt 2>> check_err.txt
+	echo "check_clausen_c" >> check_out.txt 2>> check_err.txt && ./check_clausen_c >> check_out.txt 2>> check_err.txt
 	echo "check_comp_ellint_1" >> check_out.txt 2>> check_err.txt && ./check_comp_ellint_1 >> check_out.txt 2>> check_err.txt
 	echo "check_comp_ellint_2" >> check_out.txt 2>> check_err.txt && ./check_comp_ellint_2 >> check_out.txt 2>> check_err.txt
 	echo "check_comp_ellint_3" >> check_out.txt 2>> check_err.txt && ./check_comp_ellint_3 >> check_out.txt 2>> check_err.txt
