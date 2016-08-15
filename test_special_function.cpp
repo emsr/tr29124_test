@@ -20,7 +20,7 @@
 
 #include <gsl/gsl_sf.h>
 
-#include "float128.h"
+#include "bits/float128.h"
 #include "test_func.tcc"
 #include "gsl_wrap.h"
 
@@ -185,23 +185,19 @@ template<typename Real>
 #if STD
     //  Airy Ai functions.
     std::cout << "airy_ai" << std::endl;
-    basename = "gsl_airy_ai";
-    runtest(gsl::airy_ai, basename,
+    runtest(gsl::airy_ai, "gsl_airy_ai",
 	    fill_argument(std::make_pair(-10.0, +10.0),
 			  std::make_pair(true, true), 41));
-    basename = ns + "_airy_ai";
-    runtest(airy_ai, basename,
+    runtest(airy_ai, ns + "_airy_ai",
 	    fill_argument(std::make_pair(Real{-10}, Real{+10}),
 	        	  std::make_pair(true, true), 41));
 
     //  Airy Bi functions.
     std::cout << "airy_bi" << std::endl;
-    basename = "gsl_airy_bi";
-    runtest(gsl::airy_bi, basename,
+    runtest(gsl::airy_bi, "gsl_airy_bi",
 	    fill_argument(std::make_pair(-10.0, +10.0),
 			  std::make_pair(true, true), 41));
-    basename = ns + "_airy_bi";
-    runtest(airy_bi, basename,
+    runtest(airy_bi, ns + "_airy_bi",
 	    fill_argument(std::make_pair(Real{-10}, Real{+10}),
 	        	  std::make_pair(true, true), 41));
 #endif // STD
@@ -209,38 +205,32 @@ template<typename Real>
     //  Associated Laguerre polynomials.
     //  double gsl_sf_laguerre_n(int n, double a, double x);
     std::cout << "assoc_laguerre" << std::endl;
-    basename = "gsl_assoc_laguerre";
-    runtest(gsl_sf_laguerre_n, basename, iorder, dorder,
+    runtest(gsl_sf_laguerre_n, "gsl_assoc_laguerre", iorder, dorder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 	   		  std::make_pair(true, true)));
-    basename = ns + "_assoc_laguerre";
-    runtest(assoc_laguerre, basename, uiorder, uiorder,
+    runtest(assoc_laguerre, ns + "_assoc_laguerre", uiorder, uiorder,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 		  	  std::make_pair(true, true)));
 
 
     //  Associated Legendre functions.
     std::cout << "assoc_legendre" << std::endl;
-    basename = "gsl_assoc_legendre";
-    runtest(gsl::legendre_Plm, basename, uiorder, uiorder,
+    runtest(gsl::legendre_Plm, "gsl_assoc_legendre", uiorder, uiorder,
 	    fill_argument(std::make_pair(-1.0, 1.0),
 	    		  std::make_pair(true, true), 1001));
-    basename = ns + "_assoc_legendre";
-    runtest(assoc_legendre, basename, uiorder, uiorder,
+    runtest(assoc_legendre, ns + "_assoc_legendre", uiorder, uiorder,
 	    fill_argument(std::make_pair(Real{-1}, Real{1}),
 		  	  std::make_pair(true, true), 1001));
 
 
     //  Beta function.
     std::cout << "beta" << std::endl;
-    basename = "gsl_beta";
-    runtest(gsl::beta, basename,
+    runtest(gsl::beta, "gsl_beta",
 	    fill_argument(std::make_pair(0.0, 100.0),
 			  std::make_pair(false, true)),
 	    fill_argument(std::make_pair(0.0, 100.0),
 			  std::make_pair(false, true)));
-    basename = ns + "_beta";
-    runtest(beta, basename,
+    runtest(beta, ns + "_beta",
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 		 	  std::make_pair(false, true), 101),
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -249,25 +239,20 @@ template<typename Real>
 
     //  Complete elliptic integrals of the first kind.
     std::cout << "comp_ellint_1" << std::endl;
-    basename = ns + "_comp_ellint_1";
-    basename = "gsl_comp_ellint_1";
-    runtest(gsl::comp_ellint_1, basename,
+    runtest(gsl::comp_ellint_1, "gsl_comp_ellint_1",
 	    fill_argument(std::make_pair(-1.0, 1.0),
 			  std::make_pair(false, false), 101));  //  Avoid poles at |x| = 1.
-    basename = ns + "_comp_ellint_1";
-    runtest(comp_ellint_1, basename,
+    runtest(comp_ellint_1, ns + "_comp_ellint_1",
 	    fill_argument(std::make_pair(Real{-1}, Real{1}),
 	        	  std::make_pair(true, true), 101));
 
 
     //  Complete elliptic integrals of the second kind.
     std::cout << "comp_ellint_2" << std::endl;
-    basename = "gsl_comp_ellint_2";
-    runtest(gsl::comp_ellint_2, basename,
+    runtest(gsl::comp_ellint_2, "gsl_comp_ellint_2",
 	    fill_argument(std::make_pair(-1.0, 1.0),
 			  std::make_pair(false, false), 101));  //  Avoid poles at |x| = 1.
-    basename = ns + "_comp_ellint_2";
-    runtest(comp_ellint_2, basename,
+    runtest(comp_ellint_2, ns + "_comp_ellint_2",
 	    fill_argument(std::make_pair(Real{-1}, Real{1}),
 	        	  std::make_pair(true, true), 101));
 
@@ -275,14 +260,12 @@ template<typename Real>
     //  Complete elliptic integrals of the third kind.
     //  Avoid poles at |x| = 1 and at nu = 1.
     std::cout << "comp_ellint_3" << std::endl;
-    basename = "gsl_comp_ellint_3";
-    runtest(gsl::comp_ellint_3, basename,
+    runtest(gsl::comp_ellint_3, "gsl_comp_ellint_3",
 	    fill_argument(std::make_pair(-1.0, 1.0),
 			  std::make_pair(false, false)),
 	    fill_argument(std::make_pair(0.0, 1.0),
 			  std::make_pair(true, false), 11));
-    basename = ns + "_comp_ellint_3";
-    runtest(comp_ellint_3, basename,
+    runtest(comp_ellint_3, ns + "_comp_ellint_3",
 	    fill_argument(std::make_pair(Real{-1}, Real{1}),
 		 	  std::make_pair(true, true)),
 	    fill_argument(std::make_pair(Real{0}, Real{1}),
@@ -291,17 +274,15 @@ template<typename Real>
 
     //  Confluent hypergeometric functions.
     std::cout << "conf_hyperg" << std::endl;
-    basename = "gsl_conf_hyperg";
     runtest(gsl_sf_hyperg_1F1,
-	    basename,
+	    "gsl_conf_hyperg",
 	    fill_argument(std::make_pair(0.0, 10.0),
 			  std::make_pair(true, true), 11),
 	    fill_argument(std::make_pair(0.0, 10.0),
 			  std::make_pair(false, true), 11),  //  Skip the singularity
 	    fill_argument(std::make_pair(-10.0, 10.0),
 			  std::make_pair(true, true), 201));
-    basename = ns + "_conf_hyperg";
-    runtest(conf_hyperg, basename,
+    runtest(conf_hyperg, ns + "_conf_hyperg",
 	    fill_argument(std::make_pair(Real{0}, Real{10}),
 	    		  std::make_pair(true, true), 11),
 	    fill_argument(std::make_pair(Real{0}, Real{10}),
@@ -312,78 +293,64 @@ template<typename Real>
 
     //  Regular modified cylindrical Bessel functions.
     std::cout << "cyl_bessel_i" << std::endl;
-    basename = "gsl_cyl_bessel_i";
-    runtest(gsl::cyl_bessel_i, basename, dborder,
+    runtest(gsl::cyl_bessel_i, "gsl_cyl_bessel_i", dborder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 			  std::make_pair(true, true), 1001));
-    basename = ns + "_cyl_bessel_i";
-    runtest(cyl_bessel_i, basename, border,
+    runtest(cyl_bessel_i, ns + "_cyl_bessel_i", border,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 		 	  std::make_pair(true, true), 1001));
 
 
     //  Cylindrical Bessel functions (of the first kind).
     std::cout << "cyl_bessel_j" << std::endl;
-    basename = "gsl_cyl_bessel_j";
-    runtest(gsl::cyl_bessel_j, basename, dborder,
+    runtest(gsl::cyl_bessel_j, "gsl_cyl_bessel_j", dborder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 			  std::make_pair(true, true), 1001));
-    basename = ns + "_cyl_bessel_j";
-    runtest(cyl_bessel_j, basename, border,
+    runtest(cyl_bessel_j, ns + "_cyl_bessel_j", border,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 		 	  std::make_pair(true, true), 1001));
 
 
     //  Irregular modified cylindrical Bessel functions.
     std::cout << "cyl_bessel_k" << std::endl;
-    basename = "gsl_cyl_bessel_k";
-    runtest(gsl::cyl_bessel_k, basename, dborder,
+    runtest(gsl::cyl_bessel_k, "gsl_cyl_bessel_k", dborder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 			  std::make_pair(false, true),  // Skip the pole at the origin.
 			  1001));
-    basename = ns + "_cyl_bessel_k";
-    runtest(cyl_bessel_k, basename, border,
+    runtest(cyl_bessel_k, ns + "_cyl_bessel_k", border,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 		 	  std::make_pair(true, true), 1001));
 
 
     //  Cylindrical Neumann functions.
     std::cout << "cyl_neumann" << std::endl;
-    basename = "gsl_cyl_neumann";
-    runtest(gsl::cyl_neumann, basename, dborder,
+    runtest(gsl::cyl_neumann, "gsl_cyl_neumann", dborder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 			  std::make_pair(false, true),  // Skip the pole at the origin.
 			  1001));
-    basename = ns + "_cyl_neumann";
-    runtest(cyl_neumann, basename, border,
+    runtest(cyl_neumann, ns + "_cyl_neumann", border,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 		 	  std::make_pair(true, true), 1001));
 
 
     //  Elliptic integrals of the first kind.
     std::cout << "ellint_1" << std::endl;
-    basename = "gsl_ellint_1";
-    runtest(gsl::ellint_1,
-	    basename,
+    runtest(gsl::ellint_1, "gsl_ellint_1",
 	    fill_argument(std::make_pair(-1.0, 1.0),
 	        	  std::make_pair(false, false), 101),  //  Avoid poles at |x| = 1.
 	        	  vphid);
-    basename = ns + "_ellint_1";
-    runtest(ellint_1,
-	    basename,
+    runtest(ellint_1, ns + "_ellint_1",
 	    fill_argument(std::make_pair(Real{-1}, Real{1}),
 		 	  std::make_pair(true, true), 101), vphi);
 
 
     //  Elliptic integrals of the second kind.
     std::cout << "ellint_2" << std::endl;
-    basename = "gsl_ellint_2";
-    runtest(gsl::ellint_2, basename,
+    runtest(gsl::ellint_2, "gsl_ellint_2",
 	    fill_argument(std::make_pair(-1.0, 1.0),
 			  std::make_pair(false, false), 101),  //  Avoid poles at |x| = 1.
 			  vphid);
-    basename = ns + "_ellint_2";
-    runtest(ellint_2, basename,
+    runtest(ellint_2, ns + "_ellint_2",
 	    fill_argument(std::make_pair(Real{-1}, Real{1}),
 		 		   std::make_pair(true, true), 101), vphi);
 
@@ -391,15 +358,12 @@ template<typename Real>
     //  Elliptic integrals of the third kind.
     //  Avoid poles at |x| = 1 and at nu = 1.
     std::cout << "ellint_3" << std::endl;
-    basename = "gsl_ellint_3";
-    runtest(gsl::ellint_3,
-	    basename,
+    runtest(gsl::ellint_3, "gsl_ellint_3",
 	    fill_argument(std::make_pair(-1.0, 1.0),
 			  std::make_pair(false, false)),
 	    fill_argument(std::make_pair(0.0, 1.0),
 			  std::make_pair(true, false), 11), vphid);
-    basename = ns + "_ellint_3";
-    runtest(ellint_3, basename,
+    runtest(ellint_3, ns + "_ellint_3",
 	    fill_argument(std::make_pair(Real{-1}, Real{1}),
 	    		  std::make_pair(true, true)),
 	    fill_argument(std::make_pair(Real{0}, Real{1}),
@@ -409,36 +373,30 @@ template<typename Real>
     //  Exponential integrals.
     std::cout << "expint" << std::endl;
     //  Skip the pole at 0.
-    basename = "gsl_expint_neg";
-    runtest(gsl::expint, basename,
+    runtest(gsl::expint, "gsl_expint_neg",
 	    fill_argument(std::make_pair(-50.0, 0.0),
 			  std::make_pair(true, false), 51));
-    basename = "gsl_expint_pos";
-    runtest(gsl::expint, basename,
+    runtest(gsl::expint, "gsl_expint_pos",
 	    fill_argument(std::make_pair(0.0, 50.0),
 			  std::make_pair(false, true), 51));
-    basename = ns + "_expint";
-    runtest(expint, basename,
+    runtest(expint, ns + "_expint",
 	    fill_argument(std::make_pair(Real{-50}, Real{50}),
 	        	  std::make_pair(true, true), 101));
 
 
     //  Hermite polynomials
     std::cout << "hermite" << std::endl;
-    basename = "gsl_hermite";
-    runtest(gsl::hermite, basename, uiorder,
+    runtest(gsl::hermite, "gsl_hermite", uiorder,
     	    fill_argument(std::make_pair(-10.0, 10.0),
     			  std::make_pair(true, true), 101));
-    basename = ns + "_hermite";
-    runtest(hermite, basename, uiorder,
+    runtest(hermite, ns + "_hermite", uiorder,
 	    fill_argument(std::make_pair(Real{-10}, Real{10}),
 			  std::make_pair(true, true), 101));
 
 
     //  Hypergeometric functions.
     std::cout << "hyperg" << std::endl;
-    basename = "gsl_hyperg";
-    runtest(gsl_sf_hyperg_2F1, basename,
+    runtest(gsl_sf_hyperg_2F1, "gsl_hyperg",
 	    fill_argument(std::make_pair(0.0, 10.0),
 			  std::make_pair(true, true), 11),
 	    fill_argument(std::make_pair(0.0, 10.0),
@@ -447,8 +405,7 @@ template<typename Real>
 			  std::make_pair(false, true), 11),  //  Skip the singularity
 	    fill_argument(std::make_pair(-1.0, 1.0),
 			  std::make_pair(true, false), 21));
-    basename = ns + "_hyperg";
-    runtest(hyperg, basename,
+    runtest(hyperg, ns + "_hyperg",
 	    fill_argument(std::make_pair(Real{0}, Real{10}),
 	        	  std::make_pair(true, true), 11),
 	    fill_argument(std::make_pair(Real{0}, Real{10}),
@@ -461,25 +418,21 @@ template<typename Real>
 
     //  Laguerre polynomials.
     std::cout << "laguerre" << std::endl;
-    basename = "gsl_laguerre";
-    runtest(gsl::laguerre, basename,
+    runtest(gsl::laguerre, "gsl_laguerre",
 	    uiorder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 		  	  std::make_pair(true, true), 101));
-    basename = ns + "_laguerre";
-    runtest(laguerre, basename, uiorder,
+    runtest(laguerre, ns + "_laguerre", uiorder,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 			  std::make_pair(true, true), 101));
 
 
     ///  Legendre polynomials
     std::cout << "legendre" << std::endl;
-    basename = "gsl_legendre";
-    runtest(gsl_sf_legendre_Pl, basename, iorder,
+    runtest(gsl_sf_legendre_Pl, "gsl_legendre", iorder,
 	    fill_argument(std::make_pair(-1.0, 1.0),
 	   		  std::make_pair(true, true), 1001));
-    basename = ns + "_legendre";
-    runtest(legendre, basename, uiorder,
+    runtest(legendre, ns + "_legendre", uiorder,
 	    fill_argument(std::make_pair(Real{-1}, Real{1}),
 			  std::make_pair(true, true), 1001));
 
@@ -487,16 +440,13 @@ template<typename Real>
     //  Riemann zeta function.
     std::cout << "riemann_zeta" << std::endl;
     //  Skip the pole at 1.
-    basename = "gsl_riemann_zeta_neg";
-    runtest(gsl::riemann_zeta, basename,
+    runtest(gsl::riemann_zeta, "gsl_riemann_zeta_neg",
 	    fill_argument(std::make_pair(-10.0, 1.0),
 			  std::make_pair(true, false), 56));
-    basename = "gsl_riemann_zeta_pos";
-    runtest(gsl::riemann_zeta, basename,
+    runtest(gsl::riemann_zeta, "gsl_riemann_zeta_pos",
 	    fill_argument(std::make_pair(1.0, 30.0),
 			  std::make_pair(false, true), 146));
-    basename = ns + "_riemann_zeta";
-    runtest(riemann_zeta, basename,
+    runtest(riemann_zeta, ns + "_riemann_zeta",
 	    fill_argument(std::make_pair(Real{-10}, Real{30}),
 	        	  std::make_pair(true, true), 201));
 
@@ -504,14 +454,12 @@ template<typename Real>
     //  Hurwitz zeta function.
     std::cout << "hurwitz_zeta" << std::endl;
     //  Skip the pole at 1.
-    basename = "gsl_hurwitz_zeta";
-    runtest(gsl::hurwitz_zeta, basename,
+    runtest(gsl::hurwitz_zeta, "gsl_hurwitz_zeta",
 	    fill_argument(std::make_pair(1.0, 30.0),
 			  std::make_pair(false, true), 146),
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 26));
-    basename = ns + "_hurwitz_zeta";
-    runtest(hurwitz_zeta, basename,
+    runtest(hurwitz_zeta, ns + "_hurwitz_zeta",
 	    fill_argument(std::make_pair(Real{1}, Real{30}),
 		 	  std::make_pair(true, true), 146),
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -521,23 +469,19 @@ template<typename Real>
 
     //  Spherical Bessel functions.
     std::cout << "sph_bessel" << std::endl;
-    basename = "gsl_sph_bessel";
-    runtest(gsl_sf_bessel_jl, basename, isborder,
+    runtest(gsl_sf_bessel_jl, "gsl_sph_bessel", isborder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 	   		  std::make_pair(true, true), 1001));
-    basename = ns + "_sph_bessel";
-    runtest(sph_bessel, basename, uisborder,
+    runtest(sph_bessel, ns + "_sph_bessel", uisborder,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 			  std::make_pair(true, true), 1001));
 
     //  Spherical Legendre functions.
     std::cout << "sph_legendre" << std::endl;
-    basename = "gsl_sph_legendre";
-    runtest(gsl::legendre_sphPlm, basename, uiorder, uiorder,
+    runtest(gsl::legendre_sphPlm, "gsl_sph_legendre", uiorder, uiorder,
 	    fill_argument(std::make_pair(0.0, static_cast<double>(M_PI)),
 	    		  std::make_pair(true, true), 1001));
-    basename = ns + "_sph_legendre";
-    runtest(sph_legendre, basename, uiorder, uiorder,
+    runtest(sph_legendre, ns + "_sph_legendre", uiorder, uiorder,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 		  	  std::make_pair(true, true), 1001));
 
@@ -545,27 +489,23 @@ template<typename Real>
 
     //  Spherical Neumann functions.
     std::cout << "sph_neumann" << std::endl;
-    basename = "gsl_sph_neumann";
-    runtest(gsl_sf_bessel_yl, basename, isborder,
+    runtest(gsl_sf_bessel_yl, "gsl_sph_neumann", isborder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 	   		  std::make_pair(false, true),  // Skip the pole at the origin.
 	   		  1001));
-    basename = ns + "_sph_neumann";
-    runtest(sph_neumann, basename, uisborder,
+    runtest(sph_neumann, ns + "_sph_neumann", uisborder,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 			  std::make_pair(true, true), 1001));
 
 #if STD
     //  Carlson elliptic functions R_C.
     std::cout << "ellint_rc" << std::endl;
-    basename = "gsl_ellint_rc";
-    runtest(gsl::ellint_rc, basename,
+    runtest(gsl::ellint_rc, "gsl_ellint_rc",
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11));
-    basename = ns + "_ellint_rc";
-    runtest(ellint_rc, basename,
+    runtest(ellint_rc, ns + "_ellint_rc",
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
 		 	  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -573,16 +513,14 @@ template<typename Real>
 
     //  Carlson elliptic functions R_D.
     std::cout << "ellint_rd" << std::endl;
-    basename = "gsl_ellint_rd";
-    runtest(gsl::ellint_rd, basename,
+    runtest(gsl::ellint_rd, "gsl_ellint_rd",
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(true, true), 11),
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11));
-    basename = ns + "_ellint_rd";
-    runtest(ellint_rd, basename,
+    runtest(ellint_rd, ns + "_ellint_rd",
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
 	    		  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -592,16 +530,14 @@ template<typename Real>
 
     //  Carlson elliptic functions R_F.
     std::cout << "ellint_rf" << std::endl;
-    basename = "gsl_ellint_rf";
-    runtest(gsl::ellint_rf, basename,
+    runtest(gsl::ellint_rf, "gsl_ellint_rf",
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(true, true), 11),
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11));
-    basename = ns + "_ellint_rf";
-    runtest(ellint_rf, basename,
+    runtest(ellint_rf, ns + "_ellint_rf",
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
 	    		  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -611,8 +547,7 @@ template<typename Real>
 
     //  Carlson elliptic functions R_J.
     std::cout << "ellint_rj" << std::endl;
-    basename = "gsl_ellint_rj";
-    runtest(gsl::ellint_rj, basename,
+    runtest(gsl::ellint_rj, "gsl_ellint_rj",
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(0.0, 5.0),
@@ -621,8 +556,7 @@ template<typename Real>
 			  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11));
-    basename = ns + "_ellint_rj";
-    runtest(ellint_rj, basename,
+    runtest(ellint_rj, ns + "_ellint_rj",
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
 	        	  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -634,27 +568,23 @@ template<typename Real>
 
     //  Dilogarithm functions.
     std::cout << "dilog" << std::endl;
-    basename = "gsl_dilog";
-    runtest(gsl::dilog, basename,
+    runtest(gsl::dilog, "gsl_dilog",
 	    fill_argument(std::make_pair(-10.0, 1.0),
 			  std::make_pair(true, true), 23));
 
-    basename = ns + "_dilog";
-    runtest<Real, Real>(dilog, basename,
+    runtest<Real, Real>(dilog, ns + "_dilog",
 		      fill_argument(std::make_pair(Real{-10}, Real{1}),
 				    std::make_pair(true, true), 23));
 
     //  Upper incomplete Gamma functions.
     std::cout << "gamma_u" << std::endl;
-    basename = "gsl_gamma_u";
-    runtest(gsl::gamma_u, basename,
+    runtest(gsl::gamma_u, "gsl_gamma_u",
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(true, true), 11));
 
-    basename = ns + "_gamma_u";
-    runtest(gamma_u, basename,
+    runtest(gamma_u, ns + "_gamma_u",
 	    fill_argument(std::make_pair(Real{0}, Real{+5}),
 		 	  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(Real{0}, Real{+5}),
@@ -662,16 +592,14 @@ template<typename Real>
 
     //  Incomplete Beta functions.
     std::cout << "ibeta" << std::endl;
-    basename = "gsl_ibeta";
-    runtest(gsl::ibeta, basename,
+    runtest(gsl::ibeta, "gsl_ibeta",
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(5.0, 0.0),
 			  std::make_pair(true, false), 11),
 	    fill_argument(std::make_pair(0.0, 1.0),
 			  std::make_pair(false, false), 21));
-    basename = ns + "_ibeta";
-    runtest(ibeta, basename,
+    runtest(ibeta, ns + "_ibeta",
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
 	    		  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(Real{5}, Real{0}),
@@ -681,100 +609,82 @@ template<typename Real>
 
     //  Digamma or psi functions.
     std::cout << "psi" << std::endl;
-    basename = "gsl_psi";
-    runtest(gsl::psi, basename,
+    runtest(gsl::psi, "gsl_psi",
 	    fill_argument(std::make_pair(-9.875, 10.125),
 			  std::make_pair(true, true), 41));
-    basename = ns + "_psi";
-    runtest(psi, basename,
+    runtest(psi, ns + "_psi",
 	    fill_argument(std::make_pair(Real{-9.9375}, Real{10.0625}),
 	        	  std::make_pair(true, true), 801));
 
     //  Sine integral or Si functions.
     std::cout << "gsl_sinint" << std::endl;
-    basename = "sinint";
-    runtest(gsl_sf_Si, basename,
+    runtest(gsl_sf_Si, "sinint",
 	    fill_argument(std::make_pair(0.0, +10.0),
 			  std::make_pair(false, true), 101));
-    basename = ns + "_sinint";
-    runtest(sinint, basename,
+    runtest(sinint, ns + "_sinint",
 	    fill_argument(std::make_pair(Real{0}, Real{+10}),
 	        	  std::make_pair(false, true), 101));
 
     //  Cosine integral or Ci functions.
     std::cout << "gsl_cosint" << std::endl;
-    basename = "cosint";
-    runtest(gsl_sf_Ci, basename,
+    runtest(gsl_sf_Ci, "cosint",
 	    fill_argument(std::make_pair(0.0, +10.0),
 			  std::make_pair(false, true), 101));
-    basename = ns + "_cosint";
-    runtest(cosint, basename,
+    runtest(cosint, ns + "_cosint",
 	    fill_argument(std::make_pair(Real{0}, Real{+10}),
 	        	  std::make_pair(false, true), 101));
 
     //  Hyperbolic sine integral or Shi functions.
     std::cout << "gsl_sinhint" << std::endl;
-    basename = "sinhint";
-    runtest(gsl_sf_Shi, basename,
+    runtest(gsl_sf_Shi, "sinhint",
 	    fill_argument(std::make_pair(0.0, +5.0),
 			  std::make_pair(false, true), 101));
-    basename = ns + "_sinhint";
-    runtest(sinhint, basename,
+    runtest(sinhint, ns + "_sinhint",
 	    fill_argument(std::make_pair(Real{0}, Real{+5}),
 	        	  std::make_pair(false, true), 101));
 
     //  Hyperbolic cosine integral or Chi functions.
     std::cout << "gsl_coshint" << std::endl;
-    basename = "coshint";
-    runtest(gsl_sf_Chi, basename,
+    runtest(gsl_sf_Chi, "coshint",
 	    fill_argument(std::make_pair(0.0, +5.0),
 			  std::make_pair(false, true), 101));
-    basename = ns + "_coshint";
-    runtest(coshint, basename,
+    runtest(coshint, ns + "_coshint",
 	    fill_argument(std::make_pair(Real{0}, Real{+5}),
 	        	  std::make_pair(false, true), 101));
 
     //  Dawson integral.
     std::cout << "gsl_dawson" << std::endl;
-    basename = "dawson";
-    runtest(gsl::dawson, basename,
+    runtest(gsl::dawson, "dawson",
 	    fill_argument(std::make_pair(0.0, +5.0),
 			  std::make_pair(false, true), 101));
-    basename = ns + "_dawson";
-    runtest(dawson, basename,
+    runtest(dawson, ns + "_dawson",
 	    fill_argument(std::make_pair(Real{0}, Real{+5}),
 	        	  std::make_pair(false, true), 101));
 
     //  Exponential integral E_n.
     std::cout << "gsl_expint_en" << std::endl;
-    basename = "expint_en";
-    runtest(gsl::expint, basename,
+    runtest(gsl::expint, "expint_en",
 	    fill_argument(std::make_pair(0.0, +5.0),
 			  std::make_pair(false, true), 101));
-    basename = ns + "_expint_en";
-    runtest(expint, basename,
+    runtest(expint, ns + "_expint_en",
 	    fill_argument(std::make_pair(Real{0}, Real{+5}),
 	        	  std::make_pair(false, true), 101));
 
     //  Normalized sinus cardinal function.
     std::cout << "gsl_sinc" << std::endl;
-    basename = "sinc";
-    runtest(gsl::sinc, basename,
+    runtest(gsl::sinc, "sinc",
 	    fill_argument(std::make_pair(-20.0, +20.0),
 			  std::make_pair(false, true), 401));
-    basename = ns + "_sinc";
-    runtest(sinc, basename,
+    runtest(sinc, ns + "_sinc",
 	    fill_argument(std::make_pair(Real{20}, Real{+20}),
 	        	  std::make_pair(false, true), 401));
 
     //  Sinus cardinal function.
     std::cout << "gsl_sinc_pi" << std::endl;
-    basename = "sinc_pi";
-    runtest(gsl::sinc_pi, basename,
+    runtest(gsl::sinc_pi, "sinc_pi",
 	    fill_argument(std::make_pair(-20.0, +20.0),
 			  std::make_pair(false, true), 401));
-    basename = ns + "_sinc_pi";
-    runtest(sinc_pi, basename,
+    runtest(sinc_pi, ns + "_sinc_pi",
 	    fill_argument(std::make_pair(Real{20}, Real{+20}),
 	        	  std::make_pair(false, true), 401));
 
@@ -789,7 +699,7 @@ main()
 #if LOCAL
   do_test<__float128>();
 #endif
-  do_test<long double>();
+  //do_test<long double>();
   do_test<double>();
-  do_test<float>();
+  //do_test<float>();
 }
