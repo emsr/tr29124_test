@@ -2,10 +2,10 @@
 $HOME/bin_tr29124/bin/g++ -std=gnu++14 -g -Wall -Wextra -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 
-$HOME/bin_tr29124/bin/g++ -std=gnu++14 -DOLD -g -Wall -Wextra -o airy_toy_old airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -DOLD -g -Wall -Wextra -o airy_toy_old airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_old > airy_toy.new.old
 
-$HOME/bin_tr29124/bin/g++ -std=gnu++14 -UOLD -g -Wall -Wextra -o airy_toy_new airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
  LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_toy.new.new
 */
 
@@ -20,7 +20,6 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++14 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 #include <fstream>
 #include <iomanip>
 #include <vector>
-#include <complex>
 #include <string>
 #include <ext/math_const.h>
 #include <bits/float128.h>
@@ -29,6 +28,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++14 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 #include <bits/complex_util.h>
 #include <bits/summation.h>
 #include <ext/polynomial.h>
+//#include <complex>
 
 
   /**
@@ -4335,6 +4335,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++14 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 
       using value_type = _Tp;
       using scalar_type = std::__detail::__num_traits_t<value_type>;
+      using complex_type = std::complex<scalar_type>;
       static constexpr scalar_type _S_pi
 	   = __gnu_cxx::__math_constants<scalar_type>::__pi;
       static constexpr scalar_type _S_sqrt_pi
@@ -4347,7 +4348,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++14 -UOLD -g -Wall -Wextra -o airy_toy_new ai
       static constexpr value_type _S_i = value_type{0, 1};
 
       static constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<scalar_type>();
-      static constexpr auto _S_cNaN = value_type(_S_NaN, _S_NaN);
+      static constexpr auto _S_cNaN = complex_type(_S_NaN, _S_NaN);
 
       constexpr _Airy() = default;
       _Airy(const _Airy&) = default;
@@ -4412,7 +4413,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++14 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	    }
 	}
 
-      __cmplx _Bi, _Bip;
+      __cmplx _Bi{}, _Bip{};
       if (__absy < inner_radius
 	  || (__absy < outer_radius && __absargy < _S_pi_3))
 	std::tie(_Bi, _Bip) = _Airy_series<__scal>::_S_Bi(__y);
@@ -4442,7 +4443,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++14 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	    }
 	}
 
-      __cmplx _Ai, _Aip;
+      __cmplx _Ai{}, _Aip{};
       if ((__absy < inner_radius
 	          + outer_radius * __absargy / _S_pi && __absargy < _S_2pi_3)
 	  || (__absy < outer_radius && __absargy >= _S_2pi_3))
@@ -4566,6 +4567,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++14 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 
       using value_type = _Tp;
       using scalar_type = std::__detail::__num_traits_t<value_type>;
+      using complex_type = std::complex<scalar_type>;
       static constexpr scalar_type _S_pi_3
 	   = __gnu_cxx::__math_constants<scalar_type>::__pi_third;
       static constexpr scalar_type _S_2pi_3 = scalar_type{2} * _S_pi_3;
@@ -4574,7 +4576,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++14 -UOLD -g -Wall -Wextra -o airy_toy_new ai
       static constexpr value_type _S_i = value_type{0, 1};
 
       static constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<scalar_type>();
-      static constexpr auto _S_cNaN = value_type{_S_NaN, _S_NaN};
+      static constexpr auto _S_cNaN = complex_type{_S_NaN, _S_NaN};
 
       constexpr _AiryState<value_type>
       operator()(value_type __y) const;
@@ -5729,6 +5731,146 @@ template<typename _Tp>
 	}
     }
 
+namespace std
+{
+namespace __detail
+{
+
+  /**
+   * Return the Scorer function @f$ Gi(x) @f$.
+   */
+  template<typename _Tp>
+    _Tp
+    __scorer_gi(_Tp __x)
+    {
+      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
+
+      if (__x < _Tp{0})
+	std::__throw_domain_error(__N("__scorer_gi: bad argument"));
+      else if (__isnan(__x))
+	return _S_nan;
+      else
+	{
+	  auto __scorer = _Scorer<_Tp>{}(__x);
+	  return __scorer.Ai;
+	}
+    }
+
+  /**
+   * Return the Scorer function @f$ Hi(x) @f$.
+   */
+  template<typename _Tp>
+    _Tp
+    __scorer_hi(_Tp __x)
+    {
+      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
+
+      if (__x < _Tp{0})
+	std::__throw_domain_error(__N("__scorer_hi: bad argument"));
+      else if (__isnan(__x))
+	return _S_nan;
+      else
+	{
+	  auto __scorer = _Scorer<_Tp>{}(__x);
+	  return __scorer.Bi;
+	}
+    }
+
+} // namespace __detail
+} // namespace std
+
+namespace __gnu_cxx
+{
+
+  // Scorer functions
+
+  /**
+   * Return the scorer function @f$ Gi(x) @f$
+   * for @c float argument @f$ x >= 0 @f$.
+   *
+   * @see scorer_gi for setails.
+   */
+  inline float
+  scorer_gif(float __x)
+  { return std::__detail::__scorer_gi<float>(__x); }
+
+  /**
+   * Return the scorer function @f$ Gi(x) @f$
+   * for <tt>long double</tt> argument @f$ x >= 0 @f$.
+   *
+   * @see scorer_gi for setails.
+   */
+  inline long double
+  scorer_gil(long double __x)
+  { return std::__detail::__scorer_gi<long double>(__x); }
+
+  /**
+   * Return the scorer function @f$ Gi(x) @f$
+   * of real argument @f$ x >= 0 @f$.
+   *
+   * The scorer function is:
+   * @f[
+   *    Gi(x) = \frac{1}{\pi}\int_0^\infty \sin\left(\frac{1}{3}t^3
+   *                                               + \frac{1}{2}xt\right)
+   * @f]
+   *
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __x   The argument, <tt> __x >= 0 </tt>
+   * @throw std::domain_error if <tt> __x < 0 </tt>.
+   */
+  template<typename _Tp>
+    inline __promote_fp_t<_Tp>
+    scorer_gi(_Tp __x)
+    {
+      using __type = __promote_fp_t<_Tp>;
+      return std::__detail::__scorer_gi<__type>(__x);
+    }
+
+  // Scorer functions
+
+  /**
+   * Return the scorer function @f$ Hi(x) @f$
+   * for @c float argument @f$ x >= 0 @f$.
+   *
+   * @see scorer_hi for setails.
+   */
+  inline float
+  scorer_hif(float __x)
+  { return std::__detail::__scorer_hi<float>(__x); }
+
+  /**
+   * Return the scorer function @f$ Hi(x) @f$
+   * for <tt>long double</tt> argument @f$ x >= 0 @f$.
+   *
+   * @see scorer_hi for setails.
+   */
+  inline long double
+  scorer_hil(long double __x)
+  { return std::__detail::__scorer_hi<long double>(__x); }
+
+  /**
+   * Return the scorer function @f$ Hi(x) @f$
+   * of real argument @f$ x >= 0 @f$.
+   *
+   * The scorer function is:
+   * @f[
+   *    Hi(x) = \frac{1}{\pi}\int_0^\infty \exp\left(-\frac{1}{3}t^3
+   *                                                + \frac{1}{2}xt\right)
+   * @f]
+   *
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __x   The argument, <tt> __x >= 0 </tt>
+   * @throw std::domain_error if <tt> __x < 0 </tt>.
+   */
+  template<typename _Tp>
+    inline __promote_fp_t<_Tp>
+    scorer_hi(_Tp __x)
+    {
+      using __type = __promote_fp_t<_Tp>;
+      return std::__detail::__scorer_hi<__type>(__x);
+    }
+
+} // namespace __gnu_cxx
 
 int
 main()

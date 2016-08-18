@@ -262,6 +262,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Airy_series<_Tp>::_S_AiryHelp(std::complex<_Tp> __t,
 				   bool __return_fock_airy)
     {
+      const auto _S_min = std::numeric_limits<_Tp>::min();
       const auto __log10t = std::log10(std::abs(__t));
       const auto __ttt = __t * __t * __t;
 
@@ -289,7 +290,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    break;
 	  _Faip = (3ULL * __k) * _Fai;
 	  _Gai /= (3ULL * __k) * (3ULL * __k + 1ULL);
-	  _Gaip = (3ULL * __k + 1ULL) * * _Gai
+	  _Gaip = (3ULL * __k + 1ULL) * _Gai;
 
 	  __term *= __ttt;
 	  _F += _Fai * __term;
@@ -384,6 +385,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _AiryAuxilliaryState<std::complex<_Tp>>
     _Airy_series<_Tp>::_S_FGH(std::complex<_Tp> __t)
     {
+      const auto _S_min = std::numeric_limits<_Tp>::min();
       const auto __log10t = std::log10(std::abs(__t));
       const auto __tt = __t * __t;
       const auto __ttt = __t * __tt;
@@ -416,7 +418,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    break;
 	  _Faip = (3ULL * __k) * _Fai;
 	  _Gai /= (3ULL * __k) * (3ULL * __k + 1ULL);
-	  _Gaip = (3ULL * __k + 1ULL) * * _Gai
+	  _Gaip = (3ULL * __k + 1ULL) * _Gai;
 	  _Hai /= (3ULL * __k + 1ULL) * (3ULL * __k + 2ULL);
 	  _Haip = (3ULL * __k + 2ULL) * _Hai;
 
@@ -567,7 +569,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 	    __termF *= __ttt;
 	    __termG *= __ttt;
-	    _Ai += _Fai[__k] * __termF + _Gai[__k] * __termG;
+	    _Ai += _Fai * __termF + _Gai * __termG;
 	  }
 
       auto _Faip = _Tp{0};
@@ -2635,8 +2637,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __airy_ai(std::complex<_Tp> __z)
     {
-      auto __airy_sums = _Airy<std::complex<_Tp>>()(__z);
-      return __airy_sums.Ai;
+      auto __airy = _Airy<std::complex<_Tp>>()(__z);
+      return __airy.Ai;
     }
 
 
@@ -2647,8 +2649,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __airy_bi(std::complex<_Tp> __z)
     {
-      auto __airy_sums = _Airy<std::complex<_Tp>>()(__z);
-      return __airy_sums.Bi;
+      auto __airy = _Airy<std::complex<_Tp>>()(__z);
+      return __airy.Bi;
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
