@@ -2751,6 +2751,26 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return __Ai;
     }
 
+  /**
+   * Return the Airy function @f$ Ai(x) @f$ of complex argument @f$ x @f$.
+   *
+   * The Airy function is defined by:
+   * @f[
+   *    Ai(x) = \frac{1}{\pi}\int_0^\infty
+   *      \cos \left(\frac{t^3}{3} + xt \right)dt
+   * @f]
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __x The complex argument
+   */
+  template<typename _Tp>
+    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp>>
+    airy_ai(std::complex<_Tp> __x)
+    {
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      return std::__detail::__airy_ai<__type>(__x);
+    }
+
   // Airy functions of the second kind
 
   /**
@@ -2785,7 +2805,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The Airy function is defined by:
    * @f[
-   *    Bi(x) = \frac{1}{\pi}\int_0^\infty \left[ 
+   *    Bi(x) = \frac{1}{\pi}\int_0^\infty \left[
    *           \exp \left(-\frac{t^3}{3} + xt \right)
    *          + \sin \left(\frac{t^3}{3} + xt \right) \right] dt
    * @f]
@@ -2801,6 +2821,27 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       __type __Ai, __Bi, __Aip, __Bip;
       std::__detail::__airy<__type>(__x, __Ai, __Bi, __Aip, __Bip);
       return __Bi;
+    }
+
+  /**
+   * Return the Airy function @f$ Bi(x) @f$ of complex argument @f$ x @f$.
+   *
+   * The Airy function is defined by:
+   * @f[
+   *    Bi(x) = \frac{1}{\pi}\int_0^\infty \left[ 
+   *           \exp \left(-\frac{t^3}{3} + xt \right)
+   *          + \sin \left(\frac{t^3}{3} + xt \right) \right] dt
+   * @f]
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __x The complex argument
+   */
+  template<typename _Tp>
+    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp>>
+    airy_bi(std::complex<_Tp> __x)
+    {
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      return std::__detail::__airy_bi<__type>(__x);
     }
 
   // Upper incomplete gamma functions
