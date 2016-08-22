@@ -78,6 +78,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 #endif
 
 
+  /**
+   * Create a NaN.
+   */
+  template<typename _Tp>
+    struct __make_NaN
+    {
+      constexpr _Tp
+      operator()()
+      { return std::numeric_limits<_Tp>::quiet_NaN(); }
+    };
+
 #if _GLIBCXX_USE_C99_MATH && !_GLIBCXX_USE_C99_FP_MACROS_DYNAMIC
 
   /// This is a wrapper for the isnan function. Otherwise, for NaN,
