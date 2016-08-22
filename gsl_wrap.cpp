@@ -64,7 +64,7 @@ assoc_laguerre(unsigned int n, unsigned int m, double x)
 
 /// Associated Legendre functions.
 double
-legendre_Plm(unsigned int l, unsigned int m, double x)
+assoc_legendre(unsigned int l, unsigned int m, double x)
 {
   if (l < m)
    return 0.0;
@@ -74,7 +74,7 @@ legendre_Plm(unsigned int l, unsigned int m, double x)
       int stat = gsl_sf_legendre_Plm_e(static_cast<int>(l), static_cast<int>(m), x, &result);
       if (stat != GSL_SUCCESS)
         {
-          std::ostringstream msg("Error in legendre_Plm:");
+          std::ostringstream msg("Error in assoc_legendre:");
           msg << " l=" << l << " m=" << m << " x=" << x;
           throw std::runtime_error(msg.str());
         }
@@ -85,7 +85,7 @@ legendre_Plm(unsigned int l, unsigned int m, double x)
 
 /// Associated Legendre functions of the second kind.
 double
-legendre_Qlm(unsigned int l, unsigned int m, double x)
+assoc_legendre_q(unsigned int l, unsigned int m, double x)
 {
   return 0.0;
 }

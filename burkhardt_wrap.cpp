@@ -1,68 +1,51 @@
-#include <boost/math/special_functions/factorials.hpp>
-#include <boost/math/special_functions/gamma.hpp>
-#include <boost/math/special_functions/beta.hpp>
-#include <boost/math/special_functions/legendre.hpp>
-#include <boost/math/special_functions/spherical_harmonic.hpp>
-#include <boost/math/special_functions/hermite.hpp>
-#include <boost/math/special_functions/laguerre.hpp>
-#include <boost/math/special_functions/bessel.hpp> 
-#include <boost/math/special_functions/airy.hpp>
-#include <boost/math/special_functions/ellint_rg.hpp>
-#include <boost/math/special_functions/ellint_rf.hpp>
-#include <boost/math/special_functions/ellint_rd.hpp>
-#include <boost/math/special_functions/ellint_rj.hpp>
-#include <boost/math/special_functions/ellint_rc.hpp>
-#include <boost/math/special_functions/ellint_1.hpp>
-#include <boost/math/special_functions/ellint_2.hpp>
-#include <boost/math/special_functions/ellint_3.hpp>
-#include <boost/math/special_functions/ellint_d.hpp>
-#include <boost/math/special_functions/jacobi_elliptic.hpp>
-#include <boost/math/special_functions/jacobi_zeta.hpp>
-#include <boost/math/special_functions/heuman_lambda.hpp>
-#include <boost/math/special_functions/polygamma.hpp>
-#include <boost/math/special_functions/binomial.hpp>
-#include <boost/math/special_functions/hankel.hpp>
-#include <boost/math/special_functions/expint.hpp>
-#include <boost/math/special_functions/sinc.hpp>
-#include <boost/math/special_functions/owens_t.hpp>
 
-#include "boost_wrap.h"
-
-namespace beast
+namespace burkhardt
 {
 
 /// Airy Ai function.
 double
 airy_ai(double x)
 {
-  return boost::math::airy_ai(x);
+  double ai, bi, ad, bd;
+  airya_( x, ai, bi, ad, bd )
+  return ai;
 }
 
 /// Airy Bi function.
 double
 airy_bi(double x)
 {
-  return boost::math::airy_bi(x);
+  double ai, bi, ad, bd;
+  airya_( x, ai, bi, ad, bd )
+  return bi;
 }
 
 /// Associated Laguerre polynomials.
 double
 assoc_laguerre(unsigned int n, unsigned int m, double x)
 {
-  return boost::math::laguerre(n, m, x);
+  return 0.0;
 }
 
 /// Associated Legendre functions.
 double
 assoc_legendre(unsigned int l, unsigned int m, double x)
 {
-  return boost::math::legendre_p(l, m, x);
+  //int mm = l * m;
+  //double cpm[mm], cpd[mm];
+  //double x, y;
+  //clpmn_(mm, l, m, x, y, cpm, cpd);
+  return 0.0;
 }
 
 /// Associated Legendre functions of the second kind.
 double
 assoc_legendre_q(unsigned int l, unsigned int m, double x)
 {
+  //int mm = l * m;
+  //double cpm[mm], cpd[mm];
+  //double x, y;
+  //clqmn_(mm, m, n, x, y, cqm, cqd);
   return 0.0;
 }
 
@@ -70,35 +53,42 @@ assoc_legendre_q(unsigned int l, unsigned int m, double x)
 double
 beta(double x, double y)
 {
-  return boost::math::beta(x, y);
+  return 0.0;
+}
+
+/// Complementary beta functions.
+double
+betac(double x, double y)
+{
+  return 0.0;
 }
 
 /// Complete elliptic integrals of the first kind.
 double
 comp_ellint_1(double k)
 {
-  return boost::math::ellint_1(k);
+  return 0.0;
 }
 
 /// Complete elliptic integrals of the second kind.
 double
 comp_ellint_2(double k)
 {
-  return boost::math::ellint_2(k);
+  return 0.0;
 }
 
 /// Complete elliptic integrals of the third kind.
 double
 comp_ellint_3(double k, double nu)
 {
-  return boost::math::ellint_3(k, nu);
+  return 0.0;
 }
 
 /// Complete Legendre elliptic D integrals.
 double
 comp_ellint_d(double k)
 {
-  return boost::math::ellint_d(k);
+  return 0.0;
 }
 
 /// Confluent hypergeometric functions.
@@ -119,112 +109,112 @@ hyperg_0F1(double c, double x)
 double
 cyl_bessel_i(double nu, double x)
 {
-  return boost::math::cyl_bessel_i(nu, x);
+  return 0.0;
 }
 
 /// Cylindrical Bessel functions (of the first kind).
 double
 cyl_bessel_j(double nu, double x)
 {
-  return boost::math::cyl_bessel_j(nu, x);
+  return 0.0;
 }
 
 /// Irregular modified cylindrical Bessel functions.
 double
 cyl_bessel_k(double nu, double x)
 {
-  return boost::math::cyl_bessel_k(nu, x);
+  return 0.0;
 }
 
 /// Cylindrical Neumann functions.
 double
 cyl_neumann(double nu, double x)
 {
-  return boost::math::cyl_neumann(nu, x);
+  return 0.0;
 }
 
 /// Elliptic integrals of the first kind.
 double
 ellint_1(double k, double phi)
 {
-  return boost::math::ellint_1(k, phi);
+  return 0.0;
 }
 
 /// Elliptic integrals of the second kind.
 double
 ellint_2(double k, double phi)
 {
-  return boost::math::ellint_2(k, phi);
+  return 0.0;
 }
 
 /// Elliptic integrals of the third kind.
 double
 ellint_3(double k, double nu, double phi)
 {
-  return boost::math::ellint_3(k, nu, phi);
+  return 0.0;
 }
 
 /// Legendre elliptic D integrals.
 double
 ellint_d(double k, double phi)
 {
-  return boost::math::ellint_d(k, phi);
+  return 0.0;
 }
 
 /// Carlson elliptic integrals R_C.
 double
 ellint_rc(double x, double y)
 {
-  return boost::math::ellint_rc(x, y);
+  return 0.0;
 }
 
 /// Carlson elliptic integrals R_D.
 double
 ellint_rd(double x, double y, double z)
 {
-  return boost::math::ellint_rd(x, y, z);
+  return 0.0;
 }
 
 /// Carlson elliptic integrals R_F.
 double
 ellint_rf(double x, double y, double z)
 {
-  return boost::math::ellint_rf(x, y, z);
+  return 0.0;
 }
 
 /// Carlson elliptic integrals R_G.
 double
 ellint_rg(double x, double y, double z)
 {
-  return boost::math::ellint_rg(x, y, z);
+  return 0.0;
 }
 
 /// Carlson elliptic integrals R_J.
 double
 ellint_rj(double x, double y, double z, double p)
 {
-  return boost::math::ellint_rj(x, y, z, p);
+  return 0.0;
 }
 
 /// Exponential integral Ei.
 double
 expint(double x)
 {
-  return boost::math::expint(x);
+  return 0.0;
 }
 
-/// Exponential integrals E_n.
+/// Exponential integral E_n.
 double
 expint(unsigned int n, double x)
 {
-  return boost::math::expint(n, x);
+  return 0.0;
 }
 
 /// Hermite polynomials.
 double
 hermite(unsigned int n, double x)
 {
-  return boost::math::hermite(n, x);
+  return 0.0;
 }
 
 /// Hypergeometric functions.
@@ -238,28 +228,29 @@ hyperg(double a, double b, double c, double x)
 double
 laguerre(unsigned int n, double x)
 {
-  return boost::math::laguerre(n, x);
+  return 0.0;
 }
 
 /// Legendre polynomials.
 double
 legendre_p(unsigned int l, double x)
 {
-  return boost::math::legendre_p(l, x);
+  return 0.0;
 }
 
 /// Legendre functions of the second kind.
 double
 legendre_q(unsigned int l, double x)
 {
-  return boost::math::legendre_q(l, x);
+  //clqmn_(mm, m, n, x, y, cqm, cqd);
+  return 0.0;
 }
 
 /// Riemann zeta function.
 double
 riemann_zeta(double x)
 {
-  return boost::math::zeta(x);
+  return 0.0;
 }
 
 /// Hurwitz zeta functions.
@@ -270,7 +261,8 @@ hurwitz_zeta(double s, double q)
 }
 
 /// Dirichlet eta function.
-double dirichlet_eta(double x)
+double
+dirichlet_eta(double x)
 {
   return 0.0;
 }
@@ -279,120 +271,91 @@ double dirichlet_eta(double x)
 double
 bessel_jl(unsigned int n, double x)
 {
-  return boost::math::sph_bessel(n, x);
+  return 0.0;
 }
 
 /// Spherical Legendre functions.
 double
 legendre_sphPlm(unsigned int l, unsigned int m, double theta)
 {
-  return boost::math::spherical_harmonic_r(l, m, theta, 0.0);
+  return 0.0;
 }
 
 /// Spherical Neumann functions.
 double
 bessel_yl(unsigned int n, double x)
 {
-  return boost::math::sph_neumann(n, x);
+  return 0.0;
 }
 
 /// Non-normalized lower incomplete gamma functions. (See Boost tgamma_lower(a, x)).
 double
 gamma_l(double a, double x)
 {
-  return boost::math::tgamma_lower(a, x);
+  return 0.0;
 }
 
 /// Normalized upper incomplete gamma functions.
 double
 qgamma(double a, double x)
 {
-  return boost::math::gamma_q(a, x);
+  return 0.0;
 }
 
 /// Inverse normalized upper incomplete gamma functions.
 double
 qgamma_inv(double a, double q)
 {
-  return boost::math::gamma_q_inv(a, q);
+  return 0.0;
 }
 
 /// Inverse parameter normalized upper incomplete gamma functions.
 double
-qgamma_inva(double a, double q)
+qgamma_inva(double x, double q)
 {
-  return boost::math::gamma_q_inva(a, q);
+  return 0.0;
 }
 
 /// Normalized lower incomplete gamma functions.
 double
 pgamma(double a, double x)
 {
-  return boost::math::gamma_p(a, x);
+  return 0.0;
 }
 
 /// Inverse normalized lower incomplete gamma functions.
 double
-pgamma_inv(double a, double q)
+pgamma_inv(double a, double p)
 {
-  return boost::math::gamma_p_inv(a, q);
+  return 0.0;
 }
 
 /// Inverse parameter normalized lower incomplete gamma functions.
 double
-pgamma_inva(double a, double q)
+pgamma_inva(double x, double p)
 {
-  return boost::math::gamma_p_inva(a, q);
+  return 0.0;
 }
 
 /// Non-normalized (upper) incomplete gamma functions. (See Boost tgamma(a, x)).
 double
 gamma_u(double a, double x)
 {
-  return boost::math::tgamma(a, x);
+  return 0.0;
 }
 
 /// Incomplete beta functions.
 double
 ibeta(double a, double b, double x)
 {
-  return boost::math::ibeta(a, b, x);
+  return 0.0;
 }
 
+/// Complementary incomplete beta functions.
 double
-ibeta_inv(double a, double b, double p)
+ibetac(double a, double b, double x)
 {
-  return boost::math::ibeta_inv(a, b, p);
-}
-
-double
-ibetac_inv(double a, double b, double p)
-{
-  return boost::math::ibetac_inv(a, b, p);
-}
-
-double
-ibeta_inva(double b, double x, double p)
-{
-  return boost::math::ibeta_inva(b, x, p);
-}
-
-double
-ibetac_inva(double b, double x, double p)
-{
-  return boost::math::ibetac_inva(b, x, p);
-}
-
-double
-ibeta_invb(double a, double x, double p)
-{
-  return boost::math::ibeta_invb(a, x, p);
-}
-
-double
-ibetac_invb(double a, double x, double p)
-{
-  return boost::math::ibetac_invb(a, x, p);
+  return 0.0;
 }
 
 /// Dilogarithm function.
@@ -406,14 +369,14 @@ dilog(double x)
 double
 psi(double x)
 {
-  return boost::math::digamma(x);
+  return 0.0;
 }
 
 /// Polygamma functions.
 double
 polygamma(int n, double x)
 {
-  return boost::math::polygamma(n, x);
+  return 0.0;
 }
 
 /// Sine integral.
@@ -469,21 +432,21 @@ dawson(double x)
 double
 jacobi_sn(double k, double u)
 {
-  return boost::math::jacobi_sn(k, u);
+  return 0.0;
 }
 
 /// Jacobian elliptic integrals cn.
 double
 jacobi_cn(double k, double u)
 {
-  return boost::math::jacobi_cn(k, u);
+  return 0.0;
 }
 
 /// Jacobian elliptic integrals dn.
 double
 jacobi_dn(double k, double u)
 {
-  return boost::math::jacobi_dn(k, u);
+  return 0.0;
 }
 
 /// Fresnel cosine integral.
@@ -504,84 +467,84 @@ fresnel_s(double x)
 double
 sinc_pi(double x)
 {
-  return boost::math::sinc_pi(x);
+  return 0.0;
 }
 
 /// Normalized sinus cardinal function.
 double
 sinc(double x)
 {
-  return boost::math::sinc_pi(x / M_PI);
+  return 0.0;
 }
 
 /// Hyperbolic sinus cardinal function.
 double
 sinhc_pi(double x)
 {
-  return std::sinh(x) / x;
+  return 0.0;
 }
 
 /// Normalized hyperbolic sinus cardinal function.
 double
 sinhc(double x)
 {
-  return std::sinh(x / M_PI) / (x / M_PI);
+  return 0.0;
 }
 
 /// Log upper Pochhammer symbol.
 double
 lpochhammer_u(double a, double x)
 {
-  return std::log(boost::math::rising_factorial(a, x));
+  return 0.0;
 }
 
 /// Log lower Pochhammer symbol.
 double
 lpochhammer_l(double a, double x)
 {
-  return std::log(boost::math::falling_factorial(a, x));
+  return 0.0;
 }
 
 /// Upper Pochhammer symbol.
 double
 pochhammer_u(double a, double x)
 {
-  return boost::math::rising_factorial(a, x);
+  return 0.0;
 }
 
 /// Lower Pochhammer symbol.
 double
 pochhammer_l(double a, double x)
 {
-  return boost::math::falling_factorial(a, x);
+  return 0.0;
 }
 
 /// Log factorial.
 double
 lfactorial(unsigned int n)
 {
-  return std::log(boost::math::factorial<double>(n));
+  return 0.0;
 }
 
 /// Factorial.
 double
 factorial(unsigned int n)
 {
-  return boost::math::factorial<double>(n);
+  return 0.0;
 }
 
 /// Log double factorial.
 double
 ldouble_factorial(int n)
 {
-  return std::log(boost::math::double_factorial<double>(n));
+  return 0.0;
 }
 
 /// Double factorial.
 double
-double_factorial(unsigned int n)
+double_factorial(int n)
 {
-  return boost::math::double_factorial<double>(n);
+  return 0.0;
 }
 
 /// Regular modified spherical bessel functions.
@@ -626,23 +589,23 @@ chebyshev_w(unsigned int n, double x)
   return 0.0;
 }
 
-/// Jacobi polynomials.
-double
-jacobi(unsigned int n, double alpha, double beta, double x)
-{
-  return 0.0;
-}
-
 /// Binomial coefficients.
 double
 choose(unsigned int n, unsigned int k)
 {
-  return 0.0;//boost::math::binomial_coefficient(n, k);
+  return 0.0;
 }
 
 /// Log binomial coefficients.
 double
 lnchoose(unsigned int n, unsigned int k)
+{
+  return 0.0;
+}
+
+/// Jacobi polynomials.
+double
+jacobi(unsigned int n, double alpha, double beta, double x)
 {
   return 0.0;
 }
@@ -663,79 +626,116 @@ radpoly(unsigned int n, unsigned int m, double rho)
 
 /// Zernike polynomials
 double
-zernike(unsigned int n, unsigned int m, double rho, double phi)
+zernike(unsigned int n, int m, double rho, double phi)
 {
   return 0.0;
 }
 
 /// Cylindrical Hankel functions of the first kind.
-std::complex<double>
-cyl_hankel_1(double nu, double x)
+std::complex<double> cyl_hankel_1(double nu, double x)
 {
-  return boost::math::cyl_hankel_1(nu, x);
+  return 0.0;
 }
 
 /// Cylindrical Hankel functions of the second kind.
-std::complex<double>
-cyl_hankel_2(double nu, double x)
+std::complex<double> cyl_hankel_2(double nu, double x)
 {
-  return boost::math::cyl_hankel_2(nu, x);
+  return 0.0;
 }
 
 /// Spherical Hankel functions of the first kind.
-std::complex<double>
-sph_hankel_1(unsigned int n, double x)
+std::complex<double> sph_hankel_1(unsigned int n, double x)
 {
-  return boost::math::sph_hankel_1(n, x);
+  return 0.0;
 }
 
 /// Spherical Hankel functions of the second kind.
-std::complex<double>
-sph_hankel_2(unsigned int n, double x)
+std::complex<double> sph_hankel_2(unsigned int n, double x)
 {
-  return boost::math::sph_hankel_2(n, x);
+  return 0.0;
 }
 
 /// Heuman lambda functions.
 double
 heuman_lambda(double k, double phi)
 {
-  return boost::math::heuman_lambda(k, phi);
+  return 0.0;
 }
 
 /// Jacobi zeta functions.
 double
 jacobi_zeta(double k, double phi)
 {
-  return boost::math::jacobi_zeta(k, phi);
+  return 0.0;
 }
 
 /// Inverse error function.
 double
 erf_inv(double p)
 {
-  return boost::math::erf_inv(p);
+  return 0.0;
 }
 
 /// Inverse complementary error function.
 double
-erfc_inv(double p)
+erfc_inv(double q)
 {
-  return boost::math::erfc_inv(p);
+  return 0.0;
+}
+
+/// Inverse incomplete beta function.
+double
+ibeta_inv(double a, double b, double p)
+{
+  return 0.0;
+}
+
+/// Inverse complementary incomplete beta function.
+double
+ibetac_inv(double a, double b, double q)
+{
+  return 0.0;
+}
+
+/// Inverse parameter incomplete beta function.
+double
+ibeta_inva(double b, double x, double p)
+{
+  return 0.0;
+}
+
+/// Inverse parameter complementary incomplete beta function.
+double
+ibetac_inva(double b, double x, double q)
+{
+  return 0.0;
+}
+
+/// Inverse parameter incomplete beta function.
+double
+ibeta_invb(double a, double x, double p)
+{
+  return 0.0;
+}
+
+/// Inverse parameter complementary incomplete beta function.
+double
+ibetac_invb(double a, double x, double q)
+{
+  return 0.0;
 }
 
 /// Spherical harmonic functions.
-std::complex<double>
-sph_harmonic(unsigned int l, int m, double theta, double phi)
+std::complex<double> sph_harmonic(unsigned int l, int m, double theta, double phi)
 {
-  return boost::math::spherical_harmonic(l, m, theta, phi);
+  return 0.0;
 }
 
 /// Owen's T function.
 double
 owens_t(double h, double a)
 {
-  return boost::math::owens_t(h, a);
+  return 0.0;
 }
 
 /// Clausen function of order 2.
@@ -745,5 +745,23 @@ clausen_c(unsigned int m, double w)
   return 0.0;
 }
 
-} // namespace beast
+/// Struve H function.
+double
+struve_h(double nu, double x)
+{
+  double sh{};
+  stvhv_(nu, x, sh)
+  return sh;
+}
+
+/// Struve L function.
+double
+struve_l(double nu, double x)
+{
+  double sl{};
+  stvlv_(nu, x, sl)
+  return sl;
+}
+
+} // namespace burkhardt
 
