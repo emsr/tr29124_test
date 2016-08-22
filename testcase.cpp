@@ -238,7 +238,7 @@ template<typename Real>
     basename = "assoc_legendre";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_assoc_legendre(filename.c_str());
-    maketest(assoc_legendre, gsl::legendre_Plm,
+    maketest(assoc_legendre, gsl::assoc_legendre,
 	     "testcase_assoc_legendre", nsname, basename,
 	     "l", vorder, "m", vorder,
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),

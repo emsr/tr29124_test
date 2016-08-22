@@ -29,7 +29,7 @@ laguerre_nm(unsigned int n, unsigned int m, double x)
 
 /// Associated Legendre functions.
 double
-legendre_Plm(unsigned int l, unsigned int m, double x)
+assoc_legendre(unsigned int l, unsigned int m, double x)
 { return legendre_poly(l, m, x); }
 
 /// Beta functions.

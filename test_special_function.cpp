@@ -215,7 +215,7 @@ template<typename Real>
 
     //  Associated Legendre functions.
     std::cout << "assoc_legendre" << std::endl;
-    runtest(gsl::legendre_Plm, "gsl_assoc_legendre", uiorder, uiorder,
+    runtest(gsl::assoc_legendre, "gsl_assoc_legendre", uiorder, uiorder,
 	    fill_argument(std::make_pair(-1.0, 1.0),
 	    		  std::make_pair(true, true), 1001));
     runtest(assoc_legendre, ns + "_assoc_legendre", uiorder, uiorder,

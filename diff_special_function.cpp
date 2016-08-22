@@ -212,7 +212,7 @@ main()
     //  Associated Legendre functions.
     std::cout << "assoc_legendre" << std::endl;
     basename = "diff_assoc_legendre";
-    rundiff(assoc_legendre, gsl::legendre_Plm, basename,
+    rundiff(assoc_legendre, gsl::assoc_legendre, basename,
 	    "l", vorder, "m", vorder,
 	    "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
 	    		       std::make_pair(true, true), 1001));
