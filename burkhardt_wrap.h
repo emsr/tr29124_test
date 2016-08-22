@@ -1,5 +1,5 @@
 
-namespace gsl
+namespace burkhardt
 {
 
 /// Airy Ai function.
@@ -317,5 +317,5 @@ double owens_t(double h, double a);
 /// Clausen function of order 2.
 double clausen_c(unsigned int m, double w);
 
-} // namespace gsl
+} // namespace burkhardt
 
