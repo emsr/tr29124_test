@@ -1860,10 +1860,10 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
     _AiryState<typename _Airy_series<_Tp>::_Val>
     _Airy_series<_Tp>::_S_Scorer2(typename _Airy_series<_Tp>::_Val __t)
     {
-      constexpr auto _S_cbrt3 = _Real(1.442249570307408382321638310780109588390Q);
+      constexpr auto _S_cbrt_3 = _Real(1.442249570307408382321638310780109588390Q);
       constexpr auto _S_1d3 = _Real{1} / _Real{3};
       constexpr auto _S_2d3 = _Real{2} / _Real{3};
-      const auto __s = _S_cbrt3 * __t;
+      const auto __s = _S_cbrt_3 * __t;
       const std::array<_Real, 3>
 	__cos{ _Real{1} / _Real{2},
 	       _Real{-1},
@@ -1889,10 +1889,10 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
 	  _Gip += __cos[__k % 3] * __gamp * __termp;
 	}
 
-      //const auto __fact = std::tgamma(_S_1d3) / (_S_cbrt3 * _S_cbrt3 * _S_pi);
-      //const auto __factp = std::tgamma(_S_2d3) / (_S_cbrt3 * _S_pi);
-      const auto __fact = _Real{1} / (_S_cbrt3 * _S_cbrt3 * _S_pi);
-      const auto __factp = _Real{1} / (_S_cbrt3 * _S_pi);
+      //const auto __fact = std::tgamma(_S_1d3) / (_S_cbrt_3 * _S_cbrt_3 * _S_pi);
+      //const auto __factp = std::tgamma(_S_2d3) / (_S_cbrt_3 * _S_pi);
+      const auto __fact = _Real{1} / (_S_cbrt_3 * _S_cbrt_3 * _S_pi);
+      const auto __factp = _Real{1} / (_S_cbrt_3 * _S_pi);
       _Gi *= __fact;
       _Gip *= __factp;
       _Hi *= __fact;
@@ -5921,7 +5921,7 @@ template<typename _Tp>
       std::cout << std::showpoint << std::scientific;
       auto width = 8 + std::cout.precision();
 
-      constexpr auto _S_cbrt3 = std::cbrt(_Tp{3});
+      constexpr auto _S_cbrt_3 = _Tp(1.442249570307408382321638310780109588390Q);
       constexpr auto _S_1d3 = _Tp{1} / _Tp{3};
       constexpr auto _S_2d3 = _Tp{2} / _Tp{3};
       const auto _S_gam_1d3 = std::tgamma(_S_1d3);
@@ -5934,8 +5934,8 @@ template<typename _Tp>
 	{
 	  if (__k % 3 == 0)
 	    std::cout << '\n';
-	  __term *= _S_cbrt3 / _Tp(__k);
-	  __termp *= _S_cbrt3 / _Tp(__k);
+	  __term *= _S_cbrt_3 / _Tp(__k);
+	  __termp *= _S_cbrt_3 / _Tp(__k);
 	  const auto __gam = std::tgamma(_Tp(__k + 1) /_Tp{3}) / _S_gam_1d3;
 	  const auto __gamp = std::tgamma(_Tp(__k + 2) /_Tp{3}) / _S_gam_2d3;
 	  std::cout << std::setw(width) << __gam * __term
