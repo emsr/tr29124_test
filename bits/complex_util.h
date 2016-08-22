@@ -62,6 +62,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       };
 
   /**
+   * Create a complex number NaN.
+   */
+  template<>
+    template<typename _Tp>
+      struct __make_NaN<std::complex<_Tp>>
+      {
+	constexpr std::complex<_Tp>
+	operator()()
+	{
+	  auto __NaN = std::numeric_limits<_Tp>::quiet_NaN();
+	  return std::complex<_Tp>{__NaN, __NaN};
+	}
+      };
+
+  /**
    * Return true if one component of a complex number is NaN.
    */
   template<typename _Tp>
