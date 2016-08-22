@@ -6,7 +6,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -DOLD -g -Wall -Wextra -o airy_toy_old ai
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_old > airy_toy.new.old
 
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
- LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_toy.new.new
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_toy.new.new
 */
 
 
@@ -115,21 +115,22 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
   template<typename _Tp>
     struct _AiryState
     {
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = _Tp;
+      using _Scal = std::__detail::__num_traits_t<_Val>;
 
-      _Tp z;
-      _Tp Ai;
-      _Tp Aip;
-      _Tp Bi;
-      _Tp Bip;
+      _Val z;
+      _Val Ai;
+      _Val Aip;
+      _Val Bi;
+      _Val Bip;
 
-      constexpr _Tp
+      constexpr _Val
       Wronskian() const
       { return Ai * Bip - Bi * Aip; }
 
-      static constexpr _Val
+      static constexpr _Scal
       true_Wronskian()
-      { return _Val{1} / __gnu_cxx::__math_constants<_Val>::__pi; }
+      { return _Scal{1} /__gnu_cxx::__math_constants<_Scal>::__pi; }
     };
 
 
@@ -140,15 +141,16 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
   template<typename _Tp>
     struct _AiryAuxilliaryState
     {
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = _Tp;
+      using _Scal = std::__detail::__num_traits_t<_Val>;
 
-      _Tp z;
-      _Tp fai;
-      _Tp faip;
-      _Tp gai;
-      _Tp gaip;
-      _Tp hai;
-      _Tp haip;
+      _Val z;
+      _Val fai;
+      _Val faip;
+      _Val gai;
+      _Val gaip;
+      _Val hai;
+      _Val haip;
     };
 
 
@@ -223,12 +225,14 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
   template<typename _Tp>
     class _Airy_series
     {
-      using __cmplx = std::complex<_Tp>;
+      using _Val = _Tp;
+      using _Scal = std::__detail::__num_traits_t<_Val>;
+      using _Cmplx = std::complex<_Scal>;
 
-    public: // FIXME!!!
-      static constexpr int _N_FGH = 200;
-    private: // FIXME!!!
-      static constexpr _Tp
+    public:
+      static constexpr size_t _N_FGH = 200;
+    private:
+      static constexpr _Scal
       _Fai[_N_FGH]
       {
 	1.666666666666666666666666666666667e-01Q,
@@ -432,8 +436,8 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	6.489430752741692684388317254876664e-935Q,
 	1.805629035264800413018452213376923e-940Q,
       };
-      static constexpr _Tp _S_slope_F{-2.660Q}, _S_intercept_F{-0.778Q};
-      static constexpr _Tp
+      static constexpr _Scal _S_slope_F{-2.660Q}, _S_intercept_F{-0.778Q};
+      static constexpr _Scal
       _Faip[_N_FGH]
       {
 	5.000000000000000000000000000000000e-01Q,
@@ -637,8 +641,8 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	3.874190159386790532579825401161368e-932Q,
 	1.083377421158880247811071328026154e-937Q,
       };
-      static constexpr _Tp _S_slope_Fp{-2.576Q}, _S_intercept_Fp{-0.301Q};
-      static constexpr _Tp
+      static constexpr _Scal _S_slope_Fp{-2.576Q}, _S_intercept_Fp{-0.301Q};
+      static constexpr _Scal
       _Gai[_N_FGH]
       {
 	8.333333333333333333333333333333333e-02Q,
@@ -842,8 +846,8 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	1.253418701829637124999470213118078e-936Q,
 	3.475925407181467346088381067992451e-942Q,
       };
-      static constexpr _Tp _S_slope_G{-2.708Q}, _S_intercept_G{-1.079Q};
-      static constexpr _Tp
+      static constexpr _Scal _S_slope_G{-2.708Q}, _S_intercept_G{-1.079Q};
+      static constexpr _Scal
       _Gaip[_N_FGH]
       {
 	3.333333333333333333333333333333333e-01Q,
@@ -1047,8 +1051,8 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	7.495443836941230007496831874446104e-934Q,
 	2.089031169716061874999117021863463e-939Q,
       };
-      static constexpr _Tp _S_slope_Gp{-2.632Q}, _S_intercept_Gp{-0.477Q};
-      static constexpr _Tp
+      static constexpr _Scal _S_slope_Gp{-2.632Q}, _S_intercept_Gp{-0.477Q};
+      static constexpr _Scal
       _Hai[_N_FGH]
       {
 	2.500000000000000000000000000000000e-02Q,
@@ -1252,8 +1256,8 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	1.655208156210878302167483658544363e-938Q,
 	4.574900515228987960728474852389880e-944Q,
       };
-      static constexpr _Tp _S_slope_H{-2.75Q}, _S_intercept_H{-1.25Q};
-      static constexpr _Tp
+      static constexpr _Scal _S_slope_H{-2.75Q}, _S_intercept_H{-1.25Q};
+      static constexpr _Scal
       _Haip[_N_FGH]
       {
 	1.250000000000000000000000000000000e-01Q,
@@ -1457,151 +1461,155 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	9.914696855703161029983227114680735e-936Q,
 	2.754090110167850752358541861138708e-941Q,
       };
-      static constexpr _Tp _S_slope_Hp{-2.625Q}, _S_intercept_Hp{-0.6Q};
+      static constexpr _Scal _S_slope_Hp{-2.625Q}, _S_intercept_Hp{-0.6Q};
 
     public:
 
-      static constexpr _Tp _S_eps = __gnu_cxx::__epsilon(_Tp{});
-      static constexpr _Tp _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      static constexpr _Tp _S_sqrt_pi
-      		 = __gnu_cxx::__math_constants<_Tp>::__root_pi;
-      static constexpr _Tp _S_Ai0
-      		 = _Tp{3.550280538878172392600631860041831763980e-1Q};
-      static constexpr _Tp _S_Aip0
-      		 = _Tp{-2.588194037928067984051835601892039634793e-1Q};
-      static constexpr _Tp _S_Bi0
-      		 = _Tp{6.149266274460007351509223690936135535960e-1Q};
+      static constexpr auto _S_eps = __gnu_cxx::__epsilon(_Scal{});
+      static constexpr auto _S_pi
+		 = __gnu_cxx::__math_constants<_Scal>::__pi;
+      static constexpr auto _S_sqrt_pi
+		 = __gnu_cxx::__math_constants<_Scal>::__root_pi;
+      static constexpr auto _S_Ai0
+		 = _Scal{3.550280538878172392600631860041831763980e-1Q};
+      static constexpr auto _S_Aip0
+		 = _Scal{-2.588194037928067984051835601892039634793e-1Q};
+      static constexpr auto _S_Bi0
+		 = _Scal{6.149266274460007351509223690936135535960e-1Q};
       static constexpr _Tp _S_Bip0
-      		 = _Tp{4.482883573538263579148237103988283908668e-1Q};
-      static constexpr _Tp _S_Hi0
-      		 = _Tp{4.099510849640004901006149127290757023959e-1Q};
-      static constexpr _Tp _S_Hip0
-      		 = _Tp{2.988589049025509052765491402658855939102e-1Q};
-      static constexpr _Tp _S_Gi0
-      		 = _Tp{2.049755424820002450503074563645378511979e-1Q};
-      static constexpr _Tp _S_Gip0
-      		 = _Tp{1.494294524512754526382745701329427969551e-1Q};
-      static constexpr __cmplx _S_i{_Tp{0}, _Tp{1}};
-      static constexpr _Tp _S_log10min = __gnu_cxx::__log10_min(_Tp{});
+		 = _Scal{4.482883573538263579148237103988283908668e-1Q};
+      static constexpr auto _S_Hi0
+		 = _Scal{4.099510849640004901006149127290757023959e-1Q};
+      static constexpr auto _S_Hip0
+		 = _Scal{2.988589049025509052765491402658855939102e-1Q};
+      static constexpr auto _S_Gi0
+		 = _Scal{2.049755424820002450503074563645378511979e-1Q};
+      static constexpr auto _S_Gip0
+		 = _Scal{1.494294524512754526382745701329427969551e-1Q};
+      static constexpr _Cmplx _S_i{_Scal{0}, _Scal{1}};
+      static const _Scal _S_log10min;
 
-      static _AiryState<std::complex<_Tp>>
-      _S_Airy(std::complex<_Tp> __t);
+      static _AiryState<_Val>
+      _S_Airy(_Val __t);
 
-      static _AiryState<std::complex<_Tp>>
-      _S_Fock(std::complex<_Tp> __t);
+      static _AiryState<_Cmplx>
+      _S_Fock(_Val __t);
 
-      static std::pair<std::complex<_Tp>, std::complex<_Tp>>
-      _S_Ai(std::complex<_Tp> __t);
+      static std::pair<_Val, _Val>
+      _S_Ai(_Val __t);
 
-      static std::pair<std::complex<_Tp>, std::complex<_Tp>>
-      _S_Bi(std::complex<_Tp> __t);
+      static std::pair<_Val, _Val>
+      _S_Bi(_Val __t);
 
-      static _AiryAuxilliaryState<std::complex<_Tp>>
-      _S_FGH(std::complex<_Tp> __t);
+      static _AiryAuxilliaryState<_Val>
+      _S_FGH(_Val __t);
 
-      static _AiryState<std::complex<_Tp>>
-      _S_Scorer(std::complex<_Tp> __t);
-      static _AiryState<std::complex<_Tp>>
-      _S_Scorer2(std::complex<_Tp> __t);
+      static _AiryState<_Val>
+      _S_Scorer(_Val __t);
+      static _AiryState<_Val>
+      _S_Scorer2(_Val __t);
 
     private:
 
-      static _AiryState<std::complex<_Tp>>
-      _S_AiryHelp(std::complex<_Tp> __t, bool __return_fock_airy = false);
+      static _AiryState<_Val>
+      _S_AiryUV(_Val __t);
 
-      std::pair<std::complex<_Tp>, std::complex<_Tp>>
-      static _S_AiBi(std::complex<_Tp> __t, std::pair<_Tp, _Tp> _Z0);
+      std::pair<_Val, _Val>
+      static _S_AiBi(_Val __t, std::pair<_Val, _Val> _Z0);
     };
 
   template<typename _Tp>
-    constexpr _Tp
+    constexpr typename _Airy_series<_Tp>::_Scal
     _Airy_series<_Tp>::_Fai[_N_FGH];
 
   template<typename _Tp>
-    constexpr _Tp
+    constexpr typename _Airy_series<_Tp>::_Scal
     _Airy_series<_Tp>::_Faip[_N_FGH];
 
   template<typename _Tp>
-    constexpr _Tp
+    constexpr typename _Airy_series<_Tp>::_Scal
     _Airy_series<_Tp>::_Gai[_N_FGH];
 
   template<typename _Tp>
-    constexpr _Tp
+    constexpr typename _Airy_series<_Tp>::_Scal
     _Airy_series<_Tp>::_Gaip[_N_FGH];
 
   template<typename _Tp>
-    constexpr _Tp
+    constexpr typename _Airy_series<_Tp>::_Scal
     _Airy_series<_Tp>::_Hai[_N_FGH];
 
   template<typename _Tp>
-    constexpr _Tp
+    constexpr typename _Airy_series<_Tp>::_Scal
     _Airy_series<_Tp>::_Haip[_N_FGH];
 
   // Type-dependent limits for the arrays.
   // FIXME: Make these limits digits10-based.
   template<typename _Tp>
-    constexpr int __max_FGH = _Airy_series<_Tp>::_N_FGH;
+    constexpr size_t
+    __max_FGH = _Airy_series<_Tp>::_N_FGH;
 
   template<>
-    constexpr int __max_FGH<float> = 15;
+    constexpr size_t
+    __max_FGH<float> = 15;
 
   template<>
-    constexpr int __max_FGH<double> = 79;
-
+    constexpr size_t
+    __max_FGH<double> = 79;
+/*
   template<typename _Tp>
-    constexpr _Tp
+    constexpr typename _Airy_series<_Tp>::_Scal
     _Airy_series<_Tp>::_S_eps;
 
   template<typename _Tp>
-    constexpr _Tp
+    constexpr typename _Airy_series<_Tp>::_Scal
     _Airy_series<_Tp>::_S_pi;
 
   template<typename _Tp>
-    constexpr _Tp
+    constexpr typename _Airy_series<_Tp>::_Scal
     _Airy_series<_Tp>::_S_sqrt_pi;
 
   template<typename _Tp>
-    constexpr _Tp
+    constexpr typename _Airy_series<_Tp>::_Scal
     _Airy_series<_Tp>::_S_Ai0;
 
   template<typename _Tp>
-    constexpr _Tp
+    constexpr typename _Airy_series<_Tp>::_Scal
     _Airy_series<_Tp>::_S_Aip0;
 
   template<typename _Tp>
-    constexpr _Tp
+    constexpr typename _Airy_series<_Tp>::_Scal
     _Airy_series<_Tp>::_S_Bi0;
 
   template<typename _Tp>
-    constexpr _Tp
+    constexpr typename _Airy_series<_Tp>::_Scal
     _Airy_series<_Tp>::_S_Bip0;
 
   template<typename _Tp>
-    constexpr _Tp
+    constexpr typename _Airy_series<_Tp>::_Scal
     _Airy_series<_Tp>::_S_Hi0;
 
   template<typename _Tp>
-    constexpr _Tp
+    constexpr typename _Airy_series<_Tp>::_Scal
     _Airy_series<_Tp>::_S_Hip0;
 
   template<typename _Tp>
-    constexpr _Tp
+    constexpr typename _Airy_series<_Tp>::_Scal
     _Airy_series<_Tp>::_S_Gi0;
 
   template<typename _Tp>
-    constexpr _Tp
+    constexpr typename _Airy_series<_Tp>::_Scal
     _Airy_series<_Tp>::_S_Gip0;
 
   template<typename _Tp>
-    constexpr std::complex<_Tp>
+    constexpr typename _Airy_series<_Tp>::_Cmplx
     _Airy_series<_Tp>::_S_i;
-
+*/
   template<typename _Tp>
-    constexpr _Tp
-    _Airy_series<_Tp>::_S_log10min;
+    const typename _Airy_series<_Tp>::_Scal
+    _Airy_series<_Tp>::_S_log10min = __gnu_cxx::__log10_min(_Scal{});
 
   /**
-   * Return the Airy functions by using the series expansions of
+   * Return auxilliary Airy functions by using the series expansions of
    * the auxilliary Airy functions:
    * @f[
    *    fai(x) = \sum_{k=0}^\infty \frac{(2k+1)!!!x^{3k}}{(2k+1)!}
@@ -1609,12 +1617,12 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
    * @f[
    *    gai(x) = \sum_{k=0}^\infty \frac{(2k+2)!!!x^{3k+1}}{(2k+2)!}
    * @f]
-   * The Airy functions are then defined by:
+   * The auxilliary Airy functions are then defined by:
    * @f[
-   *    Ai(x) = Ai(0)fai(x) + Ai'(0)gai(x)
+   *    U(x) = \sqrt{\pi} \left[Bi(0) F(x) + Bi'(0) G(x)\left]
    * @f]
    * @f[
-   *    Bi(x) = Bi(0)fai(x) + Bi'(0)gai(x)
+   *    V(x) = \sqrt{\pi} \left[Ai(0) F(x) + Ai'(0) G(x)\left]
    * @f]
    * where @f$ Ai(0) = 3^{-2/3}/\Gamma(2/3) @f$, @f$ Ai'(0) = -3{-1/2}Bi'(0) @f$
    * and @f$ Bi(0) = 3^{1/2}Ai(0) @f$, @f$ Bi'(0) = 3^{1/6}/\Gamma(1/3) @f$
@@ -1622,17 +1630,16 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
    * @tparam _Tp A real type
    */
   template<typename _Tp>
-    _AiryState<std::complex<_Tp>>
-    _Airy_series<_Tp>::_S_AiryHelp(std::complex<_Tp> __t,
-				   bool __return_fock_airy)
+    _AiryState<typename _Airy_series<_Tp>::_Val>
+    _Airy_series<_Tp>::_S_AiryUV(typename _Airy_series<_Tp>::_Val __t)
     {
       const auto __log10t = std::log10(std::abs(__t));
       const auto __ttt = __t * __t * __t;
 
-      auto __term = __cmplx{_Tp{1}};
-      auto _F = __cmplx{_Tp{1}};
+      auto __term = _Val{1};
+      auto _F = _Val{1};
       auto _G = __t;
-      for (int __n = 0; __n < __max_FGH<_Tp>; ++__n)
+      for (size_t __n = 0; __n < __max_FGH<_Scal>; ++__n)
 	{
 	  if (std::abs(__t) < _S_eps)
 	    break;
@@ -1647,10 +1654,10 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
       auto _UU = _S_sqrt_pi * (_S_Bi0 * _F + _S_Bip0 * _G);
       auto _VV = _S_sqrt_pi * (_S_Ai0 * _F + _S_Aip0 * _G);
 
-      __term = __cmplx{_Tp{1}};
-      auto _Fp = __cmplx{_Tp{0}};
-      auto _Gp = __cmplx{_Tp{1}};
-      for (int __n = 0; __n < __max_FGH<_Tp>; ++__n)
+      __term = _Val{1};
+      auto _Fp = _Val{0};
+      auto _Gp = _Val{1};
+      for (size_t __n = 0; __n < __max_FGH<_Scal>; ++__n)
 	{
 	  if (std::abs(__t) < _S_eps)
 	    break;
@@ -1665,22 +1672,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
       auto _UUp = _S_sqrt_pi * (_S_Bi0 * _Fp + _S_Bip0 * _Gp);
       auto _VVp = _S_sqrt_pi * (_S_Ai0 * _Fp + _S_Aip0 * _Gp);
 
-      if (!__return_fock_airy)
-	{
-	  auto _Bi = _UU / _S_sqrt_pi;
-	  auto _Ai = _VV / _S_sqrt_pi;
-	  auto _Bip = _UUp / _S_sqrt_pi;
-	  auto _Aip = _VVp / _S_sqrt_pi;
-	  return _AiryState<std::complex<_Tp>>{__t, _Ai, _Aip, _Bi, _Bip};
-	}
-      else
-	{
-	  auto __w1 = _UU - _S_i * _VV;
-	  auto __w2 = _UU + _S_i * _VV;
-	  auto __w1p = _UUp - _S_i * _VVp;
-	  auto __w2p = _UUp + _S_i * _VVp;
-	  return _AiryState<std::complex<_Tp>>{__t, __w1, __w1p, __w2, __w2p};
-	}
+      return _AiryState<_Val>{__t, _UU, _UUp, _VV, _VVp};
     }
 
   /**
@@ -1702,9 +1694,13 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
    * @tparam _Tp A real type
    */
   template<typename _Tp>
-    std::pair<std::complex<_Tp>, std::complex<_Tp>>
-    _Airy_series<_Tp>::_S_Ai(std::complex<_Tp> __t)
-    { return _S_AiBi(__t, std::make_pair(_S_Ai0, _S_Aip0)); }
+    std::pair<typename _Airy_series<_Tp>::_Val,
+	      typename _Airy_series<_Tp>::_Val>
+    _Airy_series<_Tp>::_S_Ai(typename _Airy_series<_Tp>::_Val __t)
+    {
+      return _S_AiBi(__t, std::make_pair(_Val(_S_Ai0),
+					 _Val(_S_Aip0)));
+    }
 
   /**
    * Return the Airy function of the second kind and its derivative
@@ -1725,9 +1721,13 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
    * @tparam _Tp A real type
    */
   template<typename _Tp>
-    std::pair<std::complex<_Tp>, std::complex<_Tp>>
-    _Airy_series<_Tp>::_S_Bi(std::complex<_Tp> __t)
-    { return _S_AiBi(__t, std::make_pair(_S_Bi0, _S_Bip0)); }
+    std::pair<typename _Airy_series<_Tp>::_Val,
+	      typename _Airy_series<_Tp>::_Val>
+    _Airy_series<_Tp>::_S_Bi(typename _Airy_series<_Tp>::_Val __t)
+    {
+      return _S_AiBi(__t, std::make_pair(_Val(_S_Bi0),
+					 _Val(_S_Bip0)));
+    }
 
   /**
    * Return the auxilliary Airy functions:
@@ -1744,22 +1744,22 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
    * @tparam _Tp A real type
    */
   template<typename _Tp>
-    _AiryAuxilliaryState<std::complex<_Tp>>
-    _Airy_series<_Tp>::_S_FGH(std::complex<_Tp> __t)
+    _AiryAuxilliaryState<typename _Airy_series<_Tp>::_Val>
+    _Airy_series<_Tp>::_S_FGH(typename _Airy_series<_Tp>::_Val __t)
     {
       const auto __log10t = std::log10(std::abs(__t));
       const auto __tt = __t * __t;
       const auto __ttt = __t * __tt;
 
-      auto __term = __cmplx{_Tp{1}};
-      auto _F = __cmplx{_Tp{1}};
+      auto __term = _Val{1};
+      auto _F = _Val{1};
       auto _G = __t;
       auto _H = __t * __t / _Tp{2};
-      for (int __n = 0; __n < __max_FGH<_Tp>; ++__n)
+      for (size_t __n = 0; __n < __max_FGH<_Scal>; ++__n)
 	{
 	  if (std::abs(__t) < _S_eps)
 	    break;
-	  auto __xx = __log10t * (3 * (__n + 2) + 1)
+	  auto __xx = __log10t * _Scal(3 * (__n + 2) + 1)
 		    + _S_slope_H * __n + _S_intercept_H;
 	  if (__xx < _S_log10min)
 	    break;
@@ -1769,15 +1769,15 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	  _H += _Hai[__n] * __term * __tt;
 	}
 
-      __term = __cmplx{_Tp{1}};
-      auto _Fp = __cmplx{_Tp{0}};
-      auto _Gp = __cmplx{_Tp{1}};
+      __term = _Val{1};
+      auto _Fp = _Val{0};
+      auto _Gp = _Val{1};
       auto _Hp = __t;
-      for (int __n = 0; __n < __max_FGH<_Tp>; ++__n)
+      for (size_t __n = 0; __n < __max_FGH<_Scal>; ++__n)
 	{
 	  if (std::abs(__t) < _S_eps)
 	    break;
-	  auto __xx = __log10t * 3 * (__n + 2)
+	  auto __xx = __log10t * _Scal(3 * (__n + 2))
 		    + _S_slope_Hp * __n + _S_intercept_Hp;
 	  if (__xx < _S_log10min)
 	    break;
@@ -1787,7 +1787,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	  _Hp += _Haip[__n] * __term * __t;
 	}
 
-      return _AiryAuxilliaryState<std::complex<_Tp>>{__t, _F, _G, _H, _Fp, _Gp, _Hp};
+      return _AiryAuxilliaryState<_Val>{__t, _F, _G, _H, _Fp, _Gp, _Hp};
     }
 
   /**
@@ -1818,8 +1818,8 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
    * @tparam _Tp A real type
    */
   template<typename _Tp>
-    _AiryState<std::complex<_Tp>>
-    _Airy_series<_Tp>::_S_Scorer(std::complex<_Tp> __t)
+    _AiryState<typename _Airy_series<_Tp>::_Val>
+    _Airy_series<_Tp>::_S_Scorer(typename _Airy_series<_Tp>::_Val __t)
     {
       auto __aux = FGH(__t);
 
@@ -1830,7 +1830,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
       auto _Gi = _Bi - _Hi;
       auto _Gip = _Bip - _Hip;
 
-      return _AiryState<std::complex<_Tp>>{__t, _Gi, _Gip, _Hi, _Hip};
+      return _AiryState<_Val>{__t, _Gi, _Gip, _Hi, _Hip};
     }
 
   /**
@@ -1855,30 +1855,32 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
    * @f]
    */
   template<typename _Tp>
-    _AiryState<std::complex<_Tp>>
-    _Airy_series<_Tp>::_S_Scorer2(std::complex<_Tp> __t)
+    _AiryState<typename _Airy_series<_Tp>::_Val>
+    _Airy_series<_Tp>::_S_Scorer2(typename _Airy_series<_Tp>::_Val __t)
     {
-      constexpr auto _S_cbrt3 = std::cbrt(_Tp{3});//__gnu_cxx::__math_constants<_Tp>::__root_3;
-      constexpr auto _S_1d3 = _Tp{1} / _Tp{3};
-      constexpr auto _S_2d3 = _Tp{2} / _Tp{3};
+      constexpr auto _S_cbrt3 = std::cbrt(_Scal{3});//__gnu_cxx::__math_constants<_Tp>::__root_3;
+      constexpr auto _S_1d3 = _Scal{1} / _Scal{3};
+      constexpr auto _S_2d3 = _Scal{2} / _Scal{3};
       const auto __s = _S_cbrt3 * __t;
-      const std::array<_Tp, 3>
-	__cos{ _Tp{1} / _Tp{2}, _Tp{-1}, _Tp{1} / _Tp{2} };
-      auto _Hi = __cmplx{std::tgamma(_S_1d3)};
-      auto _Hip = __cmplx{std::tgamma(_S_2d3)};
-      auto _Gi = __cmplx{__cos[2] * std::tgamma(_S_1d3)};
-      auto _Gip = __cmplx{__cos[0] * std::tgamma(_S_2d3)};
-      auto __term = __cmplx(_Tp{1});
-      auto __termp = __cmplx(_Tp{1});
-      for (int __k = 1; __k < __max_FGH<_Tp>; ++__k)
+      const std::array<_Scal, 3>
+	__cos{ _Scal{1} / _Scal{2},
+	       _Scal{-1},
+	       _Scal{1} / _Scal{2} };
+      auto _Hi = _Val{std::tgamma(_S_1d3)};
+      auto _Hip = _Val{std::tgamma(_S_2d3)};
+      auto _Gi = _Val{__cos[2] * std::tgamma(_S_1d3)};
+      auto _Gip = _Val{__cos[0] * std::tgamma(_S_2d3)};
+      auto __term = _Val{1};
+      auto __termp = _Val{1};
+      for (size_t __k = 1; __k < __max_FGH<_Scal>; ++__k)
 	{
 	  __term *= __s / _Tp(__k);
 	  __termp *= __s / _Tp(__k);
 	  if (std::abs(__term) < _S_eps)
 	    break;
 
-	  const auto __gam = std::tgamma(_Tp(__k + 1) /_Tp{3});
-	  const auto __gamp = std::tgamma(_Tp(__k + 2) /_Tp{3});
+	  const auto __gam = std::tgamma(_Scal(__k + 1) /_Scal{3});
+	  const auto __gamp = std::tgamma(_Scal(__k + 2) /_Scal{3});
 	  _Hi += __gam * __term;
 	  _Hip += __gamp * __termp;
 	  _Gi += __cos[(__k + 2) % 3] * __gam * __term;
@@ -1887,14 +1889,14 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 
       //const auto __fact = std::tgamma(_S_1d3) / (_S_cbrt3 * _S_cbrt3 * _S_pi);
       //const auto __factp = std::tgamma(_S_2d3) / (_S_cbrt3 * _S_pi);
-      const auto __fact = _Tp{1} / (_S_cbrt3 * _S_cbrt3 * _S_pi);
-      const auto __factp = _Tp{1} / (_S_cbrt3 * _S_pi);
+      const auto __fact = _Scal{1} / (_S_cbrt3 * _S_cbrt3 * _S_pi);
+      const auto __factp = _Scal{1} / (_S_cbrt3 * _S_pi);
       _Gi *= __fact;
       _Gip *= __factp;
       _Hi *= __fact;
       _Hip *= __factp;
 
-      return _AiryState<std::complex<_Tp>>{__t, _Gi, _Gip, _Hi, _Hip};
+      return _AiryState<_Val>{__t, _Gi, _Gip, _Hi, _Hip};
     }
 
   /**
@@ -1906,19 +1908,21 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
    * @tparam _Tp A real type
    */
   template<typename _Tp>
-    std::pair<std::complex<_Tp>, std::complex<_Tp>>
-    _Airy_series<_Tp>::_S_AiBi(std::complex<_Tp> __t, std::pair<_Tp, _Tp> _Z0)
+    std::pair<typename _Airy_series<_Tp>::_Val,
+	      typename _Airy_series<_Tp>::_Val>
+    _Airy_series<_Tp>::_S_AiBi(typename _Airy_series<_Tp>::_Val __t,
+			       std::pair<_Val, _Val> _Z0)
     {
       const auto __log10t = std::log10(std::abs(__t));
       const auto __ttt = __t * __t * __t;
 
-      auto __termF = _Z0.first * __cmplx{_Tp{1}};
+      auto __termF = _Z0.first * _Val{1};
       auto __termG = _Z0.second * __t;
       auto _Ai = __termF + __termG;
       if (std::abs(__t) >= _S_eps)
-	for (int __n = 0; __n < __max_FGH<_Tp>; ++__n)
+	for (size_t __n = 0; __n < __max_FGH<_Tp>; ++__n)
 	  {
-	    auto __xx = __log10t * (3 * (__n + 1) + 1)
+	    auto __xx = __log10t * _Scal(3 * (__n + 1) + 1)
 		      + _S_slope_G * __n + _S_intercept_G;
 	    if (__xx < _S_log10min)
 	      break;
@@ -1927,17 +1931,17 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	    _Ai += _Fai[__n] * __termF + _Gai[__n] * __termG;
 	  }
 
-      __termF = _Z0.first * __cmplx{_Tp{1}};
-      __termG = _Z0.second * __cmplx{_Tp{1}};
+      __termF = _Z0.first * _Val{1};
+      __termG = _Z0.second * _Val{1};
       auto _Aip = __termG;
       if (std::abs(__t) >= _S_eps)
 	{
 	  __termF *= __t * __t;
 	  __termG *= __ttt;
 	  _Aip += _Faip[0] * __termF + _Gaip[0] * __termG;
-	  for (int __n = 1; __n < __max_FGH<_Tp>; ++__n)
+	  for (size_t __n = 1; __n < __max_FGH<_Tp>; ++__n)
 	    {
-	      auto __xx = __log10t * 3 * (__n + 1)
+	      auto __xx = __log10t * _Scal(3 * (__n + 1))
 			+ _S_slope_Gp * __n + _S_intercept_Gp;
 	      if (__xx < _S_log10min)
 		break;
@@ -1951,16 +1955,23 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
     }
 
   /**
-   * Return the Fock-type Airy functions @f$ Ai(t) @f$, and @f$ Bi(t) @f$
+   * Return the Airy functions @f$ Ai(t) @f$, and @f$ Bi(t) @f$
    * and their derivatives of complex argument.
    *
    * @tparam _Tp A real type
    * @param __t The complex argument
    */
   template<typename _Tp>
-    _AiryState<std::complex<_Tp>>
-    _Airy_series<_Tp>::_S_Airy(std::complex<_Tp> __t)
-    { return _S_AiryHelp(__t, false); }
+    _AiryState<typename _Airy_series<_Tp>::_Val>
+    _Airy_series<_Tp>::_S_Airy(typename _Airy_series<_Tp>::_Val __t)
+    {
+      auto _UV = _S_AiryUV(__t);
+      auto _Bi = _UV.Ai / _S_sqrt_pi;
+      auto _Ai = _UV.Bi / _S_sqrt_pi;
+      auto _Bip = _UV.Aip / _S_sqrt_pi;
+      auto _Aip = _UV.Bip / _S_sqrt_pi;
+      return _AiryState<_Val>{__t, _Ai, _Aip, _Bi, _Bip};
+    }
 
   /**
    * Return the Fock-type Airy functions @f$ w_1(t) @f$, and @f$ w_2(t) @f$
@@ -1970,9 +1981,16 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
    * @param __t The complex argument
    */
   template<typename _Tp>
-    _AiryState<std::complex<_Tp>>
-    _Airy_series<_Tp>::_S_Fock(std::complex<_Tp> __t)
-    { return _S_AiryHelp(__t, true); }
+    _AiryState<typename _Airy_series<_Tp>::_Cmplx>
+    _Airy_series<_Tp>::_S_Fock(typename _Airy_series<_Tp>::_Val __t)
+    {
+      auto _UV = _S_AiryUV(__t);
+      auto __w1 = _UV.Ai - _S_i * _UV.Bi;
+      auto __w2 = _UV.Ai + _S_i * _UV.Bi;
+      auto __w1p = _UV.Aip - _S_i * _UV.Bip;
+      auto __w2p = _UV.Aip + _S_i * _UV.Bip;
+      return _AiryState<_Cmplx>{__t, __w1, __w1p, __w2, __w2p};
+    }
 
   /**
    * A class encapsulating data for the asymptotic expansions of Airy functions
@@ -1988,7 +2006,29 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
   template<>
     struct _Airy_asymp_data<float>
     {
-      static constexpr int _S_max_cd = 43;
+      static constexpr size_t _S_max_cd = 43;
+
+      template<typename _Up>
+        static constexpr size_t
+        _S_max = _S_max_cd;
+
+      template<typename _Up>
+        static constexpr _Up
+        __c(size_t __i)
+        {
+          return __i < _S_max<_Up>
+               ? static_cast<_Up>(_S_c[__i])
+               : std::numeric_limits<_Up>::infinity();
+        }
+
+      template<typename _Up>
+        static constexpr _Up
+        __d(size_t __i)
+        {
+          return __i < _S_max<_Up>
+               ? static_cast<_Up>(_S_d[__i])
+               : -std::numeric_limits<_Up>::infinity();
+        }
 
       static constexpr float
       _S_c[_S_max_cd]
@@ -2087,6 +2127,22 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
       };
     };
 
+  template<>
+    constexpr size_t
+    _Airy_asymp_data<float>::_S_max<float> = 43;
+
+  template<>
+    constexpr size_t
+    _Airy_asymp_data<float>::_S_max<double> = 43;
+
+  template<>
+    constexpr size_t
+    _Airy_asymp_data<float>::_S_max<long double> = 43;
+
+  template<>
+    constexpr size_t
+    _Airy_asymp_data<float>::_S_max<__float128> = 43;
+
   constexpr float
   _Airy_asymp_data<float>::_S_c[_Airy_asymp_data<float>::_S_max_cd];
 
@@ -2097,7 +2153,29 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
   template<>
     struct _Airy_asymp_data<double>
     { 
-      static constexpr int _S_max_cd = 198;
+      static constexpr size_t _S_max_cd = 198;
+
+      template<typename _Up>
+        static constexpr size_t
+        _S_max = _S_max_cd;
+
+      template<typename _Up>
+        static constexpr _Up
+        __c(size_t __i)
+        {
+          return __i < _S_max<_Up>
+               ? static_cast<_Up>(_S_c[__i])
+               : std::numeric_limits<_Up>::infinity();
+        }
+
+      template<typename _Up>
+        static constexpr _Up
+        __d(size_t __i)
+        {
+          return __i < _S_max<_Up>
+               ? static_cast<_Up>(_S_d[__i])
+               : -std::numeric_limits<_Up>::infinity();
+        }
 
       static constexpr double
       _S_c[_S_max_cd]
@@ -2506,6 +2584,22 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
       };
     };
 
+  template<>
+    constexpr size_t
+    _Airy_asymp_data<double>::_S_max<float> = 43;
+
+  template<>
+    constexpr size_t
+    _Airy_asymp_data<double>::_S_max<double> = 198;
+
+  template<>
+    constexpr size_t
+    _Airy_asymp_data<double>::_S_max<long double> = 198;
+
+  template<>
+    constexpr size_t
+    _Airy_asymp_data<double>::_S_max<__float128> = 198;
+
   constexpr double
   _Airy_asymp_data<double>::_S_c[_Airy_asymp_data<double>::_S_max_cd];
 
@@ -2516,7 +2610,29 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
   template<>
     struct _Airy_asymp_data<long double>
     {
-      static constexpr int _S_max_cd = 201;
+      static constexpr size_t _S_max_cd = 201;
+
+      template<typename _Up>
+        static constexpr size_t
+        _S_max = _S_max_cd;
+
+      template<typename _Up>
+        static constexpr _Up
+        __c(size_t __i)
+        {
+          return __i < _S_max<_Up>
+               ? static_cast<_Up>(_S_c[__i])
+               : std::numeric_limits<_Up>::infinity();
+        }
+
+      template<typename _Up>
+        static constexpr _Up
+        __d(size_t __i)
+        {
+          return __i < _S_max<_Up>
+               ? static_cast<_Up>(_S_d[__i])
+               : -std::numeric_limits<_Up>::infinity();
+        }
 
       static constexpr long double
       _S_c[_S_max_cd]
@@ -2931,6 +3047,22 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
       };
     };
 
+  template<>
+    constexpr size_t
+    _Airy_asymp_data<long double>::_S_max<float> = 43;
+
+  template<>
+    constexpr size_t
+    _Airy_asymp_data<long double>::_S_max<double> = 198;
+
+  template<>
+    constexpr size_t
+    _Airy_asymp_data<long double>::_S_max<long double> = 201;
+
+  template<>
+    constexpr size_t
+    _Airy_asymp_data<long double>::_S_max<__float128> = 201;
+
   constexpr long double
   _Airy_asymp_data<long double>::_S_c[_Airy_asymp_data<long double>::_S_max_cd];
 
@@ -2941,7 +3073,29 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
   template<>
     struct _Airy_asymp_data<__float128>
     {
-      static constexpr int _S_max_cd = 201;
+      static constexpr size_t _S_max_cd = 201;
+
+      template<typename _Up>
+        static constexpr size_t
+        _S_max = _S_max_cd;
+
+      template<typename _Up>
+        static constexpr _Up
+        __c(size_t __i)
+        {
+          return __i < _S_max<_Up>
+               ? static_cast<_Up>(_S_c[__i])
+               : std::numeric_limits<_Up>::infinity();
+        }
+
+      template<typename _Up>
+        static constexpr _Up
+        __d(size_t __i)
+        {
+          return __i < _S_max<_Up>
+               ? static_cast<_Up>(_S_d[__i])
+               : -std::numeric_limits<_Up>::infinity();
+        }
 
       static constexpr __float128
       _S_c[_S_max_cd]
@@ -3356,6 +3510,22 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
       };
     };
 
+  template<>
+    constexpr size_t
+    _Airy_asymp_data<__float128>::_S_max<float> = 43;
+
+  template<>
+    constexpr size_t
+    _Airy_asymp_data<__float128>::_S_max<double> = 198;
+
+  template<>
+    constexpr size_t
+    _Airy_asymp_data<__float128>::_S_max<long double> = 201;
+
+  template<>
+    constexpr size_t
+    _Airy_asymp_data<__float128>::_S_max<__float128> = 201;
+
   constexpr __float128
   _Airy_asymp_data<__float128>::_S_c[_Airy_asymp_data<__float128>::_S_max_cd];
 
@@ -3375,22 +3545,24 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 
     public:
 
-      using __cmplx = std::complex<_Tp>;
+      using _Val = _Tp;
+      using _Scal = std::__detail::__num_traits_t<_Val>;
+      using _Cmplx = std::complex<_Scal>;
 
       constexpr _Airy_asymp() = default;
 
-      _AiryState<std::complex<_Tp>>
-      operator()(std::complex<_Tp> __t, bool __return_fock_airy = false) const;
+      _AiryState<_Cmplx>
+      operator()(_Cmplx __t, bool __return_fock_airy = false) const;
 
-      _AiryState<std::complex<_Tp>>
-      _S_absarg_ge_pio3(std::complex<_Tp> __z) const;
+      _AiryState<_Cmplx>
+      _S_absarg_ge_pio3(_Cmplx __z) const;
 
-      _AiryState<std::complex<_Tp>>
-      _S_absarg_lt_pio3(std::complex<_Tp> __z) const;
+      _AiryState<_Cmplx>
+      _S_absarg_lt_pio3(_Cmplx __z) const;
 
     private:
-      std::pair<std::complex<_Tp>, std::complex<_Tp>>
-      _S_absarg_ge_pio3_help(std::complex<_Tp> __z, int __sign = -1) const;
+      std::pair<_Cmplx, _Cmplx>
+      _S_absarg_ge_pio3_help(_Cmplx __z, int __sign = -1) const;
     };
 
   /**
@@ -3400,67 +3572,68 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
    * @tparam _Tp A real type
    */
   template<typename _Tp>
-    _AiryState<std::complex<_Tp>>
-    _Airy_asymp<_Tp>::operator()(std::complex<_Tp> __t,
+    _AiryState<typename _Airy_asymp<_Tp>::_Cmplx>
+    _Airy_asymp<_Tp>::operator()(typename _Airy_asymp<_Tp>::_Cmplx __t,
 				 bool __return_fock_airy) const
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
-      constexpr auto _S_i = __cmplx(_Tp{0}, _Tp{1});
-      if (std::real(__t) > _Tp{0})
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Scal>::__pi;
+      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Scal>::__root_pi;
+      constexpr auto _S_i = _Cmplx(0, 1);
+      if (std::real(__t) > _Scal{0})
 	{
-	  auto __zeta0 = _Tp{2} * std::pow(__t, _Tp{1.5L}) / _Tp{3};
-	  auto __t0p1d4 = std::pow(__t, _Tp{0.25L});
+	  auto __zeta0 = _Scal{2} * std::pow(__t, _Scal{1.5L}) / _Scal{3};
+	  auto __t0p1d4 = std::pow(__t, _Scal{0.25L});
 	  auto __ezeta0 = std::exp(-__zeta0);
-	  auto _Ai = __cmplx{_Tp{1}};
-	  auto _Aip = __cmplx{_Tp{1}};
-	  auto __fact0 = -_Tp{1} / __zeta0;
-	  auto __izeta0 = __cmplx{_Tp{1}};
-	  auto __prev_Ai0 = _Tp{1};
-	  auto __prev_Aip0 = _Tp{1};
-	  for (int __n = 1; __n < _Airy_asymp_data<_Tp>::_S_max_cd; ++__n)
+	  auto _Ai = _Cmplx{1};
+	  auto _Aip = _Cmplx{1};
+	  auto __fact0 = _Scal{-1} / __zeta0;
+	  auto __izeta0 = _Cmplx{1};
+	  auto __prev_Ai0 = _Scal{1};
+	  auto __prev_Aip0 = _Scal{1};
+	  for (size_t __n = 1; __n < _Airy_asymp_data<_Scal>::_S_max_cd; ++__n)
 	    {
 	      __izeta0 *= __fact0;
-	      auto __term = _Airy_asymp_data<_Tp>::_S_c[__n] * __izeta0;
-	      auto __termp = _Airy_asymp_data<_Tp>::_S_d[__n] * __izeta0;
-	      if (std::abs(__term) > __prev_Ai0 || std::abs(__termp) > __prev_Aip0)
+	      auto __term0 = _Airy_asymp_data<_Scal>::_S_c[__n] * __izeta0;
+	      auto __term0p = _Airy_asymp_data<_Scal>::_S_d[__n] * __izeta0;
+	      if (std::abs(__term0) > __prev_Ai0
+	       || std::abs(__term0p) > __prev_Aip0)
 		break;
-	      __prev_Ai0 = std::abs(__term);
-	      __prev_Aip0 = std::abs(__termp);
-	      _Ai += __term;
-	      _Aip += __termp;
+	      __prev_Ai0 = std::abs(__term0);
+	      __prev_Aip0 = std::abs(__term0p);
+	      _Ai += __term0;
+	      _Aip += __term0p;
 	    }
 	  _Ai *= _Tp{0.5L} * __ezeta0 / __t0p1d4 / _S_sqrt_pi;
 	  _Aip *= _Tp{-0.5L} * __t0p1d4 * __ezeta0 / _S_sqrt_pi;
 
-	  auto __t1 = __t * std::exp(+_Tp{2} * _S_pi * _S_i / _Tp{3});
-	  auto __t2 = __t * std::exp(-_Tp{2} * _S_pi * _S_i / _Tp{3});
-	  auto __zeta1 = (_Tp{2} / _Tp{3}) * std::pow(__t1, _Tp{1.5L});
-	  auto __zeta2 = (_Tp{2} / _Tp{3}) * std::pow(__t2, _Tp{1.5L});
-	  auto __t1p1d4 = std::pow(__t1, _Tp{+0.25L});
-	  auto __t2p1d4 = std::pow(__t2, _Tp{+0.25L});
+	  auto __t1 = __t * std::exp(_Scal{+2} * _S_pi * _S_i / _Scal{3});
+	  auto __t2 = __t * std::exp(_Scal{-2} * _S_pi * _S_i / _Scal{3});
+	  auto __zeta1 = (_Scal{2} / _Scal{3}) * std::pow(__t1, _Scal(1.5L));
+	  auto __zeta2 = (_Scal{2} / _Scal{3}) * std::pow(__t2, _Scal(1.5L));
+	  auto __t1p1d4 = std::pow(__t1, _Scal(+0.25L));
+	  auto __t2p1d4 = std::pow(__t2, _Scal(+0.25L));
 	  auto __ezeta1 = std::exp(-__zeta1);
 	  auto __ezeta2 = std::exp(-__zeta2);
-	  auto _Ai1 = __cmplx{_Tp{1}};
-	  auto _Ai1p = __cmplx{_Tp{1}};
+	  auto _Ai1 = _Cmplx{1};
+	  auto _Ai1p = _Cmplx{1};
 	  auto _Ai2 = _Ai1;
 	  auto _Ai2p = _Ai1p;
 	  auto __sign = _Tp{1};
-	  auto __izeta1 = __cmplx{_Tp{1}};
-	  auto __izeta2 = __cmplx{_Tp{1}};
-	  auto __prev_Ai1 = _Tp{1};
-	  auto __prev_Ai2 = _Tp{1};
-	  auto __prev_Ai1p = _Tp{1};
-	  auto __prev_Ai2p = _Tp{1};
-	  for (int __n = 1; __n < _Airy_asymp_data<_Tp>::_S_max_cd; ++__n)
+	  auto __izeta1 = _Cmplx{1};
+	  auto __izeta2 = _Cmplx{1};
+	  auto __prev_Ai1 = _Scal{1};
+	  auto __prev_Ai2 = _Scal{1};
+	  auto __prev_Ai1p = _Scal{1};
+	  auto __prev_Ai2p = _Scal{1};
+	  for (size_t __n = 1; __n < _Airy_asymp_data<_Scal>::_S_max_cd; ++__n)
 	    {
 	      __sign = -__sign;
 	      __izeta1 /= __zeta1;
 	      __izeta2 /= __zeta2;
-	      const auto __term1 = _Airy_asymp_data<_Tp>::_S_c[__n] * __izeta1;
-	      const auto __term2 = _Airy_asymp_data<_Tp>::_S_c[__n] * __izeta2;
-	      const auto __term1p = _Airy_asymp_data<_Tp>::_S_d[__n] * __izeta1;
-	      const auto __term2p = _Airy_asymp_data<_Tp>::_S_d[__n] * __izeta2;
+	      const auto __term1 = _Airy_asymp_data<_Scal>::_S_c[__n] * __izeta1;
+	      const auto __term2 = _Airy_asymp_data<_Scal>::_S_c[__n] * __izeta2;
+	      const auto __term1p = _Airy_asymp_data<_Scal>::_S_d[__n] * __izeta1;
+	      const auto __term2p = _Airy_asymp_data<_Scal>::_S_d[__n] * __izeta2;
 	      if (std::abs(__term1) > __prev_Ai1
 		  || std::abs(__term2) > __prev_Ai2
 		  || std::abs(__term1p) > __prev_Ai1p
@@ -3475,15 +3648,15 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	      _Ai1p += __sign * __term1p;
 	      _Ai2p += __sign * __term2p;
 	    }
-	  _Ai1 *= _Tp{+0.5L} * __ezeta1 / __t1p1d4 / _S_sqrt_pi;
-	  _Ai2 *= _Tp{+0.5L} * __ezeta2 / __t2p1d4 / _S_sqrt_pi;
-	  _Ai1p *= _Tp{-0.5L} * __t1p1d4 * __ezeta1 / _S_sqrt_pi;
-	  _Ai2p *= _Tp{-0.5L} * __t2p1d4 * __ezeta2 / _S_sqrt_pi;
+	  _Ai1 *= _Scal(+0.5L) * __ezeta1 / __t1p1d4 / _S_sqrt_pi;
+	  _Ai2 *= _Scal(+0.5L) * __ezeta2 / __t2p1d4 / _S_sqrt_pi;
+	  _Ai1p *= _Scal(-0.5L) * __t1p1d4 * __ezeta1 / _S_sqrt_pi;
+	  _Ai2p *= _Scal(-0.5L) * __t2p1d4 * __ezeta2 / _S_sqrt_pi;
 
-	  auto _Bi = std::exp(+_S_i * _S_pi / _Tp{6}) * _Ai1
-		   + std::exp(-_S_i * _S_pi / _Tp{6}) * _Ai2;
-	  auto _Bip = std::exp(+_S_i * _Tp{5} * _S_pi / _Tp{6}) * _Ai1p
-		    + std::exp(-_S_i * _Tp{5} * _S_pi / _Tp{6}) * _Ai2p;
+	  auto _Bi = std::exp(+_S_i * _S_pi / _Scal{6}) * _Ai1
+		   + std::exp(-_S_i * _S_pi / _Scal{6}) * _Ai2;
+	  auto _Bip = std::exp(+_S_i * _Scal{5} * _S_pi / _Tp{6}) * _Ai1p
+		    + std::exp(-_S_i * _Scal{5} * _S_pi / _Tp{6}) * _Ai2p;
 
 	  if (__return_fock_airy)
 	    {
@@ -3491,36 +3664,35 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	      auto __w2 = _S_sqrt_pi * (_Bi + _S_i * _Ai);
 	      auto __w1p = _S_sqrt_pi * (_Bip - _S_i * _Aip);
 	      auto __w2p = _S_sqrt_pi * (_Bip + _S_i * _Aip);
-	      return _AiryState<std::complex<_Tp>>{__t, __w1, __w1p,
-	      						__w2, __w2p};
+	      return _AiryState<_Cmplx>{__t, __w1, __w1p, __w2, __w2p};
 	    }
 	  else
-	    return _AiryState<std::complex<_Tp>>{__t, _Ai, _Aip, _Bi, _Bip};
+	    return _AiryState<_Cmplx>{__t, _Ai, _Aip, _Bi, _Bip};
 	}
       else // Argument t is on or left of the imaginary axis.
 	{
-	  auto __zeta = (_Tp{2} / _Tp{3}) * std::pow(-__t, _Tp{1.5L});
-	  auto __tp1d4 = std::pow(-__t, _Tp{+0.25L});
-	  auto __mezeta = std::exp(-_S_i * (__zeta + (_S_pi / _Tp{4})));
-	  auto __pezeta = std::exp(+_S_i * (__zeta + (_S_pi / _Tp{4})));
-	  auto __w1 = __cmplx{_Tp{1}};
-	  auto __w2 = __cmplx{_Tp{1}};
+	  auto __zeta = (_Scal{2} / _Scal{3}) * std::pow(-__t, _Scal(1.5L));
+	  auto __tp1d4 = std::pow(-__t, _Scal(+0.25L));
+	  auto __mezeta = std::exp(-_S_i * (__zeta + (_S_pi / _Scal{4})));
+	  auto __pezeta = std::exp(+_S_i * (__zeta + (_S_pi / _Scal{4})));
+	  auto __w1 = _Cmplx{1};
+	  auto __w2 = _Cmplx{1};
 	  auto __w1p = +_S_i;
 	  auto __w2p = -_S_i;
-	  auto __ipn = __cmplx{_Tp{1}};
-	  auto __imn = __cmplx{_Tp{1}};
-	  auto __ixn = __cmplx{_Tp{1}};
-	  auto __prev_w1 = _Tp{1};
-	  auto __prev_w2 = _Tp{1};
-	  auto __prev_w1p = _Tp{1};
-	  auto __prev_w2p = _Tp{1};
-	  for (int __n = 1; __n < _Airy_asymp_data<_Tp>::_S_max_cd; ++__n)
+	  auto __ipn = _Cmplx{1};
+	  auto __imn = _Cmplx{1};
+	  auto __ixn = _Cmplx{1};
+	  auto __prev_w1 = _Scal{1};
+	  auto __prev_w2 = _Scal{1};
+	  auto __prev_w1p = _Scal{1};
+	  auto __prev_w2p = _Scal{1};
+	  for (size_t __n = 1; __n < _Airy_asymp_data<_Scal>::_S_max_cd; ++__n)
 	    {
 	      __ipn *= +_S_i;
 	      __imn *= -_S_i;
 	      __ixn /= __zeta;
-	      const auto __term = _Airy_asymp_data<_Tp>::_S_c[__n] * __ixn;
-	      const auto __termp = _Airy_asymp_data<_Tp>::_S_d[__n] * __ixn;
+	      const auto __term = _Airy_asymp_data<_Scal>::_S_c[__n] * __ixn;
+	      const auto __termp = _Airy_asymp_data<_Scal>::_S_d[__n] * __ixn;
 	      if (std::abs(__term) > __prev_w1
 	       || std::abs(__term) > __prev_w2
 	       || std::abs(__termp) > __prev_w1p
@@ -3541,14 +3713,14 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	  __w2p *= __tp1d4 * __pezeta;
 
 	  if (__return_fock_airy)
-	    return _AiryState<std::complex<_Tp>>{__t, __w1, __w1p, __w2, __w2p};
+	    return _AiryState<_Cmplx>{__t, __w1, __w1p, __w2, __w2p};
 	  else
 	    {
 	      auto _Bi = (__w1 + __w2) / (_Tp{2} * _S_sqrt_pi);
 	      auto _Ai = (__w2 - __w1) / (_Tp{2} * _S_i * _S_sqrt_pi);
 	      auto _Bip = (__w1p + __w2p) / (_Tp{2} * _S_sqrt_pi);
 	      auto _Aip = (__w2p - __w1p) / (_Tp{2} * _S_i * _S_sqrt_pi);
-	      return _AiryState<std::complex<_Tp>>{__t, _Ai, _Aip, _Bi, _Bip};
+	      return _AiryState<_Cmplx>{__t, _Ai, _Aip, _Bi, _Bip};
 	    }
 	}
     }
@@ -3583,46 +3755,46 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
    *         and the derivative @f$ Ai'(z) @f$ or @f$ Bi'(x) @f$
    */
   template<typename _Tp>
-    std::pair<std::complex<_Tp>, std::complex<_Tp>>
-    _Airy_asymp<_Tp>::_S_absarg_ge_pio3_help(std::complex<_Tp> __z,
+    std::pair<typename _Airy_asymp<_Tp>::_Cmplx, typename _Airy_asymp<_Tp>::_Cmplx>
+    _Airy_asymp<_Tp>::_S_absarg_ge_pio3_help(typename _Airy_asymp<_Tp>::_Cmplx __z,
 					     int __sign) const
     {
-      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
-      constexpr _Tp _S_pmhd2 = _Tp{1} / (_Tp{2} * _S_sqrt_pi);
-      constexpr int _S_num_nterms = 5;
-      constexpr int _S_max_nterms = 40;
-      static_assert(_Airy_asymp_data<_Tp>::_S_max_cd > _S_max_nterms);
-      constexpr int _S_nterms[_S_num_nterms]{_S_max_nterms, 24, 22, 22, 18};
+      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Scal>::__root_pi;
+      constexpr auto _S_pmhd2 = _Scal{1} / (_Scal{2} * _S_sqrt_pi);
+      constexpr size_t _S_num_nterms = 5;
+      constexpr size_t _S_max_nterms = 40;
+      static_assert(_Airy_asymp_data<_Scal>::_S_max_cd > _S_max_nterms);
+      constexpr size_t _S_nterms[_S_num_nterms]{_S_max_nterms, 24, 22, 22, 18};
 
-      auto __zeta = _Tp{2} * std::pow(__z, _Tp{1.5L}) / _Tp{3};
-      auto __z1d4 = std::pow(__z, _Tp{0.25L});
+      auto __zeta = _Scal{2} * std::pow(__z, _Scal{1.5L}) / _Scal{3};
+      auto __z1d4 = std::pow(__z, _Scal{0.25L});
 
       // Compute outer factors in the expansions.
-      auto __exp = std::exp(_Tp(__sign) * __zeta);
+      auto __exp = std::exp(_Scal(__sign) * __zeta);
       auto __fact = _S_pmhd2 * __exp / __z1d4;
       auto __factp = _S_pmhd2 * __exp * __z1d4;
       if (__sign == +1)
 	{
-	  __fact *= _Tp{2};
-	  __factp *= -_Tp{2};
+	  __fact *= _Scal{2};
+	  __factp *= _Scal{-2};
 	}
 
       // Determine number of terms to use.
-      auto __iterm = std::min(_S_num_nterms - 1, (int(std::abs(__z)) - 10) / 5);
+      auto __iterm = std::min(_S_num_nterms - 1, size_t((int(std::abs(__z)) - 10) / 5));
       if (__iterm < 0 || __iterm >= _S_num_nterms)
 	__iterm = 0;
       auto __nterm = _S_nterms[__iterm];
       // Power series is in terms of +-1 / \zeta.
-      auto __zetam = _Tp(__sign) / __zeta;
+      auto __zetam = _Scal(__sign) / __zeta;
 
       __gnu_cxx::_Polynomial<_Tp>
-	__cpoly(std::begin(_Airy_asymp_data<_Tp>::_S_c),
-		std::begin(_Airy_asymp_data<_Tp>::_S_c) + __nterm);
+	__cpoly(std::begin(_Airy_asymp_data<_Scal>::_S_c),
+		std::begin(_Airy_asymp_data<_Scal>::_S_c) + __nterm);
       auto _Ai = __fact * __cpoly(__zetam);
 
       __gnu_cxx::_Polynomial<_Tp>
-	__dpoly(std::begin(_Airy_asymp_data<_Tp>::_S_d),
-		std::begin(_Airy_asymp_data<_Tp>::_S_d) + __nterm);
+	__dpoly(std::begin(_Airy_asymp_data<_Scal>::_S_d),
+		std::begin(_Airy_asymp_data<_Scal>::_S_d) + __nterm);
       auto _Aip = __factp * __dpoly(__zetam);
 
       return std::make_pair(_Ai, _Aip);
@@ -3641,14 +3813,14 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
    * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
    */
   template<typename _Tp>
-    _AiryState<std::complex<_Tp>>
-    _Airy_asymp<_Tp>::_S_absarg_ge_pio3(std::complex<_Tp> __z) const
+    _AiryState<typename _Airy_asymp<_Tp>::_Cmplx>
+    _Airy_asymp<_Tp>::_S_absarg_ge_pio3(typename _Airy_asymp<_Tp>::_Cmplx __z) const
     {
-      std::complex<_Tp> _Ai, _Aip;
+      _Cmplx _Ai, _Aip;
       std::tie(_Ai, _Aip) = _S_absarg_ge_pio3_help(__z, -1);
-      std::complex<_Tp> _Bi, _Bip;
+      _Cmplx _Bi, _Bip;
       std::tie(_Bi, _Bip) = _S_absarg_ge_pio3_help(__z, +1);
-      return _AiryState<std::complex<_Tp>>{__z, _Ai, _Aip, _Bi, _Bip};
+      return _AiryState<_Cmplx>{__z, _Ai, _Aip, _Bi, _Bip};
     }
 
 
@@ -3671,43 +3843,43 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
    * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
    */
   template<typename _Tp>
-    _AiryState<std::complex<_Tp>>
-    _Airy_asymp<_Tp>::_S_absarg_lt_pio3(std::complex<_Tp> __z) const
+    _AiryState<typename _Airy_asymp<_Tp>::_Cmplx>
+    _Airy_asymp<_Tp>::_S_absarg_lt_pio3(typename _Airy_asymp<_Tp>::_Cmplx __z) const
     {
-      constexpr _Tp _S_pimh
-	= _Tp{1} / __gnu_cxx::__math_constants<_Tp>::__root_pi;
-      constexpr _Tp _S_pid4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
+      constexpr _Scal _S_pimh
+	= _Scal{1} / __gnu_cxx::__math_constants<_Scal>::__root_pi;
+      constexpr _Scal _S_pid4 = __gnu_cxx::__math_constants<_Scal>::__pi_quarter;
 
-      constexpr std::complex<_Tp> _S_zone{1};
+      constexpr _Cmplx _S_zone{1};
       /// @todo Revisit these numbers of terms for the Airy asymptotic
       /// expansions.
-      constexpr int _S_num_nterms = 5;
-      constexpr int _S_max_nterms = 40;
-      static_assert(_Airy_asymp_data<_Tp>::_S_max_cd > _S_max_nterms);
-      constexpr int _S_nterms[_S_num_nterms]{_S_max_nterms, 28, 24, 24, 20};
+      constexpr size_t _S_num_nterms = 5;
+      constexpr size_t _S_max_nterms = 40;
+      static_assert(_Airy_asymp_data<_Scal>::_S_max_cd > _S_max_nterms);
+      constexpr size_t _S_nterms[_S_num_nterms]{_S_max_nterms, 28, 24, 24, 20};
 
-      auto __zeta = _Tp{2} * std::pow(-__z, _Tp{1.5L}) / _Tp{3};
-      auto __z1d4 = std::pow(-__z, _Tp{0.25L});
+      auto __zeta = _Scal{2} * std::pow(-__z, _Scal(1.5L)) / _Scal{3};
+      auto __z1d4 = std::pow(-__z, _Scal(0.25L));
 
       auto __zetaarg = __zeta - _S_pid4;
       auto __sinzeta = std::sin(__zetaarg);
       auto __coszeta = std::cos(__zetaarg);
 
       // Determine number of terms to use.
-      auto __iterm = std::min(_S_num_nterms - 1, (int(std::abs(__z)) - 10) / 5);
+      auto __iterm = std::min(_S_num_nterms - 1, size_t((int(std::abs(__z)) - 10) / 5));
       if (__iterm < 0 || __iterm >= _S_num_nterms)
 	__iterm = 0;
       auto __nterm = _S_nterms[__iterm];
       // Power series is in terms of 1 / \zeta^2.
-      auto __zetam2 = _Tp{1} / (__zeta * __zeta);
+      auto __zetam2 = _Scal{1} / (__zeta * __zeta);
 
-      __gnu_cxx::_Polynomial<_Tp>
-	__cpoly(std::begin(_Airy_asymp_data<_Tp>::_S_c),
-		std::begin(_Airy_asymp_data<_Tp>::_S_c) + __nterm);
+      __gnu_cxx::_Polynomial<_Scal>
+	__cpoly(std::begin(_Airy_asymp_data<_Scal>::_S_c),
+		std::begin(_Airy_asymp_data<_Scal>::_S_c) + __nterm);
 
-      __gnu_cxx::_Polynomial<_Tp>
-	__dpoly(std::begin(_Airy_asymp_data<_Tp>::_S_d),
-		std::begin(_Airy_asymp_data<_Tp>::_S_d) + __nterm);
+      __gnu_cxx::_Polynomial<_Scal>
+	__dpoly(std::begin(_Airy_asymp_data<_Scal>::_S_d),
+		std::begin(_Airy_asymp_data<_Scal>::_S_d) + __nterm);
 
       // Complete evaluation of the Airy functions.
       __zeta = _S_zone / __zeta;
@@ -3725,7 +3897,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
       _Bip *= _S_pimh * __z1d4;
 
       // I think we're computing d/d(-z) above.
-      return _AiryState<std::complex<_Tp>>{__z, _Ai, -_Aip, _Bi, -_Bip};
+      return _AiryState<_Cmplx>{__z, _Ai, -_Aip, _Bi, -_Bip};
     }
 
 
@@ -3763,12 +3935,16 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 				     std::complex<_Tp>& _Aip,
 				     int __sign = -1)
     {
-      constexpr _Tp _S_2d3   = _Tp{2} / _Tp{3};
-      constexpr _Tp _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
-      constexpr _Tp _S_pmhd2 = _Tp{1} / (_Tp{2} * _S_sqrt_pi);
-      constexpr int _S_ncoeffs = 15;
-      constexpr int _S_num_nterms = 5;
-      constexpr int _S_nterms[_S_num_nterms]{ _S_ncoeffs, 12, 11, 11, 9 };
+      using _Val = _Tp;
+      using _Scal = std::__detail::__num_traits_t<_Val>;
+      //using _Cmplx = std::complex<_Scal>;
+
+      constexpr auto _S_2d3   = _Scal{2} / _Scal{3};
+      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Scal>::__root_pi;
+      constexpr auto _S_pmhd2 = _Scal{1} / (_Scal{2} * _S_sqrt_pi);
+      constexpr size_t _S_ncoeffs = 15;
+      constexpr size_t _S_num_nterms = 5;
+      constexpr size_t _S_nterms[_S_num_nterms]{ _S_ncoeffs, 12, 11, 11, 9 };
 
       // Coefficients for the expansion.
       constexpr _Tp
@@ -3817,7 +3993,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
       __z1d4 = std::sqrt(__z1d4);
 
       // Compute outer factors in the expansions.
-      auto __factp = std::exp(_Tp(__sign) * __zeta);
+      auto __factp = std::exp(_Scal(__sign) * __zeta);
       __factp *= _S_pmhd2;
       auto __fact = __factp / __z1d4;
       __factp *= -__z1d4;
@@ -3829,13 +4005,13 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 
       // Determine number of terms to use.
       auto __nterm = _S_nterms[std::min(_S_num_nterms - 1,
-					(int(std::abs(__z)) - 10) / 5)];
+					size_t((int(std::abs(__z)) - 10) / 5))];
       if (__nterm < 0 || __nterm > _S_num_nterms)
 	__nterm = 0;
       // Initialize for modified Horner's rule evaluation of sums.
       // It is assumed that at least three terms are used.
-      auto __zetam = _Tp(__sign) / __zeta;
-      auto __r = _Tp{2} * std::real(__zetam);
+      auto __zetam = _Scal(__sign) / __zeta;
+      auto __r = _Scal{2} * std::real(__zetam);
       auto __s = std::norm(__zetam);
       auto __index = _S_ncoeffs - __nterm;// + 1;
       auto __alpha = _S_u[__index];
@@ -3845,7 +4021,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
       auto __betap = _S_v[__index];
       ++__index;
 
-      for (int __k = __index; __k < _S_ncoeffs; ++__k)
+      for (size_t __k = __index; __k < _S_ncoeffs; ++__k)
 	{
 	  __beta = _S_u[__k]
 	         - __s * std::exchange(__alpha, __beta + __r * __alpha);
@@ -3903,18 +4079,22 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
     _AiryState<std::complex<_Tp>>
     __airy_asymp_absarg_lt_pio3(std::complex<_Tp> __z)
     {
-      constexpr _Tp _S_2d3 {_Tp{2} / _Tp{3}};
-      constexpr _Tp _S_9d4 {_Tp{9} / _Tp{4}};
-      constexpr _Tp _S_pimh
-	= _Tp{1} / __gnu_cxx::__math_constants<_Tp>::__root_pi;
-      constexpr _Tp _S_pid4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
+      using _Val = _Tp;
+      using _Scal = std::__detail::__num_traits_t<_Val>;
+      using _Cmplx = std::complex<_Scal>;
 
-      constexpr std::complex<_Tp> _S_zone{1};
-      constexpr int _S_ncoeffs = 18;
+      constexpr auto _S_2d3 {_Scal{2} / _Scal{3}};
+      constexpr auto _S_9d4 {_Scal{9} / _Scal{4}};
+      constexpr _Scal _S_pimh
+	= _Scal{1} / __gnu_cxx::__math_constants<_Scal>::__root_pi;
+      constexpr _Tp _S_pid4 = __gnu_cxx::__math_constants<_Scal>::__pi_quarter;
+
+      constexpr _Cmplx _S_zone{1};
+      constexpr size_t _S_ncoeffs = 18;
       /// @todo Revisit these numbers of terms for the Airy asymptotic
       /// expansions.
-      constexpr int _S_num_nterms = 5;
-      constexpr int _S_nterms[_S_num_nterms]{ _S_ncoeffs, 7, 6, 6, 5 };
+      constexpr size_t _S_num_nterms = 5;
+      constexpr size_t _S_nterms[_S_num_nterms]{ _S_ncoeffs, 7, 6, 6, 5 };
 
       // coefficients for the expansion.
       constexpr _Tp
@@ -4020,14 +4200,14 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 
       // Determine number of terms to use.
       auto __nterm = _S_nterms[std::min(_S_num_nterms - 1,
-					(int(std::abs(__z)) - 10) / 5)];
+					size_t((int(std::abs(__z)) - 10) / 5))];
       if (__nterm < 0 || __nterm > _S_num_nterms)
 	__nterm = _S_ncoeffs;
       // Initialize for modified Horner's rule evaluation of sums
       // it is assumed that at least three terms are used.
-      auto __zetam2 = std::pow(_S_zone / -__z, _Tp(3));
+      auto __zetam2 = std::pow(_S_zone / -__z, _Scal{3});
       __zetam2 *= _S_9d4;
-      auto __r = _Tp{2} * std::real(__zetam2);
+      auto __r = _Scal{2} * std::real(__zetam2);
       auto __s = std::norm(__zetam2);
       auto __index = _S_ncoeffs - __nterm;
 
@@ -4043,7 +4223,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
       auto __betapc = _S_v_cos[__index];
       ++__index;
 
-      for (int __k = __index; __k < _S_ncoeffs; ++__k)
+      for (size_t __k = __index; __k < _S_ncoeffs; ++__k)
 	{
 	  __betas = _S_u_sin[__k]
 		  - __s * std::exchange(__alphas, __betas + __r * __alphas);
@@ -4112,38 +4292,44 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
    * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
    */
   template<typename _Tp>
-    _AiryState<std::complex<_Tp>>
-    __airy_hyperg_rational(const std::complex<_Tp>& __z)
+    _AiryState<_Tp>
+    __airy_hyperg_rational(_Tp __z)
     {
-      using __cmplx = std::complex<_Tp>;
+      using _Val = _Tp;
+      using _Scal = std::__detail::__num_traits_t<_Val>;
+      using _Cmplx = std::complex<_Scal>;
 
-      constexpr __cmplx _S_zone{1};
+      constexpr _Cmplx _S_zone{1};
 
       /// @todo Find out how to extend these rational approximations
       /// of the Airy functions.
-      constexpr _Tp _S_ap1d3[4]{  81, 32400,  2585520,  37920960};
-      constexpr _Tp _S_bp1d3[4]{ -35,  5040,  -574560,  37920960};
-      constexpr _Tp _S_am1d3[4]{  81, 22680,  1156680,   7711200};
-      constexpr _Tp _S_bm1d3[4]{ -10,  1260,  -128520,   7711200};
-      constexpr _Tp _S_ap2d3[4]{ 162, 75735,  7270560, 139352400};
-      constexpr _Tp _S_bp2d3[4]{-110, 16830, -2019600, 139352400};
-      constexpr _Tp _S_am2d3[4]{ 162, 36855,  1415232,   4481568};
-      constexpr _Tp _S_bm2d3[4]{  -7,	819,   -78624,   4481568};
-      constexpr _Tp _S_Ai0{3.550280538878172392600631860041831763980e-1L};
-      constexpr _Tp _S_Aip0{-2.588194037928067984051835601892039634793e-1L};
-      constexpr _Tp _S_Bi0{6.149266274460007351509223690936135535960e-1L};
-      constexpr _Tp _S_Bip0{4.482883573538263579148237103988283908668e-1L};
+      constexpr _Scal _S_ap1d3[4]{  81, 32400,  2585520,  37920960};
+      constexpr _Scal _S_bp1d3[4]{ -35,  5040,  -574560,  37920960};
+      constexpr _Scal _S_am1d3[4]{  81, 22680,  1156680,   7711200};
+      constexpr _Scal _S_bm1d3[4]{ -10,  1260,  -128520,   7711200};
+      constexpr _Scal _S_ap2d3[4]{ 162, 75735,  7270560, 139352400};
+      constexpr _Scal _S_bp2d3[4]{-110, 16830, -2019600, 139352400};
+      constexpr _Scal _S_am2d3[4]{ 162, 36855,  1415232,   4481568};
+      constexpr _Scal _S_bm2d3[4]{  -7,	819,   -78624,   4481568};
+      constexpr _Scal
+	_S_Ai0{3.550280538878172392600631860041831763980e-1L};
+      constexpr _Scal
+	_S_Aip0{-2.588194037928067984051835601892039634793e-1L};
+      constexpr _Scal
+	_S_Bi0{6.149266274460007351509223690936135535960e-1L};
+      constexpr _Scal
+	_S_Bip0{4.482883573538263579148237103988283908668e-1L};
 
       // Check to see if z^3 will underflow and act accordingly.
       auto __zzz = __z * __z * __z;
 
-      std::complex<_Tp> _Fp1d3, _Fm1d3, _Fp2d3, _Fm2d3;
+      _Val _Fp1d3, _Fm1d3, _Fp2d3, _Fm2d3;
 
-      if (std::abs(__zzz) < _Tp{10} * __gnu_cxx::__min<_Tp>())
-	return _AiryState<__cmplx>{__z, _S_Ai0, _S_Aip0, _S_Bi0, _S_Bip0};
+      if (std::abs(__zzz) < _Scal{10} * __gnu_cxx::__min<_Scal>())
+	return _AiryState<_Val>{__z, _S_Ai0, _S_Aip0, _S_Bi0, _S_Bip0};
       else
 	{
-	  auto __r = _Tp{2} * std::real(__zzz);
+	  auto __r = _Scal{2} * std::real(__zzz);
 	  auto __s = std::norm(__zzz);
 
 	  // The following polynomial evaluations are done using
@@ -4181,11 +4367,13 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	  _Fm2d3 = __horner(_S_am2d3) / __horner(_S_bm2d3);
 
 	  auto _Ai = _S_Ai0 * _Fm1d3 + _S_Aip0 * __z * _Fp1d3;
-	  auto _Aip = _S_Ai0 * __z * __z * _Fp2d3 / _Tp{2} + _S_Aip0 * _Fm2d3;
+	  auto _Aip = _S_Ai0 * __z * __z * _Fp2d3 / _Scal{2}
+		    + _S_Aip0 * _Fm2d3;
 	  auto _Bi = _S_Bi0 * _Fm1d3 + _S_Bip0 * __z * _Fp1d3;
-	  auto _Bip = _S_Bi0 * __z * __z * _Fp2d3 / _Tp{2} + _S_Bip0 * _Fm2d3;
+	  auto _Bip = _S_Bi0 * __z * __z * _Fp2d3 / _Scal{2}
+		    + _S_Bip0 * _Fm2d3;
 
-	  return _AiryState<std::complex<_Tp>>{__z, _Ai, _Aip, _Bi, _Bip};
+	  return _AiryState<_Val>{__z, _Ai, _Aip, _Bi, _Bip};
 	}
     }
 
@@ -4200,10 +4388,10 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
     {
     public:
 
-      using value_type = typename _Sum::value_type;
-      using scalar_type = std::__detail::__num_traits_t<value_type>;
-      static constexpr scalar_type _S_sqrt_pi
-	   = __gnu_cxx::__math_constants<scalar_type>::__root_pi;
+      using _Val = typename _Sum::value_type;
+      using _Scal = std::__detail::__num_traits_t<_Val>;
+      static constexpr _Scal _S_sqrt_pi
+	   = __gnu_cxx::__math_constants<_Scal>::__root_pi;
 
       _Airy_asymp_series(_Sum __proto)
       : _M_Asum(__proto),
@@ -4214,14 +4402,14 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
       _Airy_asymp_series(const _Airy_asymp_series&) = default;
       _Airy_asymp_series(_Airy_asymp_series&&) = default;
 
-      _AiryState<value_type>
-      operator()(value_type __y);
+      _AiryState<_Val>
+      operator()(_Val __y);
 
     private:
 
-      static constexpr int _S_max_iter = 10000;
-      static constexpr scalar_type _S_eps
-	   = std::numeric_limits<scalar_type>::epsilon();
+      static constexpr size_t _S_max_iter = 10000;
+      static constexpr _Scal _S_eps
+	   = std::numeric_limits<_Scal>::epsilon();
 
       _Sum _M_Asum;
       _Sum _M_Bsum;
@@ -4230,15 +4418,15 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
     };
 
   template<typename _Sum>
-    constexpr int
+    constexpr size_t
     _Airy_asymp_series<_Sum>::_S_max_iter;
 
   template<typename _Sum>
-    constexpr typename _Airy_asymp_series<_Sum>::scalar_type
+    constexpr typename _Airy_asymp_series<_Sum>::_Scal
     _Airy_asymp_series<_Sum>::_S_eps;
 
   template<typename _Sum>
-    constexpr typename _Airy_asymp_series<_Sum>::scalar_type
+    constexpr typename _Airy_asymp_series<_Sum>::_Scal
     _Airy_asymp_series<_Sum>::_S_sqrt_pi;
 
 
@@ -4249,30 +4437,28 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
    * @tparam _Sum A sum type
    */
   template<typename _Sum>
-    _AiryState<typename _Airy_asymp_series<_Sum>::value_type>
+    _AiryState<typename _Airy_asymp_series<_Sum>::_Val>
     _Airy_asymp_series<_Sum>::operator()(typename _Sum::value_type __y)
     {
-      using __cmplx = value_type;
-      using __scal = scalar_type;
+      _M_Asum.reset(_Scal{1});
+      _M_Bsum.reset(_Scal{1});
+      _M_Csum.reset(_Scal{1});
+      _M_Dsum.reset(_Scal{1});
 
-      _M_Asum.reset(__scal{1});
-      _M_Bsum.reset(__scal{1});
-      _M_Csum.reset(__scal{1});
-      _M_Dsum.reset(__scal{1});
-
-      auto __zeta = __scal{2} * std::pow(__y, __scal{1.5L}) / __scal{3};
-      auto __sign = __scal{1};
-      auto __numerAB = __scal{1};
-      auto __numerCD = __scal{1};
-      auto __denom = __cmplx{1};
-      for (int __k = 1; __k < _S_max_iter; ++__k)
+      auto __zeta = _Scal{2} * std::pow(__y, _Scal{1.5L})
+		  / _Scal{3};
+      auto __sign = _Scal{1};
+      auto __numerAB = _Scal{1};
+      auto __numerCD = _Scal{1};
+      auto __denom = _Val{1};
+      for (size_t __k = 1; __k < _S_max_iter; ++__k)
 	{
 	  __sign = -__sign;
-	  __numerAB *= __scal(__k + __scal{1} / __scal{6})
-		     * __scal(__k + __scal{5} / __scal{6});
-	  __numerCD *= __scal(__k - __scal{1} / __scal{6})
-		     * __scal(__k + __scal{7} / __scal{6});
-	  __denom *= __cmplx(2 * __k) * __zeta;
+	  __numerAB *= _Scal(__k + _Scal{1} / _Scal{6})
+		     * _Scal(__k + _Scal{5} / _Scal{6});
+	  __numerCD *= _Scal(__k - _Scal{1} / _Scal{6})
+		     * _Scal(__k + _Scal{7} / _Scal{6});
+	  __denom *= _Val(2 * __k) * __zeta;
 	  auto _Aterm = __sign * __numerAB / __denom;
 	  _M_Asum += _Aterm;
 	  auto _Bterm = __numerAB / __denom;
@@ -4289,13 +4475,13 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	}
 
       auto __expzeta = std::exp(__zeta);
-      auto __y1o4 = std::pow(__y, __scal{0.25L});
-      auto _AA = __scal{0.5L} * _M_Asum() / _S_sqrt_pi / __y1o4 / __expzeta;
-      auto _BB = __scal{0.5L} * __expzeta * _M_Bsum() / _S_sqrt_pi / __y1o4;
-      auto _CC = __scal{-0.5L} * __y1o4 * _M_Csum() / _S_sqrt_pi / __expzeta;
-      auto _DD = __scal{0.5L} * __y1o4 * __expzeta * _M_Dsum() / _S_sqrt_pi;
+      auto __y1o4 = std::pow(__y, _Scal{0.25L});
+      auto _AA = _Scal{0.5L} * _M_Asum() / _S_sqrt_pi / __y1o4 / __expzeta;
+      auto _BB = _Scal{0.5L} * __expzeta * _M_Bsum() / _S_sqrt_pi / __y1o4;
+      auto _CC = _Scal{-0.5L} * __y1o4 * _M_Csum() / _S_sqrt_pi / __expzeta;
+      auto _DD = _Scal{0.5L} * __y1o4 * __expzeta * _M_Dsum() / _S_sqrt_pi;
 
-      return _AiryState<value_type>{__y, _AA, _CC, _BB, _DD};
+      return _AiryState<_Val>{__y, _AA, _CC, _BB, _DD};
     }
 
 
@@ -4333,76 +4519,75 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
     {
     public:
 
-      using value_type = _Tp;
-      using scalar_type = std::__detail::__num_traits_t<value_type>;
-      using complex_type = std::complex<scalar_type>;
-      static constexpr scalar_type _S_pi
-	   = __gnu_cxx::__math_constants<scalar_type>::__pi;
-      static constexpr scalar_type _S_sqrt_pi
-	   = __gnu_cxx::__math_constants<scalar_type>::__root_pi;
-      static constexpr scalar_type _S_pi_3
-	   = __gnu_cxx::__math_constants<scalar_type>::__pi_third;
-      static constexpr scalar_type _S_2pi_3 = scalar_type{2} * _S_pi_3;
-      static constexpr scalar_type _S_pi_6 = _S_pi_3 / scalar_type{2};
-      static constexpr scalar_type _S_5pi_6 = scalar_type{5} * _S_pi_6;
-      static constexpr value_type _S_i = value_type{0, 1};
+      using _Val = _Tp;
+      using _Scal = std::__detail::__num_traits_t<_Val>;
+      using _Cmplx = std::complex<_Scal>;
 
-      static constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<scalar_type>();
-      static constexpr auto _S_cNaN = complex_type(_S_NaN, _S_NaN);
+      static constexpr _Scal _S_pi
+	   = __gnu_cxx::__math_constants<_Scal>::__pi;
+      static constexpr _Scal _S_sqrt_pi
+	   = __gnu_cxx::__math_constants<_Scal>::__root_pi;
+      static constexpr _Scal _S_pi_3
+	   = __gnu_cxx::__math_constants<_Scal>::__pi_third;
+      static constexpr _Scal _S_2pi_3 = _Scal{2} * _S_pi_3;
+      static constexpr _Scal _S_pi_6 = _S_pi_3 / _Scal{2};
+      static constexpr _Scal _S_5pi_6 = _Scal{5} * _S_pi_6;
+      static constexpr _Cmplx _S_i = _Cmplx{0, 1};
+
+      static constexpr auto _S_NaN = std::__detail::__make_NaN<_Val>{}();
 
       constexpr _Airy() = default;
       _Airy(const _Airy&) = default;
       _Airy(_Airy&&) = default;
 
-      constexpr _AiryState<value_type>
-      operator()(value_type __y) const;
+      constexpr _AiryState<_Cmplx>
+      operator()(_Val __y) const;
 
-      scalar_type inner_radius{_Airy_default_radii<scalar_type>::inner_radius};
-      scalar_type outer_radius{_Airy_default_radii<scalar_type>::outer_radius};
+      _Scal inner_radius{_Airy_default_radii<_Scal>::inner_radius};
+      _Scal outer_radius{_Airy_default_radii<_Scal>::outer_radius};
     };
 
   template<typename _Tp>
-    constexpr typename _Airy<_Tp>::scalar_type
+    constexpr typename _Airy<_Tp>::_Scal
     _Airy<_Tp>::_S_sqrt_pi;
 
   template<typename _Tp>
-    constexpr typename _Airy<_Tp>::scalar_type
+    constexpr typename _Airy<_Tp>::_Scal
     _Airy<_Tp>::_S_pi_3;
 
   template<typename _Tp>
-    constexpr typename _Airy<_Tp>::scalar_type
+    constexpr typename _Airy<_Tp>::_Scal
     _Airy<_Tp>::_S_pi_6;
 
   template<typename _Tp>
-    constexpr typename _Airy<_Tp>::value_type
+    constexpr typename _Airy<_Tp>::_Cmplx
     _Airy<_Tp>::_S_i;
 
   /**
    * Return the Airy functions for complex argument.
    */
   template<typename _Tp>
-    constexpr _AiryState<_Tp>
-    _Airy<_Tp>::operator()(typename _Airy<_Tp>::value_type __y) const
+    constexpr _AiryState<typename _Airy<_Tp>::_Cmplx>
+    _Airy<_Tp>::operator()(typename _Airy<_Tp>::_Val __y) const
     {
-      using __cmplx = value_type;
-      using __scal = scalar_type;
-
-      using _OuterSum = __gnu_cxx::_KahanSum<__cmplx>;
+      using _OuterSum = __gnu_cxx::_KahanSum<_Val>;
       using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
 
       if (std::__detail::__isnan(__y))
-	return _AiryState<_Tp>{__y, _S_cNaN, _S_cNaN, _S_cNaN, _S_cNaN};
+	return _AiryState<_Cmplx>{__y, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
 
       auto __absargy = std::abs(std::arg(__y));
       auto __absy = std::abs(__y);
-      auto __sign = std::copysign(__scal{1}, std::arg(__y));
+      auto __sign = std::copysign(_Scal{1}, std::arg(__y));
 
-      _AiryState<_Tp> __sums;
+      _AiryState<_Val> __sums{_Val{},
+				    _Val{}, _Val{},
+				    _Val{}, _Val{}};
       if (__absy >= inner_radius)
 	{
 	  if (__absy < outer_radius)
 	    {
-	      auto __beta = __scal{1};
+	      auto __beta = _Scal{1};
 	      _Airy_asymp_series<_InnerSum> __asymp(_InnerSum{__beta});
 	      __sums = __asymp(__y);
 	    }
@@ -4413,14 +4598,14 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	    }
 	}
 
-      __cmplx _Bi{}, _Bip{};
+      _Cmplx _Bi{}, _Bip{};
       if (__absy < inner_radius
 	  || (__absy < outer_radius && __absargy < _S_pi_3))
-	std::tie(_Bi, _Bip) = _Airy_series<__scal>::_S_Bi(__y);
+	std::tie(_Bi, _Bip) = _Airy_series<_Val>::_S_Bi(__y);
       else if (__absy < outer_radius)
 	{
-	  _Bi = __scal{2} * __sums.Bi + __sign * _S_i * __sums.Ai;
-	  _Bip = __scal{2} * __sums.Bip + __sign * _S_i * __sums.Aip;
+	  _Bi = _Scal{2} * __sums.Bi + __sign * _S_i * __sums.Ai;
+	  _Bip = _Scal{2} * __sums.Bip + __sign * _S_i * __sums.Aip;
 	  if (__absargy > _S_5pi_6)
 	    {
 	      _Bi -= __sums.Bi;
@@ -4429,8 +4614,8 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	}
       else
 	{
-	  _Bi = __scal{2} * __sums.Bi;
-	  _Bip = __scal{2} * __sums.Bip;
+	  _Bi = _Scal{2} * __sums.Bi;
+	  _Bip = _Scal{2} * __sums.Bip;
 	  if (__absargy > _S_pi_6)
 	    {
 	      _Bi += __sign * _S_i * __sums.Ai;
@@ -4443,11 +4628,11 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	    }
 	}
 
-      __cmplx _Ai{}, _Aip{};
+      _Cmplx _Ai{}, _Aip{};
       if ((__absy < inner_radius
 	          + outer_radius * __absargy / _S_pi && __absargy < _S_2pi_3)
 	  || (__absy < outer_radius && __absargy >= _S_2pi_3))
-	std::tie(_Ai, _Aip) = _Airy_series<__scal>::_S_Ai(__y);
+	std::tie(_Ai, _Aip) = _Airy_series<_Val>::_S_Ai(__y);
       else if (__absy < outer_radius)
 	{
 	  _Ai = __sums.Ai;
@@ -4464,7 +4649,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	    }
 	}
 
-      return _AiryState<_Tp>{__y, _Ai, _Aip, _Bi, _Bip};
+      return _AiryState<_Cmplx>{__y, _Ai, _Aip, _Bi, _Bip};
     }
 
 
@@ -4478,10 +4663,10 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
     {
     public:
 
-      using value_type = typename _Sum::value_type;
-      using scalar_type = std::__detail::__num_traits_t<value_type>;
-      static constexpr scalar_type _S_pi
-	   = __gnu_cxx::__math_constants<scalar_type>::__pi;
+      using _Val = typename _Sum::value_type;
+      using _Scal = std::__detail::__num_traits_t<_Val>;
+      static constexpr _Scal _S_pi
+	   = __gnu_cxx::__math_constants<_Scal>::__pi;
 
       _Scorer_asymp_series(_Sum __proto)
       : _M_Hsum(__proto), _M_Hpsum(__proto)
@@ -4489,29 +4674,29 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
       _Scorer_asymp_series(const _Scorer_asymp_series&) = default;
       _Scorer_asymp_series(_Scorer_asymp_series&&) = default;
 
-      std::pair<value_type, value_type>
-      operator()(value_type __y);
+      std::pair<_Val, _Val>
+      operator()(_Val __y);
 
     private:
 
-      static constexpr int _S_max_iter = 10000;
-      static constexpr scalar_type _S_eps
-	   = scalar_type{0.01L} * std::numeric_limits<scalar_type>::epsilon();
+      static constexpr size_t _S_max_iter = 10000;
+      static constexpr _Scal _S_eps
+	   = _Scal{0.01L} * std::numeric_limits<_Scal>::epsilon();
 
       _Sum _M_Hsum;
       _Sum _M_Hpsum;
     };
 
   template<typename _Sum>
-    constexpr int
+    constexpr size_t
     _Scorer_asymp_series<_Sum>::_S_max_iter;
 
   template<typename _Sum>
-    constexpr typename _Scorer_asymp_series<_Sum>::scalar_type
+    constexpr typename _Scorer_asymp_series<_Sum>::_Scal
     _Scorer_asymp_series<_Sum>::_S_eps;
 
   template<typename _Sum>
-    constexpr typename _Scorer_asymp_series<_Sum>::scalar_type
+    constexpr typename _Scorer_asymp_series<_Sum>::_Scal
     _Scorer_asymp_series<_Sum>::_S_pi;
 
 
@@ -4522,28 +4707,25 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
    * @tparam _Sum A sum type
    */
   template<typename _Sum>
-    std::pair<typename _Scorer_asymp_series<_Sum>::value_type,
-	      typename _Scorer_asymp_series<_Sum>::value_type>
+    std::pair<typename _Scorer_asymp_series<_Sum>::_Val,
+	      typename _Scorer_asymp_series<_Sum>::_Val>
     _Scorer_asymp_series<_Sum>::operator()(typename _Sum::value_type __y)
     {
-      using __cmplx = value_type;
-      using __scal = scalar_type;
-
-      _M_Hsum.reset(__scal{1});
-      _M_Hpsum.reset(__scal{1});
+      _M_Hsum.reset(_Scal{1});
+      _M_Hpsum.reset(_Scal{1});
 
       auto __yy = __y * __y;
       auto __yyy = __y * __yy;
-      auto __numer = __scal{1};
-      auto __denom = __cmplx{1};
-      for (int __k = 1; __k < _S_max_iter; ++__k)
+      auto __numer = _Scal{1};
+      auto __denom = _Val{1};
+      for (size_t __k = 1; __k < _S_max_iter; ++__k)
 	{
-	  __numer *= __scal(3 * __k + 1)
-		   * __scal(3 * __k + 2);
+	  __numer *= _Scal(3 * __k + 1)
+		   * _Scal(3 * __k + 2);
 	  __denom *= __yyy;
 	  auto _Hterm = __numer / __denom;
 	  _M_Hsum += _Hterm;
-	  _Hterm *= __scal(__k + 1) / __scal(__k);
+	  _Hterm *= _Scal(__k + 1) / _Scal(__k);
 	  _M_Hpsum += _Hterm;
 	  if (std::abs(_M_Hsum()) * _S_eps < std::abs(_Hterm))
 	    break;
@@ -4552,7 +4734,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
       auto _Hi = -_M_Hsum() / (_S_pi * __y);
       auto _Hip = _M_Hpsum() / (_S_pi * __yy);
 
-      return make_pair(_Hi, _Hip);
+      return std::make_pair(_Hi, _Hip);
     }
 
 
@@ -4565,63 +4747,59 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
     {
     public:
 
-      using value_type = _Tp;
-      using scalar_type = std::__detail::__num_traits_t<value_type>;
-      using complex_type = std::complex<scalar_type>;
-      static constexpr scalar_type _S_pi_3
-	   = __gnu_cxx::__math_constants<scalar_type>::__pi_third;
-      static constexpr scalar_type _S_2pi_3 = scalar_type{2} * _S_pi_3;
-      static constexpr scalar_type _S_pi_6 = _S_pi_3 / scalar_type{2};
-      static constexpr scalar_type _S_5pi_6 = scalar_type{5} * _S_pi_6;
-      static constexpr value_type _S_i = value_type{0, 1};
+      using _Val = _Tp;
+      using _Scal = std::__detail::__num_traits_t<_Val>;
+      using _Cmplx = std::complex<_Scal>;
+      static constexpr _Scal _S_pi_3
+	   = __gnu_cxx::__math_constants<_Scal>::__pi_third;
+      static constexpr _Scal _S_2pi_3 = _Scal{2} * _S_pi_3;
+      static constexpr _Scal _S_pi_6 = _S_pi_3 / _Scal{2};
+      static constexpr _Scal _S_5pi_6 = _Scal{5} * _S_pi_6;
+      static constexpr _Cmplx _S_i = _Cmplx{0, 1};
 
-      static constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<scalar_type>();
-      static constexpr auto _S_cNaN = complex_type{_S_NaN, _S_NaN};
+      static constexpr auto _S_NaN = std::__detail::__make_NaN<_Val>{}();
 
-      constexpr _AiryState<value_type>
-      operator()(value_type __y) const;
+      constexpr _AiryState<_Val>
+      operator()(_Val __y) const;
 
-      scalar_type inner_radius{_Airy_default_radii<scalar_type>::inner_radius};
-      scalar_type outer_radius{_Airy_default_radii<scalar_type>::outer_radius};
+      _Scal inner_radius{_Airy_default_radii<_Scal>::inner_radius};
+      _Scal outer_radius{_Airy_default_radii<_Scal>::outer_radius};
     };
 
   template<typename _Tp>
-    constexpr typename _Scorer<_Tp>::scalar_type
+    constexpr typename _Scorer<_Tp>::_Scal
     _Scorer<_Tp>::_S_pi_3;
 
   template<typename _Tp>
-    constexpr typename _Scorer<_Tp>::value_type
+    constexpr typename _Scorer<_Tp>::_Cmplx
     _Scorer<_Tp>::_S_i;
 
   /**
    * Return the Scorer functions for complex argument.
    */
   template<typename _Tp>
-    constexpr _AiryState<_Tp>
-    _Scorer<_Tp>::operator()(typename _Scorer<_Tp>::value_type __y) const
+    constexpr _AiryState<typename _Scorer<_Tp>::_Val>
+    _Scorer<_Tp>::operator()(typename _Scorer<_Tp>::_Val __y) const
     {
-      using __cmplx = value_type;
-      using __scal = scalar_type;
-
-      using _OuterSum = __gnu_cxx::_KahanSum<__cmplx>;
+      using _OuterSum = __gnu_cxx::_KahanSum<_Val>;
       using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
 
       if (std::__detail::__isnan(__y))
-	return _AiryState<_Tp>{__y, _S_cNaN, _S_cNaN, _S_cNaN, _S_cNaN};
+	return _AiryState<_Val>{__y, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
 
       auto __absargy = std::abs(std::arg(__y));
       auto __absy = std::abs(__y);
 
-      _AiryState<_Tp> __airy_sums = _Airy<_Tp>()(__y);
+      _AiryState<_Cmplx> __airy_sums = _Airy<_Val>()(__y);
       auto _Bi = __airy_sums.Bi;
       auto _Bip = __airy_sums.Bip;
 
-      std::pair<_Tp, _Tp> __scorer_sums;
+      std::pair<_Val, _Val> __scorer_sums;
       if (__absy >= inner_radius)
 	{
 	  if (__absy < outer_radius)
 	    {
-	      auto __beta = __scal{1};
+	      auto __beta = _Scal{1};
 	      _Scorer_asymp_series<_InnerSum> __scorer(_InnerSum{__beta});
 	      __scorer_sums = __scorer(__y);
 	    }
@@ -4633,7 +4811,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	}
 
       if (__absy < inner_radius)
-	return _Airy_series<__scal>::_S_Scorer2(__y);
+	return _Airy_series<_Val>::_S_Scorer2(__y);
       else
 	{
 	  if (__absargy >= _S_2pi_3)
@@ -4642,7 +4820,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
  	      auto _Hip = __scorer_sums.second;
 	      auto _Gi = _Bi - _Hi;
 	      auto _Gip = _Bip - _Hip;
-	      return _AiryState<_Tp>{__y, _Gi, _Gip, _Hi, _Hip};
+	      return _AiryState<_Val>{__y, _Gi, _Gip, _Hi, _Hip};
 	    }
 	  else
 	    {
@@ -4650,7 +4828,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new ai
 	      auto _Gip = -__scorer_sums.second;
 	      auto _Hi = _Bi - _Gi;
 	      auto _Hip = _Bip - _Gip;
-	      return _AiryState<_Tp>{__y, _Gi, _Gip, _Hi, _Hip};
+	      return _AiryState<_Val>{__y, _Gi, _Gip, _Hi, _Hip};
 	    }
 	}
     }
@@ -4703,19 +4881,19 @@ template<typename _Tp>
       std::cout << d << '\n';
 
     std::cout << "\nc_even\n";
-    for (int __s = _S_c.size() - 1; __s >= 0; --__s)
+    for (auto __s = _S_c.size() - 1; __s >= 0; --__s)
       if (__s % 2 == 0)
 	std::cout << _S_c[__s] << '\n';
     std::cout << "\nc_odd\n";
-    for (int __s = _S_c.size() - 1; __s >= 0; --__s)
+    for (auto __s = _S_c.size() - 1; __s >= 0; --__s)
       if (__s % 2 == 1)
 	std::cout << _S_c[__s] << '\n';
     std::cout << "\nd_even\n";
-    for (int __s = _S_d.size() - 1; __s >= 0; --__s)
+    for (auto __s = _S_d.size() - 1; __s >= 0; --__s)
       if (__s % 2 == 0)
 	std::cout << _S_d[__s] << '\n';
     std::cout << "\nd_odd\n";
-    for (int __s = _S_d.size() - 1; __s >= 0; --__s)
+    for (auto __s = _S_d.size() - 1; __s >= 0; --__s)
       if (__s % 2 == 1)
 	std::cout << _S_d[__s] << '\n';
 
@@ -4815,7 +4993,7 @@ template<typename _Tp>
     for (int i = -500; i <= 500; ++i)
       {
 	auto t = cmplx{_Tp(0.01Q * i)};
-	auto airy = _Airy_series<_Tp>::_S_Airy(t);
+	auto airy = _Airy_series<cmplx>::_S_Airy(t);
 	std::cout << std::setw(width) << std::real(airy.z)
 		  << std::setw(width) << std::real(airy.Ai)
 		  << std::setw(width) << std::real(airy.Aip)
@@ -4925,13 +5103,15 @@ template<typename _Tp>
   void
   run_airy()
   {
-    using _Val = std::__detail::__num_traits_t<_Tp>;
+    using _Val = _Tp;
+    using _Scal = std::__detail::__num_traits_t<_Val>;
+    //using _Cmplx = std::complex<_Scal>;
 
-    std::cout.precision(std::numeric_limits<_Val>::digits10);
+    std::cout.precision(std::numeric_limits<_Scal>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    _Airy<_Tp> airy_asymp;
+    _Airy<_Val> airy_asymp;
 
     std::cout << "\n\nPrint Airy functions computed by various means for all 'real' z\n";
     std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
@@ -4953,7 +5133,7 @@ template<typename _Tp>
 	      << '\n';
     for (int i = -1000; i <= +1000; ++i)
       {
-	auto t = _Tp(0.01Q * i);
+	auto t = _Val(0.01Q * i);
 	auto airy = airy_asymp(t);
 	std::cout << std::setw(width) << std::real(airy.z)
 		  << std::setw(width) << std::real(airy.Ai)
@@ -4972,13 +5152,15 @@ template<typename _Tp>
   void
   run_scorer()
   {
-    using _Val = std::__detail::__num_traits_t<_Tp>;
+    using _Val = _Tp;
+    using _Scal = std::__detail::__num_traits_t<_Val>;
+    //using _Cmplx = std::complex<_Scal>;
 
-    std::cout.precision(std::numeric_limits<_Val>::digits10);
+    std::cout.precision(std::numeric_limits<_Scal>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    _Scorer<_Tp> scorer_asymp;
+    _Scorer<_Val> scorer_asymp;
 
     std::cout << "\n\nPrint Scorer functions computed by various means for all 'real' z\n";
     std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
@@ -5000,7 +5182,7 @@ template<typename _Tp>
 	      << '\n';
     for (int i = -1000; i <= +1000; ++i)
       {
-	auto t = _Tp(0.01Q * i);
+	auto t = _Val(0.01Q * i);
 	auto scorer = scorer_asymp(t);
 	std::cout << std::setw(width) << std::real(scorer.z)
 		  << std::setw(width) << std::real(scorer.Ai)
@@ -5018,9 +5200,11 @@ template<typename _Tp>
   void
   run_scorer_series()
   {
-    using __cmplx = std::complex<_Tp>;
+    using _Val = _Tp;
+    using _Scal = std::__detail::__num_traits_t<_Val>;
+    using _Cmplx = std::complex<_Scal>;
 
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<_Scal>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 4 + 2 * (8 + std::cout.precision());
 
@@ -5043,8 +5227,8 @@ template<typename _Tp>
 
     for (int i = -500; i <= +500; ++i)
       {
-	auto t = __cmplx{_Tp(0.01Q * i)};
-	auto airy1 = _Airy_series<_Tp>::_S_Scorer2(t);
+	auto t = _Cmplx{_Scal(0.01Q * i)};
+	auto airy1 = _Airy_series<_Cmplx>::_S_Scorer2(t);
 	std::cout << std::setw(width) << airy1.z
 		  << std::setw(width) << airy1.Ai
 		  << std::setw(width) << airy1.Aip
@@ -5062,7 +5246,9 @@ template<typename _Tp>
   void
   diff_airy_series()
   {
-    using __cmplx = std::complex<_Tp>;
+    using _Val = _Tp;
+    using _Scal = std::__detail::__num_traits_t<_Val>;
+    using _Cmplx = std::complex<_Scal>;
 
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
@@ -5086,8 +5272,8 @@ template<typename _Tp>
 	      << '\n';
     for (int i = -500; i <= 500; ++i)
       {
-	auto t = __cmplx{_Tp(0.01Q * i)};
-	auto airy1 = _Airy_series<_Tp>::_S_Airy(t);
+	auto t = _Cmplx{_Scal(0.01Q * i)};
+	auto airy1 = _Airy_series<_Cmplx>::_S_Airy(t);
 	std::cout << '\n';
 	std::cout << std::setw(width) << std::real(airy1.z)
 		  << std::setw(width) << std::real(airy1.Ai)
@@ -5123,8 +5309,11 @@ template<typename _Tp>
   void
   diff_airy_asymp_p()
   {
-    using __cmplx = std::complex<_Tp>;
-    _Airy_asymp<_Tp> airy_asymp;
+    using _Val = _Tp;
+    using _Scal = std::__detail::__num_traits_t<_Val>;
+    using _Cmplx = std::complex<_Scal>;
+
+    _Airy_asymp<_Cmplx> airy_asymp;
 
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
@@ -5148,7 +5337,7 @@ template<typename _Tp>
 	      << '\n';
     for (int i = 500; i <= 2000; ++i)
       {
-	auto t = __cmplx{_Tp(0.01Q * i)};
+	auto t = _Cmplx{_Tp(0.01Q * i)};
 	auto airy1 = airy_asymp(t);
 	std::cout << '\n';
 	std::cout << std::setw(width) << std::real(airy1.z)
@@ -5189,10 +5378,13 @@ template<typename _Tp>
   void
   diff_airy_asymp_m()
   {
-    using __cmplx = std::complex<_Tp>;
-    _Airy_asymp<_Tp> airy_asymp;
+    using _Val = _Tp;
+    using _Scal = std::__detail::__num_traits_t<_Val>;
+    using _Cmplx = std::complex<_Scal>;
 
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    _Airy_asymp<_Cmplx> airy_asymp;
+
+    std::cout.precision(std::numeric_limits<_Scal>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -5214,7 +5406,7 @@ template<typename _Tp>
 	      << '\n';
     for (int i = -2000; i <= -500; ++i)
       {
-	auto t = __cmplx{_Tp(0.01Q * i)};
+	auto t = _Cmplx{_Tp(0.01Q * i)};
 	auto airy1 = airy_asymp(t);
 	std::cout << '\n';
 	std::cout << std::setw(width) << std::real(airy1.z)
@@ -5255,13 +5447,15 @@ template<typename _Tp>
   void
   diff_airy()
   {
-    using _Val = std::__detail::__num_traits_t<_Tp>;
+    using _Val = _Tp;
+    using _Scal = std::__detail::__num_traits_t<_Val>;
+    //using _Cmplx = std::complex<_Scal>;
 
-    std::cout.precision(std::numeric_limits<_Val>::digits10);
+    std::cout.precision(std::numeric_limits<_Scal>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    _Airy<_Tp> airy;
+    _Airy<_Val> airy;
 
     std::cout << "\n\nAiry Asymptotic -z Deathmatch\n";
     std::cout << "++++++++++++++++++++++++++++++\n";
@@ -5281,7 +5475,7 @@ template<typename _Tp>
 	      << '\n';
     for (int i = -1500; i <= -500; ++i)
       {
-	auto t = _Tp{_Val(0.01Q * i)};
+	auto t = _Val{_Scal(0.01Q * i)};
 	auto airy1 = airy(t);
 	std::cout << '\n';
 	std::cout << std::setw(width) << std::real(airy1.z)
@@ -5329,7 +5523,7 @@ template<typename _Tp>
 	      << '\n';
     for (int i = 500; i <= 1500; ++i)
       {
-	auto t = _Tp{_Val(0.01Q * i)};
+	auto t = _Val{_Scal(0.01Q * i)};
 	auto airy1 = airy(t);
 	std::cout << '\n';
 	std::cout << std::setw(width) << std::real(airy1.z)
@@ -5366,9 +5560,11 @@ template<typename _Tp>
   void
   diff_zeta()
   {
-    using Cmplx = std::complex<_Tp>;
+    using _Val = _Tp;
+    using _Scal = std::__detail::__num_traits_t<_Val>;
+    //using _Cmplx = std::complex<_Scal>;
 
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<_Scal>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 4 + 2 * (8 + std::cout.precision());
 
@@ -5386,7 +5582,7 @@ template<typename _Tp>
 	      << '\n';
     for (int i = 1; i <= 1500; ++i)
       {
-	auto y = Cmplx{_Tp(0.01Q * i)};
+	auto y = _Val{_Scal(0.01Q * i)};
 	auto zeta_c = __zeta(y);
 	auto zeta_r = __zeta(std::real(y));
 	std::cout << std::setw(width) << y
@@ -5405,15 +5601,17 @@ template<typename _Tp>
   void
   plot_airy(std::string filename)
   {
-    using _Val = std::__detail::__num_traits_t<_Tp>;
+    using _Val = _Tp;
+    using _Scal = std::__detail::__num_traits_t<_Val>;
+    //using _Cmplx = std::complex<_Scal>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Val>::digits10);
+    data.precision(std::numeric_limits<_Scal>::digits10);
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
-    _Airy<_Tp> airy;
+    _Airy<_Val> airy;
 
     data << "\n\n";
     data << "#"
@@ -5434,7 +5632,7 @@ template<typename _Tp>
 	 << '\n';
     for (int i = -2000; i <= +500; ++i)
       {
-	auto t = _Tp(0.01Q * i);
+	auto t = _Val(0.01Q * i);
 	auto airy0 = airy(t);
 	data << std::setw(width) << std::real(airy0.z)
 	     << std::setw(width) << std::real(airy0.Ai)
@@ -5455,25 +5653,27 @@ template<typename _Tp>
   void
   splot_airy(std::string filename)
   {
-    using _Val = std::__detail::__num_traits_t<_Tp>;
+    using _Val = _Tp;
+    using _Scal = std::__detail::__num_traits_t<_Val>;
+    using _Cmplx = std::complex<_Scal>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Val>::digits10);
+    data.precision(std::numeric_limits<_Scal>::digits10);
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
-    _Airy<_Tp> airy;
+    _Airy<_Cmplx> airy;
 
     for (int i = -200; i <= +50; ++i)
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = _Cmplx(0.10Q * i, 0.10Q * j);
 	    auto airy0 = airy(t);
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
-		 << std::setw(width) << std::pow(std::abs(airy0.Ai), _Val{1} / _Val{6})
+		 << std::setw(width) << std::pow(std::abs(airy0.Ai), _Scal{1} / _Scal{6})
 		 << '\n';
 	  }
 	data << '\n';
@@ -5484,7 +5684,7 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = _Cmplx(0.10Q * i, 0.10Q * j);
 	    auto airy0 = airy(t);
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
@@ -5499,7 +5699,7 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = _Cmplx(0.10Q * i, 0.10Q * j);
 	    auto airy0 = airy(t);
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
@@ -5514,7 +5714,7 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = _Cmplx(0.10Q * i, 0.10Q * j);
 	    auto airy0 = airy(t);
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
@@ -5529,11 +5729,11 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = _Cmplx(0.10Q * i, 0.10Q * j);
 	    auto airy0 = airy(t);
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
-		 << std::setw(width) << std::pow(std::abs(airy0.Bi), _Val{1} / _Val{6})
+		 << std::setw(width) << std::pow(std::abs(airy0.Bi), _Scal{1} / _Scal{6})
 		 << '\n';
 	  }
 	data << '\n';
@@ -5544,7 +5744,7 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = _Cmplx(0.10Q * i, 0.10Q * j);
 	    auto airy0 = airy(t);
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
@@ -5559,7 +5759,7 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = _Cmplx(0.10Q * i, 0.10Q * j);
 	    auto airy0 = airy(t);
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
@@ -5574,7 +5774,7 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = _Cmplx(0.10Q * i, 0.10Q * j);
 	    auto airy0 = airy(t);
 	    data << std::setw(width) << std::real(airy0.z)
 	         << std::setw(width) << std::imag(airy0.z)
@@ -5589,7 +5789,7 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = _Cmplx(0.10Q * i, 0.10Q * j);
 	    auto airy0 = airy(t);
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
@@ -5608,11 +5808,12 @@ template<typename _Tp>
   void
   plot_scorer(std::string filename)
   {
-    using _Val = std::__detail::__num_traits_t<_Tp>;
+    using _Val = _Tp;
+    using _Scal = std::__detail::__num_traits_t<_Val>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Val>::digits10);
+    data.precision(std::numeric_limits<_Scal>::digits10);
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
@@ -5637,7 +5838,7 @@ template<typename _Tp>
 	 << '\n';
     for (int i = -2000; i <= +500; ++i)
       {
-	auto t = _Tp(0.01Q * i);
+	auto t = _Val(0.01Q * i);
 	auto scorer0 = scorer(t);
 	data << std::setw(width) << std::real(scorer0.z)
 	     << std::setw(width) << std::real(scorer0.Ai)
@@ -5658,11 +5859,12 @@ template<typename _Tp>
   void
   plot_fgh(std::string filename)
   {
-    using _Val = std::__detail::__num_traits_t<_Tp>;
+    using _Val = _Tp;
+    using _Scal = std::__detail::__num_traits_t<_Val>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Val>::digits10);
+    data.precision(std::numeric_limits<_Scal>::digits10);
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
@@ -5687,7 +5889,7 @@ template<typename _Tp>
 	 << '\n';
     for (int i = -2000; i <= +500; ++i)
       {
-	auto t = _Tp(0.01Q * i);
+	auto t = _Val(0.01Q * i);
 	auto fgh0 = _Airy_series<_Val>::_S_FGH(t);
 	data << std::setw(width) << std::real(fgh0.z)
 	     << std::setw(width) << std::real(fgh0.fai)
@@ -5718,7 +5920,7 @@ template<typename _Tp>
       auto __termp = _Tp{1};
       std::cout << std::setw(width) << __term
 		<< std::setw(width) << __termp;
-      for (int __k = 1; __k < 3 * __max_FGH<_Tp>; ++__k)
+      for (size_t __k = 1; __k < 3 * __max_FGH<_Tp>; ++__k)
 	{
 	  if (__k % 3 == 0)
 	    std::cout << '\n';
