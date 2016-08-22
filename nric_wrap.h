@@ -13,7 +13,7 @@ double airy_bi(double x);
 double laguerre_nm(unsigned int n, unsigned int m, double x);
 
 /// Associated Legendre functions.
-double legendre_Plm(unsigned int l, unsigned int m, double x);
+double assoc_legendre(unsigned int l, unsigned int m, double x);
 
 /// Beta functions.
 double beta(double x, double y);
