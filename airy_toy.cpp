@@ -2,10 +2,10 @@
 $HOME/bin_tr29124/bin/g++ -std=gnu++14 -g -Wall -Wextra -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -DOLD -g -Wall -Wextra -o airy_toy_old airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++14 -DOLD -g -Wall -Wextra -o airy_toy_old airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_old > airy_toy.new.old
 
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -o airy_toy_new airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++14 -UOLD -g -Wall -Wextra -o airy_toy_new airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_toy.new.new
 */
 
@@ -230,7 +230,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
       using _Cmplx = std::complex<_Real>;
 
     public:
-      static constexpr size_t _N_FGH = 200;
+      static constexpr std::size_t _N_FGH = 200;
     private:
       static constexpr _Real
       _Fai[_N_FGH]
@@ -1545,15 +1545,15 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
   // Type-dependent limits for the arrays.
   // FIXME: Make these limits digits10-based.
   template<typename _Tp>
-    constexpr size_t
+    constexpr std::size_t
     __max_FGH = _Airy_series<_Tp>::_N_FGH;
 
   template<>
-    constexpr size_t
+    constexpr std::size_t
     __max_FGH<float> = 15;
 
   template<>
-    constexpr size_t
+    constexpr std::size_t
     __max_FGH<double> = 79;
 
   // You need these to link.
@@ -1641,7 +1641,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
       auto __term = _Val{1};
       auto _F = _Val{1};
       auto _G = __t;
-      for (size_t __n = 0; __n < __max_FGH<_Real>; ++__n)
+      for (std::size_t __n = 0; __n < __max_FGH<_Real>; ++__n)
 	{
 	  if (std::abs(__t) < _S_eps)
 	    break;
@@ -1659,7 +1659,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
       __term = _Val{1};
       auto _Fp = _Val{0};
       auto _Gp = _Val{1};
-      for (size_t __n = 0; __n < __max_FGH<_Real>; ++__n)
+      for (std::size_t __n = 0; __n < __max_FGH<_Real>; ++__n)
 	{
 	  if (std::abs(__t) < _S_eps)
 	    break;
@@ -1757,7 +1757,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
       auto _F = _Val{1};
       auto _G = __t;
       auto _H = __t * __t / _Real{2};
-      for (size_t __n = 0; __n < __max_FGH<_Real>; ++__n)
+      for (std::size_t __n = 0; __n < __max_FGH<_Real>; ++__n)
 	{
 	  if (std::abs(__t) < _S_eps)
 	    break;
@@ -1775,7 +1775,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
       auto _Fp = _Val{0};
       auto _Gp = _Val{1};
       auto _Hp = __t;
-      for (size_t __n = 0; __n < __max_FGH<_Real>; ++__n)
+      for (std::size_t __n = 0; __n < __max_FGH<_Real>; ++__n)
 	{
 	  if (std::abs(__t) < _S_eps)
 	    break;
@@ -1874,7 +1874,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
       auto _Gip = _Val{__cos[0] * std::tgamma(_S_2d3)};
       auto __term = _Val{1};
       auto __termp = _Val{1};
-      for (size_t __k = 1; __k < __max_FGH<_Real>; ++__k)
+      for (std::size_t __k = 1; __k < __max_FGH<_Real>; ++__k)
 	{
 	  __term *= __s / _Real(__k);
 	  __termp *= __s / _Real(__k);
@@ -1922,7 +1922,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
       auto __termG = _Z0.second * __t;
       auto _Ai = __termF + __termG;
       if (std::abs(__t) >= _S_eps)
-	for (size_t __n = 0; __n < __max_FGH<_Real>; ++__n)
+	for (std::size_t __n = 0; __n < __max_FGH<_Real>; ++__n)
 	  {
 	    auto __xx = __log10t * _Real(3 * (__n + 1) + 1)
 		      + _S_slope_G * __n + _S_intercept_G;
@@ -1941,7 +1941,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
 	  __termF *= __t * __t;
 	  __termG *= __ttt;
 	  _Aip += _Faip[0] * __termF + _Gaip[0] * __termG;
-	  for (size_t __n = 1; __n < __max_FGH<_Real>; ++__n)
+	  for (std::size_t __n = 1; __n < __max_FGH<_Real>; ++__n)
 	    {
 	      auto __xx = __log10t * _Real(3 * (__n + 1))
 			+ _S_slope_Gp * __n + _S_intercept_Gp;
@@ -2008,15 +2008,15 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
   template<>
     struct _Airy_asymp_data<float>
     {
-      static constexpr size_t _S_max_cd = 43;
+      static constexpr std::size_t _S_max_cd = 43;
 
       template<typename _Up>
-        static constexpr size_t
+        static constexpr std::size_t
         _S_max = _S_max_cd;
 
       template<typename _Up>
         static constexpr _Up
-        __c(size_t __i)
+        __c(std::size_t __i)
         {
           return __i < _S_max<_Up>
                ? static_cast<_Up>(_S_c[__i])
@@ -2025,7 +2025,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
 
       template<typename _Up>
         static constexpr _Up
-        __d(size_t __i)
+        __d(std::size_t __i)
         {
           return __i < _S_max<_Up>
                ? static_cast<_Up>(_S_d[__i])
@@ -2130,19 +2130,19 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
     };
 
   template<>
-    constexpr size_t
+    constexpr std::size_t
     _Airy_asymp_data<float>::_S_max<float> = 43;
 
   template<>
-    constexpr size_t
+    constexpr std::size_t
     _Airy_asymp_data<float>::_S_max<double> = 43;
 
   template<>
-    constexpr size_t
+    constexpr std::size_t
     _Airy_asymp_data<float>::_S_max<long double> = 43;
 
   template<>
-    constexpr size_t
+    constexpr std::size_t
     _Airy_asymp_data<float>::_S_max<__float128> = 43;
 
   constexpr float
@@ -2155,15 +2155,15 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
   template<>
     struct _Airy_asymp_data<double>
     { 
-      static constexpr size_t _S_max_cd = 198;
+      static constexpr std::size_t _S_max_cd = 198;
 
       template<typename _Up>
-        static constexpr size_t
+        static constexpr std::size_t
         _S_max = _S_max_cd;
 
       template<typename _Up>
         static constexpr _Up
-        __c(size_t __i)
+        __c(std::size_t __i)
         {
           return __i < _S_max<_Up>
                ? static_cast<_Up>(_S_c[__i])
@@ -2172,7 +2172,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
 
       template<typename _Up>
         static constexpr _Up
-        __d(size_t __i)
+        __d(std::size_t __i)
         {
           return __i < _S_max<_Up>
                ? static_cast<_Up>(_S_d[__i])
@@ -2587,19 +2587,19 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
     };
 
   template<>
-    constexpr size_t
+    constexpr std::size_t
     _Airy_asymp_data<double>::_S_max<float> = 43;
 
   template<>
-    constexpr size_t
+    constexpr std::size_t
     _Airy_asymp_data<double>::_S_max<double> = 198;
 
   template<>
-    constexpr size_t
+    constexpr std::size_t
     _Airy_asymp_data<double>::_S_max<long double> = 198;
 
   template<>
-    constexpr size_t
+    constexpr std::size_t
     _Airy_asymp_data<double>::_S_max<__float128> = 198;
 
   constexpr double
@@ -2612,15 +2612,15 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
   template<>
     struct _Airy_asymp_data<long double>
     {
-      static constexpr size_t _S_max_cd = 201;
+      static constexpr std::size_t _S_max_cd = 201;
 
       template<typename _Up>
-        static constexpr size_t
+        static constexpr std::size_t
         _S_max = _S_max_cd;
 
       template<typename _Up>
         static constexpr _Up
-        __c(size_t __i)
+        __c(std::size_t __i)
         {
           return __i < _S_max<_Up>
                ? static_cast<_Up>(_S_c[__i])
@@ -2629,7 +2629,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
 
       template<typename _Up>
         static constexpr _Up
-        __d(size_t __i)
+        __d(std::size_t __i)
         {
           return __i < _S_max<_Up>
                ? static_cast<_Up>(_S_d[__i])
@@ -3050,19 +3050,19 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
     };
 
   template<>
-    constexpr size_t
+    constexpr std::size_t
     _Airy_asymp_data<long double>::_S_max<float> = 43;
 
   template<>
-    constexpr size_t
+    constexpr std::size_t
     _Airy_asymp_data<long double>::_S_max<double> = 198;
 
   template<>
-    constexpr size_t
+    constexpr std::size_t
     _Airy_asymp_data<long double>::_S_max<long double> = 201;
 
   template<>
-    constexpr size_t
+    constexpr std::size_t
     _Airy_asymp_data<long double>::_S_max<__float128> = 201;
 
   constexpr long double
@@ -3075,15 +3075,15 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
   template<>
     struct _Airy_asymp_data<__float128>
     {
-      static constexpr size_t _S_max_cd = 201;
+      static constexpr std::size_t _S_max_cd = 201;
 
       template<typename _Up>
-        static constexpr size_t
+        static constexpr std::size_t
         _S_max = _S_max_cd;
 
       template<typename _Up>
         static constexpr _Up
-        __c(size_t __i)
+        __c(std::size_t __i)
         {
           return __i < _S_max<_Up>
                ? static_cast<_Up>(_S_c[__i])
@@ -3092,7 +3092,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
 
       template<typename _Up>
         static constexpr _Up
-        __d(size_t __i)
+        __d(std::size_t __i)
         {
           return __i < _S_max<_Up>
                ? static_cast<_Up>(_S_d[__i])
@@ -3513,19 +3513,19 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
     };
 
   template<>
-    constexpr size_t
+    constexpr std::size_t
     _Airy_asymp_data<__float128>::_S_max<float> = 43;
 
   template<>
-    constexpr size_t
+    constexpr std::size_t
     _Airy_asymp_data<__float128>::_S_max<double> = 198;
 
   template<>
-    constexpr size_t
+    constexpr std::size_t
     _Airy_asymp_data<__float128>::_S_max<long double> = 201;
 
   template<>
-    constexpr size_t
+    constexpr std::size_t
     _Airy_asymp_data<__float128>::_S_max<__float128> = 201;
 
   constexpr __float128
@@ -3592,7 +3592,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
 	  auto __izeta0 = _Cmplx{1};
 	  auto __prev_Ai0 = _Real{1};
 	  auto __prev_Aip0 = _Real{1};
-	  for (size_t __n = 1; __n < _Airy_asymp_data<_Real>::_S_max_cd; ++__n)
+	  for (std::size_t __n = 1; __n < _Airy_asymp_data<_Real>::_S_max_cd; ++__n)
 	    {
 	      __izeta0 *= __fact0;
 	      auto __term0 = _Airy_asymp_data<_Real>::_S_c[__n] * __izeta0;
@@ -3627,7 +3627,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
 	  auto __prev_Ai2 = _Real{1};
 	  auto __prev_Ai1p = _Real{1};
 	  auto __prev_Ai2p = _Real{1};
-	  for (size_t __n = 1; __n < _Airy_asymp_data<_Real>::_S_max_cd; ++__n)
+	  for (std::size_t __n = 1; __n < _Airy_asymp_data<_Real>::_S_max_cd; ++__n)
 	    {
 	      __sign = -__sign;
 	      __izeta1 /= __zeta1;
@@ -3688,7 +3688,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
 	  auto __prev_w2 = _Real{1};
 	  auto __prev_w1p = _Real{1};
 	  auto __prev_w2p = _Real{1};
-	  for (size_t __n = 1; __n < _Airy_asymp_data<_Real>::_S_max_cd; ++__n)
+	  for (std::size_t __n = 1; __n < _Airy_asymp_data<_Real>::_S_max_cd; ++__n)
 	    {
 	      __ipn *= +_S_i;
 	      __imn *= -_S_i;
@@ -3763,10 +3763,10 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
     {
       constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Real>::__root_pi;
       constexpr auto _S_pmhd2 = _Real{1} / (_Real{2} * _S_sqrt_pi);
-      constexpr size_t _S_num_nterms = 5;
-      constexpr size_t _S_max_nterms = 40;
+      constexpr std::size_t _S_num_nterms = 5;
+      constexpr std::size_t _S_max_nterms = 40;
       static_assert(_Airy_asymp_data<_Real>::_S_max_cd > _S_max_nterms);
-      constexpr size_t _S_nterms[_S_num_nterms]{_S_max_nterms, 24, 22, 22, 18};
+      constexpr std::size_t _S_nterms[_S_num_nterms]{_S_max_nterms, 24, 22, 22, 18};
 
       auto __zeta = _Real{2} * std::pow(__z, _Real{1.5L}) / _Real{3};
       auto __z1d4 = std::pow(__z, _Real{0.25L});
@@ -3782,7 +3782,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
 	}
 
       // Determine number of terms to use.
-      auto __iterm = std::min(_S_num_nterms - 1, size_t((int(std::abs(__z)) - 10) / 5));
+      auto __iterm = std::min(_S_num_nterms - 1, std::size_t((int(std::abs(__z)) - 10) / 5));
       if (__iterm < 0 || __iterm >= _S_num_nterms)
 	__iterm = 0;
       auto __nterm = _S_nterms[__iterm];
@@ -3855,10 +3855,10 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
       constexpr _Cmplx _S_zone{1};
       /// @todo Revisit these numbers of terms for the Airy asymptotic
       /// expansions.
-      constexpr size_t _S_num_nterms = 5;
-      constexpr size_t _S_max_nterms = 40;
+      constexpr std::size_t _S_num_nterms = 5;
+      constexpr std::size_t _S_max_nterms = 40;
       static_assert(_Airy_asymp_data<_Real>::_S_max_cd > _S_max_nterms);
-      constexpr size_t _S_nterms[_S_num_nterms]{_S_max_nterms, 28, 24, 24, 20};
+      constexpr std::size_t _S_nterms[_S_num_nterms]{_S_max_nterms, 28, 24, 24, 20};
 
       auto __zeta = _Real{2} * std::pow(-__z, _Real(1.5L)) / _Real{3};
       auto __z1d4 = std::pow(-__z, _Real(0.25L));
@@ -3868,7 +3868,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
       auto __coszeta = std::cos(__zetaarg);
 
       // Determine number of terms to use.
-      auto __iterm = std::min(_S_num_nterms - 1, size_t((int(std::abs(__z)) - 10) / 5));
+      auto __iterm = std::min(_S_num_nterms - 1, std::size_t((int(std::abs(__z)) - 10) / 5));
       if (__iterm < 0 || __iterm >= _S_num_nterms)
 	__iterm = 0;
       auto __nterm = _S_nterms[__iterm];
@@ -3944,9 +3944,9 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
       constexpr auto _S_2d3   = _Real{2} / _Real{3};
       constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Real>::__root_pi;
       constexpr auto _S_pmhd2 = _Real{1} / (_Real{2} * _S_sqrt_pi);
-      constexpr size_t _S_ncoeffs = 15;
-      constexpr size_t _S_num_nterms = 5;
-      constexpr size_t _S_nterms[_S_num_nterms]{ _S_ncoeffs, 12, 11, 11, 9 };
+      constexpr std::size_t _S_ncoeffs = 15;
+      constexpr std::size_t _S_num_nterms = 5;
+      constexpr std::size_t _S_nterms[_S_num_nterms]{ _S_ncoeffs, 12, 11, 11, 9 };
 
       // Coefficients for the expansion.
       constexpr _Real
@@ -4007,7 +4007,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
 
       // Determine number of terms to use.
       auto __nterm = _S_nterms[std::min(_S_num_nterms - 1,
-					size_t((int(std::abs(__z)) - 10) / 5))];
+					std::size_t((int(std::abs(__z)) - 10) / 5))];
       if (__nterm < 0 || __nterm > _S_num_nterms)
 	__nterm = 0;
       // Initialize for modified Horner's rule evaluation of sums.
@@ -4023,7 +4023,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
       auto __betap = _S_v[__index];
       ++__index;
 
-      for (size_t __k = __index; __k < _S_ncoeffs; ++__k)
+      for (std::size_t __k = __index; __k < _S_ncoeffs; ++__k)
 	{
 	  __beta = _S_u[__k]
 	         - __s * std::exchange(__alpha, __beta + __r * __alpha);
@@ -4092,11 +4092,11 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
       constexpr _Tp _S_pid4 = __gnu_cxx::__math_constants<_Real>::__pi_quarter;
 
       constexpr _Cmplx _S_zone{1};
-      constexpr size_t _S_ncoeffs = 18;
+      constexpr std::size_t _S_ncoeffs = 18;
       /// @todo Revisit these numbers of terms for the Airy asymptotic
       /// expansions.
-      constexpr size_t _S_num_nterms = 5;
-      constexpr size_t _S_nterms[_S_num_nterms]{ _S_ncoeffs, 7, 6, 6, 5 };
+      constexpr std::size_t _S_num_nterms = 5;
+      constexpr std::size_t _S_nterms[_S_num_nterms]{ _S_ncoeffs, 7, 6, 6, 5 };
 
       // coefficients for the expansion.
       constexpr _Real
@@ -4202,7 +4202,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
 
       // Determine number of terms to use.
       auto __nterm = _S_nterms[std::min(_S_num_nterms - 1,
-					size_t((int(std::abs(__z)) - 10) / 5))];
+					std::size_t((int(std::abs(__z)) - 10) / 5))];
       if (__nterm < 0 || __nterm > _S_num_nterms)
 	__nterm = _S_ncoeffs;
       // Initialize for modified Horner's rule evaluation of sums
@@ -4225,7 +4225,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
       auto __betapc = _S_v_cos[__index];
       ++__index;
 
-      for (size_t __k = __index; __k < _S_ncoeffs; ++__k)
+      for (std::size_t __k = __index; __k < _S_ncoeffs; ++__k)
 	{
 	  __betas = _S_u_sin[__k]
 		  - __s * std::exchange(__alphas, __betas + __r * __alphas);
@@ -4409,7 +4409,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
 
     private:
 
-      static constexpr size_t _S_max_iter = 10000;
+      static constexpr std::size_t _S_max_iter = 10000;
       static constexpr _Real _S_eps
 	   = std::numeric_limits<_Real>::epsilon();
 
@@ -4420,7 +4420,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
     };
 
   template<typename _Sum>
-    constexpr size_t
+    constexpr std::size_t
     _Airy_asymp_series<_Sum>::_S_max_iter;
 
   template<typename _Sum>
@@ -4453,7 +4453,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
       auto __numerAB = _Real{1};
       auto __numerCD = _Real{1};
       auto __denom = _Val{1};
-      for (size_t __k = 1; __k < _S_max_iter; ++__k)
+      for (std::size_t __k = 1; __k < _S_max_iter; ++__k)
 	{
 	  __sign = -__sign;
 	  __numerAB *= _Real(__k + _Real{1} / _Real{6})
@@ -4679,7 +4679,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
 
     private:
 
-      static constexpr size_t _S_max_iter = 10000;
+      static constexpr std::size_t _S_max_iter = 10000;
       static constexpr _Real _S_eps
 	   = _Real{0.01L} * std::numeric_limits<_Real>::epsilon();
 
@@ -4688,7 +4688,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
     };
 
   template<typename _Sum>
-    constexpr size_t
+    constexpr std::size_t
     _Scorer_asymp_series<_Sum>::_S_max_iter;
 
   template<typename _Sum>
@@ -4718,7 +4718,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
       auto __yyy = __y * __yy;
       auto __numer = _Real{1};
       auto __denom = _Val{1};
-      for (size_t __k = 1; __k < _S_max_iter; ++__k)
+      for (std::size_t __k = 1; __k < _S_max_iter; ++__k)
 	{
 	  __numer *= _Real(3 * __k + 1)
 		   * _Real(3 * __k + 2);
@@ -4891,19 +4891,19 @@ template<typename _Tp>
       std::cout << d << '\n';
 
     std::cout << "\nc_even\n";
-    for (ptrdiff_t __s = __c.size() - 1; __s >= 0; --__s)
+    for (std::ptrdiff_t __s = __c.size() - 1; __s >= 0; --__s)
       if (__s % 2 == 0)
 	std::cout << __c[__s] << '\n';
     std::cout << "\nc_odd\n";
-    for (ptrdiff_t __s = __c.size() - 1; __s >= 0; --__s)
+    for (std::ptrdiff_t __s = __c.size() - 1; __s >= 0; --__s)
       if (__s % 2 == 1)
 	std::cout << __c[__s] << '\n';
     std::cout << "\nd_even\n";
-    for (ptrdiff_t __s = __d.size() - 1; __s >= 0; --__s)
+    for (std::ptrdiff_t __s = __d.size() - 1; __s >= 0; --__s)
       if (__s % 2 == 0)
 	std::cout << __d[__s] << '\n';
     std::cout << "\nd_odd\n";
-    for (ptrdiff_t __s = __d.size() - 1; __s >= 0; --__s)
+    for (std::ptrdiff_t __s = __d.size() - 1; __s >= 0; --__s)
       if (__s % 2 == 1)
 	std::cout << __d[__s] << '\n';
 
@@ -5930,7 +5930,7 @@ template<typename _Tp>
       auto __termp = _Tp{1};
       std::cout << std::setw(width) << __term
 		<< std::setw(width) << __termp;
-      for (size_t __k = 1; __k < 3 * __max_FGH<_Tp>; ++__k)
+      for (std::size_t __k = 1; __k < 3 * __max_FGH<_Tp>; ++__k)
 	{
 	  if (__k % 3 == 0)
 	    std::cout << '\n';
