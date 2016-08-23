@@ -20,6 +20,8 @@ g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -Wall -Wextra -o test_
 #include <bits/complex_util.h>
 #include <bits/summation.h>
 
+#include "wrap_burkhardt.h"
+
 namespace std
 {
 namespace __detail
@@ -480,6 +482,36 @@ template<typename _Tp>
     data << "\n\n";
   }
 
+void
+test_struve()
+{
+  std::cout.precision(std::numeric_limits<double>::digits10);
+  std::cout << std::showpoint << std::scientific;
+  auto width = 8 + std::cout.precision();
+
+  for (int i = 0; i <= +3000; ++i)
+    {
+      auto t = double(0.01Q * i);
+      std::cout << std::setw(width) << t;
+      for (int n = 0; n <= 20; ++n)
+	{
+	  auto nu = double(1.0Q * n);
+	  auto h = __gnu_cxx::struve_h(nu, t);
+	  auto l = __gnu_cxx::struve_l(nu, t);
+	  auto hb = burkhardt::struve_h(nu, t);
+	  auto lb = burkhardt::struve_l(nu, t);
+	  std::cout << '\t'
+	       << std::setw(width) << h
+	       << std::setw(width) << hb
+	       << std::setw(width) << (h - hb) / std::abs(hb)
+	       << std::setw(width) << l
+	       << std::setw(width) << lb
+	       << std::setw(width) << (l - lb) / std::abs(lb);
+	}
+      std::cout << '\n';
+    }
+  std::cout << "\n\n";
+}
 
 int
 main()
@@ -492,6 +524,8 @@ main()
   plot_struve<float>("plot/struve_float.txt");
   plot_struve<double>("plot/struve_double.txt");
   plot_struve<long double>("plot/struve_long_double.txt");
+
+  test_struve();
 
   return 0;
 }

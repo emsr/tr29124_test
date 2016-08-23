@@ -5,11 +5,11 @@
 extern "C" {
 #endif
 
-void airya_(double x, double * ai, double * bi, double * ad, double * bd);
+void airya_(const double * x, double * ai, double * bi, double * ad, double * bd);
 
-void stvhv_(double nu, double x, double * sh);
+void stvhv_(const double * nu, const double * x, double * sh);
 
-void stvlv_(double nu, double x, double * sl);
+void stvlv_(const double * nu, const double * x, double * sl);
 
 #ifdef __cplusplus
 }
