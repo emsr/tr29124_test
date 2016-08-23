@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_clausen test_clausen.cpp gsl_wrap.cpp gslextras/Fresnel/fresnel.c -lgsl -lgslcblas -ljacobi
+$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_clausen test_clausen.cpp wrap_gsl.cpp gslextras/Fresnel/fresnel.c -lgsl -lgslcblas -ljacobi
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_clausen > test_clausen.txt
 
-g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_clausen test_clausen.cpp gsl_wrap.cpp -lgsl -lgslcblas
+g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_clausen test_clausen.cpp wrap_gsl.cpp -lgsl -lgslcblas
 ./test_clausen
 */
 
@@ -10,7 +10,7 @@ g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_clausen test_clausen.cp
 #include <iomanip>
 #include <limits>
 #include <ext/cmath>
-#include "gsl_wrap.h"
+#include "wrap_gsl.h"
 
 
 template<typename _Tp>

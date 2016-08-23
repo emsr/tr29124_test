@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -g -Wall -Wextra -o test_struve test_struve.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -g -Wall -Wextra -o test_struve test_struve.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 -lgfortran
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_struve > test_struve.new
 
-g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -Wall -Wextra -o test_struve test_struve.cpp
+g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -Wall -Wextra -o test_struve test_struve.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 -lgfortran
 ./test_struve > test_struve.txt
 */
 

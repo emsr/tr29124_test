@@ -1,5 +1,5 @@
 /*
-/home/ESmith-rowland/bin/bin/g++ -std=gnu++17 -fconcepts -g -I. -o testcase2 -I/usr/local/include -I/usr/local/include testcase2.cpp gsl_wrap.cpp boost_wrap.cpp lerchphi/Source/lerchphi.cpp /home/ESmith-rowland/tr29124_test/gslextras/Fresnel/fresnel.c -L/usr/local/lib -lgsl -lgslcblas -ljacobi
+/home/ESmith-rowland/bin/bin/g++ -std=gnu++17 -fconcepts -g -I. -o testcase2 -I/usr/local/include -I/usr/local/include testcase2.cpp wrap_gsl.cpp wrap_boost.cpp lerchphi/Source/lerchphi.cpp /home/ESmith-rowland/tr29124_test/gslextras/Fresnel/fresnel.c -L/usr/local/lib -lgsl -lgslcblas -ljacobi
 */
 #include <iostream>
 #include <sstream>
@@ -17,9 +17,9 @@
 #define STD 1
 
 #include "specfun_testcase.h"
-#include "gsl_wrap.h"
-#include "boost_wrap.h"
-#include "burkhardt_wrap.h"
+#include "wrap_gsl.h"
+#include "wrap_boost.h"
+#include "wrap_burkhardt.h"
 
 #include "testcase2.tcc"
 

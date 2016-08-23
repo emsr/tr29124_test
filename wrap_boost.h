@@ -317,5 +317,11 @@ double owens_t(double h, double a);
 /// Clausen function of order 2.
 double clausen_c(unsigned int m, double w);
 
+/// Struve H function.
+double struve_h(double nu, double x);
+
+/// Struve L function.
+double struve_l(double nu, double x);
+
 } // namespace beast
 

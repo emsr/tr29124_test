@@ -1,4 +1,4 @@
-// $HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_pochhammer_l test_pochhammer_l.cpp boost_wrap.cpp
+// $HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_pochhammer_l test_pochhammer_l.cpp wrap_boost.cpp
 /*
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_pochhammer_l > test_pochhammer_l.txt
 */
@@ -8,7 +8,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_pochhammer_l > t
 #include <iostream>
 #include <iomanip>
 #include <ext/cmath>
-#include "boost_wrap.h"
+#include "wrap_boost.h"
 
 int
 main()

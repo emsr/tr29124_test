@@ -308,24 +308,24 @@ check: $(CHECKS)
 	echo "origin_cyl_neumann" >> check_out.txt 2>> check_err.txt && ./origin_cyl_neumann >> check_out.txt 2>> check_err.txt
 
 
-test_special_function: test_special_function.cpp gsl_wrap.h gsl_wrap.cpp boost_wrap.h boost_wrap.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
-	$(CXX) -o test_special_function -I$(GSL_INC_DIR) test_special_function.cpp gsl_wrap.cpp boost_wrap.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath $(GSL_LIBS)
+test_special_function: test_special_function.cpp wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
+	$(CXX) -o test_special_function -I$(GSL_INC_DIR) test_special_function.cpp wrap_gsl.cpp wrap_boost.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath $(GSL_LIBS)
 
-diff_special_function: diff_special_function.cpp gsl_wrap.h gsl_wrap.cpp boost_wrap.h boost_wrap.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
-	$(CXX) -o diff_special_function -I$(GSL_INC_DIR) diff_special_function.cpp gsl_wrap.cpp boost_wrap.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath $(GSL_LIBS)
+diff_special_function: diff_special_function.cpp wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
+	$(CXX) -o diff_special_function -I$(GSL_INC_DIR) diff_special_function.cpp wrap_gsl.cpp wrap_boost.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath $(GSL_LIBS)
 
 #  You need gnu to get __float128!
-test_local_special_function: test_special_function.cpp gsl_wrap.cpp test_func.tcc sf_*.tcc
-	$(HOME)/bin/bin/g++ -std=gnu++14 -g -DLOCAL -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -I$(HOME)/gcc_specfun/libstdc++-v3/include -I$(GSL_INC_DIR) -o test_local_special_function test_special_function.cpp gsl_wrap.cpp $(GSL_LIBS) -lquadmath
+test_local_special_function: test_special_function.cpp wrap_gsl.cpp test_func.tcc sf_*.tcc
+	$(HOME)/bin/bin/g++ -std=gnu++14 -g -DLOCAL -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -I$(HOME)/gcc_specfun/libstdc++-v3/include -I$(GSL_INC_DIR) -o test_local_special_function test_special_function.cpp wrap_gsl.cpp $(GSL_LIBS) -lquadmath
 
-diff_local_special_function: diff_special_function.cpp gsl_wrap.cpp test_func.tcc sf_*.tcc
-	$(HOME)/bin/bin/g++ -std=gnu++14 -g -DLOCAL -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -I$(HOME)/gcc_specfun/libstdc++-v3/include -I$(GSL_INC_DIR) -o diff_local_special_function diff_special_function.cpp gsl_wrap.cpp $(GSL_LIBS) -lquadmath
+diff_local_special_function: diff_special_function.cpp wrap_gsl.cpp test_func.tcc sf_*.tcc
+	$(HOME)/bin/bin/g++ -std=gnu++14 -g -DLOCAL -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -I$(HOME)/gcc_specfun/libstdc++-v3/include -I$(GSL_INC_DIR) -o diff_local_special_function diff_special_function.cpp wrap_gsl.cpp $(GSL_LIBS) -lquadmath
 
-testcase2: testcase2.cpp testcase2.tcc gsl_wrap.h gsl_wrap.cpp boost_wrap.h boost_wrap.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp burkhardt_wrap.h burkhardt_wrap.cpp burkhardt/special_functions.f90 $(INC_DIR)/sf_*.tcc
-	$(CXX17) -o testcase2 -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase2.cpp gsl_wrap.cpp boost_wrap.cpp burkhardt_wrap.cpp burkhardt/special_functions.f90 $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -lgfortran
+testcase2: testcase2.cpp testcase2.tcc wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp wrap_burkhardt.h wrap_burkhardt.cpp burkhardt/special_functions.f90 $(INC_DIR)/sf_*.tcc
+	$(CXX17) -o testcase2 -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase2.cpp wrap_gsl.cpp wrap_boost.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -lgfortran
 
-testcase: testcase.cpp testcase.tcc gsl_wrap.h gsl_wrap.cpp boost_wrap.h boost_wrap.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp burkhardt_wrap.h burkhardt_wrap.cpp burkhardt/special_functions.f90 $(CXX_INC_DIR)/sf_*.tcc
-	$(CXX) -o testcase -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp gsl_wrap.cpp boost_wrap.cpp burkhardt_wrap.cpp burkhardt/special_functions.f90 $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -lgfortran
+testcase: testcase.cpp testcase.tcc wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp wrap_burkhardt.h wrap_burkhardt.cpp burkhardt/special_functions.f90 $(CXX_INC_DIR)/sf_*.tcc
+	$(CXX) -o testcase -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp wrap_gsl.cpp wrap_boost.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -lgfortran
 
 test_limits: test_limits.cpp
 	$(CXX) -o test_limits test_limits.cpp
@@ -333,8 +333,8 @@ test_limits: test_limits.cpp
 test_cmath: test_cmath.cpp
 	$(CXX) -o test_cmath test_cmath.cpp
 
-test_airy: test_airy.cpp sf_airy.tcc gsl_wrap.cpp
-	$(CXX) -o test_airy -I$(GSL_INC_DIR) test_airy.cpp gsl_wrap.cpp $(GSL_LIBS)
+test_airy: test_airy.cpp sf_airy.tcc wrap_gsl.cpp
+	$(CXX) -o test_airy -I$(GSL_INC_DIR) test_airy.cpp wrap_gsl.cpp $(GSL_LIBS)
 
 test_csint: test_csint.cpp csint.tcc
 	$(CXX) -o test_csint test_csint.cpp
