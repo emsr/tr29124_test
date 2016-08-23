@@ -265,7 +265,7 @@ double radpoly(unsigned int n, unsigned int m, double rho);
 
 /// Zernike polynomials
 double zernike(unsigned int n, int m, double rho, double phi);
-
+/*
 /// Cylindrical Hankel functions of the first kind.
 std::complex<double> cyl_hankel_1(double nu, double x);
 
@@ -277,7 +277,7 @@ std::complex<double> sph_hankel_1(unsigned int n, double x);
 
 /// Spherical Hankel functions of the second kind.
 std::complex<double> sph_hankel_2(unsigned int n, double x);
-
+*/
 /// Heuman lambda functions.
 double heuman_lambda(double k, double phi);
 
@@ -307,10 +307,10 @@ double ibeta_invb(double a, double x, double p);
 
 /// Inverse parameter complementary incomplete beta function.
 double ibetac_invb(double a, double x, double q);
-
+/*
 /// Spherical harmonic functions.
 std::complex<double> sph_harmonic(unsigned int l, int m, double theta, double phi);
-
+*/
 /// Owen's T function.
 double owens_t(double h, double a);
 
