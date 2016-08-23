@@ -1,4 +1,8 @@
 
+#include "burkhardt/special_functions.h"
+#include "burkhardt_wrap.h"
+
+
 namespace burkhardt
 {
 
@@ -6,8 +10,8 @@ namespace burkhardt
 double
 airy_ai(double x)
 {
-  double ai, bi, ad, bd;
-  airya_( x, ai, bi, ad, bd )
+  double ai{}, bi{}, ad{}, bd{};
+  airya_(x, &ai, &bi, &ad, &bd);
   return ai;
 }
 
@@ -15,8 +19,8 @@ airy_ai(double x)
 double
 airy_bi(double x)
 {
-  double ai, bi, ad, bd;
-  airya_( x, ai, bi, ad, bd )
+  double ai{}, bi{}, ad{}, bd{};
+  airya_(x, &ai, &bi, &ad, &bd);
   return bi;
 }
 
@@ -33,8 +37,8 @@ assoc_legendre(unsigned int l, unsigned int m, double x)
 {
   //int mm = l * m;
   //double cpm[mm], cpd[mm];
-  //double x, y;
-  //clpmn_(mm, l, m, x, y, cpm, cpd);
+  //double x{}, y{};
+  //clpmn_(mm, l, m, x, y, &cpm, &cpd);
   return 0.0;
 }
 
@@ -44,8 +48,8 @@ assoc_legendre_q(unsigned int l, unsigned int m, double x)
 {
   //int mm = l * m;
   //double cpm[mm], cpd[mm];
-  //double x, y;
-  //clqmn_(mm, m, n, x, y, cqm, cqd);
+  //double x{}, y{};
+  //clqmn_(mm, m, n, x, y, &cqm, &cqd);
   return 0.0;
 }
 
@@ -630,7 +634,7 @@ zernike(unsigned int n, int m, double rho, double phi)
 {
   return 0.0;
 }
-
+/*
 /// Cylindrical Hankel functions of the first kind.
 std::complex<double> cyl_hankel_1(double nu, double x)
 {
@@ -654,7 +658,7 @@ std::complex<double> sph_hankel_2(unsigned int n, double x)
 {
   return 0.0;
 }
-
+*/
 /// Heuman lambda functions.
 double
 heuman_lambda(double k, double phi)
@@ -724,13 +728,13 @@ ibetac_invb(double a, double x, double q)
 {
   return 0.0;
 }
-
+/*
 /// Spherical harmonic functions.
 std::complex<double> sph_harmonic(unsigned int l, int m, double theta, double phi)
 {
   return 0.0;
 }
-
+*/
 /// Owen's T function.
 double
 owens_t(double h, double a)
@@ -750,7 +754,7 @@ double
 struve_h(double nu, double x)
 {
   double sh{};
-  stvhv_(nu, x, sh)
+  stvhv_(nu, x, &sh);
   return sh;
 }
 
@@ -759,7 +763,7 @@ double
 struve_l(double nu, double x)
 {
   double sl{};
-  stvlv_(nu, x, sl)
+  stvlv_(nu, x, &sl);
   return sl;
 }
 
