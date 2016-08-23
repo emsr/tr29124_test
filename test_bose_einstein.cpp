@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_bose_einstein test_bose_einstein.cpp gsl_wrap.cpp -lgsl -lgslcblas
+$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_bose_einstein test_bose_einstein.cpp wrap_gsl.cpp -lgsl -lgslcblas
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_bose_einstein
 */
 

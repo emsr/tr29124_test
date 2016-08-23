@@ -1,4 +1,4 @@
-#include "nric_wrap.h"
+#include "wrap_nric.h"
 
 
 namespace nric

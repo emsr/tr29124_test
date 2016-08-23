@@ -3,7 +3,7 @@
 #include <sstream>
 #include <stdexcept>
 
-#include "gsl_wrap.h"
+#include "wrap_gsl.h"
 
 #include <gsl/gsl_sf.h>
 #include "gslextras/Fresnel/fresnel.h"
@@ -67,7 +67,7 @@ double
 assoc_legendre(unsigned int l, unsigned int m, double x)
 {
   if (l < m)
-   return 0.0;
+   return std::numeric_limits<double>::quiet_NaN();
   else
     {
       gsl_sf_result result;
@@ -87,7 +87,7 @@ assoc_legendre(unsigned int l, unsigned int m, double x)
 double
 assoc_legendre_q(unsigned int l, unsigned int m, double x)
 {
-  return 0.0;
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Beta functions.
@@ -163,7 +163,7 @@ comp_ellint_3(double k, double nu)
 double
 comp_ellint_d(double k)
 {
-  return 0.0;
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Confluent hypergeometric functions.
@@ -317,7 +317,7 @@ ellint_3(double k, double nu, double phi)
 double
 ellint_d(double k, double phi)
 {
-  return 0.0;
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Carlson elliptic integrals R_C.
@@ -325,7 +325,7 @@ double
 ellint_rc(double x, double y)
 {
   if (x == 0.0 && y == 0.0)
-    return 0.0;
+    return std::numeric_limits<double>::quiet_NaN();
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_ellint_RC_e(x, y, mode, &result);
@@ -344,7 +344,7 @@ double
 ellint_rd(double x, double y, double z)
 {
   if (x == 0.0 && y == 0.0 && z == 0.0)
-    return 0.0;
+    return std::numeric_limits<double>::quiet_NaN();
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_ellint_RD_e(x, y, z, mode, &result);
@@ -363,7 +363,7 @@ double
 ellint_rf(double x, double y, double z)
 {
   if (x == 0.0 && y == 0.0 && z == 0.0)
-    return 0.0;
+    return std::numeric_limits<double>::quiet_NaN();
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_ellint_RF_e(x, y, z, mode, &result);
@@ -381,7 +381,7 @@ ellint_rf(double x, double y, double z)
 double
 ellint_rg(double x, double y, double z)
 {
-  return 0.0;
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Carlson elliptic integrals R_J.
@@ -389,7 +389,7 @@ double
 ellint_rj(double x, double y, double z, double p)
 {
   if (x == 0.0 && y == 0.0 && z == 0.0)
-    return 0.0;
+    return std::numeric_limits<double>::quiet_NaN();
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
   int stat = gsl_sf_ellint_RJ_e(x, y, z, p, mode, &result);
@@ -586,7 +586,7 @@ legendre_sphPlm(unsigned int l, unsigned int m, double theta)
 {
   double x = std::cos(theta);
   if (l < m)
-    return 0.0;
+    return std::numeric_limits<double>::quiet_NaN();
   else
     {
       gsl_sf_result result;
@@ -939,14 +939,14 @@ sinc(double x)
 double
 sinhc_pi(double x)
 {
-  return 0.0;
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Normalized hyperbolic sinus cardinal function.
 double
 sinhc(double x)
 {
-  return 0.0;
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Log upper Pochhammer symbol.
@@ -1131,7 +1131,7 @@ double
 choose(unsigned int n, unsigned int k)
 {
   if (k > n)
-    return 0.0; // GSL barfs on this for no reason.
+    return std::numeric_limits<double>::quiet_NaN(); // GSL barfs on this for no reason.
   gsl_sf_result result;
   int stat = gsl_sf_choose_e(n, k, &result);
   if (stat != GSL_SUCCESS)
@@ -1201,7 +1201,7 @@ radpoly(unsigned int n, unsigned int m, double rho)
   if (m > n)
     throw std::range_error("radpoly: m > n");
   else if ((n - m) % 2 == 1)
-    return 0.0;
+    return std::numeric_limits<double>::quiet_NaN();
   else
     {
       auto k = (n - m) / 2;
@@ -1222,70 +1222,70 @@ zernike(unsigned int n, int m, double rho, double phi)
 std::complex<double>
 cyl_hankel_1(double nu, double x)
 {
-  return 0.0;
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Cylindrical Hankel functions of the second kind.
 std::complex<double>
 cyl_hankel_2(double nu, double x)
 {
-  return 0.0;
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Spherical Hankel functions of the first kind.
 std::complex<double>
 sph_hankel_1(unsigned int n, double x)
 {
-  return 0.0;
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Spherical Hankel functions of the second kind.
 std::complex<double>
 sph_hankel_2(unsigned int n, double x)
 {
-  return 0.0;
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Heuman lambda functions.
 double
 heuman_lambda(double k, double phi)
 {
-  return 0.0;
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Jacobi zeta functions.
 double
 jacobi_zeta(double k, double phi)
 {
-  return 0.0;
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Inverse error function.
 double
 erf_inv(double p)
 {
-  return 0.0;
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Inverse complementary error function.
 double
 erfc_inv(double p)
 {
-  return 0.0;
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Spherical harmonic functions.
 std::complex<double>
 sph_harmonic(unsigned int l, int m, double theta, double phi)
 {
-  return 0.0;
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Owen's T function.
 double
 owens_t(double h, double a)
 {
-  return 0.0;
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Clausen function of order 2.
@@ -1293,7 +1293,7 @@ double
 clausen_c(unsigned int m, double w)
 {
   if (m != 2)
-    return 0.0;
+    return std::numeric_limits<double>::quiet_NaN();
   gsl_sf_result result;
   int stat = gsl_sf_clausen_e(w, &result);
   if (stat != GSL_SUCCESS)
@@ -1304,6 +1304,20 @@ clausen_c(unsigned int m, double w)
     }
   else
     return result.val;
+}
+
+/// Struve H function.
+double
+struve_h(double nu, double x)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Struve L function.
+double
+struve_l(double nu, double x)
+{
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 } // namespace gsl

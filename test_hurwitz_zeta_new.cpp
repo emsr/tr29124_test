@@ -14,73 +14,74 @@ g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 #include "float128.h"
 #include "summation.h"
 
-constexpr unsigned long long
-_S_num_harmonic_numer = 29;
-_S_harmonic_numer[_S_num_harmonic_numer]
-{
-  1ULL,
-  3ULL,
-  11ULL,
-  25ULL,
-  137ULL,
-  49ULL,
-  363ULL,
-  761ULL,
-  7129ULL,
-  7381ULL,
-  83711ULL,
-  86021ULL,
-  1145993ULL,
-  1171733ULL,
-  1195757ULL,
-  2436559ULL,
-  42142223ULL,
-  14274301ULL,
-  275295799ULL,
-  55835135ULL,
-  18858053ULL,
-  19093197ULL,
-  444316699ULL,
-  1347822955ULL,
-  34052522467ULL,
-  34395742267ULL,
-  312536252003ULL,
-  315404588903ULL,
-  9227046511387ULL
-};
-constexpr unsigned long long
-_S_harmonic_denom[_S_num_harmonic_numer]
-{
-  1ULL,
-  2ULL,
-  6ULL,
-  12ULL,
-  60ULL,
-  20ULL,
-  140ULL,
-  280ULL,
-  2520ULL,
-  2520ULL,
-  27720ULL,
-  27720ULL,
-  360360ULL,
-  360360ULL,
-  360360ULL,
-  720720ULL,
-  12252240ULL,
-  4084080ULL,
-  77597520ULL,
-  15519504ULL,
-  5173168ULL,
-  5173168ULL,
-  118982864ULL,
-  356948592ULL,
-  8923714800ULL,
-  8923714800ULL,
-  80313433200ULL,
-  80313433200ULL,
-  2329089562800ULL
-};
+  constexpr unsigned long long
+  _S_num_harmonic_numer = 29;
+  constexpr unsigned long long
+  _S_harmonic_numer[_S_num_harmonic_numer]
+  {
+    1ULL,
+    3ULL,
+    11ULL,
+    25ULL,
+    137ULL,
+    49ULL,
+    363ULL,
+    761ULL,
+    7129ULL,
+    7381ULL,
+    83711ULL,
+    86021ULL,
+    1145993ULL,
+    1171733ULL,
+    1195757ULL,
+    2436559ULL,
+    42142223ULL,
+    14274301ULL,
+    275295799ULL,
+    55835135ULL,
+    18858053ULL,
+    19093197ULL,
+    444316699ULL,
+    1347822955ULL,
+    34052522467ULL,
+    34395742267ULL,
+    312536252003ULL,
+    315404588903ULL,
+    9227046511387ULL
+  };
+  constexpr unsigned long long
+  _S_harmonic_denom[_S_num_harmonic_numer]
+  {
+    1ULL,
+    2ULL,
+    6ULL,
+    12ULL,
+    60ULL,
+    20ULL,
+    140ULL,
+    280ULL,
+    2520ULL,
+    2520ULL,
+    27720ULL,
+    27720ULL,
+    360360ULL,
+    360360ULL,
+    360360ULL,
+    720720ULL,
+    12252240ULL,
+    4084080ULL,
+    77597520ULL,
+    15519504ULL,
+    5173168ULL,
+    5173168ULL,
+    118982864ULL,
+    356948592ULL,
+    8923714800ULL,
+    8923714800ULL,
+    80313433200ULL,
+    80313433200ULL,
+    2329089562800ULL
+  };
 
   template<typename _Tp>
     _Tp
@@ -92,9 +93,10 @@ _S_harmonic_denom[_S_num_harmonic_numer]
         {
 	  unsigned int __k = _S_num_harmonic_numer - 1;
 	  auto _H_k = _Tp{_S_harmonic_numer[__k]} / _Tp{_S_harmonic_denom[__k]};
-          for (__k <= __n; ++__k)
-	    _H_k += _Tp{1} / __k;
+          for (__k = _S_num_harmonic_numer; __k <= __n; ++__k)
+	    _H_k += _Tp{1} / _Tp(__k);
 	}
+    }
 
   //  From sf_gamma.tcc
   template<typename _Tp>

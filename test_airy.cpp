@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_airy test_airy.cpp gsl_wrap.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c -lgsl -lgslcblas -ljacobi
+$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_airy test_airy.cpp wrap_gsl.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c -lgsl -lgslcblas -ljacobi
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_airy
 
-g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_airy test_airy.cpp gsl_wrap.cpp -lgsl -lgslcblas -ljacobi
+g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_airy test_airy.cpp wrap_gsl.cpp -lgsl -lgslcblas -ljacobi
 ./test_airy
 */
 
@@ -11,7 +11,7 @@ g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_airy test_airy.cpp gsl_
 #include <limits>
 #include <ext/cmath>
 #include "bits/specfun.h"
-#include "gsl_wrap.h"
+#include "wrap_gsl.h"
 
 double
 chebyshev_eval(double a, double b, double * c, int m, double x)

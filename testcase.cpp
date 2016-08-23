@@ -14,9 +14,9 @@
 #define STD 1
 
 #include "specfun_testcase.h"
-#include "gsl_wrap.h"
-#include "boost_wrap.h"
-#include "burkhardt_wrap.h"
+#include "wrap_gsl.h"
+#include "wrap_boost.h"
+#include "wrap_burkhardt.h"
 
 #include "testcase.tcc"
 
