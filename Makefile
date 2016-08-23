@@ -24,8 +24,10 @@ GSL_LIB_DIR = $(GSL_DIR)/lib
 
 GSL_EXT_DIR = $(HOME)/tr29124_test/gslextras
 GSL_FRESNEL_DIR = $(GSL_EXT_DIR)/Fresnel
+GSL_JACOBI_DIR = $(GSL_EXT_DIR)/Jacobi/jacobi-0.9.2/src
+GSL_HERMITE_DIR = $(GSL_EXT_DIR)/Hermite
 
-GSL_LIBS = $(GSL_FRESNEL_DIR)/fresnel.c -L$(GSL_LIB_DIR) -lgsl -lgslcblas -ljacobi
+GSL_LIBS = $(GSL_FRESNEL_DIR)/fresnel.c $(GSL_JACOBI_DIR)/jacobi.c $(GSL_HERMITE_DIR)/gsl_sf_hermite.c -L$(GSL_LIB_DIR) -lgsl -lgslcblas
 
 BOOST_DIR = /usr/local
 BOOST_INC_DIR = $(BOOST_DIR)/include
@@ -324,8 +326,8 @@ diff_local_special_function: diff_special_function.cpp wrap_gsl.cpp test_func.tc
 testcase2: testcase2.cpp testcase2.tcc wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp wrap_burkhardt.h wrap_burkhardt.cpp burkhardt/special_functions.f90 $(INC_DIR)/sf_*.tcc
 	$(CXX17) -o testcase2 -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase2.cpp wrap_gsl.cpp wrap_boost.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -lgfortran
 
-testcase: testcase.cpp testcase.tcc wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp wrap_burkhardt.h wrap_burkhardt.cpp burkhardt/special_functions.f90 $(CXX_INC_DIR)/sf_*.tcc
-	$(CXX) -o testcase -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp wrap_gsl.cpp wrap_boost.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -lgfortran
+testcase: testcase.cpp testcase.tcc wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp wrap_burkhardt.h wrap_burkhardt.cpp burkhardt/special_functions.f90 $(INC_DIR)/sf_*.tcc
+	$(CXX) -o testcase -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp wrap_gsl.cpp wrap_boost.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -lgfortran
 
 test_limits: test_limits.cpp
 	$(CXX) -o test_limits test_limits.cpp
