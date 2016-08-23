@@ -22,7 +22,8 @@
 
 #include "bits/float128.h"
 #include "test_func.tcc"
-#include "gsl_wrap.h"
+#include "wrap_gsl.h"
+#include "wrap_burkhardt.h"
 
 
 ///
