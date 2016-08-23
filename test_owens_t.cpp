@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_owens_t test_owens_t.cpp boost_wrap.cpp
+$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_owens_t test_owens_t.cpp wrap_boost.cpp
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_owens_t > test_owens_t.txt
 */
 
@@ -7,7 +7,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_owens_t > test_o
 #include <iostream>
 #include <iomanip>
 #include <ext/cmath>
-#include "boost_wrap.h"
+#include "wrap_boost.h"
 
 int
 main()

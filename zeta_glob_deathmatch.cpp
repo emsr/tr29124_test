@@ -1,8 +1,8 @@
-// $HOME/bin/bin/g++ -o zeta_glob_deathmatch zeta_glob_deathmatch.cpp gsl_wrap.cpp -lquadmath -lgsl -lgslcblas
+// $HOME/bin/bin/g++ -o zeta_glob_deathmatch zeta_glob_deathmatch.cpp wrap_gsl.cpp -lquadmath -lgsl -lgslcblas
 
 // LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./zeta_glob_deathmatch > zeta_glob_deathmatch.txt
 
-// g++ -std=c++14 -o zeta_glob_deathmatch zeta_glob_deathmatch.cpp gsl_wrap.cpp -lquadmath -lgsl -lgslcblas
+// g++ -std=c++14 -o zeta_glob_deathmatch zeta_glob_deathmatch.cpp wrap_gsl.cpp -lquadmath -lgsl -lgslcblas
 
 // ./zeta_glob_deathmatch > zeta_glob_deathmatch.txt
 
@@ -11,7 +11,7 @@
 #include<iostream>
 #include<iomanip>
 
-#include "gsl_wrap.h"
+#include "wrap_gsl.h"
 
 #define _GLIBCXX_MATH_NS std
 

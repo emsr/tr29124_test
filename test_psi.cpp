@@ -1,12 +1,12 @@
 /*
-$HOME/bin_tr29124/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_psi test_psi.cpp gsl_wrap.cpp gslextras/Fresnel/fresnel.c -L/usr/local/lib -lgsl -lgslcblas
+$HOME/bin_tr29124/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_psi test_psi.cpp wrap_gsl.cpp gslextras/Fresnel/fresnel.c -L/usr/local/lib -lgsl -lgslcblas
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:/usr/local/lib:$LD_LIBRARY_PATH ./test_psi
 */
 
 #include <cmath>
 #include <iostream>
 #include <iomanip>
-#include "gsl_wrap.h"
+#include "wrap_gsl.h"
 
 int
 main()
