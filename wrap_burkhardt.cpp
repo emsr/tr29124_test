@@ -13,7 +13,7 @@ double
 airy_ai(double x)
 {
   double ai{}, bi{}, ad{}, bd{};
-  airya_(x, &ai, &bi, &ad, &bd);
+  airya_(&x, &ai, &bi, &ad, &bd);
   return ai;
 }
 
@@ -22,7 +22,7 @@ double
 airy_bi(double x)
 {
   double ai{}, bi{}, ad{}, bd{};
-  airya_(x, &ai, &bi, &ad, &bd);
+  airya_(&x, &ai, &bi, &ad, &bd);
   return bi;
 }
 
@@ -40,7 +40,7 @@ assoc_legendre(unsigned int l, unsigned int m, double x)
   //int mm = l * m;
   //double cpm[mm], cpd[mm];
   //double x{}, y{};
-  //clpmn_(mm, l, m, x, y, &cpm, &cpd);
+  //clpmn_(&mm, &l, &m, &x, &y, &cpm, &cpd);
   return std::numeric_limits<double>::quiet_NaN();
 }
 
@@ -51,7 +51,7 @@ assoc_legendre_q(unsigned int l, unsigned int m, double x)
   //int mm = l * m;
   //double cpm[mm], cpd[mm];
   //double x{}, y{};
-  //clqmn_(mm, m, n, x, y, &cqm, &cqd);
+  //clqmn_(&mm, &m, &n, &x, &y, &cqm, &cqd);
   return std::numeric_limits<double>::quiet_NaN();
 }
 
@@ -756,7 +756,7 @@ double
 struve_h(double nu, double x)
 {
   double sh{};
-  stvhv_(nu, x, &sh);
+  stvhv_(&nu, &x, &sh);
   return sh;
 }
 
@@ -765,7 +765,7 @@ double
 struve_l(double nu, double x)
 {
   double sl{};
-  stvlv_(nu, x, &sl);
+  stvlv_(&nu, &x, &sl);
   return sl;
 }
 
