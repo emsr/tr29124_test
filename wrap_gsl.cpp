@@ -7,7 +7,8 @@
 
 #include <gsl/gsl_sf.h>
 #include "gslextras/Fresnel/fresnel.h"
-#include <jacobi.h>
+#include "gslextras/Jacobi/jacobi-0.9.2/src/jacobi.h"
+#include "gslextras/Hermite/gsl_sf_hermite.h"
 
 namespace gsl
 {
