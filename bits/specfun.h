@@ -50,7 +50,6 @@
 
 #if __cplusplus >= 201103L
 #  include <type_traits>
-#  include <complex>
 #  include <bits/numeric_limits.h>
 #  include <bits/complex_util.h>
 #  include <bits/sf_gamma.tcc>
