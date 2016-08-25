@@ -4573,7 +4573,8 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
     _Airy<_Tp>::operator()(typename _Airy<_Tp>::_Val __y) const
     {
       using _OuterSum = __gnu_cxx::_KahanSum<_Val>;
-      using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
+      //using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
+      using _InnerSum = __gnu_cxx::_AitkenDeltaSqaredSum<_OuterSum>;
 
       if (std::__detail::__isnan(__y))
 	return _AiryState<_Cmplx>{__y, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
@@ -4588,7 +4589,8 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
 	  if (__absy < outer_radius)
 	    {
 	      auto __beta = _Real{1};
-	      _Airy_asymp_series<_InnerSum> __asymp(_InnerSum{__beta});
+	      //_Airy_asymp_series<_InnerSum> __asymp(_InnerSum{__beta});
+	      _Airy_asymp_series<_InnerSum> __asymp(_InnerSum{});
 	      __sums = __asymp(__y);
 	    }
 	  else
@@ -6087,6 +6089,9 @@ namespace __gnu_cxx
 int
 main()
 {
+  _Airy<std::complex<double>> airy;
+  auto out = airy({1.0, 7.0});
+
   run_toy<float>();
   run_airy_asymp_m<float>();
   run_airy_series<float>();
