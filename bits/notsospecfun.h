@@ -38,6 +38,7 @@ namespace std
   sincos_t<long double> sincosl(long double x);
 
   // Teach atan to use sincos_t.
+  // This returns all four quadrants like atan2.
   float atanf(sincos_t<float> m);
   double atan(sincos_t<double> m);
   long double atanl(sincos_t<long double> m);
@@ -72,7 +73,7 @@ namespace std
   double acot2(double x, double y);
   long double acot2l(long double x, long double y);
 
-  // Teach acot to use sincos_t.
+  // This returns all four quadrants like acot2.
   float acotf(sincos_t<float> m);
   double acot(sincos_t<double> m);
   long double acotl(sincos_t<long double> m);
@@ -123,7 +124,6 @@ namespace std
   double acoth(double x);
   long double acothl(long double x);
 
-  // Teach acoth to use sinhcosh_t.
   float acothf(sinhcosh_t<float> m);
   double acoth(sinhcosh_t<double> m);
   long double acothl(sinhcosh_t<long double> m);
@@ -160,90 +160,87 @@ namespace std
     }
 
   // Combined reperiodized sine and cosine.
-  sincos_pi<float> sincos_pif(float x);
-  sincos_pi<double> sincos_pi(double x);
-  sincos_pi<long double> sincos_pil(long double x);
+  sincos_t<float> sincos_pif(float x);
+  sincos_t<double> sincos_pi(double x);
+  sincos_t<long double> sincos_pil(long double x);
+
+  sincos_t<float> sincos_pif(reperiod_t<float x);
+  sincos_t<double> sincos_pi(reperiod_t<double> x);
+  sincos_t<long double> sincos_pil(reperiod_t<long double> x);
 
   float sin_pif(float x);
   double sin_pi(double x);
   long double sin_pil(long double x);
 
-  float cos_pif(float x);
-  double cos_pi(double x);
-  long double cos_pil(long double x);
-
-  float tan_pif(float x);
-  double tan_pi(double x);
-  long double tan_pil(long double x);
-
-  float sec_pif(float x);
-  double sec_pi(double x);
-  long double sec_pil(long double x);
-
-  float csc_pif(float x);
-  double csc_pi(double x);
-  long double csc_pil(long double x);
-
-  float cot_pif(float x);
-  double cot_pi(double x);
-  long double cot_pil(long double x);
-
   float sin_pif(reperiod_t<float> x);
   double sin_pi(reperiod_t<double> x);
   long double sin_pil(reperiod_t<long double> x);
+
+  float cos_pif(float x);
+  double cos_pi(double x);
+  long double cos_pil(long double x);
 
   float cos_pif(reperiod_t<float> x);
   double cos_pi(reperiod_t<double> x);
   long double cos_pil(reperiod_t<long double> x);
 
+  float tan_pif(float x);
+  double tan_pi(double x);
+  long double tan_pil(long double x);
+
   float tan_pif(reperiod_t<float> x);
   double tan_pi(reperiod_t<double> x);
   long double tan_pil(reperiod_t<long double> x);
 
-  float sec_pif(reperiod_t<float> x);
-  double sec_pi(reperiod_t<double> x);
-  long double sec_pil(reperiod_t<long double> x);
+  float csc_pif(float x);
+  double csc_pi(double x);
+  long double csc_pil(long double x);
 
   float csc_pif(reperiod_t<float> x);
   double csc_pi(reperiod_t<double> x);
   long double csc_pil(reperiod_t<long double> x);
 
+  float sec_pif(float x);
+  double sec_pi(double x);
+  long double sec_pil(long double x);
+
+  float sec_pif(reperiod_t<float> x);
+  double sec_pi(reperiod_t<double> x);
+  long double sec_pil(reperiod_t<long double> x);
+
+  float cot_pif(float x);
+  double cot_pi(double x);
+  long double cot_pil(long double x);
+
   float cot_pif(reperiod_t<float> x);
   double cot_pi(reperiod_t<double> x);
   long double cot_pil(reperiod_t<long double> x);
 
-  // Teach atan and acot to return reperiodized angle.
   reperiod_t<float> atan_pif(float m);
   reperiod_t<double> atan_pi(double m);
   reperiod_t<long double> atan_pil(long double m);
-
-  reperiod_t<float> atan_pif(sincos_t<float> m);
-  reperiod_t<double> atan_pi(sincos_t<double> m);
-  reperiod_t<long double> atan_pil(sincos_t<long double> m);
 
   reperiod_t<float> atan2_pif(float y, float x);
   reperiod_t<double> atan2_pi(double y, double x);
   reperiod_t<long double> atan2_pil(long double y, long double x);
 
-  reperiod_t<float> atan2_pif(sincos_t<float> m);
-  reperiod_t<double> atan2_pi(sincos_t<double> m);
-  reperiod_t<long double> atan2_pil(sincos_t<long double> m);
+  // These return all four quadrants like atan2
+  reperiod_t<float> atan_pif(sincos_t<float> m);
+  reperiod_t<double> atan_pi(sincos_t<double> m);
+  reperiod_t<long double> atan_pil(sincos_t<long double> m);
 
   reperiod_t<float> acot_pif(float m);
   reperiod_t<double> acot_pi(double m);
   reperiod_t<long double> acot_pil(long double m);
 
-  reperiod_t<float> acot_pif(sincos_t<float> m);
-  reperiod_t<double> acot_pi(sincos_t<double> m);
-  reperiod_t<long double> acot_pil(sincos_t<long double> m);
-
   reperiod_t<float> acot2_pif(float y, float x);
   reperiod_t<double> acot2_pi(double y, double x);
   reperiod_t<long double> acot2_pil(long double y, long double x);
 
-  reperiod_t<float> acot2_pif(sincos_t<float> m);
-  reperiod_t<double> acot2_pi(sincos_t<double> m);
-  reperiod_t<long double> acot2_pil(sincos_t<long double> m);
+  // These return all four quadrants like atan2
+  reperiod_t<float> acot_pif(sincos_t<float> m);
+  reperiod_t<double> acot_pi(sincos_t<double> m);
+  reperiod_t<long double> acot_pil(sincos_t<long double> m);
 
 
   // Gamma function
