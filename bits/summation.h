@@ -111,6 +111,11 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       num_terms() const
       { return this->_M_num_terms; }
 
+      /// Return the current last term contributing to the sum.
+      value_type
+      term() const
+      { return this->_M_term; }
+
       ///  Reset the sum to it's initial state.
       _BasicSum&
       reset()
@@ -199,6 +204,11 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       num_terms() const
       { return this->_M_num_terms; }
 
+      /// Return the current last term contributing to the sum.
+      value_type
+      term() const
+      { return this->_M_term; }
+
       ///  Reset the sum to it's initial state.
       _KahanSum&
       reset()
@@ -241,7 +251,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
       ///  Default constructor.
       _VanWijngaardenSum()
-      : _M_sum{}, _M_delta{}, _M_num_terms{0}, _M_converged{false}
+      : _M_sum{}, _M_term{}, _M_delta{}, _M_num_terms{0}, _M_converged{false}
       { }
 
       ///  Constructor taking the first term.
@@ -273,11 +283,17 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       num_terms() const
       { return this->_M_num_terms; }
 
+      /// Return the current last term contributing to the sum.
+      value_type
+      term() const
+      { return this->_M_term; }
+
       ///  Reset the sum to it's initial state.
       _VanWijngaardenSum&
       reset()
       {
 	this->_M_sum = value_type{};
+	this->_M_term = value_type{};
 	this->_M_delta.clear();
 	this->_M_num_terms = 0;
 	this->_M_converged = false;
@@ -296,6 +312,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     private:
 
       value_type _M_sum;
+      value_type _M_term;
       std::vector<value_type> _M_delta;
       std::size_t _M_num_terms;
       bool _M_converged;
@@ -368,7 +385,12 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       /// Return the current number of terms contributing to the sum.
       std::size_t
       num_terms() const
-      { return this->_M_part_sum.num_terms; }
+      { return this->_M_part_sum.num_terms(); }
+
+      /// Return the current last term contributing to the sum.
+      value_type
+      term() const
+      { return this->_M_part_sum.term(); }
 
       ///  Reset the sum to it's initial state.
       _AitkenDeltaSqaredSum&
@@ -445,7 +467,12 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       /// Return the current number of terms contributing to the sum.
       std::size_t
       num_terms() const
-      { return this->_M_part_sum.num_terms; }
+      { return this->_M_part_sum.num_terms(); }
+
+      /// Return the current last term contributing to the sum.
+      value_type
+      term() const
+      { return this->_M_part_sum.term(); }
 
       ///  Reset the sum to it's initial state.
       _WinnEpsilonSum&
@@ -522,7 +549,12 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       /// Return the current number of terms contributing to the sum.
       std::size_t
       num_terms() const
-      { return this->_M_part_sum.num_terms; }
+      { return this->_M_part_sum.num_terms(); }
+
+      /// Return the current last term contributing to the sum.
+      value_type
+      term() const
+      { return this->_M_part_sum.term(); }
 
       ///  Reset the sum to it's initial state.
       _BrezinskiThetaSum&
@@ -892,7 +924,12 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       /// Return the current number of terms contributing to the sum.
       std::size_t
       num_terms() const
-      { return this->_M_part_sum.num_terms; }
+      { return this->_M_part_sum.num_terms(); }
+
+      /// Return the current last term contributing to the sum.
+      value_type
+      term() const
+      { return this->_M_part_sum.term(); }
 
       ///  Reset the sum to it's initial state.
       ///  The beta parameter is unchanged.
@@ -1005,7 +1042,12 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       /// Return the current number of terms contributing to the sum.
       std::size_t
       num_terms() const
-      { return this->_M_part_sum.num_terms; }
+      { return this->_M_part_sum.num_terms(); }
+
+      /// Return the current last term contributing to the sum.
+      value_type
+      term() const
+      { return this->_M_part_sum.term(); }
 
       ///  Reset the sum to it's initial state.
       ///  The beta parameter is unchanged.
