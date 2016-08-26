@@ -46,6 +46,12 @@ namespace __detail
     _Real
     __kelvin_bex_series(_Real __x, int __sign)
     {
+      using _BasicSum = __gnu_cxx::_BasicSum<_Real>;
+      using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Real>;
+      using _AitkenSum = AitkenDeltaSquaredSum<_BasicSum>;
+      using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
+      using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
+
       constexpr auto _S_1d2 = _Real{1} / _Real{2};
       constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
       constexpr auto _S_maxiter = 1000;
@@ -53,8 +59,8 @@ namespace __detail
       const auto __tmp = __xd4 * __xd4;
       const auto __y = __tmp * __tmp;
       auto __term = _Real{1};
-      //__gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<_Real>> __bex;
-      __gnu_cxx::_BasicSum<_Real> __bex;
+      //_WenigerDeltaWijnSum __bex;
+      _BasicSum __bex;
       __bex += __term;
       for (auto __k = 1; __k < _S_maxiter; ++__k)
 	{
@@ -75,6 +81,12 @@ namespace __detail
     _Real
     __kelvin_kex_series(_Real __x, int __sign)
     {
+      using _BasicSum = __gnu_cxx::_BasicSum<_Real>;
+      using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Real>;
+      using _AitkenSum = AitkenDeltaSquaredSum<_BasicSum>;
+      using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
+      using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
+
       constexpr auto _S_1d2 = _Real{1} / _Real{2};
       constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
       constexpr auto _S_maxiter = 1000;
@@ -82,9 +94,9 @@ namespace __detail
       const auto __tmp = __xd4 * __xd4;
       const auto __y = __tmp * __tmp;
       auto __term = _Real{1};
-      //__gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<_Real>> __kex;
-      //__gnu_cxx::_AitkenDeltaSqaredSum<__gnu_cxx::_BasicSum<_Real>> _H_n;
-      __gnu_cxx::_BasicSum<_Real> __kex, _H_n;
+      //_WenigerDeltaWijnSum __kex;
+      //_AitkenSum _H_n;
+      _BasicSum __kex, _H_n;
       __kex += __term;
       _H_n += 1;
       for (auto __k = 1; __k < _S_maxiter; ++__k)
@@ -190,14 +202,16 @@ namespace __detail
     _KelvinState<_Real>
     __kelvin_series(_Real __x)
     {
-      using _BasicSum = __gnu_cxx::_BasicSum<std::complex<_Real>>;
+      using _BasicSum = __gnu_cxx::_BasicSum<_Real>;
       using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Real>;
       using _AitkenSum = AitkenDeltaSquaredSum<_BasicSum>;
       using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
       using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
+
       constexpr auto _S_gamma_e = __gnu_cxx::__math_constants<_Real>::__gamma_e;
       constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Real>::__pi_quarter;
-      constexpr auto _S_eps = _Real{0.01L} * std::numeric_limits<_Real>::epsilon();
+      constexpr auto _S_eps = _Real{0.01L}
+				* std::numeric_limits<_Real>::epsilon();
       constexpr auto _S_maxiter = 1000;
       const auto __xd2 = __x / _Real{2};
       const auto __xxd4 = __xd2 * __xd2;
@@ -234,8 +248,8 @@ namespace __detail
 	}
       auto __ln = std::log(__x / _Real{2}) + _S_gamma_e;
       return _KelvinState<_Real>{_Real{0}, __x, __ber(), __xxd4 * __bei(),
-		-__ln * __ber() + _S_pi_4 * __xxd4 * __bei() + __ker() - _Real{1},
-		-__ln * __xxd4 * __bei() - _S_pi_4 * __ber() + __xxd4 * __kei()};
+	      -__ln * __ber() + _S_pi_4 * __xxd4 * __bei() + __ker() - _Real{1},
+	      -__ln * __xxd4 * __bei() - _S_pi_4 * __ber() + __xxd4 * __kei()};
     }
 
 
@@ -246,9 +260,11 @@ namespace __detail
     _KelvinState<_Real>
     __kelvin_asymp(_Real __x)
     {
-      using _BasicSum = __gnu_cxx::_BasicSum<std::complex<_Real>>;
+      using _Cmplx = std::complex<_Real>;
+      using _BasicSum = __gnu_cxx::_BasicSum<_Cmplx>;
       using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
-      constexpr auto _S_j = std::complex<_Real>{0, 1};
+
+      constexpr auto _S_j = _Cmplx{0, 1};
       constexpr auto _S_1d2 = _Real{1} / _Real{2};
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
       constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Real>::__pi_quarter;
@@ -271,7 +287,7 @@ namespace __detail
 	{
 	  __barg -= _S_pi_4;
 	  __karg += _S_3pi_4;
-	  auto __fact =  _Real(2 * __k) * _Real(2 * __k - 1) / _Real(__k);
+	  auto __fact = _Real(4 * __k - 2);
 	  auto __next = __y * __fact * __fact / _Real(__k);
 	  if (std::abs(__next) > _Real{1})
 	    break;
@@ -289,8 +305,8 @@ namespace __detail
       const auto __bfact = __exp / _S_sqrt_pi / __rt;
       const auto __bex = __bfact * __be() + _S_j * __kex / _S_pi;
       return _KelvinState<_Real>{_Real{0}, __x,
-			       std::real(__bex), std::imag(__bex),
-			       std::real(__kex), std::imag(__kex)};
+			         std::real(__bex), std::imag(__bex),
+			         std::real(__kex), std::imag(__kex)};
     }
 
   /**
@@ -333,7 +349,8 @@ namespace __detail
     _KelvinState<_Real>
     __kelvin_series(int __n, _Real __x)
     {
-      constexpr auto _S_j = std::complex<_Real>{0, 1};
+      using _Cmplx = std::complex<_Real>;
+      constexpr auto _S_j = _Cmplx{0, 1};
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Real>::__pi_half;
       constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Real>::__pi_quarter;
       constexpr auto _S_3pi_4 = _Real{3} * _S_pi_4;
@@ -344,29 +361,28 @@ namespace __detail
 	  const auto _Cnp = _Real(1 - 2 * (__n & 1));
 	  auto _Kv = __kelvin_series(-__n, __x);
 	  return _KelvinState<_Real>{_Real(__n), __x,
-	  			   _Cnp * _Kv.__ber, _Cnp * _Kv.__bei,
-				   _Cnp * _Kv.__ker, _Cnp * _Kv.__kei};
+	  			     _Cnp * _Kv.__ber, _Cnp * _Kv.__bei,
+				     _Cnp * _Kv.__ker, _Cnp * _Kv.__kei};
 	}
       else
 	{
 	  const auto __xd2 = __x / _Real{2};
 	  const auto __y = __xd2 * __xd2;
 
-	  __gnu_cxx::_BasicSum<std::complex<_Real>> __be;
+	  __gnu_cxx::_BasicSum<_Cmplx> __be;
 	  auto __bterm = _Real{1};
 	  auto __barg = _S_3pi_4 * _Real(__n);
 	  __be += std::polar(__bterm, __barg);
 	  for (auto __k = 1; __k < _S_maxiter; ++__k)
 	    {
-	      auto __bfact = (_Real(__k) + __n) * _Real(__k);
-	      __bterm *= __y / __bfact;
+	      __bterm *= __y / _Real(__k + __n) / _Real(__k);
 	      __barg += _S_pi_2;
 	      __be += std::polar(__bterm, __barg);
 	      if (std::abs(__bterm) < _S_eps * std::abs(__be()))
 		break;
 	    }
 
-	  __gnu_cxx::_BasicSum<std::complex<_Real>> __ke1;
+	  __gnu_cxx::_BasicSum<_Cmplx> __ke1;
 	  if (__n > 0)
 	    {
 	      auto __kterm1 = _Real{1};
@@ -374,8 +390,7 @@ namespace __detail
 	      __ke1 += std::polar(__kterm1, -__karg1);
 	      for (auto __k = 1; __k < __n - 1; ++__k)
 		{
-		  auto __fact1 = _Real(__n - 1 - __k) * _Real(__k);
-		  __kterm1 *= __y / __fact1;
+		  __kterm1 *= __y / _Real(__n - 1 - __k) / _Real(__k);
 		  __karg1 += _S_pi_2;
 		  __ke1 += std::polar(__kterm1, -__karg1);
 		}
@@ -387,15 +402,16 @@ namespace __detail
 		}
 	    }
 
-	  __gnu_cxx::_BasicSum<std::complex<_Real>> __ke2;
+	  __gnu_cxx::_BasicSum<_Cmplx> __ke2;
 	  auto __hsum2 = __psi<_Real>(1) + __psi<_Real>(1 + __n);
 	  auto __kterm2 = _Real{1};
 	  auto __karg2 = _S_3pi_4 * _Real(__n);
 	  __ke2 += std::polar(__hsum2 * __kterm2, __karg2);
 	  for (auto __k = 1; __k < _S_maxiter; ++__k)
 	    {
-	      __hsum2 += _Real{1} / _Real(1 + __k) + _Real{1} / _Real(1 + __n + __k);
-	      __kterm2 *= __y / _Real(__k) /  _Real(__n + __k);
+	      __hsum2 += _Real{1} / _Real(1 + __k)
+		       + _Real{1} / _Real(1 + __n + __k);
+	      __kterm2 *= __y / _Real(__k) / _Real(__n + __k);
 	      __karg2 += _S_pi_2;
 	      __ke2 += std::polar(__hsum2 * __kterm2, __karg2);
 	      if (std::abs(__hsum2 * __kterm2) < _S_eps * std::abs(__ke2()))
@@ -406,13 +422,13 @@ namespace __detail
 	  const auto __pow = std::pow(__xd2, _Real(__n));
 	  auto __bex = __pow * __be() / __nfact;
 	  auto __kex = -std::log(__xd2) * __bex - _S_j * _S_pi_4 * __bex
-		+ __ke1() / __pow / _Real{2}
-		  / (__n > 0 ? __factorial<_Real>(__n - 1) : _Real{1})
-		+ __pow * __ke2() / __nfact / _Real{2}
-		- _Real{1}; // I needed this for ker(x) too.
+		     + __ke1() / __pow / _Real{2}
+		       / (__n > 0 ? __factorial<_Real>(__n - 1) : _Real{1})
+		     + __pow * __ke2() / __nfact / _Real{2}
+		     - _Real{1}; // I needed this for ker(x) too.
 	  return _KelvinState<_Real>{_Real(__n), __x,
-				   std::real(__bex), std::imag(__bex),
-				   std::real(__kex), std::imag(__kex)};
+				     std::real(__bex), std::imag(__bex),
+				     std::real(__kex), std::imag(__kex)};
 	}
     }
 
@@ -424,7 +440,8 @@ namespace __detail
     _KelvinState<_Real>
     __kelvin_series(_Real __nu, _Real __x)
     {
-      constexpr auto _S_j = std::complex<_Real>{0, 1};
+      using _Cmplx = std::complex<_Real>;
+      constexpr auto _S_j = _Cmplx{0, 1};
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Real>::__pi_half;
       constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Real>::__pi_quarter;
@@ -441,28 +458,26 @@ namespace __detail
 	  const auto __xd2 = __x / _Real{2};
 	  const auto __y = __xd2 * __xd2;
 
-	  __gnu_cxx::_BasicSum<std::complex<_Real>> __bep;
+	  __gnu_cxx::_BasicSum<_Cmplx> __bep;
 	  auto __termp = _Real{1};
 	  auto __argp = _S_3pi_4 * __nu;
 	  __bep += std::polar(__termp, __argp);
 	  for (auto __k = 1; __k < _S_maxiter; ++__k)
 	    {
-	      auto __factp = (_Real(__k) + __nu) * _Real(__k);
-	      __termp *= __y / __factp;
+	      __termp *= __y / _Real(__k + __nu) / _Real(__k);
 	      __argp += _S_pi_2;
 	      __bep += std::polar(__termp, __argp);
 	    }
 	  auto __bex = std::pow(__xd2, __nu) * __bep()
 		     / std::tgamma(_Real{1} + __nu);
 
-	  __gnu_cxx::_BasicSum<std::complex<_Real>> __bem;
+	  __gnu_cxx::_BasicSum<_Cmplx> __bem;
 	  auto __termm = _Real{1};
 	  auto __argm = -_S_3pi_4 * __nu;
 	  __bem += std::polar(__termm, __argm);
 	  for (auto __k = 1; __k < _S_maxiter; ++__k)
 	    {
-	      auto __factm = (_Real(__k) - __nu) * _Real(__k);
-	      __termm *= __y / __factm;
+	      __termm *= __y / _Real(__k - __nu) / _Real(__k);
 	      __argm += _S_pi_2;
 	      __bem += std::polar(__termm, __argm);
 	    }
@@ -474,8 +489,8 @@ namespace __detail
 	  auto __kex = _S_pi_2 * (__csc * __bey - __cot * __bex + _S_j * __bex);
 
 	  return _KelvinState<_Real>{__nu, __x,
-				   std::real(__bex), std::imag(__bex),
-				   std::real(__kex), std::imag(__kex)};
+				     std::real(__bex), std::imag(__bex),
+				     std::real(__kex), std::imag(__kex)};
 	}
     }
 
@@ -487,9 +502,11 @@ namespace __detail
     _KelvinState<_Real>
     __kelvin_asymp(_Real __nu, _Real __x)
     {
-      using _BasicSum = __gnu_cxx::_BasicSum<std::complex<_Real>>;
+      using _Cmplx = std::complex<_Real>;
+      using _BasicSum = __gnu_cxx::_BasicSum<_Cmplx>;
       using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
-      constexpr auto _S_j = std::complex<_Real>{0, 1};
+
+      constexpr auto _S_j = _Cmplx{0, 1};
       constexpr auto _S_1d2 = _Real{1} / _Real{2};
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Real>::__pi_half;
@@ -533,8 +550,8 @@ namespace __detail
       const auto __bfact = __exp / _S_sqrt_pi / __rt;
       const auto __bex = __bfact * __be() + _S_j * __kex / _S_pi;
       return _KelvinState<_Real>{__nu, __x,
-			       std::real(__bex), std::imag(__bex),
-			       std::real(__kex), -std::imag(__kex)};
+			         std::real(__bex), std::imag(__bex),
+			         std::real(__kex), -std::imag(__kex)};
     }
 
   /**
