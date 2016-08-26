@@ -47,9 +47,11 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * A Sum is default constructable
    * It has operator+=(Tp)
    * It has operator-=(Tp)
-   * It has operator() -> _Tp
-   * It has operator bool()
-   * It has num_terms() -> std::size_t
+   * It has operator() const -> _Tp
+   * It has converged() const -> Tp
+   * It has operator bool() const // !converged() i.e. still needs work.
+   * It has num_terms() const -> std::size_t
+   * It has term() const -> _Tp // last term
    * 
    */
 
@@ -97,9 +99,14 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       { return this->operator+=(-__term); }
 
       /// Return true if the sum converged.
+      bool
+      converged() const
+      { return this->_M_converged; }
+
+      /// Return false if the sum converged.
       operator
       bool() const
-      { return !this->_M_converged; }
+      { return !this->converged(); }
 
       /// Return the current value of the sum.
       value_type
@@ -190,9 +197,14 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       { return this->operator+=(-__term); }
 
       /// Return true if the sum converged.
+      bool
+      converged() const
+      { return this->_M_converged; }
+
+      /// Return false if the sum converged.
       operator
       bool() const
-      { return !this->_M_converged; }
+      { return !this->converged(); }
 
       /// Return the current value of the sum.
       value_type
@@ -269,9 +281,14 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       { return this->operator+=(-__term); }
 
       /// Return true if the sum converged.
+      bool
+      converged() const
+      { return this->_M_converged; }
+
+      /// Return false if the sum converged.
       operator
       bool() const
-      { return !this->_M_converged; }
+      { return !this->converged(); }
 
       /// Return the current value of the sum.
       value_type
@@ -361,6 +378,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       {
 	if (!this->_M_converged)
 	  {
+	    if (std::__detail::__isnan(__term))
+	      std::__throw_runtime_error(__N("_AitkenDeltaSqaredSum: bad term"));
+	    if (std::__detail::__isinf(__term))
+	      std::__throw_runtime_error(__N("_AitkenDeltaSqaredSum: infinite term"));
 	    this->_M_part_sum += __term;
 	    this->_M_update();
 	  }
@@ -373,9 +394,14 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       { return this->operator+=(-__term); }
 
       /// Return true if the sum converged.
+      bool
+      converged() const
+      { return this->_M_converged; }
+
+      /// Return false if the sum converged.
       operator
       bool() const
-      { return !this->_M_converged; }
+      { return !this->converged(); }
 
       /// Return the current value of the sum.
       value_type
@@ -443,6 +469,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       {
 	if (!this->_M_converged)
 	  {
+	    if (std::__detail::__isnan(__term))
+	      std::__throw_runtime_error(__N("_WinnEpsilonSum: bad term"));
+	    if (std::__detail::__isinf(__term))
+	      std::__throw_runtime_error(__N("_WinnEpsilonSum: infinite term"));
 	    this->_M_part_sum += __term;
 	    this->_M_update();
 	  }
@@ -455,9 +485,14 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       { return this->operator+=(-__term); }
 
       /// Return true if the sum converged.
+      bool
+      converged() const
+      { return this->_M_converged; }
+
+      /// Return false if the sum converged.
       operator
       bool() const
-      { return !this->_M_converged; }
+      { return !this->_converged(); }
 
       /// Return the current value of the sum.
       value_type
@@ -525,6 +560,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       {
 	if (!this->_M_converged)
 	  {
+	    if (std::__detail::__isnan(__term))
+	      std::__throw_runtime_error(__N("_BrezinskiThetaSum: bad term"));
+	    if (std::__detail::__isinf(__term))
+	      std::__throw_runtime_error(__N("_BrezinskiThetaSum: infinite term"));
 	    this->_M_part_sum += __term;
 	    this->_M_update();
 	  }
@@ -537,9 +576,14 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       { return this->operator+=(-__term); }
 
       /// Return true if the sum converged.
+      bool
+      converged() const
+      { return this->_M_converged; }
+
+      /// Return false if the sum converged.
       operator
       bool() const
-      { return !this->_M_converged; }
+      { return !this->_converged(); }
 
       /// Return the current value of the sum.
       value_type
@@ -633,8 +677,17 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 	  /* error */;
       }
 
-      operator bool() const
+      // Return true if the remainder model has accumulated enough terms
+      // to start work on the sum.
+      constexpr bool
+      ready() const
       { return this->_M_n == 2; }
+
+      // Return true if the remainder model has accumulated enough terms
+      // to start work on the sum.
+      constexpr operator
+      bool() const
+      { return this->ready(); }
 
       _RemainderTerm<value_type>
       operator()()
@@ -681,8 +734,17 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 	++this->_M_n;
       }
 
-      constexpr operator bool() const
+      // Return true if the remainder model has accumulated enough terms
+      // to start work on the sum.
+      constexpr bool
+      ready() const
       { return this->_M_n >= 2; }
+
+      // Return true if the remainder model has accumulated enough terms
+      // to start work on the sum.
+      constexpr operator
+      bool() const
+      { return this->ready(); }
 
       _RemainderTerm<value_type>
       constexpr operator()()
@@ -735,8 +797,17 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 	  /* error */;
       }
 
-      constexpr operator bool() const
+      // Return true if the remainder model has accumulated enough terms
+      // to start work on the sum.
+      constexpr bool
+      ready() const
       { return this->_M_ok; }
+
+      // Return true if the remainder model has accumulated enough terms
+      // to start work on the sum.
+      constexpr operator
+      bool() const
+      { return this->ready(); }
 
       _RemainderTerm<value_type>
       constexpr operator()()
@@ -782,8 +853,17 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 	++this->_M_n;
       }
 
-      operator bool() const
+      // Return true if the remainder model has accumulated enough terms
+      // to start work on the sum.
+      constexpr bool
+      ready() const
       { return this->_M_n >= 2; }
+
+      // Return true if the remainder model has accumulated enough terms
+      // to start work on the sum.
+      constexpr operator
+      bool() const
+      { return this->ready(); }
 
       _RemainderTerm<value_type>
       operator()()
@@ -831,8 +911,17 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 	++this->_M_n;
       }
 
-      operator bool() const
+      // Return true if the remainder model has accumulated enough terms
+      // to start work on the sum.
+      constexpr bool
+      ready() const
       { return this->_M_n >= 2; }
+
+      // Return true if the remainder model has accumulated enough terms
+      // to start work on the sum.
+      constexpr operator
+      bool() const
+      { return this->ready(); }
 
       _RemainderTerm<value_type>
       operator()()
@@ -895,8 +984,12 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       {
 	if (!this->_M_converged)
 	  {
+	    if (std::__detail::__isnan(__term))
+	      std::__throw_runtime_error(__N("_LevinSum: bad term"));
+	    if (std::__detail::__isinf(__term))
+	      std::__throw_runtime_error(__N("_LevinSum: infinite term"));
 	    this->_M_rem_mdl << __term;
-	    if (this->_M_rem_mdl)
+	    if (this->_M_rem_mdl.ready())
 	      {
 		auto __thing = this->_M_rem_mdl();
 		this->_M_part_sum += __thing.term;
@@ -912,9 +1005,14 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       { return this->operator+=(-__term); }
 
       /// Return true if the sum converged.
+      bool
+      converged() const
+      { return this->_M_converged; }
+
+      /// Return false if the sum converged.
       operator
       bool() const
-      { return !this->_M_converged; }
+      { return !this->converged(); }
 
       /// Return the current value of the sum.
       value_type
@@ -1013,8 +1111,12 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       {
 	if (!this->_M_converged)
 	  {
+	    if (std::__detail::__isnan(__term))
+	      std::__throw_runtime_error(__N("_WenigerSum: bad term"));
+	    if (std::__detail::__isinf(__term))
+	      std::__throw_runtime_error(__N("_WenigerSum: infinite term"));
 	    this->_M_rem_mdl << __term;
-	    if (this->_M_rem_mdl)
+	    if (this->_M_rem_mdl.ready())
 	      {
 		auto __thing = this->_M_rem_mdl();
 		this->_M_part_sum += __thing.term;
@@ -1030,9 +1132,14 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       { return this->operator+=(-__term); }
 
       /// Return true if the sum converged.
+      bool
+      converged() const
+      { return this->_M_converged; }
+
+      /// Return false if the sum converged.
       operator
       bool() const
-      { return !this->_M_converged; }
+      { return !this->converged(); }
 
       /// Return the current value of the sum.
       value_type
