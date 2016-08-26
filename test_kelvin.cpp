@@ -48,7 +48,7 @@ namespace __detail
     {
       using _BasicSum = __gnu_cxx::_BasicSum<_Real>;
       using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Real>;
-      using _AitkenSum = AitkenDeltaSquaredSum<_BasicSum>;
+      using _AitkenSum = __gnu_cxx::_AitkenDeltaSquaredSum<_BasicSum>;
       using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
       using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
 
@@ -83,7 +83,7 @@ namespace __detail
     {
       using _BasicSum = __gnu_cxx::_BasicSum<_Real>;
       using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Real>;
-      using _AitkenSum = AitkenDeltaSquaredSum<_BasicSum>;
+      using _AitkenSum = __gnu_cxx::_AitkenDeltaSquaredSum<_BasicSum>;
       using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
       using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
 
@@ -204,7 +204,7 @@ namespace __detail
     {
       using _BasicSum = __gnu_cxx::_BasicSum<_Real>;
       using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Real>;
-      using _AitkenSum = AitkenDeltaSquaredSum<_BasicSum>;
+      using _AitkenSum = __gnu_cxx::_AitkenDeltaSquaredSum<_BasicSum>;
       using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
       using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
 
