@@ -4461,18 +4461,22 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
 	  __numerCD *= _Real(__k - _Real{1} / _Real{6})
 		     * _Real(__k + _Real{7} / _Real{6});
 	  __denom *= _Val(2 * __k) * __zeta;
+if (__k > 1 && std::abs(_M_Asum.term()) < std::abs(__numerAB / __denom))
+  break;
 	  auto _Aterm = __sign * __numerAB / __denom;
 	  _M_Asum += _Aterm;
 	  auto _Bterm = __numerAB / __denom;
 	  _M_Bsum += _Bterm;
+if (__k > 1 && std::abs(_M_Csum.term()) < std::abs(__numerCD / __denom))
+  break;
 	  auto _Cterm = __sign * __numerCD / __denom;
 	  _M_Csum += _Cterm;
 	  auto _Dterm = __numerCD / __denom;
 	  _M_Dsum += _Dterm;
-	  if (std::abs(_M_Asum()) * _S_eps < std::abs(_Aterm)
-	   && std::abs(_M_Bsum()) * _S_eps < std::abs(_Bterm)
-	   && std::abs(_M_Csum()) * _S_eps < std::abs(_Cterm)
-	   && std::abs(_M_Dsum()) * _S_eps < std::abs(_Dterm))
+	  if (std::abs(_M_Asum()) * _S_eps > std::abs(_Aterm)
+	   && std::abs(_M_Bsum()) * _S_eps > std::abs(_Bterm)
+	   && std::abs(_M_Csum()) * _S_eps > std::abs(_Cterm)
+	   && std::abs(_M_Dsum()) * _S_eps > std::abs(_Dterm))
 	    break;
 	}
 
@@ -6089,9 +6093,6 @@ namespace __gnu_cxx
 int
 main()
 {
-  _Airy<std::complex<double>> airy;
-  auto out = airy({1.0, 7.0});
-
   run_toy<float>();
   run_airy_asymp_m<float>();
   run_airy_series<float>();
