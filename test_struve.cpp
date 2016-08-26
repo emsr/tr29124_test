@@ -37,11 +37,12 @@ namespace __detail
     _Tp
     __struve_series(_Tp __nu, _Tp __x, int __sign)
     {
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
 
       constexpr int _S_max_iter = 1000;
-      constexpr auto _S_eps = std::numeric_limits<_Val>::epsilon();
-      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Val>::__root_pi;
+      constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
+      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Real>::__root_pi;
 
       auto __x2 = __x / _Tp{2};
       auto __xx4 = _Tp(__sign) * __x2 * __x2;
@@ -72,11 +73,12 @@ namespace __detail
     _Tp
     __struve_asymp(_Tp __nu, _Tp __x, int __sign)
     {
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
 
       constexpr int _S_max_iter = 1000;
-      constexpr auto _S_eps = std::numeric_limits<_Val>::epsilon();
-      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Val>::__root_pi;
+      constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
+      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Real>::__root_pi;
 
       auto __x2 = __x / _Tp{2};
       auto __xx4 = _Tp(__sign) * __x2 * __x2;
@@ -398,9 +400,10 @@ template<typename _Tp>
   void
   test_struve_transition()
   {
-    using _Val = std::__detail::__num_traits_t<_Tp>;
+    using _Val = _Tp;
+    using _Real = std::__detail::__num_traits_t<_Val>;
 
-    std::cout.precision(std::numeric_limits<_Val>::digits10);
+    std::cout.precision(std::numeric_limits<_Real>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -432,11 +435,12 @@ template<typename _Tp>
   void
   plot_struve(std::string filename)
   {
-    using _Val = std::__detail::__num_traits_t<_Tp>;
+    using _Val = _Tp;
+    using _Real = std::__detail::__num_traits_t<_Val>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Val>::digits10);
+    data.precision(std::numeric_limits<_Real>::digits10);
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
