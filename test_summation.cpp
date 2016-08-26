@@ -24,8 +24,8 @@ template<typename Tp>
     auto w = 8 + std::cout.precision();
 
     __gnu_cxx::_BasicSum<Tp> BS;
-    __gnu_cxx::_AitkenDeltaSqaredSum<__gnu_cxx::_BasicSum<Tp>> ABS;
-    __gnu_cxx::_AitkenDeltaSqaredSum<__gnu_cxx::_KahanSum<Tp>> AKS;
+    __gnu_cxx::_AitkenDeltaSquaredSum<__gnu_cxx::_BasicSum<Tp>> ABS;
+    __gnu_cxx::_AitkenDeltaSquaredSum<__gnu_cxx::_KahanSum<Tp>> AKS;
     __gnu_cxx::_WinnEpsilonSum<__gnu_cxx::_BasicSum<Tp>> WBS;
     __gnu_cxx::_WinnEpsilonSum<__gnu_cxx::_KahanSum<Tp>> WKS;
     __gnu_cxx::_BrezinskiThetaSum<__gnu_cxx::_BasicSum<Tp>> BTS;

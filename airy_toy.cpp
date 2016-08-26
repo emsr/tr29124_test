@@ -4584,7 +4584,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
     {
       using _OuterSum = __gnu_cxx::_KahanSum<_Val>;
       using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
-      //using _InnerSum = __gnu_cxx::_AitkenDeltaSqaredSum<_OuterSum>;
+      //using _InnerSum = __gnu_cxx::_AitkenDeltaSquaredSum<_OuterSum>;
 
       if (std::__detail::__isnan(__y))
 	return _AiryState<_Cmplx>{__y, _S_NaN, _S_NaN, _S_NaN, _S_NaN};

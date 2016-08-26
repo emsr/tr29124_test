@@ -361,27 +361,27 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * The Aitken's delta-squared summation process.
    */
   template<typename _Sum>
-    class _AitkenDeltaSqaredSum
+    class _AitkenDeltaSquaredSum
     {
     public:
 
       using value_type = typename _Sum::value_type;
 
       ///  Default constructor.
-      _AitkenDeltaSqaredSum()
+      _AitkenDeltaSquaredSum()
       : _M_part_sum{_Sum{}}, _M_a{}, _M_sum{}, _M_converged{false}
       { }
 
       /// Add a new term to the sum.
-      _AitkenDeltaSqaredSum&
+      _AitkenDeltaSquaredSum&
       operator+=(value_type __term)
       {
 	if (!this->_M_converged)
 	  {
 	    if (std::__detail::__isnan(__term))
-	      std::__throw_runtime_error(__N("_AitkenDeltaSqaredSum: bad term"));
+	      std::__throw_runtime_error(__N("_AitkenDeltaSquaredSum: bad term"));
 	    if (std::__detail::__isinf(__term))
-	      std::__throw_runtime_error(__N("_AitkenDeltaSqaredSum: infinite term"));
+	      std::__throw_runtime_error(__N("_AitkenDeltaSquaredSum: infinite term"));
 	    this->_M_part_sum += __term;
 	    this->_M_update();
 	  }
@@ -389,7 +389,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       }
 
       /// Subtract a new term from the sum.
-      _AitkenDeltaSqaredSum&
+      _AitkenDeltaSquaredSum&
       operator-=(value_type __term)
       { return this->operator+=(-__term); }
 
@@ -419,7 +419,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       { return this->_M_part_sum.term(); }
 
       ///  Reset the sum to it's initial state.
-      _AitkenDeltaSqaredSum&
+      _AitkenDeltaSquaredSum&
       reset()
       {
 	this->_M_part_sum.reset();
@@ -430,7 +430,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       }
 
       ///  Restart the sum with the first new term.
-      _AitkenDeltaSqaredSum&
+      _AitkenDeltaSquaredSum&
       reset(value_type __first_term)
       {
 	this->reset();
