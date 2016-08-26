@@ -1,7 +1,10 @@
 
+#include <variant>
+#include <complex>
+
 namespace std
 {
-  // Use narrow structs for  return types.
+  // Use narrow structs for aggregate return types.
   // Prefer returns to pointer or ref arguments.
   // This will work swimmingly with structured bindings.
   //
@@ -11,13 +14,22 @@ namespace std
   //   - should these and the old basic ones have throwing versions
   //     - since we don't like global error reporting
   //     - exception is part of the signature(?)
-  //     - only if peoplr can flip back to another or no error reporting...
+  //     - only if people can flip back to another or no error reporting...
   // We could do like filesystem and some others and double the api with
   // error_code return args.  In math, errors really are exceptional where
   // libs with this return failure is quite often an option.  In math failure
   // needs to be figured out, fixed, cleaned up after.
 
+  // The more I think of it, the more I think that
+  //  template<typename Real>
+  //    using numeric_t = std::variant<Real, std::complex<Real>>;
+  // is a thing and is the answer to lgamma, negative arg bessels,
+  // polynomial roots, etc. return types.
+  // The ship has sailed for lgamma (I think?)
+
+
   // Log to arbitrary base - the inverse of pow(base, x).
+
   float logf(float base, float x);
   double log(double base, double x);
   long double logl(long double base, long double x);
@@ -32,6 +44,10 @@ namespace std
       Tp sin_value;
       Tp cos_value;
     };
+
+  template<typename Tp>
+    Tp
+    pi_v = static_cast<Tp>(3.1415926536897932384626L);
 
   sincos_t<float> sincosf(float x);
   sincos_t<double> sincos(double x);
@@ -157,14 +173,14 @@ namespace std
       Tp value;
       constexpr operator Tp()
       { return pi_v<Tp> * this->value; }
-    }
+    };
 
   // Combined reperiodized sine and cosine.
   sincos_t<float> sincos_pif(float x);
   sincos_t<double> sincos_pi(double x);
   sincos_t<long double> sincos_pil(long double x);
 
-  sincos_t<float> sincos_pif(reperiod_t<float x);
+  sincos_t<float> sincos_pif(reperiod_t<float> x);
   sincos_t<double> sincos_pi(reperiod_t<double> x);
   sincos_t<long double> sincos_pil(reperiod_t<long double> x);
 
@@ -249,10 +265,20 @@ namespace std
   //   [log(|Gamma(x)|), signbit(Gamma(x))] = slgamma(x)
   // People have lgamma_r.
 
+  // Standard:
+  // double lgamma(double x);
+  // ...
+  // extern int signgam;
+  //
+  // Nonstandard:
+  // double lgamma_r(double x, int *signp);
+  // ...
+
   // This is essentially a poor man's complex.
+  // log(Gamma(x)) = log(|Gamma(x)|) + i pi for Gamma(x) < 0.
   // Conversion?
   template<typename Tp>
-    lgamma_t
+    struct lgamma_t
     {
       Tp lgamma_value;
       Tp sign;
@@ -261,5 +287,35 @@ namespace std
   lgamma_t<float> slgammaf(float x);
   lgamma_t<double> slgamma(double x);
   lgamma_t<long double> slgammal(long double x);
+
+
+  // Basic roots
+  // "Value-semantic type erasure.  It's not just for breakfast anymore."
+
+  template<typename Tp>
+    using root_t = std::variant<Tp, std::complex<Tp>>;
+
+  template<typename Tp>
+    struct quadratic_root_t
+    {
+      root_t<Tp> r1;
+      root_t<Tp> r2;
+    };
+
+  template<typename Tp>
+    quadratic_root_t<Tp>
+    quadratic(Tp a, Tp b, Tp c);
+
+  template<typename Tp>
+    struct cubic_root_t
+    {
+      root_t<Tp> r1;
+      root_t<Tp> r2;
+      root_t<Tp> r3;
+    };
+
+  template<typename Tp>
+    cubic_root_t<Tp>
+    cubic(Tp a, Tp b, Tp c);
 
 } // namespace std

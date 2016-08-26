@@ -2215,7 +2215,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr _Tp _S_pmhd2 = _Tp{1} / (_Tp{2} * _S_sqrt_pi);
       constexpr int _S_num_nterms = 5;
       constexpr int _S_max_nterms = 40;
-      static_assert(_Airy_asymp_data<_Tp>::_S_max_cd > _S_max_nterms);
+      static_assert(_Airy_asymp_data<_Tp>::_S_max_cd > _S_max_nterms, "");
       constexpr int _S_nterms[_S_num_nterms]{_S_max_nterms, 24, 22, 22, 18};
 
       auto __zeta = _Tp{2} * std::pow(__z, _Tp{1.5L}) / _Tp{3};
@@ -2307,7 +2307,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /// expansions.
       constexpr int _S_num_nterms = 5;
       constexpr int _S_max_nterms = 40;
-      static_assert(_Airy_asymp_data<_Tp>::_S_max_cd > _S_max_nterms);
+      static_assert(_Airy_asymp_data<_Tp>::_S_max_cd > _S_max_nterms, "");
       constexpr int _S_nterms[_S_num_nterms]{_S_max_nterms, 28, 24, 24, 20};
 
       auto __zeta = _Tp{2} * std::pow(-__z, _Tp{1.5L}) / _Tp{3};
