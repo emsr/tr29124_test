@@ -107,7 +107,7 @@ namespace __detail
     __struve_h(_Tp __nu, _Tp __x)
     {
       constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
-      constexpr auto _S_max = _Tp{20};
+      constexpr auto _S_max = _Tp{__gnu_cxx::__digits10<_Tp>()};
 
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__struve_h: bad argument"));
@@ -132,7 +132,7 @@ namespace __detail
     __struve_k(_Tp __nu, _Tp __x)
     {
       constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
-      constexpr auto _S_max = _Tp{20};
+      constexpr auto _S_max = _Tp{__gnu_cxx::__digits10<_Tp>()};
 
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__struve_k: bad argument"));
@@ -157,7 +157,7 @@ namespace __detail
     __struve_l(_Tp __nu, _Tp __x)
     {
       constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
-      constexpr auto _S_max = _Tp{20};
+      constexpr auto _S_max = _Tp{__gnu_cxx::__digits10<_Tp>()};
 
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__struve_l: bad argument"));
@@ -182,7 +182,7 @@ namespace __detail
     __struve_m(_Tp __nu, _Tp __x)
     {
       constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
-      constexpr auto _S_max = _Tp{20};
+      constexpr auto _S_max = _Tp{__gnu_cxx::__digits10<_Tp>()};
 
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__struve_k: bad argument"));

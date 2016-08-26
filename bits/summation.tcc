@@ -53,6 +53,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_runtime_error(__N("_VanWijngaardenSum: infinite term"));
 
       ++this->_M_num_terms;
+      this->_M_term = __term;
 
       if (this->_M_delta.size() == 0)
 	{

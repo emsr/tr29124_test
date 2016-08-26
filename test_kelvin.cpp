@@ -535,9 +535,10 @@ namespace __detail
     inline _Tp
     __kelvin_ber(_Tp __x)
     {
+      const auto _S_switch = _Tp{26};
       if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
-      else if (std::abs(__x) < _Tp{26})
+      else if (std::abs(__x) < _S_switch)
 	return __kelvin_ber_series(__x);
       else
 	return __kelvin_ber_asymp(__x);
@@ -550,9 +551,10 @@ namespace __detail
     inline _Tp
     __kelvin_bei(_Tp __x)
     {
+      const auto _S_switch = _Tp{26};
       if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
-      else if (std::abs(__x) < _Tp{26})
+      else if (std::abs(__x) < _S_switch)
 	return __kelvin_bei_series(__x);
       else
 	return __kelvin_bei_asymp(__x);
@@ -565,9 +567,10 @@ namespace __detail
     inline _Tp
     __kelvin_ker(_Tp __x)
     {
+      const auto _S_switch = _Tp{5};
       if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
-      else if (std::abs(__x) < _Tp{5})
+      else if (std::abs(__x) < _S_switch)
 	return __kelvin_ker_series(__x);
       else
 	return __kelvin_ker_asymp(__x);
@@ -580,9 +583,10 @@ namespace __detail
     inline _Tp
     __kelvin_kei(_Tp __x)
     {
+      const auto _S_switch = _Tp{5};
       if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
-      else if (std::abs(__x) < _Tp{5})
+      else if (std::abs(__x) < _S_switch)
 	return __kelvin_kei_series(__x);
       else
 	return __kelvin_kei_asymp(__x);
@@ -595,9 +599,10 @@ namespace __detail
     inline _Tp
     __kelvin_ber(_Tp __nu, _Tp __x)
     {
+      const auto _S_switch = _Tp{26};
       if (__isnan(__nu) || __isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
-      else if (std::abs(__x) < _Tp{26})
+      else if (std::abs(__x) < _S_switch)
 	return __kelvin_series(__nu, __x).__ber;
       else
 	return __kelvin_asymp(__nu, __x).__ber;
@@ -610,9 +615,10 @@ namespace __detail
     inline _Tp
     __kelvin_bei(_Tp __nu, _Tp __x)
     {
+      const auto _S_switch = _Tp{26};
       if (__isnan(__nu) || __isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
-      else if (std::abs(__x) < _Tp{26})
+      else if (std::abs(__x) < _S_switch)
 	return __kelvin_series(__nu, __x).__bei;
       else
 	return __kelvin_asymp(__nu, __x).__bei;
@@ -625,9 +631,10 @@ namespace __detail
     inline _Tp
     __kelvin_ker(_Tp __nu, _Tp __x)
     {
+      const auto _S_switch = _Tp{5};
       if (__isnan(__nu) || __isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
-      else if (std::abs(__x) < _Tp{5})
+      else if (std::abs(__x) < _S_switch)
 	return __kelvin_series(__nu, __x).__ker;
       else
 	return __kelvin_asymp(__nu, __x).__ker;
@@ -640,9 +647,10 @@ namespace __detail
     inline _Tp
     __kelvin_kei(_Tp __nu, _Tp __x)
     {
+      const auto _S_switch = _Tp{5};
       if (__isnan(__nu) || __isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
-      else if (std::abs(__x) < _Tp{5})
+      else if (std::abs(__x) < _S_switch)
 	return __kelvin_series(__nu, __x).__kei;
       else
 	return __kelvin_asymp(__nu, __x).__kei;
@@ -1397,8 +1405,15 @@ main()
   run_kelvin3<long double>();
   run_kelvin2<long double>();
   run_kelvin1<long double>();
+
+  plot_kelvin<float>("plot/kelvin_float.txt");
   plot_kelvin<double>("plot/kelvin_double.txt");
+  plot_kelvin<long double>("plot/kelvin_long_double.txt");
+
+  plot_kelvin_order<float>("plot/kelvin_order_float.txt");
   plot_kelvin_order<double>("plot/kelvin_order_double.txt");
+  plot_kelvin_order<long double>("plot/kelvin_order_long_double.txt");
+
   diff_kelvin2<long double>();
   diff_kelvin3<long double>();
 }
