@@ -37,27 +37,29 @@ namespace __detail
     _Tp
     __struve_series(_Tp __nu, _Tp __x, int __sign)
     {
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _BasicSum = __gnu_cxx::_BasicSum<_Val>;
 
       constexpr int _S_max_iter = 1000;
-      constexpr auto _S_eps = std::numeric_limits<_Val>::epsilon();
-      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Val>::__root_pi;
+      constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
+      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Real>::__root_pi;
 
-      auto __x2 = __x / _Tp{2};
+      auto __x2 = __x / _Val{2};
       auto __xx4 = _Tp(__sign) * __x2 * __x2;
-      auto __term = _Tp{1};
+      auto __term = _Val{1};
       auto __struve = __term;
-      //auto __struve = __gnu_cxx::_BasicSum<_Tp>(_Tp{1});
-      //auto __struve = __gnu_cxx::_VanWijngaardenSum<Tp>(_Tp{1});
+      //auto __struve = __gnu_cxx::_BasicSum<_Val>(_Val{1});
+      //auto __struve = __gnu_cxx::_VanWijngaardenSum<_Val>(_Val{1});
       for (int __k = 1; __k < _S_max_iter; ++__k)
 	{
-      	  __term *= __xx4 / _Tp(__k + 0.5L) / (__nu + _Tp(__k + 0.5L));
+      	  __term *= __xx4 / _Val(__k + 0.5L) / (__nu + _Val(__k + 0.5L));
 	  __struve += __term;
 	  if (std::abs(__term) < _S_eps * std::abs(__struve))
 	    break;
 	}
-      __struve *= _Tp{2} * std::pow(__x2, __nu + _Tp{1})
-		/ std::__detail::__gamma(__nu + _Tp{1.5L}) / _S_sqrt_pi;
+      __struve *= _Val{2} * std::pow(__x2, __nu + _Val{1})
+		/ std::__detail::__gamma(__nu + _Val{1.5L}) / _S_sqrt_pi;
 
       return __struve;
     }
@@ -72,28 +74,32 @@ namespace __detail
     _Tp
     __struve_asymp(_Tp __nu, _Tp __x, int __sign)
     {
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _BasicSum = __gnu_cxx::_BasicSum<_Val>;
+      using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Val>;
+      using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
+      using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
 
       constexpr int _S_max_iter = 1000;
-      constexpr auto _S_eps = std::numeric_limits<_Val>::epsilon();
-      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Val>::__root_pi;
+      constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
+      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Real>::__root_pi;
 
-      auto __x2 = __x / _Tp{2};
-      auto __xx4 = _Tp(__sign) * __x2 * __x2;
-      auto __term = _Tp{1};
-      //auto __struve = __term;
-      auto __struve = __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<_Tp>>(_Tp{1});
-      //auto __struve = __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<Tp>>(_Tp{1});
+      auto __x2 = __x / _Val{2};
+      auto __xx4 = _Val(__sign) * __x2 * __x2;
+      auto __term = _Val{1};
+      auto __struve = _WenigerDeltaSum(_Val{1});
+      //auto __struve = _WenigerDeltaWijnSum(_Val{1});
       __struve += __term;
       for (int __k = 1; __k < _S_max_iter; ++__k)
 	{
-      	  __term *= _Tp(__k - 0.5L) / (_Tp(-__k - 0.5L) + __nu) / __xx4;
+      	  __term *= _Val(__k - 0.5L) / (_Val(-__k - 0.5L) + __nu) / __xx4;
 	  __struve += __term;
 	  if (std::abs(__term) < _S_eps * std::abs(__struve))
 	    break;
 	}
-      auto __fact = _Tp(__sign) * std::pow(__x2, __nu - _Tp{1})
-		  / std::__detail::__gamma(__nu + _Tp{0.5L}) / _S_sqrt_pi;
+      auto __fact = _Val(__sign) * std::pow(__x2, __nu - _Val{1})
+		  / std::__detail::__gamma(__nu + _Val{0.5L}) / _S_sqrt_pi;
 
       return __fact * __struve();
     }
@@ -106,10 +112,12 @@ namespace __detail
     _Tp
     __struve_h(_Tp __nu, _Tp __x)
     {
-      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
-      constexpr auto _S_max = _Tp{20};
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Real>();
+      constexpr auto _S_max = _Real{__gnu_cxx::__digits10<_Real>()};
 
-      if (__x < _Tp{0})
+      if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_h: bad argument"));
       else if (__isnan(__nu) || __isnan(__x))
 	return _S_nan;
@@ -131,10 +139,12 @@ namespace __detail
     _Tp
     __struve_k(_Tp __nu, _Tp __x)
     {
-      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
-      constexpr auto _S_max = _Tp{20};
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Real>();
+      constexpr auto _S_max = _Real{__gnu_cxx::__digits10<_Real>()};
 
-      if (__x < _Tp{0})
+      if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_k: bad argument"));
       else if (__isnan(__nu) || __isnan(__x))
 	return _S_nan;
@@ -156,10 +166,12 @@ namespace __detail
     _Tp
     __struve_l(_Tp __nu, _Tp __x)
     {
-      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
-      constexpr auto _S_max = _Tp{20};
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Real>();
+      constexpr auto _S_max = _Real{__gnu_cxx::__digits10<_Real>()};
 
-      if (__x < _Tp{0})
+      if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_l: bad argument"));
       else if (__isnan(__nu) || __isnan(__x))
 	return _S_nan;
@@ -181,10 +193,12 @@ namespace __detail
     _Tp
     __struve_m(_Tp __nu, _Tp __x)
     {
-      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
-      constexpr auto _S_max = _Tp{20};
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Real>();
+      constexpr auto _S_max = _Real{__gnu_cxx::__digits10<_Real>()};
 
-      if (__x < _Tp{0})
+      if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_k: bad argument"));
       else if (__isnan(__nu) || __isnan(__x))
 	return _S_nan;
@@ -299,8 +313,9 @@ namespace __gnu_cxx
   // Modified Struve functions (of the first kind)
 
   /**
-   * Return the modified Struve function of the first kind @f$ \boldmath{L}_{\nu}(x) @f$
-   * for @c float order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
+   * Return the modified Struve function of the first kind
+   * @f$ \boldmath{L}_{\nu}(x) @f$ for @c float order @f$ \nu @f$
+   * and argument @f$ x >= 0 @f$.
    *
    * @see struve_l for setails.
    */
@@ -309,8 +324,9 @@ namespace __gnu_cxx
   { return std::__detail::__struve_l<float>(__nu, __x); }
 
   /**
-   * Return the modified Struve function of the first kind @f$ \boldmath{L}_{\nu}(x) @f$
-   * for <tt>long double</tt> order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
+   * Return the modified Struve function of the first kind
+   * @f$ \boldmath{L}_{\nu}(x) @f$ for <tt>long double</tt> order @f$ \nu @f$
+   * and argument @f$ x >= 0 @f$.
    *
    * @see struve_l for setails.
    */
@@ -319,8 +335,9 @@ namespace __gnu_cxx
   { return std::__detail::__struve_l<long double>(__nu, __x); }
 
   /**
-   * Return the modified Struve function of the first kind @f$ \boldmath{L}_{\nu}(x) @f$
-   * of real order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
+   * Return the modified Struve function of the first kind
+   * @f$ \boldmath{L}_{\nu}(x) @f$ of real order @f$ \nu @f$
+   * and argument @f$ x >= 0 @f$.
    *
    * The modified Struve function is:
    * @f[
@@ -345,8 +362,9 @@ namespace __gnu_cxx
   // Modified Struve functions of the second kind
 
   /**
-   * Return the modified Struve function of the second kind @f$ \boldmath{M}_{\nu}(x) @f$
-   * for @c float order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
+   * Return the modified Struve function of the second kind
+   * @f$ \boldmath{M}_{\nu}(x) @f$ for @c float order @f$ \nu @f$
+   * and argument @f$ x >= 0 @f$.
    *
    * @see struve_m for setails.
    */
@@ -355,8 +373,9 @@ namespace __gnu_cxx
   { return std::__detail::__struve_m<float>(__nu, __x); }
 
   /**
-   * Return the modified Struve function of the second kind @f$ \boldmath{M}_{\nu}(x) @f$
-   * for <tt>long double</tt> order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
+   * Return the modified Struve function of the second kind
+   * @f$ \boldmath{M}_{\nu}(x) @f$ for <tt>long double</tt> order @f$ \nu @f$
+   * and argument @f$ x >= 0 @f$.
    *
    * @see struve_m for setails.
    */
@@ -365,8 +384,9 @@ namespace __gnu_cxx
   { return std::__detail::__struve_m<long double>(__nu, __x); }
 
   /**
-   * Return the modified Struve function of the second kind @f$ \boldmath{M}_{\nu}(x) @f$
-   * of real order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
+   * Return the modified Struve function of the second kind
+   * @f$ \boldmath{M}_{\nu}(x) @f$ of real order @f$ \nu @f$
+   * and argument @f$ x >= 0 @f$.
    *
    * The modified Struve function is:
    * @f[
@@ -398,9 +418,10 @@ template<typename _Tp>
   void
   test_struve_transition()
   {
-    using _Val = std::__detail::__num_traits_t<_Tp>;
+    using _Val = _Tp;
+    using _Real = std::__detail::__num_traits_t<_Val>;
 
-    std::cout.precision(std::numeric_limits<_Val>::digits10);
+    std::cout.precision(std::numeric_limits<_Real>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -432,11 +453,12 @@ template<typename _Tp>
   void
   plot_struve(std::string filename)
   {
-    using _Val = std::__detail::__num_traits_t<_Tp>;
+    using _Val = _Tp;
+    using _Real = std::__detail::__num_traits_t<_Val>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Val>::digits10);
+    data.precision(std::numeric_limits<_Real>::digits10);
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
