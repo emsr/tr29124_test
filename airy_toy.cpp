@@ -7,6 +7,9 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_old > airy_t
 
 $HOME/bin_tr29124/bin/g++ -std=gnu++14 -UOLD -g -Wall -Wextra -o airy_toy_new airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_toy.new.new
+
+$HOME/bin/bin/g++ -std=gnu++14 -g -I. -Wall -Wextra -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 */
 
 
@@ -3765,7 +3768,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
       constexpr auto _S_pmhd2 = _Real{1} / (_Real{2} * _S_sqrt_pi);
       constexpr std::size_t _S_num_nterms = 5;
       constexpr std::size_t _S_max_nterms = 40;
-      static_assert(_Airy_asymp_data<_Real>::_S_max_cd > _S_max_nterms);
+      static_assert(_Airy_asymp_data<_Real>::_S_max_cd > _S_max_nterms, "");
       constexpr std::size_t _S_nterms[_S_num_nterms]{_S_max_nterms, 24, 22, 22, 18};
 
       auto __zeta = _Real{2} * std::pow(__z, _Real{1.5L}) / _Real{3};
@@ -3857,7 +3860,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
       /// expansions.
       constexpr std::size_t _S_num_nterms = 5;
       constexpr std::size_t _S_max_nterms = 40;
-      static_assert(_Airy_asymp_data<_Real>::_S_max_cd > _S_max_nterms);
+      static_assert(_Airy_asymp_data<_Real>::_S_max_cd > _S_max_nterms, "");
       constexpr std::size_t _S_nterms[_S_num_nterms]{_S_max_nterms, 28, 24, 24, 20};
 
       auto __zeta = _Real{2} * std::pow(-__z, _Real(1.5L)) / _Real{3};
@@ -4450,28 +4453,31 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_t
       auto __zeta = _Real{2} * std::pow(__y, _Real{1.5L})
 		  / _Real{3};
       auto __sign = _Real{1};
-      auto __numerAB = _Real{1};
-      auto __numerCD = _Real{1};
-      auto __denom = _Val{1};
+      auto __numerAB = _Val{1};
+      auto __numerCD = _Val{1};
       for (std::size_t __k = 1; __k < _S_max_iter; ++__k)
 	{
 	  __sign = -__sign;
+	  auto __denom = _Val(2 * __k) * __zeta;
 	  __numerAB *= _Real(__k + _Real{1} / _Real{6})
-		     * _Real(__k + _Real{5} / _Real{6});
+		     * _Real(__k + _Real{5} / _Real{6})
+		     / __denom;
 	  __numerCD *= _Real(__k - _Real{1} / _Real{6})
-		     * _Real(__k + _Real{7} / _Real{6});
-	  __denom *= _Val(2 * __k) * __zeta;
-if (__k > 1 && std::abs(_M_Asum.term()) < std::abs(__numerAB / __denom))
-  break;
-	  auto _Aterm = __sign * __numerAB / __denom;
+		     * _Real(__k + _Real{7} / _Real{6})
+		     / __denom;
+	  if (__k > 1 && (std::abs(_M_Asum.term()) < std::abs(__numerAB)
+		|| std::__detail::__isinf(__numerAB)))
+	    break;
+	  auto _Aterm = __sign * __numerAB;
 	  _M_Asum += _Aterm;
-	  auto _Bterm = __numerAB / __denom;
+	  auto _Bterm = __numerAB;
 	  _M_Bsum += _Bterm;
-if (__k > 1 && std::abs(_M_Csum.term()) < std::abs(__numerCD / __denom))
-  break;
-	  auto _Cterm = __sign * __numerCD / __denom;
+	  if (__k > 1 && (std::abs(_M_Csum.term()) < std::abs(__numerCD)
+		|| std::__detail::__isinf(__numerCD)))
+	    break;
+	  auto _Cterm = __sign * __numerCD;
 	  _M_Csum += _Cterm;
-	  auto _Dterm = __numerCD / __denom;
+	  auto _Dterm = __numerCD;
 	  _M_Dsum += _Dterm;
 	  if (std::abs(_M_Asum()) * _S_eps > std::abs(_Aterm)
 	   && std::abs(_M_Bsum()) * _S_eps > std::abs(_Bterm)
