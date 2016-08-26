@@ -138,7 +138,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Sum>
     void
-    _AitkenDeltaSqaredSum<_Sum>::_M_update()
+    _AitkenDeltaSquaredSum<_Sum>::_M_update()
     {
       using _Tp = value_type;
       using _Val = std::__detail::__num_traits_t<_Tp>;
