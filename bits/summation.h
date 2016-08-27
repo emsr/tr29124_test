@@ -70,12 +70,6 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       : _M_sum{}, _M_term{}, _M_num_terms{0}, _M_converged{false}
       { }
 
-      ///  Constructor taking the first term.
-      explicit
-      _BasicSum(value_type __first_term)
-      : _BasicSum{}
-      { this->operator+=(__first_term); }
-
       /// Add a new term to the sum.
       _BasicSum&
       operator+=(value_type __term)
@@ -165,12 +159,6 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       _KahanSum()
       : _M_sum{}, _M_term{}, _M_temp{}, _M_num_terms{0}, _M_converged{false}
       { }
-
-      ///  Constructor taking the first term.
-      explicit
-      _KahanSum(value_type __first_term)
-      : _KahanSum{}
-      { this->operator+=(__first_term); }
 
       /// Add a new term to the sum.
       _KahanSum&
@@ -265,11 +253,6 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       _VanWijngaardenSum()
       : _M_sum{}, _M_term{}, _M_delta{}, _M_num_terms{0}, _M_converged{false}
       { }
-
-      ///  Constructor taking the first term.
-      explicit _VanWijngaardenSum(value_type __first_term)
-      : _VanWijngaardenSum{}
-      { this->operator+=(__first_term); }
 
       /// Add a new term to the sum.
       _VanWijngaardenSum&
