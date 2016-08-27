@@ -6167,8 +6167,13 @@ main()
 
   std::cout << "\ndouble\n======\n";
   run_scorer<_Cmplx>();
+  plot_scorer<_FCmplx>("plot/scorer_float.txt");
   plot_scorer<_Cmplx>("plot/scorer_double.txt");
+  plot_scorer<_LCmplx>("plot/scorer_long_double.txt");
+
+  plot_fgh<_FCmplx>("plot/fgh_float.txt");
   plot_fgh<_Cmplx>("plot/fgh_double.txt");
+  plot_fgh<_LCmplx>("plot/fgh_long_double.txt");
 
   run_scorer_series<double>();
 
