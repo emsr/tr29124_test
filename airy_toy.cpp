@@ -31,7 +31,6 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 #include <bits/complex_util.h>
 #include <bits/summation.h>
 #include <ext/polynomial.h>
-//#include <complex>
 
 
   /**
@@ -54,26 +53,18 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 	  // Compute xi = (2/3)(zeta)^(3/2)
 	  //            = ln(1 + (1 - y^2)^(1/2)) - ln(y) - (1 - y^2)^(1/2).
 	  auto __xi = std::log(_Tp{1} + __w) - std::log(__y) - __w;
-
 	  auto __logxi = std::log(__xi);
-
-	  // Compute ln(zeta), zeta.
 	  auto __logzeta = _S_2d3 * __logxi + _S_lncon;
-	  auto __zeta = std::exp(__logzeta);
-	  return __zeta;
+	  return std::exp(__logzeta);
 	}
       else
 	{
 	  auto __w = std::sqrt((__y + _Tp{1}) * (__y - _Tp{1}));
 	  // Compute xi = (y^2 - 1)^(1/2) - arcsec(y) = (2/3)(-zeta)^(3/2).
 	  auto __xi = __w - std::acos(_Tp{1} / __y);
-
 	  auto __logxi = std::log(__xi);
-
-	  // Compute ln(-zeta), zeta.
 	  auto __logmzeta = _S_2d3 * __logxi + _S_lncon;
-	  auto __zeta = -std::exp(__logmzeta);
-	  return __zeta;
+	  return -std::exp(__logmzeta);
 	}
     }
 
@@ -88,6 +79,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
       using _Cmplx = std::complex<_Tp>;
 
       constexpr auto _S_2d3   = _Tp{2} / _Tp{3};
+      // lncon = -(2/3)ln(2/3)
       constexpr auto _S_lncon = _Tp{0.27031007207210958798534207697623275772Q};
       constexpr _Cmplx _S_j{0, 1};
 
@@ -95,15 +87,15 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 	{
 	  auto __w = std::sqrt((_Tp{1} + __y) * (_Tp{1} - __y));
 	  auto __xi = std::log(_Tp{1} + __w) - std::log(__y) - __w;
-	  auto __logzeta = _S_2d3 * std::log(__xi) + _S_lncon; // ln(zeta)
+	  auto __logzeta = _S_2d3 * std::log(__xi) + _S_lncon;
 	  return std::exp(__logzeta);
 	}
       else
 	{
 	  auto __w = std::sqrt((__y + _Tp{1}) * (__y - _Tp{1}));
 	  auto __xi = __w - std::acos(_Tp{1} / __y);
-	  auto __logmzeta = _S_2d3 * std::log(__xi) + _S_lncon; // ln(-zeta)
-	  return -std::exp(__logmzeta); // -zeta
+	  auto __logmzeta = _S_2d3 * std::log(__xi) + _S_lncon;
+	  return -std::exp(__logmzeta);
 	}
     }
 
