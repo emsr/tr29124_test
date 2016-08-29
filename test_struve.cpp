@@ -1,11 +1,12 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -g -Wall -Wextra -o test_struve test_struve.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 -lgfortran
+$HOME/bin_tr29124/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -g -Wall -Wextra -Wno-compare-reals -o test_struve test_struve.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 -lgfortran
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_struve > test_struve.new
 
 g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -Wall -Wextra -o test_struve test_struve.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 -lgfortran
 ./test_struve > test_struve.txt
 */
 
+#include <cassert>
 #include <cmath> // There are issues with <complex> inclusion if this isn't up here!
 #include <limits>
 #include <iostream>
@@ -28,18 +29,38 @@ namespace __detail
 {
 
   /**
+   * An enum to dispatch Struve function summation.
+   */
+  enum  _StruveType
+  : int
+  {
+    _StruveH,
+    _StruveK,
+    _StruveL,
+    _StruveM
+  };
+
+  /**
    * Return either the Struve function of the first kind
    * @f$ \boldmath{H}_\nu(x) @f$ or the modified Struve function
    * of the first kind @f$ \boldmath{L}_\nu(x) @f$
    * depending on whether @c sign is -1 or +1 respectively.
    */
-  template<typename _Tp>
+  template<_StruveType _Type, typename _Tp>
     _Tp
-    __struve_series(_Tp __nu, _Tp __x, int __sign)
+    __struve_series(_Tp __nu, _Tp __x)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
+
       using _BasicSum = __gnu_cxx::_BasicSum<_Val>;
+      using _WenigerBasSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
+      using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Val>;
+      using _WenigerWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
+      using _WenigerSum = std::conditional_t<_Type == _StruveH,
+					     _WenigerWijnSum, _WenigerBasSum>;
+      int __sign = (_Type == _StruveH ? -1 : _Type == _StruveL ? +1 : 0);
+      assert(__sign != 0);
 
       constexpr int _S_max_iter = 1000;
       constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
@@ -48,9 +69,8 @@ namespace __detail
       auto __x2 = __x / _Val{2};
       auto __xx4 = _Tp(__sign) * __x2 * __x2;
       auto __term = _Val{1};
-      auto __struve = __term;
-      //auto __struve = __gnu_cxx::_BasicSum<_Val>(_Val{1});
-      //auto __struve = __gnu_cxx::_VanWijngaardenSum<_Val>(_Val{1});
+      auto __struve = _WenigerSum(_Val{1});
+      __struve += __term;
       for (int __k = 1; __k < _S_max_iter; ++__k)
 	{
       	  __term *= __xx4 / _Val(__k + 0.5L) / (__nu + _Val(__k + 0.5L));
@@ -58,10 +78,10 @@ namespace __detail
 	  if (std::abs(__term) < _S_eps * std::abs(__struve))
 	    break;
 	}
-      __struve *= _Val{2} * std::pow(__x2, __nu + _Val{1})
-		/ std::__detail::__gamma(__nu + _Val{1.5L}) / _S_sqrt_pi;
+      auto __factor = _Val{2} * std::pow(__x2, __nu + _Val{1})
+		    / std::__detail::__gamma(__nu + _Val{1.5L}) / _S_sqrt_pi;
 
-      return __struve;
+      return __factor * __struve();
     }
 
   /**
@@ -70,16 +90,22 @@ namespace __detail
    * of the second kind @f$ \boldmath{M}_\nu(x) @f$
    * depending on whether @c sign is +1 or -1 respectively.
    */
-  template<typename _Tp>
+  template<_StruveType _Type, typename _Tp>
     _Tp
-    __struve_asymp(_Tp __nu, _Tp __x, int __sign)
+    __struve_asymp(_Tp __nu, _Tp __x)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
+
       using _BasicSum = __gnu_cxx::_BasicSum<_Val>;
+      using _WenigerBasSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
       using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Val>;
-      using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
-      using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
+      using _WenigerWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
+      using _WenigerSum = std::conditional_t<_Type == _StruveM,
+					     _WenigerWijnSum, _WenigerBasSum>;
+
+      int __sign = (_Type == _StruveK ? +1 : _Type == _StruveM ? -1 : 0);
+      assert(__sign != 0);
 
       constexpr int _S_max_iter = 1000;
       constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
@@ -88,8 +114,7 @@ namespace __detail
       auto __x2 = __x / _Val{2};
       auto __xx4 = _Val(__sign) * __x2 * __x2;
       auto __term = _Val{1};
-      auto __struve = _WenigerDeltaSum(_Val{1});
-      //auto __struve = _WenigerDeltaWijnSum(_Val{1});
+      auto __struve = _WenigerSum(_Val{1});
       __struve += __term;
       for (int __k = 1; __k < _S_max_iter; ++__k)
 	{
@@ -122,11 +147,11 @@ namespace __detail
       else if (__isnan(__nu) || __isnan(__x))
 	return _S_nan;
       else if (std::abs(__x) < _S_max)
-	return __struve_series(__nu, __x, -1);
+	return __struve_series<_StruveH>(__nu, __x);
       else
 	{
 	  auto _Nnu = __cyl_neumann_n(__nu, __x);
-	  auto _Knu = __struve_asymp(__nu, __x, +1);
+	  auto _Knu = __struve_asymp<_StruveK>(__nu, __x);
 	  return _Knu + _Nnu;
 	}
     }
@@ -149,11 +174,11 @@ namespace __detail
       else if (__isnan(__nu) || __isnan(__x))
 	return _S_nan;
       else if (std::abs(__x) >= _S_max)
-	return __struve_asymp(__nu, __x, +1);
+	return __struve_asymp<_StruveK>(__nu, __x);
       else
 	{
 	  auto _Nnu = __cyl_neumann_n(__nu, __x);
-	  auto _Hnu = __struve_series(__nu, __x, -1);
+	  auto _Hnu = __struve_series<_StruveH>(__nu, __x);
 	  return _Hnu - _Nnu;
 	}
     }
@@ -176,11 +201,11 @@ namespace __detail
       else if (__isnan(__nu) || __isnan(__x))
 	return _S_nan;
       else if (std::abs(__x) < _S_max)
-	return __struve_series(__nu, __x, +1);
+	return __struve_series<_StruveL>(__nu, __x);
       else
 	{
 	  auto _Inu = __cyl_bessel_i(__nu, __x);
-	  auto _Mnu = __struve_asymp(__nu, __x, -1);
+	  auto _Mnu = __struve_asymp<_StruveM>(__nu, __x);
 	  return _Mnu + _Inu;
 	}
     }
@@ -203,11 +228,11 @@ namespace __detail
       else if (__isnan(__nu) || __isnan(__x))
 	return _S_nan;
       else if (std::abs(__x) >= _S_max)
-	return __struve_asymp(__nu, __x, -1);
+	return __struve_asymp<_StruveM>(__nu, __x);
       else
 	{
 	  auto _Inu = __cyl_bessel_i(__nu, __x);
-	  auto _Lnu = __struve_series(__nu, __x, +1);
+	  auto _Lnu = __struve_series<_StruveL>(__nu, __x);
 	  return _Lnu - _Inu;
 	}
     }
@@ -432,8 +457,8 @@ template<typename _Tp>
 	for (int n = 0; n <= 5; ++n)
 	  {
 	    auto nu = _Tp(1.0Q * n);
-	    auto series = std::__detail::__struve_series(nu, t, -1);
-	    auto asymp = std::__detail::__struve_asymp(nu, t, +1)
+	    auto series = std::__detail::__struve_series<std::__detail::_StruveH>(nu, t);
+	    auto asymp = std::__detail::__struve_asymp<std::__detail::_StruveK>(nu, t)
 		       + std::__detail::__cyl_neumann_n(nu, t);
 	    std::cout << '\t'
 		      << std::setw(width) << series
