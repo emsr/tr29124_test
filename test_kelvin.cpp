@@ -46,10 +46,7 @@ namespace __detail
     _Real
     __kelvin_bex_series(_Real __x, int __sign)
     {
-      using _BasicSum = __gnu_cxx::_BasicSum<_Real>;
       using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Real>;
-      using _AitkenSum = __gnu_cxx::_AitkenDeltaSquaredSum<_BasicSum>;
-      using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
       using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
 
       constexpr auto _S_1d2 = _Real{1} / _Real{2};
@@ -59,8 +56,7 @@ namespace __detail
       const auto __tmp = __xd4 * __xd4;
       const auto __y = __tmp * __tmp;
       auto __term = _Real{1};
-      //_WenigerDeltaWijnSum __bex;
-      _BasicSum __bex;
+      _WenigerDeltaWijnSum __bex;
       __bex += __term;
       for (auto __k = 1; __k < _S_maxiter; ++__k)
 	{
@@ -82,10 +78,8 @@ namespace __detail
     __kelvin_kex_series(_Real __x, int __sign)
     {
       using _BasicSum = __gnu_cxx::_BasicSum<_Real>;
-      using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Real>;
       using _AitkenSum = __gnu_cxx::_AitkenDeltaSquaredSum<_BasicSum>;
       using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
-      using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
 
       constexpr auto _S_1d2 = _Real{1} / _Real{2};
       constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
@@ -94,9 +88,8 @@ namespace __detail
       const auto __tmp = __xd4 * __xd4;
       const auto __y = __tmp * __tmp;
       auto __term = _Real{1};
-      //_WenigerDeltaWijnSum __kex;
-      //_AitkenSum _H_n;
-      _BasicSum __kex, _H_n;
+      _AitkenSum _H_n;
+      _WenigerDeltaSum __kex;
       __kex += __term;
       _H_n += 1;
       for (auto __k = 1; __k < _S_maxiter; ++__k)
@@ -203,9 +196,8 @@ namespace __detail
     __kelvin_series(_Real __x)
     {
       using _BasicSum = __gnu_cxx::_BasicSum<_Real>;
-      using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Real>;
       using _AitkenSum = __gnu_cxx::_AitkenDeltaSquaredSum<_BasicSum>;
-      using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
+      using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Real>;
       using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
 
       constexpr auto _S_gamma_e = __gnu_cxx::__math_constants<_Real>::__gamma_e;
@@ -218,10 +210,8 @@ namespace __detail
       const auto __y = __xxd4 * __xxd4;
       auto __termr = _Real{1};
       auto __termi = _Real{1};
-      //_AitkenSum _H_n;
-      //_WenigerDeltaWijnSum __ber, __bei, __ker, __kei;
-      //_WenigerDeltaSum __ber, __bei, __ker, __kei, _H_n;
-      _BasicSum __ber, __bei, __ker, __kei, _H_n;
+      _AitkenSum _H_n;
+      _WenigerDeltaWijnSum __ber, __bei, __ker, __kei;
       __ber += __termr;
       __ker += __termr;
       __bei += __termi;
@@ -279,7 +269,6 @@ namespace __detail
       const auto __xrt2 = __x / _S_sqrt_2;
       auto __barg = __xrt2 - _S_pi_8;
       auto __karg = -__xrt2 - _S_pi_8;
-      //_BasicSum __be, __ke;
       _WenigerDeltaSum __be, __ke;
       __be += std::polar(__term, __barg);
       __ke += std::polar(__term, __karg);
@@ -522,7 +511,6 @@ namespace __detail
       const auto __xrt2 = __x / _S_sqrt_2;
       auto __barg = __xrt2 + __nu * _S_pi_2 - _S_pi_8;
       auto __karg = __xrt2 + __nu * _S_pi_2 + _S_pi_8;
-      //_BasicSum __be, __ke;
       _WenigerDeltaSum __be, __ke;
       __be += std::polar(__bterm, __barg);
       __ke += std::polar(__kterm, __karg);
