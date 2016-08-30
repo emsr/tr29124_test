@@ -79,7 +79,8 @@ namespace __detail
     {
       using _BasicSum = __gnu_cxx::_BasicSum<_Real>;
       using _AitkenSum = __gnu_cxx::_AitkenDeltaSquaredSum<_BasicSum>;
-      using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
+      using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Real>;
+      using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
 
       constexpr auto _S_1d2 = _Real{1} / _Real{2};
       constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
@@ -89,9 +90,9 @@ namespace __detail
       const auto __y = __tmp * __tmp;
       auto __term = _Real{1};
       _AitkenSum _H_n;
-      _WenigerDeltaSum __kex;
-      __kex += __term;
       _H_n += 1;
+      _WenigerDeltaWijnSum __kex;
+      __kex += __term;
       for (auto __k = 1; __k < _S_maxiter; ++__k)
 	{
 	  auto __fact = __k * (__k + __sign * _S_1d2);
