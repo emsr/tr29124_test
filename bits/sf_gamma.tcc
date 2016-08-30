@@ -1882,7 +1882,8 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      using _Cmplx = std::complex<_Real>;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_2pi = _Tp{2} * _S_pi;
       auto __a = _Real{_GammaSpouge<_Real>::_S_cheby.size()};
       const auto& __c = _GammaSpouge<_Real>::_S_cheby;
 
@@ -2002,27 +2003,6 @@ _S_neg_double_factorial_table[999]
     };
 #endif
 
-  template<typename _Tp>
-    _Tp
-    __p(unsigned int __k, _Tp __g)
-    {
-      using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
-      const auto _S_pi  = _Real{3.1415926535897932384626433832795029L};
-      auto __fact = std::sqrt(_Real{2} / _S_pi);
-      auto __sum = __cheby(2 * __k + 1, 1) * __fact
-		 * std::exp(_Real(__g + 0.5L))
-		 / std::sqrt(_Real(__g + 0.5L));
-      for (int __a = 1; __a <= __k; ++__a)
-	{
-	  __fact *= _Real(2 * __a - 1) / 2;
-	  __sum += __cheby(2 * __k + 1, 2 * __a + 1) * __fact
-		 * std::pow(_Real(__a + __g + 0.5L), -_Real(__a + 0.5L))
-		 * std::exp(_Real(__a + __g + 0.5L));
-	}
-      return __sum;
-    }
-
   /**
    *  @brief Return @f$log(\Gamma(x))@f$ by the Lanczos method.
    *         This method dominates all others on the positive axis I think.
@@ -2036,18 +2016,29 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      const auto& __c = _GammaSpouge<_Real>::_S_cheby;
-      auto __g =  _GammaSpouge<_Real>::_S_g;
-      auto __fact = _Real{1};
-      auto __sum = _Real{0.5L} * __p(0, __g);
-      for (unsigned int __k = 1, __n = __c.size(); __k < __n; ++__k)
-	{
-	  __fact *= (__z - __k + 1) / (__z + __k);
-	  __sum += __fact * __p(__k, __g);
+      constexpr auto _S_ln_2 = __gnu_cxx::__math_constants<_Tp>::__ln_2;
+      constexpr auto _S_ln_pi = __gnu_cxx::__math_constants<_Tp>::__ln_pi;
+      constexpr auto _S_log_sqrt_2pi = (_S_ln_2 + _S_ln_pi) / _Tp{2};
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto& __c = _GammaLanczos<_Real>::_S_cheby;
+      auto __g =  _GammaLanczos<_Real>::_S_g;
+      // Reflection.
+      if (std::real(__z) <= -__g)
+	return std::log(_S_pi) - std::log(std::sin(_S_pi * __z))
+			       - __log_gamma_lanczos(_Real{1} - __z);
+      else
+        {
+	  auto __fact = _Real{1};
+	  auto __sum = _Real{0.5L} * __c[0];
+	  for (unsigned int __k = 1, __n = __c.size(); __k < __n; ++__k)
+	    {
+	      __fact *= (__z - __k + 1) / (__z + __k);
+	      __sum += __fact * __c[__k];
+	    }
+	  return _S_log_sqrt_2pi + std::log(__sum)
+	       + (__z + 0.5L) * std::log(__z + __g + 0.5L)
+	       - (__z + __g + 0.5L) - std::log(__z);
 	}
-      return _S_log_sqrt_2pi + std::log(__sum)
-	   + (__z + 0.5L) * std::log(__z + __g + 0.5L)
-	   - (__z + __g + 0.5L) - std::log(__z);
     }
 
 

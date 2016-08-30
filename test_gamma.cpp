@@ -103,8 +103,6 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp -lqua
 	  std::cout << "n = " << __n << '\n';
 	}
 
-      constexpr auto _S_log_sqrt_2pi = 9.189385332046727417803297364056176398620e-1L;
-
       auto __log_gamma_lanczos =
 	[=](_Tp __z)
 	-> _Tp
@@ -140,8 +138,8 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp -lqua
       std::cout << std::showpoint << std::scientific;
 
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      const auto _S_pi  = _Tp{3.1415926535897932384626433832795029L};
-      const auto _S_2pi = _Tp{6.283185307179586476925286766559005768391L};
+      const auto _S_pi  = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_2pi = _Tp{2} * _S_pi;
       auto __a = _Tp{1};
       const auto __fact = _Tp{1} / std::sqrt(_S_2pi);
       while (_S_eps <= __fact * std::pow(_S_2pi, -__a) / std::sqrt(__a))
@@ -200,8 +198,8 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp -lqua
 	  constexpr auto _S_log_10 = __gnu_cxx::__math_constants<_Tp>::__log10_e;
 	  constexpr auto _S_ln_2 = __gnu_cxx::__math_constants<_Tp>::__ln_2;
 	  constexpr auto _S_ln_pi = __gnu_cxx::__math_constants<_Tp>::__ln_pi;
-	  constexpr auto _S_log_sqrt2pi = (_S_ln_2 + _S_ln_pi) / _Tp{2};
-	  auto __x = __y * _S_log_10 - _S_log_sqrt2pi;
+	  constexpr auto _S_log_sqrt_2pi = (_S_ln_2 + _S_ln_pi) / _Tp{2};
+	  auto __x = __y * _S_log_10 - _S_log_sqrt_2pi;
 	  auto __x0 = __x;
 	  for (int __i = 0; __i < 100; ++__i)
 	    __x = (__x0 + __x) / std::log(__x);
