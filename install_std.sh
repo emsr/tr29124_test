@@ -25,6 +25,7 @@ ${tool} "${src_ext_dir}/math_const.h"       "${dst_ext_dir}/math_const.h"
 ${tool} "${src_ext_dir}/math_util.h"        "${dst_ext_dir}/math_util.h"
 ${tool} "${src_ext_dir}/cmath"              "${dst_ext_dir}/cmath"
 ${tool} "${src_ext_dir}/polynomial.h"       "${dst_ext_dir}"
+${tool} "${src_ext_dir}/polynomial.tcc"     "${dst_ext_dir}"
 
 ${tool} "${src_impl_dir}/specfun.h"         "${dst_impl_dir}/specfun.h"
 ${tool} "${src_impl_dir}/specfun_util.h"    "${dst_impl_dir}/specfun_util.h"
