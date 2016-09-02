@@ -9,7 +9,8 @@
 #include "statistics.h"
 
 const std::experimental::string_view boilerplate = 
-R"(// { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
+R"(// { dg-do compile { target c++11 } }
+// { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
 //
 // Copyright (C) 2016 Free Software Foundation, Inc.
 //
