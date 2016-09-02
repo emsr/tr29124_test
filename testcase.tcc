@@ -5,11 +5,11 @@
 #include <sstream>
 #include <experimental/type_traits>
 #include <experimental/string_view>
-#include "complex_compare.h" // For the Statistics min/max (maybe rethink that there)
-#include "statistics.h"
+#include <complex_compare.h> // For the Statistics min/max (maybe rethink that there)
+#include <statistics.h>
 
 const std::experimental::string_view boilerplate = 
-R"(// { dg-do compile { target c++11 } }
+R"(// { dg-do run { target c++11 } }
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
 //
 // Copyright (C) 2016 Free Software Foundation, Inc.
@@ -347,7 +347,7 @@ template<typename Ret, typename Arg1>
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-    constexpr auto ret_complex = is_complex_v<Ret>;
+    constexpr auto ret_complex = __gnu_cxx::is_complex_v<Ret>;
 
     auto numname = type_strings<Val>::type().to_string();
 
@@ -545,7 +545,7 @@ template<typename Ret, typename Arg1, typename Arg2>
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-    constexpr auto ret_complex = is_complex_v<Ret>;
+    constexpr auto ret_complex = __gnu_cxx::is_complex_v<Ret>;
 
     auto numname = type_strings<Val>::type().to_string();
 
@@ -750,7 +750,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-    constexpr auto ret_complex = is_complex_v<Ret>;
+    constexpr auto ret_complex = __gnu_cxx::is_complex_v<Ret>;
 
     auto numname = type_strings<Val>::type().to_string();
 
@@ -968,7 +968,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
     constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-    constexpr auto ret_complex = is_complex_v<Ret>;
+    constexpr auto ret_complex = __gnu_cxx::is_complex_v<Ret>;
 
     auto numname = type_strings<Val>::type().to_string();
 
