@@ -11,7 +11,7 @@
 #include "spaceship.h"
 
 const std::string_view boilerplate = 
-R"(// { dg-do compile { target c++11 } }
+R"(// { dg-do run { target c++11 } }
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
 //
 // Copyright (C) 2016 Free Software Foundation, Inc.
@@ -623,7 +623,7 @@ template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_BASELINEFUN Base
       constexpr auto eps = std::numeric_limits<Val>::epsilon();
       constexpr auto inf = std::numeric_limits<Val>::infinity();
       constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-      constexpr auto ret_complex = is_complex_v<Ret>;
+      constexpr auto ret_complex = __gnu_cxx::is_complex_v<Ret>;
 
       auto numname = type_strings<Val>::type().to_string();
       auto structname = outer._M_structname.to_string() + '<' + numname + '>';
@@ -772,7 +772,7 @@ template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_BASELINEFUN Base
 	     bool riemann_zeta_limits,
 	     std::string_view funcall) const
   {
-    constexpr auto ret_complex = is_complex_v<Ret>;
+    constexpr auto ret_complex = __gnu_cxx::is_complex_v<Ret>;
     std::string ret_tname = "Ret";
     if (ret_complex)
       ret_tname = "std::complex<Ret>";
