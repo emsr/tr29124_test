@@ -1,7 +1,7 @@
 #ifndef STATISTICS_H
 #define STATISTICS_H 1
 
-#include "complex_util.h"
+#include <bits/complex_util.h>
 
 /**
  *  Incremental computation of statistics.
@@ -29,9 +29,9 @@ template<typename _Tp>
       return *this;
     }
 
-    static constexpr bool _M_is_complex = is_complex_v<_Tp>;
+    static constexpr bool _M_is_complex = __gnu_cxx::is_complex_v<_Tp>;
 
-    using _M_type = std::conditional_t<is_complex_v<_Tp>,
+    using _M_type = std::conditional_t<__gnu_cxx::is_complex_v<_Tp>,
 				       std::complex<long double>, long double>;
 
     _Tp
