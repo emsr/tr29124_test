@@ -69,3 +69,5 @@ for [] TR1 test generation...
 22. [] ../LambertW has a very good static polynomial I think - with static Horner.
 
 23. [] We have both psi *and* digamma!  Pick one!
+
+24. [] polynomial.h needs outline polynomial.tcc

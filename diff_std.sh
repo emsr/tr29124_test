@@ -16,6 +16,7 @@ ${tool} bits/  ${gcc_dir}/
 ${tool} ext/math_const.h           ${ext_dir}/math_const.h
 ${tool} ext/math_util.h            ${ext_dir}/math_util.h
 ${tool} ext/polynomial.h           ${ext_dir}/polynomial.h
+${tool} ext/polynomial.tcc         ${ext_dir}/polynomial.tcc
 ${tool} ext/cmath                  ${gcc_dir}/cmath
 ${tool} bits/specfun_util.h        ${gcc_dir}/specfun_util.h
 ${tool} bits/specfun.h             ${gcc_dir}/specfun.h
