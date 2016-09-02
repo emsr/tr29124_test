@@ -40,10 +40,12 @@
 #include <iosfwd>
 #include <limits>
 #include <array>
-#include <ios>
-#include <cmath>
-#include <complex>
 #include <utility> // For exchange
+
+namespace std {
+  template<typename _Tp>
+    class complex;
+}
 
 /**
  *  detail: Do we want this to always have a size of at least one? a_0 = _Tp{}?  YES.
@@ -216,7 +218,7 @@ namespace __gnu_cxx
        */
       template<typename _Up>
 	auto
-	operator()(std::complex<_Up> __z) const
+	operator()(const std::complex<_Up>& __z) const
 	-> decltype(value_type{} * std::complex<_Up>{});
 
       /**
@@ -276,7 +278,7 @@ namespace __gnu_cxx
        */
       template<typename _Up>
 	auto
-	even(std::complex<_Up> __z) const
+	even(const std::complex<_Up>& __z) const
 	-> decltype(value_type{} * std::complex<_Up>{});
 
       /**
@@ -293,7 +295,7 @@ namespace __gnu_cxx
        */
       template<typename _Up>
 	auto
-	odd(std::complex<_Up> __z) const
+	odd(const std::complex<_Up>& __z) const
 	-> decltype(value_type{} * std::complex<_Up>{});
 
       /**

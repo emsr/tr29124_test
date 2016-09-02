@@ -35,6 +35,9 @@
 # include <bits/c++0x_warning.h>
 #else
 
+#include <ios>
+#include <complex>
+
 namespace __gnu_cxx
 {
 
@@ -52,7 +55,7 @@ namespace __gnu_cxx
   template<typename _Tp>
     template<typename _Up>
       auto
-      _Polynomial<_Tp>::operator()(std::complex<_Up> __z) const
+      _Polynomial<_Tp>::operator()(const std::complex<_Up>& __z) const
       -> decltype(_Polynomial<_Tp>::value_type{} * std::complex<_Up>{})
       {
 	const auto __r = _Tp{2} * std::real(__z);
@@ -183,7 +186,7 @@ namespace __gnu_cxx
   template<typename _Tp>
     template<typename _Up>
       auto
-      _Polynomial<_Tp>::even(std::complex<_Up> __z) const
+      _Polynomial<_Tp>::even(const std::complex<_Up>& __z) const
       -> decltype(typename _Polynomial<_Tp>::value_type{} * std::complex<_Up>{})
       {
 	if (this->degree() > 0)
@@ -219,7 +222,7 @@ namespace __gnu_cxx
   template<typename _Tp>
     template<typename _Up>
       auto
-      _Polynomial<_Tp>::odd(std::complex<_Up> __z) const
+      _Polynomial<_Tp>::odd(const std::complex<_Up>& __z) const
       -> decltype(_Polynomial<_Tp>::value_type{} * std::complex<_Up>{})
       {
 	if (this->degree() > 0)
