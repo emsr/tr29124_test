@@ -1,3 +1,4 @@
+// { dg-do compile { target c++11 } }
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
 //
 // Copyright (C) 2016 Free Software Foundation, Inc.
@@ -90,6 +91,7 @@ data001[21] =
 	  1.0000000000000000 },
 };
 const double toler001 = 2.5000000000000020e-13;
+//  Failure at n=1 m=0 rho=0.0000000000000000 f=0.0000000000000000 f_GSL=nan
 
 // Test data for n=1, m=1.
 // max(|f - f_GSL|): 0.0000000000000000
@@ -198,6 +200,7 @@ data003[21] =
 	  1.0000000000000000 },
 };
 const double toler003 = 2.5000000000000020e-13;
+//  Failure at n=2 m=1 rho=0.0000000000000000 f=0.0000000000000000 f_GSL=nan
 
 // Test data for n=2, m=2.
 // max(|f - f_GSL|): 0.0000000000000000
@@ -252,6 +255,7 @@ data004[21] =
 	  1.0000000000000000 },
 };
 const double toler004 = 2.5000000000000020e-13;
+//  Failure at n=5 m=0 rho=0.0000000000000000 f=0.0000000000000000 f_GSL=nan
 
 // Test data for n=5, m=1.
 // max(|f - f_GSL|): 1.1102230246251565e-16
@@ -306,6 +310,7 @@ data005[21] =
 	  1.0000000000000000 },
 };
 const double toler005 = 2.5000000000000020e-13;
+//  Failure at n=5 m=2 rho=0.0000000000000000 f=0.0000000000000000 f_GSL=nan
 
 // Test data for n=5, m=5.
 // max(|f - f_GSL|): 0.0000000000000000
@@ -414,6 +419,7 @@ data007[21] =
 	  1.0000000000000000 },
 };
 const double toler007 = 2.5000000000000020e-13;
+//  Failure at n=10 m=1 rho=0.0000000000000000 f=0.0000000000000000 f_GSL=nan
 
 // Test data for n=10, m=2.
 // max(|f - f_GSL|): 1.1102230246251565e-16
@@ -468,6 +474,7 @@ data008[21] =
 	  1.0000000000000000 },
 };
 const double toler008 = 5.0000000000000039e-13;
+//  Failure at n=10 m=5 rho=0.0000000000000000 f=0.0000000000000000 f_GSL=nan
 
 // Test data for n=10, m=10.
 // max(|f - f_GSL|): 0.0000000000000000
@@ -576,6 +583,7 @@ data010[21] =
 	  1.0000000000000000 },
 };
 const double toler010 = 5.0000000000000029e-12;
+//  Failure at n=20 m=1 rho=0.0000000000000000 f=0.0000000000000000 f_GSL=nan
 
 // Test data for n=20, m=2.
 // max(|f - f_GSL|): 3.3306690738754696e-16
@@ -630,6 +638,7 @@ data011[21] =
 	  1.0000000000000000 },
 };
 const double toler011 = 2.5000000000000020e-13;
+//  Failure at n=20 m=5 rho=0.0000000000000000 f=0.0000000000000000 f_GSL=nan
 
 // Test data for n=20, m=10.
 // max(|f - f_GSL|): 5.5511151231257827e-17
@@ -792,6 +801,7 @@ data014[21] =
 	  1.0000000000000000 },
 };
 const double toler014 = 2.5000000000000015e-12;
+//  Failure at n=50 m=1 rho=0.0000000000000000 f=0.0000000000000000 f_GSL=nan
 
 // Test data for n=50, m=2.
 // max(|f - f_GSL|): 4.4408920985006262e-15
@@ -846,6 +856,7 @@ data015[21] =
 	  1.0000000000000000 },
 };
 const double toler015 = 2.5000000000000015e-12;
+//  Failure at n=50 m=5 rho=0.0000000000000000 f=0.0000000000000000 f_GSL=nan
 
 // Test data for n=50, m=10.
 // max(|f - f_GSL|): 1.5543122344752192e-15
@@ -1062,6 +1073,7 @@ data019[21] =
 	  1.0000000000000000 },
 };
 const double toler019 = 5.0000000000000029e-12;
+//  Failure at n=100 m=1 rho=0.0000000000000000 f=0.0000000000000000 f_GSL=nan
 
 // Test data for n=100, m=2.
 // max(|f - f_GSL|): 2.9087843245179101e-14
@@ -1116,6 +1128,7 @@ data020[21] =
 	  1.0000000000000000 },
 };
 const double toler020 = 1.0000000000000006e-11;
+//  Failure at n=100 m=5 rho=0.0000000000000000 f=0.0000000000000000 f_GSL=nan
 
 // Test data for n=100, m=10.
 // max(|f - f_GSL|): 2.2204460492503131e-15
