@@ -5678,13 +5678,24 @@ template<typename _Tp>
     auto width = 8 + data.precision();
 
     _Airy<_Cmplx> airy;
+    using AiryT = decltype(airy(_Cmplx{}));
+    std::vector<std::vector<AiryT>> airy_mat;
 
     for (int i = -200; i <= +50; ++i)
       {
+	airy_mat.push_back(std::vector<AiryT>{});
 	for (int j = -50; j <= +50; ++j)
 	  {
 	    auto t = _Cmplx(0.10Q * i, 0.10Q * j);
-	    auto airy0 = airy(t);
+	    airy_mat.back().push_back(airy(t));
+	  }
+      }
+
+    for (const auto& airy_row : airy_mat)
+      {
+	for (auto airy_val : airy_row)
+	  {
+	    auto airy0 = airy_val;
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
 		 << std::setw(width) << std::pow(std::abs(airy0.Ai), _Real{1} / _Real{6})
@@ -5694,12 +5705,11 @@ template<typename _Tp>
       }
     data << '\n';
 
-    for (int i = -200; i <= +50; ++i)
+    for (const auto& airy_row : airy_mat)
       {
-	for (int j = -50; j <= +50; ++j)
+	for (auto airy_val : airy_row)
 	  {
-	    auto t = _Cmplx(0.10Q * i, 0.10Q * j);
-	    auto airy0 = airy(t);
+	    auto airy0 = airy_val;
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
 		 << std::setw(width) << std::real(airy0.Ai)
@@ -5709,12 +5719,11 @@ template<typename _Tp>
       }
     data << '\n';
 
-    for (int i = -200; i <= +50; ++i)
+    for (const auto& airy_row : airy_mat)
       {
-	for (int j = -50; j <= +50; ++j)
+	for (auto airy_val : airy_row)
 	  {
-	    auto t = _Cmplx(0.10Q * i, 0.10Q * j);
-	    auto airy0 = airy(t);
+	    auto airy0 = airy_val;
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
 		 << std::setw(width) << std::imag(airy0.Ai)
@@ -5724,12 +5733,11 @@ template<typename _Tp>
       }
     data << '\n';
 
-    for (int i = -200; i <= +50; ++i)
+    for (const auto& airy_row : airy_mat)
       {
-	for (int j = -50; j <= +50; ++j)
+	for (auto airy_val : airy_row)
 	  {
-	    auto t = _Cmplx(0.10Q * i, 0.10Q * j);
-	    auto airy0 = airy(t);
+	    auto airy0 = airy_val;
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
 		 << std::setw(width) << std::arg(airy0.Ai)
@@ -5739,12 +5747,11 @@ template<typename _Tp>
       }
     data << '\n';
 
-    for (int i = -200; i <= +50; ++i)
+    for (const auto& airy_row : airy_mat)
       {
-	for (int j = -50; j <= +50; ++j)
+	for (auto airy_val : airy_row)
 	  {
-	    auto t = _Cmplx(0.10Q * i, 0.10Q * j);
-	    auto airy0 = airy(t);
+	    auto airy0 = airy_val;
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
 		 << std::setw(width) << std::pow(std::abs(airy0.Bi), _Real{1} / _Real{6})
@@ -5754,12 +5761,11 @@ template<typename _Tp>
       }
     data << '\n';
 
-    for (int i = -200; i <= +50; ++i)
+    for (const auto& airy_row : airy_mat)
       {
-	for (int j = -50; j <= +50; ++j)
+	for (auto airy_val : airy_row)
 	  {
-	    auto t = _Cmplx(0.10Q * i, 0.10Q * j);
-	    auto airy0 = airy(t);
+	    auto airy0 = airy_val;
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
 		 << std::setw(width) << std::real(airy0.Bi)
@@ -5769,12 +5775,11 @@ template<typename _Tp>
       }
     data << '\n';
 
-    for (int i = -200; i <= +50; ++i)
+    for (const auto& airy_row : airy_mat)
       {
-	for (int j = -50; j <= +50; ++j)
+	for (auto airy_val : airy_row)
 	  {
-	    auto t = _Cmplx(0.10Q * i, 0.10Q * j);
-	    auto airy0 = airy(t);
+	    auto airy0 = airy_val;
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
 		 << std::setw(width) << std::imag(airy0.Bi)
@@ -5784,12 +5789,11 @@ template<typename _Tp>
       }
     data << '\n';
 
-    for (int i = -200; i <= +50; ++i)
+    for (const auto& airy_row : airy_mat)
       {
-	for (int j = -50; j <= +50; ++j)
+	for (auto airy_val : airy_row)
 	  {
-	    auto t = _Cmplx(0.10Q * i, 0.10Q * j);
-	    auto airy0 = airy(t);
+	    auto airy0 = airy_val;
 	    data << std::setw(width) << std::real(airy0.z)
 	         << std::setw(width) << std::imag(airy0.z)
 		 << std::setw(width) << std::arg(airy0.Bi)
@@ -5799,12 +5803,11 @@ template<typename _Tp>
       }
     data << '\n';
 
-    for (int i = -200; i <= +50; ++i)
+    for (const auto& airy_row : airy_mat)
       {
-	for (int j = -50; j <= +50; ++j)
+	for (auto airy_val : airy_row)
 	  {
-	    auto t = _Cmplx(0.10Q * i, 0.10Q * j);
-	    auto airy0 = airy(t);
+	    auto airy0 = airy_val;
 	    data << std::setw(width) << std::real(airy0.z)
 		 << std::setw(width) << std::imag(airy0.z)
 		 << std::setw(width) << std::abs(airy0.Wronskian())
