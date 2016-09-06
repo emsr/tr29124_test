@@ -70,4 +70,4 @@ for [] TR1 test generation...
 
 23. [] We have both psi *and* digamma!  Pick one!
 
-24. [] polynomial.h needs outline polynomial.tcc
+24. [DONE] polynomial.h needs outline polynomial.tcc
