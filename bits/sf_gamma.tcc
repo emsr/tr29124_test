@@ -48,6 +48,7 @@
 #ifndef _GLIBCXX_BITS_SF_GAMMA_TCC
 #define _GLIBCXX_BITS_SF_GAMMA_TCC 1
 
+#include <array>
 #include <ext/math_const.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
@@ -1882,8 +1883,8 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_2pi = _Tp{2} * _S_pi;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      constexpr auto _S_2pi = _Real{2} * _S_pi;
       auto __a = _Real{_GammaSpouge<_Real>::_S_cheby.size()};
       const auto& __c = _GammaSpouge<_Real>::_S_cheby;
 
@@ -1895,7 +1896,7 @@ _S_neg_double_factorial_table[999]
 	{
 	  auto __sum = std::sqrt(_S_2pi);
 	  for (int __k = 0; __k < __c.size(); ++__k)
-	    __sum += __c[__k] / (__z + __k + 1);
+	    __sum += __c[__k] / (__z + _Real(__k + 1));
 	  return std::log(__sum)
 	       + (__z + _Real{0.5L}) * std::log(__z + __a)
 	       - (__z + __a) - std::log(__z);
@@ -2016,10 +2017,10 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_ln_2 = __gnu_cxx::__math_constants<_Tp>::__ln_2;
-      constexpr auto _S_ln_pi = __gnu_cxx::__math_constants<_Tp>::__ln_pi;
-      constexpr auto _S_log_sqrt_2pi = (_S_ln_2 + _S_ln_pi) / _Tp{2};
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_ln_2 = __gnu_cxx::__math_constants<_Real>::__ln_2;
+      constexpr auto _S_ln_pi = __gnu_cxx::__math_constants<_Real>::__ln_pi;
+      constexpr auto _S_log_sqrt_2pi = (_S_ln_2 + _S_ln_pi) / _Real{2};
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
       const auto& __c = _GammaLanczos<_Real>::_S_cheby;
       auto __g =  _GammaLanczos<_Real>::_S_g;
       // Reflection.
@@ -2032,12 +2033,12 @@ _S_neg_double_factorial_table[999]
 	  auto __sum = _Real{0.5L} * __c[0];
 	  for (unsigned int __k = 1, __n = __c.size(); __k < __n; ++__k)
 	    {
-	      __fact *= (__z - __k + 1) / (__z + __k);
+	      __fact *= (__z - _Real(__k + 1)) / (__z + _Real(__k));
 	      __sum += __fact * __c[__k];
 	    }
 	  return _S_log_sqrt_2pi + std::log(__sum)
-	       + (__z + 0.5L) * std::log(__z + __g + 0.5L)
-	       - (__z + __g + 0.5L) - std::log(__z);
+	       + (__z + _Real{0.5L}) * std::log(__z + __g + _Real{0.5L})
+	       - (__z + __g + _Real{0.5L}) - std::log(__z);
 	}
     }
 
