@@ -190,7 +190,7 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp -lqua
 	}
 
       //  Try to invert using Newton...
-      auto __inv_log_gamma
+      auto __log_gamma_inv
       {
 	[=](_Tp __y)
 	-> _Tp
@@ -215,7 +215,7 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp -lqua
 		    << ' ' << (y = __log_gamma_spouge(z))
 		    << ' ' << std::lgamma(z)
 		    << ' ' << __log_gamma_spouge(z) - std::lgamma(z)
-		    << ' ' << (x = __inv_log_gamma(y))
+		    << ' ' << (x = __log_gamma_inv(y))
 		    << ' ' << x - y
 		    << '\n';
 	}
