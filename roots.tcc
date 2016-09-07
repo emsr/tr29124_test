@@ -33,7 +33,7 @@ namespace __gnu_cxx
       const _Tp __golden = __gnu_cxx::__math_constants<_Tp>::__phi;
 
       if (__x_lower >= __x_upper)
-	std::__throw_logic_error("__root_bracket: bad initial range");
+	std::__throw_logic_error(__N("__root_bracket: bad initial range"));
       auto __f1 = __func(__x_lower);
       auto __f2 = __func(__x_upper);
       for (std::size_t __i = 0; __i < __max_iter; ++__i)
@@ -102,8 +102,8 @@ namespace __gnu_cxx
       auto __f = __func(__x_lower);
       auto __f_mid = __func(__x_upper);
       if (__f * __f_mid >= _Tp{0})
-	std::__throw_logic_error("__root_bisect: "
-				 "Root must be bracketed for bisection");
+	std::__throw_logic_error(__N("__root_bisect: "
+				 "Root must be bracketed for bisection"));
       //  Orient search so that f > _Tp{0} lies at x + dx.
       _Tp __dx;
       auto __x = __f < _Tp{0}
@@ -118,8 +118,8 @@ namespace __gnu_cxx
 	  if (std::abs(__dx) < __eps || __f_mid == _Tp{0})
 	    return __x;
 	}
-      std::__throw_logic_error("__root_bisect: "
-			       "Maximum number of bisections exceeded");
+      std::__throw_logic_error(__N("__root_bisect: "
+			       "Maximum number of bisections exceeded"));
 
       return _Tp{0};
     }
@@ -168,8 +168,8 @@ namespace __gnu_cxx
 	    return __x;
 	}
 
-      std::__throw_logic_error("__root_secant: "
-			       "Maximum number of iterations exceeded");
+      std::__throw_logic_error(__N("__root_secant: "
+			       "Maximum number of iterations exceeded"));
 
       return  _Tp{0};
     }
@@ -194,7 +194,8 @@ namespace __gnu_cxx
       auto __f_lo = __func(__x_lower);
       auto __f_hi = __func(__x_upper);
       if (__f_lo * __f_hi > _Tp{0})
-	std::__throw_logic_error("__root_false_pos: Root must be bracketed");
+	std::__throw_logic_error(__N("__root_false_position: "
+				    "Root must be bracketed"));
 
       _Tp __x_lo, __x_hi;
       if (__f_lo < _Tp{0})
@@ -232,8 +233,8 @@ namespace __gnu_cxx
 	    return __x;
 	}
 
-      std::__throw_logic_error("__root_false_pos: "
-			       "Maximum number of iterations exceeded");
+      std::__throw_logic_error(__N("__root_false_position: "
+			       "Maximum number of iterations exceeded"));
 
       return _Tp{0};
     }
@@ -261,7 +262,7 @@ namespace __gnu_cxx
       auto __x_lo = __x_lower;
 
       if (__f_lo * __f_hi > _Tp{0})
-	std::__throw_logic_error("__root_ridder: Root must be bracketed");
+	std::__throw_logic_error(__N("__root_ridder: Root must be bracketed"));
 
       if (__f_lo == _Tp{0})
 	return __x_lower;
@@ -303,15 +304,15 @@ namespace __gnu_cxx
 	      __f_lo = __fnew;
 	    }
 	  else
-	    std::__throw_logic_error("__root_ridder: "
-				     "Some major malfunction");
+	    std::__throw_logic_error(__N("__root_ridder: "
+				     "Some major malfunction"));
 
 	  if (std::abs(__x_hi - __x_lo) < __eps)
 	    return __ans;
 	}
 
-      std::__throw_logic_error("__root_ridder: "
-			       "Maximum number of iterations exceeded");
+      std::__throw_logic_error(__N("__root_ridder: "
+			       "Maximum number of iterations exceeded"));
     }
 
 
@@ -340,7 +341,7 @@ namespace __gnu_cxx
       const _Tp __EPS = 1.0e-12;
 
       if (__f_b * __f_a > _Tp{0})
-	std::__throw_logic_error("__root_brent: Root must be bracketed");
+	std::__throw_logic_error(__N("__root_brent: Root must be bracketed"));
 
       auto __f_c = __f_b;
       for (std::size_t __iter = 0; __iter < __max_iter; ++__iter)
@@ -411,8 +412,8 @@ namespace __gnu_cxx
 	    __x_b += std::copysign(__tol1, __xm);
 	  __f_b = __func(__x_b);
 	}
-      std::__throw_logic_error("__root_brent: "
-			       "Maximum number of iterations exceeded");
+      std::__throw_logic_error(__N("__root_brent: "
+			       "Maximum number of iterations exceeded"));
 
       return  _Tp{0};
     }
@@ -444,12 +445,13 @@ namespace __gnu_cxx
 	  auto __dx = __f / __df;
 	  __x -= __dx;
 	  if ((__x_lower - __x) * (__x - __x_upper) < _Tp{0})
-	    std::__throw_logic_error("__root_newton: Jumped out of brackets");
+	    std::__throw_logic_error(__N("__root_newton: "
+				     "Jumped out of brackets"));
 	  if (std::abs(__dx) < __eps)
 	    return __x;
 	}
-      std::__throw_logic_error("__root_newton: "
-			       "Maximum number of iterations exceeded");
+      std::__throw_logic_error(__N("__root_newton: "
+			       "Maximum number of iterations exceeded"));
 
       return  _Tp{0};
     }
@@ -479,7 +481,7 @@ namespace __gnu_cxx
       __func(__x_upper, &__f_hi, &__df);
 
       if (__f_lo * __f_hi > _Tp{0})
-	std::__throw_logic_error("__root_safe: Root must be bracketed");
+	std::__throw_logic_error(__N("__root_safe: Root must be bracketed"));
 
       if (__f_lo == _Tp{0})
 	return __x_lower;
@@ -534,8 +536,8 @@ namespace __gnu_cxx
 	    __x_hi = __x;
 	}
 
-      std::__throw_logic_error("__root_safe: "
-			       "Maximum number of iterations exceeded");
+      std::__throw_logic_error(__N("__root_safe: "
+			       "Maximum number of iterations exceeded"));
 
       return  _Tp{0};
     }
