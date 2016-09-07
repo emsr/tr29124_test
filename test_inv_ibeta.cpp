@@ -1,26 +1,29 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -o test_inv_ibeta test_inv_ibeta.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -I. -g -o test_inv_ibeta test_inv_ibeta.cpp
 ./test_inv_ibeta > test_inv_ibeta.txt
 */
 
-#include <ext/cmath>
+//#include <ext/cmath>
 #include <iostream>
 #include <iomanip>
+#include <bits/specfun.h>
+#include "roots.h"
 
 template<typename _Tp>
   _Tp
-  __inv_ibeta(_Tp __a, _Tp __b, _Tp _Ibeta)
+  __ibeta_inv(_Tp __a, _Tp __b, _Tp _Ibeta)
   {
     constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
     constexpr int _S_max_inner_iter = 12;
     constexpr int _S_max_outer_iter = 35;
     if (__a < _Tp{0} || __b < _Tp{0})
-      std::__throw_domain_error(_N("__inv_ibeta: "
-				"parameters a anb b must be positive"));
+      std::__throw_domain_error(__N("__ibeta_inv: "
+				"parameters a and b must be positive"));
     else if (_Ibeta < _Tp{0} || _Ibeta > _Tp{1})
-      std::__throw_domain_error(_N("__inv_ibeta: "
+      std::__throw_domain_error(__N("__ibeta_inv: "
 				"incomplete beta function out of range"));
     const auto _Beta = std::beta(__a, __b);
+/*
     auto _Ix = _Ibeta;
     auto _Iy = _Tp{1} - _Ix;
     auto _Ixy_prev = std::min(_Ix, _Iy);
@@ -57,9 +60,21 @@ template<typename _Tp>
 	if (std::abs(__xy_upper - __xy_lower) < _S_eps * __xy)
 	  break;
       }
+*/
+    auto __thing = [__a, __b](_Tp __x){ return __gnu_cxx::ibeta(__a, __b, __x); };
+    auto __xy_lower = _Tp{0};
+    auto __xy_upper = _Tp{1};
+    if (__gnu_cxx::__root_bracket(__thing, __xy_lower, __xy_upper))
+      {
+	return __gnu_cxx::__root_brent(__thing, __xy_lower, __xy_upper);
+      }
   }
 
 int
 main()
 {
+  double a = 2.4, b = 5.6;
+  double x = 7.8;
+  double ibet = __gnu_cxx::ibeta(a, b, x);
+  auto y = __ibeta_inv(a, b, ibet);
 }
