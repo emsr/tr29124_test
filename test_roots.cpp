@@ -1,12 +1,13 @@
 
 /*
- $HOME/bin/bin/g++ -g -o test_roots test_roots.cpp
+ $HOME/bin/bin/g++ -I. -g -o test_roots test_roots.cpp
 
  ./test_roots > test_roots.txt
 
 */
 
 #include "roots.h"
+#include <ext/polynomial.h>
 #include <iostream>
 #include <iomanip>
 #include <cmath>
@@ -76,6 +77,17 @@ main()
     for (auto& br : bracket)
       std::cout << "  " << std::setw(width) << br.first << " <= x <= " << std::setw(width) << br.second
 		<< ": x = " << std::setw(width) << __gnu_cxx::__root_newton(&cos_state, br.first, br.second, eps) << '\n';
+    std::cout << '\n';
+  }
+
+  {
+    __gnu_cxx::_Polynomial<double> P({0.0, 1.0, 2.0, 3.0});
+    double x_lower = -10.0, x_upper = 10.0, eps = 1.0e-14;
+    auto bracket = __gnu_cxx::__root_brackets((fun_t)&std::cos, x_lower, x_upper, 50 * P.degree());
+    std::cout << "root brackets:\n";
+    for (auto& br : bracket)
+      std::cout << "  " << std::setw(width) << br.first << " <= x <= " << std::setw(width) << br.second
+		/*<< ": x = " << std::setw(width) << __gnu_cxx::__root_bisect(P, br.first, br.second, eps)*/ << '\n';
     std::cout << '\n';
   }
 }
