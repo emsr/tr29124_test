@@ -97,6 +97,6 @@ namespace __gnu_cxx
 
 } // namespace __gnu_cxx
 
-#include "roots.tcc"
+#include <ext/roots.tcc>
 
 #endif // _EXT_ROOTS_H
