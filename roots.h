@@ -50,39 +50,39 @@
 namespace __gnu_cxx
 {
 
-  template<typename _Tp>
+  template<typename _Tp, typename _Func>
     bool
-    __root_bracket(_Tp (*__func)(_Tp), _Tp& __x_lower, _Tp& __x_upper,
+    __root_bracket(_Func __func, _Tp& __x_lower, _Tp& __x_upper,
     		   std::size_t __max_iter = 50);
 
-  template<typename _Tp>
+  template<typename _Tp, typename _Func>
     std::vector<std::pair<_Tp, _Tp>>
-    __root_brackets(_Tp (*__func)(_Tp),
+    __root_brackets(_Func __func,
 		    _Tp __x_lower, _Tp __x_upper, std::size_t __n);
 
-  template<typename _Tp>
+  template<typename _Tp, typename _Func>
     _Tp
-    __root_bisect(_Tp (*__func)(_Tp), _Tp __x_lower, _Tp __x_upper, _Tp __eps,
+    __root_bisect(_Func __func, _Tp __x_lower, _Tp __x_upper, _Tp __eps,
 		  std::size_t __max_iter = std::numeric_limits<_Tp>::digits);
 
-  template<typename _Tp>
+  template<typename _Tp, typename _Func>
     _Tp
-    __root_secant(_Tp (*__func)(_Tp), _Tp __x_lower, _Tp __x_upper, _Tp __eps,
+    __root_secant(_Func __func, _Tp __x_lower, _Tp __x_upper, _Tp __eps,
 		  std::size_t __max_iter = 40);
 
-  template<typename _Tp>
+  template<typename _Tp, typename _Func>
     _Tp
-    __root_false_position(_Tp (*__func)(_Tp), _Tp __x_lower, _Tp __x_upper,
+    __root_false_position(_Func __func, _Tp __x_lower, _Tp __x_upper,
 			  _Tp __eps, std::size_t __max_iter = 40);
 
-  template<typename _Tp>
+  template<typename _Tp, typename _Func>
     _Tp
-    __root_ridder(_Tp (*__func)(_Tp), _Tp __x_lower, _Tp __x_upper,
+    __root_ridder(_Func __func, _Tp __x_lower, _Tp __x_upper,
 		  _Tp __eps, std::size_t __max_iter = 100);
 
-  template<typename _Tp>
+  template<typename _Tp, typename _Func>
     _Tp
-    __root_brent(_Tp (*__func)(_Tp), _Tp __x_lower, _Tp __x_upper,
+    __root_brent(_Func __func, _Tp __x_lower, _Tp __x_upper,
 		 _Tp __eps, std::size_t __max_iter = 100);
 
   template<typename _Tp>
