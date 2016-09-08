@@ -7,7 +7,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -I. -g -o test_inv_ibeta test_inv_ibeta.cpp
 #include <iostream>
 #include <iomanip>
 #include <bits/specfun.h>
-#include "roots.h"
+#include <ext/roots.h>
 
 template<typename _Tp>
   _Tp
@@ -66,7 +66,7 @@ template<typename _Tp>
     auto __xy_upper = _Tp{1};
     if (__gnu_cxx::__root_bracket(__thing, __xy_lower, __xy_upper))
       {
-	return __gnu_cxx::__root_brent(__thing, __xy_lower, __xy_upper);
+	return __gnu_cxx::__root_brent(__thing, __xy_lower, __xy_upper, _Tp{10} * _S_eps);
       }
   }
 
@@ -74,7 +74,7 @@ int
 main()
 {
   double a = 2.4, b = 5.6;
-  double x = 7.8;
+  double x = 0.8;
   double ibet = __gnu_cxx::ibeta(a, b, x);
   auto y = __ibeta_inv(a, b, ibet);
 }
