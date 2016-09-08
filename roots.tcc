@@ -54,9 +54,9 @@ namespace __gnu_cxx
    * @param __x_upper  The upper end of the interval
    * @param __max_iter  The maximum number of iterations
    */
-  template<typename _Tp>
+  template<typename _Tp, typename _Func>
     bool
-    __root_bracket(_Tp (*__func)(_Tp), _Tp& __x_lower, _Tp& __x_upper,
+    __root_bracket(_Func __func, _Tp& __x_lower, _Tp& __x_upper,
 		   std::size_t __max_iter)
     {
       const _Tp __golden = __gnu_cxx::__math_constants<_Tp>::__phi;
@@ -90,9 +90,9 @@ namespace __gnu_cxx
    * @param __n  The number of subdivisions of the interval
    * @param __xb  The output vector of root bounds
    */
-  template<typename _Tp>
+  template<typename _Tp, typename _Func>
     std::vector<std::pair<_Tp, _Tp>>
-    __root_brackets(_Tp (*__func)(_Tp),
+    __root_brackets(_Func __func,
 		    _Tp __x_lower, _Tp __x_upper, std::size_t __n)
     {
       std::vector<std::pair<_Tp, _Tp>> __xb;
@@ -123,9 +123,9 @@ namespace __gnu_cxx
    * @param __eps  The tolerance
    * @param __max_iter  The maximum number of iterations
    */
-  template<typename _Tp>
+  template<typename _Tp, typename _Func>
     _Tp
-    __root_bisect(_Tp (*__func)(_Tp), _Tp __x_lower, _Tp __x_upper,
+    __root_bisect(_Func __func, _Tp __x_lower, _Tp __x_upper,
 		  _Tp __eps, std::size_t __max_iter)
     {
       auto __f = __func(__x_lower);
@@ -165,9 +165,9 @@ namespace __gnu_cxx
    * @param __eps  The tolerance
    * @param __max_iter  The maximum number of iterations
    */
-  template<typename _Tp>
+  template<typename _Tp, typename _Func>
     _Tp
-    __root_secant(_Tp (*__func)(_Tp), _Tp __x_lower, _Tp __x_upper,
+    __root_secant(_Func __func, _Tp __x_lower, _Tp __x_upper,
 		  _Tp __eps, std::size_t __max_iter)
     {
       _Tp __x_lo, __x;
@@ -215,9 +215,9 @@ namespace __gnu_cxx
    * @param __eps  The tolerance
    * @param __max_iter  The maximum number of iterations
    */
-  template<typename _Tp>
+  template<typename _Tp, typename _Func>
     _Tp
-    __root_false_position(_Tp (*__func)(_Tp), _Tp __x_lower, _Tp __x_upper,
+    __root_false_position(_Func __func, _Tp __x_lower, _Tp __x_upper,
 			  _Tp __eps, std::size_t __max_iter)
     {
       auto __f_lo = __func(__x_lower);
@@ -280,9 +280,9 @@ namespace __gnu_cxx
    * @param __eps  The tolerance
    * @param __max_iter  The maximum number of iterations
    */
-  template<typename _Tp>
+  template<typename _Tp, typename _Func>
     _Tp
-    __root_ridder(_Tp (*__func)(_Tp), _Tp __x_lower, _Tp __x_upper,
+    __root_ridder(_Func __func, _Tp __x_lower, _Tp __x_upper,
 		  _Tp __eps, std::size_t __max_iter)
     {
       auto __f_hi = __func(__x_upper);
@@ -356,9 +356,9 @@ namespace __gnu_cxx
    * @param __eps  The tolerance
    * @param __max_iter  The maximum number of iterations
    */
-  template<typename _Tp>
+  template<typename _Tp, typename _Func>
     _Tp
-    __root_brent(_Tp (*__func)(_Tp), _Tp __x_lower, _Tp __x_upper,
+    __root_brent(_Func __func, _Tp __x_lower, _Tp __x_upper,
 		 _Tp __eps, std::size_t __max_iter)
     {
       auto __x_a = __x_lower;
