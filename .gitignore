@@ -124,6 +124,7 @@ diff_local_special_function
 testcase
 testcase2
 test_airy
+test_anger_weber
 test_bessel
 test_bessel_asymp
 test_bessel_iter
@@ -149,6 +150,7 @@ test_hurwitz_zeta
 test_hurwitz_zeta_new
 test_hypot
 test_inv_erf
+test_inv_ibeta
 test_jacobi
 test_jacobi_inv
 test_kelvin
@@ -170,12 +172,15 @@ test_pow_bits
 test_promote_num
 test_psi
 test_rational
+test_roots
 test_special_function
 test_sph_hankel
 test_static_polynomial
 test_struve
 test_summation
 test_theta
+
+plot_airy
 
 hankel_transition
 hankel_toy
