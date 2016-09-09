@@ -50,6 +50,14 @@
 namespace __gnu_cxx
 {
 
+  // This struct contains bothe the value and the derivative at a point.
+  template<typename _Tp>
+    struct __root_state
+    {
+      _Tp __value;
+      _Tp __deriv;
+    };
+
   template<typename _Tp, typename _Func>
     bool
     __root_bracket(_Func __func, _Tp& __x_lower, _Tp& __x_upper,
@@ -85,14 +93,14 @@ namespace __gnu_cxx
     __root_brent(_Func __func, _Tp __x_lower, _Tp __x_upper,
 		 _Tp __eps, std::size_t __max_iter = 100);
 
-  template<typename _Tp>
+  template<typename _Tp, typename _StateFunc>
     _Tp
-    __root_newton(void (*__func)(_Tp, _Tp*, _Tp*), _Tp __x_lower, _Tp __x_upper,
+    __root_newton(_StateFunc __func, _Tp __x_lower, _Tp __x_upper,
     		  _Tp __eps, std::size_t __max_iter = 40);
 
-  template<typename _Tp>
+  template<typename _Tp, typename _StateFunc>
     _Tp
-    __root_safe(void (*__func)(_Tp, _Tp*, _Tp*), _Tp __x_lower, _Tp __x_upper,
+    __root_safe(_StateFunc __func, _Tp __x_lower, _Tp __x_upper,
     		_Tp __eps, std::size_t __max_iter = 100);
 
 } // namespace __gnu_cxx

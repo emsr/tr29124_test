@@ -63,16 +63,16 @@ namespace __gnu_cxx
 
       if (__x_lower >= __x_upper)
 	std::__throw_logic_error(__N("__root_bracket: bad initial range"));
-      auto __f1 = __func(__x_lower);
-      auto __f2 = __func(__x_upper);
+      auto __f_lower = __func(__x_lower);
+      auto __f_upper = __func(__x_upper);
       for (std::size_t __i = 0; __i < __max_iter; ++__i)
 	{
-	  if (__f1 * __f2 < _Tp{0})
+	  if (__f_lower * __f_upper < _Tp{0})
 	    return true;
-	  if (std::abs(__f1) < std::abs(__f2))
-	    __f1 = __func(__x_lower += __golden * (__x_lower - __x_upper));
+	  if (std::abs(__f_lower) < std::abs(__f_upper))
+	    __f_lower = __func(__x_lower += __golden * (__x_lower - __x_upper));
 	  else
-	    __f2 = __func(__x_upper += __golden * (__x_upper - __x_lower));
+	    __f_upper = __func(__x_upper += __golden * (__x_upper - __x_lower));
 	}
       return false;
     }
@@ -130,7 +130,7 @@ namespace __gnu_cxx
     {
       auto __f = __func(__x_lower);
       auto __f_mid = __func(__x_upper);
-      if (__f * __f_mid >= _Tp{0})
+      if (__f * __f_mid > _Tp{0})
 	std::__throw_logic_error(__N("__root_bisect: "
 				 "Root must be bracketed for bisection"));
       //  Orient search so that f > _Tp{0} lies at x + dx.
@@ -140,17 +140,17 @@ namespace __gnu_cxx
 	       : (__dx = __x_lower - __x_upper, __x_upper);
       for (std::size_t __i = 0; __i < __max_iter; ++__i)
 	{
-	  auto __x_mid = __x + (__dx *= 0.5);
+	  __dx /= _Tp{2};
+	  auto __x_mid = __x + __dx;
 	  __f_mid = __func(__x_mid);
 	  if (__f_mid < _Tp{0})
 	    __x = __x_mid;
 	  if (std::abs(__dx) < __eps || __f_mid == _Tp{0})
 	    return __x;
 	}
+
       std::__throw_logic_error(__N("__root_bisect: "
 			       "Maximum number of bisections exceeded"));
-
-      return _Tp{0};
     }
 
 
@@ -182,7 +182,7 @@ namespace __gnu_cxx
 	}
       else
 	{
-	  __x_lo = __x;
+	  __x_lo = __x_lower;
 	  __x = __x_upper;
 	}
 
@@ -199,8 +199,6 @@ namespace __gnu_cxx
 
       std::__throw_logic_error(__N("__root_secant: "
 			       "Maximum number of iterations exceeded"));
-
-      return  _Tp{0};
     }
 
 
@@ -264,8 +262,6 @@ namespace __gnu_cxx
 
       std::__throw_logic_error(__N("__root_false_position: "
 			       "Maximum number of iterations exceeded"));
-
-      return _Tp{0};
     }
 
 
@@ -303,7 +299,7 @@ namespace __gnu_cxx
       auto __ans = __UNUSED;
       for (std::size_t __i = 0; __i < __max_iter; ++__i)
 	{
-	  auto __xm = 0.5 * (__x_lo + __x_hi);
+	  auto __xm = (__x_lo + __x_hi) / _Tp{2};
 	  auto __fm = __func(__xm);
 	  auto __s = std::sqrt(__fm * __fm - __f_lo * __f_hi);
 	  if (__s == _Tp{0})
@@ -312,7 +308,8 @@ namespace __gnu_cxx
 		      * (__f_lo >= __f_hi ? 1.0 : -1.0) * __fm / __s;
 	  if (std::abs(__xnew - __ans) < __eps)
 	    return __ans;
-	  auto __fnew = __func(__ans = __xnew);
+	  __ans = __xnew;
+	  auto __fnew = __func(__ans);
 	  if (__fnew == _Tp{0})
 	    return __ans;
 	  if (std::copysign(__fm, __fnew) != __fm)
@@ -324,12 +321,12 @@ namespace __gnu_cxx
 	    }
 	  else if (std::copysign(__f_lo, __fnew) != __f_lo)
 	    {
-	      __x_hi = __xnew;
+	      __x_hi = __ans;
 	      __f_hi = __fnew;
 	    }
 	  else if (std::copysign(__f_hi, __fnew) != __f_hi)
 	    {
-	      __x_lo = __xnew;
+	      __x_lo = __ans;
 	      __f_lo = __fnew;
 	    }
 	  else
@@ -367,9 +364,9 @@ namespace __gnu_cxx
       auto __f_a = __func(__x_a);
       auto __f_b = __func(__x_b);
 
-      const _Tp __EPS = 1.0e-12;
+      const _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
 
-      if (__f_b * __f_a > _Tp{0})
+      if (__f_a * __f_b > _Tp{0})
 	std::__throw_logic_error(__N("__root_brent: Root must be bracketed"));
 
       auto __f_c = __f_b;
@@ -391,11 +388,11 @@ namespace __gnu_cxx
 	      __f_b = __f_c;
 	      __f_c = __f_a;
 	    }
-	  auto __tol1 = _Tp{2} * __EPS * std::abs(__x_b) + __eps / _Tp{2};
+	  auto __toler = _Tp{2} * _S_eps * std::abs(__x_b) + __eps / _Tp{2};
 	  auto __xm = (__x_c - __x_b) / _Tp{2};
-	  if (std::abs(__xm) <= __tol1 || __f_b == _Tp{0})
+	  if (std::abs(__xm) <= __toler || __f_b == _Tp{0})
 	    return __x_b;
-	  if (std::abs(__e) >= __tol1 && std::abs(__f_a) > std::abs(__f_b))
+	  if (std::abs(__e) >= __toler && std::abs(__f_a) > std::abs(__f_b))
 	    {
 	      _Tp __p, __q, __r;
 	      auto __s = __f_b / __f_a;
@@ -415,7 +412,7 @@ namespace __gnu_cxx
 	      if (__p > _Tp{0})
 		__q = -__q;
 	      __p = std::abs(__p);
-	      auto __min1 = _Tp{3} * __xm * __q - std::abs(__tol1 * __q);
+	      auto __min1 = _Tp{3} * __xm * __q - std::abs(__toler * __q);
 	      auto __min2 = std::abs(__e * __q);
 	      if (_Tp{2} * __p < std::min(__min1, __min2))
 		{
@@ -435,16 +432,15 @@ namespace __gnu_cxx
 	    }
 	  __x_a = __x_b;
 	  __f_a = __f_b;
-	  if (std::abs(__d) > __tol1)
+	  if (std::abs(__d) > __toler)
 	    __x_b += __d;
 	  else
-	    __x_b += std::copysign(__tol1, __xm);
+	    __x_b += std::copysign(__toler, __xm);
 	  __f_b = __func(__x_b);
 	}
+
       std::__throw_logic_error(__N("__root_brent: "
 			       "Maximum number of iterations exceeded"));
-
-      return  _Tp{0};
     }
 
 
@@ -461,17 +457,16 @@ namespace __gnu_cxx
    * @param __eps  The tolerance
    * @param __max_iter  The maximum number of iterations
    */
-  template<typename _Tp>
+  template<typename _Tp, typename _StateFunc>
     _Tp
-    __root_newton(void (*__func)(_Tp, _Tp*, _Tp*), _Tp __x_lower, _Tp __x_upper,
+    __root_newton(_StateFunc __func, _Tp __x_lower, _Tp __x_upper,
 		  _Tp __eps, std::size_t __max_iter)
     {
       auto __x = (__x_lower + __x_upper) / _Tp{2};
       for (std::size_t __i = 0; __i < __max_iter; ++__i)
 	{
-	  _Tp __df, __f;
-	  __func(__x, &__f, &__df);
-	  auto __dx = __f / __df;
+	  auto __sf = __func(__x);
+	  auto __dx = __sf.__value / __sf.__deriv;
 	  __x -= __dx;
 	  if ((__x_lower - __x) * (__x - __x_upper) < _Tp{0})
 	    std::__throw_logic_error(__N("__root_newton: "
@@ -481,8 +476,6 @@ namespace __gnu_cxx
 	}
       std::__throw_logic_error(__N("__root_newton: "
 			       "Maximum number of iterations exceeded"));
-
-      return  _Tp{0};
     }
 
 
@@ -500,25 +493,24 @@ namespace __gnu_cxx
    * @param __eps  The tolerance
    * @param __max_iter  The maximum number of iterations
    */
-  template<typename _Tp>
+  template<typename _Tp, typename _StateFunc>
     _Tp
-    __root_safe(void (*__func)(_Tp, _Tp*, _Tp*), _Tp __x_lower, _Tp __x_upper,
+    __root_safe(_StateFunc __func, _Tp __x_lower, _Tp __x_upper,
 		_Tp __eps, std::size_t __max_iter)
     {
-      _Tp __df, __f_hi, __f_lo;
-      __func(__x_lower, &__f_lo, &__df);
-      __func(__x_upper, &__f_hi, &__df);
+      auto __sf_lo = __func(__x_lower);
+      auto __sf_hi = __func(__x_upper);
 
-      if (__f_lo * __f_hi > _Tp{0})
+      if (__sf_lo.__value * __sf_hi.__value > _Tp{0})
 	std::__throw_logic_error(__N("__root_safe: Root must be bracketed"));
 
-      if (__f_lo == _Tp{0})
+      if (__sf_lo.__value == _Tp{0})
 	return __x_lower;
-      if (__f_hi == _Tp{0})
+      if (__sf_hi.__value == _Tp{0})
 	return __x_upper;
 
       _Tp __x_hi, __x_lo;
-      if (__f_lo < _Tp{0})
+      if (__sf_lo.__value < _Tp{0})
 	{
 	  __x_lo = __x_lower;
 	  __x_hi = __x_upper;
@@ -532,13 +524,13 @@ namespace __gnu_cxx
       auto __x = (__x_lower + __x_upper) / _Tp{2};
       auto __dxold = std::abs(__x_upper - __x_lower);
       auto __dx = __dxold;
-      _Tp __f;
-      __func(__x, &__f, &__df);
+      auto __sf = __func(__x);
       for (std::size_t __i = 0; __i < __max_iter; ++__i)
 	{
-	  if (((__x - __x_hi) * __df - __f)
-	    * ((__x - __x_lo) * __df - __f) >= _Tp{0}
-	   || std::abs(_Tp{2} * __f) > std::abs(__dxold * __df))
+	  if (((__x - __x_hi) * __sf.__deriv - __sf.__value)
+	    * ((__x - __x_lo) * __sf.__deriv - __sf.__value) > _Tp{0}
+	   || std::abs(_Tp{2} * __sf.__value)
+	    > std::abs(__dxold * __sf.__deriv))
 	    {
 	      __dxold = __dx;
 	      __dx = (__x_hi - __x_lo) / _Tp{2};
@@ -549,7 +541,7 @@ namespace __gnu_cxx
 	  else
 	    {
 	      __dxold = __dx;
-	      __dx = __f / __df;
+	      __dx = __sf.__value / __sf.__deriv;
 	      auto __temp = __x;
 	      __x -= __dx;
 	      if (__temp == __x)
@@ -558,8 +550,8 @@ namespace __gnu_cxx
 	  if (std::abs(__dx) < __eps)
 	    return __x;
 
-	  __func(__x, &__f, &__df);
-	  if (__f < _Tp{0})
+	  __sf = __func(__x);
+	  if (__sf.__value < _Tp{0})
 	    __x_lo = __x;
 	  else
 	    __x_hi = __x;
@@ -567,8 +559,6 @@ namespace __gnu_cxx
 
       std::__throw_logic_error(__N("__root_safe: "
 			       "Maximum number of iterations exceeded"));
-
-      return  _Tp{0};
     }
 
 } // namespace __gnu_cxx

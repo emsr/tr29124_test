@@ -12,12 +12,9 @@
 #include <iomanip>
 #include <cmath>
 
-void
-cos_state(double x, double* value, double* deriv)
-{
-  *value = std::cos(x);
-  *deriv = -std::sin(x);
-}
+__gnu_cxx::__root_state<double>
+cos_state(double x)
+{ return __gnu_cxx::__root_state<double>{std::cos(x), -std::sin(x)}; }
 
 int
 main()
