@@ -285,10 +285,6 @@ namespace __gnu_cxx
   { return std::__detail::__gamma_l<__float128>(__n, __x); }
 
   inline __float128
-  digammaq(__float128 __z)
-  { return std::__detail::__psi<__float128>(__z); }
-
-  inline __float128
   dilogq(__float128 __x)
   { return std::__detail::__dilog<__float128>(__x); }
 
