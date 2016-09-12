@@ -628,6 +628,45 @@ namespace __gnu_cxx
       std::__throwlogic_error("__root_laguerre: "
 			      "Maximum number of iterations exceeded");
     }
+
+  template<typename _Tp>
+    void
+    qroot(_Polynomial<std::complex<_Tp>>& __p, _Tp& __b, _Tp& __c, _Tp __eps)
+    {
+      using _Poly = _Polynomial<std::complex<_Tp>>;
+      constexpr int _S_max_iter = 20;
+      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto _S_tiny = _Tp{100} * _S_eps;
+      auto __n = __p.order();
+      _Poly __q, __qq, __rem;
+      for (int __iter = 0; __iter < _S_max_iter; ++__iter)
+	{
+	  _Poly __d(__c, __b, _Tp{1});
+
+	  // First division: r, s.
+	  divmod(__p, __d, __q, __rem);
+	  auto __s = __rem[0];
+	  auto __r = __rem[1];
+	  // Second division: partial r, s with respect to c.
+	  divmod(__q, __d, __qq, __rem);
+	  auto __sc = -__rem[0];
+	  auto __rc = -__rem[1];
+	  auto __sb = -__c * __rc;
+	  auto __rb = -__b * __rc + __sc;
+	  // Solve 2x2 equation.
+	  auto __dv = _Tp{1} / (__sb * __rc - __sc * __rb);
+	  auto __delb = ( __r * __sc - __s * __rc) * __dv;
+	  auto __delc = (-__r * __sb + __s * __rb) * __dv;
+	  __b += __delb;
+	  __delc = (-__r * __sb + __s * __rb) * __dv;
+	  __c += __delc;
+	  if ((std::abs(__delb) <= eps * std::abs(__b) || std::abs(__b) < _S_tiny)
+           && (std::abs(__delc) <= eps * std::abs(__c) || std::abs(__c) < _S_tiny))
+	    return;
+	}
+      std::__throw_logic_error("qroot: "
+			       "Maximum number of iterations exceeded");
+    }
 */
 
 } // namespace __gnu_cxx
