@@ -212,7 +212,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::owens_t "owens_t - Owens T functions"
    * - @ref __gnu_cxx::pochhammer_l "pochhammer_l - Lower Pochhammer functions"
    * - @ref __gnu_cxx::pochhammer_u "pochhammer_u - Upper Pochhammer functions"
-   * - @ref __gnu_cxx::psi "psi - Psi of digamma function"
+   * - @ref __gnu_cxx::psi "psi - Psi or digamma function"
    * - @ref __gnu_cxx::radpoly "radpoly - Radial polynomials"
    * - @ref __gnu_cxx::sinhc "sinhc - Hyperbolic sinus cardinal function"
    * - @ref __gnu_cxx::sinhc_pi "sinhc_pi - "
@@ -2885,27 +2885,6 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__gamma_l<__type>(__n, __x);
     }
 
-  // Digamma functions
-
-  inline float
-  digammaf(float __z)
-  { return std::__detail::__psi<float>(__z); }
-
-  inline long double
-  digammal(long double __z)
-  { return std::__detail::__psi<long double>(__z); }
-
-  /**
-   * 
-   */
-  template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
-    digamma(_Tp __z)
-    {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__psi<__type>(__z);
-    }
-
   // Dilogarithm functions
 
   /**
@@ -3329,10 +3308,21 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Digamma or psi functions
 
+  /**
+   * Return the psi or digamma function of @c float argument @f$ x @f$.
+   *
+   * @see psi for details.
+   */
   inline float
   psif(float __x)
   { return std::__detail::__psi<float>(__x); }
 
+  /**
+   * Return the psi or digamma function of <tt>long double</tt> argument
+   * @f$ x @f$.
+   *
+   * @see psi for details.
+   */
   inline long double
   psil(long double __x)
   { return std::__detail::__psi<long double>(__x); }
@@ -3342,7 +3332,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The the psi or digamma function is defined by
    * @f[
-   *    \psi(x) = 
+   *    \psi(x) = \frac{d}{dx}log\left(\Gamma(x)\right)
+   *            = \frac{\Gamma'(x)}{\Gamma(x)}
    * @f]
    *
    * @param __x The parameter
@@ -3389,7 +3380,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * @f[
    *   B_x(a,b) = \int_0^x t^{a - 1} (1 - t)^{b - 1} dt
    * @f]
-   * is the non-regularized beta function and @f$ B(a,b) @f$
+   * is the non-regularized incomplete beta function and @f$ B(a,b) @f$
    * is the usual beta function.
    *
    * @param __a The first parameter
