@@ -1871,7 +1871,8 @@ _S_neg_double_factorial_table[999]
    *  @f[
    *    \epsilon(a) < a^{-1/2}(2\pi)^{-a-1/2}
    *  @f]
-   *  @see Spouge, J.L., Computation of the gamma, digamma, and trigamma functions.
+   *  @see Spouge, J.L., Computation of the gamma, digamma,
+   *       and trigamma functions.
    *       SIAM Journal on Numerical Analysis 31, 3 (1994), pp. 931-944
    *
    *  @param __z The argument of the gamma function.
@@ -2214,7 +2215,8 @@ _S_neg_double_factorial_table[999]
 	      __sum += __term;
 	      if (std::abs(__term) < _S_eps * std::abs(__sum))
 		{
-		  _Tp __gamser = std::exp(-__x + __a * std::log(__x) - __lngam) * __sum;
+		  _Tp __gamser = std::exp(-__x + __a * std::log(__x) - __lngam)
+				* __sum;
 		  return std::make_pair(__gamser, __lngam);
 		}
 	    }
@@ -2255,7 +2257,8 @@ _S_neg_double_factorial_table[999]
 	  __h *= __del;
 	  if (std::abs(__del - _Tp{1}) < _S_eps)
 	    {
-	      _Tp __gamcf = std::exp(-__x + __a * std::log(__x) - __lngam) * __h;
+	      _Tp __gamcf = std::exp(-__x + __a * std::log(__x) - __lngam)
+			  * __h;
 	      return std::make_pair(__gamcf, __lngam);
 	    }
 	}
@@ -2591,7 +2594,8 @@ _S_neg_double_factorial_table[999]
     __harmonic_number(unsigned int __n)
     {
       if (__n <= _S_num_harmonic_numer)
-	return _Tp(_S_harmonic_numer[__n - 1]) / _Tp(_S_harmonic_denom[__n - 1]);
+	return _Tp(_S_harmonic_numer[__n - 1])
+	     / _Tp(_S_harmonic_denom[__n - 1]);
       else
         {
 	  unsigned int __k = _S_num_harmonic_numer - 1;
@@ -2892,7 +2896,8 @@ _S_neg_double_factorial_table[999]
       if (__n < 0 && __n % 2 == 1)
 	{
 	  if (-__n <= _S_num_neg_double_factorials<_Tp>)
-	    return _S_neg_double_factorial_table[-(1 + __n) / 2].__log_factorial;
+	    return _S_neg_double_factorial_table[-(1 + __n) / 2]
+				.__log_factorial;
 	  else
 	    return __log_double_factorial(_Tp(__n));
 	}
