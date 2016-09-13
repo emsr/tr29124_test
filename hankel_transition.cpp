@@ -12,7 +12,7 @@ g++ -std=gnu++14 -DNO_CBRT -o hankel_transition hankel_transition.cpp -lquadmath
 #include <tuple>
 #include <cmath>
 //#include "float128.h"
-#include "polynomial.h"
+#include "ext/polynomial.h"
 #include "rational.h"
 //#include "numeric_limits.h"
 
