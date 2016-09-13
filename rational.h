@@ -10,6 +10,8 @@
 #include <cassert>
 #include <experimental/numeric>
 
+// operator%=, operator%?
+
 namespace __gnu_cxx
 {
 
@@ -42,13 +44,13 @@ namespace __gnu_cxx
       : _M_num{0}, _M_den{1}
       { }
 
-      constexpr
+      constexpr explicit
       _Rational(value_type __num)
       : _M_num(__num), _M_den(1)
       { }
 
       template<intmax_t _Num, intmax_t _Den>
-	constexpr
+	constexpr explicit
 	_Rational(std::ratio<_Num, _Den>)
 	: _M_num(std::ratio<_Num, _Den>::num),
 	  _M_den(std::ratio<_Num, _Den>::den)
@@ -56,14 +58,14 @@ namespace __gnu_cxx
 
       _Rational(value_type __num, value_type __den)
       : _M_num(__num), _M_den(__den)
-      { _M_normalize(); }
+      { this->_M_normalize(); }
 
       // Default copy constructor and assignment are fine
 
       // Add assignment from value_type
       _Rational&
       operator=(value_type __num)
-      { return assign(__num, 1); }
+      { return this->assign(__num, 1); }
 
       // Assign in place
       _Rational&
@@ -168,12 +170,12 @@ namespace __gnu_cxx
       // Which proves that instead of normalizing the result, it is better to
       // divide num and den by gcd((a*d1 + c*b1), g)
 
-      value_type __gcd = std::experimental::gcd(this->_M_den, __rat.den);
+      value_type __gcd = std::experimental::gcd(this->_M_den, __rat.den());
       this->_M_den /= __gcd;  // = b1 from the calculations above
-      this->_M_num = this->_M_num * (__rat.den / __gcd) + __rat.num * this->_M_den;
+      this->_M_num = this->_M_num * (__rat.den() / __gcd) + __rat.num() * this->_M_den;
       __gcd = std::experimental::gcd(this->_M_num, __gcd);
       this->_M_num /= __gcd;
-      this->_M_den *= __rat.den / __gcd;
+      this->_M_den *= __rat.den() / __gcd;
 
       return *this;
     }
@@ -184,12 +186,12 @@ namespace __gnu_cxx
     {
       // This calculation avoids overflow, and minimises the number of expensive
       // calculations. It corresponds exactly to the += case above
-      value_type __gcd = std::experimental::gcd(this->_M_den, __rat.den);
+      value_type __gcd = std::experimental::gcd(this->_M_den, __rat.den());
       this->_M_den /= __gcd;
-      this->_M_num = this->_M_num * (__rat.den / __gcd) - __rat.num * this->_M_den;
+      this->_M_num = this->_M_num * (__rat.den() / __gcd) - __rat.num() * this->_M_den;
       __gcd = std::experimental::gcd(this->_M_num, __gcd);
       this->_M_num /= __gcd;
-      this->_M_den *= __rat.den / __gcd;
+      this->_M_den *= __rat.den() / __gcd;
 
       return *this;
     }
@@ -199,10 +201,10 @@ namespace __gnu_cxx
     _Rational<_IntTp>::operator*=(_Rational<_IntTp> __rat)
     {
       // Avoid overflow and preserve normalization
-      value_type __gcd1 = std::experimental::gcd(this->_M_num, __rat.den);
-      value_type __gcd2 = std::experimental::gcd(__rat.num, this->_M_den);
-      this->_M_num = (this->_M_num / __gcd1) * (__rat.num / __gcd2);
-      this->_M_den = (this->_M_den / __gcd2) * (__rat.den / __gcd1);
+      value_type __gcd1 = std::experimental::gcd(this->_M_num, __rat.den());
+      value_type __gcd2 = std::experimental::gcd(__rat.num(), this->_M_den);
+      this->_M_num = (this->_M_num / __gcd1) * (__rat.num() / __gcd2);
+      this->_M_den = (this->_M_den / __gcd2) * (__rat.den() / __gcd1);
       return *this;
     }
 
@@ -213,16 +215,16 @@ namespace __gnu_cxx
       constexpr value_type zero{0};
 
       // Trap division by zero
-      if (__rat.num == zero)
+      if (__rat.num() == zero)
 	throw _Bad_Rational();
       if (this->_M_num == zero)
 	return *this;
 
       // Avoid overflow and preserve normalization
-      value_type __gcd1 = std::experimental::gcd(this->_M_num, __rat.num);
-      value_type __gcd2 = std::experimental::gcd(__rat.den, this->_M_den);
-      this->_M_num = (this->_M_num / __gcd1) * (__rat.den / __gcd2);
-      this->_M_den = (this->_M_den / __gcd2) * (__rat.num / __gcd1);
+      value_type __gcd1 = std::experimental::gcd(this->_M_num, __rat.num());
+      value_type __gcd2 = std::experimental::gcd(__rat.den(), this->_M_den);
+      this->_M_num = (this->_M_num / __gcd1) * (__rat.den() / __gcd2);
+      this->_M_den = (this->_M_den / __gcd2) * (__rat.num() / __gcd1);
 
       if (this->_M_den < zero)
 	{
@@ -246,12 +248,12 @@ namespace __gnu_cxx
   template<typename _IntTp>
     inline _Rational<_IntTp>&
     _Rational<_IntTp>::operator*=(value_type __i)
-    { return this->operator*= (_Rational<_IntTp>(__i)); }
+    { return this->operator*=(_Rational<_IntTp>(__i)); }
 
   template<typename _IntTp>
     inline _Rational<_IntTp>&
     _Rational<_IntTp>::operator/=(value_type __i)
-    { return this->operator/= (_Rational<_IntTp>(__i)); }
+    { return this->operator/=(_Rational<_IntTp>(__i)); }
 
   // Increment and decrement
   template<typename _IntTp>
@@ -279,7 +281,7 @@ namespace __gnu_cxx
       constexpr value_type zero{0};
 
       assert(this->_M_den > zero);
-      assert(r.den > zero);
+      assert(r.den() > zero);
 
       // Determine relative order by expanding each value to its simple continued
       // fraction representation using the Euclidian GCD algorithm.
@@ -292,9 +294,9 @@ namespace __gnu_cxx
       },
       rs
       {
-	r.num, r.den,
-	static_cast<value_type>(r.num / r.den),
-	static_cast<value_type>(r.num % r.den)
+	r.num(), r.den(),
+	static_cast<value_type>(r.num() / r.den()),
+	static_cast<value_type>(r.num() % r.den())
       };
       unsigned reverse = 0u;
 
@@ -399,7 +401,7 @@ namespace __gnu_cxx
   template<typename _IntTp>
     inline bool
     _Rational<_IntTp>::operator==(const _Rational<_IntTp>& __rat) const
-    { return ((this->_M_num == __rat.num) && (this->_M_den == __rat.den)); }
+    { return ((this->_M_num == __rat.num) && (this->_M_den == __rat.den())); }
 
   template<typename _IntTp>
     inline bool
@@ -446,6 +448,27 @@ namespace __gnu_cxx
 
       assert(this->_M_valid());
     }
+
+  // Symmetric math operators.
+  template<typename _IntTp>
+    _Rational<_IntTp>
+    operator+(const _Rational<_IntTp>& __r1, const _Rational<_IntTp>& __r2)
+    { return _Rational<_IntTp>(__r1) += __r2; }
+
+  template<typename _IntTp>
+    _Rational<_IntTp>
+    operator-(const _Rational<_IntTp>& __r1, const _Rational<_IntTp>& __r2)
+    { return _Rational<_IntTp>(__r1) -= __r2; }
+
+  template<typename _IntTp>
+    _Rational<_IntTp>
+    operator*(const _Rational<_IntTp>& __r1, const _Rational<_IntTp>& __r2)
+    { return _Rational<_IntTp>(__r1) *= __r2; }
+
+  template<typename _IntTp>
+    _Rational<_IntTp>
+    operator/(const _Rational<_IntTp>& __r1, const _Rational<_IntTp>& __r2)
+    { return _Rational<_IntTp>(__r1) /= __r2; }
 
   namespace detail
   {
