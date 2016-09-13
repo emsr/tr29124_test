@@ -51,6 +51,9 @@ I might want a starting fit for small s?
 16. [] inverse erf and erfc.
 
 17. [] inverse incomplete gammas
+    [] We will want lgamma_scaled - the Binet function.
+    [] Then tgamma_scaled - sometines called \Gamma^{*}.
+    [] Then Amparo, Gil, etc have a paper...
 
 18. [] In testcase.tcc in the big string_view header I'd like to be able to replace
 #include <specfun_testcase.h>
