@@ -1,5 +1,7 @@
 /*
- $HOME/bin/bin/g++ -g -I. -o test_binet test_binet.cpp
+ $HOME/bin_tr29124/bin/g++ -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_binet test_binet.cpp
+
+ ./test_binet > test_binet.txt
 
  */
 
@@ -8,7 +10,7 @@
 #include <iomanip>
 #include <vector>
 #include "rational.h"
-#include <bits/specfun_util.h>
+#include <cmath>
 
 namespace std
 {
@@ -17,92 +19,90 @@ namespace __detail
 
   // Computes the sequence of Bernoulli(2*k) numbers (k >= 1)
   // using the Akiyama-Tanigawa algorithm
-  std::vector<__gnu_cxx::_Rational<long long>>
-  __bernoulli(int __len)
-  {
-    using _Rat = __gnu_cxx::_Rational<long long>;
+  template<typename _Rat>
+    std::vector<_Rat>
+    __bernoulli_a_t(std::size_t __len)
+    {
+      auto __n = 2 * __len + 1;
+      std::vector<_Rat> __t;
+      std::vector<_Rat> __a;
 
-    int __n = 2 * __len + 1, __k = 0;
-    std::vector<_Rat> __t;
-    std::vector<_Rat> __a;
+      __t.emplace_back(1LL);
 
-    __t.emplace_back(1LL);
+      for (std::size_t __m = 1; __m < __n; ++__m)
+	{
+	  __t.push_back(_Rat(1, __m + 1));
+	  for (std::size_t __j = __m; __j > 0; --__j)
+            __t[__j - 1] = _Rat(__j) * (__t[__j - 1] - __t[__j]);
 
-    for (int __m = 1; __m < __n; ++__m)
-      {
-	__t.push_back(_Rat(1, __m + 1));
-	for (int __j = __m; __j > 0; --__j)
-          __t[__j - 1] = _Rat(__j) * (__t[__j - 1] - __t[__j]);
+	  // Get all Bernoulli numbers by deleting the 'if' clause.
+	  if ((__m & 1) == 0)
+	    __a.push_back(__t[0]);
+	}
 
-	// Get all Bernoulli numbers by deleting the 'if' clause.
-	if ((__m & 1) == 0)
-	  __a.push_back(__t[0]);
-      }
-
-    return __a;
-  }
+      return __a;
+    }
 
   // Computes Rutishauser's Quotient-Difference (QD) algorithm
-  std::vector<__gnu_cxx::_Rational<long long>>
-  __quotient_difference(std::vector<__gnu_cxx::_Rational<long long>> __s)
-  {
-    using _Rat = __gnu_cxx::_Rational<long long>;
+  template<typename _Rat>
+    std::vector<_Rat>
+    __quotient_difference(std::vector<_Rat> __s)
+    {
+      auto __len = __s.size();
+      auto __zero = _Rat(0);
+      std::vector<std::vector<_Rat>> __m;
+      std::vector<_Rat> __r;
 
-    auto __len = __s.size();
-    auto __zero = _Rat(0);
-    std::vector<std::vector<_Rat>> __m;
-    std::vector<_Rat> __r;
+      for (int __n = 0; __n < __len; ++__n)
+	{
+	  __m.push_back(std::vector<_Rat>());
+	  __m.back().push_back(__zero);
+	}
+      for (int __n = 0; __n < __len - 1; ++__n)
+	__m[__n].push_back(__s[__n + 1] / __s[__n]);
 
-    for (int __n = 0; __n < __len; ++__n)
-      {
-	__m.push_back(std::vector<_Rat>());
-	__m.back().push_back(__zero);
-      }
-    for (int __n = 0; __n < __len - 1; ++__n)
-      __m[__n].push_back(__s[__n + 1] / __s[__n]);
+      __r.push_back(__s[0]);
+      __r.push_back(__m[0][1]);
 
-    __r.push_back(__s[0]);
-    __r.push_back(__m[0][1]);
+      for (int __k = 2; __k < __len; ++__k)
+	{
+	  for (int __n = 0; __n < __len - __k ; ++__n)
+            {
+              auto __a = __m[__n + 1][__k - 2];
+              auto __b = __m[__n + 1][__k - 1];
+              auto __c = __m[__n][__k - 1];
+              __m[__n].push_back((__k & 1) == 0
+				 ? __a + __b - __c
+				 : __a * __b / __c);
+            }
+	  __r.push_back(__m[0][__k]);
+	}
 
-    for (int __k = 2; __k < __len; ++__k)
-      {
-	for (int __n = 0; __n < __len - __k ; ++__n)
-          {
-            auto __a = __m[__n + 1][__k - 2];
-            auto __b = __m[__n + 1][__k - 1];
-            auto __c = __m[__n][__k - 1];
-            __m[__n].push_back((__k & 1) == 0
-			       ? __a + __b - __c
-			       : __a * __b / __c);
-          }
-	__r.push_back(__m[0][__k]);
-      }
-
-    return __r;
-  }
+      return __r;
+    }
 
   // Decorates the even Bernoulli numbers
   // with weights (-1)^k/((2*k+1)*(2*k+2))
-  std::vector<__gnu_cxx::_Rational<long long>>
-  __weights(std::vector<__gnu_cxx::_Rational<long long>> __s)
-  {
-    using _Rat = __gnu_cxx::_Rational<long long>;
+  template<typename _Rat>
+    std::vector<_Rat>
+    __weights(std::vector<_Rat> __s)
+    {
+      int __sgn = 1;
+      for (int __k = 0; __k < __s.size(); ++__k)
+	{
+	  __s[__k] *= _Rat(__sgn, (2 * __k + 1) * (2 * __k + 2));
+	  __sgn = -__sgn;
+	}
 
-    int __sgn = 1;
-    for (int __k = 0; __k < __s.size(); ++__k)
-      {
-	__s[__k] *= _Rat(__sgn, (2 * __k + 1) * (2 * __k + 2));
-	__sgn = -__sgn;
-      }
-
-    return __s;
-  }
+      return __s;
+    }
 
   // Computes the Stieltjes continued fraction for the
   // Gamma function using Rutishauser's QD-algorithm.
-  std::vector<__gnu_cxx::_Rational<long long>>
-  __stieltjes_cont_frac_seq(int __len)
-  { return __quotient_difference(__weights(__bernoulli(__len))); }
+  template<typename _Rat>
+    std::vector<_Rat>
+    __stieltjes_cont_frac_seq(int __len)
+    { return __quotient_difference(__weights(__bernoulli_a_t<_Rat>(__len))); }
 
   /**
    *
@@ -193,65 +193,90 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __binet(_Tp __x)
+    __binet(_Tp __z)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
+
+      constexpr auto _S_switchover = _Real{10}; /// @todo Find Binet function switch.
+
+      if (std::__detail::__isnan(__z))
+	return __gnu_cxx::__quiet_NaN<_Tp>();
+      else if (__z < _S_switchover)
+	return __binet_cont_frac(__z);
+      else
+	return __binet_asymp(__z);
     }
 
 } // namespace __detail
 } // namespace std
 
-  /**
-   *
-   */
-  template<typename _Tp>
-    _Tp
-    lgamma_scaled(_Tp __x)
-    { return std::__detail::__binet(__x); }
+
+namespace __gnu_cxx
+{
 
   /**
    *
    */
   template<typename _Tp>
     _Tp
-    tgamma_scaled(_Tp __x)
-    { return std::exp(std::__detail::__binet(__x)); }
+    lgamma_scaled(_Tp __z)
+    { return std::__detail::__binet(__z); }
+
+  /**
+   *
+   */
+  template<typename _Tp>
+    _Tp
+    tgamma_scaled(_Tp __z)
+    { return std::exp(std::__detail::__binet(__z)); }
+
+} // namespace__gnu_cxx
+
+
+template<typename _Tp>
+  void
+  test()
+  {
+    using _Rat = __gnu_cxx::_Rational<_Tp>;
+
+    using _Real = long double;
+
+    std::cout.precision(std::numeric_limits<_Real>::digits10);
+    auto width = std::cout.precision() + 6;
+
+    std::cout << "\nBernoulli numbers\n";
+    auto bern = std::__detail::__bernoulli_a_t<_Rat>(20);
+    for (auto& b : bern)
+      std::cout << b << '\n';
+
+    std::cout << "\nWeighted Bernoulli numbers\n";
+    auto wts = std::__detail::__weights(bern);
+    for (auto& w : wts)
+      std::cout << w << '\n';
+
+    std::cout << "\nStieltjes partial numerators\n";
+    int len = 7;
+    auto cf = std::__detail::__stieltjes_cont_frac_seq<_Rat>(len);
+    for (int k = 0; k < len; ++k)
+      std::cout << k << ": " << cf[k]
+		<< " = " << __gnu_cxx::_Rational_cast<_Real>(cf[k]) << '\n';
+
+    std::cout << "\nBinet asymptotic\n";
+    for (int k = 1; k <= 1000; ++k)
+      {
+	auto x = 0.1L * k;
+	auto j_as = std::__detail::__binet_asymp(x);
+	auto j_cf = std::__detail::__binet_cont_frac(x);
+	std::cout << ' ' << std::setw(width) << x
+		  << ' ' << std::setw(width) << j_as
+		  << ' ' << std::setw(width) << j_cf
+		  << ' ' << std::setw(width) << (j_as - j_cf) / j_cf << '\n';
+      }
+  }
 
 int
 main()
 {
-  using _Tp = long double;
-
-  std::cout.precision(std::numeric_limits<_Tp>::digits10);
-  auto width = std::cout.precision() + 6;
-
-  std::cout << "\nBernoulli numbers\n";
-  auto bern = std::__detail::__bernoulli(20);
-  for (auto& b : bern)
-    std::cout << b << '\n';
-
-  std::cout << "\nWeighted Bernoulli numbers\n";
-  auto wts = std::__detail::__weights(bern);
-  for (auto& w : wts)
-    std::cout << w << '\n';
-
-  std::cout << "\nStieltjes partial numerators\n";
-  int len = 7;
-  auto cf = std::__detail::__stieltjes_cont_frac_seq(len);
-  for (int k = 0; k < len; ++k)
-    std::cout << k << ": " << cf[k]
-	      << " = " << __gnu_cxx::_Rational_cast<long double>(cf[k]) << '\n';
-
-  std::cout << "\nBinet asymptotic\n";
-  for (int k = 1; k <= 1000; ++k)
-    {
-      auto x = 0.1L * k;
-      auto j_as = std::__detail::__binet_asymp(x);
-      auto j_cf = std::__detail::__binet_cont_frac(x);
-      std::cout << std::setw(width) << x
-		<< std::setw(width) << j_as
-		<< std::setw(width) << j_cf
-		<< std::setw(width) << (j_as - j_cf) / j_cf << '\n';
-    }
+  test<long long>();
 }
