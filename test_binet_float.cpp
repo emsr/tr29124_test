@@ -9,8 +9,8 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+//#include <bits/float128.h>
 #include <cmath>
-#include <bits/float128.h>
 
 namespace std
 {
@@ -60,7 +60,10 @@ namespace __detail
       return __a;
     }
 
-  // Computes Rutishauser's Quotient-Difference (QD) algorithm
+  /**
+   * Computes the partial numerators for the Binet function
+   * using Rutishauser's Quotient-Difference (QD) algorithm.
+   */
   template<typename _Real>
     std::vector<_Real>
     __quotient_difference(std::vector<_Real> __s)
@@ -275,14 +278,23 @@ namespace __detail
       // Backward recurrence.
       auto __w = _Val{}; // The tail function.
       auto __J = __w;
-      for (int __k = _S_n - 1; __k >= 0; --__k)
+      for (std::ptrdiff_t __k = _S_n - 1; __k >= 0; --__k)
         __J = _S_a[__k] / (__z + __J);
 
       return __J;
     }
 
   /**
-   *
+   * Compute the Binet function @f$ J(z) @f$ defined by
+   * @f[
+   *    J(z) = log\left(\Gamma(z)\right) + z
+   *         - \left(z-\frac{1}{2}\right) log(z) - log(2\pi)
+   * @f]
+   * or
+   * @f[
+   *    \Gamma(z) = \sqrt{2\pi}z^{z-\frac{1}{2}}e^{-z}e^{J(z)}
+   * @f]
+   * where @f$ \Gamma(z) @f$ is the gamma function.
    */
   template<typename _Tp>
     _Tp
@@ -309,15 +321,74 @@ namespace __gnu_cxx
 {
 
   /**
+   * Return the Binet function @f$ J(z) @f$ or the scaled log gamma function
+   * @f$ \Gamma^*(z) @f$ for @c float argument @f$ z @f$.
    *
+   * @see lgamma_scaled for details.
+  float
+  lgamma_scaledf(float __z)
+  { return std::__detail::__binet<float>(__z); }
+   */
+
+  /**
+   * Return the Binet function @f$ J(z) @f$ or the scaled log gamma function
+   * @f$ \Gamma^*(z) @f$ for <tt>long double</tt> argument @f$ z @f$.
+   *
+   * @see lgamma_scaled for details.
+   */
+  long double
+  lgamma_scaledl(long double __z)
+  { return std::__detail::__binet<long double>(__z); }
+
+  /**
+   * Return the Binet function @f$ J(z) @f$ or the scaled log gamma function
+   * @f$ log(\Gamma^*(z)) @f$ defined by
+   * @f[
+   *    J(z) = log(\Gamma^*(z)) = log\left(\Gamma(z)\right) + z
+   *         - \left(z-\frac{1}{2}\right) log(z) - log(2\pi)
+   * @f]
+   * or
+   * @f[
+   *    \Gamma(z) = \sqrt{2\pi}z^{z-\frac{1}{2}}e^{-z}e^{J(z)}
+   * @f]
+   * where @f$ \Gamma(z) @f$ is the gamma function.
    */
   template<typename _Tp>
     _Tp
     lgamma_scaled(_Tp __z)
     { return std::__detail::__binet(__z); }
 
+
   /**
+   * Return the Binet function or the scaled log gamma
+   * @f$ \Gamma^*(z) @f$ for @c float argument @f$ z @f$.
    *
+   * @see tgamma_scaled for details.
+  float
+  tgamma_scaledf(float __z)
+  { return std::exp(std::__detail::__binet<float>(__z)); }
+   */
+
+  /**
+   * Return the Binet function or the scaled log gamma
+   * @f$ \Gamma^*(z) @f$ for <tt>long double</tt> argument @f$ z @f$.
+   *
+   * @see tgamma_scaled for details.
+   */
+  long double
+  tgamma_scaledl(long double __z)
+  { return std::exp(std::__detail::__binet<long double>(__z)); }
+
+  /**
+   * Return the scaled log gamma @f$ \Gamma^*(z) @f$ defined by
+   * @f[
+   *    \Gamma^*(z) = \Gamma(z)/\sqrt{2\pi}z^{z-\frac{1}{2}}e^{-z}
+   * @f]
+   * or
+   * @f[
+   *    \Gamma(z) = \sqrt{2\pi}z^{z-\frac{1}{2}}e^{-z}\Gamma^*(z)
+   * @f]
+   * where @f$ \Gamma(z) @f$ is the gamma function.
    */
   template<typename _Tp>
     _Tp
@@ -347,15 +418,15 @@ template<typename _Tp>
       std::cout << ' ' << std::setw(width) << w << '\n';
 
     std::cout << "\nStieltjes partial numerators\n";
-    int len = 50;
+    int len = 100;
     auto cf = std::__detail::__stieltjes_cont_frac_seq<_Real>(len);
     for (int k = 0; k < len; ++k)
-      std::cout << ' ' << std::setw(2) << k << ": "
+      std::cout << ' ' << std::setw(2) << k + 1 << ": "
 		<< ' ' << std::setw(width) << cf[k]
 		<< ' ' << std::setw(width) << cf[k] / ((k+1) * (k+1) / _Tp{16}) << '\n';
 
     std::cout << "\nBinet asymptotic\n";
-    for (int k = 1; k <= 2500; ++k)
+    for (int k = 1; k <= 5000; ++k)
       {
 	auto x = _Tp{0.1Q} * k;
 	auto j_as = std::__detail::__binet_asymp(x);
