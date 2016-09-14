@@ -3,6 +3,8 @@
 
  ./test_binet > test_binet.txt
 
+ $HOME/bin/bin/g++ -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_binet test_binet.cpp
+
  */
 
 #include <limits>
@@ -17,8 +19,11 @@ namespace std
 namespace __detail
 {
 
-  // Computes the sequence of Bernoulli(2*k) numbers (k >= 1)
-  // using the Akiyama-Tanigawa algorithm
+  /**
+   * Computes the sequence of Bernoulli numbers @f$B_{2m}@f$ (m > 0)
+   * using the Akiyama-Tanigawa algorithm.
+   * This might be unstable.
+   */
   template<typename _Rat>
     std::vector<_Rat>
     __bernoulli_a_t(std::size_t __len)
@@ -41,6 +46,24 @@ namespace __detail
 	}
 
       return __a;
+    }
+
+  /**
+   * Scales the even Bernoulli numbers @f$ B_{2m} @f$ with weights
+   * @f$ (-1)^m/((2m - 1)2m) @f$, m > 0.
+   */
+  template<typename _Rat>
+    std::vector<_Rat>
+    __weights(std::vector<_Rat> __b)
+    {
+      int __sgn = 1;
+      for (std::size_t __m = 0; __m < __b.size(); ++__m)
+	{
+	  __b[__m] *= _Rat(__sgn, (2 * __m + 1) * (2 * __m + 2));
+	  __sgn = -__sgn;
+	}
+
+      return __b;
     }
 
   // Computes Rutishauser's Quotient-Difference (QD) algorithm
@@ -79,22 +102,6 @@ namespace __detail
 	}
 
       return __r;
-    }
-
-  // Decorates the even Bernoulli numbers
-  // with weights (-1)^k/((2*k+1)*(2*k+2))
-  template<typename _Rat>
-    std::vector<_Rat>
-    __weights(std::vector<_Rat> __s)
-    {
-      int __sgn = 1;
-      for (std::size_t __k = 0; __k < __s.size(); ++__k)
-	{
-	  __s[__k] *= _Rat(__sgn, (2 * __k + 1) * (2 * __k + 2));
-	  __sgn = -__sgn;
-	}
-
-      return __s;
     }
 
   // Computes the Stieltjes continued fraction for the
