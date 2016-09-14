@@ -53,20 +53,20 @@ namespace __detail
       std::vector<std::vector<_Rat>> __m;
       std::vector<_Rat> __r;
 
-      for (int __n = 0; __n < __len; ++__n)
+      for (std::size_t __n = 0; __n < __len; ++__n)
 	{
 	  __m.push_back(std::vector<_Rat>());
 	  __m.back().push_back(__zero);
 	}
-      for (int __n = 0; __n < __len - 1; ++__n)
+      for (std::size_t __n = 0; __n < __len - 1; ++__n)
 	__m[__n].push_back(__s[__n + 1] / __s[__n]);
 
       __r.push_back(__s[0]);
       __r.push_back(__m[0][1]);
 
-      for (int __k = 2; __k < __len; ++__k)
+      for (std::size_t __k = 2; __k < __len; ++__k)
 	{
-	  for (int __n = 0; __n < __len - __k ; ++__n)
+	  for (std::size_t __n = 0; __n < __len - __k ; ++__n)
             {
               auto __a = __m[__n + 1][__k - 2];
               auto __b = __m[__n + 1][__k - 1];
@@ -88,7 +88,7 @@ namespace __detail
     __weights(std::vector<_Rat> __s)
     {
       int __sgn = 1;
-      for (int __k = 0; __k < __s.size(); ++__k)
+      for (std::size_t __k = 0; __k < __s.size(); ++__k)
 	{
 	  __s[__k] *= _Rat(__sgn, (2 * __k + 1) * (2 * __k + 2));
 	  __sgn = -__sgn;
@@ -182,7 +182,7 @@ namespace __detail
       // Backward recurrence.
       auto __w = _Val{}; // The tail function.
       auto __J = __w;
-      for (int __k = _S_n - 1; __k >= 0; --__k)
+      for (std::ptrdiff_t __k = _S_n - 1; __k >= 0; --__k)
         __J = _S_a[__k] / (__z + __J);
 
       return __J;
@@ -259,11 +259,11 @@ template<typename _Tp>
     int len = 7;
     auto cf = std::__detail::__stieltjes_cont_frac_seq<_Rat>(len);
     for (int k = 0; k < len; ++k)
-      std::cout << k << ": " << cf[k]
+      std::cout << k + 1 << ": " << cf[k]
 		<< " = " << __gnu_cxx::_Rational_cast<_Real>(cf[k]) << '\n';
 
     std::cout << "\nBinet asymptotic\n";
-    for (int k = 1; k <= 1000; ++k)
+    for (int k = 1; k <= 5000; ++k)
       {
 	auto x = 0.1L * k;
 	auto j_as = std::__detail::__binet_asymp(x);
