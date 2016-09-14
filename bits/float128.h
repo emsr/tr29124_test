@@ -684,6 +684,6 @@ namespace __gnu_cxx
 
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
-#include "float128.tcc"
+#include <bits/float128.tcc>
 
 #endif // _GLIBCXX_BITS_FLOAT128_H

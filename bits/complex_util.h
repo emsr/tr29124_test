@@ -324,6 +324,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
-#include "complex_util.tcc"
+#include <bits/complex_util.tcc>
 
 #endif // _GLIBCXX_BITS_COMPLEX_UTIL_H
