@@ -1608,24 +1608,26 @@ _S_neg_double_factorial_table[999]
     _GLIBCXX14_CONSTEXPR _Tp
     __bernoulli_series(unsigned int __n)
     {
-      constexpr unsigned long _S_num_bern_tab = 28;
+      constexpr unsigned long _S_num_bern_tab = 32;
       constexpr _Tp
       _S_bernoulli_tab[_S_num_bern_tab]
       {
-	 _Tp{1UL},	                 -_Tp{1UL} / _Tp{2UL},
-	 _Tp{1UL} / _Tp{6UL},             _Tp{0UL},
-	-_Tp{1UL} / _Tp{30UL},            _Tp{0UL},
-	 _Tp{1UL} / _Tp{42UL},            _Tp{0UL},
-	-_Tp{1UL} / _Tp{30UL},            _Tp{0UL},
-	 _Tp{5UL} / _Tp{66UL},            _Tp{0UL},
-	-_Tp{691UL} / _Tp{2730UL},        _Tp{0UL},
-	 _Tp{7UL} / _Tp{6UL},             _Tp{0UL},
-	-_Tp{3617UL} / _Tp{510UL},        _Tp{0UL},
-	 _Tp{43867UL} / _Tp{798UL},       _Tp{0UL},
-	-_Tp{174611UL} / _Tp{330UL},      _Tp{0UL},
-	 _Tp{854513UL} / _Tp{138UL},      _Tp{0UL},
-	-_Tp{236364091UL} / _Tp{2730UL},  _Tp{0UL},
-	 _Tp{8553103UL} / _Tp{6UL},       _Tp{0UL}
+	 _Tp{1ULL},	                         -_Tp{1ULL} / _Tp{2ULL},
+	 _Tp{1ULL}             / _Tp{6ULL},       _Tp{0ULL},
+	-_Tp{1ULL}             / _Tp{30ULL},      _Tp{0ULL},
+	 _Tp{1ULL}             / _Tp{42ULL},      _Tp{0ULL},
+	-_Tp{1ULL}             / _Tp{30ULL},      _Tp{0ULL},
+	 _Tp{5ULL}             / _Tp{66ULL},      _Tp{0ULL},
+	-_Tp{691ULL}           / _Tp{2730ULL},    _Tp{0ULL},
+	 _Tp{7ULL}             / _Tp{6ULL},       _Tp{0ULL},
+	-_Tp{3617ULL}          / _Tp{510ULL},     _Tp{0ULL},
+	 _Tp{43867ULL}         / _Tp{798ULL},     _Tp{0ULL},
+	-_Tp{174611ULL}        / _Tp{330ULL},     _Tp{0ULL},
+	 _Tp{854513ULL}        / _Tp{138ULL},     _Tp{0ULL},
+	-_Tp{236364091ULL}     / _Tp{2730ULL},    _Tp{0ULL},
+	 _Tp{8553103ULL}       / _Tp{6ULL},       _Tp{0ULL},
+        -_Tp{23749461029ULL}   / _Tp{870ULL},     _Tp{0ULL},
+         _Tp{8615841276005ULL} / _Tp{14322ULL},   _Tp{0ULL}
       };
       constexpr _Tp _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
 
@@ -1701,7 +1703,7 @@ _S_neg_double_factorial_table[999]
     {
       auto __lg = (__x - _Tp{0.5L}) * std::log(__x) - __x
 		+ _Tp{0.5L} * std::log(_Tp{2}
-		* __gnu_cxx::__math_constants<_Tp>::__pi);
+				* __gnu_cxx::__math_constants<_Tp>::__pi);
 
       const auto __xx = __x * __x;
       auto __help = _Tp{1} / __x;
