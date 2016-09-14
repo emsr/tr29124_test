@@ -36,9 +36,8 @@
 #include <limits>
 #include <vector>
 
-//#include <bits/complex_util.h>
-#include "specfun_util.h"
-#include "complex_util.h"
+#include <bits/specfun_util.h>
+#include <bits/complex_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {

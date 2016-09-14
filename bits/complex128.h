@@ -34,7 +34,7 @@
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
 
-#include "float128.h"
+#include <bits/float128.h>
 #include <complex>
 
 namespace std
