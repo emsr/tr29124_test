@@ -3,6 +3,8 @@
 
  ./test_binet_float > test_binet_float.txt
 
+ $HOME/bin/bin/g++ -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_binet_float test_binet_float.cpp -lquadmath
+
  */
 
 #include <limits>
@@ -18,7 +20,7 @@ namespace __detail
 {
 
   /**
-   * Computes the sequence of Bernoulli(2*k) numbers for k >= 1
+   * Computes the sequence of Bernoulli numbers @f$B_{2m}@f$ (m > 0)
    * using the Akiyama-Tanigawa algorithm.
    * This might be unstable.
    */
@@ -47,8 +49,8 @@ namespace __detail
     }
 
   /**
-   * Computes the sequence of Bernoulli(2*k) numbers (k >= 1)
-   * using the old zeta function series.
+   * Computes the sequence of even Bernoulli numbers @f$ B_{2m} @f$ (m > 0)
+   * using the old Riemann zeta function series.
    */
   template<typename _Real>
     std::vector<_Real>
@@ -58,6 +60,24 @@ namespace __detail
       for (std::size_t __m = 1; __m <= __len; ++__m)
 	__a.push_back(__bernoulli<_Real>(2 * __m));
       return __a;
+    }
+
+  /**
+   * Scales the even Bernoulli numbers @f$ B_{2m} @f$ with weights
+   * @f$ (-1)^m/((2m - 1)2m) @f$, m > 0.
+   */
+  template<typename _Real>
+    std::vector<_Real>
+    __weights(std::vector<_Real> __b)
+    {
+      int __sgn = 1;
+      for (std::size_t __m = 0; __m < __b.size(); ++__m)
+	{
+	  __b[__m] *= _Real(__sgn) / _Real(2 * __m + 1) / _Real(2 * __m + 2);
+	  __sgn = -__sgn;
+	}
+
+      return __b;
     }
 
   /**
@@ -101,22 +121,6 @@ namespace __detail
       return __r;
     }
 
-  // Decorates the even Bernoulli numbers
-  // with weights (-1)^k/((2*k+1)*(2*k+2))
-  template<typename _Real>
-    std::vector<_Real>
-    __weights(std::vector<_Real> __s)
-    {
-      int __sgn = 1;
-      for (std::size_t __k = 0; __k < __s.size(); ++__k)
-	{
-	  __s[__k] *= _Real(__sgn) / _Real(2 * __k + 1) / _Real(2 * __k + 2);
-	  __sgn = -__sgn;
-	}
-
-      return __s;
-    }
-
   // Computes the Stieltjes continued fraction for the
   // Gamma function using Rutishauser's QD-algorithm.
   template<typename _Real>
@@ -125,7 +129,7 @@ namespace __detail
     { return __quotient_difference(__weights(__bernoulli_vec<_Real>(__len))); }
 
   /**
-   *
+   * Compute the Binet function using the asymptotic series
    */
   template<typename _Tp>
     _Tp
@@ -135,7 +139,7 @@ namespace __detail
       using _Real = std::__detail::__num_traits_t<_Val>;
       constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
 
-      // Weighted Bernoulli numbers: (-1)^k B_2k / ((2*k+1)*(2*k+2))
+      // Weighted Bernoulli numbers: (-1)^k B_{2k} / ((2k + 1)(2k + 2)), k > 0.
       constexpr std::size_t _S_n = 50;
       constexpr _Real
       _S_b[_S_n]
