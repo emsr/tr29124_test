@@ -16,5 +16,7 @@ main()
   std::cout << Rat(1, 2) / Rat(1, 3) << '\n';
 
   __gnu_cxx::_Polynomial<Rat> rpoly{{1,2}, {3, 4}, {5, 6}, {7, 8}};
-  std::cout << rpoly << '\n';
+  std::cout << "P = " << rpoly << '\n';
+  for (int i = 0; i <= 10; ++i)
+    std::cout << "P(" << i << ") = " << rpoly(i*1.0) << '\n';
 }
