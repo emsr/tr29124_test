@@ -10,7 +10,9 @@
 #include <cassert>
 #include <experimental/numeric>
 
-// operator%=, operator%?
+// operator%=, operator%? = Meaningless.
+// std::hash... We should do that.
+// floor/ceil... Like what went into chrono.
 
 namespace __gnu_cxx
 {
@@ -114,6 +116,7 @@ namespace __gnu_cxx
       bool operator==(value_type) const;
 
     private:
+
       value_type _M_num;
       value_type _M_den;
 
@@ -449,26 +452,75 @@ namespace __gnu_cxx
       assert(this->_M_valid());
     }
 
+  // Type conversion
+  template<typename _Tp, typename _IntTp>
+    inline _Tp
+    _Rational_cast(const _Rational<_IntTp>& __src)
+    {
+      return static_cast<_Tp>(__src.num())
+           / static_cast<_Tp>(__src.den());
+    }
+
   // Symmetric math operators.
   template<typename _IntTp>
     _Rational<_IntTp>
     operator+(const _Rational<_IntTp>& __r1, const _Rational<_IntTp>& __r2)
     { return _Rational<_IntTp>(__r1) += __r2; }
 
+  template<typename _IntTp, typename _RealTp>
+    _RealTp
+    operator+(_RealTp __r1, const _Rational<_IntTp>& __r2)
+    { return __r1 + _Rational_cast<_RealTp>(__r2); }
+
+  template<typename _IntTp, typename _RealTp>
+    _RealTp
+    operator+(const _Rational<_IntTp>& __r1, _RealTp __r2)
+    { return _Rational_cast<_RealTp>(__r1) + __r2; }
+
   template<typename _IntTp>
     _Rational<_IntTp>
     operator-(const _Rational<_IntTp>& __r1, const _Rational<_IntTp>& __r2)
     { return _Rational<_IntTp>(__r1) -= __r2; }
+
+  template<typename _IntTp, typename _RealTp>
+    _RealTp
+    operator-(_RealTp __r1, const _Rational<_IntTp>& __r2)
+    { return __r1 - _Rational_cast<_RealTp>(__r2); }
+
+  template<typename _IntTp, typename _RealTp>
+    _RealTp
+    operator-(const _Rational<_IntTp>& __r1, _RealTp __r2)
+    { return _Rational_cast<_RealTp>(__r1) - __r2; }
 
   template<typename _IntTp>
     _Rational<_IntTp>
     operator*(const _Rational<_IntTp>& __r1, const _Rational<_IntTp>& __r2)
     { return _Rational<_IntTp>(__r1) *= __r2; }
 
+  template<typename _IntTp, typename _RealTp>
+    _RealTp
+    operator*(_RealTp __r1, const _Rational<_IntTp>& __r2)
+    { return __r1 * _Rational_cast<_RealTp>(__r2); }
+
+  template<typename _IntTp, typename _RealTp>
+    _RealTp
+    operator*(const _Rational<_IntTp>& __r1, _RealTp __r2)
+    { return _Rational_cast<_RealTp>(__r1) * __r2; }
+
   template<typename _IntTp>
     _Rational<_IntTp>
     operator/(const _Rational<_IntTp>& __r1, const _Rational<_IntTp>& __r2)
     { return _Rational<_IntTp>(__r1) /= __r2; }
+
+  template<typename _IntTp, typename _RealTp>
+    _RealTp
+    operator/(_RealTp __r1, const _Rational<_IntTp>& __r2)
+    { return __r1 / _Rational_cast<_RealTp>(__r2); }
+
+  template<typename _IntTp, typename _RealTp>
+    _RealTp
+    operator/(const _Rational<_IntTp>& __r1, _RealTp __r2)
+    { return _Rational_cast<_RealTp>(__r1) / __r2; }
 
   namespace detail
   {
@@ -526,15 +578,6 @@ namespace __gnu_cxx
     {
       __os << __rat.num() << '/' << __rat.den();
       return __os;
-    }
-
-  // Type conversion
-  template<typename _Tp, typename _IntTp>
-    inline _Tp
-    _Rational_cast(const _Rational<_IntTp>& __src)
-    {
-      return static_cast<_Tp>(__src.num())
-           / static_cast<_Tp>(__src.den());
     }
 
   // Do not use any abs() defined on _IntTp - it isn't worth it, given the
