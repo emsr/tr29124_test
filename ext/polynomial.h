@@ -57,6 +57,7 @@ namespace std {
  *    coefficient(i);
  *    operator[](int i);
  *    begin(), end()?
+ *    const _Tp* coefficients(); // Access for C, Fortran.
  *  How to set individual coefficients?
  *    poly[i] = c;
  *    coefficient(i, c);
@@ -71,6 +72,10 @@ namespace std {
  *  I could have members:
  *    _Polynomial& integrate(_Tp c);
  *    _Polynomial& differentiate();
+ *  Largest coefficient:
+ *    Enforce coefficient of largest power be nonzero?
+ *    Return an 'effective' order? Larest nonzero coefficient?
+ *    Monic polynomial has largest coefficient as 1.  Subclass?
  */
 namespace __gnu_cxx
 {
@@ -513,46 +518,91 @@ namespace __gnu_cxx
       degree(size_type __degree)
       { this->_M_coeff.resize(__degree + 1UL); }
 
+      /**
+       *  Return the size of the coefficient sequence.
+       */
+      size_type
+      size() const
+      { return this->_M_coeff.size(); }
+
+
+      /**
+       *  Return the @c ith coefficient with range checking.
+       */
       value_type
       coefficient(size_type __i) const
-      {
-	return (this->_M_coeff.size() > __i
-	      ? this->_M_coeff[__i]
-	      : value_type{});
-      }
+      { return (this->_M_coeff.at(__i); }
 
+      /**
+       *  Set coefficient @c i to @c val with range checking.
+       */
       void
       coefficient(size_type __i, value_type __val)
       { this->_M_coeff.at(__i) = __val; }
 
+      /**
+       *  Return a @c const pointer to the coefficient sequence.
+       */
+      const value_type*
+      coefficients() const
+      { this->_M_coeff.data(); }
+
+      /**
+       *  Return coefficient @c i.
+       */
       value_type
       operator[](size_type __i) const
       { return this->_M_coeff[__i]; }
 
+      /**
+       *  Return coefficient @c i as an lvalue.
+       */
       reference
       operator[](size_type __i)
       { return this->_M_coeff[__i]; }
 
+      /**
+       *  Return an iterator to the beginning of the coefficient sequence.
+       */
       iterator
       begin()
       { return this->_M_coeff.begin(); }
 
+      /**
+       *  Return an iterator to one past the end of the coefficient sequence.
+       */
       iterator
       end()
       { return this->_M_coeff.end(); }
 
+      /**
+       *  Return a @c const iterator the beginning
+       *  of the coefficient sequence.
+       */
       const_iterator
       begin() const
       { return this->_M_coeff.begin(); }
 
+      /**
+       *  Return a @c const iterator to one past the end
+       *  of the coefficient sequence.
+       */
       const_iterator
       end() const
       { return this->_M_coeff.end(); }
 
+      /**
+       *  Return a @c const iterator the beginning
+       *  of the coefficient sequence.
+       */
       const_iterator
       cbegin() const
       { return this->_M_coeff.cbegin(); }
 
+      /**
+       *  Return a @c const iterator to one past the end
+       *  of the coefficient sequence.
+       */
       const_iterator
       cend() const
       { return this->_M_coeff.cend(); }
