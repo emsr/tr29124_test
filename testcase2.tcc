@@ -566,7 +566,7 @@ template<typename MaskFun, typename TestFun, typename BaselineFun,
       constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
       constexpr auto ret_complex = __gnu_cxx::is_complex_v<Ret>;
 
-      auto numname = type_strings<Val>::type().to_string();
+      auto numname = type_strings<Val>::type();
       auto structname = outer._M_structname.to_string() + '<' + numname + '>';
       auto baseline = outer._M_basefun.source;
       auto arg = std::get<Index>(outer._M_range).name;
