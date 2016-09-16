@@ -327,10 +327,10 @@ testcase2: testcase2.cpp testcase2.tcc wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap
 	$(CXX17) -o testcase2 -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase2.cpp wrap_gsl.cpp wrap_boost.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -lgfortran
 
 testcase: testcase.cpp testcase.tcc wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp wrap_burkhardt.h wrap_burkhardt.cpp burkhardt/special_functions.f90 $(INC_DIR)/sf_*.tcc
-	$(CXX) -o testcase -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp wrap_gsl.cpp wrap_boost.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -lgfortran
+	$(CXX17) -o testcase -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp wrap_gsl.cpp wrap_boost.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -lgfortran
 
 test_limits: test_limits.cpp
-	$(CXX) -o test_limits test_limits.cpp
+	$(CXX17) -o test_limits test_limits.cpp
 
 test_cmath: test_cmath.cpp
 	$(CXX) -o test_cmath test_cmath.cpp
