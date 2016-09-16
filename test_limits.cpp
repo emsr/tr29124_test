@@ -1,6 +1,6 @@
 #include <iostream>
 #include <limits>
-#include <experimental/string_view>
+#include <string_view>
 #include <map>
 
 
@@ -8,7 +8,7 @@ template<typename Numeric>
   void
   test_limits()
   {
-    std::map<std::float_denorm_style, std::experimental::string_view>
+    std::map<std::float_denorm_style, std::string_view>
     float_denorm_style
     {
       {std::denorm_indeterminate, "denorm_indeterminate"},
@@ -16,7 +16,7 @@ template<typename Numeric>
       {std::denorm_present, "denorm_present"}
     };
 
-    std::map<std::float_round_style, std::experimental::string_view>
+    std::map<std::float_round_style, std::string_view>
     float_round_style
     {
       {std::round_indeterminate, "round_indeterminate"},
