@@ -250,12 +250,10 @@ template<typename _Tp>
 	auto __a = _Tp{0.005Q} * __i;
 
 	const std::complex<_Tp> __airy_argm = _S_2p13 * __a * __mipi3;
-	std::complex<_Tp> _Ami, _Bmi, _Amip, _Bmip;
-	std::__detail::__airy(__airy_argm, __eps, _Ami, _Bmi, _Amip, _Bmip);
+	auto __airym = std::__detail::_Airy<std::complex<_Tp>>()(__airy_argm);
 
 	const std::complex<_Tp> __airy_argp = _S_2p13 * __a * __pipi3;
-	std::complex<_Tp> _Api, _Bpi, _Apip, _Bpip;
-	std::__detail::__airy(__airy_argp, __eps, _Api, _Bpi, _Apip, _Bpip);
+	auto __airyp = std::__detail::_Airy<std::complex<_Tp>>()(__airy_argp);
 
 	auto __num2k3 = _Tp{1};
 
@@ -279,10 +277,10 @@ template<typename _Tp>
 	    __num2k3 /= __nu23;
 	  }
 
-	const auto _H1t = _S_2p43 * __mipi3 * _Ami * _H1sum1 / __nu13
-			+ _S_2p53 * __mipi3 * _Amip * _H1sum2 / __nu;
-	const auto _H2t = _S_2p43 * __pipi3 * _Api * _H2sum1 / __nu13
-			+ _S_2p53 * __pipi3 * _Apip * _H2sum2 / __nu;
+	const auto _H1t = _S_2p43 * __mipi3 * __airym.Ai * _H1sum1 / __nu13
+			+ _S_2p53 * __mipi3 * __airym.Aip * _H1sum2 / __nu;
+	const auto _H2t = _S_2p43 * __pipi3 * __airyp.Ai * _H2sum1 / __nu13
+			+ _S_2p53 * __pipi3 * __airyp.Aip * _H2sum2 / __nu;
 
 	auto _H1psum1 = _Tp{0};
 	auto _H2psum1 = _Tp{0};
@@ -304,10 +302,10 @@ template<typename _Tp>
 	    __num2k3 /= __nu23;
 	  }
 
-	const auto _H1pt = -_S_2p53 * __mipi3 * _Amip * _H1psum1 / __nu23
-			  + _S_2p43 * __mipi3 * _Ami * _H1psum2 / __nu43;
-	const auto _H2pt = -_S_2p53 * __pipi3 * _Apip * _H2psum1 / __nu23
-			  + _S_2p43 * __pipi3 * _Api * _H2psum2 / __nu43;
+	const auto _H1pt = -_S_2p53 * __mipi3 * __airym.Aip * _H1psum1 / __nu23
+			  + _S_2p43 * __mipi3 * __airym.Ai * _H1psum2 / __nu43;
+	const auto _H2pt = -_S_2p53 * __pipi3 * __airyp.Aip * _H2psum1 / __nu23
+			  + _S_2p43 * __pipi3 * __airyp.Ai * _H2psum2 / __nu43;
 
 	std::cout << std::setw(2*width) << __a
 		  << std::setw(2*width) << _H1t
