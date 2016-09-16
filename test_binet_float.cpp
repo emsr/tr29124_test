@@ -96,10 +96,10 @@ namespace __detail
       for (std::size_t __n = 0; __n < __len; ++__n)
 	{
 	  __m.push_back(std::vector<_Real>());
-	  __m.back().push_back(__zero); // e_k+1,0 = 0, k>=0
+	  __m.back().push_back(__zero); // e[k+1,0] = 0, k >= 0
 	}
       for (std::size_t __n = 0; __n < __len - 1; ++__n)
-	__m[__n].push_back(__s[__n + 1] / __s[__n]); // q_k,1 = c_k+1/c_k, k>=0
+	__m[__n].push_back(__s[__n + 1] / __s[__n]); // q[k,1] = c[k+1]/c[k], k >= 0
 
       __r.push_back(__s[0]);
       __r.push_back(__m[0][1]);
@@ -132,9 +132,11 @@ namespace __detail
     {
       auto __len = __s.size();
       auto __zero = _Real{0};
-      std::vector<std::vector<_Real>> __m;
+      std::vector<_Real> __q;
+      std::vector<_Real> __e;
       std::vector<_Real> __r;
 
+      for ()
 
       return __r;
     }
