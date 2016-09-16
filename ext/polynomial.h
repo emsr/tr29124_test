@@ -531,7 +531,7 @@ namespace __gnu_cxx
        */
       value_type
       coefficient(size_type __i) const
-      { return (this->_M_coeff.at(__i); }
+      { return this->_M_coeff.at(__i); }
 
       /**
        *  Set coefficient @c i to @c val with range checking.
