@@ -2,7 +2,7 @@
 $HOME/bin_tr29124/bin/g++ -g -std=gnu++1z -o hankel_transition hankel_transition.cpp -L$HOME/bin/lib64 -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./hankel_transition > hankel_transition.txt
 
-g++ -std=gnu++14 -DNO_CBRT -o hankel_transition hankel_transition.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -DNO_CBRT -I. -o hankel_transition hankel_transition.cpp -lquadmath
 ./hankel_transition > hankel_transition.txt
 */
 
@@ -11,6 +11,7 @@ g++ -std=gnu++14 -DNO_CBRT -o hankel_transition hankel_transition.cpp -lquadmath
 #include <iomanip>
 #include <tuple>
 #include <cmath>
+#include <bits/specfun.h>
 //#include "float128.h"
 #include "ext/polynomial.h"
 #include "rational.h"
@@ -22,6 +23,9 @@ template<typename _Tp>
   {
     auto sign = [](int s, int r){return (s + r) % 2 == 1 ? -1 : +1; };
     using rational = _Tp;
+
+    const std::size_t n_AB = 8;
+    const std::size_t n_phipsi = 3 * (n_AB - 1) + 1;
 
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     auto width = std::cout.precision() + 6;
@@ -35,10 +39,10 @@ template<typename _Tp>
     psi.push_back(__gnu_cxx::_Polynomial<int>(0));
     psi.push_back(__gnu_cxx::_Polynomial<int>(-1));
     psi.push_back(__gnu_cxx::_Polynomial<int>(0));
-    for (int s = 3; s <= 18; ++s)
+    for (int s = 3; s < n_phipsi; ++s)
       {
-	phi.push_back(poo * phi[s - 2] -2 * (s - 2) * phi[s - 3]);
-	psi.push_back(poo * psi[s - 2] -2 * (s - 2) * psi[s - 3]);
+	phi.push_back(poo * phi[s - 2] - 2 * (s - 2) * phi[s - 3]);
+	psi.push_back(poo * psi[s - 2] - 2 * (s - 2) * psi[s - 3]);
       }
     std::cout << "\nphi polynomial\n";
     for (const auto& p : phi)
@@ -46,17 +50,22 @@ template<typename _Tp>
     std::cout << "\npsi polynomial\n";
     for (const auto& p : psi)
       std::cout << p << '\n';
-    std::vector<__gnu_cxx::_Polynomial<rational>> A(6);
-    std::vector<__gnu_cxx::_Polynomial<rational>> B(6);
-    for (int s = 0; s < 6; ++s)
+    std::vector<__gnu_cxx::_Polynomial<rational>> A(n_AB);
+    std::vector<__gnu_cxx::_Polynomial<rational>> B(n_AB);
+    for (int s = 0; s < n_AB; ++s)
       {
 	for (int r = 0; r <= s; ++r)
-	  A[s] += phi[2 * s + r] * __gnu_cxx::_Polynomial<rational>(sign(r, s), r);
-	std::cout << "A_" << s << ": " << A[s] << '\n';
-	for (int r = 0; r <= s; ++r)
-	  B[s] += psi[2 * s + r] * __gnu_cxx::_Polynomial<rational>(sign(r, s), r);
-	std::cout << "B_" << s << ": " << B[s] << '\n';
+	  {
+	    A[s] += phi[2 * s + r] * __gnu_cxx::_Polynomial<rational>(sign(r, s), r);
+	    B[s] += psi[2 * s + r] * __gnu_cxx::_Polynomial<rational>(sign(r, s), r);
+	  }
       }
+    std::cout << "\nA polynomial\n";
+    for (const auto& a : A)
+      std::cout << a << '\n';
+    std::cout << "\nB polynomial\n";
+    for (const auto& b : B)
+      std::cout << b << '\n';
 
     std::vector<__gnu_cxx::_Polynomial<__gnu_cxx::_Rational<long long>>>
     P
