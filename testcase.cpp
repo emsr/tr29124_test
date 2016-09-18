@@ -644,14 +644,14 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_sph_bessel(filename.c_str());
     test =
-    maketest(sph_bessel, gsl::bessel_jl,
+    maketest(sph_bessel, gsl::sph_bessel,
 	     "testcase_sph_bessel", nsname, basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     "GSL",
 	     file_sph_bessel, true, false);
-    maketest(sph_bessel, gsl::bessel_jl,
+    maketest(sph_bessel, gsl::sph_bessel,
 	     "testcase_sph_bessel", nsname, basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -679,14 +679,14 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_sph_neumann(filename.c_str());
     test =
-    maketest(sph_neumann, gsl::bessel_yl,
+    maketest(sph_neumann, gsl::sph_neumann,
 	     "testcase_sph_neumann", nsname, basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     "GSL",
 	     file_sph_neumann, true, false);
-    maketest(sph_neumann, gsl::bessel_yl,
+    maketest(sph_neumann, gsl::sph_neumann,
 	     "testcase_sph_neumann", nsname, basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -1100,14 +1100,14 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_sph_bessel_i(filename.c_str());
     test =
-    maketest(sph_bessel_i, gsl::bessel_il,
+    maketest(sph_bessel_i, gsl::sph_bessel_i,
 	     "testcase_sph_bessel_i", "__gnu_cxx", basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     "GSL",
 	     file_sph_bessel_i, true, false);
-    maketest(sph_bessel_i, gsl::bessel_il,
+    maketest(sph_bessel_i, gsl::sph_bessel_i,
 	     "testcase_sph_bessel_i", "__gnu_cxx", basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -1121,14 +1121,14 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_sph_bessel_k(filename.c_str());
     test =
-    maketest(sph_bessel_k, gsl::bessel_kl,
+    maketest(sph_bessel_k, gsl::sph_bessel_k,
 	     "testcase_sph_bessel_k", "__gnu_cxx", basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     "GSL",
 	     file_sph_bessel_k, true, false);
-    maketest(sph_bessel_k, gsl::bessel_kl,
+    maketest(sph_bessel_k, gsl::sph_bessel_k,
 	     "testcase_sph_bessel_k", "__gnu_cxx", basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),

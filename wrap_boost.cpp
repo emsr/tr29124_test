@@ -277,7 +277,7 @@ double dirichlet_eta(double x)
 
 /// Spherical Bessel functions.
 double
-bessel_jl(unsigned int n, double x)
+sph_bessel(unsigned int n, double x)
 {
   return boost::math::sph_bessel(n, x);
 }
@@ -291,7 +291,7 @@ legendre_sphPlm(unsigned int l, unsigned int m, double theta)
 
 /// Spherical Neumann functions.
 double
-bessel_yl(unsigned int n, double x)
+sph_neumann(unsigned int n, double x)
 {
   return boost::math::sph_neumann(n, x);
 }
@@ -586,14 +586,14 @@ double_factorial(unsigned int n)
 
 /// Regular modified spherical bessel functions.
 double
-bessel_il(unsigned int n, double x)
+sph_bessel_i(unsigned int n, double x)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Irregular modified spherical bessel functions.
 double
-bessel_kl(unsigned int n, double x)
+sph_bessel_k(unsigned int n, double x)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }

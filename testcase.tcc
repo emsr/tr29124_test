@@ -372,19 +372,19 @@ template<typename Ret, typename Arg1>
 		++num_divergences;
 		last_divergence = std::make_tuple(f1, f2, x);
 		if (num_divergences <= 3)
-		  output << "//  Divergence at"
+		  output << "\n// Divergence at"
 			 << " " << arg1 << "=" << x
 			 << " f=" << f1
-			 << " f_" << baseline << "=" << f2 << '\n';
+			 << " f_" << baseline << "=" << f2;
 		continue;
 	      }
 
 	    if (std::isnan(std::real(f1)) || std::isnan(std::real(f2)))
 	      {
-		output << "//  Failure at"
+		output << "\n// Failure at"
 		       << " " << arg1 << "=" << x
 		       << " f=" << f1
-		       << " f_" << baseline << "=" << f2 << '\n';
+		       << " f_" << baseline << "=" << f2;
 		break;
 	      }
 
@@ -408,10 +408,10 @@ template<typename Ret, typename Arg1>
       {
 	if (num_divergences > 4)
 	  output << "//  ...\n";
-	output << "//  Divergence at"
+	output << "\n// Divergence at"
 	       << " " << arg1 << "=" << std::get<2>(last_divergence)
 	       << " f=" << std::get<0>(last_divergence)
-	       << " f_" << baseline << "=" << std::get<1>(last_divergence) << '\n';
+	       << " f_" << baseline << "=" << std::get<1>(last_divergence);
 	num_divergences = 0;
       }
 
@@ -572,21 +572,21 @@ template<typename Ret, typename Arg1, typename Arg2>
 		    ++num_divergences;
 		    last_divergence = std::make_tuple(f1, f2, x, y);
 		    if (num_divergences <= 3)
-		      output << "//  Divergence at"
+		      output << "\n// Divergence at"
 			     << " " << arg1 << "=" << x
 			     << " " << arg2 << "=" << y
 			     << " f=" << f1
-			     << " f_" << baseline << "=" << f2 << '\n';
+			     << " f_" << baseline << "=" << f2;
 		    continue;
 		  }
 
 		if (std::isnan(std::real(f1)) || std::isnan(std::real(f2)))
 		  {
-		    output << "//  Failure at"
+		    output << "\n// Failure at"
 			   << " " << arg1 << "=" << x
 			   << " " << arg2 << "=" << y
 			   << " f=" << f1
-			   << " f_" << baseline << "=" << f2 << '\n';
+			   << " f_" << baseline << "=" << f2;
 		    break;
 		  }
 
@@ -609,12 +609,12 @@ template<typename Ret, typename Arg1, typename Arg2>
 	if (num_divergences > 0)
 	  {
 	    if (num_divergences > 4)
-	      output << "//  ...\n";
-	    output << "//  Divergence at"
+	      output << "\n// ...";
+	    output << "\n// Divergence at"
 		   << " " << arg1 << "=" << std::get<2>(last_divergence)
 		   << " " << arg2 << "=" << std::get<3>(last_divergence)
 		   << " f=" << std::get<0>(last_divergence)
-		   << " f_" << baseline << "=" << std::get<1>(last_divergence) << '\n';
+		   << " f_" << baseline << "=" << std::get<1>(last_divergence);
 	    num_divergences = 0;
 	  }
 
@@ -779,23 +779,23 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
 			++num_divergences;
 			last_divergence = std::make_tuple(f1, f2, x, y, z);
 			if (num_divergences <= 3)
-			  output << "//  Divergence at"
+			  output << "\n// Divergence at"
 				 << " " << arg1 << "=" << x
 				 << " " << arg2 << "=" << y
 				 << " " << arg3 << "=" << z
 				 << " f=" << f1
-				 << " f_" << baseline << "=" << f2 << '\n';
+				 << " f_" << baseline << "=" << f2;
 			continue;
 		      }
 
 		    if (std::isnan(std::real(f1)) || std::isnan(std::real(f2)))
 		      {
-			output << "//  Failure at"
+			output << "\n// Failure at"
 			       << " " << arg1 << "=" << x
 			       << " " << arg2 << "=" << y
 			       << " " << arg3 << "=" << z
 			       << " f=" << f1
-			       << " f_" << baseline << "=" << f2 << '\n';
+			       << " f_" << baseline << "=" << f2;
 			break;
 		      }
 
@@ -818,13 +818,13 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
 	    if (num_divergences > 0)
 	      {
 		if (num_divergences > 4)
-		  output << "//  ...\n";
-		output << "//  Divergence at"
+		  output << "\n// ...";
+		output << "\n// Divergence at"
 		       << " " << arg1 << "=" << std::get<2>(last_divergence)
 		       << " " << arg2 << "=" << std::get<3>(last_divergence)
 		       << " " << arg3 << "=" << std::get<4>(last_divergence)
 		       << " f=" << std::get<0>(last_divergence)
-		       << " f_" << baseline << "=" << std::get<1>(last_divergence) << '\n';
+		       << " f_" << baseline << "=" << std::get<1>(last_divergence);
 		num_divergences = 0;
 	      }
 
@@ -999,19 +999,19 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
 			    ++num_divergences;
 			    last_divergence = std::make_tuple(f1, f2, w, x, y, z);
 			    if (num_divergences <= 3)
-			      output << "//  Divergence at"
+			      output << "\n// Divergence at"
 				     << " " << arg1 << "=" << w
 				     << " " << arg2 << "=" << x
 				     << " " << arg3 << "=" << y
 				     << " " << arg4 << "=" << z
 				     << " f=" << f1
-				     << " f_" << baseline << "=" << f2 << '\n';
+				     << " f_" << baseline << "=" << f2;
 			    continue;
 			  }
 
 			if (std::isnan(std::real(f1)) || std::isnan(std::real(f2)))
 			  {
-			    output << "//  Failure at"
+			    output << "\n// Failure at"
 				   << " " << arg1 << "=" << w
 				   << " " << arg1 << "=" << x
 				   << " " << arg3 << "=" << y
@@ -1040,14 +1040,14 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
 		if (num_divergences > 0)
 		  {
 		    if (num_divergences > 4)
-		      output << "//  ...\n";
-		    output << "//  Divergence at"
+		      output << "\n// ...";
+		    output << "\n// Divergence at"
 			   << " " << arg1 << "=" << std::get<2>(last_divergence)
 			   << " " << arg2 << "=" << std::get<3>(last_divergence)
 			   << " " << arg3 << "=" << std::get<4>(last_divergence)
 			   << " " << arg4 << "=" << std::get<5>(last_divergence)
 			   << " f=" << std::get<0>(last_divergence)
-			   << " f_" << baseline << "=" << std::get<1>(last_divergence) << '\n';
+			   << " f_" << baseline << "=" << std::get<1>(last_divergence);
 		    num_divergences = 0;
 		  }
 

@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_clausen test_clausen.cpp wrap_gsl.cpp gslextras/Fresnel/fresnel.c -lgsl -lgslcblas -ljacobi
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -o test_clausen test_clausen.cpp wrap_gsl.cpp gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_clausen > test_clausen.txt
 
 g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_clausen test_clausen.cpp wrap_gsl.cpp -lgsl -lgslcblas
@@ -45,7 +45,7 @@ template<typename _Tp>
 		  << std::setw(width) << std::real(clausen1)
 		  << std::setw(width) << std::real(clausen2)
 		  << std::setw(width) << std::imag(clausen2)
-		  << std::setw(width) << gsl::clausen_2(std::real(w))
+		  << std::setw(width) << gsl::clausen_c(2, std::real(w))
 		  << std::setw(width) << __gnu_cxx::clausen(2, std::real(w))
 		  << std::setw(width) << __gnu_cxx::clausen_c(2, std::real(w))
 		  << '\n';

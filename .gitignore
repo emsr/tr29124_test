@@ -131,6 +131,7 @@ test_bessel_iter
 test_beta_inc
 test_binet
 test_binet_float
+test_bose_einstein
 test_chebyshev
 test_clausen
 test_cmath
@@ -143,6 +144,7 @@ test_cyl_hankel
 test_dawson
 test_dilog
 test_factorial
+test_fermi_dirac
 test_float128
 test_fresnel
 test_gamma
