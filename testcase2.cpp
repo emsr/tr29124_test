@@ -147,6 +147,13 @@ template<typename Real>
     using  std::tr1::sph_neumann;
 #endif
 
+    using fun_t = Real (*)(Real);
+    using fun2_t = Real (*)(Real, Real);
+    using fun3_t = Real (*)(Real, Real, Real);
+    using fun4_t = Real (*)(Real, Real, Real, Real);
+    using funir_t = Real (*)(unsigned int, Real);
+    using fun2ir_t = Real (*)(unsigned int, unsigned int, Real);
+
     // Unsigned integer orders for various polynomials, harmonics.
     std::vector<unsigned int> vorder{0, 1, 2, 5, 10, 20, 50, 100};
 
@@ -184,8 +191,8 @@ template<typename Real>
 #if STD
     // Airy functions of the first kind.
     auto test_airy_ai = 
-    make_testcase2(make_test_function("__gnu_cxx::airy_ai", airy_ai),
-		   make_baseline_function("GSL", "gsl::airy_ai", gsl::airy_ai),
+    make_testcase2(make_test_function("__gnu_cxx::airy_ai", (fun_t)&airy_ai),
+		   make_baseline_function("GSL", "gsl::airy_ai", (fun_t)&gsl::airy_ai),
 		   [](Real){ return true; },
 		   "testcase_airy",
 		   make_argument("x", fill2(Real{-10}, Real{10}, 41)));
@@ -194,8 +201,8 @@ template<typename Real>
 
     // Airy functions of the second kind.
     auto test_airy_bi = 
-    make_testcase2(make_test_function("__gnu_cxx::airy_bi", airy_bi),
-		   make_baseline_function("GSL", "gsl::airy_bi", gsl::airy_bi),
+    make_testcase2(make_test_function("__gnu_cxx::airy_bi", (fun_t)&airy_bi),
+		   make_baseline_function("GSL", "gsl::airy_bi", (fun_t)&gsl::airy_bi),
 		   [](Real){ return true; },
 		   "testcase_airy",
 		   make_argument("x", fill2(Real{-10}, Real{10}, 41)));
@@ -205,8 +212,8 @@ template<typename Real>
 
     // Associated Laguerre polynomials.
     auto test_assoc_laguerre = 
-    make_testcase2(make_test_function("std::assoc_laguerre", assoc_laguerre),
-		   make_baseline_function("GSL", "gsl::assoc_laguerre", gsl::assoc_laguerre),
+    make_testcase2(make_test_function("std::assoc_laguerre", (fun2ir_t)&assoc_laguerre),
+		   make_baseline_function("GSL", "gsl::assoc_laguerre", (fun2ir_t)&gsl::assoc_laguerre),
 		   [](unsigned, unsigned, Real){ return true; },
 		   "testcase_assoc_laguerre",
 		   make_argument("n", vorder), make_argument("m", vorder),
@@ -216,8 +223,8 @@ template<typename Real>
 
     // Beta functions.
     auto test_beta = 
-    make_testcase2(make_test_function("std::beta", beta),
-		   make_baseline_function("GSL", "gsl::beta", gsl::beta),
+    make_testcase2(make_test_function("std::beta", (fun2_t)&beta),
+		   make_baseline_function("GSL", "gsl::beta", (fun2_t)&gsl::beta),
 		   [](Real){ return true; },
 		   "testcase_beta",
 		   make_argument("x", fill2(Real{0}, Real{100}, 11)),
@@ -228,8 +235,8 @@ template<typename Real>
     // Complete elliptic integrals of the first kind.
     // Avoid poles at |x| = 1.
     auto test_comp_ellint_1 = 
-    make_testcase2(make_test_function("std::comp_ellint_1", comp_ellint_1),
-		   make_baseline_function("GSL", "gsl::comp_ellint_1", gsl::comp_ellint_1),
+    make_testcase2(make_test_function("std::comp_ellint_1", (fun_t)&comp_ellint_1),
+		   make_baseline_function("GSL", "gsl::comp_ellint_1", (fun_t)&gsl::comp_ellint_1),
 		   [](Real x){ return (std::abs(x) == 1 ? false : true); },
 		   make_argument("k", fill2(Real{-1}, Real{1}, 21)));
     std::ofstream file_comp_ellint_1(outfile("comp_ellint_1"));
@@ -238,8 +245,8 @@ template<typename Real>
     // Complete elliptic integrals of the second kind.
     // Avoid poles at |x| = 1.
     auto test_comp_ellint_2 = 
-    make_testcase2(make_test_function("std::comp_ellint_2", comp_ellint_2),
-		   make_baseline_function("GSL", "gsl::comp_ellint_2", gsl::comp_ellint_2),
+    make_testcase2(make_test_function("std::comp_ellint_2", (fun_t)&comp_ellint_2),
+		   make_baseline_function("GSL", "gsl::comp_ellint_2", (fun_t)&gsl::comp_ellint_2),
 		   [](Real x){ return (std::abs(x) == 1 ? false : true); },
 		   make_argument("k", fill2(Real{-1}, Real{1}, 21)));
     std::ofstream file_comp_ellint_2(outfile("comp_ellint_2"));
@@ -248,8 +255,8 @@ template<typename Real>
     // Complete elliptic integrals of the third kind.
     // Avoid poles at |x| = 1 and at nu = 1.
     auto test_comp_ellint_3 = 
-    make_testcase2(make_test_function("std::comp_ellint_3", comp_ellint_3),
-		   make_baseline_function("GSL", "gsl::comp_ellint_3", gsl::comp_ellint_3),
+    make_testcase2(make_test_function("std::comp_ellint_3", (fun2_t)&comp_ellint_3),
+		   make_baseline_function("GSL", "gsl::comp_ellint_3", (fun2_t)&gsl::comp_ellint_3),
 		   [](Real x){ return (std::abs(x) == 1 ? false : true); },
 		   make_argument("k", fill2(Real{-1}, Real{1}, 21)),
 		   make_argument("nu", fill2(Real{0}, Real{1}, 11)));
@@ -260,8 +267,8 @@ template<typename Real>
     // Confluent hypergeometric functions.
     // Skip the singularity at c = 0.
     auto test_conf_hyperg = 
-    make_testcase2(make_test_function("__gnu_cxx::conf_hyperg", conf_hyperg),
-		   make_baseline_function("GSL", "gsl::conf_hyperg", gsl::conf_hyperg),
+    make_testcase2(make_test_function("__gnu_cxx::conf_hyperg", (fun3_t)&conf_hyperg),
+		   make_baseline_function("GSL", "gsl::conf_hyperg", (fun3_t)&gsl::conf_hyperg),
 		   [](Real, Real, Real c, Real){ return (c == 0 ? false : true); },
 		   make_argument("a", vab),
 		   make_argument("c", fill2(Real{0}, Real{10}, 11)),
@@ -272,8 +279,8 @@ template<typename Real>
     // Confluent hypergeometric functions.
     // Skip the singularity at c = 0.
     auto test_conf_hyperg = 
-    make_testcase2(make_test_function("std::conf_hyperg", conf_hyperg),
-		   make_baseline_function("GSL", "gsl::conf_hyperg", gsl::conf_hyperg),
+    make_testcase2(make_test_function("std::conf_hyperg", (fun3_t)&conf_hyperg),
+		   make_baseline_function("GSL", "gsl::conf_hyperg", (fun3_t)&gsl::conf_hyperg),
 		   [](Real, Real, Real c, Real){ return (c == 0 ? false : true); },
 		   make_argument("a", vab),
 		   make_argument("c", fill2(Real{0}, Real{10}, 11)),
@@ -284,8 +291,8 @@ template<typename Real>
 
     // Regular modified cylindrical Bessel functions.
     auto test_cyl_bessel_i = 
-    make_testcase2(make_test_function("std::cyl_bessel_i", cyl_bessel_i),
-		   make_baseline_function("Boost", "beast::cyl_bessel_i", beast::cyl_bessel_i),
+    make_testcase2(make_test_function("std::cyl_bessel_i", (fun2_t)&cyl_bessel_i),
+		   make_baseline_function("Boost", "beast::cyl_bessel_i", (fun2_t)&beast::cyl_bessel_i),
 		   [](Real, Real){ return true; },
 		   make_argument("nu", cyl_neg_order),
 		   make_argument("x", fill2(Real{0}, Real{5}, 21)));
@@ -294,8 +301,8 @@ template<typename Real>
 
     // Cylindrical Bessel functions (of the first kind).
     auto test_cyl_bessel_j = 
-    make_testcase2(make_test_function("std::cyl_bessel_j", cyl_bessel_j),
-		   make_baseline_function("Boost", "beast::cyl_bessel_j", beast::cyl_bessel_j),
+    make_testcase2(make_test_function("std::cyl_bessel_j", (fun2_t)&cyl_bessel_j),
+		   make_baseline_function("Boost", "beast::cyl_bessel_j", (fun2_t)&beast::cyl_bessel_j),
 		   [](Real, Real){ return true; },
 		   make_argument("nu", cyl_neg_order),
 		   make_argument("x", fill2(Real{0}, Real{5}, 21)));
@@ -305,8 +312,8 @@ template<typename Real>
     // Irregular modified cylindrical Bessel functions.
     // Skip the pole at the origin.
     auto test_cyl_bessel_k = 
-    make_testcase2(make_test_function("std::cyl_bessel_k", cyl_bessel_k),
-		   make_baseline_function("Boost", "beast::cyl_bessel_k", beast::cyl_bessel_k),
+    make_testcase2(make_test_function("std::cyl_bessel_k", (fun2_t)&cyl_bessel_k),
+		   make_baseline_function("Boost", "beast::cyl_bessel_k", (fun2_t)&beast::cyl_bessel_k),
 		   [](Real, Real x){ return (x == 0 ? false : true); },
 		   make_argument("nu", cyl_neg_order),
 		   make_argument("x", fill2(Real{0}, Real{5}, 21)));
@@ -316,8 +323,8 @@ template<typename Real>
     // Cylindrical Neumann functions.
     // Skip the pole at the origin.
     auto test_cyl_neumann = 
-    make_testcase2(make_test_function("std::cyl_neumann", cyl_neumann),
-		   make_baseline_function("Boost", "beast::cyl_neumann", beast::cyl_neumann),
+    make_testcase2(make_test_function("std::cyl_neumann", (fun2_t)&cyl_neumann),
+		   make_baseline_function("Boost", "beast::cyl_neumann", (fun2_t)&beast::cyl_neumann),
 		   [](Real, Real x){ return (x == 0 ? false : true); },
 		   make_argument("nu", cyl_neg_order),
 		   make_argument("x", fill2(Real{0}, Real{5}, 21)));
@@ -327,8 +334,8 @@ template<typename Real>
     // Elliptic integrals of the first kind.
     // Avoid poles at |x| = 1.
     auto test_ellint_1 = 
-    make_testcase2(make_test_function("std::ellint_1", ellint_1),
-		   make_baseline_function("GSL", "gsl::ellint_1", gsl::ellint_1),
+    make_testcase2(make_test_function("std::ellint_1", (fun2_t)&ellint_1),
+		   make_baseline_function("GSL", "gsl::ellint_1", (fun2_t)&gsl::ellint_1),
 		   [](Real x){ return (std::abs(x) == 1 ? false : true); },
 		   make_argument("k", fill2(Real{-1}, Real{1}, 21)),
 		   make_argument("phi", vphid));
@@ -338,8 +345,8 @@ template<typename Real>
     // Elliptic integrals of the second kind.
     // Avoid poles at |x| = 1.
     auto test_ellint_2 = 
-    make_testcase2(make_test_function("std::ellint_2", ellint_2),
-		   make_baseline_function("GSL", "gsl::ellint_2", gsl::ellint_2),
+    make_testcase2(make_test_function("std::ellint_2", (fun2_t)&ellint_2),
+		   make_baseline_function("GSL", "gsl::ellint_2", (fun2_t)&gsl::ellint_2),
 		   [](Real x){ return (std::abs(x) == 1 ? false : true); },
 		   make_argument("k", fill2(Real{-1}, Real{1}, 21)),
 		   make_argument("phi", vphid));
@@ -349,8 +356,8 @@ template<typename Real>
     // Elliptic integrals of the third kind.
     // Avoid poles at |x| = 1 and at nu = 1.
     auto test_ellint_3 = 
-    make_testcase2(make_test_function("std::ellint_3", ellint_3),
-		   make_baseline_function("GSL", "gsl::ellint_3", gsl::ellint_3),
+    make_testcase2(make_test_function("std::ellint_3", (fun3_t)&ellint_3),
+		   make_baseline_function("GSL", "gsl::ellint_3", (fun3_t)&gsl::ellint_3),
 		   [](Real x){ return (std::abs(x) == 1 ? false : true); },
 		   make_argument("k", fill2(Real{-1}, Real{1}, 21)),
 		   make_argument("nu", fill2(Real{0}, Real{1}, 11)),
@@ -361,8 +368,8 @@ template<typename Real>
     // Exponential integral.
     // Skip the pole at 0.
     auto test_expint = 
-    make_testcase2(make_test_function("std::expint", expint),
-		   make_baseline_function("GSL", "gsl::expint", gsl::expint),
+    make_testcase2(make_test_function("std::expint", (fun_t)&expint),
+		   make_baseline_function("GSL", "gsl::expint", (fun_t)&gsl::expint),
 		   [](Real x){ return (std::abs(x) == 1 ? false : true); },
 		   make_argument("x", fill2(Real{-1}, Real{1}, 21)));
     std::ofstream file_expint(outfile("expint"));
@@ -370,8 +377,8 @@ template<typename Real>
 
     // Hermite polynomials
     auto test_hermite = 
-    make_testcase2(make_test_function("std::hermite", hermite),
-		   make_baseline_function("GSL", "gsl::hermite", gsl::hermite),
+    make_testcase2(make_test_function("std::hermite", (funir_t)&hermite),
+		   make_baseline_function("GSL", "gsl::hermite", (funir_t)&gsl::hermite),
 		   [](unsigned, Real){ return true; },
 		   "testcase_hermite",
 		   make_argument("n", vorder),
@@ -383,8 +390,8 @@ template<typename Real>
     // Hypergeometric functions.
     // Skip the singularity at c = 0 and at x = -1.
     auto test_hyperg = 
-    make_testcase2(make_test_function("__gnu_cxx::hyperg", hyperg),
-		   make_baseline_function("GSL", "gsl::hyperg", gsl::hyperg),
+    make_testcase2(make_test_function("__gnu_cxx::hyperg", (fun4_t)&hyperg),
+		   make_baseline_function("GSL", "gsl::hyperg", (fun4_t)&gsl::hyperg),
 		   [](Real, Real, Real c, Real x){ return ((c == 0 || x == -1) ? false : true); },
 		   make_argument("a", vab), make_argument("b", vab),
 		   make_argument("c", fill2(Real{0}, Real{10}, 11)),
@@ -395,8 +402,8 @@ template<typename Real>
     // Hypergeometric functions.
     // Skip the singularity at c = 0 and at x = -1.
     auto test_hyperg = 
-    make_testcase2(make_test_function("std::hyperg", hyperg),
-		   make_baseline_function("GSL", "gsl::hyperg", gsl::hyperg),
+    make_testcase2(make_test_function("std::hyperg", (fun4_t)&hyperg),
+		   make_baseline_function("GSL", "gsl::hyperg", (fun4_t)&gsl::hyperg),
 		   [](Real, Real, Real c, Real x){ return ((c == 0 || x == -1) ? false : true); },
 		   make_argument("a", vab), make_argument("b", vab),
 		   make_argument("c", fill2(Real{0}, Real{10}, 11)),
@@ -407,8 +414,8 @@ template<typename Real>
 
     // Laguerre polynomials.
     auto test_laguerre = 
-    make_testcase2(make_test_function("std::laguerre", laguerre),
-		   make_baseline_function("GSL", "gsl::laguerre", gsl::laguerre),
+    make_testcase2(make_test_function("std::laguerre", (funir_t)&laguerre),
+		   make_baseline_function("GSL", "gsl::laguerre", (funir_t)&gsl::laguerre),
 		   [](unsigned, Real){ return true; },
 		   "testcase_laguerre",
 		   make_argument("n", vorder),
@@ -418,8 +425,8 @@ template<typename Real>
 
     // Legendre polynomials.
     auto test_legendre = 
-    make_testcase2(make_test_function("std::legendre", legendre),
-		   make_baseline_function("GSL", "gsl::legendre", gsl::legendre_p),
+    make_testcase2(make_test_function("std::legendre", (funir_t)&legendre),
+		   make_baseline_function("GSL", "gsl::legendre", (funir_t)&gsl::legendre_p),
 		   [](unsigned, Real){ return true; },
 		   "testcase_legendre",
 		   make_argument("l", vorder),
@@ -430,8 +437,8 @@ template<typename Real>
     // Riemann zeta function.
     // Skip the pole at 1.
     auto test_riemann_zeta = 
-    make_testcase2(make_test_function("std::riemann_zeta", riemann_zeta),
-		   make_baseline_function("GSL", "gsl::riemann_zeta", gsl::riemann_zeta),
+    make_testcase2(make_test_function("std::riemann_zeta", (fun_t)&riemann_zeta),
+		   make_baseline_function("GSL", "gsl::riemann_zeta", (fun_t)&gsl::riemann_zeta),
 		   [](Real x){ return (x == 1 ? false : true); },
 		   make_argument("s", fill2(Real{-10}, Real{+30}, 205)));
     std::ofstream file_riemann_zeta(outfile("riemann_zeta"));
@@ -441,8 +448,8 @@ template<typename Real>
     // Hurwitz zeta functions.
     // Skip the pole at 1.
     auto test_hurwitz_zeta = 
-    make_testcase2(make_test_function("std::hurwitz_zeta", hurwitz_zeta),
-		   make_baseline_function("GSL", "gsl::hurwitz_zeta", gsl::hurwitz_zeta),
+    make_testcase2(make_test_function("std::hurwitz_zeta", (fun2_t)&hurwitz_zeta),
+		   make_baseline_function("GSL", "gsl::hurwitz_zeta", (fun2_t)&gsl::hurwitz_zeta),
 		   [](Real s, Real){ return (s == 1 ? false : true); },
 		   make_argument("s", fill2(Real{-10}, Real{+30}, 205)),
 		   make_argument("a", fill2(Real{0}, Real{5}, 26)));
@@ -452,8 +459,8 @@ template<typename Real>
 
     // Spherical Bessel functions.
     auto test_sph_bessel = 
-    make_testcase2(make_test_function("std::sph_bessel", sph_bessel),
-		   make_baseline_function("GSL", "gsl::sph_bessel", gsl::sph_bessel),
+    make_testcase2(make_test_function("std::sph_bessel", (funir_t)&sph_bessel),
+		   make_baseline_function("GSL", "gsl::sph_bessel", (funir_t)&gsl::sph_bessel),
 		   [](unsigned, Real){ return true; },
 		   make_argument("n", sph_order),
 		   make_argument("x", fill2(Real{0}, Real{5}, 21)));
@@ -472,8 +479,8 @@ template<typename Real>
 
     // Spherical Neumann functions.
     auto test_sph_neumann = 
-    make_testcase2(make_test_function("std::sph_neumann", sph_neumann),
-		   make_baseline_function("GSL", "gsl::sph_neumann", gsl::sph_neumann),
+    make_testcase2(make_test_function("std::sph_neumann", (funir_t)&sph_neumann),
+		   make_baseline_function("GSL", "gsl::sph_neumann", (funir_t)&gsl::sph_neumann),
 		   [](unsigned, Real){ return true; },
 		   make_argument("n", sph_order),
 		   make_argument("x", fill2(Real{0}, Real{5}, 21)));
@@ -482,8 +489,8 @@ template<typename Real>
 
     // Spherical harmonic functions.
     auto test_sph_harmonic = 
-    make_testcase2(make_test_function("std::sph_harmonic", sph_harmonic),
-		   make_baseline_function("GSL", "gsl::sph_harmonic", gsl::sph_harmonic),
+    make_testcase2(make_test_function("std::sph_harmonic", (funir_t)&sph_harmonic),
+		   make_baseline_function("GSL", "gsl::sph_harmonic", (funir_t)&gsl::sph_harmonic),
 		   [](unsigned, unsigned, Real, Real){ return true; },
 		   make_argument("l", vorder), make_argument("m", vorder),
 		   make_argument("theta", fill2(Real{0}, static_cast<Real>(M_PI), 21)),
@@ -494,8 +501,8 @@ template<typename Real>
     // Dirichlet eta function.
     // Skip the pole at 1.
     auto test_dirichlet_eta = 
-    make_testcase2(make_test_function("std::dirichlet_eta", dirichlet_eta),
-		   make_baseline_function("GSL", "gsl::dirichlet_eta", gsl::dirichlet_eta),
+    make_testcase2(make_test_function("std::dirichlet_eta", (fun_t)&dirichlet_eta),
+		   make_baseline_function("GSL", "gsl::dirichlet_eta", (fun_t)&gsl::dirichlet_eta),
 		   [](Real x){ return (x == 1 ? false : true); },
 		   make_argument("s", fill2(Real{-10}, Real{+30}, 205)));
     std::ofstream file_dirichlet_eta(outfile("dirichlet_eta"));
@@ -503,8 +510,8 @@ template<typename Real>
 
     // Owens T functions.
     auto test_owens_t = 
-    make_testcase2(make_test_function("std::owens_t", owens_t),
-		   make_baseline_function("GSL", "gsl::owens_t", gsl::owens_t),
+    make_testcase2(make_test_function("std::owens_t", (fun2_t)&owens_t),
+		   make_baseline_function("GSL", "gsl::owens_t", (fun2_t)&gsl::owens_t),
 		   [](Real, Real){ return true; },
 		   make_argument("h", fill2(Real{-5}, Real{+5}, 41)),
 		   make_argument("a", fill2(Real{0}, Real{5}, 21)));
@@ -513,9 +520,9 @@ template<typename Real>
 
     // Clausen C function.
     auto test_clausen_c = 
-    make_testcase2(make_test_function("std::clausen_c", clausen_c),
-		   make_baseline_function("GSL", "gsl::clausen_c", gsl::clausen_c),
-		   [](Real, Real){ return true; },
+    make_testcase2(make_test_function("std::clausen_c", (funir_t)&clausen_c),
+		   make_baseline_function("GSL", "gsl::clausen_c", (funir_t)&gsl::clausen_c),
+		   [](unsigned int, Real){ return true; },
 		   make_argument("m", fill2(2U, 2U, 1)),
 		   make_argument("w", fill2(Real{-10}, Real{+10}, 41)));
     std::ofstream file_clausen_c(outfile("clausen_c"));
