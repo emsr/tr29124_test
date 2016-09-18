@@ -567,13 +567,13 @@ dirichlet_eta(double x)
 
 /// Spherical Bessel functions.
 double
-bessel_jl(unsigned int n, double x)
+sph_bessel(unsigned int n, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_bessel_jl_e(static_cast<int>(n), x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in bessel_jl:");
+      std::ostringstream msg("Error in sph_bessel:");
       msg << " n=" << n << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -605,13 +605,13 @@ legendre_sphPlm(unsigned int l, unsigned int m, double theta)
 
 /// Spherical Neumann functions.
 double
-bessel_yl(unsigned int n, double x)
+sph_neumann(unsigned int n, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_bessel_yl_e(static_cast<int>(n), x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in bessel_yl:");
+      std::ostringstream msg("Error in sph_neumann:");
       msg << " n=" << n << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -1092,13 +1092,13 @@ double_factorial(int n)
 
 /// Regular modified spherical bessel functions.
 double
-bessel_il(unsigned int n, double x)
+sph_bessel_i(unsigned int n, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_bessel_il_scaled_e(n, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in bessel_il:");
+      std::ostringstream msg("Error in sph_bessel_i:");
       msg << " n=" << n << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -1108,13 +1108,13 @@ bessel_il(unsigned int n, double x)
 
 /// Irregular modified spherical bessel functions.
 double
-bessel_kl(unsigned int n, double x)
+sph_bessel_k(unsigned int n, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_bessel_kl_scaled_e(n, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in bessel_kl:");
+      std::ostringstream msg("Error in sph_bessel_k:");
       msg << " n=" << n << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -1221,70 +1221,70 @@ zernike(unsigned int n, int m, double rho, double phi)
 
 /// Cylindrical Hankel functions of the first kind.
 std::complex<double>
-cyl_hankel_1(double nu, double x)
+cyl_hankel_1(double /*nu*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Cylindrical Hankel functions of the second kind.
 std::complex<double>
-cyl_hankel_2(double nu, double x)
+cyl_hankel_2(double /*nu*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Spherical Hankel functions of the first kind.
 std::complex<double>
-sph_hankel_1(unsigned int n, double x)
+sph_hankel_1(unsigned int /*n*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Spherical Hankel functions of the second kind.
 std::complex<double>
-sph_hankel_2(unsigned int n, double x)
+sph_hankel_2(unsigned int /*n*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Heuman lambda functions.
 double
-heuman_lambda(double k, double phi)
+heuman_lambda(double /*k*/, double /*phi*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Jacobi zeta functions.
 double
-jacobi_zeta(double k, double phi)
+jacobi_zeta(double /*k*/, double /*phi*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Inverse error function.
 double
-erf_inv(double p)
+erf_inv(double /*p*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Inverse complementary error function.
 double
-erfc_inv(double p)
+erfc_inv(double /*p*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Spherical harmonic functions.
 std::complex<double>
-sph_harmonic(unsigned int l, int m, double theta, double phi)
+sph_harmonic(unsigned int /*l*/, int /*m*/, double /*theta*/, double /*phi*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Owen's T function.
 double
-owens_t(double h, double a)
+owens_t(double /*h*/, double /*a*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -1309,14 +1309,48 @@ clausen_c(unsigned int m, double w)
 
 /// Struve H function.
 double
-struve_h(double nu, double x)
+struve_h(double /*nu*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Struve L function.
 double
-struve_l(double nu, double x)
+struve_l(double /*nu*/, double /*x*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Fermi-Dirac integrals
+double
+fermi_dirac(double s, double x)
+{
+  int stat;
+  gsl_sf_result result;
+  if (s == -0.5)
+    stat = gsl_sf_fermi_dirac_mhalf_e(x, &result) / std::tgamma(s + 1.0);
+  else if (s == 0.5)
+    stat = gsl_sf_fermi_dirac_half_e(x, &result) / std::tgamma(s + 1.0);
+  else if (s == 1.5)
+    stat = gsl_sf_fermi_dirac_3half_e(x, &result) / std::tgamma(s + 1.0);
+  else if (int(s) == s)
+    stat = gsl_sf_fermi_dirac_int_e(int(s), x, &result);
+  else
+    return std::numeric_limits<double>::quiet_NaN();
+
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in fermi_dirac:");
+      msg << " s=" << s << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+/// Bose-Einstein integrals
+double
+bose_einstein(double /*s*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }

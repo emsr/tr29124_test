@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_airy test_airy.cpp wrap_gsl.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c -lgsl -lgslcblas -ljacobi
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -o test_airy test_airy.cpp wrap_gsl.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_airy
 
 g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_airy test_airy.cpp wrap_gsl.cpp -lgsl -lgslcblas -ljacobi
