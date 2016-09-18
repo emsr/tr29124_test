@@ -169,7 +169,7 @@ hzeta(double s, double q)
 
 /// Spherical Bessel functions.
 double
-bessel_jl(unsigned int n, double x)
+sph_bessel(unsigned int n, double x)
 { return sph_bessel_j(n, x); }
 
 /// Spherical Legendre functions.
@@ -179,7 +179,7 @@ legendre_sphPlm(unsigned int l, unsigned int m, double theta)
 
 /// Spherical Neumann functions.
 double
-bessel_yl(unsigned int n, double x)
+sph_neumann(unsigned int n, double x)
 { return sph_bessel_y(n, x); }
 
 /// Normalized incomplete gamma functions.
@@ -332,12 +332,12 @@ doublefact(unsigned int n)
 
 /// Regular modified spherical bessel functions.
 double
-bessel_il(unsigned int n, double x)
+sph_bessel_i(unsigned int n, double x)
 { return sph_bessel_i(n, x); }
 
 /// Irregular modified spherical bessel functions.
 double
-bessel_kl(unsigned int n, double x)
+sph_bessel_k(unsigned int n, double x)
 { return sph_bessel_k(n, x); }
 
 /// Chebyshev polynomials of the first kind.

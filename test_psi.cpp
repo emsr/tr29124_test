@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_psi test_psi.cpp wrap_gsl.cpp gslextras/Fresnel/fresnel.c -L/usr/local/lib -lgsl -lgslcblas
+$HOME/bin_tr29124/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_psi test_psi.cpp wrap_gsl.cpp gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:/usr/local/lib:$LD_LIBRARY_PATH ./test_psi
 */
 

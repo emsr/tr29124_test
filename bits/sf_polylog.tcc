@@ -86,35 +86,35 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return @f$ zeta(k) @f$
    */
   template<typename _Tp = double> 
-  _Tp
-  evenzeta(unsigned int __k)
-  {
-    // The following constants were calculated with Mathematica 8
-    constexpr _Tp
-    __data[]
+    _Tp
+    evenzeta(unsigned int __k)
     {
-     -0.50000000000000000000000000,
-      1.6449340668482264364724152,
-      1.0823232337111381915160037,
-      1.0173430619844491397145179,
-      1.0040773561979443393786852,
-      1.0009945751278180853371460,
-      1.0002460865533080482986380,
-      1.0000612481350587048292585,
-      1.0000152822594086518717326,
-      1.0000038172932649998398565,
-      1.0000009539620338727961132,
-      1.0000002384505027277329900,
-      1.0000000596081890512594796,
-      1.0000000149015548283650412,
-      1.0000000037253340247884571,
-    };
-    constexpr auto __maxk = 2 * sizeof(__data) / sizeof(_Tp);
-    if (__k < __maxk)
-      return __data[__k / 2];
-    else
-      return std::__detail::__riemann_zeta(static_cast<_Tp>(__k));
-  }
+      // The following constants were calculated with Mathematica 8
+      constexpr _Tp
+      __data[]
+      {
+       -0.50000000000000000000000000,
+	1.6449340668482264364724152,
+	1.0823232337111381915160037,
+	1.0173430619844491397145179,
+	1.0040773561979443393786852,
+	1.0009945751278180853371460,
+	1.0002460865533080482986380,
+	1.0000612481350587048292585,
+	1.0000152822594086518717326,
+	1.0000038172932649998398565,
+	1.0000009539620338727961132,
+	1.0000002384505027277329900,
+	1.0000000596081890512594796,
+	1.0000000149015548283650412,
+	1.0000000037253340247884571,
+      };
+      constexpr auto __maxk = 2 * sizeof(__data) / sizeof(_Tp);
+      if (__k < __maxk)
+	return __data[__k / 2];
+      else
+	return std::__detail::__riemann_zeta(static_cast<_Tp>(__k));
+    }
 
   /**
    * This function treats the cases of positive integer index s.
@@ -202,7 +202,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The use of evenzeta yields a speedup of about 2.5.
    * gcc and Mathematica differ in their implementation of @f$ \log(e^(i \pi)) @f$:
    * gcc: @f$ \log(e^(+- i \pi)) = +- i \pi @f$
-   * whereas Mathematica doesn't preserve the sign in this case: @f$ \log(e^(+- i * \pi)) = +i \pi @f$
+   * whereas Mathematica doesn't preserve the sign in this case:
+   * @f$ \log(e^(+- i * \pi)) = +i \pi @f$
    *
    * @param __s the index.
    * @param __w the argument
@@ -229,7 +230,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       // HarmonicN now contains H_{s-1}
       // fac should be 1/(n-1)!
-      auto __imagtemp = __fac * __wk * (__harmonicN - std::log(std::complex<_Tp>(-__w, _Tp{0})));
+      auto __imagtemp = __fac * __wk
+		    * (__harmonicN - std::log(std::complex<_Tp>(-__w, _Tp{0})));
       __res += real(__imagtemp);
       __wk *= __w;
       __fac /= __s;
@@ -1309,45 +1311,61 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the Fermi-Dirac integral of real order s and real argument x.
+   * Return the Fermi-Dirac integral of integer or real order s
+   * and real argument x.
    * @see https://en.wikipedia.org/wiki/Clausen_function
-   * @see http://dlmf.nist.gov/25.12#iii
+   * @see http://dlmf.nist.gov/25.12.16
    *
-   * @param __s  The order s >= 0.
+   * @f[
+   *    F_s(x) = \frac{1}{\Gamma(s+1)}\int_0^\infty \frac{t^s}{e^{t-s} + 1}dt
+   *           = -Li_{s+1}(-e^x)
+   * @f]
+   *
+   * @param __s  The order s > -1.
    * @param __x  The real argument.
    * @return  The real Fermi-Dirac cosine sum F_s(x),
    */
-  template<typename _Tp>
+  template<typename _Sp, typename _Tp>
     _Tp
-    __fermi_dirac(_Tp __s, _Tp __x)
+    __fermi_dirac(_Sp __s, _Tp __x)
     {
       constexpr auto _S_i = std::complex<_Tp>{0, 1};
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      auto __ple = __polylog_exp(__s + _Tp{1}, __x + _S_i * _S_pi);
       if (__isnan(__s) || __isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__s <= _Sp{-1})
+	std::__throw_domain_error(__N("__fermi_dirac: "
+				      "Order must be greater than -1"));
       else
-	return -std::real(__ple);
+	return -std::real(__polylog_exp(__s + _Sp{1}, __x + _S_i * _S_pi));
     }
 
   /**
-   * Return the Bose-Einstein integral of real order s and real argument x.
+   * Return the Bose-Einstein integral of integer or real order s
+   * and real argument x.
    * @see https://en.wikipedia.org/wiki/Clausen_function
-   * @see http://dlmf.nist.gov/25.12#iii
+   * @see http://dlmf.nist.gov/25.12.16
+   *
+   * @f[
+   *    G_s(x) = \frac{1}{\Gamma(s+1)}\int_0^\infty \frac{t^s}{e^{t-s} - 1}dt
+   *           = Li_{s+1}(e^x)
+   * @f]
    *
    * @param __s  The order s >= 0.
    * @param __x  The real argument.
    * @return  The real Fermi-Dirac cosine sum G_s(x),
    */
-  template<typename _Tp>
+  template<typename _Sp, typename _Tp>
     _Tp
-    __bose_einstein(_Tp __s, _Tp __x)
+    __bose_einstein(_Sp __s, _Tp __x)
     {
-      auto __ple = __polylog_exp(__s + _Tp{1}, __x);
       if (__isnan(__s) || __isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__s <= _Sp{0} && __x < _Tp{0})
+	std::__throw_domain_error(__N("__bose_einstein: "
+				      "Order must be greater than -1"));
       else
-	return __ple;
+	return std::real(__polylog_exp(__s + _Sp{1}, __x));
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION

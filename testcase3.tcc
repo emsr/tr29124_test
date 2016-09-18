@@ -648,19 +648,19 @@ template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_BASELINEFUN Base
 		  ++num_divergences;
 		  last_divergence = std::make_tuple(f1, f2, x);
 		  if (num_divergences <= 3)
-		    output << "//  Divergence at"
+		    output << "\n// Divergence at"
 			   << " " << arg << "=" << x
 			   << " f=" << f1
-			   << " f_" << baseline << "=" << f2 << '\n';
+			   << " f_" << baseline << "=" << f2;
 		  continue;
 		}
 
 	      if (std::isnan(std::real(f1)) || std::isnan(std::real(f2)))
 		{
-		  output << "//  Failure at"
+		  output << "\n// Failure at"
 			 << " " << arg << "=" << x
 			 << " f=" << f1
-			 << " f_" << baseline << "=" << f2 << '\n';
+			 << " f_" << baseline << "=" << f2;
 		  break;
 		}
 
@@ -683,11 +683,11 @@ template<CONCEPT_MASK MaskFun, CONCEPT_SPECFUN TestFun, CONCEPT_BASELINEFUN Base
       if (num_divergences > 0)
 	{
 	  if (num_divergences > 4)
-	    output << "//  ...\n";
-	  output << "//  Divergence at"
+	    output << "\n// ...";
+	  output << "\n// Divergence at"
 		 << " " << arg << "=" << std::get<2>(last_divergence)
 		 << " f=" << std::get<0>(last_divergence)
-		 << " f_" << baseline << "=" << std::get<1>(last_divergence) << '\n';
+		 << " f_" << baseline << "=" << std::get<1>(last_divergence);
 	  num_divergences = 0;
 	}
 
