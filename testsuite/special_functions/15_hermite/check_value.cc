@@ -1868,10 +1868,10 @@ data014[9] =
   { 2.2605490449873036e+294, 128, 100.00000000000000 },
 };
 const double toler014 = 0.050000000000000003;
-//  Divergence at n=200 x=50.000000000000000 f=inf f_GSL=inf
-//  Divergence at n=200 x=100.00000000000000 f=inf f_GSL=inf
-//  Divergence at n=200 x=100.00000000000000 f=inf f_GSL=inf
 
+// Divergence at n=200 x=50.000000000000000 f=inf f_GSL=inf
+// Divergence at n=200 x=100.00000000000000 f=inf f_GSL=inf
+// Divergence at n=200 x=100.00000000000000 f=inf f_GSL=inf
 // Test data for n=200.
 // max(|f - f_GSL|): 5.7956400402179068e+302
 // max(|f - f_GSL| / |f_GSL|): 0.058685552817367669
@@ -1890,17 +1890,17 @@ data015[7] =
   { 9.8757526545830183e+303, 200, 20.000000000000000 },
 };
 const double toler015 = 0.050000000000000003;
-//  Divergence at n=1250 x=4.0000000000000000 f=-inf f_GSL=-inf
-//  Divergence at n=1250 x=6.0000000000000000 f=inf f_GSL=inf
-//  Divergence at n=1250 x=8.0000000000000000 f=inf f_GSL=inf
-//  ...
-//  Divergence at n=1250 x=100.00000000000000 f=inf f_GSL=inf
-//  Divergence at n=5000 x=4.0000000000000000 f=-inf f_GSL=-inf
-//  Divergence at n=5000 x=6.0000000000000000 f=-inf f_GSL=-inf
-//  Divergence at n=5000 x=8.0000000000000000 f=inf f_GSL=inf
-//  ...
-//  Divergence at n=5000 x=100.00000000000000 f=inf f_GSL=inf
 
+// Divergence at n=1250 x=4.0000000000000000 f=-inf f_GSL=-inf
+// Divergence at n=1250 x=6.0000000000000000 f=inf f_GSL=inf
+// Divergence at n=1250 x=8.0000000000000000 f=inf f_GSL=inf
+// ...
+// Divergence at n=1250 x=100.00000000000000 f=inf f_GSL=inf
+// Divergence at n=5000 x=4.0000000000000000 f=-inf f_GSL=-inf
+// Divergence at n=5000 x=6.0000000000000000 f=-inf f_GSL=-inf
+// Divergence at n=5000 x=8.0000000000000000 f=inf f_GSL=inf
+// ...
+// Divergence at n=5000 x=100.00000000000000 f=inf f_GSL=inf
 template<typename Ret, unsigned int Num>
   void
   test(const testcase_hermite<Ret> (&data)[Num], Ret toler)
