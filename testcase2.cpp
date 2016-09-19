@@ -182,7 +182,7 @@ template<typename Real>
 
     std::vector<Real> vab{0, Real{0.5L}, 1, 2, 5, 10, 20};
 
-    const std::string path = ".";
+    const std::string path = "check";
     const std::string prefix = "/check_";
     auto outfile = [path, prefix](const char * fun)
 		   -> std::string

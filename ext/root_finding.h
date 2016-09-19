@@ -22,12 +22,12 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file ext/roots.h
+/** @file ext/root_finding.h
  *  This file is a GNU extension to the Standard C++ Library.
  */
 
-#ifndef _EXT_ROOTS_H
-#define _EXT_ROOTS_H 1
+#ifndef _EXT_ROOT_FINDING_H
+#define _EXT_ROOT_FINDING_H 1
 
 #pragma GCC system_header
 
@@ -105,6 +105,6 @@ namespace __gnu_cxx
 
 } // namespace __gnu_cxx
 
-#include <ext/roots.tcc>
+#include <ext/root_finding.tcc>
 
-#endif // _EXT_ROOTS_H
+#endif // _EXT_ROOT_FINDING_H
