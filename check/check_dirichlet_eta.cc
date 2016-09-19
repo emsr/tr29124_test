@@ -37,8 +37,8 @@
 #  include <testsuite_hooks.h>
 #endif
 #include <specfun_testcase.h>
-//  Failure at s=-10.000000000000000 f=nan f_GSL=0.0000000000000000
-//  dirichlet_eta
+
+// Failure at s=-10.000000000000000 f=nan f_GSL=0.0000000000000000//  dirichlet_eta
 
 
 // Test data.
