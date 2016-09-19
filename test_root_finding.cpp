@@ -6,7 +6,7 @@
 
 */
 
-#include <ext/roots.h>
+#include <ext/root_finding.h>
 #include <ext/polynomial.h>
 #include <iostream>
 #include <iomanip>
