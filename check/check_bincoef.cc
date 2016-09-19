@@ -37,8 +37,8 @@
 #endif
 #include <specfun_testcase.h>
 
-//  Failure at n=0 k=1 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=0 k=1 f=0.0000000000000000 f_GSL=nan
 // Test data for n=0.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
@@ -51,8 +51,8 @@ data001[1] =
   { 1.0000000000000000, 0, 0 },
 };
 const double toler001 = 2.5000000000000020e-13;
-//  Failure at n=1 k=2 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=1 k=2 f=0.0000000000000000 f_GSL=nan
 // Test data for n=1.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
@@ -66,8 +66,8 @@ data002[2] =
   { 1.0000000000000000, 1, 1 },
 };
 const double toler002 = 2.5000000000000020e-13;
-//  Failure at n=2 k=3 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=2 k=3 f=0.0000000000000000 f_GSL=nan
 // Test data for n=2.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
@@ -82,8 +82,8 @@ data003[3] =
   { 1.0000000000000000, 2, 2 },
 };
 const double toler003 = 2.5000000000000020e-13;
-//  Failure at n=3 k=4 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=3 k=4 f=0.0000000000000000 f_GSL=nan
 // Test data for n=3.
 // max(|f - f_GSL|): 4.4408920985006262e-16
 // max(|f - f_GSL| / |f_GSL|): 1.4802973661668753e-16
@@ -99,8 +99,8 @@ data004[4] =
   { 1.0000000000000000, 3, 3 },
 };
 const double toler004 = 2.5000000000000020e-13;
-//  Failure at n=4 k=5 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=4 k=5 f=0.0000000000000000 f_GSL=nan
 // Test data for n=4.
 // max(|f - f_GSL|): 8.8817841970012523e-16
 // max(|f - f_GSL| / |f_GSL|): 2.2204460492503131e-16
@@ -117,8 +117,8 @@ data005[5] =
   { 1.0000000000000000, 4, 4 },
 };
 const double toler005 = 2.5000000000000020e-13;
-//  Failure at n=5 k=6 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=5 k=6 f=0.0000000000000000 f_GSL=nan
 // Test data for n=5.
 // max(|f - f_GSL|): 1.7763568394002505e-15
 // max(|f - f_GSL| / |f_GSL|): 3.5527136788005011e-16
@@ -136,8 +136,8 @@ data006[6] =
   { 1.0000000000000000, 5, 5 },
 };
 const double toler006 = 2.5000000000000020e-13;
-//  Failure at n=6 k=7 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=6 k=7 f=0.0000000000000000 f_GSL=nan
 // Test data for n=6.
 // max(|f - f_GSL|): 1.4210854715202004e-14
 // max(|f - f_GSL| / |f_GSL|): 7.1054273576010023e-16
@@ -156,8 +156,8 @@ data007[7] =
   { 1.0000000000000000, 6, 6 },
 };
 const double toler007 = 2.5000000000000020e-13;
-//  Failure at n=7 k=8 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=7 k=8 f=0.0000000000000000 f_GSL=nan
 // Test data for n=7.
 // max(|f - f_GSL|): 3.5527136788005009e-14
 // max(|f - f_GSL| / |f_GSL|): 1.6494742080145183e-15
@@ -177,8 +177,8 @@ data008[8] =
   { 1.0000000000000000, 7, 7 },
 };
 const double toler008 = 2.5000000000000020e-13;
-//  Failure at n=8 k=9 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=8 k=9 f=0.0000000000000000 f_GSL=nan
 // Test data for n=8.
 // max(|f - f_GSL|): 8.5265128291212022e-14
 // max(|f - f_GSL| / |f_GSL|): 1.9984014443252818e-15
@@ -199,8 +199,8 @@ data009[9] =
   { 1.0000000000000000, 8, 8 },
 };
 const double toler009 = 2.5000000000000020e-13;
-//  Failure at n=9 k=10 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=9 k=10 f=0.0000000000000000 f_GSL=nan
 // Test data for n=9.
 // max(|f - f_GSL|): 3.2684965844964609e-13
 // max(|f - f_GSL| / |f_GSL|): 2.5940449083305243e-15
@@ -222,8 +222,8 @@ data010[10] =
   { 1.0000000000000000, 9, 9 },
 };
 const double toler010 = 2.5000000000000020e-13;
-//  Failure at n=10 k=11 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=10 k=11 f=0.0000000000000000 f_GSL=nan
 // Test data for n=10.
 // max(|f - f_GSL|): 9.0949470177292824e-13
 // max(|f - f_GSL| / |f_GSL|): 4.2632564145606010e-15
@@ -246,8 +246,8 @@ data011[11] =
   { 1.0000000000000000, 10, 10 },
 };
 const double toler011 = 2.5000000000000020e-13;
-//  Failure at n=11 k=12 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=11 k=12 f=0.0000000000000000 f_GSL=nan
 // Test data for n=11.
 // max(|f - f_GSL|): 7.9580786405131221e-13
 // max(|f - f_GSL| / |f_GSL|): 2.4115389819736735e-15
@@ -271,8 +271,8 @@ data012[12] =
   { 1.0000000000000000, 11, 11 },
 };
 const double toler012 = 2.5000000000000020e-13;
-//  Failure at n=12 k=13 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=12 k=13 f=0.0000000000000000 f_GSL=nan
 // Test data for n=12.
 // max(|f - f_GSL|): 3.6379788070917130e-12
 // max(|f - f_GSL| / |f_GSL|): 4.5934075847117592e-15
@@ -297,8 +297,8 @@ data013[13] =
   { 1.0000000000000000, 12, 12 },
 };
 const double toler013 = 2.5000000000000020e-13;
-//  Failure at n=13 k=14 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=13 k=14 f=0.0000000000000000 f_GSL=nan
 // Test data for n=13.
 // max(|f - f_GSL|): 2.9558577807620168e-12
 // max(|f - f_GSL| / |f_GSL|): 3.9626421802005589e-15
@@ -324,8 +324,8 @@ data014[14] =
   { 1.0000000000000000, 13, 13 },
 };
 const double toler014 = 2.5000000000000020e-13;
-//  Failure at n=14 k=15 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=14 k=15 f=0.0000000000000000 f_GSL=nan
 // Test data for n=14.
 // max(|f - f_GSL|): 7.7307049650698900e-12
 // max(|f - f_GSL| / |f_GSL|): 3.9040809657148365e-15
@@ -352,8 +352,8 @@ data015[15] =
   { 1.0000000000000000, 14, 14 },
 };
 const double toler015 = 2.5000000000000020e-13;
-//  Failure at n=15 k=16 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=15 k=16 f=0.0000000000000000 f_GSL=nan
 // Test data for n=15.
 // max(|f - f_GSL|): 1.4551915228366852e-11
 // max(|f - f_GSL| / |f_GSL|): 2.8734035907661195e-15
@@ -381,8 +381,8 @@ data016[16] =
   { 1.0000000000000000, 15, 15 },
 };
 const double toler016 = 2.5000000000000020e-13;
-//  Failure at n=16 k=17 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=16 k=17 f=0.0000000000000000 f_GSL=nan
 // Test data for n=16.
 // max(|f - f_GSL|): 5.2750692702829838e-11
 // max(|f - f_GSL| / |f_GSL|): 6.0396132539608514e-15
@@ -411,8 +411,8 @@ data017[17] =
   { 1.0000000000000000, 16, 16 },
 };
 const double toler017 = 5.0000000000000039e-13;
-//  Failure at n=17 k=18 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=17 k=18 f=0.0000000000000000 f_GSL=nan
 // Test data for n=17.
 // max(|f - f_GSL|): 4.3655745685100555e-11
 // max(|f - f_GSL| / |f_GSL|): 4.0124766254688010e-15
@@ -442,8 +442,8 @@ data018[18] =
   { 1.0000000000000000, 17, 17 },
 };
 const double toler018 = 2.5000000000000020e-13;
-//  Failure at n=18 k=19 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=18 k=19 f=0.0000000000000000 f_GSL=nan
 // Test data for n=18.
 // max(|f - f_GSL|): 1.7462298274040222e-10
 // max(|f - f_GSL| / |f_GSL|): 5.5728842020400014e-15
@@ -474,8 +474,8 @@ data019[19] =
   { 1.0000000000000000, 18, 18 },
 };
 const double toler019 = 5.0000000000000039e-13;
-//  Failure at n=19 k=20 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=19 k=20 f=0.0000000000000000 f_GSL=nan
 // Test data for n=19.
 // max(|f - f_GSL|): 2.7648638933897018e-10
 // max(|f - f_GSL| / |f_GSL|): 4.0225329578634599e-15
@@ -507,8 +507,8 @@ data020[20] =
   { 1.0000000000000000, 19, 19 },
 };
 const double toler020 = 2.5000000000000020e-13;
-//  Failure at n=20 k=21 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=20 k=21 f=0.0000000000000000 f_GSL=nan
 // Test data for n=20.
 // max(|f - f_GSL|): 8.7311491370201111e-10
 // max(|f - f_GSL| / |f_GSL|): 5.8192643457091384e-15
@@ -541,8 +541,8 @@ data021[21] =
   { 1.0000000000000000, 20, 20 },
 };
 const double toler021 = 5.0000000000000039e-13;
-//  Failure at n=21 k=22 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=21 k=22 f=0.0000000000000000 f_GSL=nan
 // Test data for n=21.
 // max(|f - f_GSL|): 1.9790604710578918e-09
 // max(|f - f_GSL| / |f_GSL|): 9.7613466444153284e-15
@@ -576,8 +576,8 @@ data022[22] =
   { 1.0000000000000000, 21, 21 },
 };
 const double toler022 = 5.0000000000000039e-13;
-//  Failure at n=22 k=23 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=22 k=23 f=0.0000000000000000 f_GSL=nan
 // Test data for n=22.
 // max(|f - f_GSL|): 3.0267983675003052e-09
 // max(|f - f_GSL| / |f_GSL|): 6.1890123246642643e-15
@@ -612,8 +612,8 @@ data023[23] =
   { 1.0000000000000000, 22, 22 },
 };
 const double toler023 = 5.0000000000000039e-13;
-//  Failure at n=23 k=24 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=23 k=24 f=0.0000000000000000 f_GSL=nan
 // Test data for n=23.
 // max(|f - f_GSL|): 7.4505805969238281e-09
 // max(|f - f_GSL| / |f_GSL|): 6.5123695634026606e-15
@@ -649,8 +649,8 @@ data024[24] =
   { 1.0000000000000000, 23, 23 },
 };
 const double toler024 = 5.0000000000000039e-13;
-//  Failure at n=24 k=25 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=24 k=25 f=0.0000000000000000 f_GSL=nan
 // Test data for n=24.
 // max(|f - f_GSL|): 3.1664967536926270e-08
 // max(|f - f_GSL| / |f_GSL|): 1.3817669011619340e-14
@@ -687,8 +687,8 @@ data025[25] =
   { 1.0000000000000000, 24, 24 },
 };
 const double toler025 = 1.0000000000000008e-12;
-//  Failure at n=25 k=26 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=25 k=26 f=0.0000000000000000 f_GSL=nan
 // Test data for n=25.
 // max(|f - f_GSL|): 4.3772161006927490e-08
 // max(|f - f_GSL| / |f_GSL|): 1.2647660696529783e-14
@@ -726,8 +726,8 @@ data026[26] =
   { 1.0000000000000000, 25, 25 },
 };
 const double toler026 = 1.0000000000000008e-12;
-//  Failure at n=26 k=27 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=26 k=27 f=0.0000000000000000 f_GSL=nan
 // Test data for n=26.
 // max(|f - f_GSL|): 7.0780515670776367e-08
 // max(|f - f_GSL| / |f_GSL|): 9.1173173887637241e-15
@@ -766,8 +766,8 @@ data027[27] =
   { 1.0000000000000000, 26, 26 },
 };
 const double toler027 = 5.0000000000000039e-13;
-//  Failure at n=27 k=28 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=27 k=28 f=0.0000000000000000 f_GSL=nan
 // Test data for n=27.
 // max(|f - f_GSL|): 1.4901161193847656e-07
 // max(|f - f_GSL| / |f_GSL|): 1.5455281613431384e-14
@@ -807,8 +807,8 @@ data028[28] =
   { 1.0000000000000000, 27, 27 },
 };
 const double toler028 = 1.0000000000000008e-12;
-//  Failure at n=28 k=29 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=28 k=29 f=0.0000000000000000 f_GSL=nan
 // Test data for n=28.
 // max(|f - f_GSL|): 4.3958425521850586e-07
 // max(|f - f_GSL| / |f_GSL|): 1.2815145769958950e-14
@@ -849,8 +849,8 @@ data029[29] =
   { 1.0000000000000000, 28, 28 },
 };
 const double toler029 = 1.0000000000000008e-12;
-//  Failure at n=29 k=30 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=29 k=30 f=0.0000000000000000 f_GSL=nan
 // Test data for n=29.
 // max(|f - f_GSL|): 6.7055225372314453e-07
 // max(|f - f_GSL| / |f_GSL|): 1.4336862293957488e-14
@@ -892,8 +892,8 @@ data030[30] =
   { 1.0000000000000000, 29, 29 },
 };
 const double toler030 = 1.0000000000000008e-12;
-//  Failure at n=30 k=31 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=30 k=31 f=0.0000000000000000 f_GSL=nan
 // Test data for n=30.
 // max(|f - f_GSL|): 1.6093254089355469e-06
 // max(|f - f_GSL| / |f_GSL|): 1.6128970080702177e-14
@@ -936,8 +936,8 @@ data031[31] =
   { 1.0000000000000000, 30, 30 },
 };
 const double toler031 = 1.0000000000000008e-12;
-//  Failure at n=31 k=32 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=31 k=32 f=0.0000000000000000 f_GSL=nan
 // Test data for n=31.
 // max(|f - f_GSL|): 1.4901161193847656e-06
 // max(|f - f_GSL| / |f_GSL|): 1.6126737833535014e-14
@@ -981,8 +981,8 @@ data032[32] =
   { 1.0000000000000000, 31, 31 },
 };
 const double toler032 = 1.0000000000000008e-12;
-//  Failure at n=32 k=33 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=32 k=33 f=0.0000000000000000 f_GSL=nan
 // Test data for n=32.
 // max(|f - f_GSL|): 6.1988830566406250e-06
 // max(|f - f_GSL| / |f_GSL|): 1.8107379395176750e-14
@@ -1027,8 +1027,8 @@ data033[33] =
   { 1.0000000000000000, 32, 32 },
 };
 const double toler033 = 1.0000000000000008e-12;
-//  Failure at n=33 k=34 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=33 k=34 f=0.0000000000000000 f_GSL=nan
 // Test data for n=33.
 // max(|f - f_GSL|): 1.5139579772949219e-05
 // max(|f - f_GSL| / |f_GSL|): 2.0885650111736279e-14
@@ -1074,8 +1074,8 @@ data034[34] =
   { 1.0000000000000000, 33, 33 },
 };
 const double toler034 = 2.5000000000000015e-12;
-//  Failure at n=34 k=35 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=34 k=35 f=0.0000000000000000 f_GSL=nan
 // Test data for n=34.
 // max(|f - f_GSL|): 3.5762786865234375e-05
 // max(|f - f_GSL| / |f_GSL|): 2.4033063121297500e-14
@@ -1122,8 +1122,8 @@ data035[35] =
   { 1.0000000000000000, 34, 34 },
 };
 const double toler035 = 2.5000000000000015e-12;
-//  Failure at n=35 k=36 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=35 k=36 f=0.0000000000000000 f_GSL=nan
 // Test data for n=35.
 // max(|f - f_GSL|): 1.7642974853515625e-05
 // max(|f - f_GSL| / |f_GSL|): 1.3948133031391544e-14
@@ -1171,8 +1171,8 @@ data036[36] =
   { 1.0000000000000000, 35, 35 },
 };
 const double toler036 = 1.0000000000000008e-12;
-//  Failure at n=36 k=37 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=36 k=37 f=0.0000000000000000 f_GSL=nan
 // Test data for n=36.
 // max(|f - f_GSL|): 7.4386596679687500e-05
 // max(|f - f_GSL| / |f_GSL|): 1.4224746068784798e-14
@@ -1221,8 +1221,8 @@ data037[37] =
   { 1.0000000000000000, 36, 36 },
 };
 const double toler037 = 1.0000000000000008e-12;
-//  Failure at n=37 k=38 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=37 k=38 f=0.0000000000000000 f_GSL=nan
 // Test data for n=37.
 // max(|f - f_GSL|): 0.00011253356933593750
 // max(|f - f_GSL| / |f_GSL|): 1.4982666901793411e-14
@@ -1272,8 +1272,8 @@ data038[38] =
   { 1.0000000000000000, 37, 37 },
 };
 const double toler038 = 1.0000000000000008e-12;
-//  Failure at n=38 k=39 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=38 k=39 f=0.0000000000000000 f_GSL=nan
 // Test data for n=38.
 // max(|f - f_GSL|): 0.00074005126953125000
 // max(|f - f_GSL| / |f_GSL|): 3.5717193542975005e-14
@@ -1324,8 +1324,8 @@ data039[39] =
   { 1.0000000000000000, 38, 38 },
 };
 const double toler039 = 2.5000000000000015e-12;
-//  Failure at n=39 k=40 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=39 k=40 f=0.0000000000000000 f_GSL=nan
 // Test data for n=39.
 // max(|f - f_GSL|): 0.00053405761718750000
 // max(|f - f_GSL| / |f_GSL|): 1.8583425396802620e-14
@@ -1377,8 +1377,8 @@ data040[40] =
   { 1.0000000000000000, 39, 39 },
 };
 const double toler040 = 1.0000000000000008e-12;
-//  Failure at n=40 k=41 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=40 k=41 f=0.0000000000000000 f_GSL=nan
 // Test data for n=40.
 // max(|f - f_GSL|): 0.0013427734375000000
 // max(|f - f_GSL| / |f_GSL|): 2.6818433513817114e-14
@@ -1431,8 +1431,8 @@ data041[41] =
   { 1.0000000000000000, 40, 40 },
 };
 const double toler041 = 2.5000000000000015e-12;
-//  Failure at n=41 k=42 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=41 k=42 f=0.0000000000000000 f_GSL=nan
 // Test data for n=41.
 // max(|f - f_GSL|): 0.0018310546875000000
 // max(|f - f_GSL| / |f_GSL|): 2.1329613080978616e-14
@@ -1486,8 +1486,8 @@ data042[42] =
   { 1.0000000000000000, 41, 41 },
 };
 const double toler042 = 2.5000000000000015e-12;
-//  Failure at n=42 k=43 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=42 k=43 f=0.0000000000000000 f_GSL=nan
 // Test data for n=42.
 // max(|f - f_GSL|): 0.0083618164062500000
 // max(|f - f_GSL| / |f_GSL|): 1.5773665103864754e-14
@@ -1542,8 +1542,8 @@ data043[43] =
   { 1.0000000000000000, 42, 42 },
 };
 const double toler043 = 1.0000000000000008e-12;
-//  Failure at n=43 k=44 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=43 k=44 f=0.0000000000000000 f_GSL=nan
 // Test data for n=43.
 // max(|f - f_GSL|): 0.020751953125000000
 // max(|f - f_GSL| / |f_GSL|): 2.8102864118828807e-14
@@ -1599,8 +1599,8 @@ data044[44] =
   { 1.0000000000000000, 43, 43 },
 };
 const double toler044 = 2.5000000000000015e-12;
-//  Failure at n=44 k=45 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=44 k=45 f=0.0000000000000000 f_GSL=nan
 // Test data for n=44.
 // max(|f - f_GSL|): 0.042480468750000000
 // max(|f - f_GSL| / |f_GSL|): 2.4372395430488700e-14
@@ -1657,8 +1657,8 @@ data045[45] =
   { 1.0000000000000000, 44, 44 },
 };
 const double toler045 = 2.5000000000000015e-12;
-//  Failure at n=45 k=46 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=45 k=46 f=0.0000000000000000 f_GSL=nan
 // Test data for n=45.
 // max(|f - f_GSL|): 0.021972656250000000
 // max(|f - f_GSL| / |f_GSL|): 1.8060174714147477e-14
@@ -1716,8 +1716,8 @@ data046[46] =
   { 1.0000000000000000, 45, 45 },
 };
 const double toler046 = 1.0000000000000008e-12;
-//  Failure at n=46 k=47 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=46 k=47 f=0.0000000000000000 f_GSL=nan
 // Test data for n=46.
 // max(|f - f_GSL|): 0.20800781250000000
 // max(|f - f_GSL| / |f_GSL|): 3.3606609695354609e-14
@@ -1776,8 +1776,8 @@ data047[47] =
   { 1.0000000000000000, 46, 46 },
 };
 const double toler047 = 2.5000000000000015e-12;
-//  Failure at n=47 k=48 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=47 k=48 f=0.0000000000000000 f_GSL=nan
 // Test data for n=47.
 // max(|f - f_GSL|): 0.41601562500000000
 // max(|f - f_GSL| / |f_GSL|): 3.2654729983868437e-14
@@ -1837,8 +1837,8 @@ data048[48] =
   { 1.0000000000000000, 47, 47 },
 };
 const double toler048 = 2.5000000000000015e-12;
-//  Failure at n=48 k=49 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=48 k=49 f=0.0000000000000000 f_GSL=nan
 // Test data for n=48.
 // max(|f - f_GSL|): 0.53515625000000000
 // max(|f - f_GSL| / |f_GSL|): 2.7132689190754174e-14
@@ -1899,8 +1899,8 @@ data049[49] =
   { 1.0000000000000000, 48, 48 },
 };
 const double toler049 = 2.5000000000000015e-12;
-//  Failure at n=49 k=50 f=0.0000000000000000 f_GSL=nan
 
+// Failure at n=49 k=50 f=0.0000000000000000 f_GSL=nan
 // Test data for n=49.
 // max(|f - f_GSL|): 1.5000000000000000
 // max(|f - f_GSL| / |f_GSL|): 3.5575473028532909e-14
