@@ -186,7 +186,7 @@ template<typename Real>
 
     unsigned int test = 1;
 
-    const std::string path = ".";
+    const std::string path = "check";
     const std::string prefix = "/check_";
 
     std::string nsname = "std";

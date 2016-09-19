@@ -20,7 +20,7 @@
 
 #include <gsl/gsl_sf.h>
 
-#include "bits/float128.h"
+#include <bits/float128.h>
 #include "test_func.tcc"
 #include "wrap_gsl.h"
 #include "wrap_burkhardt.h"
