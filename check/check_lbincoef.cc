@@ -37,22 +37,22 @@
 #endif
 #include <specfun_testcase.h>
 
-//  Divergence at n=0 k=1 f=-inf f_GSL=-inf
-//  Divergence at n=0 k=2 f=-inf f_GSL=-inf
-//  Divergence at n=0 k=3 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=0 k=200 f=-inf f_GSL=-inf
-//  Divergence at n=1 k=2 f=-inf f_GSL=-inf
-//  Divergence at n=1 k=3 f=-inf f_GSL=-inf
-//  Divergence at n=1 k=4 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=1 k=200 f=-inf f_GSL=-inf
-//  Divergence at n=2 k=3 f=-inf f_GSL=-inf
-//  Divergence at n=2 k=4 f=-inf f_GSL=-inf
-//  Divergence at n=2 k=5 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=2 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=0 k=1 f=-inf f_GSL=-inf
+// Divergence at n=0 k=2 f=-inf f_GSL=-inf
+// Divergence at n=0 k=3 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=0 k=200 f=-inf f_GSL=-inf
+// Divergence at n=1 k=2 f=-inf f_GSL=-inf
+// Divergence at n=1 k=3 f=-inf f_GSL=-inf
+// Divergence at n=1 k=4 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=1 k=200 f=-inf f_GSL=-inf
+// Divergence at n=2 k=3 f=-inf f_GSL=-inf
+// Divergence at n=2 k=4 f=-inf f_GSL=-inf
+// Divergence at n=2 k=5 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=2 k=200 f=-inf f_GSL=-inf
 // Test data for n=2.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
@@ -67,12 +67,12 @@ data001[3] =
   { 0.0000000000000000, 2, 2 },
 };
 const double toler001 = 2.5000000000000020e-13;
-//  Divergence at n=3 k=4 f=-inf f_GSL=-inf
-//  Divergence at n=3 k=5 f=-inf f_GSL=-inf
-//  Divergence at n=3 k=6 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=3 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=3 k=4 f=-inf f_GSL=-inf
+// Divergence at n=3 k=5 f=-inf f_GSL=-inf
+// Divergence at n=3 k=6 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=3 k=200 f=-inf f_GSL=-inf
 // Test data for n=3.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
@@ -88,12 +88,12 @@ data002[4] =
   { 0.0000000000000000, 3, 3 },
 };
 const double toler002 = 2.5000000000000020e-13;
-//  Divergence at n=4 k=5 f=-inf f_GSL=-inf
-//  Divergence at n=4 k=6 f=-inf f_GSL=-inf
-//  Divergence at n=4 k=7 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=4 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=4 k=5 f=-inf f_GSL=-inf
+// Divergence at n=4 k=6 f=-inf f_GSL=-inf
+// Divergence at n=4 k=7 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=4 k=200 f=-inf f_GSL=-inf
 // Test data for n=4.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
@@ -110,12 +110,12 @@ data003[5] =
   { 0.0000000000000000, 4, 4 },
 };
 const double toler003 = 2.5000000000000020e-13;
-//  Divergence at n=5 k=6 f=-inf f_GSL=-inf
-//  Divergence at n=5 k=7 f=-inf f_GSL=-inf
-//  Divergence at n=5 k=8 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=5 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=5 k=6 f=-inf f_GSL=-inf
+// Divergence at n=5 k=7 f=-inf f_GSL=-inf
+// Divergence at n=5 k=8 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=5 k=200 f=-inf f_GSL=-inf
 // Test data for n=5.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
@@ -133,12 +133,12 @@ data004[6] =
   { 0.0000000000000000, 5, 5 },
 };
 const double toler004 = 2.5000000000000020e-13;
-//  Divergence at n=6 k=7 f=-inf f_GSL=-inf
-//  Divergence at n=6 k=8 f=-inf f_GSL=-inf
-//  Divergence at n=6 k=9 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=6 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=6 k=7 f=-inf f_GSL=-inf
+// Divergence at n=6 k=8 f=-inf f_GSL=-inf
+// Divergence at n=6 k=9 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=6 k=200 f=-inf f_GSL=-inf
 // Test data for n=6.
 // max(|f - f_GSL|): 0.0000000000000000
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
@@ -157,12 +157,12 @@ data005[7] =
   { 0.0000000000000000, 6, 6 },
 };
 const double toler005 = 2.5000000000000020e-13;
-//  Divergence at n=7 k=8 f=-inf f_GSL=-inf
-//  Divergence at n=7 k=9 f=-inf f_GSL=-inf
-//  Divergence at n=7 k=10 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=7 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=7 k=8 f=-inf f_GSL=-inf
+// Divergence at n=7 k=9 f=-inf f_GSL=-inf
+// Divergence at n=7 k=10 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=7 k=200 f=-inf f_GSL=-inf
 // Test data for n=7.
 // max(|f - f_GSL|): 1.7763568394002505e-15
 // max(|f - f_GSL| / |f_GSL|): 9.1286683522495804e-16
@@ -182,12 +182,12 @@ data006[8] =
   { 0.0000000000000000, 7, 7 },
 };
 const double toler006 = 2.5000000000000020e-13;
-//  Divergence at n=8 k=9 f=-inf f_GSL=-inf
-//  Divergence at n=8 k=10 f=-inf f_GSL=-inf
-//  Divergence at n=8 k=11 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=8 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=8 k=9 f=-inf f_GSL=-inf
+// Divergence at n=8 k=10 f=-inf f_GSL=-inf
+// Divergence at n=8 k=11 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=8 k=200 f=-inf f_GSL=-inf
 // Test data for n=8.
 // max(|f - f_GSL|): 1.7763568394002505e-15
 // max(|f - f_GSL| / |f_GSL|): 8.5424706768397791e-16
@@ -208,12 +208,12 @@ data007[9] =
   { 0.0000000000000000, 8, 8 },
 };
 const double toler007 = 2.5000000000000020e-13;
-//  Divergence at n=9 k=10 f=-inf f_GSL=-inf
-//  Divergence at n=9 k=11 f=-inf f_GSL=-inf
-//  Divergence at n=9 k=12 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=9 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=9 k=10 f=-inf f_GSL=-inf
+// Divergence at n=9 k=11 f=-inf f_GSL=-inf
+// Divergence at n=9 k=12 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=9 k=200 f=-inf f_GSL=-inf
 // Test data for n=9.
 // max(|f - f_GSL|): 3.5527136788005009e-15
 // max(|f - f_GSL| / |f_GSL|): 9.9140362861626740e-16
@@ -235,12 +235,12 @@ data008[10] =
   { 0.0000000000000000, 9, 9 },
 };
 const double toler008 = 2.5000000000000020e-13;
-//  Divergence at n=10 k=11 f=-inf f_GSL=-inf
-//  Divergence at n=10 k=12 f=-inf f_GSL=-inf
-//  Divergence at n=10 k=13 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=10 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=10 k=11 f=-inf f_GSL=-inf
+// Divergence at n=10 k=12 f=-inf f_GSL=-inf
+// Divergence at n=10 k=13 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=10 k=200 f=-inf f_GSL=-inf
 // Test data for n=10.
 // max(|f - f_GSL|): 3.5527136788005009e-15
 // max(|f - f_GSL| / |f_GSL|): 7.4208246607564751e-16
@@ -263,12 +263,12 @@ data009[11] =
   { 0.0000000000000000, 10, 10 },
 };
 const double toler009 = 2.5000000000000020e-13;
-//  Divergence at n=11 k=12 f=-inf f_GSL=-inf
-//  Divergence at n=11 k=13 f=-inf f_GSL=-inf
-//  Divergence at n=11 k=14 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=11 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=11 k=12 f=-inf f_GSL=-inf
+// Divergence at n=11 k=13 f=-inf f_GSL=-inf
+// Divergence at n=11 k=14 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=11 k=200 f=-inf f_GSL=-inf
 // Test data for n=11.
 // max(|f - f_GSL|): 3.5527136788005009e-15
 // max(|f - f_GSL| / |f_GSL|): 8.8655310516547443e-16
@@ -292,12 +292,12 @@ data010[12] =
   { 0.0000000000000000, 11, 11 },
 };
 const double toler010 = 2.5000000000000020e-13;
-//  Divergence at n=12 k=13 f=-inf f_GSL=-inf
-//  Divergence at n=12 k=14 f=-inf f_GSL=-inf
-//  Divergence at n=12 k=15 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=12 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=12 k=13 f=-inf f_GSL=-inf
+// Divergence at n=12 k=14 f=-inf f_GSL=-inf
+// Divergence at n=12 k=15 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=12 k=200 f=-inf f_GSL=-inf
 // Test data for n=12.
 // max(|f - f_GSL|): 5.3290705182007514e-15
 // max(|f - f_GSL| / |f_GSL|): 1.4297171602416547e-15
@@ -322,12 +322,12 @@ data011[13] =
   { 0.0000000000000000, 12, 12 },
 };
 const double toler011 = 2.5000000000000020e-13;
-//  Divergence at n=13 k=14 f=-inf f_GSL=-inf
-//  Divergence at n=13 k=15 f=-inf f_GSL=-inf
-//  Divergence at n=13 k=16 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=13 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=13 k=14 f=-inf f_GSL=-inf
+// Divergence at n=13 k=15 f=-inf f_GSL=-inf
+// Divergence at n=13 k=16 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=13 k=200 f=-inf f_GSL=-inf
 // Test data for n=13.
 // max(|f - f_GSL|): 7.1054273576010019e-15
 // max(|f - f_GSL| / |f_GSL|): 2.7702018119504117e-15
@@ -353,12 +353,12 @@ data012[14] =
   { 0.0000000000000000, 13, 13 },
 };
 const double toler012 = 2.5000000000000020e-13;
-//  Divergence at n=14 k=15 f=-inf f_GSL=-inf
-//  Divergence at n=14 k=16 f=-inf f_GSL=-inf
-//  Divergence at n=14 k=17 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=14 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=14 k=15 f=-inf f_GSL=-inf
+// Divergence at n=14 k=16 f=-inf f_GSL=-inf
+// Divergence at n=14 k=17 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=14 k=200 f=-inf f_GSL=-inf
 // Test data for n=14.
 // max(|f - f_GSL|): 5.3290705182007514e-15
 // max(|f - f_GSL| / |f_GSL|): 1.3462055708044987e-15
@@ -385,12 +385,12 @@ data013[15] =
   { 0.0000000000000000, 14, 14 },
 };
 const double toler013 = 2.5000000000000020e-13;
-//  Divergence at n=15 k=16 f=-inf f_GSL=-inf
-//  Divergence at n=15 k=17 f=-inf f_GSL=-inf
-//  Divergence at n=15 k=18 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=15 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=15 k=16 f=-inf f_GSL=-inf
+// Divergence at n=15 k=17 f=-inf f_GSL=-inf
+// Divergence at n=15 k=18 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=15 k=200 f=-inf f_GSL=-inf
 // Test data for n=15.
 // max(|f - f_GSL|): 3.5527136788005009e-15
 // max(|f - f_GSL| / |f_GSL|): 7.6337429017422815e-16
@@ -418,12 +418,12 @@ data014[16] =
   { 0.0000000000000000, 15, 15 },
 };
 const double toler014 = 2.5000000000000020e-13;
-//  Divergence at n=16 k=17 f=-inf f_GSL=-inf
-//  Divergence at n=16 k=18 f=-inf f_GSL=-inf
-//  Divergence at n=16 k=19 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=16 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=16 k=17 f=-inf f_GSL=-inf
+// Divergence at n=16 k=18 f=-inf f_GSL=-inf
+// Divergence at n=16 k=19 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=16 k=200 f=-inf f_GSL=-inf
 // Test data for n=16.
 // max(|f - f_GSL|): 7.1054273576010019e-15
 // max(|f - f_GSL| / |f_GSL|): 1.2813706015259669e-15
@@ -452,12 +452,12 @@ data015[17] =
   { 0.0000000000000000, 16, 16 },
 };
 const double toler015 = 2.5000000000000020e-13;
-//  Divergence at n=17 k=18 f=-inf f_GSL=-inf
-//  Divergence at n=17 k=19 f=-inf f_GSL=-inf
-//  Divergence at n=17 k=20 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=17 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=17 k=18 f=-inf f_GSL=-inf
+// Divergence at n=17 k=19 f=-inf f_GSL=-inf
+// Divergence at n=17 k=20 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=17 k=200 f=-inf f_GSL=-inf
 // Test data for n=17.
 // max(|f - f_GSL|): 3.5527136788005009e-15
 // max(|f - f_GSL| / |f_GSL|): 1.2539520492707397e-15
@@ -487,12 +487,12 @@ data016[18] =
   { 0.0000000000000000, 17, 17 },
 };
 const double toler016 = 2.5000000000000020e-13;
-//  Divergence at n=18 k=19 f=-inf f_GSL=-inf
-//  Divergence at n=18 k=20 f=-inf f_GSL=-inf
-//  Divergence at n=18 k=21 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=18 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=18 k=19 f=-inf f_GSL=-inf
+// Divergence at n=18 k=20 f=-inf f_GSL=-inf
+// Divergence at n=18 k=21 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=18 k=200 f=-inf f_GSL=-inf
 // Test data for n=18.
 // max(|f - f_GSL|): 5.3290705182007514e-15
 // max(|f - f_GSL| / |f_GSL|): 7.0624341942323459e-16
@@ -523,12 +523,12 @@ data017[19] =
   { 0.0000000000000000, 18, 18 },
 };
 const double toler017 = 2.5000000000000020e-13;
-//  Divergence at n=19 k=20 f=-inf f_GSL=-inf
-//  Divergence at n=19 k=21 f=-inf f_GSL=-inf
-//  Divergence at n=19 k=22 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=19 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=19 k=20 f=-inf f_GSL=-inf
+// Divergence at n=19 k=21 f=-inf f_GSL=-inf
+// Divergence at n=19 k=22 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=19 k=200 f=-inf f_GSL=-inf
 // Test data for n=19.
 // max(|f - f_GSL|): 3.5527136788005009e-15
 // max(|f - f_GSL| / |f_GSL|): 5.1666331639666353e-16
@@ -560,12 +560,12 @@ data018[20] =
   { 0.0000000000000000, 19, 19 },
 };
 const double toler018 = 2.5000000000000020e-13;
-//  Divergence at n=20 k=21 f=-inf f_GSL=-inf
-//  Divergence at n=20 k=22 f=-inf f_GSL=-inf
-//  Divergence at n=20 k=23 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=20 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=20 k=21 f=-inf f_GSL=-inf
+// Divergence at n=20 k=22 f=-inf f_GSL=-inf
+// Divergence at n=20 k=23 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=20 k=200 f=-inf f_GSL=-inf
 // Test data for n=20.
 // max(|f - f_GSL|): 5.3290705182007514e-15
 // max(|f - f_GSL| / |f_GSL|): 4.7334630109403714e-16
@@ -598,12 +598,12 @@ data019[21] =
   { 0.0000000000000000, 20, 20 },
 };
 const double toler019 = 2.5000000000000020e-13;
-//  Divergence at n=21 k=22 f=-inf f_GSL=-inf
-//  Divergence at n=21 k=23 f=-inf f_GSL=-inf
-//  Divergence at n=21 k=24 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=21 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=21 k=22 f=-inf f_GSL=-inf
+// Divergence at n=21 k=23 f=-inf f_GSL=-inf
+// Divergence at n=21 k=24 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=21 k=200 f=-inf f_GSL=-inf
 // Test data for n=21.
 // max(|f - f_GSL|): 1.0658141036401503e-14
 // max(|f - f_GSL| / |f_GSL|): 2.3338397081790496e-15
@@ -637,12 +637,12 @@ data020[22] =
   { 0.0000000000000000, 21, 21 },
 };
 const double toler020 = 2.5000000000000020e-13;
-//  Divergence at n=22 k=23 f=-inf f_GSL=-inf
-//  Divergence at n=22 k=24 f=-inf f_GSL=-inf
-//  Divergence at n=22 k=25 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=22 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=22 k=23 f=-inf f_GSL=-inf
+// Divergence at n=22 k=24 f=-inf f_GSL=-inf
+// Divergence at n=22 k=25 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=22 k=200 f=-inf f_GSL=-inf
 // Test data for n=22.
 // max(|f - f_GSL|): 1.0658141036401503e-14
 // max(|f - f_GSL| / |f_GSL|): 2.2987155514092602e-15
@@ -677,12 +677,12 @@ data021[23] =
   { 0.0000000000000000, 22, 22 },
 };
 const double toler021 = 2.5000000000000020e-13;
-//  Divergence at n=23 k=24 f=-inf f_GSL=-inf
-//  Divergence at n=23 k=25 f=-inf f_GSL=-inf
-//  Divergence at n=23 k=26 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=23 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=23 k=24 f=-inf f_GSL=-inf
+// Divergence at n=23 k=25 f=-inf f_GSL=-inf
+// Divergence at n=23 k=26 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=23 k=200 f=-inf f_GSL=-inf
 // Test data for n=23.
 // max(|f - f_GSL|): 7.1054273576010019e-15
 // max(|f - f_GSL| / |f_GSL|): 1.2841003461035944e-15
@@ -718,12 +718,12 @@ data022[24] =
   { 0.0000000000000000, 23, 23 },
 };
 const double toler022 = 2.5000000000000020e-13;
-//  Divergence at n=24 k=25 f=-inf f_GSL=-inf
-//  Divergence at n=24 k=26 f=-inf f_GSL=-inf
-//  Divergence at n=24 k=27 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=24 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=24 k=25 f=-inf f_GSL=-inf
+// Divergence at n=24 k=26 f=-inf f_GSL=-inf
+// Divergence at n=24 k=27 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=24 k=200 f=-inf f_GSL=-inf
 // Test data for n=24.
 // max(|f - f_GSL|): 1.4210854715202004e-14
 // max(|f - f_GSL| / |f_GSL|): 2.2357794225351685e-15
@@ -760,12 +760,12 @@ data023[25] =
   { 0.0000000000000000, 24, 24 },
 };
 const double toler023 = 2.5000000000000020e-13;
-//  Divergence at n=25 k=26 f=-inf f_GSL=-inf
-//  Divergence at n=25 k=27 f=-inf f_GSL=-inf
-//  Divergence at n=25 k=28 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=25 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=25 k=26 f=-inf f_GSL=-inf
+// Divergence at n=25 k=27 f=-inf f_GSL=-inf
+// Divergence at n=25 k=28 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=25 k=200 f=-inf f_GSL=-inf
 // Test data for n=25.
 // max(|f - f_GSL|): 1.4210854715202004e-14
 // max(|f - f_GSL| / |f_GSL|): 4.4148502422530959e-15
@@ -803,12 +803,12 @@ data024[26] =
   { 0.0000000000000000, 25, 25 },
 };
 const double toler024 = 2.5000000000000020e-13;
-//  Divergence at n=26 k=27 f=-inf f_GSL=-inf
-//  Divergence at n=26 k=28 f=-inf f_GSL=-inf
-//  Divergence at n=26 k=29 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=26 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=26 k=27 f=-inf f_GSL=-inf
+// Divergence at n=26 k=28 f=-inf f_GSL=-inf
+// Divergence at n=26 k=29 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=26 k=200 f=-inf f_GSL=-inf
 // Test data for n=26.
 // max(|f - f_GSL|): 1.0658141036401503e-14
 // max(|f - f_GSL| / |f_GSL|): 2.1808523089115876e-15
@@ -847,12 +847,12 @@ data025[27] =
   { 0.0000000000000000, 26, 26 },
 };
 const double toler025 = 2.5000000000000020e-13;
-//  Divergence at n=27 k=28 f=-inf f_GSL=-inf
-//  Divergence at n=27 k=29 f=-inf f_GSL=-inf
-//  Divergence at n=27 k=30 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=27 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=27 k=28 f=-inf f_GSL=-inf
+// Divergence at n=27 k=29 f=-inf f_GSL=-inf
+// Divergence at n=27 k=30 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=27 k=200 f=-inf f_GSL=-inf
 // Test data for n=27.
 // max(|f - f_GSL|): 2.3092638912203256e-14
 // max(|f - f_GSL| / |f_GSL|): 4.3117591352239298e-15
@@ -892,12 +892,12 @@ data026[28] =
   { 0.0000000000000000, 27, 27 },
 };
 const double toler026 = 2.5000000000000020e-13;
-//  Divergence at n=28 k=29 f=-inf f_GSL=-inf
-//  Divergence at n=28 k=30 f=-inf f_GSL=-inf
-//  Divergence at n=28 k=31 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=28 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=28 k=29 f=-inf f_GSL=-inf
+// Divergence at n=28 k=30 f=-inf f_GSL=-inf
+// Divergence at n=28 k=31 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=28 k=200 f=-inf f_GSL=-inf
 // Test data for n=28.
 // max(|f - f_GSL|): 1.4210854715202004e-14
 // max(|f - f_GSL| / |f_GSL|): 4.2647006424148972e-15
@@ -938,12 +938,12 @@ data027[29] =
   { 0.0000000000000000, 28, 28 },
 };
 const double toler027 = 2.5000000000000020e-13;
-//  Divergence at n=29 k=30 f=-inf f_GSL=-inf
-//  Divergence at n=29 k=31 f=-inf f_GSL=-inf
-//  Divergence at n=29 k=32 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=29 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=29 k=30 f=-inf f_GSL=-inf
+// Divergence at n=29 k=31 f=-inf f_GSL=-inf
+// Divergence at n=29 k=32 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=29 k=200 f=-inf f_GSL=-inf
 // Test data for n=29.
 // max(|f - f_GSL|): 1.5987211554602254e-14
 // max(|f - f_GSL| / |f_GSL|): 2.6617168737481191e-15
@@ -985,12 +985,12 @@ data028[30] =
   { 0.0000000000000000, 29, 29 },
 };
 const double toler028 = 2.5000000000000020e-13;
-//  Divergence at n=30 k=31 f=-inf f_GSL=-inf
-//  Divergence at n=30 k=32 f=-inf f_GSL=-inf
-//  Divergence at n=30 k=33 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=30 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=30 k=31 f=-inf f_GSL=-inf
+// Divergence at n=30 k=32 f=-inf f_GSL=-inf
+// Divergence at n=30 k=33 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=30 k=200 f=-inf f_GSL=-inf
 // Test data for n=30.
 // max(|f - f_GSL|): 2.8421709430404007e-14
 // max(|f - f_GSL| / |f_GSL|): 4.1781917132540101e-15
@@ -1033,12 +1033,12 @@ data029[31] =
   { 0.0000000000000000, 30, 30 },
 };
 const double toler029 = 2.5000000000000020e-13;
-//  Divergence at n=31 k=32 f=-inf f_GSL=-inf
-//  Divergence at n=31 k=33 f=-inf f_GSL=-inf
-//  Divergence at n=31 k=34 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=31 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=31 k=32 f=-inf f_GSL=-inf
+// Divergence at n=31 k=33 f=-inf f_GSL=-inf
+// Divergence at n=31 k=34 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=31 k=200 f=-inf f_GSL=-inf
 // Test data for n=31.
 // max(|f - f_GSL|): 1.7763568394002505e-14
 // max(|f - f_GSL| / |f_GSL|): 4.1382957678587532e-15
@@ -1082,12 +1082,12 @@ data030[32] =
   { 0.0000000000000000, 31, 31 },
 };
 const double toler030 = 2.5000000000000020e-13;
-//  Divergence at n=32 k=33 f=-inf f_GSL=-inf
-//  Divergence at n=32 k=34 f=-inf f_GSL=-inf
-//  Divergence at n=32 k=35 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=32 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=32 k=33 f=-inf f_GSL=-inf
+// Divergence at n=32 k=34 f=-inf f_GSL=-inf
+// Divergence at n=32 k=35 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=32 k=200 f=-inf f_GSL=-inf
 // Test data for n=32.
 // max(|f - f_GSL|): 2.8421709430404007e-14
 // max(|f - f_GSL| / |f_GSL|): 4.5792897349443154e-15
@@ -1132,12 +1132,12 @@ data031[33] =
   { 0.0000000000000000, 32, 32 },
 };
 const double toler031 = 2.5000000000000020e-13;
-//  Divergence at n=33 k=34 f=-inf f_GSL=-inf
-//  Divergence at n=33 k=35 f=-inf f_GSL=-inf
-//  Divergence at n=33 k=36 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=33 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=33 k=34 f=-inf f_GSL=-inf
+// Divergence at n=33 k=35 f=-inf f_GSL=-inf
+// Divergence at n=33 k=36 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=33 k=200 f=-inf f_GSL=-inf
 // Test data for n=33.
 // max(|f - f_GSL|): 3.3750779948604759e-14
 // max(|f - f_GSL| / |f_GSL|): 8.1285994469531877e-15
@@ -1183,12 +1183,12 @@ data032[34] =
   { 0.0000000000000000, 33, 33 },
 };
 const double toler032 = 5.0000000000000039e-13;
-//  Divergence at n=34 k=35 f=-inf f_GSL=-inf
-//  Divergence at n=34 k=36 f=-inf f_GSL=-inf
-//  Divergence at n=34 k=37 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=34 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=34 k=35 f=-inf f_GSL=-inf
+// Divergence at n=34 k=36 f=-inf f_GSL=-inf
+// Divergence at n=34 k=37 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=34 k=200 f=-inf f_GSL=-inf
 // Test data for n=34.
 // max(|f - f_GSL|): 2.8421709430404007e-14
 // max(|f - f_GSL| / |f_GSL|): 8.0597855017951192e-15
@@ -1235,12 +1235,12 @@ data033[35] =
   { 0.0000000000000000, 34, 34 },
 };
 const double toler033 = 5.0000000000000039e-13;
-//  Divergence at n=35 k=36 f=-inf f_GSL=-inf
-//  Divergence at n=35 k=37 f=-inf f_GSL=-inf
-//  Divergence at n=35 k=38 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=35 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=35 k=36 f=-inf f_GSL=-inf
+// Divergence at n=35 k=37 f=-inf f_GSL=-inf
+// Divergence at n=35 k=38 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=35 k=200 f=-inf f_GSL=-inf
 // Test data for n=35.
 // max(|f - f_GSL|): 2.1316282072803006e-14
 // max(|f - f_GSL| / |f_GSL|): 3.9970361465112854e-15
@@ -1288,12 +1288,12 @@ data034[36] =
   { 0.0000000000000000, 35, 35 },
 };
 const double toler034 = 2.5000000000000020e-13;
-//  Divergence at n=36 k=37 f=-inf f_GSL=-inf
-//  Divergence at n=36 k=38 f=-inf f_GSL=-inf
-//  Divergence at n=36 k=39 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=36 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=36 k=37 f=-inf f_GSL=-inf
+// Divergence at n=36 k=38 f=-inf f_GSL=-inf
+// Divergence at n=36 k=39 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=36 k=200 f=-inf f_GSL=-inf
 // Test data for n=36.
 // max(|f - f_GSL|): 1.7763568394002505e-14
 // max(|f - f_GSL| / |f_GSL|): 2.4802833512124649e-15
@@ -1342,12 +1342,12 @@ data035[37] =
   { 0.0000000000000000, 36, 36 },
 };
 const double toler035 = 2.5000000000000020e-13;
-//  Divergence at n=37 k=38 f=-inf f_GSL=-inf
-//  Divergence at n=37 k=39 f=-inf f_GSL=-inf
-//  Divergence at n=37 k=40 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=37 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=37 k=38 f=-inf f_GSL=-inf
+// Divergence at n=37 k=39 f=-inf f_GSL=-inf
+// Divergence at n=37 k=40 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=37 k=200 f=-inf f_GSL=-inf
 // Test data for n=37.
 // max(|f - f_GSL|): 2.1316282072803006e-14
 // max(|f - f_GSL| / |f_GSL|): 1.6415877826032778e-15
@@ -1397,12 +1397,12 @@ data036[38] =
   { 0.0000000000000000, 37, 37 },
 };
 const double toler036 = 2.5000000000000020e-13;
-//  Divergence at n=38 k=39 f=-inf f_GSL=-inf
-//  Divergence at n=38 k=40 f=-inf f_GSL=-inf
-//  Divergence at n=38 k=41 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=38 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=38 k=39 f=-inf f_GSL=-inf
+// Divergence at n=38 k=40 f=-inf f_GSL=-inf
+// Divergence at n=38 k=41 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=38 k=200 f=-inf f_GSL=-inf
 // Test data for n=38.
 // max(|f - f_GSL|): 2.8421709430404007e-14
 // max(|f - f_GSL| / |f_GSL|): 3.9066716474066803e-15
@@ -1453,12 +1453,12 @@ data037[39] =
   { 0.0000000000000000, 38, 38 },
 };
 const double toler037 = 2.5000000000000020e-13;
-//  Divergence at n=39 k=40 f=-inf f_GSL=-inf
-//  Divergence at n=39 k=41 f=-inf f_GSL=-inf
-//  Divergence at n=39 k=42 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=39 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=39 k=40 f=-inf f_GSL=-inf
+// Divergence at n=39 k=41 f=-inf f_GSL=-inf
+// Divergence at n=39 k=42 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=39 k=200 f=-inf f_GSL=-inf
 // Test data for n=39.
 // max(|f - f_GSL|): 2.1316282072803006e-14
 // max(|f - f_GSL| / |f_GSL|): 3.8789724557289709e-15
@@ -1510,12 +1510,12 @@ data038[40] =
   { 0.0000000000000000, 39, 39 },
 };
 const double toler038 = 2.5000000000000020e-13;
-//  Divergence at n=40 k=41 f=-inf f_GSL=-inf
-//  Divergence at n=40 k=42 f=-inf f_GSL=-inf
-//  Divergence at n=40 k=43 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=40 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=40 k=41 f=-inf f_GSL=-inf
+// Divergence at n=40 k=42 f=-inf f_GSL=-inf
+// Divergence at n=40 k=43 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=40 k=200 f=-inf f_GSL=-inf
 // Test data for n=40.
 // max(|f - f_GSL|): 4.2632564145606011e-14
 // max(|f - f_GSL| / |f_GSL|): 4.5347249474218869e-15
@@ -1568,12 +1568,12 @@ data039[41] =
   { 0.0000000000000000, 40, 40 },
 };
 const double toler039 = 2.5000000000000020e-13;
-//  Divergence at n=41 k=42 f=-inf f_GSL=-inf
-//  Divergence at n=41 k=43 f=-inf f_GSL=-inf
-//  Divergence at n=41 k=44 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=41 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=41 k=42 f=-inf f_GSL=-inf
+// Divergence at n=41 k=43 f=-inf f_GSL=-inf
+// Divergence at n=41 k=44 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=41 k=200 f=-inf f_GSL=-inf
 // Test data for n=41.
 // max(|f - f_GSL|): 2.1316282072803006e-14
 // max(|f - f_GSL| / |f_GSL|): 3.8267345994482641e-15
@@ -1627,12 +1627,12 @@ data040[42] =
   { 0.0000000000000000, 41, 41 },
 };
 const double toler040 = 2.5000000000000020e-13;
-//  Divergence at n=42 k=43 f=-inf f_GSL=-inf
-//  Divergence at n=42 k=44 f=-inf f_GSL=-inf
-//  Divergence at n=42 k=45 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=42 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=42 k=43 f=-inf f_GSL=-inf
+// Divergence at n=42 k=44 f=-inf f_GSL=-inf
+// Divergence at n=42 k=45 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=42 k=200 f=-inf f_GSL=-inf
 // Test data for n=42.
 // max(|f - f_GSL|): 2.1316282072803006e-14
 // max(|f - f_GSL| / |f_GSL|): 2.1027901734566472e-15
@@ -1687,12 +1687,12 @@ data041[43] =
   { 0.0000000000000000, 42, 42 },
 };
 const double toler041 = 2.5000000000000020e-13;
-//  Divergence at n=43 k=44 f=-inf f_GSL=-inf
-//  Divergence at n=43 k=45 f=-inf f_GSL=-inf
-//  Divergence at n=43 k=46 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=43 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=43 k=44 f=-inf f_GSL=-inf
+// Divergence at n=43 k=45 f=-inf f_GSL=-inf
+// Divergence at n=43 k=46 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=43 k=200 f=-inf f_GSL=-inf
 // Test data for n=43.
 // max(|f - f_GSL|): 3.1974423109204508e-14
 // max(|f - f_GSL| / |f_GSL|): 3.7782766877804130e-15
@@ -1748,12 +1748,12 @@ data042[44] =
   { 0.0000000000000000, 43, 43 },
 };
 const double toler042 = 2.5000000000000020e-13;
-//  Divergence at n=44 k=45 f=-inf f_GSL=-inf
-//  Divergence at n=44 k=46 f=-inf f_GSL=-inf
-//  Divergence at n=44 k=47 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=44 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=44 k=45 f=-inf f_GSL=-inf
+// Divergence at n=44 k=46 f=-inf f_GSL=-inf
+// Divergence at n=44 k=47 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=44 k=200 f=-inf f_GSL=-inf
 // Test data for n=44.
 // max(|f - f_GSL|): 2.8421709430404007e-14
 // max(|f - f_GSL| / |f_GSL|): 2.4048333379965894e-15
@@ -1810,12 +1810,12 @@ data043[45] =
   { 0.0000000000000000, 44, 44 },
 };
 const double toler043 = 2.5000000000000020e-13;
-//  Divergence at n=45 k=46 f=-inf f_GSL=-inf
-//  Divergence at n=45 k=47 f=-inf f_GSL=-inf
-//  Divergence at n=45 k=48 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=45 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=45 k=46 f=-inf f_GSL=-inf
+// Divergence at n=45 k=47 f=-inf f_GSL=-inf
+// Divergence at n=45 k=48 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=45 k=200 f=-inf f_GSL=-inf
 // Test data for n=45.
 // max(|f - f_GSL|): 2.8421709430404007e-14
 // max(|f - f_GSL| / |f_GSL|): 3.7331533208922448e-15
@@ -1873,12 +1873,12 @@ data044[46] =
   { 0.0000000000000000, 45, 45 },
 };
 const double toler044 = 2.5000000000000020e-13;
-//  Divergence at n=46 k=47 f=-inf f_GSL=-inf
-//  Divergence at n=46 k=48 f=-inf f_GSL=-inf
-//  Divergence at n=46 k=49 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=46 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=46 k=47 f=-inf f_GSL=-inf
+// Divergence at n=46 k=48 f=-inf f_GSL=-inf
+// Divergence at n=46 k=49 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=46 k=200 f=-inf f_GSL=-inf
 // Test data for n=46.
 // max(|f - f_GSL|): 4.9737991503207013e-14
 // max(|f - f_GSL| / |f_GSL|): 7.4234451564116071e-15
@@ -1937,12 +1937,12 @@ data045[47] =
   { 0.0000000000000000, 46, 46 },
 };
 const double toler045 = 5.0000000000000039e-13;
-//  Divergence at n=47 k=48 f=-inf f_GSL=-inf
-//  Divergence at n=47 k=49 f=-inf f_GSL=-inf
-//  Divergence at n=47 k=50 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=47 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=47 k=48 f=-inf f_GSL=-inf
+// Divergence at n=47 k=49 f=-inf f_GSL=-inf
+// Divergence at n=47 k=50 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=47 k=200 f=-inf f_GSL=-inf
 // Test data for n=47.
 // max(|f - f_GSL|): 5.6843418860808015e-14
 // max(|f - f_GSL| / |f_GSL|): 1.4763958357222757e-14
@@ -2002,12 +2002,12 @@ data046[48] =
   { 0.0000000000000000, 47, 47 },
 };
 const double toler046 = 1.0000000000000008e-12;
-//  Divergence at n=48 k=49 f=-inf f_GSL=-inf
-//  Divergence at n=48 k=50 f=-inf f_GSL=-inf
-//  Divergence at n=48 k=51 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=48 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=48 k=49 f=-inf f_GSL=-inf
+// Divergence at n=48 k=50 f=-inf f_GSL=-inf
+// Divergence at n=48 k=51 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=48 k=200 f=-inf f_GSL=-inf
 // Test data for n=48.
 // max(|f - f_GSL|): 3.0198066269804258e-14
 // max(|f - f_GSL| / |f_GSL|): 7.3418325089087497e-15
@@ -2068,12 +2068,12 @@ data047[49] =
   { 0.0000000000000000, 48, 48 },
 };
 const double toler047 = 5.0000000000000039e-13;
-//  Divergence at n=49 k=50 f=-inf f_GSL=-inf
-//  Divergence at n=49 k=51 f=-inf f_GSL=-inf
-//  Divergence at n=49 k=52 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=49 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=49 k=50 f=-inf f_GSL=-inf
+// Divergence at n=49 k=51 f=-inf f_GSL=-inf
+// Divergence at n=49 k=52 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=49 k=200 f=-inf f_GSL=-inf
 // Test data for n=49.
 // max(|f - f_GSL|): 5.6843418860808015e-14
 // max(|f - f_GSL| / |f_GSL|): 8.0402306785059093e-15
@@ -2135,12 +2135,12 @@ data048[50] =
   { 0.0000000000000000, 49, 49 },
 };
 const double toler048 = 5.0000000000000039e-13;
-//  Divergence at n=50 k=51 f=-inf f_GSL=-inf
-//  Divergence at n=50 k=52 f=-inf f_GSL=-inf
-//  Divergence at n=50 k=53 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=50 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=50 k=51 f=-inf f_GSL=-inf
+// Divergence at n=50 k=52 f=-inf f_GSL=-inf
+// Divergence at n=50 k=53 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=50 k=200 f=-inf f_GSL=-inf
 // Test data for n=50.
 // max(|f - f_GSL|): 3.1974423109204508e-14
 // max(|f - f_GSL| / |f_GSL|): 7.2652204220086332e-15
@@ -2203,12 +2203,12 @@ data049[51] =
   { 0.0000000000000000, 50, 50 },
 };
 const double toler049 = 5.0000000000000039e-13;
-//  Divergence at n=51 k=52 f=-inf f_GSL=-inf
-//  Divergence at n=51 k=53 f=-inf f_GSL=-inf
-//  Divergence at n=51 k=54 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=51 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=51 k=52 f=-inf f_GSL=-inf
+// Divergence at n=51 k=53 f=-inf f_GSL=-inf
+// Divergence at n=51 k=54 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=51 k=200 f=-inf f_GSL=-inf
 // Test data for n=51.
 // max(|f - f_GSL|): 5.8619775700208265e-14
 // max(|f - f_GSL| / |f_GSL|): 8.1977657783442621e-15
@@ -2272,12 +2272,12 @@ data050[52] =
   { 0.0000000000000000, 51, 51 },
 };
 const double toler050 = 5.0000000000000039e-13;
-//  Divergence at n=52 k=53 f=-inf f_GSL=-inf
-//  Divergence at n=52 k=54 f=-inf f_GSL=-inf
-//  Divergence at n=52 k=55 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=52 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=52 k=53 f=-inf f_GSL=-inf
+// Divergence at n=52 k=54 f=-inf f_GSL=-inf
+// Divergence at n=52 k=55 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=52 k=200 f=-inf f_GSL=-inf
 // Test data for n=52.
 // max(|f - f_GSL|): 4.2632564145606011e-14
 // max(|f - f_GSL| / |f_GSL|): 7.1931046158316385e-15
@@ -2342,12 +2342,12 @@ data051[53] =
   { 0.0000000000000000, 52, 52 },
 };
 const double toler051 = 5.0000000000000039e-13;
-//  Divergence at n=53 k=54 f=-inf f_GSL=-inf
-//  Divergence at n=53 k=55 f=-inf f_GSL=-inf
-//  Divergence at n=53 k=56 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=53 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=53 k=54 f=-inf f_GSL=-inf
+// Divergence at n=53 k=55 f=-inf f_GSL=-inf
+// Divergence at n=53 k=56 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=53 k=200 f=-inf f_GSL=-inf
 // Test data for n=53.
 // max(|f - f_GSL|): 3.5527136788005009e-14
 // max(|f - f_GSL| / |f_GSL|): 3.9319565655352476e-15
@@ -2413,12 +2413,12 @@ data052[54] =
   { 0.0000000000000000, 53, 53 },
 };
 const double toler052 = 2.5000000000000020e-13;
-//  Divergence at n=54 k=55 f=-inf f_GSL=-inf
-//  Divergence at n=54 k=56 f=-inf f_GSL=-inf
-//  Divergence at n=54 k=57 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=54 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=54 k=55 f=-inf f_GSL=-inf
+// Divergence at n=54 k=56 f=-inf f_GSL=-inf
+// Divergence at n=54 k=57 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=54 k=200 f=-inf f_GSL=-inf
 // Test data for n=54.
 // max(|f - f_GSL|): 7.1054273576010019e-14
 // max(|f - f_GSL| / |f_GSL|): 7.1250496614253850e-15
@@ -2485,12 +2485,12 @@ data053[55] =
   { 0.0000000000000000, 54, 54 },
 };
 const double toler053 = 5.0000000000000039e-13;
-//  Divergence at n=55 k=56 f=-inf f_GSL=-inf
-//  Divergence at n=55 k=57 f=-inf f_GSL=-inf
-//  Divergence at n=55 k=58 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=55 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=55 k=56 f=-inf f_GSL=-inf
+// Divergence at n=55 k=57 f=-inf f_GSL=-inf
+// Divergence at n=55 k=58 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=55 k=200 f=-inf f_GSL=-inf
 // Test data for n=55.
 // max(|f - f_GSL|): 7.1054273576010019e-14
 // max(|f - f_GSL| / |f_GSL|): 4.1349258004323978e-15
@@ -2558,12 +2558,12 @@ data054[56] =
   { 0.0000000000000000, 55, 55 },
 };
 const double toler054 = 2.5000000000000020e-13;
-//  Divergence at n=56 k=57 f=-inf f_GSL=-inf
-//  Divergence at n=56 k=58 f=-inf f_GSL=-inf
-//  Divergence at n=56 k=59 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=56 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=56 k=57 f=-inf f_GSL=-inf
+// Divergence at n=56 k=58 f=-inf f_GSL=-inf
+// Divergence at n=56 k=59 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=56 k=200 f=-inf f_GSL=-inf
 // Test data for n=56.
 // max(|f - f_GSL|): 7.1054273576010019e-14
 // max(|f - f_GSL| / |f_GSL|): 2.9510818229756566e-15
@@ -2632,12 +2632,12 @@ data055[57] =
   { 0.0000000000000000, 56, 56 },
 };
 const double toler055 = 2.5000000000000020e-13;
-//  Divergence at n=57 k=58 f=-inf f_GSL=-inf
-//  Divergence at n=57 k=59 f=-inf f_GSL=-inf
-//  Divergence at n=57 k=60 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=57 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=57 k=58 f=-inf f_GSL=-inf
+// Divergence at n=57 k=59 f=-inf f_GSL=-inf
+// Divergence at n=57 k=60 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=57 k=200 f=-inf f_GSL=-inf
 // Test data for n=57.
 // max(|f - f_GSL|): 7.1054273576010019e-14
 // max(|f - f_GSL| / |f_GSL|): 1.4059534518654062e-14
@@ -2707,12 +2707,12 @@ data056[58] =
   { 0.0000000000000000, 57, 57 },
 };
 const double toler056 = 1.0000000000000008e-12;
-//  Divergence at n=58 k=59 f=-inf f_GSL=-inf
-//  Divergence at n=58 k=60 f=-inf f_GSL=-inf
-//  Divergence at n=58 k=61 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=58 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=58 k=59 f=-inf f_GSL=-inf
+// Divergence at n=58 k=60 f=-inf f_GSL=-inf
+// Divergence at n=58 k=61 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=58 k=200 f=-inf f_GSL=-inf
 // Test data for n=58.
 // max(|f - f_GSL|): 2.8421709430404007e-14
 // max(|f - f_GSL| / |f_GSL|): 6.9996572680819726e-15
@@ -2783,12 +2783,12 @@ data057[59] =
   { 0.0000000000000000, 58, 58 },
 };
 const double toler057 = 5.0000000000000039e-13;
-//  Divergence at n=59 k=60 f=-inf f_GSL=-inf
-//  Divergence at n=59 k=61 f=-inf f_GSL=-inf
-//  Divergence at n=59 k=62 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=59 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=59 k=60 f=-inf f_GSL=-inf
+// Divergence at n=59 k=61 f=-inf f_GSL=-inf
+// Divergence at n=59 k=62 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=59 k=200 f=-inf f_GSL=-inf
 // Test data for n=59.
 // max(|f - f_GSL|): 8.5265128291212022e-14
 // max(|f - f_GSL| / |f_GSL|): 6.9703123077099390e-15
@@ -2860,12 +2860,12 @@ data058[60] =
   { 0.0000000000000000, 59, 59 },
 };
 const double toler058 = 5.0000000000000039e-13;
-//  Divergence at n=60 k=61 f=-inf f_GSL=-inf
-//  Divergence at n=60 k=62 f=-inf f_GSL=-inf
-//  Divergence at n=60 k=63 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=60 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=60 k=61 f=-inf f_GSL=-inf
+// Divergence at n=60 k=62 f=-inf f_GSL=-inf
+// Divergence at n=60 k=63 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=60 k=200 f=-inf f_GSL=-inf
 // Test data for n=60.
 // max(|f - f_GSL|): 4.2632564145606011e-14
 // max(|f - f_GSL| / |f_GSL|): 6.9416994584790699e-15
@@ -2938,12 +2938,12 @@ data059[61] =
   { 0.0000000000000000, 60, 60 },
 };
 const double toler059 = 5.0000000000000039e-13;
-//  Divergence at n=61 k=62 f=-inf f_GSL=-inf
-//  Divergence at n=61 k=63 f=-inf f_GSL=-inf
-//  Divergence at n=61 k=64 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=61 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=61 k=62 f=-inf f_GSL=-inf
+// Divergence at n=61 k=63 f=-inf f_GSL=-inf
+// Divergence at n=61 k=64 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=61 k=200 f=-inf f_GSL=-inf
 // Test data for n=61.
 // max(|f - f_GSL|): 7.1054273576010019e-14
 // max(|f - f_GSL| / |f_GSL|): 7.8034105084807062e-15
@@ -3017,12 +3017,12 @@ data060[62] =
   { 0.0000000000000000, 61, 61 },
 };
 const double toler060 = 5.0000000000000039e-13;
-//  Divergence at n=62 k=63 f=-inf f_GSL=-inf
-//  Divergence at n=62 k=64 f=-inf f_GSL=-inf
-//  Divergence at n=62 k=65 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=62 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=62 k=63 f=-inf f_GSL=-inf
+// Divergence at n=62 k=64 f=-inf f_GSL=-inf
+// Divergence at n=62 k=65 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=62 k=200 f=-inf f_GSL=-inf
 // Test data for n=62.
 // max(|f - f_GSL|): 4.2632564145606011e-14
 // max(|f - f_GSL| / |f_GSL|): 6.8865480933675370e-15
@@ -3097,12 +3097,12 @@ data061[63] =
   { 0.0000000000000000, 62, 62 },
 };
 const double toler061 = 5.0000000000000039e-13;
-//  Divergence at n=63 k=64 f=-inf f_GSL=-inf
-//  Divergence at n=63 k=65 f=-inf f_GSL=-inf
-//  Divergence at n=63 k=66 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=63 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=63 k=64 f=-inf f_GSL=-inf
+// Divergence at n=63 k=65 f=-inf f_GSL=-inf
+// Divergence at n=63 k=66 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=63 k=200 f=-inf f_GSL=-inf
 // Test data for n=63.
 // max(|f - f_GSL|): 7.1054273576010019e-14
 // max(|f - f_GSL| / |f_GSL|): 7.5019802214310201e-15
@@ -3178,12 +3178,12 @@ data062[64] =
   { 0.0000000000000000, 63, 63 },
 };
 const double toler062 = 5.0000000000000039e-13;
-//  Divergence at n=64 k=65 f=-inf f_GSL=-inf
-//  Divergence at n=64 k=66 f=-inf f_GSL=-inf
-//  Divergence at n=64 k=67 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=64 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=64 k=65 f=-inf f_GSL=-inf
+// Divergence at n=64 k=66 f=-inf f_GSL=-inf
+// Divergence at n=64 k=67 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=64 k=200 f=-inf f_GSL=-inf
 // Test data for n=64.
 // max(|f - f_GSL|): 6.7501559897209518e-14
 // max(|f - f_GSL| / |f_GSL|): 5.3437360382660359e-15
@@ -3260,12 +3260,12 @@ data063[65] =
   { 0.0000000000000000, 64, 64 },
 };
 const double toler063 = 5.0000000000000039e-13;
-//  Divergence at n=65 k=66 f=-inf f_GSL=-inf
-//  Divergence at n=65 k=67 f=-inf f_GSL=-inf
-//  Divergence at n=65 k=68 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=65 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=65 k=66 f=-inf f_GSL=-inf
+// Divergence at n=65 k=67 f=-inf f_GSL=-inf
+// Divergence at n=65 k=68 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=65 k=200 f=-inf f_GSL=-inf
 // Test data for n=65.
 // max(|f - f_GSL|): 6.7501559897209518e-14
 // max(|f - f_GSL| / |f_GSL|): 4.2339934963243146e-15
@@ -3343,12 +3343,12 @@ data064[66] =
   { 0.0000000000000000, 65, 65 },
 };
 const double toler064 = 2.5000000000000020e-13;
-//  Divergence at n=66 k=67 f=-inf f_GSL=-inf
-//  Divergence at n=66 k=68 f=-inf f_GSL=-inf
-//  Divergence at n=66 k=69 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=66 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=66 k=67 f=-inf f_GSL=-inf
+// Divergence at n=66 k=68 f=-inf f_GSL=-inf
+// Divergence at n=66 k=69 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=66 k=200 f=-inf f_GSL=-inf
 // Test data for n=66.
 // max(|f - f_GSL|): 4.2632564145606011e-14
 // max(|f - f_GSL| / |f_GSL|): 6.7837831946642018e-15
@@ -3427,12 +3427,12 @@ data065[67] =
   { 0.0000000000000000, 66, 66 },
 };
 const double toler065 = 5.0000000000000039e-13;
-//  Divergence at n=67 k=68 f=-inf f_GSL=-inf
-//  Divergence at n=67 k=69 f=-inf f_GSL=-inf
-//  Divergence at n=67 k=70 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=67 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=67 k=68 f=-inf f_GSL=-inf
+// Divergence at n=67 k=69 f=-inf f_GSL=-inf
+// Divergence at n=67 k=70 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=67 k=200 f=-inf f_GSL=-inf
 // Test data for n=67.
 // max(|f - f_GSL|): 8.5265128291212022e-14
 // max(|f - f_GSL| / |f_GSL|): 7.6117714542620450e-15
@@ -3512,12 +3512,12 @@ data066[68] =
   { 0.0000000000000000, 67, 67 },
 };
 const double toler066 = 5.0000000000000039e-13;
-//  Divergence at n=68 k=69 f=-inf f_GSL=-inf
-//  Divergence at n=68 k=70 f=-inf f_GSL=-inf
-//  Divergence at n=68 k=71 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=68 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=68 k=69 f=-inf f_GSL=-inf
+// Divergence at n=68 k=70 f=-inf f_GSL=-inf
+// Divergence at n=68 k=71 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=68 k=200 f=-inf f_GSL=-inf
 // Test data for n=68.
 // max(|f - f_GSL|): 5.6843418860808015e-14
 // max(|f - f_GSL| / |f_GSL|): 6.7357880151608220e-15
@@ -3598,12 +3598,12 @@ data067[69] =
   { 0.0000000000000000, 68, 68 },
 };
 const double toler067 = 5.0000000000000039e-13;
-//  Divergence at n=69 k=70 f=-inf f_GSL=-inf
-//  Divergence at n=69 k=71 f=-inf f_GSL=-inf
-//  Divergence at n=69 k=72 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=69 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=69 k=70 f=-inf f_GSL=-inf
+// Divergence at n=69 k=71 f=-inf f_GSL=-inf
+// Divergence at n=69 k=72 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=69 k=200 f=-inf f_GSL=-inf
 // Test data for n=69.
 // max(|f - f_GSL|): 6.0396132539608516e-14
 // max(|f - f_GSL| / |f_GSL|): 6.7125636541132301e-15
@@ -3685,12 +3685,12 @@ data068[70] =
   { 0.0000000000000000, 69, 69 },
 };
 const double toler068 = 5.0000000000000039e-13;
-//  Divergence at n=70 k=71 f=-inf f_GSL=-inf
-//  Divergence at n=70 k=72 f=-inf f_GSL=-inf
-//  Divergence at n=70 k=73 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=70 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=70 k=71 f=-inf f_GSL=-inf
+// Divergence at n=70 k=72 f=-inf f_GSL=-inf
+// Divergence at n=70 k=73 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=70 k=200 f=-inf f_GSL=-inf
 // Test data for n=70.
 // max(|f - f_GSL|): 5.6843418860808015e-14
 // max(|f - f_GSL| / |f_GSL|): 6.6898296481777741e-15
@@ -3773,12 +3773,12 @@ data069[71] =
   { 0.0000000000000000, 70, 70 },
 };
 const double toler069 = 5.0000000000000039e-13;
-//  Divergence at n=71 k=72 f=-inf f_GSL=-inf
-//  Divergence at n=71 k=73 f=-inf f_GSL=-inf
-//  Divergence at n=71 k=74 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=71 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=71 k=72 f=-inf f_GSL=-inf
+// Divergence at n=71 k=73 f=-inf f_GSL=-inf
+// Divergence at n=71 k=74 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=71 k=200 f=-inf f_GSL=-inf
 // Test data for n=71.
 // max(|f - f_GSL|): 5.6843418860808015e-14
 // max(|f - f_GSL| / |f_GSL|): 3.6354064802364266e-15
@@ -3862,12 +3862,12 @@ data070[72] =
   { 0.0000000000000000, 71, 71 },
 };
 const double toler070 = 2.5000000000000020e-13;
-//  Divergence at n=72 k=73 f=-inf f_GSL=-inf
-//  Divergence at n=72 k=74 f=-inf f_GSL=-inf
-//  Divergence at n=72 k=75 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=72 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=72 k=73 f=-inf f_GSL=-inf
+// Divergence at n=72 k=74 f=-inf f_GSL=-inf
+// Divergence at n=72 k=75 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=72 k=200 f=-inf f_GSL=-inf
 // Test data for n=72.
 // max(|f - f_GSL|): 5.6843418860808015e-14
 // max(|f - f_GSL| / |f_GSL|): 2.5847124482871437e-15
@@ -3952,12 +3952,12 @@ data071[73] =
   { 0.0000000000000000, 72, 72 },
 };
 const double toler071 = 2.5000000000000020e-13;
-//  Divergence at n=73 k=74 f=-inf f_GSL=-inf
-//  Divergence at n=73 k=75 f=-inf f_GSL=-inf
-//  Divergence at n=73 k=76 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=73 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=73 k=74 f=-inf f_GSL=-inf
+// Divergence at n=73 k=75 f=-inf f_GSL=-inf
+// Divergence at n=73 k=76 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=73 k=200 f=-inf f_GSL=-inf
 // Test data for n=73.
 // max(|f - f_GSL|): 9.9475983006414026e-14
 // max(|f - f_GSL| / |f_GSL|): 1.3248795295823445e-14
@@ -4043,12 +4043,12 @@ data072[74] =
   { 0.0000000000000000, 73, 73 },
 };
 const double toler072 = 1.0000000000000008e-12;
-//  Divergence at n=74 k=75 f=-inf f_GSL=-inf
-//  Divergence at n=74 k=76 f=-inf f_GSL=-inf
-//  Divergence at n=74 k=77 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=74 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=74 k=75 f=-inf f_GSL=-inf
+// Divergence at n=74 k=76 f=-inf f_GSL=-inf
+// Divergence at n=74 k=77 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=74 k=200 f=-inf f_GSL=-inf
 // Test data for n=74.
 // max(|f - f_GSL|): 8.5265128291212022e-14
 // max(|f - f_GSL| / |f_GSL|): 1.9810371461584044e-14
@@ -4135,12 +4135,12 @@ data073[75] =
   { 0.0000000000000000, 74, 74 },
 };
 const double toler073 = 1.0000000000000008e-12;
-//  Divergence at n=75 k=76 f=-inf f_GSL=-inf
-//  Divergence at n=75 k=77 f=-inf f_GSL=-inf
-//  Divergence at n=75 k=78 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=75 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=75 k=76 f=-inf f_GSL=-inf
+// Divergence at n=75 k=77 f=-inf f_GSL=-inf
+// Divergence at n=75 k=78 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=75 k=200 f=-inf f_GSL=-inf
 // Test data for n=75.
 // max(|f - f_GSL|): 5.6843418860808015e-14
 // max(|f - f_GSL| / |f_GSL|): 7.1695897855261559e-15
@@ -4228,12 +4228,12 @@ data074[76] =
   { 0.0000000000000000, 75, 75 },
 };
 const double toler074 = 5.0000000000000039e-13;
-//  Divergence at n=76 k=77 f=-inf f_GSL=-inf
-//  Divergence at n=76 k=78 f=-inf f_GSL=-inf
-//  Divergence at n=76 k=79 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=76 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=76 k=77 f=-inf f_GSL=-inf
+// Divergence at n=76 k=78 f=-inf f_GSL=-inf
+// Divergence at n=76 k=79 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=76 k=200 f=-inf f_GSL=-inf
 // Test data for n=76.
 // max(|f - f_GSL|): 5.6843418860808015e-14
 // max(|f - f_GSL| / |f_GSL|): 5.0932557633307958e-15
@@ -4322,12 +4322,12 @@ data075[77] =
   { 0.0000000000000000, 76, 76 },
 };
 const double toler075 = 5.0000000000000039e-13;
-//  Divergence at n=77 k=78 f=-inf f_GSL=-inf
-//  Divergence at n=77 k=79 f=-inf f_GSL=-inf
-//  Divergence at n=77 k=80 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=77 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=77 k=78 f=-inf f_GSL=-inf
+// Divergence at n=77 k=79 f=-inf f_GSL=-inf
+// Divergence at n=77 k=80 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=77 k=200 f=-inf f_GSL=-inf
 // Test data for n=77.
 // max(|f - f_GSL|): 5.6843418860808015e-14
 // max(|f - f_GSL| / |f_GSL|): 4.0262973015821817e-15
@@ -4417,12 +4417,12 @@ data076[78] =
   { 0.0000000000000000, 77, 77 },
 };
 const double toler076 = 2.5000000000000020e-13;
-//  Divergence at n=78 k=79 f=-inf f_GSL=-inf
-//  Divergence at n=78 k=80 f=-inf f_GSL=-inf
-//  Divergence at n=78 k=81 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=78 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=78 k=79 f=-inf f_GSL=-inf
+// Divergence at n=78 k=80 f=-inf f_GSL=-inf
+// Divergence at n=78 k=81 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=78 k=200 f=-inf f_GSL=-inf
 // Test data for n=78.
 // max(|f - f_GSL|): 6.3948846218409017e-14
 // max(|f - f_GSL| / |f_GSL|): 3.7917387708846947e-15
@@ -4513,12 +4513,12 @@ data077[79] =
   { 0.0000000000000000, 78, 78 },
 };
 const double toler077 = 2.5000000000000020e-13;
-//  Divergence at n=79 k=80 f=-inf f_GSL=-inf
-//  Divergence at n=79 k=81 f=-inf f_GSL=-inf
-//  Divergence at n=79 k=82 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=79 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=79 k=80 f=-inf f_GSL=-inf
+// Divergence at n=79 k=81 f=-inf f_GSL=-inf
+// Divergence at n=79 k=82 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=79 k=200 f=-inf f_GSL=-inf
 // Test data for n=79.
 // max(|f - f_GSL|): 1.2079226507921703e-13
 // max(|f - f_GSL| / |f_GSL|): 1.3009291054638325e-14
@@ -4610,12 +4610,12 @@ data078[80] =
   { 0.0000000000000000, 79, 79 },
 };
 const double toler078 = 1.0000000000000008e-12;
-//  Divergence at n=80 k=81 f=-inf f_GSL=-inf
-//  Divergence at n=80 k=82 f=-inf f_GSL=-inf
-//  Divergence at n=80 k=83 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=80 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=80 k=81 f=-inf f_GSL=-inf
+// Divergence at n=80 k=82 f=-inf f_GSL=-inf
+// Divergence at n=80 k=83 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=80 k=200 f=-inf f_GSL=-inf
 // Test data for n=80.
 // max(|f - f_GSL|): 1.1368683772161603e-13
 // max(|f - f_GSL| / |f_GSL|): 2.5943894731729971e-14
@@ -4708,12 +4708,12 @@ data079[81] =
   { 0.0000000000000000, 80, 80 },
 };
 const double toler079 = 2.5000000000000015e-12;
-//  Divergence at n=81 k=82 f=-inf f_GSL=-inf
-//  Divergence at n=81 k=83 f=-inf f_GSL=-inf
-//  Divergence at n=81 k=84 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=81 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=81 k=82 f=-inf f_GSL=-inf
+// Divergence at n=81 k=83 f=-inf f_GSL=-inf
+// Divergence at n=81 k=84 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=81 k=200 f=-inf f_GSL=-inf
 // Test data for n=81.
 // max(|f - f_GSL|): 1.4210854715202004e-13
 // max(|f - f_GSL| / |f_GSL|): 1.4284114892410894e-14
@@ -4807,12 +4807,12 @@ data080[82] =
   { 0.0000000000000000, 81, 81 },
 };
 const double toler080 = 1.0000000000000008e-12;
-//  Divergence at n=82 k=83 f=-inf f_GSL=-inf
-//  Divergence at n=82 k=84 f=-inf f_GSL=-inf
-//  Divergence at n=82 k=85 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=82 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=82 k=83 f=-inf f_GSL=-inf
+// Divergence at n=82 k=84 f=-inf f_GSL=-inf
+// Divergence at n=82 k=85 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=82 k=200 f=-inf f_GSL=-inf
 // Test data for n=82.
 // max(|f - f_GSL|): 1.1368683772161603e-13
 // max(|f - f_GSL| / |f_GSL|): 9.9800272800681310e-15
@@ -4907,12 +4907,12 @@ data081[83] =
   { 0.0000000000000000, 82, 82 },
 };
 const double toler081 = 5.0000000000000039e-13;
-//  Divergence at n=83 k=84 f=-inf f_GSL=-inf
-//  Divergence at n=83 k=85 f=-inf f_GSL=-inf
-//  Divergence at n=83 k=86 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=83 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=83 k=84 f=-inf f_GSL=-inf
+// Divergence at n=83 k=85 f=-inf f_GSL=-inf
+// Divergence at n=83 k=86 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=83 k=200 f=-inf f_GSL=-inf
 // Test data for n=83.
 // max(|f - f_GSL|): 6.0396132539608516e-14
 // max(|f - f_GSL| / |f_GSL|): 1.2863876275716658e-14
@@ -5008,12 +5008,12 @@ data082[84] =
   { 0.0000000000000000, 83, 83 },
 };
 const double toler082 = 1.0000000000000008e-12;
-//  Divergence at n=84 k=85 f=-inf f_GSL=-inf
-//  Divergence at n=84 k=86 f=-inf f_GSL=-inf
-//  Divergence at n=84 k=87 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=84 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=84 k=85 f=-inf f_GSL=-inf
+// Divergence at n=84 k=86 f=-inf f_GSL=-inf
+// Divergence at n=84 k=87 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=84 k=200 f=-inf f_GSL=-inf
 // Test data for n=84.
 // max(|f - f_GSL|): 7.1054273576010019e-14
 // max(|f - f_GSL| / |f_GSL|): 6.9690857100938395e-15
@@ -5110,12 +5110,12 @@ data083[85] =
   { 0.0000000000000000, 84, 84 },
 };
 const double toler083 = 5.0000000000000039e-13;
-//  Divergence at n=85 k=86 f=-inf f_GSL=-inf
-//  Divergence at n=85 k=87 f=-inf f_GSL=-inf
-//  Divergence at n=85 k=88 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=85 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=85 k=86 f=-inf f_GSL=-inf
+// Divergence at n=85 k=87 f=-inf f_GSL=-inf
+// Divergence at n=85 k=88 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=85 k=200 f=-inf f_GSL=-inf
 // Test data for n=85.
 // max(|f - f_GSL|): 1.2789769243681803e-13
 // max(|f - f_GSL| / |f_GSL|): 1.2794931580047892e-14
@@ -5213,12 +5213,12 @@ data084[86] =
   { 0.0000000000000000, 85, 85 },
 };
 const double toler084 = 1.0000000000000008e-12;
-//  Divergence at n=86 k=87 f=-inf f_GSL=-inf
-//  Divergence at n=86 k=88 f=-inf f_GSL=-inf
-//  Divergence at n=86 k=89 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=86 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=86 k=87 f=-inf f_GSL=-inf
+// Divergence at n=86 k=88 f=-inf f_GSL=-inf
+// Divergence at n=86 k=89 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=86 k=200 f=-inf f_GSL=-inf
 // Test data for n=86.
 // max(|f - f_GSL|): 6.3948846218409017e-14
 // max(|f - f_GSL| / |f_GSL|): 1.2761335181165225e-14
@@ -5317,12 +5317,12 @@ data085[87] =
   { 0.0000000000000000, 86, 86 },
 };
 const double toler085 = 1.0000000000000008e-12;
-//  Divergence at n=87 k=88 f=-inf f_GSL=-inf
-//  Divergence at n=87 k=89 f=-inf f_GSL=-inf
-//  Divergence at n=87 k=90 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=87 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=87 k=88 f=-inf f_GSL=-inf
+// Divergence at n=87 k=89 f=-inf f_GSL=-inf
+// Divergence at n=87 k=90 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=87 k=200 f=-inf f_GSL=-inf
 // Test data for n=87.
 // max(|f - f_GSL|): 6.3948846218409017e-14
 // max(|f - f_GSL| / |f_GSL|): 7.1251980684380793e-15
@@ -5422,12 +5422,12 @@ data086[88] =
   { 0.0000000000000000, 87, 87 },
 };
 const double toler086 = 5.0000000000000039e-13;
-//  Divergence at n=88 k=89 f=-inf f_GSL=-inf
-//  Divergence at n=88 k=90 f=-inf f_GSL=-inf
-//  Divergence at n=88 k=91 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=88 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=88 k=89 f=-inf f_GSL=-inf
+// Divergence at n=88 k=90 f=-inf f_GSL=-inf
+// Divergence at n=88 k=91 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=88 k=200 f=-inf f_GSL=-inf
 // Test data for n=88.
 // max(|f - f_GSL|): 8.5265128291212022e-14
 // max(|f - f_GSL| / |f_GSL|): 4.8978319811695453e-15
@@ -5528,12 +5528,12 @@ data087[89] =
   { 0.0000000000000000, 88, 88 },
 };
 const double toler087 = 2.5000000000000020e-13;
-//  Divergence at n=89 k=90 f=-inf f_GSL=-inf
-//  Divergence at n=89 k=91 f=-inf f_GSL=-inf
-//  Divergence at n=89 k=92 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=89 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=89 k=90 f=-inf f_GSL=-inf
+// Divergence at n=89 k=91 f=-inf f_GSL=-inf
+// Divergence at n=89 k=92 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=89 k=200 f=-inf f_GSL=-inf
 // Test data for n=89.
 // max(|f - f_GSL|): 1.1368683772161603e-13
 // max(|f - f_GSL| / |f_GSL|): 4.1830652470916722e-15
@@ -5635,12 +5635,12 @@ data088[90] =
   { 0.0000000000000000, 89, 89 },
 };
 const double toler088 = 2.5000000000000020e-13;
-//  Divergence at n=90 k=91 f=-inf f_GSL=-inf
-//  Divergence at n=90 k=92 f=-inf f_GSL=-inf
-//  Divergence at n=90 k=93 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=90 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=90 k=91 f=-inf f_GSL=-inf
+// Divergence at n=90 k=92 f=-inf f_GSL=-inf
+// Divergence at n=90 k=93 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=90 k=200 f=-inf f_GSL=-inf
 // Test data for n=90.
 // max(|f - f_GSL|): 1.1368683772161603e-13
 // max(|f - f_GSL| / |f_GSL|): 4.1669113763465637e-15
@@ -5743,12 +5743,12 @@ data089[91] =
   { 0.0000000000000000, 90, 90 },
 };
 const double toler089 = 2.5000000000000020e-13;
-//  Divergence at n=91 k=92 f=-inf f_GSL=-inf
-//  Divergence at n=91 k=93 f=-inf f_GSL=-inf
-//  Divergence at n=91 k=94 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=91 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=91 k=92 f=-inf f_GSL=-inf
+// Divergence at n=91 k=93 f=-inf f_GSL=-inf
+// Divergence at n=91 k=94 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=91 k=200 f=-inf f_GSL=-inf
 // Test data for n=91.
 // max(|f - f_GSL|): 1.4210854715202004e-13
 // max(|f - f_GSL| / |f_GSL|): 1.2601460714678914e-14
@@ -5852,12 +5852,12 @@ data090[92] =
   { 0.0000000000000000, 91, 91 },
 };
 const double toler090 = 1.0000000000000008e-12;
-//  Divergence at n=92 k=93 f=-inf f_GSL=-inf
-//  Divergence at n=92 k=94 f=-inf f_GSL=-inf
-//  Divergence at n=92 k=95 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=92 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=92 k=93 f=-inf f_GSL=-inf
+// Divergence at n=92 k=94 f=-inf f_GSL=-inf
+// Divergence at n=92 k=95 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=92 k=200 f=-inf f_GSL=-inf
 // Test data for n=92.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 7.4488422662038224e-15
@@ -5962,12 +5962,12 @@ data091[93] =
   { 0.0000000000000000, 92, 92 },
 };
 const double toler091 = 5.0000000000000039e-13;
-//  Divergence at n=93 k=94 f=-inf f_GSL=-inf
-//  Divergence at n=93 k=95 f=-inf f_GSL=-inf
-//  Divergence at n=93 k=96 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=93 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=93 k=94 f=-inf f_GSL=-inf
+// Divergence at n=93 k=95 f=-inf f_GSL=-inf
+// Divergence at n=93 k=96 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=93 k=200 f=-inf f_GSL=-inf
 // Test data for n=93.
 // max(|f - f_GSL|): 7.1054273576010019e-14
 // max(|f - f_GSL| / |f_GSL|): 1.2541019551070635e-14
@@ -6073,12 +6073,12 @@ data092[94] =
   { 0.0000000000000000, 93, 93 },
 };
 const double toler092 = 1.0000000000000008e-12;
-//  Divergence at n=94 k=95 f=-inf f_GSL=-inf
-//  Divergence at n=94 k=96 f=-inf f_GSL=-inf
-//  Divergence at n=94 k=97 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=94 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=94 k=95 f=-inf f_GSL=-inf
+// Divergence at n=94 k=96 f=-inf f_GSL=-inf
+// Divergence at n=94 k=97 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=94 k=200 f=-inf f_GSL=-inf
 // Test data for n=94.
 // max(|f - f_GSL|): 7.1054273576010019e-14
 // max(|f - f_GSL| / |f_GSL|): 6.7810012896178096e-15
@@ -6185,12 +6185,12 @@ data093[95] =
   { 0.0000000000000000, 94, 94 },
 };
 const double toler093 = 5.0000000000000039e-13;
-//  Divergence at n=95 k=96 f=-inf f_GSL=-inf
-//  Divergence at n=95 k=97 f=-inf f_GSL=-inf
-//  Divergence at n=95 k=98 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=95 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=95 k=96 f=-inf f_GSL=-inf
+// Divergence at n=95 k=97 f=-inf f_GSL=-inf
+// Divergence at n=95 k=98 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=95 k=200 f=-inf f_GSL=-inf
 // Test data for n=95.
 // max(|f - f_GSL|): 7.8159700933611020e-14
 // max(|f - f_GSL| / |f_GSL|): 4.8017707966441910e-15
@@ -6298,12 +6298,12 @@ data094[96] =
   { 0.0000000000000000, 95, 95 },
 };
 const double toler094 = 2.5000000000000020e-13;
-//  Divergence at n=96 k=97 f=-inf f_GSL=-inf
-//  Divergence at n=96 k=98 f=-inf f_GSL=-inf
-//  Divergence at n=96 k=99 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=96 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=96 k=97 f=-inf f_GSL=-inf
+// Divergence at n=96 k=98 f=-inf f_GSL=-inf
+// Divergence at n=96 k=99 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=96 k=200 f=-inf f_GSL=-inf
 // Test data for n=96.
 // max(|f - f_GSL|): 7.8159700933611020e-14
 // max(|f - f_GSL| / |f_GSL|): 3.7855068462687376e-15
@@ -6412,12 +6412,12 @@ data095[97] =
   { 0.0000000000000000, 96, 96 },
 };
 const double toler095 = 2.5000000000000020e-13;
-//  Divergence at n=97 k=98 f=-inf f_GSL=-inf
-//  Divergence at n=97 k=99 f=-inf f_GSL=-inf
-//  Divergence at n=97 k=100 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=97 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=97 k=98 f=-inf f_GSL=-inf
+// Divergence at n=97 k=99 f=-inf f_GSL=-inf
+// Divergence at n=97 k=100 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=97 k=200 f=-inf f_GSL=-inf
 // Test data for n=97.
 // max(|f - f_GSL|): 8.5265128291212022e-14
 // max(|f - f_GSL| / |f_GSL|): 3.5564007586726530e-15
@@ -6527,12 +6527,12 @@ data096[98] =
   { 0.0000000000000000, 97, 97 },
 };
 const double toler096 = 2.5000000000000020e-13;
-//  Divergence at n=98 k=99 f=-inf f_GSL=-inf
-//  Divergence at n=98 k=100 f=-inf f_GSL=-inf
-//  Divergence at n=98 k=101 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=98 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=98 k=99 f=-inf f_GSL=-inf
+// Divergence at n=98 k=100 f=-inf f_GSL=-inf
+// Divergence at n=98 k=101 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=98 k=200 f=-inf f_GSL=-inf
 // Test data for n=98.
 // max(|f - f_GSL|): 8.5265128291212022e-14
 // max(|f - f_GSL| / |f_GSL|): 3.6515450222273622e-15
@@ -6643,12 +6643,12 @@ data097[99] =
   { 0.0000000000000000, 98, 98 },
 };
 const double toler097 = 2.5000000000000020e-13;
-//  Divergence at n=99 k=100 f=-inf f_GSL=-inf
-//  Divergence at n=99 k=101 f=-inf f_GSL=-inf
-//  Divergence at n=99 k=102 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=99 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=99 k=100 f=-inf f_GSL=-inf
+// Divergence at n=99 k=101 f=-inf f_GSL=-inf
+// Divergence at n=99 k=102 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=99 k=200 f=-inf f_GSL=-inf
 // Test data for n=99.
 // max(|f - f_GSL|): 1.2789769243681803e-13
 // max(|f - f_GSL| / |f_GSL|): 1.2370388741687088e-14
@@ -6760,12 +6760,12 @@ data098[100] =
   { 0.0000000000000000, 99, 99 },
 };
 const double toler098 = 1.0000000000000008e-12;
-//  Divergence at n=100 k=101 f=-inf f_GSL=-inf
-//  Divergence at n=100 k=102 f=-inf f_GSL=-inf
-//  Divergence at n=100 k=103 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=100 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=100 k=101 f=-inf f_GSL=-inf
+// Divergence at n=100 k=102 f=-inf f_GSL=-inf
+// Divergence at n=100 k=103 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=100 k=200 f=-inf f_GSL=-inf
 // Test data for n=100.
 // max(|f - f_GSL|): 1.4210854715202004e-13
 // max(|f - f_GSL| / |f_GSL|): 6.8906537359810994e-15
@@ -6878,12 +6878,12 @@ data099[101] =
   { 0.0000000000000000, 100, 100 },
 };
 const double toler099 = 5.0000000000000039e-13;
-//  Divergence at n=101 k=102 f=-inf f_GSL=-inf
-//  Divergence at n=101 k=103 f=-inf f_GSL=-inf
-//  Divergence at n=101 k=104 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=101 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=101 k=102 f=-inf f_GSL=-inf
+// Divergence at n=101 k=103 f=-inf f_GSL=-inf
+// Divergence at n=101 k=104 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=101 k=200 f=-inf f_GSL=-inf
 // Test data for n=101.
 // max(|f - f_GSL|): 1.1368683772161603e-13
 // max(|f - f_GSL| / |f_GSL|): 1.2316778869235978e-14
@@ -6997,12 +6997,12 @@ data100[102] =
   { 0.0000000000000000, 101, 101 },
 };
 const double toler100 = 1.0000000000000008e-12;
-//  Divergence at n=102 k=103 f=-inf f_GSL=-inf
-//  Divergence at n=102 k=104 f=-inf f_GSL=-inf
-//  Divergence at n=102 k=105 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=102 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=102 k=103 f=-inf f_GSL=-inf
+// Divergence at n=102 k=104 f=-inf f_GSL=-inf
+// Divergence at n=102 k=105 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=102 k=200 f=-inf f_GSL=-inf
 // Test data for n=102.
 // max(|f - f_GSL|): 8.5265128291212022e-14
 // max(|f - f_GSL| / |f_GSL|): 6.6507285603638788e-15
@@ -7117,12 +7117,12 @@ data101[103] =
   { 0.0000000000000000, 102, 102 },
 };
 const double toler101 = 5.0000000000000039e-13;
-//  Divergence at n=103 k=104 f=-inf f_GSL=-inf
-//  Divergence at n=103 k=105 f=-inf f_GSL=-inf
-//  Divergence at n=103 k=106 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=103 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=103 k=104 f=-inf f_GSL=-inf
+// Divergence at n=103 k=105 f=-inf f_GSL=-inf
+// Divergence at n=103 k=106 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=103 k=200 f=-inf f_GSL=-inf
 // Test data for n=103.
 // max(|f - f_GSL|): 1.4210854715202004e-13
 // max(|f - f_GSL| / |f_GSL|): 1.2264669413285528e-14
@@ -7238,12 +7238,12 @@ data102[104] =
   { 0.0000000000000000, 103, 103 },
 };
 const double toler102 = 1.0000000000000008e-12;
-//  Divergence at n=104 k=105 f=-inf f_GSL=-inf
-//  Divergence at n=104 k=106 f=-inf f_GSL=-inf
-//  Divergence at n=104 k=107 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=104 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=104 k=105 f=-inf f_GSL=-inf
+// Divergence at n=104 k=106 f=-inf f_GSL=-inf
+// Divergence at n=104 k=107 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=104 k=200 f=-inf f_GSL=-inf
 // Test data for n=104.
 // max(|f - f_GSL|): 1.4210854715202004e-13
 // max(|f - f_GSL| / |f_GSL|): 7.4105766619472294e-15
@@ -7360,12 +7360,12 @@ data103[105] =
   { 0.0000000000000000, 104, 104 },
 };
 const double toler103 = 5.0000000000000039e-13;
-//  Divergence at n=105 k=106 f=-inf f_GSL=-inf
-//  Divergence at n=105 k=107 f=-inf f_GSL=-inf
-//  Divergence at n=105 k=108 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=105 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=105 k=106 f=-inf f_GSL=-inf
+// Divergence at n=105 k=107 f=-inf f_GSL=-inf
+// Divergence at n=105 k=108 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=105 k=200 f=-inf f_GSL=-inf
 // Test data for n=105.
 // max(|f - f_GSL|): 1.3500311979441904e-13
 // max(|f - f_GSL| / |f_GSL|): 6.5699094670402653e-15
@@ -7483,12 +7483,12 @@ data104[106] =
   { 0.0000000000000000, 105, 105 },
 };
 const double toler104 = 5.0000000000000039e-13;
-//  Divergence at n=106 k=107 f=-inf f_GSL=-inf
-//  Divergence at n=106 k=108 f=-inf f_GSL=-inf
-//  Divergence at n=106 k=109 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=106 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=106 k=107 f=-inf f_GSL=-inf
+// Divergence at n=106 k=108 f=-inf f_GSL=-inf
+// Divergence at n=106 k=109 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=106 k=200 f=-inf f_GSL=-inf
 // Test data for n=106.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 5.6823733916705481e-15
@@ -7607,12 +7607,12 @@ data105[107] =
   { 0.0000000000000000, 106, 106 },
 };
 const double toler105 = 5.0000000000000039e-13;
-//  Divergence at n=107 k=108 f=-inf f_GSL=-inf
-//  Divergence at n=107 k=109 f=-inf f_GSL=-inf
-//  Divergence at n=107 k=110 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=107 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=107 k=108 f=-inf f_GSL=-inf
+// Divergence at n=107 k=109 f=-inf f_GSL=-inf
+// Divergence at n=107 k=110 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=107 k=200 f=-inf f_GSL=-inf
 // Test data for n=107.
 // max(|f - f_GSL|): 8.5265128291212022e-14
 // max(|f - f_GSL| / |f_GSL|): 1.2164669598336219e-14
@@ -7732,12 +7732,12 @@ data106[108] =
   { 0.0000000000000000, 107, 107 },
 };
 const double toler106 = 1.0000000000000008e-12;
-//  Divergence at n=108 k=109 f=-inf f_GSL=-inf
-//  Divergence at n=108 k=110 f=-inf f_GSL=-inf
-//  Divergence at n=108 k=111 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=108 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=108 k=109 f=-inf f_GSL=-inf
+// Divergence at n=108 k=110 f=-inf f_GSL=-inf
+// Divergence at n=108 k=111 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=108 k=200 f=-inf f_GSL=-inf
 // Test data for n=108.
 // max(|f - f_GSL|): 1.4210854715202004e-13
 // max(|f - f_GSL| / |f_GSL|): 1.2140501003369243e-14
@@ -7858,12 +7858,12 @@ data107[109] =
   { 0.0000000000000000, 108, 108 },
 };
 const double toler107 = 1.0000000000000008e-12;
-//  Divergence at n=109 k=110 f=-inf f_GSL=-inf
-//  Divergence at n=109 k=111 f=-inf f_GSL=-inf
-//  Divergence at n=109 k=112 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=109 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=109 k=110 f=-inf f_GSL=-inf
+// Divergence at n=109 k=111 f=-inf f_GSL=-inf
+// Divergence at n=109 k=112 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=109 k=200 f=-inf f_GSL=-inf
 // Test data for n=109.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 2.4233299379110778e-14
@@ -7985,12 +7985,12 @@ data108[110] =
   { 0.0000000000000000, 109, 109 },
 };
 const double toler108 = 2.5000000000000015e-12;
-//  Divergence at n=110 k=111 f=-inf f_GSL=-inf
-//  Divergence at n=110 k=112 f=-inf f_GSL=-inf
-//  Divergence at n=110 k=113 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=110 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=110 k=111 f=-inf f_GSL=-inf
+// Divergence at n=110 k=112 f=-inf f_GSL=-inf
+// Divergence at n=110 k=113 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=110 k=200 f=-inf f_GSL=-inf
 // Test data for n=110.
 // max(|f - f_GSL|): 1.4210854715202004e-13
 // max(|f - f_GSL| / |f_GSL|): 2.4186216912843153e-14
@@ -8113,12 +8113,12 @@ data109[111] =
   { 0.0000000000000000, 110, 110 },
 };
 const double toler109 = 2.5000000000000015e-12;
-//  Divergence at n=111 k=112 f=-inf f_GSL=-inf
-//  Divergence at n=111 k=113 f=-inf f_GSL=-inf
-//  Divergence at n=111 k=114 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=111 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=111 k=112 f=-inf f_GSL=-inf
+// Divergence at n=111 k=113 f=-inf f_GSL=-inf
+// Divergence at n=111 k=114 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=111 k=200 f=-inf f_GSL=-inf
 // Test data for n=111.
 // max(|f - f_GSL|): 1.1368683772161603e-13
 // max(|f - f_GSL| / |f_GSL|): 1.2069870333344220e-14
@@ -8242,12 +8242,12 @@ data110[112] =
   { 0.0000000000000000, 111, 111 },
 };
 const double toler110 = 1.0000000000000008e-12;
-//  Divergence at n=112 k=113 f=-inf f_GSL=-inf
-//  Divergence at n=112 k=114 f=-inf f_GSL=-inf
-//  Divergence at n=112 k=115 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=112 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=112 k=113 f=-inf f_GSL=-inf
+// Divergence at n=112 k=114 f=-inf f_GSL=-inf
+// Divergence at n=112 k=115 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=112 k=200 f=-inf f_GSL=-inf
 // Test data for n=112.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 1.3218632602936309e-14
@@ -8372,12 +8372,12 @@ data111[113] =
   { 0.0000000000000000, 112, 112 },
 };
 const double toler111 = 1.0000000000000008e-12;
-//  Divergence at n=113 k=114 f=-inf f_GSL=-inf
-//  Divergence at n=113 k=115 f=-inf f_GSL=-inf
-//  Divergence at n=113 k=116 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=113 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=113 k=114 f=-inf f_GSL=-inf
+// Divergence at n=113 k=115 f=-inf f_GSL=-inf
+// Divergence at n=113 k=116 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=113 k=200 f=-inf f_GSL=-inf
 // Test data for n=113.
 // max(|f - f_GSL|): 1.1368683772161603e-13
 // max(|f - f_GSL| / |f_GSL|): 1.2024276628163501e-14
@@ -8503,12 +8503,12 @@ data112[114] =
   { 0.0000000000000000, 113, 113 },
 };
 const double toler112 = 1.0000000000000008e-12;
-//  Divergence at n=114 k=115 f=-inf f_GSL=-inf
-//  Divergence at n=114 k=116 f=-inf f_GSL=-inf
-//  Divergence at n=114 k=117 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=114 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=114 k=115 f=-inf f_GSL=-inf
+// Divergence at n=114 k=116 f=-inf f_GSL=-inf
+// Divergence at n=114 k=117 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=114 k=200 f=-inf f_GSL=-inf
 // Test data for n=114.
 // max(|f - f_GSL|): 1.1368683772161603e-13
 // max(|f - f_GSL| / |f_GSL|): 6.4812512007524147e-15
@@ -8635,12 +8635,12 @@ data113[115] =
   { 0.0000000000000000, 114, 114 },
 };
 const double toler113 = 5.0000000000000039e-13;
-//  Divergence at n=115 k=116 f=-inf f_GSL=-inf
-//  Divergence at n=115 k=117 f=-inf f_GSL=-inf
-//  Divergence at n=115 k=118 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=115 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=115 k=116 f=-inf f_GSL=-inf
+// Divergence at n=115 k=117 f=-inf f_GSL=-inf
+// Divergence at n=115 k=118 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=115 k=200 f=-inf f_GSL=-inf
 // Test data for n=115.
 // max(|f - f_GSL|): 8.5265128291212022e-14
 // max(|f - f_GSL| / |f_GSL|): 4.5779594496815929e-15
@@ -8768,12 +8768,12 @@ data114[116] =
   { 0.0000000000000000, 115, 115 },
 };
 const double toler114 = 2.5000000000000020e-13;
-//  Divergence at n=116 k=117 f=-inf f_GSL=-inf
-//  Divergence at n=116 k=118 f=-inf f_GSL=-inf
-//  Divergence at n=116 k=119 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=116 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=116 k=117 f=-inf f_GSL=-inf
+// Divergence at n=116 k=118 f=-inf f_GSL=-inf
+// Divergence at n=116 k=119 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=116 k=200 f=-inf f_GSL=-inf
 // Test data for n=116.
 // max(|f - f_GSL|): 1.4210854715202004e-13
 // max(|f - f_GSL| / |f_GSL|): 1.1957997340022747e-14
@@ -8902,12 +8902,12 @@ data115[117] =
   { 0.0000000000000000, 116, 116 },
 };
 const double toler115 = 1.0000000000000008e-12;
-//  Divergence at n=117 k=118 f=-inf f_GSL=-inf
-//  Divergence at n=117 k=119 f=-inf f_GSL=-inf
-//  Divergence at n=117 k=120 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=117 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=117 k=118 f=-inf f_GSL=-inf
+// Divergence at n=117 k=119 f=-inf f_GSL=-inf
+// Divergence at n=117 k=120 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=117 k=200 f=-inf f_GSL=-inf
 // Test data for n=117.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 6.9244819221712731e-15
@@ -9037,12 +9037,12 @@ data116[118] =
   { 0.0000000000000000, 117, 117 },
 };
 const double toler116 = 5.0000000000000039e-13;
-//  Divergence at n=118 k=119 f=-inf f_GSL=-inf
-//  Divergence at n=118 k=120 f=-inf f_GSL=-inf
-//  Divergence at n=118 k=121 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=118 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=118 k=119 f=-inf f_GSL=-inf
+// Divergence at n=118 k=120 f=-inf f_GSL=-inf
+// Divergence at n=118 k=121 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=118 k=200 f=-inf f_GSL=-inf
 // Test data for n=118.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 4.5494063583159190e-15
@@ -9173,12 +9173,12 @@ data117[119] =
   { 0.0000000000000000, 118, 118 },
 };
 const double toler117 = 2.5000000000000020e-13;
-//  Divergence at n=119 k=120 f=-inf f_GSL=-inf
-//  Divergence at n=119 k=121 f=-inf f_GSL=-inf
-//  Divergence at n=119 k=122 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=119 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=119 k=120 f=-inf f_GSL=-inf
+// Divergence at n=119 k=121 f=-inf f_GSL=-inf
+// Divergence at n=119 k=122 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=119 k=200 f=-inf f_GSL=-inf
 // Test data for n=119.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 2.3788219301192127e-14
@@ -9310,12 +9310,12 @@ data118[120] =
   { 0.0000000000000000, 119, 119 },
 };
 const double toler118 = 2.5000000000000015e-12;
-//  Divergence at n=120 k=121 f=-inf f_GSL=-inf
-//  Divergence at n=120 k=122 f=-inf f_GSL=-inf
-//  Divergence at n=120 k=123 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=120 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=120 k=121 f=-inf f_GSL=-inf
+// Divergence at n=120 k=122 f=-inf f_GSL=-inf
+// Divergence at n=120 k=123 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=120 k=200 f=-inf f_GSL=-inf
 // Test data for n=120.
 // max(|f - f_GSL|): 1.4210854715202004e-13
 // max(|f - f_GSL| / |f_GSL|): 2.3746638914420765e-14
@@ -9448,12 +9448,12 @@ data119[121] =
   { 0.0000000000000000, 120, 120 },
 };
 const double toler119 = 2.5000000000000015e-12;
-//  Divergence at n=121 k=122 f=-inf f_GSL=-inf
-//  Divergence at n=121 k=123 f=-inf f_GSL=-inf
-//  Divergence at n=121 k=124 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=121 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=121 k=122 f=-inf f_GSL=-inf
+// Divergence at n=121 k=123 f=-inf f_GSL=-inf
+// Divergence at n=121 k=124 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=121 k=200 f=-inf f_GSL=-inf
 // Test data for n=121.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 1.2987788504976385e-14
@@ -9587,12 +9587,12 @@ data120[122] =
   { 0.0000000000000000, 121, 121 },
 };
 const double toler120 = 1.0000000000000008e-12;
-//  Divergence at n=122 k=123 f=-inf f_GSL=-inf
-//  Divergence at n=122 k=124 f=-inf f_GSL=-inf
-//  Divergence at n=122 k=125 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=122 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=122 k=123 f=-inf f_GSL=-inf
+// Divergence at n=122 k=124 f=-inf f_GSL=-inf
+// Divergence at n=122 k=125 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=122 k=200 f=-inf f_GSL=-inf
 // Test data for n=122.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 2.3664933326270925e-14
@@ -9727,12 +9727,12 @@ data121[123] =
   { 0.0000000000000000, 122, 122 },
 };
 const double toler121 = 2.5000000000000015e-12;
-//  Divergence at n=123 k=124 f=-inf f_GSL=-inf
-//  Divergence at n=123 k=125 f=-inf f_GSL=-inf
-//  Divergence at n=123 k=126 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=123 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=123 k=124 f=-inf f_GSL=-inf
+// Divergence at n=123 k=125 f=-inf f_GSL=-inf
+// Divergence at n=123 k=126 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=123 k=200 f=-inf f_GSL=-inf
 // Test data for n=123.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 2.3624788521390431e-14
@@ -9868,12 +9868,12 @@ data122[124] =
   { 0.0000000000000000, 123, 123 },
 };
 const double toler122 = 2.5000000000000015e-12;
-//  Divergence at n=124 k=125 f=-inf f_GSL=-inf
-//  Divergence at n=124 k=126 f=-inf f_GSL=-inf
-//  Divergence at n=124 k=127 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=124 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=124 k=125 f=-inf f_GSL=-inf
+// Divergence at n=124 k=126 f=-inf f_GSL=-inf
+// Divergence at n=124 k=127 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=124 k=200 f=-inf f_GSL=-inf
 // Test data for n=124.
 // max(|f - f_GSL|): 1.1368683772161603e-13
 // max(|f - f_GSL| / |f_GSL|): 1.1792551552675293e-14
@@ -10010,12 +10010,12 @@ data123[125] =
   { 0.0000000000000000, 124, 124 },
 };
 const double toler123 = 1.0000000000000008e-12;
-//  Divergence at n=125 k=126 f=-inf f_GSL=-inf
-//  Divergence at n=125 k=127 f=-inf f_GSL=-inf
-//  Divergence at n=125 k=128 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=125 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=125 k=126 f=-inf f_GSL=-inf
+// Divergence at n=125 k=127 f=-inf f_GSL=-inf
+// Divergence at n=125 k=128 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=125 k=200 f=-inf f_GSL=-inf
 // Test data for n=125.
 // max(|f - f_GSL|): 1.1368683772161603e-13
 // max(|f - f_GSL| / |f_GSL|): 6.3473561662381690e-15
@@ -10153,12 +10153,12 @@ data124[126] =
   { 0.0000000000000000, 125, 125 },
 };
 const double toler124 = 5.0000000000000039e-13;
-//  Divergence at n=126 k=127 f=-inf f_GSL=-inf
-//  Divergence at n=126 k=128 f=-inf f_GSL=-inf
-//  Divergence at n=126 k=129 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=126 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=126 k=127 f=-inf f_GSL=-inf
+// Divergence at n=126 k=128 f=-inf f_GSL=-inf
+// Divergence at n=126 k=129 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=126 k=200 f=-inf f_GSL=-inf
 // Test data for n=126.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 1.1753537108559330e-14
@@ -10297,12 +10297,12 @@ data125[127] =
   { 0.0000000000000000, 126, 126 },
 };
 const double toler125 = 1.0000000000000008e-12;
-//  Divergence at n=127 k=128 f=-inf f_GSL=-inf
-//  Divergence at n=127 k=129 f=-inf f_GSL=-inf
-//  Divergence at n=127 k=130 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=127 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=127 k=128 f=-inf f_GSL=-inf
+// Divergence at n=127 k=129 f=-inf f_GSL=-inf
+// Divergence at n=127 k=130 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=127 k=200 f=-inf f_GSL=-inf
 // Test data for n=127.
 // max(|f - f_GSL|): 1.1368683772161603e-13
 // max(|f - f_GSL| / |f_GSL|): 1.1734356631210168e-14
@@ -10442,12 +10442,12 @@ data126[128] =
   { 0.0000000000000000, 127, 127 },
 };
 const double toler126 = 1.0000000000000008e-12;
-//  Divergence at n=128 k=129 f=-inf f_GSL=-inf
-//  Divergence at n=128 k=130 f=-inf f_GSL=-inf
-//  Divergence at n=128 k=131 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=128 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=128 k=129 f=-inf f_GSL=-inf
+// Divergence at n=128 k=130 f=-inf f_GSL=-inf
+// Divergence at n=128 k=131 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=128 k=200 f=-inf f_GSL=-inf
 // Test data for n=128.
 // max(|f - f_GSL|): 1.1368683772161603e-13
 // max(|f - f_GSL| / |f_GSL|): 6.5110872840605120e-15
@@ -10588,12 +10588,12 @@ data127[129] =
   { 0.0000000000000000, 128, 128 },
 };
 const double toler127 = 5.0000000000000039e-13;
-//  Divergence at n=129 k=130 f=-inf f_GSL=-inf
-//  Divergence at n=129 k=131 f=-inf f_GSL=-inf
-//  Divergence at n=129 k=132 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=129 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=129 k=130 f=-inf f_GSL=-inf
+// Divergence at n=129 k=131 f=-inf f_GSL=-inf
+// Divergence at n=129 k=132 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=129 k=200 f=-inf f_GSL=-inf
 // Test data for n=129.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 1.1696628209309330e-14
@@ -10735,12 +10735,12 @@ data128[130] =
   { 0.0000000000000000, 129, 129 },
 };
 const double toler128 = 1.0000000000000008e-12;
-//  Divergence at n=130 k=131 f=-inf f_GSL=-inf
-//  Divergence at n=130 k=132 f=-inf f_GSL=-inf
-//  Divergence at n=130 k=133 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=130 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=130 k=131 f=-inf f_GSL=-inf
+// Divergence at n=130 k=132 f=-inf f_GSL=-inf
+// Divergence at n=130 k=133 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=130 k=200 f=-inf f_GSL=-inf
 // Test data for n=130.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 6.2920259580692792e-15
@@ -10883,12 +10883,12 @@ data129[131] =
   { 0.0000000000000000, 130, 130 },
 };
 const double toler129 = 5.0000000000000039e-13;
-//  Divergence at n=131 k=132 f=-inf f_GSL=-inf
-//  Divergence at n=131 k=133 f=-inf f_GSL=-inf
-//  Divergence at n=131 k=134 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=131 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=131 k=132 f=-inf f_GSL=-inf
+// Divergence at n=131 k=133 f=-inf f_GSL=-inf
+// Divergence at n=131 k=134 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=131 k=200 f=-inf f_GSL=-inf
 // Test data for n=131.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 4.7909062816227715e-15
@@ -11032,12 +11032,12 @@ data130[132] =
   { 0.0000000000000000, 131, 131 },
 };
 const double toler130 = 2.5000000000000020e-13;
-//  Divergence at n=132 k=133 f=-inf f_GSL=-inf
-//  Divergence at n=132 k=134 f=-inf f_GSL=-inf
-//  Divergence at n=132 k=135 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=132 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=132 k=133 f=-inf f_GSL=-inf
+// Divergence at n=132 k=134 f=-inf f_GSL=-inf
+// Divergence at n=132 k=135 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=132 k=200 f=-inf f_GSL=-inf
 // Test data for n=132.
 // max(|f - f_GSL|): 1.1368683772161603e-13
 // max(|f - f_GSL| / |f_GSL|): 1.1641557401267334e-14
@@ -11182,12 +11182,12 @@ data131[133] =
   { 0.0000000000000000, 132, 132 },
 };
 const double toler131 = 1.0000000000000008e-12;
-//  Divergence at n=133 k=134 f=-inf f_GSL=-inf
-//  Divergence at n=133 k=135 f=-inf f_GSL=-inf
-//  Divergence at n=133 k=136 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=133 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=133 k=134 f=-inf f_GSL=-inf
+// Divergence at n=133 k=135 f=-inf f_GSL=-inf
+// Divergence at n=133 k=136 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=133 k=200 f=-inf f_GSL=-inf
 // Test data for n=133.
 // max(|f - f_GSL|): 1.1368683772161603e-13
 // max(|f - f_GSL| / |f_GSL|): 6.2602857524172053e-15
@@ -11333,12 +11333,12 @@ data132[134] =
   { 0.0000000000000000, 133, 133 },
 };
 const double toler132 = 5.0000000000000039e-13;
-//  Divergence at n=134 k=135 f=-inf f_GSL=-inf
-//  Divergence at n=134 k=136 f=-inf f_GSL=-inf
-//  Divergence at n=134 k=137 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=134 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=134 k=135 f=-inf f_GSL=-inf
+// Divergence at n=134 k=136 f=-inf f_GSL=-inf
+// Divergence at n=134 k=137 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=134 k=200 f=-inf f_GSL=-inf
 // Test data for n=134.
 // max(|f - f_GSL|): 2.2737367544323206e-13
 // max(|f - f_GSL| / |f_GSL|): 2.3211628465829982e-14
@@ -11485,12 +11485,12 @@ data133[135] =
   { 0.0000000000000000, 134, 134 },
 };
 const double toler133 = 2.5000000000000015e-12;
-//  Divergence at n=135 k=136 f=-inf f_GSL=-inf
-//  Divergence at n=135 k=137 f=-inf f_GSL=-inf
-//  Divergence at n=135 k=138 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=135 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=135 k=136 f=-inf f_GSL=-inf
+// Divergence at n=135 k=137 f=-inf f_GSL=-inf
+// Divergence at n=135 k=138 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=135 k=200 f=-inf f_GSL=-inf
 // Test data for n=135.
 // max(|f - f_GSL|): 2.2026824808563106e-13
 // max(|f - f_GSL| / |f_GSL|): 1.2479390184064014e-14
@@ -11638,12 +11638,12 @@ data134[136] =
   { 0.0000000000000000, 135, 135 },
 };
 const double toler134 = 1.0000000000000008e-12;
-//  Divergence at n=136 k=137 f=-inf f_GSL=-inf
-//  Divergence at n=136 k=138 f=-inf f_GSL=-inf
-//  Divergence at n=136 k=139 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=136 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=136 k=137 f=-inf f_GSL=-inf
+// Divergence at n=136 k=138 f=-inf f_GSL=-inf
+// Divergence at n=136 k=139 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=136 k=200 f=-inf f_GSL=-inf
 // Test data for n=136.
 // max(|f - f_GSL|): 1.6875389974302379e-13
 // max(|f - f_GSL| / |f_GSL|): 2.3141629193556183e-14
@@ -11792,12 +11792,12 @@ data135[137] =
   { 0.0000000000000000, 136, 136 },
 };
 const double toler135 = 2.5000000000000015e-12;
-//  Divergence at n=137 k=138 f=-inf f_GSL=-inf
-//  Divergence at n=137 k=139 f=-inf f_GSL=-inf
-//  Divergence at n=137 k=140 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=137 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=137 k=138 f=-inf f_GSL=-inf
+// Divergence at n=137 k=139 f=-inf f_GSL=-inf
+// Divergence at n=137 k=140 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=137 k=200 f=-inf f_GSL=-inf
 // Test data for n=137.
 // max(|f - f_GSL|): 1.6875389974302379e-13
 // max(|f - f_GSL| / |f_GSL|): 1.8464260590089570e-14
@@ -11947,12 +11947,12 @@ data136[138] =
   { 0.0000000000000000, 137, 137 },
 };
 const double toler136 = 1.0000000000000008e-12;
-//  Divergence at n=138 k=139 f=-inf f_GSL=-inf
-//  Divergence at n=138 k=140 f=-inf f_GSL=-inf
-//  Divergence at n=138 k=141 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=138 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=138 k=139 f=-inf f_GSL=-inf
+// Divergence at n=138 k=140 f=-inf f_GSL=-inf
+// Divergence at n=138 k=141 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=138 k=200 f=-inf f_GSL=-inf
 // Test data for n=138.
 // max(|f - f_GSL|): 1.1368683772161603e-13
 // max(|f - f_GSL| / |f_GSL|): 8.7666330828417220e-15
@@ -12103,12 +12103,12 @@ data137[139] =
   { 0.0000000000000000, 138, 138 },
 };
 const double toler137 = 5.0000000000000039e-13;
-//  Divergence at n=139 k=140 f=-inf f_GSL=-inf
-//  Divergence at n=139 k=141 f=-inf f_GSL=-inf
-//  Divergence at n=139 k=142 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=139 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=139 k=140 f=-inf f_GSL=-inf
+// Divergence at n=139 k=141 f=-inf f_GSL=-inf
+// Divergence at n=139 k=142 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=139 k=200 f=-inf f_GSL=-inf
 // Test data for n=139.
 // max(|f - f_GSL|): 1.1368683772161603e-13
 // max(|f - f_GSL| / |f_GSL|): 6.8833074989723784e-15
@@ -12260,12 +12260,12 @@ data138[140] =
   { 0.0000000000000000, 139, 139 },
 };
 const double toler138 = 5.0000000000000039e-13;
-//  Divergence at n=140 k=141 f=-inf f_GSL=-inf
-//  Divergence at n=140 k=142 f=-inf f_GSL=-inf
-//  Divergence at n=140 k=143 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=140 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=140 k=141 f=-inf f_GSL=-inf
+// Divergence at n=140 k=142 f=-inf f_GSL=-inf
+// Divergence at n=140 k=143 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=140 k=200 f=-inf f_GSL=-inf
 // Test data for n=140.
 // max(|f - f_GSL|): 1.1368683772161603e-13
 // max(|f - f_GSL| / |f_GSL|): 5.9966510799408898e-15
@@ -12418,12 +12418,12 @@ data139[141] =
   { 0.0000000000000000, 140, 140 },
 };
 const double toler139 = 5.0000000000000039e-13;
-//  Divergence at n=141 k=142 f=-inf f_GSL=-inf
-//  Divergence at n=141 k=143 f=-inf f_GSL=-inf
-//  Divergence at n=141 k=144 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=141 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=141 k=142 f=-inf f_GSL=-inf
+// Divergence at n=141 k=143 f=-inf f_GSL=-inf
+// Divergence at n=141 k=144 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=141 k=200 f=-inf f_GSL=-inf
 // Test data for n=141.
 // max(|f - f_GSL|): 2.2737367544323206e-13
 // max(|f - f_GSL| / |f_GSL|): 2.2972793233039452e-14
@@ -12577,12 +12577,12 @@ data140[142] =
   { 0.0000000000000000, 141, 141 },
 };
 const double toler140 = 2.5000000000000015e-12;
-//  Divergence at n=142 k=143 f=-inf f_GSL=-inf
-//  Divergence at n=142 k=144 f=-inf f_GSL=-inf
-//  Divergence at n=142 k=145 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=142 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=142 k=143 f=-inf f_GSL=-inf
+// Divergence at n=142 k=144 f=-inf f_GSL=-inf
+// Divergence at n=142 k=145 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=142 k=200 f=-inf f_GSL=-inf
 // Test data for n=142.
 // max(|f - f_GSL|): 2.4868995751603507e-13
 // max(|f - f_GSL| / |f_GSL|): 4.5880066596448476e-14
@@ -12737,12 +12737,12 @@ data141[143] =
   { 0.0000000000000000, 142, 142 },
 };
 const double toler141 = 2.5000000000000015e-12;
-//  Divergence at n=143 k=144 f=-inf f_GSL=-inf
-//  Divergence at n=143 k=145 f=-inf f_GSL=-inf
-//  Divergence at n=143 k=146 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=143 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=143 k=144 f=-inf f_GSL=-inf
+// Divergence at n=143 k=145 f=-inf f_GSL=-inf
+// Divergence at n=143 k=146 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=143 k=200 f=-inf f_GSL=-inf
 // Test data for n=143.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 2.2907595581057668e-14
@@ -12898,12 +12898,12 @@ data142[144] =
   { 0.0000000000000000, 143, 143 },
 };
 const double toler142 = 2.5000000000000015e-12;
-//  Divergence at n=144 k=145 f=-inf f_GSL=-inf
-//  Divergence at n=144 k=146 f=-inf f_GSL=-inf
-//  Divergence at n=144 k=147 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=144 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=144 k=145 f=-inf f_GSL=-inf
+// Divergence at n=144 k=146 f=-inf f_GSL=-inf
+// Divergence at n=144 k=147 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=144 k=200 f=-inf f_GSL=-inf
 // Test data for n=144.
 // max(|f - f_GSL|): 1.5631940186722204e-13
 // max(|f - f_GSL| / |f_GSL|): 1.2304421825638878e-14
@@ -13060,12 +13060,12 @@ data143[145] =
   { 0.0000000000000000, 144, 144 },
 };
 const double toler143 = 1.0000000000000008e-12;
-//  Divergence at n=145 k=146 f=-inf f_GSL=-inf
-//  Divergence at n=145 k=147 f=-inf f_GSL=-inf
-//  Divergence at n=145 k=148 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=145 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=145 k=146 f=-inf f_GSL=-inf
+// Divergence at n=145 k=147 f=-inf f_GSL=-inf
+// Divergence at n=145 k=148 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=145 k=200 f=-inf f_GSL=-inf
 // Test data for n=145.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 8.6667194171955662e-15
@@ -13223,12 +13223,12 @@ data144[146] =
   { 0.0000000000000000, 145, 145 },
 };
 const double toler144 = 5.0000000000000039e-13;
-//  Divergence at n=146 k=147 f=-inf f_GSL=-inf
-//  Divergence at n=146 k=148 f=-inf f_GSL=-inf
-//  Divergence at n=146 k=149 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=146 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=146 k=147 f=-inf f_GSL=-inf
+// Divergence at n=146 k=148 f=-inf f_GSL=-inf
+// Divergence at n=146 k=149 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=146 k=200 f=-inf f_GSL=-inf
 // Test data for n=146.
 // max(|f - f_GSL|): 2.4158453015843406e-13
 // max(|f - f_GSL| / |f_GSL|): 2.2812161222036004e-14
@@ -13387,12 +13387,12 @@ data145[147] =
   { 0.0000000000000000, 146, 146 },
 };
 const double toler145 = 2.5000000000000015e-12;
-//  Divergence at n=147 k=148 f=-inf f_GSL=-inf
-//  Divergence at n=147 k=149 f=-inf f_GSL=-inf
-//  Divergence at n=147 k=150 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=147 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=147 k=148 f=-inf f_GSL=-inf
+// Divergence at n=147 k=149 f=-inf f_GSL=-inf
+// Divergence at n=147 k=150 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=147 k=200 f=-inf f_GSL=-inf
 // Test data for n=147.
 // max(|f - f_GSL|): 1.6342482922482304e-13
 // max(|f - f_GSL| / |f_GSL|): 2.2780958513057310e-14
@@ -13552,12 +13552,12 @@ data146[148] =
   { 0.0000000000000000, 147, 147 },
 };
 const double toler146 = 2.5000000000000015e-12;
-//  Divergence at n=148 k=149 f=-inf f_GSL=-inf
-//  Divergence at n=148 k=150 f=-inf f_GSL=-inf
-//  Divergence at n=148 k=151 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=148 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=148 k=149 f=-inf f_GSL=-inf
+// Divergence at n=148 k=150 f=-inf f_GSL=-inf
+// Divergence at n=148 k=151 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=148 k=200 f=-inf f_GSL=-inf
 // Test data for n=148.
 // max(|f - f_GSL|): 1.6342482922482304e-13
 // max(|f - f_GSL| / |f_GSL|): 1.2231627962687688e-14
@@ -13718,12 +13718,12 @@ data147[149] =
   { 0.0000000000000000, 148, 148 },
 };
 const double toler147 = 1.0000000000000008e-12;
-//  Divergence at n=149 k=150 f=-inf f_GSL=-inf
-//  Divergence at n=149 k=151 f=-inf f_GSL=-inf
-//  Divergence at n=149 k=152 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=149 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=149 k=150 f=-inf f_GSL=-inf
+// Divergence at n=149 k=151 f=-inf f_GSL=-inf
+// Divergence at n=149 k=152 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=149 k=200 f=-inf f_GSL=-inf
 // Test data for n=149.
 // max(|f - f_GSL|): 1.4210854715202004e-13
 // max(|f - f_GSL| / |f_GSL|): 8.6127490356723781e-15
@@ -13885,12 +13885,12 @@ data148[150] =
   { 0.0000000000000000, 149, 149 },
 };
 const double toler148 = 5.0000000000000039e-13;
-//  Divergence at n=150 k=151 f=-inf f_GSL=-inf
-//  Divergence at n=150 k=152 f=-inf f_GSL=-inf
-//  Divergence at n=150 k=153 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=150 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=150 k=151 f=-inf f_GSL=-inf
+// Divergence at n=150 k=152 f=-inf f_GSL=-inf
+// Divergence at n=150 k=153 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=150 k=200 f=-inf f_GSL=-inf
 // Test data for n=150.
 // max(|f - f_GSL|): 2.3092638912203256e-13
 // max(|f - f_GSL| / |f_GSL|): 2.2689106480283497e-14
@@ -14053,12 +14053,12 @@ data149[151] =
   { 0.0000000000000000, 150, 150 },
 };
 const double toler149 = 2.5000000000000015e-12;
-//  Divergence at n=151 k=152 f=-inf f_GSL=-inf
-//  Divergence at n=151 k=153 f=-inf f_GSL=-inf
-//  Divergence at n=151 k=154 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=151 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=151 k=152 f=-inf f_GSL=-inf
+// Divergence at n=151 k=153 f=-inf f_GSL=-inf
+// Divergence at n=151 k=154 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=151 k=200 f=-inf f_GSL=-inf
 // Test data for n=151.
 // max(|f - f_GSL|): 1.6342482922482304e-13
 // max(|f - f_GSL| / |f_GSL|): 2.2659058577403556e-14
@@ -14222,12 +14222,12 @@ data150[152] =
   { 0.0000000000000000, 151, 151 },
 };
 const double toler150 = 2.5000000000000015e-12;
-//  Divergence at n=152 k=153 f=-inf f_GSL=-inf
-//  Divergence at n=152 k=154 f=-inf f_GSL=-inf
-//  Divergence at n=152 k=155 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=152 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=152 k=153 f=-inf f_GSL=-inf
+// Divergence at n=152 k=154 f=-inf f_GSL=-inf
+// Divergence at n=152 k=155 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=152 k=200 f=-inf f_GSL=-inf
 // Test data for n=152.
 // max(|f - f_GSL|): 1.6875389974302379e-13
 // max(|f - f_GSL| / |f_GSL|): 1.8052381457527060e-14
@@ -14392,12 +14392,12 @@ data151[153] =
   { 0.0000000000000000, 152, 152 },
 };
 const double toler151 = 1.0000000000000008e-12;
-//  Divergence at n=153 k=154 f=-inf f_GSL=-inf
-//  Divergence at n=153 k=155 f=-inf f_GSL=-inf
-//  Divergence at n=153 k=156 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=153 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=153 k=154 f=-inf f_GSL=-inf
+// Divergence at n=153 k=155 f=-inf f_GSL=-inf
+// Divergence at n=153 k=156 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=153 k=200 f=-inf f_GSL=-inf
 // Test data for n=153.
 // max(|f - f_GSL|): 1.5631940186722204e-13
 // max(|f - f_GSL| / |f_GSL|): 8.5608597626576914e-15
@@ -14563,12 +14563,12 @@ data152[154] =
   { 0.0000000000000000, 153, 153 },
 };
 const double toler152 = 5.0000000000000039e-13;
-//  Divergence at n=154 k=155 f=-inf f_GSL=-inf
-//  Divergence at n=154 k=156 f=-inf f_GSL=-inf
-//  Divergence at n=154 k=157 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=154 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=154 k=155 f=-inf f_GSL=-inf
+// Divergence at n=154 k=156 f=-inf f_GSL=-inf
+// Divergence at n=154 k=157 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=154 k=200 f=-inf f_GSL=-inf
 // Test data for n=154.
 // max(|f - f_GSL|): 1.5631940186722204e-13
 // max(|f - f_GSL| / |f_GSL|): 6.7149143571127297e-15
@@ -14735,12 +14735,12 @@ data153[155] =
   { 0.0000000000000000, 154, 154 },
 };
 const double toler153 = 5.0000000000000039e-13;
-//  Divergence at n=155 k=156 f=-inf f_GSL=-inf
-//  Divergence at n=155 k=157 f=-inf f_GSL=-inf
-//  Divergence at n=155 k=158 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=155 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=155 k=156 f=-inf f_GSL=-inf
+// Divergence at n=155 k=157 f=-inf f_GSL=-inf
+// Divergence at n=155 k=158 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=155 k=200 f=-inf f_GSL=-inf
 // Test data for n=155.
 // max(|f - f_GSL|): 1.2079226507921703e-13
 // max(|f - f_GSL| / |f_GSL|): 5.8661670014344372e-15
@@ -14908,12 +14908,12 @@ data154[156] =
   { 0.0000000000000000, 155, 155 },
 };
 const double toler154 = 5.0000000000000039e-13;
-//  Divergence at n=156 k=157 f=-inf f_GSL=-inf
-//  Divergence at n=156 k=158 f=-inf f_GSL=-inf
-//  Divergence at n=156 k=159 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=156 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=156 k=157 f=-inf f_GSL=-inf
+// Divergence at n=156 k=158 f=-inf f_GSL=-inf
+// Divergence at n=156 k=159 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=156 k=200 f=-inf f_GSL=-inf
 // Test data for n=156.
 // max(|f - f_GSL|): 2.7000623958883807e-13
 // max(|f - f_GSL| / |f_GSL|): 2.2512887012700466e-14
@@ -15082,12 +15082,12 @@ data155[157] =
   { 0.0000000000000000, 156, 156 },
 };
 const double toler155 = 2.5000000000000015e-12;
-//  Divergence at n=157 k=158 f=-inf f_GSL=-inf
-//  Divergence at n=157 k=159 f=-inf f_GSL=-inf
-//  Divergence at n=157 k=160 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=157 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=157 k=158 f=-inf f_GSL=-inf
+// Divergence at n=157 k=159 f=-inf f_GSL=-inf
+// Divergence at n=157 k=160 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=157 k=200 f=-inf f_GSL=-inf
 // Test data for n=157.
 // max(|f - f_GSL|): 2.7000623958883807e-13
 // max(|f - f_GSL| / |f_GSL|): 4.4968872993225203e-14
@@ -15257,12 +15257,12 @@ data156[158] =
   { 0.0000000000000000, 157, 157 },
 };
 const double toler156 = 2.5000000000000015e-12;
-//  Divergence at n=158 k=159 f=-inf f_GSL=-inf
-//  Divergence at n=158 k=160 f=-inf f_GSL=-inf
-//  Divergence at n=158 k=161 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=158 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=158 k=159 f=-inf f_GSL=-inf
+// Divergence at n=158 k=160 f=-inf f_GSL=-inf
+// Divergence at n=158 k=161 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=158 k=200 f=-inf f_GSL=-inf
 // Test data for n=158.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 2.2456237755529136e-14
@@ -15433,12 +15433,12 @@ data157[159] =
   { 0.0000000000000000, 158, 158 },
 };
 const double toler157 = 2.5000000000000015e-12;
-//  Divergence at n=159 k=160 f=-inf f_GSL=-inf
-//  Divergence at n=159 k=161 f=-inf f_GSL=-inf
-//  Divergence at n=159 k=162 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=159 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=159 k=160 f=-inf f_GSL=-inf
+// Divergence at n=159 k=161 f=-inf f_GSL=-inf
+// Divergence at n=159 k=162 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=159 k=200 f=-inf f_GSL=-inf
 // Test data for n=159.
 // max(|f - f_GSL|): 2.2737367544323206e-13
 // max(|f - f_GSL| / |f_GSL|): 1.7879593679620772e-14
@@ -15610,12 +15610,12 @@ data158[160] =
   { 0.0000000000000000, 159, 159 },
 };
 const double toler158 = 1.0000000000000008e-12;
-//  Divergence at n=160 k=161 f=-inf f_GSL=-inf
-//  Divergence at n=160 k=162 f=-inf f_GSL=-inf
-//  Divergence at n=160 k=163 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=160 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=160 k=161 f=-inf f_GSL=-inf
+// Divergence at n=160 k=162 f=-inf f_GSL=-inf
+// Divergence at n=160 k=163 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=160 k=200 f=-inf f_GSL=-inf
 // Test data for n=160.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 8.4746604615098177e-15
@@ -15788,12 +15788,12 @@ data159[161] =
   { 0.0000000000000000, 160, 160 },
 };
 const double toler159 = 5.0000000000000039e-13;
-//  Divergence at n=161 k=162 f=-inf f_GSL=-inf
-//  Divergence at n=161 k=163 f=-inf f_GSL=-inf
-//  Divergence at n=161 k=164 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=161 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=161 k=162 f=-inf f_GSL=-inf
+// Divergence at n=161 k=163 f=-inf f_GSL=-inf
+// Divergence at n=161 k=164 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=161 k=200 f=-inf f_GSL=-inf
 // Test data for n=161.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 7.9499036317668546e-15
@@ -15967,12 +15967,12 @@ data160[162] =
   { 0.0000000000000000, 161, 161 },
 };
 const double toler160 = 5.0000000000000039e-13;
-//  Divergence at n=162 k=163 f=-inf f_GSL=-inf
-//  Divergence at n=162 k=164 f=-inf f_GSL=-inf
-//  Divergence at n=162 k=165 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=162 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=162 k=163 f=-inf f_GSL=-inf
+// Divergence at n=162 k=164 f=-inf f_GSL=-inf
+// Divergence at n=162 k=165 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=162 k=200 f=-inf f_GSL=-inf
 // Test data for n=162.
 // max(|f - f_GSL|): 1.6342482922482304e-13
 // max(|f - f_GSL| / |f_GSL|): 6.8514275580276843e-15
@@ -16147,12 +16147,12 @@ data161[163] =
   { 0.0000000000000000, 162, 162 },
 };
 const double toler161 = 5.0000000000000039e-13;
-//  Divergence at n=163 k=164 f=-inf f_GSL=-inf
-//  Divergence at n=163 k=165 f=-inf f_GSL=-inf
-//  Divergence at n=163 k=166 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=163 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=163 k=164 f=-inf f_GSL=-inf
+// Divergence at n=163 k=165 f=-inf f_GSL=-inf
+// Divergence at n=163 k=166 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=163 k=200 f=-inf f_GSL=-inf
 // Test data for n=163.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 5.8037420967137738e-15
@@ -16328,12 +16328,12 @@ data162[164] =
   { 0.0000000000000000, 163, 163 },
 };
 const double toler162 = 5.0000000000000039e-13;
-//  Divergence at n=164 k=165 f=-inf f_GSL=-inf
-//  Divergence at n=164 k=166 f=-inf f_GSL=-inf
-//  Divergence at n=164 k=167 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=164 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=164 k=165 f=-inf f_GSL=-inf
+// Divergence at n=164 k=166 f=-inf f_GSL=-inf
+// Divergence at n=164 k=167 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=164 k=200 f=-inf f_GSL=-inf
 // Test data for n=164.
 // max(|f - f_GSL|): 1.4210854715202004e-13
 // max(|f - f_GSL| / |f_GSL|): 5.7962464194428277e-15
@@ -16510,12 +16510,12 @@ data163[165] =
   { 0.0000000000000000, 164, 164 },
 };
 const double toler163 = 5.0000000000000039e-13;
-//  Divergence at n=165 k=166 f=-inf f_GSL=-inf
-//  Divergence at n=165 k=167 f=-inf f_GSL=-inf
-//  Divergence at n=165 k=168 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=165 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=165 k=166 f=-inf f_GSL=-inf
+// Divergence at n=165 k=167 f=-inf f_GSL=-inf
+// Divergence at n=165 k=168 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=165 k=200 f=-inf f_GSL=-inf
 // Test data for n=165.
 // max(|f - f_GSL|): 2.2737367544323206e-13
 // max(|f - f_GSL| / |f_GSL|): 2.2265580058137282e-14
@@ -16693,12 +16693,12 @@ data164[166] =
   { 0.0000000000000000, 165, 165 },
 };
 const double toler164 = 2.5000000000000015e-12;
-//  Divergence at n=166 k=167 f=-inf f_GSL=-inf
-//  Divergence at n=166 k=168 f=-inf f_GSL=-inf
-//  Divergence at n=166 k=169 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=166 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=166 k=167 f=-inf f_GSL=-inf
+// Divergence at n=166 k=168 f=-inf f_GSL=-inf
+// Divergence at n=166 k=169 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=166 k=200 f=-inf f_GSL=-inf
 // Test data for n=166.
 // max(|f - f_GSL|): 2.4158453015843406e-13
 // max(|f - f_GSL| / |f_GSL|): 1.1935894071161954e-14
@@ -16877,12 +16877,12 @@ data165[167] =
   { 0.0000000000000000, 166, 166 },
 };
 const double toler165 = 1.0000000000000008e-12;
-//  Divergence at n=167 k=168 f=-inf f_GSL=-inf
-//  Divergence at n=167 k=169 f=-inf f_GSL=-inf
-//  Divergence at n=167 k=170 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=167 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=167 k=168 f=-inf f_GSL=-inf
+// Divergence at n=167 k=169 f=-inf f_GSL=-inf
+// Divergence at n=167 k=170 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=167 k=200 f=-inf f_GSL=-inf
 // Test data for n=167.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 2.2213164354712574e-14
@@ -17062,12 +17062,12 @@ data166[168] =
   { 0.0000000000000000, 167, 167 },
 };
 const double toler166 = 2.5000000000000015e-12;
-//  Divergence at n=168 k=169 f=-inf f_GSL=-inf
-//  Divergence at n=168 k=170 f=-inf f_GSL=-inf
-//  Divergence at n=168 k=171 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=168 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=168 k=169 f=-inf f_GSL=-inf
+// Divergence at n=168 k=170 f=-inf f_GSL=-inf
+// Divergence at n=168 k=171 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=168 k=200 f=-inf f_GSL=-inf
 // Test data for n=168.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 1.7672766443186758e-14
@@ -17248,12 +17248,12 @@ data167[169] =
   { 0.0000000000000000, 168, 168 },
 };
 const double toler167 = 1.0000000000000008e-12;
-//  Divergence at n=169 k=170 f=-inf f_GSL=-inf
-//  Divergence at n=169 k=171 f=-inf f_GSL=-inf
-//  Divergence at n=169 k=172 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=169 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=169 k=170 f=-inf f_GSL=-inf
+// Divergence at n=169 k=171 f=-inf f_GSL=-inf
+// Divergence at n=169 k=172 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=169 k=200 f=-inf f_GSL=-inf
 // Test data for n=169.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 8.3715777146184239e-15
@@ -17435,12 +17435,12 @@ data168[170] =
   { 0.0000000000000000, 169, 169 },
 };
 const double toler168 = 5.0000000000000039e-13;
-//  Divergence at n=170 k=171 f=-inf f_GSL=-inf
-//  Divergence at n=170 k=172 f=-inf f_GSL=-inf
-//  Divergence at n=170 k=173 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=170 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=170 k=171 f=-inf f_GSL=-inf
+// Divergence at n=170 k=172 f=-inf f_GSL=-inf
+// Divergence at n=170 k=173 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=170 k=200 f=-inf f_GSL=-inf
 // Test data for n=170.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 6.5602685819127509e-15
@@ -17623,12 +17623,12 @@ data169[171] =
   { 0.0000000000000000, 170, 170 },
 };
 const double toler169 = 5.0000000000000039e-13;
-//  Divergence at n=171 k=172 f=-inf f_GSL=-inf
-//  Divergence at n=171 k=173 f=-inf f_GSL=-inf
-//  Divergence at n=171 k=174 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=171 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=171 k=172 f=-inf f_GSL=-inf
+// Divergence at n=171 k=173 f=-inf f_GSL=-inf
+// Divergence at n=171 k=174 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=171 k=200 f=-inf f_GSL=-inf
 // Test data for n=171.
 // max(|f - f_GSL|): 1.7053025658242404e-13
 // max(|f - f_GSL| / |f_GSL|): 5.7455397799283098e-15
@@ -17812,12 +17812,12 @@ data170[172] =
   { 0.0000000000000000, 171, 171 },
 };
 const double toler170 = 5.0000000000000039e-13;
-//  Divergence at n=172 k=173 f=-inf f_GSL=-inf
-//  Divergence at n=172 k=174 f=-inf f_GSL=-inf
-//  Divergence at n=172 k=175 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=172 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=172 k=173 f=-inf f_GSL=-inf
+// Divergence at n=172 k=174 f=-inf f_GSL=-inf
+// Divergence at n=172 k=175 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=172 k=200 f=-inf f_GSL=-inf
 // Test data for n=172.
 // max(|f - f_GSL|): 2.5579538487363607e-13
 // max(|f - f_GSL| / |f_GSL|): 2.2085859097802033e-14
@@ -18002,12 +18002,12 @@ data171[173] =
   { 0.0000000000000000, 172, 172 },
 };
 const double toler171 = 2.5000000000000015e-12;
-//  Divergence at n=173 k=174 f=-inf f_GSL=-inf
-//  Divergence at n=173 k=175 f=-inf f_GSL=-inf
-//  Divergence at n=173 k=176 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=173 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=173 k=174 f=-inf f_GSL=-inf
+// Divergence at n=173 k=175 f=-inf f_GSL=-inf
+// Divergence at n=173 k=176 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=173 k=200 f=-inf f_GSL=-inf
 // Test data for n=173.
 // max(|f - f_GSL|): 2.7000623958883807e-13
 // max(|f - f_GSL| / |f_GSL|): 1.1832963230024723e-14
@@ -18193,12 +18193,12 @@ data172[174] =
   { 0.0000000000000000, 173, 173 },
 };
 const double toler172 = 1.0000000000000008e-12;
-//  Divergence at n=174 k=175 f=-inf f_GSL=-inf
-//  Divergence at n=174 k=176 f=-inf f_GSL=-inf
-//  Divergence at n=174 k=177 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=174 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=174 k=175 f=-inf f_GSL=-inf
+// Divergence at n=174 k=176 f=-inf f_GSL=-inf
+// Divergence at n=174 k=177 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=174 k=200 f=-inf f_GSL=-inf
 // Test data for n=174.
 // max(|f - f_GSL|): 3.4106051316484809e-13
 // max(|f - f_GSL| / |f_GSL|): 2.2036367344022803e-14
@@ -18385,12 +18385,12 @@ data173[175] =
   { 0.0000000000000000, 174, 174 },
 };
 const double toler173 = 2.5000000000000015e-12;
-//  Divergence at n=175 k=176 f=-inf f_GSL=-inf
-//  Divergence at n=175 k=177 f=-inf f_GSL=-inf
-//  Divergence at n=175 k=178 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=175 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=175 k=176 f=-inf f_GSL=-inf
+// Divergence at n=175 k=177 f=-inf f_GSL=-inf
+// Divergence at n=175 k=178 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=175 k=200 f=-inf f_GSL=-inf
 // Test data for n=175.
 // max(|f - f_GSL|): 2.2737367544323206e-13
 // max(|f - f_GSL| / |f_GSL|): 4.4023833047722749e-14
@@ -18578,12 +18578,12 @@ data174[176] =
   { 0.0000000000000000, 175, 175 },
 };
 const double toler174 = 2.5000000000000015e-12;
-//  Divergence at n=176 k=177 f=-inf f_GSL=-inf
-//  Divergence at n=176 k=178 f=-inf f_GSL=-inf
-//  Divergence at n=176 k=179 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=176 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=176 k=177 f=-inf f_GSL=-inf
+// Divergence at n=176 k=178 f=-inf f_GSL=-inf
+// Divergence at n=176 k=179 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=176 k=200 f=-inf f_GSL=-inf
 // Test data for n=176.
 // max(|f - f_GSL|): 3.9612757518625585e-13
 // max(|f - f_GSL| / |f_GSL|): 4.1083025375152811e-14
@@ -18772,12 +18772,12 @@ data175[177] =
   { 0.0000000000000000, 176, 176 },
 };
 const double toler175 = 2.5000000000000015e-12;
-//  Divergence at n=177 k=178 f=-inf f_GSL=-inf
-//  Divergence at n=177 k=179 f=-inf f_GSL=-inf
-//  Divergence at n=177 k=180 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=177 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=177 k=178 f=-inf f_GSL=-inf
+// Divergence at n=177 k=179 f=-inf f_GSL=-inf
+// Divergence at n=177 k=180 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=177 k=200 f=-inf f_GSL=-inf
 // Test data for n=177.
 // max(|f - f_GSL|): 2.2737367544323206e-13
 // max(|f - f_GSL| / |f_GSL|): 2.1963591394232457e-14
@@ -18967,12 +18967,12 @@ data176[178] =
   { 0.0000000000000000, 177, 177 },
 };
 const double toler176 = 2.5000000000000015e-12;
-//  Divergence at n=178 k=179 f=-inf f_GSL=-inf
-//  Divergence at n=178 k=180 f=-inf f_GSL=-inf
-//  Divergence at n=178 k=181 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=178 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=178 k=179 f=-inf f_GSL=-inf
+// Divergence at n=178 k=180 f=-inf f_GSL=-inf
+// Divergence at n=178 k=181 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=178 k=200 f=-inf f_GSL=-inf
 // Test data for n=178.
 // max(|f - f_GSL|): 3.9790393202565610e-13
 // max(|f - f_GSL| / |f_GSL|): 4.3879423607036337e-14
@@ -19163,12 +19163,12 @@ data177[179] =
   { 0.0000000000000000, 178, 178 },
 };
 const double toler177 = 2.5000000000000015e-12;
-//  Divergence at n=179 k=180 f=-inf f_GSL=-inf
-//  Divergence at n=179 k=181 f=-inf f_GSL=-inf
-//  Divergence at n=179 k=182 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=179 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=179 k=180 f=-inf f_GSL=-inf
+// Divergence at n=179 k=181 f=-inf f_GSL=-inf
+// Divergence at n=179 k=182 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=179 k=200 f=-inf f_GSL=-inf
 // Test data for n=179.
 // max(|f - f_GSL|): 2.2737367544323206e-13
 // max(|f - f_GSL| / |f_GSL|): 4.3832034854090350e-14
@@ -19360,12 +19360,12 @@ data178[180] =
   { 0.0000000000000000, 179, 179 },
 };
 const double toler178 = 2.5000000000000015e-12;
-//  Divergence at n=180 k=181 f=-inf f_GSL=-inf
-//  Divergence at n=180 k=182 f=-inf f_GSL=-inf
-//  Divergence at n=180 k=183 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=180 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=180 k=181 f=-inf f_GSL=-inf
+// Divergence at n=180 k=182 f=-inf f_GSL=-inf
+// Divergence at n=180 k=183 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=180 k=200 f=-inf f_GSL=-inf
 // Test data for n=180.
 // max(|f - f_GSL|): 3.9790393202565610e-13
 // max(|f - f_GSL| / |f_GSL|): 4.3785011501541214e-14
@@ -19558,12 +19558,12 @@ data179[181] =
   { 0.0000000000000000, 180, 180 },
 };
 const double toler179 = 2.5000000000000015e-12;
-//  Divergence at n=181 k=182 f=-inf f_GSL=-inf
-//  Divergence at n=181 k=183 f=-inf f_GSL=-inf
-//  Divergence at n=181 k=184 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=181 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=181 k=182 f=-inf f_GSL=-inf
+// Divergence at n=181 k=183 f=-inf f_GSL=-inf
+// Divergence at n=181 k=184 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=181 k=200 f=-inf f_GSL=-inf
 // Test data for n=181.
 // max(|f - f_GSL|): 2.8421709430404007e-13
 // max(|f - f_GSL| / |f_GSL|): 2.1869174309008750e-14
@@ -19757,12 +19757,12 @@ data180[182] =
   { 0.0000000000000000, 181, 181 },
 };
 const double toler180 = 2.5000000000000015e-12;
-//  Divergence at n=182 k=183 f=-inf f_GSL=-inf
-//  Divergence at n=182 k=184 f=-inf f_GSL=-inf
-//  Divergence at n=182 k=185 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=182 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=182 k=183 f=-inf f_GSL=-inf
+// Divergence at n=182 k=184 f=-inf f_GSL=-inf
+// Divergence at n=182 k=185 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=182 k=200 f=-inf f_GSL=-inf
 // Test data for n=182.
 // max(|f - f_GSL|): 3.9079850466805510e-13
 // max(|f - f_GSL| / |f_GSL|): 2.1846020683242792e-14
@@ -19957,12 +19957,12 @@ data181[183] =
   { 0.0000000000000000, 182, 182 },
 };
 const double toler181 = 2.5000000000000015e-12;
-//  Divergence at n=183 k=184 f=-inf f_GSL=-inf
-//  Divergence at n=183 k=185 f=-inf f_GSL=-inf
-//  Divergence at n=183 k=186 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=183 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=183 k=184 f=-inf f_GSL=-inf
+// Divergence at n=183 k=185 f=-inf f_GSL=-inf
+// Divergence at n=183 k=186 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=183 k=200 f=-inf f_GSL=-inf
 // Test data for n=183.
 // max(|f - f_GSL|): 2.8421709430404007e-13
 // max(|f - f_GSL| / |f_GSL|): 2.1823042500959356e-14
@@ -20158,12 +20158,12 @@ data182[184] =
   { 0.0000000000000000, 183, 183 },
 };
 const double toler182 = 2.5000000000000015e-12;
-//  Divergence at n=184 k=185 f=-inf f_GSL=-inf
-//  Divergence at n=184 k=186 f=-inf f_GSL=-inf
-//  Divergence at n=184 k=187 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=184 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=184 k=185 f=-inf f_GSL=-inf
+// Divergence at n=184 k=186 f=-inf f_GSL=-inf
+// Divergence at n=184 k=187 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=184 k=200 f=-inf f_GSL=-inf
 // Test data for n=184.
 // max(|f - f_GSL|): 2.5579538487363607e-13
 // max(|f - f_GSL| / |f_GSL|): 1.7341397137281765e-14
@@ -20360,12 +20360,12 @@ data183[185] =
   { 0.0000000000000000, 184, 184 },
 };
 const double toler183 = 1.0000000000000008e-12;
-//  Divergence at n=185 k=186 f=-inf f_GSL=-inf
-//  Divergence at n=185 k=187 f=-inf f_GSL=-inf
-//  Divergence at n=185 k=188 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=185 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=185 k=186 f=-inf f_GSL=-inf
+// Divergence at n=185 k=187 f=-inf f_GSL=-inf
+// Divergence at n=185 k=188 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=185 k=200 f=-inf f_GSL=-inf
 // Test data for n=185.
 // max(|f - f_GSL|): 2.2737367544323206e-13
 // max(|f - f_GSL| / |f_GSL|): 2.1777603200047419e-14
@@ -20563,12 +20563,12 @@ data184[186] =
   { 0.0000000000000000, 185, 185 },
 };
 const double toler184 = 2.5000000000000015e-12;
-//  Divergence at n=186 k=187 f=-inf f_GSL=-inf
-//  Divergence at n=186 k=188 f=-inf f_GSL=-inf
-//  Divergence at n=186 k=189 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=186 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=186 k=187 f=-inf f_GSL=-inf
+// Divergence at n=186 k=188 f=-inf f_GSL=-inf
+// Divergence at n=186 k=189 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=186 k=200 f=-inf f_GSL=-inf
 // Test data for n=186.
 // max(|f - f_GSL|): 2.4868995751603507e-13
 // max(|f - f_GSL| / |f_GSL|): 1.7302847622767429e-14
@@ -20767,12 +20767,12 @@ data185[187] =
   { 0.0000000000000000, 186, 186 },
 };
 const double toler185 = 1.0000000000000008e-12;
-//  Divergence at n=187 k=188 f=-inf f_GSL=-inf
-//  Divergence at n=187 k=189 f=-inf f_GSL=-inf
-//  Divergence at n=187 k=190 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=187 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=187 k=188 f=-inf f_GSL=-inf
+// Divergence at n=187 k=189 f=-inf f_GSL=-inf
+// Divergence at n=187 k=190 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=187 k=200 f=-inf f_GSL=-inf
 // Test data for n=187.
 // max(|f - f_GSL|): 2.8421709430404007e-13
 // max(|f - f_GSL| / |f_GSL|): 2.1732838304163658e-14
@@ -20972,12 +20972,12 @@ data186[188] =
   { 0.0000000000000000, 187, 187 },
 };
 const double toler186 = 2.5000000000000015e-12;
-//  Divergence at n=188 k=189 f=-inf f_GSL=-inf
-//  Divergence at n=188 k=190 f=-inf f_GSL=-inf
-//  Divergence at n=188 k=191 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=188 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=188 k=189 f=-inf f_GSL=-inf
+// Divergence at n=188 k=190 f=-inf f_GSL=-inf
+// Divergence at n=188 k=191 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=188 k=200 f=-inf f_GSL=-inf
 // Test data for n=188.
 // max(|f - f_GSL|): 4.5474735088646412e-13
 // max(|f - f_GSL| / |f_GSL|): 2.3262153827577704e-14
@@ -21178,12 +21178,12 @@ data187[189] =
   { 0.0000000000000000, 188, 188 },
 };
 const double toler187 = 2.5000000000000015e-12;
-//  Divergence at n=189 k=190 f=-inf f_GSL=-inf
-//  Divergence at n=189 k=191 f=-inf f_GSL=-inf
-//  Divergence at n=189 k=192 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=189 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=189 k=190 f=-inf f_GSL=-inf
+// Divergence at n=189 k=191 f=-inf f_GSL=-inf
+// Divergence at n=189 k=192 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=189 k=200 f=-inf f_GSL=-inf
 // Test data for n=189.
 // max(|f - f_GSL|): 2.8421709430404007e-13
 // max(|f - f_GSL| / |f_GSL|): 2.1688730378438877e-14
@@ -21385,12 +21385,12 @@ data188[190] =
   { 0.0000000000000000, 189, 189 },
 };
 const double toler188 = 2.5000000000000015e-12;
-//  Divergence at n=190 k=191 f=-inf f_GSL=-inf
-//  Divergence at n=190 k=192 f=-inf f_GSL=-inf
-//  Divergence at n=190 k=193 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=190 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=190 k=191 f=-inf f_GSL=-inf
+// Divergence at n=190 k=192 f=-inf f_GSL=-inf
+// Divergence at n=190 k=193 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=190 k=200 f=-inf f_GSL=-inf
 // Test data for n=190.
 // max(|f - f_GSL|): 3.4106051316484809e-13
 // max(|f - f_GSL| / |f_GSL|): 2.1666917505641552e-14
@@ -21593,12 +21593,12 @@ data189[191] =
   { 0.0000000000000000, 190, 190 },
 };
 const double toler189 = 2.5000000000000015e-12;
-//  Divergence at n=191 k=192 f=-inf f_GSL=-inf
-//  Divergence at n=191 k=193 f=-inf f_GSL=-inf
-//  Divergence at n=191 k=194 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=191 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=191 k=192 f=-inf f_GSL=-inf
+// Divergence at n=191 k=193 f=-inf f_GSL=-inf
+// Divergence at n=191 k=194 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=191 k=200 f=-inf f_GSL=-inf
 // Test data for n=191.
 // max(|f - f_GSL|): 3.4106051316484809e-13
 // max(|f - f_GSL| / |f_GSL|): 2.1645262623712243e-14
@@ -21802,12 +21802,12 @@ data190[192] =
   { 0.0000000000000000, 191, 191 },
 };
 const double toler190 = 2.5000000000000015e-12;
-//  Divergence at n=192 k=193 f=-inf f_GSL=-inf
-//  Divergence at n=192 k=194 f=-inf f_GSL=-inf
-//  Divergence at n=192 k=195 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=192 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=192 k=193 f=-inf f_GSL=-inf
+// Divergence at n=192 k=194 f=-inf f_GSL=-inf
+// Divergence at n=192 k=195 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=192 k=200 f=-inf f_GSL=-inf
 // Test data for n=192.
 // max(|f - f_GSL|): 2.8244073746463982e-13
 // max(|f - f_GSL| / |f_GSL|): 2.8771684232299480e-14
@@ -22012,12 +22012,12 @@ data191[193] =
   { 0.0000000000000000, 192, 192 },
 };
 const double toler191 = 2.5000000000000015e-12;
-//  Divergence at n=193 k=194 f=-inf f_GSL=-inf
-//  Divergence at n=193 k=195 f=-inf f_GSL=-inf
-//  Divergence at n=193 k=196 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=193 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=193 k=194 f=-inf f_GSL=-inf
+// Divergence at n=193 k=195 f=-inf f_GSL=-inf
+// Divergence at n=193 k=196 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=193 k=200 f=-inf f_GSL=-inf
 // Test data for n=193.
 // max(|f - f_GSL|): 3.9790393202565610e-13
 // max(|f - f_GSL| / |f_GSL|): 4.3204837693580829e-14
@@ -22223,12 +22223,12 @@ data192[194] =
   { 0.0000000000000000, 193, 193 },
 };
 const double toler192 = 2.5000000000000015e-12;
-//  Divergence at n=194 k=195 f=-inf f_GSL=-inf
-//  Divergence at n=194 k=196 f=-inf f_GSL=-inf
-//  Divergence at n=194 k=197 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=194 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=194 k=195 f=-inf f_GSL=-inf
+// Divergence at n=194 k=196 f=-inf f_GSL=-inf
+// Divergence at n=194 k=197 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=194 k=200 f=-inf f_GSL=-inf
 // Test data for n=194.
 // max(|f - f_GSL|): 2.8421709430404007e-13
 // max(|f - f_GSL| / |f_GSL|): 2.1581226048392528e-14
@@ -22435,12 +22435,12 @@ data193[195] =
   { 0.0000000000000000, 194, 194 },
 };
 const double toler193 = 2.5000000000000015e-12;
-//  Divergence at n=195 k=196 f=-inf f_GSL=-inf
-//  Divergence at n=195 k=197 f=-inf f_GSL=-inf
-//  Divergence at n=195 k=198 f=-inf f_GSL=-inf
-//  ...
-//  Divergence at n=195 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=195 k=196 f=-inf f_GSL=-inf
+// Divergence at n=195 k=197 f=-inf f_GSL=-inf
+// Divergence at n=195 k=198 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=195 k=200 f=-inf f_GSL=-inf
 // Test data for n=195.
 // max(|f - f_GSL|): 3.9612757518625585e-13
 // max(|f - f_GSL| / |f_GSL|): 4.3120366864806085e-14
@@ -22648,11 +22648,11 @@ data194[196] =
   { 0.0000000000000000, 195, 195 },
 };
 const double toler194 = 2.5000000000000015e-12;
-//  Divergence at n=196 k=197 f=-inf f_GSL=-inf
-//  Divergence at n=196 k=198 f=-inf f_GSL=-inf
-//  Divergence at n=196 k=199 f=-inf f_GSL=-inf
-//  Divergence at n=196 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=196 k=197 f=-inf f_GSL=-inf
+// Divergence at n=196 k=198 f=-inf f_GSL=-inf
+// Divergence at n=196 k=199 f=-inf f_GSL=-inf
+// Divergence at n=196 k=200 f=-inf f_GSL=-inf
 // Test data for n=196.
 // max(|f - f_GSL|): 2.7000623958883807e-13
 // max(|f - f_GSL| / |f_GSL|): 2.1539289132872097e-14
@@ -22861,11 +22861,11 @@ data195[197] =
   { 0.0000000000000000, 196, 196 },
 };
 const double toler195 = 2.5000000000000015e-12;
-//  Divergence at n=197 k=198 f=-inf f_GSL=-inf
-//  Divergence at n=197 k=199 f=-inf f_GSL=-inf
-//  Divergence at n=197 k=200 f=-inf f_GSL=-inf
-//  Divergence at n=197 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=197 k=198 f=-inf f_GSL=-inf
+// Divergence at n=197 k=199 f=-inf f_GSL=-inf
+// Divergence at n=197 k=200 f=-inf f_GSL=-inf
+// Divergence at n=197 k=200 f=-inf f_GSL=-inf
 // Test data for n=197.
 // max(|f - f_GSL|): 2.8421709430404007e-13
 // max(|f - f_GSL| / |f_GSL|): 2.3041115791802580e-14
@@ -23075,10 +23075,10 @@ data196[198] =
   { 0.0000000000000000, 197, 197 },
 };
 const double toler196 = 2.5000000000000015e-12;
-//  Divergence at n=198 k=199 f=-inf f_GSL=-inf
-//  Divergence at n=198 k=200 f=-inf f_GSL=-inf
-//  Divergence at n=198 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=198 k=199 f=-inf f_GSL=-inf
+// Divergence at n=198 k=200 f=-inf f_GSL=-inf
+// Divergence at n=198 k=200 f=-inf f_GSL=-inf
 // Test data for n=198.
 // max(|f - f_GSL|): 2.7000623958883807e-13
 // max(|f - f_GSL| / |f_GSL|): 2.1497938183103071e-14
@@ -23289,9 +23289,9 @@ data197[199] =
   { 0.0000000000000000, 198, 198 },
 };
 const double toler197 = 2.5000000000000015e-12;
-//  Divergence at n=199 k=200 f=-inf f_GSL=-inf
-//  Divergence at n=199 k=200 f=-inf f_GSL=-inf
 
+// Divergence at n=199 k=200 f=-inf f_GSL=-inf
+// Divergence at n=199 k=200 f=-inf f_GSL=-inf
 // Test data for n=199.
 // max(|f - f_GSL|): 3.9790393202565610e-13
 // max(|f - f_GSL| / |f_GSL|): 2.8562763711264206e-14
