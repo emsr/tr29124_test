@@ -22,12 +22,12 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file ext/roots.tcc
+/** @file ext/root_finding.tcc
  *  This file is a GNU extension to the Standard C++ Library.
  */
 
-#ifndef _EXT_ROOTS_TCC
-#define _EXT_ROOTS_TCC 1
+#ifndef _EXT_ROOT_FINDING_TCC
+#define _EXT_ROOT_FINDING_TCC 1
 
 #pragma GCC system_header
 
@@ -564,7 +564,8 @@ namespace __gnu_cxx
 /*
   template<typename _Tp>
     void
-    __root_laguerre(_Polymomial<std::complex<_Tp>>& __a, std::complex<_Tp>& __x, int& __its)
+    __root_laguerre(_Polymomial<std::complex<_Tp>>& __a, std::complex<_Tp>& __x,
+		    int& __its)
     {
       // Estimated fractional roundoff error.
       constexpr _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
@@ -660,8 +661,10 @@ namespace __gnu_cxx
 	  __b += __delb;
 	  __delc = (-__r * __sb + __s * __rb) * __dv;
 	  __c += __delc;
-	  if ((std::abs(__delb) <= eps * std::abs(__b) || std::abs(__b) < _S_tiny)
-           && (std::abs(__delc) <= eps * std::abs(__c) || std::abs(__c) < _S_tiny))
+	  if ((std::abs(__delb) <= eps * std::abs(__b)
+	      || std::abs(__b) < _S_tiny)
+           && (std::abs(__delc) <= eps * std::abs(__c)
+	      || std::abs(__c) < _S_tiny))
 	    return;
 	}
       std::__throw_logic_error("qroot: "
@@ -671,4 +674,4 @@ namespace __gnu_cxx
 
 } // namespace __gnu_cxx
 
-#endif // _EXT_ROOTS_TCC
+#endif // _EXT_ROOT_FINDING_TCC

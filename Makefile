@@ -33,6 +33,8 @@ BOOST_DIR = /usr/local
 BOOST_INC_DIR = $(BOOST_DIR)/include
 BOOST_LIB_DIR = $(BOOST_DIR)/lib
 
+CHECK_DIR = $(HOME)/tr29124_test/check
+
 #BOOST_LIBS = -L$(BOOST_LIB_DIR) -lboost_math_tools -lboost_math_tr1f -lboost_math_tr1l -lboost_math_tr1
 
 BINS = diff_special_function \
@@ -55,102 +57,102 @@ BINS = diff_special_function \
        diff_local_special_function \
        test_local_special_function
 
-CHECKS = check_airy_ai \
-	 check_airy_bi \
-	 check_assoc_laguerre \
-	 check_assoc_legendre \
-	 check_beta \
-	 check_bincoef \
-	 check_chi \
-	 check_comp_ellint_1 \
-	 check_comp_ellint_2 \
-	 check_comp_ellint_3 \
-	 check_comp_ellint_d \
-	 check_conf_hyperg \
-	 check_conf_hyperg_lim \
-	 check_coshint \
-	 check_cosint \
-	 check_cyl_bessel_i \
-	 check_cyl_bessel_j \
-	 check_cyl_bessel_k \
-	 check_cyl_hankel_1 \
-	 check_cyl_hankel_2 \
-	 check_cyl_neumann \
-	 check_dawson \
-	 check_dilog \
-	 check_ellint_1 \
-	 check_ellint_2 \
-	 check_ellint_3 \
-	 check_ellint_d \
-	 check_ellint_rc \
-	 check_ellint_rd \
-	 check_ellint_rf \
-	 check_ellint_rg \
-	 check_ellint_rj \
-	 check_expint \
-	 check_expint_en \
-	 check_factorial \
-	 check_fresnel_c \
-	 check_fresnel_s \
-	 check_gamma_l \
-	 check_gamma_u \
-	 check_gegenbauer \
-	 check_hermite \
-	 check_heuman_lambda \
-	 check_hurwitz_zeta \
-	 check_hyperg \
-	 check_ibeta \
-	 check_jacobi \
-	 check_jacobi_cn \
-	 check_jacobi_dn \
-	 check_jacobi_sn \
-	 check_jacobi_zeta \
-	 check_laguerre \
-	 check_lbincoef \
-	 check_ldouble_factorial \
-	 check_legendre \
-	 check_legendre \
-	 check_legendre_q \
-	 check_lfactorial \
-	 check_lpochhammer_l \
-	 check_lpochhammer_u \
-	 check_owens_t \
-	 check_pgamma \
-	 check_pochhammer_l \
-	 check_pochhammer_u \
-	 check_psi \
-	 check_qgamma \
-	 check_radpoly \
-	 check_riemann_zeta \
-	 check_shi \
-	 check_sinc \
-	 check_sinc_pi \
-	 check_sinhint \
-	 check_sinint \
-	 check_sph_bessel \
-	 check_sph_bessel_i \
-	 check_sph_bessel_k \
-	 check_sph_hankel_1 \
-	 check_sph_hankel_2 \
-	 check_sph_harmonic \
-	 check_sph_legendre \
-	 check_sph_neumann \
-	 check_theta_1 \
-	 check_theta_2 \
-	 check_theta_3 \
-	 check_theta_4 \
-	 check_zernike \
-	 complex_ellint_rc \
-	 complex_ellint_rd \
-	 complex_ellint_rf \
-	 complex_ellint_rg \
-	 complex_ellint_rj \
-	 check_clausen_c \
-	 pr56216_cyl_hankel_1 \
-	 pr56216_cyl_hankel_2 \
-	 pr56216_cyl_bessel_i \
-	 origin_bessel_j \
-	 origin_cyl_neumann \
+CHECKS = ${CHECK_DIR}/check_airy_ai \
+	 ${CHECK_DIR}/check_airy_bi \
+	 ${CHECK_DIR}/check_assoc_laguerre \
+	 ${CHECK_DIR}/check_assoc_legendre \
+	 ${CHECK_DIR}/check_beta \
+	 ${CHECK_DIR}/check_bincoef \
+	 ${CHECK_DIR}/check_chi \
+	 ${CHECK_DIR}/check_comp_ellint_1 \
+	 ${CHECK_DIR}/check_comp_ellint_2 \
+	 ${CHECK_DIR}/check_comp_ellint_3 \
+	 ${CHECK_DIR}/check_comp_ellint_d \
+	 ${CHECK_DIR}/check_conf_hyperg \
+	 ${CHECK_DIR}/check_conf_hyperg_lim \
+	 ${CHECK_DIR}/check_coshint \
+	 ${CHECK_DIR}/check_cosint \
+	 ${CHECK_DIR}/check_cyl_bessel_i \
+	 ${CHECK_DIR}/check_cyl_bessel_j \
+	 ${CHECK_DIR}/check_cyl_bessel_k \
+	 ${CHECK_DIR}/check_cyl_hankel_1 \
+	 ${CHECK_DIR}/check_cyl_hankel_2 \
+	 ${CHECK_DIR}/check_cyl_neumann \
+	 ${CHECK_DIR}/check_dawson \
+	 ${CHECK_DIR}/check_dilog \
+	 ${CHECK_DIR}/check_ellint_1 \
+	 ${CHECK_DIR}/check_ellint_2 \
+	 ${CHECK_DIR}/check_ellint_3 \
+	 ${CHECK_DIR}/check_ellint_d \
+	 ${CHECK_DIR}/check_ellint_rc \
+	 ${CHECK_DIR}/check_ellint_rd \
+	 ${CHECK_DIR}/check_ellint_rf \
+	 ${CHECK_DIR}/check_ellint_rg \
+	 ${CHECK_DIR}/check_ellint_rj \
+	 ${CHECK_DIR}/check_expint \
+	 ${CHECK_DIR}/check_expint_en \
+	 ${CHECK_DIR}/check_factorial \
+	 ${CHECK_DIR}/check_fresnel_c \
+	 ${CHECK_DIR}/check_fresnel_s \
+	 ${CHECK_DIR}/check_gamma_l \
+	 ${CHECK_DIR}/check_gamma_u \
+	 ${CHECK_DIR}/check_gegenbauer \
+	 ${CHECK_DIR}/check_hermite \
+	 ${CHECK_DIR}/check_heuman_lambda \
+	 ${CHECK_DIR}/check_hurwitz_zeta \
+	 ${CHECK_DIR}/check_hyperg \
+	 ${CHECK_DIR}/check_ibeta \
+	 ${CHECK_DIR}/check_jacobi \
+	 ${CHECK_DIR}/check_jacobi_cn \
+	 ${CHECK_DIR}/check_jacobi_dn \
+	 ${CHECK_DIR}/check_jacobi_sn \
+	 ${CHECK_DIR}/check_jacobi_zeta \
+	 ${CHECK_DIR}/check_laguerre \
+	 ${CHECK_DIR}/check_lbincoef \
+	 ${CHECK_DIR}/check_ldouble_factorial \
+	 ${CHECK_DIR}/check_legendre \
+	 ${CHECK_DIR}/check_legendre \
+	 ${CHECK_DIR}/check_legendre_q \
+	 ${CHECK_DIR}/check_lfactorial \
+	 ${CHECK_DIR}/check_lpochhammer_l \
+	 ${CHECK_DIR}/check_lpochhammer_u \
+	 ${CHECK_DIR}/check_owens_t \
+	 ${CHECK_DIR}/check_pgamma \
+	 ${CHECK_DIR}/check_pochhammer_l \
+	 ${CHECK_DIR}/check_pochhammer_u \
+	 ${CHECK_DIR}/check_psi \
+	 ${CHECK_DIR}/check_qgamma \
+	 ${CHECK_DIR}/check_radpoly \
+	 ${CHECK_DIR}/check_riemann_zeta \
+	 ${CHECK_DIR}/check_shi \
+	 ${CHECK_DIR}/check_sinc \
+	 ${CHECK_DIR}/check_sinc_pi \
+	 ${CHECK_DIR}/check_sinhint \
+	 ${CHECK_DIR}/check_sinint \
+	 ${CHECK_DIR}/check_sph_bessel \
+	 ${CHECK_DIR}/check_sph_bessel_i \
+	 ${CHECK_DIR}/check_sph_bessel_k \
+	 ${CHECK_DIR}/check_sph_hankel_1 \
+	 ${CHECK_DIR}/check_sph_hankel_2 \
+	 ${CHECK_DIR}/check_sph_harmonic \
+	 ${CHECK_DIR}/check_sph_legendre \
+	 ${CHECK_DIR}/check_sph_neumann \
+	 ${CHECK_DIR}/check_theta_1 \
+	 ${CHECK_DIR}/check_theta_2 \
+	 ${CHECK_DIR}/check_theta_3 \
+	 ${CHECK_DIR}/check_theta_4 \
+	 ${CHECK_DIR}/check_zernike \
+	 ${CHECK_DIR}/complex_ellint_rc \
+	 ${CHECK_DIR}/complex_ellint_rd \
+	 ${CHECK_DIR}/complex_ellint_rf \
+	 ${CHECK_DIR}/complex_ellint_rg \
+	 ${CHECK_DIR}/complex_ellint_rj \
+	 ${CHECK_DIR}/check_clausen_c \
+	 ${CHECK_DIR}/pr56216_cyl_hankel_1 \
+	 ${CHECK_DIR}/pr56216_cyl_hankel_2 \
+	 ${CHECK_DIR}/pr56216_cyl_bessel_i \
+	 ${CHECK_DIR}/origin_bessel_j \
+	 ${CHECK_DIR}/origin_cyl_neumann
 
 all: diff_special_function \
      test_special_function \
@@ -211,103 +213,103 @@ test:
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_local_special_function > test_local_special_function.txt
 
 check: $(CHECKS)
-	echo "Beginning executions of checks..." > check_out.txt 2> check_err.txt
-	echo "check_airy_ai" >> check_out.txt 2>> check_err.txt && ./check_airy_ai >> check_out.txt 2>> check_err.txt
-	echo "check_airy_bi" >> check_out.txt 2>> check_err.txt && ./check_airy_bi >> check_out.txt 2>> check_err.txt
-	echo "check_assoc_laguerre" >> check_out.txt 2>> check_err.txt && ./check_assoc_laguerre >> check_out.txt 2>> check_err.txt
-	echo "check_assoc_legendre" >> check_out.txt 2>> check_err.txt && ./check_assoc_legendre >> check_out.txt 2>> check_err.txt
-	echo "check_beta" >> check_out.txt 2>> check_err.txt && ./check_beta >> check_out.txt 2>> check_err.txt
-	echo "check_bincoef" >> check_out.txt 2>> check_err.txt && ./check_bincoef >> check_out.txt 2>> check_err.txt
-	echo "check_chi" >> check_out.txt 2>> check_err.txt && ./check_chi >> check_out.txt 2>> check_err.txt
-	echo "check_clausen_c" >> check_out.txt 2>> check_err.txt && ./check_clausen_c >> check_out.txt 2>> check_err.txt
-	echo "check_comp_ellint_1" >> check_out.txt 2>> check_err.txt && ./check_comp_ellint_1 >> check_out.txt 2>> check_err.txt
-	echo "check_comp_ellint_2" >> check_out.txt 2>> check_err.txt && ./check_comp_ellint_2 >> check_out.txt 2>> check_err.txt
-	echo "check_comp_ellint_3" >> check_out.txt 2>> check_err.txt && ./check_comp_ellint_3 >> check_out.txt 2>> check_err.txt
-	echo "check_comp_ellint_d" >> check_out.txt 2>> check_err.txt && ./check_comp_ellint_d >> check_out.txt 2>> check_err.txt
-	echo "check_conf_hyperg" >> check_out.txt 2>> check_err.txt && ./check_conf_hyperg >> check_out.txt 2>> check_err.txt
-	echo "check_conf_hyperg_lim" >> check_out.txt 2>> check_err.txt && ./check_conf_hyperg_lim >> check_out.txt 2>> check_err.txt
-	echo "check_coshint" >> check_out.txt 2>> check_err.txt && ./check_coshint >> check_out.txt 2>> check_err.txt
-	echo "check_cosint" >> check_out.txt 2>> check_err.txt && ./check_cosint >> check_out.txt 2>> check_err.txt
-	echo "check_cyl_bessel_i" >> check_out.txt 2>> check_err.txt && ./check_cyl_bessel_i >> check_out.txt 2>> check_err.txt
-	echo "check_cyl_bessel_j" >> check_out.txt 2>> check_err.txt && ./check_cyl_bessel_j >> check_out.txt 2>> check_err.txt
-	echo "check_cyl_bessel_k" >> check_out.txt 2>> check_err.txt && ./check_cyl_bessel_k >> check_out.txt 2>> check_err.txt
-	echo "check_cyl_hankel_1" >> check_out.txt 2>> check_err.txt && ./check_cyl_hankel_1 >> check_out.txt 2>> check_err.txt
-	echo "check_cyl_hankel_2" >> check_out.txt 2>> check_err.txt && ./check_cyl_hankel_2 >> check_out.txt 2>> check_err.txt
-	echo "check_cyl_neumann" >> check_out.txt 2>> check_err.txt && ./check_cyl_neumann >> check_out.txt 2>> check_err.txt
-	echo "check_dawson" >> check_out.txt 2>> check_err.txt && ./check_dawson >> check_out.txt 2>> check_err.txt
-	echo "check_dilog" >> check_out.txt 2>> check_err.txt && ./check_dilog >> check_out.txt 2>> check_err.txt
-	echo "check_ellint_1" >> check_out.txt 2>> check_err.txt && ./check_ellint_1 >> check_out.txt 2>> check_err.txt
-	echo "check_ellint_2" >> check_out.txt 2>> check_err.txt && ./check_ellint_2 >> check_out.txt 2>> check_err.txt
-	echo "check_ellint_3" >> check_out.txt 2>> check_err.txt && ./check_ellint_3 >> check_out.txt 2>> check_err.txt
-	echo "check_ellint_d" >> check_out.txt 2>> check_err.txt && ./check_ellint_d >> check_out.txt 2>> check_err.txt
-	echo "check_ellint_rc" >> check_out.txt 2>> check_err.txt && ./check_ellint_rc >> check_out.txt 2>> check_err.txt
-	echo "check_ellint_rd" >> check_out.txt 2>> check_err.txt && ./check_ellint_rd >> check_out.txt 2>> check_err.txt
-	echo "check_ellint_rf" >> check_out.txt 2>> check_err.txt && ./check_ellint_rf >> check_out.txt 2>> check_err.txt
-	echo "check_ellint_rg" >> check_out.txt 2>> check_err.txt && ./check_ellint_rg >> check_out.txt 2>> check_err.txt
-	echo "check_ellint_rj" >> check_out.txt 2>> check_err.txt && ./check_ellint_rj >> check_out.txt 2>> check_err.txt
-	echo "check_expint" >> check_out.txt 2>> check_err.txt && ./check_expint >> check_out.txt 2>> check_err.txt
-	echo "check_expint_en" >> check_out.txt 2>> check_err.txt && ./check_expint_en >> check_out.txt 2>> check_err.txt
-	echo "check_factorial" >> check_out.txt 2>> check_err.txt && ./check_factorial >> check_out.txt 2>> check_err.txt
-	echo "check_fresnel_c" >> check_out.txt 2>> check_err.txt && ./check_fresnel_c >> check_out.txt 2>> check_err.txt
-	echo "check_fresnel_s" >> check_out.txt 2>> check_err.txt && ./check_fresnel_s >> check_out.txt 2>> check_err.txt
-	echo "check_gamma_l" >> check_out.txt 2>> check_err.txt && ./check_gamma_l >> check_out.txt 2>> check_err.txt
-	echo "check_gamma_u" >> check_out.txt 2>> check_err.txt && ./check_gamma_u >> check_out.txt 2>> check_err.txt
-	echo "check_gegenbauer" >> check_out.txt 2>> check_err.txt && ./check_gegenbauer >> check_out.txt 2>> check_err.txt
-	echo "check_hermite" >> check_out.txt 2>> check_err.txt && ./check_hermite >> check_out.txt 2>> check_err.txt
-	echo "check_heuman_lambda" >> check_out.txt 2>> check_err.txt && ./check_heuman_lambda >> check_out.txt 2>> check_err.txt
-	echo "check_hurwitz_zeta" >> check_out.txt 2>> check_err.txt && ./check_hurwitz_zeta >> check_out.txt 2>> check_err.txt
-	echo "check_hyperg" >> check_out.txt 2>> check_err.txt && ./check_hyperg >> check_out.txt 2>> check_err.txt
-	echo "check_ibeta" >> check_out.txt 2>> check_err.txt && ./check_ibeta >> check_out.txt 2>> check_err.txt
-	echo "check_jacobi" >> check_out.txt 2>> check_err.txt && ./check_jacobi >> check_out.txt 2>> check_err.txt
-	echo "check_jacobi_cn" >> check_out.txt 2>> check_err.txt && ./check_jacobi_cn >> check_out.txt 2>> check_err.txt
-	echo "check_jacobi_dn" >> check_out.txt 2>> check_err.txt && ./check_jacobi_dn >> check_out.txt 2>> check_err.txt
-	echo "check_jacobi_sn" >> check_out.txt 2>> check_err.txt && ./check_jacobi_sn >> check_out.txt 2>> check_err.txt
-	echo "check_jacobi_zeta" >> check_out.txt 2>> check_err.txt && ./check_jacobi_zeta >> check_out.txt 2>> check_err.txt
-	echo "check_laguerre" >> check_out.txt 2>> check_err.txt && ./check_laguerre >> check_out.txt 2>> check_err.txt
-	echo "check_lbincoef" >> check_out.txt 2>> check_err.txt && ./check_lbincoef >> check_out.txt 2>> check_err.txt
-	echo "check_ldouble_factorial" >> check_out.txt 2>> check_err.txt && ./check_ldouble_factorial >> check_out.txt 2>> check_err.txt
-	echo "check_legendre" >> check_out.txt 2>> check_err.txt && ./check_legendre >> check_out.txt 2>> check_err.txt
-	echo "check_legendre" >> check_out.txt 2>> check_err.txt && ./check_legendre >> check_out.txt 2>> check_err.txt
-	echo "check_legendre_q" >> check_out.txt 2>> check_err.txt && ./check_legendre_q >> check_out.txt 2>> check_err.txt
-	echo "check_lfactorial" >> check_out.txt 2>> check_err.txt && ./check_lfactorial >> check_out.txt 2>> check_err.txt
-	echo "check_lpochhammer_l" >> check_out.txt 2>> check_err.txt && ./check_lpochhammer_l >> check_out.txt 2>> check_err.txt
-	echo "check_lpochhammer_u" >> check_out.txt 2>> check_err.txt && ./check_lpochhammer_u >> check_out.txt 2>> check_err.txt
-	echo "check_owens_t" >> check_out.txt 2>> check_err.txt && ./check_owens_t >> check_out.txt 2>> check_err.txt
-	echo "check_pgamma" >> check_out.txt 2>> check_err.txt && ./check_pgamma >> check_out.txt 2>> check_err.txt
-	echo "check_pochhammer_l" >> check_out.txt 2>> check_err.txt && ./check_pochhammer_l >> check_out.txt 2>> check_err.txt
-	echo "check_pochhammer_u" >> check_out.txt 2>> check_err.txt && ./check_pochhammer_u >> check_out.txt 2>> check_err.txt
-	echo "check_psi" >> check_out.txt 2>> check_err.txt && ./check_psi >> check_out.txt 2>> check_err.txt
-	echo "check_qgamma" >> check_out.txt 2>> check_err.txt && ./check_qgamma >> check_out.txt 2>> check_err.txt
-	echo "check_radpoly" >> check_out.txt 2>> check_err.txt && ./check_radpoly >> check_out.txt 2>> check_err.txt
-	echo "check_riemann_zeta" >> check_out.txt 2>> check_err.txt && ./check_riemann_zeta >> check_out.txt 2>> check_err.txt
-	echo "check_shi" >> check_out.txt 2>> check_err.txt && ./check_shi >> check_out.txt 2>> check_err.txt
-	echo "check_sinc" >> check_out.txt 2>> check_err.txt && ./check_sinc >> check_out.txt 2>> check_err.txt
-	echo "check_sinc_pi" >> check_out.txt 2>> check_err.txt && ./check_sinc_pi >> check_out.txt 2>> check_err.txt
-	echo "check_sinhint" >> check_out.txt 2>> check_err.txt && ./check_sinhint >> check_out.txt 2>> check_err.txt
-	echo "check_sinint" >> check_out.txt 2>> check_err.txt && ./check_sinint >> check_out.txt 2>> check_err.txt
-	echo "check_sph_bessel" >> check_out.txt 2>> check_err.txt && ./check_sph_bessel >> check_out.txt 2>> check_err.txt
-	echo "check_sph_bessel_i" >> check_out.txt 2>> check_err.txt && ./check_sph_bessel_i >> check_out.txt 2>> check_err.txt
-	echo "check_sph_bessel_k" >> check_out.txt 2>> check_err.txt && ./check_sph_bessel_k >> check_out.txt 2>> check_err.txt
-	echo "check_sph_hankel_1" >> check_out.txt 2>> check_err.txt && ./check_sph_hankel_1 >> check_out.txt 2>> check_err.txt
-	echo "check_sph_hankel_2" >> check_out.txt 2>> check_err.txt && ./check_sph_hankel_2 >> check_out.txt 2>> check_err.txt
-	echo "check_sph_harmonic" >> check_out.txt 2>> check_err.txt && ./check_sph_harmonic >> check_out.txt 2>> check_err.txt
-	echo "check_sph_legendre" >> check_out.txt 2>> check_err.txt && ./check_sph_legendre >> check_out.txt 2>> check_err.txt
-	echo "check_sph_neumann" >> check_out.txt 2>> check_err.txt && ./check_sph_neumann >> check_out.txt 2>> check_err.txt
-	echo "check_theta_1" >> check_out.txt 2>> check_err.txt && ./check_theta_1 >> check_out.txt 2>> check_err.txt
-	echo "check_theta_2" >> check_out.txt 2>> check_err.txt && ./check_theta_2 >> check_out.txt 2>> check_err.txt
-	echo "check_theta_3" >> check_out.txt 2>> check_err.txt && ./check_theta_3 >> check_out.txt 2>> check_err.txt
-	echo "check_theta_4" >> check_out.txt 2>> check_err.txt && ./check_theta_4 >> check_out.txt 2>> check_err.txt
-	echo "check_zernike" >> check_out.txt 2>> check_err.txt && ./check_zernike >> check_out.txt 2>> check_err.txt
-	echo "complex_ellint_rc" >> check_out.txt 2>> check_err.txt && ./complex_ellint_rc >> check_out.txt 2>> check_err.txt
-	echo "complex_ellint_rd" >> check_out.txt 2>> check_err.txt && ./complex_ellint_rd >> check_out.txt 2>> check_err.txt
-	echo "complex_ellint_rf" >> check_out.txt 2>> check_err.txt && ./complex_ellint_rf >> check_out.txt 2>> check_err.txt
-	echo "complex_ellint_rg" >> check_out.txt 2>> check_err.txt && ./complex_ellint_rg >> check_out.txt 2>> check_err.txt
-	echo "complex_ellint_rj" >> check_out.txt 2>> check_err.txt && ./complex_ellint_rj >> check_out.txt 2>> check_err.txt
-	echo "pr56216_cyl_hankel_1" >> check_out.txt 2>> check_err.txt && ./pr56216_cyl_hankel_1 >> check_out.txt 2>> check_err.txt
-	echo "pr56216_cyl_hankel_2" >> check_out.txt 2>> check_err.txt && ./pr56216_cyl_hankel_2 >> check_out.txt 2>> check_err.txt
-	echo "pr56216_cyl_bessel_i" >> check_out.txt 2>> check_err.txt && ./pr56216_cyl_bessel_i >> check_out.txt 2>> check_err.txt
-	echo "origin_bessel_j" >> check_out.txt 2>> check_err.txt && ./origin_bessel_j >> check_out.txt 2>> check_err.txt
-	echo "origin_cyl_neumann" >> check_out.txt 2>> check_err.txt && ./origin_cyl_neumann >> check_out.txt 2>> check_err.txt
+	echo "Beginning executions of checks..." > $(CHECK_DIR)/check_out.txt 2> $(CHECK_DIR)/check_err.txt
+	echo "check_airy_ai" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_airy_ai >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_airy_bi" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_airy_bi >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_assoc_laguerre" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_assoc_laguerre >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_assoc_legendre" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_assoc_legendre >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_beta" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_beta >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_bincoef" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_bincoef >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_chi" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_chi >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_clausen_c" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_clausen_c >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_comp_ellint_1" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_comp_ellint_1 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_comp_ellint_2" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_comp_ellint_2 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_comp_ellint_3" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_comp_ellint_3 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_comp_ellint_d" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_comp_ellint_d >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_conf_hyperg" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_conf_hyperg >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_conf_hyperg_lim" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_conf_hyperg_lim >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_coshint" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_coshint >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_cosint" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_cosint >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_cyl_bessel_i" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_cyl_bessel_i >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_cyl_bessel_j" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_cyl_bessel_j >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_cyl_bessel_k" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_cyl_bessel_k >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_cyl_hankel_1" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_cyl_hankel_1 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_cyl_hankel_2" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_cyl_hankel_2 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_cyl_neumann" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_cyl_neumann >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_dawson" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_dawson >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_dilog" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_dilog >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_ellint_1" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_ellint_1 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_ellint_2" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_ellint_2 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_ellint_3" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_ellint_3 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_ellint_d" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_ellint_d >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_ellint_rc" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_ellint_rc >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_ellint_rd" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_ellint_rd >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_ellint_rf" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_ellint_rf >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_ellint_rg" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_ellint_rg >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_ellint_rj" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_ellint_rj >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_expint" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_expint >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_expint_en" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_expint_en >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_factorial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_factorial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_fresnel_c" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_fresnel_c >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_fresnel_s" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_fresnel_s >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_gamma_l" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_gamma_l >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_gamma_u" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_gamma_u >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_gegenbauer" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_gegenbauer >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_hermite" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_hermite >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_heuman_lambda" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_heuman_lambda >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_hurwitz_zeta" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_hurwitz_zeta >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_hyperg" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_hyperg >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_ibeta" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_ibeta >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_jacobi" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_jacobi >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_jacobi_cn" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_jacobi_cn >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_jacobi_dn" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_jacobi_dn >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_jacobi_sn" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_jacobi_sn >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_jacobi_zeta" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_jacobi_zeta >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_laguerre" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_laguerre >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_lbincoef" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lbincoef >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_ldouble_factorial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_ldouble_factorial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_legendre" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_legendre >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_legendre" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_legendre >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_legendre_q" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_legendre_q >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_lfactorial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lfactorial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_lpochhammer_l" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lpochhammer_l >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_lpochhammer_u" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lpochhammer_u >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_owens_t" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_owens_t >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_pgamma" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_pgamma >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_pochhammer_l" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_pochhammer_l >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_pochhammer_u" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_pochhammer_u >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_psi" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_psi >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_qgamma" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_qgamma >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_radpoly" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_radpoly >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_riemann_zeta" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_riemann_zeta >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_shi" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_shi >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_sinc" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_sinc >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_sinc_pi" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_sinc_pi >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_sinhint" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_sinhint >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_sinint" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_sinint >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_sph_bessel" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_sph_bessel >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_sph_bessel_i" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_sph_bessel_i >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_sph_bessel_k" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_sph_bessel_k >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_sph_hankel_1" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_sph_hankel_1 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_sph_hankel_2" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_sph_hankel_2 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_sph_harmonic" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_sph_harmonic >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_sph_legendre" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_sph_legendre >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_sph_neumann" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_sph_neumann >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_theta_1" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_theta_1 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_theta_2" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_theta_2 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_theta_3" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_theta_3 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_theta_4" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_theta_4 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_zernike" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_zernike >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "complex_ellint_rc" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/complex_ellint_rc >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "complex_ellint_rd" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/complex_ellint_rd >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "complex_ellint_rf" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/complex_ellint_rf >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "complex_ellint_rg" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/complex_ellint_rg >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "complex_ellint_rj" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/complex_ellint_rj >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "pr56216_cyl_hankel_1" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/pr56216_cyl_hankel_1 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "pr56216_cyl_hankel_2" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/pr56216_cyl_hankel_2 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "pr56216_cyl_bessel_i" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/pr56216_cyl_bessel_i >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "origin_bessel_j" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/origin_bessel_j >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "origin_cyl_neumann" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/origin_cyl_neumann >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 
 
 test_special_function: test_special_function.cpp wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
@@ -373,290 +375,290 @@ hankel_toy_new: hankel_toy_new.cpp
 	$(CXX) -o hankel_toy_new hankel_toy_new.cpp -lquadmath
 
 
-check_airy_ai: check_airy_ai.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_airy_ai check_airy_ai.cc
+${CHECK_DIR}/check_airy_ai: ${CHECK_DIR}/check_airy_ai.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_airy_ai ${CHECK_DIR}/check_airy_ai.cc
 
-check_airy_bi: check_airy_bi.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_airy_bi check_airy_bi.cc
+${CHECK_DIR}/check_airy_bi: ${CHECK_DIR}/check_airy_bi.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_airy_bi ${CHECK_DIR}/check_airy_bi.cc
 
-check_assoc_laguerre: check_assoc_laguerre.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_assoc_laguerre check_assoc_laguerre.cc
+${CHECK_DIR}/check_assoc_laguerre: ${CHECK_DIR}/check_assoc_laguerre.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_assoc_laguerre ${CHECK_DIR}/check_assoc_laguerre.cc
 
-check_assoc_legendre: check_assoc_legendre.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_assoc_legendre check_assoc_legendre.cc
+${CHECK_DIR}/check_assoc_legendre: ${CHECK_DIR}/check_assoc_legendre.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_assoc_legendre ${CHECK_DIR}/check_assoc_legendre.cc
 
-check_beta: check_beta.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_beta check_beta.cc
+${CHECK_DIR}/check_beta: ${CHECK_DIR}/check_beta.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_beta ${CHECK_DIR}/check_beta.cc
 
-check_bincoef: check_bincoef.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_bincoef check_bincoef.cc
+${CHECK_DIR}/check_bincoef: ${CHECK_DIR}/check_bincoef.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_bincoef ${CHECK_DIR}/check_bincoef.cc
 
-check_chi: check_chi.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_chi check_chi.cc
+${CHECK_DIR}/check_chi: ${CHECK_DIR}/check_chi.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_chi ${CHECK_DIR}/check_chi.cc
 
-check_clausen_c: check_clausen_c.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_clausen_c check_clausen_c.cc
+${CHECK_DIR}/check_clausen_c: ${CHECK_DIR}/check_clausen_c.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_clausen_c ${CHECK_DIR}/check_clausen_c.cc
 
-check_comp_ellint_1: check_comp_ellint_1.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_comp_ellint_1 check_comp_ellint_1.cc
+${CHECK_DIR}/check_comp_ellint_1: ${CHECK_DIR}/check_comp_ellint_1.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_comp_ellint_1 ${CHECK_DIR}/check_comp_ellint_1.cc
 
-check_comp_ellint_2: check_comp_ellint_2.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_comp_ellint_2 check_comp_ellint_2.cc
+${CHECK_DIR}/check_comp_ellint_2: ${CHECK_DIR}/check_comp_ellint_2.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_comp_ellint_2 ${CHECK_DIR}/check_comp_ellint_2.cc
 
-check_comp_ellint_3: check_comp_ellint_3.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_comp_ellint_3 check_comp_ellint_3.cc
+${CHECK_DIR}/check_comp_ellint_3: ${CHECK_DIR}/check_comp_ellint_3.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_comp_ellint_3 ${CHECK_DIR}/check_comp_ellint_3.cc
 
-check_comp_ellint_d: check_comp_ellint_d.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_comp_ellint_d check_comp_ellint_d.cc
+${CHECK_DIR}/check_comp_ellint_d: ${CHECK_DIR}/check_comp_ellint_d.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_comp_ellint_d ${CHECK_DIR}/check_comp_ellint_d.cc
 
-check_conf_hyperg: check_conf_hyperg.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_conf_hyperg check_conf_hyperg.cc
+${CHECK_DIR}/check_conf_hyperg: ${CHECK_DIR}/check_conf_hyperg.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_conf_hyperg ${CHECK_DIR}/check_conf_hyperg.cc
 
-check_conf_hyperg_lim: check_conf_hyperg_lim.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_conf_hyperg_lim check_conf_hyperg_lim.cc
+${CHECK_DIR}/check_conf_hyperg_lim: ${CHECK_DIR}/check_conf_hyperg_lim.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_conf_hyperg_lim ${CHECK_DIR}/check_conf_hyperg_lim.cc
 
-check_coshint: check_coshint.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_coshint check_coshint.cc
+${CHECK_DIR}/check_coshint: ${CHECK_DIR}/check_coshint.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_coshint ${CHECK_DIR}/check_coshint.cc
 
-check_cosint: check_cosint.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_cosint check_cosint.cc
+${CHECK_DIR}/check_cosint: ${CHECK_DIR}/check_cosint.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_cosint ${CHECK_DIR}/check_cosint.cc
 
-check_cyl_bessel_i: check_cyl_bessel_i.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_cyl_bessel_i check_cyl_bessel_i.cc
+${CHECK_DIR}/check_cyl_bessel_i: ${CHECK_DIR}/check_cyl_bessel_i.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_cyl_bessel_i ${CHECK_DIR}/check_cyl_bessel_i.cc
 
-check_cyl_bessel_j: check_cyl_bessel_j.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_cyl_bessel_j check_cyl_bessel_j.cc
+${CHECK_DIR}/check_cyl_bessel_j: ${CHECK_DIR}/check_cyl_bessel_j.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_cyl_bessel_j ${CHECK_DIR}/check_cyl_bessel_j.cc
 
-check_cyl_bessel_k: check_cyl_bessel_k.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_cyl_bessel_k check_cyl_bessel_k.cc
+${CHECK_DIR}/check_cyl_bessel_k: ${CHECK_DIR}/check_cyl_bessel_k.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_cyl_bessel_k ${CHECK_DIR}/check_cyl_bessel_k.cc
 
-check_cyl_hankel_1: check_cyl_hankel_1.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_cyl_hankel_1 check_cyl_hankel_1.cc
+${CHECK_DIR}/check_cyl_hankel_1: ${CHECK_DIR}/check_cyl_hankel_1.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_cyl_hankel_1 ${CHECK_DIR}/check_cyl_hankel_1.cc
 
-check_cyl_hankel_2: check_cyl_hankel_2.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_cyl_hankel_2 check_cyl_hankel_2.cc
+${CHECK_DIR}/check_cyl_hankel_2: ${CHECK_DIR}/check_cyl_hankel_2.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_cyl_hankel_2 ${CHECK_DIR}/check_cyl_hankel_2.cc
 
-check_cyl_neumann: check_cyl_neumann.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_cyl_neumann check_cyl_neumann.cc
+${CHECK_DIR}/check_cyl_neumann: ${CHECK_DIR}/check_cyl_neumann.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_cyl_neumann ${CHECK_DIR}/check_cyl_neumann.cc
 
-check_dawson: check_dawson.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_dawson check_dawson.cc
+${CHECK_DIR}/check_dawson: ${CHECK_DIR}/check_dawson.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_dawson ${CHECK_DIR}/check_dawson.cc
 
-check_dilog: check_dilog.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_dilog check_dilog.cc
+${CHECK_DIR}/check_dilog: ${CHECK_DIR}/check_dilog.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_dilog ${CHECK_DIR}/check_dilog.cc
 
-check_ellint_1: check_ellint_1.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_ellint_1 check_ellint_1.cc
+${CHECK_DIR}/check_ellint_1: ${CHECK_DIR}/check_ellint_1.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_ellint_1 ${CHECK_DIR}/check_ellint_1.cc
 
-check_ellint_2: check_ellint_2.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_ellint_2 check_ellint_2.cc
+${CHECK_DIR}/check_ellint_2: ${CHECK_DIR}/check_ellint_2.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_ellint_2 ${CHECK_DIR}/check_ellint_2.cc
 
-check_ellint_3: check_ellint_3.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_ellint_3 check_ellint_3.cc
+${CHECK_DIR}/check_ellint_3: ${CHECK_DIR}/check_ellint_3.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_ellint_3 ${CHECK_DIR}/check_ellint_3.cc
 
-check_ellint_d: check_ellint_d.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_ellint_d check_ellint_d.cc
+${CHECK_DIR}/check_ellint_d: ${CHECK_DIR}/check_ellint_d.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_ellint_d ${CHECK_DIR}/check_ellint_d.cc
 
-check_ellint_rc: check_ellint_rc.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_ellint_rc check_ellint_rc.cc
+${CHECK_DIR}/check_ellint_rc: ${CHECK_DIR}/check_ellint_rc.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_ellint_rc ${CHECK_DIR}/check_ellint_rc.cc
 
-check_ellint_rd: check_ellint_rd.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_ellint_rd check_ellint_rd.cc
+${CHECK_DIR}/check_ellint_rd: ${CHECK_DIR}/check_ellint_rd.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_ellint_rd ${CHECK_DIR}/check_ellint_rd.cc
 
-check_ellint_rf: check_ellint_rf.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_ellint_rf check_ellint_rf.cc
+${CHECK_DIR}/check_ellint_rf: ${CHECK_DIR}/check_ellint_rf.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_ellint_rf ${CHECK_DIR}/check_ellint_rf.cc
 
-check_ellint_rg: check_ellint_rg.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_ellint_rg check_ellint_rg.cc
+${CHECK_DIR}/check_ellint_rg: ${CHECK_DIR}/check_ellint_rg.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_ellint_rg ${CHECK_DIR}/check_ellint_rg.cc
 
-check_ellint_rj: check_ellint_rj.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_ellint_rj check_ellint_rj.cc
+${CHECK_DIR}/check_ellint_rj: ${CHECK_DIR}/check_ellint_rj.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_ellint_rj ${CHECK_DIR}/check_ellint_rj.cc
 
-check_expint: check_expint.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_expint check_expint.cc
+${CHECK_DIR}/check_expint: ${CHECK_DIR}/check_expint.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_expint ${CHECK_DIR}/check_expint.cc
 
-check_expint_en: check_expint_en.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_expint_en check_expint_en.cc
+${CHECK_DIR}/check_expint_en: ${CHECK_DIR}/check_expint_en.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_expint_en ${CHECK_DIR}/check_expint_en.cc
 
-check_factorial: check_factorial.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_factorial check_factorial.cc
+${CHECK_DIR}/check_factorial: ${CHECK_DIR}/check_factorial.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_factorial ${CHECK_DIR}/check_factorial.cc
 
-check_fresnel_c: check_fresnel_c.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_fresnel_c check_fresnel_c.cc
+${CHECK_DIR}/check_fresnel_c: ${CHECK_DIR}/check_fresnel_c.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_fresnel_c ${CHECK_DIR}/check_fresnel_c.cc
 
-check_fresnel_s: check_fresnel_s.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_fresnel_s check_fresnel_s.cc
+${CHECK_DIR}/check_fresnel_s: ${CHECK_DIR}/check_fresnel_s.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_fresnel_s ${CHECK_DIR}/check_fresnel_s.cc
 
-check_gamma_l: check_gamma_l.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_gamma_l check_gamma_l.cc
+${CHECK_DIR}/check_gamma_l: ${CHECK_DIR}/check_gamma_l.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_gamma_l ${CHECK_DIR}/check_gamma_l.cc
 
-check_gamma_u: check_gamma_u.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_gamma_u check_gamma_u.cc
+${CHECK_DIR}/check_gamma_u: ${CHECK_DIR}/check_gamma_u.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_gamma_u ${CHECK_DIR}/check_gamma_u.cc
 
-check_gegenbauer: check_gegenbauer.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_gegenbauer check_gegenbauer.cc
+${CHECK_DIR}/check_gegenbauer: ${CHECK_DIR}/check_gegenbauer.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_gegenbauer ${CHECK_DIR}/check_gegenbauer.cc
 
-check_hermite: check_hermite.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_hermite check_hermite.cc
+${CHECK_DIR}/check_hermite: ${CHECK_DIR}/check_hermite.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_hermite ${CHECK_DIR}/check_hermite.cc
 
-check_heuman_lambda: check_heuman_lambda.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_heuman_lambda check_heuman_lambda.cc
+${CHECK_DIR}/check_heuman_lambda: ${CHECK_DIR}/check_heuman_lambda.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_heuman_lambda ${CHECK_DIR}/check_heuman_lambda.cc
 
-check_hurwitz_zeta: check_hurwitz_zeta.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_hurwitz_zeta check_hurwitz_zeta.cc
+${CHECK_DIR}/check_hurwitz_zeta: ${CHECK_DIR}/check_hurwitz_zeta.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_hurwitz_zeta ${CHECK_DIR}/check_hurwitz_zeta.cc
 
-check_hyperg: check_hyperg.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_hyperg check_hyperg.cc
+${CHECK_DIR}/check_hyperg: ${CHECK_DIR}/check_hyperg.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_hyperg ${CHECK_DIR}/check_hyperg.cc
 
-check_ibeta: check_ibeta.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_ibeta check_ibeta.cc
+${CHECK_DIR}/check_ibeta: ${CHECK_DIR}/check_ibeta.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_ibeta ${CHECK_DIR}/check_ibeta.cc
 
-check_jacobi: check_jacobi.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_jacobi check_jacobi.cc
+${CHECK_DIR}/check_jacobi: ${CHECK_DIR}/check_jacobi.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_jacobi ${CHECK_DIR}/check_jacobi.cc
 
-check_jacobi_cn: check_jacobi_cn.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_jacobi_cn check_jacobi_cn.cc
+${CHECK_DIR}/check_jacobi_cn: ${CHECK_DIR}/check_jacobi_cn.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_jacobi_cn ${CHECK_DIR}/check_jacobi_cn.cc
 
-check_jacobi_dn: check_jacobi_dn.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_jacobi_dn check_jacobi_dn.cc
+${CHECK_DIR}/check_jacobi_dn: ${CHECK_DIR}/check_jacobi_dn.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_jacobi_dn ${CHECK_DIR}/check_jacobi_dn.cc
 
-check_jacobi_sn: check_jacobi_sn.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_jacobi_sn check_jacobi_sn.cc
+${CHECK_DIR}/check_jacobi_sn: ${CHECK_DIR}/check_jacobi_sn.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_jacobi_sn ${CHECK_DIR}/check_jacobi_sn.cc
 
-check_jacobi_zeta: check_jacobi_zeta.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_jacobi_zeta check_jacobi_zeta.cc
+${CHECK_DIR}/check_jacobi_zeta: ${CHECK_DIR}/check_jacobi_zeta.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_jacobi_zeta ${CHECK_DIR}/check_jacobi_zeta.cc
 
-check_laguerre: check_laguerre.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_laguerre check_laguerre.cc
+${CHECK_DIR}/check_laguerre: ${CHECK_DIR}/check_laguerre.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_laguerre ${CHECK_DIR}/check_laguerre.cc
 
-check_lbincoef: check_lbincoef.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_lbincoef check_lbincoef.cc
+${CHECK_DIR}/check_lbincoef: ${CHECK_DIR}/check_lbincoef.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lbincoef ${CHECK_DIR}/check_lbincoef.cc
 
-check_ldouble_factorial: check_ldouble_factorial.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_ldouble_factorial check_ldouble_factorial.cc
+${CHECK_DIR}/check_ldouble_factorial: ${CHECK_DIR}/check_ldouble_factorial.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_ldouble_factorial ${CHECK_DIR}/check_ldouble_factorial.cc
 
-check_legendre: check_legendre.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_legendre check_legendre.cc
+${CHECK_DIR}/check_legendre: ${CHECK_DIR}/check_legendre.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_legendre ${CHECK_DIR}/check_legendre.cc
 
-check_legendre_q: check_legendre_q.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_legendre_q check_legendre_q.cc
+${CHECK_DIR}/check_legendre_q: ${CHECK_DIR}/check_legendre_q.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_legendre_q ${CHECK_DIR}/check_legendre_q.cc
 
-check_lfactorial: check_lfactorial.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_lfactorial check_lfactorial.cc
+${CHECK_DIR}/check_lfactorial: ${CHECK_DIR}/check_lfactorial.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lfactorial ${CHECK_DIR}/check_lfactorial.cc
 
-check_lpochhammer_l: check_lpochhammer_l.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_lpochhammer_l check_lpochhammer_l.cc
+${CHECK_DIR}/check_lpochhammer_l: ${CHECK_DIR}/check_lpochhammer_l.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lpochhammer_l ${CHECK_DIR}/check_lpochhammer_l.cc
 
-check_lpochhammer_u: check_lpochhammer_u.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_lpochhammer_u check_lpochhammer_u.cc
+${CHECK_DIR}/check_lpochhammer_u: ${CHECK_DIR}/check_lpochhammer_u.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lpochhammer_u ${CHECK_DIR}/check_lpochhammer_u.cc
 
-check_owens_t: check_owens_t.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_owens_t check_owens_t.cc
+${CHECK_DIR}/check_owens_t: ${CHECK_DIR}/check_owens_t.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_owens_t ${CHECK_DIR}/check_owens_t.cc
 
-check_pgamma: check_pgamma.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_pgamma check_pgamma.cc
+${CHECK_DIR}/check_pgamma: ${CHECK_DIR}/check_pgamma.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_pgamma ${CHECK_DIR}/check_pgamma.cc
 
-check_pochhammer_l: check_pochhammer_l.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_pochhammer_l check_pochhammer_l.cc
+${CHECK_DIR}/check_pochhammer_l: ${CHECK_DIR}/check_pochhammer_l.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_pochhammer_l ${CHECK_DIR}/check_pochhammer_l.cc
 
-check_pochhammer_u: check_pochhammer_u.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_pochhammer_u check_pochhammer_u.cc
+${CHECK_DIR}/check_pochhammer_u: ${CHECK_DIR}/check_pochhammer_u.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_pochhammer_u ${CHECK_DIR}/check_pochhammer_u.cc
 
-check_psi: check_psi.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_psi check_psi.cc
+${CHECK_DIR}/check_psi: ${CHECK_DIR}/check_psi.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_psi ${CHECK_DIR}/check_psi.cc
 
-check_qgamma: check_qgamma.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_qgamma check_qgamma.cc
+${CHECK_DIR}/check_qgamma: ${CHECK_DIR}/check_qgamma.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_qgamma ${CHECK_DIR}/check_qgamma.cc
 
-check_radpoly: check_radpoly.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_radpoly check_radpoly.cc
+${CHECK_DIR}/check_radpoly: ${CHECK_DIR}/check_radpoly.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_radpoly ${CHECK_DIR}/check_radpoly.cc
 
-check_riemann_zeta: check_riemann_zeta.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_riemann_zeta check_riemann_zeta.cc
+${CHECK_DIR}/check_riemann_zeta: ${CHECK_DIR}/check_riemann_zeta.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_riemann_zeta ${CHECK_DIR}/check_riemann_zeta.cc
 
-check_shi: check_shi.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_shi check_shi.cc
+${CHECK_DIR}/check_shi: ${CHECK_DIR}/check_shi.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_shi ${CHECK_DIR}/check_shi.cc
 
-check_sinc: check_sinc.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_sinc check_sinc.cc
+${CHECK_DIR}/check_sinc: ${CHECK_DIR}/check_sinc.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sinc ${CHECK_DIR}/check_sinc.cc
 
-check_sinc_pi: check_sinc_pi.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_sinc_pi check_sinc_pi.cc
+${CHECK_DIR}/check_sinc_pi: ${CHECK_DIR}/check_sinc_pi.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sinc_pi ${CHECK_DIR}/check_sinc_pi.cc
 
-check_sinhint: check_sinhint.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_sinhint check_sinhint.cc
+${CHECK_DIR}/check_sinhint: ${CHECK_DIR}/check_sinhint.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sinhint ${CHECK_DIR}/check_sinhint.cc
 
-check_sinint: check_sinint.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_sinint check_sinint.cc
+${CHECK_DIR}/check_sinint: ${CHECK_DIR}/check_sinint.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sinint ${CHECK_DIR}/check_sinint.cc
 
-check_sph_bessel: check_sph_bessel.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_sph_bessel check_sph_bessel.cc
+${CHECK_DIR}/check_sph_bessel: ${CHECK_DIR}/check_sph_bessel.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sph_bessel ${CHECK_DIR}/check_sph_bessel.cc
 
-check_sph_bessel_i: check_sph_bessel_i.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_sph_bessel_i check_sph_bessel_i.cc
+${CHECK_DIR}/check_sph_bessel_i: ${CHECK_DIR}/check_sph_bessel_i.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sph_bessel_i ${CHECK_DIR}/check_sph_bessel_i.cc
 
-check_sph_bessel_k: check_sph_bessel_k.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_sph_bessel_k check_sph_bessel_k.cc
+${CHECK_DIR}/check_sph_bessel_k: ${CHECK_DIR}/check_sph_bessel_k.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sph_bessel_k ${CHECK_DIR}/check_sph_bessel_k.cc
 
-check_sph_hankel_1: check_sph_hankel_1.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_sph_hankel_1 check_sph_hankel_1.cc
+${CHECK_DIR}/check_sph_hankel_1: ${CHECK_DIR}/check_sph_hankel_1.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sph_hankel_1 ${CHECK_DIR}/check_sph_hankel_1.cc
 
-check_sph_hankel_2: check_sph_hankel_2.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_sph_hankel_2 check_sph_hankel_2.cc
+${CHECK_DIR}/check_sph_hankel_2: ${CHECK_DIR}/check_sph_hankel_2.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sph_hankel_2 ${CHECK_DIR}/check_sph_hankel_2.cc
 
-check_sph_harmonic: check_sph_harmonic.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_sph_harmonic check_sph_harmonic.cc
+${CHECK_DIR}/check_sph_harmonic: ${CHECK_DIR}/check_sph_harmonic.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sph_harmonic ${CHECK_DIR}/check_sph_harmonic.cc
 
-check_sph_legendre: check_sph_legendre.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_sph_legendre check_sph_legendre.cc
+${CHECK_DIR}/check_sph_legendre: ${CHECK_DIR}/check_sph_legendre.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sph_legendre ${CHECK_DIR}/check_sph_legendre.cc
 
-check_sph_neumann: check_sph_neumann.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_sph_neumann check_sph_neumann.cc
+${CHECK_DIR}/check_sph_neumann: ${CHECK_DIR}/check_sph_neumann.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sph_neumann ${CHECK_DIR}/check_sph_neumann.cc
 
-check_theta_1: check_theta_1.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_theta_1 check_theta_1.cc
+${CHECK_DIR}/check_theta_1: ${CHECK_DIR}/check_theta_1.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_theta_1 ${CHECK_DIR}/check_theta_1.cc
 
-check_theta_2: check_theta_2.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_theta_2 check_theta_2.cc
+${CHECK_DIR}/check_theta_2: ${CHECK_DIR}/check_theta_2.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_theta_2 ${CHECK_DIR}/check_theta_2.cc
 
-check_theta_3: check_theta_3.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_theta_3 check_theta_3.cc
+${CHECK_DIR}/check_theta_3: ${CHECK_DIR}/check_theta_3.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_theta_3 ${CHECK_DIR}/check_theta_3.cc
 
-check_theta_4: check_theta_4.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_theta_4 check_theta_4.cc
+${CHECK_DIR}/check_theta_4: ${CHECK_DIR}/check_theta_4.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_theta_4 ${CHECK_DIR}/check_theta_4.cc
 
-check_zernike: check_zernike.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o check_zernike check_zernike.cc
+${CHECK_DIR}/check_zernike: ${CHECK_DIR}/check_zernike.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_zernike ${CHECK_DIR}/check_zernike.cc
 
-complex_ellint_rc: complex_ellint_rc.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o complex_ellint_rc complex_ellint_rc.cc
+${CHECK_DIR}/complex_ellint_rc: ${CHECK_DIR}/complex_ellint_rc.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/complex_ellint_rc ${CHECK_DIR}/complex_ellint_rc.cc
 
-complex_ellint_rd: complex_ellint_rd.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o complex_ellint_rd complex_ellint_rd.cc
+${CHECK_DIR}/complex_ellint_rd: ${CHECK_DIR}/complex_ellint_rd.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/complex_ellint_rd ${CHECK_DIR}/complex_ellint_rd.cc
 
-complex_ellint_rf: complex_ellint_rf.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o complex_ellint_rf complex_ellint_rf.cc
+${CHECK_DIR}/complex_ellint_rf: ${CHECK_DIR}/complex_ellint_rf.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/complex_ellint_rf ${CHECK_DIR}/complex_ellint_rf.cc
 
-complex_ellint_rg: complex_ellint_rg.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o complex_ellint_rg complex_ellint_rg.cc
+${CHECK_DIR}/complex_ellint_rg: ${CHECK_DIR}/complex_ellint_rg.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/complex_ellint_rg ${CHECK_DIR}/complex_ellint_rg.cc
 
-complex_ellint_rj: complex_ellint_rj.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o complex_ellint_rj complex_ellint_rj.cc
+${CHECK_DIR}/complex_ellint_rj: ${CHECK_DIR}/complex_ellint_rj.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/complex_ellint_rj ${CHECK_DIR}/complex_ellint_rj.cc
 
-pr56216_cyl_hankel_1: pr56216_cyl_hankel_1.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o pr56216_cyl_hankel_1 pr56216_cyl_hankel_1.cc
+${CHECK_DIR}/pr56216_cyl_hankel_1: ${CHECK_DIR}/pr56216_cyl_hankel_1.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/pr56216_cyl_hankel_1 ${CHECK_DIR}/pr56216_cyl_hankel_1.cc
 
-pr56216_cyl_hankel_2: pr56216_cyl_hankel_2.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o pr56216_cyl_hankel_2 pr56216_cyl_hankel_2.cc
+${CHECK_DIR}/pr56216_cyl_hankel_2: ${CHECK_DIR}/pr56216_cyl_hankel_2.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/pr56216_cyl_hankel_2 ${CHECK_DIR}/pr56216_cyl_hankel_2.cc
 
-pr56216_cyl_bessel_i: pr56216_cyl_bessel_i.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o pr56216_cyl_bessel_i pr56216_cyl_bessel_i.cc
+${CHECK_DIR}/pr56216_cyl_bessel_i: ${CHECK_DIR}/pr56216_cyl_bessel_i.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/pr56216_cyl_bessel_i ${CHECK_DIR}/pr56216_cyl_bessel_i.cc
 
-origin_bessel_j: origin_bessel_j.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o origin_bessel_j origin_bessel_j.cc
+${CHECK_DIR}/origin_bessel_j: ${CHECK_DIR}/origin_bessel_j.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/origin_bessel_j ${CHECK_DIR}/origin_bessel_j.cc
 
-origin_cyl_neumann: origin_cyl_neumann.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o origin_cyl_neumann origin_cyl_neumann.cc
+${CHECK_DIR}/origin_cyl_neumann: ${CHECK_DIR}/origin_cyl_neumann.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/origin_cyl_neumann ${CHECK_DIR}/origin_cyl_neumann.cc
 
 
 tarball:

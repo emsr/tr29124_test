@@ -7,7 +7,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -I. -g -o test_inv_ibeta test_inv_ibeta.cpp
 #include <iostream>
 #include <iomanip>
 #include <bits/specfun.h>
-#include <ext/roots.h>
+#include <ext/root_finding.h>
 
 template<typename _Tp>
   _Tp
