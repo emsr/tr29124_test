@@ -294,9 +294,16 @@ sph_neumann(unsigned int /*n*/, double /*x*/)
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Non-normalized lower incomplete gamma functions. (See Boost tgamma_lower(a, x)).
+/// Non-normalized upper incomplete gamma functions.
 double
-gamma_l(double /*a*/, double /*x*/)
+tgamma(double /*a*/, double /*x*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Non-normalized lower incomplete gamma functions.
+double
+tgamma_lower(double /*a*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -339,13 +346,6 @@ pgamma_inv(double /*a*/, double /*p*/)
 /// Inverse parameter normalized lower incomplete gamma functions.
 double
 pgamma_inva(double /*x*/, double /*p*/)
-{
-  return std::numeric_limits<double>::quiet_NaN();
-}
-
-/// Non-normalized (upper) incomplete gamma functions. (See Boost tgamma(a, x)).
-double
-gamma_u(double /*a*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -499,28 +499,28 @@ sinhc(double /*x*/)
 
 /// Log upper Pochhammer symbol.
 double
-lpochhammer_u(double /*a*/, double /*x*/)
+lpochhammer(double /*a*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Log lower Pochhammer symbol.
 double
-lpochhammer_l(double /*a*/, double /*x*/)
+lpochhammer_lower(double /*a*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Upper Pochhammer symbol.
 double
-pochhammer_u(double /*a*/, double /*x*/)
+pochhammer(double /*a*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Lower Pochhammer symbol.
 double
-pochhammer_l(double /*a*/, double /*x*/)
+pochhammer_lower(double /*a*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }

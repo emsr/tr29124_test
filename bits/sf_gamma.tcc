@@ -2340,7 +2340,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __gamma_l(_Tp __a, _Tp __x)
+    __tgamma_lower(_Tp __a, _Tp __x)
     {
       constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
 
@@ -2348,7 +2348,7 @@ _S_neg_double_factorial_table[999]
 	return _S_NaN;
 
       if (__x < _Tp{0} || __a <= _Tp{0})
-	std::__throw_domain_error("__gamma_l: invalid arguments");
+	std::__throw_domain_error("__tgamma_lower: invalid arguments");
 
       if (__x < __a + _Tp{1})
 	{
@@ -2372,7 +2372,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __gamma_u(_Tp __a, _Tp __x)
+    __tgamma(_Tp __a, _Tp __x)
     {
       constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
 
@@ -2380,7 +2380,7 @@ _S_neg_double_factorial_table[999]
 	return _S_NaN;
 
       if (__x < _Tp{0} || __a <= _Tp{0})
-	std::__throw_domain_error("__gamma_u: invalid arguments");
+	std::__throw_domain_error("__tgamma: invalid arguments");
 
       if (__x < __a + _Tp{1})
 	{
@@ -2414,7 +2414,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __log_pochhammer_u(_Tp __a, _Tp __n)
+    __log_pochhammer(_Tp __a, _Tp __n)
     {
       if (__isnan(__n) || __isnan(__a))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
@@ -2440,7 +2440,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __pochhammer_u(_Tp __a, _Tp __n)
+    __pochhammer(_Tp __a, _Tp __n)
     {
       constexpr auto __log10{2.3025850929940456840179914546843642L};
       if (__isnan(__n) || __isnan(__a))
@@ -2479,7 +2479,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __log_pochhammer_l(_Tp __a, _Tp __n)
+    __log_pochhammer_lower(_Tp __a, _Tp __n)
     {
       if (__isnan(__n) || __isnan(__a))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
@@ -2502,7 +2502,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __pochhammer_l(_Tp __a, _Tp __n)
+    __pochhammer_lower(_Tp __a, _Tp __n)
     {
       constexpr auto __log10{2.3025850929940456840179914546843642L};
       if (__isnan(__n) || __isnan(__a))

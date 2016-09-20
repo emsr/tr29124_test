@@ -141,7 +141,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__alpha) || __isnan(__beta) || __isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
-	return __gamma_l(__alpha, __beta * __x)
+	return __tgamma_lower(__alpha, __beta * __x)
 	     / std::tgamma(__alpha);
     }
 
@@ -162,7 +162,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__alpha) || __isnan(__beta) || __isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
-	return __gamma_u(__alpha, __beta * __x)
+	return __tgamma(__alpha, __beta * __x)
 	     / std::tgamma(__alpha);
     }
 

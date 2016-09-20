@@ -94,8 +94,6 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/check_factorial \
 	 ${CHECK_DIR}/check_fresnel_c \
 	 ${CHECK_DIR}/check_fresnel_s \
-	 ${CHECK_DIR}/check_gamma_l \
-	 ${CHECK_DIR}/check_gamma_u \
 	 ${CHECK_DIR}/check_gegenbauer \
 	 ${CHECK_DIR}/check_hermite \
 	 ${CHECK_DIR}/check_heuman_lambda \
@@ -114,12 +112,12 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/check_legendre \
 	 ${CHECK_DIR}/check_legendre_q \
 	 ${CHECK_DIR}/check_lfactorial \
-	 ${CHECK_DIR}/check_lpochhammer_l \
-	 ${CHECK_DIR}/check_lpochhammer_u \
+	 ${CHECK_DIR}/check_lpochhammer_lower \
+	 ${CHECK_DIR}/check_lpochhammer \
 	 ${CHECK_DIR}/check_owens_t \
 	 ${CHECK_DIR}/check_pgamma \
-	 ${CHECK_DIR}/check_pochhammer_l \
-	 ${CHECK_DIR}/check_pochhammer_u \
+	 ${CHECK_DIR}/check_pochhammer_lower \
+	 ${CHECK_DIR}/check_pochhammer \
 	 ${CHECK_DIR}/check_psi \
 	 ${CHECK_DIR}/check_qgamma \
 	 ${CHECK_DIR}/check_radpoly \
@@ -137,6 +135,8 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/check_sph_harmonic \
 	 ${CHECK_DIR}/check_sph_legendre \
 	 ${CHECK_DIR}/check_sph_neumann \
+	 ${CHECK_DIR}/check_tgamma_lower \
+	 ${CHECK_DIR}/check_tgamma \
 	 ${CHECK_DIR}/check_theta_1 \
 	 ${CHECK_DIR}/check_theta_2 \
 	 ${CHECK_DIR}/check_theta_3 \
@@ -252,8 +252,6 @@ check: $(CHECKS)
 	echo "check_factorial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_factorial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_fresnel_c" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_fresnel_c >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_fresnel_s" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_fresnel_s >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
-	echo "check_gamma_l" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_gamma_l >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
-	echo "check_gamma_u" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_gamma_u >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_gegenbauer" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_gegenbauer >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_hermite" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_hermite >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_heuman_lambda" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_heuman_lambda >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
@@ -272,12 +270,12 @@ check: $(CHECKS)
 	echo "check_legendre" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_legendre >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_legendre_q" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_legendre_q >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_lfactorial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lfactorial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
-	echo "check_lpochhammer_l" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lpochhammer_l >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
-	echo "check_lpochhammer_u" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lpochhammer_u >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_lpochhammer_lower" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lpochhammer_lower >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_lpochhammer" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lpochhammer >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_owens_t" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_owens_t >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_pgamma" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_pgamma >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
-	echo "check_pochhammer_l" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_pochhammer_l >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
-	echo "check_pochhammer_u" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_pochhammer_u >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_pochhammer_lower" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_pochhammer_lower >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_pochhammer" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_pochhammer >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_psi" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_psi >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_qgamma" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_qgamma >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_radpoly" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_radpoly >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
@@ -295,6 +293,8 @@ check: $(CHECKS)
 	echo "check_sph_harmonic" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_sph_harmonic >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_sph_legendre" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_sph_legendre >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_sph_neumann" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_sph_neumann >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tgamma_lower" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_tgamma_lower >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tgamma" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_tgamma >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_theta_1" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_theta_1 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_theta_2" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_theta_2 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_theta_3" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_theta_3 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
@@ -489,12 +489,6 @@ ${CHECK_DIR}/check_fresnel_c: ${CHECK_DIR}/check_fresnel_c.cc
 ${CHECK_DIR}/check_fresnel_s: ${CHECK_DIR}/check_fresnel_s.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_fresnel_s ${CHECK_DIR}/check_fresnel_s.cc
 
-${CHECK_DIR}/check_gamma_l: ${CHECK_DIR}/check_gamma_l.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_gamma_l ${CHECK_DIR}/check_gamma_l.cc
-
-${CHECK_DIR}/check_gamma_u: ${CHECK_DIR}/check_gamma_u.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_gamma_u ${CHECK_DIR}/check_gamma_u.cc
-
 ${CHECK_DIR}/check_gegenbauer: ${CHECK_DIR}/check_gegenbauer.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_gegenbauer ${CHECK_DIR}/check_gegenbauer.cc
 
@@ -546,11 +540,11 @@ ${CHECK_DIR}/check_legendre_q: ${CHECK_DIR}/check_legendre_q.cc
 ${CHECK_DIR}/check_lfactorial: ${CHECK_DIR}/check_lfactorial.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lfactorial ${CHECK_DIR}/check_lfactorial.cc
 
-${CHECK_DIR}/check_lpochhammer_l: ${CHECK_DIR}/check_lpochhammer_l.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lpochhammer_l ${CHECK_DIR}/check_lpochhammer_l.cc
+${CHECK_DIR}/check_lpochhammer_lower: ${CHECK_DIR}/check_lpochhammer_lower.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lpochhammer_lower ${CHECK_DIR}/check_lpochhammer_lower.cc
 
-${CHECK_DIR}/check_lpochhammer_u: ${CHECK_DIR}/check_lpochhammer_u.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lpochhammer_u ${CHECK_DIR}/check_lpochhammer_u.cc
+${CHECK_DIR}/check_lpochhammer: ${CHECK_DIR}/check_lpochhammer.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lpochhammer ${CHECK_DIR}/check_lpochhammer.cc
 
 ${CHECK_DIR}/check_owens_t: ${CHECK_DIR}/check_owens_t.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_owens_t ${CHECK_DIR}/check_owens_t.cc
@@ -558,11 +552,11 @@ ${CHECK_DIR}/check_owens_t: ${CHECK_DIR}/check_owens_t.cc
 ${CHECK_DIR}/check_pgamma: ${CHECK_DIR}/check_pgamma.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_pgamma ${CHECK_DIR}/check_pgamma.cc
 
-${CHECK_DIR}/check_pochhammer_l: ${CHECK_DIR}/check_pochhammer_l.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_pochhammer_l ${CHECK_DIR}/check_pochhammer_l.cc
+${CHECK_DIR}/check_pochhammer_lower: ${CHECK_DIR}/check_pochhammer_lower.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_pochhammer_lower ${CHECK_DIR}/check_pochhammer_lower.cc
 
-${CHECK_DIR}/check_pochhammer_u: ${CHECK_DIR}/check_pochhammer_u.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_pochhammer_u ${CHECK_DIR}/check_pochhammer_u.cc
+${CHECK_DIR}/check_pochhammer: ${CHECK_DIR}/check_pochhammer.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_pochhammer ${CHECK_DIR}/check_pochhammer.cc
 
 ${CHECK_DIR}/check_psi: ${CHECK_DIR}/check_psi.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_psi ${CHECK_DIR}/check_psi.cc
@@ -614,6 +608,12 @@ ${CHECK_DIR}/check_sph_legendre: ${CHECK_DIR}/check_sph_legendre.cc
 
 ${CHECK_DIR}/check_sph_neumann: ${CHECK_DIR}/check_sph_neumann.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sph_neumann ${CHECK_DIR}/check_sph_neumann.cc
+
+${CHECK_DIR}/check_tgamma_lower: ${CHECK_DIR}/check_tgamma_lower.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tgamma_lower ${CHECK_DIR}/check_tgamma_lower.cc
+
+${CHECK_DIR}/check_tgamma: ${CHECK_DIR}/check_tgamma.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tgamma ${CHECK_DIR}/check_tgamma.cc
 
 ${CHECK_DIR}/check_theta_1: ${CHECK_DIR}/check_theta_1.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_theta_1 ${CHECK_DIR}/check_theta_1.cc
