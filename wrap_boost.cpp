@@ -296,9 +296,16 @@ sph_neumann(unsigned int n, double x)
   return boost::math::sph_neumann(n, x);
 }
 
-/// Non-normalized lower incomplete gamma functions. (See Boost tgamma_lower(a, x)).
+/// Non-normalized upper incomplete gamma functions.
 double
-gamma_l(double a, double x)
+tgamma(double a, double x)
+{
+  return boost::math::tgamma(a, x);
+}
+
+/// Non-normalized lower incomplete gamma functions.
+double
+tgamma_lower(double a, double x)
 {
   return boost::math::tgamma_lower(a, x);
 }
@@ -343,13 +350,6 @@ double
 pgamma_inva(double a, double q)
 {
   return boost::math::gamma_p_inva(a, q);
-}
-
-/// Non-normalized (upper) incomplete gamma functions. (See Boost tgamma(a, x)).
-double
-gamma_u(double a, double x)
-{
-  return boost::math::tgamma(a, x);
 }
 
 /// Incomplete beta functions.
@@ -530,28 +530,28 @@ sinhc(double x)
 
 /// Log upper Pochhammer symbol.
 double
-lpochhammer_u(double a, double x)
+lpochhammer(double a, double x)
 {
   return std::log(boost::math::rising_factorial(a, x));
 }
 
 /// Log lower Pochhammer symbol.
 double
-lpochhammer_l(double a, double x)
+lpochhammer_lower(double a, double x)
 {
   return std::log(boost::math::falling_factorial(a, x));
 }
 
 /// Upper Pochhammer symbol.
 double
-pochhammer_u(double a, double x)
+pochhammer(double a, double x)
 {
   return boost::math::rising_factorial(a, x);
 }
 
 /// Lower Pochhammer symbol.
 double
-pochhammer_l(double a, double x)
+pochhammer_lower(double a, double x)
 {
   return boost::math::falling_factorial(a, x);
 }

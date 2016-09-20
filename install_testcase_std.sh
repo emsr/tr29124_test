@@ -70,8 +70,8 @@ ${tool} check/check_expint_en.cc          ${ext_dir}/expint/check_value.cc
 ${tool} check/check_factorial.cc          ${ext_dir}/factorial/check_value.cc
 ${tool} check/check_fresnel_c.cc          ${ext_dir}/fresnel_c/check_value.cc
 ${tool} check/check_fresnel_s.cc          ${ext_dir}/fresnel_s/check_value.cc
-${tool} check/check_gamma_l.cc            ${ext_dir}/gamma_l/check_value.cc
-${tool} check/check_gamma_u.cc            ${ext_dir}/gamma_u/check_value.cc
+${tool} check/check_tgamma_lower.cc       ${ext_dir}/tgamma_lower/check_value.cc
+${tool} check/check_tgamma.cc             ${ext_dir}/tgamma/check_value.cc
 ${tool} check/check_gegenbauer.cc         ${ext_dir}/gegenbauer/check_value.cc
 ${tool} check/check_heuman_lambda.cc      ${ext_dir}/heuman_lambda/check_value.cc
 ${tool} check/check_hurwitz_zeta.cc       ${ext_dir}/hurwitz_zeta/check_value.cc
@@ -85,12 +85,12 @@ ${tool} check/check_lbincoef.cc           ${ext_dir}/lbincoef/check_value.cc
 ${tool} check/check_ldouble_factorial.cc  ${ext_dir}/ldouble_factorial/check_value.cc
 ${tool} check/check_legendre_q.cc         ${ext_dir}/legendre_q/check_value.cc
 ${tool} check/check_lfactorial.cc         ${ext_dir}/lfactorial/check_value.cc
-${tool} check/check_lpochhammer_l.cc      ${ext_dir}/lpochhammer_l/check_value.cc
-${tool} check/check_lpochhammer_u.cc      ${ext_dir}/lpochhammer_u/check_value.cc
+${tool} check/check_lpochhammer_lower.cc  ${ext_dir}/lpochhammer_lower/check_value.cc
+${tool} check/check_lpochhammer.cc        ${ext_dir}/lpochhammer/check_value.cc
 ${tool} check/check_owens_t.cc            ${ext_dir}/owens_t/check_value.cc
 ${tool} check/check_pgamma.cc             ${ext_dir}/pgamma/check_value.cc
-${tool} check/check_pochhammer_l.cc       ${ext_dir}/pochhammer_l/check_value.cc
-${tool} check/check_pochhammer_u.cc       ${ext_dir}/pochhammer_u/check_value.cc
+${tool} check/check_pochhammer_lower.cc   ${ext_dir}/pochhammer_lower/check_value.cc
+${tool} check/check_pochhammer.cc         ${ext_dir}/pochhammer/check_value.cc
 ${tool} check/check_psi.cc                ${ext_dir}/psi/check_value.cc
 ${tool} check/check_qgamma.cc             ${ext_dir}/qgamma/check_value.cc
 ${tool} check/check_radpoly.cc            ${ext_dir}/radpoly/check_value.cc

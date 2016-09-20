@@ -58,8 +58,6 @@ check/check_expint_en
 check/check_factorial
 check/check_fresnel_c
 check/check_fresnel_s
-check/check_gamma_l
-check/check_gamma_u
 check/check_gegenbauer
 check/check_hermite
 check/check_heuman_lambda
@@ -77,12 +75,12 @@ check/check_ldouble_factorial
 check/check_legendre
 check/check_legendre_q
 check/check_lfactorial
-check/check_lpochhammer_l
-check/check_lpochhammer_u
+check/check_lpochhammer_lower
+check/check_lpochhammer
 check/check_owens_t
 check/check_pgamma
-check/check_pochhammer_l
-check/check_pochhammer_u
+check/check_pochhammer_lower
+check/check_pochhammer
 check/check_psi
 check/check_qgamma
 check/check_radpoly
@@ -100,6 +98,8 @@ check/check_sph_hankel_2
 check/check_sph_harmonic
 check/check_sph_legendre
 check/check_sph_neumann
+check/check_tgamma_lower
+check/check_tgamma
 check/check_theta_1
 check/check_theta_2
 check/check_theta_3
@@ -169,7 +169,7 @@ test_notsospecfun
 test_nric_bessel
 test_numeric_limits
 test_owens_t
-test_pochhammer_l
+test_pochhammer_lower
 test_polylog
 test_polynomial
 test_pow_funs

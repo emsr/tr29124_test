@@ -115,8 +115,8 @@ main()
     using __gnu_cxx::factorial;
     using __gnu_cxx::fresnel_c;
     using __gnu_cxx::fresnel_s;
-    using __gnu_cxx::gamma_l;
-    using __gnu_cxx::gamma_u;
+    using __gnu_cxx::tgamma_lower;
+    using __gnu_cxx::tgamma;
     using __gnu_cxx::gegenbauer;
     using       std::hermite;	 
     using __gnu_cxx::heuman_lambda;
@@ -561,18 +561,18 @@ main()
 			       std::make_pair(true, true), 23));
 
     //  Upper incomplete Gamma functions.
-    std::cout << "gamma_u" << std::endl;
-    basename = "diff_gamma_u";
-    rundiff(gamma_u, gsl::gamma_u, basename,
+    std::cout << "tgamma" << std::endl;
+    basename = "diff_tgamma";
+    rundiff(tgamma, gsl::tgamma, basename,
 	    "a", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
 			       std::make_pair(false, true), 11),
 	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
 			       std::make_pair(true, true), 11));
 
       // Lower incomplete Gamma functions.
-      std::cout << "gamma_l" << std::endl;
-      basename = "diff_gamma_l";
-      rundiff(gamma_l, gsl::gamma_l, basename,
+      std::cout << "tgamma_lower" << std::endl;
+      basename = "diff_tgamma_lower";
+      rundiff(tgamma_lower, gsl::tgamma_lower, basename,
 	      "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				 std::make_pair(false, true), 11),
 	      "x", fill_argument(std::make_pair(Real{0}, Real{5}),

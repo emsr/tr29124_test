@@ -110,8 +110,8 @@ template<typename Real>
     using __gnu_cxx::factorial;
     using __gnu_cxx::fresnel_c;
     using __gnu_cxx::fresnel_s;
-    using __gnu_cxx::gamma_l;
-    using __gnu_cxx::gamma_u;
+    using __gnu_cxx::tgamma_lower;
+    using __gnu_cxx::tgamma;
     using __gnu_cxx::gegenbauer;
     using       std::hermite;
     using __gnu_cxx::heuman_lambda;
@@ -129,12 +129,12 @@ template<typename Real>
     using       std::legendre;
     using __gnu_cxx::legendre_q;
     using __gnu_cxx::lfactorial;
-    using __gnu_cxx::lpochhammer_l;
-    using __gnu_cxx::lpochhammer_u;
+    using __gnu_cxx::lpochhammer_lower;
+    using __gnu_cxx::lpochhammer;
     using __gnu_cxx::owens_t;
     using __gnu_cxx::pgamma;
-    using __gnu_cxx::pochhammer_l;
-    using __gnu_cxx::pochhammer_u;
+    using __gnu_cxx::pochhammer_lower;
+    using __gnu_cxx::pochhammer;
     using __gnu_cxx::psi;
     using __gnu_cxx::qgamma;
     using __gnu_cxx::radpoly;
@@ -578,14 +578,14 @@ template<typename Real>
 				    std::make_pair(true, true), 23));
 
     //  Upper incomplete Gamma functions.
-    std::cout << "gamma_u" << std::endl;
-    runtest(gsl::gamma_u, "gsl_gamma_u",
+    std::cout << "tgamma" << std::endl;
+    runtest(gsl::tgamma, "gsl_tgamma",
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(true, true), 11));
 
-    runtest(gamma_u, ns + "_gamma_u",
+    runtest(tgamma, ns + "_tgamma",
 	    fill_argument(std::make_pair(Real{0}, Real{+5}),
 		 	  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(Real{0}, Real{+5}),

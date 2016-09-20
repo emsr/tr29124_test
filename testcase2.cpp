@@ -76,8 +76,8 @@ template<typename Real>
     using __gnu_cxx::factorial;
     using __gnu_cxx::fresnel_c;
     using __gnu_cxx::fresnel_s;
-    using __gnu_cxx::gamma_l;
-    using __gnu_cxx::gamma_u;
+    using __gnu_cxx::tgamma_lower;
+    using __gnu_cxx::tgamma;
     using __gnu_cxx::gegenbauer;
     using       std::hermite;
     using __gnu_cxx::heuman_lambda;
@@ -95,12 +95,12 @@ template<typename Real>
     using       std::legendre;
     using __gnu_cxx::legendre_q;
     using __gnu_cxx::lfactorial;
-    using __gnu_cxx::lpochhammer_l;
-    using __gnu_cxx::lpochhammer_u;
+    using __gnu_cxx::lpochhammer_lower;
+    using __gnu_cxx::lpochhammer;
     using __gnu_cxx::owens_t;
     using __gnu_cxx::pgamma;
-    using __gnu_cxx::pochhammer_l;
-    using __gnu_cxx::pochhammer_u;
+    using __gnu_cxx::pochhammer_lower;
+    using __gnu_cxx::pochhammer;
     using __gnu_cxx::psi;
     using __gnu_cxx::qgamma;
     using __gnu_cxx::radpoly;
