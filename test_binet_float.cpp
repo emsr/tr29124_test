@@ -122,6 +122,32 @@ namespace __detail
     }
 
   /**
+   * For a series specified by coefficients @f$ c_k @f$:
+   * @f[
+   *  \Lambda(x) = \sum_{k=0}^{N} c_k x^k
+   * @f]
+   * form the coefficients @f$ d_k @f$ for the inverse
+   * @f[
+   *  \frac{1}{\Lambda(x)} = \sum_{k=0}^{N} d_k x^k
+   * @f]
+   */
+  template<typename _Real>
+    std::vector<_Real>
+    __inverse_series(std::vector<_Real> __c)
+    {
+      if (__c.size() == 0)
+	return std::vector<_Real>{};
+      else if (__c[0] == _Real{0})
+	std::__throw_domain_error("__inverse_series: "
+				  "first (constant) coefficient is zero.);
+      else
+	{
+	  std::vector<_Real> __d;
+	  return __d;
+	}
+    }
+
+  /**
    * Computes the partial numerators for the Binet function
    * using Rutishauser's Quotient-Difference (QD) algorithm.
    * Use the more numerically stable progressive version.
