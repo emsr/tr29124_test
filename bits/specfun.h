@@ -161,6 +161,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::airy_ai "airy_ai - Airy functions of the first kind"
    * - @ref __gnu_cxx::airy_bi "airy_bi - Airy functions of the second kind"
    * - @ref __gnu_cxx::bincoef "bincoef - Binomial coefficients"
+   * - @ref __gnu_cxx::bose_einstein "bose_einstein - Bose-Einstein integrals"
    * - @ref __gnu_cxx::chebyshev_t "chebyshev_t - Chebyshev polynomials of the first kind"
    * - @ref __gnu_cxx::chebyshev_u "chebyshev_u - Chebyshev polynomials of the second kind"
    * - @ref __gnu_cxx::chebyshev_v "chebyshev_v - Chebyshev polynomials of the third kind"
@@ -186,14 +187,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::ellint_rf "ellint_rf - Carlson elliptic functions R_F"
    * - @ref __gnu_cxx::ellint_rg "ellint_rg - Carlson elliptic functions R_G"
    * - @ref __gnu_cxx::ellint_rj "ellint_rj - Carlson elliptic functions R_J"
+   * - @ref __gnu_cxx::ellnome "ellnome - Elliptic nome"
    * - @ref __gnu_cxx::expint "expint - Exponential integrals"
    * - @ref __gnu_cxx::factorial "factorial - Factorials"
+   * - @ref __gnu_cxx::fermi_dirac "fermi_dirac - Fermi-Dirac integrals"
    * - @ref __gnu_cxx::fresnel_c "fresnel_c - Fresnel cosine integrals"
    * - @ref __gnu_cxx::fresnel_s "fresnel_s - Fresnel sine integrals"
-   * - @ref __gnu_cxx::gamma_l "gamma_l - Lower incomplete gamma functions"
    * - @ref __gnu_cxx::pgamma "pgamma - Regularized lower incomplete gamma functions"
    * - @ref __gnu_cxx::qgamma "qgamma - Regularized upper incomplete gamma functions"
-   * - @ref __gnu_cxx::gamma_u "gamma_u - upper incomplete gamma functions"
    * - @ref __gnu_cxx::gegenbauer "gegenbauer - Gegenbauer polynomials"
    * - @ref __gnu_cxx::heuman_lambda "heuman_lambda - Heuman lambda functions"
    * - @ref __gnu_cxx::hurwitz_zeta "hurwitz_zeta - Hurwitz zeta functions"
@@ -207,11 +208,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::ldouble_factorial "ldouble_factorial - Log double factorials"
    * - @ref __gnu_cxx::legendre_q "legendre_q - Legendre functions of the second kind"
    * - @ref __gnu_cxx::lfactorial "lfactorial - Log factorials"
-   * - @ref __gnu_cxx::lpochhammer_l "lpochhammer_l - Log lower Pochhammer functions"
-   * - @ref __gnu_cxx::lpochhammer_u "lpochhammer_u - Log upper Pochhammer functions"
+   * - @ref __gnu_cxx::lpochhammer_lower "lpochhammer_lower - Log lower Pochhammer functions"
+   * - @ref __gnu_cxx::lpochhammer "lpochhammer - Log upper Pochhammer functions"
    * - @ref __gnu_cxx::owens_t "owens_t - Owens T functions"
-   * - @ref __gnu_cxx::pochhammer_l "pochhammer_l - Lower Pochhammer functions"
-   * - @ref __gnu_cxx::pochhammer_u "pochhammer_u - Upper Pochhammer functions"
+   * - @ref __gnu_cxx::pochhammer_lower "pochhammer_lower - Lower Pochhammer functions"
+   * - @ref __gnu_cxx::pochhammer "pochhammer - Upper Pochhammer functions"
    * - @ref __gnu_cxx::psi "psi - Psi or digamma function"
    * - @ref __gnu_cxx::radpoly "radpoly - Radial polynomials"
    * - @ref __gnu_cxx::sinhc "sinhc - Hyperbolic sinus cardinal function"
@@ -225,6 +226,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::sph_hankel_1 "sph_hankel_1 - Spherical Hankel functions of the first kind"
    * - @ref __gnu_cxx::sph_hankel_2 "sph_hankel_2 - Spherical Hankel functions of the first kind"
    * - @ref __gnu_cxx::sph_harmonic "sph_harmonic - Spherical"
+   * - @ref __gnu_cxx::tgamma "tgamma - upper incomplete gamma functions"
+   * - @ref __gnu_cxx::tgamma_lower "tgamma_lower - Lower incomplete gamma functions"
+   * - @ref __gnu_cxx::theta_1 "theta_1 - Exponential theta function 1"
+   * - @ref __gnu_cxx::theta_2 "theta_2 - Exponential theta function 2"
+   * - @ref __gnu_cxx::theta_3 "theta_3 - Exponential theta function 3"
+   * - @ref __gnu_cxx::theta_4 "theta_4 - Exponential theta function 4"
    * - @ref __gnu_cxx::zernike "zernike - Zernike polynomials"
    *
    * @section general General Features
@@ -2846,43 +2853,43 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Upper incomplete gamma functions
 
   inline float
-  gamma_uf(float __n, float __x)
-  { return std::__detail::__gamma_u<float>(__n, __x); }
+  tgammaf(float __n, float __x)
+  { return std::__detail::__tgamma<float>(__n, __x); }
 
   inline long double
-  gamma_ul(long double __n, long double __x)
-  { return std::__detail::__gamma_u<long double>(__n, __x); }
+  tgammal(long double __n, long double __x)
+  { return std::__detail::__tgamma<long double>(__n, __x); }
 
   /**
    * 
    */
   template<typename _Tn, typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tn, _Tp>
-    gamma_u(_Tn __n, _Tp __x)
+    tgamma(_Tn __n, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tn, _Tp>;
-      return std::__detail::__gamma_u<__type>(__n, __x);
+      return std::__detail::__tgamma<__type>(__n, __x);
     }
 
   // Lower incomplete gamma functions
 
   inline float
-  gamma_lf(float __n, float __x)
-  { return std::__detail::__gamma_l<float>(__n, __x); }
+  tgamma_lowerf(float __n, float __x)
+  { return std::__detail::__tgamma_lower<float>(__n, __x); }
 
   inline long double
-  gamma_ll(long double __n, long double __x)
-  { return std::__detail::__gamma_l<long double>(__n, __x); }
+  tgamma_lowerl(long double __n, long double __x)
+  { return std::__detail::__tgamma_lower<long double>(__n, __x); }
 
   /**
    * 
    */
   template<typename _Tn, typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tn, _Tp>
-    gamma_l(_Tn __n, _Tp __x)
+    tgamma_lower(_Tn __n, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tn, _Tp>;
-      return std::__detail::__gamma_l<__type>(__n, __x);
+      return std::__detail::__tgamma_lower<__type>(__n, __x);
     }
 
   // Dilogarithm functions
@@ -3573,85 +3580,85 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   //  Log upper Pochhammer symbol
 
   inline float
-  lpochhammer_uf(float __a, float __n)
-  { return std::__detail::__log_pochhammer_u<float>(__a, __n); }
+  lpochhammerf(float __a, float __n)
+  { return std::__detail::__log_pochhammer<float>(__a, __n); }
 
   inline long double
-  lpochhammer_ul(long double __a, long double __n)
-  { return std::__detail::__log_pochhammer_u<long double>(__a, __n); }
+  lpochhammerl(long double __a, long double __n)
+  { return std::__detail::__log_pochhammer<long double>(__a, __n); }
 
   /**
    * 
    */
   template<typename _Tp, typename _Tn>
     inline __gnu_cxx::__promote_fp_t<_Tp, _Tn>
-    lpochhammer_u(_Tp __a, _Tn __n)
+    lpochhammer(_Tp __a, _Tn __n)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tn>;
-      return std::__detail::__log_pochhammer_u<__type>(__a, __n);
+      return std::__detail::__log_pochhammer<__type>(__a, __n);
     }
 
   //  Log lower Pochhammer symbol
 
   inline float
-  lpochhammer_lf(float __a, float __n)
-  { return std::__detail::__log_pochhammer_l<float>(__a, __n); }
+  lpochhammer_lowerf(float __a, float __n)
+  { return std::__detail::__log_pochhammer_lower<float>(__a, __n); }
 
   inline long double
-  lpochhammer_ll(long double __a, long double __n)
-  { return std::__detail::__log_pochhammer_l<long double>(__a, __n); }
+  lpochhammer_lowerl(long double __a, long double __n)
+  { return std::__detail::__log_pochhammer_lower<long double>(__a, __n); }
 
   /**
    * 
    */
   template<typename _Tp, typename _Tn>
     inline __gnu_cxx::__promote_fp_t<_Tp, _Tn>
-    lpochhammer_l(_Tp __a, _Tn __n)
+    lpochhammer_lower(_Tp __a, _Tn __n)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tn>;
-      return std::__detail::__log_pochhammer_l<__type>(__a, __n);
+      return std::__detail::__log_pochhammer_lower<__type>(__a, __n);
     }
 
   //  Upper Pochhammer symbols (see boost::rising_factorial)
 
   inline float
-  pochhammer_uf(float __a, float __n)
-  { return std::__detail::__pochhammer_u<float>(__a, __n); }
+  pochhammerf(float __a, float __n)
+  { return std::__detail::__pochhammer<float>(__a, __n); }
 
   inline long double
-  pochhammer_ul(long double __a, long double __n)
-  { return std::__detail::__pochhammer_u<long double>(__a, __n); }
+  pochhammerl(long double __a, long double __n)
+  { return std::__detail::__pochhammer<long double>(__a, __n); }
 
   /**
    * 
    */
   template<typename _Tp, typename _Tn>
     inline __gnu_cxx::__promote_fp_t<_Tp, _Tn>
-    pochhammer_u(_Tp __a, _Tn __n)
+    pochhammer(_Tp __a, _Tn __n)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tn>;
-      return std::__detail::__pochhammer_u<__type>(__a, __n);
+      return std::__detail::__pochhammer<__type>(__a, __n);
     }
 
   //  Lower Pochhammer symbols (see boost::falling_factorial)
 
   inline float
-  pochhammer_lf(float __a, float __n)
-  { return std::__detail::__pochhammer_l<float>(__a, __n); }
+  pochhammer_lowerf(float __a, float __n)
+  { return std::__detail::__pochhammer_lower<float>(__a, __n); }
 
   inline long double
-  pochhammer_ll(long double __a, long double __n)
-  { return std::__detail::__pochhammer_l<long double>(__a, __n); }
+  pochhammer_lowerl(long double __a, long double __n)
+  { return std::__detail::__pochhammer_lower<long double>(__a, __n); }
 
   /**
    * 
    */
   template<typename _Tp, typename _Tn>
     inline __gnu_cxx::__promote_fp_t<_Tp, _Tn>
-    pochhammer_l(_Tp __a, _Tn __n)
+    pochhammer_lower(_Tp __a, _Tn __n)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tn>;
-      return std::__detail::__pochhammer_l<__type>(__a, __n);
+      return std::__detail::__pochhammer_lower<__type>(__a, __n);
     }
 
   // Factorial
@@ -5259,7 +5266,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       using __type = __gnu_cxx::__promote_fp_t<_Tph, _Tpa>;
       return std::__detail::__owens_t<__type>(__h, __a);
     }
-/*
+
   // Fermi-Dirac integrals.
 
   inline float
@@ -5295,7 +5302,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       using __type = __gnu_cxx::__promote_fp_t<_Tps, _Tp>;
       return std::__detail::__bose_einstein<__type>(__s, __x);
     }
-*/
+
 
 #endif // __cplusplus >= 201103L
 

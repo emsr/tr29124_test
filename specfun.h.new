@@ -191,10 +191,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::factorial "factorial - Factorials"
    * - @ref __gnu_cxx::fresnel_c "fresnel_c - Fresnel cosine integrals"
    * - @ref __gnu_cxx::fresnel_s "fresnel_s - Fresnel sine integrals"
-   * - @ref __gnu_cxx::gamma_l "gamma_l - Lower incomplete gamma functions"
+   * - @ref __gnu_cxx::tgamma_lower "tgamma_lower - Lower incomplete gamma functions"
    * - @ref __gnu_cxx::pgamma "pgamma - Regularized lower incomplete gamma functions"
    * - @ref __gnu_cxx::qgamma "qgamma - Regularized upper incomplete gamma functions"
-   * - @ref __gnu_cxx::gamma_u "gamma_u - upper incomplete gamma functions"
+   * - @ref __gnu_cxx::tgamma "tgamma - upper incomplete gamma functions"
    * - @ref __gnu_cxx::gegenbauer "gegenbauer - Gegenbauer polynomials"
    * - @ref __gnu_cxx::heuman_lambda "heuman_lambda - Heuman lambda functions"
    * - @ref __gnu_cxx::hurwitz_zeta "hurwitz_zeta - Hurwitz zeta functions"
@@ -2805,43 +2805,43 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Upper incomplete gamma functions
 
   inline float
-  gamma_uf(float __n, float __x)
-  { return std::__detail::__gamma_u<float>(__n, __x); }
+  tgammaf(float __n, float __x)
+  { return std::__detail::__tgamma<float>(__n, __x); }
 
   inline long double
-  gamma_ul(long double __n, long double __x)
-  { return std::__detail::__gamma_u<long double>(__n, __x); }
+  tgammal(long double __n, long double __x)
+  { return std::__detail::__tgamma<long double>(__n, __x); }
 
   /**
    * 
    */
   template<typename _Tn, typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tn, _Tp>
-    gamma_u(_Tn __n, _Tp __x)
+    tgamma(_Tn __n, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tn, _Tp>;
-      return std::__detail::__gamma_u<__type>(__n, __x);
+      return std::__detail::__tgamma<__type>(__n, __x);
     }
 
   // Lower incomplete gamma functions
 
   inline float
-  gamma_lf(float __n, float __x)
-  { return std::__detail::__gamma_l<float>(__n, __x); }
+  tgamma_lowerf(float __n, float __x)
+  { return std::__detail::__tgamma_lower<float>(__n, __x); }
 
   inline long double
-  gamma_ll(long double __n, long double __x)
-  { return std::__detail::__gamma_l<long double>(__n, __x); }
+  tgamma_lowerl(long double __n, long double __x)
+  { return std::__detail::__tgamma_lower<long double>(__n, __x); }
 
   /**
    * 
    */
   template<typename _Tn, typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tn, _Tp>
-    gamma_l(_Tn __n, _Tp __x)
+    tgamma_lower(_Tn __n, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tn, _Tp>;
-      return std::__detail::__gamma_l<__type>(__n, __x);
+      return std::__detail::__tgamma_lower<__type>(__n, __x);
     }
 
   // Digamma functions

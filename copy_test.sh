@@ -61,8 +61,8 @@ ${tool} ${text_dir}/expint_e1/*          ${ext_dir}/expint_e1
 ${tool} ${text_dir}/factorial/*          ${ext_dir}/factorial
 ${tool} ${text_dir}/fresnel_c/*          ${ext_dir}/fresnel_c
 ${tool} ${text_dir}/fresnel_s/*          ${ext_dir}/fresnel_s
-${tool} ${text_dir}/gamma_l/*            ${ext_dir}/gamma_l
-${tool} ${text_dir}/gamma_u/*            ${ext_dir}/gamma_u
+${tool} ${text_dir}/tgamma_lower/*       ${ext_dir}/tgamma_lower
+${tool} ${text_dir}/tgamma/*             ${ext_dir}/tgamma
 ${tool} ${text_dir}/gegenbauer/*         ${ext_dir}/gegenbauer
 ${tool} ${text_dir}/hurwitz_zeta/*       ${ext_dir}/hurwitz_zeta
 ${tool} ${text_dir}/hyperg/*             ${ext_dir}/hyperg
@@ -74,10 +74,10 @@ ${tool} ${text_dir}/lbincoef/*           ${ext_dir}/lbincoef
 ${tool} ${text_dir}/ldouble_factorial/*  ${ext_dir}/ldouble_factorial
 ${tool} ${text_dir}/legendre_q/*         ${ext_dir}/legendre_q
 ${tool} ${text_dir}/lfactorial/*         ${ext_dir}/lfactorial
-${tool} ${text_dir}/lpochhammer_l/*      ${ext_dir}/lpochhammer_l
-${tool} ${text_dir}/lpochhammer_u/*      ${ext_dir}/lpochhammer_u
-${tool} ${text_dir}/pochhammer_l/*       ${ext_dir}/pochhammer_l
-${tool} ${text_dir}/pochhammer_u/*       ${ext_dir}/pochhammer_u
+${tool} ${text_dir}/lpochhammer_lower/*  ${ext_dir}/lpochhammer_lower
+${tool} ${text_dir}/lpochhammer/*        ${ext_dir}/lpochhammer
+${tool} ${text_dir}/pochhammer_lower/*   ${ext_dir}/pochhammer_lower
+${tool} ${text_dir}/pochhammer/*         ${ext_dir}/pochhammer
 ${tool} ${text_dir}/psi/*                ${ext_dir}/psi
 ${tool} ${text_dir}/sinc/*               ${ext_dir}/sinc
 ${tool} ${text_dir}/sinc_pi/*            ${ext_dir}/sinc_pi

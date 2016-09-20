@@ -369,7 +369,7 @@ template<typename _Tp>
 
 // Upper incomplete gamma functions.
 template<typename _Tp>
-  struct testcase_gamma_u
+  struct testcase_tgamma
   {
     _Tp f0;
     _Tp a;
@@ -379,7 +379,7 @@ template<typename _Tp>
 
 // Lower incomplete gamma functions.
 template<typename _Tp>
-  struct testcase_gamma_l
+  struct testcase_tgamma_lower
   {
     _Tp f0;
     _Tp a;
@@ -611,7 +611,7 @@ template<typename _Tp>
 
 // Log upper Pochhammer symbol.
 template<typename _Tp>
-  struct testcase_lpochhammer_u
+  struct testcase_lpochhammer
   {
     _Tp f0;
     _Tp a;
@@ -621,7 +621,7 @@ template<typename _Tp>
 
 // Upper Pochhammer symbols.
 template<typename _Tp>
-  struct testcase_pochhammer_u
+  struct testcase_pochhammer
   {
     _Tp f0;
     _Tp a;
@@ -631,7 +631,7 @@ template<typename _Tp>
 
 // Log lower Pochhammer symbol.
 template<typename _Tp>
-  struct testcase_lpochhammer_l
+  struct testcase_lpochhammer_lower
   {
     _Tp f0;
     _Tp a;
@@ -641,7 +641,7 @@ template<typename _Tp>
 
 // Lower Pochhammer symbol.
 template<typename _Tp>
-  struct testcase_pochhammer_l
+  struct testcase_pochhammer_lower
   {
     _Tp f0;
     _Tp a;

@@ -277,12 +277,12 @@ namespace __gnu_cxx
   }
 
   inline __float128
-  gamma_uq(__float128 __n, __float128 __x)
-  { return std::__detail::__gamma_u<__float128>(__n, __x); }
+  tgammaq(__float128 __n, __float128 __x)
+  { return std::__detail::__tgamma<__float128>(__n, __x); }
 
   inline __float128
-  gamma_lq(__float128 __n, __float128 __x)
-  { return std::__detail::__gamma_l<__float128>(__n, __x); }
+  tgamma_lowerq(__float128 __n, __float128 __x)
+  { return std::__detail::__tgamma_lower<__float128>(__n, __x); }
 
   inline __float128
   dilogq(__float128 __x)

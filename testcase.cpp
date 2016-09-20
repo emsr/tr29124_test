@@ -85,8 +85,8 @@ template<typename Real>
     using __gnu_cxx::factorial;
     using __gnu_cxx::fresnel_c;
     using __gnu_cxx::fresnel_s;
-    using __gnu_cxx::gamma_l;
-    using __gnu_cxx::gamma_u;
+    using __gnu_cxx::tgamma_lower;
+    using __gnu_cxx::tgamma;
     using __gnu_cxx::gegenbauer;
     using       std::hermite;
     using __gnu_cxx::heuman_lambda;
@@ -104,12 +104,12 @@ template<typename Real>
     using       std::legendre;
     using __gnu_cxx::legendre_q;
     using __gnu_cxx::lfactorial;
-    using __gnu_cxx::lpochhammer_l;
-    using __gnu_cxx::lpochhammer_u;
+    using __gnu_cxx::lpochhammer_lower;
+    using __gnu_cxx::lpochhammer;
     using __gnu_cxx::owens_t;
     using __gnu_cxx::pgamma;
-    using __gnu_cxx::pochhammer_l;
-    using __gnu_cxx::pochhammer_u;
+    using __gnu_cxx::pochhammer_lower;
+    using __gnu_cxx::pochhammer;
     using __gnu_cxx::psi;
     using __gnu_cxx::qgamma;
     using __gnu_cxx::radpoly;
@@ -788,32 +788,32 @@ template<typename Real>
 	     file_dilog);
 
     // Upper incomplete Gamma functions.
-    std::cout << "gamma_u" << std::endl;
-    basename = "gamma_u";
+    std::cout << "tgamma" << std::endl;
+    basename = "tgamma";
     filename = get_filename(path, prefix, basename, "", ".cc");
-    std::ofstream file_gamma_u(filename.c_str());
-    maketest(gamma_u, gsl::gamma_u,
-	     "testcase_gamma_u", "__gnu_cxx", basename,
+    std::ofstream file_tgamma(filename.c_str());
+    maketest(tgamma, gsl::tgamma,
+	     "testcase_tgamma", "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 11),
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 11),
 	     "GSL",
-	     file_gamma_u);
+	     file_tgamma);
 
     // Lower incomplete Gamma functions.
-    std::cout << "gamma_l" << std::endl;
-    basename = "gamma_l";
+    std::cout << "tgamma_lower" << std::endl;
+    basename = "tgamma_lower";
     filename = get_filename(path, prefix, basename, "", ".cc");
-    std::ofstream file_gamma_l(filename.c_str());
-    maketest(gamma_l, gsl::gamma_l,
-	     "testcase_gamma_l", "__gnu_cxx", basename,
+    std::ofstream file_tgamma_lower(filename.c_str());
+    maketest(tgamma_lower, gsl::tgamma_lower,
+	     "testcase_tgamma_lower", "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 11),
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 11),
 	     "GSL",
-	     file_gamma_l);
+	     file_tgamma_lower);
 
     // Lower regularized incomplete Gamma functions.
     std::cout << "pgamma" << std::endl;
@@ -1043,56 +1043,56 @@ template<typename Real>
 	     file_sinc_pi);
 
     // Log upper Pochhammer symbol.
-    std::cout << "lpochhammer_u" << std::endl;
-    basename = "lpochhammer_u";
+    std::cout << "lpochhammer" << std::endl;
+    basename = "lpochhammer";
     filename = get_filename(path, prefix, basename, "",  ".cc");
-    std::ofstream file_lpochhammer_u(filename.c_str());
-    maketest(lpochhammer_u, beast::lpochhammer_u,
-	     "testcase_lpochhammer_u", "__gnu_cxx", basename,
+    std::ofstream file_lpochhammer(filename.c_str());
+    maketest(lpochhammer, beast::lpochhammer,
+	     "testcase_lpochhammer", "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     "x", {1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0},
 	     "Boost",
-	     file_lpochhammer_u, true, true);
+	     file_lpochhammer, true, true);
 
     // Log lower Pochhammer symbol.
-    std::cout << "lpochhammer_l" << std::endl;
-    basename = "lpochhammer_l";
+    std::cout << "lpochhammer_lower" << std::endl;
+    basename = "lpochhammer_lower";
     filename = get_filename(path, prefix, basename, "",  ".cc");
-    std::ofstream file_lpochhammer_l(filename.c_str());
-    maketest(lpochhammer_l, beast::lpochhammer_l,
-	     "testcase_lpochhammer_l", "__gnu_cxx", basename,
+    std::ofstream file_lpochhammer_lower(filename.c_str());
+    maketest(lpochhammer_lower, beast::lpochhammer_lower,
+	     "testcase_lpochhammer_lower", "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     "x", {0.0, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0},
 	     "Boost",
-	     file_lpochhammer_l, true, true);
+	     file_lpochhammer_lower, true, true);
 
     // Upper Pochhammer symbols (see boost::rising_factorial).
-    std::cout << "pochhammer_u" << std::endl;
-    basename = "pochhammer_u";
+    std::cout << "pochhammer" << std::endl;
+    basename = "pochhammer";
     filename = get_filename(path, prefix, basename, "",  ".cc");
-    std::ofstream file_pochhammer_u(filename.c_str());
-    maketest(pochhammer_u, beast::pochhammer_u,
-	     "testcase_pochhammer_u", "__gnu_cxx", basename,
+    std::ofstream file_pochhammer(filename.c_str());
+    maketest(pochhammer, beast::pochhammer,
+	     "testcase_pochhammer", "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     "x", dvorder,
 	     "Boost",
-	     file_pochhammer_u, true, true);
+	     file_pochhammer, true, true);
 
     // Lower Pochhammer symbols (see boost::falling_factorial).
-    std::cout << "pochhammer_l" << std::endl;
-    basename = "pochhammer_l";
+    std::cout << "pochhammer_lower" << std::endl;
+    basename = "pochhammer_lower";
     filename = get_filename(path, prefix, basename, "",  ".cc");
-    std::ofstream file_pochhammer_l(filename.c_str());
-    maketest(pochhammer_l, beast::pochhammer_l,
-	     "testcase_pochhammer_l", "__gnu_cxx", basename,
+    std::ofstream file_pochhammer_lower(filename.c_str());
+    maketest(pochhammer_lower, beast::pochhammer_lower,
+	     "testcase_pochhammer_lower", "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     "x", {0.0, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0},
 	     "Boost",
-	     file_pochhammer_l, true, true);
+	     file_pochhammer_lower, true, true);
 
     // Regular modified spherical bessel functions.
     std::cout << "sph_bessel_i" << std::endl;

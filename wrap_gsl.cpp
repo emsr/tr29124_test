@@ -622,18 +622,18 @@ sph_neumann(unsigned int n, double x)
 
 /// Non-normalized lower incomplete gamma functions.
 double
-gamma_l(double a, double x)
+tgamma_lower(double a, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_gamma_e(a, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in gamma_l:");
+      std::ostringstream msg("Error in tgamma_lower:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
   else
-    return result.val - gamma_u(a, x);
+    return result.val - tgamma(a, x);
 }
 
 /// Normalized incomlete gamma functions.
@@ -670,13 +670,13 @@ pgamma(double a, double x)
 
 /// Non-normalized (upper) incomlete gamma functions.
 double
-gamma_u(double a, double x)
+tgamma(double a, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_gamma_inc_e(a, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in gamma_u:");
+      std::ostringstream msg("Error in tgamma:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -953,13 +953,13 @@ sinhc(double x)
 
 /// Log upper Pochhammer symbol.
 double
-lpochhammer_u(double a, double x)
+lpochhammer(double a, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_lnpoch_e(a, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in lpochhammer_u:");
+      std::ostringstream msg("Error in lpochhammer:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -969,7 +969,7 @@ lpochhammer_u(double a, double x)
 
 /// Log lower Pochhammer symbol.
 double
-lpochhammer_l(double a, double x)
+lpochhammer_lower(double a, double x)
 {
   if (a == x)
     return std::numeric_limits<double>::infinity();
@@ -979,7 +979,7 @@ lpochhammer_l(double a, double x)
   int stat_den = gsl_sf_lngamma_e(std::abs(a), &result_den);
   if (stat_num != GSL_SUCCESS && stat_den != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in lpochhammer_l:");
+      std::ostringstream msg("Error in lpochhammer_lower:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -989,13 +989,13 @@ lpochhammer_l(double a, double x)
 
 /// Upper Pochhammer symbol.
 double
-pochhammer_u(double a, double x)
+pochhammer(double a, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_poch_e(a, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in pochhammer_u:");
+      std::ostringstream msg("Error in pochhammer:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -1005,7 +1005,7 @@ pochhammer_u(double a, double x)
 
 /// Lower Pochhammer symbol.
 double
-pochhammer_l(double a, double x)
+pochhammer_lower(double a, double x)
 {
   if (a == x)
     return std::numeric_limits<double>::infinity();
@@ -1019,7 +1019,7 @@ pochhammer_l(double a, double x)
   int stat_den = gsl_sf_gamma_e(std::abs(a), &result_den);
   if (stat_num != GSL_SUCCESS && stat_den != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in lpochhammer_l:");
+      std::ostringstream msg("Error in lpochhammer_lower:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
