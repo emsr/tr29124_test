@@ -1,6 +1,6 @@
-// $HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_pochhammer_l test_pochhammer_l.cpp wrap_boost.cpp
+// $HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_pochhammer_lower test_pochhammer_lower.cpp wrap_boost.cpp
 /*
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_pochhammer_l > test_pochhammer_l.txt
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_pochhammer_lower > test_pochhammer_lower.txt
 */
 
 #include <limits>
@@ -28,9 +28,9 @@ main()
 	  auto x = xv[ix];
 	  std::cout << ' ' << std::setw(width) << a
 		    << ' ' << std::setw(width) << x
-		    << ' ' << std::setw(width) << __gnu_cxx::pochhammer_l(a, x)
-		    << ' ' << std::setw(width) << beast::pochhammer_l(a, x)
-		    << ' ' << std::setw(width) << __gnu_cxx::pochhammer_l(a, x) - beast::pochhammer_l(a, x)
+		    << ' ' << std::setw(width) << __gnu_cxx::pochhammer_lower(a, x)
+		    << ' ' << std::setw(width) << beast::pochhammer_lower(a, x)
+		    << ' ' << std::setw(width) << __gnu_cxx::pochhammer_lower(a, x) - beast::pochhammer_lower(a, x)
 		    << '\n';
 	}
     }

@@ -119,9 +119,6 @@ double legendre_sphPlm(unsigned int l, unsigned int m, double theta);
 /// Spherical Neumann functions.
 double sph_neumann(unsigned int n, double x);
 
-/// Non-normalized lower incomplete gamma functions. (See Boost tgamma_lower(a, x)).
-double gamma_l(double a, double x);
-
 /// Normalized upper incomplete gamma functions.
 double qgamma(double a, double x);
 
@@ -140,8 +137,11 @@ double pgamma_inv(double a, double p);
 /// Inverse parameter normalized lower incomplete gamma functions.
 double pgamma_inva(double x, double p);
 
-/// Non-normalized (upper) incomplete gamma functions. (See Boost tgamma(a, x)).
-double gamma_u(double a, double x);
+/// Non-normalized (upper) incomplete gamma functions.
+double tgamma(double a, double x);
+
+/// Non-normalized lower incomplete gamma functions.
+double tgamma_lower(double a, double x);
 
 /// Incomplete beta functions.
 double ibeta(double a, double b, double x);
