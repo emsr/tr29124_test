@@ -1514,7 +1514,7 @@ gsl_sf_hermite_func_der_e(const int m, const int n, const double x, gsl_sf_resul
 	  c++;
 	}
 
-	while(( ( (fabs(h0) < 1.0e-100) && (h0 != 0) )|| ( (fabs(h1) < 1.0e-100) && (h1 != 0) ) || ( (fabs(p0) < 1.0e-100) && (p0 != 0) ) || ( (fabs(p1) < 1.0e-100) && (p1 != 0) ) || ( (fabs(r) < 1.0e-100) && (r != 0) ) ) && ( (fabs(h0) < 2.0e100) && (fabs(h1) < 2.0e100) || (fabs(p0) < 2.0e100) || (fabs(p1) < 2.0e100) || (fabs(r) < 2.0e100) )){
+	while(( ( (fabs(h0) < 1.0e-100) && (h0 != 0) )|| ( (fabs(h1) < 1.0e-100) && (h1 != 0) ) || ( (fabs(p0) < 1.0e-100) && (p0 != 0) ) || ( (fabs(p1) < 1.0e-100) && (p1 != 0) ) || ( (fabs(r) < 1.0e-100) && (r != 0) ) ) && ( ((fabs(h0) < 2.0e100) && (fabs(h1) < 2.0e100)) || (fabs(p0) < 2.0e100) || (fabs(p1) < 2.0e100) || (fabs(r) < 2.0e100) )){
 	  p0 = p0*2;
 	  p1 = p1*2;
 	  ep0 = ep0*2;
@@ -1891,7 +1891,7 @@ double gsl_sf_hermite_phys_zero(const int n, const int s)
 int gsl_sf_hermite_func_zero_e(const int n, const int s, gsl_sf_result * result)
 // stupid wrapper
 {
-gsl_sf_hermite_phys_zero_e(n, s, result);
+  return gsl_sf_hermite_phys_zero_e(n, s, result);
 }
 
 double gsl_sf_hermite_func_zero(const int n, const int s)
