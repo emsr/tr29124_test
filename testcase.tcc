@@ -327,7 +327,7 @@ template<typename Ret, typename Arg1>
   {
     using Val = __num_traits_t<Ret>;
 
-    const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
+    output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
 
     bool riemann_zeta_limits = (funcname == "riemann_zeta");
@@ -346,7 +346,6 @@ template<typename Ret, typename Arg1>
 
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
-    constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
     constexpr auto ret_complex = __gnu_cxx::is_complex_v<Ret>;
 
     std::string numname(type_strings<Val>::type());
@@ -528,7 +527,7 @@ template<typename Ret, typename Arg1, typename Arg2>
   {
     using Val = __num_traits_t<Ret>;
 
-    const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
+    output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
 
     std::string templparm;
@@ -544,7 +543,6 @@ template<typename Ret, typename Arg1, typename Arg2>
 
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
-    constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
     constexpr auto ret_complex = __gnu_cxx::is_complex_v<Ret>;
 
     std::string numname(type_strings<Val>::type());
@@ -732,7 +730,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
   {
     using Val = __num_traits_t<Ret>;
 
-    const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
+    output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
 
     std::string templparm;
@@ -749,7 +747,6 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
 
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
-    constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
     constexpr auto ret_complex = __gnu_cxx::is_complex_v<Ret>;
 
     std::string numname(type_strings<Val>::type());
@@ -949,7 +946,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
   {
     using Val = __num_traits_t<Ret>;
 
-    const int old_prec = output.precision(std::numeric_limits<Val>::max_digits10);
+    output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
 
     std::string templparm;
@@ -967,7 +964,6 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
 
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
-    constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
     constexpr auto ret_complex = __gnu_cxx::is_complex_v<Ret>;
 
     std::string numname(type_strings<Val>::type());
