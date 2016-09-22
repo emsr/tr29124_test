@@ -151,6 +151,7 @@ test_fresnel
 test_gamma
 test_hermite
 test_hankel
+test_hankel_real_arg
 test_hurwitz_zeta
 test_hurwitz_zeta_new
 test_hypot
