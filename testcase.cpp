@@ -85,8 +85,6 @@ template<typename Real>
     using __gnu_cxx::factorial;
     using __gnu_cxx::fresnel_c;
     using __gnu_cxx::fresnel_s;
-    using __gnu_cxx::tgamma_lower;
-    using __gnu_cxx::tgamma;
     using __gnu_cxx::gegenbauer;
     using       std::hermite;
     using __gnu_cxx::heuman_lambda;
@@ -128,6 +126,16 @@ template<typename Real>
     using __gnu_cxx::sph_harmonic;
     using       std::sph_legendre;
     using       std::sph_neumann;
+    using __gnu_cxx::tgamma_lower;
+    using __gnu_cxx::tgamma;
+    using __gnu_cxx::theta_1;
+    using __gnu_cxx::theta_2;
+    using __gnu_cxx::theta_3;
+    using __gnu_cxx::theta_4;
+    using __gnu_cxx::theta_s;
+    using __gnu_cxx::theta_c;
+    using __gnu_cxx::theta_d;
+    using __gnu_cxx::theta_n;
     using __gnu_cxx::zernike;
 #else
     std::string ns("tr1");
@@ -1398,6 +1406,13 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     "Boost",
 	     file_cyl_hankel_1, false, false, test);
+    test =
+    maketest(cyl_hankel_1, beast::cyl_hankel_1,
+	     "testcase_cyl_hankel_1", "__gnu_cxx", basename,
+	     "nu", {Real{-5}, Real{-2}, Real{0}, Real{2}, Real{5}},
+	     "x", {Real{-10}, Real{-5}, Real{-2}, Real{-0.25}},
+	     "Boost",
+	     file_cyl_hankel_1, false, false, test);
     maketest(cyl_hankel_1, beast::cyl_hankel_1,
 	     "testcase_cyl_hankel_1", "__gnu_cxx", basename,
 	     "nu", cyl_order,
@@ -1427,6 +1442,13 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     "Boost",
 	     file_cyl_hankel_2, false, false, test);
+    test =
+    maketest(cyl_hankel_2, beast::cyl_hankel_2,
+	     "testcase_cyl_hankel_2", "__gnu_cxx", basename,
+	     "nu", {Real{-5}, Real{-2}, Real{0}, Real{2}, Real{5}},
+	     "x", {Real{-10}, Real{-5}, Real{-2}, Real{-0.25}},
+	     "Boost",
+	     file_cyl_hankel_2, false, false, test);
     maketest(cyl_hankel_2, beast::cyl_hankel_2,
 	     "testcase_cyl_hankel_2", "__gnu_cxx", basename,
 	     "nu", cyl_order,
@@ -1448,6 +1470,13 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     "Boost",
 	     file_sph_hankel_1, true, false);
+    test =
+    maketest(sph_hankel_1, beast::sph_hankel_1,
+	     "testcase_sph_hankel_1", "__gnu_cxx", basename,
+	     "nu", {0, 2, 5},
+	     "x", {Real{-10}, Real{-5}, Real{-2}, Real{-0.25}},
+	     "Boost",
+	     file_sph_hankel_1, false, false);
     maketest(sph_hankel_1, beast::sph_hankel_1,
 	     "testcase_sph_hankel_1", "__gnu_cxx", basename,
 	     "n", sph_order,
@@ -1469,6 +1498,12 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     "Boost",
 	     file_sph_hankel_2, true, false);
+    maketest(sph_hankel_2, beast::sph_hankel_2,
+	     "testcase_sph_hankel_2", "__gnu_cxx", basename,
+	     "nu", {0, 2, 5},
+	     "x", {Real{-10}, Real{-5}, Real{-2}, Real{-0.25}},
+	     "Boost",
+	     file_sph_hankel_2, false, false);
     maketest(sph_hankel_2, beast::sph_hankel_2,
 	     "testcase_sph_hankel_2", "__gnu_cxx", basename,
 	     "n", sph_order,
