@@ -1,3 +1,7 @@
+#ifndef WRAP_BOOST_H
+#define WRAP_BOOST_H 1
+
+#include <complex>
 
 namespace beast
 {
@@ -325,3 +329,4 @@ double struve_l(double nu, double x);
 
 } // namespace beast
 
+#endif // WRAP_BOOST_H

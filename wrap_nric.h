@@ -1,3 +1,6 @@
+#ifndef WRAP_NRIC_H
+#define WRAP_NRIC_H 1
+
 #include "nric/nric.h"
 
 namespace nric
@@ -196,3 +199,5 @@ double chebyshev_t(unsigned int n, double x);
 double jacobi(unsigned int n, double alpha, double beta, double x);
 
 } // namespace nric
+
+#endif // WRAP_NRIC_H
