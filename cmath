@@ -36,6 +36,9 @@
 // ISO C++ 14882: 26.5  C library
 //
 
+#ifndef _GLIBCXX_CMATH
+#define _GLIBCXX_CMATH 1
+
 #pragma GCC system_header
 
 #include <bits/c++config.h>
@@ -44,9 +47,6 @@
 #define _GLIBCXX_INCLUDE_NEXT_C_HEADERS
 #include_next <math.h>
 #undef _GLIBCXX_INCLUDE_NEXT_C_HEADERS
-
-#ifndef _GLIBCXX_CMATH
-#define _GLIBCXX_CMATH 1
 
 // Get rid of those macros defined in <math.h> in lieu of real functions.
 #undef abs
