@@ -112,12 +112,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     public: // FIXME!!!
       static constexpr int _N_FGH = 200;
     private: // FIXME!!!
-      static constexpr _Tp _S_slope_F{-2.660Q}, _S_intercept_F{-0.778Q};
-      static constexpr _Tp _S_slope_Fp{-2.576Q}, _S_intercept_Fp{-0.301Q};
-      static constexpr _Tp _S_slope_G{-2.708Q}, _S_intercept_G{-1.079Q};
-      static constexpr _Tp _S_slope_Gp{-2.632Q}, _S_intercept_Gp{-0.477Q};
-      static constexpr _Tp _S_slope_H{-2.75Q}, _S_intercept_H{-1.25Q};
-      static constexpr _Tp _S_slope_Hp{-2.625Q}, _S_intercept_Hp{-0.6Q};
+      static constexpr _Tp _S_slope_F{-2.660L}, _S_intercept_F{-0.778L};
+      static constexpr _Tp _S_slope_Fp{-2.576L}, _S_intercept_Fp{-0.301L};
+      static constexpr _Tp _S_slope_G{-2.708L}, _S_intercept_G{-1.079L};
+      static constexpr _Tp _S_slope_Gp{-2.632L}, _S_intercept_Gp{-0.477L};
+      static constexpr _Tp _S_slope_H{-2.75L}, _S_intercept_H{-1.25L};
+      static constexpr _Tp _S_slope_Hp{-2.625L}, _S_intercept_Hp{-0.6L};
 
     public:
 
@@ -126,21 +126,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr _Tp _S_sqrt_pi
       		 = __gnu_cxx::__math_constants<_Tp>::__root_pi;
       static constexpr _Tp _S_Ai0
-      		 = _Tp{3.550280538878172392600631860041831763980e-1Q};
+      		 = _Tp{3.550280538878172392600631860041831763980e-1L};
       static constexpr _Tp _S_Aip0
-      		 = _Tp{-2.588194037928067984051835601892039634793e-1Q};
+      		 = _Tp{-2.588194037928067984051835601892039634793e-1L};
       static constexpr _Tp _S_Bi0
-      		 = _Tp{6.149266274460007351509223690936135535960e-1Q};
+      		 = _Tp{6.149266274460007351509223690936135535960e-1L};
       static constexpr _Tp _S_Bip0
-      		 = _Tp{4.482883573538263579148237103988283908668e-1Q};
+      		 = _Tp{4.482883573538263579148237103988283908668e-1L};
       static constexpr _Tp _S_Hi0
-      		 = _Tp{4.099510849640004901006149127290757023959e-1Q};
+      		 = _Tp{4.099510849640004901006149127290757023959e-1L};
       static constexpr _Tp _S_Hip0
-      		 = _Tp{2.988589049025509052765491402658855939102e-1Q};
+      		 = _Tp{2.988589049025509052765491402658855939102e-1L};
       static constexpr _Tp _S_Gi0
-      		 = _Tp{2.049755424820002450503074563645378511979e-1Q};
+      		 = _Tp{2.049755424820002450503074563645378511979e-1L};
       static constexpr _Tp _S_Gip0
-      		 = _Tp{1.494294524512754526382745701329427969551e-1Q};
+      		 = _Tp{1.494294524512754526382745701329427969551e-1L};
       static constexpr __cmplx _S_i{_Tp{0}, _Tp{1}};
       static constexpr _Tp _S_log10min = __gnu_cxx::__log10_min(_Tp{});
 
@@ -1568,6 +1568,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
 
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   template<>
     struct _Airy_asymp_data<__float128>
     {
@@ -1985,6 +1986,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	-3.909325877634014064587453253641059e+311Q,
       };
     };
+#endif // _GLIBCXX_USE_FLOAT128
 
 
   /**

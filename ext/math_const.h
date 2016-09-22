@@ -69,6 +69,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr _RealType __two_div_root_pi = 1.1283791670955125738961589031215452L;
       // Constant: @f$ \pi^2/6 @f$.
       static constexpr _RealType __pi_sqr_div_6 = 1.6449340668482264364724151666460251L;
+      // Constant: radians to degree conversion.
+      static constexpr _RealType __deg = _RealType{180} / __pi;
+      // Constant: degree to radians conversion.
+      static constexpr _RealType __rad = __pi / _RealType{180};
 
       // Constant Euler's number @f$ e @f$.
       static constexpr _RealType __e = 2.7182818284590452353602874713526625L;
@@ -136,6 +140,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     constexpr _RealType __math_constants<_RealType>::__two_div_root_pi;
   template<typename _RealType>
     constexpr _RealType __math_constants<_RealType>::__pi_sqr_div_6;
+  template<typename _RealType>
+    constexpr _RealType __math_constants<_RealType>::__deg;
+  template<typename _RealType>
+    constexpr _RealType __math_constants<_RealType>::__rad;
   template<typename _RealType>
     constexpr _RealType __math_constants<_RealType>::__e;
   template<typename _RealType>

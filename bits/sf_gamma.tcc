@@ -1722,15 +1722,13 @@ _S_neg_double_factorial_table[999]
    * A struct for Spouge algorithm Chebyshev arrays of coefficients.
    */
   template<typename _Tp>
-    class _GammaSpouge
+    struct _GammaSpouge
     {
     };
 
   template<>
-    class _GammaSpouge<float>
+    struct _GammaSpouge<float>
     {
-    public:
-    private:
       static constexpr std::array<float, 7>
       _S_cheby
       {
@@ -1744,11 +1742,12 @@ _S_neg_double_factorial_table[999]
       };
     };
 
+  constexpr std::array<float, 7>
+  _GammaSpouge<float>::_S_cheby;
+
   template<>
-    class _GammaSpouge<double>
+    struct _GammaSpouge<double>
     {
-    public:
-    private:
       static constexpr std::array<double, 18>
       _S_cheby
       {
@@ -1773,11 +1772,12 @@ _S_neg_double_factorial_table[999]
       };
     };
 
+  constexpr std::array<double, 18>
+  _GammaSpouge<double>::_S_cheby;
+
   template<>
-    class _GammaSpouge<long double>
+    struct _GammaSpouge<long double>
     {
-    public:
-    private:
       static constexpr std::array<long double, 22>
       _S_cheby
       {
@@ -1806,12 +1806,13 @@ _S_neg_double_factorial_table[999]
       };
     };
 
+  constexpr std::array<long double, 22>
+  _GammaSpouge<long double>::_S_cheby;
+
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   template<>
-    class _GammaSpouge<__float128>
+    struct _GammaSpouge<__float128>
     {
-    public:
-    private:
       static constexpr std::array<__float128, 40>
       _S_cheby
       {
@@ -1857,6 +1858,9 @@ _S_neg_double_factorial_table[999]
 	-1.332629445370080503706686280760692e-46Q,
       };
     };
+
+  constexpr std::array<__float128, 40>
+  _GammaSpouge<__float128>::_S_cheby;
 #endif
 
   /**
@@ -1897,7 +1901,7 @@ _S_neg_double_factorial_table[999]
 			       - __log_gamma_spouge(_Real{1} - __z);
       else
 	{
-	  auto __sum = std::sqrt(_S_2pi);
+	  _Val __sum = std::sqrt(_S_2pi);
 	  for (int __k = 0; __k < __c.size(); ++__k)
 	    __sum += __c[__k] / (__z + _Real(__k + 1));
 	  return std::log(__sum)
@@ -1911,15 +1915,13 @@ _S_neg_double_factorial_table[999]
    * A struct for Lanczos algorithm Chebyshev arrays of coefficients.
    */
   template<typename _Tp>
-    class _GammaLanczos
+    struct _GammaLanczos
     {
     };
 
   template<>
-    class _GammaLanczos<float>
+    struct _GammaLanczos<float>
     {
-    public:
-    private:
       static constexpr float _S_g = 6.5F;
       static constexpr std::array<float, 7>
       _S_cheby
@@ -1934,11 +1936,12 @@ _S_neg_double_factorial_table[999]
       };
     };
 
+  constexpr std::array<float, 7>
+  _GammaLanczos<float>::_S_cheby;
+
   template<>
-    class _GammaLanczos<double>
+    struct _GammaLanczos<double>
     {
-    public:
-    private:
       static constexpr double _S_g = 9.5;
       static constexpr std::array<double, 10>
       _S_cheby
@@ -1956,11 +1959,12 @@ _S_neg_double_factorial_table[999]
       };
     };
 
+  constexpr std::array<double, 10>
+  _GammaLanczos<double>::_S_cheby;
+
   template<>
-    class _GammaLanczos<long double>
+    struct _GammaLanczos<long double>
     {
-    public:
-    private:
       static constexpr long double _S_g = 10.5L;
       static constexpr std::array<long double, 11>
       _S_cheby
@@ -1979,12 +1983,13 @@ _S_neg_double_factorial_table[999]
       };
     };
 
+  constexpr std::array<long double, 11>
+  _GammaLanczos<long double>::_S_cheby;
+
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   template<>
-    class _GammaLanczos<__float128>
+    struct _GammaLanczos<__float128>
     {
-    public:
-    private:
       static constexpr __float128 _S_g = 13.5Q;
       static constexpr std::array<__float128, 14>
       _S_cheby
@@ -2005,6 +2010,9 @@ _S_neg_double_factorial_table[999]
 	-3.352799410216973507737605805778536e-17Q,
       };
     };
+
+  constexpr std::array<__float128, 14>
+  _GammaLanczos<__float128>::_S_cheby;
 #endif
 
   /**
@@ -2032,8 +2040,8 @@ _S_neg_double_factorial_table[999]
 			       - __log_gamma_lanczos(_Real{1} - __z);
       else
         {
-	  auto __fact = _Real{1};
-	  auto __sum = _Real{0.5L} * __c[0];
+	  auto __fact = _Val{1};
+	  auto __sum = _Val{0.5L} * __c[0];
 	  for (unsigned int __k = 1, __n = __c.size(); __k < __n; ++__k)
 	    {
 	      __fact *= (__z - _Real(__k + 1)) / (__z + _Real(__k));
