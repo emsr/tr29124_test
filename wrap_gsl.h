@@ -1,3 +1,6 @@
+#ifndef WRAP_GSL_H
+#define WRAP_GSL_H 1
+
 #include <complex>
 
 namespace gsl
@@ -331,4 +334,6 @@ double fermi_dirac(double s, double x);
 double bose_einstein(double s, double x);
 
 } // namespace gsl
+
+#endif // WRAP_GSL_H
 
