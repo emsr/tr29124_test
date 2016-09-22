@@ -1701,12 +1701,15 @@ _S_neg_double_factorial_table[999]
     _GLIBCXX14_CONSTEXPR _Tp
     __log_gamma_bernoulli(_Tp __x)
     {
-      auto __lg = (__x - _Tp{0.5L}) * std::log(__x) - __x
-		+ _Tp{0.5L} * std::log(_Tp{2}
-				* __gnu_cxx::__math_constants<_Tp>::__pi);
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+
+      auto __lg = (__x - _Real{0.5L}) * std::log(__x) - __x
+		+ _Real{0.5L} * std::log(_Real{2}
+				* __gnu_cxx::__math_constants<_Real>::__pi);
 
       const auto __xx = __x * __x;
-      auto __help = _Tp{1} / __x;
+      auto __help = _Real{1} / __x;
       for ( unsigned int __i = 1; __i < 20; ++__i )
 	{
 	  const auto __2i = _Tp(2 * __i);
@@ -2098,19 +2101,10 @@ _S_neg_double_factorial_table[999]
     _Tp
     __log_gamma_sign(_Tp __x)
     {
-      if (__x > _Tp{0})
+      if (__x >= _Tp{0})
 	return _Tp{1};
       else
-	{
-	  const auto __sin_fact
-		  = std::sin(__gnu_cxx::__math_constants<_Tp>::__pi * __x);
-	  if (__sin_fact > _Tp{0})
-	    return _Tp{1};
-	  else if (__sin_fact < _Tp{0})
-	    return -_Tp{1};
-	  else
-	    return _Tp{0};
-	}
+	return int(-__x) & 1 == 0 ? -_Tp{1} : _Tp{1};
     }
 
 
