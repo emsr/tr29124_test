@@ -1589,7 +1589,7 @@ subroutine cchg ( a, b, z, chg )
   complex ( kind = 8 ) z0
 
   pi = 3.141592653589793D+00
-  ci = cmplx ( 0.0D+00, 1.0D+00 )
+  ci = cmplx ( 0.0D+00, 1.0D+00, kind = 8 )
   a0 = a
   a1 = a
   z0 = z
@@ -2626,7 +2626,7 @@ subroutine chgm ( a, b, x, hg )
   real ( kind = 8 ) a
   real ( kind = 8 ) a0
   real ( kind = 8 ) a1
-  real ( kind = 8 ) aa
+  !real ( kind = 8 ) aa
   real ( kind = 8 ) b
   real ( kind = 8 ) hg
   real ( kind = 8 ) hg1
@@ -2984,7 +2984,7 @@ subroutine chgubi ( a, b, x, hu, id )
 
   id = -100
   el = 0.5772156649015329D+00
-  n = abs ( b - 1 )
+  n = int ( abs ( b - 1 ) )
   rn1 = 1.0D+00
   rn = 1.0D+00
   do j = 1, n
@@ -3034,7 +3034,7 @@ subroutine chgubi ( a, b, x, hu, id )
   if ( hmin /= 0.0D+00 ) then
     da2 = log10 ( hmin )
   end if
-  id = 15 - abs ( da1 - da2 )
+  id = int ( 15 - abs ( da1 - da2 ) )
   hm1 = hm1 * log ( x )
   s0 = 0.0D+00
   do m = 1, n
@@ -3085,7 +3085,7 @@ subroutine chgubi ( a, b, x, hu, id )
   if ( hmin /= 0.0D+00 ) then
     db2 = log10 ( hmin )
   end if
-  id1 = 15 - abs ( db1 - db2 )
+  id1 = int ( 15 - abs ( db1 - db2 ) )
   id = min ( id, id1 )
 
   if ( n == 0 ) then
@@ -3350,11 +3350,11 @@ subroutine chgul ( a, b, x, hu, id )
   if ( il1 .or. il2 ) then
 
     if ( il1 ) then
-      nm = abs ( a )
+      nm = int ( abs ( a ) )
     end if
 
     if ( il2 ) then
-      nm = abs ( aa )
+      nm = int ( abs ( aa ) )
     end if
 
     hu = 1.0D+00
@@ -3380,7 +3380,7 @@ subroutine chgul ( a, b, x, hu, id )
       hu = hu + r
     end do
 
-    id = abs ( log10 ( ra ) )
+    id = int ( abs ( log10 ( ra ) ) )
     hu = x ** ( - a ) * hu
 
   end if
@@ -3482,7 +3482,7 @@ subroutine chgus ( a, b, x, hu, id )
   if ( hmin /= 0.0D+00 ) then
     d2 = log10 ( hmin )
   end if
-  id = 15 - abs ( d1 - d2 )
+  id = int ( 15 - abs ( d1 - d2 ) )
 
   return
 end
@@ -4002,7 +4002,7 @@ subroutine ciknb ( n, z, nm, cbi, cdi, cbk, cdk )
   integer ( kind = 4 ) n
 
   real ( kind = 8 ) a0
-  complex ( kind = 8 ) c
+  !complex ( kind = 8 ) c
   complex ( kind = 8 ) ca0
   complex ( kind = 8 ) cbi(0:n)
   complex ( kind = 8 ) cbkl
@@ -5155,7 +5155,7 @@ subroutine cjy01 ( z, cbj0, cdj0, cbj1, cdj1, cby0, cdy0, cby1, cdy1 )
   pi = 3.141592653589793D+00
   el = 0.5772156649015329D+00
   rp2 = 2.0D+00 / pi
-  ci = cmplx ( 0.0D+00, 1.0D+00 )
+  ci = cmplx ( 0.0D+00, 1.0D+00, kind = 8 )
   a0 = abs ( z )
   z2 = z * z
   z1 = z
@@ -11105,15 +11105,15 @@ subroutine fcszo ( kf, nt, zo )
 
     px = psq - log ( pi * psq ) / ( pi * pi * psq ** 3.0D+00 )
     py = log ( pi * psq ) / ( pi * psq )
-    z = cmplx ( px, py )
+    z = cmplx ( px, py, kind = 8 )
 
     if ( kf == 2 ) then
       if ( nr == 2 ) then
-        z = cmplx ( 2.8334D+00, 0.2443D+00 )
+        z = cmplx ( 2.8334D+00, 0.2443D+00, kind = 8 )
       else if ( nr == 3 ) then
-        z = cmplx ( 3.4674D+00, 0.2185D+00 )
+        z = cmplx ( 3.4674D+00, 0.2185D+00, kind = 8 )
       else if ( nr == 4 ) then
-        z = cmplx ( 4.0025D+00, 0.2008D+00 )
+        z = cmplx ( 4.0025D+00, 0.2008D+00, kind = 8 )
       end if
     end if
 
@@ -11822,7 +11822,7 @@ subroutine herzo ( n, x, w )
   real ( kind = 8 ) w(n)
   real ( kind = 8 ) wp
   real ( kind = 8 ) x(n)
-  real ( kind = 8 ) x0
+  !real ( kind = 8 ) x0
   real ( kind = 8 ) z
   real ( kind = 8 ) z0
   real ( kind = 8 ) zl
@@ -12727,7 +12727,7 @@ subroutine hygfz ( a, b, c, z, zhf )
       zc1 = gc * gab / ( gcb * ga * ( - z ) ** b )
       zr0 = zc0
       zr1 = zc1
-      zhf = cmplx ( 0.0D+00, 0.0D+00 )
+      zhf = cmplx ( 0.0D+00, 0.0D+00, kind = 8 )
 
       do k = 1, 500
         zr0 = zr0 * ( a + k - 1.0D+00 ) * ( a - c + k ) &
@@ -17714,10 +17714,10 @@ subroutine klvnb ( x, ber, bei, ger, gei, der, dei, her, hei )
   real ( kind = 8 ) x
   real ( kind = 8 ) yc1
   real ( kind = 8 ) yc2
-  real ( kind = 8 ) yci
+  !real ( kind = 8 ) yci
   real ( kind = 8 ) ye1
   real ( kind = 8 ) ye2
-  real ( kind = 8 ) yei
+  !real ( kind = 8 ) yei
   real ( kind = 8 ) yd
 
   pi = 3.141592653589793D+00
@@ -20272,7 +20272,7 @@ function msta1 ( x, mp )
   n1 = n0 + 5
   f1 = envj ( n1, a0 ) - mp
   do it = 1, 20       
-    nn = n1 - ( n1 - n0 ) / ( 1.0D+00 - f0 / f1 )                  
+    nn = int ( n1 - ( n1 - n0 ) / ( 1.0D+00 - f0 / f1 ) )
     f = envj ( nn, a0 ) - mp
     if ( abs ( nn - n1 ) < 1 ) then
       exit
@@ -20375,7 +20375,7 @@ function msta2 ( x, n, mp )
   f1 = envj ( n1, a0 ) - obj
 
   do it = 1, 20
-    nn = n1 - ( n1 - n0 ) / ( 1.0D+00 - f0 / f1 )
+    nn = int ( n1 - ( n1 - n0 ) / ( 1.0D+00 - f0 / f1 ) )
     f = envj ( nn, a0 ) - obj
     if ( abs ( nn - n1 ) < 1 ) then
       exit
