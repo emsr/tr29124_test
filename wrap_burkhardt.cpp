@@ -4,7 +4,6 @@
 #include "burkhardt/special_functions.h"
 #include "wrap_burkhardt.h"
 
-
 namespace burkhardt
 {
 
@@ -636,31 +635,31 @@ zernike(unsigned int /*n*/, int /*m*/, double /*rho*/, double /*phi*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
-/*
+
 /// Cylindrical Hankel functions of the first kind.
-std::complex<double> cyl_hankel_1(double nu, double x)
-{
-  return std::numeric_limits<double>::quiet_NaN();
-}
+//std::complex<double> cyl_hankel_1(double /*nu*/, double /*x*/)
+//{
+//  return std::numeric_limits<double>::quiet_NaN();
+//}
 
 /// Cylindrical Hankel functions of the second kind.
-std::complex<double> cyl_hankel_2(double nu, double x)
-{
-  return std::numeric_limits<double>::quiet_NaN();
-}
+//std::complex<double> cyl_hankel_2(double /*nu*/, double /*x*/)
+//{
+//  return std::numeric_limits<double>::quiet_NaN();
+//}
 
 /// Spherical Hankel functions of the first kind.
-std::complex<double> sph_hankel_1(unsigned int n, double x)
-{
-  return std::numeric_limits<double>::quiet_NaN();
-}
+//std::complex<double> sph_hankel_1(unsigned int /*n*/, double /*x*/)
+//{
+//  return std::numeric_limits<double>::quiet_NaN();
+//}
 
 /// Spherical Hankel functions of the second kind.
-std::complex<double> sph_hankel_2(unsigned int n, double x)
-{
-  return std::numeric_limits<double>::quiet_NaN();
-}
-*/
+//std::complex<double> sph_hankel_2(unsigned int /*n*/, double /*x*/)
+//{
+//  return std::numeric_limits<double>::quiet_NaN();
+//}
+
 /// Heuman lambda functions.
 double
 heuman_lambda(double /*k*/, double /*phi*/)
@@ -730,14 +729,14 @@ ibetac_invb(double /*a*/, double /*x*/, double /*q*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
-/*
+
 /// Spherical harmonic functions.
-std::complex<double>
-sph_harmonic(unsigned int l, int m, double theta, double phi)
-{
-  return std::numeric_limits<double>::quiet_NaN();
-}
-*/
+//std::complex<double>
+//sph_harmonic(unsigned int /*l*/, int /*m*/, double /*theta*/, double /*phi*/)
+//{
+//  return std::numeric_limits<double>::quiet_NaN();
+//}
+
 /// Owen's T function.
 double
 owens_t(double /*h*/, double /*a*/)

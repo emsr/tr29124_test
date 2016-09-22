@@ -1,30 +1,36 @@
-#include <boost/math/special_functions/factorials.hpp>
-#include <boost/math/special_functions/gamma.hpp>
-#include <boost/math/special_functions/beta.hpp>
-#include <boost/math/special_functions/legendre.hpp>
-#include <boost/math/special_functions/spherical_harmonic.hpp>
-#include <boost/math/special_functions/hermite.hpp>
-#include <boost/math/special_functions/laguerre.hpp>
-#include <boost/math/special_functions/bessel.hpp> 
+
 #include <boost/math/special_functions/airy.hpp>
-#include <boost/math/special_functions/ellint_rg.hpp>
-#include <boost/math/special_functions/ellint_rf.hpp>
-#include <boost/math/special_functions/ellint_rd.hpp>
-#include <boost/math/special_functions/ellint_rj.hpp>
+#include <boost/math/special_functions/bernoulli.hpp>
+#include <boost/math/special_functions/bessel.hpp>
+#include <boost/math/special_functions/bessel_prime.hpp>
+#include <boost/math/special_functions/beta.hpp>
+#include <boost/math/special_functions/binomial.hpp>
+#include <boost/math/special_functions/cos_pi.hpp>
 #include <boost/math/special_functions/ellint_rc.hpp>
 #include <boost/math/special_functions/ellint_1.hpp>
 #include <boost/math/special_functions/ellint_2.hpp>
 #include <boost/math/special_functions/ellint_3.hpp>
 #include <boost/math/special_functions/ellint_d.hpp>
+#include <boost/math/special_functions/ellint_rg.hpp>
+#include <boost/math/special_functions/ellint_rf.hpp>
+#include <boost/math/special_functions/ellint_rd.hpp>
+#include <boost/math/special_functions/ellint_rj.hpp>
+#include <boost/math/special_functions/expint.hpp>
+#include <boost/math/special_functions/factorials.hpp>
+#include <boost/math/special_functions/gamma.hpp>
+#include <boost/math/special_functions/hankel.hpp>
+#include <boost/math/special_functions/hermite.hpp>
+#include <boost/math/special_functions/heuman_lambda.hpp>
 #include <boost/math/special_functions/jacobi_elliptic.hpp>
 #include <boost/math/special_functions/jacobi_zeta.hpp>
-#include <boost/math/special_functions/heuman_lambda.hpp>
-#include <boost/math/special_functions/polygamma.hpp>
-#include <boost/math/special_functions/binomial.hpp>
-#include <boost/math/special_functions/hankel.hpp>
-#include <boost/math/special_functions/expint.hpp>
-#include <boost/math/special_functions/sinc.hpp>
+#include <boost/math/special_functions/laguerre.hpp>
+#include <boost/math/special_functions/legendre.hpp>
 #include <boost/math/special_functions/owens_t.hpp>
+#include <boost/math/special_functions/polygamma.hpp>
+#include <boost/math/special_functions/sinc.hpp>
+#include <boost/math/special_functions/sin_pi.hpp>
+#include <boost/math/special_functions/spherical_harmonic.hpp>
+#include <boost/math/special_functions/zeta.hpp>
 
 #include "wrap_boost.h"
 
@@ -61,7 +67,7 @@ assoc_legendre(unsigned int l, unsigned int m, double x)
 
 /// Associated Legendre functions of the second kind.
 double
-assoc_legendre_q(unsigned int l, unsigned int m, double x)
+assoc_legendre_q(unsigned int /*l*/, unsigned int /*m*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -103,14 +109,14 @@ comp_ellint_d(double k)
 
 /// Confluent hypergeometric functions.
 double
-conf_hyperg(double a, double c, double x)
+conf_hyperg(double /*a*/, double /*c*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Confluent hypergeometric limit functions.
 double
-hyperg_0F1(double c, double x)
+hyperg_0F1(double /*c*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -229,7 +235,7 @@ hermite(unsigned int n, double x)
 
 /// Hypergeometric functions.
 double
-hyperg(double a, double b, double c, double x)
+hyperg(double /*a*/, double /*b*/, double /*c*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -264,13 +270,13 @@ riemann_zeta(double x)
 
 /// Hurwitz zeta functions.
 double
-hurwitz_zeta(double s, double q)
+hurwitz_zeta(double /*s*/, double /*q*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Dirichlet eta function.
-double dirichlet_eta(double x)
+double dirichlet_eta(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -397,7 +403,7 @@ ibetac_invb(double a, double x, double p)
 
 /// Dilogarithm function.
 double
-dilog(double x)
+dilog(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -418,49 +424,49 @@ polygamma(int n, double x)
 
 /// Sine integral.
 double
-Si(double x)
+Si(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Cosine integral.
 double
-Ci(double x)
+Ci(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Hyperbolic sine integral.
 double
-Shi(double x)
+Shi(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Hyperbolic cosine integral.
 double
-Chi(double x)
+Chi(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Gegenbauer polynomials.
 double
-gegenpoly_n(unsigned int n, double lambda, double x)
+gegenpoly_n(unsigned int /*n*/, double /*lambda*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Hydrogen wave functions.
 double
-hydrogen(int n, double l, double Z, double r)
+hydrogen(int /*n*/, double /*l*/, double /*Z*/, double /*r*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Dawson integral.
 double
-dawson(double x)
+dawson(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -488,14 +494,14 @@ jacobi_dn(double k, double u)
 
 /// Fresnel cosine integral.
 double
-fresnel_c(double x)
+fresnel_c(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Fresnel sine integral.
 double
-fresnel_s(double x)
+fresnel_s(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -586,84 +592,84 @@ double_factorial(unsigned int n)
 
 /// Regular modified spherical bessel functions.
 double
-sph_bessel_i(unsigned int n, double x)
+sph_bessel_i(unsigned int /*n*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Irregular modified spherical bessel functions.
 double
-sph_bessel_k(unsigned int n, double x)
+sph_bessel_k(unsigned int /*n*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Chebyshev polynomials of the first kind.
 double
-chebyshev_t(unsigned int n, double x)
+chebyshev_t(unsigned int /*n*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Chebyshev polynomials of the second kind.
 double
-chebyshev_u(unsigned int n, double x)
+chebyshev_u(unsigned int /*n*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Chebyshev polynomials of the third kind.
 double
-chebyshev_v(unsigned int n, double x)
+chebyshev_v(unsigned int /*n*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Chebyshev polynomials of the fourth kind.
 double
-chebyshev_w(unsigned int n, double x)
+chebyshev_w(unsigned int /*n*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Jacobi polynomials.
 double
-jacobi(unsigned int n, double alpha, double beta, double x)
+jacobi(unsigned int /*n*/, double /*alpha*/, double /*beta*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Binomial coefficients.
 double
-choose(unsigned int n, unsigned int k)
+choose(unsigned int /*n*/, unsigned int /*k*/)
 {
   return std::numeric_limits<double>::quiet_NaN();//boost::math::binomial_coefficient(n, k);
 }
 
 /// Log binomial coefficients.
 double
-lnchoose(unsigned int n, unsigned int k)
+lnchoose(unsigned int /*n*/, unsigned int /*k*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Taylor coefficients.
 double
-taylorcoeff(unsigned int n, double x)
+taylorcoeff(unsigned int /*n*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Radial polynomials
 double
-radpoly(unsigned int n, unsigned int m, double rho)
+radpoly(unsigned int /*n*/, unsigned int /*m*/, double /*rho*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Zernike polynomials
 double
-zernike(unsigned int n, unsigned int m, double rho, double phi)
+zernike(unsigned int /*n*/, unsigned int /*m*/, double /*rho*/, double /*phi*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -740,21 +746,21 @@ owens_t(double h, double a)
 
 /// Clausen function of order 2.
 double
-clausen_c(unsigned int m, double w)
+clausen_c(unsigned int /*m*/, double /*w*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Struve H function.
 double
-struve_h(double nu, double x)
+struve_h(double /*nu*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Struve L function.
 double
-struve_l(double nu, double x)
+struve_l(double /*nu*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
