@@ -152,6 +152,7 @@ test_gamma
 test_hermite
 test_hankel
 test_hankel_real_arg
+test_heuman_lambda
 test_hurwitz_zeta
 test_hurwitz_zeta_new
 test_hypot
@@ -159,6 +160,7 @@ test_inv_erf
 test_inv_ibeta
 test_jacobi
 test_jacobi_inv
+test_jacobi_zeta
 test_kelvin
 test_legendre
 test_lerch

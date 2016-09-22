@@ -2,7 +2,6 @@
 $HOME/bin/bin/g++ -std=gnu++17 -I. -o test_hankel_real_arg test_hankel_real_arg.cpp wrap_boost.cpp
 ./test_hankel_real_arg > test_hankel_real_arg.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -E -I. test_hankel_real_arg.cpp > cpp.txt
 */
 
 #include <iostream>
