@@ -57,7 +57,7 @@ static int aj(double *z, double *s, double *v, int j, double *acc, double *res)
 	int k, flag;
 	unsigned long int ind, two2k;
 	const double machmin = std::numeric_limits<double>::min();
-	const double macheps = std::numeric_limits<double>::epsilon();
+	//const double macheps = std::numeric_limits<double>::epsilon();
 	
 	sum = bjk = 0.0;
 	k = -1;
