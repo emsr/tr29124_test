@@ -952,14 +952,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return _S_NaN;
       else if (std::abs(__k) > _Real{1})
 	std::__throw_domain_error(__N("__jacobi_zeta: bad argument"));
-      else if (std::abs(__phi) < _S_eps || std::abs(__phi - _S_pi_2) < _S_eps)
-	return _Tp{0};
-      else if (std::real(__phi) < _Real{0})
-	return -__jacobi_zeta(__k, -__phi);
       else if (std::abs(__k) < _S_eps)
 	return _Tp{0};
       else if (std::abs(__k - _Tp{1}) < _S_eps)
 	return std::sin(__phi);
+      else if (std::real(__phi) < _Real{0})
+	return -__jacobi_zeta(__k, -__phi);
+      else if (std::abs(__phi) < _S_eps || std::abs(__phi - _S_pi_2) < _S_eps)
+	return _Tp{0};
       else
 	{
 	  auto __mc = __k * __k;
@@ -990,16 +990,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return _S_NaN;
       else if (std::abs(__k) > _Tp{1})
 	std::__throw_domain_error(__N("__heuman_lambda: bad argument"));
-      else if (std::abs(__k - _Tp{1}) < _S_eps)
+      else if (std::abs(std::abs(__k) - _Tp{1}) < _S_eps)
 	return __phi / _S_pi_2;
       else if (std::abs(__k) < _S_eps)
 	return std::sin(__phi);
-      else if (std::abs(__phi - _S_pi_2) < 10 * _S_eps)
-	return _Tp{1};
-      else if (std::abs(__phi) < _S_eps)
-	return _Tp{0};
       else if (std::real(__phi) < _Real{0})
-	return __heuman_lambda(__k, -__phi);
+	return -__heuman_lambda(__k, -__phi);
+      else if (std::abs(__phi - _S_pi_2) < _Tp{5} * _S_eps)
+	return _Tp{1};
+      else if (std::abs(__phi) < _Tp{5} * _S_eps)
+	return _Tp{0};
       else if (std::abs(__phi) < _S_pi_2)
 	{
 	  auto __mc = __k * __k;
