@@ -87,7 +87,7 @@ assoc_legendre(unsigned int l, unsigned int m, double x)
 
 /// Associated Legendre functions of the second kind.
 double
-assoc_legendre_q(unsigned int l, unsigned int m, double x)
+assoc_legendre_q(unsigned int /*l*/, unsigned int /*m*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -163,7 +163,7 @@ comp_ellint_3(double k, double nu)
 
 /// Complete Legendre elliptic D integrals.
 double
-comp_ellint_d(double k)
+comp_ellint_d(double /*k*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -317,7 +317,7 @@ ellint_3(double k, double nu, double phi)
 
 /// Legendre elliptic D integrals.
 double
-ellint_d(double k, double phi)
+ellint_d(double /*k*/, double /*phi*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -381,7 +381,7 @@ ellint_rf(double x, double y, double z)
 
 /// Carlson elliptic integrals R_G.
 double
-ellint_rg(double x, double y, double z)
+ellint_rg(double /*x*/, double /*y*/, double /*z*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -939,14 +939,14 @@ sinc(double x)
 
 /// Hyperbolic sinus cardinal function.
 double
-sinhc_pi(double x)
+sinhc_pi(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Normalized hyperbolic sinus cardinal function.
 double
-sinhc(double x)
+sinhc(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -1125,8 +1125,8 @@ sph_bessel_k(unsigned int n, double x)
 
 /// Chebyshev polynomials of the first kind.
 double
-chebyshev_t(unsigned int n, double x)
-{ 0.0; }
+chebyshev_t(unsigned int /*n*/, double /*x*/)
+{ return std::numeric_limits<double>::quiet_NaN(); }
 
 /// Binomial coefficients.
 double
