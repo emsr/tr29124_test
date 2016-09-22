@@ -78,8 +78,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     void
     __cyl_bessel_jn_asymp(_Tp __nu, _Tp __x,
-			  _Tp & _Jnu, _Tp & _Nnu,
-			  _Tp & _Jpnu, _Tp & _Npnu)
+			  _Tp& _Jnu, _Tp& _Nnu,
+			  _Tp& _Jpnu, _Tp& _Npnu)
     {
       constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
@@ -162,7 +162,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     void
     __gamma_temme(_Tp __mu,
-		  _Tp & __gam1, _Tp & __gam2, _Tp & __gampl, _Tp & __gammi)
+		  _Tp& __gam1, _Tp& __gam2, _Tp& __gampl, _Tp& __gammi)
     {
       constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
       constexpr auto _S_gamma_E = __gnu_cxx::__math_constants<_Tp>::__gamma_e;
@@ -196,7 +196,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     void
     __cyl_bessel_jn_steed(_Tp __nu, _Tp __x,
-			  _Tp & _Jnu, _Tp & _Nnu, _Tp & _Jpnu, _Tp & _Npnu)
+			  _Tp& _Jnu, _Tp& _Nnu, _Tp& _Jpnu, _Tp& _Npnu)
     {
       constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
       constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
@@ -451,7 +451,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     void
     __cyl_bessel_jn(_Tp __nu, _Tp __x,
-		_Tp & _Jnu, _Tp & _Nnu, _Tp & _Jpnu, _Tp & _Npnu)
+		_Tp& _Jnu, _Tp& _Nnu, _Tp& _Jpnu, _Tp& _Npnu)
     {
       constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
       constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
@@ -512,6 +512,36 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	__cyl_bessel_jn_asymp(__nu, __x, _Jnu, _Nnu, _Jpnu, _Npnu);
       else
 	__cyl_bessel_jn_steed(__nu, __x, _Jnu, _Nnu, _Jpnu, _Npnu);
+    }
+
+  /**
+   * @brief  Return the cylindrical Bessel functions and their derivatives
+   * of order @f$ \nu @f$ and argument @f$ x < 0 @f$.
+   */
+  template<typename _Tp>
+    void
+    __cyl_bessel_jn_neg_arg(_Tp __nu, _Tp __x,
+			    std::complex<_Tp>& _Jnu, std::complex<_Tp>& _Nnu,
+			    std::complex<_Tp>& _Jpnu, std::complex<_Tp>& _Npnu)
+    {
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr std::complex<_Tp> _S_i{0, 1};
+      if (__x >= _Tp{0})
+	std::__throw_domain_error(__N("__cyl_bessel_jn_neg_arg: "
+				      "non-negative argument"));
+      else
+	{
+	  _Tp _Jm, _Nm, _Jpm, _Npm;
+	  __cyl_bessel_jn(__nu, -__x, _Jm, _Nm, _Jpm, _Npm);
+	  auto __phm = std::polar(_Tp{1}, -__nu * _S_pi);
+	  auto __php = std::polar(_Tp{1}, __nu * _S_pi);
+	  _Jnu = __php * _Jm;
+	  _Jpnu = -__php * _Jpm;
+	  _Nnu = __phm * _Nm
+	       + _S_i * _Tp{2} * std::cos(__nu * _S_pi) * _Jm;
+	  _Npnu = -__phm * _Npm
+	       - _S_i * _Tp{2} * std::cos(__nu * _S_pi) * _Jpm;
+	}
     }
 
 
@@ -600,13 +630,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
-      constexpr std::complex<_Tp> _S_j{0, 1};
-      if (__x < _Tp{0})
-	std::__throw_domain_error(__N("__cyl_hankel_1: bad argument"));
-      else if (__nu < _Tp{0})
-	return std::exp(-_S_j * _S_pi * __nu) * __cyl_hankel_1(-__nu, __x);
+      constexpr std::complex<_Tp> _S_i{0, 1};
+      if (__nu < _Tp{0})
+	return std::exp(-_S_i * _S_pi * __nu) * __cyl_hankel_1(-__nu, __x);
       else if (__isnan(__x))
 	return std::complex<_Tp>{_S_nan, _S_nan};
+      else if (__x < _Tp{0})
+	{
+	  std::complex<_Tp> _J_n, _N_n, _Jp_n, _Np_n;
+	  __cyl_bessel_jn_neg_arg(__nu, __x, _J_n, _N_n, _Jp_n, _Np_n);
+	  return _J_n + _S_i * _N_n;
+	}
       else
 	{
 	  _Tp _J_n, _N_n, _Jp_n, _Np_n;
@@ -635,13 +669,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
-      constexpr std::complex<_Tp> _S_j{0, 1};
-      if (__x < _Tp{0})
-	std::__throw_domain_error(__N("__cyl_hankel_2: bad argument"));
-      else if (__nu < _Tp{0})
-	return std::exp(_S_j * _S_pi * __nu) * __cyl_hankel_2(-__nu, __x);
+      constexpr std::complex<_Tp> _S_i{0, 1};
+      if (__nu < _Tp{0})
+	return std::exp(_S_i * _S_pi * __nu) * __cyl_hankel_2(-__nu, __x);
       else if (__isnan(__x))
 	return std::complex<_Tp>{_S_nan, _S_nan};
+      else if (__x < _Tp{0})
+	{
+	  std::complex<_Tp> _J_n, _N_n, _Jp_n, _Np_n;
+	  __cyl_bessel_jn_neg_arg(__nu, __x, _J_n, _N_n, _Jp_n, _Np_n);
+	  return _J_n - _S_i * _N_n;
+	}
       else
 	{
 	  _Tp _J_n, _N_n, _Jp_n, _Np_n;
@@ -659,15 +697,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @param  __n  The order of the spherical Bessel function.
    * @param  __x  The argument of the spherical Bessel function.
-   * @param[out]  __j_n  The output spherical Bessel function.
-   * @param[out]  __n_n  The output spherical Neumann function.
-   * @param[out]  __jp_n The output derivative of the spherical Bessel function.
-   * @param[out]  __np_n The output derivative of the spherical Neumann function.
+   * @param[out] __j_n  The output spherical Bessel function.
+   * @param[out] __n_n  The output spherical Neumann function.
+   * @param[out] __jp_n The output derivative of the spherical Bessel function.
+   * @param[out] __np_n The output derivative of the spherical Neumann function.
    */
   template<typename _Tp>
     void
     __sph_bessel_jn(unsigned int __n, _Tp __x,
-		    _Tp & __j_n, _Tp & __n_n, _Tp & __jp_n, _Tp & __np_n)
+		    _Tp& __j_n, _Tp& __n_n, _Tp& __jp_n, _Tp& __np_n)
     {
       const auto __nu = _Tp(__n + 0.5L);
 
@@ -681,6 +719,38 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __n_n = __factor * _N_nu;
       __jp_n = __factor * _Jp_nu - __j_n / (_Tp{2} * __x);
       __np_n = __factor * _Np_nu - __n_n / (_Tp{2} * __x);
+
+      return;
+    }
+
+  /**
+   * Return the spherical Bessel functions and their derivatives
+   * of order @f$ \nu @f$ and argument @f$ x < 0 @f$.
+   */
+  template<typename _Tp>
+    void
+    __sph_bessel_jn_neg_arg(unsigned int __n, _Tp __x,
+			  std::complex<_Tp>& __j_n, std::complex<_Tp>& __n_n,
+			  std::complex<_Tp>& __jp_n, std::complex<_Tp>& __np_n)
+    {
+      if (__x >= _Tp{0})
+	std::__throw_domain_error(__N("__sph_bessel_jn_neg_arg: "
+				      "non-negative argument"));
+      else
+	{
+	  const auto __nu = _Tp(__n + 0.5L);
+	  std::complex<_Tp> _J_nu, _N_nu, _Jp_nu, _Np_nu;
+	  __cyl_bessel_jn_neg_arg(__nu, __x, _J_nu, _N_nu, _Jp_nu, _Np_nu);
+
+	  const auto __factor
+	    = __gnu_cxx::__math_constants<_Tp>::__root_pi_div_2
+	      / std::sqrt(std::complex<_Tp>(__x));
+
+	  __j_n = __factor * _J_nu;
+	  __n_n = __factor * _N_nu;
+	  __jp_n = __factor * _Jp_nu - __j_n / (_Tp{2} * __x);
+	  __np_n = __factor * _Np_nu - __n_n / (_Tp{2} * __x);
+	}
 
       return;
     }
@@ -772,14 +842,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __sph_hankel_1(unsigned int __n, _Tp __x)
     {
+      constexpr std::complex<_Tp> _S_i{0, 1};
       constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
-      if (__x < _Tp{0})
-	std::__throw_domain_error(__N("__sph_hankel_1: bad argument"));
-      else if (__isnan(__x))
+      if (__isnan(__x))
 	return std::complex<_Tp>{_S_nan, _S_nan};
+      else if (__x < _Tp{0})
+	{
+	  std::complex<_Tp> __j_n, __n_n, __jp_n, __np_n;
+	  __sph_bessel_jn_neg_arg(__n, __x, __j_n, __n_n, __jp_n, __np_n);
+	  return __j_n + _S_i * __n_n;
+	}
       else
 	{
-	  const std::complex<_Tp> _S_j{0, 1};
 	  _Tp __j_n, __n_n, __jp_n, __np_n;
 	  __sph_bessel_jn(__n, __x, __j_n, __n_n, __jp_n, __np_n);
 	  return std::complex<_Tp>{__j_n, __n_n};
@@ -804,14 +878,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __sph_hankel_2(unsigned int __n, _Tp __x)
     {
+      constexpr std::complex<_Tp> _S_i{0, 1};
       constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
-      if (__x < _Tp{0})
-	std::__throw_domain_error(__N("__sph_hankel_2: bad argument"));
-      else if (__isnan(__x))
+      if (__isnan(__x))
 	return std::complex<_Tp>{_S_nan, _S_nan};
+      else if (__x < _Tp{0})
+	{
+	  std::complex<_Tp> __j_n, __n_n, __jp_n, __np_n;
+	  __sph_bessel_jn_neg_arg(__n, __x, __j_n, __n_n, __jp_n, __np_n);
+	  return __j_n - _S_i * __n_n;
+	}
       else
 	{
-	  const std::complex<_Tp> _S_j{0, 1};
 	  _Tp __j_n, __n_n, __jp_n, __np_n;
 	  __sph_bessel_jn(__n, __x, __j_n, __n_n, __jp_n, __np_n);
 	  return std::complex<_Tp>{__j_n, -__n_n};
