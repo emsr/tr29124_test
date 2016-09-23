@@ -189,6 +189,7 @@ test_summation
 test_theta
 
 plot_airy
+plot_gamma
 
 hankel_transition
 hankel_toy
