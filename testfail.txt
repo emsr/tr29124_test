@@ -1,0 +1,948 @@
+
+
+
+================================================================================================================================
+Setting LD_LIBRARY_PATH to :/home/ed/obj_tr29124/gcc:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_tr29124/gcc/32::/home/ed/obj_tr29124/gcc:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_tr29124/gcc/32:/home/ed/obj_tr29124/./gmp/.libs:/home/ed/obj_tr29124/./prev-gmp/.libs:/home/ed/obj_tr29124/./mpfr/src/.libs:/home/ed/obj_tr29124/./prev-mpfr/src/.libs:/home/ed/obj_tr29124/./mpc/src/.libs:/home/ed/obj_tr29124/./prev-mpc/src/.libs:/home/ed/obj_tr29124/./isl/.libs:/home/ed/obj_tr29124/./prev-isl/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libsanitizer/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libmpx/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libvtv/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libcilkrts/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libssp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libgomp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libitm/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libatomic/.libs:/home/ed/obj_tr29124/./gcc:/home/ed/obj_tr29124/./prev-gcc
+spawn [open ...]
+check_value.exe: /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/heuman_lambda/check_value.cc:470: void test(const testcase_heuman_lambda<Ret> (&)[Num], Ret) [with Ret = double; unsigned int Num = 10u]: Assertion `max_abs_frac < toler' failed.
+FAIL: ext/special_functions/heuman_lambda/check_value.cc execution test
+
+
+
+================================================================================================================================
+Setting LD_LIBRARY_PATH to :/home/ed/obj_tr29124/gcc:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_tr29124/gcc/32::/home/ed/obj_tr29124/gcc:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_tr29124/gcc/32:/home/ed/obj_tr29124/./gmp/.libs:/home/ed/obj_tr29124/./prev-gmp/.libs:/home/ed/obj_tr29124/./mpfr/src/.libs:/home/ed/obj_tr29124/./prev-mpfr/src/.libs:/home/ed/obj_tr29124/./mpc/src/.libs:/home/ed/obj_tr29124/./prev-mpc/src/.libs:/home/ed/obj_tr29124/./isl/.libs:/home/ed/obj_tr29124/./prev-isl/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libsanitizer/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libmpx/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libvtv/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libcilkrts/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libssp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libgomp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libitm/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libatomic/.libs:/home/ed/obj_tr29124/./gcc:/home/ed/obj_tr29124/./prev-gcc
+spawn [open ...]
+check_value.exe: /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lbincoef/check_value.cc:23744: void test(const testcase_lbincoef<Ret> (&)[Num], Ret) [with Ret = double; unsigned int Num = 4u]: Assertion `max_abs_frac < toler' failed.
+FAIL: ext/special_functions/lbincoef/check_value.cc execution test
+
+
+================================================================================================================================
+
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+Executing on host: /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc    -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs  -lm  -o ./check_value.exe    (timeout = 600)
+spawn -ignore SIGHUP /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs -lm -o ./check_value.exe
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:305:10: error: conflicting declaration 'const testcase_sph_hankel_1<double> data001 [4]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:48:1: note: previous declaration as 'const testcase_sph_hankel_1<double> data001 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:312:14: error: redefinition of 'const double toler001'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:71:14: note: 'const double toler001' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:321:10: error: conflicting declaration 'const testcase_sph_hankel_1<double> data002 [4]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:80:1: note: previous declaration as 'const testcase_sph_hankel_1<double> data002 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:328:14: error: redefinition of 'const double toler002'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:103:14: note: 'const double toler002' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:337:10: error: conflicting declaration 'const testcase_sph_hankel_1<double> data003 [4]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:112:1: note: previous declaration as 'const testcase_sph_hankel_1<double> data003 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:344:14: error: redefinition of 'const double toler003'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:135:14: note: 'const double toler003' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:354:11: error: redefinition of 'const testcase_sph_hankel_1<double> data004 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:144:1: note: 'const testcase_sph_hankel_1<double> data004 [20]' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:377:14: error: redefinition of 'const double toler004'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:167:14: note: 'const double toler004' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:386:11: error: redefinition of 'const testcase_sph_hankel_1<double> data005 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:176:1: note: 'const testcase_sph_hankel_1<double> data005 [20]' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:409:14: error: redefinition of 'const double toler005'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:199:14: note: 'const double toler005' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:418:11: error: redefinition of 'const testcase_sph_hankel_1<double> data006 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:208:1: note: 'const testcase_sph_hankel_1<double> data006 [20]' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:441:14: error: redefinition of 'const double toler006'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:231:14: note: 'const double toler006' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:450:11: error: redefinition of 'const testcase_sph_hankel_1<double> data007 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:240:1: note: 'const testcase_sph_hankel_1<double> data007 [20]' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:473:14: error: redefinition of 'const double toler007'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:263:14: note: 'const double toler007' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:482:11: error: redefinition of 'const testcase_sph_hankel_1<double> data008 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:272:1: note: 'const testcase_sph_hankel_1<double> data008 [20]' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:505:14: error: redefinition of 'const double toler008'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:295:14: note: 'const double toler008' previously defined here
+compiler exited with status 1
+output is:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:305:10: error: conflicting declaration 'const testcase_sph_hankel_1<double> data001 [4]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:48:1: note: previous declaration as 'const testcase_sph_hankel_1<double> data001 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:312:14: error: redefinition of 'const double toler001'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:71:14: note: 'const double toler001' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:321:10: error: conflicting declaration 'const testcase_sph_hankel_1<double> data002 [4]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:80:1: note: previous declaration as 'const testcase_sph_hankel_1<double> data002 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:328:14: error: redefinition of 'const double toler002'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:103:14: note: 'const double toler002' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:337:10: error: conflicting declaration 'const testcase_sph_hankel_1<double> data003 [4]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:112:1: note: previous declaration as 'const testcase_sph_hankel_1<double> data003 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:344:14: error: redefinition of 'const double toler003'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:135:14: note: 'const double toler003' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:354:11: error: redefinition of 'const testcase_sph_hankel_1<double> data004 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:144:1: note: 'const testcase_sph_hankel_1<double> data004 [20]' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:377:14: error: redefinition of 'const double toler004'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:167:14: note: 'const double toler004' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:386:11: error: redefinition of 'const testcase_sph_hankel_1<double> data005 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:176:1: note: 'const testcase_sph_hankel_1<double> data005 [20]' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:409:14: error: redefinition of 'const double toler005'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:199:14: note: 'const double toler005' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:418:11: error: redefinition of 'const testcase_sph_hankel_1<double> data006 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:208:1: note: 'const testcase_sph_hankel_1<double> data006 [20]' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:441:14: error: redefinition of 'const double toler006'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:231:14: note: 'const double toler006' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:450:11: error: redefinition of 'const testcase_sph_hankel_1<double> data007 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:240:1: note: 'const testcase_sph_hankel_1<double> data007 [20]' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:473:14: error: redefinition of 'const double toler007'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:263:14: note: 'const double toler007' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:482:11: error: redefinition of 'const testcase_sph_hankel_1<double> data008 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:272:1: note: 'const testcase_sph_hankel_1<double> data008 [20]' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:505:14: error: redefinition of 'const double toler008'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_1/check_value.cc:295:14: note: 'const double toler008' previously defined here
+
+FAIL: ext/special_functions/sph_hankel_1/check_value.cc (test for excess errors)
+
+
+================================================================================================================================
+
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+Executing on host: /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc    -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs  -lm  -o ./check_value.exe    (timeout = 600)
+spawn -ignore SIGHUP /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs -lm -o ./check_value.exe
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:305:10: error: conflicting declaration 'const testcase_sph_hankel_2<double> data001 [4]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:48:1: note: previous declaration as 'const testcase_sph_hankel_2<double> data001 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:312:14: error: redefinition of 'const double toler001'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:71:14: note: 'const double toler001' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:321:10: error: conflicting declaration 'const testcase_sph_hankel_2<double> data002 [4]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:80:1: note: previous declaration as 'const testcase_sph_hankel_2<double> data002 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:328:14: error: redefinition of 'const double toler002'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:103:14: note: 'const double toler002' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:337:10: error: conflicting declaration 'const testcase_sph_hankel_2<double> data003 [4]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:112:1: note: previous declaration as 'const testcase_sph_hankel_2<double> data003 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:344:14: error: redefinition of 'const double toler003'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:135:14: note: 'const double toler003' previously defined here
+compiler exited with status 1
+output is:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:305:10: error: conflicting declaration 'const testcase_sph_hankel_2<double> data001 [4]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:48:1: note: previous declaration as 'const testcase_sph_hankel_2<double> data001 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:312:14: error: redefinition of 'const double toler001'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:71:14: note: 'const double toler001' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:321:10: error: conflicting declaration 'const testcase_sph_hankel_2<double> data002 [4]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:80:1: note: previous declaration as 'const testcase_sph_hankel_2<double> data002 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:328:14: error: redefinition of 'const double toler002'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:103:14: note: 'const double toler002' previously defined here
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:337:10: error: conflicting declaration 'const testcase_sph_hankel_2<double> data003 [4]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:112:1: note: previous declaration as 'const testcase_sph_hankel_2<double> data003 [20]'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:344:14: error: redefinition of 'const double toler003'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/sph_hankel_2/check_value.cc:135:14: note: 'const double toler003' previously defined here
+
+FAIL: ext/special_functions/sph_hankel_2/check_value.cc (test for excess errors)
+
+
+================================================================================================================================
+Setting LD_LIBRARY_PATH to :/home/ed/obj_tr29124/gcc:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_tr29124/gcc/32::/home/ed/obj_tr29124/gcc:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_tr29124/gcc/32:/home/ed/obj_tr29124/./gmp/.libs:/home/ed/obj_tr29124/./prev-gmp/.libs:/home/ed/obj_tr29124/./mpfr/src/.libs:/home/ed/obj_tr29124/./prev-mpfr/src/.libs:/home/ed/obj_tr29124/./mpc/src/.libs:/home/ed/obj_tr29124/./prev-mpc/src/.libs:/home/ed/obj_tr29124/./isl/.libs:/home/ed/obj_tr29124/./prev-isl/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libsanitizer/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libmpx/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libvtv/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libcilkrts/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libssp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libgomp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libitm/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libatomic/.libs:/home/ed/obj_tr29124/./gcc:/home/ed/obj_tr29124/./prev-gcc
+spawn [open ...]
+check_value.exe: /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_beta/check_value.cc:274: void test(const testcase_dirichlet_beta<Tp> (&)[Num], Tp) [with Tp = double; unsigned int Num = 201u]: Assertion `max_abs_frac < toler' failed.
+FAIL: ext/special_functions/dirichlet_beta/check_value.cc execution test
+
+
+
+================================================================================================================================
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+Executing on host: /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc    -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs  -lm  -o ./check_value.exe    (timeout = 600)
+spawn -ignore SIGHUP /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs -lm -o ./check_value.exe
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:50:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:72:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:93:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:114:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:135:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:156:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:177:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:198:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:219:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:240:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:261:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:282:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:303:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:324:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:345:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:366:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:387:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:408:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:429:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:450:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:463:14: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:463:33: error: expected ',' or '...' before '<' token
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc: In function 'void test(int)':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:472:38: error: 'data' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:472:38: note: suggested alternative: 'atan'
+In file included from /home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/cassert:44:0,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/util/testsuite_hooks.h:58,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:36:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:485:27: error: 'toler' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:485:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:485:27: note: suggested alternative: 'tolower'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:485:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc: In function 'int main()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:491:8: error: 'data001' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:492:8: error: 'data002' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:492:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:493:8: error: 'data003' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:494:8: error: 'data004' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:495:8: error: 'data005' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:496:8: error: 'data006' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:497:8: error: 'data007' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:498:8: error: 'data008' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:499:8: error: 'data009' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:500:8: error: 'data010' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:501:8: error: 'data011' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:502:8: error: 'data012' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:502:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:503:8: error: 'data013' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:504:8: error: 'data014' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:505:8: error: 'data015' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:506:8: error: 'data016' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:507:8: error: 'data017' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:508:8: error: 'data018' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:509:8: error: 'data019' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:510:8: error: 'data020' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:510:8: note: suggested alternative: 'atan2q'
+compiler exited with status 1
+output is:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:50:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:72:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:93:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:114:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:135:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:156:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:177:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:198:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:219:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:240:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:261:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:282:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:303:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:324:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:345:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:366:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:387:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:408:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:429:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:450:7: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:463:14: error: 'testcase_pochhammer' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:463:33: error: expected ',' or '...' before '<' token
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc: In function 'void test(int)':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:472:38: error: 'data' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:472:38: note: suggested alternative: 'atan'
+In file included from /home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/cassert:44:0,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/util/testsuite_hooks.h:58,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:36:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:485:27: error: 'toler' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:485:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:485:27: note: suggested alternative: 'tolower'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:485:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc: In function 'int main()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:491:8: error: 'data001' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:492:8: error: 'data002' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:492:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:493:8: error: 'data003' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:494:8: error: 'data004' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:495:8: error: 'data005' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:496:8: error: 'data006' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:497:8: error: 'data007' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:498:8: error: 'data008' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:499:8: error: 'data009' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:500:8: error: 'data010' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:501:8: error: 'data011' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:502:8: error: 'data012' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:502:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:503:8: error: 'data013' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:504:8: error: 'data014' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:505:8: error: 'data015' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:506:8: error: 'data016' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:507:8: error: 'data017' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:508:8: error: 'data018' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:509:8: error: 'data019' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:510:8: error: 'data020' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer/check_value.cc:510:8: note: suggested alternative: 'atan2q'
+
+FAIL: ext/special_functions/pochhammer/check_value.cc (test for excess errors)
+
+
+
+================================================================================================================================
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+Executing on host: /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_nan.cc    -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs  -lm  -o ./check_nan.exe    (timeout = 600)
+spawn -ignore SIGHUP /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_nan.cc -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs -lm -o ./check_nan.exe
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_nan.cc: In function 'void test01()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_nan.cc:34:13: error: 'dirichlet_lambda' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_nan.cc:35:13: error: 'dirichlet_lambdaf' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_nan.cc:36:14: error: 'dirichlet_lambda' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_nan.cc:37:19: error: 'dirichlet_lambda' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_nan.cc:38:19: error: 'dirichlet_lambdal' is not a member of '__gnu_cxx'
+compiler exited with status 1
+output is:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_nan.cc: In function 'void test01()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_nan.cc:34:13: error: 'dirichlet_lambda' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_nan.cc:35:13: error: 'dirichlet_lambdaf' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_nan.cc:36:14: error: 'dirichlet_lambda' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_nan.cc:37:19: error: 'dirichlet_lambda' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_nan.cc:38:19: error: 'dirichlet_lambdal' is not a member of '__gnu_cxx'
+
+FAIL: ext/special_functions/dirichlet_lambda/check_nan.cc (test for excess errors)
+
+
+
+================================================================================================================================
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+Executing on host: /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_value.cc    -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs  -lm  -o ./check_value.exe    (timeout = 600)
+spawn -ignore SIGHUP /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_value.cc -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs -lm -o ./check_value.exe
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_value.cc: In function 'void test(const testcase_dirichlet_lambda<Tp> (&)[Num], Tp)':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_value.cc:261:15: error: 'dirichlet_lambda' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_value.cc:261:15: note: suggested alternative: 'testcase_dirichlet_lambda'
+compiler exited with status 1
+output is:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_value.cc: In function 'void test(const testcase_dirichlet_lambda<Tp> (&)[Num], Tp)':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_value.cc:261:15: error: 'dirichlet_lambda' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/check_value.cc:261:15: note: suggested alternative: 'testcase_dirichlet_lambda'
+
+FAIL: ext/special_functions/dirichlet_lambda/check_value.cc (test for excess errors)
+
+
+
+================================================================================================================================
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+Executing on host: /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/compile.cc    -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never -S -o compile.s    (timeout = 600)
+spawn -ignore SIGHUP /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/compile.cc -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never -S -o compile.s
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/compile.cc: In function 'void test01()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/compile.cc:32:3: error: 'dirichlet_lambda' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/compile.cc:33:3: error: 'dirichlet_lambdaf' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/compile.cc:34:3: error: 'dirichlet_lambda' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/compile.cc:35:3: error: 'dirichlet_lambda' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/compile.cc:36:3: error: 'dirichlet_lambdal' is not a member of '__gnu_cxx'
+compiler exited with status 1
+output is:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/compile.cc: In function 'void test01()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/compile.cc:32:3: error: 'dirichlet_lambda' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/compile.cc:33:3: error: 'dirichlet_lambdaf' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/compile.cc:34:3: error: 'dirichlet_lambda' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/compile.cc:35:3: error: 'dirichlet_lambda' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/dirichlet_lambda/compile.cc:36:3: error: 'dirichlet_lambdal' is not a member of '__gnu_cxx'
+
+FAIL: ext/special_functions/dirichlet_lambda/compile.cc (test for excess errors)
+
+
+
+================================================================================================================================
+Setting LD_LIBRARY_PATH to :/home/ed/obj_tr29124/gcc:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_tr29124/gcc/32::/home/ed/obj_tr29124/gcc:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_tr29124/gcc/32:/home/ed/obj_tr29124/./gmp/.libs:/home/ed/obj_tr29124/./prev-gmp/.libs:/home/ed/obj_tr29124/./mpfr/src/.libs:/home/ed/obj_tr29124/./prev-mpfr/src/.libs:/home/ed/obj_tr29124/./mpc/src/.libs:/home/ed/obj_tr29124/./prev-mpc/src/.libs:/home/ed/obj_tr29124/./isl/.libs:/home/ed/obj_tr29124/./prev-isl/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libsanitizer/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libmpx/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libvtv/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libcilkrts/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libssp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libgomp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libitm/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libatomic/.libs:/home/ed/obj_tr29124/./gcc:/home/ed/obj_tr29124/./prev-gcc
+spawn [open ...]
+check_value.exe: /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/expint/check_value.cc:375: void test(const testcase_expint_en<Ret> (&)[Num], Ret) [with Ret = double; unsigned int Num = 50u]: Assertion `max_abs_frac < toler' failed.
+FAIL: ext/special_functions/expint/check_value.cc execution test
+
+
+
+================================================================================================================================
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+Executing on host: /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc    -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs  -lm  -o ./check_value.exe    (timeout = 600)
+spawn -ignore SIGHUP /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs -lm -o ./check_value.exe
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:47:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:66:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:85:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:104:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:123:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:142:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:161:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:180:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:199:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:218:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:237:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:256:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:275:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:294:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:313:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:332:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:351:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:370:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:389:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:408:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:423:14: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:423:34: error: expected ',' or '...' before '<' token
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc: In function 'void test(int)':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:432:39: error: 'data' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:432:39: note: suggested alternative: 'atan'
+In file included from /home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/cassert:44:0,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/util/testsuite_hooks.h:58,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:36:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:445:27: error: 'toler' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:445:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:445:27: note: suggested alternative: 'tolower'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:445:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc: In function 'int main()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:451:8: error: 'data001' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:452:8: error: 'data002' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:452:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:453:8: error: 'data003' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:454:8: error: 'data004' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:455:8: error: 'data005' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:456:8: error: 'data006' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:457:8: error: 'data007' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:458:8: error: 'data008' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:459:8: error: 'data009' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:460:8: error: 'data010' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:461:8: error: 'data011' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:462:8: error: 'data012' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:462:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:463:8: error: 'data013' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:464:8: error: 'data014' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:465:8: error: 'data015' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:466:8: error: 'data016' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:467:8: error: 'data017' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:468:8: error: 'data018' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:469:8: error: 'data019' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:470:8: error: 'data020' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:470:8: note: suggested alternative: 'atan2q'
+compiler exited with status 1
+output is:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:47:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:66:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:85:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:104:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:123:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:142:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:161:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:180:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:199:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:218:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:237:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:256:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:275:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:294:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:313:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:332:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:351:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:370:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:389:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:408:7: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:423:14: error: 'testcase_lpochhammer' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:423:34: error: expected ',' or '...' before '<' token
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc: In function 'void test(int)':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:432:39: error: 'data' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:432:39: note: suggested alternative: 'atan'
+In file included from /home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/cassert:44:0,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/util/testsuite_hooks.h:58,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:36:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:445:27: error: 'toler' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:445:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:445:27: note: suggested alternative: 'tolower'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:445:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc: In function 'int main()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:451:8: error: 'data001' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:452:8: error: 'data002' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:452:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:453:8: error: 'data003' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:454:8: error: 'data004' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:455:8: error: 'data005' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:456:8: error: 'data006' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:457:8: error: 'data007' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:458:8: error: 'data008' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:459:8: error: 'data009' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:460:8: error: 'data010' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:461:8: error: 'data011' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:462:8: error: 'data012' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:462:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:463:8: error: 'data013' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:464:8: error: 'data014' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:465:8: error: 'data015' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:466:8: error: 'data016' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:467:8: error: 'data017' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:468:8: error: 'data018' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:469:8: error: 'data019' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:470:8: error: 'data020' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer/check_value.cc:470:8: note: suggested alternative: 'atan2q'
+
+FAIL: ext/special_functions/lpochhammer/check_value.cc (test for excess errors)
+
+
+
+================================================================================================================================
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+Executing on host: /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc    -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs  -lm  -o ./check_value.exe    (timeout = 600)
+spawn -ignore SIGHUP /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs -lm -o ./check_value.exe
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:48:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:63:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:78:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:98:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:114:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:130:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:150:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:166:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:183:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:200:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:221:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:237:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:253:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:269:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:289:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:305:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:322:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:339:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:359:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:371:14: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:371:40: error: expected ',' or '...' before '<' token
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc: In function 'void test(int)':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:380:45: error: 'data' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:380:45: note: suggested alternative: 'atan'
+In file included from /home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/cassert:44:0,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/util/testsuite_hooks.h:58,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:36:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:393:27: error: 'toler' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:393:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:393:27: note: suggested alternative: 'tolower'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:393:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc: In function 'int main()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:399:8: error: 'data001' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:400:8: error: 'data002' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:400:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:401:8: error: 'data003' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:402:8: error: 'data004' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:403:8: error: 'data005' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:404:8: error: 'data006' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:405:8: error: 'data007' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:406:8: error: 'data008' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:407:8: error: 'data009' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:408:8: error: 'data010' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:409:8: error: 'data011' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:410:8: error: 'data012' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:410:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:411:8: error: 'data013' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:412:8: error: 'data014' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:413:8: error: 'data015' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:414:8: error: 'data016' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:415:8: error: 'data017' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:416:8: error: 'data018' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:417:8: error: 'data019' was not declared in this scope
+compiler exited with status 1
+output is:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:48:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:63:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:78:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:98:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:114:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:130:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:150:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:166:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:183:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:200:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:221:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:237:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:253:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:269:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:289:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:305:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:322:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:339:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:359:7: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:371:14: error: 'testcase_lpochhammer_lower' does not name a type; did you mean 'testcase_lpochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:371:40: error: expected ',' or '...' before '<' token
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc: In function 'void test(int)':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:380:45: error: 'data' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:380:45: note: suggested alternative: 'atan'
+In file included from /home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/cassert:44:0,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/util/testsuite_hooks.h:58,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:36:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:393:27: error: 'toler' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:393:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:393:27: note: suggested alternative: 'tolower'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:393:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc: In function 'int main()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:399:8: error: 'data001' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:400:8: error: 'data002' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:400:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:401:8: error: 'data003' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:402:8: error: 'data004' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:403:8: error: 'data005' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:404:8: error: 'data006' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:405:8: error: 'data007' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:406:8: error: 'data008' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:407:8: error: 'data009' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:408:8: error: 'data010' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:409:8: error: 'data011' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:410:8: error: 'data012' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:410:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:411:8: error: 'data013' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:412:8: error: 'data014' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:413:8: error: 'data015' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:414:8: error: 'data016' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:415:8: error: 'data017' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:416:8: error: 'data018' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/check_value.cc:417:8: error: 'data019' was not declared in this scope
+
+FAIL: ext/special_functions/lpochhammer_lower/check_value.cc (test for excess errors)
+
+
+
+================================================================================================================================
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+Executing on host: /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/compile.cc    -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never -S -o compile.s    (timeout = 600)
+spawn -ignore SIGHUP /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/lpochhammer_lower/compile.cc -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never -S -o compile.s
+PASS: ext/special_functions/lpochhammer_lower/compile.cc (test for excess errors)
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+Executing on host: /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc    -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs  -lm  -o ./check_value.exe    (timeout = 600)
+spawn -ignore SIGHUP /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs -lm -o ./check_value.exe
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:47:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:67:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:87:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:107:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:127:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:147:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:167:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:187:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:207:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:227:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:247:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:267:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:287:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:307:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:327:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:347:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:367:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:387:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:407:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:427:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:443:14: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:443:39: error: expected ',' or '...' before '<' token
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc: In function 'void test(int)':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:452:44: error: 'data' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:452:44: note: suggested alternative: 'atan'
+In file included from /home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/cassert:44:0,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/util/testsuite_hooks.h:58,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:36:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:465:27: error: 'toler' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:465:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:465:27: note: suggested alternative: 'tolower'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:465:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc: In function 'int main()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:471:8: error: 'data001' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:472:8: error: 'data002' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:472:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:473:8: error: 'data003' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:474:8: error: 'data004' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:475:8: error: 'data005' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:476:8: error: 'data006' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:477:8: error: 'data007' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:478:8: error: 'data008' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:479:8: error: 'data009' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:480:8: error: 'data010' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:481:8: error: 'data011' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:482:8: error: 'data012' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:482:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:483:8: error: 'data013' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:484:8: error: 'data014' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:485:8: error: 'data015' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:486:8: error: 'data016' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:487:8: error: 'data017' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:488:8: error: 'data018' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:489:8: error: 'data019' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:490:8: error: 'data020' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:490:8: note: suggested alternative: 'atan2q'
+compiler exited with status 1
+output is:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:47:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:67:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:87:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:107:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:127:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:147:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:167:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:187:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:207:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:227:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:247:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:267:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:287:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:307:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:327:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:347:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:367:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:387:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:407:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:427:7: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:443:14: error: 'testcase_pochhammer_lower' does not name a type; did you mean 'testcase_pochhammer_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:443:39: error: expected ',' or '...' before '<' token
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc: In function 'void test(int)':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:452:44: error: 'data' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:452:44: note: suggested alternative: 'atan'
+In file included from /home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/cassert:44:0,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/util/testsuite_hooks.h:58,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:36:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:465:27: error: 'toler' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:465:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:465:27: note: suggested alternative: 'tolower'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:465:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc: In function 'int main()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:471:8: error: 'data001' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:472:8: error: 'data002' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:472:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:473:8: error: 'data003' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:474:8: error: 'data004' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:475:8: error: 'data005' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:476:8: error: 'data006' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:477:8: error: 'data007' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:478:8: error: 'data008' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:479:8: error: 'data009' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:480:8: error: 'data010' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:481:8: error: 'data011' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:482:8: error: 'data012' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:482:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:483:8: error: 'data013' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:484:8: error: 'data014' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:485:8: error: 'data015' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:486:8: error: 'data016' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:487:8: error: 'data017' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:488:8: error: 'data018' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:489:8: error: 'data019' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:490:8: error: 'data020' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/pochhammer_lower/check_value.cc:490:8: note: suggested alternative: 'atan2q'
+
+FAIL: ext/special_functions/pochhammer_lower/check_value.cc (test for excess errors)
+
+
+
+================================================================================================================================
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+Executing on host: /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc    -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs  -lm  -o ./check_nan.exe    (timeout = 600)
+spawn -ignore SIGHUP /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs -lm -o ./check_nan.exe
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc: In function 'void test01()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:34:13: error: 'psia' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:34:13: note: suggested alternative: 'sin'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:35:13: error: 'psiaf' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:35:13: note: suggested alternative: 'sinf'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:36:14: error: 'psia' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:36:14: note: suggested alternative: 'sin'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:37:19: error: 'psia' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:37:19: note: suggested alternative: 'sin'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:38:19: error: 'psial' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:38:19: note: suggested alternative: 'sinl'
+compiler exited with status 1
+output is:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc: In function 'void test01()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:34:13: error: 'psia' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:34:13: note: suggested alternative: 'sin'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:35:13: error: 'psiaf' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:35:13: note: suggested alternative: 'sinf'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:36:14: error: 'psia' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:36:14: note: suggested alternative: 'sin'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:37:19: error: 'psia' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:37:19: note: suggested alternative: 'sin'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:38:19: error: 'psial' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/check_nan.cc:38:19: note: suggested alternative: 'sinl'
+
+FAIL: ext/special_functions/psi/check_nan.cc (test for excess errors)
+
+
+
+================================================================================================================================
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+Executing on host: /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc    -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never -S -o compile.s    (timeout = 600)
+spawn -ignore SIGHUP /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never -S -o compile.s
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc: In function 'void test01()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:32:3: error: 'psia' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:32:3: note: suggested alternative: 'sin'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:33:3: error: 'psiaf' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:33:3: note: suggested alternative: 'sinf'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:34:3: error: 'psia' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:34:3: note: suggested alternative: 'sin'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:35:3: error: 'psia' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:35:3: note: suggested alternative: 'sin'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:36:3: error: 'psial' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:36:3: note: suggested alternative: 'sinl'
+compiler exited with status 1
+output is:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc: In function 'void test01()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:32:3: error: 'psia' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:32:3: note: suggested alternative: 'sin'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:33:3: error: 'psiaf' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:33:3: note: suggested alternative: 'sinf'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:34:3: error: 'psia' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:34:3: note: suggested alternative: 'sin'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:35:3: error: 'psia' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:35:3: note: suggested alternative: 'sin'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:36:3: error: 'psial' is not a member of '__gnu_cxx'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/psi/compile.cc:36:3: note: suggested alternative: 'sinl'
+
+FAIL: ext/special_functions/psi/compile.cc (test for excess errors)
+
+
+
+================================================================================================================================
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+Executing on host: /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc    -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs  -lm  -o ./check_value.exe    (timeout = 600)
+spawn -ignore SIGHUP /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs -lm -o ./check_value.exe
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:47:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:70:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:93:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:116:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:139:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:162:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:185:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:208:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:231:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:254:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:273:14: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:273:29: error: expected ',' or '...' before '<' token
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc: In function 'void test(int)':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:282:34: error: 'data' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:282:34: note: suggested alternative: 'atan'
+In file included from /home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/cassert:44:0,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/util/testsuite_hooks.h:58,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:36:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:295:27: error: 'toler' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:295:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:295:27: note: suggested alternative: 'tolower'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:295:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc: In function 'int main()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:301:8: error: 'data001' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:302:8: error: 'data002' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:302:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:303:8: error: 'data003' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:304:8: error: 'data004' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:305:8: error: 'data005' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:306:8: error: 'data006' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:307:8: error: 'data007' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:308:8: error: 'data008' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:309:8: error: 'data009' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:310:8: error: 'data010' was not declared in this scope
+compiler exited with status 1
+output is:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:47:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:70:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:93:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:116:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:139:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:162:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:185:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:208:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:231:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:254:7: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:273:14: error: 'testcase_tgamma' does not name a type; did you mean 'testcase_gamma'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:273:29: error: expected ',' or '...' before '<' token
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc: In function 'void test(int)':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:282:34: error: 'data' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:282:34: note: suggested alternative: 'atan'
+In file included from /home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/cassert:44:0,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/util/testsuite_hooks.h:58,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:36:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:295:27: error: 'toler' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:295:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:295:27: note: suggested alternative: 'tolower'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:295:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc: In function 'int main()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:301:8: error: 'data001' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:302:8: error: 'data002' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:302:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:303:8: error: 'data003' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:304:8: error: 'data004' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:305:8: error: 'data005' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:306:8: error: 'data006' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:307:8: error: 'data007' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:308:8: error: 'data008' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:309:8: error: 'data009' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma/check_value.cc:310:8: error: 'data010' was not declared in this scope
+
+FAIL: ext/special_functions/tgamma/check_value.cc (test for excess errors)
+
+
+
+================================================================================================================================
+extra_tool_flags are:
+ -D__STDCPP_WANT_MATH_SPEC_FUNCS__
+Executing on host: /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc    -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs  -lm  -o ./check_value.exe    (timeout = 600)
+spawn -ignore SIGHUP /home/ed/obj_tr29124/./gcc/xg++ -shared-libgcc -B/home/ed/obj_tr29124/./gcc -nostdinc++ -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/libsupc++/.libs -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/bin/ -B/home/ed/bin_tr29124/x86_64-pc-linux-gnu/lib/ -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/include -isystem /home/ed/bin_tr29124/x86_64-pc-linux-gnu/sys-include -B/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs -D_GLIBCXX_ASSERT -fmessage-length=0 -ffunction-sections -fdata-sections -g -O2 -D_GNU_SOURCE -DLOCALEDIR="." -nostdinc++ -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu -I/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include -I/home/ed/gcc_tr29124/libstdc++-v3/libsupc++ -I/home/ed/gcc_tr29124/libstdc++-v3/include/backward -I/home/ed/gcc_tr29124/libstdc++-v3/testsuite/util /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -fno-diagnostics-show-caret -fdiagnostics-color=never ./libtestc++.a -Wl,--gc-sections -L/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/filesystem/.libs -lm -o ./check_value.exe
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:47:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:70:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:93:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:116:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:139:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:162:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:185:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:208:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:231:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:254:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:273:14: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:273:35: error: expected ',' or '...' before '<' token
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc: In function 'void test(int)':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:282:40: error: 'data' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:282:40: note: suggested alternative: 'atan'
+In file included from /home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/cassert:44:0,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/util/testsuite_hooks.h:58,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:36:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:295:27: error: 'toler' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:295:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:295:27: note: suggested alternative: 'tolower'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:295:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc: In function 'int main()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:301:8: error: 'data001' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:302:8: error: 'data002' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:302:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:303:8: error: 'data003' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:304:8: error: 'data004' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:305:8: error: 'data005' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:306:8: error: 'data006' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:307:8: error: 'data007' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:308:8: error: 'data008' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:309:8: error: 'data009' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:310:8: error: 'data010' was not declared in this scope
+compiler exited with status 1
+output is:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:47:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:70:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:93:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:116:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:139:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:162:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:185:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:208:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:231:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:254:7: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:273:14: error: 'testcase_tgamma_lower' does not name a type; did you mean 'testcase_gamma_l'?
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:273:35: error: expected ',' or '...' before '<' token
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc: In function 'void test(int)':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:282:40: error: 'data' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:282:40: note: suggested alternative: 'atan'
+In file included from /home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/include/cassert:44:0,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/util/testsuite_hooks.h:58,
+                 from /home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:36:
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:295:27: error: 'toler' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:295:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:295:27: note: suggested alternative: 'tolower'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:295:5: note: in expansion of macro 'VERIFY'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc: In function 'int main()':
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:301:8: error: 'data001' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:302:8: error: 'data002' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:302:8: note: suggested alternative: 'atan2'
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:303:8: error: 'data003' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:304:8: error: 'data004' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:305:8: error: 'data005' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:306:8: error: 'data006' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:307:8: error: 'data007' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:308:8: error: 'data008' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:309:8: error: 'data009' was not declared in this scope
+/home/ed/gcc_tr29124/libstdc++-v3/testsuite/ext/special_functions/tgamma_lower/check_value.cc:310:8: error: 'data010' was not declared in this scope
+
+FAIL: ext/special_functions/tgamma_lower/check_value.cc (test for excess errors)
+
+
+
+================================================================================================================================
+Setting LD_LIBRARY_PATH to :/home/ed/obj_tr29124/gcc:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_tr29124/gcc/32::/home/ed/obj_tr29124/gcc:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_tr29124/gcc/32:/home/ed/obj_tr29124/./gmp/.libs:/home/ed/obj_tr29124/./prev-gmp/.libs:/home/ed/obj_tr29124/./mpfr/src/.libs:/home/ed/obj_tr29124/./prev-mpfr/src/.libs:/home/ed/obj_tr29124/./mpc/src/.libs:/home/ed/obj_tr29124/./prev-mpc/src/.libs:/home/ed/obj_tr29124/./isl/.libs:/home/ed/obj_tr29124/./prev-isl/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libsanitizer/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libmpx/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libvtv/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libcilkrts/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libssp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libgomp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libitm/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libatomic/.libs:/home/ed/obj_tr29124/./gcc:/home/ed/obj_tr29124/./prev-gcc
+spawn [open ...]
+check_origin.exe: /home/ed/gcc_tr29124/libstdc++-v3/testsuite/special_functions/08_cyl_bessel_j/check_origin.cc:38: void test01(): Assertion `jm2 == 0.0' failed.
+FAIL: special_functions/08_cyl_bessel_j/check_origin.cc execution test
+
+
+
+================================================================================================================================
+Setting LD_LIBRARY_PATH to :/home/ed/obj_tr29124/gcc:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_tr29124/gcc/32::/home/ed/obj_tr29124/gcc:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libgomp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/../libvtv/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/./libstdc++-v3/src/.libs:/home/ed/obj_tr29124/gcc/32:/home/ed/obj_tr29124/./gmp/.libs:/home/ed/obj_tr29124/./prev-gmp/.libs:/home/ed/obj_tr29124/./mpfr/src/.libs:/home/ed/obj_tr29124/./prev-mpfr/src/.libs:/home/ed/obj_tr29124/./mpc/src/.libs:/home/ed/obj_tr29124/./prev-mpc/src/.libs:/home/ed/obj_tr29124/./isl/.libs:/home/ed/obj_tr29124/./prev-isl/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libstdc++-v3/src/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libsanitizer/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libmpx/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libvtv/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libcilkrts/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libssp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libgomp/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libitm/.libs:/home/ed/obj_tr29124/x86_64-pc-linux-gnu/libatomic/.libs:/home/ed/obj_tr29124/./gcc:/home/ed/obj_tr29124/./prev-gcc
+spawn [open ...]
+check_value.exe: /home/ed/gcc_tr29124/libstdc++-v3/testsuite/special_functions/15_hermite/check_value.cc:1928: void test(const testcase_hermite<Ret> (&)[Num], Ret) [with Ret = double; unsigned int Num = 9u]: Assertion `max_abs_frac < toler' failed.
+FAIL: special_functions/15_hermite/check_value.cc execution test

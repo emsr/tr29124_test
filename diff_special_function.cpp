@@ -115,8 +115,6 @@ main()
     using __gnu_cxx::factorial;
     using __gnu_cxx::fresnel_c;
     using __gnu_cxx::fresnel_s;
-    using __gnu_cxx::tgamma_lower;
-    using __gnu_cxx::tgamma;
     using __gnu_cxx::gegenbauer;
     using       std::hermite;	 
     using __gnu_cxx::heuman_lambda;
@@ -134,12 +132,12 @@ main()
     using       std::legendre;
     using __gnu_cxx::legendre_q;
     using __gnu_cxx::lfactorial;
-    using __gnu_cxx::lpochhammer_l;
-    using __gnu_cxx::lpochhammer_u;
+    using __gnu_cxx::lpochhammer_lower;
+    using __gnu_cxx::lpochhammer;
     using __gnu_cxx::owens_t;
     using __gnu_cxx::pgamma;
-    using __gnu_cxx::pochhammer_l;
-    using __gnu_cxx::pochhammer_u;
+    using __gnu_cxx::pochhammer_lower;
+    using __gnu_cxx::pochhammer;
     using __gnu_cxx::psi;
     using __gnu_cxx::qgamma;
     using __gnu_cxx::radpoly;
@@ -158,6 +156,16 @@ main()
     using __gnu_cxx::sph_harmonic;
     using       std::sph_legendre;
     using       std::sph_neumann;
+    using __gnu_cxx::tgamma_lower;
+    using __gnu_cxx::tgamma;
+    using __gnu_cxx::theta_1;
+    using __gnu_cxx::theta_2;
+    using __gnu_cxx::theta_3;
+    using __gnu_cxx::theta_4;
+    using __gnu_cxx::theta_s;
+    using __gnu_cxx::theta_c;
+    using __gnu_cxx::theta_d;
+    using __gnu_cxx::theta_n;
     using __gnu_cxx::zernike;
 #else
     using  std::tr1::assoc_laguerre;
@@ -703,33 +711,33 @@ main()
 			       std::make_pair(false, true), 401));
 
     // Log upper Pochhammer symbol.
-    std::cout << "lpochhammer_u" << std::endl;
-    basename = "diff_lpochhammer_u";
-    rundiff(lpochhammer_u, beast::lpochhammer_u, basename,
+    std::cout << "lpochhammer" << std::endl;
+    basename = "diff_lpochhammer";
+    rundiff(lpochhammer, beast::lpochhammer, basename,
 	    "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 			       std::make_pair(false, true), 21),
 	    "x", {1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0});
 
     // Log lower Pochhammer symbol.
-    std::cout << "lpochhammer_l" << std::endl;
-    basename = "diff_lpochhammer_l";
-    rundiff(lpochhammer_l, beast::lpochhammer_l, basename,
+    std::cout << "lpochhammer_lower" << std::endl;
+    basename = "diff_lpochhammer_lower";
+    rundiff(lpochhammer_lower, beast::lpochhammer_lower, basename,
 	    "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 			       std::make_pair(false, true), 21),
 	    "x", {0.0, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0});
 
     // Upper Pochhammer symbols (see boost::rising_factorial).
-    std::cout << "pochhammer_u" << std::endl;
-    basename = "diff_pochhammer_u";
-    rundiff(pochhammer_u, beast::pochhammer_u, basename,
+    std::cout << "pochhammer" << std::endl;
+    basename = "diff_pochhammer";
+    rundiff(pochhammer, beast::pochhammer, basename,
 	    "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 			       std::make_pair(false, true), 21),
 	    "x", dvorder);
 
     // Lower Pochhammer symbols (see boost::falling_factorial).
-    std::cout << "pochhammer_l" << std::endl;
-    basename = "diff_pochhammer_l";
-    rundiff(pochhammer_l, beast::pochhammer_l, basename,
+    std::cout << "pochhammer_lower" << std::endl;
+    basename = "diff_pochhammer_lower";
+    rundiff(pochhammer_lower, beast::pochhammer_lower, basename,
 	    "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 			       std::make_pair(false, true), 21),
 	    "x", {0.0, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0});

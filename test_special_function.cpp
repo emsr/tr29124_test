@@ -110,8 +110,6 @@ template<typename Real>
     using __gnu_cxx::factorial;
     using __gnu_cxx::fresnel_c;
     using __gnu_cxx::fresnel_s;
-    using __gnu_cxx::tgamma_lower;
-    using __gnu_cxx::tgamma;
     using __gnu_cxx::gegenbauer;
     using       std::hermite;
     using __gnu_cxx::heuman_lambda;
@@ -153,6 +151,16 @@ template<typename Real>
     using __gnu_cxx::sph_harmonic;
     using       std::sph_legendre;
     using       std::sph_neumann;
+    using __gnu_cxx::tgamma_lower;
+    using __gnu_cxx::tgamma;
+    using __gnu_cxx::theta_1;
+    using __gnu_cxx::theta_2;
+    using __gnu_cxx::theta_3;
+    using __gnu_cxx::theta_4;
+    using __gnu_cxx::theta_s;
+    using __gnu_cxx::theta_c;
+    using __gnu_cxx::theta_d;
+    using __gnu_cxx::theta_n;
     using __gnu_cxx::zernike;
 #else
     std::string ns("tr1");
