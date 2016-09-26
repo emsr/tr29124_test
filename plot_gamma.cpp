@@ -17,6 +17,27 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o plot_gamma plot_gamma.cpp -lqua
 #include <string>
 #include <complex>
 
+// I'm not sure why I need this here and not other places...
+template<>
+  constexpr std::array<float, 7>
+  std::__detail::_GammaSpouge<float>::_S_cheby;
+template<>
+  constexpr std::array<double, 18>
+  std::__detail::_GammaSpouge<double>::_S_cheby;
+template<>
+  constexpr std::array<long double, 22>
+  std::__detail::_GammaSpouge<long double>::_S_cheby;
+
+template<>
+  constexpr std::array<float, 7>
+  std::__detail::_GammaLanczos<float>::_S_cheby;
+template<>
+  constexpr std::array<double, 10>
+  std::__detail::_GammaLanczos<double>::_S_cheby;
+template<>
+  constexpr std::array<long double, 11>
+  std::__detail::_GammaLanczos<long double>::_S_cheby;
+
 
 template<typename _Tp>
   void

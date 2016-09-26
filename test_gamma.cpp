@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -o test_gamma test_gamma.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -I. -o test_gamma test_gamma.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_gamma > test_gamma.txt
 
 $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp -lquadmath
@@ -107,6 +107,9 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp -lqua
 	[=](_Tp __z)
 	-> _Tp
 	{
+	  constexpr auto _S_ln_2 = __gnu_cxx::__math_constants<_Tp>::__ln_2;
+	  constexpr auto _S_ln_pi = __gnu_cxx::__math_constants<_Tp>::__ln_pi;
+	  constexpr auto _S_log_sqrt_2pi = (_S_ln_2 + _S_ln_pi) / _Tp{2};
 	  auto __fact = _Tp{1};
 	  auto __sum = _Tp{0.5L} * __p(0, __g);
 	  for (unsigned int __k = 1; __k < __n; ++__k)
@@ -294,6 +297,7 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp -lqua
       };
     };
 
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   template<>
     class _GammaLanczos<__float128>
     {
@@ -319,6 +323,7 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp -lqua
 	-3.352799410216973507737605805778536e-17Q,
       };
     };
+#endif
 
 
   /**
@@ -410,6 +415,7 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp -lqua
     };
 
 
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   template<>
     class _GammaSpouge<__float128>
     {
@@ -460,6 +466,7 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp -lqua
 	-1.332629445370080503706686280760692e-46Q,
       };
     };
+#endif
 
 int
 main()
