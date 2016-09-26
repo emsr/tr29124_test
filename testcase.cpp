@@ -1476,7 +1476,7 @@ template<typename Real>
 	     "nu", {0, 2, 5},
 	     "x", {Real{-10}, Real{-5}, Real{-2}, Real{-0.25}},
 	     "Boost",
-	     file_sph_hankel_1, false, false);
+	     file_sph_hankel_1, false, false, test);
     maketest(sph_hankel_1, beast::sph_hankel_1,
 	     "testcase_sph_hankel_1", "__gnu_cxx", basename,
 	     "n", sph_order,
@@ -1503,7 +1503,7 @@ template<typename Real>
 	     "nu", {0, 2, 5},
 	     "x", {Real{-10}, Real{-5}, Real{-2}, Real{-0.25}},
 	     "Boost",
-	     file_sph_hankel_2, false, false);
+	     file_sph_hankel_2, false, false, test);
     maketest(sph_hankel_2, beast::sph_hankel_2,
 	     "testcase_sph_hankel_2", "__gnu_cxx", basename,
 	     "n", sph_order,

@@ -1,5 +1,5 @@
-// $HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_pochhammer_lower test_pochhammer_lower.cpp wrap_boost.cpp
 /*
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_pochhammer_lower test_pochhammer_lower.cpp wrap_boost.cpp
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_pochhammer_lower > test_pochhammer_lower.txt
 */
 
