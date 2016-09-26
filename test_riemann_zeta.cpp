@@ -140,6 +140,12 @@ template<typename _Tp>
 
     int i_min = -250;
 
+    std::cout << '\n'
+	      << std::setw(width) << "s"
+	      << std::setw(4 + 2 * width) << "zetac = zeta (cmplx)"
+	      << std::setw(width) << "zeta (real)"
+	      << std::setw(width) << "|zetac - zeta|"
+	      << '\n';
     auto ac = _Cmplx(1.0L);
     auto a = _Real(1.0L);
     for (int i = i_min; i <= +250; ++i)
@@ -159,15 +165,26 @@ template<typename _Tp>
 int
 main()
 {
+  using namespace std::literals::complex_literals;
+
+  auto zetam = std::__detail::__riemann_zeta(0.01l - 1.0il);
+  std::cout << "zeta(" << 0.01l - 1.0il << ") = " << zetam << '\n';
+  auto zetap = std::__detail::__riemann_zeta(0.01l + 1.0il);
+  std::cout << "zeta(" << 0.01l + 1.0il << ") = " << zetap << '\n';
+
   test_riemann_zeta_real<long double>();
 
   std::cout << "\n\nRiemann zeta\n\n";
+
   std::cout << "\nriemann_zeta<float>\n";
   plot_riemann_zeta<float>("plot/riemann_zeta_float.txt");
+
   std::cout << "\nriemann_zeta<double>\n";
   plot_riemann_zeta<double>("plot/riemann_zeta_double.txt");
+
   std::cout << "\nriemann_zeta<long double>\n";
   plot_riemann_zeta<long double>("plot/riemann_zeta_long_double.txt");
+
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   //std::cout << "\nriemann_zeta<__float128>\n";
   //plot_riemann_zeta<__float128>("plot/riemann_zeta__float128.txt");
