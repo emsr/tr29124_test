@@ -1745,9 +1745,6 @@ _S_neg_double_factorial_table[999]
       };
     };
 
-  constexpr std::array<float, 7>
-  _GammaSpouge<float>::_S_cheby;
-
   template<>
     struct _GammaSpouge<double>
     {
@@ -1774,9 +1771,6 @@ _S_neg_double_factorial_table[999]
 	-7.642333165976788e-15,
       };
     };
-
-  constexpr std::array<double, 18>
-  _GammaSpouge<double>::_S_cheby;
 
   template<>
     struct _GammaSpouge<long double>
@@ -1808,9 +1802,6 @@ _S_neg_double_factorial_table[999]
 	-5.320477002211632680e-20L,
       };
     };
-
-  constexpr std::array<long double, 22>
-  _GammaSpouge<long double>::_S_cheby;
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   template<>
@@ -1861,9 +1852,6 @@ _S_neg_double_factorial_table[999]
 	-1.332629445370080503706686280760692e-46Q,
       };
     };
-
-  constexpr std::array<__float128, 40>
-  _GammaSpouge<__float128>::_S_cheby;
 #endif
 
   /**
@@ -1939,9 +1927,6 @@ _S_neg_double_factorial_table[999]
       };
     };
 
-  constexpr std::array<float, 7>
-  _GammaLanczos<float>::_S_cheby;
-
   template<>
     struct _GammaLanczos<double>
     {
@@ -1961,9 +1946,6 @@ _S_neg_double_factorial_table[999]
 	1.280568540096283e-09,
       };
     };
-
-  constexpr std::array<double, 10>
-  _GammaLanczos<double>::_S_cheby;
 
   template<>
     struct _GammaLanczos<long double>
@@ -1985,9 +1967,6 @@ _S_neg_double_factorial_table[999]
 	-1.518856151960790157e-10L,
       };
     };
-
-  constexpr std::array<long double, 11>
-  _GammaLanczos<long double>::_S_cheby;
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   template<>
@@ -2013,9 +1992,6 @@ _S_neg_double_factorial_table[999]
 	-3.352799410216973507737605805778536e-17Q,
       };
     };
-
-  constexpr std::array<__float128, 14>
-  _GammaLanczos<__float128>::_S_cheby;
 #endif
 
   /**
@@ -2070,23 +2046,25 @@ _S_neg_double_factorial_table[999]
     _Tp
     __log_gamma(_Tp __x)
     {
-#if _GLIBCXX_USE_C99_MATH_TR1
-      return std::lgamma(__x);
-#else
-      if (__x > _Tp{0.5L})
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+//#if _GLIBCXX_USE_C99_MATH_TR1
+//      return std::lgamma(__x);
+//#else
+      if (std::real(__x) > _Real{0.5L})
 	return __log_gamma_lanczos(__x);
       else
 	{
-	  const auto __sin_fact = std::abs(
-			std::sin(__gnu_cxx::__math_constants<_Tp>::__pi * __x));
-	  if (__sin_fact == _Tp{0})
+	  const auto __sin_fact = std::abs(std::sin(_S_pi * __x));
+	  if (__sin_fact == _Val{0})
 	    std::__throw_domain_error(__N("__log_gamma: "
 					  "argument is nonpositive integer"));
-	  return __gnu_cxx::__math_constants<_Tp>::__ln_pi
+	  return __gnu_cxx::__math_constants<_Real>::__ln_pi
 		     - std::log(__sin_fact)
-		     - __log_gamma_lanczos(_Tp{1} - __x);
+		     - __log_gamma_lanczos(_Real{1} - __x);
 	}
-#endif
+//#endif
     }
 
 
@@ -2104,7 +2082,7 @@ _S_neg_double_factorial_table[999]
       if (__x >= _Tp{0})
 	return _Tp{1};
       else
-	return int(-__x) & 1 == 0 ? -_Tp{1} : _Tp{1};
+	return (int(-__x) % 2 == 0) ? -_Tp{1} : _Tp{1};
     }
 
 
@@ -2183,11 +2161,11 @@ _S_neg_double_factorial_table[999]
     _Tp
     __gamma(_Tp __x)
     {
-#if _GLIBCXX_USE_C99_MATH_TR1
-      return std::tgamma(__x);
-#else
+//#if _GLIBCXX_USE_C99_MATH_TR1
+//      return std::tgamma(__x);
+//#else
       return std::exp(__log_gamma(__x));
-#endif
+//#endif
     }
 
 
@@ -2198,28 +2176,30 @@ _S_neg_double_factorial_table[999]
     std::pair<_Tp, _Tp>
     __gamma_series(_Tp __a, _Tp __x)
     {
-      constexpr auto _S_eps = 3.0 * __gnu_cxx::__epsilon<_Tp>();
-      const auto _S_itmax = 10 * (10 + std::sqrt(std::abs(__a)));
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_eps = _Real{3} * __gnu_cxx::__epsilon<_Real>();
+      const auto _S_itmax = 10 * int(10 + std::sqrt(std::abs(__a)));
 
-      _Tp __lngam = std::lgamma(__a);
+      auto __lngam = __log_gamma(__a);
 
-      if (__x < _Tp{0})
-	std::__throw_domain_error(__N("gamma_series: argument less than 0"));
-      else if (__x == _Tp{0})
-	return std::make_pair(_Tp{0}, __lngam);
+      if (std::real(__x) < _Real{0})
+	std::__throw_domain_error(__N("__gamma_series: argument less than 0"));
+      else if (__x == _Real{0})
+	return std::make_pair(_Val{0}, __lngam);
       else
 	{
-	  _Tp __aa = __a;
-	  _Tp __term, __sum;
+	  auto __aa = __a;
+	  _Val __term, __sum;
 	  __term = __sum = _Tp{1} / __a;
 	  for (unsigned int __n = 1; __n <= _S_itmax; ++__n)
 	    {
-	      __aa += _Tp{1};
+	      __aa += _Real{1};
 	      __term *= __x / __aa;
 	      __sum += __term;
 	      if (std::abs(__term) < _S_eps * std::abs(__sum))
 		{
-		  _Tp __gamser = std::exp(-__x + __a * std::log(__x) - __lngam)
+		  auto __gamser = std::exp(-__x + __a * std::log(__x) - __lngam)
 				* __sum;
 		  return std::make_pair(__gamser, __lngam);
 		}
@@ -2236,32 +2216,34 @@ _S_neg_double_factorial_table[999]
     std::pair<_Tp, _Tp>
     __gamma_cont_frac(_Tp __a, _Tp __x)
     {
-      constexpr auto _S_fpmin = 3 * __gnu_cxx::__min<_Tp>();
-      constexpr auto _S_eps = 3 * __gnu_cxx::__epsilon<_Tp>();
-      const auto _S_itmax = 10 * (10 + std::sqrt(std::abs(__a)));
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_fpmin = _Real{3} * __gnu_cxx::__min<_Real>();
+      constexpr auto _S_eps = _Real{3} * __gnu_cxx::__epsilon<_Real>();
+      const auto _S_itmax = 10 * int(10 + std::sqrt(std::abs(__a)));
 
       auto __lngam = std::lgamma(__a);
 
-      auto __b = __x + _Tp{1} - __a;
-      auto __c = _Tp{1} / _S_fpmin;
-      auto __d = _Tp{1} / __b;
+      auto __b = __x + _Real{1} - __a;
+      auto __c = _Real{1} / _S_fpmin;
+      auto __d = _Real{1} / __b;
       auto __h = __d;
       for (unsigned int __n = 1; __n <= _S_itmax; ++__n)
 	{
-	  auto __an = -_Tp{__n} * (_Tp{__n} - __a);
-	  __b += _Tp{2};
+	  auto __an = -_Real{__n} * (_Real{__n} - __a);
+	  __b += _Real{2};
 	  __d = __an * __d + __b;
 	  if (std::abs(__d) < _S_fpmin)
 	    __d = _S_fpmin;
 	  __c = __b + __an / __c;
 	  if (std::abs(__c) < _S_fpmin)
 	    __c = _S_fpmin;
-	  __d = _Tp{1} / __d;
-	  _Tp __del = __d * __c;
+	  __d = _Real{1} / __d;
+	  auto __del = __d * __c;
 	  __h *= __del;
-	  if (std::abs(__del - _Tp{1}) < _S_eps)
+	  if (std::abs(__del - _Real{1}) < _S_eps)
 	    {
-	      _Tp __gamcf = std::exp(-__x + __a * std::log(__x) - __lngam)
+	      auto __gamcf = std::exp(-__x + __a * std::log(__x) - __lngam)
 			  * __h;
 	      return std::make_pair(__gamcf, __lngam);
 	    }
@@ -2287,18 +2269,20 @@ _S_neg_double_factorial_table[999]
     _Tp
     __pgamma(_Tp __a, _Tp __x)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
 
       if (__isnan(__a) || __isnan(__x))
 	return _S_NaN;
 
-      if (__x < _Tp{0} || __a <= _Tp{0})
+      if (std::real(__x) < _Real{0} || std::real(__a) <= _Real{0})
 	std::__throw_domain_error("pgamma: invalid arguments");
 
-      if (__x < __a + _Tp{1})
+      if (std::real(__x) < std::real(__a + _Real{1}))
 	return __gamma_series(__a, __x).first;
       else
-	return _Tp{1} - __gamma_cont_frac(__a, __x).first;
+	return _Val{1} - __gamma_cont_frac(__a, __x).first;
     }
 
 
@@ -2318,16 +2302,18 @@ _S_neg_double_factorial_table[999]
     _Tp
     __qgamma(_Tp __a, _Tp __x)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
 
       if (__isnan(__a) || __isnan(__x))
 	return _S_NaN;
 
-      if (__x < _Tp{0} || __a <= _Tp{0})
+      if (std::real(__x) < _Real{0} || std::real(__a) <= _Real{0})
 	std::__throw_domain_error("__qgamma: invalid arguments");
 
-      if (__x < __a + _Tp{1})
-	return _Tp{1} - __gamma_series(__a, __x).first;
+      if (std::real(__x) < std::real(__a + _Real{1}))
+	return _Val{1} - __gamma_series(__a, __x).first;
       else
 	return __gamma_cont_frac(__a, __x).first;
     }
@@ -2344,15 +2330,17 @@ _S_neg_double_factorial_table[999]
     _Tp
     __tgamma_lower(_Tp __a, _Tp __x)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
 
       if (__isnan(__a) || __isnan(__x))
 	return _S_NaN;
 
-      if (__x < _Tp{0} || __a <= _Tp{0})
+      if (std::real(__x) < _Real{0} || std::real(__a) <= _Real{0})
 	std::__throw_domain_error("__tgamma_lower: invalid arguments");
 
-      if (__x < __a + _Tp{1})
+      if (std::real(__x) < std::real(__a + _Real{1}))
 	{
 	  std::pair<_Tp, _Tp> __gp = __gamma_series(__a, __x);
 	  return std::exp(__gp.second) * __gp.first;
@@ -2376,22 +2364,24 @@ _S_neg_double_factorial_table[999]
     _Tp
     __tgamma(_Tp __a, _Tp __x)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
 
       if (__isnan(__a) || __isnan(__x))
 	return _S_NaN;
 
-      if (__x < _Tp{0} || __a <= _Tp{0})
+      if (std::real(__x) < _Real{0} || std::real(__a) <= _Real{0})
 	std::__throw_domain_error("__tgamma: invalid arguments");
 
-      if (__x < __a + _Tp{1})
+      if (std::real(__x) < std::real(__a + _Real{1}))
 	{
-	  std::pair<_Tp, _Tp> __gp = __gamma_series(__a, __x);
+	  auto __gp = __gamma_series(__a, __x);
 	  return std::exp(__gp.second) * (_Tp{1} - __gp.first);
 	}
       else
 	{
-	  std::pair<_Tp, _Tp> __gp = __gamma_cont_frac(__a, __x);
+	  auto __gp = __gamma_cont_frac(__a, __x);
 	  return std::exp(__gp.second) * __gp.first;
 	}
     }
@@ -2400,7 +2390,7 @@ _S_neg_double_factorial_table[999]
   /**
    * @brief  Return the logarithm of the (upper) Pochhammer symbol
    * or the rising factorial function.
-   * The Pochammer symbol is defined by
+   * The Pochammer symbol is defined for integer order by
    * @f[
    *   (a)_n = \prod_{k=0}^{n-1} (a + k), (a)_0 = 1
    *	     = \Gamma(a + n) / \Gamma(n)
