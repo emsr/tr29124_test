@@ -568,7 +568,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * This routine computes
    * @f[
-   *  E_\nu(z) = \exp{z} \sqrt{2 z/\pi} K_\nu(z), for \nu = 1/3 and \nu = 2/3
+   *   E_\nu(z) = \exp{z} \sqrt{2 z/\pi} K_\nu(z), for \nu = 1/3 and \nu = 2/3
    * @f]
    * using a rational approximation given in
    *
@@ -587,7 +587,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Hence, certain considerations of overflow, underflow, and
    * loss of significance are unimportant for our purpose.
    *
-   * @param[in] __z The value for which the quantity E_nu is to be computed.
+   * @param[in] __z The value for which the quantity @f$ E_\nu @f$ is to be computed.
    *  	     it is recommended that abs(z) not be too small and that
    *   	     @f$ |\arg(z)| <= 3pi/4 @f$.
    * @param[in] __eps The maximum relative error allowable in the computed
