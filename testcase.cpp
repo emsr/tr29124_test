@@ -43,6 +43,7 @@ template<typename Real>
     using __gnu_cxx::airy_bi;
     using       std::assoc_laguerre;
     using       std::assoc_legendre;
+    using __gnu_cxx::bernoulli;
     using       std::beta;
     using __gnu_cxx::bincoef;
     using __gnu_cxx::chebyshev_t;
@@ -1573,6 +1574,18 @@ template<typename Real>
 				std::make_pair(true, true), 41),
 	     "GSL",
 	     file_clausen_c, true, true);
+
+    // Bernoulli numbers.
+    std::cout << "bernoulli" << std::endl;
+    basename = "bernoulli";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_bernoulli(filename.c_str());
+    maketest(bernoulli<Real>, beast::bernoulli,
+	     "testcase_bernoulli", "__gnu_cxx", basename,
+	     "n", fill_argument(std::make_pair(0U, 100U),
+				std::make_pair(true, true), 101),
+	     "Boost",
+	     file_bernoulli);
 
 #endif // STD
 
