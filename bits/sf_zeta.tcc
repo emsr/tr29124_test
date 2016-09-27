@@ -422,7 +422,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       for (unsigned int __i = 1; __i < __maxit; ++__i)
 	{
 	  bool __punt = false;
-	  auto __term = _Tp{1};
+	  auto __term = _Val{1};
 	  auto __bincoeff = _Real{1};
 	  // This for loop starts at 1 because we already calculated the value
 	  // of the zeroeth order in __term above.
