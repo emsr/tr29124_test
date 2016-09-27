@@ -162,6 +162,50 @@ template<typename _Tp>
       }
   }
 
+template<typename _Tp>
+  void
+  test_nontrivial_zeros()
+  {
+    using namespace std::literals::complex_literals;
+
+    using _Val = _Tp;
+    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Cmplx = std::complex<_Real>;
+
+    std::cout.precision(std::numeric_limits<_Real>::digits10);
+    std::cout << std::showpoint << std::scientific;
+    auto width = 8 + std::cout.precision();
+
+    _Cmplx
+    __zeros[10]
+    {
+      0.5l + 14.134725141734693790457251983562470270784257115699il,
+      0.5l + 21.022039638771554992628479593896902777334340524903il,
+      0.5l + 25.010857580145688763213790992562821818659549672558il,
+      0.5l + 30.424876125859513210311897530584091320181560023715il,
+      0.5l + 32.935061587739189690662368964074903488812715603517il,
+      0.5l + 37.586178158825671257217763480705332821405597350831il,
+      0.5l + 40.918719012147495187398126914633254395726165962777il,
+      0.5l + 43.327073280914999519496122165406805782645668371837il,
+      0.5l + 48.005150881167159727942472749427516041686844001144il,
+      0.5l + 49.773832477672302181916784678563724057723178299677il
+    };
+
+    std::cout << '\n'
+	      << std::setw(4 + 2 * width) << "s"
+	      << std::setw(4 + 2 * width) << "zeta(s)"
+	      << std::setw(width) << "|zeta(s)|"
+	      << '\n';
+    for (auto s : __zeros)
+      {
+	auto zeta = std::__detail::__riemann_zeta(s);
+	std::cout << std::setw(4 + 2 * width) << s
+		  << std::setw(4 + 2 * width) << zeta
+		  << std::setw(width) << std::abs(zeta)
+		  << '\n';
+      }
+  }
+
 int
 main()
 {
@@ -171,6 +215,8 @@ main()
   std::cout << "zeta(" << 0.01l - 1.0il << ") = " << zetam << '\n';
   auto zetap = std::__detail::__riemann_zeta(0.01l + 1.0il);
   std::cout << "zeta(" << 0.01l + 1.0il << ") = " << zetap << '\n';
+
+  test_nontrivial_zeros<long double>();
 
   test_riemann_zeta_real<long double>();
 
