@@ -226,7 +226,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __fact *= __x;
 	      auto __term = __fact / (__i * __i);
 	      __sum += __term;
-	      if (std::abs(__term) < _S_eps)
+	      if (std::abs(__term) < _S_eps * std::abs(__sum))
 		break;
 	      if (__i + 1 == _S_maxit)
 		std::__throw_runtime_error(__N("__dilog: sum failed"));
@@ -267,7 +267,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  auto __term = std::pow(_Val(__k), -__s);
 	  __zeta += __term;
-	  if (std::abs(__term) < _S_eps * std::abs(__zeta))
+	  if (std::abs(__term) < _S_eps * std::abs(__zeta)
+	      || std::abs(__term) < _S_eps
+		 && std::abs(__zeta) < _Real{100} * _S_eps)
 	    break;
 	}
 
@@ -306,7 +308,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    break;
 	  __delta_prev = std::abs(__delta);
 	  __ans += __delta;
-	  if (std::abs(__delta) < _Real{0.5L} * _S_eps * std::abs(__ans))
+	  if (std::abs(__delta) < _Real{0.5L} * _S_eps * std::abs(__ans)
+	      || std::abs(__delta) < _S_eps
+		 && std::abs(__ans) < _Real{100} * _S_eps)
 	    break;
 	  __fact *= (__s + _Val(2 * __j + 1)) * (__s + _Val(2 * __j + 2))
 		  / __denom;
@@ -350,7 +354,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __term = __sgn / std::pow(_Val(__i), __s);
 	  __zeta += __term;
 	  __sgn = -__sgn;
-	  if (std::abs(__term) < _S_eps)
+	  if (std::abs(__term) < _S_eps * std::abs(__zeta)
+	      || std::abs(__term) < _S_eps
+		 && std::abs(__zeta) < _Real{100} * _S_eps)
 	    break;
 	}
       __zeta /= _Val{1} - std::pow(_Val{2}, _Val{1} - __s);
@@ -428,8 +434,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  // of the zeroeth order in __term above.
 	  for (unsigned int __j = 1; __j <= __i; ++__j)
 	    {
-	      auto incr = _Real(__i - __j + 1) / _Real(__j);
-	      __bincoeff *= -incr;
+	      auto __incr = _Real(__i - __j + 1) / _Real(__j);
+	      __bincoeff *= -__incr;
 	      if(std::abs(__bincoeff) > __max_bincoeff )
 		{
 		  // This only gets hit for x << 0.
@@ -442,7 +448,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    break;
 	  __term *= __num;
 	  __zeta += __term;
-	  if (std::abs(__term / __zeta) < _S_eps)
+	  if (std::abs(__term) < _S_eps * std::abs(__zeta)
+	      || std::abs(__term) < _S_eps
+		 && std::abs(__zeta) < _Real{100} * _S_eps)
 	    break;
 	  __num *= _Real{0.5L};
 	}
@@ -491,7 +499,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __fact = _Val{1}
 			    - std::pow(_Real(__prime_list[__i]), -__s);
 	  __zeta *= __fact;
-	  if (std::abs(_Tp{1} - __fact) < _S_eps)
+	  if (std::abs(_Tp{1} - __fact) < _S_eps) // Assume zeta near 1.
 	    break;
 	}
 
