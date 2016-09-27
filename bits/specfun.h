@@ -3619,7 +3619,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__log_pochhammer_lower<__type>(__a, __n);
     }
 
-  //  Upper Pochhammer symbols (see boost::rising_factorial)
+  //  Upper Pochhammer symbols
 
   inline float
   pochhammerf(float __a, float __n)
@@ -3640,7 +3640,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__pochhammer<__type>(__a, __n);
     }
 
-  //  Lower Pochhammer symbols (see boost::falling_factorial)
+  //  Lower Pochhammer symbols
 
   inline float
   pochhammer_lowerf(float __a, float __n)

@@ -73,6 +73,7 @@ main()
     using __gnu_cxx::airy_bi;
     using       std::assoc_laguerre;
     using       std::assoc_legendre;
+    using __gnu_cxx::bernoulli;
     using       std::beta;
     using __gnu_cxx::bincoef;
     using __gnu_cxx::chebyshev_t;
