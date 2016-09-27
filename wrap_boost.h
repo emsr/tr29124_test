@@ -327,6 +327,9 @@ double struve_h(double nu, double x);
 /// Struve L function.
 double struve_l(double nu, double x);
 
+/// Bernoulli numbers.
+double bernoulli(unsigned int n);
+
 } // namespace beast
 
 #endif // WRAP_BOOST_H
