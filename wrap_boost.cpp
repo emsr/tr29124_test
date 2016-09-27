@@ -765,5 +765,17 @@ struve_l(double /*nu*/, double /*x*/)
   return std::numeric_limits<double>::quiet_NaN();
 }
 
+/// Bernoulli numbers.
+double
+bernoulli(unsigned int n)
+{
+  if (n == 1)
+    return -0.5;
+  else if ((n & 1) == 1)
+    return 0.0;
+  else
+    return boost::math::bernoulli_b2n<double>(n / 2);
+}
+
 } // namespace beast
 
