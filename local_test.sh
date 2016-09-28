@@ -75,6 +75,7 @@ ${copy} check/check_sph_neumann.cc      ${test_dir}/21_sph_neumann/check_value.c
 
 ${makedir} ${text_dir}/airy_ai
 ${makedir} ${text_dir}/airy_bi
+${makedir} ${text_dir}/bernoulli
 ${makedir} ${text_dir}/bincoef
 ${makedir} ${text_dir}/clausen
 ${makedir} ${text_dir}/comp_ellint_d
@@ -142,6 +143,7 @@ ${makedir} ${text_dir}/zernike
 
 ${copy} check/check_airy_ai.cc            ${text_dir}/airy_ai/check_value.cc
 ${copy} check/check_airy_bi.cc            ${text_dir}/airy_bi/check_value.cc
+${copy} check/check_bernoulli.cc          ${text_dir}/bernoulli/check_value.cc
 ${copy} check/check_bincoef.cc            ${text_dir}/bincoef/check_value.cc
 ${copy} check/check_chi.cc                ${text_dir}/coshint/check_chi.cc
 ${copy} check/check_clausen_c.cc          ${text_dir}/clausen/check_value.cc
