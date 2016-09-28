@@ -2049,9 +2049,9 @@ _S_neg_double_factorial_table[999]
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-//#if _GLIBCXX_USE_C99_MATH_TR1
-//      return std::lgamma(__x);
-//#else
+#if _GLIBCXX_USE_C99_MATH_TR1
+      return std::lgamma(__x);
+#else
       if (std::real(__x) > _Real{0.5L})
 	return __log_gamma_lanczos(__x);
       else
@@ -2064,7 +2064,7 @@ _S_neg_double_factorial_table[999]
 		     - std::log(__sin_fact)
 		     - __log_gamma_lanczos(_Real{1} - __x);
 	}
-//#endif
+#endif
     }
 
 
@@ -2161,11 +2161,11 @@ _S_neg_double_factorial_table[999]
     _Tp
     __gamma(_Tp __x)
     {
-//#if _GLIBCXX_USE_C99_MATH_TR1
-//      return std::tgamma(__x);
-//#else
+#if _GLIBCXX_USE_C99_MATH_TR1
+      return std::tgamma(__x);
+#else
       return std::exp(__log_gamma(__x));
-//#endif
+#endif
     }
 
 

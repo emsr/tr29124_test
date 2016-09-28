@@ -41,6 +41,7 @@ ${tool} check/check_sph_neumann.cc      ${gcc_dir}/21_sph_neumann/check_value.cc
 
 ${tool} check/check_airy_ai.cc            ${ext_dir}/airy_ai/check_value.cc
 ${tool} check/check_airy_bi.cc            ${ext_dir}/airy_bi/check_value.cc
+${tool} check/check_bernoulli.cc          ${ext_dir}/bernoulli/check_value.cc
 ${tool} check/check_bincoef.cc            ${ext_dir}/bincoef/check_value.cc
 ${tool} check/check_chi.cc                ${ext_dir}/coshint/check_chi.cc
 ${tool} check/check_clausen_c.cc          ${ext_dir}/clausen/check_value.cc
