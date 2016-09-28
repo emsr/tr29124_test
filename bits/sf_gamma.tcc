@@ -1857,7 +1857,7 @@ _S_neg_double_factorial_table[999]
   /**
    *  @brief Return @f$\Gamma(z)@f$ by the Spouge algorithm:
    *  @f[
-   *    \Gamma(z+1) = (z+a)^{z+1/2}e^{-z-a}\left[ \sqrt{2\pi}
+   *    \Gamma(z+1) = (z+a)^{z+1/2}e^{-z-a}\left[ \sqrt{2\pi} +
    *      \sum_{k=1}^{\lceil a \rceil + 1}\frac{c_k(a)}{z+k}\right]
    *  @f]
    *  where
@@ -1882,17 +1882,20 @@ _S_neg_double_factorial_table[999]
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-      constexpr auto _S_2pi = _Real{2} * _S_pi;
-      auto __a = _Real{_GammaSpouge<_Real>::_S_cheby.size()};
+      constexpr auto _S_ln_pi = __gnu_cxx::__math_constants<_Real>::__ln_pi;
+      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Real>::__root_pi;
+      constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Real>::__root_2;
+      constexpr auto _S_sqrt_2pi = _S_sqrt_2 * _S_sqrt_pi;
+      auto __a = _Real{_GammaSpouge<_Real>::_S_cheby.size() + 1};
       const auto& __c = _GammaSpouge<_Real>::_S_cheby;
 
       // Reflection.
       if (std::real(__z) <= -__a)
-	return std::log(_S_pi) - std::log(std::sin(_S_pi * __z))
-			       - __log_gamma_spouge(_Real{1} - __z);
+	return _S_ln_pi - std::log(std::sin(_S_pi * __z))
+			- __log_gamma_spouge(_Real{1} - __z);
       else
 	{
-	  _Val __sum = std::sqrt(_S_2pi);
+	  _Val __sum = _S_sqrt_2pi;
 	  for (int __k = 0; __k < __c.size(); ++__k)
 	    __sum += __c[__k] / (__z + _Real(__k + 1));
 	  return std::log(__sum)
@@ -2015,15 +2018,15 @@ _S_neg_double_factorial_table[999]
       auto __g =  _GammaLanczos<_Real>::_S_g;
       // Reflection.
       if (std::real(__z) <= -__g)
-	return std::log(_S_pi) - std::log(std::sin(_S_pi * __z))
-			       - __log_gamma_lanczos(_Real{1} - __z);
+	return _S_ln_pi - std::log(std::sin(_S_pi * __z))
+			- __log_gamma_lanczos(_Real{1} - __z);
       else
         {
 	  auto __fact = _Val{1};
 	  auto __sum = _Val{0.5L} * __c[0];
 	  for (unsigned int __k = 1, __n = __c.size(); __k < __n; ++__k)
 	    {
-	      __fact *= (__z - _Real(__k + 1)) / (__z + _Real(__k));
+	      __fact *= (__z - _Real(__k - 1)) / (__z + _Real(__k));
 	      __sum += __fact * __c[__k];
 	    }
 	  return _S_log_sqrt_2pi + std::log(__sum)
