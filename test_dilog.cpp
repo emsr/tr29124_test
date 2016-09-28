@@ -1,4 +1,4 @@
-// $HOME/bin/bin/g++ -std=c++14 -o test_dilog test_dilog.cpp
+// $HOME/bin/bin/g++ -std=c++14 -I. -o test_dilog test_dilog.cpp
 
 // ./test_dilog > test_dilog.txt
 
@@ -7,7 +7,7 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "specfun_util.h"
+#include <bits/specfun_util.h>
 
 namespace std
 {
@@ -24,9 +24,9 @@ namespace __detail
 	= 1.644934066848226436472415166646025189219L;
       if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__x > +_Tp(1))
+      else if (__x > _Tp(+1))
 	std::__throw_range_error(__N("dilog: argument greater than one"));
-      else if (__x < -_Tp(1))
+      else if (__x < _Tp(-1))
 	{
 	  auto __lnfact = std::log(_Tp(1) - __x);
 	  return -__dilog(_Tp(1) - _Tp(1) / (_Tp(1) - __x))
