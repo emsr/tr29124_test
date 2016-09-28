@@ -4668,6 +4668,45 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__dirichlet_beta<__type>(__s);
     }
 
+  // Dirichlet lambda function
+
+  /**
+   * Return the Dirichlet lambda function of real argument @f$ s @f$.
+   *
+   * @see dirichlet_lambda for details.
+   */
+  inline float
+  dirichlet_lambdaf(float __s)
+  { return std::__detail::__dirichlet_lambda<float>(__s); }
+
+  /**
+   * Return the Dirichlet lambda function of real argument @f$ s @f$.
+   *
+   * @see dirichlet_lambda for details.
+   */
+  inline long double
+  dirichlet_lambdal(long double __s)
+  { return std::__detail::__dirichlet_lambda<long double>(__s); }
+
+  /**
+   * Return the Dirichlet lambda function of real argument @f$ s @f$.
+   *
+   * The Dirichlet lambda function is defined by
+   * @f[
+   *    \lambda(s) = \sum_{k=0}^\infty \frac{1}{(2k+1)^s}
+   *    = \left( 1 - 2^{-s} \right) \zeta(s)
+   * @f]
+   *
+   * @param __s 
+   */
+  template<typename _Tp>
+    inline _Tp
+    dirichlet_lambda(_Tp __s)
+    {
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      return std::__detail::__dirichlet_lambda<__type>(__s);
+    }
+
   // Clausen S functions
 
   /**
