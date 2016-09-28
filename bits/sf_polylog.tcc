@@ -943,7 +943,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
 	// Wikipedia says that this is required for Wood's formula
 	return __polylog_exp_asymp(__s, __clamp_0_m2pi(__w));
-  }
+    }
 
   /**
    * Return the polylog where s is a negative real value and for real argument.
@@ -1160,6 +1160,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	return std::imag(__polylog(__w, _S_i));
+    }
+
+  /**
+   *  Return the Dirichlet lambda function for real argument.
+   *
+   *  @param __w  The real argument.
+   *  @return  The Dirichlet lambda function.
+   */
+  template<typename _Tp>
+    _Tp
+    __dirichlet_lambda(_Tp __w)
+    {
+      if (__isnan(__w))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else
+	return (std::__detail::__riemann_zeta(__w) + __dirichlet_eta(__w)) / _Tp{2};
     }
 
   /**
