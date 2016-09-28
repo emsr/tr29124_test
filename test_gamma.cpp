@@ -49,16 +49,22 @@ template<typename _Tp, typename _Gamma>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
+    std::cout << '\n'
+	      << ' ' << std::setw(width) << "s"
+	      << ' ' << std::setw(width) << "log_gamma"
+	      << ' ' << std::setw(width) << "lgamma"
+	      << ' ' << std::setw(width) << "delta_rat"
+	      << '\n';
     int i_min = -200;
     for (int i = i_min; i <= +500; ++i)
       {
 	auto s = 0.10L * i;
-	auto gam = std::__detail::__log_gamma_spouge(s);
+	auto gam = gamma(s);
 	auto gam0 = std::lgamma(s);
-	std::cout << std::setw(width) << s
-		  << std::setw(width) << gam
-		  << std::setw(width) << gam0
-		  << std::setw(width) << (gam - gam0) / std::abs(gam0)
+	std::cout << ' ' << std::setw(width) << s
+		  << ' ' << std::setw(width) << gam
+		  << ' ' << std::setw(width) << gam0
+		  << ' ' << std::setw(width) << (gam - gam0) / std::abs(gam0)
 		  << '\n';
       }
   }
@@ -66,6 +72,10 @@ template<typename _Tp, typename _Gamma>
 int
 main()
 {
+
+  std::cout << "\n\nLanczos Algorithm\n\n";
   test_gamma<long double>(std::__detail::__log_gamma_lanczos<long double>);
+
+  std::cout << "\n\nSpouge Algorithm\n\n";
   test_gamma<long double>(std::__detail::__log_gamma_spouge<long double>);
 }
