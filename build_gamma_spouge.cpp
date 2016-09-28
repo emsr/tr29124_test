@@ -19,6 +19,7 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o build_gamma_spouge build_gamma_
     {
       std::cout.precision(std::numeric_limits<_Tp>::digits10);
       std::cout << std::showpoint << std::scientific;
+      auto width = 8 + std::cout.precision();
 
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       const auto _S_pi  = __gnu_cxx::__math_constants<_Tp>::__pi;
@@ -41,7 +42,7 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o build_gamma_spouge build_gamma_
 	{
 	  __factc *= -_Tp{1} / _Tp(__k);
 	  auto __ak = _Tp(__a - __k - 1);
-	  __c.push_back(__factc * std::pow(__ak, _Tp(__k + 0.5L)) * std::exp(__ak));
+	  __c.push_back(__factc * std::pow(__ak, _Tp(__k + 0.5Q)) * std::exp(__ak));
 	  std::cout << "c_" << __k << " = " << __c.back() << '\n';
 	}
 
@@ -50,26 +51,32 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o build_gamma_spouge build_gamma_
 	-> _Tp
 	{
 	  // Reflection is right but auto and use of functions won't compile.
-	  //if (__z <= -a)
-	    //return std::log(_S_pi) - std::log(std::sin(_S_pi * __z)) - __log_gamma_spouge(_Tp{1} - __z);
+	  //if (__z <= -__a)
+	  //  return std::log(_S_pi) - std::log(std::sin(_S_pi * __z)) - __log_gamma_spouge(_Tp{1} - __z);
 	  //else
 	    {
 	      auto __sum = std::sqrt(_S_2pi);
 	      for (int __k = 0; __k < __c.size(); ++__k)
 		__sum += __c[__k] / (__z + __k + 1);
 	      return std::log(__sum)
-		   + (__z + _Tp{0.5L}) * std::log(__z + __a)
+		   + (__z + _Tp{0.5Q}) * std::log(__z + __a)
 		   - (__z + __a) - std::log(__z);
 	    }
 	};
 
+      std::cout << '\n'
+		<< ' ' << std::setw(width) << "z"
+		<< ' ' << std::setw(width) << "spouge"
+		<< ' ' << std::setw(width) << "lgamma"
+		<< ' ' << std::setw(width) << "delta"
+		<< '\n';
       for (int i = 0; i <= 500; ++i)
 	{
-	  auto z = _Tp{0.01L} * i;
-	  std::cout << ' ' << z
-		    << ' ' << __log_gamma_spouge(z)
-		    << ' ' << std::lgamma(z)
-		    << ' ' << __log_gamma_spouge(z) - std::lgamma(z) << '\n';
+	  auto z = _Tp{0.01Q} * i;
+	  std::cout << ' ' << std::setw(width) << z
+		    << ' ' << std::setw(width) << __log_gamma_spouge(z)
+		    << ' ' << std::setw(width) << std::lgamma(z)
+		    << ' ' << std::setw(width) << __log_gamma_spouge(z) - std::lgamma(z) << '\n';
 	}
 
       //  Try to invert using Newton...
@@ -90,16 +97,24 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o build_gamma_spouge build_gamma_
 	}
       };
 
+      std::cout << '\n'
+		<< ' ' << std::setw(width) << "z"
+		<< ' ' << std::setw(width) << "spouge"
+		<< ' ' << std::setw(width) << "lgamma"
+		<< ' ' << std::setw(width) << "delta"
+		<< ' ' << std::setw(width) << "inverse"
+		<< ' ' << std::setw(width) << "delta_inv"
+		<< '\n';
       for (int i = 0; i <= 500; ++i)
 	{
-	  auto z = _Tp{0.01L} * i;
+	  auto z = _Tp{0.01Q} * i;
 	  _Tp x, y;
-	  std::cout << ' ' << z
-		    << ' ' << (y = __log_gamma_spouge(z))
-		    << ' ' << std::lgamma(z)
-		    << ' ' << __log_gamma_spouge(z) - std::lgamma(z)
-		    << ' ' << (x = __log_gamma_inv(y))
-		    << ' ' << x - y
+	  std::cout << ' ' << std::setw(width) << z
+		    << ' ' << std::setw(width) << (y = __log_gamma_spouge(z))
+		    << ' ' << std::setw(width) << std::lgamma(z)
+		    << ' ' << std::setw(width) << __log_gamma_spouge(z) - std::lgamma(z)
+		    << ' ' << std::setw(width) << (x = __log_gamma_inv(y))
+		    << ' ' << std::setw(width) << x - z
 		    << '\n';
 	}
     }

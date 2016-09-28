@@ -46,14 +46,14 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o build_gamma_lanczos build_gamma
       const auto _S_pi  = __gnu_cxx::__math_constants<_Tp>::__pi;
       auto __fact = std::sqrt(_Tp{2} / _S_pi);
       auto __sum = __cheby(2 * __k + 1, 1) * __fact
-		 * std::exp(_Tp(__g + 0.5L))
-		 / std::sqrt(_Tp(__g + 0.5L));
+		 * std::exp(_Tp(__g + 0.5Q))
+		 / std::sqrt(_Tp(__g + 0.5Q));
       for (int __a = 1; __a <= __k; ++__a)
 	{
 	  __fact *= _Tp(2 * __a - 1) / 2;
 	  __sum += __cheby(2 * __k + 1, 2 * __a + 1) * __fact
-		 * std::pow(_Tp(__a + __g + 0.5L), -_Tp(__a + 0.5L))
-		 * std::exp(_Tp(__a + __g + 0.5L));
+		 * std::pow(_Tp(__a + __g + 0.5Q), -_Tp(__a + 0.5Q))
+		 * std::exp(_Tp(__a + __g + 0.5Q));
 	}
       return __sum;
     }
@@ -64,13 +64,14 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o build_gamma_lanczos build_gamma
     {
       std::cout.precision(std::numeric_limits<_Tp>::digits10);
       std::cout << std::showpoint << std::scientific;
+      auto width = 8 + std::cout.precision();
 
       // From Pugh..
       int __n_old = 0;
       int __n = -2 - 0.3 * std::log(std::numeric_limits<_Tp>::epsilon());
-      std::cout << "n = " << __n << '\n';
+      std::cout << "n_Pugh = " << __n << '\n';
 
-      auto __g = __n - _Tp{0.5L};
+      auto __g = __n - _Tp{0.5Q};
       std::cout << "g = " << __g << '\n';
       while (__n != __n_old)
 	{
@@ -94,7 +95,7 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o build_gamma_lanczos build_gamma
 		{
 		  __n_old = __n;
 		  __n = __k;
-		  __g = __n - _Tp{0.5L};
+		  __g = __n - _Tp{0.5Q};
 		  break;
 		}
 	      __prev = __curr;
@@ -111,25 +112,31 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o build_gamma_lanczos build_gamma
 	  constexpr auto _S_ln_pi = __gnu_cxx::__math_constants<_Tp>::__ln_pi;
 	  constexpr auto _S_log_sqrt_2pi = (_S_ln_2 + _S_ln_pi) / _Tp{2};
 	  auto __fact = _Tp{1};
-	  auto __sum = _Tp{0.5L} * __p(0, __g);
+	  auto __sum = _Tp{0.5Q} * __p(0, __g);
 	  for (unsigned int __k = 1; __k < __n; ++__k)
 	    {
 	      __fact *= (__z - __k + 1) / (__z + __k);
 	      __sum += __fact * __p(__k, __g);
 	    }
 	  return _S_log_sqrt_2pi + std::log(__sum)
-	       + (__z + 0.5L) * std::log(__z + __g + 0.5L)
-	       - (__z + __g + 0.5L) - std::log(__z);
+	       + (__z + _Tp{0.5Q}) * std::log(__z + __g + _Tp{0.5Q})
+	       - (__z + __g + _Tp{0.5Q}) - std::log(__z);
 	};
 
-      std::cout << '\n';
+      std::cout << '\n'
+		<< ' ' << std::setw(width) << "z"
+		<< ' ' << std::setw(width) << "lanczos"
+		<< ' ' << std::setw(width) << "lgamma"
+		<< ' ' << std::setw(width) << "delta"
+		<< '\n';
       for (int i = 0; i <= 500; ++i)
 	{
 	  auto z = _Tp{0.01Q} * i;
-	  std::cout << ' ' << z
-		    << ' ' << __log_gamma_lanczos(z)
-		    << ' ' << std::lgamma(z)
-		    << ' ' << __log_gamma_lanczos(z) - std::lgamma(z) << '\n';
+	  std::cout << ' ' << std::setw(width) << z
+		    << ' ' << std::setw(width) << __log_gamma_lanczos(z)
+		    << ' ' << std::setw(width) << std::lgamma(z)
+		    << ' ' << std::setw(width) << __log_gamma_lanczos(z) - std::lgamma(z)
+		    << '\n';
 	}
     }
 
