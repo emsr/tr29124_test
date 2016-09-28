@@ -199,9 +199,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	= __gnu_cxx::__math_constants<_Tp>::__pi_sqr_div_6;
       if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
-      else if (__x > +_Tp{1})
+      else if (__x > _Tp{+1})
 	std::__throw_range_error(__N("dilog: argument greater than one"));
-      else if (__x < -_Tp{1})
+      else if (__x < _Tp{-1})
 	{
 	  auto __lnfact = std::log(_Tp{1} - __x);
 	  return -__dilog(_Tp{1} - _Tp{1} / (_Tp{1} - __x))
