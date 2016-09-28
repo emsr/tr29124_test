@@ -802,8 +802,8 @@ template<typename Real>
     std::ofstream file_dilog(filename.c_str());
     maketest(dilog, gsl::dilog,
 	     "testcase_dilog", "__gnu_cxx", basename,
-	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
-				std::make_pair(true, true), 41),
+	     "x", fill_argument(std::make_pair(Real{-10}, Real{1}),
+				std::make_pair(true, true), 23),
 	     "GSL",
 	     file_dilog);
 
