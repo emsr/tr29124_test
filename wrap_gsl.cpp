@@ -636,6 +636,36 @@ tgamma_lower(double a, double x)
     return result.val - tgamma(a, x);
 }
 
+/// Non-normalized (upper) log incomplete gamma functions.
+double
+lgamma(double a, double x)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Non-normalized lower log incomplete gamma functions.
+double
+lgamma_lower(double a, double x)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Non-normalized lower incomplete gamma functions.
+double
+tgamma(double a, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_gamma_inc_e(a, x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in tgamma:");
+      msg << " a=" << a << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
 /// Normalized incomlete gamma functions.
 double
 qgamma(double a, double x)
@@ -661,22 +691,6 @@ pgamma(double a, double x)
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in pgamma:");
-      msg << " a=" << a << " x=" << x;
-      throw std::runtime_error(msg.str());
-    }
-  else
-    return result.val;
-}
-
-/// Non-normalized (upper) incomlete gamma functions.
-double
-tgamma(double a, double x)
-{
-  gsl_sf_result result;
-  int stat = gsl_sf_gamma_inc_e(a, x, &result);
-  if (stat != GSL_SUCCESS)
-    {
-      std::ostringstream msg("Error in tgamma:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
