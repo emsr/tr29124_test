@@ -1650,14 +1650,14 @@ _S_neg_double_factorial_table[999]
 	    __fact *= __k / (_Tp{2} * _S_pi);
 	  __fact *= _Tp{2};
 
-	  // Riemann zeta function.
+	 // Riemann zeta function for (even) integer argument.
 	  auto __sum = _Tp{1};
 	  for (unsigned int __i = 2; __i < 1000; ++__i)
 	    {
 	      auto __term = std::pow(_Tp(__i), -_Tp(__n));
+	      __sum += __term;
 	      if (__term < __gnu_cxx::__epsilon<_Tp>())
 		break;
-	      __sum += __term;
 	    }
 
 	  return __fact * __sum;
@@ -1666,7 +1666,7 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *   @brief This returns Bernoulli number @f$B_n@f$.
+   *   @brief This returns Bernoulli number @f$ B_n @f$.
    *
    *   @param __n the order n of the Bernoulli number.
    *   @return  The Bernoulli number of order n.
@@ -1678,10 +1678,11 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   *   @brief This returns Bernoulli number @f$B_n@f$.
+   * @brief This returns Bernoulli number @f$ B_2n @f$ at even integer
+   * arguments @f$ 2n @f$.
    *
-   *   @param __n the order n of the Bernoulli number.
-   *   @return  The Bernoulli number of order n.
+   * @param __n the half-order n of the Bernoulli number.
+   * @return  The Bernoulli number of order 2n.
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
@@ -1877,7 +1878,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __log_gamma_spouge(_Tp __z)
+    __log_gammap1_spouge(_Tp __z)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
@@ -1892,7 +1893,7 @@ _S_neg_double_factorial_table[999]
       // Reflection.
       if (std::real(__z) <= -__a)
 	return _S_ln_pi - std::log(std::sin(_S_pi * __z))
-			- __log_gamma_spouge(_Real{1} - __z);
+			- __log_gammap1_spouge(-__z);
       else
 	{
 	  _Val __sum = _S_sqrt_2pi;
@@ -1900,7 +1901,7 @@ _S_neg_double_factorial_table[999]
 	    __sum += __c[__k] / (__z + _Real(__k + 1));
 	  return std::log(__sum)
 	       + (__z + _Real{0.5L}) * std::log(__z + __a)
-	       - (__z + __a) - std::log(__z);
+	       - (__z + __a);
 	}
     }
 
@@ -1999,14 +2000,14 @@ _S_neg_double_factorial_table[999]
 
   /**
    *  @brief Return @f$log(\Gamma(x))@f$ by the Lanczos method.
-   *         This method dominates all others on the positive axis I think.
+   *  This method dominates all others on the positive axis I think.
    *
    *  @param __x The argument of the log of the gamma function.
    *  @return  The logarithm of the gamma function.
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __log_gamma_lanczos(_Tp __z)
+    __log_gammap1_lanczos(_Tp __z)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
@@ -2019,7 +2020,7 @@ _S_neg_double_factorial_table[999]
       // Reflection.
       if (std::real(__z) <= -__g)
 	return _S_ln_pi - std::log(std::sin(_S_pi * __z))
-			- __log_gamma_lanczos(_Real{1} - __z);
+			- __log_gammap1_lanczos(-__z);
       else
         {
 	  auto __fact = _Val{1};
@@ -2031,7 +2032,7 @@ _S_neg_double_factorial_table[999]
 	    }
 	  return _S_log_sqrt_2pi + std::log(__sum)
 	       + (__z + _Real{0.5L}) * std::log(__z + __g + _Real{0.5L})
-	       - (__z + __g + _Real{0.5L}) - std::log(__z);
+	       - (__z + __g + _Real{0.5L});
 	}
     }
 
@@ -2056,7 +2057,7 @@ _S_neg_double_factorial_table[999]
       return std::lgamma(__x);
 #else
       if (std::real(__x) > _Real{0.5L})
-	return __log_gamma_lanczos(__x);
+	return __log_gammap1_lanczos(__x - _Real{1});
       else
 	{
 	  const auto __sin_fact = std::abs(std::sin(_S_pi * __x));
@@ -2065,7 +2066,7 @@ _S_neg_double_factorial_table[999]
 					  "argument is nonpositive integer"));
 	  return __gnu_cxx::__math_constants<_Real>::__ln_pi
 		     - std::log(__sin_fact)
-		     - __log_gamma_lanczos(_Real{1} - __x);
+		     - __log_gammap1_lanczos(-__x);
 	}
 #endif
     }

@@ -59,7 +59,7 @@ template<typename _Tp, typename _Gamma>
     for (int i = i_min; i <= +500; ++i)
       {
 	auto s = 0.10L * i;
-	auto gam = gamma(s);
+	auto gam = gamma(s - _Tp{1});
 	auto gam0 = std::lgamma(s);
 	std::cout << ' ' << std::setw(width) << s
 		  << ' ' << std::setw(width) << gam
@@ -74,8 +74,8 @@ main()
 {
 
   std::cout << "\n\nLanczos Algorithm\n\n";
-  test_gamma<long double>(std::__detail::__log_gamma_lanczos<long double>);
+  test_gamma<long double>(std::__detail::__log_gammap1_lanczos<long double>);
 
   std::cout << "\n\nSpouge Algorithm\n\n";
-  test_gamma<long double>(std::__detail::__log_gamma_spouge<long double>);
+  test_gamma<long double>(std::__detail::__log_gammap1_spouge<long double>);
 }

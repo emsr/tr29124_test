@@ -55,7 +55,7 @@ template<typename _Tp>
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
-    using GammaT = decltype(std::__detail::__log_gamma_spouge(_Cmplx{}));
+    using GammaT = decltype(std::__detail::__log_gammap1_spouge(_Cmplx{}));
     std::vector<std::vector<GammaT>> zv;
     std::vector<std::vector<GammaT>> gammav;
 
@@ -70,7 +70,7 @@ template<typename _Tp>
 	  {
 	    auto t = _Cmplx(0.10L * i, 0.10L * j);
 	    zv.back().push_back(t);
-	    gammav.back().push_back(std::__detail::__log_gamma_spouge(t));
+	    gammav.back().push_back(std::__detail::__log_gammap1_spouge(t - GammaT{1}));
 	  }
       }
 
@@ -151,7 +151,7 @@ template<typename _Tp>
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
-    using GammaT = decltype(std::__detail::__log_gamma_lanczos(_Cmplx{}));
+    using GammaT = decltype(std::__detail::__log_gammap1_lanczos(_Cmplx{}));
     std::vector<std::vector<GammaT>> zv;
     std::vector<std::vector<GammaT>> gammav;
 
@@ -166,7 +166,7 @@ template<typename _Tp>
 	  {
 	    auto t = _Cmplx(0.10L * i, 0.10L * j);
 	    zv.back().push_back(t);
-	    gammav.back().push_back(std::__detail::__log_gamma_lanczos(t));
+	    gammav.back().push_back(std::__detail::__log_gammap1_lanczos(t - GammaT{1}));
 	  }
       }
 
