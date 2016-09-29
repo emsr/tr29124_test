@@ -2,7 +2,7 @@
 $HOME/bin_tr29124/bin/g++ -std=c++17 -g -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_riemann_zeta > test_riemann_zeta.txt
 
-$HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath
 ./test_riemann_zeta > test_riemann_zeta.txt
 */
 

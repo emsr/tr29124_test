@@ -71,6 +71,11 @@ for [] TR1 test generation...
 
 22. [] ../LambertW has a very good static polynomial I think - with static Horner.
 
-23. [] We have both psi *and* digamma!  Pick one!
+23. [DONE] We have both psi *and* digamma!  Pick one!
 
 24. [DONE] polynomial.h needs outline polynomial.tcc
+
+25. [] Why did dilog lose the x=0 test?
+       It is because the answer dilog(0) == 0.  So the fractional error blows up even wgen the answer is spot on.
+       But it doesn't look like such a point would be skipped though.
+       We need a way of trapping this...

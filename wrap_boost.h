@@ -147,6 +147,12 @@ double tgamma(double a, double x);
 /// Non-normalized lower incomplete gamma functions.
 double tgamma_lower(double a, double x);
 
+/// Non-normalized (upper) log incomplete gamma functions.
+double lgamma(double a, double x);
+
+/// Non-normalized lower log incomplete gamma functions.
+double lgamma_lower(double a, double x);
+
 /// Incomplete beta functions.
 double ibeta(double a, double b, double x);
 
