@@ -104,7 +104,7 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o build_gamma_lanczos build_gamma
 	  std::cout << "n = " << __n << '\n';
 	}
 
-      auto __log_gamma_lanczos =
+      auto __log_gammap1_lanczos =
 	[=](_Tp __z)
 	-> _Tp
 	{
@@ -120,7 +120,7 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o build_gamma_lanczos build_gamma
 	    }
 	  return _S_log_sqrt_2pi + std::log(__sum)
 	       + (__z + _Tp{0.5Q}) * std::log(__z + __g + _Tp{0.5Q})
-	       - (__z + __g + _Tp{0.5Q}) - std::log(__z);
+	       - (__z + __g + _Tp{0.5Q});
 	};
 
       std::cout << '\n'
@@ -133,9 +133,9 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o build_gamma_lanczos build_gamma
 	{
 	  auto z = _Tp{0.01Q} * i;
 	  std::cout << ' ' << std::setw(width) << z
-		    << ' ' << std::setw(width) << __log_gamma_lanczos(z)
+		    << ' ' << std::setw(width) << __log_gammap1_lanczos(z - _Tp{1})
 		    << ' ' << std::setw(width) << std::lgamma(z)
-		    << ' ' << std::setw(width) << __log_gamma_lanczos(z) - std::lgamma(z)
+		    << ' ' << std::setw(width) << __log_gammap1_lanczos(z - _Tp{1}) - std::lgamma(z)
 		    << '\n';
 	}
     }
