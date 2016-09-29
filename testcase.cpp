@@ -114,6 +114,8 @@ template<typename Real>
     using       std::legendre;
     using __gnu_cxx::legendre_q;
     using __gnu_cxx::lfactorial;
+    using __gnu_cxx::lgamma;
+    using __gnu_cxx::lgamma_lower;
     using __gnu_cxx::lpochhammer_lower;
     using __gnu_cxx::lpochhammer;
     using __gnu_cxx::owens_t;
@@ -812,13 +814,13 @@ template<typename Real>
     basename = "tgamma";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_tgamma(filename.c_str());
-    maketest(tgamma, gsl::tgamma,
+    maketest(tgamma, beast::tgamma,
 	     "testcase_tgamma", "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 11),
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 11),
-	     "GSL",
+	     "Boost",
 	     file_tgamma);
 
     // Lower incomplete Gamma functions.
@@ -826,14 +828,42 @@ template<typename Real>
     basename = "tgamma_lower";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_tgamma_lower(filename.c_str());
-    maketest(tgamma_lower, gsl::tgamma_lower,
+    maketest(tgamma_lower, beast::tgamma_lower,
 	     "testcase_tgamma_lower", "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 11),
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 11),
-	     "GSL",
+	     "Boost",
 	     file_tgamma_lower);
+
+    // Upper incomplete Gamma functions.
+    std::cout << "lgamma" << std::endl;
+    basename = "lgamma";
+    filename = get_filename(path, prefix, basename, "", ".cc");
+    std::ofstream file_lgamma(filename.c_str());
+    maketest(lgamma, beast::lgamma,
+	     "testcase_lgamma", "__gnu_cxx", basename,
+	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(false, true), 11),
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(true, true), 11),
+	     "Boost",
+	     file_lgamma);
+
+    // Lower incomplete Gamma functions.
+    std::cout << "lgamma_lower" << std::endl;
+    basename = "lgamma_lower";
+    filename = get_filename(path, prefix, basename, "", ".cc");
+    std::ofstream file_lgamma_lower(filename.c_str());
+    maketest(lgamma_lower, beast::lgamma_lower,
+	     "testcase_lgamma_lower", "__gnu_cxx", basename,
+	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(false, true), 11),
+	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(true, true), 11),
+	     "Boost",
+	     file_lgamma_lower);
 
     // Lower regularized incomplete Gamma functions.
     std::cout << "pgamma" << std::endl;

@@ -2853,43 +2853,43 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   // Upper incomplete gamma functions
 
   inline float
-  tgammaf(float __n, float __x)
-  { return std::__detail::__tgamma<float>(__n, __x); }
+  tgammaf(float __a, float __x)
+  { return std::__detail::__tgamma<float>(__a, __x); }
 
   inline long double
-  tgammal(long double __n, long double __x)
-  { return std::__detail::__tgamma<long double>(__n, __x); }
+  tgammal(long double __a, long double __x)
+  { return std::__detail::__tgamma<long double>(__a, __x); }
 
   /**
    * 
    */
-  template<typename _Tn, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tn, _Tp>
-    tgamma(_Tn __n, _Tp __x)
+  template<typename _Ta, typename _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Ta, _Tp>
+    tgamma(_Ta __a, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tn, _Tp>;
-      return std::__detail::__tgamma<__type>(__n, __x);
+      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tp>;
+      return std::__detail::__tgamma<__type>(__a, __x);
     }
 
   // Lower incomplete gamma functions
 
   inline float
-  tgamma_lowerf(float __n, float __x)
-  { return std::__detail::__tgamma_lower<float>(__n, __x); }
+  tgamma_lowerf(float __a, float __x)
+  { return std::__detail::__tgamma_lower<float>(__a, __x); }
 
   inline long double
-  tgamma_lowerl(long double __n, long double __x)
-  { return std::__detail::__tgamma_lower<long double>(__n, __x); }
+  tgamma_lowerl(long double __a, long double __x)
+  { return std::__detail::__tgamma_lower<long double>(__a, __x); }
 
   /**
    * 
    */
-  template<typename _Tn, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tn, _Tp>
-    tgamma_lower(_Tn __n, _Tp __x)
+  template<typename _Ta, typename _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Ta, _Tp>
+    tgamma_lower(_Ta __a, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tn, _Tp>;
-      return std::__detail::__tgamma_lower<__type>(__n, __x);
+      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tp>;
+      return std::__detail::__tgamma_lower<__type>(__a, __x);
     }
 
   // Dilogarithm functions
