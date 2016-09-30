@@ -647,7 +647,6 @@ namespace __gnu_cxx
     __log10_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::log10(__min(__float128{})); }
 
-
   template<>
     __float128
     __sqrt_eps<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
