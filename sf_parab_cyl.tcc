@@ -60,8 +60,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::tuple<_Tp, _Tp, _Tp, _Tp>
     __parabolic_cylinder_factor(_Tp __a)
     {
-      const auto _S_pi = __gnu_cxx::__math_const<_Tp>::__pi;
-      const auto _S_sqrt_pi = __gnu_cxx::__math_const<_Tp>::__pi_half;
+      const auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__pi_half;
       auto __2e14p = std::pow(_Tp{2}, 0.25L + 0.5L * __a);
       auto __2e34p = std::pow(_Tp{2}, 0.75L + 0.5L * __a);
       auto __2e14m = std::pow(_Tp{2}, 0.25L - 0.5L * __a);
@@ -80,13 +80,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  
    */
   template<typename _Tp>
-    std::pair<_Tp>
+    std::pair<_Tp, _Tp>
     __parabolic_cylinder_series(_Tp __a, _Tp __z)
     {
+      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto _S_max_iter = 1000;
       const auto __zz = __z * __z;
       const auto __ezz4 = std::exp(-__zz / _Tp{4});
       auto __term1 = _Tp{1};
-      auto __sum1 = term1;
+      auto __sum1 = __term1;
       auto __term2 = __z;
       auto __sum2 = __term2;
       for (int __k = 1; __k < _S_max_iter; ++__k)
@@ -94,15 +96,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __term1 *= (__a + _Tp{4 * __k - 3} / _Tp{2}) * __zz / (2 * __k * (2 * __k - 1));
 	  __sum1 += __term1;
 	  __term2 *= (__a + _Tp{4 * __k - 1} / _Tp{2}) * __zz / (2 * __k * (2 * __k + 1));
-	__sum2 += __term2;
-	    if (std::abs(__term1) < _S_eps * std::abs(__sum1)
-	     && std::abs(__term2) < _S_eps * std::abs(__sum2))
+	  __sum2 += __term2;
+	  if (std::abs(__term1) < _S_eps * std::abs(__sum1)
+	   && std::abs(__term2) < _S_eps * std::abs(__sum2))
+	    break;
 	}
       __sum1 *= __ezz4;
       __sum2 *= __ezz4;
       auto __fact = __parabolic_cylinder_factor(__a);
-      _U = std::get<0>() * __sum1 + std::get<2>() * __sum2;
-      _V = std::get<1>() * __sum1 + std::get<3>() * __sum2;
+      auto _U = std::get<0>(__fact) * __sum1 + std::get<2>(__fact) * __sum2;
+      auto _V = std::get<1>(__fact) * __sum1 + std::get<3>(__fact) * __sum2;
 
       return std::make_pair(_U, _V);
     }
@@ -111,11 +114,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  
    */
   template<typename _Tp>
-    std::pair<_Tp>
+    std::pair<_Tp, _Tp>
     __parabolic_cylinder_asymp(_Tp __a, _Tp __z)
     {
+      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       constexpr auto _S_max_iter = 1000;
       constexpr auto _S_1d2 = _Tp{1} / _Tp{2};
+      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
+      constexpr auto _S_2dsqrt_pi = _Tp{2} / _S_sqrt_pi;
       const auto __zz = __z * __z;
       const auto __i2zz = _Tp{1} / (_Tp{2} * __z * __z);
       const auto __ezz4 = std::exp(-__zz / _Tp{4});
@@ -124,18 +130,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __sum1 = __term1;
       auto __term2 = _Tp{1};
       auto __sum2 = __term2;
-      for (auto __s = 1; __s < _S_max_iter; ++s)
+      for (auto __s = 1; __s < _S_max_iter; ++__s)
 	{
-	  __term1 *= -(__a + _S_1d2 + 2 * (__s - 1)) * (__a + _S_1d2 + 2 * (__s - 1) + 1) * __i2zz / __s;
+	  __term1 *= -(__a + _S_1d2 + 2 * (__s - 1))
+		  * (__a + _S_1d2 + 2 * (__s - 1) + 1) * __i2zz / __s;
 	  __sum1 += __term1;
-	  __term2 *= (__a - _S_1d2 + 2 * (__s - 1)) * (__a - _S_1d2 + 2 * (__s - 1) + 1) * __i2zz / __s;
+	  __term2 *= (__a - _S_1d2 + 2 * (__s - 1))
+		  * (__a - _S_1d2 + 2 * (__s - 1) + 1) * __i2zz / __s;
 	  __sum2 += __term2;
 	  if (std::abs(__term1) < _S_eps * std::abs(__sum1)
 	   && std::abs(__term2) < _S_eps * std::abs(__sum2))
 	    break;
 	}
-      _U = __ezz4 * __pow * __sum1;
-      _V = _S_2dsqrt_pi * __sum2 / __ezz4 / __pow / __z;
+      auto _U = __ezz4 * __pow * __sum1;
+      auto _V = _S_2dsqrt_pi * __sum2 / __ezz4 / __pow / __z;
 
       return std::make_pair(_U, _V);
     }
@@ -144,9 +152,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  
    */
   template<typename _Tp>
-    std::pair<_Tp>
+    std::pair<_Tp, _Tp>
     __parabolic_cylinder(_Tp __a, _Tp __z)
     {
+      constexpr auto _S_magic_switch = _Tp{10};
+      if (std::abs(__z) < _S_magic_switch)
+	return __parabolic_cylinder_series(__a, __z);
+      else
+	return __parabolic_cylinder_asymp(__a, __z);
     }
 
   /**
@@ -182,7 +195,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __parabolic_cyl_w(_Tp __a, _Tp __z)
     {
-      ;
+      return _Tp{0};
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
