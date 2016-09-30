@@ -636,20 +636,6 @@ tgamma_lower(double a, double x)
     return result.val - tgamma(a, x);
 }
 
-/// Non-normalized (upper) log incomplete gamma functions.
-double
-lgamma(double a, double x)
-{
-  return std::numeric_limits<double>::quiet_NaN();
-}
-
-/// Non-normalized lower log incomplete gamma functions.
-double
-lgamma_lower(double a, double x)
-{
-  return std::numeric_limits<double>::quiet_NaN();
-}
-
 /// Non-normalized lower incomplete gamma functions.
 double
 tgamma(double a, double x)

@@ -782,7 +782,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const bool __c_neg_integer
 		  = (__c < _Tp{0} && std::abs(__c - __c_nint) < __toler );
       if (std::abs(__x - _Tp{1}) < __toler && __c - __b - __a > _Tp{0}
-       && __c != _Tp{0} && ! __c_neg_integer)
+       && __c != _Tp{0} && !__c_neg_integer)
 	{
 	  const auto __log_gamc = __log_gamma(__c);
 	  const auto __sign_gamc = __log_gamma_sign(__c);
@@ -794,9 +794,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __log_max = std::log(std::numeric_limits<_Tp>::max());
 	  const auto __log_pre = __log_gamc + __log_gamcab
 			       - __log_gamca - __log_gamcb;
+	  const auto __sign = __sign_gamc * __sign_gamca * __sign_gamcb;
+	  if (__sign == _Tp{0})
+	    return __gnu_cxx::__quiet_NaN<_Tp>();
 	  if (__log_pre < __log_max)
-	    return __sign_gamc * __sign_gamca * __sign_gamcb
-		   * std::exp(__log_pre);
+	    return __sign * std::exp(__log_pre);
 	  else
 	    std::__throw_domain_error(__N("__hyperg: "
 					  "overflow of gamma functions"));

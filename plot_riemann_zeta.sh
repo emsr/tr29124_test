@@ -1,4 +1,4 @@
-m
+
 /usr/local/bin/gnuplot
 set hidden3d
 

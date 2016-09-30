@@ -111,8 +111,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __bet = __log_gamma(__a)
 		+ __log_gamma(__b)
 		- __log_gamma(__a + __b);
-      __bet = std::exp(__bet);
-      return __bet;
+      _Tp __sign = __log_gamma_sign(__a)
+		 * __log_gamma_sign(__b)
+		 * __log_gamma_sign(__a + __b);
+
+      if (__sign == _Tp{0})
+        return __gnu_cxx::__quiet_NaN<_Tp>();
+      else if (__bet > __gnu_cxx::__log_max<_Tp>())
+        return __sign * __gnu_cxx::__infinity<_Tp>();
+      else
+	return __sign * std::exp(__bet);
     }
 
 
@@ -142,7 +150,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       _Tp __bet = (__a + __b) / (__a * __b);
 
-      const unsigned int _S_max_iter = 1000000;
+      const unsigned int _S_max_iter = 100000;
 
       for (unsigned int __k = 1; __k < _S_max_iter; ++__k)
 	{

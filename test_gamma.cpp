@@ -53,6 +53,7 @@ template<typename _Tp, typename _Gamma>
 	      << ' ' << std::setw(width) << "s"
 	      << ' ' << std::setw(width) << "log_gamma"
 	      << ' ' << std::setw(width) << "lgamma"
+	      << ' ' << std::setw(width) << "__log_gamma"
 	      << ' ' << std::setw(width) << "delta_rat"
 	      << '\n';
     int i_min = -200;
@@ -61,9 +62,11 @@ template<typename _Tp, typename _Gamma>
 	auto s = 0.10L * i;
 	auto gam = gamma(s - _Tp{1});
 	auto gam0 = std::lgamma(s);
+	auto lgam = std::__detail::__log_gamma(s);
 	std::cout << ' ' << std::setw(width) << s
 		  << ' ' << std::setw(width) << gam
 		  << ' ' << std::setw(width) << gam0
+		  << ' ' << std::setw(width) << lgam
 		  << ' ' << std::setw(width) << (gam - gam0) / std::abs(gam0)
 		  << '\n';
       }

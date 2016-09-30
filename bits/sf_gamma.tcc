@@ -1893,7 +1893,7 @@ _S_neg_double_factorial_table[999]
       // Reflection.
       if (std::real(__z) <= -__a)
 	return _S_ln_pi - std::log(std::sin(_S_pi * __z))
-			- __log_gammap1_spouge(-__z);
+			- __log_gammap1_spouge(-_Real{1} - __z);
       else
 	{
 	  _Val __sum = _S_sqrt_2pi;
@@ -2020,7 +2020,7 @@ _S_neg_double_factorial_table[999]
       // Reflection.
       if (std::real(__z) <= -__g)
 	return _S_ln_pi - std::log(std::sin(_S_pi * __z))
-			- __log_gammap1_lanczos(-__z);
+			- __log_gammap1_lanczos(-_Real{1} - __z);
       else
         {
 	  auto __fact = _Val{1};
@@ -2052,29 +2052,54 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_eps = _Real{3} * __gnu_cxx::__epsilon<_Real>();
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-//#if _GLIBCXX_USE_C99_MATH_TR1
-//      return std::lgamma(__x);
-//#else
-      if (std::real(__x) > _Real{0.5L})
+      constexpr auto _S_logpi = __gnu_cxx::__math_constants<_Real>::__ln_pi;
+      if (std::real(__x) >= _Real{0.5L})
 	return __log_gammap1_lanczos(__x - _Real{1});
       else
 	{
 	  const auto __sin_fact = std::abs(std::sin(_S_pi * __x));
-	  if (__sin_fact == _Val{0})
-	    std::__throw_domain_error(__N("__log_gamma: "
-					  "argument is nonpositive integer"));
-	  return __gnu_cxx::__math_constants<_Real>::__ln_pi
-		     - std::log(__sin_fact)
-		     - __log_gammap1_lanczos(-__x);
+	  if (__sin_fact < _S_eps * std::abs(__x))
+	    return __gnu_cxx::__infinity<_Real>();
+	  else
+	    return _S_logpi - std::log(__sin_fact) - __log_gamma(_Val{1} - __x);
 	}
-//#endif
+    }
+
+  /**
+   * @brief Return @f$ log(\Gamma(x)) @f$ for complex argument.
+   *
+   * @param __x The complex argument of the log of the gamma function.
+   * @return  The complex logarithm of the gamma function.
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    __log_gamma(std::complex<_Tp> __x)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Cmplx = std::complex<_Real>;
+      constexpr auto _S_eps = _Real{3} * __gnu_cxx::__epsilon<_Real>();
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      constexpr auto _S_logpi = __gnu_cxx::__math_constants<_Real>::__ln_pi;
+      if (std::real(__x) >= _Real{0.5L})
+	return __log_gammap1_lanczos(__x - _Real{1});
+      else
+	{
+	  const auto __sin_fact = std::sin(_S_pi * __x);
+	  if (std::abs(__sin_fact) < _S_eps * std::abs(__x))
+	    return _Cmplx(__gnu_cxx::__quiet_NaN<_Real>(), _Real{0});
+	  else
+	    return _S_logpi - std::log(__sin_fact) - __log_gamma(_Val{1} - __x);
+	}
     }
 
 
   /**
    * @brief Return the sign of @f$ \Gamma(x) @f$.
-   * 	    At nonpositive integers one is returned.
+   * At nonpositive integers zero is returned indicating @f$ \Gamma(x) @f$
+   * is undefined.
    *
    * @param __x The argument of the gamma function.
    * @return  The sign of the gamma function.
@@ -2085,6 +2110,8 @@ _S_neg_double_factorial_table[999]
     {
       if (__x >= _Tp{0})
 	return _Tp{1};
+      else if (__x == std::nearbyint(__x))
+	return _Tp{0};
       else
 	return (int(-__x) % 2 == 0) ? -_Tp{1} : _Tp{1};
     }
@@ -2158,7 +2185,7 @@ _S_neg_double_factorial_table[999]
 
   /**
    * @brief Return the sign of @f$ \Gamma(x) @f$.
-   * 	    At nonpositive integers one is returned.
+   * At nonpositive integers zero is returned.
    *
    * @param __x The argument of the gamma function.
    * @return  The sign of the gamma function.
@@ -2253,10 +2280,11 @@ _S_neg_double_factorial_table[999]
                 	  * std::log(_Tp(10)) - _Tp(1);
 
 	  const auto __log_coeff = __log_bincoef(__nu, __k);
-	  if (__log_coeff > __max_bincoeff)
+	  const auto __sign = __log_bincoef_sign(__nu, __k);
+	  if (__log_coeff > __max_bincoeff || __sign == _Tp{0})
 	    return __gnu_cxx::__quiet_NaN<_Tp>();
 	  else
-	    return std::exp(__log_coeff) * __log_bincoef_sign(__nu, __k);
+	    return std::exp(__log_coeff) * __sign;
 	}
     }
 
@@ -2274,7 +2302,13 @@ _S_neg_double_factorial_table[999]
   template<typename _Tp>
     _Tp
     __gamma(_Tp __x)
-    { return std::exp(__log_gamma(__x)) * __log_gamma_sign(__x); }
+    {
+      const auto __sign = __log_gamma_sign(__x);
+      if (__sign == _Tp{0})
+	return __gnu_cxx::__quiet_NaN<_Tp>();
+      else
+	return __sign * std::exp(__log_gamma(__x));
+    }
 
 
   /**
@@ -2615,7 +2649,9 @@ _S_neg_double_factorial_table[999]
 			 - __log_gamma(__a - __n + _Tp{1});
 	  auto __sign = __log_gamma_sign(__a + _Tp{1})
 		      * __log_gamma_sign(__a - __n + _Tp{1});
-          if (__logpoch > __gnu_cxx::__log_max<_Tp>())
+          if (__sign == _Tp{0})
+            return __gnu_cxx::__quiet_NaN<_Tp>();
+          else if (__logpoch > __gnu_cxx::__log_max<_Tp>())
             return __sign * __gnu_cxx::__infinity<_Tp>();
           else
             return __sign * std::exp(__logpoch);
