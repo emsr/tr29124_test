@@ -128,8 +128,6 @@ template<typename Real>
     using       std::legendre;
     using __gnu_cxx::legendre_q;
     using __gnu_cxx::lfactorial;
-    using __gnu_cxx::lgamma;
-    using __gnu_cxx::lgamma_lower;
     using __gnu_cxx::lpochhammer_lower;
     using __gnu_cxx::lpochhammer;
     using __gnu_cxx::owens_t;
