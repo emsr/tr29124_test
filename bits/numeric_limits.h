@@ -272,7 +272,6 @@ namespace __gnu_cxx
     __log10_min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::log10(__min(_Tp{})); }
 
-
   template<typename _Tp>
     _GLIBCXX_CONSTEXPR _Tp
     __sqrt_eps(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
