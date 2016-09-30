@@ -330,6 +330,12 @@ double struve_l(double nu, double x);
 /// Bernoulli numbers.
 double bernoulli(unsigned int n);
 
+/// Reperiodized sine.
+double sin_pi(double x);
+
+/// Reperiodized cosine.
+double cos_pi(double x);
+
 } // namespace beast
 
 #endif // WRAP_BOOST_H

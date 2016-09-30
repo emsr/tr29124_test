@@ -777,5 +777,19 @@ bernoulli(unsigned int n)
     return boost::math::bernoulli_b2n<double>(n / 2);
 }
 
+/// Reperiodized sine.
+double
+sin_pi(double x)
+{
+  return boost::math::sin_pi(x);
+}
+
+/// Reperiodized cosine.
+double
+cos_pi(double x)
+{
+  return boost::math::cos_pi(x);
+}
+
 } // namespace beast
 
