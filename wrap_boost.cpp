@@ -316,20 +316,6 @@ tgamma_lower(double a, double x)
   return boost::math::tgamma_lower(a, x);
 }
 
-/// Non-normalized upper log incomplete gamma functions.
-double
-lgamma(double a, double x)
-{
-  return boost::math::lgamma(a, x);
-}
-
-/// Non-normalized lower log incomplete gamma functions.
-double
-lgamma_lower(double a, double x)
-{
-  return boost::math::lgamma_lower(a, x);
-}
-
 /// Normalized upper incomplete gamma functions.
 double
 qgamma(double a, double x)
