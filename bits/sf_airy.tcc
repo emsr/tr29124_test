@@ -431,7 +431,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Hp += _Haip * __term * __t;
 	}
 
-      return _AiryAuxilliaryState<std::complex<_Tp>>{__t, _F, _G, _H, _Fp, _Gp, _Hp};
+      return _AiryAuxilliaryState<std::complex<_Tp>>
+      					{__t, _F, _G, _H, _Fp, _Gp, _Hp};
     }
 
   /**
@@ -502,7 +503,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _AiryState<std::complex<_Tp>>
     _Airy_series<_Tp>::_S_Scorer2(std::complex<_Tp> __t)
     {
-      constexpr auto _S_cbrt3 = std::cbrt(_Tp{3});//__gnu_cxx::__math_constants<_Tp>::__root_3;
+      //constexpr auto _S_cbrt3 = __gnu_cxx::__math_constants<_Tp>::__cbrt_3;
+      constexpr auto _S_cbrt3 = std::cbrt(_Tp{3});
       constexpr auto _S_1d3 = _Tp{1} / _Tp{3};
       constexpr auto _S_2d3 = _Tp{2} / _Tp{3};
       const auto __s = _S_cbrt3 * __t;
@@ -2049,7 +2051,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __izeta0 *= __fact0;
 	      auto __term = _Airy_asymp_data<_Tp>::_S_c[__n] * __izeta0;
 	      auto __termp = _Airy_asymp_data<_Tp>::_S_d[__n] * __izeta0;
-	      if (std::abs(__term) > __prev_Ai0 || std::abs(__termp) > __prev_Aip0)
+	      if (std::abs(__term) > __prev_Ai0
+	       || std::abs(__termp) > __prev_Aip0)
 		break;
 	      __prev_Ai0 = std::abs(__term);
 	      __prev_Aip0 = std::abs(__termp);
