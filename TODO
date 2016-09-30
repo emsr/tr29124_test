@@ -79,3 +79,15 @@ for [] TR1 test generation...
        It is because the answer dilog(0) == 0.  So the fractional error blows up even wgen the answer is spot on.
        But it doesn't look like such a point would be skipped though.
        We need a way of trapping this...
+
+26. [] __log_gamma was a very sobering exercise in trig accuracy.
+       The error in the location of the zeros of, say,
+       std::sin(x) grow linearly with argument!
+       I had to test epsilon * |x| for zero to place poles!
+       The world really needs reperiodized trig functions!
+27. []
+
+28. []
+
+29. []
+
