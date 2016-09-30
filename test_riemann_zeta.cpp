@@ -211,10 +211,11 @@ main()
 {
   using namespace std::literals::complex_literals;
 
-  auto zetam = std::__detail::__riemann_zeta(0.01l - 1.0il);
-  std::cout << "zeta(" << 0.01l - 1.0il << ") = " << zetam << '\n';
-  auto zetap = std::__detail::__riemann_zeta(0.01l + 1.0il);
-  std::cout << "zeta(" << 0.01l + 1.0il << ") = " << zetap << '\n';
+  // These barf on Cygwin because the literals get turned to __complex__ long double!
+  //auto zetam = std::__detail::__riemann_zeta(0.01l - 1.0il);
+  //std::cout << "zeta(" << 0.01l - 1.0il << ") = " << zetam << '\n';
+  //auto zetap = std::__detail::__riemann_zeta(0.01l + 1.0il);
+  //std::cout << "zeta(" << 0.01l + 1.0il << ") = " << zetap << '\n';
 
   test_nontrivial_zeros<long double>();
 
