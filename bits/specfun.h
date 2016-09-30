@@ -208,8 +208,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::ldouble_factorial "ldouble_factorial - Log double factorials"
    * - @ref __gnu_cxx::legendre_q "legendre_q - Legendre functions of the second kind"
    * - @ref __gnu_cxx::lfactorial "lfactorial - Log factorials"
-   * - @ref __gnu_cxx::lgamma "lgamma - Log upper incomplete gamma functions"
-   * - @ref __gnu_cxx::lgamma_lower "lgamma_lower - Log lower incomplete gamma functions"
    * - @ref __gnu_cxx::lpochhammer_lower "lpochhammer_lower - Log lower Pochhammer functions"
    * - @ref __gnu_cxx::lpochhammer "lpochhammer - Log upper Pochhammer functions"
    * - @ref __gnu_cxx::owens_t "owens_t - Owens T functions"
@@ -2892,48 +2890,6 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tp>;
       return std::__detail::__tgamma_lower<__type>(__a, __x);
-    }
-
-  // Log upper incomplete gamma functions
-
-  inline float
-  lgammaf(float __a, float __x)
-  { return std::__detail::__log_gamma<float>(__a, __x); }
-
-  inline long double
-  lgammal(long double __a, long double __x)
-  { return std::__detail::__log_gamma<long double>(__a, __x); }
-
-  /**
-   * 
-   */
-  template<typename _Ta, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Ta, _Tp>
-    lgamma(_Ta __a, _Tp __x)
-    {
-      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tp>;
-      return std::__detail::__log_gamma<__type>(__a, __x);
-    }
-
-  // Log lower incomplete gamma functions
-
-  inline float
-  lgamma_lowerf(float __a, float __x)
-  { return std::__detail::__log_gamma_lower<float>(__a, __x); }
-
-  inline long double
-  lgamma_lowerl(long double __a, long double __x)
-  { return std::__detail::__log_gamma_lower<long double>(__a, __x); }
-
-  /**
-   * 
-   */
-  template<typename _Ta, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Ta, _Tp>
-    lgamma_lower(_Ta __a, _Tp __x)
-    {
-      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tp>;
-      return std::__detail::__log_gamma_lower<__type>(__a, __x);
     }
 
   // Dilogarithm functions
