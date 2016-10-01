@@ -22,7 +22,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/sf_airy.tcc
+/** @file bits/sf_trig.tcc
  * This is an internal header file, included by other library headers.
  * You should not attempt to use it directly.
  */
@@ -94,10 +94,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __nu = std::floor(__x);
 	  auto __arg = __x - __nu;
 	  auto __sign = (int(__nu) & 1) == 1 ? -1 : +1;
-	  auto __cosval = (__arg < _Tp{0.5L})
-			? std::cos(__arg * _S_pi)
-			: std::cos((_Tp{1} - __arg) * _S_pi);
-	  return __sign * __cosval;
+	  return __sign * __cos_pi(__arg);
 	}
     }
 
