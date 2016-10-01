@@ -123,7 +123,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) w^k/k!
    *             + (H_{s-1} - log(-w)) w^(s-1)/(s-1)!
    * @f]
-   * The radius of convergence is @f$ |w| < 2 pi @f$.
+   * The radius of convergence is @f$ |w| < 2 \pi @f$.
    * Note that this series involves a @f$ \log(-x) @f$.
    * gcc and Mathematica differ in their implementation
    * of @f$ \log(e^(i \pi)) @f$:
@@ -142,7 +142,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Optimization possibility: s are positive integers
       constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_pipio6 = __gnu_cxx::__math_constants<_Tp>::__pi_sqr_div_6;
+      constexpr auto _S_pipio6
+      	 = __gnu_cxx::__math_constants<_Tp>::__pi_sqr_div_6;
       std::complex<_Tp> __res = std::__detail::__riemann_zeta(_Tp(__s));
       auto __wk = __w;
       auto __fac = _Tp{1};
@@ -183,7 +184,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
           __fac *= __rzarg / _Tp(__rzarg + __s)
 	      * (__rzarg + 1) / _Tp(__rzarg + __s + 1);
           ++__j;
-          __terminate = (__gnu_cxx::__fpequal(std::abs(__res - __pref * __term), std::abs(__res)) || (__j > __maxit));
+          __terminate = (__gnu_cxx::__fpequal(std::abs(__res - __pref * __term),
+	  				 std::abs(__res)) || (__j > __maxit));
           __res -= __pref * __term;
 	}
       return __res;
@@ -192,7 +194,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * This function treats the cases of positive integer index s for real w.
    *
-   * This specialization is worthwhile to catch the differing behaviour of log(x).
+   * This specialization is worthwhile to catch the differing behaviour
+   * of log(x).
    * @f[
    *   Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) w^k/k!
    *             + (H_{s-1} - log(-w)) w^(s-1)/(s-1)!
@@ -200,7 +203,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The radius of convergence is @f$ |w| < 2 \pi @f$.
    * Note that this series involves a @f$ \log(-x) @f$.
    * The use of evenzeta yields a speedup of about 2.5.
-   * gcc and Mathematica differ in their implementation of @f$ \log(e^(i \pi)) @f$:
+   * gcc and Mathematica differ in their implementation
+   * of @f$ \log(e^(i \pi)) @f$:
    * gcc: @f$ \log(e^(+- i \pi)) = +- i \pi @f$
    * whereas Mathematica doesn't preserve the sign in this case:
    * @f$ \log(e^(+- i * \pi)) = +i \pi @f$
@@ -289,31 +293,38 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
       // Basic general loop, but s is a negative quantity here
       // FIXME Large s makes problems.
-      // The series should be rearrangeable so that we only need the ratio Gamma(1-s)/(2 pi)^s
+      // The series should be rearrangeable so that we only need
+      // the ratio Gamma(1-s)/(2 pi)^s
       auto __ls = std::lgamma(_Tp{1} - __s);
       auto __res = std::exp(__ls - (_Tp{1} - __s) * std::log(-__w));
       const auto __wup = __w / _S_2pi;
       auto __w2 = __wup;
       auto __pref = _Tp{2} * std::pow(_S_2pi, -(_Tp{1} - __s));
       // here we factor up the ratio of Gamma(1 - s + k)/k! .
-      // This ratio should be well behaved even for large k in the series afterwards
+      // This ratio should be well behaved even for large k in the series
+      // afterwards
       // Note that we have a problem for large s
-      // Since s is negative we evaluate the Gamma Function on the positive real axis where it is real.
+      // Since s is negative we evaluate the Gamma Function
+      // on the positive real axis where it is real.
       auto __gam = std::exp(__ls);
 
       auto __phase = std::polar(_Tp{1}, _S_pi_2 * __s);
       auto __cp = std::real(__phase);
       auto __sp = std::imag(__phase);
-      // Here we add the expression that would result from ignoring the zeta function in the series.
+      // Here we add the expression that would result from ignoring
+      // the zeta function in the series.
       std::complex<_Tp> __expis(__cp, __sp);
       auto __p = _S_2pi - _S_i * __w;
       auto __q = _S_2pi + _S_i * __w;
       // This can be optimized for real values of w
       __res += _S_i * __gam * (std::conj(__expis) * std::pow(__p, __s - _Tp{1})
              - __expis * std::pow(__q, __s - _Tp{1}));
-      // The above expression is the result of sum_k Gamma(1+k-s) /k! * sin(pi /2* (s-k)) * (w/2/pi)^k
-      // Therefore we only need to sample values of zeta(n) on the real axis that really differ from one
-      __res += __pref * (__sp * __gam * (std::__detail::__riemann_zeta(_Tp{1} - __s) - _Tp{1}));
+      // The above expression is the result of
+      // sum_k Gamma(1+k-s) /k! * sin(pi /2* (s-k)) * (w/2/pi)^k
+      // Therefore we only need to sample values of zeta(n) on the real axis
+      // that really differ from one
+      __res += __pref * (__sp * __gam *
+			(std::__detail::__riemann_zeta(_Tp{1} - __s) - _Tp{1}));
       constexpr unsigned int __maxit = 200;
       unsigned int __j = 1;
       bool __terminate = false;
@@ -339,7 +350,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __term =  __w2 * (__gam * __sine * __rz);
 	  __w2 *= __wup;
 	  ++__j;
-	  __gam  *= __rzarg / (__j); // equal to 1/(j+1) since we have incremented j in the line above
+	  __gam  *= __rzarg / (__j); // == 1/(j+1) since we incremented j above.
 	  __terminate
 	    = (__gnu_cxx::__fpequal(std::abs(__res + __pref * __term),
 				    std::abs(__res)) || (__j > __maxit));
@@ -353,11 +364,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * which are multiples of two.
    *
    * In that case the sine occuring in the expansion occasionally
-   *  takes on the value zero.
+   * takes on the value zero.
    * We use that to provide an optimized series for p = 2n:
    *
-   * In the template parameter sigma we transport whether @f$ p = 4k (sigma = 1) @f$
-   * or @f$ p = 4k + 2  (sigma = -1) @f$
+   * In the template parameter sigma we transport
+   * whether @f$ p = 4k (sigma = 1) @f$ or @f$ p = 4k + 2  (sigma = -1) @f$.
    * @f[
    *   Li_p(e^w) = Gamma(1-p) (-w)^{p-1} - A_p(w) - \sigma * B_p(w)
    * @f]
@@ -428,25 +439,32 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * In that case the sine occuring in the expansion occasionally vanishes.
    * We use that to provide an optimized series for @f$ p = 1 + 2k @f$:
-   * In the template parameter sigma we transport whether @f$ p = 1 + 4k (\sigma = 1) @f$
-   * or @f$ p = 3 + 4k  (\sigma = -1) @f$
+   * In the template parameter sigma we transport whether
+   * @f$ p = 1 + 4k (\sigma = 1) @f$ or @f$ p = 3 + 4k  (\sigma = -1) @f$.
    *
    * @f[
    *   Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} + \sigma * A_p(w) - \sigma * B_p(w)
    * @f]
    * with
    * @f[
-   *   A_p(w) = 2 (2\pi)^(p-1) \Gamma(1-p) (1 + w^2/(4 \pi^2))^{-1/2 + p/2} \cos((1 - p) ArcTan(2 pi/ w))
+   *   A_p(w) = 2 (2\pi)^(p-1) \Gamma(1-p)
+   *          (1 + \frac{w^2}{4\pi^2})^{-1/2 + p/2}
+   *           \cos((1 - p) ArcTan(2 \pi / w))
    * @f]
    * and 
    * @f[
-   *   B_p(w) = 2 (2 pi)^(p-1) \sum \limits_{k = 0}^\infty \Gamma(1 + 2k - p)/ (2k)! (-w^2/4/\pi^2)^k (\zeta(1 + 2k - p) - _Tp{1})
+   *   B_p(w) = 2 (2 pi)^(p-1)
+   ^        \sum_{k = 0}^\infty \frac{\Gamma(1 + 2k - p)}{(2k)!}
+   *          (\frac{-w^2}{4 \pi^2})^k (\zeta(1 + 2k - p) - 1)
    * @f]
    * This is suitable for @f$ |w| < 2 \pi @f$.
    * The use of evenzeta gives a speedup of about 50
-   * The original series is (This might be worthwhile if we use the already present table of the Bernoullis)
+   * The original series is (This might be worthwhile if we use
+   * the already present table of the Bernoullis)
    * @f[
-   *   Li_p(e^w) =\Gamma(1-p) * (-w)^{p-1} - \sigma 2(2 \pi)^(p-1) * \sum \limits_{k = 0}^\infty \Gamma(1 + 2k - p)/ (2k)! (-1)^k (w/2/\pi)^(2k) \zeta(1 + 2k - p)
+   *   Li_p(e^w) = \Gamma(1-p) * (-w)^{p-1}
+   *      - \sigma 2(2 \pi)^(p-1) * \sum_{k = 0}^\infty
+   *       \Gamma(1 + 2k - p)/ (2k)! (-1)^k (w/2/\pi)^(2k) \zeta(1 + 2k - p)
    * @f]
    *
    * @param __n the integral index n = 4k.
@@ -482,7 +500,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __zk = 2 * __k;
 	  __gam *= _Tp(__zk + __np) / _Tp(1 + __zk)
 		 * _Tp(1 + __zk + __np) / _Tp(__zk + 2);
-	  auto __term = (__gam * __riemann_zeta_m_1<_Tp>(__zk + 2 + __np)) * __wup;
+	  auto __term = (__gam * __riemann_zeta_m_1<_Tp>(__zk + 2 + __np))
+		      * __wup;
 	  __wup *= __wq;
 	  __terminate = __k > __maxit
 		     || __gnu_cxx::__fpequal(std::abs(__res - __pref * __term),
@@ -494,7 +513,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   }
 
   /**
-   * This function treats the cases of negative integer index s and branches accordingly
+   * This function treats the cases of negative integer index s
+   * and branches accordingly
    *
    * @param __s the integer index s.
    * @param __w The Argument w
@@ -609,12 +629,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * This function implements the asymptotic series for the polylog.
    * It is given by
    * @f[
-   *    2 \sum \limits_{k=0}^\infty \zeta(2k) w^{s-2k}/\Gamma(s-2k+1) -i \pi w^(s-1)/\Gamma(s)
+   *    2 \sum_{k=0}^\infty \zeta(2k) w^{s-2k}/\Gamma(s-2k+1)
+   *       -i \pi w^(s-1)/\Gamma(s)
    * @f]
    * for @f$ Re(w) >> 1 @f$
    *
    * Don't check this against Mathematica 8.
-   * For real u the imaginary part of the polylog is given by @f$ Im(Li_s(e^u)) = - \pi u^{s-1}/\Gamma(s) @f$
+   * For real u the imaginary part of the polylog is given by
+   * @f$ Im(Li_s(e^u)) = - \pi u^{s-1}/\Gamma(s) @f$.
    * Check this relation for any benchmark that you use.
    * The use of evenzeta leads to a speedup of about 1000.
    *
@@ -628,7 +650,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     { // asymptotic expansion
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       // wgamma = w^(s-1) / Gamma(s)
-      auto __wgamma = std::exp((__s - _Tp{1}) * std::log(__w) - std::lgamma(__s));
+      auto __wgamma = std::exp((__s - _Tp{1}) * std::log(__w)
+		    - std::lgamma(__s));
       auto __res = std::complex<_Tp>(_Tp{0}, -_S_pi) * __wgamma;
       // wgamma = w^s / Gamma(s+1)
       __wgamma *= __w / __s;
@@ -642,11 +665,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       unsigned int __k = 1;
       while (!__terminate)
 	{
-          __wgamma *= __wq * (__s + _Tp(1 - 2 * __k)) * (__s + _Tp(2 - 2 * __k));
+          __wgamma *= __wq * (__s + _Tp(1 - 2 * __k))
+		    * (__s + _Tp(2 - 2 * __k));
 	  __term = evenzeta<_Tp>(2 * __k) * __wgamma;
           if (std::abs(__term) > std::abs(__oldterm))
-	    __terminate = true; // Termination due to failure of asymptotic expansion
-          if (__gnu_cxx::__fpequal(std::abs(__res + _Tp{2} * __term), std::abs(__res)))
+	    __terminate = true; // Failure of asymptotic expansion.
+          if (__gnu_cxx::__fpequal(std::abs(__res + _Tp{2} * __term),
+				   std::abs(__res)))
 	    __terminate = true; // Precision goal reached.
           if (__k > __maxiter)
 	    __terminate = true; // Stop the iteration somewhen
@@ -735,14 +760,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    // Choose the exponentially converging series
 	    return __polylog_exp_negative_real_part(__s, __w);
 	  else if (__rw < _Tp{6})
-	    // The transition point chosen here, is quite arbitrary and needs more testing.
-	    // The reductions of the imaginary part yield the same results as Mathematica.
+	    // The transition point chosen here, is quite arbitrary
+	    // and needs more testing.
+	    // The reductions of the imaginary part yield the same results
+	    // as Mathematica.
 	    // Necessary to improve the speed of convergence
 	    return __polylog_exp_pos(__s, __clamp_pi(__w));
 	  else
 	    // Wikipedia says that this is required for Wood's formula.
-	    // FIXME: The series should terminate after a finite number of terms.
-	    return __polylog_exp_asymp(static_cast<_Tp>(__s), __clamp_0_m2pi(__w));
+	    // FIXME: The series should terminate after a finite number
+	    // of terms.
+	    return __polylog_exp_asymp(static_cast<_Tp>(__s),
+				       __clamp_0_m2pi(__w));
 	}
     }
 
@@ -778,13 +807,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  if (__w < -(_S_pi_2 + _S_pi / _Tp{5}))
 	    // Choose the exponentially converging series
-	    return __polylog_exp_negative_real_part(__s, std::complex<_Tp>(__w));
+	    return __polylog_exp_negative_real_part(__s,
+						    std::complex<_Tp>(__w));
           else if (__w < _Tp{6})
-            // The transition point chosen here, is quite arbitrary and needs more testing.
+            // The transition point chosen here, is quite arbitrary
+	    // and needs more testing.
 	    return __polylog_exp_pos(__s, __w);
 	  else
-	    // FIXME: The series should terminate after a finite number of terms.
-	    return __polylog_exp_asymp(static_cast<_Tp>(__s), std::complex<_Tp>(__w));
+	    // FIXME: The series should terminate
+	    // after a finite number of terms.
+	    return __polylog_exp_asymp(static_cast<_Tp>(__s),
+				       std::complex<_Tp>(__w));
 	}
     }
 
@@ -820,13 +853,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    // Choose the exponentially converging series
             return __polylog_exp_negative_real_part(__s, __w);
           else if (std::real(__w) < _Tp{6}) // Arbitrary transition point...
-	    // The reductions of the imaginary part yield the same results as Mathematica.
+	    // The reductions of the imaginary part yield the same results
+	    // as Mathematica.
 	    // Necessary to improve the speed of convergence.
 	    return __polylog_exp_neg(__s, __clamp_pi(__w));
 	  else
 	    // Wikipedia says that this clamping is required for Wood's formula.
-	    // FIXME: The series should terminate after a finite number of terms.
-	    return __polylog_exp_asymp(static_cast<_Tp>(__s), __clamp_0_m2pi(__w));
+	    // FIXME: The series should terminate
+	    // after a finite number of terms.
+	    return __polylog_exp_asymp(static_cast<_Tp>(__s),
+				       __clamp_0_m2pi(__w));
 	}
     }
 
@@ -843,19 +879,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
-      if (__w < -(_S_pi_2 + _S_pi / _Tp{5})  ) // Choose the exponentially converging series
+      if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose exp'ly converging series.
 	return __polylog_exp_negative_real_part(__s, std::complex<_Tp>(__w));
       else if (__gnu_cxx::__fpequal(__w, _Tp{0}))
 	return std::numeric_limits<_Tp>::infinity();
       else if (__w < _Tp{6}) // Arbitrary transition point...
 	return __polylog_exp_neg(__s, std::complex<_Tp>(__w));
       else
-	// FIXME: The series should terminate after a finite number of terms.
-	return __polylog_exp_asymp(static_cast<_Tp>(__s), std::complex<_Tp>(__w));
+	// FIXME: The series should terminate
+	// after a finite number of terms.
+	return __polylog_exp_asymp(static_cast<_Tp>(__s),
+				   std::complex<_Tp>(__w));
     }
 
   /**
-   * Return the polylog where s is a positive real value and for complex argument.
+   * Return the polylog where s is a positive real value
+   * and for complex argument.
    *
    * @param __s A positive real number.
    * @param __w the complex argument.
@@ -878,10 +917,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  else
 	    return std::numeric_limits<_Tp>::infinity();
 	}
-      if (__rw < -(_S_pi_2 + _S_pi/_Tp{5})) // Choose the exponentially converging series
+      if (__rw < -(_S_pi_2 + _S_pi/_Tp{5})) // Choose exp'ly converging series.
 	return __polylog_exp_negative_real_part(__s, __w);
       if (__rw < _Tp{6}) // arbitrary transition point
-	// The reductions of the imaginary part yield the same results as Mathematica then.
+	// The reductions of the imaginary part yield the same results
+	// as Mathematica then.
 	// Branch cuts??
 	return __polylog_exp_pos(__s, __clamp_pi(__w));
       else
@@ -890,7 +930,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the polylog where s is a positive real value and the argument is real.
+   * Return the polylog where s is a positive real value and the argument
+   * is real.
    *
    * @param __s  A positive real number tht does not reduce to an integer.
    * @param __w  The real argument w.
@@ -909,7 +950,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  else
 	    return std::numeric_limits<_Tp>::infinity();
 	}
-      if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose the exponentially converging series
+      if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose exp'ly converging series.
 	return __polylog_exp_negative_real_part(__s, __w);
       if (__w < _Tp{6}) // arbitrary transition point
 	return __polylog_exp_pos(__s, std::complex<_Tp>(__w));
@@ -918,10 +959,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   }
 
   /**
-   * Return the polylog where s is a negative real value and for complex argument.
+   * Return the polylog where s is a negative real value
+   * and for complex argument.
    * Now we branch depending on the properties of w in the specific functions
    *
-   * @param __s  A negative real value that does not reduce to a negative integer.
+   * @param __s  A negative real value that does not reduce
+   *             to a negative integer.
    * @param __w  The complex argument.
    * @return  The value of the polylogarithm.
    */
@@ -933,10 +976,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
       auto __rw = __w.real();
       auto __iw = __w.imag();
-      if (__rw < -(_S_pi_2 + _S_pi/_Tp{5})) // Choose the exponentially converging series
+      if (__rw < -(_S_pi_2 + _S_pi/_Tp{5})) // Choose exp'ly converging series.
 	return __polylog_exp_negative_real_part(__s, __w);
       else if (__rw < 6) // arbitrary transition point
-	// The reductions of the imaginary part yield the same results as Mathematica then.
+	// The reductions of the imaginary part yield the same results
+	// as Mathematica then.
 	// Necessary to improve the speed of convergence.
 	// Branch cuts??
 	return __polylog_exp_neg(__s, __clamp_pi(__w));
@@ -959,7 +1003,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
-      if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose the exponentially converging series
+      if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose exp'ly converging series.
 	return __polylog_exp_negative_real_part(__s, std::complex<_Tp>(__w));
       else if (__w < _Tp{6}) // arbitrary transition point
 	return __polylog_exp_neg(__s, std::complex<_Tp>(__w));
@@ -1175,7 +1219,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
-	return (std::__detail::__riemann_zeta(__w) + __dirichlet_eta(__w)) / _Tp{2};
+	return (std::__detail::__riemann_zeta(__w)
+		+ __dirichlet_eta(__w)) / _Tp{2};
     }
 
   /**

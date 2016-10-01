@@ -485,11 +485,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __hyperg_reflect(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
+      constexpr auto _S_log_max = __gnu_cxx::__log_max<_Tp>();
       const auto __d = __c - __a - __b;
       const int __intd  = std::floor(__d + _Tp{0.5L});
       constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
       const auto __toler = _Tp{1000} * __eps;
-      constexpr auto __log_max = __gnu_cxx::__log_max<_Tp>();
       const bool __d_integer = (std::abs(__d - __intd) < __toler);
 
       if (__d_integer)
@@ -554,7 +554,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		      __sum1 += __term;
 		    }
 
-		  if (__ln_pre1 > __log_max)
+		  if (__ln_pre1 > _S_log_max)
 		    std::__throw_runtime_error(__N("__hyperg_luke: "
 						   "overflow of gamma functions"));
 		  else
@@ -690,7 +690,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      auto __ln_pre1 = __ln_gc + __ln_gd  - __ln_g1ca - __ln_g1cb;
 	      auto __ln_pre2 = __ln_gc + __ln_gmd - __ln_g2a  - __ln_g2b
 			    + __d * std::log(_Tp{1} - __x);
-	      if (__ln_pre1 < __log_max && __ln_pre2 < __log_max)
+	      if (__ln_pre1 < _S_log_max && __ln_pre2 < _S_log_max)
 		{
 		  __pre1 = std::exp(__ln_pre1);
 		  __pre2 = std::exp(__ln_pre2);
@@ -706,7 +706,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  else if (__ok1 && !__ok2)
 	    {
 	      auto __ln_pre1 = __ln_gc + __ln_gd - __ln_g1ca - __ln_g1cb;
-	      if (__ln_pre1 < __log_max)
+	      if (__ln_pre1 < _S_log_max)
 		{
 		  __pre1 = std::exp(__ln_pre1);
 		  __pre1 *= __sgn1;
@@ -722,7 +722,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    {
 	      auto __ln_pre2 = __ln_gc + __ln_gmd - __ln_g2a - __ln_g2b
 			     + __d * std::log(_Tp{1} - __x);
-	      if (__ln_pre2 < __log_max)
+	      if (__ln_pre2 < _S_log_max)
 		{
 		  __pre1 = _Tp{0};
 		  __pre2 = std::exp(__ln_pre2);
@@ -775,6 +775,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __hyperg(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
+      constexpr auto _S_log_max = __gnu_cxx::__log_max<_Tp>();
       const _Tp __a_nint = std::nearbyint(__a);
       const _Tp __b_nint = std::nearbyint(__b);
       const _Tp __c_nint = std::nearbyint(__c);
@@ -791,13 +792,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __sign_gamca = __log_gamma_sign(__c - __a);
 	  const auto __log_gamcb = __log_gamma(__c - __b);
 	  const auto __sign_gamcb = __log_gamma_sign(__c - __b);
-	  const auto __log_max = std::log(std::numeric_limits<_Tp>::max());
 	  const auto __log_pre = __log_gamc + __log_gamcab
 			       - __log_gamca - __log_gamcb;
 	  const auto __sign = __sign_gamc * __sign_gamca * __sign_gamcb;
 	  if (__sign == _Tp{0})
 	    return __gnu_cxx::__quiet_NaN<_Tp>();
-	  if (__log_pre < __log_max)
+	  if (__log_pre < _S_log_max)
 	    return __sign * std::exp(__log_pre);
 	  else
 	    std::__throw_domain_error(__N("__hyperg: "
