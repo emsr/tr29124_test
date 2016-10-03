@@ -184,6 +184,7 @@ test_pow_bits
 test_promote_num
 test_psi
 test_rational
+test_reperiodized_trig
 test_riemann_zeta
 test_roots
 test_special_function

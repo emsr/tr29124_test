@@ -70,6 +70,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
     }
 
+  // FIXME: Reperiodize the real part.
+  template<typename _Tp>
+    std::complex<_Tp>
+    __sin_pi(std::complex<_Tp> __z)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr _Real _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      return std::sin(_S_pi * __z);
+    }
+
   /**
    * Return the peperiodized cosine of argument x:
    * @f[
@@ -96,6 +107,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __sign = (int(__nu) & 1) == 1 ? -1 : +1;
 	  return __sign * __cos_pi(__arg);
 	}
+    }
+
+  // FIXME: Reperiodize the real part.
+  template<typename _Tp>
+    std::complex<_Tp>
+    __cos_pi(std::complex<_Tp> __z)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr _Real _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      return std::cos(_S_pi * __z);
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION

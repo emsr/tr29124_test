@@ -45,7 +45,7 @@ ${makedir} ${test_dir}/21_sph_neumann
 
 ${makedir} ${utildir}
 
-${copy} specfun_testcase.h        ${utildir}
+${copy} specfun_testcase.h              ${utildir}
 
 ${copy} check/check_assoc_laguerre.cc   ${test_dir}/01_assoc_laguerre/check_value.cc
 ${copy} check/check_assoc_legendre.cc   ${test_dir}/02_assoc_legendre/check_value.cc
@@ -83,6 +83,7 @@ ${makedir} ${text_dir}/conf_hyperg
 ${makedir} ${text_dir}/conf_hyperg_lim
 ${makedir} ${text_dir}/coshint
 ${makedir} ${text_dir}/cosint
+${makedir} ${text_dir}/cos_pi
 ${makedir} ${text_dir}/cyl_hankel_1
 ${makedir} ${text_dir}/cyl_hankel_2
 ${makedir} ${text_dir}/dawson
@@ -130,6 +131,7 @@ ${makedir} ${text_dir}/sinc
 ${makedir} ${text_dir}/sinc_pi
 ${makedir} ${text_dir}/sinhint
 ${makedir} ${text_dir}/sinint
+${makedir} ${text_dir}/sin_pi
 ${makedir} ${text_dir}/sph_bessel_i
 ${makedir} ${text_dir}/sph_bessel_k
 ${makedir} ${text_dir}/sph_hankel_1
@@ -152,6 +154,7 @@ ${copy} check/check_conf_hyperg.cc        ${text_dir}/conf_hyperg/check_value.cc
 ${copy} check/check_conf_hyperg_lim.cc    ${text_dir}/conf_hyperg_lim/check_value.cc
 ${copy} check/check_coshint.cc            ${text_dir}/coshint/check_value.cc
 ${copy} check/check_cosint.cc             ${text_dir}/cosint/check_value.cc
+${copy} check/check_cos_pi.cc             ${text_dir}/cos_pi/check_value.cc
 ${copy} check/check_cyl_hankel_1.cc       ${text_dir}/cyl_hankel_1/check_value.cc
 ${copy} check/pr56216_cyl_hankel_1.cc     ${text_dir}/cyl_hankel_1/pr56216.cc
 ${copy} check/check_cyl_hankel_2.cc       ${text_dir}/cyl_hankel_2/check_value.cc
@@ -202,6 +205,7 @@ ${copy} check/check_sinc.cc               ${text_dir}/sinc/check_value.cc
 ${copy} check/check_sinc_pi.cc            ${text_dir}/sinc_pi/check_value.cc
 ${copy} check/check_sinhint.cc            ${text_dir}/sinhint/check_value.cc
 ${copy} check/check_sinint.cc             ${text_dir}/sinint/check_value.cc
+${copy} check/check_sin_pi.cc             ${text_dir}/sin_pi/check_value.cc
 ${copy} check/check_sph_bessel_i.cc       ${text_dir}/sph_bessel_i/check_value.cc
 ${copy} check/check_sph_bessel_k.cc       ${text_dir}/sph_bessel_k/check_value.cc
 ${copy} check/check_sph_hankel_1.cc       ${text_dir}/sph_hankel_1/check_value.cc
