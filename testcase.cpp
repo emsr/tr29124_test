@@ -22,6 +22,16 @@
 // I'm not sure why I need this here and not other places...
 template<>
   constexpr std::array<float, 7>
+  std::__detail::_GammaSpouge<float>::_S_cheby;
+template<>
+  constexpr std::array<double, 18>
+  std::__detail::_GammaSpouge<double>::_S_cheby;
+template<>
+  constexpr std::array<long double, 22>
+  std::__detail::_GammaSpouge<long double>::_S_cheby;
+
+template<>
+  constexpr std::array<float, 7>
   std::__detail::_GammaLanczos<float>::_S_cheby;
 template<>
   constexpr std::array<double, 10>
@@ -72,6 +82,7 @@ template<typename Real>
     using __gnu_cxx::conf_hyperg_lim;
     using __gnu_cxx::coshint;
     using __gnu_cxx::cosint;
+    using __gnu_cxx::cos_pi;
     using       std::cyl_bessel_i;
     using       std::cyl_bessel_j;
     using       std::cyl_bessel_k;
@@ -130,6 +141,7 @@ template<typename Real>
     using __gnu_cxx::sinc_pi;
     using __gnu_cxx::sinhint;
     using __gnu_cxx::sinint;
+    using __gnu_cxx::sin_pi;
     using       std::sph_bessel;
     using __gnu_cxx::sph_bessel_i;
     using __gnu_cxx::sph_bessel_k;
@@ -1597,6 +1609,30 @@ template<typename Real>
 				std::make_pair(true, true), 101),
 	     "Boost",
 	     file_bernoulli);
+
+    // Reperiodized sine function.
+    std::cout << "sin_pi" << std::endl;
+    basename = "sin_pi";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_sin_pi(filename.c_str());
+    maketest(sin_pi, beast::sin_pi,
+	     "testcase_sin_pi", "__gnu_cxx", basename,
+	     "x", fill_argument(std::make_pair(Real{-20}, Real{+50}),
+				std::make_pair(false, true), 701),
+	     "Boost",
+	     file_sin_pi);
+
+    // Reperiodized cosine function.
+    std::cout << "cos_pi" << std::endl;
+    basename = "cos_pi";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_cos_pi(filename.c_str());
+    maketest(cos_pi, beast::cos_pi,
+	     "testcase_cos_pi", "__gnu_cxx", basename,
+	     "x", fill_argument(std::make_pair(Real{-20}, Real{+50}),
+				std::make_pair(false, true), 701),
+	     "Boost",
+	     file_cos_pi);
 
 #endif // STD
 

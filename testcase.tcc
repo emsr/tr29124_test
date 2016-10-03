@@ -440,6 +440,7 @@ template<typename Ret, typename Arg1>
 	  {
 	    output << "  { " << tname << std::get<0>(crud[i]) << type_strings<Ret>::suffix();
 	    output << ", " << std::get<1>(crud[i]) << type_strings<Ret>::suffix();
+	    output << ", 0.0" << type_strings<Ret>::suffix();
 	    output << " },\n";
 	  }
 	output << "};\n";
@@ -643,6 +644,7 @@ template<typename Ret, typename Arg1, typename Arg2>
 		output << "  { " << tname << std::get<0>(crud[j]) << type_strings<Ret>::suffix();
 		output << ", " << std::get<1>(crud[j]) << type_strings<Ret>::suffix();
 		output << ", " << std::get<2>(crud[j]) << type_strings<Ret>::suffix();
+		output << ", 0.0" << type_strings<Ret>::suffix();
 		output << " },\n";
 	      }
 	    output << "};\n";
@@ -855,6 +857,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
 		    output << ", " << std::get<2>(crud[k]) << type_strings<Ret>::suffix();
 		    output << ", \n";
 		    output << "\t  " << std::get<3>(crud[k]) << type_strings<Ret>::suffix();
+		    output << ", 0.0" << type_strings<Ret>::suffix();
 		    output << " },\n";
 		  }
 		output << "};\n";
@@ -1079,6 +1082,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
 			output << ", \n";
 			output << "\t  " << std::get<3>(crud[l]) << type_strings<Ret>::suffix();
 			output << ", " << std::get<4>(crud[l]) << type_strings<Ret>::suffix();
+			output << ", 0.0" << type_strings<Ret>::suffix();
 			output << " },\n";
 		      }
 		    output << "};\n";

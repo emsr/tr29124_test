@@ -991,4 +991,22 @@ template<typename _Tp>
     _Tp f;
   };
 
+// Reperiodized sine function.
+template<typename _Tp>
+  struct testcase_sin_pi
+  {
+    _Tp f0;
+    _Tp x;
+    _Tp f;
+  };
+
+// Reperiodized cosine function.
+template<typename _Tp>
+  struct testcase_cos_pi
+  {
+    _Tp f0;
+    _Tp x;
+    _Tp f;
+  };
+
 #endif // _GLIBCXX_SPECFUN_TESTCASE_H

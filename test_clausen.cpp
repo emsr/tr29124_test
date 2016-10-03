@@ -50,7 +50,7 @@ template<typename _Tp>
 		  << std::setw(width) << __gnu_cxx::clausen_c(2, std::real(w))
 		  << '\n';
       }
-      std::cout << std::endl;
+    std::cout << std::endl;
   }
 
 
@@ -66,6 +66,6 @@ main()
   std::cout << "\nlong double\n===========\n";
   run_clausen<long double>();
 
-  std::cout << "\n__float128\n==========\n";
+  //std::cout << "\n__float128\n==========\n";
   //run_clausen<__float128>();
 }
