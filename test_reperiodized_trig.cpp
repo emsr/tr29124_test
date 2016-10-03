@@ -2,7 +2,7 @@
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_reperiodized_trig test_reperiodized_trig.cpp wrap_boost.cpp gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_reperiodized_trig > test_reperiodized_trig.txt
 
-g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_reperiodized_trig test_reperiodized_trig.cpp wrap_boost.cpp -lgsl -lgslcblas
+g++ -std=c++14 -o test_reperiodized_trig test_reperiodized_trig.cpp wrap_boost.cpp -lgsl -lgslcblas
 ./test_reperiodized_trig > test_reperiodized_trig.txt
 */
 
@@ -100,6 +100,48 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__cos_pi<__type>(__x);
     }
 
+  // Reperiodized tangent function.
+
+  /**
+   * Return the reperiodized tangent function @f$ \tan_\pi(x) @f$
+   * for @c float argument @f$ x @f$.
+   *
+   * @see tan_pi for more details.
+   */
+  inline float
+  tan_pif(float __x)
+  { return std::__detail::__tan_pi<float>(__x); }
+
+  /**
+   * Return the reperiodized tangent function @f$ \tan_\pi(x) @f$
+   * for <tt>long double</tt> argument @f$ x @f$.
+   *
+   * @see tan_pi for more details.
+   */
+  inline long double
+  tan_pil(long double __x)
+  { return std::__detail::__tan_pi<long double>(__x); }
+
+  /**
+   * Return the reperiodized tangent function @f$ \tan_\pi(x) @f$
+   * for real argument @f$ x @f$.
+   *
+   * The reperiodized tangent function is defined by:
+   * @f[
+   * 	\tan_\pi(x) = \sin(\pi x)
+   * @f]
+   *
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param __x The argument
+   */
+  template<typename _Tp>
+    inline typename __gnu_cxx::__promote<_Tp>::__type
+    tan_pi(_Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      return std::__detail::__tan_pi<__type>(__x);
+    }
+
 
 } // namespace __gnu_cxx
 
@@ -123,12 +165,20 @@ template<typename _Tp>
 	      << std::setw(width) << "cos_pi (Boost)"
 	      << std::setw(width) << "delta cos_pi"
 	      << std::setw(width) << "delta cos(pi x)"
+	      << std::setw(width) << "tan_pi (GCC)"
+	      << std::setw(width) << "delta tan(pi x)"
 	      << '\n';
-    std::cout << std::setw(width) << "========="
-	      << std::setw(width) << "========="
-	      << std::setw(width) << "========="
-	      << std::setw(width) << "========="
-	      << std::setw(width) << "========="
+    std::cout << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
 	      << '\n';
     for (int i = -1600; i <= +1600; ++i)
       {
@@ -137,6 +187,7 @@ template<typename _Tp>
 	auto sin_pi_b = beast::sin_pi(x);
 	auto cos_pi_g = __gnu_cxx::cos_pi(x);
 	auto cos_pi_b = beast::cos_pi(x);
+	auto tan_pi_g = __gnu_cxx::tan_pi(x);
 	std::cout << std::setw(width) << x
 		  << std::setw(width) << sin_pi_g
 		  << std::setw(width) << sin_pi_b
@@ -146,6 +197,8 @@ template<typename _Tp>
 		  << std::setw(width) << cos_pi_b
 		  << std::setw(width) << cos_pi_g - cos_pi_b
 		  << std::setw(width) << cos_pi_g - std::cos(_S_pi * x)
+		  << std::setw(width) << tan_pi_g
+		  << std::setw(width) << tan_pi_g - std::tan(_S_pi * x)
 		  << '\n';
       }
     std::cout << std::endl;
@@ -160,12 +213,20 @@ template<typename _Tp>
 	      << std::setw(width) << "cos_pi (Boost)"
 	      << std::setw(width) << "delta cos_pi"
 	      << std::setw(width) << "delta cos(pi x)"
+	      << std::setw(width) << "tan_pi (GCC)"
+	      << std::setw(width) << "delta tan(pi x)"
 	      << '\n';
-    std::cout << std::setw(width) << "========="
-	      << std::setw(width) << "========="
-	      << std::setw(width) << "========="
-	      << std::setw(width) << "========="
-	      << std::setw(width) << "========="
+    std::cout << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
+	      << std::setw(width) << "==============="
 	      << '\n';
     for (int i = 0; i <= +3200; ++i)
       {
@@ -174,6 +235,7 @@ template<typename _Tp>
 	auto sin_pi_b = beast::sin_pi(x);
 	auto cos_pi_g = __gnu_cxx::cos_pi(x);
 	auto cos_pi_b = beast::cos_pi(x);
+	auto tan_pi_g = __gnu_cxx::tan_pi(x);
 	std::cout << std::setw(width) << x
 		  << std::setw(width) << sin_pi_g
 		  << std::setw(width) << sin_pi_b
@@ -183,6 +245,8 @@ template<typename _Tp>
 		  << std::setw(width) << cos_pi_b
 		  << std::setw(width) << cos_pi_g - cos_pi_b
 		  << std::setw(width) << cos_pi_g - std::cos(_S_pi * x)
+		  << std::setw(width) << tan_pi_g
+		  << std::setw(width) << tan_pi_g - std::tan(_S_pi * x)
 		  << '\n';
       }
     std::cout << std::endl;

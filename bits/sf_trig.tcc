@@ -40,7 +40,7 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   * Return the peperiodized sine of argument x:
+   * Return the reperiodized sine of argument x:
    * @f[
    *   \sin_pi(x) = \sin(\pi x)
    * @f]
@@ -82,7 +82,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the peperiodized cosine of argument x:
+   * Return the reperiodized cosine of argument x:
    * @f[
    *   \cos_pi(x) = \cos(\pi x)
    * @f]
@@ -118,6 +118,38 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = std::__detail::__num_traits_t<_Val>;
       constexpr _Real _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
       return std::cos(_S_pi * __z);
+    }
+
+  /**
+   * Return the reperiodized tangent of argument x:
+   * @f[
+   *   \tan_pi(x) = \tan(\pi x)
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __tan_pi(_Tp __x)
+    {
+      constexpr _Tp _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      if (std::isnan(__x))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__x < _Tp{0})
+	return -__tan_pi(-__x);
+      else if (__x < _Tp{0.5L})
+	return std::tan(__x * _S_pi);
+      else
+	return __tan_pi(__x - std::floor(__x));
+    }
+
+  // FIXME: Reperiodize the real part.
+  template<typename _Tp>
+    std::complex<_Tp>
+    __tan_pi(std::complex<_Tp> __z)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr _Real _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      return std::tan(_S_pi * __z);
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
