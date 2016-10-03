@@ -460,9 +460,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  _Tp _J_mnu, _N_mnu, _Jp_mnu, _Np_mnu;
 	  __cyl_bessel_jn(-__nu, __x, _J_mnu, _N_mnu, _Jp_mnu, _Np_mnu);
-	  auto __arg = -__nu * _S_pi;
-	  auto __sinnupi = std::sin(__arg);
-	  auto __cosnupi = std::cos(__arg);
+	  auto __sinnupi = __sin_pi(-__nu);
+	  auto __cosnupi = __cos_pi(-__nu);
 	  if (std::abs(__sinnupi) < _S_eps)
 	    { // Carefully preserve +-inf.
 	      auto __sign = std::copysign(_Tp{1}, __cosnupi);
@@ -538,9 +537,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Jnu = __php * _Jm;
 	  _Jpnu = -__php * _Jpm;
 	  _Nnu = __phm * _Nm
-	       + _S_i * _Tp{2} * std::cos(__nu * _S_pi) * _Jm;
+	       + _S_i * _Tp{2} * __cos_pi(__nu) * _Jm;
 	  _Npnu = -__phm * _Npm
-	       - _S_i * _Tp{2} * std::cos(__nu * _S_pi) * _Jpm;
+	       - _S_i * _Tp{2} * __cos_pi(__nu) * _Jpm;
 	}
     }
 

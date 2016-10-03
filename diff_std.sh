@@ -50,5 +50,6 @@ ${tool} bits/sf_mod_bessel.tcc     ${gcc_dir}/sf_mod_bessel.tcc
 ${tool} bits/sf_owens_t.tcc        ${gcc_dir}/sf_owens_t.tcc
 ${tool} bits/sf_polylog.tcc        ${gcc_dir}/sf_polylog.tcc 
 ${tool} bits/sf_theta.tcc          ${gcc_dir}/sf_theta.tcc
+${tool} bits/sf_trig.tcc           ${gcc_dir}/sf_trig.tcc
 ${tool} bits/sf_trigint.tcc        ${gcc_dir}/sf_trigint.tcc
 ${tool} bits/sf_zeta.tcc           ${gcc_dir}/sf_zeta.tcc
