@@ -13,6 +13,8 @@ util_dir="${test_dir}/util"
 gcc_dir="${test_dir}/special_functions"
 ext_dir="${test_dir}/ext/special_functions"
 
+${tool} specfun_testcase.h              ${util_dir}
+
 ${tool} check/check_assoc_laguerre.cc   ${gcc_dir}/01_assoc_laguerre/check_value.cc
 ${tool} check/check_assoc_legendre.cc   ${gcc_dir}/02_assoc_legendre/check_value.cc
 ${tool} check/check_beta.cc             ${gcc_dir}/03_beta/check_value.cc

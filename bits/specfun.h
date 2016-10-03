@@ -52,6 +52,7 @@
 #  include <type_traits>
 #  include <bits/numeric_limits.h>
 #  include <bits/complex_util.h>
+#  include <bits/sf_trig.tcc>
 #  include <bits/sf_gamma.tcc>
 #  include <bits/sf_bessel.tcc>
 #  include <bits/sf_beta.tcc>
@@ -5340,6 +5341,90 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tps, _Tp>;
       return std::__detail::__bose_einstein<__type>(__s, __x);
+    }
+
+  // Reperiodized sine function.
+
+  /**
+   * Return the reperiodized sine function @f$ \sin_\pi(x) @f$
+   * for @c float argument @f$ x @f$.
+   *
+   * @see sin_pi for more details.
+   */
+  inline float
+  sin_pif(float __x)
+  { return std::__detail::__sin_pi<float>(__x); }
+
+  /**
+   * Return the reperiodized sine function @f$ \sin_\pi(x) @f$
+   * for <tt>long double</tt> argument @f$ x @f$.
+   *
+   * @see sin_pi for more details.
+   */
+  inline long double
+  sin_pil(long double __x)
+  { return std::__detail::__sin_pi<long double>(__x); }
+
+  /**
+   * Return the reperiodized sine function @f$ \sin_\pi(x) @f$
+   * for real argument @f$ x @f$.
+   *
+   * The reperiodized sine function is defined by:
+   * @f[
+   * 	\sin_\pi(x) = \sin(\pi x)
+   * @f]
+   *
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param __x The argument
+   */
+  template<typename _Tp>
+    inline typename __gnu_cxx::__promote<_Tp>::__type
+    sin_pi(_Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      return std::__detail::__sin_pi<__type>(__x);
+    }
+
+  // Reperiodized cosine function.
+
+  /**
+   * Return the reperiodized cosine function @f$ \cos_\pi(x) @f$
+   * for @c float argument @f$ x @f$.
+   *
+   * @see cos_pi for more details.
+   */
+  inline float
+  cos_pif(float __x)
+  { return std::__detail::__cos_pi<float>(__x); }
+
+  /**
+   * Return the reperiodized cosine function @f$ \cos_\pi(x) @f$
+   * for <tt>long double</tt> argument @f$ x @f$.
+   *
+   * @see cos_pi for more details.
+   */
+  inline long double
+  cos_pil(long double __x)
+  { return std::__detail::__cos_pi<long double>(__x); }
+
+  /**
+   * Return the reperiodized cosine function @f$ \cos_\pi(x) @f$
+   * for real argument @f$ x @f$.
+   *
+   * The reperiodized cosine function is defined by:
+   * @f[
+   * 	\cos_\pi(x) = \sin(\pi x)
+   * @f]
+   *
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param __x The argument
+   */
+  template<typename _Tp>
+    inline typename __gnu_cxx::__promote<_Tp>::__type
+    cos_pi(_Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      return std::__detail::__cos_pi<__type>(__x);
     }
 
 

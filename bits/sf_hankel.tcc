@@ -998,8 +998,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	   && (std::abs(std::fmod(std::real(__nu), 1)) < _S_toler))
 	    __sinrat = __morn;
 	  else
-	    __sinrat = std::sin(_Tp(__morn) * __nu * _S_pi)
-		    / std::sin(__nu * _S_pi);
+	    __sinrat = __sin_pi(_Tp(__morn) * __nu) / __sin_pi(__nu);
 	  if (__indexr == 6)
 	    {
 	      _H2 = __s2
@@ -1036,7 +1035,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	   && (std::abs(std::fmod(std::real(__nu), 1)) < _S_toler))
 	    __sinrat = -__morn;
 	  else
-	    __sinrat = std::sin(_Tp(__morn) * __nu * _S_pi) / std::sin(__nu * _S_pi);
+	    __sinrat = __sin_pi(_Tp(__morn) * __nu) / __sin_pi(__nu);
 	  if (__indexr == 6)
 	    {
 	      _H1 = __s1 - std::exp(_S_j * _Tp(__morn - 1) * __nu * _S_pi)

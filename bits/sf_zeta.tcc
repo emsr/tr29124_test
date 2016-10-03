@@ -414,7 +414,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    {
 	      auto __zeta = __riemann_zeta_glob(_Val{1} - __s);
 	      __zeta *= std::pow(_Real{2} * _S_pi, __s)
-		     * std::sin(_S_pi_2 * __s)
+		     * __sin_pi(_Real{0.5L} * __s)
 		     * std::exp(__log_gamma(_Val{1} - __s)) / _S_pi;
 	      return __zeta;
 	    }
@@ -538,7 +538,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  auto __zeta = __riemann_zeta_product(_Val{1} - __s);
 	  __zeta *= std::pow(_Real{2} * _S_pi, __s)
-		 * std::sin(_Real{0.5L} * _S_pi * __s)
+		 * __sin_pi(_Real{0.5L} * __s)
 		 * std::exp(__log_gamma(_Val{1} - __s))
 		 / _S_pi;
 	  return __zeta;
@@ -556,7 +556,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      else
 		{
 		  _Tp __zeta = std::pow(_Real{2} * _S_pi, __s)
-			     * std::sin(_Real{0.5L} * _S_pi * __s)
+			     * __sin_pi(_Real{0.5L} * __s)
 			     * __gamma(_Val{1} - __s)
 			     * __riemann_zeta_sum(_Val{1} - __s);
 		  return __zeta;

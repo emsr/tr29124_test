@@ -89,10 +89,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __pre_term2 = _Tp{0.25L} * std::log(__pre_h);
       _Tp __lnpre = __lg_b - __lnfact + _Tp{0.5L} * __x
 		      + __pre_term1 - __pre_term2;
-      _Tp __ser_term1 = std::sin(__a * __gnu_cxx::__math_constants<_Tp>::__pi);
+      _Tp __ser_term1 = __sin_pi(__a);
       _Tp __ser_term2 = std::sin(_Tp{0.25L} * __eta
 			      * (_Tp{2} * __th
-			      - std::sin(_Tp{2} * __th))
+			       - std::sin(_Tp{2} * __th))
 			      + __gnu_cxx::__math_constants<_Tp>::__pi_quarter);
       _Tp __ser = __ser_term1 + __ser_term2;
 
