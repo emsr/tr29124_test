@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_reperiodized_trig test_reperiodized_trig.cpp wrap_boost.cpp gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -I. -o test_reperiodized_trig test_reperiodized_trig.cpp wrap_boost.cpp
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_reperiodized_trig > test_reperiodized_trig.txt
 
 g++ -std=c++14 -o test_reperiodized_trig test_reperiodized_trig.cpp wrap_boost.cpp -lgsl -lgslcblas
@@ -15,6 +15,8 @@ g++ -std=c++14 -o test_reperiodized_trig test_reperiodized_trig.cpp wrap_boost.c
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
+
+#ifdef NO_SIN_COS_PI
 
   // Reperiodized sine function.
 
@@ -99,6 +101,8 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
       return std::__detail::__cos_pi<__type>(__x);
     }
+
+#endif // NO_SIN_COS_PI
 
   // Reperiodized tangent function.
 
