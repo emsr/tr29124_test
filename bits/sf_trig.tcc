@@ -130,15 +130,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __tan_pi(_Tp __x)
     {
-      constexpr _Tp _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      if (std::isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__x < _Tp{0})
-	return -__tan_pi(-__x);
-      else if (__x < _Tp{0.5L})
-	return std::tan(__x * _S_pi);
-      else
-	return __tan_pi(__x - std::floor(__x));
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr _Real _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      return std::tan(_S_pi * (__x - std::floor(__x)));
     }
 
   // FIXME: Reperiodize the real part.
