@@ -139,10 +139,28 @@ namespace __detail
 	return std::vector<_Real>{};
       else if (__c[0] == _Real{0})
 	std::__throw_domain_error("__inverse_series: "
-				  "first (constant) coefficient is zero.);
+				  "first (constant) coefficient is zero.");
+      else if (__c.size() == 1)
+	return std::vector<_Real>{{_Real{1} / __c[0]}};
       else
 	{
-	  std::vector<_Real> __d;
+	  auto __n = __c.size();
+	  std::vector<_Real> __d(__n);
+	  __d[0] = _Real{1};
+	  std::vector<_Real> __lambda(__n), __lambdak(__n);
+	  __lambdak[0] = __lambda[0] = _Real{0};
+	  for (unsigned __i = 1; __i < __n; ++__i)
+	    __d[__i] = -(__lambdak[__i] = __lambda[__i] = __c[__i] / __c[0]);
+
+	  for (unsigned __i = 2; __i < __n; ++__i)
+	    {
+	      for (unsigned __j = 0; __j < __n; ++__j)
+		if (__i + __j < __n)
+		  __lambdak[__i + __j] = __lambda[__j] * __lambdak[__i];
+	      auto __sign = (__i % 2 == 0 ? +1 : -1);
+	      
+	    }
+
 	  return __d;
 	}
     }
@@ -162,7 +180,7 @@ namespace __detail
       std::vector<_Real> __e;
       std::vector<_Real> __r;
 
-      for ()
+      //for ()
 
       return __r;
     }
