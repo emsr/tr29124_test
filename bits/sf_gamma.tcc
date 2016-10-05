@@ -1650,17 +1650,17 @@ _S_neg_double_factorial_table[999]
 	    __fact *= __k / (_Tp{2} * _S_pi);
 	  __fact *= _Tp{2};
 
-	 // Riemann zeta function for (even) integer argument.
-	  auto __sum = _Tp{1};
+	 // Riemann zeta function minus-1 for even integer argument.
+	  auto __sum = _Tp{0};
 	  for (unsigned int __i = 2; __i < 1000; ++__i)
 	    {
 	      auto __term = std::pow(_Tp(__i), -_Tp(__n));
 	      __sum += __term;
-	      if (__term < __gnu_cxx::__epsilon<_Tp>())
+	      if (__term < __gnu_cxx::__epsilon<_Tp>() * __sum)
 		break;
 	    }
 
-	  return __fact * __sum;
+	  return __fact + __fact * __sum;
 	}
     }
 
