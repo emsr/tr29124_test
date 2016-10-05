@@ -3,7 +3,7 @@
 
  ./test_binet_float > test_binet_float.txt
 
- $HOME/bin/bin/g++ -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_binet_float test_binet_float.cpp -lquadmath
+ $HOME/bin/bin/g++ -g -std=gnu++17 -I. -o test_binet_float test_binet_float.cpp -lquadmath
 
  */
 
@@ -13,6 +13,7 @@
 #include <vector>
 //#include <bits/float128.h>
 #include <cmath>
+#include <ext/polynomial.h>
 
 namespace std
 {
@@ -145,22 +146,29 @@ namespace __detail
       else
 	{
 	  auto __n = __c.size();
-	  std::vector<_Real> __d(__n);
-	  __d[0] = _Real{1};
-	  std::vector<_Real> __lambda(__n), __lambdak(__n);
-	  __lambdak[0] = __lambda[0] = _Real{0};
+	  auto __m = __n + 1;
+	  std::vector<_Real> __lambda(__n);
+	  __lambda[0] = _Real{0};
 	  for (unsigned __i = 1; __i < __n; ++__i)
-	    __d[__i] = -(__lambdak[__i] = __lambda[__i] = __c[__i] / __c[0]);
+	    __lambda[__i] = __c[__i] / __c[0];
 
-	  for (unsigned __i = 2; __i < __n; ++__i)
+	  std::vector<_Real> __lambdak(__m);
+	  std::vector<_Real> __d(__m);
+	  __d[0] = __lambdak[0] = _Real{1}; // k == 0
+	  for (unsigned __k = 1; __k < __m; ++__k)
 	    {
-	      for (unsigned __j = 0; __j < __n; ++__j)
-		if (__i + __j < __n)
-		  __lambdak[__i + __j] = __lambda[__j] * __lambdak[__i];
-	      auto __sign = (__i % 2 == 0 ? +1 : -1);
-	      
+	      std::vector<_Real> __work(__m);
+	      for (unsigned __i = 1; __i < __n; ++__i)
+		for (unsigned __j = 0; __j < __m; ++__j)
+		  if (__i + __j < __m)
+		    __work[__i + __j] += __lambda[__i] * __lambdak[__j];
+	      std::swap(__work, __lambdak);
+	      auto __sign = (__k % 2 == 0 ? +1 : -1);
+	      for (unsigned __j = __k; __j < __m; ++__j)
+		__d[__j] += __sign * __lambdak[__j];
 	    }
-
+	  for (unsigned __j = 0; __j < __m; ++__j)
+	    __d[__j] /= __c[0];
 	  return __d;
 	}
     }
@@ -174,13 +182,29 @@ namespace __detail
     std::vector<_Real>
     __quotient_difference_prog(std::vector<_Real> __s)
     {
-      auto __len = __s.size();
+      auto __n = __s.size();
       auto __zero = _Real{0};
-      std::vector<_Real> __q;
-      std::vector<_Real> __e;
       std::vector<_Real> __r;
 
-      //for ()
+      std::vector<std::vector<_Real>> __q;
+      __q.push_back(std::vector<_Real>{});
+      __q.back().push_back(-__s[1] / __s[0]);
+      for (unsigned __k = 0; __k < __n - 1; ++__k)
+	__q.back().push_back(__zero);
+
+      std::vector<std::vector<_Real>> __e;
+      __e.push_back(std::vector<_Real>{});
+      __e.back().push_back(_Real{0});
+      for (unsigned __k = 0; __k < __n - 2; ++__k)
+	__e.back().push_back(__s[__k + 2] / __s[__k + 1]);
+
+      for (unsigned __k = 1; __k < __n - 2; ++__k)
+	{
+	  __q.push_back(std::vector<_Real>{});
+	  __e.push_back(std::vector<_Real>{});
+	  //for (unsigned __l = 1; __l < __n - 2; ++__l)
+	    //__q.back().push_back(__q[__k - 1][__l] + __e[][__l] - __e[][__l]);
+	}
 
       return __r;
     }
@@ -191,6 +215,13 @@ namespace __detail
     std::vector<_Real>
     __stieltjes_cont_frac_seq(int __len)
     { return __quotient_difference(__weights(__bernoulli_vec<_Real>(__len))); }
+
+  // Computes the Stieltjes continued fraction for the
+  // Gamma function using the progressive QD-algorithm.
+  template<typename _Real>
+    std::vector<_Real>
+    __stieltjes_cont_frac_seq_prog(int __len)
+    { return __quotient_difference_prog(__inverse_series(__weights(__bernoulli_vec<_Real>(__len)))); }
 
   /**
    * Compute the Binet function using the asymptotic series
@@ -488,10 +519,19 @@ template<typename _Tp>
     std::cout << "\nStieltjes partial numerators\n";
     int len = 100;
     auto cf = std::__detail::__stieltjes_cont_frac_seq<_Real>(len);
-    for (int k = 0; k < len; ++k)
+    for (int k = 0; k < cf.size(); ++k)
       std::cout << ' ' << std::setw(2) << k + 1 << ": "
 		<< ' ' << std::setw(width) << cf[k]
 		<< ' ' << std::setw(width) << cf[k] / ((k+1) * (k+1) / _Tp{16}) << '\n';
+
+    std::cout << "\nStieltjes partial numerators (progressive)\n";
+    auto cfp = std::__detail::__stieltjes_cont_frac_seq_prog<_Real>(len);
+    for (int k = 0; k < cfp.size(); ++k)
+      std::cout << ' ' << std::setw(2) << k + 1 << ": "
+		<< ' ' << std::setw(width) << cfp[k]
+		<< ' ' << std::setw(width) << cfp[k] / ((k+1) * (k+1) / _Tp{16}) << '\n';
+
+    //std::__detail::__inverse_series(__c);
 
     std::cout << "\nBinet asymptotic\n";
     for (int k = 1; k <= 5000; ++k)
@@ -502,13 +542,60 @@ template<typename _Tp>
 	std::cout << ' ' << std::setw(4) << x
 		  << ' ' << std::setw(width) << j_as
 		  << ' ' << std::setw(width) << j_cf
-		  << ' ' << std::setw(width) << (j_as - j_cf) / j_cf << '\n';
+		  << ' ' << std::setw(width) << (j_as - j_cf) / j_cf
+		  << '\n';
       }
+  }
+
+// Test polynomial inversion..
+template<typename _Tp>
+  void
+  test_exp()
+  {
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    auto width = std::cout.precision() + 6;
+
+    std::vector<_Tp> coef;
+    _Tp fact = 1;
+    coef.push_back(_Tp{1} / fact);
+    for (int i = 1; i <= 20; ++i)
+      coef.push_back(_Tp{1} / (fact *= _Tp(i)));
+
+    std::cout << "\n exp(x) oefficients:\n";
+    for (auto cf : coef)
+      std::cout << std::setw(width) << cf << '\n';
+
+    std::vector<_Tp> inv = std::__detail::__inverse_series(coef);
+    std::cout << "\n Inverse (hopefully exp(-x)) coefficients:\n";
+    for (auto cf : inv)
+      std::cout << std::setw(width) << cf << '\n';
+
+/*
+    std::cout << "\nTest exp(x)\n";
+    __gnu_cxx::_Polynomial<_Tp> expoly(std::begin(coef), std::end(coef));
+    __gnu_cxx::_Polynomial<_Tp> rat_numer(std::begin(coef), std::begin(coef) + 10);
+    __gnu_cxx::_Polynomial<_Tp> rat_denom(std::begin(inv), std::begin(inv) + 10);
+    for (int k = 0; k <= 500; ++k)
+      {
+	auto x = _Tp{0.1Q} * k;
+	auto pexp = expoly(x);
+	auto rexp = std::sqrt(rat_numer(x) / rat_denom(x));
+	std::cout << ' ' << std::setw(4) << x
+		  << ' ' << std::setw(width) << pexp
+		  << ' ' << std::setw(width) << pexp - std::exp(x)
+		  << ' ' << std::setw(width) << rexp
+		  << ' ' << std::setw(width) << rexp - std::exp(x)
+		  << '\n';
+      }
+*/
   }
 
 int
 main()
 {
+  std::cout << "\nTest polynomial inversion\n";
+  test_exp<long double>();
+
   test<long double>();
   //test<__float128>();
 }
