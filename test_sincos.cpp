@@ -25,6 +25,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp cos_value;
     };
 
+  /**
+   * Default implementation of sincos.
+   */
   template<typename _Tp>
     __sincos_t<_Tp>
     __sincos(_Tp __x)
