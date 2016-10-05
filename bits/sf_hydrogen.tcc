@@ -48,8 +48,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __hydrogen(unsigned int __n,
                unsigned int __l, unsigned int __m,
-               _Tp _Z, _Tp __r, _Tp __theta, _Tp __phi)
+               _Tp __Z, _Tp __r, _Tp __theta, _Tp __phi)
     {
+      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+
       if (__isnan(__Z) || __isnan(__r) || __isnan(__theta) || __isnan(__phi))
 	return std::complex<_Tp>{_S_NaN, _S_NaN};
       else if(__n < 1)
@@ -58,21 +60,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if(__l > __n - 1)
 	std::__throw_domain_error(__N("__hydrogen: "
 				      "angular momentum number too large"));
-      else if(_Z <= _Tp(0))
+      else if(__Z <= _Tp(0))
 	std::__throw_domain_error(__N("__hydrogen: non-positive charge"));
       else if(__r < _Tp(0))
 	std::__throw_domain_error(__N("__hydrogen: negative radius"));
       else
 	{
-	  const auto _A = _Tp(2) * _Z / __n;
+	  const auto __A = _Tp(2) * __Z / __n;
 
-	  const auto __pre = std::sqrt(_A * _A * _A / (_Tp(2) * __n));
+	  const auto __pre = std::sqrt(__A * __A * __A / (_Tp(2) * __n));
 	  const auto __ln_a = std::lgamma(__n + __l + 1);
 	  const auto __ln_b = std::lgamma(__n - __l);
 	  const auto __ex = std::exp((__ln_b - __ln_a) / _Tp(2));
 	  const auto __norm = __pre * __ex;
 
-	  const auto __rho = _A * __r;
+	  const auto __rho = __A * __r;
 	  const auto __ea = std::exp(-__rho / _Tp(2));
 	  const auto __pp = std::pow(__rho, __l);
 	  const auto __lag = __assoc_laguerre(__n - __l - 1, 2 * __l + 1,
