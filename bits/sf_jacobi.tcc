@@ -129,6 +129,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * for non-negative  @f$ m, n @f$.
    * @see zernike for details on the Zernike polynomials.
    *
+   * @see Principals of Optics, 7th edition, Max Born and Emil Wolf,
+   * Cambridge University Press, 1999, pp 523-525 and 905-910.
+   *
    * @tparam _Tp The real type of the radial coordinate
    * @param __n The non-negative degree.
    * @param __m The non-negative azimuthal order
@@ -173,6 +176,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * for non-negative degree @f$ m @f$ and @f$ m <= n @f$
    * and where @f$ R_n^m(\rho) @f$ is the radial polynomial
    * (@see __poly_radial_jacobi).
+   *
+   * @see Principals of Optics, 7th edition, Max Born and Emil Wolf,
+   * Cambridge University Press, 1999, pp 523-525 and 905-910.
    *
    * @tparam _Tp The real type of the radial coordinate and azimuthal angle
    * @param __n The non-negative integral degree.
