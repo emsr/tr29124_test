@@ -166,8 +166,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
       constexpr auto _S_gamma_E = __gnu_cxx::__math_constants<_Tp>::__gamma_e;
-      __gampl = _Tp{1} / std::tgamma(_Tp{1} + __mu);
-      __gammi = _Tp{1} / std::tgamma(_Tp{1} - __mu);
+      __gampl = _Tp{1} / __gamma(_Tp{1} + __mu);
+      __gammi = _Tp{1} / __gamma(_Tp{1} - __mu);
 
       if (std::abs(__mu) < _S_eps)
 	__gam1 = -_S_gamma_E;
