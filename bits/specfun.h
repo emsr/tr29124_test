@@ -209,6 +209,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::ldouble_factorial "ldouble_factorial - Log double factorials"
    * - @ref __gnu_cxx::legendre_q "legendre_q - Legendre functions of the second kind"
    * - @ref __gnu_cxx::lfactorial "lfactorial - Log factorials"
+   * - @ref __gnu_cxx::lgamma "lgamma - Log gamma for complex arguments"
    * - @ref __gnu_cxx::lpochhammer_lower "lpochhammer_lower - Log lower Pochhammer functions"
    * - @ref __gnu_cxx::lpochhammer "lpochhammer - Log upper Pochhammer functions"
    * - @ref __gnu_cxx::owens_t "owens_t - Owens T functions"
@@ -227,6 +228,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::sph_hankel_1 "sph_hankel_1 - Spherical Hankel functions of the first kind"
    * - @ref __gnu_cxx::sph_hankel_2 "sph_hankel_2 - Spherical Hankel functions of the first kind"
    * - @ref __gnu_cxx::sph_harmonic "sph_harmonic - Spherical"
+   * - @ref __gnu_cxx::tgamma "tgamma - Gamma for complex arguments"
    * - @ref __gnu_cxx::tgamma "tgamma - Upper incomplete gamma functions"
    * - @ref __gnu_cxx::tgamma_lower "tgamma_lower - Lower incomplete gamma functions"
    * - @ref __gnu_cxx::theta_1 "theta_1 - Exponential theta function 1"
@@ -2851,18 +2853,99 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__airy_bi<__type>(__x);
     }
 
+  // Log Gamma function for complex argument.
+
+  /**
+   * Return the logarithm of the gamma function for
+   * <tt> std::complex<float> </tt> argument.
+   *
+   * @see lgamma for details.
+   */
+  inline std::complex<float>
+  lgammaf(std::complex<float> __a)
+  { return std::__detail::__log_gamma<std::complex<float>>(__a); }
+
+  /**
+   * Return the logarithm of the gamma function for
+   * <tt> std::complex<long double> </tt> argument.
+   *
+   * @see lgamma for details.
+   */
+  inline std::complex<long double>
+  lgammal(std::complex<long double> __a)
+  { return std::__detail::__log_gamma<std::complex<long double>>(__a); }
+
+  /**
+   * Return the logarithm of the gamma function for complex argument.
+   */
+  template<typename _Ta>
+    inline std::complex<__gnu_cxx::__promote_fp_t<_Ta>>
+    lgamma(std::complex<_Ta> __a)
+    {
+      using __type = std::complex<__gnu_cxx::__promote_fp_t<_Ta>>;
+      return std::__detail::__log_gamma<__type>(__a);
+    }
+
+  // Gamma function for complex argument.
+
+  /**
+   * Return the gamma function for <tt> std::complex<float> </tt> argument.
+   *
+   * @see lgamma for details.
+   */
+  inline std::complex<float>
+  tgammaf(std::complex<float> __a)
+  { return std::__detail::__gamma<std::complex<float>>(__a); }
+
+  /**
+   * Return the gamma function for <tt> std::complex<long double> </tt>
+   * argument.
+   *
+   * @see lgamma for details.
+   */
+  inline std::complex<long double>
+  tgammal(std::complex<long double> __a)
+  { return std::__detail::__gamma<std::complex<long double>>(__a); }
+
+  /**
+   * Return the gamma function for complex argument.
+   */
+  template<typename _Ta>
+    inline std::complex<__gnu_cxx::__promote_fp_t<_Ta>>
+    tgamma(std::complex<_Ta> __a)
+    {
+      using __type = std::complex<__gnu_cxx::__promote_fp_t<_Ta>>;
+      return std::__detail::__gamma<__type>(__a);
+    }
+
   // Upper incomplete gamma functions
 
+  /**
+   * Return the upper incomplete gamma function @f$ \Gamma(a,x) @f$
+   * for @c float argument.
+   *
+   * @see tgamma for details.
+   */
   inline float
   tgammaf(float __a, float __x)
   { return std::__detail::__tgamma<float>(__a, __x); }
 
+  /**
+   * Return the upper incomplete gamma function @f$ \Gamma(a,x) @f$
+   * for <tt>long double</tt> argument.
+   *
+   * @see tgamma for details.
+   */
   inline long double
   tgammal(long double __a, long double __x)
   { return std::__detail::__tgamma<long double>(__a, __x); }
 
   /**
-   * 
+   * Return the upper incomplete gamma function @f$ \Gamma(a,x) @f$.
+   * The (upper) incomplete gamma function is defined by
+   * @f[
+   *   \Gamma(a,x) = \int_x^\infty t^{a-1}e^{-t}dt
+   * @f]
    */
   template<typename _Ta, typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Ta, _Tp>
@@ -2874,16 +2957,32 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
   // Lower incomplete gamma functions
 
+  /**
+   * Return the lower incomplete gamma function @f$ \gamma(a,x) @f$
+   * for @c float argument.
+   *
+   * @see tgamma_lower for details.
+   */
   inline float
   tgamma_lowerf(float __a, float __x)
   { return std::__detail::__tgamma_lower<float>(__a, __x); }
 
+  /**
+   * Return the lower incomplete gamma function @f$ \gamma(a,x) @f$
+   * for <tt>long double</tt> argument.
+   *
+   * @see tgamma_lower for details.
+   */
   inline long double
   tgamma_lowerl(long double __a, long double __x)
   { return std::__detail::__tgamma_lower<long double>(__a, __x); }
 
   /**
-   * 
+   * Return the lower incomplete gamma function @f$ \gamma(a,x) @f$.
+   * The lower incomplete gamma function is defined by
+   * @f[
+   *   \gamma(a,x) = \int_0^x t^{a-1}e^{-t}dt
+   * @f]
    */
   template<typename _Ta, typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Ta, _Tp>
