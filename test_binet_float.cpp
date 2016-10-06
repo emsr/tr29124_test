@@ -159,7 +159,7 @@ namespace __detail
 	    {
 	      std::vector<_Real> __work(__m);
 	      for (unsigned __i = 1; __i < __n; ++__i)
-		for (unsigned __j = 0; __j < __m; ++__j)
+		for (unsigned __j = __k - 1; __j < __m; ++__j)
 		  if (__i + __j < __m)
 		    __work[__i + __j] += __lambda[__i] * __lambdak[__j];
 	      std::swap(__work, __lambdak);
@@ -189,21 +189,30 @@ namespace __detail
       std::vector<std::vector<_Real>> __q;
       __q.push_back(std::vector<_Real>{});
       __q.back().push_back(-__s[1] / __s[0]);
-      for (unsigned __k = 0; __k < __n - 1; ++__k)
+      for (unsigned __k = 1; __k < __n; ++__k)
 	__q.back().push_back(__zero);
 
       std::vector<std::vector<_Real>> __e;
       __e.push_back(std::vector<_Real>{});
       __e.back().push_back(_Real{0});
-      for (unsigned __k = 0; __k < __n - 2; ++__k)
-	__e.back().push_back(__s[__k + 2] / __s[__k + 1]);
+      for (unsigned __k = 1; __k < __n - 2; ++__k)
+	__e.back().push_back(__s[__k + 1] / __s[__k]);
+
+      __r.push_back(__e[0][0]);
+      __r.push_back(__q[0][1]);
 
       for (unsigned __k = 1; __k < __n - 2; ++__k)
 	{
 	  __q.push_back(std::vector<_Real>{});
+	  for (unsigned __l = 1; __l < __n - 2; ++__l)
+	    __q.back().push_back(__q[__k - 1][__l] + __e[__k - 1][__l] - __e[__k - 1][__l - 1]);
+
 	  __e.push_back(std::vector<_Real>{});
-	  //for (unsigned __l = 1; __l < __n - 2; ++__l)
-	    //__q.back().push_back(__q[__k - 1][__l] + __e[][__l] - __e[][__l]);
+	  for (unsigned __l = 1; __l < __n - 2; ++__l)
+	    __e.back().push_back(__q[__k - 1][__l + 1] * __e[__k - 1][__l] / __q.back().back());
+
+	  __r.push_back(__q[0][__k]);
+	  __r.push_back(__e[0][__k]);
 	}
 
       return __r;
@@ -530,8 +539,6 @@ template<typename _Tp>
       std::cout << ' ' << std::setw(2) << k + 1 << ": "
 		<< ' ' << std::setw(width) << cfp[k]
 		<< ' ' << std::setw(width) << cfp[k] / ((k+1) * (k+1) / _Tp{16}) << '\n';
-
-    //std::__detail::__inverse_series(__c);
 
     std::cout << "\nBinet asymptotic\n";
     for (int k = 1; k <= 5000; ++k)
