@@ -69,8 +69,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __A = _Tp(2) * __Z / __n;
 
 	  const auto __pre = std::sqrt(__A * __A * __A / (_Tp(2) * __n));
-	  const auto __ln_a = std::lgamma(__n + __l + 1);
-	  const auto __ln_b = std::lgamma(__n - __l);
+	  const auto __ln_a = __log_gamma(__n + __l + 1);
+	  const auto __ln_b = __log_gamma(__n - __l);
 	  const auto __ex = std::exp((__ln_b - __ln_a) / _Tp(2));
 	  const auto __norm = __pre * __ex;
 
