@@ -510,10 +510,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __s = _S_cbrt3 * __t;
       const std::array<_Tp, 3>
 	__cos{ _Tp{1} / _Tp{2}, _Tp{-1}, _Tp{1} / _Tp{2} };
-      auto _Hi = __cmplx{std::tgamma(_S_1d3)};
-      auto _Hip = __cmplx{std::tgamma(_S_2d3)};
-      auto _Gi = __cmplx{__cos[2] * std::tgamma(_S_1d3)};
-      auto _Gip = __cmplx{__cos[0] * std::tgamma(_S_2d3)};
+      auto _Hi = __cmplx{__gamma(_S_1d3)};
+      auto _Hip = __cmplx{__gamma(_S_2d3)};
+      auto _Gi = __cmplx{__cos[2] * __gamma(_S_1d3)};
+      auto _Gip = __cmplx{__cos[0] * __gamma(_S_2d3)};
       auto __term = __cmplx(_Tp{1});
       auto __termp = __cmplx(_Tp{1});
       for (int __k = 1; __k < __max_FGH<_Tp>; ++__k)
@@ -523,8 +523,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__term) < _S_eps)
 	    break;
 
-	  const auto __gam = std::tgamma(_Tp(__k + 1) /_Tp{3});
-	  const auto __gamp = std::tgamma(_Tp(__k + 2) /_Tp{3});
+	  const auto __gam = __gamma(_Tp(__k + 1) /_Tp{3});
+	  const auto __gamp = __gamma(_Tp(__k + 2) /_Tp{3});
 	  _Hi += __gam * __term;
 	  _Hip += __gamp * __termp;
 	  _Gi += __cos[(__k + 2) % 3] * __gam * __term;

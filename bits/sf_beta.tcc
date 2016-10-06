@@ -280,8 +280,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return _Tp{0};
       else
 	{
-	  auto __fact = std::exp(std::lgamma(__a + __b)
-		      - std::lgamma(__a) - std::lgamma(__b)
+	  auto __sign = __log_gamma_sign(__a + __b)
+		      * __log_gamma_sign(__a) * __log_gamma_sign(__b);
+	  auto __fact = __sign * std::exp(__log_gamma(__a + __b)
+		      - __log_gamma(__a) - __log_gamma(__b)
 		      + __a * std::log(__x) + __b * std::log(_Tp{1} - __x));
 
 	  if (__x < (__a + _Tp{1}) / (__a + __b + _Tp{2}))

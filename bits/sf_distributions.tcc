@@ -122,7 +122,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	return std::pow(__beta, __alpha) * std::pow(__x, __alpha - _Tp{1})
-	     * std::exp(__beta * __x) / std::tgamma(__alpha);
+	     * std::exp(__beta * __x) / __gamma(__alpha);
     }
 
   /**
@@ -142,7 +142,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	return __tgamma_lower(__alpha, __beta * __x)
-	     / std::tgamma(__alpha);
+	     / __gamma(__alpha);
     }
 
   /**
@@ -163,7 +163,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	return __tgamma(__alpha, __beta * __x)
-	     / std::tgamma(__alpha);
+	     / __gamma(__alpha);
     }
 
 
