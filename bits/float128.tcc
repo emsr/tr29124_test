@@ -45,7 +45,7 @@ namespace std
   template<typename _CharT, typename _Traits = std::char_traits<_CharT>>
     std::basic_ostream<_CharT, _Traits>&
     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
-	       const __float128& __x)
+	       __float128 __x)
     {
       auto __sci = __os.flags() & std::ios::scientific;
       auto __hex = __os.flags() & std::ios::fixed

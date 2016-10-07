@@ -142,7 +142,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr _Tp _S_Gip0
       		 = _Tp{1.494294524512754526382745701329427969551e-1L};
       static constexpr __cmplx _S_i{_Tp{0}, _Tp{1}};
-      static constexpr _Tp _S_log10min = __gnu_cxx::__log10_min(_Tp{});
 
       static _AiryState<std::complex<_Tp>>
       _S_Airy(std::complex<_Tp> __t);
@@ -232,10 +231,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     constexpr std::complex<_Tp>
     _Airy_series<_Tp>::_S_i;
 
-  template<typename _Tp>
-    constexpr _Tp
-    _Airy_series<_Tp>::_S_log10min;
-
   /**
    * Return the Airy functions by using the series expansions of
    * the auxilliary Airy functions:
@@ -262,6 +257,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Airy_series<_Tp>::_S_AiryHelp(std::complex<_Tp> __t,
 				   bool __return_fock_airy)
     {
+      const _Tp _S_log10min = __gnu_cxx::__log10_min(_Tp{});
       const auto _S_min = std::numeric_limits<_Tp>::min();
       const auto __log10t = std::log10(std::abs(__t));
       const auto __ttt = __t * __t * __t;
@@ -385,6 +381,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _AiryAuxilliaryState<std::complex<_Tp>>
     _Airy_series<_Tp>::_S_FGH(std::complex<_Tp> __t)
     {
+      const _Tp _S_log10min = __gnu_cxx::__log10_min(_Tp{});
       const auto _S_min = std::numeric_limits<_Tp>::min();
       const auto __log10t = std::log10(std::abs(__t));
       const auto __tt = __t * __t;
@@ -553,6 +550,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::pair<std::complex<_Tp>, std::complex<_Tp>>
     _Airy_series<_Tp>::_S_AiBi(std::complex<_Tp> __t, std::pair<_Tp, _Tp> _Z0)
     {
+      const _Tp _S_log10min = __gnu_cxx::__log10_min(_Tp{});
       const auto __log10t = std::log10(std::abs(__t));
       const auto __ttt = __t * __t * __t;
 
