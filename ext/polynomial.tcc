@@ -38,8 +38,9 @@
 #include <ios>
 #include <complex>
 
-namespace __gnu_cxx
+namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  Evaluate the polynomial using a modification of Horner's rule which
@@ -343,6 +344,7 @@ namespace __gnu_cxx
       return __is;
     }
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
 #endif // C++11

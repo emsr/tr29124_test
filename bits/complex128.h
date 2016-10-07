@@ -37,8 +37,9 @@
 #include <bits/float128.h>
 #include <complex>
 
-namespace std
+namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /// complex<__float128> specialization
   template<>
@@ -482,15 +483,19 @@ namespace std
 
 #endif  
 
+_GLIBCXX_END_NAMESPACE_VERSION
+
 #if __cplusplus > 201103L
 
 inline namespace literals {
 inline namespace complex_literals {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   std::complex<__float128>
   operator""iq(const char* __str)
   { return complex<__float128>(0.0Q, strtoflt128(__str, 0)); }
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // inline namespace complex_literals
 } // inline namespace literals
 

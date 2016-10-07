@@ -30,8 +30,11 @@
 #ifndef _GLIBCXX_BITS_NUMERIC_LIMITS_H
 #define _GLIBCXX_BITS_NUMERIC_LIMITS_H 1
 
-namespace __gnu_cxx
+#pragma GCC system_header
+
+namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief Part of std::numeric_limits.
@@ -304,6 +307,7 @@ namespace __gnu_cxx
     __log10_eps(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::log10(__epsilon(_Tp{})); }
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
 #endif // _GLIBCXX_BITS_NUMERIC_LIMITS_H
