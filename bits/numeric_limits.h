@@ -30,8 +30,11 @@
 #ifndef _GLIBCXX_BITS_NUMERIC_LIMITS_H
 #define _GLIBCXX_BITS_NUMERIC_LIMITS_H 1
 
-namespace __gnu_cxx
+#pragma GCC system_header
+
+namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief Part of std::numeric_limits.
@@ -208,102 +211,103 @@ namespace __gnu_cxx
   // These depend on constexpr math functions.
 
   template<typename _Tp>
-    _GLIBCXX_CONSTEXPR _Tp
+    _Tp
     __sqrt_max(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::sqrt(__max(_Tp{})); }
 
 #ifdef NO_CBRT
   template<typename _Tp>
-    _GLIBCXX_CONSTEXPR _Tp
+    _Tp
     __cbrt_max(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::pow(__max(_Tp{}), 1 / _Tp{3}); }
 #else
   template<typename _Tp>
-    _GLIBCXX_CONSTEXPR _Tp
+    _Tp
     __cbrt_max(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::cbrt(__max(_Tp{})); }
 #endif
 
   template<typename _Tp>
-    _GLIBCXX_CONSTEXPR _Tp
+    _Tp
     __root_max(_Tp __root) _GLIBCXX_USE_NOEXCEPT
     { return std::pow(__max(_Tp{}), 1 / __root); }
 
   template<typename _Tp>
-    _GLIBCXX_CONSTEXPR _Tp
+    _Tp
     __log_max(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::log(__max(_Tp{})); }
 
   template<typename _Tp>
-    _GLIBCXX_CONSTEXPR _Tp
+    _Tp
     __log10_max(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::log10(__max(_Tp{})); }
 
 
   template<typename _Tp>
-    _GLIBCXX_CONSTEXPR _Tp
+    _Tp
     __sqrt_min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::sqrt(__min(_Tp{})); }
 
 #ifdef NO_CBRT
   template<typename _Tp>
-    _GLIBCXX_CONSTEXPR _Tp
+    _Tp
     __cbrt_min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::pow(__min(_Tp{}), 1 / _Tp{3}); }
 #else
   template<typename _Tp>
-    _GLIBCXX_CONSTEXPR _Tp
+    _Tp
     __cbrt_min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::cbrt(__min(_Tp{})); }
 #endif
 
   template<typename _Tp>
-    _GLIBCXX_CONSTEXPR _Tp
+    _Tp
     __root_min(_Tp __root) _GLIBCXX_USE_NOEXCEPT
     { return std::pow(__min(_Tp{}), 1 / __root); }
 
   template<typename _Tp>
-    _GLIBCXX_CONSTEXPR _Tp
+    _Tp
     __log_min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::log(__min(_Tp{})); }
 
   template<typename _Tp>
-    _GLIBCXX_CONSTEXPR _Tp
+    _Tp
     __log10_min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::log10(__min(_Tp{})); }
 
   template<typename _Tp>
-    _GLIBCXX_CONSTEXPR _Tp
+    _Tp
     __sqrt_eps(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::sqrt(__epsilon(_Tp{})); }
 
 #ifdef NO_CBRT
   template<typename _Tp>
-    _GLIBCXX_CONSTEXPR _Tp
+    _Tp
     __cbrt_eps(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::pow(__epsilon(_Tp{}), 1 / _Tp{3}); }
 #else
   template<typename _Tp>
-    _GLIBCXX_CONSTEXPR _Tp
+    _Tp
     __cbrt_eps(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::cbrt(__epsilon(_Tp{})); }
 #endif
 
   template<typename _Tp>
-    _GLIBCXX_CONSTEXPR _Tp
+    _Tp
     __root_eps(_Tp __root) _GLIBCXX_USE_NOEXCEPT
     { return std::pow(__epsilon(_Tp{}), 1 / __root); }
 
   template<typename _Tp>
-    _GLIBCXX_CONSTEXPR _Tp
+    _Tp
     __log_eps(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::log(__epsilon(_Tp{})); }
 
   template<typename _Tp>
-    _GLIBCXX_CONSTEXPR _Tp
+    _Tp
     __log10_eps(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::log10(__epsilon(_Tp{})); }
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
 #endif // _GLIBCXX_BITS_NUMERIC_LIMITS_H
