@@ -1,9 +1,9 @@
-// $HOME/bin/bin/g++ -std=gnu++14 -o test_numeric_limits test_numeric_limits.cpp -lquadmath
+// $HOME/bin/bin/g++ -std=gnu++14 -I. -o test_numeric_limits test_numeric_limits.cpp -lquadmath
 
 // LD_LIBRARY_PATH=/$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_numeric_limits > test_numeric_limits.txt
 
-#include "numeric_limits.h"
-#include "float128.h"
+#include <bits/numeric_limits.h>
+#include <bits/float128.h>
 
 #include <iostream>
 #include <iomanip>
