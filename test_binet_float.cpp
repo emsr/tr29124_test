@@ -11,7 +11,8 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
-//#include <bits/float128.h>
+#include <bits/float128.h>
+#include <bits/complex128.h>
 #include <cmath>
 #include <ext/polynomial.h>
 
@@ -603,6 +604,15 @@ main()
   std::cout << "\nTest polynomial inversion\n";
   test_exp<long double>();
 
+  //std::cout << "\nfloat\n=====\n\n";
+  //test<float>();
+
+  std::cout << "\ndouble\n======\n";
+  test<double>();
+
+  std::cout << "\nlong double\n===========\n";
   test<long double>();
-  //test<__float128>();
+
+  std::cout << "\n__float128\n===========\n";
+  test<__float128>();
 }

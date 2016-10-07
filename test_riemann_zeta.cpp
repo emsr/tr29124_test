@@ -12,6 +12,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_riemann_zeta test_riemann_
 #include <iomanip>
 #include <fstream>
 #include <vector>
+#include <bits/float128.h>
 
 // I'm not sure why I need this here and not other places...
 template<>
@@ -233,7 +234,7 @@ main()
   plot_riemann_zeta<long double>("plot/riemann_zeta_long_double.txt");
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  //std::cout << "\nriemann_zeta<__float128>\n";
-  //plot_riemann_zeta<__float128>("plot/riemann_zeta__float128.txt");
+  std::cout << "\nriemann_zeta<__float128>\n";
+  plot_riemann_zeta<__float128>("plot/riemann_zeta__float128.txt");
 #endif
 }
