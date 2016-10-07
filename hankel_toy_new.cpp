@@ -2,7 +2,7 @@
 $HOME/bin_tr29124/bin/g++ -g -std=gnu++14 -o hankel_toy_new hankel_toy_new.cpp -L$HOME/bin/lib64 -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./hankel_toy_new > hankel_toy_new.txt
 
-g++ -std=gnu++14 -DNO_CBRT -o hankel_toy_new hankel_toy_new.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++14 -DNO_CBRT -o hankel_toy_new hankel_toy_new.cpp -lquadmath
 ./hankel_toy_new > hankel_toy_new.txt
 */
 
@@ -10,9 +10,9 @@ g++ -std=gnu++14 -DNO_CBRT -o hankel_toy_new hankel_toy_new.cpp -lquadmath
 #include <iostream>
 #include <iomanip>
 #include <tuple>
-//#include "float128.h"
-#include "polynomial.h"
-#include "numeric_limits.h"
+#include <bits/float128.h>
+#include <bits/polynomial.h>
+#include <bits/numeric_limits.h>
 
 template<typename _Tp>
   struct __hankel_outer_param_t
