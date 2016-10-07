@@ -46,6 +46,8 @@
 #ifndef _GLIBCXX_BITS_SF_BESSEL_TCC
 #define _GLIBCXX_BITS_SF_BESSEL_TCC 1
 
+#pragma GCC system_header
+
 #include <complex>
 #include <utility> // For exchange
 #include <ext/math_const.h>
@@ -205,9 +207,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // fp_min = N * min()
       // Then J_0 and N_0 tank at x = 8 * N (J_0 = 0 and N_0 = nan)!
       //const _Tp _S_fp_min = _Tp{20} * __gnu_cxx::__min<_Tp>();
-      constexpr auto _S_fp_min = __gnu_cxx::__sqrt_min<_Tp>();
       constexpr int _S_max_iter = 15000;
       constexpr auto _S_x_min = _Tp{2};
+      const auto _S_fp_min = __gnu_cxx::__sqrt_min<_Tp>();
 
       const int __n = (__x < _S_x_min
 		    ? std::nearbyint(__nu)

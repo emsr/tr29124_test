@@ -2,7 +2,7 @@
 $HOME/bin_tr29124/bin/g++ -g -std=gnu++1z -o hankel_transition hankel_transition.cpp -L$HOME/bin/lib64 -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./hankel_transition > hankel_transition.txt
 
-$HOME/bin/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -DNO_CBRT -I. -o hankel_transition hankel_transition.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -DNO_CBRT -I. -o hankel_transition hankel_transition.cpp -lquadmath
 ./hankel_transition > hankel_transition.txt
 */
 
@@ -12,10 +12,10 @@ $HOME/bin/bin/g++ -std=gnu++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -DNO_CBRT -I. -
 #include <tuple>
 #include <cmath>
 #include <bits/specfun.h>
-//#include "float128.h"
-#include "ext/polynomial.h"
-#include "rational.h"
-//#include "numeric_limits.h"
+//#include <bits/float128.h>
+#include <bits/ext/polynomial.h>
+#include <bits/rational.h>
+//#include <bits/numeric_limits.h>
 
 template<typename _Tp>
   void

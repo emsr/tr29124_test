@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_summation test_summation.cpp
+$HOME/bin_tr29124/bin/g++ -std=gnu++1z -I. -o test_summation test_summation.cpp -lquadmath
 ./test_summation > test_summation.txt
 
-g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_summation test_summation.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -I. -o test_summation test_summation.cpp -lquadmath
 ./test_summation > test_summation.txt
 */
 
@@ -14,6 +14,7 @@ g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_summation test_summatio
 #include <iostream>
 #include <iomanip>
 
+#include <bits/float128.h>
 #include <bits/summation.h>
 
 template<typename Tp>
@@ -158,6 +159,6 @@ main()
   std::cout << "\nlong double\n===========\n";
   test<long double>();
 
-  //std::cout << "\n__float128\n===========\n";
-  //test<__float128>();
+  std::cout << "\n__float128\n===========\n";
+  test<__float128>();
 }

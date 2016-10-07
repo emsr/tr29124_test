@@ -1,12 +1,16 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_bose_einstein test_bose_einstein.cpp wrap_gsl.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_bose_einstein test_bose_einstein.cpp wrap_gsl.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_bose_einstein > test_bose_einstein.txt
+
+$HOME/bin/bin/g++ -std=gnu++17 -I. -o test_bose_einstein test_bose_einstein.cpp wrap_gsl.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas -lquadmath
+./test_bose_einstein > test_bose_einstein.txt
 */
 
 #include <iostream>
 #include <iomanip>
 #include <limits>
 #include <ext/cmath>
+#include <bits/float128.h>
 
 
 template<typename _Sp, typename _Tp>
@@ -48,6 +52,8 @@ main()
   std::cout << "\nlong double\n===========\n";
   run_bose_einstein<long double, long double>();
 
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   std::cout << "\n__float128\n==========\n";
-  //run_bose_einstein<__float128, __float128>();
+  run_bose_einstein<__float128, __float128>();
+#endif
 }
