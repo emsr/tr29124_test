@@ -34,6 +34,8 @@
 #ifndef _GLIBCXX_BITS_SPECFUN_UTIL_H
 #define _GLIBCXX_BITS_SPECFUN_UTIL_H 1
 
+#pragma GCC system_header
+
 #if __cplusplus >= 201103L
 #  include <ratio>
 #  include <complex>
@@ -142,6 +144,7 @@ _GLIBCXX_END_NAMESPACE_VERSION
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 #if __cplusplus >= 201103L
 
@@ -198,6 +201,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 
 #endif // __cplusplus >= 201103L
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
 #endif // _GLIBCXX_BITS_SPECFUN_UTIL_H
