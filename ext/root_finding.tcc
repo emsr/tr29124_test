@@ -36,8 +36,9 @@
 
 #include <ext/math_const.h>
 
-namespace __gnu_cxx
+namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Given a function @c __func and an initial range @c __x_lower
@@ -672,6 +673,7 @@ namespace __gnu_cxx
     }
 */
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
 #endif // _EXT_ROOT_FINDING_TCC
