@@ -11,6 +11,7 @@ $HOME/bin/bin/g++ -std=gnu++1z -I. -o test_limits test_limits.cpp -lquadmath
 #include <string_view>
 #include <map>
 #include <bits/float128.h>
+#include <bits/numeric_limits.h>
 
 
 template<typename Numeric>
