@@ -349,8 +349,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Tp>;
       constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
       constexpr auto _S_eps = __gnu_cxx::__epsilon<_Real>();
-      constexpr auto _S_tolfact = _Real{2.7L} * __gnu_cxx::__sqrt_eps<_Real>();
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      const auto _S_tolfact = _Real{2.7L} * __gnu_cxx::__sqrt_eps<_Real>();
 
       if (__isnan(__x) || __isnan(__y))
 	return _S_NaN;

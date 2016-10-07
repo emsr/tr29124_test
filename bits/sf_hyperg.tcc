@@ -351,7 +351,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __hyperg_luke(_Tp __a, _Tp __b, _Tp __c, _Tp __xin)
     {
-      constexpr auto __big = __gnu_cxx::__root_max(_Tp{6});
+      const auto __big = __gnu_cxx::__root_max(_Tp{6});
       const int __nmax = 20000;
       constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
       const auto __x  = -__xin;
@@ -485,7 +485,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __hyperg_reflect(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      constexpr auto _S_log_max = __gnu_cxx::__log_max<_Tp>();
+      const auto _S_log_max = __gnu_cxx::__log_max<_Tp>();
       const auto __d = __c - __a - __b;
       const int __intd  = std::floor(__d + _Tp{0.5L});
       constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
@@ -775,7 +775,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __hyperg(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      constexpr auto _S_log_max = __gnu_cxx::__log_max<_Tp>();
+      const auto _S_log_max = __gnu_cxx::__log_max<_Tp>();
       const _Tp __a_nint = std::nearbyint(__a);
       const _Tp __b_nint = std::nearbyint(__b);
       const _Tp __c_nint = std::nearbyint(__c);
