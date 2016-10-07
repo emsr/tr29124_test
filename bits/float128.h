@@ -42,8 +42,9 @@
 #define __glibcxx_max_digits10(T) \
   (2 + (T) * 643L / 2136)
 
-namespace std
+namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   inline __float128
   abs(__float128 __x) _GLIBCXX_USE_NOEXCEPT
@@ -391,12 +392,13 @@ namespace std
   template<typename _CharT, typename _Traits = std::char_traits<_CharT>>
     std::basic_ostream<_CharT, _Traits>&
     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
-	       const __float128& __x);
+	       __float128 __x);
 
   template<typename _CharT, typename _Traits = std::char_traits<_CharT>>
     std::basic_istream<_CharT, _Traits>&
     operator>>(std::basic_istream<_CharT, _Traits>& __is, __float128& __x);
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
 
 // From <limits>
@@ -404,8 +406,9 @@ namespace std
 
 #include <bits/numeric_limits.h>
 
-namespace __gnu_cxx
+namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief Part of std::numeric_limits.
@@ -679,6 +682,7 @@ namespace __gnu_cxx
     __log10_eps<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::log10(__epsilon(__float128{})); }
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128

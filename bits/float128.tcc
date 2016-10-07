@@ -39,13 +39,14 @@
 #include <sstream>
 #include <quadmath.h>
 
-namespace std
+namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<typename _CharT, typename _Traits = std::char_traits<_CharT>>
     std::basic_ostream<_CharT, _Traits>&
     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
-	       const __float128& __x)
+	       __float128 __x)
     {
       auto __sci = __os.flags() & std::ios::scientific;
       auto __hex = __os.flags() & std::ios::fixed
@@ -91,6 +92,7 @@ namespace std
       return __is;
     }
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
 
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128

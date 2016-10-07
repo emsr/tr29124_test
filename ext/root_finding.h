@@ -47,8 +47,9 @@
 
 // in __root_newton what if __df is zero?
 
-namespace __gnu_cxx
+namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // This struct contains bothe the value and the derivative at a point.
   template<typename _Tp>
@@ -103,6 +104,7 @@ namespace __gnu_cxx
     __root_safe(_StateFunc __func, _Tp __x_lower, _Tp __x_upper,
     		_Tp __eps, std::size_t __max_iter = 100);
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
 #include <ext/root_finding.tcc>

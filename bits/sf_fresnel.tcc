@@ -30,6 +30,8 @@
 #ifndef _GLIBCXX_BITS_SF_FRESNEL_TCC
 #define _GLIBCXX_BITS_SF_FRESNEL_TCC 1
 
+#pragma GCC system_header
+
 #include <complex>
 #include <ext/math_const.h>
 

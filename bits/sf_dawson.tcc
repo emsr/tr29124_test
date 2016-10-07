@@ -30,6 +30,8 @@
 #ifndef _GLIBCXX_BITS_SF_DAWSON_TCC
 #define _GLIBCXX_BITS_SF_DAWSON_TCC 1
 
+#pragma GCC system_header
+
 #include <ext/math_const.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)

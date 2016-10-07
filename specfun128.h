@@ -457,6 +457,98 @@ namespace __gnu_cxx
 		__float128 __theta, __float128 __phi)
   { return std::__detail::__sph_harmonic<__float128>(__l, __m, __theta, __phi); }
 
+  inline __float128
+  polylogq(__float128 __s, __float128 __w)
+  { return std::__detail::__polylog<__float128>(__s, __w); }
+
+  inline std::complex<__float128>
+  polylogq(__float128 __s, std::complex<__float128> __w)
+  { return std::__detail::__polylog<__float128>(__s, __w); }
+
+  inline __float128
+  dirichlet_etaq(__float128 __s)
+  { return std::__detail::__dirichlet_eta<__float128>(__s); }
+
+  inline __float128
+  dirichlet_betaq(__float128 __s)
+  { return std::__detail::__dirichlet_beta<__float128>(__s); }
+
+  inline __float128
+  dirichlet_lambdaq(__float128 __s)
+  { return std::__detail::__dirichlet_lambda<__float128>(__s); }
+
+  inline __float128
+  clausen_sq(unsigned int __m, __float128 __w)
+  { return std::__detail::__clausen_s<__float128>(__m, __w); }
+
+  inline __float128
+  clausen_cq(unsigned int __m, __float128 __w)
+  { return std::__detail::__clausen_c<__float128>(__m, __w); }
+
+  inline __float128
+  clausenq(unsigned int __m, __float128 __w)
+  { return std::__detail::__clausen<__float128>(__m, __w); }
+
+  inline std::complex<__float128>
+  clausenq(unsigned int __m, std::complex<__float128> __w)
+  { return std::__detail::__clausen<__float128>(__m, __w); }
+
+  inline __float128
+  theta_1q(__float128 __nu, __float128 __x)
+  { return std::__detail::__theta_1<__float128>(__nu, __x); }
+
+  inline __float128
+  theta_2q(__float128 __nu, __float128 __x)
+  { return std::__detail::__theta_2<__float128>(__nu, __x); }
+
+  inline __float128
+  theta_3q(__float128 __nu, __float128 __x)
+  { return std::__detail::__theta_3<__float128>(__nu, __x); }
+
+  inline __float128
+  theta_4q(__float128 __nu, __float128 __x)
+  { return std::__detail::__theta_4<__float128>(__nu, __x); }
+
+  inline __float128
+  ellnomeq(__float128 __k)
+  { return std::__detail::__ellnome<__float128>(__k); }
+
+  inline __float128
+  theta_sq(__float128 __k, __float128 __x)
+  { return std::__detail::__theta_s<__float128>(__k, __x); }
+
+  inline __float128
+  theta_dq(__float128 __k, __float128 __x)
+  { return std::__detail::__theta_d<__float128>(__k, __x); }
+
+  inline __float128
+  theta_cq(__float128 __k, __float128 __x)
+  { return std::__detail::__theta_c<__float128>(__k, __x); }
+
+  inline __float128
+  theta_nq(__float128 __k, __float128 __x)
+  { return std::__detail::__theta_n<__float128>(__k, __x); }
+
+  inline __float128
+  owens_tq(__float128 __h, __float128 __a)
+  { return std::__detail::__owens_t<__float128>(__h, __a); }
+
+  inline __float128
+  fermi_diracq(__float128 __s, __float128 __x)
+  { return std::__detail::__fermi_dirac<__float128>(__s, __x); }
+
+  inline __float128
+  bose_einsteinq(__float128 __s, __float128 __x)
+  { return std::__detail::__bose_einstein<__float128>(__s, __x); }
+
+  inline __float128
+  sin_piq(__float128 __x)
+  { return std::__detail::__sin_pi<__float128>(__x); }
+
+  inline __float128
+  cos_piq(__float128 __x)
+  { return std::__detail::__cos_pi<__float128>(__x); }
+
 } // namespace __gnu_cxx
 
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
