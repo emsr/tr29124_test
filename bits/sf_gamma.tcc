@@ -48,6 +48,8 @@
 #ifndef _GLIBCXX_BITS_SF_GAMMA_TCC
 #define _GLIBCXX_BITS_SF_GAMMA_TCC 1
 
+#pragma GCC system_header
+
 #include <array>
 #include <ext/math_const.h>
 

@@ -77,8 +77,9 @@ namespace std {
  *    Return an 'effective' order? Larest nonzero coefficient?
  *    Monic polynomial has largest coefficient as 1.  Subclass?
  */
-namespace __gnu_cxx
+namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *
@@ -808,6 +809,7 @@ namespace __gnu_cxx
     operator!=(const _Polynomial<_Tp>& __pa, const _Polynomial<_Tp>& __pb)
     { return !(__pa == __pb); }
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
 #include <ext/polynomial.tcc>

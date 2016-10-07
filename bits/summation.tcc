@@ -181,8 +181,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Tp = value_type;
       using _Val = std::__detail::__num_traits_t<_Tp>;
-      constexpr auto _S_huge = __gnu_cxx::__root_max(_Val{5}); // 1.0e+60
-      constexpr auto _S_tiny = __gnu_cxx::__root_min(_Val{5}); // 1.0e-60;
+      const auto _S_huge = __gnu_cxx::__root_max(_Val{5}); // 1.0e+60
+      const auto _S_tiny = __gnu_cxx::__root_min(_Val{5}); // 1.0e-60;
 
       const auto __n = this->_M_part_sum.num_terms() - 1;
       const auto __s_n = this->_M_part_sum();
@@ -218,8 +218,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Tp = value_type;
       using _Val = std::__detail::__num_traits_t<_Tp>;
-      constexpr auto _S_huge = __gnu_cxx::__root_max(_Val{5}); // 1.0e+60
-      constexpr auto _S_tiny = __gnu_cxx::__root_min(_Val{5}); // 1.0e-60;
+      const auto _S_huge = __gnu_cxx::__root_max(_Val{5}); // 1.0e+60
+      const auto _S_tiny = __gnu_cxx::__root_min(_Val{5}); // 1.0e-60;
 
       const auto __n = this->_M_part_sum.num_terms() - 1;
       const auto __s_n = this->_M_part_sum();
@@ -259,8 +259,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Tp = value_type;
       using _Val = std::__detail::__num_traits_t<_Tp>;
-      constexpr auto _S_huge = __gnu_cxx::__root_max(_Val{5}); // 1.0e+60
-      constexpr auto _S_tiny = __gnu_cxx::__root_min(_Val{5}); // 1.0e-60;
+      const auto _S_huge = __gnu_cxx::__root_max(_Val{5}); // 1.0e+60
+      const auto _S_tiny = __gnu_cxx::__root_min(_Val{5}); // 1.0e-60;
 
       const auto __n = this->_M_part_sum.num_terms() - 1;
       const auto __s_n = this->_M_part_sum();

@@ -42,6 +42,7 @@
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * A Sum is default constructable
@@ -1219,6 +1220,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
     using _WenigerPhiSum
       = _WenigerSum<_Sum, _VRemainderModel<typename _Sum::value_type>>;
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
 #pragma GCC visibility pop
