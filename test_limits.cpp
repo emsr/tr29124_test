@@ -1,7 +1,16 @@
+/*
+$HOME/bin_tr29124/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_limits test_limits.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_limits > test_limits.txt
+
+$HOME/bin/bin/g++ -std=gnu++1z -I. -o test_limits test_limits.cpp -lquadmath
+./test_limits > test_limits.txt
+*/
+
 #include <iostream>
 #include <limits>
 #include <string_view>
 #include <map>
+#include <bits/float128.h>
 
 
 template<typename Numeric>
@@ -137,8 +146,10 @@ main()
   std::cout << std::endl << "long double" << std::endl;
   test_limits<long double>();
 
-  //std::cout << std::endl << "__float128" << std::endl;
-  //test_limits<__float128>();
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  std::cout << std::endl << "__float128" << std::endl;
+  test_limits<__float128>();
+#endif
 
   return 0;
 }
