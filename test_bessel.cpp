@@ -40,7 +40,7 @@ test_bessel( void )
     Type{100},
   };
 
-  for (std::size_t n = 0; n <= nu.size(); ++n)
+  for (std::size_t n = 0; n < nu.size(); ++n)
     {
       std::cout << "\n  nu = " << nu[n] << std::endl;
       std::cout << "  " << std::setw(width) << "x";
