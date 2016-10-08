@@ -1880,7 +1880,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __log_gammap1_spouge(_Tp __z)
+    __log_gamma1p_spouge(_Tp __z)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
@@ -1891,10 +1891,10 @@ _S_neg_double_factorial_table[999]
       auto __a = _Real{_GammaSpouge<_Real>::_S_cheby.size() + 1};
       const auto& __c = _GammaSpouge<_Real>::_S_cheby;
 
-      // Reflection.
-      if (std::real(__z) <= -__a)
+      // Reflection; move the transition upwards to prevent instability.
+      if (std::real(__z) < _Real{-0.5L})//(std::real(__z) <= _Real{3} - __a)
 	return _S_ln_pi - std::log(__sin_pi(__z))
-			- __log_gammap1_spouge(-_Real{1} - __z);
+			- __log_gamma1p_spouge(-_Real{1} - __z);
       else
 	{
 	  _Val __sum = _S_sqrt_2pi;
@@ -2008,7 +2008,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __log_gammap1_lanczos(_Tp __z)
+    __log_gamma1p_lanczos(_Tp __z)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
@@ -2017,10 +2017,10 @@ _S_neg_double_factorial_table[999]
       constexpr auto _S_log_sqrt_2pi = (_S_ln_2 + _S_ln_pi) / _Real{2};
       const auto& __c = _GammaLanczos<_Real>::_S_cheby;
       auto __g =  _GammaLanczos<_Real>::_S_g;
-      // Reflection.
-      if (std::real(__z) <= -__g)
+      // Reflection; move the transition upwards to prevent instability.
+      if (std::real(__z) < _Real{-0.5L})//(std::real(__z) <= _Real{3} - __g)
 	return _S_ln_pi - std::log(__sin_pi(__z))
-			- __log_gammap1_lanczos(-_Real{1} - __z);
+			- __log_gamma1p_lanczos(-_Real{1} - __z);
       else
         {
 	  auto __fact = _Val{1};
@@ -2055,7 +2055,7 @@ _S_neg_double_factorial_table[999]
       constexpr auto _S_eps = _Real{3} * __gnu_cxx::__epsilon<_Real>();
       constexpr auto _S_logpi = __gnu_cxx::__math_constants<_Real>::__ln_pi;
       if (std::real(__x) >= _Real{0.5L})
-	return __log_gammap1_spouge(__x - _Real{1});
+	return __log_gamma1p_spouge(__x - _Real{1});
       else
 	{
 	  const auto __sin_fact = std::abs(__sin_pi(__x));
@@ -2082,7 +2082,7 @@ _S_neg_double_factorial_table[999]
       constexpr auto _S_eps = _Real{3} * __gnu_cxx::__epsilon<_Real>();
       constexpr auto _S_logpi = __gnu_cxx::__math_constants<_Real>::__ln_pi;
       if (std::real(__x) >= _Real{0.5L})
-	return __log_gammap1_spouge(__x - _Real{1});
+	return __log_gamma1p_spouge(__x - _Real{1});
       else
 	{
 	  const auto __sin_fact = __sin_pi(__x);

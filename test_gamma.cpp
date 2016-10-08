@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_gamma test_gamma.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_gamma test_gamma.cpp wrap_boost.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_gamma > test_gamma.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp wrap_boost.cpp -lquadmath
 ./test_gamma > test_gamma.txt
 */
 
@@ -16,6 +16,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp -lqua
 #include <vector>
 #include <string>
 #include <complex>
+
+#include "wrap_boost.h"
 
 // I'm not sure why I need this here and not other places...
 template<>
@@ -55,6 +57,7 @@ template<typename _Tp, typename _Gamma>
 	      << ' ' << std::setw(width) << "lgamma"
 	      << ' ' << std::setw(width) << "__log_gamma"
 	      << ' ' << std::setw(width) << "delta_rat"
+	      << ' ' << std::setw(width) << "delta_boost"
 	      << '\n';
     int i_min = -200;
     for (int i = i_min; i <= +500; ++i)
@@ -62,12 +65,14 @@ template<typename _Tp, typename _Gamma>
 	auto s = 0.10L * i;
 	auto gam = gamma(s - _Tp{1});
 	auto gam0 = std::lgamma(s);
-	auto lgam = std::__detail::__log_gamma(s);
+	auto glgam = std::__detail::__log_gamma(s);
+	auto blgam = beast::lgamma(s);
 	std::cout << ' ' << std::setw(width) << s
 		  << ' ' << std::setw(width) << gam
 		  << ' ' << std::setw(width) << gam0
-		  << ' ' << std::setw(width) << lgam
+		  << ' ' << std::setw(width) << glgam
 		  << ' ' << std::setw(width) << (gam - gam0) / std::abs(gam0)
+		  << ' ' << std::setw(width) << (glgam - blgam) / std::abs(blgam)
 		  << '\n';
       }
   }
@@ -77,8 +82,8 @@ main()
 {
 
   std::cout << "\n\nLanczos Algorithm\n\n";
-  test_gamma<long double>(std::__detail::__log_gammap1_lanczos<long double>);
+  test_gamma<double>(std::__detail::__log_gamma1p_lanczos<double>);
 
   std::cout << "\n\nSpouge Algorithm\n\n";
-  test_gamma<long double>(std::__detail::__log_gammap1_spouge<long double>);
+  test_gamma<double>(std::__detail::__log_gamma1p_spouge<double>);
 }
