@@ -47,13 +47,13 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o build_gamma_spouge build_gamma_
 	  std::cout << "c_" << __k << " = " << __c.back() << '\n';
 	}
 
-      auto __log_gammap1_spouge =
+      auto __log_gamma1p_spouge =
 	[=](_Tp __z)
 	-> _Tp
 	{
 	  // Reflection is right but auto and use of functions won't compile.
 	  //if (__z <= -__a)
-	  //  return std::log(_S_pi) - std::log(std::sin(_S_pi * __z)) - __log_gammap1_spouge(_Tp{1} - __z);
+	  //  return std::log(_S_pi) - std::log(std::sin(_S_pi * __z)) - __log_gamma1p_spouge(_Tp{1} - __z);
 	  //else
 	    {
 try {
@@ -81,9 +81,9 @@ try {
 	{
 	  auto z = _Tp{0.01Q} * i;
 	  std::cout << ' ' << std::setw(width) << z
-		    << ' ' << std::setw(width) << __log_gammap1_spouge(z - _Tp{1})
+		    << ' ' << std::setw(width) << __log_gamma1p_spouge(z - _Tp{1})
 		    << ' ' << std::setw(width) << std::lgamma(z)
-		    << ' ' << std::setw(width) << __log_gammap1_spouge(z - _Tp{1}) - std::lgamma(z) << '\n';
+		    << ' ' << std::setw(width) << __log_gamma1p_spouge(z - _Tp{1}) - std::lgamma(z) << '\n';
 	}
 
       //  Try to invert using Newton...
@@ -117,9 +117,9 @@ try {
 	  auto z = _Tp{0.01Q} * i;
 	  _Tp x, y;
 	  std::cout << ' ' << std::setw(width) << z
-		    << ' ' << std::setw(width) << (y = __log_gammap1_spouge(z - _Tp{1}))
+		    << ' ' << std::setw(width) << (y = __log_gamma1p_spouge(z - _Tp{1}))
 		    << ' ' << std::setw(width) << std::lgamma(z)
-		    << ' ' << std::setw(width) << __log_gammap1_spouge(z - _Tp{1}) - std::lgamma(z)
+		    << ' ' << std::setw(width) << __log_gamma1p_spouge(z - _Tp{1}) - std::lgamma(z)
 		    << ' ' << std::setw(width) << (x = __log_gamma_inv(y))
 		    << ' ' << std::setw(width) << x - z
 		    << '\n';
