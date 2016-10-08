@@ -32,6 +32,8 @@
 
 #pragma GCC system_header
 
+#include <bits/complex_util.h>
+
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 // Implementation-space details.
@@ -70,15 +72,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
     }
 
-  // FIXME: Reperiodize the real part.
+  /**
+   * Return the reperiodized hyperbolic sine of argument x:
+   * @f[
+   *   \sinh_pi(x) = \sinh(\pi x)
+   * @f]
+   */
   template<typename _Tp>
-    std::complex<_Tp>
-    __sin_pi(std::complex<_Tp> __z)
+    _Tp
+    __sinh_pi(_Tp __x)
     {
-      using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr _Real _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-      return std::sin(_S_pi * __z);
+      constexpr _Tp _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      if (std::isnan(__x))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__x < _Tp{0})
+	return -__sinh_pi(-__x);
+      else
+	std::sinh(_S_pi * __x);
     }
 
   /**
@@ -109,15 +119,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
     }
 
-  // FIXME: Reperiodize the real part.
+  /**
+   * Return the reperiodized hyperbolic cosine of argument x:
+   * @f[
+   *   \cosh_pi(x) = \cosh(\pi x)
+   * @f]
+   */
   template<typename _Tp>
-    std::complex<_Tp>
-    __cos_pi(std::complex<_Tp> __z)
+    _Tp
+    __cosh_pi(_Tp __x)
     {
-      using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr _Real _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-      return std::cos(_S_pi * __z);
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      if (std::isnan(__x))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__x < _Tp{0})
+	return __cosh_pi(-__x);
+      else
+	return std::cosh(_S_pi * __x);
     }
 
   /**
@@ -132,19 +150,147 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr _Real _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
       return std::tan(_S_pi * (__x - std::floor(__x)));
     }
 
-  // FIXME: Reperiodize the real part.
+  /**
+   * Return the reperiodized hyperbolic tangent of argument x:
+   * @f[
+   *   \tanh_pi(x) = \tanh(\pi x)
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __tanh_pi(_Tp __x)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      return std::tanh(_S_pi * __x);
+    }
+
+  /**
+   * Return the reperiodized hyperbolic sine of complex argument z:
+   * @f[
+   *   \sinh_\pi(z) = \sinh(\pi z)
+   *     = \sinh(\pi x) \cos_\pi(y) + i \cosh(\pi x) \sin_\pi(y)
+   * @f]
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    __sinh_pi(std::complex<_Tp> __z)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      auto __x = std::real(__z);
+      auto __y = std::imag(__z);
+      return std::sinh(_S_pi * __x) * __cos_pi(__y)
+	+ _S_i * std::cosh(_S_pi * __x) * __sin_pi(__y);
+    }
+
+  /**
+   * Return the reperiodized sine of complex argument z:
+   * @f[
+   *   \sin_\pi(z) = \sin(\pi z)
+   *     = \sin_\pi(x) \cosh_\pi(y) + i \cos_\pi(x) \sinh_\pi(y)
+   * @f]
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    __sin_pi(std::complex<_Tp> __z)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      auto __x = std::real(__z);
+      auto __y = std::imag(__z);
+      return __sin_pi(__x) * std::cosh(_S_pi * __y)
+	   + _S_i * __cos_pi(__x) * std::sinh(_S_pi * __y);
+    }
+
+  /**
+   * Return the reperiodized cosine of complex argument z:
+   * \cos_\pi(z) = \cos(\pi z)
+   *    = \cos_\pi(x) \cosh_\pi(y) - i \sin_\pi(x) * \sinh_\pi(y)
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    __cos_pi(std::complex<_Tp> __z)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      auto __x = std::real(__z);
+      auto __y = std::imag(__z);
+      return __cos_pi(__x) * std::cosh(_S_pi * __y)
+	   - _S_i * __sin_pi(__x) * std::sinh(_S_pi * __y);
+    }
+
+  /**
+   * \cosh_\pi(z) = \cosh_\pi(z)
+   *    = \cosh_\pi(x) \cos_\pi(y) + i \sinh_\pi(x) \sin_\pi(y)
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    __cosh_pi(std::complex<_Tp> __z)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      auto __x = std::real(__z);
+      auto __y = std::imag(__z);
+      return std::cosh(_S_pi * __x) * __cos_pi(__y)
+	   + _S_i * std::sinh(_S_pi * __x) * __sin_pi(__y);
+    }
+
+  /**
+   * Return the reperiodized tangent of complex argument z:
+   * @f[
+   *   \tan_\pi(z) = \tan(\pi z)
+   *     = \frac{\tan_\pi(x) + i \tanh_\pi(y)}{1 - i \tan_\pi(x) \tanh_\pi(y)}
+   * @f]
+   */
   template<typename _Tp>
     std::complex<_Tp>
     __tan_pi(std::complex<_Tp> __z)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr _Real _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-      return std::tan(_S_pi * __z);
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      auto __x = std::real(__z);
+      auto __y = std::imag(__z);
+      auto __tan = __tan_pi(__x);
+      auto __tanh = std::tanh(_S_pi * __y);
+      return (__tan + _S_i * __tanh) / (1 - _S_i * __tan * __tanh);
+    }
+
+  /**
+   * Return the reperiodized hyperbolic tangent of complex argument z:
+   * @f[
+   *   \tanh_\pi(z) = \tanh(\pi z)
+   *     = \frac{\tanh_\pi(x) + i \tan_\pi(y)}{1 + i \tanh_\pi(x) \tan_\pi(y)}
+   * @f]
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    __tanh_pi(std::complex<_Tp> __z)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      auto __x = std::real(__z);
+      auto __y = std::imag(__z);
+      auto __tanh = std::tanh(_S_pi * __x);
+      auto __tan = __tan_pi(__y);
+      return (__tanh + _S_i * __tan) / (1 + _S_i * __tanh * __tan);
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
