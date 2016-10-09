@@ -302,6 +302,23 @@ sph_neumann(unsigned int n, double x)
   return boost::math::sph_neumann(n, x);
 }
 
+/// Log gamma function.
+double
+lgamma(double a)
+{
+  if (a <= 0.0 && a == std::nearbyint(a))
+    return std::numeric_limits<double>::infinity();
+  else
+    return boost::math::lgamma(a);
+}
+
+/// Gamma function.
+double
+tgamma(double a)
+{
+  return boost::math::tgamma(a);
+}
+
 /// Non-normalized upper incomplete gamma functions.
 double
 tgamma(double a, double x)
