@@ -142,6 +142,8 @@ template<typename Real>
     using __gnu_cxx::sinhc_pi;
     using __gnu_cxx::sinc;
     using __gnu_cxx::sinc_pi;
+    using __gnu_cxx::sinhc;
+    using __gnu_cxx::sinhc_pi;
     using __gnu_cxx::sinhint;
     using __gnu_cxx::sinint;
     using       std::sph_bessel;

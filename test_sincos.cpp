@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -I. -o test_sincos test_sincos.cpp wrap_boost.cpp
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -I. -o test_sincos test_sincos.cpp wrap_boost.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_sincos > test_sincos.txt
 
 g++ -std=c++14 -o test_sincos test_sincos.cpp
@@ -9,6 +9,7 @@ g++ -std=c++14 -o test_sincos test_sincos.cpp
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <bits/float128.h>
 
 
 namespace std _GLIBCXX_VISIBILITY(default)
@@ -59,6 +60,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __builtin_sincosl(__x, &__sin, &__cos);
       return __sincos_t<long double>{__sin, __cos};
     }
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  template<>
+    inline __sincos_t<__float128>
+    __sincos(__float128 __x)
+    {
+      __float128 __sin, __cos;
+      ::sincosq(__x, &__sin, &__cos);
+      return __sincos_t<__float128>{__sin, __cos};
+    }
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   /**
    * Reperiodized sincos.
@@ -167,6 +179,9 @@ main()
   constexpr auto pif = __gnu_cxx::__math_constants<float>::__pi;
   constexpr auto pi = __gnu_cxx::__math_constants<double>::__pi;
   constexpr auto pil = __gnu_cxx::__math_constants<long double>::__pi;
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  constexpr auto piq = __gnu_cxx::__math_constants<__float128>::__pi;
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   auto a1 = std::__detail::__sincos(pif * 1.5f);
   auto a2 = std::__detail::__sincos_pi(1.5f);
@@ -176,6 +191,11 @@ main()
 
   auto c1 = std::__detail::__sincos(pil * 1.5l);
   auto c2 = std::__detail::__sincos_pi(1.5l);
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  auto d1 = std::__detail::__sincos(piq * 1.5q);
+  auto d2 = std::__detail::__sincos_pi(1.5q);
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   test_sincos<double>();
 }
