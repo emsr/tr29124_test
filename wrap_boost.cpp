@@ -525,30 +525,31 @@ fresnel_s(double /*x*/)
 
 /// Sinus cardinal function.
 double
-sinc_pi(double x)
+sinc(double x)
 {
   return boost::math::sinc_pi(x);
 }
 
-/// Normalized sinus cardinal function.
+/// Reperiodized sinus cardinal function.
 double
-sinc(double x)
+sinc_pi(double x)
 {
-  return boost::math::sinc_pi(x / M_PI);
+  return boost::math::sinc_pi(M_PI * x);
 }
 
 /// Hyperbolic sinus cardinal function.
 double
-sinhc_pi(double x)
+sinhc(double x)
 {
   return std::sinh(x) / x;
 }
 
-/// Normalized hyperbolic sinus cardinal function.
+/// Reperiodized hyperbolic sinus cardinal function.
 double
-sinhc(double x)
+sinhc_pi(double x)
 {
-  return std::sinh(x / M_PI) / (x / M_PI);
+  auto arg = M_PI * x;
+  return std::sinh(arg) / arg;
 }
 
 /// Log upper Pochhammer symbol.

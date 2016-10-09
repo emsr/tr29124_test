@@ -907,7 +907,7 @@ fresnel_s(double x)
 
 /// Sinus cardinal function.
 double
-sinc_pi(double x)
+sinc(double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_sinc_e(x / M_PI, &result);
@@ -921,15 +921,15 @@ sinc_pi(double x)
     return result.val;
 }
 
-/// Normalized sinus cardinal function.
+/// Reperiodized sinus cardinal function.
 double
-sinc(double x)
+sinc_pi(double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_sinc_e(x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in sinc:");
+      std::ostringstream msg("Error in sinc_pi:");
       msg << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -939,16 +939,16 @@ sinc(double x)
 
 /// Hyperbolic sinus cardinal function.
 double
-sinhc_pi(double /*x*/)
+sinhc(double x)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  return std::sinh(x) / x;
 }
 
-/// Normalized hyperbolic sinus cardinal function.
+/// Reperiodized hyperbolic sinus cardinal function.
 double
-sinhc(double /*x*/)
+sinhc_pi(double x)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  return std::sinh(M_PI * x) / (M_PI * x);
 }
 
 /// Log upper Pochhammer symbol.
