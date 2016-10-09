@@ -141,6 +141,12 @@ double pgamma_inv(double a, double p);
 /// Inverse parameter normalized lower incomplete gamma functions.
 double pgamma_inva(double x, double p);
 
+/// Log gamma function.
+double lgamma(double a);
+
+/// Gamma function.
+double tgamma(double a);
+
 /// Non-normalized (upper) incomplete gamma functions.
 double tgamma(double a, double x);
 
