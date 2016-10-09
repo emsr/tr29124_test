@@ -88,7 +88,8 @@ for [] TR1 test generation...
 
 27. [] Should I do the /_GLIBCXX_END_NAMESPACE_VERSION thing for __gnu_cxx?
 
-28. []
+28. [DONE] ibeta looks like it might have problems for large a, b near end points.
+           Check test_beta_inc.
 
 29. []
 
