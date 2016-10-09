@@ -135,10 +135,10 @@ template<typename Real>
     using __gnu_cxx::qgamma;
     using __gnu_cxx::radpoly;
     using       std::riemann_zeta;
-    using __gnu_cxx::sinhc;
-    using __gnu_cxx::sinhc_pi;
     using __gnu_cxx::sinc;
     using __gnu_cxx::sinc_pi;
+    using __gnu_cxx::sinhc;
+    using __gnu_cxx::sinhc_pi;
     using __gnu_cxx::sinhint;
     using __gnu_cxx::sinint;
     using __gnu_cxx::sin_pi;
@@ -1050,7 +1050,7 @@ template<typename Real>
 	     "GSL",
 	     file_fresnel_s);
 
-    // Normalized sinus cardinal function.
+    // Sinus cardinal function.
     std::cout << "sinc" << std::endl;
     basename = "sinc";
     filename = get_filename(path, prefix, basename, "",  ".cc");
@@ -1062,7 +1062,7 @@ template<typename Real>
 	     "GSL",
 	     file_sinc);
 
-    // Sinus cardinal function.
+    // Reperiodized sinus cardinal function.
     std::cout << "sinc_pi" << std::endl;
     basename = "sinc_pi";
     filename = get_filename(path, prefix, basename, "",  ".cc");

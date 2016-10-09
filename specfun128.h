@@ -147,6 +147,14 @@ namespace __gnu_cxx
   { return std::__detail::__sinc<__float128>(__x); }
 
   inline __float128
+  sinhc_piq(__float128 __x)
+  { return std::__detail::__sinhc_pi<__float128>(__x); }
+
+  inline __float128
+  sinhcq(__float128 __x)
+  { return std::__detail::__sinhc<__float128>(__x); }
+
+  inline __float128
   logintq(__float128 __x)
   { return std::__detail::__logint<__float128>(__x); }
   inline __float128

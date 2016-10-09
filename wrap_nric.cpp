@@ -40,47 +40,47 @@ beta(double x, double y)
 /// Complete elliptic integrals of the first kind.
 double
 ellint_Kcomp(double k)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Complete elliptic integrals of the second kind.
 double
 ellint_Ecomp(double k)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Complete elliptic integrals of the third kind.
 double
 ellint_Pcomp(double k, double nu)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Confluent hypergeometric functions.
 double
 hyperg_1F1(double a, double c, double x)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Confluent hypergeometric limit functions.
 double
 hyperg_0F1(double c, double x)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Regular modified cylindrical Bessel functions.
 double
 bessel_Inu(double nu, double x)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Cylindrical Bessel functions (of the first kind).
 double
 bessel_Jnu(double nu, double x)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Irregular modified cylindrical Bessel functions.
 double
 bessel_Knu(double nu, double x)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Cylindrical Neumann functions.
 double
 bessel_Ynu(double nu, double x)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Elliptic integrals of the first kind.
 double
@@ -140,12 +140,12 @@ hermite(unsigned int n, double x)
 /// Hypergeometric functions.
 double
 hyperg_2F1(double a, double b, double c, double x)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Laguerre polynomials.
 double
 laguerre_n(unsigned int n, double x)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Legendre polynomials.
 double
@@ -160,12 +160,12 @@ legendre_Ql(unsigned int l, double x)
 /// Riemann zeta function.
 double
 zeta(double x)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Hurwitz zeta functions.
 double
 hzeta(double s, double q)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Spherical Bessel functions.
 double
@@ -195,22 +195,22 @@ pgamma(double a, double x)
 /// Non-normalized incomplete gamma functions.
 double
 gamma_inc(double a, double x)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Incomplete beta functions.
 double
 beta_inc(double a, double b, double x)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Dilogarithm function.
 double
 dilog(double x)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Digamma or psi function.
 double
 psi(double x)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Sine integral.
 double
@@ -233,12 +233,12 @@ Ci(double x)
 /// Hyperbolic sine integral.
 double
 Shi(double x)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Hyperbolic cosine integral.
 double
 Chi(double x)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Gegenbauer polynomials.
 double
@@ -248,7 +248,7 @@ gegenpoly_n(int n, double lambda, double x)
 /// Hydrogen wave functions.
 double
 hydrogen(int n, double l, double Z, double r)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Dawson integral.
 double
@@ -298,37 +298,52 @@ fresnel_s(double x)
 /// Sinus cardinal function.
 double
 sinc(double x)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
+
+/// Reperiodized sinus cardinal function.
+double
+sinc_pi(double x)
+{ std::numeric_limits<double>::quiet_NaN(); }
+
+/// Hyperbolic sinus cardinal function.
+double
+sinhc(double x)
+{ std::numeric_limits<double>::quiet_NaN(); }
+
+/// Reperiodized hyperbolic sinus cardinal function.
+double
+sinhc_pi(double x)
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Log upper Pochhammer symbol.
 double
 lnpoch(double a, double x)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Upper Pochhammer symbol.
 double
 poch(double a, double x)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Log factorial.
 double
 lnfact(unsigned int n)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Factorial.
 double
 fact(unsigned int n)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Log double factorial.
 double
 lndoublefact(unsigned int n)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Double factorial.
 double
 doublefact(unsigned int n)
-{ return 0.0; }
+{ std::numeric_limits<double>::quiet_NaN(); }
 
 /// Regular modified spherical bessel functions.
 double
