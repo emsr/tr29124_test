@@ -66,8 +66,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __arg = __x - __nu;
 	  auto __sign = (int(__nu) & 1) == 1 ? -1 : +1;
 	  auto __sinval = (__arg < _Tp{0.5L})
-			? std::sin(__arg * _S_pi)
-			: std::sin((_Tp{1} - __arg) * _S_pi);
+			? __sin_pi(__arg)
+			: __sin_pi(_Tp{1} - __arg);
 	  return __sign * __sinval;
 	}
     }
@@ -232,6 +232,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
+   * Return the reperiodized hyperbolic cosine of complex argument z:
    * \cosh_\pi(z) = \cosh_\pi(z)
    *    = \cosh_\pi(x) \cos_\pi(y) + i \sinh_\pi(x) \sin_\pi(y)
    */
