@@ -470,28 +470,28 @@ fresnel_s(double /*x*/)
 
 /// Sinus cardinal function.
 double
-sinc_pi(double /*x*/)
+sinc(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Normalized sinus cardinal function.
+/// Reperiodized sinus cardinal function.
 double
-sinc(double /*x*/)
+sinc_pi(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Hyperbolic sinus cardinal function.
 double
-sinhc_pi(double /*x*/)
+sinhc(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Normalized hyperbolic sinus cardinal function.
+/// Reperiodized hyperbolic sinus cardinal function.
 double
-sinhc(double /*x*/)
+sinhc_pi(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
