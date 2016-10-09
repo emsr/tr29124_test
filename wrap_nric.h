@@ -163,10 +163,16 @@ double fresnel_c(double x);
 double fresnel_s(double x);
 
 /// Sinus cardinal function.
+double sinc(double x);
+
+/// Reperiodized sinus cardinal function.
 double sinc_pi(double x);
 
-/// Sinus cardinal function.
-double sinc(double x);
+/// Hyperbolic sinus cardinal function.
+double sinhc(double x);
+
+/// Reperiodized hyperbolic sinus cardinal function.
+double sinhc_pi(double x);
 
 /// Log upper Pochhammer symbol.
 double lnpoch(double a, double x);

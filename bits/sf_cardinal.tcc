@@ -41,41 +41,14 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   * @brief Return the generalized sinus cardinal function
+   * @brief Return the sinus cardinal function
    * @f[
-   *   sinc_a(x) = \frac{\sin(\pi x / a)}{(\pi x / a)}
+   *   sinc(x) = \frac{\sin(x)}{x}
    * @f]
    */
   template<typename _Tp>
     __gnu_cxx::__promote_fp_t<_Tp>
-    __sinc(_Tp __a, _Tp __x)
-    {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      if (__isnan(__a) || __isnan(__x))
-        return __gnu_cxx::__quiet_NaN<_Tp>();
-      else if (std::abs(__a) < __gnu_cxx::__min<_Tp>())
-	std::__throw_domain_error(__N("__sinc: Zero normalization a"));
-      else if (std::abs(__x) == __gnu_cxx::__infinity<_Tp>())
-	return _Tp{0};
-      else
-	{
-	  auto __arg = _S_pi * __x / __a;
-	  if (std::abs(__arg) < __gnu_cxx::__sqrt_min<_Tp>())
-            return _Tp{1} - __arg * __arg / _Tp{6};
-	  else
-	    return std::sin(__arg) / __arg;
-	}
-    }
-
-  /**
-   * @brief Return the unnormalized sinus cardinal function
-   * @f[
-   *   sinc_\pi(x) = \frac{\sin(x)}{x}
-   * @f]
-   */
-  template<typename _Tp>
-    __gnu_cxx::__promote_fp_t<_Tp>
-    __sinc_pi(_Tp __x)
+    __sinc(_Tp __x)
     {
       if (__isnan(__x))
         return __gnu_cxx::__quiet_NaN<_Tp>();
@@ -88,14 +61,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * @brief Return the normalized sinus cardinal function
+   * @brief Return the reperiodized sinus cardinal function
    * @f[
-   *   sinc(x) = \frac{\sin(\pi x)}{\pi x}
+   *   sinc_\pi(x) = \frac{\sin(\pi x)}{\pi x}
    * @f]
    */
   template<typename _Tp>
     __gnu_cxx::__promote_fp_t<_Tp>
-    __sinc(_Tp __x)
+    __sinc_pi(_Tp __x)
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       if (__isnan(__x))
@@ -108,45 +81,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__arg) < _Tp{4} * __gnu_cxx::__sqrt_min<_Tp>())
 	    return _Tp{1} - __arg * __arg / _Tp{6};
 	  else
-	    return std::sin(__arg) / __arg;
-	}
-    }
-
-
-  /**
-   * @brief Return the generalized hyperbolic sinus cardinal function
-   * @f[
-   *   sinhc_a(x) = \frac{\sinh(\pi x / a)}{\pi x / a}
-   * @f]
-   */
-  template<typename _Tp>
-    __gnu_cxx::__promote_fp_t<_Tp>
-    __sinhc(_Tp __a, _Tp __x)
-    {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      if (__isnan(__a) || __isnan(__x))
-        return __gnu_cxx::__quiet_NaN<_Tp>();
-      else if (std::abs(__a) < __gnu_cxx::__min<_Tp>())
-	std::__throw_domain_error(__N("__sinhc: Zero normalization a"));
-      else
-	{
-	  auto __arg = _S_pi * __x / __a;
-	  if (std::abs(__arg) < _Tp{4} * __gnu_cxx::__sqrt_min<_Tp>())
-	    return _Tp{1} + __arg * __arg / _Tp{6};
-	  else
-	    return std::sinh(__arg) / __arg;
+	    return __sin_pi(__x) / __arg;
 	}
     }
 
   /**
-   * @brief Return the unnormalized hyperbolic sinus cardinal function
+   * @brief Return the hyperbolic sinus cardinal function
    * @f[
-   *   sinhc_\pi(x) = \frac{\sinh(x)}{x}
+   *   sinhc(x) = \frac{\sinh(x)}{x}
    * @f]
    */
   template<typename _Tp>
     __gnu_cxx::__promote_fp_t<_Tp>
-    __sinhc_pi(_Tp __x)
+    __sinhc(_Tp __x)
     {
       if (__isnan(__x))
         return __gnu_cxx::__quiet_NaN<_Tp>();
@@ -157,14 +104,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * @brief Return the normalized hyperbolic sinus cardinal function
+   * @brief Return the reperiodized hyperbolic sinus cardinal function
    * @f[
-   *   sinhc(x) = \frac{\sinh(\pi x)}{\pi x}
+   *   sinhc_\pi(x) = \frac{\sinh(\pi x)}{\pi x}
    * @f]
    */
   template<typename _Tp>
     __gnu_cxx::__promote_fp_t<_Tp>
-    __sinhc(_Tp __x)
+    __sinhc_pi(_Tp __x)
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       if (__isnan(__x))
@@ -175,7 +122,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__arg) < _Tp{4} * __gnu_cxx::__sqrt_min<_Tp>())
 	    return _Tp{1} + __arg * __arg / _Tp{6};
 	  else
-	    return std::sinh(__arg) / __arg;
+	    return __sinh_pi(__x) / __arg;
 	}
     }
 
