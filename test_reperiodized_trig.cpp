@@ -9,9 +9,12 @@ g++ -std=c++14 -o test_reperiodized_trig test_reperiodized_trig.cpp wrap_boost.c
 #include <iostream>
 #include <iomanip>
 #include <limits>
+
 #include <ext/cmath>
-#include "wrap_boost.h"
+//#include <bits/float128.h>
 #include <bits/sf_trig.tcc>
+
+#include "wrap_boost.h"
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
