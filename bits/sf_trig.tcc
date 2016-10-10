@@ -363,7 +363,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __sincos_pi(_Tp __x)
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_NaN = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      constexpr auto _S_NaN = std::numeric_limits<_Tp>::quiet_NaN();
       if (std::isnan(__x))
 	return __gnu_cxx::__sincos_t<_Tp>{_S_NaN, _S_NaN};
       else if (__x < _Tp{0})
