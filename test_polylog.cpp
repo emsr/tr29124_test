@@ -30,8 +30,7 @@ template<typename Tp>
   TestPolyLog()
   {
     constexpr auto _S_pi = __gnu_cxx::__math_constants<Tp>::__pi;
-    constexpr auto _S_2pi = Tp{2} * _S_pi;
-
+    constexpr auto _S_2pi = __gnu_cxx::__math_constants<Tp>::__2_pi;
     std::cout.precision(std::numeric_limits<Tp>::digits10);
     std::cout << std::scientific;
 

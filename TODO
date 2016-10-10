@@ -80,7 +80,7 @@ for [] TR1 test generation...
        But it doesn't look like such a point would be skipped though.
        We need a way of trapping this...
 
-26. [] __log_gamma was a very sobering exercise in trig accuracy.
+26. [DONE] __log_gamma was a very sobering exercise in trig accuracy.
        The error in the location of the zeros of, say,
        std::sin(x) grow linearly with argument!
        I had to test epsilon * |x| for zero to place poles!
@@ -91,5 +91,7 @@ for [] TR1 test generation...
 28. [DONE] ibeta looks like it might have problems for large a, b near end points.
            Check test_beta_inc.
 
-29. []
+29. [DONE] Lose __eps, __min, __max, __inf, __NaN from math_const in favor of numeric_limits.h
+
+30. [] 
 

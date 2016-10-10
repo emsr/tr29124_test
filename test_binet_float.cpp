@@ -15,6 +15,7 @@
 #include <bits/float128.h>
 #include <cmath>
 #include <ext/polynomial.h>
+#include <ext/math_const.h>
 
 namespace std
 {
@@ -516,6 +517,9 @@ template<typename _Tp>
   test()
   {
     using _Real = _Tp;
+    constexpr auto _S_ln2pi
+      = __gnu_cxx::__math_constants<_Real>::__ln_2
+      + __gnu_cxx::__math_constants<_Real>::__ln_pi;
 
     std::cout.precision(std::numeric_limits<_Real>::digits10);
     auto width = std::cout.precision() + 6;
@@ -551,10 +555,16 @@ template<typename _Tp>
 	auto x = _Tp{0.1Q} * k;
 	auto j_as = std::__detail::__binet_asymp(x);
 	auto j_cf = std::__detail::__binet_cont_frac(x);
+	auto j_fake = std::lgamma(x) - (x - 0.5) * std::log(x) + x - _S_ln2pi / _Real{2};
+	auto j_bern = std::__detail::__log_gamma_bernoulli(x) - (x - 0.5) * std::log(x) + x - _S_ln2pi / _Real{2};
 	std::cout << ' ' << std::setw(4) << x
 		  << ' ' << std::setw(width) << j_as
 		  << ' ' << std::setw(width) << j_cf
+		  << ' ' << std::setw(width) << j_fake
 		  << ' ' << std::setw(width) << (j_as - j_cf) / j_cf
+		  << ' ' << std::setw(width) << (j_as - j_fake) / j_fake
+		  << ' ' << std::setw(width) << (j_cf - j_fake) / j_fake
+		  << ' ' << std::setw(width) << (j_bern - j_fake) / j_fake
 		  << '\n';
       }
   }
