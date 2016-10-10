@@ -106,17 +106,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr _RealType __root_7 = 2.6457513110645905905016157536392604L;
       // Constant @f$ 1 / \sqrt(2) @f$.
       static constexpr _RealType __one_div_root_2 = 0.7071067811865475244008443621048490L;
-
-      // Constant: @f$ min(RealType) @f$.
-      static constexpr _RealType __eps = std::numeric_limits<_RealType>::epsilon();
-      // Constant: @f$ min(RealType) @f$.
-      static constexpr _RealType __min = std::numeric_limits<_RealType>::min();
-      // Constant: @f$ max(RealType) @f$.
-      static constexpr _RealType __max = std::numeric_limits<_RealType>::max();
-      // Constant: @f$ inf(RealType) @f$.
-      static constexpr _RealType __inf = std::numeric_limits<_RealType>::infinity();
-      // Constant: @f$ NaN(RealType) @f$.
-      static constexpr _RealType __NaN = std::numeric_limits<_RealType>::quiet_NaN();
     };
 
   // And the template definitions for the constants.
@@ -174,16 +163,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     constexpr _RealType __math_constants<_RealType>::__root_7;
   template<typename _RealType>
     constexpr _RealType __math_constants<_RealType>::__one_div_root_2;
-  template<typename _RealType>
-    constexpr _RealType __math_constants<_RealType>::__eps;
-  template<typename _RealType>
-    constexpr _RealType __math_constants<_RealType>::__min;
-  template<typename _RealType>
-    constexpr _RealType __math_constants<_RealType>::__max;
-  template<typename _RealType>
-    constexpr _RealType __math_constants<_RealType>::__inf;
-  template<typename _RealType>
-    constexpr _RealType __math_constants<_RealType>::__NaN;
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
