@@ -2,12 +2,13 @@
 \label{sf__polylog_8tcc}\index{bits/sf\+\_\+polylog.\+tcc@{bits/sf\+\_\+polylog.\+tcc}}
 {\ttfamily \#include $<$complex$>$}\\*
 {\ttfamily \#include $<$ext/math\+\_\+const.\+h$>$}\\*
+{\ttfamily \#include $<$ext/math\+\_\+util.\+h$>$}\\*
 Include dependency graph for sf\+\_\+polylog.\+tcc\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=244pt]{sf__polylog_8tcc__incl}
+\includegraphics[width=343pt]{sf__polylog_8tcc__incl}
 \end{center}
 \end{figure}
 This graph shows which files directly or indirectly include this file\+:
@@ -33,7 +34,7 @@ This graph shows which files directly or indirectly include this file\+:
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a4c199ebf92e53a3ae9c27c2c79d65e21}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+bose\+\_\+einstein} (\+\_\+\+Tp \+\_\+\+\_\+s, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Sp , typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a75feb55399bc2c9c2ccff19877c8af2b}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+bose\+\_\+einstein} (\+\_\+\+Sp \+\_\+\+\_\+s, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a49702394cf9b45acfa5b84f232078a9b}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+clamp\+\_\+0\+\_\+m2pi} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+w)
 \item 
@@ -59,25 +60,17 @@ This graph shows which files directly or indirectly include this file\+:
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_acd1e2a576d04658c6332df91cdaacd6e}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+dirichlet\+\_\+eta} (\+\_\+\+Tp \+\_\+\+\_\+w)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a6057422cd4e359f44dcdb6cffc26128f}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+fermi\+\_\+dirac} (\+\_\+\+Tp \+\_\+\+\_\+s, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a9f006b5bca9aada788bb88bdbaa2c0ba}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+dirichlet\+\_\+lambda} (\+\_\+\+Tp \+\_\+\+\_\+w)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\bool \hyperlink{namespacestd_1_1____detail_acefbc7637e41168e49d6230df9c5127f}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+fpequal} (const \+\_\+\+Tp \&\+\_\+\+\_\+a, const \+\_\+\+Tp \&\+\_\+\+\_\+b)
+{\footnotesize template$<$typename \+\_\+\+Sp , typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a470e563c4e88c433f94dca391814dc61}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+fermi\+\_\+dirac} (\+\_\+\+Sp \+\_\+\+\_\+s, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\bool \hyperlink{namespacestd_1_1____detail_a990a8fb06307793ceae4c3c288f8b876}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+fpimag} (const std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+w)
-\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\bool \hyperlink{namespacestd_1_1____detail_a962bc8055b3948b6e2bebf34f86d9263}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+fpimag} (const \+\_\+\+Tp)
-\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\bool \hyperlink{namespacestd_1_1____detail_ab78bb436e256ef9a3f64fa2a1ce25fb1}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+fpreal} (const std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+w)
-\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\bool \hyperlink{namespacestd_1_1____detail_a52087623539a401ded28ef1ca8fbcd04}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+fpreal} (const \+\_\+\+Tp)
-\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a7eb061915bad44dd29443b3476eaa7a0}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+hurwitz\+\_\+zeta} (\+\_\+\+Tp \+\_\+\+\_\+s, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+a)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a7c45415c3ec0e137eea2364a6dd3af4e}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+hurwitz\+\_\+zeta\+\_\+polylog} (\+\_\+\+Tp \+\_\+\+\_\+s, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+a)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a17fb8cea11706f319aaea277188a29c8}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog} (\+\_\+\+Tp \+\_\+\+\_\+s, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_aa14e3ca6e4bee5ac1f1e5e1c2cee1d5a}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog} (\+\_\+\+Tp \+\_\+\+\_\+s, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+w)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename Arg\+Type $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ std\+::complex$<$ \+\_\+\+Tp $>$, Arg\+Type $>$ \hyperlink{namespacestd_1_1____detail_ad01c033a96c9f185216d6c9f9db49c99}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp} (\+\_\+\+Tp \+\_\+\+\_\+s, Arg\+Type \+\_\+\+\_\+w)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename Arg\+Type $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ std\+::complex$<$ \+\_\+\+Tp $>$, Arg\+Type $>$ \hyperlink{namespacestd_1_1____detail_a754c996ded0006978b76746d357a2d2d}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp} (\+\_\+\+Tp \+\_\+\+\_\+s, Arg\+Type \+\_\+\+\_\+w)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_af3684fc449da490e9a43985245618a90}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+asymp} (\+\_\+\+Tp \+\_\+\+\_\+s, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+w)
 \item 

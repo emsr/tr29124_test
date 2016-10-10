@@ -11,6 +11,20 @@ g++ -std=c++14 -o test_sincos test_sincos.cpp
 #include <cmath>
 #include <bits/float128.h>
 
+namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
+{
+
+  /**
+   * A struct to store a cosine and a sine value.
+   */
+  template<typename _Tp>
+    struct __sincos_t
+    {
+      _Tp sin_value;
+      _Tp cos_value;
+    };
+
+} // namespace __gnu_cxx
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -19,56 +33,49 @@ namespace __detail
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
-  template<typename _Tp>
-    struct __sincos_t
-    {
-      _Tp sin_value;
-      _Tp cos_value;
-    };
-
   /**
    * Default implementation of sincos.
    */
   template<typename _Tp>
-    inline __sincos_t<_Tp>
+    inline __gnu_cxx::__sincos_t<_Tp>
     __sincos(_Tp __x)
-    { return __sincos_t<_Tp>{std::sin(__x), std::cos(__x)}; }
+    { return __gnu_cxx::__sincos_t<_Tp>{std::sin(__x), std::cos(__x)}; }
 
   template<>
-    inline __sincos_t<float>
+    inline __gnu_cxx::__sincos_t<float>
     __sincos(float __x)
     {
       float __sin, __cos;
       __builtin_sincosf(__x, &__sin, &__cos);
-      return __sincos_t<float>{__sin, __cos};
+      return __gnu_cxx::__sincos_t<float>{__sin, __cos};
     }
 
   template<>
-    inline __sincos_t<double>
+    inline __gnu_cxx::__sincos_t<double>
     __sincos(double __x)
     {
       double __sin, __cos;
       __builtin_sincos(__x, &__sin, &__cos);
-      return __sincos_t<double>{__sin, __cos};
+      return __gnu_cxx::__sincos_t<double>{__sin, __cos};
     }
 
   template<>
-    inline __sincos_t<long double>
+    inline __gnu_cxx::__sincos_t<long double>
     __sincos(long double __x)
     {
       long double __sin, __cos;
       __builtin_sincosl(__x, &__sin, &__cos);
-      return __sincos_t<long double>{__sin, __cos};
+      return __gnu_cxx::__sincos_t<long double>{__sin, __cos};
     }
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   template<>
-    inline __sincos_t<__float128>
+    inline __gnu_cxx::__sincos_t<__float128>
     __sincos(__float128 __x)
     {
       __float128 __sin, __cos;
       ::sincosq(__x, &__sin, &__cos);
-      return __sincos_t<__float128>{__sin, __cos};
+      return __gnu_cxx::__sincos_t<__float128>{__sin, __cos};
     }
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
@@ -76,24 +83,27 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Reperiodized sincos.
    */
   template<typename _Tp>
-    __sincos_t<_Tp>
+    __gnu_cxx::__sincos_t<_Tp>
     __sincos_pi(_Tp __x)
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_NaN = __gnu_cxx::__math_constants<_Tp>::__NaN;
       if (std::isnan(__x))
-	return __sincos_t<_Tp>{_S_NaN, _S_NaN};
+	return __gnu_cxx::__sincos_t<_Tp>{_S_NaN, _S_NaN};
       else if (__x < _Tp{0})
 	{
-	  __sincos_t<_Tp> __tempsc = __sincos_pi(-__x);
-	  return __sincos_t<_Tp>{-__tempsc.sin_value, __tempsc.cos_value};
+	  __gnu_cxx::__sincos_t<_Tp> __tempsc = __sincos_pi(-__x);
+	  return __gnu_cxx::__sincos_t<_Tp>{-__tempsc.sin_value,
+					     __tempsc.cos_value};
 	}
       else if (__x < _Tp{0.5L})
 	return __sincos(_S_pi * __x);
       else if (__x < _Tp{1})
 	{
-	  __sincos_t<_Tp> __tempsc = __sincos(_S_pi * (_Tp{1} - __x));
-	  return __sincos_t<_Tp>{__tempsc.sin_value, -__tempsc.cos_value};
+	  __gnu_cxx::__sincos_t<_Tp>
+	    __tempsc = __sincos(_S_pi * (_Tp{1} - __x));
+	  return __gnu_cxx::__sincos_t<_Tp>{__tempsc.sin_value,
+					   -__tempsc.cos_value};
 	}
       else
 	{
@@ -105,7 +115,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			? std::sin(_S_pi * __arg)
 			: std::sin(_S_pi * (_Tp{1} - __arg));
 	  auto __cosval = std::cos(_S_pi * __arg);
-	  return __sincos_t<_Tp>{__sign * __sinval, __sign * __cosval};
+	  return __gnu_cxx::__sincos_t<_Tp>{__sign * __sinval,
+					    __sign * __cosval};
 	}
     }
 
@@ -116,7 +127,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline std::complex<_Tp>
     __polar_pi(_Tp __rho, _Tp __phi_pi)
     {
-      __sincos_t<_Tp> __sc = __sincos_pi(__phi_pi);
+      __gnu_cxx::__sincos_t<_Tp> __sc = __sincos_pi(__phi_pi);
       return std::complex<_Tp>(__rho * __sc.cos_value, __rho * __sc.sin_value);
     }
 

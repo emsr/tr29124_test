@@ -1,4 +1,40 @@
-warning: source bits/sf_hankel_new.tcc is not a readable file or directory... skipping.
-/home/ed/tr29124_test/bits/sf_zeta.tcc:552: warning: Found unknown command `\u0160tas'
-/home/ed/tr29124_test/bits/specfun.h:182: warning: unable to resolve reference to `__gnu_cxx::dirichlet_lambda' for \ref command
-/home/ed/tr29124_test/bits/specfun.h:182: warning: unable to resolve reference to `__gnu_cxx::dirichlet_lambda' for \ref command
+/home/ed/tr29124_test/bits/sf_zeta.tcc:662: warning: Found unknown command `\Re'
+/home/ed/tr29124_test/bits/sf_zeta.tcc:662: warning: Found unknown command `\Re'
+/home/ed/tr29124_test/bits/specfun.h:3961: warning: argument '__l' of command @param is not found in the argument list of __gnu_cxx::legendre_q(unsigned int __n, _Tp __x)
+/home/ed/tr29124_test/bits/specfun.h:3981: warning: The following parameters of __gnu_cxx::legendre_q(unsigned int __n, _Tp __x) are not documented:
+  parameter '__n'
+/home/ed/tr29124_test/bits/sf_zeta.tcc:662: warning: Found unknown command `\Re'
+/home/ed/tr29124_test/bits/sf_trig.tcc:234: warning: Found unknown command `\cos_'
+/home/ed/tr29124_test/bits/sf_trig.tcc:234: warning: Found unknown command `\pi'
+/home/ed/tr29124_test/bits/sf_trig.tcc:234: warning: Found unknown command `\cos'
+/home/ed/tr29124_test/bits/sf_trig.tcc:234: warning: Found unknown command `\pi'
+/home/ed/tr29124_test/bits/sf_trig.tcc:235: warning: Found unknown command `\cos_'
+/home/ed/tr29124_test/bits/sf_trig.tcc:235: warning: Found unknown command `\pi'
+/home/ed/tr29124_test/bits/sf_trig.tcc:235: warning: Found unknown command `\cosh_'
+/home/ed/tr29124_test/bits/sf_trig.tcc:235: warning: Found unknown command `\pi'
+/home/ed/tr29124_test/bits/sf_trig.tcc:235: warning: Found unknown command `\sin_'
+/home/ed/tr29124_test/bits/sf_trig.tcc:235: warning: Found unknown command `\pi'
+/home/ed/tr29124_test/bits/sf_trig.tcc:235: warning: Found unknown command `\sinh_'
+/home/ed/tr29124_test/bits/sf_trig.tcc:235: warning: Found unknown command `\pi'
+/home/ed/tr29124_test/bits/sf_trig.tcc:253: warning: Found unknown command `\cosh_'
+/home/ed/tr29124_test/bits/sf_trig.tcc:253: warning: Found unknown command `\pi'
+/home/ed/tr29124_test/bits/sf_trig.tcc:253: warning: Found unknown command `\cosh_'
+/home/ed/tr29124_test/bits/sf_trig.tcc:253: warning: Found unknown command `\pi'
+/home/ed/tr29124_test/bits/sf_trig.tcc:254: warning: Found unknown command `\cosh_'
+/home/ed/tr29124_test/bits/sf_trig.tcc:254: warning: Found unknown command `\pi'
+/home/ed/tr29124_test/bits/sf_trig.tcc:254: warning: Found unknown command `\cos_'
+/home/ed/tr29124_test/bits/sf_trig.tcc:254: warning: Found unknown command `\pi'
+/home/ed/tr29124_test/bits/sf_trig.tcc:254: warning: Found unknown command `\sinh_'
+/home/ed/tr29124_test/bits/sf_trig.tcc:254: warning: Found unknown command `\pi'
+/home/ed/tr29124_test/bits/sf_trig.tcc:254: warning: Found unknown command `\sin_'
+/home/ed/tr29124_test/bits/sf_trig.tcc:254: warning: Found unknown command `\pi'
+/home/ed/tr29124_test/bits/sf_zeta.tcc:576: warning: Found unknown command `\u0160tas'
+/home/ed/tr29124_test/bits/sf_gamma.tcc:2185: warning: argument '__x' of command @param is not found in the argument list of std::__detail::__log_bincoef_sign(_Tp __nu, unsigned int __k)
+/home/ed/tr29124_test/bits/sf_gamma.tcc:2193: warning: The following parameters of std::__detail::__log_bincoef_sign(_Tp __nu, unsigned int __k) are not documented:
+  parameter '__nu'
+  parameter '__k'
+/home/ed/tr29124_test/bits/sf_gamma.tcc:2003: warning: argument '__x' of command @param is not found in the argument list of std::__detail::__log_gamma1p_lanczos(_Tp __z)
+/home/ed/tr29124_test/bits/sf_gamma.tcc:2011: warning: The following parameters of std::__detail::__log_gamma1p_lanczos(_Tp __z) are not documented:
+  parameter '__z'
+/home/ed/tr29124_test/bits/sf_zeta.tcc:662: warning: Found unknown command `\Re'
+/home/ed/tr29124_test/bits/sf_zeta.tcc:476: warning: Found unknown command `\Re'

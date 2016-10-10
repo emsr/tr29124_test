@@ -7,6 +7,7 @@
 {\ttfamily \#include $<$type\+\_\+traits$>$}\\*
 {\ttfamily \#include $<$bits/numeric\+\_\+limits.\+h$>$}\\*
 {\ttfamily \#include $<$bits/complex\+\_\+util.\+h$>$}\\*
+{\ttfamily \#include $<$bits/sf\+\_\+trig.\+tcc$>$}\\*
 {\ttfamily \#include $<$bits/sf\+\_\+gamma.\+tcc$>$}\\*
 {\ttfamily \#include $<$bits/sf\+\_\+bessel.\+tcc$>$}\\*
 {\ttfamily \#include $<$bits/sf\+\_\+beta.\+tcc$>$}\\*
@@ -66,13 +67,17 @@ enum \{ \hyperlink{group__gnu__math__spec__func_ggad6c62dd86a596716cece6ac2d4cfd
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga8eff81346e95e9987002ea52fe1e29a7}{\+\_\+\+\_\+gnu\+\_\+cxx\+::airy\+\_\+ai} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga53243cdb83abeb008fa90d8a098768af}{\+\_\+\+\_\+gnu\+\_\+cxx\+::airy\+\_\+ai} (\+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_gab61dcd6c20c602711544b39d2429038b}{\+\_\+\+\_\+gnu\+\_\+cxx\+::airy\+\_\+ai} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gaf317ba724c44b3a8271fe341d9870173}{\+\_\+\+\_\+gnu\+\_\+cxx\+::airy\+\_\+aif} (float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga800fdb61c672ae1831f4ca4250d657de}{\+\_\+\+\_\+gnu\+\_\+cxx\+::airy\+\_\+ail} (long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga65253611eb5aec804f9021b085be2a48}{\+\_\+\+\_\+gnu\+\_\+cxx\+::airy\+\_\+bi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga812ca309bff1b0ae2bbe1183a0bc47d5}{\+\_\+\+\_\+gnu\+\_\+cxx\+::airy\+\_\+bi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga6dee14118a9bc3ccfa6f1d2b96b4be10}{\+\_\+\+\_\+gnu\+\_\+cxx\+::airy\+\_\+bi} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga2ade465827bdba7370abbcce78e54912}{\+\_\+\+\_\+gnu\+\_\+cxx\+::airy\+\_\+bif} (float \+\_\+\+\_\+x)
 \item 
@@ -90,7 +95,7 @@ float \hyperlink{group__tr29124__math__spec__func_ga3ced07ddd24bf4af56e2712d148e
 \item 
 long double \hyperlink{group__tr29124__math__spec__func_ga55977b425a539146f060dec1c8003344}{std\+::assoc\+\_\+legendrel} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga3fc87e918adf978bfdc26a182af0e6ed}{\+\_\+\+\_\+gnu\+\_\+cxx\+::bernoulli} (unsigned int \+\_\+\+\_\+n)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaebe41d6ec250e8fcc213eee9b392fd5f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::bernoulli} (unsigned int \+\_\+\+\_\+n)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gabcd77f012ae74989c4bb9ca61978481d}{\+\_\+\+\_\+gnu\+\_\+cxx\+::bernoullif} (unsigned int \+\_\+\+\_\+n)
 \item 
@@ -102,47 +107,53 @@ float \hyperlink{group__tr29124__math__spec__func_ga12dc61ee4c09172151cf092ed387
 \item 
 long double \hyperlink{group__tr29124__math__spec__func_ga8caca1cef099f41a88111209c36ce06c}{std\+::betal} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+b)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga57a15003ded8e0e808b21d4a17a7803e}{\+\_\+\+\_\+gnu\+\_\+cxx\+::bincoef} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga2934ccfb8bbd5877efd369a3ecd9ac4d}{\+\_\+\+\_\+gnu\+\_\+cxx\+::bincoef} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga20ff8c4c82808c78c299634d02f3f8bd}{\+\_\+\+\_\+gnu\+\_\+cxx\+::bincoeff} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga6874da4660b1ef35c03e28bf09e81796}{\+\_\+\+\_\+gnu\+\_\+cxx\+::bincoefl} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gad8769048d3a0eb2adcfcfeaa10af37fe}{\+\_\+\+\_\+gnu\+\_\+cxx\+::chebyshev\+\_\+t} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tps , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tps, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gacf63ebbc67ea21d569cf510ed0da95fd}{\+\_\+\+\_\+gnu\+\_\+cxx\+::bose\+\_\+einstein} (\+\_\+\+Tps \+\_\+\+\_\+s, \+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
+float \hyperlink{group__gnu__math__spec__func_gac1fb313fba5639d4168b6ee682507688}{\+\_\+\+\_\+gnu\+\_\+cxx\+::bose\+\_\+einsteinf} (float \+\_\+\+\_\+s, float \+\_\+\+\_\+x)
+\item 
+long double \hyperlink{group__gnu__math__spec__func_ga995c3ff580f81afb139f9cd50f445b48}{\+\_\+\+\_\+gnu\+\_\+cxx\+::bose\+\_\+einsteinl} (long double \+\_\+\+\_\+s, long double \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gae35c0bc63248e3bcdb9b490477975eb4}{\+\_\+\+\_\+gnu\+\_\+cxx\+::chebyshev\+\_\+t} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gab8cdb55702d9c8b85af4ecc3d8c6a134}{\+\_\+\+\_\+gnu\+\_\+cxx\+::chebyshev\+\_\+tf} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga0c421700d244cdf58e3ac5ff267664d1}{\+\_\+\+\_\+gnu\+\_\+cxx\+::chebyshev\+\_\+tl} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga59e3a6dd4d614f6e158a0a56fa25a0b1}{\+\_\+\+\_\+gnu\+\_\+cxx\+::chebyshev\+\_\+u} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaea7ea830fe6be79ca84fba1bb94691a4}{\+\_\+\+\_\+gnu\+\_\+cxx\+::chebyshev\+\_\+u} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga4b28c2a079eae2e9612c9902801ca256}{\+\_\+\+\_\+gnu\+\_\+cxx\+::chebyshev\+\_\+uf} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga11ec202d6aacafba1182e962ecf02978}{\+\_\+\+\_\+gnu\+\_\+cxx\+::chebyshev\+\_\+ul} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaf5e47fa5f24acf2aac6c7a1187ee6be1}{\+\_\+\+\_\+gnu\+\_\+cxx\+::chebyshev\+\_\+v} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga674e3d97204a74620eb0d408873aefb9}{\+\_\+\+\_\+gnu\+\_\+cxx\+::chebyshev\+\_\+v} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gaa9635a0da4bdeaa8060ae5cf03c3a12d}{\+\_\+\+\_\+gnu\+\_\+cxx\+::chebyshev\+\_\+vf} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gae387ee1bfcd52555ad4d690f5888a078}{\+\_\+\+\_\+gnu\+\_\+cxx\+::chebyshev\+\_\+vl} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gae283d165c5a058fff7a0f83a2a66b4c2}{\+\_\+\+\_\+gnu\+\_\+cxx\+::chebyshev\+\_\+w} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga55ebf3cda76302bc6e0f173fc1c1425e}{\+\_\+\+\_\+gnu\+\_\+cxx\+::chebyshev\+\_\+w} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gae6d468cee53df584e40afe294127b090}{\+\_\+\+\_\+gnu\+\_\+cxx\+::chebyshev\+\_\+wf} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga1297dfd9b9a0f584435de7d83eb9e9c3}{\+\_\+\+\_\+gnu\+\_\+cxx\+::chebyshev\+\_\+wl} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga5a7016834baf2dd1b57c9dfcfa3436f0}{\+\_\+\+\_\+gnu\+\_\+cxx\+::clausen} (unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+w)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga7959ce3dea7f8d98b1dfee5715303f1c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::clausen} (unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+w)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga154f5baa4a7799557b7e7d32dfc73285}{\+\_\+\+\_\+gnu\+\_\+cxx\+::clausen} (unsigned int \+\_\+\+\_\+m, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+w)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga4ffe44c8ee15518ac2577ba0aa94a99c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::clausen} (unsigned int \+\_\+\+\_\+m, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+w)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga2e89f9758322054738dacf686f6ce974}{\+\_\+\+\_\+gnu\+\_\+cxx\+::clausen\+\_\+c} (unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+w)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gabbdae75b253a0b19e8ae3d42c14f6be3}{\+\_\+\+\_\+gnu\+\_\+cxx\+::clausen\+\_\+c} (unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+w)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga515b9b6bca8f97e696ac5be85a44b3bd}{\+\_\+\+\_\+gnu\+\_\+cxx\+::clausen\+\_\+cf} (unsigned int \+\_\+\+\_\+m, float \+\_\+\+\_\+w)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga5ff89833dc529ca3de5099e1b9c8525f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::clausen\+\_\+cl} (unsigned int \+\_\+\+\_\+m, long double \+\_\+\+\_\+w)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga124827c09e71d83eb11b9e3282739475}{\+\_\+\+\_\+gnu\+\_\+cxx\+::clausen\+\_\+s} (unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+w)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga3ed0e444799410cda76ccbc62181ce0c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::clausen\+\_\+s} (unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+w)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga2308b5828b5a8003d16cfa0f90826f94}{\+\_\+\+\_\+gnu\+\_\+cxx\+::clausen\+\_\+sf} (unsigned int \+\_\+\+\_\+m, float \+\_\+\+\_\+w)
 \item 
@@ -173,8 +184,8 @@ long double \hyperlink{group__tr29124__math__spec__func_ga47b647ec386c8d4b18a030
 float \hyperlink{group__tr29124__math__spec__func_ga76834d3112f777703330892303267a39}{std\+::comp\+\_\+ellint\+\_\+3f} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+nu)
 \begin{DoxyCompactList}\small\item\em Return the complete elliptic integral of the third kind $ \Pi(k,\nu) $ for {\ttfamily float} modulus $ k $. \end{DoxyCompactList}\item 
 long double \hyperlink{group__tr29124__math__spec__func_ga1ca081fee102cd0d4d6b091285e495e5}{std\+::comp\+\_\+ellint\+\_\+3l} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+nu)
-\begin{DoxyCompactList}\small\item\em Return the complete elliptic integral of the third kind $ \Pi(k,\nu) $ for {\ttfamily long double} modulus {\ttfamily k}. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tk $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tk $>$ \hyperlink{group__gnu__math__spec__func_gad0fb35dfc5aef8ba2ba5fb88da1192c7}{\+\_\+\+\_\+gnu\+\_\+cxx\+::comp\+\_\+ellint\+\_\+d} (\+\_\+\+Tk \+\_\+\+\_\+k)
+\begin{DoxyCompactList}\small\item\em Return the complete elliptic integral of the third kind $ \Pi(k,\nu) $ for {\ttfamily long double} modulus $ k $. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tk $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tk $>$ \hyperlink{group__gnu__math__spec__func_ga2c6b6c5a44ea00f0aed05c02f1072c31}{\+\_\+\+\_\+gnu\+\_\+cxx\+::comp\+\_\+ellint\+\_\+d} (\+\_\+\+Tk \+\_\+\+\_\+k)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga34ac6488b0e7531d5d4b7a8e31ff864e}{\+\_\+\+\_\+gnu\+\_\+cxx\+::comp\+\_\+ellint\+\_\+df} (float \+\_\+\+\_\+k)
 \item 
@@ -184,13 +195,13 @@ float \hyperlink{group__gnu__math__spec__func_ga55ae30b4f8ff15017d18a80050e14e38
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gae1d468487f1711e91719a9c6392f3c35}{\+\_\+\+\_\+gnu\+\_\+cxx\+::comp\+\_\+ellint\+\_\+rf} (long double \+\_\+\+\_\+x, long double \+\_\+\+\_\+y)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tx , typename \+\_\+\+Ty $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tx, \+\_\+\+Ty $>$ \hyperlink{group__gnu__math__spec__func_ga98dd868dcb97e26971dfa8ac4db24df3}{\+\_\+\+\_\+gnu\+\_\+cxx\+::comp\+\_\+ellint\+\_\+rf} (\+\_\+\+Tx \+\_\+\+\_\+x, \+\_\+\+Ty \+\_\+\+\_\+y)
+{\footnotesize template$<$typename \+\_\+\+Tx , typename \+\_\+\+Ty $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tx, \+\_\+\+Ty $>$ \hyperlink{group__gnu__math__spec__func_ga78dc5f41ec8b69ed822612a72d326109}{\+\_\+\+\_\+gnu\+\_\+cxx\+::comp\+\_\+ellint\+\_\+rf} (\+\_\+\+Tx \+\_\+\+\_\+x, \+\_\+\+Ty \+\_\+\+\_\+y)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga978f8eec6e5edc918b243925dbacb65b}{\+\_\+\+\_\+gnu\+\_\+cxx\+::comp\+\_\+ellint\+\_\+rg} (float \+\_\+\+\_\+x, float \+\_\+\+\_\+y)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gaca5fa8ee8125afc8f35ec6b27806e873}{\+\_\+\+\_\+gnu\+\_\+cxx\+::comp\+\_\+ellint\+\_\+rg} (long double \+\_\+\+\_\+x, long double \+\_\+\+\_\+y)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tx , typename \+\_\+\+Ty $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tx, \+\_\+\+Ty $>$ \hyperlink{group__gnu__math__spec__func_ga2c65744cf12dc54d7176258f791a87da}{\+\_\+\+\_\+gnu\+\_\+cxx\+::comp\+\_\+ellint\+\_\+rg} (\+\_\+\+Tx \+\_\+\+\_\+x, \+\_\+\+Ty \+\_\+\+\_\+y)
+{\footnotesize template$<$typename \+\_\+\+Tx , typename \+\_\+\+Ty $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tx, \+\_\+\+Ty $>$ \hyperlink{group__gnu__math__spec__func_gad0ab2cfa6c4669440c47ab53cfa332ec}{\+\_\+\+\_\+gnu\+\_\+cxx\+::comp\+\_\+ellint\+\_\+rg} (\+\_\+\+Tx \+\_\+\+\_\+x, \+\_\+\+Ty \+\_\+\+\_\+y)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tpa , typename \+\_\+\+Tpc , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+3$<$ \+\_\+\+Tpa, \+\_\+\+Tpc, \+\_\+\+Tp $>$\+::\+\_\+\+\_\+type \hyperlink{group__gnu__math__spec__func_ga2e17ccbbc4cbb99c987e875531d4a3de}{\+\_\+\+\_\+gnu\+\_\+cxx\+::conf\+\_\+hyperg} (\+\_\+\+Tpa \+\_\+\+\_\+a, \+\_\+\+Tpc \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
@@ -204,13 +215,25 @@ float \hyperlink{group__gnu__math__spec__func_gabd18e600aa78c3f2b2f835039506c810
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga0a9853f30d8fa515a12cd45a92da832e}{\+\_\+\+\_\+gnu\+\_\+cxx\+::conf\+\_\+hypergl} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+c, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaceef7e29a05055fa1e1300301f51f139}{\+\_\+\+\_\+gnu\+\_\+cxx\+::coshint} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+type \hyperlink{group__gnu__math__spec__func_ga5ebda736a00921a739ed657cab0643ec}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cos\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
+float \hyperlink{group__gnu__math__spec__func_gaddcae99c1572af6fa1d79b9cfa053033}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cos\+\_\+pif} (float \+\_\+\+\_\+x)
+\item 
+long double \hyperlink{group__gnu__math__spec__func_ga9b6816c0abf30fd88417d79a33cb5465}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cos\+\_\+pil} (long double \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+type \hyperlink{group__gnu__math__spec__func_ga4400f758578400b7a10f8202f854c8b4}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cosh\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
+float \hyperlink{group__gnu__math__spec__func_ga79a2f5c9da96b5ea6c663d6efca24944}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cosh\+\_\+pif} (float \+\_\+\+\_\+x)
+\item 
+long double \hyperlink{group__gnu__math__spec__func_gab7bf4f591dd35af2bdb88a8219f5e248}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cosh\+\_\+pil} (long double \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga901c23871fded7d4467a864fe06bbf07}{\+\_\+\+\_\+gnu\+\_\+cxx\+::coshint} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga1af4d48209169967a836bd97e625a128}{\+\_\+\+\_\+gnu\+\_\+cxx\+::coshintf} (float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga6d24ab53fad13d421f07d9a9a509de14}{\+\_\+\+\_\+gnu\+\_\+cxx\+::coshintl} (long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gafa310665ffc65012269f6f90cb573502}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cosint} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga06eed76a045a73ad72fcf4ad00b05f96}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cosint} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga87202351dc97d2c69e42bf58f911fb5a}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cosintf} (float \+\_\+\+\_\+x)
 \item 
@@ -234,9 +257,9 @@ float \hyperlink{group__tr29124__math__spec__func_ga1f50047f9aab0ec8b1a1615fe9fb
 \item 
 long double \hyperlink{group__tr29124__math__spec__func_gac35194b926270d7857d651e06198c7d3}{std\+::cyl\+\_\+bessel\+\_\+kl} (long double \+\_\+\+\_\+nu, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga385def5d98679e243626fb78a841795b}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cyl\+\_\+hankel\+\_\+1} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+z)
+{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_gafa5ad1cfd4cc30caaeb06bdab71e600b}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cyl\+\_\+hankel\+\_\+1} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+z)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga41f7964d4177b4299caf3769271814d2}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cyl\+\_\+hankel\+\_\+1} (std\+::complex$<$ \+\_\+\+Tpnu $>$ \+\_\+\+\_\+nu, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga0f0b05c483ed1d713ef9a96e844c1979}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cyl\+\_\+hankel\+\_\+1} (std\+::complex$<$ \+\_\+\+Tpnu $>$ \+\_\+\+\_\+nu, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+x)
 \item 
 std\+::complex$<$ float $>$ \hyperlink{group__gnu__math__spec__func_ga89758ed03e56567baa62b90cc4784f71}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cyl\+\_\+hankel\+\_\+1f} (float \+\_\+\+\_\+nu, float \+\_\+\+\_\+z)
 \item 
@@ -246,9 +269,9 @@ std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_gacb49
 \item 
 std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_ga6900f79ec70673bcb001538aec74e07c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cyl\+\_\+hankel\+\_\+1l} (std\+::complex$<$ long double $>$ \+\_\+\+\_\+nu, std\+::complex$<$ long double $>$ \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga307fd77aa8f0ed2028a9fab88976ca54}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cyl\+\_\+hankel\+\_\+2} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+z)
+{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga6c1d2d390e547ded9e0f4cc46395d90c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cyl\+\_\+hankel\+\_\+2} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+z)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_gafb943392dd7cee0114fca8d36cb1318e}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cyl\+\_\+hankel\+\_\+2} (std\+::complex$<$ \+\_\+\+Tpnu $>$ \+\_\+\+\_\+nu, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga378002c9d6cb4f64683bdb128da1df47}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cyl\+\_\+hankel\+\_\+2} (std\+::complex$<$ \+\_\+\+Tpnu $>$ \+\_\+\+\_\+nu, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+x)
 \item 
 std\+::complex$<$ float $>$ \hyperlink{group__gnu__math__spec__func_ga2b75361870975c47d57bed71b4064ce7}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cyl\+\_\+hankel\+\_\+2f} (float \+\_\+\+\_\+nu, float \+\_\+\+\_\+z)
 \item 
@@ -264,19 +287,13 @@ float \hyperlink{group__tr29124__math__spec__func_ga604c13e8f2bb7cd3c7c91d8b19d6
 \item 
 long double \hyperlink{group__tr29124__math__spec__func_gaf8986bae9a523c48d861d233835bda8f}{std\+::cyl\+\_\+neumannl} (long double \+\_\+\+\_\+nu, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga30e46cb24428cfdb858c52fec431dee4}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dawson} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga0623ddcbfdce696781e19648fde6f33a}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dawson} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga0a1b8e6760b8c7869127d41d96209318}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dawsonf} (float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga6647a7444ff9c7c1f2a8ed36761bfeb2}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dawsonl} (long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga6c698fd735df9d76905e2cad97f2316a}{\+\_\+\+\_\+gnu\+\_\+cxx\+::digamma} (\+\_\+\+Tp \+\_\+\+\_\+z)
-\item 
-float \hyperlink{group__gnu__math__spec__func_gadb2a40ca78a0d909126734c75eabd86f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::digammaf} (float \+\_\+\+\_\+z)
-\item 
-long double \hyperlink{group__gnu__math__spec__func_gae081ad08e1a42ffaad63b87b9f579dcf}{\+\_\+\+\_\+gnu\+\_\+cxx\+::digammal} (long double \+\_\+\+\_\+z)
-\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga8fceba3ecc618971e0e3c089d8dc49cf}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dilog} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga7a95a3cb9a53aca2a1ff9752ce9d5e3c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dilog} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga901091e0e7ce7d6113ae6a86f4865a92}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dilogf} (float \+\_\+\+\_\+x)
 \item 
@@ -294,7 +311,13 @@ float \hyperlink{group__gnu__math__spec__func_ga6f05d076600b1de9193e586cf89547c9
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga408e2267b648f29445522dbafb7a0e1a}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+etal} (long double \+\_\+\+\_\+s)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga206cdf1ae7f9a0df3048af18892b8ba8}{\+\_\+\+\_\+gnu\+\_\+cxx\+::double\+\_\+factorial} (int \+\_\+\+\_\+n)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{group__gnu__math__spec__func_ga06842a81bdcabf9c62252dde992d42ee}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+lambda} (\+\_\+\+Tp \+\_\+\+\_\+s)
+\item 
+float \hyperlink{group__gnu__math__spec__func_gaafd3ca6b0d71d55d3835536396eece8f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+lambdaf} (float \+\_\+\+\_\+s)
+\item 
+long double \hyperlink{group__gnu__math__spec__func_gab28d06c4e3c7457f1fa3663168678fb2}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dirichlet\+\_\+lambdal} (long double \+\_\+\+\_\+s)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga08c31a5dd1686a7633b46f923c47af46}{\+\_\+\+\_\+gnu\+\_\+cxx\+::double\+\_\+factorial} (int \+\_\+\+\_\+n)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga85ec284e603f32d18970bbdbb12d5150}{\+\_\+\+\_\+gnu\+\_\+cxx\+::double\+\_\+factorialf} (int \+\_\+\+\_\+n)
 \item 
@@ -318,61 +341,61 @@ float \hyperlink{group__tr29124__math__spec__func_ga1a80bd2c15bc9fbecda2630a9e94
 \begin{DoxyCompactList}\small\item\em Return the incomplete elliptic integral of the third kind $ \Pi(k,\nu,\phi) $ for {\ttfamily float} argument. \end{DoxyCompactList}\item 
 long double \hyperlink{group__tr29124__math__spec__func_gaa8c0e5864df8769021a7f3e21a30c5d2}{std\+::ellint\+\_\+3l} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+nu, long double \+\_\+\+\_\+phi)
 \begin{DoxyCompactList}\small\item\em Return the incomplete elliptic integral of the third kind $ \Pi(k,\nu,\phi) $. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tk , typename \+\_\+\+Tp , typename \+\_\+\+Ta , typename \+\_\+\+Tb $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tk, \+\_\+\+Tp, \+\_\+\+Ta, \+\_\+\+Tb $>$ \hyperlink{group__gnu__math__spec__func_gac1210d62b8e17df7c68cce463850a98f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+cel} (\+\_\+\+Tk \+\_\+\+\_\+k\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+p, \+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tb \+\_\+\+\_\+b)
+{\footnotesize template$<$typename \+\_\+\+Tk , typename \+\_\+\+Tp , typename \+\_\+\+Ta , typename \+\_\+\+Tb $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tk, \+\_\+\+Tp, \+\_\+\+Ta, \+\_\+\+Tb $>$ \hyperlink{group__gnu__math__spec__func_ga45ad61f29827bcf27d05ead27490fe84}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+cel} (\+\_\+\+Tk \+\_\+\+\_\+k\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+p, \+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tb \+\_\+\+\_\+b)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga6d8fbef7853cf37de11278b1ff7127e8}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+celf} (float \+\_\+\+\_\+k\+\_\+c, float \+\_\+\+\_\+p, float \+\_\+\+\_\+a, float \+\_\+\+\_\+b)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gaa5add699fb2b4b02e63f8725a3a79750}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+cell} (long double \+\_\+\+\_\+k\+\_\+c, long double \+\_\+\+\_\+p, long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+b)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tk , typename \+\_\+\+Tphi $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tk, \+\_\+\+Tphi $>$ \hyperlink{group__gnu__math__spec__func_ga6a594ffefbe4f238f98fa2190b03795f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+d} (\+\_\+\+Tk \+\_\+\+\_\+k, \+\_\+\+Tphi \+\_\+\+\_\+phi)
+{\footnotesize template$<$typename \+\_\+\+Tk , typename \+\_\+\+Tphi $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tk, \+\_\+\+Tphi $>$ \hyperlink{group__gnu__math__spec__func_ga71785ba6bad83f009cb2dc4d2d574194}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+d} (\+\_\+\+Tk \+\_\+\+\_\+k, \+\_\+\+Tphi \+\_\+\+\_\+phi)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga02ed50be21fdd84ad6bed003f94a9e69}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+df} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+phi)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gaa34bcb8e316f2e8b2b2bf48cd89abd98}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+dl} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+phi)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tk $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tk $>$ \hyperlink{group__gnu__math__spec__func_gaf47c2f4fec36c1be5c5e2887269593f0}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+el1} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tk \+\_\+\+\_\+k\+\_\+c)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tk $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tk $>$ \hyperlink{group__gnu__math__spec__func_gac012a02a3d206b2f2a0638ffd3693b83}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+el1} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tk \+\_\+\+\_\+k\+\_\+c)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga8d8342bb4f42c7fe09b5589c54d4e713}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+el1f} (float \+\_\+\+\_\+x, float \+\_\+\+\_\+k\+\_\+c)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gaeed1201e421be410460739048cba5cd8}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+el1l} (long double \+\_\+\+\_\+x, long double \+\_\+\+\_\+k\+\_\+c)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tk , typename \+\_\+\+Ta , typename \+\_\+\+Tb $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tk, \+\_\+\+Ta, \+\_\+\+Tb $>$ \hyperlink{group__gnu__math__spec__func_ga1a6bd1d29fe62172ddb40e200a2d0d1f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+el2} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tk \+\_\+\+\_\+k\+\_\+c, \+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tb \+\_\+\+\_\+b)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tk , typename \+\_\+\+Ta , typename \+\_\+\+Tb $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tk, \+\_\+\+Ta, \+\_\+\+Tb $>$ \hyperlink{group__gnu__math__spec__func_ga43159d9468e4e31a0fbe391561f195be}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+el2} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tk \+\_\+\+\_\+k\+\_\+c, \+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tb \+\_\+\+\_\+b)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga0bf7469fe7ac92e9a2ffa0f92ea62248}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+el2f} (float \+\_\+\+\_\+x, float \+\_\+\+\_\+k\+\_\+c, float \+\_\+\+\_\+a, float \+\_\+\+\_\+b)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga491439a09e6000659444f52dc3c9f215}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+el2l} (long double \+\_\+\+\_\+x, long double \+\_\+\+\_\+k\+\_\+c, long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+b)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tx , typename \+\_\+\+Tk , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tx, \+\_\+\+Tk, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga62f3a824cc224012ed4328a2d3709dcc}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+el3} (\+\_\+\+Tx \+\_\+\+\_\+x, \+\_\+\+Tk \+\_\+\+\_\+k\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+p)
+{\footnotesize template$<$typename \+\_\+\+Tx , typename \+\_\+\+Tk , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tx, \+\_\+\+Tk, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga57b418ec87f207cdd1c9e5fa48b29333}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+el3} (\+\_\+\+Tx \+\_\+\+\_\+x, \+\_\+\+Tk \+\_\+\+\_\+k\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+p)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga66131a8ecc14b5228a73a01121f60a35}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+el3f} (float \+\_\+\+\_\+x, float \+\_\+\+\_\+k\+\_\+c, float \+\_\+\+\_\+p)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga0d90e66f799a2ebe4bec43eef0d53355}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+el3l} (long double \+\_\+\+\_\+x, long double \+\_\+\+\_\+k\+\_\+c, long double \+\_\+\+\_\+p)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Up $>$ \hyperlink{group__gnu__math__spec__func_ga183d78859b56f93237567e6322164832}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rc} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Up \+\_\+\+\_\+y)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Up $>$ \hyperlink{group__gnu__math__spec__func_ga21b90daf6c8d705b052304905809d2db}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rc} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Up \+\_\+\+\_\+y)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gaad5316092224ec3d92b66e79ef266adf}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rcf} (float \+\_\+\+\_\+x, float \+\_\+\+\_\+y)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga9b2f1cdeacd3615c702a77d995a0129c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rcl} (long double \+\_\+\+\_\+x, long double \+\_\+\+\_\+y)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up , typename \+\_\+\+Vp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Up, \+\_\+\+Vp $>$ \hyperlink{group__gnu__math__spec__func_ga812c4f543575006c6b555d1385b88d90}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rd} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Up \+\_\+\+\_\+y, \+\_\+\+Vp \+\_\+\+\_\+z)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up , typename \+\_\+\+Vp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Up, \+\_\+\+Vp $>$ \hyperlink{group__gnu__math__spec__func_ga6467a19028332392df825e232a97139f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rd} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Up \+\_\+\+\_\+y, \+\_\+\+Vp \+\_\+\+\_\+z)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga52e7cc797b9d199b7468cdbec6505357}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rdf} (float \+\_\+\+\_\+x, float \+\_\+\+\_\+y, float \+\_\+\+\_\+z)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga68a38a5f320a7184cec4b120ddef6a65}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rdl} (long double \+\_\+\+\_\+x, long double \+\_\+\+\_\+y, long double \+\_\+\+\_\+z)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up , typename \+\_\+\+Vp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Up, \+\_\+\+Vp $>$ \hyperlink{group__gnu__math__spec__func_gad276bd7533a87ca6d658cebc00a11b0a}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rf} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Up \+\_\+\+\_\+y, \+\_\+\+Vp \+\_\+\+\_\+z)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up , typename \+\_\+\+Vp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Up, \+\_\+\+Vp $>$ \hyperlink{group__gnu__math__spec__func_ga9242fbc43bd340e0def2a6f15b755c1c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rf} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Up \+\_\+\+\_\+y, \+\_\+\+Vp \+\_\+\+\_\+z)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga39acf5c69a85f9b687478b32847156da}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rff} (float \+\_\+\+\_\+x, float \+\_\+\+\_\+y, float \+\_\+\+\_\+z)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga38dd36b3db5bbe5da516d0cbe3ff1f21}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rfl} (long double \+\_\+\+\_\+x, long double \+\_\+\+\_\+y, long double \+\_\+\+\_\+z)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up , typename \+\_\+\+Vp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Up, \+\_\+\+Vp $>$ \hyperlink{group__gnu__math__spec__func_ga9d3d53ace67dfa6126118fb780095a1f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rg} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Up \+\_\+\+\_\+y, \+\_\+\+Vp \+\_\+\+\_\+z)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up , typename \+\_\+\+Vp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Up, \+\_\+\+Vp $>$ \hyperlink{group__gnu__math__spec__func_gab525116e1b311da90e2745366ac314eb}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rg} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Up \+\_\+\+\_\+y, \+\_\+\+Vp \+\_\+\+\_\+z)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga7a4ab348bf312a3425501ac8a3d16494}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rgf} (float \+\_\+\+\_\+x, float \+\_\+\+\_\+y, float \+\_\+\+\_\+z)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga563455d515ed845988552432108a21be}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rgl} (long double \+\_\+\+\_\+x, long double \+\_\+\+\_\+y, long double \+\_\+\+\_\+z)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up , typename \+\_\+\+Vp , typename \+\_\+\+Wp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Up, \+\_\+\+Vp, \+\_\+\+Wp $>$ \hyperlink{group__gnu__math__spec__func_ga61c6d7f5b930400eeb8de455667d4292}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rj} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Up \+\_\+\+\_\+y, \+\_\+\+Vp \+\_\+\+\_\+z, \+\_\+\+Wp \+\_\+\+\_\+p)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up , typename \+\_\+\+Vp , typename \+\_\+\+Wp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Up, \+\_\+\+Vp, \+\_\+\+Wp $>$ \hyperlink{group__gnu__math__spec__func_gaf9a96979913713963c5f4edeba8c7f5a}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rj} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Up \+\_\+\+\_\+y, \+\_\+\+Vp \+\_\+\+\_\+z, \+\_\+\+Wp \+\_\+\+\_\+p)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gace85b5190b04f57493878c5d672cfabd}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+rjf} (float \+\_\+\+\_\+x, float \+\_\+\+\_\+y, float \+\_\+\+\_\+z, float \+\_\+\+\_\+p)
 \item 
@@ -386,7 +409,7 @@ long double \hyperlink{group__gnu__math__spec__func_ga0774570b24f654f8ae39e18656
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+type \hyperlink{group__tr29124__math__spec__func_ga88ba17f5d050a6973ca4db1bf6e90590}{std\+::expint} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga9f04033823155e7690779d432d9f1922}{\+\_\+\+\_\+gnu\+\_\+cxx\+::expint} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga2cfc699129ceac9cfed87c61e6dc0e08}{\+\_\+\+\_\+gnu\+\_\+cxx\+::expint} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__tr29124__math__spec__func_ga5842816f6eed2594e0a327df4e4a2a47}{std\+::expintf} (float \+\_\+\+\_\+x)
 \item 
@@ -396,37 +419,31 @@ long double \hyperlink{group__tr29124__math__spec__func_ga1329130b32328d0666e290
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga720ca0b275784c8b82193f427a2b3553}{\+\_\+\+\_\+gnu\+\_\+cxx\+::expintl} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gafdb75898f433c95eec50d8effbf94fb4}{\+\_\+\+\_\+gnu\+\_\+cxx\+::factorial} (unsigned int \+\_\+\+\_\+n)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga48bc268969bfc03eaeaf4bfd457bb25c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::factorial} (unsigned int \+\_\+\+\_\+n)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga5a288283a8ed63e1d2b0145f313a5378}{\+\_\+\+\_\+gnu\+\_\+cxx\+::factorialf} (unsigned int \+\_\+\+\_\+n)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga0904e504fdc3c8b9b6f5c66a73531584}{\+\_\+\+\_\+gnu\+\_\+cxx\+::factoriall} (unsigned int \+\_\+\+\_\+n)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga7ecb0071ad3172d53276a967f9b702fc}{\+\_\+\+\_\+gnu\+\_\+cxx\+::fresnel\+\_\+c} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tps , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tps, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga47dd583a4f3a19f797a5e074e357ba36}{\+\_\+\+\_\+gnu\+\_\+cxx\+::fermi\+\_\+dirac} (\+\_\+\+Tps \+\_\+\+\_\+s, \+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
+float \hyperlink{group__gnu__math__spec__func_gacf7f49b2b7bf50fd37d939236712cbe2}{\+\_\+\+\_\+gnu\+\_\+cxx\+::fermi\+\_\+diracf} (float \+\_\+\+\_\+s, float \+\_\+\+\_\+x)
+\item 
+long double \hyperlink{group__gnu__math__spec__func_ga3876af54a92853036cc88ec6b8ea5d67}{\+\_\+\+\_\+gnu\+\_\+cxx\+::fermi\+\_\+diracl} (long double \+\_\+\+\_\+s, long double \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gab6a34ce43bad4e8181ad9c40aebb9ada}{\+\_\+\+\_\+gnu\+\_\+cxx\+::fresnel\+\_\+c} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga02ca7579d5aef96cba69e38e988e7a42}{\+\_\+\+\_\+gnu\+\_\+cxx\+::fresnel\+\_\+cf} (float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gaa3f82a7569d61c2f7c194d2e64b616f8}{\+\_\+\+\_\+gnu\+\_\+cxx\+::fresnel\+\_\+cl} (long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaff40a89f169b1a8962ed0e75587c488b}{\+\_\+\+\_\+gnu\+\_\+cxx\+::fresnel\+\_\+s} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaaf6e2b182d0abde6fde72c0b8b9f959c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::fresnel\+\_\+s} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga73450b8fd4abd5d8d3191dd6cbcda808}{\+\_\+\+\_\+gnu\+\_\+cxx\+::fresnel\+\_\+sf} (float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga5d6ac976fa316df9b943f92bafe1407d}{\+\_\+\+\_\+gnu\+\_\+cxx\+::fresnel\+\_\+sl} (long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tn , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tn, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gab3a75d57386806857b5f97c45b4ced6e}{\+\_\+\+\_\+gnu\+\_\+cxx\+::gamma\+\_\+l} (\+\_\+\+Tn \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
-\item 
-float \hyperlink{group__gnu__math__spec__func_ga3afdb94b9c107fe72386899ad84bc532}{\+\_\+\+\_\+gnu\+\_\+cxx\+::gamma\+\_\+lf} (float \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
-\item 
-long double \hyperlink{group__gnu__math__spec__func_ga80c72bee8364398f65c05e5147e03d80}{\+\_\+\+\_\+gnu\+\_\+cxx\+::gamma\+\_\+ll} (long double \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
-\item 
-{\footnotesize template$<$typename \+\_\+\+Tn , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tn, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga60911c010897719711d563edf69df44a}{\+\_\+\+\_\+gnu\+\_\+cxx\+::gamma\+\_\+u} (\+\_\+\+Tn \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
-\item 
-float \hyperlink{group__gnu__math__spec__func_gaed277602032a21acc09655467482eec9}{\+\_\+\+\_\+gnu\+\_\+cxx\+::gamma\+\_\+uf} (float \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
-\item 
-long double \hyperlink{group__gnu__math__spec__func_gae2c9ff364ba758f0f41a5b71d2c9e755}{\+\_\+\+\_\+gnu\+\_\+cxx\+::gamma\+\_\+ul} (long double \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
-\item 
-{\footnotesize template$<$typename \+\_\+\+Talpha , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Talpha, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaf295fecea6e26f1caeb7aa1560e9b7ee}{\+\_\+\+\_\+gnu\+\_\+cxx\+::gegenbauer} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Talpha \+\_\+\+\_\+alpha, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Talpha , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Talpha, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga793df814fb4e1b60e926ead0be14cc87}{\+\_\+\+\_\+gnu\+\_\+cxx\+::gegenbauer} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Talpha \+\_\+\+\_\+alpha, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga0f16dd9c771c8c177f377381b6e3387c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::gegenbauerf} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+alpha, float \+\_\+\+\_\+x)
 \item 
@@ -438,13 +455,13 @@ float \hyperlink{group__tr29124__math__spec__func_ga94dae7444bb349e33057a92932db
 \item 
 long double \hyperlink{group__tr29124__math__spec__func_ga21f8e312ee3e65286f86bf141b0f32e0}{std\+::hermitel} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tk , typename \+\_\+\+Tphi $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tk, \+\_\+\+Tphi $>$ \hyperlink{group__gnu__math__spec__func_ga3b606d8617459ef7e5d340db1bae13ec}{\+\_\+\+\_\+gnu\+\_\+cxx\+::heuman\+\_\+lambda} (\+\_\+\+Tk \+\_\+\+\_\+k, \+\_\+\+Tphi \+\_\+\+\_\+phi)
+{\footnotesize template$<$typename \+\_\+\+Tk , typename \+\_\+\+Tphi $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tk, \+\_\+\+Tphi $>$ \hyperlink{group__gnu__math__spec__func_gab73b2a75a662785fa102926dca3be59f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::heuman\+\_\+lambda} (\+\_\+\+Tk \+\_\+\+\_\+k, \+\_\+\+Tphi \+\_\+\+\_\+phi)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga10cf5d54d985aa3a58cb197601040ac8}{\+\_\+\+\_\+gnu\+\_\+cxx\+::heuman\+\_\+lambdaf} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+phi)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gadadaeb83b3d9c2fccd33ab8ec3188df5}{\+\_\+\+\_\+gnu\+\_\+cxx\+::heuman\+\_\+lambdal} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+phi)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Up $>$ \hyperlink{group__gnu__math__spec__func_gaed8e8bb0f1755fa7b0786d02ed574347}{\+\_\+\+\_\+gnu\+\_\+cxx\+::hurwitz\+\_\+zeta} (\+\_\+\+Tp \+\_\+\+\_\+s, \+\_\+\+Up \+\_\+\+\_\+a)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Up $>$ \hyperlink{group__gnu__math__spec__func_ga19b3014d94dd102c59a5c7776474be41}{\+\_\+\+\_\+gnu\+\_\+cxx\+::hurwitz\+\_\+zeta} (\+\_\+\+Tp \+\_\+\+\_\+s, \+\_\+\+Up \+\_\+\+\_\+a)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaa7f0d1fbba9d2ce07a30d907302d527f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::hurwitz\+\_\+zeta} (\+\_\+\+Tp \+\_\+\+\_\+s, std\+::complex$<$ \+\_\+\+Up $>$ \+\_\+\+\_\+a)
 \item 
@@ -458,9 +475,9 @@ float \hyperlink{group__gnu__math__spec__func_gac4c81e4ea9cef149fe40291ca10d7e15
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga9961967087216e97f76283f29e1be152}{\+\_\+\+\_\+gnu\+\_\+cxx\+::hypergl} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+b, long double \+\_\+\+\_\+c, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Ta , typename \+\_\+\+Tb , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Ta, \+\_\+\+Tb, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga99e687949634408cd1050cceedbdf962}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ibeta} (\+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tb \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Ta , typename \+\_\+\+Tb , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta, \+\_\+\+Tb, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gae9a18423e325171ca0c61b411258fa65}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ibeta} (\+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tb \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Ta , typename \+\_\+\+Tb , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Ta, \+\_\+\+Tb, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga474e422dce07316da26bb2c2579b7968}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ibetac} (\+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tb \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Ta , typename \+\_\+\+Tb , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta, \+\_\+\+Tb, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga43708e36e01ce6d628ada3aee9be9490}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ibetac} (\+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tb \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gabd7fa090deead18b167c26b8994b9f53}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ibetacf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+b, float \+\_\+\+\_\+x)
 \item 
@@ -470,27 +487,27 @@ float \hyperlink{group__gnu__math__spec__func_ga97a5e3afdd990a2d3e199df6856bcf9f
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga5c9c5b583e4f1c9785a1c4582551c97f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ibetal} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+b, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Talpha , typename \+\_\+\+Tbeta , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Talpha, \+\_\+\+Tbeta, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gac7be4bf3c7588f932ce754ee340d0338}{\+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi} (unsigned \+\_\+\+\_\+n, \+\_\+\+Talpha \+\_\+\+\_\+alpha, \+\_\+\+Tbeta \+\_\+\+\_\+beta, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Talpha , typename \+\_\+\+Tbeta , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Talpha, \+\_\+\+Tbeta, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga3dea9ec3774ee5db50276597bbfb0afa}{\+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi} (unsigned \+\_\+\+\_\+n, \+\_\+\+Talpha \+\_\+\+\_\+alpha, \+\_\+\+Tbeta \+\_\+\+\_\+beta, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Kp , typename \+\_\+\+Up $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Kp, \+\_\+\+Up $>$ \hyperlink{group__gnu__math__spec__func_gaa49fc22cc0f9dde812bab5147fad23ca}{\+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi\+\_\+cn} (\+\_\+\+Kp \+\_\+\+\_\+k, \+\_\+\+Up \+\_\+\+\_\+u)
+{\footnotesize template$<$typename \+\_\+\+Kp , typename \+\_\+\+Up $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Kp, \+\_\+\+Up $>$ \hyperlink{group__gnu__math__spec__func_ga51512996a910489b4554daa7507a48f1}{\+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi\+\_\+cn} (\+\_\+\+Kp \+\_\+\+\_\+k, \+\_\+\+Up \+\_\+\+\_\+u)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gadbd6320123f45ae10d539cf8df0373cd}{\+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi\+\_\+cnf} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+u)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga08892965ea520116cc53a764513fe685}{\+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi\+\_\+cnl} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+u)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Kp , typename \+\_\+\+Up $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Kp, \+\_\+\+Up $>$ \hyperlink{group__gnu__math__spec__func_ga2be54b9c153b58a85d5ed9f1d0a02e21}{\+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi\+\_\+dn} (\+\_\+\+Kp \+\_\+\+\_\+k, \+\_\+\+Up \+\_\+\+\_\+u)
+{\footnotesize template$<$typename \+\_\+\+Kp , typename \+\_\+\+Up $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Kp, \+\_\+\+Up $>$ \hyperlink{group__gnu__math__spec__func_ga4c2e5ff17abaab5217d4dbcbfd7366d8}{\+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi\+\_\+dn} (\+\_\+\+Kp \+\_\+\+\_\+k, \+\_\+\+Up \+\_\+\+\_\+u)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gae96327d678adc6b5c4051f1c3649549a}{\+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi\+\_\+dnf} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+u)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gae59786991abbf8359deef49b6323065a}{\+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi\+\_\+dnl} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+u)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Kp , typename \+\_\+\+Up $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Kp, \+\_\+\+Up $>$ \hyperlink{group__gnu__math__spec__func_gad7e60d39a8b57a427eb8ca31c8d09e10}{\+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi\+\_\+sn} (\+\_\+\+Kp \+\_\+\+\_\+k, \+\_\+\+Up \+\_\+\+\_\+u)
+{\footnotesize template$<$typename \+\_\+\+Kp , typename \+\_\+\+Up $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Kp, \+\_\+\+Up $>$ \hyperlink{group__gnu__math__spec__func_ga5e39ec723669e132e27980dfdf766c19}{\+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi\+\_\+sn} (\+\_\+\+Kp \+\_\+\+\_\+k, \+\_\+\+Up \+\_\+\+\_\+u)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga5981245b7343da6e21d445bb01fdba9c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi\+\_\+snf} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+u)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga1c13539e3b051a07b1c28aa8a0aeb1b4}{\+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi\+\_\+snl} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+u)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tk , typename \+\_\+\+Tphi $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tk, \+\_\+\+Tphi $>$ \hyperlink{group__gnu__math__spec__func_gae22f0fc0fa1cac3bd0d3b3a4b2c33e7e}{\+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi\+\_\+zeta} (\+\_\+\+Tk \+\_\+\+\_\+k, \+\_\+\+Tphi \+\_\+\+\_\+phi)
+{\footnotesize template$<$typename \+\_\+\+Tk , typename \+\_\+\+Tphi $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tk, \+\_\+\+Tphi $>$ \hyperlink{group__gnu__math__spec__func_gafe1fc209cfe90ceee3b42e077a922045}{\+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi\+\_\+zeta} (\+\_\+\+Tk \+\_\+\+\_\+k, \+\_\+\+Tphi \+\_\+\+\_\+phi)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gaedb6b352331c67b9dea73660e2045668}{\+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi\+\_\+zetaf} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+phi)
 \item 
@@ -506,13 +523,13 @@ float \hyperlink{group__tr29124__math__spec__func_gada763419b0e21b38e38daa8b6eb5
 \item 
 long double \hyperlink{group__tr29124__math__spec__func_gaaf8b141edf9163b37ea4f2ed3e0191fc}{std\+::laguerrel} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gab3eab510cd484f6ec75e968b1d98b818}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lbincoef} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gab6a2243313b6286cbd466c96fc7f69ed}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lbincoef} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gab48439faacd87f02d088a04e7cee0853}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lbincoeff} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gab5b5d92a2a522aaef999106f5d602163}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lbincoefl} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gac97a4a380940765948e0663fbc119544}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ldouble\+\_\+factorial} (int \+\_\+\+\_\+n)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga31ca8e7a5b1f5c883e727ed9c053edd8}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ldouble\+\_\+factorial} (int \+\_\+\+\_\+n)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga33ecc59a7ff139b483cebf42ecd4fe79}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ldouble\+\_\+factorialf} (int \+\_\+\+\_\+n)
 \item 
@@ -520,7 +537,7 @@ long double \hyperlink{group__gnu__math__spec__func_gae8fa4b4866cfd20349c985b33e
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+type \hyperlink{group__tr29124__math__spec__func_gaf6eac7fcb98e25b8f3f7d1b95fa7add8}{std\+::legendre} (unsigned int \+\_\+\+\_\+l, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gac0bb3b5a3229e7b7f80982785ff8f477}{\+\_\+\+\_\+gnu\+\_\+cxx\+::legendre\+\_\+q} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga231012f205e697c7ce1bae78f8754104}{\+\_\+\+\_\+gnu\+\_\+cxx\+::legendre\+\_\+q} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gaedb2871cec8f0f160524205e9083621d}{\+\_\+\+\_\+gnu\+\_\+cxx\+::legendre\+\_\+qf} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
 \item 
@@ -530,57 +547,63 @@ float \hyperlink{group__tr29124__math__spec__func_gaed94e3c664c99f5204da75be75ae
 \item 
 long double \hyperlink{group__tr29124__math__spec__func_ga1b39bc22e3cc4860d08eb54099460391}{std\+::legendrel} (unsigned int \+\_\+\+\_\+l, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga17b1dc664e1ab95213c340f2453b09e3}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lfactorial} (unsigned int \+\_\+\+\_\+n)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaee28cc03db944a3e02fd10542016cfa8}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lfactorial} (unsigned int \+\_\+\+\_\+n)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga65af05c4093d4895a564a8d67e389a9b}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lfactorialf} (unsigned int \+\_\+\+\_\+n)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga3a0c196f34916dc68c29c89f26cbe1ee}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lfactoriall} (unsigned int \+\_\+\+\_\+n)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga5c80d417c0fbd41cc9ef0d6f663f9a66}{\+\_\+\+\_\+gnu\+\_\+cxx\+::logint} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Ta $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta $>$ $>$ \hyperlink{group__gnu__math__spec__func_gaf70747491390b1bfc27b93ff4be6376e}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lgamma} (std\+::complex$<$ \+\_\+\+Ta $>$ \+\_\+\+\_\+a)
+\item 
+std\+::complex$<$ float $>$ \hyperlink{group__gnu__math__spec__func_ga5b10ee6e92d8707a151b00086889b2ea}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lgammaf} (std\+::complex$<$ float $>$ \+\_\+\+\_\+a)
+\item 
+std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_ga5f12f60afe9a47f4ca04964f642bbf0d}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lgammal} (std\+::complex$<$ long double $>$ \+\_\+\+\_\+a)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gab9635c9acbe4120358c3cba8931dc54d}{\+\_\+\+\_\+gnu\+\_\+cxx\+::logint} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gab878da3ba2f5c1d49d96eadde533b233}{\+\_\+\+\_\+gnu\+\_\+cxx\+::logintf} (float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gab17f5cadc8f77ba2666d0d5ecc78de5d}{\+\_\+\+\_\+gnu\+\_\+cxx\+::logintl} (long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tn $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tn $>$ \hyperlink{group__gnu__math__spec__func_ga5a60fbbf559aa86dfe918d9ef23e8a74}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lpochhammer\+\_\+l} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tn \+\_\+\+\_\+n)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tn $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tn $>$ \hyperlink{group__gnu__math__spec__func_ga68c4a9e8b38757a21ac54c55fe4e8dda}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lpochhammer} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tn \+\_\+\+\_\+n)
 \item 
-float \hyperlink{group__gnu__math__spec__func_gafb9f3fc457d83f83769297fb172397d6}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lpochhammer\+\_\+lf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+n)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tn $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tn $>$ \hyperlink{group__gnu__math__spec__func_ga4975d412b8e15f499a4da7b4e3f535c6}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lpochhammer\+\_\+lower} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tn \+\_\+\+\_\+n)
 \item 
-long double \hyperlink{group__gnu__math__spec__func_ga6ba405212d353633ef5ee41f683c4630}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lpochhammer\+\_\+ll} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+n)
+float \hyperlink{group__gnu__math__spec__func_ga7a6c48d5e06ffa4972d78db3ce46f8de}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lpochhammer\+\_\+lowerf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+n)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tn $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tn $>$ \hyperlink{group__gnu__math__spec__func_ga85e5565a30599065b8ccbc499c5d0d85}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lpochhammer\+\_\+u} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tn \+\_\+\+\_\+n)
+long double \hyperlink{group__gnu__math__spec__func_ga39e5ecc81b33d28a54672855b7da3235}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lpochhammer\+\_\+lowerl} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+n)
 \item 
-float \hyperlink{group__gnu__math__spec__func_ga023cc1af92f09d35fc84a19119108980}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lpochhammer\+\_\+uf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+n)
+float \hyperlink{group__gnu__math__spec__func_ga0b14e36032c36b1ebf79ea2af65f4f90}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lpochhammerf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+n)
 \item 
-long double \hyperlink{group__gnu__math__spec__func_ga44db837251d1d0db819b0215c98f569e}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lpochhammer\+\_\+ul} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+n)
+long double \hyperlink{group__gnu__math__spec__func_ga1057026f8679c601ecddd7c8d33edbc9}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lpochhammerl} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+n)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tph , typename \+\_\+\+Tpa $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tph, \+\_\+\+Tpa $>$ \hyperlink{group__gnu__math__spec__func_ga7a52e8d5df5b110810c4bdba78a9d2ae}{\+\_\+\+\_\+gnu\+\_\+cxx\+::owens\+\_\+t} (\+\_\+\+Tph \+\_\+\+\_\+h, \+\_\+\+Tpa \+\_\+\+\_\+a)
+{\footnotesize template$<$typename \+\_\+\+Tph , typename \+\_\+\+Tpa $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tph, \+\_\+\+Tpa $>$ \hyperlink{group__gnu__math__spec__func_gaa6ca4f2127c6c2101dc360673304cc2c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::owens\+\_\+t} (\+\_\+\+Tph \+\_\+\+\_\+h, \+\_\+\+Tpa \+\_\+\+\_\+a)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gac24d32e9b072c4953654d5559f992871}{\+\_\+\+\_\+gnu\+\_\+cxx\+::owens\+\_\+tf} (float \+\_\+\+\_\+h, float \+\_\+\+\_\+a)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga7a8bc60dc0ef4a009586872eb7cac2d0}{\+\_\+\+\_\+gnu\+\_\+cxx\+::owens\+\_\+tl} (long double \+\_\+\+\_\+h, long double \+\_\+\+\_\+a)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Ta , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Ta, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gadfb8f84381f7ac3c8d6519961d675c40}{\+\_\+\+\_\+gnu\+\_\+cxx\+::pgamma} (\+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Ta , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaa78927de2c62e6c63f4b3506f5e1a8f6}{\+\_\+\+\_\+gnu\+\_\+cxx\+::pgamma} (\+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga980f118a42eabd526da7988d96bf16a0}{\+\_\+\+\_\+gnu\+\_\+cxx\+::pgammaf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gab7975808066fe4a4c05823c57d4c5e73}{\+\_\+\+\_\+gnu\+\_\+cxx\+::pgammal} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tn $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tn $>$ \hyperlink{group__gnu__math__spec__func_gafed029416c3c440fea35a3a135991436}{\+\_\+\+\_\+gnu\+\_\+cxx\+::pochhammer\+\_\+l} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tn \+\_\+\+\_\+n)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tn $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tn $>$ \hyperlink{group__gnu__math__spec__func_ga77878c3e202c7ec3d857c3fbf661001e}{\+\_\+\+\_\+gnu\+\_\+cxx\+::pochhammer} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tn \+\_\+\+\_\+n)
 \item 
-float \hyperlink{group__gnu__math__spec__func_ga66c7ea176dad7f06f19cc80e860f333c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::pochhammer\+\_\+lf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+n)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tn $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tn $>$ \hyperlink{group__gnu__math__spec__func_ga306d65eeea07613a777f506ffadac509}{\+\_\+\+\_\+gnu\+\_\+cxx\+::pochhammer\+\_\+lower} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tn \+\_\+\+\_\+n)
 \item 
-long double \hyperlink{group__gnu__math__spec__func_gadec5630d81fc1d3f6f61146a2d16fafc}{\+\_\+\+\_\+gnu\+\_\+cxx\+::pochhammer\+\_\+ll} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+n)
+float \hyperlink{group__gnu__math__spec__func_gad8a0f1a68021c9b5efafd6230b578224}{\+\_\+\+\_\+gnu\+\_\+cxx\+::pochhammer\+\_\+lowerf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+n)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tn $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tn $>$ \hyperlink{group__gnu__math__spec__func_ga4cadb141501737e85c8d6511fe3d3b94}{\+\_\+\+\_\+gnu\+\_\+cxx\+::pochhammer\+\_\+u} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tn \+\_\+\+\_\+n)
+long double \hyperlink{group__gnu__math__spec__func_gad6457ba41c5cfe350e9ab3434cfc8950}{\+\_\+\+\_\+gnu\+\_\+cxx\+::pochhammer\+\_\+lowerl} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+n)
 \item 
-float \hyperlink{group__gnu__math__spec__func_ga520a93cbd1963b22679e865f29f36331}{\+\_\+\+\_\+gnu\+\_\+cxx\+::pochhammer\+\_\+uf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+n)
+float \hyperlink{group__gnu__math__spec__func_ga8e1312229e1bb432ae36010f8e53f8cd}{\+\_\+\+\_\+gnu\+\_\+cxx\+::pochhammerf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+n)
 \item 
-long double \hyperlink{group__gnu__math__spec__func_ga169c9e8f9d84e51187a0fe4ecaba0947}{\+\_\+\+\_\+gnu\+\_\+cxx\+::pochhammer\+\_\+ul} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+n)
+long double \hyperlink{group__gnu__math__spec__func_ga3b60f88a723ed82c6323303136b07de7}{\+\_\+\+\_\+gnu\+\_\+cxx\+::pochhammerl} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+n)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Wp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Wp $>$ \hyperlink{group__gnu__math__spec__func_ga49da0ff03584a0bbc64f925a550537d3}{\+\_\+\+\_\+gnu\+\_\+cxx\+::polylog} (\+\_\+\+Tp \+\_\+\+\_\+s, \+\_\+\+Wp \+\_\+\+\_\+w)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Wp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Wp $>$ \hyperlink{group__gnu__math__spec__func_gac2e50fbb0f648209e667af0111277134}{\+\_\+\+\_\+gnu\+\_\+cxx\+::polylog} (\+\_\+\+Tp \+\_\+\+\_\+s, \+\_\+\+Wp \+\_\+\+\_\+w)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Wp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Wp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga2789ccca20a89af26d1bcdf4f9a2c400}{\+\_\+\+\_\+gnu\+\_\+cxx\+::polylog} (\+\_\+\+Tp \+\_\+\+\_\+s, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+w)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Wp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Wp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga665f8375c4e48394bca251d8bf8379f9}{\+\_\+\+\_\+gnu\+\_\+cxx\+::polylog} (\+\_\+\+Tp \+\_\+\+\_\+s, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+w)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga5bcdd35473144a6d8efc258a79bc82d8}{\+\_\+\+\_\+gnu\+\_\+cxx\+::polylogf} (float \+\_\+\+\_\+s, float \+\_\+\+\_\+w)
 \item 
@@ -590,19 +613,19 @@ long double \hyperlink{group__gnu__math__spec__func_ga3aa007b4b4e345c30be015ab14
 \item 
 std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_ga9eb79e506eda210610bc59c1912b4d0f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::polylogl} (long double \+\_\+\+\_\+s, std\+::complex$<$ long double $>$ \+\_\+\+\_\+w)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga850cdad2e428a553e5adf2474a6a385a}{\+\_\+\+\_\+gnu\+\_\+cxx\+::psi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaae7574990cdbb6a637d39c2c036928c0}{\+\_\+\+\_\+gnu\+\_\+cxx\+::psi} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga47ae74abfaa3f549eed4a87b1b63449d}{\+\_\+\+\_\+gnu\+\_\+cxx\+::psif} (float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gaaf230aedcb20a1c5a43fc71132bb0dc1}{\+\_\+\+\_\+gnu\+\_\+cxx\+::psil} (long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Ta , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Ta, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga7b720a59f774ffd416f9be579013ff9d}{\+\_\+\+\_\+gnu\+\_\+cxx\+::qgamma} (\+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Ta , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga3ef7aeaa55f9e7b02f02d1d605a716a6}{\+\_\+\+\_\+gnu\+\_\+cxx\+::qgamma} (\+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga6749b7a7d3b403e79ca4cf676719dd72}{\+\_\+\+\_\+gnu\+\_\+cxx\+::qgammaf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga8062654272cc446bb9a36f62d9fc5ab0}{\+\_\+\+\_\+gnu\+\_\+cxx\+::qgammal} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga2a415dff236d6e4c36150bd5958eaf78}{\+\_\+\+\_\+gnu\+\_\+cxx\+::radpoly} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+rho)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gac44ad9bda660a21a6b297d313f0ecf48}{\+\_\+\+\_\+gnu\+\_\+cxx\+::radpoly} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+rho)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga8a98d7c7c14f1aadff90123a114fa2c9}{\+\_\+\+\_\+gnu\+\_\+cxx\+::radpolyf} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m, float \+\_\+\+\_\+rho)
 \item 
@@ -614,9 +637,15 @@ float \hyperlink{group__tr29124__math__spec__func_gaf92063315061a56d3e2c4053156d
 \item 
 long double \hyperlink{group__tr29124__math__spec__func_ga1e92da3b878d75270f38d3ec9b513086}{std\+::riemann\+\_\+zetal} (long double \+\_\+\+\_\+s)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gab0697cae10f8981fa700ab81c67a7746}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinc} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+type \hyperlink{group__gnu__math__spec__func_gacd465f58d1ff0dbf15cf8d44c0729ba6}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sin\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gacfca76a0549d5c42394e1597f83414da}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinc\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+float \hyperlink{group__gnu__math__spec__func_ga74fc8e2dd770850e7ea8bf8a28a71777}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sin\+\_\+pif} (float \+\_\+\+\_\+x)
+\item 
+long double \hyperlink{group__gnu__math__spec__func_ga0bda860961b0a121e266b278f260634b}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sin\+\_\+pil} (long double \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga6a11b9d949ab86f9fd170dcf0d3b1251}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinc} (\+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga3dbc3831c1bd9f2a8be05496db9375a0}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinc\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gad92d43d5332c80d1a27c90bfe3f6417e}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinc\+\_\+pif} (float \+\_\+\+\_\+x)
 \item 
@@ -626,9 +655,29 @@ float \hyperlink{group__gnu__math__spec__func_gaa87f0734cfe7823c932511ac2f0a876c
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga79a8fd931f5ad4f737e2931e636149ac}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sincl} (long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gad6975a69b8e40a6237b4124b459c6181}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinhc} (\+\_\+\+Tp \+\_\+\+\_\+x)
+\hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}$<$ double $>$ \hyperlink{group__gnu__math__spec__func_ga8041c24b528475bcf8a4178e484652a3}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sincos} (double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga59ba25b4276fea8c628629420b522b15}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinhc\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga49243d9883994c9c10c82ae79596457b}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sincos} (\+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga3152cfc9d5fa04fbe61781b45b3d4c04}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sincos\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
+\hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}$<$ float $>$ \hyperlink{group__gnu__math__spec__func_gacf416c867a8a456f8f0e3d8b45ca8bd5}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sincos\+\_\+pif} (float \+\_\+\+\_\+x)
+\item 
+\hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_ga1f1efc07313a3de1e994d89c3b83b957}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sincos\+\_\+pil} (long double \+\_\+\+\_\+x)
+\item 
+\hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}$<$ float $>$ \hyperlink{group__gnu__math__spec__func_ga3929d13e38535418cd24db5cee80660c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sincosf} (float \+\_\+\+\_\+x)
+\item 
+\hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_ga96a7222e47d430a228973658ca9f6f35}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sincosl} (long double \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+type \hyperlink{group__gnu__math__spec__func_gaaad53f580876c2dbc7e0e7a45b937990}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinh\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
+float \hyperlink{group__gnu__math__spec__func_ga74103f57ab0d97126732f3cb276c5ab3}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinh\+\_\+pif} (float \+\_\+\+\_\+x)
+\item 
+long double \hyperlink{group__gnu__math__spec__func_ga2232ee554ef2a902824db42e2e09c483}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinh\+\_\+pil} (long double \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gabafa26d8a2e592a0e080beae71ccbb7e}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinhc} (\+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga56bea42a4701761e82567f7100d9ca5e}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinhc\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga26e54504db6541550266140f5264acbe}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinhc\+\_\+pif} (float \+\_\+\+\_\+x)
 \item 
@@ -638,13 +687,13 @@ float \hyperlink{group__gnu__math__spec__func_gadaa7ea78625cc2eeb70213a50719813d
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga7467a001bb18ef8bff0a7e9927bab356}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinhcl} (long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga19941fbce9fb8e097eb757761f9326db}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinhint} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga203079a2b70127f16a8c434ea55d4e06}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinhint} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga375ca3ceb1eafd678e298d0aea4bb3e6}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinhintf} (float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga8b7f1a070be7233a3179e3cbded387ee}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinhintl} (long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga4b0807985bd194392fc7d7abe4cf2c61}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinint} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaa588265d28710d36c7c4efa7d4f44ca4}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinint} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga8b63406fec50d7e00470521b82fb32a2}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinintf} (float \+\_\+\+\_\+x)
 \item 
@@ -652,13 +701,13 @@ long double \hyperlink{group__gnu__math__spec__func_ga3ff83e5c5f1435064b6942ca8b
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+type \hyperlink{group__tr29124__math__spec__func_ga478e517ed975bcb256de230e64f0fda5}{std\+::sph\+\_\+bessel} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga93454a071a189f7cc9e79078526aa3fd}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+bessel\+\_\+i} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gad168511a86d4d25db99e2b08d5da038b}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+bessel\+\_\+i} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gacc6738f18c1ba19452b9dd814d11c00c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+bessel\+\_\+if} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gaf4392d9ed177913febdcbfccb947dbca}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+bessel\+\_\+il} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga737e6fe2f7f4acb6fcc6bccfe2a4c254}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+bessel\+\_\+k} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga9ad96c43b15e2c53d2f1b743e2eaa90f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+bessel\+\_\+k} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gaf886e8f8dfd2af0c4a9c5929d193d12f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+bessel\+\_\+kf} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
 \item 
@@ -668,9 +717,9 @@ float \hyperlink{group__tr29124__math__spec__func_ga534e36e1dcefad8daec98920db16
 \item 
 long double \hyperlink{group__tr29124__math__spec__func_ga11d72b1af81ce9da3c878a25087ee927}{std\+::sph\+\_\+bessell} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga9440f3f92ebc56bd77d64853390247f6}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+hankel\+\_\+1} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+z)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga04c91059810f366e3366fadef9084be7}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+hankel\+\_\+1} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+z)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga0bf6e485b5ec9d1ae4ab604137216d70}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+hankel\+\_\+1} (unsigned int \+\_\+\+\_\+n, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga931f55fae4db5194ac96330908cba3f0}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+hankel\+\_\+1} (unsigned int \+\_\+\+\_\+n, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+x)
 \item 
 std\+::complex$<$ float $>$ \hyperlink{group__gnu__math__spec__func_ga70d4fc01069f3f0ac0e3b52fe1dffea4}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+hankel\+\_\+1f} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+z)
 \item 
@@ -680,9 +729,9 @@ std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_ga6e77
 \item 
 std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_ga3e9d889d8f2e4792e892b12b1f5948b9}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+hankel\+\_\+1l} (unsigned int \+\_\+\+\_\+n, std\+::complex$<$ long double $>$ \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga4f112ebd12bfbea7f0eea9275a1209ac}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+hankel\+\_\+2} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+z)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_gafb5debe7f7db9e9e456c065acf738f64}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+hankel\+\_\+2} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+z)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga54a1b7896a7218bfe0fb7f422af62122}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+hankel\+\_\+2} (unsigned int \+\_\+\+\_\+n, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga211067788880febb07e9b49e20db001e}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+hankel\+\_\+2} (unsigned int \+\_\+\+\_\+n, std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+x)
 \item 
 std\+::complex$<$ float $>$ \hyperlink{group__gnu__math__spec__func_ga9496b81f94b8ba0162cf45df72be1e71}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+hankel\+\_\+2f} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+z)
 \item 
@@ -692,7 +741,7 @@ std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_ga6d3e
 \item 
 std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_ga3d9d9aaceba455a5ddc79d178ee1cb6d}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+hankel\+\_\+2l} (unsigned int \+\_\+\+\_\+n, std\+::complex$<$ long double $>$ \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Ttheta , typename \+\_\+\+Tphi $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Ttheta, \+\_\+\+Tphi $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga28f1390a0366bc8c9780918d9720146b}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+harmonic} (unsigned int \+\_\+\+\_\+l, int \+\_\+\+\_\+m, \+\_\+\+Ttheta \+\_\+\+\_\+theta, \+\_\+\+Tphi \+\_\+\+\_\+phi)
+{\footnotesize template$<$typename \+\_\+\+Ttheta , typename \+\_\+\+Tphi $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ttheta, \+\_\+\+Tphi $>$ $>$ \hyperlink{group__gnu__math__spec__func_gadca3d25c4f7eed15099d8f80681d4055}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+harmonic} (unsigned int \+\_\+\+\_\+l, int \+\_\+\+\_\+m, \+\_\+\+Ttheta \+\_\+\+\_\+theta, \+\_\+\+Tphi \+\_\+\+\_\+phi)
 \item 
 std\+::complex$<$ float $>$ \hyperlink{group__gnu__math__spec__func_ga062b1156f5646fe42719439bb3dcc9e5}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+harmonicf} (unsigned int \+\_\+\+\_\+l, int \+\_\+\+\_\+m, float \+\_\+\+\_\+theta, float \+\_\+\+\_\+phi)
 \item 
@@ -710,55 +759,85 @@ float \hyperlink{group__tr29124__math__spec__func_ga789143122fa99536329bc2d1b1aa
 \item 
 long double \hyperlink{group__tr29124__math__spec__func_ga3cededa9b6e4601f190c3811e6aabfd6}{std\+::sph\+\_\+neumannl} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga936eef7d11580bef855f98789bbbfe50}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+1} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+type \hyperlink{group__gnu__math__spec__func_gaaa0da4a6511e963be61a1e7f43348ff5}{\+\_\+\+\_\+gnu\+\_\+cxx\+::tan\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
+float \hyperlink{group__gnu__math__spec__func_gaab32e2d76da811451e84232320ddf80c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::tan\+\_\+pif} (float \+\_\+\+\_\+x)
+\item 
+long double \hyperlink{group__gnu__math__spec__func_ga3546906a5bb8f128c893dddef72e2f20}{\+\_\+\+\_\+gnu\+\_\+cxx\+::tan\+\_\+pil} (long double \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+type \hyperlink{group__gnu__math__spec__func_gae18891254bff63a37d11c8f15010fff4}{\+\_\+\+\_\+gnu\+\_\+cxx\+::tanh\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
+float \hyperlink{group__gnu__math__spec__func_gab6cbfb582127f997ad9a198903d08889}{\+\_\+\+\_\+gnu\+\_\+cxx\+::tanh\+\_\+pif} (float \+\_\+\+\_\+x)
+\item 
+long double \hyperlink{group__gnu__math__spec__func_ga4bc71ee5cf3df2ba35e6504027e5c6c6}{\+\_\+\+\_\+gnu\+\_\+cxx\+::tanh\+\_\+pil} (long double \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Ta $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga6133351c7602e917fd08d62d897e57d0}{\+\_\+\+\_\+gnu\+\_\+cxx\+::tgamma} (std\+::complex$<$ \+\_\+\+Ta $>$ \+\_\+\+\_\+a)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Ta , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga5e8ff98ee1e04d90965f2a8b2f639a18}{\+\_\+\+\_\+gnu\+\_\+cxx\+::tgamma} (\+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Ta , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga973fba718e906a5179d954c56b991c8d}{\+\_\+\+\_\+gnu\+\_\+cxx\+::tgamma\+\_\+lower} (\+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
+float \hyperlink{group__gnu__math__spec__func_ga8f2aabeaa29d21b19c43972efb26798c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::tgamma\+\_\+lowerf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+x)
+\item 
+long double \hyperlink{group__gnu__math__spec__func_gad057fe49a5bf95b1550f5f0a6e60bb19}{\+\_\+\+\_\+gnu\+\_\+cxx\+::tgamma\+\_\+lowerl} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+x)
+\item 
+std\+::complex$<$ float $>$ \hyperlink{group__gnu__math__spec__func_gaf548b80db1501cbc067de1564e721972}{\+\_\+\+\_\+gnu\+\_\+cxx\+::tgammaf} (std\+::complex$<$ float $>$ \+\_\+\+\_\+a)
+\item 
+float \hyperlink{group__gnu__math__spec__func_ga942773871e9c21a50cf13ec160e7e8d9}{\+\_\+\+\_\+gnu\+\_\+cxx\+::tgammaf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+x)
+\item 
+std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_ga8d53515dba9c860fd6058a4b75aaff58}{\+\_\+\+\_\+gnu\+\_\+cxx\+::tgammal} (std\+::complex$<$ long double $>$ \+\_\+\+\_\+a)
+\item 
+long double \hyperlink{group__gnu__math__spec__func_gabebff9ffba6acf55f3a3cd716ef5007a}{\+\_\+\+\_\+gnu\+\_\+cxx\+::tgammal} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gac122af3ffd2e5536fdf021afce79b7d4}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+1} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga5bbf256b875da28132f9049f5984cb14}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+1f} (float \+\_\+\+\_\+nu, float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga3520684c78771ffa57180060c8b6d1ca}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+1l} (long double \+\_\+\+\_\+nu, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga762aa79fc6c6320d7c6290359a42c2bc}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+2} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gacec36dc316e561bbaa371c60c06e52f7}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+2} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga78e832796aedf5159b142801e1184392}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+2f} (float \+\_\+\+\_\+nu, float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gac5a30c772d4888442665945e7f3fa017}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+2l} (long double \+\_\+\+\_\+nu, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga1383b7486de1e177f19c45411ed957c3}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+3} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga34e5d79e6ba8b8b104e690fc1ebc7fd6}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+3} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga9a7c967d2a456f1a6aceee9a53f024b1}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+3f} (float \+\_\+\+\_\+nu, float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gaf88874ff6c69940d2191f7947d2ea119}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+3l} (long double \+\_\+\+\_\+nu, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga7b4afc32eb3f1d7c49662cd37af56a20}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+4} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga25e72f2b50b53d168f8fa653b1a0d012}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+4} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga0c5cbf87e304844ed4c3423be5ca09a5}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+4f} (float \+\_\+\+\_\+nu, float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gaaf63a80e90cdcdd66ebb18cd3a84afae}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+4l} (long double \+\_\+\+\_\+nu, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tpk , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tpk, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gad2326374205feca04a9996af0a4ebd2a}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+c} (\+\_\+\+Tpk \+\_\+\+\_\+k, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tpk , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tpk, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaa42db2270eba189b0b82c5a98c52ab9e}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+c} (\+\_\+\+Tpk \+\_\+\+\_\+k, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga409f898afeaad5e25726ad552cfe6946}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+cf} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga0531098c628999cf396217ff997cfdda}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+cl} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tpk , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tpk, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga030a1ea3efa82f6fbaeac0ed2d6191c2}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+d} (\+\_\+\+Tpk \+\_\+\+\_\+k, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tpk , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tpk, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga72e083b0e6457c928e31c590b22e728c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+d} (\+\_\+\+Tpk \+\_\+\+\_\+k, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gad2dc6fcaf54d25cbfaad082623941118}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+df} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gacce4474168b9638ebeaad1c7b351fa04}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+dl} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tpk , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tpk, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaa2791768016201c6dab2984bf04ec4b4}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+n} (\+\_\+\+Tpk \+\_\+\+\_\+k, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tpk , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tpk, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga42cbac5ad88b02d05e2e615ffc4375f9}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+n} (\+\_\+\+Tpk \+\_\+\+\_\+k, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga5298a95e02bd909d55e59c1f2a0b51f8}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+nf} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga907f6c147387d55d2dfccbc58d1f1bc5}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+nl} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tpk , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Tpk, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga6eea3110c964e5d065d99f2e58a1ed56}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+s} (\+\_\+\+Tpk \+\_\+\+\_\+k, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tpk , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tpk, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gad224ed8fcc65152f2af9e52a80bfad8a}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+s} (\+\_\+\+Tpk \+\_\+\+\_\+k, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga5e69cf30c9a4cc057accc43e8c4bf7a3}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+sf} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gac574077067a4e7b24a0a9ff2d537d885}{\+\_\+\+\_\+gnu\+\_\+cxx\+::theta\+\_\+sl} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Trho , typename \+\_\+\+Tphi $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+num\+\_\+t$<$ \+\_\+\+Trho, \+\_\+\+Tphi $>$ \hyperlink{group__gnu__math__spec__func_gac43d89238752ed88927867236ab8c6a8}{\+\_\+\+\_\+gnu\+\_\+cxx\+::zernike} (unsigned int \+\_\+\+\_\+n, int \+\_\+\+\_\+m, \+\_\+\+Trho \+\_\+\+\_\+rho, \+\_\+\+Tphi \+\_\+\+\_\+phi)
+{\footnotesize template$<$typename \+\_\+\+Trho , typename \+\_\+\+Tphi $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Trho, \+\_\+\+Tphi $>$ \hyperlink{group__gnu__math__spec__func_ga5df3bb50b78cd1bc676763dbf9e64929}{\+\_\+\+\_\+gnu\+\_\+cxx\+::zernike} (unsigned int \+\_\+\+\_\+n, int \+\_\+\+\_\+m, \+\_\+\+Trho \+\_\+\+\_\+rho, \+\_\+\+Tphi \+\_\+\+\_\+phi)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gababce1066ecef7258070b9b7fcea975f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::zernikef} (unsigned int \+\_\+\+\_\+n, int \+\_\+\+\_\+m, float \+\_\+\+\_\+rho, float \+\_\+\+\_\+phi)
 \item 

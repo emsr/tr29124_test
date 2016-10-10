@@ -7,12 +7,12 @@
 
  */
 
+#include <bits/complex128.h>
 #include <limits>
 #include <iostream>
 #include <iomanip>
 #include <vector>
 #include <bits/float128.h>
-#include <bits/complex128.h>
 #include <cmath>
 #include <ext/polynomial.h>
 
@@ -200,20 +200,24 @@ namespace __detail
 	__e.back().push_back(__s[__k + 1] / __s[__k]);
 
       __r.push_back(__e[0][0]);
-      __r.push_back(__q[0][1]);
+      //__r.push_back(__q[0][1]);
 
       for (unsigned __k = 1; __k < __n - 2; ++__k)
 	{
 	  __q.push_back(std::vector<_Real>{});
-	  for (unsigned __l = 1; __l < __n - 2; ++__l)
-	    __q.back().push_back(__q[__k - 1][__l] + __e[__k - 1][__l] - __e[__k - 1][__l - 1]);
+	  for (unsigned __l = 0; __l < __n - 2 - __k; ++__l)
+	    __q.back().push_back(__q[__k - 1][__l] + __e[__k - 1][__l + 1] - __e[__k - 1][__l]);
+
+	  if (__q[__k].size() == 0)
+	    break;
 
 	  __e.push_back(std::vector<_Real>{});
-	  for (unsigned __l = 1; __l < __n - 2; ++__l)
-	    __e.back().push_back(__q[__k - 1][__l + 1] * __e[__k - 1][__l] / __q.back().back());
+	  for (unsigned __l = 0; __l < __n - 2 - __k; ++__l)
+	    __e.back().push_back(__q[__k][__l + 1] * __e[__k - 1][__l + 1] / __q[__k][__l]);
 
-	  __r.push_back(__q[0][__k]);
-	  __r.push_back(__e[0][__k]);
+	  __r.push_back(__q[__k][0]);
+	  if (__e[__k].size() > 0)
+	    __r.push_back(__e[__k][0]);
 	}
 
       return __r;

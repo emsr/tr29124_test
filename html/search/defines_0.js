@@ -8,6 +8,7 @@ var searchData=
   ['_5fglibcxx_5fbits_5fsf_5fcardinal_5ftcc',['_GLIBCXX_BITS_SF_CARDINAL_TCC',['../sf__cardinal_8tcc.html#a1e9bb8201f62b2303ba941ea920790b6',1,'sf_cardinal.tcc']]],
   ['_5fglibcxx_5fbits_5fsf_5fchebyshev_5ftcc',['_GLIBCXX_BITS_SF_CHEBYSHEV_TCC',['../sf__chebyshev_8tcc.html#af93a8a3778aadae3937c7f4b1aa86123',1,'sf_chebyshev.tcc']]],
   ['_5fglibcxx_5fbits_5fsf_5fdawson_5ftcc',['_GLIBCXX_BITS_SF_DAWSON_TCC',['../sf__dawson_8tcc.html#af030b68c7e9ef1dea782931637073b46',1,'sf_dawson.tcc']]],
+  ['_5fglibcxx_5fbits_5fsf_5fdistributions_5ftcc',['_GLIBCXX_BITS_SF_DISTRIBUTIONS_TCC',['../sf__distributions_8tcc.html#a3af0d272d6bbb6104b89109f772d6092',1,'sf_distributions.tcc']]],
   ['_5fglibcxx_5fbits_5fsf_5fellint_5ftcc',['_GLIBCXX_BITS_SF_ELLINT_TCC',['../sf__ellint_8tcc.html#a4b6f21b1d48bfb7a988fe3346437ccce',1,'sf_ellint.tcc']]],
   ['_5fglibcxx_5fbits_5fsf_5fexpint_5ftcc',['_GLIBCXX_BITS_SF_EXPINT_TCC',['../sf__expint_8tcc.html#a1dd7ac46e3e1d856c4d1abb21192f01a',1,'sf_expint.tcc']]],
   ['_5fglibcxx_5fbits_5fsf_5ffresnel_5ftcc',['_GLIBCXX_BITS_SF_FRESNEL_TCC',['../sf__fresnel_8tcc.html#adbcd2dc06ad79716112c456abd18d171',1,'sf_fresnel.tcc']]],
@@ -25,6 +26,7 @@ var searchData=
   ['_5fglibcxx_5fbits_5fsf_5fowens_5ft_5ftcc',['_GLIBCXX_BITS_SF_OWENS_T_TCC',['../sf__owens__t_8tcc.html#a5986cbb2c459a5e859ffe2fe1fa7cd25',1,'sf_owens_t.tcc']]],
   ['_5fglibcxx_5fbits_5fsf_5fpolylog_5ftcc',['_GLIBCXX_BITS_SF_POLYLOG_TCC',['../sf__polylog_8tcc.html#ab6c10ff949c404f48f72645a3fe8a674',1,'sf_polylog.tcc']]],
   ['_5fglibcxx_5fbits_5fsf_5ftheta_5ftcc',['_GLIBCXX_BITS_SF_THETA_TCC',['../sf__theta_8tcc.html#a1897b6f5cf1c9b2863999a68c75f7f21',1,'sf_theta.tcc']]],
+  ['_5fglibcxx_5fbits_5fsf_5ftrig_5ftcc',['_GLIBCXX_BITS_SF_TRIG_TCC',['../sf__trig_8tcc.html#a6e1b0eff1758b4646af73ac467f1b629',1,'sf_trig.tcc']]],
   ['_5fglibcxx_5fbits_5fsf_5ftrigint_5ftcc',['_GLIBCXX_BITS_SF_TRIGINT_TCC',['../sf__trigint_8tcc.html#a8ba3ab1895ab4f89f7ee4d01d6db906e',1,'sf_trigint.tcc']]],
   ['_5fglibcxx_5fbits_5fsf_5fzeta_5ftcc',['_GLIBCXX_BITS_SF_ZETA_TCC',['../sf__zeta_8tcc.html#a23ad81fae0dc2d916125d596553c5dfc',1,'sf_zeta.tcc']]]
 ];

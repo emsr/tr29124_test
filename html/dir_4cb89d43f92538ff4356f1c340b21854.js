@@ -6,6 +6,7 @@ var dir_4cb89d43f92538ff4356f1c340b21854 =
     [ "sf_cardinal.tcc", "sf__cardinal_8tcc.html", "sf__cardinal_8tcc" ],
     [ "sf_chebyshev.tcc", "sf__chebyshev_8tcc.html", "sf__chebyshev_8tcc" ],
     [ "sf_dawson.tcc", "sf__dawson_8tcc.html", "sf__dawson_8tcc" ],
+    [ "sf_distributions.tcc", "sf__distributions_8tcc.html", "sf__distributions_8tcc" ],
     [ "sf_ellint.tcc", "sf__ellint_8tcc.html", "sf__ellint_8tcc" ],
     [ "sf_expint.tcc", "sf__expint_8tcc.html", "sf__expint_8tcc" ],
     [ "sf_fresnel.tcc", "sf__fresnel_8tcc.html", "sf__fresnel_8tcc" ],
@@ -23,6 +24,7 @@ var dir_4cb89d43f92538ff4356f1c340b21854 =
     [ "sf_owens_t.tcc", "sf__owens__t_8tcc.html", "sf__owens__t_8tcc" ],
     [ "sf_polylog.tcc", "sf__polylog_8tcc.html", "sf__polylog_8tcc" ],
     [ "sf_theta.tcc", "sf__theta_8tcc.html", "sf__theta_8tcc" ],
+    [ "sf_trig.tcc", "sf__trig_8tcc.html", "sf__trig_8tcc" ],
     [ "sf_trigint.tcc", "sf__trigint_8tcc.html", "sf__trigint_8tcc" ],
     [ "sf_zeta.tcc", "sf__zeta_8tcc.html", "sf__zeta_8tcc" ],
     [ "specfun.h", "specfun_8h.html", "specfun_8h" ]

@@ -554,8 +554,32 @@ namespace __gnu_cxx
   { return std::__detail::__sin_pi<__float128>(__x); }
 
   inline __float128
+  sinh_piq(__float128 __x)
+  { return std::__detail::__sinh_pi<__float128>(__x); }
+
+  inline __float128
   cos_piq(__float128 __x)
   { return std::__detail::__cos_pi<__float128>(__x); }
+
+  inline __float128
+  cosh_piq(__float128 __x)
+  { return std::__detail::__cosh_pi<__float128>(__x); }
+
+  inline __float128
+  tan_piq(__float128 __x)
+  { return std::__detail::__tan_pi<__float128>(__x); }
+
+  inline __float128
+  tanh_piq(__float128 __x)
+  { return std::__detail::__tanh_pi<__float128>(__x); }
+
+  inline __sincos_t<__float128>
+  sincosq(__float128 __x)
+  { return std::__detail::__sincos<__float128>(__x); }
+
+  inline __sincos_t<__float128>
+  sincos_piq(__float128 __x)
+  { return std::__detail::__sincos_pi<__float128>(__x); }
 
 } // namespace __gnu_cxx
 
