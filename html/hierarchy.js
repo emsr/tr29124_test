@@ -1,10 +1,10 @@
 var hierarchy =
 [
+    [ "__gnu_cxx::__sincos_t< _Tp >", "struct____gnu__cxx_1_1____sincos__t.html", null ],
     [ "std::__detail::_Airy< _Tp >", "classstd_1_1____detail_1_1__Airy.html", null ],
     [ "std::__detail::_Airy_asymp_data< _Tp >", "structstd_1_1____detail_1_1__Airy__asymp__data.html", [
       [ "std::__detail::_Airy_asymp< _Tp >", "classstd_1_1____detail_1_1__Airy__asymp.html", null ]
     ] ],
-    [ "std::__detail::_Airy_asymp_data< __float128 >", "structstd_1_1____detail_1_1__Airy__asymp__data_3_01____float128_01_4.html", null ],
     [ "std::__detail::_Airy_asymp_data< double >", "structstd_1_1____detail_1_1__Airy__asymp__data_3_01double_01_4.html", null ],
     [ "std::__detail::_Airy_asymp_data< float >", "structstd_1_1____detail_1_1__Airy__asymp__data_3_01float_01_4.html", null ],
     [ "std::__detail::_Airy_asymp_data< long double >", "structstd_1_1____detail_1_1__Airy__asymp__data_3_01long_01double_01_4.html", null ],
@@ -16,5 +16,13 @@ var hierarchy =
     [ "std::__detail::_Airy_series< _Tp >", "classstd_1_1____detail_1_1__Airy__series.html", null ],
     [ "std::__detail::_AiryAuxilliaryState< _Tp >", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html", null ],
     [ "std::__detail::_AiryState< _Tp >", "structstd_1_1____detail_1_1__AiryState.html", null ],
-    [ "std::__detail::_Factorial_table< _Tp >", "structstd_1_1____detail_1_1__Factorial__table.html", null ]
+    [ "std::__detail::_Factorial_table< _Tp >", "structstd_1_1____detail_1_1__Factorial__table.html", null ],
+    [ "std::__detail::_GammaLanczos< _Tp >", "structstd_1_1____detail_1_1__GammaLanczos.html", null ],
+    [ "std::__detail::_GammaLanczos< double >", "structstd_1_1____detail_1_1__GammaLanczos_3_01double_01_4.html", null ],
+    [ "std::__detail::_GammaLanczos< float >", "structstd_1_1____detail_1_1__GammaLanczos_3_01float_01_4.html", null ],
+    [ "std::__detail::_GammaLanczos< long double >", "structstd_1_1____detail_1_1__GammaLanczos_3_01long_01double_01_4.html", null ],
+    [ "std::__detail::_GammaSpouge< _Tp >", "structstd_1_1____detail_1_1__GammaSpouge.html", null ],
+    [ "std::__detail::_GammaSpouge< double >", "structstd_1_1____detail_1_1__GammaSpouge_3_01double_01_4.html", null ],
+    [ "std::__detail::_GammaSpouge< float >", "structstd_1_1____detail_1_1__GammaSpouge_3_01float_01_4.html", null ],
+    [ "std::__detail::_GammaSpouge< long double >", "structstd_1_1____detail_1_1__GammaSpouge_3_01long_01double_01_4.html", null ]
 ];

@@ -61,8 +61,6 @@ ${tool} ${text_dir}/expint_e1/*          ${ext_dir}/expint_e1
 ${tool} ${text_dir}/factorial/*          ${ext_dir}/factorial
 ${tool} ${text_dir}/fresnel_c/*          ${ext_dir}/fresnel_c
 ${tool} ${text_dir}/fresnel_s/*          ${ext_dir}/fresnel_s
-${tool} ${text_dir}/tgamma_lower/*       ${ext_dir}/tgamma_lower
-${tool} ${text_dir}/tgamma/*             ${ext_dir}/tgamma
 ${tool} ${text_dir}/gegenbauer/*         ${ext_dir}/gegenbauer
 ${tool} ${text_dir}/hurwitz_zeta/*       ${ext_dir}/hurwitz_zeta
 ${tool} ${text_dir}/hyperg/*             ${ext_dir}/hyperg
@@ -74,6 +72,7 @@ ${tool} ${text_dir}/lbincoef/*           ${ext_dir}/lbincoef
 ${tool} ${text_dir}/ldouble_factorial/*  ${ext_dir}/ldouble_factorial
 ${tool} ${text_dir}/legendre_q/*         ${ext_dir}/legendre_q
 ${tool} ${text_dir}/lfactorial/*         ${ext_dir}/lfactorial
+${tool} ${text_dir}/lgamma/*             ${ext_dir}/lgamma
 ${tool} ${text_dir}/lpochhammer_lower/*  ${ext_dir}/lpochhammer_lower
 ${tool} ${text_dir}/lpochhammer/*        ${ext_dir}/lpochhammer
 ${tool} ${text_dir}/pochhammer_lower/*   ${ext_dir}/pochhammer_lower
@@ -88,6 +87,8 @@ ${tool} ${text_dir}/sph_bessel_k/*       ${ext_dir}/sph_bessel_k
 ${tool} ${text_dir}/sph_hankel_1/*       ${ext_dir}/sph_hankel_1
 ${tool} ${text_dir}/sph_hankel_2/*       ${ext_dir}/sph_hankel_2
 ${tool} ${text_dir}/sph_harmonic/*       ${ext_dir}/sph_harmonic
+${tool} ${text_dir}/tgamma/*             ${ext_dir}/tgamma
+${tool} ${text_dir}/tgamma_lower/*       ${ext_dir}/tgamma_lower
 ${tool} ${text_dir}/theta_1/*            ${ext_dir}/theta_1
 ${tool} ${text_dir}/theta_2/*            ${ext_dir}/theta_2
 ${tool} ${text_dir}/theta_3/*            ${ext_dir}/theta_3

@@ -73,8 +73,6 @@ ${tool} check/check_expint_en.cc          ${ext_dir}/expint/check_value.cc
 ${tool} check/check_factorial.cc          ${ext_dir}/factorial/check_value.cc
 ${tool} check/check_fresnel_c.cc          ${ext_dir}/fresnel_c/check_value.cc
 ${tool} check/check_fresnel_s.cc          ${ext_dir}/fresnel_s/check_value.cc
-${tool} check/check_tgamma_lower.cc       ${ext_dir}/tgamma_lower/check_value.cc
-${tool} check/check_tgamma.cc             ${ext_dir}/tgamma/check_value.cc
 ${tool} check/check_gegenbauer.cc         ${ext_dir}/gegenbauer/check_value.cc
 ${tool} check/check_heuman_lambda.cc      ${ext_dir}/heuman_lambda/check_value.cc
 ${tool} check/check_hurwitz_zeta.cc       ${ext_dir}/hurwitz_zeta/check_value.cc
@@ -88,6 +86,7 @@ ${tool} check/check_lbincoef.cc           ${ext_dir}/lbincoef/check_value.cc
 ${tool} check/check_ldouble_factorial.cc  ${ext_dir}/ldouble_factorial/check_value.cc
 ${tool} check/check_legendre_q.cc         ${ext_dir}/legendre_q/check_value.cc
 ${tool} check/check_lfactorial.cc         ${ext_dir}/lfactorial/check_value.cc
+${tool} check/check_lgamma.cc             ${ext_dir}/lgamma/check_value.cc
 ${tool} check/check_lpochhammer_lower.cc  ${ext_dir}/lpochhammer_lower/check_value.cc
 ${tool} check/check_lpochhammer.cc        ${ext_dir}/lpochhammer/check_value.cc
 ${tool} check/check_owens_t.cc            ${ext_dir}/owens_t/check_value.cc
@@ -107,6 +106,8 @@ ${tool} check/check_sph_bessel_k.cc       ${ext_dir}/sph_bessel_k/check_value.cc
 ${tool} check/check_sph_hankel_1.cc       ${ext_dir}/sph_hankel_1/check_value.cc
 ${tool} check/check_sph_hankel_2.cc       ${ext_dir}/sph_hankel_2/check_value.cc
 ${tool} check/check_sph_harmonic.cc       ${ext_dir}/sph_harmonic/check_value.cc
+${tool} check/check_tgamma.cc             ${ext_dir}/tgamma/check_value.cc
+${tool} check/check_tgamma_lower.cc       ${ext_dir}/tgamma_lower/check_value.cc
 ${tool} check/check_theta_1.cc            ${ext_dir}/theta_1/check_value.cc
 ${tool} check/check_theta_2.cc            ${ext_dir}/theta_2/check_value.cc
 ${tool} check/check_theta_3.cc            ${ext_dir}/theta_3/check_value.cc

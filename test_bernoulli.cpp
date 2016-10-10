@@ -1,5 +1,5 @@
 
-// $HOME/bin/bin/g++ -o test_bernoulli test_bernoulli.cpp
+// $HOME/bin_tr29124/bin/g++ -o test_bernoulli test_bernoulli.cpp
 
 // ./test_bernoulli > test_bernoulli.txt
 
@@ -101,5 +101,4 @@ main()
 
   return 0;
 }
-
 
