@@ -172,6 +172,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::clausen_s "clausen_s - Clausen sine integrals"
    * - @ref __gnu_cxx::comp_ellint_d "comp_ellint_d - Incomplete Legendre D elliptic integral"
    * - @ref __gnu_cxx::conf_hyperg_lim "conf_hyperg_lim - Confluent hypergeometric limit functions"
+   * - @ref __gnu_cxx::cos_pi "cos_pi - Reperiodized cosine function."
+   * - @ref __gnu_cxx::cosh_pi "cosh_pi - Reperiodized hyperbolic cosine function."
    * - @ref __gnu_cxx::coshint "coshint - Hyperbolic cosine integral"
    * - @ref __gnu_cxx::cosint "cosint - Cosine integral"
    * - @ref __gnu_cxx::cyl_hankel_1 "cyl_hankel_1 - Cylindrical Hankel functions of the first kind"
@@ -220,6 +222,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::sinhc "sinhc - Hyperbolic sinus cardinal function"
    * - @ref __gnu_cxx::sinhc_pi "sinhc_pi - "
    * - @ref __gnu_cxx::sinc "sinc - Normalized sinus cardinal function"
+   * - @ref __gnu_cxx::sincos "sincos - Sine + cosine function"
+   * - @ref __gnu_cxx::sincos_pi "sincos_pi - Reperiodized sine + cosine function"
+   * - @ref __gnu_cxx::sin_pi "sin_pi - Reperiodized sine function."
+   * - @ref __gnu_cxx::sinh_pi "sinh_pi - Reperiodized hyperbolic sine function."
    * - @ref __gnu_cxx::sinc_pi "sinc_pi - Sinus cardinal function"
    * - @ref __gnu_cxx::sinhint "sinhint - Hyperbolic sine integral"
    * - @ref __gnu_cxx::sinint "sinint - Sine integral"
@@ -228,6 +234,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::sph_hankel_1 "sph_hankel_1 - Spherical Hankel functions of the first kind"
    * - @ref __gnu_cxx::sph_hankel_2 "sph_hankel_2 - Spherical Hankel functions of the first kind"
    * - @ref __gnu_cxx::sph_harmonic "sph_harmonic - Spherical"
+   * - @ref __gnu_cxx::tan_pi "tan_pi - Reperiodized tangent function."
+   * - @ref __gnu_cxx::tanh_pi "tanh_pi - Reperiodized hyperbolic tangent function."
    * - @ref __gnu_cxx::tgamma "tgamma - Gamma for complex arguments"
    * - @ref __gnu_cxx::tgamma "tgamma - Upper incomplete gamma functions"
    * - @ref __gnu_cxx::tgamma_lower "tgamma_lower - Lower incomplete gamma functions"
@@ -1334,6 +1342,7 @@ _GLIBCXX_END_NAMESPACE_VERSION
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @defgroup gnu_math_spec_func GNU Extended Mathematical Special Functions
@@ -1713,7 +1722,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The hyperbolic sine integral is defined by
    * @f[
-   *    Shi(x) = \int_0^x \frac{sinh(t)}{t}dt
+   *    Shi(x) = \int_0^x \frac{\sinh(t)}{t}dt
    * @f]
    *
    * @tparam _Tp The type of the real argument
@@ -2356,7 +2365,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    * for real argument @c __x.
    * The sinus cardinal function is defined by:
    * @f[
-   *    sinhc_\pi(x) = \frac{sinh(x)}{x}
+   *    sinhc_\pi(x) = \frac{\sinh(x)}{x}
    * @f]
    *
    * @tparam _Tp The real type of the argument
@@ -2393,11 +2402,11 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
   { return std::__detail::__sinhc<long double>(__x); }
 
   /**
-   * Return the normalized hyperbolic sinus cardinal function @f$ sinc(x) @f$
+   * Return the normalized hyperbolic sinus cardinal function @f$ sinhc(x) @f$
    * for real argument @c __x.
    * The normalized hyperbolic sinus cardinal function is defined by:
    * @f[
-   *    sinhc(x) = \frac{sinh(\pi x)}{\pi x}
+   *    sinhc(x) = \frac{\sinh(\pi x)}{\pi x}
    * @f]
    *
    * @tparam _Tp The real type of the argument
@@ -5484,6 +5493,48 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__sin_pi<__type>(__x);
     }
 
+  // Reperiodized hyperbolic sine function.
+
+  /**
+   * Return the reperiodized hyperbolic sine function @f$ \sinh_\pi(x) @f$
+   * for @c float argument @f$ x @f$.
+   *
+   * @see sinh_pi for more details.
+   */
+  inline float
+  sinh_pif(float __x)
+  { return std::__detail::__sinh_pi<float>(__x); }
+
+  /**
+   * Return the reperiodized hyperbolic sine function @f$ \sinh_\pi(x) @f$
+   * for <tt>long double</tt> argument @f$ x @f$.
+   *
+   * @see sinh_pi for more details.
+   */
+  inline long double
+  sinh_pil(long double __x)
+  { return std::__detail::__sinh_pi<long double>(__x); }
+
+  /**
+   * Return the reperiodized hyperbolic sine function @f$ \sinh_\pi(x) @f$
+   * for real argument @f$ x @f$.
+   *
+   * The reperiodized hyperbolic sine function is defined by:
+   * @f[
+   * 	\sinh_\pi(x) = \sinh(\pi x)
+   * @f]
+   *
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param __x The argument
+   */
+  template<typename _Tp>
+    inline typename __gnu_cxx::__promote<_Tp>::__type
+    sinh_pi(_Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      return std::__detail::__sinh_pi<__type>(__x);
+    }
+
   // Reperiodized cosine function.
 
   /**
@@ -5512,7 +5563,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
    *
    * The reperiodized cosine function is defined by:
    * @f[
-   * 	\cos_\pi(x) = \sin(\pi x)
+   * 	\cos_\pi(x) = \cos(\pi x)
    * @f]
    *
    * @tparam _Tp The floating-point type of the argument @c __x.
@@ -5526,11 +5577,207 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       return std::__detail::__cos_pi<__type>(__x);
     }
 
+  // Reperiodized hyperbolic cosine function.
+
+  /**
+   * Return the reperiodized hyperbolic cosine function @f$ \cosh_\pi(x) @f$
+   * for @c float argument @f$ x @f$.
+   *
+   * @see cosh_pi for more details.
+   */
+  inline float
+  cosh_pif(float __x)
+  { return std::__detail::__cosh_pi<float>(__x); }
+
+  /**
+   * Return the reperiodized hyperbolic cosine function @f$ \cosh_\pi(x) @f$
+   * for <tt>long double</tt> argument @f$ x @f$.
+   *
+   * @see cosh_pi for more details.
+   */
+  inline long double
+  cosh_pil(long double __x)
+  { return std::__detail::__cosh_pi<long double>(__x); }
+
+  /**
+   * Return the reperiodized hyperbolic cosine function @f$ \cosh_\pi(x) @f$
+   * for real argument @f$ x @f$.
+   *
+   * The reperiodized hyperbolic cosine function is defined by:
+   * @f[
+   * 	\cosh_\pi(x) = \cosh(\pi x)
+   * @f]
+   *
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param __x The argument
+   */
+  template<typename _Tp>
+    inline typename __gnu_cxx::__promote<_Tp>::__type
+    cosh_pi(_Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      return std::__detail::__cosh_pi<__type>(__x);
+    }
+
+  // Reperiodized tangent function.
+
+  /**
+   * Return the reperiodized tangent function @f$ \tan_\pi(x) @f$
+   * for @c float argument @f$ x @f$.
+   *
+   * @see tan_pi for more details.
+   */
+  inline float
+  tan_pif(float __x)
+  { return std::__detail::__tan_pi<float>(__x); }
+
+  /**
+   * Return the reperiodized tangent function @f$ \tan_\pi(x) @f$
+   * for <tt>long double</tt> argument @f$ x @f$.
+   *
+   * @see tan_pi for more details.
+   */
+  inline long double
+  tan_pil(long double __x)
+  { return std::__detail::__tan_pi<long double>(__x); }
+
+  /**
+   * Return the reperiodized tangent function @f$ \tan_\pi(x) @f$
+   * for real argument @f$ x @f$.
+   *
+   * The reperiodized tangent function is defined by:
+   * @f[
+   * 	\tan_\pi(x) = \tan(\pi x)
+   * @f]
+   *
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param __x The argument
+   */
+  template<typename _Tp>
+    inline typename __gnu_cxx::__promote<_Tp>::__type
+    tan_pi(_Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      return std::__detail::__tan_pi<__type>(__x);
+    }
+
+  // Reperiodized hyperbolic tangent function.
+
+  /**
+   * Return the reperiodized hyperbolic tangent function @f$ \tanh_\pi(x) @f$
+   * for @c float argument @f$ x @f$.
+   *
+   * @see tanh_pi for more details.
+   */
+  inline float
+  tanh_pif(float __x)
+  { return std::__detail::__tanh_pi<float>(__x); }
+
+  /**
+   * Return the reperiodized hyperbolic tangent function @f$ \tanh_\pi(x) @f$
+   * for <tt>long double</tt> argument @f$ x @f$.
+   *
+   * @see tanh_pi for more details.
+   */
+  inline long double
+  tanh_pil(long double __x)
+  { return std::__detail::__tanh_pi<long double>(__x); }
+
+  /**
+   * Return the reperiodized hyperbolic tangent function @f$ \tanh_\pi(x) @f$
+   * for real argument @f$ x @f$.
+   *
+   * The reperiodized hyperbolic tangent function is defined by:
+   * @f[
+   * 	\tanh_\pi(x) = \tanh(\pi x)
+   * @f]
+   *
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param __x The argument
+   */
+  template<typename _Tp>
+    inline typename __gnu_cxx::__promote<_Tp>::__type
+    tanh_pi(_Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      return std::__detail::__tanh_pi<__type>(__x);
+    }
+
+  /**
+   * Return both the sine and the cosine of a @c float argument.
+   */
+  inline __gnu_cxx::__sincos_t<float>
+  sincosf(float __x)
+  { return std::__detail::__sincos<float>(__x); }
+
+  /**
+   * Return both the sine and the cosine of a <tt> long double </tt> argument.
+   *
+   * @see sincos for details.
+   */
+  inline __gnu_cxx::__sincos_t<long double>
+  sincosl(long double __x)
+  { return std::__detail::__sincos<long double>(__x); }
+
+  /**
+   * Return both the sine and the cosine of a @c double argument.
+   *
+   * @see sincos for details.
+   */
+  inline __gnu_cxx::__sincos_t<double>
+  sincos(double __x)
+  { return std::__detail::__sincos<double>(__x); }
+
+  /**
+   * Return both the sine and the cosine of a reperiodized argument.
+   * @f[
+   *   sincos(x) = {\sin(x), \cos(x)}
+   * @f]
+   */
+  template<typename _Tp>
+    inline __gnu_cxx::__sincos_t<_Tp>
+    sincos(_Tp __x)
+    { return std::__detail::__sincos<_Tp>(__x); }
+
+  /**
+   * Return both the sine and the cosine of a reperiodized @c float argument.
+   *
+   * @see sincos_pi for details.
+   */
+  inline __gnu_cxx::__sincos_t<float>
+  sincos_pif(float __x)
+  { return std::__detail::__sincos_pi<float>(__x); }
+
+  /**
+   * Return both the sine and the cosine of a reperiodized
+   * <tt> long double </tt> argument.
+   *
+   * @see sincos_pi for details.
+   */
+  inline __gnu_cxx::__sincos_t<long double>
+  sincos_pil(long double __x)
+  { return std::__detail::__sincos_pi<long double>(__x); }
+
+  /**
+   * Return both the sine and the cosine of a reperiodized real argument.
+   * 
+   * @f[
+   *   sincos_\pi(x) = {\sin(\pi x), \cos(\pi x)}
+   * @f]
+   */
+  template<typename _Tp>
+    inline __gnu_cxx::__sincos_t<_Tp>
+    sincos_pi(_Tp __x)
+    {
+      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
+      return std::__detail::__sincos_pi<__type>(__x);
+    }
 
 #endif // __cplusplus >= 201103L
 
   /** @} */ // gnu_math_spec_func
 
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
 #pragma GCC visibility pop

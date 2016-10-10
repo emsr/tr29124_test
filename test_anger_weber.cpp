@@ -50,7 +50,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_anger_weber
 	  __term1 *= _Tp{-1} * __z2k / (_GamArg21 * _GamArg22);
 	  _S2 += __term2;
 	}
-      auto [__sin, __cos] = std::sincos(__nu * _S_pi / _Tp{2});
+      auto [__sin, __cos] = __sincos_pi(__nu / _Tp{2});
       return _AngerWeberState<_Tp>{__nu, __z,
 				   __cos * _S1, __sin * _S2,
 				   __sin * _S1, -__cos * _S2};

@@ -116,6 +116,7 @@ $(document).ready(function(){initNavTree('sf__polylog_8tcc.html','');});
 <div class="contents">
 <div class="textblock"><code>#include &lt;complex&gt;</code><br />
 <code>#include &lt;ext/math_const.h&gt;</code><br />
+<code>#include &lt;ext/math_util.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for sf_polylog.tcc:</div>
 <div class="dyncontent">
@@ -148,9 +149,9 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4c199ebf92e53a3ae9c27c2c79d65e21"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:a4c199ebf92e53a3ae9c27c2c79d65e21"><td class="memTemplItemLeft" align="right" valign="top">_Tp&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a4c199ebf92e53a3ae9c27c2c79d65e21">std::__detail::__bose_einstein</a> (_Tp __s, _Tp __x)</td></tr>
-<tr class="separator:a4c199ebf92e53a3ae9c27c2c79d65e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75feb55399bc2c9c2ccff19877c8af2b"><td class="memTemplParams" colspan="2">template&lt;typename _Sp , typename _Tp &gt; </td></tr>
+<tr class="memitem:a75feb55399bc2c9c2ccff19877c8af2b"><td class="memTemplItemLeft" align="right" valign="top">_Tp&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a75feb55399bc2c9c2ccff19877c8af2b">std::__detail::__bose_einstein</a> (_Sp __s, _Tp __x)</td></tr>
+<tr class="separator:a75feb55399bc2c9c2ccff19877c8af2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49702394cf9b45acfa5b84f232078a9b"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
 <tr class="memitem:a49702394cf9b45acfa5b84f232078a9b"><td class="memTemplItemLeft" align="right" valign="top">std::complex&lt; _Tp &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a49702394cf9b45acfa5b84f232078a9b">std::__detail::__clamp_0_m2pi</a> (std::complex&lt; _Tp &gt; __w)</td></tr>
 <tr class="separator:a49702394cf9b45acfa5b84f232078a9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,36 +188,24 @@ Functions</h2></td></tr>
 <tr class="memitem:acd1e2a576d04658c6332df91cdaacd6e"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
 <tr class="memitem:acd1e2a576d04658c6332df91cdaacd6e"><td class="memTemplItemLeft" align="right" valign="top">_Tp&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#acd1e2a576d04658c6332df91cdaacd6e">std::__detail::__dirichlet_eta</a> (_Tp __w)</td></tr>
 <tr class="separator:acd1e2a576d04658c6332df91cdaacd6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6057422cd4e359f44dcdb6cffc26128f"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:a6057422cd4e359f44dcdb6cffc26128f"><td class="memTemplItemLeft" align="right" valign="top">_Tp&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a6057422cd4e359f44dcdb6cffc26128f">std::__detail::__fermi_dirac</a> (_Tp __s, _Tp __x)</td></tr>
-<tr class="separator:a6057422cd4e359f44dcdb6cffc26128f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acefbc7637e41168e49d6230df9c5127f"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:acefbc7637e41168e49d6230df9c5127f"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#acefbc7637e41168e49d6230df9c5127f">std::__detail::__fpequal</a> (const _Tp &amp;__a, const _Tp &amp;__b)</td></tr>
-<tr class="separator:acefbc7637e41168e49d6230df9c5127f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a990a8fb06307793ceae4c3c288f8b876"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:a990a8fb06307793ceae4c3c288f8b876"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a990a8fb06307793ceae4c3c288f8b876">std::__detail::__fpimag</a> (const std::complex&lt; _Tp &gt; &amp;__w)</td></tr>
-<tr class="separator:a990a8fb06307793ceae4c3c288f8b876"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a962bc8055b3948b6e2bebf34f86d9263"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:a962bc8055b3948b6e2bebf34f86d9263"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a962bc8055b3948b6e2bebf34f86d9263">std::__detail::__fpimag</a> (const _Tp)</td></tr>
-<tr class="separator:a962bc8055b3948b6e2bebf34f86d9263"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab78bb436e256ef9a3f64fa2a1ce25fb1"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:ab78bb436e256ef9a3f64fa2a1ce25fb1"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#ab78bb436e256ef9a3f64fa2a1ce25fb1">std::__detail::__fpreal</a> (const std::complex&lt; _Tp &gt; &amp;__w)</td></tr>
-<tr class="separator:ab78bb436e256ef9a3f64fa2a1ce25fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52087623539a401ded28ef1ca8fbcd04"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:a52087623539a401ded28ef1ca8fbcd04"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a52087623539a401ded28ef1ca8fbcd04">std::__detail::__fpreal</a> (const _Tp)</td></tr>
-<tr class="separator:a52087623539a401ded28ef1ca8fbcd04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7eb061915bad44dd29443b3476eaa7a0"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:a7eb061915bad44dd29443b3476eaa7a0"><td class="memTemplItemLeft" align="right" valign="top">std::complex&lt; _Tp &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a7eb061915bad44dd29443b3476eaa7a0">std::__detail::__hurwitz_zeta</a> (_Tp __s, std::complex&lt; _Tp &gt; __a)</td></tr>
-<tr class="separator:a7eb061915bad44dd29443b3476eaa7a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f006b5bca9aada788bb88bdbaa2c0ba"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
+<tr class="memitem:a9f006b5bca9aada788bb88bdbaa2c0ba"><td class="memTemplItemLeft" align="right" valign="top">_Tp&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a9f006b5bca9aada788bb88bdbaa2c0ba">std::__detail::__dirichlet_lambda</a> (_Tp __w)</td></tr>
+<tr class="separator:a9f006b5bca9aada788bb88bdbaa2c0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a470e563c4e88c433f94dca391814dc61"><td class="memTemplParams" colspan="2">template&lt;typename _Sp , typename _Tp &gt; </td></tr>
+<tr class="memitem:a470e563c4e88c433f94dca391814dc61"><td class="memTemplItemLeft" align="right" valign="top">_Tp&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a470e563c4e88c433f94dca391814dc61">std::__detail::__fermi_dirac</a> (_Sp __s, _Tp __x)</td></tr>
+<tr class="separator:a470e563c4e88c433f94dca391814dc61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c45415c3ec0e137eea2364a6dd3af4e"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
+<tr class="memitem:a7c45415c3ec0e137eea2364a6dd3af4e"><td class="memTemplItemLeft" align="right" valign="top">std::complex&lt; _Tp &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a7c45415c3ec0e137eea2364a6dd3af4e">std::__detail::__hurwitz_zeta_polylog</a> (_Tp __s, std::complex&lt; _Tp &gt; __a)</td></tr>
+<tr class="separator:a7c45415c3ec0e137eea2364a6dd3af4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17fb8cea11706f319aaea277188a29c8"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
 <tr class="memitem:a17fb8cea11706f319aaea277188a29c8"><td class="memTemplItemLeft" align="right" valign="top">_Tp&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a17fb8cea11706f319aaea277188a29c8">std::__detail::__polylog</a> (_Tp __s, _Tp __x)</td></tr>
 <tr class="separator:a17fb8cea11706f319aaea277188a29c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa14e3ca6e4bee5ac1f1e5e1c2cee1d5a"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
 <tr class="memitem:aa14e3ca6e4bee5ac1f1e5e1c2cee1d5a"><td class="memTemplItemLeft" align="right" valign="top">std::complex&lt; _Tp &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#aa14e3ca6e4bee5ac1f1e5e1c2cee1d5a">std::__detail::__polylog</a> (_Tp __s, std::complex&lt; _Tp &gt; __w)</td></tr>
 <tr class="separator:aa14e3ca6e4bee5ac1f1e5e1c2cee1d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad01c033a96c9f185216d6c9f9db49c99"><td class="memTemplParams" colspan="2">template&lt;typename _Tp , typename ArgType &gt; </td></tr>
-<tr class="memitem:ad01c033a96c9f185216d6c9f9db49c99"><td class="memTemplItemLeft" align="right" valign="top">__gnu_cxx::__promote_num_t&lt; std::complex&lt; _Tp &gt;, ArgType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#ad01c033a96c9f185216d6c9f9db49c99">std::__detail::__polylog_exp</a> (_Tp __s, ArgType __w)</td></tr>
-<tr class="separator:ad01c033a96c9f185216d6c9f9db49c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a754c996ded0006978b76746d357a2d2d"><td class="memTemplParams" colspan="2">template&lt;typename _Tp , typename ArgType &gt; </td></tr>
+<tr class="memitem:a754c996ded0006978b76746d357a2d2d"><td class="memTemplItemLeft" align="right" valign="top">__gnu_cxx::__promote_fp_t&lt; std::complex&lt; _Tp &gt;, ArgType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a754c996ded0006978b76746d357a2d2d">std::__detail::__polylog_exp</a> (_Tp __s, ArgType __w)</td></tr>
+<tr class="separator:a754c996ded0006978b76746d357a2d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3684fc449da490e9a43985245618a90"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
 <tr class="memitem:af3684fc449da490e9a43985245618a90"><td class="memTemplItemLeft" align="right" valign="top">std::complex&lt; _Tp &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#af3684fc449da490e9a43985245618a90">std::__detail::__polylog_exp_asymp</a> (_Tp __s, std::complex&lt; _Tp &gt; __w)</td></tr>
 <tr class="separator:af3684fc449da490e9a43985245618a90"><td class="memSeparator" colspan="2">&#160;</td></tr>

@@ -768,11 +768,11 @@ INPUT                  = bits/specfun.h \
 			 bits/sf_chebyshev.tcc \
 			 bits/sf_dawson.tcc \
 			 bits/sf_ellint.tcc \
+			 bits/sf_distributions.tcc \
 			 bits/sf_expint.tcc \
 			 bits/sf_fresnel.tcc \
 			 bits/sf_gamma.tcc \
 			 bits/sf_gegenbauer.tcc \
-			 bits/sf_hankel_new.tcc \
 			 bits/sf_hankel.tcc \
 			 bits/sf_hermite.tcc \
 			 bits/sf_hydrogen.tcc \
@@ -785,6 +785,7 @@ INPUT                  = bits/specfun.h \
 			 bits/sf_owens_t.tcc \
 			 bits/sf_polylog.tcc \
 			 bits/sf_theta.tcc \
+			 bits/sf_trig.tcc \
 			 bits/sf_trigint.tcc \
 			 bits/sf_zeta.tcc
 

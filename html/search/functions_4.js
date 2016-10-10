@@ -1,12 +1,9 @@
 var searchData=
 [
-  ['dawson',['dawson',['../group__gnu__math__spec__func.html#ga30e46cb24428cfdb858c52fec431dee4',1,'__gnu_cxx']]],
+  ['dawson',['dawson',['../group__gnu__math__spec__func.html#ga0623ddcbfdce696781e19648fde6f33a',1,'__gnu_cxx']]],
   ['dawsonf',['dawsonf',['../group__gnu__math__spec__func.html#ga0a1b8e6760b8c7869127d41d96209318',1,'__gnu_cxx']]],
   ['dawsonl',['dawsonl',['../group__gnu__math__spec__func.html#ga6647a7444ff9c7c1f2a8ed36761bfeb2',1,'__gnu_cxx']]],
-  ['digamma',['digamma',['../group__gnu__math__spec__func.html#ga6c698fd735df9d76905e2cad97f2316a',1,'__gnu_cxx']]],
-  ['digammaf',['digammaf',['../group__gnu__math__spec__func.html#gadb2a40ca78a0d909126734c75eabd86f',1,'__gnu_cxx']]],
-  ['digammal',['digammal',['../group__gnu__math__spec__func.html#gae081ad08e1a42ffaad63b87b9f579dcf',1,'__gnu_cxx']]],
-  ['dilog',['dilog',['../group__gnu__math__spec__func.html#ga8fceba3ecc618971e0e3c089d8dc49cf',1,'__gnu_cxx']]],
+  ['dilog',['dilog',['../group__gnu__math__spec__func.html#ga7a95a3cb9a53aca2a1ff9752ce9d5e3c',1,'__gnu_cxx']]],
   ['dilogf',['dilogf',['../group__gnu__math__spec__func.html#ga901091e0e7ce7d6113ae6a86f4865a92',1,'__gnu_cxx']]],
   ['dilogl',['dilogl',['../group__gnu__math__spec__func.html#gae90c13ee690ebaf10a18a900fe2646f9',1,'__gnu_cxx']]],
   ['dirichlet_5fbeta',['dirichlet_beta',['../group__gnu__math__spec__func.html#ga87466a2d429a2815d794acc21c882b08',1,'__gnu_cxx']]],
@@ -15,7 +12,10 @@ var searchData=
   ['dirichlet_5feta',['dirichlet_eta',['../group__gnu__math__spec__func.html#gae46e26e4107675d285c79a2d6202e6c7',1,'__gnu_cxx']]],
   ['dirichlet_5fetaf',['dirichlet_etaf',['../group__gnu__math__spec__func.html#ga6f05d076600b1de9193e586cf89547c9',1,'__gnu_cxx']]],
   ['dirichlet_5fetal',['dirichlet_etal',['../group__gnu__math__spec__func.html#ga408e2267b648f29445522dbafb7a0e1a',1,'__gnu_cxx']]],
-  ['double_5ffactorial',['double_factorial',['../group__gnu__math__spec__func.html#ga206cdf1ae7f9a0df3048af18892b8ba8',1,'__gnu_cxx']]],
+  ['dirichlet_5flambda',['dirichlet_lambda',['../group__gnu__math__spec__func.html#ga06842a81bdcabf9c62252dde992d42ee',1,'__gnu_cxx']]],
+  ['dirichlet_5flambdaf',['dirichlet_lambdaf',['../group__gnu__math__spec__func.html#gaafd3ca6b0d71d55d3835536396eece8f',1,'__gnu_cxx']]],
+  ['dirichlet_5flambdal',['dirichlet_lambdal',['../group__gnu__math__spec__func.html#gab28d06c4e3c7457f1fa3663168678fb2',1,'__gnu_cxx']]],
+  ['double_5ffactorial',['double_factorial',['../group__gnu__math__spec__func.html#ga08c31a5dd1686a7633b46f923c47af46',1,'__gnu_cxx']]],
   ['double_5ffactorialf',['double_factorialf',['../group__gnu__math__spec__func.html#ga85ec284e603f32d18970bbdbb12d5150',1,'__gnu_cxx']]],
   ['double_5ffactoriall',['double_factoriall',['../group__gnu__math__spec__func.html#ga0366730a4a775256217ef1cd9d0c3a04',1,'__gnu_cxx']]]
 ];

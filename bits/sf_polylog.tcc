@@ -85,7 +85,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * For values smaller than thirty a table is used.
    *
    * @param __k an integer at which we evaluate the Riemann zeta function.
-   * @return @f$ zeta(k) @f$
+   * @return @f$ \zeta(k) @f$
    */
   template<typename _Tp = double> 
     _Tp
@@ -122,16 +122,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * This function treats the cases of positive integer index s.
    *
    * @f[
-   *   Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) w^k/k!
-   *             + (H_{s-1} - log(-w)) w^(s-1)/(s-1)!
+   *   Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) \frac{w^k}{k!}
+   *             + (H_{s-1} - \log(-w)) \frac{w^{s-1}}{(s-1)!}
    * @f]
    * The radius of convergence is @f$ |w| < 2 \pi @f$.
    * Note that this series involves a @f$ \log(-x) @f$.
    * gcc and Mathematica differ in their implementation
-   * of @f$ \log(e^(i \pi)) @f$:
-   * gcc: @f$ \log(e^(+- i * \pi)) = +- i \pi @f$
+   * of @f$ \log(e^{i \pi}) @f$:
+   * gcc: @f$ \log(e^{+- i * \pi}) = +- i \pi @f$
    * whereas Mathematica doesn't preserve the sign in this case:
-   * @f$ \log(e^(+- i\pi)) = +i \pi @f$
+   * @f$ \log(e^{+- i\pi}) = +i \pi @f$
    *
    * @param __s the index s.
    * @param __w the argument w.
@@ -199,17 +199,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * This specialization is worthwhile to catch the differing behaviour
    * of log(x).
    * @f[
-   *   Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) w^k/k!
-   *             + (H_{s-1} - log(-w)) w^(s-1)/(s-1)!
+   *   Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) \frac{w^k}{k!}
+   *             + \left(H_{s-1} - \log(-w)\right) \frac{w^{s-1}}{(s-1)!}
    * @f]
    * The radius of convergence is @f$ |w| < 2 \pi @f$.
    * Note that this series involves a @f$ \log(-x) @f$.
    * The use of evenzeta yields a speedup of about 2.5.
    * gcc and Mathematica differ in their implementation
-   * of @f$ \log(e^(i \pi)) @f$:
-   * gcc: @f$ \log(e^(+- i \pi)) = +- i \pi @f$
+   * of @f$ \log(e^{i\pi}) @f$:
+   * gcc: @f$ \log(e^{+- i\pi}) = +- i\pi @f$
    * whereas Mathematica doesn't preserve the sign in this case:
-   * @f$ \log(e^(+- i * \pi)) = +i \pi @f$
+   * @f$ \log(e^{+- i\pi}) = +i\pi @f$
    *
    * @param __s the index.
    * @param __w the argument
@@ -277,10 +277,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Theoretical convergence is present for @f$ |w| < 2\pi @f$.
    * We use an optimized version of
    * @f[
-   *   Li_s(e^w) = \Gamma(1-s)(-w)^(s-1) + (2\pi)^(-s)/\pi A_p(w)
+   *   Li_s(e^w) = \Gamma(1-s)(-w)^{s-1} + \frac{(2\pi)^{-s}}{\pi} A_p(w)
    * @f]
    * @f[
-   *   A_p(w) = \sum_k \Gamma(1+k-s)/k!\sin(\pi/2*(s-k))(w/2/\pi)^k\zeta(1+k-s)
+   *   A_p(w) = \sum_k \frac{\Gamma(1+k-s)}{k!}
+   *         \sin\left(\frac{\pi}{2} (s-k)\right)
+   *         \left(\frac{w}{2\pi}\right)^k \zeta(1+k-s)
    * @f]
    * @param __s  The real index
    * @param __w  The complex argument
@@ -370,29 +372,30 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * We use that to provide an optimized series for p = 2n:
    *
    * In the template parameter sigma we transport
-   * whether @f$ p = 4k (sigma = 1) @f$ or @f$ p = 4k + 2  (sigma = -1) @f$.
+   * whether @f$ p = 4k (\sigma = 1) @f$ or @f$ p = 4k + 2 (\sigma = -1) @f$.
    * @f[
-   *   Li_p(e^w) = Gamma(1-p) (-w)^{p-1} - A_p(w) - \sigma * B_p(w)
+   *   Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} - A_p(w) - \sigma B_p(w)
    * @f]
    * with
    * @f[
-   *   A_p(w) = 2 (2\pi)^(p-1) (-p)! / (2 \pi)^(-p/2)
-   *           (1 + w^2/(4 pi^2))^{-1/2 + p/2}
-   *                          \cos((1 - p) ArcTan(2 pi/ w))
+   *   A_p(w) = 2 (2\pi)^{p-1} \frac{(-p)!}{(2\pi)^{-p/2}}
+   *           \left(1 + \frac{w^2}{(4\pi^2}\right)^{(p-1)/2}
+   *          \cos\left[(1 - p)ArcTan\left(\frac{2\pi}{w}\right)\right]
    * @f]
    * and 
    * @f[
-   *   B_p(w) = - 2 (2 \pi)^(p-1) \sum \limits_{k = 0}^\infty \Gamma(2 + 2k - p)
-   *           / (2k+1)! (-1)^k (w/2\pi)^(2k+1) (\zeta(2 + 2k - p) - 1)
+   *   B_p(w) = - 2 (2 \pi)^{p-1} \sum_{k = 0}^{\infty} 
+   *           \frac{\Gamma(2 + 2k - p)}{(2k+1)!}
+   *           (-1)^k \left(\frac{w}{2\pi}\right)^{2k+1} (\zeta(2 + 2k - p) - 1)
    * @f]
    * This is suitable for @f$ |w| < 2 \pi @f$
    * The original series is (This might be worthwhile if we use
    * the already present table of the Bernoullis)
    * @f[
-   *   Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} - \sigma (2 \pi)^p /\pi
-   *              \sum \limits_{k = 0}^\infty
-   *               \Gamma(2 + 2k - p)/ (2k+1)! (-1)^k (w/2\pi)^(2k+1)
-   *             \zeta(2 + 2k - p)
+   *   Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} - \sigma (2\pi)^p /\pi
+   *              \sum_{k = 0}^{\infty}
+   *           \frac{\Gamma(2 + 2k - p)}{(2k+1)!}
+   *           (-1)^k \left(\frac{w}{2\pi}\right)^{2k+1} \zeta(2 + 2k - p)
    * @f]
    *
    * @param __n the integral index @f$ n = 4k @f$.
@@ -445,28 +448,28 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f$ p = 1 + 4k (\sigma = 1) @f$ or @f$ p = 3 + 4k  (\sigma = -1) @f$.
    *
    * @f[
-   *   Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} + \sigma * A_p(w) - \sigma * B_p(w)
+   *   Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} + \sigma A_p(w) - \sigma B_p(w)
    * @f]
    * with
    * @f[
-   *   A_p(w) = 2 (2\pi)^(p-1) \Gamma(1-p)
-   *          (1 + \frac{w^2}{4\pi^2})^{-1/2 + p/2}
+   *   A_p(w) = 2 (2\pi)^{p-1} \Gamma(1-p)
+   *          \left(1 + \frac{w^2}{4\pi^2}\right)^{-1/2 + p/2}
    *           \cos((1 - p) ArcTan(2 \pi / w))
    * @f]
    * and 
    * @f[
-   *   B_p(w) = 2 (2 pi)^(p-1)
-   ^        \sum_{k = 0}^\infty \frac{\Gamma(1 + 2k - p)}{(2k)!}
-   *          (\frac{-w^2}{4 \pi^2})^k (\zeta(1 + 2k - p) - 1)
+   *   B_p(w) = 2(2\pi)^{p-1}\sum_{k=0}^{\infty}\frac{\Gamma(1 + 2k - p)}{(2k)!}
+   *      \left(\frac{-w^2}{4 \pi^2}\right)^k \left(\zeta(1 + 2k - p) - 1\right)
    * @f]
    * This is suitable for @f$ |w| < 2 \pi @f$.
    * The use of evenzeta gives a speedup of about 50
    * The original series is (This might be worthwhile if we use
    * the already present table of the Bernoullis)
    * @f[
-   *   Li_p(e^w) = \Gamma(1-p) * (-w)^{p-1}
-   *      - \sigma 2(2 \pi)^(p-1) * \sum_{k = 0}^\infty
-   *       \Gamma(1 + 2k - p)/ (2k)! (-1)^k (w/2/\pi)^(2k) \zeta(1 + 2k - p)
+   *   Li_p(e^w) = \Gamma(1-p) (-w)^{p-1}
+   *      - 2\sigma(2\pi)^{p-1} \sum_{k = 0}^{\infty}
+   *       \frac{\Gamma(1 + 2k - p)}{(2k)!}
+   *       (-1)^k \left(\frac{w}{2\pi}\right)^{2k} \zeta(1 + 2k - p)
    * @f]
    *
    * @param __n the integral index n = 4k.
@@ -546,14 +549,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The defining series is
    * @f[
-   *   Li_s(e^w) = A_s(w) + B_s(w) + \Gamma(1-s)(-w)^(s-1)
+   *   Li_s(e^w) = A_s(w) + B_s(w) + \Gamma(1-s)(-w)^{s-1}
    * @f]
    * with
    * @f[
    *   A_s(w) = \sum_{k=0}^{m} \zeta(s-k)w^k/k!
    * @f]
    * @f[
-   *   B_s(w) = \sum_{k=m+1}^\infty \sin(\pi/2(s-k))
+   *   B_s(w) = \sum_{k=m+1}^{\infty} \sin(\pi/2(s-k))
    *             \Gamma(1-s+k)\zeta(1-s+k) (w/2/\pi)^k/k!
    * @f]
    *
@@ -573,7 +576,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __phase = std::polar(_Tp{1}, _S_pi_2 * __s);
       auto __cp = std::real(__phase);
       auto __sp = std::imag(__phase);
-      // This is \Gamma(1-s)(-w)^(s-1)
+      // This is \Gamma(1-s)(-w)^{s-1}
       __res += _S_pi / (_Tp{2} * __sp * __cp)
 	  * std::exp(-__log_gamma(__s) + (__s - _Tp{1}) * std::log(-__w));
       auto __fac = _Tp{1};
@@ -631,8 +634,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * This function implements the asymptotic series for the polylog.
    * It is given by
    * @f[
-   *    2 \sum_{k=0}^\infty \zeta(2k) w^{s-2k}/\Gamma(s-2k+1)
-   *       -i \pi w^(s-1)/\Gamma(s)
+   *    2 \sum_{k=0}^{\infty} \zeta(2k) w^{s-2k}/\Gamma(s-2k+1)
+   *       -i \pi w^{s-1}/\Gamma(s)
    * @f]
    * for @f$ Re(w) >> 1 @f$
    *
@@ -651,7 +654,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __polylog_exp_asymp(_Tp __s, std::complex<_Tp> __w)
     { // asymptotic expansion
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      // wgamma = w^(s-1) / Gamma(s)
+      // wgamma = w^{s-1} / \Gamma(s)
       auto __wgamma = std::exp((__s - _Tp{1}) * std::log(__w)
 		    - __log_gamma(__s));
       auto __res = std::complex<_Tp>(_Tp{0}, -_S_pi) * __wgamma;
@@ -693,7 +696,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Seems to beat the other expansions for @f$ Re(w) < -\pi/2 - \pi/5 @f$.
    * Note that this is an implementation of the basic series:
    * @f[
-   *   Li_s(e^z) = \sum_{k=1} e^(k*z) * k^(-s)
+   *   Li_s(e^z) = \sum_{k=1} e^{kz} * k^{-s}
    * @f]
    *
    * @param __s is an arbitrary type, integral or float.
@@ -1102,9 +1105,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Hurwitz Zeta function for real s and complex a.
+   * This uses Jonquiere's identity:
    * @f[
-   *    \zeta(a,s) = \frac{\Gamma(1-s)}{(2\pi)^{(1-s)}}
-   *          2\Re{-i\frac{\pi}{2}Li_{1-s}(e^{i2\pi a})}
+   *    \frac{(i2\pi)^s}{\Gamma(s)}\zeta(a,1-s) = 
+   *          Li_s(e^{i2\pi a}) + (-1)^s Li_s(e^{-i2\pi a})
    * @f]
    * @param __s The real argument
    * @param __a The complex parameter

@@ -23,6 +23,9 @@ template<typename _Tp>
       std::__throw_domain_error(__N("__ibeta_inv: "
 				"incomplete beta function out of range"));
     const auto _Beta = std::beta(__a, __b);
+
+    __gnu_cxx::__root_bracket([__a, __b](_Tp __x){ return __gnu_cxx::ibeta(__a, __b, __x); },
+		 _Tp{0}, _Tp{1});
 /*
     auto _Ix = _Ibeta;
     auto _Iy = _Tp{1} - _Ix;

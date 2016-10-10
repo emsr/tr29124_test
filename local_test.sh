@@ -103,8 +103,6 @@ ${makedir} ${text_dir}/ellnome
 ${makedir} ${text_dir}/factorial
 ${makedir} ${text_dir}/fresnel_c
 ${makedir} ${text_dir}/fresnel_s
-${makedir} ${text_dir}/tgamma_lower
-${makedir} ${text_dir}/tgamma
 ${makedir} ${text_dir}/gegenbauer
 ${makedir} ${text_dir}/heuman_lambda
 ${makedir} ${text_dir}/hurwitz_zeta
@@ -118,6 +116,7 @@ ${makedir} ${text_dir}/lbincoef
 ${makedir} ${text_dir}/ldouble_factorial
 ${makedir} ${text_dir}/legendre_q
 ${makedir} ${text_dir}/lfactorial
+${makedir} ${text_dir}/lgamma
 ${makedir} ${text_dir}/lpochhammer_lower
 ${makedir} ${text_dir}/lpochhammer
 ${makedir} ${text_dir}/owens_t
@@ -137,6 +136,8 @@ ${makedir} ${text_dir}/sph_bessel_k
 ${makedir} ${text_dir}/sph_hankel_1
 ${makedir} ${text_dir}/sph_hankel_2
 ${makedir} ${text_dir}/sph_harmonic
+${makedir} ${text_dir}/tgamma
+${makedir} ${text_dir}/tgamma_lower
 ${makedir} ${text_dir}/theta_1
 ${makedir} ${text_dir}/theta_2
 ${makedir} ${text_dir}/theta_3
@@ -176,8 +177,6 @@ ${copy} check/check_expint_en.cc          ${text_dir}/expint/check_value.cc
 ${copy} check/check_factorial.cc          ${text_dir}/factorial/check_value.cc
 ${copy} check/check_fresnel_c.cc          ${text_dir}/fresnel_c/check_value.cc
 ${copy} check/check_fresnel_s.cc          ${text_dir}/fresnel_s/check_value.cc
-${copy} check/check_tgamma_lower.cc       ${text_dir}/tgamma_lower/check_value.cc
-${copy} check/check_tgamma.cc             ${text_dir}/tgamma/check_value.cc
 ${copy} check/check_gegenbauer.cc         ${text_dir}/gegenbauer/check_value.cc
 ${copy} check/check_heuman_lambda.cc      ${text_dir}/heuman_lambda/check_value.cc
 ${copy} check/check_hurwitz_zeta.cc       ${text_dir}/hurwitz_zeta/check_value.cc
@@ -191,6 +190,7 @@ ${copy} check/check_lbincoef.cc           ${text_dir}/lbincoef/check_value.cc
 ${copy} check/check_ldouble_factorial.cc  ${text_dir}/ldouble_factorial/check_value.cc
 ${copy} check/check_legendre_q.cc         ${text_dir}/legendre_q/check_value.cc
 ${copy} check/check_lfactorial.cc         ${text_dir}/lfactorial/check_value.cc
+${copy} check/check_lgamma.cc             ${text_dir}/lgamma/check_value.cc
 ${copy} check/check_lpochhammer_lower.cc  ${text_dir}/lpochhammer_lower/check_value.cc
 ${copy} check/check_lpochhammer.cc        ${text_dir}/lpochhammer/check_value.cc
 ${copy} check/check_owens_t.cc            ${text_dir}/owens_t/check_value.cc
@@ -211,6 +211,8 @@ ${copy} check/check_sph_bessel_k.cc       ${text_dir}/sph_bessel_k/check_value.c
 ${copy} check/check_sph_hankel_1.cc       ${text_dir}/sph_hankel_1/check_value.cc
 ${copy} check/check_sph_hankel_2.cc       ${text_dir}/sph_hankel_2/check_value.cc
 ${copy} check/check_sph_harmonic.cc       ${text_dir}/sph_harmonic/check_value.cc
+${copy} check/check_tgamma.cc             ${text_dir}/tgamma/check_value.cc
+${copy} check/check_tgamma_lower.cc       ${text_dir}/tgamma_lower/check_value.cc
 ${copy} check/check_theta_1.cc            ${text_dir}/theta_1/check_value.cc
 ${copy} check/check_theta_2.cc            ${text_dir}/theta_2/check_value.cc
 ${copy} check/check_theta_3.cc            ${text_dir}/theta_3/check_value.cc

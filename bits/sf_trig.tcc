@@ -34,6 +34,23 @@
 
 #include <bits/complex_util.h>
 
+namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
+{
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
+  /**
+   * A struct to store a cosine and a sine value.
+   */
+  template<typename _Tp>
+    struct __sincos_t
+    {
+      _Tp sin_value;
+      _Tp cos_value;
+    };
+
+_GLIBCXX_END_NAMESPACE_VERSION
+} // namespace __gnu_cxx
+
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 // Implementation-space details.
@@ -44,7 +61,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the reperiodized sine of argument x:
    * @f[
-   *   \sin_pi(x) = \sin(\pi x)
+   *   \sin_\pi(x) = \sin(\pi x)
    * @f]
    */
   template<typename _Tp>
@@ -75,7 +92,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the reperiodized hyperbolic sine of argument x:
    * @f[
-   *   \sinh_pi(x) = \sinh(\pi x)
+   *   \sinh_\pi(x) = \sinh(\pi x)
    * @f]
    */
   template<typename _Tp>
@@ -94,7 +111,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the reperiodized cosine of argument x:
    * @f[
-   *   \cos_pi(x) = \cos(\pi x)
+   *   \cos_\pi(x) = \cos(\pi x)
    * @f]
    */
   template<typename _Tp>
@@ -122,7 +139,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the reperiodized hyperbolic cosine of argument x:
    * @f[
-   *   \cosh_pi(x) = \cosh(\pi x)
+   *   \cosh_\pi(x) = \cosh(\pi x)
    * @f]
    */
   template<typename _Tp>
@@ -157,7 +174,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the reperiodized hyperbolic tangent of argument x:
    * @f[
-   *   \tanh_pi(x) = \tanh(\pi x)
+   *   \tanh_\pi(x) = \tanh(\pi x)
    * @f]
    */
   template<typename _Tp>
@@ -168,27 +185,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = std::__detail::__num_traits_t<_Val>;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
       return std::tanh(_S_pi * __x);
-    }
-
-  /**
-   * Return the reperiodized hyperbolic sine of complex argument z:
-   * @f[
-   *   \sinh_\pi(z) = \sinh(\pi z)
-   *     = \sinh(\pi x) \cos_\pi(y) + i \cosh(\pi x) \sin_\pi(y)
-   * @f]
-   */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __sinh_pi(std::complex<_Tp> __z)
-    {
-      using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-      constexpr auto _S_i = std::complex<_Tp>{0, 1};
-      auto __x = std::real(__z);
-      auto __y = std::imag(__z);
-      return std::sinh(_S_pi * __x) * __cos_pi(__y)
-	+ _S_i * std::cosh(_S_pi * __x) * __sin_pi(__y);
     }
 
   /**
@@ -213,9 +209,30 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
+   * Return the reperiodized hyperbolic sine of complex argument z:
+   * @f[
+   *   \sinh_\pi(z) = \sinh(\pi z)
+   *     = \sinh(\pi x) \cos_\pi(y) + i \cosh(\pi x) \sin_\pi(y)
+   * @f]
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    __sinh_pi(std::complex<_Tp> __z)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      auto __x = std::real(__z);
+      auto __y = std::imag(__z);
+      return std::sinh(_S_pi * __x) * __cos_pi(__y)
+	+ _S_i * std::cosh(_S_pi * __x) * __sin_pi(__y);
+    }
+
+  /**
    * Return the reperiodized cosine of complex argument z:
    * \cos_\pi(z) = \cos(\pi z)
-   *    = \cos_\pi(x) \cosh_\pi(y) - i \sin_\pi(x) * \sinh_\pi(y)
+   *    = \cos_\pi(x) \cosh_\pi(y) - i \sin_\pi(x) \sinh_\pi(y)
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -292,6 +309,102 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __tanh = std::tanh(_S_pi * __x);
       auto __tan = __tan_pi(__y);
       return (__tanh + _S_i * __tan) / (1 + _S_i * __tanh * __tan);
+    }
+
+  /**
+   * 
+   */
+  template<typename _Tp>
+    inline __gnu_cxx::__sincos_t<_Tp>
+    __sincos(_Tp __x)
+    { return __gnu_cxx::__sincos_t<_Tp>{std::sin(__x), std::cos(__x)}; }
+
+  /**
+   * 
+   */
+  template<>
+    inline __gnu_cxx::__sincos_t<float>
+    __sincos(float __x)
+    {
+      float __sin, __cos;
+      __builtin_sincosf(__x, &__sin, &__cos);
+      return __gnu_cxx::__sincos_t<float>{__sin, __cos};
+    }
+
+  /**
+   * 
+   */
+  template<>
+    inline __gnu_cxx::__sincos_t<double>
+    __sincos(double __x)
+    {
+      double __sin, __cos;
+      __builtin_sincos(__x, &__sin, &__cos);
+      return __gnu_cxx::__sincos_t<double>{__sin, __cos};
+    }
+
+  /**
+   * 
+   */
+  template<>
+    inline __gnu_cxx::__sincos_t<long double>
+    __sincos(long double __x)
+    {
+      long double __sin, __cos;
+      __builtin_sincosl(__x, &__sin, &__cos);
+      return __gnu_cxx::__sincos_t<long double>{__sin, __cos};
+    }
+
+  /**
+   * Reperiodized sincos.
+   */
+  template<typename _Tp>
+    __gnu_cxx::__sincos_t<_Tp>
+    __sincos_pi(_Tp __x)
+    {
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_NaN = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      if (std::isnan(__x))
+	return __gnu_cxx::__sincos_t<_Tp>{_S_NaN, _S_NaN};
+      else if (__x < _Tp{0})
+	{
+	  __gnu_cxx::__sincos_t<_Tp> __tempsc = __sincos_pi(-__x);
+	  return __gnu_cxx::__sincos_t<_Tp>{-__tempsc.sin_value,
+					     __tempsc.cos_value};
+	}
+      else if (__x < _Tp{0.5L})
+	return __sincos(_S_pi * __x);
+      else if (__x < _Tp{1})
+	{
+	  __gnu_cxx::__sincos_t<_Tp>
+	    __tempsc = __sincos(_S_pi * (_Tp{1} - __x));
+	  return __gnu_cxx::__sincos_t<_Tp>{__tempsc.sin_value,
+					   -__tempsc.cos_value};
+	}
+      else
+	{
+	  auto __nu = std::floor(__x);
+	  auto __arg = __x - __nu;
+	  auto __sign = (int(__nu) & 1) == 1 ? _Tp{-1} : _Tp{+1};
+
+	  auto __sinval = (__arg < _Tp{0.5L})
+			? std::sin(_S_pi * __arg)
+			: std::sin(_S_pi * (_Tp{1} - __arg));
+	  auto __cosval = std::cos(_S_pi * __arg);
+	  return __gnu_cxx::__sincos_t<_Tp>{__sign * __sinval,
+					    __sign * __cosval};
+	}
+    }
+
+  /**
+   * Reperiodized complex constructor.
+   */
+  template<typename _Tp>
+    inline std::complex<_Tp>
+    __polar_pi(_Tp __rho, _Tp __phi_pi)
+    {
+      __gnu_cxx::__sincos_t<_Tp> __sc = __sincos_pi(__phi_pi);
+      return std::complex<_Tp>(__rho * __sc.cos_value, __rho * __sc.sin_value);
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
