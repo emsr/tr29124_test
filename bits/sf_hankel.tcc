@@ -121,13 +121,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static constexpr auto _S_inf     = __gnu_cxx::__max<_Tp>();
 
       static constexpr auto _S_1d4   = _Tp{0.25L};
-      static constexpr auto _S_1d3   = _Tp{0.3333333333333333333333333333333333333333L};
+      static constexpr auto _S_1d3   = _Tp{1} / _Tp{3};
       static constexpr auto _S_1d2   = _Tp{0.5L};
-      static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666666L};
-      static constexpr auto _S_2pi   = _Tp{6.283185307179586476925286766559005768391L};
+      static constexpr auto _S_2d3   = _Tp{2} / _Tp{3};
+      static constexpr auto _S_2pi   = __gnu_cxx::__math_constants<_Tp>::__2_pi;
       static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152L}; // -(2/3)ln(2/3)
-      static constexpr auto _S_sqrt2 = _Tp{1.414213562373095048801688724209698078569L};
-      static constexpr auto _S_4d3   = _Tp{1.333333333333333333333333333333333333333L};
+      static constexpr auto _S_sqrt2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
+      static constexpr auto _S_4d3   = _Tp{4} / _Tp{3};
 
       static constexpr __cmplx __zone{_Tp{1}, _Tp{0}};
       static constexpr __cmplx _S_j{_Tp{0}, _Tp{1}};
@@ -220,8 +220,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using __cmplx = std::complex<_Tp>;
 
       // expp and expm are exp(2*pi*i/3) and its reciprocal, respectively.
-      static constexpr auto __expp = __cmplx{-0.5L,  0.8660254037844386467637231707529361834727L};
-      static constexpr auto __expm = __cmplx{-0.5L, -0.8660254037844386467637231707529361834727L};
+      static constexpr auto _S_sqrt3d2
+	= __gnu_cxx::__math_constants<_Tp>::__root_3_div_2;
+      static constexpr auto __expp = __cmplx{-0.5L,  _S_sqrt3d2};
+      static constexpr auto __expm = __cmplx{-0.5L, -_S_sqrt3d2};
 
       try
 	{
@@ -258,8 +260,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using __cmplx = std::complex<_Tp>;
 
-      static constexpr __cmplx __e2pd3{-0.5L,  0.8660254037844386467637231707529361834727L};
-      static constexpr __cmplx __d2pd3{-0.5L, -0.8660254037844386467637231707529361834727L};
+      static constexpr auto _S_sqrt3d2
+	= __gnu_cxx::__math_constants<_Tp>::__root_3_div_2;
+      static constexpr __cmplx __e2pd3{-0.5L,  _S_sqrt3d2};
+      static constexpr __cmplx __d2pd3{-0.5L, -_S_sqrt3d2};
 
       try
 	{
