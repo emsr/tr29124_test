@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['airy_5fai',['airy_ai',['../group__gnu__math__spec__func.html#ga8eff81346e95e9987002ea52fe1e29a7',1,'__gnu_cxx']]],
+  ['airy_5fai',['airy_ai',['../group__gnu__math__spec__func.html#ga53243cdb83abeb008fa90d8a098768af',1,'__gnu_cxx::airy_ai(_Tp __x)'],['../group__gnu__math__spec__func.html#gab61dcd6c20c602711544b39d2429038b',1,'__gnu_cxx::airy_ai(std::complex&lt; _Tp &gt; __x)']]],
   ['airy_5faif',['airy_aif',['../group__gnu__math__spec__func.html#gaf317ba724c44b3a8271fe341d9870173',1,'__gnu_cxx']]],
   ['airy_5fail',['airy_ail',['../group__gnu__math__spec__func.html#ga800fdb61c672ae1831f4ca4250d657de',1,'__gnu_cxx']]],
-  ['airy_5fbi',['airy_bi',['../group__gnu__math__spec__func.html#ga65253611eb5aec804f9021b085be2a48',1,'__gnu_cxx']]],
+  ['airy_5fbi',['airy_bi',['../group__gnu__math__spec__func.html#ga812ca309bff1b0ae2bbe1183a0bc47d5',1,'__gnu_cxx::airy_bi(_Tp __x)'],['../group__gnu__math__spec__func.html#ga6dee14118a9bc3ccfa6f1d2b96b4be10',1,'__gnu_cxx::airy_bi(std::complex&lt; _Tp &gt; __x)']]],
   ['airy_5fbif',['airy_bif',['../group__gnu__math__spec__func.html#ga2ade465827bdba7370abbcce78e54912',1,'__gnu_cxx']]],
   ['airy_5fbil',['airy_bil',['../group__gnu__math__spec__func.html#ga59240b3f40177e5187f3f194f624f0f8',1,'__gnu_cxx']]],
   ['assoc_5flaguerre',['assoc_laguerre',['../group__tr29124__math__spec__func.html#ga377bb7e038c464a27dfe0573fd2d7b33',1,'std']]],

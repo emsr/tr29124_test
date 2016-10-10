@@ -3,7 +3,6 @@ var sf__airy_8tcc =
     [ "_Airy", "classstd_1_1____detail_1_1__Airy.html", "classstd_1_1____detail_1_1__Airy" ],
     [ "_Airy_asymp", "classstd_1_1____detail_1_1__Airy__asymp.html", "classstd_1_1____detail_1_1__Airy__asymp" ],
     [ "_Airy_asymp_data", "structstd_1_1____detail_1_1__Airy__asymp__data.html", null ],
-    [ "_Airy_asymp_data< __float128 >", "structstd_1_1____detail_1_1__Airy__asymp__data_3_01____float128_01_4.html", null ],
     [ "_Airy_asymp_data< double >", "structstd_1_1____detail_1_1__Airy__asymp__data_3_01double_01_4.html", null ],
     [ "_Airy_asymp_data< float >", "structstd_1_1____detail_1_1__Airy__asymp__data_3_01float_01_4.html", null ],
     [ "_Airy_asymp_data< long double >", "structstd_1_1____detail_1_1__Airy__asymp__data_3_01long_01double_01_4.html", null ],

@@ -6,6 +6,7 @@ var searchData=
   ['sf_5fcardinal_2etcc',['sf_cardinal.tcc',['../sf__cardinal_8tcc.html',1,'']]],
   ['sf_5fchebyshev_2etcc',['sf_chebyshev.tcc',['../sf__chebyshev_8tcc.html',1,'']]],
   ['sf_5fdawson_2etcc',['sf_dawson.tcc',['../sf__dawson_8tcc.html',1,'']]],
+  ['sf_5fdistributions_2etcc',['sf_distributions.tcc',['../sf__distributions_8tcc.html',1,'']]],
   ['sf_5fellint_2etcc',['sf_ellint.tcc',['../sf__ellint_8tcc.html',1,'']]],
   ['sf_5fexpint_2etcc',['sf_expint.tcc',['../sf__expint_8tcc.html',1,'']]],
   ['sf_5ffresnel_2etcc',['sf_fresnel.tcc',['../sf__fresnel_8tcc.html',1,'']]],
@@ -23,6 +24,7 @@ var searchData=
   ['sf_5fowens_5ft_2etcc',['sf_owens_t.tcc',['../sf__owens__t_8tcc.html',1,'']]],
   ['sf_5fpolylog_2etcc',['sf_polylog.tcc',['../sf__polylog_8tcc.html',1,'']]],
   ['sf_5ftheta_2etcc',['sf_theta.tcc',['../sf__theta_8tcc.html',1,'']]],
+  ['sf_5ftrig_2etcc',['sf_trig.tcc',['../sf__trig_8tcc.html',1,'']]],
   ['sf_5ftrigint_2etcc',['sf_trigint.tcc',['../sf__trigint_8tcc.html',1,'']]],
   ['sf_5fzeta_2etcc',['sf_zeta.tcc',['../sf__zeta_8tcc.html',1,'']]],
   ['specfun_2eh',['specfun.h',['../specfun_8h.html',1,'']]]
