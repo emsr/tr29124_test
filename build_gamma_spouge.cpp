@@ -24,7 +24,7 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o build_gamma_spouge build_gamma_
 
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       const auto _S_pi  = __gnu_cxx::__math_constants<_Tp>::__pi;
-      const auto _S_2pi = _Tp{2} * _S_pi;
+      const auto _S_2pi = __gnu_cxx::__math_constants<Tp>::__2_pi;
       auto __a = _Tp{1};
       const auto __fact = _Tp{1} / std::sqrt(_S_2pi);
       while (_S_eps <= __fact * std::pow(_S_2pi, -__a) / std::sqrt(__a))

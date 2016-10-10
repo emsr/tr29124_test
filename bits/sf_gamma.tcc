@@ -1610,7 +1610,7 @@ _S_neg_double_factorial_table[999]
     _GLIBCXX14_CONSTEXPR _Tp
     __bernoulli_series(unsigned int __n)
     {
-      constexpr unsigned long _S_num_bern_tab = 32;
+      constexpr unsigned long _S_num_bern_tab = 28;
       constexpr _Tp
       _S_bernoulli_tab[_S_num_bern_tab]
       {
@@ -1625,11 +1625,7 @@ _S_neg_double_factorial_table[999]
 	-_Tp{3617ULL}          / _Tp{510ULL},     _Tp{0ULL},
 	 _Tp{43867ULL}         / _Tp{798ULL},     _Tp{0ULL},
 	-_Tp{174611ULL}        / _Tp{330ULL},     _Tp{0ULL},
-	 _Tp{854513ULL}        / _Tp{138ULL},     _Tp{0ULL},
-	-_Tp{236364091ULL}     / _Tp{2730ULL},    _Tp{0ULL},
-	 _Tp{8553103ULL}       / _Tp{6ULL},       _Tp{0ULL},
-        -_Tp{23749461029ULL}   / _Tp{870ULL},     _Tp{0ULL},
-         _Tp{8615841276005ULL} / _Tp{14322ULL},   _Tp{0ULL}
+	 _Tp{854513ULL}        / _Tp{138ULL},     _Tp{0ULL}
       };
       constexpr _Tp _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
 
@@ -1706,18 +1702,20 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
+      constexpr auto _S_ln2pi
+	= __gnu_cxx::__math_constants<_Real>::__ln_2
+	+ __gnu_cxx::__math_constants<_Real>::__ln_pi;
 
       auto __lg = (__x - _Real{0.5L}) * std::log(__x) - __x
-		+ _Real{0.5L} * std::log(_Real{2}
-				* __gnu_cxx::__math_constants<_Real>::__pi);
+		+ _Real{0.5L} * _S_ln2pi;
 
-      const auto __xx = __x * __x;
-      auto __help = _Real{1} / __x;
+      const auto __xx = _Real{1} / (__x * __x);
+      auto __xk = _Real{1} / __x;
       for ( unsigned int __i = 1; __i < 20; ++__i )
 	{
 	  const auto __2i = _Tp(2 * __i);
-	  __help /= __2i * (__2i - _Tp{1}) * __xx;
-	  __lg += __bernoulli<_Tp>(__2i) * __help;
+	  __lg += __bernoulli<_Tp>(__2i) * __xk / (__2i * (__2i - _Tp{1}));
+	  __xk *= __xx;
 	}
 
       return __lg;
