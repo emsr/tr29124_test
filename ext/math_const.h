@@ -49,66 +49,115 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static_assert(std::is_floating_point<_RealType>::value,
 		    "template argument not a floating point type");
 
+      // Constant @f$ 4\pi @f$.
+      static constexpr _RealType __4_pi
+      	= 12.56637061435917295385057353311801153678L;
+      // Constant @f$ 4\pi/3 @f$.
+      static constexpr _RealType __4_pi_div_3
+      	= 4.188790204786390984616857844372670512253L;
+      // Constant @f$ 2\pi @f$.
+      static constexpr _RealType __2_pi
+      	= 6.283185307179586476925286766559005768391L;
       // Constant @f$ \pi @f$.
-      static constexpr _RealType __pi = 3.1415926535897932384626433832795029L;
+      static constexpr _RealType __pi
+      	= 3.141592653589793238462643383279502884195L;
       // Constant @f$ \pi / 2 @f$.
-      static constexpr _RealType __pi_half = 1.5707963267948966192313216916397514L;
+      static constexpr _RealType __pi_half
+      	= 1.570796326794896619231321691639751442098L;
       // Constant @f$ \pi / 3 @f$.
-      static constexpr _RealType __pi_third = 1.0471975511965977461542144610931676L;
+      static constexpr _RealType __pi_third
+      	= 1.047197551196597746154214461093167628063L;
       // Constant @f$ \pi / 4 @f$.
-      static constexpr _RealType __pi_quarter = 0.7853981633974483096156608458198757L;
+      static constexpr _RealType __pi_quarter
+      	= 0.785398163397448309615660845819875721049L;
       // Constant @f$ \sqrt(\pi / 2) @f$.
-      static constexpr _RealType __root_pi = 1.772453850905516027298167483341145182797L;
+      static constexpr _RealType __root_pi
+      	= 1.772453850905516027298167483341145182798L;
+      static constexpr _RealType __cbrt_pi
+      	= 1.464591887561523263020142527263790391736L;
       // Constant @f$ \sqrt(\pi / 2) @f$.
-      static constexpr _RealType __root_pi_div_2 = 1.2533141373155002512078826424055226L;
+      static constexpr _RealType __root_pi_div_2
+      	= 1.253314137315500251207882642405522626505L;
       // Constant @f$ 1 / \pi @f$.
-      static constexpr _RealType __one_div_pi = 0.3183098861837906715377675267450287L;
+      static constexpr _RealType __one_div_pi
+      	= 0.318309886183790671537767526745028724069L;
       // Constant @f$ 2 / \pi @f$.
-      static constexpr _RealType __two_div_pi = 0.6366197723675813430755350534900574L;
+      static constexpr _RealType __two_div_pi
+      	= 0.636619772367581343075535053490057448138L;
       // Constant @f$ 2 / \sqrt(\pi) @f$.
-      static constexpr _RealType __two_div_root_pi = 1.1283791670955125738961589031215452L;
+      static constexpr _RealType __two_div_root_pi
+      	= 1.128379167095512573896158903121545171688L;
       // Constant: @f$ \pi^2/6 @f$.
-      static constexpr _RealType __pi_sqr_div_6 = 1.6449340668482264364724151666460251L;
+      static constexpr _RealType __pi_sqr_div_6
+      	= 1.644934066848226436472415166646025189221L;
       // Constant: radians to degree conversion.
-      static constexpr _RealType __deg = _RealType{180} / __pi;
+      static constexpr _RealType __deg
+      	= _RealType{180} / __pi;
       // Constant: degree to radians conversion.
-      static constexpr _RealType __rad = __pi / _RealType{180};
+      static constexpr _RealType __rad
+      	= __pi / _RealType{180};
 
       // Constant Euler's number @f$ e @f$.
-      static constexpr _RealType __e = 2.7182818284590452353602874713526625L;
+      static constexpr _RealType __e
+      	= 2.718281828459045235360287471352662497759L;
       // Constant @f$ 1 / e @f$.
-      static constexpr _RealType __one_div_e = 0.36787944117144232159552377016146087L;
+      static constexpr _RealType __one_div_e
+      	= 0.367879441171442321595523770161460867446L;
       // Constant @f$ \log_2(e) @f$.
-      static constexpr _RealType __log2_e = 1.4426950408889634073599246810018921L;
+      static constexpr _RealType __log2_e
+      	= 1.442695040888963407359924681001892137427L;
       // Constant @f$ \log_10(e) @f$.
-      static constexpr _RealType __log10_e = 0.4342944819032518276511289189166051L;
+      static constexpr _RealType __log10_e
+      	= 0.434294481903251827651128918916605082294L;
       // Constant @f$ \ln(2) @f$.
-      static constexpr _RealType __ln_2 = 0.6931471805599453094172321214581766L;
+      static constexpr _RealType __ln_2
+      	= 0.693147180559945309417232121458176568075L;
       // Constant @f$ \ln(3) @f$.
-      static constexpr _RealType __ln_3 = 1.0986122886681096913952452369225257L;
+      static constexpr _RealType __ln_3
+      	= 1.098612288668109691395245236922525704648L;
       // Constant @f$ \ln(10) @f$.
-      static constexpr _RealType __ln_10 = 2.3025850929940456840179914546843642L;
+      static constexpr _RealType __ln_10
+      	= 2.302585092994045684017991454684364207602L;
       ///  Constant @f$ \log(\pi) @f$.
-      static constexpr _RealType __ln_pi = 1.1447298858494001741434273513530587L;
+      static constexpr _RealType __ln_pi
+      	= 1.144729885849400174143427351353058711646L;
 
       // Constant Euler-Mascheroni @f$ \gamma_E @f$.
-      static constexpr _RealType __gamma_e = 0.5772156649015328606065120900824024L;
+      static constexpr _RealType __gamma_e
+      	= 0.577215664901532860606512090082402431043L;
       // Constant Golden Ratio @f$ \phi @f$.
-      static constexpr _RealType __phi = 1.6180339887498948482045868343656381L;
-
+      static constexpr _RealType __phi
+      	= 1.618033988749894848204586834365638117720L;
+      // Catalan's constant.
+      static constexpr _RealType __catalan
+      	= 0.915965594177219015054603514932384110773L;
       // Constant @f$ \sqrt(2) @f$.
-      static constexpr _RealType __root_2 = 1.4142135623730950488016887242096981L;
+      static constexpr _RealType __root_2
+      	= 1.414213562373095048801688724209698078569L;
       // Constant @f$ \sqrt(3) @f$.
-      static constexpr _RealType __root_3 = 1.7320508075688772935274463415058724L;
+      static constexpr _RealType __root_3
+      	= 1.732050807568877293527446341505872366945L;
+      // Constant @f$ \sqrt(3) @f$.
+      static constexpr _RealType __root_3_div_2
+      	= 0.866025403784438646763723170752936183473L;
       // Constant @f$ \sqrt(5) @f$.
-      static constexpr _RealType __root_5 = 2.2360679774997896964091736687312762L;
+      static constexpr _RealType __root_5
+      	= 2.236067977499789696409173668731276235440L;
       // Constant @f$ \sqrt(7) @f$.
-      static constexpr _RealType __root_7 = 2.6457513110645905905016157536392604L;
+      static constexpr _RealType __root_7
+      	= 2.645751311064590590501615753639260425706L;
       // Constant @f$ 1 / \sqrt(2) @f$.
-      static constexpr _RealType __one_div_root_2 = 0.7071067811865475244008443621048490L;
+      static constexpr _RealType __one_div_root_2
+      	= 0.707106781186547524400844362104849039285L;
     };
 
   // And the template definitions for the constants.
+  template<typename _RealType>
+    constexpr _RealType __math_constants<_RealType>::__4_pi;
+  template<typename _RealType>
+    constexpr _RealType __math_constants<_RealType>::__4_pi_div_3;
+  template<typename _RealType>
+    constexpr _RealType __math_constants<_RealType>::__2_pi;
   template<typename _RealType>
     constexpr _RealType __math_constants<_RealType>::__pi;
   template<typename _RealType>
@@ -119,6 +168,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     constexpr _RealType __math_constants<_RealType>::__pi_quarter;
   template<typename _RealType>
     constexpr _RealType __math_constants<_RealType>::__root_pi;
+  template<typename _RealType>
+    constexpr _RealType __math_constants<_RealType>::__cbrt_pi;
   template<typename _RealType>
     constexpr _RealType __math_constants<_RealType>::__root_pi_div_2;
   template<typename _RealType>
@@ -153,6 +204,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     constexpr _RealType __math_constants<_RealType>::__gamma_e;
   template<typename _RealType>
     constexpr _RealType __math_constants<_RealType>::__phi;
+  template<typename _RealType>
+    constexpr _RealType __math_constants<_RealType>::__catalan;
   template<typename _RealType>
     constexpr _RealType __math_constants<_RealType>::__root_2;
   template<typename _RealType>

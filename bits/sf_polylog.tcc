@@ -71,7 +71,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __clamp_0_m2pi(std::complex<_Tp> __w)
     {
-      constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
       constexpr auto _S_i2pi = std::complex<_Tp>{0, _S_2pi};
       while (__w.imag() > _Tp{0})
 	__w = std::complex<_Tp>(__w.real(), __w.imag() - _S_2pi);
@@ -142,7 +142,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __polylog_exp_pos(unsigned int __s, std::complex<_Tp> __w)
     { // positive integer s
       // Optimization possibility: s are positive integers
-      constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pipio6
       	 = __gnu_cxx::__math_constants<_Tp>::__pi_sqr_div_6;
@@ -220,7 +220,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __polylog_exp_pos(unsigned int __s, _Tp __w)
     { // positive integer s
       // Optimization possibility: s are positive integers.
-      constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       auto __res = std::__detail::__riemann_zeta(_Tp(__s));
       auto __wk = __w;
@@ -293,7 +293,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __polylog_exp_neg(_Tp __s, std::complex<_Tp> __w)
     {
       constexpr auto _S_i = std::complex<_Tp>{0, 1};
-      constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
       // Basic general loop, but s is a negative quantity here
       // FIXME Large s makes problems.
@@ -406,7 +406,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog_exp_neg_even(unsigned int __n, std::complex<_Tp> __w)
     {
-      constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       const auto __np = 1 + __n;
       auto __lnp = __log_gamma(_Tp(__np));
@@ -568,7 +568,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog_exp_pos(_Tp __s, std::complex<_Tp> __w)
     { // positive s
-      constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
       std::complex<_Tp> __res = std::__detail::__riemann_zeta(__s);
@@ -739,7 +739,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog_exp_int_pos(unsigned int __s, std::complex<_Tp> __w)
     {
-      constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
       auto __rw = __w.real();
@@ -837,7 +837,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog_exp_int_neg(int __s, std::complex<_Tp> __w)
     {
-      constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
       if ((((-__s) & 1) == 0) && __gnu_cxx::__fpequal(std::real(__w), _Tp{0}))
@@ -909,7 +909,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog_exp_real_pos(_Tp __s, std::complex<_Tp> __w)
     {
-      constexpr auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
+      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
       auto __rw = __w.real();
@@ -1119,7 +1119,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Cmplx = std::complex<_Tp>;
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_2pi = _Tp{2} * _S_pi;
+      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
       constexpr auto _S_i2pi = _Cmplx{0, _S_2pi};
       constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
       if ((__a.imag() >= _Tp{0}
