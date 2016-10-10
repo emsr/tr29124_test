@@ -74,7 +74,7 @@ namespace __detail
     __weights(std::vector<_Real> __b)
     {
       int __sgn = 1;
-      for (std::size_t __m = 0; __m < __b.size(); ++__m)
+      for (std::size_t __m = 1; __m < __b.size(); ++__m)
 	{
 	  __b[__m] *= _Real(__sgn) / _Real(2 * __m + 1) / _Real(2 * __m + 2);
 	  __sgn = -__sgn;
@@ -249,7 +249,7 @@ namespace __detail
       using _Real = std::__detail::__num_traits_t<_Val>;
       constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
 
-      // Weighted Bernoulli numbers: (-1)^k B_{2k} / ((2k + 1)(2k + 2)), k > 0.
+      // Weighted Bernoulli numbers: (-1)^k B_{2k + 2} / ((2k + 1)(2k + 2)), k >= 0.
       constexpr std::size_t _S_n = 50;
       constexpr _Real
       _S_b[_S_n]
@@ -307,8 +307,8 @@ namespace __detail
       };
 
       auto __z2 = _Real{1} / (__z * __z);
-      auto __J = _Val{};
-      auto __zk = _Val{1};
+      auto __J = _Val{.5};
+      auto __zk = _Val{1} / __z;
       for (auto __b : _S_b)
 	{
 	  auto __term = __b * __zk;
@@ -317,7 +317,7 @@ namespace __detail
 	    break;
 	  __zk *= __z2;
 	}
-      __J /= __z;
+      __J;
 
       return __J;
     }
