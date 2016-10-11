@@ -47,10 +47,6 @@ namespace std _GLIBCXX_VISIBILITY(default)
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   inline __float128
-  abs(__float128 __x) _GLIBCXX_USE_NOEXCEPT
-  { return fabsq(__x); }
-
-  inline __float128
   acos(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return acosq(__x); }
 
