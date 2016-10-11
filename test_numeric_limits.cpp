@@ -1,9 +1,12 @@
-// $HOME/bin/bin/g++ -std=gnu++14 -I. -o test_numeric_limits test_numeric_limits.cpp -lquadmath
+// $HOME/bin/bin/g++ -std=gnu++14 -I. -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr
 
 // LD_LIBRARY_PATH=/$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_numeric_limits > test_numeric_limits.txt
 
+#include <mpreal.h>
+
 #include <bits/numeric_limits.h>
 #include <bits/float128.h>
+#include <bits/numeric_limits_mpreal.h>
 
 #include <iostream>
 #include <iomanip>
@@ -103,4 +106,8 @@ main()
 
   const volatile auto x = 6.66666F;
   test(x);
+
+  long double y = 123.465L;
+  mpfr::mpreal b(y, 256);
+  test(b);
 }
