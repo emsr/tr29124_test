@@ -617,7 +617,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * MPFR - 128 bits.
    */
   constexpr size_t
-  _S_num_zetam1 = 33;
+  _S_num_zetam1 = 41;
 
   constexpr long double
   _S_zetam1[_S_num_zetam1]
@@ -654,7 +654,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     1.862659723513049006403909945416948061669e-9L,  // 29
     9.313274324196681828717647350212198135677e-10L, // 30
     4.656629065033784072989233251220071062704e-10L, // 31
-    2.328311833676505492001455975940495024831e-10L  // 32
+    2.328311833676505492001455975940495024831e-10L, // 32
+    1.164155017270051977592973835456309516528e-10L, // 33
+    5.820772087902700889243685989106305417368e-11L, // 34
+    2.910385044497099686929425227884046410669e-11L, // 35
+    1.455192189104198423592963224531842098334e-11L, // 36
+    7.275959835057481014520869012338059265263e-12L, // 37
+    3.637979547378651190237236355873273513051e-12L, // 38
+    1.818989650307065947584832100730085030987e-12L, // 39
+    9.094947840263889282533118386949087534482e-13L  // 40
   };
 
   /**
@@ -677,17 +685,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
       if (__s == _Real{1})
 	return std::numeric_limits<_Real>::quiet_NaN();
-
-      int __k_max = std::min(1000000,
-			     int(std::pow(_Real{1} / _S_eps, _Real{1} / __s)));
-      auto __zeta_m_1 = _Val{0};
-      for (int __k = __k_max; __k >= 2; --__k)
+      else
 	{
-	  auto __term = std::pow(_Real(__k), -__s);
-	  __zeta_m_1 += __term;
+	  int __k_max = std::min(1000000,
+			    int(std::pow(_Real{1} / _S_eps, _Real{1} / __s)));
+	  auto __zeta_m_1 = _Val{0};
+	  for (int __k = __k_max; __k >= 2; --__k)
+	    {
+	      auto __term = std::pow(_Real(__k), -__s);
+	      __zeta_m_1 += __term;
+	    }
+	  return __zeta_m_1;
 	}
-
-      return __zeta_m_1;
     }
 
 
