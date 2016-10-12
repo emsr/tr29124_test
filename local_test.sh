@@ -21,6 +21,11 @@ fi
 src_dir="$HOME/gcc${suffix}/libstdc++-v3"
 
 
+${makedir} ${utildir}
+
+${copy} specfun_testcase.h              ${utildir}
+
+
 ${makedir} ${test_dir}/01_assoc_laguerre
 ${makedir} ${test_dir}/02_assoc_legendre
 ${makedir} ${test_dir}/03_beta
@@ -42,10 +47,6 @@ ${makedir} ${test_dir}/18_riemann_zeta
 ${makedir} ${test_dir}/19_sph_bessel
 ${makedir} ${test_dir}/20_sph_legendre
 ${makedir} ${test_dir}/21_sph_neumann
-
-${makedir} ${utildir}
-
-${copy} specfun_testcase.h              ${utildir}
 
 ${copy} check/check_assoc_laguerre.cc   ${test_dir}/01_assoc_laguerre/check_value.cc
 ${copy} check/check_assoc_legendre.cc   ${test_dir}/02_assoc_legendre/check_value.cc
