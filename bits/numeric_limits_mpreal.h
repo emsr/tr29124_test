@@ -28,33 +28,33 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<>
     mpfr::mpreal
-    __min<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return mpfr::minval(__test.getPrecision()); }
+    __min<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return mpfr::minval(__proto.getPrecision()); }
 
   template<>
     mpfr::mpreal
-    __max<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return mpfr::maxval(__test.getPrecision()); }
+    __max<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return mpfr::maxval(__proto.getPrecision()); }
 
   template<>
     mpfr::mpreal
-    __lowest<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return -mpfr::maxval(__test.getPrecision()); }
+    __lowest<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return -mpfr::maxval(__proto.getPrecision()); }
 
   template<>
     int
-    __digits<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return __test.getPrecision(); }
+    __digits<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return __proto.getPrecision(); }
 
   template<>
     int
-    __digits10<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return mpfr::bits2digits(__test.getPrecision()); }
+    __digits10<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return mpfr::bits2digits(__proto.getPrecision()); }
 
   template<>
     int
-    __max_digits10<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return __digits10(__test); }
+    __max_digits10<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return __digits10(__proto); }
 
   template<>
     bool
@@ -78,13 +78,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<>
     mpfr::mpreal
-    __epsilon<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return  mpfr::machine_epsilon(__test.getPrecision()); }
+    __epsilon<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return  mpfr::machine_epsilon(__proto.getPrecision()); }
 
   template<>
     mpfr::mpreal
-    __round_error<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return std::numeric_limits<mpfr::mpreal>::round_error(__test.getPrecision()); }
+    __round_error<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return std::numeric_limits<mpfr::mpreal>::round_error(__proto.getPrecision()); }
 
   template<>
     int
@@ -188,19 +188,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<>
     mpfr::mpreal
-    __sqrt_max<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return std::sqrt(__max(__test)); }
+    __sqrt_max<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return std::sqrt(__max(__proto)); }
 
 #ifdef NO_CBRT
   template<>
     mpfr::mpreal
-    __cbrt_max<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return std::pow(__max(__test), 1 / mpfr::mpreal{3}); }
+    __cbrt_max<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return std::pow(__max(__proto), 1 / mpfr::mpreal{3}); }
 #else
   template<>
     mpfr::mpreal
-    __cbrt_max<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return std::cbrt(__max(__test)); }
+    __cbrt_max<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return std::cbrt(__max(__proto)); }
 #endif
 
   template<>
@@ -210,30 +210,30 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<>
     mpfr::mpreal
-    __log_max<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return std::log(__max(__test)); }
+    __log_max<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return std::log(__max(__proto)); }
 
   template<>
     mpfr::mpreal
-    __log10_max<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return std::log10(__max(__test)); }
+    __log10_max<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return std::log10(__max(__proto)); }
 
 
   template<>
     mpfr::mpreal
-    __sqrt_min<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return std::sqrt(__min(__test)); }
+    __sqrt_min<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return std::sqrt(__min(__proto)); }
 
 #ifdef NO_CBRT
   template<>
     mpfr::mpreal
-    __cbrt_max<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return std::pow(__min(__test), 1 / mpfr::mpreal{3}); }
+    __cbrt_max<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return std::pow(__min(__proto), 1 / mpfr::mpreal{3}); }
 #else
   template<>
     mpfr::mpreal
-    __cbrt_min<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return std::cbrt(__min(__test)); }
+    __cbrt_min<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return std::cbrt(__min(__proto)); }
 #endif
 
   template<>
@@ -243,29 +243,29 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<>
     mpfr::mpreal
-    __log_min<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return std::log(__min(__test)); }
+    __log_min<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return std::log(__min(__proto)); }
 
   template<>
     mpfr::mpreal
-    __log10_min<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return std::log10(__min(__test)); }
+    __log10_min<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return std::log10(__min(__proto)); }
 
   template<>
     mpfr::mpreal
-    __sqrt_eps<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return std::sqrt(__epsilon(__test)); }
+    __sqrt_eps<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return std::sqrt(__epsilon(__proto)); }
 
 #ifdef NO_CBRT
   template<>
     mpfr::mpreal
-    __cbrt_max<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return std::pow(__epsilon(__test), 1 / mpfr::mpreal{3}); }
+    __cbrt_max<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return std::pow(__epsilon(__proto), 1 / mpfr::mpreal{3}); }
 #else
   template<>
     mpfr::mpreal
-    __cbrt_eps<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return std::cbrt(__epsilon(__test)); }
+    __cbrt_eps<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return std::cbrt(__epsilon(__proto)); }
 #endif
 
   template<>
@@ -275,13 +275,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<>
     mpfr::mpreal
-    __log_eps<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return std::log(__epsilon(__test)); }
+    __log_eps<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return std::log(__epsilon(__proto)); }
 
   template<>
     mpfr::mpreal
-    __log10_eps<mpfr::mpreal>(mpfr::mpreal __test) _GLIBCXX_USE_NOEXCEPT
-    { return std::log10(__epsilon(__test)); }
+    __log10_eps<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    { return std::log10(__epsilon(__proto)); }
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
