@@ -315,10 +315,10 @@ check: $(CHECKS)
 
 
 test_special_function: test_special_function.cpp wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
-	$(CXX) -o test_special_function -I$(GSL_INC_DIR) test_special_function.cpp wrap_gsl.cpp wrap_boost.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath $(GSL_LIBS)
+	$(CXX17) -o test_special_function -I$(GSL_INC_DIR) test_special_function.cpp wrap_gsl.cpp wrap_boost.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath $(GSL_LIBS)
 
 diff_special_function: diff_special_function.cpp wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(CXX_INC_DIR)/sf_*.tcc
-	$(CXX) -o diff_special_function -I$(GSL_INC_DIR) diff_special_function.cpp wrap_gsl.cpp wrap_boost.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath $(GSL_LIBS)
+	$(CXX17) -o diff_special_function -I$(GSL_INC_DIR) diff_special_function.cpp wrap_gsl.cpp wrap_boost.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath $(GSL_LIBS)
 
 #  You need gnu to get __float128!
 test_local_special_function: test_special_function.cpp wrap_gsl.cpp test_func.tcc sf_*.tcc
