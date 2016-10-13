@@ -15,7 +15,7 @@ gcc_dir="${test_dir}/special_functions"
 ext_dir="${test_dir}/ext/special_functions"
 
 
-${makedir} ${utildir}
+${makedir} ${util_dir}
 
 ${tool} specfun_testcase.h              ${util_dir}
 
