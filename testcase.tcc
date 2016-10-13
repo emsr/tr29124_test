@@ -406,7 +406,7 @@ template<typename Ret, typename Arg1>
     if (num_divergences > 0)
       {
 	if (num_divergences > 4)
-	  output << "//  ...\n";
+	  output << "\n//  ...";
 	output << "\n// Divergence at"
 	       << " " << arg1 << "=" << std::get<2>(last_divergence)
 	       << " f=" << std::get<0>(last_divergence)
