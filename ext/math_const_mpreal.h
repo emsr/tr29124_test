@@ -50,72 +50,72 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<>
     mpfr::mpreal
-    __const_4_pi(mpfr::mpreal __proto = mpfr::mpreal{})
+    __const_4_pi(mpfr::mpreal __proto)
     { return 4 * mpfr::const_pi(__proto.getPrecision()); }
 
   template<>
     mpfr::mpreal
-    __const_4_pi_div_3(mpfr::mpreal __proto = mpfr::mpreal{})
+    __const_4_pi_div_3(mpfr::mpreal __proto)
     { return 4 * mpfr::const_pi(__proto.getPrecision()) / 3; }
 
   template<>
     mpfr::mpreal
-    __const_2_pi(mpfr::mpreal __proto = mpfr::mpreal{})
+    __const_2_pi(mpfr::mpreal __proto)
     { return 2 * mpfr::const_pi(__proto.getPrecision()); }
 
   template<>
     mpfr::mpreal
-    __const_pi(mpfr::mpreal __proto = mpfr::mpreal{})
+    __const_pi(mpfr::mpreal __proto)
     { return mpfr::const_pi(__proto.getPrecision()); }
 
   template<>
     mpfr::mpreal
-    __const_pi_half(mpfr::mpreal __proto = mpfr::mpreal{})
+    __const_pi_half(mpfr::mpreal __proto)
     { return mpfr::const_pi(__proto.getPrecision()) / 2; }
 
   template<>
     mpfr::mpreal
-    __const_pi_third(mpfr::mpreal __proto = mpfr::mpreal{})
+    __const_pi_third(mpfr::mpreal __proto)
     { return mpfr::const_pi(__proto.getPrecision()) / 3; }
 
   template<>
     mpfr::mpreal
-    __const_pi_quarter(mpfr::mpreal __proto = mpfr::mpreal{})
+    __const_pi_quarter(mpfr::mpreal __proto)
     { return mpfr::const_pi(__proto.getPrecision()) / 4; }
 
   template<>
     mpfr::mpreal
-    __const_root_pi(mpfr::mpreal __proto = mpfr::mpreal{})
+    __const_root_pi(mpfr::mpreal __proto)
     { return mpfr::sqrt(mpfr::const_pi(__proto.getPrecision())); }
 
   template<>
     mpfr::mpreal
-    __const_cbrt_pi(mpfr::mpreal __proto = mpfr::mpreal{})
+    __const_cbrt_pi(mpfr::mpreal __proto)
     { return mpfr::cbrt(mpfr::const_pi(__proto.getPrecision())); }
 
   template<>
     mpfr::mpreal
-    __const_root_pi_div_2(mpfr::mpreal __proto = mpfr::mpreal{})
+    __const_root_pi_div_2(mpfr::mpreal __proto)
     { return mpfr::sqrt(mpfr::const_pi(__proto.getPrecision()) / 2); }
 
   template<>
     mpfr::mpreal
-    __const_one_div_pi(mpfr::mpreal __proto = mpfr::mpreal{})
+    __const_one_div_pi(mpfr::mpreal __proto)
     { return 1 / mpfr::const_pi(__proto.getPrecision()); }
 
   template<>
     mpfr::mpreal
-    __const_two_div_pi(mpfr::mpreal __proto = mpfr::mpreal{})
+    __const_two_div_pi(mpfr::mpreal __proto)
     { return 2 / mpfr::const_pi(__proto.getPrecision()); }
 
   template<>
     mpfr::mpreal
-    __const_two_div_root_pi(mpfr::mpreal __proto = mpfr::mpreal{})
-    { return 2 / mpfr::sqrt(mpfr::const_pi(__proto.getPrecision()); }
+    __const_two_div_root_pi(mpfr::mpreal __proto)
+    { return 2 / mpfr::sqrt(mpfr::const_pi(__proto.getPrecision())); }
 
   template<>
     mpfr::mpreal
-    __const_pi_sqr_div_6(mpfr::mpreal __proto = mpfr::mpreal{})
+    __const_pi_sqr_div_6(mpfr::mpreal __proto)
     {
       auto __pi = mpfr::const_pi(__proto.getPrecision());
       return __pi * __pi / 6;
@@ -123,93 +123,103 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<>
     mpfr::mpreal
-    __const_deg(mpfr::mpreal __proto = mpfr::mpreal{})
+    __const_deg(mpfr::mpreal __proto)
     { return 180 / mpfr::const_pi(__proto.getPrecision()); }
 
   template<>
     mpfr::mpreal
-    __const_rad(mpfr::mpreal __proto = mpfr::mpreal{})
+    __const_rad(mpfr::mpreal __proto)
     { return mpfr::const_pi(__proto.getPrecision()) / 180; }
 
   template<>
     mpfr::mpreal
-    __const_e(mpfr::mpreal __proto = mpfr::mpreal{})
-    { return mpfr::exp(1, __proto.getPrecision()); }
+    __const_e(mpfr::mpreal __proto)
+    { return mpfr::exp(mpfr::mpreal(1, __proto.getPrecision())); }
 
   template<>
     mpfr::mpreal
-    __const_one_div_e(mpfr::mpreal __proto = mpfr::mpreal{})
-    { return 1 / mpfr::exp(1, __proto.getPrecision()); }
+    __const_one_div_e(mpfr::mpreal __proto)
+    { return 1 / mpfr::exp(mpfr::mpreal(1, __proto.getPrecision())); }
 
   template<>
     mpfr::mpreal
-    __const_log2_e(mpfr::mpreal __proto = mpfr::mpreal{})
-    { return mpfr::log2(mpfr::exp(1, __proto.getPrecision())); }
+    __const_log2_e(mpfr::mpreal __proto)
+    { return mpfr::log2(mpfr::exp(mpfr::mpreal(1, __proto.getPrecision()))); }
 
   template<>
     mpfr::mpreal
-    __const_log10_e(mpfr::mpreal __proto = mpfr::mpreal{})
-    { return mpfr::log10(mpfr::exp(1, __proto.getPrecision())); }
+    __const_log10_e(mpfr::mpreal __proto)
+    { return mpfr::log10(mpfr::exp(mpfr::mpreal(1, __proto.getPrecision()))); }
 
   template<>
     mpfr::mpreal
-    __const_ln_2(mpfr::mpreal __proto = mpfr::mpreal{})
+    __const_ln_2(mpfr::mpreal __proto)
     { return mpfr::const_log2(__proto.getPrecision()); }
 
   template<>
     mpfr::mpreal
-    __const_ln_3(mpfr::mpreal __proto = mpfr::mpreal{})
-    { return mpfr::log(3, __proto.getPrecision()); }
+    __const_ln_3(mpfr::mpreal __proto)
+    { return mpfr::log(mpfr::mpreal(3, __proto.getPrecision())); }
 
   template<>
     mpfr::mpreal
-    __const_ln_10(mpfr::mpreal __proto = mpfr::mpreal{})
-    { return mpfr::log(10, __proto.getPrecision()); }
+    __const_ln_10(mpfr::mpreal __proto)
+    { return mpfr::log(mpfr::mpreal(10, __proto.getPrecision())); }
 
   template<>
     mpfr::mpreal
-    __const_ln_pi(mpfr::mpreal __proto = mpfr::mpreal{})
+    __const_ln_pi(mpfr::mpreal __proto)
     { return mpfr::log(mpfr::const_pi(__proto.getPrecision())); }
 
   template<>
     mpfr::mpreal
-    __const_gamma_e(mpfr::mpreal __proto = mpfr::mpreal{})
-    { return mpfr::const_euler(__proto.getPrecision());
+    __const_gamma_e(mpfr::mpreal __proto)
+    { return mpfr::const_euler(__proto.getPrecision()); }
 
   template<>
     mpfr::mpreal
-    __const_phi(mpfr::mpreal __proto = mpfr::mpreal{})
-    { return (1 + mpfr::sqrt(5, __proto.getPrecision())) / 2; }
+    __const_phi(mpfr::mpreal __proto)
+    { return (1 + mpfr::sqrt(mpfr::mpreal(5, __proto.getPrecision()))) / 2; }
 
   template<>
     mpfr::mpreal
-    __const_catalan(mpfr::mpreal __proto = mpfr::mpreal{})
+    __const_catalan(mpfr::mpreal __proto)
     { return mpfr::const_catalan(__proto.getPrecision()); }
 
   template<>
     mpfr::mpreal
-    __const_root_2(mpfr::mpreal __proto = mpfr::mpreal{})
-    { return mpfr::sqrt(2, __proto.getPrecision()); }
+    __const_root_2(mpfr::mpreal __proto)
+    { return mpfr::sqrt(mpfr::mpreal(2, __proto.getPrecision())); }
 
   template<>
     mpfr::mpreal
-    __const_root_3(mpfr::mpreal __proto = mpfr::mpreal{})
-    { return mpfr::sqrt(3, __proto.getPrecision()); }
+    __const_root_3(mpfr::mpreal __proto)
+    { return mpfr::sqrt(mpfr::mpreal(3, __proto.getPrecision())); }
 
   template<>
     mpfr::mpreal
-    __const_root_5(mpfr::mpreal __proto = mpfr::mpreal{})
-    { return mpfr::sqrt(5, __proto.getPrecision()); }
+    __const_root_3_div_2(mpfr::mpreal __proto)
+    { return mpfr::sqrt(mpfr::mpreal(3, __proto.getPrecision())) / 2; }
 
   template<>
     mpfr::mpreal
-    __const_root_7(mpfr::mpreal __proto = mpfr::mpreal{})
-    { return mpfr::sqrt(7, __proto.getPrecision()); }
+    __const_root_5(mpfr::mpreal __proto)
+    { return mpfr::sqrt(mpfr::mpreal(5, __proto.getPrecision())); }
 
   template<>
     mpfr::mpreal
-    __const_one_div_root_2(mpfr::mpreal __proto = mpfr::mpreal{})
-    { return 1 / mpfr::sqrt(2, __proto.getPrecision()); }
+    __const_root_7(mpfr::mpreal __proto)
+    { return mpfr::sqrt(mpfr::mpreal(7, __proto.getPrecision())); }
+
+  template<>
+    mpfr::mpreal
+    __const_cbrt_3(mpfr::mpreal __proto)
+    { return mpfr::cbrt(mpfr::mpreal(3, __proto.getPrecision())); }
+
+  template<>
+    mpfr::mpreal
+    __const_one_div_root_2(mpfr::mpreal __proto)
+    { return 1 / mpfr::sqrt(mpfr::mpreal(2, __proto.getPrecision())); }
 
 
 _GLIBCXX_END_NAMESPACE_VERSION
