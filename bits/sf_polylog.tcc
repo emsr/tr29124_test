@@ -58,8 +58,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __clamp_pi(std::complex<_Tp> __w)
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_i2pi = std::complex<_Tp>{0, _Tp{2} * _S_pi};
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
+      const auto _S_i2pi = std::complex<_Tp>{0, _Tp{2} * _S_pi};
       while (__w.imag() > _S_pi)
 	__w -= _S_i2pi;
       while (__w.imag() <= -_S_pi)
@@ -71,8 +71,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __clamp_0_m2pi(std::complex<_Tp> __w)
     {
-      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
-      constexpr auto _S_i2pi = std::complex<_Tp>{0, _S_2pi};
+      const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
+      const auto _S_i2pi = std::complex<_Tp>{0, _S_2pi};
       while (__w.imag() > _Tp{0})
 	__w = std::complex<_Tp>(__w.real(), __w.imag() - _S_2pi);
       while (__w.imag() <= -_S_2pi)
@@ -111,7 +111,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	1.0000000149015548283650412,
 	1.0000000037253340247884571,
       };
-      constexpr auto __maxk = 2 * sizeof(__data) / sizeof(_Tp);
+      const auto __maxk = 2 * sizeof(__data) / sizeof(_Tp);
       if (__k < __maxk)
 	return __data[__k / 2];
       else
@@ -142,10 +142,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __polylog_exp_pos(unsigned int __s, std::complex<_Tp> __w)
     { // positive integer s
       // Optimization possibility: s are positive integers
-      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_pipio6
-      	 = __gnu_cxx::__math_constants<_Tp>::__pi_sqr_div_6;
+      const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
+      const auto _S_pipio6
+      	 = __gnu_cxx::__const_pi_sqr_div_6(_Tp{});
       std::complex<_Tp> __res = std::__detail::__riemann_zeta(_Tp(__s));
       auto __wk = __w;
       auto __fac = _Tp{1};
@@ -220,8 +220,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __polylog_exp_pos(unsigned int __s, _Tp __w)
     { // positive integer s
       // Optimization possibility: s are positive integers.
-      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
       auto __res = std::__detail::__riemann_zeta(_Tp(__s));
       auto __wk = __w;
       auto __fac = _Tp{1};
@@ -292,9 +292,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog_exp_neg(_Tp __s, std::complex<_Tp> __w)
     {
-      constexpr auto _S_i = std::complex<_Tp>{0, 1};
-      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+      const auto _S_i = std::complex<_Tp>{0, 1};
+      const auto _S_2pi = __gnu_cxx::__const_2_pi(__s);
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
       // Basic general loop, but s is a negative quantity here
       // FIXME Large s makes problems.
       // The series should be rearrangeable so that we only need
@@ -312,7 +312,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // on the positive real axis where it is real.
       auto __gam = std::exp(__ls);
 
-      auto __phase = std::polar(_Tp{1}, _S_pi_2 * __s);
+      auto __phase = __polar_pi(_Tp{1}, __s / _Tp{2});
       auto __cp = std::real(__phase);
       auto __sp = std::imag(__phase);
       // Here we add the expression that would result from ignoring
@@ -406,8 +406,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog_exp_neg_even(unsigned int __n, std::complex<_Tp> __w)
     {
-      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
       const auto __np = 1 + __n;
       auto __lnp = __log_gamma(_Tp(__np));
       auto __res = std::exp(__lnp - _Tp(__np) * std::log(-__w));
@@ -480,11 +480,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog_exp_neg_odd(unsigned int __n, std::complex<_Tp> __w)
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
       const unsigned int __np = 1 + __n;
       auto __lnp = __log_gamma(_Tp(__np));
       auto __res = std::exp(__lnp - _Tp(__np) * std::log(-__w));
-      constexpr auto __itp = _Tp{1} / (_Tp{2} * _S_pi);
+      const auto __itp = _Tp{1} / (_Tp{2} * _S_pi);
       auto __wq = -__w * __itp * __w * __itp;
       auto __pref = _Tp{2} * std::pow(__itp, _Tp(__np));
       // Subtract the expression A_p(w)
@@ -568,12 +568,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog_exp_pos(_Tp __s, std::complex<_Tp> __w)
     { // positive s
-      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+      const auto _S_2pi = __gnu_cxx::__const_2_pi(__s);
+      const auto _S_pi = __gnu_cxx::__const_pi(__s);
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
       std::complex<_Tp> __res = std::__detail::__riemann_zeta(__s);
       auto __wk = __w;
-      auto __phase = std::polar(_Tp{1}, _S_pi_2 * __s);
+      auto __phase = std::polar(_Tp{1}, __s / _Tp{2});
       auto __cp = std::real(__phase);
       auto __sp = std::imag(__phase);
       // This is \Gamma(1-s)(-w)^{s-1}
@@ -653,7 +653,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog_exp_asymp(_Tp __s, std::complex<_Tp> __w)
     { // asymptotic expansion
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_pi = __gnu_cxx::__const_pi(__s);
       // wgamma = w^{s-1} / \Gamma(s)
       auto __wgamma = std::exp((__s - _Tp{1}) * std::log(__w)
 		    - __log_gamma(__s));
@@ -739,9 +739,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog_exp_int_pos(unsigned int __s, std::complex<_Tp> __w)
     {
-      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+      const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__w));
       auto __rw = __w.real();
       auto __iw = __w.imag();
       if (__fpreal(__w)
@@ -792,8 +792,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog_exp_int_pos(unsigned int __s, _Tp __w)
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__w));
       if (__gnu_cxx::__fpequal(__w, _Tp{0}))
 	{
 	  if (__s > 1)
@@ -837,9 +837,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog_exp_int_neg(int __s, std::complex<_Tp> __w)
     {
-      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+      const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__w));
       if ((((-__s) & 1) == 0) && __gnu_cxx::__fpequal(std::real(__w), _Tp{0}))
 	{
 	  // Now s is odd and w on the unit-circle.
@@ -882,8 +882,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog_exp_int_neg(const int __s, _Tp __w)
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+      const auto _S_pi = __gnu_cxx::__const_pi(__w);
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__w);
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose exp'ly converging series.
 	return __polylog_exp_negative_real_part(__s, std::complex<_Tp>(__w));
       else if (__gnu_cxx::__fpequal(__w, _Tp{0}))
@@ -909,9 +909,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog_exp_real_pos(_Tp __s, std::complex<_Tp> __w)
     {
-      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+      const auto _S_2pi = __gnu_cxx::__const_2_pi(__s);
+      const auto _S_pi = __gnu_cxx::__const_pi(__s);
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
       auto __rw = __w.real();
       auto __iw = __w.imag();
       if (__fpreal(__w)
@@ -946,8 +946,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog_exp_real_pos(_Tp __s, _Tp __w)
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+      const auto _S_pi = __gnu_cxx::__const_pi(__s);
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
       if (__gnu_cxx::__fpequal(__w, _Tp{0}))
 	{
 	  if (__s > _Tp{1})
@@ -977,8 +977,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog_exp_real_neg(_Tp __s, std::complex<_Tp> __w)
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+      const auto _S_pi = __gnu_cxx::__const_pi(__s);
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
       auto __rw = __w.real();
       auto __iw = __w.imag();
       if (__rw < -(_S_pi_2 + _S_pi/_Tp{5})) // Choose exp'ly converging series.
@@ -1006,8 +1006,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog_exp_real_neg(_Tp __s, _Tp __w)
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+      const auto _S_pi = __gnu_cxx::__const_pi(__s);
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose exp'ly converging series.
 	return __polylog_exp_negative_real_part(__s, std::complex<_Tp>(__w));
       else if (__w < _Tp{6}) // arbitrary transition point
@@ -1066,7 +1066,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __polylog(_Tp __s, _Tp __x)
     {
       if (__isnan(__s) || __isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__s);
       else if (__gnu_cxx::__fpequal(__x, _Tp{0}))
 	return _Tp{0}; // According to Mathematica
       else if (__x < _Tp{0})
@@ -1096,7 +1096,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __polylog(_Tp __s, std::complex<_Tp> __w)
     {
       if (__isnan(__s) || __isnan(__w))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__s);
       else if (__gnu_cxx::__fpequal(std::imag(__w), _Tp{0}))
 	return __polylog(__s, std::real(__w));
       else
@@ -1118,10 +1118,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __hurwitz_zeta_polylog(_Tp __s, std::complex<_Tp> __a)
     {
       using _Cmplx = std::complex<_Tp>;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
-      constexpr auto _S_i2pi = _Cmplx{0, _S_2pi};
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+      const auto _S_pi = __gnu_cxx::__const_pi(__s);
+      const auto _S_2pi = __gnu_cxx::__const_2_pi(__s);
+      const auto _S_i2pi = _Cmplx{0, _S_2pi};
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
       if ((__a.imag() >= _Tp{0}
 		&& (__a.real() >= _Tp{0} && __a.real() <  _Tp{1}))
        || (__a.imag() <  _Tp{0}
@@ -1154,7 +1154,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __dirichlet_eta(std::complex<_Tp> __w)
     {
       if (__isnan(__w))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(std::imag(__w));
       else if (__gnu_cxx::__fpequal(std::imag(__w), _Tp{0}))
 	return -__polylog(__w.real(), _Tp{-1});
       else
@@ -1172,7 +1172,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __dirichlet_eta(_Tp __w)
     {
       if (__isnan(__w))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__w);
       else
 	return -std::real(__polylog(__w, _Tp{-1}));
     }
@@ -1190,9 +1190,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __dirichlet_beta(std::complex<_Tp> __w)
     {
-      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      const auto _S_i = std::complex<_Tp>{0, 1};
       if (__isnan(__w))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(std::imag(__w));
       else if (__gnu_cxx::__fpequal(std::imag(__w), _Tp{0}))
 	return std::imag(__polylog(__w.real(), _S_i));
       else
@@ -1209,7 +1209,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __dirichlet_beta(_Tp __w)
     {
-      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      const auto _S_i = std::complex<_Tp>{0, 1};
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
@@ -1245,7 +1245,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __clausen(unsigned int __m, std::complex<_Tp> __w)
     {
-      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      const auto _S_i = std::complex<_Tp>{0, 1};
       auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
@@ -1269,7 +1269,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __clausen(unsigned int __m, _Tp __w)
     {
-      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      const auto _S_i = std::complex<_Tp>{0, 1};
       auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
@@ -1294,7 +1294,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __clausen_s(unsigned int __m, std::complex<_Tp> __w)
     {
-      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      const auto _S_i = std::complex<_Tp>{0, 1};
       auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
@@ -1319,7 +1319,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __clausen_s(unsigned int __m, _Tp __w)
     {
-      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      const auto _S_i = std::complex<_Tp>{0, 1};
       auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
@@ -1344,7 +1344,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __clausen_c(unsigned int __m, std::complex<_Tp> __w)
     {
-      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      const auto _S_i = std::complex<_Tp>{0, 1};
       auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
@@ -1369,7 +1369,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __clausen_c(unsigned int __m, _Tp __w)
     {
-      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      const auto _S_i = std::complex<_Tp>{0, 1};
       auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
@@ -1400,8 +1400,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __fermi_dirac(_Sp __s, _Tp __x)
     {
-      constexpr auto _S_i = std::complex<_Tp>{0, 1};
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_i = std::complex<_Tp>{0, 1};
+      const auto _S_pi = __gnu_cxx::__const_pi(__s);
       if (__isnan(__s) || __isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__s <= _Sp{-1})

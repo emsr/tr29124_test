@@ -68,9 +68,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __sin_pi(_Tp __x)
     {
-      constexpr _Tp _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
       if (std::isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return -__sin_pi(-__x);
       else if (__x < _Tp{0.5L})
@@ -99,9 +99,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __sinh_pi(_Tp __x)
     {
-      constexpr _Tp _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
       if (std::isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return -__sinh_pi(-__x);
       else
@@ -118,9 +118,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __cos_pi(_Tp __x)
     {
-      constexpr _Tp _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
       if (std::isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return __cos_pi(-__x);
       else if (__x < _Tp{0.5L})
@@ -146,9 +146,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __cosh_pi(_Tp __x)
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
       if (std::isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return __cosh_pi(-__x);
       else
@@ -167,7 +167,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
       return std::tan(_S_pi * (__x - std::floor(__x)));
     }
 
@@ -183,7 +183,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
       return std::tanh(_S_pi * __x);
     }
 
@@ -200,8 +200,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
+      const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
       auto __y = std::imag(__z);
       return __sin_pi(__x) * std::cosh(_S_pi * __y)
@@ -221,8 +221,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
+      const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
       auto __y = std::imag(__z);
       return std::sinh(_S_pi * __x) * __cos_pi(__y)
@@ -240,8 +240,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
+      const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
       auto __y = std::imag(__z);
       return __cos_pi(__x) * std::cosh(_S_pi * __y)
@@ -259,8 +259,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
+      const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
       auto __y = std::imag(__z);
       return std::cosh(_S_pi * __x) * __cos_pi(__y)
@@ -280,8 +280,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
+      const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
       auto __y = std::imag(__z);
       auto __tan = __tan_pi(__x);
@@ -302,8 +302,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-      constexpr auto _S_i = std::complex<_Tp>{0, 1};
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
+      const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
       auto __y = std::imag(__z);
       auto __tanh = std::tanh(_S_pi * __x);
@@ -362,8 +362,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gnu_cxx::__sincos_t<_Tp>
     __sincos_pi(_Tp __x)
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_NaN = std::numeric_limits<_Tp>::quiet_NaN();
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
       if (std::isnan(__x))
 	return __gnu_cxx::__sincos_t<_Tp>{_S_NaN, _S_NaN};
       else if (__x < _Tp{0})

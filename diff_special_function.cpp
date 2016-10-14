@@ -25,6 +25,27 @@
 #include "test_func.tcc"
 
 
+// I'm not sure why I need this here and not other places...
+template<>
+  constexpr std::array<float, 7>
+  std::__detail::_GammaSpouge<float>::_S_cheby;
+template<>
+  constexpr std::array<double, 18>
+  std::__detail::_GammaSpouge<double>::_S_cheby;
+template<>
+  constexpr std::array<long double, 22>
+  std::__detail::_GammaSpouge<long double>::_S_cheby;
+
+template<>
+  constexpr std::array<float, 7>
+  std::__detail::_GammaLanczos<float>::_S_cheby;
+template<>
+  constexpr std::array<double, 10>
+  std::__detail::_GammaLanczos<double>::_S_cheby;
+template<>
+  constexpr std::array<long double, 11>
+  std::__detail::_GammaLanczos<long double>::_S_cheby;
+
 ///
 ///
 ///
@@ -484,7 +505,7 @@ main()
     //  Spherical Bessel functions.
     std::cout << "sph_bessel" << std::endl;
     basename = "diff_sph_bessel";
-    rundiff(sph_bessel, gsl::bessel_jl, basename,
+    rundiff(sph_bessel, gsl::sph_bessel, basename,
 	    "n", sborder,
 	    "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 	  		       std::make_pair(true, true), 1001));
@@ -503,7 +524,7 @@ main()
     // Skip the pole at the origin.
     std::cout << "sph_neumann" << std::endl;
     basename = "diff_sph_neumann";
-    rundiff(sph_neumann, gsl::bessel_yl, basename,
+    rundiff(sph_neumann, gsl::sph_neumann, basename,
 	    "n", sborder,
 	    "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 	  		       std::make_pair(false, true), 1001));

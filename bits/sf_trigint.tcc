@@ -57,10 +57,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __sincosint_cont_frac(_Tp __t, _Tp& _Si, _Tp& _Ci)
     {
-      constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto _S_fp_min = __gnu_cxx::__min<_Tp>();
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+      const auto _S_max_iter = 100;
+      const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__t);
+      const auto _S_fp_min = __gnu_cxx::__min(__t);
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__t);
 
       // Evaluate Ci and Si by Lentz's modified method of continued fractions.
       std::complex<_Tp> __b(_Tp{1}, __t);
@@ -100,11 +100,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __sincosint_series(_Tp __t, _Tp& _Si, _Tp& _Ci)
     {
-      constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto _S_fp_min = __gnu_cxx::__min<_Tp>();
-      constexpr auto _S_gamma_e
-	= __gnu_cxx::__math_constants<_Tp>::__gamma_e;
+      const auto _S_max_iter = 100;
+      const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__t);
+      const auto _S_fp_min = __gnu_cxx::__min(__t);
+      const auto _S_gamma_e = __gnu_cxx::__const_gamma_e(__t);
 
       // Evaluate Ci and Si by series simultaneously.
       _Tp __sumc(0), __sums(0);
@@ -165,9 +164,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __sincosint_asymp(_Tp __t, _Tp& _Si, _Tp& _Ci)
     {
-      constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+      const auto _S_max_iter = 100;
+      const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__t);
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__t);
 
       auto __invt = _Tp{1} / __t;
       auto __term = _Tp{1}; // 0!
@@ -230,7 +229,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::pair<_Tp, _Tp>
     __sincosint(_Tp __x)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
       if (__isnan(__x))
 	return std::make_pair(_S_NaN, _S_NaN);
 
@@ -239,7 +238,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__t == _Tp{0})
 	{
 	  _Si = _Tp{0};
-	  _Ci = -__gnu_cxx::__infinity<_Tp>();
+	  _Ci = -__gnu_cxx::__infinity(__x);
 	}
       else if (__t > _Tp{1000}) // Check this!
 	__sincosint_asymp(__t, _Si, _Ci);
