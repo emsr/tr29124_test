@@ -57,7 +57,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __term *= -(_Tp{2} / _Tp(2 * __k + 1)) * __x2;
 	  __sum += __term;
 	  ++__k;
-	  if (std::abs(__term) < __gnu_cxx::__epsilon<_Tp>())
+	  if (std::abs(__term) < __gnu_cxx::__epsilon(__x))
 	    break;
 	}
       return __x * __sum;
@@ -72,11 +72,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __dawson_cont_frac(_Tp __x)
     {
-      constexpr auto _S_1_sqrtpi{0.5641895835477562869480794515607726L};
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto _S_H{0.2L};
+      const auto _S_1_sqrtpi{0.5641895835477562869480794515607726L};
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_H{0.2L};
       /// @todo this needs some compile-time construction!
-      constexpr auto _S_n_max = 100;
+      const auto _S_n_max = 100;
       // The array below is produced by the following snippet:
 	//static _Tp _S_c[_S_n_max + 1];
 	//static auto __init = false;
@@ -234,7 +234,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __dawson(_Tp __x)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
       constexpr _Tp _S_x_min{0.2L};
 
       if (__isnan(__x))

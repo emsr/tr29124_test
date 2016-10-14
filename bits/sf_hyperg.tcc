@@ -77,7 +77,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __conf_hyperg_lim_series(_Tp __c, _Tp __x)
     {
-      constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
+      const auto __eps = __gnu_cxx::__epsilon(__x);
 
       auto __term = _Tp{1};
       auto __Fac = _Tp{1};
@@ -112,9 +112,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const _Tp __c_nint = std::nearbyint(__c);
       if (__isnan(__c) || __isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__c_nint == __c && __c_nint <= 0)
-	return __gnu_cxx::__infinity<_Tp>();
+	return __gnu_cxx::__infinity(__x);
       //else if (__x < _Tp{0})
 	//return __conf_hyperg_lim_luke(__c, __x);
       else
@@ -142,7 +142,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __conf_hyperg_series(_Tp __a, _Tp __c, _Tp __x)
     {
-      constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
+      const auto __eps = __gnu_cxx::__epsilon(__x);
 
       _Tp __term = _Tp{1};
       _Tp __Fac = _Tp{1};
@@ -179,7 +179,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const _Tp __big = __gnu_cxx::__root_max(_Tp{6});
       const int __nmax = 20000;
-      const _Tp __eps = __gnu_cxx::__epsilon<_Tp>();
+      const _Tp __eps = __gnu_cxx::__epsilon(__xin);
       const _Tp __x  = -__xin;
       const _Tp __x3 = __x * __x * __x;
       const _Tp __t0 = __a / __c;
@@ -284,9 +284,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const _Tp __c_nint = std::nearbyint(__c);
       if (__isnan(__a) || __isnan(__c) || __isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__c_nint == __c && __c_nint <= 0)
-	return __gnu_cxx::__infinity<_Tp>();
+	return __gnu_cxx::__infinity(__x);
       else if (__a == _Tp{0})
 	return _Tp{1};
       else if (__c == __a)
@@ -322,7 +322,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __hyperg_series(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
+      const auto __eps = __gnu_cxx::__epsilon(__x);
 
       auto __term = _Tp{1};
       auto __Fabc = _Tp{1};
@@ -355,7 +355,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto __big = __gnu_cxx::__root_max(_Tp{6});
       const int __nmax = 20000;
-      constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
+      const auto __eps = __gnu_cxx::__epsilon(__xin);
       const auto __x  = -__xin;
       const auto __x3 = __x * __x * __x;
       const auto __t0 = __a * __b / __c;
@@ -487,10 +487,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __hyperg_reflect(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      const auto _S_log_max = __gnu_cxx::__log_max<_Tp>();
+      const auto _S_log_max = __gnu_cxx::__log_max(__x);
       const auto __d = __c - __a - __b;
       const int __intd  = std::floor(__d + _Tp{0.5L});
-      constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
+      const auto __eps = __gnu_cxx::__epsilon(__x);
       const auto __toler = _Tp{1000} * __eps;
       const bool __d_integer = (std::abs(__d - __intd) < __toler);
 
@@ -588,7 +588,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      // Gamma functions in the denominator are ok.
 	      // Proceed with evaluation.
 	      const int __maxiter = 2000;
-	      const auto __psi_1 = -__gnu_cxx::__math_constants<_Tp>::__gamma_e;
+	      const auto __psi_1 = -__gnu_cxx::__const_gamma_e(__x);
 	      const auto __psi_1pd = __psi(_Tp{1} + __ad);
 	      const auto __psi_apd1 = __psi(__a + __d1);
 	      const auto __psi_bpd1 = __psi(__b + __d1);
@@ -777,11 +777,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __hyperg(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      const auto _S_log_max = __gnu_cxx::__log_max<_Tp>();
+      const auto _S_log_max = __gnu_cxx::__log_max(__x);
       const _Tp __a_nint = std::nearbyint(__a);
       const _Tp __b_nint = std::nearbyint(__b);
       const _Tp __c_nint = std::nearbyint(__c);
-      const _Tp __toler = _Tp{1000} * __gnu_cxx::__epsilon<_Tp>();
+      const _Tp __toler = _Tp{1000} * __gnu_cxx::__epsilon(__x);
       const bool __c_neg_integer
 		  = (__c < _Tp{0} && std::abs(__c - __c_nint) < __toler );
       if (std::abs(__x - _Tp{1}) < __toler && __c - __b - __a > _Tp{0}
@@ -798,7 +798,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			       - __log_gamca - __log_gamcb;
 	  const auto __sign = __sign_gamc * __sign_gamca * __sign_gamcb;
 	  if (__sign == _Tp{0})
-	    return __gnu_cxx::__quiet_NaN<_Tp>();
+	    return __gnu_cxx::__quiet_NaN(__x);
 	  if (__log_pre < _S_log_max)
 	    return __sign * std::exp(__log_pre);
 	  else
@@ -810,9 +810,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				      "argument outside unit circle"));
       else if (__isnan(__a) || __isnan(__b)
 	    || __isnan(__c) || __isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__c_nint == __c && __c_nint <= _Tp{0})
-	return __gnu_cxx::__infinity<_Tp>();
+	return __gnu_cxx::__infinity(__x);
       else if (std::abs(__c - __b) < __toler || std::abs(__c - __a) < __toler)
 	return std::pow(_Tp{1} - __x, __c - __a - __b);
       else if (__a >= _Tp{0} && __b >= _Tp{0} && __c >= _Tp{0}

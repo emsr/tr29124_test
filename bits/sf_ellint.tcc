@@ -84,12 +84,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_rc(_Tp __x, _Tp __y)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
-      constexpr auto _S_min = __gnu_cxx::__min<_Real>();
-      constexpr auto _S_max = __gnu_cxx::__max<_Real>();
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Real>();
-      constexpr auto _S_lolim = _Real(5) * _S_min;
-      constexpr auto _S_uplim = _S_max / _Real(5);
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_min = __gnu_cxx::__min(__x);
+      const auto _S_max = __gnu_cxx::__max(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_lolim = _Real{5} * _S_min;
+      const auto _S_uplim = _S_max / _Real{5};
 
       if (__isnan(__x) || __isnan(__y))
 	return _S_NaN;
@@ -166,18 +166,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_rd(_Tp __x, _Tp __y, _Tp __z)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
-      constexpr auto _S_min = __gnu_cxx::__min<_Real>();
-      constexpr auto _S_max = __gnu_cxx::__max<_Real>();
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Real>();
-      constexpr auto _S_lolim = _Real(5) * _S_min;
-      constexpr auto _S_uplim = _S_max / _Real(5);
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_min = __gnu_cxx::__min(__x);
+      const auto _S_max = __gnu_cxx::__max(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_lolim = _Real{5} * _S_min;
+      const auto _S_uplim = _S_max / _Real{5};
 
       if (__isnan(__x) || __isnan(__y) || __isnan(__z))
 	return _S_NaN;
-      else if ((std::imag(__x) == _Real{} && std::real(__x) < _Real{})
-	    || (std::imag(__y) == _Real{} && std::real(__y) < _Real{})
-	    || (std::imag(__z) == _Real{} && std::real(__z) < _Real{}))
+      else if ((std::imag(__x) == _Real{0} && std::real(__x) < _Real{0})
+	    || (std::imag(__y) == _Real{0} && std::real(__y) < _Real{0})
+	    || (std::imag(__z) == _Real{0} && std::real(__z) < _Real{0}))
         std::__throw_domain_error(__N("__ellint_rd: argument less than zero"));
       else if (std::abs(__x) + std::abs(__y) < _S_lolim
 	    || std::abs(__z) < _S_lolim)
@@ -194,7 +194,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			     std::abs(_A0 - __y)));
 	  auto _A = _A0;
 	  auto __f = _Real{1};
-	  auto __sum = _Tp{};
+	  auto __sum = _Tp{0};
 
 	  while (true)
 	    {
@@ -238,10 +238,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __comp_ellint_rf(_Tp __x, _Tp __y)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Real>();
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-      const auto _S_tolfact = _Real{2.7L} * __gnu_cxx::__sqrt_eps<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_tolfact = _Real{2.7L} * __gnu_cxx::__sqrt_eps(__x);
 
       if (__isnan(__x) || __isnan(__y))
 	return _S_NaN;
@@ -252,7 +252,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  while (true)
 	    {
 	      auto __xt = __x;
-	      __x = (__x + __y) / _Tp{2};
+	      __x = (__x + __y) / _Real{2};
 	      __y = std::sqrt(__xt) * std::sqrt(__y);
 	      if (std::abs(__x - __y) < _S_tolfact * std::abs(__x))
 		return _S_pi / (__x + __y);
@@ -280,18 +280,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_rf(_Tp __x, _Tp __y, _Tp __z)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
-      constexpr auto _S_min = __gnu_cxx::__min<_Real>();
-      constexpr auto _S_max = __gnu_cxx::__max<_Real>();
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Real>();
-      constexpr auto _S_lolim = _Real(5) * _S_min;
-      constexpr auto _S_uplim = _S_max / _Real(5);
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_min = __gnu_cxx::__min(__x);
+      const auto _S_max = __gnu_cxx::__max(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_lolim = _Real(5) * _S_min;
+      const auto _S_uplim = _S_max / _Real(5);
 
       if (__isnan(__x) || __isnan(__y) || __isnan(__z))
 	return _S_NaN;
-      else if (std::imag(__x) == _Real{} && std::real(__x) < _Real{}
-	    || std::imag(__y) == _Real{} && std::real(__y) < _Real{}
-	    || std::imag(__z) == _Real{} && std::real(__z) < _Real{})
+      else if (std::imag(__x) == _Real{0} && std::real(__x) < _Real{0}
+	    || std::imag(__y) == _Real{0} && std::real(__y) < _Real{0}
+	    || std::imag(__z) == _Real{0} && std::real(__z) < _Real{0})
         std::__throw_domain_error(__N("__ellint_rf: argument less than zero"));
       else if (std::abs(__x) + std::abs(__y) < _S_lolim
 	    || std::abs(__x) + std::abs(__z) < _S_lolim
@@ -349,18 +349,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __comp_ellint_rg(_Tp __x, _Tp __y)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Real>();
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-      const auto _S_tolfact = _Real{2.7L} * __gnu_cxx::__sqrt_eps<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_tolfact = _Real{2.7L} * __gnu_cxx::__sqrt_eps(__x);
 
       if (__isnan(__x) || __isnan(__y))
 	return _S_NaN;
-      else if (__x == _Tp{} && __y == _Tp{})
+      else if (__x == _Tp{0} && __y == _Tp{})
 	return _Tp{};
-      else if (__x == _Tp{})
+      else if (__x == _Tp{0})
 	return std::sqrt(__y) / _Real{2};
-      else if (__y == _Tp{})
+      else if (__y == _Tp{0})
 	return std::sqrt(__x) / _Real{2};
       else
 	{
@@ -372,7 +372,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  while (true)
 	    {
 	      auto __xtt = __xt;
-	      __xt = (__xt + __yt) / _Tp{2};
+	      __xt = (__xt + __yt) / _Real{2};
 	      __yt = std::sqrt(__xtt) * std::sqrt(__yt);
 	      auto __del = __xt - __yt;
 	      if (std::abs(__del) < _S_tolfact * std::abs(__xt))
@@ -411,15 +411,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_rg(_Tp __x, _Tp __y, _Tp __z)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
 
       if (__isnan(__x) || __isnan(__y) || __isnan(__z))
 	return _S_NaN;
-      else if (__z == _Tp{})
+      else if (__z == _Tp{0})
 	return __comp_ellint_rg(__x, __y);
-      else if (__x == _Tp{})
+      else if (__x == _Tp{0})
 	return __comp_ellint_rg(__y, __z);
-      else if (__y == _Tp{})
+      else if (__y == _Tp{0})
 	return __comp_ellint_rg(__z, __x);
       else
 	//return (__z * __ellint_rf(__x, __y, __z)
@@ -429,7 +429,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	// when the arguments are real:
 	return (__x * (__y + __z) * __ellint_rd(__y, __z, __x)
 	      + __y * (__z + __x) * __ellint_rd(__z, __x, __y)
-	      + __z * (__x + __y) * __ellint_rd(__x, __y, __z)) / _Tp{6};
+	      + __z * (__x + __y) * __ellint_rd(__x, __y, __z)) / _Real{6};
     }
 
   /**
@@ -459,18 +459,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_rj(_Tp __x, _Tp __y, _Tp __z, _Tp __p)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
-      constexpr auto _S_min = __gnu_cxx::__min<_Real>();
-      constexpr auto _S_max = __gnu_cxx::__max<_Real>();
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Real>();
-      constexpr auto _S_lolim = _Real(5) * _S_min;
-      constexpr auto _S_uplim = _S_max / _Real(5);
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_min = __gnu_cxx::__min(__x);
+      const auto _S_max = __gnu_cxx::__max(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_lolim = _Real(5) * _S_min;
+      const auto _S_uplim = _S_max / _Real(5);
 
       if (__isnan(__x) || __isnan(__y) || __isnan(__z) || __isnan(__p))
 	return _S_NaN;
-      else if (std::imag(__x) == _Real{} && std::real(__x) < _Real{}
-	    || std::imag(__y) == _Real{} && std::real(__y) < _Real{}
-	    || std::imag(__z) == _Real{} && std::real(__z) < _Real{})
+      else if (std::imag(__x) == _Real{0} && std::real(__x) < _Real{0}
+	    || std::imag(__y) == _Real{0} && std::real(__y) < _Real{0}
+	    || std::imag(__z) == _Real{0} && std::real(__z) < _Real{0})
         std::__throw_domain_error(__N("__ellint_rj: argument less than zero"));
       else if (std::abs(__x) + std::abs(__y) < _S_lolim
 	    || std::abs(__x) + std::abs(__z) < _S_lolim
@@ -494,7 +494,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto _A = _A0;
 	  auto __f = _Real{1};
 	  auto __fe = _Real{1};
-	  auto __sum = _Tp{};
+	  auto __sum = _Tp{0};
 
 	  while (true)
 	    {
@@ -514,7 +514,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		       * (__proot + __yroot)
 		       * (__proot + __zroot);
 	      auto _E = __delta / (__fe * __d * __d);
-	      __sum += __ellint_rc(_Tp{1}, _Tp{1} + _E) / (__f * __d);
+	      __sum += __ellint_rc(_Real{1}, _Real{1} + _E) / (__f * __d);
 	      __f *= _Real{4};
 	      __fe *= _Real{64};
 	      if (_Q < __f * std::abs(_A))
@@ -568,14 +568,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __comp_ellint_1(_Tp __k)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
 
       if (__isnan(__k))
 	return _S_NaN;
       else if (std::abs(__k) == _Real{1})
 	return _S_NaN;
       else
-	return __comp_ellint_rf(_Tp{1} - __k * __k, _Tp{1});
+	return __comp_ellint_rf(_Real{1} - __k * __k, _Real{1});
     }
 
   /**
@@ -597,8 +597,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_1(_Tp __k, _Tp __phi)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
+      const auto _S_pi = __gnu_cxx::__const_pi(__k);
 
       if (__isnan(__k) || __isnan(__phi))
 	return _S_NaN;
@@ -615,7 +615,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 	  const auto __F = __s
 			 * __ellint_rf(__c * __c,
-				       _Real{1} - __k * __k * __s * __s, _Tp{1});
+				       _Real{1} - __k * __k * __s * __s,
+				       _Real{1});
 
 	  if (__n == 0)
 	    return __F;
@@ -641,7 +642,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __comp_ellint_2(_Tp __k)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
 
       if (__isnan(__k))
 	return _S_NaN;
@@ -654,7 +655,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __kk = __k * __k;
 
 	  return __ellint_rf(_Real{0}, _Real{1} - __kk, _Real{1})
-	       - __kk * __ellint_rd(_Real{0}, _Real{1} - __kk, _Real{1}) / _Tp{3};
+	       - __kk * __ellint_rd(_Real{0}, _Real{1} - __kk, _Real{1})
+	       / _Real{3};
 	}
     }
 
@@ -676,8 +678,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_2(_Tp __k, _Tp __phi)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
+      const auto _S_pi = __gnu_cxx::__const_pi(__k);
 
       if (__isnan(__k) || __isnan(__phi))
 	return _S_NaN;
@@ -697,10 +699,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __cc = __c * __c;
 
 	  const auto _E = __s
-		        * __ellint_rf(__cc, _Tp{1} - __kk * __ss, _Tp{1})
+		        * __ellint_rf(__cc, _Real{1} - __kk * __ss, _Real{1})
 		        - __kk * __sss
-		        * __ellint_rd(__cc, _Tp{1} - __kk * __ss, _Tp{1})
-		        / _Tp{3};
+		        * __ellint_rd(__cc, _Real{1} - __kk * __ss, _Real{1})
+		        / _Real{3};
 
 	  if (__n == 0)
 	    return _E;
@@ -730,22 +732,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __comp_ellint_3(_Tp __k, _Tp __nu)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
 
       if (__isnan(__k) || __isnan(__nu))
 	return _S_NaN;
       else if (__nu == _Tp{1})
-	return __gnu_cxx::__infinity<_Real>();
+	return __gnu_cxx::__infinity(__k);
       else if (std::abs(__k) > _Real{1})
 	std::__throw_domain_error(__N("__comp_ellint_3: bad argument"));
       else
 	{
 	  const auto __kk = __k * __k;
 
-	  return __ellint_rf(_Tp{0}, _Tp{1} - __kk, _Tp{1})
-	       - __nu
-	       * __ellint_rj(_Tp{0}, _Tp{1} - __kk, _Tp{1}, _Tp{1} + __nu)
-	       / _Tp{3};
+	  return __ellint_rf(_Real{0}, _Real{1} - __kk, _Real{1})
+	     - __nu
+	     * __ellint_rj(_Real{0}, _Real{1} - __kk, _Real{1}, _Real{1} + __nu)
+	     / _Real{3};
 	}
     }
 
@@ -771,8 +773,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_3(_Tp __k, _Tp __nu, _Tp __phi)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
+      const auto _S_pi = __gnu_cxx::__const_pi(__k);
 
       if (__isnan(__k) || __isnan(__nu) || __isnan(__phi))
 	return _S_NaN;
@@ -792,10 +794,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __cc = __c * __c;
 
 	  const auto _Pi = __s
-			 * __ellint_rf(__cc, _Tp{1} - __kk * __ss, _Tp{1})
+			 * __ellint_rf(__cc, _Real{1} - __kk * __ss, _Real{1})
 			 - __nu * __sss
-			 * __ellint_rj(__cc, _Tp{1} - __kk * __ss, _Tp{1},
-				       _Tp{1} + __nu * __ss) / _Tp{3};
+			 * __ellint_rj(__cc, _Real{1} - __kk * __ss, _Real{1},
+				       _Real{1} + __nu * __ss) / _Real{3};
 
 	  if (__n == 0)
 	    return _Pi;
@@ -812,7 +814,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_d(_Tp __k, _Tp __phi)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
 
       if (__isnan(__k) || __isnan(__phi))
 	return _S_NaN;
@@ -823,9 +825,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __sinphi = std::sin(__phi);
 	  auto __sinphi2 = __sinphi * __sinphi;
 	  auto __k2 = __k * __k;
-	  auto __arg1 = _Tp{1} - __sinphi2;
-	  auto __arg2 = _Tp{1} - __k2 * __sinphi2;
-	  return __sinphi * __sinphi2 * __ellint_rd(__arg1, __arg2, _Tp{1}) / _Tp{3};
+	  auto __arg1 = _Real{1} - __sinphi2;
+	  auto __arg2 = _Real{1} - __k2 * __sinphi2;
+	  return __sinphi * __sinphi2 * __ellint_rd(__arg1, __arg2, _Real{1})
+		 / _Real{3};
 	}
     }
 
@@ -837,12 +840,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __comp_ellint_d(_Tp __k)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
 
       if (__isnan(__k))
 	return _S_NaN;
       else
-	return __ellint_rd(_Tp{0}, _Tp{1} - __k * __k, _Tp{1}) / _Tp{3};
+	return __ellint_rd(_Real{0}, _Real{1} - __k * __k, _Real{1}) / _Real{3};
     }
 
   /**
@@ -853,7 +856,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_el1(_Tp __x, _Tp __k_c)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
 
       if (__isnan(__x) || __isnan(__k_c))
 	return _S_NaN;
@@ -861,8 +864,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  auto __x2 = __x * __x;
 	  auto __k2_c = __k_c * __k_c;
-	  auto __arg2 = _Tp{1} + __k2_c * __x2;
-	  return __x * __ellint_rf(_Tp{1}, __arg2, _Tp{1} + __x2);
+	  auto __arg2 = _Real{1} + __k2_c * __x2;
+	  return __x * __ellint_rf(_Real{1}, __arg2, _Real{1} + __x2);
 	}
     }
 
@@ -874,7 +877,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_el2(_Tp __x, _Tp __k_c, _Tp __a, _Tp __b)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
 
       if (__isnan(__x) || __isnan(__k_c) || __isnan(__a) || __isnan(__b))
 	return _S_NaN;
@@ -883,11 +886,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __x2 = __x * __x;
 	  auto __x3 = __x * __x;
 	  auto __k2_c = __k_c * __k_c;
-	  auto __arg2 = _Tp{1} + __k2_c * __x2;
-	  auto __arg3 = _Tp{1} + __x2;
-	  return __a * __x * __ellint_rf(_Tp{1}, __arg2, __arg3)
+	  auto __arg2 = _Real{1} + __k2_c * __x2;
+	  auto __arg3 = _Real{1} + __x2;
+	  return __a * __x * __ellint_rf(_Real{1}, __arg2, __arg3)
                + (__b - __a) * __x3
-		 * __ellint_rd(_Tp{1}, __arg2, __arg3) / _Tp{3};
+		 * __ellint_rd(_Real{1}, __arg2, __arg3) / _Real{3};
 	}
     }
 
@@ -899,7 +902,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_el3(_Tp __x, _Tp __k_c, _Tp __p)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
 
       if (__isnan(__x) || __isnan(__k_c) || __isnan(__p))
 	return _S_NaN;
@@ -908,12 +911,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __x2 = __x * __x;
 	  auto __x3 = __x * __x;
 	  auto __k2_c = __k_c * __k_c;
-	  auto __arg2 = _Tp{1} + __k2_c * __x2;
-	  auto __arg3 = _Tp{1} + __x2;
-	  auto __arg4 = _Tp{1} + __p * __x2;
-	  return __x * __ellint_rf(_Tp{1}, __arg2, __arg3)
-	       + (_Tp{1} - __p) * __x3
-		 * __ellint_rj(_Tp{1}, __arg2, __arg3, __arg4) / _Tp{3};
+	  auto __arg2 = _Real{1} + __k2_c * __x2;
+	  auto __arg3 = _Real{1} + __x2;
+	  auto __arg4 = _Real{1} + __p * __x2;
+	  return __x * __ellint_rf(_Real{1}, __arg2, __arg3)
+	       + (_Real{1} - __p) * __x3
+		 * __ellint_rj(_Real{1}, __arg2, __arg3, __arg4) / _Real{3};
 	}
     }
 
@@ -925,16 +928,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellint_cel(_Tp __k_c, _Tp __p, _Tp __a, _Tp __b)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k_c);
 
       if (__isnan(__k_c) || __isnan(__p) || __isnan(__a) || __isnan(__b))
 	return _S_NaN;
       else
 	{
 	  auto __k2_c = __k_c * __k_c;
-	  return __a * __ellint_rf(_Tp{0}, __k2_c, _Tp{1})
+	  return __a * __ellint_rf(_Real{0}, __k2_c, _Real{1})
 	       + (__b - __p * __a)
-		 * __ellint_rj(_Tp{0}, __k2_c, _Tp{1}, __p) / _Tp{3};
+		 * __ellint_rj(_Real{0}, __k2_c, _Real{1}, __p) / _Real{3};
 	}
     }
 
@@ -946,32 +949,32 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __jacobi_zeta(_Tp __k, _Tp __phi)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Real>::__pi_half;
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__k);
+      const auto _S_eps = __gnu_cxx::__epsilon(__k);
 
       if (__isnan(__k) || __isnan(__phi))
 	return _S_NaN;
       else if (std::abs(__k) > _Real{1})
 	std::__throw_domain_error(__N("__jacobi_zeta: bad argument"));
       else if (std::abs(__k) < _S_eps)
-	return _Tp{0};
-      else if (std::abs(__k - _Tp{1}) < _S_eps)
+	return _Real{0};
+      else if (std::abs(__k - _Real{1}) < _S_eps)
 	return std::sin(__phi);
       else if (std::real(__phi) < _Real{0})
 	return -__jacobi_zeta(__k, -__phi);
       else if (std::abs(__phi) < _S_eps || std::abs(__phi - _S_pi_2) < _S_eps)
-	return _Tp{0};
+	return _Real{0};
       else
 	{
 	  auto __mc = __k * __k;
 	  auto __cosphi = std::cos(__phi);
 	  auto __sinphi = std::sin(__phi);
-	  auto __m = _Tp{1} - __mc;
-	  auto __arg4 = _Tp{1} - __mc  * __sinphi * __sinphi;
+	  auto __m = _Real{1} - __mc;
+	  auto __arg4 = _Real{1} - __mc  * __sinphi * __sinphi;
 	  return __mc * __cosphi * __sinphi * std::sqrt(__arg4)
-	       * __ellint_rj(_Tp{0}, __m, _Tp{1}, __arg4)
-	       / (_Tp{3} * __comp_ellint_1(__k));
+	       * __ellint_rj(_Real{0}, __m, _Real{1}, __arg4)
+	       / (_Real{3} * __comp_ellint_1(__k));
 	}
     }
 
@@ -983,10 +986,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __heuman_lambda(_Tp __k, _Tp __phi)
     {
       using _Real = __num_traits_t<_Tp>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Real>::__pi_half;
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
+      const auto _S_pi = __gnu_cxx::__const_pi(__k);
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__k);
+      const auto _S_eps = __gnu_cxx::__epsilon(__k);
 
       if (__isnan(__k) || __isnan(__phi))
 	return _S_NaN;

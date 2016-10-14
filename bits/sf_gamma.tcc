@@ -1628,7 +1628,7 @@ _S_neg_double_factorial_table[999]
 	 _Tp{854513ULL}        / _Tp{138ULL},
 	-_Tp{23749461029ULL}   / _Tp{2730ULL}
       };
-      constexpr _Tp _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
+      constexpr _Tp _S_2pi = __gnu_cxx::__const_2_pi(_Tp{});
 
       if (__n == 0)
 	return _Tp{1};
@@ -1703,10 +1703,10 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_eps = _Real{0.01L} * __gnu_cxx::__epsilon<_Real>();
-      constexpr auto _S_ln2pi
-	= __gnu_cxx::__math_constants<_Real>::__ln_2
-	+ __gnu_cxx::__math_constants<_Real>::__ln_pi;
+      const auto _S_eps = _Real{0.01L} * __gnu_cxx::__epsilon(std::real(__x));
+      const auto _S_ln2pi
+	= __gnu_cxx::__const_ln_2(std::real(__x))
+	+ __gnu_cxx::__const_ln_pi(std::real(__x));
 
       auto __lg = (__x - _Real{0.5L}) * std::log(__x)
 		- __x + _Real{0.5L} * _S_ln2pi;
@@ -1888,10 +1888,10 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_ln_pi = __gnu_cxx::__math_constants<_Real>::__ln_pi;
-      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Real>::__root_pi;
-      constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Real>::__root_2;
-      constexpr auto _S_sqrt_2pi = _S_sqrt_2 * _S_sqrt_pi;
+      const auto _S_ln_pi = __gnu_cxx::__const_ln_pi(std::real(__z));
+      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(std::real(__z));
+      const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(std::real(__z));
+      const auto _S_sqrt_2pi = _S_sqrt_2 * _S_sqrt_pi;
       auto __a = _Real{_GammaSpouge<_Real>::_S_cheby.size() + 1};
       const auto& __c = _GammaSpouge<_Real>::_S_cheby;
 
@@ -2016,9 +2016,9 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_ln_2 = __gnu_cxx::__math_constants<_Real>::__ln_2;
-      constexpr auto _S_ln_pi = __gnu_cxx::__math_constants<_Real>::__ln_pi;
-      constexpr auto _S_log_sqrt_2pi = (_S_ln_2 + _S_ln_pi) / _Real{2};
+      const auto _S_ln_2 = __gnu_cxx::__const_ln_2(std::real(__z));
+      const auto _S_ln_pi = __gnu_cxx::__const_ln_pi(std::real(__z));
+      const auto _S_log_sqrt_2pi = (_S_ln_2 + _S_ln_pi) / _Real{2};
       const auto& __c = _GammaLanczos<_Real>::_S_cheby;
       auto __g =  _GammaLanczos<_Real>::_S_g;
       // Reflection; move the transition upwards to prevent instability.
@@ -2056,15 +2056,15 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_eps = _Real{3} * __gnu_cxx::__epsilon<_Real>();
-      constexpr auto _S_logpi = __gnu_cxx::__math_constants<_Real>::__ln_pi;
+      const auto _S_eps = _Real{3} * __gnu_cxx::__epsilon(std::real(__x));
+      const auto _S_logpi = __gnu_cxx::__const_ln_pi(std::real(__x));
       if (std::real(__x) >= _Real{0.5L})
 	return __log_gamma1p_spouge(__x - _Real{1});
       else
 	{
 	  const auto __sin_fact = std::abs(__sin_pi(__x));
 	  if (__sin_fact < _S_eps * std::abs(__x))
-	    return __gnu_cxx::__infinity<_Real>();
+	    return __gnu_cxx::__infinity(std::real(__x));
 	  else
 	    return _S_logpi - std::log(__sin_fact) - __log_gamma(_Val{1} - __x);
 	}
@@ -2083,15 +2083,15 @@ _S_neg_double_factorial_table[999]
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
-      constexpr auto _S_eps = _Real{3} * __gnu_cxx::__epsilon<_Real>();
-      constexpr auto _S_logpi = __gnu_cxx::__math_constants<_Real>::__ln_pi;
+      const auto _S_eps = _Real{3} * __gnu_cxx::__epsilon(std::real(__x));
+      const auto _S_logpi = __gnu_cxx::__const_ln_pi(std::real(__x));
       if (std::real(__x) >= _Real{0.5L})
 	return __log_gamma1p_spouge(__x - _Real{1});
       else
 	{
 	  const auto __sin_fact = __sin_pi(__x);
 	  if (std::abs(__sin_fact) < _S_eps * std::abs(__x))
-	    return _Cmplx(__gnu_cxx::__quiet_NaN<_Real>(), _Real{0});
+	    return _Cmplx(__gnu_cxx::__quiet_NaN(std::real(__x)), _Real{0});
 	  else
 	    return _S_logpi - std::log(__sin_fact) - __log_gamma(_Val{1} - __x);
 	}
@@ -2233,7 +2233,7 @@ _S_neg_double_factorial_table[999]
     __bincoef(unsigned int __n, unsigned int __k)
     {
       // Max e exponent before overflow.
-      constexpr auto __max_bincoeff
+      const auto __max_bincoeff
                       = std::numeric_limits<_Tp>::max_exponent10
                       * std::log(_Tp(10)) - _Tp(1);
 
@@ -2277,14 +2277,14 @@ _S_neg_double_factorial_table[999]
 	return __bincoef<_Tp>((unsigned int)__n, __k);
       else
 	{
-	  constexpr auto __max_bincoeff
-                	  = std::numeric_limits<_Tp>::max_exponent10
-                	  * std::log(_Tp(10)) - _Tp(1);
+	  const auto __max_bincoeff
+                	  = __gnu_cxx::__max_exponent10(__nu)
+                	  * std::log(_Tp{10}) - _Tp{1};
 
 	  const auto __log_coeff = __log_bincoef(__nu, __k);
 	  const auto __sign = __log_bincoef_sign(__nu, __k);
 	  if (__log_coeff > __max_bincoeff || __sign == _Tp{0})
-	    return __gnu_cxx::__quiet_NaN<_Tp>();
+	    return __gnu_cxx::__quiet_NaN(__nu);
 	  else
 	    return std::exp(__log_coeff) * __sign;
 	}
@@ -2307,7 +2307,7 @@ _S_neg_double_factorial_table[999]
     {
       const auto __sign = __log_gamma_sign(__x);
       if (__sign == _Tp{0})
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else
 	return __sign * std::exp(__log_gamma(__x));
     }
@@ -2322,10 +2322,11 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_eps = _Real{3} * __gnu_cxx::__epsilon<_Real>();
+      const auto _S_eps = _Real{3} * __gnu_cxx::__epsilon(__a);
       const auto _S_itmax = 10 * int(10 + std::sqrt(std::abs(__a)));
 
       auto __lngam = __log_gamma(__a);
+      auto __sign = __log_gamma_sign(__a);
 
       if (std::real(__x) < _Real{0})
 	std::__throw_domain_error(__N("__gamma_series: argument less than 0"));
@@ -2344,7 +2345,7 @@ _S_neg_double_factorial_table[999]
 	      if (std::abs(__term) < _S_eps * std::abs(__sum))
 		{
 		  auto __gamser = std::exp(-__x + __a * std::log(__x) - __lngam)
-				* __sum;
+				* __sum * __sign;
 		  return std::make_pair(__gamser, __lngam);
 		}
 	    }
@@ -2362,11 +2363,12 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_fpmin = _Real{3} * __gnu_cxx::__min<_Real>();
-      constexpr auto _S_eps = _Real{3} * __gnu_cxx::__epsilon<_Real>();
+      const auto _S_fpmin = _Real{3} * __gnu_cxx::__min(__a);
+      const auto _S_eps = _Real{3} * __gnu_cxx::__epsilon(__a);
       const auto _S_itmax = 10 * int(10 + std::sqrt(std::abs(__a)));
 
       auto __lngam = __log_gamma(__a);
+      auto __sign = __log_gamma_sign(__a);
 
       auto __b = __x + _Real{1} - __a;
       auto __c = _Real{1} / _S_fpmin;
@@ -2388,7 +2390,7 @@ _S_neg_double_factorial_table[999]
 	  if (std::abs(__del - _Real{1}) < _S_eps)
 	    {
 	      auto __gamcf = std::exp(-__x + __a * std::log(__x) - __lngam)
-			  * __h;
+			  * __h * __sign;
 	      return std::make_pair(__gamcf, __lngam);
 	    }
 	}
@@ -2415,7 +2417,7 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__a);
 
       if (__isnan(__a) || __isnan(__x))
 	return _S_NaN;
@@ -2448,7 +2450,7 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__a);
 
       if (__isnan(__a) || __isnan(__x))
 	return _S_NaN;
@@ -2476,7 +2478,7 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__a);
 
       if (__isnan(__a) || __isnan(__x))
 	return _S_NaN;
@@ -2510,7 +2512,7 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__a);
 
       if (__isnan(__a) || __isnan(__x))
 	return _S_NaN;
@@ -2553,7 +2555,7 @@ _S_neg_double_factorial_table[999]
     __log_pochhammer(_Tp __a, _Tp __n)
     {
       if (__isnan(__n) || __isnan(__a))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__a);
       else if (__n == _Tp{0})
 	return _Tp{0};
       else
@@ -2578,17 +2580,15 @@ _S_neg_double_factorial_table[999]
     _Tp
     __pochhammer(_Tp __a, _Tp __n)
     {
-      constexpr auto __log10{2.3025850929940456840179914546843642L};
       if (__isnan(__n) || __isnan(__a))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__a);
       else if (__n == _Tp{0})
 	return _Tp{1};
       else
 	{
-          _Tp __logpoch = __log_gamma(__a + __n) - __log_gamma(__a);
-          if (std::abs(__logpoch)
-              > std::numeric_limits<_Tp>::max_digits10 * __log10)
-            return __gnu_cxx::__infinity<_Tp>();
+          auto __logpoch = __log_gamma(__a + __n) - __log_gamma(__a);
+          if (__logpoch > __gnu_cxx::__log_max(__a))
+            return __gnu_cxx::__infinity(__a);
           else
             return std::exp(__logpoch);
 	}
@@ -2618,7 +2618,7 @@ _S_neg_double_factorial_table[999]
     __log_pochhammer_lower(_Tp __a, _Tp __n)
     {
       if (__isnan(__n) || __isnan(__a))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__a);
       else if (__n == _Tp{0})
 	return _Tp{0};
       else
@@ -2640,9 +2640,8 @@ _S_neg_double_factorial_table[999]
     _Tp
     __pochhammer_lower(_Tp __a, _Tp __n)
     {
-      constexpr auto __log10{2.3025850929940456840179914546843642L};
       if (__isnan(__n) || __isnan(__a))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__a);
       else if (__n == _Tp{0})
 	return _Tp{1};
       else
@@ -2652,9 +2651,9 @@ _S_neg_double_factorial_table[999]
 	  auto __sign = __log_gamma_sign(__a + _Tp{1})
 		      * __log_gamma_sign(__a - __n + _Tp{1});
           if (__sign == _Tp{0})
-            return __gnu_cxx::__quiet_NaN<_Tp>();
-          else if (__logpoch > __gnu_cxx::__log_max<_Tp>())
-            return __sign * __gnu_cxx::__infinity<_Tp>();
+            return __gnu_cxx::__quiet_NaN(__a);
+          else if (__logpoch > __gnu_cxx::__log_max(__a))
+            return __sign * __gnu_cxx::__infinity(__a);
           else
             return __sign * std::exp(__logpoch);
 	}
@@ -2764,7 +2763,7 @@ _S_neg_double_factorial_table[999]
     _Tp
     __psi(unsigned int __n)
     {
-      constexpr _Tp __gamma_E = __gnu_cxx::__math_constants<_Tp>::__gamma_e;
+      constexpr _Tp __gamma_E = __gnu_cxx::__const_gamma_e(_Tp{});
       return -__gamma_E + __harmonic_number<_Tp>(__n);
     }
 
@@ -2785,14 +2784,14 @@ _S_neg_double_factorial_table[999]
     _Tp
     __psi_series(_Tp __x)
     {
-      _Tp __sum = -__gnu_cxx::__math_constants<_Tp>::__gamma_e;
+      _Tp __sum = -__gnu_cxx::__const_gamma_e(__x);
       const unsigned int _S_max_iter = 100000;
       for (unsigned int __k = 0; __k < _S_max_iter; ++__k)
 	{
 	  const auto __term = (__x - _Tp{1})
 			    / (_Tp(__k + 1) * (_Tp(__k) + __x));
 	  __sum += __term;
-	  if (std::abs(__term) < __gnu_cxx::__epsilon<_Tp>())
+	  if (std::abs(__term) < __gnu_cxx::__epsilon(__x))
 	    break;
 	}
       return __sum;
@@ -2824,7 +2823,7 @@ _S_neg_double_factorial_table[999]
 	{
 	  const _Tp __term = __bernoulli<_Tp>(2 * __k) / (2 * __k * __xp);
 	  __sum -= __term;
-	  if (std::abs(__term / __sum) < __gnu_cxx::__epsilon<_Tp>())
+	  if (std::abs(__term / __sum) < __gnu_cxx::__epsilon(__x))
 	    break;
 	  __xp *= __xx;
 	}
@@ -2847,20 +2846,20 @@ _S_neg_double_factorial_table[999]
     _Tp
     __psi(_Tp __x)
     {
-      constexpr auto _S_eps = _Tp{4} * __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto _S_x_asymp = _Tp{20};
-      constexpr auto __gamma_E = __gnu_cxx::__math_constants<_Tp>::__gamma_e;
-      constexpr auto __2_ln_2 = 2 * __gnu_cxx::__math_constants<_Tp>::__ln_2;
+      const auto _S_eps = _Tp{4} * __gnu_cxx::__epsilon(__x);
+      const auto _S_x_asymp = _Tp{20};
+      const auto __gamma_E = __gnu_cxx::__const_gamma_e(__x);
+      const auto __2_ln_2 = _Tp{2} * __gnu_cxx::__const_ln_2(__x);
 
       const auto __n = std::nearbyint(__x);
-      const bool __integral = (std::abs(__x - _Tp{__n}) < _S_eps);
-      const auto __m = std::nearbyint(2 * __x);
+      const bool __integral = (std::abs(__x - _Tp(__n)) < _S_eps);
+      const auto __m = std::nearbyint(_Tp{2} * __x);
       const bool __half_integral = !__integral
-				&& (std::abs(2 * __x - _Tp{__m}) < _S_eps);
+				&& (std::abs(_Tp{2} * __x - _Tp(__m)) < _S_eps);
       if (__integral)
 	{
 	  if (__n <= 0)
-	    return __gnu_cxx::__quiet_NaN<_Tp>();
+	    return __gnu_cxx::__quiet_NaN(__x);
 	  else
 	    {
 	      _Tp __sum = -__gamma_E;
@@ -2878,8 +2877,8 @@ _S_neg_double_factorial_table[999]
 	}
       else if (__x < _Tp{0})
 	{
-	  constexpr auto __pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-	  return __psi(_Tp{1} - __x) - __pi / std::tan(__pi * __x);
+	  const auto __pi = __gnu_cxx::__const_pi(__x);
+	  return __psi(_Tp{1} - __x) - __pi / __tan_pi(__x);
 	}
       else if (__x > _S_x_asymp)
 	return __psi_asymp(__x);
@@ -2967,7 +2966,7 @@ _S_neg_double_factorial_table[999]
     _GLIBCXX14_CONSTEXPR _Tp
     __log_double_factorial(_Tp __x)
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
       return (__x / _Tp{2}) * std::log(_Tp{2})
 	   + (__cos_pi(__x) - _Tp{1})
 		* std::log(_S_pi / 2) / _Tp{4}

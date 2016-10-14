@@ -98,10 +98,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _VanWijngaardenCompressor<_TermFn>::operator[](std::size_t __j) const
     {
       using value_type = decltype(this->_M_term_fn(__j));
-      constexpr auto _S_min = std::numeric_limits<value_type>::min();
-      constexpr auto _S_eps = std::numeric_limits<value_type>::epsilon();
+      const auto _S_min = __gnu_cxx::__min<value_type>();
+      const auto _S_eps = __gnu_cxx::__epsilon<value_type>();
       // Maximum number of iterations before 2^k overflow.
-      constexpr auto __k_max = std::numeric_limits<std::size_t>::digits;
+      const auto __k_max = std::numeric_limits<std::size_t>::digits;
 
       auto __sum = value_type{};
       auto __two2k = std::size_t{1};
@@ -142,8 +142,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Tp = value_type;
       using _Val = std::__detail::__num_traits_t<_Tp>;
-      const/*expr*/ auto _S_huge = __gnu_cxx::__root_max(_Val{5}); // 1.0e+60
-      const/*expr*/ auto _S_tiny = __gnu_cxx::__root_min(_Val{5}); // 1.0e-60;
+      const auto _S_huge = __gnu_cxx::__root_max(_Val{5}); // 1.0e+60
+      const auto _S_tiny = __gnu_cxx::__root_min(_Val{5}); // 1.0e-60;
 
       const auto __n = this->_M_part_sum.num_terms() - 1;
       const auto __s_n = this->_M_part_sum();

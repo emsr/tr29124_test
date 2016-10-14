@@ -118,21 +118,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using __cmplx = std::complex<_Tp>;
 
-      static constexpr auto _S_inf     = __gnu_cxx::__max<_Tp>();
+      const auto _S_inf = __gnu_cxx::__max(std::real(__zhat));
 
-      static constexpr auto _S_1d4   = _Tp{0.25L};
-      static constexpr auto _S_1d3   = _Tp{1} / _Tp{3};
-      static constexpr auto _S_1d2   = _Tp{0.5L};
-      static constexpr auto _S_2d3   = _Tp{2} / _Tp{3};
-      static constexpr auto _S_2pi   = __gnu_cxx::__math_constants<_Tp>::__2_pi;
-      static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152L}; // -(2/3)ln(2/3)
-      static constexpr auto _S_sqrt2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
-      static constexpr auto _S_4d3   = _Tp{4} / _Tp{3};
+      const auto _S_1d4   = _Tp{0.25L};
+      const auto _S_1d3   = _Tp{1} / _Tp{3};
+      const auto _S_1d2   = _Tp{0.5L};
+      const auto _S_2d3   = _Tp{2} / _Tp{3};
+      const auto _S_2pi   = __gnu_cxx::__const_2_pi(std::real(__zhat));
+      const auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152L}; // -(2/3)ln(2/3)
+      const auto _S_sqrt2 = __gnu_cxx::__const_root_2(std::real(__zhat));
+      const auto _S_4d3   = _Tp{4} / _Tp{3};
 
-      static constexpr __cmplx __zone{_Tp{1}, _Tp{0}};
-      static constexpr __cmplx _S_j{_Tp{0}, _Tp{1}};
+      const __cmplx __zone{_Tp{1}, _Tp{0}};
+      const __cmplx _S_j{_Tp{0}, _Tp{1}};
 
-      static const auto _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();
+      const auto _S_sqrt_max = __gnu_cxx::__sqrt_max(std::real(__zhat));
 
       // Separate real and imaginary parts of zhat.
       auto __rezhat = std::real(__zhat);
@@ -220,10 +220,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using __cmplx = std::complex<_Tp>;
 
       // expp and expm are exp(2*pi*i/3) and its reciprocal, respectively.
-      static constexpr auto _S_sqrt3d2
-	= __gnu_cxx::__math_constants<_Tp>::__root_3_div_2;
-      static constexpr auto __expp = __cmplx{-0.5L,  _S_sqrt3d2};
-      static constexpr auto __expm = __cmplx{-0.5L, -_S_sqrt3d2};
+      const auto _S_sqrt3d2 = __gnu_cxx::__const_root_3_div_2(std::real(__zeta));
+      const auto __expp = __cmplx{-0.5L,  _S_sqrt3d2};
+      const auto __expm = __cmplx{-0.5L, -_S_sqrt3d2};
 
       try
 	{
@@ -260,10 +259,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using __cmplx = std::complex<_Tp>;
 
-      static constexpr auto _S_sqrt3d2
-	= __gnu_cxx::__math_constants<_Tp>::__root_3_div_2;
-      static constexpr __cmplx __e2pd3{-0.5L,  _S_sqrt3d2};
-      static constexpr __cmplx __d2pd3{-0.5L, -_S_sqrt3d2};
+      const auto _S_sqrt3d2 = __gnu_cxx::__const_root_3_div_2(std::real(__z));
+      const __cmplx __e2pd3{-0.5L,  _S_sqrt3d2};
+      const __cmplx __d2pd3{-0.5L, -_S_sqrt3d2};
 
       try
 	{
@@ -340,7 +338,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       int __nterms = 4;
 
-      static constexpr auto __zone = __cmplx{1, 0};
+      static const auto __zone = __cmplx{1, 0};
 
       // Coefficients for u and v polynomials appearing in Olver's
       // uniform asymptotic expansions for the Hankel functions
@@ -786,17 +784,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using namespace std::literals::complex_literals;
       using __cmplx = std::complex<_Tp>;
 
-      static constexpr _Tp
-	_S_pi(3.141592653589793238462643383279502884195e+0L);
-      static constexpr _Tp
-	_S_pi_3(1.047197551196597746154214461093167628063e+0L);
-      static constexpr __cmplx _S_j{1il};
-      static constexpr __cmplx __con1p{ 1.0L, 1.732050807568877293527446341505872366945L}; // 2*exp( pi*j/3) (1,sqrt(3))
-      static constexpr __cmplx __con1m{ 1.0L,-1.732050807568877293527446341505872366945L}; // 2*exp(-pi*j/3)
-      static constexpr __cmplx __con2p{-2.0L, 3.464101615137754587054892683011744733891L}; // 4*exp( 2*pi*j/3) (-2,2sqrt(3))
-      static constexpr __cmplx __con2m{-2.0L,-3.464101615137754587054892683011744733891L}; // 4*exp(-2*pi*j/3)
-      static constexpr _Tp __eps   = 1.0e-06L;
-      static constexpr _Tp __epsai = 1.0e-12L;
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
+      const auto _S_pi_3 = __gnu_cxx::__const_pi_third(std::real(__z));
+      const auto _S_sqrt_3 = __gnu_cxx::__const_root_3(std::real(__z));
+      const __cmplx _S_j{1il};
+      const __cmplx __con1p{ _Tp{1}, _S_sqrt_3}; // 2*exp( pi*j/3) (1,sqrt(3))
+      const __cmplx __con1m{ _Tp{1},-_S_sqrt_3}; // 2*exp(-pi*j/3)
+      const __cmplx __con2p{-_Tp{2}, _Tp{2} * _S_sqrt_3}; // 4*exp( 2*pi*j/3) (-2,2sqrt(3))
+      const __cmplx __con2m{-_Tp{2},-_Tp{2} * _S_sqrt_3}; // 4*exp(-2*pi*j/3)
+      const _Tp __eps	= 1.0e-06L;
+      const _Tp __epsai = 1.0e-12L;
 
       // Extended to accommodate negative real orders.
       bool __nuswitch = false;
