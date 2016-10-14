@@ -85,9 +85,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			  _Tp & _Inu, _Tp & _Knu,
 			  _Tp & _Ipnu, _Tp & _Kpnu)
     {
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<long double>::__pi_half;
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__x);
       const auto __2nu = _Tp{2} * __nu;
       const auto __4nu2 = __2nu * __2nu;
       const auto __8x = _Tp{8} * __x;
@@ -155,12 +155,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __cyl_bessel_ik_steed(_Tp __nu, _Tp __x,
 			  _Tp & _Inu, _Tp & _Knu, _Tp & _Ipnu, _Tp & _Kpnu)
     {
-      constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_fp_min = _Tp{10} * _S_eps;
+      const auto _S_inf = __gnu_cxx::__infinity(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_fp_min = _Tp{10} * _S_eps;
       constexpr int _S_max_iter = 15000;
-      constexpr auto _S_x_min = _Tp{2};
+      const auto _S_x_min = _Tp{2};
 
       const int __n = std::nearbyint(__nu);
 
@@ -319,9 +319,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __cyl_bessel_ik(_Tp __nu, _Tp __x,
 		    _Tp & _Inu, _Tp & _Knu, _Tp & _Ipnu, _Tp & _Kpnu)
     {
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_inf = __gnu_cxx::__infinity(__x);
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
       if (__nu < _Tp{0})
 	{
 	  _Tp _I_mnu, _K_mnu, _Ip_mnu, _Kp_mnu;
@@ -391,7 +391,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_i: bad argument"));
       else if (__isnan(__nu) || __isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__nu >= _Tp{0} && __x * __x < _Tp{10} * (__nu + _Tp{1}))
 	return __cyl_bessel_ij_series(__nu, __x, +_Tp{1}, 200);
       else
@@ -429,7 +429,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_k: Bad argument"));
       else if (__isnan(__nu) || __isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else
 	{
 	  _Tp _I_nu, _K_nu, _Ip_nu, _Kp_nu;
@@ -459,7 +459,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __sph_bessel_ik(unsigned int __n, _Tp __x,
 		    _Tp & __i_n, _Tp & __k_n, _Tp & __ip_n, _Tp & __kp_n)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
 
       if (__isnan(__x))
 	__i_n = __k_n = __ip_n = __kp_n = _S_NaN;
@@ -469,7 +469,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Tp _I_nu, _Ip_nu, _K_nu, _Kp_nu;
 	  __cyl_bessel_ik(__nu, __x, _I_nu, _K_nu, _Ip_nu, _Kp_nu);
 
-	  const auto __factor = __gnu_cxx::__math_constants<_Tp>::__root_pi_div_2
+	  const auto __factor = __gnu_cxx::__const_root_pi_div_2(_Tp{})
 			      / std::sqrt(__x);
 
 	  __i_n = __factor * _I_nu;
@@ -499,10 +499,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __airy(_Tp __z, _Tp & _Ai, _Tp & _Bi, _Tp & _Aip, _Tp & _Bip)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
-      constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_sqrt3 = __gnu_cxx::__math_constants<_Tp>::__root_3;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__z);
+      const auto _S_inf = __gnu_cxx::__infinity(__z);
+      const auto _S_pi = __gnu_cxx::__const_pi(__z);
+      const auto _S_sqrt3 = __gnu_cxx::__const_root_3(__z);
       const auto __absz = std::abs(__z);
       const auto __rootz = std::sqrt(__absz);
       const auto __xi = _Tp{2} * __absz * __rootz / _Tp{3};
@@ -584,7 +584,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		std::complex<_Tp>& __w1, std::complex<_Tp>& __w2,
 		std::complex<_Tp>& __w1p, std::complex<_Tp>& __w2p)
     {
-      constexpr auto _S_sqrtpi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
+      const auto _S_sqrtpi = __gnu_cxx::__const_root_pi(__x);
 
       _Tp _Ai, _Bi, _Aip, _Bip;
       airy(__x, &_Ai, &_Bi, &_Aip, &_Bip);

@@ -208,8 +208,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ibeta_cont_frac(_Tp __a, _Tp __b, _Tp __x)
     {
       constexpr unsigned int _S_itmax = 100;
-      constexpr auto _S_fpmin = 1000 * __gnu_cxx::__min<_Tp>();
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      const auto _S_fpmin = 1000 * __gnu_cxx::__min<_Tp>();
+      const auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
 
       auto __apb = __a + __b;
       auto __ap1 = __a + _Tp{1};
@@ -279,7 +279,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __beta_inc(_Tp __a, _Tp __b, _Tp __x)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
 
 
       if (__x < _Tp{0} || __x > _Tp{1})
