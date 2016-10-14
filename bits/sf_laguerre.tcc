@@ -79,8 +79,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const _Tp __cos2th = __x / __eta;
       const _Tp __sin2th = _Tp{1} - __cos2th;
       const _Tp __th = std::acos(std::sqrt(__cos2th));
-      const _Tp __pre_h = __gnu_cxx::__math_constants<_Tp>::__pi_half
-			* __gnu_cxx::__math_constants<_Tp>::__pi_half
+      const _Tp __pre_h = __gnu_cxx::__const_pi_half(__x)
+			* __gnu_cxx::__const_pi_half(__x)
 			* __eta * __eta * __cos2th * __sin2th;
 
       const _Tp __lg_b = __log_gamma(_Tp(__n) + __b);
@@ -95,7 +95,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __ser_term2 = std::sin(_Tp{0.25L} * __eta
 			      * (_Tp{2} * __th
 			       - std::sin(_Tp{2} * __th))
-			      + __gnu_cxx::__math_constants<_Tp>::__pi_quarter);
+			      + __gnu_cxx::__const_pi_quarter(__x));
       _Tp __ser = __ser_term1 + __ser_term2;
 
       return std::exp(__lnpre) * __ser;
@@ -254,7 +254,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_domain_error(__N("__poly_laguerre: negative argument"));
       // Return NaN on NaN input.
       else if (__isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__n == 0)
 	return _Tp{1};
       else if (__n == 1)

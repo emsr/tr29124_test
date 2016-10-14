@@ -78,7 +78,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if ((__x < -_Tp{1}) || (__x > +_Tp{1}))
 	std::__throw_domain_error(__N("__poly_legendre_p: argument out of range"));
       else if (__isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x == +_Tp{1})
 	return +_Tp{1};
       else if (__x == -_Tp{1})
@@ -128,7 +128,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if ((__x < -_Tp{1}) || (__x > +_Tp{1}))
 	std::__throw_domain_error(__N("__legendre_q: argument out of range"));
       else if (__isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x == +_Tp{1})
 	return +_Tp{1};
       else if (__x == -_Tp{1})
@@ -184,7 +184,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_domain_error(__N("__assoc_legendre_p: "
 				      "degree out of range"));
       else if (__isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__m == 0)
 	return __poly_legendre_p(__l, __x);
       else
@@ -256,7 +256,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __sph_legendre(unsigned int __l, unsigned int __m, _Tp __theta)
     {
       if (__isnan(__theta))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__theta);
 
       const auto __x = std::cos(__theta);
 
@@ -266,7 +266,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  _Tp _P_l = __poly_legendre_p(__l, __x);
 	  _Tp __fact = std::sqrt(_Tp(2 * __l + 1)
-		     / (_Tp{4} * __gnu_cxx::__math_constants<_Tp>::__pi));
+		     / (_Tp{4} * __gnu_cxx::__const_pi(__theta)));
 	  _P_l *= __fact;
 	  return _P_l;
 	}
@@ -286,10 +286,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __lnpoch = __log_gamma(_Tp(__m + 0.5L))
 			      - __log_gamma(_Tp(__m));
 	  const auto __lnpre_val =
-		     -_Tp{0.25L} * __gnu_cxx::__math_constants<_Tp>::__ln_pi
+		     -_Tp{0.25L} * __gnu_cxx::__const_ln_pi(__theta)
 		     + _Tp{0.5L} * (__lnpoch + __m * __lncirc);
 	  _Tp __sr = std::sqrt((_Tp{2} + _Tp{1} / __m)
-		   / (_Tp{4} * __gnu_cxx::__math_constants<_Tp>::__pi));
+		   / (_Tp{4} * __gnu_cxx::__const_pi(__theta)));
 	  _Tp _Y_mm = __sgn * __sr * std::exp(__lnpre_val);
 	  _Tp _Y_mp1m = _Y_mp1m_factor * _Y_mm;
 
@@ -352,7 +352,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __sph_harmonic(unsigned int __l, int __m, _Tp __theta, _Tp __phi)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__theta);
       if (__isnan(__theta) || __isnan(__phi))
 	return std::complex<_Tp>{_S_NaN, _S_NaN};
 

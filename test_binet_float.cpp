@@ -52,6 +52,52 @@ namespace __detail
     }
 
   /**
+   * @see The Gamma function revisited.
+   */
+  template<typename _Tp>
+    std::vector<_Tp>
+    __recursive_thing(_Tp __c)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+
+      const int _N = 100;
+
+      std::vector<_Real> __F;
+      _Tp _Fprev{1}, _Gprev{0}, _Hprev{0};
+      __F.push_back(_Fprev);
+      for (int __n = _N; __n > 0; --__n)
+	{
+	  auto _Fcurr = _Fprev + _Hprev * __c / (2 * __n);
+	  auto _Gcurr = ((2 * __n) * _Gprev + __c * _Fcurr) / (2 * __n - 1);
+	  auto _Hcurr = _Hprev + _Gcurr;
+	  _Fprev = _Fcurr;
+	  _Gprev = _Gcurr;
+	  _Hprev = _Hcurr;
+	  __F.push_back(_Fprev);
+	}
+      return __F;
+    }
+
+  /**
+   * @see The Gamma function revisited.
+   */
+  template<typename _Real>
+    _Tp
+    __binet_recursive(_Tp __z)
+    {
+      const auto _S_2pi = __gnu_cxx::__math_constants<_Real>::__2_pi;
+      const auto __c = _S_2pi * __z;
+      for (int __k = _1; __k < 10; ++__k)
+	{
+          std::vector<_Real> __F = __recursive_thing(__c * __k);
+	  //for (auto __f : __F)
+	  //  
+	}
+    }
+
+
+  /**
    * Computes the sequence of even Bernoulli numbers @f$ B_{2m} @f$ (m > 0)
    * using the old Riemann zeta function series.
    */
@@ -66,15 +112,15 @@ namespace __detail
     }
 
   /**
-   * Scales the even Bernoulli numbers @f$ B_{2m} @f$ with weights
-   * @f$ (-1)^m/((2m - 1)2m) @f$, m > 0.
+   * Scales the even Bernoulli numbers @f$ B_{2m+2} @f$ with weights
+   * @f$ (-1)^m/((2m + 1)(2m + 2)) @f$, m >= 0.
    */
   template<typename _Real>
     std::vector<_Real>
     __weights(std::vector<_Real> __b)
     {
       int __sgn = 1;
-      for (std::size_t __m = 1; __m < __b.size(); ++__m)
+      for (std::size_t __m = 0; __m < __b.size(); ++__m)
 	{
 	  __b[__m] *= _Real(__sgn) / _Real(2 * __m + 1) / _Real(2 * __m + 2);
 	  __sgn = -__sgn;
@@ -109,7 +155,7 @@ namespace __detail
 
       for (std::size_t __k = 2; __k < __len; ++__k)
 	{
-	  for (std::size_t __n = 0; __n < __len - __k ; ++__n)
+	  for (std::size_t __n = 0; __n < __len - __k; ++__n)
             {
               auto __a = __m[__n + 1][__k - 2];
               auto __b = __m[__n + 1][__k - 1];
@@ -191,34 +237,34 @@ namespace __detail
       std::vector<std::vector<_Real>> __q;
       __q.push_back(std::vector<_Real>{});
       __q.back().push_back(-__s[1] / __s[0]);
-      for (unsigned __k = 1; __k < __n; ++__k)
+      for (unsigned __l = 1; __l < __n; ++__l)
 	__q.back().push_back(__zero);
 
       std::vector<std::vector<_Real>> __e;
       __e.push_back(std::vector<_Real>{});
       __e.back().push_back(_Real{0});
-      for (unsigned __k = 1; __k < __n - 2; ++__k)
-	__e.back().push_back(__s[__k + 1] / __s[__k]);
+      for (unsigned __l = 1; __l < __n - 1; ++__l)
+	__e.back().push_back(__s[__l + 1] / __s[__l]);
 
       __r.push_back(__e[0][0]);
-      //__r.push_back(__q[0][1]);
 
       for (unsigned __k = 1; __k < __n - 2; ++__k)
 	{
 	  __q.push_back(std::vector<_Real>{});
-	  for (unsigned __l = 0; __l < __n - 2 - __k; ++__l)
+	  for (unsigned __l = 0; __l < __n - 2 * __k; ++__l)
 	    __q.back().push_back(__q[__k - 1][__l] + __e[__k - 1][__l + 1] - __e[__k - 1][__l]);
 
-	  if (__q[__k].size() == 0)
-	    break;
+	  if (__q[__k].size() > 0)
+	    __r.push_back(__q[__k][0]);
 
 	  __e.push_back(std::vector<_Real>{});
-	  for (unsigned __l = 0; __l < __n - 2 - __k; ++__l)
+	  for (unsigned __l = 0; __l < __n - 2 * __k - 1; ++__l)
 	    __e.back().push_back(__q[__k][__l + 1] * __e[__k - 1][__l + 1] / __q[__k][__l]);
 
-	  __r.push_back(__q[__k][0]);
 	  if (__e[__k].size() > 0)
 	    __r.push_back(__e[__k][0]);
+	  else
+	    break;
 	}
 
       return __r;
@@ -254,60 +300,60 @@ namespace __detail
       constexpr _Real
       _S_b[_S_n]
       {
-	0.0833333333333333333L,
-	0.00277777777777777778L,
-	0.000793650793650793651L,
-	0.000595238095238095238L,
-	0.000841750841750841751L,
-	0.00191752691752691753L,
-	0.00641025641025641026L,
-	0.0295506535947712418L,
-	0.179644372368830573L,
-	1.39243221690590112L,
-	13.402864044168392L,
-	156.848284626002017L,
-	2193.10333333333333L,
-	36108.7712537249894L,
-	691472.268851313067L,
-	15238221.5394074162L,
-	382900751.391414141L,
-	10882266035.7843911L,
-	347320283765.002252L,
-	12369602142269.2744L,
-	488788064793079.335L,
-	21320333960919373.9L,
-	1.02177529652570008e+18L,
-	5.35754721733002036e+19L,
-	3.06157826370488341e+21L,
-	1.8999917426399204e+23L,
-	1.27633740338288341e+25L,
-	9.2528471761204163e+26L,
-	7.21882259518561029e+28L,
-	6.04518340599585696e+30L,
-	5.42067047157009454e+32L,
-	5.19295781531408194e+34L,
-	5.30365885511970059e+36L,
-	5.76332534816496401e+38L,
-	6.65115571484845393e+40L,
-	8.13737835813668053e+42L,
-	1.05369669533571418e+45L,
-	1.44181805999622062e+47L,
-	2.08173565220895654e+49L,
-	3.16702266348866618e+51L,
-	5.07000646121113734e+53L,
-	8.52997282030055187e+55L,
-	1.50641728093405986e+58L,
-	2.78934947038316368e+60L,
-	5.40935043528604149e+62L,
-	1.09753378215085198e+65L,
-	2.32748762026184791e+67L,
-	5.15392916206532138e+69L,
-	1.19062102308902264e+72L,
-	2.86689389602966737e+74L,
+	  0.0833333333333333333333333333333333L,
+	 0.00277777777777777777777777777777778L,
+	0.000793650793650793650793650793650794L,
+	0.000595238095238095238095238095238095L,
+	0.000841750841750841750841750841750842L,
+	 0.00191752691752691752691752691752692L,
+	 0.00641025641025641025641025641025641L,
+	  0.0295506535947712418300653594771242L,
+	   0.179644372368830573164938490015889L,
+	     1.3924322169059011164274322169059L,
+	    13.4028640441683919944789510006901L,
+	    15759.8483231140839836492010405054L,
+	    2193.10333333333333242281567137488L,
+	    36108.7712537249893410286881332229L,
+	    691472.268851313066777148250599689L,
+	    15238221.5394074161844969025168190L,
+	    382900751.391414141206257412944758L,
+	    10882266035.7843910827594224065177L,
+	    347320283765.002252041501237032466L,
+	    12369602142269.2744463508996924125L,
+	    488788064793079.334748002432392346L,
+	    21320333960919373.8819953763850981L,
+	    1021775296525700076.81475571783662L,
+	    53575472173300203569.7635271795249L,
+	    3061578263704883412598.75652933154L,
+	    189999174263992040345172.024164544L,
+	    12763374033828834138229314.2866605L,
+	    925284717612041629895616935.647741L,
+	    72188225951856102911502977063.9351L,
+	    6045183405995856961951306804314.17L,
+	   542067047157009453982686049507708.0L,
+	5.19295781531408194139317505902564e+34L,
+	5.30365885511970059106530722178703e+36L,
+	5.76332534816496400763640094632658e+38L,
+	6.65115571484845393008203176382139e+40L,
+	8.13737835813668052936054479212525e+42L,
+	1.05369669533571417913038325599530e+45L,
+	1.44181805999622062443077173359329e+47L,
+	2.08173565220895654364963845771048e+49L,
+	3.16702266348866617869561775030010e+51L,
+	5.07000646121113733654063737462523e+53L,
+	8.52997282030055187017934268544118e+55L,
+	1.50641728093405985560080145938733e+58L,
+	2.78934947038316368320924011776134e+60L,
+	5.40935043528604149280237369227601e+62L,
+	1.09753378215085198388932020854243e+65L,
+	2.32748762026184791385428030490926e+67L,
+	5.15392916206532138229395451444576e+69L,
+	1.19062102308902264390529844167985e+72L,
+	2.86689389602966736504472887935303e+74L,
       };
 
       auto __z2 = _Real{1} / (__z * __z);
-      auto __J = _Val{.5};
+      auto __J = _Val{};
       auto __zk = _Val{1} / __z;
       for (auto __b : _S_b)
 	{
@@ -402,7 +448,7 @@ namespace __detail
    * Compute the Binet function @f$ J(z) @f$ defined by
    * @f[
    *    J(z) = log\left(\Gamma(z)\right) + z
-   *         - \left(z-\frac{1}{2}\right) log(z) - log(2\pi)
+   *         - \left(z-\frac{1}{2}\right) log(z) - \frac{1}{2}log(2\pi)
    * @f]
    * or
    * @f[
@@ -555,8 +601,10 @@ template<typename _Tp>
 	auto x = _Tp{0.1Q} * k;
 	auto j_as = std::__detail::__binet_asymp(x);
 	auto j_cf = std::__detail::__binet_cont_frac(x);
-	auto j_fake = std::lgamma(x) - (x - 0.5) * std::log(x) + x - _S_ln2pi / _Real{2};
-	auto j_bern = std::__detail::__log_gamma_bernoulli(x) - (x - 0.5) * std::log(x) + x - _S_ln2pi / _Real{2};
+	auto j_fake = std::lgamma(x)
+		    - (x - 0.5) * std::log(x) + x - _S_ln2pi / _Real{2};
+	auto j_bern = std::__detail::__log_gamma_bernoulli(x)
+		    - (x - 0.5) * std::log(x) + x - _S_ln2pi / _Real{2};
 	std::cout << ' ' << std::setw(4) << x
 		  << ' ' << std::setw(width) << j_as
 		  << ' ' << std::setw(width) << j_cf
