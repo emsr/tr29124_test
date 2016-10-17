@@ -123,6 +123,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<>
     mpfr::mpreal
+    __const_root_2_pi(mpfr::mpreal __proto)
+    {
+      auto __pi = mpfr::const_pi(__proto.getPrecision());
+      return mpfr::sqrt(2 * __pi);
+    }
+
+  template<>
+    mpfr::mpreal
+    __const_ln_root_2_pi(mpfr::mpreal __proto)
+    {
+      auto __pi = mpfr::const_pi(__proto.getPrecision());
+      return mpfr::log(mpfr::sqrt(2 * __pi));
+    }
+
+  template<>
+    mpfr::mpreal
     __const_deg(mpfr::mpreal __proto)
     { return 180 / mpfr::const_pi(__proto.getPrecision()); }
 
