@@ -64,6 +64,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   double log(double base, double x);
   long double logl(long double base, long double x);
 
+  // Exponent base 10 - the inverse of log10.
+
+  float exp10f(float x);
+  double exp10log(double x);
+  long double exp10logl(long double x);
 
   // Trigonometric functions
 

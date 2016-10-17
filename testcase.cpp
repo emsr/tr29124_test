@@ -819,6 +819,18 @@ template<typename Real>
 	     "GSL",
 	     file_dilog);
 
+    // Log Gamma functions.
+    std::cout << "lgamma" << std::endl;
+    basename = "lgamma";
+    filename = get_filename(path, prefix, basename, "", ".cc");
+    std::ofstream file_lgamma(filename.c_str());
+    maketest(lgamma, beast::lgamma,
+	     "testcase_lgamma", "__gnu_cxx", basename,
+	     "a", fill_argument(std::make_pair(Real{-10}, Real{20}),
+				std::make_pair(false, true), 151),
+	     "Boost",
+	     file_lgamma);
+
     // Upper incomplete Gamma functions.
     std::cout << "tgamma" << std::endl;
     basename = "tgamma";

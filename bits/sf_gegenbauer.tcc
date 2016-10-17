@@ -62,7 +62,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __gegenbauer_poly(unsigned int __n, _Tp __alpha, _Tp __x)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
 
       if (__isnan(__alpha) || __isnan(__x))
 	return _S_NaN;

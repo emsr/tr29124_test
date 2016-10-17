@@ -75,7 +75,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __chi_squared_pdf(_Tp __chi2, unsigned int __nu)
     {
       if (__isnan(__chi2))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__chi2);
       else if (__chi2 < _Tp{0})
 	std::__throw_domain_error(__N("__chi_squared_cdf: "
 				      "chi-squared is negative"));
@@ -99,7 +99,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __chi_squared_pdfc(_Tp __chi2, unsigned int __nu)
     {
       if (__isnan(__chi2) || __isnan(__nu))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__chi2);
       else if (__chi2 < _Tp{0})
 	std::__throw_domain_error(__N("__chi_square_pdfc: "
 				      "chi-squared is negative"));
@@ -121,7 +121,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gamma_pdf(_Tp __alpha, _Tp __beta, _Tp __x)
     {
       if (__isnan(__alpha) || __isnan(__beta) || __isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__x);
       else
 	return std::pow(__beta, __alpha) * std::pow(__x, __alpha - _Tp{1})
 	     * std::exp(__beta * __x) / __gamma(__alpha);
@@ -141,7 +141,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gamma_cdf(_Tp __alpha, _Tp __beta, _Tp __x)
     {
       if (__isnan(__alpha) || __isnan(__beta) || __isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__x);
       else
 	return __tgamma_lower(__alpha, __beta * __x)
 	     / __gamma(__alpha);
@@ -162,7 +162,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gamma_cdfc(_Tp __alpha, _Tp __beta, _Tp __x)
     {
       if (__isnan(__alpha) || __isnan(__beta) || __isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__x);
       else
 	return __tgamma(__alpha, __beta * __x)
 	     / __gamma(__alpha);
@@ -186,7 +186,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __rice_pdf(_Tp __nu, _Tp __sigma, _Tp __x)
     {
       if (__isnan(__nu) || __isnan(__sigma))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__x);
       else
 	{
 	  auto __sigma2 = __sigma * __sigma;
@@ -209,11 +209,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __normal_pdf(_Tp __nu, _Tp __sigma, _Tp __x)
     {
-      constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
-      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
-      constexpr auto _S_sqrt_2pi = _S_sqrt_2 * _S_sqrt_pi;
+      const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
+      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(__x);
+      const auto _S_sqrt_2pi = _S_sqrt_2 * _S_sqrt_pi;
       if (__isnan(__nu) || __isnan(__sigma))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__x);
       else
 	{
 	  __x -= __nu;
@@ -237,9 +237,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __normal_cdf(_Tp __mu, _Tp __sigma, _Tp __x)
     {
-      constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
+      const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
       if (__isnan(__mu) || __isnan(__sigma) || __isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__x);
       else
 	return _Tp{0.5L}
 	     * (_Tp{1} + std::erf((__x - __mu) / (__sigma * _S_sqrt_2)));
@@ -258,11 +258,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __lognormal_pdf(_Tp __nu, _Tp __sigma, _Tp __x)
     {
-      constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
-      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
-      constexpr auto _S_sqrt_2pi = _S_sqrt_2 * _S_sqrt_pi;
+      const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
+      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(__x);
+      const auto _S_sqrt_2pi = _S_sqrt_2 * _S_sqrt_pi;
       if (__isnan(__nu) || __isnan(__sigma))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__x);
       else
 	{
 	  __x -= __nu;
@@ -286,9 +286,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __lognormal_cdf(_Tp __mu, _Tp __sigma, _Tp __x)
     {
-      constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
+      const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
       if (__isnan(__mu) || __isnan(__sigma) || __isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__x);
       else
 	return _Tp{0.5L} * (_Tp{1} + std::erf((std::log(__x) - __mu)
 					    / (__sigma * _S_sqrt_2)));
@@ -308,7 +308,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __exponential_pdf(_Tp __lambda, _Tp __x)
     {
       if (__isnan(__lambda) || __isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return _Tp{0};
       else
@@ -328,7 +328,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __exponential_cdf(_Tp __lambda, _Tp __x)
     {
       if (__isnan(__lambda) || __isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return _Tp{0};
       else
@@ -352,7 +352,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __weibull_pdf(_Tp __a, _Tp __b, _Tp __x)
     {
       if (__isnan(__a) || __isnan(__b) || __isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return _Tp{0};
       else
@@ -373,7 +373,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __weibull_cdf(_Tp __a, _Tp __b, _Tp __x)
     {
       if (__isnan(__a) || __isnan(__b) || __isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return _Tp{0};
       else
@@ -397,7 +397,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __student_t_cdf(_Tp __t, unsigned int __nu)
     {
       if (__isnan(__t))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__t);
       else
 	return __beta_inc(_Tp{0.5L}, _Tp(__nu) / _Tp{2},
 			  __t * __t / (_Tp(__nu) + __t * __t));
@@ -420,7 +420,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __student_t_cdfc(_Tp __t, unsigned int __nu)
     {
       if (__isnan(__t))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__t);
       else
 	return __beta_inc(_Tp(__nu) / _Tp{2}, _Tp{0.5L},
 			  _Tp(__nu) / (_Tp(__nu) + __t * __t));
@@ -446,7 +446,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __fisher_f_cdf(_Tp __F, unsigned int __nu1, unsigned int __nu2)
     {
       if (__isnan(__F))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__F);
       else if (__F < _Tp{0})
 	std::__throw_domain_error(__N("__f_cdf: F is negative"));
       else
@@ -475,7 +475,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __fisher_f_cdfc(_Tp __F, unsigned int __nu1, unsigned int __nu2)
     {
       if (__isnan(__F))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__F);
       else if (__F < _Tp{0})
 	std::__throw_domain_error(__N("__f_cdfc: F is negative"));
       else
@@ -501,7 +501,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __binomial_pdf(_Tp __p, unsigned int __n, unsigned int __k)
     {
       if (__isnan(__p))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__p);
       else if (__p < _Tp{0} || __p > _Tp{1})
 	std::__throw_domain_error(__N("__binomial_cdf: "
 				      "probability is out of range"));
@@ -538,7 +538,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __binomial_cdf(_Tp __p, unsigned int __n, unsigned int __k)
     {
       if (__isnan(__p))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__p);
       else if (__p < _Tp{0} || __p > _Tp{1})
 	std::__throw_domain_error(__N("__binomial_cdf: "
 				      "probability is out of range"));
@@ -568,7 +568,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __binomial_cdfc(_Tp __p, unsigned int __n, unsigned int __k)
     {
       if (__isnan(__p))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return __gnu_cxx::__quiet_NaN(__p);
       else if (__p < _Tp{0} || __p > _Tp{1})
 	std::__throw_domain_error(__N("__binomial_cdfc: "
 				      "probability is out of range"));

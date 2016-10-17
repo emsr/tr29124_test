@@ -50,7 +50,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
                unsigned int __l, unsigned int __m,
                _Tp __Z, _Tp __r, _Tp __theta, _Tp __phi)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__r);
 
       if (__isnan(__Z) || __isnan(__r) || __isnan(__theta) || __isnan(__phi))
 	return std::complex<_Tp>{_S_NaN, _S_NaN};

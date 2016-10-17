@@ -196,11 +196,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __dilog(_Tp __x)
     {
       constexpr unsigned long long _S_maxit = 100000ULL;
-      constexpr _Tp _S_eps = 10 * __gnu_cxx::__epsilon<_Tp>();
-      constexpr _Tp _S_pipio6
-	= __gnu_cxx::__math_constants<_Tp>::__pi_sqr_div_6;
+      const auto _S_eps = 10 * __gnu_cxx::__epsilon(__x);
+      const auto _S_pipio6
+	= __gnu_cxx::__const_pi_sqr_div_6(__x);
       if (__isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x > _Tp{+1})
 	std::__throw_range_error(__N("dilog: argument greater than one"));
       else if (__x < _Tp{-1})
@@ -263,7 +263,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				      "Bad argument in zeta sum."));
 
       constexpr unsigned int _S_max_iter = 10000;
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Real>();
+      const auto _S_eps = __gnu_cxx::__epsilon(__s);
       auto __zeta = _Val{1};
       for (unsigned int __k = 2; __k < _S_max_iter; ++__k)
 	{
@@ -291,9 +291,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Real>();
-      constexpr auto _S_N = 10 + __gnu_cxx::__digits10<_Real>() / _Tp{2};
-      constexpr auto _S_jmax = 99;
+      const auto _S_eps = __gnu_cxx::__epsilon(__s);
+      const auto _S_N = 10 + __gnu_cxx::__digits10(__s) / _Tp{2};
+      const auto _S_jmax = 99;
 
       const auto __pmax  = std::pow(_Val{_S_N + 1}, -__s);
       const auto __denom = _Val{_S_N + 1} * _Val{_S_N + 1};
@@ -302,7 +302,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
         __ans += std::pow(_Val(__k + 1), -__s);
 
       auto __fact = __pmax * __s / _Val{_S_N + 1};
-      auto __delta_prev = __gnu_cxx::__max<_Real>();
+      auto __delta_prev = __gnu_cxx::__max(__s);
       for (auto __j = 0; __j <= _S_jmax; ++__j)
         {
 	  auto __delta = _S_Euler_Maclaurin_zeta[__j + 1] * __fact;
@@ -347,8 +347,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Real>();
-      constexpr unsigned int _S_max_iter = 10000000;
+      const auto _S_eps = __gnu_cxx::__epsilon(__s);
+      const unsigned int _S_max_iter = 10000000;
       auto __sgn = _Real{1};
       auto __zeta = _Val{0};
       for (unsigned int __i = 1; __i < _S_max_iter; ++__i)
@@ -398,13 +398,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       auto __zeta = _Val{0};
 
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Real>();
+      const auto _S_eps = __gnu_cxx::__epsilon(__s);
       //  Max e exponent before overflow.
-      constexpr auto __max_bincoeff
-		 = std::exp(std::numeric_limits<_Real>::max_exponent10
+      const auto __max_bincoeff
+		 = std::exp(__gnu_cxx::__max_exponent10(__s)
 			    * std::log(_Real{10}) - _Real{1});
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Real>::__pi_half;
+      const auto _S_pi = __gnu_cxx::__const_pi(__s);
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
       //  This series works until the binomial coefficient blows up
       //  so use reflection.
       if (std::real(__s) < _Real{0})
@@ -491,9 +491,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Val>;
       extern const unsigned long __prime_list[];
 
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Real>();
+      const auto _S_eps = __gnu_cxx::__epsilon(__s);
       constexpr unsigned long
-      _S_num_primes = sizeof(unsigned long) != 8 ? 256 : 256 + 48;
+        _S_num_primes = sizeof(unsigned long) != 8 ? 256 : 256 + 48;
 
       auto __zeta = _Val{1};
       for (unsigned long __i = 0; __i < _S_num_primes; ++__i)
@@ -529,9 +529,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
-      constexpr auto _S_inf = __gnu_cxx::__infinity<_Real>();
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__s);
+      const auto _S_inf = __gnu_cxx::__infinity(__s);
+      const auto _S_pi = __gnu_cxx::__const_pi(__s);
       if (__isnan(__s))
 	return _S_NaN;
       else if (__s == _Val{1})
@@ -586,9 +586,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Real>();
-      constexpr int _S_N = 10 + std::numeric_limits<_Real>::digits10 / 2;
-      constexpr int _S_jmax = 99;
+      const auto _S_eps = __gnu_cxx::__epsilon(__s);
+      const int _S_N = 10 + __gnu_cxx::__digits10(__s) / 2;
+      const int _S_jmax = 99;
 
       const auto __pmax  = std::pow(_Val{_S_N} + __a, -__s);
       auto __ans = __pmax
@@ -617,7 +617,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * MPFR - 128 bits.
    */
   constexpr size_t
-  _S_num_zetam1 = 33;
+  _S_num_zetam1 = 41;
 
   constexpr long double
   _S_zetam1[_S_num_zetam1]
@@ -654,7 +654,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     1.862659723513049006403909945416948061669e-9L,  // 29
     9.313274324196681828717647350212198135677e-10L, // 30
     4.656629065033784072989233251220071062704e-10L, // 31
-    2.328311833676505492001455975940495024831e-10L  // 32
+    2.328311833676505492001455975940495024831e-10L, // 32
+    1.164155017270051977592973835456309516528e-10L, // 33
+    5.820772087902700889243685989106305417368e-11L, // 34
+    2.910385044497099686929425227884046410669e-11L, // 35
+    1.455192189104198423592963224531842098334e-11L, // 36
+    7.275959835057481014520869012338059265263e-12L, // 37
+    3.637979547378651190237236355873273513051e-12L, // 38
+    1.818989650307065947584832100730085030987e-12L, // 39
+    9.094947840263889282533118386949087534482e-13L  // 40
   };
 
   /**
@@ -674,20 +682,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
+      const auto _S_eps = std::numeric_limits<_Real>::epsilon();
       if (__s == _Real{1})
 	return std::numeric_limits<_Real>::quiet_NaN();
-
-      int __k_max = std::min(1000000,
-			     int(std::pow(_Real{1} / _S_eps, _Real{1} / __s)));
-      auto __zeta_m_1 = _Val{0};
-      for (int __k = __k_max; __k >= 2; --__k)
+      else
 	{
-	  auto __term = std::pow(_Real(__k), -__s);
-	  __zeta_m_1 += __term;
+	  int __k_max = std::min(1000000,
+			    int(std::pow(_Real{1} / _S_eps, _Real{1} / __s)));
+	  auto __zeta_m_1 = _Val{0};
+	  for (int __k = __k_max; __k >= 2; --__k)
+	    {
+	      auto __term = std::pow(_Real(__k), -__s);
+	      __zeta_m_1 += __term;
+	    }
+	  return __zeta_m_1;
 	}
-
-      return __zeta_m_1;
     }
 
 
@@ -735,8 +744,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
-      constexpr auto _S_inf = __gnu_cxx::__infinity<_Real>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__s);
+      const auto _S_inf = __gnu_cxx::__infinity(__s);
       if (__isnan(__s) || __isnan(__a))
 	return _S_NaN;
       else if (__a == _Real{1} && __s == _Real{1})

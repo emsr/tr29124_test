@@ -46,7 +46,7 @@ template<typename _Tp>
   _Tp
   __znorm2(_Tp __x)
   {
-    constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
+    const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
     return _Tp{0.5L} * std::erfc(__x / _S_sqrt_2);
   }
 
@@ -57,7 +57,7 @@ template<typename _Tp>
   _Tp
   __znorm1(_Tp __x)
   {
-    constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
+    const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
     return _Tp{0.5L} * std::erf(__x / _S_sqrt_2);
   }
 
@@ -69,7 +69,7 @@ template<typename _Tp>
   _Tp
   __gauss(_Tp __x)
   {
-    constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
+    const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
     return _Tp{0.5L} * (_Tp{1} + std::erf(__x/_S_sqrt_2));
   }
 
