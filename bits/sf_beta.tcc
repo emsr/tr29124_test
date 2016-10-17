@@ -139,6 +139,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *   B(a,b) = \frac{a + b}{a b} \prod_{k=1}^{\infty}
    *            \frac{1 + (a + b) / k}{(1 + a / k) (1 + b / k)}
+   *          = \frac{a + b}{ab} \prod_{k=1}^{\infty}
+   *            \left[1 - \frac{ab}{(a + k)(b + k)}\right]
    * @f]
    *
    * @param __a The first argument of the beta function.
@@ -149,16 +151,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __beta_product(_Tp __a, _Tp __b)
     {
+      const auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      const auto __ab = __a * __b;
+      auto __bet = (__a + __b) / __ab;
 
-      _Tp __bet = (__a + __b) / (__a * __b);
+      const unsigned int _S_max_iter = 100000; // Could need 1 / sqrt(_S_eps)
 
-      const unsigned int _S_max_iter = 100000;
-
+      const auto __apk = __a, __apb = __b;
       for (unsigned int __k = 1; __k < _S_max_iter; ++__k)
 	{
-	  _Tp __term = (_Tp{1} + (__a + __b) / __k)
-		     / ((_Tp{1} + __a / __k) * (_Tp{1} + __b / __k));
+	  auto __term = _Tp{1} - __ab / (++__apk) / (++__apb);
 	  __bet *= __term;
+	  if (std::abs(_Tp{1} - __term) < _S_eps)
+	    break;
 	}
 
       return __bet;
@@ -203,8 +208,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ibeta_cont_frac(_Tp __a, _Tp __b, _Tp __x)
     {
       constexpr unsigned int _S_itmax = 100;
-      constexpr auto _S_fpmin = 1000 * __gnu_cxx::__min<_Tp>();
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      const auto _S_fpmin = 1000 * __gnu_cxx::__min<_Tp>();
+      const auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
 
       auto __apb = __a + __b;
       auto __ap1 = __a + _Tp{1};
@@ -274,7 +279,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __beta_inc(_Tp __a, _Tp __b, _Tp __x)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
 
 
       if (__x < _Tp{0} || __x > _Tp{1})
