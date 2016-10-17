@@ -39,89 +39,160 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     struct __airy_t
     {
-      _Tp x;
-      _Tp Ai;
-      _Tp Aip;
-      _Tp Bi;
-      _Tp Bip;
+      /// The argument of the Airy fuctions.
+      _Tp x_arg;
+      /// The value of the Airy function Ai.
+      _Tp Ai_value;
+      /// The derivative of the Airy function Ai.
+      _Tp Ai_deriv;
+      /// The value of the Airy function Bi.
+      _Tp Bi_value;
+      /// The derivative of the Airy function Bi.
+      _Tp Bi_deriv;
     };
 
   template<typename _Tp>
     struct __cyl_bessel_t
     {
-      _Tp x;
-      _Tp nu;
-      _Tp J;
-      _Tp Jp;
-      _Tp N;
-      _Tp Np;
+      /// The argument of the cylindrical Bessel functions.
+      _Tp x_arg;
+      /// The real order of the cylindrical Bessel functions.
+      _Tp nu_arg;
+      /// The value of the Bessel function of the first kind.
+      _Tp J_value;
+      /// The derivative of the Bessel function of the first kind.
+      _Tp J_deriv;
+      /// The value of the Bessel function of the second kind.
+      _Tp N_value;
+      /// The derivative of the Bessel function of the second kind.
+      _Tp N_deriv;
     };
 
   template<typename _Tp>
     struct __cyl_mod_bessel_t
     {
-      _Tp x;
-      _Tp nu;
-      _Tp I;
-      _Tp Ip;
-      _Tp K;
-      _Tp Kp;
+      /// The argument of the modified cylindrical Bessel functions.
+      _Tp x_arg;
+      /// The real order of the modified cylindrical Bessel functions.
+      _Tp nu_arg;
+      /// The value of the modified cylindrical Bessel function
+      /// of the first kind.
+      _Tp I_value;
+      /// The derivative of the modified cylindrical Bessel function
+      /// of the first kind.
+      _Tp I_deriv;
+      /// The value of the modified cylindrical Bessel function
+      /// of the second kind.
+      _Tp K_value;
+      /// The derivative of the modified cylindrical Bessel function
+      /// of the second kind.
+      _Tp K_deriv;
     };
 
   template<typename _Tp>
     struct __cyl_hankel_t
     {
-      _Tp x;
-      _Tp nu;
-      _Tp H1;
-      _Tp H1p;
-      _Tp H2;
-      _Tp H2p;
+      /// The argument of the modified Hankel functions.
+      _Tp x_arg;
+      /// The real order of the cylindrical Hankel functions.
+      _Tp nu_arg;
+      /// The value of the cylindrical Hankel function of the first kind.
+      _Tp H1_value;
+      /// The derivative of the cylindrical Hankel function of the first kind.
+      _Tp H1_deriv;
+      /// The value of the cylindrical Hankel function of the second kind.
+      _Tp H2_value;
+      /// The derivative of the cylindrical Hankel function of the second kind.
+      _Tp H2_deriv;
     };
 
   template<typename _Tp>
     struct __sph_bessel_t
     {
-      _Tp x;
-      unsigned int n;
-      _Tp j;
-      _Tp jp;
-      _Tp n;
-      _Tp np;
+      /// The argument of the spherical Bessel functions.
+      _Tp x_arg;
+      /// The integral order of the spherical Bessel functions.
+      unsigned int n_arg;
+      /// The value of the spherical Bessel function of the first kind.
+      _Tp j_value;
+      /// The derivative of the spherical Bessel function of the first kind.
+      _Tp j_deriv;
+      /// The value of the spherical Bessel function of the second kind.
+      _Tp n_value;
+      /// The derivative of the spherical Bessel function of the second kind.
+      _Tp n_deriv;
     };
 
   template<typename _Tp>
     struct __sph_mod_bessel_t
     {
-      _Tp x;
-      unsigned int n;
-      _Tp i;
-      _Tp ip;
-      _Tp k;
-      _Tp kp;
+      /// The argument of the modified spherical Bessel functions.
+      _Tp x_arg;
+      /// The integral order of the modified spherical Bessel functions.
+      unsigned int n_arg;
+      /// The value of the modified spherical Bessel function
+      /// of the first kind.
+      _Tp i_value;
+      /// The derivative of the modified spherical Bessel function
+      /// of the first kind.
+      _Tp i_deriv;
+      /// The value of the modified spherical Bessel function
+      /// of the second kind.
+      _Tp k_value;
+      /// The derivative of the modified spherical Bessel function
+      /// of the second kind.
+      _Tp k_deriv;
     };
 
   template<typename _Tp>
     struct __sph_hankel_t
     {
-      _Tp x;
-      unsigned int n;
-      _Tp h1;
-      _Tp h1p;
-      _Tp h2;
-      _Tp h2p;
+      /// The argument of the spherical Hankel functions.
+      _Tp x_arg;
+      /// The integral order of the spherical Hankel functions.
+      unsigned int n_arg;
+      /// The velue of the spherical Hankel function of the first kind.
+      _Tp h1_value;
+      /// The derivative of the spherical Hankel function of the first kind.
+      _Tp h1_deriv;
+      /// The velue of the spherical Hankel function of the second kind.
+      _Tp h2_value;
+      /// The derivative of the spherical Hankel function of the second kind.
+      _Tp h2_deriv;
     };
 
   template<typename _Tp>
     struct __pqgamma_t
     {
+      /// 
+      _Tp pgamma_value;
+      /// 
+      _Tp qgamma_value;
     };
 
+  /**
+   * The log of the absolute value of the gamma function
+   * The sign of the exponentiated log(gamma) is stored in sign.
+   */
   template<typename _Tp>
     struct __lgamma_t
     {
-      _Tp lgamma;
-      int sign;
+      /// The value log gamma function.
+      _Tp lgamma_value;
+      /// The sign of the exponent of the log gamma value.
+      int lgamma_sign;
+    };
+
+  /**
+   * The sign of the exponentiated log(gamma) is appied to the tgamma value.
+   */
+  template<typename _Tp>
+    struct __gamma_inc_t
+    {
+      /// The value of the total gamma function.
+      _Tp tgamma_value;
+      /// The value of the log of the incomplete gamma function
+      _Tp lgamma_value;
     };
 
 _GLIBCXX_END_NAMESPACE_VERSION

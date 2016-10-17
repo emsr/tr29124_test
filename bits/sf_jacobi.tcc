@@ -58,7 +58,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __poly_jacobi(unsigned int __n, _Tp __alpha, _Tp __beta, _Tp __x)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
 
       if (__isnan(__alpha) || __isnan(__beta) || __isnan(__x))
 	return _S_NaN;
@@ -143,7 +143,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __poly_radial_jacobi(unsigned int __n, unsigned int __m, _Tp __rho)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__rho);
 
       if (__isnan(__rho))
 	return _S_NaN;
@@ -192,7 +192,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gnu_cxx::__promote_fp_t<_Tp>
     __zernike(unsigned int __n, int __m, _Tp __rho, _Tp __phi)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__rho);
 
       if (__isnan(__rho) || __isnan(__phi))
 	return _S_NaN;

@@ -51,10 +51,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __sinc(_Tp __x)
     {
       if (__isnan(__x))
-        return __gnu_cxx::__quiet_NaN<_Tp>();
-      else if (std::abs(__x) == __gnu_cxx::__infinity<_Tp>())
+        return __gnu_cxx::__quiet_NaN(__x);
+      else if (std::abs(__x) == __gnu_cxx::__infinity(__x))
 	return _Tp{0};
-      else if (std::abs(__x) < __gnu_cxx::__sqrt_min<_Tp>())
+      else if (std::abs(__x) < __gnu_cxx::__sqrt_min(__x))
         return _Tp{1} - __x * __x / _Tp{6};
       else
 	return std::sin(__x) / __x;
@@ -70,15 +70,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gnu_cxx::__promote_fp_t<_Tp>
     __sinc_pi(_Tp __x)
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
       if (__isnan(__x))
-        return __gnu_cxx::__quiet_NaN<_Tp>();
-      else if (std::abs(__x) == __gnu_cxx::__infinity<_Tp>())
+        return __gnu_cxx::__quiet_NaN(__x);
+      else if (std::abs(__x) == __gnu_cxx::__infinity(__x))
 	return _Tp{0};
       else
 	{
 	  auto __arg = _S_pi * __x;
-	  if (std::abs(__arg) < _Tp{4} * __gnu_cxx::__sqrt_min<_Tp>())
+	  if (std::abs(__arg) < _Tp{4} * __gnu_cxx::__sqrt_min(__x))
 	    return _Tp{1} - __arg * __arg / _Tp{6};
 	  else
 	    return __sin_pi(__x) / __arg;
@@ -96,8 +96,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __sinhc(_Tp __x)
     {
       if (__isnan(__x))
-        return __gnu_cxx::__quiet_NaN<_Tp>();
-      else if (std::abs(__x) < _Tp{4} * __gnu_cxx::__sqrt_min<_Tp>())
+        return __gnu_cxx::__quiet_NaN(__x);
+      else if (std::abs(__x) < _Tp{4} * __gnu_cxx::__sqrt_min(__x))
         return _Tp{1} + __x * __x / _Tp{6};
       else
 	return std::sinh(__x) / __x;
@@ -113,13 +113,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gnu_cxx::__promote_fp_t<_Tp>
     __sinhc_pi(_Tp __x)
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
       if (__isnan(__x))
-        return __gnu_cxx::__quiet_NaN<_Tp>();
+        return __gnu_cxx::__quiet_NaN(__x);
       else
 	{
 	  auto __arg = _S_pi * __x;
-	  if (std::abs(__arg) < _Tp{4} * __gnu_cxx::__sqrt_min<_Tp>())
+	  if (std::abs(__arg) < _Tp{4} * __gnu_cxx::__sqrt_min(__x))
 	    return _Tp{1} + __arg * __arg / _Tp{6};
 	  else
 	    return __sinh_pi(__x) / __arg;
