@@ -1,9 +1,9 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_pochhammer_lower test_pochhammer_lower.cpp wrap_boost.cpp
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_pochhammer_lower > test_pochhammer_lower.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_pochhammer test_pochhammer.cpp wrap_boost.cpp
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_pochhammer > test_pochhammer.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -I. -o test_pochhammer_lower test_pochhammer_lower.cpp wrap_boost.cpp
-./test_pochhammer_lower > test_pochhammer_lower.txt
+$HOME/bin/bin/g++ -std=gnu++17 -I. -o test_pochhammer test_pochhammer.cpp wrap_boost.cpp
+./test_pochhammer > test_pochhammer.txt
 */
 
 #include <limits>
@@ -40,7 +40,7 @@ namespace __gnu_cxx
 
   template<typename _Tp>
     _Tp
-    __pochhammer_lower_prod(int __a, int __n)
+    __pochhammer_upper_prod(int __a, int __n)
     {
       if (__a < __n)
 	return _Tp{0};
@@ -55,17 +55,17 @@ namespace __gnu_cxx
 
   template<typename _Tp>
     _Tp
-    __pochhammer_lower_prod(_Tp __a, int __n)
+    __pochhammer_prod(_Tp __a, int __n)
     {
       auto __prod = _Tp{1};
       for (int __k = 0; __k < __n; ++__k)
-	__prod *= __a--;
+	__prod *= __a++;
       return __prod;
     }
 
   template<typename _Tp>
     _Tp
-    __pochhammer_lower_fake(_Tp __a, _Tp __x)
+    __pochhammer_fake(_Tp __a, _Tp __x)
     {
       auto __n = int(std::nearbyint(__x));
       if (_Tp(__n) == __x)
@@ -76,14 +76,14 @@ namespace __gnu_cxx
 	    {
 	      auto __m = int(std::nearbyint(__a));
 	      if (int(__m) == __a)
-		return __pochhammer_lower_prod<_Tp>(__m, __n);
+		return __pochhammer_prod<_Tp>(__m, __n);
 	      else
-		return __pochhammer_lower_prod(__a, __n);
+		return __pochhammer_prod(__a, __n);
 	    }
 	}
       else
-	return std::__detail::__gamma(__a + _Tp{1})
-	     / std::__detail::__gamma(__a - __x + _Tp{1});
+	return std::__detail::__gamma(__a + __x)
+	     / std::__detail::__gamma(__a);
     }
 
 }
@@ -105,8 +105,8 @@ main()
       std::cout << '\n';
       for (auto x : xv)
 	{
-	  auto pochg = __gnu_cxx::pochhammer_lower(a, x);
-	  auto pochb = beast::pochhammer_lower(a, x);
+	  auto pochg = __gnu_cxx::pochhammer(a, x);
+	  auto pochb = beast::pochhammer(a, x);
 	  std::cout << ' ' << std::setw(width) << a
 		    << ' ' << std::setw(width) << x
 		    << ' ' << std::setw(width) << pochg
@@ -125,8 +125,8 @@ main()
       std::cout << '\n';
       for (auto x : xv)
 	{
-	  auto pochg = __gnu_cxx::__pochhammer_lower_fake(a, x);
-	  auto pochb = beast::pochhammer_lower(a, x);
+	  auto pochg = __gnu_cxx::__pochhammer_fake(a, x);
+	  auto pochb = beast::pochhammer(a, x);
 	  std::cout << ' ' << std::setw(width) << a
 		    << ' ' << std::setw(width) << x
 		    << ' ' << std::setw(width) << pochg
