@@ -52,10 +52,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __chshint_cont_frac(_Tp __t, _Tp& _Chi, _Tp& _Shi)
     {
-      constexpr unsigned int _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto _S_fp_min = __gnu_cxx::__min<_Tp>();
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+      const unsigned int _S_max_iter = 100;
+      const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__t);
+      const auto _S_fp_min = __gnu_cxx::__min(__t);
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__t);
 
       // Evaluate Chi and Shi by Lentz's modified method of continued fracions.
       std::complex<_Tp> __b(_Tp{1}, __t);
@@ -65,7 +65,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       unsigned int __i = 2;
       while (true)
 	{
-	  _Tp __a = -(__i - 1) * (__i - 1);
+	  auto __a = -_Tp(__i - 1) * _Tp(__i - 1);
 	  __b += _Tp{2};
 	  __d = _Tp{1} / (__a * __d + __b);
 	  __c = __b + __a / __c;
@@ -95,10 +95,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __chshint_series(_Tp __t, _Tp& _Chi, _Tp& _Shi)
     {
-      constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto _S_fp_min = __gnu_cxx::__min<_Tp>();
-      constexpr auto _S_gamma_e = __gnu_cxx::__math_constants<_Tp>::__gamma_e;
+      const auto _S_max_iter = 100;
+      const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__t);
+      const auto _S_fp_min = __gnu_cxx::__min(__t);
+      const auto _S_gamma_e = __gnu_cxx::__const_gamma_e(__t);
 
       // Evaluate Chi and Shi by series simultaneously.
       _Tp _Csum(0), _Ssum(0);
@@ -165,14 +165,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::pair<_Tp, _Tp>
     __chshint(_Tp __x, _Tp& _Chi, _Tp& _Shi)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
       if (__isnan(__x))
 	return std::make_pair(_S_NaN, _S_NaN);
 
       auto __t = std::abs(__x);
       if (__t == _Tp{0})
 	{
-	  _Chi = -__gnu_cxx::__infinity<_Tp>();
+	  _Chi = -__gnu_cxx::__infinity(__x);
 	  _Shi = _Tp{0};
 	}
       else if (__t > _Tp{2})

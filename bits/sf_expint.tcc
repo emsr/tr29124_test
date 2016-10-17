@@ -75,7 +75,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint_E1_series(_Tp __x)
     {
-      constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
+      const auto __eps = __gnu_cxx::__epsilon(__x);
       auto __term = _Tp{1};
       auto __esum = _Tp{0};
       auto __osum = _Tp{0};
@@ -92,7 +92,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
 
       return - __esum - __osum
-	     - __gnu_cxx::__math_constants<_Tp>::__gamma_e - std::log(__x);
+	     - __gnu_cxx::__const_gamma_e(__x) - std::log(__x);
     }
 
 
@@ -149,11 +149,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __expint_En_series(unsigned int __n, _Tp __x)
     {
       const unsigned int __max_iter = 100;
-      constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
+      const auto __eps = __gnu_cxx::__epsilon(__x);
       const int __nm1 = __n - 1;
       _Tp __ans = (__nm1 != 0
 		? _Tp{1} / __nm1
-		: -std::log(__x) - __gnu_cxx::__math_constants<_Tp>::__gamma_e);
+		: -std::log(__x) - __gnu_cxx::__const_gamma_e(__x));
       _Tp __fact = _Tp{1};
       for (int __i = 1; __i <= __max_iter; ++__i)
 	{
@@ -163,7 +163,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    __del = -__fact / _Tp{__i - __nm1};
 	  else
 	    {
-	      _Tp __psi = -__gnu_cxx::__math_constants<_Tp>::__gamma_e;
+	      _Tp __psi = -__gnu_cxx::__const_gamma_e(__x);
 	      for (int __ii = 1; __ii <= __nm1; ++__ii)
 		__psi += _Tp{1} / _Tp(__ii);
 	      __del = __fact * (__psi - std::log(__x));
@@ -195,8 +195,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __expint_En_cont_frac(unsigned int __n, _Tp __x)
     {
       const unsigned int __max_iter = 100;
-      constexpr auto __eps = __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto __fp_min = __gnu_cxx::__min<_Tp>();
+      const auto __eps = __gnu_cxx::__epsilon(__x);
+      const auto __fp_min = __gnu_cxx::__min(__x);
       const int __nm1 = __n - 1;
       auto __b = __x + _Tp(__n);
       auto __c = _Tp{1} / __fp_min;
@@ -291,11 +291,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  __term *= __x / __i;
 	  __sum += __term / __i;
-	  if (__term < __gnu_cxx::__epsilon<_Tp>() * __sum)
+	  if (__term < __gnu_cxx::__epsilon(__x) * __sum)
 	    break;
 	}
 
-      return __gnu_cxx::__math_constants<_Tp>::__gamma_e
+      return __gnu_cxx::__const_gamma_e(__x)
 	   + __sum + std::log(__x);
     }
 
@@ -323,7 +323,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  _Tp __prev = __term;
 	  __term *= __i / __x;
-	  if (__term < __gnu_cxx::__epsilon<_Tp>())
+	  if (__term < __gnu_cxx::__epsilon(__x))
 	    break;
 	  if (__term >= __prev)
 	    break;
@@ -351,7 +351,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__x < _Tp{0})
 	return -__expint_E1(-__x);
-      else if (__x < -std::log(__gnu_cxx::__epsilon<_Tp>()))
+      else if (__x < -std::log(__gnu_cxx::__epsilon(__x)))
 	return __expint_Ei_series(__x);
       else
 	return __expint_Ei_asymp(__x);
@@ -446,7 +446,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  auto __prev = __term;
 	  __term *= (__n - 2 * (__i - 1) * __x) / __xpn2;
-	  if (std::abs(__term) < __gnu_cxx::__epsilon<_Tp>())
+	  if (std::abs(__term) < __gnu_cxx::__epsilon(__x))
 	    break;
 	  __sum += __term;
 	}
@@ -473,9 +473,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       // Return NaN on NaN input.
       if (__isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__n <= 1 && __x == _Tp{0})
-	return __gnu_cxx::__infinity<_Tp>();
+	return __gnu_cxx::__infinity(__x);
       else
 	{
 	  auto __E0 = std::exp(-__x) / __x;
@@ -512,7 +512,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __expint(_Tp __x)
     {
       if (__isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else
 	return __expint_Ei(__x);
     }
@@ -533,9 +533,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __logint(const _Tp __x)
     {
       if (__isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (std::abs(__x) == _Tp{1})
-	return __gnu_cxx::__infinity<_Tp>();
+	return __gnu_cxx::__infinity(__x);
       else
 	return __expint(std::log(__x));
     }
@@ -556,7 +556,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __coshint(const _Tp __x)
     {
       if (__isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x == _Tp{0})
 	return _Tp{0};
       else
@@ -579,7 +579,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __sinhint(const _Tp __x)
     {
       if (__isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else
 	return (__expint_Ei(__x) + __expint_E1(__x)) / _Tp{2};
     }

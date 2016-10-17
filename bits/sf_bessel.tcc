@@ -83,9 +83,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			  _Tp& _Jnu, _Tp& _Nnu,
 			  _Tp& _Jpnu, _Tp& _Npnu)
     {
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<long double>::__pi_half;
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__x);
       const auto __2nu = _Tp{2} * __nu;
       const auto __4nu2 = __2nu * __2nu;
       const auto __8x = _Tp{8} * __x;
@@ -166,8 +166,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gamma_temme(_Tp __mu,
 		  _Tp& __gam1, _Tp& __gam2, _Tp& __gampl, _Tp& __gammi)
     {
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto _S_gamma_E = __gnu_cxx::__math_constants<_Tp>::__gamma_e;
+      const auto _S_eps = __gnu_cxx::__epsilon(__mu);
+      const auto _S_gamma_E = __gnu_cxx::__const_gamma_e(__mu);
       __gampl = _Tp{1} / __gamma(_Tp{1} + __mu);
       __gammi = _Tp{1} / __gamma(_Tp{1} - __mu);
 
@@ -200,16 +200,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __cyl_bessel_jn_steed(_Tp __nu, _Tp __x,
 			  _Tp& _Jnu, _Tp& _Nnu, _Tp& _Jpnu, _Tp& _Npnu)
     {
-      constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_inf = __gnu_cxx::__infinity(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_pi = __gnu_cxx::__const_pi(__nu);
       // When the multiplier is N i.e.
       // fp_min = N * min()
       // Then J_0 and N_0 tank at x = 8 * N (J_0 = 0 and N_0 = nan)!
-      //const _Tp _S_fp_min = _Tp{20} * __gnu_cxx::__min<_Tp>();
+      //const _Tp _S_fp_min = _Tp{20} * __gnu_cxx::__min(__nu);
       constexpr int _S_max_iter = 15000;
-      constexpr auto _S_x_min = _Tp{2};
-      const auto _S_fp_min = __gnu_cxx::__sqrt_min<_Tp>();
+      const auto _S_x_min = _Tp{2};
+      const auto _S_fp_min = __gnu_cxx::__sqrt_min(__nu);
 
       const int __n = (__x < _S_x_min
 		    ? std::nearbyint(__nu)
@@ -416,7 +416,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __cyl_bessel_ij_series(_Tp __nu, _Tp __x, _Tp __sgn,
 			   unsigned int __max_iter)
     {
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
       if (__x < _S_eps)
 	{
 	  if (__nu == _Tp{0})
@@ -455,9 +455,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __cyl_bessel_jn(_Tp __nu, _Tp __x,
 		_Tp& _Jnu, _Tp& _Nnu, _Tp& _Jpnu, _Tp& _Npnu)
     {
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto _S_inf = __gnu_cxx::__infinity<_Tp>();
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_inf = __gnu_cxx::__infinity(__x);
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
       if (__nu < _Tp{0})
 	{
 	  _Tp _J_mnu, _N_mnu, _Jp_mnu, _Np_mnu;
@@ -525,7 +525,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			    std::complex<_Tp>& _Jnu, std::complex<_Tp>& _Nnu,
 			    std::complex<_Tp>& _Jpnu, std::complex<_Tp>& _Npnu)
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
       constexpr std::complex<_Tp> _S_i{0, 1};
       if (__x >= _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_jn_neg_arg: "
@@ -534,8 +534,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  _Tp _Jm, _Nm, _Jpm, _Npm;
 	  __cyl_bessel_jn(__nu, -__x, _Jm, _Nm, _Jpm, _Npm);
-	  auto __phm = std::polar(_Tp{1}, -__nu * _S_pi);
-	  auto __php = std::polar(_Tp{1}, __nu * _S_pi);
+	  auto __phm = __polar_pi(_Tp{1}, -__nu);
+	  auto __php = __polar_pi(_Tp{1}, __nu);
 	  _Jnu = __php * _Jm;
 	  _Jpnu = -__php * _Jpm;
 	  _Nnu = __phm * _Nm
@@ -567,7 +567,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_j: bad argument"));
       else if (__isnan(__nu) || __isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__nu >= _Tp{0} && __x * __x < _Tp{10} * (__nu + _Tp{1}))
 	return __cyl_bessel_ij_series(__nu, __x, -_Tp{1}, 200);
       else
@@ -602,7 +602,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_neumann_n: bad argument"));
       else if (__isnan(__nu) || __isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else
 	{
 	  _Tp _J_nu, _N_nu, _Jp_nu, _Np_nu;
@@ -629,11 +629,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __cyl_hankel_1(_Tp __nu, _Tp __x)
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_nan = __gnu_cxx::__quiet_NaN(__x);
       constexpr std::complex<_Tp> _S_i{0, 1};
       if (__nu < _Tp{0})
-	return std::exp(-_S_i * _S_pi * __nu) * __cyl_hankel_1(-__nu, __x);
+	return __polar_pi(_Tp{1}, -__nu)
+	     * __cyl_hankel_1(-__nu, __x);
       else if (__isnan(__x))
 	return std::complex<_Tp>{_S_nan, _S_nan};
       else if (__x < _Tp{0})
@@ -668,11 +669,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __cyl_hankel_2(_Tp __nu, _Tp __x)
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_nan = __gnu_cxx::__quiet_NaN(__x);
       constexpr std::complex<_Tp> _S_i{0, 1};
       if (__nu < _Tp{0})
-	return std::exp(_S_i * _S_pi * __nu) * __cyl_hankel_2(-__nu, __x);
+	return __polar_pi(_Tp{1}, __nu)
+	     * __cyl_hankel_2(-__nu, __x);
       else if (__isnan(__x))
 	return std::complex<_Tp>{_S_nan, _S_nan};
       else if (__x < _Tp{0})
@@ -713,7 +715,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp _J_nu, _N_nu, _Jp_nu, _Np_nu;
       __cyl_bessel_jn(__nu, __x, _J_nu, _N_nu, _Jp_nu, _Np_nu);
 
-      const auto __factor = __gnu_cxx::__math_constants<_Tp>::__root_pi_div_2
+      const auto __factor = __gnu_cxx::__const_root_pi_div_2(__x)
 			  / std::sqrt(__x);
 
       __j_n = __factor * _J_nu;
@@ -744,7 +746,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __cyl_bessel_jn_neg_arg(__nu, __x, _J_nu, _N_nu, _Jp_nu, _Np_nu);
 
 	  const auto __factor
-	    = __gnu_cxx::__math_constants<_Tp>::__root_pi_div_2
+	    = __gnu_cxx::__const_root_pi_div_2(__x)
 	      / std::sqrt(std::complex<_Tp>(__x));
 
 	  __j_n = __factor * _J_nu;
@@ -777,7 +779,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__sph_bessel: bad argument"));
       else if (__isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x == _Tp{0})
 	{
 	  if (__n == 0)
@@ -814,9 +816,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__sph_neumann: bad argument"));
       else if (__isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x == _Tp{0})
-	return -__gnu_cxx::__infinity<_Tp>();
+	return -__gnu_cxx::__infinity(__x);
       else
 	{
 	  _Tp __j_n, __n_n, __jp_n, __np_n;
@@ -844,7 +846,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __sph_hankel_1(unsigned int __n, _Tp __x)
     {
       constexpr std::complex<_Tp> _S_i{0, 1};
-      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
+      const auto _S_nan = __gnu_cxx::__quiet_NaN(__x);
       if (__isnan(__x))
 	return std::complex<_Tp>{_S_nan, _S_nan};
       else if (__x < _Tp{0})
@@ -880,7 +882,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __sph_hankel_2(unsigned int __n, _Tp __x)
     {
       constexpr std::complex<_Tp> _S_i{0, 1};
-      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
+      const auto _S_nan = __gnu_cxx::__quiet_NaN(__x);
       if (__isnan(__x))
 	return std::complex<_Tp>{_S_nan, _S_nan};
       else if (__x < _Tp{0})

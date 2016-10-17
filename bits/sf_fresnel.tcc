@@ -50,10 +50,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __fresnel_series(const _Tp __ax, _Tp & _Cf, _Tp & _Sf)
     {
-      constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_pi_2 = _S_pi / _Tp{2};
+      const auto _S_max_iter = 100;
+      const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__ax);
+      const auto _S_pi = __gnu_cxx::__const_pi(__ax);
+      const auto _S_pi_2 = _S_pi / _Tp{2};
 
       // Evaluate S and C by series expansion.
       auto __sum = _Tp{0};
@@ -108,10 +108,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void
     __fresnel_cont_frac(const _Tp __ax, _Tp & _Cf, _Tp & _Sf)
     {
-      constexpr auto _S_max_iter = 100;
-      constexpr auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon<_Tp>();
-      constexpr auto _S_fp_min = __gnu_cxx::__min<_Tp>();
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_max_iter = 100;
+      const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__ax);
+      const auto _S_fp_min = __gnu_cxx::__min(__ax);
+      const auto _S_pi = __gnu_cxx::__const_pi(__ax);
 
       // Evaluate S and C by Lentz's complex continued fraction method.
       const auto __pix2 = _S_pi * __ax * __ax;
@@ -169,9 +169,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __fresnel(const _Tp __x)
     {
-      constexpr auto _S_fp_min = __gnu_cxx::__min<_Tp>();
-      constexpr auto _S_x_min = _Tp{1.5L};
-      constexpr auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      const auto _S_fp_min = __gnu_cxx::__min(__x);
+      const auto _S_x_min = _Tp{1.5L};
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
       if (__isnan(__x))
 	return std::complex<_Tp>{_S_NaN, _S_NaN};
 

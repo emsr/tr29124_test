@@ -1,6 +1,7 @@
 #!  /bin/bash
 
 tool="cp -f"
+makedir="mkdir -p"
 
 suffix="_tr29124"
 if [ $# -ge 1 ]; then
@@ -13,7 +14,33 @@ util_dir="${test_dir}/util"
 gcc_dir="${test_dir}/special_functions"
 ext_dir="${test_dir}/ext/special_functions"
 
+
+${makedir} ${util_dir}
+
 ${tool} specfun_testcase.h              ${util_dir}
+
+
+${makedir} ${gcc_dir}/01_assoc_laguerre
+${makedir} ${gcc_dir}/02_assoc_legendre
+${makedir} ${gcc_dir}/03_beta
+${makedir} ${gcc_dir}/04_comp_ellint_1
+${makedir} ${gcc_dir}/05_comp_ellint_2
+${makedir} ${gcc_dir}/06_comp_ellint_3
+${makedir} ${gcc_dir}/07_cyl_bessel_i
+${makedir} ${gcc_dir}/08_cyl_bessel_j
+${makedir} ${gcc_dir}/09_cyl_bessel_k
+${makedir} ${gcc_dir}/10_cyl_neumann
+${makedir} ${gcc_dir}/11_ellint_1
+${makedir} ${gcc_dir}/12_ellint_2
+${makedir} ${gcc_dir}/13_ellint_3
+${makedir} ${gcc_dir}/14_expint
+${makedir} ${gcc_dir}/15_hermite
+${makedir} ${gcc_dir}/16_laguerre
+${makedir} ${gcc_dir}/17_legendre
+${makedir} ${gcc_dir}/18_riemann_zeta
+${makedir} ${gcc_dir}/19_sph_bessel
+${makedir} ${gcc_dir}/20_sph_legendre
+${makedir} ${gcc_dir}/21_sph_neumann
 
 ${tool} check/check_assoc_laguerre.cc   ${gcc_dir}/01_assoc_laguerre/check_value.cc
 ${tool} check/check_assoc_legendre.cc   ${gcc_dir}/02_assoc_legendre/check_value.cc
@@ -40,6 +67,77 @@ ${tool} check/check_sph_bessel.cc       ${gcc_dir}/19_sph_bessel/check_value.cc
 ${tool} check/check_sph_legendre.cc     ${gcc_dir}/20_sph_legendre/check_value.cc
 ${tool} check/check_sph_neumann.cc      ${gcc_dir}/21_sph_neumann/check_value.cc
 
+
+${makedir} ${ext_dir}/airy_ai
+${makedir} ${ext_dir}/airy_bi
+${makedir} ${ext_dir}/bernoulli
+${makedir} ${ext_dir}/bincoef
+${makedir} ${ext_dir}/clausen
+${makedir} ${ext_dir}/comp_ellint_d
+${makedir} ${ext_dir}/conf_hyperg
+${makedir} ${ext_dir}/conf_hyperg_lim
+${makedir} ${ext_dir}/coshint
+${makedir} ${ext_dir}/cosint
+${makedir} ${ext_dir}/cos_pi
+${makedir} ${ext_dir}/cyl_hankel_1
+${makedir} ${ext_dir}/cyl_hankel_2
+${makedir} ${ext_dir}/dawson
+${makedir} ${ext_dir}/dilog
+${makedir} ${ext_dir}/dirichlet_beta
+${makedir} ${ext_dir}/dirichlet_eta
+${makedir} ${ext_dir}/dirichlet_lambda
+${makedir} ${ext_dir}/double_factorial
+${makedir} ${ext_dir}/ellint_d
+${makedir} ${ext_dir}/ellint_rc
+${makedir} ${ext_dir}/ellint_rd
+${makedir} ${ext_dir}/ellint_rf
+${makedir} ${ext_dir}/ellint_rg
+${makedir} ${ext_dir}/ellint_rj
+${makedir} ${ext_dir}/expint
+${makedir} ${ext_dir}/ellnome
+${makedir} ${ext_dir}/factorial
+${makedir} ${ext_dir}/fresnel_c
+${makedir} ${ext_dir}/fresnel_s
+${makedir} ${ext_dir}/gegenbauer
+${makedir} ${ext_dir}/heuman_lambda
+${makedir} ${ext_dir}/hurwitz_zeta
+${makedir} ${ext_dir}/hyperg
+${makedir} ${ext_dir}/ibeta
+${makedir} ${ext_dir}/jacobi
+${makedir} ${ext_dir}/jacobi_sn
+${makedir} ${ext_dir}/jacobi_cn
+${makedir} ${ext_dir}/jacobi_dn
+${makedir} ${ext_dir}/lbincoef
+${makedir} ${ext_dir}/ldouble_factorial
+${makedir} ${ext_dir}/legendre_q
+${makedir} ${ext_dir}/lfactorial
+${makedir} ${ext_dir}/lgamma
+${makedir} ${ext_dir}/lpochhammer_lower
+${makedir} ${ext_dir}/lpochhammer
+${makedir} ${ext_dir}/owens_t
+${makedir} ${ext_dir}/pgamma
+${makedir} ${ext_dir}/pochhammer_lower
+${makedir} ${ext_dir}/pochhammer
+${makedir} ${ext_dir}/psi
+${makedir} ${ext_dir}/qgamma
+${makedir} ${ext_dir}/radpoly
+${makedir} ${ext_dir}/sinc
+${makedir} ${ext_dir}/sinc_pi
+${makedir} ${ext_dir}/sinhint
+${makedir} ${ext_dir}/sinint
+${makedir} ${ext_dir}/sin_pi
+${makedir} ${ext_dir}/sph_bessel_i
+${makedir} ${ext_dir}/sph_bessel_k
+${makedir} ${ext_dir}/sph_hankel_1
+${makedir} ${ext_dir}/sph_hankel_2
+${makedir} ${ext_dir}/sph_harmonic
+${makedir} ${ext_dir}/tgamma
+${makedir} ${ext_dir}/tgamma_lower
+${makedir} ${ext_dir}/theta_1
+${makedir} ${ext_dir}/theta_2
+${makedir} ${ext_dir}/theta_3
+${makedir} ${ext_dir}/theta_4
+${makedir} ${ext_dir}/zernike
 
 ${tool} check/check_airy_ai.cc            ${ext_dir}/airy_ai/check_value.cc
 ${tool} check/check_airy_bi.cc            ${ext_dir}/airy_bi/check_value.cc

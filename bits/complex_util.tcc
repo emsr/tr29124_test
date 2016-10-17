@@ -56,7 +56,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __safe_div(const std::complex<_Tp>& __z1, const std::complex<_Tp>& __z2)
     {
       // Half the largest available floating-point number.
-      constexpr _Tp _S_hmax = __gnu_cxx::__max<_Tp>() / _Tp{2};
+      const auto _S_hmax = __gnu_cxx::__max(std::real(__z1)) / _Tp{2};
 
       auto __re1 = std::real(__z1);
       auto __im1 = std::imag(__z1);
@@ -102,8 +102,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __safe_mul(_Tp __s1, _Tp __s2)
     {
       // The largest available floating-point number.
-      const _Tp _S_max = __gnu_cxx::__max<_Tp>();
-      const auto _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();
+      const auto _S_max = __gnu_cxx::__max(std::real(__s1));
+      const auto _S_sqrt_max = __gnu_cxx::__sqrt_max(std::real(__s1));
       auto __abs_s1 = std::abs(__s1);
       auto __abs_s2 = std::abs(__s2);
       if (__abs_s1 < _S_sqrt_max || __abs_s2 < _S_sqrt_max)
@@ -138,8 +138,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __safe_mul(const std::complex<_Tp>& __z1, const std::complex<_Tp>& __z2)
     {
       // Half the largest available floating-point number.
-      const _Tp _S_max = __gnu_cxx::__max<_Tp>();
-      const auto _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();
+      const auto _S_max = __gnu_cxx::__max(std::real(__z1));
+      const auto _S_sqrt_max = __gnu_cxx::__sqrt_max(std::real(__z1));
 
       auto __re1 = std::real(__z1);
       auto __im1 = std::imag(__z1);
@@ -180,10 +180,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __safe_sqr(const std::complex<_Tp>& __z)
     {
-      const auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
-      const auto _S_max = __gnu_cxx::__max<_Tp>();
+      const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(std::real(__z));
+      const auto _S_max = __gnu_cxx::__max(std::real(__z));
       const auto _S_hmax = _S_max / _Tp{2};
-      const auto _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();
+      const auto _S_sqrt_max = __gnu_cxx::__sqrt_max(std::real(__z));
       const auto _S_sqrt_hmax = _S_sqrt_max / _S_sqrt_2;
 
       auto __rez = std::real(__z);

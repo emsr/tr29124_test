@@ -114,10 +114,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __poly_hermite_asymp(unsigned int __n, _Tp __x)
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
-      constexpr auto _S_sqrt_2pi = _S_sqrt_2
-				 * __gnu_cxx::__math_constants<_Tp>::__root_pi;
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
+      const auto _S_sqrt_2pi = _S_sqrt_2 * __gnu_cxx::__const_root_pi(__x);
       // __x >= 0 in this routine.
       const auto __xturn = std::sqrt(_Tp(2 * __n));
       if (std::abs(__x - __xturn) < _Tp{0.05L} * __xturn)
@@ -181,7 +180,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __poly_hermite(unsigned int __n, _Tp __x)
     {
       if (__isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return (__n % 2 == 1 ? -1 : +1) * __poly_hermite(__n, -__x);
       else if (__n > 100)

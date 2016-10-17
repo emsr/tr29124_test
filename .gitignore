@@ -142,6 +142,7 @@ test_comp_ellint_1
 test_complex_gamma
 test_complex128
 test_conf_hyperg_limit
+test_const
 test_continued_fraction
 test_csint
 test_cyl_hankel
