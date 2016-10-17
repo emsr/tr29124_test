@@ -71,6 +71,12 @@ template<typename _Tp>
     std::cout << " pi^2/6                   : "
 	      << std::setprecision(lprec) << std::setw(lwd) << cnst::__pi_sqr_div_6
 	      << std::setprecision(prec) << std::setw(wd) << __gnu_cxx::__const_pi_sqr_div_6(proto) << '\n';
+    std::cout << " sqrt(2 pi)               : "
+	      << std::setprecision(lprec) << std::setw(lwd) << cnst::__root_2_pi
+	      << std::setprecision(prec) << std::setw(wd) << __gnu_cxx::__const_root_2_pi(proto) << '\n';
+    std::cout << " ln(sqrt(2 pi))           : "
+	      << std::setprecision(lprec) << std::setw(lwd) << cnst::__ln_root_2_pi
+	      << std::setprecision(prec) << std::setw(wd) << __gnu_cxx::__const_ln_root_2_pi(proto) << '\n';
     std::cout << " rad2deg                  : "
 	      << std::setprecision(lprec) << std::setw(lwd) << cnst::__deg
 	      << std::setprecision(prec) << std::setw(wd) << __gnu_cxx::__const_deg(proto) << '\n';

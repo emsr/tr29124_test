@@ -520,7 +520,7 @@ namespace __gnu_cxx
 
 
   /**
-   * Return the Binet function or the scaled log gamma
+   * Return the exponential of the Binet function or the scaled gamma function
    * @f$ \Gamma^*(z) @f$ for @c float argument @f$ z @f$.
    *
    * @see tgamma_scaled for details.
@@ -530,7 +530,7 @@ namespace __gnu_cxx
    */
 
   /**
-   * Return the Binet function or the scaled log gamma
+   * Return the exponential of the Binet function or the scaled gamma function
    * @f$ \Gamma^*(z) @f$ for <tt>long double</tt> argument @f$ z @f$.
    *
    * @see tgamma_scaled for details.
@@ -540,9 +540,10 @@ namespace __gnu_cxx
   { return std::exp(std::__detail::__binet<long double>(__z)); }
 
   /**
-   * Return the scaled log gamma @f$ \Gamma^*(z) @f$ defined by
+   * Return the exponential of the Binet function or the scaled gamma function
+   * @f$ \Gamma^*(z) @f$ defined by
    * @f[
-   *    \Gamma^*(z) = \Gamma(z)/\sqrt{2\pi}z^{z-\frac{1}{2}}e^{-z}
+   *    \Gamma^*(z) = \Gamma(z)/\sqrt{2\pi}z^{z-\frac{1}{2}}e^{-z} = e^{J(z)}
    * @f]
    * or
    * @f[

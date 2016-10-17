@@ -52,6 +52,7 @@
 
 #include <array>
 #include <ext/math_const.h>
+#include <bits/complex_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -1862,7 +1863,40 @@ _S_neg_double_factorial_table[999]
 #endif
 
   /**
-   * @brief Return @f$\Gamma(z)@f$ by the Spouge algorithm:
+   * @brief Return the Binet function @f$ J(1+z) @f$ by the Spouge method.
+   * The Binet function is the log of the scaled Gamma function
+   * @f$ log(\Gamma^*(z)) @f$ defined by
+   * @f[
+   *    J(z) = log(\Gamma^*(z)) = log\left(\Gamma(z)\right) + z
+   *         - \left(z-\frac{1}{2}\right) log(z) - log(2\pi)
+   * @f]
+   * or
+   * @f[
+   *    \Gamma(z) = \sqrt{2\pi}z^{z-\frac{1}{2}}e^{-z}e^{J(z)}
+   * @f]
+   * where @f$ \Gamma(z) @f$ is the gamma function.
+   *
+   * @param __x The argument of the log of the gamma function.
+   * @return  The logarithm of the gamma function.
+   */
+  template<typename _Tp>
+    _GLIBCXX14_CONSTEXPR _Tp
+    __binet1p_spouge(_Tp __z)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      const auto _S_sqrt_2pi = __gnu_cxx::__const_root_2_pi(std::real(__z));
+      const auto& __c = _GammaSpouge<_Real>::_S_cheby;
+
+      _Val __sum = _S_sqrt_2pi;
+      for (int __k = 0; __k < __c.size(); ++__k)
+	__sum += __c[__k] / (__z + _Real(__k + 1));
+      return __sum;
+    }
+
+  /**
+   * @brief Return the logarithm of the gamma function @f$ log(\Gamma(1+z)) @f$
+   * by the Spouge algorithm:
    * @f[
    *   \Gamma(z+1) = (z+a)^{z+1/2}e^{-z-a}\left[ \sqrt{2\pi} +
    *	 \sum_{k=1}^{\lceil a \rceil + 1}\frac{c_k(a)}{z+k}\right]
@@ -1875,7 +1909,14 @@ _S_neg_double_factorial_table[999]
    * @f[
    *   \epsilon(a) < a^{-1/2}(2\pi)^{-a-1/2}
    * @f]
-   * @see Spouge, J.L., Computation of the gamma, digamma,
+   *
+   * If the argument is real, the log of the absolute value of the Gamma function
+   * is returned.  The sign to be applied to the exponential of this log Gamma
+   * can be recovered with a call to __log_gamma_sign.
+   *
+   * For complex argument the fully complex log of the gamma function is returned.
+   *
+   * @see Spouge, J. L., Computation of the gamma, digamma,
    *	  and trigamma functions.
    *	  SIAM Journal on Numerical Analysis 31, 3 (1994), pp. 931-944
    *
@@ -1889,21 +1930,23 @@ _S_neg_double_factorial_table[999]
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_ln_pi = __gnu_cxx::__const_ln_pi(std::real(__z));
-      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(std::real(__z));
-      const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(std::real(__z));
-      const auto _S_sqrt_2pi = _S_sqrt_2 * _S_sqrt_pi;
+      const auto _S_sqrt_2pi = __gnu_cxx::__const_root_2_pi(std::real(__z));
       auto __a = _Real{_GammaSpouge<_Real>::_S_cheby.size() + 1};
-      const auto& __c = _GammaSpouge<_Real>::_S_cheby;
 
-      // Reflection; move the transition upwards to prevent instability.
-      if (std::real(__z) < _Real{-0.5L})
-	return _S_ln_pi - std::log(__sin_pi(__z))
-			- __log_gamma1p_spouge(-_Real{1} - __z);
+      // Reflection for z < -1.
+      if (std::real(__z) < _Real{-1})
+	{
+	  auto __sin_fact = __sin_pi(__z);
+	  if (!__gnu_cxx::is_complex_v<_Val>)
+	    __sin_fact = std::abs(__sin_fact);
+	  return _S_ln_pi - std::log(__sin_fact)
+			  - __log_gamma1p_spouge(-_Real{1} - __z);
+	}
       else
 	{
-	  _Val __sum = _S_sqrt_2pi;
-	  for (int __k = 0; __k < __c.size(); ++__k)
-	    __sum += __c[__k] / (__z + _Real(__k + 1));
+	  auto __sum = __binet1p_spouge(__z);
+	  if (!__gnu_cxx::is_complex_v<_Val>)
+	    __sum = std::abs(__sum);
 	  return std::log(__sum)
 	       + (__z + _Real{0.5L}) * std::log(__z + __a)
 	       - (__z + __a);
@@ -2004,8 +2047,52 @@ _S_neg_double_factorial_table[999]
 #endif
 
   /**
-   * @brief Return @f$log(\Gamma(x))@f$ by the Lanczos method.
-   * This method dominates all others on the positive axis I think.
+   * @brief Return the Binet function @f$ J(1+z) @f$ by the Lanczos method.
+   * The Binet function is the log of the scaled Gamma function
+   * @f$ log(\Gamma^*(z)) @f$ defined by
+   * @f[
+   *    J(z) = log(\Gamma^*(z)) = log\left(\Gamma(z)\right) + z
+   *         - \left(z-\frac{1}{2}\right) log(z) - log(2\pi)
+   * @f]
+   * or
+   * @f[
+   *    \Gamma(z) = \sqrt{2\pi}z^{z-\frac{1}{2}}e^{-z}e^{J(z)}
+   * @f]
+   * where @f$ \Gamma(z) @f$ is the gamma function.
+   *
+   * @param __x The argument of the log of the gamma function.
+   * @return  The logarithm of the gamma function.
+   */
+  template<typename _Tp>
+    _GLIBCXX14_CONSTEXPR _Tp
+    __binet1p_lanczos(_Tp __z)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      const auto _S_ln_pi = __gnu_cxx::__const_ln_pi(std::real(__z));
+      const auto _S_sqrt_2pi = __gnu_cxx::__const_root_2_pi(std::real(__z));
+      const auto& __c = _GammaLanczos<_Real>::_S_cheby;
+      auto __g =  _GammaLanczos<_Real>::_S_g;
+
+      auto __fact = _Val{1};
+      auto __sum = _Val{0.5L} * __c[0];
+      for (unsigned int __k = 1, __n = __c.size(); __k < __n; ++__k)
+	{
+	  __fact *= (__z - _Real(__k - 1)) / (__z + _Real(__k));
+	  __sum += __fact * __c[__k];
+	}
+      return _S_sqrt_2pi * __sum;
+    }
+
+  /**
+   * @brief Return the logarithm of the gamma function @f$ log(\Gamma(1+z)) @f$
+   * by the Lanczos method.
+   *
+   * If the argument is real, the log of the absolute value of the Gamma function
+   * is returned.  The sign to be applied to the exponential of this log Gamma
+   * can be recovered with a call to __log_gamma_sign.
+   *
+   * For complex argument the fully complex log of the gamma function is returned.
    *
    * @param __x The argument of the log of the gamma function.
    * @return  The logarithm of the gamma function.
@@ -2016,25 +2103,23 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      const auto _S_ln_2 = __gnu_cxx::__const_ln_2(std::real(__z));
       const auto _S_ln_pi = __gnu_cxx::__const_ln_pi(std::real(__z));
-      const auto _S_log_sqrt_2pi = (_S_ln_2 + _S_ln_pi) / _Real{2};
-      const auto& __c = _GammaLanczos<_Real>::_S_cheby;
       auto __g =  _GammaLanczos<_Real>::_S_g;
-      // Reflection; move the transition upwards to prevent instability.
-      if (std::real(__z) < _Real{-0.5L})
-	return _S_ln_pi - std::log(__sin_pi(__z))
-			- __log_gamma1p_lanczos(-_Real{1} - __z);
+      // Reflection for z < -1.
+      if (std::real(__z) < _Real{-1})
+        {
+	  auto __sin_fact = __sin_pi(__z);
+	  if (!__gnu_cxx::is_complex_v<_Val>)
+	    __sin_fact = std::abs(__sin_fact);
+	  return _S_ln_pi - std::log(__sin_fact)
+			  - __log_gamma1p_lanczos(-_Real{1} - __z);
+	}
       else
         {
-	  auto __fact = _Val{1};
-	  auto __sum = _Val{0.5L} * __c[0];
-	  for (unsigned int __k = 1, __n = __c.size(); __k < __n; ++__k)
-	    {
-	      __fact *= (__z - _Real(__k - 1)) / (__z + _Real(__k));
-	      __sum += __fact * __c[__k];
-	    }
-	  return _S_log_sqrt_2pi + std::log(__sum)
+	  auto __sum = __binet1p_lanczos(__z);
+	  if (!__gnu_cxx::is_complex_v<_Val>)
+	    __sum = std::abs(__sum);
+	  return std::log(__sum)
 	       + (__z + _Real{0.5L}) * std::log(__z + __g + _Real{0.5L})
 	       - (__z + __g + _Real{0.5L});
 	}
@@ -2056,15 +2141,15 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      const auto _S_eps = _Real{3} * __gnu_cxx::__epsilon(std::real(__x));
+      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__x));
       const auto _S_logpi = __gnu_cxx::__const_ln_pi(std::real(__x));
       if (std::real(__x) >= _Real{0.5L})
 	return __log_gamma1p_spouge(__x - _Real{1});
       else
 	{
 	  const auto __sin_fact = std::abs(__sin_pi(__x));
-	  if (__sin_fact < _S_eps * std::abs(__x))
-	    return __gnu_cxx::__infinity(std::real(__x));
+	  if (__sin_fact < _S_eps)
+	    return __gnu_cxx::__infinity<_Real>();
 	  else
 	    return _S_logpi - std::log(__sin_fact) - __log_gamma(_Val{1} - __x);
 	}
@@ -2083,15 +2168,15 @@ _S_neg_double_factorial_table[999]
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
-      const auto _S_eps = _Real{3} * __gnu_cxx::__epsilon(std::real(__x));
+      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__x));
       const auto _S_logpi = __gnu_cxx::__const_ln_pi(std::real(__x));
       if (std::real(__x) >= _Real{0.5L})
 	return __log_gamma1p_spouge(__x - _Real{1});
       else
 	{
 	  const auto __sin_fact = __sin_pi(__x);
-	  if (std::abs(__sin_fact) < _S_eps * std::abs(__x))
-	    return _Cmplx(__gnu_cxx::__quiet_NaN(std::real(__x)), _Real{0});
+	  if (std::abs(__sin_fact) < _S_eps)
+	    return _Cmplx(__gnu_cxx::__quiet_NaN<_Real>(), _Real{0});
 	  else
 	    return _S_logpi - std::log(__sin_fact) - __log_gamma(_Val{1} - __x);
 	}

@@ -2,7 +2,10 @@
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_gamma test_gamma.cpp wrap_boost.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_gamma > test_gamma.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp wrap_boost.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -I. -o test_gamma test_gamma.cpp wrap_boost.cpp -lquadmath
+./test_gamma > test_gamma.txt
+
+g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp wrap_boost.cpp -lquadmath
 ./test_gamma > test_gamma.txt
 */
 
@@ -54,9 +57,9 @@ template<typename _Tp, typename _Gamma>
     std::cout << '\n'
 	      << ' ' << std::setw(width) << "s"
 	      << ' ' << std::setw(width) << "log_gamma"
-	      << ' ' << std::setw(width) << "lgamma"
+	      << ' ' << std::setw(width) << "std::lgamma"
 	      << ' ' << std::setw(width) << "__log_gamma"
-	      << ' ' << std::setw(width) << "delta_rat"
+	      << ' ' << std::setw(width) << "delta_std"
 	      << ' ' << std::setw(width) << "delta_boost"
 	      << '\n';
     int i_min = -200;

@@ -36,6 +36,14 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
+  // Slots for Jacobi elliptic function tuple.
+  enum
+  {
+    _GLIBCXX_JACOBI_SN,
+    _GLIBCXX_JACOBI_CN,
+    _GLIBCXX_JACOBI_DN
+  };
+
   template<typename _Tp>
     struct __airy_t
     {
