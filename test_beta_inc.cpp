@@ -1,5 +1,5 @@
 /*
-$HOME/bin_specfun/bin/g++ -std=c++17 -o test_beta_inc test_beta_inc.cpp
+$HOME/bin_specfun/bin/g++ -std=c++17 -I. -o test_beta_inc test_beta_inc.cpp
 LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_beta_inc > test_beta_inc.txt
 */
 
@@ -10,7 +10,7 @@ LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_beta_inc > test_
 #include <iostream>
 #include <iomanip>
 
-#include "ext/math_const.h"
+#include <ext/math_const.h>
 
 
   //  Evaluates the continued fraction for the incomplete beta function
