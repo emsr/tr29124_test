@@ -153,6 +153,7 @@ test_fermi_dirac
 test_float128
 test_fresnel
 test_gamma
+test_gamma_reciprocal
 test_hermite
 test_hankel
 test_hankel_real_arg
