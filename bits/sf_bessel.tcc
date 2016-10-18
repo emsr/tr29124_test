@@ -202,7 +202,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_inf = __gnu_cxx::__infinity(__x);
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_pi = __gnu_cxx::__const_pi(__nu);
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
       // When the multiplier is N i.e.
       // fp_min = N * min()
       // Then J_0 and N_0 tank at x = 8 * N (J_0 = 0 and N_0 = nan)!
