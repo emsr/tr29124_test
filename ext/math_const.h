@@ -91,6 +91,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Constant: @f$ \pi^2/6 @f$.
       static constexpr _RealType __pi_sqr_div_6
 	= 1.644934066848226436472415166646025189221L;
+      // Constant: @f$ \sqrt{2\pi}
+      static constexpr _RealType __root_2_pi
+        = 2.506628274631000502415765284811045253010L;
+      // Constant: @f$ \log(\sqrt{2\pi})
+      static constexpr _RealType __ln_root_2_pi
+        = 0.918938533204672741780329736405617639862L;
       // Constant: radians to degree conversion.
       static constexpr _RealType __deg
 	= _RealType{180} / __pi;
@@ -182,6 +188,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     constexpr _RealType __math_constants<_RealType>::__two_div_root_pi;
   template<typename _RealType>
     constexpr _RealType __math_constants<_RealType>::__pi_sqr_div_6;
+  template<typename _RealType>
+    constexpr _RealType __math_constants<_RealType>::__root_2_pi;
+  template<typename _RealType>
+    constexpr _RealType __math_constants<_RealType>::__ln_root_2_pi;
   template<typename _RealType>
     constexpr _RealType __math_constants<_RealType>::__deg;
   template<typename _RealType>
@@ -314,6 +324,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __const_pi_sqr_div_6(_RealType = _RealType{})
     noexcept(noexcept(std::is_fundamental<_RealType>::value))
     { return __math_constants<_RealType>::__pi_sqr_div_6; }
+
+  template<typename _RealType>
+    constexpr _RealType
+    __const_root_2_pi(_RealType = _RealType{})
+    noexcept(noexcept(std::is_fundamental<_RealType>::value))
+    { return __math_constants<_RealType>::__root_2_pi; }
+
+  template<typename _RealType>
+    constexpr _RealType
+    __const_ln_root_2_pi(_RealType = _RealType{})
+    noexcept(noexcept(std::is_fundamental<_RealType>::value))
+    { return __math_constants<_RealType>::__ln_root_2_pi; }
 
   template<typename _RealType>
     constexpr _RealType

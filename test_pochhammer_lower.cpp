@@ -1,6 +1,9 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_pochhammer_lower test_pochhammer_lower.cpp wrap_boost.cpp
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_pochhammer_lower > test_pochhammer_lower.txt
+
+$HOME/bin/bin/g++ -std=gnu++17 -I. -o test_pochhammer_lower test_pochhammer_lower.cpp wrap_boost.cpp
+./test_pochhammer_lower > test_pochhammer_lower.txt
 */
 
 #include <limits>
@@ -9,6 +12,81 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_pochhammer_lower
 #include <iomanip>
 #include <ext/cmath>
 #include "wrap_boost.h"
+
+// I'm not sure why I need this here and not other places...
+#include <array>
+template<>
+  constexpr std::array<float, 7>
+  std::__detail::_GammaSpouge<float>::_S_cheby;
+template<>
+  constexpr std::array<double, 18>
+  std::__detail::_GammaSpouge<double>::_S_cheby;
+template<>
+  constexpr std::array<long double, 22>
+  std::__detail::_GammaSpouge<long double>::_S_cheby;
+
+template<>
+  constexpr std::array<float, 7>
+  std::__detail::_GammaLanczos<float>::_S_cheby;
+template<>
+  constexpr std::array<double, 10>
+  std::__detail::_GammaLanczos<double>::_S_cheby;
+template<>
+  constexpr std::array<long double, 11>
+  std::__detail::_GammaLanczos<long double>::_S_cheby;
+
+namespace __gnu_cxx
+{
+
+  template<typename _Tp>
+    _Tp
+    __pochhammer_lower_prod(int __a, int __n)
+    {
+      if (__a < __n)
+	return _Tp{0};
+      else
+	{
+	  auto __prod = 1;
+	  for (int __k = 0; __k < __n; ++__k)
+	    __prod *= __a--;
+	  return __prod;
+	}
+    }
+
+  template<typename _Tp>
+    _Tp
+    __pochhammer_lower_prod(_Tp __a, int __n)
+    {
+      auto __prod = _Tp{1};
+      for (int __k = 0; __k < __n; ++__k)
+	__prod *= __a--;
+      return __prod;
+    }
+
+  template<typename _Tp>
+    _Tp
+    __pochhammer_lower_fake(_Tp __a, _Tp __x)
+    {
+      auto __n = int(std::nearbyint(__x));
+      if (_Tp(__n) == __x)
+	{
+	  if (__n == 0)
+	    return _Tp{1};
+	  else
+	    {
+	      auto __m = int(std::nearbyint(__a));
+	      if (int(__m) == __a)
+		return __pochhammer_lower_prod<_Tp>(__m, __n);
+	      else
+		return __pochhammer_lower_prod(__a, __n);
+	    }
+	}
+      else
+	return std::__detail::__gamma(__a + _Tp{1})
+	     / std::__detail::__gamma(__a - __x + _Tp{1});
+    }
+
+}
 
 int
 main()
@@ -19,18 +97,42 @@ main()
 
   std::vector<double> xv{0.0, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0};
 
+  // Test call (log form).
+  std::cout << "\nLogarithmic form\n";
   for (int ia = 0; ia <= +500; ++ia)
     {
       auto a = ia * 0.01;
       std::cout << '\n';
-      for (int ix = 0; ix < xv.size(); ++ix)
+      for (auto x : xv)
 	{
-	  auto x = xv[ix];
+	  auto pochg = __gnu_cxx::pochhammer_lower(a, x);
+	  auto pochb = beast::pochhammer_lower(a, x);
 	  std::cout << ' ' << std::setw(width) << a
 		    << ' ' << std::setw(width) << x
-		    << ' ' << std::setw(width) << __gnu_cxx::pochhammer_lower(a, x)
-		    << ' ' << std::setw(width) << beast::pochhammer_lower(a, x)
-		    << ' ' << std::setw(width) << __gnu_cxx::pochhammer_lower(a, x) - beast::pochhammer_lower(a, x)
+		    << ' ' << std::setw(width) << pochg
+		    << ' ' << std::setw(width) << pochb
+		    << ' ' << std::setw(width) << pochg - pochb
+		    << ' ' << std::setw(width) << (pochg - pochb) / pochb
+		    << '\n';
+	}
+    }
+
+  // Test naive product form.
+  std::cout << "\nProduct form\n";
+  for (int ia = 0; ia <= +500; ++ia)
+    {
+      auto a = ia * 0.01;
+      std::cout << '\n';
+      for (auto x : xv)
+	{
+	  auto pochg = __gnu_cxx::__pochhammer_lower_fake(a, x);
+	  auto pochb = beast::pochhammer_lower(a, x);
+	  std::cout << ' ' << std::setw(width) << a
+		    << ' ' << std::setw(width) << x
+		    << ' ' << std::setw(width) << pochg
+		    << ' ' << std::setw(width) << pochb
+		    << ' ' << std::setw(width) << pochg - pochb
+		    << ' ' << std::setw(width) << (pochg - pochb) / pochb
 		    << '\n';
 	}
     }

@@ -1,6 +1,6 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=c++17 -g -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_riemann_zeta > test_riemann_zeta.txt
+./test_riemann_zeta > test_riemann_zeta.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath
 ./test_riemann_zeta > test_riemann_zeta.txt
@@ -15,6 +15,16 @@ $HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_riemann_zeta test_riemann_
 #include <bits/float128.h>
 
 // I'm not sure why I need this here and not other places...
+template<>
+  constexpr std::array<float, 7>
+  std::__detail::_GammaSpouge<float>::_S_cheby;
+template<>
+  constexpr std::array<double, 18>
+  std::__detail::_GammaSpouge<double>::_S_cheby;
+template<>
+  constexpr std::array<long double, 22>
+  std::__detail::_GammaSpouge<long double>::_S_cheby;
+
 template<>
   constexpr std::array<float, 7>
   std::__detail::_GammaLanczos<float>::_S_cheby;

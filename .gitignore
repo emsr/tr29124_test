@@ -177,6 +177,7 @@ test_nric_bessel
 test_numeric_limits
 test_owens_t
 test_parab_cyl
+test_pochhammer
 test_pochhammer_lower
 test_polylog
 test_polynomial

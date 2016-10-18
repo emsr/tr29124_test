@@ -82,15 +82,15 @@ namespace __detail
   /**
    * @see The Gamma function revisited.
    */
-  template<typename _Real>
+  template<typename _Tp>
     _Tp
     __binet_recursive(_Tp __z)
     {
-      const auto _S_2pi = __gnu_cxx::__math_constants<_Real>::__2_pi;
+      const auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
       const auto __c = _S_2pi * __z;
-      for (int __k = _1; __k < 10; ++__k)
+      for (int __k = 1; __k < 10; ++__k)
 	{
-          std::vector<_Real> __F = __recursive_thing(__c * __k);
+          std::vector<_Tp> __F = __recursive_thing(__c * __k);
 	  //for (auto __f : __F)
 	  //  
 	}
@@ -520,7 +520,7 @@ namespace __gnu_cxx
 
 
   /**
-   * Return the Binet function or the scaled log gamma
+   * Return the exponential of the Binet function or the scaled gamma function
    * @f$ \Gamma^*(z) @f$ for @c float argument @f$ z @f$.
    *
    * @see tgamma_scaled for details.
@@ -530,7 +530,7 @@ namespace __gnu_cxx
    */
 
   /**
-   * Return the Binet function or the scaled log gamma
+   * Return the exponential of the Binet function or the scaled gamma function
    * @f$ \Gamma^*(z) @f$ for <tt>long double</tt> argument @f$ z @f$.
    *
    * @see tgamma_scaled for details.
@@ -540,9 +540,10 @@ namespace __gnu_cxx
   { return std::exp(std::__detail::__binet<long double>(__z)); }
 
   /**
-   * Return the scaled log gamma @f$ \Gamma^*(z) @f$ defined by
+   * Return the exponential of the Binet function or the scaled gamma function
+   * @f$ \Gamma^*(z) @f$ defined by
    * @f[
-   *    \Gamma^*(z) = \Gamma(z)/\sqrt{2\pi}z^{z-\frac{1}{2}}e^{-z}
+   *    \Gamma^*(z) = \Gamma(z)/\sqrt{2\pi}z^{z-\frac{1}{2}}e^{-z} = e^{J(z)}
    * @f]
    * or
    * @f[
