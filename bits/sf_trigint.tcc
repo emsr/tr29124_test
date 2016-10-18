@@ -42,12 +42,6 @@ namespace __detail
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
-  enum
-  {
-    SININT,
-    COSINT
-  };
-
   /**
    *  @brief This function computes the sine @f$ Si(x) @f$
    *         and cosine @f$ Ci(x) @f$ integrals by continued fraction

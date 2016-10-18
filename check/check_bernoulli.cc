@@ -40,7 +40,7 @@
 
 // Test data.
 // max(|f - f_Boost|): 1.1929908040578744e+64
-// max(|f - f_Boost| / |f_Boost|): 4.2734227959298992e-15
+// max(|f - f_Boost| / |f_Boost|): 99.478295702708920
 // mean(f - f_Boost): -1.1764257338735019e+62
 // variance(f - f_Boost): inf
 // stddev(f - f_Boost): inf
@@ -149,7 +149,7 @@ data001[101] =
   { 0.0000000000000000, 99, 0.0 },
   { -2.8382249570693707e+78, 100, 0.0 },
 };
-const double toler001 = 2.5000000000000020e-13;
+const double toler001 = 0.050000000000000003;
 
 template<typename Ret, unsigned int Num>
   void
