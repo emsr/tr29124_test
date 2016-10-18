@@ -1,12 +1,14 @@
 /*
 $HOME/bin_tr29124/bin/g++ -o test_float128 test_float128.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_float128
+
+$HOME/bin/bin/g++ -I. -o test_float128 test_float128.cpp -lquadmath
 */
 
 #include <limits>
 #include <iostream>
 
-#include "float128.h"
+#include <bits/float128.h>
 
 int
 main()
