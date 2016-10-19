@@ -1,5 +1,5 @@
 /*
-g++ -std=gnu++14 -g -Wall -Wextra -I. -o test_kelvin test_kelvin.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_kelvin test_kelvin.cpp
 ./test_kelvin > test_kelvin.txt
 */
 
@@ -11,6 +11,7 @@ g++ -std=gnu++14 -g -Wall -Wextra -I. -o test_kelvin test_kelvin.cpp
 #include <bits/summation.h>
 #include <bits/sf_gamma.tcc>
 #include <ext/math_util.h>
+#include <bits/complex_util.h>
 
 namespace std
 {
@@ -438,11 +439,16 @@ namespace __detail
       constexpr auto _S_3pi_4 = _Real{3} * _S_pi_4;
       constexpr auto _S_maxiter = 1000;
 
+      // I have to try C++17 init-select!
+      if (auto __isint = __gnu_cxx::__fpinteger(__nu); __isint)
+	  return __kelvin_series(__isint.__value, __x);
+/*
       if (__gnu_cxx::__fpinteger(__nu))
 	{
 	  int __n = std::nearbyint(__nu);
 	  return __kelvin_series(__n, __x);
 	}
+*/
       else
 	{
 	  const auto __xd2 = __x / _Real{2};

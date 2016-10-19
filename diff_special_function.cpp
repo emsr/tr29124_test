@@ -112,6 +112,7 @@ main()
     using __gnu_cxx::conf_hyperg_lim;
     using __gnu_cxx::coshint;
     using __gnu_cxx::cosint;
+    using __gnu_cxx::cos_pi;
     using       std::cyl_bessel_i;
     using       std::cyl_bessel_j;
     using       std::cyl_bessel_k;
@@ -172,6 +173,7 @@ main()
     using __gnu_cxx::sinhc_pi;
     using __gnu_cxx::sinhint;
     using __gnu_cxx::sinint;
+    using __gnu_cxx::sin_pi;
     using       std::sph_bessel;
     using __gnu_cxx::sph_bessel_i;
     using __gnu_cxx::sph_bessel_k;
@@ -1029,11 +1031,32 @@ main()
     // clausen_c function.
     std::cout << "clausen_c" << std::endl;
     basename = "diff_clausen_c";
-    rundiff(clausen_c<Real>, gsl::clausen_c, basename,
+    rundiff(clausen_c, gsl::clausen_c, basename,
 	    "m", fill_argument(std::make_pair(2U, 2U),
 			       std::make_pair(true, true), 1),
 	    "w", fill_argument(std::make_pair(Real{-10}, Real{+10}),
 			       std::make_pair(true, true), 41));
+
+    // Bernoulli numbers.
+    std::cout << "bernoulli" << std::endl;
+    basename = "diff_bernoulli";
+    rundiff(bernoulli<Real>, beast::bernoulli, basename,
+	    "n", fill_argument(std::make_pair(0U, 100U),
+			       std::make_pair(true, true), 101));
+
+    // Reperiodized sine function.
+    std::cout << "sin_pi" << std::endl;
+    basename = "diff_sin_pi";
+    rundiff(sin_pi, beast::sin_pi, basename,
+	    "x", fill_argument(std::make_pair(Real{-20}, Real{+50}),
+			       std::make_pair(false, true), 701));
+
+    // Reperiodized cosine function.
+    std::cout << "cos_pi" << std::endl;
+    basename = "diff_cos_pi";
+    rundiff(cos_pi, beast::cos_pi, basename,
+	    "x", fill_argument(std::make_pair(Real{-20}, Real{+50}),
+			       std::make_pair(false, true), 701));
 
 #endif // STD
 
