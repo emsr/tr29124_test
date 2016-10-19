@@ -483,6 +483,53 @@ namespace std
 
 #endif  
 
+  inline __complex128
+  fabs(const __complex128& __z)
+  { return std::abs(__z); }
+
+  /// Additional overloads.
+
+  inline __float128
+  arg(__float128 __x) _GLIBCXX_USE_NOEXCEPT
+  { return __x < 0.0Q ? M_PIq : 0.0Q; }
+
+  inline _GLIBCXX_USE_CONSTEXPR __float128
+  imag(__float128) _GLIBCXX_USE_NOEXCEPT
+  { return 0.0Q; }
+
+  inline _GLIBCXX_USE_CONSTEXPR __float128
+  real(__float128 __x) _GLIBCXX_USE_NOEXCEPT
+  { return __x; }
+
+  __float128
+  norm(__float128 __x) _GLIBCXX_USE_NOEXCEPT
+  { return __x * __x; }
+
+  template<typename _Up>
+    inline std::complex<__gnu_cxx::__promote_fp_t<__complex128, _Up>>
+    pow(const __complex128& __x, const _Up& __y)
+    {
+      using __type = __gnu_cxx::__promote_fp_t<__complex128, _Up>;
+      return std::pow(std::complex<__type>(__x), __type(__y));
+    }
+
+  template<typename _Tp>
+    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp, __complex128>>
+    pow(const _Tp& __x, const __complex128& __y)
+    {
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, __complex128>;
+      return std::pow(__type(__x), std::complex<__type>(__y));
+    }
+
+  // DR 1137.
+  __float128
+  proj(__float128 __x)
+  { return __x; }
+
+  __float128
+  conj(__float128 __x)
+  { return __x; }
+
 _GLIBCXX_END_NAMESPACE_VERSION
 
 #if __cplusplus > 201103L
