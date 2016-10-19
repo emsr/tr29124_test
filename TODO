@@ -93,5 +93,23 @@ for [] TR1 test generation...
 
 29. [DONE] Lose __eps, __min, __max, __inf, __NaN from math_const in favor of numeric_limits.h
 
-30. [] 
+30. [] Why did check_lfactorial.cc get chopped after 171?
+   { 711.71472580228999, 171, 0.0 },
+-  { 716.86222027910344, 172, 0.0 },
 
+After the table stops at 180 __log_gamma is called.
++// Divergence at n=172 f=inf f_GSL=716.86222027910344
++// Divergence at n=173 f=inf f_GSL=722.01551187360121
++// Divergence at n=174 f=inf f_GSL=727.17456717281561
++//  ...
++// Divergence at n=500 f=inf f_GSL=2611.3304584601556
+
+31. [] I seem to have lost accuracy in cyl_bessel_i near the origin.
+   cyl_neumann also for < 2!  All bessels in non-oscillatory region.
+
+32. [] radpoly is nan ing out for odd m!
+
+33. [] beta for a=100 b>71 wrong sign.  But dead on magnitude!  We could crush it!
+
+34. [] In test_riemann_zeta the negative argument differences between real zetac an zeta are much worse.
+Reflection formula and reperiodized stuff?
