@@ -22,7 +22,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/float128.h
+/** @file bits/numeric_limits_float128.h
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{xxxxx}
  */
@@ -217,99 +217,99 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // These are specializations of the functions in bits/numeric_limits.h
 
   template<>
-    __float128
+    inline __float128
     __sqrt_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::sqrt(__max(__float128{})); }
 
 #ifdef NO_CBRT
   template<>
-    __float128
+    inline __float128
     __cbrt_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::pow(__max(__float128{}), 1 / 3.0Q); }
 #else
   template<>
-    __float128
+    inline __float128
     __cbrt_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::cbrt(__max(__float128{})); }
 #endif
 
   template<>
-    __float128
+    inline __float128
     __root_max(__float128 __root) _GLIBCXX_USE_NOEXCEPT
     { return std::pow(__max(__float128{}), 1 / __root); }
 
   template<>
-    __float128
+    inline __float128
     __log_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::log(__max(__float128{})); }
 
   template<>
-    __float128
+    inline __float128
     __log10_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::log10(__max(__float128{})); }
 
 
   template<>
-    __float128
+    inline __float128
     __sqrt_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::sqrt(__min(__float128{})); }
 
 #ifdef NO_CBRT
   template<>
-    __float128
+    inline __float128
     __cbrt_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::pow(__min(__float128{}), 1 / 3.0Q); }
 #else
   template<>
-    __float128
+    inline __float128
     __cbrt_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::cbrt(__min(__float128{})); }
 #endif
 
   template<>
-    __float128
+    inline __float128
     __root_min(__float128 __root) _GLIBCXX_USE_NOEXCEPT
     { return std::pow(__min(__float128{}), 1 / __root); }
 
   template<>
-    __float128
+    inline __float128
     __log_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::log(__min(__float128{})); }
 
   template<>
-    __float128
+    inline __float128
     __log10_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::log10(__min(__float128{})); }
 
   template<>
-    __float128
+    inline __float128
     __sqrt_eps<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::sqrt(__epsilon(__float128{})); }
 
 #ifdef NO_CBRT
   template<>
-    __float128
+    inline __float128
     __cbrt_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::pow(__epsilon(__float128{}), 1 / 3.0Q); }
 #else
   template<>
-    __float128
+    inline __float128
     __cbrt_eps<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::cbrt(__epsilon(__float128{})); }
 #endif
 
   template<>
-    __float128
+    inline __float128
     __root_eps(__float128 __root) _GLIBCXX_USE_NOEXCEPT
     { return std::pow(__epsilon(__float128{}), 1 / __root); }
 
   template<>
-    __float128
+    inline __float128
     __log_eps<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::log(__epsilon(__float128{})); }
 
   template<>
-    __float128
+    inline __float128
     __log10_eps<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::log10(__epsilon(__float128{})); }
 

@@ -50,7 +50,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline bool
-    __fpequal(_Tp __a, _Tp __b, _Tp __mul = _Tp{5})
+    __fpequal(_Tp __a, _Tp __b, _Tp __mul = _Tp{1})
     {
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       const auto _S_tol = __mul * _S_eps;
@@ -63,17 +63,51 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
+   * A function to reliably compare a floating point number with zero.
+   *
+   * @param __a The floating point number
+   * @param __mul The multiplier for numeric epsilon for comparison
+   * @return @c true if a and b are equal to zero
+   *         or differ only by @f$ max(a,b) * mul * epsilon @f$
+   */
+  template<typename _Tp>
+    inline bool
+    __fpzero(_Tp __a, _Tp __mul = _Tp{1})
+    {
+      const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto _S_tol = __mul * _S_eps;
+      bool __retval = true;
+      if (__a != _Tp{0})
+	__retval = (std::abs(__a) < _S_tol);
+      return __retval;
+    }
+
+  /**
+   * A struct returned by floating point integer queries.
+   */
+  struct __fpinteger_t
+  {
+    // A flag indicating whether the floating point number is integralish.
+    bool __is_integral;
+    // An integer related to the floating point integral value.
+    int __value;
+    // Return __is_integral in a boolean context.
+    operator bool() const
+    { return __is_integral; }
+  };
+
+  /**
    * A function to reliably detect if a floating point number is an integer.
    *
    * @param __a The floating point number
    * @return @c true if a is an integer within mul * epsilon.
    */
   template<typename _Tp>
-    inline bool
-    __fpinteger(_Tp __a, _Tp __mul = _Tp{5})
+    inline __fpinteger_t
+    __fpinteger(_Tp __a, _Tp __mul = _Tp{1})
     {
-      auto __n = std::nearbyint(__a);
-      return __fpequal(__a, _Tp(__n), __mul);
+      auto __n = static_cast<int>(std::nearbyint(__a));
+      return __fpinteger_t{__fpequal(__a, _Tp(__n), __mul), __n};
     }
 
   /**
@@ -83,11 +117,28 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return @c true if 2*a is an integer within mul * epsilon.
    */
   template<typename _Tp>
-    inline bool
-    __fp_half_integer(_Tp __a, _Tp __mul = _Tp{5})
+    inline __fpinteger_t
+    __fp_half_integer(_Tp __a, _Tp __mul = _Tp{1})
     {
-      auto __n = std::nearbyint(_Tp(2) * __a);
-      return __fpequal(_Tp(2) * __a, _Tp(__n), __mul);
+      auto __n = static_cast<int>(std::nearbyint(_Tp{2} * __a));
+      return __fpinteger_t{__fpequal(_Tp{2} * __a, _Tp(__n), __mul), __n / 2};
+    }
+
+  /**
+   * A function to reliably detect if a floating point number is a
+   * half-odd-integer.
+   *
+   * @param __a The floating point number
+   * @return @c true if 2*a is an odd integer within mul * epsilon.
+   */
+  template<typename _Tp>
+    inline __fpinteger_t
+    __fp_half_odd_integer(_Tp __a, _Tp __mul = _Tp{1})
+    {
+      auto __n = static_cast<int>(std::nearbyint(_Tp{2} * __a));
+      bool __halfodd = (__n & 1 == 1)
+		      && __fpequal(_Tp{2} * __a, _Tp(__n), __mul);
+      return __fpinteger_t{__halfodd, (__n - 1) / 2};
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION

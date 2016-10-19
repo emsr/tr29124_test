@@ -110,19 +110,25 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __beta_lgamma(_Tp __a, _Tp __b)
     {
-      _Tp __bet = __log_gamma(__a)
-		+ __log_gamma(__b)
-		- __log_gamma(__a + __b);
-      _Tp __sign = __log_gamma_sign(__a)
-		 * __log_gamma_sign(__b)
-		 * __log_gamma_sign(__a + __b);
-
-      if (__sign == _Tp{0})
+      auto __na = int(std::nearbyint(__a));
+      auto __nb = int(std::nearbyint(__b));
+      auto __nab = int(std::nearbyint(__a + __b));
+      if (__nab == __a + __b)
         return __gnu_cxx::__quiet_NaN<_Tp>();
-      else if (__bet > __gnu_cxx::__log_max<_Tp>())
-        return __sign * __gnu_cxx::__infinity<_Tp>();
       else
-	return __sign * std::exp(__bet);
+	{
+	  auto __bet = __log_gamma(__a)
+		     + __log_gamma(__b)
+		     - __log_gamma(__a + __b);
+	  auto __sign = __log_gamma_sign(__a)
+		      * __log_gamma_sign(__b)
+		      * __log_gamma_sign(__a + __b);
+
+	  if (__bet > __gnu_cxx::__log_max<_Tp>())
+            return __sign * __gnu_cxx::__infinity<_Tp>();
+	  else
+	    return __sign * std::exp(__bet);
+	}
     }
 
 

@@ -39,11 +39,11 @@
 
 
 // Test data for n=0.
-// max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 7.2099077983465152e-15
-// mean(f - f_GSL): -3.9725167599868880e-17
-// variance(f - f_GSL): 2.8610529584166683e-35
-// stddev(f - f_GSL): 5.3488811525558022e-18
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 4.8209634107822837e-15
+// mean(f - f_GSL): 1.0876716194374581e-16
+// variance(f - f_GSL): 1.6241181163380966e-33
+// stddev(f - f_GSL): 4.0300348836431880e-17
 const testcase_sph_neumann<double>
 data001[20] =
 {
@@ -68,14 +68,14 @@ data001[20] =
   { -0.0079162427132582220, 0, 4.7500000000000000, 0.0 },
   { -0.056732437092645263, 0, 5.0000000000000000, 0.0 },
 };
-const double toler001 = 5.0000000000000039e-13;
+const double toler001 = 2.5000000000000020e-13;
 
 // Test data for n=1.
 // max(|f - f_GSL|): 7.1054273576010019e-15
 // max(|f - f_GSL| / |f_GSL|): 3.7472288263398607e-15
-// mean(f - f_GSL): -5.1521287236511171e-16
-// variance(f - f_GSL): 1.4706055614997721e-32
-// stddev(f - f_GSL): 1.2126852689382238e-16
+// mean(f - f_GSL): -4.3194614551822497e-16
+// variance(f - f_GSL): 1.0336702084656597e-32
+// stddev(f - f_GSL): 1.0166957305239654e-16
 const testcase_sph_neumann<double>
 data002[20] =
 {
@@ -103,11 +103,11 @@ data002[20] =
 const double toler002 = 2.5000000000000020e-13;
 
 // Test data for n=2.
-// max(|f - f_GSL|): 1.0658141036401503e-14
+// max(|f - f_GSL|): 5.6843418860808015e-14
 // max(|f - f_GSL| / |f_GSL|): 2.4702749396271158e-15
-// mean(f - f_GSL): -8.0430453963664657e-16
-// variance(f - f_GSL): 4.3644473855245618e-32
-// stddev(f - f_GSL): 2.0891259860344855e-16
+// mean(f - f_GSL): 2.6151823762088355e-15
+// variance(f - f_GSL): 3.5515772052542599e-31
+// stddev(f - f_GSL): 5.9595110581777261e-16
 const testcase_sph_neumann<double>
 data003[20] =
 {
@@ -137,9 +137,9 @@ const double toler003 = 2.5000000000000020e-13;
 // Test data for n=5.
 // max(|f - f_GSL|): 9.3132257461547852e-10
 // max(|f - f_GSL| / |f_GSL|): 6.3451511503162099e-16
-// mean(f - f_GSL): -4.7411768955285538e-11
-// variance(f - f_GSL): 1.2453518250447928e-22
-// stddev(f - f_GSL): 1.1159533256569438e-11
+// mean(f - f_GSL): -4.6638698458778548e-11
+// variance(f - f_GSL): 1.2050707258446238e-22
+// stddev(f - f_GSL): 1.0977571342717950e-11
 const testcase_sph_neumann<double>
 data004[20] =
 {
@@ -168,10 +168,10 @@ const double toler004 = 2.5000000000000020e-13;
 
 // Test data for n=10.
 // max(|f - f_GSL|): 0.50000000000000000
-// max(|f - f_GSL| / |f_GSL|): 1.2712694703401436e-15
-// mean(f - f_GSL): -0.025048372797799878
-// variance(f - f_GSL): 3.4761739818541784e-05
-// stddev(f - f_GSL): 0.0058959087356014756
+// max(|f - f_GSL| / |f_GSL|): 1.2302449004934356e-15
+// mean(f - f_GSL): 0.024963836072812207
+// variance(f - f_GSL): 3.4527487732986543e-05
+// stddev(f - f_GSL): 0.0058760095075643427
 const testcase_sph_neumann<double>
 data005[20] =
 {
@@ -199,9 +199,9 @@ data005[20] =
 const double toler005 = 2.5000000000000020e-13;
 
 // Test data for n=20.
-// max(|f - f_GSL|): 2.9514790517935283e+20
+// max(|f - f_GSL|): 5.9029581035870565e+20
 // max(|f - f_GSL| / |f_GSL|): 1.9896573344672978e-15
-// mean(f - f_GSL): -1.4757430434763399e+19
+// mean(f - f_GSL): 2.9514769415888437e+19
 // variance(f - f_GSL): inf
 // stddev(f - f_GSL): inf
 const testcase_sph_neumann<double>
@@ -231,9 +231,9 @@ data006[20] =
 const double toler006 = 2.5000000000000020e-13;
 
 // Test data for n=50.
-// max(|f - f_GSL|): 2.0859248397665138e+93
+// max(|f - f_GSL|): 1.2515549038599083e+94
 // max(|f - f_GSL| / |f_GSL|): 7.3237119407125301e-14
-// mean(f - f_GSL): 1.0429624198832532e+92
+// mean(f - f_GSL): 6.2577745192995399e+92
 // variance(f - f_GSL): inf
 // stddev(f - f_GSL): inf
 const testcase_sph_neumann<double>
@@ -263,9 +263,9 @@ data007[20] =
 const double toler007 = 5.0000000000000029e-12;
 
 // Test data for n=100.
-// max(|f - f_GSL|): 2.4840289476811343e+232
+// max(|f - f_GSL|): 4.3470506584419850e+232
 // max(|f - f_GSL| / |f_GSL|): 9.0555289224453335e-14
-// mean(f - f_GSL): 1.2420144738405672e+231
+// mean(f - f_GSL): 2.1735253292209924e+231
 // variance(f - f_GSL): inf
 // stddev(f - f_GSL): inf
 const testcase_sph_neumann<double>
