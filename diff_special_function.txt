@@ -33,8 +33,8 @@ ellint_rf
 ellint_rg
 ellint_rj
 dilog
-gamma_u
-gamma_l
+tgamma
+tgamma_lower
 ibeta
 psi
 sinint
@@ -51,10 +51,10 @@ fresnel_s
 dawson
 sinc
 sinc_pi
-lpochhammer_u
-lpochhammer_l
-pochhammer_u
-pochhammer_l
+lpochhammer
+lpochhammer_lower
+pochhammer
+pochhammer_lower
 legendre_q
 factorial
 lfactorial

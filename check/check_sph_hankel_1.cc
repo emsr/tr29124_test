@@ -39,11 +39,11 @@
 
 
 // Test data for n=0.
-// max(|f - f_Boost|): 5.5511151231257827e-16
-// max(|f - f_Boost| / |f_Boost|): 7.7753549539895973e-16
-// mean(f - f_Boost): (-2.6020852139652106e-17,-4.3194614551822494e-17)
-// variance(f - f_Boost): (1.2220285577704293e-34,-1.5608168403179797e-34)
-// stddev(f - f_Boost): (1.2657657689254188e-17,-6.1655042292818786e-18)
+// max(|f - f_Boost|): 1.8610729195778454e-15
+// max(|f - f_Boost| / |f_Boost|): 6.6645899605625129e-16
+// mean(f - f_Boost): (1.7347234759768071e-18,1.0529771499179220e-16)
+// variance(f - f_Boost): (-1.6530937590263325e-33,-5.0365602164074099e-34)
+// stddev(f - f_Boost): (6.1246730754455749e-18,-4.1116971913157960e-17)
 const testcase_sph_hankel_1<double>
 data001[20] =
 {
@@ -73,9 +73,9 @@ const double toler001 = 2.5000000000000020e-13;
 // Test data for n=1.
 // max(|f - f_Boost|): 7.1054273576010019e-15
 // max(|f - f_Boost| / |f_Boost|): 6.7144690086529409e-16
-// mean(f - f_Boost): (-1.9895109865109006e-17,-5.1729454053628386e-16)
-// variance(f - f_Boost): (-1.4798952354619314e-32,-1.2459922311933310e-33)
-// stddev(f - f_Boost): (5.1166539651118238e-18,-1.2175850073985803e-16)
+// mean(f - f_Boost): (9.2157184661267877e-19,-4.3402781368939712e-16)
+// variance(f - f_Boost): (-1.0336244905271987e-32,-2.0465402234854561e-33)
+// stddev(f - f_Boost): (1.0016392425468284e-17,-1.0215954689843219e-16)
 const testcase_sph_hankel_1<double>
 data002[20] =
 {
@@ -103,11 +103,11 @@ data002[20] =
 const double toler002 = 2.5000000000000020e-13;
 
 // Test data for n=2.
-// max(|f - f_Boost|): 1.0658143295155790e-14
+// max(|f - f_Boost|): 5.6843418966687133e-14
 // max(|f - f_Boost| / |f_Boost|): 6.6186965391813605e-16
-// mean(f - f_Boost): (-7.8929918156944720e-18,-7.9242168382620550e-16)
-// variance(f - f_Boost): (-4.1894434231173280e-32,-1.0006553145055562e-32)
-// stddev(f - f_Boost): (2.4274120955682629e-17,-2.0611566456566174e-16)
+// mean(f - f_Boost): (-4.5102810375396986e-18,2.6270652320192768e-15)
+// variance(f - f_Boost): (-3.5787069386200838e-31,3.0021620042520044e-32)
+// stddev(f - f_Boost): (2.5070328455490552e-17,5.9874803985555935e-16)
 const testcase_sph_hankel_1<double>
 data003[20] =
 {
@@ -136,10 +136,10 @@ const double toler003 = 2.5000000000000020e-13;
 
 // Test data for n=5.
 // max(|f - f_Boost|): 1.3969838619232178e-09
-// max(|f - f_Boost| / |f_Boost|): 6.3043260119998010e-16
-// mean(f - f_Boost): (2.2321217366837236e-18,-7.0603550783587821e-11)
-// variance(f - f_Boost): (-2.7616830291256664e-22,-1.2602926690361311e-28)
-// stddev(f - f_Boost): (3.7918792476705896e-18,-1.6618312276298727e-11)
+// max(|f - f_Boost| / |f_Boost|): 6.3043260119832369e-16
+// mean(f - f_Boost): (2.2593961975853120e-18,-6.9830480287080837e-11)
+// variance(f - f_Boost): (-2.7015361323710508e-22,-1.2486034594981489e-28)
+// stddev(f - f_Boost): (3.7982989896311804e-18,-1.6436350362447241e-11)
 const testcase_sph_hankel_1<double>
 data004[20] =
 {
@@ -168,10 +168,10 @@ const double toler004 = 2.5000000000000020e-13;
 
 // Test data for n=10.
 // max(|f - f_Boost|): 0.50000000000000000
-// max(|f - f_Boost| / |f_Boost|): 1.0170155762721146e-15
-// mean(f - f_Boost): (2.2920661583223020e-20,-0.025024053298762183)
-// variance(f - f_Boost): (-3.4691132183784816e-05,-2.1679950368566480e-21)
-// stddev(f - f_Boost): (1.8404289287797447e-19,-0.0058899178418535527)
+// max(|f - f_Boost| / |f_Boost|): 8.9472356399522572e-16
+// mean(f - f_Boost): (2.2921302648198367e-20,0.024988155571849902)
+// variance(f - f_Boost): (-3.4591677195425470e-05,2.1648865082949180e-21)
+// stddev(f - f_Boost): (1.8404301041891622e-19,0.0058814689657793375)
 const testcase_sph_hankel_1<double>
 data005[20] =
 {
@@ -199,9 +199,9 @@ data005[20] =
 const double toler005 = 2.5000000000000020e-13;
 
 // Test data for n=20.
-// max(|f - f_Boost|): 562949953421312.00
+// max(|f - f_Boost|): 8.8544371553805848e+20
 // max(|f - f_Boost| / |f_Boost|): 1.9681846257869076e-15
-// mean(f - f_Boost): (6.3645693301067307e-28,-28139776976358.156)
+// mean(f - f_Boost): (6.3645693311900228e-28,4.4272171710874862e+19)
 // variance(f - f_Boost): (inf,-nan)
 // stddev(f - f_Boost): (inf,nan)
 const testcase_sph_hankel_1<double>
@@ -231,9 +231,9 @@ data006[20] =
 const double toler006 = 2.5000000000000020e-13;
 
 // Test data for n=50.
-// max(|f - f_Boost|): 2.0859248397665138e+93
+// max(|f - f_Boost|): 1.2515549038599083e+94
 // max(|f - f_Boost| / |f_Boost|): 3.0833708483316997e-15
-// mean(f - f_Boost): (-9.2703148159453746e-61,1.0429624198832536e+92)
+// mean(f - f_Boost): (-9.2703148159453746e-61,6.2577745192995399e+92)
 // variance(f - f_Boost): (inf,-nan)
 // stddev(f - f_Boost): (inf,nan)
 const testcase_sph_hankel_1<double>
@@ -263,9 +263,9 @@ data007[20] =
 const double toler007 = 2.5000000000000020e-13;
 
 // Test data for n=100.
-// max(|f - f_Boost|): 3.1050361846014179e+232
+// max(|f - f_Boost|): 4.9680578953622686e+232
 // max(|f - f_Boost| / |f_Boost|): 7.0931035946041080e-15
-// mean(f - f_Boost): (-1.9153906003364707e-133,1.5525180923007089e+231)
+// mean(f - f_Boost): (-1.9153906003364707e-133,2.4840289476811344e+231)
 // variance(f - f_Boost): (inf,-nan)
 // stddev(f - f_Boost): (inf,nan)
 const testcase_sph_hankel_1<double>
@@ -296,11 +296,11 @@ const double toler008 = 5.0000000000000039e-13;
 //  sph_hankel_1
 
 // Test data for nu=0.
-// max(|f - f_Boost|): 7.1088959579333461e-16
+// max(|f - f_Boost|): 1.9389211565826713e-15
 // max(|f - f_Boost| / |f_Boost|): 1.2509268882771003e-15
-// mean(f - f_Boost): (1.4745149545802860e-16,-2.6020852139652106e-17)
-// variance(f - f_Boost): (-3.8197610563680175e-33,-1.5149311444495985e-31)
-// stddev(f - f_Boost): (2.7177334456969976e-16,-2.7871223847360699e-16)
+// mean(f - f_Boost): (2.0296264668928643e-16,-3.5908775952719907e-16)
+// variance(f - f_Boost): (-7.4620155695283453e-31,-7.2336591259834312e-31)
+// stddev(f - f_Boost): (3.8279564703221542e-16,-9.4484605324870087e-16)
 const testcase_sph_hankel_1<double>
 data009[4] =
 {
@@ -312,11 +312,11 @@ data009[4] =
 const double toler009 = 2.5000000000000020e-13;
 
 // Test data for nu=2.
-// max(|f - f_Boost|): 1.1882855810441129e-14
+// max(|f - f_Boost|): 5.8071811630673210e-14
 // max(|f - f_Boost| / |f_Boost|): 1.5584168998633249e-15
-// mean(f - f_Boost): (-2.9880611873700502e-15,-5.8980598183211441e-17)
-// variance(f - f_Boost): (3.5161730078067608e-29,-4.6632916229826215e-31)
-// stddev(f - f_Boost): (5.9298630820473858e-15,-3.9320398788807630e-17)
+// mean(f - f_Boost): (-2.9876275065010560e-15,-1.4269835313385215e-14)
+// variance(f - f_Boost): (-7.7040701689050365e-28,3.3655812620120581e-28)
+// stddev(f - f_Boost): (5.9289957203093974e-15,2.8382389031615201e-14)
 const testcase_sph_hankel_1<double>
 data010[4] =
 {

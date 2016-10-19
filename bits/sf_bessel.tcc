@@ -141,12 +141,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	    expansions of @f$ N_\nu(x) @f$ and @f$ K_\nu(x) @f$.
    * @f[
    *   \Gamma_1 = \frac{1}{2\mu}
-   * 		  [\frac{1}{\Gamma(1 - \mu)} - \frac{1}{\Gamma(1 + \mu)}]
+   * 	 \left[\frac{1}{\Gamma(1 - \mu)} - \frac{1}{\Gamma(1 + \mu)}\right]
    * @f]
    * and
    * @f[
    *   \Gamma_2 = \frac{1}{2}
-   * 		  [\frac{1}{\Gamma(1 - \mu)} + \frac{1}{\Gamma(1 + \mu)}]
+   *     \left[\frac{1}{\Gamma(1 - \mu)} + \frac{1}{\Gamma(1 + \mu)}\right]
    * @f]
    * where @f$ -1/2 <= \mu <= 1/2 @f$ is @f$ \mu = \nu - N @f$ and @f$ N @f$.
    * is the nearest integer to @f$ \nu @f$.
@@ -168,8 +168,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__mu);
       const auto _S_gamma_E = __gnu_cxx::__const_gamma_e(__mu);
-      __gampl = _Tp{1} / __gamma(_Tp{1} + __mu);
-      __gammi = _Tp{1} / __gamma(_Tp{1} - __mu);
+      __gampl = __gamma_reciprocal_series(_Tp{1} + __mu);
+      __gammi = __gamma_reciprocal_series(_Tp{1} - __mu);
 
       if (std::abs(__mu) < _S_eps)
 	__gam1 = -_S_gamma_E;
@@ -429,7 +429,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __x2 = __x / _Tp{2};
 
 	  _Tp __fact = __nu * std::log(__x2);
-	  __fact -= __log_gamma(__nu + _Tp{1});
+	  __fact -= __log_gamma(_Tp{1} + __nu);
 	  __fact = std::exp(__fact);
 	  const auto __xx4 = __sgn * __x2 * __x2;
 	  _Tp _Jn = _Tp{1};

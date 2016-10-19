@@ -34,6 +34,7 @@ ${tool} "${src_impl_dir}/complex_util.tcc"      "${dst_impl_dir}/complex_util.tc
 ${tool} "${src_impl_dir}/float128.h"            "${dst_impl_dir}/float128.h"
 ${tool} "${src_impl_dir}/float128.tcc"          "${dst_impl_dir}/float128.tcc"
 ${tool} "${src_impl_dir}/numeric_limits.h"      "${dst_impl_dir}/numeric_limits.h"
+${tool} "${src_impl_dir}/numeric_limits_float128.h"  "${dst_impl_dir}/numeric_limits.h"
 ${tool} "${src_impl_dir}/sf_airy.tcc"           "${dst_impl_dir}/sf_airy.tcc"
 ${tool} "${src_impl_dir}/sf_bessel.tcc"         "${dst_impl_dir}/sf_bessel.tcc"
 ${tool} "${src_impl_dir}/sf_beta.tcc"           "${dst_impl_dir}/sf_beta.tcc"

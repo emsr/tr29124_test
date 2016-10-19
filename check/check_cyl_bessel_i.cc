@@ -41,11 +41,11 @@
 // Divergence at nu=-5.0000000000000000 x=0.0000000000000000 f=inf f_Boost=0.0000000000000000
 // Divergence at nu=-5.0000000000000000 x=0.0000000000000000 f=inf f_Boost=0.0000000000000000
 // Test data for nu=-5.0000000000000000.
-// max(|f - f_Boost|): 1.5268514955717664e-10
-// max(|f - f_Boost| / |f_Boost|): 0.00059882126573395267
-// mean(f - f_Boost): 7.9112707519334589e-12
-// variance(f - f_Boost): 3.4686585343599804e-24
-// stddev(f - f_Boost): 1.8624334979697880e-12
+// max(|f - f_Boost|): 1.5268514955982361e-10
+// max(|f - f_Boost| / |f_Boost|): 0.00059882126574433391
+// mean(f - f_Boost): 7.9112749127763483e-12
+// variance(f - f_Boost): 3.4686621823496382e-24
+// stddev(f - f_Boost): 1.8624344773305821e-12
 const testcase_cyl_bessel_i<double>
 data001[20] =
 {
@@ -76,10 +76,10 @@ const double toler001 = 0.050000000000000003;
 // Divergence at nu=-2.0000000000000000 x=0.0000000000000000 f=-inf f_Boost=0.0000000000000000
 // Test data for nu=-2.0000000000000000.
 // max(|f - f_Boost|): 8.8817841970012523e-15
-// max(|f - f_Boost| / |f_Boost|): 6.3638949771850843e-13
-// mean(f - f_Boost): -2.1501030122994536e-15
-// variance(f - f_Boost): 1.3604010729716464e-30
-// stddev(f - f_Boost): 1.1663623249109371e-15
+// max(|f - f_Boost| / |f_Boost|): 6.2600757949817868e-13
+// mean(f - f_Boost): -1.4861376018693307e-15
+// variance(f - f_Boost): 1.7493860032615461e-30
+// stddev(f - f_Boost): 1.3226435662193901e-15
 const testcase_cyl_bessel_i<double>
 data002[20] =
 {
@@ -108,10 +108,10 @@ const double toler002 = 5.0000000000000028e-11;
 
 // Test data for nu=-1.0000000000000000.
 // max(|f - f_Boost|): 1.5987211554602254e-14
-// max(|f - f_Boost| / |f_Boost|): 1.0964838064287547e-14
-// mean(f - f_Boost): -3.8897456684188519e-15
-// variance(f - f_Boost): 5.4288195812242168e-31
-// stddev(f - f_Boost): 7.3680523757803294e-16
+// max(|f - f_Boost| / |f_Boost|): 1.3049853164470476e-15
+// mean(f - f_Boost): -1.7922171683234669e-15
+// variance(f - f_Boost): 1.4820856320607375e-30
+// stddev(f - f_Boost): 1.2174093937787476e-15
 const testcase_cyl_bessel_i<double>
 data003[21] =
 {
@@ -137,16 +137,16 @@ data003[21] =
   { 19.345361447520226, -1.0000000000000000, 4.7500000000000000, 0.0 },
   { 24.335642142450528, -1.0000000000000000, 5.0000000000000000, 0.0 },
 };
-const double toler003 = 1.0000000000000008e-12;
+const double toler003 = 2.5000000000000020e-13;
 
 // Divergence at nu=-0.66666666666666663 x=0.0000000000000000 f=inf f_Boost=0.0000000000000000
 // Divergence at nu=-0.66666666666666663 x=0.0000000000000000 f=inf f_Boost=0.0000000000000000
 // Test data for nu=-0.66666666666666663.
 // max(|f - f_Boost|): 1.0658141036401503e-14
-// max(|f - f_Boost| / |f_Boost|): 4.9927777094873424e-15
-// mean(f - f_Boost): -5.6621374255882980e-16
-// variance(f - f_Boost): 5.6424928811194843e-30
-// stddev(f - f_Boost): 2.3753932055808118e-15
+// max(|f - f_Boost| / |f_Boost|): 7.3907235697561109e-16
+// mean(f - f_Boost): -1.5099033134902129e-15
+// variance(f - f_Boost): 4.6365791376674317e-30
+// stddev(f - f_Boost): 2.1532717287113189e-15
 const testcase_cyl_bessel_i<double>
 data004[20] =
 {
@@ -177,10 +177,10 @@ const double toler004 = 2.5000000000000020e-13;
 // Divergence at nu=-0.50000000000000000 x=0.0000000000000000 f=inf f_Boost=0.0000000000000000
 // Test data for nu=-0.50000000000000000.
 // max(|f - f_Boost|): 1.0658141036401503e-14
-// max(|f - f_Boost| / |f_Boost|): 5.0371734577798006e-16
-// mean(f - f_Boost): -2.4424906541753446e-16
-// variance(f - f_Boost): 3.3051305239523003e-33
-// stddev(f - f_Boost): 5.7490264601515801e-17
+// max(|f - f_Boost| / |f_Boost|): 1.4903718677374977e-15
+// mean(f - f_Boost): -4.4408920985006262e-16
+// variance(f - f_Boost): 1.0926051318850579e-32
+// stddev(f - f_Boost): 1.0452775382093782e-16
 const testcase_cyl_bessel_i<double>
 data005[20] =
 {
@@ -211,10 +211,10 @@ const double toler005 = 2.5000000000000020e-13;
 // Divergence at nu=-0.33333333333333331 x=0.0000000000000000 f=inf f_Boost=0.0000000000000000
 // Test data for nu=-0.33333333333333331.
 // max(|f - f_Boost|): 1.0658141036401503e-14
-// max(|f - f_Boost| / |f_Boost|): 1.2314464061988134e-15
-// mean(f - f_Boost): 1.5543122344752191e-16
-// variance(f - f_Boost): 7.6179161307855950e-31
-// stddev(f - f_Boost): 8.7280674440483075e-16
+// max(|f - f_Boost| / |f_Boost|): 8.2543577494701540e-16
+// mean(f - f_Boost): -1.7763568394002506e-16
+// variance(f - f_Boost): 6.3108872417680948e-31
+// stddev(f - f_Boost): 7.9441092903912734e-16
 const testcase_cyl_bessel_i<double>
 data006[20] =
 {
