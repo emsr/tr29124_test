@@ -23,6 +23,27 @@
 
 #include "testcase2.tcc"
 
+// I'm not sure why I need this here and not other places...
+template<>
+  constexpr std::array<float, 7>
+  std::__detail::_GammaSpouge<float>::_S_cheby;
+template<>
+  constexpr std::array<double, 18>
+  std::__detail::_GammaSpouge<double>::_S_cheby;
+template<>
+  constexpr std::array<long double, 22>
+  std::__detail::_GammaSpouge<long double>::_S_cheby;
+
+template<>
+  constexpr std::array<float, 7>
+  std::__detail::_GammaLanczos<float>::_S_cheby;
+template<>
+  constexpr std::array<double, 10>
+  std::__detail::_GammaLanczos<double>::_S_cheby;
+template<>
+  constexpr std::array<long double, 11>
+  std::__detail::_GammaLanczos<long double>::_S_cheby;
+
 
 template<typename Real>
   void
@@ -52,6 +73,7 @@ template<typename Real>
     using __gnu_cxx::conf_hyperg_lim;
     using __gnu_cxx::coshint;
     using __gnu_cxx::cosint;
+    using __gnu_cxx::cos_pi;
     using       std::cyl_bessel_i;
     using       std::cyl_bessel_j;
     using       std::cyl_bessel_k;
@@ -77,8 +99,6 @@ template<typename Real>
     using __gnu_cxx::factorial;
     using __gnu_cxx::fresnel_c;
     using __gnu_cxx::fresnel_s;
-    using __gnu_cxx::tgamma_lower;
-    using __gnu_cxx::tgamma;
     using __gnu_cxx::gegenbauer;
     using       std::hermite;
     using __gnu_cxx::heuman_lambda;
@@ -106,14 +126,13 @@ template<typename Real>
     using __gnu_cxx::qgamma;
     using __gnu_cxx::radpoly;
     using       std::riemann_zeta;
-    using __gnu_cxx::sinhc;
-    using __gnu_cxx::sinhc_pi;
     using __gnu_cxx::sinc;
     using __gnu_cxx::sinc_pi;
     using __gnu_cxx::sinhc;
     using __gnu_cxx::sinhc_pi;
     using __gnu_cxx::sinhint;
     using __gnu_cxx::sinint;
+    using __gnu_cxx::sin_pi;
     using       std::sph_bessel;
     using __gnu_cxx::sph_bessel_i;
     using __gnu_cxx::sph_bessel_k;
@@ -122,6 +141,16 @@ template<typename Real>
     using __gnu_cxx::sph_harmonic;
     using       std::sph_legendre;
     using       std::sph_neumann;
+    using __gnu_cxx::tgamma_lower;
+    using __gnu_cxx::tgamma;
+    using __gnu_cxx::theta_1;
+    using __gnu_cxx::theta_2;
+    using __gnu_cxx::theta_3;
+    using __gnu_cxx::theta_4;
+    using __gnu_cxx::theta_s;
+    using __gnu_cxx::theta_c;
+    using __gnu_cxx::theta_d;
+    using __gnu_cxx::theta_n;
     using __gnu_cxx::zernike;
 #else
     std::string ns("tr1");
