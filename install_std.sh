@@ -29,6 +29,7 @@ ${tool} "${src_ext_dir}/polynomial.tcc"         "${dst_ext_dir}"
 
 ${tool} "${src_impl_dir}/specfun.h"             "${dst_impl_dir}/specfun.h"
 ${tool} "${src_impl_dir}/specfun_util.h"        "${dst_impl_dir}/specfun_util.h"
+${tool} "${src_impl_dir}/specfun_state.h"       "${dst_impl_dir}/specfun_state.h"
 ${tool} "${src_impl_dir}/complex_util.h"        "${dst_impl_dir}/complex_util.h"
 ${tool} "${src_impl_dir}/complex_util.tcc"      "${dst_impl_dir}/complex_util.tcc"
 ${tool} "${src_impl_dir}/float128.h"            "${dst_impl_dir}/float128.h"

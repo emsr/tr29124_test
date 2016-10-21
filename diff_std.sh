@@ -19,6 +19,7 @@ ${tool} ext/polynomial.h           ${ext_dir}/polynomial.h
 ${tool} ext/polynomial.tcc         ${ext_dir}/polynomial.tcc
 ${tool} ext/cmath                  ${gcc_dir}/cmath
 ${tool} bits/specfun_util.h        ${gcc_dir}/specfun_util.h
+${tool} bits/specfun_state.h       ${gcc_dir}/specfun_state.h
 ${tool} bits/specfun.h             ${gcc_dir}/specfun.h
 ${tool} bits/complex_util.h        ${gcc_dir}/complex_util.h
 ${tool} bits/complex_util.tcc      ${gcc_dir}/complex_util.tcc
