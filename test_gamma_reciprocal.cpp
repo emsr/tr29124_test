@@ -163,6 +163,110 @@ template<>
       return __gam;
     }
 
+  /**
+   * @brief A structure for the gamma functions required by the Temme series
+   * 	    expansions of @f$ N_\nu(x) @f$ and @f$ K_\nu(x) @f$.
+   * @f[
+   *   \Gamma_1 = \frac{1}{2\mu}
+   * 	 \left[\frac{1}{\Gamma(1 - \mu)} - \frac{1}{\Gamma(1 + \mu)}\right]
+   * @f]
+   * and
+   * @f[
+   *   \Gamma_2 = \frac{1}{2}
+   *     \left[\frac{1}{\Gamma(1 - \mu)} + \frac{1}{\Gamma(1 + \mu)}\right]
+   * @f]
+   * where @f$ -1/2 <= \mu <= 1/2 @f$ is @f$ \mu = \nu - N @f$ and @f$ N @f$.
+   * is the nearest integer to @f$ \nu @f$.
+   * The values of @f$ \Gamma(1 + \mu) @f$ and @f$ \Gamma(1 - \mu) @f$
+   * are returned as well.
+   *
+   * The accuracy requirements on this are high for @f$ |\mu| < 0 @f$.
+   */
+  template<typename _Tp>
+    struct __gamma_temme_t
+    {
+      /// The input parameter of the gamma functions
+      _Tp __mu_arg;
+      /// The output function @f$ 1/\Gamma(1 + \mu) @f$
+      _Tp __gamma_plus_value;
+      /// The output function @f$ 1/\Gamma(1 - \mu) @f$
+      _Tp __gamma_minus_value;
+      /// The output function @f$ \Gamma_1(\mu) @f$
+      _Tp __gamma_1_value;
+      /// The output function @f$ \Gamma_2(\mu) @f$
+      _Tp __gamma_2_value;
+    };
+
+  /**
+   * @brief Compute the gamma functions required by the Temme series
+   * 	    expansions of @f$ N_\nu(x) @f$ and @f$ K_\nu(x) @f$.
+   * @f[
+   *   \Gamma_1 = \frac{1}{2\mu}
+   * 	 \left[\frac{1}{\Gamma(1 - \mu)} - \frac{1}{\Gamma(1 + \mu)}\right]
+   * @f]
+   * and
+   * @f[
+   *   \Gamma_2 = \frac{1}{2}
+   *     \left[\frac{1}{\Gamma(1 - \mu)} + \frac{1}{\Gamma(1 + \mu)}\right]
+   * @f]
+   * where @f$ -1/2 <= \mu <= 1/2 @f$ is @f$ \mu = \nu - N @f$ and @f$ N @f$.
+   * is the nearest integer to @f$ \nu @f$.
+   * The values of @f$ \Gamma(1 + \mu) @f$ and @f$ \Gamma(1 - \mu) @f$
+   * are returned as well.
+   *
+   * The accuracy requirements on this are exquisite.
+   *
+   * @param __mu     The input parameter of the gamma functions.
+   * @param[out] __gam1   The output function @f$ \Gamma_1(\mu) @f$
+   * @param[out] __gam2   The output function @f$ \Gamma_2(\mu) @f$
+   * @param[out] __gamp  The output function @f$ 1/\Gamma(1 + \mu) @f$
+   * @param[out] __gamm  The output function @f$ 1/\Gamma(1 - \mu) @f$
+   */
+  template<typename _Tp>
+    __gnu_cxx::__gamma_temme_t<_Tp>
+    __gamma_temme(_Tp __mu)
+    {
+      using __gammat_t = __gnu_cxx::__gamma_temme_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(__mu);
+      const auto _S_gamma_E = __gnu_cxx::__const_gamma_e(__mu);
+
+      if (std::abs(__mu) < _S_eps)
+	return __gammat_t{__mu, _Tp{1}, _Tp{1}, -_S_gamma_E, _Tp{1}};
+      else
+	{
+	  _Tp __gamp, __gamm;
+	  if (std::real(__mu) <= _Tp{0})
+	    {
+	      __gamp = __gamma_reciprocal_series(_Tp{1} + __mu);
+	      __gamm = -__gamma_reciprocal_series(-__mu) / __mu;
+	    }
+	  else
+	    {
+	      __gamp = __gamma_reciprocal_series(__mu) / __mu;
+	      __gamm = __gamma_reciprocal_series(_Tp{1} - __mu);
+	    }
+	  auto __gam1 = (__gamm - __gamp) / (_Tp{2} * __mu);
+	  auto __gam2 = (__gamm + __gamp) / _Tp{2};
+	  return __gammat_t{__mu, __gamp, __gamm, __gam1, __gam2};
+	}
+    }
+
+  template<typename _Tp>
+    __gamma_temme_t<_Tp>
+    __gamma_temme_std(_Tp __mu)
+    {
+      const auto _S_eps = __gnu_cxx::__epsilon(__mu);
+      const auto _S_gamma_E = __gnu_cxx::__const_gamma_e(__mu);
+      auto __gamp = _Tp{1} / std::tgamma(_Tp{1} + __mu);
+      auto __gamm = _Tp{1} / std::tgamma(_Tp{1} - __mu);
+      auto __gam1 = (std::abs(__mu) < _S_eps)
+		  ? -_S_gamma_E
+		  : (__gamm - __gamp) / (_Tp{2} * __mu);
+      auto __gam2 = (__gamm + __gamp) / _Tp{2};
+
+      return __gamma_temme_t<_Tp>{__mu, __gamp, __gamm, __gam1, __gam2};
+    }
+
 template<typename _Tp>
   void
   test_gamma_reciprocal(_Tp __proto)
@@ -187,25 +291,73 @@ template<typename _Tp>
     	        << '\n';
 
     std::cout << '\n'
-	      << ' ' << std::setw(4) << "a"
+	      << ' ' << std::setw(width) << "a"
 	      << ' ' << std::setw(width) << "1/Gamma(a) ser"
 	      << ' ' << std::setw(width) << "1/Gamma(a) prod"
 	      << ' ' << std::setw(width) << "1/std::tgamma(a)"
 	      << ' ' << std::setw(width) << "delta series"
 	      << ' ' << std::setw(width) << "delta product"
     	      << '\n';
-    for (auto __k = 0; __k < 100; ++__k)
+    for (auto __k = 0; __k <= 100; ++__k)
       {
 	auto __a = __k * _Tp{0.01L};
 	auto __gammargs = __gamma_reciprocal_series(__a);
 	auto __gammargp = __gamma_reciprocal_prod(__a);
 	auto __gammars = 1 / std::tgamma(__a);
-	std::cout << ' ' << std::setw(4) << __a
+	std::cout << ' ' << std::setw(width) << __a
 	        << ' ' << std::setw(width) << __gammargs
 	        << ' ' << std::setw(width) << __gammargp
 	        << ' ' << std::setw(width) << __gammars
 		<< ' ' << std::setw(width) << (__gammargs - __gammars) / __gammars
 		<< ' ' << std::setw(width) << (__gammargp - __gammars) / __gammars
+    	        << '\n';
+      }
+  }
+
+template<typename _Tp>
+  void
+  test_gamma_temme(_Tp __proto)
+  {
+    using _Val = _Tp;
+    using _Real = std::__detail::__num_traits_t<_Val>;
+
+    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout << std::showpoint << std::scientific;
+    auto width = 8 + std::cout.precision();
+
+    std::cout << '\n'
+	      << ' ' << std::setw(width) << "a"
+	      << ' ' << std::setw(width) << "1/Gamma(1+mu)"
+	      << ' ' << std::setw(width) << "1/Gamma(1-mu)"
+	      << ' ' << std::setw(width) << "Gamma_1"
+	      << ' ' << std::setw(width) << "Gamma_2"
+	      << ' ' << std::setw(width) << "1/std::tgamma(1+mu)"
+	      << ' ' << std::setw(width) << "1/std::tgamma(1-mu)"
+	      << ' ' << std::setw(width) << "tgamma_1"
+	      << ' ' << std::setw(width) << "tgamma_2"
+	      << ' ' << std::setw(width) << "delta (1+mu)"
+	      << ' ' << std::setw(width) << "delta (1-mu)"
+	      << ' ' << std::setw(width) << "delta 1"
+	      << ' ' << std::setw(width) << "delta 2"
+    	      << '\n';
+    for (auto k = -100; k <= 100; ++k)
+      {
+	auto mu = k * _Tp{0.01L};
+	auto tggnu = __gamma_temme(mu);
+	auto tgstd = __gamma_temme_std(mu);
+	std::cout << ' ' << std::setw(width) << mu
+	        << ' ' << std::setw(width) << tggnu.__gamma_plus_value
+	        << ' ' << std::setw(width) << tggnu.__gamma_minus_value
+	        << ' ' << std::setw(width) << tggnu.__gamma_1_value
+	        << ' ' << std::setw(width) << tggnu.__gamma_2_value
+	        << ' ' << std::setw(width) << tgstd.__gamma_plus_value
+	        << ' ' << std::setw(width) << tgstd.__gamma_minus_value
+	        << ' ' << std::setw(width) << tgstd.__gamma_1_value
+	        << ' ' << std::setw(width) << tgstd.__gamma_2_value
+		<< ' ' << std::setw(width) << (tggnu.__gamma_plus_value - tgstd.__gamma_plus_value) / tgstd.__gamma_plus_value
+		<< ' ' << std::setw(width) << (tggnu.__gamma_minus_value - tgstd.__gamma_minus_value) / tgstd.__gamma_minus_value
+		<< ' ' << std::setw(width) << (tggnu.__gamma_1_value - tgstd.__gamma_1_value) / tgstd.__gamma_1_value
+		<< ' ' << std::setw(width) << (tggnu.__gamma_2_value - tgstd.__gamma_2_value) / tgstd.__gamma_2_value
     	        << '\n';
       }
   }
@@ -222,4 +374,8 @@ main()
   //test_gamma_reciprocal(1.0q);
 
   //test_gamma_reciprocal(mpfr::mpreal(1,128));
+
+  test_gamma_temme(1.0);
+
+  test_gamma_temme(1.0l);
 }

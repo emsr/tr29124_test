@@ -1,9 +1,9 @@
 /*
- $HOME/bin_tr29124/bin/g++ -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_binet_float test_binet_float.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_binet_float test_binet_float.cpp -lquadmath
 
- ./test_binet_float > test_binet_float.txt
+./test_binet_float > test_binet_float.txt
 
- $HOME/bin/bin/g++ -g -std=gnu++17 -I. -o test_binet_float test_binet_float.cpp -lquadmath
+$HOME/bin/bin/g++ -g -std=gnu++17 -I. -o test_binet_float test_binet_float.cpp -lquadmath
 
  */
 
@@ -12,7 +12,6 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
-#include <bits/float128.h>
 #include <cmath>
 #include <ext/polynomial.h>
 #include <ext/math_const.h>
