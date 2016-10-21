@@ -1,9 +1,10 @@
 
-// $HOME/bin_tr29124/bin/g++ -o test_bernoulli test_bernoulli.cpp
+/*
+$HOME/bin_tr29124/bin/g++ -o test_bernoulli test_bernoulli.cpp
+./test_bernoulli > test_bernoulli.txt
+*/ 
 
-// ./test_bernoulli > test_bernoulli.txt
-
-
+#include <complex>
 #include <iostream>
 #include <iomanip>
 #include <stdexcept>
@@ -31,10 +32,8 @@ template<typename _Tp>
   _Tp
   __bernoulli_series(unsigned int __n)
   {
-    using namespace std::constants::math_constants;
-
     static constexpr _Tp
-    __num[28]
+    __num[24]
     {
        frac<_Tp>,
       -frac<_Tp, 1UL, 2UL>,
@@ -47,10 +46,8 @@ template<typename _Tp>
        frac<_Tp, 7UL, 6UL>,            _Tp(0UL),
       -frac<_Tp, 3617UL, 510UL>,       _Tp(0UL),
        frac<_Tp, 43867UL, 798UL>,      _Tp(0UL),
-      -frac<_Tp, 174611, 330UL>,       _Tp(0UL),
-       frac<_Tp, 854513UL, 138UL>,     _Tp(0UL),
-      -frac<_Tp, 236364091UL, 2730UL>, _Tp(0UL),
-       frac<_Tp, 8553103UL, 6UL>,      _Tp(0UL)
+      -frac<_Tp, 174611UL, 330UL>,     _Tp(0UL),
+       frac<_Tp, 854513UL, 138UL>,     _Tp(0UL)
     };
 
     if (__n == 0)
@@ -72,14 +69,14 @@ template<typename _Tp>
     if ((__n / 2) % 2 == 0)
       __fact *= -1;
     for (unsigned int __k = 1; __k <= __n; ++__k)
-      __fact *= __k / m_2pi<_Tp>;
+      __fact *= __k / __gnu_cxx::__const_pi<_Tp>();
     __fact *= _Tp(2);
 
     _Tp __sum = _Tp(0);
     for (unsigned int __i = 1; __i < 1000; ++__i)
       {
 	_Tp __term = std::pow(_Tp(__i), -_Tp(__n));
-	if (__term < std::numeric_limits<_Tp>::epsilon())
+	if (__term < __gnu_cxx::__epsilon<_Tp>())
           break;
 	__sum += __term;
       }

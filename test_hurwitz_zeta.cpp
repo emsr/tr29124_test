@@ -18,7 +18,7 @@
     __bernoulli_series(unsigned int __n)
     {
       constexpr _Tp
-      __bernoulli_numbers[28]
+      __bernoulli_numbers[24]
       {
 	 _Tp{1UL},	                 -_Tp{1UL} / _Tp{2UL},
 	 _Tp{1UL} / _Tp{6UL},             _Tp{0UL},
@@ -31,9 +31,7 @@
 	-_Tp{3617UL} / _Tp{510UL},        _Tp{0UL},
 	 _Tp{43867UL} / _Tp{798UL},       _Tp{0UL},
 	-_Tp{174611UL} / _Tp{330UL},      _Tp{0UL},
-	 _Tp{854513UL} / _Tp{138UL},      _Tp{0UL},
-	-_Tp{236364091UL} / _Tp{2730UL},  _Tp{0UL},
-	 _Tp{8553103UL} / _Tp{6UL},       _Tp{0UL}
+	 _Tp{854513UL} / _Tp{138UL},      _Tp{0UL}
       };
 
       if (__n == 0)
