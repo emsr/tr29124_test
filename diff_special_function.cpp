@@ -767,12 +767,11 @@ main()
 	    "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 			       std::make_pair(false, true), 21),
 	    "x", {0.0, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0});
-
 /*
     // Regular modified spherical bessel functions.
     std::cout << "sph_bessel_i" << std::endl;
     basename = "diff_sph_bessel_i";
-    rundiff(sph_bessel_i, gsl::bessel_il, basename,
+    rundiff(sph_bessel_i, gsl::sph_bessel_i, basename,
 	    "n", sph_order,
 	    "x", fill_argument(
 		       fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -783,7 +782,7 @@ main()
     // Irregular modified spherical bessel functions.
     std::cout << "sph_bessel_k" << std::endl;
     basename = "diff_sph_bessel_k";
-    rundiff(sph_bessel_k, gsl::bessel_kl, basename,
+    rundiff(sph_bessel_k, gsl::sph_bessel_k, basename,
 	    "n", sph_order,
 	    "x", fill_argument(
 			fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -791,7 +790,6 @@ main()
 			fill_argument(std::make_pair(Real{0}, Real{100}),
 			       std::make_pair(false, true), 21)));
 */
-
     // Legendre functions of the second kind.
     std::cout << "legendre_q" << std::endl;
     basename = "diff_legendre_q";
