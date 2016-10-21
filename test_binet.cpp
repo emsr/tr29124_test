@@ -1,9 +1,9 @@
 /*
- $HOME/bin_tr29124/bin/g++ -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_binet test_binet.cpp
+$HOME/bin_tr29124/bin/g++ -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_binet test_binet.cpp
 
- ./test_binet > test_binet.txt
+./test_binet > test_binet.txt
 
- $HOME/bin/bin/g++ -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_binet test_binet.cpp
+$HOME/bin/bin/g++ -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_binet test_binet.cpp
 
  */
 
@@ -123,7 +123,7 @@ namespace __detail
       constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
 
       // Weighted Bernoulli numbers: (-1)^k B_2k / ((2*k+1)*(2*k+2))
-      constexpr std::size_t _S_n = 17;
+      constexpr std::size_t _S_n = 12;
       constexpr _Real
       _S_b[_S_n]
       {
@@ -138,12 +138,7 @@ namespace __detail
 	_Real{43867LL}         / _Real{244188LL},
 	_Real{174611LL}        / _Real{125400LL},
 	_Real{77683LL}         / _Real{5796LL},
-	_Real{236364091LL}     / _Real{1506960LL},
-	_Real{657931LL}        / _Real{300LL},
-	_Real{3392780147LL}    / _Real{93960LL},
-	_Real{1723168255201LL} / _Real{2492028LL},
-	_Real{7709321041217LL} / _Real{505920LL},
-	_Real{151628697551LL}  / _Real{396LL}
+	_Real{236364091LL}     / _Real{1506960LL}
       };
 
       auto __z2 = _Real{1} / (__z * __z);
@@ -173,7 +168,7 @@ namespace __detail
       using _Real = std::__detail::__num_traits_t<_Val>;
 
       // Stieltjes partial numerators.
-      constexpr std::size_t _S_n = 7;
+      constexpr std::size_t _S_n = 6;
       constexpr _Real
       _S_a[_S_n]
       {
@@ -182,8 +177,7 @@ namespace __detail
 	_Real{53LL}           / _Real{210LL},
 	_Real{195LL}          / _Real{371LL},
 	_Real{22999LL}        / _Real{22737LL},
-	_Real{29944523LL}     / _Real{19733142LL},
-	_Real{109535241009LL} / _Real{48264275462LL}
+	_Real{29944523LL}     / _Real{19733142LL}
       };
 
       // Backward recurrence.

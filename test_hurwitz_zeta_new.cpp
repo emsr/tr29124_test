@@ -6,13 +6,13 @@ g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
 */
 
-#include <ext/cmath>
+#include <cmath>
 #include <limits>
 #include <iostream>
 #include <iomanip>
 #include <vector>
-#include "float128.h"
-#include "summation.h"
+#include <bits/float128.h>
+#include <bits/summation.h>
 
   constexpr unsigned long long
   _S_num_harmonic_numer = 29;
@@ -104,7 +104,7 @@ g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
     __bernoulli_series(unsigned int __n)
     {
       constexpr _Tp
-      __bernoulli_numbers[32]
+      __bernoulli_numbers[24]
       {
 		     _Tp{1ULL},			-_Tp{1ULL} / _Tp{2ULL},
 		     _Tp{1ULL} /     _Tp{6ULL},  _Tp{0ULL},
@@ -117,11 +117,7 @@ g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 	         -_Tp{3617ULL} /   _Tp{510ULL},  _Tp{0ULL},
 	         _Tp{43867ULL} /   _Tp{798ULL},  _Tp{0ULL},
 	       -_Tp{174611ULL} /   _Tp{330ULL},  _Tp{0ULL},
-	        _Tp{854513ULL} /   _Tp{138ULL},  _Tp{0ULL},
-	    -_Tp{236364091ULL} /  _Tp{2730ULL},  _Tp{0ULL},
-	       _Tp{8553103ULL} /     _Tp{6ULL},  _Tp{0ULL},
-	  -_Tp{23749461029ULL} /   _Tp{870ULL},  _Tp{0ULL},
-	 _Tp{8615841276005ULL} / _Tp{14322ULL},  _Tp{0ULL}
+	        _Tp{854513ULL} /   _Tp{138ULL},  _Tp{0ULL}
       };
 
       if (__n == 0)
