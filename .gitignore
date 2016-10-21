@@ -148,6 +148,7 @@ test_csint
 test_cyl_hankel
 test_dawson
 test_dilog
+test_expint
 test_factorial
 test_fermi_dirac
 test_float128
