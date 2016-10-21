@@ -78,3 +78,6 @@ jacobi_zeta
 sph_harmonic
 owens_t
 clausen_c
+bernoulli
+sin_pi
+cos_pi
