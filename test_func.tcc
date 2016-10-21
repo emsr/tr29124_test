@@ -94,7 +94,9 @@ template<typename Tp>
 	if (i == num_steps - 1 && ! inclusive.second)
           continue;
 
-	auto x = range.first + Tp(i) * (range.second - range.first) / Tp(num_steps - 1);
+	auto x = range.first;
+	if (num_steps > 1)
+	  x += Tp(i) * (range.second - range.first) / Tp(num_steps - 1);
 
 	argument.push_back(x);
       }
@@ -153,6 +155,12 @@ template<typename Tp, typename Tp1>
           {
             if (verbose)
               output << '\n' << err.what() << '\n';
+            continue;
+          }
+        catch (...)
+          {
+            if (verbose)
+              output << "\nOther error\n";
             continue;
           }
 	output << '\n';
@@ -214,6 +222,12 @@ template<typename Tp, typename Tp1, typename Tp2>
               {
         	if (verbose)
                   output << '\n' << err.what() << '\n';
+        	continue;
+              }
+            catch (...)
+              {
+        	if (verbose)
+                  output << "\nOther error\n";
         	continue;
               }
           }
@@ -283,6 +297,12 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
                       output << '\n' << err.what() << '\n';
                     continue;
                   }
+        	catch (...)
+        	  {
+        	    if (verbose)
+        	      output << "\nOther error\n";
+        	    continue;
+        	  }
               }
             output << '\n';
           }
@@ -358,6 +378,12 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
                           output << '\n' << err.what() << '\n';
                 	continue;
                       }
+        	    catch (...)
+        	      {
+        		if (verbose)
+        		  output << "\nOther error\n";
+        		continue;
+        	      }
                   }
         	output << '\n';
               }
