@@ -83,7 +83,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       for (unsigned int __i = 1; __i < __max_iter; ++__i)
 	{
 	  __term *= - __x / __i;
-	  if (std::abs(__term) < __eps)
+	  if (std::abs(__term)
+		 < __eps * std::min(std::abs(__esum), std::abs(__osum)))
 	    break;
 	  if (__term >= _Tp{0})
 	    __esum += __term / __i;
@@ -286,12 +287,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       _Tp __term = _Tp{1};
       _Tp __sum = _Tp{0};
+      const auto __eps = __gnu_cxx::__epsilon(__x);
       const unsigned int __max_iter = 1000;
       for (unsigned int __i = 1; __i < __max_iter; ++__i)
 	{
 	  __term *= __x / __i;
 	  __sum += __term / __i;
-	  if (__term < __gnu_cxx::__epsilon(__x) * __sum)
+	  if (std::abs(__term) < __eps * std::abs(__sum))
 	    break;
 	}
 
@@ -318,14 +320,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       _Tp __term = _Tp{1};
       _Tp __sum = _Tp{1};
+      const auto __eps = __gnu_cxx::__epsilon(__x);
       const unsigned int __max_iter = 1000;
       for (unsigned int __i = 1; __i < __max_iter; ++__i)
 	{
 	  _Tp __prev = __term;
 	  __term *= __i / __x;
-	  if (__term < __gnu_cxx::__epsilon(__x))
+	  if (std::abs(__term) < __eps * std::abs(__sum))
 	    break;
-	  if (__term >= __prev)
+	  if (std::abs(__term) >= std::abs(__prev))
 	    break;
 	  __sum += __term;
 	}
@@ -349,9 +352,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint_Ei(_Tp __x)
     {
+      const auto __eps = __gnu_cxx::__epsilon(__x);
       if (__x < _Tp{0})
 	return -__expint_E1(-__x);
-      else if (__x < -std::log(__gnu_cxx::__epsilon(__x)))
+      else if (__x < -std::log(__eps))
 	return __expint_Ei_series(__x);
       else
 	return __expint_Ei_asymp(__x);
@@ -402,7 +406,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     _Tp
-    __expint_asymp(unsigned int __n, _Tp __x)
+    __expint_En_asymp(unsigned int __n, _Tp __x)
     {
       auto __term = _Tp{1};
       auto __sum = _Tp{1};
@@ -424,9 +428,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	    for large order.
    *
    * The exponential integral is given by
-   * 	    @f[
-   * 	      E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
-   * 	    @f]
+   * @f[
+   *   E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
+   * @f]
    *
    * This is something of an extension.
    *
@@ -436,17 +440,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     _Tp
-    __expint_large_n(unsigned int __n, _Tp __x)
+    __expint_En_large_n(unsigned int __n, _Tp __x)
     {
       const auto __xpn = __x + __n;
       const auto __xpn2 = __xpn * __xpn;
+      const auto __eps = __gnu_cxx::__epsilon(__x);
       auto __term = _Tp{1};
       auto __sum = _Tp{1};
       for (unsigned int __i = 1; __i <= __n; ++__i)
 	{
 	  auto __prev = __term;
 	  __term *= (__n - 2 * (__i - 1) * __x) / __xpn2;
-	  if (std::abs(__term) < __gnu_cxx::__epsilon(__x))
+	  if (std::abs(__term) < __eps * std::abs(__sum))
 	    break;
 	  __sum += __term;
 	}
@@ -459,9 +464,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @brief Return the exponential integral @f$ E_n(x) @f$.
    *
    * The exponential integral is given by
-   * 	@f[
-   * 	  E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
-   * 	@f]
+   * @f[
+   *   E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
+   * @f]
    *
    * @param  __n  The order of the exponential integral function.
    * @param  __x  The argument of the exponential integral function.
@@ -489,9 +494,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (__x == _Tp{0})
 	    return _Tp{1} / static_cast<_Tp>(__n - 1);
 
-	  auto __En = __expint_En_recursion(__n, __x);
-
-	  return __En;
+	  //auto __En = __expint_En_recursion(__n, __x);
+	  if (__x < _Tp(-__n)) // Arbitrary - needs more study.
+	    return __expint_En_series(__n, __x);
+	  else if (__n > 50) // Arbitrary - needs more study.
+	    return __expint_En_large_n(__n, __x);
+	  else if (__x < _Tp{100})
+	    /// @todo Find a good asymptotic switch point in @f$ E_n(x) @f$.
+	    return __expint_En_cont_frac(__n, __x);
+	  else
+	    return __expint_En_asymp(__n, __x);
 	}
     }
 
