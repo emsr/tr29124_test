@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
 
 g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
@@ -11,7 +11,7 @@ g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 #include <iostream>
 #include <iomanip>
 #include <vector>
-#include <bits/float128.h>
+//#include <bits/float128.h>
 #include <bits/summation.h>
 
   constexpr unsigned long long
@@ -406,7 +406,7 @@ g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 	std::__throw_domain_error(__N("Bad argument in zeta sum."));
 
       int __k_max = std::min(1000000, int(std::pow(_Tp{1} / _S_eps, _Tp{1} / __s)));
-std::cerr << "k_max = " << __k_max << std::endl;
+std::cerr << "s = " << __s << "  k_max = " << __k_max << std::endl;
       auto __zeta_m_1 = _Tp{0};
       for (int __k = __k_max; __k >= 2; --__k)
 	{
@@ -430,7 +430,7 @@ std::cerr << "k_max = " << __k_max << std::endl;
 	std::__throw_domain_error(__N("Bad argument in zeta sum."));
 
       int __k_max = std::min(1000000, int(std::pow(_Tp{1} / _S_eps, _Tp{1} / __s)));
-std::cerr << "k_max = " << __k_max << std::endl;
+std::cerr << "s = " << __s << "  k_max = " << __k_max << std::endl;
       auto __zeta_m_1 = _Tp{0};
       for (int __k = __k_max; __k >= 2; --__k)
 	{
@@ -453,9 +453,9 @@ std::cerr << "k_max = " << __k_max << std::endl;
       if (__s < _Tp{1})
 	std::__throw_domain_error(__N("Bad argument in zeta sum."));
 
-      std::__detail::_KahanSum<_Tp> __zeta_m_1(0);
+      __gnu_cxx::_KahanSum<_Tp> __zeta_m_1;
       int __k_max = std::min(1000000, int(std::pow(_Tp{1} / _S_eps, _Tp{1} / __s)));
-      std::cerr << "k_max = " << __k_max << std::endl;
+std::cerr << "s = " << __s << "  k_max = " << __k_max << std::endl;
       for (int __k = __k_max; __k >= 2; --__k)
       //int __k_max = 10000;
       //for (int __k = __k_max; __k >= 2; --__k)
