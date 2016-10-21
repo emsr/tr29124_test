@@ -41,9 +41,9 @@
 // Test data.
 // max(|f - f_GSL|): 1.5126788710517758e-15
 // max(|f - f_GSL| / |f_GSL|): 5.7527019513802774e-14
-// mean(f - f_GSL): -4.8884100947529072e-17
-// variance(f - f_GSL): 6.1234917779371205e-35
-// stddev(f - f_GSL): 7.8252742941938585e-18
+// mean(f - f_GSL): -4.9222583576987962e-17
+// variance(f - f_GSL): 6.2085857623794265e-35
+// stddev(f - f_GSL): 7.8794579524098143e-18
 const testcase_airy_ai<double>
 data001[41] =
 {
