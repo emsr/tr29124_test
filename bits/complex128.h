@@ -34,8 +34,9 @@
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
 
-#include <bits/float128.h>
 #include <complex>
+#include <bits/float128.h>
+#include <bits/specfun_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -505,22 +506,23 @@ namespace std
   norm(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return __x * __x; }
 
+/* FIXME: Can't find __promote_fp_t for some reason.
   template<typename _Up>
-    inline std::complex<__gnu_cxx::__promote_fp_t<__complex128, _Up>>
+    inline std::complex<__gnu_cxx::__promote_fp_t<__float128, _Up>>
     pow(const __complex128& __x, const _Up& __y)
     {
-      using __type = __gnu_cxx::__promote_fp_t<__complex128, _Up>;
+      using __type = __gnu_cxx::__promote_fp_t<__float128, _Up>;
       return std::pow(std::complex<__type>(__x), __type(__y));
     }
 
   template<typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp, __complex128>>
+    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp, __float128>>
     pow(const _Tp& __x, const __complex128& __y)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, __complex128>;
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, __float128>;
       return std::pow(__type(__x), std::complex<__type>(__y));
     }
-
+*/
   // DR 1137.
   __float128
   proj(__float128 __x)
