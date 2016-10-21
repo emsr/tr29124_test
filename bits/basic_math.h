@@ -22,9 +22,9 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file include/cmath
- *  This is a Standard C++ Library file.  You should @c \#include this file
- *  in your programs, rather than any of the @a *.h implementation files.
+/** @file include/basic_math.h
+ *  This is an internal header file, included by other library headers.
+ *  Do not attempt to use it directly.
  *
  *  This is the C++ version of the Standard C Library header @c math.h,
  *  and its contents are (mostly) the same as that header, but are all
@@ -46,8 +46,8 @@
 #undef _GLIBCXX_INCLUDE_NEXT_C_HEADERS
 #include <bits/std_abs.h>
 
-#ifndef _GLIBCXX_CMATH
-#define _GLIBCXX_CMATH 1
+#ifndef _GLIBCXX_BASIC_MATH_H
+#define _GLIBCXX_BASIC_MATH_H 1
 
 // Get rid of those macros defined in <math.h> in lieu of real functions.
 #undef div
@@ -1813,10 +1813,6 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace
 #endif // C++17
 
-#if _GLIBCXX_USE_STD_SPEC_FUNCS
-#  include <bits/specfun.h>
-#endif
-
 } // extern "C++"
 
-#endif
+#endif // _GLIBCXX_BASIC_MATH_H
