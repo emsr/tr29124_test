@@ -46,6 +46,7 @@
 
 #include <limits>
 #include <bits/stl_algobase.h>
+#include <bits/specfun_state.h>
 #include <bits/specfun_util.h>
 
 #if __cplusplus >= 201103L
