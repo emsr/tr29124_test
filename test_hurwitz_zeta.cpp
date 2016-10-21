@@ -1,16 +1,16 @@
-// $HOME/bin/bin/g++ -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
+/*
+$HOME/bin/bin/g++ -I. -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_hurwitz_zeta > test_hurwitz_zeta.txt
 
-// LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_hurwitz_zeta > test_hurwitz_zeta.txt
-
-// g++ -std=c++14 -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
-
-// ./test_hurwitz_zeta > test_hurwitz_zeta.txt
+g++ -std=c++14 -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
+./test_hurwitz_zeta > test_hurwitz_zeta.txt
+*/
 
 #include <ext/cmath>
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include "float128.h"
+#include <bits/float128.h>
 
   //  From sf_gamma.tcc
   template<typename _Tp>
