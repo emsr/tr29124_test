@@ -78,11 +78,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param[out]  _Npnu  The Neumann function (Bessel function of the second kind).
    */
   template<typename _Tp>
-    void
-    __cyl_bessel_jn_asymp(_Tp __nu, _Tp __x,
-			  _Tp& _Jnu, _Tp& _Nnu,
-			  _Tp& _Jpnu, _Tp& _Npnu)
+    __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Tp>
+    __cyl_bessel_jn_asymp(_Tp __nu, _Tp __x)
     {
+      using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__x);
@@ -128,12 +127,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __s = std::sin(__omega);
 
       auto __coef = std::sqrt(_Tp{2} / (_S_pi * __x));
-      _Jnu = __coef * (__c * _Psum - __s * _Qsum);
-      _Nnu = __coef * (__s * _Psum + __c * _Qsum);
-      _Jpnu = -__coef * (__s * _Rsum + __c * _Ssum);
-      _Npnu =  __coef * (__c * _Rsum - __s * _Ssum);
-
-      return;
+      return __bess_t{__nu, __x,
+		__coef * (__c * _Psum - __s * _Qsum),
+		-__coef * (__s * _Rsum + __c * _Ssum),
+		__coef * (__s * _Psum + __c * _Qsum),
+		__coef * (__c * _Rsum - __s * _Ssum)};
     }
 
   /**
@@ -155,30 +153,36 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The accuracy requirements on this are exquisite.
    *
-   * @param __mu     The input parameter of the gamma functions.
-   * @param[out] __gam1   The output function @f$ \Gamma_1(\mu) @f$
-   * @param[out] __gam2   The output function @f$ \Gamma_2(\mu) @f$
-   * @param[out] __gampl  The output function @f$ \Gamma(1 + \mu) @f$
-   * @param[out] __gammi  The output function @f$ \Gamma(1 - \mu) @f$
+   * @param __mu The input parameter of the gamma functions.
+   * @return  An output structure containing four gamma functions.
    */
   template<typename _Tp>
-    void
-    __gamma_temme(_Tp __mu,
-		  _Tp& __gam1, _Tp& __gam2, _Tp& __gampl, _Tp& __gammi)
+    __gnu_cxx::__gamma_temme_t<_Tp>
+    __gamma_temme(_Tp __mu)
     {
+      using __gammat_t = __gnu_cxx::__gamma_temme_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__mu);
       const auto _S_gamma_E = __gnu_cxx::__const_gamma_e(__mu);
-      __gampl = __gamma_reciprocal_series(_Tp{1} + __mu);
-      __gammi = __gamma_reciprocal_series(_Tp{1} - __mu);
 
       if (std::abs(__mu) < _S_eps)
-	__gam1 = -_S_gamma_E;
+	return __gammat_t{__mu, _Tp{1}, _Tp{1}, -_S_gamma_E, _Tp{1}};
       else
-	__gam1 = (__gammi - __gampl) / (_Tp{2} * __mu);
-
-      __gam2 = (__gammi + __gampl) / _Tp{2};
-
-      return;
+	{
+	  _Tp __gamp, __gamm;
+	  if (std::real(__mu) <= _Tp{0})
+	    {
+	      __gamp = __gamma_reciprocal_series(_Tp{1} + __mu);
+	      __gamm = -__gamma_reciprocal_series(-__mu) / __mu;
+	    }
+	  else
+	    {
+	      __gamp = __gamma_reciprocal_series(__mu) / __mu;
+	      __gamm = __gamma_reciprocal_series(_Tp{1} - __mu);
+	    }
+	  auto __gam1 = (__gamm - __gamp) / (_Tp{2} * __mu);
+	  auto __gam2 = (__gamm + __gamp) / _Tp{2};
+	  return __gammat_t{__mu, __gamp, __gamm, __gam1, __gam2};
+	}
     }
 
   /**
@@ -196,10 +200,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param[out] _Npnu The output derivative of the Neumann function.
    */
   template<typename _Tp>
-    void
-    __cyl_bessel_jn_steed(_Tp __nu, _Tp __x,
-			  _Tp& _Jnu, _Tp& _Nnu, _Tp& _Jpnu, _Tp& _Npnu)
+    __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Tp>
+    __cyl_bessel_jn_steed(_Tp __nu, _Tp __x)
     {
+      using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Tp>;
       const auto _S_inf = __gnu_cxx::__infinity(__x);
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
@@ -247,11 +251,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    break;
 	}
       if (__i > _S_max_iter)
-	{
-	  // Don't throw with message "try asymptotic expansion" - Just do it!
-	  __cyl_bessel_jn_asymp(__nu, __x, _Jnu, _Nnu, _Jpnu, _Npnu);
-	  return;
-	}
+	return __cyl_bessel_jn_asymp(__nu, __x);
+
       auto _Jnul = __isign * _S_fp_min;
       auto _Jpnul = __h * _Jnul;
       auto _Jnul1 = _Jnul;
@@ -281,13 +282,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __fact2 = (std::abs(__e) < _S_eps
 			     ? _Tp{1}
 			     : std::sinh(__e) / __e);
-	  _Tp __gam1, __gam2, __gampl, __gammi;
-	  __gamma_temme(__mu, __gam1, __gam2, __gampl, __gammi);
+	  auto __gamt = __gamma_temme(__mu);
 	  auto __ff = (_Tp{2} / _S_pi) * __fact
-		   * (__gam1 * std::cosh(__e) + __gam2 * __fact2 * __d);
+		    * (__gamt.__gamma_1_value * std::cosh(__e)
+		     + __gamt.__gamma_2_value * __fact2 * __d);
 	  __e = std::exp(__e);
-	  auto __p = __e / (_S_pi * __gampl);
-	  auto __q = _Tp{1} / (__e * _S_pi * __gammi);
+	  auto __p = __e / (_S_pi * __gamt.__gamma_plus_value);
+	  auto __q = _Tp{1} / (__e * _S_pi * __gamt.__gamma_minus_value);
 	  const auto __pimu2 = __pimu / _Tp{2};
 	  auto __fact3 = (std::abs(__pimu2) < _S_eps
 		       ? _Tp{1} : std::sin(__pimu2) / __pimu2 );
@@ -372,14 +373,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Nnu1 = __mu * __xi * _Nmu - _Npmu;
         }
       __fact = _Jmu / _Jnul;
-      _Jnu = __fact * _Jnul1;
-      _Jpnu = __fact * _Jpnu1;
+      auto _Jnu = __fact * _Jnul1;
+      auto _Jpnu = __fact * _Jpnu1;
       for (int __i = 1; __i <= __n; ++__i)
 	_Nmu = std::exchange(_Nnu1, (__mu + __i) * __xi2 * _Nnu1 - _Nmu);
-      _Nnu = _Nmu;
-      _Npnu = __nu * __xi * _Nmu - _Nnu1;
+      auto _Nnu = _Nmu;
+      auto _Npnu = __nu * __xi * _Nmu - _Nnu1;
 
-      return;
+      return __bess_t{__nu, __x, _Jnu, _Jpnu, _Nnu, _Npnu};
     }
 
 
@@ -451,45 +452,44 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * of order @f$ \nu @f$ by various means.
    */
   template<typename _Tp>
-    void
-    __cyl_bessel_jn(_Tp __nu, _Tp __x,
-		_Tp& _Jnu, _Tp& _Nnu, _Tp& _Jpnu, _Tp& _Npnu)
+    __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Tp>
+    __cyl_bessel_jn(_Tp __nu, _Tp __x)
     {
+      using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const auto _S_inf = __gnu_cxx::__infinity(__x);
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
       if (__nu < _Tp{0})
 	{
-	  _Tp _J_mnu, _N_mnu, _Jp_mnu, _Np_mnu;
-	  __cyl_bessel_jn(-__nu, __x, _J_mnu, _N_mnu, _Jp_mnu, _Np_mnu);
+	  auto _Bess = __cyl_bessel_jn(-__nu, __x);
 	  auto __sinnupi = __sin_pi(-__nu);
 	  auto __cosnupi = __cos_pi(-__nu);
 	  if (std::abs(__sinnupi) < _S_eps)
 	    { // Carefully preserve +-inf.
 	      auto __sign = std::copysign(_Tp{1}, __cosnupi);
-	      _Jnu = __sign * _J_mnu;
-	      _Nnu = __sign * _N_mnu;
-	      _Jpnu = __sign * _Jp_mnu;
-	      _Npnu = __sign * _Np_mnu;
+	      return __bess_t{__nu, __x,
+			__sign * _Bess.__J_value, __sign * _Bess.__J_deriv,
+			__sign * _Bess.__N_value, __sign * _Bess.__N_deriv};
 	    }
 	  else if (std::abs(__cosnupi) < _S_eps)
 	    { // Carefully preserve +-inf.
 	      auto __sign = std::copysign(_Tp{1}, __sinnupi);
-	      _Jnu = -__sign * _N_mnu;
-	      _Nnu = __sign * _J_mnu;
-	      _Jpnu = -__sign * _Np_mnu;
-	      _Npnu = __sign * _Jp_mnu;
+	      return __bess_t{__nu, __x,
+			-__sign * _Bess.__N_value, -__sign * _Bess.__N_deriv,
+			 __sign * _Bess.__J_value,  __sign * _Bess.__J_deriv};
 	    }
 	  else
 	    {
-	      _Jnu = __cosnupi * _J_mnu - __sinnupi * _N_mnu;
-	      _Nnu = __sinnupi * _J_mnu + __cosnupi * _N_mnu;
-	      _Jpnu = __cosnupi * _Jp_mnu - __sinnupi * _Np_mnu;
-	      _Npnu = __sinnupi * _Jp_mnu + __cosnupi * _Np_mnu;
+	      return __bess_t{__nu, __x,
+		__cosnupi * _Bess.__J_value - __sinnupi * _Bess.__N_value,
+		__cosnupi * _Bess.__J_deriv - __sinnupi * _Bess.__N_deriv,
+		__sinnupi * _Bess.__J_value + __cosnupi * _Bess.__N_value,
+		__sinnupi * _Bess.__J_deriv + __cosnupi * _Bess.__N_deriv};
 	    }
 	}
       else if (__x == _Tp{0})
 	{
+	  _Tp _Jnu, _Jpnu;
 	  if (__nu == _Tp{0})
 	    {
 	      _Jnu = _Tp{1};
@@ -505,14 +505,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      _Jnu = _Tp{0};
 	      _Jpnu = _Tp{0};
 	    }
-	  _Nnu = -_S_inf;
-	  _Npnu = _S_inf;
-	  return;
+	  return __bess_t{__nu, __x, _Jnu, _Jpnu, -_S_inf, _S_inf};
 	}
       else if (__x > _Tp{1000})
-	__cyl_bessel_jn_asymp(__nu, __x, _Jnu, _Nnu, _Jpnu, _Npnu);
+	return __cyl_bessel_jn_asymp(__nu, __x);
       else
-	__cyl_bessel_jn_steed(__nu, __x, _Jnu, _Nnu, _Jpnu, _Npnu);
+	return __cyl_bessel_jn_steed(__nu, __x);
     }
 
   /**
@@ -520,11 +518,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * of order @f$ \nu @f$ and argument @f$ x < 0 @f$.
    */
   template<typename _Tp>
-    void
-    __cyl_bessel_jn_neg_arg(_Tp __nu, _Tp __x,
-			    std::complex<_Tp>& _Jnu, std::complex<_Tp>& _Nnu,
-			    std::complex<_Tp>& _Jpnu, std::complex<_Tp>& _Npnu)
+    __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, std::complex<_Tp>>
+    __cyl_bessel_jn_neg_arg(_Tp __nu, _Tp __x)
     {
+      using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, std::complex<_Tp>>;
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
       constexpr std::complex<_Tp> _S_i{0, 1};
       if (__x >= _Tp{0})
@@ -532,16 +529,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				      "non-negative argument"));
       else
 	{
-	  _Tp _Jm, _Nm, _Jpm, _Npm;
-	  __cyl_bessel_jn(__nu, -__x, _Jm, _Nm, _Jpm, _Npm);
+	  auto _Bess = __cyl_bessel_jn(__nu, -__x);
 	  auto __phm = __polar_pi(_Tp{1}, -__nu);
 	  auto __php = __polar_pi(_Tp{1}, __nu);
-	  _Jnu = __php * _Jm;
-	  _Jpnu = -__php * _Jpm;
-	  _Nnu = __phm * _Nm
-	       + _S_i * _Tp{2} * __cos_pi(__nu) * _Jm;
-	  _Npnu = -__phm * _Npm
-	       - _S_i * _Tp{2} * __cos_pi(__nu) * _Jpm;
+	  auto __cosp = __cos_pi(__nu);
+	  return __bess_t{__nu, __x,
+			  __php * _Bess.__J_value,
+			  -__php * _Bess.__J_deriv,
+			  __phm * _Bess.__N_value
+				+ _S_i * _Tp{2} * __cosp * _Bess.__J_value,
+			  -__phm * _Bess.__N_deriv
+				- _S_i * _Tp{2} * __cosp * _Bess.__J_deriv};
 	}
     }
 
@@ -571,11 +569,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (__nu >= _Tp{0} && __x * __x < _Tp{10} * (__nu + _Tp{1}))
 	return __cyl_bessel_ij_series(__nu, __x, -_Tp{1}, 200);
       else
-	{
-	  _Tp _J_nu, _N_nu, _Jp_nu, _Np_nu;
-	  __cyl_bessel_jn(__nu, __x, _J_nu, _N_nu, _Jp_nu, _Np_nu);
-	  return _J_nu;
-	}
+	return __cyl_bessel_jn(__nu, __x).__J_value;
     }
 
 
@@ -604,11 +598,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (__isnan(__nu) || __isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else
-	{
-	  _Tp _J_nu, _N_nu, _Jp_nu, _Np_nu;
-	  __cyl_bessel_jn(__nu, __x, _J_nu, _N_nu, _Jp_nu, _Np_nu);
-	  return _N_nu;
-	}
+	return __cyl_bessel_jn(__nu, __x).__N_value;
     }
 
 
@@ -639,15 +629,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::complex<_Tp>{_S_nan, _S_nan};
       else if (__x < _Tp{0})
 	{
-	  std::complex<_Tp> _J_n, _N_n, _Jp_n, _Np_n;
-	  __cyl_bessel_jn_neg_arg(__nu, __x, _J_n, _N_n, _Jp_n, _Np_n);
-	  return _J_n + _S_i * _N_n;
+	  auto _Bess = __cyl_bessel_jn_neg_arg(__nu, __x);
+	  return _Bess.__J_value + _S_i * _Bess.__N_value;
 	}
       else
 	{
-	  _Tp _J_n, _N_n, _Jp_n, _Np_n;
-	  __cyl_bessel_jn(__nu, __x, _J_n, _N_n, _Jp_n, _Np_n);
-	  return std::complex<_Tp>{_J_n, _N_n};
+	  auto _Bess = __cyl_bessel_jn(__nu, __x);
+	  return std::complex<_Tp>{_Bess.__J_value, _Bess.__N_value};
 	}
     }
 
@@ -679,15 +667,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::complex<_Tp>{_S_nan, _S_nan};
       else if (__x < _Tp{0})
 	{
-	  std::complex<_Tp> _J_n, _N_n, _Jp_n, _Np_n;
-	  __cyl_bessel_jn_neg_arg(__nu, __x, _J_n, _N_n, _Jp_n, _Np_n);
-	  return _J_n - _S_i * _N_n;
+	  auto _Bess = __cyl_bessel_jn_neg_arg(__nu, __x);
+	  return _Bess.__J_value - _S_i * _Bess.__N_value;
 	}
       else
 	{
-	  _Tp _J_n, _N_n, _Jp_n, _Np_n;
-	  __cyl_bessel_jn(__nu, __x, _J_n, _N_n, _Jp_n, _Np_n);
-	  return std::complex<_Tp>{_J_n, -_N_n};
+	  auto _Bess = __cyl_bessel_jn(__nu, __x);
+	  return std::complex<_Tp>{_Bess.__J_value, -_Bess.__N_value};
 	}
     }
 
@@ -712,16 +698,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto __nu = _Tp(__n + 0.5L);
 
-      _Tp _J_nu, _N_nu, _Jp_nu, _Np_nu;
-      __cyl_bessel_jn(__nu, __x, _J_nu, _N_nu, _Jp_nu, _Np_nu);
+      auto _Bess = __cyl_bessel_jn(__nu, __x);
 
       const auto __factor = __gnu_cxx::__const_root_pi_div_2(__x)
 			  / std::sqrt(__x);
 
-      __j_n = __factor * _J_nu;
-      __n_n = __factor * _N_nu;
-      __jp_n = __factor * _Jp_nu - __j_n / (_Tp{2} * __x);
-      __np_n = __factor * _Np_nu - __n_n / (_Tp{2} * __x);
+      __j_n = __factor * _Bess.__J_value;
+      __jp_n = __factor * _Bess.__J_deriv - __j_n / (_Tp{2} * __x);
+      __n_n = __factor * _Bess.__N_value;
+      __np_n = __factor * _Bess.__N_deriv - __n_n / (_Tp{2} * __x);
 
       return;
     }
@@ -742,17 +727,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
 	{
 	  const auto __nu = _Tp(__n + 0.5L);
-	  std::complex<_Tp> _J_nu, _N_nu, _Jp_nu, _Np_nu;
-	  __cyl_bessel_jn_neg_arg(__nu, __x, _J_nu, _N_nu, _Jp_nu, _Np_nu);
+	  auto _Bess = __cyl_bessel_jn_neg_arg(__nu, __x);
 
 	  const auto __factor
 	    = __gnu_cxx::__const_root_pi_div_2(__x)
 	      / std::sqrt(std::complex<_Tp>(__x));
 
-	  __j_n = __factor * _J_nu;
-	  __n_n = __factor * _N_nu;
-	  __jp_n = __factor * _Jp_nu - __j_n / (_Tp{2} * __x);
-	  __np_n = __factor * _Np_nu - __n_n / (_Tp{2} * __x);
+	  __j_n = __factor * _Bess.__J_value;
+	  __jp_n = __factor * _Bess.__J_deriv - __j_n / (_Tp{2} * __x);
+	  __n_n = __factor * _Bess.__N_value;
+	  __np_n = __factor * _Bess.__N_deriv - __n_n / (_Tp{2} * __x);
 	}
 
       return;
