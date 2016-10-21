@@ -1611,7 +1611,7 @@ _S_neg_double_factorial_table[999]
     _GLIBCXX14_CONSTEXPR _Tp
     __bernoulli_series(unsigned int __n)
     {
-      constexpr unsigned long _S_num_bern_tab = 13;
+      constexpr unsigned long _S_num_bern_tab = 12;
       constexpr _Tp
       _S_bernoulli_2n[_S_num_bern_tab]
       {
@@ -1626,8 +1626,7 @@ _S_neg_double_factorial_table[999]
 	-_Tp{3617ULL}          / _Tp{510ULL},
 	 _Tp{43867ULL}         / _Tp{798ULL},
 	-_Tp{174611ULL}        / _Tp{330ULL},
-	 _Tp{854513ULL}        / _Tp{138ULL},
-	-_Tp{23749461029ULL}   / _Tp{2730ULL}
+	 _Tp{854513ULL}        / _Tp{138ULL}
       };
       constexpr _Tp _S_2pi = __gnu_cxx::__const_2_pi(_Tp{});
 

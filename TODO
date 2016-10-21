@@ -113,3 +113,10 @@ After the table stops at 180 __log_gamma is called.
 
 34. [] In test_riemann_zeta the negative argument differences between real zetac an zeta are much worse.
 Reflection formula and reperiodized stuff?
+
+35. [] expint_en may be just sloppy.  I think recursion may be bad?
+Boost uses CF + series.
+
+36. [] Gather 32-digit spot checks from:
+http://functions.wolfram.com/webMathematica/FunctionEvaluation.jsp
+
