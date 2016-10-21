@@ -2,6 +2,9 @@
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
 
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -DDEBUG_SERIES -I. -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
+
 g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
 */
@@ -103,8 +106,9 @@ g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
     _Tp
     __bernoulli_series(unsigned int __n)
     {
+      constexpr std::size_t __num_bernoulli_numbers = 24;
       constexpr _Tp
-      __bernoulli_numbers[24]
+      __bernoulli_numbers[__num_bernoulli_numbers]
       {
 		     _Tp{1ULL},			-_Tp{1ULL} / _Tp{2ULL},
 		     _Tp{1ULL} /     _Tp{6ULL},  _Tp{0ULL},
@@ -126,7 +130,7 @@ g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 	return -_Tp{1} / _Tp{2};
       else if (__n % 2 == 1) // Take care of the rest of the odd ones.
 	return _Tp{0};
-      else if (__n < 28) // Return small evens that are painful for the series.
+      else if (__n < __num_bernoulli_numbers) // Return small evens that are painful for the series.
 	return __bernoulli_numbers[__n];
       else
 	{
@@ -348,7 +352,9 @@ g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
       const auto __a1ms = std::pow(__a, _Tp{1} - __s);
       __apow.push_back(__a1ms);
       auto __zeta = _Tp(__a1ms);
-      std::cout << "    " << 0 << ' ' << __zeta << ' ' << __zeta << '\n';
+#ifdef DEBUG_SERIES
+      std::cout << "    n=" << 0 << " term=" << __zeta << " zeta=" << __zeta << '\n';
+#endif
       for (unsigned int __n = 1; __n < _S_maxit; ++__n)
 	{
 	  bool __punt = false;
@@ -356,7 +362,12 @@ g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 	  auto __termp = _Tp(__a1ms);
 	  auto __termm = _Tp{0};
 	  auto __bincoeff = _Tp{1};
-	  std::cout << "        " << __n << ' ' << 0 << ' ' << __bincoeff << ' ' << __termp << ' ' << __termm << '\n';
+#ifdef DEBUG_SERIES
+	  std::cout << "        n=" << setw(4) << __n << " k=" << setw(4) << 0
+		    << " bincoeff=" << setw(20) << __bincoeff
+		    << " termp=" << setw(20) << __termp
+		    << " termm=" << setw(20) << __termm << '\n';
+#endif
 	  __apow.push_back(std::pow(_Tp(__n) + __a, _Tp{1} - __s));
 	  for (unsigned int __k = 1; __k <= __n; ++__k)
 	    {
@@ -367,15 +378,22 @@ g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 		  break;
 		}
 	      (__k % 2 == 0 ? __termp : __termm) += __bincoeff * __apow[__k];
-	      std::cout << "        " << __n << ' ' << __k << ' ' << __bincoeff << ' ' << __termp << ' ' << __termm << '\n';
+#ifdef DEBUG_SERIES
+	      std::cout << "        n=" << setw(4) << __n << " k=" << setw(4) << __k
+			<< " bincoeff=" << setw(20) << __bincoeff
+			<< " termp=" << setw(20) << __termp
+			<< " termm=" << setw(20) << __termm << '\n';
+#endif
 	    }
 	  if (__punt)
 	    break;
 	  auto __term = (__termp - __termm) / (__n + 1);
 	  __zeta += __term;
-	  if (std::abs(__term / __zeta) < _S_eps)
+	  if (std::abs(__term) < _S_eps * std::abs(__zeta))
 	    break;
-	  std::cout << "    " << __n << ' ' << __term << ' ' << __zeta << '\n';
+#ifdef DEBUG_SERIES
+	  std::cout << "    n=" << __n << " term=" << __term << " zeta=" << __zeta << '\n';
+#endif
 	}
 
       __zeta /= __s - _Tp{1};
@@ -406,7 +424,9 @@ g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 	std::__throw_domain_error(__N("Bad argument in zeta sum."));
 
       int __k_max = std::min(1000000, int(std::pow(_Tp{1} / _S_eps, _Tp{1} / __s)));
-std::cerr << "s = " << __s << "  k_max = " << __k_max << std::endl;
+#ifdef DEBUG_SERIES
+      std::cerr << "s = " << __s << "  k_max = " << __k_max << std::endl;
+#endif
       auto __zeta_m_1 = _Tp{0};
       for (int __k = __k_max; __k >= 2; --__k)
 	{
@@ -430,7 +450,9 @@ std::cerr << "s = " << __s << "  k_max = " << __k_max << std::endl;
 	std::__throw_domain_error(__N("Bad argument in zeta sum."));
 
       int __k_max = std::min(1000000, int(std::pow(_Tp{1} / _S_eps, _Tp{1} / __s)));
-std::cerr << "s = " << __s << "  k_max = " << __k_max << std::endl;
+#ifdef DEBUG_SERIES
+      std::cerr << "s = " << __s << "  k_max = " << __k_max << std::endl;
+#endif
       auto __zeta_m_1 = _Tp{0};
       for (int __k = __k_max; __k >= 2; --__k)
 	{
@@ -455,7 +477,9 @@ std::cerr << "s = " << __s << "  k_max = " << __k_max << std::endl;
 
       __gnu_cxx::_KahanSum<_Tp> __zeta_m_1;
       int __k_max = std::min(1000000, int(std::pow(_Tp{1} / _S_eps, _Tp{1} / __s)));
-std::cerr << "s = " << __s << "  k_max = " << __k_max << std::endl;
+#ifdef DEBUG_SERIES
+      std::cerr << "s = " << __s << "  k_max = " << __k_max << std::endl;
+#endif
       for (int __k = __k_max; __k >= 2; --__k)
       //int __k_max = 10000;
       //for (int __k = __k_max; __k >= 2; --__k)
