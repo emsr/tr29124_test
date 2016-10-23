@@ -120,3 +120,10 @@ Boost uses CF + series.
 36. [] Gather 32-digit spot checks from:
 http://functions.wolfram.com/webMathematica/FunctionEvaluation.jsp
 
+37. [] Things involving say std::cyl_bessel(__float128, __float128) won't compile.
+We have __float128 in te promote thing.
+
+38. [] Look at the results of test_bessel, test_sph_bessel, near the originas a function of.
+You have to widen the near zero. Look at the near zero asymptotics and come up with a thing
+as a function of underflow exponent and nu.
+
