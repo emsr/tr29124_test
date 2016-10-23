@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -g -o test_sph_hankel test_sph_hankel.cpp -lquadmath wrap_boost.cpp
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_sph_hankel > test_sph_hankel.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -I. -o test_sph_hankel test_sph_hankel.cpp -lquadmath wrap_boost.cpp
+./test_sph_hankel > test_sph_hankel.txt
 
 g++ -std=c++14 -g -o test_sph_hankel test_sph_hankel.cpp -lquadmath
 ./test_sph_hankel > test_sph_hankel.txt
@@ -8,17 +8,17 @@ g++ -std=c++14 -g -o test_sph_hankel test_sph_hankel.cpp -lquadmath
 
 #define __STDCPP_WANT_MATH_SPEC_FUNCS__ 1
 
-#include <ext/cmath>
 #include <limits>
 #include <iostream>
 #include <iomanip>
+#include <ext/cmath>
 #include "wrap_boost.h"
 
 template<typename _Tp>
   void
   RunSphHankel1()
   {
-    std::cout.precision(std::numeric_limits<double>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
     std::cout.flags(std::ios::showpoint);
     auto width = 8 + std::cout.precision();
 

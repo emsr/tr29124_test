@@ -2615,12 +2615,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   sph_bessel_if(unsigned int __n, float __x)
-  {
-    float __i_n, __k_n, __ip_n, __kp_n;
-    std::__detail::__sph_bessel_ik<float>(__n, __x,
-        				  __i_n, __k_n, __ip_n, __kp_n);
-    return __i_n;
-  }
+  { std::__detail::__sph_bessel_ik<float>(__n, __x).__i_value; }
 
   /**
    * Return the regular modified spherical Bessel function @f$ i_n(x) @f$
@@ -2630,12 +2625,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline long double
   sph_bessel_il(unsigned int __n, long double __x)
-  {
-    long double __i_n, __k_n, __ip_n, __kp_n;
-    std::__detail::__sph_bessel_ik<long double>(__n, __x,
-        					__i_n, __k_n, __ip_n, __kp_n);
-    return __i_n;
-  }
+  { return std::__detail::__sph_bessel_ik<long double>(__n, __x).__i_value; }
 
   /**
    * Return the regular modified spherical Bessel function @f$ i_n(x) @f$
@@ -2656,10 +2646,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     sph_bessel_i(unsigned int __n, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      __type __i_n, __k_n, __ip_n, __kp_n;
-      std::__detail::__sph_bessel_ik<__type>(__n, __x,
-        				     __i_n, __k_n, __ip_n, __kp_n);
-      return __i_n;
+      return std::__detail::__sph_bessel_ik<__type>(__n, __x).__i_value;
     }
 
   // Modified spherical Bessel functions of the second kind
@@ -2672,12 +2659,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   sph_bessel_kf(unsigned int __n, float __x)
-  {
-    float __i_n, __k_n, __ip_n, __kp_n;
-    std::__detail::__sph_bessel_ik<float>(__n, __x,
-        				  __i_n, __k_n, __ip_n, __kp_n);
-    return __k_n;
-  }
+  { return std::__detail::__sph_bessel_ik<float>(__n, __x).__k_value; }
 
   /**
    * Return the irregular modified spherical Bessel function @f$ k_n(x) @f$
@@ -2687,12 +2669,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline long double
   sph_bessel_kl(unsigned int __n, long double __x)
-  {
-    long double __i_n, __k_n, __ip_n, __kp_n;
-    std::__detail::__sph_bessel_ik<long double>(__n, __x,
-        					__i_n, __k_n, __ip_n, __kp_n);
-    return __k_n;
-  }
+  { return std::__detail::__sph_bessel_ik<long double>(__n, __x).__k_value; }
 
   /**
    * Return the irregular modified spherical Bessel function @f$ k_n(x) @f$
@@ -2713,10 +2690,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     sph_bessel_k(unsigned int __n, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      __type __i_n, __k_n, __ip_n, __kp_n;
-      std::__detail::__sph_bessel_ik<__type>(__n, __x,
-        				     __i_n, __k_n, __ip_n, __kp_n);
-      return __k_n;
+      return std::__detail::__sph_bessel_ik<__type>(__n, __x).__k_value;
     }
 
   // Airy functions of the first kind
@@ -2728,11 +2702,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   airy_aif(float __x)
-  {
-    float __Ai, __Bi, __Aip, __Bip;
-    std::__detail::__airy<float>(__x, __Ai, __Bi, __Aip, __Bip);
-    return __Ai;
-  }
+  { return std::__detail::__airy<float>(__x).__Ai_value; }
 
   /**
    * Return the Airy function @f$ Ai(x) @f$ for <tt>long double</tt>
@@ -2742,11 +2712,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline long double
   airy_ail(long double __x)
-  {
-    long double __Ai, __Bi, __Aip, __Bip;
-    std::__detail::__airy<long double>(__x, __Ai, __Bi, __Aip, __Bip);
-    return __Ai;
-  }
+  { return std::__detail::__airy<long double>(__x).__Ai_value; }
 
   /**
    * Return the Airy function @f$ Ai(x) @f$ of real argument @f$ x @f$.
@@ -2765,9 +2731,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     airy_ai(_Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      __type __Ai, __Bi, __Aip, __Bip;
-      std::__detail::__airy<__type>(__x, __Ai, __Bi, __Aip, __Bip);
-      return __Ai;
+      return std::__detail::__airy<__type>(__x).__Ai_value;
     }
 
   /**
@@ -2787,7 +2751,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     airy_ai(std::complex<_Tp> __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__airy_ai<__type>(__x);
+      return std::__detail::__airy_ai<__type>(__x).__Ai_value;
     }
 
   // Airy functions of the second kind
@@ -2799,11 +2763,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   airy_bif(float __x)
-  {
-    float __Ai, __Bi, __Aip, __Bip;
-    std::__detail::__airy<float>(__x, __Ai, __Bi, __Aip, __Bip);
-    return __Bi;
-  }
+  { return std::__detail::__airy<float>(__x).__Bi_value; }
 
   /**
    * Return the Airy function @f$ Bi(x) @f$ for <tt>long double</tt>
@@ -2813,11 +2773,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline long double
   airy_bil(long double __x)
-  {
-    long double __Ai, __Bi, __Aip, __Bip;
-    std::__detail::__airy<long double>(__x, __Ai, __Bi, __Aip, __Bip);
-    return __Bi;
-  }
+  { return std::__detail::__airy<long double>(__x).__Bi_value; }
 
   /**
    * Return the Airy function @f$ Bi(x) @f$ of real argument @f$ x @f$.
@@ -2837,9 +2793,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     airy_bi(_Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      __type __Ai, __Bi, __Aip, __Bip;
-      std::__detail::__airy<__type>(__x, __Ai, __Bi, __Aip, __Bip);
-      return __Bi;
+      return std::__detail::__airy<__type>(__x).__Bi_value;
     }
 
   /**
@@ -2860,7 +2814,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     airy_bi(std::complex<_Tp> __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__airy_bi<__type>(__x);
+      return std::__detail::__airy_bi<__type>(__x).__Bi_value;
     }
 
   // Log Gamma function for complex argument.

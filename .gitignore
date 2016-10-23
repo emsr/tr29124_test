@@ -195,6 +195,7 @@ test_roots
 test_sincos
 test_sinus_cardinal
 test_special_function
+test_sph_bessel
 test_sph_hankel
 test_static_polynomial
 test_struve

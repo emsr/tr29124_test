@@ -98,13 +98,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * This struct captures the state of the cylindrical Bessel functions
    * at a given order and argument.
    */
-  template<typename _Tx, typename _Tnu, typename _Tp>
+  template<typename _Tnu, typename _Tx, typename _Tp>
     struct __cyl_bessel_t
     {
-      /// The argument of the cylindrical Bessel functions.
-      _Tx __x_arg;
       /// The real order of the cylindrical Bessel functions.
       _Tnu __nu_arg;
+      /// The argument of the cylindrical Bessel functions.
+      _Tx __x_arg;
       /// The value of the Bessel function of the first kind.
       _Tp __J_value;
       /// The derivative of the Bessel function of the first kind.
@@ -123,13 +123,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * This struct captures the state of the modified cylindrical Bessel functions
    * at a given order and argument.
    */
-  template<typename _Tx, typename _Tnu, typename _Tp>
+  template<typename _Tnu, typename _Tx, typename _Tp>
     struct __cyl_mod_bessel_t
     {
-      /// The argument of the modified cylindrical Bessel functions.
-      _Tx __x_arg;
       /// The real order of the modified cylindrical Bessel functions.
       _Tnu __nu_arg;
+      /// The argument of the modified cylindrical Bessel functions.
+      _Tx __x_arg;
       /// The value of the modified cylindrical Bessel function
       /// of the first kind.
       _Tp __I_value;
@@ -148,13 +148,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       { return __I_value * __K_deriv - __K_value * __I_deriv; }
     };
 
-  template<typename _Tx, typename _Tnu, typename _Tp>
+  template<typename _Tnu, typename _Tx, typename _Tp>
     struct __cyl_hankel_t
     {
-      /// The argument of the modified Hankel functions.
-      _Tx __x_arg;
       /// The real order of the cylindrical Hankel functions.
       _Tnu __nu_arg;
+      /// The argument of the modified Hankel functions.
+      _Tx __x_arg;
       /// The value of the cylindrical Hankel function of the first kind.
       _Tp __H1_value;
       /// The derivative of the cylindrical Hankel function of the first kind.
@@ -169,13 +169,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       { return __H1_value * __H2_deriv - __H2_value * __H1_deriv; }
     };
 
-  template<typename _Tx, typename _Tn, typename _Tp>
+  template<typename _Tn, typename _Tx, typename _Tp>
     struct __sph_bessel_t
     {
-      /// The argument of the spherical Bessel functions.
-      _Tx __x_arg;
       /// The integral order of the spherical Bessel functions.
       _Tn __n_arg;
+      /// The argument of the spherical Bessel functions.
+      _Tx __x_arg;
       /// The value of the spherical Bessel function of the first kind.
       _Tp __j_value;
       /// The derivative of the spherical Bessel function of the first kind.
@@ -190,7 +190,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       { return __j_value * __n_deriv - __n_value * __j_deriv; }
     };
 
-  template<typename _Tx, typename _Tn, typename _Tp>
+  template<typename _Tn, typename _Tx, typename _Tp>
     struct __sph_mod_bessel_t
     {
       /// The argument of the modified spherical Bessel functions.
@@ -215,7 +215,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       { return __i_value * __k_deriv - __k_value * __i_deriv; }
     };
 
-  template<typename _Tx, typename _Tn, typename _Tp>
+  template<typename _Tn, typename _Tx, typename _Tp>
     struct __sph_hankel_t
     {
       /// The argument of the spherical Hankel functions.
