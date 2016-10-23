@@ -554,27 +554,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    *
    * @param  __x   The argument of the Airy functions.
-   * @param  __w1  The output Fock-type Airy function of the first kind.
-   * @param  __w2  The output Fock-type Airy function of the second kind.
-   * @param  __w1p  The output derivative of the Fock-type Airy function
-   * 		    of the first kind.
-   * @param  __w2p  The output derivative of the Fock-type Airy function
-   * 		    of the second kind.
+   * @return  A struct containing all the values and derivatives.
    */
   template<typename _Tp>
-    void
-    __fock_airy(_Tp __x,
-		std::complex<_Tp>& __w1, std::complex<_Tp>& __w2,
-		std::complex<_Tp>& __w1p, std::complex<_Tp>& __w2p)
+    __gnu_cxx::__fock_airy_t<_Tp, std::complex<_Tp>>
+    __fock_airy(_Tp __x)
     {
+      using __fock_t = __gnu_cxx::__fock_airy_t<_Tp, std::complex<_Tp>>;
       const auto _S_sqrtpi = __gnu_cxx::__const_root_pi(__x);
 
       auto _Ai = __airy(__x);
 
-      __w1 = _S_sqrtpi * std::complex<_Tp>(_Ai.__Ai_value, _Ai.__Bi_value);
-      __w1p = _S_sqrtpi * std::complex<_Tp>(_Ai.__Ai_deriv, _Ai.__Bi_deriv);
-      __w2 = _S_sqrtpi * std::complex<_Tp>(_Ai.__Ai_value, -_Ai.__Bi_value);
-      __w2p = _S_sqrtpi * std::complex<_Tp>(_Ai.__Ai_deriv, -_Ai.__Bi_deriv);
+      auto __w1 = _S_sqrtpi * std::complex<_Tp>(_Ai.__Ai_value, _Ai.__Bi_value);
+      auto __w1p = _S_sqrtpi * std::complex<_Tp>(_Ai.__Ai_deriv, _Ai.__Bi_deriv);
+      auto __w2 = _S_sqrtpi * std::complex<_Tp>(_Ai.__Ai_value, -_Ai.__Bi_value);
+      auto __w2p = _S_sqrtpi * std::complex<_Tp>(_Ai.__Ai_deriv, -_Ai.__Bi_deriv);
+
+      return __fock_t{__x, __w1, __w1p, __w2, __w2p};
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
