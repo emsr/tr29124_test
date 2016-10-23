@@ -95,6 +95,28 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
   /**
+   * _Tp pretty much has to be complex.
+   */
+  template<typename _Tx, typename _Tp>
+    struct __fock_airy_t
+    {
+      /// The argument of the Fock-type Airy fuctions.
+      _Tx __x_arg;
+      /// The value of the Fock-type Airy function w1.
+      _Tp __w1_value;
+      /// The derivative of the Fock-type Airy function w1.
+      _Tp __w1_deriv;
+      /// The value of the Fock-type Airy function w2.
+      _Tp __w2_value;
+      /// The derivative of the Fock-type Airy function w2.
+      _Tp __w2_deriv;
+
+      /// Return the Wronskian of the Fock-type Airy functions.
+      _Tp __Wronskian() const
+      { return __w1_value * __w2_deriv - __w2_value * __w1_deriv; }
+    };
+
+  /**
    * This struct captures the state of the cylindrical Bessel functions
    * at a given order and argument.
    */
@@ -148,6 +170,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       { return __I_value * __K_deriv - __K_value * __I_deriv; }
     };
 
+  /**
+   * _Tp pretty much has to be complex.
+   */
   template<typename _Tnu, typename _Tx, typename _Tp>
     struct __cyl_hankel_t
     {
@@ -215,6 +240,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       { return __i_value * __k_deriv - __k_value * __i_deriv; }
     };
 
+  /**
+   * _Tp pretty much has to be complex.
+   */
   template<typename _Tn, typename _Tx, typename _Tp>
     struct __sph_hankel_t
     {
