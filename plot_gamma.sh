@@ -2,6 +2,8 @@
 /usr/local/bin/gnuplot
 set hidden3d
 
+splot [-50:50][-50:50][-40:120] "plot/beta_double.txt" index 0 with lines title "Beta(a,b)"
+
 splot [-20:5][-5:5][-40:20] "plot/log_gamma_lanczos_float.txt" index 0 with lines title "Re(logGamma(z))"
 splot [-20:5][-5:5][-20:20] "plot/log_gamma_lanczos_float.txt" index 1 with lines title "Im(logGamma(z))"
 splot [-20:5][-5:5][0:40] "plot/log_gamma_lanczos_float.txt" index 2 with lines title "|logGamma(z)|"
