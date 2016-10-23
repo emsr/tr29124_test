@@ -131,6 +131,7 @@ test_anger_weber
 test_bessel
 test_bessel_asymp
 test_bessel_iter
+test_beta
 test_beta_inc
 test_binet
 test_binet_float
