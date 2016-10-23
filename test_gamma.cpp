@@ -55,7 +55,7 @@ template<typename _Tp, typename _Gamma>
     auto width = 8 + std::cout.precision();
 
     std::cout << '\n'
-	      << ' ' << std::setw(width) << "s"
+	      << ' ' << std::setw(width) << "a"
 	      << ' ' << std::setw(width) << "log_gamma"
 	      << ' ' << std::setw(width) << "std::lgamma"
 	      << ' ' << std::setw(width) << "__log_gamma"
@@ -65,12 +65,12 @@ template<typename _Tp, typename _Gamma>
     int i_min = -200;
     for (int i = i_min; i <= +500; ++i)
       {
-	auto s = 0.10L * i;
-	auto gam = gamma(s - _Tp{1});
-	auto gam0 = std::lgamma(s);
-	auto glgam = std::__detail::__log_gamma(s);
-	auto blgam = beast::lgamma(s);
-	std::cout << ' ' << std::setw(width) << s
+	auto a = _Tp{0.10L} * i;
+	auto gam = gamma(a - _Tp{1});
+	auto gam0 = std::lgamma(a);
+	auto glgam = std::__detail::__log_gamma(a);
+	auto blgam = beast::lgamma(a);
+	std::cout << ' ' << std::setw(width) << a
 		  << ' ' << std::setw(width) << gam
 		  << ' ' << std::setw(width) << gam0
 		  << ' ' << std::setw(width) << glgam
