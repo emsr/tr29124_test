@@ -686,16 +686,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @param  __n  The order of the spherical Bessel function.
    * @param  __x  The argument of the spherical Bessel function.
-   * @param[out] __j_n  The output spherical Bessel function.
-   * @param[out] __n_n  The output spherical Neumann function.
-   * @param[out] __jp_n The output derivative of the spherical Bessel function.
-   * @param[out] __np_n The output derivative of the spherical Neumann function.
+   * @return  The output derivative of the spherical Neumann function.
    */
   template<typename _Tp>
-    void
-    __sph_bessel_jn(unsigned int __n, _Tp __x,
-		    _Tp& __j_n, _Tp& __n_n, _Tp& __jp_n, _Tp& __np_n)
+    __gnu_cxx::__sph_bessel_t<unsigned int, _Tp, _Tp>
+    __sph_bessel_jn(unsigned int __n, _Tp __x)
     {
+      using __bess_t = __gnu_cxx::__sph_bessel_t<unsigned int, _Tp, _Tp>;
       const auto __nu = _Tp(__n + 0.5L);
 
       auto _Bess = __cyl_bessel_jn(__nu, __x);
@@ -703,12 +700,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __factor = __gnu_cxx::__const_root_pi_div_2(__x)
 			  / std::sqrt(__x);
 
-      __j_n = __factor * _Bess.__J_value;
-      __jp_n = __factor * _Bess.__J_deriv - __j_n / (_Tp{2} * __x);
-      __n_n = __factor * _Bess.__N_value;
-      __np_n = __factor * _Bess.__N_deriv - __n_n / (_Tp{2} * __x);
+      auto __j_n = __factor * _Bess.__J_value;
+      auto __jp_n = __factor * _Bess.__J_deriv - __j_n / (_Tp{2} * __x);
+      auto __n_n = __factor * _Bess.__N_value;
+      auto __np_n = __factor * _Bess.__N_deriv - __n_n / (_Tp{2} * __x);
 
-      return;
+      return __bess_t{__n, __x, __j_n, __jp_n, __n_n, __np_n};
     }
 
   /**
@@ -716,11 +713,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * of order @f$ \nu @f$ and argument @f$ x < 0 @f$.
    */
   template<typename _Tp>
-    void
-    __sph_bessel_jn_neg_arg(unsigned int __n, _Tp __x,
-			  std::complex<_Tp>& __j_n, std::complex<_Tp>& __n_n,
-			  std::complex<_Tp>& __jp_n, std::complex<_Tp>& __np_n)
+    __gnu_cxx::__sph_bessel_t<unsigned int, _Tp, std::complex<_Tp>>
+    __sph_bessel_jn_neg_arg(unsigned int __n, _Tp __x)
     {
+      using __bess_t
+	= __gnu_cxx::__sph_bessel_t<unsigned int, _Tp, std::complex<_Tp>>;
       if (__x >= _Tp{0})
 	std::__throw_domain_error(__N("__sph_bessel_jn_neg_arg: "
 				      "non-negative argument"));
@@ -733,13 +730,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    = __gnu_cxx::__const_root_pi_div_2(__x)
 	      / std::sqrt(std::complex<_Tp>(__x));
 
-	  __j_n = __factor * _Bess.__J_value;
-	  __jp_n = __factor * _Bess.__J_deriv - __j_n / (_Tp{2} * __x);
-	  __n_n = __factor * _Bess.__N_value;
-	  __np_n = __factor * _Bess.__N_deriv - __n_n / (_Tp{2} * __x);
-	}
+	  auto __j_n = __factor * _Bess.__J_value;
+	  auto __jp_n = __factor * _Bess.__J_deriv - __j_n / (_Tp{2} * __x);
+	  auto __n_n = __factor * _Bess.__N_value;
+	  auto __np_n = __factor * _Bess.__N_deriv - __n_n / (_Tp{2} * __x);
 
-      return;
+	  return __bess_t{__n, __x, __j_n, __jp_n, __n_n, __np_n};
+	}
     }
 
 
@@ -772,11 +769,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    return _Tp{0};
 	}
       else
-	{
-	  _Tp __j_n, __n_n, __jp_n, __np_n;
-	  __sph_bessel_jn(__n, __x, __j_n, __n_n, __jp_n, __np_n);
-	  return __j_n;
-	}
+	return __sph_bessel_jn(__n, __x).__j_value;
     }
 
 
@@ -804,11 +797,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (__x == _Tp{0})
 	return -__gnu_cxx::__infinity(__x);
       else
-	{
-	  _Tp __j_n, __n_n, __jp_n, __np_n;
-	  __sph_bessel_jn(__n, __x, __j_n, __n_n, __jp_n, __np_n);
-	  return __n_n;
-	}
+	return __sph_bessel_jn(__n, __x).__n_value;
     }
 
 
@@ -835,15 +824,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::complex<_Tp>{_S_nan, _S_nan};
       else if (__x < _Tp{0})
 	{
-	  std::complex<_Tp> __j_n, __n_n, __jp_n, __np_n;
-	  __sph_bessel_jn_neg_arg(__n, __x, __j_n, __n_n, __jp_n, __np_n);
-	  return __j_n + _S_i * __n_n;
+	  auto _Bess = __sph_bessel_jn_neg_arg(__n, __x);
+	  return _Bess.__j_value + _S_i * _Bess.__n_value;
 	}
       else
 	{
-	  _Tp __j_n, __n_n, __jp_n, __np_n;
-	  __sph_bessel_jn(__n, __x, __j_n, __n_n, __jp_n, __np_n);
-	  return std::complex<_Tp>{__j_n, __n_n};
+	  auto _Bess = __sph_bessel_jn(__n, __x);
+	  return std::complex<_Tp>{_Bess.__j_value, _Bess.__n_value};
 	}
     }
 
@@ -871,15 +858,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::complex<_Tp>{_S_nan, _S_nan};
       else if (__x < _Tp{0})
 	{
-	  std::complex<_Tp> __j_n, __n_n, __jp_n, __np_n;
-	  __sph_bessel_jn_neg_arg(__n, __x, __j_n, __n_n, __jp_n, __np_n);
-	  return __j_n - _S_i * __n_n;
+	  auto _Bess = __sph_bessel_jn_neg_arg(__n, __x);
+	  return _Bess.__j_value - _S_i * _Bess.__n_value;
 	}
       else
 	{
-	  _Tp __j_n, __n_n, __jp_n, __np_n;
-	  __sph_bessel_jn(__n, __x, __j_n, __n_n, __jp_n, __np_n);
-	  return std::complex<_Tp>{__j_n, -__n_n};
+	  auto _Bess = __sph_bessel_jn(__n, __x);
+	  return std::complex<_Tp>{_Bess.__j_value, -_Bess.__n_value};
 	}
     }
 
