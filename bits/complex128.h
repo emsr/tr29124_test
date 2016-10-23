@@ -502,7 +502,7 @@ namespace std
   real(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return __x; }
 
-  __float128
+  inline __float128
   norm(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return __x * __x; }
 
@@ -524,11 +524,11 @@ namespace std
     }
 */
   // DR 1137.
-  __float128
+  inline _GLIBCXX_USE_CONSTEXPR __float128
   proj(__float128 __x)
   { return __x; }
 
-  __float128
+  inline _GLIBCXX_USE_CONSTEXPR __float128
   conj(__float128 __x)
   { return __x; }
 
@@ -540,7 +540,7 @@ inline namespace literals {
 inline namespace complex_literals {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
-  std::complex<__float128>
+  inline std::complex<__float128>
   operator""iq(const char* __str)
   { return complex<__float128>(0.0Q, strtoflt128(__str, 0)); }
 
