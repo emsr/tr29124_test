@@ -76,20 +76,34 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __beta_gamma(_Tp __a, _Tp __b)
     {
-
-      _Tp __bet;
-      if (__a > __b)
+      auto __na = int(std::nearbyint(__a));
+      auto __nb = int(std::nearbyint(__b));
+      auto __nab = int(std::nearbyint(__a + __b));
+      if (__nab <= 0 && __nab == __a + __b)
 	{
-	  __bet = __gamma(__a) / __gamma(__a + __b);
-	  __bet *= __gamma(__b);
+	  if (__na != __a || __na > 0)
+	    return _Tp{0};
+	  else if (__nb != __b || __nb > 0)
+	    return _Tp{0};
+	  else
+	    return __gnu_cxx::__quiet_NaN<_Tp>();
 	}
       else
 	{
-	  __bet = __gamma(__b) / __gamma(__a + __b);
-	  __bet *= __gamma(__a);
-	}
+	  _Tp __bet;
+	  if (__a > __b)
+	    {
+	      __bet = __gamma(__a) / __gamma(__a + __b);
+	      __bet *= __gamma(__b);
+	    }
+	  else
+	    {
+	      __bet = __gamma(__b) / __gamma(__a + __b);
+	      __bet *= __gamma(__a);
+	    }
 
-      return __bet;
+	  return __bet;
+	}
     }
 
   /**
@@ -113,8 +127,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __na = int(std::nearbyint(__a));
       auto __nb = int(std::nearbyint(__b));
       auto __nab = int(std::nearbyint(__a + __b));
-      if (__nab == __a + __b)
-        return __gnu_cxx::__quiet_NaN<_Tp>();
+      if (__nab <= 0 && __nab == __a + __b)
+	{
+	  if (__na != __a || __na > 0)
+	    return _Tp{0};
+	  else if (__nb != __b || __nb > 0)
+	    return _Tp{0};
+	  else
+	    return __gnu_cxx::__quiet_NaN<_Tp>();
+	}
       else
 	{
 	  auto __bet = __log_gamma(__a)
