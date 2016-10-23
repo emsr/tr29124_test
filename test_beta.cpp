@@ -81,10 +81,47 @@ template<typename _Tp>
       }
   }
 
+template<typename _Tp>
+  void
+  plot_beta(std::string filename)
+  {
+    using _Val = _Tp;
+    using _Real = std::__detail::__num_traits_t<_Val>;
+
+    auto data = std::ofstream(filename);
+
+    data.precision(std::numeric_limits<_Real>::digits10);
+    data << std::showpoint << std::scientific;
+    auto width = 8 + data.precision();
+
+    int i_min = -500;
+    for (int i = i_min; i <= +500; ++i)
+      {
+	auto a = _Tp{0.2L} * i;
+	int j_min = -500;
+	data << '\n';
+	for (int j = j_min; j <= +500; ++j)
+	  {
+	    auto b = _Tp{0.2L} * j;
+	    auto gbet = std::__detail::__beta(a, b);
+	    data << ' ' << std::setw(width) << a
+		 << ' ' << std::setw(width) << b
+		 << ' ' << std::setw(width) << gbet
+		 << '\n';
+	  }
+      }
+  }
+
 int
 main()
 {
+  test_beta<float>();
+
   test_beta<double>();
 
   test_beta<long double>();
+
+  // Beta seems to be either really tiny or really huge.
+  // Maybe graph log_beta.
+  //plot_beta<double>("plot/beta_double.txt");
 }
