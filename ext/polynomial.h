@@ -526,7 +526,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       size() const
       { return this->_M_coeff.size(); }
 
-
       /**
        *  Return the @c ith coefficient with range checking.
        */
@@ -545,6 +544,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        *  Return a @c const pointer to the coefficient sequence.
        */
       const value_type*
+      coefficients() const
+      { this->_M_coeff.data(); }
+
+      /**
+       *  Return a @c pointer to the coefficient sequence.
+       */
+      value_type*
       coefficients() const
       { this->_M_coeff.data(); }
 
