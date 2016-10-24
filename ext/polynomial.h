@@ -116,6 +116,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        */
       _Polynomial(const _Polynomial&) = default;
 
+      /**
+       *  Move ctor.
+       */
+      _Polynomial(_Polynomial&&) noexcept = default;
+
       template<typename _Up>
 	_Polynomial(const _Polynomial<_Up>& __poly)    
 	: _M_coeff{}
@@ -172,7 +177,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        *  Swap the polynomial with another polynomial.
        */
       void
-      swap(_Polynomial& __poly)
+      swap(_Polynomial& __poly) noexcept
       { this->_M_coeff.swap(__poly._M_coeff); }
 
       /**
@@ -334,7 +339,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        *  Unary plus.
        */
       _Polynomial
-      operator+() const
+      operator+() const noexcept
       { return *this; }
 
       /**
@@ -509,7 +514,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        *  Return the degree or the power of the largest coefficient.
        */
       size_type
-      degree() const
+      degree() const noexcept
       { return (this->_M_coeff.size() > 0 ? this->_M_coeff.size() - 1 : 0); }
 
       /**
@@ -523,7 +528,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        *  Return the size of the coefficient sequence.
        */
       size_type
-      size() const
+      size() const noexcept
       { return this->_M_coeff.size(); }
 
       /**
@@ -544,42 +549,42 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        *  Return a @c const pointer to the coefficient sequence.
        */
       const value_type*
-      coefficients() const
+      coefficients() const noexcept
       { this->_M_coeff.data(); }
 
       /**
        *  Return a @c pointer to the coefficient sequence.
        */
       value_type*
-      coefficients() const
+      coefficients() noexcept
       { this->_M_coeff.data(); }
 
       /**
        *  Return coefficient @c i.
        */
       value_type
-      operator[](size_type __i) const
+      operator[](size_type __i) const noexcept
       { return this->_M_coeff[__i]; }
 
       /**
        *  Return coefficient @c i as an lvalue.
        */
       reference
-      operator[](size_type __i)
+      operator[](size_type __i) noexcept
       { return this->_M_coeff[__i]; }
 
       /**
        *  Return an iterator to the beginning of the coefficient sequence.
        */
       iterator
-      begin()
+      begin() noexcept
       { return this->_M_coeff.begin(); }
 
       /**
        *  Return an iterator to one past the end of the coefficient sequence.
        */
       iterator
-      end()
+      end() noexcept
       { return this->_M_coeff.end(); }
 
       /**
@@ -587,7 +592,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        *  of the coefficient sequence.
        */
       const_iterator
-      begin() const
+      begin() const noexcept
       { return this->_M_coeff.begin(); }
 
       /**
@@ -595,7 +600,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        *  of the coefficient sequence.
        */
       const_iterator
-      end() const
+      end() const noexcept
       { return this->_M_coeff.end(); }
 
       /**
@@ -603,7 +608,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        *  of the coefficient sequence.
        */
       const_iterator
-      cbegin() const
+      cbegin() const noexcept
       { return this->_M_coeff.cbegin(); }
 
       /**
@@ -611,31 +616,31 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        *  of the coefficient sequence.
        */
       const_iterator
-      cend() const
+      cend() const noexcept
       { return this->_M_coeff.cend(); }
 
       reverse_iterator
-      rbegin()
+      rbegin() noexcept
       { return this->_M_coeff.rbegin(); }
 
       reverse_iterator
-      rend()
+      rend() noexcept
       { return this->_M_coeff.rend(); }
 
       const_reverse_iterator
-      rbegin() const
+      rbegin() const noexcept
       { return this->_M_coeff.rbegin(); }
 
       const_reverse_iterator
-      rend() const
+      rend() const noexcept
       { return this->_M_coeff.rend(); }
 
       const_reverse_iterator
-      crbegin() const
+      crbegin() const noexcept
       { return this->_M_coeff.crbegin(); }
 
       const_reverse_iterator
-      crend() const
+      crend() const noexcept
       { return this->_M_coeff.crend(); }
 
       template<typename CharT, typename Traits, typename _Tp1>
@@ -814,6 +819,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline bool
     operator!=(const _Polynomial<_Tp>& __pa, const _Polynomial<_Tp>& __pb)
     { return !(__pa == __pb); }
+
+  /**
+   *  See _Polynomial::swap().
+   */
+  template<typename _Tp>
+    inline void
+    swap(_Polynomial<_Tp>& __pa, _Polynomial<_Tp>& __pb)
+    noexcept(noexcept(__pa.swap(__pb)))
+    { __pa.swap(__pb); }
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
