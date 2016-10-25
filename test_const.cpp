@@ -1,9 +1,10 @@
-// $HOME/bin/bin/g++ -std=gnu++17 -I. -o test_const test_const.cpp -lquadmath -lmpfr
-
-// LD_LIBRARY_PATH=/$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_const > test_const.txt
+/*
+$HOME/bin/bin/g++ -std=gnu++17 -I. -g -Wall -Wextra -o test_const test_const.cpp -lquadmath -lmpfr
+./test_const > test_const.txt
+*/
 
 #include <mpreal.h>
-#include <bits/float128.h>
+#include <bits/float128_io.h>
 #include <ext/cmath>
 #include <ext/math_const_mpreal.h>
 #include <bits/numeric_limits_mpreal.h>

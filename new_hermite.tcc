@@ -114,9 +114,8 @@
 	  const auto __exparg = _Tp(__n) * std::log(__xturn) - _Tp{3} * __n_2
 			      + __xturn * __x;
 	  const auto __airyarg = _S_sqrt_2 * (__x - __xturn) * __n6th;
-	  _Tp _Ai, _Bi, _Aip, _Bip;
-	  std::__detail::__airy(__airyarg, _Ai, _Bi, _Aip, _Bip);
-	  return _S_sqrt_2pi * __n6th * std::exp(__exparg) * _Ai;
+	  auto _Airy = std::__detail::__airy(__airyarg);
+	  return _S_sqrt_2pi * __n6th * std::exp(__exparg) * _Airy.__Ai_value;
 	}
       else if (__x < __xturn)
 	{

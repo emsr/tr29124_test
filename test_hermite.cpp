@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_hermite test_hermite.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_hermite > test_hermite.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hermite test_hermite.cpp -lquadmath
+./test_hermite > test_hermite.txt
 */
 
 #include <iostream>
@@ -8,7 +8,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_hermite > test_h
 #include <cmath>
 #include <limits>
 
-#include <bits/float128.h>
+#include <bits/float128_io.h>
 #include "new_hermite.tcc"
 
 int

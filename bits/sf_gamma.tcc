@@ -1732,12 +1732,12 @@ _S_neg_double_factorial_table[999]
    * A struct for Spouge algorithm Chebyshev arrays of coefficients.
    */
   template<typename _Tp>
-    struct _GammaSpouge
+    struct __gamma_spouge_data
     {
     };
 
   template<>
-    struct _GammaSpouge<float>
+    struct __gamma_spouge_data<float>
     {
       static constexpr std::array<float, 7>
       _S_cheby
@@ -1753,7 +1753,7 @@ _S_neg_double_factorial_table[999]
     };
 
   template<>
-    struct _GammaSpouge<double>
+    struct __gamma_spouge_data<double>
     {
       static constexpr std::array<double, 18>
       _S_cheby
@@ -1780,7 +1780,7 @@ _S_neg_double_factorial_table[999]
     };
 
   template<>
-    struct _GammaSpouge<long double>
+    struct __gamma_spouge_data<long double>
     {
       static constexpr std::array<long double, 22>
       _S_cheby
@@ -1812,7 +1812,7 @@ _S_neg_double_factorial_table[999]
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   template<>
-    struct _GammaSpouge<__float128>
+    struct __gamma_spouge_data<__float128>
     {
       static constexpr std::array<__float128, 40>
       _S_cheby
@@ -1861,6 +1861,7 @@ _S_neg_double_factorial_table[999]
     };
 #endif
 
+
   /**
    * @brief Return the Binet function @f$ J(1+z) @f$ by the Spouge method.
    * The Binet function is the log of the scaled Gamma function
@@ -1880,12 +1881,12 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __binet1p_spouge(_Tp __z)
+    __spouge_binet1p(_Tp __z)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_sqrt_2pi = __gnu_cxx::__const_root_2_pi(std::real(__z));
-      const auto& __c = _GammaSpouge<_Real>::_S_cheby;
+      const auto __c = __gamma_spouge_data<_Real>::_S_cheby;
 
       _Val __sum = _S_sqrt_2pi;
       for (int __k = 0; __k < __c.size(); ++__k)
@@ -1924,13 +1925,13 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __log_gamma1p_spouge(_Tp __z)
+    __spouge_log_gamma1p(_Tp __z)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_ln_pi = __gnu_cxx::__const_ln_pi(std::real(__z));
       const auto _S_sqrt_2pi = __gnu_cxx::__const_root_2_pi(std::real(__z));
-      auto __a = _Real{_GammaSpouge<_Real>::_S_cheby.size() + 1};
+      auto __a = _Real{__gamma_spouge_data<_Real>::_S_cheby.size() + 1};
 
       // Reflection for z < -1.
       if (std::real(__z) < _Real{-1})
@@ -1939,11 +1940,11 @@ _S_neg_double_factorial_table[999]
 	  if (!__gnu_cxx::is_complex_v<_Val>)
 	    __sin_fact = std::abs(__sin_fact);
 	  return _S_ln_pi - std::log(__sin_fact)
-			  - __log_gamma1p_spouge(-_Real{1} - __z);
+			  - __spouge_log_gamma1p(-_Real{1} - __z);
 	}
       else
 	{
-	  auto __sum = __binet1p_spouge(__z);
+	  auto __sum = __spouge_binet1p(__z);
 	  if (!__gnu_cxx::is_complex_v<_Val>)
 	    __sum = std::abs(__sum);
 	  return std::log(__sum)
@@ -1957,12 +1958,12 @@ _S_neg_double_factorial_table[999]
    * A struct for Lanczos algorithm Chebyshev arrays of coefficients.
    */
   template<typename _Tp>
-    struct _GammaLanczos
+    struct __gamma_lanczos_data
     {
     };
 
   template<>
-    struct _GammaLanczos<float>
+    struct __gamma_lanczos_data<float>
     {
       static constexpr float _S_g = 6.5F;
       static constexpr std::array<float, 7>
@@ -1979,7 +1980,7 @@ _S_neg_double_factorial_table[999]
     };
 
   template<>
-    struct _GammaLanczos<double>
+    struct __gamma_lanczos_data<double>
     {
       static constexpr double _S_g = 9.5;
       static constexpr std::array<double, 10>
@@ -1999,7 +2000,7 @@ _S_neg_double_factorial_table[999]
     };
 
   template<>
-    struct _GammaLanczos<long double>
+    struct __gamma_lanczos_data<long double>
     {
       static constexpr long double _S_g = 10.5L;
       static constexpr std::array<long double, 11>
@@ -2021,7 +2022,7 @@ _S_neg_double_factorial_table[999]
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   template<>
-    struct _GammaLanczos<__float128>
+    struct __gamma_lanczos_data<__float128>
     {
       static constexpr __float128 _S_g = 13.5Q;
       static constexpr std::array<__float128, 14>
@@ -2064,14 +2065,14 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __binet1p_lanczos(_Tp __z)
+    __lanczos_binet1p(_Tp __z)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_ln_pi = __gnu_cxx::__const_ln_pi(std::real(__z));
       const auto _S_sqrt_2pi = __gnu_cxx::__const_root_2_pi(std::real(__z));
-      const auto& __c = _GammaLanczos<_Real>::_S_cheby;
-      auto __g =  _GammaLanczos<_Real>::_S_g;
+      const auto __c = __gamma_lanczos_data<_Real>::_S_cheby;
+      auto __g =  __gamma_lanczos_data<_Real>::_S_g;
 
       auto __fact = _Val{1};
       auto __sum = _Val{0.5L} * __c[0];
@@ -2098,12 +2099,12 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __log_gamma1p_lanczos(_Tp __z)
+    __lanczos_log_gamma1p(_Tp __z)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_ln_pi = __gnu_cxx::__const_ln_pi(std::real(__z));
-      auto __g =  _GammaLanczos<_Real>::_S_g;
+      auto __g =  __gamma_lanczos_data<_Real>::_S_g;
       // Reflection for z < -1.
       if (std::real(__z) < _Real{-1})
         {
@@ -2111,11 +2112,11 @@ _S_neg_double_factorial_table[999]
 	  if (!__gnu_cxx::is_complex_v<_Val>)
 	    __sin_fact = std::abs(__sin_fact);
 	  return _S_ln_pi - std::log(__sin_fact)
-			  - __log_gamma1p_lanczos(-_Real{1} - __z);
+			  - __lanczos_log_gamma1p(-_Real{1} - __z);
 	}
       else
         {
-	  auto __sum = __binet1p_lanczos(__z);
+	  auto __sum = __lanczos_binet1p(__z);
 	  if (!__gnu_cxx::is_complex_v<_Val>)
 	    __sum = std::abs(__sum);
 	  return std::log(__sum)
@@ -2224,7 +2225,7 @@ _S_neg_double_factorial_table[999]
 	  return std::log(__fact) + __log_gamma(__arg);
 	}
       else
-	return __log_gamma1p_spouge(__x - _Real{1});
+	return __spouge_log_gamma1p(__x - _Real{1});
     }
 
   /**
@@ -2243,7 +2244,7 @@ _S_neg_double_factorial_table[999]
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__x));
       const auto _S_logpi = __gnu_cxx::__const_ln_pi(std::real(__x));
       if (std::real(__x) >= _Real{0.5L})
-	return __log_gamma1p_spouge(__x - _Real{1});
+	return __spouge_log_gamma1p(__x - _Real{1});
       else
 	{
 	  const auto __sin_fact = __sin_pi(__x);
