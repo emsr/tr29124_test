@@ -2,7 +2,7 @@
 $HOME/bin_tr29124/bin/g++ -std=c++17 -g -I. -o test_polylog test_polylog.cpp
 ./test_polylog > test_polylog.txt
 
-$HOME/bin/bin/g++ -std=c++17 -g -I. -o test_polylog test_polylog.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -g -I. -o test_polylog test_polylog.cpp
 */
 
 #include <iostream>
@@ -13,17 +13,6 @@ $HOME/bin/bin/g++ -std=c++17 -g -I. -o test_polylog test_polylog.cpp
 #include <limits>
 #include <array>
 #include <ext/math_const.h>
-
-// I'm not sure why I need this here and not other places...
-template<>
-  constexpr std::array<float, 7>
-  std::__detail::_GammaSpouge<float>::_S_cheby;
-template<>
-  constexpr std::array<double, 18>
-  std::__detail::_GammaSpouge<double>::_S_cheby;
-template<>
-  constexpr std::array<long double, 22>
-  std::__detail::_GammaSpouge<long double>::_S_cheby;
 
 template<typename Tp>
   void

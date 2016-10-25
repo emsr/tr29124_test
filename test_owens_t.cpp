@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++1z -o test_owens_t test_owens_t.cpp wrap_boost.cpp
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -I. -o test_owens_t test_owens_t.cpp wrap_boost.cpp
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_owens_t > test_owens_t.txt
 */
 

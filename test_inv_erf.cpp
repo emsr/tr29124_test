@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_inv_erf test_inv_erf.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -Wall -Wextra -I. -o test_inv_erf test_inv_erf.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_inv_erf > test_inv_erf.txt
 
 $HOME/bin/bin/g++ -std=gnu++1z -I. -o test_inv_erf test_inv_erf.cpp -lquadmath
@@ -14,7 +14,7 @@ $HOME/bin/bin/g++ -std=gnu++1z -I. -o test_inv_erf test_inv_erf.cpp -lquadmath
 #include <limits>
 #include <cmath>
 #include <complex>
-#include <bits/float128.h>
+#include <bits/float128_io.h>
 
   /**
    * The experf function is defined by
@@ -322,7 +322,6 @@ template<typename _Tp>
   {
     //  Build the series coefficients.
     const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-    const auto _S_pi =  _Tp{3.1415926535897932384626433832795029L};
     const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797L};
 
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
