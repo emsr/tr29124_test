@@ -1,13 +1,12 @@
-// $HOME/bin/bin/g++ -std=c++14 -I. -o test_dilog test_dilog.cpp
-
-// ./test_dilog > test_dilog.txt
+/*
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_dilog test_dilog.cpp
+./test_dilog > test_dilog.txt
+*/
 
 #include <cmath>
 #include <limits>
 #include <iostream>
 #include <stdexcept>
-
-#include <bits/specfun_util.h>
 
 namespace std
 {

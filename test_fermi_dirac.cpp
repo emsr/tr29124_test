@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_fermi_dirac test_fermi_dirac.cpp wrap_gsl.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_fermi_dirac > test_fermi_dirac.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_fermi_dirac test_fermi_dirac.cpp wrap_gsl.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas -lquadmath
+./test_fermi_dirac > test_fermi_dirac.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -I. -o test_fermi_dirac test_fermi_dirac.cpp wrap_gsl.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_fermi_dirac test_fermi_dirac.cpp wrap_gsl.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas -lquadmath
 ./test_fermi_dirac > test_fermi_dirac.txt
 */
 
@@ -11,7 +11,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -I. -o test_fermi_dirac test_fermi_dirac.cpp wrap
 #include <limits>
 #include <ext/cmath>
 #include "wrap_gsl.h"
-#include <bits/float128.h>
+#include <bits/float128_io.h>
 
 
 template<typename _Sp, typename _Tp>

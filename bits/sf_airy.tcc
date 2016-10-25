@@ -56,15 +56,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = std::__detail::__num_traits_t<_Tp>;
 
-      _Tp z;
-      _Tp Ai;
-      _Tp Aip;
-      _Tp Bi;
-      _Tp Bip;
+      _Tp __z;
+      _Tp __Ai_value;
+      _Tp __Ai_deriv;
+      _Tp __Bi_value;
+      _Tp __Bi_deriv;
 
       constexpr _Tp
       Wronskian() const
-      { return Ai * Bip - Bi * Aip; }
+      { return __Ai_value * __Bi_deriv - __Bi_value * __Ai_deriv; }
 
       static constexpr _Val
       true_Wronskian()
@@ -81,13 +81,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Val = std::__detail::__num_traits_t<_Tp>;
 
-      _Tp z;
-      _Tp fai;
-      _Tp faip;
-      _Tp gai;
-      _Tp gaip;
-      _Tp hai;
-      _Tp haip;
+      _Tp __z;
+      _Tp __fai_value;
+      _Tp __fai_deriv;
+      _Tp __gai_value;
+      _Tp __gai_deriv;
+      _Tp __hai_value;
+      _Tp __hai_deriv;
     };
 
 
@@ -465,7 +465,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       auto __aux = FGH(__t);
 
-      auto _Hi = _S_Hi0 * (__aux.fai + __aux.gai + __aux.hai);
+      auto _Hi = _S_Hi0 * (__aux.__fai + __aux.__gai + __aux.__hai_value);
       auto _Hip = _S_Hip0 * (__aux.faip + __aux.gaip + __aux.haip);
       auto _Bi = _S_Bi0 * __aux.fai + _S_Bip0 * __aux.gai;
       auto _Bip = _S_Bi0 * __aux.faip + _S_Bip0 * __aux.gaip;
@@ -624,7 +624,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * A class encapsulating data for the asymptotic expansions of Airy functions
-   * and thier derivatives.
+   * and their derivatives.
    *
    * @tparam _Tp A real type
    */
@@ -1990,7 +1990,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * A class encapsulating the asymptotic expansions of Airy functions
-   * and thier derivatives.
+   * and their derivatives.
    *
    * @tparam _Tp A real type
    */
@@ -2564,27 +2564,29 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::tie(_Bi, _Bip) = _Airy_series<__scal>::_S_Bi(__y);
       else if (__absy < outer_radius)
 	{
-	  _Bi = __scal{2} * __sums.Bi + __sign * _S_i * __sums.Ai;
-	  _Bip = __scal{2} * __sums.Bip + __sign * _S_i * __sums.Aip;
+	  _Bi = __scal{2} * __sums.__Bi_value
+	      + __sign * _S_i * __sums.__Ai_value;
+	  _Bip = __scal{2} * __sums.__Bi_deriv
+	       + __sign * _S_i * __sums.__Ai_deriv;
 	  if (__absargy > _S_5pi_6)
 	    {
-	      _Bi -= __sums.Bi;
-	      _Bip -= __sums.Bip;
+	      _Bi -= __sums.__Bi_value;
+	      _Bip -= __sums.__Bi_deriv;
 	    }
 	}
       else
 	{
-	  _Bi = __scal{2} * __sums.Bi;
-	  _Bip = __scal{2} * __sums.Bip;
+	  _Bi = __scal{2} * __sums.__Bi_value;
+	  _Bip = __scal{2} * __sums.__Bi_deriv;
 	  if (__absargy > _S_pi_6)
 	    {
-	      _Bi += __sign * _S_i * __sums.Ai;
-	      _Bip += __sign * _S_i * __sums.Aip;
+	      _Bi += __sign * _S_i * __sums.__Ai_value;
+	      _Bip += __sign * _S_i * __sums.__Ai_deriv;
 	    }
 	  if (__absargy > _S_5pi_6)
 	    {
-	      _Bi -= __sums.Bi;
-	      _Bip -= __sums.Bip;
+	      _Bi -= __sums.__Bi_value;
+	      _Bip -= __sums.__Bi_deriv;
 	    }
 	}
 
@@ -2595,17 +2597,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::tie(_Ai, _Aip) = _Airy_series<__scal>::_S_Ai(__y);
       else if (__absy < outer_radius)
 	{
-	  _Ai = __sums.Ai;
-	  _Aip = __sums.Aip;
+	  _Ai = __sums.__Ai_value;
+	  _Aip = __sums.__Ai_deriv;
 	}
       else
 	{
-	  _Ai = __sums.Ai;
-	  _Aip = __sums.Aip;
+	  _Ai = __sums.__Ai_value;
+	  _Aip = __sums.__Ai_deriv;
 	  if (__absargy >= _S_5pi_6)
 	    {
-	      _Ai += __sign * _S_i * __sums.Bi;
-	      _Aip += __sign * _S_i * __sums.Bip;
+	      _Ai += __sign * _S_i * __sums.__Bi_value;
+	      _Aip += __sign * _S_i * __sums.__Bi_deriv;
 	    }
 	}
 

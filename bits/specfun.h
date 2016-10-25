@@ -2751,7 +2751,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     airy_ai(std::complex<_Tp> __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__airy_ai<__type>(__x).__Ai_value;
+      return std::__detail::__airy_ai<__type>(__x);
     }
 
   // Airy functions of the second kind
@@ -2814,7 +2814,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     airy_bi(std::complex<_Tp> __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__airy_bi<__type>(__x).__Bi_value;
+      return std::__detail::__airy<__type>(__x).__Bi_value;
     }
 
   // Log Gamma function for complex argument.
@@ -3374,7 +3374,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     hurwitz_zeta(_Tp __s, std::complex<_Up> __a)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp, _Up>;
-      return std::__detail::__hurwitz_zeta<__type>(__s, __a);
+      return std::__detail::__hurwitz_zeta_polylog<__type>(__s, __a);
     }
 
   // Digamma or psi functions

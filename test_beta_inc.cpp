@@ -1,6 +1,6 @@
 /*
 $HOME/bin_specfun/bin/g++ -std=c++17 -I. -o test_beta_inc test_beta_inc.cpp
-LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:$LD_LIBRARY_PATH ./test_beta_inc > test_beta_inc.txt
+./test_beta_inc > test_beta_inc.txt
 */
 
 #include <cmath>

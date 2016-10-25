@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -I. -g -o test_inv_ibeta test_inv_ibeta.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_inv_ibeta test_inv_ibeta.cpp
 ./test_inv_ibeta > test_inv_ibeta.txt
 */
 

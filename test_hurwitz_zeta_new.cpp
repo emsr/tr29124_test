@@ -1,9 +1,9 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
+./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
 
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -DDEBUG_SERIES -I. -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -DDEBUG_SERIES -I. -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
+./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
 
 g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
@@ -14,7 +14,7 @@ g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 #include <iostream>
 #include <iomanip>
 #include <vector>
-//#include <bits/float128.h>
+#include <bits/float128_io.h>
 #include <bits/summation.h>
 
   constexpr unsigned long long
@@ -494,104 +494,108 @@ g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
     }
 
 
+template<typename _Tp>
+  void
+  test_hurwitz_zeta_new()
+  {
+    std::cout.precision(std::numeric_limits<_Tp>::max_digits10);
+    auto width = std::numeric_limits<_Tp>::max_digits10 + 6;
+
+    // Build the harmonic numbers H_n.
+    std::cout << "\nBuild the H_n numbers\n";
+    auto hn = _Tp{0};
+    for (auto i = 1; i < 100; ++i)
+      {
+	std::cout << (hn += _Tp{1} / i) << std::endl;
+      }
+
+    // Build the B_{2j} numbers.
+    std::cout << "\nBuild the B_{2j} numbers\n";
+    for (auto i = 1; i < 100; ++i)
+      {
+	std::cout << __bernoulli_series<_Tp>(2 * i) << std::endl;
+      }
+
+    // Build the B_{2j}/(2j)! numbers.
+    std::cout << "\nBuild the B_{2j}/(2j)! numbers\n";
+    _Tp __fact{1};
+    for (auto i = 1; i < 100; ++i)
+      {
+	__fact /= (2 * i - 1) * (2 * i);
+	std::cout << __fact * __bernoulli_series<_Tp>(2 * i) << std::endl;
+      }
+
+    // Test zeta - 1 function with both simple and Kahan summation.
+    std::cout << "\nTest zeta - 1 function with both simple and Kahan summation\n";
+    for (auto is = 10; is < 100; ++is)
+      {
+	_Tp s = 0.1L * is;
+	auto zetam1s = __riemann_zeta_m_1_basic_sum(s);
+	auto zetam1k = __riemann_zeta_m_1_kahan_sum(s);
+	std::cout << ' ' << std::setw(width) << s
+		  << ' ' << std::setw(width) << zetam1s
+		  << ' ' << std::setw(width) << zetam1k
+		  << ' ' << std::setw(width) << zetam1k - zetam1s
+		  << std::endl;
+      }
+
+    // Test zeta - 1 function with both simple and Kahan summation.
+    std::cout << "\nTest zeta - 1 function with both simple and Kahan summation\n";
+    for (auto is = 1; is <= 100; ++is)
+      {
+	_Tp s = 1.0L * is;
+	auto zetam1s = __riemann_zeta_m_1_basic_sum(s);
+	auto zetam1k = __riemann_zeta_m_1_kahan_sum(s);
+	std::cout << ' ' << std::setw(width) << s
+		  << ' ' << std::setw(width) << zetam1s
+		  << ' ' << std::setw(width) << zetam1k
+		  << ' ' << std::setw(width) << zetam1k - zetam1s
+		  << std::endl;
+      }
+
+    // Test a Bernoulli thing for the regular zeta function.
+    std::cout << "\nBernoulli sum regular zeta function\n";
+    for (auto is = -9; is < 100; ++is)
+      {
+	_Tp s = 0.1L * is;
+	auto hzeta = __hurwitz_zeta_euler_maclaurin(s, _Tp{1});
+	auto rzeta = __riemann_zeta_euler_maclaurin(s);
+	std::cout << ' ' << std::setw(width) << s
+		  << ' ' << std::setw(width) << hzeta
+		  << ' ' << std::setw(width) << rzeta
+		  << ' ' << std::setw(width) << hzeta - rzeta
+		  << std::endl;
+      }
+
+    // Test a Hurwitz zeta function.
+    std::cout << "\nHurwitz zeta function\n";
+    std::cout << "\n a = " << _Tp{4} << std::endl;//'\n';
+    std::cout << ' ' << std::setw(width) << _Tp{10}
+	      << ' ' << std::setw(width) << __hurwitz_zeta_euler_maclaurin(_Tp{10}, _Tp{4})
+	      << ' ' << std::setw(width) << __hurwitz_zeta_glob(_Tp{10}, _Tp{4})
+	      << std::endl;
+
+    std::cout << "\nHurwitz zeta function\n";
+    for (auto ia = 1; ia < 100; ++ia)
+      {
+	_Tp a = 0.1L * ia;
+	std::cout << "\n a = " << a << std::endl;//'\n';
+	for (auto is = 0; is < 100; ++is)
+	  {
+	    _Tp s = 0.1L * is;
+	    if (s == 1)
+	      continue;
+	    std::cout << ' ' << std::setw(width) << s
+		      << ' ' << std::setw(width) << __hurwitz_zeta_euler_maclaurin(s, a)
+		      << ' ' << std::setw(width) << __hurwitz_zeta_glob(s, a)
+		      << std::endl;
+	  }
+      }
+  }
+
 int
 main()
 {
-  using _Tp = long double;
-  //using _Tp = __float128;
-
-  std::cout.precision(std::numeric_limits<_Tp>::max_digits10);
-  auto width = std::numeric_limits<_Tp>::max_digits10 + 6;
-
-  // Build the harmonic numbers H_n.
-  std::cout << "\nBuild the H_n numbers\n";
-  auto hn = _Tp{0};
-  for (auto i = 1; i < 100; ++i)
-    {
-      std::cout << (hn += _Tp{1} / i) << std::endl;
-    }
-
-  // Build the B_{2j} numbers.
-  std::cout << "\nBuild the B_{2j} numbers\n";
-  for (auto i = 1; i < 100; ++i)
-    {
-      std::cout << __bernoulli_series<_Tp>(2 * i) << std::endl;
-    }
-
-  // Build the B_{2j}/(2j)! numbers.
-  std::cout << "\nBuild the B_{2j}/(2j)! numbers\n";
-  _Tp __fact{1};
-  for (auto i = 1; i < 100; ++i)
-    {
-      __fact /= (2 * i - 1) * (2 * i);
-      std::cout << __fact * __bernoulli_series<_Tp>(2 * i) << std::endl;
-    }
-
-  // Test zeta - 1 function with both simple and Kahan summation.
-  std::cout << "\nTest zeta - 1 function with both simple and Kahan summation\n";
-  for (auto is = 10; is < 100; ++is)
-    {
-      _Tp s = 0.1L * is;
-      auto zetam1s = __riemann_zeta_m_1_basic_sum(s);
-      auto zetam1k = __riemann_zeta_m_1_kahan_sum(s);
-      std::cout << ' ' << std::setw(width) << s
-		<< ' ' << std::setw(width) << zetam1s
-		<< ' ' << std::setw(width) << zetam1k
-		<< ' ' << std::setw(width) << zetam1k - zetam1s
-		<< std::endl;
-    }
-
-  // Test zeta - 1 function with both simple and Kahan summation.
-  std::cout << "\nTest zeta - 1 function with both simple and Kahan summation\n";
-  for (auto is = 1; is <= 100; ++is)
-    {
-      _Tp s = 1.0L * is;
-      auto zetam1s = __riemann_zeta_m_1_basic_sum(s);
-      auto zetam1k = __riemann_zeta_m_1_kahan_sum(s);
-      std::cout << ' ' << std::setw(width) << s
-		<< ' ' << std::setw(width) << zetam1s
-		<< ' ' << std::setw(width) << zetam1k
-		<< ' ' << std::setw(width) << zetam1k - zetam1s
-		<< std::endl;
-    }
-
-  // Test a Bernoulli thing for the regular zeta function.
-  std::cout << "\nBernoulli sum regular zeta function\n";
-  for (auto is = -9; is < 100; ++is)
-    {
-      _Tp s = 0.1L * is;
-      auto hzeta = __hurwitz_zeta_euler_maclaurin(s, _Tp{1});
-      auto rzeta = __riemann_zeta_euler_maclaurin(s);
-      std::cout << ' ' << std::setw(width) << s
-		<< ' ' << std::setw(width) << hzeta
-		<< ' ' << std::setw(width) << rzeta
-		<< ' ' << std::setw(width) << hzeta - rzeta
-		<< std::endl;
-    }
-
-  // Test a Hurwitz zeta function.
-  std::cout << "\nHurwitz zeta function\n";
-  std::cout << "\n a = " << _Tp{4} << std::endl;//'\n';
-  std::cout << ' ' << std::setw(width) << _Tp{10}
-	    << ' ' << std::setw(width) << __hurwitz_zeta_euler_maclaurin(_Tp{10}, _Tp{4})
-	    << ' ' << std::setw(width) << __hurwitz_zeta_glob(_Tp{10}, _Tp{4})
-	    << std::endl;
-
-  std::cout << "\nHurwitz zeta function\n";
-  for (auto ia = 1; ia < 100; ++ia)
-    {
-      _Tp a = 0.1L * ia;
-      std::cout << "\n a = " << a << std::endl;//'\n';
-      for (auto is = 0; is < 100; ++is)
-	{
-	  _Tp s = 0.1L * is;
-	  if (s == 1)
-	    continue;
-	  std::cout << ' ' << std::setw(width) << s
-		    << ' ' << std::setw(width) << __hurwitz_zeta_euler_maclaurin(s, a)
-		    << ' ' << std::setw(width) << __hurwitz_zeta_glob(s, a)
-		    << std::endl;
-	}
-    }
+  test_hurwitz_zeta_new<long double>();
 }
 

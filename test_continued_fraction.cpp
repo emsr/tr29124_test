@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++14 -g -Wall -Wextra -o test_continued_fraction test_continued_fraction.cpp -L$HOME/bin/lib64 -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_continued_fraction > test_continued_fraction.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_continued_fraction test_continued_fraction.cpp -L$HOME/bin/lib64 -lquadmath
+./test_continued_fraction > test_continued_fraction.txt
 
-g++ -std=gnu++14 -Wall -Wextra -DNO_LOGBQ -I. -o test_continued_fraction test_continued_fraction.cpp -lquadmath
+g++ -std=gnu++14 -g -Wall -Wextra -DNO_LOGBQ -I. -o test_continued_fraction test_continued_fraction.cpp -lquadmath
 ./test_continued_fraction > test_continued_fraction.txt
 */
 
@@ -12,11 +12,11 @@ g++ -std=gnu++14 -Wall -Wextra -DNO_LOGBQ -I. -o test_continued_fraction test_co
 #include <vector>
 #include <complex>
 #include <ext/math_const.h>
-#include <bits/float128.h>
+#include <bits/float128_io.h>
 #include <bits/numeric_limits.h>
 #include <bits/specfun_util.h>
 #include <bits/complex_util.h>
-#include "polynomial.h"
+#include <ext/polynomial.h>
 //#include "rational.h"
 
 /**

@@ -9,9 +9,8 @@ g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_beta test_beta.cpp wrap_boost.cpp -lquad
 ./test_beta > test_beta.txt
 */
 
-#include <bits/specfun.h>
-#include <bits/float128.h>
-#include <ext/math_const.h>
+#include <cmath>
+#include <bits/float128_io.h>
 #include <limits>
 #include <iostream>
 #include <fstream>
@@ -21,27 +20,6 @@ g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_beta test_beta.cpp wrap_boost.cpp -lquad
 #include <complex>
 
 #include "wrap_boost.h"
-
-// I'm not sure why I need this here and not other places...
-template<>
-  constexpr std::array<float, 7>
-  std::__detail::_GammaSpouge<float>::_S_cheby;
-template<>
-  constexpr std::array<double, 18>
-  std::__detail::_GammaSpouge<double>::_S_cheby;
-template<>
-  constexpr std::array<long double, 22>
-  std::__detail::_GammaSpouge<long double>::_S_cheby;
-
-template<>
-  constexpr std::array<float, 7>
-  std::__detail::_GammaLanczos<float>::_S_cheby;
-template<>
-  constexpr std::array<double, 10>
-  std::__detail::_GammaLanczos<double>::_S_cheby;
-template<>
-  constexpr std::array<long double, 11>
-  std::__detail::_GammaLanczos<long double>::_S_cheby;
 
 template<typename _Tp>
   void
