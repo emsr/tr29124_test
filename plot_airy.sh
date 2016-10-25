@@ -46,6 +46,10 @@ set xzeroaxis
 set yzeroaxis
 set grid
 
+set palette model RGB defined (0.0 "blue", 0.3 "green", 0.7 "yellow", 1 "red")
+set colorbox
+set pm3d at sb corners2color geomean
+
 plot [-5.0:2.0][-1.5:+1.5] "plot/fgh_double.txt" using 1:2 with lines title "fai", "" using 1:3 with lines title "gai", "" using 1:4 with lines title "hai"
 plot [-5.0:2.0][-2.5:+2.5] "plot/fgh_double.txt" using 1:5 with lines title "fai'", "" using 1:6 with lines title "gai'", "" using 1:7 with lines title "hai'"
 plot [-5.0:2.0][-2.5:+2.5] "plot/fgh_double.txt" using 1:($2+$3+$4) with lines title "Hi"
@@ -93,13 +97,15 @@ set xzeroaxis
 set yzeroaxis
 set grid
 
+set palette model RGB defined (0.0 "blue", 0.3 "green", 0.7 "yellow", 1 "red")
+set colorbox
+set pm3d at sb corners2color geomean
+
 /usr/local/bin/gnuplot
+
 set hidden3d
+
 splot [-20.0:5.0][-5.0:5.0][-1.5:+1.5] "plot/airy_complex_double.txt" title "Ai"
-
-
-/usr/local/bin/gnuplot
-set hidden3d
 
 
 splot [-5:5][-5:5][0:12] "plot/airy_complex_float.txt" index 0 with lines title "|Ai(z)|^{1/6}"

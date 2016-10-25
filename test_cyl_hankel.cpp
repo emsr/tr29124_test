@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath wrap_boost.cpp
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_cyl_hankel > test_cyl_hankel.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath wrap_boost.cpp
+./test_cyl_hankel > test_cyl_hankel.txt
 
 g++ -std=c++14 -g -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath
 ./test_cyl_hankel > test_cyl_hankel.txt

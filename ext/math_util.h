@@ -40,6 +40,15 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
+   * A function to return the max of the absolute values of two numbers
+   * ... so we won't include everything.
+   */
+  template<typename _Tp>
+    inline _Tp
+    __fpmaxabs(_Tp __a, _Tp __b)
+    { std::abs(__a) < std::abs(__b) ? std::abs(__a) : std::abs(__b); }
+
+  /**
    * A function to reliably compare two floating point numbers.
    *
    * @param __a The left hand side
@@ -57,8 +66,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       bool __retval = true;
       if ((__a != _Tp{0}) || (__b != _Tp{0}))
 	// Looks mean, but is necessary that the next line has sense.
-	__retval = (std::abs(__a - __b) < std::max(std::abs(__a),
-						   std::abs(__b)) * _S_tol);
+	__retval = (std::abs(__a - __b) < __fpmaxabs(__a, __b) * _S_tol);
       return __retval;
     }
 

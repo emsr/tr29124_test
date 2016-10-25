@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_anger_weber test_anger_weber.cpp
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_anger_weber
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_anger_weber test_anger_weber.cpp
+./test_anger_weber
 */
 
 #include <ext/cmath>

@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -o test_jacobi_inv test_jacobi_inv.cpp -L$HOME/bin/lib64 -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_jacobi_inv > test_jacobi_inv.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_jacobi_inv test_jacobi_inv.cpp -L$HOME/bin/lib64 -lquadmath
+./test_jacobi_inv > test_jacobi_inv.txt
 
 g++ -std=gnu++17 -g -Wall -Wextra -DNO_LOGBQ -I. -o test_jacobi_inv test_jacobi_inv.cpp -lquadmath
 ./test_jacobi_inv > test_jacobi_inv.txt

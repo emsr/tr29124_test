@@ -9,10 +9,10 @@ g++ -std=c++14 -o test_sincos test_sincos.cpp
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-#include <bits/float128.h>
+#include <bits/float128_io.h>
 
-namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
-{
+//namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
+//{
 
   /**
    * A struct to store a cosine and a sine value.
@@ -24,14 +24,14 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
       _Tp cos_value;
     };
 
-} // namespace __gnu_cxx
+//} // namespace __gnu_cxx
 
-namespace std _GLIBCXX_VISIBILITY(default)
-{
-// Implementation-space details.
-namespace __detail
-{
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
+//namespace std _GLIBCXX_VISIBILITY(default)
+//{
+//// Implementation-space details.
+//namespace __detail
+//{
+//_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Default implementation of sincos.
@@ -86,8 +86,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gnu_cxx::__sincos_t<_Tp>
     __sincos_pi(_Tp __x)
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_NaN = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      const auto _S_pi = __gnu_cxx::__const_pi<_Tp>();
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
       if (std::isnan(__x))
 	return __gnu_cxx::__sincos_t<_Tp>{_S_NaN, _S_NaN};
       else if (__x < _Tp{0})
@@ -131,20 +131,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::complex<_Tp>(__rho * __sc.cos_value, __rho * __sc.sin_value);
     }
 
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
-} // namespace std
+//_GLIBCXX_END_NAMESPACE_VERSION
+//} // namespace __detail
+//} // namespace std
 
 
 template<typename _Tp>
   void
   test_sincos()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    constexpr auto pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+    const auto pi = __gnu_cxx::__const_pi<_Tp>();
 
     std::cout << std::endl;
     std::cout << std::setw(width) << "x"
@@ -194,18 +194,18 @@ main()
   constexpr auto piq = __gnu_cxx::__math_constants<__float128>::__pi;
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
-  auto a1 = std::__detail::__sincos(pif * 1.5f);
-  auto a2 = std::__detail::__sincos_pi(1.5f);
+  auto a1 = /*std::__detail::*/__sincos(pif * 1.5f);
+  auto a2 = /*std::__detail::*/__sincos_pi(1.5f);
 
-  auto b1 = std::__detail::__sincos(pi * 1.5);
-  auto b2 = std::__detail::__sincos_pi(1.5);
+  auto b1 = /*std::__detail::*/__sincos(pi * 1.5);
+  auto b2 = /*std::__detail::*/__sincos_pi(1.5);
 
-  auto c1 = std::__detail::__sincos(pil * 1.5l);
-  auto c2 = std::__detail::__sincos_pi(1.5l);
+  auto c1 = /*std::__detail::*/__sincos(pil * 1.5l);
+  auto c2 = /*std::__detail::*/__sincos_pi(1.5l);
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  auto d1 = std::__detail::__sincos(piq * 1.5q);
-  auto d2 = std::__detail::__sincos_pi(1.5q);
+  auto d1 = /*std::__detail::*/__sincos(piq * 1.5q);
+  auto d2 = /*std::__detail::*/__sincos_pi(1.5q);
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   test_sincos<double>();
