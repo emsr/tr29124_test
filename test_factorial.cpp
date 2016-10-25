@@ -1,16 +1,16 @@
 /*
-$HOME/bin_tr29124/bin/g++ -I. -o test_factorial test_factorial.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_factorial > test_factorial.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_factorial test_factorial.cpp -lquadmath
+./test_factorial > test_factorial.txt
 
-$HOME/bin/bin/g++ -I. -o test_factorial test_factorial.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_factorial > test_factorial.txt
+$HOME/bin/bin/g++ -std=gnu++17 -I. -o test_factorial test_factorial.cpp -lquadmath
+./test_factorial > test_factorial.txt
 */
 
 #include <bits/numeric_limits.h>
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include <bits/float128.h>
+#include <bits/float128_io.h>
 
 template<typename Tp>
   std::string

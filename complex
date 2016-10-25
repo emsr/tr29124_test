@@ -41,7 +41,9 @@
 #include <bits/c++config.h>
 #include <bits/cpp_type_traits.h>
 #include <ext/type_traits.h>
-#include <bits/basic_math.h>
+#define _GLIBCXX_NO_SPECFUN
+#  include <cmath>
+#undef _GLIBCXX_NO_SPECFUN
 #include <sstream>
 
 // Get rid of a macro possibly defined in <complex.h>
@@ -592,6 +594,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   __complex_abs(const __complex__ long double& __z)
   { return __builtin_cabsl(__z); }
 
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __float128
+  __complex_abs(const __complex128& __z)
+  { return cabsq(__z); }
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
+
   template<typename _Tp>
     inline _Tp
     abs(const complex<_Tp>& __z) { return __complex_abs(__z.__rep()); }
@@ -618,6 +626,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline long double
   __complex_arg(const __complex__ long double& __z)
   { return __builtin_cargl(__z); }
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __float128
+  __complex_arg(const __complex128& __z)
+  { return cargq(__z); }
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   template<typename _Tp>
     inline _Tp
@@ -700,6 +714,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   __complex_cos(const __complex__ long double& __z)
   { return __builtin_ccosl(__z); }
 
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __complex128
+  __complex_cos(const __complex128& __z)
+  { return ccosq(__z); }
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
+
   template<typename _Tp>
     inline complex<_Tp>
     cos(const complex<_Tp>& __z) { return __complex_cos(__z.__rep()); }
@@ -730,6 +750,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   __complex_cosh(const __complex__ long double& __z)
   { return __builtin_ccoshl(__z); }
 
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __complex128
+  __complex_cosh(const __complex128& __z)
+  { return ccoshq(__z); }
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
+
   template<typename _Tp>
     inline complex<_Tp>
     cosh(const complex<_Tp>& __z) { return __complex_cosh(__z.__rep()); }
@@ -755,6 +781,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline __complex__ long double
   __complex_exp(const __complex__ long double& __z)
   { return __builtin_cexpl(__z); }
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __complex128
+  __complex_exp(const __complex128& __z)
+  { return cexpq(__z); }
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   template<typename _Tp>
     inline complex<_Tp>
@@ -782,6 +814,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline __complex__ long double
   __complex_log(const __complex__ long double& __z)
   { return __builtin_clogl(__z); }
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __complex128
+  __complex_log(const __complex128& __z)
+  { return clogq(__z); }
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   template<typename _Tp>
     inline complex<_Tp>
@@ -818,6 +856,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   __complex_sin(const __complex__ long double& __z)
   { return __builtin_csinl(__z); }
 
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __complex128
+  __complex_sin(const __complex128& __z)
+  { return csinq(__z); }
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
+
   template<typename _Tp>
     inline complex<_Tp>
     sin(const complex<_Tp>& __z) { return __complex_sin(__z.__rep()); }
@@ -847,6 +891,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline __complex__ long double
   __complex_sinh(const __complex__ long double& __z)
   { return __builtin_csinhl(__z); }
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __complex128
+  __complex_sinh(const __complex128& __z)
+  { return csinhq(__z); }      
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   template<typename _Tp>
     inline complex<_Tp>
@@ -892,6 +942,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   __complex_sqrt(const __complex__ long double& __z)
   { return __builtin_csqrtl(__z); }
 
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __complex128
+  __complex_sqrt(const __complex128& __z)
+  { return csqrtq(__z); }
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
+
   template<typename _Tp>
     inline complex<_Tp>
     sqrt(const complex<_Tp>& __z) { return __complex_sqrt(__z.__rep()); }
@@ -918,6 +974,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline __complex__ long double
   __complex_tan(const __complex__ long double& __z)
   { return __builtin_ctanl(__z); }
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __complex128
+  __complex_tan(const __complex128& __z)
+  { return ctanq(__z); }
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   template<typename _Tp>
     inline complex<_Tp>
@@ -946,6 +1008,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline __complex__ long double
   __complex_tanh(const __complex__ long double& __z)
   { return __builtin_ctanhl(__z); }
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __complex128
+  __complex_tanh(const __complex128& __z)
+  { return ctanhq(__z); }
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   template<typename _Tp>
     inline complex<_Tp>
@@ -1025,6 +1093,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		const __complex__ long double& __y)
   { return __builtin_cpowl(__x, __y); }
 
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __complex128
+  __complex_pow(const __complex128& __x, const __complex128& __y)
+  { return cpowq(__x, __y); }
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
+
   template<typename _Tp>
     inline complex<_Tp>
     pow(const complex<_Tp>& __x, const complex<_Tp>& __y)
@@ -1067,6 +1141,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       explicit _GLIBCXX_CONSTEXPR complex(const complex<double>&);
       explicit _GLIBCXX_CONSTEXPR complex(const complex<long double>&);
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+      explicit _GLIBCXX_CONSTEXPR complex(const complex<__float128>&);
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
 #if __cplusplus >= 201103L
       // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -1218,6 +1295,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       : _M_value(__z.__rep()) { }
 
       explicit _GLIBCXX_CONSTEXPR complex(const complex<long double>&);
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+      explicit _GLIBCXX_CONSTEXPR complex(const complex<__float128>&);
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
 #if __cplusplus >= 201103L
       // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -1370,6 +1450,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       _GLIBCXX_CONSTEXPR complex(const complex<double>& __z)
       : _M_value(__z.__rep()) { }
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+      explicit _GLIBCXX_CONSTEXPR complex(const complex<__float128>&);
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
 #if __cplusplus >= 201103L
       // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -1604,6 +1688,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   __complex_acos(const __complex__ long double& __z)
   { return __builtin_cacosl(__z); }
 
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __complex128
+  __complex_acos(const __complex128& __z)
+  { return cacosq(__z); }
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
+
   template<typename _Tp>
     inline std::complex<_Tp>
     acos(const std::complex<_Tp>& __z)
@@ -1639,6 +1729,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline __complex__ long double
   __complex_asin(const __complex__ long double& __z)
   { return __builtin_casinl(__z); }
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __complex128
+  __complex_asin(const __complex128& __z)
+  { return casinq(__z); }
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   template<typename _Tp>
     inline std::complex<_Tp>
@@ -1684,6 +1780,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   __complex_atan(const __complex__ long double& __z)
   { return __builtin_catanl(__z); }
 
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __complex128
+  __complex_atan(const __complex128& __z)
+  { return catanq(__z); }
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
+
   template<typename _Tp>
     inline std::complex<_Tp>
     atan(const std::complex<_Tp>& __z)
@@ -1719,6 +1821,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline __complex__ long double
   __complex_acosh(const __complex__ long double& __z)
   { return __builtin_cacoshl(__z); }
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __complex128
+  __complex_acosh(const __complex128& __z)
+  { return cacoshq(__z); }
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   template<typename _Tp>
     inline std::complex<_Tp>
@@ -1758,6 +1866,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline __complex__ long double
   __complex_asinh(const __complex__ long double& __z)
   { return __builtin_casinhl(__z); }
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __complex128
+  __complex_asinh(const __complex128& __z)
+  { return casinhq(__z); }
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   template<typename _Tp>
     inline std::complex<_Tp>
@@ -1802,6 +1916,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline __complex__ long double
   __complex_atanh(const __complex__ long double& __z)
   { return __builtin_catanhl(__z); }
+
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __complex128
+  __complex_atanh(const __complex128& __z)
+  { return catanhq(__z); }
+#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   template<typename _Tp>
     inline std::complex<_Tp>

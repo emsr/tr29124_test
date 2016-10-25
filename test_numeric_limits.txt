@@ -171,7 +171,7 @@ has_infinity     : true
 has_quiet_NaN    : true
 has_signaling_NaN: true
 has_denorm       : denorm_present
-has_denorm_loss  : true
+has_denorm_loss  : false
 infinity         :  inf
 quiet_NaN        :  nan
 signaling_NaN    :  nan

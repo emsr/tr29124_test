@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -o test_hypot test_hypot.cpp -L$HOME/bin/lib64 -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_hypot > test_hypot.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hypot test_hypot.cpp -L$HOME/bin/lib64 -lquadmath
+./test_hypot > test_hypot.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hypot test_hypot.cpp -L$HOME/bin/lib64 -lquadmath
 ./test_hypot > test_hypot.txt
