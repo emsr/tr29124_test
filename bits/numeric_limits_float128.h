@@ -34,20 +34,18 @@
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
 
-#include <bits/float128.h>
-#include <bits/numeric_limits.h>
-
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *  @brief Part of std::numeric_limits.
+   *  @brief An extension/wrapper of std::numeric_limits.
+   *
    *  The idea is that types with, say, non-constexpr or even dynamic epsilon()
-   *  can participate in this.
+   *  can use this generic API.
    *  I think variable templates could be specialized with non-constexpr types
    *  but I need something to work in C++11 and variable templates won't allow
-   *  extraction of variable max from a mp number.
+   *  extraction of variable max, epsilon, etc. from a multi-precision number.
    */
 
   // Constexpr function template versions of std::numeric_limits.

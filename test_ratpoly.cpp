@@ -1,11 +1,10 @@
-// $HOME/bin_tr29124/bin/g++ -g -std=gnu++17 -o test_ratpoly test_ratpoly.cpp
+/*
+$HOME/bin_tr29124/bin/g++ -g -std=gnu++17 -g -I. -o test_ratpoly test_ratpoly.cpp
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_ratpoly > test_ratpoly.txt
 
-// LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_ratpoly
-
-// $HOME/bin/bin/g++ -g -std=gnu++1z -I. -o test_ratpoly test_ratpoly.cpp
-
-// LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_ratpoly
-
+$HOME/bin/bin/g++ -g -std=gnu++17 -g -I. -o test_ratpoly test_ratpoly.cpp
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_ratpoly > test_ratpoly.txt
+*/
 
 #include "ratpoly.h"
 #include <iostream>

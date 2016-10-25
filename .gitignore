@@ -189,10 +189,11 @@ test_pow_bits
 test_promote_num
 test_psi
 test_rational
+test_ratpoly
 test_reperiodized_hyper
 test_reperiodized_trig
 test_riemann_zeta
-test_roots
+test_root_finding
 test_sincos
 test_sinus_cardinal
 test_special_function
@@ -202,6 +203,7 @@ test_static_polynomial
 test_struve
 test_summation
 test_theta
+test_trigamma
 
 plot_airy
 plot_gamma

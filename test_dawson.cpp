@@ -1,13 +1,14 @@
 
-// $HOME/bin/bin/g++ -std=gnu++14 -o test_dawson test_dawson.cpp -L$HOME/bin/lib64 -lquadmath
-
-// LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_dawson
+/*
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -o test_dawson test_dawson.cpp -L$HOME/bin/lib64 -lquadmath
+./test_dawson
+*/
 
 #include <limits>
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-#include "float128.h"
+#include <bits/float128io.h>
 
 int
 main()
