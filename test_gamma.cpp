@@ -1,16 +1,16 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_gamma test_gamma.cpp wrap_boost.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_gamma > test_gamma.txt
-
-$HOME/bin/bin/g++ -std=gnu++17 -I. -o test_gamma test_gamma.cpp wrap_boost.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_gamma test_gamma.cpp wrap_boost.cpp -lquadmath
 ./test_gamma > test_gamma.txt
 
-g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp wrap_boost.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_gamma test_gamma.cpp wrap_boost.cpp -lquadmath
+./test_gamma > test_gamma.txt
+
+g++ -std=gnu++17 -g -Wall -Wextra -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp wrap_boost.cpp -lquadmath
 ./test_gamma > test_gamma.txt
 */
 
 #include <bits/specfun.h>
-#include <bits/float128.h>
+#include <bits/float128_io.h>
 #include <ext/math_const.h>
 #include <limits>
 #include <iostream>
@@ -21,27 +21,6 @@ g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp wrap_boost.cpp -lqu
 #include <complex>
 
 #include "wrap_boost.h"
-
-// I'm not sure why I need this here and not other places...
-template<>
-  constexpr std::array<float, 7>
-  std::__detail::_GammaSpouge<float>::_S_cheby;
-template<>
-  constexpr std::array<double, 18>
-  std::__detail::_GammaSpouge<double>::_S_cheby;
-template<>
-  constexpr std::array<long double, 22>
-  std::__detail::_GammaSpouge<long double>::_S_cheby;
-
-template<>
-  constexpr std::array<float, 7>
-  std::__detail::_GammaLanczos<float>::_S_cheby;
-template<>
-  constexpr std::array<double, 10>
-  std::__detail::_GammaLanczos<double>::_S_cheby;
-template<>
-  constexpr std::array<long double, 11>
-  std::__detail::_GammaLanczos<long double>::_S_cheby;
 
 template<typename _Tp, typename _Gamma>
   void
@@ -85,8 +64,8 @@ main()
 {
 
   std::cout << "\n\nLanczos Algorithm\n\n";
-  test_gamma<double>(std::__detail::__log_gamma1p_lanczos<double>);
+  test_gamma<double>(std::__detail::__lanczos_log_gamma1p<double>);
 
   std::cout << "\n\nSpouge Algorithm\n\n";
-  test_gamma<double>(std::__detail::__log_gamma1p_spouge<double>);
+  test_gamma<double>(std::__detail::__spouge_log_gamma1p<double>);
 }

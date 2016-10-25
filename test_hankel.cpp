@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++1z -Wall -Wextra -o test_hankel test_hankel.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_hankel > test_hankel.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hankel test_hankel.cpp -lquadmath
+./test_hankel > test_hankel.txt
 */
 
 #include <iostream>
@@ -9,7 +9,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_hankel > test_ha
 #include <ext/cmath>
 #include <bits/complex_util.h>
 //#include "hankel.h"
-#include <bits/float128.h>
+#include <bits/float128_io.h>
 
 
   template<typename _Tp>
@@ -20,14 +20,6 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_hankel > test_ha
       __r /= std::complex<_Tp>(__y);
       return __r;
     }
-
-
-
-
-
-
-
-
 
 int
 main()
@@ -57,12 +49,11 @@ main()
   std::cout << " Y(z)   = " << std::setw(width) << (h1 - h2) / 2.0i << '\n';
   std::cout << " Y'(z)  = " << std::setw(width) << (h1p - h2p) / 2.0i << '\n';
 
-  std::complex<double> ai, aip, bi, bip;
-  std::__detail::__airy(z, 1.0e-16, ai, aip, bi, bip);
+  auto Airy = std::__detail::__airy(z, 1.0e-16);
   std::cout << '\n';
-  std::cout << " z      = " << std::setw(width) << z << '\n';
-  std::cout << " Ai(z)  = " << std::setw(width) << ai << '\n';
-  std::cout << " Ai'(z) = " << std::setw(width) << aip << '\n';
-  std::cout << " Bi(z)  = " << std::setw(width) << bi << '\n';
-  std::cout << " Bi'(z) = " << std::setw(width) << bip << '\n';
+  std::cout << " z      = " << std::setw(width) << Airy.__z << '\n';
+  std::cout << " Ai(z)  = " << std::setw(width) << Airy.__Ai_value << '\n';
+  std::cout << " Ai'(z) = " << std::setw(width) << Airy.__Ai_deriv << '\n';
+  std::cout << " Bi(z)  = " << std::setw(width) << Airy.__Bi_value << '\n';
+  std::cout << " Bi'(z) = " << std::setw(width) << Airy.__Bi_deriv << '\n';
 }
