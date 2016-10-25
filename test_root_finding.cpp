@@ -1,9 +1,7 @@
 
 /*
- $HOME/bin/bin/g++ -g -I. -o test_roots test_roots.cpp
-
- ./test_roots > test_roots.txt
-
+$HOME/bin/bin/g++ -g -I. -o test_root_finding test_root_finding.cpp
+./test_root_finding > test_root_finding.txt
 */
 
 #include <ext/root_finding.h>

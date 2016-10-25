@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -g -std=gnu++17 -I. -o test_binet_float test_binet_float.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_binet_float test_binet_float.cpp -lquadmath
 ./test_binet_float > test_binet_float.txt
 
-$HOME/bin/bin/g++ -g -std=gnu++17 -I. -o test_binet_float test_binet_float.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_binet_float test_binet_float.cpp -lquadmath
 
  */
 

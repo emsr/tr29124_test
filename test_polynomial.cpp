@@ -1,9 +1,7 @@
-// $HOME/bin_specfun/bin/g++ -g -std=gnu++1z -I. -o test_polynomial test_polynomial.cpp
-
-// LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_polynomial > test_polynomial.txt
-
-//  Get past a bug....
-// $HOME/bin/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__=0 -o test_polynomial test_polynomial.cpp
+/*
+$HOME/bin_specfun/bin/g++ -g -std=gnu++17 -g -I. -o test_polynomial test_polynomial.cpp
+./test_polynomial > test_polynomial.txt
+*/
 
 #include <ext/polynomial.h>
 #include <iostream>

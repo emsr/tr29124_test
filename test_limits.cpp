@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_limits test_limits.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_limits test_limits.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_limits > test_limits.txt
 
-$HOME/bin/bin/g++ -std=gnu++1z -I. -o test_limits test_limits.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_limits test_limits.cpp -lquadmath
 ./test_limits > test_limits.txt
 */
 
@@ -10,8 +10,8 @@ $HOME/bin/bin/g++ -std=gnu++1z -I. -o test_limits test_limits.cpp -lquadmath
 #include <limits>
 #include <string_view>
 #include <map>
-#include <bits/float128.h>
-#include <bits/numeric_limits.h>
+#include <bits/float128_io.h>
+#include <limits>
 
 
 template<typename Numeric>
