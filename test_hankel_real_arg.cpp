@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -I. -o test_hankel_real_arg test_hankel_real_arg.cpp wrap_boost.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hankel_real_arg test_hankel_real_arg.cpp wrap_boost.cpp
 ./test_hankel_real_arg > test_hankel_real_arg.txt
 
 */

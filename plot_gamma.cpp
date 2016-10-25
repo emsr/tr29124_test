@@ -7,7 +7,6 @@ $HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o plot_gamma plot_gamma.cpp -lqua
 */
 
 #include <bits/specfun.h>
-#include <bits/float128.h>
 #include <ext/math_const.h>
 #include <limits>
 #include <iostream>
@@ -16,28 +15,6 @@ $HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o plot_gamma plot_gamma.cpp -lqua
 #include <vector>
 #include <string>
 #include <complex>
-
-// I'm not sure why I need this here and not other places...
-template<>
-  constexpr std::array<float, 7>
-  std::__detail::_GammaSpouge<float>::_S_cheby;
-template<>
-  constexpr std::array<double, 18>
-  std::__detail::_GammaSpouge<double>::_S_cheby;
-template<>
-  constexpr std::array<long double, 22>
-  std::__detail::_GammaSpouge<long double>::_S_cheby;
-
-template<>
-  constexpr std::array<float, 7>
-  std::__detail::_GammaLanczos<float>::_S_cheby;
-template<>
-  constexpr std::array<double, 10>
-  std::__detail::_GammaLanczos<double>::_S_cheby;
-template<>
-  constexpr std::array<long double, 11>
-  std::__detail::_GammaLanczos<long double>::_S_cheby;
-
 
 template<typename _Tp>
   void
@@ -55,7 +32,8 @@ template<typename _Tp>
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
-    using GammaT = decltype(std::__detail::__log_gamma1p_spouge(_Cmplx{}));
+    auto __gamma = std::__detail::__gamma_spouge<_Cmplx>{};
+    using GammaT = decltype(__gamma.__log_gamma1p(_Cmplx{}));
     std::vector<std::vector<GammaT>> zv;
     std::vector<std::vector<GammaT>> gammav;
 
@@ -70,7 +48,7 @@ template<typename _Tp>
 	  {
 	    auto t = _Cmplx(0.10L * i, 0.10L * j);
 	    zv.back().push_back(t);
-	    gammav.back().push_back(std::__detail::__log_gamma1p_spouge(t - GammaT{1}));
+	    gammav.back().push_back(__gamma.__log_gamma1p(t - GammaT{1}));
 	  }
       }
 
@@ -151,7 +129,8 @@ template<typename _Tp>
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
-    using GammaT = decltype(std::__detail::__log_gamma1p_lanczos(_Cmplx{}));
+    auto __gamma = std::__detail::__gamma_lanczos<_Cmplx>{};
+    using GammaT = decltype(__gamma.__log_gamma1p(_Cmplx{}));
     std::vector<std::vector<GammaT>> zv;
     std::vector<std::vector<GammaT>> gammav;
 
@@ -166,7 +145,7 @@ template<typename _Tp>
 	  {
 	    auto t = _Cmplx(0.10L * i, 0.10L * j);
 	    zv.back().push_back(t);
-	    gammav.back().push_back(std::__detail::__log_gamma1p_lanczos(t - GammaT{1}));
+	    gammav.back().push_back(__gamma.__log_gamma1p(t - GammaT{1}));
 	  }
       }
 
@@ -242,8 +221,8 @@ main()
   std::cout << "\nlanczos<long double>\n";
   plot_lanczos<long double>("plot/log_gamma_lanczos_long_double.txt");
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  //std::cout << "\nlanczos<__float128>\n";
-  //plot_lanczos<__float128>("plot/log_gamma_lanczos__float128.txt");
+  std::cout << "\nlanczos<__float128>\n";
+  plot_lanczos<__float128>("plot/log_gamma_lanczos__float128.txt");
 #endif
 
   std::cout << "\n\nSpouge Algorithm\n\n";
@@ -254,7 +233,7 @@ main()
   std::cout << "\nspouge<long double>\n";
   plot_spouge<long double>("plot/log_gamma_spouge_long_double.txt");
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  //std::cout << "\nspouge<__float128>\n";
-  //plot_spouge<__float128>("plot/log_gamma_spouge__float128.txt");
+  std::cout << "\nspouge<__float128>\n";
+  plot_spouge<__float128>("plot/log_gamma_spouge__float128.txt");
 #endif
 }

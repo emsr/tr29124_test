@@ -1,6 +1,6 @@
 
 /*
-$HOME/bin_tr29124/bin/g++ -o test_bernoulli test_bernoulli.cpp
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_bernoulli test_bernoulli.cpp
 ./test_bernoulli > test_bernoulli.txt
 */ 
 

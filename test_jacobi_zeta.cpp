@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -I. -o test_jacobi_zeta test_jacobi_zeta.cpp wrap_boost.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_jacobi_zeta test_jacobi_zeta.cpp wrap_boost.cpp
 ./test_jacobi_zeta > test_jacobi_zeta.txt
 
 */

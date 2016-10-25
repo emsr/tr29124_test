@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -g -o test_lerch test_lerch.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -o -Wall -Wextra test_lerch test_lerch.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_lerch > test_lerch.txt
 
 g++ -std=c++14 -g -o test_lerch test_lerch.cpp -lquadmath
@@ -12,7 +12,6 @@ g++ -std=c++14 -g -o test_lerch test_lerch.cpp -lquadmath
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include "float128.h"
 #include <bits/summation.h>
 
   //

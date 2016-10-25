@@ -281,12 +281,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __airyp = _Airy<std::complex<_Tp>>()(__argp);
 	  auto __airym = _Airy<std::complex<_Tp>>()(__argm);
 	  // Compute partial outer terms in expansions.
-	  __o4dp = -__zetamhf * __num4d3 * __e2pd3 * __airyp.Aip;
-	  __o4dm = -__zetamhf * __num4d3 * __d2pd3 * __airym.Aip;
-	  __od2p = -__zetaphf * __num2d3 * __airyp.Ai;
-	  __od0dp = __e2pd3 * __airyp.Aip;
-	  __od2m = -__zetaphf * __num2d3 * __airym.Ai;
-	  __od0dm = __d2pd3 * __airym.Aip;
+	  __o4dp = -__zetamhf * __num4d3 * __e2pd3 * __airyp.__Ai_deriv;
+	  __o4dm = -__zetamhf * __num4d3 * __d2pd3 * __airym.__Ai_deriv;
+	  __od2p = -__zetaphf * __num2d3 * __airyp.__Ai_value;
+	  __od0dp = __e2pd3 * __airyp.__Ai_deriv;
+	  __od2m = -__zetaphf * __num2d3 * __airym.__Ai_value;
+	  __od0dm = __d2pd3 * __airym.__Ai_deriv;
 	}
       catch (...)
 	{

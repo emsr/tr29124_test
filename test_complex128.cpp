@@ -1,12 +1,12 @@
 /*
-$HOME/bin_tr29124/bin/g++ -o test_complex128 test_complex128.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_complex128
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_complex128 test_complex128.cpp -lquadmath
+./test_complex128
 */
 
 #include <limits>
 #include <iostream>
 
-#include "complex128.h"
+#include <complex>
 
 int
 main()

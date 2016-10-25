@@ -1,6 +1,7 @@
-// $HOME/bin/bin/g++ -g -I. -o test_rational test_rational.cpp
-
-// LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_rational
+/*
+$HOME/bin/bin/g++ -g -I. -o test_rational test_rational.cpp
+./test_rational > test_rational.txt
+*/
 
 #include "rational.h"
 #include <ext/polynomial.h>

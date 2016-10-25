@@ -11,7 +11,7 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o build_gamma_spouge build_gamma_
 #include <iomanip>
 #include <limits>
 #include <ext/cmath>
-#include <bits/float128.h>
+#include <bits/float128_io.h>
 #include <bits/summation.h>
 
   template<typename _Tp>
