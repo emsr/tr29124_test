@@ -1,9 +1,9 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++1z -I. -o test_comp_ellint_1 test_comp_ellint_1.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_comp_ellint_1 > test_comp_ellint_1.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_comp_ellint_1 test_comp_ellint_1.cpp -lquadmath
+./test_comp_ellint_1 > test_comp_ellint_1.txt
 
-$HOME/bin/bin/g++ -std=gnu++1z -I. -o test_comp_ellint_1 test_comp_ellint_1.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_comp_ellint_1 > test_comp_ellint_1.txt
+$HOME/bin/bin/g++ -std=gnu++17  -g -Wall -Wextra-I. -o test_comp_ellint_1 test_comp_ellint_1.cpp -lquadmath
+./test_comp_ellint_1 > test_comp_ellint_1.txt
 
 */
 
@@ -12,7 +12,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_comp_ellint_1 > test_com
 #include <iomanip>
 #include <limits>
 #include <utility>
-#include <bits/float128.h>
+#include <bits/float128_io.h>
 
 //  Use AGM to do an ab initio calculation of K(k).
 template<typename _Tp>

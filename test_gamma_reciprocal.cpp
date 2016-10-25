@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -I. -o test_gamma_reciprocal test_gamma_reciprocal.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_gamma_reciprocal test_gamma_reciprocal.cpp -lquadmath -lmpfr
 ./test_gamma_reciprocal > test_gamma_reciprocal.txt
 */
 
@@ -17,34 +17,11 @@ $HOME/bin/bin/g++ -std=gnu++17 -I. -o test_gamma_reciprocal test_gamma_reciproca
 #include <string>
 #include <complex>
 
-#include <bits/float128.h>
-#include <bits/complex128.h>
+#include <bits/float128_io.h>
 
 #include <mpreal.h>
 #include <ext/math_const.h>
 #include <ext/math_const_mpreal.h>
-
-// I'm not sure why I need this here and not other places...
-template<>
-  constexpr std::array<float, 7>
-  std::__detail::_GammaSpouge<float>::_S_cheby;
-template<>
-  constexpr std::array<double, 18>
-  std::__detail::_GammaSpouge<double>::_S_cheby;
-template<>
-  constexpr std::array<long double, 22>
-  std::__detail::_GammaSpouge<long double>::_S_cheby;
-
-template<>
-  constexpr std::array<float, 7>
-  std::__detail::_GammaLanczos<float>::_S_cheby;
-template<>
-  constexpr std::array<double, 10>
-  std::__detail::_GammaLanczos<double>::_S_cheby;
-template<>
-  constexpr std::array<long double, 11>
-  std::__detail::_GammaLanczos<long double>::_S_cheby;
-
 
   /**
    * 
@@ -56,7 +33,7 @@ template<>
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_gamma_e = __gnu_cxx::__const_gamma_e(std::real(__proto));
-      auto __sign = [](std::size_t __i){ return __i & 1u == 1u ? -1 : +1; };
+      auto __sign = [](std::size_t __i){ return (__i & 1u) == 1u ? -1 : +1; };
       std::vector<_Real> __c;
       __c.push_back(_Real{0});
       __c.push_back(_Real{1});
@@ -318,9 +295,6 @@ template<typename _Tp>
   void
   test_gamma_temme(_Tp __proto)
   {
-    using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
-
     std::cout.precision(__gnu_cxx::__digits10(__proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();

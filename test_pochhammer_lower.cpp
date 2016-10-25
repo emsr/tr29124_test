@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_pochhammer_lower test_pochhammer_lower.cpp wrap_boost.cpp
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -I. -o test_pochhammer_lower test_pochhammer_lower.cpp wrap_boost.cpp
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_pochhammer_lower > test_pochhammer_lower.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -I. -o test_pochhammer_lower test_pochhammer_lower.cpp wrap_boost.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -g -I. -o test_pochhammer_lower test_pochhammer_lower.cpp wrap_boost.cpp
 ./test_pochhammer_lower > test_pochhammer_lower.txt
 */
 
@@ -12,28 +12,6 @@ $HOME/bin/bin/g++ -std=gnu++17 -I. -o test_pochhammer_lower test_pochhammer_lowe
 #include <iomanip>
 #include <ext/cmath>
 #include "wrap_boost.h"
-
-// I'm not sure why I need this here and not other places...
-#include <array>
-template<>
-  constexpr std::array<float, 7>
-  std::__detail::_GammaSpouge<float>::_S_cheby;
-template<>
-  constexpr std::array<double, 18>
-  std::__detail::_GammaSpouge<double>::_S_cheby;
-template<>
-  constexpr std::array<long double, 22>
-  std::__detail::_GammaSpouge<long double>::_S_cheby;
-
-template<>
-  constexpr std::array<float, 7>
-  std::__detail::_GammaLanczos<float>::_S_cheby;
-template<>
-  constexpr std::array<double, 10>
-  std::__detail::_GammaLanczos<double>::_S_cheby;
-template<>
-  constexpr std::array<long double, 11>
-  std::__detail::_GammaLanczos<long double>::_S_cheby;
 
 namespace __gnu_cxx
 {

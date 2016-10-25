@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++1z -I. -o test_summation test_summation.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_summation test_summation.cpp -lquadmath
 ./test_summation > test_summation.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -I. -o test_summation test_summation.cpp -lquadmath
@@ -14,7 +14,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -I. -o test_summation test_summation.cpp -lquadma
 #include <iostream>
 #include <iomanip>
 
-#include <bits/float128.h>
+#include <bits/float128_io.h>
 #include <bits/summation.h>
 
 template<typename Tp>

@@ -1,6 +1,11 @@
 
 /usr/local/bin/gnuplot
+
 set hidden3d
+
+set palette model RGB defined (0.0 "blue", 0.3 "green", 0.7 "yellow", 1 "red")
+set colorbox
+set pm3d at sb corners2color geomean
 
 splot [-5:5][-5:5][0:12] "plot/airy_complex_double_new.txt" index 0 with lines title "|Ai(z)|^{1/6}"
 splot [-20:5][-5:5][-20:20] "plot/airy_complex_double_new.txt" index 1 with lines title "Re[Ai(z)]"
