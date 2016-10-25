@@ -6,9 +6,9 @@
 #error "Unable to compile because all these functions will not be in std::tr1::"
 #endif
 
-int main( int, char** )
+int
+main()
 {
-
   double x = 0.5;
   double y = -1.0;
   double z = 1.5;

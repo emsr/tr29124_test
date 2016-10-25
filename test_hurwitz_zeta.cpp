@@ -1,6 +1,6 @@
 /*
 $HOME/bin/bin/g++ -I. -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_hurwitz_zeta > test_hurwitz_zeta.txt
+./test_hurwitz_zeta > test_hurwitz_zeta.txt
 
 g++ -std=c++14 -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
 ./test_hurwitz_zeta > test_hurwitz_zeta.txt
@@ -10,7 +10,7 @@ g++ -std=c++14 -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include <bits/float128.h>
+#include <bits/float128_io.h>
 
   //  From sf_gamma.tcc
   template<typename _Tp>
@@ -250,36 +250,41 @@ g++ -std=c++14 -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
       return __zeta;
     }
 
+template<typename _Tp>
+  _Tp
+  test_hurwitz_zeta()
+  {
+    std::cout.precision(std::numeric_limits<_Tp>::max_digits10);
+    auto width = std::numeric_limits<_Tp>::max_digits10 + 8;
+
+    _Tp __fact{1};
+    for (auto i = 1; i < 100; ++i)
+      {
+	__fact /= (2 * i - 1) * (2 * i);
+	std::cout << __fact * __bernoulli_series<_Tp>(2 * i) << '\n';
+      }
+
+    std::cout << '\n';
+    for (auto ia = 0; ia < 100; ++ia)
+      {
+	_Tp a = 0.1L * ia;
+	std::cout << "a = " << a << '\n';
+	for (auto is = 0; is < 100; ++is)
+	  {
+	    _Tp s = 0.1L * is;
+	    if (s == 1)
+	      continue;
+	    std::cout << ' ' << std::setw(4) << s
+		      << ' ' << std::setw(width) << __hurwitz_zeta_euler_maclaurin(s, a)
+		      //<< ' ' << std::setw(width) << __hurwitz_zeta_glob(s, a)
+		      << '\n';
+	  }
+      }
+  }
+
 int
 main()
 {
-  using _Tp = long double;
-
-  std::cout.precision(std::numeric_limits<_Tp>::max_digits10);
-  auto width = std::numeric_limits<_Tp>::max_digits10 + 6;
-
-  _Tp __fact{1};
-  for (auto i = 1; i < 100; ++i)
-    {
-      __fact /= (2 * i - 1) * (2 * i);
-      std::cout << __fact * __bernoulli_series<_Tp>(2 * i) << '\n';
-    }
-
-  std::cout << '\n';
-  for (auto ia = 0; ia < 100; ++ia)
-    {
-      _Tp a = 0.1L * ia;
-      std::cout << "a = " << a << '\n';
-      for (auto is = 0; is < 100; ++is)
-	{
-	  _Tp s = 0.1L * is;
-	  if (s == 1)
-	    continue;
-	  std::cout << ' ' << std::setw(4) << s
-		    << ' ' << std::setw(width) << __hurwitz_zeta_euler_maclaurin(s, a)
-		    //<< ' ' << std::setw(width) << __hurwitz_zeta_glob(s, a)
-		    << '\n';
-	}
-    }
+  test_hurwitz_zeta<long double>();
 }
 
