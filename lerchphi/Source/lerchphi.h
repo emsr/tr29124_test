@@ -1,5 +1,5 @@
 
 int
-lerchphi(double *z, double *s, double *v, double *acc, 
+lerchphi(const double *z, const double *s, const double *v, const double *acc, 
          double *result, int *iter);
 
