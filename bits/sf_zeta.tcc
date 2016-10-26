@@ -208,6 +208,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  return -__dilog(_Tp{1} - _Tp{1} / (_Tp{1} - __x))
 		 - _Tp{0.5L} * __lnfact * __lnfact;
 	}
+      else if (__x == _Tp{0})
+	return _Tp{0};
       else if (__x == _Tp{1})
 	return _S_pipio6;
       else if (__x == -_Tp{1})
