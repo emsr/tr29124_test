@@ -50,12 +50,12 @@ high indices (error code 4).
 
 /* Function that computes van Wijngaarden's A_j for a given j. */
 
-static int aj(double *z, double *s, double *v, int j, double *acc, double *res)
+static int aj(const double *z, const double *s, const double *v, const int j, const double *acc, double *res)
     {
   
 	double sum, bjk, z2ind;
 	int k, flag;
-	unsigned long int ind, two2k;
+	unsigned long long int ind, two2k;
 	const double machmin = std::numeric_limits<double>::min();
 	//const double macheps = std::numeric_limits<double>::epsilon();
 	
@@ -106,7 +106,7 @@ static int aj(double *z, double *s, double *v, int j, double *acc, double *res)
 /* Function that computes approximation to Lerch Phi as a 
    converging sequence of CNC transforms S^n_k. */
 
-int lerchphi(double *z, double *s, double *v, double *acc, 
+int lerchphi(const double *z, const double *s, const double *v, const double *acc, 
              double *result, int *iter)
     {
   
@@ -250,7 +250,7 @@ int lerchphi(double *z, double *s, double *v, double *acc,
 	omega = 1.0 / pow(v1, *s);
     
 	/* CNCT (z > 0.5) case. */
-    
+
 	else
 	    {
 		flag = aj(z, s, &v1, 0, acc, &omega); 
