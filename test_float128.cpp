@@ -34,8 +34,11 @@ main()
   std::cout << "exp             = " << exp << '\n';
   std::cout << "abs(x)          = " << std::abs(x) << '\n';
   std::cout << "acos(x)         = " << std::acos(x) << '\n';
+  std::cout << "acosh(x)        = " << std::acosh(x) << '\n';
   std::cout << "asin(x)         = " << std::asin(x) << '\n';
+  std::cout << "asinh(x)        = " << std::asinh(x) << '\n';
   std::cout << "atan(x)         = " << std::atan(x) << '\n';
+  std::cout << "atanh(x)        = " << std::atanh(x) << '\n';
   std::cout << "atan2(x)        = " << std::atan2(y, x) << '\n';
   std::cout << "cbrt(x)         = " << std::cbrt(x) << '\n';
   std::cout << "ceil(x)         = " << std::ceil(x) << '\n';
