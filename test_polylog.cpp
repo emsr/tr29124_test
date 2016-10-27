@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=c++17 -g -I. -o test_polylog test_polylog.cpp
+$HOME/bin_tr29124/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_polylog test_polylog.cpp
 ./test_polylog > test_polylog.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -I. -o test_polylog test_polylog.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_polylog test_polylog.cpp
 */
 
 #include <iostream>
@@ -16,11 +16,11 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -I. -o test_polylog test_polylog.cpp
 
 template<typename Tp>
   void
-  TestPolyLog()
+  TestPolyLog(Tp proto = Tp{})
   {
-    constexpr auto _S_pi = __gnu_cxx::__math_constants<Tp>::__pi;
-    constexpr auto _S_2pi = __gnu_cxx::__math_constants<Tp>::__2_pi;
-    std::cout.precision(std::numeric_limits<Tp>::digits10);
+    const auto _S_pi = __gnu_cxx::__math_pi<Tp>(proto);
+    const auto _S_2pi = __gnu_cxx::__math_2_pi<Tp>(proto);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::scientific;
 
     std::size_t n = 5000;

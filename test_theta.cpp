@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_theta test_theta.cpp
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_theta > test_theta.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_theta test_theta.cpp
+./test_theta > test_theta.txt
 */
 
 #include <iostream>
@@ -9,7 +9,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_theta > test_the
 
 template<typename _Tp>
   void
-  test_theta()
+  test_theta(_Tp proto = _Tp{})
   {
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     auto width = 8 + std::cout.precision();
