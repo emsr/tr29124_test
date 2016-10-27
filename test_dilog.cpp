@@ -8,6 +8,8 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_dilog test_dilog.cpp
 #include <iostream>
 #include <stdexcept>
 
+#ifdef NO_DILOG
+
 namespace std
 {
 namespace __detail
@@ -18,9 +20,8 @@ namespace __detail
     __dilog(_Tp __x)
     {
       static constexpr unsigned long long _S_maxit = 100000ULL;
-      static constexpr _Tp _S_eps = 10 * std::numeric_limits<_Tp>::epsilon();
-      static constexpr _Tp _S_pipio6
-	= 1.644934066848226436472415166646025189219L;
+      static const auto _S_eps = 10 * __gnu_cxx::__epsilon(__x);
+      static const auto _S_pipio6 = __gnu_cxx::__const_pi_sqr_div_6(__x);
       if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__x > _Tp(+1))
@@ -87,6 +88,8 @@ namespace __gnu_cxx
     }
 
 }
+
+#endif // NO_DILOG
 
 int
 main()

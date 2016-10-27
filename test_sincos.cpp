@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -I. -o test_sincos test_sincos.cpp wrap_boost.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_sincos > test_sincos.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_sincos test_sincos.cpp wrap_boost.cpp -lquadmath
+./test_sincos > test_sincos.txt
 
-g++ -std=c++14 -o test_sincos test_sincos.cpp
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_sincos test_sincos.cpp
 ./test_sincos > test_sincos.txt
 */
 
@@ -86,8 +86,8 @@ g++ -std=c++14 -o test_sincos test_sincos.cpp
     __gnu_cxx::__sincos_t<_Tp>
     __sincos_pi(_Tp __x)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi<_Tp>();
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>();
+      const auto _S_pi = __gnu_cxx::__const_pi<_Tp>(__x);
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>(__x);
       if (std::isnan(__x))
 	return __gnu_cxx::__sincos_t<_Tp>{_S_NaN, _S_NaN};
       else if (__x < _Tp{0})
@@ -138,13 +138,13 @@ g++ -std=c++14 -o test_sincos test_sincos.cpp
 
 template<typename _Tp>
   void
-  test_sincos()
+  test_sincos(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    const auto pi = __gnu_cxx::__const_pi<_Tp>();
+    const auto pi = __gnu_cxx::__const_pi<_Tp>(proto);
 
     std::cout << std::endl;
     std::cout << std::setw(width) << "x"
@@ -187,11 +187,11 @@ template<typename _Tp>
 int
 main()
 {
-  constexpr auto pif = __gnu_cxx::__math_constants<float>::__pi;
-  constexpr auto pi = __gnu_cxx::__math_constants<double>::__pi;
-  constexpr auto pil = __gnu_cxx::__math_constants<long double>::__pi;
+  constexpr auto pif = __gnu_cxx__const_pi<float>();
+  constexpr auto pi = __gnu_cxx::__const_pi<double>();
+  constexpr auto pil = __gnu_cxx::__const_pi<long double>();
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  constexpr auto piq = __gnu_cxx::__math_constants<__float128>::__pi;
+  constexpr auto piq = __gnu_cxx::__const_pi<__float128>();
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   auto a1 = /*std::__detail::*/__sincos(pif * 1.5f);

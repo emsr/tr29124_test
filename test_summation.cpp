@@ -19,7 +19,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -I. -o test_summation test_summation.cpp -lquadma
 
 template<typename Tp>
   void
-  test()
+  test(Tp proto = Tp{})
   {
     std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto w = 8 + std::cout.precision();
