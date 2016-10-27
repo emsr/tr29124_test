@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -I. -o test_reperiodized_hyper test_reperiodized_hyper.cpp wrap_boost.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_reperiodized_hyper > test_reperiodized_hyper.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_reperiodized_hyper test_reperiodized_hyper.cpp wrap_boost.cpp -lquadmath
+./test_reperiodized_hyper > test_reperiodized_hyper.txt
 
-g++ -std=gnu++17 -g -DNO_SINH_COSH_PI -I. -o test_reperiodized_hyper test_reperiodized_hyper.cpp wrap_boost.cpp -lgsl -lgslcblas -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -DNO_SINH_COSH_PI -I. -o test_reperiodized_hyper test_reperiodized_hyper.cpp wrap_boost.cpp -lgsl -lgslcblas -lquadmath
 ./test_reperiodized_hyper > test_reperiodized_hyper.txt
 */
 
@@ -14,11 +14,11 @@ g++ -std=gnu++17 -g -DNO_SINH_COSH_PI -I. -o test_reperiodized_hyper test_reperi
 
 template<typename _Tp>
   void
-  run_sin_cosh_pi()
+  run_sin_cosh_pi(_Tp proto = _Tp{})
   {
-    constexpr _Tp _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+    const _Tp _S_pi = __gnu_cxx::__const_pi<_Tp>(proto);
 
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 10 + std::cout.precision();
 

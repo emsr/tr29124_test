@@ -16,11 +16,11 @@ g++ -std=c++14 -o test_reperiodized_trig test_reperiodized_trig.cpp wrap_boost.c
 
 template<typename _Tp>
   void
-  run_sin_cos_pi()
+  run_sin_cos_pi(_Tp proto = _Tp{})
   {
-    constexpr _Tp _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+    const _Tp _S_pi = __gnu_cxx::__const_pi(proto);
 
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 

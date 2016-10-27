@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -g -Wall -Wextra -Wno-compare-reals -o test_struve test_struve.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 -lgfortran
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_struve > test_struve.new
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-compare-reals -I. -o test_struve test_struve.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 -lgfortran
+./test_struve > test_struve.new
 
-g++ -std=gnu++17 -I. -Wall -Wextra -o test_struve test_struve.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 -lgfortran
+g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_struve test_struve.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 -lgfortran
 ./test_struve > test_struve.txt
 */
 
@@ -63,8 +63,8 @@ namespace __detail
       assert(__sign != 0);
 
       constexpr int _S_max_iter = 1000;
-      constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
-      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Real>::__root_pi;
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(__x);
 
       auto __x2 = __x / _Val{2};
       auto __xx4 = _Tp(__sign) * __x2 * __x2;
@@ -108,8 +108,8 @@ namespace __detail
       assert(__sign != 0);
 
       constexpr int _S_max_iter = 1000;
-      constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
-      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Real>::__root_pi;
+      const auto _S_eps = __gnu_cxx::_-epsilon(__x);
+      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(__x);
 
       auto __x2 = __x / _Val{2};
       auto __xx4 = _Val(__sign) * __x2 * __x2;
@@ -139,8 +139,8 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Real>();
-      constexpr auto _S_max = _Real{__gnu_cxx::__digits10<_Real>()};
+      const auto _S_nan = __gnu_cxx::__quiet_NaN(std::real(__x));
+      const auto _S_max = _Real{__gnu_cxx::__digits10(std::real(__x))};
 
       if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_h: bad argument"));
@@ -166,8 +166,8 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Real>();
-      constexpr auto _S_max = _Real{__gnu_cxx::__digits10<_Real>()};
+      const auto _S_nan = __gnu_cxx::__quiet_NaN(std::real(__x));
+      const auto _S_max = _Real{__gnu_cxx::__digits10(std::real(__x))};
 
       if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_k: bad argument"));
@@ -193,8 +193,8 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Real>();
-      constexpr auto _S_max = _Real{__gnu_cxx::__digits10<_Real>()};
+      const auto _S_nan = __gnu_cxx::__quiet_NaN(std::real(__x));
+      const auto _S_max = _Real{__gnu_cxx::__digits10(std::real(__x))};
 
       if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_l: bad argument"));
@@ -220,8 +220,8 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Real>();
-      constexpr auto _S_max = _Real{__gnu_cxx::__digits10<_Real>()};
+      const auto _S_nan = __gnu_cxx::__quiet_NaN(std::real(__x));
+      const auto _S_max = _Real{__gnu_cxx::__digits10(std::real(__x))};
 
       if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_k: bad argument"));
@@ -441,12 +441,12 @@ namespace __gnu_cxx
  */
 template<typename _Tp>
   void
-  test_struve_transition()
+  test_struve_transition(_Tp proto = _Tp{})
   {
     using _Val = _Tp;
     using _Real = std::__detail::__num_traits_t<_Val>;
 
-    std::cout.precision(std::numeric_limits<_Real>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -476,14 +476,14 @@ template<typename _Tp>
  */
 template<typename _Tp>
   void
-  plot_struve(std::string filename)
+  plot_struve(std::string filename, _Tp proto = _Tp{})
   {
     using _Val = _Tp;
     using _Real = std::__detail::__num_traits_t<_Val>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Real>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
@@ -532,7 +532,7 @@ template<typename _Tp>
 void
 test_struve()
 {
-  std::cout.precision(std::numeric_limits<double>::digits10);
+  std::cout.precision(__gnu_cxx::__digits10<double>());
   std::cout << std::showpoint << std::scientific;
   auto width = 8 + std::cout.precision();
 

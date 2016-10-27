@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -I. -o test_sinus_cardinal test_sinus_cardinal.cpp wrap_boost.cpp wrap_gsl.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_sinus_cardinal > test_sinus_cardinal.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_sinus_cardinal test_sinus_cardinal.cpp wrap_boost.cpp wrap_gsl.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas -lquadmath
+./test_sinus_cardinal > test_sinus_cardinal.txt
 
-g++ -std=c++14 -o test_sinus_cardinal test_sinus_cardinal.cpp wrap_boost.cpp wrap_gsl.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas -lquadmath
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_sinus_cardinal test_sinus_cardinal.cpp wrap_boost.cpp wrap_gsl.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas -lquadmath
 ./test_sinus_cardinal > test_sinus_cardinal.txt
 */
 
@@ -16,13 +16,13 @@ g++ -std=c++14 -o test_sinus_cardinal test_sinus_cardinal.cpp wrap_boost.cpp wra
 
 template<typename _Tp>
   void
-  test_sinc()
+  test_sinc(_Tp proto = _Tp{})
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    constexpr auto pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+    const auto pi = __gnu_cxx::__const_pi(proto);
 
     std::cout << std::endl;
     std::cout << std::setw(width) << "x"
@@ -59,13 +59,13 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  test_sinc_pi()
+  test_sinc_pi(_Tp proto = _Tp{})
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    constexpr auto pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+    const auto pi = __gnu_cxx::__const_pi(proto);
 
     std::cout << std::endl;
     std::cout << std::setw(width) << "x"
@@ -102,9 +102,9 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  test_sinhc()
+  test_sinhc(_Tp proto = _Tp{})
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -123,7 +123,7 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << std::setw(width) << "==============="
 	      << '\n';
-    constexpr auto pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+    const auto pi = __gnu_cxx::__const_pi(proto);
 
     for (int i = -40; i <= +40; ++i)
       {
@@ -145,13 +145,13 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  test_sinhc_pi()
+  test_sinhc_pi(_Tp proto = _Tp{})
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    constexpr auto pi = __gnu_cxx::__math_constants<_Tp>::__pi;
+    const auto pi = __gnu_cxx::__const_pi(proto);
 
     std::cout << std::endl;
     std::cout << std::setw(width) << "x"
