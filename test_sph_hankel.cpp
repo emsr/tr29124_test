@@ -1,12 +1,10 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -I. -o test_sph_hankel test_sph_hankel.cpp -lquadmath wrap_boost.cpp
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_sph_hankel test_sph_hankel.cpp -lquadmath wrap_boost.cpp
 ./test_sph_hankel > test_sph_hankel.txt
 
-g++ -std=c++14 -g -o test_sph_hankel test_sph_hankel.cpp -lquadmath
+g++ -std=c++14 -g -Wall -Wextra -I. -o test_sph_hankel test_sph_hankel.cpp -lquadmath
 ./test_sph_hankel > test_sph_hankel.txt
 */
-
-#define __STDCPP_WANT_MATH_SPEC_FUNCS__ 1
 
 #include <limits>
 #include <iostream>
@@ -16,7 +14,7 @@ g++ -std=c++14 -g -o test_sph_hankel test_sph_hankel.cpp -lquadmath
 
 template<typename _Tp>
   void
-  RunSphHankel1()
+  RunSphHankel1(_Tp proto = _Tp{})
   {
     std::cout.precision(__gnu_cxx::__digits10<_Tp>());
     std::cout.flags(std::ios::showpoint);

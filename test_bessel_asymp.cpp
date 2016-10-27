@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_bessel_asymp test_bessel_asymp.cpp
+$HOME/bin_tr29124/bin/g++ -I. -o test_bessel_asymp test_bessel_asymp.cpp
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_bessel_asymp
 */
 

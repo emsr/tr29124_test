@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -I. -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr
 ./test_numeric_limits > test_numeric_limits.txt
 */
 
