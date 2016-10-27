@@ -31,7 +31,7 @@
 ///
 template<typename Real>
   void
-  do_test()
+  do_test(Real proto = Real{})
   {
     //  Unsigned integer orders for various polynomials, harmonics, and spherical bessels.
     std::vector<unsigned int> uiorder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};

@@ -1024,7 +1024,7 @@ template<typename _Real>
   void
   run_kelvin1()
   {
-    std::cout.precision(std::numeric_limits<_Real>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10());
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -1071,7 +1071,7 @@ template<typename _Real>
   void
   run_kelvin2()
   {
-    std::cout.precision(std::numeric_limits<_Real>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10());
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -1115,7 +1115,7 @@ template<typename _Real>
   void
   diff_kelvin2()
   {
-    std::cout.precision(std::numeric_limits<_Real>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10());
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -1170,7 +1170,7 @@ template<typename _Real>
   void
   run_kelvin3(_Real nu = _Real{0})
   {
-    std::cout.precision(std::numeric_limits<_Real>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(nu));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -1212,7 +1212,7 @@ template<typename _Real>
   void
   diff_kelvin3(_Real nu = _Real{0})
   {
-    std::cout.precision(std::numeric_limits<_Real>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(nu));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -1255,7 +1255,7 @@ template<typename _Real>
   void
   run_kelvin4(int n = 0)
   {
-    std::cout.precision(std::numeric_limits<_Real>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10());
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -1297,12 +1297,12 @@ template<typename _Real>
   void
   plot_kelvin(std::string filename)
   {
-    constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Real>::__root_2;
-    constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Real>::__root_pi;
+    const auto _S_sqrt_2 = __gnu_cxx::__const_root_2();
+    const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi();
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Real>::digits10);
+    data.precision(__gnu_cxx::__digits10(proto));
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
@@ -1359,12 +1359,12 @@ template<typename _Real>
   void
   plot_kelvin_order(std::string filename)
   {
-    constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Real>::__root_2;
-    constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Real>::__root_pi;
+    const auto _S_sqrt_2 = __gnu_cxx::__const_root_2();
+    const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi();
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Real>::digits10);
+    data.precision(__gnu_cxx::__digits10(proto));
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
