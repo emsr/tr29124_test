@@ -1,5 +1,5 @@
 
-// /home/ed/bin/bin/g++ -g -o test_carlson test_carlson.cpp
+// /home/ed/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_carlson test_carlson.cpp
 
 #include <cmath>
 #include <iostream>

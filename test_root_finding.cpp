@@ -16,7 +16,7 @@ cos_state(double x)
 
 template<typename _Tp>
   void
-  test_roots()
+  test_roots(_Tp proto = _Tp{})
   {
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     std::cout << std::showpoint << std::scientific;

@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -o -Wall -Wextra test_lerch test_lerch.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_lerch > test_lerch.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_lerch test_lerch.cpp lerchphi/Source/lerchphi.cpp -lquadmath
+./test_lerch > test_lerch.txt
 
-g++ -std=c++14 -g -o test_lerch test_lerch.cpp -lquadmath
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_lerch test_lerch.cpp -lquadmath
 ./test_lerch > test_lerch.txt
 */
 
@@ -14,10 +14,12 @@ g++ -std=c++14 -g -o test_lerch test_lerch.cpp -lquadmath
 #include <iomanip>
 #include <bits/summation.h>
 
-  //
-  // A functor for a vanWijnGaarden compressor must have
-  // _Tp operator()(int) that returns a term in the original defining series.
-  //
+#include "lerchphi/Source/lerchphi.h"
+
+  /**
+   * A functor for a vanWijnGaarden compressor must have
+   * _Tp operator()(int) that returns a term in the original defining series.
+   */
   template<typename _Tp>
     class __lerch_term
     {
@@ -44,14 +46,14 @@ g++ -std=c++14 -g -o test_lerch test_lerch.cpp -lquadmath
     };
 
   /**
-   *  blows on nonpositive integeral a.
+   *  Blows on nonpositive integeral a.
    */
   template<typename _Tp>
     _Tp
     __lerch_sum(_Tp __z, _Tp __s, _Tp __a)
     {
-      constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
+      const auto _S_eps = __gnu_cxx::__epsilon(__s);
 
       const auto __na = std::nearbyint(__a);
       const bool __integral = (std::abs(__a - _Tp(__na)) < _S_eps);
@@ -70,20 +72,21 @@ g++ -std=c++14 -g -o test_lerch test_lerch.cpp -lquadmath
 	      auto __term = __zpow * std::pow(__a + __k, -__s);
 	      __sum += __term;
 	      if (std::abs(__term / __sum) < _S_eps)
-		return __sum;
+		break;
 	    }
+	  return __sum;
 	}
     }
 
   /**
-   *  blows on nonpositive integeral a.
+   *  Blows on nonpositive integeral a.
    */
   template<typename _Tp>
     _Tp
     __lerch_vanwijngaarden_sum(_Tp __z, _Tp __s, _Tp __a)
     {
-      constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
+      const auto _S_eps = __gnu_cxx::__epsilon(__s);
 
       const auto __na = std::nearbyint(__a);
       const bool __integral = (std::abs(__a - _Tp(__na)) < _S_eps);
@@ -102,8 +105,9 @@ g++ -std=c++14 -g -o test_lerch test_lerch.cpp -lquadmath
 	      auto __temp = __lerch_fun(__k);
 	      __sum += __temp;
 	      if (std::abs(__temp / __sum) < _S_eps)
-		return __sum();
+		break;
 	    }
+	  return __sum();
 	}
       else
 	{
@@ -117,21 +121,22 @@ g++ -std=c++14 -g -o test_lerch test_lerch.cpp -lquadmath
 	      auto __temp = __term[__k];
 	      __sum += __temp;
 	      if (std::abs(__temp / __sum) < _S_eps)
-		return __sum();
+		break;
 	    }
+	  return __sum();
 	}
     }
 
   /**
-   *  blows on nonpositive integeral a.
+   *  Blows on nonpositive integeral a.
    *  As usual, the binomial coefficient kills this for practical purposes.
    */
   template<typename _Tp>
     _Tp
     __lerch_double_sum(_Tp __z, _Tp __s, _Tp __a)
     {
-      constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
+      const auto _S_eps = __gnu_cxx::__epsilon(__s);
 
       const auto __na = std::nearbyint(__a);
       const bool __integral = (std::abs(__a - _Tp(__na)) < _S_eps);
@@ -173,19 +178,23 @@ g++ -std=c++14 -g -o test_lerch test_lerch.cpp -lquadmath
     _Tp
     __lerch_delta_vanwijngaarden_sum(_Tp __z, _Tp __s, _Tp __a)
     {
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
+      const auto _S_eps = __gnu_cxx::__epsilon(__s);
       constexpr auto _S_maxit = 1000;
+
       __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<_Tp>> _WDvW;
       if (__z >= _Tp{0})
 	{
-	  auto _VwT = __gnu_cxx::__make_VanWijngaardenCompressor(__lerch_term<_Tp>(__z, __s, __a));
+	  using __lerch_t = __lerch_term<_Tp>;
+	  auto _VwT = __gnu_cxx::_VanWijngaardenCompressor<__lerch_t>(__lerch_t(__z, __s, __a));
 	  for (auto __k = 0; __k < _S_maxit; ++__k)
 	    {
 	      auto __term = _VwT[__k];
 	      _WDvW += __term;
 	      if (std::abs(__term) < _S_eps * std::abs(_WDvW()))
-		return _WDvW();
+		break;
 	    }
+	  return _WDvW();
 	}
       else
 	{
@@ -195,8 +204,9 @@ g++ -std=c++14 -g -o test_lerch test_lerch.cpp -lquadmath
 	      auto __term = _LT(__k);
 	      _WDvW += __term;
 	      if (std::abs(__term) < _S_eps * std::abs(_WDvW()))
-		return _WDvW();
+		break;
 	    }
+	  return _WDvW();
 	}
     }
 
@@ -207,19 +217,71 @@ g++ -std=c++14 -g -o test_lerch test_lerch.cpp -lquadmath
     _Tp
     __lerch(_Tp __z, _Tp __s, _Tp __a)
     {
-      constexpr auto _S_nan = std::numeric_limits<_Tp>::quiet_NaN();
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
+      const auto _S_eps = __gnu_cxx::__epsilon(__s);
 
       if (__isnan(__z) || __isnan(__s) || __isnan(__a))
 	return _S_nan;
-
-      const auto __na = std::nearbyint(__a);
-      const bool __integral = (std::abs(__a - _Tp(__na)) < _S_eps);
-      if (__integral && __na <= 0)
-	return _S_nan;
+      else if (std::abs(__z) >= _Tp{1})
+	throw std::domain_error("__lerch: |z| > 1");
       else
-	return __lerch_sum(__z, __s, __a);
+	{
+	  const auto __na = int(std::nearbyint(__a));
+	  const bool __inta = (std::abs(__a - _Tp(__na)) < _S_eps);
+
+	  const auto __ns = int(std::nearbyint(__s));
+	  const bool __ints = (std::abs(__s - _Tp(__ns)) < _S_eps);
+	  const bool __tinyz = std::abs(__z) < _S_eps; // _S_min?
+	  const bool __smallz = !__tinyz && std::abs(__z) < _Tp{0.5};
+
+	  if (__inta && __na <= 0)
+	    return _S_nan;
+	  else if (__a < _Tp{0})
+	    {
+	      if (__ints)
+		{
+		  int __sign = __ns % 2 == 0 ? +1 : -1;
+		  if (__tinyz)
+		    /*__sum =*/return __sign * _Tp{1} / std::pow(std::abs(__a), __s);
+		  else
+		    {
+		      auto __m = -int(std::floor(__a));
+		      auto __a1 = __a + _Tp(__m);
+		      auto __sum1 = _Tp{0};
+		      for (int __i = 0; __i < __m; ++__i)
+			{
+			  __sum1 += __sign * std::pow(std::abs(__z), __i)
+					   / std::pow(std::abs(__a + __i), __s);
+			  if (__z < _Tp{0})
+			    __sign = -__sign;
+			}
+		      auto __sum = _Tp{0};
+		      if (__smallz)
+			__sum = __lerch_sum(__z, __s, __a1);
+		      else
+			__sum = __lerch_delta_vanwijngaarden_sum(__z, __s, __a1);
+		      __sign = 1;
+		      if (__z < _Tp{0} && __m % 2 != 0)
+			__sign = -1;
+		      return __sum1 + __sum * __sign * std::pow(std::abs(__z), __m);
+		    }
+		}
+	      else // s is not an integer - Phi is complex.
+		return _S_nan;
+	    }
+	  else if (__tinyz)
+	    return _Tp{1} / std::pow(__a, __s);
+	  else // a > 0
+	    {
+	      if (__smallz)
+		return __lerch_sum(__z, __s, __a);
+	      else
+		return __lerch_delta_vanwijngaarden_sum(__z, __s, __a);
+	    }
+	}
     }
+
+
 
 struct lerch_testcase
 {
@@ -250,51 +312,71 @@ int
 main()
 {
   using Tp = double;
+  constexpr auto _S_nan = std::numeric_limits<Tp>::quiet_NaN();
 
   std::cout.precision(std::numeric_limits<Tp>::digits10);
   auto width = 8 + std::numeric_limits<Tp>::digits10;
 
   std::cout << "case " << std::setw(2) << "i"
 	    << std::setw(width) << "z"
-	    << std::setw(width) << "a"
 	    << std::setw(width) << "s"
+	    << std::setw(width) << "a"
+	    << std::setw(width) << "phi0"
 	    << std::setw(width) << "phi"
-	    << std::setw(width) << "phi"
-	    << std::setw(width) << "delta-phi\n";
+	    << std::setw(width) << "phi-phi0"
+	    << std::setw(width) << "lphi"
+	    << std::setw(width) << "lphi-phi0"
+	    << std::setw(width) << "phi-lphi"
+	    << '\n';
   std::cout << "---- " << std::setw(2) << "-"
-	    << std::setw(width) << "-"
-	    << std::setw(width) << "-"
-	    << std::setw(width) << "-"
-	    << std::setw(width) << "---"
-	    << std::setw(width) << "---"
-	    << std::setw(width) << "---------\n";
+	    << std::setw(width) << "---------"
+	    << std::setw(width) << "---------"
+	    << std::setw(width) << "---------"
+	    << std::setw(width) << "---------"
+	    << std::setw(width) << "---------"
+	    << std::setw(width) << "---------"
+	    << std::setw(width) << "---------"
+	    << std::setw(width) << "---------"
+	    << std::setw(width) << "---------"
+	    << '\n';
   for (int i = 0; i < 12; ++i)
     {
       const auto& tcase = lerch_tests[i];
       std::cout << "case " << std::setw(2) << i + 1
                 << std::setw(width) << tcase.z
-                << std::setw(width) << tcase.a
                 << std::setw(width) << tcase.s
+                << std::setw(width) << tcase.a
                 << std::setw(width) << tcase.phi;
+      auto phi = Tp{0};
       try
-      {
-	auto phi = __lerch_delta_vanwijngaarden_sum(tcase.z,  tcase.a,  tcase.s);
-	auto test = tcase.phi - phi;
-	std::cout << std::setw(width) << phi
-                  << std::setw(width) << test;
-      }
+	{
+	  phi = __lerch(tcase.z, tcase.s, tcase.a);
+	  auto test0 = phi - tcase.phi;
+	  std::cout << std::setw(width) << phi
+                    << std::setw(width) << test0;
+	}
       catch (...)
-      {
-	std::cout << "fail";
-      }
-      std::cout << std::endl;
+	{
+	  std::cout << std::setw(width) << "fail";
+	  std::cout << std::setw(width) << "fail";
+	  phi = _S_nan;
+	}
+      double acc = 2 * std::numeric_limits<Tp>::epsilon();
+      double lphi = 0.0;
+      int iter = 0;
+      auto ok = lerchphi(&tcase.z, &tcase.s, &tcase.a, &acc, &lphi, &iter);
+      std::cout << std::setw(width) << lphi
+		<< std::setw(width) << lphi - tcase.phi
+		<< std::setw(width) << phi - lphi;
+
+      std::cout << '\n';
     }
 
   auto s = 1.0;
   auto a = 2.0;
-  std::cout << std::endl;
-  std::cout << " a = " << std::setw(width) << a << std::endl;
-  std::cout << " s = " << std::setw(width) << s << std::endl;
+  std::cout << '\n';
+  std::cout << " a = " << std::setw(width) << a << '\n';
+  std::cout << " s = " << std::setw(width) << s << '\n';
   for (int iz = -99; iz <= +99; ++iz)
     {
       auto z = 0.01 * iz;
@@ -302,20 +384,27 @@ main()
       auto lerch2 = __lerch_vanwijngaarden_sum(z, s, a);
       //auto lerch3 = __lerch_double_sum(z, s, a);
       auto lerch4 = __lerch_delta_vanwijngaarden_sum(z, s, a);
+      double acc = 2 * std::numeric_limits<Tp>::epsilon();
+      double lphi = 0.0;
+      int iter = 0;
+      auto ok = lerchphi(&z, &s, &a, &acc, 
+			 &lphi, &iter);
       std::cout << ' ' << std::setw(width) << z
 		<< ' ' << std::setw(width) << lerch1
 		<< ' ' << std::setw(width) << lerch2
 		//<< ' ' << std::setw(width) << lerch3
 		<< ' ' << std::setw(width) << lerch4
 		<< ' ' << std::setw(width) << lerch2 - lerch1
-		<< std::endl;
+		<< ' ' << std::setw(width) << lerch4 - lerch1
+		<< ' ' << std::setw(width) << lerch4 - lphi
+		<< '\n';
     }
 
   auto z = 1.0;
   a = 1.0;
-  std::cout << std::endl;
-  std::cout << " z = " << std::setw(width) << z << std::endl;
-  std::cout << " a = " << std::setw(width) << a << std::endl;
+  std::cout << '\n';
+  std::cout << " z = " << std::setw(width) << z << '\n';
+  std::cout << " a = " << std::setw(width) << a << '\n';
   for (int is = -99; is <= +99; ++is)
     {
       auto s = 0.01 * is;
@@ -324,18 +413,19 @@ main()
       std::cout << ' ' << std::setw(width) << s
 		<< ' ' << std::setw(width) << lerch1
 		<< ' ' << std::setw(width) << zeta
-		<< std::endl;
+		<< ' ' << std::setw(width) << lerch1 - zeta
+		<< '\n';
     }
 
-  std::cout << std::endl;
+  std::cout << '\n';
   for (int ia = 1; ia <= 10; ++ia)
     {
       auto a = 1.0 * ia;
-      std::cout << "\n a = " << std::setw(width) << a << std::endl;
+      std::cout << "\n a = " << std::setw(width) << a << '\n';
       for (int is = 0; is <= 50; ++is)
 	{
 	  auto s = 0.1 * is;
-	  std::cout << "\n s = " << std::setw(width) << s << std::endl << std::endl;
+	  std::cout << "\n s = " << std::setw(width) << s << '\n' << '\n';
 	  for (int iz = -99; iz <= +99; ++iz)
 	    {
 	      auto z = 0.01 * iz;
@@ -343,17 +433,23 @@ main()
 	      auto lerch2 = __lerch_vanwijngaarden_sum(z, s, a);
 	      //auto lerch3 = __lerch_double_sum(z, s, a);
 	      auto lerch4 = __lerch_delta_vanwijngaarden_sum(z, s, a);
+	      double acc = 2 * std::numeric_limits<Tp>::epsilon();
+	      double lphi = 0.0;
+	      int iter = 0;
+	      auto ok = lerchphi(&z, &s, &a, &acc, &lphi, &iter);
 	      std::cout << ' ' << std::setw(width) << z
 			<< ' ' << std::setw(width) << lerch1
 			<< ' ' << std::setw(width) << lerch2
 			//<< ' ' << std::setw(width) << lerch3
 			<< ' ' << std::setw(width) << lerch4
 			<< ' ' << std::setw(width) << lerch2 - lerch1
-			<< std::endl;
+			<< ' ' << std::setw(width) << lerch4 - lerch1
+			<< ' ' << std::setw(width) << lerch4 - lphi
+			<< '\n';
 	    }
 	}
     }
 
-  auto lerch1 = __lerch_vanwijngaarden_sum(-0.75, Tp{1}, Tp{2});
-  auto lerch2 = __lerch_vanwijngaarden_sum(-0.5, Tp{0}, Tp{1});
+  //auto lerch1 = __lerch_vanwijngaarden_sum(-0.75, Tp{1}, Tp{2});
+  //auto lerch2 = __lerch_vanwijngaarden_sum(-0.5, Tp{0}, Tp{1});
 }
