@@ -45,12 +45,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return acosq(__x); }
 
   inline __float128
+  acosh(__float128 __x) _GLIBCXX_USE_NOEXCEPT
+  { return acoshq(__x); }
+
+  inline __float128
   asin(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return asinq(__x); }
 
   inline __float128
+  asinh(__float128 __x) _GLIBCXX_USE_NOEXCEPT
+  { return asinhq(__x); }
+
+  inline __float128
   atan(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return atanq(__x); }
+
+  inline __float128
+  atanh(__float128 __x) _GLIBCXX_USE_NOEXCEPT
+  { return atanhq(__x); }
 
   inline __float128
   atan2(__float128 __y, __float128 __x) _GLIBCXX_USE_NOEXCEPT
