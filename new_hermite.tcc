@@ -1,7 +1,6 @@
 // Special functions -*- C++ -*-
 
-// Copyright (C) 2016
-// Free Software Foundation, Inc.
+// Copyright (C) 2006-2016 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -23,23 +22,23 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file tr1/sf_hermite.tcc
+/** @file bits/sf_hermite.tcc
  *  This is an internal header file, included by other library headers.
- *  You should not attempt to use it directly.
+ *  Do not attempt to use it directly. @headername{cmath}
  */
 
 //
-// ISO C++ TR29124: Special functions
+// ISO C++ 14882 TR29124: Mathematical Special Functions
 //
 
 #ifndef _GLIBCXX_BITS_NEW_HERMITE_TCC
 #define _GLIBCXX_BITS_NEW_HERMITE_TCC 1
 
-
+#pragma GCC system_header
 
   /**
    *   @brief This routine returns the Hermite polynomial
-   *          of order n: \f$ H_n(x) \f$ by recursion on n.
+   *          of order n: @f$ H_n(x) @f$ by recursion on n.
    *
    *   The Hermite polynomial is defined by:
    *   @f[
@@ -80,7 +79,7 @@
 
   /**
    *   @brief This routine returns the Hermite polynomial
-   *          of large order n: \f$ H_n(x) \f$.  We assume here
+   *          of large order n: @f$ H_n(x) @f$.  We assume here
    *          that x >= 0.
    *
    *   The Hermite polynomial is defined by:
@@ -100,10 +99,9 @@
     _Tp
     __poly_hermite_asymp(unsigned int __n, _Tp __x)
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
-      constexpr auto _S_sqrt_2pi = _S_sqrt_2
-				 * __gnu_cxx::__math_constants<_Tp>::__root_pi;
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
+      const auto _S_sqrt_2pi = __gnu_cxx::__const_root_2_pi(__x);
       // __x >= 0 in this routine.
       const auto __xturn = std::sqrt(_Tp(2 * __n));
       if (std::abs(__x - __xturn) < _Tp{0.05L} * __xturn)
@@ -142,6 +140,62 @@
     }
 
 
+  template<typename _Tp>
+    _Tp
+    __poly_hermite_asymp2(unsigned int __n, _Tp __x)
+    {
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
+      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(__x);
+      const auto _S_Ai0 = _Tp{-2.3381074104597670384891972524467L};
+      bool __n_odd = __n % 2 == 1;
+      auto __z = std::abs(__x);
+      auto __z_turn = std::sqrt(_Tp(2 * __n + 1));
+      auto __delta = _S_Ai0 / _S_sqrt_2 / std::pow(__n, _Tp{1} / _Tp{6});
+      auto __sign = __n_odd && (__x < _Tp{0}) ? _Tp{-1} : _Tp{1};
+      auto __f = _Tp{1};
+      for (int __j = 1; __j <= __n; ++__j)
+        __f *= std::sqrt(_Tp(__j));
+
+      if (__z < __z_turn + __delta)
+	{
+	  auto __phi = std::acos(__z / __z_turn);
+	  return __f * __sign
+		     * (__n_odd ? _S_sqrt_2 : _Tp{1})
+		     * std::pow(_Tp{2}, _Tp(__n) / _Tp{2})
+		     * std::pow(_Tp{2} / _Tp(__n), _Tp{0.25})
+		     / std::sqrt(_S_sqrt_pi * std::sin(__phi))
+		     * std::sin(_S_pi * _Tp{0.75} + (__n / _Tp{2} + _Tp{0.25})
+				   * (std::sin(_Tp{2} * __phi) - _Tp{2} * __phi))
+		     * std::exp(__z * __z / _Tp{2});
+	}
+      else if (__z > __z_turn - __delta)
+	{
+	  auto __phi = std::acosh(__z / __z_turn);
+	  return __f * __sign
+		     * (__n_odd ? _Tp{1} : _Tp{1} / _S_sqrt_2)
+		     * std::pow(_Tp{2}, _Tp(__n) / _Tp{2})
+		     * std::pow(_Tp(__n), _Tp{-0.25})
+		     / std::sqrt(_S_sqrt_2 * _S_sqrt_pi * std::sinh(__phi))
+		     * std::exp((_Tp(__n) / _Tp{2} + _Tp{0.25})
+			       * (_Tp{2} * __phi - std::sinh(_Tp{2} * __phi)))
+		     * std::exp(__z * __z / _Tp{2});
+	}
+      else
+	{
+	  auto __arg = (__z - __z_turn)
+		     * _S_sqrt_2 * std::pow(_Tp(__n), _Tp{1} / _Tp{6});
+	  auto __airy = std::__detail::__airy(__arg);
+	  return __f * __sign
+		     * (__n_odd ? _S_sqrt_2 : _Tp{1})
+		     * std::sqrt(_S_sqrt_pi * _S_sqrt_2)
+		     * std::pow(_Tp{2}, _Tp(__n) / _Tp{2})
+		     * std::pow(_Tp(__n), _Tp{-1} / _Tp{12})
+		     * __airy.__Ai_value * std::exp(__z * __z / _Tp{2});
+	}
+    }
+
+
   /**
    *  @brief  Compute the normalized Hermite polynomial by recursion.
    *  @todo  Tabulate sqrt(int) or even sqrt(i)/sqrt(i+1) and add a helper.
@@ -150,34 +204,51 @@
     _Tp
     __poly_hermite_norm_recursion(unsigned int __n, _Tp __x)
     {
-      const auto _S_inv_root4_pi = _Tp{7.511255444649424828587030047762276930510e-1L};
-      const auto _S_root_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
+      const auto _S_inv_root4_pi
+	= _Tp{7.511255444649424828587030047762276930510e-1L};
+      const auto _S_root_2 = __gnu_cxx::__const_root_2(__x);
 
-      auto __H_nm2 = _S_inv_root4_pi;
+      auto __Hn_nm2 = _S_inv_root4_pi;
       if (__n == 0)
-	return __H_nm2;
-      auto __H_nm1 = _S_root_2 * __x * __H_nm2;
+	return __Hn_nm2;
+      auto __Hn_nm1 = _S_root_2 * __x * __Hn_nm2;
       if (__n == 1)
-	return __H_nm1;
+	return __Hn_nm1;
 
-      _Tp __H_n;
-      for (int __i = 2; __i < __n; ++__i)
+      _Tp __Hn_n;
+      for (unsigned int __i = 2; __i < __n; ++__i)
 	{
-	  __H_n = __x * std::sqrt(_Tp{2} / _Tp(__i)) * __H_nm1
-		- std::sqrt(_Tp(__i - 1) / _Tp(__i)) * __H_nm2;
-	  __H_nm2 = __H_nm1;
-	  __H_nm1 = __H_n;
+	  __Hn_n = __x * std::sqrt(_Tp{2} / _Tp(__i)) * __Hn_nm1
+		 - std::sqrt(_Tp(__i - 1) / _Tp(__i)) * __Hn_nm2;
+	  __Hn_nm2 = __Hn_nm1;
+	  __Hn_nm1 = __Hn_n;
 	}
 
-      return __H_n;
+      return __Hn_n;
     }
 
   /**
-   *  @brief  Compute the normalized probabalists Hermite polynomial by recursion.
+   * @brief This routine returns the Probabilists Hermite polynomial
+   * 	    of order n: @f$ He_n(x) @f$ by recursion on n.
+   *
+   * The Hermite polynomial is defined by:
+   * @f[
+   *   He_n(x) = (-1)^n e^{x^2/2} \frac{d^n}{dx^n} e^{-x^2/2}
+   * @f]
+   * or
+   * @f[
+   *   He_n(x) = \frac{1}{2^{-n/2}}H_n\left(\frac{x}{\sqrt{2}\right)
+   * @f]
+   * where @f$ H_n(x) @f$ is the Physicists Hermite function.
+   *
+   * @param __n The order of the Hermite polynomial.
+   * @param __x The argument of the Hermite polynomial.
+   * @return The value of the Hermite polynomial of order n
+   * 	     and argument x.
    */
   template<typename _Tp>
     _Tp
-    __poly_hermite_prob_recursion(unsigned int __n, _Tp __x)
+    __poly_prob_hermite_recursion(unsigned int __n, _Tp __x)
     {
       // Compute He_0.
       auto __He_nm2 = _Tp{1};
@@ -185,11 +256,11 @@
 	return __He_nm2;
 
       // Compute He_1.
-      auto __He_nm1 = _Tp{2} * __x;
+      auto __He_nm1 = __x;
       if (__n == 1)
 	return __He_nm1;
 
-      // Compute H_n.
+      // Compute He_n.
       _Tp __He_n;
       for (unsigned int __i = 2; __i <= __n; ++__i)
 	{
@@ -206,31 +277,33 @@
    */
   template<typename _Tp>
     _Tp
-    __poly_hermite_prob_norm_recursion(unsigned int __n, _Tp __x)
+    __poly_prob_hermite_norm_recursion(unsigned int __n, _Tp __x)
     {
-      const auto _S_inv_root4_pi = _Tp{7.511255444649424828587030047762276930510e-1L};
-      const auto _S_root_2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
+      const auto _S_inv_root4_pi
+	= _Tp{7.511255444649424828587030047762276930510e-1L};
+      const auto _S_root_2 = __gnu_cxx::__const_root_2(__x);
 
-      // Compute He_0.
-      auto __He_nm2 = _S_inv_root4_pi;
+      // Compute Hen_0.
+      auto __Hen_nm2 = _S_inv_root4_pi;
       if (__n == 0)
-	return __He_nm2;
+	return __Hen_nm2;
 
-      // Compute He_1.
-      auto __He_nm1 = _Tp{2} * __x;
+      // Compute Hen_1.
+      auto __Hen_nm1 = __x;
       if (__n == 1)
-	return __He_nm1;
+	return __Hen_nm1;
 
-      // Compute H_n.
-      _Tp __He_n;
+      // Compute Hen_n.
+      _Tp __Hen_n;
       for (unsigned int __i = 2; __i <= __n; ++__i)
 	{
-	  __He_n = (__x * __He_nm1 - _Tp(__i - 1) * __He_nm2) / std::sqrt(_Tp(__i));
-	  __He_nm2 = __He_nm1;
-	  __He_nm1 = __He_n;
+	  __Hen_n = (__x * __Hen_nm1 - _Tp(__i - 1) * __Hen_nm2)
+		  / std::sqrt(_Tp(__i));
+	  __Hen_nm2 = __Hen_nm1;
+	  __Hen_nm1 = __Hen_n;
 	}
 
-      return __He_n;
+      return __Hen_n;
     }
 
 #endif // _GLIBCXX_BITS_NEW_HERMITE_TCC

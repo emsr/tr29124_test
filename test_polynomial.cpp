@@ -1,5 +1,5 @@
 /*
-$HOME/bin_specfun/bin/g++ -g -std=gnu++17 -g -I. -o test_polynomial test_polynomial.cpp
+$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_polynomial test_polynomial.cpp
 ./test_polynomial > test_polynomial.txt
 */
 
@@ -78,7 +78,7 @@ main()
   std::array<double, 10> arr;
   P.eval(1.0, arr);
   std::cout << "P(" << 1.0 << ") =";
-  for (int i = 0; i < arr.size(); ++i)
+  for (unsigned i = 0; i < arr.size(); ++i)
     std::cout << " " << arr[i];
   std::cout << '\n';
 
@@ -149,7 +149,7 @@ main()
   std::cout << "Pp(-1) = " << Pp(-1.0) << '\n';
   std::cout << "Pp(2) = " << Pp(2.0) << '\n';
 
-  std::array<double, 5> aaa{{1.1, 2.2, 3.3, 4.4, 5.5}};
+  //std::array<double, 5> aaa{{1.1, 2.2, 3.3, 4.4, 5.5}};
   //std::cout << "aaa = " << __gnu_cxx::_Polynomial_eval(aaa, 3.13149) << '\n';
 
   std::cout << "P = " << P << '\n';

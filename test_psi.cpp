@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -I. -o test_psi test_psi.cpp wrap_gsl.cpp gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_psi test_psi.cpp wrap_gsl.cpp gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas
 ./test_psi > test_psi.txt
 */
 
@@ -11,7 +11,6 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -I. -o test_psi test_psi.cpp wrap_gsl.
 int
 main()
 {
-
   std::cout.precision(16);
   std::cout.flags(std::ios::showpoint);
 

@@ -1,11 +1,11 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_beta test_beta.cpp wrap_boost.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_beta test_beta.cpp wrap_boost.cpp -lquadmath
 ./test_beta > test_beta.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -I. -o test_beta test_beta.cpp wrap_boost.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_beta test_beta.cpp wrap_boost.cpp -lquadmath
 ./test_beta > test_beta.txt
 
-g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_beta test_beta.cpp wrap_boost.cpp -lquadmath
+g++ -std=gnu++17 -DNO_LOGBQ -g -Wall -Wextra -I. -o test_beta test_beta.cpp wrap_boost.cpp -lquadmath
 ./test_beta > test_beta.txt
 */
 
