@@ -55,7 +55,7 @@ template<typename _Tp>
   _Tp
   __ellint_nome_agm(_Tp __k)
   {
-    constexpr auto _S_pi = _Tp{3.1415926535897932384626433832795029Q};
+    const auto _S_pi = __gnu_cxx::__const_pi(std::real(__k));
     auto __kp = std::sqrt((_Tp{1} - __k) * (_Tp{1} + __k));
     auto __K = __comp_ellint_1_agm(__k);
     auto __Kp = __comp_ellint_1_agm(__kp);
@@ -69,7 +69,7 @@ template<typename _Tp>
   _Tp
   __ellint_nome(_Tp __k)
   {
-    constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+    const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
     if (__k < std::pow(_Tp{67} * _S_eps, _Tp{0.125Q}))
       return __ellint_nome_series(__k);
     else
@@ -78,9 +78,9 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  test_K()
+  test_K(_Tp proto = _Tp{})
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
 
     auto width = 6 + std::cout.precision();
     for (int i = 0; i <= 1000; ++i)

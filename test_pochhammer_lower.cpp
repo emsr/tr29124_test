@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -I. -o test_pochhammer_lower test_pochhammer_lower.cpp wrap_boost.cpp
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_pochhammer_lower > test_pochhammer_lower.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_pochhammer_lower test_pochhammer_lower.cpp wrap_boost.cpp
+./test_pochhammer_lower > test_pochhammer_lower.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -I. -o test_pochhammer_lower test_pochhammer_lower.cpp wrap_boost.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_pochhammer_lower test_pochhammer_lower.cpp wrap_boost.cpp
 ./test_pochhammer_lower > test_pochhammer_lower.txt
 */
 
