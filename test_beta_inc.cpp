@@ -1,5 +1,5 @@
 /*
-$HOME/bin_specfun/bin/g++ -std=c++17 -I. -o test_beta_inc test_beta_inc.cpp
+$HOME/bin_specfun/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_beta_inc test_beta_inc.cpp
 ./test_beta_inc > test_beta_inc.txt
 */
 
@@ -20,8 +20,8 @@ $HOME/bin_specfun/bin/g++ -std=c++17 -I. -o test_beta_inc test_beta_inc.cpp
     __ibeta_cont_frac(_Tp __a, _Tp __b, _Tp __x)
     {
       constexpr auto _S_itmax = 100;
-      constexpr auto _S_fpmin = 1000 * std::numeric_limits<_Tp>::min();
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto _S_fpmin = 1000 * std::numeric_limits<_Tp>::min();
+      const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       auto __apb = __a + __b;
       auto __ap1 = __a + _Tp{1};
       auto __am1 = __a - _Tp{1};
@@ -73,7 +73,7 @@ $HOME/bin_specfun/bin/g++ -std=c++17 -I. -o test_beta_inc test_beta_inc.cpp
     _Tp
     __ibeta(_Tp __a, _Tp __b, _Tp __x)
     {
-      constexpr auto _S_NaN = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      const auto _S_NaN = __gnu_cxx::__math_constants<_Tp>::__NaN;
       if (__x < _Tp{0} || __x > _Tp{1})
 	std::__throw_domain_error(__N("__ibeta: argument out of range"));
       else if (__isnan(__x) || __isnan(__a) || __isnan(__b))
@@ -113,9 +113,9 @@ $HOME/bin_specfun/bin/g++ -std=c++17 -I. -o test_beta_inc test_beta_inc.cpp
 
 template<typename _Tp>
   void
-  test_ibeta()
+  test_ibeta(_Tp proto = _Tp{})
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     auto width = std::cout.precision() + 6;
 
     for (int ia = 0; ia <= 10; ++ia)
@@ -139,9 +139,9 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  stress_test_ibeta()
+  stress_test_ibeta(_Tp proto = _Tp{})
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     auto width = std::cout.precision() + 8;
 
     std::cout << "a = " << std::setw(6) << _Tp{0.001L} << '\n';
