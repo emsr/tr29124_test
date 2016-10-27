@@ -18,7 +18,7 @@ g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_sph_bessel test_sph_bessel.cpp wrap_boos
 
 template<typename _Tp>
   void
-  test_sph_bessel()
+  test_sph_bessel(_Tp proto = _Tp{})
   {
     using _Val = _Tp;
     using _Real = std::__detail::__num_traits_t<_Val>;
@@ -89,7 +89,7 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  test_std_bessel()
+  test_std_bessel(_Tp proto = _Tp{})
   {
     using _Val = _Tp;
     using _Real = std::__detail::__num_traits_t<_Val>;

@@ -10,8 +10,8 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_anger_weber 
     {
       _Tp __nu;
       _Tp __z;
-      _Tp _Jbold;
-      _Tp _Ebold;
+      _Tp __Jbold;
+      _Tp __Ebold;
     };
 
   template<typename _Tp>
@@ -22,7 +22,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_anger_weber 
       using _Real = std::__detail::__num_traits_t<_Val>;
 
       const auto __z2 = __z / _Tp{2};
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
       auto __z2k = _Tp{1};
       auto _GamArg11 = _Tp{1} + __nu / _Tp{2};
       auto _GamArg12 = _Tp{1} - __nu / _Tp{2};
@@ -50,10 +50,11 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_anger_weber 
 	  __term1 *= _Tp{-1} * __z2k / (_GamArg21 * _GamArg22);
 	  _S2 += __term2;
 	}
-      auto [__sin, __cos] = __sincos_pi(__nu / _Tp{2});
+      //auto [__sin, __cos] = __sincos_pi(__nu / _Tp{2});
+      auto __ph = __sincos_pi(__nu / _Tp{2});
       return _AngerWeberState<_Tp>{__nu, __z,
-				   __cos * _S1, __sin * _S2,
-				   __sin * _S1, -__cos * _S2};
+				   __cos * _S1, __ph.__sin_value * _S2,
+				   __sin * _S1, -__ph.__cos_value * _S2};
     }
 
 

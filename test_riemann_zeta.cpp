@@ -16,7 +16,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_riemann_zeta test_riemann_
 
 template<typename _Tp>
   void
-  plot_riemann_zeta(std::string filename)
+  plot_riemann_zeta(std::string filename, _Tp proto = _Tp{})
   {
     using _Val = _Tp;
     using _Real = std::__detail::__num_traits_t<_Val>;
@@ -26,7 +26,7 @@ template<typename _Tp>
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Real>::digits10);
+    data.precision(__gnu_cxx::__digits10(proto));
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
@@ -112,15 +112,15 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  test_riemann_zeta_real()
+  test_riemann_zeta_real(_Tp proto = _Tp{})
   {
     using _Val = _Tp;
     using _Real = std::__detail::__num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
-    constexpr auto deg = __gnu_cxx::__math_constants<_Real>::__deg;
+    constexpr auto deg = __gnu_cxx::__const_deg(proto);
 
-    std::cout.precision(std::numeric_limits<_Real>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -154,7 +154,7 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  test_nontrivial_zeros()
+  test_nontrivial_zeros(_Tp proto = _Tp{})
   {
     using namespace std::literals::complex_literals;
 
@@ -162,7 +162,7 @@ template<typename _Tp>
     using _Real = std::__detail::__num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
-    std::cout.precision(std::numeric_limits<_Real>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
