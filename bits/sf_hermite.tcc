@@ -102,7 +102,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
    * @f]
    *
-   * see "Asymptotic analysis of the Hermite polynomials
+   * @see "Asymptotic analysis of the Hermite polynomials
    * 	  from their differential-difference equation", 
    * 	  Diego Dominici, arXiv:math/0601078v1 [math.CA] 4 Jan 2006
    * @param __n The order of the Hermite polynomial.
@@ -116,7 +116,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
       const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
-      const auto _S_sqrt_2pi = _S_sqrt_2 * __gnu_cxx::__const_root_pi(__x);
+      const auto _S_sqrt_2pi = __gnu_cxx::__const_root_2_pi(__x);
       // __x >= 0 in this routine.
       const auto __xturn = std::sqrt(_Tp(2 * __n));
       if (std::abs(__x - __xturn) < _Tp{0.05L} * __xturn)
@@ -186,6 +186,51 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __poly_hermite_asymp(__n, __x);
       else
 	return __poly_hermite_recursion(__n, __x);
+    }
+
+  /**
+   * @brief This routine returns the Probabilists Hermite polynomial
+   * 	    of order n: @f$ He_n(x) @f$ by recursion on n.
+   *
+   * The Hermite polynomial is defined by:
+   * @f[
+   *   He_n(x) = (-1)^n e^{x^2/2} \frac{d^n}{dx^n} e^{-x^2/2}
+   * @f]
+   * or
+   * @f[
+   *   He_n(x) = \frac{1}{2^{-n/2}}H_n\left(\frac{x}{\sqrt{2}\right)
+   * @f]
+   * where @f$ H_n(x) @f$ is the Physicists Hermite function.
+   *
+   * @param __n The order of the Hermite polynomial.
+   * @param __x The argument of the Hermite polynomial.
+   * @return The value of the Hermite polynomial of order n
+   * 	     and argument x.
+   */
+  template<typename _Tp>
+    _Tp
+    __poly_prob_hermite_recursion(unsigned int __n, _Tp __x)
+    {
+      // Compute He_0.
+      auto __He_nm2 = _Tp{1};
+      if (__n == 0)
+	return __He_nm2;
+
+      // Compute He_1.
+      auto __He_nm1 = __x;
+      if (__n == 1)
+	return __He_nm1;
+
+      // Compute He_n.
+      _Tp __He_n;
+      for (unsigned int __i = 2; __i <= __n; ++__i)
+	{
+	  __He_n = __x * __He_nm1 - _Tp(__i - 1) * __He_nm2;
+	  __He_nm2 = __He_nm1;
+	  __He_nm1 = __He_n;
+	}
+
+      return __He_n;
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
