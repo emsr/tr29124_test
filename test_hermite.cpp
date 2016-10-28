@@ -1,6 +1,9 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hermite test_hermite.cpp -lquadmath
 ./test_hermite > test_hermite.txt
+
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hermite test_hermite.cpp -lquadmath
+./test_hermite > test_hermite.txt
 */
 
 #include <sstream>
@@ -64,6 +67,15 @@ template<typename _Tp>
 	std::cout << "  " << std::setw(width) << "delta2";
 	std::cout << "  " << std::setw(width) << "delta2-ratio";
 	std::cout << '\n';
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << '\n';
 	for (int i = 0; i <= 201; ++i)
           {
             auto x = _Tp{0.75Q} * xt + i * del;
@@ -107,6 +119,15 @@ template<typename _Tp>
 	std::cout << "  " << std::setw(width) << "delta2";
 	std::cout << "  " << std::setw(width) << "delta2-ratio";
 	std::cout << '\n';
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << '\n';
 	for (int i = 1; i <= 201; ++i)
           {
             auto x = _Tp{0.75Q} * xt + i * del;
@@ -146,6 +167,12 @@ template<typename _Tp>
 	std::cout << "  " << std::setw(width) << "delta";
 	std::cout << "  " << std::setw(width) << "delta-ratio";
 	std::cout << '\n';
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << '\n';
 	auto del = _Tp{0.1Q};
 	for (int i = 0; i <= 100; ++i)
           {
@@ -184,6 +211,12 @@ template<typename _Tp>
 	std::cout << "  " << std::setw(width) << fname("Hn_", n, "(x)");
 	std::cout << "  " << std::setw(width) << fname("He_", n, "(x)");
 	std::cout << "  " << std::setw(width) << fname("Hen_", n, "(x)");
+	std::cout << '\n';
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
+	std::cout << "  " << std::setw(width) << "------------";
 	std::cout << '\n';
 	for (int i = 0; i <= 100; ++i)
           {
