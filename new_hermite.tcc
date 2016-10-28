@@ -37,18 +37,18 @@
 #pragma GCC system_header
 
   /**
-   *   @brief This routine returns the Hermite polynomial
-   *          of order n: @f$ H_n(x) @f$ by recursion on n.
+   * @brief This routine returns the Hermite polynomial
+   * 	    of order n: @f$ H_n(x) @f$ by recursion on n.
    *
-   *   The Hermite polynomial is defined by:
-   *   @f[
-   *     H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
-   *   @f]
+   * The Hermite polynomial is defined by:
+   * @f[
+   *   H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
+   * @f]
    *
-   *   @param __n The order of the Hermite polynomial.
-   *   @param __x The argument of the Hermite polynomial.
-   *   @return The value of the Hermite polynomial of order n
-   *           and argument x.
+   * @param __n The order of the Hermite polynomial.
+   * @param __x The argument of the Hermite polynomial.
+   * @return The value of the Hermite polynomial of order n
+   * 	     and argument x.
    */
   template<typename _Tp>
     _Tp
@@ -76,24 +76,23 @@
       return __H_n;
     }
 
-
   /**
-   *   @brief This routine returns the Hermite polynomial
-   *          of large order n: @f$ H_n(x) @f$.  We assume here
-   *          that x >= 0.
+   * @brief This routine returns the Hermite polynomial
+   * 	    of large order n: @f$ H_n(x) @f$.  We assume here
+   * 	    that x >= 0.
    *
-   *   The Hermite polynomial is defined by:
-   *   @f[
-   *     H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
-   *   @f]
+   * The Hermite polynomial is defined by:
+   * @f[
+   *   H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
+   * @f]
    *
-   *  @see "Asymptotic analysis of the Hermite polynomials
-   *        from their differential-difference equation", 
-   *        Diego Dominici, arXiv:math/0601078v1 [math.CA] 4 Jan 2006
-   *   @param __n The order of the Hermite polynomial.
-   *   @param __x The argument of the Hermite polynomial.
-   *   @return The value of the Hermite polynomial of order n
-   *           and argument x.
+   * @see "Asymptotic analysis of the Hermite polynomials
+   * 	  from their differential-difference equation", 
+   * 	  Diego Dominici, arXiv:math/0601078v1 [math.CA] 4 Jan 2006
+   * @param __n The order of the Hermite polynomial.
+   * @param __x The argument of the Hermite polynomial.
+   * @return The value of the Hermite polynomial of order n
+   * 	     and argument x.
    */
   template<typename _Tp>
     _Tp
@@ -139,7 +138,9 @@
 	}
     }
 
-
+  /**
+   * 
+   */
   template<typename _Tp>
     _Tp
     __poly_hermite_asymp2(unsigned int __n, _Tp __x)
@@ -195,15 +196,21 @@
 	}
     }
 
-  struct __sqrt_factorial_t
+  /**
+   * 
+   */
+  struct _sqrt_n_t
   {
-    unsigned int __n
+    unsigned int __n;
     long double __value;
   };
 
-  constexpr std::size_t _S_sqrt_fact_len = 101;
-  constexpr __sqrt_factorial_t
-  _S_sqrt_fact[__sqrt_fact_len]
+  /**
+   * 
+   */
+  constexpr std::size_t _S_sqrt_len = 101;
+  constexpr _sqrt_n_t
+  _S_sqrt[_S_sqrt_len]
   {
     {  0,  0.0L},
     {  1,  1.0L},
@@ -308,16 +315,145 @@
     {100, 10.0L},
   };
 
+  /**
+   * 
+   */
   template<typename _Tp>
     _Tp
-    __sqrt_factorial(unsigned int __n)
+    __sqrt_n(unsigned int __n)
     {
-      if (__n < _S_sqrt_fact_len)
-	return _S_sqrt_fact[__n];
+      if (__n < _S_sqrt_len)
+	return _S_sqrt[__n].__value;
       else
 	return 0.0;
     };
 
+  /**
+   * 
+   */
+  constexpr std::size_t _S_sqrt_factorial_len = 101;
+  constexpr _sqrt_n_t
+  _S_sqrt_factorial[_S_sqrt_factorial_len]
+  {
+    {  0, 1.0L},
+    {  1, 1.0L},
+    {  2, 1.4142135623730950488016887242097L},
+    {  3, 2.44948974278317809819728407470589L},
+    {  4, 4.89897948556635619639456814941178L},
+    {  5, 10.954451150103322269139395656016L},
+    {  6, 26.8328157299974763569100840247753L},
+    {  7, 70.9929573971953925108079394987394L},
+    {  8, 200.798406368178131514761286188445L},
+    {  9, 602.395219104534394544283858565335L},
+    { 10, 1904.94094396650522516116334262027L},
+    { 11, 6317.97435892232788349259958133974L},
+    { 12, 21886.1051811417556296029916566971L},
+    { 13, 78911.4744508046814381843836386651L},
+    { 14, 295259.701280076485821472064164108L},
+    { 15, 1143535.90586391295875124025935228L},
+    { 16, 4574143.6234556518350049610374091L},
+    { 17, 18859677.3062531480843762406007568L},
+    { 18, 80014834.2854498449532394581745402L},
+    { 19, 348776576.634429394130956982418777L},
+    { 20, 1559776268.6284978864689940284128L},
+    { 21, 7147792818.18586568914492660841969L},
+    { 22, 33526120082.3717100758289563358894L},
+    { 23, 160785623545.405876688777172799046L},
+    { 24, 787685471322.938290082864090810656L},
+    { 25, 3938427356614.69145041432045405328L},
+    { 26, 20082117944245.9613193062397798804L},
+    { 27, 104349745809073.977642050292995307L},
+    { 28, 552166953567228.487485881686751796L},
+    { 29, 2973510046012910.64051502607826762L},
+    { 30, 16286585271694955.8430499533647826L},
+    { 31, 90679869067935485.2900721146741092L},
+    { 32, 512962802680363491.254014488879691L},
+    { 33, 2946746955341073478.83928894792265L},
+    { 34, 17182339742875652406.3279065648803L},
+    { 35, 101652092779175702171.244426939445L},
+    { 36, 609912556675054213027.466561636668L},
+    { 37, 3709953246501409085690.74842060256L},
+    { 38, 22869687743093501007951.1797394983L},
+    { 39, 142821154179615294686593.232731305L},
+    { 40, 903280290523322408635610.174897063L},
+    { 41, 5783815921445270815783609.37207049L},
+    { 42, 37483411234209726053065805.9426926L},
+    { 43, 245795164849461258960674062.719681L},
+    { 44, 1630420674178430788228519563.29731L},
+    { 45, 10937194378152021970306618007.5255L},
+    { 46, 74179661362209580727623742159.7227L},
+    { 47, 508550136674023695658451670185.509L},
+    { 48, 3523338699662022653505900576721.48L},
+    { 49, 24663370897634158574541304037050.3L},
+    { 50, 174396368086360611696209329639025.0L},
+    { 51, 1.24543918088655869949356205769181e+33L},
+    { 52, 8.98098965431671558896778170657208e+33L},
+    { 53, 6.53825915979171443878164923175682e+34L},
+    { 54, 4.80461962427038942460267525096445e+35L},
+    { 55, 3.56320127885841946103335126785472e+36L},
+    { 56, 2.6664556771205919519070097139613e+37L},
+    { 57, 2.01312988912482288333668455069537e+38L},
+    { 58, 1.53315404682076176941316470568961e+39L},
+    { 59, 1.17763796875648432762110199697109e+40L},
+    { 60, 9.12194448171078825946968575298182e+40L},
+    { 61, 7.12446639319201784948673912308404e+41L},
+    { 62, 5.60981044781264757536224880159562e+42L},
+    { 63, 4.45264900413724511229659804359123e+43L},
+    { 64, 3.56211920330979608983727843487298e+44L},
+    { 65, 2.87187231472474602194272790194524e+45L},
+    { 66, 2.33312009780346083238760578326488e+46L},
+    { 67, 1.90974110596668796970008672429389e+47L},
+    { 68, 1.57481285949690879440363779396009e+48L},
+    { 69, 1.30813780783272719906613355787988e+49L},
+    { 70, 1.09446661301155695857080695109221e+50L},
+    { 71, 9.22213960297642814598347871007016e+50L},
+    { 72, 7.82524494037637692535809689270459e+51L},
+    { 73, 6.68589220786028253245905833563765e+52L},
+    { 74, 5.75142194723999224356836312510184e+53L},
+    { 75, 4.98087751419319666971328299194608e+54L},
+    { 76, 4.34222834690444424005209872779547e+55L},
+    { 77, 3.81028991060110634246276414878912e+56L},
+    { 78, 3.36515693218106810945967727285604e+57L},
+    { 79, 2.99101690580026232102005152875489e+58L},
+    { 80, 2.67524684928818862621490012042605e+59L},
+    { 81, 2.40772216435936976359341010838345e+60L},
+    { 82, 2.18028515039038913058435920563318e+61L},
+    { 83, 1.98633430462262788036763464177704e+62L},
+    { 84, 1.82050546128413283235920381364505e+63L},
+    { 85, 1.67842310350535579040289669063465e+64L},
+    { 86, 1.55650555359345674201535001388481e+65L},
+    { 87, 1.45181172966040184049837977571737e+66L},
+    { 88, 1.3619201234191322393627253212934e+67L},
+    { 89, 1.28483287477042947436606854413089e+68L},
+    { 90, 1.21889948908093381697322725306802e+69L},
+    { 91, 1.16275600522138906842396938125352e+70L},
+    { 92, 1.11527638075238136262755547542308e+71L},
+    { 93, 1.0755335917960171153434304565512e+72L},
+    { 94, 1.04276850578483769255079421914426e+73L},
+    { 95, 1.01636501751285493870798488028947e+74L},
+    { 96, 9.95830274128553338795685900500338e+74L},
+    { 97, 9.80779076461575621093405241807929e+75L},
+    { 98, 9.70921750136603322844481600341928e+76L},
+    { 99, 9.66054943799492973133000870362309e+77L},
+    {100, 9.66054943799492973133000870362309e+78L},
+  };
+
+  /**
+   * 
+   */
+  template<typename _Tp>
+    _Tp
+    __sqrt_factorial(unsigned int __n)
+    {
+      if (__n < _S_sqrt_factorial_len)
+	return _S_sqrt_factorial[__n].__value;
+      else
+	return 0.0;
+    };
+
+  /**
+   * 
+   */
   template<typename _Tp>
     _Tp
     __poly_hermite_norm_factor(unsigned int __n, _Tp __x)
@@ -326,17 +462,18 @@
       const auto _S_root4_pi = std::sqrt(_S_root_pi);
       const auto _S_root_2 = __gnu_cxx::__const_root_2(__x);
       return _S_root4_pi
-	   * std::pow(_S_root_2, _Tp(__n)) * __sqrt_factorial(__n);
+	   * std::pow(_S_root_2, _Tp(__n)) * __sqrt_factorial<_Tp>(__n);
     }
 
   /**
-   *  @brief  Compute the normalized Hermite polynomial by recursion.
-   *  @todo  Tabulate sqrt(int) or even sqrt(i)/sqrt(i+1) and add a helper.
+   * @brief Compute the normalized Hermite polynomial by recursion.
+   * @todo Tabulate sqrt(int) or even sqrt(i)/sqrt(i+1) and add a helper.
    */
   template<typename _Tp>
     _Tp
     __poly_hermite_norm_recursion(unsigned int __n, _Tp __x)
     {
+      const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
       const auto _S_inv_root4_pi
 	= _Tp{7.511255444649424828587030047762276930510e-1L};
       const auto _S_root_2 = __gnu_cxx::__const_root_2(__x);
@@ -351,8 +488,8 @@
       _Tp __Hn_n;
       for (unsigned int __i = 2; __i < __n; ++__i)
 	{
-	  __Hn_n = __x * std::sqrt(_Tp{2} / _Tp(__i)) * __Hn_nm1
-		 - std::sqrt(_Tp(__i - 1) / _Tp(__i)) * __Hn_nm2;
+	  __Hn_n = (_S_sqrt_2 * __x * __Hn_nm1
+		   - __sqrt_n<_Tp>(__i - 1) * __Hn_nm2) / __sqrt_n<_Tp>(__i);
 	  __Hn_nm2 = __Hn_nm1;
 	  __Hn_nm1 = __Hn_n;
 	}
@@ -406,7 +543,7 @@
     }
 
   /**
-   *  @brief  Compute the normalized probabalists Hermite polynomial by recursion.
+   * @brief Compute the normalized probabalists Hermite polynomial by recursion.
    */
   template<typename _Tp>
     _Tp
@@ -422,7 +559,7 @@
 	return __Hen_nm2;
 
       // Compute Hen_1.
-      auto __Hen_nm1 = __x;
+      auto __Hen_nm1 = __x * _S_inv_root4_pi;
       if (__n == 1)
 	return __Hen_nm1;
 
@@ -430,8 +567,8 @@
       _Tp __Hen_n;
       for (unsigned int __i = 2; __i <= __n; ++__i)
 	{
-	  __Hen_n = (__x * __Hen_nm1 - _Tp(__i - 1) * __Hen_nm2)
-		  / std::sqrt(_Tp(__i));
+	  __Hen_n = (__x * __Hen_nm1 - __sqrt_n<_Tp>(__i - 1) * __Hen_nm2)
+		  / __sqrt_n<_Tp>(__i);
 	  __Hen_nm2 = __Hen_nm1;
 	  __Hen_nm1 = __Hen_n;
 	}
@@ -439,6 +576,9 @@
       return __Hen_n;
     }
 
+  /**
+   * 
+   */
   template<typename _Tp>
     _Tp
     __poly_prob_hermite_norm_factor(unsigned int __n, _Tp __x)
@@ -446,7 +586,7 @@
       const auto _S_root_pi = __gnu_cxx::__const_root_pi(__x);
       const auto _S_root_2 = __gnu_cxx::__const_root_2(__x);
       const auto _S_root4_2pi = std::sqrt(_S_root_2 * _S_root_pi);
-      return _S_root4_2pi * __sqrt_factorial(__n);
+      return _S_root4_2pi * __sqrt_factorial<_Tp>(__n);
     }
 
 #endif // _GLIBCXX_BITS_NEW_HERMITE_TCC
