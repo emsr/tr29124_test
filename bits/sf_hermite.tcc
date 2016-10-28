@@ -182,7 +182,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return (__n % 2 == 1 ? -1 : +1) * __poly_hermite(__n, -__x);
-      else if (__n > 100)
+      else if (__n > 10000)
 	return __poly_hermite_asymp(__n, __x);
       else
 	return __poly_hermite_recursion(__n, __x);
