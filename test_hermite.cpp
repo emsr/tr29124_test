@@ -37,6 +37,16 @@ template<typename _Tp>
       std::cout << "  " << std::setw(4) << n
 		<< "  " << std::setw(width) << std::sqrt(_Tp(n)) << '\n';
 
+    std::cout << "\f\n\n  Table of factorial sqrt\n";
+    std::cout << "  =======================\n";
+    auto fact = _Tp{1};
+    for (int n = 0; n <= 100; ++n)
+      {
+	std::cout << "  " << std::setw(4) << n
+		  << "  " << std::setw(width) << fact << '\n';
+	fact *= std::sqrt(_Tp(n + 1));
+      }
+
     std::cout << "\f\n\n  Examine asymptotic transition region\n";
     std::cout << "  ====================================\n";
     for (int n = 4; n <= 200; ++n)
@@ -205,4 +215,5 @@ int
 main()
 {
   test_hermite(1.0Q);
+  //test_hermite(1.0F);
 }
