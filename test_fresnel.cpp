@@ -5,9 +5,9 @@
 
 #include "fresnel.tcc"
 
-int main(int, char **)
+int
+main()
 {
-
   std::cout.precision(8);
   std::cout.flags(std::ios::showpoint);
 
@@ -18,7 +18,7 @@ int main(int, char **)
   for (int i = 0; i <= 1000; ++i)
     {
       double x = i * 0.01;
-      std::pair<double,double> frnl = __fresnel(x);
+      std::pair<double, double> frnl = __fresnel(x);
       std::cout << "  " << std::setw(16) << x;
       std::cout << "  " << std::setw(16) << frnl.first;
       std::cout << "  " << std::setw(16) << frnl.second;

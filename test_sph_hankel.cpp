@@ -10,13 +10,14 @@ g++ -std=c++14 -g -Wall -Wextra -I. -o test_sph_hankel test_sph_hankel.cpp -lqua
 #include <iostream>
 #include <iomanip>
 #include <ext/cmath>
+#include <bits/float128_io.h>
 #include "wrap_boost.h"
 
 template<typename _Tp>
   void
   RunSphHankel1(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    std::cout.precision(__gnu_cxx::__digits10<_Tp>(proto));
     std::cout.flags(std::ios::showpoint);
     auto width = 8 + std::cout.precision();
 
@@ -51,5 +52,8 @@ template<typename _Tp>
 int
 main()
 {
+  RunSphHankel1<float>();
   RunSphHankel1<double>();
+  RunSphHankel1<long double>();
+  RunSphHankel1<__float128>();
 }
