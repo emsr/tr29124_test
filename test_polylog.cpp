@@ -1,29 +1,27 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_polylog test_polylog.cpp
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_polylog test_polylog.cpp -lquadmath
 ./test_polylog > test_polylog.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_polylog test_polylog.cpp
 */
 
 #include <iostream>
+#include <fstream>
 #include <iomanip>
 #include <cmath>
 #include <complex>
-#include <fstream>
-#include <limits>
-#include <array>
-#include <ext/math_const.h>
+#include <bits/float128_io.h>
 
 template<typename Tp>
   void
   TestPolyLog(Tp proto = Tp{})
   {
-    const auto _S_pi = __gnu_cxx::__math_pi<Tp>(proto);
-    const auto _S_2pi = __gnu_cxx::__math_2_pi<Tp>(proto);
+    const auto _S_pi = __gnu_cxx::__const_pi<Tp>(proto);
+    const auto _S_2pi = __gnu_cxx::__const_2_pi<Tp>(proto);
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::scientific;
 
-    std::size_t n = 5000;
+    //std::size_t n = 5000;
 
     // this part of code was for performance testing.
     // the old implementation takes about 2.8s on my core2 and the new one 0.8s
@@ -83,7 +81,7 @@ template<typename Tp>
     // }
 
     std::ofstream test("test.dat");
-    for (double s = Tp{2.5}; s < Tp{3.5}; s += Tp{0.01})
+    for (auto s = Tp{2.5}; s < Tp{3.5}; s += Tp{0.01})
       test << s << ' ' << std::real(std::__detail::__polylog(s, Tp{2})) - Tp{2} << '\n';
 
     std::cout << std::__detail::__polylog(Tp{3.1}, Tp{2}) << '\n';
@@ -132,11 +130,13 @@ template<typename Tp>
 int
 main()
 {
-  //TestPolyLog<float>();
+  TestPolyLog<float>();
 
   TestPolyLog<double>();
 
-  //TestPolyLog<long double>();
+  TestPolyLog<long double>();
+
+  TestPolyLog<__float128>();
 
   return 0;
 }

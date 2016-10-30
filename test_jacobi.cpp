@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -I/usr/local/include/boost -o test_jacobi test_jacobi.cpp
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -I/usr/local/include/boost -o test_jacobi test_jacobi.cpp -lquadmath
 ./test_jacobi > test_jacobi.txt
 */
 
@@ -8,6 +8,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -I/usr/local/include
 #include <cmath>
 #include <limits>
 #include "jacobi_small.hpp"
+#include <bits/float128_io.h>
 
 template<typename Tp>
   void
@@ -47,4 +48,5 @@ int
 main()
 {
   test_jacobi<long double>();
+  test_jacobi<__float128>();
 }
