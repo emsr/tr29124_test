@@ -398,8 +398,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
    * @f]
    *
-   * This is something of an extension.
-   *
    * @param  __n  The order of the exponential integral function.
    * @param  __x  The argument of the exponential integral function.
    * @return  The exponential integral.
@@ -431,8 +429,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *   E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
    * @f]
-   *
-   * This is something of an extension.
    *
    * @param  __n  The order of the exponential integral function.
    * @param  __x  The argument of the exponential integral function.
@@ -553,11 +549,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * @brief Return the hyperbolic cosine integral @f$ li(x) @f$.
+   * @brief Return the hyperbolic cosine integral @f$ Chi(x) @f$.
    *
    * The hyperbolic cosine integral is given by
    * @f[
-   *   Chi(x) = (Ei(x) - E_1(x))/ 2
+   *   Chi(x) = (Ei(x) - E_1(x))/ 2 = (Ei(x) + Ei(-x))/2
    * @f]
    *
    * @param  __x  The argument of the hyperbolic cosine integral function.
@@ -576,11 +572,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * @brief Return the hyperbolic sine integral @f$ li(x) @f$.
+   * @brief Return the hyperbolic sine integral @f$ Shi(x) @f$.
    *
    * The hyperbolic sine integral is given by
    * @f[
-   *   Shi(x) = (Ei(x) - E_1(x))/ 2
+   *   Shi(x) = (Ei(x) + E_1(x))/2 = (Ei(x) - Ei(-x))/2
    * @f]
    *
    * @param  __x  The argument of the hyperbolic sine integral function.
