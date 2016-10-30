@@ -9,6 +9,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -DNO_SINH_COSH_PI -I. -o tes
 #include <iostream>
 #include <iomanip>
 #include <limits>
+#include <bits/float128_io.h>
 
 #include <ext/cmath>
 
@@ -61,9 +62,15 @@ template<typename _Tp>
 int
 main()
 {
+  std::cout << "\nfloat\n=====\n\n";
+  run_sin_cosh_pi<float>();
+
   std::cout << "\ndouble\n=====\n\n";
   run_sin_cosh_pi<double>();
 
   std::cout << "\nlong double\n=====\n\n";
   run_sin_cosh_pi<long double>();
+
+  std::cout << "\n__float128\n=====\n\n";
+  run_sin_cosh_pi<__float128>();
 }

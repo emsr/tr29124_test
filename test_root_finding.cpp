@@ -1,6 +1,6 @@
 
 /*
-$HOME/bin/bin/g++ -g -I. -o test_root_finding test_root_finding.cpp
+$HOME/bin/bin/g++ -g -Wall -Wextra -I. -o test_root_finding test_root_finding.cpp
 ./test_root_finding > test_root_finding.txt
 */
 
@@ -18,7 +18,7 @@ template<typename _Tp>
   void
   test_roots(_Tp proto = _Tp{})
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
