@@ -9,6 +9,7 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_sinus_cardinal test_si
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <bits/float128_io.h>
 
 #include "wrap_boost.h"
 #include "wrap_gsl.h"
@@ -64,8 +65,6 @@ template<typename _Tp>
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
-
-    const auto pi = __gnu_cxx::__const_pi(proto);
 
     std::cout << std::endl;
     std::cout << std::setw(width) << "x"
@@ -123,7 +122,6 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << std::setw(width) << "==============="
 	      << '\n';
-    const auto pi = __gnu_cxx::__const_pi(proto);
 
     for (int i = -40; i <= +40; ++i)
       {
@@ -150,8 +148,6 @@ template<typename _Tp>
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
-
-    const auto pi = __gnu_cxx::__const_pi(proto);
 
     std::cout << std::endl;
     std::cout << std::setw(width) << "x"

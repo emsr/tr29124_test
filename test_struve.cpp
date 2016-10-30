@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-compare-reals -I. -o test_struve test_struve.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 -lgfortran
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-compare-reals -I. -o test_struve test_struve.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 -lgfortran -lquadmath
 ./test_struve > test_struve.new
 
 g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_struve test_struve.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 -lgfortran
@@ -7,7 +7,7 @@ g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_struve test_struve.cpp wrap_burkha
 */
 
 #include <cassert>
-#include <cmath> // There are issues with <complex> inclusion if this isn't up here!
+#include <cmath>
 #include <limits>
 #include <iostream>
 #include <fstream>
@@ -15,11 +15,7 @@ g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_struve test_struve.cpp wrap_burkha
 #include <vector>
 #include <complex>
 #include <string>
-#include <ext/math_const.h>
-#include <bits/numeric_limits.h>
-#include <bits/specfun_util.h>
-#include <bits/complex_util.h>
-#include <bits/summation.h>
+#include <bits/float128_io.h>
 
 #include "wrap_burkhardt.h"
 
@@ -108,7 +104,7 @@ namespace __detail
       assert(__sign != 0);
 
       constexpr int _S_max_iter = 1000;
-      const auto _S_eps = __gnu_cxx::_-epsilon(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(__x);
 
       auto __x2 = __x / _Val{2};
@@ -140,7 +136,7 @@ namespace __detail
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_nan = __gnu_cxx::__quiet_NaN(std::real(__x));
-      const auto _S_max = _Real{__gnu_cxx::__digits10(std::real(__x))};
+      const auto _S_max = __gnu_cxx::__digits10(std::real(__x));
 
       if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_h: bad argument"));
@@ -167,7 +163,7 @@ namespace __detail
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_nan = __gnu_cxx::__quiet_NaN(std::real(__x));
-      const auto _S_max = _Real{__gnu_cxx::__digits10(std::real(__x))};
+      const auto _S_max = __gnu_cxx::__digits10(std::real(__x));
 
       if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_k: bad argument"));
@@ -194,7 +190,7 @@ namespace __detail
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_nan = __gnu_cxx::__quiet_NaN(std::real(__x));
-      const auto _S_max = _Real{__gnu_cxx::__digits10(std::real(__x))};
+      const auto _S_max = __gnu_cxx::__digits10(std::real(__x));
 
       if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_l: bad argument"));
@@ -221,7 +217,7 @@ namespace __detail
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_nan = __gnu_cxx::__quiet_NaN(std::real(__x));
-      const auto _S_max = _Real{__gnu_cxx::__digits10(std::real(__x))};
+      const auto _S_max = __gnu_cxx::__digits10(std::real(__x));
 
       if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_k: bad argument"));
@@ -566,6 +562,7 @@ main()
   test_struve_transition<float>();
   test_struve_transition<double>();
   test_struve_transition<long double>();
+  test_struve_transition<__float128>();
 
   //using cmplx = std::complex<double>;
   plot_struve<float>("plot/struve_float.txt");

@@ -709,7 +709,7 @@ int
 main()
 {
   do_test<__float128>();
-  //do_test<long double>();
+  do_test<long double>();
   do_test<double>();
-  //do_test<float>();
+  do_test<float>();
 }
