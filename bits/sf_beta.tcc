@@ -91,15 +91,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
 	{
 	  _Tp __bet;
-	  if (__a > __b)
-	    {
-	      __bet = __gamma(__a) / __gamma(__a + __b);
-	      __bet *= __gamma(__b);
-	    }
-	  else
+	  if (std::abs(__b) > std::abs(__a))
 	    {
 	      __bet = __gamma(__b) / __gamma(__a + __b);
 	      __bet *= __gamma(__a);
+	    }
+	  else
+	    {
+	      __bet = __gamma(__a) / __gamma(__a + __b);
+	      __bet *= __gamma(__b);
 	    }
 
 	  return __bet;
@@ -134,7 +134,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  else if (__nb != __b || __nb > 0)
 	    return _Tp{0};
 	  else
-	    return __gnu_cxx::__quiet_NaN<_Tp>();
+	    return __gnu_cxx::__quiet_NaN<_Tp>(__a);
 	}
       else
 	{
@@ -146,7 +146,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		      * __log_gamma_sign(__a + __b);
 
 	  if (__bet > __gnu_cxx::__log_max<_Tp>())
-            return __sign * __gnu_cxx::__infinity<_Tp>();
+            return __sign * __gnu_cxx::__infinity<_Tp>(__a);
 	  else
 	    return __sign * std::exp(__bet);
 	}
@@ -216,6 +216,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__isnan(__a) || __isnan(__b))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
+      else if (std::abs(__a) < _S_num_factorials<_Tp>
+	    && std::abs(__b) < _S_num_factorials<_Tp>)
+	return __beta_gamma(__a, __b);
       else
 	return __beta_lgamma(__a, __b);
     }
