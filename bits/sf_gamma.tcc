@@ -1598,6 +1598,130 @@ _S_neg_double_factorial_table[999]
   {-1997,  2.598975174703923361684462648570222e-2864L, -6.593648589131197697950483207309507e+03L},
 };
 
+  // Predeclaration.
+  template<typename _Tp>
+    _Tp __log_gamma(_Tp __x);
+
+  /**
+   * @brief  Return the factorial of the integer n.
+   *
+   * The factorial is:
+   * @f[
+   *   n! = 1 2 ... (n-1) n, 0! = 1
+   * @f]
+   */
+  template<typename _Tp>
+    _GLIBCXX14_CONSTEXPR _Tp
+    __factorial(unsigned int __n)
+    {
+      if (__n <= _S_num_factorials<_Tp>)
+	return _S_factorial_table[__n].__factorial;
+      else
+	return __gnu_cxx::__infinity<_Tp>();
+    }
+
+  /**
+   * @brief  Return the logarithm of the factorial of the integer n.
+   *
+   * The factorial is:
+   * @f[
+   *   n! = 1 2 ... (n-1) n, 0! = 1
+   * @f]
+   */
+  template<typename _Tp>
+    _GLIBCXX14_CONSTEXPR _Tp
+    __log_factorial(unsigned int __n)
+    {
+      if (__n <= _S_num_factorials<_Tp>)
+	return _S_factorial_table[__n].__log_factorial;
+      else
+	return __log_gamma(_Tp(__n + 1));
+    }
+
+  template<typename _Tp>
+    _GLIBCXX14_CONSTEXPR _Tp
+    __log_double_factorial(_Tp __x)
+    {
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      return (__x / _Tp{2}) * std::log(_Tp{2})
+	   + (__cos_pi(__x) - _Tp{1})
+		* std::log(_S_pi / 2) / _Tp{4}
+	   + __log_gamma(_Tp{1} + __x / _Tp{2});
+    }
+
+  /**
+   * @brief  Return the double factorial of the integer n.
+   *
+   * The double factorial is defined for integral n by:
+   * @f[
+   *   n!! = 1 3 5 ... (n-2) n, n odd
+   *   n!! = 2 4 6 ... (n-2) n, n even
+   *   -1!! = 1
+   *   0!! = 1
+   * @f]
+   * The double factorial is defined for odd negative integers
+   * in the obvious way:
+   * @f[
+   *   (-2m - 1)!! = 1 / (1 (-1) (-3) ... (-2m + 1) (-2m - 1))
+   *	   = \frac{(-1)^m}{(2m-1)!!}
+   * @f]
+   * for $f[ n = -2m - 1 $f].
+   */
+  // I must watch neg log double factorial.  Or do the log_t thing.
+  template<typename _Tp>
+    _GLIBCXX14_CONSTEXPR _Tp
+    __double_factorial(int __n)
+    {
+      if (__n < 0 && __n % 2 == 1)
+	{
+	  if (-__n <= _S_num_neg_double_factorials<_Tp>)
+	    return _S_neg_double_factorial_table[-(1 + __n) / 2].__factorial;
+	  else
+	    return std::exp(__log_double_factorial(_Tp(__n)));
+	}
+      else if (__n <= _S_num_double_factorials<_Tp>)
+	return _S_double_factorial_table[__n].__factorial;
+      else
+	return __gnu_cxx::__quiet_NaN<_Tp>();
+    }
+
+  /**
+   * @brief  Return the logarithm of the double factorial of the integer n.
+   *
+   * The double factorial is defined for integral n by:
+   * @f[
+   *   n!! = 1 3 5 ... (n-2) n, n odd
+   *   n!! = 2 4 6 ... (n-2) n, n even
+   *   -1!! = 1
+   *   0!! = 1
+   * @f]
+   * The double factorial is defined for odd negative integers
+   * in the obvious way:
+   * @f[
+   *   (-2m - 1)!! = 1 / (1 (-1) (-3) ... (-2m + 1) (-2m - 1))
+   *	   = \frac{(-1)^m}{(2m-1)!!}
+   * @f]
+   * for $f[ n = -2m - 1 $f].
+   */
+  // I should do a signed version.  Or do the log_t thing.
+  template<typename _Tp>
+    _GLIBCXX14_CONSTEXPR _Tp
+    __log_double_factorial(int __n)
+    {
+      if (__n < 0 && __n % 2 == 1)
+	{
+	  if (-__n <= _S_num_neg_double_factorials<_Tp>)
+	    return _S_neg_double_factorial_table[-(1 + __n) / 2]
+				.__log_factorial;
+	  else
+	    return __log_double_factorial(_Tp(__n));
+	}
+      else if (__n <= _S_num_double_factorials<_Tp>)
+	return _S_double_factorial_table[__n].__log_factorial;
+      else
+	return __log_double_factorial(_Tp(__n));
+    }
+
   /**
    *  @brief This returns Bernoulli numbers from a table or by summation
    *         for larger values.
@@ -2249,7 +2373,7 @@ _S_neg_double_factorial_table[999]
 	{
 	  const auto __sin_fact = __sin_pi(__x);
 	  if (std::abs(__sin_fact) < _S_eps)
-	    return _Cmplx(__gnu_cxx::__quiet_NaN<_Real>(), _Real{0});
+	    return _Cmplx(__gnu_cxx::__quiet_NaN(std::real(__x)), _Real{0});
 	  else
 	    return _S_logpi - std::log(__sin_fact) - __log_gamma(_Val{1} - __x);
 	}
@@ -2301,14 +2425,20 @@ _S_neg_double_factorial_table[999]
     _Tp
     __log_bincoef(unsigned int __n, unsigned int __k)
     {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
       if (__k > __n)
-	return -__gnu_cxx::__infinity<_Tp>();
+	return -_Val(__gnu_cxx::__infinity<_Real>());
       else if (__k == 0 || __k == __n)
-	return _Tp{0};
+	return _Val{0};
+      else if (__n < _S_num_factorials<_Real>
+      	    && __k < _S_num_factorials<_Real>)
+	return __log_factorial<_Val>(__n)
+	     - __log_factorial<_Val>(__k) - __log_factorial<_Val>(__n - __k);
       else
-	return __log_gamma(_Tp(1 + __n))
-	     - __log_gamma(_Tp(1 + __k))
-	     - __log_gamma(_Tp(1 + __n - __k));
+	return __log_gamma(_Val(1 + __n))
+	     - __log_gamma(_Val(1 + __k))
+	     - __log_gamma(_Val(1 + __n - __k));
     }
 
 
@@ -2399,20 +2529,26 @@ _S_neg_double_factorial_table[999]
     _Tp
     __bincoef(unsigned int __n, unsigned int __k)
     {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
       // Max e exponent before overflow.
       const auto __max_bincoeff
-                      = std::numeric_limits<_Tp>::max_exponent10
-                      * std::log(_Tp(10)) - _Tp(1);
+                      = __gnu_cxx::__max_exponent10<_Real>()
+                      * std::log(_Real(10)) - _Real(1);
 
       if (__k > __n)
 	return _Tp{0};
       else if (__k == 0 || __k == __n)
 	return _Tp{1};
+      else if (__n < _S_num_factorials<_Real>
+      	    && __k < _S_num_factorials<_Real>)
+	return __factorial<_Tp>(__n)
+	     / __factorial<_Tp>(__k) / __factorial<_Tp>(__n - __k);
       else
         {
-	  const auto __log_coeff = __log_bincoef<_Tp>(__n, __k);
-	  if (__log_coeff > __max_bincoeff)
-	    return __gnu_cxx::__quiet_NaN<_Tp>();
+	  const auto __log_coeff = __log_bincoef<_Val>(__n, __k);
+	  if (std::abs(__log_coeff) > __max_bincoeff)
+	    return __gnu_cxx::__infinity<_Tp>();
 	  else
 	    return std::exp(__log_coeff);
 	}
@@ -2438,10 +2574,18 @@ _S_neg_double_factorial_table[999]
     _Tp
     __bincoef(_Tp __nu, unsigned int __k)
     {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
       // Max e exponent before overflow.
-      auto __n = std::nearbyint(__nu);
-      if (__n >= 0 && __nu == __n)
+      auto __n = int(std::nearbyint(__nu));
+      if (__isnan(__nu))
+	return __gnu_cxx::__quiet_NaN(__nu);
+      else if (__nu == __n && __n >= 0 && __n < _S_num_factorials<_Real>)
 	return __bincoef<_Tp>((unsigned int)__n, __k);
+      else if (std::abs(__nu) < _S_num_factorials<_Real>
+      	    && __k < _S_num_factorials<_Real>)
+	return __gamma(__nu + _Tp{1})
+	     / __gamma(_Tp(__k + 1)) / __gamma(__nu - _Tp(__k + 1));
       else
 	{
 	  const auto __max_bincoeff
@@ -2450,8 +2594,8 @@ _S_neg_double_factorial_table[999]
 
 	  const auto __log_coeff = __log_bincoef(__nu, __k);
 	  const auto __sign = __log_bincoef_sign(__nu, __k);
-	  if (__log_coeff > __max_bincoeff || __sign == _Tp{0})
-	    return __gnu_cxx::__quiet_NaN(__nu);
+	  if (__log_coeff > __max_bincoeff)
+	    return __gnu_cxx::__infinity(__nu) * __sign;
 	  else
 	    return std::exp(__log_coeff) * __sign;
 	}
@@ -2718,12 +2862,12 @@ _S_neg_double_factorial_table[999]
    * or the rising factorial function.
    * The Pochammer symbol is defined for integer order by
    * @f[
-   *   (a)_n = \prod_{k=0}^{n-1} (a + k), (a)_0 = 1
-   *	     = \Gamma(a + n) / \Gamma(n)
+   *   (a)_\nu = \Gamma(a + \nu) / \Gamma(n)
+   *	     = \prod_{k=0}^{\nu-1} (a + k), (a)_0 = 1
    * @f]
    * Thus this function returns
    * @f[
-   *   ln[(a)_n] = \Gamma(a + n) - \Gamma(n), ln[(a)_0] = 0
+   *   ln[(a)_\nu] = ln[\Gamma(a + \nu)] - ln[\Gamma(\nu)], ln[(a)_0] = 0
    * @f]
    * Many notations exist: @f[ a^{\overline{n}} @f],
    *  @f[ \left[ \begin{array}{c}
@@ -2742,14 +2886,107 @@ _S_neg_double_factorial_table[999]
 	return __log_gamma(__a + __n) - __log_gamma(__a);
     }
 
+  /**
+   * @brief  Return the logarithm of the lower Pochhammer symbol
+   * or the falling factorial function for real argument @f$ a @f$
+   * and integral order @f$ n @f$.
+   * The lower Pochammer symbol is defined by
+   * @f[
+   *   (a)_n = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1
+   *	     = \Gamma(a + 1) / \Gamma(a - n + 1)
+   * @f]
+   * In particular, $f[ (n)_n = n! $f].
+   */
+  template<typename _Tp>
+    _Tp
+    __pochhammer_lower(_Tp __a, int __n)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
+      if (__isnan(__a))
+	return __gnu_cxx::__quiet_NaN(std::real(__a));
+      else if (__n == 0)
+	return _Tp{1};
+      else if (std::abs(__a - std::nearbyint(__a)) < _S_eps)
+	{
+	  auto __na = int(std::nearbyint(__a));
+	  if (__na < _S_num_factorials<_Real>
+	      && __a - __n < _S_num_factorials<_Real>)
+	    return __factorial<_Real>(__na) / __factorial<_Real>(__na - __n);
+	  else
+	    return std::exp(__log_factorial<_Real>(__na)
+			  - __log_factorial<_Real>(__na - __n));
+	}
+      else if (std::abs(__a) < _S_num_factorials<_Real>
+      	    && std::abs(__a - __n) < _S_num_factorials<_Real>)
+	{
+	  auto __prod = __a;
+	  for (int __k = 1; __k < __n; ++__k)
+	    __prod *= (__a - __k);
+	  return __prod;
+	}
+      else
+	{
+          auto __logpoch = __log_gamma(__a + _Tp{1})
+			 - __log_gamma(__a - __n + _Tp{1});
+	  auto __sign = __log_gamma_sign(__a + _Tp{1})
+		      * __log_gamma_sign(__a - __n + _Tp{1});
+          if (__logpoch < __gnu_cxx::__log_max(__a))
+            return __sign * std::exp(__logpoch);
+          else
+            return __sign * __gnu_cxx::__infinity(__a);
+	}
+    }
+
+  /**
+   * @brief  Return the logarithm of the lower Pochhammer symbol
+   * or the falling factorial function for real argument @f$ a @f$
+   * and order @f$ \nu @f$.
+   * The lower Pochammer symbol is defined by
+   * @f[
+   *   (a)_\nu = \Gamma(a + 1) / \Gamma(a - \nu + 1)
+   *	     = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1, \nu = n
+   * @f]
+   * In particular, $f[ (n)_n = n! $f].
+   */
+  template<typename _Tp>
+    _Tp
+    __pochhammer_lower(_Tp __a, _Tp __nu)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
+      if (__isnan(__nu) || __isnan(__a))
+	return __gnu_cxx::__quiet_NaN(std::real(__a));
+      else if (__nu == _Tp{0})
+	return _Tp{1};
+      else if (std::abs(__nu - std::nearbyint(__nu)) < _S_eps)
+	{
+	  auto __n = int(std::nearbyint(__nu));
+	  return __pochhammer_lower(__a, __n);
+	}
+      else
+	{
+          auto __logpoch = __log_gamma(__a + _Tp{1})
+			 - __log_gamma(__a - __nu + _Tp{1});
+	  auto __sign = __log_gamma_sign(__a + _Tp{1})
+		      * __log_gamma_sign(__a - __nu + _Tp{1});
+          if (__logpoch > __gnu_cxx::__log_max(__a))
+            return __sign * __gnu_cxx::__infinity(__a);
+          else
+            return __sign * std::exp(__logpoch);
+	}
+    }
+
 
   /**
    * @brief  Return the (upper) Pochhammer function
    * or the rising factorial function.
    * The Pochammer symbol is defined by
    * @f[
-   *   (a)_n = \prod_{k=0}^{n-1} (a + k), (a)_0 = 1
-   *	     = \Gamma(a + n) / \Gamma(n)
+   *   (a)_\nu = \Gamma(a + \nu) / \Gamma(\nu)
+   *	     = \prod_{k=0}^{n-1} (a + k), (a)_0 = 1
    * @f]
    * Many notations exist: @f[ a^{\overline{n}} @f],
    *  @f[ \left[ \begin{array}{c}
@@ -2758,19 +2995,20 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __pochhammer(_Tp __a, _Tp __n)
+    __pochhammer(_Tp __a, _Tp __nu)
     {
-      if (__isnan(__n) || __isnan(__a))
+      if (__isnan(__nu) || __isnan(__a))
 	return __gnu_cxx::__quiet_NaN(__a);
-      else if (__n == _Tp{0})
+      else if (__nu == _Tp{0})
 	return _Tp{1};
       else
 	{
-          auto __logpoch = __log_gamma(__a + __n) - __log_gamma(__a);
+          auto __logpoch = __log_gamma(__a + __nu) - __log_gamma(__a);
+	  auto __sign = __log_gamma_sign(__a + __nu) * __log_gamma_sign(__a);
           if (__logpoch > __gnu_cxx::__log_max(__a))
-            return __gnu_cxx::__infinity(__a);
+            return __sign * __gnu_cxx::__infinity(__a);
           else
-            return std::exp(__logpoch);
+            return __sign * std::exp(__logpoch);
 	}
     }
 
@@ -2780,13 +3018,13 @@ _S_neg_double_factorial_table[999]
    * or the falling factorial function.
    * The lower Pochammer symbol is defined by
    * @f[
-   *   (a)_n = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1
-   *	     = \Gamma(a + 1) / \Gamma(a - n + 1)
+   *   (a)_\nu = \Gamma(a + 1) / \Gamma(a - \nu + 1)
+   *	     = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1
    * @f]
    * In particular, $f[ (n)_n = n! $f].
    * Thus this function returns
    * @f[
-   *   ln[(a)_n] = \Gamma(a + 1) - \Gamma(a - n + 1), ln[(a)_0] = 0
+   *   ln[(a)_\nu] = ln[\Gamma(a + 1)] - ln[\Gamma(a - \nu + 1)], ln[(a)_0] = 0
    * @f]
    * Many notations exist: @f[ a^{\underline{n}} @f],
    *  @f[ \{ \begin{array}{c}
@@ -2795,48 +3033,19 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __log_pochhammer_lower(_Tp __a, _Tp __n)
+    __log_pochhammer_lower(_Tp __a, _Tp __nu)
     {
-      if (__isnan(__n) || __isnan(__a))
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      if (__isnan(__nu) || __isnan(__a))
 	return __gnu_cxx::__quiet_NaN(__a);
-      else if (__n == _Tp{0})
+      else if (__nu == _Tp{0})
 	return _Tp{0};
+      else if (std::abs(__a) < _S_num_factorials<_Real>
+	    && std::abs(__a - __nu) < _S_num_factorials<_Real>)
+	return std::log(__pochhammer_lower(__a, __nu));
       else
-	return __log_gamma(__a + _Tp{1}) - __log_gamma(__a - __n + _Tp{1});
-    }
-
-
-  /**
-   * @brief  Return the logarithm of the lower Pochhammer symbol
-   * or the falling factorial function.
-   * The lower Pochammer symbol is defined by
-   * @f[
-   *   (a)_n = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1
-   *	     = \Gamma(a + 1) / \Gamma(a - n + 1)
-   * @f]
-   * In particular, $f[ (n)_n = n! $f].
-   */
-  template<typename _Tp>
-    _Tp
-    __pochhammer_lower(_Tp __a, _Tp __n)
-    {
-      if (__isnan(__n) || __isnan(__a))
-	return __gnu_cxx::__quiet_NaN(__a);
-      else if (__n == _Tp{0})
-	return _Tp{1};
-      else
-	{
-          auto __logpoch = __log_gamma(__a + _Tp{1})
-			 - __log_gamma(__a - __n + _Tp{1});
-	  auto __sign = __log_gamma_sign(__a + _Tp{1})
-		      * __log_gamma_sign(__a - __n + _Tp{1});
-          if (__sign == _Tp{0})
-            return __gnu_cxx::__quiet_NaN(__a);
-          else if (__logpoch > __gnu_cxx::__log_max(__a))
-            return __sign * __gnu_cxx::__infinity(__a);
-          else
-            return __sign * std::exp(__logpoch);
-	}
+	return __log_gamma(__a + _Tp{1}) - __log_gamma(__a - __nu + _Tp{1});
     }
 
   constexpr unsigned long long
@@ -2964,7 +3173,7 @@ _S_neg_double_factorial_table[999]
     _Tp
     __psi_series(_Tp __x)
     {
-      _Tp __sum = -__gnu_cxx::__const_gamma_e(__x);
+      _Tp __sum = -__gnu_cxx::__const_gamma_e(std::real(__x));
       const unsigned int _S_max_iter = 100000;
       for (unsigned int __k = 0; __k < _S_max_iter; ++__k)
 	{
@@ -3104,126 +3313,6 @@ _S_neg_double_factorial_table[999]
 	    __result = -__result;
 	  return __result;
 	}
-    }
-
-  /**
-   * @brief  Return the factorial of the integer n.
-   *
-   * The factorial is:
-   * @f[
-   *   n! = 1 2 ... (n-1) n, 0! = 1
-   * @f]
-   */
-  template<typename _Tp>
-    _GLIBCXX14_CONSTEXPR _Tp
-    __factorial(unsigned int __n)
-    {
-      if (__n <= _S_num_factorials<_Tp>)
-	return _S_factorial_table[__n].__factorial;
-      else
-	return __gnu_cxx::__infinity<_Tp>();
-    }
-
-  /**
-   * @brief  Return the logarithm of the factorial of the integer n.
-   *
-   * The factorial is:
-   * @f[
-   *   n! = 1 2 ... (n-1) n, 0! = 1
-   * @f]
-   */
-  template<typename _Tp>
-    _GLIBCXX14_CONSTEXPR _Tp
-    __log_factorial(unsigned int __n)
-    {
-      if (__n <= _S_num_factorials<_Tp>)
-	return _S_factorial_table[__n].__log_factorial;
-      else
-	return __log_gamma(_Tp(__n + 1));
-    }
-
-  template<typename _Tp>
-    _GLIBCXX14_CONSTEXPR _Tp
-    __log_double_factorial(_Tp __x)
-    {
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
-      return (__x / _Tp{2}) * std::log(_Tp{2})
-	   + (__cos_pi(__x) - _Tp{1})
-		* std::log(_S_pi / 2) / _Tp{4}
-	   + __log_gamma(_Tp{1} + __x / _Tp{2});
-    }
-
-  /**
-   * @brief  Return the double factorial of the integer n.
-   *
-   * The double factorial is defined for integral n by:
-   * @f[
-   *   n!! = 1 3 5 ... (n-2) n, n odd
-   *   n!! = 2 4 6 ... (n-2) n, n even
-   *   -1!! = 1
-   *   0!! = 1
-   * @f]
-   * The double factorial is defined for odd negative integers
-   * in the obvious way:
-   * @f[
-   *   (-2m - 1)!! = 1 / (1 (-1) (-3) ... (-2m + 1) (-2m - 1))
-   *	   = \frac{(-1)^m}{(2m-1)!!}
-   * @f]
-   * for $f[ n = -2m - 1 $f].
-   */
-  // I must watch neg log double factorial.  Or do the log_t thing.
-  template<typename _Tp>
-    _GLIBCXX14_CONSTEXPR _Tp
-    __double_factorial(int __n)
-    {
-      if (__n < 0 && __n % 2 == 1)
-	{
-	  if (-__n <= _S_num_neg_double_factorials<_Tp>)
-	    return _S_neg_double_factorial_table[-(1 + __n) / 2].__factorial;
-	  else
-	    return std::exp(__log_double_factorial(_Tp(__n)));
-	}
-      else if (__n <= _S_num_double_factorials<_Tp>)
-	return _S_double_factorial_table[__n].__factorial;
-      else
-	return __gnu_cxx::__quiet_NaN<_Tp>();
-    }
-
-  /**
-   * @brief  Return the logarithm of the double factorial of the integer n.
-   *
-   * The double factorial is defined for integral n by:
-   * @f[
-   *   n!! = 1 3 5 ... (n-2) n, n odd
-   *   n!! = 2 4 6 ... (n-2) n, n even
-   *   -1!! = 1
-   *   0!! = 1
-   * @f]
-   * The double factorial is defined for odd negative integers
-   * in the obvious way:
-   * @f[
-   *   (-2m - 1)!! = 1 / (1 (-1) (-3) ... (-2m + 1) (-2m - 1))
-   *	   = \frac{(-1)^m}{(2m-1)!!}
-   * @f]
-   * for $f[ n = -2m - 1 $f].
-   */
-  // I should do a signed version.  Or do the log_t thing.
-  template<typename _Tp>
-    _GLIBCXX14_CONSTEXPR _Tp
-    __log_double_factorial(int __n)
-    {
-      if (__n < 0 && __n % 2 == 1)
-	{
-	  if (-__n <= _S_num_neg_double_factorials<_Tp>)
-	    return _S_neg_double_factorial_table[-(1 + __n) / 2]
-				.__log_factorial;
-	  else
-	    return __log_double_factorial(_Tp(__n));
-	}
-      else if (__n <= _S_num_double_factorials<_Tp>)
-	return _S_double_factorial_table[__n].__log_factorial;
-      else
-	return __log_double_factorial(_Tp(__n));
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
