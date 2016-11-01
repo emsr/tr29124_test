@@ -220,6 +220,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __safe_sqr(const std::complex<_Tp>& __z);
 
 
+_GLIBCXX_END_NAMESPACE_VERSION
+} // namespace __detail
+} // namespace std
+
+namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
+{
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
   /**
    * A function to reliably test a complex number for realness.
    *
@@ -230,15 +238,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     bool
-    __fpreal(const std::complex<_Tp>& __w, const _Tp __mul = _Tp{5})
-    { return __gnu_cxx::__fpequal(std::imag(__w), _Tp{0}, __mul); }
+    __fp_is_real(const std::complex<_Tp>& __w, const _Tp __mul = _Tp{5})
+    { return __gnu_cxx::__fp_is_equal(std::imag(__w), _Tp{0}, __mul); }
 
   // Specialize for real numbers.
   template<typename _Tp>
     bool
-    __fpreal(const _Tp)
+    __fp_is_real(const _Tp)
     { return true; }
-
 
   /**
    * A function to reliably test a complex number for imaginaryness [?].
@@ -250,22 +257,101 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     bool
-    __fpimag(const std::complex<_Tp>& __w, const _Tp __mul = _Tp{5})
-    { return __gnu_cxx::__fpequal(std::real(__w), _Tp{0}, __mul); }
+    __fp_is_imag(const std::complex<_Tp>& __w, const _Tp __mul = _Tp{5})
+    { return __gnu_cxx::__fp_is_equal(std::real(__w), _Tp{0}, __mul); }
 
   // Specialize for real numbers.
   template<typename _Tp>
     bool
-    __fpimag(const _Tp)
+    __fp_is_imag(const _Tp)
     { return false; }
 
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
-} // namespace std
+  //  Overloads of integral queries in math_util.h
 
-namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
-{
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
+  /**
+   * A function to reliably compare two complex numbers.
+   *
+   * @param __a The left hand side
+   * @param __b The right hand side
+   * @param __mul The multiplier for numeric epsilon for comparison
+   * @return @c true if a and b are equal to zero
+   *         or differ only by @f$ max(a,b) * mul * epsilon @f$
+   */
+  template<typename _Tp>
+    inline bool
+    __fp_is_equal(const std::complex<_Tp>& __a, const std::complex<_Tp>& __b,
+	      _Tp __mul = _Tp{1})
+    {
+      const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto _S_tol = __mul * _S_eps;
+      bool __retval = true;
+      if (!__fp_is_zero(std::abs(__a), __mul) || !__fp_is_zero(std::abs(__b), __mul))
+	// Looks mean, but is necessary that the next line has sense.
+	__retval = (std::abs(__a - __b) < __fpmaxabs(__a, __b) * _S_tol);
+      return __retval;
+    }
+
+  /**
+   * A function to reliably compare a complex number with zero.
+   *
+   * @param __a The complex point number
+   * @param __mul The multiplier for numeric epsilon for comparison
+   * @return @c true if a and b are equal to zero
+   *         or differ only by @f$ max(a,b) * mul * epsilon @f$
+   */
+  template<typename _Tp>
+    inline bool
+    __fp_is_zero(const std::complex<_Tp>& __a, _Tp __mul = _Tp{1})
+    { return __fp_is_zero(std::abs(__a), __mul); }
+
+  /**
+   * A function to reliably detect if a complex number is a real integer.
+   *
+   * @param __a The complex number
+   * @return @c true if a is an integer within mul * epsilon.
+   */
+  template<typename _Tp>
+    inline __fp_is_integer_t
+    __fp_is_integer(const std::complex<_Tp>& __a, _Tp __mul = _Tp{1})
+    {
+      if (__fp_is_real(__a, __mul))
+	return __fp_is_integer(std::real(__a), __mul);
+      else
+      	return __fp_is_integer_t{false, 0};
+    }
+
+  /**
+   * A function to reliably detect if a complex number is a real half-integer.
+   *
+   * @param __a The complex number
+   * @return @c true if 2*a is an integer within mul * epsilon.
+   */
+  template<typename _Tp>
+    inline __fp_is_integer_t
+    __fp_is_half_integer(const std::complex<_Tp>& __a, _Tp __mul = _Tp{1})
+    {
+      if (__fp_is_real(__a, __mul))
+	return __fp_is_half_integer(std::real(__a), __mul);
+      else
+      	return __fp_is_integer_t{false, 0};
+    }
+
+  /**
+   * A function to reliably detect if a complex number is a real
+   * half-odd-integer.
+   *
+   * @param __a The complex number
+   * @return @c true if 2*a is an odd integer within mul * epsilon.
+   */
+  template<typename _Tp>
+    inline __fp_is_integer_t
+    __fp_is_half_odd_integer(const std::complex<_Tp>& __a, _Tp __mul = _Tp{1})
+    {
+      if (__fp_is_real(__a, __mul))
+	return __fp_is_half_odd_integer(std::real(__a), __mul);
+      else
+      	return __fp_is_integer_t{false, 0};
+    }
 
 #if __cplusplus >= 201103L
 
