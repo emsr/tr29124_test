@@ -44,7 +44,7 @@
 
 #include <complex>
 #include <ext/math_const.h>
-#include <ext/math_util.h>
+#include <bits/complex_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -186,8 +186,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __fac *= __rzarg / _Tp(__rzarg + __s)
 	      * (__rzarg + 1) / _Tp(__rzarg + __s + 1);
 	  ++__j;
-	  __terminate = (__gnu_cxx::__fpequal(std::abs(__res - __pref * __term),
-	  				 std::abs(__res)) || (__j > __maxit));
+	  __terminate
+	    = (__gnu_cxx::__fp_is_equal(std::abs(__res - __pref * __term),
+	  				std::abs(__res)) || (__j > __maxit));
 	  __res -= __pref * __term;
 	}
       return __res;
@@ -265,7 +266,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		 * (__rzarg + _Tp{1}) / (__rzarg + __s + _Tp{1});
 	  ++__j;
 	  __terminate
-	    = (__gnu_cxx::__fpequal(std::abs(__res - __pref * __term),
+	    = (__gnu_cxx::__fp_is_equal(std::abs(__res - __pref * __term),
 				    std::abs(__res)) || (__j > __maxit));
 	  __res -= __pref * __term;
 	}
@@ -356,7 +357,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  ++__j;
 	  __gam  *= __rzarg / (__j); // == 1/(j+1) since we incremented j above.
 	  __terminate
-	    = (__gnu_cxx::__fpequal(std::abs(__res + __pref * __term),
+	    = (__gnu_cxx::__fp_is_equal(std::abs(__res + __pref * __term),
 				    std::abs(__res)) || (__j > __maxit));
 	  __res += __pref * __term;
 	}
@@ -430,9 +431,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __gam *= - _Tp(2 * __k + 2 + __n + 1) / _Tp(2 * __k + 2 + 1)
 		 * _Tp(2 * __k + 2 + __n) / _Tp(2 * __k + 1 + 1);
 	  __wup *= __wq;
-	  __terminate = (__k > __maxit)
-		     || __gnu_cxx::__fpequal(std::abs(__res - __pref * __term),
-					     std::abs(__res));
+	  __terminate
+	    = (__k > __maxit)
+		|| __gnu_cxx::__fp_is_equal(std::abs(__res - __pref * __term),
+					    std::abs(__res));
 	  __res -= __pref * __term;
 	  ++__k;
 	}
@@ -508,9 +510,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __term = (__gam * __riemann_zeta_m_1<_Tp>(__zk + 2 + __np))
 		      * __wup;
 	  __wup *= __wq;
-	  __terminate = __k > __maxit
-		     || __gnu_cxx::__fpequal(std::abs(__res - __pref * __term),
-					     std::abs(__res));
+	  __terminate
+	    = __k > __maxit
+	        || __gnu_cxx::__fp_is_equal(std::abs(__res - __pref * __term),
+					    std::abs(__res));
 	  __res -= __pref * __term;
 	  ++__k;
 	}
@@ -622,8 +625,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __w2 *= __wup;
 	  __gam *= __zetaarg / _Tp(1 + __idx);
 	  ++__j;
-	  __terminate = (__gnu_cxx::__fpequal(std::abs(__res + __pref * __term),
-					      std::abs(__res))
+	  __terminate
+	    = (__gnu_cxx::__fp_is_equal(std::abs(__res + __pref * __term),
+					std::abs(__res))
 		     || (__j > __maxit));
 	  __res += __pref * __term;
 	}
@@ -675,7 +679,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __term = evenzeta<_Tp>(2 * __k) * __wgamma;
 	  if (std::abs(__term) > std::abs(__oldterm))
 	    __terminate = true; // Failure of asymptotic expansion.
-	  if (__gnu_cxx::__fpequal(std::abs(__res + _Tp{2} * __term),
+	  if (__gnu_cxx::__fp_is_equal(std::abs(__res + _Tp{2} * __term),
 				   std::abs(__res)))
 	    __terminate = true; // Precision goal reached.
 	  if (__k > __maxiter)
@@ -719,8 +723,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Tp __temp = std::pow(__k, __s); // This saves us a type conversion
 	  auto __term = __ew / __temp;
 	  __terminate
-	    = (__gnu_cxx::__fpequal(std::abs(__res + __term),
-				    std::abs(__res))) || (__k > __maxiter);
+	    = (__gnu_cxx::__fp_is_equal(std::abs(__res + __term),
+					std::abs(__res))) || (__k > __maxiter);
 	  __res += __term;
 	  ++__k;
 	}
@@ -744,8 +748,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__w));
       auto __rw = __w.real();
       auto __iw = __w.imag();
-      if (__fpreal(__w)
-	  && __gnu_cxx::__fpequal(std::remainder(__iw, _S_2pi), _Tp{0}))
+      if (__gnu_cxx::__fp_is_real(__w)
+	  && __gnu_cxx::__fp_is_equal(std::remainder(__iw, _S_2pi), _Tp{0}))
 	{
 	  if (__s > 1)
 	    return std::__detail::__riemann_zeta(_Tp(__s));
@@ -794,7 +798,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__w));
-      if (__gnu_cxx::__fpequal(__w, _Tp{0}))
+      if (__gnu_cxx::__fp_is_zero(__w))
 	{
 	  if (__s > 1)
 	    return std::__detail::__riemann_zeta(_Tp(__s));
@@ -840,12 +844,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__w));
-      if ((((-__s) & 1) == 0) && __gnu_cxx::__fpequal(std::real(__w), _Tp{0}))
+      if ((((-__s) & 1) == 0) && __gnu_cxx::__fp_is_imag(__w))
 	{
 	  // Now s is odd and w on the unit-circle.
 	  auto __iw = imag(__w);  //get imaginary part
 	  auto __rem = std::remainder(__iw, _S_2pi);
-	  if (__gnu_cxx::__fpequal(std::abs(__rem), _Tp{0.5L}))
+	  if (__gnu_cxx::__fp_is_equal(std::abs(__rem), _Tp{0.5L}))
 	    // Due to: Li_{-n}(-1) + (-1)^n Li_{-n}(1/-1) = 0.
 	    return _Tp{0};
 	  else
@@ -886,7 +890,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__w);
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose exp'ly converging series.
 	return __polylog_exp_negative_real_part(__s, std::complex<_Tp>(__w));
-      else if (__gnu_cxx::__fpequal(__w, _Tp{0}))
+      else if (__gnu_cxx::__fp_is_zero(__w))
 	return std::numeric_limits<_Tp>::infinity();
       else if (__w < _Tp{6}) // Arbitrary transition point...
 	return __polylog_exp_neg(__s, std::complex<_Tp>(__w));
@@ -914,8 +918,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
       auto __rw = __w.real();
       auto __iw = __w.imag();
-      if (__fpreal(__w)
-	  && __gnu_cxx::__fpequal(std::remainder(__iw, _S_2pi), _Tp{0}))
+      if (__gnu_cxx::__fp_is_real(__w)
+	  && __gnu_cxx::__fp_is_zero(std::remainder(__iw, _S_2pi)))
 	{
 	  if (__s > _Tp{1})
 	    return std::__detail::__riemann_zeta(__s);
@@ -948,7 +952,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
-      if (__gnu_cxx::__fpequal(__w, _Tp{0}))
+      if (__gnu_cxx::__fp_is_zero(__w))
 	{
 	  if (__s > _Tp{1})
 	    return std::__detail::__riemann_zeta(__s);
@@ -1036,7 +1040,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__s > _Tp{25}) // Cutoff chosen by some testing on the real axis.
 	return __polylog_exp_negative_real_part(__s, __w);
-      else if (__gnu_cxx::__fpequal<_Tp>(std::rint(__s), __s))
+      else if (__gnu_cxx::__fp_is_equal<_Tp>(std::rint(__s), __s))
 	{
 	  // In this branch of the if statement, s is an integer
 	  int __p = int(std::lrint(__s));
@@ -1067,7 +1071,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__isnan(__s) || __isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__s);
-      else if (__gnu_cxx::__fpequal(__x, _Tp{0}))
+      else if (__gnu_cxx::__fp_is_zero(__x))
 	return _Tp{0}; // According to Mathematica
       else if (__x < _Tp{0})
 	{ // Use the reflection formula to access negative values.
@@ -1097,7 +1101,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__isnan(__s) || __isnan(__w))
 	return __gnu_cxx::__quiet_NaN(__s);
-      else if (__gnu_cxx::__fpequal(std::imag(__w), _Tp{0}))
+      else if (__gnu_cxx::__fp_is_real(__w))
 	return __polylog(__s, std::real(__w));
       else
 	return __polylog_exp(__s, std::log(__w));
@@ -1155,7 +1159,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__isnan(__w))
 	return __gnu_cxx::__quiet_NaN(std::imag(__w));
-      else if (__gnu_cxx::__fpequal(std::imag(__w), _Tp{0}))
+      else if (__gnu_cxx::__fp_is_real(__w))
 	return -__polylog(__w.real(), _Tp{-1});
       else
 	std::__throw_domain_error(__N("__dirichlet_eta: Bad argument"));
@@ -1193,7 +1197,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_i = std::complex<_Tp>{0, 1};
       if (__isnan(__w))
 	return __gnu_cxx::__quiet_NaN(std::imag(__w));
-      else if (__gnu_cxx::__fpequal(std::imag(__w), _Tp{0}))
+      else if (__gnu_cxx::__fp_is_real(__w))
 	return std::imag(__polylog(__w.real(), _S_i));
       else
 	std::__throw_domain_error(__N("__dirichlet_beta: Bad argument."));
