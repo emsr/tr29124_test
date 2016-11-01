@@ -8,10 +8,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_kelvin test_kelvin.c
 #include <fstream>
 #include <iomanip>
 #include <complex>
+#include <ext/cmath>
 #include <bits/summation.h>
-#include <bits/sf_gamma.tcc>
-#include <ext/math_util.h>
-#include <bits/complex_util.h>
 
 namespace std
 {
