@@ -2307,7 +2307,7 @@ _S_neg_double_factorial_table[999]
       for (auto __k = 1u; __k < _S_c.size(); ++__k)
 	{
 	  __ak *= __a;
-	  auto __term = _S_c[__k] * __ak;
+	  auto __term = _Tp{_S_c[__k]} * __ak;
 	  __gam += __term;
 	  if (std::abs(__term) < _S_eps)
 	    break;
@@ -2316,66 +2316,78 @@ _S_neg_double_factorial_table[999]
     }
 
   /**
-   * @brief Return @f$ log(|\Gamma(x)|) @f$.
-   * 	    This will return values even for @f$ x < 0 @f$.
-   * 	    To recover the sign of @f$ \Gamma(x) @f$ for
+   * @brief Return @f$ log(|\Gamma(a)|) @f$.
+   * 	    This will return values even for @f$ a < 0 @f$.
+   * 	    To recover the sign of @f$ \Gamma(a) @f$ for
    * 	    any argument use @a __log_gamma_sign.
    *
-   * @param __x The argument of the log of the gamma function.
+   * @param __a The argument of the log of the gamma function.
    * @return  The logarithm of the gamma function.
    */
   template<typename _Tp>
     _Tp
-    __log_gamma(_Tp __x)
+    __log_gamma(_Tp __a)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__x));
-      const auto _S_logpi = __gnu_cxx::__const_ln_pi(std::real(__x));
-      if (std::real(__x) < _Real{0.5L})
+      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
+      const auto _S_logpi = __gnu_cxx::__const_ln_pi(std::real(__a));
+      if (std::real(__a) < _Real{0.5L})
 	{
-	  const auto __sin_fact = std::abs(__sin_pi(__x));
+	  const auto __sin_fact = std::abs(__sin_pi(__a));
 	  if (__sin_fact < _S_eps)
 	    return __gnu_cxx::__infinity<_Real>();
 	  else
-	    return _S_logpi - std::log(__sin_fact) - __log_gamma(_Val{1} - __x);
+	    return _S_logpi - std::log(__sin_fact) - __log_gamma(_Val{1} - __a);
 	}
-      else if (std::real(__x) > _Real{1})
+      else if (std::real(__a) > _Real{1}
+      	    && std::abs(__a) < _S_num_factorials<_Tp>)
 	{
 	  auto __fact = _Tp{1};
-	  auto __arg = __x;
+	  auto __arg = __a;
 	  while (std::real(__arg) > _Real{1})
 	    __fact *= (__arg -= _Real{1});
 	  return std::log(__fact) + __log_gamma(__arg);
 	}
       else
-	return __spouge_log_gamma1p(__x - _Real{1});
+	return __spouge_log_gamma1p(__a - _Real{1});
     }
 
   /**
-   * @brief Return @f$ log(\Gamma(x)) @f$ for complex argument.
+   * @brief Return @f$ log(\Gamma(a)) @f$ for complex argument.
    *
-   * @param __x The complex argument of the log of the gamma function.
+   * @param __a The complex argument of the log of the gamma function.
    * @return  The complex logarithm of the gamma function.
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __log_gamma(std::complex<_Tp> __x)
+    __log_gamma(std::complex<_Tp> __a)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__x));
-      const auto _S_logpi = __gnu_cxx::__const_ln_pi(std::real(__x));
-      if (std::real(__x) >= _Real{0.5L})
-	return __spouge_log_gamma1p(__x - _Real{1});
+      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
+      const auto _S_logpi = __gnu_cxx::__const_ln_pi(std::real(__a));
+      auto __an = __gnu_cxx::__fp_is_integer(__a);
+      if (__an.__is_integral)
+	{
+	  auto __n = __an.__value;
+	  if (__n <= 0)
+	    return __gnu_cxx::__quiet_NaN(std::real(__a));
+	  else if (__n < _S_num_factorials<_Real>)
+	    return _Real((_S_factorial_table[__n - 1].__log_factorial));
+	  else
+	    return __log_gamma(_Real(__n));
+	}
+      else if (std::real(__a) >= _Real{0.5L})
+	return __spouge_log_gamma1p(__a - _Real{1});
       else
 	{
-	  const auto __sin_fact = __sin_pi(__x);
+	  const auto __sin_fact = __sin_pi(__a);
 	  if (std::abs(__sin_fact) < _S_eps)
-	    return _Cmplx(__gnu_cxx::__quiet_NaN(std::real(__x)), _Real{0});
+	    return _Cmplx(__gnu_cxx::__quiet_NaN(std::real(__a)), _Real{0});
 	  else
-	    return _S_logpi - std::log(__sin_fact) - __log_gamma(_Val{1} - __x);
+	    return _S_logpi - std::log(__sin_fact) - __log_gamma(_Val{1} - __a);
 	}
     }
 
@@ -2603,13 +2615,13 @@ _S_neg_double_factorial_table[999]
 
 
   /**
-   * @brief Return the gamma function @f$ \Gamma(x) @f$.
+   * @brief Return the gamma function @f$ \Gamma(a) @f$.
    * The gamma function is defined by:
    * @f[
    *   \Gamma(a) = \int_0^\infty e^{-t}t^{a-1}dt  (a > 0)
    * @f]
    *
-   * @param __x The argument of the gamma function.
+   * @param __a The argument of the gamma function.
    * @return  The gamma function.
    */
   template<typename _Tp>
@@ -2618,19 +2630,26 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      if (std::imag(__a) == _Real{0})
+      auto __an = __gnu_cxx::__fp_is_integer(__a);
+      if (__an.__is_integral)
 	{
-	  auto __ar = std::real(__a);
-	  const auto __n = int(std::nearbyint(__ar));
-	  if (__ar == __n)
-	    {
-	      if (__n <= 0)
-		return __gnu_cxx::__quiet_NaN(__ar);
-	      else if (__n < _S_num_factorials<_Real>)
-		return static_cast<_Real>(_S_factorial_table[__n].__factorial);
-	      else
-		return __gnu_cxx::__infinity(__ar);
-	    }
+	  auto __n = __an.__value;
+	  if (__n <= 0)
+	    return __gnu_cxx::__quiet_NaN(std::real(__a));
+	  else if (__n < _S_num_factorials<_Real>)
+	    return static_cast<_Real>(_S_factorial_table[__n - 1].__factorial);
+	  else
+	    return __gnu_cxx::__infinity(std::real(__a));
+	}
+      else if (std::real(__a) > _Real{1}
+      	    && std::abs(__a) < _S_num_factorials<_Tp>)
+	{
+	  auto __fact = _Tp{1};
+	  auto __arg = __a;
+	  while (std::real(__arg) > _Real{1})
+	    __fact *= (__arg -= _Real{1});
+	  return __fact /__gamma_reciprocal_series(__arg);
+	  //return __fact * std::exp(__lanczos_log_gamma1p(__arg - _Tp{1}));
 	}
       else
 	return __log_gamma_sign(__a) * std::exp(__log_gamma(__a));

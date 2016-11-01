@@ -217,7 +217,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__a) || __isnan(__b))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (std::abs(__a) < _S_num_factorials<_Tp>
-	    && std::abs(__b) < _S_num_factorials<_Tp>)
+	    && std::abs(__b) < _S_num_factorials<_Tp>
+	    && std::abs(__a + __b) < _S_num_factorials<_Tp>)
 	return __beta_gamma(__a, __b);
       else
 	return __beta_lgamma(__a, __b);

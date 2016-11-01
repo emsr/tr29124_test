@@ -59,10 +59,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline bool
-    __fpequal(_Tp __a, _Tp __b, _Tp __mul = _Tp{1})
+    __fp_is_equal(_Tp __a, _Tp __b, _Tp __mul = _Tp{1})
     {
-      const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      const auto _S_tol = __mul * _S_eps;
+      const auto _S_tol = __mul * std::numeric_limits<_Tp>::epsilon();
       bool __retval = true;
       if ((__a != _Tp{0}) || (__b != _Tp{0}))
 	// Looks mean, but is necessary that the next line has sense.
@@ -80,20 +79,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline bool
-    __fpzero(_Tp __a, _Tp __mul = _Tp{1})
+    __fp_is_zero(_Tp __a, _Tp __mul = _Tp{1})
     {
-      const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      const auto _S_tol = __mul * _S_eps;
-      bool __retval = true;
+      const auto _S_tol = __mul * std::numeric_limits<_Tp>::epsilon();
       if (__a != _Tp{0})
-	__retval = (std::abs(__a) < _S_tol);
-      return __retval;
+	return (std::abs(__a) < _S_tol);
+      else
+        return true;
     }
 
   /**
    * A struct returned by floating point integer queries.
    */
-  struct __fpinteger_t
+  struct __fp_is_integer_t
   {
     // A flag indicating whether the floating point number is integralish.
     bool __is_integral;
@@ -111,11 +109,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return @c true if a is an integer within mul * epsilon.
    */
   template<typename _Tp>
-    inline __fpinteger_t
-    __fpinteger(_Tp __a, _Tp __mul = _Tp{1})
+    inline __fp_is_integer_t
+    __fp_is_integer(_Tp __a, _Tp __mul = _Tp{1})
     {
       auto __n = static_cast<int>(std::nearbyint(__a));
-      return __fpinteger_t{__fpequal(__a, _Tp(__n), __mul), __n};
+      return __fp_is_integer_t{__fp_is_equal(__a, _Tp(__n), __mul), __n};
     }
 
   /**
@@ -125,11 +123,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return @c true if 2*a is an integer within mul * epsilon.
    */
   template<typename _Tp>
-    inline __fpinteger_t
-    __fp_half_integer(_Tp __a, _Tp __mul = _Tp{1})
+    inline __fp_is_integer_t
+    __fp_is_half_integer(_Tp __a, _Tp __mul = _Tp{1})
     {
       auto __n = static_cast<int>(std::nearbyint(_Tp{2} * __a));
-      return __fpinteger_t{__fpequal(_Tp{2} * __a, _Tp(__n), __mul), __n / 2};
+      return __fp_is_integer_t{__fp_is_equal(_Tp{2} * __a, _Tp(__n), __mul), __n / 2};
     }
 
   /**
@@ -140,13 +138,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return @c true if 2*a is an odd integer within mul * epsilon.
    */
   template<typename _Tp>
-    inline __fpinteger_t
-    __fp_half_odd_integer(_Tp __a, _Tp __mul = _Tp{1})
+    inline __fp_is_integer_t
+    __fp_is_half_odd_integer(_Tp __a, _Tp __mul = _Tp{1})
     {
       auto __n = static_cast<int>(std::nearbyint(_Tp{2} * __a));
       bool __halfodd = (__n & 1 == 1)
-		      && __fpequal(_Tp{2} * __a, _Tp(__n), __mul);
-      return __fpinteger_t{__halfodd, (__n - 1) / 2};
+		      && __fp_is_equal(_Tp{2} * __a, _Tp(__n), __mul);
+      return __fp_is_integer_t{__halfodd, (__n - 1) / 2};
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
