@@ -93,6 +93,9 @@ template<typename _Tp>
 int
 main()
 {
+  std::__detail::__beta(0.1F, 1.9F);
+  std::__detail::__beta(0.1F, 35.1F);
+
   test_beta<float>();
 
   test_beta<double>();
