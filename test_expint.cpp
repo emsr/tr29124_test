@@ -53,12 +53,14 @@ template<typename _Tp>
 		  << ' ' << std::setw(width) << "E_n boost"
 		  << ' ' << std::setw(width) << "E_n series"
 		  << ' ' << std::setw(width) << "delta series"
-		  << ' ' << std::setw(width) << "E_n asymp"
-		  << ' ' << std::setw(width) << "delta asymp"
+		  << ' ' << std::setw(width) << "E_n cfrac"
+		  << ' ' << std::setw(width) << "delta cfrac"
 		  << ' ' << std::setw(width) << "E_n large n"
 		  << ' ' << std::setw(width) << "delta large n"
+		  << ' ' << std::setw(width) << "E_n asymp"
+		  << ' ' << std::setw(width) << "delta asymp"
 		  << '\n';
-	int i_min = 0;
+	int i_min = -500;
 	for (int i = i_min; i <= +500; ++i)
 	  {
 	    auto x = _Tp{0.10Q} * i;
@@ -72,10 +74,10 @@ template<typename _Tp>
 	    {
 	    }
 
-	    _Tp ena = _S_NaN;
+	    _Tp enc = _S_NaN;
 	    try
 	    {
-	      ena = std::__detail::__expint_En_cont_frac(n, x);
+	      enc = std::__detail::__expint_En_cont_frac(n, x);
 	    }
 	    catch (...)
 	    {
@@ -85,6 +87,15 @@ template<typename _Tp>
 	    try
 	    {
 	      enn = std::__detail::__expint_En_large_n(n, x);
+	    }
+	    catch (...)
+	    {
+	    }
+
+	    _Tp ena = _S_NaN;
+	    try
+	    {
+	      ena = std::__detail::__expint_En_asymp(n, x);
 	    }
 	    catch (...)
 	    {
@@ -104,10 +115,12 @@ template<typename _Tp>
 		      << ' ' << std::setw(width) << enb
 		      << ' ' << std::setw(width) << ens
 		      << ' ' << std::setw(width) << (ens - enb) / std::abs(enb)
-		      << ' ' << std::setw(width) << ena
-		      << ' ' << std::setw(width) << (ena - enb) / std::abs(enb)
+		      << ' ' << std::setw(width) << enc
+		      << ' ' << std::setw(width) << (enc - enb) / std::abs(enb)
 		      << ' ' << std::setw(width) << enn
 		      << ' ' << std::setw(width) << (enn - enb) / std::abs(enb)
+		      << ' ' << std::setw(width) << ena
+		      << ' ' << std::setw(width) << (ena - enb) / std::abs(enb)
 		      << '\n';
 	  }
       }
