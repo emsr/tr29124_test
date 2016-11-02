@@ -6,6 +6,7 @@ SUFFIX = _tr29124
 CXX_INST_DIR = $(HOME)/bin$(SUFFIX)
 CXX_SRC_DIR = $(HOME)/gcc$(SUFFIX)
 
+GCC = $(CXX_INST_DIR)/bin/gcc
 CXX = $(CXX_INST_DIR)/bin/g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -Wall -Wextra -Wno-compare-reals
 CXX17 = $(CXX_INST_DIR)/bin/g++ -std=gnu++17 -fconcepts -g -Wall -Wextra -Wno-compare-reals
 CXX_INC_DIR = $(CXX_INST_DIR)/include/c++/7.0.0/bits
@@ -37,7 +38,8 @@ CHECK_DIR = $(HOME)/tr29124_test/check
 
 #BOOST_LIBS = -L$(BOOST_LIB_DIR) -lboost_math_tools -lboost_math_tr1f -lboost_math_tr1l -lboost_math_tr1
 
-BINS = diff_special_function \
+BINS = gmpcalc \
+       diff_special_function \
        test_special_function \
        testcase2 \
        testcase \
@@ -306,6 +308,10 @@ check: $(CHECKS)
 	echo "pr56216_cyl_bessel_i" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/pr56216_cyl_bessel_i >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "origin_bessel_j" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/origin_bessel_j >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "origin_cyl_neumann" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/origin_cyl_neumann >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+
+
+gmpcalc: mpfr_gexpr.c
+	$(GCC) -o gmpcalc mpfr_gexpr.c -lgmp -lmpfr
 
 
 test_special_function: test_special_function.cpp wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
