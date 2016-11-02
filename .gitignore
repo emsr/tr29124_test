@@ -155,6 +155,7 @@ test_fermi_dirac
 test_float128
 test_fresnel
 test_gamma
+test_gamma_ratio
 test_gamma_reciprocal
 test_hermite
 test_hankel
