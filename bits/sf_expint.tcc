@@ -195,23 +195,27 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint_En_cont_frac(unsigned int __n, _Tp __x)
     {
-      const unsigned int __max_iter = 100;
-      const auto __eps = __gnu_cxx::__epsilon(__x);
-      const auto __fp_min = __gnu_cxx::__min(__x);
+      const unsigned int _S_max_iter = 100;
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_fp_min = __gnu_cxx::__min(__x);
       const int __nm1 = __n - 1;
       auto __b = __x + _Tp(__n);
-      auto __c = _Tp{1} / __fp_min;
+      auto __c = _Tp{1} / _S_fp_min;
       auto __d = _Tp{1} / __b;
       auto __h = __d;
-      for ( unsigned int __i = 1; __i <= __max_iter; ++__i )
+      for ( unsigned int __i = 1; __i <= _S_max_iter; ++__i )
 	{
 	  auto __a = -_Tp{__i * (__nm1 + __i)};
 	  __b += _Tp{2};
 	  __d = _Tp{1} / (__a * __d + __b);
+	  if (std::abs(__d) < _S_fp_min)
+	    __d = _S_fp_min;
 	  __c = __b + __a / __c;
+	  if (std::abs(__c) < _S_fp_min)
+	    __c = _S_fp_min;
 	  const auto __del = __c * __d;
 	  __h *= __del;
-	  if (std::abs(__del - _Tp{1}) < __eps)
+	  if (std::abs(__del - _Tp{1}) < _S_eps)
 	    {
 	      const auto __ans = __h * std::exp(-__x);
 	      return __ans;
@@ -490,12 +494,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (__x == _Tp{0})
 	    return _Tp{1} / static_cast<_Tp>(__n - 1);
 
-	  //auto __En = __expint_En_recursion(__n, __x);
 	  if (__x < _Tp(-__n)) // Arbitrary - needs more study.
 	    return __expint_En_series(__n, __x);
-	  else if (__n > 50) // Arbitrary - needs more study.
+	  else if (__n > 50000) // Arbitrary - needs more study.
 	    return __expint_En_large_n(__n, __x);
-	  else if (__x < _Tp{100})
+	  else if (__x < _Tp{10})
 	    /// @todo Find a good asymptotic switch point in @f$ E_n(x) @f$.
 	    return __expint_En_cont_frac(__n, __x);
 	  else
