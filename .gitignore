@@ -49,6 +49,10 @@ check/check_cyl_hankel_2
 check/check_cyl_neumann
 check/check_dawson
 check/check_dilog
+check/check_dirichlet_beta
+check/check_dirichlet_eta
+check/check_dirichlet_lambda
+check/check_double_factorial
 check/check_ellint_rc
 check/check_ellint_rd
 check/check_ellint_rf
@@ -59,6 +63,7 @@ check/check_ellint_1
 check/check_ellint_2
 check/check_ellint_3
 check/check_ellint_d
+check/check_ellnome
 check/check_expint
 check/check_expint_en
 check/check_factorial

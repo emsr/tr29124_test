@@ -24,6 +24,11 @@ check_cyl_hankel_2
 check_cyl_neumann
 check_dawson
 check_dilog
+check_dirichlet_beta
+line 274  max_abs_frac = 17.1216
+check_dirichlet_eta
+check_dirichlet_lambda
+check_double_factorial
 check_ellint_1
 check_ellint_2
 check_ellint_3
@@ -33,6 +38,7 @@ check_ellint_rd
 check_ellint_rf
 check_ellint_rg
 check_ellint_rj
+check_ellnome
 check_expint
 check_expint_en
 check_factorial

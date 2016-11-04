@@ -47,8 +47,10 @@ ${tool} ${text_dir}/cosint/*             ${ext_dir}/cosint
 ${tool} ${text_dir}/cyl_hankel_1/*       ${ext_dir}/cyl_hankel_1
 ${tool} ${text_dir}/cyl_hankel_2/*       ${ext_dir}/cyl_hankel_2
 ${tool} ${text_dir}/dawson/*             ${ext_dir}/dawson
-${tool} ${text_dir}/dirichlet_eta/*      ${ext_dir}/dirichlet_eta
 ${tool} ${text_dir}/dilog/*              ${ext_dir}/dilog
+${tool} ${text_dir}/dirichlet_beta/*     ${ext_dir}/dirichlet_beta
+${tool} ${text_dir}/dirichlet_eta/*      ${ext_dir}/dirichlet_eta
+${tool} ${text_dir}/dirichlet_lambda/*   ${ext_dir}/dirichlet_lambda
 ${tool} ${text_dir}/double_factorial/*   ${ext_dir}/double_factorial
 ${tool} ${text_dir}/ellint_d/*           ${ext_dir}/ellint_d
 ${tool} ${text_dir}/ellint_rc/*          ${ext_dir}/ellint_rc
