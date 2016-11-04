@@ -614,7 +614,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Table of zeta(n) - 1 from 2 - 32.
+   * Table of zeta(n) - 1 from 0 - 40.
    * MPFR - 128 bits.
    */
   constexpr size_t

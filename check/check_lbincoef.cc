@@ -54,11 +54,11 @@
 // ...
 // Divergence at n=2 k=200 f=-inf f_GSL=-inf
 // Test data for n=2.
-// max(|f - f_GSL|): 1.0658141036401503e-14
-// max(|f - f_GSL| / |f_GSL|): 1.5376447218311606e-14
-// mean(f - f_GSL): -3.5527136788005009e-15
-// variance(f - f_GSL): 9.4663308626521417e-30
-// stddev(f - f_GSL): 3.0767402982137021e-15
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_lbincoef<double>
 data001[3] =
 {
@@ -66,7 +66,7 @@ data001[3] =
   { 0.69314718055994529, 2, 1, 0.0 },
   { 0.0000000000000000, 2, 2, 0.0 },
 };
-const double toler001 = 1.0000000000000008e-12;
+const double toler001 = 2.5000000000000020e-13;
 
 // Divergence at n=3 k=4 f=-inf f_GSL=-inf
 // Divergence at n=3 k=5 f=-inf f_GSL=-inf
@@ -74,11 +74,11 @@ const double toler001 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=3 k=200 f=-inf f_GSL=-inf
 // Test data for n=3.
-// max(|f - f_GSL|): 1.0658141036401503e-14
-// max(|f - f_GSL| / |f_GSL|): 9.7014580542538646e-15
-// mean(f - f_GSL): -5.3290705182007514e-15
-// variance(f - f_GSL): 1.2621774483536189e-29
-// stddev(f - f_GSL): 3.5527136788005009e-15
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_lbincoef<double>
 data002[4] =
 {
@@ -87,7 +87,7 @@ data002[4] =
   { 1.0986122886681096, 3, 2, 0.0 },
   { 0.0000000000000000, 3, 3, 0.0 },
 };
-const double toler002 = 5.0000000000000039e-13;
+const double toler002 = 2.5000000000000020e-13;
 
 // Divergence at n=4 k=5 f=-inf f_GSL=-inf
 // Divergence at n=4 k=6 f=-inf f_GSL=-inf
@@ -95,11 +95,11 @@ const double toler002 = 5.0000000000000039e-13;
 // ...
 // Divergence at n=4 k=200 f=-inf f_GSL=-inf
 // Test data for n=4.
-// max(|f - f_GSL|): 1.0658141036401503e-14
-// max(|f - f_GSL| / |f_GSL|): 7.6882236091558015e-15
-// mean(f - f_GSL): -6.3948846218409018e-15
-// variance(f - f_GSL): 1.2779546664580391e-29
-// stddev(f - f_GSL): 3.5748491806760730e-15
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_lbincoef<double>
 data003[5] =
 {
@@ -109,7 +109,7 @@ data003[5] =
   { 1.3862943611198908, 4, 3, 0.0 },
   { 0.0000000000000000, 4, 4, 0.0 },
 };
-const double toler003 = 5.0000000000000039e-13;
+const double toler003 = 2.5000000000000020e-13;
 
 // Divergence at n=5 k=6 f=-inf f_GSL=-inf
 // Divergence at n=5 k=7 f=-inf f_GSL=-inf
@@ -117,11 +117,11 @@ const double toler003 = 5.0000000000000039e-13;
 // ...
 // Divergence at n=5 k=200 f=-inf f_GSL=-inf
 // Test data for n=5.
-// max(|f - f_GSL|): 1.0658141036401503e-14
-// max(|f - f_GSL| / |f_GSL|): 6.6222753633796419e-15
-// mean(f - f_GSL): -7.1054273576010019e-15
-// variance(f - f_GSL): 1.2116903504194741e-29
-// stddev(f - f_GSL): 3.4809342861069268e-15
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_lbincoef<double>
 data004[6] =
 {
@@ -132,7 +132,7 @@ data004[6] =
   { 1.6094379124341001, 5, 4, 0.0 },
   { 0.0000000000000000, 5, 5, 0.0 },
 };
-const double toler004 = 5.0000000000000039e-13;
+const double toler004 = 2.5000000000000020e-13;
 
 // Divergence at n=6 k=7 f=-inf f_GSL=-inf
 // Divergence at n=6 k=8 f=-inf f_GSL=-inf
@@ -140,11 +140,11 @@ const double toler004 = 5.0000000000000039e-13;
 // ...
 // Divergence at n=6 k=200 f=-inf f_GSL=-inf
 // Test data for n=6.
-// max(|f - f_GSL|): 1.0658141036401503e-14
-// max(|f - f_GSL| / |f_GSL|): 5.9484217716976013e-15
-// mean(f - f_GSL): -7.6129578831439303e-15
-// variance(f - f_GSL): 1.1269441503157312e-29
-// stddev(f - f_GSL): 3.3569988834012607e-15
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_lbincoef<double>
 data005[7] =
 {
@@ -156,7 +156,7 @@ data005[7] =
   { 1.7917594692280554, 6, 5, 0.0 },
   { 0.0000000000000000, 6, 6, 0.0 },
 };
-const double toler005 = 5.0000000000000039e-13;
+const double toler005 = 2.5000000000000020e-13;
 
 // Divergence at n=7 k=8 f=-inf f_GSL=-inf
 // Divergence at n=7 k=9 f=-inf f_GSL=-inf
@@ -164,11 +164,11 @@ const double toler005 = 5.0000000000000039e-13;
 // ...
 // Divergence at n=7 k=200 f=-inf f_GSL=-inf
 // Test data for n=7.
-// max(|f - f_GSL|): 1.0658141036401503e-14
-// max(|f - f_GSL| / |f_GSL|): 5.4772010113497487e-15
-// mean(f - f_GSL): -7.9936057773011271e-15
-// variance(f - f_GSL): 1.0432282991494197e-29
-// stddev(f - f_GSL): 3.2299044864351942e-15
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_lbincoef<double>
 data006[8] =
 {
@@ -181,7 +181,7 @@ data006[8] =
   { 1.9459101490553135, 7, 6, 0.0 },
   { 0.0000000000000000, 7, 7, 0.0 },
 };
-const double toler006 = 5.0000000000000039e-13;
+const double toler006 = 2.5000000000000020e-13;
 
 // Divergence at n=8 k=9 f=-inf f_GSL=-inf
 // Divergence at n=8 k=10 f=-inf f_GSL=-inf
@@ -189,11 +189,11 @@ const double toler006 = 5.0000000000000039e-13;
 // ...
 // Divergence at n=8 k=200 f=-inf f_GSL=-inf
 // Test data for n=8.
-// max(|f - f_GSL|): 1.1546319456101628e-14
-// max(|f - f_GSL| / |f_GSL|): 5.1254824061038674e-15
-// mean(f - f_GSL): -8.3883517416122940e-15
-// variance(f - f_GSL): 9.8950000698295324e-30
-// stddev(f - f_GSL): 3.1456319031046101e-15
+// max(|f - f_GSL|): 8.8817841970012523e-16
+// max(|f - f_GSL| / |f_GSL|): 2.2064616658076826e-16
+// mean(f - f_GSL): -9.8686491077791687e-17
+// variance(f - f_GSL): 1.3695501826753676e-33
+// stddev(f - f_GSL): 3.7007434154171883e-17
 const testcase_lbincoef<double>
 data007[9] =
 {
@@ -207,7 +207,7 @@ data007[9] =
   { 2.0794415416798362, 8, 7, 0.0 },
   { 0.0000000000000000, 8, 8, 0.0 },
 };
-const double toler007 = 5.0000000000000039e-13;
+const double toler007 = 2.5000000000000020e-13;
 
 // Divergence at n=9 k=10 f=-inf f_GSL=-inf
 // Divergence at n=9 k=11 f=-inf f_GSL=-inf
@@ -215,11 +215,11 @@ const double toler007 = 5.0000000000000039e-13;
 // ...
 // Divergence at n=9 k=200 f=-inf f_GSL=-inf
 // Test data for n=9.
-// max(|f - f_GSL|): 1.1546319456101628e-14
-// max(|f - f_GSL| / |f_GSL|): 4.8507290271269339e-15
-// mean(f - f_GSL): -8.6153306710912141e-15
-// variance(f - f_GSL): 9.1634472311413581e-30
-// stddev(f - f_GSL): 3.0271186351283556e-15
+// max(|f - f_GSL|): 8.8817841970012523e-16
+// max(|f - f_GSL| / |f_GSL|): 1.8364901732123869e-16
+// mean(f - f_GSL): -8.8817841970012528e-17
+// variance(f - f_GSL): 9.7390235212470591e-34
+// stddev(f - f_GSL): 3.1207408609570677e-17
 const testcase_lbincoef<double>
 data008[10] =
 {
@@ -242,11 +242,11 @@ const double toler008 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=10 k=200 f=-inf f_GSL=-inf
 // Test data for n=10.
-// max(|f - f_GSL|): 1.0658141036401503e-14
-// max(|f - f_GSL| / |f_GSL|): 4.6287718394557760e-15
-// mean(f - f_GSL): -8.7202972116012297e-15
-// variance(f - f_GSL): 8.3647941804526196e-30
-// stddev(f - f_GSL): 2.8921953911263707e-15
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_lbincoef<double>
 data009[11] =
 {
@@ -270,11 +270,11 @@ const double toler009 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=11 k=200 f=-inf f_GSL=-inf
 // Test data for n=11.
-// max(|f - f_GSL|): 1.2434497875801753e-14
-// max(|f - f_GSL| / |f_GSL|): 4.4447900445474141e-15
-// mean(f - f_GSL): -9.1038288019262836e-15
-// variance(f - f_GSL): 8.2194742665900047e-30
-// stddev(f - f_GSL): 2.8669625506082227e-15
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 4.4327655258273722e-16
+// mean(f - f_GSL): -2.2204460492503131e-16
+// variance(f - f_GSL): 4.8896337100475940e-33
+// stddev(f - f_GSL): 6.9925915868493239e-17
 const testcase_lbincoef<double>
 data010[12] =
 {
@@ -299,11 +299,11 @@ const double toler010 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=12 k=200 f=-inf f_GSL=-inf
 // Test data for n=12.
-// max(|f - f_GSL|): 1.2434497875801753e-14
-// max(|f - f_GSL| / |f_GSL|): 4.2891514807249644e-15
-// mean(f - f_GSL): -9.2233912815013009e-15
-// variance(f - f_GSL): 7.6800160243872546e-30
-// stddev(f - f_GSL): 2.7712841832600379e-15
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 4.2398644966651207e-16
+// mean(f - f_GSL): -2.0496425070002891e-16
+// variance(f - f_GSL): 3.7926005058702493e-33
+// stddev(f - f_GSL): 6.1584092961334174e-17
 const testcase_lbincoef<double>
 data011[13] =
 {
@@ -329,11 +329,11 @@ const double toler011 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=13 k=200 f=-inf f_GSL=-inf
 // Test data for n=13.
-// max(|f - f_GSL|): 1.2434497875801753e-14
-// max(|f - f_GSL| / |f_GSL|): 4.1553027179256175e-15
-// mean(f - f_GSL): -9.3258734068513149e-15
-// variance(f - f_GSL): 7.2047740071516673e-30
-// stddev(f - f_GSL): 2.6841710092972218e-15
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 4.0772907028308317e-16
+// mean(f - f_GSL): -1.9032394707859825e-16
+// variance(f - f_GSL): 3.0007388617874499e-33
+// stddev(f - f_GSL): 5.4779000189739223e-17
 const testcase_lbincoef<double>
 data012[14] =
 {
@@ -360,11 +360,11 @@ const double toler012 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=14 k=200 f=-inf f_GSL=-inf
 // Test data for n=14.
-// max(|f - f_GSL|): 1.2434497875801753e-14
-// max(|f - f_GSL| / |f_GSL|): 4.0386167124134962e-15
-// mean(f - f_GSL): -9.5331150381146768e-15
-// variance(f - f_GSL): 6.9551236476985872e-30
-// stddev(f - f_GSL): 2.6372568414355450e-15
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 3.9379564733371606e-16
+// mean(f - f_GSL): -2.9605947323337506e-16
+// variance(f - f_GSL): 6.7080008947364955e-33
+// stddev(f - f_GSL): 8.1902386379985873e-17
 const testcase_lbincoef<double>
 data013[15] =
 {
@@ -392,11 +392,11 @@ const double toler013 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=15 k=200 f=-inf f_GSL=-inf
 // Test data for n=15.
-// max(|f - f_GSL|): 1.2434497875801753e-14
-// max(|f - f_GSL| / |f_GSL|): 3.9357250585914193e-15
-// mean(f - f_GSL): -9.5479180117763462e-15
-// variance(f - f_GSL): 6.4826836166828928e-30
-// stddev(f - f_GSL): 2.5461114698070257e-15
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 3.8168714508711407e-16
+// mean(f - f_GSL): -2.2204460492503131e-16
+// variance(f - f_GSL): 3.5060484676489414e-33
+// stddev(f - f_GSL): 5.9211894646675015e-17
 const testcase_lbincoef<double>
 data014[16] =
 {
@@ -425,11 +425,11 @@ const double toler014 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=16 k=200 f=-inf f_GSL=-inf
 // Test data for n=16.
-// max(|f - f_GSL|): 1.2434497875801753e-14
-// max(|f - f_GSL| / |f_GSL|): 3.8441118045779008e-15
-// mean(f - f_GSL): -9.7177168273072527e-15
-// variance(f - f_GSL): 6.2710091629196056e-30
-// stddev(f - f_GSL): 2.5041983074268709e-15
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 3.7104123303782366e-16
+// mean(f - f_GSL): -3.1347473636475010e-16
+// variance(f - f_GSL): 6.5255038115708698e-33
+// stddev(f - f_GSL): 8.0780590562157129e-17
 const testcase_lbincoef<double>
 data015[17] =
 {
@@ -459,11 +459,11 @@ const double toler015 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=17 k=200 f=-inf f_GSL=-inf
 // Test data for n=17.
-// max(|f - f_GSL|): 1.0658141036401503e-14
-// max(|f - f_GSL| / |f_GSL|): 3.7618561478122188e-15
-// mean(f - f_GSL): -6.8093678843676270e-15
-// variance(f - f_GSL): 2.8879406149613513e-30
-// stddev(f - f_GSL): 1.6993941905753800e-15
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 3.6158795614931591e-16
+// mean(f - f_GSL): -9.8686491077791687e-17
+// variance(f - f_GSL): 6.0658277987005908e-34
+// stddev(f - f_GSL): 2.4628901312686668e-17
 const testcase_lbincoef<double>
 data016[18] =
 {
@@ -494,11 +494,11 @@ const double toler016 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=18 k=200 f=-inf f_GSL=-inf
 // Test data for n=18.
-// max(|f - f_GSL|): 1.4210854715202004e-14
-// max(|f - f_GSL| / |f_GSL|): 4.9166183126373238e-15
-// mean(f - f_GSL): -6.9184424271378178e-15
-// variance(f - f_GSL): 2.8068890948604683e-30
-// stddev(f - f_GSL): 1.6753772992554448e-15
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 4.4264120900867790e-16
+// mean(f - f_GSL): 1.8698493046318425e-16
+// variance(f - f_GSL): 2.0503207413151703e-33
+// stddev(f - f_GSL): 4.5280467547444457e-17
 const testcase_lbincoef<double>
 data017[19] =
 {
@@ -530,11 +530,11 @@ const double toler017 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=19 k=200 f=-inf f_GSL=-inf
 // Test data for n=19.
-// max(|f - f_GSL|): 2.1316282072803006e-14
-// max(|f - f_GSL| / |f_GSL|): 7.2395054622044008e-15
-// mean(f - f_GSL): -1.3766765505351941e-14
-// variance(f - f_GSL): 1.0499935317415407e-29
-// stddev(f - f_GSL): 3.2403603684490722e-15
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 4.2997740656439599e-16
+// mean(f - f_GSL): 2.6645352591003756e-16
+// variance(f - f_GSL): 3.9333784747862083e-33
+// stddev(f - f_GSL): 6.2716652292562687e-17
 const testcase_lbincoef<double>
 data018[20] =
 {
@@ -559,7 +559,7 @@ data018[20] =
   { 2.9444389791664420, 19, 18, 0.0 },
   { 0.0000000000000000, 19, 19, 0.0 },
 };
-const double toler018 = 5.0000000000000039e-13;
+const double toler018 = 2.5000000000000020e-13;
 
 // Divergence at n=20 k=21 f=-inf f_GSL=-inf
 // Divergence at n=20 k=22 f=-inf f_GSL=-inf
@@ -567,11 +567,11 @@ const double toler018 = 5.0000000000000039e-13;
 // ...
 // Divergence at n=20 k=200 f=-inf f_GSL=-inf
 // Test data for n=20.
-// max(|f - f_GSL|): 1.4210854715202004e-14
-// max(|f - f_GSL| / |f_GSL|): 2.3718499214121928e-15
-// mean(f - f_GSL): -7.2746041994486442e-15
-// variance(f - f_GSL): 2.7782929785783827e-30
-// stddev(f - f_GSL): 1.6668212197408522e-15
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 4.1867054243492470e-16
+// mean(f - f_GSL): 1.6917684184764289e-16
+// variance(f - f_GSL): 1.5025922004209749e-33
+// stddev(f - f_GSL): 3.8763284180019821e-17
 const testcase_lbincoef<double>
 data019[21] =
 {
@@ -605,11 +605,11 @@ const double toler019 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=21 k=200 f=-inf f_GSL=-inf
 // Test data for n=21.
-// max(|f - f_GSL|): 2.1316282072803006e-14
-// max(|f - f_GSL| / |f_GSL|): 7.0015191245371497e-15
-// mean(f - f_GSL): -1.4130111222501992e-14
-// variance(f - f_GSL): 9.9603649649117652e-30
-// stddev(f - f_GSL): 3.1560045888610118e-15
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 4.0849821005766776e-16
+// mean(f - f_GSL): 8.0743492700011387e-17
+// variance(f - f_GSL): 3.2523640701752701e-34
+// stddev(f - f_GSL): 1.8034311936348641e-17
 const testcase_lbincoef<double>
 data020[22] =
 {
@@ -636,7 +636,7 @@ data020[22] =
   { 3.0445224377234226, 21, 20, 0.0 },
   { 0.0000000000000000, 21, 21, 0.0 },
 };
-const double toler020 = 5.0000000000000039e-13;
+const double toler020 = 2.5000000000000020e-13;
 
 // Divergence at n=22 k=23 f=-inf f_GSL=-inf
 // Divergence at n=22 k=24 f=-inf f_GSL=-inf
@@ -644,11 +644,11 @@ const double toler020 = 5.0000000000000039e-13;
 // ...
 // Divergence at n=22 k=200 f=-inf f_GSL=-inf
 // Test data for n=22.
-// max(|f - f_GSL|): 1.4210854715202004e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2987155514092602e-15
-// mean(f - f_GSL): -7.3371260757836427e-15
-// variance(f - f_GSL): 2.5581996656915671e-30
-// stddev(f - f_GSL): 1.5994372965801339e-15
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 3.9928529179204638e-16
+// mean(f - f_GSL): 7.7232906060880453e-17
+// variance(f - f_GSL): 2.8345702666942573e-34
+// stddev(f - f_GSL): 1.6836182069264566e-17
 const testcase_lbincoef<double>
 data021[23] =
 {
@@ -684,11 +684,11 @@ const double toler021 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=23 k=200 f=-inf f_GSL=-inf
 // Test data for n=23.
-// max(|f - f_GSL|): 2.1316282072803006e-14
-// max(|f - f_GSL| / |f_GSL|): 6.7983802886672816e-15
-// mean(f - f_GSL): -1.4284869583510346e-14
-// variance(f - f_GSL): 9.2578071388082760e-30
-// stddev(f - f_GSL): 3.0426644801568701e-15
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 3.9089187680589404e-16
+// mean(f - f_GSL): 7.4014868308343765e-17
+// variance(f - f_GSL): 2.4853840744203271e-34
+// stddev(f - f_GSL): 1.5765100933455284e-17
 const testcase_lbincoef<double>
 data022[24] =
 {
@@ -717,7 +717,7 @@ data022[24] =
   { 3.1354942159291497, 23, 22, 0.0 },
   { 0.0000000000000000, 23, 23, 0.0 },
 };
-const double toler022 = 5.0000000000000039e-13;
+const double toler022 = 2.5000000000000020e-13;
 
 // Divergence at n=24 k=25 f=-inf f_GSL=-inf
 // Divergence at n=24 k=26 f=-inf f_GSL=-inf
@@ -725,11 +725,11 @@ const double toler022 = 5.0000000000000039e-13;
 // ...
 // Divergence at n=24 k=200 f=-inf f_GSL=-inf
 // Test data for n=24.
-// max(|f - f_GSL|): 1.4210854715202004e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2357794225351685e-15
-// mean(f - f_GSL): -7.1764816311770119e-15
-// variance(f - f_GSL): 2.2353250261554283e-30
-// stddev(f - f_GSL): 1.4951003398285442e-15
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 3.8320472750668765e-16
+// mean(f - f_GSL): 7.1054273576010020e-17
+// variance(f - f_GSL): 2.1912802922805883e-34
+// stddev(f - f_GSL): 1.4802973661668754e-17
 const testcase_lbincoef<double>
 data023[25] =
 {
@@ -767,11 +767,11 @@ const double toler023 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=25 k=200 f=-inf f_GSL=-inf
 // Test data for n=25.
-// max(|f - f_GSL|): 2.1316282072803006e-14
-// max(|f - f_GSL| / |f_GSL|): 6.6222753633796442e-15
-// mean(f - f_GSL): -1.4279176132102013e-14
-// variance(f - f_GSL): 8.4820266340822189e-30
-// stddev(f - f_GSL): 2.9123919094246605e-15
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 3.7613113042958565e-16
+// mean(f - f_GSL): -6.8321416900009637e-17
+// variance(f - f_GSL): 1.9418114590055674e-34
+// stddev(f - f_GSL): 1.3934889518778279e-17
 const testcase_lbincoef<double>
 data024[26] =
 {
@@ -802,7 +802,7 @@ data024[26] =
   { 3.2188758248681992, 25, 24, 0.0 },
   { 0.0000000000000000, 25, 25, 0.0 },
 };
-const double toler024 = 5.0000000000000039e-13;
+const double toler024 = 2.5000000000000020e-13;
 
 // Divergence at n=26 k=27 f=-inf f_GSL=-inf
 // Divergence at n=26 k=28 f=-inf f_GSL=-inf
@@ -810,11 +810,11 @@ const double toler024 = 5.0000000000000039e-13;
 // ...
 // Divergence at n=26 k=200 f=-inf f_GSL=-inf
 // Test data for n=26.
-// max(|f - f_GSL|): 1.4210854715202004e-14
-// max(|f - f_GSL| / |f_GSL|): 2.1808523089115876e-15
-// mean(f - f_GSL): -6.7764723873416963e-15
-// variance(f - f_GSL): 1.8341059266907109e-30
-// stddev(f - f_GSL): 1.3542916697265442e-15
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 3.6959438554813226e-16
+// mean(f - f_GSL): 1.9737298215558337e-16
+// variance(f - f_GSL): 1.5559386690749741e-33
+// stddev(f - f_GSL): 3.9445388438637208e-17
 const testcase_lbincoef<double>
 data025[27] =
 {
@@ -854,11 +854,11 @@ const double toler025 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=27 k=200 f=-inf f_GSL=-inf
 // Test data for n=27.
-// max(|f - f_GSL|): 1.4210854715202004e-14
-// max(|f - f_GSL| / |f_GSL|): 4.3117591352239298e-15
-// mean(f - f_GSL): -7.1688686732938677e-15
-// variance(f - f_GSL): 1.9739300213143446e-30
-// stddev(f - f_GSL): 1.4049661993494165e-15
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 3.6353044407094819e-16
+// mean(f - f_GSL): 1.9032394707859825e-16
+// variance(f - f_GSL): 1.3912890744638655e-33
+// stddev(f - f_GSL): 3.7299987593347340e-17
 const testcase_lbincoef<double>
 data026[28] =
 {
@@ -899,11 +899,11 @@ const double toler026 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=28 k=200 f=-inf f_GSL=-inf
 // Test data for n=28.
-// max(|f - f_GSL|): 1.4210854715202004e-14
-// max(|f - f_GSL| / |f_GSL|): 4.2647006424148972e-15
-// mean(f - f_GSL): -7.9629789352425014e-15
-// variance(f - f_GSL): 2.3454872094009675e-30
-// stddev(f - f_GSL): 1.5314983543579037e-15
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 3.5788536585901641e-16
+// mean(f - f_GSL): 2.4501473646900006e-16
+// variance(f - f_GSL): 2.2205796065334604e-33
+// stddev(f - f_GSL): 4.7123026287935501e-17
 const testcase_lbincoef<double>
 data027[29] =
 {
@@ -945,11 +945,11 @@ const double toler027 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=29 k=200 f=-inf f_GSL=-inf
 // Test data for n=29.
-// max(|f - f_GSL|): 1.4210854715202004e-14
-// max(|f - f_GSL| / |f_GSL|): 4.2202572725126689e-15
-// mean(f - f_GSL): -6.6909440950742766e-15
-// variance(f - f_GSL): 1.5969821480407608e-30
-// stddev(f - f_GSL): 1.2637175903028181e-15
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 6.0809055504693001e-16
+// mean(f - f_GSL): 6.5133084111342512e-16
+// variance(f - f_GSL): 1.5133122399007917e-32
+// stddev(f - f_GSL): 1.2301675657815043e-16
 const testcase_lbincoef<double>
 data028[30] =
 {
@@ -992,11 +992,11 @@ const double toler028 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=30 k=200 f=-inf f_GSL=-inf
 // Test data for n=30.
-// max(|f - f_GSL|): 1.4210854715202004e-14
-// max(|f - f_GSL| / |f_GSL|): 4.1781917132540101e-15
-// mean(f - f_GSL): -6.2458998546653968e-15
-// variance(f - f_GSL): 1.3437213498108734e-30
-// stddev(f - f_GSL): 1.1591899541537071e-15
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.9874811681568778e-16
+// mean(f - f_GSL): 8.5952750293560509e-16
+// variance(f - f_GSL): 2.5447125974871348e-32
+// stddev(f - f_GSL): 1.5952155332390464e-16
 const testcase_lbincoef<double>
 data029[31] =
 {
@@ -1040,11 +1040,11 @@ const double toler029 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=31 k=200 f=-inf f_GSL=-inf
 // Test data for n=31.
-// max(|f - f_GSL|): 1.4210854715202004e-14
-// max(|f - f_GSL| / |f_GSL|): 4.1382957678587532e-15
-// mean(f - f_GSL): -6.7168492989821971e-15
-// variance(f - f_GSL): 1.5023039169277880e-30
-// stddev(f - f_GSL): 1.2256850806499148e-15
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.9000329056536431e-16
+// mean(f - f_GSL): 8.3266726846886741e-16
+// variance(f - f_GSL): 2.3087110259459893e-32
+// stddev(f - f_GSL): 1.5194443148552663e-16
 const testcase_lbincoef<double>
 data030[32] =
 {
@@ -1089,11 +1089,11 @@ const double toler030 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=32 k=200 f=-inf f_GSL=-inf
 // Test data for n=32.
-// max(|f - f_GSL|): 1.4210854715202004e-14
-// max(|f - f_GSL| / |f_GSL|): 4.1003859248830832e-15
-// mean(f - f_GSL): -6.3518214257342288e-15
-// variance(f - f_GSL): 1.3002011416071695e-30
-// stddev(f - f_GSL): 1.1402636281172742e-15
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.8179551419455085e-16
+// mean(f - f_GSL): 1.0765799026668185e-15
+// variance(f - f_GSL): 3.7351368618419119e-32
+// stddev(f - f_GSL): 1.9326502171479225e-16
 const testcase_lbincoef<double>
 data031[33] =
 {
@@ -1139,11 +1139,11 @@ const double toler031 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=33 k=200 f=-inf f_GSL=-inf
 // Test data for n=33.
-// max(|f - f_GSL|): 1.4210854715202004e-14
-// max(|f - f_GSL| / |f_GSL|): 4.0642997234765939e-15
-// mean(f - f_GSL): -6.3739863060832519e-15
-// variance(f - f_GSL): 1.2684498150823248e-30
-// stddev(f - f_GSL): 1.1262547736113374e-15
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.7407239991933171e-16
+// mean(f - f_GSL): 1.0449157878825003e-15
+// variance(f - f_GSL): 3.4088949612532247e-32
+// stddev(f - f_GSL): 1.8463193010021923e-16
 const testcase_lbincoef<double>
 data032[34] =
 {
@@ -1190,11 +1190,11 @@ const double toler032 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=34 k=200 f=-inf f_GSL=-inf
 // Test data for n=34.
-// max(|f - f_GSL|): 1.4210854715202004e-14
-// max(|f - f_GSL| / |f_GSL|): 4.0298927508975596e-15
-// mean(f - f_GSL): -6.1918724116237303e-15
-// variance(f - f_GSL): 1.1607914694324805e-30
-// stddev(f - f_GSL): 1.0774003292335122e-15
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.6678837879168822e-16
+// mean(f - f_GSL): 1.2180732613030289e-15
+// variance(f - f_GSL): 4.4921787583519802e-32
+// stddev(f - f_GSL): 2.1194760575085485e-16
 const testcase_lbincoef<double>
 data033[35] =
 {
@@ -1242,11 +1242,11 @@ const double toler033 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=35 k=200 f=-inf f_GSL=-inf
 // Test data for n=35.
-// max(|f - f_GSL|): 1.4210854715202004e-14
-// max(|f - f_GSL| / |f_GSL|): 3.9970361465112854e-15
-// mean(f - f_GSL): -6.4146219200564601e-15
-// variance(f - f_GSL): 1.2092289612911655e-30
-// stddev(f - f_GSL): 1.0996494720096789e-15
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.5990360866630050e-16
+// mean(f - f_GSL): 1.1842378929335002e-15
+// variance(f - f_GSL): 4.1213957497261026e-32
+// stddev(f - f_GSL): 2.0301221021717148e-16
 const testcase_lbincoef<double>
 data034[36] =
 {
@@ -1295,11 +1295,11 @@ const double toler034 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=36 k=200 f=-inf f_GSL=-inf
 // Test data for n=36.
-// max(|f - f_GSL|): 1.7763568394002505e-14
-// max(|f - f_GSL| / |f_GSL|): 3.9656145144650696e-15
-// mean(f - f_GSL): -6.6253309145198533e-15
-// variance(f - f_GSL): 1.2531754320177635e-30
-// stddev(f - f_GSL): 1.1194531843796612e-15
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.5338308742120164e-16
+// mean(f - f_GSL): 1.1522314633947571e-15
+// variance(f - f_GSL): 3.7903226677285852e-32
+// stddev(f - f_GSL): 1.9468751032689759e-16
 const testcase_lbincoef<double>
 data035[37] =
 {
@@ -1349,11 +1349,11 @@ const double toler035 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=37 k=200 f=-inf f_GSL=-inf
 // Test data for n=37.
-// max(|f - f_GSL|): 1.4210854715202004e-14
-// max(|f - f_GSL| / |f_GSL|): 3.9355241683673693e-15
-// mean(f - f_GSL): -6.8249499619062254e-15
-// variance(f - f_GSL): 1.2929421441460218e-30
-// stddev(f - f_GSL): 1.1370761382361437e-15
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.4719592753442593e-16
+// mean(f - f_GSL): 1.1219095827791055e-15
+// variance(f - f_GSL): 3.4937824874653249e-32
+// stddev(f - f_GSL): 1.8691662546347568e-16
 const testcase_lbincoef<double>
 data036[38] =
 {
@@ -1404,11 +1404,11 @@ const double toler036 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=38 k=200 f=-inf f_GSL=-inf
 // Test data for n=38.
-// max(|f - f_GSL|): 1.4210854715202004e-14
-// max(|f - f_GSL| / |f_GSL|): 3.9066716474066803e-15
-// mean(f - f_GSL): -8.1074748054678094e-15
-// variance(f - f_GSL): 1.7752872306998037e-30
-// stddev(f - f_GSL): 1.3323990508476820e-15
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.4131475857150478e-16
+// mean(f - f_GSL): 7.2876178026676940e-16
+// variance(f - f_GSL): 1.4343944295516658e-32
+// stddev(f - f_GSL): 1.1976620681776917e-16
 const testcase_lbincoef<double>
 data037[39] =
 {
@@ -1460,11 +1460,11 @@ const double toler037 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=39 k=200 f=-inf f_GSL=-inf
 // Test data for n=39.
-// max(|f - f_GSL|): 1.4210854715202004e-14
-// max(|f - f_GSL| / |f_GSL|): 3.8789724557289709e-15
-// mean(f - f_GSL): -7.5495165674510645e-15
-// variance(f - f_GSL): 1.4988875845422250e-30
-// stddev(f - f_GSL): 1.2242906454523880e-15
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.3571523186466575e-16
+// mean(f - f_GSL): 8.8817841970012523e-16
+// variance(f - f_GSL): 2.0745848920999654e-32
+// stddev(f - f_GSL): 1.4403419358263389e-16
 const testcase_lbincoef<double>
 data038[40] =
 {
@@ -1517,11 +1517,11 @@ const double toler038 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=40 k=200 f=-inf f_GSL=-inf
 // Test data for n=40.
-// max(|f - f_GSL|): 1.7763568394002505e-14
-// max(|f - f_GSL| / |f_GSL|): 3.8523499864853821e-15
-// mean(f - f_GSL): -7.7119882295913318e-15
-// variance(f - f_GSL): 1.5240407878672279e-30
-// stddev(f - f_GSL): 1.2345204687923274e-15
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.3037560743352304e-16
+// mean(f - f_GSL): 1.0398186376977075e-15
+// variance(f - f_GSL): 2.7706334232152612e-32
+// stddev(f - f_GSL): 1.6645219803941495e-16
 const testcase_lbincoef<double>
 data039[41] =
 {
@@ -1575,11 +1575,11 @@ const double toler039 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=41 k=200 f=-inf f_GSL=-inf
 // Test data for n=41.
-// max(|f - f_GSL|): 1.7763568394002505e-14
-// max(|f - f_GSL| / |f_GSL|): 3.8267345994482641e-15
-// mean(f - f_GSL): -8.2050768296106800e-15
-// variance(f - f_GSL): 1.6820809058609106e-30
-// stddev(f - f_GSL): 1.2969506181273481e-15
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.2527640754579208e-16
+// mean(f - f_GSL): 6.7670736739057157e-16
+// variance(f - f_GSL): 1.1441511103740915e-32
+// stddev(f - f_GSL): 1.0696499943318335e-16
 const testcase_lbincoef<double>
 data040[42] =
 {
@@ -1634,11 +1634,11 @@ const double toler040 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=42 k=200 f=-inf f_GSL=-inf
 // Test data for n=42.
-// max(|f - f_GSL|): 1.7763568394002505e-14
-// max(|f - f_GSL| / |f_GSL|): 3.8020628269784761e-15
-// mean(f - f_GSL): -8.1795035860755722e-15
-// variance(f - f_GSL): 1.6308866175333307e-30
-// stddev(f - f_GSL): 1.2770617124999599e-15
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.2040012462403620e-16
+// mean(f - f_GSL): 9.9145498013037234e-16
+// variance(f - f_GSL): 2.3961603196081992e-32
+// stddev(f - f_GSL): 1.5479535909090424e-16
 const testcase_lbincoef<double>
 data041[43] =
 {
@@ -1694,11 +1694,11 @@ const double toler041 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=43 k=200 f=-inf f_GSL=-inf
 // Test data for n=43.
-// max(|f - f_GSL|): 1.7763568394002505e-14
-// max(|f - f_GSL| / |f_GSL|): 3.7782766877804130e-15
-// mean(f - f_GSL): -8.1550927627011497e-15
-// variance(f - f_GSL): 1.5826087996773767e-30
-// stddev(f - f_GSL): 1.2580178057870949e-15
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.1573097374110049e-16
+// mean(f - f_GSL): 8.0743492700011382e-16
+// variance(f - f_GSL): 1.5514251540803616e-32
+// stddev(f - f_GSL): 1.2455621839476187e-16
 const testcase_lbincoef<double>
 data042[44] =
 {
@@ -1755,11 +1755,11 @@ const double toler042 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=44 k=200 f=-inf f_GSL=-inf
 // Test data for n=44.
-// max(|f - f_GSL|): 1.7763568394002505e-14
-// max(|f - f_GSL| / |f_GSL|): 3.7553230915882175e-15
-// mean(f - f_GSL): -8.2896652505345027e-15
-// variance(f - f_GSL): 1.5972803452822141e-30
-// stddev(f - f_GSL): 1.2638355689258845e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.1125468190775234e-16
+// mean(f - f_GSL): 9.4739031434680023e-16
+// variance(f - f_GSL): 2.0862437162869733e-32
+// stddev(f - f_GSL): 1.4443835073438679e-16
 const testcase_lbincoef<double>
 data043[45] =
 {
@@ -1817,11 +1817,11 @@ const double toler043 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=45 k=200 f=-inf f_GSL=-inf
 // Test data for n=45.
-// max(|f - f_GSL|): 3.1974423109204508e-14
-// max(|f - f_GSL| / |f_GSL|): 6.5330183115614288e-15
-// mean(f - f_GSL): -2.2011378227350931e-14
-// variance(f - f_GSL): 1.1005943450619720e-29
-// stddev(f - f_GSL): 3.3175206782505094e-15
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.0695830788302882e-16
+// mean(f - f_GSL): 6.1786324848704362e-16
+// variance(f - f_GSL): 8.6719652919625990e-33
+// stddev(f - f_GSL): 9.3123387459663426e-17
 const testcase_lbincoef<double>
 data044[46] =
 {
@@ -1872,7 +1872,7 @@ data044[46] =
   { 3.8066624897703178, 45, 44, 0.0 },
   { 0.0000000000000000, 45, 45, 0.0 },
 };
-const double toler044 = 5.0000000000000039e-13;
+const double toler044 = 2.5000000000000020e-13;
 
 // Divergence at n=46 k=47 f=-inf f_GSL=-inf
 // Divergence at n=46 k=48 f=-inf f_GSL=-inf
@@ -1880,11 +1880,11 @@ const double toler044 = 5.0000000000000039e-13;
 // ...
 // Divergence at n=46 k=200 f=-inf f_GSL=-inf
 // Test data for n=46.
-// max(|f - f_GSL|): 4.2632564145606011e-14
-// max(|f - f_GSL| / |f_GSL|): 3.3264358456852926e-15
-// mean(f - f_GSL): -2.2034383773837149e-14
-// variance(f - f_GSL): 1.0784102651114688e-29
-// stddev(f - f_GSL): 3.2839157496980168e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.0283008743533817e-16
+// mean(f - f_GSL): 1.8897413185109048e-16
+// variance(f - f_GSL): 7.9320768332563627e-34
+// stddev(f - f_GSL): 2.8163942964820040e-17
 const testcase_lbincoef<double>
 data045[47] =
 {
@@ -1944,11 +1944,11 @@ const double toler045 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=47 k=200 f=-inf f_GSL=-inf
 // Test data for n=47.
-// max(|f - f_GSL|): 2.8421709430404007e-14
-// max(|f - f_GSL| / |f_GSL|): 7.3819791786113786e-15
-// mean(f - f_GSL): 4.9219887425048609e-15
-// variance(f - f_GSL): 5.2641317913288359e-31
-// stddev(f - f_GSL): 7.2554336819578443e-16
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 4.9885929992769223e-16
+// mean(f - f_GSL): -2.5905203907920321e-16
+// variance(f - f_GSL): 1.4582082524456609e-33
+// stddev(f - f_GSL): 3.8186493062936024e-17
 const testcase_lbincoef<double>
 data046[48] =
 {
@@ -2001,7 +2001,7 @@ data046[48] =
   { 3.8501476017100345, 47, 46, 0.0 },
   { 0.0000000000000000, 47, 47, 0.0 },
 };
-const double toler046 = 5.0000000000000039e-13;
+const double toler046 = 2.5000000000000020e-13;
 
 // Divergence at n=48 k=49 f=-inf f_GSL=-inf
 // Divergence at n=48 k=50 f=-inf f_GSL=-inf
@@ -2009,11 +2009,11 @@ const double toler046 = 5.0000000000000039e-13;
 // ...
 // Divergence at n=48 k=200 f=-inf f_GSL=-inf
 // Test data for n=48.
-// max(|f - f_GSL|): 4.2632564145606011e-14
-// max(|f - f_GSL| / |f_GSL|): 1.0095019699749532e-14
-// mean(f - f_GSL): -2.3020134551411410e-14
-// variance(f - f_GSL): 1.1270140253250514e-29
-// stddev(f - f_GSL): 3.3571029554141637e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.9503615285143769e-16
+// mean(f - f_GSL): -2.5376526277146434e-16
+// variance(f - f_GSL): 1.3695501826753676e-33
+// stddev(f - f_GSL): 3.7007434154171883e-17
 const testcase_lbincoef<double>
 data047[49] =
 {
@@ -2067,7 +2067,7 @@ data047[49] =
   { 3.8712010109078960, 48, 47, 0.0 },
   { 0.0000000000000000, 48, 48, 0.0 },
 };
-const double toler047 = 1.0000000000000008e-12;
+const double toler047 = 2.5000000000000020e-13;
 
 // Divergence at n=49 k=50 f=-inf f_GSL=-inf
 // Divergence at n=49 k=51 f=-inf f_GSL=-inf
@@ -2075,11 +2075,11 @@ const double toler047 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=49 k=200 f=-inf f_GSL=-inf
 // Test data for n=49.
-// max(|f - f_GSL|): 4.2632564145606011e-14
-// max(|f - f_GSL| / |f_GSL|): 5.2764013827695029e-15
-// mean(f - f_GSL): -2.3128166048991260e-14
-// variance(f - f_GSL): 1.1139359949806581e-29
-// stddev(f - f_GSL): 3.3375679693163675e-15
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 4.9135168153300334e-16
+// mean(f - f_GSL): -5.3290705182007512e-16
+// variance(f - f_GSL): 5.9139926255636035e-33
+// stddev(f - f_GSL): 7.6902487772266539e-17
 const testcase_lbincoef<double>
 data048[50] =
 {
@@ -2134,7 +2134,7 @@ data048[50] =
   { 3.8918202981106447, 49, 48, 0.0 },
   { 0.0000000000000000, 49, 49, 0.0 },
 };
-const double toler048 = 5.0000000000000039e-13;
+const double toler048 = 2.5000000000000020e-13;
 
 // Divergence at n=50 k=51 f=-inf f_GSL=-inf
 // Divergence at n=50 k=52 f=-inf f_GSL=-inf
@@ -2142,11 +2142,11 @@ const double toler048 = 5.0000000000000039e-13;
 // ...
 // Divergence at n=50 k=200 f=-inf f_GSL=-inf
 // Test data for n=50.
-// max(|f - f_GSL|): 4.2632564145606011e-14
-// max(|f - f_GSL| / |f_GSL|): 3.9541358039186507e-15
-// mean(f - f_GSL): -2.2535350491999255e-14
-// variance(f - f_GSL): 1.0359977244663923e-29
-// stddev(f - f_GSL): 3.2186918530148117e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8375905837216503e-16
+// mean(f - f_GSL): -3.8313578889025012e-16
+// variance(f - f_GSL): 2.9945778676625074e-33
+// stddev(f - f_GSL): 5.4722736295460475e-17
 const testcase_lbincoef<double>
 data049[51] =
 {
@@ -2210,11 +2210,11 @@ const double toler049 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=51 k=200 f=-inf f_GSL=-inf
 // Test data for n=51.
-// max(|f - f_GSL|): 4.2632564145606011e-14
-// max(|f - f_GSL| / |f_GSL|): 2.8584489829177858e-15
-// mean(f - f_GSL): -2.1965335533353096e-14
-// variance(f - f_GSL): 9.6458093751729252e-30
-// stddev(f - f_GSL): 3.1057703352264996e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7799080360120881e-16
+// mean(f - f_GSL): -2.3912495915003371e-16
+// variance(f - f_GSL): 1.1431752389858806e-33
+// stddev(f - f_GSL): 3.3810874567006998e-17
 const testcase_lbincoef<double>
 data050[52] =
 {
@@ -2279,11 +2279,11 @@ const double toler050 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=52 k=200 f=-inf f_GSL=-inf
 // Test data for n=52.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 3.8484106598388022e-15
-// mean(f - f_GSL): -2.1819024574520059e-14
-// variance(f - f_GSL): 9.3312504324430616e-30
-// stddev(f - f_GSL): 3.0547095496041945e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7245703480281434e-16
+// mean(f - f_GSL): -2.3461316746795761e-16
+// variance(f - f_GSL): 1.0788820016699113e-33
+// stddev(f - f_GSL): 3.2846339243055858e-17
 const testcase_lbincoef<double>
 data051[53] =
 {
@@ -2349,11 +2349,11 @@ const double toler051 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=53 k=200 f=-inf f_GSL=-inf
 // Test data for n=53.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 3.3537613516869377e-15
-// mean(f - f_GSL): -2.0888640611465909e-14
-// variance(f - f_GSL): 8.3880763816764235e-30
-// stddev(f - f_GSL): 2.8962175991586723e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.6714248822022392e-16
+// mean(f - f_GSL): 3.2895497025930562e-17
+// variance(f - f_GSL): 2.0802471031499593e-35
+// stddev(f - f_GSL): 4.5609725971002712e-18
 const testcase_lbincoef<double>
 data052[54] =
 {
@@ -2420,11 +2420,11 @@ const double toler052 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=54 k=200 f=-inf f_GSL=-inf
 // Test data for n=54.
-// max(|f - f_GSL|): 4.2632564145606011e-14
-// max(|f - f_GSL| / |f_GSL|): 2.6718936230345194e-15
-// mean(f - f_GSL): -1.9992088792522818e-14
-// variance(f - f_GSL): 7.5386141240899893e-30
-// stddev(f - f_GSL): 2.7456536788331462e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.6203323921512707e-16
+// mean(f - f_GSL): 2.9067657372004098e-16
+// variance(f - f_GSL): 1.5936583943858824e-33
+// stddev(f - f_GSL): 3.9920651226976278e-17
 const testcase_lbincoef<double>
 data053[55] =
 {
@@ -2492,11 +2492,11 @@ const double toler053 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=55 k=200 f=-inf f_GSL=-inf
 // Test data for n=55.
-// max(|f - f_GSL|): 4.2632564145606011e-14
-// max(|f - f_GSL| / |f_GSL|): 2.6596593154964172e-15
-// mean(f - f_GSL): -1.8873791418627661e-14
-// variance(f - f_GSL): 6.5944859969508554e-30
-// stddev(f - f_GSL): 2.5679731301068658e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.5711655623087140e-16
+// mean(f - f_GSL): 5.3925118338936171e-16
+// variance(f - f_GSL): 5.3832538750619221e-33
+// stddev(f - f_GSL): 7.3370660860196169e-17
 const testcase_lbincoef<double>
 data054[56] =
 {
@@ -2565,11 +2565,11 @@ const double toler054 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=56 k=200 f=-inf f_GSL=-inf
 // Test data for n=56.
-// max(|f - f_GSL|): 4.2632564145606011e-14
-// max(|f - f_GSL| / |f_GSL|): 2.6477539989692291e-15
-// mean(f - f_GSL): -1.9041298752167596e-14
-// variance(f - f_GSL): 6.5900989526945338e-30
-// stddev(f - f_GSL): 2.5671188037748730e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.5238077363470056e-16
+// mean(f - f_GSL): 2.8047739569477637e-16
+// variance(f - f_GSL): 1.4298633486148844e-33
+// stddev(f - f_GSL): 3.7813533934490761e-17
 const testcase_lbincoef<double>
 data055[57] =
 {
@@ -2639,11 +2639,11 @@ const double toler055 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=57 k=200 f=-inf f_GSL=-inf
 // Test data for n=57.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.6361627222476364e-15
-// mean(f - f_GSL): -2.1898192071916881e-14
-// variance(f - f_GSL): 8.5604146903898659e-30
-// stddev(f - f_GSL): 2.9258186359359094e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.4781518063499977e-16
+// mean(f - f_GSL): -1.1944468402863753e-15
+// variance(f - f_GSL): 2.5469002384631007e-32
+// stddev(f - f_GSL): 1.5959010741468598e-16
 const testcase_lbincoef<double>
 data056[58] =
 {
@@ -2714,11 +2714,11 @@ const double toler056 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=58 k=200 f=-inf f_GSL=-inf
 // Test data for n=58.
-// max(|f - f_GSL|): 4.2632564145606011e-14
-// max(|f - f_GSL| / |f_GSL|): 2.6248714755307398e-15
-// mean(f - f_GSL): -1.8937770372589109e-14
-// variance(f - f_GSL): 6.2900444870421881e-30
-// stddev(f - f_GSL): 2.5079961098538785e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.4340992393752575e-16
+// mean(f - f_GSL): 3.0107743040682211e-17
+// variance(f - f_GSL): 1.5898363635321384e-35
+// stddev(f - f_GSL): 3.9872752143940833e-18
 const testcase_lbincoef<double>
 data057[59] =
 {
@@ -2790,11 +2790,11 @@ const double toler057 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=59 k=200 f=-inf f_GSL=-inf
 // Test data for n=59.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.6138671153912270e-15
-// mean(f - f_GSL): -2.1227464230832992e-14
-// variance(f - f_GSL): 7.7668239759487647e-30
-// stddev(f - f_GSL): 2.7869022185840617e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.3915592218621964e-16
+// mean(f - f_GSL): -9.1778436702346283e-16
+// variance(f - f_GSL): 1.4518726992576698e-32
+// stddev(f - f_GSL): 1.2049368030140294e-16
 const testcase_lbincoef<double>
 data058[60] =
 {
@@ -2867,11 +2867,11 @@ const double toler058 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=60 k=200 f=-inf f_GSL=-inf
 // Test data for n=60.
-// max(|f - f_GSL|): 4.2632564145606011e-14
-// max(|f - f_GSL| / |f_GSL|): 2.6031372969296512e-15
-// mean(f - f_GSL): -1.8083895037173041e-14
-// variance(f - f_GSL): 5.5412952340680547e-30
-// stddev(f - f_GSL): 2.3539955892201783e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.3504479054694334e-16
+// mean(f - f_GSL): 2.9120603924594271e-17
+// variance(f - f_GSL): 1.4369051096921891e-35
+// stddev(f - f_GSL): 3.7906531227378074e-18
 const testcase_lbincoef<double>
 data059[61] =
 {
@@ -2945,11 +2945,11 @@ const double toler059 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=61 k=200 f=-inf f_GSL=-inf
 // Test data for n=61.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.5926704123150866e-15
-// mean(f - f_GSL): -1.8021426644883185e-14
-// variance(f - f_GSL): 5.4114089587874635e-30
-// stddev(f - f_GSL): 2.3262435295530569e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.3106877404980895e-16
+// mean(f - f_GSL): -2.0055641735164118e-16
+// variance(f - f_GSL): 6.7020111409228488e-34
+// stddev(f - f_GSL): 2.5888242777220029e-17
 const testcase_lbincoef<double>
 data060[62] =
 {
@@ -3024,11 +3024,11 @@ const double toler060 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=62 k=200 f=-inf f_GSL=-inf
 // Test data for n=62.
-// max(|f - f_GSL|): 4.2632564145606011e-14
-// max(|f - f_GSL| / |f_GSL|): 2.5824555350128263e-15
-// mean(f - f_GSL): -1.7904549095542207e-14
-// variance(f - f_GSL): 5.2539259453238605e-30
-// stddev(f - f_GSL): 2.2921443988815059e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.2722068851849900e-16
+// mean(f - f_GSL): -1.9737298215558337e-16
+// variance(f - f_GSL): 6.3845835779247113e-34
+// stddev(f - f_GSL): 2.5267733530977232e-17
 const testcase_lbincoef<double>
 data061[63] =
 {
@@ -3104,11 +3104,11 @@ const double toler061 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=63 k=200 f=-inf f_GSL=-inf
 // Test data for n=63.
-// max(|f - f_GSL|): 4.2632564145606011e-14
-// max(|f - f_GSL| / |f_GSL|): 2.5724823690887512e-15
-// mean(f - f_GSL): -1.7180701306074297e-14
-// variance(f - f_GSL): 4.7597117237557967e-30
-// stddev(f - f_GSL): 2.1816763563268951e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.2349386809147168e-16
+// mean(f - f_GSL): 2.7755575615628914e-17
+// variance(f - f_GSL): 1.2422223879141659e-35
+// stddev(f - f_GSL): 3.5245175384925603e-18
 const testcase_lbincoef<double>
 data062[64] =
 {
@@ -3185,11 +3185,11 @@ const double toler062 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=64 k=200 f=-inf f_GSL=-inf
 // Test data for n=64.
-// max(|f - f_GSL|): 4.2632564145606011e-14
-// max(|f - f_GSL| / |f_GSL|): 2.5627412030519274e-15
-// mean(f - f_GSL): -1.6479125756282325e-14
-// variance(f - f_GSL): 4.3094489916842983e-30
-// stddev(f - f_GSL): 2.0759212392777089e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.1988211848701970e-16
+// mean(f - f_GSL): 2.4595710084003469e-16
+// variance(f - f_GSL): 9.6000200304840680e-34
+// stddev(f - f_GSL): 3.0983899093697144e-17
 const testcase_lbincoef<double>
 data063[65] =
 {
@@ -3267,11 +3267,11 @@ const double toler063 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=65 k=200 f=-inf f_GSL=-inf
 // Test data for n=65.
-// max(|f - f_GSL|): 4.2632564145606011e-14
-// max(|f - f_GSL| / |f_GSL|): 2.5532228677642408e-15
-// mean(f - f_GSL): -1.6444758013235652e-14
-// variance(f - f_GSL): 4.2244696718380974e-30
-// stddev(f - f_GSL): 2.0553514716072523e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.1637967528714486e-16
+// mean(f - f_GSL): 2.4223047810003414e-16
+// variance(f - f_GSL): 9.1658932505507564e-34
+// stddev(f - f_GSL): 3.0275226259353960e-17
 const testcase_lbincoef<double>
 data064[66] =
 {
@@ -3350,11 +3350,11 @@ const double toler064 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=66 k=200 f=-inf f_GSL=-inf
 // Test data for n=66.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.5439186979990756e-15
-// mean(f - f_GSL): -1.9168746192334046e-14
-// variance(f - f_GSL): 5.6516381196671504e-30
-// stddev(f - f_GSL): 2.3773174208900144e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.1298116661837388e-16
+// mean(f - f_GSL): -1.0339987572628324e-15
+// variance(f - f_GSL): 1.6444738248717282e-32
+// stddev(f - f_GSL): 1.2823703930112111e-16
 const testcase_lbincoef<double>
 data065[67] =
 {
@@ -3434,11 +3434,11 @@ const double toler065 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=67 k=200 f=-inf f_GSL=-inf
 // Test data for n=67.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.5348204972817549e-15
-// mean(f - f_GSL): -1.5699859712934566e-14
-// variance(f - f_GSL): 3.7337982758735035e-30
-// stddev(f - f_GSL): 1.9323038777256292e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.0968157969461443e-16
+// mean(f - f_GSL): 2.3510605227356256e-16
+// variance(f - f_GSL): 8.3731124871125445e-34
+// stddev(f - f_GSL): 2.8936330947638375e-17
 const testcase_lbincoef<double>
 data066[68] =
 {
@@ -3519,11 +3519,11 @@ const double toler066 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=68 k=200 f=-inf f_GSL=-inf
 // Test data for n=68.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.5259205056853085e-15
-// mean(f - f_GSL): -1.5678279930358731e-14
-// variance(f - f_GSL): 3.6679895866465332e-30
-// stddev(f - f_GSL): 1.9151996205739319e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.0647623076054848e-16
+// mean(f - f_GSL): 2.3169871818264136e-16
+// variance(f - f_GSL): 8.0108486689361055e-34
+// stddev(f - f_GSL): 2.8303442668580280e-17
 const testcase_lbincoef<double>
 data067[69] =
 {
@@ -3605,11 +3605,11 @@ const double toler067 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=69 k=200 f=-inf f_GSL=-inf
 // Test data for n=69.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.5172113702924614e-15
-// mean(f - f_GSL): -1.5657316712999352e-14
-// variance(f - f_GSL): 3.6044128682171427e-30
-// stddev(f - f_GSL): 1.8985291328334001e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.0336073803634172e-16
+// mean(f - f_GSL): 2.2838873649431789e-16
+// variance(f - f_GSL): 7.6691851439255807e-34
+// stddev(f - f_GSL): 2.7693293671800001e-17
 const testcase_lbincoef<double>
 data068[70] =
 {
@@ -3692,11 +3692,11 @@ const double toler068 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=70 k=200 f=-inf f_GSL=-inf
 // Test data for n=70.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.5086861180666653e-15
-// mean(f - f_GSL): -1.8038778608557472e-14
-// variance(f - f_GSL): 4.7149438554871629e-30
-// stddev(f - f_GSL): 2.1713921468696445e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.0033099731735395e-16
+// mean(f - f_GSL): -9.7574530614943343e-16
+// variance(f - f_GSL): 1.3795428995011889e-32
+// stddev(f - f_GSL): 1.1745394414412777e-16
 const testcase_lbincoef<double>
 data069[71] =
 {
@@ -3780,11 +3780,11 @@ const double toler069 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=71 k=200 f=-inf f_GSL=-inf
 // Test data for n=71.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.5003381309035185e-15
-// mean(f - f_GSL): -1.7985612998927536e-14
-// variance(f - f_GSL): 4.6202586384046349e-30
-// stddev(f - f_GSL): 2.1494786899163794e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.9738315992770053e-16
+// mean(f - f_GSL): -1.1595662701640524e-15
+// variance(f - f_GSL): 1.9204674333060186e-32
+// stddev(f - f_GSL): 1.3858093062561019e-16
 const testcase_lbincoef<double>
 data070[72] =
 {
@@ -3869,11 +3869,11 @@ const double toler070 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=72 k=200 f=-inf f_GSL=-inf
 // Test data for n=72.
-// max(|f - f_GSL|): 4.2632564145606011e-14
-// max(|f - f_GSL| / |f_GSL|): 2.4921611226582377e-15
-// mean(f - f_GSL): -1.7933903981342256e-14
-// variance(f - f_GSL): 4.5290545094282908e-30
-// stddev(f - f_GSL): 2.1281575386771279e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.9451361276508346e-16
+// mean(f - f_GSL): -1.1436818007097503e-15
+// variance(f - f_GSL): 1.8419094998659891e-32
+// stddev(f - f_GSL): 1.3571696650993896e-16
 const testcase_lbincoef<double>
 data071[73] =
 {
@@ -3959,11 +3959,11 @@ const double toler071 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=73 k=200 f=-inf f_GSL=-inf
 // Test data for n=73.
-// max(|f - f_GSL|): 4.2632564145606011e-14
-// max(|f - f_GSL| / |f_GSL|): 2.4841491179668957e-15
-// mean(f - f_GSL): -1.4186849893047947e-14
-// variance(f - f_GSL): 2.7948464124043376e-30
-// stddev(f - f_GSL): 1.6717794149959908e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.9171896020746452e-16
+// mean(f - f_GSL): 2.1604339938651696e-16
+// variance(f - f_GSL): 6.4813877481097263e-34
+// stddev(f - f_GSL): 2.5458569771512553e-17
 const testcase_lbincoef<double>
 data072[74] =
 {
@@ -4050,11 +4050,11 @@ const double toler072 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=74 k=200 f=-inf f_GSL=-inf
 // Test data for n=74.
-// max(|f - f_GSL|): 4.2632564145606011e-14
-// max(|f - f_GSL| / |f_GSL|): 2.4762964326980055e-15
-// mean(f - f_GSL): -1.7597775088991814e-14
-// variance(f - f_GSL): 4.2414402129666848e-30
-// stddev(f - f_GSL): 2.0594757131286315e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.8899600768056098e-16
+// mean(f - f_GSL): -9.2370555648813027e-16
+// variance(f - f_GSL): 1.1685974549219956e-32
+// stddev(f - f_GSL): 1.0810168615345441e-16
 const testcase_lbincoef<double>
 data073[75] =
 {
@@ -4142,11 +4142,11 @@ const double toler073 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=75 k=200 f=-inf f_GSL=-inf
 // Test data for n=75.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.4685976558883370e-15
-// mean(f - f_GSL): -1.3626526807504554e-14
-// variance(f - f_GSL): 2.5087732792015391e-30
-// stddev(f - f_GSL): 1.5839107548096070e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.8634174670974923e-16
+// mean(f - f_GSL): 3.9734297723426655e-16
+// variance(f - f_GSL): 2.1331536992643031e-33
+// stddev(f - f_GSL): 4.6186076898393346e-17
 const testcase_lbincoef<double>
 data074[76] =
 {
@@ -4235,11 +4235,11 @@ const double toler074 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=76 k=200 f=-inf f_GSL=-inf
 // Test data for n=76.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.4610476330313140e-15
-// mean(f - f_GSL): -1.6956133467002390e-14
-// variance(f - f_GSL): 3.8328091387831521e-30
-// stddev(f - f_GSL): 1.9577561489580749e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.8375334130109562e-16
+// mean(f - f_GSL): -7.1515664962867231e-16
+// variance(f - f_GSL): 6.8181398165035101e-33
+// stddev(f - f_GSL): 8.2572028051292950e-17
 const testcase_lbincoef<double>
 data075[77] =
 {
@@ -4329,11 +4329,11 @@ const double toler075 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=77 k=200 f=-inf f_GSL=-inf
 // Test data for n=77.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.4536414506000635e-15
-// mean(f - f_GSL): -1.6556556695435669e-14
-// variance(f - f_GSL): 3.6062281041517457e-30
-// stddev(f - f_GSL): 1.8990071364141174e-15
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.8122811551469198e-16
+// mean(f - f_GSL): -5.2379752956674053e-16
+// variance(f - f_GSL): 3.6094418037539538e-33
+// stddev(f - f_GSL): 6.0078630175412240e-17
 const testcase_lbincoef<double>
 data076[78] =
 {
@@ -4424,11 +4424,11 @@ const double toler076 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=78 k=200 f=-inf f_GSL=-inf
 // Test data for n=78.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.6201444853067395e-15
-// mean(f - f_GSL): -1.6706748502207420e-14
-// variance(f - f_GSL): 3.6242801110724484e-30
-// stddev(f - f_GSL): 1.9037542149848147e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.3100722426533697e-15
+// mean(f - f_GSL): -8.7693565489379457e-16
+// variance(f - f_GSL): 9.9855810787469847e-33
+// stddev(f - f_GSL): 9.9927879386820702e-17
 const testcase_lbincoef<double>
 data077[79] =
 {
@@ -4520,11 +4520,11 @@ const double toler077 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=79 k=200 f=-inf f_GSL=-inf
 // Test data for n=79.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.6089866642692285e-15
-// mean(f - f_GSL): -1.8629542353210128e-14
-// variance(f - f_GSL): 4.4487722902105420e-30
-// stddev(f - f_GSL): 2.1092112957716073e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.3044933321346142e-15
+// mean(f - f_GSL): -1.5765166949677222e-15
+// variance(f - f_GSL): 3.1859059631622502e-32
+// stddev(f - f_GSL): 1.7849106317018368e-16
 const testcase_lbincoef<double>
 data078[80] =
 {
@@ -4617,11 +4617,11 @@ const double toler078 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=80 k=200 f=-inf f_GSL=-inf
 // Test data for n=80.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.4322401310996850e-15
-// mean(f - f_GSL): -1.5943350891901013e-14
-// variance(f - f_GSL): 3.2170977266632420e-30
-// stddev(f - f_GSL): 1.7936269753388639e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2990338426039145e-15
+// mean(f - f_GSL): -5.0439762106426862e-16
+// variance(f - f_GSL): 3.2199646517123089e-33
+// stddev(f - f_GSL): 5.6744732369730219e-17
 const testcase_lbincoef<double>
 data079[81] =
 {
@@ -4715,11 +4715,11 @@ const double toler079 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=81 k=200 f=-inf f_GSL=-inf
 // Test data for n=81.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.4253645135634709e-15
-// mean(f - f_GSL): -1.5402313570897292e-14
-// variance(f - f_GSL): 2.9649388193220926e-30
-// stddev(f - f_GSL): 1.7218997704053777e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2936895259167739e-15
+// mean(f - f_GSL): -4.9824643056348493e-16
+// variance(f - f_GSL): 3.1026458553084579e-33
+// stddev(f - f_GSL): 5.5701399042649356e-17
 const testcase_lbincoef<double>
 data080[82] =
 {
@@ -4814,11 +4814,11 @@ const double toler080 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=82 k=200 f=-inf f_GSL=-inf
 // Test data for n=82.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.4186113156671265e-15
-// mean(f - f_GSL): -1.5045528410823809e-14
-// variance(f - f_GSL): 2.7942501172449778e-30
-// stddev(f - f_GSL): 1.6716010640236436e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2884563421518302e-15
+// mean(f - f_GSL): -7.0626235783383453e-16
+// variance(f - f_GSL): 6.1571893220879841e-33
+// stddev(f - f_GSL): 7.8467759762134061e-17
 const testcase_lbincoef<double>
 data081[83] =
 {
@@ -4914,11 +4914,11 @@ const double toler081 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=83 k=200 f=-inf f_GSL=-inf
 // Test data for n=83.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.4119768016968733e-15
-// mean(f - f_GSL): -1.5712299186599834e-14
-// variance(f - f_GSL): 3.0102501148577396e-30
-// stddev(f - f_GSL): 1.7350072376960679e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2833304467127208e-15
+// mean(f - f_GSL): -1.2053849981644557e-15
+// variance(f - f_GSL): 1.7716366886223498e-32
+// stddev(f - f_GSL): 1.3310284326874275e-16
 const testcase_lbincoef<double>
 data082[84] =
 {
@@ -5015,11 +5015,11 @@ const double toler082 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=84 k=200 f=-inf f_GSL=-inf
 // Test data for n=84.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.5566163567802472e-15
-// mean(f - f_GSL): -1.6530567764301156e-14
-// variance(f - f_GSL): 3.2918185943683335e-30
-// stddev(f - f_GSL): 1.8143369572293714e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2783081783901236e-15
+// mean(f - f_GSL): -1.8599501024308506e-15
+// variance(f - f_GSL): 4.1673784382123745e-32
+// stddev(f - f_GSL): 2.0414157925842483e-16
 const testcase_lbincoef<double>
 data083[85] =
 {
@@ -5117,11 +5117,11 @@ const double toler083 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=85 k=200 f=-inf f_GSL=-inf
 // Test data for n=85.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.5193981251306872e-14
-// mean(f - f_GSL): -7.0207405780481995e-14
-// variance(f - f_GSL): 5.8671400010044570e-29
-// stddev(f - f_GSL): 7.6597258443135272e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2733860483008980e-15
+// mean(f - f_GSL): -8.4686779552802641e-16
+// variance(f - f_GSL): 8.5367356992131383e-33
+// stddev(f - f_GSL): 9.2394457080569172e-17
 const testcase_lbincoef<double>
 data084[86] =
 {
@@ -5212,7 +5212,7 @@ data084[86] =
   { 4.4426512564903646, 85, 84, 0.0 },
   { 0.0000000000000000, 85, 85, 0.0 },
 };
-const double toler084 = 1.0000000000000008e-12;
+const double toler084 = 2.5000000000000020e-13;
 
 // Divergence at n=86 k=87 f=-inf f_GSL=-inf
 // Divergence at n=86 k=88 f=-inf f_GSL=-inf
@@ -5220,11 +5220,11 @@ const double toler084 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=86 k=200 f=-inf f_GSL=-inf
 // Test data for n=86.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 1.2761335181165225e-14
-// mean(f - f_GSL): -1.4353779978142253e-14
-// variance(f - f_GSL): 2.4235663832476766e-30
-// stddev(f - f_GSL): 1.5567807755903451e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2685607296293231e-15
+// mean(f - f_GSL): -1.3271631558737503e-15
+// variance(f - f_GSL): 2.0719104608012875e-32
+// stddev(f - f_GSL): 1.4394132348986122e-16
 const testcase_lbincoef<double>
 data085[87] =
 {
@@ -5316,7 +5316,7 @@ data085[87] =
   { 4.4543472962535020, 86, 85, 0.0 },
   { 0.0000000000000000, 86, 86, 0.0 },
 };
-const double toler085 = 1.0000000000000008e-12;
+const double toler085 = 2.5000000000000020e-13;
 
 // Divergence at n=87 k=88 f=-inf f_GSL=-inf
 // Divergence at n=87 k=89 f=-inf f_GSL=-inf
@@ -5324,11 +5324,11 @@ const double toler085 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=87 k=200 f=-inf f_GSL=-inf
 // Test data for n=87.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 6.9092829754551076e-15
-// mean(f - f_GSL): -1.2737285973426797e-14
-// variance(f - f_GSL): 1.8862444113171147e-30
-// stddev(f - f_GSL): 1.3734061348767577e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2638290481028170e-15
+// mean(f - f_GSL): -5.0464682937507120e-16
+// variance(f - f_GSL): 2.9608694901640207e-33
+// stddev(f - f_GSL): 5.4413872221741585e-17
 const testcase_lbincoef<double>
 data086[88] =
 {
@@ -5421,7 +5421,7 @@ data086[88] =
   { 4.4659081186545677, 87, 86, 0.0 },
   { 0.0000000000000000, 87, 87, 0.0 },
 };
-const double toler086 = 5.0000000000000039e-13;
+const double toler086 = 2.5000000000000020e-13;
 
 // Divergence at n=88 k=89 f=-inf f_GSL=-inf
 // Divergence at n=88 k=90 f=-inf f_GSL=-inf
@@ -5429,11 +5429,11 @@ const double toler086 = 5.0000000000000039e-13;
 // ...
 // Divergence at n=88 k=200 f=-inf f_GSL=-inf
 // Test data for n=88.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 4.8978319811695453e-15
-// mean(f - f_GSL): -1.3392533025141215e-14
-// variance(f - f_GSL): 2.0613422951737252e-30
-// stddev(f - f_GSL): 1.4357375439730360e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2591879731408998e-15
+// mean(f - f_GSL): -9.7799421495069972e-16
+// variance(f - f_GSL): 1.0992519230172540e-32
+// stddev(f - f_GSL): 1.0484521558074332e-16
 const testcase_lbincoef<double>
 data087[89] =
 {
@@ -5535,11 +5535,11 @@ const double toler087 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=89 k=200 f=-inf f_GSL=-inf
 // Test data for n=89.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 3.8647500287732798e-15
-// mean(f - f_GSL): -1.2770031945466245e-14
-// variance(f - f_GSL): 1.8528764587729525e-30
-// stddev(f - f_GSL): 1.3612040474421725e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2546346096221112e-15
+// mean(f - f_GSL): -8.0922922683789186e-16
+// variance(f - f_GSL): 7.4405598713771875e-33
+// stddev(f - f_GSL): 8.6258679977015575e-17
 const testcase_lbincoef<double>
 data088[90] =
 {
@@ -5642,11 +5642,11 @@ const double toler088 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=90 k=200 f=-inf f_GSL=-inf
 // Test data for n=90.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 3.2300064539236064e-15
-// mean(f - f_GSL): -1.2005048969573121e-14
-// variance(f - f_GSL): 1.6191394159664478e-30
-// stddev(f - f_GSL): 1.2724540918895456e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2501661902185388e-15
+// mean(f - f_GSL): -4.8801012071435456e-16
+// variance(f - f_GSL): 2.6755559124305108e-33
+// stddev(f - f_GSL): 5.1725776093070958e-17
 const testcase_lbincoef<double>
 data089[91] =
 {
@@ -5750,11 +5750,11 @@ const double toler089 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=91 k=200 f=-inf f_GSL=-inf
 // Test data for n=91.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.7977363757105257e-15
-// mean(f - f_GSL): -1.3110285803834457e-14
-// variance(f - f_GSL): 1.9095426439990996e-30
-// stddev(f - f_GSL): 1.3818620206080995e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2457800682525111e-15
+// mean(f - f_GSL): -1.1005689113675464e-15
+// variance(f - f_GSL): 1.3456729554102725e-32
+// stddev(f - f_GSL): 1.1600314458713060e-16
 const testcase_lbincoef<double>
 data090[92] =
 {
@@ -5859,11 +5859,11 @@ const double toler090 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=92 k=200 f=-inf f_GSL=-inf
 // Test data for n=92.
-// max(|f - f_GSL|): 7.4606987254810520e-14
-// max(|f - f_GSL| / |f_GSL|): 3.2588684914641727e-15
-// mean(f - f_GSL): -1.2969314988739463e-14
-// variance(f - f_GSL): 1.8481676758948742e-30
-// stddev(f - f_GSL): 1.3594733082686376e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2414737110339704e-15
+// mean(f - f_GSL): -1.0887348370517664e-15
+// variance(f - f_GSL): 1.3024214286760713e-32
+// stddev(f - f_GSL): 1.1412367978101965e-16
 const testcase_lbincoef<double>
 data091[93] =
 {
@@ -5969,11 +5969,11 @@ const double toler091 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=93 k=200 f=-inf f_GSL=-inf
 // Test data for n=93.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.3514411658257441e-15
-// mean(f - f_GSL): -1.2831343552689044e-14
-// variance(f - f_GSL): 1.7893950135866182e-30
-// stddev(f - f_GSL): 1.3376827028808506e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2372446936408855e-15
+// mean(f - f_GSL): -1.0771525515512158e-15
+// variance(f - f_GSL): 1.2610037717129110e-32
+// stddev(f - f_GSL): 1.1229442424772973e-16
 const testcase_lbincoef<double>
 data092[94] =
 {
@@ -6080,11 +6080,11 @@ const double toler092 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=94 k=200 f=-inf f_GSL=-inf
 // Test data for n=94.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.3459056801672770e-15
-// mean(f - f_GSL): -1.2696276778450210e-14
-// variance(f - f_GSL): 1.7330881828119441e-30
-// stddev(f - f_GSL): 1.3164680713226372e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2330906931083886e-15
+// mean(f - f_GSL): -1.0658141036401502e-15
+// variance(f - f_GSL): 1.2213238098034678e-32
+// stddev(f - f_GSL): 1.1051351997848353e-16
 const testcase_lbincoef<double>
 data093[95] =
 {
@@ -6192,11 +6192,11 @@ const double toler093 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=95 k=200 f=-inf f_GSL=-inf
 // Test data for n=95.
-// max(|f - f_GSL|): 6.3948846218409017e-14
-// max(|f - f_GSL| / |f_GSL|): 2.3404543623170829e-15
-// mean(f - f_GSL): -1.2564023895341355e-14
-// variance(f - f_GSL): 1.6791192086980633e-30
-// stddev(f - f_GSL): 1.2958083225145852e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2290094829953133e-15
+// mean(f - f_GSL): -1.0547118733938987e-15
+// variance(f - f_GSL): 1.1832913578315177e-32
+// stddev(f - f_GSL): 1.0877919644084146e-16
 const testcase_lbincoef<double>
 data094[96] =
 {
@@ -6305,11 +6305,11 @@ const double toler094 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=96 k=200 f=-inf f_GSL=-inf
 // Test data for n=96.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.3350850087039401e-15
-// mean(f - f_GSL): -1.3643153044878213e-14
-// variance(f - f_GSL): 1.9591097684005052e-30
-// stddev(f - f_GSL): 1.3996820240327819e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2249989282996277e-15
+// mean(f - f_GSL): -1.6298531825424978e-15
+// variance(f - f_GSL): 2.7959296383947390e-32
+// stddev(f - f_GSL): 1.6721033575693637e-16
 const testcase_lbincoef<double>
 data095[97] =
 {
@@ -6419,11 +6419,11 @@ const double toler095 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=97 k=200 f=-inf f_GSL=-inf
 // Test data for n=97.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.3297954966956839e-15
-// mean(f - f_GSL): -1.3503937197481496e-14
-// variance(f - f_GSL): 1.8993431123058127e-30
-// stddev(f - f_GSL): 1.3781665763998969e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2210569806965852e-15
+// mean(f - f_GSL): -1.6132220276185948e-15
+// variance(f - f_GSL): 2.7106340782080704e-32
+// stddev(f - f_GSL): 1.6464003395918231e-16
 const testcase_lbincoef<double>
 data096[98] =
 {
@@ -6534,11 +6534,11 @@ const double toler096 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=98 k=200 f=-inf f_GSL=-inf
 // Test data for n=98.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.4343633481515748e-15
-// mean(f - f_GSL): -9.9224781029125098e-15
-// variance(f - f_GSL): 1.0149002080981932e-30
-// stddev(f - f_GSL): 1.0074225568738239e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2171816740757874e-15
+// mean(f - f_GSL): 1.2560098864446215e-16
+// variance(f - f_GSL): 1.6261820350876350e-34
+// stddev(f - f_GSL): 1.2752184264225621e-17
 const testcase_lbincoef<double>
 data097[99] =
 {
@@ -6650,11 +6650,11 @@ const double toler097 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=99 k=200 f=-inf f_GSL=-inf
 // Test data for n=99.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.3194478890663289e-15
-// mean(f - f_GSL): -1.2665424264923786e-14
-// variance(f - f_GSL): 1.6367000490819325e-30
-// stddev(f - f_GSL): 1.2793357843357359e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2133711203552351e-15
+// mean(f - f_GSL): -1.2967404927621828e-15
+// variance(f - f_GSL): 1.7156778956934075e-32
+// stddev(f - f_GSL): 1.3098388815779625e-16
 const testcase_lbincoef<double>
 data098[100] =
 {
@@ -6767,11 +6767,11 @@ const double toler098 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=100 k=200 f=-inf f_GSL=-inf
 // Test data for n=100.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.3143859197278987e-15
-// mean(f - f_GSL): -1.3102830152011749e-14
-// variance(f - f_GSL): 1.7340099957239290e-30
-// stddev(f - f_GSL): 1.3168181331239061e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2096235055523331e-15
+// mean(f - f_GSL): -1.5653045416497257e-15
+// variance(f - f_GSL): 2.4746800911903501e-32
+// stddev(f - f_GSL): 1.5731115952755387e-16
 const testcase_lbincoef<double>
 data099[101] =
 {
@@ -6885,11 +6885,11 @@ const double toler099 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=101 k=200 f=-inf f_GSL=-inf
 // Test data for n=101.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.4118741721869531e-15
-// mean(f - f_GSL): -9.0733520914463767e-15
-// variance(f - f_GSL): 8.2317647817725158e-31
-// stddev(f - f_GSL): 9.0729073519861966e-16
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2059370860934765e-15
+// mean(f - f_GSL): 4.0055105202162511e-16
+// variance(f - f_GSL): 1.6042541729354300e-33
+// stddev(f - f_GSL): 4.0053141860975526e-17
 const testcase_lbincoef<double>
 data100[102] =
 {
@@ -7004,11 +7004,11 @@ const double toler100 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=102 k=200 f=-inf f_GSL=-inf
 // Test data for n=102.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.3044764729834102e-15
-// mean(f - f_GSL): -1.3676223045091248e-14
-// variance(f - f_GSL): 1.8516940511577999e-30
-// stddev(f - f_GSL): 1.3607696539671216e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2023101853453244e-15
+// mean(f - f_GSL): -1.8108492052138475e-15
+// variance(f - f_GSL): 3.2463957029453403e-32
+// stddev(f - f_GSL): 1.8017757082792909e-16
 const testcase_lbincoef<double>
 data101[103] =
 {
@@ -7124,11 +7124,11 @@ const double toler101 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=103 k=200 f=-inf f_GSL=-inf
 // Test data for n=103.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2996255149910364e-15
-// mean(f - f_GSL): -1.2998149565226833e-14
-// variance(f - f_GSL): 1.6562349684683453e-30
-// stddev(f - f_GSL): 1.2869479276444504e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1987411903521381e-15
+// mean(f - f_GSL): -1.5201515260252143e-15
+// variance(f - f_GSL): 2.2653361189177674e-32
+// stddev(f - f_GSL): 1.5051033582175568e-16
 const testcase_lbincoef<double>
 data102[104] =
 {
@@ -7245,11 +7245,11 @@ const double toler102 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=104 k=200 f=-inf f_GSL=-inf
 // Test data for n=104.
-// max(|f - f_GSL|): 7.1054273576010019e-14
-// max(|f - f_GSL| / |f_GSL|): 2.3904570975301293e-15
-// mean(f - f_GSL): -9.3554793541746523e-15
-// variance(f - f_GSL): 8.4967865794847977e-31
-// stddev(f - f_GSL): 9.2178015705941500e-16
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1952285487650646e-15
+// mean(f - f_GSL): 1.1842378929335003e-16
+// variance(f - f_GSL): 1.3614463354406022e-34
+// stddev(f - f_GSL): 1.1668103253916646e-17
 const testcase_lbincoef<double>
 data103[105] =
 {
@@ -7367,11 +7367,11 @@ const double toler103 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=105 k=200 f=-inf f_GSL=-inf
 // Test data for n=105.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2901228705226721e-15
-// mean(f - f_GSL): -1.2216642791724364e-14
-// variance(f - f_GSL): 1.4349310001508057e-30
-// stddev(f - f_GSL): 1.1978860547442755e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1917707659500348e-15
+// mean(f - f_GSL): -1.2233400875114932e-15
+// variance(f - f_GSL): 1.4388704107894653e-32
+// stddev(f - f_GSL): 1.1995292454915243e-16
 const testcase_lbincoef<double>
 data104[106] =
 {
@@ -7490,11 +7490,11 @@ const double toler104 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=106 k=200 f=-inf f_GSL=-inf
 // Test data for n=106.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2854680465020385e-15
-// mean(f - f_GSL): -1.2368092012646604e-14
-// variance(f - f_GSL): 1.4567246265185405e-30
-// stddev(f - f_GSL): 1.2069484771598746e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1883664022622354e-15
+// mean(f - f_GSL): -1.4775304552020775e-15
+// variance(f - f_GSL): 2.0789542392961324e-32
+// stddev(f - f_GSL): 1.4418579123117965e-16
 const testcase_lbincoef<double>
 data105[107] =
 {
@@ -7614,11 +7614,11 @@ const double toler105 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=107 k=200 f=-inf f_GSL=-inf
 // Test data for n=107.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2808755496880411e-15
-// mean(f - f_GSL): -1.1727244689744247e-14
-// variance(f - f_GSL): 1.2973231675621048e-30
-// stddev(f - f_GSL): 1.1390009515194027e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1850140704759276e-15
+// mean(f - f_GSL): -1.2006856414464656e-15
+// variance(f - f_GSL): 1.3599246138018757e-32
+// stddev(f - f_GSL): 1.1661580569553491e-16
 const testcase_lbincoef<double>
 data106[108] =
 {
@@ -7739,11 +7739,11 @@ const double toler106 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=108 k=200 f=-inf f_GSL=-inf
 // Test data for n=108.
-// max(|f - f_GSL|): 7.1054273576010019e-14
-// max(|f - f_GSL| / |f_GSL|): 2.3634248667186159e-15
-// mean(f - f_GSL): -9.5336582665059306e-15
-// variance(f - f_GSL): 8.4937240687022804e-31
-// stddev(f - f_GSL): 9.2161402271787733e-16
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1817124333593079e-15
+// mean(f - f_GSL): -1.4667166563855280e-16
+// variance(f - f_GSL): 2.0103488920005399e-34
+// stddev(f - f_GSL): 1.4178677272582726e-17
 const testcase_lbincoef<double>
 data107[109] =
 {
@@ -7865,11 +7865,11 @@ const double toler107 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=109 k=200 f=-inf f_GSL=-inf
 // Test data for n=109.
-// max(|f - f_GSL|): 7.1054273576010019e-14
-// max(|f - f_GSL| / |f_GSL|): 2.3569204027696042e-15
-// mean(f - f_GSL): -9.1886094692612958e-15
-// variance(f - f_GSL): 7.8169849656138529e-31
-// stddev(f - f_GSL): 8.8413714804965937e-16
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1784602013848021e-15
+// mean(f - f_GSL): 1.1304088978001593e-16
+// variance(f - f_GSL): 1.1830710410305094e-34
+// stddev(f - f_GSL): 1.0876906918009869e-17
 const testcase_lbincoef<double>
 data108[110] =
 {
@@ -7992,11 +7992,11 @@ const double toler108 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=110 k=200 f=-inf f_GSL=-inf
 // Test data for n=110.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2674578355790456e-15
-// mean(f - f_GSL): -1.1922395003181862e-14
-// variance(f - f_GSL): 1.3039610570182178e-30
-// stddev(f - f_GSL): 1.1419111423478702e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1752561305660071e-15
+// mean(f - f_GSL): -1.6803375507840207e-15
+// variance(f - f_GSL): 2.5901843437008877e-32
+// stddev(f - f_GSL): 1.6094049657251862e-16
 const testcase_lbincoef<double>
 data109[111] =
 {
@@ -8120,11 +8120,11 @@ const double toler109 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=111 k=200 f=-inf f_GSL=-inf
 // Test data for n=111.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2631006875020411e-15
-// mean(f - f_GSL): -1.1562179785024844e-14
-// variance(f - f_GSL): 1.2152104662526225e-30
-// stddev(f - f_GSL): 1.1023658495493330e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1720990204130768e-15
+// mean(f - f_GSL): -1.4115692741662704e-15
+// variance(f - f_GSL): 1.8112419070389795e-32
+// stddev(f - f_GSL): 1.3458238766788838e-16
 const testcase_lbincoef<double>
 data110[112] =
 {
@@ -8249,11 +8249,11 @@ const double toler110 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=112 k=200 f=-inf f_GSL=-inf
 // Test data for n=112.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2587991069024399e-15
-// mean(f - f_GSL): -1.1711379162417580e-14
-// variance(f - f_GSL): 1.2355447555092222e-30
-// stddev(f - f_GSL): 1.1115506086135809e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1689877119990062e-15
+// mean(f - f_GSL): -1.6505970631595248e-15
+// variance(f - f_GSL): 2.4542824070067430e-32
+// stddev(f - f_GSL): 1.5666149517372617e-16
 const testcase_lbincoef<double>
 data111[113] =
 {
@@ -8379,11 +8379,11 @@ const double toler111 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=113 k=200 f=-inf f_GSL=-inf
 // Test data for n=113.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2545518677806562e-15
-// mean(f - f_GSL): -1.2107274247491181e-14
-// variance(f - f_GSL): 1.3087018737764741e-30
-// stddev(f - f_GSL): 1.1439850845952818e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1659210861297305e-15
+// mean(f - f_GSL): -2.1347446227880202e-15
+// variance(f - f_GSL): 4.0685515303903975e-32
+// stddev(f - f_GSL): 2.0170650783726332e-16
 const testcase_lbincoef<double>
 data112[114] =
 {
@@ -8510,11 +8510,11 @@ const double toler112 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=114 k=200 f=-inf f_GSL=-inf
 // Test data for n=114.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2503577822028359e-15
-// mean(f - f_GSL): -1.1754848302466006e-14
-// variance(f - f_GSL): 1.2227064281785635e-30
-// stddev(f - f_GSL): 1.1057605654835786e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1628980616116093e-15
+// mean(f - f_GSL): -1.8690363266733069e-15
+// variance(f - f_GSL): 3.0911752146722963e-32
+// stddev(f - f_GSL): 1.7581738294811172e-16
 const testcase_lbincoef<double>
 data113[115] =
 {
@@ -8642,11 +8642,11 @@ const double toler113 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=115 k=200 f=-inf f_GSL=-inf
 // Test data for n=115.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.3198351872202738e-15
-// mean(f - f_GSL): -8.2233070927408148e-15
-// variance(f - f_GSL): 5.9313742357780576e-31
-// stddev(f - f_GSL): 7.7015415572325888e-16
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1599175936101369e-15
+// mean(f - f_GSL): 5.9722342014318767e-16
+// variance(f - f_GSL): 3.1284986294013660e-33
+// stddev(f - f_GSL): 5.5932983376549534e-17
 const testcase_lbincoef<double>
 data114[116] =
 {
@@ -8775,11 +8775,11 @@ const double toler114 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=116 k=200 f=-inf f_GSL=-inf
 // Test data for n=116.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.3139573441887894e-15
-// mean(f - f_GSL): -8.1530224167344823e-15
-// variance(f - f_GSL): 5.7797247471385804e-31
-// stddev(f - f_GSL): 7.6024500966060807e-16
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1569786720943947e-15
+// mean(f - f_GSL): 5.9211894646675012e-16
+// variance(f - f_GSL): 3.0485112270728755e-33
+// stddev(f - f_GSL): 5.5213324723954773e-17
 const testcase_lbincoef<double>
 data115[117] =
 {
@@ -8909,11 +8909,11 @@ const double toler115 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=117 k=200 f=-inf f_GSL=-inf
 // Test data for n=117.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2380831070703226e-15
-// mean(f - f_GSL): -1.1696858171305039e-14
-// variance(f - f_GSL): 1.1793663487030320e-30
-// stddev(f - f_GSL): 1.0859863483041727e-15
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1540803203618788e-15
+// mean(f - f_GSL): -2.0623803982867315e-15
+// variance(f - f_GSL): 3.6664674048798729e-32
+// stddev(f - f_GSL): 1.9148021842686186e-16
 const testcase_lbincoef<double>
 data116[118] =
 {
@@ -9044,11 +9044,11 @@ const double toler116 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=118 k=200 f=-inf f_GSL=-inf
 // Test data for n=118.
-// max(|f - f_GSL|): 7.1054273576010019e-14
-// max(|f - f_GSL| / |f_GSL|): 2.3024431872778728e-15
-// mean(f - f_GSL): -8.0159968298986092e-15
-// variance(f - f_GSL): 5.4915889227638622e-31
-// stddev(f - f_GSL): 7.4105255702708845e-16
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1512215936389364e-15
+// mean(f - f_GSL): 5.8216736753453587e-16
+// variance(f - f_GSL): 2.8965342153712205e-33
+// stddev(f - f_GSL): 5.3819459448894694e-17
 const testcase_lbincoef<double>
 data117[119] =
 {
@@ -9180,11 +9180,11 @@ const double toler117 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=119 k=200 f=-inf f_GSL=-inf
 // Test data for n=119.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2301455594867621e-15
-// mean(f - f_GSL): -1.0791367799356522e-14
-// variance(f - f_GSL): 9.8682538505180842e-31
-// stddev(f - f_GSL): 9.9339085210797478e-16
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1484015777522870e-15
+// mean(f - f_GSL): -1.3174646558885191e-15
+// variance(f - f_GSL): 1.4708394487808381e-32
+// stddev(f - f_GSL): 1.2127816987326442e-16
 const testcase_lbincoef<double>
 data118[120] =
 {
@@ -9317,11 +9317,11 @@ const double toler118 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=120 k=200 f=-inf f_GSL=-inf
 // Test data for n=120.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2912387757346010e-15
-// mean(f - f_GSL): -8.3532813356920871e-15
-// variance(f - f_GSL): 5.8632322207359967e-31
-// stddev(f - f_GSL): 7.6571745577177458e-16
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1456193878673005e-15
+// mean(f - f_GSL): 1.0276444525455995e-16
+// variance(f - f_GSL): 8.8737796960123000e-35
+// stddev(f - f_GSL): 9.4200741483346621e-18
 const testcase_lbincoef<double>
 data119[121] =
 {
@@ -9455,11 +9455,11 @@ const double toler119 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=121 k=200 f=-inf f_GSL=-inf
 // Test data for n=121.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2223950222737118e-15
-// mean(f - f_GSL): -1.0614460130514612e-14
-// variance(f - f_GSL): 9.3882557142262684e-31
-// stddev(f - f_GSL): 9.6893011689317755e-16
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1428741672892728e-15
+// mean(f - f_GSL): -1.2958668746444451e-15
+// variance(f - f_GSL): 1.3992968836124098e-32
+// stddev(f - f_GSL): 1.1829187984018218e-16
 const testcase_lbincoef<double>
 data120[122] =
 {
@@ -9594,11 +9594,11 @@ const double toler120 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=122 k=200 f=-inf f_GSL=-inf
 // Test data for n=122.
-// max(|f - f_GSL|): 7.1054273576010019e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2185874993378993e-15
-// mean(f - f_GSL): -1.0528163706689289e-14
-// variance(f - f_GSL): 9.1598995009987208e-31
-// stddev(f - f_GSL): 9.5707363880731363e-16
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1401650863238633e-15
+// mean(f - f_GSL): -1.2853313715985553e-15
+// variance(f - f_GSL): 1.3652609404884242e-32
+// stddev(f - f_GSL): 1.1684438114382841e-16
 const testcase_lbincoef<double>
 data121[123] =
 {
@@ -9734,11 +9734,11 @@ const double toler121 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=123 k=200 f=-inf f_GSL=-inf
 // Test data for n=123.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2749826823868170e-15
-// mean(f - f_GSL): -7.9219784853898271e-15
-// variance(f - f_GSL): 5.1437372907987520e-31
-// stddev(f - f_GSL): 7.1719852835869321e-16
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1374913411934085e-15
+// mean(f - f_GSL): 3.2948554279198194e-16
+// variance(f - f_GSL): 8.8978317408334617e-34
+// stddev(f - f_GSL): 2.9829233548372408e-17
 const testcase_lbincoef<double>
 data122[124] =
 {
@@ -9875,11 +9875,11 @@ const double toler122 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=124 k=200 f=-inf f_GSL=-inf
 // Test data for n=124.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2111034161266174e-15
-// mean(f - f_GSL): -1.1041834113711957e-14
-// variance(f - f_GSL): 9.9117212372149066e-31
-// stddev(f - f_GSL): 9.9557627719903534e-16
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1348521530058098e-15
+// mean(f - f_GSL): -1.9468870959826747e-15
+// variance(f - f_GSL): 3.0814006930474861e-32
+// stddev(f - f_GSL): 1.7553918915864589e-16
 const testcase_lbincoef<double>
 data123[125] =
 {
@@ -10018,10 +10018,10 @@ const double toler123 = 2.5000000000000020e-13;
 // Divergence at n=125 k=200 f=-inf f_GSL=-inf
 // Test data for n=125.
 // max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2074251211265365e-15
-// mean(f - f_GSL): -1.0954200509634878e-14
-// variance(f - f_GSL): 9.6763571900581833e-31
-// stddev(f - f_GSL): 9.8368476607387711e-16
+// max(|f - f_GSL| / |f_GSL|): 1.1322467667730593e-15
+// mean(f - f_GSL): -1.9314356110939230e-15
+// variance(f - f_GSL): 3.0082296543681362e-32
+// stddev(f - f_GSL): 1.7344248771186766e-16
 const testcase_lbincoef<double>
 data124[126] =
 {
@@ -10160,11 +10160,11 @@ const double toler124 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=126 k=200 f=-inf f_GSL=-inf
 // Test data for n=126.
-// max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2593489009532525e-15
-// mean(f - f_GSL): -6.8396731847773420e-15
-// variance(f - f_GSL): 3.7422546093911587e-31
-// stddev(f - f_GSL): 6.1173970031306281e-16
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1296744504766263e-15
+// mean(f - f_GSL): 1.2168743702978094e-15
+// variance(f - f_GSL): 1.1845519690232844e-32
+// stddev(f - f_GSL): 1.0883712459557559e-16
 const testcase_lbincoef<double>
 data125[127] =
 {
@@ -10304,11 +10304,11 @@ const double toler125 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=127 k=200 f=-inf f_GSL=-inf
 // Test data for n=127.
-// max(|f - f_GSL|): 7.1054273576010019e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2001918683519067e-15
-// mean(f - f_GSL): -1.1449174941446927e-14
-// variance(f - f_GSL): 1.0402815844442681e-30
-// stddev(f - f_GSL): 1.0199419515071767e-15
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1271344941770434e-15
+// mean(f - f_GSL): -2.5673907444456745e-15
+// variance(f - f_GSL): 5.2310210802725541e-32
+// stddev(f - f_GSL): 2.2871425579251841e-16
 const testcase_lbincoef<double>
 data126[128] =
 {
@@ -10450,10 +10450,10 @@ const double toler126 = 2.5000000000000020e-13;
 // Divergence at n=128 k=200 f=-inf f_GSL=-inf
 // Test data for n=128.
 // max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2492524183304942e-15
-// mean(f - f_GSL): -6.2929850822163913e-15
-// variance(f - f_GSL): 3.1180507205839521e-31
-// stddev(f - f_GSL): 5.5839508599055130e-16
+// max(|f - f_GSL| / |f_GSL|): 1.1246262091652471e-15
+// mean(f - f_GSL): 1.6386547588265876e-15
+// variance(f - f_GSL): 2.1141933288734609e-32
+// stddev(f - f_GSL): 1.4540265915290067e-16
 const testcase_lbincoef<double>
 data127[129] =
 {
@@ -10596,10 +10596,10 @@ const double toler127 = 2.5000000000000020e-13;
 // Divergence at n=129 k=200 f=-inf f_GSL=-inf
 // Test data for n=129.
 // max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.1931177892454991e-15
-// mean(f - f_GSL): -1.1928919390741682e-14
-// variance(f - f_GSL): 1.1116450524611307e-30
-// stddev(f - f_GSL): 1.0543457935900967e-15
+// max(|f - f_GSL| / |f_GSL|): 1.1221489271534618e-15
+// mean(f - f_GSL): -3.1837780275404490e-15
+// variance(f - f_GSL): 7.9186198469107368e-32
+// stddev(f - f_GSL): 2.8140042371877725e-16
 const testcase_lbincoef<double>
 data128[130] =
 {
@@ -10743,10 +10743,10 @@ const double toler128 = 2.5000000000000020e-13;
 // Divergence at n=130 k=200 f=-inf f_GSL=-inf
 // Test data for n=130.
 // max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.2394039990066294e-15
-// mean(f - f_GSL): -5.5460301321733014e-15
-// variance(f - f_GSL): 2.3842348992506631e-31
-// stddev(f - f_GSL): 4.8828627865737360e-16
+// max(|f - f_GSL| / |f_GSL|): 1.1197019995033147e-15
+// mean(f - f_GSL): 2.2645159708384873e-15
+// variance(f - f_GSL): 3.9749838358930029e-32
+// stddev(f - f_GSL): 1.9937361500191049e-16
 const testcase_lbincoef<double>
 data129[131] =
 {
@@ -10891,10 +10891,10 @@ const double toler129 = 2.5000000000000020e-13;
 // Divergence at n=131 k=200 f=-inf f_GSL=-inf
 // Test data for n=131.
 // max(|f - f_GSL|): 5.6843418860808015e-14
-// max(|f - f_GSL| / |f_GSL|): 2.1861968510852443e-15
-// mean(f - f_GSL): -1.2394126129451748e-14
-// variance(f - f_GSL): 1.1815800857574808e-30
-// stddev(f - f_GSL): 1.0870050992325109e-15
+// max(|f - f_GSL| / |f_GSL|): 1.1172847964893933e-15
+// mean(f - f_GSL): -3.7814869081172000e-15
+// variance(f - f_GSL): 1.0999084594059524e-31
+// stddev(f - f_GSL): 3.3164867848462060e-16
 const testcase_lbincoef<double>
 data130[132] =
 {
@@ -11039,11 +11039,11 @@ const double toler130 = 2.5000000000000020e-13;
 // ...
 // Divergence at n=132 k=200 f=-inf f_GSL=-inf
 // Test data for n=132.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2541499508603537e-14
-// mean(f - f_GSL): -1.3583119591504171e-14
-// variance(f - f_GSL): 1.4083248009834073e-30
-// stddev(f - f_GSL): 1.1867286130297050e-15
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 6.0747888244798382e-15
+// mean(f - f_GSL): -4.1804488024983341e-15
+// variance(f - f_GSL): 1.3339808547470140e-31
+// stddev(f - f_GSL): 3.6523702642900461e-16
 const testcase_lbincoef<double>
 data131[133] =
 {
@@ -11181,7 +11181,7 @@ data131[133] =
   { 4.8828019225863954, 132, 131, 0.0 },
   { 0.0000000000000000, 132, 132, 0.0 },
 };
-const double toler131 = 1.0000000000000008e-12;
+const double toler131 = 5.0000000000000039e-13;
 
 // Divergence at n=133 k=134 f=-inf f_GSL=-inf
 // Divergence at n=133 k=135 f=-inf f_GSL=-inf
@@ -11189,11 +11189,11 @@ const double toler131 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=133 k=200 f=-inf f_GSL=-inf
 // Test data for n=133.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2520571504834411e-14
-// mean(f - f_GSL): -1.2633343790659991e-14
-// variance(f - f_GSL): 1.2090329749914060e-30
-// stddev(f - f_GSL): 1.0995603553199825e-15
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 6.0646518226541676e-15
+// mean(f - f_GSL): -3.3008421866467339e-15
+// variance(f - f_GSL): 8.2537448409388338e-32
+// stddev(f - f_GSL): 2.8729331424415073e-16
 const testcase_lbincoef<double>
 data132[134] =
 {
@@ -11332,7 +11332,7 @@ data132[134] =
   { 4.8903491282217146, 133, 132, 0.0 },
   { 0.0000000000000000, 133, 133, 0.0 },
 };
-const double toler132 = 1.0000000000000008e-12;
+const double toler132 = 5.0000000000000039e-13;
 
 // Divergence at n=134 k=135 f=-inf f_GSL=-inf
 // Divergence at n=134 k=136 f=-inf f_GSL=-inf
@@ -11340,11 +11340,11 @@ const double toler132 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=134 k=200 f=-inf f_GSL=-inf
 // Test data for n=134.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2499869805595593e-14
-// mean(f - f_GSL): -1.1487107561454953e-14
-// variance(f - f_GSL): 9.9207737900082425e-31
-// stddev(f - f_GSL): 9.9603081227481333e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 6.0546244370853646e-15
+// mean(f - f_GSL): -3.0658603228167285e-15
+// variance(f - f_GSL): 7.0668992819556468e-32
+// stddev(f - f_GSL): 2.6583640235971534e-16
 const testcase_lbincoef<double>
 data133[135] =
 {
@@ -11484,7 +11484,7 @@ data133[135] =
   { 4.8978397999509298, 134, 133, 0.0 },
   { 0.0000000000000000, 134, 134, 0.0 },
 };
-const double toler133 = 1.0000000000000008e-12;
+const double toler133 = 5.0000000000000039e-13;
 
 // Divergence at n=135 k=136 f=-inf f_GSL=-inf
 // Divergence at n=135 k=137 f=-inf f_GSL=-inf
@@ -11492,11 +11492,11 @@ const double toler133 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=135 k=200 f=-inf f_GSL=-inf
 // Test data for n=135.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2479390184064014e-14
-// mean(f - f_GSL): -1.1193660377691285e-14
-// variance(f - f_GSL): 9.3500863871325245e-31
-// stddev(f - f_GSL): 9.6695844725264825e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 6.0447046204060067e-15
+// mean(f - f_GSL): -2.8343340746312822e-15
+// variance(f - f_GSL): 5.9947827266928463e-32
+// stddev(f - f_GSL): 2.4484245397179076e-16
 const testcase_lbincoef<double>
 data134[136] =
 {
@@ -11637,7 +11637,7 @@ data134[136] =
   { 4.9052747784384110, 135, 134, 0.0 },
   { 0.0000000000000000, 135, 135, 0.0 },
 };
-const double toler134 = 1.0000000000000008e-12;
+const double toler134 = 5.0000000000000039e-13;
 
 // Divergence at n=136 k=137 f=-inf f_GSL=-inf
 // Divergence at n=136 k=138 f=-inf f_GSL=-inf
@@ -11645,11 +11645,11 @@ const double toler134 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=136 k=200 f=-inf f_GSL=-inf
 // Test data for n=136.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2459128524517057e-14
-// mean(f - f_GSL): -1.2564158958969654e-14
-// variance(f - f_GSL): 1.1692559676382606e-30
-// stddev(f - f_GSL): 1.0813213988626420e-15
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 6.0348903790629497e-15
+// mean(f - f_GSL): -3.4360187039493895e-15
+// variance(f - f_GSL): 8.7448786826499565e-32
+// stddev(f - f_GSL): 2.9571741042167191e-16
 const testcase_lbincoef<double>
 data135[137] =
 {
@@ -11791,7 +11791,7 @@ data135[137] =
   { 4.9126548857360604, 136, 135, 0.0 },
   { 0.0000000000000000, 136, 136, 0.0 },
 };
-const double toler135 = 1.0000000000000008e-12;
+const double toler135 = 5.0000000000000039e-13;
 
 // Divergence at n=137 k=138 f=-inf f_GSL=-inf
 // Divergence at n=137 k=139 f=-inf f_GSL=-inf
@@ -11799,11 +11799,11 @@ const double toler135 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=137 k=200 f=-inf f_GSL=-inf
 // Test data for n=137.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2439080818586656e-14
-// mean(f - f_GSL): -1.2267159912669846e-14
-// variance(f - f_GSL): 1.1064352549723448e-30
-// stddev(f - f_GSL): 1.0518722617182872e-15
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 6.0251797715029116e-15
+// mean(f - f_GSL): -3.6170744338512349e-15
+// variance(f - f_GSL): 9.6195076428301542e-32
+// stddev(f - f_GSL): 3.1015331116772163e-16
 const testcase_lbincoef<double>
 data136[138] =
 {
@@ -11946,7 +11946,7 @@ data136[138] =
   { 4.9199809258280993, 137, 136, 0.0 },
   { 0.0000000000000000, 137, 137, 0.0 },
 };
-const double toler136 = 1.0000000000000008e-12;
+const double toler136 = 5.0000000000000039e-13;
 
 // Divergence at n=138 k=139 f=-inf f_GSL=-inf
 // Divergence at n=138 k=140 f=-inf f_GSL=-inf
@@ -11954,11 +11954,11 @@ const double toler136 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=138 k=200 f=-inf f_GSL=-inf
 // Test data for n=138.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2419243161667360e-14
-// mean(f - f_GSL): -1.1974434233942695e-14
-// variance(f - f_GSL): 1.0465660289854868e-30
-// stddev(f - f_GSL): 1.0230180980732877e-15
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 6.0155709064326273e-15
+// mean(f - f_GSL): -3.3865795859069522e-15
+// variance(f - f_GSL): 8.3710358094085117e-32
+// stddev(f - f_GSL): 2.8932742368134606e-16
 const testcase_lbincoef<double>
 data137[139] =
 {
@@ -12102,7 +12102,7 @@ data137[139] =
   { 4.9272536851572113, 138, 137, 0.0 },
   { 0.0000000000000000, 138, 138, 0.0 },
 };
-const double toler137 = 1.0000000000000008e-12;
+const double toler137 = 5.0000000000000039e-13;
 
 // Divergence at n=139 k=140 f=-inf f_GSL=-inf
 // Divergence at n=139 k=141 f=-inf f_GSL=-inf
@@ -12110,11 +12110,11 @@ const double toler137 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=139 k=200 f=-inf f_GSL=-inf
 // Test data for n=139.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2399611749470346e-14
-// mean(f - f_GSL): -1.0873841509757247e-14
-// variance(f - f_GSL): 8.5677035790615225e-31
-// stddev(f - f_GSL): 9.2561890533099661e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 6.0060619411496986e-15
+// mean(f - f_GSL): -2.7533531010703883e-15
+// variance(f - f_GSL): 5.4931600946345907e-32
+// stddev(f - f_GSL): 2.3437491535218932e-16
 const testcase_lbincoef<double>
 data138[140] =
 {
@@ -12259,7 +12259,7 @@ data138[140] =
   { 4.9344739331306755, 139, 138, 0.0 },
   { 0.0000000000000000, 139, 139, 0.0 },
 };
-const double toler138 = 1.0000000000000008e-12;
+const double toler138 = 5.0000000000000039e-13;
 
 // Divergence at n=140 k=141 f=-inf f_GSL=-inf
 // Divergence at n=140 k=142 f=-inf f_GSL=-inf
@@ -12267,11 +12267,11 @@ const double toler138 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=140 k=200 f=-inf f_GSL=-inf
 // Test data for n=140.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2380182874716675e-14
-// mean(f - f_GSL): -1.1199866881041296e-14
-// variance(f - f_GSL): 9.0237854895813466e-31
-// stddev(f - f_GSL): 9.4993607624836245e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9966510799408898e-15
+// mean(f - f_GSL): -3.1369705887281019e-15
+// variance(f - f_GSL): 7.0791959740350204e-32
+// stddev(f - f_GSL): 2.6606758491095865e-16
 const testcase_lbincoef<double>
 data139[141] =
 {
@@ -12417,7 +12417,7 @@ data139[141] =
   { 4.9416424226093341, 140, 139, 0.0 },
   { 0.0000000000000000, 140, 140, 0.0 },
 };
-const double toler139 = 1.0000000000000008e-12;
+const double toler139 = 5.0000000000000039e-13;
 
 // Divergence at n=141 k=142 f=-inf f_GSL=-inf
 // Divergence at n=141 k=143 f=-inf f_GSL=-inf
@@ -12425,11 +12425,11 @@ const double toler139 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=141 k=200 f=-inf f_GSL=-inf
 // Test data for n=141.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2360952923963169e-14
-// mean(f - f_GSL): -1.0720688812436723e-14
-// variance(f - f_GSL): 8.2090991112424114e-31
-// stddev(f - f_GSL): 9.0604078888549010e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9873365725446600e-15
+// mean(f - f_GSL): -2.7145734799285517e-15
+// variance(f - f_GSL): 5.2632418050714749e-32
+// stddev(f - f_GSL): 2.2941756264661767e-16
 const testcase_lbincoef<double>
 data140[142] =
 {
@@ -12576,7 +12576,7 @@ data140[142] =
   { 4.9487598903781418, 141, 140, 0.0 },
   { 0.0000000000000000, 141, 141, 0.0 },
 };
-const double toler140 = 1.0000000000000008e-12;
+const double toler140 = 5.0000000000000039e-13;
 
 // Divergence at n=142 k=143 f=-inf f_GSL=-inf
 // Divergence at n=142 k=144 f=-inf f_GSL=-inf
@@ -12584,11 +12584,11 @@ const double toler140 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=142 k=200 f=-inf f_GSL=-inf
 // Test data for n=142.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2341918374554261e-14
-// mean(f - f_GSL): -1.1440731811801614e-14
-// variance(f - f_GSL): 9.2825427731146734e-31
-// stddev(f - f_GSL): 9.6345953589731386e-16
+// max(|f - f_GSL|): 5.5067062021407764e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9781167126747197e-15
+// mean(f - f_GSL): -3.4906032998004921e-15
+// variance(f - f_GSL): 8.6409270467698182e-32
+// stddev(f - f_GSL): 2.9395453809679171e-16
 const testcase_lbincoef<double>
 data141[143] =
 {
@@ -12736,7 +12736,7 @@ data141[143] =
   { 4.9558270576013683, 142, 141, 0.0 },
   { 0.0000000000000000, 142, 142, 0.0 },
 };
-const double toler141 = 1.0000000000000008e-12;
+const double toler141 = 5.0000000000000039e-13;
 
 // Divergence at n=143 k=144 f=-inf f_GSL=-inf
 // Divergence at n=143 k=145 f=-inf f_GSL=-inf
@@ -12744,11 +12744,11 @@ const double toler141 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=143 k=200 f=-inf f_GSL=-inf
 // Test data for n=143.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2323075791695243e-14
-// mean(f - f_GSL): -1.2940266142575436e-14
-// variance(f - f_GSL): 1.1791711207911641e-30
-// stddev(f - f_GSL): 1.0858964595168197e-15
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9689898366023832e-15
+// mean(f - f_GSL): -3.8611089634186001e-15
+// variance(f - f_GSL): 1.0498192525523837e-31
+// stddev(f - f_GSL): 3.2400914378337904e-16
 const testcase_lbincoef<double>
 data142[144] =
 {
@@ -12897,7 +12897,7 @@ data142[144] =
   { 4.9628446302598377, 143, 142, 0.0 },
   { 0.0000000000000000, 143, 143, 0.0 },
 };
-const double toler142 = 1.0000000000000008e-12;
+const double toler142 = 5.0000000000000039e-13;
 
 // Divergence at n=144 k=145 f=-inf f_GSL=-inf
 // Divergence at n=144 k=146 f=-inf f_GSL=-inf
@@ -12905,11 +12905,11 @@ const double toler142 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=144 k=200 f=-inf f_GSL=-inf
 // Test data for n=144.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2304421825638878e-14
-// mean(f - f_GSL): -1.0890905036047052e-14
-// variance(f - f_GSL): 8.2941323365684240e-31
-// stddev(f - f_GSL): 9.1072127111254089e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9599543217938312e-15
+// mean(f - f_GSL): -3.8834835730336513e-15
+// variance(f - f_GSL): 1.0545956192096937e-31
+// stddev(f - f_GSL): 3.2474538013799267e-16
 const testcase_lbincoef<double>
 data143[145] =
 {
@@ -13059,7 +13059,7 @@ data143[145] =
   { 4.9698132995760034, 144, 143, 0.0 },
   { 0.0000000000000000, 144, 144, 0.0 },
 };
-const double toler143 = 1.0000000000000008e-12;
+const double toler143 = 5.0000000000000039e-13;
 
 // Divergence at n=145 k=146 f=-inf f_GSL=-inf
 // Divergence at n=145 k=147 f=-inf f_GSL=-inf
@@ -13067,11 +13067,11 @@ const double toler143 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=145 k=200 f=-inf f_GSL=-inf
 // Test data for n=145.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2285953208982430e-14
-// mean(f - f_GSL): -1.2373663737466128e-14
-// variance(f - f_GSL): 1.0631963341750820e-30
-// stddev(f - f_GSL): 1.0311141227696778e-15
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9510085856008642e-15
+// mean(f - f_GSL): -3.8568843704786260e-15
+// variance(f - f_GSL): 1.0329756617823434e-31
+// stddev(f - f_GSL): 3.2139938733332135e-16
 const testcase_lbincoef<double>
 data144[146] =
 {
@@ -13222,7 +13222,7 @@ data144[146] =
   { 4.9767337424206062, 145, 144, 0.0 },
   { 0.0000000000000000, 145, 145, 0.0 },
 };
-const double toler144 = 1.0000000000000008e-12;
+const double toler144 = 5.0000000000000039e-13;
 
 // Divergence at n=146 k=147 f=-inf f_GSL=-inf
 // Divergence at n=146 k=148 f=-inf f_GSL=-inf
@@ -13230,11 +13230,11 @@ const double toler144 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=146 k=200 f=-inf f_GSL=-inf
 // Test data for n=146.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2267666754070241e-14
-// mean(f - f_GSL): -1.2096144192106467e-14
-// variance(f - f_GSL): 1.0090333803005237e-30
-// stddev(f - f_GSL): 1.0045065357181721e-15
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9421510840027729e-15
+// mean(f - f_GSL): -3.6373020997243221e-15
+// variance(f - f_GSL): 9.1236868315109204e-32
+// stddev(f - f_GSL): 3.0205441283833149e-16
 const testcase_lbincoef<double>
 data145[147] =
 {
@@ -13386,7 +13386,7 @@ data145[147] =
   { 4.9836066217083044, 146, 145, 0.0 },
   { 0.0000000000000000, 146, 146, 0.0 },
 };
-const double toler145 = 1.0000000000000008e-12;
+const double toler145 = 5.0000000000000039e-13;
 
 // Divergence at n=147 k=148 f=-inf f_GSL=-inf
 // Divergence at n=147 k=149 f=-inf f_GSL=-inf
@@ -13394,11 +13394,11 @@ const double toler145 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=147 k=200 f=-inf f_GSL=-inf
 // Test data for n=147.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2249559350493524e-14
-// mean(f - f_GSL): -1.1054220601943450e-14
-// variance(f - f_GSL): 8.3691875520532139e-31
-// stddev(f - f_GSL): 9.1483263781159536e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9333803103953015e-15
+// mean(f - f_GSL): -3.0366100024882659e-15
+// variance(f - f_GSL): 6.3154613608558673e-32
+// stddev(f - f_GSL): 2.5130581690155656e-16
 const testcase_lbincoef<double>
 data146[148] =
 {
@@ -13551,7 +13551,7 @@ data146[148] =
   { 4.9904325867787520, 147, 146, 0.0 },
   { 0.0000000000000000, 147, 147, 0.0 },
 };
-const double toler146 = 1.0000000000000008e-12;
+const double toler146 = 5.0000000000000039e-13;
 
 // Divergence at n=148 k=149 f=-inf f_GSL=-inf
 // Divergence at n=148 k=150 f=-inf f_GSL=-inf
@@ -13559,11 +13559,11 @@ const double toler146 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=148 k=200 f=-inf f_GSL=-inf
 // Test data for n=148.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2231627962687688e-14
-// mean(f - f_GSL): -1.0598531746488743e-14
-// variance(f - f_GSL): 7.6410712207898689e-31
-// stddev(f - f_GSL): 8.7413221086914926e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9246947944268487e-15
+// mean(f - f_GSL): -3.3977295250273247e-15
+// variance(f - f_GSL): 7.8530876682848748e-32
+// stddev(f - f_GSL): 2.8023361090855739e-16
 const testcase_lbincoef<double>
 data147[149] =
 {
@@ -13717,7 +13717,7 @@ data147[149] =
   { 4.9972122737641484, 148, 147, 0.0 },
   { 0.0000000000000000, 148, 148, 0.0 },
 };
-const double toler147 = 1.0000000000000008e-12;
+const double toler147 = 5.0000000000000039e-13;
 
 // Divergence at n=149 k=150 f=-inf f_GSL=-inf
 // Divergence at n=149 k=151 f=-inf f_GSL=-inf
@@ -13725,11 +13725,11 @@ const double toler147 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=149 k=200 f=-inf f_GSL=-inf
 // Test data for n=149.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2213869627620112e-14
-// mean(f - f_GSL): -1.0148918742440097e-14
-// variance(f - f_GSL): 6.9591832557532476e-31
-// stddev(f - f_GSL): 8.3421719328681104e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9160931008784918e-15
+// mean(f - f_GSL): -3.3750779948604757e-15
+// variance(f - f_GSL): 7.6963772834949395e-32
+// stddev(f - f_GSL): 2.7742345401019970e-16
 const testcase_lbincoef<double>
 data148[150] =
 {
@@ -13884,7 +13884,7 @@ data148[150] =
   { 5.0039463059454192, 149, 148, 0.0 },
   { 0.0000000000000000, 149, 149, 0.0 },
 };
-const double toler148 = 1.0000000000000008e-12;
+const double toler148 = 5.0000000000000039e-13;
 
 // Divergence at n=150 k=151 f=-inf f_GSL=-inf
 // Divergence at n=150 k=152 f=-inf f_GSL=-inf
@@ -13892,11 +13892,11 @@ const double toler148 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=150 k=200 f=-inf f_GSL=-inf
 // Test data for n=150.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2196281452563888e-14
-// mean(f - f_GSL): -9.5170376362569703e-15
-// variance(f - f_GSL): 6.0785221381598587e-31
-// stddev(f - f_GSL): 7.7964877593438571e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9075738285856331e-15
+// mean(f - f_GSL): -2.4116102786559693e-15
+// variance(f - f_GSL): 3.9030910424621658e-32
+// stddev(f - f_GSL): 1.9756242159029550e-16
 const testcase_lbincoef<double>
 data149[151] =
 {
@@ -14052,7 +14052,7 @@ data149[151] =
   { 5.0106352940962324, 150, 149, 0.0 },
   { 0.0000000000000000, 150, 150, 0.0 },
 };
-const double toler149 = 1.0000000000000008e-12;
+const double toler149 = 5.0000000000000039e-13;
 
 // Divergence at n=151 k=152 f=-inf f_GSL=-inf
 // Divergence at n=151 k=153 f=-inf f_GSL=-inf
@@ -14060,11 +14060,11 @@ const double toler149 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=151 k=200 f=-inf f_GSL=-inf
 // Test data for n=151.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2178860612955838e-14
-// mean(f - f_GSL): -9.2674406160815698e-15
-// variance(f - f_GSL): 5.7254459221240073e-31
-// stddev(f - f_GSL): 7.5666676431068429e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8991356094004845e-15
+// mean(f - f_GSL): -2.9566992129491011e-15
+// variance(f - f_GSL): 5.8277912190245280e-32
+// stddev(f - f_GSL): 2.4140818583934819e-16
 const testcase_lbincoef<double>
 data150[152] =
 {
@@ -14221,7 +14221,7 @@ data150[152] =
   { 5.0172798368149643, 151, 150, 0.0 },
   { 0.0000000000000000, 151, 151, 0.0 },
 };
-const double toler150 = 1.0000000000000008e-12;
+const double toler150 = 5.0000000000000039e-13;
 
 // Divergence at n=152 k=153 f=-inf f_GSL=-inf
 // Divergence at n=152 k=154 f=-inf f_GSL=-inf
@@ -14229,11 +14229,11 @@ const double toler150 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=152 k=200 f=-inf f_GSL=-inf
 // Test data for n=152.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2161604350334018e-14
-// mean(f - f_GSL): -1.0321445949194919e-14
-// variance(f - f_GSL): 7.0548102976840753e-31
-// stddev(f - f_GSL): 8.3992918140067477e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8907771071930400e-15
+// mean(f - f_GSL): -2.5658487680225840e-15
+// variance(f - f_GSL): 4.3597979776469046e-32
+// stddev(f - f_GSL): 2.0880129256417223e-16
 const testcase_lbincoef<double>
 data151[153] =
 {
@@ -14391,7 +14391,7 @@ data151[153] =
   { 5.0238805208463191, 152, 151, 0.0 },
   { 0.0000000000000000, 152, 152, 0.0 },
 };
-const double toler151 = 1.0000000000000008e-12;
+const double toler151 = 5.0000000000000039e-13;
 
 // Divergence at n=153 k=154 f=-inf f_GSL=-inf
 // Divergence at n=153 k=155 f=-inf f_GSL=-inf
@@ -14399,11 +14399,11 @@ const double toler151 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=153 k=200 f=-inf f_GSL=-inf
 // Test data for n=153.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2144509970350415e-14
-// mean(f - f_GSL): -9.8853104634156790e-15
-// variance(f - f_GSL): 6.4286308238497117e-31
-// stddev(f - f_GSL): 8.0178742967507986e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8824970168884827e-15
+// mean(f - f_GSL): -2.5491874123860739e-15
+// variance(f - f_GSL): 4.2750518833526053e-32
+// stddev(f - f_GSL): 2.0676198594888291e-16
 const testcase_lbincoef<double>
 data152[154] =
 {
@@ -14562,7 +14562,7 @@ data152[154] =
   { 5.0304379213923767, 153, 152, 0.0 },
   { 0.0000000000000000, 153, 153, 0.0 },
 };
-const double toler152 = 1.0000000000000008e-12;
+const double toler152 = 5.0000000000000039e-13;
 
 // Divergence at n=154 k=155 f=-inf f_GSL=-inf
 // Divergence at n=154 k=156 f=-inf f_GSL=-inf
@@ -14570,11 +14570,11 @@ const double toler152 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=154 k=200 f=-inf f_GSL=-inf
 // Test data for n=154.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2127574840856270e-14
-// mean(f - f_GSL): -8.7213390631199402e-15
-// variance(f - f_GSL): 4.9711469191072589e-31
-// stddev(f - f_GSL): 7.0506360841467772e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8742940635397557e-15
+// mean(f - f_GSL): -3.2662045111552991e-15
+// variance(f - f_GSL): 6.9723150862166484e-32
+// stddev(f - f_GSL): 2.6405141708039834e-16
 const testcase_lbincoef<double>
 data153[155] =
 {
@@ -14734,7 +14734,7 @@ data153[155] =
   { 5.0369526024136348, 154, 153, 0.0 },
   { 0.0000000000000000, 154, 154, 0.0 },
 };
-const double toler153 = 1.0000000000000008e-12;
+const double toler153 = 5.0000000000000039e-13;
 
 // Divergence at n=155 k=156 f=-inf f_GSL=-inf
 // Divergence at n=155 k=157 f=-inf f_GSL=-inf
@@ -14742,11 +14742,11 @@ const double toler153 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=155 k=200 f=-inf f_GSL=-inf
 // Test data for n=155.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2110796390058193e-14
-// mean(f - f_GSL): -7.9366712632177859e-15
-// variance(f - f_GSL): 4.0901382374611332e-31
-// stddev(f - f_GSL): 6.3954188584182137e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8661670014344372e-15
+// mean(f - f_GSL): -2.8808864126170729e-15
+// variance(f - f_GSL): 5.3890656295303234e-32
+// stddev(f - f_GSL): 2.3214361136008727e-16
 const testcase_lbincoef<double>
 data154[156] =
 {
@@ -14907,7 +14907,7 @@ data154[156] =
   { 5.0434251169192521, 155, 154, 0.0 },
   { 0.0000000000000000, 155, 155, 0.0 },
 };
-const double toler154 = 1.0000000000000008e-12;
+const double toler154 = 5.0000000000000039e-13;
 
 // Divergence at n=156 k=157 f=-inf f_GSL=-inf
 // Divergence at n=156 k=158 f=-inf f_GSL=-inf
@@ -14915,11 +14915,11 @@ const double toler154 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=156 k=200 f=-inf f_GSL=-inf
 // Test data for n=156.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2094172104740150e-14
-// mean(f - f_GSL): -8.6102392024432523e-15
-// variance(f - f_GSL): 4.7827853395614016e-31
-// stddev(f - f_GSL): 6.9157684602373740e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8581146132335101e-15
+// mean(f - f_GSL): -2.1384168321442505e-15
+// variance(f - f_GSL): 2.9500894478782986e-32
+// stddev(f - f_GSL): 1.7175824428184805e-16
 const testcase_lbincoef<double>
 data155[157] =
 {
@@ -15081,7 +15081,7 @@ data155[157] =
   { 5.0498560072495593, 156, 155, 0.0 },
   { 0.0000000000000000, 156, 156, 0.0 },
 };
-const double toler155 = 1.0000000000000008e-12;
+const double toler155 = 5.0000000000000039e-13;
 
 // Divergence at n=157 k=158 f=-inf f_GSL=-inf
 // Divergence at n=157 k=159 f=-inf f_GSL=-inf
@@ -15089,11 +15089,11 @@ const double toler155 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=157 k=200 f=-inf f_GSL=-inf
 // Test data for n=157.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2077699528548874e-14
-// mean(f - f_GSL): -8.5557440176176619e-15
-// variance(f - f_GSL): 4.6921657672968743e-31
-// stddev(f - f_GSL): 6.8499385159991573e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8501357091408611e-15
+// mean(f - f_GSL): -2.1248825483965020e-15
+// variance(f - f_GSL): 2.8941940177201597e-32
+// stddev(f - f_GSL): 1.7012330874163481e-16
 const testcase_lbincoef<double>
 data156[158] =
 {
@@ -15256,7 +15256,7 @@ data156[158] =
   { 5.0562458053482260, 157, 156, 0.0 },
   { 0.0000000000000000, 157, 157, 0.0 },
 };
-const double toler156 = 1.0000000000000008e-12;
+const double toler156 = 5.0000000000000039e-13;
 
 // Divergence at n=158 k=159 f=-inf f_GSL=-inf
 // Divergence at n=158 k=160 f=-inf f_GSL=-inf
@@ -15264,11 +15264,11 @@ const double toler156 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=158 k=200 f=-inf f_GSL=-inf
 // Test data for n=158.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2061376260340466e-14
-// mean(f - f_GSL): -8.5019343068150345e-15
-// variance(f - f_GSL): 4.6038211128931078e-31
-// stddev(f - f_GSL): 6.7851463601702118e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8422291261024130e-15
+// mean(f - f_GSL): -2.1115185072116184e-15
+// variance(f - f_GSL): 2.8397017889811406e-32
+// stddev(f - f_GSL): 1.6851414744706573e-16
 const testcase_lbincoef<double>
 data157[159] =
 {
@@ -15432,7 +15432,7 @@ data157[159] =
   { 5.0625950330270371, 158, 157, 0.0 },
   { 0.0000000000000000, 158, 158, 0.0 },
 };
-const double toler157 = 1.0000000000000008e-12;
+const double toler157 = 5.0000000000000039e-13;
 
 // Divergence at n=159 k=160 f=-inf f_GSL=-inf
 // Divergence at n=159 k=161 f=-inf f_GSL=-inf
@@ -15440,11 +15440,11 @@ const double toler157 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=159 k=200 f=-inf f_GSL=-inf
 // Test data for n=159.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2045199952586625e-14
-// mean(f - f_GSL): -8.4487972173974406e-15
-// variance(f - f_GSL): 4.5176804348374032e-31
-// stddev(f - f_GSL): 6.7213692316650806e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8343937270341463e-15
+// mean(f - f_GSL): -2.0983215165415457e-15
+// variance(f - f_GSL): 2.7865690039357383e-32
+// stddev(f - f_GSL): 1.6693019510968465e-16
 const testcase_lbincoef<double>
 data158[160] =
 {
@@ -15609,7 +15609,7 @@ data158[160] =
   { 5.0689042022202102, 159, 158, 0.0 },
   { 0.0000000000000000, 159, 159, 0.0 },
 };
-const double toler158 = 1.0000000000000008e-12;
+const double toler158 = 5.0000000000000039e-13;
 
 // Divergence at n=160 k=161 f=-inf f_GSL=-inf
 // Divergence at n=160 k=162 f=-inf f_GSL=-inf
@@ -15617,11 +15617,11 @@ const double toler158 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=160 k=200 f=-inf f_GSL=-inf
 // Test data for n=160.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2029168309835699e-14
-// mean(f - f_GSL): -7.6901907892048111e-15
-// variance(f - f_GSL): 3.7192908337006457e-31
-// stddev(f - f_GSL): 6.0985988831047464e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8266284000766671e-15
+// mean(f - f_GSL): -2.7914178904861078e-15
+// variance(f - f_GSL): 4.9004462036385620e-32
+// stddev(f - f_GSL): 2.2136951469519378e-16
 const testcase_lbincoef<double>
 data159[161] =
 {
@@ -15787,7 +15787,7 @@ data159[161] =
   { 5.0751738152338248, 160, 159, 0.0 },
   { 0.0000000000000000, 160, 160, 0.0 },
 };
-const double toler159 = 1.0000000000000008e-12;
+const double toler159 = 5.0000000000000039e-13;
 
 // Divergence at n=161 k=162 f=-inf f_GSL=-inf
 // Divergence at n=161 k=163 f=-inf f_GSL=-inf
@@ -15795,11 +15795,11 @@ const double toler159 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=161 k=200 f=-inf f_GSL=-inf
 // Test data for n=161.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.2013279087227449e-14
-// mean(f - f_GSL): -8.3444910789110531e-15
-// variance(f - f_GSL): 4.3517403191606175e-31
-// stddev(f - f_GSL): 6.5967721797562614e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8189320578757953e-15
+// mean(f - f_GSL): -2.0724163126336257e-15
+// variance(f - f_GSL): 2.6842148003739531e-32
+// stddev(f - f_GSL): 1.6383573481917653e-16
 const testcase_lbincoef<double>
 data160[162] =
 {
@@ -15966,7 +15966,7 @@ data160[162] =
   { 5.0814043649844507, 161, 160, 0.0 },
   { 0.0000000000000000, 161, 161, 0.0 },
 };
-const double toler160 = 1.0000000000000008e-12;
+const double toler160 = 5.0000000000000039e-13;
 
 // Divergence at n=162 k=163 f=-inf f_GSL=-inf
 // Divergence at n=162 k=164 f=-inf f_GSL=-inf
@@ -15974,11 +15974,11 @@ const double toler160 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=162 k=200 f=-inf f_GSL=-inf
 // Test data for n=162.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.1997530089060649e-14
-// mean(f - f_GSL): -7.5958326200121135e-15
-// variance(f - f_GSL): 3.5835077465981312e-31
-// stddev(f - f_GSL): 5.9862406789220656e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8113036368887512e-15
+// mean(f - f_GSL): -2.7571673642224745e-15
+// variance(f - f_GSL): 4.7215417448421040e-32
+// stddev(f - f_GSL): 2.1729108920620985e-16
 const testcase_lbincoef<double>
 data161[163] =
 {
@@ -16146,7 +16146,7 @@ data161[163] =
   { 5.0875963352324334, 162, 161, 0.0 },
   { 0.0000000000000000, 162, 162, 0.0 },
 };
-const double toler161 = 1.0000000000000008e-12;
+const double toler161 = 5.0000000000000039e-13;
 
 // Divergence at n=163 k=164 f=-inf f_GSL=-inf
 // Divergence at n=163 k=165 f=-inf f_GSL=-inf
@@ -16154,11 +16154,11 @@ const double toler161 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=163 k=200 f=-inf f_GSL=-inf
 // Test data for n=163.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.1981919167409081e-14
-// mean(f - f_GSL): -8.2427289925828701e-15
-// variance(f - f_GSL): 4.1938286439863220e-31
-// stddev(f - f_GSL): 6.4759776435580151e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8037420967137738e-15
+// mean(f - f_GSL): -2.0471429429673617e-15
+// variance(f - f_GSL): 2.5868126521372112e-32
+// stddev(f - f_GSL): 1.6083571282949603e-16
 const testcase_lbincoef<double>
 data162[164] =
 {
@@ -16327,7 +16327,7 @@ data162[164] =
   { 5.0937502008067668, 163, 162, 0.0 },
   { 0.0000000000000000, 163, 163, 0.0 },
 };
-const double toler162 = 1.0000000000000008e-12;
+const double toler162 = 5.0000000000000039e-13;
 
 // Divergence at n=164 k=165 f=-inf f_GSL=-inf
 // Divergence at n=164 k=166 f=-inf f_GSL=-inf
@@ -16335,11 +16335,11 @@ const double toler162 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=164 k=200 f=-inf f_GSL=-inf
 // Test data for n=164.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.1966444220785192e-14
-// mean(f - f_GSL): -7.5037619215877253e-15
-// variance(f - f_GSL): 3.4542545698314001e-31
-// stddev(f - f_GSL): 5.8772906766905788e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7962464194428277e-15
+// mean(f - f_GSL): -2.6806839576403779e-15
+// variance(f - f_GSL): 4.4084658288363665e-32
+// stddev(f - f_GSL): 2.0996346893772657e-16
 const testcase_lbincoef<double>
 data163[165] =
 {
@@ -16509,7 +16509,7 @@ data163[165] =
   { 5.0998664278241677, 164, 163, 0.0 },
   { 0.0000000000000000, 164, 164, 0.0 },
 };
-const double toler163 = 1.0000000000000008e-12;
+const double toler163 = 5.0000000000000039e-13;
 
 // Divergence at n=165 k=166 f=-inf f_GSL=-inf
 // Divergence at n=165 k=167 f=-inf f_GSL=-inf
@@ -16517,11 +16517,11 @@ const double toler163 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=165 k=200 f=-inf f_GSL=-inf
 // Test data for n=165.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.1951103192849128e-14
-// mean(f - f_GSL): -8.1434190047204256e-15
-// variance(f - f_GSL): 4.0434656868133478e-31
-// stddev(f - f_GSL): 6.3588251169640981e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7888156090362968e-15
+// mean(f - f_GSL): -1.9796747908978697e-15
+// variance(f - f_GSL): 2.3896148323266957e-32
+// stddev(f - f_GSL): 1.5458379062264890e-16
 const testcase_lbincoef<double>
 data164[166] =
 {
@@ -16692,7 +16692,7 @@ data164[166] =
   { 5.1059454739005332, 165, 164, 0.0 },
   { 0.0000000000000000, 165, 165, 0.0 },
 };
-const double toler164 = 1.0000000000000008e-12;
+const double toler164 = 5.0000000000000039e-13;
 
 // Divergence at n=166 k=167 f=-inf f_GSL=-inf
 // Divergence at n=166 k=168 f=-inf f_GSL=-inf
@@ -16700,11 +16700,11 @@ const double toler164 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=166 k=200 f=-inf f_GSL=-inf
 // Test data for n=166.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.1935894071161954e-14
-// mean(f - f_GSL): -8.0946560166682077e-15
-// variance(f - f_GSL): 3.9709744363138801e-31
-// stddev(f - f_GSL): 6.3015668181126830e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7814486907190715e-15
+// mean(f - f_GSL): -1.9678204508326127e-15
+// variance(f - f_GSL): 2.3467738189919302e-32
+// stddev(f - f_GSL): 1.5319183460589307e-16
 const testcase_lbincoef<double>
 data165[167] =
 {
@@ -16876,7 +16876,7 @@ data165[167] =
   { 5.1119877883566005, 166, 165, 0.0 },
   { 0.0000000000000000, 166, 166, 0.0 },
 };
-const double toler165 = 1.0000000000000008e-12;
+const double toler165 = 5.0000000000000039e-13;
 
 // Divergence at n=167 k=168 f=-inf f_GSL=-inf
 // Divergence at n=167 k=169 f=-inf f_GSL=-inf
@@ -16884,11 +16884,11 @@ const double toler165 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=167 k=200 f=-inf f_GSL=-inf
 // Test data for n=167.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.1920814885980897e-14
-// mean(f - f_GSL): -7.0314124892926584e-15
-// variance(f - f_GSL): 2.9782523388753881e-31
-// stddev(f - f_GSL): 5.4573366570841023e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7741447103969969e-15
+// mean(f - f_GSL): -2.2944609175586570e-15
+// variance(f - f_GSL): 3.1713024904811612e-32
+// stddev(f - f_GSL): 1.7808151196800754e-16
 const testcase_lbincoef<double>
 data166[168] =
 {
@@ -17061,7 +17061,7 @@ data166[168] =
   { 5.1179938124167847, 167, 166, 0.0 },
   { 0.0000000000000000, 167, 167, 0.0 },
 };
-const double toler166 = 1.0000000000000008e-12;
+const double toler166 = 5.0000000000000039e-13;
 
 // Divergence at n=168 k=169 f=-inf f_GSL=-inf
 // Divergence at n=168 k=170 f=-inf f_GSL=-inf
@@ -17069,11 +17069,11 @@ const double toler166 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=168 k=200 f=-inf f_GSL=-inf
 // Test data for n=168.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.1905863709094238e-14
-// mean(f - f_GSL): -6.9898064982317546e-15
-// variance(f - f_GSL): 2.9254888517503417e-31
-// stddev(f - f_GSL): 5.4087788379174288e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7669027340925214e-15
+// mean(f - f_GSL): -2.2808842257387830e-15
+// variance(f - f_GSL): 3.1151188770438544e-32
+// stddev(f - f_GSL): 1.7649699365835821e-16
 const testcase_lbincoef<double>
 data167[169] =
 {
@@ -17247,7 +17247,7 @@ data167[169] =
   { 5.1239639794032428, 168, 167, 0.0 },
   { 0.0000000000000000, 168, 168, 0.0 },
 };
-const double toler167 = 1.0000000000000008e-12;
+const double toler167 = 5.0000000000000039e-13;
 
 // Divergence at n=169 k=170 f=-inf f_GSL=-inf
 // Divergence at n=169 k=171 f=-inf f_GSL=-inf
@@ -17255,11 +17255,11 @@ const double toler167 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=169 k=200 f=-inf f_GSL=-inf
 // Test data for n=169.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.1891038652694957e-14
-// mean(f - f_GSL): -6.9486899894186266e-15
-// variance(f - f_GSL): 2.8739644048660508e-31
-// stddev(f - f_GSL): 5.3609368629615953e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7597218473991194e-15
+// mean(f - f_GSL): -2.2674672597050254e-15
+// variance(f - f_GSL): 3.0602546183670635e-32
+// stddev(f - f_GSL): 1.7493583447558889e-16
 const testcase_lbincoef<double>
 data168[170] =
 {
@@ -17434,7 +17434,7 @@ data168[170] =
   { 5.1298987149230015, 169, 168, 0.0 },
   { 0.0000000000000000, 169, 169, 0.0 },
 };
-const double toler168 = 1.0000000000000008e-12;
+const double toler168 = 5.0000000000000039e-13;
 
 // Divergence at n=170 k=171 f=-inf f_GSL=-inf
 // Divergence at n=170 k=172 f=-inf f_GSL=-inf
@@ -17442,11 +17442,11 @@ const double toler168 = 1.0000000000000008e-12;
 // ...
 // Divergence at n=170 k=200 f=-inf f_GSL=-inf
 // Test data for n=170.
-// max(|f - f_GSL|): 1.1368683772161603e-13
-// max(|f - f_GSL| / |f_GSL|): 1.1876337868292135e-14
-// mean(f - f_GSL): -8.2377249920725072e-15
-// variance(f - f_GSL): 4.0152523635632295e-31
-// stddev(f - f_GSL): 6.3366018997276684e-16
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7526011549540025e-15
+// mean(f - f_GSL): -2.2542072172506104e-15
+// variance(f - f_GSL): 3.0066712127685488e-32
+// stddev(f - f_GSL): 1.7339755513756671e-16
 const testcase_lbincoef<double>
 data169[171] =
 {
@@ -17622,42 +17622,6101 @@ data169[171] =
   { 5.1357984370503118, 170, 169, 0.0 },
   { 0.0000000000000000, 170, 170, 0.0 },
 };
-const double toler169 = 1.0000000000000008e-12;
+const double toler169 = 5.0000000000000039e-13;
 
-// Divergence at n=171 k=1 f=inf f_GSL=5.1416635565026354
-// Divergence at n=171 k=2 f=inf f_GSL=9.5843148129930569
-// Divergence at n=171 k=3 f=inf f_GSL=13.615601239247894
+// Divergence at n=171 k=172 f=-inf f_GSL=-inf
+// Divergence at n=171 k=173 f=-inf f_GSL=-inf
+// Divergence at n=171 k=174 f=-inf f_GSL=-inf
 // ...
 // Divergence at n=171 k=200 f=-inf f_GSL=-inf
-// Failure at n=172 k=1 f=-nan f_GSL=5.1474944768134492
-// Failure at n=173 k=1 f=-nan f_GSL=5.1532915944977731
-// Failure at n=174 k=1 f=-nan f_GSL=5.1590552992144012
-// Failure at n=175 k=1 f=-nan f_GSL=5.1647859739235855
-// Failure at n=176 k=1 f=-nan f_GSL=5.1704839950382393
-// Failure at n=177 k=1 f=-nan f_GSL=5.1761497325737764
-// Failure at n=178 k=1 f=-nan f_GSL=5.1817835502919252
-// Failure at n=179 k=1 f=-nan f_GSL=5.1873858058409041
-// Failure at n=180 k=1 f=-nan f_GSL=5.1929568508901411
-// Failure at n=181 k=1 f=-nan f_GSL=5.1984970312657879
-// Failure at n=182 k=1 f=-nan f_GSL=5.2040066870769124
-// Failure at n=183 k=1 f=-nan f_GSL=5.2094861528413503
-// Failure at n=184 k=1 f=-nan f_GSL=5.2149357576089415
-// Failure at n=185 k=1 f=-nan f_GSL=5.2203558250785136
-// Failure at n=186 k=1 f=-nan f_GSL=5.2257466737131608
-// Failure at n=187 k=1 f=-nan f_GSL=5.2311086168544989
-// Failure at n=188 k=1 f=-nan f_GSL=5.2364419628298720
-// Failure at n=189 k=1 f=-nan f_GSL=5.2417470150596728
-// Failure at n=190 k=1 f=-nan f_GSL=5.2470240721604569
-// Failure at n=191 k=1 f=-nan f_GSL=5.2522734280466921
-// Failure at n=192 k=1 f=-nan f_GSL=5.2574953720278472
-// Failure at n=193 k=1 f=-nan f_GSL=5.2626901889047986
-// Failure at n=194 k=1 f=-nan f_GSL=5.2678581590633939
-// Failure at n=195 k=1 f=-nan f_GSL=5.2729995585638108
-// Failure at n=196 k=1 f=-nan f_GSL=5.2781146592304822
-// Failure at n=197 k=1 f=-nan f_GSL=5.2832037287379308
-// Failure at n=198 k=1 f=-nan f_GSL=5.2882670306946693
-// Failure at n=199 k=1 f=-nan f_GSL=5.2933048247244869
-// Failure at n=200 k=1 f=-nan f_GSL=5.2983173665479626
+// Test data for n=171.
+// max(|f - f_GSL|): 3.5726088754017837e-10
+// max(|f - f_GSL| / |f_GSL|): 6.8280549508414100e-11
+// mean(f - f_GSL): 3.4480663285836629e-10
+// variance(f - f_GSL): 6.9933851847944206e-22
+// stddev(f - f_GSL): 2.6445009330295992e-11
+const testcase_lbincoef<double>
+data170[172] =
+{
+  { 0.0000000000000000, 171, 0, 0.0 },
+  { 5.1416635565026354, 171, 1, 0.0 },
+  { 9.5843148129930569, 171, 2, 0.0 },
+  { 13.615601239247894, 171, 3, 0.0 },
+  { 17.353270857531243, 171, 4, 0.0 },
+  { 20.861826757513882, 171, 5, 0.0 },
+  { 24.182055076642428, 171, 6, 0.0 },
+  { 27.342090401487667, 171, 7, 0.0 },
+  { 30.362515287632050, 171, 8, 0.0 },
+  { 33.259040911102602, 171, 9, 0.0 },
+  { 36.044052153340999, 171, 10, 0.0 },
+  { 38.727561245526999, 171, 11, 0.0 },
+  { 41.317828410972879, 171, 12, 0.0 },
+  { 43.821783255731589, 171, 13, 0.0 },
+  { 46.245320959143328, 171, 14, 0.0 },
+  { 48.593516563389358, 171, 15, 0.0 },
+  { 50.870783848399128, 171, 16, 0.0 },
+  { 53.080995621262105, 171, 17, 0.0 },
+  { 55.227576465779634, 171, 18, 0.0 },
+  { 57.313575408005590, 171, 19, 0.0 },
+  { 59.341723655297869, 171, 20, 0.0 },
+  { 61.314481054389375, 171, 21, 0.0 },
+  { 63.234073895127381, 171, 22, 0.0 },
+  { 65.102525985143643, 171, 23, 0.0 },
+  { 66.921684428559843, 171, 24, 0.0 },
+  { 68.693241190470417, 171, 25, 0.0 },
+  { 70.418751274157216, 171, 26, 0.0 },
+  { 72.099648150573444, 171, 27, 0.0 },
+  { 73.737256939974259, 171, 28, 0.0 },
+  { 75.332805740247636, 171, 29, 0.0 },
+  { 76.887435416186804, 171, 30, 0.0 },
+  { 78.402208102079840, 171, 31, 0.0 },
+  { 79.878114621889381, 171, 32, 0.0 },
+  { 81.316080993553669, 171, 33, 0.0 },
+  { 82.716974154094714, 171, 34, 0.0 },
+  { 84.081607018433374, 171, 35, 0.0 },
+  { 85.410742965713325, 171, 36, 0.0 },
+  { 86.705099831507482, 171, 37, 0.0 },
+  { 87.965353471732101, 171, 38, 0.0 },
+  { 89.192140953824151, 171, 39, 0.0 },
+  { 90.386063422296615, 171, 40, 0.0 },
+  { 91.547688678793349, 171, 41, 0.0 },
+  { 92.677553510965595, 171, 42, 0.0 },
+  { 93.776165799633702, 171, 43, 0.0 },
+  { 94.844006429635101, 171, 44, 0.0 },
+  { 95.881531026323330, 171, 45, 0.0 },
+  { 96.889171536785739, 171, 46, 0.0 },
+  { 97.867337672377971, 171, 47, 0.0 },
+  { 98.816418227075189, 171, 48, 0.0 },
+  { 99.736782284336869, 171, 49, 0.0 },
+  { 100.62878032364210, 171, 50, 0.0 },
+  { 101.49274523651451, 171, 51, 0.0 },
+  { 102.32899326071504, 171, 52, 0.0 },
+  { 103.13782484027450, 171, 53, 0.0 },
+  { 103.91952541817591, 171, 54, 0.0 },
+  { 104.67436616774120, 171, 55, 0.0 },
+  { 105.40260466811236, 171, 56, 0.0 },
+  { 106.10448552864113, 171, 57, 0.0 },
+  { 106.78024096648915, 171, 58, 0.0 },
+  { 107.43009134129579, 171, 59, 0.0 },
+  { 108.05424565036878, 171, 60, 0.0 },
+  { 108.65290198750779, 171, 61, 0.0 },
+  { 109.22624796825511, 171, 62, 0.0 },
+  { 109.77446112409274, 171, 63, 0.0 },
+  { 110.29770926785727, 171, 64, 0.0 },
+  { 110.79615083242356, 171, 65, 0.0 },
+  { 111.26993518450917, 171, 66, 0.0 },
+  { 111.71920291527573, 171, 67, 0.0 },
+  { 112.14408610924102, 171, 68, 0.0 },
+  { 112.54470859287335, 171, 69, 0.0 },
+  { 112.92118616410829, 171, 70, 0.0 },
+  { 113.27362680390826, 171, 71, 0.0 },
+  { 113.60213087088027, 171, 72, 0.0 },
+  { 113.90679127986647, 171, 73, 0.0 },
+  { 114.18769366533286, 171, 74, 0.0 },
+  { 114.44491653029991, 171, 75, 0.0 },
+  { 114.67853138148143, 171, 76, 0.0 },
+  { 114.88860285122831, 171, 77, 0.0 },
+  { 115.07518880680874, 171, 78, 0.0 },
+  { 115.23834044749498, 171, 79, 0.0 },
+  { 115.37810238987015, 171, 80, 0.0 },
+  { 115.49451274171457, 171, 81, 0.0 },
+  { 115.58760316478055, 171, 82, 0.0 },
+  { 115.65739892671610, 171, 83, 0.0 },
+  { 115.70391894235098, 171, 84, 0.0 },
+  { 115.72717580451518, 171, 85, 0.0 },
+  { 115.72717580451518, 171, 86, 0.0 },
+  { 115.70391894235098, 171, 87, 0.0 },
+  { 115.65739892671610, 171, 88, 0.0 },
+  { 115.58760316478055, 171, 89, 0.0 },
+  { 115.49451274171457, 171, 90, 0.0 },
+  { 115.37810238987015, 171, 91, 0.0 },
+  { 115.23834044749498, 171, 92, 0.0 },
+  { 115.07518880680874, 171, 93, 0.0 },
+  { 114.88860285122831, 171, 94, 0.0 },
+  { 114.67853138148143, 171, 95, 0.0 },
+  { 114.44491653029991, 171, 96, 0.0 },
+  { 114.18769366533286, 171, 97, 0.0 },
+  { 113.90679127986647, 171, 98, 0.0 },
+  { 113.60213087088027, 171, 99, 0.0 },
+  { 113.27362680390826, 171, 100, 0.0 },
+  { 112.92118616410829, 171, 101, 0.0 },
+  { 112.54470859287335, 171, 102, 0.0 },
+  { 112.14408610924102, 171, 103, 0.0 },
+  { 111.71920291527573, 171, 104, 0.0 },
+  { 111.26993518450917, 171, 105, 0.0 },
+  { 110.79615083242356, 171, 106, 0.0 },
+  { 110.29770926785727, 171, 107, 0.0 },
+  { 109.77446112409274, 171, 108, 0.0 },
+  { 109.22624796825511, 171, 109, 0.0 },
+  { 108.65290198750779, 171, 110, 0.0 },
+  { 108.05424565036878, 171, 111, 0.0 },
+  { 107.43009134129579, 171, 112, 0.0 },
+  { 106.78024096648915, 171, 113, 0.0 },
+  { 106.10448552864113, 171, 114, 0.0 },
+  { 105.40260466811236, 171, 115, 0.0 },
+  { 104.67436616774120, 171, 116, 0.0 },
+  { 103.91952541817591, 171, 117, 0.0 },
+  { 103.13782484027450, 171, 118, 0.0 },
+  { 102.32899326071504, 171, 119, 0.0 },
+  { 101.49274523651451, 171, 120, 0.0 },
+  { 100.62878032364210, 171, 121, 0.0 },
+  { 99.736782284336869, 171, 122, 0.0 },
+  { 98.816418227075189, 171, 123, 0.0 },
+  { 97.867337672377971, 171, 124, 0.0 },
+  { 96.889171536785739, 171, 125, 0.0 },
+  { 95.881531026323330, 171, 126, 0.0 },
+  { 94.844006429635101, 171, 127, 0.0 },
+  { 93.776165799633702, 171, 128, 0.0 },
+  { 92.677553510965595, 171, 129, 0.0 },
+  { 91.547688678793349, 171, 130, 0.0 },
+  { 90.386063422296615, 171, 131, 0.0 },
+  { 89.192140953824151, 171, 132, 0.0 },
+  { 87.965353471732101, 171, 133, 0.0 },
+  { 86.705099831507482, 171, 134, 0.0 },
+  { 85.410742965713325, 171, 135, 0.0 },
+  { 84.081607018433374, 171, 136, 0.0 },
+  { 82.716974154094714, 171, 137, 0.0 },
+  { 81.316080993553669, 171, 138, 0.0 },
+  { 79.878114621889381, 171, 139, 0.0 },
+  { 78.402208102079840, 171, 140, 0.0 },
+  { 76.887435416186804, 171, 141, 0.0 },
+  { 75.332805740247636, 171, 142, 0.0 },
+  { 73.737256939974259, 171, 143, 0.0 },
+  { 72.099648150573444, 171, 144, 0.0 },
+  { 70.418751274157216, 171, 145, 0.0 },
+  { 68.693241190470417, 171, 146, 0.0 },
+  { 66.921684428559843, 171, 147, 0.0 },
+  { 65.102525985143643, 171, 148, 0.0 },
+  { 63.234073895127381, 171, 149, 0.0 },
+  { 61.314481054389375, 171, 150, 0.0 },
+  { 59.341723655297869, 171, 151, 0.0 },
+  { 57.313575408005590, 171, 152, 0.0 },
+  { 55.227576465779634, 171, 153, 0.0 },
+  { 53.080995621262105, 171, 154, 0.0 },
+  { 50.870783848399128, 171, 155, 0.0 },
+  { 48.593516563389358, 171, 156, 0.0 },
+  { 46.245320959143328, 171, 157, 0.0 },
+  { 43.821783255731589, 171, 158, 0.0 },
+  { 41.317828410972879, 171, 159, 0.0 },
+  { 38.727561245526999, 171, 160, 0.0 },
+  { 36.044052153340999, 171, 161, 0.0 },
+  { 33.259040911102602, 171, 162, 0.0 },
+  { 30.362515287632050, 171, 163, 0.0 },
+  { 27.342090401487667, 171, 164, 0.0 },
+  { 24.182055076642428, 171, 165, 0.0 },
+  { 20.861826757513882, 171, 166, 0.0 },
+  { 17.353270857531243, 171, 167, 0.0 },
+  { 13.615601239247894, 171, 168, 0.0 },
+  { 9.5843148129930569, 171, 169, 0.0 },
+  { 5.1416635565026354, 171, 170, 0.0 },
+  { 0.0000000000000000, 171, 171, 0.0 },
+};
+const double toler170 = 5.0000000000000026e-09;
+
+// Divergence at n=172 k=173 f=-inf f_GSL=-inf
+// Divergence at n=172 k=174 f=-inf f_GSL=-inf
+// Divergence at n=172 k=175 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=172 k=200 f=-inf f_GSL=-inf
+// Test data for n=172.
+// max(|f - f_GSL|): 6.0759930420317687e-10
+// max(|f - f_GSL| / |f_GSL|): 4.8633061733360076e-11
+// mean(f - f_GSL): 5.8819441289344440e-10
+// variance(f - f_GSL): 2.0231635834612634e-21
+// stddev(f - f_GSL): 4.4979590743594631e-11
+const testcase_lbincoef<double>
+data171[173] =
+{
+  { 0.0000000000000000, 172, 0, 0.0 },
+  { 5.1474944768134492, 172, 1, 0.0 },
+  { 9.5960108527561943, 172, 2, 0.0 },
+  { 13.633197001138342, 172, 3, 0.0 },
+  { 17.376801354941449, 172, 4, 0.0 },
+  { 20.891327421910546, 172, 5, 0.0 },
+  { 24.217561765099276, 172, 6, 0.0 },
+  { 27.383639404400583, 172, 7, 0.0 },
+  { 30.410143336621331, 172, 8, 0.0 },
+  { 33.312785187109284, 172, 9, 0.0 },
+  { 36.103950294922015, 172, 10, 0.0 },
+  { 38.793651357355998, 172, 11, 0.0 },
+  { 41.390149072552504, 172, 12, 0.0 },
+  { 43.900373530324828, 172, 13, 0.0 },
+  { 46.330220402929740, 172, 14, 0.0 },
+  { 48.684765234854581, 172, 15, 0.0 },
+  { 50.968422317963018, 172, 16, 0.0 },
+  { 53.185064981156302, 172, 17, 0.0 },
+  { 55.338118340179449, 172, 18, 0.0 },
+  { 57.430631963426663, 172, 19, 0.0 },
+  { 59.465337611264999, 172, 20, 0.0 },
+  { 61.444695694387860, 172, 21, 0.0 },
+  { 63.370933077844597, 172, 22, 0.0 },
+  { 65.246074156011673, 172, 23, 0.0 },
+  { 67.071966631609143, 172, 24, 0.0 },
+  { 68.850303080505114, 172, 25, 0.0 },
+  { 70.582639129262361, 172, 26, 0.0 },
+  { 72.270408884966287, 172, 27, 0.0 },
+  { 73.914938117211705, 172, 28, 0.0 },
+  { 75.517455586801248, 172, 29, 0.0 },
+  { 77.079102835398885, 172, 30, 0.0 },
+  { 78.600942688515147, 172, 31, 0.0 },
+  { 80.083966676093610, 172, 32, 0.0 },
+  { 81.529101537236443, 172, 33, 0.0 },
+  { 82.937214945750952, 172, 34, 0.0 },
+  { 84.309120569418724, 172, 35, 0.0 },
+  { 85.645582556790714, 172, 36, 0.0 },
+  { 86.947319529882520, 172, 37, 0.0 },
+  { 88.215008148594620, 172, 38, 0.0 },
+  { 89.449286302415885, 172, 39, 0.0 },
+  { 90.650755976523669, 172, 40, 0.0 },
+  { 91.819985832405678, 172, 41, 0.0 },
+  { 92.957513537323450, 172, 42, 0.0 },
+  { 94.063847872085489, 172, 43, 0.0 },
+  { 95.139470642528920, 172, 44, 0.0 },
+  { 96.184838416678190, 172, 45, 0.0 },
+  { 97.200384106647732, 172, 46, 0.0 },
+  { 98.186518411889097, 172, 47, 0.0 },
+  { 99.143631138283581, 172, 48, 0.0 },
+  { 100.07209240577794, 172, 49, 0.0 },
+  { 100.97225375572225, 172, 50, 0.0 },
+  { 101.84444916773123, 172, 51, 0.0 },
+  { 102.68899599474645, 172, 52, 0.0 },
+  { 103.50619582397644, 172, 53, 0.0 },
+  { 104.29633527052368, 172, 54, 0.0 },
+  { 105.05968670975687, 172, 55, 0.0 },
+  { 105.79650895381945, 172, 56, 0.0 },
+  { 106.50704787709122, 172, 57, 0.0 },
+  { 107.19153699490812, 172, 58, 0.0 },
+  { 107.85019799939687, 172, 59, 0.0 },
+  { 108.48324125588715, 172, 60, 0.0 },
+  { 109.09086626300893, 172, 61, 0.0 },
+  { 109.67326207927613, 172, 62, 0.0 },
+  { 110.23060771867705, 172, 63, 0.0 },
+  { 110.76307251754650, 172, 64, 0.0 },
+  { 111.27081647477507, 172, 65, 0.0 },
+  { 111.75399056721056, 172, 66, 0.0 },
+  { 112.21273704193163, 172, 67, 0.0 },
+  { 112.64718968691312, 172, 68, 0.0 },
+  { 113.05747408145714, 172, 69, 0.0 },
+  { 113.44370782763747, 172, 70, 0.0 },
+  { 113.80600076388043, 172, 71, 0.0 },
+  { 114.14445516170565, 172, 72, 0.0 },
+  { 114.45916590654531, 172, 73, 0.0 },
+  { 114.75022066347577, 172, 74, 0.0 },
+  { 115.01770002860997, 172, 75, 0.0 },
+  { 115.26167766682704, 172, 76, 0.0 },
+  { 115.48222043644120, 172, 77, 0.0 },
+  { 115.67938850135221, 172, 78, 0.0 },
+  { 115.85323543115516, 172, 79, 0.0 },
+  { 116.00380828963455, 172, 80, 0.0 },
+  { 116.13114771201117, 172, 81, 0.0 },
+  { 116.23528797126374, 172, 82, 0.0 },
+  { 116.31625703379740, 172, 83, 0.0 },
+  { 116.37407660468625, 172, 84, 0.0 },
+  { 116.40876216267407, 172, 85, 0.0 },
+  { 116.42032298507513, 172, 86, 0.0 },
+  { 116.40876216267407, 172, 87, 0.0 },
+  { 116.37407660468625, 172, 88, 0.0 },
+  { 116.31625703379740, 172, 89, 0.0 },
+  { 116.23528797126374, 172, 90, 0.0 },
+  { 116.13114771201117, 172, 91, 0.0 },
+  { 116.00380828963455, 172, 92, 0.0 },
+  { 115.85323543115516, 172, 93, 0.0 },
+  { 115.67938850135221, 172, 94, 0.0 },
+  { 115.48222043644120, 172, 95, 0.0 },
+  { 115.26167766682704, 172, 96, 0.0 },
+  { 115.01770002860997, 172, 97, 0.0 },
+  { 114.75022066347577, 172, 98, 0.0 },
+  { 114.45916590654531, 172, 99, 0.0 },
+  { 114.14445516170565, 172, 100, 0.0 },
+  { 113.80600076388043, 172, 101, 0.0 },
+  { 113.44370782763747, 172, 102, 0.0 },
+  { 113.05747408145714, 172, 103, 0.0 },
+  { 112.64718968691312, 172, 104, 0.0 },
+  { 112.21273704193163, 172, 105, 0.0 },
+  { 111.75399056721056, 172, 106, 0.0 },
+  { 111.27081647477507, 172, 107, 0.0 },
+  { 110.76307251754650, 172, 108, 0.0 },
+  { 110.23060771867705, 172, 109, 0.0 },
+  { 109.67326207927613, 172, 110, 0.0 },
+  { 109.09086626300893, 172, 111, 0.0 },
+  { 108.48324125588715, 172, 112, 0.0 },
+  { 107.85019799939687, 172, 113, 0.0 },
+  { 107.19153699490812, 172, 114, 0.0 },
+  { 106.50704787709122, 172, 115, 0.0 },
+  { 105.79650895381945, 172, 116, 0.0 },
+  { 105.05968670975687, 172, 117, 0.0 },
+  { 104.29633527052368, 172, 118, 0.0 },
+  { 103.50619582397644, 172, 119, 0.0 },
+  { 102.68899599474645, 172, 120, 0.0 },
+  { 101.84444916773123, 172, 121, 0.0 },
+  { 100.97225375572225, 172, 122, 0.0 },
+  { 100.07209240577794, 172, 123, 0.0 },
+  { 99.143631138283581, 172, 124, 0.0 },
+  { 98.186518411889097, 172, 125, 0.0 },
+  { 97.200384106647732, 172, 126, 0.0 },
+  { 96.184838416678190, 172, 127, 0.0 },
+  { 95.139470642528920, 172, 128, 0.0 },
+  { 94.063847872085489, 172, 129, 0.0 },
+  { 92.957513537323450, 172, 130, 0.0 },
+  { 91.819985832405678, 172, 131, 0.0 },
+  { 90.650755976523669, 172, 132, 0.0 },
+  { 89.449286302415885, 172, 133, 0.0 },
+  { 88.215008148594620, 172, 134, 0.0 },
+  { 86.947319529882520, 172, 135, 0.0 },
+  { 85.645582556790714, 172, 136, 0.0 },
+  { 84.309120569418724, 172, 137, 0.0 },
+  { 82.937214945750952, 172, 138, 0.0 },
+  { 81.529101537236443, 172, 139, 0.0 },
+  { 80.083966676093610, 172, 140, 0.0 },
+  { 78.600942688515147, 172, 141, 0.0 },
+  { 77.079102835398885, 172, 142, 0.0 },
+  { 75.517455586801248, 172, 143, 0.0 },
+  { 73.914938117211705, 172, 144, 0.0 },
+  { 72.270408884966287, 172, 145, 0.0 },
+  { 70.582639129262361, 172, 146, 0.0 },
+  { 68.850303080505114, 172, 147, 0.0 },
+  { 67.071966631609143, 172, 148, 0.0 },
+  { 65.246074156011673, 172, 149, 0.0 },
+  { 63.370933077844597, 172, 150, 0.0 },
+  { 61.444695694387860, 172, 151, 0.0 },
+  { 59.465337611264999, 172, 152, 0.0 },
+  { 57.430631963426663, 172, 153, 0.0 },
+  { 55.338118340179449, 172, 154, 0.0 },
+  { 53.185064981156302, 172, 155, 0.0 },
+  { 50.968422317963018, 172, 156, 0.0 },
+  { 48.684765234854581, 172, 157, 0.0 },
+  { 46.330220402929740, 172, 158, 0.0 },
+  { 43.900373530324828, 172, 159, 0.0 },
+  { 41.390149072552504, 172, 160, 0.0 },
+  { 38.793651357355998, 172, 161, 0.0 },
+  { 36.103950294922015, 172, 162, 0.0 },
+  { 33.312785187109284, 172, 163, 0.0 },
+  { 30.410143336621331, 172, 164, 0.0 },
+  { 27.383639404400583, 172, 165, 0.0 },
+  { 24.217561765099276, 172, 166, 0.0 },
+  { 20.891327421910546, 172, 167, 0.0 },
+  { 17.376801354941449, 172, 168, 0.0 },
+  { 13.633197001138342, 172, 169, 0.0 },
+  { 9.5960108527561943, 172, 170, 0.0 },
+  { 5.1474944768134492, 172, 171, 0.0 },
+  { 0.0000000000000000, 172, 172, 0.0 },
+};
+const double toler171 = 2.5000000000000013e-09;
+
+// Divergence at n=173 k=174 f=-inf f_GSL=-inf
+// Divergence at n=173 k=175 f=-inf f_GSL=-inf
+// Divergence at n=173 k=176 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=173 k=200 f=-inf f_GSL=-inf
+// Test data for n=173.
+// max(|f - f_GSL|): 1.0339924472191342e-09
+// max(|f - f_GSL| / |f_GSL|): 1.8110093168301224e-10
+// mean(f - f_GSL): -3.4120581711252155e-10
+// variance(f - f_GSL): 6.7684604483503264e-22
+// stddev(f - f_GSL): 2.6016265005473645e-11
+const testcase_lbincoef<double>
+data172[174] =
+{
+  { 0.0000000000000000, 173, 0, 0.0 },
+  { 5.1532915944977731, 173, 1, 0.0 },
+  { 9.6076388907513319, 173, 2, 0.0 },
+  { 13.650690158585803, 173, 3, 0.0 },
+  { 17.400194234516221, 173, 4, 0.0 },
+  { 20.920655037005076, 173, 5, 0.0 },
+  { 24.252859547180265, 173, 6, 0.0 },
+  { 27.424943210541755, 173, 7, 0.0 },
+  { 30.457489457218571, 173, 8, 0.0 },
+  { 33.366210353782890, 173, 9, 0.0 },
+  { 36.163491688613021, 173, 10, 0.0 },
+  { 38.859346616621337, 173, 11, 0.0 },
+  { 41.462036302065826, 173, 12, 0.0 },
+  { 43.978491309588776, 173, 13, 0.0 },
+  { 46.414607795207303, 173, 14, 0.0 },
+  { 48.775461796325317, 173, 15, 0.0 },
+  { 51.065468107112565, 173, 16, 0.0 },
+  { 53.288500568404515, 173, 17, 0.0 },
+  { 55.447984817757970, 173, 18, 0.0 },
+  { 57.546970955510801, 173, 19, 0.0 },
+  { 59.588191284370396, 173, 20, 0.0 },
+  { 61.574106768039314, 173, 21, 0.0 },
+  { 63.506944835527406, 173, 22, 0.0 },
+  { 65.388730456413214, 173, 23, 0.0 },
+  { 67.221311920161497, 173, 24, 0.0 },
+  { 69.006382401238739, 173, 25, 0.0 },
+  { 70.745498136981382, 173, 26, 0.0 },
+  { 72.440093857755755, 173, 27, 0.0 },
+  { 74.091495969288871, 173, 28, 0.0 },
+  { 75.700933881723017, 173, 29, 0.0 },
+  { 77.269549799636820, 173, 30, 0.0 },
+  { 78.798407225411552, 173, 31, 0.0 },
+  { 80.288498380213127, 173, 32, 0.0 },
+  { 81.740750709124882, 173, 33, 0.0 },
+  { 83.156032607118050, 173, 34, 0.0 },
+  { 84.535158478759286, 173, 35, 0.0 },
+  { 85.878893225460388, 173, 36, 0.0 },
+  { 87.187956238644233, 173, 37, 0.0 },
+  { 88.463024964653982, 173, 38, 0.0 },
+  { 89.704738096962728, 173, 39, 0.0 },
+  { 90.913698442799728, 173, 40, 0.0 },
+  { 92.090475504317055, 173, 41, 0.0 },
+  { 93.235607808620102, 173, 42, 0.0 },
+  { 94.349605016127668, 173, 43, 0.0 },
+  { 95.432949832665031, 173, 44, 0.0 },
+  { 96.486099747256333, 173, 45, 0.0 },
+  { 97.509488614686916, 173, 46, 0.0 },
+  { 98.503528099435414, 173, 47, 0.0 },
+  { 99.468608995479030, 173, 48, 0.0 },
+  { 100.40510243467065, 173, 49, 0.0 },
+  { 101.31336099484764, 173, 50, 0.0 },
+  { 102.19371971749570, 173, 51, 0.0 },
+  { 103.04649704364749, 173, 52, 0.0 },
+  { 103.87199567569218, 173, 53, 0.0 },
+  { 104.67050337190994, 173, 54, 0.0 },
+  { 105.44229367978897, 173, 55, 0.0 },
+  { 106.18762661351946, 173, 56, 0.0 },
+  { 106.90674928048276, 173, 57, 0.0 },
+  { 107.59989646104265, 173, 58, 0.0 },
+  { 108.26729114550017, 173, 59, 0.0 },
+  { 108.90914503167255, 173, 60, 0.0 },
+  { 109.52565898621162, 173, 61, 0.0 },
+  { 110.11702347246160, 173, 62, 0.0 },
+  { 110.68341894738239, 173, 63, 0.0 },
+  { 111.22501622981514, 173, 64, 0.0 },
+  { 111.74197684214863, 173, 65, 0.0 },
+  { 112.23445332724640, 173, 66, 0.0 },
+  { 112.70258954231736, 173, 67, 0.0 },
+  { 113.14652093125335, 173, 68, 0.0 },
+  { 113.56637477681357, 173, 69, 0.0 },
+  { 113.96227043390559, 173, 70, 0.0 },
+  { 114.33431954509393, 173, 71, 0.0 },
+  { 114.68262623936215, 173, 72, 0.0 },
+  { 115.00728731505501, 173, 73, 0.0 },
+  { 115.30839240783894, 173, 74, 0.0 },
+  { 115.58602414443720, 173, 75, 0.0 },
+  { 115.84025828282142, 173, 76, 0.0 },
+  { 116.07116383947113, 173, 77, 0.0 },
+  { 116.27880320424941, 173, 78, 0.0 },
+  { 116.46323224338295, 173, 79, 0.0 },
+  { 116.62450039097905, 173, 80, 0.0 },
+  { 116.76265072945989, 173, 81, 0.0 },
+  { 116.87772005924467, 173, 82, 0.0 },
+  { 116.96973895796492, 173, 83, 0.0 },
+  { 117.03873182945188, 173, 84, 0.0 },
+  { 117.08471694269366, 173, 85, 0.0 },
+  { 117.10770646091834, 173, 86, 0.0 },
+  { 117.10770646091834, 173, 87, 0.0 },
+  { 117.08471694269366, 173, 88, 0.0 },
+  { 117.03873182945188, 173, 89, 0.0 },
+  { 116.96973895796492, 173, 90, 0.0 },
+  { 116.87772005924467, 173, 91, 0.0 },
+  { 116.76265072945989, 173, 92, 0.0 },
+  { 116.62450039097905, 173, 93, 0.0 },
+  { 116.46323224338295, 173, 94, 0.0 },
+  { 116.27880320424941, 173, 95, 0.0 },
+  { 116.07116383947113, 173, 96, 0.0 },
+  { 115.84025828282142, 173, 97, 0.0 },
+  { 115.58602414443720, 173, 98, 0.0 },
+  { 115.30839240783894, 173, 99, 0.0 },
+  { 115.00728731505501, 173, 100, 0.0 },
+  { 114.68262623936215, 173, 101, 0.0 },
+  { 114.33431954509393, 173, 102, 0.0 },
+  { 113.96227043390559, 173, 103, 0.0 },
+  { 113.56637477681357, 173, 104, 0.0 },
+  { 113.14652093125335, 173, 105, 0.0 },
+  { 112.70258954231736, 173, 106, 0.0 },
+  { 112.23445332724640, 173, 107, 0.0 },
+  { 111.74197684214863, 173, 108, 0.0 },
+  { 111.22501622981514, 173, 109, 0.0 },
+  { 110.68341894738239, 173, 110, 0.0 },
+  { 110.11702347246160, 173, 111, 0.0 },
+  { 109.52565898621162, 173, 112, 0.0 },
+  { 108.90914503167255, 173, 113, 0.0 },
+  { 108.26729114550017, 173, 114, 0.0 },
+  { 107.59989646104265, 173, 115, 0.0 },
+  { 106.90674928048276, 173, 116, 0.0 },
+  { 106.18762661351946, 173, 117, 0.0 },
+  { 105.44229367978897, 173, 118, 0.0 },
+  { 104.67050337190994, 173, 119, 0.0 },
+  { 103.87199567569218, 173, 120, 0.0 },
+  { 103.04649704364749, 173, 121, 0.0 },
+  { 102.19371971749570, 173, 122, 0.0 },
+  { 101.31336099484764, 173, 123, 0.0 },
+  { 100.40510243467065, 173, 124, 0.0 },
+  { 99.468608995479030, 173, 125, 0.0 },
+  { 98.503528099435414, 173, 126, 0.0 },
+  { 97.509488614686916, 173, 127, 0.0 },
+  { 96.486099747256333, 173, 128, 0.0 },
+  { 95.432949832665031, 173, 129, 0.0 },
+  { 94.349605016127668, 173, 130, 0.0 },
+  { 93.235607808620102, 173, 131, 0.0 },
+  { 92.090475504317055, 173, 132, 0.0 },
+  { 90.913698442799728, 173, 133, 0.0 },
+  { 89.704738096962728, 173, 134, 0.0 },
+  { 88.463024964653982, 173, 135, 0.0 },
+  { 87.187956238644233, 173, 136, 0.0 },
+  { 85.878893225460388, 173, 137, 0.0 },
+  { 84.535158478759286, 173, 138, 0.0 },
+  { 83.156032607118050, 173, 139, 0.0 },
+  { 81.740750709124882, 173, 140, 0.0 },
+  { 80.288498380213127, 173, 141, 0.0 },
+  { 78.798407225411552, 173, 142, 0.0 },
+  { 77.269549799636820, 173, 143, 0.0 },
+  { 75.700933881723017, 173, 144, 0.0 },
+  { 74.091495969288871, 173, 145, 0.0 },
+  { 72.440093857755755, 173, 146, 0.0 },
+  { 70.745498136981382, 173, 147, 0.0 },
+  { 69.006382401238739, 173, 148, 0.0 },
+  { 67.221311920161497, 173, 149, 0.0 },
+  { 65.388730456413214, 173, 150, 0.0 },
+  { 63.506944835527406, 173, 151, 0.0 },
+  { 61.574106768039314, 173, 152, 0.0 },
+  { 59.588191284370396, 173, 153, 0.0 },
+  { 57.546970955510801, 173, 154, 0.0 },
+  { 55.447984817757970, 173, 155, 0.0 },
+  { 53.288500568404515, 173, 156, 0.0 },
+  { 51.065468107112565, 173, 157, 0.0 },
+  { 48.775461796325317, 173, 158, 0.0 },
+  { 46.414607795207303, 173, 159, 0.0 },
+  { 43.978491309588776, 173, 160, 0.0 },
+  { 41.462036302065826, 173, 161, 0.0 },
+  { 38.859346616621337, 173, 162, 0.0 },
+  { 36.163491688613021, 173, 163, 0.0 },
+  { 33.366210353782890, 173, 164, 0.0 },
+  { 30.457489457218571, 173, 165, 0.0 },
+  { 27.424943210541755, 173, 166, 0.0 },
+  { 24.252859547180265, 173, 167, 0.0 },
+  { 20.920655037005076, 173, 168, 0.0 },
+  { 17.400194234516221, 173, 169, 0.0 },
+  { 13.650690158585803, 173, 170, 0.0 },
+  { 9.6076388907513319, 173, 171, 0.0 },
+  { 5.1532915944977731, 173, 172, 0.0 },
+  { 0.0000000000000000, 173, 173, 0.0 },
+};
+const double toler172 = 1.0000000000000005e-08;
+
+// Divergence at n=174 k=175 f=-inf f_GSL=-inf
+// Divergence at n=174 k=176 f=-inf f_GSL=-inf
+// Divergence at n=174 k=177 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=174 k=200 f=-inf f_GSL=-inf
+// Test data for n=174.
+// max(|f - f_GSL|): 9.4360075308941305e-10
+// max(|f - f_GSL| / |f_GSL|): 1.8290184895538928e-10
+// mean(f - f_GSL): 5.9542156602024730e-10
+// variance(f - f_GSL): 2.0492204130119780e-21
+// stddev(f - f_GSL): 4.5268315773971288e-11
+const testcase_lbincoef<double>
+data173[175] =
+{
+  { 0.0000000000000000, 174, 0, 0.0 },
+  { 5.1590552992144012, 174, 1, 0.0 },
+  { 9.6191997131522839, 174, 2, 0.0 },
+  { 13.668081901297569, 174, 3, 0.0 },
+  { 17.423451096680310, 174, 4, 0.0 },
+  { 20.949811621296476, 174, 5, 0.0 },
+  { 24.287950866991423, 174, 6, 0.0 },
+  { 27.466004697339372, 174, 7, 0.0 },
+  { 30.504556968076372, 174, 8, 0.0 },
+  { 33.419320179096758, 174, 9, 0.0 },
+  { 36.222680560003255, 174, 10, 0.0 },
+  { 38.924651715028972, 174, 11, 0.0 },
+  { 41.533495266047794, 174, 12, 0.0 },
+  { 44.056142243818726, 174, 13, 0.0 },
+  { 46.498489279187879, 174, 14, 0.0 },
+  { 48.865612893319508, 174, 15, 0.0 },
+  { 51.161928373299929, 174, 16, 0.0 },
+  { 53.391310062270691, 174, 17, 0.0 },
+  { 55.557184109722812, 174, 18, 0.0 },
+  { 57.662601137805950, 174, 19, 0.0 },
+  { 59.710293981171162, 174, 20, 0.0 },
+  { 61.702724145861339, 174, 21, 0.0 },
+  { 63.642119613895488, 174, 22, 0.0 },
+  { 65.530505918812651, 174, 23, 0.0 },
+  { 67.369731925279666, 174, 24, 0.0 },
+  { 69.161491394507721, 174, 25, 0.0 },
+  { 70.907341162431635, 174, 26, 0.0 },
+  { 72.608716570191405, 174, 27, 0.0 },
+  { 74.266944646794968, 174, 28, 0.0 },
+  { 75.883255438516812, 174, 29, 0.0 },
+  { 77.458791799275218, 174, 30, 0.0 },
+  { 78.994617894366115, 174, 31, 0.0 },
+  { 80.491726621826274, 174, 32, 0.0 },
+  { 81.951046117961141, 174, 33, 0.0 },
+  { 83.373445483723117, 174, 34, 0.0 },
+  { 84.759739844843011, 174, 35, 0.0 },
+  { 86.110694839517578, 174, 36, 0.0 },
+  { 87.427030612030535, 174, 37, 0.0 },
+  { 88.709425378132323, 174, 38, 0.0 },
+  { 89.958518617738719, 174, 39, 0.0 },
+  { 91.174913942063199, 174, 40, 0.0 },
+  { 92.359181675309742, 174, 41, 0.0 },
+  { 93.511861185248108, 174, 42, 0.0 },
+  { 94.633462992140949, 174, 43, 0.0 },
+  { 95.724470681423838, 174, 44, 0.0 },
+  { 96.785342642109072, 174, 45, 0.0 },
+  { 97.816513649981687, 174, 46, 0.0 },
+  { 98.818396312191226, 174, 47, 0.0 },
+  { 99.791382387741976, 174, 48, 0.0 },
+  { 100.73584399658273, 174, 49, 0.0 },
+  { 101.65213472845699, 174, 50, 0.0 },
+  { 102.54059066133772, 174, 51, 0.0 },
+  { 103.40153129812859, 174, 52, 0.0 },
+  { 104.23526042930985, 174, 53, 0.0 },
+  { 105.04206692834231, 174, 54, 0.0 },
+  { 105.82222548589186, 174, 55, 0.0 },
+  { 106.57599728826818, 174, 56, 0.0 },
+  { 107.30363064489927, 174, 57, 0.0 },
+  { 108.00536156915069, 174, 58, 0.0 },
+  { 108.68141431635132, 174, 59, 0.0 },
+  { 109.33200188249248, 174, 60, 0.0 },
+  { 109.95732646671365, 174, 61, 0.0 },
+  { 110.55757990038092, 174, 62, 0.0 },
+  { 111.13294404528449, 174, 63, 0.0 },
+  { 111.68359116323711, 174, 64, 0.0 },
+  { 112.20968425913389, 174, 65, 0.0 },
+  { 112.71137739933653, 174, 66, 0.0 },
+  { 113.18881600706982, 174, 67, 0.0 },
+  { 113.64213713635570, 174, 68, 0.0 },
+  { 114.07146972587043, 174, 69, 0.0 },
+  { 114.47693483397865, 174, 70, 0.0 },
+  { 114.85864585607868, 174, 71, 0.0 },
+  { 115.21670872529228, 174, 72, 0.0 },
+  { 115.55122209742814, 174, 73, 0.0 },
+  { 115.86227752106527, 174, 74, 0.0 },
+  { 116.14995959351700, 174, 75, 0.0 },
+  { 116.41434610336529, 174, 76, 0.0 },
+  { 116.65550816018214, 174, 77, 0.0 },
+  { 116.87351031199597, 174, 78, 0.0 },
+  { 117.06841065099678, 174, 79, 0.0 },
+  { 117.24026090792347, 174, 80, 0.0 },
+  { 117.38910653552102, 174, 81, 0.0 },
+  { 117.51498678141002, 174, 82, 0.0 },
+  { 117.61793475066247, 174, 83, 0.0 },
+  { 117.69797745833603, 174, 84, 0.0 },
+  { 117.75513587217591, 174, 85, 0.0 },
+  { 117.78942494565456, 174, 86, 0.0 },
+  { 117.80085364147817, 174, 87, 0.0 },
+  { 117.78942494565456, 174, 88, 0.0 },
+  { 117.75513587217591, 174, 89, 0.0 },
+  { 117.69797745833603, 174, 90, 0.0 },
+  { 117.61793475066247, 174, 91, 0.0 },
+  { 117.51498678141002, 174, 92, 0.0 },
+  { 117.38910653552102, 174, 93, 0.0 },
+  { 117.24026090792347, 174, 94, 0.0 },
+  { 117.06841065099678, 174, 95, 0.0 },
+  { 116.87351031199597, 174, 96, 0.0 },
+  { 116.65550816018214, 174, 97, 0.0 },
+  { 116.41434610336529, 174, 98, 0.0 },
+  { 116.14995959351700, 174, 99, 0.0 },
+  { 115.86227752106527, 174, 100, 0.0 },
+  { 115.55122209742814, 174, 101, 0.0 },
+  { 115.21670872529228, 174, 102, 0.0 },
+  { 114.85864585607868, 174, 103, 0.0 },
+  { 114.47693483397865, 174, 104, 0.0 },
+  { 114.07146972587043, 174, 105, 0.0 },
+  { 113.64213713635570, 174, 106, 0.0 },
+  { 113.18881600706982, 174, 107, 0.0 },
+  { 112.71137739933653, 174, 108, 0.0 },
+  { 112.20968425913389, 174, 109, 0.0 },
+  { 111.68359116323711, 174, 110, 0.0 },
+  { 111.13294404528449, 174, 111, 0.0 },
+  { 110.55757990038092, 174, 112, 0.0 },
+  { 109.95732646671365, 174, 113, 0.0 },
+  { 109.33200188249248, 174, 114, 0.0 },
+  { 108.68141431635132, 174, 115, 0.0 },
+  { 108.00536156915069, 174, 116, 0.0 },
+  { 107.30363064489927, 174, 117, 0.0 },
+  { 106.57599728826818, 174, 118, 0.0 },
+  { 105.82222548589186, 174, 119, 0.0 },
+  { 105.04206692834231, 174, 120, 0.0 },
+  { 104.23526042930985, 174, 121, 0.0 },
+  { 103.40153129812859, 174, 122, 0.0 },
+  { 102.54059066133772, 174, 123, 0.0 },
+  { 101.65213472845699, 174, 124, 0.0 },
+  { 100.73584399658273, 174, 125, 0.0 },
+  { 99.791382387741976, 174, 126, 0.0 },
+  { 98.818396312191226, 174, 127, 0.0 },
+  { 97.816513649981687, 174, 128, 0.0 },
+  { 96.785342642109072, 174, 129, 0.0 },
+  { 95.724470681423838, 174, 130, 0.0 },
+  { 94.633462992140949, 174, 131, 0.0 },
+  { 93.511861185248108, 174, 132, 0.0 },
+  { 92.359181675309742, 174, 133, 0.0 },
+  { 91.174913942063199, 174, 134, 0.0 },
+  { 89.958518617738719, 174, 135, 0.0 },
+  { 88.709425378132323, 174, 136, 0.0 },
+  { 87.427030612030535, 174, 137, 0.0 },
+  { 86.110694839517578, 174, 138, 0.0 },
+  { 84.759739844843011, 174, 139, 0.0 },
+  { 83.373445483723117, 174, 140, 0.0 },
+  { 81.951046117961141, 174, 141, 0.0 },
+  { 80.491726621826274, 174, 142, 0.0 },
+  { 78.994617894366115, 174, 143, 0.0 },
+  { 77.458791799275218, 174, 144, 0.0 },
+  { 75.883255438516812, 174, 145, 0.0 },
+  { 74.266944646794968, 174, 146, 0.0 },
+  { 72.608716570191405, 174, 147, 0.0 },
+  { 70.907341162431635, 174, 148, 0.0 },
+  { 69.161491394507721, 174, 149, 0.0 },
+  { 67.369731925279666, 174, 150, 0.0 },
+  { 65.530505918812651, 174, 151, 0.0 },
+  { 63.642119613895488, 174, 152, 0.0 },
+  { 61.702724145861339, 174, 153, 0.0 },
+  { 59.710293981171162, 174, 154, 0.0 },
+  { 57.662601137805950, 174, 155, 0.0 },
+  { 55.557184109722812, 174, 156, 0.0 },
+  { 53.391310062270691, 174, 157, 0.0 },
+  { 51.161928373299929, 174, 158, 0.0 },
+  { 48.865612893319508, 174, 159, 0.0 },
+  { 46.498489279187879, 174, 160, 0.0 },
+  { 44.056142243818726, 174, 161, 0.0 },
+  { 41.533495266047794, 174, 162, 0.0 },
+  { 38.924651715028972, 174, 163, 0.0 },
+  { 36.222680560003255, 174, 164, 0.0 },
+  { 33.419320179096758, 174, 165, 0.0 },
+  { 30.504556968076372, 174, 166, 0.0 },
+  { 27.466004697339372, 174, 167, 0.0 },
+  { 24.287950866991423, 174, 168, 0.0 },
+  { 20.949811621296476, 174, 169, 0.0 },
+  { 17.423451096680310, 174, 170, 0.0 },
+  { 13.668081901297569, 174, 171, 0.0 },
+  { 9.6191997131522839, 174, 172, 0.0 },
+  { 5.1590552992144012, 174, 173, 0.0 },
+  { 0.0000000000000000, 174, 174, 0.0 },
+};
+const double toler173 = 1.0000000000000005e-08;
+
+// Divergence at n=175 k=176 f=-inf f_GSL=-inf
+// Divergence at n=175 k=177 f=-inf f_GSL=-inf
+// Divergence at n=175 k=178 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=175 k=200 f=-inf f_GSL=-inf
+// Test data for n=175.
+// max(|f - f_GSL|): 8.7254647951340303e-10
+// max(|f - f_GSL| / |f_GSL|): 1.5144404930134037e-10
+// mean(f - f_GSL): -1.8475008391825233e-10
+// variance(f - f_GSL): 1.9615792513871104e-22
+// stddev(f - f_GSL): 1.4005639047851799e-11
+const testcase_lbincoef<double>
+data174[176] =
+{
+  { 0.0000000000000000, 175, 0, 0.0 },
+  { 5.1647859739235855, 175, 1, 0.0 },
+  { 9.6306940925780964, 175, 2, 0.0 },
+  { 13.685373398407705, 175, 3, 0.0 },
+  { 17.446573514101260, 175, 4, 0.0 },
+  { 20.978799158169750, 175, 5, 0.0 },
+  { 24.322838125992007, 175, 6, 0.0 },
+  { 27.506826691859715, 175, 7, 0.0 },
+  { 30.551349129583173, 175, 8, 0.0 },
+  { 33.472118364663743, 175, 9, 0.0 },
+  { 36.281521060026307, 175, 10, 0.0 },
+  { 38.989571261128390, 175, 11, 0.0 },
+  { 41.604531039164613, 175, 12, 0.0 },
+  { 44.133331882509879, 175, 13, 0.0 },
+  { 46.581870888127014, 175, 14, 0.0 },
+  { 48.955225052009268, 175, 15, 0.0 },
+  { 51.257810145003305, 175, 16, 0.0 },
+  { 53.493501003167239, 175, 17, 0.0 },
+  { 55.665724278298171, 175, 18, 0.0 },
+  { 57.777531104479976, 175, 19, 0.0 },
+  { 59.831654838175496, 175, 20, 0.0 },
+  { 61.830557517371290, 175, 21, 0.0 },
+  { 63.776467666426697, 175, 22, 0.0 },
+  { 65.671411371889917, 175, 23, 0.0 },
+  { 67.517238062388287, 175, 24, 0.0 },
+  { 69.315642074335074, 175, 25, 0.0 },
+  { 71.068180830409801, 175, 26, 0.0 },
+  { 72.776290270350842, 175, 27, 0.0 },
+  { 74.441298033939802, 175, 28, 0.0 },
+  { 76.064434790732093, 175, 29, 0.0 },
+  { 77.646844030778198, 175, 30, 0.0 },
+  { 79.189590568713697, 175, 31, 0.0 },
+  { 80.693667965489908, 175, 32, 0.0 },
+  { 82.160005034283358, 175, 33, 0.0 },
+  { 83.589471567268561, 175, 34, 0.0 },
+  { 84.982883396157263, 175, 35, 0.0 },
+  { 86.341006880310488, 175, 36, 0.0 },
+  { 87.664562900796909, 175, 37, 0.0 },
+  { 88.954230426227809, 175, 38, 0.0 },
+  { 90.210649705926244, 175, 39, 0.0 },
+  { 91.434425137548374, 175, 40, 0.0 },
+  { 92.626127849282398, 175, 41, 0.0 },
+  { 93.786298030949979, 175, 42, 0.0 },
+  { 94.915447043478139, 175, 43, 0.0 },
+  { 96.014059332146303, 175, 44, 0.0 },
+  { 97.082594165577063, 175, 45, 0.0 },
+  { 98.121487219543610, 175, 46, 0.0 },
+  { 99.131152022195181, 175, 47, 0.0 },
+  { 100.11198127520697, 175, 48, 0.0 },
+  { 101.06434806355486, 175, 49, 0.0 },
+  { 101.98860696507825, 175, 50, 0.0 },
+  { 102.88509506965624, 175, 51, 0.0 },
+  { 103.75413291667979, 175, 52, 0.0 },
+  { 104.59602535850013, 175, 53, 0.0 },
+  { 105.41106235666916, 175, 54, 0.0 },
+  { 106.19951971703341, 175, 55, 0.0 },
+  { 106.96165976908026, 175, 56, 0.0 },
+  { 107.69773199435730, 175, 57, 0.0 },
+  { 108.40797360827651, 175, 58, 0.0 },
+  { 109.09261009916855, 175, 59, 0.0 },
+  { 109.75185572805282, 175, 60, 0.0 },
+  { 110.38591399224276, 175, 61, 0.0 },
+  { 110.99497805559213, 175, 62, 0.0 },
+  { 111.57923114791299, 175, 63, 0.0 },
+  { 112.13884693584839, 175, 64, 0.0 },
+  { 112.67398986726505, 175, 65, 0.0 },
+  { 113.18481549103109, 175, 66, 0.0 },
+  { 113.67147075386919, 175, 67, 0.0 },
+  { 114.13409427581735, 175, 68, 0.0 },
+  { 114.57281660568196, 175, 69, 0.0 },
+  { 114.98776045774468, 175, 70, 0.0 },
+  { 115.37904093086092, 175, 71, 0.0 },
+  { 115.74676571098621, 175, 72, 0.0 },
+  { 116.09103525806745, 175, 73, 0.0 },
+  { 116.41194297814758, 175, 74, 0.0 },
+  { 116.70957538145251, 175, 75, 0.0 },
+  { 116.98401222715427, 175, 76, 0.0 },
+  { 117.23532665543519, 175, 77, 0.0 },
+  { 117.46358530741617, 175, 78, 0.0 },
+  { 117.66884843345252, 175, 79, 0.0 },
+  { 117.85116999024649, 175, 80, 0.0 },
+  { 118.01059772717463, 175, 81, 0.0 },
+  { 118.14717326218033, 175, 82, 0.0 },
+  { 118.26093214753701, 175, 83, 0.0 },
+  { 118.35190392574276, 175, 84, 0.0 },
+  { 118.42011217576925, 175, 85, 0.0 },
+  { 118.46557454984600, 175, 86, 0.0 },
+  { 118.48830280092358, 175, 87, 0.0 },
+  { 118.48830280092358, 175, 88, 0.0 },
+  { 118.46557454984600, 175, 89, 0.0 },
+  { 118.42011217576925, 175, 90, 0.0 },
+  { 118.35190392574276, 175, 91, 0.0 },
+  { 118.26093214753701, 175, 92, 0.0 },
+  { 118.14717326218033, 175, 93, 0.0 },
+  { 118.01059772717463, 175, 94, 0.0 },
+  { 117.85116999024649, 175, 95, 0.0 },
+  { 117.66884843345252, 175, 96, 0.0 },
+  { 117.46358530741617, 175, 97, 0.0 },
+  { 117.23532665543519, 175, 98, 0.0 },
+  { 116.98401222715427, 175, 99, 0.0 },
+  { 116.70957538145251, 175, 100, 0.0 },
+  { 116.41194297814758, 175, 101, 0.0 },
+  { 116.09103525806745, 175, 102, 0.0 },
+  { 115.74676571098621, 175, 103, 0.0 },
+  { 115.37904093086092, 175, 104, 0.0 },
+  { 114.98776045774468, 175, 105, 0.0 },
+  { 114.57281660568196, 175, 106, 0.0 },
+  { 114.13409427581735, 175, 107, 0.0 },
+  { 113.67147075386919, 175, 108, 0.0 },
+  { 113.18481549103109, 175, 109, 0.0 },
+  { 112.67398986726505, 175, 110, 0.0 },
+  { 112.13884693584839, 175, 111, 0.0 },
+  { 111.57923114791299, 175, 112, 0.0 },
+  { 110.99497805559213, 175, 113, 0.0 },
+  { 110.38591399224276, 175, 114, 0.0 },
+  { 109.75185572805282, 175, 115, 0.0 },
+  { 109.09261009916855, 175, 116, 0.0 },
+  { 108.40797360827651, 175, 117, 0.0 },
+  { 107.69773199435730, 175, 118, 0.0 },
+  { 106.96165976908026, 175, 119, 0.0 },
+  { 106.19951971703341, 175, 120, 0.0 },
+  { 105.41106235666916, 175, 121, 0.0 },
+  { 104.59602535850013, 175, 122, 0.0 },
+  { 103.75413291667979, 175, 123, 0.0 },
+  { 102.88509506965624, 175, 124, 0.0 },
+  { 101.98860696507825, 175, 125, 0.0 },
+  { 101.06434806355486, 175, 126, 0.0 },
+  { 100.11198127520697, 175, 127, 0.0 },
+  { 99.131152022195181, 175, 128, 0.0 },
+  { 98.121487219543610, 175, 129, 0.0 },
+  { 97.082594165577063, 175, 130, 0.0 },
+  { 96.014059332146303, 175, 131, 0.0 },
+  { 94.915447043478139, 175, 132, 0.0 },
+  { 93.786298030949979, 175, 133, 0.0 },
+  { 92.626127849282398, 175, 134, 0.0 },
+  { 91.434425137548374, 175, 135, 0.0 },
+  { 90.210649705926244, 175, 136, 0.0 },
+  { 88.954230426227809, 175, 137, 0.0 },
+  { 87.664562900796909, 175, 138, 0.0 },
+  { 86.341006880310488, 175, 139, 0.0 },
+  { 84.982883396157263, 175, 140, 0.0 },
+  { 83.589471567268561, 175, 141, 0.0 },
+  { 82.160005034283358, 175, 142, 0.0 },
+  { 80.693667965489908, 175, 143, 0.0 },
+  { 79.189590568713697, 175, 144, 0.0 },
+  { 77.646844030778198, 175, 145, 0.0 },
+  { 76.064434790732093, 175, 146, 0.0 },
+  { 74.441298033939802, 175, 147, 0.0 },
+  { 72.776290270350842, 175, 148, 0.0 },
+  { 71.068180830409801, 175, 149, 0.0 },
+  { 69.315642074335074, 175, 150, 0.0 },
+  { 67.517238062388287, 175, 151, 0.0 },
+  { 65.671411371889917, 175, 152, 0.0 },
+  { 63.776467666426697, 175, 153, 0.0 },
+  { 61.830557517371290, 175, 154, 0.0 },
+  { 59.831654838175496, 175, 155, 0.0 },
+  { 57.777531104479976, 175, 156, 0.0 },
+  { 55.665724278298171, 175, 157, 0.0 },
+  { 53.493501003167239, 175, 158, 0.0 },
+  { 51.257810145003305, 175, 159, 0.0 },
+  { 48.955225052009268, 175, 160, 0.0 },
+  { 46.581870888127014, 175, 161, 0.0 },
+  { 44.133331882509879, 175, 162, 0.0 },
+  { 41.604531039164613, 175, 163, 0.0 },
+  { 38.989571261128390, 175, 164, 0.0 },
+  { 36.281521060026307, 175, 165, 0.0 },
+  { 33.472118364663743, 175, 166, 0.0 },
+  { 30.551349129583173, 175, 167, 0.0 },
+  { 27.506826691859715, 175, 168, 0.0 },
+  { 24.322838125992007, 175, 169, 0.0 },
+  { 20.978799158169750, 175, 170, 0.0 },
+  { 17.446573514101260, 175, 171, 0.0 },
+  { 13.685373398407705, 175, 172, 0.0 },
+  { 9.6306940925780964, 175, 173, 0.0 },
+  { 5.1647859739235855, 175, 174, 0.0 },
+  { 0.0000000000000000, 175, 175, 0.0 },
+};
+const double toler174 = 1.0000000000000005e-08;
+
+// Divergence at n=176 k=177 f=-inf f_GSL=-inf
+// Divergence at n=176 k=178 f=-inf f_GSL=-inf
+// Divergence at n=176 k=179 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=176 k=200 f=-inf f_GSL=-inf
+// Test data for n=176.
+// max(|f - f_GSL|): 7.0440364652313292e-10
+// max(|f - f_GSL| / |f_GSL|): 1.0501305825131416e-10
+// mean(f - f_GSL): 3.5405492473797741e-10
+// variance(f - f_GSL): 7.1629053081175838e-22
+// stddev(f - f_GSL): 2.6763604593024431e-11
+const testcase_lbincoef<double>
+data175[177] =
+{
+  { 0.0000000000000000, 176, 0, 0.0 },
+  { 5.1704839950382393, 176, 1, 0.0 },
+  { 9.6421227884019345, 176, 2, 0.0 },
+  { 13.702565798948172, 176, 3, 0.0 },
+  { 17.469563032326050, 176, 4, 0.0 },
+  { 21.007619596705354, 176, 5, 0.0 },
+  { 24.357523683979935, 176, 6, 0.0 },
+  { 27.547411971974952, 176, 7, 0.0 },
+  { 30.597869145218169, 176, 8, 0.0 },
+  { 33.524608547285197, 176, 9, 0.0 },
+  { 36.340017266707946, 176, 10, 0.0 },
+  { 39.054109782266096, 176, 11, 0.0 },
+  { 41.675148606378684, 176, 12, 0.0 },
+  { 44.210065676741351, 176, 13, 0.0 },
+  { 46.664758547932820, 176, 14, 0.0 },
+  { 49.044304682063057, 176, 15, 0.0 },
+  { 51.353120324807719, 176, 16, 0.0 },
+  { 53.595080795985268, 176, 17, 0.0 },
+  { 55.773613240309373, 176, 18, 0.0 },
+  { 57.891769294169990, 176, 19, 0.0 },
+  { 59.952282825964176, 176, 20, 0.0 },
+  { 61.957616395490277, 176, 21, 0.0 },
+  { 63.909999059051302, 176, 22, 0.0 },
+  { 65.811457445535780, 176, 23, 0.0 },
+  { 67.663841536580208, 176, 24, 0.0 },
+  { 69.468846232558349, 176, 25, 0.0 },
+  { 71.228029531351808, 176, 26, 0.0 },
+  { 72.942827959443662, 176, 27, 0.0 },
+  { 74.614569755213893, 176, 28, 0.0 },
+  { 76.244486198991581, 176, 29, 0.0 },
+  { 77.833721404108132, 176, 30, 0.0 },
+  { 79.383340821331331, 176, 31, 0.0 },
+  { 80.894338660952144, 176, 32, 0.0 },
+  { 82.367644399061760, 176, 33, 0.0 },
+  { 83.804128504705432, 176, 34, 0.0 },
+  { 85.204607500817360, 176, 35, 0.0 },
+  { 86.569848452739393, 176, 36, 0.0 },
+  { 87.900572962704473, 176, 37, 0.0 },
+  { 89.197460736108837, 176, 38, 0.0 },
+  { 90.461152775136384, 176, 39, 0.0 },
+  { 91.692254246850553, 176, 40, 0.0 },
+  { 92.891337065882226, 176, 41, 0.0 },
+  { 94.058942226037288, 176, 42, 0.0 },
+  { 95.195581910294663, 176, 43, 0.0 },
+  { 96.301741404598147, 176, 44, 0.0 },
+  { 97.377880837414182, 176, 45, 0.0 },
+  { 98.424436764126256, 176, 46, 0.0 },
+  { 99.441823612871758, 176, 47, 0.0 },
+  { 100.43043500632558, 176, 48, 0.0 },
+  { 101.39064497213451, 176, 49, 0.0 },
+  { 102.32280905316503, 176, 50, 0.0 },
+  { 103.22726532739216, 176, 51, 0.0 },
+  { 104.10433534611298, 176, 52, 0.0 },
+  { 104.95432499816599, 176, 53, 0.0 },
+  { 105.77752530697410, 176, 54, 0.0 },
+  { 106.57421316647492, 176, 55, 0.0 },
+  { 107.34465202133646, 176, 56, 0.0 },
+  { 108.08909249628402, 176, 57, 0.0 },
+  { 108.80777297884907, 176, 58, 0.0 },
+  { 109.50092015940902, 176, 59, 0.0 },
+  { 110.16874953198470, 176, 60, 0.0 },
+  { 110.81146585891776, 176, 61, 0.0 },
+  { 111.42926360223589, 176, 62, 0.0 },
+  { 112.02232732423886, 176, 63, 0.0 },
+  { 112.59083205959155, 176, 64, 0.0 },
+  { 113.13494366099098, 176, 65, 0.0 },
+  { 113.65481912027690, 176, 66, 0.0 },
+  { 114.15060686667829, 176, 67, 0.0 },
+  { 114.62244704373137, 176, 68, 0.0 },
+  { 115.07047176625827, 176, 69, 0.0 },
+  { 115.49480535867087, 176, 70, 0.0 },
+  { 115.89556457574162, 176, 71, 0.0 },
+  { 116.27285880688311, 176, 72, 0.0 },
+  { 116.62679026487604, 176, 73, 0.0 },
+  { 116.95745415990154, 176, 74, 0.0 },
+  { 117.26493885964948, 176, 75, 0.0 },
+  { 117.54932603620443, 176, 76, 0.0 },
+  { 117.81069080033882, 176, 77, 0.0 },
+  { 118.04910182378387, 176, 78, 0.0 },
+  { 118.26462144998737, 176, 79, 0.0 },
+  { 118.45730579381689, 176, 80, 0.0 },
+  { 118.62720483061230, 176, 81, 0.0 },
+  { 118.77436247494859, 176, 82, 0.0 },
+  { 118.89881664942197, 176, 83, 0.0 },
+  { 119.00059934373195, 176, 84, 0.0 },
+  { 119.07973666429064, 176, 85, 0.0 },
+  { 119.13624887455398, 176, 86, 0.0 },
+  { 119.17015042622967, 176, 87, 0.0 },
+  { 119.18144998148364, 176, 88, 0.0 },
+  { 119.17015042622967, 176, 89, 0.0 },
+  { 119.13624887455398, 176, 90, 0.0 },
+  { 119.07973666429064, 176, 91, 0.0 },
+  { 119.00059934373195, 176, 92, 0.0 },
+  { 118.89881664942197, 176, 93, 0.0 },
+  { 118.77436247494859, 176, 94, 0.0 },
+  { 118.62720483061230, 176, 95, 0.0 },
+  { 118.45730579381689, 176, 96, 0.0 },
+  { 118.26462144998737, 176, 97, 0.0 },
+  { 118.04910182378387, 176, 98, 0.0 },
+  { 117.81069080033882, 176, 99, 0.0 },
+  { 117.54932603620443, 176, 100, 0.0 },
+  { 117.26493885964948, 176, 101, 0.0 },
+  { 116.95745415990154, 176, 102, 0.0 },
+  { 116.62679026487604, 176, 103, 0.0 },
+  { 116.27285880688311, 176, 104, 0.0 },
+  { 115.89556457574162, 176, 105, 0.0 },
+  { 115.49480535867087, 176, 106, 0.0 },
+  { 115.07047176625827, 176, 107, 0.0 },
+  { 114.62244704373137, 176, 108, 0.0 },
+  { 114.15060686667829, 176, 109, 0.0 },
+  { 113.65481912027690, 176, 110, 0.0 },
+  { 113.13494366099098, 176, 111, 0.0 },
+  { 112.59083205959155, 176, 112, 0.0 },
+  { 112.02232732423886, 176, 113, 0.0 },
+  { 111.42926360223589, 176, 114, 0.0 },
+  { 110.81146585891776, 176, 115, 0.0 },
+  { 110.16874953198470, 176, 116, 0.0 },
+  { 109.50092015940902, 176, 117, 0.0 },
+  { 108.80777297884907, 176, 118, 0.0 },
+  { 108.08909249628402, 176, 119, 0.0 },
+  { 107.34465202133646, 176, 120, 0.0 },
+  { 106.57421316647492, 176, 121, 0.0 },
+  { 105.77752530697410, 176, 122, 0.0 },
+  { 104.95432499816599, 176, 123, 0.0 },
+  { 104.10433534611298, 176, 124, 0.0 },
+  { 103.22726532739216, 176, 125, 0.0 },
+  { 102.32280905316503, 176, 126, 0.0 },
+  { 101.39064497213451, 176, 127, 0.0 },
+  { 100.43043500632558, 176, 128, 0.0 },
+  { 99.441823612871758, 176, 129, 0.0 },
+  { 98.424436764126256, 176, 130, 0.0 },
+  { 97.377880837414182, 176, 131, 0.0 },
+  { 96.301741404598147, 176, 132, 0.0 },
+  { 95.195581910294663, 176, 133, 0.0 },
+  { 94.058942226037288, 176, 134, 0.0 },
+  { 92.891337065882226, 176, 135, 0.0 },
+  { 91.692254246850553, 176, 136, 0.0 },
+  { 90.461152775136384, 176, 137, 0.0 },
+  { 89.197460736108837, 176, 138, 0.0 },
+  { 87.900572962704473, 176, 139, 0.0 },
+  { 86.569848452739393, 176, 140, 0.0 },
+  { 85.204607500817360, 176, 141, 0.0 },
+  { 83.804128504705432, 176, 142, 0.0 },
+  { 82.367644399061760, 176, 143, 0.0 },
+  { 80.894338660952144, 176, 144, 0.0 },
+  { 79.383340821331331, 176, 145, 0.0 },
+  { 77.833721404108132, 176, 146, 0.0 },
+  { 76.244486198991581, 176, 147, 0.0 },
+  { 74.614569755213893, 176, 148, 0.0 },
+  { 72.942827959443662, 176, 149, 0.0 },
+  { 71.228029531351808, 176, 150, 0.0 },
+  { 69.468846232558349, 176, 151, 0.0 },
+  { 67.663841536580208, 176, 152, 0.0 },
+  { 65.811457445535780, 176, 153, 0.0 },
+  { 63.909999059051302, 176, 154, 0.0 },
+  { 61.957616395490277, 176, 155, 0.0 },
+  { 59.952282825964176, 176, 156, 0.0 },
+  { 57.891769294169990, 176, 157, 0.0 },
+  { 55.773613240309373, 176, 158, 0.0 },
+  { 53.595080795985268, 176, 159, 0.0 },
+  { 51.353120324807719, 176, 160, 0.0 },
+  { 49.044304682063057, 176, 161, 0.0 },
+  { 46.664758547932820, 176, 162, 0.0 },
+  { 44.210065676741351, 176, 163, 0.0 },
+  { 41.675148606378684, 176, 164, 0.0 },
+  { 39.054109782266096, 176, 165, 0.0 },
+  { 36.340017266707946, 176, 166, 0.0 },
+  { 33.524608547285197, 176, 167, 0.0 },
+  { 30.597869145218169, 176, 168, 0.0 },
+  { 27.547411971974952, 176, 169, 0.0 },
+  { 24.357523683979935, 176, 170, 0.0 },
+  { 21.007619596705354, 176, 171, 0.0 },
+  { 17.469563032326050, 176, 172, 0.0 },
+  { 13.702565798948172, 176, 173, 0.0 },
+  { 9.6421227884019345, 176, 174, 0.0 },
+  { 5.1704839950382393, 176, 175, 0.0 },
+  { 0.0000000000000000, 176, 176, 0.0 },
+};
+const double toler175 = 1.0000000000000005e-08;
+
+// Divergence at n=177 k=178 f=-inf f_GSL=-inf
+// Divergence at n=177 k=179 f=-inf f_GSL=-inf
+// Divergence at n=177 k=180 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=177 k=200 f=-inf f_GSL=-inf
+// Test data for n=177.
+// max(|f - f_GSL|): 1.0768417268991470e-09
+// max(|f - f_GSL| / |f_GSL|): 9.4819699356281905e-11
+// mean(f - f_GSL): 7.1819175824915608e-10
+// variance(f - f_GSL): 2.9305848730514391e-21
+// stddev(f - f_GSL): 5.4134876679008320e-11
+const testcase_lbincoef<double>
+data176[178] =
+{
+  { 0.0000000000000000, 177, 0, 0.0 },
+  { 5.1761497325737764, 177, 1, 0.0 },
+  { 9.6534865470521254, 177, 2, 0.0 },
+  { 13.719660232307547, 177, 3, 0.0 },
+  { 17.492421170402054, 177, 4, 0.0 },
+  { 21.036274852465681, 177, 5, 0.0 },
+  { 24.392009860051076, 177, 6, 0.0 },
+  { 27.587763267498417, 177, 7, 0.0 },
+  { 30.644120162868944, 177, 8, 0.0 },
+  { 33.576794300455731, 177, 9, 0.0 },
+  { 36.398173186864938, 177, 10, 0.0 },
+  { 39.118271726483272, 177, 11, 0.0 },
+  { 41.745352865051927, 177, 12, 0.0 },
+  { 44.286348981490960, 177, 13, 0.0 },
+  { 46.747158079699830, 177, 14, 0.0 },
+  { 49.132858079404400, 177, 15, 0.0 },
+  { 51.447865692397045, 177, 16, 0.0 },
+  { 53.696056713325220, 177, 17, 0.0 },
+  { 55.880858770662940, 177, 18, 0.0 },
+  { 58.005323993716729, 177, 19, 0.0 },
+  { 60.072186753189726, 177, 20, 0.0 },
+  { 62.083910120814494, 177, 21, 0.0 },
+  { 64.042723674705826, 177, 22, 0.0 },
+  { 65.950654575695921, 177, 23, 0.0 },
+  { 67.809553347761607, 177, 24, 0.0 },
+  { 69.621115444285806, 177, 25, 0.0 },
+  { 71.386899427110620, 177, 26, 0.0 },
+  { 73.108342397921206, 177, 27, 0.0 },
+  { 74.786773181842250, 177, 28, 0.0 },
+  { 76.423423657801209, 177, 29, 0.0 },
+  { 78.019438549903157, 177, 30, 0.0 },
+  { 79.575883932196803, 177, 31, 0.0 },
+  { 81.093754651105314, 177, 32, 0.0 },
+  { 82.573980832059533, 177, 33, 0.0 },
+  { 84.017433607019370, 177, 34, 0.0 },
+  { 85.424930175789768, 177, 35, 0.0 },
+  { 86.797238294935028, 177, 36, 0.0 },
+  { 88.135080272668915, 177, 37, 0.0 },
+  { 89.439136535551938, 177, 38, 0.0 },
+  { 90.710048822552949, 177, 39, 0.0 },
+  { 91.948423053596230, 177, 40, 0.0 },
+  { 93.154831912719942, 177, 41, 0.0 },
+  { 94.329817180172654, 177, 42, 0.0 },
+  { 95.473891842917510, 177, 43, 0.0 },
+  { 96.587542008950209, 177, 44, 0.0 },
+  { 97.671228647401563, 177, 45, 0.0 },
+  { 98.725389173498911, 177, 46, 0.0 },
+  { 99.750438894989941, 177, 47, 0.0 },
+  { 100.74677233453770, 177, 48, 0.0 },
+  { 101.71476444078866, 177, 49, 0.0 },
+  { 102.65477169928022, 177, 50, 0.0 },
+  { 103.56713315301448, 177, 51, 0.0 },
+  { 104.45217134138443, 177, 52, 0.0 },
+  { 105.31019316513471, 177, 53, 0.0 },
+  { 106.14149068417549, 177, 54, 0.0 },
+  { 106.94634185431539, 177, 55, 0.0 },
+  { 107.72501120831350, 177, 56, 0.0 },
+  { 108.47775048607576, 177, 57, 0.0 },
+  { 109.20479921831134, 177, 58, 0.0 },
+  { 109.90638526751712, 177, 59, 0.0 },
+  { 110.58272532976071, 177, 60, 0.0 },
+  { 111.23402540038518, 177, 61, 0.0 },
+  { 111.86048120644642, 177, 62, 0.0 },
+  { 112.46227860841816, 177, 63, 0.0 },
+  { 113.03959397345295, 177, 64, 0.0 },
+  { 113.59259452226968, 177, 65, 0.0 },
+  { 114.12143865153837, 177, 66, 0.0 },
+  { 114.62627623345963, 177, 67, 0.0 },
+  { 115.10724889407601, 177, 68, 0.0 },
+  { 115.56449027170783, 177, 69, 0.0 },
+  { 115.99812625678271, 177, 70, 0.0 },
+  { 116.40827521420334, 177, 71, 0.0 },
+  { 116.79504818929934, 177, 72, 0.0 },
+  { 117.15854909830847, 177, 73, 0.0 },
+  { 117.49887490424567, 177, 74, 0.0 },
+  { 117.81611577893898, 177, 75, 0.0 },
+  { 118.11035525193694, 177, 76, 0.0 },
+  { 118.38167034692452, 177, 77, 0.0 },
+  { 118.63013170622304, 177, 78, 0.0 },
+  { 118.85580370389061, 177, 79, 0.0 },
+  { 119.05874454788727, 177, 80, 0.0 },
+  { 119.23900637171823, 177, 81, 0.0 },
+  { 119.39663531592180, 177, 82, 0.0 },
+  { 119.53167159972577, 177, 83, 0.0 },
+  { 119.64414958315245, 177, 84, 0.0 },
+  { 119.73409781981536, 177, 85, 0.0 },
+  { 119.80153910061091, 177, 86, 0.0 },
+  { 119.84649048847319, 177, 87, 0.0 },
+  { 119.86896334432527, 177, 88, 0.0 },
+  { 119.86896334432527, 177, 89, 0.0 },
+  { 119.84649048847319, 177, 90, 0.0 },
+  { 119.80153910061091, 177, 91, 0.0 },
+  { 119.73409781981536, 177, 92, 0.0 },
+  { 119.64414958315245, 177, 93, 0.0 },
+  { 119.53167159972577, 177, 94, 0.0 },
+  { 119.39663531592180, 177, 95, 0.0 },
+  { 119.23900637171823, 177, 96, 0.0 },
+  { 119.05874454788727, 177, 97, 0.0 },
+  { 118.85580370389061, 177, 98, 0.0 },
+  { 118.63013170622304, 177, 99, 0.0 },
+  { 118.38167034692452, 177, 100, 0.0 },
+  { 118.11035525193694, 177, 101, 0.0 },
+  { 117.81611577893898, 177, 102, 0.0 },
+  { 117.49887490424567, 177, 103, 0.0 },
+  { 117.15854909830847, 177, 104, 0.0 },
+  { 116.79504818929934, 177, 105, 0.0 },
+  { 116.40827521420334, 177, 106, 0.0 },
+  { 115.99812625678271, 177, 107, 0.0 },
+  { 115.56449027170783, 177, 108, 0.0 },
+  { 115.10724889407601, 177, 109, 0.0 },
+  { 114.62627623345963, 177, 110, 0.0 },
+  { 114.12143865153837, 177, 111, 0.0 },
+  { 113.59259452226968, 177, 112, 0.0 },
+  { 113.03959397345295, 177, 113, 0.0 },
+  { 112.46227860841816, 177, 114, 0.0 },
+  { 111.86048120644642, 177, 115, 0.0 },
+  { 111.23402540038518, 177, 116, 0.0 },
+  { 110.58272532976071, 177, 117, 0.0 },
+  { 109.90638526751712, 177, 118, 0.0 },
+  { 109.20479921831134, 177, 119, 0.0 },
+  { 108.47775048607576, 177, 120, 0.0 },
+  { 107.72501120831350, 177, 121, 0.0 },
+  { 106.94634185431539, 177, 122, 0.0 },
+  { 106.14149068417549, 177, 123, 0.0 },
+  { 105.31019316513471, 177, 124, 0.0 },
+  { 104.45217134138443, 177, 125, 0.0 },
+  { 103.56713315301448, 177, 126, 0.0 },
+  { 102.65477169928022, 177, 127, 0.0 },
+  { 101.71476444078866, 177, 128, 0.0 },
+  { 100.74677233453770, 177, 129, 0.0 },
+  { 99.750438894989941, 177, 130, 0.0 },
+  { 98.725389173498911, 177, 131, 0.0 },
+  { 97.671228647401563, 177, 132, 0.0 },
+  { 96.587542008950209, 177, 133, 0.0 },
+  { 95.473891842917510, 177, 134, 0.0 },
+  { 94.329817180172654, 177, 135, 0.0 },
+  { 93.154831912719942, 177, 136, 0.0 },
+  { 91.948423053596230, 177, 137, 0.0 },
+  { 90.710048822552949, 177, 138, 0.0 },
+  { 89.439136535551938, 177, 139, 0.0 },
+  { 88.135080272668915, 177, 140, 0.0 },
+  { 86.797238294935028, 177, 141, 0.0 },
+  { 85.424930175789768, 177, 142, 0.0 },
+  { 84.017433607019370, 177, 143, 0.0 },
+  { 82.573980832059533, 177, 144, 0.0 },
+  { 81.093754651105314, 177, 145, 0.0 },
+  { 79.575883932196803, 177, 146, 0.0 },
+  { 78.019438549903157, 177, 147, 0.0 },
+  { 76.423423657801209, 177, 148, 0.0 },
+  { 74.786773181842250, 177, 149, 0.0 },
+  { 73.108342397921206, 177, 150, 0.0 },
+  { 71.386899427110620, 177, 151, 0.0 },
+  { 69.621115444285806, 177, 152, 0.0 },
+  { 67.809553347761607, 177, 153, 0.0 },
+  { 65.950654575695921, 177, 154, 0.0 },
+  { 64.042723674705826, 177, 155, 0.0 },
+  { 62.083910120814494, 177, 156, 0.0 },
+  { 60.072186753189726, 177, 157, 0.0 },
+  { 58.005323993716729, 177, 158, 0.0 },
+  { 55.880858770662940, 177, 159, 0.0 },
+  { 53.696056713325220, 177, 160, 0.0 },
+  { 51.447865692397045, 177, 161, 0.0 },
+  { 49.132858079404400, 177, 162, 0.0 },
+  { 46.747158079699830, 177, 163, 0.0 },
+  { 44.286348981490960, 177, 164, 0.0 },
+  { 41.745352865051927, 177, 165, 0.0 },
+  { 39.118271726483272, 177, 166, 0.0 },
+  { 36.398173186864938, 177, 167, 0.0 },
+  { 33.576794300455731, 177, 168, 0.0 },
+  { 30.644120162868944, 177, 169, 0.0 },
+  { 27.587763267498417, 177, 170, 0.0 },
+  { 24.392009860051076, 177, 171, 0.0 },
+  { 21.036274852465681, 177, 172, 0.0 },
+  { 17.492421170402054, 177, 173, 0.0 },
+  { 13.719660232307547, 177, 174, 0.0 },
+  { 9.6534865470521254, 177, 175, 0.0 },
+  { 5.1761497325737764, 177, 176, 0.0 },
+  { 0.0000000000000000, 177, 177, 0.0 },
+};
+const double toler176 = 5.0000000000000026e-09;
+
+// Divergence at n=178 k=179 f=-inf f_GSL=-inf
+// Divergence at n=178 k=180 f=-inf f_GSL=-inf
+// Divergence at n=178 k=181 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=178 k=200 f=-inf f_GSL=-inf
+// Test data for n=178.
+// max(|f - f_GSL|): 7.1976202775658749e-10
+// max(|f - f_GSL| / |f_GSL|): 1.3890237227605509e-10
+// mean(f - f_GSL): -1.7246043203082263e-12
+// variance(f - f_GSL): 1.6803198807947809e-26
+// stddev(f - f_GSL): 1.2962715305038451e-13
+const testcase_lbincoef<double>
+data177[179] =
+{
+  { 0.0000000000000000, 178, 0, 0.0 },
+  { 5.1817835502919252, 178, 1, 0.0 },
+  { 9.6647861023058113, 178, 2, 0.0 },
+  { 13.736657808675886, 178, 3, 0.0 },
+  { 17.515149421479578, 178, 4, 0.0 },
+  { 21.064766808259833, 178, 5, 0.0 },
+  { 24.426298933529552, 178, 6, 0.0 },
+  { 27.627883261287707, 178, 7, 0.0 },
+  { 30.690105276110557, 178, 8, 0.0 },
+  { 33.628679135824655, 178, 9, 0.0 },
+  { 36.455992757753620, 178, 10, 0.0 },
+  { 39.182061464358412, 178, 11, 0.0 },
+  { 41.815148626987252, 178, 12, 0.0 },
+  { 44.362187057882352, 178, 13, 0.0 },
+  { 46.829075202167587, 178, 14, 0.0 },
+  { 49.220891428889558, 178, 15, 0.0 },
+  { 51.542052907456537, 178, 16, 0.0 },
+  { 53.796435898632694, 178, 17, 0.0 },
+  { 55.987468505721040, 178, 18, 0.0 },
+  { 58.118203341788444, 178, 19, 0.0 },
+  { 60.191375270454614, 178, 20, 0.0 },
+  { 62.209447865758193, 178, 21, 0.0 },
+  { 64.174651217748192, 178, 22, 0.0 },
+  { 66.089013009068594, 178, 23, 0.0 },
+  { 67.954384295639898, 178, 24, 0.0 },
+  { 69.772461073185355, 178, 25, 0.0 },
+  { 71.544802456556226, 178, 26, 0.0 },
+  { 73.272846111398167, 178, 27, 0.0 },
+  { 74.957921438037943, 178, 28, 0.0 },
+  { 76.601260902147715, 178, 29, 0.0 },
+  { 78.204009826430934, 178, 30, 0.0 },
+  { 79.767234895709976, 178, 31, 0.0 },
+  { 81.291931579689049, 178, 32, 0.0 },
+  { 82.779030639930852, 178, 33, 0.0 },
+  { 84.229403857735292, 178, 34, 0.0 },
+  { 85.643869095821856, 178, 35, 0.0 },
+  { 87.023194787625584, 178, 36, 0.0 },
+  { 88.368103932582699, 178, 37, 0.0 },
+  { 89.679277663234529, 178, 38, 0.0 },
+  { 90.957358439714199, 178, 39, 0.0 },
+  { 92.202952918730944, 178, 40, 0.0 },
+  { 93.416634537183768, 178, 41, 0.0 },
+  { 94.598945844728519, 178, 42, 0.0 },
+  { 95.750400614771024, 178, 43, 0.0 },
+  { 96.871485759291204, 178, 44, 0.0 },
+  { 97.962663069471773, 178, 45, 0.0 },
+  { 99.024370801204441, 178, 46, 0.0 },
+  { 100.05702512208074, 178, 47, 0.0 },
+  { 101.06102143437403, 178, 48, 0.0 },
+  { 102.03673558671892, 178, 49, 0.0 },
+  { 102.98452498565251, 178, 50, 0.0 },
+  { 103.90472961684782, 178, 51, 0.0 },
+  { 104.79767298472490, 178, 52, 0.0 },
+  { 105.66366297812431, 178, 53, 0.0 },
+  { 106.50299266886236, 178, 54, 0.0 },
+  { 107.31594104923494, 178, 55, 0.0 },
+  { 108.10277371387212, 178, 56, 0.0 },
+  { 108.86374349077084, 178, 57, 0.0 },
+  { 109.59909102582122, 178, 58, 0.0 },
+  { 110.30904532469754, 178, 59, 0.0 },
+  { 110.99382425558696, 178, 60, 0.0 },
+  { 111.65363501587933, 178, 61, 0.0 },
+  { 112.28867456563199, 178, 62, 0.0 },
+  { 112.89913003034684, 178, 63, 0.0 },
+  { 113.48517907535040, 178, 64, 0.0 },
+  { 114.04699025384923, 178, 65, 0.0 },
+  { 114.58472333053510, 178, 66, 0.0 },
+  { 115.09852958243926, 178, 67, 0.0 },
+  { 115.58855207857550, 178, 68, 0.0 },
+  { 116.05492593977061, 178, 69, 0.0 },
+  { 116.49777857995042, 178, 70, 0.0 },
+  { 116.91722993003327, 178, 71, 0.0 },
+  { 117.31339264547921, 178, 72, 0.0 },
+  { 117.68637229844285, 178, 73, 0.0 },
+  { 118.03626755539625, 178, 74, 0.0 },
+  { 118.36317034100125, 178, 75, 0.0 },
+  { 118.66716598894459, 178, 76, 0.0 },
+  { 118.94833338037517, 178, 77, 0.0 },
+  { 119.20674507052689, 178, 78, 0.0 },
+  { 119.44246740404793, 178, 79, 0.0 },
+  { 119.65556061950866, 178, 80, 0.0 },
+  { 119.84607894350677, 178, 81, 0.0 },
+  { 120.01407067474588, 178, 82, 0.0 },
+  { 120.15957825841713, 178, 83, 0.0 },
+  { 120.28263835117440, 178, 84, 0.0 },
+  { 120.38328187695402, 178, 85, 0.0 },
+  { 120.46153407385378, 178, 86, 0.0 },
+  { 120.51741453224827, 178, 87, 0.0 },
+  { 120.55093722428694, 178, 88, 0.0 },
+  { 120.56211052488504, 178, 89, 0.0 },
+  { 120.55093722428694, 178, 90, 0.0 },
+  { 120.51741453224827, 178, 91, 0.0 },
+  { 120.46153407385378, 178, 92, 0.0 },
+  { 120.38328187695402, 178, 93, 0.0 },
+  { 120.28263835117440, 178, 94, 0.0 },
+  { 120.15957825841713, 178, 95, 0.0 },
+  { 120.01407067474588, 178, 96, 0.0 },
+  { 119.84607894350677, 178, 97, 0.0 },
+  { 119.65556061950866, 178, 98, 0.0 },
+  { 119.44246740404793, 178, 99, 0.0 },
+  { 119.20674507052689, 178, 100, 0.0 },
+  { 118.94833338037517, 178, 101, 0.0 },
+  { 118.66716598894459, 178, 102, 0.0 },
+  { 118.36317034100125, 178, 103, 0.0 },
+  { 118.03626755539625, 178, 104, 0.0 },
+  { 117.68637229844285, 178, 105, 0.0 },
+  { 117.31339264547921, 178, 106, 0.0 },
+  { 116.91722993003327, 178, 107, 0.0 },
+  { 116.49777857995042, 178, 108, 0.0 },
+  { 116.05492593977061, 178, 109, 0.0 },
+  { 115.58855207857550, 178, 110, 0.0 },
+  { 115.09852958243926, 178, 111, 0.0 },
+  { 114.58472333053510, 178, 112, 0.0 },
+  { 114.04699025384923, 178, 113, 0.0 },
+  { 113.48517907535040, 178, 114, 0.0 },
+  { 112.89913003034684, 178, 115, 0.0 },
+  { 112.28867456563199, 178, 116, 0.0 },
+  { 111.65363501587933, 178, 117, 0.0 },
+  { 110.99382425558696, 178, 118, 0.0 },
+  { 110.30904532469754, 178, 119, 0.0 },
+  { 109.59909102582122, 178, 120, 0.0 },
+  { 108.86374349077084, 178, 121, 0.0 },
+  { 108.10277371387212, 178, 122, 0.0 },
+  { 107.31594104923494, 178, 123, 0.0 },
+  { 106.50299266886236, 178, 124, 0.0 },
+  { 105.66366297812431, 178, 125, 0.0 },
+  { 104.79767298472490, 178, 126, 0.0 },
+  { 103.90472961684782, 178, 127, 0.0 },
+  { 102.98452498565251, 178, 128, 0.0 },
+  { 102.03673558671892, 178, 129, 0.0 },
+  { 101.06102143437403, 178, 130, 0.0 },
+  { 100.05702512208074, 178, 131, 0.0 },
+  { 99.024370801204441, 178, 132, 0.0 },
+  { 97.962663069471773, 178, 133, 0.0 },
+  { 96.871485759291204, 178, 134, 0.0 },
+  { 95.750400614771024, 178, 135, 0.0 },
+  { 94.598945844728519, 178, 136, 0.0 },
+  { 93.416634537183768, 178, 137, 0.0 },
+  { 92.202952918730944, 178, 138, 0.0 },
+  { 90.957358439714199, 178, 139, 0.0 },
+  { 89.679277663234529, 178, 140, 0.0 },
+  { 88.368103932582699, 178, 141, 0.0 },
+  { 87.023194787625584, 178, 142, 0.0 },
+  { 85.643869095821856, 178, 143, 0.0 },
+  { 84.229403857735292, 178, 144, 0.0 },
+  { 82.779030639930852, 178, 145, 0.0 },
+  { 81.291931579689049, 178, 146, 0.0 },
+  { 79.767234895709976, 178, 147, 0.0 },
+  { 78.204009826430934, 178, 148, 0.0 },
+  { 76.601260902147715, 178, 149, 0.0 },
+  { 74.957921438037943, 178, 150, 0.0 },
+  { 73.272846111398167, 178, 151, 0.0 },
+  { 71.544802456556226, 178, 152, 0.0 },
+  { 69.772461073185355, 178, 153, 0.0 },
+  { 67.954384295639898, 178, 154, 0.0 },
+  { 66.089013009068594, 178, 155, 0.0 },
+  { 64.174651217748192, 178, 156, 0.0 },
+  { 62.209447865758193, 178, 157, 0.0 },
+  { 60.191375270454614, 178, 158, 0.0 },
+  { 58.118203341788444, 178, 159, 0.0 },
+  { 55.987468505721040, 178, 160, 0.0 },
+  { 53.796435898632694, 178, 161, 0.0 },
+  { 51.542052907456537, 178, 162, 0.0 },
+  { 49.220891428889558, 178, 163, 0.0 },
+  { 46.829075202167587, 178, 164, 0.0 },
+  { 44.362187057882352, 178, 165, 0.0 },
+  { 41.815148626987252, 178, 166, 0.0 },
+  { 39.182061464358412, 178, 167, 0.0 },
+  { 36.455992757753620, 178, 168, 0.0 },
+  { 33.628679135824655, 178, 169, 0.0 },
+  { 30.690105276110557, 178, 170, 0.0 },
+  { 27.627883261287707, 178, 171, 0.0 },
+  { 24.426298933529552, 178, 172, 0.0 },
+  { 21.064766808259833, 178, 173, 0.0 },
+  { 17.515149421479578, 178, 174, 0.0 },
+  { 13.736657808675886, 178, 175, 0.0 },
+  { 9.6647861023058113, 178, 176, 0.0 },
+  { 5.1817835502919252, 178, 177, 0.0 },
+  { 0.0000000000000000, 178, 178, 0.0 },
+};
+const double toler177 = 1.0000000000000005e-08;
+
+// Divergence at n=179 k=180 f=-inf f_GSL=-inf
+// Divergence at n=179 k=181 f=-inf f_GSL=-inf
+// Divergence at n=179 k=182 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=179 k=200 f=-inf f_GSL=-inf
+// Test data for n=179.
+// max(|f - f_GSL|): 1.3596164194495941e-09
+// max(|f - f_GSL| / |f_GSL|): 1.9325544167168434e-10
+// mean(f - f_GSL): 9.8946240830362813e-10
+// variance(f - f_GSL): 5.5000297849718432e-21
+// stddev(f - f_GSL): 7.4162185680923959e-11
+const testcase_lbincoef<double>
+data178[180] =
+{
+  { 0.0000000000000000, 179, 0, 0.0 },
+  { 5.1873858058409041, 179, 1, 0.0 },
+  { 9.6760221755729390, 179, 2, 0.0 },
+  { 13.753559619478551, 179, 3, 0.0 },
+  { 17.537749253396896, 179, 4, 0.0 },
+  { 21.093097314886336, 179, 5, 0.0 },
+  { 24.460393144872683, 179, 6, 0.0 },
+  { 27.667774590315162, 179, 7, 0.0 },
+  { 30.735827525448826, 179, 8, 0.0 },
+  { 33.680266504615247, 179, 9, 0.0 },
+  { 36.513479848671523, 179, 10, 0.0 },
+  { 39.245483290796074, 179, 11, 0.0 },
+  { 41.884540620411371, 179, 12, 0.0 },
+  { 44.437585075366655, 179, 13, 0.0 },
+  { 46.910515534107958, 179, 14, 0.0 },
+  { 49.308410806906295, 179, 15, 0.0 },
+  { 51.635688512490674, 179, 16, 0.0 },
+  { 53.896225369241165, 179, 17, 0.0 },
+  { 56.093449946577493, 179, 18, 0.0 },
+  { 58.230415332395523, 179, 19, 0.0 },
+  { 60.309856874075308, 179, 20, 0.0 },
+  { 62.334238638572060, 179, 21, 0.0 },
+  { 64.305791218240870, 179, 22, 0.0 },
+  { 66.226542807659939, 179, 23, 0.0 },
+  { 68.098344984561550, 179, 24, 0.0 },
+  { 69.922894276612624, 179, 25, 0.0 },
+  { 71.701750341004754, 179, 26, 0.0 },
+  { 73.436351396392752, 179, 27, 0.0 },
+  { 75.128027407063882, 179, 28, 0.0 },
+  { 76.778011413892386, 179, 29, 0.0 },
+  { 78.387449326326418, 179, 30, 0.0 },
+  { 79.957408427786731, 179, 31, 0.0 },
+  { 81.488884798751201, 179, 32, 0.0 },
+  { 82.982809824063452, 179, 33, 0.0 },
+  { 84.440055921155590, 179, 34, 0.0 },
+  { 85.861441602086757, 179, 35, 0.0 },
+  { 87.247735963206651, 179, 36, 0.0 },
+  { 88.599662680822235, 179, 37, 0.0 },
+  { 89.917903578697292, 179, 38, 0.0 },
+  { 91.203101822945769, 179, 39, 0.0 },
+  { 92.455864791441172, 179, 40, 0.0 },
+  { 93.676766657867461, 179, 41, 0.0 },
+  { 94.866350724741324, 179, 42, 0.0 },
+  { 96.025131534875868, 179, 43, 0.0 },
+  { 97.153596786693697, 179, 44, 0.0 },
+  { 98.252209075361748, 179, 45, 0.0 },
+  { 99.321407478823630, 179, 46, 0.0 },
+  { 100.36160900533525, 179, 47, 0.0 },
+  { 101.37320991701381, 179, 48, 0.0 },
+  { 102.35658694210423, 179, 49, 0.0 },
+  { 103.31209838713175, 179, 50, 0.0 },
+  { 104.24008515876909, 179, 51, 0.0 },
+  { 105.14087170410721, 179, 52, 0.0 },
+  { 106.01476687701376, 179, 53, 0.0 },
+  { 106.86206473740094, 179, 54, 0.0 },
+  { 107.68304528947078, 179, 55, 0.0 },
+  { 108.47797516434065, 179, 56, 0.0 },
+  { 109.24710825187844, 179, 57, 0.0 },
+  { 109.99068628606540, 179, 58, 0.0 },
+  { 110.70893938775640, 179, 59, 0.0 },
+  { 111.40208656831635, 179, 60, 0.0 },
+  { 112.07033619725456, 179, 61, 0.0 },
+  { 112.71388643667512, 179, 62, 0.0 },
+  { 113.33292564508139, 179, 63, 0.0 },
+  { 113.92763275282806, 179, 64, 0.0 },
+  { 114.49817761129566, 179, 65, 0.0 },
+  { 115.04472131766363, 179, 66, 0.0 },
+  { 115.56741651698508, 179, 67, 0.0 },
+  { 116.06640768310410, 179, 68, 0.0 },
+  { 116.54183137981909, 179, 69, 0.0 },
+  { 116.99381650356219, 179, 70, 0.0 },
+  { 117.42248450874996, 179, 71, 0.0 },
+  { 117.82794961685818, 179, 72, 0.0 },
+  { 118.21031901017170, 179, 73, 0.0 },
+  { 118.56969301107961, 179, 74, 0.0 },
+  { 118.90616524770081, 179, 75, 0.0 },
+  { 119.21982280655584, 179, 76, 0.0 },
+  { 119.51074637293181, 179, 77, 0.0 },
+  { 119.77901035952652, 179, 78, 0.0 },
+  { 120.02468302390076, 179, 79, 0.0 },
+  { 120.24782657521496, 179, 80, 0.0 },
+  { 120.44849727067714, 179, 81, 0.0 },
+  { 120.62674550208339, 179, 82, 0.0 },
+  { 120.78261587279019, 179, 83, 0.0 },
+  { 120.91614726541474, 179, 84, 0.0 },
+  { 121.02737290052494, 179, 85, 0.0 },
+  { 121.11632038654142, 179, 86, 0.0 },
+  { 121.18301176104012, 179, 87, 0.0 },
+  { 121.22746352361099, 179, 88, 0.0 },
+  { 121.24968666039570, 179, 89, 0.0 },
+  { 121.24968666039570, 179, 90, 0.0 },
+  { 121.22746352361099, 179, 91, 0.0 },
+  { 121.18301176104012, 179, 92, 0.0 },
+  { 121.11632038654142, 179, 93, 0.0 },
+  { 121.02737290052494, 179, 94, 0.0 },
+  { 120.91614726541474, 179, 95, 0.0 },
+  { 120.78261587279019, 179, 96, 0.0 },
+  { 120.62674550208339, 179, 97, 0.0 },
+  { 120.44849727067714, 179, 98, 0.0 },
+  { 120.24782657521496, 179, 99, 0.0 },
+  { 120.02468302390076, 179, 100, 0.0 },
+  { 119.77901035952652, 179, 101, 0.0 },
+  { 119.51074637293181, 179, 102, 0.0 },
+  { 119.21982280655584, 179, 103, 0.0 },
+  { 118.90616524770081, 179, 104, 0.0 },
+  { 118.56969301107961, 179, 105, 0.0 },
+  { 118.21031901017170, 179, 106, 0.0 },
+  { 117.82794961685818, 179, 107, 0.0 },
+  { 117.42248450874996, 179, 108, 0.0 },
+  { 116.99381650356219, 179, 109, 0.0 },
+  { 116.54183137981909, 179, 110, 0.0 },
+  { 116.06640768310410, 179, 111, 0.0 },
+  { 115.56741651698508, 179, 112, 0.0 },
+  { 115.04472131766363, 179, 113, 0.0 },
+  { 114.49817761129566, 179, 114, 0.0 },
+  { 113.92763275282806, 179, 115, 0.0 },
+  { 113.33292564508139, 179, 116, 0.0 },
+  { 112.71388643667512, 179, 117, 0.0 },
+  { 112.07033619725456, 179, 118, 0.0 },
+  { 111.40208656831635, 179, 119, 0.0 },
+  { 110.70893938775640, 179, 120, 0.0 },
+  { 109.99068628606540, 179, 121, 0.0 },
+  { 109.24710825187844, 179, 122, 0.0 },
+  { 108.47797516434065, 179, 123, 0.0 },
+  { 107.68304528947078, 179, 124, 0.0 },
+  { 106.86206473740094, 179, 125, 0.0 },
+  { 106.01476687701376, 179, 126, 0.0 },
+  { 105.14087170410721, 179, 127, 0.0 },
+  { 104.24008515876909, 179, 128, 0.0 },
+  { 103.31209838713175, 179, 129, 0.0 },
+  { 102.35658694210423, 179, 130, 0.0 },
+  { 101.37320991701381, 179, 131, 0.0 },
+  { 100.36160900533525, 179, 132, 0.0 },
+  { 99.321407478823630, 179, 133, 0.0 },
+  { 98.252209075361748, 179, 134, 0.0 },
+  { 97.153596786693697, 179, 135, 0.0 },
+  { 96.025131534875868, 179, 136, 0.0 },
+  { 94.866350724741324, 179, 137, 0.0 },
+  { 93.676766657867461, 179, 138, 0.0 },
+  { 92.455864791441172, 179, 139, 0.0 },
+  { 91.203101822945769, 179, 140, 0.0 },
+  { 89.917903578697292, 179, 141, 0.0 },
+  { 88.599662680822235, 179, 142, 0.0 },
+  { 87.247735963206651, 179, 143, 0.0 },
+  { 85.861441602086757, 179, 144, 0.0 },
+  { 84.440055921155590, 179, 145, 0.0 },
+  { 82.982809824063452, 179, 146, 0.0 },
+  { 81.488884798751201, 179, 147, 0.0 },
+  { 79.957408427786731, 179, 148, 0.0 },
+  { 78.387449326326418, 179, 149, 0.0 },
+  { 76.778011413892386, 179, 150, 0.0 },
+  { 75.128027407063882, 179, 151, 0.0 },
+  { 73.436351396392752, 179, 152, 0.0 },
+  { 71.701750341004754, 179, 153, 0.0 },
+  { 69.922894276612624, 179, 154, 0.0 },
+  { 68.098344984561550, 179, 155, 0.0 },
+  { 66.226542807659939, 179, 156, 0.0 },
+  { 64.305791218240870, 179, 157, 0.0 },
+  { 62.334238638572060, 179, 158, 0.0 },
+  { 60.309856874075308, 179, 159, 0.0 },
+  { 58.230415332395523, 179, 160, 0.0 },
+  { 56.093449946577493, 179, 161, 0.0 },
+  { 53.896225369241165, 179, 162, 0.0 },
+  { 51.635688512490674, 179, 163, 0.0 },
+  { 49.308410806906295, 179, 164, 0.0 },
+  { 46.910515534107958, 179, 165, 0.0 },
+  { 44.437585075366655, 179, 166, 0.0 },
+  { 41.884540620411371, 179, 167, 0.0 },
+  { 39.245483290796074, 179, 168, 0.0 },
+  { 36.513479848671523, 179, 169, 0.0 },
+  { 33.680266504615247, 179, 170, 0.0 },
+  { 30.735827525448826, 179, 171, 0.0 },
+  { 27.667774590315162, 179, 172, 0.0 },
+  { 24.460393144872683, 179, 173, 0.0 },
+  { 21.093097314886336, 179, 174, 0.0 },
+  { 17.537749253396896, 179, 175, 0.0 },
+  { 13.753559619478551, 179, 176, 0.0 },
+  { 9.6760221755729390, 179, 177, 0.0 },
+  { 5.1873858058409041, 179, 178, 0.0 },
+  { 0.0000000000000000, 179, 179, 0.0 },
+};
+const double toler178 = 1.0000000000000005e-08;
+
+// Divergence at n=180 k=181 f=-inf f_GSL=-inf
+// Divergence at n=180 k=182 f=-inf f_GSL=-inf
+// Divergence at n=180 k=183 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=180 k=200 f=-inf f_GSL=-inf
+// Test data for n=180.
+// max(|f - f_GSL|): 8.9177731865675014e-10
+// max(|f - f_GSL| / |f_GSL|): 9.0089713586835174e-11
+// mean(f - f_GSL): 5.1563174601787927e-10
+// variance(f - f_GSL): 1.4852954829556131e-21
+// stddev(f - f_GSL): 3.8539531431448578e-11
+const testcase_lbincoef<double>
+data179[181] =
+{
+  { 0.0000000000000000, 180, 0, 0.0 },
+  { 5.1929568508901411, 180, 1, 0.0 },
+  { 9.6871954761711550, 180, 2, 0.0 },
+  { 13.770366737794916, 180, 3, 0.0 },
+  { 17.560222109248798, 180, 4, 0.0 },
+  { 21.121268191852892, 180, 5, 0.0 },
+  { 24.494294696548423, 180, 6, 0.0 },
+  { 27.707439846707530, 180, 7, 0.0 },
+  { 30.781289899525518, 180, 8, 0.0 },
+  { 33.731559799002753, 180, 9, 0.0 },
+  { 36.570638262511352, 180, 10, 0.0 },
+  { 39.308541426763213, 180, 11, 0.0 },
+  { 41.953533491898270, 180, 12, 0.0 },
+  { 44.512548113840012, 180, 13, 0.0 },
+  { 46.991484596641499, 180, 14, 0.0 },
+  { 49.395422183895903, 180, 15, 0.0 },
+  { 51.728778935556647, 180, 16, 0.0 },
+  { 53.995432019324539, 180, 17, 0.0 },
+  { 56.198810462235201, 180, 18, 0.0 },
+  { 58.341967818301214, 180, 19, 0.0 },
+  { 60.427639909731624, 180, 20, 0.0 },
+  { 62.458291287241991, 180, 21, 0.0 },
+  { 64.436153036103974, 180, 22, 0.0 },
+  { 66.363253853201854, 180, 23, 0.0 },
+  { 68.241445828202131, 180, 24, 0.0 },
+  { 70.072426010583513, 180, 25, 0.0 },
+  { 71.857754589481260, 180, 26, 0.0 },
+  { 73.598870325890516, 180, 27, 0.0 },
+  { 75.297103737107705, 180, 28, 0.0 },
+  { 76.953688427967563, 180, 29, 0.0 },
+  { 78.569770883120327, 180, 30, 0.0 },
+  { 80.146418972731453, 180, 31, 0.0 },
+  { 81.684629375877194, 180, 32, 0.0 },
+  { 83.185334088174841, 180, 33, 0.0 },
+  { 84.649406150337427, 180, 34, 0.0 },
+  { 86.077664710556292, 180, 35, 0.0 },
+  { 87.470879514520789, 180, 36, 0.0 },
+  { 88.829774901452538, 180, 37, 0.0 },
+  { 90.155033371986065, 180, 38, 0.0 },
+  { 91.447298783457768, 180, 39, 0.0 },
+  { 92.707179219721979, 180, 40, 0.0 },
+  { 93.935249575626926, 180, 41, 0.0 },
+  { 95.132053890474253, 180, 42, 0.0 },
+  { 96.298107459937910, 180, 43, 0.0 },
+  { 97.433898751847778, 180, 44, 0.0 },
+  { 98.539891147813478, 180, 45, 0.0 },
+  { 99.616524529762842, 180, 46, 0.0 },
+  { 100.66421672800368, 180, 47, 0.0 },
+  { 101.68336484531756, 180, 48, 0.0 },
+  { 102.67434646979325, 180, 49, 0.0 },
+  { 103.63752078756630, 180, 50, 0.0 },
+  { 104.57322960529757, 180, 51, 0.0 },
+  { 105.48179829107772, 180, 52, 0.0 },
+  { 106.36353664144531, 180, 53, 0.0 },
+  { 107.21873968133963, 180, 54, 0.0 },
+  { 108.04768840305860, 180, 55, 0.0 },
+  { 108.85065044962573, 180, 56, 0.0 },
+  { 109.62788074739620, 180, 57, 0.0 },
+  { 110.37962209222223, 180, 58, 0.0 },
+  { 111.10610569304981, 180, 59, 0.0 },
+  { 111.80755167642445, 180, 60, 0.0 },
+  { 112.48416955503319, 180, 61, 0.0 },
+  { 113.13615866309959, 180, 62, 0.0 },
+  { 113.76370856117376, 180, 63, 0.0 },
+  { 114.36699941261185, 180, 64, 0.0 },
+  { 114.94620233382255, 180, 65, 0.0 },
+  { 115.50147972015930, 180, 66, 0.0 },
+  { 116.03298554916285, 180, 67, 0.0 },
+  { 116.54086566269916, 180, 68, 0.0 },
+  { 117.02525802939692, 180, 69, 0.0 },
+  { 117.48629298865990, 180, 70, 0.0 },
+  { 117.92409347741096, 180, 71, 0.0 },
+  { 118.33877524062410, 180, 72, 0.0 },
+  { 118.73044702659990, 180, 73, 0.0 },
+  { 119.09921076785770, 180, 74, 0.0 },
+  { 119.44516174843341, 180, 75, 0.0 },
+  { 119.76838875830464, 180, 76, 0.0 },
+  { 120.06897423559229, 180, 77, 0.0 },
+  { 120.34699439713239, 180, 78, 0.0 },
+  { 120.60251935794963, 180, 79, 0.0 },
+  { 120.83561324011703, 180, 80, 0.0 },
+  { 121.04633427143267, 180, 81, 0.0 },
+  { 121.23473487430300, 180, 82, 0.0 },
+  { 121.40086174517694, 180, 83, 0.0 },
+  { 121.54475592483703, 180, 84, 0.0 },
+  { 121.66645285981451, 180, 85, 0.0 },
+  { 121.76598245516158, 180, 86, 0.0 },
+  { 121.84336911877699, 180, 87, 0.0 },
+  { 121.89863179745208, 180, 88, 0.0 },
+  { 121.93178400476899, 180, 89, 0.0 },
+  { 121.94283384095559, 180, 90, 0.0 },
+  { 121.93178400476899, 180, 91, 0.0 },
+  { 121.89863179745208, 180, 92, 0.0 },
+  { 121.84336911877699, 180, 93, 0.0 },
+  { 121.76598245516158, 180, 94, 0.0 },
+  { 121.66645285981451, 180, 95, 0.0 },
+  { 121.54475592483703, 180, 96, 0.0 },
+  { 121.40086174517694, 180, 97, 0.0 },
+  { 121.23473487430300, 180, 98, 0.0 },
+  { 121.04633427143267, 180, 99, 0.0 },
+  { 120.83561324011703, 180, 100, 0.0 },
+  { 120.60251935794963, 180, 101, 0.0 },
+  { 120.34699439713239, 180, 102, 0.0 },
+  { 120.06897423559229, 180, 103, 0.0 },
+  { 119.76838875830464, 180, 104, 0.0 },
+  { 119.44516174843341, 180, 105, 0.0 },
+  { 119.09921076785770, 180, 106, 0.0 },
+  { 118.73044702659990, 180, 107, 0.0 },
+  { 118.33877524062410, 180, 108, 0.0 },
+  { 117.92409347741096, 180, 109, 0.0 },
+  { 117.48629298865990, 180, 110, 0.0 },
+  { 117.02525802939692, 180, 111, 0.0 },
+  { 116.54086566269916, 180, 112, 0.0 },
+  { 116.03298554916285, 180, 113, 0.0 },
+  { 115.50147972015930, 180, 114, 0.0 },
+  { 114.94620233382255, 180, 115, 0.0 },
+  { 114.36699941261185, 180, 116, 0.0 },
+  { 113.76370856117376, 180, 117, 0.0 },
+  { 113.13615866309959, 180, 118, 0.0 },
+  { 112.48416955503319, 180, 119, 0.0 },
+  { 111.80755167642445, 180, 120, 0.0 },
+  { 111.10610569304981, 180, 121, 0.0 },
+  { 110.37962209222223, 180, 122, 0.0 },
+  { 109.62788074739620, 180, 123, 0.0 },
+  { 108.85065044962573, 180, 124, 0.0 },
+  { 108.04768840305860, 180, 125, 0.0 },
+  { 107.21873968133963, 180, 126, 0.0 },
+  { 106.36353664144531, 180, 127, 0.0 },
+  { 105.48179829107772, 180, 128, 0.0 },
+  { 104.57322960529757, 180, 129, 0.0 },
+  { 103.63752078756630, 180, 130, 0.0 },
+  { 102.67434646979325, 180, 131, 0.0 },
+  { 101.68336484531756, 180, 132, 0.0 },
+  { 100.66421672800368, 180, 133, 0.0 },
+  { 99.616524529762842, 180, 134, 0.0 },
+  { 98.539891147813478, 180, 135, 0.0 },
+  { 97.433898751847778, 180, 136, 0.0 },
+  { 96.298107459937910, 180, 137, 0.0 },
+  { 95.132053890474253, 180, 138, 0.0 },
+  { 93.935249575626926, 180, 139, 0.0 },
+  { 92.707179219721979, 180, 140, 0.0 },
+  { 91.447298783457768, 180, 141, 0.0 },
+  { 90.155033371986065, 180, 142, 0.0 },
+  { 88.829774901452538, 180, 143, 0.0 },
+  { 87.470879514520789, 180, 144, 0.0 },
+  { 86.077664710556292, 180, 145, 0.0 },
+  { 84.649406150337427, 180, 146, 0.0 },
+  { 83.185334088174841, 180, 147, 0.0 },
+  { 81.684629375877194, 180, 148, 0.0 },
+  { 80.146418972731453, 180, 149, 0.0 },
+  { 78.569770883120327, 180, 150, 0.0 },
+  { 76.953688427967563, 180, 151, 0.0 },
+  { 75.297103737107705, 180, 152, 0.0 },
+  { 73.598870325890516, 180, 153, 0.0 },
+  { 71.857754589481260, 180, 154, 0.0 },
+  { 70.072426010583513, 180, 155, 0.0 },
+  { 68.241445828202131, 180, 156, 0.0 },
+  { 66.363253853201854, 180, 157, 0.0 },
+  { 64.436153036103974, 180, 158, 0.0 },
+  { 62.458291287241991, 180, 159, 0.0 },
+  { 60.427639909731624, 180, 160, 0.0 },
+  { 58.341967818301214, 180, 161, 0.0 },
+  { 56.198810462235201, 180, 162, 0.0 },
+  { 53.995432019324539, 180, 163, 0.0 },
+  { 51.728778935556647, 180, 164, 0.0 },
+  { 49.395422183895903, 180, 165, 0.0 },
+  { 46.991484596641499, 180, 166, 0.0 },
+  { 44.512548113840012, 180, 167, 0.0 },
+  { 41.953533491898270, 180, 168, 0.0 },
+  { 39.308541426763213, 180, 169, 0.0 },
+  { 36.570638262511352, 180, 170, 0.0 },
+  { 33.731559799002753, 180, 171, 0.0 },
+  { 30.781289899525518, 180, 172, 0.0 },
+  { 27.707439846707530, 180, 173, 0.0 },
+  { 24.494294696548423, 180, 174, 0.0 },
+  { 21.121268191852892, 180, 175, 0.0 },
+  { 17.560222109248798, 180, 176, 0.0 },
+  { 13.770366737794916, 180, 177, 0.0 },
+  { 9.6871954761711550, 180, 178, 0.0 },
+  { 5.1929568508901411, 180, 179, 0.0 },
+  { 0.0000000000000000, 180, 180, 0.0 },
+};
+const double toler179 = 5.0000000000000026e-09;
+
+// Divergence at n=181 k=182 f=-inf f_GSL=-inf
+// Divergence at n=181 k=183 f=-inf f_GSL=-inf
+// Divergence at n=181 k=184 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=181 k=200 f=-inf f_GSL=-inf
+// Test data for n=181.
+// max(|f - f_GSL|): 1.8127366274711676e-09
+// max(|f - f_GSL| / |f_GSL|): 1.7716218107727989e-10
+// mean(f - f_GSL): 1.4205449027094852e-09
+// variance(f - f_GSL): 1.1210479025418329e-20
+// stddev(f - f_GSL): 1.0587954960906440e-10
+const testcase_lbincoef<double>
+data180[182] =
+{
+  { 0.0000000000000000, 181, 0, 0.0 },
+  { 5.1984970312657879, 181, 1, 0.0 },
+  { 9.6983067015960387, 181, 2, 0.0 },
+  { 13.787080218768779, 181, 3, 0.0 },
+  { 17.582569407940809, 181, 4, 0.0 },
+  { 21.149281228080440, 181, 5, 0.0 },
+  { 24.528005753890625, 181, 6, 0.0 },
+  { 27.746881578758916, 181, 7, 0.0 },
+  { 30.826495336293533, 181, 8, 0.0 },
+  { 33.782562353455091, 181, 9, 0.0 },
+  { 36.627471737274504, 181, 10, 0.0 },
+  { 39.371240020978689, 181, 11, 0.0 },
+  { 42.022131808241056, 181, 12, 0.0 },
+  { 44.587081165702557, 181, 13, 0.0 },
+  { 47.071987815490502, 181, 14, 0.0 },
+  { 49.481931426805090, 181, 15, 0.0 },
+  { 51.821330492921902, 181, 16, 0.0 },
+  { 54.094062622766160, 181, 17, 0.0 },
+  { 56.303557292694222, 181, 18, 0.0 },
+  { 58.452868514334568, 181, 19, 0.0 },
+  { 60.544732576012962, 181, 20, 0.0 },
+  { 62.581614503273954, 181, 21, 0.0 },
+  { 64.565745865149552, 181, 22, 0.0 },
+  { 66.499155851440605, 181, 23, 0.0 },
+  { 68.383697054119693, 181, 24, 0.0 },
+  { 70.221067034599741, 181, 25, 0.0 },
+  { 72.012826503827796, 181, 26, 0.0 },
+  { 73.760414754742669, 181, 27, 0.0 },
+  { 75.465162846981116, 181, 28, 0.0 },
+  { 77.128304938387032, 181, 29, 0.0 },
+  { 78.750988077571151, 181, 30, 0.0 },
+  { 80.334280709901009, 181, 31, 0.0 },
+  { 81.879180101197562, 181, 32, 0.0 },
+  { 83.386618845676480, 181, 33, 0.0 },
+  { 84.857470594824463, 181, 34, 0.0 },
+  { 86.292555120113775, 181, 35, 0.0 },
+  { 87.692642803365970, 181, 36, 0.0 },
+  { 89.058458633142322, 181, 37, 0.0 },
+  { 90.390685772992015, 181, 38, 0.0 },
+  { 91.689968757122188, 181, 39, 0.0 },
+  { 92.956916360609625, 181, 40, 0.0 },
+  { 94.192104184283380, 181, 41, 0.0 },
+  { 95.396076988609366, 181, 42, 0.0 },
+  { 96.569350806046486, 181, 43, 0.0 },
+  { 97.712414857285466, 181, 44, 0.0 },
+  { 98.825733293343205, 181, 45, 0.0 },
+  { 99.909746782590219, 181, 46, 0.0 },
+  { 100.96487395931854, 181, 47, 0.0 },
+  { 101.99151274836163, 181, 48, 0.0 },
+  { 102.99004157847264, 181, 49, 0.0 },
+  { 103.96082049563097, 181, 50, 0.0 },
+  { 104.90419218610776, 181, 51, 0.0 },
+  { 105.82048291798185, 181, 52, 0.0 },
+  { 106.71000340879147, 181, 53, 0.0 },
+  { 107.57304962614683, 181, 54, 0.0 },
+  { 108.40990352737293, 181, 55, 0.0 },
+  { 109.22083374358920, 181, 56, 0.0 },
+  { 110.00609621305694, 181, 57, 0.0 },
+  { 110.76593476811564, 181, 58, 0.0 },
+  { 111.50058167958230, 181, 59, 0.0 },
+  { 112.21025816209351, 181, 60, 0.0 },
+  { 112.89517484351694, 181, 61, 0.0 },
+  { 113.55553220125387, 181, 62, 0.0 },
+  { 114.19152096797387, 181, 63, 0.0 },
+  { 114.80332250907986, 181, 64, 0.0 },
+  { 115.39110917398199, 181, 65, 0.0 },
+  { 115.95504462306184, 181, 66, 0.0 },
+  { 116.49528413203416, 181, 67, 0.0 },
+  { 117.01197487525258, 181, 68, 0.0 },
+  { 117.50525618936763, 181, 69, 0.0 },
+  { 117.97525981861338, 181, 70, 0.0 },
+  { 118.42211014288432, 181, 71, 0.0 },
+  { 118.84592438966075, 181, 72, 0.0 },
+  { 119.24681283074148, 181, 73, 0.0 },
+  { 119.62487896466155, 181, 74, 0.0 },
+  { 119.98021968558714, 181, 75, 0.0 },
+  { 120.31292543941288, 181, 76, 0.0 },
+  { 120.62308036771674, 181, 77, 0.0 },
+  { 120.91076244016853, 181, 78, 0.0 },
+  { 121.17604357593115, 181, 79, 0.0 },
+  { 121.41898975454154, 181, 80, 0.0 },
+  { 121.63966111671039, 181, 81, 0.0 },
+  { 121.83811205543418, 181, 82, 0.0 },
+  { 122.01439129777219, 181, 83, 0.0 },
+  { 122.16854197759943, 181, 84, 0.0 },
+  { 122.30060169961246, 181, 85, 0.0 },
+  { 122.41060259482680, 181, 86, 0.0 },
+  { 122.49857136777280, 181, 87, 0.0 },
+  { 122.56452933556460, 181, 88, 0.0 },
+  { 122.60849245898572, 181, 89, 0.0 },
+  { 122.63047136570452, 181, 90, 0.0 },
+  { 122.63047136570452, 181, 91, 0.0 },
+  { 122.60849245898572, 181, 92, 0.0 },
+  { 122.56452933556460, 181, 93, 0.0 },
+  { 122.49857136777280, 181, 94, 0.0 },
+  { 122.41060259482680, 181, 95, 0.0 },
+  { 122.30060169961246, 181, 96, 0.0 },
+  { 122.16854197759943, 181, 97, 0.0 },
+  { 122.01439129777219, 181, 98, 0.0 },
+  { 121.83811205543418, 181, 99, 0.0 },
+  { 121.63966111671039, 181, 100, 0.0 },
+  { 121.41898975454154, 181, 101, 0.0 },
+  { 121.17604357593115, 181, 102, 0.0 },
+  { 120.91076244016853, 181, 103, 0.0 },
+  { 120.62308036771674, 181, 104, 0.0 },
+  { 120.31292543941288, 181, 105, 0.0 },
+  { 119.98021968558714, 181, 106, 0.0 },
+  { 119.62487896466155, 181, 107, 0.0 },
+  { 119.24681283074148, 181, 108, 0.0 },
+  { 118.84592438966075, 181, 109, 0.0 },
+  { 118.42211014288432, 181, 110, 0.0 },
+  { 117.97525981861338, 181, 111, 0.0 },
+  { 117.50525618936763, 181, 112, 0.0 },
+  { 117.01197487525258, 181, 113, 0.0 },
+  { 116.49528413203416, 181, 114, 0.0 },
+  { 115.95504462306184, 181, 115, 0.0 },
+  { 115.39110917398199, 181, 116, 0.0 },
+  { 114.80332250907986, 181, 117, 0.0 },
+  { 114.19152096797387, 181, 118, 0.0 },
+  { 113.55553220125387, 181, 119, 0.0 },
+  { 112.89517484351694, 181, 120, 0.0 },
+  { 112.21025816209351, 181, 121, 0.0 },
+  { 111.50058167958230, 181, 122, 0.0 },
+  { 110.76593476811564, 181, 123, 0.0 },
+  { 110.00609621305694, 181, 124, 0.0 },
+  { 109.22083374358920, 181, 125, 0.0 },
+  { 108.40990352737293, 181, 126, 0.0 },
+  { 107.57304962614683, 181, 127, 0.0 },
+  { 106.71000340879147, 181, 128, 0.0 },
+  { 105.82048291798185, 181, 129, 0.0 },
+  { 104.90419218610776, 181, 130, 0.0 },
+  { 103.96082049563097, 181, 131, 0.0 },
+  { 102.99004157847264, 181, 132, 0.0 },
+  { 101.99151274836163, 181, 133, 0.0 },
+  { 100.96487395931854, 181, 134, 0.0 },
+  { 99.909746782590219, 181, 135, 0.0 },
+  { 98.825733293343205, 181, 136, 0.0 },
+  { 97.712414857285466, 181, 137, 0.0 },
+  { 96.569350806046486, 181, 138, 0.0 },
+  { 95.396076988609366, 181, 139, 0.0 },
+  { 94.192104184283380, 181, 140, 0.0 },
+  { 92.956916360609625, 181, 141, 0.0 },
+  { 91.689968757122188, 181, 142, 0.0 },
+  { 90.390685772992015, 181, 143, 0.0 },
+  { 89.058458633142322, 181, 144, 0.0 },
+  { 87.692642803365970, 181, 145, 0.0 },
+  { 86.292555120113775, 181, 146, 0.0 },
+  { 84.857470594824463, 181, 147, 0.0 },
+  { 83.386618845676480, 181, 148, 0.0 },
+  { 81.879180101197562, 181, 149, 0.0 },
+  { 80.334280709901009, 181, 150, 0.0 },
+  { 78.750988077571151, 181, 151, 0.0 },
+  { 77.128304938387032, 181, 152, 0.0 },
+  { 75.465162846981116, 181, 153, 0.0 },
+  { 73.760414754742669, 181, 154, 0.0 },
+  { 72.012826503827796, 181, 155, 0.0 },
+  { 70.221067034599741, 181, 156, 0.0 },
+  { 68.383697054119693, 181, 157, 0.0 },
+  { 66.499155851440605, 181, 158, 0.0 },
+  { 64.565745865149552, 181, 159, 0.0 },
+  { 62.581614503273954, 181, 160, 0.0 },
+  { 60.544732576012962, 181, 161, 0.0 },
+  { 58.452868514334568, 181, 162, 0.0 },
+  { 56.303557292694222, 181, 163, 0.0 },
+  { 54.094062622766160, 181, 164, 0.0 },
+  { 51.821330492921902, 181, 165, 0.0 },
+  { 49.481931426805090, 181, 166, 0.0 },
+  { 47.071987815490502, 181, 167, 0.0 },
+  { 44.587081165702557, 181, 168, 0.0 },
+  { 42.022131808241056, 181, 169, 0.0 },
+  { 39.371240020978689, 181, 170, 0.0 },
+  { 36.627471737274504, 181, 171, 0.0 },
+  { 33.782562353455091, 181, 172, 0.0 },
+  { 30.826495336293533, 181, 173, 0.0 },
+  { 27.746881578758916, 181, 174, 0.0 },
+  { 24.528005753890625, 181, 175, 0.0 },
+  { 21.149281228080440, 181, 176, 0.0 },
+  { 17.582569407940809, 181, 177, 0.0 },
+  { 13.787080218768779, 181, 178, 0.0 },
+  { 9.6983067015960387, 181, 179, 0.0 },
+  { 5.1984970312657879, 181, 180, 0.0 },
+  { 0.0000000000000000, 181, 181, 0.0 },
+};
+const double toler180 = 1.0000000000000005e-08;
+
+// Divergence at n=182 k=183 f=-inf f_GSL=-inf
+// Divergence at n=182 k=184 f=-inf f_GSL=-inf
+// Divergence at n=182 k=185 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=182 k=200 f=-inf f_GSL=-inf
+// Test data for n=182.
+// max(|f - f_GSL|): 1.4351826393976808e-09
+// max(|f - f_GSL| / |f_GSL|): 7.2552682753488366e-11
+// mean(f - f_GSL): 1.0312263490004129e-09
+// variance(f - f_GSL): 5.8751142454325554e-21
+// stddev(f - f_GSL): 7.6649293835185175e-11
+const testcase_lbincoef<double>
+data181[183] =
+{
+  { 0.0000000000000000, 182, 0, 0.0 },
+  { 5.2040066870769124, 182, 1, 0.0 },
+  { 9.7093565377828099, 182, 2, 0.0 },
+  { 13.803701100004787, 182, 3, 0.0 },
+  { 17.604792544725797, 182, 4, 0.0 },
+  { 21.177138182583576, 182, 5, 0.0 },
+  { 24.561528445929298, 182, 6, 0.0 },
+  { 27.786102291912243, 182, 7, 0.0 },
+  { 30.871446724156044, 182, 8, 0.0 },
+  { 33.833277446034231, 182, 9, 0.0 },
+  { 36.683983947537968, 182, 10, 0.0 },
+  { 39.433583151552966, 182, 11, 0.0 },
+  { 42.090340058267657, 182, 12, 0.0 },
+  { 44.661189137856468, 182, 13, 0.0 },
+  { 47.152030523164171, 182, 14, 0.0 },
+  { 49.567944301465218, 182, 15, 0.0 },
+  { 51.913349391642214, 182, 16, 0.0 },
+  { 54.192123835942539, 182, 17, 0.0 },
+  { 56.407697551946967, 182, 18, 0.0 },
+  { 58.563125000604714, 182, 19, 0.0 },
+  { 60.661142927857441, 182, 20, 0.0 },
+  { 62.704216825366416, 182, 21, 0.0 },
+  { 64.694578736992639, 182, 22, 0.0 },
+  { 66.634258336297307, 182, 23, 0.0 },
+  { 68.525108708169569, 182, 24, 0.0 },
+  { 70.368827916328428, 182, 25, 0.0 },
+  { 72.166977183655149, 182, 26, 0.0 },
+  { 73.920996324900329, 182, 27, 0.0 },
+  { 75.632216931644393, 182, 28, 0.0 },
+  { 77.301873704071568, 182, 29, 0.0 },
+  { 78.931114243801744, 182, 30, 0.0 },
+  { 80.521007560162957, 182, 31, 0.0 },
+  { 82.072551494178128, 182, 32, 0.0 },
+  { 83.586679226807973, 182, 33, 0.0 },
+  { 85.064265008137227, 182, 34, 0.0 },
+  { 86.506129220411935, 182, 35, 0.0 },
+  { 87.913042868734578, 182, 36, 0.0 },
+  { 89.285731577798629, 182, 37, 0.0 },
+  { 90.624879160492924, 182, 38, 0.0 },
+  { 91.931130813939262, 182, 39, 0.0 },
+  { 93.205095990085169, 182, 40, 0.0 },
+  { 94.447350980982151, 182, 41, 0.0 },
+  { 95.658441253076944, 182, 42, 0.0 },
+  { 96.838883559992723, 182, 43, 0.0 },
+  { 97.989167859205168, 182, 44, 0.0 },
+  { 99.109759054592018, 182, 45, 0.0 },
+  { 100.20109858393107, 182, 46, 0.0 },
+  { 101.26360586795704, 182, 47, 0.0 },
+  { 102.29767963548761, 182, 48, 0.0 },
+  { 103.30369913732784, 182, 49, 0.0 },
+  { 104.28202526012149, 182, 50, 0.0 },
+  { 105.23300154998356, 182, 51, 0.0 },
+  { 106.15695515460317, 182, 52, 0.0 },
+  { 107.05419769150672, 182, 53, 0.0 },
+  { 107.92502604930411, 182, 54, 0.0 },
+  { 108.76972312799126, 182, 55, 0.0 },
+  { 109.58855852371465, 182, 56, 0.0 },
+  { 110.38178916283164, 182, 57, 0.0 },
+  { 111.14965988958750, 182, 58, 0.0 },
+  { 111.89240401128683, 182, 59, 0.0 },
+  { 112.61024380443712, 182, 60, 0.0 },
+  { 113.30339098499712, 182, 61, 0.0 },
+  { 113.97204714554874, 182, 62, 0.0 },
+  { 114.61640416193927, 182, 63, 0.0 },
+  { 115.23664457169110, 182, 64, 0.0 },
+  { 115.83294192626113, 182, 65, 0.0 },
+  { 116.40546111903251, 182, 66, 0.0 },
+  { 116.95435869074782, 182, 67, 0.0 },
+  { 117.47978311393501, 182, 68, 0.0 },
+  { 117.98187505773217, 182, 69, 0.0 },
+  { 118.46076763439521, 182, 70, 0.0 },
+  { 118.91658662864904, 182, 71, 0.0 },
+  { 119.34945071094523, 182, 72, 0.0 },
+  { 119.75947163558925, 182, 73, 0.0 },
+  { 120.14675442461424, 182, 74, 0.0 },
+  { 120.51139753820212, 182, 75, 0.0 },
+  { 120.85349303237774, 182, 76, 0.0 },
+  { 121.17312670463610, 182, 77, 0.0 },
+  { 121.47037822810410, 182, 78, 0.0 },
+  { 121.74532127477841, 182, 79, 0.0 },
+  { 121.99802362833418, 182, 80, 0.0 },
+  { 122.22854728694602, 182, 81, 0.0 },
+  { 122.43694855652302, 182, 82, 0.0 },
+  { 122.62327813471450, 182, 83, 0.0 },
+  { 122.78758118600581, 182, 84, 0.0 },
+  { 122.92989740818598, 182, 85, 0.0 },
+  { 123.05026109043587, 182, 86, 0.0 },
+  { 123.14870116324914, 182, 87, 0.0 },
+  { 123.22524124037153, 182, 88, 0.0 },
+  { 123.27989965290936, 182, 89, 0.0 },
+  { 123.31268947573238, 182, 90, 0.0 },
+  { 123.32361854626458, 182, 91, 0.0 },
+  { 123.31268947573238, 182, 92, 0.0 },
+  { 123.27989965290936, 182, 93, 0.0 },
+  { 123.22524124037153, 182, 94, 0.0 },
+  { 123.14870116324914, 182, 95, 0.0 },
+  { 123.05026109043587, 182, 96, 0.0 },
+  { 122.92989740818598, 182, 97, 0.0 },
+  { 122.78758118600581, 182, 98, 0.0 },
+  { 122.62327813471450, 182, 99, 0.0 },
+  { 122.43694855652302, 182, 100, 0.0 },
+  { 122.22854728694602, 182, 101, 0.0 },
+  { 121.99802362833418, 182, 102, 0.0 },
+  { 121.74532127477841, 182, 103, 0.0 },
+  { 121.47037822810410, 182, 104, 0.0 },
+  { 121.17312670463610, 182, 105, 0.0 },
+  { 120.85349303237774, 182, 106, 0.0 },
+  { 120.51139753820212, 182, 107, 0.0 },
+  { 120.14675442461424, 182, 108, 0.0 },
+  { 119.75947163558925, 182, 109, 0.0 },
+  { 119.34945071094523, 182, 110, 0.0 },
+  { 118.91658662864904, 182, 111, 0.0 },
+  { 118.46076763439521, 182, 112, 0.0 },
+  { 117.98187505773217, 182, 113, 0.0 },
+  { 117.47978311393501, 182, 114, 0.0 },
+  { 116.95435869074782, 182, 115, 0.0 },
+  { 116.40546111903251, 182, 116, 0.0 },
+  { 115.83294192626113, 182, 117, 0.0 },
+  { 115.23664457169110, 182, 118, 0.0 },
+  { 114.61640416193927, 182, 119, 0.0 },
+  { 113.97204714554874, 182, 120, 0.0 },
+  { 113.30339098499712, 182, 121, 0.0 },
+  { 112.61024380443712, 182, 122, 0.0 },
+  { 111.89240401128683, 182, 123, 0.0 },
+  { 111.14965988958750, 182, 124, 0.0 },
+  { 110.38178916283164, 182, 125, 0.0 },
+  { 109.58855852371465, 182, 126, 0.0 },
+  { 108.76972312799126, 182, 127, 0.0 },
+  { 107.92502604930411, 182, 128, 0.0 },
+  { 107.05419769150672, 182, 129, 0.0 },
+  { 106.15695515460317, 182, 130, 0.0 },
+  { 105.23300154998356, 182, 131, 0.0 },
+  { 104.28202526012149, 182, 132, 0.0 },
+  { 103.30369913732784, 182, 133, 0.0 },
+  { 102.29767963548761, 182, 134, 0.0 },
+  { 101.26360586795704, 182, 135, 0.0 },
+  { 100.20109858393107, 182, 136, 0.0 },
+  { 99.109759054592018, 182, 137, 0.0 },
+  { 97.989167859205168, 182, 138, 0.0 },
+  { 96.838883559992723, 182, 139, 0.0 },
+  { 95.658441253076944, 182, 140, 0.0 },
+  { 94.447350980982151, 182, 141, 0.0 },
+  { 93.205095990085169, 182, 142, 0.0 },
+  { 91.931130813939262, 182, 143, 0.0 },
+  { 90.624879160492924, 182, 144, 0.0 },
+  { 89.285731577798629, 182, 145, 0.0 },
+  { 87.913042868734578, 182, 146, 0.0 },
+  { 86.506129220411935, 182, 147, 0.0 },
+  { 85.064265008137227, 182, 148, 0.0 },
+  { 83.586679226807973, 182, 149, 0.0 },
+  { 82.072551494178128, 182, 150, 0.0 },
+  { 80.521007560162957, 182, 151, 0.0 },
+  { 78.931114243801744, 182, 152, 0.0 },
+  { 77.301873704071568, 182, 153, 0.0 },
+  { 75.632216931644393, 182, 154, 0.0 },
+  { 73.920996324900329, 182, 155, 0.0 },
+  { 72.166977183655149, 182, 156, 0.0 },
+  { 70.368827916328428, 182, 157, 0.0 },
+  { 68.525108708169569, 182, 158, 0.0 },
+  { 66.634258336297307, 182, 159, 0.0 },
+  { 64.694578736992639, 182, 160, 0.0 },
+  { 62.704216825366416, 182, 161, 0.0 },
+  { 60.661142927857441, 182, 162, 0.0 },
+  { 58.563125000604714, 182, 163, 0.0 },
+  { 56.407697551946967, 182, 164, 0.0 },
+  { 54.192123835942539, 182, 165, 0.0 },
+  { 51.913349391642214, 182, 166, 0.0 },
+  { 49.567944301465218, 182, 167, 0.0 },
+  { 47.152030523164171, 182, 168, 0.0 },
+  { 44.661189137856468, 182, 169, 0.0 },
+  { 42.090340058267657, 182, 170, 0.0 },
+  { 39.433583151552966, 182, 171, 0.0 },
+  { 36.683983947537968, 182, 172, 0.0 },
+  { 33.833277446034231, 182, 173, 0.0 },
+  { 30.871446724156044, 182, 174, 0.0 },
+  { 27.786102291912243, 182, 175, 0.0 },
+  { 24.561528445929298, 182, 176, 0.0 },
+  { 21.177138182583576, 182, 177, 0.0 },
+  { 17.604792544725797, 182, 178, 0.0 },
+  { 13.803701100004787, 182, 179, 0.0 },
+  { 9.7093565377828099, 182, 180, 0.0 },
+  { 5.2040066870769124, 182, 181, 0.0 },
+  { 0.0000000000000000, 182, 182, 0.0 },
+};
+const double toler181 = 5.0000000000000026e-09;
+
+// Divergence at n=183 k=184 f=-inf f_GSL=-inf
+// Divergence at n=183 k=185 f=-inf f_GSL=-inf
+// Divergence at n=183 k=186 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=183 k=200 f=-inf f_GSL=-inf
+// Test data for n=183.
+// max(|f - f_GSL|): 1.0705889508244582e-09
+// max(|f - f_GSL| / |f_GSL|): 7.6361622260810294e-11
+// mean(f - f_GSL): 6.5896419721844302e-10
+// variance(f - f_GSL): 2.3858288283226574e-21
+// stddev(f - f_GSL): 4.8844946804379439e-11
+const testcase_lbincoef<double>
+data182[184] =
+{
+  { 0.0000000000000000, 183, 0, 0.0 },
+  { 5.2094861528413503, 183, 1, 0.0 },
+  { 9.7203456593583724, 183, 2, 0.0 },
+  { 13.820230401955996, 183, 3, 0.0 },
+  { 17.626892891726243, 183, 4, 0.0 },
+  { 21.204840785133001, 183, 5, 0.0 },
+  { 24.594864866196872, 183, 6, 0.0 },
+  { 27.825104449715354, 183, 7, 0.0 },
+  { 30.916146903073809, 183, 8, 0.0 },
+  { 33.883708299661180, 183, 9, 0.0 },
+  { 36.740178505881545, 183, 10, 0.0 },
+  { 39.495574827580867, 183, 11, 0.0 },
+  { 42.158162654606372, 183, 12, 0.0 },
+  { 44.734876853647506, 183, 13, 0.0 },
+  { 47.231617961082520, 183, 14, 0.0 },
+  { 49.653466474903325, 183, 15, 0.0 },
+  { 52.004841732066780, 183, 16, 0.0 },
+  { 54.289622200427289, 183, 17, 0.0 },
+  { 56.511238230887784, 183, 18, 0.0 },
+  { 58.672744725621897, 183, 19, 0.0 },
+  { 60.776878879892024, 183, 20, 0.0 },
+  { 62.826106642975333, 183, 21, 0.0 },
+  { 64.822660524849539, 183, 22, 0.0 },
+  { 66.768570673904833, 183, 23, 0.0 },
+  { 68.665690658790709, 183, 24, 0.0 },
+  { 70.515719036142741, 183, 25, 0.0 },
+  { 72.320217531148273, 183, 26, 0.0 },
+  { 74.080626470492120, 183, 27, 0.0 },
+  { 75.798277967566491, 183, 28, 0.0 },
+  { 77.474407254499283, 183, 29, 0.0 },
+  { 79.110162475250718, 183, 30, 0.0 },
+  { 80.706613192157988, 183, 31, 0.0 },
+  { 82.264757810204628, 183, 32, 0.0 },
+  { 83.785530085553091, 183, 33, 0.0 },
+  { 85.269804855033158, 183, 34, 0.0 },
+  { 86.718403099489137, 183, 35, 0.0 },
+  { 88.132096434797177, 183, 36, 0.0 },
+  { 89.511611108931675, 183, 37, 0.0 },
+  { 90.857631570913668, 183, 38, 0.0 },
+  { 92.170803667204609, 183, 39, 0.0 },
+  { 93.451737512666682, 183, 40, 0.0 },
+  { 94.701010076222133, 183, 41, 0.0 },
+  { 95.919167515540153, 183, 42, 0.0 },
+  { 97.106727290224740, 183, 43, 0.0 },
+  { 98.264180078915842, 183, 44, 0.0 },
+  { 99.391991522276157, 183, 45, 0.0 },
+  { 100.49060381094432, 183, 46, 0.0 },
+  { 101.56043713506233, 183, 47, 0.0 },
+  { 102.60189100989055, 183, 48, 0.0 },
+  { 103.61534549021826, 183, 49, 0.0 },
+  { 104.60116228474112, 183, 50, 0.0 },
+  { 105.55968578023851, 183, 51, 0.0 },
+  { 106.49124398424340, 183, 52, 0.0 },
+  { 107.39614939389247, 183, 53, 0.0 },
+  { 108.27469979778380, 183, 54, 0.0 },
+  { 109.12717901691298, 183, 55, 0.0 },
+  { 109.95385759009741, 183, 56, 0.0 },
+  { 110.75499340872142, 183, 57, 0.0 },
+  { 111.53083230512652, 183, 58, 0.0 },
+  { 112.28160859852312, 183, 59, 0.0 },
+  { 113.00754560190609, 183, 60, 0.0 },
+  { 113.70885609310517, 183, 61, 0.0 },
+  { 114.38574275279336, 183, 62, 0.0 },
+  { 115.03839857199858, 183, 63, 0.0 },
+  { 115.66700723142094, 183, 64, 0.0 },
+  { 116.27174345463681, 183, 65, 0.0 },
+  { 116.85277333707597, 183, 66, 0.0 },
+  { 117.41025465248282, 183, 67, 0.0 },
+  { 117.94433713841312, 183, 68, 0.0 },
+  { 118.45516276217904, 183, 69, 0.0 },
+  { 118.94286596852419, 183, 70, 0.0 },
+  { 119.40757391019520, 183, 71, 0.0 },
+  { 119.84940666247428, 183, 72, 0.0 },
+  { 120.26847742263817, 183, 73, 0.0 },
+  { 120.66489269522646, 183, 74, 0.0 },
+  { 121.03875246391925, 183, 75, 0.0 },
+  { 121.39015035075715, 183, 76, 0.0 },
+  { 121.71917376336535, 183, 77, 0.0 },
+  { 122.02590403078790, 183, 78, 0.0 },
+  { 122.31041652847841, 183, 79, 0.0 },
+  { 122.57278079294588, 183, 80, 0.0 },
+  { 122.81306062650310, 183, 81, 0.0 },
+  { 123.03131419252310, 183, 82, 0.0 },
+  { 123.22759410156777, 183, 83, 0.0 },
+  { 123.40194748871255, 183, 84, 0.0 },
+  { 123.55441608235679, 183, 85, 0.0 },
+  { 123.68503626477383, 183, 86, 0.0 },
+  { 123.79383912462265, 183, 87, 0.0 },
+  { 123.88085050161231, 183, 88, 0.0 },
+  { 123.94609102348073, 183, 89, 0.0 },
+  { 123.98957613542046, 183, 90, 0.0 },
+  { 124.01131612205688, 183, 91, 0.0 },
+  { 124.01131612205688, 183, 92, 0.0 },
+  { 123.98957613542046, 183, 93, 0.0 },
+  { 123.94609102348073, 183, 94, 0.0 },
+  { 123.88085050161231, 183, 95, 0.0 },
+  { 123.79383912462265, 183, 96, 0.0 },
+  { 123.68503626477383, 183, 97, 0.0 },
+  { 123.55441608235679, 183, 98, 0.0 },
+  { 123.40194748871255, 183, 99, 0.0 },
+  { 123.22759410156777, 183, 100, 0.0 },
+  { 123.03131419252310, 183, 101, 0.0 },
+  { 122.81306062650310, 183, 102, 0.0 },
+  { 122.57278079294588, 183, 103, 0.0 },
+  { 122.31041652847841, 183, 104, 0.0 },
+  { 122.02590403078790, 183, 105, 0.0 },
+  { 121.71917376336535, 183, 106, 0.0 },
+  { 121.39015035075715, 183, 107, 0.0 },
+  { 121.03875246391925, 183, 108, 0.0 },
+  { 120.66489269522646, 183, 109, 0.0 },
+  { 120.26847742263817, 183, 110, 0.0 },
+  { 119.84940666247428, 183, 111, 0.0 },
+  { 119.40757391019520, 183, 112, 0.0 },
+  { 118.94286596852419, 183, 113, 0.0 },
+  { 118.45516276217904, 183, 114, 0.0 },
+  { 117.94433713841312, 183, 115, 0.0 },
+  { 117.41025465248282, 183, 116, 0.0 },
+  { 116.85277333707597, 183, 117, 0.0 },
+  { 116.27174345463681, 183, 118, 0.0 },
+  { 115.66700723142094, 183, 119, 0.0 },
+  { 115.03839857199858, 183, 120, 0.0 },
+  { 114.38574275279336, 183, 121, 0.0 },
+  { 113.70885609310517, 183, 122, 0.0 },
+  { 113.00754560190609, 183, 123, 0.0 },
+  { 112.28160859852312, 183, 124, 0.0 },
+  { 111.53083230512652, 183, 125, 0.0 },
+  { 110.75499340872142, 183, 126, 0.0 },
+  { 109.95385759009741, 183, 127, 0.0 },
+  { 109.12717901691298, 183, 128, 0.0 },
+  { 108.27469979778380, 183, 129, 0.0 },
+  { 107.39614939389247, 183, 130, 0.0 },
+  { 106.49124398424340, 183, 131, 0.0 },
+  { 105.55968578023851, 183, 132, 0.0 },
+  { 104.60116228474112, 183, 133, 0.0 },
+  { 103.61534549021826, 183, 134, 0.0 },
+  { 102.60189100989055, 183, 135, 0.0 },
+  { 101.56043713506233, 183, 136, 0.0 },
+  { 100.49060381094432, 183, 137, 0.0 },
+  { 99.391991522276157, 183, 138, 0.0 },
+  { 98.264180078915842, 183, 139, 0.0 },
+  { 97.106727290224740, 183, 140, 0.0 },
+  { 95.919167515540153, 183, 141, 0.0 },
+  { 94.701010076222133, 183, 142, 0.0 },
+  { 93.451737512666682, 183, 143, 0.0 },
+  { 92.170803667204609, 183, 144, 0.0 },
+  { 90.857631570913668, 183, 145, 0.0 },
+  { 89.511611108931675, 183, 146, 0.0 },
+  { 88.132096434797177, 183, 147, 0.0 },
+  { 86.718403099489137, 183, 148, 0.0 },
+  { 85.269804855033158, 183, 149, 0.0 },
+  { 83.785530085553091, 183, 150, 0.0 },
+  { 82.264757810204628, 183, 151, 0.0 },
+  { 80.706613192157988, 183, 152, 0.0 },
+  { 79.110162475250718, 183, 153, 0.0 },
+  { 77.474407254499283, 183, 154, 0.0 },
+  { 75.798277967566491, 183, 155, 0.0 },
+  { 74.080626470492120, 183, 156, 0.0 },
+  { 72.320217531148273, 183, 157, 0.0 },
+  { 70.515719036142741, 183, 158, 0.0 },
+  { 68.665690658790709, 183, 159, 0.0 },
+  { 66.768570673904833, 183, 160, 0.0 },
+  { 64.822660524849539, 183, 161, 0.0 },
+  { 62.826106642975333, 183, 162, 0.0 },
+  { 60.776878879892024, 183, 163, 0.0 },
+  { 58.672744725621897, 183, 164, 0.0 },
+  { 56.511238230887784, 183, 165, 0.0 },
+  { 54.289622200427289, 183, 166, 0.0 },
+  { 52.004841732066780, 183, 167, 0.0 },
+  { 49.653466474903325, 183, 168, 0.0 },
+  { 47.231617961082520, 183, 169, 0.0 },
+  { 44.734876853647506, 183, 170, 0.0 },
+  { 42.158162654606372, 183, 171, 0.0 },
+  { 39.495574827580867, 183, 172, 0.0 },
+  { 36.740178505881545, 183, 173, 0.0 },
+  { 33.883708299661180, 183, 174, 0.0 },
+  { 30.916146903073809, 183, 175, 0.0 },
+  { 27.825104449715354, 183, 176, 0.0 },
+  { 24.594864866196872, 183, 177, 0.0 },
+  { 21.204840785133001, 183, 178, 0.0 },
+  { 17.626892891726243, 183, 179, 0.0 },
+  { 13.820230401955996, 183, 180, 0.0 },
+  { 9.7203456593583724, 183, 181, 0.0 },
+  { 5.2094861528413503, 183, 182, 0.0 },
+  { 0.0000000000000000, 183, 183, 0.0 },
+};
+const double toler182 = 5.0000000000000026e-09;
+
+// Divergence at n=184 k=185 f=-inf f_GSL=-inf
+// Divergence at n=184 k=186 f=-inf f_GSL=-inf
+// Divergence at n=184 k=187 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=184 k=200 f=-inf f_GSL=-inf
+// Test data for n=184.
+// max(|f - f_GSL|): 2.3108270852389978e-09
+// max(|f - f_GSL| / |f_GSL|): 2.3781879017312151e-10
+// mean(f - f_GSL): 1.8781733021686138e-09
+// variance(f - f_GSL): 1.9275577927135717e-20
+// stddev(f - f_GSL): 1.3883651510728622e-10
+const testcase_lbincoef<double>
+data183[185] =
+{
+  { 0.0000000000000000, 184, 0, 0.0 },
+  { 5.2149357576089415, 184, 1, 0.0 },
+  { 9.7312747298904014, 184, 2, 0.0 },
+  { 13.836669128299150, 184, 3, 0.0 },
+  { 17.648871798445043, 184, 4, 0.0 },
+  { 21.232390736901039, 184, 5, 0.0 },
+  { 24.628017073513888, 184, 6, 0.0 },
+  { 27.863890474750519, 184, 7, 0.0 },
+  { 30.960598665644511, 184, 8, 0.0 },
+  { 33.933858083346536, 184, 9, 0.0 },
+  { 36.796058964276085, 184, 10, 0.0 },
+  { 39.557218990692036, 184, 11, 0.0 },
+  { 42.225603935401864, 184, 12, 0.0 },
+  { 44.808149054753812, 184, 13, 0.0 },
+  { 47.310755281641150, 184, 14, 0.0 },
+  { 49.738503517589265, 184, 15, 0.0 },
+  { 52.095813510272478, 184, 16, 0.0 },
+  { 54.386564145619445, 184, 17, 0.0 },
+  { 56.614186200140125, 184, 18, 0.0 },
+  { 58.781735009330305, 184, 19, 0.0 },
+  { 60.891948209676798, 184, 20, 0.0 },
+  { 62.947292199777507, 184, 21, 0.0 },
+  { 64.949999947226047, 184, 22, 0.0 },
+  { 66.902102066529324, 184, 23, 0.0 },
+  { 68.805452601165825, 184, 24, 0.0 },
+  { 70.661750591531472, 184, 25, 0.0 },
+  { 72.472558255730178, 184, 26, 0.0 },
+  { 74.239316422752836, 184, 27, 0.0 },
+  { 75.963357717925874, 184, 28, 0.0 },
+  { 77.645917895188973, 184, 29, 0.0 },
+  { 79.288145630446024, 184, 30, 0.0 },
+  { 80.891111028374553, 184, 31, 0.0 },
+  { 82.455813046967137, 184, 32, 0.0 },
+  { 83.983186006347069, 184, 33, 0.0 },
+  { 85.474105318545867, 184, 34, 0.0 },
+  { 86.929392551152660, 184, 35, 0.0 },
+  { 88.349819918641970, 184, 36, 0.0 },
+  { 89.736114279761864, 184, 37, 0.0 },
+  { 91.088960706814305, 184, 38, 0.0 },
+  { 92.409005682392944, 184, 39, 0.0 },
+  { 93.696859970699620, 184, 40, 0.0 },
+  { 94.953101203571237, 184, 41, 0.0 },
+  { 96.178276215547726, 184, 42, 0.0 },
+  { 97.372903157455539, 184, 43, 0.0 },
+  { 98.537473413915450, 184, 44, 0.0 },
+  { 99.672453346754423, 184, 45, 0.0 },
+  { 100.77828588339605, 184, 46, 0.0 },
+  { 101.85539196684317, 184, 47, 0.0 },
+  { 102.90417188176343, 184, 48, 0.0 },
+  { 103.92500646938879, 184, 49, 0.0 },
+  { 104.91825824239913, 184, 50, 0.0 },
+  { 105.88427240962574, 184, 51, 0.0 },
+  { 106.82337781926594, 184, 52, 0.0 },
+  { 107.73588782830029, 184, 53, 0.0 },
+  { 108.62210110493714, 184, 54, 0.0 },
+  { 109.48230237016026, 184, 55, 0.0 },
+  { 110.31676308378673, 184, 56, 0.0 },
+  { 111.12574207987188, 184, 57, 0.0 },
+  { 111.90948615578401, 184, 58, 0.0 },
+  { 112.66823061882974, 184, 59, 0.0 },
+  { 113.40219979390997, 184, 60, 0.0 },
+  { 114.11160749534173, 184, 61, 0.0 },
+  { 114.79665746566900, 184, 62, 0.0 },
+  { 115.45754378401080, 184, 63, 0.0 },
+  { 116.09445124624784, 184, 64, 0.0 },
+  { 116.70755571913423, 184, 65, 0.0 },
+  { 117.29702447021936, 184, 66, 0.0 },
+  { 117.86301647529399, 184, 67, 0.0 },
+  { 118.40568270491571, 184, 68, 0.0 },
+  { 118.92516639142474, 184, 69, 0.0 },
+  { 119.42160327773865, 184, 70, 0.0 },
+  { 119.89512184909188, 184, 71, 0.0 },
+  { 120.34584354878814, 184, 72, 0.0 },
+  { 120.77388297893481, 184, 73, 0.0 },
+  { 121.17934808704297, 184, 74, 0.0 },
+  { 121.56234033929906, 184, 75, 0.0 },
+  { 121.92295488124188, 184, 76, 0.0 },
+  { 122.26128068651246, 184, 77, 0.0 },
+  { 122.57740069428485, 184, 78, 0.0 },
+  { 122.87139193592981, 184, 79, 0.0 },
+  { 123.14332565141348, 184, 80, 0.0 },
+  { 123.39326739588239, 184, 81, 0.0 },
+  { 123.62127713684777, 184, 82, 0.0 },
+  { 123.82740934233544, 184, 83, 0.0 },
+  { 124.01171306033342, 184, 84, 0.0 },
+  { 124.17423198983113, 184, 85, 0.0 },
+  { 124.31500454371223, 184, 86, 0.0 },
+  { 124.43406390372820, 184, 87, 0.0 },
+  { 124.53143806775341, 184, 88, 0.0 },
+  { 124.60714988948911, 184, 89, 0.0 },
+  { 124.66121711075942, 184, 90, 0.0 },
+  { 124.69365238651255, 184, 91, 0.0 },
+  { 124.70446330261677, 184, 92, 0.0 },
+  { 124.69365238651255, 184, 93, 0.0 },
+  { 124.66121711075942, 184, 94, 0.0 },
+  { 124.60714988948911, 184, 95, 0.0 },
+  { 124.53143806775341, 184, 96, 0.0 },
+  { 124.43406390372820, 184, 97, 0.0 },
+  { 124.31500454371223, 184, 98, 0.0 },
+  { 124.17423198983113, 184, 99, 0.0 },
+  { 124.01171306033342, 184, 100, 0.0 },
+  { 123.82740934233544, 184, 101, 0.0 },
+  { 123.62127713684777, 184, 102, 0.0 },
+  { 123.39326739588239, 184, 103, 0.0 },
+  { 123.14332565141348, 184, 104, 0.0 },
+  { 122.87139193592981, 184, 105, 0.0 },
+  { 122.57740069428485, 184, 106, 0.0 },
+  { 122.26128068651246, 184, 107, 0.0 },
+  { 121.92295488124188, 184, 108, 0.0 },
+  { 121.56234033929906, 184, 109, 0.0 },
+  { 121.17934808704297, 184, 110, 0.0 },
+  { 120.77388297893481, 184, 111, 0.0 },
+  { 120.34584354878814, 184, 112, 0.0 },
+  { 119.89512184909188, 184, 113, 0.0 },
+  { 119.42160327773865, 184, 114, 0.0 },
+  { 118.92516639142474, 184, 115, 0.0 },
+  { 118.40568270491571, 184, 116, 0.0 },
+  { 117.86301647529399, 184, 117, 0.0 },
+  { 117.29702447021936, 184, 118, 0.0 },
+  { 116.70755571913423, 184, 119, 0.0 },
+  { 116.09445124624784, 184, 120, 0.0 },
+  { 115.45754378401080, 184, 121, 0.0 },
+  { 114.79665746566900, 184, 122, 0.0 },
+  { 114.11160749534173, 184, 123, 0.0 },
+  { 113.40219979390997, 184, 124, 0.0 },
+  { 112.66823061882974, 184, 125, 0.0 },
+  { 111.90948615578401, 184, 126, 0.0 },
+  { 111.12574207987188, 184, 127, 0.0 },
+  { 110.31676308378673, 184, 128, 0.0 },
+  { 109.48230237016026, 184, 129, 0.0 },
+  { 108.62210110493714, 184, 130, 0.0 },
+  { 107.73588782830029, 184, 131, 0.0 },
+  { 106.82337781926594, 184, 132, 0.0 },
+  { 105.88427240962574, 184, 133, 0.0 },
+  { 104.91825824239913, 184, 134, 0.0 },
+  { 103.92500646938879, 184, 135, 0.0 },
+  { 102.90417188176343, 184, 136, 0.0 },
+  { 101.85539196684317, 184, 137, 0.0 },
+  { 100.77828588339605, 184, 138, 0.0 },
+  { 99.672453346754423, 184, 139, 0.0 },
+  { 98.537473413915450, 184, 140, 0.0 },
+  { 97.372903157455539, 184, 141, 0.0 },
+  { 96.178276215547726, 184, 142, 0.0 },
+  { 94.953101203571237, 184, 143, 0.0 },
+  { 93.696859970699620, 184, 144, 0.0 },
+  { 92.409005682392944, 184, 145, 0.0 },
+  { 91.088960706814305, 184, 146, 0.0 },
+  { 89.736114279761864, 184, 147, 0.0 },
+  { 88.349819918641970, 184, 148, 0.0 },
+  { 86.929392551152660, 184, 149, 0.0 },
+  { 85.474105318545867, 184, 150, 0.0 },
+  { 83.983186006347069, 184, 151, 0.0 },
+  { 82.455813046967137, 184, 152, 0.0 },
+  { 80.891111028374553, 184, 153, 0.0 },
+  { 79.288145630446024, 184, 154, 0.0 },
+  { 77.645917895188973, 184, 155, 0.0 },
+  { 75.963357717925874, 184, 156, 0.0 },
+  { 74.239316422752836, 184, 157, 0.0 },
+  { 72.472558255730178, 184, 158, 0.0 },
+  { 70.661750591531472, 184, 159, 0.0 },
+  { 68.805452601165825, 184, 160, 0.0 },
+  { 66.902102066529324, 184, 161, 0.0 },
+  { 64.949999947226047, 184, 162, 0.0 },
+  { 62.947292199777507, 184, 163, 0.0 },
+  { 60.891948209676798, 184, 164, 0.0 },
+  { 58.781735009330305, 184, 165, 0.0 },
+  { 56.614186200140125, 184, 166, 0.0 },
+  { 54.386564145619445, 184, 167, 0.0 },
+  { 52.095813510272478, 184, 168, 0.0 },
+  { 49.738503517589265, 184, 169, 0.0 },
+  { 47.310755281641150, 184, 170, 0.0 },
+  { 44.808149054753812, 184, 171, 0.0 },
+  { 42.225603935401864, 184, 172, 0.0 },
+  { 39.557218990692036, 184, 173, 0.0 },
+  { 36.796058964276085, 184, 174, 0.0 },
+  { 33.933858083346536, 184, 175, 0.0 },
+  { 30.960598665644511, 184, 176, 0.0 },
+  { 27.863890474750519, 184, 177, 0.0 },
+  { 24.628017073513888, 184, 178, 0.0 },
+  { 21.232390736901039, 184, 179, 0.0 },
+  { 17.648871798445043, 184, 180, 0.0 },
+  { 13.836669128299150, 184, 181, 0.0 },
+  { 9.7312747298904014, 184, 182, 0.0 },
+  { 5.2149357576089415, 184, 183, 0.0 },
+  { 0.0000000000000000, 184, 184, 0.0 },
+};
+const double toler183 = 2.5000000000000012e-08;
+
+// Divergence at n=185 k=186 f=-inf f_GSL=-inf
+// Divergence at n=185 k=187 f=-inf f_GSL=-inf
+// Divergence at n=185 k=188 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=185 k=200 f=-inf f_GSL=-inf
+// Test data for n=185.
+// max(|f - f_GSL|): 1.1996341697795287e-09
+// max(|f - f_GSL| / |f_GSL|): 2.2979931061720037e-10
+// mean(f - f_GSL): 6.7067967428231412e-10
+// variance(f - f_GSL): 2.4445547974331677e-21
+// stddev(f - f_GSL): 4.9442439234256714e-11
+const testcase_lbincoef<double>
+data184[186] =
+{
+  { 0.0000000000000000, 185, 0, 0.0 },
+  { 5.2203558250785136, 185, 1, 0.0 },
+  { 9.7421444021275647, 185, 2, 0.0 },
+  { 13.853018266300751, 185, 3, 0.0 },
+  { 17.670730592257769, 185, 4, 0.0 },
+  { 21.259789711089411, 185, 5, 0.0 },
+  { 24.660987092751498, 185, 6, 0.0 },
+  { 27.902462749537108, 185, 7, 0.0 },
+  { 31.004804758149248, 185, 8, 0.0 },
+  { 33.983729913386810, 185, 9, 0.0 },
+  { 36.851628815431013, 185, 10, 0.0 },
+  { 39.618519516556148, 185, 11, 0.0 },
+  { 42.292668165982604, 185, 12, 0.0 },
+  { 44.881010403018877, 185, 13, 0.0 },
+  { 47.389447550217028, 185, 14, 0.0 },
+  { 49.823060905617467, 185, 15, 0.0 },
+  { 52.186270620427990, 185, 16, 0.0 },
+  { 54.482955991294716, 185, 17, 0.0 },
+  { 56.716548212801854, 185, 18, 0.0 },
+  { 58.890103046052218, 185, 19, 0.0 },
+  { 61.006358560854778, 185, 20, 0.0 },
+  { 63.067781597031853, 185, 21, 0.0 },
+  { 65.076605571497794, 185, 22, 0.0 },
+  { 67.034861556375404, 185, 23, 0.0 },
+  { 68.944404061259888, 185, 24, 0.0 },
+  { 70.806932601376161, 185, 25, 0.0 },
+  { 72.624009878588481, 185, 26, 0.0 },
+  { 74.397077214804312, 185, 27, 0.0 },
+  { 76.127467737656161, 185, 28, 0.0 },
+  { 77.816417713017927, 185, 29, 0.0 },
+  { 79.465076338605286, 185, 30, 0.0 },
+  { 81.074514251039432, 185, 31, 0.0 },
+  { 82.645730950653274, 185, 32, 0.0 },
+  { 84.179661310579263, 185, 33, 0.0 },
+  { 85.677181306809416, 185, 34, 0.0 },
+  { 87.139113082134941, 185, 35, 0.0 },
+  { 88.566229437775064, 185, 36, 0.0 },
+  { 89.959257831076229, 185, 37, 0.0 },
+  { 91.318883945114067, 185, 38, 0.0 },
+  { 92.645754885763154, 185, 39, 0.0 },
+  { 93.940482053357528, 185, 40, 0.0 },
+  { 95.203643729073747, 185, 41, 0.0 },
+  { 96.435787410366402, 185, 42, 0.0 },
+  { 97.637431924932685, 185, 43, 0.0 },
+  { 98.809069348615822, 185, 44, 0.0 },
+  { 99.951166749223603, 185, 45, 0.0 },
+  { 101.06416777534389, 185, 46, 0.0 },
+  { 102.14849410676447, 185, 47, 0.0 },
+  { 103.20454678101385, 185, 48, 0.0 },
+  { 104.23270740873124, 185, 49, 0.0 },
+  { 105.23333928903924, 185, 50, 0.0 },
+  { 106.20678843475332, 185, 51, 0.0 },
+  { 107.15338451612274, 185, 52, 0.0 },
+  { 108.07344173079241, 185, 53, 0.0 },
+  { 108.96725960681454, 185, 54, 0.0 },
+  { 109.83512374478317, 185, 55, 0.0 },
+  { 110.67730650450358, 185, 56, 0.0 },
+  { 111.49406764103077, 185, 57, 0.0 },
+  { 112.28565489440393, 185, 58, 0.0 },
+  { 113.05230453695680, 185, 59, 0.0 },
+  { 113.79424188168616, 185, 60, 0.0 },
+  { 114.51168175481519, 185, 61, 0.0 },
+  { 115.20482893537513, 185, 62, 0.0 },
+  { 115.87387856435600, 185, 63, 0.0 },
+  { 116.51901652572963, 185, 64, 0.0 },
+  { 117.14041980143071, 185, 65, 0.0 },
+  { 117.73825680218636, 185, 66, 0.0 },
+  { 118.31268767590683, 185, 67, 0.0 },
+  { 118.86386459519645, 185, 68, 0.0 },
+  { 119.39193202539690, 185, 69, 0.0 },
+  { 119.89702697445392, 185, 70, 0.0 },
+  { 120.37927922577592, 185, 71, 0.0 },
+  { 120.83881155515428, 185, 72, 0.0 },
+  { 121.27573993271824, 185, 73, 0.0 },
+  { 121.69017371080918, 185, 74, 0.0 },
+  { 122.08221579858514, 185, 75, 0.0 },
+  { 122.45196282409125, 185, 76, 0.0 },
+  { 122.79950528446676, 185, 77, 0.0 },
+  { 123.12492768490142, 185, 78, 0.0 },
+  { 123.42830866689621, 185, 79, 0.0 },
+  { 123.70972112633444, 185, 80, 0.0 },
+  { 123.96923232181956, 185, 81, 0.0 },
+  { 124.20690397369663, 185, 82, 0.0 },
+  { 124.42279235412968, 185, 83, 0.0 },
+  { 124.61694836857066, 185, 84, 0.0 },
+  { 124.78941762892157, 185, 85, 0.0 },
+  { 124.94024051865614, 185, 86, 0.0 },
+  { 125.06945225013618, 185, 87, 0.0 },
+  { 125.17708291432854, 185, 88, 0.0 },
+  { 125.26315752309978, 185, 89, 0.0 },
+  { 125.32769604423737, 185, 90, 0.0 },
+  { 125.37071342932109, 185, 91, 0.0 },
+  { 125.39221963454202, 185, 92, 0.0 },
+  { 125.39221963454202, 185, 93, 0.0 },
+  { 125.37071342932109, 185, 94, 0.0 },
+  { 125.32769604423737, 185, 95, 0.0 },
+  { 125.26315752309978, 185, 96, 0.0 },
+  { 125.17708291432854, 185, 97, 0.0 },
+  { 125.06945225013618, 185, 98, 0.0 },
+  { 124.94024051865614, 185, 99, 0.0 },
+  { 124.78941762892157, 185, 100, 0.0 },
+  { 124.61694836857066, 185, 101, 0.0 },
+  { 124.42279235412968, 185, 102, 0.0 },
+  { 124.20690397369663, 185, 103, 0.0 },
+  { 123.96923232181956, 185, 104, 0.0 },
+  { 123.70972112633444, 185, 105, 0.0 },
+  { 123.42830866689621, 185, 106, 0.0 },
+  { 123.12492768490142, 185, 107, 0.0 },
+  { 122.79950528446676, 185, 108, 0.0 },
+  { 122.45196282409125, 185, 109, 0.0 },
+  { 122.08221579858514, 185, 110, 0.0 },
+  { 121.69017371080918, 185, 111, 0.0 },
+  { 121.27573993271824, 185, 112, 0.0 },
+  { 120.83881155515428, 185, 113, 0.0 },
+  { 120.37927922577592, 185, 114, 0.0 },
+  { 119.89702697445392, 185, 115, 0.0 },
+  { 119.39193202539690, 185, 116, 0.0 },
+  { 118.86386459519645, 185, 117, 0.0 },
+  { 118.31268767590683, 185, 118, 0.0 },
+  { 117.73825680218636, 185, 119, 0.0 },
+  { 117.14041980143071, 185, 120, 0.0 },
+  { 116.51901652572963, 185, 121, 0.0 },
+  { 115.87387856435600, 185, 122, 0.0 },
+  { 115.20482893537513, 185, 123, 0.0 },
+  { 114.51168175481519, 185, 124, 0.0 },
+  { 113.79424188168616, 185, 125, 0.0 },
+  { 113.05230453695680, 185, 126, 0.0 },
+  { 112.28565489440393, 185, 127, 0.0 },
+  { 111.49406764103077, 185, 128, 0.0 },
+  { 110.67730650450358, 185, 129, 0.0 },
+  { 109.83512374478317, 185, 130, 0.0 },
+  { 108.96725960681454, 185, 131, 0.0 },
+  { 108.07344173079241, 185, 132, 0.0 },
+  { 107.15338451612274, 185, 133, 0.0 },
+  { 106.20678843475332, 185, 134, 0.0 },
+  { 105.23333928903924, 185, 135, 0.0 },
+  { 104.23270740873124, 185, 136, 0.0 },
+  { 103.20454678101385, 185, 137, 0.0 },
+  { 102.14849410676447, 185, 138, 0.0 },
+  { 101.06416777534389, 185, 139, 0.0 },
+  { 99.951166749223603, 185, 140, 0.0 },
+  { 98.809069348615822, 185, 141, 0.0 },
+  { 97.637431924932685, 185, 142, 0.0 },
+  { 96.435787410366402, 185, 143, 0.0 },
+  { 95.203643729073747, 185, 144, 0.0 },
+  { 93.940482053357528, 185, 145, 0.0 },
+  { 92.645754885763154, 185, 146, 0.0 },
+  { 91.318883945114067, 185, 147, 0.0 },
+  { 89.959257831076229, 185, 148, 0.0 },
+  { 88.566229437775064, 185, 149, 0.0 },
+  { 87.139113082134941, 185, 150, 0.0 },
+  { 85.677181306809416, 185, 151, 0.0 },
+  { 84.179661310579263, 185, 152, 0.0 },
+  { 82.645730950653274, 185, 153, 0.0 },
+  { 81.074514251039432, 185, 154, 0.0 },
+  { 79.465076338605286, 185, 155, 0.0 },
+  { 77.816417713017927, 185, 156, 0.0 },
+  { 76.127467737656161, 185, 157, 0.0 },
+  { 74.397077214804312, 185, 158, 0.0 },
+  { 72.624009878588481, 185, 159, 0.0 },
+  { 70.806932601376161, 185, 160, 0.0 },
+  { 68.944404061259888, 185, 161, 0.0 },
+  { 67.034861556375404, 185, 162, 0.0 },
+  { 65.076605571497794, 185, 163, 0.0 },
+  { 63.067781597031853, 185, 164, 0.0 },
+  { 61.006358560854778, 185, 165, 0.0 },
+  { 58.890103046052218, 185, 166, 0.0 },
+  { 56.716548212801854, 185, 167, 0.0 },
+  { 54.482955991294716, 185, 168, 0.0 },
+  { 52.186270620427990, 185, 169, 0.0 },
+  { 49.823060905617467, 185, 170, 0.0 },
+  { 47.389447550217028, 185, 171, 0.0 },
+  { 44.881010403018877, 185, 172, 0.0 },
+  { 42.292668165982604, 185, 173, 0.0 },
+  { 39.618519516556148, 185, 174, 0.0 },
+  { 36.851628815431013, 185, 175, 0.0 },
+  { 33.983729913386810, 185, 176, 0.0 },
+  { 31.004804758149248, 185, 177, 0.0 },
+  { 27.902462749537108, 185, 178, 0.0 },
+  { 24.660987092751498, 185, 179, 0.0 },
+  { 21.259789711089411, 185, 180, 0.0 },
+  { 17.670730592257769, 185, 181, 0.0 },
+  { 13.853018266300751, 185, 182, 0.0 },
+  { 9.7421444021275647, 185, 183, 0.0 },
+  { 5.2203558250785136, 185, 184, 0.0 },
+  { 0.0000000000000000, 185, 185, 0.0 },
+};
+const double toler184 = 2.5000000000000012e-08;
+
+// Divergence at n=186 k=187 f=-inf f_GSL=-inf
+// Divergence at n=186 k=188 f=-inf f_GSL=-inf
+// Divergence at n=186 k=189 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=186 k=200 f=-inf f_GSL=-inf
+// Test data for n=186.
+// max(|f - f_GSL|): 1.9261960915173404e-09
+// max(|f - f_GSL| / |f_GSL|): 1.9749870974150640e-10
+// mean(f - f_GSL): -5.5792205080494912e-11
+// variance(f - f_GSL): 1.6825298231822420e-23
+// stddev(f - f_GSL): 4.1018652137561055e-12
+const testcase_lbincoef<double>
+data185[187] =
+{
+  { 0.0000000000000000, 186, 0, 0.0 },
+  { 5.2257466737131608, 186, 1, 0.0 },
+  { 9.7529553182317841, 186, 2, 0.0 },
+  { 13.869278787172561, 186, 3, 0.0 },
+  { 17.692470578894017, 186, 4, 0.0 },
+  { 21.287039353536784, 186, 5, 0.0 },
+  { 24.693776915574517, 186, 6, 0.0 },
+  { 27.940823617409364, 186, 7, 0.0 },
+  { 31.048767881570484, 186, 8, 0.0 },
+  { 34.033326854526194, 186, 9, 0.0 },
+  { 36.906891494105935, 186, 10, 0.0 },
+  { 39.679480216345723, 186, 11, 0.0 },
+  { 42.359359540481364, 186, 12, 0.0 },
+  { 44.953465482234265, 186, 13, 0.0 },
+  { 47.467699747116740, 186, 14, 0.0 },
+  { 49.907144022827993, 186, 15, 0.0 },
+  { 52.276218857090839, 186, 16, 0.0 },
+  { 54.578803950084875, 186, 17, 0.0 },
+  { 56.818330907111772, 186, 18, 0.0 },
+  { 58.997855907348594, 186, 19, 0.0 },
+  { 61.120117446211339, 186, 20, 0.0 },
+  { 63.187582796844481, 186, 21, 0.0 },
+  { 65.202485817386787, 186, 22, 0.0 },
+  { 67.166858029281798, 186, 23, 0.0 },
+  { 69.082554399740616, 186, 24, 0.0 },
+  { 70.951274910104871, 186, 25, 0.0 },
+  { 72.774582737067817, 186, 26, 0.0 },
+  { 74.553919686297263, 186, 27, 0.0 },
+  { 76.290619378342285, 186, 28, 0.0 },
+  { 77.985918581382862, 186, 29, 0.0 },
+  { 79.640967005068887, 186, 30, 0.0 },
+  { 81.256835807833340, 186, 31, 0.0 },
+  { 82.834525021952913, 186, 32, 0.0 },
+  { 84.374970062900047, 186, 33, 0.0 },
+  { 85.879047459676258, 186, 34, 0.0 },
+  { 87.347579919033137, 186, 35, 0.0 },
+  { 88.781340817391992, 186, 36, 0.0 },
+  { 90.181058198843971, 186, 37, 0.0 },
+  { 91.547418345063079, 186, 38, 0.0 },
+  { 92.881068972697562, 186, 39, 0.0 },
+  { 94.182622105362384, 186, 40, 0.0 },
+  { 95.452656660366301, 186, 41, 0.0 },
+  { 96.691720784503559, 186, 42, 0.0 },
+  { 97.900333968386008, 186, 43, 0.0 },
+  { 99.078988964727614, 186, 44, 0.0 },
+  { 100.22815353255862, 186, 45, 0.0 },
+  { 101.34827202644772, 186, 46, 0.0 },
+  { 102.43976684734696, 186, 47, 0.0 },
+  { 103.50303976956980, 186, 48, 0.0 },
+  { 104.53847315661631, 186, 49, 0.0 },
+  { 105.54643107701634, 186, 50, 0.0 },
+  { 106.52726033002807, 186, 51, 0.0 },
+  { 107.48129138988497, 186, 52, 0.0 },
+  { 108.40883927628386, 186, 53, 0.0 },
+  { 109.31020435794130, 186, 54, 0.0 },
+  { 110.18567309529521, 186, 55, 0.0 },
+  { 111.03551872776114, 186, 56, 0.0 },
+  { 111.86000191038215, 186, 57, 0.0 },
+  { 112.65937130419746, 186, 58, 0.0 },
+  { 113.43386412421137, 186, 59, 0.0 },
+  { 114.18370664844787, 186, 60, 0.0 },
+  { 114.90911469122602, 186, 61, 0.0 },
+  { 115.61029404348324, 186, 62, 0.0 },
+  { 116.28744088269679, 186, 63, 0.0 },
+  { 116.94074215470948, 186, 64, 0.0 },
+  { 117.57037592954714, 186, 65, 0.0 },
+  { 118.17651173311737, 186, 66, 0.0 },
+  { 118.75931085650848, 186, 67, 0.0 },
+  { 119.31892664444393, 186, 68, 0.0 },
+  { 119.85550476431229, 186, 69, 0.0 },
+  { 120.36918345706073, 186, 70, 0.0 },
+  { 120.86009377112572, 186, 71, 0.0 },
+  { 121.32835978047297, 186, 72, 0.0 },
+  { 121.77409878771903, 186, 73, 0.0 },
+  { 122.19742151322725, 186, 74, 0.0 },
+  { 122.59843227098600, 186, 75, 0.0 },
+  { 122.97722913201198, 186, 76, 0.0 },
+  { 123.33390407595067, 186, 77, 0.0 },
+  { 123.66854313149025, 186, 78, 0.0 },
+  { 123.98122650614755, 186, 79, 0.0 },
+  { 124.27202870593555, 186, 80, 0.0 },
+  { 124.54101864537517, 186, 81, 0.0 },
+  { 124.78825974826844, 186, 82, 0.0 },
+  { 125.01381003961319, 186, 83, 0.0 },
+  { 125.21772222899955, 186, 84, 0.0 },
+  { 125.40004378579346, 186, 85, 0.0 },
+  { 125.56081700638123, 186, 86, 0.0 },
+  { 125.70007907371473, 186, 87, 0.0 },
+  { 125.81786210937116, 186, 88, 0.0 },
+  { 125.91419321830955, 186, 89, 0.0 },
+  { 125.98909452648269, 186, 90, 0.0 },
+  { 126.04258321143368, 186, 91, 0.0 },
+  { 126.07467152598520, 186, 92, 0.0 },
+  { 126.08536681510191, 186, 93, 0.0 },
+  { 126.07467152598520, 186, 94, 0.0 },
+  { 126.04258321143368, 186, 95, 0.0 },
+  { 125.98909452648269, 186, 96, 0.0 },
+  { 125.91419321830955, 186, 97, 0.0 },
+  { 125.81786210937116, 186, 98, 0.0 },
+  { 125.70007907371473, 186, 99, 0.0 },
+  { 125.56081700638123, 186, 100, 0.0 },
+  { 125.40004378579346, 186, 101, 0.0 },
+  { 125.21772222899955, 186, 102, 0.0 },
+  { 125.01381003961319, 186, 103, 0.0 },
+  { 124.78825974826844, 186, 104, 0.0 },
+  { 124.54101864537517, 186, 105, 0.0 },
+  { 124.27202870593555, 186, 106, 0.0 },
+  { 123.98122650614755, 186, 107, 0.0 },
+  { 123.66854313149025, 186, 108, 0.0 },
+  { 123.33390407595067, 186, 109, 0.0 },
+  { 122.97722913201198, 186, 110, 0.0 },
+  { 122.59843227098600, 186, 111, 0.0 },
+  { 122.19742151322725, 186, 112, 0.0 },
+  { 121.77409878771903, 186, 113, 0.0 },
+  { 121.32835978047297, 186, 114, 0.0 },
+  { 120.86009377112572, 186, 115, 0.0 },
+  { 120.36918345706073, 186, 116, 0.0 },
+  { 119.85550476431229, 186, 117, 0.0 },
+  { 119.31892664444393, 186, 118, 0.0 },
+  { 118.75931085650848, 186, 119, 0.0 },
+  { 118.17651173311737, 186, 120, 0.0 },
+  { 117.57037592954714, 186, 121, 0.0 },
+  { 116.94074215470948, 186, 122, 0.0 },
+  { 116.28744088269679, 186, 123, 0.0 },
+  { 115.61029404348324, 186, 124, 0.0 },
+  { 114.90911469122602, 186, 125, 0.0 },
+  { 114.18370664844787, 186, 126, 0.0 },
+  { 113.43386412421137, 186, 127, 0.0 },
+  { 112.65937130419746, 186, 128, 0.0 },
+  { 111.86000191038215, 186, 129, 0.0 },
+  { 111.03551872776114, 186, 130, 0.0 },
+  { 110.18567309529521, 186, 131, 0.0 },
+  { 109.31020435794130, 186, 132, 0.0 },
+  { 108.40883927628386, 186, 133, 0.0 },
+  { 107.48129138988497, 186, 134, 0.0 },
+  { 106.52726033002807, 186, 135, 0.0 },
+  { 105.54643107701634, 186, 136, 0.0 },
+  { 104.53847315661631, 186, 137, 0.0 },
+  { 103.50303976956980, 186, 138, 0.0 },
+  { 102.43976684734696, 186, 139, 0.0 },
+  { 101.34827202644772, 186, 140, 0.0 },
+  { 100.22815353255862, 186, 141, 0.0 },
+  { 99.078988964727614, 186, 142, 0.0 },
+  { 97.900333968386008, 186, 143, 0.0 },
+  { 96.691720784503559, 186, 144, 0.0 },
+  { 95.452656660366301, 186, 145, 0.0 },
+  { 94.182622105362384, 186, 146, 0.0 },
+  { 92.881068972697562, 186, 147, 0.0 },
+  { 91.547418345063079, 186, 148, 0.0 },
+  { 90.181058198843971, 186, 149, 0.0 },
+  { 88.781340817391992, 186, 150, 0.0 },
+  { 87.347579919033137, 186, 151, 0.0 },
+  { 85.879047459676258, 186, 152, 0.0 },
+  { 84.374970062900047, 186, 153, 0.0 },
+  { 82.834525021952913, 186, 154, 0.0 },
+  { 81.256835807833340, 186, 155, 0.0 },
+  { 79.640967005068887, 186, 156, 0.0 },
+  { 77.985918581382862, 186, 157, 0.0 },
+  { 76.290619378342285, 186, 158, 0.0 },
+  { 74.553919686297263, 186, 159, 0.0 },
+  { 72.774582737067817, 186, 160, 0.0 },
+  { 70.951274910104871, 186, 161, 0.0 },
+  { 69.082554399740616, 186, 162, 0.0 },
+  { 67.166858029281798, 186, 163, 0.0 },
+  { 65.202485817386787, 186, 164, 0.0 },
+  { 63.187582796844481, 186, 165, 0.0 },
+  { 61.120117446211339, 186, 166, 0.0 },
+  { 58.997855907348594, 186, 167, 0.0 },
+  { 56.818330907111772, 186, 168, 0.0 },
+  { 54.578803950084875, 186, 169, 0.0 },
+  { 52.276218857090839, 186, 170, 0.0 },
+  { 49.907144022827993, 186, 171, 0.0 },
+  { 47.467699747116740, 186, 172, 0.0 },
+  { 44.953465482234265, 186, 173, 0.0 },
+  { 42.359359540481364, 186, 174, 0.0 },
+  { 39.679480216345723, 186, 175, 0.0 },
+  { 36.906891494105935, 186, 176, 0.0 },
+  { 34.033326854526194, 186, 177, 0.0 },
+  { 31.048767881570484, 186, 178, 0.0 },
+  { 27.940823617409364, 186, 179, 0.0 },
+  { 24.693776915574517, 186, 180, 0.0 },
+  { 21.287039353536784, 186, 181, 0.0 },
+  { 17.692470578894017, 186, 182, 0.0 },
+  { 13.869278787172561, 186, 183, 0.0 },
+  { 9.7529553182317841, 186, 184, 0.0 },
+  { 5.2257466737131608, 186, 185, 0.0 },
+  { 0.0000000000000000, 186, 186, 0.0 },
+};
+const double toler185 = 1.0000000000000005e-08;
+
+// Divergence at n=187 k=188 f=-inf f_GSL=-inf
+// Divergence at n=187 k=189 f=-inf f_GSL=-inf
+// Divergence at n=187 k=190 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=187 k=200 f=-inf f_GSL=-inf
+// Test data for n=187.
+// max(|f - f_GSL|): 1.3124115127993718e-09
+// max(|f - f_GSL| / |f_GSL|): 1.1731386116587544e-10
+// mean(f - f_GSL): 5.5134373662302460e-10
+// variance(f - f_GSL): 1.6342538874925381e-21
+// stddev(f - f_GSL): 4.0425906143122355e-11
+const testcase_lbincoef<double>
+data186[188] =
+{
+  { 0.0000000000000000, 187, 0, 0.0 },
+  { 5.2311086168544989, 187, 1, 0.0 },
+  { 9.7637081100077694, 187, 2, 0.0 },
+  { 13.885451646418119, 187, 3, 0.0 },
+  { 17.714093042907166, 187, 4, 0.0 },
+  { 21.314141283314370, 187, 5, 0.0 },
+  { 24.726388501163228, 187, 6, 0.0 },
+  { 27.978975383373722, 187, 7, 0.0 },
+  { 31.092490692584079, 187, 8, 0.0 },
+  { 34.082651921088768, 187, 9, 0.0 },
+  { 36.961850378386657, 187, 10, 0.0 },
+  { 39.740104838161983, 187, 11, 0.0 },
+  { 42.425682183412277, 187, 12, 0.0 },
+  { 45.025518799874362, 187, 13, 0.0 },
+  { 47.545516769473466, 187, 14, 0.0 },
+  { 49.990758162869042, 187, 15, 0.0 },
+  { 52.365663917442703, 187, 16, 0.0 },
+  { 54.674114129889062, 187, 17, 0.0 },
+  { 56.919540809043269, 187, 18, 0.0 },
+  { 59.105000544799850, 187, 19, 0.0 },
+  { 61.233232250649053, 187, 20, 0.0 },
+  { 63.306703625342379, 187, 21, 0.0 },
+  { 65.327648960340753, 187, 22, 0.0 },
+  { 67.298100218312129, 187, 23, 0.0 },
+  { 69.219912815788348, 187, 24, 0.0 },
+  { 71.094787191726937, 187, 25, 0.0 },
+  { 72.924286988937865, 187, 26, 0.0 },
+  { 74.709854487917937, 187, 27, 0.0 },
+  { 76.452823792976574, 187, 28, 0.0 },
+  { 78.154432165210324, 187, 29, 0.0 },
+  { 79.815829816575160, 187, 30, 0.0 },
+  { 81.438088417438280, 187, 31, 0.0 },
+  { 83.022208521888160, 187, 32, 0.0 },
+  { 84.569126077340911, 187, 33, 0.0 },
+  { 86.079718155138380, 187, 34, 0.0 },
+  { 87.554808015041317, 187, 35, 0.0 },
+  { 88.995169597431527, 187, 36, 0.0 },
+  { 90.401531521602237, 187, 37, 0.0 },
+  { 91.774580655972159, 187, 38, 0.0 },
+  { 93.114965315787913, 187, 39, 0.0 },
+  { 94.423298135438131, 187, 40, 0.0 },
+  { 95.700158655512496, 187, 41, 0.0 },
+  { 96.946095658937452, 187, 42, 0.0 },
+  { 98.161629285664503, 187, 43, 0.0 },
+  { 99.347252951322275, 187, 44, 0.0 },
+  { 100.50343509181175, 187, 45, 0.0 },
+  { 101.63062075292407, 187, 46, 0.0 },
+  { 102.72923304159212, 187, 47, 0.0 },
+  { 103.79967445329362, 187, 48, 0.0 },
+  { 104.84232808831359, 187, 49, 0.0 },
+  { 105.85755876804274, 187, 50, 0.0 },
+  { 106.84571406114651, 187, 51, 0.0 },
+  { 107.80712522830106, 187, 52, 0.0 },
+  { 108.74210809318743, 187, 53, 0.0 },
+  { 109.65096384657409, 187, 54, 0.0 },
+  { 110.53397978956332, 187, 55, 0.0 },
+  { 111.39143002141452, 187, 56, 0.0 },
+  { 112.22357607678106, 187, 57, 0.0 },
+  { 113.03066751669030, 187, 58, 0.0 },
+  { 113.81294247714624, 187, 59, 0.0 },
+  { 114.57062817884378, 187, 60, 0.0 },
+  { 115.30394140112907, 187, 61, 0.0 },
+  { 116.01308892303541, 187, 62, 0.0 },
+  { 116.69826793394623, 187, 63, 0.0 },
+  { 117.35966641619160, 187, 64, 0.0 },
+  { 117.99746350166834, 187, 65, 0.0 },
+  { 118.61182980437513, 187, 66, 0.0 },
+  { 119.20292773058094, 187, 67, 0.0 },
+  { 119.77091176818692, 187, 68, 0.0 },
+  { 120.31592875670111, 187, 69, 0.0 },
+  { 120.83811813911746, 187, 70, 0.0 },
+  { 121.33761219687386, 187, 71, 0.0 },
+  { 121.81453626896422, 187, 72, 0.0 },
+  { 122.26900895617905, 187, 73, 0.0 },
+  { 122.70114231136938, 187, 74, 0.0 },
+  { 123.11104201654541, 187, 75, 0.0 },
+  { 123.49880754755418, 187, 76, 0.0 },
+  { 123.86453232701274, 187, 77, 0.0 },
+  { 124.20830386611561, 187, 78, 0.0 },
+  { 124.53020389587783, 187, 79, 0.0 },
+  { 124.83030848832811, 187, 80, 0.0 },
+  { 125.10868816811762, 187, 81, 0.0 },
+  { 125.36540801496540, 187, 82, 0.0 },
+  { 125.60052775732635, 187, 83, 0.0 },
+  { 125.81410185762439, 187, 84, 0.0 },
+  { 126.00617958936368, 187, 85, 0.0 },
+  { 126.17680510639445, 187, 86, 0.0 },
+  { 126.32601750458116, 187, 87, 0.0 },
+  { 126.45385087609105, 187, 88, 0.0 },
+  { 126.56033435649351, 187, 89, 0.0 },
+  { 126.64549216483380, 187, 90, 0.0 },
+  { 126.70934363682034, 187, 91, 0.0 },
+  { 126.75190325123913, 187, 92, 0.0 },
+  { 126.77318064968642, 187, 93, 0.0 },
+  { 126.77318064968642, 187, 94, 0.0 },
+  { 126.75190325123913, 187, 95, 0.0 },
+  { 126.70934363682034, 187, 96, 0.0 },
+  { 126.64549216483380, 187, 97, 0.0 },
+  { 126.56033435649351, 187, 98, 0.0 },
+  { 126.45385087609105, 187, 99, 0.0 },
+  { 126.32601750458116, 187, 100, 0.0 },
+  { 126.17680510639445, 187, 101, 0.0 },
+  { 126.00617958936368, 187, 102, 0.0 },
+  { 125.81410185762439, 187, 103, 0.0 },
+  { 125.60052775732635, 187, 104, 0.0 },
+  { 125.36540801496540, 187, 105, 0.0 },
+  { 125.10868816811762, 187, 106, 0.0 },
+  { 124.83030848832811, 187, 107, 0.0 },
+  { 124.53020389587783, 187, 108, 0.0 },
+  { 124.20830386611561, 187, 109, 0.0 },
+  { 123.86453232701274, 187, 110, 0.0 },
+  { 123.49880754755418, 187, 111, 0.0 },
+  { 123.11104201654541, 187, 112, 0.0 },
+  { 122.70114231136938, 187, 113, 0.0 },
+  { 122.26900895617905, 187, 114, 0.0 },
+  { 121.81453626896422, 187, 115, 0.0 },
+  { 121.33761219687386, 187, 116, 0.0 },
+  { 120.83811813911746, 187, 117, 0.0 },
+  { 120.31592875670111, 187, 118, 0.0 },
+  { 119.77091176818692, 187, 119, 0.0 },
+  { 119.20292773058094, 187, 120, 0.0 },
+  { 118.61182980437513, 187, 121, 0.0 },
+  { 117.99746350166834, 187, 122, 0.0 },
+  { 117.35966641619160, 187, 123, 0.0 },
+  { 116.69826793394623, 187, 124, 0.0 },
+  { 116.01308892303541, 187, 125, 0.0 },
+  { 115.30394140112907, 187, 126, 0.0 },
+  { 114.57062817884378, 187, 127, 0.0 },
+  { 113.81294247714624, 187, 128, 0.0 },
+  { 113.03066751669030, 187, 129, 0.0 },
+  { 112.22357607678106, 187, 130, 0.0 },
+  { 111.39143002141452, 187, 131, 0.0 },
+  { 110.53397978956332, 187, 132, 0.0 },
+  { 109.65096384657409, 187, 133, 0.0 },
+  { 108.74210809318743, 187, 134, 0.0 },
+  { 107.80712522830106, 187, 135, 0.0 },
+  { 106.84571406114651, 187, 136, 0.0 },
+  { 105.85755876804274, 187, 137, 0.0 },
+  { 104.84232808831359, 187, 138, 0.0 },
+  { 103.79967445329362, 187, 139, 0.0 },
+  { 102.72923304159212, 187, 140, 0.0 },
+  { 101.63062075292407, 187, 141, 0.0 },
+  { 100.50343509181175, 187, 142, 0.0 },
+  { 99.347252951322275, 187, 143, 0.0 },
+  { 98.161629285664503, 187, 144, 0.0 },
+  { 96.946095658937452, 187, 145, 0.0 },
+  { 95.700158655512496, 187, 146, 0.0 },
+  { 94.423298135438131, 187, 147, 0.0 },
+  { 93.114965315787913, 187, 148, 0.0 },
+  { 91.774580655972159, 187, 149, 0.0 },
+  { 90.401531521602237, 187, 150, 0.0 },
+  { 88.995169597431527, 187, 151, 0.0 },
+  { 87.554808015041317, 187, 152, 0.0 },
+  { 86.079718155138380, 187, 153, 0.0 },
+  { 84.569126077340911, 187, 154, 0.0 },
+  { 83.022208521888160, 187, 155, 0.0 },
+  { 81.438088417438280, 187, 156, 0.0 },
+  { 79.815829816575160, 187, 157, 0.0 },
+  { 78.154432165210324, 187, 158, 0.0 },
+  { 76.452823792976574, 187, 159, 0.0 },
+  { 74.709854487917937, 187, 160, 0.0 },
+  { 72.924286988937865, 187, 161, 0.0 },
+  { 71.094787191726937, 187, 162, 0.0 },
+  { 69.219912815788348, 187, 163, 0.0 },
+  { 67.298100218312129, 187, 164, 0.0 },
+  { 65.327648960340753, 187, 165, 0.0 },
+  { 63.306703625342379, 187, 166, 0.0 },
+  { 61.233232250649053, 187, 167, 0.0 },
+  { 59.105000544799850, 187, 168, 0.0 },
+  { 56.919540809043269, 187, 169, 0.0 },
+  { 54.674114129889062, 187, 170, 0.0 },
+  { 52.365663917442703, 187, 171, 0.0 },
+  { 49.990758162869042, 187, 172, 0.0 },
+  { 47.545516769473466, 187, 173, 0.0 },
+  { 45.025518799874362, 187, 174, 0.0 },
+  { 42.425682183412277, 187, 175, 0.0 },
+  { 39.740104838161983, 187, 176, 0.0 },
+  { 36.961850378386657, 187, 177, 0.0 },
+  { 34.082651921088768, 187, 178, 0.0 },
+  { 31.092490692584079, 187, 179, 0.0 },
+  { 27.978975383373722, 187, 180, 0.0 },
+  { 24.726388501163228, 187, 181, 0.0 },
+  { 21.314141283314370, 187, 182, 0.0 },
+  { 17.714093042907166, 187, 183, 0.0 },
+  { 13.885451646418119, 187, 184, 0.0 },
+  { 9.7637081100077694, 187, 185, 0.0 },
+  { 5.2311086168544989, 187, 186, 0.0 },
+  { 0.0000000000000000, 187, 187, 0.0 },
+};
+const double toler186 = 1.0000000000000005e-08;
+
+// Divergence at n=188 k=189 f=-inf f_GSL=-inf
+// Divergence at n=188 k=190 f=-inf f_GSL=-inf
+// Divergence at n=188 k=191 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=188 k=200 f=-inf f_GSL=-inf
+// Test data for n=188.
+// max(|f - f_GSL|): 1.6981474004751362e-09
+// max(|f - f_GSL| / |f_GSL|): 9.5747957354999846e-11
+// mean(f - f_GSL): 1.6320624334644245e-10
+// variance(f - f_GSL): 1.4243595849116676e-22
+// stddev(f - f_GSL): 1.1934653681241310e-11
+const testcase_lbincoef<double>
+data187[189] =
+{
+  { 0.0000000000000000, 188, 0, 0.0 },
+  { 5.2364419628298720, 188, 1, 0.0 },
+  { 9.7744033991244805, 188, 2, 0.0 },
+  { 13.901537784169477, 188, 3, 0.0 },
+  { 17.735599248128096, 188, 4, 0.0 },
+  { 21.341097093302892, 188, 5, 0.0 },
+  { 24.758823776916188, 188, 6, 0.0 },
+  { 28.016920314937806, 188, 7, 0.0 },
+  { 31.135975804523810, 188, 8, 0.0 },
+  { 34.131708078077736, 188, 9, 0.0 },
+  { 37.016508790924604, 188, 10, 0.0 },
+  { 39.800397068418079, 188, 11, 0.0 },
+  { 42.491640151203910, 188, 12, 0.0 },
+  { 45.097174788780649, 188, 13, 0.0 },
+  { 47.622903433088936, 188, 14, 0.0 },
+  { 50.073908531201141, 188, 15, 0.0 },
+  { 52.454611403459126, 188, 16, 0.0 },
+  { 54.768892536216299, 188, 17, 0.0 },
+  { 57.020184334822829, 188, 18, 0.0 },
+  { 59.211543792706721, 188, 19, 0.0 },
+  { 61.345710234075682, 188, 20, 0.0 },
+  { 63.425151775755467, 188, 21, 0.0 },
+  { 65.452103134814024, 188, 22, 0.0 },
+  { 67.428596707241468, 188, 23, 0.0 },
+  { 69.356488350794052, 188, 24, 0.0 },
+  { 71.237478953750042, 188, 25, 0.0 },
+  { 73.073132616535304, 188, 26, 0.0 },
+  { 74.864892085763358, 188, 27, 0.0 },
+  { 76.614091940572621, 188, 28, 0.0 },
+  { 78.321969925819985, 188, 29, 0.0 },
+  { 79.989676746377995, 188, 30, 0.0 },
+  { 81.618284574919926, 188, 31, 0.0 },
+  { 83.208794477468359, 188, 32, 0.0 },
+  { 84.762142923251531, 188, 33, 0.0 },
+  { 86.279207515554617, 188, 34, 0.0 },
+  { 87.760812056478812, 188, 35, 0.0 },
+  { 89.207731039415080, 188, 36, 0.0 },
+  { 90.620693647617145, 188, 37, 0.0 },
+  { 92.000387324705798, 188, 38, 0.0 },
+  { 93.347460972672366, 188, 39, 0.0 },
+  { 94.662527824503854, 188, 40, 0.0 },
+  { 95.946168031563616, 188, 41, 0.0 },
+  { 97.198931000059019, 188, 42, 0.0 },
+  { 98.421337506073769, 188, 43, 0.0 },
+  { 99.613881614576144, 188, 44, 0.0 },
+  { 100.77703242438179, 188, 45, 0.0 },
+  { 101.91123565815258, 188, 46, 0.0 },
+  { 103.01691511404385, 188, 47, 0.0 },
+  { 104.09447399351416, 188, 48, 0.0 },
+  { 105.14429611801279, 188, 49, 0.0 },
+  { 106.16674704571540, 188, 50, 0.0 },
+  { 107.16217509814828, 188, 51, 0.0 },
+  { 108.13091230539487, 188, 52, 0.0 },
+  { 109.07327527757889, 188, 53, 0.0 },
+  { 109.98956600945303, 188, 54, 0.0 },
+  { 110.88007262417148, 188, 55, 0.0 },
+  { 111.74507006165800, 188, 56, 0.0 },
+  { 112.58482071640992, 188, 57, 0.0 },
+  { 113.39957502906458, 188, 58, 0.0 },
+  { 114.18957203561445, 188, 59, 0.0 },
+  { 114.95503987775402, 188, 60, 0.0 },
+  { 115.69619627750035, 188, 61, 0.0 },
+  { 116.41324897891383, 188, 62, 0.0 },
+  { 117.10639615947377, 188, 63, 0.0 },
+  { 117.77582681341642, 188, 64, 0.0 },
+  { 118.42172110912583, 188, 65, 0.0 },
+  { 119.04425072247182, 188, 66, 0.0 },
+  { 119.64357914781408, 188, 67, 0.0 },
+  { 120.21986198823475, 188, 68, 0.0 },
+  { 120.77324722641947, 188, 69, 0.0 },
+  { 121.30387547748165, 188, 70, 0.0 },
+  { 121.81188022490608, 188, 71, 0.0 },
+  { 122.29738804068774, 188, 72, 0.0 },
+  { 122.76051879064568, 188, 73, 0.0 },
+  { 123.20138582580478, 188, 74, 0.0 },
+  { 123.62009616066291, 188, 75, 0.0 },
+  { 124.01675063908897, 188, 76, 0.0 },
+  { 124.39144408853042, 188, 77, 0.0 },
+  { 124.74426546315317, 188, 78, 0.0 },
+  { 125.07529797647845, 188, 79, 0.0 },
+  { 125.38461922403377, 188, 80, 0.0 },
+  { 125.67230129648556, 188, 81, 0.0 },
+  { 125.93841088368322, 188, 82, 0.0 },
+  { 126.18300936999867, 188, 83, 0.0 },
+  { 126.40615292131292, 188, 84, 0.0 },
+  { 126.60789256396390, 188, 85, 0.0 },
+  { 126.78827425594005, 188, 86, 0.0 },
+  { 126.94733895056976, 188, 87, 0.0 },
+  { 127.08512265293285, 188, 88, 0.0 },
+  { 127.20165646918878, 188, 89, 0.0 },
+  { 127.29696664899313, 188, 90, 0.0 },
+  { 127.37107462114682, 188, 91, 0.0 },
+  { 127.42399702260116, 188, 92, 0.0 },
+  { 127.45574572091573, 188, 93, 0.0 },
+  { 127.46632783024631, 188, 94, 0.0 },
+  { 127.45574572091573, 188, 95, 0.0 },
+  { 127.42399702260116, 188, 96, 0.0 },
+  { 127.37107462114682, 188, 97, 0.0 },
+  { 127.29696664899313, 188, 98, 0.0 },
+  { 127.20165646918878, 188, 99, 0.0 },
+  { 127.08512265293285, 188, 100, 0.0 },
+  { 126.94733895056976, 188, 101, 0.0 },
+  { 126.78827425594005, 188, 102, 0.0 },
+  { 126.60789256396390, 188, 103, 0.0 },
+  { 126.40615292131292, 188, 104, 0.0 },
+  { 126.18300936999867, 188, 105, 0.0 },
+  { 125.93841088368322, 188, 106, 0.0 },
+  { 125.67230129648556, 188, 107, 0.0 },
+  { 125.38461922403377, 188, 108, 0.0 },
+  { 125.07529797647845, 188, 109, 0.0 },
+  { 124.74426546315317, 188, 110, 0.0 },
+  { 124.39144408853042, 188, 111, 0.0 },
+  { 124.01675063908897, 188, 112, 0.0 },
+  { 123.62009616066291, 188, 113, 0.0 },
+  { 123.20138582580478, 188, 114, 0.0 },
+  { 122.76051879064568, 188, 115, 0.0 },
+  { 122.29738804068774, 188, 116, 0.0 },
+  { 121.81188022490608, 188, 117, 0.0 },
+  { 121.30387547748165, 188, 118, 0.0 },
+  { 120.77324722641947, 188, 119, 0.0 },
+  { 120.21986198823475, 188, 120, 0.0 },
+  { 119.64357914781408, 188, 121, 0.0 },
+  { 119.04425072247182, 188, 122, 0.0 },
+  { 118.42172110912583, 188, 123, 0.0 },
+  { 117.77582681341642, 188, 124, 0.0 },
+  { 117.10639615947377, 188, 125, 0.0 },
+  { 116.41324897891383, 188, 126, 0.0 },
+  { 115.69619627750035, 188, 127, 0.0 },
+  { 114.95503987775402, 188, 128, 0.0 },
+  { 114.18957203561445, 188, 129, 0.0 },
+  { 113.39957502906458, 188, 130, 0.0 },
+  { 112.58482071640992, 188, 131, 0.0 },
+  { 111.74507006165800, 188, 132, 0.0 },
+  { 110.88007262417148, 188, 133, 0.0 },
+  { 109.98956600945303, 188, 134, 0.0 },
+  { 109.07327527757889, 188, 135, 0.0 },
+  { 108.13091230539487, 188, 136, 0.0 },
+  { 107.16217509814828, 188, 137, 0.0 },
+  { 106.16674704571540, 188, 138, 0.0 },
+  { 105.14429611801279, 188, 139, 0.0 },
+  { 104.09447399351416, 188, 140, 0.0 },
+  { 103.01691511404385, 188, 141, 0.0 },
+  { 101.91123565815258, 188, 142, 0.0 },
+  { 100.77703242438179, 188, 143, 0.0 },
+  { 99.613881614576144, 188, 144, 0.0 },
+  { 98.421337506073769, 188, 145, 0.0 },
+  { 97.198931000059019, 188, 146, 0.0 },
+  { 95.946168031563616, 188, 147, 0.0 },
+  { 94.662527824503854, 188, 148, 0.0 },
+  { 93.347460972672366, 188, 149, 0.0 },
+  { 92.000387324705798, 188, 150, 0.0 },
+  { 90.620693647617145, 188, 151, 0.0 },
+  { 89.207731039415080, 188, 152, 0.0 },
+  { 87.760812056478812, 188, 153, 0.0 },
+  { 86.279207515554617, 188, 154, 0.0 },
+  { 84.762142923251531, 188, 155, 0.0 },
+  { 83.208794477468359, 188, 156, 0.0 },
+  { 81.618284574919926, 188, 157, 0.0 },
+  { 79.989676746377995, 188, 158, 0.0 },
+  { 78.321969925819985, 188, 159, 0.0 },
+  { 76.614091940572621, 188, 160, 0.0 },
+  { 74.864892085763358, 188, 161, 0.0 },
+  { 73.073132616535304, 188, 162, 0.0 },
+  { 71.237478953750042, 188, 163, 0.0 },
+  { 69.356488350794052, 188, 164, 0.0 },
+  { 67.428596707241468, 188, 165, 0.0 },
+  { 65.452103134814024, 188, 166, 0.0 },
+  { 63.425151775755467, 188, 167, 0.0 },
+  { 61.345710234075682, 188, 168, 0.0 },
+  { 59.211543792706721, 188, 169, 0.0 },
+  { 57.020184334822829, 188, 170, 0.0 },
+  { 54.768892536216299, 188, 171, 0.0 },
+  { 52.454611403459126, 188, 172, 0.0 },
+  { 50.073908531201141, 188, 173, 0.0 },
+  { 47.622903433088936, 188, 174, 0.0 },
+  { 45.097174788780649, 188, 175, 0.0 },
+  { 42.491640151203910, 188, 176, 0.0 },
+  { 39.800397068418079, 188, 177, 0.0 },
+  { 37.016508790924604, 188, 178, 0.0 },
+  { 34.131708078077736, 188, 179, 0.0 },
+  { 31.135975804523810, 188, 180, 0.0 },
+  { 28.016920314937806, 188, 181, 0.0 },
+  { 24.758823776916188, 188, 182, 0.0 },
+  { 21.341097093302892, 188, 183, 0.0 },
+  { 17.735599248128096, 188, 184, 0.0 },
+  { 13.901537784169477, 188, 185, 0.0 },
+  { 9.7744033991244805, 188, 186, 0.0 },
+  { 5.2364419628298720, 188, 187, 0.0 },
+  { 0.0000000000000000, 188, 188, 0.0 },
+};
+const double toler187 = 5.0000000000000026e-09;
+
+// Divergence at n=189 k=190 f=-inf f_GSL=-inf
+// Divergence at n=189 k=191 f=-inf f_GSL=-inf
+// Divergence at n=189 k=192 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=189 k=200 f=-inf f_GSL=-inf
+// Test data for n=189.
+// max(|f - f_GSL|): 1.4425722838495858e-09
+// max(|f - f_GSL| / |f_GSL|): 6.7511160202009557e-11
+// mean(f - f_GSL): 4.1371514401445988e-10
+// variance(f - f_GSL): 9.1040121702953460e-22
+// stddev(f - f_GSL): 3.0172855632663189e-11
+const testcase_lbincoef<double>
+data188[190] =
+{
+  { 0.0000000000000000, 189, 0, 0.0 },
+  { 5.2417470150596728, 189, 1, 0.0 },
+  { 9.7850417973296544, 189, 2, 0.0 },
+  { 13.917538125515989, 189, 3, 0.0 },
+  { 17.756990438109256, 189, 4, 0.0 },
+  { 21.367908350753623, 189, 5, 0.0 },
+  { 24.791084639134510, 189, 6, 0.0 },
+  { 28.054660642920567, 189, 7, 0.0 },
+  { 31.179225788317694, 189, 8, 0.0 },
+  { 34.180498242247268, 189, 9, 0.0 },
+  { 37.070870000143373, 189, 10, 0.0 },
+  { 39.860360533185826, 189, 11, 0.0 },
+  { 42.557237433689806, 189, 12, 0.0 },
+  { 45.168437808802082, 189, 13, 0.0 },
+  { 47.699864474225024, 189, 14, 0.0 },
+  { 50.156600247046413, 189, 15, 0.0 },
+  { 52.543066824021025, 189, 16, 0.0 },
+  { 54.863145074462523, 189, 17, 0.0 },
+  { 57.120267793379867, 189, 18, 0.0 },
+  { 59.317492370716081, 189, 19, 0.0 },
+  { 61.457558534212353, 189, 20, 0.0 },
+  { 63.542934811411897, 189, 21, 0.0 },
+  { 65.575856337456912, 189, 22, 0.0 },
+  { 67.558355933944540, 189, 23, 0.0 },
+  { 69.492289891953192, 189, 24, 0.0 },
+  { 71.379359540985547, 189, 25, 0.0 },
+  { 73.221129430788210, 189, 26, 0.0 },
+  { 75.019042765590598, 189, 27, 0.0 },
+  { 76.774434590647843, 189, 28, 0.0 },
+  { 78.488543125645833, 189, 29, 0.0 },
+  { 80.162519559217458, 189, 30, 0.0 },
+  { 81.797436556952562, 189, 31, 0.0 },
+  { 83.394295687179806, 189, 32, 0.0 },
+  { 84.954033931061645, 189, 33, 0.0 },
+  { 86.477529413695038, 189, 34, 0.0 },
+  { 87.965606469124850, 189, 35, 0.0 },
+  { 89.419040133082376, 189, 36, 0.0 },
+  { 90.838560141830499, 189, 37, 0.0 },
+  { 92.224854502950507, 189, 38, 0.0 },
+  { 93.578572693635806, 189, 39, 0.0 },
+  { 94.900328533618108, 189, 40, 0.0 },
+  { 96.190702772859140, 189, 41, 0.0 },
+  { 97.450245428339940, 189, 42, 0.0 },
+  { 98.679477899425137, 189, 43, 0.0 },
+  { 99.878894887215210, 189, 44, 0.0 },
+  { 101.04896613986546, 189, 45, 0.0 },
+  { 102.19013804295241, 189, 46, 0.0 },
+  { 103.30283507150216, 189, 47, 0.0 },
+  { 104.38746111819569, 189, 48, 0.0 },
+  { 105.44440071046313, 189, 49, 0.0 },
+  { 106.47402012764439, 189, 50, 0.0 },
+  { 107.47666842805074, 189, 51, 0.0 },
+  { 108.45267839462645, 189, 52, 0.0 },
+  { 109.40236740690250, 189, 53, 0.0 },
+  { 110.32603824607429, 189, 54, 0.0 },
+  { 111.22397983928022, 189, 55, 0.0 },
+  { 112.09646794849596, 189, 56, 0.0 },
+  { 112.94376580888320, 189, 57, 0.0 },
+  { 113.76612472092313, 189, 58, 0.0 },
+  { 114.56378460021853, 189, 59, 0.0 },
+  { 115.33697448845203, 189, 60, 0.0 },
+  { 116.08591302864039, 189, 61, 0.0 },
+  { 116.81080890751491, 189, 62, 0.0 },
+  { 117.51186126758199, 189, 63, 0.0 },
+  { 118.18926009117376, 189, 64, 0.0 },
+  { 118.84318655858044, 189, 65, 0.0 },
+  { 119.47381338215911, 189, 66, 0.0 },
+  { 120.08130511814045, 189, 67, 0.0 },
+  { 120.66581845769770, 189, 68, 0.0 },
+  { 121.22750249869711, 189, 69, 0.0 },
+  { 121.76649899942981, 189, 70, 0.0 },
+  { 122.28294261550008, 189, 71, 0.0 },
+  { 122.77696112094964, 189, 72, 0.0 },
+  { 123.24867561459899, 189, 73, 0.0 },
+  { 123.69820071250120, 189, 74, 0.0 },
+  { 124.12564472732811, 189, 75, 0.0 },
+  { 124.53110983543627, 189, 76, 0.0 },
+  { 124.91469223229501, 189, 77, 0.0 },
+  { 125.27648227690054, 189, 78, 0.0 },
+  { 125.61656462574570, 189, 79, 0.0 },
+  { 125.93501835686430, 189, 80, 0.0 },
+  { 126.23191708442101, 189, 81, 0.0 },
+  { 126.50732906428095, 189, 82, 0.0 },
+  { 126.76131729094629, 189, 83, 0.0 },
+  { 126.99393958621499, 189, 84, 0.0 },
+  { 127.20524867988223, 189, 85, 0.0 },
+  { 127.39529228277007, 189, 86, 0.0 },
+  { 127.56411315234516, 189, 87, 0.0 },
+  { 127.71174915115125, 189, 88, 0.0 },
+  { 127.83823329826038, 189, 89, 0.0 },
+  { 127.94359381391820, 189, 90, 0.0 },
+  { 128.02785415753596, 189, 91, 0.0 },
+  { 128.09103305915744, 189, 92, 0.0 },
+  { 128.13314454450756, 189, 93, 0.0 },
+  { 128.15419795370542, 189, 94, 0.0 },
+  { 128.15419795370542, 189, 95, 0.0 },
+  { 128.13314454450756, 189, 96, 0.0 },
+  { 128.09103305915744, 189, 97, 0.0 },
+  { 128.02785415753596, 189, 98, 0.0 },
+  { 127.94359381391820, 189, 99, 0.0 },
+  { 127.83823329826038, 189, 100, 0.0 },
+  { 127.71174915115125, 189, 101, 0.0 },
+  { 127.56411315234516, 189, 102, 0.0 },
+  { 127.39529228277007, 189, 103, 0.0 },
+  { 127.20524867988223, 189, 104, 0.0 },
+  { 126.99393958621499, 189, 105, 0.0 },
+  { 126.76131729094629, 189, 106, 0.0 },
+  { 126.50732906428095, 189, 107, 0.0 },
+  { 126.23191708442101, 189, 108, 0.0 },
+  { 125.93501835686430, 189, 109, 0.0 },
+  { 125.61656462574570, 189, 110, 0.0 },
+  { 125.27648227690054, 189, 111, 0.0 },
+  { 124.91469223229501, 189, 112, 0.0 },
+  { 124.53110983543627, 189, 113, 0.0 },
+  { 124.12564472732811, 189, 114, 0.0 },
+  { 123.69820071250120, 189, 115, 0.0 },
+  { 123.24867561459899, 189, 116, 0.0 },
+  { 122.77696112094964, 189, 117, 0.0 },
+  { 122.28294261550008, 189, 118, 0.0 },
+  { 121.76649899942981, 189, 119, 0.0 },
+  { 121.22750249869711, 189, 120, 0.0 },
+  { 120.66581845769770, 189, 121, 0.0 },
+  { 120.08130511814045, 189, 122, 0.0 },
+  { 119.47381338215911, 189, 123, 0.0 },
+  { 118.84318655858044, 189, 124, 0.0 },
+  { 118.18926009117376, 189, 125, 0.0 },
+  { 117.51186126758199, 189, 126, 0.0 },
+  { 116.81080890751491, 189, 127, 0.0 },
+  { 116.08591302864039, 189, 128, 0.0 },
+  { 115.33697448845203, 189, 129, 0.0 },
+  { 114.56378460021853, 189, 130, 0.0 },
+  { 113.76612472092313, 189, 131, 0.0 },
+  { 112.94376580888320, 189, 132, 0.0 },
+  { 112.09646794849596, 189, 133, 0.0 },
+  { 111.22397983928022, 189, 134, 0.0 },
+  { 110.32603824607429, 189, 135, 0.0 },
+  { 109.40236740690250, 189, 136, 0.0 },
+  { 108.45267839462645, 189, 137, 0.0 },
+  { 107.47666842805074, 189, 138, 0.0 },
+  { 106.47402012764439, 189, 139, 0.0 },
+  { 105.44440071046313, 189, 140, 0.0 },
+  { 104.38746111819569, 189, 141, 0.0 },
+  { 103.30283507150216, 189, 142, 0.0 },
+  { 102.19013804295241, 189, 143, 0.0 },
+  { 101.04896613986546, 189, 144, 0.0 },
+  { 99.878894887215210, 189, 145, 0.0 },
+  { 98.679477899425137, 189, 146, 0.0 },
+  { 97.450245428339940, 189, 147, 0.0 },
+  { 96.190702772859140, 189, 148, 0.0 },
+  { 94.900328533618108, 189, 149, 0.0 },
+  { 93.578572693635806, 189, 150, 0.0 },
+  { 92.224854502950507, 189, 151, 0.0 },
+  { 90.838560141830499, 189, 152, 0.0 },
+  { 89.419040133082376, 189, 153, 0.0 },
+  { 87.965606469124850, 189, 154, 0.0 },
+  { 86.477529413695038, 189, 155, 0.0 },
+  { 84.954033931061645, 189, 156, 0.0 },
+  { 83.394295687179806, 189, 157, 0.0 },
+  { 81.797436556952562, 189, 158, 0.0 },
+  { 80.162519559217458, 189, 159, 0.0 },
+  { 78.488543125645833, 189, 160, 0.0 },
+  { 76.774434590647843, 189, 161, 0.0 },
+  { 75.019042765590598, 189, 162, 0.0 },
+  { 73.221129430788210, 189, 163, 0.0 },
+  { 71.379359540985547, 189, 164, 0.0 },
+  { 69.492289891953192, 189, 165, 0.0 },
+  { 67.558355933944540, 189, 166, 0.0 },
+  { 65.575856337456912, 189, 167, 0.0 },
+  { 63.542934811411897, 189, 168, 0.0 },
+  { 61.457558534212353, 189, 169, 0.0 },
+  { 59.317492370716081, 189, 170, 0.0 },
+  { 57.120267793379867, 189, 171, 0.0 },
+  { 54.863145074462523, 189, 172, 0.0 },
+  { 52.543066824021025, 189, 173, 0.0 },
+  { 50.156600247046413, 189, 174, 0.0 },
+  { 47.699864474225024, 189, 175, 0.0 },
+  { 45.168437808802082, 189, 176, 0.0 },
+  { 42.557237433689806, 189, 177, 0.0 },
+  { 39.860360533185826, 189, 178, 0.0 },
+  { 37.070870000143373, 189, 179, 0.0 },
+  { 34.180498242247268, 189, 180, 0.0 },
+  { 31.179225788317694, 189, 181, 0.0 },
+  { 28.054660642920567, 189, 182, 0.0 },
+  { 24.791084639134510, 189, 183, 0.0 },
+  { 21.367908350753623, 189, 184, 0.0 },
+  { 17.756990438109256, 189, 185, 0.0 },
+  { 13.917538125515989, 189, 186, 0.0 },
+  { 9.7850417973296544, 189, 187, 0.0 },
+  { 5.2417470150596728, 189, 188, 0.0 },
+  { 0.0000000000000000, 189, 189, 0.0 },
+};
+const double toler188 = 5.0000000000000026e-09;
+
+// Divergence at n=190 k=191 f=-inf f_GSL=-inf
+// Divergence at n=190 k=192 f=-inf f_GSL=-inf
+// Divergence at n=190 k=193 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=190 k=200 f=-inf f_GSL=-inf
+// Test data for n=190.
+// max(|f - f_GSL|): 1.3277769994601840e-09
+// max(|f - f_GSL| / |f_GSL|): 8.7577680557803160e-11
+// mean(f - f_GSL): 8.6341886055024539e-10
+// variance(f - f_GSL): 3.9442935344042069e-21
+// stddev(f - f_GSL): 6.2803610838901667e-11
+const testcase_lbincoef<double>
+data189[191] =
+{
+  { 0.0000000000000000, 190, 0, 0.0 },
+  { 5.2470240721604569, 190, 1, 0.0 },
+  { 9.7956239066602393, 190, 2, 0.0 },
+  { 13.933453580821947, 190, 3, 0.0 },
+  { 17.778267836556552, 190, 4, 0.0 },
+  { 21.394576597835567, 190, 5, 0.0 },
+  { 24.823172953686026, 190, 6, 0.0 },
+  { 28.092198562239673, 190, 7, 0.0 },
+  { 31.222243173401239, 190, 8, 0.0 },
+  { 34.229025283141937, 190, 9, 0.0 },
+  { 37.124937221413688, 190, 10, 0.0 },
+  { 39.919998799505379, 190, 11, 0.0 },
+  { 42.622477955558338, 190, 12, 0.0 },
+  { 45.239312148388763, 190, 13, 0.0 },
+  { 47.776404551347241, 190, 14, 0.0 },
+  { 50.238838345283284, 190, 15, 0.0 },
+  { 52.631035596967081, 190, 16, 0.0 },
+  { 54.956877552125206, 190, 17, 0.0 },
+  { 57.219797388726874, 190, 18, 0.0 },
+  { 59.422852886373903, 190, 19, 0.0 },
+  { 61.568784169322498, 190, 20, 0.0 },
+  { 63.660060168649352, 190, 21, 0.0 },
+  { 65.698916430214126, 190, 22, 0.0 },
+  { 67.687386193688212, 190, 23, 0.0 },
+  { 69.627326175757048, 190, 24, 0.0 },
+  { 71.520438139245471, 190, 25, 0.0 },
+  { 73.368287075124499, 190, 26, 0.0 },
+  { 75.172316636944288, 190, 27, 0.0 },
+  { 76.933862327575866, 190, 28, 0.0 },
+  { 78.654162832821839, 190, 29, 0.0 },
+  { 80.334369816144090, 190, 30, 0.0 },
+  { 81.975556426892808, 190, 31, 0.0 },
+  { 83.578724726313226, 190, 32, 0.0 },
+  { 85.144812197873875, 190, 33, 0.0 },
+  { 86.674697478605935, 190, 34, 0.0 },
+  { 88.169205424366055, 190, 35, 0.0 },
+  { 89.629111602829198, 190, 36, 0.0 },
+  { 91.055146292598579, 190, 37, 0.0 },
+  { 92.447998054264644, 190, 38, 0.0 },
+  { 93.808316928981299, 190, 39, 0.0 },
+  { 95.136717311682332, 190, 40, 0.0 },
+  { 96.433780539074178, 190, 41, 0.0 },
+  { 97.700057226736249, 190, 42, 0.0 },
+  { 98.936069384806842, 190, 43, 0.0 },
+  { 100.14231233766736, 190, 44, 0.0 },
+  { 101.31925646960531, 190, 45, 0.0 },
+  { 102.46734881553687, 190, 46, 0.0 },
+  { 103.58701451340278, 190, 47, 0.0 },
+  { 104.67865813275478, 190, 48, 0.0 },
+  { 105.74266489224544, 190, 49, 0.0 },
+  { 106.77940177719552, 190, 50, 0.0 },
+  { 107.78921856708052, 190, 51, 0.0 },
+  { 108.77244878162969, 190, 52, 0.0 },
+  { 109.72941055323486, 190, 53, 0.0 },
+  { 110.66040743249869, 190, 54, 0.0 },
+  { 111.56572913300226, 190, 55, 0.0 },
+  { 112.44565222070548, 190, 56, 0.0 },
+  { 113.30044075282194, 190, 57, 0.0 },
+  { 114.13034687049719, 190, 58, 0.0 },
+  { 114.93561134917786, 190, 59, 0.0 },
+  { 115.71646411015689, 190, 60, 0.0 },
+  { 116.47312469643919, 190, 61, 0.0 },
+  { 117.20580271575574, 190, 62, 0.0 },
+  { 117.91469825328386, 190, 63, 0.0 },
+  { 118.60000225638277, 190, 64, 0.0 },
+  { 119.26189689343857, 190, 65, 0.0 },
+  { 119.90055588871451, 190, 66, 0.0 },
+  { 120.51614483492853, 190, 67, 0.0 },
+  { 121.10882148512485, 190, 68, 0.0 },
+  { 121.67873602526083, 190, 69, 0.0 },
+  { 122.22603132880823, 190, 70, 0.0 },
+  { 122.75084319454902, 190, 71, 0.0 },
+  { 123.25330056864442, 190, 72, 0.0 },
+  { 123.73352575196168, 190, 73, 0.0 },
+  { 124.19163459355531, 190, 74, 0.0 },
+  { 124.62773667112532, 190, 75, 0.0 },
+  { 125.04193545920225, 190, 76, 0.0 },
+  { 125.43432848574309, 190, 77, 0.0 },
+  { 125.80500747776591, 190, 78, 0.0 },
+  { 126.15405849659385, 190, 79, 0.0 },
+  { 126.48156206323233, 190, 80, 0.0 },
+  { 126.78759327435233, 190, 81, 0.0 },
+  { 127.07222190931719, 190, 82, 0.0 },
+  { 127.33551252864481, 190, 83, 0.0 },
+  { 127.57752456426340, 190, 84, 0.0 },
+  { 127.79831240188514, 190, 85, 0.0 },
+  { 127.99792545578919, 190, 86, 0.0 },
+  { 128.17640823627596, 190, 87, 0.0 },
+  { 128.33380041002744, 190, 88, 0.0 },
+  { 128.47013685357956, 190, 89, 0.0 },
+  { 128.58544770009058, 190, 90, 0.0 },
+  { 128.67975837956180, 190, 91, 0.0 },
+  { 128.75308965264736, 190, 92, 0.0 },
+  { 128.80545763816463, 190, 93, 0.0 },
+  { 128.83687383439803, 190, 94, 0.0 },
+  { 128.84734513426531, 190, 95, 0.0 },
+  { 128.83687383439803, 190, 96, 0.0 },
+  { 128.80545763816463, 190, 97, 0.0 },
+  { 128.75308965264736, 190, 98, 0.0 },
+  { 128.67975837956180, 190, 99, 0.0 },
+  { 128.58544770009058, 190, 100, 0.0 },
+  { 128.47013685357956, 190, 101, 0.0 },
+  { 128.33380041002744, 190, 102, 0.0 },
+  { 128.17640823627596, 190, 103, 0.0 },
+  { 127.99792545578919, 190, 104, 0.0 },
+  { 127.79831240188514, 190, 105, 0.0 },
+  { 127.57752456426340, 190, 106, 0.0 },
+  { 127.33551252864481, 190, 107, 0.0 },
+  { 127.07222190931719, 190, 108, 0.0 },
+  { 126.78759327435233, 190, 109, 0.0 },
+  { 126.48156206323233, 190, 110, 0.0 },
+  { 126.15405849659385, 190, 111, 0.0 },
+  { 125.80500747776591, 190, 112, 0.0 },
+  { 125.43432848574309, 190, 113, 0.0 },
+  { 125.04193545920225, 190, 114, 0.0 },
+  { 124.62773667112532, 190, 115, 0.0 },
+  { 124.19163459355531, 190, 116, 0.0 },
+  { 123.73352575196168, 190, 117, 0.0 },
+  { 123.25330056864442, 190, 118, 0.0 },
+  { 122.75084319454902, 190, 119, 0.0 },
+  { 122.22603132880823, 190, 120, 0.0 },
+  { 121.67873602526083, 190, 121, 0.0 },
+  { 121.10882148512485, 190, 122, 0.0 },
+  { 120.51614483492853, 190, 123, 0.0 },
+  { 119.90055588871451, 190, 124, 0.0 },
+  { 119.26189689343857, 190, 125, 0.0 },
+  { 118.60000225638277, 190, 126, 0.0 },
+  { 117.91469825328386, 190, 127, 0.0 },
+  { 117.20580271575574, 190, 128, 0.0 },
+  { 116.47312469643919, 190, 129, 0.0 },
+  { 115.71646411015689, 190, 130, 0.0 },
+  { 114.93561134917786, 190, 131, 0.0 },
+  { 114.13034687049719, 190, 132, 0.0 },
+  { 113.30044075282194, 190, 133, 0.0 },
+  { 112.44565222070548, 190, 134, 0.0 },
+  { 111.56572913300226, 190, 135, 0.0 },
+  { 110.66040743249869, 190, 136, 0.0 },
+  { 109.72941055323486, 190, 137, 0.0 },
+  { 108.77244878162969, 190, 138, 0.0 },
+  { 107.78921856708052, 190, 139, 0.0 },
+  { 106.77940177719552, 190, 140, 0.0 },
+  { 105.74266489224544, 190, 141, 0.0 },
+  { 104.67865813275478, 190, 142, 0.0 },
+  { 103.58701451340278, 190, 143, 0.0 },
+  { 102.46734881553687, 190, 144, 0.0 },
+  { 101.31925646960531, 190, 145, 0.0 },
+  { 100.14231233766736, 190, 146, 0.0 },
+  { 98.936069384806842, 190, 147, 0.0 },
+  { 97.700057226736249, 190, 148, 0.0 },
+  { 96.433780539074178, 190, 149, 0.0 },
+  { 95.136717311682332, 190, 150, 0.0 },
+  { 93.808316928981299, 190, 151, 0.0 },
+  { 92.447998054264644, 190, 152, 0.0 },
+  { 91.055146292598579, 190, 153, 0.0 },
+  { 89.629111602829198, 190, 154, 0.0 },
+  { 88.169205424366055, 190, 155, 0.0 },
+  { 86.674697478605935, 190, 156, 0.0 },
+  { 85.144812197873875, 190, 157, 0.0 },
+  { 83.578724726313226, 190, 158, 0.0 },
+  { 81.975556426892808, 190, 159, 0.0 },
+  { 80.334369816144090, 190, 160, 0.0 },
+  { 78.654162832821839, 190, 161, 0.0 },
+  { 76.933862327575866, 190, 162, 0.0 },
+  { 75.172316636944288, 190, 163, 0.0 },
+  { 73.368287075124499, 190, 164, 0.0 },
+  { 71.520438139245471, 190, 165, 0.0 },
+  { 69.627326175757048, 190, 166, 0.0 },
+  { 67.687386193688212, 190, 167, 0.0 },
+  { 65.698916430214126, 190, 168, 0.0 },
+  { 63.660060168649352, 190, 169, 0.0 },
+  { 61.568784169322498, 190, 170, 0.0 },
+  { 59.422852886373903, 190, 171, 0.0 },
+  { 57.219797388726874, 190, 172, 0.0 },
+  { 54.956877552125206, 190, 173, 0.0 },
+  { 52.631035596967081, 190, 174, 0.0 },
+  { 50.238838345283284, 190, 175, 0.0 },
+  { 47.776404551347241, 190, 176, 0.0 },
+  { 45.239312148388763, 190, 177, 0.0 },
+  { 42.622477955558338, 190, 178, 0.0 },
+  { 39.919998799505379, 190, 179, 0.0 },
+  { 37.124937221413688, 190, 180, 0.0 },
+  { 34.229025283141937, 190, 181, 0.0 },
+  { 31.222243173401239, 190, 182, 0.0 },
+  { 28.092198562239673, 190, 183, 0.0 },
+  { 24.823172953686026, 190, 184, 0.0 },
+  { 21.394576597835567, 190, 185, 0.0 },
+  { 17.778267836556552, 190, 186, 0.0 },
+  { 13.933453580821947, 190, 187, 0.0 },
+  { 9.7956239066602393, 190, 188, 0.0 },
+  { 5.2470240721604569, 190, 189, 0.0 },
+  { 0.0000000000000000, 190, 190, 0.0 },
+};
+const double toler189 = 5.0000000000000026e-09;
+
+// Divergence at n=191 k=192 f=-inf f_GSL=-inf
+// Divergence at n=191 k=193 f=-inf f_GSL=-inf
+// Divergence at n=191 k=194 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=191 k=200 f=-inf f_GSL=-inf
+// Test data for n=191.
+// max(|f - f_GSL|): 2.0277184376027435e-09
+// max(|f - f_GSL| / |f_GSL|): 1.9890034749266276e-10
+// mean(f - f_GSL): -1.8008373496118205e-10
+// variance(f - f_GSL): 1.7068032967115208e-22
+// stddev(f - f_GSL): 1.3064468212336546e-11
+const testcase_lbincoef<double>
+data190[192] =
+{
+  { 0.0000000000000000, 191, 0, 0.0 },
+  { 5.2522734280466921, 191, 1, 0.0 },
+  { 9.8061503196472586, 191, 2, 0.0 },
+  { 13.949285046038767, 191, 3, 0.0 },
+  { 17.799432647748745, 191, 4, 0.0 },
+  { 21.421103352169098, 191, 5, 0.0 },
+  { 24.855090556654204, 191, 6, 0.0 },
+  { 28.129536232677424, 191, 7, 0.0 },
+  { 31.265030448606581, 191, 8, 0.0 },
+  { 34.277292024111716, 191, 9, 0.0 },
+  { 37.178713618194593, 191, 10, 0.0 },
+  { 39.979315376661930, 191, 11, 0.0 },
+  { 42.687365577764126, 191, 12, 0.0 },
+  { 45.309802026143529, 191, 13, 0.0 },
+  { 47.852528246820157, 191, 14, 0.0 },
+  { 50.320627778291737, 191, 15, 0.0 },
+  { 52.718523051090187, 191, 16, 0.0 },
+  { 55.050095680957497, 191, 17, 0.0 },
+  { 57.318779222275793, 191, 18, 0.0 },
+  { 59.527631837607146, 191, 19, 0.0 },
+  { 61.679394040866555, 191, 20, 0.0 },
+  { 63.776535159645732, 191, 21, 0.0 },
+  { 65.821291143337817, 191, 22, 0.0 },
+  { 67.815695642331661, 191, 23, 0.0 },
+  { 69.761605791386955, 191, 24, 0.0 },
+  { 71.660723778935562, 191, 25, 0.0 },
+  { 73.514615029270658, 191, 26, 0.0 },
+  { 75.324723637166812, 191, 27, 0.0 },
+  { 77.092385554815792, 191, 28, 0.0 },
+  { 78.818839925636098, 191, 29, 0.0 },
+  { 80.505238879206331, 191, 30, 0.0 },
+  { 82.152656039705676, 191, 31, 0.0 },
+  { 83.762093952139708, 191, 32, 0.0 },
+  { 85.334490592893530, 191, 33, 0.0 },
+  { 86.870725101304402, 191, 34, 0.0 },
+  { 88.371622845163188, 191, 35, 0.0 },
+  { 89.837959913956638, 191, 36, 0.0 },
+  { 91.270467118231636, 191, 37, 0.0 },
+  { 92.669833560918960, 191, 38, 0.0 },
+  { 94.036709836181672, 191, 39, 0.0 },
+  { 95.371710902914060, 191, 40, 0.0 },
+  { 96.675418673024637, 191, 41, 0.0 },
+  { 97.948384348837521, 191, 42, 0.0 },
+  { 99.191130539089386, 191, 43, 0.0 },
+  { 100.40415317893530, 191, 44, 0.0 },
+  { 101.58792327594369, 191, 45, 0.0 },
+  { 102.74288850116295, 191, 46, 0.0 },
+  { 103.86947464187347, 191, 47, 0.0 },
+  { 104.96808693054163, 191, 48, 0.0 },
+  { 106.03911126269077, 191, 49, 0.0 },
+  { 107.08291531486407, 191, 50, 0.0 },
+  { 108.09984957251788, 191, 51, 0.0 },
+  { 109.09024827654571, 191, 52, 0.0 },
+  { 110.05443029612434, 191, 53, 0.0 },
+  { 110.99269993471728, 191, 54, 0.0 },
+  { 111.90534767531290, 191, 55, 0.0 },
+  { 112.79265087031376, 191, 56, 0.0 },
+  { 113.65487438091770, 191, 57, 0.0 },
+  { 114.49227117032217, 191, 58, 0.0 },
+  { 115.30508285463816, 191, 59, 0.0 },
+  { 116.09354021500246, 191, 60, 0.0 },
+  { 116.85786367403028, 191, 61, 0.0 },
+  { 117.59826373944077, 191, 62, 0.0 },
+  { 118.31494141741092, 191, 63, 0.0 },
+  { 119.00808859797087, 191, 64, 0.0 },
+  { 119.67788841453381, 191, 65, 0.0 },
+  { 120.32451557945888, 191, 66, 0.0 },
+  { 120.94813669737016, 191, 67, 0.0 },
+  { 121.54891055779916, 191, 68, 0.0 },
+  { 122.12698840857422, 191, 69, 0.0 },
+  { 122.68251421125819, 191, 70, 0.0 },
+  { 123.21562487981367, 191, 71, 0.0 },
+  { 123.72645050357960, 191, 72, 0.0 },
+  { 124.21511455554270, 191, 73, 0.0 },
+  { 124.68173408680423, 191, 74, 0.0 },
+  { 125.12641990806566, 191, 75, 0.0 },
+  { 125.54927675888570, 191, 76, 0.0 },
+  { 125.95040346539531, 191, 77, 0.0 },
+  { 126.32989308710023, 191, 78, 0.0 },
+  { 126.68783305334546, 191, 79, 0.0 },
+  { 127.02430528996672, 191, 80, 0.0 },
+  { 127.33938633660659, 191, 81, 0.0 },
+  { 127.63314745513475, 191, 82, 0.0 },
+  { 127.90565472956729, 191, 83, 0.0 },
+  { 128.15696915784815, 191, 84, 0.0 },
+  { 128.38714673581978, 191, 85, 0.0 },
+  { 128.59623853367839, 191, 86, 0.0 },
+  { 128.78429076518131, 191, 87, 0.0 },
+  { 128.95134484984447, 191, 88, 0.0 },
+  { 129.09743746834198, 191, 89, 0.0 },
+  { 129.22260061129600, 191, 90, 0.0 },
+  { 129.32686162162042, 191, 91, 0.0 },
+  { 129.41024323055944, 191, 92, 0.0 },
+  { 129.47276358754078, 191, 93, 0.0 },
+  { 129.51443628394134, 191, 94, 0.0 },
+  { 129.53527037084416, 191, 95, 0.0 },
+  { 129.53527037084416, 191, 96, 0.0 },
+  { 129.51443628394134, 191, 97, 0.0 },
+  { 129.47276358754078, 191, 98, 0.0 },
+  { 129.41024323055944, 191, 99, 0.0 },
+  { 129.32686162162042, 191, 100, 0.0 },
+  { 129.22260061129600, 191, 101, 0.0 },
+  { 129.09743746834198, 191, 102, 0.0 },
+  { 128.95134484984447, 191, 103, 0.0 },
+  { 128.78429076518131, 191, 104, 0.0 },
+  { 128.59623853367839, 191, 105, 0.0 },
+  { 128.38714673581978, 191, 106, 0.0 },
+  { 128.15696915784815, 191, 107, 0.0 },
+  { 127.90565472956729, 191, 108, 0.0 },
+  { 127.63314745513475, 191, 109, 0.0 },
+  { 127.33938633660659, 191, 110, 0.0 },
+  { 127.02430528996672, 191, 111, 0.0 },
+  { 126.68783305334546, 191, 112, 0.0 },
+  { 126.32989308710023, 191, 113, 0.0 },
+  { 125.95040346539531, 191, 114, 0.0 },
+  { 125.54927675888570, 191, 115, 0.0 },
+  { 125.12641990806566, 191, 116, 0.0 },
+  { 124.68173408680423, 191, 117, 0.0 },
+  { 124.21511455554270, 191, 118, 0.0 },
+  { 123.72645050357960, 191, 119, 0.0 },
+  { 123.21562487981367, 191, 120, 0.0 },
+  { 122.68251421125819, 191, 121, 0.0 },
+  { 122.12698840857422, 191, 122, 0.0 },
+  { 121.54891055779916, 191, 123, 0.0 },
+  { 120.94813669737016, 191, 124, 0.0 },
+  { 120.32451557945888, 191, 125, 0.0 },
+  { 119.67788841453381, 191, 126, 0.0 },
+  { 119.00808859797087, 191, 127, 0.0 },
+  { 118.31494141741092, 191, 128, 0.0 },
+  { 117.59826373944077, 191, 129, 0.0 },
+  { 116.85786367403028, 191, 130, 0.0 },
+  { 116.09354021500246, 191, 131, 0.0 },
+  { 115.30508285463816, 191, 132, 0.0 },
+  { 114.49227117032217, 191, 133, 0.0 },
+  { 113.65487438091770, 191, 134, 0.0 },
+  { 112.79265087031376, 191, 135, 0.0 },
+  { 111.90534767531290, 191, 136, 0.0 },
+  { 110.99269993471728, 191, 137, 0.0 },
+  { 110.05443029612434, 191, 138, 0.0 },
+  { 109.09024827654571, 191, 139, 0.0 },
+  { 108.09984957251788, 191, 140, 0.0 },
+  { 107.08291531486407, 191, 141, 0.0 },
+  { 106.03911126269077, 191, 142, 0.0 },
+  { 104.96808693054163, 191, 143, 0.0 },
+  { 103.86947464187347, 191, 144, 0.0 },
+  { 102.74288850116295, 191, 145, 0.0 },
+  { 101.58792327594369, 191, 146, 0.0 },
+  { 100.40415317893530, 191, 147, 0.0 },
+  { 99.191130539089386, 191, 148, 0.0 },
+  { 97.948384348837521, 191, 149, 0.0 },
+  { 96.675418673024637, 191, 150, 0.0 },
+  { 95.371710902914060, 191, 151, 0.0 },
+  { 94.036709836181672, 191, 152, 0.0 },
+  { 92.669833560918960, 191, 153, 0.0 },
+  { 91.270467118231636, 191, 154, 0.0 },
+  { 89.837959913956638, 191, 155, 0.0 },
+  { 88.371622845163188, 191, 156, 0.0 },
+  { 86.870725101304402, 191, 157, 0.0 },
+  { 85.334490592893530, 191, 158, 0.0 },
+  { 83.762093952139708, 191, 159, 0.0 },
+  { 82.152656039705676, 191, 160, 0.0 },
+  { 80.505238879206331, 191, 161, 0.0 },
+  { 78.818839925636098, 191, 162, 0.0 },
+  { 77.092385554815792, 191, 163, 0.0 },
+  { 75.324723637166812, 191, 164, 0.0 },
+  { 73.514615029270658, 191, 165, 0.0 },
+  { 71.660723778935562, 191, 166, 0.0 },
+  { 69.761605791386955, 191, 167, 0.0 },
+  { 67.815695642331661, 191, 168, 0.0 },
+  { 65.821291143337817, 191, 169, 0.0 },
+  { 63.776535159645732, 191, 170, 0.0 },
+  { 61.679394040866555, 191, 171, 0.0 },
+  { 59.527631837607146, 191, 172, 0.0 },
+  { 57.318779222275793, 191, 173, 0.0 },
+  { 55.050095680957497, 191, 174, 0.0 },
+  { 52.718523051090187, 191, 175, 0.0 },
+  { 50.320627778291737, 191, 176, 0.0 },
+  { 47.852528246820157, 191, 177, 0.0 },
+  { 45.309802026143529, 191, 178, 0.0 },
+  { 42.687365577764126, 191, 179, 0.0 },
+  { 39.979315376661930, 191, 180, 0.0 },
+  { 37.178713618194593, 191, 181, 0.0 },
+  { 34.277292024111716, 191, 182, 0.0 },
+  { 31.265030448606581, 191, 183, 0.0 },
+  { 28.129536232677424, 191, 184, 0.0 },
+  { 24.855090556654204, 191, 185, 0.0 },
+  { 21.421103352169098, 191, 186, 0.0 },
+  { 17.799432647748745, 191, 187, 0.0 },
+  { 13.949285046038767, 191, 188, 0.0 },
+  { 9.8061503196472586, 191, 189, 0.0 },
+  { 5.2522734280466921, 191, 190, 0.0 },
+  { 0.0000000000000000, 191, 191, 0.0 },
+};
+const double toler190 = 1.0000000000000005e-08;
+
+// Divergence at n=192 k=193 f=-inf f_GSL=-inf
+// Divergence at n=192 k=194 f=-inf f_GSL=-inf
+// Divergence at n=192 k=195 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=192 k=200 f=-inf f_GSL=-inf
+// Test data for n=192.
+// max(|f - f_GSL|): 1.6497452293151582e-09
+// max(|f - f_GSL| / |f_GSL|): 7.1899014392964278e-11
+// mean(f - f_GSL): 1.9516531626259212e-10
+// variance(f - f_GSL): 1.9941605983269255e-22
+// stddev(f - f_GSL): 1.4121475129486033e-11
+const testcase_lbincoef<double>
+data191[193] =
+{
+  { 0.0000000000000000, 192, 0, 0.0 },
+  { 5.2574953720278472, 192, 1, 0.0 },
+  { 9.8166216195146490, 192, 2, 0.0 },
+  { 13.965033403006942, 192, 3, 0.0 },
+  { 17.820486056946720, 192, 4, 0.0 },
+  { 21.447490107342446, 192, 5, 0.0 },
+  { 24.886839254968891, 192, 6, 0.0 },
+  { 28.166675779626758, 192, 7, 0.0 },
+  { 31.307590063025486, 192, 8, 0.0 },
+  { 34.325301243298213, 192, 9, 0.0 },
+  { 37.232202303145527, 192, 10, 0.0 },
+  { 40.038313717423989, 192, 11, 0.0 },
+  { 42.751904098901832, 192, 12, 0.0 },
+  { 45.379911592330473, 192, 13, 0.0 },
+  { 47.928240068556079, 192, 14, 0.0 },
+  { 50.401973417745808, 192, 15, 0.0 },
+  { 52.805534428079795, 192, 16, 0.0 },
+  { 55.142805079061759, 192, 17, 0.0 },
+  { 57.417219295089239, 192, 18, 0.0 },
+  { 59.631835615137220, 192, 19, 0.0 },
+  { 61.789394936080953, 192, 20, 0.0 },
+  { 63.892366975170944, 192, 21, 0.0 },
+  { 65.942988078315352, 192, 22, 0.0 },
+  { 67.943292299436507, 192, 23, 0.0 },
+  { 69.895137184011560, 192, 24, 0.0 },
+  { 71.800225338546625, 192, 25, 0.0 },
+  { 73.660122612941905, 192, 26, 0.0 },
+  { 75.476273535294126, 192, 27, 0.0 },
+  { 77.250014499019471, 192, 28, 0.0 },
+  { 78.982585096857179, 192, 29, 0.0 },
+  { 80.675137916001745, 192, 30, 0.0 },
+  { 82.328747046749072, 192, 31, 0.0 },
+  { 83.944415508933844, 192, 32, 0.0 },
+  { 85.523081762701167, 192, 33, 0.0 },
+  { 87.065625440305212, 192, 34, 0.0 },
+  { 88.572872411842809, 192, 35, 0.0 },
+  { 90.045599278734926, 192, 36, 0.0 },
+  { 91.484537373340231, 192, 37, 0.0 },
+  { 92.890376330533172, 192, 38, 0.0 },
+  { 94.263767286817142, 192, 39, 0.0 },
+  { 95.605325754095588, 192, 40, 0.0 },
+  { 96.915634208237520, 192, 41, 0.0 },
+  { 98.195244426769136, 192, 42, 0.0 },
+  { 99.444679605171814, 192, 43, 0.0 },
+  { 100.66443627719900, 192, 44, 0.0 },
+  { 101.85498606119279, 192, 45, 0.0 },
+  { 103.01677725148249, 192, 46, 0.0 },
+  { 104.15023627148071, 192, 47, 0.0 },
+  { 105.25576900299347, 192, 48, 0.0 },
+  { 106.33376200445878, 192, 49, 0.0 },
+  { 107.38458362929055, 192, 50, 0.0 },
+  { 108.40858505416759, 192, 51, 0.0 },
+  { 109.40610122596422, 192, 52, 0.0 },
+  { 110.37745173502151, 192, 53, 0.0 },
+  { 111.32294162158792, 192, 54, 0.0 },
+  { 112.24286212151264, 192, 55, 0.0 },
+  { 113.13749135660555, 192, 56, 0.0 },
+  { 114.00709497450703, 192, 57, 0.0 },
+  { 114.85192674239909, 192, 58, 0.0 },
+  { 115.67222909844429, 192, 59, 0.0 },
+  { 116.46823366444391, 192, 60, 0.0 },
+  { 117.24016172285701, 192, 61, 0.0 },
+  { 117.98822466101302, 192, 62, 0.0 },
+  { 118.71262438507711, 192, 63, 0.0 },
+  { 119.41355370607909, 192, 64, 0.0 },
+  { 120.09119670010307, 192, 65, 0.0 },
+  { 120.74572904453515, 192, 66, 0.0 },
+  { 121.37731833209568, 192, 67, 0.0 },
+  { 121.98612436422195, 192, 68, 0.0 },
+  { 122.57229942522969, 192, 69, 0.0 },
+  { 123.13598853855274, 192, 70, 0.0 },
+  { 123.67732970624468, 192, 71, 0.0 },
+  { 124.19645413282541, 192, 72, 0.0 },
+  { 124.69348643445903, 192, 73, 0.0 },
+  { 125.16854483436640, 192, 74, 0.0 },
+  { 125.62174134529573, 192, 75, 0.0 },
+  { 126.05318193980719, 192, 76, 0.0 },
+  { 126.46296670905980, 192, 77, 0.0 },
+  { 126.85119001073349, 192, 78, 0.0 },
+  { 127.21794060666105, 192, 79, 0.0 },
+  { 127.56330179069948, 192, 80, 0.0 },
+  { 127.88735150732214, 192, 81, 0.0 },
+  { 128.19016246137016, 192, 82, 0.0 },
+  { 128.47180221936600, 192, 83, 0.0 },
+  { 128.73233330275190, 192, 84, 0.0 },
+  { 128.97181327338569, 192, 85, 0.0 },
+  { 129.19029481159407, 192, 86, 0.0 },
+  { 129.38782578705161, 192, 87, 0.0 },
+  { 129.56444932273098, 192, 88, 0.0 },
+  { 129.72020385214017, 192, 89, 0.0 },
+  { 129.85512317003958, 192, 90, 0.0 },
+  { 129.96923647680700, 192, 91, 0.0 },
+  { 130.06256841659922, 192, 92, 0.0 },
+  { 130.13513910943402, 192, 93, 0.0 },
+  { 130.18696417729865, 192, 94, 0.0 },
+  { 130.21805476436862, 192, 95, 0.0 },
+  { 130.22841755140416, 192, 96, 0.0 },
+  { 130.21805476436862, 192, 97, 0.0 },
+  { 130.18696417729865, 192, 98, 0.0 },
+  { 130.13513910943402, 192, 99, 0.0 },
+  { 130.06256841659922, 192, 100, 0.0 },
+  { 129.96923647680700, 192, 101, 0.0 },
+  { 129.85512317003958, 192, 102, 0.0 },
+  { 129.72020385214017, 192, 103, 0.0 },
+  { 129.56444932273098, 192, 104, 0.0 },
+  { 129.38782578705161, 192, 105, 0.0 },
+  { 129.19029481159407, 192, 106, 0.0 },
+  { 128.97181327338569, 192, 107, 0.0 },
+  { 128.73233330275190, 192, 108, 0.0 },
+  { 128.47180221936600, 192, 109, 0.0 },
+  { 128.19016246137016, 192, 110, 0.0 },
+  { 127.88735150732214, 192, 111, 0.0 },
+  { 127.56330179069948, 192, 112, 0.0 },
+  { 127.21794060666105, 192, 113, 0.0 },
+  { 126.85119001073349, 192, 114, 0.0 },
+  { 126.46296670905980, 192, 115, 0.0 },
+  { 126.05318193980719, 192, 116, 0.0 },
+  { 125.62174134529573, 192, 117, 0.0 },
+  { 125.16854483436640, 192, 118, 0.0 },
+  { 124.69348643445903, 192, 119, 0.0 },
+  { 124.19645413282541, 192, 120, 0.0 },
+  { 123.67732970624468, 192, 121, 0.0 },
+  { 123.13598853855274, 192, 122, 0.0 },
+  { 122.57229942522969, 192, 123, 0.0 },
+  { 121.98612436422195, 192, 124, 0.0 },
+  { 121.37731833209568, 192, 125, 0.0 },
+  { 120.74572904453515, 192, 126, 0.0 },
+  { 120.09119670010307, 192, 127, 0.0 },
+  { 119.41355370607909, 192, 128, 0.0 },
+  { 118.71262438507711, 192, 129, 0.0 },
+  { 117.98822466101302, 192, 130, 0.0 },
+  { 117.24016172285701, 192, 131, 0.0 },
+  { 116.46823366444391, 192, 132, 0.0 },
+  { 115.67222909844429, 192, 133, 0.0 },
+  { 114.85192674239909, 192, 134, 0.0 },
+  { 114.00709497450703, 192, 135, 0.0 },
+  { 113.13749135660555, 192, 136, 0.0 },
+  { 112.24286212151264, 192, 137, 0.0 },
+  { 111.32294162158792, 192, 138, 0.0 },
+  { 110.37745173502151, 192, 139, 0.0 },
+  { 109.40610122596422, 192, 140, 0.0 },
+  { 108.40858505416759, 192, 141, 0.0 },
+  { 107.38458362929055, 192, 142, 0.0 },
+  { 106.33376200445878, 192, 143, 0.0 },
+  { 105.25576900299347, 192, 144, 0.0 },
+  { 104.15023627148071, 192, 145, 0.0 },
+  { 103.01677725148249, 192, 146, 0.0 },
+  { 101.85498606119279, 192, 147, 0.0 },
+  { 100.66443627719900, 192, 148, 0.0 },
+  { 99.444679605171814, 192, 149, 0.0 },
+  { 98.195244426769136, 192, 150, 0.0 },
+  { 96.915634208237520, 192, 151, 0.0 },
+  { 95.605325754095588, 192, 152, 0.0 },
+  { 94.263767286817142, 192, 153, 0.0 },
+  { 92.890376330533172, 192, 154, 0.0 },
+  { 91.484537373340231, 192, 155, 0.0 },
+  { 90.045599278734926, 192, 156, 0.0 },
+  { 88.572872411842809, 192, 157, 0.0 },
+  { 87.065625440305212, 192, 158, 0.0 },
+  { 85.523081762701167, 192, 159, 0.0 },
+  { 83.944415508933844, 192, 160, 0.0 },
+  { 82.328747046749072, 192, 161, 0.0 },
+  { 80.675137916001745, 192, 162, 0.0 },
+  { 78.982585096857179, 192, 163, 0.0 },
+  { 77.250014499019471, 192, 164, 0.0 },
+  { 75.476273535294126, 192, 165, 0.0 },
+  { 73.660122612941905, 192, 166, 0.0 },
+  { 71.800225338546625, 192, 167, 0.0 },
+  { 69.895137184011560, 192, 168, 0.0 },
+  { 67.943292299436507, 192, 169, 0.0 },
+  { 65.942988078315352, 192, 170, 0.0 },
+  { 63.892366975170944, 192, 171, 0.0 },
+  { 61.789394936080953, 192, 172, 0.0 },
+  { 59.631835615137220, 192, 173, 0.0 },
+  { 57.417219295089239, 192, 174, 0.0 },
+  { 55.142805079061759, 192, 175, 0.0 },
+  { 52.805534428079795, 192, 176, 0.0 },
+  { 50.401973417745808, 192, 177, 0.0 },
+  { 47.928240068556079, 192, 178, 0.0 },
+  { 45.379911592330473, 192, 179, 0.0 },
+  { 42.751904098901832, 192, 180, 0.0 },
+  { 40.038313717423989, 192, 181, 0.0 },
+  { 37.232202303145527, 192, 182, 0.0 },
+  { 34.325301243298213, 192, 183, 0.0 },
+  { 31.307590063025486, 192, 184, 0.0 },
+  { 28.166675779626758, 192, 185, 0.0 },
+  { 24.886839254968891, 192, 186, 0.0 },
+  { 21.447490107342446, 192, 187, 0.0 },
+  { 17.820486056946720, 192, 188, 0.0 },
+  { 13.965033403006942, 192, 189, 0.0 },
+  { 9.8166216195146490, 192, 190, 0.0 },
+  { 5.2574953720278472, 192, 191, 0.0 },
+  { 0.0000000000000000, 192, 192, 0.0 },
+};
+const double toler191 = 5.0000000000000026e-09;
+
+// Divergence at n=193 k=194 f=-inf f_GSL=-inf
+// Divergence at n=193 k=195 f=-inf f_GSL=-inf
+// Divergence at n=193 k=196 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=193 k=200 f=-inf f_GSL=-inf
+// Test data for n=193.
+// max(|f - f_GSL|): 1.8318360162083991e-09
+// max(|f - f_GSL| / |f_GSL|): 2.2246170928424769e-10
+// mean(f - f_GSL): 1.3511086499320722e-09
+// variance(f - f_GSL): 9.5075290418729554e-21
+// stddev(f - f_GSL): 9.7506558968476346e-11
+const testcase_lbincoef<double>
+data192[194] =
+{
+  { 0.0000000000000000, 193, 0, 0.0 },
+  { 5.2626901889047986, 193, 1, 0.0 },
+  { 9.8270383803727555, 193, 2, 0.0 },
+  { 13.980699519751283, 193, 3, 0.0 },
+  { 17.841429230791846, 193, 4, 0.0 },
+  { 21.473738333417373, 193, 5, 0.0 },
+  { 24.918420827019190, 193, 6, 0.0 },
+  { 28.203619294818395, 193, 7, 0.0 },
+  { 31.349924426851771, 193, 8, 0.0 },
+  { 34.373055674594070, 193, 9, 0.0 },
+  { 37.285406339208976, 193, 10, 0.0 },
+  { 40.096997219251875, 193, 11, 0.0 },
+  { 42.816097256540843, 193, 12, 0.0 },
+  { 45.449644930345130, 193, 13, 0.0 },
+  { 48.003544451619973, 193, 14, 0.0 },
+  { 50.482880056358681, 193, 15, 0.0 },
+  { 52.892074884410818, 193, 16, 0.0 },
+  { 55.235011272928318, 193, 17, 0.0 },
+  { 57.515123510070453, 193, 18, 0.0 },
+  { 59.735470504827617, 193, 19, 0.0 },
+  { 61.898793530487978, 193, 20, 0.0 },
+  { 64.007562687262293, 193, 21, 0.0 },
+  { 66.064014710717515, 193, 22, 0.0 },
+  { 68.070184051290994, 193, 23, 0.0 },
+  { 70.027928657993357, 193, 24, 0.0 },
+  { 71.938951548048180, 193, 25, 0.0 },
+  { 73.804818989429918, 193, 26, 0.0 },
+  { 75.626975935842324, 193, 27, 0.0 },
+  { 77.406759214023737, 193, 28, 0.0 },
+  { 79.145408857937809, 193, 29, 0.0 },
+  { 80.844077904099777, 193, 30, 0.0 },
+  { 82.503840900421437, 193, 31, 0.0 },
+  { 84.125701332854192, 193, 32, 0.0 },
+  { 85.710598136372141, 193, 33, 0.0 },
+  { 87.259411426989800, 193, 34, 0.0 },
+  { 88.772967567720571, 193, 35, 0.0 },
+  { 90.252043662291499, 193, 36, 0.0 },
+  { 91.697371554995470, 193, 37, 0.0 },
+  { 93.109641402518719, 193, 38, 0.0 },
+  { 94.489504873308306, 193, 39, 0.0 },
+  { 95.837578021608010, 193, 40, 0.0 },
+  { 97.154443876296000, 193, 41, 0.0 },
+  { 98.440654778858971, 193, 42, 0.0 },
+  { 99.696734499980380, 193, 43, 0.0 },
+  { 100.92318016015838, 193, 44, 0.0 },
+  { 102.12046397633344, 193, 45, 0.0 },
+  { 103.28903485360854, 193, 46, 0.0 },
+  { 104.42931983867720, 193, 47, 0.0 },
+  { 105.54172544947767, 193, 48, 0.0 },
+  { 106.62663889378757, 193, 49, 0.0 },
+  { 107.68442918793551, 193, 50, 0.0 },
+  { 108.71544818547102, 193, 51, 0.0 },
+  { 109.72003152449088, 193, 52, 0.0 },
+  { 110.69849950131697, 193, 53, 0.0 },
+  { 111.65115787736204, 193, 54, 0.0 },
+  { 112.57829862526023, 193, 55, 0.0 },
+  { 113.48020061968225, 193, 56, 0.0 },
+  { 114.35713027767576, 193, 57, 0.0 },
+  { 115.20934215286547, 193, 58, 0.0 },
+  { 116.03707948739816, 193, 59, 0.0 },
+  { 116.84057472512700, 193, 60, 0.0 },
+  { 117.62004998917541, 193, 61, 0.0 },
+  { 118.37571752671670, 193, 62, 0.0 },
+  { 119.10778012352631, 193, 63, 0.0 },
+  { 119.81643149062222, 193, 64, 0.0 },
+  { 120.50185662508824, 193, 65, 0.0 },
+  { 121.16423214698136, 193, 66, 0.0 },
+  { 121.80372661404903, 193, 67, 0.0 },
+  { 122.42050081582443, 193, 68, 0.0 },
+  { 123.01470804852943, 193, 69, 0.0 },
+  { 123.58649437208516, 193, 70, 0.0 },
+  { 124.13599885041617, 193, 71, 0.0 },
+  { 124.66335377613348, 193, 72, 0.0 },
+  { 125.16868488058179, 193, 73, 0.0 },
+  { 125.65211153015969, 193, 74, 0.0 },
+  { 126.11374690973486, 193, 75, 0.0 },
+  { 126.55369819391422, 193, 76, 0.0 },
+  { 126.97206670685824, 193, 77, 0.0 },
+  { 127.36894807127504, 193, 78, 0.0 },
+  { 127.74443234717137, 193, 79, 0.0 },
+  { 128.09860416089191, 193, 80, 0.0 },
+  { 128.43154282493185, 193, 81, 0.0 },
+  { 128.74332244896266, 193, 82, 0.0 },
+  { 129.03401204247837, 193, 83, 0.0 },
+  { 129.30367560942756, 193, 84, 0.0 },
+  { 129.55237223516627, 193, 85, 0.0 },
+  { 129.78015616603693, 193, 86, 0.0 },
+  { 129.98707688184436, 193, 87, 0.0 },
+  { 130.17317916147817, 193, 88, 0.0 },
+  { 130.33850314190357, 193, 89, 0.0 },
+  { 130.48308437071472, 193, 90, 0.0 },
+  { 130.60695385242752, 193, 91, 0.0 },
+  { 130.71013808866275, 193, 92, 0.0 },
+  { 130.79265911235075, 193, 93, 0.0 },
+  { 130.85453451606884, 193, 94, 0.0 },
+  { 130.89577747460288, 193, 95, 0.0 },
+  { 130.91639676180557, 193, 96, 0.0 },
+  { 130.91639676180557, 193, 97, 0.0 },
+  { 130.89577747460288, 193, 98, 0.0 },
+  { 130.85453451606884, 193, 99, 0.0 },
+  { 130.79265911235075, 193, 100, 0.0 },
+  { 130.71013808866275, 193, 101, 0.0 },
+  { 130.60695385242752, 193, 102, 0.0 },
+  { 130.48308437071472, 193, 103, 0.0 },
+  { 130.33850314190357, 193, 104, 0.0 },
+  { 130.17317916147817, 193, 105, 0.0 },
+  { 129.98707688184436, 193, 106, 0.0 },
+  { 129.78015616603693, 193, 107, 0.0 },
+  { 129.55237223516627, 193, 108, 0.0 },
+  { 129.30367560942756, 193, 109, 0.0 },
+  { 129.03401204247837, 193, 110, 0.0 },
+  { 128.74332244896266, 193, 111, 0.0 },
+  { 128.43154282493185, 193, 112, 0.0 },
+  { 128.09860416089191, 193, 113, 0.0 },
+  { 127.74443234717137, 193, 114, 0.0 },
+  { 127.36894807127504, 193, 115, 0.0 },
+  { 126.97206670685824, 193, 116, 0.0 },
+  { 126.55369819391422, 193, 117, 0.0 },
+  { 126.11374690973486, 193, 118, 0.0 },
+  { 125.65211153015969, 193, 119, 0.0 },
+  { 125.16868488058179, 193, 120, 0.0 },
+  { 124.66335377613348, 193, 121, 0.0 },
+  { 124.13599885041617, 193, 122, 0.0 },
+  { 123.58649437208516, 193, 123, 0.0 },
+  { 123.01470804852943, 193, 124, 0.0 },
+  { 122.42050081582443, 193, 125, 0.0 },
+  { 121.80372661404903, 193, 126, 0.0 },
+  { 121.16423214698136, 193, 127, 0.0 },
+  { 120.50185662508824, 193, 128, 0.0 },
+  { 119.81643149062222, 193, 129, 0.0 },
+  { 119.10778012352631, 193, 130, 0.0 },
+  { 118.37571752671670, 193, 131, 0.0 },
+  { 117.62004998917541, 193, 132, 0.0 },
+  { 116.84057472512700, 193, 133, 0.0 },
+  { 116.03707948739816, 193, 134, 0.0 },
+  { 115.20934215286547, 193, 135, 0.0 },
+  { 114.35713027767576, 193, 136, 0.0 },
+  { 113.48020061968225, 193, 137, 0.0 },
+  { 112.57829862526023, 193, 138, 0.0 },
+  { 111.65115787736204, 193, 139, 0.0 },
+  { 110.69849950131697, 193, 140, 0.0 },
+  { 109.72003152449088, 193, 141, 0.0 },
+  { 108.71544818547102, 193, 142, 0.0 },
+  { 107.68442918793551, 193, 143, 0.0 },
+  { 106.62663889378757, 193, 144, 0.0 },
+  { 105.54172544947767, 193, 145, 0.0 },
+  { 104.42931983867720, 193, 146, 0.0 },
+  { 103.28903485360854, 193, 147, 0.0 },
+  { 102.12046397633344, 193, 148, 0.0 },
+  { 100.92318016015838, 193, 149, 0.0 },
+  { 99.696734499980380, 193, 150, 0.0 },
+  { 98.440654778858971, 193, 151, 0.0 },
+  { 97.154443876296000, 193, 152, 0.0 },
+  { 95.837578021608010, 193, 153, 0.0 },
+  { 94.489504873308306, 193, 154, 0.0 },
+  { 93.109641402518719, 193, 155, 0.0 },
+  { 91.697371554995470, 193, 156, 0.0 },
+  { 90.252043662291499, 193, 157, 0.0 },
+  { 88.772967567720571, 193, 158, 0.0 },
+  { 87.259411426989800, 193, 159, 0.0 },
+  { 85.710598136372141, 193, 160, 0.0 },
+  { 84.125701332854192, 193, 161, 0.0 },
+  { 82.503840900421437, 193, 162, 0.0 },
+  { 80.844077904099777, 193, 163, 0.0 },
+  { 79.145408857937809, 193, 164, 0.0 },
+  { 77.406759214023737, 193, 165, 0.0 },
+  { 75.626975935842324, 193, 166, 0.0 },
+  { 73.804818989429918, 193, 167, 0.0 },
+  { 71.938951548048180, 193, 168, 0.0 },
+  { 70.027928657993357, 193, 169, 0.0 },
+  { 68.070184051290994, 193, 170, 0.0 },
+  { 66.064014710717515, 193, 171, 0.0 },
+  { 64.007562687262293, 193, 172, 0.0 },
+  { 61.898793530487978, 193, 173, 0.0 },
+  { 59.735470504827617, 193, 174, 0.0 },
+  { 57.515123510070453, 193, 175, 0.0 },
+  { 55.235011272928318, 193, 176, 0.0 },
+  { 52.892074884410818, 193, 177, 0.0 },
+  { 50.482880056358681, 193, 178, 0.0 },
+  { 48.003544451619973, 193, 179, 0.0 },
+  { 45.449644930345130, 193, 180, 0.0 },
+  { 42.816097256540843, 193, 181, 0.0 },
+  { 40.096997219251875, 193, 182, 0.0 },
+  { 37.285406339208976, 193, 183, 0.0 },
+  { 34.373055674594070, 193, 184, 0.0 },
+  { 31.349924426851771, 193, 185, 0.0 },
+  { 28.203619294818395, 193, 186, 0.0 },
+  { 24.918420827019190, 193, 187, 0.0 },
+  { 21.473738333417373, 193, 188, 0.0 },
+  { 17.841429230791846, 193, 189, 0.0 },
+  { 13.980699519751283, 193, 190, 0.0 },
+  { 9.8270383803727555, 193, 191, 0.0 },
+  { 5.2626901889047986, 193, 192, 0.0 },
+  { 0.0000000000000000, 193, 193, 0.0 },
+};
+const double toler192 = 2.5000000000000012e-08;
+
+// Divergence at n=194 k=195 f=-inf f_GSL=-inf
+// Divergence at n=194 k=196 f=-inf f_GSL=-inf
+// Divergence at n=194 k=197 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=194 k=200 f=-inf f_GSL=-inf
+// Test data for n=194.
+// max(|f - f_GSL|): 1.8820145442077774e-09
+// max(|f - f_GSL| / |f_GSL|): 1.2409956698055503e-10
+// mean(f - f_GSL): 1.3860711552874467e-09
+// variance(f - f_GSL): 9.9541046675091968e-21
+// stddev(f - f_GSL): 9.9770259433907435e-11
+const testcase_lbincoef<double>
+data193[195] =
+{
+  { 0.0000000000000000, 194, 0, 0.0 },
+  { 5.2678581590633939, 194, 1, 0.0 },
+  { 9.8374011674083022, 194, 2, 0.0 },
+  { 13.996284250767985, 194, 3, 0.0 },
+  { 17.862263317694783, 194, 4, 0.0 },
+  { 21.499849477421094, 194, 5, 0.0 },
+  { 24.949837023252712, 194, 6, 0.0 },
+  { 28.240368837027290, 194, 7, 0.0 },
+  { 31.392035912202005, 194, 8, 0.0 },
+  { 34.420558008578951, 194, 9, 0.0 },
+  { 37.338328740663428, 194, 10, 0.0 },
+  { 40.155369225473919, 194, 11, 0.0 },
+  { 42.879948728527324, 194, 12, 0.0 },
+  { 45.519006058142736, 194, 13, 0.0 },
+  { 48.078445759793226, 194, 14, 0.0 },
+  { 50.563352409581171, 194, 15, 0.0 },
+  { 52.978149493182286, 194, 16, 0.0 },
+  { 55.326719699417936, 194, 17, 0.0 },
+  { 57.612497674095607, 194, 18, 0.0 },
+  { 59.838542689967426, 194, 19, 0.0 },
+  { 62.007596390336971, 194, 20, 0.0 },
+  { 64.122129251827914, 194, 21, 0.0 },
+  { 66.184378392967460, 194, 22, 0.0 },
+  { 68.196378653851752, 194, 23, 0.0 },
+  { 70.159988380006439, 194, 24, 0.0 },
+  { 72.076910992188573, 194, 25, 0.0 },
+  { 73.948713169090070, 194, 26, 0.0 },
+  { 75.776840282488934, 194, 27, 0.0 },
+  { 77.562629584730530, 194, 28, 0.0 },
+  { 79.307321543100670, 194, 29, 0.0 },
+  { 81.012069635339003, 194, 30, 0.0 },
+  { 82.677948858678064, 194, 31, 0.0 },
+  { 84.305963156685038, 194, 32, 0.0 },
+  { 85.897051930451084, 194, 33, 0.0 },
+  { 87.452095770819369, 194, 34, 0.0 },
+  { 88.971921524563754, 194, 35, 0.0 },
+  { 90.457306788327855, 194, 36, 0.0 },
+  { 91.908983908710638, 194, 37, 0.0 },
+  { 93.327643554332553, 194, 38, 0.0 },
+  { 94.713937915452448, 194, 39, 0.0 },
+  { 96.068483578257769, 194, 40, 0.0 },
+  { 97.391864113967017, 194, 41, 0.0 },
+  { 98.684632417076045, 194, 42, 0.0 },
+  { 99.947312822228810, 194, 43, 0.0 },
+  { 101.18040302512554, 194, 44, 0.0 },
+  { 102.38437582945141, 194, 45, 0.0 },
+  { 103.55968073890779, 194, 46, 0.0 },
+  { 104.70674541096184, 194, 47, 0.0 },
+  { 105.82597698683276, 194, 48, 0.0 },
+  { 106.91776331043036, 194, 49, 0.0 },
+  { 107.98247404742290, 194, 50, 0.0 },
+  { 109.02046171427457, 194, 51, 0.0 },
+  { 110.03206262595290, 194, 52, 0.0 },
+  { 111.01759777000223, 194, 53, 0.0 },
+  { 111.97737361381610, 194, 54, 0.0 },
+  { 112.91168285119295, 194, 55, 0.0 },
+  { 113.82080509358843, 194, 56, 0.0 },
+  { 114.70500751091117, 194, 57, 0.0 },
+  { 115.56454542619281, 194, 58, 0.0 },
+  { 116.39966286802314, 194, 59, 0.0 },
+  { 117.21059308423946, 194, 60, 0.0 },
+  { 117.99755902001709, 194, 61, 0.0 },
+  { 118.76077376319370, 194, 62, 0.0 },
+  { 119.50044095938858, 194, 63, 0.0 },
+  { 120.21675519923002, 194, 64, 0.0 },
+  { 120.90990237978997, 194, 65, 0.0 },
+  { 121.58006004212524, 194, 66, 0.0 },
+  { 122.22739768665383, 194, 67, 0.0 },
+  { 122.85207706793636, 194, 68, 0.0 },
+  { 123.45425247029050, 194, 69, 0.0 },
+  { 124.03407096554349, 194, 70, 0.0 },
+  { 124.59167265410730, 194, 71, 0.0 },
+  { 125.12719089046357, 194, 72, 0.0 },
+  { 125.64075249404846, 194, 73, 0.0 },
+  { 126.13247794644104, 194, 74, 0.0 },
+  { 126.60248157568674, 194, 75, 0.0 },
+  { 127.05087172851194, 194, 76, 0.0 },
+  { 127.47775093112398, 194, 77, 0.0 },
+  { 127.88321603923220, 194, 78, 0.0 },
+  { 128.26735837787140, 194, 79, 0.0 },
+  { 128.63026387156083, 194, 80, 0.0 },
+  { 128.97201316528287, 194, 81, 0.0 },
+  { 129.29268173673097, 194, 82, 0.0 },
+  { 129.59234000022946, 194, 83, 0.0 },
+  { 129.87105340269841, 194, 84, 0.0 },
+  { 130.12888251200053, 194, 85, 0.0 },
+  { 130.36588309797622, 194, 86, 0.0 },
+  { 130.58210620644581, 194, 87, 0.0 },
+  { 130.77759822642963, 194, 88, 0.0 },
+  { 130.95240095080953, 194, 89, 0.0 },
+  { 131.10655163063683, 194, 90, 0.0 },
+  { 131.24008302326126, 194, 91, 0.0 },
+  { 131.35302343444187, 194, 92, 0.0 },
+  { 131.44539675457287, 194, 93, 0.0 },
+  { 131.51722248914416, 194, 94, 0.0 },
+  { 131.56851578353167, 194, 95, 0.0 },
+  { 131.59928744219843, 194, 96, 0.0 },
+  { 131.60954394236558, 194, 97, 0.0 },
+  { 131.59928744219843, 194, 98, 0.0 },
+  { 131.56851578353167, 194, 99, 0.0 },
+  { 131.51722248914416, 194, 100, 0.0 },
+  { 131.44539675457287, 194, 101, 0.0 },
+  { 131.35302343444187, 194, 102, 0.0 },
+  { 131.24008302326126, 194, 103, 0.0 },
+  { 131.10655163063683, 194, 104, 0.0 },
+  { 130.95240095080953, 194, 105, 0.0 },
+  { 130.77759822642963, 194, 106, 0.0 },
+  { 130.58210620644581, 194, 107, 0.0 },
+  { 130.36588309797622, 194, 108, 0.0 },
+  { 130.12888251200053, 194, 109, 0.0 },
+  { 129.87105340269841, 194, 110, 0.0 },
+  { 129.59234000022946, 194, 111, 0.0 },
+  { 129.29268173673097, 194, 112, 0.0 },
+  { 128.97201316528287, 194, 113, 0.0 },
+  { 128.63026387156083, 194, 114, 0.0 },
+  { 128.26735837787140, 194, 115, 0.0 },
+  { 127.88321603923220, 194, 116, 0.0 },
+  { 127.47775093112398, 194, 117, 0.0 },
+  { 127.05087172851194, 194, 118, 0.0 },
+  { 126.60248157568674, 194, 119, 0.0 },
+  { 126.13247794644104, 194, 120, 0.0 },
+  { 125.64075249404846, 194, 121, 0.0 },
+  { 125.12719089046357, 194, 122, 0.0 },
+  { 124.59167265410730, 194, 123, 0.0 },
+  { 124.03407096554349, 194, 124, 0.0 },
+  { 123.45425247029050, 194, 125, 0.0 },
+  { 122.85207706793636, 194, 126, 0.0 },
+  { 122.22739768665383, 194, 127, 0.0 },
+  { 121.58006004212524, 194, 128, 0.0 },
+  { 120.90990237978997, 194, 129, 0.0 },
+  { 120.21675519923002, 194, 130, 0.0 },
+  { 119.50044095938858, 194, 131, 0.0 },
+  { 118.76077376319370, 194, 132, 0.0 },
+  { 117.99755902001709, 194, 133, 0.0 },
+  { 117.21059308423946, 194, 134, 0.0 },
+  { 116.39966286802314, 194, 135, 0.0 },
+  { 115.56454542619281, 194, 136, 0.0 },
+  { 114.70500751091117, 194, 137, 0.0 },
+  { 113.82080509358843, 194, 138, 0.0 },
+  { 112.91168285119295, 194, 139, 0.0 },
+  { 111.97737361381610, 194, 140, 0.0 },
+  { 111.01759777000223, 194, 141, 0.0 },
+  { 110.03206262595290, 194, 142, 0.0 },
+  { 109.02046171427457, 194, 143, 0.0 },
+  { 107.98247404742290, 194, 144, 0.0 },
+  { 106.91776331043036, 194, 145, 0.0 },
+  { 105.82597698683276, 194, 146, 0.0 },
+  { 104.70674541096184, 194, 147, 0.0 },
+  { 103.55968073890779, 194, 148, 0.0 },
+  { 102.38437582945141, 194, 149, 0.0 },
+  { 101.18040302512554, 194, 150, 0.0 },
+  { 99.947312822228810, 194, 151, 0.0 },
+  { 98.684632417076045, 194, 152, 0.0 },
+  { 97.391864113967017, 194, 153, 0.0 },
+  { 96.068483578257769, 194, 154, 0.0 },
+  { 94.713937915452448, 194, 155, 0.0 },
+  { 93.327643554332553, 194, 156, 0.0 },
+  { 91.908983908710638, 194, 157, 0.0 },
+  { 90.457306788327855, 194, 158, 0.0 },
+  { 88.971921524563754, 194, 159, 0.0 },
+  { 87.452095770819369, 194, 160, 0.0 },
+  { 85.897051930451084, 194, 161, 0.0 },
+  { 84.305963156685038, 194, 162, 0.0 },
+  { 82.677948858678064, 194, 163, 0.0 },
+  { 81.012069635339003, 194, 164, 0.0 },
+  { 79.307321543100670, 194, 165, 0.0 },
+  { 77.562629584730530, 194, 166, 0.0 },
+  { 75.776840282488934, 194, 167, 0.0 },
+  { 73.948713169090070, 194, 168, 0.0 },
+  { 72.076910992188573, 194, 169, 0.0 },
+  { 70.159988380006439, 194, 170, 0.0 },
+  { 68.196378653851752, 194, 171, 0.0 },
+  { 66.184378392967460, 194, 172, 0.0 },
+  { 64.122129251827914, 194, 173, 0.0 },
+  { 62.007596390336971, 194, 174, 0.0 },
+  { 59.838542689967426, 194, 175, 0.0 },
+  { 57.612497674095607, 194, 176, 0.0 },
+  { 55.326719699417936, 194, 177, 0.0 },
+  { 52.978149493182286, 194, 178, 0.0 },
+  { 50.563352409581171, 194, 179, 0.0 },
+  { 48.078445759793226, 194, 180, 0.0 },
+  { 45.519006058142736, 194, 181, 0.0 },
+  { 42.879948728527324, 194, 182, 0.0 },
+  { 40.155369225473919, 194, 183, 0.0 },
+  { 37.338328740663428, 194, 184, 0.0 },
+  { 34.420558008578951, 194, 185, 0.0 },
+  { 31.392035912202005, 194, 186, 0.0 },
+  { 28.240368837027290, 194, 187, 0.0 },
+  { 24.949837023252712, 194, 188, 0.0 },
+  { 21.499849477421094, 194, 189, 0.0 },
+  { 17.862263317694783, 194, 190, 0.0 },
+  { 13.996284250767985, 194, 191, 0.0 },
+  { 9.8374011674083022, 194, 192, 0.0 },
+  { 5.2678581590633939, 194, 193, 0.0 },
+  { 0.0000000000000000, 194, 194, 0.0 },
+};
+const double toler193 = 1.0000000000000005e-08;
+
+// Divergence at n=195 k=196 f=-inf f_GSL=-inf
+// Divergence at n=195 k=197 f=-inf f_GSL=-inf
+// Divergence at n=195 k=198 f=-inf f_GSL=-inf
+// ...
+// Divergence at n=195 k=200 f=-inf f_GSL=-inf
+// Test data for n=195.
+// max(|f - f_GSL|): 1.3338876669877209e-09
+// max(|f - f_GSL| / |f_GSL|): 1.7164264157255742e-10
+// mean(f - f_GSL): 4.7524062689687372e-10
+// variance(f - f_GSL): 1.1641634734215223e-21
+// stddev(f - f_GSL): 3.4119839879775552e-11
+const testcase_lbincoef<double>
+data194[196] =
+{
+  { 0.0000000000000000, 195, 0, 0.0 },
+  { 5.2729995585638108, 195, 1, 0.0 },
+  { 9.8477105370673144, 195, 2, 0.0 },
+  { 14.011788437303949, 195, 3, 0.0 },
+  { 17.882989448211902, 195, 4, 0.0 },
+  { 21.525824963824448, 195, 5, 0.0 },
+  { 24.981089566756850, 195, 6, 0.0 },
+  { 28.276926432761229, 195, 7, 0.0 },
+  { 31.433926853911316, 195, 8, 0.0 },
+  { 34.467810893429601, 195, 9, 0.0 },
+  { 37.390972474148725, 195, 10, 0.0 },
+  { 40.213433026428788, 195, 11, 0.0 },
+  { 42.943462134249785, 195, 12, 0.0 },
+  { 45.587998929629634, 195, 13, 0.0 },
+  { 48.152948287091249, 195, 14, 0.0 },
+  { 50.643395117254840, 195, 15, 0.0 },
+  { 53.063763245905193, 195, 16, 0.0 },
+  { 55.417935707689821, 195, 17, 0.0 },
+  { 57.709347500085642, 195, 18, 0.0 },
+  { 59.941058253492997, 195, 19, 0.0 },
+  { 62.115809974977196, 195, 20, 0.0 },
+  { 64.236073511177324, 195, 21, 0.0 },
+  { 66.304086357033498, 195, 22, 0.0 },
+  { 68.321883735602114, 195, 23, 0.0 },
+  { 70.291324382067614, 195, 24, 0.0 },
+  { 72.214112113702072, 195, 25, 0.0 },
+  { 74.091814012730879, 195, 26, 0.0 },
+  { 75.925875861649502, 195, 27, 0.0 },
+  { 77.717635330877556, 195, 28, 0.0 },
+  { 79.468333313307880, 195, 29, 0.0 },
+  { 81.179123720002281, 195, 30, 0.0 },
+  { 82.851081989417708, 195, 31, 0.0 },
+  { 84.485212514442196, 195, 32, 0.0 },
+  { 86.082455153782462, 195, 33, 0.0 },
+  { 87.643690964398729, 195, 34, 0.0 },
+  { 89.169747267893740, 195, 35, 0.0 },
+  { 90.661402144671456, 195, 36, 0.0 },
+  { 92.119388434247412, 195, 37, 0.0 },
+  { 93.544397307548138, 195, 38, 0.0 },
+  { 94.937081466766699, 195, 39, 0.0 },
+  { 96.298058019902328, 195, 40, 0.0 },
+  { 97.627911070117193, 195, 41, 0.0 },
+  { 98.927194054247479, 195, 42, 0.0 },
+  { 100.19643185994630, 195, 43, 0.0 },
+  { 101.43612274687439, 195, 44, 0.0 },
+  { 102.64674009391899, 195, 45, 0.0 },
+  { 103.82873399152618, 195, 46, 0.0 },
+  { 104.98253269576151, 195, 47, 0.0 },
+  { 106.10854395861782, 195, 48, 0.0 },
+  { 107.20715624728587, 195, 49, 0.0 },
+  { 108.27873986356610, 195, 50, 0.0 },
+  { 109.32364797326238, 195, 51, 0.0 },
+  { 110.34221755425688, 195, 52, 0.0 },
+  { 111.33477027096467, 195, 53, 0.0 },
+  { 112.30161328200177, 195, 54, 0.0 },
+  { 113.24303998714743, 195, 55, 0.0 },
+  { 114.15933071902157, 195, 56, 0.0 },
+  { 115.05075338431766, 195, 57, 0.0 },
+  { 115.91756405892852, 195, 58, 0.0 },
+  { 116.76000754085089, 195, 59, 0.0 },
+  { 117.57831786436486, 195, 60, 0.0 },
+  { 118.37271877862997, 195, 61, 0.0 },
+  { 119.14342419353579, 195, 62, 0.0 },
+  { 119.89063859536600, 195, 63, 0.0 },
+  { 120.61455743459271, 195, 64, 0.0 },
+  { 121.31536748789819, 195, 65, 0.0 },
+  { 121.99324719632727, 195, 66, 0.0 },
+  { 122.64836698129801, 195, 67, 0.0 },
+  { 123.28088954004158, 195, 68, 0.0 },
+  { 123.89097012190285, 195, 69, 0.0 },
+  { 124.47875678680498, 195, 70, 0.0 },
+  { 125.04439064706594, 195, 71, 0.0 },
+  { 125.58800609365500, 195, 72, 0.0 },
+  { 126.10973100787896, 195, 73, 0.0 },
+  { 126.60968695940812, 195, 74, 0.0 },
+  { 127.08798939146851, 195, 75, 0.0 },
+  { 127.54474779396423, 195, 76, 0.0 },
+  { 127.98006586522200, 195, 77, 0.0 },
+  { 128.39404166299812, 195, 78, 0.0 },
+  { 128.78676774532897, 195, 79, 0.0 },
+  { 129.15833130176139, 195, 80, 0.0 },
+  { 129.50881427545221, 195, 81, 0.0 },
+  { 129.83829347658241, 195, 82, 0.0 },
+  { 130.14684068749818, 195, 83, 0.0 },
+  { 130.43452275995003, 195, 84, 0.0 },
+  { 130.70140170477191, 195, 85, 0.0 },
+  { 130.94753477431078, 195, 86, 0.0 },
+  { 131.17297453788541, 195, 87, 0.0 },
+  { 131.37776895053139, 195, 88, 0.0 },
+  { 131.56196141526118, 195, 89, 0.0 },
+  { 131.72559083904298, 195, 90, 0.0 },
+  { 131.86869168268373, 195, 91, 0.0 },
+  { 131.99129400477602, 195, 92, 0.0 },
+  { 132.09342349985241, 195, 93, 0.0 },
+  { 132.17510153086670, 195, 94, 0.0 },
+  { 132.23634515610740, 195, 95, 0.0 },
+  { 132.27716715062763, 195, 96, 0.0 },
+  { 132.29757602225885, 195, 97, 0.0 },
+  { 132.29757602225885, 195, 98, 0.0 },
+  { 132.27716715062763, 195, 99, 0.0 },
+  { 132.23634515610740, 195, 100, 0.0 },
+  { 132.17510153086670, 195, 101, 0.0 },
+  { 132.09342349985241, 195, 102, 0.0 },
+  { 131.99129400477602, 195, 103, 0.0 },
+  { 131.86869168268373, 195, 104, 0.0 },
+  { 131.72559083904298, 195, 105, 0.0 },
+  { 131.56196141526118, 195, 106, 0.0 },
+  { 131.37776895053139, 195, 107, 0.0 },
+  { 131.17297453788541, 195, 108, 0.0 },
+  { 130.94753477431078, 195, 109, 0.0 },
+  { 130.70140170477191, 195, 110, 0.0 },
+  { 130.43452275995003, 195, 111, 0.0 },
+  { 130.14684068749818, 195, 112, 0.0 },
+  { 129.83829347658241, 195, 113, 0.0 },
+  { 129.50881427545221, 195, 114, 0.0 },
+  { 129.15833130176139, 195, 115, 0.0 },
+  { 128.78676774532897, 195, 116, 0.0 },
+  { 128.39404166299812, 195, 117, 0.0 },
+  { 127.98006586522200, 195, 118, 0.0 },
+  { 127.54474779396423, 195, 119, 0.0 },
+  { 127.08798939146851, 195, 120, 0.0 },
+  { 126.60968695940812, 195, 121, 0.0 },
+  { 126.10973100787896, 195, 122, 0.0 },
+  { 125.58800609365500, 195, 123, 0.0 },
+  { 125.04439064706594, 195, 124, 0.0 },
+  { 124.47875678680498, 195, 125, 0.0 },
+  { 123.89097012190285, 195, 126, 0.0 },
+  { 123.28088954004158, 195, 127, 0.0 },
+  { 122.64836698129801, 195, 128, 0.0 },
+  { 121.99324719632727, 195, 129, 0.0 },
+  { 121.31536748789819, 195, 130, 0.0 },
+  { 120.61455743459271, 195, 131, 0.0 },
+  { 119.89063859536600, 195, 132, 0.0 },
+  { 119.14342419353579, 195, 133, 0.0 },
+  { 118.37271877862997, 195, 134, 0.0 },
+  { 117.57831786436486, 195, 135, 0.0 },
+  { 116.76000754085089, 195, 136, 0.0 },
+  { 115.91756405892852, 195, 137, 0.0 },
+  { 115.05075338431766, 195, 138, 0.0 },
+  { 114.15933071902157, 195, 139, 0.0 },
+  { 113.24303998714743, 195, 140, 0.0 },
+  { 112.30161328200177, 195, 141, 0.0 },
+  { 111.33477027096467, 195, 142, 0.0 },
+  { 110.34221755425688, 195, 143, 0.0 },
+  { 109.32364797326238, 195, 144, 0.0 },
+  { 108.27873986356610, 195, 145, 0.0 },
+  { 107.20715624728587, 195, 146, 0.0 },
+  { 106.10854395861782, 195, 147, 0.0 },
+  { 104.98253269576151, 195, 148, 0.0 },
+  { 103.82873399152618, 195, 149, 0.0 },
+  { 102.64674009391899, 195, 150, 0.0 },
+  { 101.43612274687439, 195, 151, 0.0 },
+  { 100.19643185994630, 195, 152, 0.0 },
+  { 98.927194054247479, 195, 153, 0.0 },
+  { 97.627911070117193, 195, 154, 0.0 },
+  { 96.298058019902328, 195, 155, 0.0 },
+  { 94.937081466766699, 195, 156, 0.0 },
+  { 93.544397307548138, 195, 157, 0.0 },
+  { 92.119388434247412, 195, 158, 0.0 },
+  { 90.661402144671456, 195, 159, 0.0 },
+  { 89.169747267893740, 195, 160, 0.0 },
+  { 87.643690964398729, 195, 161, 0.0 },
+  { 86.082455153782462, 195, 162, 0.0 },
+  { 84.485212514442196, 195, 163, 0.0 },
+  { 82.851081989417708, 195, 164, 0.0 },
+  { 81.179123720002281, 195, 165, 0.0 },
+  { 79.468333313307880, 195, 166, 0.0 },
+  { 77.717635330877556, 195, 167, 0.0 },
+  { 75.925875861649502, 195, 168, 0.0 },
+  { 74.091814012730879, 195, 169, 0.0 },
+  { 72.214112113702072, 195, 170, 0.0 },
+  { 70.291324382067614, 195, 171, 0.0 },
+  { 68.321883735602114, 195, 172, 0.0 },
+  { 66.304086357033498, 195, 173, 0.0 },
+  { 64.236073511177324, 195, 174, 0.0 },
+  { 62.115809974977196, 195, 175, 0.0 },
+  { 59.941058253492997, 195, 176, 0.0 },
+  { 57.709347500085642, 195, 177, 0.0 },
+  { 55.417935707689821, 195, 178, 0.0 },
+  { 53.063763245905193, 195, 179, 0.0 },
+  { 50.643395117254840, 195, 180, 0.0 },
+  { 48.152948287091249, 195, 181, 0.0 },
+  { 45.587998929629634, 195, 182, 0.0 },
+  { 42.943462134249785, 195, 183, 0.0 },
+  { 40.213433026428788, 195, 184, 0.0 },
+  { 37.390972474148725, 195, 185, 0.0 },
+  { 34.467810893429601, 195, 186, 0.0 },
+  { 31.433926853911316, 195, 187, 0.0 },
+  { 28.276926432761229, 195, 188, 0.0 },
+  { 24.981089566756850, 195, 189, 0.0 },
+  { 21.525824963824448, 195, 190, 0.0 },
+  { 17.882989448211902, 195, 191, 0.0 },
+  { 14.011788437303949, 195, 192, 0.0 },
+  { 9.8477105370673144, 195, 193, 0.0 },
+  { 5.2729995585638108, 195, 194, 0.0 },
+  { 0.0000000000000000, 195, 195, 0.0 },
+};
+const double toler194 = 1.0000000000000005e-08;
+
+// Divergence at n=196 k=197 f=-inf f_GSL=-inf
+// Divergence at n=196 k=198 f=-inf f_GSL=-inf
+// Divergence at n=196 k=199 f=-inf f_GSL=-inf
+// Divergence at n=196 k=200 f=-inf f_GSL=-inf
+// Test data for n=196.
+// max(|f - f_GSL|): 1.4145129512144194e-09
+// max(|f - f_GSL| / |f_GSL|): 9.9998160488948775e-11
+// mean(f - f_GSL): 3.8973008463991450e-10
+// variance(f - f_GSL): 7.7890043622622557e-22
+// stddev(f - f_GSL): 2.7908787795714554e-11
+const testcase_lbincoef<double>
+data195[197] =
+{
+  { 0.0000000000000000, 196, 0, 0.0 },
+  { 5.2781146592304822, 196, 1, 0.0 },
+  { 9.8579670372344026, 196, 2, 0.0 },
+  { 14.027212907629632, 196, 3, 0.0 },
+  { 17.903608735414537, 196, 4, 0.0 },
+  { 21.551666195008238, 196, 5, 0.0 },
+  { 25.012180153826876, 196, 6, 0.0 },
+  { 28.313294076932038, 196, 7, 0.0 },
+  { 31.475599550311927, 196, 8, 0.0 },
+  { 34.514816935805584, 196, 9, 0.0 },
+  { 37.443340459666047, 196, 10, 0.0 },
+  { 40.271191860580757, 196, 11, 0.0 },
+  { 43.006641035871326, 196, 12, 0.0 },
+  { 45.656627436018766, 196, 13, 0.0 },
+  { 48.227056259244819, 196, 14, 0.0 },
+  { 50.723012745219535, 196, 15, 0.0 },
+  { 53.148921054245534, 196, 16, 0.0 },
+  { 55.508664561079399, 196, 17, 0.0 },
+  { 57.805678609024199, 196, 18, 0.0 },
+  { 60.043023180149703, 196, 19, 0.0 },
+  { 62.223440639169439, 196, 20, 0.0 },
+  { 64.349402196484220, 196, 21, 0.0 },
+  { 66.423145717049579, 196, 22, 0.0 },
+  { 68.446706800334823, 196, 23, 0.0 },
+  { 70.421944564484647, 196, 24, 0.0 },
+  { 72.350563216429919, 196, 25, 0.0 },
+  { 74.234130234911049, 196, 26, 0.0 },
+  { 76.074091805956982, 196, 27, 0.0 },
+  { 77.871786010704795, 196, 28, 0.0 },
+  { 79.628454160121578, 196, 29, 0.0 },
+  { 81.345250590876162, 196, 30, 0.0 },
+  { 83.023251174747656, 196, 31, 0.0 },
+  { 84.663460745848397, 196, 32, 0.0 },
+  { 86.266819612206177, 196, 33, 0.0 },
+  { 87.834209288396778, 196, 34, 0.0 },
+  { 89.366457562139772, 196, 35, 0.0 },
+  { 90.864342988668113, 196, 36, 0.0 },
+  { 92.328598891257684, 196, 37, 0.0 },
+  { 93.759916933751583, 196, 38, 0.0 },
+  { 95.158950320648955, 196, 39, 0.0 },
+  { 96.526316671883251, 196, 40, 0.0 },
+  { 97.862600612428423, 196, 41, 0.0 },
+  { 99.168356111064327, 196, 42, 0.0 },
+  { 100.44410859778441, 196, 43, 0.0 },
+  { 101.69035688525855, 196, 44, 0.0 },
+  { 102.90757491633451, 196, 45, 0.0 },
+  { 104.09621335666043, 196, 46, 0.0 },
+  { 105.25670104904657, 196, 47, 0.0 },
+  { 106.38944634408415, 196, 48, 0.0 },
+  { 107.49483831973760, 196, 49, 0.0 },
+  { 108.57324790108828, 196, 50, 0.0 },
+  { 109.62502889007226, 196, 51, 0.0 },
+  { 110.65051891391136, 196, 52, 0.0 },
+  { 111.65004029993531, 196, 53, 0.0 },
+  { 112.62390088363088, 196, 54, 0.0 },
+  { 113.57239475599977, 196, 55, 0.0 },
+  { 114.49580295564272, 196, 56, 0.0 },
+  { 115.39439411041758, 196, 57, 0.0 },
+  { 116.26842503300179, 196, 58, 0.0 },
+  { 117.11814127425328, 196, 59, 0.0 },
+  { 117.94377763785928, 196, 60, 0.0 },
+  { 118.74555865942204, 196, 61, 0.0 },
+  { 119.52369905281535, 196, 62, 0.0 },
+  { 120.27840412637477, 196, 63, 0.0 },
+  { 121.00987017123680, 196, 64, 0.0 },
+  { 121.71828482392755, 196, 65, 0.0 },
+  { 122.40382740510228, 196, 66, 0.0 },
+  { 123.06666923616683, 196, 67, 0.0 },
+  { 123.70697393535244, 196, 68, 0.0 },
+  { 124.32489769467475, 196, 69, 0.0 },
+  { 124.92058953908401, 196, 70, 0.0 },
+  { 125.49419156899421, 196, 71, 0.0 },
+  { 126.04583918728042, 196, 72, 0.0 },
+  { 126.57566131173706, 196, 73, 0.0 },
+  { 127.08378057390530, 196, 74, 0.0 },
+  { 127.57031350510226, 196, 75, 0.0 },
+  { 128.03537071041268, 196, 76, 0.0 },
+  { 128.47905703134109, 196, 77, 0.0 },
+  { 128.90147169776304, 196, 78, 0.0 },
+  { 129.30270846976157, 196, 79, 0.0 },
+  { 129.68285576988552, 196, 80, 0.0 },
+  { 130.04199680631945, 196, 81, 0.0 },
+  { 130.38020968741841, 196, 82, 0.0 },
+  { 130.69756752801629, 196, 83, 0.0 },
+  { 130.99413854788531, 196, 84, 0.0 },
+  { 131.26998616269009, 196, 85, 0.0 },
+  { 131.52516906774895, 196, 86, 0.0 },
+  { 131.75974131488675, 196, 87, 0.0 },
+  { 131.97375238263777, 196, 88, 0.0 },
+  { 132.16724724002984, 196, 89, 0.0 },
+  { 132.34026640416153, 196, 90, 0.0 },
+  { 132.49284599175667, 196, 91, 0.0 },
+  { 132.62501776486516, 196, 92, 0.0 },
+  { 132.73680917085323, 196, 93, 0.0 },
+  { 132.82824337681291, 196, 94, 0.0 },
+  { 132.89933929849661, 196, 95, 0.0 },
+  { 132.95011162387004, 196, 96, 0.0 },
+  { 132.98057083135473, 196, 97, 0.0 },
+  { 132.99072320281880, 196, 98, 0.0 },
+  { 132.98057083135473, 196, 99, 0.0 },
+  { 132.95011162387004, 196, 100, 0.0 },
+  { 132.89933929849661, 196, 101, 0.0 },
+  { 132.82824337681291, 196, 102, 0.0 },
+  { 132.73680917085323, 196, 103, 0.0 },
+  { 132.62501776486516, 196, 104, 0.0 },
+  { 132.49284599175667, 196, 105, 0.0 },
+  { 132.34026640416153, 196, 106, 0.0 },
+  { 132.16724724002984, 196, 107, 0.0 },
+  { 131.97375238263777, 196, 108, 0.0 },
+  { 131.75974131488675, 196, 109, 0.0 },
+  { 131.52516906774895, 196, 110, 0.0 },
+  { 131.26998616269009, 196, 111, 0.0 },
+  { 130.99413854788531, 196, 112, 0.0 },
+  { 130.69756752801629, 196, 113, 0.0 },
+  { 130.38020968741841, 196, 114, 0.0 },
+  { 130.04199680631945, 196, 115, 0.0 },
+  { 129.68285576988552, 196, 116, 0.0 },
+  { 129.30270846976157, 196, 117, 0.0 },
+  { 128.90147169776304, 196, 118, 0.0 },
+  { 128.47905703134109, 196, 119, 0.0 },
+  { 128.03537071041268, 196, 120, 0.0 },
+  { 127.57031350510226, 196, 121, 0.0 },
+  { 127.08378057390530, 196, 122, 0.0 },
+  { 126.57566131173706, 196, 123, 0.0 },
+  { 126.04583918728042, 196, 124, 0.0 },
+  { 125.49419156899421, 196, 125, 0.0 },
+  { 124.92058953908401, 196, 126, 0.0 },
+  { 124.32489769467475, 196, 127, 0.0 },
+  { 123.70697393535244, 196, 128, 0.0 },
+  { 123.06666923616683, 196, 129, 0.0 },
+  { 122.40382740510228, 196, 130, 0.0 },
+  { 121.71828482392755, 196, 131, 0.0 },
+  { 121.00987017123680, 196, 132, 0.0 },
+  { 120.27840412637477, 196, 133, 0.0 },
+  { 119.52369905281535, 196, 134, 0.0 },
+  { 118.74555865942204, 196, 135, 0.0 },
+  { 117.94377763785928, 196, 136, 0.0 },
+  { 117.11814127425328, 196, 137, 0.0 },
+  { 116.26842503300179, 196, 138, 0.0 },
+  { 115.39439411041758, 196, 139, 0.0 },
+  { 114.49580295564272, 196, 140, 0.0 },
+  { 113.57239475599977, 196, 141, 0.0 },
+  { 112.62390088363088, 196, 142, 0.0 },
+  { 111.65004029993531, 196, 143, 0.0 },
+  { 110.65051891391136, 196, 144, 0.0 },
+  { 109.62502889007226, 196, 145, 0.0 },
+  { 108.57324790108828, 196, 146, 0.0 },
+  { 107.49483831973760, 196, 147, 0.0 },
+  { 106.38944634408415, 196, 148, 0.0 },
+  { 105.25670104904657, 196, 149, 0.0 },
+  { 104.09621335666043, 196, 150, 0.0 },
+  { 102.90757491633451, 196, 151, 0.0 },
+  { 101.69035688525855, 196, 152, 0.0 },
+  { 100.44410859778441, 196, 153, 0.0 },
+  { 99.168356111064327, 196, 154, 0.0 },
+  { 97.862600612428423, 196, 155, 0.0 },
+  { 96.526316671883251, 196, 156, 0.0 },
+  { 95.158950320648955, 196, 157, 0.0 },
+  { 93.759916933751583, 196, 158, 0.0 },
+  { 92.328598891257684, 196, 159, 0.0 },
+  { 90.864342988668113, 196, 160, 0.0 },
+  { 89.366457562139772, 196, 161, 0.0 },
+  { 87.834209288396778, 196, 162, 0.0 },
+  { 86.266819612206177, 196, 163, 0.0 },
+  { 84.663460745848397, 196, 164, 0.0 },
+  { 83.023251174747656, 196, 165, 0.0 },
+  { 81.345250590876162, 196, 166, 0.0 },
+  { 79.628454160121578, 196, 167, 0.0 },
+  { 77.871786010704795, 196, 168, 0.0 },
+  { 76.074091805956982, 196, 169, 0.0 },
+  { 74.234130234911049, 196, 170, 0.0 },
+  { 72.350563216429919, 196, 171, 0.0 },
+  { 70.421944564484647, 196, 172, 0.0 },
+  { 68.446706800334823, 196, 173, 0.0 },
+  { 66.423145717049579, 196, 174, 0.0 },
+  { 64.349402196484220, 196, 175, 0.0 },
+  { 62.223440639169439, 196, 176, 0.0 },
+  { 60.043023180149703, 196, 177, 0.0 },
+  { 57.805678609024199, 196, 178, 0.0 },
+  { 55.508664561079399, 196, 179, 0.0 },
+  { 53.148921054245534, 196, 180, 0.0 },
+  { 50.723012745219535, 196, 181, 0.0 },
+  { 48.227056259244819, 196, 182, 0.0 },
+  { 45.656627436018766, 196, 183, 0.0 },
+  { 43.006641035871326, 196, 184, 0.0 },
+  { 40.271191860580757, 196, 185, 0.0 },
+  { 37.443340459666047, 196, 186, 0.0 },
+  { 34.514816935805584, 196, 187, 0.0 },
+  { 31.475599550311927, 196, 188, 0.0 },
+  { 28.313294076932038, 196, 189, 0.0 },
+  { 25.012180153826876, 196, 190, 0.0 },
+  { 21.551666195008238, 196, 191, 0.0 },
+  { 17.903608735414537, 196, 192, 0.0 },
+  { 14.027212907629632, 196, 193, 0.0 },
+  { 9.8579670372344026, 196, 194, 0.0 },
+  { 5.2781146592304822, 196, 195, 0.0 },
+  { 0.0000000000000000, 196, 196, 0.0 },
+};
+const double toler195 = 5.0000000000000026e-09;
+
+// Divergence at n=197 k=198 f=-inf f_GSL=-inf
+// Divergence at n=197 k=199 f=-inf f_GSL=-inf
+// Divergence at n=197 k=200 f=-inf f_GSL=-inf
+// Divergence at n=197 k=200 f=-inf f_GSL=-inf
+// Test data for n=197.
+// max(|f - f_GSL|): 1.3778844731859863e-09
+// max(|f - f_GSL| / |f_GSL|): 6.7577051157528222e-11
+// mean(f - f_GSL): 4.2123678282864188e-10
+// variance(f - f_GSL): 9.0528497480350518e-22
+// stddev(f - f_GSL): 3.0087953981676875e-11
+const testcase_lbincoef<double>
+data196[198] =
+{
+  { 0.0000000000000000, 197, 0, 0.0 },
+  { 5.2832037287379308, 197, 1, 0.0 },
+  { 9.8681712074085226, 197, 2, 0.0 },
+  { 14.042558477304169, 197, 3, 0.0 },
+  { 17.924122275247669, 197, 4, 0.0 },
+  { 21.577374551718322, 197, 5, 0.0 },
+  { 25.043110454518114, 197, 6, 0.0 },
+  { 28.349473733509512, 197, 7, 0.0 },
+  { 31.517056263990185, 197, 8, 0.0 },
+  { 34.561578701713643, 197, 9, 0.0 },
+  { 37.495435571549478, 197, 10, 0.0 },
+  { 40.328648915605527, 197, 11, 0.0 },
+  { 43.069488939530743, 197, 12, 0.0 },
+  { 45.724895407147756, 197, 13, 0.0 },
+  { 48.300773835141399, 197, 14, 0.0 },
+  { 50.802209786880553, 197, 15, 0.0 },
+  { 53.233627751717677, 197, 16, 0.0 },
+  { 55.598911438927189, 197, 17, 0.0 },
+  { 57.901496531921225, 197, 18, 0.0 },
+  { 60.144443358595709, 197, 19, 0.0 },
+  { 62.330494635333594, 197, 20, 0.0 },
+  { 64.462121930183912, 197, 21, 0.0 },
+  { 66.541563471863924, 197, 22, 0.0 },
+  { 68.570855229858353, 197, 23, 0.0 },
+  { 70.551856698724805, 197, 24, 0.0 },
+  { 72.486272468354400, 197, 25, 0.0 },
+  { 74.375670407146345, 197, 26, 0.0 },
+  { 76.221497097644601, 197, 27, 0.0 },
+  { 78.025091024519725, 197, 28, 0.0 },
+  { 79.787693909456266, 197, 29, 0.0 },
+  { 81.510460507197308, 197, 30, 0.0 },
+  { 83.194467115128987, 197, 31, 0.0 },
+  { 84.840719000685908, 197, 32, 0.0 },
+  { 86.450156913119940, 197, 33, 0.0 },
+  { 88.023662816327942, 197, 34, 0.0 },
+  { 89.562064955645269, 197, 35, 0.0 },
+  { 91.066142352421593, 197, 36, 0.0 },
+  { 92.536628804761790, 197, 37, 0.0 },
+  { 93.974216460269304, 197, 38, 0.0 },
+  { 95.379559016359849, 197, 39, 0.0 },
+  { 96.753274595272956, 197, 40, 0.0 },
+  { 98.095948333916795, 197, 41, 0.0 },
+  { 99.408134722883005, 197, 42, 0.0 },
+  { 100.69035972410870, 197, 43, 0.0 },
+  { 101.94312269260411, 197, 44, 0.0 },
+  { 103.16689812422612, 197, 45, 0.0 },
+  { 104.36213724858339, 197, 46, 0.0 },
+  { 105.52926948368827, 197, 47, 0.0 },
+  { 106.66870376687666, 197, 48, 0.0 },
+  { 107.78082977471138, 197, 49, 0.0 },
+  { 108.86601904304746, 197, 50, 0.0 },
+  { 109.92462599710188, 197, 51, 0.0 },
+  { 110.95698890022868, 197, 52, 0.0 },
+  { 111.96343072909724, 197, 53, 0.0 },
+  { 112.94425998210897, 197, 54, 0.0 },
+  { 113.89977142713633, 197, 55, 0.0 },
+  { 114.83024679400251, 197, 56, 0.0 },
+  { 115.73595541654606, 197, 57, 0.0 },
+  { 116.61715482860905, 197, 58, 0.0 },
+  { 117.47409131783400, 197, 59, 0.0 },
+  { 118.30700044076912, 197, 60, 0.0 },
+  { 119.11610750242392, 197, 61, 0.0 },
+  { 119.90162800311487, 197, 62, 0.0 },
+  { 120.66376805516177, 197, 63, 0.0 },
+  { 121.40272477175301, 197, 64, 0.0 },
+  { 122.11868663007908, 197, 65, 0.0 },
+  { 122.81183381063897, 197, 66, 0.0 },
+  { 123.48233851444917, 197, 67, 0.0 },
+  { 124.13036525972871, 197, 68, 0.0 },
+  { 124.75607115949305, 197, 69, 0.0 },
+  { 125.35960618136335, 197, 70, 0.0 },
+  { 125.94111339078057, 197, 71, 0.0 },
+  { 126.50072917871603, 197, 72, 0.0 },
+  { 127.03858347486994, 197, 73, 0.0 },
+  { 127.55479994727085, 197, 74, 0.0 },
+  { 128.04949618910689, 197, 75, 0.0 },
+  { 128.52278389355388, 197, 76, 0.0 },
+  { 128.97476901729686, 197, 77, 0.0 },
+  { 129.40555193338935, 197, 78, 0.0 },
+  { 129.81522757403394, 197, 79, 0.0 },
+  { 130.20388556382568, 197, 80, 0.0 },
+  { 130.57161034395102, 197, 81, 0.0 },
+  { 130.91848128779310, 197, 82, 0.0 },
+  { 131.24457280835975, 197, 83, 0.0 },
+  { 131.54995445791099, 197, 84, 0.0 },
+  { 131.83469102013294, 197, 85, 0.0 },
+  { 132.09884259517446, 197, 86, 0.0 },
+  { 132.34246467783225, 197, 87, 0.0 },
+  { 132.56560822914645, 197, 88, 0.0 },
+  { 132.76831974164344, 197, 89, 0.0 },
+  { 132.95064129843740, 197, 90, 0.0 },
+  { 133.11261062638255, 197, 91, 0.0 },
+  { 133.25426114344555, 197, 92, 0.0 },
+  { 133.37562200044982, 197, 93, 0.0 },
+  { 133.47671811732118, 197, 94, 0.0 },
+  { 133.55757021395027, 197, 95, 0.0 },
+  { 133.61819483576670, 197, 96, 0.0 },
+  { 133.65860437410458, 197, 97, 0.0 },
+  { 133.67880708142212, 197, 98, 0.0 },
+  { 133.67880708142212, 197, 99, 0.0 },
+  { 133.65860437410458, 197, 100, 0.0 },
+  { 133.61819483576670, 197, 101, 0.0 },
+  { 133.55757021395027, 197, 102, 0.0 },
+  { 133.47671811732118, 197, 103, 0.0 },
+  { 133.37562200044982, 197, 104, 0.0 },
+  { 133.25426114344555, 197, 105, 0.0 },
+  { 133.11261062638255, 197, 106, 0.0 },
+  { 132.95064129843740, 197, 107, 0.0 },
+  { 132.76831974164344, 197, 108, 0.0 },
+  { 132.56560822914645, 197, 109, 0.0 },
+  { 132.34246467783225, 197, 110, 0.0 },
+  { 132.09884259517446, 197, 111, 0.0 },
+  { 131.83469102013294, 197, 112, 0.0 },
+  { 131.54995445791099, 197, 113, 0.0 },
+  { 131.24457280835975, 197, 114, 0.0 },
+  { 130.91848128779310, 197, 115, 0.0 },
+  { 130.57161034395102, 197, 116, 0.0 },
+  { 130.20388556382568, 197, 117, 0.0 },
+  { 129.81522757403394, 197, 118, 0.0 },
+  { 129.40555193338935, 197, 119, 0.0 },
+  { 128.97476901729686, 197, 120, 0.0 },
+  { 128.52278389355388, 197, 121, 0.0 },
+  { 128.04949618910689, 197, 122, 0.0 },
+  { 127.55479994727085, 197, 123, 0.0 },
+  { 127.03858347486994, 197, 124, 0.0 },
+  { 126.50072917871603, 197, 125, 0.0 },
+  { 125.94111339078057, 197, 126, 0.0 },
+  { 125.35960618136335, 197, 127, 0.0 },
+  { 124.75607115949305, 197, 128, 0.0 },
+  { 124.13036525972871, 197, 129, 0.0 },
+  { 123.48233851444917, 197, 130, 0.0 },
+  { 122.81183381063897, 197, 131, 0.0 },
+  { 122.11868663007908, 197, 132, 0.0 },
+  { 121.40272477175301, 197, 133, 0.0 },
+  { 120.66376805516177, 197, 134, 0.0 },
+  { 119.90162800311487, 197, 135, 0.0 },
+  { 119.11610750242392, 197, 136, 0.0 },
+  { 118.30700044076912, 197, 137, 0.0 },
+  { 117.47409131783400, 197, 138, 0.0 },
+  { 116.61715482860905, 197, 139, 0.0 },
+  { 115.73595541654606, 197, 140, 0.0 },
+  { 114.83024679400251, 197, 141, 0.0 },
+  { 113.89977142713633, 197, 142, 0.0 },
+  { 112.94425998210897, 197, 143, 0.0 },
+  { 111.96343072909724, 197, 144, 0.0 },
+  { 110.95698890022868, 197, 145, 0.0 },
+  { 109.92462599710188, 197, 146, 0.0 },
+  { 108.86601904304746, 197, 147, 0.0 },
+  { 107.78082977471138, 197, 148, 0.0 },
+  { 106.66870376687666, 197, 149, 0.0 },
+  { 105.52926948368827, 197, 150, 0.0 },
+  { 104.36213724858339, 197, 151, 0.0 },
+  { 103.16689812422612, 197, 152, 0.0 },
+  { 101.94312269260411, 197, 153, 0.0 },
+  { 100.69035972410870, 197, 154, 0.0 },
+  { 99.408134722883005, 197, 155, 0.0 },
+  { 98.095948333916795, 197, 156, 0.0 },
+  { 96.753274595272956, 197, 157, 0.0 },
+  { 95.379559016359849, 197, 158, 0.0 },
+  { 93.974216460269304, 197, 159, 0.0 },
+  { 92.536628804761790, 197, 160, 0.0 },
+  { 91.066142352421593, 197, 161, 0.0 },
+  { 89.562064955645269, 197, 162, 0.0 },
+  { 88.023662816327942, 197, 163, 0.0 },
+  { 86.450156913119940, 197, 164, 0.0 },
+  { 84.840719000685908, 197, 165, 0.0 },
+  { 83.194467115128987, 197, 166, 0.0 },
+  { 81.510460507197308, 197, 167, 0.0 },
+  { 79.787693909456266, 197, 168, 0.0 },
+  { 78.025091024519725, 197, 169, 0.0 },
+  { 76.221497097644601, 197, 170, 0.0 },
+  { 74.375670407146345, 197, 171, 0.0 },
+  { 72.486272468354400, 197, 172, 0.0 },
+  { 70.551856698724805, 197, 173, 0.0 },
+  { 68.570855229858353, 197, 174, 0.0 },
+  { 66.541563471863924, 197, 175, 0.0 },
+  { 64.462121930183912, 197, 176, 0.0 },
+  { 62.330494635333594, 197, 177, 0.0 },
+  { 60.144443358595709, 197, 178, 0.0 },
+  { 57.901496531921225, 197, 179, 0.0 },
+  { 55.598911438927189, 197, 180, 0.0 },
+  { 53.233627751717677, 197, 181, 0.0 },
+  { 50.802209786880553, 197, 182, 0.0 },
+  { 48.300773835141399, 197, 183, 0.0 },
+  { 45.724895407147756, 197, 184, 0.0 },
+  { 43.069488939530743, 197, 185, 0.0 },
+  { 40.328648915605527, 197, 186, 0.0 },
+  { 37.495435571549478, 197, 187, 0.0 },
+  { 34.561578701713643, 197, 188, 0.0 },
+  { 31.517056263990185, 197, 189, 0.0 },
+  { 28.349473733509512, 197, 190, 0.0 },
+  { 25.043110454518114, 197, 191, 0.0 },
+  { 21.577374551718322, 197, 192, 0.0 },
+  { 17.924122275247669, 197, 193, 0.0 },
+  { 14.042558477304169, 197, 194, 0.0 },
+  { 9.8681712074085226, 197, 195, 0.0 },
+  { 5.2832037287379308, 197, 196, 0.0 },
+  { 0.0000000000000000, 197, 197, 0.0 },
+};
+const double toler196 = 5.0000000000000026e-09;
+
+// Divergence at n=198 k=199 f=-inf f_GSL=-inf
+// Divergence at n=198 k=200 f=-inf f_GSL=-inf
+// Divergence at n=198 k=200 f=-inf f_GSL=-inf
+// Test data for n=198.
+// max(|f - f_GSL|): 1.4391758895726525e-09
+// max(|f - f_GSL| / |f_GSL|): 5.6303618299611355e-11
+// mean(f - f_GSL): 3.5529428199063673e-10
+// variance(f - f_GSL): 6.4076551719807103e-22
+// stddev(f - f_GSL): 2.5313346621852888e-11
+const testcase_lbincoef<double>
+data197[199] =
+{
+  { 0.0000000000000000, 198, 0, 0.0 },
+  { 5.2882670306946693, 198, 1, 0.0 },
+  { 9.8783235788727097, 198, 2, 0.0 },
+  { 14.057825949435028, 198, 3, 0.0 },
+  { 17.944531146878944, 198, 4, 0.0 },
+  { 21.602951393508192, 198, 5, 0.0 },
+  { 25.073882113184936, 198, 6, 0.0 },
+  { 28.385467336157490, 198, 7, 0.0 },
+  { 31.558299222524397, 198, 8, 0.0 },
+  { 34.608098717348639, 198, 9, 0.0 },
+  { 37.547260639414276, 198, 10, 0.0 },
+  { 40.385807329445697, 198, 11, 0.0 },
+  { 43.132009296512251, 198, 12, 0.0 },
+  { 45.792806612763911, 198, 13, 0.0 },
+  { 48.374105108227127, 198, 14, 0.0 },
+  { 50.880990664733872, 198, 15, 0.0 },
+  { 53.317888095335434, 198, 16, 0.0 },
+  { 55.688681438356070, 198, 17, 0.0 },
+  { 57.996806711725753, 198, 18, 0.0 },
+  { 60.245324583449474, 198, 19, 0.0 },
+  { 62.436978115736338, 198, 20, 0.0 },
+  { 64.574239228304805, 198, 21, 0.0 },
+  { 66.659346507520354, 198, 22, 0.0 },
+  { 68.694336286629436, 198, 23, 0.0 },
+  { 70.681068430205073, 198, 24, 0.0 },
+  { 72.621247904551296, 198, 25, 0.0 },
+  { 74.516442961027565, 198, 26, 0.0 },
+  { 76.368100571836635, 198, 27, 0.0 },
+  { 78.177559618164082, 198, 28, 0.0 },
+  { 79.946062225227934, 198, 29, 0.0 },
+  { 81.674763558488735, 198, 30, 0.0 },
+  { 83.364740333406871, 198, 31, 0.0 },
+  { 85.016998243023977, 198, 32, 0.0 },
+  { 86.632478469914076, 198, 33, 0.0 },
+  { 88.212063419198444, 198, 34, 0.0 },
+  { 89.756581785533172, 198, 35, 0.0 },
+  { 91.266813047883829, 198, 36, 0.0 },
+  { 92.743491470472009, 198, 37, 0.0 },
+  { 94.187309675730148, 198, 38, 0.0 },
+  { 95.598921844834308, 198, 39, 0.0 },
+  { 96.978946592940588, 198, 40, 0.0 },
+  { 98.327969559263238, 198, 41, 0.0 },
+  { 99.646545746328115, 198, 42, 0.0 },
+  { 100.93520163788412, 198, 43, 0.0 },
+  { 102.19443712088514, 198, 44, 0.0 },
+  { 103.42472723352842, 198, 45, 0.0 },
+  { 104.62652375843174, 198, 46, 0.0 },
+  { 105.80025667756797, 198, 47, 0.0 },
+  { 106.94633550347510, 198, 48, 0.0 },
+  { 108.06515049946063, 198, 49, 0.0 },
+  { 109.15707379997798, 198, 50, 0.0 },
+  { 110.22246044101780, 198, 51, 0.0 },
+  { 111.26164930921504, 198, 52, 0.0 },
+  { 112.27496401737130, 198, 53, 0.0 },
+  { 113.26271371322764, 198, 54, 0.0 },
+  { 114.22519382757116, 198, 55, 0.0 },
+  { 115.16268676709581, 198, 56, 0.0 },
+  { 116.07546255686259, 198, 57, 0.0 },
+  { 116.96377943669438, 198, 58, 0.0 },
+  { 117.82788441539799, 198, 59, 0.0 },
+  { 118.66801378630657, 198, 60, 0.0 },
+  { 119.48439360729049, 198, 61, 0.0 },
+  { 120.27724014807347, 198, 62, 0.0 },
+  { 121.04676030741803, 198, 63, 0.0 },
+  { 121.79315200249675, 198, 64, 0.0 },
+  { 122.51660453255204, 198, 65, 0.0 },
+  { 123.21729891874725, 198, 66, 0.0 },
+  { 123.89540822194272, 198, 67, 0.0 },
+  { 124.55109783996778, 198, 68, 0.0 },
+  { 125.18452578582605, 198, 69, 0.0 },
+  { 125.79584294813839, 198, 70, 0.0 },
+  { 126.38519333501665, 198, 71, 0.0 },
+  { 126.95271430245924, 198, 72, 0.0 },
+  { 127.49853676826228, 198, 73, 0.0 },
+  { 128.02278541236046, 198, 74, 0.0 },
+  { 128.52557886442918, 198, 75, 0.0 },
+  { 129.00702987951524, 198, 76, 0.0 },
+  { 129.46724550239480, 198, 77, 0.0 },
+  { 129.90632722130198, 198, 78, 0.0 },
+  { 130.32437111161710, 198, 79, 0.0 },
+  { 130.72146797005468, 198, 80, 0.0 },
+  { 131.09770343984792, 198, 81, 0.0 },
+  { 131.45315812738141, 198, 82, 0.0 },
+  { 131.78790771069117, 198, 83, 0.0 },
+  { 132.10202304021118, 198, 84, 0.0 },
+  { 132.39557023211523, 198, 85, 0.0 },
+  { 132.66861075457405, 198, 86, 0.0 },
+  { 132.92120150721462, 198, 87, 0.0 },
+  { 133.15339489404869, 198, 88, 0.0 },
+  { 133.36523889010897, 198, 89, 0.0 },
+  { 133.55677710200786, 198, 90, 0.0 },
+  { 133.72804882261528, 198, 91, 0.0 },
+  { 133.87908908002817, 198, 92, 0.0 },
+  { 134.00992868098695, 198, 93, 0.0 },
+  { 134.12059424887451, 198, 94, 0.0 },
+  { 134.21110825641529, 198, 95, 0.0 },
+  { 134.28148905317710, 198, 96, 0.0 },
+  { 134.33175088795798, 198, 97, 0.0 },
+  { 134.36190392612872, 198, 98, 0.0 },
+  { 134.37195426198218, 198, 99, 0.0 },
+  { 134.36190392612872, 198, 100, 0.0 },
+  { 134.33175088795798, 198, 101, 0.0 },
+  { 134.28148905317710, 198, 102, 0.0 },
+  { 134.21110825641529, 198, 103, 0.0 },
+  { 134.12059424887451, 198, 104, 0.0 },
+  { 134.00992868098695, 198, 105, 0.0 },
+  { 133.87908908002817, 198, 106, 0.0 },
+  { 133.72804882261528, 198, 107, 0.0 },
+  { 133.55677710200786, 198, 108, 0.0 },
+  { 133.36523889010897, 198, 109, 0.0 },
+  { 133.15339489404869, 198, 110, 0.0 },
+  { 132.92120150721462, 198, 111, 0.0 },
+  { 132.66861075457405, 198, 112, 0.0 },
+  { 132.39557023211523, 198, 113, 0.0 },
+  { 132.10202304021118, 198, 114, 0.0 },
+  { 131.78790771069117, 198, 115, 0.0 },
+  { 131.45315812738141, 198, 116, 0.0 },
+  { 131.09770343984792, 198, 117, 0.0 },
+  { 130.72146797005468, 198, 118, 0.0 },
+  { 130.32437111161710, 198, 119, 0.0 },
+  { 129.90632722130198, 198, 120, 0.0 },
+  { 129.46724550239480, 198, 121, 0.0 },
+  { 129.00702987951524, 198, 122, 0.0 },
+  { 128.52557886442918, 198, 123, 0.0 },
+  { 128.02278541236046, 198, 124, 0.0 },
+  { 127.49853676826228, 198, 125, 0.0 },
+  { 126.95271430245924, 198, 126, 0.0 },
+  { 126.38519333501665, 198, 127, 0.0 },
+  { 125.79584294813839, 198, 128, 0.0 },
+  { 125.18452578582605, 198, 129, 0.0 },
+  { 124.55109783996778, 198, 130, 0.0 },
+  { 123.89540822194272, 198, 131, 0.0 },
+  { 123.21729891874725, 198, 132, 0.0 },
+  { 122.51660453255204, 198, 133, 0.0 },
+  { 121.79315200249675, 198, 134, 0.0 },
+  { 121.04676030741803, 198, 135, 0.0 },
+  { 120.27724014807347, 198, 136, 0.0 },
+  { 119.48439360729049, 198, 137, 0.0 },
+  { 118.66801378630657, 198, 138, 0.0 },
+  { 117.82788441539799, 198, 139, 0.0 },
+  { 116.96377943669438, 198, 140, 0.0 },
+  { 116.07546255686259, 198, 141, 0.0 },
+  { 115.16268676709581, 198, 142, 0.0 },
+  { 114.22519382757116, 198, 143, 0.0 },
+  { 113.26271371322764, 198, 144, 0.0 },
+  { 112.27496401737130, 198, 145, 0.0 },
+  { 111.26164930921504, 198, 146, 0.0 },
+  { 110.22246044101780, 198, 147, 0.0 },
+  { 109.15707379997798, 198, 148, 0.0 },
+  { 108.06515049946063, 198, 149, 0.0 },
+  { 106.94633550347510, 198, 150, 0.0 },
+  { 105.80025667756797, 198, 151, 0.0 },
+  { 104.62652375843174, 198, 152, 0.0 },
+  { 103.42472723352842, 198, 153, 0.0 },
+  { 102.19443712088514, 198, 154, 0.0 },
+  { 100.93520163788412, 198, 155, 0.0 },
+  { 99.646545746328115, 198, 156, 0.0 },
+  { 98.327969559263238, 198, 157, 0.0 },
+  { 96.978946592940588, 198, 158, 0.0 },
+  { 95.598921844834308, 198, 159, 0.0 },
+  { 94.187309675730148, 198, 160, 0.0 },
+  { 92.743491470472009, 198, 161, 0.0 },
+  { 91.266813047883829, 198, 162, 0.0 },
+  { 89.756581785533172, 198, 163, 0.0 },
+  { 88.212063419198444, 198, 164, 0.0 },
+  { 86.632478469914076, 198, 165, 0.0 },
+  { 85.016998243023977, 198, 166, 0.0 },
+  { 83.364740333406871, 198, 167, 0.0 },
+  { 81.674763558488735, 198, 168, 0.0 },
+  { 79.946062225227934, 198, 169, 0.0 },
+  { 78.177559618164082, 198, 170, 0.0 },
+  { 76.368100571836635, 198, 171, 0.0 },
+  { 74.516442961027565, 198, 172, 0.0 },
+  { 72.621247904551296, 198, 173, 0.0 },
+  { 70.681068430205073, 198, 174, 0.0 },
+  { 68.694336286629436, 198, 175, 0.0 },
+  { 66.659346507520354, 198, 176, 0.0 },
+  { 64.574239228304805, 198, 177, 0.0 },
+  { 62.436978115736338, 198, 178, 0.0 },
+  { 60.245324583449474, 198, 179, 0.0 },
+  { 57.996806711725753, 198, 180, 0.0 },
+  { 55.688681438356070, 198, 181, 0.0 },
+  { 53.317888095335434, 198, 182, 0.0 },
+  { 50.880990664733872, 198, 183, 0.0 },
+  { 48.374105108227127, 198, 184, 0.0 },
+  { 45.792806612763911, 198, 185, 0.0 },
+  { 43.132009296512251, 198, 186, 0.0 },
+  { 40.385807329445697, 198, 187, 0.0 },
+  { 37.547260639414276, 198, 188, 0.0 },
+  { 34.608098717348639, 198, 189, 0.0 },
+  { 31.558299222524397, 198, 190, 0.0 },
+  { 28.385467336157490, 198, 191, 0.0 },
+  { 25.073882113184936, 198, 192, 0.0 },
+  { 21.602951393508192, 198, 193, 0.0 },
+  { 17.944531146878944, 198, 194, 0.0 },
+  { 14.057825949435028, 198, 195, 0.0 },
+  { 9.8783235788727097, 198, 196, 0.0 },
+  { 5.2882670306946693, 198, 197, 0.0 },
+  { 0.0000000000000000, 198, 198, 0.0 },
+};
+const double toler197 = 5.0000000000000026e-09;
+
+// Divergence at n=199 k=200 f=-inf f_GSL=-inf
+// Divergence at n=199 k=200 f=-inf f_GSL=-inf
+// Test data for n=199.
+// max(|f - f_GSL|): 1.5645582607248798e-09
+// max(|f - f_GSL| / |f_GSL|): 1.3090522818120829e-10
+// mean(f - f_GSL): 1.0367734315508415e-09
+// variance(f - f_GSL): 5.4286464905921939e-21
+// stddev(f - f_GSL): 7.3679349146095157e-11
+const testcase_lbincoef<double>
+data198[200] =
+{
+  { 0.0000000000000000, 199, 0, 0.0 },
+  { 5.2933048247244869, 199, 1, 0.0 },
+  { 9.8884246748592659, 199, 2, 0.0 },
+  { 14.073016114929032, 199, 3, 0.0 },
+  { 17.964836413039620, 199, 4, 0.0 },
+  { 21.628398059169285, 199, 5, 0.0 },
+  { 25.104496749004625, 199, 6, 0.0 },
+  { 28.421276788854129, 199, 7, 0.0 },
+  { 31.599330619202192, 199, 8, 0.0 },
+  { 34.654379469912669, 199, 9, 0.0 },
+  { 37.598818449079090, 199, 10, 0.0 },
+  { 40.442670191340312, 199, 11, 0.0 },
+  { 43.194205504382239, 199, 12, 0.0 },
+  { 45.860364763775237, 199, 13, 0.0 },
+  { 48.447054107873100, 199, 14, 0.0 },
+  { 50.959359731849418, 199, 15, 0.0 },
+  { 53.401706767218570, 199, 16, 0.0 },
+  { 55.777979576003645, 199, 17, 0.0 },
+  { 58.091614505184452, 199, 18, 0.0 },
+  { 60.345672557283820, 199, 19, 0.0 },
+  { 62.542897134619921, 199, 20, 0.0 },
+  { 64.685760502737367, 199, 21, 0.0 },
+  { 66.776501599671064, 199, 22, 0.0 },
+  { 68.817157116315684, 199, 23, 0.0 },
+  { 70.809587281005975, 199, 24, 0.0 },
+  { 72.755497430061382, 199, 25, 0.0 },
+  { 74.656456191254279, 199, 26, 0.0 },
+  { 76.513910919747673, 199, 27, 0.0 },
+  { 78.329200886385934, 199, 28, 0.0 },
+  { 80.103568612902109, 199, 29, 0.0 },
+  { 81.838169668290220, 199, 30, 0.0 },
+  { 83.534081178728115, 199, 31, 0.0 },
+  { 85.192309255331566, 199, 32, 0.0 },
+  { 86.813795506281963, 199, 33, 0.0 },
+  { 88.399422770022397, 199, 34, 0.0 },
+  { 89.950020182433491, 199, 35, 0.0 },
+  { 91.466367671801549, 199, 36, 0.0 },
+  { 92.949199959964062, 199, 37, 0.0 },
+  { 94.399210135470184, 199, 38, 0.0 },
+  { 95.817052854324970, 199, 39, 0.0 },
+  { 97.203347215444865, 199, 40, 0.0 },
+  { 98.558679350960688, 199, 41, 0.0 },
+  { 99.883604765704376, 199, 42, 0.0 },
+  { 101.17865045535905, 199, 43, 0.0 },
+  { 102.44431682869038, 199, 44, 0.0 },
+  { 103.68107945583927, 199, 45, 0.0 },
+  { 104.88939066176385, 199, 46, 0.0 },
+  { 106.06968098144614, 199, 47, 0.0 },
+  { 107.22236049138462, 199, 48, 0.0 },
+  { 108.34782003008888, 199, 49, 0.0 },
+  { 109.44643231875705, 199, 50, 0.0 },
+  { 110.51855299197814, 199, 51, 0.0 },
+  { 111.56452154716078, 199, 52, 0.0 },
+  { 112.58466222038749, 199, 53, 0.0 },
+  { 113.57928479553152, 199, 54, 0.0 },
+  { 114.54868535271964, 199, 55, 0.0 },
+  { 115.49314696156046, 199, 56, 0.0 },
+  { 116.41294032398582, 199, 57, 0.0 },
+  { 117.30832437104073, 199, 58, 0.0 },
+  { 118.17954681751314, 199, 59, 0.0 },
+  { 119.02684467790039, 199, 60, 0.0 },
+  { 119.85044474685776, 199, 61, 0.0 },
+  { 120.65056404696986, 199, 62, 0.0 },
+  { 121.42741024640645, 199, 63, 0.0 },
+  { 122.18118204878283, 199, 64, 0.0 },
+  { 122.91206955732559, 199, 65, 0.0 },
+  { 123.62025461525013, 199, 66, 0.0 },
+  { 124.30591112408081, 199, 67, 0.0 },
+  { 124.96920534149115, 199, 68, 0.0 },
+  { 125.61029616009495, 199, 69, 0.0 },
+  { 126.22933536850121, 199, 70, 0.0 },
+  { 126.82646789582162, 199, 71, 0.0 },
+  { 127.40183204072514, 199, 72, 0.0 },
+  { 127.95555968603531, 199, 73, 0.0 },
+  { 128.48777649978263, 199, 74, 0.0 },
+  { 128.99860212354861, 199, 75, 0.0 },
+  { 129.48815034886735, 199, 76, 0.0 },
+  { 129.95652928238610, 199, 77, 0.0 },
+  { 130.40384150042985, 199, 78, 0.0 },
+  { 130.83018419355943, 199, 79, 0.0 },
+  { 131.23564930166765, 199, 80, 0.0 },
+  { 131.62032364010673, 199, 81, 0.0 },
+  { 131.98428901730813, 199, 82, 0.0 },
+  { 132.32762234430930, 199, 83, 0.0 },
+  { 132.65039573657231, 199, 84, 0.0 },
+  { 132.95267660844524, 199, 85, 0.0 },
+  { 133.23452776058627, 199, 86, 0.0 },
+  { 133.49600746064402, 199, 87, 0.0 },
+  { 133.73716951746098, 199, 88, 0.0 },
+  { 133.95806334904114, 199, 89, 0.0 },
+  { 134.15873404450332, 199, 90, 0.0 },
+  { 134.33922242021555, 199, 91, 0.0 },
+  { 134.49956507029071, 199, 92, 0.0 },
+  { 134.63979441159938, 199, 93, 0.0 },
+  { 134.75993872344145, 199, 94, 0.0 },
+  { 134.86002218199843, 199, 95, 0.0 },
+  { 134.94006488967193, 199, 96, 0.0 },
+  { 135.00008289939819, 199, 97, 0.0 },
+  { 135.04008823401193, 199, 98, 0.0 },
+  { 135.06008890071860, 199, 99, 0.0 },
+  { 135.06008890071860, 199, 100, 0.0 },
+  { 135.04008823401193, 199, 101, 0.0 },
+  { 135.00008289939819, 199, 102, 0.0 },
+  { 134.94006488967193, 199, 103, 0.0 },
+  { 134.86002218199843, 199, 104, 0.0 },
+  { 134.75993872344145, 199, 105, 0.0 },
+  { 134.63979441159938, 199, 106, 0.0 },
+  { 134.49956507029071, 199, 107, 0.0 },
+  { 134.33922242021555, 199, 108, 0.0 },
+  { 134.15873404450332, 199, 109, 0.0 },
+  { 133.95806334904114, 199, 110, 0.0 },
+  { 133.73716951746098, 199, 111, 0.0 },
+  { 133.49600746064402, 199, 112, 0.0 },
+  { 133.23452776058627, 199, 113, 0.0 },
+  { 132.95267660844524, 199, 114, 0.0 },
+  { 132.65039573657231, 199, 115, 0.0 },
+  { 132.32762234430930, 199, 116, 0.0 },
+  { 131.98428901730813, 199, 117, 0.0 },
+  { 131.62032364010673, 199, 118, 0.0 },
+  { 131.23564930166765, 199, 119, 0.0 },
+  { 130.83018419355943, 199, 120, 0.0 },
+  { 130.40384150042985, 199, 121, 0.0 },
+  { 129.95652928238610, 199, 122, 0.0 },
+  { 129.48815034886735, 199, 123, 0.0 },
+  { 128.99860212354861, 199, 124, 0.0 },
+  { 128.48777649978263, 199, 125, 0.0 },
+  { 127.95555968603531, 199, 126, 0.0 },
+  { 127.40183204072514, 199, 127, 0.0 },
+  { 126.82646789582162, 199, 128, 0.0 },
+  { 126.22933536850121, 199, 129, 0.0 },
+  { 125.61029616009495, 199, 130, 0.0 },
+  { 124.96920534149115, 199, 131, 0.0 },
+  { 124.30591112408081, 199, 132, 0.0 },
+  { 123.62025461525013, 199, 133, 0.0 },
+  { 122.91206955732559, 199, 134, 0.0 },
+  { 122.18118204878283, 199, 135, 0.0 },
+  { 121.42741024640645, 199, 136, 0.0 },
+  { 120.65056404696986, 199, 137, 0.0 },
+  { 119.85044474685776, 199, 138, 0.0 },
+  { 119.02684467790039, 199, 139, 0.0 },
+  { 118.17954681751314, 199, 140, 0.0 },
+  { 117.30832437104073, 199, 141, 0.0 },
+  { 116.41294032398582, 199, 142, 0.0 },
+  { 115.49314696156046, 199, 143, 0.0 },
+  { 114.54868535271964, 199, 144, 0.0 },
+  { 113.57928479553152, 199, 145, 0.0 },
+  { 112.58466222038749, 199, 146, 0.0 },
+  { 111.56452154716078, 199, 147, 0.0 },
+  { 110.51855299197814, 199, 148, 0.0 },
+  { 109.44643231875705, 199, 149, 0.0 },
+  { 108.34782003008888, 199, 150, 0.0 },
+  { 107.22236049138462, 199, 151, 0.0 },
+  { 106.06968098144614, 199, 152, 0.0 },
+  { 104.88939066176385, 199, 153, 0.0 },
+  { 103.68107945583927, 199, 154, 0.0 },
+  { 102.44431682869038, 199, 155, 0.0 },
+  { 101.17865045535905, 199, 156, 0.0 },
+  { 99.883604765704376, 199, 157, 0.0 },
+  { 98.558679350960688, 199, 158, 0.0 },
+  { 97.203347215444865, 199, 159, 0.0 },
+  { 95.817052854324970, 199, 160, 0.0 },
+  { 94.399210135470184, 199, 161, 0.0 },
+  { 92.949199959964062, 199, 162, 0.0 },
+  { 91.466367671801549, 199, 163, 0.0 },
+  { 89.950020182433491, 199, 164, 0.0 },
+  { 88.399422770022397, 199, 165, 0.0 },
+  { 86.813795506281963, 199, 166, 0.0 },
+  { 85.192309255331566, 199, 167, 0.0 },
+  { 83.534081178728115, 199, 168, 0.0 },
+  { 81.838169668290220, 199, 169, 0.0 },
+  { 80.103568612902109, 199, 170, 0.0 },
+  { 78.329200886385934, 199, 171, 0.0 },
+  { 76.513910919747673, 199, 172, 0.0 },
+  { 74.656456191254279, 199, 173, 0.0 },
+  { 72.755497430061382, 199, 174, 0.0 },
+  { 70.809587281005975, 199, 175, 0.0 },
+  { 68.817157116315684, 199, 176, 0.0 },
+  { 66.776501599671064, 199, 177, 0.0 },
+  { 64.685760502737367, 199, 178, 0.0 },
+  { 62.542897134619921, 199, 179, 0.0 },
+  { 60.345672557283820, 199, 180, 0.0 },
+  { 58.091614505184452, 199, 181, 0.0 },
+  { 55.777979576003645, 199, 182, 0.0 },
+  { 53.401706767218570, 199, 183, 0.0 },
+  { 50.959359731849418, 199, 184, 0.0 },
+  { 48.447054107873100, 199, 185, 0.0 },
+  { 45.860364763775237, 199, 186, 0.0 },
+  { 43.194205504382239, 199, 187, 0.0 },
+  { 40.442670191340312, 199, 188, 0.0 },
+  { 37.598818449079090, 199, 189, 0.0 },
+  { 34.654379469912669, 199, 190, 0.0 },
+  { 31.599330619202192, 199, 191, 0.0 },
+  { 28.421276788854129, 199, 192, 0.0 },
+  { 25.104496749004625, 199, 193, 0.0 },
+  { 21.628398059169285, 199, 194, 0.0 },
+  { 17.964836413039620, 199, 195, 0.0 },
+  { 14.073016114929032, 199, 196, 0.0 },
+  { 9.8884246748592659, 199, 197, 0.0 },
+  { 5.2933048247244869, 199, 198, 0.0 },
+  { 0.0000000000000000, 199, 199, 0.0 },
+};
+const double toler198 = 1.0000000000000005e-08;
+
+// Test data for n=200.
+// max(|f - f_GSL|): 1.6623289411654696e-09
+// max(|f - f_GSL| / |f_GSL|): 7.9873539135587218e-11
+// mean(f - f_GSL): 1.1222497823243444e-09
+// variance(f - f_GSL): 6.3287089839833669e-21
+// stddev(f - f_GSL): 7.9553183368004623e-11
+const testcase_lbincoef<double>
+data199[201] =
+{
+  { 0.0000000000000000, 200, 0, 0.0 },
+  { 5.2983173665479626, 200, 1, 0.0 },
+  { 9.8984750107125592, 200, 2, 0.0 },
+  { 14.088129752739064, 200, 3, 0.0 },
+  { 17.985039120357101, 200, 4, 0.0 },
+  { 21.653715867153437, 200, 5, 0.0 },
+  { 25.134955956489193, 200, 6, 0.0 },
+  { 28.456903966497293, 200, 7, 0.0 },
+  { 31.640152613722307, 200, 8, 0.0 },
+  { 34.700423408413940, 200, 9, 0.0 },
+  { 37.650111743466596, 200, 10, 0.0 },
+  { 40.499240542828602, 200, 11, 0.0 },
+  { 43.256080908100330, 200, 12, 0.0 },
+  { 45.927573513468701, 200, 13, 0.0 },
+  { 48.519624800707902, 200, 14, 0.0 },
+  { 51.037321273318867, 200, 15, 0.0 },
+  { 53.485088376157591, 200, 16, 0.0 },
+  { 55.866810789710257, 200, 17, 0.0 },
+  { 58.185925184655503, 200, 18, 0.0 },
+  { 60.445492892565994, 200, 19, 0.0 },
+  { 62.648257650277742, 200, 20, 0.0 },
+  { 64.796692063444425, 200, 21, 0.0 },
+  { 66.893035415927102, 200, 22, 0.0 },
+  { 68.939324750289870, 200, 23, 0.0 },
+  { 70.937420652515698, 200, 24, 0.0 },
+  { 72.889028822685759, 200, 25, 0.0 },
+  { 74.795718258587840, 200, 26, 0.0 },
+  { 76.658936691797862, 200, 27, 0.0 },
+  { 78.480023776120447, 200, 28, 0.0 },
+  { 80.260222422947436, 200, 29, 0.0 },
+  { 82.000688597787871, 200, 30, 0.0 },
+  { 83.702499830353077, 200, 31, 0.0 },
+  { 85.366662642476285, 200, 32, 0.0 },
+  { 86.994119060413141, 200, 33, 0.0 },
+  { 88.585752348213759, 200, 34, 0.0 },
+  { 90.142392075080920, 200, 35, 0.0 },
+  { 91.664818610525344, 200, 36, 0.0 },
+  { 93.153767125705258, 200, 37, 0.0 },
+  { 94.609931166785714, 200, 38, 0.0 },
+  { 96.033965855888482, 200, 39, 0.0 },
+  { 97.426490766759002, 200, 40, 0.0 },
+  { 98.788092515288440, 200, 41, 0.0 },
+  { 100.11932709922530, 200, 42, 0.0 },
+  { 101.42072201655878, 200, 43, 0.0 },
+  { 102.69277818798878, 200, 44, 0.0 },
+  { 103.93597170546798, 200, 45, 0.0 },
+  { 105.15075542589818, 200, 46, 0.0 },
+  { 106.33756042660173, 200, 47, 0.0 },
+  { 107.49679733708626, 200, 48, 0.0 },
+  { 108.62885755982188, 200, 49, 0.0 },
+  { 109.73411439120878, 200, 50, 0.0 },
+  { 110.81292405258068, 200, 51, 0.0 },
+  { 111.86562663994459, 200, 52, 0.0 },
+  { 112.89254700015670, 200, 53, 0.0 },
+  { 113.89399554037118, 200, 54, 0.0 },
+  { 114.87026897684700, 200, 55, 0.0 },
+  { 115.82165102853241, 200, 56, 0.0 },
+  { 116.74841306027395, 200, 57, 0.0 },
+  { 117.65081467998732, 200, 58, 0.0 },
+  { 118.52910429368296, 200, 59, 0.0 },
+  { 119.38351962183901, 200, 60, 0.0 },
+  { 120.21428818027505, 200, 61, 0.0 },
+  { 121.02162772836061, 200, 62, 0.0 },
+  { 121.80574668712632, 200, 63, 0.0 },
+  { 122.56684452959473, 200, 64, 0.0 },
+  { 123.30511214543515, 200, 65, 0.0 },
+  { 124.02073218184717, 200, 66, 0.0 },
+  { 124.71387936240706, 200, 67, 0.0 },
+  { 125.38472078545271, 200, 68, 0.0 },
+  { 126.03341620344179, 200, 69, 0.0 },
+  { 126.66011828459358, 200, 70, 0.0 },
+  { 127.26497285800792, 200, 71, 0.0 },
+  { 127.84811914335347, 200, 72, 0.0 },
+  { 128.40968996612469, 200, 73, 0.0 },
+  { 128.94981195937913, 200, 74, 0.0 },
+  { 129.46860575279425, 200, 75, 0.0 },
+  { 129.96618614981026, 200, 76, 0.0 },
+  { 130.44266229356168, 200, 77, 0.0 },
+  { 130.89813782224451, 200, 78, 0.0 },
+  { 131.33271101451066, 200, 79, 0.0 },
+  { 131.74647492543357, 200, 80, 0.0 },
+  { 132.13951751354318, 200, 81, 0.0 },
+  { 132.51192175939042, 200, 82, 0.0 },
+  { 132.86376577605949, 200, 83, 0.0 },
+  { 133.19512291201391, 200, 84, 0.0 },
+  { 133.50606184662996, 200, 85, 0.0 },
+  { 133.79664667873976, 200, 86, 0.0 },
+  { 134.06693700847961, 200, 87, 0.0 },
+  { 134.31698801271386, 200, 88, 0.0 },
+  { 134.54685051427680, 200, 89, 0.0 },
+  { 134.75657104525885, 200, 90, 0.0 },
+  { 134.94619190453437, 200, 91, 0.0 },
+  { 135.11575120971446, 200, 92, 0.0 },
+  { 135.26528294368541, 200, 93, 0.0 },
+  { 135.39481699587736, 200, 94, 0.0 },
+  { 135.50437919838885, 200, 95, 0.0 },
+  { 135.59399135707855, 200, 96, 0.0 },
+  { 135.66367127771650, 200, 97, 0.0 },
+  { 135.71343278727562, 200, 98, 0.0 },
+  { 135.74328575042529, 200, 99, 0.0 },
+  { 135.75323608127849, 200, 100, 0.0 },
+  { 135.74328575042529, 200, 101, 0.0 },
+  { 135.71343278727562, 200, 102, 0.0 },
+  { 135.66367127771650, 200, 103, 0.0 },
+  { 135.59399135707855, 200, 104, 0.0 },
+  { 135.50437919838885, 200, 105, 0.0 },
+  { 135.39481699587736, 200, 106, 0.0 },
+  { 135.26528294368541, 200, 107, 0.0 },
+  { 135.11575120971446, 200, 108, 0.0 },
+  { 134.94619190453437, 200, 109, 0.0 },
+  { 134.75657104525885, 200, 110, 0.0 },
+  { 134.54685051427680, 200, 111, 0.0 },
+  { 134.31698801271386, 200, 112, 0.0 },
+  { 134.06693700847961, 200, 113, 0.0 },
+  { 133.79664667873976, 200, 114, 0.0 },
+  { 133.50606184662996, 200, 115, 0.0 },
+  { 133.19512291201391, 200, 116, 0.0 },
+  { 132.86376577605949, 200, 117, 0.0 },
+  { 132.51192175939042, 200, 118, 0.0 },
+  { 132.13951751354318, 200, 119, 0.0 },
+  { 131.74647492543357, 200, 120, 0.0 },
+  { 131.33271101451066, 200, 121, 0.0 },
+  { 130.89813782224451, 200, 122, 0.0 },
+  { 130.44266229356168, 200, 123, 0.0 },
+  { 129.96618614981026, 200, 124, 0.0 },
+  { 129.46860575279425, 200, 125, 0.0 },
+  { 128.94981195937913, 200, 126, 0.0 },
+  { 128.40968996612469, 200, 127, 0.0 },
+  { 127.84811914335347, 200, 128, 0.0 },
+  { 127.26497285800792, 200, 129, 0.0 },
+  { 126.66011828459358, 200, 130, 0.0 },
+  { 126.03341620344179, 200, 131, 0.0 },
+  { 125.38472078545271, 200, 132, 0.0 },
+  { 124.71387936240706, 200, 133, 0.0 },
+  { 124.02073218184717, 200, 134, 0.0 },
+  { 123.30511214543515, 200, 135, 0.0 },
+  { 122.56684452959473, 200, 136, 0.0 },
+  { 121.80574668712632, 200, 137, 0.0 },
+  { 121.02162772836061, 200, 138, 0.0 },
+  { 120.21428818027505, 200, 139, 0.0 },
+  { 119.38351962183901, 200, 140, 0.0 },
+  { 118.52910429368296, 200, 141, 0.0 },
+  { 117.65081467998732, 200, 142, 0.0 },
+  { 116.74841306027395, 200, 143, 0.0 },
+  { 115.82165102853241, 200, 144, 0.0 },
+  { 114.87026897684700, 200, 145, 0.0 },
+  { 113.89399554037118, 200, 146, 0.0 },
+  { 112.89254700015670, 200, 147, 0.0 },
+  { 111.86562663994459, 200, 148, 0.0 },
+  { 110.81292405258068, 200, 149, 0.0 },
+  { 109.73411439120878, 200, 150, 0.0 },
+  { 108.62885755982188, 200, 151, 0.0 },
+  { 107.49679733708626, 200, 152, 0.0 },
+  { 106.33756042660173, 200, 153, 0.0 },
+  { 105.15075542589818, 200, 154, 0.0 },
+  { 103.93597170546798, 200, 155, 0.0 },
+  { 102.69277818798878, 200, 156, 0.0 },
+  { 101.42072201655878, 200, 157, 0.0 },
+  { 100.11932709922530, 200, 158, 0.0 },
+  { 98.788092515288440, 200, 159, 0.0 },
+  { 97.426490766759002, 200, 160, 0.0 },
+  { 96.033965855888482, 200, 161, 0.0 },
+  { 94.609931166785714, 200, 162, 0.0 },
+  { 93.153767125705258, 200, 163, 0.0 },
+  { 91.664818610525344, 200, 164, 0.0 },
+  { 90.142392075080920, 200, 165, 0.0 },
+  { 88.585752348213759, 200, 166, 0.0 },
+  { 86.994119060413141, 200, 167, 0.0 },
+  { 85.366662642476285, 200, 168, 0.0 },
+  { 83.702499830353077, 200, 169, 0.0 },
+  { 82.000688597787871, 200, 170, 0.0 },
+  { 80.260222422947436, 200, 171, 0.0 },
+  { 78.480023776120447, 200, 172, 0.0 },
+  { 76.658936691797862, 200, 173, 0.0 },
+  { 74.795718258587840, 200, 174, 0.0 },
+  { 72.889028822685759, 200, 175, 0.0 },
+  { 70.937420652515698, 200, 176, 0.0 },
+  { 68.939324750289870, 200, 177, 0.0 },
+  { 66.893035415927102, 200, 178, 0.0 },
+  { 64.796692063444425, 200, 179, 0.0 },
+  { 62.648257650277742, 200, 180, 0.0 },
+  { 60.445492892565994, 200, 181, 0.0 },
+  { 58.185925184655503, 200, 182, 0.0 },
+  { 55.866810789710257, 200, 183, 0.0 },
+  { 53.485088376157591, 200, 184, 0.0 },
+  { 51.037321273318867, 200, 185, 0.0 },
+  { 48.519624800707902, 200, 186, 0.0 },
+  { 45.927573513468701, 200, 187, 0.0 },
+  { 43.256080908100330, 200, 188, 0.0 },
+  { 40.499240542828602, 200, 189, 0.0 },
+  { 37.650111743466596, 200, 190, 0.0 },
+  { 34.700423408413940, 200, 191, 0.0 },
+  { 31.640152613722307, 200, 192, 0.0 },
+  { 28.456903966497293, 200, 193, 0.0 },
+  { 25.134955956489193, 200, 194, 0.0 },
+  { 21.653715867153437, 200, 195, 0.0 },
+  { 17.985039120357101, 200, 196, 0.0 },
+  { 14.088129752739064, 200, 197, 0.0 },
+  { 9.8984750107125592, 200, 198, 0.0 },
+  { 5.2983173665479626, 200, 199, 0.0 },
+  { 0.0000000000000000, 200, 200, 0.0 },
+};
+const double toler199 = 5.0000000000000026e-09;
+
 template<typename Ret, unsigned int Num>
   void
   test(const testcase_lbincoef<Ret> (&data)[Num], Ret toler)
@@ -17857,5 +23916,35 @@ main()
   test(data167, toler167);
   test(data168, toler168);
   test(data169, toler169);
+  test(data170, toler170);
+  test(data171, toler171);
+  test(data172, toler172);
+  test(data173, toler173);
+  test(data174, toler174);
+  test(data175, toler175);
+  test(data176, toler176);
+  test(data177, toler177);
+  test(data178, toler178);
+  test(data179, toler179);
+  test(data180, toler180);
+  test(data181, toler181);
+  test(data182, toler182);
+  test(data183, toler183);
+  test(data184, toler184);
+  test(data185, toler185);
+  test(data186, toler186);
+  test(data187, toler187);
+  test(data188, toler188);
+  test(data189, toler189);
+  test(data190, toler190);
+  test(data191, toler191);
+  test(data192, toler192);
+  test(data193, toler193);
+  test(data194, toler194);
+  test(data195, toler195);
+  test(data196, toler196);
+  test(data197, toler197);
+  test(data198, toler198);
+  test(data199, toler199);
   return 0;
 }
