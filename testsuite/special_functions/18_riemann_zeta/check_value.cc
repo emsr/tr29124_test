@@ -46,11 +46,11 @@
 #include <specfun_testcase.h>
 
 // Test data.
-// max(|f - f_GSL|): 8.2716819505002093e-14
-// max(|f - f_GSL| / |f_GSL|): 1.3228546909410770e-11
-// mean(f - f_GSL): -7.0000468489887651e-15
-// variance(f - f_GSL): 7.0456840306290655e-31
-// stddev(f - f_GSL): 8.3938572960403994e-16
+// max(|f - f_GSL|): 1.7208456881689926e-15
+// max(|f - f_GSL| / |f_GSL|): 1.0824674490095272e-14
+// mean(f - f_GSL): 2.6639833016307468e-17
+// variance(f - f_GSL): 1.5785008214222593e-32
+// stddev(f - f_GSL): 1.2563840262524271e-16
 const testcase_riemann_zeta<double>
 data001[55] =
 {
@@ -110,7 +110,7 @@ data001[55] =
   { -1.9526614482240094, 0.60000000000000142, 0.0 },
   { -4.4375384158955677, 0.80000000000000071, 0.0 },
 };
-const double toler001 = 1.0000000000000007e-09;
+const double toler001 = 1.0000000000000008e-12;
 //  riemann_zeta
 
 // This can take long on simulators, timing out the test.
