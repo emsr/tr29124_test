@@ -3,7 +3,7 @@
 copy="cp -f"
 makedir="mkdir -p"
 
-rm -rf "testsuite"
+#rm -rf "testsuite"
 
 utildir="testsuite/util"
 test_dir="testsuite/special_functions"
