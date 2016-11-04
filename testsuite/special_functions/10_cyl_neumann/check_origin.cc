@@ -18,9 +18,19 @@
 // with this library; see the file COPYING3.  If not see
 // <http://www.gnu.org/licenses/>.
 
-#include <testsuite_hooks.h>
 #include <cmath>
 #include <iostream>
+#if defined(__TEST_DEBUG)
+#  include <iostream>
+#  define VERIFY(A) \
+  if (!(A)) \
+    { \
+      std::cout << "line " << __LINE__ \
+	<< std::endl; \
+    }
+#else
+#  include <testsuite_hooks.h>
+#endif
 
 void
 test01()
