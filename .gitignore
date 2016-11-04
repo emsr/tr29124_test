@@ -120,7 +120,7 @@ check/complex_ellint_rj
 check/pr56216_cyl_hankel_1
 check/pr56216_cyl_hankel_2
 check/pr56216_cyl_bessel_i
-check/origin_bessel_j
+check/origin_cyl_bessel_j
 check/origin_cyl_neumann
 
 clamp_2
