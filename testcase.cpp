@@ -167,6 +167,8 @@ template<typename Real>
     using  std::tr1::sph_neumann;
 #endif
 
+    const auto _S_pi = __gnu_cxx::__math_constants<Real>::__pi;
+
     // Unsigned integer orders for various polynomials, harmonics.
     std::vector<unsigned int> vorder{0, 1, 2, 5, 10, 20, 50, 100};
 
@@ -188,10 +190,14 @@ template<typename Real>
     std::vector<unsigned int> sph_order{0, 1, 2, 5, 10, 20, 50, 100};
 
     const unsigned int num_phi = 10;
-    Real phi[num_phi];
-    for (unsigned int i = 0; i < num_phi; ++i)
-      phi[i] = Real{10} * i * __gnu_cxx::__math_constants<Real>::__pi / Real{180};
-    std::vector<Real> vphid(phi, phi + num_phi);
+    std::vector<Real> vphid;
+    for (unsigned int i = 0; i < num_phi - 1; ++i)
+      vphid.push_back(Real{10} * i * _S_pi / Real{180});
+    vphid.push_back(__gnu_cxx::__math_constants<Real>::__pi_half);
+
+    std::vector<Real> vnopolesd;
+    for (unsigned int i = 1; i < num_phi - 1; ++i)
+      vnopolesd.push_back(Real{10} * i * _S_pi / Real{180});
 
     std::vector<Real> vab{0, Real{0.5L}, 1, 2, 5, 10, 20};
 
@@ -1355,7 +1361,7 @@ template<typename Real>
 	     "testcase_heuman_lambda", "__gnu_cxx", basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
-	     "phi", vphid,
+	     "phi", vnopolesd,
 	     "Boost",
 	     file_heuman_lambda);
 
