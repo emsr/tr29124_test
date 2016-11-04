@@ -40,6 +40,7 @@ check/check_conf_hyperg
 check/check_conf_hyperg_lim
 check/check_coshint
 check/check_cosint
+check/check_cos_pi
 check/check_cyl_bessel_i
 check/check_cyl_bessel_j
 check/check_cyl_bessel_k
@@ -95,6 +96,7 @@ check/check_sinc
 check/check_sinc_pi
 check/check_sinhint
 check/check_sinint
+check/check_sin_pi
 check/check_sph_bessel
 check/check_sph_bessel_i
 check/check_sph_bessel_k

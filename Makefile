@@ -11,7 +11,8 @@ CXX = $(CXX_INST_DIR)/bin/g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ 
 CXX17 = $(CXX_INST_DIR)/bin/g++ -std=gnu++17 -fconcepts -g -Wall -Wextra -Wno-compare-reals
 CXX_INC_DIR = $(CXX_INST_DIR)/include/c++/7.0.0/bits
 CXX_LIB_DIR = $(CXX_INST_DIR)/lib64
-CXX_TEST_INC_DIR = $(CXX_SRC_DIR)/libstdc++-v3/testsuite/util
+#CXX_TEST_INC_DIR = $(CXX_SRC_DIR)/libstdc++-v3/testsuite/util
+CXX_TEST_INC_DIR = .
 
 INC_DIR = bits
 
@@ -72,6 +73,7 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/check_conf_hyperg_lim \
 	 ${CHECK_DIR}/check_coshint \
 	 ${CHECK_DIR}/check_cosint \
+	 ${CHECK_DIR}/check_cos_pi \
 	 ${CHECK_DIR}/check_cyl_bessel_i \
 	 ${CHECK_DIR}/check_cyl_bessel_j \
 	 ${CHECK_DIR}/check_cyl_bessel_k \
@@ -127,6 +129,7 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/check_sinc_pi \
 	 ${CHECK_DIR}/check_sinhint \
 	 ${CHECK_DIR}/check_sinint \
+	 ${CHECK_DIR}/check_sin_pi \
 	 ${CHECK_DIR}/check_sph_bessel \
 	 ${CHECK_DIR}/check_sph_bessel_i \
 	 ${CHECK_DIR}/check_sph_bessel_k \
@@ -418,6 +421,9 @@ ${CHECK_DIR}/check_coshint: ${CHECK_DIR}/check_coshint.cc
 ${CHECK_DIR}/check_cosint: ${CHECK_DIR}/check_cosint.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_cosint ${CHECK_DIR}/check_cosint.cc
 
+${CHECK_DIR}/check_cos_pi: ${CHECK_DIR}/check_cos_pi.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_cos_pi ${CHECK_DIR}/check_cos_pi.cc
+
 ${CHECK_DIR}/check_cyl_bessel_i: ${CHECK_DIR}/check_cyl_bessel_i.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_cyl_bessel_i ${CHECK_DIR}/check_cyl_bessel_i.cc
 
@@ -579,6 +585,9 @@ ${CHECK_DIR}/check_sinhint: ${CHECK_DIR}/check_sinhint.cc
 
 ${CHECK_DIR}/check_sinint: ${CHECK_DIR}/check_sinint.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sinint ${CHECK_DIR}/check_sinint.cc
+
+${CHECK_DIR}/check_sin_pi: ${CHECK_DIR}/check_sin_pi.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sin_pi ${CHECK_DIR}/check_sin_pi.cc
 
 ${CHECK_DIR}/check_sph_bessel: ${CHECK_DIR}/check_sph_bessel.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sph_bessel ${CHECK_DIR}/check_sph_bessel.cc

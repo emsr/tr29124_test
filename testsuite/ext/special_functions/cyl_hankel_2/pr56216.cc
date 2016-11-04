@@ -20,8 +20,19 @@
 
 // PR libstdc++/56216 - Crash of Bessel functions at x==0!
 
-#include <testsuite_hooks.h>
 #include <cmath>
+#include <limits>
+#if defined(__TEST_DEBUG)
+#  include <iostream>
+#  define VERIFY(A) \
+  if (!(A)) \
+    { \
+      std::cout << "line " << __LINE__ \
+	<< std::endl; \
+    }
+#else
+#  include <testsuite_hooks.h>
+#endif
 
 void
 test01()

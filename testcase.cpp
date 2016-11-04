@@ -1519,6 +1519,7 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     "Boost",
 	     file_sph_hankel_2, true, false);
+    test =
     maketest(sph_hankel_2, beast::sph_hankel_2,
 	     "testcase_sph_hankel_2", "__gnu_cxx", basename,
 	     "nu", {0, 2, 5},
