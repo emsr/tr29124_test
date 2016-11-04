@@ -6,9 +6,10 @@ SUFFIX = _tr29124
 CXX_INST_DIR = $(HOME)/bin$(SUFFIX)
 CXX_SRC_DIR = $(HOME)/gcc$(SUFFIX)
 
+GFORTRAN = $(CXX_INST_DIR)/bin/gfortran -g -Wall -Wextra -Wno-compare-reals
 GCC = $(CXX_INST_DIR)/bin/gcc -g -Wall -Wextra
-CXX = $(CXX_INST_DIR)/bin/g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -Wall -Wextra -Wno-compare-reals
-CXX17 = $(CXX_INST_DIR)/bin/g++ -std=gnu++17 -fconcepts -g -Wall -Wextra -Wno-compare-reals
+CXX = $(CXX_INST_DIR)/bin/g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -Wall -Wextra
+CXX17 = $(CXX_INST_DIR)/bin/g++ -std=gnu++17 -fconcepts -g -Wall -Wextra
 CXX_INC_DIR = $(CXX_INST_DIR)/include/c++/7.0.0/bits
 CXX_LIB_DIR = $(CXX_INST_DIR)/lib64
 #CXX_TEST_INC_DIR = $(CXX_SRC_DIR)/libstdc++-v3/testsuite/util
@@ -327,17 +328,21 @@ mpfrcalc: mpfr_gexpr.c
 	$(GCC) -I. -o mpfrcalc mpfr_gexpr.c -lgmp -lmpfr -lm
 
 
+libburkhardt.so: burkhardt/special_functions.f90
+	$(GFORTRAN) -fPIC -shared -o libburkhardt.so burkhardt/special_functions.f90 -lgfortran
+
+
 test_special_function: test_special_function.cpp wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
 	$(CXX17) -I. -o test_special_function -I$(GSL_INC_DIR) test_special_function.cpp wrap_gsl.cpp wrap_boost.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath $(GSL_LIBS)
 
 diff_special_function: diff_special_function.cpp wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
 	$(CXX17) -I. -o diff_special_function -I$(GSL_INC_DIR) diff_special_function.cpp wrap_gsl.cpp wrap_boost.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath $(GSL_LIBS)
 
-testcase2: testcase2.cpp testcase2.tcc wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp wrap_burkhardt.h wrap_burkhardt.cpp burkhardt/special_functions.f90 $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -o testcase2 -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase2.cpp wrap_gsl.cpp wrap_boost.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -lgfortran
+testcase2: testcase2.cpp testcase2.tcc wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp wrap_burkhardt.h wrap_burkhardt.cpp libburkhardt.so $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -o testcase2 -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase2.cpp wrap_gsl.cpp wrap_boost.cpp wrap_burkhardt.cpp $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -L. -lburkhardt
 
-testcase: testcase.cpp testcase.tcc wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp wrap_burkhardt.h wrap_burkhardt.cpp burkhardt/special_functions.f90 $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -o testcase -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp wrap_gsl.cpp wrap_boost.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -lgfortran
+testcase: testcase.cpp testcase.tcc wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp wrap_burkhardt.h wrap_burkhardt.cpp libburkhardt.so $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -o testcase -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp wrap_gsl.cpp wrap_boost.cpp wrap_burkhardt.cpp $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -L. -lburkhardt
 
 test_limits: test_limits.cpp
 	$(CXX17) -o test_limits test_limits.cpp
