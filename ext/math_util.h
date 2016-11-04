@@ -95,11 +95,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   {
     // A flag indicating whether the floating point number is integralish.
     bool __is_integral;
+
     // An integer related to the floating point integral value.
     int __value;
+
     // Return __is_integral in a boolean context.
     operator bool() const
-    { return __is_integral; }
+    { return this->__is_integral; }
+
+    // Return __value.
+    int
+    operator()() const
+    { return this->__value; }
   };
 
   /**
