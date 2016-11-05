@@ -27,7 +27,7 @@ ${tool} bits/float128_io.h         ${gcc_dir}/float128_io.h
 ${tool} bits/float128_io.tcc       ${gcc_dir}/float128_io.tcc
 ${tool} bits/float128_limits.h     ${gcc_dir}/float128_limits.h
 ${tool} bits/float128_math.h       ${gcc_dir}/float128_math.h
-${tool} bits/limits_float128.h     ${gcc_dir}/limits_float128.h
+${tool} bits/numeric_limits_float128.h     ${gcc_dir}/numeric_limits_float128.h
 ${tool} bits/summation.h           ${gcc_dir}/summation.h
 ${tool} bits/summation.tcc         ${gcc_dir}/summation.tcc
 ${tool} bits/sf_airy.tcc           ${gcc_dir}/sf_airy.tcc
