@@ -163,7 +163,8 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/origin_cyl_bessel_j \
 	 ${CHECK_DIR}/origin_cyl_neumann
 
-all: diff_special_function \
+all: libburkhardt.so \
+     diff_special_function \
      test_special_function \
      testcase2 \
      testcase \
