@@ -3,7 +3,7 @@
 copy="cp -f"
 makedir="mkdir -p"
 
-rm -rf "testsuite"
+#rm -rf "testsuite"
 
 utildir="testsuite/util"
 test_dir="testsuite/special_functions"
@@ -57,7 +57,7 @@ ${copy} check/check_comp_ellint_3.cc    ${test_dir}/06_comp_ellint_3/check_value
 ${copy} check/check_cyl_bessel_i.cc     ${test_dir}/07_cyl_bessel_i/check_value.cc
 ${copy} check/pr56216_cyl_bessel_i.cc   ${test_dir}/07_cyl_bessel_i/pr56216.cc
 ${copy} check/check_cyl_bessel_j.cc     ${test_dir}/08_cyl_bessel_j/check_value.cc
-${copy} check/origin_bessel_j.cc        ${test_dir}/08_cyl_bessel_j/check_origin.cc
+${copy} check/origin_cyl_bessel_j.cc    ${test_dir}/08_cyl_bessel_j/check_origin.cc
 ${copy} check/check_cyl_bessel_k.cc     ${test_dir}/09_cyl_bessel_k/check_value.cc
 ${copy} check/check_cyl_neumann.cc      ${test_dir}/10_cyl_neumann/check_value.cc
 ${copy} check/origin_cyl_neumann.cc     ${test_dir}/10_cyl_neumann/check_origin.cc

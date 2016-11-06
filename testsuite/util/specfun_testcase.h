@@ -1009,4 +1009,22 @@ template<typename _Tp>
     _Tp f;
   };
 
+// Reperiodized tangent function.
+template<typename _Tp>
+  struct testcase_tan_pi
+  {
+    _Tp f0;
+    _Tp x;
+    _Tp f;
+  };
+
+// Log gamma functions.
+template<typename _Tp>
+  struct testcase_lgamma
+  {
+    _Tp f0;
+    _Tp a;
+    _Tp f;
+  };
+
 #endif // _GLIBCXX_SPECFUN_TESTCASE_H

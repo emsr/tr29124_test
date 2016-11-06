@@ -41,7 +41,7 @@
 // Test data.
 // max(|f - f_GSL|): 711.62077727640133
 // max(|f - f_GSL| / |f_GSL|): 2.3061783919300212e-12
-// mean(f - f_GSL): -1.4204007528062388
+// mean(f - f_GSL): -1.4204007528479035
 // variance(f - f_GSL): inf
 // stddev(f - f_GSL): inf
 const testcase_ldouble_factorial<double>

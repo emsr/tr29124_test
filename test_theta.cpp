@@ -1,11 +1,12 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_theta test_theta.cpp
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_theta test_theta.cpp -lquadmath
 ./test_theta > test_theta.txt
 */
 
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <bits/float128_io.h>
 
 template<typename _Tp>
   void
@@ -136,6 +137,12 @@ template<typename _Tp>
 int
 main()
 {
+  std::cout << "\nfloat\n===========\n";
+  test_theta<float>();
+  std::cout << "\ndouble\n===========\n";
+  test_theta<double>();
   std::cout << "\nlong double\n===========\n";
   test_theta<long double>();
+  std::cout << "\n__float128\n===========\n";
+  test_theta<__float128>();
 }
