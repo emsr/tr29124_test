@@ -345,7 +345,7 @@ main()
 
   test_gamma_reciprocal(1.0l);
 
-  //test_gamma_reciprocal(1.0q);
+  test_gamma_reciprocal(1.0q);
 
   //test_gamma_reciprocal(mpfr::mpreal(1,128));
 

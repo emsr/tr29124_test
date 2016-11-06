@@ -254,15 +254,15 @@ namespace __detail
       using _BasicSum = __gnu_cxx::_BasicSum<_Cmplx>;
       using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
 
-      constexpr auto _S_j = _Cmplx{0, 1};
-      constexpr auto _S_1d2 = _Real{1} / _Real{2};
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-      constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Real>::__pi_quarter;
-      constexpr auto _S_pi_8 = _S_1d2 * _S_pi_4;
-      constexpr auto _S_3pi_4 = _Real{3} * _S_pi_4;
-      constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Real>::__root_2;
-      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Real>::__root_pi;
-      constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
+      const auto _S_j = _Cmplx{0, 1};
+      const auto _S_1d2 = _Real{1} / _Real{2};
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_pi_4 = __gnu_cxx::__const_pi_quarter(__x);
+      const auto _S_pi_8 = _S_1d2 * _S_pi_4;
+      const auto _S_3pi_4 = _Real{3} * _S_pi_4;
+      const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
+      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
       constexpr auto _S_maxiter = 1000;
       const auto __y = _Real{1} / (_Real{32} * __x);
       auto __term = _Real{1};

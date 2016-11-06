@@ -23,12 +23,12 @@ g++ -std=gnu++17 -DNO_LOGBQ -g -Wall -Wextra -I. -o test_beta test_beta.cpp wrap
 
 template<typename _Tp>
   void
-  test_beta()
+  test_beta(_Tp proto = _Tp{})
   {
     using _Val = _Tp;
     using _Real = std::__detail::__num_traits_t<_Val>;
 
-    std::cout.precision(std::numeric_limits<_Real>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -101,6 +101,8 @@ main()
   test_beta<double>();
 
   test_beta<long double>();
+
+  test_beta<__float128>();
 
   // Beta seems to be either really tiny or really huge.
   // Maybe graph log_beta.

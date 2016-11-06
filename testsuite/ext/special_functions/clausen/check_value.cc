@@ -39,11 +39,11 @@
 
 
 // Test data for m=2.
-// max(|f - f_GSL|): 1.1102230246251565e-15
-// max(|f - f_GSL| / |f_GSL|): 2.1300383933708612e-14
-// mean(f - f_GSL): -1.1743475270653878e-36
-// variance(f - f_GSL): 9.5545384541050770e-33
-// stddev(f - f_GSL): 9.7747319421583506e-17
+// max(|f - f_GSL|): 8.8817841970012523e-16
+// max(|f - f_GSL| / |f_GSL|): 3.4613123892276494e-15
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 2.0214560696288426e-32
+// stddev(f - f_GSL): 1.4217791915866693e-16
 const testcase_clausen_c<double>
 data001[41] =
 {
@@ -89,7 +89,7 @@ data001[41] =
   { -0.052122207190274598, 2, 9.5000000000000000, 0.0 },
   { -0.39071647608680155, 2, 10.000000000000000, 0.0 },
 };
-const double toler001 = 2.5000000000000015e-12;
+const double toler001 = 2.5000000000000020e-13;
 
 template<typename Ret, unsigned int Num>
   void

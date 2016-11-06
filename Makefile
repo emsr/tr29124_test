@@ -6,12 +6,14 @@ SUFFIX = _tr29124
 CXX_INST_DIR = $(HOME)/bin$(SUFFIX)
 CXX_SRC_DIR = $(HOME)/gcc$(SUFFIX)
 
-GCC = $(CXX_INST_DIR)/bin/gcc
-CXX = $(CXX_INST_DIR)/bin/g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -Wall -Wextra -Wno-compare-reals
-CXX17 = $(CXX_INST_DIR)/bin/g++ -std=gnu++17 -fconcepts -g -Wall -Wextra -Wno-compare-reals
+GFORTRAN = $(CXX_INST_DIR)/bin/gfortran -g -Wall -Wextra -Wno-compare-reals
+GCC = $(CXX_INST_DIR)/bin/gcc -g -Wall -Wextra
+CXX = $(CXX_INST_DIR)/bin/g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -Wall -Wextra
+CXX17 = $(CXX_INST_DIR)/bin/g++ -std=gnu++17 -fconcepts -g -Wall -Wextra
 CXX_INC_DIR = $(CXX_INST_DIR)/include/c++/7.0.0/bits
 CXX_LIB_DIR = $(CXX_INST_DIR)/lib64
-CXX_TEST_INC_DIR = $(CXX_SRC_DIR)/libstdc++-v3/testsuite/util
+#CXX_TEST_INC_DIR = $(CXX_SRC_DIR)/libstdc++-v3/testsuite/util
+CXX_TEST_INC_DIR = .
 
 INC_DIR = bits
 
@@ -38,7 +40,7 @@ CHECK_DIR = $(HOME)/tr29124_test/check
 
 #BOOST_LIBS = -L$(BOOST_LIB_DIR) -lboost_math_tools -lboost_math_tr1f -lboost_math_tr1l -lboost_math_tr1
 
-BINS = gmpcalc \
+BINS = mpfrcalc \
        diff_special_function \
        test_special_function \
        testcase2 \
@@ -72,6 +74,7 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/check_conf_hyperg_lim \
 	 ${CHECK_DIR}/check_coshint \
 	 ${CHECK_DIR}/check_cosint \
+	 ${CHECK_DIR}/check_cos_pi \
 	 ${CHECK_DIR}/check_cyl_bessel_i \
 	 ${CHECK_DIR}/check_cyl_bessel_j \
 	 ${CHECK_DIR}/check_cyl_bessel_k \
@@ -80,6 +83,10 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/check_cyl_neumann \
 	 ${CHECK_DIR}/check_dawson \
 	 ${CHECK_DIR}/check_dilog \
+	 ${CHECK_DIR}/check_dirichlet_beta \
+	 ${CHECK_DIR}/check_dirichlet_eta \
+	 ${CHECK_DIR}/check_dirichlet_lambda \
+	 ${CHECK_DIR}/check_double_factorial \
 	 ${CHECK_DIR}/check_ellint_1 \
 	 ${CHECK_DIR}/check_ellint_2 \
 	 ${CHECK_DIR}/check_ellint_3 \
@@ -89,6 +96,7 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/check_ellint_rf \
 	 ${CHECK_DIR}/check_ellint_rg \
 	 ${CHECK_DIR}/check_ellint_rj \
+	 ${CHECK_DIR}/check_ellnome \
 	 ${CHECK_DIR}/check_expint \
 	 ${CHECK_DIR}/check_expint_en \
 	 ${CHECK_DIR}/check_factorial \
@@ -127,6 +135,7 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/check_sinc_pi \
 	 ${CHECK_DIR}/check_sinhint \
 	 ${CHECK_DIR}/check_sinint \
+	 ${CHECK_DIR}/check_sin_pi \
 	 ${CHECK_DIR}/check_sph_bessel \
 	 ${CHECK_DIR}/check_sph_bessel_i \
 	 ${CHECK_DIR}/check_sph_bessel_k \
@@ -151,7 +160,7 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/pr56216_cyl_hankel_1 \
 	 ${CHECK_DIR}/pr56216_cyl_hankel_2 \
 	 ${CHECK_DIR}/pr56216_cyl_bessel_i \
-	 ${CHECK_DIR}/origin_bessel_j \
+	 ${CHECK_DIR}/origin_cyl_bessel_j \
 	 ${CHECK_DIR}/origin_cyl_neumann
 
 all: diff_special_function \
@@ -235,6 +244,10 @@ check: $(CHECKS)
 	echo "check_cyl_neumann" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_cyl_neumann >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_dawson" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_dawson >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_dilog" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_dilog >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_dirichlet_beta" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_dirichlet_beta >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_dirichlet_eta" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_dirichlet_eta >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_dirichlet_lambda" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_dirichlet_lambda >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_double_factorial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_double_factorial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_ellint_1" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_ellint_1 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_ellint_2" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_ellint_2 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_ellint_3" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_ellint_3 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
@@ -244,6 +257,7 @@ check: $(CHECKS)
 	echo "check_ellint_rf" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_ellint_rf >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_ellint_rg" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_ellint_rg >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_ellint_rj" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_ellint_rj >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_ellnome" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_ellnome >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_expint" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_expint >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_expint_en" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_expint_en >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_factorial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_factorial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
@@ -306,12 +320,16 @@ check: $(CHECKS)
 	echo "pr56216_cyl_hankel_1" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/pr56216_cyl_hankel_1 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "pr56216_cyl_hankel_2" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/pr56216_cyl_hankel_2 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "pr56216_cyl_bessel_i" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/pr56216_cyl_bessel_i >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
-	echo "origin_bessel_j" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/origin_bessel_j >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "origin_bessel_j" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/origin_cyl_bessel_j >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "origin_cyl_neumann" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/origin_cyl_neumann >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 
 
-gmpcalc: mpfr_gexpr.c
-	$(GCC) -o gmpcalc mpfr_gexpr.c -lgmp -lmpfr
+mpfrcalc: mpfr_gexpr.c
+	$(GCC) -I. -o mpfrcalc mpfr_gexpr.c -lgmp -lmpfr -lm
+
+
+libburkhardt.so: burkhardt/special_functions.f90
+	$(GFORTRAN) -fPIC -shared -o libburkhardt.so burkhardt/special_functions.f90 -lgfortran
 
 
 test_special_function: test_special_function.cpp wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
@@ -320,11 +338,11 @@ test_special_function: test_special_function.cpp wrap_gsl.h wrap_gsl.cpp wrap_bo
 diff_special_function: diff_special_function.cpp wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
 	$(CXX17) -I. -o diff_special_function -I$(GSL_INC_DIR) diff_special_function.cpp wrap_gsl.cpp wrap_boost.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath $(GSL_LIBS)
 
-testcase2: testcase2.cpp testcase2.tcc wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp wrap_burkhardt.h wrap_burkhardt.cpp burkhardt/special_functions.f90 $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -o testcase2 -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase2.cpp wrap_gsl.cpp wrap_boost.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -lgfortran
+testcase2: testcase2.cpp testcase2.tcc wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp wrap_burkhardt.h wrap_burkhardt.cpp libburkhardt.so $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -o testcase2 -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase2.cpp wrap_gsl.cpp wrap_boost.cpp wrap_burkhardt.cpp $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -L. -lburkhardt
 
-testcase: testcase.cpp testcase.tcc wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp wrap_burkhardt.h wrap_burkhardt.cpp burkhardt/special_functions.f90 $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -o testcase -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp wrap_gsl.cpp wrap_boost.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -lgfortran
+testcase: testcase.cpp testcase.tcc wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp wrap_burkhardt.h wrap_burkhardt.cpp libburkhardt.so $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -o testcase -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp wrap_gsl.cpp wrap_boost.cpp wrap_burkhardt.cpp $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -L. -lburkhardt
 
 test_limits: test_limits.cpp
 	$(CXX17) -o test_limits test_limits.cpp
@@ -418,6 +436,9 @@ ${CHECK_DIR}/check_coshint: ${CHECK_DIR}/check_coshint.cc
 ${CHECK_DIR}/check_cosint: ${CHECK_DIR}/check_cosint.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_cosint ${CHECK_DIR}/check_cosint.cc
 
+${CHECK_DIR}/check_cos_pi: ${CHECK_DIR}/check_cos_pi.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_cos_pi ${CHECK_DIR}/check_cos_pi.cc
+
 ${CHECK_DIR}/check_cyl_bessel_i: ${CHECK_DIR}/check_cyl_bessel_i.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_cyl_bessel_i ${CHECK_DIR}/check_cyl_bessel_i.cc
 
@@ -441,6 +462,18 @@ ${CHECK_DIR}/check_dawson: ${CHECK_DIR}/check_dawson.cc
 
 ${CHECK_DIR}/check_dilog: ${CHECK_DIR}/check_dilog.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_dilog ${CHECK_DIR}/check_dilog.cc
+
+${CHECK_DIR}/check_dirichlet_beta: ${CHECK_DIR}/check_dirichlet_beta.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_dirichlet_beta ${CHECK_DIR}/check_dirichlet_beta.cc
+
+${CHECK_DIR}/check_dirichlet_eta: ${CHECK_DIR}/check_dirichlet_eta.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_dirichlet_eta ${CHECK_DIR}/check_dirichlet_eta.cc
+
+${CHECK_DIR}/check_dirichlet_lambda: ${CHECK_DIR}/check_dirichlet_lambda.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_dirichlet_lambda ${CHECK_DIR}/check_dirichlet_lambda.cc
+
+${CHECK_DIR}/check_double_factorial: ${CHECK_DIR}/check_double_factorial.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_double_factorial ${CHECK_DIR}/check_double_factorial.cc
 
 ${CHECK_DIR}/check_ellint_1: ${CHECK_DIR}/check_ellint_1.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_ellint_1 ${CHECK_DIR}/check_ellint_1.cc
@@ -468,6 +501,9 @@ ${CHECK_DIR}/check_ellint_rg: ${CHECK_DIR}/check_ellint_rg.cc
 
 ${CHECK_DIR}/check_ellint_rj: ${CHECK_DIR}/check_ellint_rj.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_ellint_rj ${CHECK_DIR}/check_ellint_rj.cc
+
+${CHECK_DIR}/check_ellnome: ${CHECK_DIR}/check_ellnome.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_ellnome ${CHECK_DIR}/check_ellnome.cc
 
 ${CHECK_DIR}/check_expint: ${CHECK_DIR}/check_expint.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_expint ${CHECK_DIR}/check_expint.cc
@@ -580,6 +616,9 @@ ${CHECK_DIR}/check_sinhint: ${CHECK_DIR}/check_sinhint.cc
 ${CHECK_DIR}/check_sinint: ${CHECK_DIR}/check_sinint.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sinint ${CHECK_DIR}/check_sinint.cc
 
+${CHECK_DIR}/check_sin_pi: ${CHECK_DIR}/check_sin_pi.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sin_pi ${CHECK_DIR}/check_sin_pi.cc
+
 ${CHECK_DIR}/check_sph_bessel: ${CHECK_DIR}/check_sph_bessel.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_sph_bessel ${CHECK_DIR}/check_sph_bessel.cc
 
@@ -649,8 +688,8 @@ ${CHECK_DIR}/pr56216_cyl_hankel_2: ${CHECK_DIR}/pr56216_cyl_hankel_2.cc
 ${CHECK_DIR}/pr56216_cyl_bessel_i: ${CHECK_DIR}/pr56216_cyl_bessel_i.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/pr56216_cyl_bessel_i ${CHECK_DIR}/pr56216_cyl_bessel_i.cc
 
-${CHECK_DIR}/origin_bessel_j: ${CHECK_DIR}/origin_bessel_j.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/origin_bessel_j ${CHECK_DIR}/origin_bessel_j.cc
+${CHECK_DIR}/origin_cyl_bessel_j: ${CHECK_DIR}/origin_cyl_bessel_j.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/origin_cyl_bessel_j ${CHECK_DIR}/origin_cyl_bessel_j.cc
 
 ${CHECK_DIR}/origin_cyl_neumann: ${CHECK_DIR}/origin_cyl_neumann.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/origin_cyl_neumann ${CHECK_DIR}/origin_cyl_neumann.cc

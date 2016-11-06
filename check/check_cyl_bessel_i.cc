@@ -210,9 +210,9 @@ const double toler005 = 2.5000000000000020e-13;
 // Test data for nu=-0.33333333333333331.
 // max(|f - f_Boost|): 1.0658141036401503e-14
 // max(|f - f_Boost| / |f_Boost|): 7.9906753268291430e-16
-// mean(f - f_Boost): -2.3314683517128288e-16
-// variance(f - f_Boost): 6.1049994622285035e-31
-// stddev(f - f_Boost): 7.8134495981151015e-16
+// mean(f - f_Boost): -2.5535129566378598e-16
+// variance(f - f_Boost): 6.0236003799030673e-31
+// stddev(f - f_Boost): 7.7611857212046328e-16
 const testcase_cyl_bessel_i<double>
 data006[20] =
 {

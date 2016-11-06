@@ -187,7 +187,7 @@ template<typename _Tp>
 int
 main()
 {
-  constexpr auto pif = __gnu_cxx__const_pi<float>();
+  constexpr auto pif = __gnu_cxx::__const_pi<float>();
   constexpr auto pi = __gnu_cxx::__const_pi<double>();
   constexpr auto pil = __gnu_cxx::__const_pi<long double>();
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)

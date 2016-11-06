@@ -23,7 +23,17 @@
 
 #include <cmath>
 #include <complex>
-#include <testsuite_hooks.h>
+#if defined(__TEST_DEBUG)
+#  include <iostream>
+#  define VERIFY(A) \
+  if (!(A)) \
+    { \
+      std::cout << "line " << __LINE__ \
+	<< std::endl; \
+    }
+#else
+#  include <testsuite_hooks.h>
+#endif
 
 void
 test01()
