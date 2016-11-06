@@ -2369,9 +2369,9 @@ _S_neg_double_factorial_table[999]
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
       const auto _S_logpi = __gnu_cxx::__const_ln_pi(std::real(__a));
       auto __an = __gnu_cxx::__fp_is_integer(__a);
-      if (__an.__is_integral)
+      if (__an)
 	{
-	  auto __n = __an.__value;
+	  auto __n = __an();
 	  if (__n <= 0)
 	    return __gnu_cxx::__quiet_NaN(std::real(__a));
 	  else if (__n < _S_num_factorials<_Real>)
@@ -2613,7 +2613,6 @@ _S_neg_double_factorial_table[999]
 	}
     }
 
-
   /**
    * @brief Return the gamma function @f$ \Gamma(a) @f$.
    * The gamma function is defined by:
@@ -2631,9 +2630,9 @@ _S_neg_double_factorial_table[999]
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       auto __an = __gnu_cxx::__fp_is_integer(__a);
-      if (__an.__is_integral)
+      if (__an)
 	{
-	  auto __n = __an.__value;
+	  auto __n = __an();
 	  if (__n <= 0)
 	    return __gnu_cxx::__quiet_NaN(std::real(__a));
 	  else if (__n < _S_num_factorials<_Real>)
@@ -2655,9 +2654,11 @@ _S_neg_double_factorial_table[999]
 	return __log_gamma_sign(__a) * std::exp(__log_gamma(__a));
     }
 
-
   /**
    * @brief Return the incomplete gamma function by series summation.
+   * @f[
+   *   \gamma(a,x) = x^a e^{-z}\sum_{k=1}^{\infty} \frac{x^k}{(a)_k}
+   * @f]
    */
   template<typename _Tp>
     std::pair<_Tp, _Tp>
@@ -2670,11 +2671,15 @@ _S_neg_double_factorial_table[999]
 
       auto __lngam = __log_gamma(__a);
       auto __sign = __log_gamma_sign(__a);
+      auto __ia = __gnu_cxx::__fp_is_integer(__a);
 
-      if (std::real(__x) < _Real{0})
-	std::__throw_domain_error(__N("__gamma_series: argument less than 0"));
+      if (__ia && __ia() <= 0)
+	std::__throw_domain_error(__N("__gamma_series: "
+				      "non-positive integer argument a"));
       else if (__x == _Real{0})
 	return std::make_pair(_Val{0}, __lngam);
+      else if (std::real(__x) < _Real{0})
+	std::__throw_domain_error(__N("__gamma_series: negative argument x"));
       else
 	{
 	  auto __aa = __a;
@@ -2765,10 +2770,11 @@ _S_neg_double_factorial_table[999]
       if (__isnan(__a) || __isnan(__x))
 	return _S_NaN;
 
-      if (std::real(__x) < _Real{0} || std::real(__a) <= _Real{0})
-	std::__throw_domain_error("pgamma: invalid arguments");
-
-      if (std::real(__x) < std::real(__a + _Real{1}))
+      auto __ia = __gnu_cxx::__fp_is_integer(__a);
+      if (__ia && __ia() <= 0)
+	std::__throw_domain_error(__N("__pgamma: "
+				      "non-positive integer argument a"));
+      else if (std::real(__x) < std::real(__a + _Real{1}))
 	return __gamma_series(__a, __x).first;
       else
 	return _Val{1} - __gamma_cont_frac(__a, __x).first;
@@ -2798,10 +2804,11 @@ _S_neg_double_factorial_table[999]
       if (__isnan(__a) || __isnan(__x))
 	return _S_NaN;
 
-      if (std::real(__x) < _Real{0} || std::real(__a) <= _Real{0})
-	std::__throw_domain_error("__qgamma: invalid arguments");
-
-      if (std::real(__x) < std::real(__a + _Real{1}))
+      auto __ia = __gnu_cxx::__fp_is_integer(__a);
+      if (__ia && __ia() <= 0)
+	std::__throw_domain_error(__N("__qgamma: "
+				      "non-positive integer argument a"));
+      else if (std::real(__x) < std::real(__a + _Real{1}))
 	return _Val{1} - __gamma_series(__a, __x).first;
       else
 	return __gamma_cont_frac(__a, __x).first;
@@ -2826,10 +2833,11 @@ _S_neg_double_factorial_table[999]
       if (__isnan(__a) || __isnan(__x))
 	return _S_NaN;
 
-      if (std::real(__x) < _Real{0} || std::real(__a) <= _Real{0})
-	std::__throw_domain_error("__tgamma_lower: invalid arguments");
-
-      if (std::real(__x) < std::real(__a + _Real{1}))
+      auto __ia = __gnu_cxx::__fp_is_integer(__a);
+      if (__ia && __ia() <= 0)
+	std::__throw_domain_error(__N("__tgamma_lower: "
+				      "non-positive integer argument a"));
+      else if (std::real(__x) < std::real(__a + _Real{1}))
 	{
 	  std::pair<_Tp, _Tp> __gp = __gamma_series(__a, __x);
 	  return std::exp(__gp.second) * __gp.first;
@@ -2860,10 +2868,11 @@ _S_neg_double_factorial_table[999]
       if (__isnan(__a) || __isnan(__x))
 	return _S_NaN;
 
-      if (std::real(__x) < _Real{0} || std::real(__a) <= _Real{0})
-	std::__throw_domain_error("__tgamma: invalid arguments");
-
-      if (std::real(__x) < std::real(__a + _Real{1}))
+      auto __ia = __gnu_cxx::__fp_is_integer(__a);
+      if (__ia && __ia() <= 0)
+	std::__throw_domain_error(__N("__tgamma: "
+				      "non-positive integer argument a"));
+      else if (std::real(__x) < std::real(__a + _Real{1}))
 	{
 	  auto __gp = __gamma_series(__a, __x);
 	  return std::exp(__gp.second) * (_Tp{1} - __gp.first);
@@ -2873,36 +2882,6 @@ _S_neg_double_factorial_table[999]
 	  auto __gp = __gamma_cont_frac(__a, __x);
 	  return std::exp(__gp.second) * __gp.first;
 	}
-    }
-
-
-  /**
-   * @brief  Return the logarithm of the (upper) Pochhammer symbol
-   * or the rising factorial function.
-   * The Pochammer symbol is defined for integer order by
-   * @f[
-   *   (a)_\nu = \Gamma(a + \nu) / \Gamma(n)
-   *	     = \prod_{k=0}^{\nu-1} (a + k), (a)_0 = 1
-   * @f]
-   * Thus this function returns
-   * @f[
-   *   ln[(a)_\nu] = ln[\Gamma(a + \nu)] - ln[\Gamma(\nu)], ln[(a)_0] = 0
-   * @f]
-   * Many notations exist: @f[ a^{\overline{n}} @f],
-   *  @f[ \left[ \begin{array}{c}
-   *	  a \\
-   *	  n \end{array} \right] @f], and others.
-   */
-  template<typename _Tp>
-    _Tp
-    __log_pochhammer(_Tp __a, _Tp __n)
-    {
-      if (__isnan(__n) || __isnan(__a))
-	return __gnu_cxx::__quiet_NaN(__a);
-      else if (__n == _Tp{0})
-	return _Tp{0};
-      else
-	return __log_gamma(__a + __n) - __log_gamma(__a);
     }
 
   /**
@@ -2923,15 +2902,19 @@ _S_neg_double_factorial_table[999]
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
+      const auto __ia = __gnu_cxx::__fp_is_integer(__a);
+
       if (__isnan(__a))
 	return __gnu_cxx::__quiet_NaN(std::real(__a));
       else if (__n == 0)
 	return _Tp{1};
-      else if (std::abs(__a - std::nearbyint(__a)) < _S_eps)
+      else if (__ia)
 	{
-	  auto __na = int(std::nearbyint(__a));
-	  if (__na < _S_num_factorials<_Real>
-	      && __a - __n < _S_num_factorials<_Real>)
+	  auto __na = __ia();
+	  if (__na <= __n)
+	    return _Tp{0};
+	  else if (__na < _S_num_factorials<_Real>
+	      && __na - __n < _S_num_factorials<_Real>)
 	    return __factorial<_Real>(__na) / __factorial<_Real>(__na - __n);
 	  else
 	    return std::exp(__log_factorial<_Real>(__na)
@@ -2976,14 +2959,20 @@ _S_neg_double_factorial_table[999]
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
+      const auto _S_inf = __gnu_cxx::__infinity(std::real(__a));
+      const auto __inu = __gnu_cxx::__fp_is_integer(__nu);
+      const auto __ia = __gnu_cxx::__fp_is_integer(__a);
+
       if (__isnan(__nu) || __isnan(__a))
 	return __gnu_cxx::__quiet_NaN(std::real(__a));
       else if (__nu == _Tp{0})
 	return _Tp{1};
-      else if (std::abs(__nu - std::nearbyint(__nu)) < _S_eps)
+      else if (__inu)
 	{
-	  auto __n = int(std::nearbyint(__nu));
-	  return __pochhammer_lower(__a, __n);
+	  if (__ia && __ia() < __inu())
+	    return -_S_inf;
+	  else
+	    return __pochhammer_lower(__a, __inu());
 	}
       else
 	{
@@ -2991,46 +2980,12 @@ _S_neg_double_factorial_table[999]
 			 - __log_gamma(__a - __nu + _Tp{1});
 	  auto __sign = __log_gamma_sign(__a + _Tp{1})
 		      * __log_gamma_sign(__a - __nu + _Tp{1});
-          if (__logpoch > __gnu_cxx::__log_max(__a))
-            return __sign * __gnu_cxx::__infinity(__a);
-          else
+          if (__logpoch < __gnu_cxx::__log_max(__a))
             return __sign * std::exp(__logpoch);
+          else
+            return __sign * __gnu_cxx::__infinity(__a);
 	}
     }
-
-
-  /**
-   * @brief  Return the (upper) Pochhammer function
-   * or the rising factorial function.
-   * The Pochammer symbol is defined by
-   * @f[
-   *   (a)_\nu = \Gamma(a + \nu) / \Gamma(\nu)
-   *	     = \prod_{k=0}^{n-1} (a + k), (a)_0 = 1
-   * @f]
-   * Many notations exist: @f[ a^{\overline{n}} @f],
-   *  @f[ \left[ \begin{array}{c}
-   *	  a \\
-   *	  n \end{array} \right] @f], and others.
-   */
-  template<typename _Tp>
-    _Tp
-    __pochhammer(_Tp __a, _Tp __nu)
-    {
-      if (__isnan(__nu) || __isnan(__a))
-	return __gnu_cxx::__quiet_NaN(__a);
-      else if (__nu == _Tp{0})
-	return _Tp{1};
-      else
-	{
-          auto __logpoch = __log_gamma(__a + __nu) - __log_gamma(__a);
-	  auto __sign = __log_gamma_sign(__a + __nu) * __log_gamma_sign(__a);
-          if (__logpoch > __gnu_cxx::__log_max(__a))
-            return __sign * __gnu_cxx::__infinity(__a);
-          else
-            return __sign * std::exp(__logpoch);
-	}
-    }
-
 
   /**
    * @brief  Return the logarithm of the lower Pochhammer symbol
@@ -3056,15 +3011,163 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__a));
+      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
+      const auto _S_inf = __gnu_cxx::__infinity(std::real(__a));
+      const auto __inu = __gnu_cxx::__fp_is_integer(__nu);
+      const auto __ia = __gnu_cxx::__fp_is_integer(__a);
+
       if (__isnan(__nu) || __isnan(__a))
-	return __gnu_cxx::__quiet_NaN(__a);
+	return _S_NaN;
       else if (__nu == _Tp{0})
 	return _Tp{0};
+      else if (__inu)
+	{
+	  if (__ia)
+	    {
+	      if (__ia() <= __inu())
+		return -_S_inf;
+	      else
+		return __log_factorial<_Val>(unsigned(__ia()))
+		     - __log_factorial<_Val>(unsigned(__ia() - __inu()));
+	    }
+	  else
+	    return std::log(__pochhammer_lower(__a, __inu()));
+	}
       else if (std::abs(__a) < _S_num_factorials<_Real>
 	    && std::abs(__a - __nu) < _S_num_factorials<_Real>)
 	return std::log(__pochhammer_lower(__a, __nu));
       else
 	return __log_gamma(__a + _Tp{1}) - __log_gamma(__a - __nu + _Tp{1});
+    }
+
+  /**
+   * @brief  Return the (upper) Pochhammer function
+   * or the rising factorial function.
+   * The Pochammer symbol is defined by
+   * @f[
+   *   (a)_\nu = \Gamma(a + \nu) / \Gamma(\nu)
+   *	     = \prod_{k=0}^{n-1} (a + k), (a)_0 = 1
+   * @f]
+   * Many notations exist: @f[ a^{\overline{n}} @f],
+   *  @f[ \left[ \begin{array}{c}
+   *	  a \\
+   *	  n \end{array} \right] @f], and others.
+   */
+  template<typename _Tp>
+    _Tp
+    __pochhammer(_Tp __a, int __n)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
+
+      if (__isnan(__a))
+	return __gnu_cxx::__quiet_NaN(std::real(__a));
+      else if (__n == 0)
+	return _Tp{1};
+      else if (std::abs(__a - std::nearbyint(__a)) < _S_eps)
+	{
+	  auto __na = int(std::nearbyint(__a));
+	  if (__na < _S_num_factorials<_Real>
+	      && __a + __n < _S_num_factorials<_Real>)
+	    return __factorial<_Real>(__na + __n - _Real{1})
+		 / __factorial<_Real>(__na - _Real{1});
+	  else
+	    return std::exp(__log_factorial<_Real>(__na + __n - _Real{1})
+			  - __log_factorial<_Real>(__na) - _Real{1});
+	}
+      else if (std::abs(__a) < _S_num_factorials<_Real>
+      	    && std::abs(__a + __n) < _S_num_factorials<_Real>)
+	{
+	  auto __prod = __a;
+	  for (int __k = 1; __k < __n; ++__k)
+	    __prod *= (__a + __k);
+	  return __prod;
+	}
+      else
+	{
+          auto __logpoch = __log_gamma(__a + __n) - __log_gamma(__a);
+	  auto __sign = __log_gamma_sign(__a + __n) * __log_gamma_sign(__a);
+          if (__logpoch < __gnu_cxx::__log_max(__a))
+            return __sign * std::exp(__logpoch);
+          else
+            return __sign * __gnu_cxx::__infinity(__a);
+	}
+    }
+
+  /**
+   * @brief  Return the (upper) Pochhammer function
+   * or the rising factorial function.
+   * The Pochammer symbol is defined by
+   * @f[
+   *   (a)_\nu = \Gamma(a + \nu) / \Gamma(\nu)
+   *	     = \prod_{k=0}^{n-1} (a + k), (a)_0 = 1
+   * @f]
+   * Many notations exist: @f[ a^{\overline{n}} @f],
+   *  @f[ \left[ \begin{array}{c}
+   *	  a \\
+   *	  n \end{array} \right] @f], and others.
+   */
+  template<typename _Tp>
+    _Tp
+    __pochhammer(_Tp __a, _Tp __nu)
+    {
+      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
+
+      if (__isnan(__nu) || __isnan(__a))
+	return __gnu_cxx::__quiet_NaN(__a);
+      else if (__nu == _Tp{0})
+	return _Tp{1};
+      else if (std::abs(__nu - std::nearbyint(__nu)) < _S_eps)
+	{
+	  auto __n = int(std::nearbyint(__nu));
+	  return __pochhammer(__a, __n);
+	}
+      else
+	{
+          auto __logpoch = __log_gamma(__a + __nu) - __log_gamma(__a);
+	  auto __sign = __log_gamma_sign(__a + __nu) * __log_gamma_sign(__a);
+          if (__logpoch < __gnu_cxx::__log_max(__a))
+            return __sign * std::exp(__logpoch);
+          else
+            return __sign * __gnu_cxx::__infinity(__a);
+	}
+    }
+
+  /**
+   * @brief  Return the logarithm of the (upper) Pochhammer symbol
+   * or the rising factorial function.
+   * The Pochammer symbol is defined for integer order by
+   * @f[
+   *   (a)_\nu = \Gamma(a + \nu) / \Gamma(n)
+   *	     = \prod_{k=0}^{\nu-1} (a + k), (a)_0 = 1
+   * @f]
+   * Thus this function returns
+   * @f[
+   *   ln[(a)_\nu] = ln[\Gamma(a + \nu)] - ln[\Gamma(\nu)], ln[(a)_0] = 0
+   * @f]
+   * Many notations exist: @f[ a^{\overline{n}} @f],
+   *  @f[ \left[ \begin{array}{c}
+   *	  a \\
+   *	  n \end{array} \right] @f], and others.
+   */
+  template<typename _Tp>
+    _Tp
+    __log_pochhammer(_Tp __a, _Tp __nu)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+
+      if (__isnan(__nu) || __isnan(__a))
+	return __gnu_cxx::__quiet_NaN(__a);
+      else if (__nu == _Tp{0})
+	return _Tp{0};
+      else if (std::abs(__a) < _S_num_factorials<_Real>
+	    && std::abs(__a + __nu) < _S_num_factorials<_Real>)
+	return std::log(__pochhammer(__a, __nu));
+      else
+	return __log_gamma(__a + __nu) - __log_gamma(__a);
     }
 
   constexpr unsigned long long

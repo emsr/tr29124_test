@@ -120,9 +120,10 @@ Boost uses CF + series.
 36. [] Gather 32-digit spot checks from:
 http://functions.wolfram.com/webMathematica/FunctionEvaluation.jsp
 
-37. [] Things involving say std::cyl_bessel(__float128, __float128) won't compile.
+37. [DONE] Things involving say std::cyl_bessel(__float128, __float128) won't compile.
 We have __float128 in the promote thing.
 Somehow, the promote thing is broken.
+These were useing the old school promote!
 
 38. [] Look at the results of test_bessel, test_sph_bessel, near the originas a function of.
 You have to widen the near zero. Look at the near zero asymptotics and come up with a thing
@@ -133,7 +134,22 @@ And if the type doesn't do denorm just zero then and don't sweat.
 
 40. [DONE] sph_neumann is broken.
 
-41. [DONE] Add a state for Fock-airy finctions and use it.
+41. [DONE] Add a state for Fock-airy functions and use it.
+
+42. [] We might not even need numeric_limits_float128.h - the generic ones might work.
+
+43. [] test_polylog has some remaining 128 issues.
+
+44. [] test_hankel build fails on  
+test_hankel.cpp:52:47: error: no matching function for call to \u2018__airy(std::complex<double>&, double)\u2019
+   auto Airy = std::__detail::__airy(z, 1.0e-16);
+
+It's probably an API change.
+
+
+45. [] test_factorial build.
+
+42. [] We might not even need numeric_limits_float128.h - the generic ones might work.
 
 42. [] We might not even need numeric_limits_float128.h - the generic ones might work.
 
