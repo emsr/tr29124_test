@@ -149,29 +149,31 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint_En_series(unsigned int __n, _Tp __x)
     {
-      const unsigned int __max_iter = 100;
-      const auto __eps = __gnu_cxx::__epsilon(__x);
+      const unsigned int _S_max_iter = 1000;
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const int __nm1 = __n - 1;
-      _Tp __ans = (__nm1 != 0
+      const auto _S_gamma_E = __gnu_cxx::__const_gamma_e(__x);
+      const auto __logx = std::log(__x);
+      _Tp __sum = (__nm1 != 0
 		? _Tp{1} / __nm1
-		: -std::log(__x) - __gnu_cxx::__const_gamma_e(__x));
+		: -__logx - _S_gamma_E);
       _Tp __fact = _Tp{1};
-      for (int __i = 1; __i <= __max_iter; ++__i)
+      for (int __i = 1; __i <= _S_max_iter; ++__i)
 	{
-	  __fact *= -__x / _Tp{__i};
-	  _Tp __del;
+	  __fact *= -__x / _Tp(__i);
+	  _Tp __term;
 	  if ( __i != __nm1 )
-	    __del = -__fact / _Tp{__i - __nm1};
+	    __term = -__fact / _Tp(__i - __nm1);
 	  else
 	    {
-	      _Tp __psi = -__gnu_cxx::__const_gamma_e(__x);
+	      _Tp __psi = -_S_gamma_E;
 	      for (int __ii = 1; __ii <= __nm1; ++__ii)
 		__psi += _Tp{1} / _Tp(__ii);
-	      __del = __fact * (__psi - std::log(__x));
+	      __term = __fact * (__psi - __logx);
 	    }
-	  __ans += __del;
-	  if (std::abs(__del) < __eps * std::abs(__ans))
-	    return __ans;
+	  __sum += __term;
+	  if (std::abs(__term) < _S_eps * std::abs(__sum))
+	    return __sum;
 	}
       std::__throw_runtime_error(__N("__expint_En_series: "
 				     "series summation failed"));
@@ -195,27 +197,28 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint_En_cont_frac(unsigned int __n, _Tp __x)
     {
-      const unsigned int __max_iter = 100;
-      const auto __eps = __gnu_cxx::__epsilon(__x);
-      const auto __fp_min = __gnu_cxx::__min(__x);
+      const unsigned int _S_max_iter = 1000;
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_fp_min = _Tp{4} * __gnu_cxx::__min(__x);
       const int __nm1 = __n - 1;
       auto __b = __x + _Tp(__n);
-      auto __c = _Tp{1} / __fp_min;
+      auto __c = _Tp{1} / _S_fp_min;
       auto __d = _Tp{1} / __b;
       auto __h = __d;
-      for ( unsigned int __i = 1; __i <= __max_iter; ++__i )
+      for ( unsigned int __i = 1; __i <= _S_max_iter; ++__i )
 	{
-	  auto __a = -_Tp{__i * (__nm1 + __i)};
+	  auto __a = -_Tp(__i * (__nm1 + __i));
 	  __b += _Tp{2};
 	  __d = _Tp{1} / (__a * __d + __b);
+	  if (std::abs(__d) < _S_fp_min)
+	    __d = std::copysign(_S_fp_min, __d);
 	  __c = __b + __a / __c;
+	  if (std::abs(__c) < _S_fp_min)
+	    __c = std::copysign(_S_fp_min, __c);
 	  const auto __del = __c * __d;
 	  __h *= __del;
-	  if (std::abs(__del - _Tp{1}) < __eps)
-	    {
-	      const auto __ans = __h * std::exp(-__x);
-	      return __ans;
-	    }
+	  if (std::abs(__del - _Tp{1}) < _S_eps)
+	    return __h * std::exp(-__x);
 	}
       std::__throw_runtime_error(__N("__expint_En_cont_frac: "
 				     "continued fraction failed"));
@@ -326,11 +329,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  _Tp __prev = __term;
 	  __term *= __i / __x;
-	  if (std::abs(__term) < __eps * std::abs(__sum))
-	    break;
 	  if (std::abs(__term) >= std::abs(__prev))
 	    break;
 	  __sum += __term;
+	  if (std::abs(__term) < __eps * std::abs(__sum))
+	    break;
 	}
 
       return std::exp(__x) * __sum / __x;
@@ -398,8 +401,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
    * @f]
    *
-   * This is something of an extension.
-   *
    * @param  __n  The order of the exponential integral function.
    * @param  __x  The argument of the exponential integral function.
    * @return  The exponential integral.
@@ -431,8 +432,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *   E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt
    * @f]
-   *
-   * This is something of an extension.
    *
    * @param  __n  The order of the exponential integral function.
    * @param  __x  The argument of the exponential integral function.
@@ -476,34 +475,28 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint(unsigned int __n, _Tp __x)
     {
-      // Return NaN on NaN input.
       if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__n <= 1 && __x == _Tp{0})
 	return __gnu_cxx::__infinity(__x);
       else
 	{
-	  auto __E0 = std::exp(-__x) / __x;
 	  if (__n == 0)
-	    return __E0;
-
-	  auto __E1 = __expint_E1(__x);
-	  if (__n == 1)
-	    return __E1;
-
-	  if (__x == _Tp{0})
+	    return std::exp(-__x) / __x;
+	  else if (__n == 1)
+	    return __expint_E1(__x);
+	  else if (__x == _Tp{0})
 	    return _Tp{1} / static_cast<_Tp>(__n - 1);
-
-	  //auto __En = __expint_En_recursion(__n, __x);
-	  if (__x < _Tp(-__n)) // Arbitrary - needs more study.
+	  else if (__x < _Tp{1})
 	    return __expint_En_series(__n, __x);
-	  else if (__n > 50) // Arbitrary - needs more study.
+	  else if (__n > 50000)
+	    /// @todo Study arbitrary switch to large-n @f$ E_n(x) @f$.
 	    return __expint_En_large_n(__n, __x);
-	  else if (__x < _Tp{100})
+	  else if (__x > _Tp{100})
 	    /// @todo Find a good asymptotic switch point in @f$ E_n(x) @f$.
-	    return __expint_En_cont_frac(__n, __x);
-	  else
 	    return __expint_En_asymp(__n, __x);
+	  else
+	    return __expint_En_cont_frac(__n, __x);
 	}
     }
 
@@ -553,11 +546,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * @brief Return the hyperbolic cosine integral @f$ li(x) @f$.
+   * @brief Return the hyperbolic cosine integral @f$ Chi(x) @f$.
    *
    * The hyperbolic cosine integral is given by
    * @f[
-   *   Chi(x) = (Ei(x) - E_1(x))/ 2
+   *   Chi(x) = (Ei(x) - E_1(x))/ 2 = (Ei(x) + Ei(-x))/2
    * @f]
    *
    * @param  __x  The argument of the hyperbolic cosine integral function.
@@ -576,11 +569,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * @brief Return the hyperbolic sine integral @f$ li(x) @f$.
+   * @brief Return the hyperbolic sine integral @f$ Shi(x) @f$.
    *
    * The hyperbolic sine integral is given by
    * @f[
-   *   Shi(x) = (Ei(x) - E_1(x))/ 2
+   *   Shi(x) = (Ei(x) + E_1(x))/2 = (Ei(x) - Ei(-x))/2
    * @f]
    *
    * @param  __x  The argument of the hyperbolic sine integral function.

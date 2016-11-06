@@ -9,6 +9,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_bessel test_
 #include <stdexcept>
 #include <limits>
 #include <vector>
+#include <bits/float128_io.h>
 
 template<typename _Tp>
   void
@@ -132,7 +133,7 @@ template<typename _Tp>
 	    std::cout << ' ' << std::setw(width) << x;
 	    try
 	      {
-		auto jx = std::cyl_bessel(nu, x);
+		auto jx = std::cyl_bessel_j(nu, x);
 		auto nx = std::cyl_neumann(nu, x);
 		std::cout << ' ' << std::setw(width) << jx;
 		std::cout << ' ' << std::setw(width) << nx;
@@ -160,12 +161,12 @@ main()
   test_cyl_bessel<float>();
   test_cyl_bessel<double>();
   test_cyl_bessel<long double>();
-  //test_cyl_bessel<__float128>();
+  test_cyl_bessel<__float128>();
 
   test_std_bessel<float>();
   test_std_bessel<double>();
   test_std_bessel<long double>();
-  //test_std_bessel<__float128>();
+  test_std_bessel<__float128>();
 
   return 0;
 }

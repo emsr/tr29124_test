@@ -38,7 +38,7 @@
 #include <specfun_testcase.h>
 
 
-// Failure at a=0.25000000000000000 x=2.0000000000000000 f=-1.6739764335716716 f_Boost=nan
+// Failure at a=0.25000000000000000 x=2.0000000000000000 f=nan f_Boost=nan
 // Test data for a=0.25000000000000000.
 // max(|f - f_Boost|): 0.0000000000000000
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
@@ -53,7 +53,7 @@ data001[2] =
 };
 const double toler001 = 2.5000000000000020e-13;
 
-// Failure at a=0.50000000000000000 x=2.0000000000000000 f=-1.3862943611198899 f_Boost=nan
+// Failure at a=0.50000000000000000 x=2.0000000000000000 f=nan f_Boost=nan
 // Test data for a=0.50000000000000000.
 // max(|f - f_Boost|): 0.0000000000000000
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
@@ -68,7 +68,7 @@ data002[2] =
 };
 const double toler002 = 2.5000000000000020e-13;
 
-// Failure at a=0.75000000000000000 x=2.0000000000000000 f=-1.6739764335716716 f_Boost=nan
+// Failure at a=0.75000000000000000 x=2.0000000000000000 f=nan f_Boost=nan
 // Test data for a=0.75000000000000000.
 // max(|f - f_Boost|): 0.0000000000000000
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
@@ -83,18 +83,18 @@ data003[2] =
 };
 const double toler003 = 2.5000000000000020e-13;
 
+// Divergence at a=1.0000000000000000 x=1.0000000000000000 f=-inf f_Boost=0.0000000000000000
 // Divergence at a=1.0000000000000000 x=2.0000000000000000 f=-inf f_Boost=-inf
 // Divergence at a=1.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=-inf
-// Divergence at a=1.0000000000000000 x=10.000000000000000 f=-inf f_Boost=-inf
 // ...
 // Divergence at a=1.0000000000000000 x=100.00000000000000 f=-inf f_Boost=-inf
-// Failure at a=1.2500000000000000 x=5.0000000000000000 f=0.12038381735644088 f_Boost=nan
+// Failure at a=1.2500000000000000 x=5.0000000000000000 f=nan f_Boost=nan
 // Test data for a=1.2500000000000000.
-// max(|f - f_Boost|): 5.5511151231257827e-17
-// max(|f - f_Boost| / |f_Boost|): 2.4876878988580870e-16
-// mean(f - f_Boost): -1.8503717077085941e-17
-// variance(f - f_Boost): 2.5679065925163143e-34
-// stddev(f - f_Boost): 1.6024689053196365e-17
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_lpochhammer_lower<double>
 data004[3] =
 {
@@ -104,7 +104,7 @@ data004[3] =
 };
 const double toler004 = 2.5000000000000020e-13;
 
-// Failure at a=1.5000000000000000 x=5.0000000000000000 f=0.34092658697059386 f_Boost=nan
+// Failure at a=1.5000000000000000 x=5.0000000000000000 f=nan f_Boost=nan
 // Test data for a=1.5000000000000000.
 // max(|f - f_Boost|): 0.0000000000000000
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
@@ -120,7 +120,7 @@ data005[3] =
 };
 const double toler005 = 2.5000000000000020e-13;
 
-// Failure at a=1.7500000000000000 x=5.0000000000000000 f=-0.080286878105710335 f_Boost=nan
+// Failure at a=1.7500000000000000 x=5.0000000000000000 f=nan f_Boost=nan
 // Test data for a=1.7500000000000000.
 // max(|f - f_Boost|): 0.0000000000000000
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
@@ -136,9 +136,9 @@ data006[3] =
 };
 const double toler006 = 2.5000000000000020e-13;
 
+// Divergence at a=2.0000000000000000 x=2.0000000000000000 f=-inf f_Boost=0.69314718055994529
 // Divergence at a=2.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=-inf
 // Divergence at a=2.0000000000000000 x=10.000000000000000 f=-inf f_Boost=-inf
-// Divergence at a=2.0000000000000000 x=20.000000000000000 f=-inf f_Boost=-inf
 // ...
 // Divergence at a=2.0000000000000000 x=100.00000000000000 f=-inf f_Boost=-inf
 // Test data for a=2.0000000000000000.
@@ -148,21 +148,20 @@ const double toler006 = 2.5000000000000020e-13;
 // variance(f - f_Boost): 0.0000000000000000
 // stddev(f - f_Boost): 0.0000000000000000
 const testcase_lpochhammer_lower<double>
-data007[3] =
+data007[2] =
 {
   { 0.0000000000000000, 2.0000000000000000, 0.0000000000000000, 0.0 },
   { 0.69314718055994529, 2.0000000000000000, 1.0000000000000000, 0.0 },
-  { 0.69314718055994529, 2.0000000000000000, 2.0000000000000000, 0.0 },
 };
 const double toler007 = 2.5000000000000020e-13;
 
-// Failure at a=2.2500000000000000 x=10.000000000000000 f=7.4699568512953354 f_Boost=nan
+// Failure at a=2.2500000000000000 x=10.000000000000000 f=nan f_Boost=nan
 // Test data for a=2.2500000000000000.
-// max(|f - f_Boost|): 1.1102230246251565e-16
-// max(|f - f_Boost| / |f_Boost|): 1.3828200209296628e-15
-// mean(f - f_Boost): -2.7755575615628914e-17
-// variance(f - f_Boost): 3.0814879110195774e-33
-// stddev(f - f_Boost): 5.5511151231257827e-17
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_lpochhammer_lower<double>
 data008[4] =
 {
@@ -173,13 +172,13 @@ data008[4] =
 };
 const double toler008 = 2.5000000000000020e-13;
 
-// Failure at a=2.5000000000000000 x=10.000000000000000 f=7.5906079532564084 f_Boost=nan
+// Failure at a=2.5000000000000000 x=10.000000000000000 f=nan f_Boost=nan
 // Test data for a=2.5000000000000000.
-// max(|f - f_Boost|): 6.6613381477509392e-16
-// max(|f - f_Boost| / |f_Boost|): 1.9538922461114824e-15
-// mean(f - f_Boost): 8.3266726846886741e-17
-// variance(f - f_Boost): 1.5099290763995929e-31
-// stddev(f - f_Boost): 3.8857805861880479e-16
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_lpochhammer_lower<double>
 data009[4] =
 {
@@ -190,13 +189,13 @@ data009[4] =
 };
 const double toler009 = 2.5000000000000020e-13;
 
-// Failure at a=2.7500000000000000 x=10.000000000000000 f=7.0476975532025836 f_Boost=nan
+// Failure at a=2.7500000000000000 x=10.000000000000000 f=nan f_Boost=nan
 // Test data for a=2.7500000000000000.
-// max(|f - f_Boost|): 5.5511151231257827e-17
-// max(|f - f_Boost| / |f_Boost|): 4.6111805099930103e-16
-// mean(f - f_Boost): 1.3877787807814457e-17
-// variance(f - f_Boost): 7.7037197775489434e-34
-// stddev(f - f_Boost): 2.7755575615628914e-17
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_lpochhammer_lower<double>
 data010[4] =
 {
@@ -227,13 +226,13 @@ data011[3] =
 };
 const double toler011 = 2.5000000000000020e-13;
 
-// Failure at a=3.2500000000000000 x=5.0000000000000000 f=0.53875233030051328 f_Boost=nan
+// Failure at a=3.2500000000000000 x=5.0000000000000000 f=nan f_Boost=nan
 // Test data for a=3.2500000000000000.
-// max(|f - f_Boost|): 2.2204460492503131e-16
-// max(|f - f_Boost| / |f_Boost|): 1.8838812512077047e-16
-// mean(f - f_Boost): 1.4802973661668753e-16
-// variance(f - f_Boost): 4.1086505480261029e-33
-// stddev(f - f_Boost): 6.4098756212785461e-17
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_lpochhammer_lower<double>
 data012[3] =
 {
@@ -243,13 +242,13 @@ data012[3] =
 };
 const double toler012 = 2.5000000000000020e-13;
 
-// Failure at a=3.5000000000000000 x=5.0000000000000000 f=1.1882244473577979 f_Boost=nan
+// Failure at a=3.5000000000000000 x=5.0000000000000000 f=nan f_Boost=nan
 // Test data for a=3.5000000000000000.
-// max(|f - f_Boost|): 2.2204460492503131e-16
-// max(|f - f_Boost| / |f_Boost|): 1.7724390847194195e-16
-// mean(f - f_Boost): 7.4014868308343765e-17
-// variance(f - f_Boost): 4.1086505480261029e-33
-// stddev(f - f_Boost): 6.4098756212785461e-17
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_lpochhammer_lower<double>
 data013[3] =
 {
@@ -259,13 +258,13 @@ data013[3] =
 };
 const double toler013 = 2.5000000000000020e-13;
 
-// Failure at a=3.7500000000000000 x=5.0000000000000000 f=1.2189961060245504 f_Boost=nan
+// Failure at a=3.7500000000000000 x=5.0000000000000000 f=nan f_Boost=nan
 // Test data for a=3.7500000000000000.
-// max(|f - f_Boost|): 4.4408920985006262e-16
-// max(|f - f_Boost| / |f_Boost|): 1.9032203692554765e-16
-// mean(f - f_Boost): -2.2204460492503131e-16
-// variance(f - f_Boost): 3.6977854932234928e-32
-// stddev(f - f_Boost): 1.9229626863835638e-16
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_lpochhammer_lower<double>
 data014[3] =
 {
@@ -295,13 +294,13 @@ data015[3] =
 };
 const double toler015 = 2.5000000000000020e-13;
 
-// Failure at a=4.2500000000000000 x=10.000000000000000 f=6.4367884708796108 f_Boost=nan
+// Failure at a=4.2500000000000000 x=10.000000000000000 f=nan f_Boost=nan
 // Test data for a=4.2500000000000000.
-// max(|f - f_Boost|): 4.4408920985006262e-16
-// max(|f - f_Boost| / |f_Boost|): 1.9534543667769627e-16
-// mean(f - f_Boost): 1.1102230246251565e-16
-// variance(f - f_Boost): 4.9303806576313238e-32
-// stddev(f - f_Boost): 2.2204460492503131e-16
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_lpochhammer_lower<double>
 data016[4] =
 {
@@ -312,13 +311,13 @@ data016[4] =
 };
 const double toler016 = 2.5000000000000020e-13;
 
-// Failure at a=4.5000000000000000 x=10.000000000000000 f=6.7708980493880331 f_Boost=nan
+// Failure at a=4.5000000000000000 x=10.000000000000000 f=nan f_Boost=nan
 // Test data for a=4.5000000000000000.
-// max(|f - f_Boost|): 4.4408920985006262e-16
-// max(|f - f_Boost| / |f_Boost|): 2.9525688691412416e-16
-// mean(f - f_Boost): -2.2204460492503131e-16
-// variance(f - f_Boost): 2.1912802922805882e-32
-// stddev(f - f_Boost): 1.4802973661668753e-16
+// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_lpochhammer_lower<double>
 data017[4] =
 {
@@ -329,7 +328,7 @@ data017[4] =
 };
 const double toler017 = 2.5000000000000020e-13;
 
-// Failure at a=4.7500000000000000 x=10.000000000000000 f=6.4367884708796108 f_Boost=nan
+// Failure at a=4.7500000000000000 x=10.000000000000000 f=nan f_Boost=nan
 // Test data for a=4.7500000000000000.
 // max(|f - f_Boost|): 0.0000000000000000
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
@@ -346,23 +345,23 @@ data018[4] =
 };
 const double toler018 = 2.5000000000000020e-13;
 
+// Divergence at a=5.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=4.7874917427820458
 // Divergence at a=5.0000000000000000 x=10.000000000000000 f=-inf f_Boost=-inf
 // Divergence at a=5.0000000000000000 x=20.000000000000000 f=-inf f_Boost=-inf
-// Divergence at a=5.0000000000000000 x=50.000000000000000 f=-inf f_Boost=-inf
+// ...
 // Divergence at a=5.0000000000000000 x=100.00000000000000 f=-inf f_Boost=-inf
 // Test data for a=5.0000000000000000.
 // max(|f - f_Boost|): 2.2204460492503131e-16
 // max(|f - f_Boost| / |f_Boost|): 1.3796407007040920e-16
-// mean(f - f_Boost): -5.5511151231257827e-17
-// variance(f - f_Boost): 1.3695501826753676e-33
-// stddev(f - f_Boost): 3.7007434154171883e-17
+// mean(f - f_Boost): -7.4014868308343765e-17
+// variance(f - f_Boost): 4.1086505480261029e-33
+// stddev(f - f_Boost): 6.4098756212785461e-17
 const testcase_lpochhammer_lower<double>
-data019[4] =
+data019[3] =
 {
   { 0.0000000000000000, 5.0000000000000000, 0.0000000000000000, 0.0 },
   { 1.6094379124341003, 5.0000000000000000, 1.0000000000000000, 0.0 },
   { 2.9957322735539909, 5.0000000000000000, 2.0000000000000000, 0.0 },
-  { 4.7874917427820458, 5.0000000000000000, 5.0000000000000000, 0.0 },
 };
 const double toler019 = 2.5000000000000020e-13;
 

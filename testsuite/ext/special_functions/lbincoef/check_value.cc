@@ -54,11 +54,11 @@
 // ...
 // Divergence at n=2 k=200 f=-inf f_GSL=-inf
 // Test data for n=2.
-// max(|f - f_GSL|): 1.0469403122215226e-13
-// max(|f - f_GSL| / |f_GSL|): 1.5104155965487338e-13
-// mean(f - f_GSL): -3.4898010407384085e-14
-// variance(f - f_GSL): 9.1340334779541599e-28
-// stddev(f - f_GSL): 3.0222563554328344e-14
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_lbincoef<double>
 data001[3] =
 {
@@ -66,7 +66,7 @@ data001[3] =
   { 0.69314718055994529, 2, 1, 0.0 },
   { 0.0000000000000000, 2, 2, 0.0 },
 };
-const double toler001 = 1.0000000000000006e-11;
+const double toler001 = 2.5000000000000020e-13;
 
 // Divergence at n=3 k=4 f=-inf f_GSL=-inf
 // Divergence at n=3 k=5 f=-inf f_GSL=-inf
@@ -74,11 +74,11 @@ const double toler001 = 1.0000000000000006e-11;
 // ...
 // Divergence at n=3 k=200 f=-inf f_GSL=-inf
 // Test data for n=3.
-// max(|f - f_GSL|): 5.6621374255882984e-13
-// max(|f - f_GSL| / |f_GSL|): 5.1538995913223649e-13
-// mean(f - f_GSL): 2.8310687127941492e-13
-// variance(f - f_GSL): 3.5622000251386314e-26
-// stddev(f - f_GSL): 1.8873791418627661e-13
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_lbincoef<double>
 data002[4] =
 {
@@ -87,7 +87,7 @@ data002[4] =
   { 1.0986122886681096, 3, 2, 0.0 },
   { 0.0000000000000000, 3, 3, 0.0 },
 };
-const double toler002 = 5.0000000000000028e-11;
+const double toler002 = 2.5000000000000020e-13;
 
 // Divergence at n=4 k=5 f=-inf f_GSL=-inf
 // Divergence at n=4 k=6 f=-inf f_GSL=-inf
@@ -95,11 +95,11 @@ const double toler002 = 5.0000000000000028e-11;
 // ...
 // Divergence at n=4 k=200 f=-inf f_GSL=-inf
 // Test data for n=4.
-// max(|f - f_GSL|): 6.1461946643248666e-13
-// max(|f - f_GSL| / |f_GSL|): 4.4335422812798454e-13
-// mean(f - f_GSL): -2.3456792064280309e-13
-// variance(f - f_GSL): 1.7194409185840112e-26
-// stddev(f - f_GSL): 1.3112745397452096e-13
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_lbincoef<double>
 data003[5] =
 {
@@ -109,7 +109,7 @@ data003[5] =
   { 1.3862943611198908, 4, 3, 0.0 },
   { 0.0000000000000000, 4, 4, 0.0 },
 };
-const double toler003 = 2.5000000000000014e-11;
+const double toler003 = 2.5000000000000020e-13;
 
 // Divergence at n=5 k=6 f=-inf f_GSL=-inf
 // Divergence at n=5 k=7 f=-inf f_GSL=-inf
@@ -117,11 +117,11 @@ const double toler003 = 2.5000000000000014e-11;
 // ...
 // Divergence at n=5 k=200 f=-inf f_GSL=-inf
 // Test data for n=5.
-// max(|f - f_GSL|): 1.1222134332911082e-12
-// max(|f - f_GSL| / |f_GSL|): 6.9727041013584819e-13
-// mean(f - f_GSL): 5.7820415122478153e-13
-// variance(f - f_GSL): 8.0236809718456810e-26
-// stddev(f - f_GSL): 2.8326102753195117e-13
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_lbincoef<double>
 data004[6] =
 {
@@ -132,7 +132,7 @@ data004[6] =
   { 1.6094379124341001, 5, 4, 0.0 },
   { 0.0000000000000000, 5, 5, 0.0 },
 };
-const double toler004 = 5.0000000000000028e-11;
+const double toler004 = 2.5000000000000020e-13;
 
 // Divergence at n=6 k=7 f=-inf f_GSL=-inf
 // Divergence at n=6 k=8 f=-inf f_GSL=-inf
@@ -140,11 +140,11 @@ const double toler004 = 5.0000000000000028e-11;
 // ...
 // Divergence at n=6 k=200 f=-inf f_GSL=-inf
 // Test data for n=6.
-// max(|f - f_GSL|): 1.9615420399077266e-12
-// max(|f - f_GSL| / |f_GSL|): 7.2433739932492927e-13
-// mean(f - f_GSL): 8.8177084681514580e-13
-// variance(f - f_GSL): 1.5118441066810262e-25
-// stddev(f - f_GSL): 3.8882439566995104e-13
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_lbincoef<double>
 data005[7] =
 {
@@ -156,7 +156,7 @@ data005[7] =
   { 1.7917594692280554, 6, 5, 0.0 },
   { 0.0000000000000000, 6, 6, 0.0 },
 };
-const double toler005 = 5.0000000000000028e-11;
+const double toler005 = 2.5000000000000020e-13;
 
 // Divergence at n=7 k=8 f=-inf f_GSL=-inf
 // Divergence at n=7 k=9 f=-inf f_GSL=-inf
@@ -164,11 +164,11 @@ const double toler005 = 5.0000000000000028e-11;
 // ...
 // Divergence at n=7 k=200 f=-inf f_GSL=-inf
 // Test data for n=7.
-// max(|f - f_GSL|): 2.3736568266485847e-12
-// max(|f - f_GSL| / |f_GSL|): 6.6762994384696251e-13
-// mean(f - f_GSL): 1.2926326675710698e-12
-// variance(f - f_GSL): 2.7279987155459587e-25
-// stddev(f - f_GSL): 5.2230247132729124e-13
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_lbincoef<double>
 data006[8] =
 {
@@ -181,7 +181,7 @@ data006[8] =
   { 1.9459101490553135, 7, 6, 0.0 },
   { 0.0000000000000000, 7, 7, 0.0 },
 };
-const double toler006 = 5.0000000000000028e-11;
+const double toler006 = 2.5000000000000020e-13;
 
 // Divergence at n=8 k=9 f=-inf f_GSL=-inf
 // Divergence at n=8 k=10 f=-inf f_GSL=-inf
@@ -189,11 +189,11 @@ const double toler006 = 5.0000000000000028e-11;
 // ...
 // Divergence at n=8 k=200 f=-inf f_GSL=-inf
 // Test data for n=8.
-// max(|f - f_GSL|): 4.6096459982436500e-12
-// max(|f - f_GSL| / |f_GSL|): 1.0850067460638324e-12
-// mean(f - f_GSL): 2.1122856550290533e-12
-// variance(f - f_GSL): 6.2743369056208839e-25
-// stddev(f - f_GSL): 7.9210712063589505e-13
+// max(|f - f_GSL|): 8.8817841970012523e-16
+// max(|f - f_GSL| / |f_GSL|): 2.2064616658076826e-16
+// mean(f - f_GSL): -9.8686491077791687e-17
+// variance(f - f_GSL): 1.3695501826753676e-33
+// stddev(f - f_GSL): 3.7007434154171883e-17
 const testcase_lbincoef<double>
 data007[9] =
 {
@@ -207,7 +207,7 @@ data007[9] =
   { 2.0794415416798362, 8, 7, 0.0 },
   { 0.0000000000000000, 8, 8, 0.0 },
 };
-const double toler007 = 1.0000000000000006e-10;
+const double toler007 = 2.5000000000000020e-13;
 
 // Divergence at n=9 k=10 f=-inf f_GSL=-inf
 // Divergence at n=9 k=11 f=-inf f_GSL=-inf
@@ -215,11 +215,11 @@ const double toler007 = 1.0000000000000006e-10;
 // ...
 // Divergence at n=9 k=200 f=-inf f_GSL=-inf
 // Test data for n=9.
-// max(|f - f_GSL|): 6.8274275122348627e-12
-// max(|f - f_GSL| / |f_GSL|): 1.5198950951664394e-12
-// mean(f - f_GSL): 4.1422865137974442e-12
-// variance(f - f_GSL): 2.1183379706652077e-24
-// stddev(f - f_GSL): 1.4554511227331572e-12
+// max(|f - f_GSL|): 8.8817841970012523e-16
+// max(|f - f_GSL| / |f_GSL|): 1.8364901732123869e-16
+// mean(f - f_GSL): -8.8817841970012528e-17
+// variance(f - f_GSL): 9.7390235212470591e-34
+// stddev(f - f_GSL): 3.1207408609570677e-17
 const testcase_lbincoef<double>
 data008[10] =
 {
@@ -234,7 +234,7 @@ data008[10] =
   { 2.1972245773362182, 9, 8, 0.0 },
   { 0.0000000000000000, 9, 9, 0.0 },
 };
-const double toler008 = 1.0000000000000006e-10;
+const double toler008 = 2.5000000000000020e-13;
 
 // Divergence at n=10 k=11 f=-inf f_GSL=-inf
 // Divergence at n=10 k=12 f=-inf f_GSL=-inf
@@ -242,11 +242,11 @@ const double toler008 = 1.0000000000000006e-10;
 // ...
 // Divergence at n=10 k=200 f=-inf f_GSL=-inf
 // Test data for n=10.
-// max(|f - f_GSL|): 7.5282002853782615e-12
-// max(|f - f_GSL| / |f_GSL|): 1.4079014199978386e-12
-// mean(f - f_GSL): 4.2452506156884988e-12
-// variance(f - f_GSL): 1.9824368069003933e-24
-// stddev(f - f_GSL): 1.4079903433263999e-12
+// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
+// mean(f - f_GSL): 0.0000000000000000
+// variance(f - f_GSL): 0.0000000000000000
+// stddev(f - f_GSL): 0.0000000000000000
 const testcase_lbincoef<double>
 data009[11] =
 {
@@ -262,7 +262,7 @@ data009[11] =
   { 2.3025850929940468, 10, 9, 0.0 },
   { 0.0000000000000000, 10, 10, 0.0 },
 };
-const double toler009 = 1.0000000000000006e-10;
+const double toler009 = 2.5000000000000020e-13;
 
 // Divergence at n=11 k=12 f=-inf f_GSL=-inf
 // Divergence at n=11 k=13 f=-inf f_GSL=-inf
@@ -270,11 +270,11 @@ const double toler009 = 1.0000000000000006e-10;
 // ...
 // Divergence at n=11 k=200 f=-inf f_GSL=-inf
 // Test data for n=11.
-// max(|f - f_GSL|): 7.7839956702518975e-12
-// max(|f - f_GSL| / |f_GSL|): 1.3422782035159639e-12
-// mean(f - f_GSL): 4.1631883126077201e-12
-// variance(f - f_GSL): 1.7188896125190265e-24
-// stddev(f - f_GSL): 1.3110643052570025e-12
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 4.4327655258273722e-16
+// mean(f - f_GSL): -2.2204460492503131e-16
+// variance(f - f_GSL): 4.8896337100475940e-33
+// stddev(f - f_GSL): 6.9925915868493239e-17
 const testcase_lbincoef<double>
 data010[12] =
 {
@@ -291,7 +291,7 @@ data010[12] =
   { 2.3978952727983707, 11, 10, 0.0 },
   { 0.0000000000000000, 11, 11, 0.0 },
 };
-const double toler010 = 1.0000000000000006e-10;
+const double toler010 = 2.5000000000000020e-13;
 
 // Divergence at n=12 k=13 f=-inf f_GSL=-inf
 // Divergence at n=12 k=14 f=-inf f_GSL=-inf
@@ -299,11 +299,11 @@ const double toler010 = 1.0000000000000006e-10;
 // ...
 // Divergence at n=12 k=200 f=-inf f_GSL=-inf
 // Test data for n=12.
-// max(|f - f_GSL|): 9.6278540695493575e-12
-// max(|f - f_GSL| / |f_GSL|): 1.4317798131293173e-12
-// mean(f - f_GSL): 5.3522997999467543e-12
-// variance(f - f_GSL): 2.5861977147960480e-24
-// stddev(f - f_GSL): 1.6081659475303064e-12
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 4.2398644966651207e-16
+// mean(f - f_GSL): -2.0496425070002891e-16
+// variance(f - f_GSL): 3.7926005058702493e-33
+// stddev(f - f_GSL): 6.1584092961334174e-17
 const testcase_lbincoef<double>
 data011[13] =
 {
@@ -321,7 +321,7 @@ data011[13] =
   { 2.4849066497879981, 12, 11, 0.0 },
   { 0.0000000000000000, 12, 12, 0.0 },
 };
-const double toler011 = 1.0000000000000006e-10;
+const double toler011 = 2.5000000000000020e-13;
 
 // Divergence at n=13 k=14 f=-inf f_GSL=-inf
 // Divergence at n=13 k=15 f=-inf f_GSL=-inf
@@ -329,11 +329,11 @@ const double toler011 = 1.0000000000000006e-10;
 // ...
 // Divergence at n=13 k=200 f=-inf f_GSL=-inf
 // Test data for n=13.
-// max(|f - f_GSL|): 3.1329605576502217e-11
-// max(|f - f_GSL| / |f_GSL|): 8.8424841837457133e-12
-// mean(f - f_GSL): 2.3479377172666969e-11
-// variance(f - f_GSL): 4.5668261146916957e-23
-// stddev(f - f_GSL): 6.7578296180739088e-12
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 4.0772907028308317e-16
+// mean(f - f_GSL): -1.9032394707859825e-16
+// variance(f - f_GSL): 3.0007388617874499e-33
+// stddev(f - f_GSL): 5.4779000189739223e-17
 const testcase_lbincoef<double>
 data012[14] =
 {
@@ -352,7 +352,7 @@ data012[14] =
   { 2.5649493574615398, 13, 12, 0.0 },
   { 0.0000000000000000, 13, 13, 0.0 },
 };
-const double toler012 = 5.0000000000000034e-10;
+const double toler012 = 2.5000000000000020e-13;
 
 // Divergence at n=14 k=15 f=-inf f_GSL=-inf
 // Divergence at n=14 k=16 f=-inf f_GSL=-inf
@@ -360,11 +360,11 @@ const double toler012 = 5.0000000000000034e-10;
 // ...
 // Divergence at n=14 k=200 f=-inf f_GSL=-inf
 // Test data for n=14.
-// max(|f - f_GSL|): 3.5935698861067067e-11
-// max(|f - f_GSL| / |f_GSL|): 1.3616869348687505e-11
-// mean(f - f_GSL): -1.1611452540212971e-11
-// variance(f - f_GSL): 1.0318303323491192e-23
-// stddev(f - f_GSL): 3.2122115938230460e-12
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 3.9379564733371606e-16
+// mean(f - f_GSL): -2.9605947323337506e-16
+// variance(f - f_GSL): 6.7080008947364955e-33
+// stddev(f - f_GSL): 8.1902386379985873e-17
 const testcase_lbincoef<double>
 data013[15] =
 {
@@ -384,7 +384,7 @@ data013[15] =
   { 2.6390573296152553, 14, 13, 0.0 },
   { 0.0000000000000000, 14, 14, 0.0 },
 };
-const double toler013 = 1.0000000000000007e-09;
+const double toler013 = 2.5000000000000020e-13;
 
 // Divergence at n=15 k=16 f=-inf f_GSL=-inf
 // Divergence at n=15 k=17 f=-inf f_GSL=-inf
@@ -392,11 +392,11 @@ const double toler013 = 1.0000000000000007e-09;
 // ...
 // Divergence at n=15 k=200 f=-inf f_GSL=-inf
 // Test data for n=15.
-// max(|f - f_GSL|): 4.8327564172723214e-11
-// max(|f - f_GSL| / |f_GSL|): 1.7845889324006359e-11
-// mean(f - f_GSL): 3.1414648660188504e-11
-// variance(f - f_GSL): 7.0178144031508150e-23
-// stddev(f - f_GSL): 8.3772396427169338e-12
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 3.8168714508711407e-16
+// mean(f - f_GSL): -2.2204460492503131e-16
+// variance(f - f_GSL): 3.5060484676489414e-33
+// stddev(f - f_GSL): 5.9211894646675015e-17
 const testcase_lbincoef<double>
 data014[16] =
 {
@@ -417,7 +417,7 @@ data014[16] =
   { 2.7080502011022105, 15, 14, 0.0 },
   { 0.0000000000000000, 15, 15, 0.0 },
 };
-const double toler014 = 1.0000000000000007e-09;
+const double toler014 = 2.5000000000000020e-13;
 
 // Divergence at n=16 k=17 f=-inf f_GSL=-inf
 // Divergence at n=16 k=18 f=-inf f_GSL=-inf
@@ -425,11 +425,11 @@ const double toler014 = 1.0000000000000007e-09;
 // ...
 // Divergence at n=16 k=200 f=-inf f_GSL=-inf
 // Test data for n=16.
-// max(|f - f_GSL|): 4.9357851139575359e-11
-// max(|f - f_GSL| / |f_GSL|): 1.7802081767000259e-11
-// mean(f - f_GSL): -1.6814262400711252e-11
-// variance(f - f_GSL): 1.8774336489685649e-23
-// stddev(f - f_GSL): 4.3329362434365050e-12
+// max(|f - f_GSL|): 1.7763568394002505e-15
+// max(|f - f_GSL| / |f_GSL|): 3.7104123303782366e-16
+// mean(f - f_GSL): -3.1347473636475010e-16
+// variance(f - f_GSL): 6.5255038115708698e-33
+// stddev(f - f_GSL): 8.0780590562157129e-17
 const testcase_lbincoef<double>
 data015[17] =
 {
@@ -451,7 +451,7 @@ data015[17] =
   { 2.7725887222397816, 16, 15, 0.0 },
   { 0.0000000000000000, 16, 16, 0.0 },
 };
-const double toler015 = 1.0000000000000007e-09;
+const double toler015 = 2.5000000000000020e-13;
 
 // Divergence at n=17 k=18 f=-inf f_GSL=-inf
 // Divergence at n=17 k=19 f=-inf f_GSL=-inf
@@ -459,11 +459,11 @@ const double toler015 = 1.0000000000000007e-09;
 // ...
 // Divergence at n=17 k=200 f=-inf f_GSL=-inf
 // Test data for n=17.
-// max(|f - f_GSL|): 5.3226756335789105e-11
-// max(|f - f_GSL| / |f_GSL|): 1.0834621518058101e-11
-// mean(f - f_GSL): -1.9344328608086572e-11
-// variance(f - f_GSL): 2.3306764316115773e-23
-// stddev(f - f_GSL): 4.8277079775102156e-12
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 3.6158795614931591e-16
+// mean(f - f_GSL): -9.8686491077791687e-17
+// variance(f - f_GSL): 6.0658277987005908e-34
+// stddev(f - f_GSL): 2.4628901312686668e-17
 const testcase_lbincoef<double>
 data016[18] =
 {
@@ -486,7 +486,7 @@ data016[18] =
   { 2.8332133440562188, 17, 16, 0.0 },
   { 0.0000000000000000, 17, 17, 0.0 },
 };
-const double toler016 = 1.0000000000000007e-09;
+const double toler016 = 2.5000000000000020e-13;
 
 // Divergence at n=18 k=19 f=-inf f_GSL=-inf
 // Divergence at n=18 k=20 f=-inf f_GSL=-inf
@@ -494,11 +494,11 @@ const double toler016 = 1.0000000000000007e-09;
 // ...
 // Divergence at n=18 k=200 f=-inf f_GSL=-inf
 // Test data for n=18.
-// max(|f - f_GSL|): 1.3178080848774698e-10
-// max(|f - f_GSL| / |f_GSL|): 4.5593030767664068e-11
-// mean(f - f_GSL): 9.9858273696746001e-11
-// variance(f - f_GSL): 5.8475870891416815e-22
-// stddev(f - f_GSL): 2.4181784651141201e-11
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 4.4264120900867790e-16
+// mean(f - f_GSL): 1.8698493046318425e-16
+// variance(f - f_GSL): 2.0503207413151703e-33
+// stddev(f - f_GSL): 4.5280467547444457e-17
 const testcase_lbincoef<double>
 data017[19] =
 {
@@ -522,7 +522,7 @@ data017[19] =
   { 2.8903717578961619, 18, 17, 0.0 },
   { 0.0000000000000000, 18, 18, 0.0 },
 };
-const double toler017 = 2.5000000000000013e-09;
+const double toler017 = 2.5000000000000020e-13;
 
 // Divergence at n=19 k=20 f=-inf f_GSL=-inf
 // Divergence at n=19 k=21 f=-inf f_GSL=-inf
@@ -530,11 +530,11 @@ const double toler017 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=19 k=200 f=-inf f_GSL=-inf
 // Test data for n=19.
-// max(|f - f_GSL|): 9.2377661076170625e-11
-// max(|f - f_GSL| / |f_GSL|): 1.7966492762705310e-11
-// mean(f - f_GSL): 5.2978954556692770e-11
-// variance(f - f_GSL): 1.5549970226704252e-22
-// stddev(f - f_GSL): 1.2469951975330239e-11
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 4.2997740656439599e-16
+// mean(f - f_GSL): 2.6645352591003756e-16
+// variance(f - f_GSL): 3.9333784747862083e-33
+// stddev(f - f_GSL): 6.2716652292562687e-17
 const testcase_lbincoef<double>
 data018[20] =
 {
@@ -559,7 +559,7 @@ data018[20] =
   { 2.9444389791664420, 19, 18, 0.0 },
   { 0.0000000000000000, 19, 19, 0.0 },
 };
-const double toler018 = 1.0000000000000007e-09;
+const double toler018 = 2.5000000000000020e-13;
 
 // Divergence at n=20 k=21 f=-inf f_GSL=-inf
 // Divergence at n=20 k=22 f=-inf f_GSL=-inf
@@ -567,11 +567,11 @@ const double toler018 = 1.0000000000000007e-09;
 // ...
 // Divergence at n=20 k=200 f=-inf f_GSL=-inf
 // Test data for n=20.
-// max(|f - f_GSL|): 1.6655121726216748e-10
-// max(|f - f_GSL| / |f_GSL|): 4.2444254343671189e-11
-// mean(f - f_GSL): -6.8727669058500303e-11
-// variance(f - f_GSL): 2.4798335594627390e-22
-// stddev(f - f_GSL): 1.5747487289922602e-11
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 4.1867054243492470e-16
+// mean(f - f_GSL): 1.6917684184764289e-16
+// variance(f - f_GSL): 1.5025922004209749e-33
+// stddev(f - f_GSL): 3.8763284180019821e-17
 const testcase_lbincoef<double>
 data019[21] =
 {
@@ -597,7 +597,7 @@ data019[21] =
   { 2.9957322735539904, 20, 19, 0.0 },
   { 0.0000000000000000, 20, 20, 0.0 },
 };
-const double toler019 = 2.5000000000000013e-09;
+const double toler019 = 2.5000000000000020e-13;
 
 // Divergence at n=21 k=22 f=-inf f_GSL=-inf
 // Divergence at n=21 k=23 f=-inf f_GSL=-inf
@@ -605,11 +605,11 @@ const double toler019 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=21 k=200 f=-inf f_GSL=-inf
 // Test data for n=21.
-// max(|f - f_GSL|): 1.7767476379049185e-10
-// max(|f - f_GSL| / |f_GSL|): 5.8358828822871236e-11
-// mean(f - f_GSL): 9.7741612783217776e-11
-// variance(f - f_GSL): 4.7658798895287666e-22
-// stddev(f - f_GSL): 2.1830895285188756e-11
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 4.0849821005766776e-16
+// mean(f - f_GSL): 8.0743492700011387e-17
+// variance(f - f_GSL): 3.2523640701752701e-34
+// stddev(f - f_GSL): 1.8034311936348641e-17
 const testcase_lbincoef<double>
 data020[22] =
 {
@@ -636,7 +636,7 @@ data020[22] =
   { 3.0445224377234226, 21, 20, 0.0 },
   { 0.0000000000000000, 21, 21, 0.0 },
 };
-const double toler020 = 5.0000000000000026e-09;
+const double toler020 = 2.5000000000000020e-13;
 
 // Divergence at n=22 k=23 f=-inf f_GSL=-inf
 // Divergence at n=22 k=24 f=-inf f_GSL=-inf
@@ -644,11 +644,11 @@ const double toler020 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=22 k=200 f=-inf f_GSL=-inf
 // Test data for n=22.
-// max(|f - f_GSL|): 9.6392227533215191e-11
-// max(|f - f_GSL| / |f_GSL|): 2.6331786641393076e-11
-// mean(f - f_GSL): 1.3198794714180226e-11
-// variance(f - f_GSL): 8.2784879831872995e-24
-// stddev(f - f_GSL): 2.8772361709090375e-12
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 3.9928529179204638e-16
+// mean(f - f_GSL): 7.7232906060880453e-17
+// variance(f - f_GSL): 2.8345702666942573e-34
+// stddev(f - f_GSL): 1.6836182069264566e-17
 const testcase_lbincoef<double>
 data021[23] =
 {
@@ -676,7 +676,7 @@ data021[23] =
   { 3.0910424533583196, 22, 21, 0.0 },
   { 0.0000000000000000, 22, 22, 0.0 },
 };
-const double toler021 = 2.5000000000000013e-09;
+const double toler021 = 2.5000000000000020e-13;
 
 // Divergence at n=23 k=24 f=-inf f_GSL=-inf
 // Divergence at n=23 k=25 f=-inf f_GSL=-inf
@@ -684,11 +684,11 @@ const double toler021 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=23 k=200 f=-inf f_GSL=-inf
 // Test data for n=23.
-// max(|f - f_GSL|): 1.2025225260003936e-10
-// max(|f - f_GSL| / |f_GSL|): 2.1732114257457230e-11
-// mean(f - f_GSL): -2.5414337301299383e-11
-// variance(f - f_GSL): 2.9303071779094924e-23
-// stddev(f - f_GSL): 5.4132311773186743e-12
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 3.9089187680589404e-16
+// mean(f - f_GSL): 7.4014868308343765e-17
+// variance(f - f_GSL): 2.4853840744203271e-34
+// stddev(f - f_GSL): 1.5765100933455284e-17
 const testcase_lbincoef<double>
 data022[24] =
 {
@@ -717,7 +717,7 @@ data022[24] =
   { 3.1354942159291497, 23, 22, 0.0 },
   { 0.0000000000000000, 23, 23, 0.0 },
 };
-const double toler022 = 2.5000000000000013e-09;
+const double toler022 = 2.5000000000000020e-13;
 
 // Divergence at n=24 k=25 f=-inf f_GSL=-inf
 // Divergence at n=24 k=26 f=-inf f_GSL=-inf
@@ -725,11 +725,11 @@ const double toler022 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=24 k=200 f=-inf f_GSL=-inf
 // Test data for n=24.
-// max(|f - f_GSL|): 2.0443735593289603e-10
-// max(|f - f_GSL| / |f_GSL|): 4.6243743686006159e-11
-// mean(f - f_GSL): 1.1012176059921330e-10
-// variance(f - f_GSL): 5.2633689919576593e-22
-// stddev(f - f_GSL): 2.2942033458169439e-11
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 3.8320472750668765e-16
+// mean(f - f_GSL): 7.1054273576010020e-17
+// variance(f - f_GSL): 2.1912802922805883e-34
+// stddev(f - f_GSL): 1.4802973661668754e-17
 const testcase_lbincoef<double>
 data023[25] =
 {
@@ -759,7 +759,7 @@ data023[25] =
   { 3.1780538303479418, 24, 23, 0.0 },
   { 0.0000000000000000, 24, 24, 0.0 },
 };
-const double toler023 = 2.5000000000000013e-09;
+const double toler023 = 2.5000000000000020e-13;
 
 // Divergence at n=25 k=26 f=-inf f_GSL=-inf
 // Divergence at n=25 k=27 f=-inf f_GSL=-inf
@@ -767,11 +767,11 @@ const double toler023 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=25 k=200 f=-inf f_GSL=-inf
 // Test data for n=25.
-// max(|f - f_GSL|): 1.6287771131828777e-10
-// max(|f - f_GSL| / |f_GSL|): 5.0600806051583860e-11
-// mean(f - f_GSL): -5.0774017469078760e-11
-// variance(f - f_GSL): 1.0724483535793309e-22
-// stddev(f - f_GSL): 1.0355908234333342e-11
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 3.7613113042958565e-16
+// mean(f - f_GSL): -6.8321416900009637e-17
+// variance(f - f_GSL): 1.9418114590055674e-34
+// stddev(f - f_GSL): 1.3934889518778279e-17
 const testcase_lbincoef<double>
 data024[26] =
 {
@@ -802,7 +802,7 @@ data024[26] =
   { 3.2188758248681992, 25, 24, 0.0 },
   { 0.0000000000000000, 25, 25, 0.0 },
 };
-const double toler024 = 5.0000000000000026e-09;
+const double toler024 = 2.5000000000000020e-13;
 
 // Divergence at n=26 k=27 f=-inf f_GSL=-inf
 // Divergence at n=26 k=28 f=-inf f_GSL=-inf
@@ -810,11 +810,11 @@ const double toler024 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=26 k=200 f=-inf f_GSL=-inf
 // Test data for n=26.
-// max(|f - f_GSL|): 2.0867929606538382e-10
-// max(|f - f_GSL| / |f_GSL|): 5.1863939184380919e-11
-// mean(f - f_GSL): 1.0751958993919456e-10
-// variance(f - f_GSL): 4.6173443780872610e-22
-// stddev(f - f_GSL): 2.1488006836575747e-11
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 3.6959438554813226e-16
+// mean(f - f_GSL): 1.9737298215558337e-16
+// variance(f - f_GSL): 1.5559386690749741e-33
+// stddev(f - f_GSL): 3.9445388438637208e-17
 const testcase_lbincoef<double>
 data025[27] =
 {
@@ -846,7 +846,7 @@ data025[27] =
   { 3.2580965380214835, 26, 25, 0.0 },
   { 0.0000000000000000, 26, 26, 0.0 },
 };
-const double toler025 = 5.0000000000000026e-09;
+const double toler025 = 2.5000000000000020e-13;
 
 // Divergence at n=27 k=28 f=-inf f_GSL=-inf
 // Divergence at n=27 k=29 f=-inf f_GSL=-inf
@@ -854,11 +854,11 @@ const double toler025 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=27 k=200 f=-inf f_GSL=-inf
 // Test data for n=27.
-// max(|f - f_GSL|): 2.0322943328210386e-10
-// max(|f - f_GSL| / |f_GSL|): 2.8086920306776984e-11
-// mean(f - f_GSL): 9.3444744006124627e-11
-// variance(f - f_GSL): 3.3538239383589112e-22
-// stddev(f - f_GSL): 1.8313448441948096e-11
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 3.6353044407094819e-16
+// mean(f - f_GSL): 1.9032394707859825e-16
+// variance(f - f_GSL): 1.3912890744638655e-33
+// stddev(f - f_GSL): 3.7299987593347340e-17
 const testcase_lbincoef<double>
 data026[28] =
 {
@@ -891,7 +891,7 @@ data026[28] =
   { 3.2958368660043362, 27, 26, 0.0 },
   { 0.0000000000000000, 27, 27, 0.0 },
 };
-const double toler026 = 2.5000000000000013e-09;
+const double toler026 = 2.5000000000000020e-13;
 
 // Divergence at n=28 k=29 f=-inf f_GSL=-inf
 // Divergence at n=28 k=30 f=-inf f_GSL=-inf
@@ -899,11 +899,11 @@ const double toler026 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=28 k=200 f=-inf f_GSL=-inf
 // Test data for n=28.
-// max(|f - f_GSL|): 2.9841373816452688e-10
-// max(|f - f_GSL| / |f_GSL|): 3.2226179960806160e-11
-// mean(f - f_GSL): 1.7463645855090801e-10
-// variance(f - f_GSL): 1.1281108252562339e-21
-// stddev(f - f_GSL): 3.3587361093962618e-11
+// max(|f - f_GSL|): 3.5527136788005009e-15
+// max(|f - f_GSL| / |f_GSL|): 3.5788536585901641e-16
+// mean(f - f_GSL): 2.4501473646900006e-16
+// variance(f - f_GSL): 2.2205796065334604e-33
+// stddev(f - f_GSL): 4.7123026287935501e-17
 const testcase_lbincoef<double>
 data027[29] =
 {
@@ -937,7 +937,7 @@ data027[29] =
   { 3.3322045101752025, 28, 27, 0.0 },
   { 0.0000000000000000, 28, 28, 0.0 },
 };
-const double toler027 = 2.5000000000000013e-09;
+const double toler027 = 2.5000000000000020e-13;
 
 // Divergence at n=29 k=30 f=-inf f_GSL=-inf
 // Divergence at n=29 k=31 f=-inf f_GSL=-inf
@@ -945,11 +945,11 @@ const double toler027 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=29 k=200 f=-inf f_GSL=-inf
 // Test data for n=29.
-// max(|f - f_GSL|): 1.7758594594852184e-10
-// max(|f - f_GSL| / |f_GSL|): 3.4893087129134746e-11
-// mean(f - f_GSL): 5.0403059503878469e-11
-// variance(f - f_GSL): 9.0623129869851845e-23
-// stddev(f - f_GSL): 9.5196181577756487e-12
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 6.0809055504693001e-16
+// mean(f - f_GSL): 6.5133084111342512e-16
+// variance(f - f_GSL): 1.5133122399007917e-32
+// stddev(f - f_GSL): 1.2301675657815043e-16
 const testcase_lbincoef<double>
 data028[30] =
 {
@@ -984,7 +984,7 @@ data028[30] =
   { 3.3672958299864746, 29, 28, 0.0 },
   { 0.0000000000000000, 29, 29, 0.0 },
 };
-const double toler028 = 2.5000000000000013e-09;
+const double toler028 = 2.5000000000000020e-13;
 
 // Divergence at n=30 k=31 f=-inf f_GSL=-inf
 // Divergence at n=30 k=32 f=-inf f_GSL=-inf
@@ -992,11 +992,11 @@ const double toler028 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=30 k=200 f=-inf f_GSL=-inf
 // Test data for n=30.
-// max(|f - f_GSL|): 2.8961011366845923e-10
-// max(|f - f_GSL| / |f_GSL|): 3.3359727186548330e-11
-// mean(f - f_GSL): 1.5023921891512262e-10
-// variance(f - f_GSL): 7.7747389989667820e-22
-// stddev(f - f_GSL): 2.7883218965834596e-11
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.9874811681568778e-16
+// mean(f - f_GSL): 8.5952750293560509e-16
+// variance(f - f_GSL): 2.5447125974871348e-32
+// stddev(f - f_GSL): 1.5952155332390464e-16
 const testcase_lbincoef<double>
 data029[31] =
 {
@@ -1032,7 +1032,7 @@ data029[31] =
   { 3.4011973816621435, 30, 29, 0.0 },
   { 0.0000000000000000, 30, 30, 0.0 },
 };
-const double toler029 = 2.5000000000000013e-09;
+const double toler029 = 2.5000000000000020e-13;
 
 // Divergence at n=31 k=32 f=-inf f_GSL=-inf
 // Divergence at n=31 k=33 f=-inf f_GSL=-inf
@@ -1040,11 +1040,11 @@ const double toler029 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=31 k=200 f=-inf f_GSL=-inf
 // Test data for n=31.
-// max(|f - f_GSL|): 1.6811441128083970e-10
-// max(|f - f_GSL| / |f_GSL|): 3.5022397083388633e-11
-// mean(f - f_GSL): 2.4716673152624935e-11
-// variance(f - f_GSL): 2.0342607508301859e-23
-// stddev(f - f_GSL): 4.5102779857013096e-12
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.9000329056536431e-16
+// mean(f - f_GSL): 8.3266726846886741e-16
+// variance(f - f_GSL): 2.3087110259459893e-32
+// stddev(f - f_GSL): 1.5194443148552663e-16
 const testcase_lbincoef<double>
 data030[32] =
 {
@@ -1081,7 +1081,7 @@ data030[32] =
   { 3.4339872044851489, 31, 30, 0.0 },
   { 0.0000000000000000, 31, 31, 0.0 },
 };
-const double toler030 = 2.5000000000000013e-09;
+const double toler030 = 2.5000000000000020e-13;
 
 // Divergence at n=32 k=33 f=-inf f_GSL=-inf
 // Divergence at n=32 k=34 f=-inf f_GSL=-inf
@@ -1089,11 +1089,11 @@ const double toler030 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=32 k=200 f=-inf f_GSL=-inf
 // Test data for n=32.
-// max(|f - f_GSL|): 1.9154811070620781e-10
-// max(|f - f_GSL| / |f_GSL|): 1.5146000798328322e-11
-// mean(f - f_GSL): 4.4343034294963054e-11
-// variance(f - f_GSL): 6.3367241001934465e-23
-// stddev(f - f_GSL): 7.9603543264062355e-12
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.8179551419455085e-16
+// mean(f - f_GSL): 1.0765799026668185e-15
+// variance(f - f_GSL): 3.7351368618419119e-32
+// stddev(f - f_GSL): 1.9326502171479225e-16
 const testcase_lbincoef<double>
 data031[33] =
 {
@@ -1131,7 +1131,7 @@ data031[33] =
   { 3.4657359027997359, 32, 31, 0.0 },
   { 0.0000000000000000, 32, 32, 0.0 },
 };
-const double toler031 = 1.0000000000000007e-09;
+const double toler031 = 2.5000000000000020e-13;
 
 // Divergence at n=33 k=34 f=-inf f_GSL=-inf
 // Divergence at n=33 k=35 f=-inf f_GSL=-inf
@@ -1139,11 +1139,11 @@ const double toler031 = 1.0000000000000007e-09;
 // ...
 // Divergence at n=33 k=200 f=-inf f_GSL=-inf
 // Test data for n=33.
-// max(|f - f_GSL|): 3.6291680771682877e-10
-// max(|f - f_GSL| / |f_GSL|): 7.5449660066619491e-11
-// mean(f - f_GSL): -2.1008742458113427e-10
-// variance(f - f_GSL): 1.3780061367149206e-21
-// stddev(f - f_GSL): 3.7121505043773758e-11
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.7407239991933171e-16
+// mean(f - f_GSL): 1.0449157878825003e-15
+// variance(f - f_GSL): 3.4088949612532247e-32
+// stddev(f - f_GSL): 1.8463193010021923e-16
 const testcase_lbincoef<double>
 data032[34] =
 {
@@ -1182,7 +1182,7 @@ data032[34] =
   { 3.4965075614664727, 33, 32, 0.0 },
   { 0.0000000000000000, 33, 33, 0.0 },
 };
-const double toler032 = 5.0000000000000026e-09;
+const double toler032 = 2.5000000000000020e-13;
 
 // Divergence at n=34 k=35 f=-inf f_GSL=-inf
 // Divergence at n=34 k=36 f=-inf f_GSL=-inf
@@ -1190,11 +1190,11 @@ const double toler032 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=34 k=200 f=-inf f_GSL=-inf
 // Test data for n=34.
-// max(|f - f_GSL|): 1.9347012880643888e-10
-// max(|f - f_GSL| / |f_GSL|): 5.4863967383907105e-11
-// mean(f - f_GSL): -1.8832021656375479e-11
-// variance(f - f_GSL): 1.0737522827263690e-23
-// stddev(f - f_GSL): 3.2768159587110914e-12
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.6678837879168822e-16
+// mean(f - f_GSL): 1.2180732613030289e-15
+// variance(f - f_GSL): 4.4921787583519802e-32
+// stddev(f - f_GSL): 2.1194760575085485e-16
 const testcase_lbincoef<double>
 data033[35] =
 {
@@ -1234,7 +1234,7 @@ data033[35] =
   { 3.5263605246161660, 34, 33, 0.0 },
   { 0.0000000000000000, 34, 34, 0.0 },
 };
-const double toler033 = 5.0000000000000026e-09;
+const double toler033 = 2.5000000000000020e-13;
 
 // Divergence at n=35 k=36 f=-inf f_GSL=-inf
 // Divergence at n=35 k=37 f=-inf f_GSL=-inf
@@ -1242,11 +1242,11 @@ const double toler033 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=35 k=200 f=-inf f_GSL=-inf
 // Test data for n=35.
-// max(|f - f_GSL|): 4.4806824917031918e-10
-// max(|f - f_GSL| / |f_GSL|): 7.1579922570760717e-11
-// mean(f - f_GSL): 2.1942901816550553e-10
-// variance(f - f_GSL): 1.4149937832414686e-21
-// stddev(f - f_GSL): 3.7616403114086663e-11
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.5990360866630050e-16
+// mean(f - f_GSL): 1.1842378929335002e-15
+// variance(f - f_GSL): 4.1213957497261026e-32
+// stddev(f - f_GSL): 2.0301221021717148e-16
 const testcase_lbincoef<double>
 data034[36] =
 {
@@ -1287,7 +1287,7 @@ data034[36] =
   { 3.5553480614894113, 35, 34, 0.0 },
   { 0.0000000000000000, 35, 35, 0.0 },
 };
-const double toler034 = 5.0000000000000026e-09;
+const double toler034 = 2.5000000000000020e-13;
 
 // Divergence at n=36 k=37 f=-inf f_GSL=-inf
 // Divergence at n=36 k=38 f=-inf f_GSL=-inf
@@ -1295,11 +1295,11 @@ const double toler034 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=36 k=200 f=-inf f_GSL=-inf
 // Test data for n=36.
-// max(|f - f_GSL|): 5.0542681151455326e-10
-// max(|f - f_GSL| / |f_GSL|): 5.6959331837652039e-11
-// mean(f - f_GSL): 2.5887184288090007e-10
-// variance(f - f_GSL): 1.9132263490374044e-21
-// stddev(f - f_GSL): 4.3740442945144083e-11
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.5338308742120164e-16
+// mean(f - f_GSL): 1.1522314633947571e-15
+// variance(f - f_GSL): 3.7903226677285852e-32
+// stddev(f - f_GSL): 1.9468751032689759e-16
 const testcase_lbincoef<double>
 data035[37] =
 {
@@ -1341,7 +1341,7 @@ data035[37] =
   { 3.5835189384561090, 36, 35, 0.0 },
   { 0.0000000000000000, 36, 36, 0.0 },
 };
-const double toler035 = 5.0000000000000026e-09;
+const double toler035 = 2.5000000000000020e-13;
 
 // Divergence at n=37 k=38 f=-inf f_GSL=-inf
 // Divergence at n=37 k=39 f=-inf f_GSL=-inf
@@ -1349,11 +1349,11 @@ const double toler035 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=37 k=200 f=-inf f_GSL=-inf
 // Test data for n=37.
-// max(|f - f_GSL|): 3.1477043194172438e-10
-// max(|f - f_GSL| / |f_GSL|): 8.7171860329337226e-11
-// mean(f - f_GSL): -5.6839679162198754e-11
-// variance(f - f_GSL): 8.9677477601128016e-23
-// stddev(f - f_GSL): 9.4698193013978897e-12
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.4719592753442593e-16
+// mean(f - f_GSL): 1.1219095827791055e-15
+// variance(f - f_GSL): 3.4937824874653249e-32
+// stddev(f - f_GSL): 1.8691662546347568e-16
 const testcase_lbincoef<double>
 data036[38] =
 {
@@ -1396,7 +1396,7 @@ data036[38] =
   { 3.6109179126442257, 37, 36, 0.0 },
   { 0.0000000000000000, 37, 37, 0.0 },
 };
-const double toler036 = 5.0000000000000026e-09;
+const double toler036 = 2.5000000000000020e-13;
 
 // Divergence at n=38 k=39 f=-inf f_GSL=-inf
 // Divergence at n=38 k=40 f=-inf f_GSL=-inf
@@ -1404,11 +1404,11 @@ const double toler036 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=38 k=200 f=-inf f_GSL=-inf
 // Test data for n=38.
-// max(|f - f_GSL|): 3.4164315820817137e-10
-// max(|f - f_GSL| / |f_GSL|): 5.2116637407640184e-11
-// mean(f - f_GSL): -8.3335731477955754e-11
-// variance(f - f_GSL): 1.8756850519229352e-22
-// stddev(f - f_GSL): 1.3695565165128948e-11
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.4131475857150478e-16
+// mean(f - f_GSL): 7.2876178026676940e-16
+// variance(f - f_GSL): 1.4343944295516658e-32
+// stddev(f - f_GSL): 1.1976620681776917e-16
 const testcase_lbincoef<double>
 data037[39] =
 {
@@ -1452,7 +1452,7 @@ data037[39] =
   { 3.6375861597263821, 38, 37, 0.0 },
   { 0.0000000000000000, 38, 38, 0.0 },
 };
-const double toler037 = 5.0000000000000026e-09;
+const double toler037 = 2.5000000000000020e-13;
 
 // Divergence at n=39 k=40 f=-inf f_GSL=-inf
 // Divergence at n=39 k=41 f=-inf f_GSL=-inf
@@ -1460,11 +1460,11 @@ const double toler037 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=39 k=200 f=-inf f_GSL=-inf
 // Test data for n=39.
-// max(|f - f_GSL|): 3.9051428757375106e-10
-// max(|f - f_GSL| / |f_GSL|): 4.2818111245432568e-11
-// mean(f - f_GSL): -1.2875638333298410e-10
-// variance(f - f_GSL): 4.3598175539751083e-22
-// stddev(f - f_GSL): 2.0880176134254969e-11
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.3571523186466575e-16
+// mean(f - f_GSL): 8.8817841970012523e-16
+// variance(f - f_GSL): 2.0745848920999654e-32
+// stddev(f - f_GSL): 1.4403419358263389e-16
 const testcase_lbincoef<double>
 data038[40] =
 {
@@ -1509,7 +1509,7 @@ data038[40] =
   { 3.6635616461296507, 39, 38, 0.0 },
   { 0.0000000000000000, 39, 39, 0.0 },
 };
-const double toler038 = 2.5000000000000013e-09;
+const double toler038 = 2.5000000000000020e-13;
 
 // Divergence at n=40 k=41 f=-inf f_GSL=-inf
 // Divergence at n=40 k=42 f=-inf f_GSL=-inf
@@ -1517,11 +1517,11 @@ const double toler038 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=40 k=200 f=-inf f_GSL=-inf
 // Test data for n=40.
-// max(|f - f_GSL|): 3.7110226003278513e-10
-// max(|f - f_GSL| / |f_GSL|): 3.2487594332588693e-11
-// mean(f - f_GSL): -1.0814495098889981e-10
-// variance(f - f_GSL): 2.9969284212503327e-22
-// stddev(f - f_GSL): 1.7311638920825298e-11
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.3037560743352304e-16
+// mean(f - f_GSL): 1.0398186376977075e-15
+// variance(f - f_GSL): 2.7706334232152612e-32
+// stddev(f - f_GSL): 1.6645219803941495e-16
 const testcase_lbincoef<double>
 data039[41] =
 {
@@ -1567,7 +1567,7 @@ data039[41] =
   { 3.6888794541139305, 40, 39, 0.0 },
   { 0.0000000000000000, 40, 40, 0.0 },
 };
-const double toler039 = 2.5000000000000013e-09;
+const double toler039 = 2.5000000000000020e-13;
 
 // Divergence at n=41 k=42 f=-inf f_GSL=-inf
 // Divergence at n=41 k=43 f=-inf f_GSL=-inf
@@ -1575,11 +1575,11 @@ const double toler039 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=41 k=200 f=-inf f_GSL=-inf
 // Test data for n=41.
-// max(|f - f_GSL|): 5.5847237945272354e-10
-// max(|f - f_GSL| / |f_GSL|): 1.1528898996122773e-10
-// mean(f - f_GSL): 3.0133609893060308e-10
-// variance(f - f_GSL): 2.2687356750660299e-21
-// stddev(f - f_GSL): 4.7631246835097962e-11
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.2527640754579208e-16
+// mean(f - f_GSL): 6.7670736739057157e-16
+// variance(f - f_GSL): 1.1441511103740915e-32
+// stddev(f - f_GSL): 1.0696499943318335e-16
 const testcase_lbincoef<double>
 data040[42] =
 {
@@ -1626,7 +1626,7 @@ data040[42] =
   { 3.7135720667043159, 41, 40, 0.0 },
   { 0.0000000000000000, 41, 41, 0.0 },
 };
-const double toler040 = 1.0000000000000005e-08;
+const double toler040 = 2.5000000000000020e-13;
 
 // Divergence at n=42 k=43 f=-inf f_GSL=-inf
 // Divergence at n=42 k=44 f=-inf f_GSL=-inf
@@ -1634,11 +1634,11 @@ const double toler040 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=42 k=200 f=-inf f_GSL=-inf
 // Test data for n=42.
-// max(|f - f_GSL|): 2.9405811119431746e-10
-// max(|f - f_GSL| / |f_GSL|): 6.9847696194421589e-11
-// mean(f - f_GSL): 3.4629043818503583e-11
-// variance(f - f_GSL): 2.9231484727157120e-23
-// stddev(f - f_GSL): 5.4066149046475576e-12
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.2040012462403620e-16
+// mean(f - f_GSL): 9.9145498013037234e-16
+// variance(f - f_GSL): 2.3961603196081992e-32
+// stddev(f - f_GSL): 1.5479535909090424e-16
 const testcase_lbincoef<double>
 data041[43] =
 {
@@ -1686,7 +1686,7 @@ data041[43] =
   { 3.7376696182833626, 42, 41, 0.0 },
   { 0.0000000000000000, 42, 42, 0.0 },
 };
-const double toler041 = 5.0000000000000026e-09;
+const double toler041 = 2.5000000000000020e-13;
 
 // Divergence at n=43 k=44 f=-inf f_GSL=-inf
 // Divergence at n=43 k=45 f=-inf f_GSL=-inf
@@ -1694,11 +1694,11 @@ const double toler041 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=43 k=200 f=-inf f_GSL=-inf
 // Test data for n=43.
-// max(|f - f_GSL|): 4.9406878588342806e-10
-// max(|f - f_GSL| / |f_GSL|): 5.3558016618459297e-11
-// mean(f - f_GSL): 2.2152913846763443e-10
-// variance(f - f_GSL): 1.1678242316762268e-21
-// stddev(f - f_GSL): 3.4173443368736296e-11
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.1573097374110049e-16
+// mean(f - f_GSL): 8.0743492700011382e-16
+// variance(f - f_GSL): 1.5514251540803616e-32
+// stddev(f - f_GSL): 1.2455621839476187e-16
 const testcase_lbincoef<double>
 data042[44] =
 {
@@ -1747,7 +1747,7 @@ data042[44] =
   { 3.7612001156935690, 43, 42, 0.0 },
   { 0.0000000000000000, 43, 43, 0.0 },
 };
-const double toler042 = 5.0000000000000026e-09;
+const double toler042 = 2.5000000000000020e-13;
 
 // Divergence at n=44 k=45 f=-inf f_GSL=-inf
 // Divergence at n=44 k=46 f=-inf f_GSL=-inf
@@ -1755,11 +1755,11 @@ const double toler042 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=44 k=200 f=-inf f_GSL=-inf
 // Test data for n=44.
-// max(|f - f_GSL|): 4.3982595343550202e-10
-// max(|f - f_GSL| / |f_GSL|): 1.0034974365342035e-10
-// mean(f - f_GSL): -1.5522895561540887e-10
-// variance(f - f_GSL): 5.6008331082917154e-22
-// stddev(f - f_GSL): 2.3666079329478542e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.1125468190775234e-16
+// mean(f - f_GSL): 9.4739031434680023e-16
+// variance(f - f_GSL): 2.0862437162869733e-32
+// stddev(f - f_GSL): 1.4443835073438679e-16
 const testcase_lbincoef<double>
 data043[45] =
 {
@@ -1809,7 +1809,7 @@ data043[45] =
   { 3.7841896339182597, 44, 43, 0.0 },
   { 0.0000000000000000, 44, 44, 0.0 },
 };
-const double toler043 = 1.0000000000000005e-08;
+const double toler043 = 2.5000000000000020e-13;
 
 // Divergence at n=45 k=46 f=-inf f_GSL=-inf
 // Divergence at n=45 k=47 f=-inf f_GSL=-inf
@@ -1817,11 +1817,11 @@ const double toler043 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=45 k=200 f=-inf f_GSL=-inf
 // Test data for n=45.
-// max(|f - f_GSL|): 3.3884361982927658e-10
-// max(|f - f_GSL| / |f_GSL|): 6.0018839228314850e-11
-// mean(f - f_GSL): 6.6159560921495654e-11
-// variance(f - f_GSL): 9.9430135832570071e-23
-// stddev(f - f_GSL): 9.9714660824058396e-12
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 5.0695830788302882e-16
+// mean(f - f_GSL): 6.1786324848704362e-16
+// variance(f - f_GSL): 8.6719652919625990e-33
+// stddev(f - f_GSL): 9.3123387459663426e-17
 const testcase_lbincoef<double>
 data044[46] =
 {
@@ -1872,7 +1872,7 @@ data044[46] =
   { 3.8066624897703178, 45, 44, 0.0 },
   { 0.0000000000000000, 45, 45, 0.0 },
 };
-const double toler044 = 5.0000000000000026e-09;
+const double toler044 = 2.5000000000000020e-13;
 
 // Divergence at n=46 k=47 f=-inf f_GSL=-inf
 // Divergence at n=46 k=48 f=-inf f_GSL=-inf
@@ -1880,11 +1880,11 @@ const double toler044 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=46 k=200 f=-inf f_GSL=-inf
 // Test data for n=46.
-// max(|f - f_GSL|): 6.7968386474603903e-10
-// max(|f - f_GSL| / |f_GSL|): 9.4946791481148998e-11
-// mean(f - f_GSL): 4.0742626293997980e-10
-// variance(f - f_GSL): 3.6870602587250307e-21
-// stddev(f - f_GSL): 6.0721168127145170e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.0283008743533817e-16
+// mean(f - f_GSL): 1.8897413185109048e-16
+// variance(f - f_GSL): 7.9320768332563627e-34
+// stddev(f - f_GSL): 2.8163942964820040e-17
 const testcase_lbincoef<double>
 data045[47] =
 {
@@ -1936,7 +1936,7 @@ data045[47] =
   { 3.8286413964891040, 46, 45, 0.0 },
   { 0.0000000000000000, 46, 46, 0.0 },
 };
-const double toler045 = 5.0000000000000026e-09;
+const double toler045 = 2.5000000000000020e-13;
 
 // Divergence at n=47 k=48 f=-inf f_GSL=-inf
 // Divergence at n=47 k=49 f=-inf f_GSL=-inf
@@ -1944,11 +1944,11 @@ const double toler045 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=47 k=200 f=-inf f_GSL=-inf
 // Test data for n=47.
-// max(|f - f_GSL|): 7.2660810701563605e-10
-// max(|f - f_GSL| / |f_GSL|): 6.2156872801263091e-11
-// mean(f - f_GSL): 3.9664775168072691e-10
-// variance(f - f_GSL): 3.4186568890185735e-21
-// stddev(f - f_GSL): 5.8469281584594257e-11
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 4.9885929992769223e-16
+// mean(f - f_GSL): -2.5905203907920321e-16
+// variance(f - f_GSL): 1.4582082524456609e-33
+// stddev(f - f_GSL): 3.8186493062936024e-17
 const testcase_lbincoef<double>
 data046[48] =
 {
@@ -2001,7 +2001,7 @@ data046[48] =
   { 3.8501476017100345, 47, 46, 0.0 },
   { 0.0000000000000000, 47, 47, 0.0 },
 };
-const double toler046 = 5.0000000000000026e-09;
+const double toler046 = 2.5000000000000020e-13;
 
 // Divergence at n=48 k=49 f=-inf f_GSL=-inf
 // Divergence at n=48 k=50 f=-inf f_GSL=-inf
@@ -2009,11 +2009,11 @@ const double toler046 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=48 k=200 f=-inf f_GSL=-inf
 // Test data for n=48.
-// max(|f - f_GSL|): 3.7606184832839062e-10
-// max(|f - f_GSL| / |f_GSL|): 7.8073046899735644e-11
-// mean(f - f_GSL): 8.5857633927603000e-11
-// variance(f - f_GSL): 1.5677306071122741e-22
-// stddev(f - f_GSL): 1.2520904947775436e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.9503615285143769e-16
+// mean(f - f_GSL): -2.5376526277146434e-16
+// variance(f - f_GSL): 1.3695501826753676e-33
+// stddev(f - f_GSL): 3.7007434154171883e-17
 const testcase_lbincoef<double>
 data047[49] =
 {
@@ -2067,7 +2067,7 @@ data047[49] =
   { 3.8712010109078960, 48, 47, 0.0 },
   { 0.0000000000000000, 48, 48, 0.0 },
 };
-const double toler047 = 5.0000000000000026e-09;
+const double toler047 = 2.5000000000000020e-13;
 
 // Divergence at n=49 k=50 f=-inf f_GSL=-inf
 // Divergence at n=49 k=51 f=-inf f_GSL=-inf
@@ -2075,11 +2075,11 @@ const double toler047 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=49 k=200 f=-inf f_GSL=-inf
 // Test data for n=49.
-// max(|f - f_GSL|): 6.4412120082124602e-10
-// max(|f - f_GSL| / |f_GSL|): 9.1107873933489712e-11
-// mean(f - f_GSL): -2.5067208753171143e-10
-// variance(f - f_GSL): 1.3085484270617659e-21
-// stddev(f - f_GSL): 3.6173863866910404e-11
+// max(|f - f_GSL|): 7.1054273576010019e-15
+// max(|f - f_GSL| / |f_GSL|): 4.9135168153300334e-16
+// mean(f - f_GSL): -5.3290705182007512e-16
+// variance(f - f_GSL): 5.9139926255636035e-33
+// stddev(f - f_GSL): 7.6902487772266539e-17
 const testcase_lbincoef<double>
 data048[50] =
 {
@@ -2134,7 +2134,7 @@ data048[50] =
   { 3.8918202981106447, 49, 48, 0.0 },
   { 0.0000000000000000, 49, 49, 0.0 },
 };
-const double toler048 = 5.0000000000000026e-09;
+const double toler048 = 2.5000000000000020e-13;
 
 // Divergence at n=50 k=51 f=-inf f_GSL=-inf
 // Divergence at n=50 k=52 f=-inf f_GSL=-inf
@@ -2142,11 +2142,11 @@ const double toler048 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=50 k=200 f=-inf f_GSL=-inf
 // Test data for n=50.
-// max(|f - f_GSL|): 3.9153746911324561e-10
-// max(|f - f_GSL| / |f_GSL|): 6.4712226451383653e-11
-// mean(f - f_GSL): -2.1925119671875875e-12
-// variance(f - f_GSL): 9.8065018015720017e-26
-// stddev(f - f_GSL): 3.1315334584787695e-13
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8375905837216503e-16
+// mean(f - f_GSL): -3.8313578889025012e-16
+// variance(f - f_GSL): 2.9945778676625074e-33
+// stddev(f - f_GSL): 5.4722736295460475e-17
 const testcase_lbincoef<double>
 data049[51] =
 {
@@ -2202,7 +2202,7 @@ data049[51] =
   { 3.9120230054281251, 50, 49, 0.0 },
   { 0.0000000000000000, 50, 50, 0.0 },
 };
-const double toler049 = 5.0000000000000026e-09;
+const double toler049 = 2.5000000000000020e-13;
 
 // Divergence at n=51 k=52 f=-inf f_GSL=-inf
 // Divergence at n=51 k=53 f=-inf f_GSL=-inf
@@ -2210,11 +2210,11 @@ const double toler049 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=51 k=200 f=-inf f_GSL=-inf
 // Test data for n=51.
-// max(|f - f_GSL|): 7.3623596108518541e-10
-// max(|f - f_GSL| / |f_GSL|): 8.7827844323843269e-11
-// mean(f - f_GSL): -3.3872501384953818e-10
-// variance(f - f_GSL): 2.2938104653530298e-21
-// stddev(f - f_GSL): 4.7893741400657244e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7799080360120881e-16
+// mean(f - f_GSL): -2.3912495915003371e-16
+// variance(f - f_GSL): 1.1431752389858806e-33
+// stddev(f - f_GSL): 3.3810874567006998e-17
 const testcase_lbincoef<double>
 data050[52] =
 {
@@ -2271,7 +2271,7 @@ data050[52] =
   { 3.9318256327243262, 51, 50, 0.0 },
   { 0.0000000000000000, 51, 51, 0.0 },
 };
-const double toler050 = 5.0000000000000026e-09;
+const double toler050 = 2.5000000000000020e-13;
 
 // Divergence at n=52 k=53 f=-inf f_GSL=-inf
 // Divergence at n=52 k=54 f=-inf f_GSL=-inf
@@ -2279,11 +2279,11 @@ const double toler050 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=52 k=200 f=-inf f_GSL=-inf
 // Test data for n=52.
-// max(|f - f_GSL|): 4.1373837689206994e-10
-// max(|f - f_GSL| / |f_GSL|): 1.0471092303073814e-10
-// mean(f - f_GSL): 6.7854149971747073e-11
-// variance(f - f_GSL): 9.0244763470629525e-23
-// stddev(f - f_GSL): 9.4997243891930634e-12
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7245703480281434e-16
+// mean(f - f_GSL): -2.3461316746795761e-16
+// variance(f - f_GSL): 1.0788820016699113e-33
+// stddev(f - f_GSL): 3.2846339243055858e-17
 const testcase_lbincoef<double>
 data051[53] =
 {
@@ -2341,7 +2341,7 @@ data051[53] =
   { 3.9512437185814520, 52, 51, 0.0 },
   { 0.0000000000000000, 52, 52, 0.0 },
 };
-const double toler051 = 1.0000000000000005e-08;
+const double toler051 = 2.5000000000000020e-13;
 
 // Divergence at n=53 k=54 f=-inf f_GSL=-inf
 // Divergence at n=53 k=55 f=-inf f_GSL=-inf
@@ -2349,11 +2349,11 @@ const double toler051 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=53 k=200 f=-inf f_GSL=-inf
 // Test data for n=53.
-// max(|f - f_GSL|): 4.3903014557145070e-10
-// max(|f - f_GSL| / |f_GSL|): 4.1391706765389550e-11
-// mean(f - f_GSL): -4.9443774177807087e-11
-// variance(f - f_GSL): 4.6996471152396972e-23
-// stddev(f - f_GSL): 6.8553972279071449e-12
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.6714248822022392e-16
+// mean(f - f_GSL): 3.2895497025930562e-17
+// variance(f - f_GSL): 2.0802471031499593e-35
+// stddev(f - f_GSL): 4.5609725971002712e-18
 const testcase_lbincoef<double>
 data052[54] =
 {
@@ -2412,7 +2412,7 @@ data052[54] =
   { 3.9702919135521029, 53, 52, 0.0 },
   { 0.0000000000000000, 53, 53, 0.0 },
 };
-const double toler052 = 2.5000000000000013e-09;
+const double toler052 = 2.5000000000000020e-13;
 
 // Divergence at n=54 k=55 f=-inf f_GSL=-inf
 // Divergence at n=54 k=56 f=-inf f_GSL=-inf
@@ -2420,11 +2420,11 @@ const double toler052 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=54 k=200 f=-inf f_GSL=-inf
 // Test data for n=54.
-// max(|f - f_GSL|): 5.0222581648995401e-10
-// max(|f - f_GSL| / |f_GSL|): 2.6443754228706499e-11
-// mean(f - f_GSL): -1.1196990809284299e-10
-// variance(f - f_GSL): 2.3647095936474065e-22
-// stddev(f - f_GSL): 1.5377612277747825e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.6203323921512707e-16
+// mean(f - f_GSL): 2.9067657372004098e-16
+// variance(f - f_GSL): 1.5936583943858824e-33
+// stddev(f - f_GSL): 3.9920651226976278e-17
 const testcase_lbincoef<double>
 data053[55] =
 {
@@ -2484,7 +2484,7 @@ data053[55] =
   { 3.9889840465642692, 54, 53, 0.0 },
   { 0.0000000000000000, 54, 54, 0.0 },
 };
-const double toler053 = 2.5000000000000013e-09;
+const double toler053 = 2.5000000000000020e-13;
 
 // Divergence at n=55 k=56 f=-inf f_GSL=-inf
 // Divergence at n=55 k=57 f=-inf f_GSL=-inf
@@ -2492,11 +2492,11 @@ const double toler053 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=55 k=200 f=-inf f_GSL=-inf
 // Test data for n=55.
-// max(|f - f_GSL|): 7.7929485087224748e-10
-// max(|f - f_GSL| / |f_GSL|): 1.3532435252556289e-10
-// mean(f - f_GSL): 4.1067390757884171e-10
-// variance(f - f_GSL): 3.1221723201653561e-21
-// stddev(f - f_GSL): 5.5876402176279713e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.5711655623087140e-16
+// mean(f - f_GSL): 5.3925118338936171e-16
+// variance(f - f_GSL): 5.3832538750619221e-33
+// stddev(f - f_GSL): 7.3370660860196169e-17
 const testcase_lbincoef<double>
 data054[56] =
 {
@@ -2557,7 +2557,7 @@ data054[56] =
   { 4.0073331852324827, 55, 54, 0.0 },
   { 0.0000000000000000, 55, 55, 0.0 },
 };
-const double toler054 = 1.0000000000000005e-08;
+const double toler054 = 2.5000000000000020e-13;
 
 // Divergence at n=56 k=57 f=-inf f_GSL=-inf
 // Divergence at n=56 k=58 f=-inf f_GSL=-inf
@@ -2565,11 +2565,11 @@ const double toler054 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=56 k=200 f=-inf f_GSL=-inf
 // Test data for n=56.
-// max(|f - f_GSL|): 5.6056137509585824e-10
-// max(|f - f_GSL| / |f_GSL|): 1.3925773899112028e-10
-// mean(f - f_GSL): -1.4917159125871605e-10
-// variance(f - f_GSL): 4.0445578042202637e-22
-// stddev(f - f_GSL): 2.0111086008021208e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.5238077363470056e-16
+// mean(f - f_GSL): 2.8047739569477637e-16
+// variance(f - f_GSL): 1.4298633486148844e-33
+// stddev(f - f_GSL): 3.7813533934490761e-17
 const testcase_lbincoef<double>
 data055[57] =
 {
@@ -2631,7 +2631,7 @@ data055[57] =
   { 4.0253516907351354, 56, 55, 0.0 },
   { 0.0000000000000000, 56, 56, 0.0 },
 };
-const double toler055 = 1.0000000000000005e-08;
+const double toler055 = 2.5000000000000020e-13;
 
 // Divergence at n=57 k=58 f=-inf f_GSL=-inf
 // Divergence at n=57 k=59 f=-inf f_GSL=-inf
@@ -2639,11 +2639,11 @@ const double toler055 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=57 k=200 f=-inf f_GSL=-inf
 // Test data for n=57.
-// max(|f - f_GSL|): 5.8305715811002301e-10
-// max(|f - f_GSL| / |f_GSL|): 9.0572400090076886e-11
-// mean(f - f_GSL): 2.0507537430666130e-10
-// variance(f - f_GSL): 7.5076723007910120e-22
-// stddev(f - f_GSL): 2.7400131935432377e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.4781518063499977e-16
+// mean(f - f_GSL): -1.1944468402863753e-15
+// variance(f - f_GSL): 2.5469002384631007e-32
+// stddev(f - f_GSL): 1.5959010741468598e-16
 const testcase_lbincoef<double>
 data056[58] =
 {
@@ -2706,7 +2706,7 @@ data056[58] =
   { 4.0430512678345565, 57, 56, 0.0 },
   { 0.0000000000000000, 57, 57, 0.0 },
 };
-const double toler056 = 5.0000000000000026e-09;
+const double toler056 = 2.5000000000000020e-13;
 
 // Divergence at n=58 k=59 f=-inf f_GSL=-inf
 // Divergence at n=58 k=60 f=-inf f_GSL=-inf
@@ -2714,11 +2714,11 @@ const double toler056 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=58 k=200 f=-inf f_GSL=-inf
 // Test data for n=58.
-// max(|f - f_GSL|): 6.9954353421053383e-10
-// max(|f - f_GSL| / |f_GSL|): 1.2429991376659968e-10
-// mean(f - f_GSL): -2.9405702731556799e-10
-// variance(f - f_GSL): 1.5165584374276021e-21
-// stddev(f - f_GSL): 3.8943015258549284e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.4340992393752575e-16
+// mean(f - f_GSL): 3.0107743040682211e-17
+// variance(f - f_GSL): 1.5898363635321384e-35
+// stddev(f - f_GSL): 3.9872752143940833e-18
 const testcase_lbincoef<double>
 data057[59] =
 {
@@ -2782,7 +2782,7 @@ data057[59] =
   { 4.0604430105464360, 58, 57, 0.0 },
   { 0.0000000000000000, 58, 58, 0.0 },
 };
-const double toler057 = 1.0000000000000005e-08;
+const double toler057 = 2.5000000000000020e-13;
 
 // Divergence at n=59 k=60 f=-inf f_GSL=-inf
 // Divergence at n=59 k=61 f=-inf f_GSL=-inf
@@ -2790,11 +2790,11 @@ const double toler057 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=59 k=200 f=-inf f_GSL=-inf
 // Test data for n=59.
-// max(|f - f_GSL|): 7.9944584285840392e-10
-// max(|f - f_GSL| / |f_GSL|): 1.7747896326794892e-10
-// mean(f - f_GSL): 4.1088460041767880e-10
-// variance(f - f_GSL): 2.9099595781740115e-21
-// stddev(f - f_GSL): 5.3944041173924033e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.3915592218621964e-16
+// mean(f - f_GSL): -9.1778436702346283e-16
+// variance(f - f_GSL): 1.4518726992576698e-32
+// stddev(f - f_GSL): 1.2049368030140294e-16
 const testcase_lbincoef<double>
 data058[60] =
 {
@@ -2859,7 +2859,7 @@ data058[60] =
   { 4.0775374439056975, 59, 58, 0.0 },
   { 0.0000000000000000, 59, 59, 0.0 },
 };
-const double toler058 = 1.0000000000000005e-08;
+const double toler058 = 2.5000000000000020e-13;
 
 // Divergence at n=60 k=61 f=-inf f_GSL=-inf
 // Divergence at n=60 k=62 f=-inf f_GSL=-inf
@@ -2867,11 +2867,11 @@ const double toler058 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=60 k=200 f=-inf f_GSL=-inf
 // Test data for n=60.
-// max(|f - f_GSL|): 7.3084294172076625e-10
-// max(|f - f_GSL| / |f_GSL|): 8.8053798250890359e-11
-// mean(f - f_GSL): 3.2965339019550600e-10
-// variance(f - f_GSL): 1.8413757826974510e-21
-// stddev(f - f_GSL): 4.2911254732266346e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.3504479054694334e-16
+// mean(f - f_GSL): 2.9120603924594271e-17
+// variance(f - f_GSL): 1.4369051096921891e-35
+// stddev(f - f_GSL): 3.7906531227378074e-18
 const testcase_lbincoef<double>
 data059[61] =
 {
@@ -2937,7 +2937,7 @@ data059[61] =
   { 4.0943445622221191, 60, 59, 0.0 },
   { 0.0000000000000000, 60, 60, 0.0 },
 };
-const double toler059 = 5.0000000000000026e-09;
+const double toler059 = 2.5000000000000020e-13;
 
 // Divergence at n=61 k=62 f=-inf f_GSL=-inf
 // Divergence at n=61 k=63 f=-inf f_GSL=-inf
@@ -2945,11 +2945,11 @@ const double toler059 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=61 k=200 f=-inf f_GSL=-inf
 // Test data for n=61.
-// max(|f - f_GSL|): 6.2917138166085351e-10
-// max(|f - f_GSL| / |f_GSL|): 1.3720411821971438e-10
-// mean(f - f_GSL): -2.3164266204114555e-10
-// variance(f - f_GSL): 8.9406504122696040e-22
-// stddev(f - f_GSL): 2.9900920407689131e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.3106877404980895e-16
+// mean(f - f_GSL): -2.0055641735164118e-16
+// variance(f - f_GSL): 6.7020111409228488e-34
+// stddev(f - f_GSL): 2.5888242777220029e-17
 const testcase_lbincoef<double>
 data060[62] =
 {
@@ -3016,7 +3016,7 @@ data060[62] =
   { 4.1108738641732998, 61, 60, 0.0 },
   { 0.0000000000000000, 61, 61, 0.0 },
 };
-const double toler060 = 1.0000000000000005e-08;
+const double toler060 = 2.5000000000000020e-13;
 
 // Divergence at n=62 k=63 f=-inf f_GSL=-inf
 // Divergence at n=62 k=64 f=-inf f_GSL=-inf
@@ -3024,11 +3024,11 @@ const double toler060 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=62 k=200 f=-inf f_GSL=-inf
 // Test data for n=62.
-// max(|f - f_GSL|): 6.5281824390694965e-10
-// max(|f - f_GSL| / |f_GSL|): 1.1840128218777975e-10
-// mean(f - f_GSL): 2.4414564197488492e-10
-// variance(f - f_GSL): 9.7691127814924751e-22
-// stddev(f - f_GSL): 3.1255579952214091e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.2722068851849900e-16
+// mean(f - f_GSL): -1.9737298215558337e-16
+// variance(f - f_GSL): 6.3845835779247113e-34
+// stddev(f - f_GSL): 2.5267733530977232e-17
 const testcase_lbincoef<double>
 data061[63] =
 {
@@ -3096,7 +3096,7 @@ data061[63] =
   { 4.1271343850451103, 62, 61, 0.0 },
   { 0.0000000000000000, 62, 62, 0.0 },
 };
-const double toler061 = 1.0000000000000005e-08;
+const double toler061 = 2.5000000000000020e-13;
 
 // Divergence at n=63 k=64 f=-inf f_GSL=-inf
 // Divergence at n=63 k=65 f=-inf f_GSL=-inf
@@ -3104,11 +3104,11 @@ const double toler061 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=63 k=200 f=-inf f_GSL=-inf
 // Test data for n=63.
-// max(|f - f_GSL|): 6.8556005317077506e-10
-// max(|f - f_GSL| / |f_GSL|): 1.3156703828467509e-10
-// mean(f - f_GSL): -2.9638380638630224e-10
-// variance(f - f_GSL): 1.4164714245487826e-21
-// stddev(f - f_GSL): 3.7636038906197111e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.2349386809147168e-16
+// mean(f - f_GSL): 2.7755575615628914e-17
+// variance(f - f_GSL): 1.2422223879141659e-35
+// stddev(f - f_GSL): 3.5245175384925603e-18
 const testcase_lbincoef<double>
 data062[64] =
 {
@@ -3177,7 +3177,7 @@ data062[64] =
   { 4.1431347263915086, 63, 62, 0.0 },
   { 0.0000000000000000, 63, 63, 0.0 },
 };
-const double toler062 = 1.0000000000000005e-08;
+const double toler062 = 2.5000000000000020e-13;
 
 // Divergence at n=64 k=65 f=-inf f_GSL=-inf
 // Divergence at n=64 k=66 f=-inf f_GSL=-inf
@@ -3185,11 +3185,11 @@ const double toler062 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=64 k=200 f=-inf f_GSL=-inf
 // Test data for n=64.
-// max(|f - f_GSL|): 4.7058534846655675e-10
-// max(|f - f_GSL| / |f_GSL|): 9.3359807780114022e-11
-// mean(f - f_GSL): 8.4368314044415732e-11
-// variance(f - f_GSL): 1.1295673997932501e-22
-// stddev(f - f_GSL): 1.0628110837741815e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.1988211848701970e-16
+// mean(f - f_GSL): 2.4595710084003469e-16
+// variance(f - f_GSL): 9.6000200304840680e-34
+// stddev(f - f_GSL): 3.0983899093697144e-17
 const testcase_lbincoef<double>
 data063[65] =
 {
@@ -3259,7 +3259,7 @@ data063[65] =
   { 4.1588830833596830, 64, 63, 0.0 },
   { 0.0000000000000000, 64, 64, 0.0 },
 };
-const double toler063 = 5.0000000000000026e-09;
+const double toler063 = 2.5000000000000020e-13;
 
 // Divergence at n=65 k=66 f=-inf f_GSL=-inf
 // Divergence at n=65 k=67 f=-inf f_GSL=-inf
@@ -3267,11 +3267,11 @@ const double toler063 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=65 k=200 f=-inf f_GSL=-inf
 // Test data for n=65.
-// max(|f - f_GSL|): 8.2696516301439260e-10
-// max(|f - f_GSL| / |f_GSL|): 9.2778272963916501e-11
-// mean(f - f_GSL): 3.8782283781708401e-10
-// variance(f - f_GSL): 2.3495461616910656e-21
-// stddev(f - f_GSL): 4.8472117363398372e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.1637967528714486e-16
+// mean(f - f_GSL): 2.4223047810003414e-16
+// variance(f - f_GSL): 9.1658932505507564e-34
+// stddev(f - f_GSL): 3.0275226259353960e-17
 const testcase_lbincoef<double>
 data064[66] =
 {
@@ -3342,7 +3342,7 @@ data064[66] =
   { 4.1743872698956466, 65, 64, 0.0 },
   { 0.0000000000000000, 65, 65, 0.0 },
 };
-const double toler064 = 5.0000000000000026e-09;
+const double toler064 = 2.5000000000000020e-13;
 
 // Divergence at n=66 k=67 f=-inf f_GSL=-inf
 // Divergence at n=66 k=68 f=-inf f_GSL=-inf
@@ -3350,11 +3350,11 @@ const double toler064 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=66 k=200 f=-inf f_GSL=-inf
 // Test data for n=66.
-// max(|f - f_GSL|): 6.7888095145463012e-10
-// max(|f - f_GSL| / |f_GSL|): 5.6617454542667425e-11
-// mean(f - f_GSL): 1.4120074926872056e-10
-// variance(f - f_GSL): 3.0666268521607487e-22
-// stddev(f - f_GSL): 1.7511787036624071e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.1298116661837388e-16
+// mean(f - f_GSL): -1.0339987572628324e-15
+// variance(f - f_GSL): 1.6444738248717282e-32
+// stddev(f - f_GSL): 1.2823703930112111e-16
 const testcase_lbincoef<double>
 data065[67] =
 {
@@ -3426,7 +3426,7 @@ data065[67] =
   { 4.1896547420264199, 66, 65, 0.0 },
   { 0.0000000000000000, 66, 66, 0.0 },
 };
-const double toler065 = 5.0000000000000026e-09;
+const double toler065 = 2.5000000000000020e-13;
 
 // Divergence at n=67 k=68 f=-inf f_GSL=-inf
 // Divergence at n=67 k=69 f=-inf f_GSL=-inf
@@ -3434,11 +3434,11 @@ const double toler065 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=67 k=200 f=-inf f_GSL=-inf
 // Test data for n=67.
-// max(|f - f_GSL|): 1.0339249456592370e-09
-// max(|f - f_GSL| / |f_GSL|): 1.8087127164337385e-10
-// mean(f - f_GSL): -6.0607205528760781e-10
-// variance(f - f_GSL): 5.5642652843923076e-21
-// stddev(f - f_GSL): 7.4594003005552051e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.0968157969461443e-16
+// mean(f - f_GSL): 2.3510605227356256e-16
+// variance(f - f_GSL): 8.3731124871125445e-34
+// stddev(f - f_GSL): 2.8936330947638375e-17
 const testcase_lbincoef<double>
 data066[68] =
 {
@@ -3511,7 +3511,7 @@ data066[68] =
   { 4.2046926193909542, 67, 66, 0.0 },
   { 0.0000000000000000, 67, 67, 0.0 },
 };
-const double toler066 = 1.0000000000000005e-08;
+const double toler066 = 2.5000000000000020e-13;
 
 // Divergence at n=68 k=69 f=-inf f_GSL=-inf
 // Divergence at n=68 k=70 f=-inf f_GSL=-inf
@@ -3519,11 +3519,11 @@ const double toler066 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=68 k=200 f=-inf f_GSL=-inf
 // Test data for n=68.
-// max(|f - f_GSL|): 8.1420026276646240e-10
-// max(|f - f_GSL| / |f_GSL|): 1.9296096124381397e-10
-// mean(f - f_GSL): 1.9737394327619214e-10
-// variance(f - f_GSL): 5.8131415882853644e-22
-// stddev(f - f_GSL): 2.4110457457886119e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.0647623076054848e-16
+// mean(f - f_GSL): 2.3169871818264136e-16
+// variance(f - f_GSL): 8.0108486689361055e-34
+// stddev(f - f_GSL): 2.8303442668580280e-17
 const testcase_lbincoef<double>
 data067[69] =
 {
@@ -3597,7 +3597,7 @@ data067[69] =
   { 4.2195077051761132, 68, 67, 0.0 },
   { 0.0000000000000000, 68, 68, 0.0 },
 };
-const double toler067 = 1.0000000000000005e-08;
+const double toler067 = 2.5000000000000020e-13;
 
 // Divergence at n=69 k=70 f=-inf f_GSL=-inf
 // Divergence at n=69 k=71 f=-inf f_GSL=-inf
@@ -3605,11 +3605,11 @@ const double toler067 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=69 k=200 f=-inf f_GSL=-inf
 // Test data for n=69.
-// max(|f - f_GSL|): 6.7302607931196690e-10
-// max(|f - f_GSL| / |f_GSL|): 8.6724945390326863e-11
-// mean(f - f_GSL): 4.9682772182027945e-11
-// variance(f - f_GSL): 3.6292049909344733e-23
-// stddev(f - f_GSL): 6.0242883321886852e-12
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.0336073803634172e-16
+// mean(f - f_GSL): 2.2838873649431789e-16
+// variance(f - f_GSL): 7.6691851439255807e-34
+// stddev(f - f_GSL): 2.7693293671800001e-17
 const testcase_lbincoef<double>
 data068[70] =
 {
@@ -3684,7 +3684,7 @@ data068[70] =
   { 4.2341065045972641, 69, 68, 0.0 },
   { 0.0000000000000000, 69, 69, 0.0 },
 };
-const double toler068 = 5.0000000000000026e-09;
+const double toler068 = 2.5000000000000020e-13;
 
 // Divergence at n=70 k=71 f=-inf f_GSL=-inf
 // Divergence at n=70 k=72 f=-inf f_GSL=-inf
@@ -3692,11 +3692,11 @@ const double toler068 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=70 k=200 f=-inf f_GSL=-inf
 // Test data for n=70.
-// max(|f - f_GSL|): 5.6508397960897128e-10
-// max(|f - f_GSL| / |f_GSL|): 5.1793387060034895e-11
-// mean(f - f_GSL): -6.0898516276723400e-11
-// variance(f - f_GSL): 5.3737281472275618e-23
-// stddev(f - f_GSL): 7.3305717015984241e-12
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 5.0033099731735395e-16
+// mean(f - f_GSL): -9.7574530614943343e-16
+// variance(f - f_GSL): 1.3795428995011889e-32
+// stddev(f - f_GSL): 1.1745394414412777e-16
 const testcase_lbincoef<double>
 data069[71] =
 {
@@ -3772,7 +3772,7 @@ data069[71] =
   { 4.2484952420493585, 70, 69, 0.0 },
   { 0.0000000000000000, 70, 70, 0.0 },
 };
-const double toler069 = 5.0000000000000026e-09;
+const double toler069 = 2.5000000000000020e-13;
 
 // Divergence at n=71 k=72 f=-inf f_GSL=-inf
 // Divergence at n=71 k=73 f=-inf f_GSL=-inf
@@ -3780,11 +3780,11 @@ const double toler069 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=71 k=200 f=-inf f_GSL=-inf
 // Test data for n=71.
-// max(|f - f_GSL|): 9.3339735940389801e-10
-// max(|f - f_GSL| / |f_GSL|): 8.6259165178040491e-11
-// mean(f - f_GSL): 2.9346678173977936e-10
-// variance(f - f_GSL): 1.2300809646694378e-21
-// stddev(f - f_GSL): 3.5072510099356130e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.9738315992770053e-16
+// mean(f - f_GSL): -1.1595662701640524e-15
+// variance(f - f_GSL): 1.9204674333060186e-32
+// stddev(f - f_GSL): 1.3858093062561019e-16
 const testcase_lbincoef<double>
 data070[72] =
 {
@@ -3861,7 +3861,7 @@ data070[72] =
   { 4.2626798770413075, 71, 70, 0.0 },
   { 0.0000000000000000, 71, 71, 0.0 },
 };
-const double toler070 = 5.0000000000000026e-09;
+const double toler070 = 2.5000000000000020e-13;
 
 // Divergence at n=72 k=73 f=-inf f_GSL=-inf
 // Divergence at n=72 k=74 f=-inf f_GSL=-inf
@@ -3869,11 +3869,11 @@ const double toler070 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=72 k=200 f=-inf f_GSL=-inf
 // Test data for n=72.
-// max(|f - f_GSL|): 7.0225070203377982e-10
-// max(|f - f_GSL| / |f_GSL|): 5.3784159908461645e-11
-// mean(f - f_GSL): 5.6790468826800688e-11
-// variance(f - f_GSL): 4.5415988911738215e-23
-// stddev(f - f_GSL): 6.7391385882572716e-12
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.9451361276508346e-16
+// mean(f - f_GSL): -1.1436818007097503e-15
+// variance(f - f_GSL): 1.8419094998659891e-32
+// stddev(f - f_GSL): 1.3571696650993896e-16
 const testcase_lbincoef<double>
 data071[73] =
 {
@@ -3951,7 +3951,7 @@ data071[73] =
   { 4.2766661190160562, 72, 71, 0.0 },
   { 0.0000000000000000, 72, 72, 0.0 },
 };
-const double toler071 = 5.0000000000000026e-09;
+const double toler071 = 2.5000000000000020e-13;
 
 // Divergence at n=73 k=74 f=-inf f_GSL=-inf
 // Divergence at n=73 k=75 f=-inf f_GSL=-inf
@@ -3959,11 +3959,11 @@ const double toler071 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=73 k=200 f=-inf f_GSL=-inf
 // Test data for n=73.
-// max(|f - f_GSL|): 6.4997607296390925e-10
-// max(|f - f_GSL| / |f_GSL|): 6.4230159594152062e-11
-// mean(f - f_GSL): -2.1781553137721808e-10
-// variance(f - f_GSL): 6.5881531665910127e-22
-// stddev(f - f_GSL): 2.5667397933158347e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.9171896020746452e-16
+// mean(f - f_GSL): 2.1604339938651696e-16
+// variance(f - f_GSL): 6.4813877481097263e-34
+// stddev(f - f_GSL): 2.5458569771512553e-17
 const testcase_lbincoef<double>
 data072[74] =
 {
@@ -4042,7 +4042,7 @@ data072[74] =
   { 4.2904594411483856, 73, 72, 0.0 },
   { 0.0000000000000000, 73, 73, 0.0 },
 };
-const double toler072 = 5.0000000000000026e-09;
+const double toler072 = 2.5000000000000020e-13;
 
 // Divergence at n=74 k=75 f=-inf f_GSL=-inf
 // Divergence at n=74 k=76 f=-inf f_GSL=-inf
@@ -4050,11 +4050,11 @@ const double toler072 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=74 k=200 f=-inf f_GSL=-inf
 // Test data for n=74.
-// max(|f - f_GSL|): 9.4583185727969976e-10
-// max(|f - f_GSL| / |f_GSL|): 6.5037237671595181e-11
-// mean(f - f_GSL): -4.2568141604230430e-10
-// variance(f - f_GSL): 2.4818024282840762e-21
-// stddev(f - f_GSL): 4.9817691920482185e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.8899600768056098e-16
+// mean(f - f_GSL): -9.2370555648813027e-16
+// variance(f - f_GSL): 1.1685974549219956e-32
+// stddev(f - f_GSL): 1.0810168615345441e-16
 const testcase_lbincoef<double>
 data073[75] =
 {
@@ -4134,7 +4134,7 @@ data073[75] =
   { 4.3040650932041729, 74, 73, 0.0 },
   { 0.0000000000000000, 74, 74, 0.0 },
 };
-const double toler073 = 5.0000000000000026e-09;
+const double toler073 = 2.5000000000000020e-13;
 
 // Divergence at n=75 k=76 f=-inf f_GSL=-inf
 // Divergence at n=75 k=77 f=-inf f_GSL=-inf
@@ -4142,11 +4142,11 @@ const double toler073 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=75 k=200 f=-inf f_GSL=-inf
 // Test data for n=75.
-// max(|f - f_GSL|): 1.1185079529241193e-09
-// max(|f - f_GSL| / |f_GSL|): 2.1069398706418428e-10
-// mean(f - f_GSL): 4.6653562884258510e-10
-// variance(f - f_GSL): 2.9407675495903149e-21
-// stddev(f - f_GSL): 5.4228844258294082e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.8634174670974923e-16
+// mean(f - f_GSL): 3.9734297723426655e-16
+// variance(f - f_GSL): 2.1331536992643031e-33
+// stddev(f - f_GSL): 4.6186076898393346e-17
 const testcase_lbincoef<double>
 data074[76] =
 {
@@ -4227,7 +4227,7 @@ data074[76] =
   { 4.3174881135363137, 75, 74, 0.0 },
   { 0.0000000000000000, 75, 75, 0.0 },
 };
-const double toler074 = 2.5000000000000012e-08;
+const double toler074 = 2.5000000000000020e-13;
 
 // Divergence at n=76 k=77 f=-inf f_GSL=-inf
 // Divergence at n=76 k=78 f=-inf f_GSL=-inf
@@ -4235,11 +4235,11 @@ const double toler074 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=76 k=200 f=-inf f_GSL=-inf
 // Test data for n=76.
-// max(|f - f_GSL|): 1.3182628322283563e-09
-// max(|f - f_GSL| / |f_GSL|): 1.3989567114380446e-10
-// mean(f - f_GSL): 6.4736293670530477e-10
-// variance(f - f_GSL): 5.5867495550758593e-21
-// stddev(f - f_GSL): 7.4744562043508280e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.8375334130109562e-16
+// mean(f - f_GSL): -7.1515664962867231e-16
+// variance(f - f_GSL): 6.8181398165035101e-33
+// stddev(f - f_GSL): 8.2572028051292950e-17
 const testcase_lbincoef<double>
 data075[77] =
 {
@@ -4321,7 +4321,7 @@ data075[77] =
   { 4.3307333402863435, 76, 75, 0.0 },
   { 0.0000000000000000, 76, 76, 0.0 },
 };
-const double toler075 = 1.0000000000000005e-08;
+const double toler075 = 2.5000000000000020e-13;
 
 // Divergence at n=77 k=78 f=-inf f_GSL=-inf
 // Divergence at n=77 k=79 f=-inf f_GSL=-inf
@@ -4329,11 +4329,11 @@ const double toler075 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=77 k=200 f=-inf f_GSL=-inf
 // Test data for n=77.
-// max(|f - f_GSL|): 1.0734453326222138e-09
-// max(|f - f_GSL| / |f_GSL|): 7.7584339068983822e-11
-// mean(f - f_GSL): 3.8852731857985373e-10
-// variance(f - f_GSL): 1.9858949617241337e-21
-// stddev(f - f_GSL): 4.4563381399127847e-11
+// max(|f - f_GSL|): 1.4210854715202004e-14
+// max(|f - f_GSL| / |f_GSL|): 4.8122811551469198e-16
+// mean(f - f_GSL): -5.2379752956674053e-16
+// variance(f - f_GSL): 3.6094418037539538e-33
+// stddev(f - f_GSL): 6.0078630175412240e-17
 const testcase_lbincoef<double>
 data076[78] =
 {
@@ -4416,7 +4416,7 @@ data076[78] =
   { 4.3438054218536877, 77, 76, 0.0 },
   { 0.0000000000000000, 77, 77, 0.0 },
 };
-const double toler076 = 5.0000000000000026e-09;
+const double toler076 = 2.5000000000000020e-13;
 
 // Divergence at n=78 k=79 f=-inf f_GSL=-inf
 // Divergence at n=78 k=80 f=-inf f_GSL=-inf
@@ -4424,11 +4424,11 @@ const double toler076 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=78 k=200 f=-inf f_GSL=-inf
 // Test data for n=78.
-// max(|f - f_GSL|): 9.6463281806791201e-10
-// max(|f - f_GSL| / |f_GSL|): 5.3772008765067434e-11
-// mean(f - f_GSL): 2.6860458161490323e-10
-// variance(f - f_GSL): 9.3683847467075267e-22
-// stddev(f - f_GSL): 3.0607817215063746e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.3100722426533697e-15
+// mean(f - f_GSL): -8.7693565489379457e-16
+// variance(f - f_GSL): 9.9855810787469847e-33
+// stddev(f - f_GSL): 9.9927879386820702e-17
 const testcase_lbincoef<double>
 data077[79] =
 {
@@ -4512,7 +4512,7 @@ data077[79] =
   { 4.3567088266895553, 78, 77, 0.0 },
   { 0.0000000000000000, 78, 78, 0.0 },
 };
-const double toler077 = 5.0000000000000026e-09;
+const double toler077 = 2.5000000000000020e-13;
 
 // Divergence at n=79 k=80 f=-inf f_GSL=-inf
 // Divergence at n=79 k=81 f=-inf f_GSL=-inf
@@ -4520,11 +4520,11 @@ const double toler077 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=79 k=200 f=-inf f_GSL=-inf
 // Test data for n=79.
-// max(|f - f_GSL|): 1.1260929966283584e-09
-// max(|f - f_GSL| / |f_GSL|): 1.7729631005744751e-10
-// mean(f - f_GSL): -4.9875801266807682e-10
-// variance(f - f_GSL): 3.1887140548067231e-21
-// stddev(f - f_GSL): 5.6468699779671951e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.3044933321346142e-15
+// mean(f - f_GSL): -1.5765166949677222e-15
+// variance(f - f_GSL): 3.1859059631622502e-32
+// stddev(f - f_GSL): 1.7849106317018368e-16
 const testcase_lbincoef<double>
 data078[80] =
 {
@@ -4609,7 +4609,7 @@ data078[80] =
   { 4.3694478524670330, 79, 78, 0.0 },
   { 0.0000000000000000, 79, 79, 0.0 },
 };
-const double toler078 = 1.0000000000000005e-08;
+const double toler078 = 2.5000000000000020e-13;
 
 // Divergence at n=80 k=81 f=-inf f_GSL=-inf
 // Divergence at n=80 k=82 f=-inf f_GSL=-inf
@@ -4617,11 +4617,11 @@ const double toler078 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=80 k=200 f=-inf f_GSL=-inf
 // Test data for n=80.
-// max(|f - f_GSL|): 9.1893070930382237e-10
-// max(|f - f_GSL| / |f_GSL|): 7.0490594767993411e-11
-// mean(f - f_GSL): -2.9016600370753477e-10
-// variance(f - f_GSL): 1.0656095447368261e-21
-// stddev(f - f_GSL): 3.2643675417097660e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2990338426039145e-15
+// mean(f - f_GSL): -5.0439762106426862e-16
+// variance(f - f_GSL): 3.2199646517123089e-33
+// stddev(f - f_GSL): 5.6744732369730219e-17
 const testcase_lbincoef<double>
 data079[81] =
 {
@@ -4707,7 +4707,7 @@ data079[81] =
   { 4.3820266346738777, 80, 79, 0.0 },
   { 0.0000000000000000, 80, 80, 0.0 },
 };
-const double toler079 = 5.0000000000000026e-09;
+const double toler079 = 2.5000000000000020e-13;
 
 // Divergence at n=81 k=82 f=-inf f_GSL=-inf
 // Divergence at n=81 k=83 f=-inf f_GSL=-inf
@@ -4715,11 +4715,11 @@ const double toler079 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=81 k=200 f=-inf f_GSL=-inf
 // Test data for n=81.
-// max(|f - f_GSL|): 6.8390448859645403e-10
-// max(|f - f_GSL| / |f_GSL|): 5.4780679390464425e-11
-// mean(f - f_GSL): -5.7771630298059504e-11
-// variance(f - f_GSL): 4.1713157128218972e-23
-// stddev(f - f_GSL): 6.4585723753952754e-12
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2936895259167739e-15
+// mean(f - f_GSL): -4.9824643056348493e-16
+// variance(f - f_GSL): 3.1026458553084579e-33
+// stddev(f - f_GSL): 5.5701399042649356e-17
 const testcase_lbincoef<double>
 data080[82] =
 {
@@ -4806,7 +4806,7 @@ data080[82] =
   { 4.3944491546724294, 81, 80, 0.0 },
   { 0.0000000000000000, 81, 81, 0.0 },
 };
-const double toler080 = 5.0000000000000026e-09;
+const double toler080 = 2.5000000000000020e-13;
 
 // Divergence at n=82 k=83 f=-inf f_GSL=-inf
 // Divergence at n=82 k=84 f=-inf f_GSL=-inf
@@ -4814,11 +4814,11 @@ const double toler080 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=82 k=200 f=-inf f_GSL=-inf
 // Test data for n=82.
-// max(|f - f_GSL|): 1.4575789464288391e-09
-// max(|f - f_GSL| / |f_GSL|): 1.7539688640840813e-10
-// mean(f - f_GSL): -8.1574466592603833e-10
-// variance(f - f_GSL): 8.2140789528410264e-21
-// stddev(f - f_GSL): 9.0631556054395457e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2884563421518302e-15
+// mean(f - f_GSL): -7.0626235783383453e-16
+// variance(f - f_GSL): 6.1571893220879841e-33
+// stddev(f - f_GSL): 7.8467759762134061e-17
 const testcase_lbincoef<double>
 data081[83] =
 {
@@ -4906,7 +4906,7 @@ data081[83] =
   { 4.4067192472642773, 82, 81, 0.0 },
   { 0.0000000000000000, 82, 82, 0.0 },
 };
-const double toler081 = 1.0000000000000005e-08;
+const double toler081 = 2.5000000000000020e-13;
 
 // Divergence at n=83 k=84 f=-inf f_GSL=-inf
 // Divergence at n=83 k=85 f=-inf f_GSL=-inf
@@ -4914,11 +4914,11 @@ const double toler081 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=83 k=200 f=-inf f_GSL=-inf
 // Test data for n=83.
-// max(|f - f_GSL|): 9.9407770903781056e-10
-// max(|f - f_GSL| / |f_GSL|): 2.2496346830973292e-10
-// mean(f - f_GSL): 1.6923436197387109e-10
-// variance(f - f_GSL): 3.4922087660140388e-22
-// stddev(f - f_GSL): 1.8687452383923388e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2833304467127208e-15
+// mean(f - f_GSL): -1.2053849981644557e-15
+// variance(f - f_GSL): 1.7716366886223498e-32
+// stddev(f - f_GSL): 1.3310284326874275e-16
 const testcase_lbincoef<double>
 data082[84] =
 {
@@ -5007,7 +5007,7 @@ data082[84] =
   { 4.4188406077965965, 83, 82, 0.0 },
   { 0.0000000000000000, 83, 83, 0.0 },
 };
-const double toler082 = 2.5000000000000012e-08;
+const double toler082 = 2.5000000000000020e-13;
 
 // Divergence at n=84 k=85 f=-inf f_GSL=-inf
 // Divergence at n=84 k=86 f=-inf f_GSL=-inf
@@ -5015,11 +5015,11 @@ const double toler082 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=84 k=200 f=-inf f_GSL=-inf
 // Test data for n=84.
-// max(|f - f_GSL|): 1.3157546163711231e-09
-// max(|f - f_GSL| / |f_GSL|): 1.9174943263535194e-10
-// mean(f - f_GSL): -6.6924298260025404e-10
-// variance(f - f_GSL): 5.3954541425131995e-21
-// stddev(f - f_GSL): 7.3453755128742060e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2783081783901236e-15
+// mean(f - f_GSL): -1.8599501024308506e-15
+// variance(f - f_GSL): 4.1673784382123745e-32
+// stddev(f - f_GSL): 2.0414157925842483e-16
 const testcase_lbincoef<double>
 data083[85] =
 {
@@ -5109,7 +5109,7 @@ data083[85] =
   { 4.4308167988432956, 84, 83, 0.0 },
   { 0.0000000000000000, 84, 84, 0.0 },
 };
-const double toler083 = 1.0000000000000005e-08;
+const double toler083 = 2.5000000000000020e-13;
 
 // Divergence at n=85 k=86 f=-inf f_GSL=-inf
 // Divergence at n=85 k=87 f=-inf f_GSL=-inf
@@ -5117,11 +5117,11 @@ const double toler083 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=85 k=200 f=-inf f_GSL=-inf
 // Test data for n=85.
-// max(|f - f_GSL|): 8.3684881246881559e-10
-// max(|f - f_GSL| / |f_GSL|): 1.5595742102920377e-10
-// mean(f - f_GSL): 1.8358771867074105e-11
-// variance(f - f_GSL): 4.0118792227246169e-24
-// stddev(f - f_GSL): 2.0029676040127603e-12
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2733860483008980e-15
+// mean(f - f_GSL): -8.4686779552802641e-16
+// variance(f - f_GSL): 8.5367356992131383e-33
+// stddev(f - f_GSL): 9.2394457080569172e-17
 const testcase_lbincoef<double>
 data084[86] =
 {
@@ -5212,7 +5212,7 @@ data084[86] =
   { 4.4426512564903646, 85, 84, 0.0 },
   { 0.0000000000000000, 85, 85, 0.0 },
 };
-const double toler084 = 1.0000000000000005e-08;
+const double toler084 = 2.5000000000000020e-13;
 
 // Divergence at n=86 k=87 f=-inf f_GSL=-inf
 // Divergence at n=86 k=88 f=-inf f_GSL=-inf
@@ -5220,11 +5220,11 @@ const double toler084 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=86 k=200 f=-inf f_GSL=-inf
 // Test data for n=86.
-// max(|f - f_GSL|): 1.0126086635864340e-09
-// max(|f - f_GSL| / |f_GSL|): 8.6425344930992664e-11
-// mean(f - f_GSL): -3.6288070887898902e-10
-// variance(f - f_GSL): 1.5489953450861315e-21
-// stddev(f - f_GSL): 3.9357278171719793e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2685607296293231e-15
+// mean(f - f_GSL): -1.3271631558737503e-15
+// variance(f - f_GSL): 2.0719104608012875e-32
+// stddev(f - f_GSL): 1.4394132348986122e-16
 const testcase_lbincoef<double>
 data085[87] =
 {
@@ -5316,7 +5316,7 @@ data085[87] =
   { 4.4543472962535020, 86, 85, 0.0 },
   { 0.0000000000000000, 86, 86, 0.0 },
 };
-const double toler085 = 5.0000000000000026e-09;
+const double toler085 = 2.5000000000000020e-13;
 
 // Divergence at n=87 k=88 f=-inf f_GSL=-inf
 // Divergence at n=87 k=89 f=-inf f_GSL=-inf
@@ -5324,11 +5324,11 @@ const double toler085 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=87 k=200 f=-inf f_GSL=-inf
 // Test data for n=87.
-// max(|f - f_GSL|): 1.1536940291989595e-09
-// max(|f - f_GSL| / |f_GSL|): 1.5727087633315240e-10
-// mean(f - f_GSL): 3.2713678230968731e-10
-// variance(f - f_GSL): 1.2442364568522058e-21
-// stddev(f - f_GSL): 3.5273736077316872e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2638290481028170e-15
+// mean(f - f_GSL): -5.0464682937507120e-16
+// variance(f - f_GSL): 2.9608694901640207e-33
+// stddev(f - f_GSL): 5.4413872221741585e-17
 const testcase_lbincoef<double>
 data086[88] =
 {
@@ -5421,7 +5421,7 @@ data086[88] =
   { 4.4659081186545677, 87, 86, 0.0 },
   { 0.0000000000000000, 87, 87, 0.0 },
 };
-const double toler086 = 1.0000000000000005e-08;
+const double toler086 = 2.5000000000000020e-13;
 
 // Divergence at n=88 k=89 f=-inf f_GSL=-inf
 // Divergence at n=88 k=90 f=-inf f_GSL=-inf
@@ -5429,11 +5429,11 @@ const double toler086 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=88 k=200 f=-inf f_GSL=-inf
 // Test data for n=88.
-// max(|f - f_GSL|): 1.1630731933109928e-09
-// max(|f - f_GSL| / |f_GSL|): 1.8246974009671439e-10
-// mean(f - f_GSL): -4.8352369299464859e-10
-// variance(f - f_GSL): 2.6869536919110674e-21
-// stddev(f - f_GSL): 5.1835834052430053e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2591879731408998e-15
+// mean(f - f_GSL): -9.7799421495069972e-16
+// variance(f - f_GSL): 1.0992519230172540e-32
+// stddev(f - f_GSL): 1.0484521558074332e-16
 const testcase_lbincoef<double>
 data087[89] =
 {
@@ -5527,7 +5527,7 @@ data087[89] =
   { 4.4773368144781784, 88, 87, 0.0 },
   { 0.0000000000000000, 88, 88, 0.0 },
 };
-const double toler087 = 1.0000000000000005e-08;
+const double toler087 = 2.5000000000000020e-13;
 
 // Divergence at n=89 k=90 f=-inf f_GSL=-inf
 // Divergence at n=89 k=91 f=-inf f_GSL=-inf
@@ -5535,11 +5535,11 @@ const double toler087 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=89 k=200 f=-inf f_GSL=-inf
 // Test data for n=89.
-// max(|f - f_GSL|): 1.3053096381554496e-09
-// max(|f - f_GSL| / |f_GSL|): 2.1618458779960359e-10
-// mean(f - f_GSL): 4.7144131561556904e-10
-// variance(f - f_GSL): 2.5253278962555833e-21
-// stddev(f - f_GSL): 5.0252640689376549e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2546346096221112e-15
+// mean(f - f_GSL): -8.0922922683789186e-16
+// variance(f - f_GSL): 7.4405598713771875e-33
+// stddev(f - f_GSL): 8.6258679977015575e-17
 const testcase_lbincoef<double>
 data088[90] =
 {
@@ -5634,7 +5634,7 @@ data088[90] =
   { 4.4886363697321485, 89, 88, 0.0 },
   { 0.0000000000000000, 89, 89, 0.0 },
 };
-const double toler088 = 2.5000000000000012e-08;
+const double toler088 = 2.5000000000000020e-13;
 
 // Divergence at n=90 k=91 f=-inf f_GSL=-inf
 // Divergence at n=90 k=92 f=-inf f_GSL=-inf
@@ -5642,11 +5642,11 @@ const double toler088 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=90 k=200 f=-inf f_GSL=-inf
 // Test data for n=90.
-// max(|f - f_GSL|): 1.8517525290917547e-09
-// max(|f - f_GSL| / |f_GSL|): 1.8305730958784348e-10
-// mean(f - f_GSL): 9.9240926099630276e-10
-// variance(f - f_GSL): 1.1064657883866877e-20
-// stddev(f - f_GSL): 1.0518867754595490e-10
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2501661902185388e-15
+// mean(f - f_GSL): -4.8801012071435456e-16
+// variance(f - f_GSL): 2.6755559124305108e-33
+// stddev(f - f_GSL): 5.1725776093070958e-17
 const testcase_lbincoef<double>
 data089[91] =
 {
@@ -5742,7 +5742,7 @@ data089[91] =
   { 4.4998096703302508, 90, 89, 0.0 },
   { 0.0000000000000000, 90, 90, 0.0 },
 };
-const double toler089 = 1.0000000000000005e-08;
+const double toler089 = 2.5000000000000020e-13;
 
 // Divergence at n=91 k=92 f=-inf f_GSL=-inf
 // Divergence at n=91 k=93 f=-inf f_GSL=-inf
@@ -5750,11 +5750,11 @@ const double toler089 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=91 k=200 f=-inf f_GSL=-inf
 // Test data for n=91.
-// max(|f - f_GSL|): 1.5810108777714049e-09
-// max(|f - f_GSL| / |f_GSL|): 3.5048993999642729e-10
-// mean(f - f_GSL): -5.8073553695383294e-10
-// variance(f - f_GSL): 3.7468115296530872e-21
-// stddev(f - f_GSL): 6.1211204282002878e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2457800682525111e-15
+// mean(f - f_GSL): -1.1005689113675464e-15
+// variance(f - f_GSL): 1.3456729554102725e-32
+// stddev(f - f_GSL): 1.1600314458713060e-16
 const testcase_lbincoef<double>
 data090[92] =
 {
@@ -5851,7 +5851,7 @@ data090[92] =
   { 4.5108595065168515, 91, 90, 0.0 },
   { 0.0000000000000000, 91, 91, 0.0 },
 };
-const double toler090 = 2.5000000000000012e-08;
+const double toler090 = 2.5000000000000020e-13;
 
 // Divergence at n=92 k=93 f=-inf f_GSL=-inf
 // Divergence at n=92 k=94 f=-inf f_GSL=-inf
@@ -5859,11 +5859,11 @@ const double toler090 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=92 k=200 f=-inf f_GSL=-inf
 // Test data for n=92.
-// max(|f - f_GSL|): 1.0253558002659702e-09
-// max(|f - f_GSL| / |f_GSL|): 1.6793603230717719e-10
-// mean(f - f_GSL): 1.6997863093165116e-10
-// variance(f - f_GSL): 3.1746507000544163e-22
-// stddev(f - f_GSL): 1.7817549494962590e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2414737110339704e-15
+// mean(f - f_GSL): -1.0887348370517664e-15
+// variance(f - f_GSL): 1.3024214286760713e-32
+// stddev(f - f_GSL): 1.1412367978101965e-16
 const testcase_lbincoef<double>
 data091[93] =
 {
@@ -5961,7 +5961,7 @@ data091[93] =
   { 4.5217885770490511, 92, 91, 0.0 },
   { 0.0000000000000000, 92, 92, 0.0 },
 };
-const double toler091 = 1.0000000000000005e-08;
+const double toler091 = 2.5000000000000020e-13;
 
 // Divergence at n=93 k=94 f=-inf f_GSL=-inf
 // Divergence at n=93 k=95 f=-inf f_GSL=-inf
@@ -5969,11 +5969,11 @@ const double toler091 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=93 k=200 f=-inf f_GSL=-inf
 // Test data for n=93.
-// max(|f - f_GSL|): 9.2350305180843861e-10
-// max(|f - f_GSL| / |f_GSL|): 7.8705573590969885e-11
-// mean(f - f_GSL): 6.2310062546996366e-11
-// variance(f - f_GSL): 4.2196684714232427e-23
-// stddev(f - f_GSL): 6.4958975295360400e-12
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2372446936408855e-15
+// mean(f - f_GSL): -1.0771525515512158e-15
+// variance(f - f_GSL): 1.2610037717129110e-32
+// stddev(f - f_GSL): 1.1229442424772973e-16
 const testcase_lbincoef<double>
 data092[94] =
 {
@@ -6072,7 +6072,7 @@ data092[94] =
   { 4.5325994931532705, 93, 92, 0.0 },
   { 0.0000000000000000, 93, 93, 0.0 },
 };
-const double toler092 = 5.0000000000000026e-09;
+const double toler092 = 2.5000000000000020e-13;
 
 // Divergence at n=94 k=95 f=-inf f_GSL=-inf
 // Divergence at n=94 k=96 f=-inf f_GSL=-inf
@@ -6080,11 +6080,11 @@ const double toler092 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=94 k=200 f=-inf f_GSL=-inf
 // Test data for n=94.
-// max(|f - f_GSL|): 1.0344507472836995e-09
-// max(|f - f_GSL| / |f_GSL|): 6.5390096690301567e-11
-// mean(f - f_GSL): 1.6819907805735344e-10
-// variance(f - f_GSL): 3.0416911913056234e-22
-// stddev(f - f_GSL): 1.7440444923526530e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2330906931083886e-15
+// mean(f - f_GSL): -1.0658141036401502e-15
+// variance(f - f_GSL): 1.2213238098034678e-32
+// stddev(f - f_GSL): 1.1051351997848353e-16
 const testcase_lbincoef<double>
 data093[95] =
 {
@@ -6184,7 +6184,7 @@ data093[95] =
   { 4.5432947822699816, 94, 93, 0.0 },
   { 0.0000000000000000, 94, 94, 0.0 },
 };
-const double toler093 = 5.0000000000000026e-09;
+const double toler093 = 2.5000000000000020e-13;
 
 // Divergence at n=95 k=96 f=-inf f_GSL=-inf
 // Divergence at n=95 k=97 f=-inf f_GSL=-inf
@@ -6192,11 +6192,11 @@ const double toler093 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=95 k=200 f=-inf f_GSL=-inf
 // Test data for n=95.
-// max(|f - f_GSL|): 1.1881624573106819e-09
-// max(|f - f_GSL| / |f_GSL|): 8.3138400009681519e-11
-// mean(f - f_GSL): -2.1090536724462558e-10
-// variance(f - f_GSL): 4.7315048172062897e-22
-// stddev(f - f_GSL): 2.1752022474258088e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2290094829953133e-15
+// mean(f - f_GSL): -1.0547118733938987e-15
+// variance(f - f_GSL): 1.1832913578315177e-32
+// stddev(f - f_GSL): 1.0877919644084146e-16
 const testcase_lbincoef<double>
 data094[96] =
 {
@@ -6297,7 +6297,7 @@ data094[96] =
   { 4.5538768916005665, 95, 94, 0.0 },
   { 0.0000000000000000, 95, 95, 0.0 },
 };
-const double toler094 = 5.0000000000000026e-09;
+const double toler094 = 2.5000000000000020e-13;
 
 // Divergence at n=96 k=97 f=-inf f_GSL=-inf
 // Divergence at n=96 k=98 f=-inf f_GSL=-inf
@@ -6305,11 +6305,11 @@ const double toler094 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=96 k=200 f=-inf f_GSL=-inf
 // Test data for n=96.
-// max(|f - f_GSL|): 1.1589236237341538e-09
-// max(|f - f_GSL| / |f_GSL|): 1.0731428010667655e-10
-// mean(f - f_GSL): 2.6829771394256296e-10
-// variance(f - f_GSL): 7.5764055346789474e-22
-// stddev(f - f_GSL): 2.7525271178825738e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2249989282996277e-15
+// mean(f - f_GSL): -1.6298531825424978e-15
+// variance(f - f_GSL): 2.7959296383947390e-32
+// stddev(f - f_GSL): 1.6721033575693637e-16
 const testcase_lbincoef<double>
 data095[97] =
 {
@@ -6411,7 +6411,7 @@ data095[97] =
   { 4.5643481914678432, 96, 95, 0.0 },
   { 0.0000000000000000, 96, 96, 0.0 },
 };
-const double toler095 = 1.0000000000000005e-08;
+const double toler095 = 2.5000000000000020e-13;
 
 // Divergence at n=97 k=98 f=-inf f_GSL=-inf
 // Divergence at n=97 k=99 f=-inf f_GSL=-inf
@@ -6419,11 +6419,11 @@ const double toler095 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=97 k=200 f=-inf f_GSL=-inf
 // Test data for n=97.
-// max(|f - f_GSL|): 9.5320729087688960e-10
-// max(|f - f_GSL| / |f_GSL|): 3.9372183933792783e-11
-// mean(f - f_GSL): 1.0376650106063236e-10
-// variance(f - f_GSL): 1.1214939959101810e-22
-// stddev(f - f_GSL): 1.0590061359171537e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2210569806965852e-15
+// mean(f - f_GSL): -1.6132220276185948e-15
+// variance(f - f_GSL): 2.7106340782080704e-32
+// stddev(f - f_GSL): 1.6464003395918231e-16
 const testcase_lbincoef<double>
 data096[98] =
 {
@@ -6526,7 +6526,7 @@ data096[98] =
   { 4.5747109785033899, 97, 96, 0.0 },
   { 0.0000000000000000, 97, 97, 0.0 },
 };
-const double toler096 = 2.5000000000000013e-09;
+const double toler096 = 2.5000000000000020e-13;
 
 // Divergence at n=98 k=99 f=-inf f_GSL=-inf
 // Divergence at n=98 k=100 f=-inf f_GSL=-inf
@@ -6534,11 +6534,11 @@ const double toler096 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=98 k=200 f=-inf f_GSL=-inf
 // Test data for n=98.
-// max(|f - f_GSL|): 1.7661818674241658e-09
-// max(|f - f_GSL| / |f_GSL|): 1.6655177872657882e-10
-// mean(f - f_GSL): 8.4493378399385638e-10
-// variance(f - f_GSL): 7.3591625191673777e-21
-// stddev(f - f_GSL): 8.5785561251106687e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2171816740757874e-15
+// mean(f - f_GSL): 1.2560098864446215e-16
+// variance(f - f_GSL): 1.6261820350876350e-34
+// stddev(f - f_GSL): 1.2752184264225621e-17
 const testcase_lbincoef<double>
 data097[99] =
 {
@@ -6642,7 +6642,7 @@ data097[99] =
   { 4.5849674786705350, 98, 97, 0.0 },
   { 0.0000000000000000, 98, 98, 0.0 },
 };
-const double toler097 = 1.0000000000000005e-08;
+const double toler097 = 2.5000000000000020e-13;
 
 // Divergence at n=99 k=100 f=-inf f_GSL=-inf
 // Divergence at n=99 k=101 f=-inf f_GSL=-inf
@@ -6650,11 +6650,11 @@ const double toler097 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=99 k=200 f=-inf f_GSL=-inf
 // Test data for n=99.
-// max(|f - f_GSL|): 1.3883578731110902e-09
-// max(|f - f_GSL| / |f_GSL|): 8.3084942834244963e-11
-// mean(f - f_GSL): 4.4878561311634257e-10
-// variance(f - f_GSL): 2.0549793545578158e-21
-// stddev(f - f_GSL): 4.5331880112761875e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2133711203552351e-15
+// mean(f - f_GSL): -1.2967404927621828e-15
+// variance(f - f_GSL): 1.7156778956934075e-32
+// stddev(f - f_GSL): 1.3098388815779625e-16
 const testcase_lbincoef<double>
 data098[100] =
 {
@@ -6759,7 +6759,7 @@ data098[100] =
   { 4.5951198501346084, 99, 98, 0.0 },
   { 0.0000000000000000, 99, 99, 0.0 },
 };
-const double toler098 = 5.0000000000000026e-09;
+const double toler098 = 2.5000000000000020e-13;
 
 // Divergence at n=100 k=101 f=-inf f_GSL=-inf
 // Divergence at n=100 k=102 f=-inf f_GSL=-inf
@@ -6767,11 +6767,11 @@ const double toler098 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=100 k=200 f=-inf f_GSL=-inf
 // Test data for n=100.
-// max(|f - f_GSL|): 1.4708518847328378e-09
-// max(|f - f_GSL| / |f_GSL|): 4.5852524937185764e-11
-// mean(f - f_GSL): 5.5068891141321604e-10
-// variance(f - f_GSL): 3.0629085992500763e-21
-// stddev(f - f_GSL): 5.5343550656332810e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2096235055523331e-15
+// mean(f - f_GSL): -1.5653045416497257e-15
+// variance(f - f_GSL): 2.4746800911903501e-32
+// stddev(f - f_GSL): 1.5731115952755387e-16
 const testcase_lbincoef<double>
 data099[101] =
 {
@@ -6877,7 +6877,7 @@ data099[101] =
   { 4.6051701859880723, 100, 99, 0.0 },
   { 0.0000000000000000, 100, 100, 0.0 },
 };
-const double toler099 = 2.5000000000000013e-09;
+const double toler099 = 2.5000000000000020e-13;
 
 // Divergence at n=101 k=102 f=-inf f_GSL=-inf
 // Divergence at n=101 k=103 f=-inf f_GSL=-inf
@@ -6885,11 +6885,11 @@ const double toler099 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=101 k=200 f=-inf f_GSL=-inf
 // Test data for n=101.
-// max(|f - f_GSL|): 1.0297185326635372e-09
-// max(|f - f_GSL| / |f_GSL|): 8.3365347977744391e-11
-// mean(f - f_GSL): 1.5739775496031678e-10
-// variance(f - f_GSL): 2.4771624675893428e-22
-// stddev(f - f_GSL): 1.5739003995136868e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2059370860934765e-15
+// mean(f - f_GSL): 4.0055105202162511e-16
+// variance(f - f_GSL): 1.6042541729354300e-33
+// stddev(f - f_GSL): 4.0053141860975526e-17
 const testcase_lbincoef<double>
 data100[102] =
 {
@@ -6996,7 +6996,7 @@ data100[102] =
   { 4.6151205168412730, 101, 100, 0.0 },
   { 0.0000000000000000, 101, 101, 0.0 },
 };
-const double toler100 = 5.0000000000000026e-09;
+const double toler100 = 2.5000000000000020e-13;
 
 // Divergence at n=102 k=103 f=-inf f_GSL=-inf
 // Divergence at n=102 k=104 f=-inf f_GSL=-inf
@@ -7004,11 +7004,11 @@ const double toler100 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=102 k=200 f=-inf f_GSL=-inf
 // Test data for n=102.
-// max(|f - f_GSL|): 2.3306370167119894e-09
-// max(|f - f_GSL| / |f_GSL|): 3.4123996268996445e-10
-// mean(f - f_GSL): -1.3985738220177614e-09
-// variance(f - f_GSL): 1.9364561684951651e-20
-// stddev(f - f_GSL): 1.3915660848465535e-10
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.2023101853453244e-15
+// mean(f - f_GSL): -1.8108492052138475e-15
+// variance(f - f_GSL): 3.2463957029453403e-32
+// stddev(f - f_GSL): 1.8017757082792909e-16
 const testcase_lbincoef<double>
 data101[103] =
 {
@@ -7116,7 +7116,7 @@ data101[103] =
   { 4.6249728132842733, 102, 101, 0.0 },
   { 0.0000000000000000, 102, 102, 0.0 },
 };
-const double toler101 = 2.5000000000000012e-08;
+const double toler101 = 2.5000000000000020e-13;
 
 // Divergence at n=103 k=104 f=-inf f_GSL=-inf
 // Divergence at n=103 k=105 f=-inf f_GSL=-inf
@@ -7124,11 +7124,11 @@ const double toler101 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=103 k=200 f=-inf f_GSL=-inf
 // Test data for n=103.
-// max(|f - f_GSL|): 1.1929159882129170e-09
-// max(|f - f_GSL| / |f_GSL|): 2.5738635230721011e-10
-// mean(f - f_GSL): -2.0679280510194076e-10
-// variance(f - f_GSL): 4.1920817053074206e-22
-// stddev(f - f_GSL): 2.0474573756997777e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1987411903521381e-15
+// mean(f - f_GSL): -1.5201515260252143e-15
+// variance(f - f_GSL): 2.2653361189177674e-32
+// stddev(f - f_GSL): 1.5051033582175568e-16
 const testcase_lbincoef<double>
 data102[104] =
 {
@@ -7237,7 +7237,7 @@ data102[104] =
   { 4.6347289882296536, 103, 102, 0.0 },
   { 0.0000000000000000, 103, 103, 0.0 },
 };
-const double toler102 = 2.5000000000000012e-08;
+const double toler102 = 2.5000000000000020e-13;
 
 // Divergence at n=104 k=105 f=-inf f_GSL=-inf
 // Divergence at n=104 k=106 f=-inf f_GSL=-inf
@@ -7245,11 +7245,11 @@ const double toler102 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=104 k=200 f=-inf f_GSL=-inf
 // Test data for n=104.
-// max(|f - f_GSL|): 1.2861960385635030e-09
-// max(|f - f_GSL| / |f_GSL|): 1.4980201806874998e-10
-// mean(f - f_GSL): -1.1645565358603130e-10
-// variance(f - f_GSL): 1.3165694540271087e-22
-// stddev(f - f_GSL): 1.1474186045324125e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1952285487650646e-15
+// mean(f - f_GSL): 1.1842378929335003e-16
+// variance(f - f_GSL): 1.3614463354406022e-34
+// stddev(f - f_GSL): 1.1668103253916646e-17
 const testcase_lbincoef<double>
 data103[105] =
 {
@@ -7359,7 +7359,7 @@ data103[105] =
   { 4.6443908991413423, 104, 103, 0.0 },
   { 0.0000000000000000, 104, 104, 0.0 },
 };
-const double toler103 = 1.0000000000000005e-08;
+const double toler103 = 2.5000000000000020e-13;
 
 // Divergence at n=105 k=106 f=-inf f_GSL=-inf
 // Divergence at n=105 k=107 f=-inf f_GSL=-inf
@@ -7367,11 +7367,11 @@ const double toler103 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=105 k=200 f=-inf f_GSL=-inf
 // Test data for n=105.
-// max(|f - f_GSL|): 1.4572378859156743e-09
-// max(|f - f_GSL| / |f_GSL|): 1.2002301180612453e-10
-// mean(f - f_GSL): 4.9079197728956988e-11
-// variance(f - f_GSL): 2.3159126609534152e-23
-// stddev(f - f_GSL): 4.8123930231781937e-12
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1917707659500348e-15
+// mean(f - f_GSL): -1.2233400875114932e-15
+// variance(f - f_GSL): 1.4388704107894653e-32
+// stddev(f - f_GSL): 1.1995292454915243e-16
 const testcase_lbincoef<double>
 data104[106] =
 {
@@ -7482,7 +7482,7 @@ data104[106] =
   { 4.6539603501575471, 105, 104, 0.0 },
   { 0.0000000000000000, 105, 105, 0.0 },
 };
-const double toler104 = 1.0000000000000005e-08;
+const double toler104 = 2.5000000000000020e-13;
 
 // Divergence at n=106 k=107 f=-inf f_GSL=-inf
 // Divergence at n=106 k=108 f=-inf f_GSL=-inf
@@ -7490,11 +7490,11 @@ const double toler104 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=106 k=200 f=-inf f_GSL=-inf
 // Test data for n=106.
-// max(|f - f_GSL|): 1.8313954797122278e-09
-// max(|f - f_GSL| / |f_GSL|): 2.0858628855473720e-10
-// mean(f - f_GSL): -9.1140347190345987e-10
-// variance(f - f_GSL): 7.9103081950829327e-21
-// stddev(f - f_GSL): 8.8939913397095976e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1883664022622354e-15
+// mean(f - f_GSL): -1.4775304552020775e-15
+// variance(f - f_GSL): 2.0789542392961324e-32
+// stddev(f - f_GSL): 1.4418579123117965e-16
 const testcase_lbincoef<double>
 data105[107] =
 {
@@ -7606,7 +7606,7 @@ data105[107] =
   { 4.6634390941120500, 106, 105, 0.0 },
   { 0.0000000000000000, 106, 106, 0.0 },
 };
-const double toler105 = 2.5000000000000012e-08;
+const double toler105 = 2.5000000000000020e-13;
 
 // Divergence at n=107 k=108 f=-inf f_GSL=-inf
 // Divergence at n=107 k=109 f=-inf f_GSL=-inf
@@ -7614,11 +7614,11 @@ const double toler105 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=107 k=200 f=-inf f_GSL=-inf
 // Test data for n=107.
-// max(|f - f_GSL|): 1.3831140677211806e-09
-// max(|f - f_GSL| / |f_GSL|): 1.9242074370648231e-10
-// mean(f - f_GSL): -1.6909074963256933e-11
-// variance(f - f_GSL): 2.6970928587831762e-24
-// stddev(f - f_GSL): 1.6422828193655245e-12
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1850140704759276e-15
+// mean(f - f_GSL): -1.2006856414464656e-15
+// variance(f - f_GSL): 1.3599246138018757e-32
+// stddev(f - f_GSL): 1.1661580569553491e-16
 const testcase_lbincoef<double>
 data106[108] =
 {
@@ -7731,7 +7731,7 @@ data106[108] =
   { 4.6728288344619386, 107, 106, 0.0 },
   { 0.0000000000000000, 107, 107, 0.0 },
 };
-const double toler106 = 1.0000000000000005e-08;
+const double toler106 = 2.5000000000000020e-13;
 
 // Divergence at n=108 k=109 f=-inf f_GSL=-inf
 // Divergence at n=108 k=110 f=-inf f_GSL=-inf
@@ -7739,11 +7739,11 @@ const double toler106 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=108 k=200 f=-inf f_GSL=-inf
 // Test data for n=108.
-// max(|f - f_GSL|): 1.3618119965030928e-09
-// max(|f - f_GSL| / |f_GSL|): 1.0144361011020455e-10
-// mean(f - f_GSL): -4.1620594840106946e-11
-// variance(f - f_GSL): 1.6188087853054934e-23
-// stddev(f - f_GSL): 4.0234422890175684e-12
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1817124333593079e-15
+// mean(f - f_GSL): -1.4667166563855280e-16
+// variance(f - f_GSL): 2.0103488920005399e-34
+// stddev(f - f_GSL): 1.4178677272582726e-17
 const testcase_lbincoef<double>
 data107[109] =
 {
@@ -7857,7 +7857,7 @@ data107[109] =
   { 4.6821312271242164, 108, 107, 0.0 },
   { 0.0000000000000000, 108, 108, 0.0 },
 };
-const double toler107 = 1.0000000000000005e-08;
+const double toler107 = 2.5000000000000020e-13;
 
 // Divergence at n=109 k=110 f=-inf f_GSL=-inf
 // Divergence at n=109 k=111 f=-inf f_GSL=-inf
@@ -7865,11 +7865,11 @@ const double toler107 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=109 k=200 f=-inf f_GSL=-inf
 // Test data for n=109.
-// max(|f - f_GSL|): 1.5015331200629589e-09
-// max(|f - f_GSL| / |f_GSL|): 8.3141491648915317e-11
-// mean(f - f_GSL): 9.2448327780981669e-11
-// variance(f - f_GSL): 7.9129388439102867e-23
-// stddev(f - f_GSL): 8.8954701078190834e-12
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1784602013848021e-15
+// mean(f - f_GSL): 1.1304088978001593e-16
+// variance(f - f_GSL): 1.1830710410305094e-34
+// stddev(f - f_GSL): 1.0876906918009869e-17
 const testcase_lbincoef<double>
 data108[110] =
 {
@@ -7984,7 +7984,7 @@ data108[110] =
   { 4.6913478822291381, 109, 108, 0.0 },
   { 0.0000000000000000, 109, 109, 0.0 },
 };
-const double toler108 = 5.0000000000000026e-09;
+const double toler108 = 2.5000000000000020e-13;
 
 // Divergence at n=110 k=111 f=-inf f_GSL=-inf
 // Divergence at n=110 k=112 f=-inf f_GSL=-inf
@@ -7992,11 +7992,11 @@ const double toler108 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=110 k=200 f=-inf f_GSL=-inf
 // Test data for n=110.
-// max(|f - f_GSL|): 2.1443256059683335e-09
-// max(|f - f_GSL| / |f_GSL|): 1.3709957057045140e-10
-// mean(f - f_GSL): 7.1871128868126012e-10
-// variance(f - f_GSL): 4.7385617131441658e-21
-// stddev(f - f_GSL): 6.8837211689203142e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1752561305660071e-15
+// mean(f - f_GSL): -1.6803375507840207e-15
+// variance(f - f_GSL): 2.5901843437008877e-32
+// stddev(f - f_GSL): 1.6094049657251862e-16
 const testcase_lbincoef<double>
 data109[111] =
 {
@@ -8112,7 +8112,7 @@ data109[111] =
   { 4.7004803657924299, 110, 109, 0.0 },
   { 0.0000000000000000, 110, 110, 0.0 },
 };
-const double toler109 = 1.0000000000000005e-08;
+const double toler109 = 2.5000000000000020e-13;
 
 // Divergence at n=111 k=112 f=-inf f_GSL=-inf
 // Divergence at n=111 k=113 f=-inf f_GSL=-inf
@@ -8120,11 +8120,11 @@ const double toler109 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=111 k=200 f=-inf f_GSL=-inf
 // Test data for n=111.
-// max(|f - f_GSL|): 1.7635386484471383e-09
-// max(|f - f_GSL| / |f_GSL|): 3.0938019695254987e-10
-// mean(f - f_GSL): -7.3012351720080915e-10
-// variance(f - f_GSL): 4.8457916761142916e-21
-// stddev(f - f_GSL): 6.9611720824256972e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1720990204130768e-15
+// mean(f - f_GSL): -1.4115692741662704e-15
+// variance(f - f_GSL): 1.8112419070389795e-32
+// stddev(f - f_GSL): 1.3458238766788838e-16
 const testcase_lbincoef<double>
 data110[112] =
 {
@@ -8241,7 +8241,7 @@ data110[112] =
   { 4.7095302013123046, 111, 110, 0.0 },
   { 0.0000000000000000, 111, 111, 0.0 },
 };
-const double toler110 = 2.5000000000000012e-08;
+const double toler110 = 2.5000000000000020e-13;
 
 // Divergence at n=112 k=113 f=-inf f_GSL=-inf
 // Divergence at n=112 k=114 f=-inf f_GSL=-inf
@@ -8249,11 +8249,11 @@ const double toler110 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=112 k=200 f=-inf f_GSL=-inf
 // Test data for n=112.
-// max(|f - f_GSL|): 1.4598100506191258e-09
-// max(|f - f_GSL| / |f_GSL|): 1.6472970126818112e-10
-// mean(f - f_GSL): 4.1426527891457449e-11
-// variance(f - f_GSL): 1.5459643262516930e-23
-// stddev(f - f_GSL): 3.9318752857277818e-12
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1689877119990062e-15
+// mean(f - f_GSL): -1.6505970631595248e-15
+// variance(f - f_GSL): 2.4542824070067430e-32
+// stddev(f - f_GSL): 1.5666149517372617e-16
 const testcase_lbincoef<double>
 data111[113] =
 {
@@ -8371,7 +8371,7 @@ data111[113] =
   { 4.7184988712950826, 112, 111, 0.0 },
   { 0.0000000000000000, 112, 112, 0.0 },
 };
-const double toler111 = 1.0000000000000005e-08;
+const double toler111 = 2.5000000000000020e-13;
 
 // Divergence at n=113 k=114 f=-inf f_GSL=-inf
 // Divergence at n=113 k=115 f=-inf f_GSL=-inf
@@ -8379,11 +8379,11 @@ const double toler111 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=113 k=200 f=-inf f_GSL=-inf
 // Test data for n=113.
-// max(|f - f_GSL|): 1.3998544545756886e-09
-// max(|f - f_GSL| / |f_GSL|): 8.2108160979939842e-11
-// mean(f - f_GSL): -2.1833856360325100e-11
-// variance(f - f_GSL): 4.2560709786371057e-24
-// stddev(f - f_GSL): 2.0630247159540059e-12
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1659210861297305e-15
+// mean(f - f_GSL): -2.1347446227880202e-15
+// variance(f - f_GSL): 4.0685515303903975e-32
+// stddev(f - f_GSL): 2.0170650783726332e-16
 const testcase_lbincoef<double>
 data112[114] =
 {
@@ -8502,7 +8502,7 @@ data112[114] =
   { 4.7273878187123728, 113, 112, 0.0 },
   { 0.0000000000000000, 113, 113, 0.0 },
 };
-const double toler112 = 5.0000000000000026e-09;
+const double toler112 = 2.5000000000000020e-13;
 
 // Divergence at n=114 k=115 f=-inf f_GSL=-inf
 // Divergence at n=114 k=116 f=-inf f_GSL=-inf
@@ -8510,11 +8510,11 @@ const double toler112 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=114 k=200 f=-inf f_GSL=-inf
 // Test data for n=114.
-// max(|f - f_GSL|): 1.4550920468536788e-09
-// max(|f - f_GSL| / |f_GSL|): 6.2636222681171634e-11
-// mean(f - f_GSL): 3.0621796885616673e-11
-// variance(f - f_GSL): 8.2975424067371303e-24
-// stddev(f - f_GSL): 2.8805455050627356e-12
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1628980616116093e-15
+// mean(f - f_GSL): -1.8690363266733069e-15
+// variance(f - f_GSL): 3.0911752146722963e-32
+// stddev(f - f_GSL): 1.7581738294811172e-16
 const testcase_lbincoef<double>
 data113[115] =
 {
@@ -8634,7 +8634,7 @@ data113[115] =
   { 4.7361984483944752, 114, 113, 0.0 },
   { 0.0000000000000000, 114, 114, 0.0 },
 };
-const double toler113 = 5.0000000000000026e-09;
+const double toler113 = 2.5000000000000020e-13;
 
 // Divergence at n=115 k=116 f=-inf f_GSL=-inf
 // Divergence at n=115 k=117 f=-inf f_GSL=-inf
@@ -8642,11 +8642,11 @@ const double toler113 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=115 k=200 f=-inf f_GSL=-inf
 // Test data for n=115.
-// max(|f - f_GSL|): 1.7943264651876234e-09
-// max(|f - f_GSL| / |f_GSL|): 7.6275495222227524e-11
-// mean(f - f_GSL): 3.8087883804737118e-10
-// variance(f - f_GSL): 1.2724361403091576e-21
-// stddev(f - f_GSL): 3.5671222859738880e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1599175936101369e-15
+// mean(f - f_GSL): 5.9722342014318767e-16
+// variance(f - f_GSL): 3.1284986294013660e-33
+// stddev(f - f_GSL): 5.5932983376549534e-17
 const testcase_lbincoef<double>
 data114[116] =
 {
@@ -8767,7 +8767,7 @@ data114[116] =
   { 4.7449321283632457, 115, 114, 0.0 },
   { 0.0000000000000000, 115, 115, 0.0 },
 };
-const double toler114 = 5.0000000000000026e-09;
+const double toler114 = 2.5000000000000020e-13;
 
 // Divergence at n=116 k=117 f=-inf f_GSL=-inf
 // Divergence at n=116 k=118 f=-inf f_GSL=-inf
@@ -8775,11 +8775,11 @@ const double toler114 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=116 k=200 f=-inf f_GSL=-inf
 // Test data for n=116.
-// max(|f - f_GSL|): 1.7573142940818798e-09
-// max(|f - f_GSL| / |f_GSL|): 2.3129681617455624e-10
-// mean(f - f_GSL): -7.1126250947841030e-10
-// variance(f - f_GSL): 4.3987544451972732e-21
-// stddev(f - f_GSL): 6.6323106419989653e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1569786720943947e-15
+// mean(f - f_GSL): 5.9211894646675012e-16
+// variance(f - f_GSL): 3.0485112270728755e-33
+// stddev(f - f_GSL): 5.5213324723954773e-17
 const testcase_lbincoef<double>
 data115[117] =
 {
@@ -8901,7 +8901,7 @@ data115[117] =
   { 4.7535901911063547, 116, 115, 0.0 },
   { 0.0000000000000000, 116, 116, 0.0 },
 };
-const double toler115 = 2.5000000000000012e-08;
+const double toler115 = 2.5000000000000020e-13;
 
 // Divergence at n=117 k=118 f=-inf f_GSL=-inf
 // Divergence at n=117 k=119 f=-inf f_GSL=-inf
@@ -8909,11 +8909,11 @@ const double toler115 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=117 k=200 f=-inf f_GSL=-inf
 // Test data for n=117.
-// max(|f - f_GSL|): 1.2504415281000547e-09
-// max(|f - f_GSL| / |f_GSL|): 1.1928087727441992e-10
-// mean(f - f_GSL): -1.4565981565915458e-10
-// variance(f - f_GSL): 1.8288993088957190e-22
-// stddev(f - f_GSL): 1.3523680375163113e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1540803203618788e-15
+// mean(f - f_GSL): -2.0623803982867315e-15
+// variance(f - f_GSL): 3.6664674048798729e-32
+// stddev(f - f_GSL): 1.9148021842686186e-16
 const testcase_lbincoef<double>
 data116[118] =
 {
@@ -9036,7 +9036,7 @@ data116[118] =
   { 4.7621739347977723, 117, 116, 0.0 },
   { 0.0000000000000000, 117, 117, 0.0 },
 };
-const double toler116 = 1.0000000000000005e-08;
+const double toler116 = 2.5000000000000020e-13;
 
 // Divergence at n=118 k=119 f=-inf f_GSL=-inf
 // Divergence at n=118 k=120 f=-inf f_GSL=-inf
@@ -9044,11 +9044,11 @@ const double toler116 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=118 k=200 f=-inf f_GSL=-inf
 // Test data for n=118.
-// max(|f - f_GSL|): 2.2760673346056137e-09
-// max(|f - f_GSL| / |f_GSL|): 2.0464268669692744e-10
-// mean(f - f_GSL): 8.1183627514269384e-10
-// variance(f - f_GSL): 5.6327419117258025e-21
-// stddev(f - f_GSL): 7.5051594997879973e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1512215936389364e-15
+// mean(f - f_GSL): 5.8216736753453587e-16
+// variance(f - f_GSL): 2.8965342153712205e-33
+// stddev(f - f_GSL): 5.3819459448894694e-17
 const testcase_lbincoef<double>
 data117[119] =
 {
@@ -9172,7 +9172,7 @@ data117[119] =
   { 4.7706846244656731, 118, 117, 0.0 },
   { 0.0000000000000000, 118, 118, 0.0 },
 };
-const double toler117 = 2.5000000000000012e-08;
+const double toler117 = 2.5000000000000020e-13;
 
 // Divergence at n=119 k=120 f=-inf f_GSL=-inf
 // Divergence at n=119 k=121 f=-inf f_GSL=-inf
@@ -9180,11 +9180,11 @@ const double toler117 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=119 k=200 f=-inf f_GSL=-inf
 // Test data for n=119.
-// max(|f - f_GSL|): 1.3962448974780273e-09
-// max(|f - f_GSL| / |f_GSL|): 2.5283829251569267e-10
-// mean(f - f_GSL): -3.9483344001685814e-10
-// variance(f - f_GSL): 1.3210375992278447e-21
-// stddev(f - f_GSL): 3.6346080933545565e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1484015777522870e-15
+// mean(f - f_GSL): -1.3174646558885191e-15
+// variance(f - f_GSL): 1.4708394487808381e-32
+// stddev(f - f_GSL): 1.2127816987326442e-16
 const testcase_lbincoef<double>
 data118[120] =
 {
@@ -9309,7 +9309,7 @@ data118[120] =
   { 4.7791234931115127, 119, 118, 0.0 },
   { 0.0000000000000000, 119, 119, 0.0 },
 };
-const double toler118 = 2.5000000000000012e-08;
+const double toler118 = 2.5000000000000020e-13;
 
 // Divergence at n=120 k=121 f=-inf f_GSL=-inf
 // Divergence at n=120 k=122 f=-inf f_GSL=-inf
@@ -9317,11 +9317,11 @@ const double toler118 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=120 k=200 f=-inf f_GSL=-inf
 // Test data for n=120.
-// max(|f - f_GSL|): 1.5502337191719562e-09
-// max(|f - f_GSL| / |f_GSL|): 1.2748383101206787e-10
-// mean(f - f_GSL): 2.0704134825310643e-10
-// variance(f - f_GSL): 3.6019447960153857e-22
-// stddev(f - f_GSL): 1.8978790256534756e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1456193878673005e-15
+// mean(f - f_GSL): 1.0276444525455995e-16
+// variance(f - f_GSL): 8.8737796960123000e-35
+// stddev(f - f_GSL): 9.4200741483346621e-18
 const testcase_lbincoef<double>
 data119[121] =
 {
@@ -9447,7 +9447,7 @@ data119[121] =
   { 4.7874917427820378, 120, 119, 0.0 },
   { 0.0000000000000000, 120, 120, 0.0 },
 };
-const double toler119 = 1.0000000000000005e-08;
+const double toler119 = 2.5000000000000020e-13;
 
 // Divergence at n=121 k=122 f=-inf f_GSL=-inf
 // Divergence at n=121 k=123 f=-inf f_GSL=-inf
@@ -9455,11 +9455,11 @@ const double toler119 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=121 k=200 f=-inf f_GSL=-inf
 // Test data for n=121.
-// max(|f - f_GSL|): 1.3733369996771216e-09
-// max(|f - f_GSL| / |f_GSL|): 6.4828179994958367e-11
-// mean(f - f_GSL): -1.4140499336120184e-11
-// variance(f - f_GSL): 1.6661672030549466e-24
-// stddev(f - f_GSL): 1.2908009928160679e-12
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1428741672892728e-15
+// mean(f - f_GSL): -1.2958668746444451e-15
+// variance(f - f_GSL): 1.3992968836124098e-32
+// stddev(f - f_GSL): 1.1829187984018218e-16
 const testcase_lbincoef<double>
 data120[122] =
 {
@@ -9586,7 +9586,7 @@ data120[122] =
   { 4.7957905455967307, 121, 120, 0.0 },
   { 0.0000000000000000, 121, 121, 0.0 },
 };
-const double toler120 = 5.0000000000000026e-09;
+const double toler120 = 2.5000000000000020e-13;
 
 // Divergence at n=122 k=123 f=-inf f_GSL=-inf
 // Divergence at n=122 k=124 f=-inf f_GSL=-inf
@@ -9594,11 +9594,11 @@ const double toler120 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=122 k=200 f=-inf f_GSL=-inf
 // Test data for n=122.
-// max(|f - f_GSL|): 2.2065478333388455e-09
-// max(|f - f_GSL| / |f_GSL|): 1.4698290088946872e-10
-// mean(f - f_GSL): 6.7579176581743446e-10
-// variance(f - f_GSL): 3.7740812161944014e-21
-// stddev(f - f_GSL): 6.1433551225648696e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1401650863238633e-15
+// mean(f - f_GSL): -1.2853313715985553e-15
+// variance(f - f_GSL): 1.3652609404884242e-32
+// stddev(f - f_GSL): 1.1684438114382841e-16
 const testcase_lbincoef<double>
 data121[123] =
 {
@@ -9726,7 +9726,7 @@ data121[123] =
   { 4.8040210447333038, 122, 121, 0.0 },
   { 0.0000000000000000, 122, 122, 0.0 },
 };
-const double toler121 = 1.0000000000000005e-08;
+const double toler121 = 2.5000000000000020e-13;
 
 // Divergence at n=123 k=124 f=-inf f_GSL=-inf
 // Divergence at n=123 k=125 f=-inf f_GSL=-inf
@@ -9734,11 +9734,11 @@ const double toler121 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=123 k=200 f=-inf f_GSL=-inf
 // Test data for n=123.
-// max(|f - f_GSL|): 1.5658656593586784e-09
-// max(|f - f_GSL| / |f_GSL|): 9.6217119175851583e-11
-// mean(f - f_GSL): 2.0436125909796945e-10
-// variance(f - f_GSL): 3.4230134201158822e-22
-// stddev(f - f_GSL): 1.8501387569898326e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1374913411934085e-15
+// mean(f - f_GSL): 3.2948554279198194e-16
+// variance(f - f_GSL): 8.8978317408334617e-34
+// stddev(f - f_GSL): 2.9829233548372408e-17
 const testcase_lbincoef<double>
 data122[124] =
 {
@@ -9867,7 +9867,7 @@ data122[124] =
   { 4.8121843553723807, 123, 122, 0.0 },
   { 0.0000000000000000, 123, 123, 0.0 },
 };
-const double toler122 = 5.0000000000000026e-09;
+const double toler122 = 2.5000000000000020e-13;
 
 // Divergence at n=124 k=125 f=-inf f_GSL=-inf
 // Divergence at n=124 k=126 f=-inf f_GSL=-inf
@@ -9875,11 +9875,11 @@ const double toler122 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=124 k=200 f=-inf f_GSL=-inf
 // Test data for n=124.
-// max(|f - f_GSL|): 1.2999663567825337e-09
-// max(|f - f_GSL| / |f_GSL|): 9.0632102126527214e-11
-// mean(f - f_GSL): -1.4565944184141698e-10
-// variance(f - f_GSL): 1.7248205805763153e-22
-// stddev(f - f_GSL): 1.3133242480729256e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1348521530058098e-15
+// mean(f - f_GSL): -1.9468870959826747e-15
+// variance(f - f_GSL): 3.0814006930474861e-32
+// stddev(f - f_GSL): 1.7553918915864589e-16
 const testcase_lbincoef<double>
 data123[125] =
 {
@@ -10009,7 +10009,7 @@ data123[125] =
   { 4.8202815656050575, 124, 123, 0.0 },
   { 0.0000000000000000, 124, 124, 0.0 },
 };
-const double toler123 = 5.0000000000000026e-09;
+const double toler123 = 2.5000000000000020e-13;
 
 // Divergence at n=125 k=126 f=-inf f_GSL=-inf
 // Divergence at n=125 k=127 f=-inf f_GSL=-inf
@@ -10017,11 +10017,11 @@ const double toler123 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=125 k=200 f=-inf f_GSL=-inf
 // Test data for n=125.
-// max(|f - f_GSL|): 1.6398473690060200e-09
-// max(|f - f_GSL| / |f_GSL|): 6.2325912486634049e-11
-// mean(f - f_GSL): 1.4777980602899796e-10
-// variance(f - f_GSL): 1.7610865630822406e-22
-// stddev(f - f_GSL): 1.3270593668266090e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1322467667730593e-15
+// mean(f - f_GSL): -1.9314356110939230e-15
+// variance(f - f_GSL): 3.0082296543681362e-32
+// stddev(f - f_GSL): 1.7344248771186766e-16
 const testcase_lbincoef<double>
 data124[126] =
 {
@@ -10152,7 +10152,7 @@ data124[126] =
   { 4.8283137373023237, 125, 124, 0.0 },
   { 0.0000000000000000, 125, 125, 0.0 },
 };
-const double toler124 = 5.0000000000000026e-09;
+const double toler124 = 2.5000000000000020e-13;
 
 // Divergence at n=126 k=127 f=-inf f_GSL=-inf
 // Divergence at n=126 k=128 f=-inf f_GSL=-inf
@@ -10160,11 +10160,11 @@ const double toler124 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=126 k=200 f=-inf f_GSL=-inf
 // Test data for n=126.
-// max(|f - f_GSL|): 1.5036221157060936e-09
-// max(|f - f_GSL| / |f_GSL|): 3.4746820459839347e-11
-// mean(f - f_GSL): 1.5099066703850274e-10
-// variance(f - f_GSL): 1.8237396413813077e-22
-// stddev(f - f_GSL): 1.3504590483910675e-11
+// max(|f - f_GSL|): 2.8421709430404007e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1296744504766263e-15
+// mean(f - f_GSL): 1.2168743702978094e-15
+// variance(f - f_GSL): 1.1845519690232844e-32
+// stddev(f - f_GSL): 1.0883712459557559e-16
 const testcase_lbincoef<double>
 data125[127] =
 {
@@ -10296,7 +10296,7 @@ data125[127] =
   { 4.8362819069514558, 126, 125, 0.0 },
   { 0.0000000000000000, 126, 126, 0.0 },
 };
-const double toler125 = 2.5000000000000013e-09;
+const double toler125 = 2.5000000000000020e-13;
 
 // Divergence at n=127 k=128 f=-inf f_GSL=-inf
 // Divergence at n=127 k=129 f=-inf f_GSL=-inf
@@ -10304,11 +10304,11 @@ const double toler125 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=127 k=200 f=-inf f_GSL=-inf
 // Test data for n=127.
-// max(|f - f_GSL|): 1.6467112118334626e-09
-// max(|f - f_GSL| / |f_GSL|): 2.7186743286694712e-11
-// mean(f - f_GSL): 1.2414247407832590e-10
-// variance(f - f_GSL): 1.2230474892410197e-22
-// stddev(f - f_GSL): 1.1059147748542922e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1271344941770434e-15
+// mean(f - f_GSL): -2.5673907444456745e-15
+// variance(f - f_GSL): 5.2310210802725541e-32
+// stddev(f - f_GSL): 2.2871425579251841e-16
 const testcase_lbincoef<double>
 data126[128] =
 {
@@ -10441,7 +10441,7 @@ data126[128] =
   { 4.8441870864585894, 127, 126, 0.0 },
   { 0.0000000000000000, 127, 127, 0.0 },
 };
-const double toler126 = 2.5000000000000013e-09;
+const double toler126 = 2.5000000000000020e-13;
 
 // Divergence at n=128 k=129 f=-inf f_GSL=-inf
 // Divergence at n=128 k=130 f=-inf f_GSL=-inf
@@ -10449,11 +10449,11 @@ const double toler126 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=128 k=200 f=-inf f_GSL=-inf
 // Test data for n=128.
-// max(|f - f_GSL|): 1.7483330339018721e-09
-// max(|f - f_GSL| / |f_GSL|): 1.8781451623040815e-10
-// mean(f - f_GSL): -7.7998181901181341e-10
-// variance(f - f_GSL): 4.7900354797716099e-21
-// stddev(f - f_GSL): 6.9210082211854146e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1246262091652471e-15
+// mean(f - f_GSL): 1.6386547588265876e-15
+// variance(f - f_GSL): 2.1141933288734609e-32
+// stddev(f - f_GSL): 1.4540265915290067e-16
 const testcase_lbincoef<double>
 data127[129] =
 {
@@ -10587,7 +10587,7 @@ data127[129] =
   { 4.8520302639196302, 128, 127, 0.0 },
   { 0.0000000000000000, 128, 128, 0.0 },
 };
-const double toler127 = 1.0000000000000005e-08;
+const double toler127 = 2.5000000000000020e-13;
 
 // Divergence at n=129 k=130 f=-inf f_GSL=-inf
 // Divergence at n=129 k=131 f=-inf f_GSL=-inf
@@ -10595,11 +10595,11 @@ const double toler127 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=129 k=200 f=-inf f_GSL=-inf
 // Test data for n=129.
-// max(|f - f_GSL|): 1.4110241863818374e-09
-// max(|f - f_GSL| / |f_GSL|): 1.7286446830538258e-10
-// mean(f - f_GSL): 5.4187082171735637e-11
-// variance(f - f_GSL): 2.2937995532554292e-23
-// stddev(f - f_GSL): 4.7893627480651632e-12
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1221489271534618e-15
+// mean(f - f_GSL): -3.1837780275404490e-15
+// variance(f - f_GSL): 7.9186198469107368e-32
+// stddev(f - f_GSL): 2.8140042371877725e-16
 const testcase_lbincoef<double>
 data128[130] =
 {
@@ -10734,7 +10734,7 @@ data128[130] =
   { 4.8598124043616622, 129, 128, 0.0 },
   { 0.0000000000000000, 129, 129, 0.0 },
 };
-const double toler128 = 1.0000000000000005e-08;
+const double toler128 = 2.5000000000000020e-13;
 
 // Divergence at n=130 k=131 f=-inf f_GSL=-inf
 // Divergence at n=130 k=132 f=-inf f_GSL=-inf
@@ -10742,11 +10742,11 @@ const double toler128 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=130 k=200 f=-inf f_GSL=-inf
 // Test data for n=130.
-// max(|f - f_GSL|): 2.1091182134114206e-09
-// max(|f - f_GSL| / |f_GSL|): 1.8099012668386283e-10
-// mean(f - f_GSL): 8.3119506188830496e-10
-// variance(f - f_GSL): 5.3553825591054973e-21
-// stddev(f - f_GSL): 7.3180479358265324e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1197019995033147e-15
+// mean(f - f_GSL): 2.2645159708384873e-15
+// variance(f - f_GSL): 3.9749838358930029e-32
+// stddev(f - f_GSL): 1.9937361500191049e-16
 const testcase_lbincoef<double>
 data129[131] =
 {
@@ -10882,7 +10882,7 @@ data129[131] =
   { 4.8675344504555937, 130, 129, 0.0 },
   { 0.0000000000000000, 130, 130, 0.0 },
 };
-const double toler129 = 1.0000000000000005e-08;
+const double toler129 = 2.5000000000000020e-13;
 
 // Divergence at n=131 k=132 f=-inf f_GSL=-inf
 // Divergence at n=131 k=133 f=-inf f_GSL=-inf
@@ -10890,11 +10890,11 @@ const double toler129 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=131 k=200 f=-inf f_GSL=-inf
 // Test data for n=131.
-// max(|f - f_GSL|): 1.4786110114073381e-09
-// max(|f - f_GSL| / |f_GSL|): 2.1933602894339669e-10
-// mean(f - f_GSL): -2.3958036901162950e-10
-// variance(f - f_GSL): 4.4150314226902929e-22
-// stddev(f - f_GSL): 2.1011976162870289e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 1.1172847964893933e-15
+// mean(f - f_GSL): -3.7814869081172000e-15
+// variance(f - f_GSL): 1.0999084594059524e-31
+// stddev(f - f_GSL): 3.3164867848462060e-16
 const testcase_lbincoef<double>
 data130[132] =
 {
@@ -11031,7 +11031,7 @@ data130[132] =
   { 4.8751973232011210, 131, 130, 0.0 },
   { 0.0000000000000000, 131, 131, 0.0 },
 };
-const double toler130 = 2.5000000000000012e-08;
+const double toler130 = 2.5000000000000020e-13;
 
 // Divergence at n=132 k=133 f=-inf f_GSL=-inf
 // Divergence at n=132 k=134 f=-inf f_GSL=-inf
@@ -11039,11 +11039,11 @@ const double toler130 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=132 k=200 f=-inf f_GSL=-inf
 // Test data for n=132.
-// max(|f - f_GSL|): 1.5477894521609414e-09
-// max(|f - f_GSL| / |f_GSL|): 1.5439212970066383e-10
-// mean(f - f_GSL): -5.6633653823387832e-10
-// variance(f - f_GSL): 2.4482340974317895e-21
-// stddev(f - f_GSL): 4.9479633157813422e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 6.0747888244798382e-15
+// mean(f - f_GSL): -4.1804488024983341e-15
+// variance(f - f_GSL): 1.3339808547470140e-31
+// stddev(f - f_GSL): 3.6523702642900461e-16
 const testcase_lbincoef<double>
 data131[133] =
 {
@@ -11181,7 +11181,7 @@ data131[133] =
   { 4.8828019225863954, 132, 131, 0.0 },
   { 0.0000000000000000, 132, 132, 0.0 },
 };
-const double toler131 = 1.0000000000000005e-08;
+const double toler131 = 5.0000000000000039e-13;
 
 // Divergence at n=133 k=134 f=-inf f_GSL=-inf
 // Divergence at n=133 k=135 f=-inf f_GSL=-inf
@@ -11189,11 +11189,11 @@ const double toler131 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=133 k=200 f=-inf f_GSL=-inf
 // Test data for n=133.
-// max(|f - f_GSL|): 1.5758985227876110e-09
-// max(|f - f_GSL| / |f_GSL|): 9.5417052806199005e-11
-// mean(f - f_GSL): -3.9209826761872312e-10
-// variance(f - f_GSL): 1.1646390919174013e-21
-// stddev(f - f_GSL): 3.4126808991134836e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 6.0646518226541676e-15
+// mean(f - f_GSL): -3.3008421866467339e-15
+// variance(f - f_GSL): 8.2537448409388338e-32
+// stddev(f - f_GSL): 2.8729331424415073e-16
 const testcase_lbincoef<double>
 data132[134] =
 {
@@ -11332,7 +11332,7 @@ data132[134] =
   { 4.8903491282217146, 133, 132, 0.0 },
   { 0.0000000000000000, 133, 133, 0.0 },
 };
-const double toler132 = 5.0000000000000026e-09;
+const double toler132 = 5.0000000000000039e-13;
 
 // Divergence at n=134 k=135 f=-inf f_GSL=-inf
 // Divergence at n=134 k=136 f=-inf f_GSL=-inf
@@ -11340,11 +11340,11 @@ const double toler132 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=134 k=200 f=-inf f_GSL=-inf
 // Test data for n=134.
-// max(|f - f_GSL|): 1.3769181350653525e-09
-// max(|f - f_GSL| / |f_GSL|): 6.8153894128973217e-11
-// mean(f - f_GSL): -2.8226694397475242e-10
-// variance(f - f_GSL): 5.9902398831667489e-22
-// stddev(f - f_GSL): 2.4474966564158466e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 6.0546244370853646e-15
+// mean(f - f_GSL): -3.0658603228167285e-15
+// variance(f - f_GSL): 7.0668992819556468e-32
+// stddev(f - f_GSL): 2.6583640235971534e-16
 const testcase_lbincoef<double>
 data133[135] =
 {
@@ -11484,7 +11484,7 @@ data133[135] =
   { 4.8978397999509298, 134, 133, 0.0 },
   { 0.0000000000000000, 134, 134, 0.0 },
 };
-const double toler133 = 5.0000000000000026e-09;
+const double toler133 = 5.0000000000000039e-13;
 
 // Divergence at n=135 k=136 f=-inf f_GSL=-inf
 // Divergence at n=135 k=137 f=-inf f_GSL=-inf
@@ -11492,11 +11492,11 @@ const double toler133 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=135 k=200 f=-inf f_GSL=-inf
 // Test data for n=135.
-// max(|f - f_GSL|): 1.9362857983651338e-09
-// max(|f - f_GSL| / |f_GSL|): 1.1843164083509292e-10
-// mean(f - f_GSL): 2.8935599014884624e-10
-// variance(f - f_GSL): 6.2479324602263972e-22
-// stddev(f - f_GSL): 2.4995864578418562e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 6.0447046204060067e-15
+// mean(f - f_GSL): -2.8343340746312822e-15
+// variance(f - f_GSL): 5.9947827266928463e-32
+// stddev(f - f_GSL): 2.4484245397179076e-16
 const testcase_lbincoef<double>
 data134[136] =
 {
@@ -11637,7 +11637,7 @@ data134[136] =
   { 4.9052747784384110, 135, 134, 0.0 },
   { 0.0000000000000000, 135, 135, 0.0 },
 };
-const double toler134 = 1.0000000000000005e-08;
+const double toler134 = 5.0000000000000039e-13;
 
 // Divergence at n=136 k=137 f=-inf f_GSL=-inf
 // Divergence at n=136 k=138 f=-inf f_GSL=-inf
@@ -11645,11 +11645,11 @@ const double toler134 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=136 k=200 f=-inf f_GSL=-inf
 // Test data for n=136.
-// max(|f - f_GSL|): 1.4467502751358552e-09
-// max(|f - f_GSL| / |f_GSL|): 6.0265864651406393e-11
-// mean(f - f_GSL): -1.1546060133935292e-11
-// variance(f - f_GSL): 9.8743923726501038e-25
-// stddev(f - f_GSL): 9.9369977219732242e-13
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 6.0348903790629497e-15
+// mean(f - f_GSL): -3.4360187039493895e-15
+// variance(f - f_GSL): 8.7448786826499565e-32
+// stddev(f - f_GSL): 2.9571741042167191e-16
 const testcase_lbincoef<double>
 data135[137] =
 {
@@ -11791,7 +11791,7 @@ data135[137] =
   { 4.9126548857360604, 136, 135, 0.0 },
   { 0.0000000000000000, 136, 136, 0.0 },
 };
-const double toler135 = 5.0000000000000026e-09;
+const double toler135 = 5.0000000000000039e-13;
 
 // Divergence at n=137 k=138 f=-inf f_GSL=-inf
 // Divergence at n=137 k=139 f=-inf f_GSL=-inf
@@ -11799,11 +11799,11 @@ const double toler135 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=137 k=200 f=-inf f_GSL=-inf
 // Test data for n=137.
-// max(|f - f_GSL|): 2.0719994608953130e-09
-// max(|f - f_GSL| / |f_GSL|): 1.3582900242868944e-10
-// mean(f - f_GSL): -6.7490232404320591e-10
-// variance(f - f_GSL): 3.3490358722281967e-21
-// stddev(f - f_GSL): 5.7870855119206567e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 6.0251797715029116e-15
+// mean(f - f_GSL): -3.6170744338512349e-15
+// variance(f - f_GSL): 9.6195076428301542e-32
+// stddev(f - f_GSL): 3.1015331116772163e-16
 const testcase_lbincoef<double>
 data136[138] =
 {
@@ -11946,7 +11946,7 @@ data136[138] =
   { 4.9199809258280993, 137, 136, 0.0 },
   { 0.0000000000000000, 137, 137, 0.0 },
 };
-const double toler136 = 1.0000000000000005e-08;
+const double toler136 = 5.0000000000000039e-13;
 
 // Divergence at n=138 k=139 f=-inf f_GSL=-inf
 // Divergence at n=138 k=140 f=-inf f_GSL=-inf
@@ -11954,11 +11954,11 @@ const double toler136 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=138 k=200 f=-inf f_GSL=-inf
 // Test data for n=138.
-// max(|f - f_GSL|): 1.5211867321340833e-09
-// max(|f - f_GSL| / |f_GSL|): 5.5229788421902845e-11
-// mean(f - f_GSL): -4.2502335464050441e-10
-// variance(f - f_GSL): 1.3185063235975450e-21
-// stddev(f - f_GSL): 3.6311242385761813e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 6.0155709064326273e-15
+// mean(f - f_GSL): -3.3865795859069522e-15
+// variance(f - f_GSL): 8.3710358094085117e-32
+// stddev(f - f_GSL): 2.8932742368134606e-16
 const testcase_lbincoef<double>
 data137[139] =
 {
@@ -12102,7 +12102,7 @@ data137[139] =
   { 4.9272536851572113, 138, 137, 0.0 },
   { 0.0000000000000000, 138, 138, 0.0 },
 };
-const double toler137 = 5.0000000000000026e-09;
+const double toler137 = 5.0000000000000039e-13;
 
 // Divergence at n=139 k=140 f=-inf f_GSL=-inf
 // Divergence at n=139 k=141 f=-inf f_GSL=-inf
@@ -12110,11 +12110,11 @@ const double toler137 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=139 k=200 f=-inf f_GSL=-inf
 // Test data for n=139.
-// max(|f - f_GSL|): 1.3718590707867406e-09
-// max(|f - f_GSL| / |f_GSL|): 4.8581678834424816e-11
-// mean(f - f_GSL): -2.2981144606351985e-10
-// variance(f - f_GSL): 3.8268527011297830e-22
-// stddev(f - f_GSL): 1.9562343165198240e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 6.0060619411496986e-15
+// mean(f - f_GSL): -2.7533531010703883e-15
+// variance(f - f_GSL): 5.4931600946345907e-32
+// stddev(f - f_GSL): 2.3437491535218932e-16
 const testcase_lbincoef<double>
 data138[140] =
 {
@@ -12259,7 +12259,7 @@ data138[140] =
   { 4.9344739331306755, 139, 138, 0.0 },
   { 0.0000000000000000, 139, 139, 0.0 },
 };
-const double toler138 = 2.5000000000000013e-09;
+const double toler138 = 5.0000000000000039e-13;
 
 // Divergence at n=140 k=141 f=-inf f_GSL=-inf
 // Divergence at n=140 k=142 f=-inf f_GSL=-inf
@@ -12267,11 +12267,11 @@ const double toler138 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=140 k=200 f=-inf f_GSL=-inf
 // Test data for n=140.
-// max(|f - f_GSL|): 1.5900525340839522e-09
-// max(|f - f_GSL| / |f_GSL|): 6.8166425524427022e-11
-// mean(f - f_GSL): 1.0070355896691871e-10
-// variance(f - f_GSL): 7.2954599856791730e-23
-// stddev(f - f_GSL): 8.5413464896813392e-12
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9966510799408898e-15
+// mean(f - f_GSL): -3.1369705887281019e-15
+// variance(f - f_GSL): 7.0791959740350204e-32
+// stddev(f - f_GSL): 2.6606758491095865e-16
 const testcase_lbincoef<double>
 data139[141] =
 {
@@ -12417,7 +12417,7 @@ data139[141] =
   { 4.9416424226093341, 140, 139, 0.0 },
   { 0.0000000000000000, 140, 140, 0.0 },
 };
-const double toler139 = 5.0000000000000026e-09;
+const double toler139 = 5.0000000000000039e-13;
 
 // Divergence at n=141 k=142 f=-inf f_GSL=-inf
 // Divergence at n=141 k=143 f=-inf f_GSL=-inf
@@ -12425,11 +12425,11 @@ const double toler139 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=141 k=200 f=-inf f_GSL=-inf
 // Test data for n=141.
-// max(|f - f_GSL|): 1.8501964405004401e-09
-// max(|f - f_GSL| / |f_GSL|): 5.9991584246292731e-11
-// mean(f - f_GSL): 3.0338333410429803e-10
-// variance(f - f_GSL): 6.5740584138313446e-22
-// stddev(f - f_GSL): 2.5639926703934518e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9873365725446600e-15
+// mean(f - f_GSL): -2.7145734799285517e-15
+// variance(f - f_GSL): 5.2632418050714749e-32
+// stddev(f - f_GSL): 2.2941756264661767e-16
 const testcase_lbincoef<double>
 data140[142] =
 {
@@ -12576,7 +12576,7 @@ data140[142] =
   { 4.9487598903781418, 141, 140, 0.0 },
   { 0.0000000000000000, 141, 141, 0.0 },
 };
-const double toler140 = 5.0000000000000026e-09;
+const double toler140 = 5.0000000000000039e-13;
 
 // Divergence at n=142 k=143 f=-inf f_GSL=-inf
 // Divergence at n=142 k=144 f=-inf f_GSL=-inf
@@ -12584,11 +12584,11 @@ const double toler140 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=142 k=200 f=-inf f_GSL=-inf
 // Test data for n=142.
-// max(|f - f_GSL|): 1.7962520360015333e-09
-// max(|f - f_GSL| / |f_GSL|): 4.8093203127767299e-11
-// mean(f - f_GSL): 2.5964006702203983e-10
-// variance(f - f_GSL): 4.7808241964188320e-22
-// stddev(f - f_GSL): 2.1865095921168131e-11
+// max(|f - f_GSL|): 5.5067062021407764e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9781167126747197e-15
+// mean(f - f_GSL): -3.4906032998004921e-15
+// variance(f - f_GSL): 8.6409270467698182e-32
+// stddev(f - f_GSL): 2.9395453809679171e-16
 const testcase_lbincoef<double>
 data141[143] =
 {
@@ -12736,7 +12736,7 @@ data141[143] =
   { 4.9558270576013683, 142, 141, 0.0 },
   { 0.0000000000000000, 142, 142, 0.0 },
 };
-const double toler141 = 2.5000000000000013e-09;
+const double toler141 = 5.0000000000000039e-13;
 
 // Divergence at n=143 k=144 f=-inf f_GSL=-inf
 // Divergence at n=143 k=145 f=-inf f_GSL=-inf
@@ -12744,11 +12744,11 @@ const double toler141 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=143 k=200 f=-inf f_GSL=-inf
 // Test data for n=143.
-// max(|f - f_GSL|): 1.0585381460259669e-09
-// max(|f - f_GSL| / |f_GSL|): 6.2382393803753385e-11
-// mean(f - f_GSL): -5.4123619166704079e-11
-// variance(f - f_GSL): 2.0628330277526921e-23
-// stddev(f - f_GSL): 4.5418421678353073e-12
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9689898366023832e-15
+// mean(f - f_GSL): -3.8611089634186001e-15
+// variance(f - f_GSL): 1.0498192525523837e-31
+// stddev(f - f_GSL): 3.2400914378337904e-16
 const testcase_lbincoef<double>
 data142[144] =
 {
@@ -12897,7 +12897,7 @@ data142[144] =
   { 4.9628446302598377, 143, 142, 0.0 },
   { 0.0000000000000000, 143, 143, 0.0 },
 };
-const double toler142 = 5.0000000000000026e-09;
+const double toler142 = 5.0000000000000039e-13;
 
 // Divergence at n=144 k=145 f=-inf f_GSL=-inf
 // Divergence at n=144 k=146 f=-inf f_GSL=-inf
@@ -12905,11 +12905,11 @@ const double toler142 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=144 k=200 f=-inf f_GSL=-inf
 // Test data for n=144.
-// max(|f - f_GSL|): 2.0065442640770925e-09
-// max(|f - f_GSL| / |f_GSL|): 1.3803561752843096e-10
-// mean(f - f_GSL): -7.3478390575097551e-10
-// variance(f - f_GSL): 3.7753940625889987e-21
-// stddev(f - f_GSL): 6.1444235389408164e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9599543217938312e-15
+// mean(f - f_GSL): -3.8834835730336513e-15
+// variance(f - f_GSL): 1.0545956192096937e-31
+// stddev(f - f_GSL): 3.2474538013799267e-16
 const testcase_lbincoef<double>
 data143[145] =
 {
@@ -13059,7 +13059,7 @@ data143[145] =
   { 4.9698132995760034, 144, 143, 0.0 },
   { 0.0000000000000000, 144, 144, 0.0 },
 };
-const double toler143 = 1.0000000000000005e-08;
+const double toler143 = 5.0000000000000039e-13;
 
 // Divergence at n=145 k=146 f=-inf f_GSL=-inf
 // Divergence at n=145 k=147 f=-inf f_GSL=-inf
@@ -13067,11 +13067,11 @@ const double toler143 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=145 k=200 f=-inf f_GSL=-inf
 // Test data for n=145.
-// max(|f - f_GSL|): 1.6567014426982496e-09
-// max(|f - f_GSL| / |f_GSL|): 2.4604911423369381e-10
-// mean(f - f_GSL): 4.7821589610627088e-10
-// variance(f - f_GSL): 1.5880525431702094e-21
-// stddev(f - f_GSL): 3.9850376951419283e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9510085856008642e-15
+// mean(f - f_GSL): -3.8568843704786260e-15
+// variance(f - f_GSL): 1.0329756617823434e-31
+// stddev(f - f_GSL): 3.2139938733332135e-16
 const testcase_lbincoef<double>
 data144[146] =
 {
@@ -13222,7 +13222,7 @@ data144[146] =
   { 4.9767337424206062, 145, 144, 0.0 },
   { 0.0000000000000000, 145, 145, 0.0 },
 };
-const double toler144 = 2.5000000000000012e-08;
+const double toler144 = 5.0000000000000039e-13;
 
 // Divergence at n=146 k=147 f=-inf f_GSL=-inf
 // Divergence at n=146 k=148 f=-inf f_GSL=-inf
@@ -13230,11 +13230,11 @@ const double toler144 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=146 k=200 f=-inf f_GSL=-inf
 // Test data for n=146.
-// max(|f - f_GSL|): 1.8249011191073805e-09
-// max(|f - f_GSL| / |f_GSL|): 1.0931717844551992e-10
-// mean(f - f_GSL): 2.5827116711347500e-10
-// variance(f - f_GSL): 4.6000597565382858e-22
-// stddev(f - f_GSL): 2.1447749897222984e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9421510840027729e-15
+// mean(f - f_GSL): -3.6373020997243221e-15
+// variance(f - f_GSL): 9.1236868315109204e-32
+// stddev(f - f_GSL): 3.0205441283833149e-16
 const testcase_lbincoef<double>
 data145[147] =
 {
@@ -13386,7 +13386,7 @@ data145[147] =
   { 4.9836066217083044, 146, 145, 0.0 },
   { 0.0000000000000000, 146, 146, 0.0 },
 };
-const double toler145 = 1.0000000000000005e-08;
+const double toler145 = 5.0000000000000039e-13;
 
 // Divergence at n=147 k=148 f=-inf f_GSL=-inf
 // Divergence at n=147 k=149 f=-inf f_GSL=-inf
@@ -13394,11 +13394,11 @@ const double toler145 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=147 k=200 f=-inf f_GSL=-inf
 // Test data for n=147.
-// max(|f - f_GSL|): 2.0373818188090809e-09
-// max(|f - f_GSL| / |f_GSL|): 2.1908946135474688e-10
-// mean(f - f_GSL): -8.2865222191537971e-10
-// variance(f - f_GSL): 4.7029638911112860e-21
-// stddev(f - f_GSL): 6.8578158994765137e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9333803103953015e-15
+// mean(f - f_GSL): -3.0366100024882659e-15
+// variance(f - f_GSL): 6.3154613608558673e-32
+// stddev(f - f_GSL): 2.5130581690155656e-16
 const testcase_lbincoef<double>
 data146[148] =
 {
@@ -13551,7 +13551,7 @@ data146[148] =
   { 4.9904325867787520, 147, 146, 0.0 },
   { 0.0000000000000000, 147, 147, 0.0 },
 };
-const double toler146 = 2.5000000000000012e-08;
+const double toler146 = 5.0000000000000039e-13;
 
 // Divergence at n=148 k=149 f=-inf f_GSL=-inf
 // Divergence at n=148 k=150 f=-inf f_GSL=-inf
@@ -13559,11 +13559,11 @@ const double toler146 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=148 k=200 f=-inf f_GSL=-inf
 // Test data for n=148.
-// max(|f - f_GSL|): 1.5256205188052263e-09
-// max(|f - f_GSL| / |f_GSL|): 2.7736863066212835e-10
-// mean(f - f_GSL): 5.4512838687514886e-10
-// variance(f - f_GSL): 2.0214380372711923e-21
-// stddev(f - f_GSL): 4.4960405216937183e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9246947944268487e-15
+// mean(f - f_GSL): -3.3977295250273247e-15
+// variance(f - f_GSL): 7.8530876682848748e-32
+// stddev(f - f_GSL): 2.8023361090855739e-16
 const testcase_lbincoef<double>
 data147[149] =
 {
@@ -13717,7 +13717,7 @@ data147[149] =
   { 4.9972122737641484, 148, 147, 0.0 },
   { 0.0000000000000000, 148, 148, 0.0 },
 };
-const double toler147 = 2.5000000000000012e-08;
+const double toler147 = 5.0000000000000039e-13;
 
 // Divergence at n=149 k=150 f=-inf f_GSL=-inf
 // Divergence at n=149 k=151 f=-inf f_GSL=-inf
@@ -13725,11 +13725,11 @@ const double toler147 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=149 k=200 f=-inf f_GSL=-inf
 // Test data for n=149.
-// max(|f - f_GSL|): 2.0149286683590617e-09
-// max(|f - f_GSL| / |f_GSL|): 1.5476194205157444e-10
-// mean(f - f_GSL): 5.8673246409549994e-10
-// variance(f - f_GSL): 2.3259424198701220e-21
-// stddev(f - f_GSL): 4.8228025253685452e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9160931008784918e-15
+// mean(f - f_GSL): -3.3750779948604757e-15
+// variance(f - f_GSL): 7.6963772834949395e-32
+// stddev(f - f_GSL): 2.7742345401019970e-16
 const testcase_lbincoef<double>
 data148[150] =
 {
@@ -13884,7 +13884,7 @@ data148[150] =
   { 5.0039463059454192, 149, 148, 0.0 },
   { 0.0000000000000000, 149, 149, 0.0 },
 };
-const double toler148 = 1.0000000000000005e-08;
+const double toler148 = 5.0000000000000039e-13;
 
 // Divergence at n=150 k=151 f=-inf f_GSL=-inf
 // Divergence at n=150 k=152 f=-inf f_GSL=-inf
@@ -13892,11 +13892,11 @@ const double toler148 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=150 k=200 f=-inf f_GSL=-inf
 // Test data for n=150.
-// max(|f - f_GSL|): 1.9878143575624563e-09
-// max(|f - f_GSL| / |f_GSL|): 2.4690781996048758e-10
-// mean(f - f_GSL): -6.4670023567300362e-10
-// variance(f - f_GSL): 2.8067289074554346e-21
-// stddev(f - f_GSL): 5.2978570266244775e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.9075738285856331e-15
+// mean(f - f_GSL): -2.4116102786559693e-15
+// variance(f - f_GSL): 3.9030910424621658e-32
+// stddev(f - f_GSL): 1.9756242159029550e-16
 const testcase_lbincoef<double>
 data149[151] =
 {
@@ -14052,7 +14052,7 @@ data149[151] =
   { 5.0106352940962324, 150, 149, 0.0 },
   { 0.0000000000000000, 150, 150, 0.0 },
 };
-const double toler149 = 2.5000000000000012e-08;
+const double toler149 = 5.0000000000000039e-13;
 
 // Divergence at n=151 k=152 f=-inf f_GSL=-inf
 // Divergence at n=151 k=153 f=-inf f_GSL=-inf
@@ -14060,11 +14060,11 @@ const double toler149 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=151 k=200 f=-inf f_GSL=-inf
 // Test data for n=151.
-// max(|f - f_GSL|): 1.5753585103084333e-09
-// max(|f - f_GSL| / |f_GSL|): 1.0836750173408105e-10
-// mean(f - f_GSL): -4.2045917624770818e-10
-// variance(f - f_GSL): 1.1785211030839437e-21
-// stddev(f - f_GSL): 3.4329595148849973e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8991356094004845e-15
+// mean(f - f_GSL): -2.9566992129491011e-15
+// variance(f - f_GSL): 5.8277912190245280e-32
+// stddev(f - f_GSL): 2.4140818583934819e-16
 const testcase_lbincoef<double>
 data150[152] =
 {
@@ -14221,7 +14221,7 @@ data150[152] =
   { 5.0172798368149643, 151, 150, 0.0 },
   { 0.0000000000000000, 151, 151, 0.0 },
 };
-const double toler150 = 1.0000000000000005e-08;
+const double toler150 = 5.0000000000000039e-13;
 
 // Divergence at n=152 k=153 f=-inf f_GSL=-inf
 // Divergence at n=152 k=154 f=-inf f_GSL=-inf
@@ -14229,11 +14229,11 @@ const double toler150 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=152 k=200 f=-inf f_GSL=-inf
 // Test data for n=152.
-// max(|f - f_GSL|): 2.0116317500651348e-09
-// max(|f - f_GSL| / |f_GSL|): 2.1162909865409127e-10
-// mean(f - f_GSL): 6.2952303065400225e-10
-// variance(f - f_GSL): 2.6243847237249557e-21
-// stddev(f - f_GSL): 5.1228748996290704e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8907771071930400e-15
+// mean(f - f_GSL): -2.5658487680225840e-15
+// variance(f - f_GSL): 4.3597979776469046e-32
+// stddev(f - f_GSL): 2.0880129256417223e-16
 const testcase_lbincoef<double>
 data151[153] =
 {
@@ -14391,7 +14391,7 @@ data151[153] =
   { 5.0238805208463191, 152, 151, 0.0 },
   { 0.0000000000000000, 152, 152, 0.0 },
 };
-const double toler151 = 2.5000000000000012e-08;
+const double toler151 = 5.0000000000000039e-13;
 
 // Divergence at n=153 k=154 f=-inf f_GSL=-inf
 // Divergence at n=153 k=155 f=-inf f_GSL=-inf
@@ -14399,11 +14399,11 @@ const double toler151 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=153 k=200 f=-inf f_GSL=-inf
 // Test data for n=153.
-// max(|f - f_GSL|): 1.7452919109928189e-09
-// max(|f - f_GSL| / |f_GSL|): 1.2159181079184140e-10
-// mean(f - f_GSL): 1.2784232547039516e-11
-// variance(f - f_GSL): 1.0751948686310741e-24
-// stddev(f - f_GSL): 1.0369160374066331e-12
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8824970168884827e-15
+// mean(f - f_GSL): -2.5491874123860739e-15
+// variance(f - f_GSL): 4.2750518833526053e-32
+// stddev(f - f_GSL): 2.0676198594888291e-16
 const testcase_lbincoef<double>
 data152[154] =
 {
@@ -14562,7 +14562,7 @@ data152[154] =
   { 5.0304379213923767, 153, 152, 0.0 },
   { 0.0000000000000000, 153, 153, 0.0 },
 };
-const double toler152 = 1.0000000000000005e-08;
+const double toler152 = 5.0000000000000039e-13;
 
 // Divergence at n=154 k=155 f=-inf f_GSL=-inf
 // Divergence at n=154 k=156 f=-inf f_GSL=-inf
@@ -14570,11 +14570,11 @@ const double toler152 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=154 k=200 f=-inf f_GSL=-inf
 // Test data for n=154.
-// max(|f - f_GSL|): 1.5577938938804436e-09
-// max(|f - f_GSL| / |f_GSL|): 1.1636408059801591e-10
-// mean(f - f_GSL): -4.6526154971704067e-10
-// variance(f - f_GSL): 1.4147658962300076e-21
-// stddev(f - f_GSL): 3.7613373901180515e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8742940635397557e-15
+// mean(f - f_GSL): -3.2662045111552991e-15
+// variance(f - f_GSL): 6.9723150862166484e-32
+// stddev(f - f_GSL): 2.6405141708039834e-16
 const testcase_lbincoef<double>
 data153[155] =
 {
@@ -14734,7 +14734,7 @@ data153[155] =
   { 5.0369526024136348, 154, 153, 0.0 },
   { 0.0000000000000000, 154, 154, 0.0 },
 };
-const double toler153 = 1.0000000000000005e-08;
+const double toler153 = 5.0000000000000039e-13;
 
 // Divergence at n=155 k=156 f=-inf f_GSL=-inf
 // Divergence at n=155 k=157 f=-inf f_GSL=-inf
@@ -14742,11 +14742,11 @@ const double toler153 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=155 k=200 f=-inf f_GSL=-inf
 // Test data for n=155.
-// max(|f - f_GSL|): 1.6338503883162048e-09
-// max(|f - f_GSL| / |f_GSL|): 6.3590612586990163e-11
-// mean(f - f_GSL): -2.2283713336107142e-10
-// variance(f - f_GSL): 3.2243065676230881e-22
-// stddev(f - f_GSL): 1.7956354216886812e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8661670014344372e-15
+// mean(f - f_GSL): -2.8808864126170729e-15
+// variance(f - f_GSL): 5.3890656295303234e-32
+// stddev(f - f_GSL): 2.3214361136008727e-16
 const testcase_lbincoef<double>
 data154[156] =
 {
@@ -14907,7 +14907,7 @@ data154[156] =
   { 5.0434251169192521, 155, 154, 0.0 },
   { 0.0000000000000000, 155, 155, 0.0 },
 };
-const double toler154 = 5.0000000000000026e-09;
+const double toler154 = 5.0000000000000039e-13;
 
 // Divergence at n=156 k=157 f=-inf f_GSL=-inf
 // Divergence at n=156 k=158 f=-inf f_GSL=-inf
@@ -14915,11 +14915,11 @@ const double toler154 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=156 k=200 f=-inf f_GSL=-inf
 // Test data for n=156.
-// max(|f - f_GSL|): 1.3384067187871551e-09
-// max(|f - f_GSL| / |f_GSL|): 4.6020005532130654e-11
-// mean(f - f_GSL): -1.6083863469665266e-10
-// variance(f - f_GSL): 1.6689034461456586e-22
-// stddev(f - f_GSL): 1.2918604592391775e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8581146132335101e-15
+// mean(f - f_GSL): -2.1384168321442505e-15
+// variance(f - f_GSL): 2.9500894478782986e-32
+// stddev(f - f_GSL): 1.7175824428184805e-16
 const testcase_lbincoef<double>
 data155[157] =
 {
@@ -15081,7 +15081,7 @@ data155[157] =
   { 5.0498560072495593, 156, 155, 0.0 },
   { 0.0000000000000000, 156, 156, 0.0 },
 };
-const double toler155 = 2.5000000000000013e-09;
+const double toler155 = 5.0000000000000039e-13;
 
 // Divergence at n=157 k=158 f=-inf f_GSL=-inf
 // Divergence at n=157 k=159 f=-inf f_GSL=-inf
@@ -15089,11 +15089,11 @@ const double toler155 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=157 k=200 f=-inf f_GSL=-inf
 // Test data for n=157.
-// max(|f - f_GSL|): 1.4864838249195600e-09
-// max(|f - f_GSL| / |f_GSL|): 7.8358261190694922e-11
-// mean(f - f_GSL): 2.2757910324177332e-10
-// variance(f - f_GSL): 3.3198812206207540e-22
-// stddev(f - f_GSL): 1.8220541212106611e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8501357091408611e-15
+// mean(f - f_GSL): -2.1248825483965020e-15
+// variance(f - f_GSL): 2.8941940177201597e-32
+// stddev(f - f_GSL): 1.7012330874163481e-16
 const testcase_lbincoef<double>
 data156[158] =
 {
@@ -15256,7 +15256,7 @@ data156[158] =
   { 5.0562458053482260, 157, 156, 0.0 },
   { 0.0000000000000000, 157, 157, 0.0 },
 };
-const double toler156 = 5.0000000000000026e-09;
+const double toler156 = 5.0000000000000039e-13;
 
 // Divergence at n=158 k=159 f=-inf f_GSL=-inf
 // Divergence at n=158 k=160 f=-inf f_GSL=-inf
@@ -15264,11 +15264,11 @@ const double toler156 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=158 k=200 f=-inf f_GSL=-inf
 // Test data for n=158.
-// max(|f - f_GSL|): 1.6800072444311809e-09
-// max(|f - f_GSL| / |f_GSL|): 3.7141289268708958e-11
-// mean(f - f_GSL): 1.4793553384392136e-10
-// variance(f - f_GSL): 1.3938882493254583e-22
-// stddev(f - f_GSL): 1.1806304457049455e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8422291261024130e-15
+// mean(f - f_GSL): -2.1115185072116184e-15
+// variance(f - f_GSL): 2.8397017889811406e-32
+// stddev(f - f_GSL): 1.6851414744706573e-16
 const testcase_lbincoef<double>
 data157[159] =
 {
@@ -15432,7 +15432,7 @@ data157[159] =
   { 5.0625950330270371, 158, 157, 0.0 },
   { 0.0000000000000000, 158, 158, 0.0 },
 };
-const double toler157 = 2.5000000000000013e-09;
+const double toler157 = 5.0000000000000039e-13;
 
 // Divergence at n=159 k=160 f=-inf f_GSL=-inf
 // Divergence at n=159 k=161 f=-inf f_GSL=-inf
@@ -15440,11 +15440,11 @@ const double toler157 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=159 k=200 f=-inf f_GSL=-inf
 // Test data for n=159.
-// max(|f - f_GSL|): 1.3572503121395130e-09
-// max(|f - f_GSL| / |f_GSL|): 8.0544884449630788e-11
-// mean(f - f_GSL): -2.6189219681782563e-10
-// variance(f - f_GSL): 4.3408107435032919e-22
-// stddev(f - f_GSL): 2.0834612411809565e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8343937270341463e-15
+// mean(f - f_GSL): -2.0983215165415457e-15
+// variance(f - f_GSL): 2.7865690039357383e-32
+// stddev(f - f_GSL): 1.6693019510968465e-16
 const testcase_lbincoef<double>
 data158[160] =
 {
@@ -15609,7 +15609,7 @@ data158[160] =
   { 5.0689042022202102, 159, 158, 0.0 },
   { 0.0000000000000000, 159, 159, 0.0 },
 };
-const double toler158 = 5.0000000000000026e-09;
+const double toler158 = 5.0000000000000039e-13;
 
 // Divergence at n=160 k=161 f=-inf f_GSL=-inf
 // Divergence at n=160 k=162 f=-inf f_GSL=-inf
@@ -15617,11 +15617,11 @@ const double toler158 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=160 k=200 f=-inf f_GSL=-inf
 // Test data for n=160.
-// max(|f - f_GSL|): 1.5463115232705604e-09
-// max(|f - f_GSL| / |f_GSL|): 5.8750458025237562e-11
-// mean(f - f_GSL): -4.0862544817811672e-10
-// variance(f - f_GSL): 1.0501146820586502e-21
-// stddev(f - f_GSL): 3.2405473026306067e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8266284000766671e-15
+// mean(f - f_GSL): -2.7914178904861078e-15
+// variance(f - f_GSL): 4.9004462036385620e-32
+// stddev(f - f_GSL): 2.2136951469519378e-16
 const testcase_lbincoef<double>
 data159[161] =
 {
@@ -15787,7 +15787,7 @@ data159[161] =
   { 5.0751738152338248, 160, 159, 0.0 },
   { 0.0000000000000000, 160, 160, 0.0 },
 };
-const double toler159 = 5.0000000000000026e-09;
+const double toler159 = 5.0000000000000039e-13;
 
 // Divergence at n=161 k=162 f=-inf f_GSL=-inf
 // Divergence at n=161 k=163 f=-inf f_GSL=-inf
@@ -15795,11 +15795,11 @@ const double toler159 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=161 k=200 f=-inf f_GSL=-inf
 // Test data for n=161.
-// max(|f - f_GSL|): 1.5512000572925899e-09
-// max(|f - f_GSL| / |f_GSL|): 3.6490548479410995e-11
-// mean(f - f_GSL): -2.2522836270918896e-10
-// variance(f - f_GSL): 3.1703661470326150e-22
-// stddev(f - f_GSL): 1.7805522028383822e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8189320578757953e-15
+// mean(f - f_GSL): -2.0724163126336257e-15
+// variance(f - f_GSL): 2.6842148003739531e-32
+// stddev(f - f_GSL): 1.6383573481917653e-16
 const testcase_lbincoef<double>
 data160[162] =
 {
@@ -15966,7 +15966,7 @@ data160[162] =
   { 5.0814043649844507, 161, 160, 0.0 },
   { 0.0000000000000000, 161, 161, 0.0 },
 };
-const double toler160 = 2.5000000000000013e-09;
+const double toler160 = 5.0000000000000039e-13;
 
 // Divergence at n=162 k=163 f=-inf f_GSL=-inf
 // Divergence at n=162 k=164 f=-inf f_GSL=-inf
@@ -15974,11 +15974,11 @@ const double toler160 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=162 k=200 f=-inf f_GSL=-inf
 // Test data for n=162.
-// max(|f - f_GSL|): 1.2743441857310245e-09
-// max(|f - f_GSL| / |f_GSL|): 8.5964615880846179e-11
-// mean(f - f_GSL): 2.0475487699346515e-10
-// variance(f - f_GSL): 2.6039106932538004e-22
-// stddev(f - f_GSL): 1.6136637485095216e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8113036368887512e-15
+// mean(f - f_GSL): -2.7571673642224745e-15
+// variance(f - f_GSL): 4.7215417448421040e-32
+// stddev(f - f_GSL): 2.1729108920620985e-16
 const testcase_lbincoef<double>
 data161[163] =
 {
@@ -16146,7 +16146,7 @@ data161[163] =
   { 5.0875963352324334, 162, 161, 0.0 },
   { 0.0000000000000000, 162, 162, 0.0 },
 };
-const double toler161 = 5.0000000000000026e-09;
+const double toler161 = 5.0000000000000039e-13;
 
 // Divergence at n=163 k=164 f=-inf f_GSL=-inf
 // Divergence at n=163 k=165 f=-inf f_GSL=-inf
@@ -16154,11 +16154,11 @@ const double toler161 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=163 k=200 f=-inf f_GSL=-inf
 // Test data for n=163.
-// max(|f - f_GSL|): 2.0315269466664176e-09
-// max(|f - f_GSL| / |f_GSL|): 1.8538556189149823e-10
-// mean(f - f_GSL): -7.3529111254973071e-10
-// variance(f - f_GSL): 3.3372387109758671e-21
-// stddev(f - f_GSL): 5.7768838580811607e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.8037420967137738e-15
+// mean(f - f_GSL): -2.0471429429673617e-15
+// variance(f - f_GSL): 2.5868126521372112e-32
+// stddev(f - f_GSL): 1.6083571282949603e-16
 const testcase_lbincoef<double>
 data162[164] =
 {
@@ -16327,7 +16327,7 @@ data162[164] =
   { 5.0937502008067668, 163, 162, 0.0 },
   { 0.0000000000000000, 163, 163, 0.0 },
 };
-const double toler162 = 1.0000000000000005e-08;
+const double toler162 = 5.0000000000000039e-13;
 
 // Divergence at n=164 k=165 f=-inf f_GSL=-inf
 // Divergence at n=164 k=166 f=-inf f_GSL=-inf
@@ -16335,11 +16335,11 @@ const double toler162 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=164 k=200 f=-inf f_GSL=-inf
 // Test data for n=164.
-// max(|f - f_GSL|): 2.3964901174622355e-09
-// max(|f - f_GSL| / |f_GSL|): 1.4338193465344817e-10
-// mean(f - f_GSL): -1.1439527897340612e-09
-// variance(f - f_GSL): 8.0280940492324626e-21
-// stddev(f - f_GSL): 8.9599631970407459e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7962464194428277e-15
+// mean(f - f_GSL): -2.6806839576403779e-15
+// variance(f - f_GSL): 4.4084658288363665e-32
+// stddev(f - f_GSL): 2.0996346893772657e-16
 const testcase_lbincoef<double>
 data163[165] =
 {
@@ -16509,7 +16509,7 @@ data163[165] =
   { 5.0998664278241677, 164, 163, 0.0 },
   { 0.0000000000000000, 164, 164, 0.0 },
 };
-const double toler163 = 1.0000000000000005e-08;
+const double toler163 = 5.0000000000000039e-13;
 
 // Divergence at n=165 k=166 f=-inf f_GSL=-inf
 // Divergence at n=165 k=167 f=-inf f_GSL=-inf
@@ -16517,11 +16517,11 @@ const double toler163 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=165 k=200 f=-inf f_GSL=-inf
 // Test data for n=165.
-// max(|f - f_GSL|): 2.3369466362055391e-09
-// max(|f - f_GSL| / |f_GSL|): 3.6257270566670750e-10
-// mean(f - f_GSL): 6.9415881877929165e-10
-// variance(f - f_GSL): 2.9380412600324776e-21
-// stddev(f - f_GSL): 5.4203701534419927e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7888156090362968e-15
+// mean(f - f_GSL): -1.9796747908978697e-15
+// variance(f - f_GSL): 2.3896148323266957e-32
+// stddev(f - f_GSL): 1.5458379062264890e-16
 const testcase_lbincoef<double>
 data164[166] =
 {
@@ -16692,7 +16692,7 @@ data164[166] =
   { 5.1059454739005332, 165, 164, 0.0 },
   { 0.0000000000000000, 165, 165, 0.0 },
 };
-const double toler164 = 2.5000000000000012e-08;
+const double toler164 = 5.0000000000000039e-13;
 
 // Divergence at n=166 k=167 f=-inf f_GSL=-inf
 // Divergence at n=166 k=168 f=-inf f_GSL=-inf
@@ -16700,11 +16700,11 @@ const double toler164 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=166 k=200 f=-inf f_GSL=-inf
 // Test data for n=166.
-// max(|f - f_GSL|): 2.7179680728295352e-09
-// max(|f - f_GSL| / |f_GSL|): 3.3263751229433569e-10
-// mean(f - f_GSL): -9.9889680559009397e-10
-// variance(f - f_GSL): 6.0470219303390074e-21
-// stddev(f - f_GSL): 7.7762599817257954e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7814486907190715e-15
+// mean(f - f_GSL): -1.9678204508326127e-15
+// variance(f - f_GSL): 2.3467738189919302e-32
+// stddev(f - f_GSL): 1.5319183460589307e-16
 const testcase_lbincoef<double>
 data165[167] =
 {
@@ -16876,7 +16876,7 @@ data165[167] =
   { 5.1119877883566005, 166, 165, 0.0 },
   { 0.0000000000000000, 166, 166, 0.0 },
 };
-const double toler165 = 2.5000000000000012e-08;
+const double toler165 = 5.0000000000000039e-13;
 
 // Divergence at n=167 k=168 f=-inf f_GSL=-inf
 // Divergence at n=167 k=169 f=-inf f_GSL=-inf
@@ -16884,11 +16884,11 @@ const double toler165 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=167 k=200 f=-inf f_GSL=-inf
 // Test data for n=167.
-// max(|f - f_GSL|): 2.2895392248756252e-09
-// max(|f - f_GSL| / |f_GSL|): 1.5889254161523938e-10
-// mean(f - f_GSL): -8.0875056916002433e-10
-// variance(f - f_GSL): 3.9400845194736070e-21
-// stddev(f - f_GSL): 6.2770092555878925e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7741447103969969e-15
+// mean(f - f_GSL): -2.2944609175586570e-15
+// variance(f - f_GSL): 3.1713024904811612e-32
+// stddev(f - f_GSL): 1.7808151196800754e-16
 const testcase_lbincoef<double>
 data166[168] =
 {
@@ -17061,7 +17061,7 @@ data166[168] =
   { 5.1179938124167847, 167, 166, 0.0 },
   { 0.0000000000000000, 167, 167, 0.0 },
 };
-const double toler166 = 1.0000000000000005e-08;
+const double toler166 = 5.0000000000000039e-13;
 
 // Divergence at n=168 k=169 f=-inf f_GSL=-inf
 // Divergence at n=168 k=170 f=-inf f_GSL=-inf
@@ -17069,11 +17069,11 @@ const double toler166 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=168 k=200 f=-inf f_GSL=-inf
 // Test data for n=168.
-// max(|f - f_GSL|): 2.1500454749912024e-09
-// max(|f - f_GSL| / |f_GSL|): 1.0941851709159760e-10
-// mean(f - f_GSL): -7.7217479222044266e-10
-// variance(f - f_GSL): 3.5702561914036126e-21
-// stddev(f - f_GSL): 5.9751620826581868e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7669027340925214e-15
+// mean(f - f_GSL): -2.2808842257387830e-15
+// variance(f - f_GSL): 3.1151188770438544e-32
+// stddev(f - f_GSL): 1.7649699365835821e-16
 const testcase_lbincoef<double>
 data167[169] =
 {
@@ -17247,7 +17247,7 @@ data167[169] =
   { 5.1239639794032428, 168, 167, 0.0 },
   { 0.0000000000000000, 168, 168, 0.0 },
 };
-const double toler167 = 1.0000000000000005e-08;
+const double toler167 = 5.0000000000000039e-13;
 
 // Divergence at n=169 k=170 f=-inf f_GSL=-inf
 // Divergence at n=169 k=171 f=-inf f_GSL=-inf
@@ -17255,11 +17255,11 @@ const double toler167 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=169 k=200 f=-inf f_GSL=-inf
 // Test data for n=169.
-// max(|f - f_GSL|): 1.7636807569942903e-09
-// max(|f - f_GSL| / |f_GSL|): 7.1066630153498135e-11
-// mean(f - f_GSL): -5.1706178162609888e-10
-// variance(f - f_GSL): 1.5913305074444326e-21
-// stddev(f - f_GSL): 3.9891484146925805e-11
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7597218473991194e-15
+// mean(f - f_GSL): -2.2674672597050254e-15
+// variance(f - f_GSL): 3.0602546183670635e-32
+// stddev(f - f_GSL): 1.7493583447558889e-16
 const testcase_lbincoef<double>
 data168[170] =
 {
@@ -17434,7 +17434,7 @@ data168[170] =
   { 5.1298987149230015, 169, 168, 0.0 },
   { 0.0000000000000000, 169, 169, 0.0 },
 };
-const double toler168 = 5.0000000000000026e-09;
+const double toler168 = 5.0000000000000039e-13;
 
 // Divergence at n=170 k=171 f=-inf f_GSL=-inf
 // Divergence at n=170 k=172 f=-inf f_GSL=-inf
@@ -17442,11 +17442,11 @@ const double toler168 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=170 k=200 f=-inf f_GSL=-inf
 // Test data for n=170.
-// max(|f - f_GSL|): 1.2020677786495071e-09
-// max(|f - f_GSL| / |f_GSL|): 8.9585025171592984e-11
-// mean(f - f_GSL): -6.0780241138986660e-11
-// variance(f - f_GSL): 2.1858638370525460e-23
-// stddev(f - f_GSL): 4.6753222745095825e-12
+// max(|f - f_GSL|): 5.6843418860808015e-14
+// max(|f - f_GSL| / |f_GSL|): 5.7526011549540025e-15
+// mean(f - f_GSL): -2.2542072172506104e-15
+// variance(f - f_GSL): 3.0066712127685488e-32
+// stddev(f - f_GSL): 1.7339755513756671e-16
 const testcase_lbincoef<double>
 data169[171] =
 {
@@ -17622,7 +17622,7 @@ data169[171] =
   { 5.1357984370503118, 170, 169, 0.0 },
   { 0.0000000000000000, 170, 170, 0.0 },
 };
-const double toler169 = 5.0000000000000026e-09;
+const double toler169 = 5.0000000000000039e-13;
 
 // Divergence at n=171 k=172 f=-inf f_GSL=-inf
 // Divergence at n=171 k=173 f=-inf f_GSL=-inf
@@ -17630,11 +17630,11 @@ const double toler169 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=171 k=200 f=-inf f_GSL=-inf
 // Test data for n=171.
-// max(|f - f_GSL|): 1.6104308997455519e-09
-// max(|f - f_GSL| / |f_GSL|): 6.8283313371618880e-11
-// mean(f - f_GSL): -4.1152751490762757e-10
-// variance(f - f_GSL): 9.9617119901782400e-22
-// stddev(f - f_GSL): 3.1562179883807520e-11
+// max(|f - f_GSL|): 3.5726088754017837e-10
+// max(|f - f_GSL| / |f_GSL|): 6.8280549508414100e-11
+// mean(f - f_GSL): 3.4480663285836629e-10
+// variance(f - f_GSL): 6.9933851847944206e-22
+// stddev(f - f_GSL): 2.6445009330295992e-11
 const testcase_lbincoef<double>
 data170[172] =
 {
@@ -17819,11 +17819,11 @@ const double toler170 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=172 k=200 f=-inf f_GSL=-inf
 // Test data for n=172.
-// max(|f - f_GSL|): 1.2274767868802883e-09
+// max(|f - f_GSL|): 6.0759930420317687e-10
 // max(|f - f_GSL| / |f_GSL|): 4.8633061733360076e-11
-// mean(f - f_GSL): -1.6377081835812034e-10
-// variance(f - f_GSL): 1.5684195523269675e-22
-// stddev(f - f_GSL): 1.2523655825384885e-11
+// mean(f - f_GSL): 5.8819441289344440e-10
+// variance(f - f_GSL): 2.0231635834612634e-21
+// stddev(f - f_GSL): 4.4979590743594631e-11
 const testcase_lbincoef<double>
 data171[173] =
 {
@@ -18009,11 +18009,11 @@ const double toler171 = 2.5000000000000013e-09;
 // ...
 // Divergence at n=173 k=200 f=-inf f_GSL=-inf
 // Test data for n=173.
-// max(|f - f_GSL|): 2.5272015591326635e-09
-// max(|f - f_GSL| / |f_GSL|): 1.8110368930975518e-10
-// mean(f - f_GSL): -1.0888494091040198e-09
-// variance(f - f_GSL): 6.8927524545716231e-21
-// stddev(f - f_GSL): 8.3022602070590538e-11
+// max(|f - f_GSL|): 1.0339924472191342e-09
+// max(|f - f_GSL| / |f_GSL|): 1.8110093168301224e-10
+// mean(f - f_GSL): -3.4120581711252155e-10
+// variance(f - f_GSL): 6.7684604483503264e-22
+// stddev(f - f_GSL): 2.6016265005473645e-11
 const testcase_lbincoef<double>
 data172[174] =
 {
@@ -18200,11 +18200,11 @@ const double toler172 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=174 k=200 f=-inf f_GSL=-inf
 // Test data for n=174.
-// max(|f - f_GSL|): 1.7867591850517783e-09
+// max(|f - f_GSL|): 9.4360075308941305e-10
 // max(|f - f_GSL| / |f_GSL|): 1.8290184895538928e-10
-// mean(f - f_GSL): -1.4794750313740223e-10
-// variance(f - f_GSL): 1.2651873248789594e-22
-// stddev(f - f_GSL): 1.1248054609037775e-11
+// mean(f - f_GSL): 5.9542156602024730e-10
+// variance(f - f_GSL): 2.0492204130119780e-21
+// stddev(f - f_GSL): 4.5268315773971288e-11
 const testcase_lbincoef<double>
 data173[175] =
 {
@@ -18392,11 +18392,11 @@ const double toler173 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=175 k=200 f=-inf f_GSL=-inf
 // Test data for n=175.
-// max(|f - f_GSL|): 2.3255779524333775e-09
-// max(|f - f_GSL| / |f_GSL|): 1.5144680079090584e-10
-// mean(f - f_GSL): -9.2389740302678547e-10
-// variance(f - f_GSL): 4.9055088454614321e-21
-// stddev(f - f_GSL): 7.0039337842825386e-11
+// max(|f - f_GSL|): 8.7254647951340303e-10
+// max(|f - f_GSL| / |f_GSL|): 1.5144404930134037e-10
+// mean(f - f_GSL): -1.8475008391825233e-10
+// variance(f - f_GSL): 1.9615792513871104e-22
+// stddev(f - f_GSL): 1.4005639047851799e-11
 const testcase_lbincoef<double>
 data174[176] =
 {
@@ -18585,11 +18585,11 @@ const double toler174 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=176 k=200 f=-inf f_GSL=-inf
 // Test data for n=176.
-// max(|f - f_GSL|): 1.7625438886170741e-09
+// max(|f - f_GSL|): 7.0440364652313292e-10
 // max(|f - f_GSL| / |f_GSL|): 1.0501305825131416e-10
-// mean(f - f_GSL): -3.8091674196552932e-10
-// variance(f - f_GSL): 8.2910217209469126e-22
-// stddev(f - f_GSL): 2.8794134334872636e-11
+// mean(f - f_GSL): 3.5405492473797741e-10
+// variance(f - f_GSL): 7.1629053081175838e-22
+// stddev(f - f_GSL): 2.6763604593024431e-11
 const testcase_lbincoef<double>
 data175[177] =
 {
@@ -18779,11 +18779,11 @@ const double toler175 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=177 k=200 f=-inf f_GSL=-inf
 // Test data for n=177.
-// max(|f - f_GSL|): 1.4435386219702195e-09
-// max(|f - f_GSL| / |f_GSL|): 9.4826507798261645e-11
-// mean(f - f_GSL): -1.2650215456928022e-11
-// variance(f - f_GSL): 9.0922069957524058e-25
-// stddev(f - f_GSL): 9.5353064952063313e-13
+// max(|f - f_GSL|): 1.0768417268991470e-09
+// max(|f - f_GSL| / |f_GSL|): 9.4819699356281905e-11
+// mean(f - f_GSL): 7.1819175824915608e-10
+// variance(f - f_GSL): 2.9305848730514391e-21
+// stddev(f - f_GSL): 5.4134876679008320e-11
 const testcase_lbincoef<double>
 data176[178] =
 {
@@ -18974,11 +18974,11 @@ const double toler176 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=178 k=200 f=-inf f_GSL=-inf
 // Test data for n=178.
-// max(|f - f_GSL|): 2.0053789739904460e-09
-// max(|f - f_GSL| / |f_GSL|): 1.3890511474003054e-10
-// mean(f - f_GSL): -7.2848302685016996e-10
-// variance(f - f_GSL): 2.9981399492858412e-21
-// stddev(f - f_GSL): 5.4755273255512490e-11
+// max(|f - f_GSL|): 7.1976202775658749e-10
+// max(|f - f_GSL| / |f_GSL|): 1.3890237227605509e-10
+// mean(f - f_GSL): -1.7246043203082263e-12
+// variance(f - f_GSL): 1.6803198807947809e-26
+// stddev(f - f_GSL): 1.2962715305038451e-13
 const testcase_lbincoef<double>
 data177[179] =
 {
@@ -19170,11 +19170,11 @@ const double toler177 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=179 k=200 f=-inf f_GSL=-inf
 // Test data for n=179.
-// max(|f - f_GSL|): 1.3586003433374572e-09
+// max(|f - f_GSL|): 1.3596164194495941e-09
 // max(|f - f_GSL| / |f_GSL|): 1.9325544167168434e-10
-// mean(f - f_GSL): 2.6674153256559899e-10
-// variance(f - f_GSL): 3.9971249758684222e-22
-// stddev(f - f_GSL): 1.9992811147681115e-11
+// mean(f - f_GSL): 9.8946240830362813e-10
+// variance(f - f_GSL): 5.5000297849718432e-21
+// stddev(f - f_GSL): 7.4162185680923959e-11
 const testcase_lbincoef<double>
 data178[180] =
 {
@@ -19367,11 +19367,11 @@ const double toler178 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=180 k=200 f=-inf f_GSL=-inf
 // Test data for n=180.
-// max(|f - f_GSL|): 2.3301254259422421e-09
-// max(|f - f_GSL| / |f_GSL|): 9.0092450150054028e-11
-// mean(f - f_GSL): -2.0309619670502266e-10
-// variance(f - f_GSL): 2.3042900574087009e-22
-// stddev(f - f_GSL): 1.5179888199221697e-11
+// max(|f - f_GSL|): 8.9177731865675014e-10
+// max(|f - f_GSL| / |f_GSL|): 9.0089713586835174e-11
+// mean(f - f_GSL): 5.1563174601787927e-10
+// variance(f - f_GSL): 1.4852954829556131e-21
+// stddev(f - f_GSL): 3.8539531431448578e-11
 const testcase_lbincoef<double>
 data179[181] =
 {
@@ -19565,11 +19565,11 @@ const double toler179 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=181 k=200 f=-inf f_GSL=-inf
 // Test data for n=181.
-// max(|f - f_GSL|): 2.4342625692952424e-09
+// max(|f - f_GSL|): 1.8127366274711676e-09
 // max(|f - f_GSL| / |f_GSL|): 1.7716218107727989e-10
-// mean(f - f_GSL): 7.0576570229045154e-10
-// variance(f - f_GSL): 2.7671667906466602e-21
-// stddev(f - f_GSL): 5.2603866689119535e-11
+// mean(f - f_GSL): 1.4205449027094852e-09
+// variance(f - f_GSL): 1.1210479025418329e-20
+// stddev(f - f_GSL): 1.0587954960906440e-10
 const testcase_lbincoef<double>
 data180[182] =
 {
@@ -19764,11 +19764,11 @@ const double toler180 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=182 k=200 f=-inf f_GSL=-inf
 // Test data for n=182.
-// max(|f - f_GSL|): 1.8501395970815793e-09
-// max(|f - f_GSL| / |f_GSL|): 7.2555413506073779e-11
-// mean(f - f_GSL): 3.2035304585142859e-10
-// variance(f - f_GSL): 5.6697776655870719e-22
-// stddev(f - f_GSL): 2.3811294936620039e-11
+// max(|f - f_GSL|): 1.4351826393976808e-09
+// max(|f - f_GSL| / |f_GSL|): 7.2552682753488366e-11
+// mean(f - f_GSL): 1.0312263490004129e-09
+// variance(f - f_GSL): 5.8751142454325554e-21
+// stddev(f - f_GSL): 7.6649293835185175e-11
 const testcase_lbincoef<double>
 data181[183] =
 {
@@ -19964,11 +19964,11 @@ const double toler181 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=183 k=200 f=-inf f_GSL=-inf
 // Test data for n=183.
-// max(|f - f_GSL|): 1.3802150533592794e-09
-// max(|f - f_GSL| / |f_GSL|): 7.6349926500010669e-11
-// mean(f - f_GSL): -4.8045355133976756e-11
-// variance(f - f_GSL): 1.2682896819576285e-23
-// stddev(f - f_GSL): 3.5613054937166348e-12
+// max(|f - f_GSL|): 1.0705889508244582e-09
+// max(|f - f_GSL| / |f_GSL|): 7.6361622260810294e-11
+// mean(f - f_GSL): 6.5896419721844302e-10
+// variance(f - f_GSL): 2.3858288283226574e-21
+// stddev(f - f_GSL): 4.8844946804379439e-11
 const testcase_lbincoef<double>
 data182[184] =
 {
@@ -20165,11 +20165,11 @@ const double toler182 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=184 k=200 f=-inf f_GSL=-inf
 // Test data for n=184.
-// max(|f - f_GSL|): 3.2624711820972152e-09
+// max(|f - f_GSL|): 2.3108270852389978e-09
 // max(|f - f_GSL| / |f_GSL|): 2.3781879017312151e-10
-// mean(f - f_GSL): 1.1749857303338767e-09
-// variance(f - f_GSL): 7.5439928314131394e-21
-// stddev(f - f_GSL): 8.6856161735441305e-11
+// mean(f - f_GSL): 1.8781733021686138e-09
+// variance(f - f_GSL): 1.9275577927135717e-20
+// stddev(f - f_GSL): 1.3883651510728622e-10
 const testcase_lbincoef<double>
 data183[185] =
 {
@@ -20367,11 +20367,11 @@ const double toler183 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=185 k=200 f=-inf f_GSL=-inf
 // Test data for n=185.
-// max(|f - f_GSL|): 1.3889689398638438e-09
-// max(|f - f_GSL| / |f_GSL|): 2.2980203281760039e-10
-// mean(f - f_GSL): -2.8727624819004377e-11
-// variance(f - f_GSL): 4.4850669265132096e-24
-// stddev(f - f_GSL): 2.1177976594833628e-12
+// max(|f - f_GSL|): 1.1996341697795287e-09
+// max(|f - f_GSL| / |f_GSL|): 2.2979931061720037e-10
+// mean(f - f_GSL): 6.7067967428231412e-10
+// variance(f - f_GSL): 2.4445547974331677e-21
+// stddev(f - f_GSL): 4.9442439234256714e-11
 const testcase_lbincoef<double>
 data184[186] =
 {
@@ -20570,11 +20570,11 @@ const double toler184 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=186 k=200 f=-inf f_GSL=-inf
 // Test data for n=186.
-// max(|f - f_GSL|): 2.2681660993839614e-09
-// max(|f - f_GSL| / |f_GSL|): 1.9748705308626582e-10
-// mean(f - f_GSL): -7.5145905422181251e-10
-// variance(f - f_GSL): 3.0522939878064794e-21
-// stddev(f - f_GSL): 5.5247569971958761e-11
+// max(|f - f_GSL|): 1.9261960915173404e-09
+// max(|f - f_GSL| / |f_GSL|): 1.9749870974150640e-10
+// mean(f - f_GSL): -5.5792205080494912e-11
+// variance(f - f_GSL): 1.6825298231822420e-23
+// stddev(f - f_GSL): 4.1018652137561055e-12
 const testcase_lbincoef<double>
 data185[187] =
 {
@@ -20774,11 +20774,11 @@ const double toler185 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=187 k=200 f=-inf f_GSL=-inf
 // Test data for n=187.
-// max(|f - f_GSL|): 1.5844534573261626e-09
+// max(|f - f_GSL|): 1.3124115127993718e-09
 // max(|f - f_GSL| / |f_GSL|): 1.1731386116587544e-10
-// mean(f - f_GSL): -1.4062245457914307e-10
-// variance(f - f_GSL): 1.0631241527039014e-22
-// stddev(f - f_GSL): 1.0310791204868332e-11
+// mean(f - f_GSL): 5.5134373662302460e-10
+// variance(f - f_GSL): 1.6342538874925381e-21
+// stddev(f - f_GSL): 4.0425906143122355e-11
 const testcase_lbincoef<double>
 data186[188] =
 {
@@ -20979,11 +20979,11 @@ const double toler186 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=188 k=200 f=-inf f_GSL=-inf
 // Test data for n=188.
-// max(|f - f_GSL|): 2.5182771423715167e-09
-// max(|f - f_GSL| / |f_GSL|): 9.5747556724197457e-11
-// mean(f - f_GSL): -5.2509905183570774e-10
-// variance(f - f_GSL): 1.4744449889974396e-21
-// stddev(f - f_GSL): 3.8398502431702200e-11
+// max(|f - f_GSL|): 1.6981474004751362e-09
+// max(|f - f_GSL| / |f_GSL|): 9.5747957354999846e-11
+// mean(f - f_GSL): 1.6320624334644245e-10
+// variance(f - f_GSL): 1.4243595849116676e-22
+// stddev(f - f_GSL): 1.1934653681241310e-11
 const testcase_lbincoef<double>
 data187[189] =
 {
@@ -21185,11 +21185,11 @@ const double toler187 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=189 k=200 f=-inf f_GSL=-inf
 // Test data for n=189.
-// max(|f - f_GSL|): 1.8809487301041372e-09
-// max(|f - f_GSL| / |f_GSL|): 6.7560041814773060e-11
-// mean(f - f_GSL): -2.7096719254347444e-10
-// variance(f - f_GSL): 3.9053810622965622e-22
-// stddev(f - f_GSL): 1.9762036995959101e-11
+// max(|f - f_GSL|): 1.4425722838495858e-09
+// max(|f - f_GSL| / |f_GSL|): 6.7511160202009557e-11
+// mean(f - f_GSL): 4.1371514401445988e-10
+// variance(f - f_GSL): 9.1040121702953460e-22
+// stddev(f - f_GSL): 3.0172855632663189e-11
 const testcase_lbincoef<double>
 data188[190] =
 {
@@ -21392,11 +21392,11 @@ const double toler188 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=190 k=200 f=-inf f_GSL=-inf
 // Test data for n=190.
-// max(|f - f_GSL|): 1.9416006580286194e-09
+// max(|f - f_GSL|): 1.3277769994601840e-09
 // max(|f - f_GSL| / |f_GSL|): 8.7577680557803160e-11
-// mean(f - f_GSL): 1.8232154587700631e-10
-// variance(f - f_GSL): 1.7587420784979036e-22
-// stddev(f - f_GSL): 1.3261757343949193e-11
+// mean(f - f_GSL): 8.6341886055024539e-10
+// variance(f - f_GSL): 3.9442935344042069e-21
+// stddev(f - f_GSL): 6.2803610838901667e-11
 const testcase_lbincoef<double>
 data189[191] =
 {
@@ -21600,11 +21600,11 @@ const double toler189 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=191 k=200 f=-inf f_GSL=-inf
 // Test data for n=191.
-// max(|f - f_GSL|): 2.1997266230755486e-09
-// max(|f - f_GSL| / |f_GSL|): 1.9890305315049073e-10
-// mean(f - f_GSL): -8.5763485202505763e-10
-// variance(f - f_GSL): 3.8711440905223039e-21
-// stddev(f - f_GSL): 6.2218518871171335e-11
+// max(|f - f_GSL|): 2.0277184376027435e-09
+// max(|f - f_GSL| / |f_GSL|): 1.9890034749266276e-10
+// mean(f - f_GSL): -1.8008373496118205e-10
+// variance(f - f_GSL): 1.7068032967115208e-22
+// stddev(f - f_GSL): 1.3064468212336546e-11
 const testcase_lbincoef<double>
 data190[192] =
 {
@@ -21809,11 +21809,11 @@ const double toler190 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=192 k=200 f=-inf f_GSL=-inf
 // Test data for n=192.
-// max(|f - f_GSL|): 1.7232082427653950e-09
+// max(|f - f_GSL|): 1.6497452293151582e-09
 // max(|f - f_GSL| / |f_GSL|): 7.1899014392964278e-11
-// mean(f - f_GSL): -4.7887517325172970e-10
-// variance(f - f_GSL): 1.2006031979838515e-21
-// stddev(f - f_GSL): 3.4649721470508990e-11
+// mean(f - f_GSL): 1.9516531626259212e-10
+// variance(f - f_GSL): 1.9941605983269255e-22
+// stddev(f - f_GSL): 1.4121475129486033e-11
 const testcase_lbincoef<double>
 data191[193] =
 {
@@ -22019,11 +22019,11 @@ const double toler191 = 5.0000000000000026e-09;
 // ...
 // Divergence at n=193 k=200 f=-inf f_GSL=-inf
 // Test data for n=193.
-// max(|f - f_GSL|): 2.5082158572331537e-09
+// max(|f - f_GSL|): 1.8318360162083991e-09
 // max(|f - f_GSL| / |f_GSL|): 2.2246170928424769e-10
-// mean(f - f_GSL): 6.8054347495265185e-10
-// variance(f - f_GSL): 2.4121197275718105e-21
-// stddev(f - f_GSL): 4.9113335537018971e-11
+// mean(f - f_GSL): 1.3511086499320722e-09
+// variance(f - f_GSL): 9.5075290418729554e-21
+// stddev(f - f_GSL): 9.7506558968476346e-11
 const testcase_lbincoef<double>
 data192[194] =
 {
@@ -22230,11 +22230,11 @@ const double toler192 = 2.5000000000000012e-08;
 // ...
 // Divergence at n=194 k=200 f=-inf f_GSL=-inf
 // Test data for n=194.
-// max(|f - f_GSL|): 2.0107790987822227e-09
-// max(|f - f_GSL| / |f_GSL|): 1.2410624813566290e-10
-// mean(f - f_GSL): 7.1894506758186398e-10
-// variance(f - f_GSL): 2.6780739714384294e-21
-// stddev(f - f_GSL): 5.1750110835035217e-11
+// max(|f - f_GSL|): 1.8820145442077774e-09
+// max(|f - f_GSL| / |f_GSL|): 1.2409956698055503e-10
+// mean(f - f_GSL): 1.3860711552874467e-09
+// variance(f - f_GSL): 9.9541046675091968e-21
+// stddev(f - f_GSL): 9.9770259433907435e-11
 const testcase_lbincoef<double>
 data193[195] =
 {
@@ -22442,11 +22442,11 @@ const double toler193 = 1.0000000000000005e-08;
 // ...
 // Divergence at n=195 k=200 f=-inf f_GSL=-inf
 // Test data for n=195.
-// max(|f - f_GSL|): 1.5710952538938727e-09
-// max(|f - f_GSL| / |f_GSL|): 1.7164533659548646e-10
-// mean(f - f_GSL): -1.8848175627959903e-10
-// variance(f - f_GSL): 1.8311566075601482e-22
-// stddev(f - f_GSL): 1.3532023527766084e-11
+// max(|f - f_GSL|): 1.3338876669877209e-09
+// max(|f - f_GSL| / |f_GSL|): 1.7164264157255742e-10
+// mean(f - f_GSL): 4.7524062689687372e-10
+// variance(f - f_GSL): 1.1641634734215223e-21
+// stddev(f - f_GSL): 3.4119839879775552e-11
 const testcase_lbincoef<double>
 data194[196] =
 {
@@ -22654,11 +22654,11 @@ const double toler194 = 1.0000000000000005e-08;
 // Divergence at n=196 k=199 f=-inf f_GSL=-inf
 // Divergence at n=196 k=200 f=-inf f_GSL=-inf
 // Test data for n=196.
-// max(|f - f_GSL|): 2.1436790120787919e-09
-// max(|f - f_GSL| / |f_GSL|): 9.9986628005903110e-11
-// mean(f - f_GSL): -2.7062286083810479e-10
-// variance(f - f_GSL): 3.7556321228694939e-22
-// stddev(f - f_GSL): 1.9379453353666851e-11
+// max(|f - f_GSL|): 1.4145129512144194e-09
+// max(|f - f_GSL| / |f_GSL|): 9.9998160488948775e-11
+// mean(f - f_GSL): 3.8973008463991450e-10
+// variance(f - f_GSL): 7.7890043622622557e-22
+// stddev(f - f_GSL): 2.7908787795714554e-11
 const testcase_lbincoef<double>
 data195[197] =
 {
@@ -22867,11 +22867,11 @@ const double toler195 = 5.0000000000000026e-09;
 // Divergence at n=197 k=200 f=-inf f_GSL=-inf
 // Divergence at n=197 k=200 f=-inf f_GSL=-inf
 // Test data for n=197.
-// max(|f - f_GSL|): 1.7251977624255233e-09
-// max(|f - f_GSL| / |f_GSL|): 6.7616771558085794e-11
-// mean(f - f_GSL): -2.3578104676312481e-10
-// variance(f - f_GSL): 2.8362892624178769e-22
-// stddev(f - f_GSL): 1.6841286359473487e-11
+// max(|f - f_GSL|): 1.3778844731859863e-09
+// max(|f - f_GSL| / |f_GSL|): 6.7577051157528222e-11
+// mean(f - f_GSL): 4.2123678282864188e-10
+// variance(f - f_GSL): 9.0528497480350518e-22
+// stddev(f - f_GSL): 3.0087953981676875e-11
 const testcase_lbincoef<double>
 data196[198] =
 {
@@ -23080,11 +23080,11 @@ const double toler196 = 5.0000000000000026e-09;
 // Divergence at n=198 k=200 f=-inf f_GSL=-inf
 // Divergence at n=198 k=200 f=-inf f_GSL=-inf
 // Test data for n=198.
-// max(|f - f_GSL|): 1.9049366528633982e-09
-// max(|f - f_GSL| / |f_GSL|): 5.6300054604037761e-11
-// mean(f - f_GSL): -2.9842195046750298e-10
-// variance(f - f_GSL): 4.5204765951548138e-22
-// stddev(f - f_GSL): 2.1261412453444418e-11
+// max(|f - f_GSL|): 1.4391758895726525e-09
+// max(|f - f_GSL| / |f_GSL|): 5.6303618299611355e-11
+// mean(f - f_GSL): 3.5529428199063673e-10
+// variance(f - f_GSL): 6.4076551719807103e-22
+// stddev(f - f_GSL): 2.5313346621852888e-11
 const testcase_lbincoef<double>
 data197[199] =
 {
@@ -23293,11 +23293,11 @@ const double toler197 = 5.0000000000000026e-09;
 // Divergence at n=199 k=200 f=-inf f_GSL=-inf
 // Divergence at n=199 k=200 f=-inf f_GSL=-inf
 // Test data for n=199.
-// max(|f - f_GSL|): 1.5596981484122807e-09
+// max(|f - f_GSL|): 1.5645582607248798e-09
 // max(|f - f_GSL| / |f_GSL|): 1.3090522818120829e-10
-// mean(f - f_GSL): 3.8632606447208671e-10
-// variance(f - f_GSL): 7.5375787525815462e-22
-// stddev(f - f_GSL): 2.7454651249982301e-11
+// mean(f - f_GSL): 1.0367734315508415e-09
+// variance(f - f_GSL): 5.4286464905921939e-21
+// stddev(f - f_GSL): 7.3679349146095157e-11
 const testcase_lbincoef<double>
 data198[200] =
 {
@@ -23505,11 +23505,11 @@ data198[200] =
 const double toler198 = 1.0000000000000005e-08;
 
 // Test data for n=200.
-// max(|f - f_GSL|): 1.7386696526955348e-09
-// max(|f - f_GSL| / |f_GSL|): 7.9880179067797655e-11
-// mean(f - f_GSL): 4.7503875460129913e-10
-// variance(f - f_GSL): 1.1339506373250953e-21
-// stddev(f - f_GSL): 3.3674183543555964e-11
+// max(|f - f_GSL|): 1.6623289411654696e-09
+// max(|f - f_GSL| / |f_GSL|): 7.9873539135587218e-11
+// mean(f - f_GSL): 1.1222497823243444e-09
+// variance(f - f_GSL): 6.3287089839833669e-21
+// stddev(f - f_GSL): 7.9553183368004623e-11
 const testcase_lbincoef<double>
 data199[201] =
 {

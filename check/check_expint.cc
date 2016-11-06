@@ -103,11 +103,11 @@ const double toler001 = 2.5000000000000020e-13;
 
 
 // Test data.
-// max(|f - f_GSL|): 2048.0000000000000
-// max(|f - f_GSL| / |f_GSL|): 1.4993769017626171e-15
-// mean(f - f_GSL): -28.457166483323103
+// max(|f - f_GSL|): 16384.000000000000
+// max(|f - f_GSL| / |f_GSL|): 1.2494807514688476e-15
+// mean(f - f_GSL): 371.17283351667692
 // variance(f - f_GSL): inf
-// stddev(f - f_GSL): 1.1944581611574716e+294
+// stddev(f - f_GSL): 4.7579848743937128e+251
 const testcase_expint<double>
 data002[50] =
 {

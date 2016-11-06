@@ -1,4 +1,3 @@
-#include <limits>
 
     ///
     ///  @brief This routine returns the Fresnel cosine and sine integrals
