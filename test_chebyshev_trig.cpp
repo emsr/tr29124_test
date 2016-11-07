@@ -43,14 +43,16 @@ template<typename _Tp>
   __chebyshev_u_trig(unsigned int __n, _Tp __x)
   {
     const auto _S_eps = __gnu_cxx::__epsilon(__x);
-    auto __theta = std::acos(__x);
     if (std::abs(__x + _Tp{1}) < _S_eps)
-      return -_Tp(__n + 1);
+      return (__n % 2 == 0 ? +1 : -1) * _Tp(__n + 1);
     else if (std::abs(__x - _Tp{1}) < _S_eps)
       return _Tp(__n + 1);
     else
-      return std::sin(_Tp(__n + 1) * __theta)
-	   / std::sin(__theta);
+      {
+	auto __theta = std::acos(__x);
+	return std::sin(_Tp(__n + 1) * __theta)
+	     / std::sin(__theta);
+      }
   }
 
 /**
@@ -65,9 +67,15 @@ template<typename _Tp>
   _Tp
   __chebyshev_v_trig(unsigned int __n, _Tp __x)
   {
-    auto __theta = std::acos(__x);
-    return std::cos(_Tp(__n + 0.5L) * __theta)
-	 / std::cos(_Tp{0.5L} * __theta);
+    const auto _S_eps = __gnu_cxx::__epsilon(__x);
+    if (std::abs(__x + _Tp{1}) < _S_eps)
+      return (__n % 2 == 0 ? +1 : -1) * _Tp(2 * __n + 1);
+    else
+      {
+	auto __theta = std::acos(__x);
+	return std::cos(_Tp(__n + 0.5L) * __theta)
+	     / std::cos(_Tp{0.5L} * __theta);
+      }
   }
 
 /**
@@ -82,9 +90,15 @@ template<typename _Tp>
   _Tp
   __chebyshev_w_trig(unsigned int __n, _Tp __x)
   {
-    auto __theta = std::acos(__x);
-    return std::sin(_Tp(__n + 0.5L) * __theta)
-	 / std::sin(_Tp{0.5L} * __theta);
+    const auto _S_eps = __gnu_cxx::__epsilon(__x);
+    if (std::abs(__x - _Tp{1}) < _S_eps)
+      return _Tp(2 * __n + 1);
+    else
+      {
+	auto __theta = std::acos(__x);
+	return std::sin(_Tp(__n + 0.5L) * __theta)
+	     / std::sin(_Tp{0.5L} * __theta);
+      }
   }
 
 template<typename Tp>
