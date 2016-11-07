@@ -72,6 +72,10 @@ ${makedir} ${ext_dir}/airy_ai
 ${makedir} ${ext_dir}/airy_bi
 ${makedir} ${ext_dir}/bernoulli
 ${makedir} ${ext_dir}/bincoef
+${makedir} ${ext_dir}/chebyshev_t
+${makedir} ${ext_dir}/chebyshev_u
+${makedir} ${ext_dir}/chebyshev_v
+${makedir} ${ext_dir}/chebyshev_w
 ${makedir} ${ext_dir}/clausen
 ${makedir} ${ext_dir}/comp_ellint_d
 ${makedir} ${ext_dir}/conf_hyperg
@@ -144,6 +148,10 @@ ${tool} check/check_airy_bi.cc            ${ext_dir}/airy_bi/check_value.cc
 ${tool} check/check_bernoulli.cc          ${ext_dir}/bernoulli/check_value.cc
 ${tool} check/check_bincoef.cc            ${ext_dir}/bincoef/check_value.cc
 ${tool} check/check_chi.cc                ${ext_dir}/coshint/check_chi.cc
+${tool} check/check_chebyshev_t.cc        ${ext_dir}/chebyshev_t/check_value.cc
+${tool} check/check_chebyshev_u.cc        ${ext_dir}/chebyshev_u/check_value.cc
+${tool} check/check_chebyshev_v.cc        ${ext_dir}/chebyshev_v/check_value.cc
+${tool} check/check_chebyshev_w.cc        ${ext_dir}/chebyshev_w/check_value.cc
 ${tool} check/check_clausen_c.cc          ${ext_dir}/clausen/check_value.cc
 ${tool} check/check_comp_ellint_d.cc      ${ext_dir}/comp_ellint_d/check_value.cc
 ${tool} check/check_conf_hyperg.cc        ${ext_dir}/conf_hyperg/check_value.cc
