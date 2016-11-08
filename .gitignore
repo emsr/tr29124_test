@@ -30,6 +30,10 @@ check/check_assoc_laguerre
 check/check_assoc_legendre
 check/check_beta
 check/check_bincoef
+check_chebyshev_t
+check_chebyshev_u
+check_chebyshev_v
+check_chebyshev_w
 check/check_chi
 check/check_clausen_c
 check/check_comp_ellint_1
@@ -146,6 +150,8 @@ test_binet
 test_binet_float
 test_bose_einstein
 test_chebyshev
+test_chebyshev_trig
+test_chebyshev_trig_pi
 test_clausen
 test_cmath
 test_comp_ellint_1
