@@ -32,6 +32,106 @@ get_filename(const std::string & path,
   return filename;
 }
 
+/**
+ * Return the Chebyshev polynomial of the first kind by trigonometric identity:
+ * @f[
+ *   T_n(x) = \cos(n\theta)
+ * @f]
+ * where @f$ \theta = \acos(x) @f$.
+ */
+template<typename _Tp>
+  _Tp
+  __chebyshev_t_trig(unsigned int __n, _Tp __x)
+  {
+    auto __theta = std::acos(__x);
+    return std::cos(__n * __theta);
+  }
+
+/**
+ * Return the Chebyshev polynomial of the second kind by trigonometric identity:
+ * @f[
+ *   U_n(x) = \frac{\sin((n + 1)\theta)}{\sin(\theta)}
+ * @f]
+ * where @f$ \theta = \acos(x) @f$.
+ */
+template<typename _Tp>
+  _Tp
+  __chebyshev_u_trig(unsigned int __n, _Tp __x)
+  {
+    const auto _S_eps = __gnu_cxx::__epsilon(__x);
+    if (std::abs(__x + _Tp{1}) < _S_eps)
+      return (__n % 2 == 0 ? +1 : -1) * _Tp(__n + 1);
+    else if (std::abs(__x - _Tp{1}) < _S_eps)
+      return _Tp(__n + 1);
+    else
+      {
+	auto __theta = std::acos(__x);
+	return std::sin(_Tp(__n + 1) * __theta)
+	     / std::sin(__theta);
+      }
+  }
+
+/**
+ * Return the Chebyshev polynomial of the third kind by trigonometric identity:
+ * @f[
+ *   V_n(x) = \frac{\cos((n + \frac{1}{2})\theta)}
+ *                 {cos(\frac{1}{2}\theta)}
+ * @f]
+ * where @f$ \theta = \acos(x) @f$.
+ */
+template<typename _Tp>
+  _Tp
+  __chebyshev_v_trig(unsigned int __n, _Tp __x)
+  {
+    const auto _S_eps = __gnu_cxx::__epsilon(__x);
+    if (std::abs(__x + _Tp{1}) < _S_eps)
+      return (__n % 2 == 0 ? +1 : -1) * _Tp(2 * __n + 1);
+    else
+      {
+	auto __theta = std::acos(__x);
+	return std::cos(_Tp(__n + 0.5L) * __theta)
+	     / std::cos(_Tp{0.5L} * __theta);
+      }
+  }
+
+/**
+ * Return the Chebyshev polynomial of the fourth kind by trigonometric identity:
+ * @f[
+ *   W_n(x) = \frac{\sin((n + \frac{1}{2})\theta)}
+ *                 {\sin(\frac{1}{2}\theta)}
+ * @f]
+ * where @f$ \theta = \acos(x) @f$.
+ */
+template<typename _Tp>
+  _Tp
+  __chebyshev_w_trig(unsigned int __n, _Tp __x)
+  {
+    const auto _S_eps = __gnu_cxx::__epsilon(__x);
+    if (std::abs(__x - _Tp{1}) < _S_eps)
+      return _Tp(2 * __n + 1);
+    else
+      {
+	auto __theta = std::acos(__x);
+	return std::sin(_Tp(__n + 0.5L) * __theta)
+	     / std::sin(_Tp{0.5L} * __theta);
+      }
+  }
+
+double
+__chebyshev_t(unsigned int __n, double __x)
+{ return __chebyshev_t_trig<double>(__n, __x); }
+
+double
+__chebyshev_u(unsigned int __n, double __x)
+{ return __chebyshev_u_trig<double>(__n, __x); }
+
+double
+__chebyshev_v(unsigned int __n, double __x)
+{ return __chebyshev_v_trig<double>(__n, __x); }
+
+double
+__chebyshev_w(unsigned int __n, double __x)
+{ return __chebyshev_w_trig<double>(__n, __x); }
 
 template<typename Real>
   void
@@ -1270,27 +1370,56 @@ template<typename Real>
 	     file_gegenbauer);
 
     // Chebyshev polynomials of the first kind.
-    std::cout << "chebyshev_t - UNTESTED" << std::endl;
-/*
+    std::cout << "chebyshev_t" << std::endl;
     basename = "chebyshev_t";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_chebyshev_t(filename.c_str());
-    maketest(chebyshev_t, gsl::chebyshev_t,
+    maketest(chebyshev_t, __chebyshev_t,
 	     "testcase_chebyshev_t", "__gnu_cxx", basename,
 	     "n", {0U, 1U, 5U, 8U, 10U, 20U, 40U, 100U},
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{+1}),
 				std::make_pair(true, true), 21),
 	     "GSL",
 	     file_chebyshev_t);
-*/
+
     // Chebyshev polynomials of the second kind.
-    std::cout << "chebyshev_u - UNTESTED" << std::endl;
+    std::cout << "chebyshev_u" << std::endl;
+    basename = "chebyshev_u";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_chebyshev_u(filename.c_str());
+    maketest(chebyshev_u, __chebyshev_u,
+	     "testcase_chebyshev_u", "__gnu_cxx", basename,
+	     "n", {0U, 1U, 5U, 8U, 10U, 20U, 40U, 100U},
+	     "x", fill_argument(std::make_pair(Real{-1}, Real{+1}),
+				std::make_pair(true, true), 21),
+	     "GSL",
+	     file_chebyshev_u);
 
     // Chebyshev polynomials of the third kind.
-    std::cout << "chebyshev_v - UNTESTED" << std::endl;
+    std::cout << "chebyshev_v" << std::endl;
+    basename = "chebyshev_v";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_chebyshev_v(filename.c_str());
+    maketest(chebyshev_v, __chebyshev_v,
+	     "testcase_chebyshev_v", "__gnu_cxx", basename,
+	     "n", {0U, 1U, 5U, 8U, 10U, 20U, 40U, 100U},
+	     "x", fill_argument(std::make_pair(Real{-1}, Real{+1}),
+				std::make_pair(true, true), 21),
+	     "GSL",
+	     file_chebyshev_v);
 
     // Chebyshev polynomials of the fourth kind.
-    std::cout << "chebyshev_w - UNTESTED" << std::endl;
+    std::cout << "chebyshev_w" << std::endl;
+    basename = "chebyshev_w";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_chebyshev_w(filename.c_str());
+    maketest(chebyshev_w, __chebyshev_w,
+	     "testcase_chebyshev_w", "__gnu_cxx", basename,
+	     "n", {0U, 1U, 5U, 8U, 10U, 20U, 40U, 100U},
+	     "x", fill_argument(std::make_pair(Real{-1}, Real{+1}),
+				std::make_pair(true, true), 21),
+	     "GSL",
+	     file_chebyshev_w);
 
     // Jacobi polynomials.
     std::cout << "jacobi" << std::endl;
