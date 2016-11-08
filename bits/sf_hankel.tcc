@@ -36,7 +36,6 @@
 #include <limits>
 #include <vector>
 
-#include <bits/specfun_util.h>
 #include <bits/complex_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
@@ -48,14 +47,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   * Compute the Debye region in te complex plane.
+   * Compute the Debye region in the complex plane.
    */
   template<typename _Tp>
     void
     __debye_region(std::complex<_Tp> __alpha, int& __indexr, char& __aorb)
     {
-      static constexpr _Tp
-	_S_pi(3.141592653589793238462643383279502884195e+0L);
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__alpha));
 
       __aorb = ' ';
 
@@ -116,7 +114,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		    std::complex<_Tp>& __zetaphf, std::complex<_Tp>& __zetamhf,
 		    std::complex<_Tp>& __zetam3hf, std::complex<_Tp>& __zetrat)
     {
-      using __cmplx = std::complex<_Tp>;
+      using _Cmplx = std::complex<_Tp>;
 
       const auto _S_inf = __gnu_cxx::__max(std::real(__zhat));
 
@@ -129,8 +127,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_sqrt2 = __gnu_cxx::__const_root_2(std::real(__zhat));
       const auto _S_4d3   = _Tp{4} / _Tp{3};
 
-      const __cmplx __zone{_Tp{1}, _Tp{0}};
-      const __cmplx _S_j{_Tp{0}, _Tp{1}};
+      const _Cmplx __zone{_Tp{1}, _Tp{0}};
+      const _Cmplx _S_j{_Tp{0}, _Tp{1}};
 
       const auto _S_sqrt_max = __gnu_cxx::__sqrt_max(std::real(__zhat));
 
@@ -139,7 +137,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __imzhat = std::imag(__zhat);
 
       // Compute 1 - zhat^2 and related constants.
-      auto __w = __cmplx{_Tp{1}} - __safe_sqr(__zhat);
+      auto __w = _Cmplx{_Tp{1}} - __safe_sqr(__zhat);
       __w = std::sqrt(__w);
       __p = _Tp{1} / __w;
       __p2 = __p * __p;
@@ -217,12 +215,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __airy_arg(std::complex<_Tp> __num2d3, std::complex<_Tp> __zeta,
 	       std::complex<_Tp>& __argp, std::complex<_Tp>& __argm)
     {
-      using __cmplx = std::complex<_Tp>;
+      using _Cmplx = std::complex<_Tp>;
 
       // expp and expm are exp(2*pi*i/3) and its reciprocal, respectively.
       const auto _S_sqrt3d2 = __gnu_cxx::__const_root_3_div_2(std::real(__zeta));
-      const auto __expp = __cmplx{-0.5L,  _S_sqrt3d2};
-      const auto __expm = __cmplx{-0.5L, -_S_sqrt3d2};
+      const auto __expp = _Cmplx{-0.5L,  _S_sqrt3d2};
+      const auto __expm = _Cmplx{-0.5L, -_S_sqrt3d2};
 
       try
 	{
@@ -257,29 +255,29 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			   std::complex<_Tp>& __od2p, std::complex<_Tp>& __od0dp,
 			   std::complex<_Tp>& __od2m, std::complex<_Tp>& __od0dm)
     {
-      using __cmplx = std::complex<_Tp>;
+      using _Cmplx = std::complex<_Tp>;
 
       const auto _S_sqrt3d2 = __gnu_cxx::__const_root_3_div_2(std::real(__z));
-      const __cmplx __e2pd3{-0.5L,  _S_sqrt3d2};
-      const __cmplx __d2pd3{-0.5L, -_S_sqrt3d2};
+      const _Cmplx __e2pd3{-0.5L,  _S_sqrt3d2};
+      const _Cmplx __d2pd3{-0.5L, -_S_sqrt3d2};
 
       try
 	{
 	  __zhat = __safe_div(__z, __nu);
 	  // Try to compute other nu and z dependent parameters except args to Airy functions.
-	  __cmplx __num4d3, __nup2, __zeta, __zetaphf, __zetamhf;
+	  _Cmplx __num4d3, __nup2, __zeta, __zetaphf, __zetamhf;
 	  __hankel_params(__nu, __zhat, __p, __p2, __nup2,
 			  __1dnsq, __num1d3, __num2d3, __num4d3,
 			  __zeta, __zetaphf, __zetamhf, __etm3h, __etrat);
 
 
 	  // Try to compute Airy function arguments.
-	  __cmplx __argp, __argm;
+	  _Cmplx __argp, __argm;
 	  __airy_arg(__num2d3, __zeta, __argp, __argm);
 
 	  // Compute Airy functions and derivatives.
-	  auto __airyp = _Airy<std::complex<_Tp>>()(__argp);
-	  auto __airym = _Airy<std::complex<_Tp>>()(__argm);
+	  auto __airyp = _Airy<_Cmplx>()(__argp);
+	  auto __airym = _Airy<_Cmplx>()(__argm);
 	  // Compute partial outer terms in expansions.
 	  __o4dp = -__zetamhf * __num4d3 * __e2pd3 * __airyp.__Ai_deriv;
 	  __o4dm = -__zetamhf * __num4d3 * __d2pd3 * __airym.__Ai_deriv;
@@ -334,18 +332,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			 std::complex<_Tp>& _H1sum, std::complex<_Tp>& _H1psum,
 			 std::complex<_Tp>& _H2sum, std::complex<_Tp>& _H2psum)
     {
-      using __cmplx = std::complex<_Tp>;
+      using _Cmplx = std::complex<_Tp>;
 
       int __nterms = 4;
 
-      static const auto __zone = __cmplx{1, 0};
+      static const auto __zone = _Cmplx{1, 0};
 
       // Coefficients for u and v polynomials appearing in Olver's
       // uniform asymptotic expansions for the Hankel functions
       // and their derivatives.
 
+      static constexpr unsigned int _S_num_ab = 66;
       static constexpr _Tp
-      _S_a[66]
+      _S_a[_S_num_ab]
       {
 	 0.1000000000000000e+01,
 	-0.2083333333333333e+00,
@@ -416,7 +415,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       };
 
       static constexpr _Tp
-      _S_b[66]
+      _S_b[_S_num_ab]
       {  0.1000000000000000e+01,
 	 0.2916666666666667e+00,
 	-0.3750000000000000e+00,
@@ -538,9 +537,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	-0.9295073331010611e+15
       };
 
-      std::vector<__cmplx> __u;
+      std::vector<_Cmplx> __u;
       __u.reserve(100);
-      std::vector<__cmplx> __v;
+      std::vector<_Cmplx> __v;
       __v.reserve(100);
 
       auto __xtsq = std::real(__p2);
@@ -554,19 +553,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __u.push_back(__pk * (_S_a[1] * __p2 + _S_a[2]));
       __v.push_back(__pk * (_S_b[1] * __p2 + _S_b[2]));
       __pk *= __p;
-      __u.push_back(__pk * __cmplx((_S_a[3] * __xtsq + _S_a[4])
+      __u.push_back(__pk * _Cmplx((_S_a[3] * __xtsq + _S_a[4])
 				   * __xtsq + _S_a[5] - _S_a[3] * __ytsq2,
 			(_Tp{2} * _S_a[3] * __xtsq + _S_a[4]) * __ytsq));
-      __v.push_back(__pk * __cmplx((_S_b[3] * __xtsq + _S_b[4])
+      __v.push_back(__pk * _Cmplx((_S_b[3] * __xtsq + _S_b[4])
 				   * __xtsq + _S_b[5] - _S_b[3] * __ytsq2,
 			(_Tp{2} * _S_b[3] * __xtsq + _S_b[4]) * __ytsq));
       __pk *= __p;
-      __u.push_back(__pk * __cmplx(((_S_a[6] * __xtsq + _S_a[7])
+      __u.push_back(__pk * _Cmplx(((_S_a[6] * __xtsq + _S_a[7])
 				   * __xtsq + _S_a[8]) * __xtsq
      			+ _S_a[9] - (_Tp{3} * _S_a[6] * __xtsq + _S_a[7]) * __ytsq2,
      			((_Tp{3} * _S_a[6] * __xtsq + _Tp{2} * _S_a[7]) * __xtsq + _S_a[8]
      			- _S_a[6] * __ytsq2) * __ytsq));
-      __v.push_back(__pk * __cmplx(((_S_b[6] * __xtsq + _S_b[7])
+      __v.push_back(__pk * _Cmplx(((_S_b[6] * __xtsq + _S_b[7])
 				   * __xtsq + _S_b[8]) * __xtsq
      			+ _S_b[9] - (_Tp{3} * _S_b[6] * __xtsq + _S_b[7]) * __ytsq2,
      			((_Tp{3} * _S_b[6] * __xtsq + _Tp{2} * _S_b[7]) * __xtsq + _S_b[8]
@@ -592,10 +591,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			+ _S_lambda[0] * __v[0]);
 
       // Compute sum of first two terms to initialize the Kahan summing scheme.
-      __gnu_cxx::_KahanSum<std::complex<_Tp>> _Asum;
-      __gnu_cxx::_KahanSum<std::complex<_Tp>> _Bsum;
-      __gnu_cxx::_KahanSum<std::complex<_Tp>> _Csum;
-      __gnu_cxx::_KahanSum<std::complex<_Tp>> _Dsum;
+      __gnu_cxx::_KahanSum<_Cmplx> _Asum;
+      __gnu_cxx::_KahanSum<_Cmplx> _Bsum;
+      __gnu_cxx::_KahanSum<_Cmplx> _Csum;
+      __gnu_cxx::_KahanSum<_Cmplx> _Dsum;
       _Asum += _A0;
       _Bsum += _B0;
       _Csum += _C0;
@@ -776,22 +775,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param[out] _H2p The derivative of the Hankel function of the second kind.
    */
   template<typename _Tp>
-    void
-    __hankel_uniform_olver(std::complex<_Tp> __nu, std::complex<_Tp> __z,
-			   std::complex<_Tp>& _H1, std::complex<_Tp>& _H2,
-			   std::complex<_Tp>& _H1p, std::complex<_Tp>& _H2p)
+    __gnu_cxx::__cyl_hankel_t<std::complex<_Tp>, std::complex<_Tp>,
+			      std::complex<_Tp>>
+    __hankel_uniform_olver(std::complex<_Tp> __nu, std::complex<_Tp> __z)
     {
       using namespace std::literals::complex_literals;
-      using __cmplx = std::complex<_Tp>;
+      using _Cmplx = std::complex<_Tp>;
+
+      using __hank_t = __gnu_cxx::__cyl_hankel_t<_Cmplx, _Cmplx, _Cmplx>;
 
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
       const auto _S_pi_3 = __gnu_cxx::__const_pi_third(std::real(__z));
       const auto _S_sqrt_3 = __gnu_cxx::__const_root_3(std::real(__z));
-      const __cmplx _S_j{1il};
-      const __cmplx __con1p{ _Tp{1}, _S_sqrt_3}; // 2*exp( pi*j/3) (1,sqrt(3))
-      const __cmplx __con1m{ _Tp{1},-_S_sqrt_3}; // 2*exp(-pi*j/3)
-      const __cmplx __con2p{-_Tp{2}, _Tp{2} * _S_sqrt_3}; // 4*exp( 2*pi*j/3) (-2,2sqrt(3))
-      const __cmplx __con2m{-_Tp{2},-_Tp{2} * _S_sqrt_3}; // 4*exp(-2*pi*j/3)
+      const _Cmplx _S_j{1il};
+      const _Cmplx __con1p{ _Tp{1}, _S_sqrt_3}; // 2*exp( pi*j/3) (1,sqrt(3))
+      const _Cmplx __con1m{ _Tp{1},-_S_sqrt_3}; // 2*exp(-pi*j/3)
+      const _Cmplx __con2p{-_Tp{2}, _Tp{2} * _S_sqrt_3}; // 4*exp( 2*pi*j/3) (-2,2sqrt(3))
+      const _Cmplx __con2m{-_Tp{2},-_Tp{2} * _S_sqrt_3}; // 4*exp(-2*pi*j/3)
       const _Tp __eps	= 1.0e-06L;
       const _Tp __epsai = 1.0e-12L;
 
@@ -806,7 +806,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Compute outer factors in the uniform asymptotic expansions
       // for the Hankel functions and their derivatives along with
       // other important functions of nu and z.
-      __cmplx __p, __p2,
+      _Cmplx __p, __p2,
 	    __1dnsq, __etm3h, _Aip, __o4dp, _Aim, __o4dm,
 	    __od2p, __od0dp, __od0dm, __tmp, __zhat, __num1d3,
 	    __num2d3, __etrat, __od2m, __r_factor;
@@ -816,7 +816,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			     __od0dp, __od2m, __od0dm);
 
       // Compute further terms in the expansions in their appropriate linear combinations.
-
+      _Cmplx _H1, _H2, _H1p, _H2p;
       __hankel_uniform_sum(__p, __p2, __1dnsq, __etm3h,
 			   _Aip, __o4dp, _Aim, __o4dm,
 			   __od2p, __od0dp, __od2m, __od0dm, __eps,
@@ -840,7 +840,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __nu  = -__nu;
 	}
 
-      return;
+      return __hank_t{__nu, __z, _H1, _H1p, _H2, _H2p};
     }
 
 
@@ -861,44 +861,44 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param[out] _H2p The derivative of the Hankel function of the second kind.
    */
   template<typename _Tp>
-    void
-    __hankel_uniform(std::complex<_Tp> __nu, std::complex<_Tp> __z,
-		     std::complex<_Tp>& _H1, std::complex<_Tp>& _H2,
-		     std::complex<_Tp>& _H1p, std::complex<_Tp>& _H2p)
+    __gnu_cxx::__cyl_hankel_t<std::complex<_Tp>, std::complex<_Tp>,
+			      std::complex<_Tp>>
+    __hankel_uniform(std::complex<_Tp> __nu, std::complex<_Tp> __z)
     {
-      using __cmplx = std::complex<_Tp>;
-      _Tp __test = std::pow(std::abs(__nu), _Tp{1} / _Tp{3}) / _Tp{5};
+      using _Cmplx = std::complex<_Tp>;
 
+      using __hank_t = __gnu_cxx::__cyl_hankel_t<_Cmplx, _Cmplx, _Cmplx>;
+
+      _Tp __test = std::pow(std::abs(__nu), _Tp{1} / _Tp{3}) / _Tp{5};
       if (std::abs(__z - __nu) > __test)
-	__hankel_uniform_olver(__nu, __z, _H1, _H2, _H1p, _H2p);
+	return __hankel_uniform_olver(__nu, __z);
       else
 	{
 	  _Tp __r = _Tp{2} * __test;
-	  std::complex<_Tp> _S_anu[4]{__nu + __cmplx{__r, _Tp()},
-				      __nu + __cmplx{_Tp(), __r},
-				      __nu - __cmplx{__r, _Tp()},
-				      __nu - __cmplx{_Tp(), __r}};
+	  _Cmplx _S_anu[4]{__nu + _Cmplx{__r, _Tp()},
+			   __nu + _Cmplx{_Tp(), __r},
+			   __nu - _Cmplx{__r, _Tp()},
+			   __nu - _Cmplx{_Tp(), __r}};
 
-	  _H1  = __cmplx{};
-	  _H2  = __cmplx{};
-	  _H1p = __cmplx{};
-	  _H2p = __cmplx{};
+	  auto _H1  = _Cmplx{};
+	  auto _H2  = _Cmplx{};
+	  auto _H1p = _Cmplx{};
+	  auto _H2p = _Cmplx{};
 	  for (auto __tnu : _S_anu)
 	    {
-	      std::complex<_Tp> __th1, __th2, __th1p, __th2p;
-	      __hankel_uniform_olver(__tnu, __z, __th1, __th2, __th1p, __th2p);
-	      _H1  += __th1;
-	      _H2  += __th2;
-	      _H1p += __th1p;
-	      _H2p += __th2p;
+	      auto __ho = __hankel_uniform_olver(__tnu, __z);
+	      _H1  += __ho.__H1_value;
+	      _H1p += __ho.__H1_deriv;
+	      _H2  += __ho.__H2_value;
+	      _H2p += __ho.__H2_deriv;
 	    }
 	  _H1  /= _Tp{4};
 	  _H2  /= _Tp{4};
 	  _H1p /= _Tp{4};
 	  _H2p /= _Tp{4};
-	}
 
-      return;
+	  return __hank_t{__nu, __z, _H1, _H1p, _H2, _H2p};
+	}
     }
 
 
@@ -916,19 +916,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param[out] _H2p The derivative of the Hankel function of the second kind.
    */
   template<typename _Tp>
-    void
+    __gnu_cxx::__cyl_hankel_t<std::complex<_Tp>, std::complex<_Tp>,
+			      std::complex<_Tp>>
     __hankel_debye(std::complex<_Tp> __nu, std::complex<_Tp> __z,
 		   std::complex<_Tp> __alpha,
-		   int __indexr, char& __aorb, int& __morn,
-		   std::complex<_Tp>& _H1, std::complex<_Tp>& _H2,
-		   std::complex<_Tp>& _H1p, std::complex<_Tp>& _H2p)
+		   int __indexr, char& __aorb, int& __morn)
     {
       using namespace std::literals::complex_literals;
-      using __cmplx = std::complex<_Tp>;
+      using _Cmplx = std::complex<_Tp>;
+
+      using __hank_t = __gnu_cxx::__cyl_hankel_t<_Cmplx, _Cmplx, _Cmplx>;
 
       static constexpr _Tp
 	_S_pi(3.141592653589793238462643383279502884195e+0L);
-      static constexpr __cmplx _S_j{1.0il};
+      static constexpr _Cmplx _S_j{1.0il};
       static constexpr _Tp _S_toler = _Tp{1.0e-8L};
       const auto __maxexp
 	= std::floor(std::numeric_limits<_Tp>::max_exponent
@@ -948,6 +949,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __s2 = std::exp(-__nu * (__thalpa - __alpha) + _S_j * _S_pi / _Tp{4})
 		/ __denom;
       auto __exparg = __nu * (__thalpa - __alpha) - _S_j * _S_pi / _Tp{4};
+
+      _Cmplx _H1, _H1p, _H2, _H2p;
       if (__indexr == 0)
 	{
 	  _H1 = _Tp{0.5L} * __s1 - __s2;
@@ -995,7 +998,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else if (__aorb == 'A')
 	{
-	  __cmplx __sinrat;
+	  _Cmplx __sinrat;
 	  if ((std::abs(std::imag(__nu)) < _S_toler)
 	   && (std::abs(std::fmod(std::real(__nu), 1)) < _S_toler))
 	    __sinrat = __morn;
@@ -1032,7 +1035,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else
 	{
-	  __cmplx __sinrat;
+	  _Cmplx __sinrat;
 	  if ((std::abs(std::imag(__nu)) < _S_toler)
 	   && (std::abs(std::fmod(std::real(__nu), 1)) < _S_toler))
 	    __sinrat = -__morn;
@@ -1069,7 +1072,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    std::__throw_runtime_error(__N("__hankel_debye: unexpected region"));
 	}
 
-      return;
+      return __hank_t{__nu, __z, _H1, _H1p, _H2, _H2p};
     }
 
 
@@ -1083,19 +1086,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param[out] _H2p The derivative of the Hankel function of the second kind.
    */
   template<typename _Tp>
-    void
-    __hankel(std::complex<_Tp> __nu, std::complex<_Tp> __z,
-	     std::complex<_Tp>& _H1, std::complex<_Tp>& _H2,
-	     std::complex<_Tp>& _H1p, std::complex<_Tp>& _H2p)
+    __gnu_cxx::__cyl_hankel_t<std::complex<_Tp>, std::complex<_Tp>,
+			      std::complex<_Tp>>
+    __hankel(std::complex<_Tp> __nu, std::complex<_Tp> __z)
     {
-      static constexpr _Tp
-	_S_pi(3.141592653589793238462643383279502884195e+0L);
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
 
       int __indexr;
 
       auto __test = std::abs((__nu - __z) / std::pow(__nu, _Tp{1}/_Tp{3}));
       if (__test < _Tp{4})
-	__hankel_uniform(__z, __nu, _H1, _H2, _H1p, _H2p);
+	return __hankel_uniform(__z, __nu);
       else
 	{
 	  auto __sqtrm = std::sqrt((__nu / __z) * (__nu / __z) - _Tp{1});
@@ -1130,11 +1131,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      if (__nfun < _Tp{0} && std::fmod(__nfun, _Tp{1}) != _Tp{0})
 		--__morn;
 	    }
-	  __hankel_debye(__nu, __z, __alpha, __indexr, __aorb, __morn,
-			 _H1, _H2, _H1p, _H2p);
+	  return __hankel_debye(__nu, __z, __alpha, __indexr, __aorb, __morn);
 	}
-
-      return;
     }
 
 
@@ -1149,9 +1147,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __cyl_hankel_1(std::complex<_Tp> __nu, std::complex<_Tp> __z)
     {
-      std::complex<_Tp> _H1, _H1p, _H2, _H2p;
-      __hankel(__nu, __z, _H1, _H1p, _H2, _H2p);
-      return _H1;
+      auto __hank = __hankel(__nu, __z);
+      return __hank.__H1_value;
     }
 
   /**
@@ -1165,9 +1162,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __cyl_hankel_2(std::complex<_Tp> __nu, std::complex<_Tp> __z)
     {
-      std::complex<_Tp> _H1, _H1p, _H2, _H2p;
-      __hankel(__nu, __z, _H1, _H1p, _H2, _H2p);
-      return _H2;
+      auto __hank = __hankel(__nu, __z);
+      return __hank.__H2_value;
     }
 
   /**
@@ -1181,9 +1177,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __cyl_bessel(std::complex<_Tp> __nu, std::complex<_Tp> __z)
     {
-      std::complex<_Tp> _H1, _H1p, _H2, _H2p;
-      __hankel(__nu, __z, _H1, _H1p, _H2, _H2p);
-      return (_H1 + _H2) / _Tp{2};
+      auto __hank = __hankel(__nu, __z);
+      return (__hank.__H1_value + __hank.__H2_value) / _Tp{2};
     }
 
   /**
@@ -1197,9 +1192,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __cyl_neumann(std::complex<_Tp> __nu, std::complex<_Tp> __z)
     {
-      std::complex<_Tp> _H1, _H1p, _H2, _H2p;
-      __hankel(__nu, __z, _H1, _H1p, _H2, _H2p);
-      return (_H1 - _H2) / std::complex<_Tp>{0, 2};
+      auto __hank = __hankel(__nu, __z);
+      return (__hank.__H1_value - __hank.__H2_value) / std::complex<_Tp>{0, 2};
     }
 
   /**
@@ -1214,20 +1208,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param[out] _H2p The derivative of the spherical Hankel function of the second kind.
    */
   template<typename _Tp>
-    void
-    __sph_hankel(unsigned int __n, std::complex<_Tp> __z,
-		 std::complex<_Tp>& _H1, std::complex<_Tp>& _H1p,
-		 std::complex<_Tp>& _H2, std::complex<_Tp>& _H2p)
+    __gnu_cxx::__sph_hankel_t<unsigned int, std::complex<_Tp>, std::complex<_Tp>>
+    __sph_hankel(unsigned int __n, std::complex<_Tp> __z)
     {
-      static constexpr _Tp
-	_S_pi(3.141592653589793238462643383279502884195e+0L);
-      std::complex<_Tp> __nu(__n + _Tp{0.5});
-      __hankel(__nu, __z, _H1, _H1p, _H2, _H2p);
-      std::complex<_Tp> __fact = std::sqrt(_S_pi / (_Tp{2} * __z));
-      _H1 *= __fact;
-      _H1p = __fact * _H1p - _H1 / (_Tp{2} * __z);
-      _H2 *= __fact;
-      _H2p = __fact * _H2p - _H2 / (_Tp{2} * __z);
+      using _Cmplx = std::complex<_Tp>;
+      using __hank_t = __gnu_cxx::__sph_hankel_t<unsigned int, _Cmplx, _Cmplx>;
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
+      _Cmplx __nu(__n + _Tp{0.5});
+      auto __hank = __hankel(__nu, __z);
+      _Cmplx __fact = std::sqrt(_S_pi / (_Tp{2} * __z));
+      __hank.__H1_value *= __fact;
+      __hank.__H1_deriv = __fact * __hank.__H1_deriv
+			- __hank.__H1_value / (_Tp{2} * __z);
+      __hank.__H2_value *= __fact;
+      __hank.__H2_deriv = __fact * __hank.__H2_deriv
+			- __hank.__H2_value / (_Tp{2} * __z);
+      return __hank_t{__n, __z,
+		      __hank.__H1_value, __hank.__H1_deriv,
+		      __hank.__H2_value, __hank.__H2_deriv};
     }
 
   /**
@@ -1241,9 +1239,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __sph_hankel_1(unsigned int __n, std::complex<_Tp> __z)
     {
-      std::complex<_Tp> _H1, _H1p, _H2, _H2p;
-      __sph_hankel(__n, __z, _H1, _H1p, _H2, _H2p);
-      return _H1;
+      auto __hank = __sph_hankel(__n, __z);
+      return __hank.__h1_value;
     }
 
   /**
@@ -1257,9 +1254,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __sph_hankel_2(unsigned int __n, std::complex<_Tp> __z)
     {
-      std::complex<_Tp> _H1, _H1p, _H2, _H2p;
-      __sph_hankel(__n, __z, _H1, _H1p, _H2, _H2p);
-      return _H2;
+      auto __hank = __sph_hankel(__n, __z);
+      return __hank.__h2_value;
     }
 
   /**
@@ -1273,9 +1269,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __sph_bessel(unsigned int __n, std::complex<_Tp> __z)
     {
-      std::complex<_Tp> _H1, _H1p, _H2, _H2p;
-      __sph_hankel(__n, __z, _H1, _H1p, _H2, _H2p);
-      return (_H1 + _H2) / _Tp{2};
+      auto __hank = __sph_hankel(__n, __z);
+      return (__hank.__h1_value + __hank.__h2_value) / _Tp{2};
     }
 
   /**
@@ -1289,9 +1284,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __sph_neumann(unsigned int __n, std::complex<_Tp> __z)
     {
-      std::complex<_Tp> _H1, _H1p, _H2, _H2p;
-      __sph_hankel(__n, __z, _H1, _H1p, _H2, _H2p);
-      return (_H1 - _H2) / std::complex<_Tp>{0, 2};
+      auto __hank = __sph_hankel(__n, __z);
+      return (__hank.__h1_value - __hank.__h2_value) / std::complex<_Tp>{0, 2};
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION

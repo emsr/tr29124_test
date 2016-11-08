@@ -8,9 +8,10 @@
 
 2. [] __riemann_zeta_alt should be tested with vanWijnGaarden
 
-3. [] Debye integrals matharr has some.
+3. [] Debye integrals matharr has some.  Started a test.
 
 4. [] test asymptotic Hermite polys - adjust the crossover width!
+GSL extras has these - there was struggle there too.
 
 5. [] I got derivs in the Bessel asymp!
    Now I need a more principled max iteration.
@@ -34,7 +35,7 @@
   template <class T>
     calculated-result-type owens_t(T h, T a);
 
-13. [] heuman_lambda - I've got this! - __heuman_lambda(_Tp __beta, _Tp __k)
+13. [DONE] heuman_lambda - I've got this! - __heuman_lambda(_Tp __beta, _Tp __k)
     template <class T1, class T2>
       calculated-result-type heuman_lambda(T1 k, T2 phi);
     and __jacobi_zeta(_Tp __k, _Tp __phi)
@@ -44,9 +45,9 @@
     template <class T1, class T2>
       calculated-result-type ellint_d(T1 k, T2 phi);
 
-14. [] Expose Bernoulli numbers.
+14. [DONE] Expose Bernoulli numbers.
 
-15. [] polygamma...
+15. [DONE] polygamma...
 
 16. [] inverse erf and erfc.
 
@@ -61,7 +62,7 @@ with
 #include "../testcase.h"
 for [] TR1 test generation...
 
-19. [] Tabulate riemann_zeta for integer arguments - various sums can use this.
+19. [DONE] Tabulate riemann_zeta for integer arguments - various sums can use this.
 
 20. [DONE] Loof at test_cyl_hankel - we got issues! vu=1, z=0.01 Y bombs on steeds algorithm!
        OK! Steeds algorithm fails for cyl_neumann for exatly nu=1 and no thoer. WTF!
@@ -70,13 +71,14 @@ for [] TR1 test generation...
 21. [] Finish experfc = exp(x*x)*erfc(x) (and maybe even sqrt(pi)*x*exp(x*x)*erfc(x))
 
 22. [] ../LambertW has a very good static polynomial I think - with static Horner.
+They use macros... Sigh.  Still, we could hack these into templates.
 
 23. [DONE] We have both psi *and* digamma!  Pick one!
 
 24. [DONE] polynomial.h needs outline polynomial.tcc
 
 25. [] Why did dilog lose the x=0 test?
-       It is because the answer dilog(0) == 0.  So the fractional error blows up even wgen the answer is spot on.
+       It is because the answer dilog(0) == 0.  So the fractional error blows up even when the answer is spot on.
        But it doesn't look like such a point would be skipped though.
        We need a way of trapping this...
 
@@ -86,14 +88,15 @@ for [] TR1 test generation...
        I had to test epsilon * |x| for zero to place poles!
        The world really needs reperiodized trig functions!
 
-27. [] Should I do the /_GLIBCXX_END_NAMESPACE_VERSION thing for __gnu_cxx?
+27. [DONE] Should I do the /_GLIBCXX_END_NAMESPACE_VERSION thing for __gnu_cxx?
+           Yes!
 
 28. [DONE] ibeta looks like it might have problems for large a, b near end points.
            Check test_beta_inc.
 
 29. [DONE] Lose __eps, __min, __max, __inf, __NaN from math_const in favor of numeric_limits.h
 
-30. [] Why did check_lfactorial.cc get chopped after 171?
+30. [DONE] Why did check_lfactorial.cc get chopped after 171?
    { 711.71472580228999, 171, 0.0 },
 -  { 716.86222027910344, 172, 0.0 },
 
@@ -109,12 +112,12 @@ After the table stops at 180 __log_gamma is called.
 
 32. [] radpoly is nan ing out for odd m!
 
-33. [] beta for a=100 b>71 wrong sign.  But dead on magnitude!  We could crush it!
+33. [DONE] beta for a=100 b>71 wrong sign.  But dead on magnitude!  We could crush it!
 
 34. [] In test_riemann_zeta the negative argument differences between real zetac an zeta are much worse.
 Reflection formula and reperiodized stuff?
 
-35. [] expint_en may be just sloppy.  I think recursion may be bad?
+35. [DONE] expint_en may be just sloppy.  I think recursion may be bad?
 Boost uses CF + series.
 
 36. [] Gather 32-digit spot checks from:
@@ -138,11 +141,12 @@ And if the type doesn't do denorm just zero then and don't sweat.
 
 42. [] We might not even need numeric_limits_float128.h - the generic ones might work.
 
-43. [] test_polylog has some remaining 128 issues.
+43. [] test_polylog has some remaining float128 issues.
 
-44. [] test_hankel build fails on  
-test_hankel.cpp:52:47: error: no matching function for call to \u2018__airy(std::complex<double>&, double)\u2019
+44. [DONE] test_hankel build fails on  
+test_hankel.cpp:52:47: error: no matching function for call to '__airy(std::complex<double>&, double)'
    auto Airy = std::__detail::__airy(z, 1.0e-16);
+It builds.
 
 It's probably an API change.
 
@@ -153,3 +157,10 @@ It's probably an API change.
 
 42. [] We might not even need numeric_limits_float128.h - the generic ones might work.
 
+43. [] Have a look at
+  src/c++98/math_stubs_float.cc
+  src/c++98/math_stubs_long_double.cc
+for guidance on how we might help add float128.
+
+44. [] test_hankel crashes.
+  what():  __hankel_uniform_sum: all allowable terms used
