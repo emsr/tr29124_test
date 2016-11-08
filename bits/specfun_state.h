@@ -42,8 +42,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       /// Jacobi sine amplitude value.
       _Tp __sn_value;
+
       /// Jacobi cosine amplitude value.
       _Tp __cn_value;
+
       /// Jacobi delta amplitude value.
       _Tp __dn_value;
 
@@ -80,12 +82,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       /// The argument of the Airy fuctions.
       _Tx __x_arg;
+
       /// The value of the Airy function Ai.
       _Tp __Ai_value;
+
       /// The derivative of the Airy function Ai.
       _Tp __Ai_deriv;
+
       /// The value of the Airy function Bi.
       _Tp __Bi_value;
+
       /// The derivative of the Airy function Bi.
       _Tp __Bi_deriv;
 
@@ -102,12 +108,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       /// The argument of the Fock-type Airy fuctions.
       _Tx __x_arg;
+
       /// The value of the Fock-type Airy function w1.
       _Tp __w1_value;
+
       /// The derivative of the Fock-type Airy function w1.
       _Tp __w1_deriv;
+
       /// The value of the Fock-type Airy function w2.
       _Tp __w2_value;
+
       /// The derivative of the Fock-type Airy function w2.
       _Tp __w2_deriv;
 
@@ -125,14 +135,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       /// The real order of the cylindrical Bessel functions.
       _Tnu __nu_arg;
+
       /// The argument of the cylindrical Bessel functions.
       _Tx __x_arg;
+
       /// The value of the Bessel function of the first kind.
       _Tp __J_value;
+
       /// The derivative of the Bessel function of the first kind.
       _Tp __J_deriv;
+
       /// The value of the Bessel function of the second kind.
       _Tp __N_value;
+
       /// The derivative of the Bessel function of the second kind.
       _Tp __N_deriv;
 
@@ -150,17 +165,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       /// The real order of the modified cylindrical Bessel functions.
       _Tnu __nu_arg;
+
       /// The argument of the modified cylindrical Bessel functions.
       _Tx __x_arg;
+
       /// The value of the modified cylindrical Bessel function
       /// of the first kind.
       _Tp __I_value;
+
       /// The derivative of the modified cylindrical Bessel function
       /// of the first kind.
       _Tp __I_deriv;
+
       /// The value of the modified cylindrical Bessel function
       /// of the second kind.
       _Tp __K_value;
+
       /// The derivative of the modified cylindrical Bessel function
       /// of the second kind.
       _Tp __K_deriv;
@@ -178,14 +198,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       /// The real order of the cylindrical Hankel functions.
       _Tnu __nu_arg;
+
       /// The argument of the modified Hankel functions.
       _Tx __x_arg;
+
       /// The value of the cylindrical Hankel function of the first kind.
       _Tp __H1_value;
+
       /// The derivative of the cylindrical Hankel function of the first kind.
       _Tp __H1_deriv;
+
       /// The value of the cylindrical Hankel function of the second kind.
       _Tp __H2_value;
+
       /// The derivative of the cylindrical Hankel function of the second kind.
       _Tp __H2_deriv;
 
@@ -199,14 +224,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       /// The integral order of the spherical Bessel functions.
       _Tn __n_arg;
+
       /// The argument of the spherical Bessel functions.
       _Tx __x_arg;
+
       /// The value of the spherical Bessel function of the first kind.
       _Tp __j_value;
+
       /// The derivative of the spherical Bessel function of the first kind.
       _Tp __j_deriv;
+
       /// The value of the spherical Bessel function of the second kind.
       _Tp __n_value;
+
       /// The derivative of the spherical Bessel function of the second kind.
       _Tp __n_deriv;
 
@@ -220,17 +250,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       /// The argument of the modified spherical Bessel functions.
       _Tx __x_arg;
+
       /// The integral order of the modified spherical Bessel functions.
       _Tn n_arg;
+
       /// The value of the modified spherical Bessel function
       /// of the first kind.
       _Tp __i_value;
+
       /// The derivative of the modified spherical Bessel function
       /// of the first kind.
       _Tp __i_deriv;
+
       /// The value of the modified spherical Bessel function
       /// of the second kind.
       _Tp __k_value;
+
       /// The derivative of the modified spherical Bessel function
       /// of the second kind.
       _Tp __k_deriv;
@@ -246,16 +281,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tn, typename _Tx, typename _Tp>
     struct __sph_hankel_t
     {
-      /// The argument of the spherical Hankel functions.
-      _Tx __x_arg;
       /// The integral order of the spherical Hankel functions.
       _Tn __n_arg;
+
+      /// The argument of the spherical Hankel functions.
+      _Tx __x_arg;
+
       /// The velue of the spherical Hankel function of the first kind.
       _Tp __h1_value;
+
       /// The derivative of the spherical Hankel function of the first kind.
       _Tp __h1_deriv;
+
       /// The velue of the spherical Hankel function of the second kind.
       _Tp __h2_value;
+
       /// The derivative of the spherical Hankel function of the second kind.
       _Tp __h2_deriv;
 
@@ -269,6 +309,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       /// 
       _Tp __pgamma_value;
+
       /// 
       _Tp __qgamma_value;
     };
@@ -282,6 +323,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       /// The value log gamma function.
       _Tp __lgamma_value;
+
       /// The sign of the exponent of the log gamma value.
       int __lgamma_sign;
     };
@@ -322,12 +364,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       /// The input parameter of the gamma functions
       _Tp __mu_arg;
+
       /// The output function @f$ 1/\Gamma(1 + \mu) @f$
       _Tp __gamma_plus_value;
+
       /// The output function @f$ 1/\Gamma(1 - \mu) @f$
       _Tp __gamma_minus_value;
+
       /// The output function @f$ \Gamma_1(\mu) @f$
       _Tp __gamma_1_value;
+
       /// The output function @f$ \Gamma_2(\mu) @f$
       _Tp __gamma_2_value;
     };
