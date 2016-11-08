@@ -48,13 +48,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * This struct defines the Airy function state with two presumably
    * numerically useful Airy functions and their derivatives.
    * The data mambers are directly accessible.
-   * The lone method computes the Wronskian from the stord functions.
+   * The lone method computes the Wronskian from the stored functions.
    * A static method returns the correct Wronskian.
    */
   template<typename _Tp>
     struct _AiryState
     {
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Real = std::__detail::__num_traits_t<_Tp>;
 
       _Tp __z;
       _Tp __Ai_value;
@@ -62,13 +62,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __Bi_value;
       _Tp __Bi_deriv;
 
-      constexpr _Tp
+      _Tp
       Wronskian() const
       { return __Ai_value * __Bi_deriv - __Bi_value * __Ai_deriv; }
 
-      static constexpr _Val
+      _Real
       true_Wronskian()
-      { return _Val{1} / __gnu_cxx::__const_pi(_Val{}); }
+      { return _Real{1} / __gnu_cxx::__const_pi(std::real(__z)); }
     };
 
 
@@ -107,9 +107,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     class _Airy_series
     {
-      using __cmplx = std::complex<_Tp>;
-
     public: // FIXME!!!
+
+      using _Cmplx = std::complex<_Tp>;
+
       static constexpr int _N_FGH = 200;
     private: // FIXME!!!
       static constexpr _Tp _S_slope_F{-2.660L}, _S_intercept_F{-0.778L};
@@ -141,35 +142,35 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       		 = _Tp{2.049755424820002450503074563645378511979e-1L};
       static constexpr _Tp _S_Gip0
       		 = _Tp{1.494294524512754526382745701329427969551e-1L};
-      static constexpr __cmplx _S_i{_Tp{0}, _Tp{1}};
+      static constexpr _Cmplx _S_i{_Tp{0}, _Tp{1}};
 
-      static _AiryState<std::complex<_Tp>>
-      _S_Airy(std::complex<_Tp> __t);
+      static _AiryState<_Cmplx>
+      _S_Airy(_Cmplx __t);
 
-      static _AiryState<std::complex<_Tp>>
-      _S_Fock(std::complex<_Tp> __t);
+      static _AiryState<_Cmplx>
+      _S_Fock(_Cmplx __t);
 
-      static std::pair<std::complex<_Tp>, std::complex<_Tp>>
-      _S_Ai(std::complex<_Tp> __t);
+      static std::pair<_Cmplx, _Cmplx>
+      _S_Ai(_Cmplx __t);
 
-      static std::pair<std::complex<_Tp>, std::complex<_Tp>>
-      _S_Bi(std::complex<_Tp> __t);
+      static std::pair<_Cmplx, _Cmplx>
+      _S_Bi(_Cmplx __t);
 
-      static _AiryAuxilliaryState<std::complex<_Tp>>
-      _S_FGH(std::complex<_Tp> __t);
+      static _AiryAuxilliaryState<_Cmplx>
+      _S_FGH(_Cmplx __t);
 
-      static _AiryState<std::complex<_Tp>>
-      _S_Scorer(std::complex<_Tp> __t);
-      static _AiryState<std::complex<_Tp>>
-      _S_Scorer2(std::complex<_Tp> __t);
+      static _AiryState<_Cmplx>
+      _S_Scorer(_Cmplx __t);
+      static _AiryState<_Cmplx>
+      _S_Scorer2(_Cmplx __t);
 
     private:
 
-      static _AiryState<std::complex<_Tp>>
-      _S_AiryHelp(std::complex<_Tp> __t, bool __return_fock_airy = false);
+      static _AiryState<_Cmplx>
+      _S_AiryHelp(_Cmplx __t, bool __return_fock_airy = false);
 
-      std::pair<std::complex<_Tp>, std::complex<_Tp>>
-      static _S_AiBi(std::complex<_Tp> __t, std::pair<_Tp, _Tp> _Z0);
+      std::pair<_Cmplx, _Cmplx>
+      static _S_AiBi(_Cmplx __t, std::pair<_Tp, _Tp> _Z0);
     };
 
   // Type-dependent limits for the arrays.
@@ -266,11 +267,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto _Gai = _Tp{1};
       auto _Faip = _Tp{0};
       auto _Gaip = _Tp{1};
-      auto __term = __cmplx{_Tp{1}};
-      auto _F = __cmplx{_Tp{1}};
+      auto __term = _Cmplx{_Tp{1}};
+      auto _F = _Cmplx{_Tp{1}};
       auto _G = __t;
-      auto _Fp = __cmplx{_Tp{0}};
-      auto _Gp = __cmplx{_Tp{1}};
+      auto _Fp = _Cmplx{_Tp{0}};
+      auto _Gp = _Cmplx{_Tp{1}};
       for (int __k = 1; __k < __max_FGH<_Tp>; ++__k)
 	{
 	  if (std::abs(__t) < _S_eps)
@@ -393,12 +394,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto _Gaip = _Tp{1};
       auto _Hai = _Tp{1} / _Tp{2};
       auto _Haip = _Tp{1};
-      auto __term = __cmplx{_Tp{1}};
-      auto _F = __cmplx{_Tp{1}};
+      auto __term = _Cmplx{_Tp{1}};
+      auto _F = _Cmplx{_Tp{1}};
       auto _G = __t;
       auto _H = __t * __t / _Tp{2};
-      auto _Fp = __cmplx{_Tp{0}};
-      auto _Gp = __cmplx{_Tp{1}};
+      auto _Fp = _Cmplx{_Tp{0}};
+      auto _Gp = _Cmplx{_Tp{1}};
       auto _Hp = __t;
       for (int __k = 1; __k < __max_FGH<_Tp>; ++__k)
 	{
@@ -428,8 +429,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Hp += _Haip * __term * __t;
 	}
 
-      return _AiryAuxilliaryState<std::complex<_Tp>>
-      					{__t, _F, _G, _H, _Fp, _Gp, _Hp};
+      return _AiryAuxilliaryState<_Cmplx>{__t, _F, _G, _H, _Fp, _Gp, _Hp};
     }
 
   /**
@@ -472,7 +472,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto _Gi = _Bi - _Hi;
       auto _Gip = _Bip - _Hip;
 
-      return _AiryState<std::complex<_Tp>>{__t, _Gi, _Gip, _Hi, _Hip};
+      return _AiryState<_Cmplx>{__t, _Gi, _Gip, _Hi, _Hip};
     }
 
   /**
@@ -506,12 +506,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __s = _S_cbrt3 * __t;
       const std::array<_Tp, 3>
 	__cos{ _Tp{1} / _Tp{2}, _Tp{-1}, _Tp{1} / _Tp{2} };
-      auto _Hi = __cmplx{__gamma(_S_1d3)};
-      auto _Hip = __cmplx{__gamma(_S_2d3)};
-      auto _Gi = __cmplx{__cos[2] * __gamma(_S_1d3)};
-      auto _Gip = __cmplx{__cos[0] * __gamma(_S_2d3)};
-      auto __term = __cmplx(_Tp{1});
-      auto __termp = __cmplx(_Tp{1});
+      auto _Hi = _Cmplx{__gamma(_S_1d3)};
+      auto _Hip = _Cmplx{__gamma(_S_2d3)};
+      auto _Gi = _Cmplx{__cos[2] * __gamma(_S_1d3)};
+      auto _Gip = _Cmplx{__cos[0] * __gamma(_S_2d3)};
+      auto __term = _Cmplx(_Tp{1});
+      auto __termp = _Cmplx(_Tp{1});
       for (int __k = 1; __k < __max_FGH<_Tp>; ++__k)
 	{
 	  __term *= __s / _Tp(__k);
@@ -534,7 +534,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Hi *= __fact;
       _Hip *= __factp;
 
-      return _AiryState<std::complex<_Tp>>{__t, _Gi, _Gip, _Hi, _Hip};
+      return _AiryState<_Cmplx>{__t, _Gi, _Gip, _Hi, _Hip};
     }
 
   /**
@@ -555,7 +555,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       auto _Fai = _Tp{1};
       auto _Gai = _Tp{1};
-      auto __termF = _Z0.first * __cmplx{_Tp{1}};
+      auto __termF = _Z0.first * _Cmplx{_Tp{1}};
       auto __termG = _Z0.second * __t;
       auto _Ai = __termF + __termG;
       if (std::abs(__t) >= _S_eps)
@@ -573,8 +573,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       auto _Faip = _Tp{0};
       auto _Gaip = _Tp{1};
-      __termF = _Z0.first * __cmplx{_Tp{1}};
-      __termG = _Z0.second * __cmplx{_Tp{1}};
+      __termF = _Z0.first * _Cmplx{_Tp{1}};
+      __termG = _Z0.second * _Cmplx{_Tp{1}};
       auto _Aip = __termG;
       if (std::abs(__t) >= _S_eps)
 	{
@@ -2000,22 +2000,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
     public:
 
-      using __cmplx = std::complex<_Tp>;
+      using _Cmplx = std::complex<_Tp>;
 
       constexpr _Airy_asymp() = default;
 
-      _AiryState<std::complex<_Tp>>
-      operator()(std::complex<_Tp> __t, bool __return_fock_airy = false) const;
+      _AiryState<_Cmplx>
+      operator()(_Cmplx __t, bool __return_fock_airy = false) const;
 
-      _AiryState<std::complex<_Tp>>
-      _S_absarg_ge_pio3(std::complex<_Tp> __z) const;
+      _AiryState<_Cmplx>
+      _S_absarg_ge_pio3(_Cmplx __z) const;
 
-      _AiryState<std::complex<_Tp>>
-      _S_absarg_lt_pio3(std::complex<_Tp> __z) const;
+      _AiryState<_Cmplx>
+      _S_absarg_lt_pio3(_Cmplx __z) const;
 
     private:
-      std::pair<std::complex<_Tp>, std::complex<_Tp>>
-      _S_absarg_ge_pio3_help(std::complex<_Tp> __z, int __sign = -1) const;
+      std::pair<_Cmplx, _Cmplx>
+      _S_absarg_ge_pio3_help(_Cmplx __z, int __sign = -1) const;
     };
 
   /**
@@ -2031,16 +2031,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__t);
       const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(__t);
-      const auto _S_i = __cmplx(_Tp{0}, _Tp{1});
+      const auto _S_i = _Cmplx(_Tp{0}, _Tp{1});
       if (std::real(__t) > _Tp{0})
 	{
 	  auto __zeta0 = _Tp{2} * std::pow(__t, _Tp{1.5L}) / _Tp{3};
 	  auto __t0p1d4 = std::pow(__t, _Tp{0.25L});
 	  auto __ezeta0 = std::exp(-__zeta0);
-	  auto _Ai = __cmplx{_Tp{1}};
-	  auto _Aip = __cmplx{_Tp{1}};
+	  auto _Ai = _Cmplx{_Tp{1}};
+	  auto _Aip = _Cmplx{_Tp{1}};
 	  auto __fact0 = -_Tp{1} / __zeta0;
-	  auto __izeta0 = __cmplx{_Tp{1}};
+	  auto __izeta0 = _Cmplx{_Tp{1}};
 	  auto __prev_Ai0 = _Tp{1};
 	  auto __prev_Aip0 = _Tp{1};
 	  for (int __n = 1; __n < _Airy_asymp_data<_Tp>::_S_max_cd; ++__n)
@@ -2067,13 +2067,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __t2p1d4 = std::pow(__t2, _Tp{+0.25L});
 	  auto __ezeta1 = std::exp(-__zeta1);
 	  auto __ezeta2 = std::exp(-__zeta2);
-	  auto _Ai1 = __cmplx{_Tp{1}};
-	  auto _Ai1p = __cmplx{_Tp{1}};
+	  auto _Ai1 = _Cmplx{_Tp{1}};
+	  auto _Ai1p = _Cmplx{_Tp{1}};
 	  auto _Ai2 = _Ai1;
 	  auto _Ai2p = _Ai1p;
 	  auto __sign = _Tp{1};
-	  auto __izeta1 = __cmplx{_Tp{1}};
-	  auto __izeta2 = __cmplx{_Tp{1}};
+	  auto __izeta1 = _Cmplx{_Tp{1}};
+	  auto __izeta2 = _Cmplx{_Tp{1}};
 	  auto __prev_Ai1 = _Tp{1};
 	  auto __prev_Ai2 = _Tp{1};
 	  auto __prev_Ai1p = _Tp{1};
@@ -2117,11 +2117,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      auto __w2 = _S_sqrt_pi * (_Bi + _S_i * _Ai);
 	      auto __w1p = _S_sqrt_pi * (_Bip - _S_i * _Aip);
 	      auto __w2p = _S_sqrt_pi * (_Bip + _S_i * _Aip);
-	      return _AiryState<std::complex<_Tp>>{__t, __w1, __w1p,
-	      						__w2, __w2p};
+	      return _AiryState<_Cmplx>{__t, __w1, __w1p, __w2, __w2p};
 	    }
 	  else
-	    return _AiryState<std::complex<_Tp>>{__t, _Ai, _Aip, _Bi, _Bip};
+	    return _AiryState<_Cmplx>{__t, _Ai, _Aip, _Bi, _Bip};
 	}
       else // Argument t is on or left of the imaginary axis.
 	{
@@ -2129,13 +2128,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __tp1d4 = std::pow(-__t, _Tp{+0.25L});
 	  auto __mezeta = std::exp(-_S_i * (__zeta + (_S_pi / _Tp{4})));
 	  auto __pezeta = std::exp(+_S_i * (__zeta + (_S_pi / _Tp{4})));
-	  auto __w1 = __cmplx{_Tp{1}};
-	  auto __w2 = __cmplx{_Tp{1}};
+	  auto __w1 = _Cmplx{_Tp{1}};
+	  auto __w2 = _Cmplx{_Tp{1}};
 	  auto __w1p = +_S_i;
 	  auto __w2p = -_S_i;
-	  auto __ipn = __cmplx{_Tp{1}};
-	  auto __imn = __cmplx{_Tp{1}};
-	  auto __ixn = __cmplx{_Tp{1}};
+	  auto __ipn = _Cmplx{_Tp{1}};
+	  auto __imn = _Cmplx{_Tp{1}};
+	  auto __ixn = _Cmplx{_Tp{1}};
 	  auto __prev_w1 = _Tp{1};
 	  auto __prev_w2 = _Tp{1};
 	  auto __prev_w1p = _Tp{1};
@@ -2167,14 +2166,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __w2p *= __tp1d4 * __pezeta;
 
 	  if (__return_fock_airy)
-	    return _AiryState<std::complex<_Tp>>{__t, __w1, __w1p, __w2, __w2p};
+	    return _AiryState<_Cmplx>{__t, __w1, __w1p, __w2, __w2p};
 	  else
 	    {
 	      auto _Bi = (__w1 + __w2) / (_Tp{2} * _S_sqrt_pi);
 	      auto _Ai = (__w2 - __w1) / (_Tp{2} * _S_i * _S_sqrt_pi);
 	      auto _Bip = (__w1p + __w2p) / (_Tp{2} * _S_sqrt_pi);
 	      auto _Aip = (__w2p - __w1p) / (_Tp{2} * _S_i * _S_sqrt_pi);
-	      return _AiryState<std::complex<_Tp>>{__t, _Ai, _Aip, _Bi, _Bip};
+	      return _AiryState<_Cmplx>{__t, _Ai, _Aip, _Bi, _Bip};
 	    }
 	}
     }
@@ -2271,11 +2270,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _AiryState<std::complex<_Tp>>
     _Airy_asymp<_Tp>::_S_absarg_ge_pio3(std::complex<_Tp> __z) const
     {
-      std::complex<_Tp> _Ai, _Aip;
+      _Cmplx _Ai, _Aip;
       std::tie(_Ai, _Aip) = _S_absarg_ge_pio3_help(__z, -1);
-      std::complex<_Tp> _Bi, _Bip;
+      _Cmplx _Bi, _Bip;
       std::tie(_Bi, _Bip) = _S_absarg_ge_pio3_help(__z, +1);
-      return _AiryState<std::complex<_Tp>>{__z, _Ai, _Aip, _Bi, _Bip};
+      return _AiryState<_Cmplx>{__z, _Ai, _Aip, _Bi, _Bip};
     }
 
 
@@ -2304,7 +2303,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const _Tp _S_pimh = _Tp{1} / __gnu_cxx::__const_root_pi(_Tp{});
       const _Tp _S_pid4 = __gnu_cxx::__const_pi_quarter(_Tp{});
 
-      const std::complex<_Tp> _S_zone{1};
+      const _Cmplx _S_zone{1};
 
       /// @todo Revisit these numbers of terms for the Airy asymptotic
       /// expansions.
@@ -2352,7 +2351,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Bip *= _S_pimh * __z1d4;
 
       // I think we're computing d/d(-z) above.
-      return _AiryState<std::complex<_Tp>>{__z, _Ai, -_Aip, _Bi, -_Bip};
+      return _AiryState<_Cmplx>{__z, _Ai, -_Aip, _Bi, -_Bip};
     }
 
 
@@ -2418,27 +2417,27 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _AiryState<typename _Airy_asymp_series<_Sum>::value_type>
     _Airy_asymp_series<_Sum>::operator()(typename _Sum::value_type __y)
     {
-      using __cmplx = value_type;
-      using __scal = scalar_type;
+      using _Cmplx = value_type;
+      using _Real = scalar_type;
 
-      _M_Asum.reset(__scal{1});
-      _M_Bsum.reset(__scal{1});
-      _M_Csum.reset(__scal{1});
-      _M_Dsum.reset(__scal{1});
+      _M_Asum.reset(_Real{1});
+      _M_Bsum.reset(_Real{1});
+      _M_Csum.reset(_Real{1});
+      _M_Dsum.reset(_Real{1});
 
-      auto __zeta = __scal{2} * std::pow(__y, __scal{1.5L}) / __scal{3};
-      auto __sign = __scal{1};
-      auto __numerAB = __scal{1};
-      auto __numerCD = __scal{1};
-      auto __denom = __cmplx{1};
+      auto __zeta = _Real{2} * std::pow(__y, _Real{1.5L}) / _Real{3};
+      auto __sign = _Real{1};
+      auto __numerAB = _Real{1};
+      auto __numerCD = _Real{1};
+      auto __denom = _Cmplx{1};
       for (int __k = 1; __k < _S_max_iter; ++__k)
 	{
 	  __sign = -__sign;
-	  __numerAB *= __scal(__k + __scal{1} / __scal{6})
-		     * __scal(__k + __scal{5} / __scal{6});
-	  __numerCD *= __scal(__k - __scal{1} / __scal{6})
-		     * __scal(__k + __scal{7} / __scal{6});
-	  __denom *= __cmplx(2 * __k) * __zeta;
+	  __numerAB *= _Real(__k + _Real{1} / _Real{6})
+		     * _Real(__k + _Real{5} / _Real{6});
+	  __numerCD *= _Real(__k - _Real{1} / _Real{6})
+		     * _Real(__k + _Real{7} / _Real{6});
+	  __denom *= _Cmplx(2 * __k) * __zeta;
 	  auto _Aterm = __sign * __numerAB / __denom;
 	  _M_Asum += _Aterm;
 	  auto _Bterm = __numerAB / __denom;
@@ -2455,11 +2454,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
 
       auto __expzeta = std::exp(__zeta);
-      auto __y1o4 = std::pow(__y, __scal{0.25L});
-      auto _AA = __scal{0.5L} * _M_Asum() / _S_sqrt_pi / __y1o4 / __expzeta;
-      auto _BB = __scal{0.5L} * __expzeta * _M_Bsum() / _S_sqrt_pi / __y1o4;
-      auto _CC = __scal{-0.5L} * __y1o4 * _M_Csum() / _S_sqrt_pi / __expzeta;
-      auto _DD = __scal{0.5L} * __y1o4 * __expzeta * _M_Dsum() / _S_sqrt_pi;
+      auto __y1o4 = std::pow(__y, _Real{0.25L});
+      auto _AA = _Real{0.5L} * _M_Asum() / _S_sqrt_pi / __y1o4 / __expzeta;
+      auto _BB = _Real{0.5L} * __expzeta * _M_Bsum() / _S_sqrt_pi / __y1o4;
+      auto _CC = _Real{-0.5L} * __y1o4 * _M_Csum() / _S_sqrt_pi / __expzeta;
+      auto _DD = _Real{0.5L} * __y1o4 * __expzeta * _M_Dsum() / _S_sqrt_pi;
 
       return _AiryState<value_type>{__y, _AA, _CC, _BB, _DD};
     }
@@ -2520,19 +2519,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     constexpr _AiryState<_Tp>
     _Airy<_Tp>::operator()(typename _Airy<_Tp>::value_type __y) const
     {
-      using __cmplx = value_type;
-      using __scal = scalar_type;
+      using _Cmplx = value_type;
+      using _Real = scalar_type;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__y.real());
       const auto _S_cNaN = value_type(_S_NaN, _S_NaN);
       const auto _S_pi = __gnu_cxx::__const_pi(__y.real());
       const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(__y.real());
       const auto _S_pi_3 = __gnu_cxx::__const_pi_third(__y.real());
-      const auto _S_2pi_3 = __scal{2} * _S_pi_3;
-      const auto _S_pi_6 = _S_pi_3 / __scal{2};
-      const auto _S_5pi_6 = __scal{5} * _S_pi_6;
-      const auto _S_i = __cmplx{0, 1};
+      const auto _S_2pi_3 = _Real{2} * _S_pi_3;
+      const auto _S_pi_6 = _S_pi_3 / _Real{2};
+      const auto _S_5pi_6 = _Real{5} * _S_pi_6;
+      const auto _S_i = _Cmplx{0, 1};
 
-      using _OuterSum = __gnu_cxx::_KahanSum<__cmplx>;
+      using _OuterSum = __gnu_cxx::_KahanSum<_Cmplx>;
       using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
 
       if (std::__detail::__isnan(__y))
@@ -2540,14 +2539,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       auto __absargy = std::abs(std::arg(__y));
       auto __absy = std::abs(__y);
-      auto __sign = std::copysign(__scal{1}, std::arg(__y));
+      auto __sign = std::copysign(_Real{1}, std::arg(__y));
 
       _AiryState<_Tp> __sums;
       if (__absy >= inner_radius)
 	{
 	  if (__absy < outer_radius)
 	    {
-	      auto __beta = __scal{1};
+	      auto __beta = _Real{1};
 	      _Airy_asymp_series<_InnerSum> __asymp(_InnerSum{__beta});
 	      __sums = __asymp(__y);
 	    }
@@ -2558,15 +2557,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 	}
 
-      __cmplx _Bi, _Bip;
+      _Cmplx _Bi, _Bip;
       if (__absy < inner_radius
 	  || (__absy < outer_radius && __absargy < _S_pi_3))
-	std::tie(_Bi, _Bip) = _Airy_series<__scal>::_S_Bi(__y);
+	std::tie(_Bi, _Bip) = _Airy_series<_Real>::_S_Bi(__y);
       else if (__absy < outer_radius)
 	{
-	  _Bi = __scal{2} * __sums.__Bi_value
+	  _Bi = _Real{2} * __sums.__Bi_value
 	      + __sign * _S_i * __sums.__Ai_value;
-	  _Bip = __scal{2} * __sums.__Bi_deriv
+	  _Bip = _Real{2} * __sums.__Bi_deriv
 	       + __sign * _S_i * __sums.__Ai_deriv;
 	  if (__absargy > _S_5pi_6)
 	    {
@@ -2576,8 +2575,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else
 	{
-	  _Bi = __scal{2} * __sums.__Bi_value;
-	  _Bip = __scal{2} * __sums.__Bi_deriv;
+	  _Bi = _Real{2} * __sums.__Bi_value;
+	  _Bip = _Real{2} * __sums.__Bi_deriv;
 	  if (__absargy > _S_pi_6)
 	    {
 	      _Bi += __sign * _S_i * __sums.__Ai_value;
@@ -2590,11 +2589,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 	}
 
-      __cmplx _Ai, _Aip;
+      _Cmplx _Ai, _Aip;
       if ((__absy < inner_radius
 	          + outer_radius * __absargy / _S_pi && __absargy < _S_2pi_3)
 	  || (__absy < outer_radius && __absargy >= _S_2pi_3))
-	std::tie(_Ai, _Aip) = _Airy_series<__scal>::_S_Ai(__y);
+	std::tie(_Ai, _Aip) = _Airy_series<_Real>::_S_Ai(__y);
       else if (__absy < outer_radius)
 	{
 	  _Ai = __sums.__Ai_value;

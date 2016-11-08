@@ -25,9 +25,9 @@ int
 main()
 {
   using namespace std::literals::complex_literals;
-
   std::complex<double> h1, h2, h1p, h2p;
   std::complex<double> z, nu;
+  std::__detail::_Airy<std::complex<double>> airy_thing;
 
   nu = 5.0;
   z = 1.0 - 3.0i;
@@ -49,7 +49,7 @@ main()
   std::cout << " Y(z)   = " << std::setw(width) << (h1 - h2) / 2.0i << '\n';
   std::cout << " Y'(z)  = " << std::setw(width) << (h1p - h2p) / 2.0i << '\n';
 
-  auto Airy = std::__detail::__airy(z, 1.0e-16);
+  auto Airy = airy_thing(z);
   std::cout << '\n';
   std::cout << " z      = " << std::setw(width) << Airy.__z << '\n';
   std::cout << " Ai(z)  = " << std::setw(width) << Airy.__Ai_value << '\n';
