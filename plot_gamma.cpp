@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=c++17 -g -I. -o plot_gamma plot_gamma.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o plot_gamma plot_gamma.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./plot_gamma
 
 $HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o plot_gamma plot_gamma.cpp -lquadmath
@@ -7,7 +7,6 @@ $HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o plot_gamma plot_gamma.cpp -lqua
 */
 
 #include <bits/specfun.h>
-#include <ext/math_const.h>
 #include <limits>
 #include <iostream>
 #include <fstream>
@@ -32,8 +31,8 @@ template<typename _Tp>
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
-    auto __gamma = std::__detail::__gamma_spouge<_Cmplx>{};
-    using GammaT = decltype(__gamma.__log_gamma1p(_Cmplx{}));
+    using std::__detail::__spouge_log_gamma1p;
+    using GammaT = decltype(__spouge_log_gamma1p(_Cmplx{}));
     std::vector<std::vector<GammaT>> zv;
     std::vector<std::vector<GammaT>> gammav;
 
@@ -48,7 +47,7 @@ template<typename _Tp>
 	  {
 	    auto t = _Cmplx(0.10L * i, 0.10L * j);
 	    zv.back().push_back(t);
-	    gammav.back().push_back(__gamma.__log_gamma1p(t - GammaT{1}));
+	    gammav.back().push_back(__spouge_log_gamma1p(t - GammaT{1}));
 	  }
       }
 
@@ -129,8 +128,8 @@ template<typename _Tp>
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
-    auto __gamma = std::__detail::__gamma_lanczos<_Cmplx>{};
-    using GammaT = decltype(__gamma.__log_gamma1p(_Cmplx{}));
+    using std::__detail::__lanczos_log_gamma1p;
+    using GammaT = decltype(__lanczos_log_gamma1p(_Cmplx{}));
     std::vector<std::vector<GammaT>> zv;
     std::vector<std::vector<GammaT>> gammav;
 
@@ -145,7 +144,7 @@ template<typename _Tp>
 	  {
 	    auto t = _Cmplx(0.10L * i, 0.10L * j);
 	    zv.back().push_back(t);
-	    gammav.back().push_back(__gamma.__log_gamma1p(t - GammaT{1}));
+	    gammav.back().push_back(__lanczos_log_gamma1p(t - GammaT{1}));
 	  }
       }
 

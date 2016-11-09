@@ -1,4 +1,7 @@
 /*
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
+
 $HOME/bin_tr29124/bin/g++ -std=gnu++14 -g -Wall -Wextra -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 
@@ -18,17 +21,14 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 
 // ./airy_toy > airy_toy.txt
 
+#include <cmath>
 #include <limits>
 #include <iostream>
 #include <fstream>
 #include <iomanip>
 #include <vector>
 #include <string>
-#include <ext/math_const.h>
-#include <bits/float128.h>
-#include <bits/numeric_limits.h>
-#include <bits/specfun_util.h>
-#include <bits/complex_util.h>
+#include <bits/float128_io.h>
 #include <bits/summation.h>
 #include <ext/polynomial.h>
 
