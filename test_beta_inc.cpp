@@ -10,8 +10,6 @@ $HOME/bin_specfun/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_beta_inc test_
 #include <iostream>
 #include <iomanip>
 
-#include <ext/math_const.h>
-
 
   //  Evaluates the continued fraction for the incomplete beta function
   //  by the modified Lentz's method
@@ -73,7 +71,7 @@ $HOME/bin_specfun/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_beta_inc test_
     _Tp
     __ibeta(_Tp __a, _Tp __b, _Tp __x)
     {
-      const auto _S_NaN = __gnu_cxx::__math_constants<_Tp>::__NaN;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
       if (__x < _Tp{0} || __x > _Tp{1})
 	std::__throw_domain_error(__N("__ibeta: argument out of range"));
       else if (__isnan(__x) || __isnan(__a) || __isnan(__b))

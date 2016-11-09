@@ -11,7 +11,6 @@ g++ -std=gnu++17 -g -Wall -Wextra -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp wr
 
 #include <bits/specfun.h>
 #include <bits/float128_io.h>
-#include <ext/math_const.h>
 #include <limits>
 #include <iostream>
 #include <fstream>
