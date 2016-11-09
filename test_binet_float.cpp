@@ -11,8 +11,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_binet_float test_bin
 #include <iomanip>
 #include <vector>
 #include <cmath>
+#include <bits/float128_io.h>
 #include <ext/polynomial.h>
-#include <ext/math_const.h>
 #include <bits/complex128.h>
 
 namespace std
@@ -361,7 +361,6 @@ namespace __detail
 	    break;
 	  __zk *= __z2;
 	}
-      __J;
 
       return __J;
     }
@@ -622,7 +621,7 @@ template<typename _Tp>
 
     std::cout << "\nBernoulli numbers\n";
     auto bern_a_t = std::__detail::__bernoulli_a_t<_Real>(bern.size());
-    for (int k = 0; k < bern.size(); ++k)
+    for (std::size_t k = 0; k < bern.size(); ++k)
       {
         std::cout << ' ' << std::setw(4) << k
 		  << ' ' << std::setw(width) << bern[k]
@@ -638,14 +637,14 @@ template<typename _Tp>
     std::cout << "\nStieltjes partial numerators\n";
     int len = 100;
     auto cf = std::__detail::__stieltjes_cont_frac_seq<_Real>(len);
-    for (int k = 0; k < cf.size(); ++k)
+    for (std::size_t k = 0; k < cf.size(); ++k)
       std::cout << ' ' << std::setw(2) << k + 1 << ": "
 		<< ' ' << std::setw(width) << cf[k]
 		<< ' ' << std::setw(width) << cf[k] / ((k+1) * (k+1) / _Tp{16}) << '\n';
 
     std::cout << "\nStieltjes partial numerators (progressive)\n";
     auto cfp = std::__detail::__stieltjes_cont_frac_seq_prog<_Real>(len);
-    for (int k = 0; k < cfp.size(); ++k)
+    for (std::size_t k = 0; k < cfp.size(); ++k)
       std::cout << ' ' << std::setw(2) << k + 1 << ": "
 		<< ' ' << std::setw(width) << cfp[k]
 		<< ' ' << std::setw(width) << cfp[k] / ((k+1) * (k+1) / _Tp{16}) << '\n';
