@@ -30,15 +30,17 @@ GSL_FRESNEL_DIR = $(GSL_EXT_DIR)/Fresnel
 GSL_JACOBI_DIR = $(GSL_EXT_DIR)/Jacobi/jacobi-0.9.2/src
 GSL_HERMITE_DIR = $(GSL_EXT_DIR)/Hermite
 
-GSL_LIBS = $(GSL_FRESNEL_DIR)/fresnel.c $(GSL_JACOBI_DIR)/jacobi.c $(GSL_HERMITE_DIR)/gsl_sf_hermite.c -L$(GSL_LIB_DIR) -lgsl -lgslcblas
+#GSL_LIBS = $(GSL_FRESNEL_DIR)/fresnel.c $(GSL_JACOBI_DIR)/jacobi.c $(GSL_HERMITE_DIR)/gsl_sf_hermite.c -L$(GSL_LIB_DIR) -lgsl -lgslcblas
 
 BOOST_DIR = /usr/local
 BOOST_INC_DIR = $(BOOST_DIR)/include
 BOOST_LIB_DIR = $(BOOST_DIR)/lib
 
+#BOOST_LIBS = -L$(BOOST_LIB_DIR) -lboost_math_tools -lboost_math_tr1f -lboost_math_tr1l -lboost_math_tr1
+
 CHECK_DIR = $(HOME)/tr29124_test/check
 
-#BOOST_LIBS = -L$(BOOST_LIB_DIR) -lboost_math_tools -lboost_math_tr1f -lboost_math_tr1l -lboost_math_tr1
+OBJ_DIR = obj
 
 BINS = mpfrcalc \
        diff_special_function \
@@ -167,7 +169,9 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/origin_cyl_bessel_j \
 	 ${CHECK_DIR}/origin_cyl_neumann
 
-all: libburkhardt.so \
+all: libwgsl.so \
+     libburkhardt.so \
+     libbeast.so \
      diff_special_function \
      test_special_function \
      testcase2 \
@@ -337,21 +341,53 @@ mpfrcalc: mpfr_gexpr.c
 	$(GCC) -I. -o mpfrcalc mpfr_gexpr.c -lgmp -lmpfr -lm
 
 
-libburkhardt.so: burkhardt/special_functions.f90
-	$(GFORTRAN) -fPIC -shared -o libburkhardt.so burkhardt/special_functions.f90 -lgfortran
+libwgsl.so: $(OBJ_DIR)/wrap_gsl.o $(OBJ_DIR)/fresnel.o $(OBJ_DIR)/jacobi.o $(OBJ_DIR)/gsl_sf_hermite.o
+	$(CXX17) -fPIC -shared -o libwgsl.so $(OBJ_DIR)/wrap_gsl.o $(OBJ_DIR)/fresnel.o $(OBJ_DIR)/jacobi.o $(OBJ_DIR)/gsl_sf_hermite.o -L$(GSL_LIB_DIR) -lgsl -lgslcblas
+	cp libwgsl.so libwgsl.dll
+
+$(OBJ_DIR)/wrap_gsl.o: wrap_gsl.h wrap_gsl.cpp
+	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/wrap_gsl.o wrap_gsl.cpp
+
+$(OBJ_DIR)/fresnel.o: $(GSL_FRESNEL_DIR)/fresnel.c
+	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/fresnel.o $(GSL_FRESNEL_DIR)/fresnel.c
+
+$(OBJ_DIR)/jacobi.o: $(GSL_JACOBI_DIR)/jacobi.c
+	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/jacobi.o $(GSL_JACOBI_DIR)/jacobi.c
+
+$(OBJ_DIR)/gsl_sf_hermite.o: $(GSL_HERMITE_DIR)/gsl_sf_hermite.c
+	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/gsl_sf_hermite.o $(GSL_HERMITE_DIR)/gsl_sf_hermite.c
 
 
-test_special_function: test_special_function.cpp wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -o test_special_function -I$(GSL_INC_DIR) test_special_function.cpp wrap_gsl.cpp wrap_boost.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath $(GSL_LIBS)
+libburkhardt.so: $(OBJ_DIR)/wrap_burkhardt.o $(OBJ_DIR)/special_functions.o
+	$(CXX17) -fPIC -shared -o libburkhardt.so $(OBJ_DIR)/wrap_burkhardt.o $(OBJ_DIR)/special_functions.o -lgfortran
+	cp libburkhardt.so libburkhardt.dll
 
-diff_special_function: diff_special_function.cpp wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -o diff_special_function -I$(GSL_INC_DIR) diff_special_function.cpp wrap_gsl.cpp wrap_boost.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath $(GSL_LIBS)
+$(OBJ_DIR)/wrap_burkhardt.o: wrap_burkhardt.h wrap_burkhardt.cpp
+	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/wrap_burkhardt.o wrap_burkhardt.cpp
 
-testcase2: testcase2.cpp testcase2.tcc wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp wrap_burkhardt.h wrap_burkhardt.cpp libburkhardt.so $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -o testcase2 -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase2.cpp wrap_gsl.cpp wrap_boost.cpp wrap_burkhardt.cpp $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -L. -lburkhardt
+$(OBJ_DIR)/special_functions.o: burkhardt/special_functions.f90
+	$(GFORTRAN) -fPIC -c -o $(OBJ_DIR)/special_functions.o burkhardt/special_functions.f90
 
-testcase: testcase.cpp testcase.tcc wrap_gsl.h wrap_gsl.cpp wrap_boost.h wrap_boost.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp wrap_burkhardt.h wrap_burkhardt.cpp libburkhardt.so $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -o testcase -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp wrap_gsl.cpp wrap_boost.cpp wrap_burkhardt.cpp $(LERCH_DIR)/lerchphi.cpp $(GSL_LIBS) $(BOOST_LIBS) -L. -lburkhardt
+
+libbeast.so: $(OBJ_DIR)/wrap_boost.o
+	$(CXX17) -fPIC -shared -o libbeast.so $(OBJ_DIR)/wrap_boost.o
+	cp libbeast.so libbeast.dll
+
+$(OBJ_DIR)/wrap_boost.o: wrap_boost.h wrap_boost.cpp
+	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/wrap_boost.o wrap_boost.cpp
+
+
+test_special_function: test_special_function.cpp libwgsl.so libbeast.so libburkhardt.so $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -I. -o test_special_function -I$(GSL_INC_DIR) test_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L. -lwgsl -lbeast -lburkhardt
+
+diff_special_function: diff_special_function.cpp libwgsl.so libbeast.so libburkhardt.so $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -I. -o diff_special_function -I$(GSL_INC_DIR) diff_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L. -lwgsl -lbeast -lburkhardt
+
+testcase2: testcase2.cpp testcase2.tcc libwgsl.so libbeast.so libburkhardt.so $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -o testcase2 -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase2.cpp wrap_boost.cpp wrap_burkhardt.cpp $(LERCH_DIR)/lerchphi.cpp -L. -lwgsl -lbeast -lburkhardt
+
+testcase: testcase.cpp testcase.tcc libwgsl.so libbeast.so libburkhardt.so $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -o testcase -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp wrap_boost.cpp wrap_burkhardt.cpp $(LERCH_DIR)/lerchphi.cpp -L. -lwgsl -lbeast -lburkhardt
 
 test_limits: test_limits.cpp
 	$(CXX17) -o test_limits test_limits.cpp
@@ -360,7 +396,7 @@ test_cmath: test_cmath.cpp
 	$(CXX) -o test_cmath test_cmath.cpp
 
 test_airy: test_airy.cpp sf_airy.tcc wrap_gsl.cpp
-	$(CXX) -o test_airy -I$(GSL_INC_DIR) test_airy.cpp wrap_gsl.cpp $(GSL_LIBS)
+	$(CXX) -o test_airy -I$(GSL_INC_DIR) test_airy.cpp -L. -lwgsl
 
 test_csint: test_csint.cpp csint.tcc
 	$(CXX) -o test_csint test_csint.cpp
@@ -725,10 +761,12 @@ tarball:
 	rm -rf tr29124
 
 clean:
-	rm -f std_*_[fdl].txt
-	rm -f gsl_*_[fdl].txt
-	rm -f diff_*_[fdl].txt
+	rm -f test/gsl_*_[fdl].txt
+	rm -f test/std_*_[fdl].txt
+	rm -f test/tr1_*_[fdl].txt
+	rm -f diff/diff_*_[fdl].txt
 	rm -f $(BINS)
 	rm -f $(CHECKS)
-	rm -f tr29124.tar.bz2*
+	rm -f tr29124.tar.bz2 tr29124.tar.bz2.md5
+	rm -f *.stackdump
 
