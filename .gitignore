@@ -180,6 +180,7 @@ test_hankel_real_arg
 test_heuman_lambda
 test_hurwitz_zeta
 test_hurwitz_zeta_new
+test_hyperg
 test_hypot
 test_inv_erf
 test_inv_ibeta
