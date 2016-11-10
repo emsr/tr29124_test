@@ -172,6 +172,7 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 all: libwgsl.so \
      libburkhardt.so \
      libbeast.so \
+     libpheces.so \
      diff_special_function \
      test_special_function \
      testcase2 \

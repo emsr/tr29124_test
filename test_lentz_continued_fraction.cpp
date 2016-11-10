@@ -6,13 +6,14 @@ $HOME/bin/bin/g++ -std=gnu++17 -I. -o test_lentz_continued_fraction test_lentz_c
 ./test_lentz_continued_fraction > test_lentz_continued_fraction.txt
 */
 
-#include <ext/math_const.h>
+#include <ext/cmath>
 #include <complex>
 #include <iostream>
 
 #include "LentzContinuedFraction.tcc"
 
 template<typename _Tp>
+  void
   test_lentz_continued_fraction(_Tp proto = _Tp{})
   {
     const auto _S_pi_2 = __gnu_cxx::__const_pi_half(proto);
@@ -43,11 +44,14 @@ template<typename _Tp>
 
     _LentzContinuedFraction<_Tp, _AFun, _BFun, _TailFun>
       SiCi(a_trigint, b_trigint, w_trigint);
-    auto y = _S_pi_2 + SiCi(1.2);
-//      __h *= std::polar(_Tp{1}, -__t);
-//      _Ci = -__h.real();
-//      _Si = _S_pi_2 + __h.imag();
+    auto t = 1.2;
+    auto y = _Cmplx{0, _S_pi_2} + SiCi(t);
+    y *= std::polar(_Tp{1}, -t);
     std::cout << "SiCi = " << y << '\n';
+    std::cout << "Si = " << std::imag(y) << '\n';
+    std::cout << "Ci = " << -std::real(y) << '\n';
+    std::cout << "Si = " << __gnu_cxx::sinint(1.2) << '\n';
+    std::cout << "Ci = " << __gnu_cxx::cosint(1.2) << '\n';
   }
 
 int
