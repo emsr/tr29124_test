@@ -56,7 +56,6 @@ template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
 		//		   "continued fraction evaluation failed"));
 	  ++__i;
 	}
-      __h *= std::polar(_Tp{1}, -__x);
       __h += _M_den(0, __x);
       return __h;
     }
