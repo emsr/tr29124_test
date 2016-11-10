@@ -1,21 +1,18 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++14 -g -Wall -Wextra -o airy_toy airy_toy.cpp -L$HOME/bin/lib64 -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old.cpp -L$HOME/bin/lib64 -lquadmath
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_old > airy_toy_old.new
 
-g++ -std=gnu++14 -Wall -Wextra -DNO_LOGBQ -I. -o airy_toy airy_toy.cpp -lquadmath
-./airy_toy > airy_toy.txt
+g++ -std=gnu++14 -Wall -Wextra -DNO_LOGBQ -I. -o airy_toy_old airy_toy_old.cpp -lquadmath
+./airy_toy_old > airy_toy_old.txt
 */
 
+#include <cmath>
 #include <limits>
 #include <iostream>
 #include <iomanip>
 #include <vector>
 #include <complex>
-#include <ext/math_const.h>
-#include <bits/float128.h>
-#include <bits/numeric_limits.h>
-#include <bits/specfun_util.h>
-#include <bits/complex_util.h>
+#include <bits/float128_io.h>
 #include <bits/summation.h>
 
 
