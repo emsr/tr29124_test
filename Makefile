@@ -377,6 +377,14 @@ $(OBJ_DIR)/wrap_boost.o: wrap_boost.h wrap_boost.cpp
 	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/wrap_boost.o wrap_boost.cpp
 
 
+libpheces.so: $(OBJ_DIR)/wrap_boost.o
+	$(CXX17) -fPIC -shared -o libpheces.so $(OBJ_DIR)/wrap_boost.o
+	cp libpheces.so libpheces.dll
+
+$(OBJ_DIR)/wrap_boost.o: wrap_boost.h wrap_boost.cpp
+	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/wrap_boost.o wrap_boost.cpp
+
+
 test_special_function: test_special_function.cpp libwgsl.so libbeast.so libburkhardt.so $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
 	$(CXX17) -I. -o test_special_function -I$(GSL_INC_DIR) test_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L. -lwgsl -lbeast -lburkhardt
 
@@ -384,10 +392,10 @@ diff_special_function: diff_special_function.cpp libwgsl.so libbeast.so libburkh
 	$(CXX17) -I. -o diff_special_function -I$(GSL_INC_DIR) diff_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L. -lwgsl -lbeast -lburkhardt
 
 testcase2: testcase2.cpp testcase2.tcc libwgsl.so libbeast.so libburkhardt.so $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -o testcase2 -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase2.cpp wrap_boost.cpp wrap_burkhardt.cpp $(LERCH_DIR)/lerchphi.cpp -L. -lwgsl -lbeast -lburkhardt
+	$(CXX17) -o testcase2 -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase2.cpp $(LERCH_DIR)/lerchphi.cpp -L. -lwgsl -lbeast -lburkhardt
 
 testcase: testcase.cpp testcase.tcc libwgsl.so libbeast.so libburkhardt.so $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -o testcase -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp wrap_boost.cpp wrap_burkhardt.cpp $(LERCH_DIR)/lerchphi.cpp -L. -lwgsl -lbeast -lburkhardt
+	$(CXX17) -o testcase -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp $(LERCH_DIR)/lerchphi.cpp -L. -lwgsl -lbeast -lburkhardt
 
 test_limits: test_limits.cpp
 	$(CXX17) -o test_limits test_limits.cpp
