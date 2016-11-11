@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+#include "mconf.h"
+
 double acosh(double x);
 int airy(double, double *, double *, double *, double *);
 double asin(double);
@@ -67,7 +69,7 @@ double ldexp(double, int);
 int signbit(double);
 int isnan(double);
 int isfinite(double);
-double polevl(double, void *, int);
+double polevl(double, double *, int);
 double p1evl(double, void *, int);
 double exp(double);
 double log(double);

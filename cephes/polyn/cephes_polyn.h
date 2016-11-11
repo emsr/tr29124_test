@@ -18,25 +18,25 @@ void rsub( fract *, fract *, fract * );
 void rmul( fract *, fract *, fract * );
 void rdiv( fract *, fract *, fract * );
 
-
+/*
 void polini( int maxdeg );
 void polprt( fract a[], int na, int d );
 void polclr( fract a[], int n );
 void polmov( fract a[], int na, fract b[] );
 void polmul( fract a[], int na, fract b[], int nb, fract c[] );
 void poladd( fract a[], int na, fract b[], int nb, fract c[] );
-void polsub( fract a[], na, fract b[], nb, fract c[] );
+void polsub( fract a[], int na, fract b[], int nb, fract c[] );
 int poldiv( fract a[], int na, fract b[], int nb, fract c[] );
 void polsbt( fract a[], int na, fract b[], int nb, fract c[] );
 void poleva( fract a[], int na, fract* x, fract* s );
-
+*/
 void polini( int maxdeg );
 void polprt( double a[], int na, int d );
 void polclr( register double *a, int n );
 void polmov( register double *a, int na, register double *b );
 void polmul( double a[], int na, double b[], int nb, double c[] );
 void poladd( double a[], int na, double b[], int nb, double c[] );
-void polsub( double a[], na, double b[], nb, double c[] );
+void polsub( double a[], int na, double b[], int nb, double c[] );
 int poldiv( double a[], int na, double b[], int nb, double c[] );
 void polsbt( double a[], int na, double b[], int nb, double c[] );
 double poleva( double a[], int na, double x );
