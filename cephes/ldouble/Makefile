@@ -10,54 +10,54 @@ SRCS = \
   asinhl.c \
   atanl.c \
   atanhl.c \
-bdtrl.c \
-btdtrl.c \
+  bdtrl.c \
+  btdtrl.c \
   cbrtl.c \
   clogl.c \
   cmplxl.c \
   coshl.c \
-econst.c \
-elliel.c \
-ellikl.c \
-ellpel.c \
-ellpjl.c \
-ellpkl.c \
+  econst.c \
+  elliel.c \
+  ellikl.c \
+  ellpel.c \
+  ellpjl.c \
+  ellpkl.c \
   expl.c \
   exp10l.c \
   exp2l.c \
   floorl.c \
-gammal.c \
-gdtrl.c \
-gelsl.c \
-ieee.c \
-igamil.c \
-igaml.c \
-incbetl.c \
-incbil.c \
+  gammal.c \
+  gdtrl.c \
+  gelsl.c \
+  ieee.c \
+  igamil.c \
+  igaml.c \
+  incbetl.c \
+  incbil.c \
   isnanl.c \
-j0l.c \
-j1l.c \
-jnl.c \
+  j0l.c \
+  j1l.c \
+  jnl.c \
   logl.c \
   log10l.c \
   log2l.c \
   mod2pil.c \
   mtstl.c \
-nbdtrl.c \
-ndtril.c \
-ndtrl.c \
-pdtrl.c \
+  nbdtrl.c \
+  ndtril.c \
+  ndtrl.c \
+  pdtrl.c \
   polevll.c \
   powl.c \
   powil.c \
   sinl.c \
   sinhl.c \
   sqrtl.c \
-stdtrl.c \
+  stdtrl.c \
   tanl.c \
   tanhl.c \
   unityl.c \
-ynl.c
+  ynl.c
 
 OBJS = \
   $(OBJ_DIR)/acoshl.o \
@@ -65,53 +65,53 @@ OBJS = \
   $(OBJ_DIR)/asinhl.o \
   $(OBJ_DIR)/atanl.o \
   $(OBJ_DIR)/atanhl.o \
-$(OBJ_DIR)/bdtrl.o \
-$(OBJ_DIR)/btdtrl.o \
+  $(OBJ_DIR)/bdtrl.o \
+  $(OBJ_DIR)/btdtrl.o \
   $(OBJ_DIR)/cbrtl.o \
   $(OBJ_DIR)/clogl.o \
   $(OBJ_DIR)/cmplxl.o \
   $(OBJ_DIR)/coshl.o \
-$(OBJ_DIR)/econst.o \
-$(OBJ_DIR)/elliel.o \
-$(OBJ_DIR)/ellikl.o \
-$(OBJ_DIR)/ellpel.o \
-$(OBJ_DIR)/ellpjl.o \
-$(OBJ_DIR)/ellpkl.o \
+  $(OBJ_DIR)/econst.o \
+  $(OBJ_DIR)/elliel.o \
+  $(OBJ_DIR)/ellikl.o \
+  $(OBJ_DIR)/ellpel.o \
+  $(OBJ_DIR)/ellpjl.o \
+  $(OBJ_DIR)/ellpkl.o \
   $(OBJ_DIR)/expl.o \
-$(OBJ_DIR)/expx2l.o \
+  $(OBJ_DIR)/expx2l.o \
   $(OBJ_DIR)/exp10l.o \
   $(OBJ_DIR)/exp2l.o \
   $(OBJ_DIR)/floorl.o \
-$(OBJ_DIR)/gammal.o \
-$(OBJ_DIR)/gdtrl.o \
-$(OBJ_DIR)/gelsl.o \
-$(OBJ_DIR)/ieee.o \
-$(OBJ_DIR)/igamil.o \
-$(OBJ_DIR)/igaml.o \
-$(OBJ_DIR)/incbetl.o \
-$(OBJ_DIR)/incbil.o \
+  $(OBJ_DIR)/gammal.o \
+  $(OBJ_DIR)/gdtrl.o \
+  $(OBJ_DIR)/gelsl.o \
+  $(OBJ_DIR)/ieee.o \
+  $(OBJ_DIR)/igamil.o \
+  $(OBJ_DIR)/igaml.o \
+  $(OBJ_DIR)/incbetl.o \
+  $(OBJ_DIR)/incbil.o \
   $(OBJ_DIR)/isnanl.o \
-$(OBJ_DIR)/j0l.o \
-$(OBJ_DIR)/j1l.o \
-$(OBJ_DIR)/jnl.o \
+  $(OBJ_DIR)/j0l.o \
+  $(OBJ_DIR)/j1l.o \
+  $(OBJ_DIR)/jnl.o \
   $(OBJ_DIR)/logl.o \
   $(OBJ_DIR)/log10l.o \
   $(OBJ_DIR)/log2l.o \
-$(OBJ_DIR)/nbdtrl.o \
-$(OBJ_DIR)/ndtril.o \
-$(OBJ_DIR)/ndtrl.o \
-$(OBJ_DIR)/pdtrl.o \
+  $(OBJ_DIR)/nbdtrl.o \
+  $(OBJ_DIR)/ndtril.o \
+  $(OBJ_DIR)/ndtrl.o \
+  $(OBJ_DIR)/pdtrl.o \
   $(OBJ_DIR)/polevll.o \
   $(OBJ_DIR)/powl.o \
   $(OBJ_DIR)/powil.o \
   $(OBJ_DIR)/sinl.o \
   $(OBJ_DIR)/sinhl.o \
   $(OBJ_DIR)/sqrtl.o \
-$(OBJ_DIR)/stdtrl.o \
+  $(OBJ_DIR)/stdtrl.o \
   $(OBJ_DIR)/tanl.o \
   $(OBJ_DIR)/tanhl.o \
   $(OBJ_DIR)/unityl.o \
-$(OBJ_DIR)/ynl.o
+  $(OBJ_DIR)/ynl.o
 
 libcephes_ldouble.so: $(OBJS)
 	$(CC) -shared -o libcephes_ldouble.so $(OBJS) -L.. -lcephes_cmath
