@@ -43,6 +43,9 @@ double conf_hyperg(double a, double c, double x);
 /// Confluent hypergeometric limit functions.
 double hyperg_0F1(double c, double x);
 
+/// Hypergeometric functions.
+double hyperg_3F0(double a, double b, double c, double x);
+
 /// Regular modified cylindrical Bessel functions.
 double cyl_bessel_i(double nu, double x);
 
@@ -104,7 +107,7 @@ double legendre_p(unsigned int l, double x);
 double legendre_q(unsigned int l, double x);
 
 /// Riemann zeta function.
-double riemann_zeta(double x);
+double riemann_zeta(double s);
 
 /// Hurwitz zeta functions.
 double hurwitz_zeta(double s, double q);
