@@ -379,7 +379,7 @@ $(OBJ_DIR)/wrap_boost.o: wrap_boost.h wrap_boost.cpp
 
 
 libpheces.so: $(OBJ_DIR)/wrap_pheces.o
-	$(CXX17) -fPIC -shared -o libpheces.so $(OBJ_DIR)/wrap_pheces.o
+	$(CXX17) -fPIC -shared -o libpheces.so $(OBJ_DIR)/wrap_pheces.o -Lcephes -lcephes_cprob -lcephes_ellf
 	cp libpheces.so libpheces.dll
 
 $(OBJ_DIR)/wrap_pheces.o: wrap_pheces.h wrap_pheces.cpp
