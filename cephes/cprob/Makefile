@@ -1,12 +1,12 @@
 
-CC = $(HOME)/bin/bin/gcc
+CC = $(HOME)/bin/bin/gcc -std=c11
 
 OBJS = bdtr.o btdtr.o chdtr.o const.o drand.o expx2.o fdtr.o gamma.o gdtr.o igam.o igami.o incbet.o incbi.o kolmogorov.o mtherr.o nbdtr.o ndtr.o ndtri.o pdtr.o polevl.o stdtr.o unity.o
 
 INC_DIR = .
 
 libcephes_cprob.so: $(OBJS)
-	$(CC) -shared -o libcephes_cprob.so $(OBJS)
+	$(CC) -shared -o libcephes_cprob.so $(OBJS) -lm
 
 bdtr.o: bdtr.c
 	$(CC) -c -fPIC -I$(INC_DIR) -o bdtr.o bdtr.c
