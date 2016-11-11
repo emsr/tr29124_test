@@ -6,10 +6,12 @@
 
 #include "wrap_pheces.h"
 
-#include "cephes/bessel/cephes_bessel.h"
+#include "cephes/cmath/cephes_cmath.h"
 #include "cephes/cprob/cephes_cprob.h"
 #include "cephes/misc/cephes_misc.h"
 #include "cephes/ellf/cephes_ellf.h"
+#include "cephes/polyn/cephes_polyn.h"
+#include "cephes/bessel/cephes_bessel.h"
 
 namespace pheces
 {
@@ -76,7 +78,7 @@ comp_ellint_2(double /*k*/)
 
 /// Complete elliptic integrals of the third kind.
 double
-comp_ellint_3(double k, double nu)
+comp_ellint_3(double /*k*/, double /*nu*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -112,7 +114,7 @@ hyperg_3F0(double a, double b, double c, double x)
 
 /// Regular modified cylindrical Bessel functions.
 double
-cyl_bessel_i(double nu, double x)
+cyl_bessel_i(double /*nu*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -452,7 +454,7 @@ sinc(double /*x*/)
 
 /// Reperiodized sinus cardinal function.
 double
-sinc_pi(double x)
+sinc_pi(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
