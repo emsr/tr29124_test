@@ -31,6 +31,8 @@ OBJS = \
 
 libcephes_ellf.so: cephes_ellf.h $(OBJS)
 	$(CC) -shared -o libcephes_ellf.so $(OBJS) -lm
+	cp libcephes_ellf.so libcephes_ellf.dll
+	cp libcephes_ellf.so libcephes_ellf.dll ..
 
 cmplx.o: cmplx.c
 	$(CC) -c -fPIC -I$(INC_DIR) -o cmplx.o cmplx.c
