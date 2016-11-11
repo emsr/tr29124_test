@@ -7,6 +7,8 @@ INC_DIR = .
 
 libcephes_cprob.so: $(OBJS)
 	$(CC) -shared -o libcephes_cprob.so $(OBJS) -lm
+	cp libcephes_cprob.so libcephes_cprob.dll
+	cp libcephes_cprob.so libcephes_cprob.dll ..
 
 bdtr.o: bdtr.c
 	$(CC) -c -fPIC -I$(INC_DIR) -o bdtr.o bdtr.c
