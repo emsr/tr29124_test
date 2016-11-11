@@ -1,3 +1,5 @@
+#ifndef CEPHES_CPROB
+#define CEPHES_CPROB 1
 
 #ifdef __cplusplus
 extern "C" {
@@ -44,6 +46,7 @@ double gdtr(double a, double b, double x);
 
 double gamma(double x);
 double lgam(double x);
+int sgngam;
 
 double fdtrc(int ia, int ib, double x);
 double fdtr(int ia, int ib, double x);
@@ -66,3 +69,5 @@ double bdtri(int k, int n, double y);
 #ifdef __cplusplus
 }
 #endif
+
+#endif // CEPHES_CPROB

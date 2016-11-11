@@ -1,3 +1,5 @@
+#ifndef CEPHES_MISC
+#define CEPHES_MISC 1
 
 #ifdef __cplusplus
 extern "C" {
@@ -39,3 +41,5 @@ double zetac(double x);
 #ifdef __cplusplus
 }
 #endif
+
+#endif // CEPHES_MISC

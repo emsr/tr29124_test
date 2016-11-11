@@ -1,7 +1,8 @@
 
-CC = $(HOME)/bin/bin/gcc -std=c11
+CC = $(HOME)/bin/bin/gcc -std=c11 -DANSIPROT
 
 INC_DIR = .
+OBJ_DIR = obj
 
 SRCS = \
   beta.c \
@@ -26,89 +27,93 @@ SRCS = \
   zetac.c
 
 OBJS = \
-  beta.o \
-  chbevl.o \
-  dawsn.o \
-  ei.o \
-  expn.o \
-  fac.o \
-  fresnl.o \
-  mtherr.o \
-  planck.o \
-  polevl.o \
-  polylog.o \
-  psi.o \
-  revers.o \
-  rgamma.o \
-  shichi.o \
-  sici.o \
-  simpsn.o \
-  spence.o \
-  zeta.o \
-  zetac.o
+  $(OBJ_DIR)/beta.o \
+  $(OBJ_DIR)/chbevl.o \
+  $(OBJ_DIR)/dawsn.o \
+  $(OBJ_DIR)/ei.o \
+  $(OBJ_DIR)/expn.o \
+  $(OBJ_DIR)/fac.o \
+  $(OBJ_DIR)/fresnl.o \
+  $(OBJ_DIR)/mtherr.o \
+  $(OBJ_DIR)/planck.o \
+  $(OBJ_DIR)/polevl.o \
+  $(OBJ_DIR)/polylog.o \
+  $(OBJ_DIR)/psi.o \
+  $(OBJ_DIR)/revers.o \
+  $(OBJ_DIR)/rgamma.o \
+  $(OBJ_DIR)/shichi.o \
+  $(OBJ_DIR)/sici.o \
+  $(OBJ_DIR)/simpsn.o \
+  $(OBJ_DIR)/spence.o \
+  $(OBJ_DIR)/zeta.o \
+  $(OBJ_DIR)/zetac.o
 
 libcephes_misc.so: cephes_misc.h $(OBJS)
-	$(CC) -shared -o libcephes_misc.so $(OBJS) -lm
+	$(CC) -shared -o libcephes_misc.so $(OBJS) -L.. -lcephes_cmath -lcephes_cprob -lcephes_polyn
 	cp libcephes_misc.so libcephes_misc.dll
 	cp libcephes_misc.so libcephes_misc.dll ..
 
-beta.o: beta.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o beta.o beta.c
+$(OBJ_DIR)/beta.o: beta.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/beta.o beta.c
 
-chbevl.o: chbevl.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o chbevl.o chbevl.c
+$(OBJ_DIR)/chbevl.o: chbevl.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/chbevl.o chbevl.c
 
-dawsn.o: dawsn.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o dawsn.o dawsn.c
+$(OBJ_DIR)/dawsn.o: dawsn.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/dawsn.o dawsn.c
 
-ei.o: ei.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o ei.o ei.c
+$(OBJ_DIR)/ei.o: ei.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/ei.o ei.c
 
-expn.o: expn.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o expn.o expn.c
+$(OBJ_DIR)/expn.o: expn.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/expn.o expn.c
 
-fac.o: fac.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o fac.o fac.c
+$(OBJ_DIR)/fac.o: fac.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/fac.o fac.c
 
-fresnl.o: fresnl.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o fresnl.o fresnl.c
+$(OBJ_DIR)/fresnl.o: fresnl.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/fresnl.o fresnl.c
 
-mtherr.o: mtherr.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o mtherr.o mtherr.c
+$(OBJ_DIR)/mtherr.o: mtherr.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/mtherr.o mtherr.c
 
-planck.o: planck.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o planck.o planck.c
+$(OBJ_DIR)/planck.o: planck.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/planck.o planck.c
 
-polevl.o: polevl.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o polevl.o polevl.c
+$(OBJ_DIR)/polevl.o: polevl.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/polevl.o polevl.c
 
-polylog.o: polylog.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o polylog.o polylog.c
+$(OBJ_DIR)/polylog.o: polylog.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/polylog.o polylog.c
 
-psi.o: psi.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o psi.o psi.c
+$(OBJ_DIR)/psi.o: psi.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/psi.o psi.c
 
-revers.o: revers.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o revers.o revers.c
+$(OBJ_DIR)/revers.o: revers.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/revers.o revers.c
 
-rgamma.o: rgamma.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o rgamma.o rgamma.c
+$(OBJ_DIR)/rgamma.o: rgamma.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/rgamma.o rgamma.c
 
-shichi.o: shichi.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o shichi.o shichi.c
+$(OBJ_DIR)/shichi.o: shichi.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/shichi.o shichi.c
 
-sici.o: sici.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o sici.o sici.c
+$(OBJ_DIR)/sici.o: sici.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/sici.o sici.c
 
-simpsn.o: simpsn.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o simpsn.o simpsn.c
+$(OBJ_DIR)/simpsn.o: simpsn.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/simpsn.o simpsn.c
 
-spence.o: spence.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o spence.o spence.c
+$(OBJ_DIR)/spence.o: spence.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/spence.o spence.c
 
-zeta.o: zeta.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o zeta.o zeta.c
+$(OBJ_DIR)/zeta.o: zeta.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/zeta.o zeta.c
 
-zetac.o: zetac.c
-	$(CC) -c -fPIC -I$(INC_DIR) -o zetac.o zetac.c
+$(OBJ_DIR)/zetac.o: zetac.c
+	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/zetac.o zetac.c
+
+
+clean:
+	rm -f $(OBJS)
 
