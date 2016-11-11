@@ -12,6 +12,8 @@ INC_DIR = ../128bit
 
 libcephes_polyn.so: $(OBJS)
 	$(CC) -shared -o libcephes_polyn.so $(OBJS)
+	cp libcephes_polyn.so libcephes_polyn.dll
+	cp libcephes_polyn.so libcephes_polyn.dll ..
 
 euclid.o: euclid.c
 	$(CC) -c -fPIC -I$(INC_DIR) -o euclid.o euclid.c

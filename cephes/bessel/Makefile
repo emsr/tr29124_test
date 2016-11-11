@@ -7,6 +7,8 @@ INC_DIR = ../128bit
 
 libcephes_bessel.so: $(OBJS)
 	$(CC) -shared -o libcephes_bessel.so $(OBJS)
+	cp libcephes_bessel.so libcephes_bessel.dll
+	cp libcephes_bessel.so libcephes_bessel.dll ..
 
 airy.o: airy.c
 	$(CC) -c -fPIC -I$(INC_DIR) -o airy.o airy.c

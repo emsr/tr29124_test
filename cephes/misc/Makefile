@@ -49,6 +49,8 @@ OBJS = \
 
 libcephes_misc.so: cephes_misc.h $(OBJS)
 	$(CC) -shared -o libcephes_misc.so $(OBJS) -lm
+	cp libcephes_misc.so libcephes_misc.dll
+	cp libcephes_misc.so libcephes_misc.dll ..
 
 beta.o: beta.c
 	$(CC) -c -fPIC -I$(INC_DIR) -o beta.o beta.c
