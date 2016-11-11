@@ -1,3 +1,6 @@
+#ifndef CEPHES_POLYN
+#define CEPHES_POLYN 1
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -48,3 +51,5 @@ void polcos( double x[], double y[], int nn );
 #ifdef __cplusplus
 }
 #endif
+
+#endif // CEPHES_POLYN

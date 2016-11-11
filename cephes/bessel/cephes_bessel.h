@@ -1,3 +1,5 @@
+#ifndef CEPHES_BESSEL
+#define CEPHES_BESSEL 1
 
 #ifdef __cplusplus
 extern "C" {
@@ -38,3 +40,5 @@ int airy(double x, double* ai, double* aip, double* bi, double* bip);
 #ifdef __cplusplus
 }
 #endif
+
+#endif // CEPHES_BESSEL
