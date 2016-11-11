@@ -339,7 +339,8 @@ if( x == INFINITY )
 if( x == -INFINITY )
 	return(NAN);
 #else
-if( !isfinite(x) )
+//if( !isfinite(x) )
+if( !__builtin_isfinite(x) )
 	return(x);
 #endif
 #endif
@@ -587,7 +588,8 @@ if( isnan(x) )
 #endif
 
 #ifdef INFINITIES
-if( !isfinite(x) )
+//if( !isfinite(x) )
+if( !__builtin_isfinite(x) )
 	return(INFINITY);
 #endif
 

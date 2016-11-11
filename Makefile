@@ -378,12 +378,12 @@ $(OBJ_DIR)/wrap_boost.o: wrap_boost.h wrap_boost.cpp
 	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/wrap_boost.o wrap_boost.cpp
 
 
-libpheces.so: $(OBJ_DIR)/wrap_boost.o
-	$(CXX17) -fPIC -shared -o libpheces.so $(OBJ_DIR)/wrap_boost.o
+libpheces.so: $(OBJ_DIR)/wrap_pheces.o
+	$(CXX17) -fPIC -shared -o libpheces.so $(OBJ_DIR)/wrap_pheces.o
 	cp libpheces.so libpheces.dll
 
-$(OBJ_DIR)/wrap_boost.o: wrap_boost.h wrap_boost.cpp
-	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/wrap_boost.o wrap_boost.cpp
+$(OBJ_DIR)/wrap_pheces.o: wrap_pheces.h wrap_pheces.cpp
+	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/wrap_pheces.o wrap_pheces.cpp
 
 
 test_special_function: test_special_function.cpp libwgsl.so libbeast.so libburkhardt.so $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
