@@ -27,6 +27,9 @@ libcephes_bessel.so: $(OBJS)
 	cp libcephes_bessel.so libcephes_bessel.dll
 	cp libcephes_bessel.so libcephes_bessel.dll ..
 
+# /([a-z0-9]*)\.o
+# /\1.o: \1.c\n\t\$\(CC\) -c -fPIC -I\$\(INC_DIR\) -o \$\(OBJ_DIR\)/\1.o \1.c\n
+
 $(OBJ_DIR)/airy.o: airy.c
 	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/airy.o airy.c
 
