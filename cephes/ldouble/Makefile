@@ -118,6 +118,9 @@ libcephes_ldouble.so: $(OBJS)
 	cp libcephes_ldouble.so libcephes_ldouble.dll
 	cp libcephes_ldouble.so libcephes_ldouble.dll ..
 
+# /([a-z0-9]*)\.o
+# /\1.o: \1.c\n\t\$\(CC\) -c -fPIC -I\$\(INC_DIR\) -o \$\(OBJ_DIR\)/\1.o \1.c\n
+
 $(OBJ_DIR)/acoshl.o: acoshl.c
 	$(CC) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/acoshl.o acoshl.c
 
