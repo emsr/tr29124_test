@@ -22,7 +22,12 @@ template<typename _Tp>
     auto a_trigint
       = [](size_t i, _Tp)
         -> _Cmplx
-        { return -_Tp(i) * _Tp(i); };
+        {
+	  if (i == 1)
+	    return _Tp(1);
+	  else
+	    return -_Tp(i - 1) * _Tp(i - 1);
+	};
     using _AFun = decltype(a_trigint);
 
     auto b_trigint
@@ -30,10 +35,8 @@ template<typename _Tp>
 	{
 	  if (i == 0)
 	    return _Cmplx{0};
-	  else if (i == 1)
-	    return _Cmplx{1, __x};
 	  else
-	    return _Cmplx{1, __x} + _Tp(i * 2);
+	    return _Cmplx{_Tp(2 * i - 1), __x};
 	};
     using _BFun = decltype(b_trigint);
 
@@ -45,8 +48,9 @@ template<typename _Tp>
     _LentzContinuedFraction<_Tp, _AFun, _BFun, _TailFun>
       SiCi(a_trigint, b_trigint, w_trigint);
     auto t = 1.2;
-    auto y = _Cmplx{0, _S_pi_2} + SiCi(t);
+    auto y = SiCi(t);
     y *= std::polar(_Tp{1}, -t);
+    y += _Cmplx{0, _S_pi_2};
     std::cout << "SiCi = " << y << '\n';
     std::cout << "Si = " << std::imag(y) << '\n';
     std::cout << "Ci = " << -std::real(y) << '\n';
