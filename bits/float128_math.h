@@ -34,7 +34,89 @@
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
 
-#include <quadmath.h>
+//#include <quadmath.h>
+#ifdef __cplusplus
+extern "C" {
+#endif
+__float128 acosq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 acoshq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 asinq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 asinhq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 atanq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 atanhq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 atan2q(__float128, __float128) _GLIBCXX_NOEXCEPT;
+__float128 cbrtq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 ceilq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 copysignq(__float128, __float128) _GLIBCXX_NOEXCEPT;
+__float128 coshq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 cosq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 erfq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 erfcq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 expq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 expm1q(__float128) _GLIBCXX_NOEXCEPT;
+__float128 fabsq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 fdimq(__float128, __float128) _GLIBCXX_NOEXCEPT;
+int finiteq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 floorq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 fmaq(__float128, __float128, __float128) _GLIBCXX_NOEXCEPT;
+__float128 fmaxq(__float128, __float128) _GLIBCXX_NOEXCEPT;
+__float128 fminq(__float128, __float128) _GLIBCXX_NOEXCEPT;
+__float128 fmodq(__float128, __float128) _GLIBCXX_NOEXCEPT;
+__float128 frexpq(__float128, int*) _GLIBCXX_NOEXCEPT;
+__float128 hypotq(__float128, __float128) _GLIBCXX_NOEXCEPT;
+int isinfq(__float128) _GLIBCXX_NOEXCEPT;
+int ilogbq(__float128) _GLIBCXX_NOEXCEPT;
+int isnanq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 j0q(__float128) _GLIBCXX_NOEXCEPT;
+__float128 j1q(__float128) _GLIBCXX_NOEXCEPT;
+__float128 jnq (int, __float128) _GLIBCXX_NOEXCEPT;
+__float128 ldexpq(__float128, int) _GLIBCXX_NOEXCEPT;
+__float128 lgammaq(__float128) _GLIBCXX_NOEXCEPT;
+long long int llrintq(__float128) _GLIBCXX_NOEXCEPT;
+long long int llroundq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 logbq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 logq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 log10q(__float128) _GLIBCXX_NOEXCEPT;
+__float128 log2q(__float128) _GLIBCXX_NOEXCEPT;
+__float128 log1pq(__float128) _GLIBCXX_NOEXCEPT;
+long int lrintq(__float128) _GLIBCXX_NOEXCEPT;
+long int lroundq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 modfq(__float128, __float128*) _GLIBCXX_NOEXCEPT;
+__float128 nanq (const char*) _GLIBCXX_NOEXCEPT;
+__float128 nearbyintq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 nextafterq(__float128, __float128) _GLIBCXX_NOEXCEPT;
+__float128 powq(__float128, __float128) _GLIBCXX_NOEXCEPT;
+__float128 remainderq(__float128, __float128) _GLIBCXX_NOEXCEPT;
+__float128 remquoq(__float128, __float128, int*) _GLIBCXX_NOEXCEPT;
+__float128 rintq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 roundq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 scalblnq(__float128, long int) _GLIBCXX_NOEXCEPT;
+__float128 scalbnq(__float128, int) _GLIBCXX_NOEXCEPT;
+int signbitq(__float128) _GLIBCXX_NOEXCEPT;
+void sincosq(__float128, __float128*, __float128*) _GLIBCXX_NOEXCEPT;
+__float128 sinhq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 sinq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 sqrtq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 tanq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 tanhq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 tgammaq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 truncq(__float128) _GLIBCXX_NOEXCEPT;
+__float128 y0q(__float128) _GLIBCXX_NOEXCEPT;
+__float128 y1q(__float128) _GLIBCXX_NOEXCEPT;
+__float128 ynq (int, __float128) _GLIBCXX_NOEXCEPT;
+#ifdef __cplusplus
+}
+#endif
+#define FLT128_MAX 1.18973149535723176508575932662800702e4932Q
+#define FLT128_MIN 3.36210314311209350626267781732175260e-4932Q
+#define FLT128_EPSILON 1.92592994438723585305597794258492732e-34Q
+#define FLT128_DENORM_MIN 6.475175119438025110924438958227646552e-4966Q
+#define FLT128_MANT_DIG 113
+#define FLT128_MIN_EXP (-16381)
+#define FLT128_MAX_EXP 16384
+#define FLT128_DIG 33
+#define FLT128_MIN_10_EXP (-4931)
+#define FLT128_MAX_10_EXP 4932
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
