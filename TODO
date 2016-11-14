@@ -164,3 +164,8 @@ for guidance on how we might help add float128.
 
 44. [] test_hankel crashes.
   what():  __hankel_uniform_sum: all allowable terms used
+
+45. [] It would be a good idea to generate check_nan.cc and compile.cc with all combinations automatically.
+
+46. [] 
+
