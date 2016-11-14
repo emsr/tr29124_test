@@ -33,6 +33,38 @@
 #pragma GCC system_header
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+/*
+typedef _Complex float __attribute__((mode(TC))) __complex128;
+#ifdef __cplusplus
+extern "C" {
+#endif
+  __float128 cabsq (__complex128) noexcept;
+  __float128 cargq (__complex128) noexcept;
+  __float128 cimagq (__complex128) noexcept;
+  __float128 crealq (__complex128) noexcept;
+  __complex128 cacosq (__complex128) noexcept;
+  __complex128 cacoshq (__complex128) noexcept;
+  __complex128 casinq (__complex128) noexcept;
+  __complex128 casinhq (__complex128) noexcept;
+  __complex128 catanq (__complex128) noexcept;
+  __complex128 catanhq (__complex128) noexcept;
+  __complex128 ccosq (__complex128) noexcept;
+  __complex128 ccoshq (__complex128) noexcept;
+  __complex128 cexpq (__complex128) noexcept;
+  __complex128 cexpiq (__float128) noexcept;
+  __complex128 clogq (__complex128) noexcept;
+  __complex128 clog10q (__complex128) noexcept;
+  __complex128 conjq (__complex128) noexcept;
+  __complex128 cpowq (__complex128, __complex128) noexcept;
+  __complex128 cprojq (__complex128) noexcept;
+  __complex128 csinq (__complex128) noexcept;
+  __complex128 csinhq (__complex128) noexcept;
+  __complex128 csqrtq (__complex128) noexcept;
+  __complex128 ctanq (__complex128) noexcept;
+  __complex128 ctanhq (__complex128) noexcept;
+#ifdef __cplusplus
+}
+#endif
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -228,7 +260,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline _GLIBCXX_CONSTEXPR
   complex<long double>::complex(const complex<__float128>& __z)
   : _M_value(__z.__rep()) { }
-
+*/
+/*
   inline __float128
   abs(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
   { return cabsq(__z); }
@@ -320,11 +353,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline __complex128
   tanh(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
   { return ctanhq(__z); }
-
+*/
 #if _GLIBCXX_USE_C99_COMPLEX
 
 #endif  
-
+/*
   inline __complex128
   fabs(const __complex128& __z)
   { return std::abs(__z); }
@@ -346,7 +379,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline __float128
   norm(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return __x * __x; }
-
+*/
 /* FIXME: Can't find __promote_fp_t for some reason.
   template<typename _Up>
     inline std::complex<__gnu_cxx::__promote_fp_t<__float128, _Up>>
@@ -364,6 +397,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::pow(__type(__x), std::complex<__type>(__y));
     }
 */
+/*
   // DR 1137.
   inline _GLIBCXX_USE_CONSTEXPR __float128
   proj(__float128 __x)
@@ -372,9 +406,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline _GLIBCXX_USE_CONSTEXPR __float128
   conj(__float128 __x)
   { return __x; }
-
+*/
 _GLIBCXX_END_NAMESPACE_VERSION
-
+/*
 #if __cplusplus > 201103L
 
 inline namespace literals {
@@ -390,7 +424,7 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // inline namespace literals
 
 #endif // C++14
-
+*/
 } // namespace std
 
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
