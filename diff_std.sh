@@ -7,12 +7,16 @@ if [ $# -ge 1 ]; then
   suffix="$1"
 fi
 
+inc_dir="$HOME/gcc${suffix}/libstdc++-v3/include"
 gcc_dir="$HOME/gcc${suffix}/libstdc++-v3/include/bits"
 ext_dir="$HOME/gcc${suffix}/libstdc++-v3/include/ext"
 
 ${tool} ext/   ${ext_dir}/
 ${tool} bits/  ${gcc_dir}/
 
+${tool} cmath                      ${inc_dir}/c_global/cmath
+${tool} limits                     ${inc_dir}/std/limits
+${tool} complex                    ${inc_dir}/std/complex
 ${tool} ext/math_const.h           ${ext_dir}/math_const.h
 ${tool} ext/math_util.h            ${ext_dir}/math_util.h
 ${tool} ext/polynomial.h           ${ext_dir}/polynomial.h

@@ -20,7 +20,9 @@ fi
 dst_impl_dir="${dst_dir}/bits"
 dst_ext_dir="${dst_dir}/ext"
 
-#${tool} "${src_dir}/c_global/cmath"             "${dst_dir}"
+${tool} "${src_dir}/cmath"                      "${dst_dir}/c_global"
+${tool} "${src_dir}/limits"                     "${dst_dir}/std"
+${tool} "${src_dir}/complex"                    "${dst_dir}/std"
 
 ${tool} "${src_ext_dir}/math_const.h"           "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/math_util.h"            "${dst_ext_dir}"
