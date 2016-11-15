@@ -193,6 +193,7 @@ template<typename Real>
     using __gnu_cxx::hurwitz_zeta;
     using __gnu_cxx::hyperg;
     using __gnu_cxx::ibeta;
+    using __gnu_cxx::ibetac;
     using __gnu_cxx::jacobi;
     using __gnu_cxx::jacobi_sn;
     using __gnu_cxx::jacobi_cn;
@@ -988,6 +989,22 @@ template<typename Real>
 	     "GSL",
 	     file_ibeta);
 
+    // Complementary incomplete Beta functions.
+    std::cout << "ibetac" << std::endl;
+    basename = "ibetac";
+    filename = get_filename(path, prefix, basename, "", ".cc");
+    std::ofstream file_ibetac(filename.c_str());
+    maketest<Real, Real, Real, Real>(ibetac, beast::ibetac,
+	     "testcase_ibetac", "__gnu_cxx", basename,
+	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(false, true), 11),
+	     "b", fill_argument(std::make_pair(Real{5}, Real{0}),
+				std::make_pair(true, false), 11),
+	     "x", fill_argument(std::make_pair(Real{0}, Real{1}),
+				std::make_pair(false, false), 21),
+	     "Boost",
+	     file_ibetac);
+
     // Digamma or psi functions.
     std::cout << "psi" << std::endl;
     basename = "psi";
@@ -1012,7 +1029,7 @@ template<typename Real>
     basename = "sinint";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_sinint(filename.c_str());
-    maketest(sinint, gsl::Si,
+    maketest(sinint, gsl::sinint,
 	     "testcase_sinint", "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{+10}),
 				std::make_pair(false, true), 101),
@@ -1024,7 +1041,7 @@ template<typename Real>
     basename = "cosint";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cosint(filename.c_str());
-    maketest(cosint, gsl::Ci,
+    maketest(cosint, gsl::cosint,
 	     "testcase_cosint", "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{+10}),
 				std::make_pair(false, true), 101),
@@ -1036,7 +1053,7 @@ template<typename Real>
     basename = "sinhint";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_sinhint(filename.c_str());
-    maketest(sinhint, gsl::Shi,
+    maketest(sinhint, gsl::sinhint,
 	     "testcase_sinhint", "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{+5}),
 				std::make_pair(false, true), 101),
@@ -1048,7 +1065,7 @@ template<typename Real>
     basename = "coshint";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_coshint(filename.c_str());
-    maketest(coshint, gsl::Chi,
+    maketest(coshint, gsl::coshint,
 	     "testcase_coshint", "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{+5}),
 				std::make_pair(false, true), 101),

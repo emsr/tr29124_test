@@ -386,28 +386,28 @@ polygamma(int /*n*/, double /*x*/)
 
 /// Sine integral.
 double
-Si(double /*x*/)
+sinint(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Cosine integral.
 double
-Ci(double /*x*/)
+cosint(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Hyperbolic sine integral.
 double
-Shi(double /*x*/)
+sinhint(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Hyperbolic cosine integral.
 double
-Chi(double /*x*/)
+coshint(double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }

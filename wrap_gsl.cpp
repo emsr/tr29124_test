@@ -700,6 +700,13 @@ ibeta(double a, double b, double x)
     return result.val;
 }
 
+/// Complementary incomlete beta functions.
+double
+ibetac(double a, double b, double x)
+{
+  return 1.0 - ibeta(b, a, 1.0 - x);
+}
+
 /// Dilogarithm function.
 double
 dilog(double x)
@@ -734,13 +741,13 @@ psi(double x)
 
 /// Sine integral.
 double
-Si(double x)
+sinint(double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_Si_e(x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in Si:");
+      std::ostringstream msg("Error in sinint:");
       msg << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -750,13 +757,13 @@ Si(double x)
 
 /// Cosine integral.
 double
-Ci(double x)
+cosint(double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_Ci_e(x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in Ci:");
+      std::ostringstream msg("Error in cosint:");
       msg << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -766,13 +773,13 @@ Ci(double x)
 
 /// Hyperbolic sine integral.
 double
-Shi(double x)
+sinhint(double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_Shi_e(x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in Shi:");
+      std::ostringstream msg("Error in sinhint:");
       msg << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -782,13 +789,13 @@ Shi(double x)
 
 /// Hyperbolic cosine integral.
 double
-Chi(double x)
+coshint(double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_Chi_e(x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in Chi:");
+      std::ostringstream msg("Error in coshint:");
       msg << " x=" << x;
       throw std::runtime_error(msg.str());
     }

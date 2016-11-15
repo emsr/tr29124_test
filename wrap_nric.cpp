@@ -214,7 +214,7 @@ psi(double x)
 
 /// Sine integral.
 double
-Si(double x)
+sinint(double x)
 {
   double ci, si;
   cisi(x, &ci, &si);
@@ -223,7 +223,7 @@ Si(double x)
 
 /// Cosine integral.
 double
-Ci(double x)
+cosint(double x)
 {
   double ci, si;
   cisi(x, &ci, &si);
@@ -232,12 +232,12 @@ Ci(double x)
 
 /// Hyperbolic sine integral.
 double
-Shi(double x)
+sinhint(double x)
 { std::numeric_limits<double>::quiet_NaN(); }
 
 /// Hyperbolic cosine integral.
 double
-Chi(double x)
+coshint(double x)
 { std::numeric_limits<double>::quiet_NaN(); }
 
 /// Gegenbauer polynomials.
