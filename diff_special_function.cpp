@@ -122,6 +122,7 @@ main()
     using __gnu_cxx::hurwitz_zeta;
     using __gnu_cxx::hyperg;
     using __gnu_cxx::ibeta;
+    using __gnu_cxx::ibetac;
     using __gnu_cxx::jacobi;
     using __gnu_cxx::jacobi_sn;
     using __gnu_cxx::jacobi_cn;
@@ -594,6 +595,17 @@ main()
     std::cout << "ibeta" << std::endl;
     basename = "diff_ibeta";
     rundiff(ibeta, gsl::ibeta, basename,
+	    "a", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
+			       std::make_pair(false, true), 11),
+	    "b", fill_argument(std::make_pair(_TpGSL{5}, _TpGSL{0}),
+			       std::make_pair(true, false), 11),
+	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{1}),
+			       std::make_pair(false, false), 21));
+
+    //  Complementary incomplete Beta functions.
+    std::cout << "ibetac" << std::endl;
+    basename = "diff_ibetac";
+    rundiff(ibetac, beast::ibetac, basename,
 	    "a", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
 			       std::make_pair(false, true), 11),
 	    "b", fill_argument(std::make_pair(_TpGSL{5}, _TpGSL{0}),
