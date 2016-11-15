@@ -63,6 +63,9 @@ template<typename _Tp>
     std::cout << " 1/ pi                    : "
 	      << std::setprecision(lprec) << std::setw(lwd) << cnst::__one_div_pi
 	      << std::setprecision(prec) << std::setw(wd) << __gnu_cxx::__const_one_div_pi(proto) << '\n';
+    std::cout << " 1/ 2pi                    : "
+	      << std::setprecision(lprec) << std::setw(lwd) << cnst::__one_div_2_pi
+	      << std::setprecision(prec) << std::setw(wd) << __gnu_cxx::__const_one_div_2_pi(proto) << '\n';
     std::cout << " 2/ pi                    : "
 	      << std::setprecision(lprec) << std::setw(lwd) << cnst::__two_div_pi
 	      << std::setprecision(prec) << std::setw(wd) << __gnu_cxx::__const_two_div_pi(proto) << '\n';
