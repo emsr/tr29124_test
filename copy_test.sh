@@ -67,6 +67,7 @@ ${tool} ${text_dir}/gegenbauer/*         ${ext_dir}/gegenbauer
 ${tool} ${text_dir}/hurwitz_zeta/*       ${ext_dir}/hurwitz_zeta
 ${tool} ${text_dir}/hyperg/*             ${ext_dir}/hyperg
 ${tool} ${text_dir}/ibeta/*              ${ext_dir}/ibeta
+${tool} ${text_dir}/ibetac/*             ${ext_dir}/ibetac
 ${tool} ${text_dir}/jacobi_sn/*          ${ext_dir}/jacobi_sn
 ${tool} ${text_dir}/jacobi_cn/*          ${ext_dir}/jacobi_cn
 ${tool} ${text_dir}/jacobi_dn/*          ${ext_dir}/jacobi_dn
