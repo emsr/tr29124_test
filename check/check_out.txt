@@ -5,6 +5,10 @@ check_assoc_laguerre
 check_assoc_legendre
 check_beta
 check_bincoef
+check_chebyshev_t
+check_chebyshev_u
+check_chebyshev_v
+check_chebyshev_w
 check_chi
 check_clausen_c
 check_comp_ellint_1

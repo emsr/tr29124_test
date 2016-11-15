@@ -114,6 +114,7 @@ ${makedir} ${text_dir}/heuman_lambda
 ${makedir} ${text_dir}/hurwitz_zeta
 ${makedir} ${text_dir}/hyperg
 ${makedir} ${text_dir}/ibeta
+${makedir} ${text_dir}/ibetac
 ${makedir} ${text_dir}/jacobi
 ${makedir} ${text_dir}/jacobi_sn
 ${makedir} ${text_dir}/jacobi_cn
@@ -192,6 +193,7 @@ ${copy} check/check_heuman_lambda.cc      ${text_dir}/heuman_lambda/check_value.
 ${copy} check/check_hurwitz_zeta.cc       ${text_dir}/hurwitz_zeta/check_value.cc
 ${copy} check/check_hyperg.cc             ${text_dir}/hyperg/check_value.cc
 ${copy} check/check_ibeta.cc              ${text_dir}/ibeta/check_value.cc
+${copy} check/check_ibetac.cc             ${text_dir}/ibetac/check_value.cc
 ${copy} check/check_jacobi.cc             ${text_dir}/jacobi/check_value.cc
 ${copy} check/check_jacobi_sn.cc          ${text_dir}/jacobi_sn/check_value.cc
 ${copy} check/check_jacobi_cn.cc          ${text_dir}/jacobi_cn/check_value.cc
