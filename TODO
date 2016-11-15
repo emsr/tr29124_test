@@ -81,6 +81,10 @@ They use macros... Sigh.  Still, we could hack these into templates.
        It is because the answer dilog(0) == 0.  So the fractional error blows up even when the answer is spot on.
        But it doesn't look like such a point would be skipped though.
        We need a way of trapping this...
+       We need a way of deciding when a point approximately crosses the real axis.
+       We *don't* want to trap when points asymptotically approach the axis.
+       So we need to store some previous numbers for a derivative approximation.
+       Maybe if |f| < eps and |f - fprev| > N eps switch to absolute diff (and mark it).
 
 26. [DONE] __log_gamma was a very sobering exercise in trig accuracy.
        The error in the location of the zeros of, say,
@@ -167,5 +171,12 @@ for guidance on how we might help add float128.
 
 45. [] It would be a good idea to generate check_nan.cc and compile.cc with all combinations automatically.
 
-46. [] 
+46. [] If numeratorial parameters inhypers are nonpositive integers,
+       * The sums are finite polynomials
+       * Which can be summed by Horners rule
+
+47. [] We can do error analysis (sigfigs, etc) by computing functions with several 
+       This can be set up.  This is what test *really* should be.  We can publish that.
+       I would say *that* is your error anaysis.
+
 
