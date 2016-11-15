@@ -163,16 +163,16 @@ double psi(double x);
 double polygamma(int n, double x);
 
 /// Sine integral.
-double Si(double x);
+double sinint(double x);
 
 /// Cosine integral.
-double Ci(double x);
+double cosint(double x);
 
 /// Hyperbolic sine integral.
-double Shi(double x);
+double sinhint(double x);
 
 /// Hyperbolic cosine integral.
-double Chi(double x);
+double coshint(double x);
 
 /// Gegenbauer polynomials.
 double gegenpoly_n(unsigned int n, double lambda, double x);

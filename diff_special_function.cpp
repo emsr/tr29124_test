@@ -611,28 +611,28 @@ main()
     //  Sine integral or Si functions.
     std::cout << "sinint" << std::endl;
     basename = "diff_sinint";
-    rundiff(sinint, gsl::Si, basename,
+    rundiff(sinint, gsl::sinint, basename,
 	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+10}),
 			       std::make_pair(false, true), 101));
 
     //  Cosine integral or Ci functions.
     std::cout << "cosint" << std::endl;
     basename = "diff_cosint";
-    rundiff(cosint, gsl::Ci, basename,
+    rundiff(cosint, gsl::cosint, basename,
 	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+10}),
 			       std::make_pair(false, true), 101));
 
     //  Hyperbolic sine integral or Shi functions.
     std::cout << "sinhint" << std::endl;
     basename = "diff_sinhint";
-    rundiff(sinhint, gsl::Shi, basename,
+    rundiff(sinhint, gsl::sinhint, basename,
 	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
 			       std::make_pair(false, true), 101));
 
     //  Hyperbolic cosine integral or Chi functions.
     std::cout << "coshint" << std::endl;
     basename = "diff_coshint";
-    rundiff(coshint, gsl::Chi, basename,
+    rundiff(coshint, gsl::coshint, basename,
 	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
 			       std::make_pair(false, true), 101));
 
