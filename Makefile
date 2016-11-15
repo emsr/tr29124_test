@@ -606,6 +606,9 @@ ${CHECK_DIR}/check_hyperg: ${CHECK_DIR}/check_hyperg.cc
 ${CHECK_DIR}/check_ibeta: ${CHECK_DIR}/check_ibeta.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_ibeta ${CHECK_DIR}/check_ibeta.cc
 
+${CHECK_DIR}/check_ibetac: ${CHECK_DIR}/check_ibetac.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_ibetac ${CHECK_DIR}/check_ibetac.cc
+
 ${CHECK_DIR}/check_jacobi: ${CHECK_DIR}/check_jacobi.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_jacobi ${CHECK_DIR}/check_jacobi.cc
 
