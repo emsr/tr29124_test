@@ -82,6 +82,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Constant @f$ 1 / \pi @f$.
       static constexpr _RealType __one_div_pi
 	= 0.318309886183790671537767526745028724069L;
+      // Constant @f$ 1 / 2\pi @f$.
+      static constexpr _RealType __one_div_2_pi
+	= 0.1591549430918953357688837633725143620346L;
       // Constant @f$ 2 / \pi @f$.
       static constexpr _RealType __two_div_pi
 	= 0.636619772367581343075535053490057448138L;
@@ -182,6 +185,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     constexpr _RealType __math_constants<_RealType>::__root_pi_div_2;
   template<typename _RealType>
     constexpr _RealType __math_constants<_RealType>::__one_div_pi;
+  template<typename _RealType>
+    constexpr _RealType __math_constants<_RealType>::__one_div_2_pi;
   template<typename _RealType>
     constexpr _RealType __math_constants<_RealType>::__two_div_pi;
   template<typename _RealType>
@@ -306,6 +311,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __const_one_div_pi(_RealType = _RealType{})
     noexcept(noexcept(std::is_fundamental<_RealType>::value))
     { return __math_constants<_RealType>::__one_div_pi; }
+
+  template<typename _RealType>
+    constexpr _RealType
+    __const_one_div_2_pi(_RealType = _RealType{})
+    noexcept(noexcept(std::is_fundamental<_RealType>::value))
+    { return __math_constants<_RealType>::__one_div_2_pi; }
 
   template<typename _RealType>
     constexpr _RealType
