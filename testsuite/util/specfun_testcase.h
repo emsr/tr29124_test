@@ -1027,4 +1027,13 @@ template<typename _Tp>
     _Tp f;
   };
 
+// Log gamma functions.
+template<typename _Tp>
+  struct testcase_bernoulli
+  {
+    _Tp f0;
+    unsigned int n;
+    _Tp f;
+  };
+
 #endif // _GLIBCXX_SPECFUN_TESTCASE_H
