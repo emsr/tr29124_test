@@ -151,9 +151,7 @@ And if the type doesn't do denorm just zero then and don't sweat.
 test_hankel.cpp:52:47: error: no matching function for call to '__airy(std::complex<double>&, double)'
    auto Airy = std::__detail::__airy(z, 1.0e-16);
 It builds.
-
 It's probably an API change.
-
 
 45. [] test_factorial build.
 
@@ -178,5 +176,11 @@ for guidance on how we might help add float128.
 47. [] We can do error analysis (sigfigs, etc) by computing functions with several 
        This can be set up.  This is what test *really* should be.  We can publish that.
        I would say *that* is your error anaysis.
+48. [] Look for places where you can calculate max_iter and do it.
 
+49. [] What the hell happened to diff_sph_harmonic.txt?
+       No type suffix.
+       The numbers only have one or two digits.
+
+50. [] 
 
