@@ -483,7 +483,7 @@ template<typename Real>
 		   make_baseline_function("GSL", "gsl::sph_legendre", gsl::legendre_sphPlm),
 		   [](unsigned, unsigned, Real){ return true; },
 		   make_argument("l", vorder), make_argument("m", vorder),
-		   make_argument("x", fill2(Real{0}, static_cast<Real>(M_PI), 21)));
+		   make_argument("x", fill2(Real{0}, _S_pi, 21)));
     std::ofstream file_sph_legendre(outfile("sph_legendre"));
     test_sph_legendre(file_sph_legendre);
 
@@ -503,7 +503,7 @@ template<typename Real>
 		   make_baseline_function("GSL", "gsl::sph_harmonic", (funir_t)&gsl::sph_harmonic),
 		   [](unsigned, unsigned, Real, Real){ return true; },
 		   make_argument("l", vorder), make_argument("m", vorder),
-		   make_argument("theta", fill2(Real{0}, static_cast<Real>(M_PI), 21)),
+		   make_argument("theta", fill2(Real{0}, _S_pi, 21)),
 		   make_argument("phi", vphid));
     std::ofstream file_sph_harmonic(outfile("sph_harmonic"));
     test_sph_harmonic(file_sph_harmonic);
