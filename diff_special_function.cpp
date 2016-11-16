@@ -497,7 +497,7 @@ main()
     //  Spherical Legendre functions.
     std::cout << "sph_legendre" << std::endl;
     basename = "diff_sph_legendre";
-    rundiff(sph_legendre, gsl::legendre_sphPlm, basename,
+    rundiff(sph_legendre, gsl::sph_legendre, basename,
 	    "l", vorder, "m", vorder,
 	    "theta", fill_argument(std::make_pair(Real{0}, _S_pi),
 	    			   std::make_pair(true, true), 1001));
