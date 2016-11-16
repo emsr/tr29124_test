@@ -147,9 +147,7 @@ And if the type doesn't do denorm just zero then and don't sweat.
 test_hankel.cpp:52:47: error: no matching function for call to '__airy(std::complex<double>&, double)'
    auto Airy = std::__detail::__airy(z, 1.0e-16);
 It builds.
-
 It's probably an API change.
-
 
 45. [] test_factorial build.
 
@@ -167,5 +165,6 @@ for guidance on how we might help add float128.
 
 45. [] It would be a good idea to generate check_nan.cc and compile.cc with all combinations automatically.
 
-46. [] 
+46. [] Look for places where you can calculate max_iter and do it.
+
 
