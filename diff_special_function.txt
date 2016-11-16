@@ -36,6 +36,7 @@ dilog
 tgamma
 tgamma_lower
 ibeta
+ibetac
 psi
 sinint
 cosint
