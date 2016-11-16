@@ -165,6 +165,7 @@ test_continued_fraction
 test_csint
 test_cyl_hankel
 test_dawson
+test_debye
 test_dilog
 test_expint
 test_factorial
