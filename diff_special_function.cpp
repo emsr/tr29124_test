@@ -33,6 +33,8 @@ main()
     using _TpGSL = double;
     using Real = double;
 
+    const auto _S_pi = __gnu_cxx::__math_constants<Real>::__pi;
+
     //  Unsigned integer orders for various polynomials, harmonics, and spherical bessels.
     std::vector<unsigned int> vorder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};
 
@@ -60,7 +62,7 @@ main()
     const unsigned int num_phi = 19; // 0 - 180 degrees.
     _TpGSL phi[num_phi];
     for (unsigned int i = 0; i < num_phi; ++i)
-      phi[i] = _TpGSL{10} * i * M_PI / _TpGSL{180};
+      phi[i] = _TpGSL{10} * i * _S_pi / _TpGSL{180};
     std::vector<_TpGSL> vphid(phi, phi + num_phi);
 
     std::vector<_TpGSL> vab{0, 0.5, 1, 2, 5, 10, 20};
@@ -497,7 +499,7 @@ main()
     basename = "diff_sph_legendre";
     rundiff(sph_legendre, gsl::legendre_sphPlm, basename,
 	    "l", vorder, "m", vorder,
-	    "theta", fill_argument(std::make_pair(Real{0}, static_cast<Real>(M_PI)),
+	    "theta", fill_argument(std::make_pair(Real{0}, _S_pi),
 	    			   std::make_pair(true, true), 1001));
 
 
@@ -990,7 +992,7 @@ main()
     basename = "diff_sph_harmonic";
     rundiff(sph_harmonic, beast::sph_harmonic, basename,
 	    "l", vorder, "m", iorder,
-	    "theta", fill_argument(std::make_pair(Real{0}, static_cast<Real>(M_PI)),
+	    "theta", fill_argument(std::make_pair(Real{0}, _S_pi),
 				   std::make_pair(true, true), 21),
 	    "phi", vphid);
 

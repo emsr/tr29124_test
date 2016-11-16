@@ -785,7 +785,7 @@ template<typename Real>
     maketest(sph_legendre, gsl::legendre_sphPlm,
 	     "testcase_sph_legendre", nsname, basename,
 	     "l", vorder, "m", vorder,
-	     "theta", fill_argument(std::make_pair(Real{0}, static_cast<Real>(M_PI)),
+	     "theta", fill_argument(std::make_pair(Real{0}, _S_pi),
 				    std::make_pair(true, true), 21),
 	     "GSL",
 	     file_sph_legendre);
@@ -1688,7 +1688,7 @@ template<typename Real>
     maketest(sph_harmonic, beast::sph_harmonic,
 	     "testcase_sph_harmonic", "__gnu_cxx", basename,
 	     "l", vorder, "m", iorder,
-	     "theta", fill_argument(std::make_pair(Real{0}, static_cast<Real>(M_PI)),
+	     "theta", fill_argument(std::make_pair(Real{0}, _S_pi),
 				    std::make_pair(true, true), 21),
 	     "phi", vphid,
 	     "Boost",
