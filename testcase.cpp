@@ -782,7 +782,7 @@ template<typename Real>
     basename = "sph_legendre";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_sph_legendre(filename.c_str());
-    maketest(sph_legendre, gsl::legendre_sphPlm,
+    maketest(sph_legendre, gsl::sph_legendre,
 	     "testcase_sph_legendre", nsname, basename,
 	     "l", vorder, "m", vorder,
 	     "theta", fill_argument(std::make_pair(Real{0}, _S_pi),

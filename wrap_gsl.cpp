@@ -584,7 +584,7 @@ sph_bessel(unsigned int n, double x)
 
 /// Spherical Legendre functions.
 double
-legendre_sphPlm(unsigned int l, unsigned int m, double theta)
+sph_legendre(unsigned int l, unsigned int m, double theta)
 {
   double x = std::cos(theta);
   if (l < m)
@@ -595,7 +595,7 @@ legendre_sphPlm(unsigned int l, unsigned int m, double theta)
       int stat = gsl_sf_legendre_sphPlm_e(static_cast<int>(l), static_cast<int>(m), x, &result);
       if (stat != GSL_SUCCESS)
         {
-          std::ostringstream msg("Error in legendre_sphPlm");
+          std::ostringstream msg("Error in sph_legendre");
           msg << " l=" << l << " m=" << m << " theta=" << theta;
           throw std::runtime_error(msg.str());
         }

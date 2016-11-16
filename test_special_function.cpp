@@ -492,7 +492,7 @@ template<typename Real>
 
     //  Spherical Legendre functions.
     std::cout << "sph_legendre" << std::endl;
-    runtest(gsl::legendre_sphPlm, "gsl_sph_legendre", uiorder, uiorder,
+    runtest(gsl::sph_legendre, "gsl_sph_legendre", uiorder, uiorder,
 	    fill_argument(std::make_pair(0.0, _S_pi),
 	    		  std::make_pair(true, true), 1001));
     runtest(sph_legendre, ns + "_sph_legendre", uiorder, uiorder,

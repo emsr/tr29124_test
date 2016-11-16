@@ -290,7 +290,7 @@ sph_bessel(unsigned int n, double x)
 
 /// Spherical Legendre functions.
 double
-legendre_sphPlm(unsigned int l, unsigned int m, double theta)
+sph_legendre(unsigned int l, unsigned int m, double theta)
 {
   return boost::math::spherical_harmonic_r(l, m, theta, 0.0);
 }
