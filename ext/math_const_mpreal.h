@@ -105,6 +105,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<>
     mpfr::mpreal
+    __const_one_div_2_pi(mpfr::mpreal __proto)
+    { return 1 / (2 * mpfr::const_pi(__proto.getPrecision())); }
+
+  template<>
+    mpfr::mpreal
     __const_two_div_pi(mpfr::mpreal __proto)
     { return 2 / mpfr::const_pi(__proto.getPrecision()); }
 

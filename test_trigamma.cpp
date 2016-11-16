@@ -4,13 +4,34 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_trigamma tes
 
 g++ -std=gnu++14 -Wall -Wextra -DNO_LOGBQ -I. -o test_trigamma test_trigamma.cpp -lquadmath
 ./test_trigamma > test_trigamma.txt
+
+$HOME/bin/bin/g++ -std=gnu++14 -Wall -Wextra -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -DNO_LOGBQ -I. -o test_trigamma test_trigamma.cpp -lquadmath
+./test_trigamma > test_trigamma.txt
 */
 
 #include <limits>
 #include <iostream>
 #include <iomanip>
 #include <ext/cmath>
+#include <bits/specfun.h>
 #include "LentzContinuedFraction.tcc"
+
+template<typename _Tp>
+  _Tp
+  __polygamma_series(unsigned int __n, _Tp __x)
+  {
+    constexpr int _S_max_iter = 1000;
+    const auto _S_eps = __gnu_cxx::__epsilon(__x);
+    auto __sum = _Tp{0};
+    for (int __k = 0; __k < _S_max_iter; ++__k)
+      {
+	auto __term = std::pow(__x + _Tp(__k), _Tp(__n + 1));
+	__sum += __term;
+	if (std::abs(__term) < _S_eps * std::abs(__sum))
+	  break;
+      }
+    return (__n & 1 ? +1 : -1) * __gnu_cxx::factorial<_Tp>(__n) * __sum;
+  }
 
 template<typename _Tp>
   _Tp
@@ -38,8 +59,11 @@ template<typename _Tp>
     using _BFun = decltype(__b);
 
     auto __w
-      = [](std::size_t, _Tp)
-	{ return _Tp{0}; };
+      = [__a, __b](std::size_t __k, _Tp __x)
+	{
+	  auto __arg = _Tp{4} * __a(__k + 1, __x) / __x / __x + _Tp{1};
+	  return __b(__k, __x) * (std::sqrt(__arg) - _Tp{1}) / _Tp{2};
+	};
     using _WFun = decltype(__w);
 
     _LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>
@@ -78,8 +102,11 @@ template<typename _Tp>
     using _BFun = decltype(__b);
 
     auto __w
-      = [](std::size_t, _Tp)
-	{ return _Tp{0}; };
+      = [__a, __b](std::size_t __k, _Tp __x)
+	{
+	  auto __arg = _Tp{4} * __a(__k + 1, __x) / __x / __x + _Tp{1};
+	  return __b(__k, __x) * (std::sqrt(__arg) - _Tp{1}) / _Tp{2};
+	};
     using _WFun = decltype(__w);
 
     _LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>

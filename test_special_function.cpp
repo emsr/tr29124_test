@@ -33,6 +33,8 @@ template<typename Real>
   void
   do_test(Real proto = Real{})
   {
+    const auto _S_pi = __gnu_cxx::__const_pi(proto);
+
     //  Unsigned integer orders for various polynomials, harmonics, and spherical bessels.
     std::vector<unsigned int> uiorder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};
 
@@ -58,7 +60,7 @@ template<typename Real>
     const unsigned long num_phi = 19; // 0 - 180 degrees.
     Real phi[num_phi];
     for (unsigned int i = 0; i < num_phi; ++i)
-      phi[i] = Real{10} * i * static_cast<Real>(M_PI) / Real{180};
+      phi[i] = Real{10} * i * _S_pi / Real{180};
     std::vector<double> vphid(phi, phi + num_phi);
     std::vector<Real> vphi(phi, phi + num_phi);
 
@@ -491,7 +493,7 @@ template<typename Real>
     //  Spherical Legendre functions.
     std::cout << "sph_legendre" << std::endl;
     runtest(gsl::legendre_sphPlm, "gsl_sph_legendre", uiorder, uiorder,
-	    fill_argument(std::make_pair(0.0, static_cast<double>(M_PI)),
+	    fill_argument(std::make_pair(0.0, _S_pi),
 	    		  std::make_pair(true, true), 1001));
     runtest(sph_legendre, ns + "_sph_legendre", uiorder, uiorder,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
