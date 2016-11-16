@@ -171,7 +171,8 @@ for guidance on how we might help add float128.
        No type suffix.
        The numbers only have one or two digits.
 
-48. [] 
+48. [] Have default tail function types - provide _ZeroTail and maybe _InfTail.
+These could be tag types and we if constexpr tail calls right out. _NoTail?
 
 49. [] 
 
