@@ -167,4 +167,14 @@ for guidance on how we might help add float128.
 
 46. [] Look for places where you can calculate max_iter and do it.
 
+47. [] What the hell happened to diff_sph_harmonic.txt?
+       No type suffix.
+       The numbers only have one or two digits.
+
+48. [] 
+
+49. [] 
+
+50. [] 
+
 
