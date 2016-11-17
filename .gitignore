@@ -227,6 +227,7 @@ test_theta
 test_trigamma
 
 plot_airy
+plot_bessel
 plot_gamma
 
 hankel_transition
