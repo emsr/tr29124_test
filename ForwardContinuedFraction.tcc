@@ -35,7 +35,7 @@ template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const int _S_max_iter = 1000;
 
-      auto __b = _M_den(1, __x);
+      auto __b = _M_den(0, __x);
       auto _Den2 = __b;
       auto __a = _M_num(1, __x);
       auto _Num2 = __a;
@@ -43,7 +43,7 @@ template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
       auto _Num1 = __b * _Num2;
       __a = _M_num(2, __x);
       auto _Den1 = __a + __b * _Den2;
-      std::size_t __k = 3;
+      std::size_t __k = 2;
       while (true)
 	{
 	  __a = _M_num(__i, __x);
@@ -55,7 +55,6 @@ template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
 	  _Num1 = _Num;
 	  _Den1 = _Den;
 	}
-       += _M_den(0, __x);
     }
   };
 

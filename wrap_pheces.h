@@ -119,7 +119,7 @@ double dirichlet_eta(double x);
 double sph_bessel(unsigned int n, double x);
 
 /// Spherical Legendre functions.
-double legendre_sphPlm(unsigned int l, unsigned int m, double theta);
+double sph_legendre(unsigned int l, unsigned int m, double theta);
 
 /// Spherical Neumann functions.
 double sph_neumann(unsigned int n, double x);
