@@ -59,7 +59,7 @@ hyperg_1F1(double a, double c, double x)
 
 /// Confluent hypergeometric limit functions.
 double
-hyperg_0F1(double c, double x)
+conf_hyperg_lim(double c, double x)
 { std::numeric_limits<double>::quiet_NaN(); }
 
 /// Regular modified cylindrical Bessel functions.

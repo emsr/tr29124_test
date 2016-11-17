@@ -34,7 +34,7 @@ double ellint_Pcomp(double k, double nu);
 double hyperg_1F1(double a, double c, double x);
 
 /// Confluent hypergeometric limit functions.
-double hyperg_0F1(double c, double x);
+double conf_hyperg_lim(double c, double x);
 
 /// Regular modified cylindrical Bessel functions.
 double bessel_Inu(double nu, double x);
