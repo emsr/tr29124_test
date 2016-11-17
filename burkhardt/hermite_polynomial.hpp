@@ -1,3 +1,5 @@
+#include <string>
+
 double h_integral ( int n );
 double *h_polynomial_coefficients ( int n );
 double *h_polynomial_value ( int m, int n, double x[] );
@@ -30,10 +32,10 @@ double r8_epsilon ( );
 double r8_factorial ( int n );
 double r8_factorial2 ( int n );
 double r8_sign ( double x );
-void r8mat_print ( int m, int n, double a[], string title );
+void r8mat_print ( int m, int n, double a[], std::string title );
 void r8mat_print_some ( int m, int n, double a[], int ilo, int jlo, int ihi,
-  int jhi, string title );
+  int jhi, std::string title );
 double r8vec_dot_product ( int n, double a1[], double a2[] );
-void r8vec_print ( int n, double a[], string title );
-void r8vec2_print ( int n, double a1[], double a2[], string title );
+void r8vec_print ( int n, double a[], std::string title );
+void r8vec2_print ( int n, double a1[], double a2[], std::string title );
 void timestamp ( );
