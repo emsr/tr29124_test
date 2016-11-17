@@ -4,6 +4,8 @@
 #include "burkhardt/special_functions.h"
 #include "wrap_burkhardt.h"
 
+#include "burkhardt/hermite_polynomial.hpp"
+
 namespace burkhardt
 {
 
@@ -56,14 +58,14 @@ assoc_legendre_q(unsigned int /*l*/, unsigned int /*m*/, double /*x*/)
 
 /// Beta functions.
 double
-beta(double /*x*/, double /*y*/)
+beta(double a, double b)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  return beta(a, b);
 }
 
 /// Complementary beta functions.
 double
-betac(double /*x*/, double /*y*/)
+betac(double /*a*/, double /*b*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
