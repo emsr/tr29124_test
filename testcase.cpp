@@ -901,7 +901,7 @@ template<typename Real>
     maketest(dilog, gsl::dilog,
 	     "testcase_dilog", "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{-10}, Real{1}),
-				std::make_pair(true, true), 23),
+				std::make_pair(true, true), 45),
 	     "GSL",
 	     file_dilog);
 

@@ -54,6 +54,7 @@ check_heuman_lambda
 check_hurwitz_zeta
 check_hyperg
 check_ibeta
+check_ibetac
 check_jacobi
 check_jacobi_cn
 check_jacobi_dn
