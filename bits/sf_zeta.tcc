@@ -218,8 +218,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return _S_pipio6 - std::log(__x) * std::log(_Tp{1} - __x)
 	     - __dilog(_Tp{1} - __x);
       else if (__x < -_Tp{0.5L})
-	return -_Tp{0.5L} * _S_pipio6 - std::log(_Tp{1} + __x) * std::log(-__x)
-	     + __dilog(_Tp{1} + __x) - __dilog(_Tp{1} - __x * __x);
+	return -_Tp{0.5L} * _S_pipio6 - std::log(_Tp{1} - __x) * std::log(-__x)
+	     + __dilog(_Tp{1} + __x) -_Tp{0.5L} * __dilog(_Tp{1} - __x * __x);
       else
 	{
 	  _Tp __sum = 0;
