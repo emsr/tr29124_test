@@ -41,7 +41,7 @@ double comp_ellint_d(double k);
 double conf_hyperg(double a, double c, double x);
 
 /// Confluent hypergeometric limit functions.
-double hyperg_0F1(double c, double x);
+double conf_hyperg_lim(double c, double x);
 
 /// Hypergeometric functions.
 double hyperg_3F0(double a, double b, double c, double x);
@@ -88,7 +88,7 @@ double ellint_rj(double x, double y, double z, double p);
 /// Exponential integral Ei.
 double expint(double x);
 
-/// Exponential integral E_n.
+/// Exponential integrals E_n.
 double expint(unsigned int n, double x);
 
 /// Hermite polynomials.
@@ -212,16 +212,16 @@ double sinhc(double x);
 double sinhc_pi(double x);
 
 /// Log upper Pochhammer symbol.
-double lpochhammer_u(double a, double x);
+double lpochhammer(double a, double x);
 
 /// Log lower Pochhammer symbol.
-double lpochhammer_l(double a, double x);
+double lpochhammer_lower(double a, double x);
 
 /// Upper Pochhammer symbol.
-double pochhammer_u(double a, double x);
+double pochhammer(double a, double x);
 
 /// Lower Pochhammer symbol.
-double pochhammer_l(double a, double x);
+double pochhammer_lower(double a, double x);
 
 /// Log factorial.
 double lfactorial(unsigned int n);
@@ -328,11 +328,23 @@ double struve_h(double nu, double x);
 /// Struve L function.
 double struve_l(double nu, double x);
 
+/// Bernoulli numbers.
+double bernoulli(unsigned int n);
+
+/// Reperiodized sine.
+double sin_pi(double x);
+
+/// Reperiodized cosine.
+double cos_pi(double x);
+
 /// Fermi-Dirac integrals
 double fermi_dirac(double s, double x);
 
 /// Bose-Einstein integrals
 double bose_einstein(double s, double x);
+
+/// Debye integrals
+double debye(unsigned int n, double x);
 
 } // namespace pheces
 
