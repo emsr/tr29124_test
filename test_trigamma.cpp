@@ -129,6 +129,7 @@ template<typename _Tp>
     auto width = 8 + std::cout.precision();
 
     std::cout << '\n';
+    std::cout << '\n';
     for (int i = 200; i <= 1000; ++i)
       {
 	auto x = i * (0.01);
@@ -155,6 +156,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
+    std::cout << '\n';
     std::cout << '\n';
     for (int i = 200; i <= 1000; ++i)
       {
