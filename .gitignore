@@ -81,6 +81,7 @@ check/check_heuman_lambda
 check/check_hurwitz_zeta
 check/check_hyperg
 check/check_ibeta
+check/check_ibetac
 check/check_jacobi
 check/check_jacobi_cn
 check/check_jacobi_dn
