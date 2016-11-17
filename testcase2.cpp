@@ -480,7 +480,7 @@ template<typename Real>
     // Spherical Legendre functions.
     auto test_sph_legendre = 
     make_testcase2(make_test_function("std::sph_legendre", sph_legendre),
-		   make_baseline_function("GSL", "gsl::sph_legendre", gsl::legendre_sphPlm),
+		   make_baseline_function("GSL", "gsl::sph_legendre", gsl::sph_legendre),
 		   [](unsigned, unsigned, Real){ return true; },
 		   make_argument("l", vorder), make_argument("m", vorder),
 		   make_argument("x", fill2(Real{0}, _S_pi, 21)));

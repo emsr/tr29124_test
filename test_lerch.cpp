@@ -2,7 +2,7 @@
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_lerch test_lerch.cpp lerchphi/Source/lerchphi.cpp -lquadmath
 ./test_lerch > test_lerch.txt
 
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_lerch test_lerch.cpp -lquadmath
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_lerch test_lerch.cpp lerchphi/Source/lerchphi.cpp -lquadmath
 ./test_lerch > test_lerch.txt
 */
 
@@ -13,12 +13,20 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_lerch test_lerch.cpp -
 #include <iostream>
 #include <iomanip>
 #include <bits/summation.h>
+#include <bits/specfun_util.h>
+#include <statistics.h>
 
 #include "lerchphi/Source/lerchphi.h"
 
+namespace std
+{
+namespace __detail
+{
+
   /**
-   * A functor for a vanWijnGaarden compressor must have
-   * _Tp operator()(int) that returns a term in the original defining series.
+   * A functor for a vanWijnGaarden compressor.
+   * vanWijnGaarden requires:
+   *   _Tp operator()(int) that returns a term in the original defining series.
    */
   template<typename _Tp>
     class __lerch_term
@@ -59,8 +67,8 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_lerch test_lerch.cpp -
       const bool __integral = (std::abs(__a - _Tp(__na)) < _S_eps);
       if (__integral && __na <= 0)
 	return _S_nan;
-      //else if (std::abs(__z) >= _Tp{1})
-	//throw std::domain_error("__lerch_sum: |z| > 1");
+      else if (std::abs(__z) >= _Tp{1})
+	return _S_nan;
       else
 	{
 	  constexpr auto _S_maxit = 100000;
@@ -93,7 +101,7 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_lerch test_lerch.cpp -
       if (__integral && __na <= _S_eps)
 	return _S_nan;
       else if (std::abs(__z) >= _Tp{1})
-	throw std::domain_error("__lerch_vanwijngaarden_sum: |z| > 1");
+	return _S_nan;
       else if (__z < _Tp{0})
 	{
 	  constexpr auto _S_maxit = 100000;
@@ -142,7 +150,7 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_lerch test_lerch.cpp -
       const bool __integral = (std::abs(__a - _Tp(__na)) < _S_eps);
       if (__integral && __na <= 0)
 	return _S_nan;
-      else if (__z == _Tp{1})
+      else if (__z >= _Tp{1})
 	return _S_nan;
       else
 	{
@@ -186,7 +194,8 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_lerch test_lerch.cpp -
       if (__z >= _Tp{0})
 	{
 	  using __lerch_t = __lerch_term<_Tp>;
-	  auto _VwT = __gnu_cxx::_VanWijngaardenCompressor<__lerch_t>(__lerch_t(__z, __s, __a));
+	  using __lerch_cmp_t = __gnu_cxx::_VanWijngaardenCompressor<__lerch_t>;
+	  auto _VwT = __lerch_cmp_t(__lerch_t(__z, __s, __a));
 	  for (auto __k = 0; __k < _S_maxit; ++__k)
 	    {
 	      auto __term = _VwT[__k];
@@ -223,7 +232,7 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_lerch test_lerch.cpp -
       if (__isnan(__z) || __isnan(__s) || __isnan(__a))
 	return _S_nan;
       else if (std::abs(__z) >= _Tp{1})
-	throw std::domain_error("__lerch: |z| > 1");
+	throw std::domain_error("__lerch: |z| >= 1");
       else
 	{
 	  const auto __na = int(std::nearbyint(__a));
@@ -242,7 +251,7 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_lerch test_lerch.cpp -
 		{
 		  int __sign = __ns % 2 == 0 ? +1 : -1;
 		  if (__tinyz)
-		    /*__sum =*/return __sign * _Tp{1} / std::pow(std::abs(__a), __s);
+		    return __sign * _Tp{1} / std::pow(std::abs(__a), __s);
 		  else
 		    {
 		      auto __m = -int(std::floor(__a));
@@ -259,11 +268,13 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_lerch test_lerch.cpp -
 		      if (__smallz)
 			__sum = __lerch_sum(__z, __s, __a1);
 		      else
-			__sum = __lerch_delta_vanwijngaarden_sum(__z, __s, __a1);
+			__sum
+			  = __lerch_delta_vanwijngaarden_sum(__z, __s, __a1);
 		      __sign = 1;
 		      if (__z < _Tp{0} && __m % 2 != 0)
 			__sign = -1;
-		      return __sum1 + __sum * __sign * std::pow(std::abs(__z), __m);
+		      return __sum1
+			   + __sum * __sign * std::pow(std::abs(__z), __m);
 		    }
 		}
 	      else // s is not an integer - Phi is complex.
@@ -281,6 +292,27 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_lerch test_lerch.cpp -
 	}
     }
 
+}
+}
+
+namespace __gnu_cxx
+{
+  float
+  lerchf(float __z, float __s, float __a)
+  { return std::__detail::__lerch<float>(__z, __s, __a); }
+
+  long double
+  lerchl(long double __z, long double __s, long double __a)
+  { return std::__detail::__lerch<long double>(__z, __s, __a); }
+
+  template<typename _Tpz, typename _Tps, typename _Tpa>
+    __gnu_cxx::__promote_fp_t<_Tpz, _Tps, _Tpa>
+    lerch(_Tpz __z, _Tps __s, _Tpa __a)
+    {
+      using __type = __gnu_cxx::__promote_fp_t<_Tpz, _Tps, _Tpa>;
+      return std::__detail::__lerch<__type>(__z, __s, __a);
+    }
+}
 
 
 struct lerch_testcase
@@ -289,23 +321,24 @@ struct lerch_testcase
   double z;
   double s;
   double a;
+  int flag;
 };
 
 lerch_testcase
 lerch_tests[12]
 {
-  { 1.0000000000000000e+00, -1.0000000000000000e+00,  2.0000000000000000e+00,  1.0000000000000000e+00},
-  { 1.0000000000000000e+00,  9.9999000000000005e-01,  2.0000000000000000e+00, -1.0000000000000000e+00},
-  { 1.0000000000000000e+00,  9.9999000000000005e-01,  2.2999999999999998e+00, -1.5000000000000000e+00},
-  { 1.0000000000000000e+00,  9.9999998999999995e-01,  1.0000000000000000e+00,  1.0000000000000000e+00},
-  { 1.6448253852467796e+00,  9.9999000000000005e-01,  2.0000000000000000e+00,  1.0000000000000000e+00},
-  { 8.2246832662591696e-01, -9.9999000000000005e-01,  2.0000000000000000e+00,  1.0000000000000000e+00},
-  { 9.5971489709979654e-04,  9.9999000000000005e-01,  2.0000000000000000e+00,  1.0000000000000000e+03},
-  { 1.4275808137603091e-01,  2.9999999999999999e-01,  2.0000000000000000e+00, -4.5000000000000000e+00},
-  { 1.0000025000111110e+00,  1.0000000000000001e-05,  2.0000000000000000e+00,  1.0000000000000000e+00},
-  { 9.9998425044098438e-01, -6.3000000000000000e-05,  2.0000000000000000e+00,  1.0000000000000000e+00},
-  { 6.5909228798196373e-01,  3.4709929976435479e-06,  1.0000000000000000e+00,  1.5172413793103448e+00},
-  { 2.5880201290103731e+17,  2.9999999999999997e-04,  2.0000000000000000e+00, -3.0000000000000102e+00},
+  { 1.0000000000000000e+00, -1.0000000000000000e+00,  2.0000000000000000e+00,  1.0000000000000000e+00, 1},
+  { 1.0000000000000000e+00,  9.9999000000000005e-01,  2.0000000000000000e+00, -1.0000000000000000e+00, 2},
+  { 1.0000000000000000e+00,  9.9999000000000005e-01,  2.2999999999999998e+00, -1.5000000000000000e+00, 3},
+  { 1.0000000000000000e+00,  9.9999998999999995e-01,  1.0000000000000000e+00,  1.0000000000000000e+00, 0},
+  { 1.6448253852467796e+00,  9.9999000000000005e-01,  2.0000000000000000e+00,  1.0000000000000000e+00, 0},
+  { 8.2246832662591696e-01, -9.9999000000000005e-01,  2.0000000000000000e+00,  1.0000000000000000e+00, 0},
+  { 9.5971489709979654e-04,  9.9999000000000005e-01,  2.0000000000000000e+00,  1.0000000000000000e+03, 0},
+  { 1.4275808137603091e-01,  2.9999999999999999e-01,  2.0000000000000000e+00, -4.5000000000000000e+00, 0},
+  { 1.0000025000111110e+00,  1.0000000000000001e-05,  2.0000000000000000e+00,  1.0000000000000000e+00, 0},
+  { 9.9998425044098438e-01, -6.3000000000000000e-05,  2.0000000000000000e+00,  1.0000000000000000e+00, 0},
+  { 6.5909228798196373e-01,  3.4709929976435479e-06,  1.0000000000000000e+00,  1.5172413793103448e+00, 0},
+  { 2.5880201290103731e+17,  2.9999999999999997e-04,  2.0000000000000000e+00, -3.0000000000000102e+00, 0},
 };
 
 int
@@ -350,7 +383,7 @@ main()
       auto phi = Tp{0};
       try
 	{
-	  phi = __lerch(tcase.z, tcase.s, tcase.a);
+	  phi = __gnu_cxx::lerch(tcase.z, tcase.s, tcase.a);
 	  auto test0 = phi - tcase.phi;
 	  std::cout << std::setw(width) << phi
                     << std::setw(width) << test0;
@@ -365,9 +398,14 @@ main()
       double lphi = 0.0;
       int iter = 0;
       auto ok = lerchphi(&tcase.z, &tcase.s, &tcase.a, &acc, &lphi, &iter);
-      std::cout << std::setw(width) << lphi
-		<< std::setw(width) << lphi - tcase.phi
-		<< std::setw(width) << phi - lphi;
+      if (ok == 0)
+	std::cout << std::setw(width) << lphi
+		  << std::setw(width) << lphi - tcase.phi
+		  << std::setw(width) << phi - lphi;
+      else
+	std::cout << std::setw(width) << "fail"
+		  << std::setw(width) << "fail"
+		  << std::setw(width) << "fail";
 
       std::cout << '\n';
     }
@@ -380,15 +418,16 @@ main()
   for (int iz = -99; iz <= +99; ++iz)
     {
       auto z = 0.01 * iz;
-      auto lerch1 = __lerch_sum(z, s, a);
-      auto lerch2 = __lerch_vanwijngaarden_sum(z, s, a);
+      auto lerch1 = std::__detail::__lerch_sum(z, s, a);
+      auto lerch2 = std::__detail::__lerch_vanwijngaarden_sum(z, s, a);
       //auto lerch3 = __lerch_double_sum(z, s, a);
-      auto lerch4 = __lerch_delta_vanwijngaarden_sum(z, s, a);
+      auto lerch4 = std::__detail::__lerch_delta_vanwijngaarden_sum(z, s, a);
       double acc = 2 * std::numeric_limits<Tp>::epsilon();
       double lphi = 0.0;
       int iter = 0;
-      auto ok = lerchphi(&z, &s, &a, &acc, 
-			 &lphi, &iter);
+      auto ok = lerchphi(&z, &s, &a, &acc, &lphi, &iter);
+      if (ok != 0)
+	lphi = _S_nan;
       std::cout << ' ' << std::setw(width) << z
 		<< ' ' << std::setw(width) << lerch1
 		<< ' ' << std::setw(width) << lerch2
@@ -400,6 +439,8 @@ main()
 		<< '\n';
     }
 
+  std::cout << "\nRiemann Zeta Tests\n";
+  _Statistics<Tp> riemann_stats;
   auto z = 1.0;
   a = 1.0;
   std::cout << '\n';
@@ -408,13 +449,61 @@ main()
   for (int is = -99; is <= +99; ++is)
     {
       auto s = 0.01 * is;
-      auto lerch1 = __lerch_sum(z, s, a);
+      auto lerch = _S_nan;
+      try
+	{
+	  lerch = __gnu_cxx::lerch(z, s, a);
+	}
+      catch (...)
+	{
+	}
       auto zeta = std::riemann_zeta(s);
+      auto delta = lerch - zeta;
+      riemann_stats << delta;
       std::cout << ' ' << std::setw(width) << s
-		<< ' ' << std::setw(width) << lerch1
+		<< ' ' << std::setw(width) << lerch
 		<< ' ' << std::setw(width) << zeta
-		<< ' ' << std::setw(width) << lerch1 - zeta
+		<< ' ' << std::setw(width) << delta
 		<< '\n';
+    }
+  std::cout << "// mean(Phi - zeta)    : " << riemann_stats.mean() << '\n';
+  std::cout << "// variance(Phi - zeta): " << riemann_stats.variance() << '\n';
+  std::cout << "// stddev(Phi - zeta)  : " << riemann_stats.std_deviation() << '\n';
+
+  std::cout << "\nHurwitz Zeta Tests\n";
+  for (int ia = 1; ia <= 10; ++ia)
+    {
+      auto a = 1.0 * ia;
+      std::cout << "\n a = " << std::setw(width) << a << '\n';
+      _Statistics<Tp> hurwitz_stats;
+      auto z = 1.0;
+      a = 1.0;
+      std::cout << '\n';
+      std::cout << " z = " << std::setw(width) << z << '\n';
+      std::cout << " a = " << std::setw(width) << a << '\n';
+      for (int is = -99; is <= +99; ++is)
+	{
+	  auto s = 0.01 * is;
+	  auto lerch = _S_nan;
+	  try
+	    {
+	      lerch = __gnu_cxx::lerch(z, s, a);
+	    }
+	  catch (...)
+	    {
+	    }
+	  auto zeta = __gnu_cxx::hurwitz_zeta(s, a);
+	  auto delta = lerch - zeta;
+	  hurwitz_stats << delta;
+	  std::cout << ' ' << std::setw(width) << s
+		    << ' ' << std::setw(width) << lerch
+		    << ' ' << std::setw(width) << zeta
+		    << ' ' << std::setw(width) << delta
+		    << '\n';
+	}
+      std::cout << "// mean(Phi - zeta)    : " << hurwitz_stats.mean() << '\n';
+      std::cout << "// variance(Phi - zeta): " << hurwitz_stats.variance() << '\n';
+      std::cout << "// stddev(Phi - zeta)  : " << hurwitz_stats.std_deviation() << '\n';
     }
 
   std::cout << '\n';
@@ -429,14 +518,16 @@ main()
 	  for (int iz = -99; iz <= +99; ++iz)
 	    {
 	      auto z = 0.01 * iz;
-	      auto lerch1 = __lerch_sum(z, s, a);
-	      auto lerch2 = __lerch_vanwijngaarden_sum(z, s, a);
-	      //auto lerch3 = __lerch_double_sum(z, s, a);
-	      auto lerch4 = __lerch_delta_vanwijngaarden_sum(z, s, a);
+	      auto lerch1 = std::__detail::__lerch_sum(z, s, a);
+	      auto lerch2 = std::__detail::__lerch_vanwijngaarden_sum(z, s, a);
+	      //auto lerch3 = std::__detail::__lerch_double_sum(z, s, a);
+	      auto lerch4 = std::__detail::__lerch_delta_vanwijngaarden_sum(z, s, a);
 	      double acc = 2 * std::numeric_limits<Tp>::epsilon();
 	      double lphi = 0.0;
 	      int iter = 0;
 	      auto ok = lerchphi(&z, &s, &a, &acc, &lphi, &iter);
+	      if (ok != 0)
+	        lphi = _S_nan;
 	      std::cout << ' ' << std::setw(width) << z
 			<< ' ' << std::setw(width) << lerch1
 			<< ' ' << std::setw(width) << lerch2
