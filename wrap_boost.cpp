@@ -116,7 +116,7 @@ conf_hyperg(double /*a*/, double /*c*/, double /*x*/)
 
 /// Confluent hypergeometric limit functions.
 double
-hyperg_0F1(double /*c*/, double /*x*/)
+conf_hyperg_lim(double /*c*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -263,9 +263,9 @@ legendre_q(unsigned int l, double x)
 
 /// Riemann zeta function.
 double
-riemann_zeta(double x)
+riemann_zeta(double s)
 {
-  return boost::math::zeta(x);
+  return boost::math::zeta(s);
 }
 
 /// Hurwitz zeta functions.
@@ -814,6 +814,27 @@ double
 cos_pi(double x)
 {
   return boost::math::cos_pi(x);
+}
+
+/// Fermi-Dirac integrals
+double
+fermi_dirac(double /*s*/, double /*x*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Bose-Einstein integrals
+double
+bose_einstein(double /*s*/, double /*x*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Debye integrals
+double
+debye(unsigned int /*n*/, double /*x*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 } // namespace beast

@@ -186,13 +186,13 @@ conf_hyperg(double a, double c, double x)
 
 /// Confluent hypergeometric limit functions.
 double
-hyperg_0F1(double c, double x)
+conf_hyperg_lim(double c, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_hyperg_0F1_e(c, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in hyperg_0F1:");
+      std::ostringstream msg("Error in conf_hyperg_lim:");
       msg << " c=" << c << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -520,14 +520,14 @@ legendre_q(unsigned int l, double x)
 
 /// Riemann zeta function.
 double
-riemann_zeta(double x)
+riemann_zeta(double s)
 {
   gsl_sf_result result;
-  int stat = gsl_sf_zeta_e(x, &result);
+  int stat = gsl_sf_zeta_e(s, &result);
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in riemann_zeta:");
-      msg << " x=" << x;
+      msg << " s=" << s;
       throw std::runtime_error(msg.str());
     }
   else
@@ -1329,6 +1329,27 @@ struve_l(double /*nu*/, double /*x*/)
   return std::numeric_limits<double>::quiet_NaN();
 }
 
+/// Bernoulli numbers.
+double
+bernoulli(unsigned int /*n*/)
+{
+  std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Reperiodized sine.
+double
+sin_pi(double /*x*/)
+{
+  std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Reperiodized cosine.
+double
+cos_pi(double /*x*/)
+{
+  std::numeric_limits<double>::quiet_NaN();
+}
+
 /// Fermi-Dirac integrals
 double
 fermi_dirac(double s, double x)
@@ -1361,6 +1382,36 @@ double
 bose_einstein(double /*s*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Debye integrals
+double
+debye(unsigned int n, double x)
+{
+  if (n > 0 && n < 5)
+    {
+      int stat;
+      gsl_sf_result result;
+      if (n == 1)
+	stat = gsl_sf_debye_1_e(x, &result);
+      else if (n == 2)
+	stat = gsl_sf_debye_2_e(x, &result);
+      else if (n == 3)
+	stat = gsl_sf_debye_3_e(x, &result);
+      else if (n == 4)
+	stat = gsl_sf_debye_4_e(x, &result);
+
+      if (stat != GSL_SUCCESS)
+	{
+	  std::ostringstream msg("Error in debye:");
+	  msg << " n=" << n << " x=" << x;
+	  throw std::runtime_error(msg.str());
+	}
+      else
+        return result.val;
+    }
+  else
+    return std::numeric_limits<double>::quiet_NaN();
 }
 
 } // namespace gsl
