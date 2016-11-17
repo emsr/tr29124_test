@@ -1,11 +1,15 @@
+#ifndef LENTZCONTINUEDFRACTION_TCC
+#define LENTZCONTINUEDFRACTION_TCC 1
 
 #include <stdexcept>
 #include <bits/numeric_limits.h>
 
 /**
- * You need a functor belching a, b
- * an iterator pair for a and an iterator for b
- *  
+ * A modified Lentz continued fraction evaluator.
+ * This class required three functors:
+ *   A partial numerator function @f$ a_k(x) @f$
+ *   A partial denominator function @f$ b_k(x) @f$
+ *   A tail function @f$ w_n(x) @f$
  */
 template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
   class _LentzContinuedFraction
@@ -20,7 +24,6 @@ template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
 
     using _ARet = decltype(_M_num(0ull, _Tp{}));
     using _BRet = decltype(_M_den(0ull, _Tp{}));
-//    using _Ret = decltype(_ARet(0, _Tp{}) / _BRet(0, _Tp{}));
     using _Ret = decltype(_M_num(0ull, _Tp{}) / _M_den(0ull, _Tp{}));
 
     constexpr _LentzContinuedFraction(_AFun __a, _BFun __b, _TailFun __w)
@@ -50,10 +53,10 @@ template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
 	  __D = __a * __D + __b;
 	  if (std::abs(__D) < _S_fp_min)
 	    __D = _S_fp_min;
+	  __D = _Ret{1} / __D;
 	  __E = __b + __a / __E;
 	  if (std::abs(__E) < _S_fp_min)
 	    __E = _S_fp_min;
-	  __D = _Ret{1} / __D;
 	  auto __H = __E * __D;
 	  __C *= __H;
 	  if (std::abs(__H - _Ret{1}) < _S_eps)
@@ -67,3 +70,4 @@ template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
     }
   };
 
+#endif // LENTZCONTINUEDFRACTION_TCC

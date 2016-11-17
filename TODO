@@ -182,5 +182,11 @@ for guidance on how we might help add float128.
        No type suffix.
        The numbers only have one or two digits.
 
-50. [] 
+50. [] Have default tail function types - provide _ZeroTail and maybe _InfTail.
+These could be tag types and we if constexpr tail calls right out. _NoTail?
+
+51. [] test_special_function - it's the std functions that cause build failure.
+The GSL functions a re just fine.
+
+52. [] 
 
