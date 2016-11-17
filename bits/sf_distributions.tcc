@@ -335,6 +335,28 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return _Tp{1} - std::exp(-__lambda * __x);
     }
 
+  /**
+   * @brief Return the complement of the exponential cumulative
+   * probability density function.
+   *
+   * The formula for the complement of the exponential cumulative
+   * probability density function is
+   * @f[
+   *   F(x|\lambda) = e^{-\lambda x} \mbox{ for } x >= 0
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __exponential_cdfc(_Tp __lambda, _Tp __x)
+    {
+      if (__isnan(__lambda) || __isnan(__x))
+	return __gnu_cxx::__quiet_NaN(__x);
+      else if (__x < _Tp{0})
+	return _Tp{0};
+      else
+	return std::exp(-__lambda * __x);
+    }
+
 
   /**
    * @brief Return the Weibull probability density function.
