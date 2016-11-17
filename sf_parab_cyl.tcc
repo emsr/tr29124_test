@@ -54,14 +54,14 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *  
+   * Return the prefactors used in parabolic cylinder functions.
    */
   template<typename _Tp>
     std::tuple<_Tp, _Tp, _Tp, _Tp>
     __parabolic_cylinder_factor(_Tp __a)
     {
-      const auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      const auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__pi_half;
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__a));
+      const auto _S_sqrt_pi = __gnu_cxx::__const_pi_half(std::real(__a));
       auto __2e14p = std::pow(_Tp{2}, 0.25L + 0.5L * __a);
       auto __2e34p = std::pow(_Tp{2}, 0.75L + 0.5L * __a);
       auto __2e14m = std::pow(_Tp{2}, 0.25L - 0.5L * __a);
@@ -77,13 +77,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  
+   * Return the parabolic cylinder functions by series solution.
    */
   template<typename _Tp>
     std::pair<_Tp, _Tp>
     __parabolic_cylinder_series(_Tp __a, _Tp __z)
     {
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__z));
       constexpr auto _S_max_iter = 1000;
       const auto __zz = __z * __z;
       const auto __ezz4 = std::exp(-__zz / _Tp{4});
@@ -93,9 +93,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __sum2 = __term2;
       for (int __k = 1; __k < _S_max_iter; ++__k)
 	{
-	  __term1 *= (__a + _Tp{4 * __k - 3} / _Tp{2}) * __zz / (2 * __k * (2 * __k - 1));
+	  __term1 *= (__a + _Tp(4 * __k - 3) / _Tp{2})
+		   * __zz / _Tp(2 * __k * (2 * __k - 1));
 	  __sum1 += __term1;
-	  __term2 *= (__a + _Tp{4 * __k - 1} / _Tp{2}) * __zz / (2 * __k * (2 * __k + 1));
+	  __term2 *= (__a + _Tp(4 * __k - 1) / _Tp{2})
+		   * __zz / _Tp(2 * __k * (2 * __k + 1));
 	  __sum2 += __term2;
 	  if (std::abs(__term1) < _S_eps * std::abs(__sum1)
 	   && std::abs(__term2) < _S_eps * std::abs(__sum2))
@@ -111,17 +113,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  
+   * Return the parabolic cylinder functions by asymptotic series solution.
    */
   template<typename _Tp>
     std::pair<_Tp, _Tp>
     __parabolic_cylinder_asymp(_Tp __a, _Tp __z)
     {
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__z));
       constexpr auto _S_max_iter = 1000;
       constexpr auto _S_1d2 = _Tp{1} / _Tp{2};
-      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
-      constexpr auto _S_2dsqrt_pi = _Tp{2} / _S_sqrt_pi;
+      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(std::real(__z));
+      const auto _S_2dsqrt_pi = _Tp{2} / _S_sqrt_pi;
       const auto __zz = __z * __z;
       const auto __i2zz = _Tp{1} / (_Tp{2} * __z * __z);
       const auto __ezz4 = std::exp(-__zz / _Tp{4});
@@ -149,7 +151,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  
+   * 
    */
   template<typename _Tp>
     std::pair<_Tp, _Tp>
@@ -163,7 +165,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  
+   * 
    */
   template<typename _Tp>
     _Tp
@@ -176,7 +178,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  
+   * 
    */
   template<typename _Tp>
     _Tp
