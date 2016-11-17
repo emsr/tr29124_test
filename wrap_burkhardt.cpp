@@ -107,7 +107,7 @@ conf_hyperg(double /*a*/, double /*c*/, double /*x*/)
 
 /// Confluent hypergeometric limit functions.
 double
-hyperg_0F1(double /*c*/, double /*x*/)
+conf_hyperg_lim(double /*c*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -769,6 +769,48 @@ struve_l(double nu, double x)
   double sl{};
   stvlv_(&nu, &x, &sl);
   return sl;
+}
+
+/// Bernoulli numbers.
+double
+bernoulli(unsigned int /*n*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Reperiodized sine.
+double
+sin_pi(double /*x*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Reperiodized cosine.
+double
+cos_pi(double /*x*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Fermi-Dirac integrals
+double
+fermi_dirac(double /*s*/, double /*x*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Bose-Einstein integrals
+double
+bose_einstein(double /*s*/, double /*x*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Debye integrals
+double
+debye(unsigned int /*n*/, double /*x*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 } // namespace burkhardt

@@ -43,7 +43,7 @@ double comp_ellint_d(double k);
 double conf_hyperg(double a, double c, double x);
 
 /// Confluent hypergeometric limit functions.
-double hyperg_0F1(double c, double x);
+double conf_hyperg_lim(double c, double x);
 
 /// Regular modified cylindrical Bessel functions.
 double cyl_bessel_i(double nu, double x);
@@ -106,7 +106,7 @@ double legendre_p(unsigned int l, double x);
 double legendre_q(unsigned int l, double x);
 
 /// Riemann zeta function.
-double riemann_zeta(double x);
+double riemann_zeta(double s);
 
 /// Hurwitz zeta functions.
 double hurwitz_zeta(double s, double q);
@@ -341,6 +341,15 @@ double sin_pi(double x);
 
 /// Reperiodized cosine.
 double cos_pi(double x);
+
+/// Fermi-Dirac integrals
+double fermi_dirac(double s, double x);
+
+/// Bose-Einstein integrals
+double bose_einstein(double s, double x);
+
+/// Debye integrals
+double debye(unsigned int n, double x);
 
 } // namespace beast
 
