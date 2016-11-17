@@ -1488,7 +1488,7 @@ template<typename Real>
     basename = "conf_hyperg_lim";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_conf_hyperg_lim(filename.c_str());
-    maketest(conf_hyperg_lim, gsl::hyperg_0F1,
+    maketest(conf_hyperg_lim, gsl::conf_hyperg_lim,
 	     "testcase_conf_hyperg_lim", "__gnu_cxx", basename,
 	     "c", fill_argument(std::make_pair(Real{0}, Real{10}),
 				std::make_pair(false, true), 11),
