@@ -1,3 +1,4 @@
+// { dg-do run { target c++11 } }
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
 //
 // Copyright (C) 2016 Free Software Foundation, Inc.
@@ -37,7 +38,7 @@
 
 // mu = 1
 // sigma = 1
-const double
+const testcase_lognormal_pdf<double>
 test001[101]
 {
   {0.00000000000000e+00, 1.00000000000000e+00, 1.00000000000000e+00, 0.00000000000000e+00},
@@ -142,10 +143,11 @@ test001[101]
   {3.18360862263729e-04, 1.00000000000000e+00, 1.00000000000000e+00, 9.90000000000000e+00},
   {3.03322438251794e-04, 1.00000000000000e+00, 1.00000000000000e+00, 1.00000000000000e+01},
 };
+const double toler001 = 2.5000000000000020e-13;
 
 // mu = 1
 // sigma = 2
-const double
+const testcase_lognormal_pdf<double>
 test002[101]
 {
   {0.00000000000000e+00, 1.00000000000000e+00, 2.00000000000000e+00, 0.00000000000000e+00},
@@ -250,10 +252,11 @@ test002[101]
   {1.61302696323999e-03, 1.00000000000000e+00, 2.00000000000000e+00, 9.90000000000000e+00},
   {1.56625843362508e-03, 1.00000000000000e+00, 2.00000000000000e+00, 1.00000000000000e+01},
 };
+const double toler002 = 2.5000000000000020e-13;
 
 // mu = 1
 // sigma = 5
-const double
+const testcase_lognormal_pdf<double>
 test003[101]
 {
   {0.00000000000000e+00, 1.00000000000000e+00, 5.00000000000000e+00, 0.00000000000000e+00},
@@ -358,10 +361,11 @@ test003[101]
   {2.10774505542913e-03, 1.00000000000000e+00, 5.00000000000000e+00, 9.90000000000000e+00},
   {2.06154527434572e-03, 1.00000000000000e+00, 5.00000000000000e+00, 1.00000000000000e+01},
 };
+const double toler003 = 2.5000000000000020e-13;
 
 // mu = 2
 // sigma = 1
-const double
+const testcase_lognormal_pdf<double>
 test004[101]
 {
   {0.00000000000000e+00, 2.00000000000000e+00, 1.00000000000000e+00, 0.00000000000000e+00},
@@ -466,10 +470,11 @@ test004[101]
   {1.20855205503828e-04, 2.00000000000000e+00, 1.00000000000000e+00, 9.90000000000000e+00},
   {1.10747771170140e-04, 2.00000000000000e+00, 1.00000000000000e+00, 1.00000000000000e+01},
 };
+const double toler004 = 2.5000000000000020e-13;
 
 // mu = 2
 // sigma = 2
-const double
+const testcase_lognormal_pdf<double>
 test005[101]
 {
   {0.00000000000000e+00, 2.00000000000000e+00, 2.00000000000000e+00, 0.00000000000000e+00},
@@ -574,10 +579,11 @@ test005[101]
   {3.15177253641092e-03, 2.00000000000000e+00, 2.00000000000000e+00, 9.90000000000000e+00},
   {3.03322438251794e-03, 2.00000000000000e+00, 2.00000000000000e+00, 1.00000000000000e+01},
 };
+const double toler005 = 2.5000000000000020e-13;
 
 // mu = 2
 // sigma = 5
-const double
+const testcase_lognormal_pdf<double>
 test006[101]
 {
   {0.00000000000000e+00, 2.00000000000000e+00, 5.00000000000000e+00, 0.00000000000000e+00},
@@ -682,10 +688,11 @@ test006[101]
   {5.26730301668205e-03, 2.00000000000000e+00, 5.00000000000000e+00, 9.90000000000000e+00},
   {5.14642964266249e-03, 2.00000000000000e+00, 5.00000000000000e+00, 1.00000000000000e+01},
 };
+const double toler006 = 2.5000000000000020e-13;
 
 // mu = 5
 // sigma = 1
-const double
+const testcase_lognormal_pdf<double>
 test007[101]
 {
   {0.00000000000000e+00, 5.00000000000000e+00, 1.00000000000000e+00, 0.00000000000000e+00},
@@ -790,10 +797,11 @@ test007[101]
   {3.75478930640826e-04, 5.00000000000000e+00, 1.00000000000000e+00, 9.90000000000000e+00},
   {3.10069075489625e-04, 5.00000000000000e+00, 1.00000000000000e+00, 1.00000000000000e+01},
 };
+const double toler007 = 2.5000000000000020e-13;
 
 // mu = 5
 // sigma = 2
-const double
+const testcase_lognormal_pdf<double>
 test008[101]
 {
   {0.00000000000000e+00, 5.00000000000000e+00, 2.00000000000000e+00, 0.00000000000000e+00},
@@ -898,10 +906,11 @@ test008[101]
   {1.51511034115997e-02, 5.00000000000000e+00, 2.00000000000000e+00, 9.90000000000000e+00},
   {1.42449338927188e-02, 5.00000000000000e+00, 2.00000000000000e+00, 1.00000000000000e+01},
 };
+const double toler008 = 2.5000000000000020e-13;
 
 // mu = 5
 // sigma = 5
-const double
+const testcase_lognormal_pdf<double>
 test009[101]
 {
   {0.00000000000000e+00, 5.00000000000000e+00, 5.00000000000000e+00, 0.00000000000000e+00},
@@ -1006,3 +1015,47 @@ test009[101]
   {2.25278092298706e-02, 5.00000000000000e+00, 5.00000000000000e+00, 9.90000000000000e+00},
   {2.19704316828360e-02, 5.00000000000000e+00, 5.00000000000000e+00, 1.00000000000000e+01},
 };
+const double toler009 = 2.5000000000000020e-13;
+
+template<typename Tp, unsigned int Num>
+  void
+  test(const testcase_lognormal_pdf<Tp> (&data)[Num], Tp toler)
+  {
+    bool test __attribute__((unused)) = true;
+    const Tp eps = std::numeric_limits<Tp>::epsilon();
+    Tp max_abs_diff = -Tp(1);
+    Tp max_abs_frac = -Tp(1);
+    unsigned int num_datum = Num;
+    for (unsigned int i = 0; i < num_datum; ++i)
+  	 {
+	const Tp f = __gnu_cxx::lognormal_pdf(data[i].mu, data[i].sigma,
+		     data[i].x);
+	const Tp f0 = data[i].f0;
+	const Tp diff = f - f0;
+	if (std::abs(diff) > max_abs_diff)
+	  max_abs_diff = std::abs(diff);
+	if (std::abs(f0) > Tp(10) * eps
+	 && std::abs(f) > Tp(10) * eps)
+	  {
+	    const Tp frac = diff / f0;
+	    if (std::abs(frac) > max_abs_frac)
+	      max_abs_frac = std::abs(frac);
+	  }
+      }
+    VERIFY(max_abs_frac < toler);
+  }
+
+int
+main()
+{
+  test(data001, toler001);
+  test(data002, toler002);
+  test(data003, toler003);
+  test(data004, toler004);
+  test(data005, toler005);
+  test(data006, toler006);
+  test(data007, toler007);
+  test(data008, toler008);
+  test(data009, toler009);
+  return 0;
+}
