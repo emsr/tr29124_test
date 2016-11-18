@@ -188,5 +188,10 @@ These could be tag types and we if constexpr tail calls right out. _NoTail?
 51. [] test_special_function - it's the std functions that cause build failure.
 The GSL functions a re just fine.
 
-52. [] 
+52. [] Make 2D color plots of the Hurwitz zeta function (complex)
+Wikipedia has cool color pictures.
+  As a function of q for s = 3+4i;
+    https://en.wikipedia.org/wiki/Hurwitz_zeta_function#/media/File:HurwitzofAz3p4j.png
+  As a function of s for q = 24/25;
+    https://en.wikipedia.org/wiki/Hurwitz_zeta_function#/media/File:Hurwitza24ov25v2.png
 
