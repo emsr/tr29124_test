@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_lerch test_lerch.cpp lerchphi/Source/lerchphi.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch test_lerch.cpp lerchphi/Source/lerchphi.cpp -lquadmath
 ./test_lerch > test_lerch.txt
 
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_lerch test_lerch.cpp lerchphi/Source/lerchphi.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch test_lerch.cpp lerchphi/Source/lerchphi.cpp -lquadmath
 ./test_lerch > test_lerch.txt
 */
 
@@ -186,7 +186,6 @@ namespace __detail
     _Tp
     __lerch_delta_vanwijngaarden_sum(_Tp __z, _Tp __s, _Tp __a)
     {
-      const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
       const auto _S_eps = __gnu_cxx::__epsilon(__s);
       constexpr auto _S_maxit = 1000;
 
@@ -235,21 +234,19 @@ namespace __detail
 	throw std::domain_error("__lerch: |z| >= 1");
       else
 	{
-	  const auto __na = int(std::nearbyint(__a));
-	  const bool __inta = (std::abs(__a - _Tp(__na)) < _S_eps);
+	  const auto __aint = __gnu_cxx::__fp_is_integer(__a);
 
-	  const auto __ns = int(std::nearbyint(__s));
-	  const bool __ints = (std::abs(__s - _Tp(__ns)) < _S_eps);
+	  const auto __sint = __gnu_cxx::__fp_is_integer(__s);
 	  const bool __tinyz = std::abs(__z) < _S_eps; // _S_min?
 	  const bool __smallz = !__tinyz && std::abs(__z) < _Tp{0.5};
 
-	  if (__inta && __na <= 0)
+	  if (__aint && __aint() <= 0)
 	    return _S_nan;
 	  else if (__a < _Tp{0})
 	    {
-	      if (__ints)
+	      if (__sint)
 		{
-		  int __sign = __ns % 2 == 0 ? +1 : -1;
+		  int __sign = __sint() % 2 == 0 ? +1 : -1;
 		  if (__tinyz)
 		    return __sign * _Tp{1} / std::pow(std::abs(__a), __s);
 		  else
@@ -260,7 +257,7 @@ namespace __detail
 		      for (int __i = 0; __i < __m; ++__i)
 			{
 			  __sum1 += __sign * std::pow(std::abs(__z), __i)
-					   / std::pow(std::abs(__a + __i), __s);
+				  / std::pow(std::abs(__a + __i), _Tp(__sint()));
 			  if (__z < _Tp{0})
 			    __sign = -__sign;
 			}
@@ -292,6 +289,73 @@ namespace __detail
 	}
     }
 
+  template<typename _Tp>
+    _Tp
+    __hurwitz_zeta_lerch(_Tp __s, _Tp __a)
+    {
+      return __lerch(_Tp{1}, __s, __a);
+    }
+
+  template<typename _Tp>
+    _Tp
+    __riemann_zeta_lerch(_Tp __s)
+    {
+      return __lerch(_Tp{1}, __s, _Tp{1});
+    }
+
+  template<typename _Tp>
+    _Tp
+    __dirichlet_beta_lerch(_Tp __s)
+    {
+      return __lerch(_Tp{-1}, __s, _Tp{0.5L}) / std::pow(_Tp{2}, __s);
+    }
+
+  template<typename _Tp>
+    _Tp
+    __dirichlet_eta_lerch(_Tp __s)
+    {
+      return __lerch(_Tp{-1}, __s, _Tp{1});
+    }
+
+  template<typename _Tp>
+    _Tp
+    __dirichlet_lambda_lerch(_Tp __s)
+    {
+      return __lerch(_Tp{1}, __s, _Tp{0.5L}) / std::pow(_Tp{2}, __s);
+    }
+
+  template<typename _Tp>
+    _Tp
+    __polylog_lerch(_Tp __s, _Tp __z)
+    {
+      return __lerch(__z, __s, _Tp{1});
+    }
+
+  template<typename _Tp>
+    _Tp
+    __legendre_chi(_Tp __nu, _Tp __z)
+    {
+      return __z * __lerch(__z * __z, __nu, _Tp{0.5L}) / std::pow(_Tp{2}, __nu);
+    }
+
+  template<typename _Tp>
+    _Tp
+    __fermi_dirac_lerch(_Tp __s, _Tp __mu)
+    {
+      auto __expmu = std::exp(-__mu);
+      auto __gamsp1 = std::tgamma(_Tp{1} + __s);
+      return __gamsp1 * __lerch(-__expmu, _Tp{1} + __s, _Tp{1}) / __expmu;
+    }
+
+  template<typename _Tp>
+    _Tp
+    __bose_einstein_lerch(_Tp __s, _Tp __mu)
+    {
+      auto __expmu = std::exp(__mu);
+      auto __gamsp1 = std::tgamma(_Tp{1} + __s);
+      return __expmu * __gamsp1 * __lerch(__expmu, _Tp{1} + __s, _Tp{1});
+    }
+
 }
 }
 
@@ -315,6 +379,7 @@ namespace __gnu_cxx
 }
 
 
+
 struct lerch_testcase
 {
   double phi;
@@ -330,7 +395,7 @@ lerch_tests[12]
   { 1.0000000000000000e+00, -1.0000000000000000e+00,  2.0000000000000000e+00,  1.0000000000000000e+00, 1},
   { 1.0000000000000000e+00,  9.9999000000000005e-01,  2.0000000000000000e+00, -1.0000000000000000e+00, 2},
   { 1.0000000000000000e+00,  9.9999000000000005e-01,  2.2999999999999998e+00, -1.5000000000000000e+00, 3},
-  { 1.0000000000000000e+00,  9.9999998999999995e-01,  1.0000000000000000e+00,  1.0000000000000000e+00, 0},
+  { 1.8420680923134405e+01,  9.9999998999999995e-01,  1.0000000000000000e+00,  1.0000000000000000e+00, 0},
   { 1.6448253852467796e+00,  9.9999000000000005e-01,  2.0000000000000000e+00,  1.0000000000000000e+00, 0},
   { 8.2246832662591696e-01, -9.9999000000000005e-01,  2.0000000000000000e+00,  1.0000000000000000e+00, 0},
   { 9.5971489709979654e-04,  9.9999000000000005e-01,  2.0000000000000000e+00,  1.0000000000000000e+03, 0},
@@ -412,9 +477,9 @@ main()
 
   auto s = 1.0;
   auto a = 2.0;
-  std::cout << '\n';
-  std::cout << " a = " << std::setw(width) << a << '\n';
+  std::cout << "\n Phi(z,1,2) Tests\n";
   std::cout << " s = " << std::setw(width) << s << '\n';
+  std::cout << " a = " << std::setw(width) << a << '\n';
   for (int iz = -99; iz <= +99; ++iz)
     {
       auto z = 0.01 * iz;
@@ -439,6 +504,72 @@ main()
 		<< '\n';
     }
 
+  s = 2.0;
+  a = 1.0;
+  std::cout << "\n Phi(z,2,1) Tests\n";
+  std::cout << " s = " << std::setw(width) << s << '\n';
+  std::cout << " a = " << std::setw(width) << a << '\n';
+  for (int iz = -99; iz <= +99; ++iz)
+    {
+      auto z = 0.01 * iz;
+      auto lerch1 = std::__detail::__lerch_sum(z, s, a);
+      auto lerch2 = std::__detail::__lerch_vanwijngaarden_sum(z, s, a);
+      //auto lerch3 = __lerch_double_sum(z, s, a);
+      auto lerch4 = std::__detail::__lerch_delta_vanwijngaarden_sum(z, s, a);
+      double acc = 2 * std::numeric_limits<Tp>::epsilon();
+      double lphi = 0.0;
+      int iter = 0;
+      auto ok = lerchphi(&z, &s, &a, &acc, &lphi, &iter);
+      if (ok != 0)
+	lphi = _S_nan;
+      std::cout << ' ' << std::setw(width) << z
+		<< ' ' << std::setw(width) << lerch1
+		<< ' ' << std::setw(width) << lerch2
+		//<< ' ' << std::setw(width) << lerch3
+		<< ' ' << std::setw(width) << lerch4
+		<< ' ' << std::setw(width) << lerch2 - lerch1
+		<< ' ' << std::setw(width) << lerch4 - lerch1
+		<< ' ' << std::setw(width) << lerch4 - lphi
+		<< '\n';
+    }
+
+  std::cout << "\nDilogarithm Tests\n";
+  _Statistics<Tp> dilog_stats;
+  s = 2.0;
+  a = 1.0;
+  std::cout << '\n';
+  std::cout << " s = " << std::setw(width) << s << '\n';
+  std::cout << " a = " << std::setw(width) << a << '\n';
+  std::cout << std::setw(width) << "z"
+	    << std::setw(width) << "z Phi(z,s,1)"
+	    << std::setw(width) << "Li_s(z)"
+	    << std::setw(width) << "zPhi - Li"
+	    << '\n';
+  for (int iz = -99; iz <= +99; ++iz)
+    {
+      auto z = 0.01 * iz;
+      auto zlerch = _S_nan;
+      try
+	{
+	  zlerch = z * __gnu_cxx::lerch(z, s, a);
+	}
+      catch (...)
+	{
+	  std::cout << " fail\n";
+	}
+      auto dilog = __gnu_cxx::dilog(z);
+      auto delta = zlerch - dilog;
+      dilog_stats << delta;
+      std::cout << ' ' << std::setw(width) << z
+		<< ' ' << std::setw(width) << zlerch
+		<< ' ' << std::setw(width) << dilog
+		<< ' ' << std::setw(width) << delta
+		<< '\n';
+    }
+  std::cout << "// mean(Phi - zeta)    : " << dilog_stats.mean() << '\n';
+  std::cout << "// variance(Phi - zeta): " << dilog_stats.variance() << '\n';
+  std::cout << "// stddev(Phi - zeta)  : " << dilog_stats.std_deviation() << '\n';
+
   std::cout << "\nRiemann Zeta Tests\n";
   _Statistics<Tp> riemann_stats;
   auto z = 1.0;
@@ -446,6 +577,11 @@ main()
   std::cout << '\n';
   std::cout << " z = " << std::setw(width) << z << '\n';
   std::cout << " a = " << std::setw(width) << a << '\n';
+  std::cout << std::setw(width) << "z"
+	    << std::setw(width) << "Phi(1,s,1)"
+	    << std::setw(width) << "zeta(s)"
+	    << std::setw(width) << "Phi - zeta"
+	    << '\n';
   for (int is = -99; is <= +99; ++is)
     {
       auto s = 0.01 * is;
@@ -481,6 +617,11 @@ main()
       std::cout << '\n';
       std::cout << " z = " << std::setw(width) << z << '\n';
       std::cout << " a = " << std::setw(width) << a << '\n';
+      std::cout << std::setw(width) << "z"
+		<< std::setw(width) << "Phi(1,s,1)"
+		<< std::setw(width) << "zeta(s, a)"
+		<< std::setw(width) << "Phi - zeta"
+		<< '\n';
       for (int is = -99; is <= +99; ++is)
 	{
 	  auto s = 0.01 * is;

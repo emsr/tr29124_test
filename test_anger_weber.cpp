@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_anger_weber test_anger_weber.cpp
-./test_anger_weber
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_weber test_anger_weber.cpp -lquadmath
+./test_anger_weber > test_anger_weber.txt
 */
 
 #include <ext/cmath>
@@ -18,8 +18,8 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_anger_weber 
     _AngerWeberState<_Tp>
     __anger_weber_sum(_Tp __nu, _Tp __z)
     {
-      using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      //using _Val = _Tp;
+      //using _Real = std::__detail::__num_traits_t<_Val>;
 
       const auto __z2 = __z / _Tp{2};
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));

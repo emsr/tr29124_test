@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++14 -o hankel_toy128 hankel_toy128.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -o hankel_toy128 hankel_toy128.cpp -L$HOME/bin/lib64 -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./hankel_toy128 > hankel_toy128.txt
 
-g++ -std=gnu++14 -DNO_LOGBQ -o hankel_toy128 hankel_toy128.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -o hankel_toy128 hankel_toy128.cpp -L$HOME/bin/lib64 -lquadmath
 ./hankel_toy128 > hankel_toy128.txt
 */
 

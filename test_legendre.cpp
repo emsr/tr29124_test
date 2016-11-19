@@ -1,3 +1,11 @@
+/*
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_legendre test_legendre.cpp -lquadmath
+./test_legendre > test_legendre.txt
+
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_legendre test_legendre.cpp -lquadmath
+./test_legendre > test_legendre.txt
+*/
+
 #include <iostream>
 #include <iomanip>
 #include <tr1/cmath>
@@ -6,7 +14,7 @@
 #include <limits>
 
 #include "legendre.tcc"
-#include "sf_legendre.tcc"
+#include "bits/sf_legendre.tcc"
 
 int main(int, char **)
 {
@@ -36,6 +44,7 @@ int main(int, char **)
           std::cout << "  " << std::setw(16) << x;
           std::cout << "  " << std::setw(16) << P;
           std::cout << "  " << std::setw(16) << P_l;
+          std::cout << "  " << std::setw(16) << P_l0;
           std::cout << "  " << std::setw(16) << P_l - P;
           std::cout << std::endl;
         }

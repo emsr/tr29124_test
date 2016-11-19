@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
 
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -DDEBUG_SERIES -I. -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -DDEBUG_SERIES -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
 
 g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath

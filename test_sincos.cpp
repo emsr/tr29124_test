@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_sincos test_sincos.cpp wrap_boost.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sincos test_sincos.cpp wrap_boost.cpp -lquadmath
 ./test_sincos > test_sincos.txt
 
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_sincos test_sincos.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sincos test_sincos.cpp
 ./test_sincos > test_sincos.txt
 */
 
@@ -194,18 +194,18 @@ main()
   constexpr auto piq = __gnu_cxx::__const_pi<__float128>();
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
-  auto a1 = /*std::__detail::*/__sincos(pif * 1.5f);
-  auto a2 = /*std::__detail::*/__sincos_pi(1.5f);
+  auto a1 [[maybe_unused]] = /*std::__detail::*/__sincos(pif * 1.5f);
+  auto a2 [[maybe_unused]] = /*std::__detail::*/__sincos_pi(1.5f);
 
-  auto b1 = /*std::__detail::*/__sincos(pi * 1.5);
-  auto b2 = /*std::__detail::*/__sincos_pi(1.5);
+  auto b1 [[maybe_unused]] = /*std::__detail::*/__sincos(pi * 1.5);
+  auto b2 [[maybe_unused]] = /*std::__detail::*/__sincos_pi(1.5);
 
-  auto c1 = /*std::__detail::*/__sincos(pil * 1.5l);
-  auto c2 = /*std::__detail::*/__sincos_pi(1.5l);
+  auto c1 [[maybe_unused]] = /*std::__detail::*/__sincos(pil * 1.5l);
+  auto c2 [[maybe_unused]] = /*std::__detail::*/__sincos_pi(1.5l);
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  auto d1 = /*std::__detail::*/__sincos(piq * 1.5q);
-  auto d2 = /*std::__detail::*/__sincos_pi(1.5q);
+  auto d1 [[maybe_unused]] = /*std::__detail::*/__sincos(piq * 1.5q);
+  auto d2 [[maybe_unused]] = /*std::__detail::*/__sincos_pi(1.5q);
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   test_sincos<double>();
