@@ -415,7 +415,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     pow(_Tp __x, _Up __y)
     {
       typedef typename __gnu_cxx::__promote_2<_Tp, _Up>::__type __type;
-      return pow(__type(__x), __type(__y));
+      return __builtin_pow(__type(__x), __type(__y));
     }
 
   using ::sin;
