@@ -1,10 +1,10 @@
-// $HOME/bin/bin/g++ -o zeta_glob_deathmatch zeta_glob_deathmatch.cpp wrap_gsl.cpp -lquadmath -lgsl -lgslcblas
+/*
+$HOME/bin/bin/g++ -std=c++17 -Wall -Wextra -Wno-psabi -g -I. -o zeta_glob_deathmatch zeta_glob_deathmatch.cpp -lquadmath -L. -lwgsl
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./zeta_glob_deathmatch > zeta_glob_deathmatch.txt
 
-// LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./zeta_glob_deathmatch > zeta_glob_deathmatch.txt
-
-// g++ -std=c++14 -o zeta_glob_deathmatch zeta_glob_deathmatch.cpp wrap_gsl.cpp -lquadmath -lgsl -lgslcblas
-
-// ./zeta_glob_deathmatch > zeta_glob_deathmatch.txt
+$HOME/bin/bin/g++ -std=c++17 -Wall -Wextra -g -I. -o zeta_glob_deathmatch zeta_glob_deathmatch.cpp -lquadmath -L. -lwgsl
+./zeta_glob_deathmatch > zeta_glob_deathmatch.txt
+*/
 
 #include<ext/cmath>
 #include<limits>
@@ -309,7 +309,7 @@ main()
 	continue;
       auto ozeta = __riemann_zeta_glob_old(s);
       auto nzeta = __riemann_zeta_glob_new(s);
-      auto gzeta = gsl::zeta(s);
+      auto gzeta = gsl::riemann_zeta(s);
       std::cout << ' ' << std::setw(width) << s
 		<< ' ' << std::setw(width) << gzeta
 		<< ' ' << std::setw(width) << ozeta
@@ -346,7 +346,7 @@ main()
 	continue;
       auto ozeta = __hurwitz_zeta_glob_old(s, a);
       auto hzeta = __hurwitz_zeta_glob_new(s, a);
-      auto gzeta = gsl::hzeta(s, a);
+      auto gzeta = gsl::hurwitz_zeta(s, a);
       std::cout << ' ' << std::setw(width) << s
 		<< ' ' << std::setw(width) << gzeta
 		<< ' ' << std::setw(width) << ozeta

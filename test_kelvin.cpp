@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_kelvin test_kelvin.cpp
+$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_kelvin test_kelvin.cpp -lquadmath
 ./test_kelvin > test_kelvin.txt
 */
 
@@ -8,8 +8,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_kelvin test_kelvin.c
 #include <fstream>
 #include <iomanip>
 #include <complex>
-#include <ext/cmath>
+#include <cmath>
 #include <bits/summation.h>
+#include <bits/numeric_limits.h>
+#include <bits/specfun.h>
 
 namespace std
 {
@@ -48,8 +50,8 @@ namespace __detail
       using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Real>;
       using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
 
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
       constexpr auto _S_1d2 = _Real{1} / _Real{2};
-      constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
       constexpr auto _S_maxiter = 1000;
       const auto __xd4 = __x / _Real{4};
       const auto __tmp = __xd4 * __xd4;
@@ -81,8 +83,8 @@ namespace __detail
       using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Real>;
       using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
 
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
       constexpr auto _S_1d2 = _Real{1} / _Real{2};
-      constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
       constexpr auto _S_maxiter = 1000;
       const auto __xd4 = __x / _Real{4};
       const auto __tmp = __xd4 * __xd4;
@@ -136,8 +138,8 @@ namespace __detail
     _Real
     __kelvin_ker_series(_Real __x)
     {
-      constexpr auto _S_gamma_e = __gnu_cxx::__math_constants<_Real>::__gamma_e;
-      constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Real>::__pi_quarter;
+      const auto _S_gamma_e = __gnu_cxx::__const_gamma_e(__x);
+      const auto _S_pi_4 = __gnu_cxx::__const_pi_quarter(__x);
       auto __ker = __kelvin_kex_series(__x, -1);
       auto __ber = __kelvin_bex_series(__x, -1);
       auto __bei = __kelvin_bex_series(__x, +1);
@@ -154,8 +156,8 @@ namespace __detail
     _Real
     __kelvin_kei_series(_Real __x)
     {
-      constexpr auto _S_gamma_e = __gnu_cxx::__math_constants<_Real>::__gamma_e;
-      constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Real>::__pi_quarter;
+      const auto _S_gamma_e = __gnu_cxx::__const_gamma_e(__x);
+      const auto _S_pi_4 = __gnu_cxx::__const_pi_quarter(__x);
       auto __kei = __kelvin_kex_series(__x, +1);
       auto __ber = __kelvin_bex_series(__x, -1);
       auto __bei = __kelvin_bex_series(__x, +1);
@@ -200,10 +202,9 @@ namespace __detail
       using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Real>;
       using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
 
-      constexpr auto _S_gamma_e = __gnu_cxx::__math_constants<_Real>::__gamma_e;
-      constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Real>::__pi_quarter;
-      constexpr auto _S_eps = _Real{0.01L}
-				* std::numeric_limits<_Real>::epsilon();
+      const auto _S_gamma_e = __gnu_cxx::__const_gamma_e(__x);
+      const auto _S_pi_4 = __gnu_cxx::__const_pi_quarter(__x);
+      const auto _S_eps = _Real{0.01Q} * __gnu_cxx::__epsilon(__x);
       constexpr auto _S_maxiter = 1000;
       const auto __xd2 = __x / _Real{2};
       const auto __xxd4 = __xd2 * __xd2;
@@ -339,11 +340,11 @@ namespace __detail
     __kelvin_series(int __n, _Real __x)
     {
       using _Cmplx = std::complex<_Real>;
-      constexpr auto _S_j = _Cmplx{0, 1};
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Real>::__pi_half;
-      constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Real>::__pi_quarter;
-      constexpr auto _S_3pi_4 = _Real{3} * _S_pi_4;
-      constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
+      const auto _S_j = _Cmplx{0, 1};
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__x);
+      const auto _S_pi_4 = __gnu_cxx::__const_pi_quarter(__x);
+      const auto _S_3pi_4 = _Real{3} * _S_pi_4;
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
       constexpr auto _S_maxiter = 1000;
       if (__n < 0)
 	{
@@ -430,23 +431,21 @@ namespace __detail
     __kelvin_series(_Real __nu, _Real __x)
     {
       using _Cmplx = std::complex<_Real>;
-      constexpr auto _S_j = _Cmplx{0, 1};
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Real>::__pi_half;
-      constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Real>::__pi_quarter;
-      constexpr auto _S_3pi_4 = _Real{3} * _S_pi_4;
+      const auto _S_j = _Cmplx{0, 1};
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__x);
+      const auto _S_pi_4 = __gnu_cxx::__const_pi_quarter(__x);
+      const auto _S_3pi_4 = _Real{3} * _S_pi_4;
       constexpr auto _S_maxiter = 1000;
 
       // I have to try C++17 init-select!
-      if (auto __isint = __gnu_cxx::__fpinteger(__nu); __isint)
-	  return __kelvin_series(__isint.__value, __x);
 /*
-      if (__gnu_cxx::__fpinteger(__nu))
-	{
-	  int __n = std::nearbyint(__nu);
-	  return __kelvin_series(__n, __x);
-	}
+      if (auto __nuint = __gnu_cxx::__fp_is_integer(__nu); __nuint)
+	return __kelvin_series(__nuint(), __x);
 */
+      auto __nuint = __gnu_cxx::__fp_is_integer(__nu);
+      if (__nuint)
+	return __kelvin_series(__nuint(), __x);
       else
 	{
 	  const auto __xd2 = __x / _Real{2};
@@ -502,13 +501,13 @@ namespace __detail
 
       constexpr auto _S_j = _Cmplx{0, 1};
       constexpr auto _S_1d2 = _Real{1} / _Real{2};
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
-      constexpr auto _S_pi_2 = __gnu_cxx::__math_constants<_Real>::__pi_half;
-      constexpr auto _S_pi_4 = __gnu_cxx::__math_constants<_Real>::__pi_quarter;
-      constexpr auto _S_pi_8 = _S_1d2 * _S_pi_4;
-      constexpr auto _S_sqrt_2 = __gnu_cxx::__math_constants<_Real>::__root_2;
-      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Real>::__root_pi;
-      constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__x);
+      const auto _S_pi_4 = __gnu_cxx::__const_pi_quarter(__x);
+      const auto _S_pi_8 = _S_1d2 * _S_pi_4;
+      const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
+      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
       constexpr auto _S_maxiter = 1000;
       const auto __y = _Real{1} / (_Real{2} * __x);
       auto __bterm = _Real{1};
@@ -523,8 +522,8 @@ namespace __detail
 	{
 	  __barg -= _S_pi_4;
 	  __karg += _S_pi_4;
-	  auto __fact = (_Real(__k) - _Real{0.5L} - __nu)
-		      * (_Real(__k) - _Real{0.5L} + __nu) / _Real(__k);
+	  auto __fact = (_Real(__k) - _Real{0.5Q} - __nu)
+		      * (_Real(__k) - _Real{0.5Q} + __nu) / _Real(__k);
 	  auto __next = __y * __fact;
 	  if (std::abs(__next) > _Real{1})
 	    break;
@@ -1020,9 +1019,9 @@ namespace __gnu_cxx
  */
 template<typename _Real>
   void
-  run_kelvin1()
+  run_kelvin1(_Real proto = _Real{})
   {
-    std::cout.precision(__gnu_cxx::__digits10());
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -1046,7 +1045,7 @@ template<typename _Real>
 	      << '\n';
     for (int i = 0; i <= 200; ++i)
       {
-	auto x = _Real(0.1L) * i;
+	auto x = _Real(0.1Q) * i;
 	auto ber = std::__detail::__kelvin_ber_series(x);
 	auto bei = std::__detail::__kelvin_bei_series(x);
 	auto ker = std::__detail::__kelvin_ker_series(x);
@@ -1067,9 +1066,9 @@ template<typename _Real>
  */
 template<typename _Real>
   void
-  run_kelvin2()
+  run_kelvin2(_Real proto = _Real{})
   {
-    std::cout.precision(__gnu_cxx::__digits10());
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -1093,7 +1092,7 @@ template<typename _Real>
 	      << '\n';
     for (int i = 0; i <= 200; ++i)
       {
-	auto x = _Real(0.1L) * i;
+	auto x = _Real(0.1Q) * i;
 	auto ke = std::__detail::__kelvin_series(x);
 	std::cout << std::setw(width) << ke.__x
 		  << std::setw(width) << ke.__ber
@@ -1111,9 +1110,9 @@ template<typename _Real>
  */
 template<typename _Real>
   void
-  diff_kelvin2()
+  diff_kelvin2(_Real proto = _Real{})
   {
-    std::cout.precision(__gnu_cxx::__digits10());
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -1143,7 +1142,7 @@ template<typename _Real>
 	      << '\n';
     for (int i = 50; i <= 400; ++i)
       {
-	auto x = _Real(0.1L) * i;
+	auto x = _Real(0.1Q) * i;
 	auto kes = std::__detail::__kelvin_series(x);
 	auto kea = std::__detail::__kelvin_asymp(x);
 	std::cout << "  " << std::setw(width) << kes.__x
@@ -1190,7 +1189,7 @@ template<typename _Real>
 	      << '\n';
     for (int i = 0; i <= 200; ++i)
       {
-	auto x = _Real(0.1L) * i;
+	auto x = _Real(0.1Q) * i;
 	auto ke = std::__detail::__kelvin_series(nu, x);
 	std::cout << std::setw(width) << ke.__x
 		  << std::setw(width) << ke.__ber
@@ -1232,7 +1231,7 @@ template<typename _Real>
 	      << '\n';
     for (int i = 50; i <= 400; ++i)
       {
-	auto x = _Real(0.1L) * i;
+	auto x = _Real(0.1Q) * i;
 	auto kes = std::__detail::__kelvin_series(nu, x);
 	auto kea = std::__detail::__kelvin_asymp(nu, x);
 	std::cout << "  " << std::setw(width) << kes.__x
@@ -1251,9 +1250,9 @@ template<typename _Real>
  */
 template<typename _Real>
   void
-  run_kelvin4(int n = 0)
+  run_kelvin4(int n = 0, _Real proto = _Real{})
   {
-    std::cout.precision(__gnu_cxx::__digits10());
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -1275,7 +1274,7 @@ template<typename _Real>
 	      << '\n';
     for (int i = 0; i <= 200; ++i)
       {
-	auto x = _Real(0.1L) * i;
+	auto x = _Real(0.1Q) * i;
 	auto ke = std::__detail::__kelvin_series(n, x);
 	std::cout << std::setw(width) << ke.__x
 		  << std::setw(width) << ke.__ber
@@ -1293,10 +1292,10 @@ template<typename _Real>
  */
 template<typename _Real>
   void
-  plot_kelvin(std::string filename)
+  plot_kelvin(std::string filename, _Real proto = _Real{})
   {
-    const auto _S_sqrt_2 = __gnu_cxx::__const_root_2();
-    const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi();
+    const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(proto);
+    const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(proto);
 
     auto data = std::ofstream(filename);
 
@@ -1355,10 +1354,10 @@ template<typename _Real>
  */
 template<typename _Real>
   void
-  plot_kelvin_order(std::string filename)
+  plot_kelvin_order(std::string filename, _Real proto = _Real{})
   {
-    const auto _S_sqrt_2 = __gnu_cxx::__const_root_2();
-    const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi();
+    const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(proto);
+    const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(proto);
 
     auto data = std::ofstream(filename);
 
@@ -1383,8 +1382,8 @@ template<typename _Real>
 	 << std::setw(width) << "========="
 	 << '\n';
 
-    std::vector<_Real> nuv{_Real{0.0L}, _Real{0.5L}, _Real{1.0L},
-			   _Real{1.5L}, _Real{2.0L}, _Real{5.0L}};
+    std::vector<_Real> nuv{_Real{0.0Q}, _Real{0.5Q}, _Real{1.0Q},
+			   _Real{1.5Q}, _Real{2.0Q}, _Real{5.0Q}};
     for (auto nu : nuv)
       {
 	for (int i = 0; i <= 2000; ++i)

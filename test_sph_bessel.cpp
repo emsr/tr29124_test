@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -Wall -Wextra -o test_sph_bessel test_sph_bessel.cpp wrap_boost.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sph_bessel test_sph_bessel.cpp wrap_boost.cpp -lquadmath
 ./test_sph_bessel > test_sph_bessel.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -I. -o test_sph_bessel test_sph_bessel.cpp wrap_boost.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sph_bessel test_sph_bessel.cpp wrap_boost.cpp -lquadmath
 ./test_sph_bessel > test_sph_bessel.txt
 
 g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_sph_bessel test_sph_bessel.cpp wrap_boost.cpp -lquadmath
@@ -21,11 +21,9 @@ template<typename _Tp>
   void
   test_sph_bessel(_Tp proto = _Tp{})
   {
-    using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
-    const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
+    const auto _S_pi = __gnu_cxx::__const_pi(proto);
 
-    std::cout.precision(__gnu_cxx::__digits10<_Real>());
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -92,11 +90,7 @@ template<typename _Tp>
   void
   test_std_bessel(_Tp proto = _Tp{})
   {
-    using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
-    const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
-
-    std::cout.precision(__gnu_cxx::__digits10<_Real>());
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 

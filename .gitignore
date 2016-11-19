@@ -212,6 +212,7 @@ test_promote_num
 test_psi
 test_rational
 test_ratpoly
+test_recursion
 test_reperiodized_hyper
 test_reperiodized_trig
 test_riemann_zeta
@@ -222,6 +223,7 @@ test_special_function
 test_sph_bessel
 test_sph_hankel
 test_static_polynomial
+test_steed_continued_fraction
 test_struve
 test_summation
 test_theta

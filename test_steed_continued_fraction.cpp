@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_steed_continued_fraction test_steed_continued_fraction.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_steed_continued_fraction test_steed_continued_fraction.cpp -lquadmath
 ./test_steed_continued_fraction > test_steed_continued_fraction.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -I. -o test_steed_continued_fraction test_steed_continued_fraction.cpp -lquadmath
@@ -9,6 +9,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -I. -o test_steed_continued_fraction test_steed_c
 #include <ext/cmath>
 #include <complex>
 #include <iostream>
+#include <iomanip>
 
 #include "SteedContinuedFraction.tcc"
 
@@ -58,11 +59,11 @@ template<typename _Tp>
     std::cout << '\n';
     std::cout << "SiCi = " << y << '\n';
     std::cout << '\n';
-    std::cout << "Si = " << std::imag(y) << '\n';
-    std::cout << "Ci = " << -std::real(y) << '\n';
+    std::cout << "Si = " << std::setw(width) << std::imag(y) << '\n';
+    std::cout << "Ci = " << std::setw(width) << -std::real(y) << '\n';
     std::cout << '\n';
-    std::cout << "Si = " << __gnu_cxx::sinint(1.2) << '\n';
-    std::cout << "Ci = " << __gnu_cxx::cosint(1.2) << '\n';
+    std::cout << "Si = " << std::setw(width) << __gnu_cxx::sinint(1.2) << '\n';
+    std::cout << "Ci = " << std::setw(width) << __gnu_cxx::cosint(1.2) << '\n';
   }
 
 template<typename _Tp>
@@ -115,11 +116,11 @@ template<typename _Tp>
     std::cout << '\n';
     std::cout << "ShiChi = " << y << '\n';
     std::cout << '\n';
-    std::cout << "Shi = " << std::imag(y) << '\n';
-    std::cout << "Chi = " << -std::real(y) << '\n';
+    std::cout << "Shi = " << std::setw(width) << std::imag(y) << '\n';
+    std::cout << "Chi = " << std::setw(width) << -std::real(y) << '\n';
     std::cout << '\n';
-    std::cout << "Shi = " << __gnu_cxx::sinhint(1.2) << '\n';
-    std::cout << "Chi = " << __gnu_cxx::coshint(1.2) << '\n';
+    std::cout << "Shi = " << std::setw(width) << __gnu_cxx::sinhint(1.2) << '\n';
+    std::cout << "Chi = " << std::setw(width) << __gnu_cxx::coshint(1.2) << '\n';
   }
 
 

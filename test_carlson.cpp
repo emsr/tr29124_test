@@ -1,5 +1,7 @@
 
-// /home/ed/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_carlson test_carlson.cpp
+/*
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_carlson test_carlson.cpp
+*/
 
 #include <cmath>
 #include <iostream>

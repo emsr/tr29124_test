@@ -24,14 +24,14 @@ template<typename _Tp>
   {
     using __cmplx = std::complex<_Tp>;
 
-    constexpr auto _S_eps = __gnu_cxx::__epsilon(_Tp{});
-    constexpr auto _S_log10min = __gnu_cxx::__log10_min(_Tp{});
-    constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-    constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
-    constexpr auto _S_Ai0{3.550280538878172392600631860041831763980e-1L};
-    constexpr auto _S_Aip0{2.588194037928067984051835601892039634793e-1L};
-    //constexpr auto _S_Bi0{6.149266274460007351509223690936135535960e-1L};
-    //constexpr auto _S_Bip0{8.868776642045783582807775119976424596506e-1L};
+    const auto _S_eps = __gnu_cxx::__epsilon(std::real(__t));
+    const auto _S_log10min = __gnu_cxx::__log10_min(std::real(__t));
+    const auto _S_pi = __gnu_cxx::__const_pi(std::real(__t));
+    const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(std::real(__t));
+    constexpr auto _S_Ai0 = _Tp{3.550280538878172392600631860041831763980e-1L};
+    constexpr auto _S_Aip0 = _Tp{2.588194037928067984051835601892039634793e-1L};
+    //constexpr auto _S_Bi0 = _Tp{6.149266274460007351509223690936135535960e-1L};
+    //constexpr auto _S_Bip0 = _Tp{8.868776642045783582807775119976424596506e-1L};
     constexpr auto _S_i = __cmplx(_Tp{0}, _Tp{1});
     constexpr auto _S_big = _Tp{5.0L}; // was 3.5
     constexpr int _N_FG = 40;
@@ -421,7 +421,7 @@ template<typename _Tp>
 	    auto _Ai1p = __cmplx{_Tp{1}};
 	    auto _Ai2 = _Ai1;
 	    auto _Ai2p = _Ai1p;
-	    auto __sign = 1;
+	    auto __sign = _Tp{1};
 	    auto __izeta1 = __cmplx{_Tp{1}};
 	    auto __izeta2 = __cmplx{_Tp{1}};
 	    auto __prev_Ai1 = _Tp{1};
@@ -430,7 +430,7 @@ template<typename _Tp>
 	    auto __prev_Ai2p = _Tp{1};
 	    for (int __n = 0; __n < _N_cd; ++__n)
 	      {
-		__sign *= -1;
+		__sign *= _Tp{-1};
 		__izeta1 /= __zeta1;
 		__izeta2 /= __zeta2;
 		const auto __term1 = _S_cn[__n] * __izeta1;
