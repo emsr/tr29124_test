@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath wrap_boost.cpp
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath wrap_boost.cpp
 ./test_cyl_hankel > test_cyl_hankel.txt
 
 $HOME/bin/bin/g++ -std=c++1/ -g -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath

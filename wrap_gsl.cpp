@@ -1333,21 +1333,21 @@ struve_l(double /*nu*/, double /*x*/)
 double
 bernoulli(unsigned int /*n*/)
 {
-  std::numeric_limits<double>::quiet_NaN();
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Reperiodized sine.
 double
 sin_pi(double /*x*/)
 {
-  std::numeric_limits<double>::quiet_NaN();
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Reperiodized cosine.
 double
 cos_pi(double /*x*/)
 {
-  std::numeric_limits<double>::quiet_NaN();
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Fermi-Dirac integrals
@@ -1365,7 +1365,11 @@ fermi_dirac(double s, double x)
   else if (int(s) == s)
     stat = gsl_sf_fermi_dirac_int_e(int(s), x, &result);
   else
-    return std::numeric_limits<double>::quiet_NaN();
+    {
+      std::ostringstream msg("Error in fermi_dirac: ");
+      msg << "arguments s=" << s << " x=" << x << " not supported.";
+      throw std::domain_error(msg.str());
+    }
 
   if (stat != GSL_SUCCESS)
     {

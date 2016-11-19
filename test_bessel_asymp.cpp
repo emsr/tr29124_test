@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -I. -o test_bessel_asymp test_bessel_asymp.cpp
+$HOME/bin_tr29124/bin/g++ -g -Wall -Wextra -Wno-psabi -I. -o test_bessel_asymp test_bessel_asymp.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_bessel_asymp
 */
 
@@ -90,10 +90,10 @@ main(int n_app_args, char ** app_arg)
 
   do
   {
-    double Jnu = 0.0, Nnu = 0.0, Jpnu = 0.0, Npnu = 0.0;
+    __gnu_cxx::__cyl_bessel_t<double, double> Bess;
     try
     {
-      std::__detail::__bessel_jn(nu, x, Jnu, Nnu, Jpnu, Npnu);
+      Bess = std::__detail::__bessel_jn(nu, x, Jnu, Nnu, Jpnu, Npnu);
     }
     catch (std::exception e)
     {

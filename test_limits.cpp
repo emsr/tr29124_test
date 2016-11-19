@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_limits test_limits.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_limits test_limits.cpp -lquadmath
 ./test_limits > test_limits.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_limits test_limits.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_limits test_limits.cpp -lquadmath
 ./test_limits > test_limits.txt
 */
 
@@ -16,7 +16,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_limits test_limits.c
 
 template<typename Numeric>
   void
-  test_limits(Numeric proto = Numeric{})
+  test_limits(Numeric proto [[maybe_unused]] = Numeric{})
   {
     std::map<std::float_denorm_style, std::string_view>
     float_denorm_style

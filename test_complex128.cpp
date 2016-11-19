@@ -1,11 +1,13 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_complex128 test_complex128.cpp -lquadmath
-./test_complex128
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_complex128 test_complex128.cpp -lquadmath
+./test_complex128 > test_complex128.txt
 */
 
 #include <limits>
 #include <iostream>
+#include <bits/float128_io.h>
 
+#include <cmath>
 #include <complex>
 
 int

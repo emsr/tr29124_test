@@ -1,4 +1,6 @@
-// $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_array_ref test_array_ref.cpp
+/*
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_array_ref test_array_ref.cpp
+*/
 
 #include <array_ref>
 

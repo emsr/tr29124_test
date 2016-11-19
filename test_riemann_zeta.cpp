@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath
 ./test_riemann_zeta > test_riemann_zeta.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath
@@ -118,8 +118,6 @@ template<typename _Tp>
     using _Real = std::__detail::__num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
-    const auto deg = __gnu_cxx::__const_deg(proto);
-
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
@@ -136,8 +134,6 @@ template<typename _Tp>
 	      << std::setw(width) << "zeta (real)"
 	      << std::setw(width) << "|zetac - zeta|"
 	      << '\n';
-    auto ac = _Cmplx(1.0L);
-    auto a = _Real(1.0L);
     for (int i = i_min; i <= +250; ++i)
       {
         auto sc = _Cmplx(0.10L * i, 0.0L);
