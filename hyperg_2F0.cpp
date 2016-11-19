@@ -1,47 +1,56 @@
 
 template<typename _Tp>
   _Tp
-  __hyperg_1f2(_Tp a, _Tp b, _Tp c, _Tp x, _Tp& err)
+  __hyperg_2f0(_Tp a, _Tp b, _Tp x, _Tp& err)
   {
     constexpr auto _S_max_iter = 200;
     const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
     const auto _S_huge = std::numeric_limits<_Tp>::max() / _Tp{1000}
     auto an = a;
     auto bn = b;
-    auto cn = c;
     auto a0 = _Tp{1};
     auto sum = _Tp{1};
     auto n = 1;
     auto t = _Tp{1};
     auto max = _Tp{0};
+    auto conv = std::numeric_limits<_Tp>::max() / _Tp{2};
+    auto conv1 = conv;
 
     do
       {
 	if (an == _Tp{0})
 	  break;
 	if (bn == _Tp{0})
-	  throw std::runtime_error("__hyperg_1f2: series failed");
-	if (cn == _Tp{0})
-	  throw std::runtime_error("__hyperg_1f2: series failed");
+	  break;
 	if (a0 > _S_huge || n > _S_max_iter)
-	  throw std::runtime_error("__hyperg_1f2: series failed");
-	a0 *= (an * x) / (bn * cn * n);
-	sum += a0;
+	  throw std::runtime_error("__hyperg_2f0: series failed");
+	a0 *= (an * bn * x) / n;
 	an += _Tp{1};
 	bn += _Tp{1};
-	cn += _Tp{1};
 	++n;
 	z = std::abs(a0);
 	if (z > max)
 	  max = z;
-	if (sum != _Tp{0})
+	if (z >= conv)
+	  {
+	    if (z < max && z > conv1)
+	      break;
+	  }
+	conv1 = conv;
+	conv = z;
+	sum += a0;
+	if (sum != 0)
 	  t = std::abs(a0 / sum);
 	else
 	  t = z;
       }
     while (t > stop);
 
-    err = std::abs(_S_eps * max / sum);
+    t = std::abs(_S_eps * max / sum);
+    max = std::abs(conv / sum);
+    if (max > t)
+      t = max;
+    err = t;
 
     return sum;
   }
@@ -49,10 +58,10 @@ template<typename _Tp>
 int
 main()
 {
-  double a = 3.0;
+  double a = -3.0;
   double b = 2.0;
-  double c = 1.5;
   double x = 2.5;
   double err = 0.0;
-  __hyperg_1f2(a, b, c, x, err);
+  __hyperg_2f0(a, b, x, err);
 }
+
