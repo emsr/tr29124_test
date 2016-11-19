@@ -2,15 +2,15 @@
 extern double PI;
 
 double
-struve(double v, double x)
+struve(double nu, double x)
 {
   double y, ya, h;
   double onef2err, threef0err;
 
-  double f = floor(v);
-  if (v < 0 && v - f == 0.5 )
+  double f = floor(nu);
+  if (nu < 0 && nu - f == 0.5 )
     {
-      y = jv(-v, x);
+      y = jv(-nu, x);
       f = 1.0 - f;
       g = 2.0 * floor(f / 2.0);
       if (g != f)
@@ -19,14 +19,14 @@ struve(double v, double x)
     }
   double t = 0.25 * x * x;
   f = abs(x);
-  double g = 1.5 * abs(v);
+  double g = 1.5 * abs(nu);
   if (f > 30.0 && f > g)
     {
       onef2err = 1.0e38;
       y = 0.0;
     }
   else
-    y = __hyperg_1f2(1.0, 1.5, 1.5 + v, -t, onef2err);
+    y = __hyperg_1f2(1.0, 1.5, 1.5 + nu, -t, onef2err);
 
   if (f < 18.0 || x < 0.0)
     {
@@ -34,22 +34,22 @@ struve(double v, double x)
       ya = 0.0;
     }
   else
-    ya = __hyperg_3f0(1.0, 0.5, 0.5-v, -1.0 / t, threef0err);
+    ya = __hyperg_3f0(1.0, 0.5, 0.5 - nu, -1.0 / t, threef0err);
 
   f = sqrt(PI);
-  h = pow(0.5 * x, v - 1.0);
+  h = pow(0.5 * x, nu - 1.0);
 
   if (onef2err <= threef0err)
     {
-      g = gamma(v + 1.5);
+      g = gamma(nu + 1.5);
       y *= h * t / ( 0.5 * f * g );
       return y;
     }
   else
     {
-      g = gamma(v + 0.5);
+      g = gamma(nu + 0.5);
       ya *= h / (f * g);
-      ya += yv(v, x);
+      ya += yv(nu, x);
       return ya;
     }
 }

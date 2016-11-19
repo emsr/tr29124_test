@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_heuman_lambda test_heuman_lambda.cpp wrap_boost.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_heuman_lambda test_heuman_lambda.cpp wrap_boost.cpp -lquadmath
 ./test_heuman_lambda > test_heuman_lambda.txt
 
 */

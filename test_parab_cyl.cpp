@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_parab_cyl test_parab_cyl.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_parab_cyl test_parab_cyl.cpp
 ./test_parab_cyl > test_parab_cyl.txt
 
 */
