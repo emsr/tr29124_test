@@ -45,6 +45,9 @@
 #  include <cmath>
 #undef _GLIBCXX_NO_SPECFUN
 #include <sstream>
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#include <bits/float128_io.h>
+#endif
 
 // Get rid of a macro possibly defined in <complex.h>
 #undef complex
@@ -1838,8 +1841,8 @@ extern "C" {
   extern template istream& operator>>(istream&, complex<long double>&);
   extern template ostream& operator<<(ostream&, const complex<long double>&);
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  extern template istream& operator>>(istream&, complex<__float128>&);
-  extern template ostream& operator<<(ostream&, const complex<__float128>&);
+  template istream& operator>>(istream&, complex<__float128>&);
+  template ostream& operator<<(ostream&, const complex<__float128>&);
 #endif // __FLOAT128
 
 #ifdef _GLIBCXX_USE_WCHAR_T
@@ -1849,10 +1852,6 @@ extern "C" {
   extern template wostream& operator<<(wostream&, const complex<double>&);
   extern template wistream& operator>>(wistream&, complex<long double>&);
   extern template wostream& operator<<(wostream&, const complex<long double>&);
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  extern template wistream& operator>>(wistream&, complex<__float128>&);
-  extern template wostream& operator<<(wostream&, const complex<__float128>&);
-#endif // __FLOAT128
 #endif // _GLIBCXX_USE_WCHAR_T
 #endif // _GLIBCXX_EXTERN_TEMPLATE
 
