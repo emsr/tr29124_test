@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -o hankel_toy hankel_toy.cpp /home/ed/tr29124_test/gslextras/Fresnel/fresnel.c -lquadmath -L/usr/local/lib -lgsl -lgslcblas -ljacobi
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o hankel_toy hankel_toy.cpp /home/ed/tr29124_test/gslextras/Fresnel/fresnel.c -lquadmath -L/usr/local/lib -lgsl -lgslcblas -ljacobi
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./hankel_toy > hankel_toy.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -o hankel_toy hankel_toy.cpp -L$HOME/bin/lib64
@@ -9,8 +9,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -o hankel_toy hankel_toy.cpp -L$HOME/bin/lib64
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include "polynomial.h"
-#include <bits/float128.h>
+#include <ext/polynomial.h>
+#include <bits/float128_io.h>
 
 template<typename _Tp>
   void
@@ -27,7 +27,7 @@ template<typename _Tp>
 	std::cout << "k      = " << k << '\n';
 	std::cout << "index  = " << index << '\n';
 	std::cout << "indexp = " << indexp << '\n';
-	auto indexpold = indexp;
+	//auto indexpold = indexp;
 	index += 2;
 	indexp += 2;
 	++indexp;
@@ -110,7 +110,7 @@ template<typename _Tp>
     for (const auto & u : uvec)
       {
 	uentry.resize(u.degree() + 1);
-	for (int i = 0; i <= u.degree(); ++i)
+	for (std::size_t i = 0; i <= u.degree(); ++i)
 	  if (u.coefficient(i) != 0)
 	    uentry[i].push_back(std::make_tuple(ku, i, u.coefficient(i)));
 	++ku;
@@ -130,7 +130,7 @@ template<typename _Tp>
     for (const auto & v : vvec)
       {
 	ventry.resize(v.degree() + 1);
-	for (int i = 0; i <= v.degree(); ++i)
+	for (std::size_t i = 0; i <= v.degree(); ++i)
 	  if (v.coefficient(i) != 0)
 	    ventry[i].push_back(std::make_tuple(kv, i, v.coefficient(i)));
 	++kv;

@@ -1,3 +1,10 @@
+/*
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o hyperg_2F0 hyperg_2F0.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./hyperg_2F0 > hyperg_2F0.txt
+*/
+
+#include <limits>
+#include <cmath>
 
 template<typename _Tp>
   _Tp
@@ -5,7 +12,7 @@ template<typename _Tp>
   {
     constexpr auto _S_max_iter = 200;
     const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-    const auto _S_huge = std::numeric_limits<_Tp>::max() / _Tp{1000}
+    const auto _S_huge = std::numeric_limits<_Tp>::max() / _Tp{1000};
     auto an = a;
     auto bn = b;
     auto a0 = _Tp{1};
@@ -28,7 +35,7 @@ template<typename _Tp>
 	an += _Tp{1};
 	bn += _Tp{1};
 	++n;
-	z = std::abs(a0);
+	auto z = std::abs(a0);
 	if (z > max)
 	  max = z;
 	if (z >= conv)

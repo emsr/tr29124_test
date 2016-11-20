@@ -1,6 +1,6 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_static_polynomial test_static_polynomial.cpp
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_static_polynomial
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_static_polynomial test_static_polynomial.cpp -lquadmath
+./test_static_polynomial
 */
 
 //  Get past a bug....
