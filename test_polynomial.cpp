@@ -1,5 +1,5 @@
 /*
-$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polynomial test_polynomial.cpp
+$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polynomial test_polynomial.cpp -lquadmath
 ./test_polynomial > test_polynomial.txt
 */
 

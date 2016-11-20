@@ -30,7 +30,7 @@ main()
   std::cout << "cos(z)    = " << std::cos(z) << '\n';
   std::cout << "cosh(z)   = " << std::cosh(z) << '\n';
   std::cout << "exp(z)    = " << std::exp(z) << '\n';
-  std::cout << "expi(x)   = " << std::expi(x) << '\n';
+  //std::cout << "expi(x)   = " << std::expi(x) << '\n';
   std::cout << "log(z)    = " << std::log(z) << '\n';
   std::cout << "log10(z)  = " << std::log10(z) << '\n';
   std::cout << "conj(z)   = " << std::conj(z) << '\n';

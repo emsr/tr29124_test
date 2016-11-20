@@ -55,8 +55,8 @@ template<typename _Tp>
   void
   test_gamma_ratio(_Tp proto = _Tp{})
   {
-    using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    //using _Val = _Tp;
+    //using _Real = std::__detail::__num_traits_t<_Val>;
 
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;

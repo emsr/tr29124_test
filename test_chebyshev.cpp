@@ -1,6 +1,6 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev test_chebyshev.cpp -lquadmath
-./test_chebyshev
+./test_chebyshev > test_chebyshev.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev test_chebyshev.cpp -lquadmath
 ./test_chebyshev
