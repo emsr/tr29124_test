@@ -1,16 +1,16 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -o hankel_toy128 hankel_toy128.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o hankel_toy128 hankel_toy128.cpp -L$HOME/bin/lib64 -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./hankel_toy128 > hankel_toy128.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -o hankel_toy128 hankel_toy128.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -DNO_LOGBQ -o hankel_toy128 hankel_toy128.cpp -L$HOME/bin/lib64 -lquadmath
 ./hankel_toy128 > hankel_toy128.txt
 */
 
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include "float128.h"
-#include "polynomial.h"
+#include <bits/float128_io.h>
+#include <ext/polynomial.h>
 
 int
 main()
@@ -25,7 +25,7 @@ main()
       std::cout << "k      = " << k << '\n';
       std::cout << "index  = " << index << '\n';
       std::cout << "indexp = " << indexp << '\n';
-      auto indexpold = indexp;
+      //auto indexpold = indexp;
       index += 2;
       indexp += 2;
       ++indexp;
@@ -90,7 +90,7 @@ main()
   for (const auto & u : uvec)
     {
       uentry.resize(u.degree() + 1);
-      for (int i = 0; i <= u.degree(); ++i)
+      for (std::size_t i = 0; i <= u.degree(); ++i)
 	if (u.coefficient(i) != 0)
 	  uentry[i].push_back(std::make_tuple(ku, i, u.coefficient(i)));
       ++ku;
@@ -110,7 +110,7 @@ main()
   for (const auto & v : vvec)
     {
       ventry.resize(v.degree() + 1);
-      for (int i = 0; i <= v.degree(); ++i)
+      for (std::size_t i = 0; i <= v.degree(); ++i)
 	if (v.coefficient(i) != 0)
 	  ventry[i].push_back(std::make_tuple(kv, i, v.coefficient(i)));
       ++kv;

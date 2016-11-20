@@ -137,6 +137,9 @@ check/origin_cyl_neumann
 
 clamp_2
 
+debug_bessel
+poly_root
+
 complex_literal_arith
 diff_special_function
 diff_local_special_function
@@ -144,6 +147,7 @@ testcase
 testcase2
 test_airy
 test_anger_weber
+test_bernoulli
 test_bessel
 test_bessel_asymp
 test_bessel_iter

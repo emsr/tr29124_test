@@ -33,7 +33,9 @@ template<typename _Tp, typename _Bessel>
 	  {
 	    auto x = _Tp(0.10L * i);
 	    auto j = __bessel(nu, x);
-	    data << ' ' << nu << ' ' << x << ' ' << j << '\n';
+	    data << ' ' << std::setw(width) << nu
+		 << ' ' << std::setw(width) << x
+		 << ' ' << std::setw(width) << j << '\n';
 	  }
 	data << '\n';
       }

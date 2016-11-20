@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -g -std=gnu++17 -o hankel_toy_new hankel_toy_new.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o hankel_toy_new hankel_toy_new.cpp -L$HOME/bin/lib64 -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./hankel_toy_new > hankel_toy_new.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -DNO_CBRT -o hankel_toy_new hankel_toy_new.cpp -lquadmath
@@ -10,8 +10,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -DNO_CBRT -o hankel_toy_new hankel_toy_new.cpp -l
 #include <iostream>
 #include <iomanip>
 #include <tuple>
-#include <bits/float128.h>
-#include <bits/polynomial.h>
+//#include <bits/float128.h>
+#include <ext/polynomial.h>
 #include <bits/numeric_limits.h>
 
 template<typename _Tp>
@@ -43,11 +43,10 @@ template<typename _Tp>
   {
     __hankel_param_t(std::complex<_Tp> __nu_in, std::complex<_Tp> __zhat_in);
 
-    static constexpr _Tp _S_2pi   = _Tp{6.283185307179586476925286766559005768391Q};
-    static constexpr _Tp _S_1d3   = _Tp{0.3333333333333333333333333333333333333333Q};
-    static constexpr _Tp _S_2d3   = _Tp{0.6666666666666666666666666666666666666666Q};
-    static constexpr _Tp _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
-    static constexpr _Tp _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();
+    static constexpr auto _S_2pi   = _Tp{6.283185307179586476925286766559005768391Q};
+    static constexpr auto _S_1d3   = _Tp{0.3333333333333333333333333333333333333333Q};
+    static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666666Q};
+    static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
     static constexpr std::complex<_Tp> _S_j{0, 1};
 
     std::complex<_Tp> __nu;
@@ -69,24 +68,12 @@ template<typename _Tp>
   };
 
 template<typename _Tp>
-  constexpr _Tp __hankel_param_t<_Tp>::_S_2pi;
-template<typename _Tp>
-  constexpr _Tp __hankel_param_t<_Tp>::_S_1d3;
-template<typename _Tp>
-  constexpr _Tp __hankel_param_t<_Tp>::_S_2d3;
-template<typename _Tp>
-  constexpr _Tp __hankel_param_t<_Tp>::_S_lncon;
-template<typename _Tp>
-  constexpr _Tp __hankel_param_t<_Tp>::_S_sqrt_max;
-template<typename _Tp>
-  constexpr std::complex<_Tp> __hankel_param_t<_Tp>::_S_j;
-
-template<typename _Tp>
   __hankel_param_t<_Tp>::__hankel_param_t(std::complex<_Tp> __nu_in,
 					  std::complex<_Tp> __zhat_in)
   : __nu(__nu_in), __zhat(__zhat_in)
   {
-    using __cmplx = std::complex<_Tp>;
+    //using _Cmplx = std::complex<_Tp>;
+    const auto _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();
 
     // If nu^2 can be computed without overflow.
     if (std::abs(__nu) <= _S_sqrt_max)
@@ -108,7 +95,7 @@ template<typename _Tp>
 	__p = _Tp{1} / __w;
 	__p2 = __p * __p;
 	__xi = std::log(_Tp{1} + __w) - std::log(__zhat) - __w;
-	auto __zetam3hf = _S_2d3 / __xi; // zeta^(-3/2)
+	//auto __zetam3hf = _S_2d3 / __xi; // zeta^(-3/2)
 	auto __logzeta = _S_2d3 * std::log(__xi) + _S_lncon; // ln(zeta)
 	__zeta = std::exp(__logzeta);
 	__zetaphf = std::sqrt(__zeta);
@@ -281,7 +268,7 @@ template<typename _Tp>
 	std::cout << "k      = " << k << '\n';
 	std::cout << "index  = " << index << '\n';
 	std::cout << "indexp = " << indexp << '\n';
-	auto indexpold = indexp;
+	//auto indexpold = indexp;
 	index += 2;
 	indexp += 2;
 	++indexp;
@@ -349,7 +336,7 @@ template<typename _Tp>
     for (const auto & u : uvec)
       {
 	uentry.resize(u.degree() + 1);
-	for (int i = 0; i <= u.degree(); ++i)
+	for (std::size_t i = 0; i <= u.degree(); ++i)
 	  if (u.coefficient(i) != 0)
 	    //uentry[i].push_back(std::make_tuple(ku, i, u.coefficient(i)));
 	    uentry[i].emplace_back(ku, i, u.coefficient(i));
@@ -370,7 +357,7 @@ template<typename _Tp>
     for (const auto & v : vvec)
       {
 	ventry.resize(v.degree() + 1);
-	for (int i = 0; i <= v.degree(); ++i)
+	for (std::size_t i = 0; i <= v.degree(); ++i)
 	  if (v.coefficient(i) != 0)
 	    //ventry[i].push_back(std::make_tuple(kv, i, v.coefficient(i)));
 	    ventry[i].emplace_back(kv, i, v.coefficient(i));
@@ -411,10 +398,10 @@ template<typename _Tp>
     k_max = 6;
     std::cout << "\nkmax = " << k_max << '\n';
     std::cout << "U_k\n";
-    for (int k = 0; k <= k_max; ++k)
+    for (std::size_t k = 0; k <= k_max; ++k)
       std::cout << uvec[k] << '\n';
     std::cout << "V_k\n";
-    for (int k = 0; k <= k_max; ++k)
+    for (std::size_t k = 0; k <= k_max; ++k)
       std::cout << vvec[k] << '\n';
 
     // Try to build A, B, C, D functions...
@@ -425,13 +412,13 @@ template<typename _Tp>
 	      << std::setw(width) << "zeta^(3/2)" << ' '
 	      << std::setw(width) << "thing" << ' '
 	      << std::setw(width) << "p" << ' ';
-    for (int k = 0; k < k_max; ++k)
+    for (std::size_t k = 0; k < k_max; ++k)
       std::cout << std::setw(width-1) << "A_" << k << ' ';
-    for (int k = 0; k < k_max; ++k)
+    for (std::size_t k = 0; k < k_max; ++k)
       std::cout << std::setw(width-1) << "B_" << k << ' ';
-    for (int k = 0; k < k_max; ++k)
+    for (std::size_t k = 0; k < k_max; ++k)
       std::cout << std::setw(width-1) << "C_" << k << ' ';
-    for (int k = 0; k < k_max; ++k)
+    for (std::size_t k = 0; k < k_max; ++k)
       std::cout << std::setw(width-1) << "D_" << k << ' ';
     std::cout << '\n';
     for (int i = 0; i <= 2000; ++i)
@@ -448,11 +435,11 @@ template<typename _Tp>
 		  << std::setw(width) << std::pow(std::abs(zeta), _Tp{-1.5L}) << ' '
 		  << std::setw(width) << thing << ' '
 		  << std::setw(width) << p << ' ';
-	for (int k = 0; k < k_max; ++k)
+	for (std::size_t k = 0; k < k_max; ++k)
 	  {
 	    auto tj = _Tp{1};
 	    auto A = _Tp{0};
-	    for (int j = 0; j <= 2 * k; ++j)
+	    for (std::size_t j = 0; j <= 2 * k; ++j)
 	      {
 //std::cout << "\nuvec[" << 2 * k - j << "]: " << uvec[2 * k - j] << '\n';;
 		A += tj * mu[j] * uvec[2 * k - j](p);
@@ -460,11 +447,11 @@ template<typename _Tp>
 	      }
 	    std::cout << std::setw(width) << A << ' ';
 	  }
-	for (int k = 0; k < k_max; ++k)
+	for (std::size_t k = 0; k < k_max; ++k)
 	  {
 	    auto tj = _Tp{1};
 	    auto B = _Tp{0};
-	    for (int j = 0; j <= 2 * k + 1; ++j)
+	    for (std::size_t j = 0; j <= 2 * k + 1; ++j)
 	      {
 //std::cout << "\nuvec[" << 2 * k + 1 - j << "]: " << uvec[2 * k + 1 - j] << '\n';;
 		B += tj * lambda[j] * uvec[2 * k + 1 - j](p);
@@ -472,11 +459,11 @@ template<typename _Tp>
 	      }
 	    std::cout << std::setw(width) << B << ' ';
 	  }
-	for (int k = 0; k < k_max; ++k)
+	for (std::size_t k = 0; k < k_max; ++k)
 	  {
 	    auto tj = _Tp{1};
 	    auto C = _Tp{0};
-	    for (int j = 0; j <= 2 * k + 1; ++j)
+	    for (std::size_t j = 0; j <= 2 * k + 1; ++j)
 	      {
 //std::cout << "\nvvec[" << 2 * k + 1 - j << "]: " << vvec[2 * k + 1 - j] << '\n';
 		C += tj * mu[j] * vvec[2 * k + 1 - j](p);
@@ -484,11 +471,11 @@ template<typename _Tp>
 	      }
 	    std::cout << std::setw(width) << C << ' ';
 	  }
-	for (int k = 0; k < k_max; ++k)
+	for (std::size_t k = 0; k < k_max; ++k)
 	  {
 	    auto tj = _Tp{1};
 	    auto D = _Tp{0};
-	    for (int j = 0; j <= 2 * k; ++j)
+	    for (std::size_t j = 0; j <= 2 * k; ++j)
 	      {
 //std::cout << "\nvvec[" << 2 * k - j << "]: " << vvec[2 * k - j] << '\n';
 		D += tj * lambda[j] * vvec[2 * k - j](p);
@@ -514,11 +501,11 @@ template<typename _Tp>
 	//  << ' ' << parm.
 	//  << ' ' << parm.
 	auto t = _Tp{1.5L} / std::pow(parm.__zeta, _Tp{1.5L});
-	for (int k = 0; k < k_max; ++k)
+	for (std::size_t k = 0; k < k_max; ++k)
 	  {
 	    decltype(t) tj = 1;
 	    decltype(t) A = 0;
-	    for (int j = 0; j <= 2 * k; ++j)
+	    for (std::size_t j = 0; j <= 2 * k; ++j)
 	      {
 //std::cout << "\nuvec[" << 2 * k - j << "]: " << uvec[2 * k - j] << '\n';;
 		A += tj * mu[j] * uvec[2 * k - j](parm.__p);

@@ -11,7 +11,7 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o build_gamma_lanczos build_gamma
 #include <iomanip>
 #include <limits>
 #include <ext/cmath>
-#include <bits/float128.h>
+#include <bits/float128_io.h>
 
    //  Checbyshev coefficient matrix.
    constexpr int

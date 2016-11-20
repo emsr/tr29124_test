@@ -1,3 +1,7 @@
+/*
+$HOME/bin_tr29124/bin/g++ -g -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o complex_gamma complex_gamma.cpp
+*/
+
 //  cgamma.cpp -- Complex gamma function.
 //      Algorithms and coefficient values from "Computation of Special
 //      Functions", Zhang and Jin, John Wiley and Sons, 1996.

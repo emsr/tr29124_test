@@ -288,3 +288,122 @@ They use macros... Sigh.  Still, we could hack these into templates.
 
 
 68. [] 
+
+build_gamma_lanczos.cpp
+carlson_std.cpp
+complex.cpp
+complex_gamma.cpp - a snippet
+complex_literal_arith.cpp - C99 vs C++ literals.
+get_zeta_a.cpp - a snippet
+get_zeta_b.cpp - a snippet
+gsl.cpp - useless comment.. indicates gsl version of tr1.
+
+hankel_toy_new.cpp - Undefinedreference constant things in some struct.
+  tmp/ccPVNIiD.o: In function `__hankel_param_t<double>::__hankel_param_t(std::complex<double>, std::complex<double>)':
+  /home/ed/tr29124_test/hankel_toy_new.cpp:98: undefined reference to `__hankel_param_t<double>::_S_2d3'
+  /home/ed/tr29124_test/hankel_toy_new.cpp:99: undefined reference to `__hankel_param_t<double>::_S_2d3'
+  /home/ed/tr29124_test/hankel_toy_new.cpp:99: undefined reference to `__hankel_param_t<double>::_S_lncon'
+  /home/ed/tr29124_test/hankel_toy_new.cpp:107: undefined reference to `__hankel_param_t<double>::_S_j'
+  /home/ed/tr29124_test/hankel_toy_new.cpp:110: undefined reference to `__hankel_param_t<double>::_S_2d3'
+  /home/ed/tr29124_test/hankel_toy_new.cpp:110: undefined reference to `__hankel_param_t<double>::_S_j'
+  /home/ed/tr29124_test/hankel_toy_new.cpp:111: undefined reference to `__hankel_param_t<double>::_S_2d3'
+  /home/ed/tr29124_test/hankel_toy_new.cpp:111: undefined reference to `__hankel_param_t<double>::_S_lncon'
+  /home/ed/tr29124_test/hankel_toy_new.cpp:113: undefined reference to `__hankel_param_t<double>::_S_j'
+  collect2: error: ld returned 1 exit status
+
+hankel_transition.cpp - Update structs
+
+hyperg_1F2.cpp - undef variable 'stop'
+hyperg_2F0.cpp - undef variable 'stop'
+hyperg_3F0.cpp - undef variable 'stop'
+
+plot_airy.cpp
+test_airy.cpp - a lot of unused variables.
+
+test_array_ref.cpp - move with <array_ref> somewhere else
+test_bessel_asymp.cpp
+
+test_carlson.cpp
+
+test_complex128.cpp
+
+test_factorial.cpp
+
+test_gamma_ratio.cpp - fill this out
+
+test_hankel.cpp - warns and crashes
+  In function \u2018int main()\u2019:
+  test_hankel.cpp:35:34: warning: unused variable \u2018zx\u2019 [-Wunused-variable]
+     auto [zx, nux, h1, h2, h1p, h2p] = std::__detail::__hankel_uniform(nu, z);
+                                    ^
+  test_hankel.cpp:35:34: warning: unused variable \u2018nux\u2019 [-Wunused-variable]
+  ed@bad-horse:~/tr29124_test$ ./test_hankel > test_hankel.txt
+  terminate called after throwing an instance of 'std::runtime_error'
+    what():  __hankel_uniform_sum: all allowable terms used
+  Aborted (core dumped)
+
+test_hydrogen.cpp - fill out
+
+test_hyperg.cpp - fill out
+
+test_hypot.cpp - get this in mainline and kill it.
+
+test_hzeta.cpp - snippet
+
+test_inv_erf.cpp - finish this
+
+test_inv_ibeta.cpp - finish this
+
+test_kelvin.cpp - crashes
+  ed@bad-horse:~/tr29124_test$ $HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_kelvin test_kelvin.cpp -lquadmath
+  ed@bad-horse:~/tr29124_test$ ./test_kelvin > test_kelvin.txt
+  terminate called after throwing an instance of 'std::runtime_error'
+    what():  _BasicSum: bad term
+  Aborted (core dumped)
+
+test_limits.cpp - 
+  ed@bad-horse:~/tr29124_test$ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_limits test_limits.cpp -lquadmath
+  /tmp/ccs63OfM.o: In function `void test_limits<test_limits.cpp__float128>(__float128)':
+  /home/ed/tr29124_test/test_limits.cpp:44: undefined reference to `std::numeric_limits<__float128>::has_denorm'
+  /home/ed/tr29124_test/test_limits.cpp:58: undefined reference to `std::numeric_limits<__float128>::round_style'
+  collect2: error: ld returned 1 exit status
+  ed@bad-horse:~/tr29124_test$ ./test_limits > test_limits.txt
+  bash: ./test_limits: No such file or directory
+
+plot_airy.cpp - compile errors.  I might have to normalize airy_state between real and complex.
+
+test_airy.cpp - compiles and runs but the numbers are wierd but the tests maybe bogus anyway.
+  Maybe repurpose this.
+
+test_bessel_asymp.cpp - Should the complex std::__detail::__cyl_bessel(nu, x) in sf_hankel.tcc
+  be renamed to the real std::__detail::__cyl_bessel_jn(nu, x)?
+  Also: __cyl_bessel_jn_asymp_old should be upgraded with derivatives!
+  OTOH: I think I've adopted this.
+
+test_complex128.cpp - No compile
+  1. No powi - commented out but should we have it?
+  2. No cxxxq() funs.  Do we want these in global ns (as they are called in the test)?
+
+test_factorial.cpp - Look like an include cycle or something.  Everything is broken
+
+test_mittag_leffler.cpp - Do something ;-)
+
+test_mpreal.cpp - Do something ;-)
+
+test_notsospecfun.cpp - Do something ;-)
+
+test_parab_cyl.cpp - Good start.  Keep working.
+
+test_promote_fp.cpp - Broken compile.  Maybe kill it.
+
+test_struve_old.cpp - Goes with those hyperg_pFq.cpp.  Try to fix it up.
+
+carlson_std.cpp - Collisions all over.  no surprise there.
+
+complex.cpp - The operators again.  Fsck!
+
+complex_gamma.cpp - Include fuckery?
+
+comlpex_literal_arith.cpp - The operators again.  Fsck!
+
+

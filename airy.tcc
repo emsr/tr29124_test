@@ -79,7 +79,7 @@ template<typename _Tp>
       6.739363052581000552399325803379883e-130L,
       4.719441913572129238374878013571347e-134L
     };
-    constexpr _Tp _S_slope_F{-2.660L}, _S_intercept_F{-0.778L};
+    //constexpr _Tp _S_slope_F{-2.660L}, _S_intercept_F{-0.778L};
     constexpr _Tp
     _Faip[_N_FG]
     {
@@ -124,7 +124,7 @@ template<typename _Tp>
       7.885054771519770646307211189954463e-128L,
       5.663330296286555086049853616285617e-132L
     };
-    constexpr _Tp _S_slope_Fp{-2.576L}, _S_intercept_Fp{-0.301L};
+    //constexpr _Tp _S_slope_Fp{-2.576L}, _S_intercept_Fp{-0.301L};
     constexpr _Tp
     _Gai[_N_FG]
     {
