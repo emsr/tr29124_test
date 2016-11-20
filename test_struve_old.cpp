@@ -1,4 +1,9 @@
 
+/*
+$HOME/bin_tr29124/bin/g++ -I. -o test_struve_old test_struve_old.cpp hyperg_1F2.cpp hyperg_2F0.cpp hyperg_3F0.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_struve_old > test_struve_old.txt
+*/
+
 extern double PI;
 
 double

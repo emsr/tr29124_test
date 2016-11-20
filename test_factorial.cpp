@@ -11,6 +11,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_factorial
 #include <iostream>
 #include <iomanip>
 #include <bits/float128_io.h>
+#include <cmath>
 
 template<typename Tp>
   std::string

@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_airy test_airy.cpp wrap_gsl.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_airy test_airy.cpp wrap_gsl.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas -lquadmath
 ./test_airy
 
 $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_airy test_airy.cpp wrap_gsl.cpp -lgsl -lgslcblas -ljacobi
@@ -96,10 +96,10 @@ old_bessel_chunk(double xnu, double x, double& rj, double& ry, double& rjp, doub
     const double  PI     =  3.14159265358979;
 
     int i, isign, l, n;
-    double a, b, br, bi, c, cr, ci, d, del, del1, den, di, dlr, dli, dr, e, f, fact, fact2,
-           fact3, ff, gam, gam1, gam2, gammi, gampl, h, p, pimu, pimu2, q, r, rjl,
+    double b, c, d, del, del1, e, f, fact, fact2,
+           fact3, ff, gam1, gam2, gammi, gampl, h, p, pimu, pimu2, q, r, rjl,
            rjl1, rjmu, rjp1, rjpl, rjtemp, ry1, rymu, rymup, rytemp, sum, sum1,
-           temp, w, x2, xi, xi2, xmu, xmu2;
+           w, x2, xi, xi2, xmu, xmu2;
 
     if ( x <= 0.0 || xnu < 0.0 ) std::cout << "Bad arguments in bessel_jy.\n";
 std::cout << '\n';

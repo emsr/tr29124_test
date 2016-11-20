@@ -17,4 +17,5 @@ main()
   auto w = func(1.0 + 3.0i);
   w /= 2.0i;
   auto k = w / 4.0i;
+  auto q = w * 1.5i;
 }

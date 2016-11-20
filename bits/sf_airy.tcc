@@ -2622,7 +2622,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __airy_ai(std::complex<_Tp> __z)
     {
       auto __airy = _Airy<std::complex<_Tp>>()(__z);
-      return __airy.Ai;
+      return __airy.__Ai_value;
     }
 
 
@@ -2634,7 +2634,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __airy_bi(std::complex<_Tp> __z)
     {
       auto __airy = _Airy<std::complex<_Tp>>()(__z);
-      return __airy.Bi;
+      return __airy.__Bi_value;
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION

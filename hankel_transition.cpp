@@ -13,8 +13,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -DNO_CBRT -I. -o hankel_transiti
 #include <cmath>
 #include <bits/specfun.h>
 //#include <bits/float128.h>
-#include <bits/ext/polynomial.h>
-#include <bits/rational.h>
+#include <ext/polynomial.h>
+#include <rational.h>
 //#include <bits/numeric_limits.h>
 
 template<typename _Tp>
@@ -39,10 +39,10 @@ template<typename _Tp>
     psi.push_back(__gnu_cxx::_Polynomial<int>(0));
     psi.push_back(__gnu_cxx::_Polynomial<int>(-1));
     psi.push_back(__gnu_cxx::_Polynomial<int>(0));
-    for (int s = 3; s < n_phipsi; ++s)
+    for (std::size_t s = 3; s < n_phipsi; ++s)
       {
-	phi.push_back(poo * phi[s - 2] - 2 * (s - 2) * phi[s - 3]);
-	psi.push_back(poo * psi[s - 2] - 2 * (s - 2) * psi[s - 3]);
+	phi.push_back(poo * phi[s - 2] - int(2 * (s - 2)) * phi[s - 3]);
+	psi.push_back(poo * psi[s - 2] - int(2 * (s - 2)) * psi[s - 3]);
       }
     std::cout << "\nphi polynomial\n";
     for (const auto& p : phi)
@@ -52,9 +52,9 @@ template<typename _Tp>
       std::cout << p << '\n';
     std::vector<__gnu_cxx::_Polynomial<rational>> A(n_AB);
     std::vector<__gnu_cxx::_Polynomial<rational>> B(n_AB);
-    for (int s = 0; s < n_AB; ++s)
+    for (std::size_t s = 0; s < n_AB; ++s)
       {
-	for (int r = 0; r <= s; ++r)
+	for (std::size_t r = 0; r <= s; ++r)
 	  {
 	    A[s] += phi[2 * s + r] * __gnu_cxx::_Polynomial<rational>(sign(r, s), r);
 	    B[s] += psi[2 * s + r] * __gnu_cxx::_Polynomial<rational>(sign(r, s), r);
@@ -179,8 +179,7 @@ template<typename _Tp>
       {
 	auto __a = _Tp{0.005Q} * __i;
 	const auto __airy_arg = -_S_2p13 * __a;
-	_Tp _Ai, _Bi, _Aip, _Bip;
-	std::__detail::__airy(__airy_arg, _Ai, _Bi, _Aip, _Bip);
+	auto _Airy = std::__detail::__airy(__airy_arg);
 
 	auto __num2k3 = _Tp{1};
 
@@ -204,10 +203,10 @@ template<typename _Tp>
 	    __num2k3 /= __nu23;
 	  }
 
-	const auto _Jt = _S_2p13 * _Ai * _Jsum1 / __nu13
-		       + _S_2p23 * _Aip * _Jsum2 / __nu;
-	const auto _Nt = -_S_2p13 * _Bi * _Nsum1 / __nu13
-			- _S_2p23 * _Bip * _Nsum2 / __nu;
+	const auto _Jt = _S_2p13 * _Airy.__Ai_value * _Jsum1 / __nu13
+		       + _S_2p23 * _Airy.__Ai_deriv * _Jsum2 / __nu;
+	const auto _Nt = -_S_2p13 * _Airy.__Bi_value * _Nsum1 / __nu13
+			- _S_2p23 * _Airy.__Bi_deriv * _Nsum2 / __nu;
 
 	auto _Jpsum1 = _Tp{0};
 	auto _Npsum1 = _Tp{0};
@@ -229,10 +228,10 @@ template<typename _Tp>
 	    __num2k3 /= __nu23;
 	  }
 
-	const auto _Jtp = -_S_2p23 * _Aip * _Jpsum1 / __nu23
-			 + _S_2p13 * _Ai * _Jpsum2 / __nu43;
-	const auto _Ntp = _S_2p23 * _Bip * _Npsum1 / __nu23
-			- _S_2p13 * _Bi * _Npsum2 / __nu43;
+	const auto _Jtp = -_S_2p23 * _Airy.__Ai_deriv * _Jpsum1 / __nu23
+			 + _S_2p13 * _Airy.__Ai_value * _Jpsum2 / __nu43;
+	const auto _Ntp = _S_2p23 * _Airy.__Bi_deriv * _Npsum1 / __nu23
+			- _S_2p13 * _Airy.__Bi_value * _Npsum2 / __nu43;
 
 	std::cout << std::setw(width) << __a
 		  << std::setw(width) << _Jt
@@ -253,7 +252,7 @@ template<typename _Tp>
 	      << std::setw(2*width) << "N'_\\nu"
 	      << '\n';
 
-    const auto __eps = std::numeric_limits<_Tp>::epsilon();
+    //const auto __eps = std::numeric_limits<_Tp>::epsilon();
     for (int __i = -100; __i <= +100; ++__i)
       {
 	auto __a = _Tp{0.005Q} * __i;
@@ -286,10 +285,10 @@ template<typename _Tp>
 	    __num2k3 /= __nu23;
 	  }
 
-	const auto _H1t = _S_2p43 * __mipi3 * __airym.Ai * _H1sum1 / __nu13
-			+ _S_2p53 * __mipi3 * __airym.Aip * _H1sum2 / __nu;
-	const auto _H2t = _S_2p43 * __pipi3 * __airyp.Ai * _H2sum1 / __nu13
-			+ _S_2p53 * __pipi3 * __airyp.Aip * _H2sum2 / __nu;
+	const auto _H1t = _S_2p43 * __mipi3 * __airym.__Ai_value * _H1sum1 / __nu13
+			+ _S_2p53 * __mipi3 * __airym.__Ai_deriv * _H1sum2 / __nu;
+	const auto _H2t = _S_2p43 * __pipi3 * __airyp.__Ai_value * _H2sum1 / __nu13
+			+ _S_2p53 * __pipi3 * __airyp.__Ai_deriv * _H2sum2 / __nu;
 
 	auto _H1psum1 = _Tp{0};
 	auto _H2psum1 = _Tp{0};
@@ -311,10 +310,10 @@ template<typename _Tp>
 	    __num2k3 /= __nu23;
 	  }
 
-	const auto _H1pt = -_S_2p53 * __mipi3 * __airym.Aip * _H1psum1 / __nu23
-			  + _S_2p43 * __mipi3 * __airym.Ai * _H1psum2 / __nu43;
-	const auto _H2pt = -_S_2p53 * __pipi3 * __airyp.Aip * _H2psum1 / __nu23
-			  + _S_2p43 * __pipi3 * __airyp.Ai * _H2psum2 / __nu43;
+	const auto _H1pt = -_S_2p53 * __mipi3 * __airym.__Ai_deriv * _H1psum1 / __nu23
+			  + _S_2p43 * __mipi3 * __airym.__Ai_value * _H1psum2 / __nu43;
+	const auto _H2pt = -_S_2p53 * __pipi3 * __airyp.__Ai_deriv * _H2psum1 / __nu23
+			  + _S_2p43 * __pipi3 * __airyp.__Ai_value * _H2psum2 / __nu43;
 
 	std::cout << std::setw(2*width) << __a
 		  << std::setw(2*width) << _H1t
