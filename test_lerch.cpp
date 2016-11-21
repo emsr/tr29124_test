@@ -63,9 +63,8 @@ namespace __detail
       const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
       const auto _S_eps = __gnu_cxx::__epsilon(__s);
 
-      const auto __na = std::nearbyint(__a);
-      const bool __integral = (std::abs(__a - _Tp(__na)) < _S_eps);
-      if (__integral && __na <= 0)
+      const auto __aint = __gnu_cxx::__fp_is_integer(__a);
+      if (__aint && __aint() <= 0)
 	return _S_nan;
       else if (std::abs(__z) >= _Tp{1})
 	return _S_nan;
@@ -96,9 +95,8 @@ namespace __detail
       const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
       const auto _S_eps = __gnu_cxx::__epsilon(__s);
 
-      const auto __na = std::nearbyint(__a);
-      const bool __integral = (std::abs(__a - _Tp(__na)) < _S_eps);
-      if (__integral && __na <= _S_eps)
+      const auto __aint = __gnu_cxx::__fp_is_integer(__a);
+      if (__aint && __aint() <= 0)
 	return _S_nan;
       else if (std::abs(__z) >= _Tp{1})
 	return _S_nan;
@@ -146,11 +144,10 @@ namespace __detail
       const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
       const auto _S_eps = __gnu_cxx::__epsilon(__s);
 
-      const auto __na = std::nearbyint(__a);
-      const bool __integral = (std::abs(__a - _Tp(__na)) < _S_eps);
-      if (__integral && __na <= 0)
+      const auto __aint = __gnu_cxx::__fp_is_integer(__a);
+      if (__aint && __aint() <= 0)
 	return _S_nan;
-      else if (__z >= _Tp{1})
+      else if (std::abs(__z) >= _Tp{1})
 	return _S_nan;
       else
 	{
@@ -186,7 +183,6 @@ namespace __detail
     _Tp
     __lerch_delta_vanwijngaarden_sum(_Tp __z, _Tp __s, _Tp __a)
     {
-      const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
       const auto _S_eps = __gnu_cxx::__epsilon(__s);
       constexpr auto _S_maxit = 1000;
 
@@ -235,21 +231,19 @@ namespace __detail
 	throw std::domain_error("__lerch: |z| >= 1");
       else
 	{
-	  const auto __na = int(std::nearbyint(__a));
-	  const bool __inta = (std::abs(__a - _Tp(__na)) < _S_eps);
+	  const auto __aint = __gnu_cxx::__fp_is_integer(__a);
 
-	  const auto __ns = int(std::nearbyint(__s));
-	  const bool __ints = (std::abs(__s - _Tp(__ns)) < _S_eps);
+	  const auto __sint = __gnu_cxx::__fp_is_integer(__s);
 	  const bool __tinyz = std::abs(__z) < _S_eps; // _S_min?
-	  const bool __smallz = !__tinyz && std::abs(__z) < _Tp{0.5};
+	  const bool __smallz = !__tinyz && (std::abs(__z) < _Tp{0.5});
 
-	  if (__inta && __na <= 0)
+	  if (__aint && __aint() <= 0)
 	    return _S_nan;
 	  else if (__a < _Tp{0})
 	    {
-	      if (__ints)
+	      if (__sint)
 		{
-		  int __sign = __ns % 2 == 0 ? +1 : -1;
+		  int __sign = __sint() % 2 == 0 ? +1 : -1;
 		  if (__tinyz)
 		    return __sign * _Tp{1} / std::pow(std::abs(__a), __s);
 		  else
@@ -355,6 +349,7 @@ main()
 	    << std::setw(width) << "s"
 	    << std::setw(width) << "a"
 	    << std::setw(width) << "phi0"
+	    << std::setw(6) << "flag"
 	    << std::setw(width) << "phi"
 	    << std::setw(width) << "phi-phi0"
 	    << std::setw(width) << "lphi"
@@ -366,6 +361,7 @@ main()
 	    << std::setw(width) << "---------"
 	    << std::setw(width) << "---------"
 	    << std::setw(width) << "---------"
+	    << std::setw(6) << "----"
 	    << std::setw(width) << "---------"
 	    << std::setw(width) << "---------"
 	    << std::setw(width) << "---------"
@@ -379,7 +375,8 @@ main()
                 << std::setw(width) << tcase.z
                 << std::setw(width) << tcase.s
                 << std::setw(width) << tcase.a
-                << std::setw(width) << tcase.phi;
+                << std::setw(width) << tcase.phi
+		<< std::setw(6) << tcase.flag;
       auto phi = Tp{0};
       try
 	{
@@ -406,6 +403,8 @@ main()
 	std::cout << std::setw(width) << "fail"
 		  << std::setw(width) << "fail"
 		  << std::setw(width) << "fail";
+      if (ok != tcase.flag)
+	std::cout << std::setw(12) << "flag error";
 
       std::cout << '\n';
     }
@@ -473,11 +472,9 @@ main()
   std::cout << "\nHurwitz Zeta Tests\n";
   for (int ia = 1; ia <= 10; ++ia)
     {
-      auto a = 1.0 * ia;
-      std::cout << "\n a = " << std::setw(width) << a << '\n';
       _Statistics<Tp> hurwitz_stats;
+      auto a = 1.0 * ia;
       auto z = 1.0;
-      a = 1.0;
       std::cout << '\n';
       std::cout << " z = " << std::setw(width) << z << '\n';
       std::cout << " a = " << std::setw(width) << a << '\n';
