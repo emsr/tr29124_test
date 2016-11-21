@@ -5,6 +5,7 @@ LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./hyperg_1F2 > hyperg_1
 
 #include <limits>
 #include <cmath>
+#include <stdexcept>
 
 template<typename _Tp>
   _Tp
@@ -53,6 +54,7 @@ template<typename _Tp>
     return sum;
   }
 
+#ifdef MAIN_1F2
 int
 main()
 {
@@ -63,3 +65,4 @@ main()
   double err = 0.0;
   __hyperg_1f2(a, b, c, x, err);
 }
+#endif
