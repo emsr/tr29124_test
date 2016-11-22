@@ -2270,6 +2270,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   __complex_proj(const __complex__ long double& __z)
   { return __builtin_cprojl(__z); }
 
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  inline __complex128
+  __complex_proj(const __complex128& __z)
+  { return cprojq(__z); }
+#endif // __FLOAT128
+
   template<typename _Tp>
     inline std::complex<_Tp>
     proj(const std::complex<_Tp>& __z)
