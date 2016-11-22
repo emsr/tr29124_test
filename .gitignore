@@ -137,6 +137,7 @@ check/origin_cyl_neumann
 
 clamp_2
 
+debug_airy
 debug_bessel
 poly_root
 
@@ -229,6 +230,7 @@ test_sph_hankel
 test_static_polynomial
 test_steed_continued_fraction
 test_struve
+test_struve_old
 test_summation
 test_theta
 test_trigamma
