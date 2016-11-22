@@ -17,13 +17,9 @@
 // You should have received a copy of the GNU General Public License along
 // with this library; see the file COPYING3.  If not see
 // <http://www.gnu.org/licenses/>.
-//
-//Provides test example of using integration suite with Hermite polynomials
-//Written by Jason Dick
 
 #include <iostream>
 #include <cmath>
-#include <tr1/cmath>
 #include <functional>
 #include <stdexcept>
 #include <sstream>
@@ -35,15 +31,23 @@
 
 using namespace __gnu_test;
 
-//Function which should integrate to 1 for n1=n2, 0 otherwise.
+// Function which should integrate to 1 for n1 == n2, 0 otherwise.
 template<typename _Tp>
   _Tp
   normalized_hermite(int n1, int n2, _Tp x)
   {
-    _Tp lnnorm_fact = _Tp{0.5} * (log(M_PI) + (n1 + n2) * log(_Tp{2})
+    const auto _S_pi = __gnu_cxx::__const_pi(x);
+    _Tp lnorm = _Tp{0.5} * (log(_S_pi) + (n1 + n2) * log(_Tp{2})
                        + lnfactorialld(n1) + lnfactorialld(n2));
-    return std::tr1::hermite(n2,x) * std::exp(-x*x - lnnorm_fact) * std::tr1::hermite(n1,x);
+    return std::hermite(n2, x)
+	 * std::exp(-x * x - lnorm)
+	 * std::hermite(n1, x);
   }
+
+template<typename _Tp>
+  _Tp
+  delta(int n1, int n2)
+  { return n1 == n2 ? _Tp{1} : _Tp{0}; }
 
 template<typename _Tp>
   void
@@ -66,39 +70,18 @@ template<typename _Tp>
 	    ret_type{integration_result, integration_error}
         	= integrate(func, -infty, infty, integ_precision, _Tp{0});
 
-	    if (n1 == n2)
-	      {
-        	//integration_result should be 1, throw error if differs from one by
-        	//more than integration precision (with an additional fudge factor in
-        	//case integration isn't quite that accurate)
-        	if (fabs(_Tp{1} - integration_result) > comp_precision)
-        	  {
-        	    std::stringstream ss;
-        	    ss.precision(-int(log10(std::numeric_limits<_Tp>::epsilon())));
-        	    ss << "Integration failed at n1=" << n1 << ", n2=" << n2
-        	       << ", returning result " << integration_result
-        	       << " instead of the expected 1" << std::endl;
-        	    throw std::logic_error(ss.str());
-        	  }
-	      }
-	    else
-	      {
-        	//integration_result should be 0, throw error if differs from zero by
-        	//more than integration precision (with an additional fudge factor in
-        	//case integration isn't quite that accurate)
-        	if (fabs(integration_result) > comp_precision)
-        	  {
-        	    std::stringstream ss;
-        	    ss.precision(14);
-        	    ss << "Integration failed at n1=" << n1 << ", n2=" << n2
-        	       << ", returning result " << integration_result
-        	       << " instead of the expected 0" << std::endl;
-        	    throw std::logic_error(ss.str());
-        	  }
-	      }
+            if (std::abs(delta<_Tp>(n1, n2) - integration_result) > comp_precision)
+              {
+        	std::stringstream ss;
+        	ss.precision(-int(log10(std::numeric_limits<_Tp>::epsilon())));
+        	ss << "Integration failed at n1=" << n1 << ", n2=" << n2
+        	   << ", returning result " << integration_result
+        	   << " instead of the expected " << delta<_Tp>(n1, n2) << '\n';
+        	throw std::logic_error(ss.str());
+              }
 	  }
-	std::cout << "Integration successful for hermite polynomials up to n=" << n1
-             << std::endl;
+	std::cout << "Integration successful for hermite polynomials up to n = " << n1
+             << '\n';
       }
   }
 
