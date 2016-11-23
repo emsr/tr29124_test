@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -I. -o test_summation test_summation.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_summation test_summation.cpp -lquadmath
 ./test_summation > test_summation.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -I. -o test_summation test_summation.cpp -lquadmath
@@ -21,9 +21,10 @@ template<typename Tp>
   void
   test(Tp proto = Tp{})
   {
-    std::cout.precision(std::numeric_limits<Tp>::digits10);
-    auto w = 8 + std::cout.precision();
+    const auto _S_max_log = __gnu_cxx::__log_max(proto);
 
+    std::cout.precision(__gnu_cxx::__digits10(proto));
+    auto w = 8 + std::cout.precision();
     __gnu_cxx::_BasicSum<Tp> BS;
     __gnu_cxx::_AitkenDeltaSquaredSum<__gnu_cxx::_BasicSum<Tp>> ABS;
     __gnu_cxx::_AitkenDeltaSquaredSum<__gnu_cxx::_KahanSum<Tp>> AKS;
@@ -35,11 +36,13 @@ template<typename Tp>
     __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<Tp>> WDvW;
 
     auto s = Tp{1.2};
-    auto zetaterm = [s](Tp k){ return std::pow(k + Tp{1}, -s); };
+    auto zetaterm = [s, _S_max_log](int k)
+		    -> Tp
+		    { return (s * std::log(Tp(k + 1)) < _S_max_log ? std::pow(Tp(k + 1), -s) : Tp{0}); };
 
     auto VwT = __gnu_cxx::_VanWijngaardenCompressor<decltype(zetaterm)>(zetaterm);
 
-    auto zeta = Tp{5.591582441177750776536563193423143277642L};
+    //auto zeta = Tp{5.591582441177750776536563193423143277642L};
     std::cout << "\n\nzeta(1.2) = 5.59158244117775077653\n";
     std::cout << std::setw(w) << "k"
 	      << std::setw(w) << "Basic"
@@ -65,7 +68,7 @@ template<typename Tp>
 	      << '\n';
     for (auto k = 0; k < 100; ++k)
       {
-	auto term = std::pow(k + 1, -s);
+	auto term = std::pow(Tp(k + 1), -s);
 	BS += term;
 	ABS += term;
 	AKS += term;

@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_theta test_theta.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_theta test_theta.cpp -lquadmath
 ./test_theta > test_theta.txt
 */
 
@@ -12,7 +12,7 @@ template<typename _Tp>
   void
   test_theta(_Tp proto = _Tp{})
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     auto width = 8 + std::cout.precision();
     std::cout << std::showpoint << std::scientific;
 

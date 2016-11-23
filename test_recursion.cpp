@@ -1,3 +1,8 @@
+/*
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_recursion test_recursion.cpp -lquadmath
+./test_recursion > test_recursion.txt
+*/
+
 #include <iostream>
 
   template<typename _Tp>

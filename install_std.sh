@@ -21,11 +21,12 @@ fi
 dst_impl_dir="${dst_dir}/bits"
 dst_ext_dir="${dst_dir}/ext"
 
+${tool} "${src_ext_dir}/cmath"                  "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/math_const.h"           "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/math_util.h"            "${dst_ext_dir}"
-${tool} "${src_ext_dir}/cmath"                  "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/polynomial.h"           "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/polynomial.tcc"         "${dst_ext_dir}"
+${tool} "${src_ext_dir}/type_traits.h"          "${dst_ext_dir}"
 
 ${tool} "${src_impl_dir}/specfun.h"             "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/specfun_util.h"        "${dst_impl_dir}"

@@ -1,3 +1,7 @@
+/*
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_cmath test_cmath.cpp wrap_gsl.cpp gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas -lquadmath
+./test_cmath > test_cmath.txt
+*/
 
 #include <iostream>
 #include <tr1/cmath>

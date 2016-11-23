@@ -137,6 +137,10 @@ check/origin_cyl_neumann
 
 clamp_2
 
+debug_airy
+debug_bessel
+poly_root
+
 complex_literal_arith
 diff_special_function
 diff_local_special_function
@@ -144,6 +148,7 @@ testcase
 testcase2
 test_airy
 test_anger_weber
+test_bernoulli
 test_bessel
 test_bessel_asymp
 test_bessel_iter
@@ -212,6 +217,7 @@ test_promote_num
 test_psi
 test_rational
 test_ratpoly
+test_recursion
 test_reperiodized_hyper
 test_reperiodized_trig
 test_riemann_zeta
@@ -222,7 +228,9 @@ test_special_function
 test_sph_bessel
 test_sph_hankel
 test_static_polynomial
+test_steed_continued_fraction
 test_struve
+test_struve_old
 test_summation
 test_theta
 test_trigamma

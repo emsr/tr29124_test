@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_trigamma test_trigamma.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_trigamma test_trigamma.cpp -L$HOME/bin/lib64 -lquadmath
 ./test_trigamma > test_trigamma.txt
 
 g++ -std=gnu++14 -Wall -Wextra -DNO_LOGBQ -I. -o test_trigamma test_trigamma.cpp -lquadmath
