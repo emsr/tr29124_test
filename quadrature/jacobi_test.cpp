@@ -31,6 +31,21 @@
 
 using namespace __gnu_test;
 
+// Try to manage the four-gamma ratio.
+template<typename _Tp>
+  _Tp
+  gamma_ratio(int n, _Tp alpha, _Tp beta)
+  {
+    auto gaman1 = std::tgamma(alpha);
+    auto gambn1 = std::tgamma(beta);
+    auto gamabn1 = std::tgamma(alpha + beta);
+    auto fact = gaman1 * gambn1 / gamabn1;
+    for (int k = 1; k <= n; ++k)
+      fact *= (_Tp(k) + alpha) * (_Tp(k) + beta)
+	    / (_Tp(k) + alpha + beta) / _Tp(k);
+    return fact;
+  }
+
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.
 template<typename _Tp>
   _Tp
@@ -43,11 +58,9 @@ template<typename _Tp>
       return _Tp{0};
     else
       {
-	auto gaman1 = std::tgamma(_Tp(n1 + 1) + alpha);
-	auto gambn1 = std::tgamma(_Tp(n1 + 1) + beta);
-	auto gamabn1 = std::tgamma(_Tp(n1 + 1) + alpha + beta);
-	auto norm = std::pow(_Tp{2}, _Tp{1} + alpha + beta) * gaman1 * gambn1
-		  / factorial<_Tp>(n1) / (_Tp(2 * n1 + 1) + alpha + beta) / gamabn1;
+	auto gam = gamma_ratio(n1, alpha, beta);
+	auto norm = std::pow(_Tp{2}, _Tp{1} + alpha + beta)
+		  * gam / (_Tp(2 * n1 + 1) + alpha + beta);
 	return std::pow(_Tp{1} - x, alpha) * std::pow(_Tp{1} + x, beta)
 	     * __gnu_cxx::jacobi(n1, alpha, beta, x)
 	     * __gnu_cxx::jacobi(n2, alpha, beta, x) / norm;
