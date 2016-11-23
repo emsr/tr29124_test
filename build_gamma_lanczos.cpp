@@ -1,6 +1,6 @@
 /*
 $HOME/bin_tr29124/bin/g++ -I. -o build_gamma_lanczos build_gamma_lanczos.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./build_gamma_lanczos > build_gamma_lanczos.txt
+./build_gamma_lanczos > build_gamma_lanczos.txt
 
 $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o build_gamma_lanczos build_gamma_lanczos.cpp -lquadmath
 ./build_gamma_lanczos > build_gamma_lanczos.txt
@@ -11,7 +11,7 @@ $HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o build_gamma_lanczos build_gamma
 #include <iomanip>
 #include <limits>
 #include <ext/cmath>
-#include <bits/float128.h>
+#include <bits/float128_io.h>
 
    //  Checbyshev coefficient matrix.
    constexpr int

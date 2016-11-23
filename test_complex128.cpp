@@ -1,17 +1,19 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_complex128 test_complex128.cpp -lquadmath
-./test_complex128
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_complex128 test_complex128.cpp -lquadmath
+./test_complex128 > test_complex128.txt
 */
 
 #include <limits>
 #include <iostream>
+#include <bits/float128_io.h>
 
+#include <cmath>
 #include <complex>
 
 int
 main()
 {
-  __float128 x{2.5Q};
+  //__float128 x{2.5Q};
   std::cout.precision(std::numeric_limits<__float128>::max_digits10);
   std::complex<__float128> w{0.125Q, -0.5Q}, z{3.5Q, 1.5Q};
 
@@ -28,7 +30,7 @@ main()
   std::cout << "cos(z)    = " << std::cos(z) << '\n';
   std::cout << "cosh(z)   = " << std::cosh(z) << '\n';
   std::cout << "exp(z)    = " << std::exp(z) << '\n';
-  std::cout << "expi(x)   = " << std::expi(x) << '\n';
+  //std::cout << "expi(x)   = " << std::expi(x) << '\n';
   std::cout << "log(z)    = " << std::log(z) << '\n';
   std::cout << "log10(z)  = " << std::log10(z) << '\n';
   std::cout << "conj(z)   = " << std::conj(z) << '\n';
@@ -40,6 +42,7 @@ main()
   std::cout << "tan(z)    = " << std::tan(z) << '\n';
   std::cout << "tanh(z)   = " << std::tanh(z) << '\n';
 
+#if HAVE_C99_COMPLEX128
   std::cout << "cabsq(z)    = " << cabsq(z) << '\n';
   std::cout << "cargq(z)    = " << cargq(z) << '\n';
   std::cout << "cimagq(z)   = " << cimagq(z) << '\n';
@@ -53,7 +56,7 @@ main()
   std::cout << "ccosq(z)    = " << ccosq(z) << '\n';
   std::cout << "ccoshq(z)   = " << ccoshq(z) << '\n';
   std::cout << "cexpq(z)    = " << cexpq(z) << '\n';
-  std::cout << "cexpiq(x)   = " << cexpiq(x) << '\n';
+  //std::cout << "cexpiq(x)   = " << cexpiq(x) << '\n';
   std::cout << "clogq(z)    = " << clogq(z) << '\n';
   std::cout << "clog10q(z)  = " << clog10q(z) << '\n';
   std::cout << "conjq(z)    = " << conjq(z) << '\n';
@@ -64,4 +67,5 @@ main()
   std::cout << "csqrtq(z)   = " << csqrtq(z) << '\n';
   std::cout << "ctanq(z)    = " << ctanq(z) << '\n';
   std::cout << "ctanhq(z)   = " << ctanhq(z) << '\n';
+#endif
 }

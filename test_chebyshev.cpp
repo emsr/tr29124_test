@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_chebyshev test_chebyshev.cpp -lquadmath
-./test_chebyshev
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev test_chebyshev.cpp -lquadmath
+./test_chebyshev > test_chebyshev.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_chebyshev test_chebyshev.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev test_chebyshev.cpp -lquadmath
 ./test_chebyshev
 
 g++ -std=gnu++14 -o test_chebyshev test_chebyshev.cpp -lquadmath
@@ -46,7 +46,7 @@ main()
   std::cout << cquad << '\n';
   for (int i = 0; i <= 500; ++i)
     {
-      auto x = -4.0 + i * 0.01;
+      auto x = -4.0Q + i * 0.01Q;
       std::cout << "x = " << x
 		<< "  quad(x) = " << cquad(x) << '\n';
     }

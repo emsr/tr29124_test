@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-compare-reals -I. -o test_struve test_struve.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 -lgfortran -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_struve test_struve.cpp -lquadmath -L. -lburkhardt
 ./test_struve > test_struve.new
 
 g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_struve test_struve.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 -lgfortran
@@ -47,7 +47,6 @@ namespace __detail
     __struve_series(_Tp __nu, _Tp __x)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
 
       using _BasicSum = __gnu_cxx::_BasicSum<_Val>;
       using _WenigerBasSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
@@ -59,8 +58,8 @@ namespace __detail
       assert(__sign != 0);
 
       constexpr int _S_max_iter = 1000;
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__x));
+      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(std::real(__x));
 
       auto __x2 = __x / _Val{2};
       auto __xx4 = _Tp(__sign) * __x2 * __x2;
@@ -91,7 +90,6 @@ namespace __detail
     __struve_asymp(_Tp __nu, _Tp __x)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
 
       using _BasicSum = __gnu_cxx::_BasicSum<_Val>;
       using _WenigerBasSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
@@ -104,8 +102,8 @@ namespace __detail
       assert(__sign != 0);
 
       constexpr int _S_max_iter = 1000;
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__x));
+      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(std::real(__x));
 
       auto __x2 = __x / _Val{2};
       auto __xx4 = _Val(__sign) * __x2 * __x2;
@@ -439,9 +437,6 @@ template<typename _Tp>
   void
   test_struve_transition(_Tp proto = _Tp{})
   {
-    using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
-
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
@@ -474,9 +469,6 @@ template<typename _Tp>
   void
   plot_struve(std::string filename, _Tp proto = _Tp{})
   {
-    using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
-
     auto data = std::ofstream(filename);
 
     std::cout.precision(__gnu_cxx::__digits10(proto));

@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_dilog test_dilog.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_dilog test_dilog.cpp -lquadmath
 ./test_dilog > test_dilog.txt
 */
 

@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_reperiodized_hyper test_reperiodized_hyper.cpp wrap_boost.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_reperiodized_hyper test_reperiodized_hyper.cpp wrap_boost.cpp -lquadmath
 ./test_reperiodized_hyper > test_reperiodized_hyper.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -DNO_SINH_COSH_PI -I. -o test_reperiodized_hyper test_reperiodized_hyper.cpp wrap_boost.cpp -lgsl -lgslcblas -lquadmath

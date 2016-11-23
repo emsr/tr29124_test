@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_beta test_beta.cpp wrap_boost.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_beta test_beta.cpp wrap_boost.cpp -lquadmath
 ./test_beta > test_beta.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_beta test_beta.cpp wrap_boost.cpp -lquadmath
@@ -25,8 +25,8 @@ template<typename _Tp>
   void
   test_beta(_Tp proto = _Tp{})
   {
-    using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    //using _Val = _Tp;
+    //using _Real = std::__detail::__num_traits_t<_Val>;
 
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;

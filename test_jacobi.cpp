@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -I/usr/local/include/boost -o test_jacobi test_jacobi.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I/usr/local/include/boost -o test_jacobi test_jacobi.cpp -lquadmath
 ./test_jacobi > test_jacobi.txt
 */
 

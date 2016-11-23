@@ -1,11 +1,11 @@
 
-// g++ -std=c++11 -o test_pow_funs test_pow.cpp
+/*
+g++ -std=c++11 -o test_pow_funs test_pow.cpp
+./test_pow_funs > ./test_pow_funs.txt
 
-// ./test_pow_funs > ./test_pow_funs.txt
-
-// g++ -DBITS -std=c++11 -o test_pow_bits test_pow.cpp
-
-// ./test_pow_bits > ./test_pow_bits.txt
+g++ -DBITS -std=c++11 -o test_pow_bits test_pow.cpp
+./test_pow_bits > ./test_pow_bits.txt
+*/
 
 #include <iostream>
 #include <limits>

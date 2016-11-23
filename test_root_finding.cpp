@@ -1,11 +1,12 @@
 
 /*
-$HOME/bin/bin/g++ -g -Wall -Wextra -I. -o test_root_finding test_root_finding.cpp
+$HOME/bin/bin/g++ -g -Wall -Wextra -Wno-psabi -I. -o test_root_finding test_root_finding.cpp -lquadmath
 ./test_root_finding > test_root_finding.txt
 */
 
 #include <ext/root_finding.h>
 #include <ext/polynomial.h>
+#include <bits/numeric_limits.h>
 #include <iostream>
 #include <iomanip>
 #include <cmath>
