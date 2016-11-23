@@ -10,8 +10,9 @@ $HOME/bin/bin/g++ -std=gnu++17 -DNO_CBRT -o hankel_toy_new hankel_toy_new.cpp -l
 #include <iostream>
 #include <iomanip>
 #include <tuple>
-//#include <bits/float128.h>
+#include <bits/float128_io.h>
 #include <ext/polynomial.h>
+#include <ext/math_const.h>
 #include <bits/numeric_limits.h>
 
 template<typename _Tp>
@@ -43,12 +44,6 @@ template<typename _Tp>
   {
     __hankel_param_t(std::complex<_Tp> __nu_in, std::complex<_Tp> __zhat_in);
 
-    static constexpr auto _S_2pi   = _Tp{6.283185307179586476925286766559005768391Q};
-    static constexpr auto _S_1d3   = _Tp{0.3333333333333333333333333333333333333333Q};
-    static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666666Q};
-    static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
-    static constexpr std::complex<_Tp> _S_j{0, 1};
-
     std::complex<_Tp> __nu;
     std::complex<_Tp> __zhat;
     std::complex<_Tp> __nup2;
@@ -72,6 +67,12 @@ template<typename _Tp>
 					  std::complex<_Tp> __zhat_in)
   : __nu(__nu_in), __zhat(__zhat_in)
   {
+    const auto _S_1d3	= _Tp{1} / _Tp{3};
+    const auto _S_2d3	= _Tp{2} / _Tp{3};
+    // -(2/3)ln(2/3)
+    const auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q};
+    const std::complex<_Tp> _S_j{0, 1};
+
     //using _Cmplx = std::complex<_Tp>;
     const auto _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();
 
@@ -520,15 +521,15 @@ template<typename _Tp>
 int
 main()
 {
-  //std::cout << "\nRunning float\n-------------\n";
-  //run_toy<float>();
+  std::cout << "\nRunning float\n-------------\n";
+  run_toy<float>();
 
   std::cout << "\nRunning double\n--------------\n";
   run_toy<double>();
 
-  //std::cout << "\nRunning long double\n-------------------\n";
-  //run_toy<long double>();
+  std::cout << "\nRunning long double\n-------------------\n";
+  run_toy<long double>();
 
-  //std::cout << "\nSkipping __float128\n-------------------\n";
-  //run_toy<__float128>();
+  std::cout << "\nSkipping __float128\n-------------------\n";
+  run_toy<__float128>();
 }
