@@ -40,7 +40,7 @@
 #include <iosfwd>
 #include <limits>
 #include <array>
-#include <utility> // For exchange
+#include <bits/specfun_util.h> // For exchange
 
 namespace std {
   template<typename _Tp>

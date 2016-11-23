@@ -182,8 +182,10 @@ template<typename _Tp>
   {
     using __cmplx = std::complex<_Tp>;
 
-    static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666667Q};
-    static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
+    static constexpr auto _S_2d3   = _Tp{2} / _Tp{3};
+    // -(2/3)ln(2/3)
+    static constexpr auto _S_lncon
+      = _Tp{0.2703100720721095879853420769762327577152Q};
     static constexpr __cmplx _S_j{0, 1};
 
     if (__zhat == _Tp{0})
@@ -191,7 +193,8 @@ template<typename _Tp>
     else if (__zhat <= _Tp{1})
       {
 	auto __w = std::sqrt((_Tp{1} + __zhat) * (_Tp{1} - __zhat));
-	// Compute xi = ln(1 + (1 - zhat^2)^(1/2)) - ln(zhat) - (1 - zhat^2)^(1/2) = (2/3)(zeta)^(3/2)
+	// Compute xi = ln(1 + (1 - zhat^2)^(1/2)) - ln(zhat)
+	//	      - (1 - zhat^2)^(1/2) = (2/3)(zeta)^(3/2)
 	// using default branch of logarithm and square root.
 	auto __xi = std::log(_Tp{1} + __w) - std::log(__zhat) - __w;
 
@@ -220,14 +223,17 @@ template<typename _Tp>
   _Tp
   get_zeta(_Tp __zhat)
   {
-    static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666667Q};
-    static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
+    static constexpr auto _S_2d3   = _Tp{2} / _Tp{3};
+    // -(2/3)ln(2/3)
+    static constexpr auto _S_lncon
+      = _Tp{0.2703100720721095879853420769762327577152Q};
     if (__zhat == _Tp{0})
       return std::numeric_limits<_Tp>::infinity();
     else if (__zhat <= _Tp{1})
       {
 	auto __w = std::sqrt((_Tp{1} + __zhat) * (_Tp{1} - __zhat));
-	// Compute xi = ln(1 + (1 - zhat^2)^(1/2)) - ln(zhat) - (1 - zhat^2)^(1/2) = (2/3)(zeta)^(3/2)
+	// Compute xi = ln(1 + (1 - zhat^2)^(1/2)) - ln(zhat)
+	//	      - (1 - zhat^2)^(1/2) = (2/3)(zeta)^(3/2)
 	// using default branch of logarithm and square root.
 	auto __xi = std::log(_Tp{1} + __w) - std::log(__zhat) - __w;
 	//auto __zetam3hf = _S_2d3 / __xi;
@@ -442,7 +448,7 @@ template<typename _Tp>
 	    auto A = _Tp{0};
 	    for (std::size_t j = 0; j <= 2 * k; ++j)
 	      {
-//std::cout << "\nuvec[" << 2 * k - j << "]: " << uvec[2 * k - j] << '\n';;
+//std::cout << "\nuvec[" << 2 * k - j << "]: " << uvec[2 * k - j] << '\n';
 		A += tj * mu[j] * uvec[2 * k - j](p);
 		tj *= t;
 	      }
@@ -454,7 +460,7 @@ template<typename _Tp>
 	    auto B = _Tp{0};
 	    for (std::size_t j = 0; j <= 2 * k + 1; ++j)
 	      {
-//std::cout << "\nuvec[" << 2 * k + 1 - j << "]: " << uvec[2 * k + 1 - j] << '\n';;
+//std::cout << "\nuvec[" << 2 * k + 1 - j << "]: " << uvec[2 * k + 1 - j] << '\n';
 		B += tj * lambda[j] * uvec[2 * k + 1 - j](p);
 		tj *= t;
 	      }
@@ -508,7 +514,7 @@ template<typename _Tp>
 	    decltype(t) A = 0;
 	    for (std::size_t j = 0; j <= 2 * k; ++j)
 	      {
-//std::cout << "\nuvec[" << 2 * k - j << "]: " << uvec[2 * k - j] << '\n';;
+//std::cout << "\nuvec[" << 2 * k - j << "]: " << uvec[2 * k - j] << '\n';
 		A += tj * mu[j] * uvec[2 * k - j](parm.__p);
 		tj *= t;
 	      }

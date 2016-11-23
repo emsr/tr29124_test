@@ -332,8 +332,15 @@ GSL extras has these - there was struggle there too.
       /home/ed/gcc/libstdc++-v3/testsuite/26_numerics/headers/cmath/hypot.cc
     I think I have it at work too.
 
+77. [] Restore C++11 compatibity. Sigh.
+    No xxx_t traits (C++14).
+    No complex_literals
+    No std::exchange.
+    Couldn't handle two NSDMIs and number of args.  Bug?
+
 carlson_std.cpp - Collisions all over.  no surprise there.
 
+78. [] Make hankel_toy_new compile.
 hankel_toy_new.cpp - Undefinedreference constant things in some struct.
   tmp/ccPVNIiD.o: In function `__hankel_param_t<double>::__hankel_param_t(std::complex<double>, std::complex<double>)':
   /home/ed/tr29124_test/hankel_toy_new.cpp:98: undefined reference to `__hankel_param_t<double>::_S_2d3'
