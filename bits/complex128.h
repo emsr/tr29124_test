@@ -353,10 +353,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline __complex128
   tanh(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
   { return ctanhq(__z); }
-*/
 #if _GLIBCXX_USE_C99_COMPLEX
 
 #endif  
+*/
 /*
   inline __complex128
   fabs(const __complex128& __z)
@@ -406,8 +406,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline _GLIBCXX_USE_CONSTEXPR __float128
   conj(__float128 __x)
   { return __x; }
-*/
 _GLIBCXX_END_NAMESPACE_VERSION
+*/
 /*
 #if __cplusplus > 201103L
 
@@ -424,8 +424,8 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // inline namespace literals
 
 #endif // C++14
-*/
 } // namespace std
+*/
 
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 

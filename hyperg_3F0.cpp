@@ -1,8 +1,19 @@
+/*
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o hyperg_3F0 hyperg_3F0.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./hyperg_3F0 > hyperg_3F0.txt
+*/
+
+#include <limits>
+#include <cmath>
+#include <stdexcept>
 
 template<typename _Tp>
   _Tp
   __hyperg_3f0(_Tp a, _Tp b, _Tp c, _Tp x, _Tp& err)
   {
+    constexpr auto _S_max_iter = 200;
+    const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+    const auto _S_huge = std::numeric_limits<_Tp>::max() / _Tp{1000};
     auto an = a;
     auto bn = b;
     auto cn = c;
@@ -11,7 +22,7 @@ template<typename _Tp>
     auto n = 1;
     auto t = _Tp{1};
     auto max = _Tp{0};
-    auto conv = _Tp{1.0e38};
+    auto conv = std::numeric_limits<_Tp>::max() / _Tp{2};
     auto conv1 = conv;
 
     do
@@ -22,14 +33,14 @@ template<typename _Tp>
 	  break;
 	if (cn == _Tp{0})
 	  break;
-	if (a0 > 1.0e34 || n > 200)
+	if (a0 > _S_huge || n > _S_max_iter)
 	  throw std::runtime_error("__hyperg_3f0: series failed");
 	a0 *= (an * bn * cn * x) / n;
-	an += 1.0;
-	bn += 1.0;
-	cn += 1.0;
+	an += _Tp{1};
+	bn += _Tp{1};
+	cn += _Tp{1};
 	++n;
-	z = abs(a0);
+	auto z = std::abs(a0);
 	if (z > max)
 	  max = z;
 	if (z >= conv)
@@ -41,18 +52,32 @@ template<typename _Tp>
 	conv = z;
 	sum += a0;
 	if (sum != 0)
-	  t = abs(a0 / sum);
+	  t = std::abs(a0 / sum);
 	else
 	  t = z;
       }
     while (t > stop);
 
-    t = abs(MACHEP * max / sum);
 
-    max = abs(conv / sum);
+    t = std::abs(_S_eps * max / sum);
+    max = std::abs(conv / sum);
     if (max > t)
       t = max;
-
     err = t;
+
     return sum;
   }
+
+#ifdef MAIN_3F0
+int
+main()
+{
+  double a = -3.0;
+  double b = 2.0;
+  double c = 1.5;
+  double x = 2.5;
+  double err = 0.0;
+  __hyperg_3f0(a, b, c, x, err);
+}
+#endif
+

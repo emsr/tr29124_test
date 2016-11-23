@@ -418,7 +418,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      auto __zeta = __riemann_zeta_glob(_Val{1} - __s);
 	      __zeta *= std::pow(_Real{2} * _S_pi, __s)
 		     * __sin_pi(_Real{0.5L} * __s)
-		     * std::exp(__log_gamma(_Val{1} - __s)) / _S_pi;
+		     * __gamma(_Val{1} - __s) / _S_pi;
 	      return __zeta;
 	    }
 	}
@@ -570,49 +570,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __riemann_zeta_product(__s);
     }
 
-
-  /**
-   * @brief  Return the Hurwitz zeta function @f$ \zeta(s,a) @f$
-   * 	     for all s != 1 and a > -1.
-   * @see An efficient algorithm for accelerating the convergence
-   * 	  of oscillatory series, useful for computing the
-   * 	  polylogarithm and Hurwitz zeta functions, Linas Vep\u0160tas
-   *
-   * @param __s The argument @f$ s != 1 @f$
-   * @param __a The scale parameter @f$ a > -1 @f$
-   */
-  template<typename _Tp>
-    _Tp
-    __hurwitz_zeta_euler_maclaurin(_Tp __s, _Tp __a)
-    {
-      using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
-      const int _S_N = 10 + __gnu_cxx::__digits10(std::real(__s)) / 2;
-      const int _S_jmax = 99;
-
-      const auto __pmax  = std::pow(_Val{_S_N} + __a, -__s);
-      auto __ans = __pmax
-		 * ((_Val{_S_N} + __a) / (__s - _Val{1}) + _Real{0.5L});
-      for(auto __k = 0; __k < _S_N; ++__k)
-	__ans += std::pow(_Tp(__k) + __a, -__s);
-
-      auto __sfact = __s;
-      auto __pfact = __pmax / (_Val(_S_N) + __a);
-      for(auto __j = 0; __j <= _S_jmax; ++__j)
-	{
-	  auto __delta = _Real(_S_Euler_Maclaurin_zeta[__j + 1])
-			* __sfact * __pfact;
-	  __ans += __delta;
-	  if (std::abs(__delta) < _Real{0.5L} * _S_eps * std::abs(__ans))
-	    break;
-	  __sfact *= (__s + _Val(2 * __j + 1)) * (__s + _Val(2 * __j + 2));
-	  __pfact /= (_Val{_S_N} + __a) * (_Val{_S_N} + __a);
-	}
-
-      return __ans;
-    }
-
   /**
    * Table of zeta(n) - 1 from 0 - 40.
    * MPFR - 128 bits.
@@ -725,6 +682,48 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief  Return the Hurwitz zeta function @f$ \zeta(s,a) @f$
+   * 	     for all s != 1 and a > -1.
+   * @see An efficient algorithm for accelerating the convergence
+   * 	  of oscillatory series, useful for computing the
+   * 	  polylogarithm and Hurwitz zeta functions, Linas Vep\u0160tas
+   *
+   * @param __s The argument @f$ s != 1 @f$
+   * @param __a The scale parameter @f$ a > -1 @f$
+   */
+  template<typename _Tp>
+    _Tp
+    __hurwitz_zeta_euler_maclaurin(_Tp __s, _Tp __a)
+    {
+      using _Val = _Tp;
+      using _Real = __num_traits_t<_Val>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
+      const int _S_N = 10 + __gnu_cxx::__digits10(std::real(__s)) / 2;
+      const int _S_jmax = 99;
+
+      const auto __pmax  = std::pow(_Val{_S_N} + __a, -__s);
+      auto __ans = __pmax
+		 * ((_Val{_S_N} + __a) / (__s - _Val{1}) + _Real{0.5L});
+      for(auto __k = 0; __k < _S_N; ++__k)
+	__ans += std::pow(_Tp(__k) + __a, -__s);
+
+      auto __sfact = __s;
+      auto __pfact = __pmax / (_Val(_S_N) + __a);
+      for(auto __j = 0; __j <= _S_jmax; ++__j)
+	{
+	  auto __delta = _Real(_S_Euler_Maclaurin_zeta[__j + 1])
+			* __sfact * __pfact;
+	  __ans += __delta;
+	  if (std::abs(__delta) < _Real{0.5L} * _S_eps * std::abs(__ans))
+	    break;
+	  __sfact *= (__s + _Val(2 * __j + 1)) * (__s + _Val(2 * __j + 2));
+	  __pfact /= (_Val{_S_N} + __a) * (_Val{_S_N} + __a);
+	}
+
+      return __ans;
+    }
+
+  /**
+   * @brief  Return the Hurwitz zeta function @f$ \zeta(s,a) @f$
    * for all s != 1 and a > -1.
    *
    * The Hurwitz zeta function is defined by:
@@ -749,8 +748,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_inf = __gnu_cxx::__infinity(std::real(__s));
       if (__isnan(__s) || __isnan(__a))
 	return _S_NaN;
-      else if (__a == _Real{1} && __s == _Real{1})
-	return _S_inf;
+      else if (__a == _Real{1})
+	{
+	  if (__s == _Real{1})
+	    return _S_inf;
+	  else
+	    return __riemann_zeta(__s);
+	}
       else
         return __hurwitz_zeta_euler_maclaurin(__s, __a);
     }

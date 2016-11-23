@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -I. -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
 ./test_hurwitz_zeta > test_hurwitz_zeta.txt
 
 g++ -std=c++14 -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
@@ -251,7 +251,7 @@ g++ -std=c++14 -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
     }
 
 template<typename _Tp>
-  _Tp
+  void
   test_hurwitz_zeta()
   {
     std::cout.precision(std::numeric_limits<_Tp>::max_digits10);

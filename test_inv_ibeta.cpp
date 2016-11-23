@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_inv_ibeta test_inv_ibeta.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_inv_ibeta test_inv_ibeta.cpp
 ./test_inv_ibeta > test_inv_ibeta.txt
 */
 
@@ -24,7 +24,7 @@ template<typename _Tp>
 				"incomplete beta function out of range"));
     const auto _Beta = std::beta(__a, __b);
 
-    __gnu_cxx::__root_bracket([__a, __b](_Tp __x){ return __gnu_cxx::ibeta(__a, __b, __x); },
+    __gnu_cxx::__root_bracket([__a, __b](_Tp __x)->_Tp{ return __gnu_cxx::ibeta(__a, __b, __x); },
 		 _Tp{0}, _Tp{1});
 /*
     auto _Ix = _Ibeta;

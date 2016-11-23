@@ -4,12 +4,16 @@
 //const _Tp __fp_min = _Tp(10) * std::numeric_limits<_Tp>::min();
 //  I bumped to 20*min but I should watch this!
 
+/*
+$HOME/bin/bin/g++ -o debug_bessel debug_bessel.cpp
+*/
+
 #include <iostream>
 #include <tr1/cmath>
 
-int main(int, char**)
+int
+main()
 {
-
   double nu = 0.0;
   double xpre = 79.9;
   double xpost = 80.0;

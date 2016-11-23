@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -g -Wall -Wextra -I. -o test_rational test_rational.cpp
+$HOME/bin/bin/g++ -g -Wall -Wextra -Wno-psabi -I. -o test_rational test_rational.cpp -lquadmath
 ./test_rational > test_rational.txt
 */
 

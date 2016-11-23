@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hypot test_hypot.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hypot test_hypot.cpp -L$HOME/bin/lib64 -lquadmath
 ./test_hypot > test_hypot.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hypot test_hypot.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hypot test_hypot.cpp -L$HOME/bin/lib64 -lquadmath
 ./test_hypot > test_hypot.txt
 
 g++ -std=gnu++14 -Wall -Wextra -DNO_LOGBQ -I. -o test_hypot test_hypot.cpp -lquadmath
@@ -66,7 +66,7 @@ namespace __detail
    */
   template<typename _Tp>
     constexpr _Tp
-    __hypot(_Tp __x, _Tp __y, _Tp __z)
+    __hypot3(_Tp __x, _Tp __y, _Tp __z)
     {
       if (__isnan(__x) || __isnan(__y) || __isnan(__z))
 	return std::numeric_limits<_Tp>::quiet_NaN();
@@ -94,22 +94,22 @@ namespace __detail
 
   float
   hypot(float __x, float __y, float __z)
-  { return std::__detail::__hypot<float>(__x, __y, __z); }
+  { return std::__detail::__hypot3<float>(__x, __y, __z); }
 
   double
   hypot(double __x, double __y, double __z)
-  { return std::__detail::__hypot<double>(__x, __y, __z); }
+  { return std::__detail::__hypot3<double>(__x, __y, __z); }
 
   long double
   hypot(long double __x, long double __y, long double __z)
-  { return std::__detail::__hypot<long double>(__x, __y, __z); }
+  { return std::__detail::__hypot3<long double>(__x, __y, __z); }
 
   template<typename _Tpx, typename _Tpy, typename _Tpz>
     inline __gnu_cxx::__promote_fp_t<_Tpx, _Tpy, _Tpz>
     hypot(_Tpx __x, _Tpy __y, _Tpz __z)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tpx, _Tpy, _Tpz>;
-      return std::__detail::__hypot<__type>(__x, __y, __z);
+      return std::__detail::__hypot3<__type>(__x, __y, __z);
     }
 
 } // namespace std
