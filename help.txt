@@ -6,3 +6,20 @@ nedit ../gcc_specfun/libstdc++-v3/include/bits/sf_bessel.tcc
 touch origin_*.cc pr56216_cyl_*.cc
 make testcases
 make check
+
+
+Removing too-big files:
+
+git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch test_cyl_hankel.txt' HEAD~5..HEAD
+git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch test_sph_hankel.txt' HEAD~5..HEAD
+git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch test_beta.txt' HEAD~5..HEAD
+
+
+Removing unstaged changes..
+that might prevent filtering...
+-----------------------------------
+git clean -df
+Will just destroy shit
+
+git stash save --keep-index
+Will stash stuff
