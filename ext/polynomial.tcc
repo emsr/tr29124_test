@@ -68,7 +68,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    auto __bb = this->coefficient(__n - 1);
 	    for (size_type __j = 2; __j <= __n; ++__j)
 	      __bb = this->coefficient(__n - __j)
-		   - __s * std::exchange(__aa, __bb + __r * __aa);
+		   - __s * __exchange(__aa, __bb + __r * __aa);
 	    return __aa * __z + __bb;
 	  }
 	else
@@ -206,7 +206,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    auto __bb = this->coefficient(__n - 2);
 	    for (size_type __j = 4; __j <= __n; __j += 2)
 	      __bb = this->coefficient(__n - __j)
-		   - __s * std::exchange(__aa, __bb + __r * __aa);
+		   - __s * __exchange(__aa, __bb + __r * __aa);
 	    return __aa * __zz + __bb;
 	  }
 	else
@@ -242,7 +242,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    auto __bb = this->coefficient(__n - 2);
 	    for (size_type __j = 4; __j <= __n; __j += 2)
 	      __bb = this->coefficient(__n - __j)
-		   - __s * std::exchange(__aa, __bb + __r * __aa);
+		   - __s * __exchange(__aa, __bb + __r * __aa);
 	    return __z * (__aa * __zz + __bb);
 	  }
 	else

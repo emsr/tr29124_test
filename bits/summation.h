@@ -334,7 +334,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       { }
 
       auto
-      operator[](std::size_t __j) const;
+      operator[](std::size_t __j) const -> decltype(_TermFn(std::size_t{}));
 
     private:
 
@@ -628,6 +628,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using value_type = _Tp;
 
+      explicit _RemainderTerm(_Tp __val, _Tp __rem)
+      : term(__val), remainder(__rem)
+      { }
+
       value_type term = value_type{};
       value_type remainder = value_type{};
     };
@@ -711,7 +715,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       : _M_n{0}, _M_term{}, _M_beta{__beta}
       { }
 
-      constexpr void
+      /*constexpr*/ void
       operator<<(value_type __term)
       {
 	this->_M_term = __term;
