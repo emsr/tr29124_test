@@ -31,39 +31,22 @@
 
 using namespace __gnu_test;
 
-// Try to manage the four-gamma ratio.
-template<typename _Tp>
-  _Tp
-  gamma_ratio(int n, _Tp alpha, _Tp beta)
-  {
-    auto gaman1 = std::tgamma(alpha);
-    auto gambn1 = std::tgamma(beta);
-    auto gamabn1 = std::tgamma(alpha + beta);
-    auto fact = gaman1 * gambn1 / gamabn1;
-    for (int k = 1; k <= n; ++k)
-      fact *= (_Tp(k) + alpha) * (_Tp(k) + beta)
-	    / (_Tp(k) + alpha + beta) / _Tp(k);
-    return fact;
-  }
-
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.
 template<typename _Tp>
   _Tp
-  normalized_jacobi(int n1, int n2, _Tp alpha, _Tp beta, _Tp x)
+  normalized_chebyshev_t(int n1, int n2, _Tp x)
   {
     const auto _S_eps = __gnu_cxx::__epsilon(x);
+    const auto _S_inf = std::numeric_limits<_Tp>::infinity();
     if (std::abs(x - _Tp{1}) < _S_eps)
-      return _Tp{0};
+      return _S_inf;
     else if (std::abs(x + _Tp{1}) < _S_eps)
-      return _Tp{0};
+      return (n1 + n2) & 1 ? -_S_inf : _S_inf;
     else
       {
-	auto gam = gamma_ratio(n1, alpha, beta);
-	auto norm = std::pow(_Tp{2}, _Tp{1} + alpha + beta)
-		  * gam * (_Tp(2 * n1 + 1) + alpha + beta);
-	return std::pow(_Tp{1} - x, alpha) * std::pow(_Tp{1} + x, beta)
-	     * __gnu_cxx::jacobi(n1, alpha, beta, x)
-	     * __gnu_cxx::jacobi(n2, alpha, beta, x) / norm;
+	return __gnu_cxx::chebyshev_t(n2, x)
+	     * __gnu_cxx::chebyshev_t(n1, x)
+	     / std::sqrt(_Tp{1} - x * x);
       }
   }
 
@@ -74,39 +57,37 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  test_jacobi()
+  test_chebyshev_t()
   {
-    _Tp alpha = _Tp{0.5};
-    _Tp beta = _Tp{1.5};
+    const _Tp eps = std::numeric_limits<_Tp>::epsilon();
 
-    for (int n1 = 0; n1 <= 720; ++n1)
+    // Neverending loop: runs until integration fails
+    for (int n1 = 0; ; ++n1)
       {
 	for (int n2 = 0; n2 <= n1; ++n2)
 	  {
 	    std::function<_Tp(_Tp)>
-	      func([n1, n2, alpha, beta](_Tp x)
-		   -> _Tp
-		   { return normalized_jacobi<_Tp>(n1, n2, alpha, beta, x); });
-	    _Tp integ_precision = _Tp{1000} * std::numeric_limits<_Tp>::epsilon();
+	      func([n1, n2](_Tp x)->_Tp{return normalized_chebyshev_t(n1, n2, x);});
+	    _Tp integ_precision = _Tp{1000} * eps;
 	    _Tp comp_precision = _Tp{10} * integ_precision;
 	    _Tp integration_result, integration_error;
 
 	    typedef std::pair<_Tp&,_Tp&> ret_type;
 	    ret_type{integration_result, integration_error}
-//        	= integrate(func, _Tp{-1}, _Tp{1}, integ_precision, _Tp{0});
-        	= integrate_smooth(func, _Tp{-1}, _Tp{1}, integ_precision, _Tp{0});
+        	= integrate(func, _Tp{-1}, _Tp{1}, integ_precision, _Tp{0});
+//        	= integrate_smooth(func, _Tp{-1}, _Tp{1}, integ_precision, _Tp{0});
 
             if (std::abs(delta<_Tp>(n1, n2) - integration_result) > comp_precision)
               {
         	std::stringstream ss;
-        	ss.precision(-int(log10(std::numeric_limits<_Tp>::epsilon())));
+        	ss.precision(-int(log10(eps)));
         	ss << "Integration failed at n1=" << n1 << ", n2=" << n2
         	   << ", returning result " << integration_result
         	   << " instead of the expected " << delta<_Tp>(n1, n2) << '\n';
         	throw std::logic_error(ss.str());
               }
 	  }
-	std::cout << "Integration successful for jacobi polynomials up to n = " << n1
+	std::cout << "Integration successful for chebyshev_t polynomials up to n = " << n1
              << '\n';
       }
   }
@@ -116,7 +97,7 @@ main()
 {
   try
     {
-      test_jacobi<double>();
+      test_chebyshev_t<double>();
     }
   catch (std::exception& err)
     {
@@ -125,7 +106,7 @@ main()
 
   try
     {
-      test_jacobi<long double>();
+      test_chebyshev_t<long double>();
     }
   catch (std::exception& err)
     {

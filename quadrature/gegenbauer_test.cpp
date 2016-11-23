@@ -55,6 +55,7 @@ template<typename _Tp>
   void
   test_gegenbauer()
   {
+    const _Tp eps = std::numeric_limits<_Tp>::epsilon();
     _Tp alpha = _Tp{0.5};
 
     for (int n1 = 0; n1 <= 720; ++n1)
@@ -65,7 +66,7 @@ template<typename _Tp>
 	      func([n1, n2, alpha](_Tp x)
 		   -> _Tp
 		   { return normalized_gegenbauer<_Tp>(n1, n2,alpha,x); });
-	    _Tp integ_precision = _Tp{1000} * std::numeric_limits<_Tp>::epsilon();
+	    _Tp integ_precision = _Tp{1000} * eps;
 	    _Tp comp_precision = _Tp{10} * integ_precision;
 	    _Tp integration_result, integration_error;
 
@@ -76,7 +77,7 @@ template<typename _Tp>
             if (std::abs(delta<_Tp>(n1, n2) - integration_result) > comp_precision)
               {
         	std::stringstream ss;
-        	ss.precision(-int(log10(std::numeric_limits<_Tp>::epsilon())));
+        	ss.precision(-int(log10(eps)));
         	ss << "Integration failed at n1=" << n1 << ", n2=" << n2
         	   << ", returning result " << integration_result
         	   << " instead of the expected " << delta<_Tp>(n1, n2) << '\n';

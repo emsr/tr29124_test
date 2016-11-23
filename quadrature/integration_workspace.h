@@ -41,80 +41,80 @@ namespace __gnu_test
     {
     private:
 
-      std::size_t __limit;
-      std::size_t __size;
-      std::size_t __nrmax;
-      std::size_t __ii;
-      std::size_t __maximum_level;
-      std::vector<_VecTp> __alist, __blist, __rlist, __elist;
-      std::vector<std::size_t> __order, __level;
+      std::size_t _M_limit;
+      std::size_t _M_size;
+      std::size_t _M_nrmax;
+      std::size_t _M_ii;
+      std::size_t _M_maximum_level;
+      std::vector<_VecTp> _M_alist, _M_blist, _M_rlist, _M_elist;
+      std::vector<std::size_t> _M_order, _M_level;
 
       void qpsrt();
 
     public:
 
       integration_workspace(std::size_t __lim)
-      : __limit(__lim),
-	__size(0),
-	__nrmax(0),
-	__ii(0),
-	__maximum_level(0),
-	__alist(__lim),
-	__blist(__lim),
-	__rlist(__lim),
-	__elist(__lim),
-	__order(__lim),
-	__level(__lim)
+      : _M_limit(__lim),
+	_M_size(0),
+	_M_nrmax(0),
+	_M_ii(0),
+	_M_maximum_level(0),
+	_M_alist(__lim),
+	_M_blist(__lim),
+	_M_rlist(__lim),
+	_M_elist(__lim),
+	_M_order(__lim),
+	_M_level(__lim)
       { }
 
       void
       set_initial(_VecTp __a0, _VecTp __b0, _VecTp __result0, _VecTp __error0)
       {
-	__alist[0] = __a0;
-	__blist[0] = __b0;
-	__rlist[0] = __result0;
-	__elist[0] = __error0;
-	__order[0] = 0;
-	__level[0] = 0;
-	__size = 1;
+	_M_alist[0] = __a0;
+	_M_blist[0] = __b0;
+	_M_rlist[0] = __result0;
+	_M_elist[0] = __error0;
+	_M_order[0] = 0;
+	_M_level[0] = 0;
+	_M_size = 1;
       }
 
-      void update (_VecTp __a1, _VecTp __b1, _VecTp __area1, _VecTp __error1,
+      void update(_VecTp __a1, _VecTp __b1, _VecTp __area1, _VecTp __error1,
 		  _VecTp __a2, _VecTp __b2, _VecTp __area2, _VecTp __error2);
 
       void
       retrieve(_VecTp& __a, _VecTp& __b, _VecTp& __r, _VecTp& __e) const
       {
-	__a = __alist[__ii];
-	__b = __blist[__ii];
-	__r = __rlist[__ii];
-	__e = __elist[__ii];
+	__a = _M_alist[_M_ii];
+	__b = _M_blist[_M_ii];
+	__r = _M_rlist[_M_ii];
+	__e = _M_elist[_M_ii];
       }
 
       bool
       increase_nrmax()
       {
 	int __k;
-	int __id = __nrmax;
+	int __id = _M_nrmax;
 	int __jupbnd;
 
-	std::size_t __last = __size - 1;
+	std::size_t __last = _M_size - 1;
 
-	if (__last > (1 + __limit / 2))
-	  __jupbnd = __limit + 1 - __last;
+	if (__last > (1 + _M_limit / 2))
+	  __jupbnd = _M_limit + 1 - __last;
 	else
 	  __jupbnd = __last;
 
 	for (__k = __id; __k <= __jupbnd; ++__k)
 	  {
-	    std::size_t __i_max = __order[__nrmax];
+	    std::size_t __i_max = _M_order[_M_nrmax];
 
-	    __ii = __i_max;
+	    _M_ii = __i_max;
 
-	    if (__level[__i_max] < __maximum_level)
+	    if (_M_level[__i_max] < _M_maximum_level)
 	      return true;
 
-	    ++__nrmax;
+	    ++_M_nrmax;
 
 	  }
 	return false;
@@ -123,38 +123,35 @@ namespace __gnu_test
       void
       reset_nrmax()
       {
-	__nrmax = 0;
-	__ii = __order[0];
+	_M_nrmax = 0;
+	_M_ii = _M_order[0];
       }
 
       std::size_t
       get_nrmax() const
       {
-	return __nrmax;
+	return _M_nrmax;
       }
 
       void
       set_nrmax(std::size_t NRMAX)
       {
-	__nrmax = NRMAX;
+	_M_nrmax = NRMAX;
       }
 
       _VecTp
-      sum_results () const
+      sum_results() const
       {
-	std::size_t __kk;
 	_VecTp __result_sum = 0;
 
-	for (__kk = 0; __kk < __size; ++__kk)
-	  {
-	    __result_sum += __rlist[__kk];
-	  }
+	for (std::size_t __kk = 0; __kk < _M_size; ++__kk)
+	  __result_sum += _M_rlist[__kk];
 
 	return __result_sum;
       }
 
       static bool
-      subinterval_too_small (_VecTp __a1, _VecTp __a2, _VecTp __b2)
+      subinterval_too_small(_VecTp __a1, _VecTp __a2, _VecTp __b2)
       {
 	const _VecTp __e = std::numeric_limits<_VecTp>::epsilon();
 	const _VecTp __u = std::numeric_limits<_VecTp>::min();
@@ -167,19 +164,19 @@ namespace __gnu_test
       std::size_t
       current_level() const
       {
-	return __level[__ii];
+	return _M_level[_M_ii];
       }
 
       std::size_t
       max_level() const
       {
-	return __maximum_level;
+	return _M_maximum_level;
       }
 
       bool
       large_interval() const
       {
-	if (__level[__ii] < __maximum_level)
+	if (_M_level[_M_ii] < _M_maximum_level)
 	  return true;
 	else
 	  return false;
@@ -190,34 +187,34 @@ namespace __gnu_test
     void
     integration_workspace<_VecTp>::qpsrt()
     {
-      const std::size_t __last = __size - 1;
+      const std::size_t __last = _M_size - 1;
 
       double __errmax;
       double __errmin;
       int __jj, __kk, __top;
 
-      std::size_t __i_nrmax = __nrmax;
-      std::size_t __i_maxerr = __order[__i_nrmax];
+      std::size_t __i_nrmax = _M_nrmax;
+      std::size_t __i_maxerr = _M_order[__i_nrmax];
 
       // Check whether the list contains more than two error estimates
       if (__last < 2)
 	{
-	  __order[0] = 0;
-	  __order[1] = 1;
-	  __ii = __i_maxerr;
+	  _M_order[0] = 0;
+	  _M_order[1] = 1;
+	  _M_ii = __i_maxerr;
 	  return;
 	}
 
-      __errmax = __elist[__i_maxerr];
+      __errmax = _M_elist[__i_maxerr];
 
       /* This part of the routine is only executed if, due to a difficult
 	integrand, subdivision increased the error estimate. In the normal
 	case the insert procedure should start after the nrmax-th largest
 	error estimate. */
 
-      while (__i_nrmax > 0 && __errmax > __elist[__order[__i_nrmax - 1]])
+      while (__i_nrmax > 0 && __errmax > _M_elist[_M_order[__i_nrmax - 1]])
 	{
-	  __order[__i_nrmax] = __order[__i_nrmax - 1];
+	  _M_order[__i_nrmax] = _M_order[__i_nrmax - 1];
 	  __i_nrmax--;
 	}
 
@@ -225,104 +222,95 @@ namespace __gnu_test
 	descending order. This number depends on the number of
 	subdivisions still allowed. */
 
-      if(__last < (__limit/2 + 2))
-	{
-	  __top = __last;
-	}
+      if(__last < (_M_limit/2 + 2))
+	__top = __last;
       else
-	{
-	  __top = __limit - __last + 1;
-	}
+	__top = _M_limit - __last + 1;
 
       /* Insert errmax by traversing the list top-down, starting
 	comparison from the element elist(order(i_nrmax+1)). */
 
-      __jj = __i_nrmax + 1;
 
       /* The order of the tests in the following line is important to
 	prevent a segmentation fault */
 
-      while (__jj < __top && __errmax < __elist[__order[__jj]])
+      __jj = __i_nrmax + 1;
+      while (__jj < __top && __errmax < _M_elist[_M_order[__jj]])
 	{
-	  __order[__jj-1] = __order[__jj];
+	  _M_order[__jj - 1] = _M_order[__jj];
 	  ++__jj;
 	}
-
-      __order[__jj-1] = __i_maxerr;
+      _M_order[__jj - 1] = __i_maxerr;
 
       // Insert errmin by traversing the list bottom-up
 
-      __errmin = __elist[__last];
+      __errmin = _M_elist[__last];
 
       __kk = __top - 1;
-
-      while (__kk > __jj - 2 && __errmin >= __elist[__order[__kk]])
+      while (__kk > __jj - 2 && __errmin >= _M_elist[_M_order[__kk]])
 	{
-	  __order[__kk+1] = __order[__kk];
-	  __kk--;
+	  _M_order[__kk + 1] = _M_order[__kk];
+	  --__kk;
 	}
-
-      __order[__kk+1] = __last;
+      _M_order[__kk + 1] = __last;
 
       // Set i_max and e_max
 
-      __i_maxerr = __order[__i_nrmax];
+      __i_maxerr = _M_order[__i_nrmax];
 
-      __ii = __i_maxerr;
-      __nrmax = __i_nrmax;
+      _M_ii = __i_maxerr;
+      _M_nrmax = __i_nrmax;
     }
 
   template<typename _VecTp>
     void
     integration_workspace<_VecTp>::update(_VecTp __a1, _VecTp __b1,
-					 _VecTp __area1, _VecTp __error1,
-					 _VecTp __a2, _VecTp __b2,
-					 _VecTp __area2, _VecTp __error2)
+					  _VecTp __area1, _VecTp __error1,
+					  _VecTp __a2, _VecTp __b2,
+					  _VecTp __area2, _VecTp __error2)
     {
-      const std::size_t __i_max = __ii;
-      const std::size_t __i_new = __size;
+      const std::size_t __i_max = _M_ii;
+      const std::size_t __i_new = _M_size;
 
-      const std::size_t __new_level = __level[__i_max] + 1;
+      const std::size_t __new_level = _M_level[__i_max] + 1;
 
       // append the newly-created intervals to the list
 
       if (__error2 > __error1)
 	{
-	  __alist[__i_max] = __a2;	// blist[maxerr] is already == b2
-	  __rlist[__i_max] = __area2;
-	  __elist[__i_max] = __error2;
-	  __level[__i_max] = __new_level;
+	  _M_alist[__i_max] = __a2;	// blist[maxerr] is already == b2
+	  _M_rlist[__i_max] = __area2;
+	  _M_elist[__i_max] = __error2;
+	  _M_level[__i_max] = __new_level;
 
-	  __alist[__i_new] = __a1;
-	  __blist[__i_new] = __b1;
-	  __rlist[__i_new] = __area1;
-	  __elist[__i_new] = __error1;
-	  __level[__i_new] = __new_level;
+	  _M_alist[__i_new] = __a1;
+	  _M_blist[__i_new] = __b1;
+	  _M_rlist[__i_new] = __area1;
+	  _M_elist[__i_new] = __error1;
+	  _M_level[__i_new] = __new_level;
 	}
       else
 	{
-	  __blist[__i_max] = __b1;	// alist[maxerr] is already == a1
-	  __rlist[__i_max] = __area1;
-	  __elist[__i_max] = __error1;
-	  __level[__i_max] = __new_level;
+	  _M_blist[__i_max] = __b1;	// alist[maxerr] is already == a1
+	  _M_rlist[__i_max] = __area1;
+	  _M_elist[__i_max] = __error1;
+	  _M_level[__i_max] = __new_level;
 
-	  __alist[__i_new] = __a2;
-	  __blist[__i_new] = __b2;
-	  __rlist[__i_new] = __area2;
-	  __elist[__i_new] = __error2;
-	  __level[__i_new] = __new_level;
+	  _M_alist[__i_new] = __a2;
+	  _M_blist[__i_new] = __b2;
+	  _M_rlist[__i_new] = __area2;
+	  _M_elist[__i_new] = __error2;
+	  _M_level[__i_new] = __new_level;
 	}
 
-      ++__size;
+      ++_M_size;
 
-      if (__new_level > __maximum_level)
-	{
-	  __maximum_level = __new_level;
-	}
+      if (__new_level > _M_maximum_level)
+	_M_maximum_level = __new_level;
 
       qpsrt();
     }
 
-} // namespace
+} // namespace __gnu_test
 
-#endif
+#endif // INTEGRATION_WORKSPACE_H

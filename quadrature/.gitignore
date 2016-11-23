@@ -7,3 +7,7 @@ hermite_test
 legendre_test
 gegenbauer_test
 jacobi_test
+chebyshev_t_test
+chebyshev_u_test
+chebyshev_v_test
+chebyshev_w_test

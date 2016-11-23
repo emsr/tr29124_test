@@ -51,8 +51,8 @@ namespace __gnu_test
 
   namespace qk_impl
   {
-    //Class template for internal implementation of
-    //each individual integration rule
+    // Class template for internal implementation of
+    // each individual integration rule.
     template<typename _VecTp, typename _FType, qk_intrule sz>
       class qk_integrator;
   }
@@ -83,22 +83,22 @@ namespace __gnu_test
       switch(__qkintrule)
 	{
 	case QK_15: __qk_int_func =
-	  (qk_int_func_type)(&(qk_integrator<_VecTp, _FType, QK_15>::integrate));
+	  (qk_int_func_type)(&(qk_integrator<_VecTp, _FType, QK_15>::_S_integrate));
 	  break;
 	case QK_21: __qk_int_func =
-	  (qk_int_func_type)(&(qk_integrator<_VecTp, _FType, QK_21>::integrate));
+	  (qk_int_func_type)(&(qk_integrator<_VecTp, _FType, QK_21>::_S_integrate));
 	  break;
 	case QK_31: __qk_int_func =
-	  (qk_int_func_type)(&(qk_integrator<_VecTp, _FType, QK_31>::integrate));
+	  (qk_int_func_type)(&(qk_integrator<_VecTp, _FType, QK_31>::_S_integrate));
 	  break;
 	case QK_41: __qk_int_func =
-	  (qk_int_func_type)(&(qk_integrator<_VecTp, _FType, QK_41>::integrate));
+	  (qk_int_func_type)(&(qk_integrator<_VecTp, _FType, QK_41>::_S_integrate));
 	  break;
 	case QK_51: __qk_int_func =
-	  (qk_int_func_type)(&(qk_integrator<_VecTp, _FType, QK_51>::integrate));
+	  (qk_int_func_type)(&(qk_integrator<_VecTp, _FType, QK_51>::_S_integrate));
 	  break;
 	case QK_61: __qk_int_func =
-	  (qk_int_func_type)(&(qk_integrator<_VecTp, _FType, QK_61>::integrate));
+	  (qk_int_func_type)(&(qk_integrator<_VecTp, _FType, QK_61>::_S_integrate));
 	  break;
 	default:
 	  std::__throw_logic_error("Unrecognized gauss-kronrod integration size"
@@ -155,7 +155,8 @@ namespace __gnu_test
 
 	    __result_gauss += __wg[__jj] * __fsum;
 	    __result_kronrod += __wgk[__jtw] * __fsum;
-	    __result_abs += __wgk[__jtw] * (std::abs(__fval1) + std::abs(__fval2));
+	    __result_abs += __wgk[__jtw]
+			  * (std::abs(__fval1) + std::abs(__fval2));
 	  }
 
 	for (__jj = 0; __jj < __ksz / 2; ++__jj)
@@ -168,14 +169,17 @@ namespace __gnu_test
 	    __fv2[__jtwm1] = __fval2;
 
 	    __result_kronrod += __wgk[__jtwm1] * (__fval1 + __fval2);
-	    __result_abs += __wgk[__jtwm1] * (std::abs(__fval1) + std::abs(__fval2));
+	    __result_abs += __wgk[__jtwm1]
+			  * (std::abs(__fval1) + std::abs(__fval2));
 	  }
 
 	__mean = __result_kronrod * 0.5;
 	__result_asc = __wgk[__ksz - 1] * std::abs(__f_center - __mean);
 
 	for (__jj = 0; __jj < __ksz - 1; ++__jj)
-	  __result_asc += __wgk[__jj] * (std::abs(__fv1[__jj] - __mean) + std::abs(__fv2[__jj] - __mean));
+	  __result_asc += __wgk[__jj]
+			* (std::abs(__fv1[__jj] - __mean)
+			 + std::abs(__fv2[__jj] - __mean));
 
 	__err = (__result_kronrod - __result_gauss) * __half_length;
 
@@ -200,14 +204,14 @@ namespace __gnu_test
       public:
 
 	static void
-	integrate(const _FType& func, _VecTp a, _VecTp b,
-		  _VecTp& result, _VecTp& abserr,
-		  _VecTp& resabs, _VecTp& resasc)
+	_S_integrate(const _FType& func, _VecTp a, _VecTp b,
+		     _VecTp& result, _VecTp& abserr,
+		     _VecTp& resabs, _VecTp& resasc)
 	{
 	  using namespace qk_impl;
-
+	  // Abscissae of the 15-point Kronrod rule
 	  const std::array<_VecTp, 8>
-	  xgk = // abscissae of the 15-point kronrod rule
+	  _S_xgk =
 	  {
 	    _VecTp{0.991455371120812639206854697526329L},
 	    _VecTp{0.949107912342758524526189684047851L},
@@ -218,18 +222,18 @@ namespace __gnu_test
 	    _VecTp{0.207784955007898467600689403773245L},
 	    _VecTp{0.000000000000000000000000000000000L}
 	  };
-
+	  // Weights of the 7-point Gauss rule
 	  const std::array<_VecTp, 4>
-	  wg = // weights of 7-point gauss rule
+	  _S_wg =
 	  {
 	    _VecTp{0.129484966168869693270611432679082L},
 	    _VecTp{0.279705391489276667901467771423780L},
 	    _VecTp{0.381830050505118944950369775488975L},
 	    _VecTp{0.417959183673469387755102040816327L}
 	  };
-
+	  // Weights of the 15-point Kronrod rule
 	  const std::array<_VecTp, 8>
-	  wgk = // weights of the 15-point kronrod rule
+	  _S_wgk =
 	  {
 	    _VecTp{0.022935322010529224963732008058970L},
 	    _VecTp{0.063092092629978553290700663189204L},
@@ -241,7 +245,8 @@ namespace __gnu_test
 	    _VecTp{0.209482141084727828012999174891714L}
 	  };
 
-	  qk_integrate(xgk, wg, wgk, func, a, b, result, abserr, resabs, resasc);
+	  qk_integrate(_S_xgk, _S_wg, _S_wgk, func, a, b, result,
+		       abserr, resabs, resasc);
 	}
       };
 
@@ -256,14 +261,14 @@ namespace __gnu_test
       public:
 
 	static void
-	integrate(const _FType& func, _VecTp a, _VecTp b,
-		  _VecTp& result, _VecTp& abserr,
-		  _VecTp& resabs, _VecTp& resasc)
+	_S_integrate(const _FType& func, _VecTp a, _VecTp b,
+		     _VecTp& result, _VecTp& abserr,
+		     _VecTp& resabs, _VecTp& resasc)
 	{
 	  using namespace qk_impl;
-
-	  const std::array<_VecTp, 11>
-	  xgk = // abscissae of the 15-point kronrod rule
+	  // Abscissae of the 21-point Kronrod rule
+	  static constexpr std::array<_VecTp, 11>
+	  _S_xgk =
 	  {
 	    _VecTp{0.995657163025808080735527280689003L},
 	    _VecTp{0.973906528517171720077964012084452L},
@@ -277,9 +282,9 @@ namespace __gnu_test
 	    _VecTp{0.148874338981631210884826001129720L},
 	    _VecTp{0.000000000000000000000000000000000L}
 	  };
-
-	  const std::array<_VecTp, 5>
-	  wg = // weights of 7-point gauss rule
+	  // Weights of the 10-point Gauss rule
+	  static constexpr std::array<_VecTp, 5>
+	  _S_wg =
 	  {
 	    _VecTp{0.066671344308688137593568809893332L},
 	    _VecTp{0.149451349150580593145776339657697L},
@@ -287,9 +292,9 @@ namespace __gnu_test
 	    _VecTp{0.269266719309996355091226921569469L},
 	    _VecTp{0.295524224714752870173892994651338L}
 	  };
-
-	  const std::array<_VecTp, 11>
-	  wgk = // weights of the 15-point kronrod rule
+	  // Weights of the 21-point Kronrod rule
+	  static constexpr std::array<_VecTp, 11>
+	  _S_wgk =
 	  {
 	    _VecTp{0.011694638867371874278064396062192L},
 	    _VecTp{0.032558162307964727478818972459390L},
@@ -304,7 +309,8 @@ namespace __gnu_test
 	    _VecTp{0.149445554002916905664936468389821L}
 	  };
 
-	  qk_integrate(xgk, wg, wgk, func, a, b, result, abserr, resabs, resasc);
+	  qk_integrate(_S_xgk, _S_wg, _S_wgk, func, a, b, result,
+		       abserr, resabs, resasc);
 	}
       };
 
@@ -319,14 +325,14 @@ namespace __gnu_test
       public:
 
 	static void
-	integrate(const _FType& func, _VecTp a, _VecTp b,
-		  _VecTp& result, _VecTp& abserr,
-		  _VecTp& resabs, _VecTp& resasc)
+	_S_integrate(const _FType& func, _VecTp a, _VecTp b,
+		     _VecTp& result, _VecTp& abserr,
+		     _VecTp& resabs, _VecTp& resasc)
 	{
 	  using namespace qk_impl;
-
-	  const std::array<_VecTp, 16>
-	  xgk = // abscissae of the 15-point kronrod rule
+	  // Abscissae of the 31-point Kronrod rule
+	  static constexpr std::array<_VecTp, 16>
+	  _S_xgk =
 	  {
 	    _VecTp{0.998002298693397060285172840152271L},
 	    _VecTp{0.987992518020485428489565718586613L},
@@ -345,9 +351,9 @@ namespace __gnu_test
 	    _VecTp{0.101142066918717499027074231447392L},
 	    _VecTp{0.000000000000000000000000000000000L}
 	  };
-
-	  const std::array<_VecTp, 8>
-	  wg = // weights of 7-point gauss rule
+	  // Weights of the 15-point Gauss rule
+	  static constexpr std::array<_VecTp, 8>
+	  _S_wg =
 	  {
 	    _VecTp{0.030753241996117268354628393577204L},
 	    _VecTp{0.070366047488108124709267416450667L},
@@ -358,9 +364,9 @@ namespace __gnu_test
 	    _VecTp{0.198431485327111576456118326443839L},
 	    _VecTp{0.202578241925561272880620199967519L}
 	  };
-
-	  const std::array<_VecTp, 16>
-	  wgk = // weights of the 15-point kronrod rule
+	  // Weights of the 31-point Kronrod rule
+	  static constexpr std::array<_VecTp, 16>
+	  _S_wgk =
 	  {
 	    _VecTp{0.005377479872923348987792051430128L},
 	    _VecTp{0.015007947329316122538374763075807L},
@@ -380,7 +386,8 @@ namespace __gnu_test
 	    _VecTp{0.101330007014791549017374792767493L}
 	  };
 
-	  qk_integrate(xgk, wg, wgk, func, a, b, result, abserr, resabs, resasc);
+	  qk_integrate(_S_xgk, _S_wg, _S_wgk, func, a, b, result,
+		       abserr, resabs, resasc);
 	}
       };
 
@@ -395,14 +402,14 @@ namespace __gnu_test
       public:
 
 	static void
-	integrate(const _FType& func, _VecTp a, _VecTp b,
-		  _VecTp& result, _VecTp& abserr,
-		  _VecTp& resabs, _VecTp& resasc)
+	_S_integrate(const _FType& func, _VecTp a, _VecTp b,
+		     _VecTp& result, _VecTp& abserr,
+		     _VecTp& resabs, _VecTp& resasc)
 	{
 	  using namespace qk_impl;
-
-	  const std::array<_VecTp, 21>
-	  xgk = // abscissae of the 15-point kronrod rule
+	  // Abscissae of the 41-point Kronrod rule
+	  static constexpr std::array<_VecTp, 21>
+	  _S_xgk =
 	  {
 	    _VecTp{0.998859031588277663838315576545863L},
 	    _VecTp{0.993128599185094924786122388471320L},
@@ -426,9 +433,9 @@ namespace __gnu_test
 	    _VecTp{0.076526521133497333754640409398838L},
 	    _VecTp{0.000000000000000000000000000000000L}
 	  };
-
-	  const std::array<_VecTp, 11>
-	  wg = // weights of 7-point gauss rule
+	  // Weights of the 20-point Gauss rule
+	  static constexpr std::array<_VecTp, 11>
+	  _S_wg =
 	  {
 	    _VecTp{0.017614007139152118311861962351853L},
 	    _VecTp{0.040601429800386941331039952274932L},
@@ -441,9 +448,9 @@ namespace __gnu_test
 	    _VecTp{0.149172986472603746787828737001969L},
 	    _VecTp{0.152753387130725850698084331955098L}
 	  };
-
-	  const std::array<_VecTp, 21>
-	  wgk = // weights of the 15-point kronrod rule
+	  // Weights of the 41-point Kronrod rule
+	  static constexpr std::array<_VecTp, 21>
+	  _S_wgk =
 	  {
 	    _VecTp{0.003073583718520531501218293246031L},
 	    _VecTp{0.008600269855642942198661787950102L},
@@ -468,7 +475,8 @@ namespace __gnu_test
 	    _VecTp{0.076600711917999656445049901530102L}
 	  };
 
-	  qk_integrate(xgk, wg, wgk, func, a, b, result, abserr, resabs, resasc);
+	  qk_integrate(_S_xgk, _S_wg, _S_wgk, func, a, b, result,
+		       abserr, resabs, resasc);
 	}
       };
 
@@ -483,14 +491,14 @@ namespace __gnu_test
       public:
 
 	static void
-	integrate(const _FType& func, _VecTp a, _VecTp b,
-		  _VecTp& result, _VecTp& abserr,
-		  _VecTp& resabs, _VecTp& resasc)
+	_S_integrate(const _FType& func, _VecTp a, _VecTp b,
+		     _VecTp& result, _VecTp& abserr,
+		     _VecTp& resabs, _VecTp& resasc)
 	{
 	  using namespace qk_impl;
-
-	  const std::array<_VecTp, 26>
-	  xgk = // abscissae of the 15-point kronrod rule
+	  // Abscissae of the 51-point Kronrod rule
+	  static constexpr std::array<_VecTp, 26>
+	  _S_xgk =
 	  {
 	    _VecTp{0.999262104992609834193457486540341L},
 	    _VecTp{0.995556969790498097908784946893902L},
@@ -519,9 +527,9 @@ namespace __gnu_test
 	    _VecTp{0.061544483005685078886546392366797L},
 	    _VecTp{0.000000000000000000000000000000000L}
 	  };
-
-	  const std::array<_VecTp, 13>
-	  wg = // weights of 7-point gauss rule
+	  // Weights of the 25-point Gauss rule
+	  static constexpr std::array<_VecTp, 13>
+	  _S_wg =
 	  {
 	    _VecTp{0.011393798501026287947902964113235L},
 	    _VecTp{0.026354986615032137261901815295299L},
@@ -537,9 +545,9 @@ namespace __gnu_test
 	    _VecTp{0.122242442990310041688959518945852L},
 	    _VecTp{0.123176053726715451203902873079050L}
 	  };
-
-	  const std::array<_VecTp, 26>
-	  wgk = // weights of the 15-point kronrod rule
+	  // Weights of the 51-point Kronrod rule
+	  static constexpr std::array<_VecTp, 26>
+	  _S_wgk =
 	  {
 	    _VecTp{0.001987383892330315926507851882843L},
 	    _VecTp{0.005561932135356713758040236901066L},
@@ -569,7 +577,8 @@ namespace __gnu_test
 	    _VecTp{0.061580818067832935078759824240066L}
 	  };
 
-	  qk_integrate(xgk, wg, wgk, func, a, b, result, abserr, resabs, resasc);
+	  qk_integrate(_S_xgk, _S_wg, _S_wgk, func, a, b, result,
+		       abserr, resabs, resasc);
 	}
       };
 
@@ -584,13 +593,14 @@ namespace __gnu_test
       public:
 
 	static void
-	integrate(const _FType& func, _VecTp a, _VecTp b,
-		  _VecTp& result, _VecTp& abserr,
-		  _VecTp& resabs, _VecTp& resasc)
+	_S_integrate(const _FType& func, _VecTp a, _VecTp b,
+		     _VecTp& result, _VecTp& abserr,
+		     _VecTp& resabs, _VecTp& resasc)
 	{
 	  using namespace qk_impl;
-
-	  const std::array<_VecTp, 31> xgk = // abscissae of the 15-point kronrod rule
+	  // Abscissae of the 61-point Kronrod rule
+	  static constexpr std::array<_VecTp, 31>
+	  _S_xgk =
 	  {
 	    _VecTp{0.999484410050490637571325895705811L},
 	    _VecTp{0.996893484074649540271630050918695L},
@@ -624,8 +634,9 @@ namespace __gnu_test
 	    _VecTp{0.051471842555317695833025213166723L},
 	    _VecTp{0.000000000000000000000000000000000L}
 	  };
-
-	  const std::array<_VecTp, 15> wg = // weights of 7-point gauss rule
+	  // Weights of the 30-point Gauss rule
+	  static constexpr std::array<_VecTp, 15>
+	  _S_wg =
 	  {
 	    _VecTp{0.007968192496166605615465883474674L},
 	    _VecTp{0.018466468311090959142302131912047L},
@@ -643,8 +654,9 @@ namespace __gnu_test
 	    _VecTp{0.101762389748405504596428952168554L},
 	    _VecTp{0.102852652893558840341285636705415L}
 	  };
-
-	  const std::array<_VecTp, 31> wgk = // weights of the 15-point kronrod rule
+	  // Weights of the 61-point Kronrod rule
+	  static constexpr std::array<_VecTp, 31>
+	  _S_wgk =
 	  {
 	    _VecTp{0.001389013698677007624551591226760L},
 	    _VecTp{0.003890461127099884051267201844516L},
@@ -679,9 +691,11 @@ namespace __gnu_test
 	    _VecTp{0.051494729429451567558340433647099L}
 	  };
 
-	  qk_integrate(xgk, wg, wgk, func, a, b, result, abserr, resabs, resasc);
+	  qk_integrate(_S_xgk, _S_wg, _S_wgk, func, a, b, result,
+		       abserr, resabs, resasc);
 	}
       };
-  } //namespace
-}//namespace
-#endif
+  } // namespace 
+} // namespace __gnu_test
+
+#endif // QK_INTEGRATE_H
