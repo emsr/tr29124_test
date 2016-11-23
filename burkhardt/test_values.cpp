@@ -21266,22 +21266,22 @@ void jacobi_poly_values ( int &n_data, int &n, double &a, double &b, double &x,
 # define N_MAX 26
 
   static int a_vec[N_MAX] = {
-     0.0, 0.0, 0.0, 0.0,
-     0.0, 0.0, 1.0, 2.0,
-     3.0, 4.0, 5.0, 0.0,
-     0.0, 0.0, 0.0, 0.0,
-     0.0, 0.0, 0.0, 0.0,
-     0.0, 0.0, 0.0, 0.0,
-     0.0, 0.0 };
+     0, 0, 0, 0,
+     0, 0, 1, 2,
+     3, 4, 5, 0,
+     0, 0, 0, 0,
+     0, 0, 0, 0,
+     0, 0, 0, 0,
+     0, 0 };
 
   static int b_vec[N_MAX] = {
-    1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 2.0,
-    3.0, 4.0, 5.0, 1.0,
-    1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0 };
+    1, 1, 1, 1,
+    1, 1, 1, 1,
+    1, 1, 1, 2,
+    3, 4, 5, 1,
+    1, 1, 1, 1,
+    1, 1, 1, 1,
+    1, 1 };
 
   static double fx_vec[N_MAX] = {
       0.1000000000000000E+01,
@@ -34107,54 +34107,6 @@ void three_j_values ( int &n_data, double &j1, double &j2, double &j3,
 
   return;
 # undef N_MAX
-}
-//****************************************************************************80
-
-void timestamp ( )
-
-//****************************************************************************80
-//
-//  Purpose:
-//
-//    TIMESTAMP prints the current YMDHMS date as a time stamp.
-//
-//  Example:
-//
-//    May 31 2001 09:45:54 AM
-//
-//  Licensing:
-//
-//    This code is distributed under the GNU LGPL license.
-//
-//  Modified:
-//
-//    24 September 2003
-//
-//  Author:
-//
-//    John Burkardt
-//
-//  Parameters:
-//
-//    None
-//
-{
-# define TIME_SIZE 40
-
-  static char time_buffer[TIME_SIZE];
-  const struct tm *tm;
-  size_t len;
-  time_t now;
-
-  now = time ( NULL );
-  tm = localtime ( &now );
-
-  len = strftime ( time_buffer, TIME_SIZE, "%d %B %Y %I:%M:%S %p", tm );
-
-  cout << time_buffer << "\n";
-
-  return;
-# undef TIME_SIZE
 }
 //****************************************************************************80
 

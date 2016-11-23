@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -I. -o test_pochhammer test_pochhammer.cpp wrap_boost.cpp
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_pochhammer > test_pochhammer.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_pochhammer test_pochhammer.cpp wrap_boost.cpp -lquadmath
+./test_pochhammer > test_pochhammer.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -I. -o test_pochhammer test_pochhammer.cpp wrap_boost.cpp
 ./test_pochhammer > test_pochhammer.txt

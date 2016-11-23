@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hankel test_hankel.cpp -lquadmath
+$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hankel test_hankel.cpp -lquadmath
 ./test_hankel > test_hankel.txt
 */
 
@@ -25,14 +25,14 @@ int
 main()
 {
   using namespace std::literals::complex_literals;
-  std::complex<double> h1, h2, h1p, h2p;
   std::complex<double> z, nu;
   std::__detail::_Airy<std::complex<double>> airy_thing;
 
   nu = 5.0;
   z = 1.0 - 3.0i;
 
-  std::__detail::__hankel_uniform(nu, z, h1, h2, h1p, h2p);
+  // Cool but we nead an eater.
+  auto [zx, nux, h1, h2, h1p, h2p] = std::__detail::__hankel_uniform(nu, z);
 
   std::cout.precision(std::numeric_limits<double>::max_digits10);
   auto width = 6 + std::cout.precision();

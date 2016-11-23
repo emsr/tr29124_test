@@ -583,6 +583,6 @@ namespace __gnu_cxx
 
 } // namespace __gnu_cxx
 
-#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
+#endif // FLOAT128
 
 #endif // SPECFUN128_H

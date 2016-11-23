@@ -1,5 +1,6 @@
 
 0. [] Use <filesystem> dammit!
+      I'll wait until it shows up in std in libstdc++.
 
 1. [] In mathar it turns out that
       (2\pi)^k B_{2k}/(2k)! - 2 is small.  It might be worth computing... carefully.
@@ -23,7 +24,7 @@ GSL extras has these - there was struggle there too.
 
 8. [] Thrash float testing!
 
-9. [] ibeta complement
+9. [DONE] ibeta complement
 
 10. [] legendre_Qlm
 
@@ -32,8 +33,8 @@ GSL extras has these - there was struggle there too.
     Note the signed m on all of them!
 
 12. [DONE] Owen's T function (a stat function)
-  template <class T>
-    calculated-result-type owens_t(T h, T a);
+    template <class T>
+      calculated-result-type owens_t(T h, T a);
 
 13. [DONE] heuman_lambda - I've got this! - __heuman_lambda(_Tp __beta, _Tp __k)
     template <class T1, class T2>
@@ -57,10 +58,10 @@ GSL extras has these - there was struggle there too.
     [] Then Amparo, Gil, etc have a paper...
 
 18. [] In testcase.tcc in the big string_view header I'd like to be able to replace
-#include <specfun_testcase.h>
-with
-#include "../testcase.h"
-for [] TR1 test generation...
+       #include <specfun_testcase.h>
+       with
+       #include "../testcase.h"
+       for TR1 test generation...
 
 19. [DONE] Tabulate riemann_zeta for integer arguments - various sums can use this.
 
@@ -69,9 +70,10 @@ for [] TR1 test generation...
        nearbyint(nu + .5) -> nearbyint(nu).  mu = nu - n was -1.
 
 21. [] Finish experfc = exp(x*x)*erfc(x) (and maybe even sqrt(pi)*x*exp(x*x)*erfc(x))
+       Callit erfc_scaled?
 
 22. [] ../LambertW has a very good static polynomial I think - with static Horner.
-They use macros... Sigh.  Still, we could hack these into templates.
+       They use macros... Sigh.  Still, we could hack these into templates.
 
 23. [DONE] We have both psi *and* digamma!  Pick one!
 
@@ -101,43 +103,43 @@ They use macros... Sigh.  Still, we could hack these into templates.
 29. [DONE] Lose __eps, __min, __max, __inf, __NaN from math_const in favor of numeric_limits.h
 
 30. [DONE] Why did check_lfactorial.cc get chopped after 171?
-   { 711.71472580228999, 171, 0.0 },
--  { 716.86222027910344, 172, 0.0 },
+	 { 711.71472580228999, 171, 0.0 },
+      -  { 716.86222027910344, 172, 0.0 },
 
-After the table stops at 180 __log_gamma is called.
-+// Divergence at n=172 f=inf f_GSL=716.86222027910344
-+// Divergence at n=173 f=inf f_GSL=722.01551187360121
-+// Divergence at n=174 f=inf f_GSL=727.17456717281561
-+//  ...
-+// Divergence at n=500 f=inf f_GSL=2611.3304584601556
+      After the table stops at 180 __log_gamma is called.
+      +// Divergence at n=172 f=inf f_GSL=716.86222027910344
+      +// Divergence at n=173 f=inf f_GSL=722.01551187360121
+      +// Divergence at n=174 f=inf f_GSL=727.17456717281561
+      +//  ...
+      +// Divergence at n=500 f=inf f_GSL=2611.3304584601556
 
 31. [] I seem to have lost accuracy in cyl_bessel_i near the origin.
-   cyl_neumann also for < 2!  All bessels in non-oscillatory region.
+       cyl_neumann also for < 2!  All bessels in non-oscillatory region.
 
 32. [] radpoly is nan ing out for odd m!
 
 33. [DONE] beta for a=100 b>71 wrong sign.  But dead on magnitude!  We could crush it!
 
 34. [] In test_riemann_zeta the negative argument differences between real zetac an zeta are much worse.
-Reflection formula and reperiodized stuff?
+       Reflection formula and reperiodized stuff?
 
 35. [DONE] expint_en may be just sloppy.  I think recursion may be bad?
-Boost uses CF + series.
+       Boost uses CF + series.
 
 36. [] Gather 32-digit spot checks from:
-http://functions.wolfram.com/webMathematica/FunctionEvaluation.jsp
+       http://functions.wolfram.com/webMathematica/FunctionEvaluation.jsp
 
 37. [DONE] Things involving say std::cyl_bessel(__float128, __float128) won't compile.
-We have __float128 in the promote thing.
-Somehow, the promote thing is broken.
-These were useing the old school promote!
+       We have __float128 in the promote thing.
+       Somehow, the promote thing is broken.
+       These were using the old school promote!
 
 38. [] Look at the results of test_bessel, test_sph_bessel, near the originas a function of.
-You have to widen the near zero. Look at the near zero asymptotics and come up with a thing
-as a function of underflow exponent and nu.
-Neumann and K are just going to blow.
-Should I go ahead and let J, I return denormal results?  Why not.
-And if the type doesn't do denorm just zero then and don't sweat.
+       You have to widen the near zero. Look at the near zero asymptotics and come up with a thing
+       as a function of underflow exponent and nu.
+       Neumann and K are just going to blow.
+       Should I go ahead and let J, I return denormal results?  Why not.
+       And if the type doesn't do denorm just zero then and don't sweat.
 
 40. [DONE] sph_neumann is broken.
 
@@ -148,50 +150,243 @@ And if the type doesn't do denorm just zero then and don't sweat.
 43. [] test_polylog has some remaining float128 issues.
 
 44. [DONE] test_hankel build fails on  
-test_hankel.cpp:52:47: error: no matching function for call to '__airy(std::complex<double>&, double)'
-   auto Airy = std::__detail::__airy(z, 1.0e-16);
-It builds.
-It's probably an API change.
+       test_hankel.cpp:52:47: error: no matching function for call to '__airy(std::complex<double>&, double)'
+          auto Airy = std::__detail::__airy(z, 1.0e-16);
+       It builds.
+       It's probably an API change.
 
 45. [] test_factorial build.
 
-42. [] We might not even need numeric_limits_float128.h - the generic ones might work.
+46. [] Have a look at
+         src/c++98/math_stubs_float.cc
+         src/c++98/math_stubs_long_double.cc
+       for guidance on how we might help add float128.
 
-42. [] We might not even need numeric_limits_float128.h - the generic ones might work.
+47. [] test_hankel crashes.
+         what():  __hankel_uniform_sum: all allowable terms used
 
-43. [] Have a look at
-  src/c++98/math_stubs_float.cc
-  src/c++98/math_stubs_long_double.cc
-for guidance on how we might help add float128.
+48. [] It would be a good idea to generate check_nan.cc and compile.cc with all combinations automatically.
 
-44. [] test_hankel crashes.
-  what():  __hankel_uniform_sum: all allowable terms used
-
-45. [] It would be a good idea to generate check_nan.cc and compile.cc with all combinations automatically.
-
-46. [] If numeratorial parameters inhypers are nonpositive integers,
+49. [] If numeratorial parameters in hypers are nonpositive integers,
        * The sums are finite polynomials
        * Which can be summed by Horners rule
 
-47. [] We can do error analysis (sigfigs, etc) by computing functions with several 
+50. [] We can do error analysis (sigfigs, etc) by computing functions with several 
        This can be set up.  This is what test *really* should be.  We can publish that.
        I would say *that* is your error anaysis.
-48. [] Look for places where you can calculate max_iter and do it.
+51. [] Look for places where you can calculate max_iter and do it.
 
-49. [] What the hell happened to diff_sph_harmonic.txt?
+52. [] What the hell happened to diff_sph_harmonic.txt?
        No type suffix.
        The numbers only have one or two digits.
 
-50. [] Have default tail function types - provide _ZeroTail and maybe _InfTail.
-These could be tag types and we if constexpr tail calls right out. _NoTail?
+53. [] Have default tail function types - provide _ZeroTail and maybe _InfTail.
+       These could be tag types and we if constexpr tail calls right out. _NoTail?
 
-51. [] test_special_function - it's the std functions that cause build failure.
-The GSL functions a re just fine.
+54. [] test_special_function - it's the std functions that cause build failure.
+       The GSL functions a re just fine.
 
-52. [] Make 2D color plots of the Hurwitz zeta function (complex)
-Wikipedia has cool color pictures.
-  As a function of q for s = 3+4i;
-    https://en.wikipedia.org/wiki/Hurwitz_zeta_function#/media/File:HurwitzofAz3p4j.png
-  As a function of s for q = 24/25;
-    https://en.wikipedia.org/wiki/Hurwitz_zeta_function#/media/File:Hurwitza24ov25v2.png
+55. [] Make 2D color plots of the Hurwitz zeta function (complex)
+       Wikipedia has cool color pictures.
+         As a function of q for s = 3+4i;
+           https://en.wikipedia.org/wiki/Hurwitz_zeta_function#/media/File:HurwitzofAz3p4j.png
+         As a function of s for q = 24/25;
+           https://en.wikipedia.org/wiki/Hurwitz_zeta_function#/media/File:Hurwitza24ov25v2.png
+
+56. [] For complex128 IO it would be nice to figure out:
+       * extern template
+       * wide character streams.
+
+57. [] Make work: test_inv_ibeta.cpp
+       Fix ext/roots
+
+58. [DONE] Make work: test_kelvin.cpp
+       Functions __psi, __factorial, etc.
+       __gnu_cxx::__fpinteger
+
+       I needed three internal headers even though I had C++17 and cmath and -I.
+
+59. [] What to do with test_bessel_asymp.cpp?
+       It could be junk.  Or not.
+       Fix it UP!
+       Should the complex std::__detail::__cyl_bessel(nu, x) in sf_hankel.tcc
+	 be renamed to the real std::__detail::__cyl_bessel_jn(nu, x)?
+	 Also: __cyl_bessel_jn_asymp_old should be upgraded with derivatives!
+	 OTOH: I think I've adopted this.
+
+60. [] Make work: test_bessel_iter.cpp
+       Complete it.  Make those polynomials up!
+
+61. [] __float128 pow barfage in several things.
+       There's a stack overflow in the pow call.
+       It actually looks suspect.
+       cmath:418
+
+       Program received signal SIGSEGV, Segmentation fault.
+       0x00000000004158d2 in std::pow<__float128, __float128> (__x=0, __y=0) at ./cmath:418
+       418	      return pow(__type(__x), __type(__y));
+
+       Idea: the promote is messed up with float128 again.
+
+       That may be part of the problem but we have a __builtin_pow.
+       So I used it and shit worked!
+       That also follows the pattern in the rest of the cmath header!
+
+62. [DONE] Make work: test_little_airy.cpp
+       Fix airy.tcc
+       iry.tcc: In instantiation of \u2018void airy(std::complex<_Tp>, std::complex<_Tp>&, std::complex<_Tp>&, std::complex<_Tp>&, std::complex<_Tp>&, std::complex<_Tp>&, std::complex<_Tp>&, std::complex<_Tp>&, std::complex<_Tp>&) [with _Tp = double]\u2019:
+       test_little_airy.cpp:31:49:   required from here
+       airy.tcc:82:19: warning: unused variable \u2018_S_slope_F\u2019 [-Wunused-variable]
+	    constexpr _Tp _S_slope_F{-2.660L}, _S_intercept_F{-0.778L};
+                	  ^~~~~~~~~~
+       airy.tcc:82:40: warning: unused variable \u2018_S_intercept_F\u2019 [-Wunused-variable]
+	    constexpr _Tp _S_slope_F{-2.660L}, _S_intercept_F{-0.778L};
+                                               ^~~~~~~~~~~~~~
+       airy.tcc:127:19: warning: unused variable \u2018_S_slope_Fp\u2019 [-Wunused-variable]
+	    constexpr _Tp _S_slope_Fp{-2.576L}, _S_intercept_Fp{-0.301L};
+                	  ^~~~~~~~~~~
+       airy.tcc:127:41: warning: unused variable \u2018_S_intercept_Fp\u2019 [-Wunused-variable]
+	    constexpr _Tp _S_slope_Fp{-2.576L}, _S_intercept_Fp{-0.301L};
+                                        	^~~~~~~~~~~~~~~
+       /usr/bin/ld: /tmp/ccLVCC3D.o: undefined reference to symbol 'gsl_sf_airy_zero_Ai'
+       //usr/local/lib/libgsl.so.19: error adding symbols: DSO missing from command line
+       collect2: error: ld returned 1 exit status
+
+       I took out gslextra source files and just used -lwsql.  Works.
+
+63. [DONE] Make work: test_limits.cpp
+       ed@bad-horse:~/tr29124_test$ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_limits test_limits.cpp -lquadmath
+       /tmp/ccs63OfM.o: In function `void test_limits<test_limits.cpp__float128>(__float128)':
+       /home/ed/tr29124_test/test_limits.cpp:44: undefined reference to `std::numeric_limits<__float128>::has_denorm'
+       /home/ed/tr29124_test/test_limits.cpp:58: undefined reference to `std::numeric_limits<__float128>::round_style'
+       collect2: error: ld returned 1 exit status
+
+       We'll have to add a block of definitions to libstdc++-v3/src/c++11/limits.cc
+       I added a local src/c++11/limits.cc
+       Sigh...
+
+64. [DONE] Make work: test_hankel.cpp
+       test_hankel.cpp: In function \u2018int main()\u2019:
+       test_hankel.cpp:35:58: error: no matching function for call to \u2018__hankel_uniform(std::complex<double>&, std::complex<double>&, std::complex<double>&, std::complex<double>&, std::complex<double>&, std::complex<double>&)\u2019
+	  std::__detail::__hankel_uniform(nu, z, h1, h2, h1p, h2p);
+
+65. [] Make work: test_hankel.cpp
+       ed@bad-horse:~/tr29124_test$ ./test_hankel > test_hankel.txt
+       terminate called after throwing an instance of 'std::runtime_error'
+	 what():  __hankel_uniform_sum: all allowable terms used
+       Aborted (core dumped)
+
+66. [] Finish: test_gamma_ratio.cpp
+
+67. [] Make work: test_factorial.cpp
+       All sorts of include and undeclared fuckery.
+       Look like an include cycle or something.  Everything is broken.
+
+68. [] Look at: test_dawson.cpp
+       It works but we have todos on the compile-time construction of arrays.
+
+69. [DONE] Make work: test_complex128.cpp
+     test_complex128.cpp - No compile.
+     1. No powi - commented out but should we have it?
+	I commented these out.
+     2. No cxxxq() funs.  Do we want these in global ns (as they are called in the test)?
+	Blocked with HAVE_C99_COMPLEX128 just in case.
+	They are in <complex> in C namespace.  They are used for overloads.
+
+70. [] Look at: test_carlson.cpp
+       Compile shit.
+       But maybe we're past needing this thing.
+
+71. [] test_kelvin.cpp
+       ed@bad-horse:~/tr29124_test$ ./test_kelvin > test_kelvin.txt
+       terminate called after throwing an instance of 'std::runtime_error'
+	 what():  _BasicSum: bad term
+       Aborted (core dumped)
+
+72. [DONE] Look at test_airy.cpp
+   test_airy.cpp - compiles and runs but the numbers are wierd but the tests maybe bogus anyway.
+     Maybe repurpose this.
+     Lots of unused variables.  Fixed.
+
+     Rename to debug_airy.cpp
+
+73. [DONE] Modernize hankel_transition.cpp
+     hankel_transition.cpp - Update structs.
+
+74. [] Complex literal arithmetic.
+    complex_literal_arith.cpp - C99 vs C++ literals.
+    complex_literal_arith.cpp - The operators again.  Fsck!
+    complex.cpp - The operators again.  Fsck!
+
+75. [DONE] Fix up test_struve_old.cpp and those hyperg_pFq.cpp.
+	   test_struve_old.cpp - Goes with those hyperg_pFq.cpp.  Try to fix it up.
+	   hyperg_1F2.cpp - undef variable 'stop'
+	   hyperg_2F0.cpp - undef variable 'stop'
+	   hyperg_3F0.cpp - undef variable 'stop'
+    These were from cephes.
+
+76. [] Get test_hypot.cpp into mainline and kill it here.
+    I put my version in
+      /home/ed/gcc/libstdc++-v3/include/c_global/cmath
+    I'll need to enhance
+      /home/ed/gcc/libstdc++-v3/testsuite/26_numerics/headers/cmath/hypot.cc
+    I think I have it at work too.
+
+carlson_std.cpp - Collisions all over.  no surprise there.
+
+hankel_toy_new.cpp - Undefinedreference constant things in some struct.
+  tmp/ccPVNIiD.o: In function `__hankel_param_t<double>::__hankel_param_t(std::complex<double>, std::complex<double>)':
+  /home/ed/tr29124_test/hankel_toy_new.cpp:98: undefined reference to `__hankel_param_t<double>::_S_2d3'
+  /home/ed/tr29124_test/hankel_toy_new.cpp:99: undefined reference to `__hankel_param_t<double>::_S_2d3'
+  /home/ed/tr29124_test/hankel_toy_new.cpp:99: undefined reference to `__hankel_param_t<double>::_S_lncon'
+  /home/ed/tr29124_test/hankel_toy_new.cpp:107: undefined reference to `__hankel_param_t<double>::_S_j'
+  /home/ed/tr29124_test/hankel_toy_new.cpp:110: undefined reference to `__hankel_param_t<double>::_S_2d3'
+  /home/ed/tr29124_test/hankel_toy_new.cpp:110: undefined reference to `__hankel_param_t<double>::_S_j'
+  /home/ed/tr29124_test/hankel_toy_new.cpp:111: undefined reference to `__hankel_param_t<double>::_S_2d3'
+  /home/ed/tr29124_test/hankel_toy_new.cpp:111: undefined reference to `__hankel_param_t<double>::_S_lncon'
+  /home/ed/tr29124_test/hankel_toy_new.cpp:113: undefined reference to `__hankel_param_t<double>::_S_j'
+  collect2: error: ld returned 1 exit status
+
+plot_airy.cpp
+
+test_array_ref.cpp - move with <array_ref> somewhere else
+
+test_hankel.cpp - warns and crashes
+  In function \u2018int main()\u2019:
+  test_hankel.cpp:35:34: warning: unused variable \u2018zx\u2019 [-Wunused-variable]
+     auto [zx, nux, h1, h2, h1p, h2p] = std::__detail::__hankel_uniform(nu, z);
+                                    ^
+  test_hankel.cpp:35:34: warning: unused variable \u2018nux\u2019 [-Wunused-variable]
+  ed@bad-horse:~/tr29124_test$ ./test_hankel > test_hankel.txt
+  terminate called after throwing an instance of 'std::runtime_error'
+    what():  __hankel_uniform_sum: all allowable terms used
+  Aborted (core dumped)
+
+test_hydrogen.cpp - Finish this!
+
+test_hyperg.cpp - Finish this!
+
+test_inv_erf.cpp - Finish this!
+
+test_inv_ibeta.cpp - Finish this!
+
+test_gamma_ratio.cpp - Finish this!
+
+test_mittag_leffler.cpp - Do something ;-)
+
+test_mpreal.cpp - Do something ;-)
+
+test_notsospecfun.cpp - Do something ;-)
+
+test_parab_cyl.cpp - Good start.  Keep working.
+
+test_kelvin.cpp - crashes
+  ed@bad-horse:~/tr29124_test$ $HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_kelvin test_kelvin.cpp -lquadmath
+  ed@bad-horse:~/tr29124_test$ ./test_kelvin > test_kelvin.txt
+  terminate called after throwing an instance of 'std::runtime_error'
+    what():  _BasicSum: bad term
+  Aborted (core dumped)
+
+plot_airy.cpp - compile errors.  I might have to normalize airy_state between real and complex.
+
 

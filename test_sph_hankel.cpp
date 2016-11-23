@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_sph_hankel test_sph_hankel.cpp -lquadmath wrap_boost.cpp
-./test_sph_hankel > test_sph_hankel.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sph_hankel test_sph_hankel.cpp -lquadmath wrap_boost.cpp
+LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_sph_hankel > test_sph_hankel.txt
 
 g++ -std=c++14 -g -Wall -Wextra -I. -o test_sph_hankel test_sph_hankel.cpp -lquadmath
 ./test_sph_hankel > test_sph_hankel.txt

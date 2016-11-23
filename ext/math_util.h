@@ -46,7 +46,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     inline _Tp
     __fpmaxabs(_Tp __a, _Tp __b)
-    { std::abs(__a) < std::abs(__b) ? std::abs(__a) : std::abs(__b); }
+    { std::abs(__a) < std::abs(__b) ? std::abs(__b) : std::abs(__a); }
 
   /**
    * A function to reliably compare two floating point numbers.

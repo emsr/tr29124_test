@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_binet_float test_binet_float.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_binet_float test_binet_float.cpp -lquadmath
 ./test_binet_float > test_binet_float.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_binet_float test_binet_float.cpp -lquadmath
@@ -13,7 +13,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_binet_float test_bin
 #include <cmath>
 #include <bits/float128_io.h>
 #include <ext/polynomial.h>
-#include <bits/complex128.h>
+#include <complex>
 
 namespace std
 {
@@ -621,6 +621,10 @@ template<typename _Tp>
 
     std::cout << "\nBernoulli numbers\n";
     auto bern_a_t = std::__detail::__bernoulli_a_t<_Real>(bern.size());
+    std::cout << ' ' << std::setw(4) << "k"
+	      << ' ' << std::setw(width) << "B"
+	      << ' ' << std::setw(width) << "B_AT"
+	      << '\n';
     for (std::size_t k = 0; k < bern.size(); ++k)
       {
         std::cout << ' ' << std::setw(4) << k
@@ -650,6 +654,15 @@ template<typename _Tp>
 		<< ' ' << std::setw(width) << cfp[k] / ((k+1) * (k+1) / _Tp{16}) << '\n';
 
     std::cout << "\nBinet asymptotic\n";
+    std::cout << ' ' << std::setw(4) << "x"
+	      << ' ' << std::setw(width) << "J_as"
+	      << ' ' << std::setw(width) << "J_cf"
+	      << ' ' << std::setw(width) << "J_fake"
+	      << ' ' << std::setw(width) << "(J_as - J_cf) / J_cf"
+	      << ' ' << std::setw(width) << "(J_as - J_f) / J_f"
+	      << ' ' << std::setw(width) << "(J_cf - J_f) / J_f"
+	      << ' ' << std::setw(width) << "(J_bern - J_f) / J_f"
+	      << '\n';
     for (int k = 1; k <= 5000; ++k)
       {
 	auto x = _Real{0.1Q} * k;

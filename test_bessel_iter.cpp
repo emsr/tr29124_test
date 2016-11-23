@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_bessel_iter test_bessel_iter.cpp
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bessel_iter test_bessel_iter.cpp -lquadmath
 ./test_bessel_iter > test_bessel_iter.txt
 
 g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_bessel_iter test_bessel_iter.cpp
@@ -83,7 +83,7 @@ main()
       std::cout << "  C_{nu + " << std::setw(2) << 1 << "} * " << thing2[2 * __n + 1] << '\n';
       std::cout << '\n';
     }
-
+/*
   for (int __i = 1; __i <= 100; ++__i)
     {
       auto x = 0.1 * __i;
@@ -91,4 +91,5 @@ main()
       auto J0 = std::cyl_bessel_j(0.0, x);
       auto J1 = std::cyl_bessel_j(1.0, x);
     }
+*/
 }

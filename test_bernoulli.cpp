@@ -1,6 +1,6 @@
 
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_bernoulli test_bernoulli.cpp
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli test_bernoulli.cpp -lquadmath
 ./test_bernoulli > test_bernoulli.txt
 */ 
 
@@ -10,8 +10,8 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_bernoulli te
 #include <stdexcept>
 #include <cmath>
 #include <limits>
-#include "cmath_variable_template"
-
+#include <bits/numeric_limits.h>
+#include <ext/math_const.h>
 
 template<typename _RealTp, typename _IntTp,
 	 _IntTp _Num = 1, _IntTp _Den = 1>
@@ -32,8 +32,9 @@ template<typename _Tp>
   _Tp
   __bernoulli_series(unsigned int __n)
   {
+    static constexpr std::size_t __len = 24;
     static constexpr _Tp
-    __num[24]
+    __num[__len]
     {
        frac<_Tp>,
       -frac<_Tp, 1UL, 2UL>,
@@ -61,7 +62,7 @@ template<typename _Tp>
       return _Tp(0);
 
     //  Take care of some small evens that are painful for the series.
-    if (__n < 28)
+    if (__n < __len)
       return __num[__n];
 
 
@@ -84,17 +85,25 @@ template<typename _Tp>
     return __fact * __sum;
   }
 
+template<typename _Tp>
+  void
+  test_bernoulli(_Tp proto = _Tp{})
+  {
+    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout << std::showpoint << std::scientific;
+    auto width = 8 + std::cout.precision();
+
+    std::cout << '\n';
+    for (unsigned int n = 0; n <= 200; ++n)
+      std::cout << "  " << std::setw(4) << n << "  " << std::setw(width) << __bernoulli_series<double>(n) << '\n';
+  }
 
 int
 main()
 {
 
-  std::cout.precision(12);
-  std::cout.flags(std::ios::showpoint);
-
-  std::cout << std::endl;
-  for (unsigned int n = 0; n <= 200; ++n)
-    std::cout << "  " << std::setw(4) << n << "  " << std::setw(14) << __bernoulli_series<double>(n) << std::endl;
+  test_bernoulli(0.0);
+  test_bernoulli(0.0L);
 
   return 0;
 }

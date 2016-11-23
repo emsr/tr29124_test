@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_owens_t test_owens_t.cpp wrap_boost.cpp
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_owens_t test_owens_t.cpp wrap_boost.cpp -lquadmath
 ./test_owens_t > test_owens_t.txt
 */
 

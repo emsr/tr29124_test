@@ -7689,84 +7689,6 @@ bool i4_is_triangular ( int i )
 }
 //****************************************************************************80
 
-int i4_max ( int i1, int i2 )
-
-//****************************************************************************80
-//
-//  Purpose:
-//
-//    I4_MAX returns the maximum of two I4's.
-//
-//  Licensing:
-//
-//    This code is distributed under the GNU LGPL license. 
-//
-//  Modified:
-//
-//    05 May 2003
-//
-//  Author:
-//
-//    John Burkardt
-//
-//  Parameters:
-//
-//    Input, int i1 and i2, two integers to be compared.
-//
-//    Output, int I4_MAX, the larger of i1 and i2.
-//
-{
-  if ( i1 > i2 ) 
-  {
-    return i1;
-  }
-  else 
-  {
-    return i2;
-  }
-
-}
-//****************************************************************************80
-
-int i4_min ( int i1, int i2 )
-
-//****************************************************************************80
-//
-//  Purpose:
-//
-//    I4_MIN returns the smaller of two I4's.
-//
-//  Licensing:
-//
-//    This code is distributed under the GNU LGPL license. 
-//
-//  Modified:
-//
-//    05 May 2003
-//
-//  Author:
-//
-//    John Burkardt
-//
-//  Parameters:
-//
-//    Input, int i1 and i2, two integers to be compared.
-//
-//    Output, int I4_MIN, the smaller of i1 and i2.
-//
-{
-  if ( i1 < i2 ) 
-  {
-    return i1;
-  }
-  else 
-  {
-    return i2;
-  }
-
-}
-//****************************************************************************80
-
 int i4_modp ( int i, int j )
 
 //****************************************************************************80
@@ -8633,22 +8555,22 @@ void jacobi_poly_values ( int &n_data, int &n, double &a, double &b, double &x,
 # define N_MAX 26
 
   static int a_vec[N_MAX] = {
-     0.0, 0.0, 0.0, 0.0,
-     0.0, 0.0, 1.0, 2.0,
-     3.0, 4.0, 5.0, 0.0,
-     0.0, 0.0, 0.0, 0.0,
-     0.0, 0.0, 0.0, 0.0,
-     0.0, 0.0, 0.0, 0.0,
-     0.0, 0.0 };
+     0, 0, 0, 0,
+     0, 0, 1, 2,
+     3, 4, 5, 0,
+     0, 0, 0, 0,
+     0, 0, 0, 0,
+     0, 0, 0, 0,
+     0, 0 };
 
   static int b_vec[N_MAX] = {
-    1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 2.0,
-    3.0, 4.0, 5.0, 1.0,
-    1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0 };
+    1, 1, 1, 1,
+    1, 1, 1, 1,
+    1, 1, 1, 2,
+    3, 4, 5, 1,
+    1, 1, 1, 1,
+    1, 1, 1, 1,
+    1, 1 };
 
   static double fx_vec[N_MAX] = {
       0.1000000000000000E+01,
@@ -17059,53 +16981,6 @@ int tetrahedron_num ( int n )
   value = ( n * ( n + 1 ) * ( n + 2 ) ) / 6;
 
   return value;
-}
-//****************************************************************************80
-
-void timestamp ( )
-
-//****************************************************************************80
-//
-//  Purpose:
-//
-//    TIMESTAMP prints the current YMDHMS date as a time stamp.
-//
-//  Example:
-//
-//    31 May 2001 09:45:54 AM
-//
-//  Licensing:
-//
-//    This code is distributed under the GNU LGPL license. 
-//
-//  Modified:
-//
-//    08 July 2009
-//
-//  Author:
-//
-//    John Burkardt
-//
-//  Parameters:
-//
-//    None
-//
-{
-# define TIME_SIZE 40
-
-  static char time_buffer[TIME_SIZE];
-  const struct std::tm *tm_ptr;
-  std::time_t now;
-
-  now = std::time ( NULL );
-  tm_ptr = std::localtime ( &now );
-
-  std::strftime ( time_buffer, TIME_SIZE, "%d %B %Y %I:%M:%S %p", tm_ptr );
-
-  std::cout << time_buffer << "\n";
-
-  return;
-# undef TIME_SIZE
 }
 //****************************************************************************80
 

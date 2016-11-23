@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o plot_bessel plot_bessel.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o plot_bessel plot_bessel.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./plot_bessel
 
 $HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -g -Wall -Wextra -I. -o plot_bessel plot_bessel.cpp -lquadmath
@@ -33,7 +33,9 @@ template<typename _Tp, typename _Bessel>
 	  {
 	    auto x = _Tp(0.10L * i);
 	    auto j = __bessel(nu, x);
-	    data << ' ' << nu << ' ' << x << ' ' << j << '\n';
+	    data << ' ' << std::setw(width) << nu
+		 << ' ' << std::setw(width) << x
+		 << ' ' << std::setw(width) << j << '\n';
 	  }
 	data << '\n';
       }

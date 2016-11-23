@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_jacobi_inv test_jacobi_inv.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_inv test_jacobi_inv.cpp -L$HOME/bin/lib64 -lquadmath
 ./test_jacobi_inv > test_jacobi_inv.txt
 
-g++ -std=gnu++17 -g -Wall -Wextra -DNO_LOGBQ -I. -o test_jacobi_inv test_jacobi_inv.cpp -lquadmath
+g++ -std=gnu++17 -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_inv test_jacobi_inv.cpp -lquadmath
 ./test_jacobi_inv > test_jacobi_inv.txt
 */
 

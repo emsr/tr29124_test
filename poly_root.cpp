@@ -1,4 +1,7 @@
-// g++ -std=gnu++14 -g -I. poly_root.cpp
+/*
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o poly_root poly_root.cpp -lquadmath
+./poly_root > poly_root.txt
+*/
 
 #include <complex>
 #include <vector>
@@ -25,11 +28,11 @@ template<typename _Tp>
     if (xcof.coefficient(n) == _Tp{0})
       return 4;
 
-    int retry = 0;
+    //int retry = 0;
     auto n1 = n;
     auto n2 = n;
     auto nsav = n;
-    for (auto j = 0; j <= nsav; ++j)
+    for (std::size_t j = 0; j <= nsav; ++j)
       cof.coefficient(n - j, xcof.coefficient(j));
 
     std::complex<_Tp> xsav;
@@ -69,7 +72,7 @@ template<typename _Tp>
 	  u.imag(_Tp{0});
 	  auto ud = std::complex<_Tp>{};
 	  auto t = std::complex<_Tp>{1, 0};
-	  for (auto i = 0; i < n; ++i) 
+	  for (std::size_t i = 0; i < n; ++i) 
 	    {
 	      auto t1 = x * t;
 	      cofj = cof.coefficient(n - 1 - i); // Evaluate polynomial
@@ -104,7 +107,7 @@ template<typename _Tp>
   LOOP_DONE:
 
 	// Swap original and reduced polynomials
-	for (auto j = 0; j <= n2; ++j)
+	for (std::size_t j = 0; j <= n2; ++j)
 	  {
 	    auto poo = cof.coefficient(j);
 	    cof.coefficient(j, xcof.coefficient(nsav - j));
@@ -142,7 +145,7 @@ template<typename _Tp>
 
 	// Divide working polynomial cof(z) by z - x
 	cof.coefficient(1, cof.coefficient(1) + cofj * cof.coefficient(0));
-	for (auto j = 1; j < n; ++j) 
+	for (std::size_t j = 1; j < n; ++j) 
 	  cof.coefficient(j + 1, cof.coefficient(j + 1) + cofj * cof.coefficient(j) - mag * cof.coefficient(j - 1));
 
 	root.push_back(x);
@@ -160,7 +163,8 @@ main()
   __gnu_cxx::_Polynomial<double> P({1.0, 2.0, 1.0, 4.0, 2,0});
   std::vector<std::complex<double>> zero;
   polynomial_roots(P, zero);
-  for (auto i = 0; i < zero.size(); ++i)
+  std::cout << "Found " << zero.size() << " roots:\n";
+  for (std::size_t i = 0; i < zero.size(); ++i)
     std::cout << "Root " << (i + 1) << ": " << zero[i] << '\n';
 }
 
