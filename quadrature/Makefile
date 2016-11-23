@@ -14,7 +14,8 @@ OBJ_DIR = obj
 
 BINS = hermite_test \
        legendre_test \
-       gegenbauer_test
+       gegenbauer_test \
+       jacobi_test
 
 
 all: $(BINS)
@@ -29,6 +30,9 @@ legendre_test: $(OBJ_DIR)/legendre_test.o
 gegenbauer_test: $(OBJ_DIR)/gegenbauer_test.o
 	$(CXX17) -o gegenbauer_test $(OBJ_DIR)/gegenbauer_test.o -lquadmath
 
+jacobi_test: $(OBJ_DIR)/jacobi_test.o
+	$(CXX17) -o jacobi_test $(OBJ_DIR)/jacobi_test.o -lquadmath
+
 
 $(OBJ_DIR)/hermite_test.o: *.h hermite_test.cpp
 	$(CXX17) -c -o $(OBJ_DIR)/hermite_test.o hermite_test.cpp
@@ -38,4 +42,7 @@ $(OBJ_DIR)/legendre_test.o: *.h legendre_test.cpp
 
 $(OBJ_DIR)/gegenbauer_test.o: *.h gegenbauer_test.cpp
 	$(CXX17) -c -o $(OBJ_DIR)/gegenbauer_test.o gegenbauer_test.cpp
+
+$(OBJ_DIR)/jacobi_test.o: *.h jacobi_test.cpp
+	$(CXX17) -c -o $(OBJ_DIR)/jacobi_test.o jacobi_test.cpp
 

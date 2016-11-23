@@ -63,11 +63,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	const auto __s = std::norm(__z);
 	size_type __n = this->degree();
 	auto __aa = this->coefficient(__n);
-	auto __bb = this->coefficient(__n - 1);
-	for (size_type __j = 2; __j <= __n; ++__j)
-	  __bb = this->coefficient(__n - __j)
-	       - __s * std::exchange(__aa, __bb + __r * __aa);
-	return __aa * __z + __bb;
+	if (__n > 0)
+	  {
+	    auto __bb = this->coefficient(__n - 1);
+	    for (size_type __j = 2; __j <= __n; ++__j)
+	      __bb = this->coefficient(__n - __j)
+		   - __s * std::exchange(__aa, __bb + __r * __aa);
+	    return __aa * __z + __bb;
+	  }
+	else
+	  return __aa;
       };
 
     //  Could/should this be done by output iterator range?
