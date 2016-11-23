@@ -50,13 +50,14 @@ template<typename _Tp>
   void
   test_legendre()
   {
+    const _Tp eps = std::numeric_limits<_Tp>::epsilon();
     for (int l1 = 0; l1 <= 720; ++l1)
       {
 	for (int l2 = 0; l2 <= l1; ++l2)
 	  {
 	    std::function<_Tp(_Tp)> func(std::bind(&normalized_legendre<_Tp>, l1, l2,
                                          std::placeholders::_1));
-	    _Tp integ_precision = _Tp{1000} * std::numeric_limits<_Tp>::epsilon();
+	    _Tp integ_precision = _Tp{1000} * eps;
 	    _Tp comp_precision = _Tp{10} * integ_precision;
 	    _Tp integration_result, integration_error;
 
@@ -67,7 +68,7 @@ template<typename _Tp>
             if (std::abs(delta<_Tp>(l1, l2) - integration_result) > comp_precision)
               {
         	std::stringstream ss;
-        	ss.precision(-int(log10(std::numeric_limits<_Tp>::epsilon())));
+        	ss.precision(-int(log10(eps)));
         	ss << "Integration failed at l1=" << l1 << ", l2=" << l2
         	   << ", returning result " << integration_result
         	   << " instead of the expected " << delta<_Tp>(l1, l2) << '\n';

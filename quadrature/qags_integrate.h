@@ -35,7 +35,7 @@
 
 #include "qk_integrate.h"
 #include "integration_workspace.h"
-#include "qelg.h"
+#include "extrapolation_table.h"
 
 namespace __gnu_test
 {
@@ -89,8 +89,8 @@ namespace __gnu_test
     std::pair<_VecTp, _VecTp>
     qags_integrate(const _FType& __func,
 		   const _VecTp __a, const _VecTp __b,
-		   const _VecTp __epsabs,
-		   const _VecTp __epsrel,
+		   _VecTp __epsabs,
+		   _VecTp __epsrel,
 		   const std::size_t __limit)
     {
       const qk_intrule __qkintrule = QK_21;
@@ -106,6 +106,8 @@ namespace __gnu_test
       std::size_t __ktmin = 0;
       int __roundoff_type1 = 0, __roundoff_type2 = 0, __roundoff_type3 = 0;
       int __error_type = 0, __error_type2 = 0;
+
+      const auto _S_eps = std::numeric_limits<_VecTp>::epsilon();
 
       std::size_t __iteration = 0;
 
@@ -123,9 +125,9 @@ namespace __gnu_test
       /* Test on accuracy */
 
       if (__epsabs <= 0
-	  && (__epsrel < 50 * std::numeric_limits<_VecTp>::epsilon() || __epsrel < 0.5e-28))
-	std::__throw_logic_error("tolerance cannot be acheived with given epsabs"
-			  " and epsrel in qags_integrate()");
+	  && (__epsrel < 50 * _S_eps || __epsrel < 0.5e-28))
+	std::__throw_logic_error("tolerance cannot be acheived"
+			  " with given tolerances in qags_integrate()");
 
       /* Perform the first integration */
 
@@ -138,11 +140,12 @@ namespace __gnu_test
 
       __tolerance = std::max(__epsabs, __epsrel * std::abs(__result0));
 
-      if (__abserr0 <= 100 * std::numeric_limits<_VecTp>::epsilon() * __resabs0
+      if (__abserr0 <= 100 * _S_eps * __resabs0
 	  && __abserr0 > __tolerance)
 	std::__throw_runtime_error("cannot reach tolerance because of roundoff"
 			    " error on first attempt in qags_integrate()");
-      else if ((__abserr0 <= __tolerance && __abserr0 != __resasc0) || __abserr0 == 0.0)
+      else if ((__abserr0 <= __tolerance && __abserr0 != __resasc0)
+		|| __abserr0 == 0.0)
 	return std::make_pair(__result0, __abserr0);
       else if (__limit == 1)
 	std::__throw_runtime_error("a maximum of one iteration was insufficient"
@@ -213,7 +216,8 @@ namespace __gnu_test
 	    {
 	      _VecTp __delta = __r_i - __area12;
 
-	      if (std::abs(__delta) <= 1.0e-5 * std::abs(__area12) && __error12 >= 0.99 * __e_i)
+	      if (std::abs(__delta) <= 1.0e-5 * std::abs(__area12)
+		  && __error12 >= 0.99 * __e_i)
 		{
 		  if (!__extrapolate)
 		    ++__roundoff_type1;
@@ -226,7 +230,8 @@ namespace __gnu_test
 
 	  /* Test for roundoff and eventually set error flag */
 
-	  if (__roundoff_type1 + __roundoff_type2 >= 10 || __roundoff_type3 >= 20)
+	  if (__roundoff_type1 + __roundoff_type2 >= 10
+	      || __roundoff_type3 >= 20)
 	    __error_type = 2;       /* round off error */
 
 	  if (__roundoff_type2 >= 5)
@@ -239,7 +244,8 @@ namespace __gnu_test
 	    __error_type = 4;
 
 	  /* append the newly-created intervals to the list */
-	  __workspace.update(__a1, __b1, __area1, __error1, __a2, __b2, __area2, __error2);
+	  __workspace.update(__a1, __b1, __area1, __error1,
+			     __a2, __b2, __area2, __error2);
 
 	  if (__errsum <= __tolerance)
 	    {
@@ -389,11 +395,12 @@ namespace __gnu_test
 
     }
 
-  //Throws appropriate error if errcode nonzero
+  // Throws appropriate error if errcode nonzero
   void
   __check_error(int __errcode)
   {
-    if (__errcode > 2) --__errcode;
+    if (__errcode > 2)
+      --__errcode;
     switch(__errcode)
       {
       case 0: break;
@@ -429,13 +436,12 @@ namespace __gnu_test
   template<typename _FType, typename _VecTp>
     std::pair<_VecTp, _VecTp>
     qagi_integrate(const _FType& __func,
-		   const _VecTp __epsabs,
-		   const _VecTp __epsrel,
+		   _VecTp __epsabs, _VecTp __epsrel,
 		   const std::size_t __limit)
     {
       return qags_integrate(
 	  std::bind(i_transform<_FType, _VecTp>, __func, std::placeholders::_1),
-	      _VecTp(0.), _VecTp(1.), __epsabs, __epsrel, __limit);
+	      _VecTp{0}, _VecTp{1}, __epsabs, __epsrel, __limit);
     }
 
   template<typename _FType, typename _VecTp>
@@ -450,13 +456,12 @@ namespace __gnu_test
   template<typename _FType, typename _VecTp>
     std::pair<_VecTp, _VecTp>
     qagil_integrate(const _FType& __func, _VecTp __b,
-		    const _VecTp __epsabs,
-		    const _VecTp __epsrel,
+		    _VecTp __epsabs, _VecTp __epsrel,
 		    const std::size_t __limit)
     {
       return qags_integrate(
 	std::bind(il_transform<_FType, _VecTp>, __func, __b, std::placeholders::_1),
-	    _VecTp(0.), _VecTp(1.), __epsabs, __epsrel, __limit);
+	    _VecTp{0}, _VecTp{1}, __epsabs, __epsrel, __limit);
     }
 
   template<typename _FType, typename _VecTp>
@@ -471,14 +476,13 @@ namespace __gnu_test
   template<typename _FType, typename _VecTp>
     std::pair<_VecTp, _VecTp>
     qagiu_integrate(const _FType& __func, _VecTp __a,
-		    const _VecTp __epsabs,
-		    const _VecTp __epsrel,
+		    _VecTp __epsabs, _VecTp __epsrel,
 		    const std::size_t __limit)
-  {
-    return qags_integrate(
-      std::bind(iu_transform<_FType, _VecTp>, __func, __a, std::placeholders::_1),
-	  _VecTp(0.), _VecTp(1.), __epsabs, __epsrel, __limit);
-  }
+    {
+      return qags_integrate(
+	std::bind(iu_transform<_FType, _VecTp>, __func, __a, std::placeholders::_1),
+	    _VecTp{0}, _VecTp{1}, __epsabs, __epsrel, __limit);
+    }
 } // namespace
 
 #endif

@@ -43,13 +43,13 @@ namespace __gnu_test
   template<typename _FType, typename _VecTp>
     inline std::pair<_VecTp, _VecTp>
     integrate_smooth(const _FType& __func, _VecTp __a, _VecTp __b,
-		     _VecTp __absolute_error_lim,
-		     _VecTp __relative_error_lim,
+		     _VecTp __max_abs_error,
+		     _VecTp __max_rel_error,
 		     const std::size_t __max_iter = 1024,
 		     const qk_intrule __qkintrule = QK_61)
     {
-      return qag_integrate(__func, __a, __b, __absolute_error_lim,
-			   __relative_error_lim, __max_iter, __qkintrule);
+      return qag_integrate(__func, __a, __b, __max_abs_error,
+			   __max_rel_error, __max_iter, __qkintrule);
     }
 
   // Recursive Gauss-Kronrod integration optimized for
@@ -57,59 +57,59 @@ namespace __gnu_test
   template<typename _FType, typename _VecTp>
     inline std::pair<_VecTp, _VecTp>
     integrate_singular(const _FType& __func, _VecTp __a, _VecTp __b,
-		       _VecTp __absolute_error_lim,
-		       _VecTp __relative_error_lim,
+		       _VecTp __max_abs_error,
+		       _VecTp __max_rel_error,
 		       const std::size_t __max_iter = 1024)
     {
-      return qags_integrate(__func, __a, __b, __absolute_error_lim,
-			    __relative_error_lim, __max_iter);
+      return qags_integrate(__func, __a, __b, __max_abs_error,
+			    __max_rel_error, __max_iter);
     }
 
   // Integrates function from -infinity to +infinity
   template<typename _FType, typename _VecTp>
     inline std::pair<_VecTp, _VecTp>
     integrate_infinite(const _FType& __func,
-		       _VecTp __absolute_error_lim,
-		       _VecTp __relative_error_lim,
+		       _VecTp __max_abs_error,
+		       _VecTp __max_rel_error,
 		       const std::size_t __max_iter = 1024)
     {
-      return qagi_integrate(__func, __absolute_error_lim,
-			    __relative_error_lim, __max_iter);
+      return qagi_integrate(__func, __max_abs_error,
+			    __max_rel_error, __max_iter);
     }
 
   // Integrations function from -infinity to b
   template<typename _FType, typename _VecTp>
     inline std::pair<_VecTp, _VecTp>
     integrate_from_infinity(const _FType& __func, _VecTp __b,
-			    _VecTp __absolute_error_lim,
-			    _VecTp __relative_error_lim,
+			    _VecTp __max_abs_error,
+			    _VecTp __max_rel_error,
 			    const std::size_t __max_iter = 1024)
     {
-      return qagil_integrate(__func, __b, __absolute_error_lim,
-			     __relative_error_lim, __max_iter);
+      return qagil_integrate(__func, __b, __max_abs_error,
+			     __max_rel_error, __max_iter);
     }
 
   // Integrations function from a to +infinity
   template<typename _FType, typename _VecTp>
     inline std::pair<_VecTp, _VecTp>
     integrate_to_infinity(const _FType& __func, _VecTp __a,
-			  _VecTp __absolute_error_lim,
-			  _VecTp __relative_error_lim,
+			  _VecTp __max_abs_error,
+			  _VecTp __max_rel_error,
 			  const std::size_t __max_iter = 1024)
     {
-      return qagiu_integrate(__func, __a, __absolute_error_lim,
-			     __relative_error_lim, __max_iter);
+      return qagiu_integrate(__func, __a, __max_abs_error,
+			     __max_rel_error, __max_iter);
     }
 
   // Integrates function, allows setting of limits as being +/- infinity
   template<typename _FType, typename _VecTp>
     inline std::pair<_VecTp, _VecTp>
     integrate(const _FType& __func, _VecTp __a, _VecTp __b,
-	      _VecTp __absolute_error_lim,
-	      _VecTp __relative_error_lim,
+	      _VecTp __max_abs_error,
+	      _VecTp __max_rel_error,
 	      const std::size_t __max_iter = 1024)
     {
-      using std::isnan; //To avoid ambiguous overload
+      using std::isnan; // To avoid ambiguous overload
       const _VecTp __infty = std::numeric_limits<_VecTp>::infinity();
       const _VecTp __NaN = std::numeric_limits<_VecTp>::quiet_NaN();
 
@@ -118,53 +118,53 @@ namespace __gnu_test
 
       if (__a == -__infty)
 	{
-	  if (__b == __infty) //Integration from -infinity to +infinity
-	    return integrate_infinite(__func, __absolute_error_lim,
-				      __relative_error_lim, __max_iter);
+	  if (__b == __infty) // Integration from -inf to +inf
+	    return integrate_infinite(__func, __max_abs_error,
+				      __max_rel_error, __max_iter);
 	  else if (__b == -__infty)
 	    std::__throw_runtime_error("Attempted to integrate from -infinity"
 				" to -infinity in integrate()");
-	  else //Integration from -infinity to finite value
-	    return integrate_from_infinity(__func, __b, __absolute_error_lim,
-					   __relative_error_lim, __max_iter);
+	  else // Integration from -inf to finite value
+	    return integrate_from_infinity(__func, __b, __max_abs_error,
+					   __max_rel_error, __max_iter);
 	}
       else if (__a == __infty)
 	{
 	  if (__b == __infty)
 	    std::__throw_runtime_error("Attempted to integrate from +infinity"
 				" to +infinity in integrate()");
-	  else if (__b == -__infty) //Integration from +infinity to -infinity,
-	    {		     // call integrate_infinite() and flip sign
+	  else if (__b == -__infty) // Integration from +inf to -inf,
+	    {		     // Call integrate_infinite() and flip sign
 	      std::pair<_VecTp, _VecTp> __res
-		= integrate_infinite(__func, __absolute_error_lim,
-				     __relative_error_lim, __max_iter);
+		= integrate_infinite(__func, __max_abs_error,
+				     __max_rel_error, __max_iter);
 	      return {-__res.first, __res.second};
 	    }
-	  else //Integration from +infinity to finite value,
-	    {    // call integrate_to_infinity and flip sign
+	  else // Integration from +inf to finite value,
+	    { // Call integrate_to_infinity and flip sign
 	      std::pair<_VecTp, _VecTp>
-		__res = integrate_to_infinity(__func, __b, __absolute_error_lim,
-					      __relative_error_lim, __max_iter);
+		__res = integrate_to_infinity(__func, __b, __max_abs_error,
+					      __max_rel_error, __max_iter);
 	      return {-__res.first, __res.second};
 	    }
 	}
-      else //a is finite
+      else // a is finite
 	{
 	  if (__b == __infty)
-	    return integrate_to_infinity(__func, __a, __absolute_error_lim,
-					__relative_error_lim, __max_iter);
-	  else if (__b == -__infty) //Integration from finite value to -infinity,
-	    {		     // call integrate_from_infinity and flip sign
+	    return integrate_to_infinity(__func, __a, __max_abs_error,
+					 __max_rel_error, __max_iter);
+	  else if (__b == -__infty) // Integration from finite value to -inf,
+	    { // Call integrate_from_infinity and flip sign
 	      std::pair<_VecTp, _VecTp>
 		__res = integrate_from_infinity(__func, __a,
-						__absolute_error_lim,
-						__relative_error_lim,
+						__max_abs_error,
+						__max_rel_error,
 						__max_iter);
 	      return {-__res.first, __res.second};
 	    }
-	  else //Both a and b finite, call integrate_singular
-	    return integrate_singular(__func, __a, __b, __absolute_error_lim,
-				      __relative_error_lim, __max_iter);
+	  else // Both a and b finite, call integrate_singular
+	    return integrate_singular(__func, __a, __b, __max_abs_error,
+				      __max_rel_error, __max_iter);
 	}
     }
 
