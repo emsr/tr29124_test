@@ -779,7 +779,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			      std::complex<_Tp>>
     __hankel_uniform_olver(std::complex<_Tp> __nu, std::complex<_Tp> __z)
     {
-      using namespace std::literals::complex_literals;
       using _Cmplx = std::complex<_Tp>;
 
       using __hank_t = __gnu_cxx::__cyl_hankel_t<_Cmplx, _Cmplx, _Cmplx>;
@@ -922,7 +921,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		   std::complex<_Tp> __alpha,
 		   int __indexr, char& __aorb, int& __morn)
     {
-      using namespace std::literals::complex_literals;
       using _Cmplx = std::complex<_Tp>;
 
       using __hank_t = __gnu_cxx::__cyl_hankel_t<_Cmplx, _Cmplx, _Cmplx>;
