@@ -40,6 +40,9 @@
 #  include <ratio>
 #  include <complex>
 #endif
+#if __cplusplus >= 201402L
+#  include <utility> // For exchange
+#endif
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
 #  include <quadmath.h>
@@ -184,6 +187,25 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename... _Tps>
     using __promote_fp_help_t = typename __promote_fp_help<_Tps...>::__type;
 
+#if __cplusplus < 201402L
+  // Decay refs and cv...
+  // Alternatively we could decay refs and propagate cv to promoted type.
+  template<typename _Tp, typename... _Tps>
+    struct __promote_fp
+    {
+      using __decaytype = typename std::decay<_Tp>::type;
+      using __type = decltype(__promote_fp_help_t<__decaytype>{}
+		   + typename __promote_fp<_Tps...>::__type{});
+    };
+
+  template<>
+    template<typename _Tp>
+      struct __promote_fp<_Tp>
+      {
+	using __decaytype = typename std::decay<_Tp>::type;
+	using __type = decltype(__promote_fp_help_t<__decaytype>{});
+      };
+#else
   // Decay refs and cv...
   // Alternatively we could decay refs and propagate cv to promoted type.
   template<typename _Tp, typename... _Tps>
@@ -195,9 +217,27 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     template<typename _Tp>
       struct __promote_fp<_Tp>
       { using __type = decltype(__promote_fp_help_t<std::decay_t<_Tp>>{}); };
+#endif
 
   template<typename... _Tps>
     using __promote_fp_t = typename __promote_fp<_Tps...>::__type;
+
+// Need an exchange utility.
+#if __cplusplus < 201402L
+  template<typename _Tp, typename _Up = _Tp>
+    _Tp
+    __exchange(_Tp& __obj, _Up&& __new_val)
+    {
+      _Tp __old_val = std::move(__obj);
+      __obj = std::forward<_Up>(__new_val);
+      return __old_val;
+    }
+#else
+  template<typename _Tp, typename _Up = _Tp>
+    _Tp
+    __exchange(_Tp& __obj, _Up&& __new_val)
+    { return std::exchange(__obj, std::forward<_Up>(__new_val)); }
+#endif
 
 #endif // __cplusplus >= 201103L
 

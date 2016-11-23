@@ -49,7 +49,6 @@
 #pragma GCC system_header
 
 #include <complex>
-#include <utility> // For exchange
 #include <ext/math_const.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
@@ -376,7 +375,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto _Jnu = __fact * _Jnul1;
       auto _Jpnu = __fact * _Jpnu1;
       for (int __i = 1; __i <= __n; ++__i)
-	_Nmu = std::exchange(_Nnu1, (__mu + __i) * __xi2 * _Nnu1 - _Nmu);
+	_Nmu = __gnu_cxx::__exchange(_Nnu1,
+				     (__mu + __i) * __xi2 * _Nnu1 - _Nmu);
       auto _Nnu = _Nmu;
       auto _Npnu = __nu * __xi * _Nmu - _Nnu1;
 
