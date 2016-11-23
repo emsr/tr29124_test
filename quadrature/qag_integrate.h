@@ -37,16 +37,22 @@
 #define QAG_INTEGRATE_H
 namespace __gnu_test
 {
-  // Integrates function func from a to b
-  // epsabs is the limit on absolute error
-  // epsrel is the limit on relative error
-  // Once either the absolute or relative error limit is reached,
-  // qag_integrate() returns
-  // max_iter is the maximum number of integration steps allowed
-  // qksz is the size of the Gauss-Kronrod integration
-  //  (QK_15, QK_21, QK_31, QK_41, QK_51, or QK_61)
-  // Returns a pair with the first value being the integration result,
-  // and the second value being the estimated error.
+  /**
+   * Integrates a function from a to b using the Gauss-Kronrod
+   * quadrature rule.  The integration limits are finite.
+   *
+   * Once either the absolute or relative error limit is reached,
+   * qag_integrate() returns
+   * @param[in] __func The single-variable function to be integrated
+   * @param[in] __a The lower limit of integration
+   * @param[in] __b The upper limit of integration
+   * @param[in] __max_iter The maximum number of integration steps allowed
+   * @param[in] __epsabs The limit on absolute error
+   * @param[in] __epsrel The limit on relative error
+   * @param[in] __qksz The size of the Gauss-Kronrod integration scheme
+   * @return A pair with the first value being the integration result,
+   *         and the second value being the estimated error.
+   */
   template<typename _VecTp, typename _FType>
     std::pair<_VecTp, _VecTp>
     qag_integrate(const _FType& __func, _VecTp __a, _VecTp __b,
@@ -59,6 +65,8 @@ namespace __gnu_test
       size_t __iteration = 0;
       int __roundoff_type1 = 0, __roundoff_type2 = 0, __error_type = 0;
 
+      const auto _S_eps = std::numeric_limits<_VecTp>::epsilon();
+
       _VecTp __round_off;
 
       _VecTp __result = 0;
@@ -67,9 +75,10 @@ namespace __gnu_test
       std::vector<_VecTp> __rlist(__max_iter);
       std::vector<_VecTp> __elist(__max_iter);
 
-      if (__epsabs <= 0 && (__epsrel < 50 * std::numeric_limits<_VecTp>::epsilon()))
-	std::__throw_logic_error("tolerance cannot be achieved in qag_integrate()"
-			  " with given absolute and relative error limits");
+      if (__epsabs <= 0 && (__epsrel < 50 * _S_eps))
+	std::__throw_logic_error("tolerance cannot be achieved"
+			  " in qag_integrate() with given absolute"
+			  " and relative error limits");
 
       typedef std::tuple<_VecTp&,_VecTp&,_VecTp&,_VecTp&> __ret_type;
 
@@ -83,17 +92,19 @@ namespace __gnu_test
       __tolerance = std::max(__epsabs, __epsrel * std::abs(__result0));
 
       //Compute roundoff
-      __round_off = 50 * std::numeric_limits<_VecTp>::epsilon() * __resabs0;
+      __round_off = 50 * _S_eps * __resabs0;
 
       if (__abserr0 <= __round_off && __abserr0 > __tolerance)
 	{
 	  __result = __result0;
 	  __abserr = __abserr0;
 
-	  std::__throw_runtime_error("Cannot reach tolerance because of roundoff error"
-			      " on first attempt in qag_integrate()");
+	  std::__throw_runtime_error("Cannot reach tolerance because"
+			      " of roundoff error on first attempt"
+			      " in qag_integrate()");
 	}
-      else if ((__abserr0 <= __tolerance && __abserr0 != __resasc0) || __abserr0 == 0.0)
+      else if ((__abserr0 <= __tolerance && __abserr0 != __resasc0)
+		|| __abserr0 == 0.0)
 	{
 	  __result = __result0;
 	  __abserr = __abserr0;
@@ -105,7 +116,8 @@ namespace __gnu_test
 	  __result = __result0;
 	  __abserr = __abserr0;
 
-	  std::__throw_runtime_error("a maximum of one iteration was insufficient");
+	  std::__throw_runtime_error("a maximum of one iteration"
+				     " was insufficient");
 	}
 
       __area = __result0;
@@ -131,7 +143,7 @@ namespace __gnu_test
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
 	  __a1 = __a_i;
-	  __b1 = 0.5*(__a_i + __b_i);
+	  __b1 = 0.5 * (__a_i + __b_i);
 	  __a2 = __b1;
 	  __b2 = __b_i;
 
@@ -151,7 +163,8 @@ namespace __gnu_test
 	    {
 	      _VecTp __delta = __r_i - __area12;
 
-	      if (std::abs(__delta) <= 1.0e-5 * std::abs(__area12) && __error12 >= 0.99 * __e_i)
+	      if (std::abs(__delta) <= 1.0e-5 * std::abs(__area12)
+		 && __error12 >= 0.99 * __e_i)
 		++__roundoff_type1;
 	      if (__iteration >= 10 && __error12 > __e_i)
 		++__roundoff_type2;
@@ -171,7 +184,8 @@ namespace __gnu_test
 		__error_type = 3;
 	    }
 
-	  __workspace.update(__a1, __b1, __area1, __error1, __a2, __b2, __area2, __error2);
+	  __workspace.update(__a1, __b1, __area1, __error1,
+			     __a2, __b2, __area2, __error2);
 
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
@@ -179,7 +193,8 @@ namespace __gnu_test
 
 	  ++__iteration;
 	}
-      while (__iteration < __max_iter && !__error_type && __errsum > __tolerance);
+      while (__iteration < __max_iter && !__error_type
+	     && __errsum > __tolerance);
 
       __result = __workspace.sum_results();
       __abserr = __errsum;
@@ -187,16 +202,17 @@ namespace __gnu_test
       if (__errsum <= __tolerance)
 	return std::make_pair(__result, __abserr);
       else if (__error_type == 2)
-	std::__throw_runtime_error("roundoff error prevents tolerance from being"
-			    " achieved in qag_integrate()");
+	std::__throw_runtime_error("roundoff error prevents tolerance"
+			    " from being achieved in qag_integrate()");
       else if (__error_type == 3)
 	std::__throw_runtime_error("bad integrand behavior found in integrand"
 			    " inteveral in qag_integrate()");
       else if (__iteration == __max_iter)
-	std::__throw_runtime_error("maximum number of iterations reached in"
-			    " qag_integrate()");
+	std::__throw_runtime_error("maximum number of iterations reached"
+			    " in qag_integrate()");
       else
-	std::__throw_runtime_error("could not integrate function in qag_integrate()");
+	std::__throw_runtime_error("could not integrate function"
+			    " in qag_integrate()");
     }
 
 } // namespace

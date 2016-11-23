@@ -40,7 +40,7 @@ namespace __gnu_test
     private:
 
       static std::vector<_Tp> _S_ft;
-      factorial_table(); //Disallow construction
+      factorial_table() = delete;
 
     public:
 
@@ -75,7 +75,7 @@ namespace __gnu_test
     private:
 
       static std::vector<_Tp> _S_lnft;
-      lnfactorial_table(); //Disallow construction
+      lnfactorial_table() = delete;
 
     public:
 
