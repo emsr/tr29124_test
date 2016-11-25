@@ -28,8 +28,21 @@ template<typename _Tp>
   _Tp
   __chebyshev_t_trig(unsigned int __n, _Tp __x)
   {
-    auto __theta = std::acos(__x);
-    return std::cos(__n * __theta);
+    if (std::abs(__x) <= _Tp{1})
+      {
+	auto __theta = std::acos(__x);
+	return std::cos(__n * __theta);
+      }
+    else if (__x > _Tp{1})
+      {
+	auto __theta = std::acosh(__x);
+	return std::cosh(__n * __theta);
+      }
+    else
+      {
+	auto __theta = std::acosh(-__x);
+	return (__n & 1 ? _Tp{-1} : _Tp{+1}) * std::cosh(__n * __theta);
+      }
   }
 
 /**
@@ -68,11 +81,24 @@ template<typename _Tp>
       return (__n % 2 == 0 ? +1 : -1) * _Tp(__n + 1);
     else if (std::abs(__x - _Tp{1}) < _S_eps)
       return _Tp(__n + 1);
-    else
+    else if (std::abs(__x) < _Tp{1})
       {
 	auto __theta = std::acos(__x);
 	return std::sin(_Tp(__n + 1) * __theta)
 	     / std::sin(__theta);
+      }
+    else if (__x > _Tp{1})
+      {
+	auto __theta = std::acosh(__x);
+	return std::sinh(_Tp(__n + 1) * __theta)
+	     / std::sinh(__theta);
+      }
+    else
+      {
+	auto __theta = std::acosh(-__x);
+	return (__n & 1 ? _Tp{-1} : _Tp{+1})
+	     * std::sinh(_Tp(__n + 1) * __theta)
+	     / std::sinh(__theta);
       }
   }
 
@@ -110,11 +136,24 @@ template<typename _Tp>
     const auto _S_eps = __gnu_cxx::__epsilon(__x);
     if (std::abs(__x + _Tp{1}) < _S_eps)
       return (__n % 2 == 0 ? +1 : -1) * _Tp(2 * __n + 1);
-    else
+    else if (std::abs(__x) <= _Tp{1})
       {
 	auto __theta = std::acos(__x);
 	return std::cos(_Tp(__n + 0.5L) * __theta)
 	     / std::cos(_Tp{0.5L} * __theta);
+      }
+    else if (__x > _Tp{1})
+      {
+	auto __theta = std::acosh(__x);
+	return std::cosh(_Tp(__n + 0.5L) * __theta)
+	     / std::cosh(_Tp{0.5L} * __theta);
+      }
+    else
+      {
+	auto __theta = std::acosh(-__x);
+	return (__n % 2 == 0 ? +1 : -1)
+	     * std::sinh(_Tp(__n + 0.5L) * __theta)
+	     / std::sinh(_Tp{0.5L} * __theta);
       }
   }
 
@@ -153,11 +192,24 @@ template<typename _Tp>
     const auto _S_eps = __gnu_cxx::__epsilon(__x);
     if (std::abs(__x - _Tp{1}) < _S_eps)
       return _Tp(2 * __n + 1);
-    else
+    else if (std::abs(__x) <= _Tp{1})
       {
 	auto __theta = std::acos(__x);
 	return std::sin(_Tp(__n + 0.5L) * __theta)
 	     / std::sin(_Tp{0.5L} * __theta);
+      }
+    else if (__x > _Tp{1})
+      {
+	auto __theta = std::acosh(__x);
+	return std::sinh(_Tp(__n + 0.5L) * __theta)
+	     / std::sinh(_Tp{0.5L} * __theta);
+      }
+    else
+      {
+	auto __theta = std::acosh(-__x);
+	return (__n % 2 == 0 ? +1 : -1)
+	     * std::cosh(_Tp(__n + 0.5L) * __theta)
+	     / std::cosh(_Tp{0.5L} * __theta);
       }
   }
 
@@ -193,7 +245,21 @@ template<typename Tp>
     for (auto n : index)
       {
 	std::cout << "\n n = " << std::setw(width) << n << '\n';
-	for (int i = -100; i <= 100; ++i)
+	std::cout << ' ' << std::setw(width) << "x"
+		  << ' ' << std::setw(width) << "Tt"
+		  << ' ' << std::setw(width) << "Tg"
+		  << ' ' << std::setw(width) << "Ut"
+		  << ' ' << std::setw(width) << "Ug"
+		  << ' ' << std::setw(width) << "Vt"
+		  << ' ' << std::setw(width) << "Vg"
+		  << ' ' << std::setw(width) << "Wt"
+		  << ' ' << std::setw(width) << "Wg"
+		  << ' ' << std::setw(width) << "Tt - Tg"
+		  << ' ' << std::setw(width) << "Ut - Ug"
+		  << ' ' << std::setw(width) << "Vt - Vg"
+		  << ' ' << std::setw(width) << "Wt - Wg"
+		  << '\n';
+	for (int i = -150; i <= 150; ++i)
 	  {
 	    auto x = Tp{0.01Q} * i;
 	    auto Tt = __chebyshev_t_trig(n, x);
