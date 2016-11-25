@@ -36,9 +36,13 @@ template<typename _Tp>
   _Tp
   normalized_chebyshev_w(int n1, int n2, _Tp x)
   {
-    return __gnu_cxx::chebyshev_w(n1, x)
-	 * __gnu_cxx::chebyshev_w(n2, x)
-	 / _Tp{2};
+    if (std::abs(x + _Tp{1}) < _S_eps)
+      return _S_inf;
+    else
+      return __gnu_cxx::chebyshev_w(n1, x)
+	   * __gnu_cxx::chebyshev_w(n2, x)
+	   * std::sqrt((_Tp{1} - x) / (_Tp{1} + x))
+	   / _Tp{2};
   }
 
 template<typename _Tp>
