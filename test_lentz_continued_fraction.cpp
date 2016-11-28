@@ -123,7 +123,6 @@ template<typename _Tp>
     std::cout << "Chi = " << std::setw(width) << __gnu_cxx::coshint(1.2) << '\n';
   }
 
-
 int
 main()
 {
