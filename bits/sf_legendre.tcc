@@ -68,21 +68,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *     P_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l}
    *   @f]
    *
-   *   @param  __l  The order of the Legendre polynomial.  @f$l >= 0@f$.
-   *   @param  __x  The argument of the Legendre polynomial.  @f$|x| <= 1@f$.
+   *   @param  __l  The order of the Legendre polynomial.  @f$ l >= 0 @f$.
+   *   @param  __x  The argument of the Legendre polynomial.
    */
   template<typename _Tp>
     _Tp
     __poly_legendre_p(unsigned int __l, _Tp __x)
     {
-      if ((__x < -_Tp{1}) || (__x > +_Tp{1}))
-	std::__throw_domain_error(__N("__poly_legendre_p: argument out of range"));
-      else if (__isnan(__x))
+      if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
-      else if (__x == +_Tp{1})
-	return +_Tp{1};
-      else if (__x == -_Tp{1})
-	return (__l % 2 == 1 ? -_Tp{1} : +_Tp{1});
+      else if (__x == _Tp{+1})
+	return _Tp{+1};
+      else if (__x == _Tp{-1})
+	return (__l % 2 == 1 ? _Tp{-1} : _Tp{+1});
       else
 	{
 	  auto _P_lm2 = _Tp{1};
@@ -125,14 +123,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __legendre_q(unsigned int __l, _Tp __x)
     {
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_inf = __gnu_cxx::__infinity(__x);
       if ((__x < -_Tp{1}) || (__x > +_Tp{1}))
 	std::__throw_domain_error(__N("__legendre_q: argument out of range"));
       else if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
-      else if (__x == +_Tp{1})
-	return +_Tp{1};
-      else if (__x == -_Tp{1})
-	return (__l % 2 == 1 ? -_Tp{1} : +_Tp{1});
+      else if (std::abs(__x - _Tp{1}) < _S_eps)
+	return _S_inf;
+      else if (std::abs(__x + _Tp{1}) < _S_eps)
+	return (__l & 1 ? +1 : -1) * _S_inf;
       else
 	{
 	  auto _Q_lm2 = _Tp{0.5L} * std::log((_Tp{1} + __x) / (_Tp{1} - __x));
@@ -171,16 +171,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   @param  __m  The order of the associated Legendre function.
    *              @f$ m <= l @f$.
    *   @param  __x  The argument of the associated Legendre function.
-   *              @f$ |x| <= 1 @f$.
    */
   template<typename _Tp>
     _Tp
     __assoc_legendre_p(unsigned int __l, unsigned int __m, _Tp __x)
     {
-      if (__x < -_Tp{1} || __x > +_Tp{1})
-	std::__throw_domain_error(__N("__assoc_legendre_p: "
-				      "argument out of range"));
-      else if (__m > __l)
+      if (__m > __l)
 	std::__throw_domain_error(__N("__assoc_legendre_p: "
 				      "degree out of range"));
       else if (__isnan(__x))
