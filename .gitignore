@@ -195,6 +195,7 @@ test_jacobi
 test_jacobi_inv
 test_jacobi_zeta
 test_kelvin
+test_laguerre
 test_legendre
 test_lentz_continued_fraction
 test_lerch
