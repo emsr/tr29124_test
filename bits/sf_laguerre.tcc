@@ -250,10 +250,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __poly_laguerre(unsigned int __n, _Tpa __alpha1, _Tp __x)
     {
       const unsigned int __max_iter = 10000000;
-      if (__x < _Tp{0})
-	std::__throw_domain_error(__N("__poly_laguerre: negative argument"));
-      // Return NaN on NaN input.
-      else if (__isnan(__x))
+      if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__n == 0)
 	return _Tp{1};
