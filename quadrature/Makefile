@@ -13,6 +13,7 @@ CXX_LIB_DIR = $(CXX_INST_DIR)/lib64
 OBJ_DIR = obj
 
 BINS = hermite_test \
+       laguerre_test \
        legendre_test \
        gegenbauer_test \
        jacobi_test \
@@ -27,6 +28,9 @@ all: $(BINS)
 
 hermite_test: $(OBJ_DIR)/hermite_test.o
 	$(CXX17) -o hermite_test $(OBJ_DIR)/hermite_test.o -lquadmath
+
+laguerre_test: $(OBJ_DIR)/laguerre_test.o
+	$(CXX17) -o laguerre_test $(OBJ_DIR)/laguerre_test.o -lquadmath
 
 legendre_test: $(OBJ_DIR)/legendre_test.o
 	$(CXX17) -o legendre_test $(OBJ_DIR)/legendre_test.o -lquadmath
@@ -52,6 +56,9 @@ chebyshev_w_test: $(OBJ_DIR)/chebyshev_w_test.o
 
 $(OBJ_DIR)/hermite_test.o: *.h hermite_test.cpp
 	$(CXX17) -c -o $(OBJ_DIR)/hermite_test.o hermite_test.cpp
+
+$(OBJ_DIR)/laguerre_test.o: *.h laguerre_test.cpp
+	$(CXX17) -c -o $(OBJ_DIR)/laguerre_test.o laguerre_test.cpp
 
 $(OBJ_DIR)/legendre_test.o: *.h legendre_test.cpp
 	$(CXX17) -c -o $(OBJ_DIR)/legendre_test.o legendre_test.cpp

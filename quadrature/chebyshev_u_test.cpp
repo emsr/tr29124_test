@@ -26,7 +26,6 @@
 #include <string>
 
 //#include "simple_integrate.h"
-#include "factorial_table.h"
 #include "integration.h"
 
 using namespace __gnu_test;
@@ -67,8 +66,8 @@ template<typename _Tp>
 
 	    typedef std::pair<_Tp&,_Tp&> ret_type;
 	    ret_type{integration_result, integration_error}
-//        	= integrate(func, _Tp{-1}, _Tp{1}, integ_precision, _Tp{0});
         	= integrate_smooth(func, _Tp{-1}, _Tp{1}, integ_precision, _Tp{0});
+//        	= integrate(func, _Tp{-1}, _Tp{1}, integ_precision, _Tp{0});
 
             if (std::abs(delta<_Tp>(n1, n2) - integration_result) > comp_precision)
               {
