@@ -14,8 +14,97 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hermite test_hermite
 
 #include <bits/float128_io.h>
 #include "new_hermite.tcc"
+#include "LentzContinuedFraction.tcc"
 
-//#include "quadrature/integration.h"
+#include "quadrature/integration.h"
+
+  /**
+   * Compute the Hermite polynomial ratio:
+   * @f[
+   *    \frac{H_n(x)}{H_{n-1}(x)} = 2n\frac{H_n(x)}{H'_n(x)}
+   *       = b_k = 2x, k >= 0
+   *         a_k = -2(n-k) k >= 1
+   * @f]
+   *
+   * @see RICHARD J. MATHAR, GAUSS-LAGUERRE AND GAUSS-HERMITE QUADRATURE
+   * ON 64, 96 AND 128 NODES
+   *
+   * @see T. S. Shao, T. C. Chen, and R. M. Frank,
+   * Tables of zeros and Gaussian weights of certain associated Laguerre
+   * polynomials and the related generalized Hermite polynomials,
+   * Math. Comp. 18 (1964), no. 88, 598{616. MR 0166397 (29 #3674)
+   */
+  template<typename _Tp>
+    _Tp
+    __hermite_ratio(unsigned int __n, _Tp __x)
+    {
+      auto __a = [__n](std::size_t __k, _Tp) { return _Tp(-2 * (__n - __k)); };
+      using _AFun = decltype(__a);
+
+      auto __b = [__x](std::size_t, _Tp) { return _Tp{2} * __x; };
+      using _BFun = decltype(__b);
+
+      auto __w = [](std::size_t, _Tp) { return _Tp{0}; };
+      using _TailFun = decltype(__w);
+
+      using _CFrac = _LentzContinuedFraction<_Tp, _AFun, _BFun, _TailFun>;
+      _CFrac __Hrat(__a, __b, __w);
+
+      return __Hrat();
+    }
+
+  template<typename _Tp>
+    std::vector<_Tp> 
+    __hermite_zeros(unsigned int __n, _Tp __proto = _Tp{})
+    {
+      const auto _S_eps = __gnu_cxx::__epsilon(__proto);
+      const unsigned int _S_maxit = 1000;
+      const auto _S_pim4 = _Tp{0.7511255444649424828587030047762276930510L};
+      std::vector<_Tp> __zero(__n);
+
+      auto __m = (__n + 1) / 2;
+      _Tp __z;
+      for (auto __i = 1u; __i <= __m; ++__i)
+	{
+	  if (__i == 1)
+	    __z = std::sqrt(_Tp(2 * __n + 1))
+		- 1.85575 * std::pow(_Tp(2 * __n + 1), -0.166667);
+	  else if (__i == 2)
+	    __z -= 1.14 * std::pow(_Tp(__n), 0.426) / __z;
+	  else if (__i == 3)
+	    __z = 1.86 * __z - 0.86 * __zero[0];
+	  else if (__i == 4)
+	    __z = 1.91 * __z - 0.91 * __zero[1];
+	  else
+	    __z = 2.0 * __z - __zero[__i - 3];
+	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
+	    {
+	      auto __p1 = _S_pim4;
+	      auto __p2 = _Tp{0};
+	      for (auto __j = 1u; __j <= __n; ++__j)
+		{
+		  auto __p3 = __p2;
+		  __p2 = __p1;
+		  __p1 = __z * std::sqrt(_Tp{2} / __j) * __p2
+		       - std::sqrt(_Tp(__j - 1) / _Tp(__j)) * __p3;
+		}
+	      auto __pp = std::sqrt(_Tp(2 * __n)) * __p2;
+	      auto __z1 = __z;
+	      __z = __z1 - __p1 / __pp;
+	      if (std::abs(__z - __z1) <= _S_eps)
+		break;
+	      if (__its > _S_maxit)
+		std::__throw_logic_error("__hermite_zeros: "
+					 "Too many iterations");
+	    }
+	  __zero[__i - 1] = __z;
+	  __zero[__n - __i] = -__z;
+	  //__w[i] = 2.0 / (__pp * __pp);
+	  //__w[__n - __i] = __w[i];
+	}
+
+      return __zero;
+    }
 
 template<typename _Tp>
   void
@@ -233,6 +322,15 @@ template<typename _Tp>
             std::cout << '\n';
           }
       }
+
+    for (int n = 0; n <= 50; ++n)
+      {
+	auto zero = __hermite_zeros(n, proto);
+	std::cout << "\nl = " << std::setw(4) << n << ":\n";
+	for (auto z : zero)
+	  std::cout << ' ' << std::setw(width) << z << '\n';
+      }
+
     return;
   }
 
