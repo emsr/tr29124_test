@@ -204,6 +204,20 @@ template<typename Tp>
     for (auto n : index)
       {
 	std::cout << "\n n = " << std::setw(width) << n << '\n';
+	std::cout << ' ' << std::setw(width) << "x"
+		  << ' ' << std::setw(width) << "Tt"
+		  << ' ' << std::setw(width) << "Tg"
+		  << ' ' << std::setw(width) << "Ut"
+		  << ' ' << std::setw(width) << "Ug"
+		  << ' ' << std::setw(width) << "Vt"
+		  << ' ' << std::setw(width) << "Vg"
+		  << ' ' << std::setw(width) << "Wt"
+		  << ' ' << std::setw(width) << "Wg"
+		  << ' ' << std::setw(width) << "Tt - Tg"
+		  << ' ' << std::setw(width) << "Ut - Ug"
+		  << ' ' << std::setw(width) << "Vt - Vg"
+		  << ' ' << std::setw(width) << "Wt - Wg"
+		  << '\n';
 	for (int i = -100; i <= 100; ++i)
 	  {
 	    auto x = Tp{0.01Q} * i;
