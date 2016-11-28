@@ -26,24 +26,30 @@
 #include <string>
 
 //#include "simple_integrate.h"
-#include "factorial_table.h"
 #include "integration.h"
 
 using namespace __gnu_test;
 
 // Try to manage the four-gamma ratio.
+// alpha > -1, beta > -1.
 template<typename _Tp>
   _Tp
   gamma_ratio(int n, _Tp alpha, _Tp beta)
   {
-    auto gaman1 = std::tgamma(alpha);
-    auto gambn1 = std::tgamma(beta);
-    auto gamabn1 = std::tgamma(alpha + beta);
-    auto fact = gaman1 * gambn1 / gamabn1;
-    for (int k = 1; k <= n; ++k)
-      fact *= (_Tp(k) + alpha) * (_Tp(k) + beta)
-	    / (_Tp(k) + alpha + beta) / _Tp(k);
-    return fact;
+    const auto _S_eps = __gnu_cxx::__epsilon(alpha);
+    if (std::abs(_Tp(1) + alpha + beta) < _S_eps)
+      return _Tp(0);
+    else
+      {
+	auto gaman1 = std::tgamma(_Tp(1) + alpha);
+	auto gambn1 = std::tgamma(_Tp(1) + beta);
+	auto gamabn1 = std::tgamma(_Tp(1) + alpha + beta);
+	auto fact = gaman1 * gambn1 / gamabn1;
+	for (int k = 1; k <= n; ++k)
+	  fact *= (_Tp(k) + alpha) * (_Tp(k) + beta)
+		/ (_Tp(k) + alpha + beta) / _Tp(k);
+	return fact;
+      }
   }
 
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.
@@ -60,7 +66,7 @@ template<typename _Tp>
       {
 	auto gam = gamma_ratio(n1, alpha, beta);
 	auto norm = std::pow(_Tp{2}, _Tp{1} + alpha + beta)
-		  * gam * (_Tp(2 * n1 + 1) + alpha + beta);
+		  * gam / (_Tp(2 * n1 + 1) + alpha + beta);
 	return std::pow(_Tp{1} - x, alpha) * std::pow(_Tp{1} + x, beta)
 	     * __gnu_cxx::jacobi(n1, alpha, beta, x)
 	     * __gnu_cxx::jacobi(n2, alpha, beta, x) / norm;
@@ -74,10 +80,9 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  test_jacobi()
+  test_jacobi(_Tp alpha, _Tp beta)
   {
-    _Tp alpha = _Tp{0.5};
-    _Tp beta = _Tp{1.5};
+    const auto eps = __gnu_cxx::__epsilon(alpha + beta);
 
     for (int n1 = 0; n1 <= 720; ++n1)
       {
@@ -87,19 +92,19 @@ template<typename _Tp>
 	      func([n1, n2, alpha, beta](_Tp x)
 		   -> _Tp
 		   { return normalized_jacobi<_Tp>(n1, n2, alpha, beta, x); });
-	    _Tp integ_precision = _Tp{1000} * std::numeric_limits<_Tp>::epsilon();
+	    _Tp integ_precision = _Tp{1000} * eps;
 	    _Tp comp_precision = _Tp{10} * integ_precision;
 	    _Tp integration_result, integration_error;
 
 	    typedef std::pair<_Tp&,_Tp&> ret_type;
 	    ret_type{integration_result, integration_error}
-//        	= integrate(func, _Tp{-1}, _Tp{1}, integ_precision, _Tp{0});
         	= integrate_smooth(func, _Tp{-1}, _Tp{1}, integ_precision, _Tp{0});
+//        	= integrate(func, _Tp{-1}, _Tp{1}, integ_precision, _Tp{0});
 
             if (std::abs(delta<_Tp>(n1, n2) - integration_result) > comp_precision)
               {
         	std::stringstream ss;
-        	ss.precision(-int(log10(std::numeric_limits<_Tp>::epsilon())));
+        	ss.precision(-int(log10(eps)));
         	ss << "Integration failed at n1=" << n1 << ", n2=" << n2
         	   << ", returning result " << integration_result
         	   << " instead of the expected " << delta<_Tp>(n1, n2) << '\n';
@@ -116,7 +121,7 @@ main()
 {
   try
     {
-      test_jacobi<double>();
+      test_jacobi<double>(0.5, 1.5);
     }
   catch (std::exception& err)
     {
@@ -125,7 +130,7 @@ main()
 
   try
     {
-      test_jacobi<long double>();
+      test_jacobi<long double>(0.5L, 1.5L);
     }
   catch (std::exception& err)
     {
