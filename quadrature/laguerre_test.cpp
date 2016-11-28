@@ -30,20 +30,27 @@
 
 using namespace __gnu_test;
 
+// Try to manage the gamma ratio.
+template<typename _Tp>
+  _Tp
+  gamma_ratio(int n, _Tp alpha)
+  {
+    auto gaman1 = std::tgamma(_Tp(1) + alpha);
+    auto fact = gaman1;
+    for (int k = 1; k <= n; ++k)
+      fact *= (_Tp(k) + alpha) / _Tp(k);
+    return fact;
+  }
+
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.
 template<typename _Tp>
   _Tp
-  normalized_chebyshev_w(int n1, int n2, _Tp x)
+  normalized_assoc_laguerre(int n1, int n2, _Tp alpha, _Tp x)
   {
-    const auto _S_eps = __gnu_cxx::__epsilon(x);
-    const auto _S_inf = std::numeric_limits<_Tp>::infinity();
-    if (std::abs(x + _Tp{1}) < _S_eps)
-      return (n1 + n2) & 1 ? -_S_inf : _S_inf;
-    else
-      return __gnu_cxx::chebyshev_w(n1, x)
-	   * __gnu_cxx::chebyshev_w(n2, x)
-	   * std::sqrt((_Tp{1} - x) / (_Tp{1} + x))
-	   / _Tp{2};
+    auto norm = gamma_ratio(n1, alpha);
+    return std::pow(x, alpha) * std::exp(-x)
+	 * std::assoc_laguerre(n1, alpha, x)
+	 * std::assoc_laguerre(n2, alpha, x) / norm;
   }
 
 template<typename _Tp>
@@ -53,25 +60,26 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  test_chebyshev_w()
+  test_assoc_laguerre()
   {
     const _Tp eps = std::numeric_limits<_Tp>::epsilon();
+    _Tp alpha = _Tp{0.5};
 
-    // Neverending loop: runs until integration fails
-    for (int n1 = 0; ; ++n1)
+    for (int n1 = 0; n1 <= 720; ++n1)
       {
 	for (int n2 = 0; n2 <= n1; ++n2)
 	  {
 	    std::function<_Tp(_Tp)>
-	      func([n1, n2](_Tp x)->_Tp{return normalized_chebyshev_w(n1, n2, x);});
+	      func([n1, n2, alpha](_Tp x)
+		   -> _Tp
+		   { return normalized_assoc_laguerre<_Tp>(n1, n2, alpha, x); });
 	    _Tp integ_precision = _Tp{1000} * eps;
 	    _Tp comp_precision = _Tp{10} * integ_precision;
 	    _Tp integration_result, integration_error;
 
 	    typedef std::pair<_Tp&,_Tp&> ret_type;
 	    ret_type{integration_result, integration_error}
-        	= integrate_smooth(func, _Tp{-1}, _Tp{1}, integ_precision, _Tp{0});
-//        	= integrate(func, _Tp{-1}, _Tp{1}, integ_precision, _Tp{0});
+		= integrate_to_infinity(func, _Tp{0}, integ_precision, _Tp{0});
 
             if (std::abs(delta<_Tp>(n1, n2) - integration_result) > comp_precision)
               {
@@ -83,7 +91,7 @@ template<typename _Tp>
         	throw std::logic_error(ss.str());
               }
 	  }
-	std::cout << "Integration successful for chebyshev_w polynomials up to n = " << n1
+	std::cout << "Integration successful for assoc_laguerre polynomials up to n = " << n1
              << '\n';
       }
   }
@@ -93,7 +101,7 @@ main()
 {
   try
     {
-      test_chebyshev_w<double>();
+      test_assoc_laguerre<double>();
     }
   catch (std::exception& err)
     {
@@ -102,7 +110,7 @@ main()
 
   try
     {
-      test_chebyshev_w<long double>();
+      test_assoc_laguerre<long double>();
     }
   catch (std::exception& err)
     {

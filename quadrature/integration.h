@@ -115,8 +115,7 @@ namespace __gnu_test
 
       if (isnan(__a) || isnan(__b))
 	return std::make_pair(__NaN, __NaN);
-
-      if (__a == -__infty)
+      else if (__a == -__infty)
 	{
 	  if (__b == __infty) // Integration from -inf to +inf
 	    return integrate_infinite(__func, __max_abs_error,
