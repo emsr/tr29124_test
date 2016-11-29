@@ -58,18 +58,18 @@ template<typename _Tp>
                                          std::placeholders::_1));
 	    _Tp integ_precision = _Tp{1000} * eps;
 	    _Tp comp_precision = _Tp{10} * integ_precision;
-	    _Tp integration_result, integration_error;
 
-	    typedef std::pair<_Tp&,_Tp&> ret_type;
-	    ret_type{integration_result, integration_error}
+	    auto [result, error]
         	= integrate(func, _Tp{-1}, _Tp{1}, integ_precision, _Tp{0});
 
-            if (std::abs(delta<_Tp>(l1, l2) - integration_result) > comp_precision)
+            if (std::abs(delta<_Tp>(l1, l2) - result) > comp_precision)
               {
         	std::stringstream ss;
-        	ss.precision(-int(log10(eps)));
+        	ss.precision(std::numeric_limits<_Tp>::digits10);
+		ss << std::showpoint << std::scientific;
         	ss << "Integration failed at l1=" << l1 << ", l2=" << l2
-        	   << ", returning result " << integration_result
+        	   << ", returning result " << result
+        	   << ", with error " << error
         	   << " instead of the expected " << delta<_Tp>(l1, l2) << '\n';
         	throw std::logic_error(ss.str());
               }
