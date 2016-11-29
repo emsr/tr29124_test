@@ -3898,8 +3898,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see legendre_q for details.
    */
   inline float
-  legendre_qf(unsigned int __n, float __x)
-  { return std::__detail::__legendre_q<float>(__n, __x); }
+  legendre_qf(unsigned int __l, float __x)
+  { return std::__detail::__legendre_q<float>(__l, __x); }
 
   /**
    * Return the Legendre function of the second kind @f$ Q_l(x) @f$
@@ -3908,8 +3908,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see legendre_q for details.
    */
   inline long double
-  legendre_ql(unsigned int __n, long double __x)
-  { return std::__detail::__legendre_q<long double>(__n, __x); }
+  legendre_ql(unsigned int __l, long double __x)
+  { return std::__detail::__legendre_q<long double>(__l, __x); }
 
   /**
    * Return the Legendre function of the second kind @f$ Q_l(x) @f$ of
@@ -3932,10 +3932,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
-    legendre_q(unsigned int __n, _Tp __x)
+    legendre_q(unsigned int __l, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__legendre_q<__type>(__n, __x);
+      return std::__detail::__legendre_q<__type>(__l, __x);
     }
 
   // Scaled lower incomplete gamma
@@ -4034,7 +4034,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    + \frac{2}{\pi} K(m) Z(1-m,\phi)
    * @f]
    * where @f$ m = k^2 @f$, @f$ K(k) @f$ is the complete elliptic function
-   * of the first kind, and @f$ Z(k,phi) @f$ is the Jacobi zeta function.
+   * of the first kind, and @f$ Z(k,\phi) @f$ is the Jacobi zeta function.
    *
    * @tparam _Tk the floating-point type of the modulus
    * @tparam _Tphi the floating-point type of the angular limit argument

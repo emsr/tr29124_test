@@ -7,6 +7,7 @@ var sf__distributions_8tcc =
     [ "__chi_squared_pdf", "sf__distributions_8tcc.html#a2125cbbc3fd3aad11c8025478c7a14fe", null ],
     [ "__chi_squared_pdfc", "sf__distributions_8tcc.html#aa62c16dd75a7411400c7082e6b2b246b", null ],
     [ "__exponential_cdf", "sf__distributions_8tcc.html#ada7f806f891a02d7825ec9a8862302ad", null ],
+    [ "__exponential_cdfc", "sf__distributions_8tcc.html#a4e72483dfbfe8c866974d89f9aeb4b28", null ],
     [ "__exponential_pdf", "sf__distributions_8tcc.html#add35fd0c4c00f412c0fab7b6018ce2cd", null ],
     [ "__fisher_f_cdf", "sf__distributions_8tcc.html#a3825f4b63cdd255c1ca790bf16d844a1", null ],
     [ "__fisher_f_cdfc", "sf__distributions_8tcc.html#ae02418cde6461a9e65f926c974c216a2", null ],

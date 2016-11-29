@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['laguerre',['laguerre',['../group__tr29124__math__spec__func.html#gacae65579b397fddcd27954380d364a58',1,'std']]],
+  ['laguerre',['laguerre',['../group__tr29124__math__spec__func.html#gaf1927ca6432351e3a7af47e158e63862',1,'std']]],
   ['laguerref',['laguerref',['../group__tr29124__math__spec__func.html#gada763419b0e21b38e38daa8b6eb56a8c',1,'std']]],
   ['laguerrel',['laguerrel',['../group__tr29124__math__spec__func.html#gaaf8b141edf9163b37ea4f2ed3e0191fc',1,'std']]],
   ['lbincoef',['lbincoef',['../group__gnu__math__spec__func.html#gab6a2243313b6286cbd466c96fc7f69ed',1,'__gnu_cxx']]],
@@ -9,10 +9,10 @@ var searchData=
   ['ldouble_5ffactorial',['ldouble_factorial',['../group__gnu__math__spec__func.html#ga31ca8e7a5b1f5c883e727ed9c053edd8',1,'__gnu_cxx']]],
   ['ldouble_5ffactorialf',['ldouble_factorialf',['../group__gnu__math__spec__func.html#ga33ecc59a7ff139b483cebf42ecd4fe79',1,'__gnu_cxx']]],
   ['ldouble_5ffactoriall',['ldouble_factoriall',['../group__gnu__math__spec__func.html#gae8fa4b4866cfd20349c985b33ed2936e',1,'__gnu_cxx']]],
-  ['legendre',['legendre',['../group__tr29124__math__spec__func.html#gaf6eac7fcb98e25b8f3f7d1b95fa7add8',1,'std']]],
-  ['legendre_5fq',['legendre_q',['../group__gnu__math__spec__func.html#ga231012f205e697c7ce1bae78f8754104',1,'__gnu_cxx']]],
-  ['legendre_5fqf',['legendre_qf',['../group__gnu__math__spec__func.html#gaedb2871cec8f0f160524205e9083621d',1,'__gnu_cxx']]],
-  ['legendre_5fql',['legendre_ql',['../group__gnu__math__spec__func.html#ga35de372a666b6d530d4b3704ff4a878b',1,'__gnu_cxx']]],
+  ['legendre',['legendre',['../group__tr29124__math__spec__func.html#ga327bb7686d2e63d85e8c6b1b42b3b29e',1,'std']]],
+  ['legendre_5fq',['legendre_q',['../group__gnu__math__spec__func.html#ga4ad68133a4ff354cb99e4d3608ce6e4d',1,'__gnu_cxx']]],
+  ['legendre_5fqf',['legendre_qf',['../group__gnu__math__spec__func.html#ga46cf4d58886af402c6776bc090b4e4a7',1,'__gnu_cxx']]],
+  ['legendre_5fql',['legendre_ql',['../group__gnu__math__spec__func.html#ga60feac5a8bd733abee6610adf15208f2',1,'__gnu_cxx']]],
   ['legendref',['legendref',['../group__tr29124__math__spec__func.html#gaed94e3c664c99f5204da75be75aeac21',1,'std']]],
   ['legendrel',['legendrel',['../group__tr29124__math__spec__func.html#ga1b39bc22e3cc4860d08eb54099460391',1,'std']]],
   ['lfactorial',['lfactorial',['../group__gnu__math__spec__func.html#gaee28cc03db944a3e02fd10542016cfa8',1,'__gnu_cxx']]],

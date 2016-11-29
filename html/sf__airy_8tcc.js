@@ -11,7 +11,7 @@ var sf__airy_8tcc =
     [ "_Airy_default_radii< double >", "structstd_1_1____detail_1_1__Airy__default__radii_3_01double_01_4.html", null ],
     [ "_Airy_default_radii< float >", "structstd_1_1____detail_1_1__Airy__default__radii_3_01float_01_4.html", null ],
     [ "_Airy_default_radii< long double >", "structstd_1_1____detail_1_1__Airy__default__radii_3_01long_01double_01_4.html", null ],
-    [ "_Airy_series", "classstd_1_1____detail_1_1__Airy__series.html", null ],
+    [ "_Airy_series", "classstd_1_1____detail_1_1__Airy__series.html", "classstd_1_1____detail_1_1__Airy__series" ],
     [ "_AiryAuxilliaryState", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html", "structstd_1_1____detail_1_1__AiryAuxilliaryState" ],
     [ "_AiryState", "structstd_1_1____detail_1_1__AiryState.html", "structstd_1_1____detail_1_1__AiryState" ],
     [ "_GLIBCXX_BITS_SF_AIRY_TCC", "sf__airy_8tcc.html#a2368d5b1edfb2e14f2c283d87ab89943", null ],

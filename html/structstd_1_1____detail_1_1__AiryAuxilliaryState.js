@@ -1,11 +1,11 @@
 var structstd_1_1____detail_1_1__AiryAuxilliaryState =
 [
     [ "_Val", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html#a5f44a95a23b7c60f0b748df5f7f24f26", null ],
-    [ "fai", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html#a8724d2e0db16b03e3e7e89b54ec96c77", null ],
-    [ "faip", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html#aa05bb6a248abbc7e8b1aca419fc8f3b7", null ],
-    [ "gai", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html#a7e0297ccb071de8b62071733b3339291", null ],
-    [ "gaip", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html#a6bf0ccf2ea90395d1a035ac068a8e3d4", null ],
-    [ "hai", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html#a1fa9992d7c882e8b63f30cd4116e2d38", null ],
-    [ "haip", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html#a27725093c7098e34c6d540ba3f629c56", null ],
-    [ "z", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html#a26111d17ff4b059217cbe9d5336435ce", null ]
+    [ "__fai_deriv", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html#acff728bf75b30e81549a554ef4c149c1", null ],
+    [ "__fai_value", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html#a71f1d48076c4a91aa4420c0ba3795c42", null ],
+    [ "__gai_deriv", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html#a8b653323b9665a4f1768017d3a0e9051", null ],
+    [ "__gai_value", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html#a224d18498e87293887fc8430f87ae12e", null ],
+    [ "__hai_deriv", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html#a9aa3de91e8f462bf18033fcc2cfee571", null ],
+    [ "__hai_value", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html#aaa9bc55d2a2d9be324651966cd008a28", null ],
+    [ "__z", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html#a276bc30e3202259480073e2835075399", null ]
 ];

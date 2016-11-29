@@ -1,5 +1,13 @@
 var searchData=
 [
+  ['_5f_5fgamma_5flanczos_5fdata',['__gamma_lanczos_data',['../structstd_1_1____detail_1_1____gamma__lanczos__data.html',1,'std::__detail']]],
+  ['_5f_5fgamma_5flanczos_5fdata_3c_20double_20_3e',['__gamma_lanczos_data&lt; double &gt;',['../structstd_1_1____detail_1_1____gamma__lanczos__data_3_01double_01_4.html',1,'std::__detail']]],
+  ['_5f_5fgamma_5flanczos_5fdata_3c_20float_20_3e',['__gamma_lanczos_data&lt; float &gt;',['../structstd_1_1____detail_1_1____gamma__lanczos__data_3_01float_01_4.html',1,'std::__detail']]],
+  ['_5f_5fgamma_5flanczos_5fdata_3c_20long_20double_20_3e',['__gamma_lanczos_data&lt; long double &gt;',['../structstd_1_1____detail_1_1____gamma__lanczos__data_3_01long_01double_01_4.html',1,'std::__detail']]],
+  ['_5f_5fgamma_5fspouge_5fdata',['__gamma_spouge_data',['../structstd_1_1____detail_1_1____gamma__spouge__data.html',1,'std::__detail']]],
+  ['_5f_5fgamma_5fspouge_5fdata_3c_20double_20_3e',['__gamma_spouge_data&lt; double &gt;',['../structstd_1_1____detail_1_1____gamma__spouge__data_3_01double_01_4.html',1,'std::__detail']]],
+  ['_5f_5fgamma_5fspouge_5fdata_3c_20float_20_3e',['__gamma_spouge_data&lt; float &gt;',['../structstd_1_1____detail_1_1____gamma__spouge__data_3_01float_01_4.html',1,'std::__detail']]],
+  ['_5f_5fgamma_5fspouge_5fdata_3c_20long_20double_20_3e',['__gamma_spouge_data&lt; long double &gt;',['../structstd_1_1____detail_1_1____gamma__spouge__data_3_01long_01double_01_4.html',1,'std::__detail']]],
   ['_5f_5fsincos_5ft',['__sincos_t',['../struct____gnu__cxx_1_1____sincos__t.html',1,'__gnu_cxx']]],
   ['_5fairy',['_Airy',['../classstd_1_1____detail_1_1__Airy.html',1,'std::__detail']]],
   ['_5fairy_5fasymp',['_Airy_asymp',['../classstd_1_1____detail_1_1__Airy__asymp.html',1,'std::__detail']]],
@@ -15,13 +23,5 @@ var searchData=
   ['_5fairy_5fseries',['_Airy_series',['../classstd_1_1____detail_1_1__Airy__series.html',1,'std::__detail']]],
   ['_5fairyauxilliarystate',['_AiryAuxilliaryState',['../structstd_1_1____detail_1_1__AiryAuxilliaryState.html',1,'std::__detail']]],
   ['_5fairystate',['_AiryState',['../structstd_1_1____detail_1_1__AiryState.html',1,'std::__detail']]],
-  ['_5ffactorial_5ftable',['_Factorial_table',['../structstd_1_1____detail_1_1__Factorial__table.html',1,'std::__detail']]],
-  ['_5fgammalanczos',['_GammaLanczos',['../structstd_1_1____detail_1_1__GammaLanczos.html',1,'std::__detail']]],
-  ['_5fgammalanczos_3c_20double_20_3e',['_GammaLanczos&lt; double &gt;',['../structstd_1_1____detail_1_1__GammaLanczos_3_01double_01_4.html',1,'std::__detail']]],
-  ['_5fgammalanczos_3c_20float_20_3e',['_GammaLanczos&lt; float &gt;',['../structstd_1_1____detail_1_1__GammaLanczos_3_01float_01_4.html',1,'std::__detail']]],
-  ['_5fgammalanczos_3c_20long_20double_20_3e',['_GammaLanczos&lt; long double &gt;',['../structstd_1_1____detail_1_1__GammaLanczos_3_01long_01double_01_4.html',1,'std::__detail']]],
-  ['_5fgammaspouge',['_GammaSpouge',['../structstd_1_1____detail_1_1__GammaSpouge.html',1,'std::__detail']]],
-  ['_5fgammaspouge_3c_20double_20_3e',['_GammaSpouge&lt; double &gt;',['../structstd_1_1____detail_1_1__GammaSpouge_3_01double_01_4.html',1,'std::__detail']]],
-  ['_5fgammaspouge_3c_20float_20_3e',['_GammaSpouge&lt; float &gt;',['../structstd_1_1____detail_1_1__GammaSpouge_3_01float_01_4.html',1,'std::__detail']]],
-  ['_5fgammaspouge_3c_20long_20double_20_3e',['_GammaSpouge&lt; long double &gt;',['../structstd_1_1____detail_1_1__GammaSpouge_3_01long_01double_01_4.html',1,'std::__detail']]]
+  ['_5ffactorial_5ftable',['_Factorial_table',['../structstd_1_1____detail_1_1__Factorial__table.html',1,'std::__detail']]]
 ];
