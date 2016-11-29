@@ -59,24 +59,20 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *   @brief This routine computes the asymptotic modified cylindrical
-   *          Bessel and functions of order nu: @f$ I_{\nu}(x) @f$,
-   *          @f$ N_{\nu}(x) @f$.  Use this for @f$ x >> nu^2 + 1 @f$.
+   * @brief This routine computes the asymptotic modified cylindrical
+   * 	    Bessel and functions of order nu: @f$ I_{\nu}(x) @f$,
+   * 	    @f$ N_{\nu}(x) @f$.  Use this for @f$ x >> nu^2 + 1 @f$.
    *
-   *   References:
-   *    (1) Handbook of Mathematical Functions,
-   *        ed. Milton Abramowitz and Irene A. Stegun,
-   *        Dover Publications,
-   *        Section 9 p. 364, Equations 9.2.5-9.2.10
+   * References:
+   *  (1) Handbook of Mathematical Functions,
+   * 	  ed. Milton Abramowitz and Irene A. Stegun,
+   * 	  Dover Publications,
+   * 	  Section 9 p. 364, Equations 9.2.5-9.2.10
    *
-   *   @param  __nu  The order of the Bessel functions.
-   *   @param  __x   The argument of the Bessel functions.
-   *   @param  _Inu  The output regular modified Bessel function.
-   *   @param  _Knu  The output irregular modified Bessel function.
-   *   @param  _Ipnu  The output derivative of the regular
-   *                   modified Bessel function.
-   *   @param  _Kpnu  The output derivative of the irregular
-   *                   modified Bessel function.
+   * @param  __nu  The order of the Bessel functions.
+   * @param  __x   The argument of the Bessel functions.
+   * @return A struct containing the modified cylindrical Bessel functions
+   *         of the first and second kinds and their derivatives.
    */
   template<typename _Tp>
     __gnu_cxx::__cyl_mod_bessel_t<_Tp, _Tp, _Tp>
@@ -133,20 +129,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Compute the modified Bessel functions @f$ I_\nu(x) @f$ and
-   *           @f$ K_\nu(x) @f$ and their first derivatives
-   *           @f$ I'_\nu(x) @f$ and @f$ K'_\nu(x) @f$ respectively.
-   *           These four functions are computed together for numerical
-   *           stability.
+   * @brief  Compute the modified Bessel functions @f$ I_\nu(x) @f$ and
+   * 	     @f$ K_\nu(x) @f$ and their first derivatives
+   * 	     @f$ I'_\nu(x) @f$ and @f$ K'_\nu(x) @f$ respectively.
+   * 	     These four functions are computed together for numerical
+   * 	     stability.
    *
-   *   @param  __nu  The order of the Bessel functions.
-   *   @param  __x   The argument of the Bessel functions.
-   *   @param  _Inu  The output regular modified Bessel function.
-   *   @param  _Knu  The output irregular modified Bessel function.
-   *   @param  _Ipnu  The output derivative of the regular
-   *                   modified Bessel function.
-   *   @param  _Kpnu  The output derivative of the irregular
-   *                   modified Bessel function.
+   * @param  __nu  The order of the Bessel functions.
+   * @param  __x   The argument of the Bessel functions.
+   * @return A struct containing the modified cylindrical Bessel functions
+   *         of the first and second kinds and their derivatives.
    */
   template<typename _Tp>
     __gnu_cxx::__cyl_mod_bessel_t<_Tp, _Tp, _Tp>
@@ -300,14 +292,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @brief  Return the modified cylindrical Bessel functions
    *         and their derivatives of order @f$ \nu @f$ by various means.
    *
-   *   @param  __nu  The order of the Bessel functions.
-   *   @param  __x   The argument of the Bessel functions.
-   *   @param  _Inu  The output regular modified Bessel function.
-   *   @param  _Knu  The output irregular modified Bessel function.
-   *   @param  _Ipnu  The output derivative of the regular
-   *                   modified Bessel function.
-   *   @param  _Kpnu  The output derivative of the irregular
-   *                   modified Bessel function.
+   * @param  __nu  The order of the Bessel functions.
+   * @param  __x   The argument of the Bessel functions.
+   * @return A struct containing the modified cylindrical Bessel functions
+   *         of the first and second kinds and their derivatives.
    */
   template<typename _Tp>
     __gnu_cxx::__cyl_mod_bessel_t<_Tp, _Tp, _Tp>
@@ -358,18 +346,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Return the regular modified Bessel function of order
-   *           @f$ \nu @f$: @f$ I_{\nu}(x) @f$.
+   * @brief  Return the regular modified Bessel function of order
+   * 	     @f$ \nu @f$: @f$ I_{\nu}(x) @f$.
    *
-   *   The regular modified cylindrical Bessel function is:
-   *   @f[
-   *    I_{\nu}(x) = \sum_{k=0}^{\infty}
-   *              \frac{(x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
-   *   @f]
+   * The regular modified cylindrical Bessel function is:
+   * @f[
+   *  I_{\nu}(x) = \sum_{k=0}^{\infty}
+   * 		\frac{(x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
+   * @f]
    *
-   *   @param  __nu  The order of the regular modified Bessel function.
-   *   @param  __x   The argument of the regular modified Bessel function.
-   *   @return  The output regular modified Bessel function.
+   * @param  __nu  The order of the regular modified Bessel function.
+   * @param  __x   The argument of the regular modified Bessel function.
+   * @return  The output regular modified Bessel function.
    */
   template<typename _Tp>
     _Tp
@@ -386,24 +374,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Return the irregular modified Bessel function
-   *           @f$ K_{\nu}(x) @f$ of order @f$ \nu @f$.
+   * @brief  Return the irregular modified Bessel function
+   * 	     @f$ K_{\nu}(x) @f$ of order @f$ \nu @f$.
    *
-   *   The irregular modified Bessel function is defined by:
-   *   @f[
-   *      K_{\nu}(x) = \frac{\pi}{2}
-   *                   \frac{I_{-\nu}(x) - I_{\nu}(x)}{\sin \nu\pi}
-   *   @f]
-   *   where for integral @f$ \nu = n @f$ a limit is taken:
-   *   @f$ lim_{\nu \to n} @f$.
-   *   For negative argument we have simply:
-   *   @f[
-   *      K_{-\nu}(x) = K_{\nu}(x)
-   *   @f]
+   * The irregular modified Bessel function is defined by:
+   * @f[
+   * 	K_{\nu}(x) = \frac{\pi}{2}
+   * 		     \frac{I_{-\nu}(x) - I_{\nu}(x)}{\sin \nu\pi}
+   * @f]
+   * where for integral @f$ \nu = n @f$ a limit is taken:
+   * @f$ lim_{\nu \to n} @f$.
+   * For negative argument we have simply:
+   * @f[
+   * 	K_{-\nu}(x) = K_{\nu}(x)
+   * @f]
    *
-   *   @param  __nu  The order of the irregular modified Bessel function.
-   *   @param  __x   The argument of the irregular modified Bessel function.
-   *   @return  The output irregular modified Bessel function.
+   * @param  __nu  The order of the irregular modified Bessel function.
+   * @param  __x   The argument of the irregular modified Bessel function.
+   * @return  The output irregular modified Bessel function.
    */
   template<typename _Tp>
     _Tp
@@ -418,20 +406,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Compute the spherical modified Bessel functions
-   *           @f$ i_n(x) @f$ and @f$ k_n(x) @f$ and their first
-   *           derivatives @f$ i'_n(x) @f$ and @f$ k'_n(x) @f$
-   *           respectively.
+   * @brief  Compute the spherical modified Bessel functions
+   * 	     @f$ i_n(x) @f$ and @f$ k_n(x) @f$ and their first
+   * 	     derivatives @f$ i'_n(x) @f$ and @f$ k'_n(x) @f$
+   * 	     respectively.
    *
-   *   @param  __n  The order of the modified spherical Bessel function.
-   *   @param  __x  The argument of the modified spherical Bessel function.
-   *   @param  __i_n  The output regular modified spherical Bessel function.
-   *   @param  __k_n  The output irregular modified spherical
-   *                  Bessel function.
-   *   @param  __ip_n  The output derivative of the regular modified
-   *                   spherical Bessel function.
-   *   @param  __kp_n  The output derivative of the irregular modified
-   *                   spherical Bessel function.
+   * @param  __n  The order of the modified spherical Bessel function.
+   * @param  __x  The argument of the modified spherical Bessel function.
+   * @return A struct containing the modified spherical Bessel functions
+   *         of the first and second kinds and their derivatives.
    */
   template<typename _Tp>
     __gnu_cxx::__sph_mod_bessel_t<unsigned int, _Tp, _Tp>
@@ -461,18 +444,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Compute the Airy functions
-   *           @f$ Ai(x) @f$ and @f$ Bi(x) @f$ and their first
-   *           derivatives @f$ Ai'(x) @f$ and @f$ Bi(x) @f$
-   *           respectively.
+   * @brief  Compute the Airy functions
+   * 	     @f$ Ai(x) @f$ and @f$ Bi(x) @f$ and their first
+   * 	     derivatives @f$ Ai'(x) @f$ and @f$ Bi(x) @f$
+   * 	     respectively.
    *
-   *   @param  __z  The argument of the Airy functions.
-   *   @param  _Ai  The output Airy function of the first kind.
-   *   @param  _Bi  The output Airy function of the second kind.
-   *   @param  _Aip  The output derivative of the Airy function
-   *                  of the first kind.
-   *   @param  _Bip  The output derivative of the Airy function
-   *                  of the second kind.
+   * @param  __z  The argument of the Airy functions.
+   * @return A struct containing the Airy functions
+   *         of the first and second kinds and their derivatives.
    */
   template<typename _Tp>
     __gnu_cxx::__airy_t<_Tp, _Tp>
@@ -554,7 +533,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    *
    * @param  __x   The argument of the Airy functions.
-   * @return  A struct containing all the values and derivatives.
+   * @return A struct containing the Fock-type Airy functions
+   *         of the first and second kinds and their derivatives.
    */
   template<typename _Tp>
     __gnu_cxx::__fock_airy_t<_Tp, std::complex<_Tp>>

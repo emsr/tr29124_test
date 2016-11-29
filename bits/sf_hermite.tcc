@@ -198,7 +198,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * or
    * @f[
-   *   He_n(x) = \frac{1}{2^{-n/2}}H_n\left(\frac{x}{\sqrt{2}\right)
+   *   He_n(x) = \frac{1}{2^{-n/2}}H_n\left(\frac{x}{\sqrt{2}}\right)
    * @f]
    * where @f$ H_n(x) @f$ is the Physicists Hermite function.
    *
