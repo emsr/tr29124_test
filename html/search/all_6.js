@@ -3,8 +3,6 @@ var searchData=
   ['factorial',['factorial',['../group__gnu__math__spec__func.html#ga48bc268969bfc03eaeaf4bfd457bb25c',1,'__gnu_cxx']]],
   ['factorialf',['factorialf',['../group__gnu__math__spec__func.html#ga5a288283a8ed63e1d2b0145f313a5378',1,'__gnu_cxx']]],
   ['factoriall',['factoriall',['../group__gnu__math__spec__func.html#ga0904e504fdc3c8b9b6f5c66a73531584',1,'__gnu_cxx']]],
-  ['fai',['fai',['../structstd_1_1____detail_1_1__AiryAuxilliaryState.html#a8724d2e0db16b03e3e7e89b54ec96c77',1,'std::__detail::_AiryAuxilliaryState']]],
-  ['faip',['faip',['../structstd_1_1____detail_1_1__AiryAuxilliaryState.html#aa05bb6a248abbc7e8b1aca419fc8f3b7',1,'std::__detail::_AiryAuxilliaryState']]],
   ['fermi_5fdirac',['fermi_dirac',['../group__gnu__math__spec__func.html#ga47dd583a4f3a19f797a5e074e357ba36',1,'__gnu_cxx']]],
   ['fermi_5fdiracf',['fermi_diracf',['../group__gnu__math__spec__func.html#gacf7f49b2b7bf50fd37d939236712cbe2',1,'__gnu_cxx']]],
   ['fermi_5fdiracl',['fermi_diracl',['../group__gnu__math__spec__func.html#ga3876af54a92853036cc88ec6b8ea5d67',1,'__gnu_cxx']]],

@@ -1,5 +1,13 @@
 var namespacestd_1_1____detail =
 [
+    [ "__gamma_lanczos_data", "structstd_1_1____detail_1_1____gamma__lanczos__data.html", null ],
+    [ "__gamma_lanczos_data< double >", "structstd_1_1____detail_1_1____gamma__lanczos__data_3_01double_01_4.html", null ],
+    [ "__gamma_lanczos_data< float >", "structstd_1_1____detail_1_1____gamma__lanczos__data_3_01float_01_4.html", null ],
+    [ "__gamma_lanczos_data< long double >", "structstd_1_1____detail_1_1____gamma__lanczos__data_3_01long_01double_01_4.html", null ],
+    [ "__gamma_spouge_data", "structstd_1_1____detail_1_1____gamma__spouge__data.html", null ],
+    [ "__gamma_spouge_data< double >", "structstd_1_1____detail_1_1____gamma__spouge__data_3_01double_01_4.html", null ],
+    [ "__gamma_spouge_data< float >", "structstd_1_1____detail_1_1____gamma__spouge__data_3_01float_01_4.html", null ],
+    [ "__gamma_spouge_data< long double >", "structstd_1_1____detail_1_1____gamma__spouge__data_3_01long_01double_01_4.html", null ],
     [ "_Airy", "classstd_1_1____detail_1_1__Airy.html", "classstd_1_1____detail_1_1__Airy" ],
     [ "_Airy_asymp", "classstd_1_1____detail_1_1__Airy__asymp.html", "classstd_1_1____detail_1_1__Airy__asymp" ],
     [ "_Airy_asymp_data", "structstd_1_1____detail_1_1__Airy__asymp__data.html", null ],
@@ -11,16 +19,8 @@ var namespacestd_1_1____detail =
     [ "_Airy_default_radii< double >", "structstd_1_1____detail_1_1__Airy__default__radii_3_01double_01_4.html", null ],
     [ "_Airy_default_radii< float >", "structstd_1_1____detail_1_1__Airy__default__radii_3_01float_01_4.html", null ],
     [ "_Airy_default_radii< long double >", "structstd_1_1____detail_1_1__Airy__default__radii_3_01long_01double_01_4.html", null ],
-    [ "_Airy_series", "classstd_1_1____detail_1_1__Airy__series.html", null ],
+    [ "_Airy_series", "classstd_1_1____detail_1_1__Airy__series.html", "classstd_1_1____detail_1_1__Airy__series" ],
     [ "_AiryAuxilliaryState", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html", "structstd_1_1____detail_1_1__AiryAuxilliaryState" ],
     [ "_AiryState", "structstd_1_1____detail_1_1__AiryState.html", "structstd_1_1____detail_1_1__AiryState" ],
-    [ "_Factorial_table", "structstd_1_1____detail_1_1__Factorial__table.html", "structstd_1_1____detail_1_1__Factorial__table" ],
-    [ "_GammaLanczos", "structstd_1_1____detail_1_1__GammaLanczos.html", null ],
-    [ "_GammaLanczos< double >", "structstd_1_1____detail_1_1__GammaLanczos_3_01double_01_4.html", null ],
-    [ "_GammaLanczos< float >", "structstd_1_1____detail_1_1__GammaLanczos_3_01float_01_4.html", null ],
-    [ "_GammaLanczos< long double >", "structstd_1_1____detail_1_1__GammaLanczos_3_01long_01double_01_4.html", null ],
-    [ "_GammaSpouge", "structstd_1_1____detail_1_1__GammaSpouge.html", null ],
-    [ "_GammaSpouge< double >", "structstd_1_1____detail_1_1__GammaSpouge_3_01double_01_4.html", null ],
-    [ "_GammaSpouge< float >", "structstd_1_1____detail_1_1__GammaSpouge_3_01float_01_4.html", null ],
-    [ "_GammaSpouge< long double >", "structstd_1_1____detail_1_1__GammaSpouge_3_01long_01double_01_4.html", null ]
+    [ "_Factorial_table", "structstd_1_1____detail_1_1__Factorial__table.html", "structstd_1_1____detail_1_1__Factorial__table" ]
 ];

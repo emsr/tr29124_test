@@ -93,7 +93,7 @@
 \form#92:$ Shi(x) $
 \form#93:\[ Shi(x) = \int_0^x \frac{\sinh(t)}{t}dt \]
 \form#94:$ Chi(x) $
-\form#95:\[ Chi(x) = -\int_x^\infty \frac{cosh(t)}{t}dt = \gamma_E + ln(x) + \int_0^x \frac{cosh(t)-1}{t}dt \]
+\form#95:\[ Chi(x) = -\int_x^\infty \frac{\cosh(t)}{t}dt = \gamma_E + ln(x) + \int_0^x \frac{\cosh(t)-1}{t}dt \]
 \form#96:$ sn(k,u) $
 \form#97:$ u $
 \form#98:\[ \sin(\phi) = sn(k, F(k,\phi)) \]
@@ -313,230 +313,242 @@
 \form#312:$ |arg(-z)| < \pi/3 $
 \form#313:$ x >> nu^2 + 1 $
 \form#314:$ K_\nu(x) $
-\form#315:\[ \Gamma_1 = \frac{1}{2\mu} [\frac{1}{\Gamma(1 - \mu)} - \frac{1}{\Gamma(1 + \mu)}] \]
-\form#316:\[ \Gamma_2 = \frac{1}{2} [\frac{1}{\Gamma(1 - \mu)} + \frac{1}{\Gamma(1 + \mu)}] \]
+\form#315:\[ \Gamma_1 = \frac{1}{2\mu} \left[\frac{1}{\Gamma(1 - \mu)} - \frac{1}{\Gamma(1 + \mu)}\right] \]
+\form#316:\[ \Gamma_2 = \frac{1}{2} \left[\frac{1}{\Gamma(1 - \mu)} + \frac{1}{\Gamma(1 + \mu)}\right] \]
 \form#317:$ -1/2 <= \mu <= 1/2 $
 \form#318:$ \mu = \nu - N $
 \form#319:$ N $
 \form#320:$ \Gamma(1 + \mu) $
 \form#321:$ \Gamma(1 - \mu) $
-\form#322:$ \Gamma_1(\mu) $
-\form#323:$ \Gamma_2(\mu) $
-\form#324:$ J'_\nu(x) $
-\form#325:$ N'_\nu(x) $
-\form#326:$ J_{\nu} $
-\form#327:$ I_{\nu} $
-\form#328:\[ Z_{\nu}(x) = \sum_{k=0}^{\infty} \frac{\sigma^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)} \]
-\form#329:$ \sigma = +1 $
-\form#330:$ -1 $
-\form#331:$ Z = I $
-\form#332:$ J $
-\form#333:$ x < 0 $
-\form#334:$ H^{(2)}_nu(x) $
-\form#335:$ n'_n(x) $
-\form#336:\[ h^{(1)}_n(x) = j_n(x) + i n_n(x) \]
-\form#337:\[ h^{(2)}_n(x) = j_n(x) - i n_n(x) \]
-\form#338:$B(x,y)$
-\form#339:\[ B(a,b) = \frac{a + b}{a b} \prod_{k=1}^{\infty} \frac{1 + (a + b) / k}{(1 + a / k) (1 + b / k)} \]
-\form#340:$ I_x(a,b) $
-\form#341:\[ I_x(a,b) = \frac{B_x(a,b)}{B(a,b)} \]
-\form#342:\[ sinc(x) = \frac{\sin(x)}{x} \]
-\form#343:\[ sinc_\pi(x) = \frac{\sin(\pi x)}{\pi x} \]
-\form#344:\[ sinhc(x) = \frac{\sinh(x)}{x} \]
-\form#345:\[ sinhc_\pi(x) = \frac{\sinh(\pi x)}{\pi x} \]
-\form#346:\[ C_n(x) = 2xC_{n-1} - C_{n-2} \]
-\form#347:\[ F(x) = e^{-x^2} \int_0^x e^{y^2} dy \]
-\form#348:\[ E(k,\pi/2) = \int_0^{\pi/2}\sqrt{1 - k^2 sin^2\theta} \]
-\form#349:\[ \Pi(k,\nu) = \int_0^{\pi/2} \frac{d\theta} {(1 - \nu \sin^2\theta)\sqrt{1 - k^2 \sin^2\theta}} \]
-\form#350:$ \chi^2 $
-\form#351:\[ P(\chi^2|\nu) = \Gamma_P(\frac{\nu}{2}, \frac{\chi^2}{2}) \]
-\form#352:\[ Q(\chi^2|\nu) = \Gamma_Q(\frac{\nu}{2}, \frac{\chi^2}{2}) \]
-\form#353:\[ \Gamma(x|\alpha,\beta) = \frac{1}{\beta\Gamma(\alpha)} (x/\beta)^{\alpha - 1} e^{-x/\beta} \]
-\form#354:\[ p(x|\nu,\sigma) = \frac{x}{\sigma^2} \exp\left(-\frac{x^2+\nu^2}{2\sigma^2}\right) I_0\left(\frac{x \nu}{\sigma^2}\right) \]
-\form#355:$I_0(x)$
-\form#356:$\nu >= 0$
-\form#357:$\sigma > 0$
-\form#358:\[ f(x|\mu,\sigma) = \frac{e^{(x-\mu)^2/2\sigma^2}}{\sigma\sqrt{2\pi}} \]
-\form#359:\[ F(x|\mu,\sigma) = \frac{1}{2}\left[ 1-erf(\frac{x-\mu}{\sqrt{2}\sigma}) \right] \]
-\form#360:\[ f(x|\mu,\sigma) = \frac{e^{(\ln{x}-\mu)^2/2\sigma^2}}{\sigma\sqrt{2\pi}} \]
-\form#361:\[ F(x|\mu,\sigma) = \frac{1}{2}\left[ 1-erf(\frac{\ln{x}-\mu}{\sqrt{2}\sigma}) \right] \]
-\form#362:\[ f(x|\lambda) = \lambda e^{-\lambda x} \mbox{ for } x >= 0 \]
-\form#363:\[ F(x|\lambda) = 1 - e^{-\lambda x} \mbox{ for } x >= 0 \]
-\form#364:\[ f(x | a, b) = \frac{a}{b} \left(\frac{x}{b} \right)^{a-1} \exp{-\left(\frac{x}{b}\right)^a} \mbox{ for } x >= 0 \]
-\form#365:\[ F(x|\lambda) = 1 - e^{-(x / b)^a} \mbox{ for } x >= 0 \]
-\form#366:\[ A(t|\nu) = 1 - I_{\frac{\nu}{\nu + t^2}}(\frac{\nu}{2}, \frac{1}{2}) A(t|\nu) = \]
-\form#367:\[ A_c(t|\nu) = I_{\frac{\nu}{\nu + t^2}}(\frac{\nu}{2}, \frac{1}{2}) = 1 - A(t|\nu) \]
-\form#368:\[ Q(F|\nu_1, \nu_2) = I_{\frac{\nu_2}{\nu_2 + \nu_1 F}} (\frac{\nu_2}{2}, \frac{\nu_1}{2}) \]
-\form#369:\[ P(F|\nu_1, \nu_2) = 1 - I_{\frac{\nu_2}{\nu_2 + \nu_1 F}} (\frac{\nu_2}{2}, \frac{\nu_1}{2}) = 1 - Q(F|\nu_1, \nu_2) \]
-\form#370:\[ f(k|n,p) = \binom{n}{k}p^k(1-p)^{n-k} \]
-\form#371:\[ P(k|n,p) = I_p(k, n-k+1) \]
-\form#372:\[ Q(k|n,p) = I_{1-p}(n-k+1, k) \]
-\form#373:$ E_1(x) $
-\form#374:$ x < 1 $
-\form#375:\[ E_1(x) = \int_{1}^{\infty} \frac{e^{-xt}}{t} dt \]
-\form#376:\[ E_1(x) = \int_{1}^\infty \frac{e^{-xt}}{t} dt \]
-\form#377:\[ E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt \]
-\form#378:$ x < n $
-\form#379:$ li(x) $
-\form#380:\[ li(x) = Ei(\log(x)) \]
-\form#381:\[ Chi(x) = (Ei(x) - E_1(x))/ 2 \]
-\form#382:\[ Shi(x) = (Ei(x) - E_1(x))/ 2 \]
-\form#383:$ B_n $
-\form#384:$ B_2n $
-\form#385:$ 2n $
-\form#386:$log(\Gamma(x))$
-\form#387:$\Gamma(z)$
-\form#388:\[ \Gamma(z+1) = (z+a)^{z+1/2}e^{-z-a}\left[ \sqrt{2\pi} + \sum_{k=1}^{\lceil a \rceil + 1}\frac{c_k(a)}{z+k}\right] \]
-\form#389:\[ c_k(a) = \frac{(-1)^{k-1}}{(k-1)!}(a-k)^{k-1/2}e^{a-k} \]
-\form#390:\[ \epsilon(a) < a^{-1/2}(2\pi)^{-a-1/2} \]
-\form#391:$ log(|\Gamma(x)|) $
-\form#392:$ \Gamma(x) $
-\form#393:$ log(\Gamma(x)) $
-\form#394:\[ \binom{n}{k} = \frac{n!}{(n-k)! k!} \]
-\form#395:\[ \left(1 + t\right)^n = \sum_{k=0}^n \binom{n}{k} t^k \]
-\form#396:\[ \binom{\nu}{k} = \frac{\Gamma(\nu+1)}{\Gamma(\nu-k+1) \Gamma(k+1)} \]
-\form#397:\[ \left(1 + t\right)^\nu = \sum_{k=0}^\infty \binom{\nu}{k} t^k \]
-\form#398:\[ \Gamma(a) = \int_0^\infty e^{-t}t^{a-1}dt (a > 0) \]
-\form#399:\[ P(a,x) = \frac{\gamma(a,x)}{\Gamma(a)} \]
-\form#400:$ \Gamma(a) $
-\form#401:\[ \gamma(a,x) = \int_0^x e^{-t}t^{a-1}dt (a > 0) \]
-\form#402:\[ Q(a,x) = \frac{\Gamma(a,x)}{\Gamma(a)} \]
-\form#403:\[ \Gamma(a,x) = \int_x^\infty e^{-t}t^{a-1}dt (a > 0) \]
-\form#404:\[ (a)_n = \prod_{k=0}^{n-1} (a + k), (a)_0 = 1 = \Gamma(a + n) / \Gamma(n) \]
-\form#405:\[ ln[(a)_n] = \Gamma(a + n) - \Gamma(n), ln[(a)_0] = 0 \]
-\form#406:\[ a^{\overline{n}} \]
-\form#407:\[ \left[ \begin{array}{c} a \\ n \end{array} \right] \]
-\form#408:\[ (a)_n = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1 = \Gamma(a + 1) / \Gamma(a - n + 1) \]
-\form#409:\[ ln[(a)_n] = \Gamma(a + 1) - \Gamma(a - n + 1), ln[(a)_0] = 0 \]
-\form#410:\[ a^{\underline{n}} \]
-\form#411:\[ \{ \begin{array}{c} a \\ n \end{array} \} \]
-\form#412:\[ \psi(x) = \frac{\Gamma'(x)}{\Gamma(x)} \]
-\form#413:\[ \psi(n) = -\gamma_E + \sum_{k=1}^{\infty} \frac{1}{k} \]
-\form#414:$ H_n $
-\form#415:\[ \psi(x) = -\gamma_E - \frac{1}{x} \sum_{k=1}^{\infty} \frac{x - 1}{(k + 1)(x + k)} \]
-\form#416:\[ \psi(x) = \ln(x) - \frac{1}{2x} - \sum_{n=1}^{\infty} \frac{B_{2n}}{2 n x^{2n}} \]
-\form#417:\[ \psi(x) = \psi(1-x) - \pi \cot(\pi x) \]
-\form#418:$ \psi^{(n)}(x) $
-\form#419:\[ \psi^{(n)}(x) = (-1)^{n+1} m! \zeta(m+1,x) \]
-\form#420:\[ n! = 1 2 ... (n-1) n, 0! = 1 \]
-\form#421:\[ n!! = 1 3 5 ... (n-2) n, n odd n!! = 2 4 6 ... (n-2) n, n even -1!! = 1 0!! = 1 \]
-\form#422:\[ (-2m - 1)!! = 1 / (1 (-1) (-3) ... (-2m + 1) (-2m - 1)) = \frac{(-1)^m}{(2m-1)!!} \]
-\form#423:$ \nu^{-2/3} $
-\form#424:$ e^{+i2\pi/3} \nu^{2/3} \zeta $
-\form#425:$ e^{-i2\pi/3} \nu^{2/3} \zeta $
-\form#426:$ Ai() $
-\form#427:\[ _0F_1(-;c;x) = \Gamma(c) \sum_{n=0}^{\infty} \frac{1}{\Gamma(c+n)} \frac{x^n}{n!} \]
-\form#428:$ _0F_1(-;c;x) $
-\form#429:\[ _1F_1(a;c;x) = \frac{\Gamma(c)}{\Gamma(a)} \sum_{n=0}^{\infty} \frac{\Gamma(a+n)}{\Gamma(c+n)} \frac{x^n}{n!} \]
-\form#430:$ _1F_1(a;c;x) $
-\form#431:$ _2F_1(a,b;c;x) $
-\form#432:\[ _2F_1(a,b;c;x) = \frac{\Gamma(c)}{\Gamma(a)\Gamma(b)} \sum_{n=0}^{\infty} \frac{\Gamma(a+n)\Gamma(b+n)}{\Gamma(c+n)} \frac{x^n}{n!} \]
-\form#433:$ d = c - a - b $
-\form#434:\[ _2F_1(a,b;c;x) = \frac{\Gamma(c)\Gamma(d)}{\Gamma(c-a)\Gamma(c-b)} _2F_1(a,b;1-d;1-x) + \frac{\Gamma(c)\Gamma(-d)}{\Gamma(a)\Gamma(b)} _2F_1(c-a,c-b;1+d;1-x) \]
-\form#435:$ m = c - a - b $
-\form#436:\[ _2F_1(a,b;a+b+m;x) = \frac{\Gamma(m)\Gamma(a+b+m)}{\Gamma(a+m)\Gamma(b+m)} \sum_{k=0}^{m-1} \frac{(m+a)_k(m+b)_k}{k!(1-m)_k} - \]
-\form#437:\[ Chi(x) = \gamma_E + \log(x) + \int_0^x dt \frac{\cosh(t) - 1}{t} \]
-\form#438:\[ Shi(x) = \int_0^x dt \frac{\sinh(t)}{t} \]
-\form#439:\[ Z_n^m(\rho,\phi) = R_n^m(\rho) \cos(m\phi) \]
-\form#440:\[ Z_n^{-m}(\rho,\phi) = R_n^m(\rho) \sin(m\phi) \]
-\form#441:$ m, n $
-\form#442:$ \alpha > -1 $
-\form#443:\[ L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!} _1F_1(-n; \alpha + 1; x) \]
-\form#444:$ _1F_1(a; c; x) $
-\form#445:$ L_n^alpha(x) $
-\form#446:$l >= 0$
-\form#447:$|x| <= 1$
-\form#448:\[ Q_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l} \]
-\form#449:$ m <= l $
-\form#450:$ |x| <= 1 $
-\form#451:$ Y_l^m(\theta,0) $
-\form#452:$x = \cos(\theta)$
-\form#453:$ I_\nu(x) $
-\form#454:$ I'_\nu(x) $
-\form#455:$ K'_\nu(x) $
-\form#456:\[ I_{\nu}(x) = \sum_{k=0}^{\infty} \frac{(x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)} \]
-\form#457:$ i'_n(x) $
-\form#458:$ k'_n(x) $
-\form#459:$ w_1(x) $
-\form#460:$ w_2(x) $
-\form#461:$ w_1'(x) $
-\form#462:$ w_2'(x) $
-\form#463:\[ w_1(x) = \sqrt{\pi}(Ai(x) + iBi(x)) \]
-\form#464:\[ w_2(x) = \sqrt{\pi}(Ai(x) - iBi(x)) \]
-\form#465:\[ T(h,a) = \frac{1}{2\pi}\int_0^a\frac{\exp[-\frac{1}{2}h^2(1+x^2)]}{1+x^2}dx \]
-\form#466:$ \zeta(k) $
-\form#467:\[ Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) \frac{w^k}{k!} + (H_{s-1} - \log(-w)) \frac{w^{s-1}}{(s-1)!} \]
-\form#468:$ |w| < 2 \pi $
-\form#469:$ \log(-x) $
-\form#470:$ \log(e^{i \pi}) $
-\form#471:$ \log(e^{+- i * \pi}) = +- i \pi $
-\form#472:$ \log(e^{+- i\pi}) = +i \pi $
-\form#473:\[ Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) \frac{w^k}{k!} + \left(H_{s-1} - \log(-w)\right) \frac{w^{s-1}}{(s-1)!} \]
-\form#474:$ \log(e^{i\pi}) $
-\form#475:$ \log(e^{+- i\pi}) = +- i\pi $
-\form#476:$ \log(e^{+- i\pi}) = +i\pi $
-\form#477:$ |w| < 2\pi $
-\form#478:\[ Li_s(e^w) = \Gamma(1-s)(-w)^{s-1} + (2\pi)^{-s}/\pi A_p(w) \]
-\form#479:\[ A_p(w) = \sum_k \Gamma(1+k-s)/k!\sin(\pi/2 (s-k)) \left(\frac{w}{2\pi}\right)^k \zeta(1+k-s) \]
-\form#480:$ p = 4k (\sigma = 1) $
-\form#481:$ p = 4k + 2 (\sigma = -1) $
-\form#482:\[ Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} - A_p(w) - \sigma B_p(w) \]
-\form#483:\[ A_p(w) = 2 (2\pi)^{p-1} \frac{(-p)!}{(2\pi)^{-p/2}} \left(1 + \frac{w^2}{(4\pi^2}\right)^{(p-1)/2} \cos((1 - p) ArcTan(2\pi/w)) \]
-\form#484:\[ B_p(w) = - 2 (2 \pi)^{p-1} \sum_{k = 0}^{\infty} \frac{\Gamma(2 + 2k - p)}{(2k+1)!} (-1)^k \left(\frac{w}{2\pi}\right)^{2k+1} (\zeta(2 + 2k - p) - 1) \]
-\form#485:\[ Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} - \sigma (2\pi)^p /\pi \sum_{k = 0}^{\infty} \frac{\Gamma(2 + 2k - p)}{(2k+1)!} (-1)^k \left(\frac{w}{2\pi}\right)^{2k+1} \zeta(2 + 2k - p) \]
-\form#486:$ n = 4k $
-\form#487:$ p = 1 + 2k $
-\form#488:$ p = 1 + 4k (\sigma = 1) $
-\form#489:$ p = 3 + 4k (\sigma = -1) $
-\form#490:\[ Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} + \sigma A_p(w) - \sigma B_p(w) \]
-\form#491:\[ A_p(w) = 2 (2\pi)^{p-1} \Gamma(1-p) \left(1 + \frac{w^2}{4\pi^2}\right)^{-1/2 + p/2} \cos((1 - p) ArcTan(2 \pi / w)) \]
-\form#492:\[ B_p(w) = 2(2\pi)^{p-1}\sum_{k=0}^{\infty}\frac{\Gamma(1 + 2k - p)}{(2k)!} \left(\frac{-w^2}{4 \pi^2}\right)^k \left(\zeta(1 + 2k - p) - 1\right) \]
-\form#493:\[ Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} - \sigma 2(2\pi)^{p-1} \sum_{k = 0}^{\infty} \frac{\Gamma(1 + 2k - p)}{(2k)!} (-1)^k \left(\frac{w}{2\pi}\right)^{2k} zeta(1 + 2k - p) \]
-\form#494:\[ Li_s(e^w) = A_s(w) + B_s(w) + \Gamma(1-s)(-w)^{s-1} \]
-\form#495:\[ A_s(w) = \sum_{k=0}^{m} \zeta(s-k)w^k/k! \]
-\form#496:\[ B_s(w) = \sum_{k=m+1}^{\infty} \sin(\pi/2(s-k)) \Gamma(1-s+k)\zeta(1-s+k) (w/2/\pi)^k/k! \]
-\form#497:\[ 2 \sum_{k=0}^{\infty} \zeta(2k) w^{s-2k}/\Gamma(s-2k+1) -i \pi w^{s-1}/\Gamma(s) \]
-\form#498:$ Re(w) >> 1 $
-\form#499:$ Im(Li_s(e^u)) = - \pi u^{s-1}/\Gamma(s) $
-\form#500:$ Re(w) < -\pi/2 - \pi/5 $
-\form#501:\[ Li_s(e^z) = \sum_{k=1} e^{kz} * k^{-s} \]
-\form#502:$ Li_s(e^w) $
-\form#503:\[ \frac{(i2\pi)^s}{\Gamma(s)}\zeta(a,1-s) = Li_s(e^{i2\pi a}) + (-1)^s Li_s(e^{-i2\pi a}) \]
-\form#504:\[ F_s(x) = \frac{1}{\Gamma(s+1)}\int_0^\infty \frac{t^s}{e^{t-s} + 1}dt = -Li_{s+1}(-e^x) \]
-\form#505:\[ G_s(x) = \frac{1}{\Gamma(s+1)}\int_0^\infty \frac{t^s}{e^{t-s} - 1}dt = Li_{s+1}(e^x) \]
-\form#506:$ \theta_1 $
-\form#507:$ \theta_3 $
-\form#508:$ \theta_2 $
-\form#509:$ \theta_s $
-\form#510:$ \theta_c $
-\form#511:$ \theta_d $
-\form#512:$ \theta_n $
-\form#513:$ sn(k, u), cn(k, u), dn(k, u) $
-\form#514:\[ \tan_pi(x) = \tan(\pi x) \]
-\form#515:\[ \sin_\pi(z) = \sin(\pi z) = \sin_\pi(x) \cosh_\pi(y) + i \cos_\pi(x) \sinh_\pi(y) \]
-\form#516:\[ \sinh_\pi(z) = \sinh(\pi z) = \sinh(\pi x) \cos_\pi(y) + i \cosh(\pi x) \sin_\pi(y) \]
-\form#517:\[ \tan_\pi(z) = \tan(\pi z) = \frac{\tan_\pi(x) + i \tanh_\pi(y)}{1 - i \tan_\pi(x) \tanh_\pi(y)} \]
-\form#518:\[ \tanh_\pi(z) = \tanh(\pi z) = \frac{\tanh_\pi(x) + i \tan_\pi(y)}{1 + i \tanh_\pi(x) \tan_\pi(y)} \]
-\form#519:\[ Si(x) = \int_0^x dt \frac{\sin(t)}{t} \]
-\form#520:\[ Ci(x) = \gamma_E + \log(x) + \int_0^x dt \frac{\cos(t) - 1}{t} \]
-\form#521:\[ B_{2j} / (2j)! \]
-\form#522:$ B_k $
-\form#523:$ Li_2(x) $
-\form#524:\[ Li_2(x) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1 \]
-\form#525:\[ Li_2(-x) + Li_2(1-x) = \frac{\pi^2}{6} - \ln(x) \ln(1-x) \]
-\form#526:\[ Li_2(-x) - Li_2(1-x) - \frac{1}{2}Li_2(1-x^2) = -\frac{\pi^2}{12} - \ln(x) \ln(1-x) \]
-\form#527:\[ Li_2(1-x) - Li_2(1-\frac{1}{1-x}) - \frac{1}{2}(\ln(x))^2 \]
-\form#528:\[ \zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1 \]
-\form#529:\[ \zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s) \]
-\form#530:\[ \zeta(s) = \frac{1}{1-2^{1-s}} \sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{n^s} \]
-\form#531:\[ \zeta(s) = \frac{1}{1-2^{1-s}} \sum_{n=0}^{\infty} \frac{1}{2^{n+1}} \sum_{k=0}^{n} (-1)^k \frac{n!}{(n-k)!k!} (k+1)^{-s} \]
-\form#532:\[ \zeta(s) = \Pi_{i=1}^\infty \frac{1}{1 - p_i^{-s}} \]
-\form#533:$ {p_i} $
-\form#534:\[ \zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for \Re s > 1 \]
-\form#535:\[ \zeta(s) = \sum_{k=1}^{\infty} k^{-s} \mbox{ for } \Re s > 1 \\ \frac{(2\pi)^s}{\pi} \sin(\frac{\pi s}{2}) \Gamma(1 - s) \zeta(1 - s) \mbox{ for } \Re s < 1 \]
-\form#536:$ \zeta(s,a) $
-\form#537:$ s != 1 $
-\form#538:$ a > -1 $
-\form#539:$ \zeta(s) - 1 $
-\form#540:\[ \zeta(s,a) = \sum_{n=0}^{\infty} \frac{1}{(n+a)^s} \]
-\form#541:\[ \zeta(s) = \zeta(s,1) \]
+\form#322:$ J'_\nu(x) $
+\form#323:$ N'_\nu(x) $
+\form#324:$ J_{\nu} $
+\form#325:$ I_{\nu} $
+\form#326:\[ Z_{\nu}(x) = \sum_{k=0}^{\infty} \frac{\sigma^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)} \]
+\form#327:$ \sigma = +1 $
+\form#328:$ -1 $
+\form#329:$ Z = I $
+\form#330:$ J $
+\form#331:$ x < 0 $
+\form#332:$ H^{(2)}_nu(x) $
+\form#333:$ n'_n(x) $
+\form#334:\[ h^{(1)}_n(x) = j_n(x) + i n_n(x) \]
+\form#335:\[ h^{(2)}_n(x) = j_n(x) - i n_n(x) \]
+\form#336:$B(x,y)$
+\form#337:\[ B(a,b) = \frac{a + b}{a b} \prod_{k=1}^{\infty} \frac{1 + (a + b) / k}{(1 + a / k) (1 + b / k)} = \frac{a + b}{ab} \prod_{k=1}^{\infty} \left[1 - \frac{ab}{(a + k)(b + k)}\right] \]
+\form#338:$ I_x(a,b) $
+\form#339:\[ I_x(a,b) = \frac{B_x(a,b)}{B(a,b)} \]
+\form#340:\[ sinc(x) = \frac{\sin(x)}{x} \]
+\form#341:\[ sinc_\pi(x) = \frac{\sin(\pi x)}{\pi x} \]
+\form#342:\[ sinhc(x) = \frac{\sinh(x)}{x} \]
+\form#343:\[ sinhc_\pi(x) = \frac{\sinh(\pi x)}{\pi x} \]
+\form#344:\[ C_n(x) = 2xC_{n-1} - C_{n-2} \]
+\form#345:\[ F(x) = e^{-x^2} \int_0^x e^{y^2} dy \]
+\form#346:\[ E(k,\pi/2) = \int_0^{\pi/2}\sqrt{1 - k^2 sin^2\theta} \]
+\form#347:\[ \Pi(k,\nu) = \int_0^{\pi/2} \frac{d\theta} {(1 - \nu \sin^2\theta)\sqrt{1 - k^2 \sin^2\theta}} \]
+\form#348:$ \chi^2 $
+\form#349:\[ P(\chi^2|\nu) = \Gamma_P(\frac{\nu}{2}, \frac{\chi^2}{2}) \]
+\form#350:\[ Q(\chi^2|\nu) = \Gamma_Q(\frac{\nu}{2}, \frac{\chi^2}{2}) \]
+\form#351:\[ \Gamma(x|\alpha,\beta) = \frac{1}{\beta\Gamma(\alpha)} (x/\beta)^{\alpha - 1} e^{-x/\beta} \]
+\form#352:\[ p(x|\nu,\sigma) = \frac{x}{\sigma^2} \exp\left(-\frac{x^2+\nu^2}{2\sigma^2}\right) I_0\left(\frac{x \nu}{\sigma^2}\right) \]
+\form#353:$I_0(x)$
+\form#354:$\nu >= 0$
+\form#355:$\sigma > 0$
+\form#356:\[ f(x|\mu,\sigma) = \frac{e^{(x-\mu)^2/2\sigma^2}}{\sigma\sqrt{2\pi}} \]
+\form#357:\[ F(x|\mu,\sigma) = \frac{1}{2}\left[ 1-erf(\frac{x-\mu}{\sqrt{2}\sigma}) \right] \]
+\form#358:\[ f(x|\mu,\sigma) = \frac{e^{(\ln{x}-\mu)^2/2\sigma^2}}{\sigma\sqrt{2\pi}} \]
+\form#359:\[ F(x|\mu,\sigma) = \frac{1}{2}\left[ 1-erf(\frac{\ln{x}-\mu}{\sqrt{2}\sigma}) \right] \]
+\form#360:\[ f(x|\lambda) = \lambda e^{-\lambda x} \mbox{ for } x >= 0 \]
+\form#361:\[ F(x|\lambda) = 1 - e^{-\lambda x} \mbox{ for } x >= 0 \]
+\form#362:\[ F(x|\lambda) = e^{-\lambda x} \mbox{ for } x >= 0 \]
+\form#363:\[ f(x | a, b) = \frac{a}{b} \left(\frac{x}{b} \right)^{a-1} \exp{-\left(\frac{x}{b}\right)^a} \mbox{ for } x >= 0 \]
+\form#364:\[ F(x|\lambda) = 1 - e^{-(x / b)^a} \mbox{ for } x >= 0 \]
+\form#365:\[ A(t|\nu) = 1 - I_{\frac{\nu}{\nu + t^2}}(\frac{\nu}{2}, \frac{1}{2}) A(t|\nu) = \]
+\form#366:\[ A_c(t|\nu) = I_{\frac{\nu}{\nu + t^2}}(\frac{\nu}{2}, \frac{1}{2}) = 1 - A(t|\nu) \]
+\form#367:\[ Q(F|\nu_1, \nu_2) = I_{\frac{\nu_2}{\nu_2 + \nu_1 F}} (\frac{\nu_2}{2}, \frac{\nu_1}{2}) \]
+\form#368:\[ P(F|\nu_1, \nu_2) = 1 - I_{\frac{\nu_2}{\nu_2 + \nu_1 F}} (\frac{\nu_2}{2}, \frac{\nu_1}{2}) = 1 - Q(F|\nu_1, \nu_2) \]
+\form#369:\[ f(k|n,p) = \binom{n}{k}p^k(1-p)^{n-k} \]
+\form#370:\[ P(k|n,p) = I_p(k, n-k+1) \]
+\form#371:\[ Q(k|n,p) = I_{1-p}(n-k+1, k) \]
+\form#372:$ E_1(x) $
+\form#373:$ x < 1 $
+\form#374:\[ E_1(x) = \int_{1}^{\infty} \frac{e^{-xt}}{t} dt \]
+\form#375:\[ E_1(x) = \int_{1}^\infty \frac{e^{-xt}}{t} dt \]
+\form#376:\[ E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{t^n} dt \]
+\form#377:$ x < n $
+\form#378:$ li(x) $
+\form#379:\[ li(x) = Ei(\log(x)) \]
+\form#380:\[ Chi(x) = (Ei(x) - E_1(x))/ 2 = (Ei(x) + Ei(-x))/2 \]
+\form#381:\[ Shi(x) = (Ei(x) + E_1(x))/2 = (Ei(x) - Ei(-x))/2 \]
+\form#382:\[ n! = 1 2 ... (n-1) n, 0! = 1 \]
+\form#383:\[ n!! = 1 3 5 ... (n-2) n, n odd n!! = 2 4 6 ... (n-2) n, n even -1!! = 1 0!! = 1 \]
+\form#384:\[ (-2m - 1)!! = 1 / (1 (-1) (-3) ... (-2m + 1) (-2m - 1)) = \frac{(-1)^m}{(2m-1)!!} \]
+\form#385:$ B_n $
+\form#386:$ B_2n $
+\form#387:$ 2n $
+\form#388:$log(\Gamma(x))$
+\form#389:$ J(1+z) $
+\form#390:$ log(\Gamma^*(z)) $
+\form#391:\[ J(z) = log(\Gamma^*(z)) = log\left(\Gamma(z)\right) + z - \left(z-\frac{1}{2}\right) log(z) - log(2\pi) \]
+\form#392:\[ \Gamma(z) = \sqrt{2\pi}z^{z-\frac{1}{2}}e^{-z}e^{J(z)} \]
+\form#393:$ \Gamma(z) $
+\form#394:$ log(\Gamma(1+z)) $
+\form#395:\[ \Gamma(z+1) = (z+a)^{z+1/2}e^{-z-a}\left[ \sqrt{2\pi} + \sum_{k=1}^{\lceil a \rceil + 1}\frac{c_k(a)}{z+k}\right] \]
+\form#396:\[ c_k(a) = \frac{(-1)^{k-1}}{(k-1)!}(a-k)^{k-1/2}e^{a-k} \]
+\form#397:\[ \epsilon(a) < a^{-1/2}(2\pi)^{-a-1/2} \]
+\form#398:\[ \frac{1}{\Gamma(a)} = \sum_{k=1}^{\infty} c_k a^k \]
+\form#399:\[ c_{k+1} = \frac{1}{k}\left[\gamma_E c_k + (-1)^k\sum_{j=1}^{k-1}(-1)^j\zeta(j+1-k)c_j\right] \]
+\form#400:$ c_1 = 1 $
+\form#401:$ log(|\Gamma(a)|) $
+\form#402:$ a < 0 $
+\form#403:$ \Gamma(a) $
+\form#404:$ log(\Gamma(a)) $
+\form#405:$ \Gamma(x) $
+\form#406:\[ \binom{n}{k} = \frac{n!}{(n-k)! k!} \]
+\form#407:\[ \left(1 + t\right)^n = \sum_{k=0}^n \binom{n}{k} t^k \]
+\form#408:\[ \binom{\nu}{k} = \frac{\Gamma(\nu+1)}{\Gamma(\nu-k+1) \Gamma(k+1)} \]
+\form#409:\[ \left(1 + t\right)^\nu = \sum_{k=0}^\infty \binom{\nu}{k} t^k \]
+\form#410:\[ \Gamma(a) = \int_0^\infty e^{-t}t^{a-1}dt (a > 0) \]
+\form#411:\[ \gamma(a,x) = x^a e^{-z}\sum_{k=1}^{\infty} \frac{x^k}{(a)_k} \]
+\form#412:\[ P(a,x) = \frac{\gamma(a,x)}{\Gamma(a)} \]
+\form#413:\[ \gamma(a,x) = \int_0^x e^{-t}t^{a-1}dt (a > 0) \]
+\form#414:\[ Q(a,x) = \frac{\Gamma(a,x)}{\Gamma(a)} \]
+\form#415:\[ \Gamma(a,x) = \int_x^\infty e^{-t}t^{a-1}dt (a > 0) \]
+\form#416:\[ (a)_n = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1 = \Gamma(a + 1) / \Gamma(a - n + 1) \]
+\form#417:\[ (a)_\nu = \Gamma(a + 1) / \Gamma(a - \nu + 1) = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1, \nu = n \]
+\form#418:\[ (a)_\nu = \Gamma(a + 1) / \Gamma(a - \nu + 1) = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1 \]
+\form#419:\[ ln[(a)_\nu] = ln[\Gamma(a + 1)] - ln[\Gamma(a - \nu + 1)], ln[(a)_0] = 0 \]
+\form#420:\[ a^{\underline{n}} \]
+\form#421:\[ \{ \begin{array}{c} a \\ n \end{array} \} \]
+\form#422:\[ (a)_\nu = \Gamma(a + \nu) / \Gamma(\nu) = \prod_{k=0}^{n-1} (a + k), (a)_0 = 1 \]
+\form#423:\[ a^{\overline{n}} \]
+\form#424:\[ \left[ \begin{array}{c} a \\ n \end{array} \right] \]
+\form#425:\[ (a)_\nu = \Gamma(a + \nu) / \Gamma(n) = \prod_{k=0}^{\nu-1} (a + k), (a)_0 = 1 \]
+\form#426:\[ ln[(a)_\nu] = ln[\Gamma(a + \nu)] - ln[\Gamma(\nu)], ln[(a)_0] = 0 \]
+\form#427:\[ \psi(x) = \frac{\Gamma'(x)}{\Gamma(x)} \]
+\form#428:\[ \psi(n) = -\gamma_E + \sum_{k=1}^{\infty} \frac{1}{k} \]
+\form#429:$ H_n $
+\form#430:\[ \psi(x) = -\gamma_E - \frac{1}{x} \sum_{k=1}^{\infty} \frac{x - 1}{(k + 1)(x + k)} \]
+\form#431:\[ \psi(x) = \ln(x) - \frac{1}{2x} - \sum_{n=1}^{\infty} \frac{B_{2n}}{2 n x^{2n}} \]
+\form#432:\[ \psi(x) = \psi(1-x) - \pi \cot(\pi x) \]
+\form#433:$ \psi^{(n)}(x) $
+\form#434:\[ \psi^{(n)}(x) = (-1)^{n+1} m! \zeta(m+1,x) \]
+\form#435:$ \nu^{-2/3} $
+\form#436:$ e^{+i2\pi/3} \nu^{2/3} \zeta $
+\form#437:$ e^{-i2\pi/3} \nu^{2/3} \zeta $
+\form#438:$ Ai() $
+\form#439:$ He_n(x) $
+\form#440:\[ He_n(x) = (-1)^n e^{x^2/2} \frac{d^n}{dx^n} e^{-x^2/2} \]
+\form#441:\[ He_n(x) = \frac{1}{2^{-n/2}}H_n\left(\frac{x}{\sqrt{2}}\right) \]
+\form#442:\[ {}_0F_1(-;c;x) = \Gamma(c) \sum_{n=0}^{\infty} \frac{1}{\Gamma(c+n)} \frac{x^n}{n!} \]
+\form#443:$ {}_0F_1(-;c;x) $
+\form#444:\[ {}_1F_1(a;c;x) = \frac{\Gamma(c)}{\Gamma(a)} \sum_{n=0}^{\infty} \frac{\Gamma(a+n)}{\Gamma(c+n)} \frac{x^n}{n!} \]
+\form#445:\[ {}_2F_1(a,b;c;x) = \frac{\Gamma(c)}{\Gamma(a)\Gamma(b)} \sum_{n=0}^{\infty} \frac{\Gamma(a+n)\Gamma(b+n)}{\Gamma(c+n)} \frac{x^n}{n!} \]
+\form#446:$ d = c - a - b $
+\form#447:\[ {}_2F_1(a,b;c;x) = \frac{\Gamma(c)\Gamma(d)}{\Gamma(c-a)\Gamma(c-b)} {}_2F_1(a,b;1-d;1-x) + \frac{\Gamma(c)\Gamma(-d)}{\Gamma(a)\Gamma(b)} {}_2F_1(c-a,c-b;1+d;1-x) \]
+\form#448:$ m = c - a - b $
+\form#449:\[ {}_2F_1(a,b;a+b+m;x) = \frac{\Gamma(m)\Gamma(a+b+m)}{\Gamma(a+m)\Gamma(b+m)} \sum_{k=0}^{m-1} \frac{(m+a)_k(m+b)_k}{k!(1-m)_k} (1 - x)^k + (-1)^m \]
+\form#450:\[ Chi(x) = \gamma_E + \log(x) + \int_0^x dt \frac{\cosh(t) - 1}{t} \]
+\form#451:\[ Shi(x) = \int_0^x dt \frac{\sinh(t)}{t} \]
+\form#452:\[ Z_n^m(\rho,\phi) = R_n^m(\rho) \cos(m\phi) \]
+\form#453:\[ Z_n^{-m}(\rho,\phi) = R_n^m(\rho) \sin(m\phi) \]
+\form#454:$ m, n $
+\form#455:$ \alpha > -1 $
+\form#456:\[ L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!} _1F_1(-n; \alpha + 1; x) \]
+\form#457:$ _1F_1(a; c; x) $
+\form#458:$ L_n^alpha(x) $
+\form#459:\[ Q_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l} \]
+\form#460:$l >= 0$
+\form#461:$|x| <= 1$
+\form#462:$ m <= l $
+\form#463:$ Y_l^m(\theta,0) $
+\form#464:$x = \cos(\theta)$
+\form#465:$ I_\nu(x) $
+\form#466:$ I'_\nu(x) $
+\form#467:$ K'_\nu(x) $
+\form#468:\[ I_{\nu}(x) = \sum_{k=0}^{\infty} \frac{(x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)} \]
+\form#469:$ i'_n(x) $
+\form#470:$ k'_n(x) $
+\form#471:$ w_1(x) $
+\form#472:$ w_2(x) $
+\form#473:$ w_1'(x) $
+\form#474:$ w_2'(x) $
+\form#475:\[ w_1(x) = \sqrt{\pi}(Ai(x) + iBi(x)) \]
+\form#476:\[ w_2(x) = \sqrt{\pi}(Ai(x) - iBi(x)) \]
+\form#477:\[ T(h,a) = \frac{1}{2\pi}\int_0^a\frac{\exp[-\frac{1}{2}h^2(1+x^2)]}{1+x^2}dx \]
+\form#478:$ \zeta(k) $
+\form#479:\[ Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) \frac{w^k}{k!} + (H_{s-1} - \log(-w)) \frac{w^{s-1}}{(s-1)!} \]
+\form#480:$ |w| < 2 \pi $
+\form#481:$ \log(-x) $
+\form#482:$ \log(e^{i \pi}) $
+\form#483:$ \log(e^{+- i * \pi}) = +- i \pi $
+\form#484:$ \log(e^{+- i\pi}) = +i \pi $
+\form#485:\[ Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) \frac{w^k}{k!} + \left(H_{s-1} - \log(-w)\right) \frac{w^{s-1}}{(s-1)!} \]
+\form#486:$ \log(e^{i\pi}) $
+\form#487:$ \log(e^{+- i\pi}) = +- i\pi $
+\form#488:$ \log(e^{+- i\pi}) = +i\pi $
+\form#489:$ |w| < 2\pi $
+\form#490:\[ Li_s(e^w) = \Gamma(1-s)(-w)^{s-1} + \frac{(2\pi)^{-s}}{\pi} A_p(w) \]
+\form#491:\[ A_p(w) = \sum_k \frac{\Gamma(1+k-s)}{k!} \sin\left(\frac{\pi}{2} (s-k)\right) \left(\frac{w}{2\pi}\right)^k \zeta(1+k-s) \]
+\form#492:$ p = 4k (\sigma = 1) $
+\form#493:$ p = 4k + 2 (\sigma = -1) $
+\form#494:\[ Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} - A_p(w) - \sigma B_p(w) \]
+\form#495:\[ A_p(w) = 2 (2\pi)^{p-1} \frac{(-p)!}{(2\pi)^{-p/2}} \left(1 + \frac{w^2}{(4\pi^2}\right)^{(p-1)/2} \cos\left[(1 - p)ArcTan\left(\frac{2\pi}{w}\right)\right] \]
+\form#496:\[ B_p(w) = - 2 (2 \pi)^{p-1} \sum_{k = 0}^{\infty} \frac{\Gamma(2 + 2k - p)}{(2k+1)!} (-1)^k \left(\frac{w}{2\pi}\right)^{2k+1} (\zeta(2 + 2k - p) - 1) \]
+\form#497:\[ Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} - \sigma (2\pi)^p /\pi \sum_{k = 0}^{\infty} \frac{\Gamma(2 + 2k - p)}{(2k+1)!} (-1)^k \left(\frac{w}{2\pi}\right)^{2k+1} \zeta(2 + 2k - p) \]
+\form#498:$ n = 4k $
+\form#499:$ p = 1 + 2k $
+\form#500:$ p = 1 + 4k (\sigma = 1) $
+\form#501:$ p = 3 + 4k (\sigma = -1) $
+\form#502:\[ Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} + \sigma A_p(w) - \sigma B_p(w) \]
+\form#503:\[ A_p(w) = 2 (2\pi)^{p-1} \Gamma(1-p) \left(1 + \frac{w^2}{4\pi^2}\right)^{-1/2 + p/2} \cos((1 - p) ArcTan(2 \pi / w)) \]
+\form#504:\[ B_p(w) = 2(2\pi)^{p-1}\sum_{k=0}^{\infty}\frac{\Gamma(1 + 2k - p)}{(2k)!} \left(\frac{-w^2}{4 \pi^2}\right)^k \left(\zeta(1 + 2k - p) - 1\right) \]
+\form#505:\[ Li_p(e^w) = \Gamma(1-p) (-w)^{p-1} - 2\sigma(2\pi)^{p-1} \sum_{k = 0}^{\infty} \frac{\Gamma(1 + 2k - p)}{(2k)!} (-1)^k \left(\frac{w}{2\pi}\right)^{2k} \zeta(1 + 2k - p) \]
+\form#506:\[ Li_s(e^w) = A_s(w) + B_s(w) + \Gamma(1-s)(-w)^{s-1} \]
+\form#507:\[ A_s(w) = \sum_{k=0}^{m} \zeta(s-k)w^k/k! \]
+\form#508:\[ B_s(w) = \sum_{k=m+1}^{\infty} \sin(\pi/2(s-k)) \Gamma(1-s+k)\zeta(1-s+k) (w/2/\pi)^k/k! \]
+\form#509:\[ 2 \sum_{k=0}^{\infty} \zeta(2k) w^{s-2k}/\Gamma(s-2k+1) -i \pi w^{s-1}/\Gamma(s) \]
+\form#510:$ Re(w) >> 1 $
+\form#511:$ Im(Li_s(e^u)) = - \pi u^{s-1}/\Gamma(s) $
+\form#512:$ Re(w) < -\pi/2 - \pi/5 $
+\form#513:\[ Li_s(e^z) = \sum_{k=1} e^{kz} * k^{-s} \]
+\form#514:$ Li_s(e^w) $
+\form#515:\[ \frac{(i2\pi)^s}{\Gamma(s)}\zeta(a,1-s) = Li_s(e^{i2\pi a}) + (-1)^s Li_s(e^{-i2\pi a}) \]
+\form#516:\[ F_s(x) = \frac{1}{\Gamma(s+1)}\int_0^\infty \frac{t^s}{e^{t-s} + 1}dt = -Li_{s+1}(-e^x) \]
+\form#517:\[ G_s(x) = \frac{1}{\Gamma(s+1)}\int_0^\infty \frac{t^s}{e^{t-s} - 1}dt = Li_{s+1}(e^x) \]
+\form#518:$ \theta_1 $
+\form#519:$ \theta_3 $
+\form#520:$ \theta_2 $
+\form#521:$ \theta_s $
+\form#522:$ \theta_c $
+\form#523:$ \theta_d $
+\form#524:$ \theta_n $
+\form#525:$ sn(k, u), cn(k, u), dn(k, u) $
+\form#526:\[ \tan_pi(x) = \tan(\pi x) \]
+\form#527:\[ \sin_\pi(z) = \sin(\pi z) = \sin_\pi(x) \cosh_\pi(y) + i \cos_\pi(x) \sinh_\pi(y) \]
+\form#528:\[ \sinh_\pi(z) = \sinh(\pi z) = \sinh(\pi x) \cos_\pi(y) + i \cosh(\pi x) \sin_\pi(y) \]
+\form#529:\[ \tan_\pi(z) = \tan(\pi z) = \frac{\tan_\pi(x) + i \tanh_\pi(y)}{1 - i \tan_\pi(x) \tanh_\pi(y)} \]
+\form#530:\[ \tanh_\pi(z) = \tanh(\pi z) = \frac{\tanh_\pi(x) + i \tan_\pi(y)}{1 + i \tanh_\pi(x) \tan_\pi(y)} \]
+\form#531:\[ Si(x) = \int_0^x dt \frac{\sin(t)}{t} \]
+\form#532:\[ Ci(x) = \gamma_E + \log(x) + \int_0^x dt \frac{\cos(t) - 1}{t} \]
+\form#533:\[ B_{2j} / (2j)! \]
+\form#534:$ B_k $
+\form#535:$ Li_2(x) $
+\form#536:\[ Li_2(x) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1 \]
+\form#537:\[ Li_2(-x) + Li_2(1-x) = \frac{\pi^2}{6} - \ln(x) \ln(1-x) \]
+\form#538:\[ Li_2(-x) - Li_2(1-x) - \frac{1}{2}Li_2(1-x^2) = -\frac{\pi^2}{12} - \ln(x) \ln(1-x) \]
+\form#539:\[ Li_2(1-x) - Li_2(1-\frac{1}{1-x}) - \frac{1}{2}(\ln(x))^2 \]
+\form#540:\[ \zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1 \]
+\form#541:\[ \zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s) \]
+\form#542:\[ \zeta(s) = \frac{1}{1-2^{1-s}} \sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{n^s} \]
+\form#543:\[ \zeta(s) = \frac{1}{1-2^{1-s}} \sum_{n=0}^{\infty} \frac{1}{2^{n+1}} \sum_{k=0}^{n} (-1)^k \frac{n!}{(n-k)!k!} (k+1)^{-s} \]
+\form#544:\[ \zeta(s) = \Pi_{i=1}^\infty \frac{1}{1 - p_i^{-s}} \]
+\form#545:$ {p_i} $
+\form#546:\[ \zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for \Re s > 1 \]
+\form#547:\[ \zeta(s) = \sum_{k=1}^{\infty} k^{-s} \mbox{ for } \Re s > 1 \\ \frac{(2\pi)^s}{\pi} \sin(\frac{\pi s}{2}) \Gamma(1 - s) \zeta(1 - s) \mbox{ for } \Re s < 1 \]
+\form#548:$ \zeta(s) - 1 $
+\form#549:$ s != 1 $
+\form#550:$ \zeta(s,a) $
+\form#551:$ a > -1 $
+\form#552:\[ \zeta(s,a) = \sum_{n=0}^{\infty} \frac{1}{(n+a)^s} \]
+\form#553:\[ \zeta(s) = \zeta(s,1) \]
