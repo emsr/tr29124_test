@@ -16,6 +16,15 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_g
 #include <bits/summation.h>
 
 #include "wrap_boost.h"
+
+  enum __buhring_mode
+  {
+    automatic,
+    equation2p7,
+    equation3p1
+  };
+
+
   /**
    * Return the four-gamma ratio.
    * @f[
@@ -28,13 +37,14 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_g
    */
   template<typename _Tp>
     _Tp
-    __gamma_ratio_buhring(int __n, _Tp __a, _Tp __b, _Tp __c)
+    __gamma_ratio_buhring(int __n, _Tp __a, _Tp __b, _Tp __c,
+			  int _S_M = 20, __buhring_mode mode = automatic)
     {
       const auto _S_eps = 10 * __gnu_cxx::__epsilon(__a);
-      if (std::real(1 - __c - __n) < _Tp{0})
+      if (mode == equation2p7 || (mode == automatic && std::real(1 - __c - __n) < _Tp{0}))
 	{
-	  const auto _S_M = 20;
-	  __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<_Tp>> __sum;
+	  //__gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<_Tp>> __sum;
+	  __gnu_cxx::_BasicSum<_Tp> __sum;
 	  auto __term = _Tp{1};
 	  __sum += _Tp{__term};
 	  auto __ca = __c - __a;
@@ -45,9 +55,9 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_g
 	      auto __prev = __term;
 	      __term *= __ca / __m * __cb / __cabn;
 	      __sum += __term;
-	      if (std::abs(__term) < _S_eps * __sum())
+	      if (mode == automatic && std::abs(__term) < _S_eps * __sum())
 		break;
-	      if (std::abs(__term) > std::abs(__prev))
+	      if (mode == automatic && std::abs(__term) > std::abs(__prev))
 		break;
 	      ++__ca;
 	      ++__cb;
@@ -55,10 +65,10 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_g
 	    }
 	  return __sum();
 	}
-      else if (std::real(1 + __c - __a - __b - __n) < _Tp{0})
+      else if (mode == equation3p1 || (mode == automatic && std::real(1 + __c - __a - __b - __n) < _Tp{0}))
 	{
-	  const auto _S_M = 20;
-	  __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<_Tp>> __sum;
+	  //__gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<_Tp>> __sum;
+	  __gnu_cxx::_BasicSum<_Tp> __sum;
 	  auto __term = _Tp{1};
 	  __sum += _Tp{__term};
 	  auto __ac = __a - __c;
@@ -69,9 +79,9 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_g
 	      auto __prev = __term;
 	      __term *= __ac / __m * __bc / __cn;
 	      __sum += __term;
-	      if (std::abs(__term) < _S_eps * __sum())
+	      if (mode == automatic && std::abs(__term) < _S_eps * __sum())
 		break;
-	      if (std::abs(__term) > std::abs(__prev))
+	      if (mode == automatic && std::abs(__term) > std::abs(__prev))
 		break;
 	      ++__ac;
 	      ++__bc;
@@ -141,10 +151,58 @@ template<typename _Tp>
     _Tp a = -11.7;
     _Tp b = -11.2;
     _Tp c = -11.4;
-    auto b10 = __gamma_ratio_buhring(10, a, b, c);
-    std::cout << b10 << '\n';
-    auto b20 = __gamma_ratio_buhring(20, a, b, c);
-    std::cout << b20 << '\n';
+
+    std::cout << '\n';
+
+    std::cout << '\n';
+    for (int M = 1; M <= 10; ++M)
+      {
+	auto b10_2p7 = __gamma_ratio_buhring(10, a, b, c, M, equation2p7);
+	auto b10_3p1 = __gamma_ratio_buhring(10, a, b, c, M, equation3p1);
+	std::cout << std::setw(2) << M
+		  << std::setw(width) << b10_2p7
+		  << std::setw(width) << b10_3p1
+		  << '\n';
+      }
+
+    std::cout << '\n';
+    for (int M = 1; M <= 10; ++M)
+      {
+	auto b20_2p7 = __gamma_ratio_buhring(20, a, b, c, M, equation2p7);
+	auto b20_3p1 = __gamma_ratio_buhring(20, a, b, c, M, equation3p1);
+	std::cout << std::setw(2) << M
+		  << std::setw(width) << b20_2p7
+		  << std::setw(width) << b20_3p1
+		  << '\n';
+      }
+
+    a = 11.7;
+    b = 11.2;
+    c = 11.4;
+
+    std::cout << '\n';
+
+    std::cout << '\n';
+    for (int M = 1; M <= 10; ++M)
+      {
+	auto b10_2p7 = __gamma_ratio_buhring(-15, a, b, c, M, equation2p7);
+	auto b10_3p1 = __gamma_ratio_buhring(-15, a, b, c, M, equation3p1);
+	std::cout << std::setw(2) << M
+		  << std::setw(width) << b10_2p7
+		  << std::setw(width) << b10_3p1
+		  << '\n';
+      }
+
+    std::cout << '\n';
+    for (int M = 1; M <= 10; ++M)
+      {
+	auto b20_2p7 = __gamma_ratio_buhring(-5, a, b, c, M, equation2p7);
+	auto b20_3p1 = __gamma_ratio_buhring(-5, a, b, c, M, equation3p1);
+	std::cout << std::setw(2) << M
+		  << std::setw(width) << b20_2p7
+		  << std::setw(width) << b20_3p1
+		  << '\n';
+      }
   }
 
 int
