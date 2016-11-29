@@ -2000,7 +2000,7 @@ _S_neg_double_factorial_table[999]
    * @f]
    * where @f$ \Gamma(z) @f$ is the gamma function.
    *
-   * @param __x The argument of the log of the gamma function.
+   * @param __z The argument of the log of the gamma function.
    * @return  The logarithm of the gamma function.
    */
   template<typename _Tp>
@@ -2184,7 +2184,7 @@ _S_neg_double_factorial_table[999]
    * @f]
    * where @f$ \Gamma(z) @f$ is the gamma function.
    *
-   * @param __x The argument of the log of the gamma function.
+   * @param __z The argument of the log of the gamma function.
    * @return  The logarithm of the gamma function.
    */
   template<typename _Tp>
@@ -2218,7 +2218,7 @@ _S_neg_double_factorial_table[999]
    *
    * For complex argument the fully complex log of the gamma function is returned.
    *
-   * @param __x The argument of the log of the gamma function.
+   * @param __z The argument of the log of the gamma function.
    * @return  The logarithm of the gamma function.
    */
   template<typename _Tp>

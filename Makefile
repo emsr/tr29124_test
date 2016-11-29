@@ -42,11 +42,11 @@ CHECK_DIR = $(HOME)/tr29124_test/check
 
 OBJ_DIR = obj
 
-BINS = mpfrcalc \
+BINS = testcase \
+       mpfrcalc \
        diff_special_function \
        test_special_function \
        testcase2 \
-       testcase \
        airy_toy \
        hankel_toy \
        hankel_toy128 \
@@ -395,10 +395,10 @@ diff_special_function: diff_special_function.cpp libwgsl.so libbeast.so libburkh
 	$(CXX17) -I. -o diff_special_function -I$(GSL_INC_DIR) diff_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L. -lwgsl -lbeast -lburkhardt
 
 testcase2: testcase2.cpp testcase2.tcc libwgsl.so libbeast.so libburkhardt.so $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -o testcase2 -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase2.cpp $(LERCH_DIR)/lerchphi.cpp -L. -lwgsl -lbeast -lburkhardt
+	$(CXX17) -o testcase2 -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase2.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L. -lwgsl -lbeast -lburkhardt
 
 testcase: testcase.cpp testcase.tcc libwgsl.so libbeast.so libburkhardt.so $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -o testcase -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp $(LERCH_DIR)/lerchphi.cpp -L. -lwgsl -lbeast -lburkhardt
+	$(CXX17) -o testcase -I. -I$(GSL_INC_DIR) -I$(BOOST_INC_DIR) testcase.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L. -lwgsl -lbeast -lburkhardt
 
 test_limits: test_limits.cpp
 	$(CXX17) -o test_limits test_limits.cpp

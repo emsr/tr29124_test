@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['hermite',['hermite',['../group__tr29124__math__spec__func.html#ga97632b8bf77c323b2369e8d327965bdf',1,'std']]],
+  ['hermite',['hermite',['../group__tr29124__math__spec__func.html#gaded38c372f2977d30b613bd55426f132',1,'std']]],
   ['hermitef',['hermitef',['../group__tr29124__math__spec__func.html#ga94dae7444bb349e33057a92932db8abe',1,'std']]],
   ['hermitel',['hermitel',['../group__tr29124__math__spec__func.html#ga21f8e312ee3e65286f86bf141b0f32e0',1,'std']]],
   ['heuman_5flambda',['heuman_lambda',['../group__gnu__math__spec__func.html#gab73b2a75a662785fa102926dca3be59f',1,'__gnu_cxx']]],
@@ -9,7 +9,7 @@ var searchData=
   ['hurwitz_5fzeta',['hurwitz_zeta',['../group__gnu__math__spec__func.html#ga19b3014d94dd102c59a5c7776474be41',1,'__gnu_cxx::hurwitz_zeta(_Tp __s, _Up __a)'],['../group__gnu__math__spec__func.html#gaa7f0d1fbba9d2ce07a30d907302d527f',1,'__gnu_cxx::hurwitz_zeta(_Tp __s, std::complex&lt; _Up &gt; __a)']]],
   ['hurwitz_5fzetaf',['hurwitz_zetaf',['../group__gnu__math__spec__func.html#gaa745d7f2edde060ed2f22817ad89df1f',1,'__gnu_cxx']]],
   ['hurwitz_5fzetal',['hurwitz_zetal',['../group__gnu__math__spec__func.html#gad8f2cfc7e198755968bae35d46b49d5a',1,'__gnu_cxx']]],
-  ['hyperg',['hyperg',['../group__gnu__math__spec__func.html#gaf52cf49736c63b0bb000be98b53c221f',1,'__gnu_cxx']]],
+  ['hyperg',['hyperg',['../group__gnu__math__spec__func.html#ga40de7f02b2adfe6a883a85698720d7fd',1,'__gnu_cxx']]],
   ['hypergf',['hypergf',['../group__gnu__math__spec__func.html#gac4c81e4ea9cef149fe40291ca10d7e15',1,'__gnu_cxx']]],
   ['hypergl',['hypergl',['../group__gnu__math__spec__func.html#ga9961967087216e97f76283f29e1be152',1,'__gnu_cxx']]]
 ];

@@ -59,10 +59,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	    by series expansion.
    *
    * @f[
-   *   _0F_1(-;c;x) = \Gamma(c)
-   * 			\sum_{n=0}^{\infty}
-   * 			\frac{1}{\Gamma(c+n)}
-   * 			\frac{x^n}{n!}
+   *   {}_0F_1(-;c;x) = \Gamma(c)
+   * 		\sum_{n=0}^{\infty} \frac{1}{\Gamma(c+n)} \frac{x^n}{n!}
    * @f]
    *
    * If a and b are integers and a < 0 and either b > 0 or b < a
@@ -86,9 +84,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       for (__i = 0; __i < __max_iter; ++__i)
 	{
 	  __term *= __x / ((__c + _Tp(__i)) * _Tp(1 + __i));
+	  __Fac += __term;
 	  if (std::abs(__term) < __eps)
 	    break;
-	  __Fac += __term;
 	}
       if (__i == __max_iter)
 	std::__throw_runtime_error(__N("__conf_hyperg_lim_series: "
@@ -100,7 +98,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief  Return the confluent hypergeometric limit function
-   *	     @f$ _0F_1(-;c;x) @f$.
+   *	     @f$ {}_0F_1(-;c;x) @f$.
    *
    * @param  __c  The @a denominator parameter.
    * @param  __x  The argument of the confluent hypergeometric limit function.
@@ -127,7 +125,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	    by series expansion.
    *
    * @f[
-   *   _1F_1(a;c;x) = \frac{\Gamma(c)}{\Gamma(a)}
+   *   {}_1F_1(a;c;x) = \frac{\Gamma(c)}{\Gamma(a)}
    * 			\sum_{n=0}^{\infty}
    * 			\frac{\Gamma(a+n)}{\Gamma(c+n)}
    * 			\frac{x^n}{n!}
@@ -152,9 +150,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  __term *= (__a + _Tp(__i)) * __x
 		  / ((__c + _Tp(__i)) * _Tp(1 + __i));
+	  __Fac += __term;
 	  if (std::abs(__term) < __eps)
 	    break;
-	  __Fac += __term;
 	}
       if (__i == __max_iter)
 	std::__throw_runtime_error(__N("__conf_hyperg_series: "
@@ -165,7 +163,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   * @brief  Return the hypergeometric function @f$ _1F_1(a;c;x) @f$
+   * @brief  Return the hypergeometric function @f$ {}_1F_1(a;c;x) @f$
    *	     by an iterative procedure described in
    *	     Luke, Algorithms for the Computation of Mathematical Functions.
    *
@@ -271,7 +269,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief  Return the confluent hypergeometric function
-   * 	     @f$ _1F_1(a;c;x) @f$.
+   * 	     @f$ {}_1F_1(a;c;x) @f$.
    *
    * @param  __a  The @a numerator parameter.
    * @param  __c  The @a denominator parameter.
@@ -299,12 +297,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   * @brief Return the hypergeometric function @f$ _2F_1(a,b;c;x) @f$
+   * @brief Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$
    * by series expansion.
    *
    * The hypergeometric function is defined by
    * @f[
-   *   _2F_1(a,b;c;x) = \frac{\Gamma(c)}{\Gamma(a)\Gamma(b)}
+   *   {}_2F_1(a,b;c;x) = \frac{\Gamma(c)}{\Gamma(a)\Gamma(b)}
    * 			\sum_{n=0}^{\infty}
    * 			\frac{\Gamma(a+n)\Gamma(b+n)}{\Gamma(c+n)}
    * 			\frac{x^n}{n!}
@@ -332,9 +330,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  __term *= (__a + _Tp(__i)) * (__b + _Tp(__i)) * __x
 		  / ((__c + _Tp(__i)) * _Tp(1 + __i));
+	  __Fabc += __term;
 	  if (std::abs(__term) < __eps)
 	    break;
-	  __Fabc += __term;
 	}
       if (__i == __max_iter)
 	std::__throw_runtime_error(__N("Series failed to converge "
@@ -345,7 +343,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   * @brief  Return the hypergeometric function @f$ _2F_1(a,b;c;x) @f$
+   * @brief  Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$
    * 	     by an iterative procedure described in
    * 	     Luke, Algorithms for the Computation of Mathematical Functions.
    */
@@ -454,7 +452,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   * @brief  Return the hypergeometric function @f$ _2F_1(a,b;c;x) @f$
+   * @brief  Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$
    * by the reflection formulae in Abramowitz & Stegun formula
    * 15.3.6 for d = c - a - b not integral and formula 15.3.11 for
    * d = c - a - b integral.  This assumes a, b, c != negative
@@ -462,7 +460,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The hypergeometric function is defined by
    * @f[
-   *   _2F_1(a,b;c;x) = \frac{\Gamma(c)}{\Gamma(a)\Gamma(b)}
+   *   {}_2F_1(a,b;c;x) = \frac{\Gamma(c)}{\Gamma(a)\Gamma(b)}
    *    		\sum_{n=0}^{\infty}
    *    		\frac{\Gamma(a+n)\Gamma(b+n)}{\Gamma(c+n)}
    *    		\frac{x^n}{n!}
@@ -470,15 +468,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The reflection formula for nonintegral @f$ d = c - a - b @f$ is:
    * @f[
-   *   _2F_1(a,b;c;x) = \frac{\Gamma(c)\Gamma(d)}{\Gamma(c-a)\Gamma(c-b)}
-   *    		      _2F_1(a,b;1-d;1-x)
+   *   {}_2F_1(a,b;c;x) = \frac{\Gamma(c)\Gamma(d)}{\Gamma(c-a)\Gamma(c-b)}
+   *    		      {}_2F_1(a,b;1-d;1-x)
    *    	      + \frac{\Gamma(c)\Gamma(-d)}{\Gamma(a)\Gamma(b)}
-   *    		      _2F_1(c-a,c-b;1+d;1-x)
+   *    		      {}_2F_1(c-a,c-b;1+d;1-x)
    * @f]
    *
    * The reflection formula for integral @f$ m = c - a - b @f$ is:
    * @f[
-   *   _2F_1(a,b;a+b+m;x)
+   *   {}_2F_1(a,b;a+b+m;x)
    *        = \frac{\Gamma(m)\Gamma(a+b+m)}{\Gamma(a+m)\Gamma(b+m)}
    *          \sum_{k=0}^{m-1} \frac{(m+a)_k(m+b)_k}{k!(1-m)_k} (1 - x)^k
    *    		 + (-1)^m 
@@ -742,11 +740,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   * @brief Return the hypergeometric function @f$ _2F_1(a,b;c;x) @f$.
+   * @brief Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$.
    *
    * The hypergeometric function is defined by
    * @f[
-   *   _2F_1(a,b;c;x) = \frac{\Gamma(c)}{\Gamma(a)\Gamma(b)}
+   *   {}_2F_1(a,b;c;x) = \frac{\Gamma(c)}{\Gamma(a)\Gamma(b)}
    * 			\sum_{n=0}^{\infty}
    * 			\frac{\Gamma(a+n)\Gamma(b+n)}{\Gamma(c+n)}
    * 			\frac{x^n}{n!}

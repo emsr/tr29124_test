@@ -71,10 +71,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @param  __nu  The order of the Bessel functions.
    * @param  __x   The argument of the Bessel functions.
-   * @param[out]  _Jnu  The Bessel function of the first kind.
-   * @param[out]  _Nnu  The Neumann function (Bessel function of the second kind).
-   * @param[out]  _Jpnu  The Bessel function of the first kind.
-   * @param[out]  _Npnu  The Neumann function (Bessel function of the second kind).
+   * @return A struct containing the cylindrical Bessel functions
+   *         of the first and second kinds and their derivatives.
    */
   template<typename _Tp>
     __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Tp>
@@ -193,10 +191,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @param __nu The order of the Bessel functions.
    * @param __x  The argument of the Bessel functions.
-   * @param[out] _Jnu The output Bessel function of the first kind.
-   * @param[out] _Nnu The output Neumann function (Bessel function of the second kind).
-   * @param[out] _Jpnu The output derivative of the Bessel function of the first kind.
-   * @param[out] _Npnu The output derivative of the Neumann function.
+   * @return A struct containing the cylindrical Bessel functions
+   *         of the first and second kinds and their derivatives.
    */
   template<typename _Tp>
     __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Tp>
