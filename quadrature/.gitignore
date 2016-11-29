@@ -12,3 +12,5 @@ laguerre_test
 legendre_test
 gegenbauer_test
 jacobi_test
+radpoly_test
+zernike_test
