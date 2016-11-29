@@ -70,8 +70,12 @@ template<typename _Tp>
 	      continue;
 	    for (int n2 = 0; n2 <= n1; ++n2)
 	      {
-		for (int m2 = 0; m2 <= n2; ++m2)
-		  {
+		// The orthonormality only works for m2 == m1.
+		//for (int m2 = 0; m2 <= n2; ++m2)
+		//  {
+		int m2 = m1;
+		if (m2 > n2)
+		  continue;
 		    if ((n2 - m2) & 1)
 		      continue;
 		    std::function<_Tp(_Tp)> func(std::bind(&normalized_radpoly<_Tp>,
@@ -97,7 +101,7 @@ template<typename _Tp>
 			std::cerr << ss.str();
         		//throw std::logic_error(ss.str());
 		      }
-		  }
+		//  }
 	      }
 	  }
 	std::cout << "Integration successful for radpoly polynomials up to n = " << n1
