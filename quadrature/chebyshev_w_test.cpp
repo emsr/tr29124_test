@@ -36,14 +36,15 @@ template<typename _Tp>
   normalized_chebyshev_w(int n1, int n2, _Tp x)
   {
     const auto _S_eps = __gnu_cxx::__epsilon(x);
-    const auto _S_inf = std::numeric_limits<_Tp>::infinity();
+    const auto _S_inf = __gnu_cxx::__infinity(x);
+    const auto _S_pi = __gnu_cxx::__const_pi(x);
     if (std::abs(x + _Tp{1}) < _S_eps)
       return (n1 + n2) & 1 ? -_S_inf : _S_inf;
     else
       return __gnu_cxx::chebyshev_w(n1, x)
 	   * __gnu_cxx::chebyshev_w(n2, x)
 	   * std::sqrt((_Tp{1} - x) / (_Tp{1} + x))
-	   / _Tp{2};
+	   / _S_pi;
   }
 
 template<typename _Tp>
@@ -65,10 +66,10 @@ template<typename _Tp>
 	    std::function<_Tp(_Tp)>
 	      func([n1, n2](_Tp x)->_Tp{return normalized_chebyshev_w(n1, n2, x);});
 	    _Tp integ_precision = _Tp{1000} * eps;
-	    _Tp comp_precision = _Tp{10} * integ_precision;
+	    _Tp comp_precision = _Tp{100000} * integ_precision;
 
 	    auto [result, error]
-        	= integrate_smooth(func, _Tp{-1}, _Tp{1}, integ_precision, _Tp{0});
+        	= integrate_smooth(func, _Tp{-1} + 10000 * eps, _Tp{1}, integ_precision, _Tp{0});
 //        	= integrate(func, _Tp{-1}, _Tp{1}, integ_precision, _Tp{0});
 
             if (std::abs(delta<_Tp>(n1, n2) - result) > comp_precision)
