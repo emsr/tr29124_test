@@ -17,31 +17,35 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#include <config.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
-#include <gsl/gsl_math.h>
-#include <gsl/gsl_integration.h>
-#include <gsl/gsl_errno.h>
-#include <gsl/gsl_test.h>
-#include <gsl/gsl_ieee_utils.h>
+/*
+$HOME/bin/bin/g++ -std=gnu++17 -fconcepts -g -Wall -Wextra -Wno-psabi -I.. -c -o obj/test.o test.cpp
+*/
 
-#include "tests.h"
+//#include <config.h>
+#include <cstdlib>
+#include <cstdio>
+#include <cmath>
+#include <functional>
+#include <iostream>
+#include "integration.h"
 
-gsl_function make_function (double (* f) (double, void *), double * p);
+//#include <gsl/gsl_math.h>
+//#include <gsl/gsl_integration.h>
+//#include <gsl/gsl_errno.h>
+//#include <gsl/gsl_test.h>
+//#include <gsl/gsl_ieee_utils.h>
 
-gsl_function make_function (double (* f) (double, void *), double * p)
+#include "testcase.h"
+
+template<typename _Tp>
+  std::function<_Tp(_Tp)>
+  make_function(_Tp(* f)(_Tp, void *), _Tp* p)
+  {
+    return [f, p](_Tp x)->_Tp{ return f(x, p); };
+  }
+/*
+struct counter_params
 {
-  gsl_function f_new;
-
-  f_new.function = f;
-  f_new.params = p;
-
-  return f_new;
-}
-
-struct counter_params {
   gsl_function * f;
   int neval;
 };
@@ -53,7 +57,7 @@ double
 counter (double x, void * params)
 {
   struct counter_params * p = (struct counter_params *) params;
-  p->neval++; /* increment counter */
+  p->neval++; // increment counter
   return GSL_FN_EVAL(p->f, x);
 }
 
@@ -69,10 +73,254 @@ gsl_function make_counter (gsl_function * f, struct counter_params * p)
 
   return f_new;
 }
-
+*/
 void my_error_handler (const char *reason, const char *file,
                        int line, int err);
 
+template<typename _Tp>
+  void
+  gsl_test (int status, const char *test_description)
+  {
+    if (!tests) initialise();
+
+    update (status);
+
+    if (status || verbose)
+      {
+	printf (status ? "FAIL: " : "PASS: ");
+
+	if (status && !verbose)
+          printf(" [%u]", tests);
+
+	printf("\n");
+	fflush (stdout);
+      }
+  }
+
+template<typename _Tp>
+  void
+  gsl_test_rel (_Tp result, _Tp expected, _Tp relative_error,
+        	const char *test_description)
+  {
+    int status ;
+
+    if (!tests) initialise();
+
+    /* Check for NaN vs inf vs number */
+
+    if (gsl_isnan(result) || gsl_isnan(expected)) 
+      {
+	status = gsl_isnan(result) != gsl_isnan(expected); 
+      }
+    else if (std::isinf(result) || std::isinf(expected)) 
+      {
+	status = std::isinf(result) != std::isinf(expected); 
+      }
+    else if ((expected > 0 && expected < std::numeric_limits<_Tp>::min())
+             || (expected < 0 && expected > -(std::numeric_limits<_Tp>::min())))
+      {
+	status = -1;
+      }
+    else if (expected != 0 ) 
+      {
+	status = (fabs(result-expected)/fabs(expected) > relative_error) ;
+      }
+    else
+      {
+	status = (fabs(result) > relative_error) ;
+      }
+
+    update (status);
+
+    if (status || verbose)
+      {
+	printf (status ? "FAIL: " : "PASS: ");
+
+	if (status == 0)
+          {
+            if (strlen(test_description) < 45)
+              {
+        	printf(" (%g observed vs %g expected)", result, expected) ;
+              }
+            else
+              {
+        	printf(" (%g obs vs %g exp)", result, expected) ;
+              }
+          }
+	else 
+          {
+            printf(" (%.18g observed vs %.18g expected)", result, expected) ;
+          }
+
+	if (status == -1)
+          {
+            printf(" [test uses subnormal value]") ;
+          }
+
+	if (status && !verbose)
+          printf(" [%u]", tests);
+
+	printf ("\n") ;
+	fflush (stdout);
+      }
+  }
+
+template<typename _Tp>
+  void
+  gsl_test_abs (_Tp result, _Tp expected, _Tp absolute_error,
+        	const char *test_description)
+  {
+    int status ;
+
+    if (!tests) initialise();
+
+    /* Check for NaN vs inf vs number */
+
+    if (gsl_isnan(result) || gsl_isnan(expected)) 
+      {
+	status = gsl_isnan(result) != gsl_isnan(expected); 
+      }
+    else if (std::isinf(result) || std::isinf(expected)) 
+      {
+	status = std::isinf(result) != std::isinf(expected); 
+      }
+    else if ((expected > 0 && expected < std::numeric_limits<_Tp>::min())
+             || (expected < 0 && expected > -(std::numeric_limits<_Tp>::min())))
+      {
+	status = -1;
+      }
+    else 
+      {
+	status = fabs(result-expected) > absolute_error ;
+      }
+
+    update (status);
+
+    if (status || verbose)
+      {
+	printf (status ? "FAIL: " : "PASS: ");
+
+	if (status == 0)
+          {
+            if (strlen(test_description) < 45)
+              {
+        	printf(" (%g observed vs %g expected)", result, expected) ;
+              }
+            else
+              {
+        	printf(" (%g obs vs %g exp)", result, expected) ;
+              }
+          }
+	else 
+          {
+            printf(" (%.18g observed vs %.18g expected)", result, expected) ;
+          }
+
+	if (status == -1)
+          {
+            printf(" [test uses subnormal value]") ;
+          }
+
+	if (status && !verbose)
+          printf(" [%u]", tests);
+
+	printf ("\n") ;
+	fflush (stdout);
+      }
+  }
+
+template<typename _Tp>
+  void
+  gsl_test_factor (_Tp result, _Tp expected, _Tp factor,
+                   const char *test_description)
+  {
+    int status;
+
+    if (!tests) initialise();
+
+    if ((expected > 0 && expected < std::numeric_limits<_Tp>::min())
+	|| (expected < 0 && expected > -(std::numeric_limits<_Tp>::min())))
+      {
+	status = -1;
+      }
+    else if (result == expected) 
+      {
+	status = 0;
+      }
+    else if (expected == 0.0) 
+      {
+	status = (result > expected || result < expected);
+      }
+    else
+      {
+	_Tp u = result / expected; 
+	status = (u > factor || u < 1.0 / factor) ;
+      }
+
+    update (status);
+
+    if (status || verbose)
+      {
+	printf (status ? "FAIL: " : "PASS: ");
+
+	if (status == 0)
+          {
+            if (strlen(test_description) < 45)
+              {
+        	printf(" (%g observed vs %g expected)", result, expected) ;
+              }
+            else
+              {
+        	printf(" (%g obs vs %g exp)", result, expected) ;
+              }
+          }
+	else 
+          {
+            printf(" (%.18g observed vs %.18g expected)", result, expected) ;
+          }
+
+	if (status == -1)
+          {
+            printf(" [test uses subnormal value]") ;
+          }
+
+	if (status && !verbose)
+          printf(" [%u]", tests);
+
+	printf ("\n") ;
+	fflush (stdout);
+      }
+  }
+
+void
+gsl_test_int (int result, int expected, const char *test_description)
+{
+  int status = (result != expected) ;
+
+  if (!tests) initialise();
+
+  update (status);
+
+  if (status || verbose)
+    {
+      printf (status ? "FAIL: " : "PASS: ");
+
+      if (status == 0)
+        {
+          printf(" (%d observed vs %d expected)", result, expected) ;
+        }
+      else 
+        {
+          printf(" (%d observed vs %d expected)", result, expected) ;
+        }
+
+      if (status && !verbose)
+        printf(" [%u]", tests);
+
+      printf ("\n");
+      fflush (stdout);
+    }
+}
 
 int
 main()
@@ -83,24 +331,21 @@ main()
   /* Test the basic Gauss-Kronrod rules with a smooth positive function. */
 
   {
-    double result = 0, abserr = 0, resabs = 0, resasc = 0;
     double exp_result = 7.716049357767090777E-02;
     double exp_abserr = 2.990224871000550874E-06;
     double exp_resabs = 7.716049357767090777E-02;
     double exp_resasc = 4.434273814139995384E-02;
 
     double alpha = 2.6;
-    gsl_function f = make_function(&f1, &alpha);
+    auto f = make_function(&f1, &alpha);
 
-    gsl_integration_qk15 (&f, 0.0, 1.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    auto [result, abserr, resabs, resasc] = qk_integrate(&f, 0.0, 1.0, __gnu_test::QK_15);
     gsl_test_rel(result,exp_result,1e-15,"qk15(f1) smooth result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk15(f1) smooth abserr");
-    gsl_test_rel(resabs,exp_resabs,1e-15,"qk15(f1) smooth resabs");    
+    gsl_test_rel(resabs,exp_resabs,1e-15,"qk15(f1) smooth resabs");
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk15(f1) smooth resasc");
 
-    gsl_integration_qk15 (&f, 1.0, 0.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    std::tie(result, abserr, resabs, resasc) = qk_integrate(&f, 1.0, 0.0, __gnu_test::QK_15);
 
     gsl_test_rel(result,-exp_result,1e-15,"qk15(f1) reverse result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk15(f1) reverse abserr");
@@ -109,24 +354,21 @@ main()
   }
 
   {
-    double result = 0, abserr = 0, resabs = 0, resasc = 0;
     double exp_result = 7.716049379303084599E-02;
     double exp_abserr = 9.424302194248481445E-08;
     double exp_resabs = 7.716049379303084599E-02;
     double exp_resasc = 4.434311425038358484E-02;
 
     double alpha = 2.6;
-    gsl_function f = make_function(&f1, &alpha);
+    auto f = make_function(&f1, &alpha);
 
-    gsl_integration_qk21 (&f, 0.0, 1.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    auto [result, abserr, resabs, resasc] = __gnu_test::qk_integrate(&f, 0.0, 1.0, __gnu_test::QK_21);
     gsl_test_rel(result,exp_result,1e-15,"qk21(f1) smooth result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk21(f1) smooth abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk21(f1) smooth resabs");    
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk21(f1) smooth resasc");
 
-    gsl_integration_qk21 (&f, 1.0, 0.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    std::tie(result, abserr, resabs, resasc) = __gnu_test::qk_integrate(&f, 1.0, 0.0, __gnu_test::QK_21);
     gsl_test_rel(result,-exp_result,1e-15,"qk21(f1) reverse result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk21(f1) reverse abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk21(f1) reverse resabs");    
@@ -134,24 +376,21 @@ main()
   }
 
   {
-    double result = 0, abserr = 0, resabs = 0, resasc = 0;
     double exp_result = 7.716049382494900855E-02;
     double exp_abserr = 1.713503193600029893E-09;
     double exp_resabs = 7.716049382494900855E-02;
     double exp_resasc = 4.427995051868838933E-02;
 
     double alpha = 2.6;
-    gsl_function f = make_function(&f1, &alpha);
+    auto f = make_function(&f1, &alpha);
 
-    gsl_integration_qk31 (&f, 0.0, 1.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    auto [result, abserr, resabs, resasc] = __gnu_test::qk_integrate(&f, 0.0, 1.0, __gnu_test::QK_31);
     gsl_test_rel(result,exp_result,1e-15,"qk31(f1) smooth result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk31(f1) smooth abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk31(f1) smooth resabs");    
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk31(f1) smooth resasc");
 
-    gsl_integration_qk31 (&f, 1.0, 0.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    std::tie(result, abserr, resabs, resasc) = __gnu_test::qk_integrate(&f, 1.0, 0.0, __gnu_test::QK_31);
     gsl_test_rel(result,-exp_result,1e-15,"qk31(f1) reverse result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk31(f1) reverse abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk31(f1) reverse resabs");    
@@ -159,24 +398,21 @@ main()
   }
 
   {
-    double result = 0, abserr = 0, resabs = 0, resasc = 0;
     double exp_result = 7.716049382681375302E-02;
     double exp_abserr = 9.576386660975511224E-11;
     double exp_resabs = 7.716049382681375302E-02;
     double exp_resasc = 4.421521169637691873E-02;
 
     double alpha = 2.6;
-    gsl_function f = make_function(&f1, &alpha);
+    auto f = make_function(&f1, &alpha);
 
-    gsl_integration_qk41 (&f, 0.0, 1.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    auto [result, abserr, resabs, resasc] = __gnu_test::qk_integrate(&f, 0.0, 1.0, __gnu_test::QK_41);
     gsl_test_rel(result,exp_result,1e-15,"qk41(f1) smooth result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk41(f1) smooth abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk41(f1) smooth resabs");    
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk41(f1) smooth resasc");
 
-    gsl_integration_qk41 (&f, 1.0, 0.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    std::tie(result, abserr, resabs, resasc) = __gnu_test::qk_integrate(&f, 1.0, 0.0, __gnu_test::QK_41);
     gsl_test_rel(result,-exp_result,1e-15,"qk41(f1) reverse result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk41(f1) reverse abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk41(f1) reverse resabs");    
@@ -184,24 +420,21 @@ main()
   }
 
   {
-    double result = 0, abserr = 0, resabs = 0, resasc = 0;
     double exp_result = 7.716049382708510540E-02;
     double exp_abserr = 1.002079980317363772E-11;
     double exp_resabs = 7.716049382708510540E-02;
     double exp_resasc = 4.416474291216854892E-02;
 
     double alpha = 2.6;
-    gsl_function f = make_function(&f1, &alpha);
+    auto f = make_function(&f1, &alpha);
 
-    gsl_integration_qk51 (&f, 0.0, 1.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    auto [result, abserr, resabs, resasc] = __gnu_test::qk_integrate(&f, 0.0, 1.0, __gnu_test::QK_51);
     gsl_test_rel(result,exp_result,1e-15,"qk51(f1) smooth result");
     gsl_test_rel(abserr,exp_abserr,1e-5,"qk51(f1) smooth abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk51(f1) smooth resabs");    
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk51(f1) smooth resasc");
 
-    gsl_integration_qk51 (&f, 1.0, 0.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    std::tie(result, abserr, resabs, resasc) = __gnu_test::qk_integrate(&f, 1.0, 0.0, __gnu_test::QK_51);
     gsl_test_rel(result,-exp_result,1e-15,"qk51(f1) reverse result");
     gsl_test_rel(abserr,exp_abserr,1e-5,"qk51(f1) reverse abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk51(f1) reverse resabs");    
@@ -209,24 +442,21 @@ main()
   }
 
   {
-    double result = 0, abserr = 0, resabs = 0, resasc = 0;
     double exp_result = 7.716049382713800753E-02;
     double exp_abserr = 1.566060362296155616E-12;
     double exp_resabs = 7.716049382713800753E-02;
     double exp_resasc = 4.419287685934316506E-02;
 
     double alpha = 2.6;
-    gsl_function f = make_function(&f1, &alpha);
+    auto f = make_function(&f1, &alpha);
 
-    gsl_integration_qk61 (&f, 0.0, 1.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    auto [result, abserr, resabs, resasc] = __gnu_test::qk_integrate(&f, 0.0, 1.0, __gnu_test::QK_61);
     gsl_test_rel(result,exp_result,1e-15,"qk61(f1) smooth result");
     gsl_test_rel(abserr,exp_abserr,1e-5,"qk61(f1) smooth abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk61(f1) smooth resabs");    
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk61(f1) smooth resasc");
 
-    gsl_integration_qk61 (&f, 1.0, 0.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    std::tie(result, abserr, resabs, resasc) = __gnu_test::qk_integrate(&f, 1.0, 0.0, __gnu_test::QK_61);
     gsl_test_rel(result,-exp_result,1e-15,"qk61(f1) reverse result");
     gsl_test_rel(abserr,exp_abserr,1e-5,"qk61(f1) reverse abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk61(f1) reverse resabs");    
@@ -238,24 +468,21 @@ main()
      find discrepancies in the abserr calculation. */
 
   {
-    double result = 0, abserr = 0, resabs = 0, resasc = 0;
     double exp_result = 1.555688196612745777E+01;
     double exp_abserr = 2.350164577239293706E+01;
     double exp_resabs = 1.555688196612745777E+01;
     double exp_resasc = 2.350164577239293706E+01;
 
     double alpha = -0.9;
-    gsl_function f = make_function(&f1, &alpha);
+    auto f = make_function(&f1, &alpha);
 
-    gsl_integration_qk15 (&f, 0.0, 1.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    auto [result, abserr, resabs, resasc] = __gnu_test::qk_integrate(&f, 0.0, 1.0, __gnu_test::QK_15);
     gsl_test_rel(result,exp_result,1e-15,"qk15(f1) singular result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk15(f1) singular abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk15(f1) singular resabs");    
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk15(f1) singular resasc");
 
-    gsl_integration_qk15 (&f, 1.0, 0.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    std::tie(result, abserr, resabs, resasc) = __gnu_test::qk_integrate(&f, 1.0, 0.0, __gnu_test::QK_15);
     gsl_test_rel(result,-exp_result,1e-15,"qk15(f1) reverse result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk15(f1) reverse abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk15(f1) reverse resabs");    
@@ -263,24 +490,21 @@ main()
   }
 
   {
-    double result = 0, abserr = 0, resabs = 0, resasc = 0;
     double exp_result = 1.799045317938126232E+01;
     double exp_abserr = 2.782360287710622515E+01;
     double exp_resabs = 1.799045317938126232E+01;
     double exp_resasc = 2.782360287710622515E+01;
 
     double alpha = -0.9;
-    gsl_function f = make_function(&f1, &alpha);
+    auto f = make_function(&f1, &alpha);
 
-    gsl_integration_qk21 (&f, 0.0, 1.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    auto [result, abserr, resabs, resasc] = __gnu_test::qk_integrate(&f, 0.0, 1.0, __gnu_test::QK_21);
     gsl_test_rel(result,exp_result,1e-15,"qk21(f1) singular result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk21(f1) singular abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk21(f1) singular resabs");    
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk21(f1) singular resasc");
 
-    gsl_integration_qk21 (&f, 1.0, 0.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    std::tie(result, abserr, resabs, resasc) = __gnu_test::qk_integrate(&f, 1.0, 0.0, __gnu_test::QK_21);
     gsl_test_rel(result,-exp_result,1e-15,"qk21(f1) reverse result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk21(f1) reverse abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk21(f1) reverse resabs");    
@@ -288,24 +512,21 @@ main()
   }
 
   {
-    double result = 0, abserr = 0, resabs = 0, resasc = 0;
     double exp_result = 2.081873305159121657E+01;
     double exp_abserr = 3.296500137482590276E+01;
     double exp_resabs = 2.081873305159121301E+01;
     double exp_resasc = 3.296500137482590276E+01;
 
     double alpha = -0.9;
-    gsl_function f = make_function(&f1, &alpha);
+    auto f = make_function(&f1, &alpha);
 
-    gsl_integration_qk31 (&f, 0.0, 1.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    auto [result, abserr, resabs, resasc] = __gnu_test::qk_integrate(&f, 0.0, 1.0, __gnu_test::QK_31);
     gsl_test_rel(result,exp_result,1e-15,"qk31(f1) singular result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk31(f1) singular abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk31(f1) singular resabs");    
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk31(f1) singular resasc");
 
-    gsl_integration_qk31 (&f, 1.0, 0.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    std::tie(result, abserr, resabs, resasc) = __gnu_test::qk_integrate(&f, 1.0, 0.0, __gnu_test::QK_31);
     gsl_test_rel(result,-exp_result,1e-15,"qk31(f1) reverse result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk31(f1) reverse abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk31(f1) reverse resabs");    
@@ -313,24 +534,21 @@ main()
   }
 
   {
-    double result = 0, abserr = 0, resabs = 0, resasc = 0;
     double exp_result = 2.288677623903126701E+01;
     double exp_abserr = 3.671538820274916048E+01;
     double exp_resabs = 2.288677623903126701E+01;
     double exp_resasc = 3.671538820274916048E+01;
 
     double alpha = -0.9;
-    gsl_function f = make_function(&f1, &alpha);
+    auto f = make_function(&f1, &alpha);
 
-    gsl_integration_qk41 (&f, 0.0, 1.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    auto [result, abserr, resabs, resasc] = __gnu_test::qk_integrate(&f, 0.0, 1.0, __gnu_test::QK_41);
     gsl_test_rel(result,exp_result,1e-15,"qk41(f1) singular result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk41(f1) singular abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk41(f1) singular resabs");    
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk41(f1) singular resasc");
 
-    gsl_integration_qk41 (&f, 1.0, 0.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    std::tie(result, abserr, resabs, resasc) = __gnu_test::qk_integrate(&f, 1.0, 0.0, __gnu_test::QK_41);
     gsl_test_rel(result,-exp_result,1e-15,"qk41(f1) reverse result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk41(f1) reverse abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk41(f1) reverse resabs");    
@@ -338,24 +556,21 @@ main()
   }
 
   {
-    double result = 0, abserr = 0, resabs = 0, resasc = 0;
     double exp_result = 2.449953612016972215E+01;
     double exp_abserr = 3.967771249391228849E+01;
     double exp_resabs = 2.449953612016972215E+01;
     double exp_resasc = 3.967771249391228849E+01;
 
     double alpha = -0.9;
-    gsl_function f = make_function(&f1, &alpha);
+    auto f = make_function(&f1, &alpha);
 
-    gsl_integration_qk51 (&f, 0.0, 1.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    auto [result, abserr, resabs, resasc] = __gnu_test::qk_integrate(&f, 0.0, 1.0, __gnu_test::QK_51);
     gsl_test_rel(result,exp_result,1e-15,"qk51(f1) singular result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk51(f1) singular abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk51(f1) singular resabs");    
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk51(f1) singular resasc");
 
-    gsl_integration_qk51 (&f, 1.0, 0.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    std::tie(result, abserr, resabs, resasc) = __gnu_test::qk_integrate(&f, 1.0, 0.0, __gnu_test::QK_51);
     gsl_test_rel(result,-exp_result,1e-15,"qk51(f1) reverse result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk51(f1) reverse abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk51(f1) reverse resabs");    
@@ -363,24 +578,21 @@ main()
   }
 
   {
-    double result = 0, abserr = 0, resabs = 0, resasc = 0;
     double exp_result = 2.583030240976628988E+01;
     double exp_abserr = 4.213750493076978643E+01;
     double exp_resabs = 2.583030240976628988E+01;
     double exp_resasc = 4.213750493076978643E+01;
 
     double alpha = -0.9;
-    gsl_function f = make_function(&f1, &alpha);
+    auto f = make_function(&f1, &alpha);
 
-    gsl_integration_qk61 (&f, 0.0, 1.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    auto [result, abserr, resabs, resasc] = __gnu_test::qk_integrate(&f, 0.0, 1.0, __gnu_test::QK_61);
     gsl_test_rel(result,exp_result,1e-15,"qk61(f1) singular result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk61(f1) singular abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk61(f1) singular resabs");    
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk61(f1) singular resasc");
 
-    gsl_integration_qk61 (&f, 1.0, 0.0, 
-                                  &result, &abserr, &resabs, &resasc);
+    std::tie(result, abserr, resabs, resasc) = __gnu_test::qk_integrate(&f, 1.0, 0.0, __gnu_test::QK_61);
     gsl_test_rel(result,-exp_result,1e-15,"qk61(f1) reverse result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk61(f1) reverse abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk61(f1) reverse resabs");    
@@ -392,24 +604,21 @@ main()
      discrepancies in the abscissae. */
 
   {
-    double result = 0, abserr = 0, resabs = 0, resasc = 0;
     double exp_result =-7.238969575483799046E-01;
     double exp_abserr = 8.760080200939757174E-06;
     double exp_resabs = 1.165564172429140788E+00;
     double exp_resasc = 9.334560307787327371E-01;
 
     double alpha = 1.3;
-    gsl_function f = make_function(&f3, &alpha);
+    auto f = make_function(&f3, &alpha);
 
-    gsl_integration_qk15 (&f, 0.3, 2.71, 
-                                  &result, &abserr, &resabs, &resasc);
+    auto [result, abserr, resabs, resasc] = __gnu_test::qk_integrate(&f, 0.3, 2.71, __gnu_test::QK_15);
     gsl_test_rel(result,exp_result,1e-15,"qk15(f3) oscill result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk15(f3) oscill abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk15(f3) oscill resabs");
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk15(f3) oscill resasc");
 
-    gsl_integration_qk15 (&f, 2.71, 0.3, 
-                                  &result, &abserr, &resabs, &resasc);
+    std::tie(result, abserr, resabs, resasc) = __gnu_test::qk_integrate(&f, 2.71, 0.3, __gnu_test::QK_15);
     gsl_test_rel(result,-exp_result,1e-15,"qk15(f3) reverse result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk15(f3) reverse abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk15(f3) reverse resabs");
@@ -417,24 +626,21 @@ main()
   }
 
   {
-    double result = 0, abserr = 0, resabs = 0, resasc = 0;
     double exp_result =-7.238969575482959717E-01;
     double exp_abserr = 7.999213141433641888E-11;
     double exp_resabs = 1.150829032708484023E+00;
     double exp_resasc = 9.297591249133687619E-01;
 
     double alpha = 1.3;
-    gsl_function f = make_function(&f3, &alpha);
+    auto f = make_function(&f3, &alpha);
     
-    gsl_integration_qk21 (&f, 0.3, 2.71, 
-                                  &result, &abserr, &resabs, &resasc);
+    auto [result, abserr, resabs, resasc] = __gnu_test::qk_integrate(&f, 0.3, 2.71, );
     gsl_test_rel(result,exp_result,1e-15,"qk21(f3) oscill result");
     gsl_test_rel(abserr,exp_abserr,1e-5,"qk21(f3) oscill abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk21(f3) oscill resabs");
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk21(f3) oscill resasc");
 
-    gsl_integration_qk21 (&f, 2.71, 0.3,
-                                  &result, &abserr, &resabs, &resasc);
+    std::tie(result, abserr, resabs, resasc) = __gnu_test::qk_integrate(&f, 2.71, 0.3, );
     gsl_test_rel(result,-exp_result,1e-15,"qk21(f3) reverse result");
     gsl_test_rel(abserr,exp_abserr,1e-5,"qk21(f3) reverse abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk21(f3) reverse resabs");
@@ -442,24 +648,21 @@ main()
   }
 
   {
-    double result = 0, abserr = 0, resabs = 0, resasc = 0;
     double exp_result =-7.238969575482959717E-01;
     double exp_abserr = 1.285805464427459261E-14;
     double exp_resabs = 1.158150602093290571E+00;
     double exp_resasc = 9.277828092501518853E-01;
 
     double alpha = 1.3;
-    gsl_function f = make_function(&f3, &alpha);
+    auto f = make_function(&f3, &alpha);
 
-    gsl_integration_qk31 (&f, 0.3, 2.71, 
-                                  &result, &abserr, &resabs, &resasc);
+    auto [result, abserr, resabs, resasc] = __gnu_test::qk_integrate(&f, 0.3, 2.71, __gnu_test::QK_31);
     gsl_test_rel(result,exp_result,1e-15,"qk31(f3) oscill result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk31(f3) oscill abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk31(f3) oscill resabs");
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk31(f3) oscill resasc");
 
-    gsl_integration_qk31 (&f, 2.71, 0.3, 
-                                  &result, &abserr, &resabs, &resasc);
+    std::tie(result, abserr, resabs, resasc) = __gnu_test::qk_integrate(&f, 2.71, 0.3, __gnu_test::QK_31);
     gsl_test_rel(result,-exp_result,1e-15,"qk31(f3) reverse result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk31(f3) reverse abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk31(f3) reverse resabs");
@@ -467,24 +670,21 @@ main()
   }
 
   {
-    double result = 0, abserr = 0, resabs = 0, resasc = 0;
     double exp_result =-7.238969575482959717E-01;
     double exp_abserr = 1.286535726271015626E-14;
     double exp_resabs = 1.158808363486595328E+00;
     double exp_resasc = 9.264382258645686985E-01;
 
     double alpha = 1.3;
-    gsl_function f = make_function(&f3, &alpha);
+    auto f = make_function(&f3, &alpha);
 
-    gsl_integration_qk41 (&f, 0.3, 2.71, 
-                                  &result, &abserr, &resabs, &resasc);
+    auto [result, abserr, resabs, resasc] = __gnu_test::qk_integrate(&f, 0.3, 2.71, __gnu_test::QK_41);
     gsl_test_rel(result,exp_result,1e-15,"qk41(f3) oscill result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk41(f3) oscill abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk41(f3) oscill resabs");
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk41(f3) oscill resasc");
 
-    gsl_integration_qk41 (&f, 2.71, 0.3,
-                                  &result, &abserr, &resabs, &resasc);
+    std::tie(result, abserr, resabs, resasc) = __gnu_test::qk_integrate(&f, 2.71, 0.3, __gnu_test::QK_41);
     gsl_test_rel(result,-exp_result,1e-15,"qk41(f3) reverse result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk41(f3) reverse abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk41(f3) reverse resabs");
@@ -492,24 +692,21 @@ main()
   }
 
   {
-    double result = 0, abserr = 0, resabs = 0, resasc = 0;
     double exp_result =-7.238969575482961938E-01;
     double exp_abserr = 1.285290995039385778E-14;
     double exp_resabs = 1.157687209264406381E+00;
     double exp_resasc = 9.264666884071264263E-01;
 
     double alpha = 1.3;
-    gsl_function f = make_function(&f3, &alpha);
+    auto f = make_function(&f3, &alpha);
 
-    gsl_integration_qk51 (&f, 0.3, 2.71, 
-                                  &result, &abserr, &resabs, &resasc);
+    auto [result, abserr, resabs, resasc] = __gnu_test::qk_integrate(&f, 0.3, 2.71, __gnu_test::QK_51);
     gsl_test_rel(result,exp_result,1e-15,"qk51(f3) oscill result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk51(f3) oscill abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk51(f3) oscill resabs");
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk51(f3) oscill resasc");
 
-    gsl_integration_qk51 (&f, 2.71, 0.3,
-                                  &result, &abserr, &resabs, &resasc);
+    std::tie(result, abserr, resabs, resasc) = __gnu_test::qk_integrate(&f, 2.71, 0.3, __gnu_test::QK_51);
     gsl_test_rel(result,-exp_result,1e-15,"qk51(f3) reverse result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk51(f3) reverse abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk51(f3) reverse resabs");
@@ -517,31 +714,28 @@ main()
   }
 
   {
-    double result = 0, abserr = 0, resabs = 0, resasc = 0;
     double exp_result =-7.238969575482959717E-01;
     double exp_abserr = 1.286438572027470736E-14;
     double exp_resabs = 1.158720854723590099E+00;
     double exp_resasc = 9.270469641771273972E-01;
 
     double alpha = 1.3;
-    gsl_function f = make_function(&f3, &alpha);
+    auto f = make_function(&f3, &alpha);
 
-    gsl_integration_qk61 (&f, 0.3, 2.71, 
-                                  &result, &abserr, &resabs, &resasc);
+    auto [result, abserr, resabs, resasc] = __gnu_test::qk_integrate(&f, 0.3, 2.71, __gnu_test::QK_61);
     gsl_test_rel(result,exp_result,1e-15,"qk61(f3) oscill result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk61(f3) oscill abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk61(f3) oscill resabs");
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk61(f3) oscill resasc");
 
-    gsl_integration_qk61 (&f, 2.71, 0.3,
-                                  &result, &abserr, &resabs, &resasc);
+    std::tie(result, abserr, resabs, resasc) = __gnu_test::qk_integrate(&f, 2.71, 0.3, __gnu_test::QK_61);
     gsl_test_rel(result,-exp_result,1e-15,"qk61(f3) reverse result");
     gsl_test_rel(abserr,exp_abserr,1e-7,"qk61(f3) reverse abserr");
     gsl_test_rel(resabs,exp_resabs,1e-15,"qk61(f3) reverse resabs");
     gsl_test_rel(resasc,exp_resasc,1e-15,"qk61(f3) reverse resasc");
   }
 
-  /* Test the non-adaptive gaussian integrator QNG */
+  /* Test the non-adaptive gaussian integrator QNG 
 
   {
     int status = 0; size_t neval = 0;
@@ -552,7 +746,7 @@ main()
     int exp_ier    =   0;
 
     double alpha = 2.6;
-    gsl_function f = make_function(&f1, &alpha);
+    auto f = make_function(&f1, &alpha);
     
     status = gsl_integration_qng (&f, 0.0, 1.0, 1e-1, 0.0,
                                   &result, &abserr, &neval);
@@ -579,7 +773,7 @@ main()
     int exp_ier    =   0;
 
     double alpha = 2.6;
-    gsl_function f = make_function(&f1, &alpha);
+    auto f = make_function(&f1, &alpha);
 
     status = gsl_integration_qng (&f, 0.0, 1.0, 0.0, 1e-9,
                                   &result, &abserr, &neval);
@@ -605,7 +799,7 @@ main()
     int exp_ier    =   0;
 
     double alpha = 1.3;
-    gsl_function f = make_function(&f3, &alpha);
+    auto f = make_function(&f3, &alpha);
 
     status = gsl_integration_qng (&f, 0.3, 2.71, 0.0, 1e-12,
                                   &result, &abserr, &neval);
@@ -632,7 +826,7 @@ main()
     int exp_ier    =   0;
 
     double alpha = 2.6;
-    gsl_function f = make_function(&f1, &alpha);
+    auto f = make_function(&f1, &alpha);
 
     status = gsl_integration_qng (&f, 0.0, 1.0, 0.0, 1e-13,
                                   &result, &abserr, &neval);
@@ -659,7 +853,7 @@ main()
     int exp_ier    =  GSL_ETOL;
 
     double alpha = -0.9;
-    gsl_function f = make_function(&f1, &alpha);
+    auto f = make_function(&f1, &alpha);
 
     status = gsl_integration_qng (&f, 0.0, 1.0, 0.0, 1e-3,
                                   &result, &abserr, &neval);
@@ -675,7 +869,7 @@ main()
     gsl_test_int((int)neval,exp_neval,"qng(f1) rev beyond 87pt neval");  
     gsl_test_int(status,exp_ier,"qng(f1) rev beyond 87pt status");
   }
-
+*/
   /* Test the adaptive integrator QAG */
 
   {
@@ -701,9 +895,9 @@ main()
     int order[6] = { 1, 2, 3, 4, 5, 6 };
 
     double alpha = 2.6;
-    gsl_function f = make_function(&f1, &alpha);
+    auto f = make_function(&f1, &alpha);
 
-    gsl_function fc = make_counter(&f, &p);
+    auto fc = make_counter(&f, &p);
 
     status = gsl_integration_qag (&fc, 0.0, 1.0, 0.0, 1e-10, w->limit,
                                   GSL_INTEG_GAUSS15, w,
@@ -776,9 +970,9 @@ main()
     int order[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
 
     double alpha = 2.6;
-    gsl_function f = make_function(&f1, &alpha);
+    auto f = make_function(&f1, &alpha);
 
-    gsl_function fc = make_counter(&f, &p);
+    auto fc = make_counter(&f, &p);
 
     status = gsl_integration_qag (&fc, 0.0, 1.0, 1e-14, 0.0, w->limit,
                                   GSL_INTEG_GAUSS21, w,
@@ -837,9 +1031,9 @@ main()
     int exp_last    =     1;
 
     double alpha = 1.3;
-    gsl_function f = make_function(&f3, &alpha);
+    auto f = make_function(&f3, &alpha);
 
-    gsl_function fc = make_counter(&f, &p);
+    auto fc = make_counter(&f, &p);
 
     status = gsl_integration_qag (&fc, 0.3, 2.71, 1e-14, 0.0, w->limit, 
                                   GSL_INTEG_GAUSS31, w, 
@@ -879,9 +1073,9 @@ main()
     int exp_last   =     51;
 
     double alpha = 2.0;
-    gsl_function f = make_function(&f16, &alpha);
+    auto f = make_function(&f16, &alpha);
 
-    gsl_function fc = make_counter(&f, &p);
+    auto fc = make_counter(&f, &p);
 
     status = gsl_integration_qag (&fc, -1.0, 1.0, 1e-14, 0.0, w->limit,
                                   GSL_INTEG_GAUSS51, w, 
@@ -937,8 +1131,8 @@ main()
     int order[3] = { 1, 2, 3 };
 
     double alpha = 1.0;
-    gsl_function f = make_function(&f16, &alpha);
-    gsl_function fc = make_counter(&f, &p);
+    auto f = make_function(&f16, &alpha);
+    auto fc = make_counter(&f, &p);
 
     status = gsl_integration_qag (&fc, -1.0, 1.0, 1e-14, 0.0, w->limit, 
                                   GSL_INTEG_GAUSS61, w, 
@@ -1009,8 +1203,8 @@ main()
     int order[5] = { 1, 2, 3, 4, 5 };
 
     double alpha = 2.6;
-    gsl_function f = make_function(&f1, &alpha);
-    gsl_function fc = make_counter(&f, &p);
+    auto f = make_function(&f1, &alpha);
+    auto fc = make_counter(&f, &p);
 
     status = gsl_integration_qags (&fc, 0.0, 1.0, 0.0, 1e-10, w->limit,
                                    w, 
@@ -1107,8 +1301,8 @@ main()
     int order[9] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
     double alpha = 2.0;
-    gsl_function f = make_function(&f11, &alpha);
-    gsl_function fc = make_counter(&f, &p);
+    auto f = make_function(&f11, &alpha);
+    auto fc = make_counter(&f, &p);
 
     status = gsl_integration_qags (&fc, 1.0, 1000.0, 1e-7, 0.0, w->limit,
                                    w, 
@@ -1208,8 +1402,8 @@ main()
                      1.156507325466566521E-17 };
     int order[10] = { 1, 2, 3, 5, 7, 9, 4, 6, 8, 10 };
 
-    gsl_function f = make_function(&f455, 0);
-    gsl_function fc = make_counter(&f, &p);
+    auto f = make_function(&f455, 0);
+    auto fc = make_counter(&f, &p);
 
     status = gsl_integration_qagiu (&fc, 0.0, 0.0, 1.0e-3, w->limit,
                                     w, 
@@ -1300,8 +1494,8 @@ main()
 
     double alpha = 5.0;
 
-    gsl_function f = make_function(&f15, &alpha);
-    gsl_function fc = make_counter(&f, &p);
+    auto f = make_function(&f15, &alpha);
+    auto fc = make_counter(&f, &p);
 
     status = gsl_integration_qagiu (&fc, 0.0, 0.0, 1.0e-7, w->limit,
                                     w, 
@@ -1376,8 +1570,8 @@ main()
 
     double alpha = 1.0;
 
-    gsl_function f = make_function(&f16, &alpha);
-    gsl_function fc = make_counter(&f, &p);
+    auto f = make_function(&f16, &alpha);
+    auto fc = make_counter(&f, &p);
 
     status = gsl_integration_qagiu (&fc, 99.9, 1.0e-7, 0.0, w->limit,
                                     w, 
@@ -1446,8 +1640,8 @@ main()
                     5.208244060463541433E-15 };
     int order[5] = { 2, 1, 3, 5, 4 };
 
-    gsl_function f = make_function(&myfn1, 0);
-    gsl_function fc = make_counter(&f, &p);
+    auto f = make_function(&myfn1, 0);
+    auto fc = make_counter(&f, &p);
 
     status = gsl_integration_qagi (&fc, 1.0e-7, 0.0, w->limit,
                                    w, 
@@ -1517,8 +1711,8 @@ main()
     int order[5] = { 1, 2, 3, 4, 5 };
 
     double alpha = 1.0;
-    gsl_function f = make_function(&myfn2, &alpha);
-    gsl_function fc = make_counter(&f, &p);
+    auto f = make_function(&myfn2, &alpha);
+    auto fc = make_counter(&f, &p);
 
     status = gsl_integration_qagil (&fc, 1.0, 1.0e-7, 0.0, w->limit,
                                     w, 
@@ -1648,8 +1842,8 @@ main()
     int order[20] = { 3, 4, 2, 1, 6, 7, 11, 8, 10, 12, 18,
                      15, 16, 14, 19, 17, 20, 13, 9, 5 };
 
-    gsl_function f = make_function(&f454, 0);
-    gsl_function fc = make_counter(&f, &p);
+    auto f = make_function(&f454, 0);
+    auto fc = make_counter(&f, &p);
 
     double pts[4];
 
@@ -1732,8 +1926,8 @@ main()
     int order[6] = { 1, 5, 3, 2, 4, 6 };
 
     double alpha = 1.0;
-    gsl_function f = make_function(&f459, &alpha);
-    gsl_function fc = make_counter(&f, &p);
+    auto f = make_function(&f459, &alpha);
+    auto fc = make_counter(&f, &p);
 
     status = gsl_integration_qawc (&fc, -1.0, 5.0, 0.0, 0.0, 1.0e-3, w->limit,
                                    w, 
@@ -1829,8 +2023,8 @@ main()
     int order[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
 
     double alpha = 1.0;
-    gsl_function f = make_function(&f458, &alpha);
-    gsl_function fc = make_counter(&f, &p);
+    auto f = make_function(&f458, &alpha);
+    auto fc = make_counter(&f, &p);
 
     status = gsl_integration_qaws (&fc, 0.0, 1.0, t, 0.0, 1.0e-7, w->limit,
                                    w, 
@@ -1973,8 +2167,8 @@ main()
     int order[9] = { 1, 2, 4, 3, 6, 5, 7, 8, 9 };
 
     double alpha = 1.0;
-    gsl_function f = make_function(&f456, &alpha);
-    gsl_function fc = make_counter(&f, &p);
+    auto f = make_function(&f456, &alpha);
+    auto fc = make_counter(&f, &p);
 
     status = gsl_integration_qawo (&fc, 0.0, 0.0, 1e-7, w->limit,
                                    w, wo, &result, &abserr);
@@ -2021,8 +2215,7 @@ main()
 
   }
 
-  /* Test fourier integration using an absolute error bound */
-
+  /* Test fourier integration using an absolute error bound 
   {
     int status = 0, i; struct counter_params p;
     double result = 0, abserr=0;
@@ -2033,7 +2226,7 @@ main()
       = gsl_integration_qawo_table_alloc (M_PI / 2.0, 1.0,
                                               GSL_INTEG_COSINE, 1000);
 
-    /* All results are for GSL_IEEE_MODE=double-precision */
+    // All results are for GSL_IEEE_MODE=double-precision
 
     double exp_result = 9.999999999279802765E-01;
     double exp_abserr = 1.556289974669056164E-08;
@@ -2067,8 +2260,8 @@ main()
                     2.130457268934021451E-17 };
 
     double alpha = 1.0;
-    gsl_function f = make_function(&f457, &alpha);
-    gsl_function fc = make_counter(&f, &p);
+    auto f = make_function(&f457, &alpha);
+    auto fc = make_counter(&f, &p);
 
     status = gsl_integration_qawf (&fc, 0.0, 1e-7, w->limit,
                                    w, wc, wo, &result, &abserr);
@@ -2082,8 +2275,8 @@ main()
     for (i = 0; i < 9; i++) 
         gsl_test_rel(w->rlist[i],r[i],1e-12,"qawf(f457) rlist");
 
-    /* We can only get within two orders of magnitude on the error
-       here, which is very sensitive to the floating point precision */
+    // We can only get within two orders of magnitude on the error
+    // here, which is very sensitive to the floating point precision
 
     for (i = 0; i < 9; i++) 
         gsl_test_rel(w->elist[i],e[i],50.0,"qawf(f457) elist");
@@ -2094,41 +2287,41 @@ main()
     gsl_integration_workspace_free (w);
 
   }
-
-  /* Sanity check monomial test function for fixed Gauss-Legendre rules */
+*/
+  /* Sanity check monomial test function for fixed Gauss-Legendre rules 
   {
     struct monomial_params params;
     gsl_function f;
-    
+
     f.function = &f_monomial;
     f.params = &params;
 
     params.degree   = 2;
     params.constant = 1.0;
-    gsl_test_abs(GSL_FN_EVAL(&f, 2.0), 4.0, 8*GSL_DBL_EPSILON,
+    gsl_test_abs(GSL_FN_EVAL(&f, 2.0), 4.0, 8*std::numeric_limits<_Tp>::epsilon(),
         "f_monomial sanity check 1");
 
     params.degree   = 1;
     params.constant = 2.0;
-    gsl_test_abs(GSL_FN_EVAL(&f, 2.0), 4.0, 8*GSL_DBL_EPSILON,
+    gsl_test_abs(GSL_FN_EVAL(&f, 2.0), 4.0, 8*std::numeric_limits<_Tp>::epsilon(),
         "f_monomial sanity check 2");
 
     params.degree   = 2;
     params.constant = 2.0;
     gsl_test_abs(integ_f_monomial(1.0, 2.0, &params),
-        (2.0/3.0)*(2.0*2.0*2.0 - 1.0*1.0*1.0), 8*GSL_DBL_EPSILON,
+        (2.0/3.0)*(2.0*2.0*2.0 - 1.0*1.0*1.0), 8*std::numeric_limits<_Tp>::epsilon(),
         "integ_f_monomial sanity check");
   }
-
-  /* Test the fixed-order Gauss-Legendre rules with a monomial. */
+*/
+  /* Test the fixed-order Gauss-Legendre rules with a monomial. 
   {
     int n;
     struct monomial_params params;
-    gsl_function f;
+    auto f = make_function(&f_monomial, &params);
     const double a   = 0.0, b = 1.2;
 
-    f.function = &f_monomial;
-    f.params = &params;
+    //f.function = &f_monomial;
+    //f.params = &params;
 
     params.constant = 1.0;
 
@@ -2139,7 +2332,7 @@ main()
         gsl_integration_glfixed_table * tbl =
           gsl_integration_glfixed_table_alloc(n);
 
-        params.degree = 2*n-1; /* n point rule exact for 2n-1 degree poly */
+        params.degree = 2*n-1; // n point rule exact for 2n-1 degree poly
         expected      = integ_f_monomial(a, b, &params);
         result        = gsl_integration_glfixed(&f, a, b, tbl);
 
@@ -2159,18 +2352,18 @@ main()
         gsl_integration_glfixed_table_free(tbl);
       }
   }
-
-  /* Sanity check sin(x) test function for fixed Gauss-Legendre rules */
+*/
+  /* Sanity check sin(x) test function for fixed Gauss-Legendre rules 
   {
     gsl_function f = { f_sin, NULL };
 
     gsl_test_abs(GSL_FN_EVAL(&f, 2.0), sin(2.0), 0.0, "f_sin sanity check 1");
     gsl_test_abs(GSL_FN_EVAL(&f, 7.0), sin(7.0), 0.0, "f_sin sanity check 2");
-    gsl_test_abs(integ_f_sin(0.0, M_PI), 2.0, GSL_DBL_EPSILON,
+    gsl_test_abs(integ_f_sin(0.0, M_PI), 2.0, std::numeric_limits<_Tp>::epsilon(),
         "integ_f_sin sanity check");
   }
-
-  /* Test the fixed-order Gauss-Legendre rules against sin(x) on [0, pi] */
+*/
+  /* Test the fixed-order Gauss-Legendre rules against sin(x) on [0, pi] 
   {
     const int n_max = 1024;
     const gsl_function f = { f_sin, NULL };
@@ -2200,13 +2393,13 @@ main()
           }
         else if (tbl->precomputed)
           {
-            gsl_test_abs(result, expected, 2.0 * n * GSL_DBL_EPSILON,
+            gsl_test_abs(result, expected, 2.0 * n * std::numeric_limits<_Tp>::epsilon(),
                 "glfixed %d-point: very low absolute error for high precision coefficients",
                 n);
           }
         else
           {
-            gsl_test_abs(result, expected, 1.0e6 * GSL_DBL_EPSILON,
+            gsl_test_abs(result, expected, 1.0e6 * std::numeric_limits<_Tp>::epsilon(),
                 "glfixed %d-point: acceptable absolute error for on-the-fly coefficients",
                 n);
           }
@@ -2215,18 +2408,18 @@ main()
         gsl_integration_glfixed_table_free(tbl);
       }
   }
-
+*/
   /* Test some fixed-order Gauss-Legendre rule points and weights on [-1, 1] */
-  /* This verifies the (point, weight) retrieval API behaves sanely */
+  /* This verifies the (point, weight) retrieval API behaves sanely 
   {
-    const double eps = GSL_DBL_EPSILON;
+    const double eps = std::numeric_limits<_Tp>::epsilon();
     gsl_integration_glfixed_table *tbl;
     int n, i;
     double xi, wi;
 
-    /* Analytical results for points and weights on [-1, 1]
-       Pulled from http://en.wikipedia.org/wiki/Gaussian_quadrature
-       Sorted in increasing order of Gauss points */
+    // Analytical results for points and weights on [-1, 1]
+    // Pulled from http://en.wikipedia.org/wiki/Gaussian_quadrature
+    // Sorted in increasing order of Gauss points
     const double e1[1][2] = {
       {0, 2 }
     };
@@ -2303,15 +2496,15 @@ main()
       }
     gsl_integration_glfixed_table_free(tbl);
   }
-
+*/
   /* Test some fixed-order Gauss-Legendre rule points and weights on [-2, 3] */
-  /* This verifies the (point, weight) retrieval API is okay on non-[-1,1] */
+  /* This verifies the (point, weight) retrieval API is okay on non-[-1,1] 
   {
     gsl_integration_glfixed_table *tbl;
     double result, x, w;
     int i;
 
-    /* Odd n = 3, f(x) = x**5 + x**4 + x**3 + x**2 + x**1 + 1 */
+    // Odd n = 3, f(x) = x**5 + x**4 + x**3 + x**2 + x**1 + 1
     result = 0;
     tbl = gsl_integration_glfixed_table_alloc(3);
     for (i = 0; i < 3; ++i)
@@ -2323,7 +2516,7 @@ main()
         "glfixed %d-point xi,wi eval", 3);
     gsl_integration_glfixed_table_free(tbl);
 
-    /* Even n = 4, f(x) = x**7 + x**6 + x**5 + x**4 + x**3 + x**2 + x**1 + 1 */
+    // Even n = 4, f(x) = x**7 + x**6 + x**5 + x**4 + x**3 + x**2 + x**1 + 1
     result = 0;
     tbl = gsl_integration_glfixed_table_alloc(4);
     for (i = 0; i < 4; ++i)
@@ -2335,7 +2528,8 @@ main()
         "glfixed %d-point xi,wi eval", 4);
     gsl_integration_glfixed_table_free(tbl);
   }
-
+*/
+/*
   {
     typedef double (*fptr) (double , void *);
     
@@ -2359,13 +2553,13 @@ main()
     size_t neval;
     int fid;
         
-    /* Loop over the functions... */
+    // Loop over the functions...
     for (fid = 0; fid < 25; fid++) {
       gsl_integration_cquad_workspace *ws = gsl_integration_cquad_workspace_alloc (200);
       gsl_function f = make_function(funs[fid], NULL);
       double exact = f_exact[fid];
 
-      /* Call our quadrature routine. */
+      // Call our quadrature routine.
       int status = gsl_integration_cquad (&f, ranges[2*fid] , ranges[2*fid+1] , 0.0 , 1.0e-12 , ws , &result , &abserr , &neval);
       
       gsl_test_rel (result, exact, 1e-12, "cquad f%d", fid);
@@ -2375,7 +2569,7 @@ main()
       gsl_integration_cquad_workspace_free(ws);
     }
   }        
-
+*/
 
   exit (gsl_test_summary());
 } 
