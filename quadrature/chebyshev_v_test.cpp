@@ -36,7 +36,7 @@ template<typename _Tp>
   normalized_chebyshev_v(int n1, int n2, _Tp x)
   {
     const auto _S_eps = __gnu_cxx::__epsilon(x);
-    const auto _S_inf = std::numeric_limits<_Tp>::infinity();
+    const auto _S_inf = __gnu_cxx::__infinity(x);
     if (std::abs(x - _Tp{1}) < _S_eps)
       return (n1 + n2) & 1 ? -_S_inf : _S_inf;
     else
