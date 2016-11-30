@@ -2261,6 +2261,9 @@ _S_neg_double_factorial_table[999]
    *           + (-1)^k\sum_{j=1}^{k-1}(-1)^j\zeta(j+1-k)c_j\right]
    * @f]
    * where @f$ c_1 = 1 @f$
+   *
+   * @param __a The argument of the reciprocal of the gamma function.
+   * @return  The reciprocal of the gamma function.
    */
   template<typename _Tp>
     _Tp
@@ -2316,6 +2319,43 @@ _S_neg_double_factorial_table[999]
     }
 
   /**
+   * Return the reciprocal of the Gamma function:
+   * @f[
+   *   \frac{1}{\Gamma(a)}
+   * @f]
+   *
+   * @param __a The argument of the reciprocal of the gamma function.
+   * @return  The reciprocal of the gamma function.
+   */
+  template<typename _Tp>
+    _Tp
+    __gamma_reciprocal(_Tp __a)
+    {
+      using _Real = std::__detail::__num_traits_t<_Tp>;
+      auto __an = __gnu_cxx::__fp_is_integer(__a);
+      if (__an)
+	{
+	  auto __n = __an();
+	  if (__n <= 0)
+	    return _Tp{0};
+	  else if (__n < _S_num_factorials<_Real>)
+	    return _Tp{1}
+		/ static_cast<_Real>(_S_factorial_table[__n - 1].__factorial);
+	  else
+	    return _Tp{0};
+	}
+      else if (std::real(__a) > _Real{1}
+	    && std::abs(__a) < _S_num_factorials<_Tp>)
+	{
+	  auto __fact = _Tp{1};
+	  auto __arg = __a;
+	  while (std::real(__arg) > _Real{1})
+	    __fact *= (__arg -= _Real{1});
+	  return __gamma_reciprocal_series(__arg) / __fact;
+	}
+    }
+
+  /**
    * @brief Return @f$ log(|\Gamma(a)|) @f$.
    * 	    This will return values even for @f$ a < 0 @f$.
    * 	    To recover the sign of @f$ \Gamma(a) @f$ for
@@ -2341,7 +2381,7 @@ _S_neg_double_factorial_table[999]
 	    return _S_logpi - std::log(__sin_fact) - __log_gamma(_Val{1} - __a);
 	}
       else if (std::real(__a) > _Real{1}
-      	    && std::abs(__a) < _S_num_factorials<_Tp>)
+	    && std::abs(__a) < _S_num_factorials<_Tp>)
 	{
 	  auto __fact = _Tp{1};
 	  auto __arg = __a;
@@ -2641,7 +2681,7 @@ _S_neg_double_factorial_table[999]
 	    return __gnu_cxx::__infinity(std::real(__a));
 	}
       else if (std::real(__a) > _Real{1}
-      	    && std::abs(__a) < _S_num_factorials<_Tp>)
+	    && std::abs(__a) < _S_num_factorials<_Tp>)
 	{
 	  auto __fact = _Tp{1};
 	  auto __arg = __a;
