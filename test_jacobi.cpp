@@ -1,5 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I/usr/local/include/boost -o test_jacobi test_jacobi.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi test_jacobi.cpp -lquadmath
+./test_jacobi > test_jacobi.txt
+
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi test_jacobi.cpp -lquadmath
 ./test_jacobi > test_jacobi.txt
 */
 
@@ -15,10 +18,13 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I/usr/lo
     __jacobi_zeros(unsigned int __n, _Tp __alpha, _Tp __beta)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__alpha);
-      const unsigned int _S_maxit = 1000;
+      const unsigned int _S_maxit = 1000u;
+
       std::vector<_Tp> __zero(__n);
+      std::vector<_Tp> __weight(__n);
 
       _Tp __z;
+      _Tp __w;
       for (auto __i = 1u; __i <= __n; ++__i)
 	{
 	  if (__i == 1)
@@ -75,12 +81,12 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I/usr/lo
 	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
 	    {
 	      auto __temp = _Tp{2} + __alphabeta;
-	      auto __p1 = (__alpha - __beta + __temp * __z) / _Tp{2};
-	      auto __p2 = _Tp{1};
+	      auto __P1 = (__alpha - __beta + __temp * __z) / _Tp{2};
+	      auto __P2 = _Tp{1};
 	      for (auto __j = 2u; __j <= __n; ++__j)
 		{
-		  auto __p3 = __p2;
-		  __p2 = __p1;
+		  auto __P3 = __P2;
+		  __P2 = __P1;
 		  __temp = _Tp{2} * __j + __alphabeta;
 		  auto __a = _Tp{2} * __j * (__j + __alphabeta)
 			   * (__temp - _Tp{2});
@@ -89,51 +95,54 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I/usr/lo
 				+ __temp * (__temp - _Tp{2}) * __z);
 		  auto __c = _Tp{2} * (__j - 1 + __alpha)
 			   * (__j - 1 + __beta) * __temp;
-		  __p1 = (__b * __p2 - __c * __p3) / __a;
+		  __P1 = (__b * __P2 - __c * __P3) / __a;
 		}
-	      auto __pp = (__n * (__alpha - __beta - __temp * __z) * __p1
-			   + _Tp{2} * (__n + __alpha) * (__n + __beta) * __p2)
+	      auto __Pp = (__n * (__alpha - __beta - __temp * __z) * __P1
+			   + _Tp{2} * (__n + __alpha) * (__n + __beta) * __P2)
 			/ (__temp * (_Tp{1} - __z * __z));
 	      auto __z1 = __z;
-	      __z = __z1 - __p1 / __pp;
+	      __z = __z1 - __P1 / __Pp;
 	      if (std::abs(__z - __z1) <= _S_eps)
-		break;
+		{
+		  __w = std::exp(std::lgamma(__alpha + _Tp(__n))
+			       + std::lgamma(__beta + _Tp(__n))
+			       - std::lgamma(_Tp(__n + 1))
+			       - std::lgamma(_Tp(__n + 1) + __alphabeta))
+		      * __temp * std::pow(_Tp{2}, __alphabeta) / (__Pp * __P2);
+		  break;
+		}
 	      if (__its > _S_maxit)
 		std::__throw_logic_error("__jacobi_zeros: Too many iterations");
 	    }
 	  __zero[__i - 1] = __z;
-	//  w[i] = std::exp(std::lgamma(__alpha + _Tp(__n))
-	//	    + std::lgamma(__beta + _Tp(__n))
-	//	    - std::lgamma(_Tp(__n + 1))
-	//	    - std::lgamma(_Tp(__n + 1) + __alphabeta))
-	//	 * __temp * std::pow(_Tp{2}, __alphabeta) / (__pp * __p2);
+	  __weight[__i - 1] = __w;
 	}
 
       return __zero;
     }
 
-template<typename Tp>
+template<typename _Tp>
   void
-  test_jacobi()
+  test_jacobi(_Tp proto = _Tp{})
   {
-    std::cout.precision(std::numeric_limits<Tp>::digits10);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
     auto width = std::cout.precision() + 6;
     std::cout << "\njacobi\n";
     for (int n = 0; n <= 5; ++n)
       {
 	for (int i = 0; i <= 3; ++i)
 	  {
-            auto alpha = i * Tp{1.0Q};
+            auto alpha = i * _Tp{1.0Q};
             for (int j = 0; j <= 3; ++j)
               {
-        	auto beta = j * Tp{1.0Q};
+        	auto beta = j * _Tp{1.0Q};
         	std::cout << "n     = " << n << '\n';
         	std::cout << "alpha = " << alpha << '\n';
         	std::cout << "beta  = " << beta << '\n';
-                Life::Jacobi<Tp> jac(n, alpha, beta);
+                Life::Jacobi<_Tp> jac(n, alpha, beta);
 		for (int k = 0; k <= 200; ++k)
         	  {
-        	    auto x = (k - 100) * Tp{0.01Q};
+        	    auto x = (k - 100) * _Tp{0.01Q};
         	    std::cout << std::setw(width) << x
         	              << std::setw(width) << __gnu_cxx::jacobi(n, alpha, beta, x)
         	              << std::setw(width) << jac(x)
@@ -157,6 +166,13 @@ template<typename Tp>
 int
 main()
 {
-  test_jacobi<long double>();
-  test_jacobi<__float128>();
+  test_jacobi(1.0F);
+
+  test_jacobi(1.0);
+
+  test_jacobi(1.0L);
+
+  test_jacobi(1.0Q);
+
+  return 0;
 }

@@ -19,11 +19,11 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hermite test_hermite
 #include "quadrature/integration.h"
 
   /**
-   * Compute the Hermite polynomial ratio:
+   * Compute the Hermite polynomial ratio by continued fraction:
    * @f[
    *    \frac{H_n(x)}{H_{n-1}(x)} = 2n\frac{H_n(x)}{H'_n(x)}
-   *       = b_k = 2x, k >= 0
-   *         a_k = -2(n-k) k >= 1
+   *       = b_0 + K_{k=1}^{n-1}\left(\frac{-2(n-k)}{2x}\right)
+   *      b_k = 2x, \mbox{ } k >= 0 \mbox{ } a_k = -2(n-k) \mbox{ } k >= 1
    * @f]
    *
    * @see RICHARD J. MATHAR, GAUSS-LAGUERRE AND GAUSS-HERMITE QUADRATURE
@@ -58,12 +58,15 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hermite test_hermite
     __hermite_zeros(unsigned int __n, _Tp __proto = _Tp{})
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__proto);
-      const unsigned int _S_maxit = 1000;
+      const unsigned int _S_maxit = 1000u;
       const auto _S_pim4 = _Tp{0.7511255444649424828587030047762276930510L};
+
       std::vector<_Tp> __zero(__n);
+      std::vector<_Tp> __weight(__n);
 
       auto __m = (__n + 1) / 2;
       _Tp __z;
+      _Tp __w;
       for (auto __i = 1u; __i <= __m; ++__i)
 	{
 	  if (__i == 1)
@@ -79,28 +82,31 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hermite test_hermite
 	    __z = 2.0 * __z - __zero[__i - 3];
 	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
 	    {
-	      auto __p1 = _S_pim4;
-	      auto __p2 = _Tp{0};
+	      auto __H1 = _S_pim4;
+	      auto __H2 = _Tp{0};
 	      for (auto __j = 1u; __j <= __n; ++__j)
 		{
-		  auto __p3 = __p2;
-		  __p2 = __p1;
-		  __p1 = __z * std::sqrt(_Tp{2} / __j) * __p2
-		       - std::sqrt(_Tp(__j - 1) / _Tp(__j)) * __p3;
+		  auto __H3 = __H2;
+		  __H2 = __H1;
+		  __H1 = __z * std::sqrt(_Tp{2} / __j) * __H2
+		       - std::sqrt(_Tp(__j - 1) / _Tp(__j)) * __H3;
 		}
-	      auto __pp = std::sqrt(_Tp(2 * __n)) * __p2;
+	      auto __Hp = std::sqrt(_Tp(2 * __n)) * __H2;
 	      auto __z1 = __z;
-	      __z = __z1 - __p1 / __pp;
+	      __z = __z1 - __H1 / __Hp;
 	      if (std::abs(__z - __z1) <= _S_eps)
-		break;
+		{
+		  __w = 2.0 / (__Hp * __Hp);
+		  break;
+		}
 	      if (__its > _S_maxit)
 		std::__throw_logic_error("__hermite_zeros: "
 					 "Too many iterations");
 	    }
 	  __zero[__i - 1] = __z;
 	  __zero[__n - __i] = -__z;
-	  //__w[i] = 2.0 / (__pp * __pp);
-	  //__w[__n - __i] = __w[i];
+	  __weight[__i] = __w;
+	  __weight[__n - __i] = __w;
 	}
 
       return __zero;
@@ -108,7 +114,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hermite test_hermite
 
 template<typename _Tp>
   void
-  test_hermite(_Tp proto)
+  test_hermite(_Tp proto = _Tp{})
   {
     const auto _S_pi = __gnu_cxx::__const_pi(proto);
 
@@ -345,6 +351,13 @@ template<typename _Tp>
 int
 main()
 {
+  test_hermite(1.0F);
+
+  test_hermite(1.0);
+
+  test_hermite(1.0L);
+
   test_hermite(1.0Q);
-  //test_hermite(1.0F);
+
+  return 0;
 }

@@ -15,11 +15,13 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre 
 #include <vector>
 
   /**
-   * Compute the Hermite polynomial ratio:
+   * Compute the Laguerre polynomial ratio by continued fraction:
    * @f[
-   *    \frac{H_n(x)}{H_{n-1}(x)} = 2n\frac{H_n(x)}{H'_n(x)}
-   *       = b_k = 2x, k >= 0
-   *         a_k = -2(n-k) k >= 1
+   *    \frac{L_n^{(\alpha)}(x)}{L'_n^{(\alpha)(x)} = \frac{x}{n-}
+   *       \frac{(n+\alpha)n}{2n+\alpha-1-x-}
+   *       \frac{(n-1+\alpha)(n-1)}{2n+\alpha-3-x-}
+   *       \frac{(n-2+\alpha)(n-2)}{2n+\alpha-5-x-} ...
+   *       \frac{1+\alpha}{1+\alpha-x}
    * @f]
    *
    * @see RICHARD J. MATHAR, GAUSS-LAGUERRE AND GAUSS-HERMITE QUADRATURE
@@ -43,11 +45,13 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre 
     }
 
   /**
-   * Compute the Hermite polynomial ratio:
+   * Compute the Laguerre polynomial ratio by continued fraction:
    * @f[
-   *    \frac{H_n(x)}{H_{n-1}(x)} = 2n\frac{H_n(x)}{H'_n(x)}
-   *       = b_k = 2x, k >= 0
-   *         a_k = -2(n-k) k >= 1
+   *    \frac{L_n^{(\alpha)}(x)}{L'_n^{(\alpha)(x)} = \frac{x}{n-}
+   *       \frac{(n+\alpha)n}{2n+\alpha-1-x-}
+   *       \frac{(n-1+\alpha)(n-1)}{2n+\alpha-3-x-}
+   *       \frac{(n-2+\alpha)(n-2)}{2n+\alpha-5-x-} \cdots
+   *       \frac{1+\alpha}{1+\alpha-x}
    * @f]
    *
    * @see RICHARD J. MATHAR, GAUSS-LAGUERRE AND GAUSS-HERMITE QUADRATURE
@@ -78,10 +82,13 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre 
     __laguerre_zeros(unsigned int __n, _Tp __proto)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__proto);
-      const unsigned int _S_maxit = 1000;
+      const unsigned int _S_maxit = 1000u;
+
+      std::vector<_Tp> __zero(__n);
+      std::vector<_Tp> __weight(__n);
 
       auto __z = _Tp{0};
-      std::vector<_Tp> __zero(__n);
+      auto __w = _Tp{0};
       for (auto __i = 1u; __i <= __n; ++__i)
 	{
 	  // Clever approximations for roots.
@@ -113,13 +120,16 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre 
 	      auto __z1 = __z;
 	      __z = __z1 - __L1 / __Lp;
 	      if (std::abs(__z - __z1) <= _S_eps)
-		break;
+		{
+		  __w = _Tp{-1} / (__Lp * __n * __L2);
+		  break;
+		}
 	      if (__its > _S_maxit)
 		std::__throw_logic_error("__laguerre_zeros: "
 					 "Too many iterations");
 	   }
 	  __zero[__i - 1] = __z;
-	  //__w[__i - 1] = _Tp{-1} / (__Lp * __n * __L2);
+	  __weight[__i - 1] = __w;
 	}
       return __zero;
     }
@@ -132,9 +142,12 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre 
       const unsigned int _S_maxit = 1000;
 
       std::vector<_Tp> __zero(__n);
+      std::vector<_Tp> __weight(__n);
+
       for (auto __i = 1u; __i <= __n; ++__i)
 	{
 	  auto __z = _Tp{0};
+	  auto __w = _Tp{0};
 	  // Clever approximations for roots.
 	  if (__i == 1)
 	    __z += (1.0 + __alpha)
@@ -166,15 +179,18 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre 
 	      auto __z1 = __z;
 	      __z = __z1 - __L1 / __Lp;
 	      if (std::abs(__z - __z1) <= _S_eps)
-		break;
+		{
+		  auto __exparg = std::lgamma(_Tp(__alpha + __n))
+				- std::lgamma(_Tp(__n));
+		  __w = -std::exp(__exparg) / (__Lp * __n * __L2);
+		  break;
+		}
 	      if (__its > _S_maxit)
 		std::__throw_logic_error("__laguerre_zeros: "
 					 "Too many iterations");
 	   }
 	  __zero[__i - 1] = __z;
-	  //auto __exparg = std::lgamma(_Tp(__alpha + __n))
-	  //		 - std::lgamma(_Tp(__n));
-	  //__w[__i - 1] = -std::exp(__exparg) / (__Lp * __n * __L2);
+	  __weight[__i - 1] = __w;
 	}
     return __zero;
   }
@@ -199,7 +215,11 @@ template<typename _Tp>
 int
 main()
 {
+  test_laguerre(1.0F);
+
   test_laguerre(1.0);
+
+  test_laguerre(1.0L);
 
   test_laguerre(1.0Q);
 

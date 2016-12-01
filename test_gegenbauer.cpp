@@ -1,5 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I/usr/local/include/boost -o test_gegenbauer test_gegenbauer.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gegenbauer test_gegenbauer.cpp -lquadmath
+./test_gegenbauer > test_gegenbauer.txt
+
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gegenbauer test_gegenbauer.cpp -lquadmath
 ./test_gegenbauer > test_gegenbauer.txt
 */
 
@@ -11,14 +14,16 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I/usr/lo
 #include <bits/float128_io.h>
 
   template<typename _Tp>
-    std::vector<_Tp>
+    std::pair<std::vector<_Tp>, std::vector<_Tp>>
     __gegenbauer_zeros(unsigned int __n, _Tp __alpha)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__alpha);
-      const unsigned int _S_maxit = 1000;
+      const unsigned int _S_maxit = 1000u;
       std::vector<_Tp> __zero(__n);
+      std::vector<_Tp> __weight(__n);
 
       _Tp __z;
+      _Tp __w;
       for (auto __i = 1u; __i <= __n; ++__i)
 	{
 	  if (__i == 1)
@@ -72,12 +77,12 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I/usr/lo
 	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
 	    {
 	      auto __temp = _Tp{2} + __2alpha;
-	      auto __p1 = (__temp * __z) / _Tp{2};
-	      auto __p2 = _Tp{1};
+	      auto __C1 = (__temp * __z) / _Tp{2};
+	      auto __C2 = _Tp{1};
 	      for (auto __j = 2u; __j <= __n; ++__j)
 		{
-		  auto __p3 = __p2;
-		  __p2 = __p1;
+		  auto __C3 = __C2;
+		  __C2 = __C1;
 		  __temp = _Tp{2} * __j + __2alpha;
 		  auto __a = _Tp{2} * __j * (__j + __2alpha)
 			   * (__temp - _Tp{2});
@@ -85,50 +90,54 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I/usr/lo
 			   * __temp * (__temp - _Tp{2}) * __z;
 		  auto __c = _Tp{2} * (__j - 1 + __alpha)
 			   * (__j - 1 + __alpha) * __temp;
-		  __p1 = (__b * __p2 - __c * __p3) / __a;
+		  __C1 = (__b * __C2 - __c * __C3) / __a;
 		}
-	      auto __pp = (__n * (-__temp * __z) * __p1
-			   + _Tp{2} * (__n + __alpha) * (__n + __alpha) * __p2)
+	      auto __Cp = (__n * (-__temp * __z) * __C1
+			   + _Tp{2} * (__n + __alpha) * (__n + __alpha) * __C2)
 			/ (__temp * (_Tp{1} - __z * __z));
 	      auto __z1 = __z;
-	      __z = __z1 - __p1 / __pp;
+	      __z = __z1 - __C1 / __Cp;
 	      if (std::abs(__z - __z1) <= _S_eps)
-		break;
+		{
+		  __w = std::exp(std::lgamma(__alpha + _Tp(__n))
+			       + std::lgamma(__alpha + _Tp(__n))
+			       - std::lgamma(_Tp(__n + 1))
+			       - std::lgamma(_Tp(__n + 1) + __2alpha))
+		      * __temp * std::pow(_Tp{2}, __2alpha) / (__Cp * __C2);
+		  break;
+		}
 	      if (__its > _S_maxit)
 		std::__throw_logic_error("__jacobi_zeros: Too many iterations");
 	    }
 	  __zero[__i - 1] = __z;
-	//  w[i] = std::exp(std::lgamma(__alpha + _Tp(__n))
-	//	    + std::lgamma(__alpha + _Tp(__n))
-	//	    - std::lgamma(_Tp(__n + 1))
-	//	    - std::lgamma(_Tp(__n + 1) + __alphabeta))
-	//	 * __temp * std::pow(_Tp{2}, __alphabeta) / (__pp * __p2);
+	  __weight[__i - 1] = __w;
 	}
 
-      return __zero;
+      return std::make_pair(__zero, __weight);
     }
 
-template<typename Tp>
+template<typename _Tp>
   void
   test_gegenbauer()
   {
-    std::cout.precision(std::numeric_limits<Tp>::digits10);
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
     auto width = std::cout.precision() + 6;
+
     std::cout << "\njacobi\n";
     for (int n = 0; n <= 5; ++n)
       {
 	for (int i = 0; i <= 3; ++i)
 	  {
-            auto alpha = i * Tp{1.0Q};
-            auto jalpha = alpha - Tp{0.5Q};
-            auto jnorm = __gnu_cxx::pochhammer(Tp{2} * alpha, n)
-			/ __gnu_cxx::pochhammer(alpha + Tp{0.5Q}, n);
+            auto alpha = i * _Tp{1.0Q};
+            auto jalpha = alpha - _Tp{0.5Q};
+            auto jnorm = __gnu_cxx::pochhammer(_Tp{2} * alpha, n)
+			/ __gnu_cxx::pochhammer(alpha + _Tp{0.5Q}, n);
             std::cout << "n     = " << n << '\n';
             std::cout << "alpha = " << alpha << '\n';
-            Life::Jacobi<Tp> jac(n, jalpha, jalpha);
+            Life::Jacobi<_Tp> jac(n, jalpha, jalpha);
 	    for (int k = 0; k <= 200; ++k)
               {
-        	auto x = (k - 100) * Tp{0.01Q};
+        	auto x = (k - 100) * _Tp{0.01Q};
         	auto ggb = __gnu_cxx::gegenbauer(n, alpha, x);
         	auto gj = jnorm * __gnu_cxx::jacobi(n, jalpha, jalpha, x);
         	auto lj = jnorm * jac(x);
@@ -143,10 +152,13 @@ template<typename Tp>
 
 	    for (int n = 0; n <= 50; ++n)
 	      {
-		auto zero = __gegenbauer_zeros(n, alpha);
-		std::cout << "\nn = " << std::setw(4) << n << ":\n";
-		for (auto z : zero)
-		  std::cout << ' ' << std::setw(width) << z << '\n';
+		auto [zero, weight] = __gegenbauer_zeros(n, alpha);
+		std::cout << "\nn = " << std::setw(4) << n
+			  << ", alpha = " << std::setw(width) << alpha << ":\n";
+		for (auto i = 0u; i < zero.size(); ++i)
+		  std::cout << ' ' << std::setw(width) << zero[i]
+		  	    << ' ' << std::setw(width) << weight[i]
+		  	    << '\n';
 	      }
           }
       }
@@ -155,6 +167,13 @@ template<typename Tp>
 int
 main()
 {
-  test_gegenbauer<long double>();
-  test_gegenbauer<__float128>();
+  test_gegenbauer(1.0F);
+
+  test_gegenbauer(1.0);
+
+  test_gegenbauer(1.0L);
+
+  test_gegenbauer(1.0Q);
+
+  return 0;
 }
