@@ -36,7 +36,7 @@ template<typename Tp>
     __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<Tp>> WDvW;
 
     auto s = Tp{1.2};
-    auto zetaterm = [s, _S_max_log](int k)
+    auto zetaterm = [s, _S_max_log](std::size_t k)
 		    -> Tp
 		    { return (s * std::log(Tp(k + 1)) < _S_max_log ? std::pow(Tp(k + 1), -s) : Tp{0}); };
 
