@@ -174,7 +174,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  @brief Compute the dilogarithm function @f$ Li_2(x) @f$
    *         by summation for x <= 1.
    *
-   *  The Riemann zeta function is defined by:
+   *  The dilogarithm function is defined by:
    *   @f[
    *     Li_2(x) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
    *   @f]
