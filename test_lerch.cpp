@@ -66,14 +66,17 @@ namespace __detail
       const auto __aint = __gnu_cxx::__fp_is_integer(__a);
       if (__aint && __aint() <= 0)
 	return _S_nan;
-      else if (std::abs(__z) >= _Tp{1})
+      else if (std::abs(std::abs(__z) - _Tp{1}) < _S_eps
+		&& std::real(__s) <= _Tp{1} + _S_eps)
+	return _S_nan;
+      else if (std::abs(__z) > _Tp{1} + _S_eps)
 	return _S_nan;
       else
 	{
-	  constexpr auto _S_maxit = 100000;
+	  constexpr auto _S_maxit = 100000u;
 	  auto __zpow = _Tp{1};
 	  auto __sum = std::pow(__a, -__s);
-	  for (auto __k = 1; __k < _S_maxit; ++__k)
+	  for (auto __k = 1u; __k < _S_maxit; ++__k)
 	    {
 	      __zpow *= __z;
 	      auto __term = __zpow * std::pow(__a + __k, -__s);
@@ -98,15 +101,18 @@ namespace __detail
       const auto __aint = __gnu_cxx::__fp_is_integer(__a);
       if (__aint && __aint() <= 0)
 	return _S_nan;
-      else if (std::abs(__z) >= _Tp{1})
+      else if (std::abs(std::abs(__z) - _Tp{1}) < _S_eps
+		&& std::real(__s) <= _Tp{1} + _S_eps)
+	return _S_nan;
+      else if (std::abs(__z) > _Tp{1} + _S_eps)
 	return _S_nan;
       else if (__z < _Tp{0})
 	{
-	  constexpr auto _S_maxit = 100000;
+	  constexpr auto _S_maxit = 100000u;
 	  using __lerch_t = __lerch_term<_Tp>;
 	  auto __lerch_fun = __lerch_t(__z, __s, __a);
 	  __gnu_cxx::_VanWijngaardenSum<_Tp> __sum;
-	  for (auto __k = 0; __k < _S_maxit; ++__k)
+	  for (auto __k = 0u; __k < _S_maxit; ++__k)
 	    {
 	      auto __temp = __lerch_fun(__k);
 	      __sum += __temp;
@@ -117,12 +123,12 @@ namespace __detail
 	}
       else
 	{
-	  constexpr auto _S_maxit = 100000;
+	  constexpr auto _S_maxit = 100000u;
 	  using __lerch_t = __lerch_term<_Tp>;
 	  auto __lerch_fun = __lerch_t(__z, __s, __a);
 	  __gnu_cxx::_VanWijngaardenCompressor<__lerch_t> __term(__lerch_fun);
 	  __gnu_cxx::_VanWijngaardenSum<_Tp> __sum;
-	  for (auto __k = 0; __k < _S_maxit; ++__k)
+	  for (auto __k = 0u; __k < _S_maxit; ++__k)
 	    {
 	      auto __temp = __term[__k];
 	      __sum += __temp;
@@ -147,15 +153,18 @@ namespace __detail
       const auto __aint = __gnu_cxx::__fp_is_integer(__a);
       if (__aint && __aint() <= 0)
 	return _S_nan;
-      else if (std::abs(__z) >= _Tp{1})
+      else if (std::abs(std::abs(__z) - _Tp{1}) < _S_eps
+		&& std::real(__s) <= _Tp{1} + _S_eps)
+	return _S_nan;
+      else if (std::abs(__z) > _Tp{1} + _S_eps)
 	return _S_nan;
       else
 	{
-	  constexpr auto _S_maxit = 10000;
+	  constexpr auto _S_maxit = 10000u;
 	  auto __lerch = std::pow(__a, -__s);
 	  const auto __zfrac = -__z / (_Tp{1} - __z);
 	  auto __zfact = _Tp{1};
-	  for (auto __n = 1; __n < _S_maxit; ++__n)
+	  for (auto __n = 1u; __n < _S_maxit; ++__n)
 	    {
 	      auto __term = std::pow(__a, -__s);
 	      auto __bincoef = _Tp{1};
@@ -184,7 +193,7 @@ namespace __detail
     __lerch_delta_vanwijngaarden_sum(_Tp __z, _Tp __s, _Tp __a)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__s);
-      constexpr auto _S_maxit = 1000;
+      constexpr auto _S_maxit = 1000u;
 
       __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<_Tp>> _WDvW;
       if (__z >= _Tp{0})
@@ -192,7 +201,7 @@ namespace __detail
 	  using __lerch_t = __lerch_term<_Tp>;
 	  using __lerch_cmp_t = __gnu_cxx::_VanWijngaardenCompressor<__lerch_t>;
 	  auto _VwT = __lerch_cmp_t(__lerch_t(__z, __s, __a));
-	  for (auto __k = 0; __k < _S_maxit; ++__k)
+	  for (auto __k = 0u; __k < _S_maxit; ++__k)
 	    {
 	      auto __term = _VwT[__k];
 	      _WDvW += __term;
@@ -204,7 +213,7 @@ namespace __detail
       else
 	{
 	  auto _LT = __lerch_term<_Tp>(__z, __s, __a);
-	  for (auto __k = 0; __k < _S_maxit; ++__k)
+	  for (auto __k = 0u; __k < _S_maxit; ++__k)
 	    {
 	      auto __term = _LT(__k);
 	      _WDvW += __term;
@@ -227,8 +236,11 @@ namespace __detail
 
       if (__isnan(__z) || __isnan(__s) || __isnan(__a))
 	return _S_nan;
-      else if (std::abs(__z) >= _Tp{1})
-	throw std::domain_error("__lerch: |z| >= 1");
+      else if (std::abs(std::abs(__z) - _Tp{1}) < _S_eps
+		&& std::real(__s) <= _Tp{1} + _S_eps)
+	return _S_nan;
+      else if (std::abs(__z) > _Tp{1} + _S_eps)
+	return _S_nan;
       else
 	{
 	  const auto __aint = __gnu_cxx::__fp_is_integer(__a);
@@ -286,6 +298,14 @@ namespace __detail
 	}
     }
 
+  /**
+   * Return the Hurwitz zeta function by evaluating the Lerch trancendent:
+   * @f[
+   *   \zeta(s,a) = \Phi(1,s,a)
+   * @f]
+   * @param[in] __s The argument s > 1
+   * @param[in] __a The parameter
+   */
   template<typename _Tp>
     _Tp
     __hurwitz_zeta_lerch(_Tp __s, _Tp __a)
@@ -293,6 +313,13 @@ namespace __detail
       return __lerch(_Tp{1}, __s, __a);
     }
 
+  /**
+   * Return the Riemann zeta function by evaluating the Lerch trancendent:
+   * @f[
+   *   \zeta(s) = \Phi(1,s,1)
+   * @f]
+   * @param[in] __s The argument s > 1
+   */
   template<typename _Tp>
     _Tp
     __riemann_zeta_lerch(_Tp __s)
@@ -300,6 +327,13 @@ namespace __detail
       return __lerch(_Tp{1}, __s, _Tp{1});
     }
 
+  /**
+   * Return the Dirichlet beta function by evaluating the Lerch trancendent:
+   * @f[
+   *   \beta(s) = \frac{1}{2^s}\Phi(-1,s,\frac{1}{2})
+   * @f]
+   * @param[in] __s The argument s > 1
+   */
   template<typename _Tp>
     _Tp
     __dirichlet_beta_lerch(_Tp __s)
@@ -307,6 +341,13 @@ namespace __detail
       return __lerch(_Tp{-1}, __s, _Tp{0.5L}) / std::pow(_Tp{2}, __s);
     }
 
+  /**
+   * Return the Dirichlet eta function by evaluating the Lerch trancendent:
+   * @f[
+   *   \eta(s) = \Phi(-1,s,1)
+   * @f]
+   * @param[in] __s The argument s > 1
+   */
   template<typename _Tp>
     _Tp
     __dirichlet_eta_lerch(_Tp __s)
@@ -314,6 +355,13 @@ namespace __detail
       return __lerch(_Tp{-1}, __s, _Tp{1});
     }
 
+  /**
+   * Return the Dirichlet lambda function by evaluating the Lerch trancendent:
+   * @f[
+   *   \beta(s) = \frac{1}{2^s}\Phi(1,s,\frac{1}{2})
+   * @f]
+   * @param[in] __s The argument s > 1
+   */
   template<typename _Tp>
     _Tp
     __dirichlet_lambda_lerch(_Tp __s)
@@ -321,6 +369,13 @@ namespace __detail
       return __lerch(_Tp{1}, __s, _Tp{0.5L}) / std::pow(_Tp{2}, __s);
     }
 
+  /**
+   * Return the polylog function by evaluating the Lerch trancendent:
+   * @f[
+   *   \L_s(z) = \Phi(z,s,1)
+   * @f]
+   * @param[in] __s The argument s > 1
+   */
   template<typename _Tp>
     _Tp
     __polylog_lerch(_Tp __s, _Tp __z)
@@ -328,6 +383,13 @@ namespace __detail
       return __lerch(__z, __s, _Tp{1});
     }
 
+  /**
+   * Return the Legendre chi function by evaluating the Lerch trancendent:
+   * @f[
+   *   \chi_\nu(z) = \frac{z}{2^\nu}\Phi(z^2,\nu,1)
+   * @f]
+   * @param[in] __s The argument s > 1
+   */
   template<typename _Tp>
     _Tp
     __legendre_chi(_Tp __nu, _Tp __z)
@@ -335,6 +397,9 @@ namespace __detail
       return __z * __lerch(__z * __z, __nu, _Tp{0.5L}) / std::pow(_Tp{2}, __nu);
     }
 
+  /**
+   * 
+   */
   template<typename _Tp>
     _Tp
     __fermi_dirac_lerch(_Tp __s, _Tp __mu)
@@ -344,6 +409,9 @@ namespace __detail
       return __gamsp1 * __lerch(-__expmu, _Tp{1} + __s, _Tp{1}) / __expmu;
     }
 
+  /**
+   * 
+   */
   template<typename _Tp>
     _Tp
     __bose_einstein_lerch(_Tp __s, _Tp __mu)
@@ -543,7 +611,7 @@ main()
   std::cout << " s = " << std::setw(width) << s << '\n';
   std::cout << " a = " << std::setw(width) << a << '\n';
   std::cout << std::setw(width) << "z"
-	    << std::setw(width) << "z Phi(z,s,1)"
+	    << std::setw(width) << "z Phi(z, s, 1)"
 	    << std::setw(width) << "Li_s(z)"
 	    << std::setw(width) << "zPhi - Li"
 	    << '\n';
@@ -579,12 +647,12 @@ main()
   std::cout << '\n';
   std::cout << " z = " << std::setw(width) << z << '\n';
   std::cout << " a = " << std::setw(width) << a << '\n';
-  std::cout << std::setw(width) << "z"
-	    << std::setw(width) << "Phi(1,s,1)"
+  std::cout << std::setw(width) << "s"
+	    << std::setw(width) << "Phi(1, s, 1)"
 	    << std::setw(width) << "zeta(s)"
 	    << std::setw(width) << "Phi - zeta"
 	    << '\n';
-  for (int is = -99; is <= +99; ++is)
+  for (int is = 101; is <= 200; ++is)
     {
       auto s = 0.01 * is;
       auto lerch = _S_nan;
@@ -617,12 +685,12 @@ main()
       std::cout << '\n';
       std::cout << " z = " << std::setw(width) << z << '\n';
       std::cout << " a = " << std::setw(width) << a << '\n';
-      std::cout << std::setw(width) << "z"
-		<< std::setw(width) << "Phi(1,s,1)"
+      std::cout << std::setw(width) << "s"
+		<< std::setw(width) << "Phi(1, s, a)"
 		<< std::setw(width) << "zeta(s, a)"
 		<< std::setw(width) << "Phi - zeta"
 		<< '\n';
-      for (int is = -99; is <= +99; ++is)
+      for (int is = 101; is <= 200; ++is)
 	{
 	  auto s = 0.01 * is;
 	  auto lerch = _S_nan;
