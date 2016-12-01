@@ -180,12 +180,12 @@ namespace __detail
    */
   template<typename _Real>
     std::vector<_Real>
-    __inverse_series(std::vector<_Real> __c)
+    __series_reciprocal(std::vector<_Real> __c)
     {
       if (__c.size() == 0)
 	return std::vector<_Real>{};
       else if (__c[0] == _Real{0})
-	std::__throw_domain_error("__inverse_series: "
+	std::__throw_domain_error("__series_reciprocal: "
 				  "first (constant) coefficient is zero.");
       else if (__c.size() == 1)
 	return std::vector<_Real>{{_Real{1} / __c[0]}};
@@ -280,7 +280,7 @@ namespace __detail
   template<typename _Real>
     std::vector<_Real>
     __stieltjes_cont_frac_seq_prog(int __len)
-    { return __quotient_difference_prog(__inverse_series(__weights(__bernoulli_vec<_Real>(__len)))); }
+    { return __quotient_difference_prog(__series_reciprocal(__weights(__bernoulli_vec<_Real>(__len)))); }
 
   /**
    * Compute the Binet function using the asymptotic series
@@ -702,7 +702,7 @@ template<typename _Tp>
     for (auto cf : coef)
       std::cout << std::setw(width) << cf << '\n';
 
-    std::vector<_Tp> inv = std::__detail::__inverse_series(coef);
+    std::vector<_Tp> inv = std::__detail::__series_reciprocal(coef);
     std::cout << "\n Inverse (hopefully exp(-x)) coefficients:\n";
     for (auto cf : inv)
       std::cout << std::setw(width) << cf << '\n';
