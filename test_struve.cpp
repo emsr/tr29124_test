@@ -2,7 +2,7 @@
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_struve test_struve.cpp -lquadmath -L. -lburkhardt
 ./test_struve > test_struve.new
 
-g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_struve test_struve.cpp wrap_burkhardt.cpp burkhardt/special_functions.f90 -lgfortran
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_struve test_struve.cpp -lquadmath -L. -lburkhardt
 ./test_struve > test_struve.txt
 */
 
