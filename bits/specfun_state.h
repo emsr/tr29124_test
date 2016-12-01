@@ -49,6 +49,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /// Jacobi delta amplitude value.
       _Tp __dn_value;
 
+      _Tp __am() const
+      { return std::asin(__sn_value); }
+
       _Tp __ns() const
       { return _Tp{1} / __sn_value; }
 
