@@ -327,18 +327,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _TermFn>
     class _VanWijngaardenCompressor
     {
+    private:
+
+      _TermFn _M_term_fn;
+
     public:
+
+      using __return_t = decltype(_M_term_fn.operator()(std::size_t{}));
 
       _VanWijngaardenCompressor(_TermFn __term_fn)
       : _M_term_fn{__term_fn}
       { }
 
-      auto
-      operator[](std::size_t __j) const -> decltype(_TermFn(std::size_t{}));
-
-    private:
-
-      _TermFn _M_term_fn;
+      __return_t
+      operator[](std::size_t __j) const;
     };
 
   /**

@@ -93,9 +93,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  ADL for ctors anyone?  I'd like to put a lambda in here*
    */
   template<typename _TermFn>
-    auto
+    typename _VanWijngaardenCompressor<_TermFn>::__return_t
     _VanWijngaardenCompressor<_TermFn>::operator[](std::size_t __j) const
-    -> decltype(_TermFn(std::size_t{}))
     {
       using value_type = decltype(this->_M_term_fn(__j));
       const auto _S_min = __gnu_cxx::__min<value_type>();
