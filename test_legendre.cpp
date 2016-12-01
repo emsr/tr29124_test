@@ -22,9 +22,13 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_legendre 
     {
       const auto _S_eps = __gnu_cxx::__epsilon(proto);
       const auto _S_pi = __gnu_cxx::__const_pi(proto);
+      const unsigned int _S_maxit = 1000u;
+
+      std::vector<_Tp> __zero(__l);
+      std::vector<_Tp> __weight(__l);
 
       auto __m = __l / 2;
-      std::vector<_Tp> __zero(__l);
+
       if (__l & 1)
 	__zero[__m] = _Tp{0};
       for (auto __i = 1u; __i <= __m; ++__i)
@@ -32,9 +36,9 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_legendre 
 	  // Clever approximation of root.
 	  auto __z = std::cos(_S_pi * (__i - _Tp{1} / _Tp{4})
 				    / (__l + _Tp{1} / _Tp{2}));
-	  auto __k = 0;
 	  auto __z1 = __z;
-	  do
+	  auto __w = _Tp{0};
+	  for (auto __its = 0u; __its < _S_maxit; ++__its)
 	    {
 	      // Compute __P, __P1, and __P2 the Legendre polynomials of order
 	      // l, l-1, l-2 respectively by iterating through the recursion
@@ -46,24 +50,31 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_legendre 
 		{
 		  auto __P2 = __P1;
 		  __P1 = __P;
-		  // Recursion for legendre polynomials.
+		  // Recursion for Legendre polynomials.
 		  __P = ((_Tp{2} * __j - _Tp{1}) * __z * __P1
 		      - (__j - _Tp{1}) * __P2) / __j;
 		}
-	      // Recursion for the derivative of The Legendre polynomials.
+	      // Recursion for the derivative of The Legendre polynomial.
 	      auto __Pp = __l * (__z * __P - __P1) / (__z * __z - _Tp{1});
 	      __z1 = __z;
 	      // Converge on root by Newton's method.
 	      __z = __z1 - __P / __Pp;
-	      ++__k;
+	      if (std::abs(__z - __z1) < _S_eps)
+		{
+		  __w = _Tp{2} / ((_Tp{1} - __z * __z) * __Pp * __Pp);
+		  break;
+		}
+	      if (__its > _S_maxit)
+		std::__throw_logic_error("__legendre_zeros: "
+					 "Too many iterations");
 	    }
-	  while (std::abs(__z - __z1) > _S_eps);
 
 	  __zero[__i - 1] = -__z;
 	  __zero[__l - __i] = __z;
-	  //__w[__i - 1] = _Tp{2} / ((_Tp{1} - __z * __z) * __Pp * __Pp);
-	  //__w[__l - __i] = __w[__i - 1];
+	  __weight[__i - 1] = __w;
+	  __weight[__l - __i] = __w;
 	}
+
       return __zero;
     }
 
@@ -82,8 +93,8 @@ template<typename _Tp>
 	std::cout << '\n';
 	for (int i = -100; i <= 100; ++i)
 	  {
-	    double x = i * _Tp{0.01Q};
-	    double P, P_l, P_l0;
+	    auto x = i * _Tp{0.01Q};
+	    _Tp P, P_l, P_l0;
 	    try
 	      {
 		P = __legendre_p(l, x);
@@ -112,8 +123,8 @@ template<typename _Tp>
 	    std::cout << '\n';
 	    for (int i = -100; i <= 100; ++i)
 	      {
-		double x = i * _Tp{0.01Q};
-		double P_lm;
+		auto x = i * _Tp{0.01Q};
+		_Tp P_lm;
 		try
 		  {
 		    P_lm = std::__detail::__assoc_legendre_p(l, m, x);
@@ -142,7 +153,13 @@ template<typename _Tp>
 int
 main()
 {
+  test_legendre(1.0F);
+
   test_legendre(1.0);
+
+  test_legendre(1.0L);
+
+  test_legendre(1.0Q);
 
   return 0;
 }
