@@ -64,7 +64,7 @@ namespace __detail
       std::vector<_Real> __F;
       _Tp _Fprev{1}, _Gprev{0}, _Hprev{0};
       __F.push_back(_Fprev);
-      for (int __n = _N; __n > 0; --__n)
+      for (int __n = __N; __n > 0; --__n)
 	{
 	  auto _Fcurr = _Fprev + _Hprev * __c / (2 * __n);
 	  auto _Gcurr = ((2 * __n) * _Gprev + __c * _Fcurr) / (2 * __n - 1);
