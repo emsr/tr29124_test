@@ -251,8 +251,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using value_type = _Tp;
 
       ///  Default constructor.
-      _VanWijngaardenSum()
-      : _M_sum{}, _M_term{}, _M_delta{}, _M_num_terms{0}, _M_converged{false}
+      _VanWijngaardenSum(std::size_t __start_term = 0u)
+      : _M_sum{}, _M_term{}, _M_delta{}, _M_num_terms{0},
+	_M_start_term{__start_term},
+	_M_converged{false}
       { }
 
       /// Add a new term to the sum.
@@ -283,6 +285,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       std::size_t
       num_terms() const
       { return this->_M_num_terms; }
+
+      /// Return the number of initial terms to add to the sum before
+      /// switching to the vanWijngaarden algorithm.
+      std::size_t
+      start_term() const
+      { return this->_M_start_term; }
 
       /// Return the current last term contributing to the sum.
       value_type
@@ -316,6 +324,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       value_type _M_term;
       std::vector<value_type> _M_delta;
       std::size_t _M_num_terms;
+      std::size_t _M_start_term;
       bool _M_converged;
     };
 
