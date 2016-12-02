@@ -1,5 +1,5 @@
 
-/usr/local/bin/gnuplot
+gnuplot
 
 set hidden3d
 
