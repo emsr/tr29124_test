@@ -36,6 +36,17 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
+  /**
+   * A struct to store a cosine and a sine value.
+   * A return for sincos-type functions.
+   */
+  template<typename _Tp>
+    struct __sincos_t
+    {
+      _Tp __sin_value;
+      _Tp __cos_value;
+    };
+
   // Slots for Jacobi elliptic function tuple.
   template<typename _Tp>
     struct __jacobi_t
