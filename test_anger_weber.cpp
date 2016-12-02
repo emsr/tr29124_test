@@ -36,8 +36,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
       auto _Gam21 = std::tgamma(_GamArg21);
       auto _Gam22 = std::tgamma(_GamArg22);
       auto __term1 = _Tp{1} / (_Gam11 * _Gam12);
-      auto __term2 = _Tp{1} / (_Gam21 * _Gam22);
       auto _S1 = __term1;
+      auto __term2 = _Tp{1} / (_Gam21 * _Gam22);
       auto _S2 = __term2;
       for (int __k = 1; __k < 100; ++__k)
 	{
