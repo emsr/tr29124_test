@@ -34,23 +34,6 @@
 
 #include <bits/complex_util.h>
 
-namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
-{
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-  /**
-   * A struct to store a cosine and a sine value.
-   */
-  template<typename _Tp>
-    struct __sincos_t
-    {
-      _Tp sin_value;
-      _Tp cos_value;
-    };
-
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __gnu_cxx
-
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 // Implementation-space details.
@@ -369,8 +352,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (__x < _Tp{0})
 	{
 	  __gnu_cxx::__sincos_t<_Tp> __tempsc = __sincos_pi(-__x);
-	  return __gnu_cxx::__sincos_t<_Tp>{-__tempsc.sin_value,
-					     __tempsc.cos_value};
+	  return __gnu_cxx::__sincos_t<_Tp>{-__tempsc.__sin_value,
+					     __tempsc.__cos_value};
 	}
       else if (__x < _Tp{0.5L})
 	return __sincos(_S_pi * __x);
@@ -378,8 +361,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  __gnu_cxx::__sincos_t<_Tp>
 	    __tempsc = __sincos(_S_pi * (_Tp{1} - __x));
-	  return __gnu_cxx::__sincos_t<_Tp>{__tempsc.sin_value,
-					   -__tempsc.cos_value};
+	  return __gnu_cxx::__sincos_t<_Tp>{__tempsc.__sin_value,
+					   -__tempsc.__cos_value};
 	}
       else
 	{
@@ -404,7 +387,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __polar_pi(_Tp __rho, _Tp __phi_pi)
     {
       __gnu_cxx::__sincos_t<_Tp> __sc = __sincos_pi(__phi_pi);
-      return std::complex<_Tp>(__rho * __sc.cos_value, __rho * __sc.sin_value);
+      return std::complex<_Tp>(__rho * __sc.__cos_value,
+			       __rho * __sc.__sin_value);
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
