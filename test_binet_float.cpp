@@ -1,9 +1,9 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_binet_float test_binet_float.cpp -lquadmath
-./test_binet_float > test_binet_float.txt
+./test_binet_float > test_binet_float.txt 2> test_binet_float.err
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_binet_float test_binet_float.cpp -lquadmath
-
+./test_binet_float > test_binet_float.txt 2> test_binet_float.err
  */
 
 #include <limits>
@@ -59,7 +59,7 @@ namespace __detail
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
 
-      const int _N = 100;
+      const int __N = 100;
 
       std::vector<_Real> __F;
       _Tp _Fprev{1}, _Gprev{0}, _Hprev{0};
@@ -180,7 +180,7 @@ namespace __detail
    */
   template<typename _Real>
     std::vector<_Real>
-    __series_reciprocal(std::vector<_Real> __c)
+    __series_reciprocal_old(std::vector<_Real> __c)
     {
       if (__c.size() == 0)
 	return std::vector<_Real>{};
@@ -215,6 +215,90 @@ namespace __detail
 	    }
 	  for (unsigned __j = 0; __j < __m; ++__j)
 	    __d[__j] /= __c[0];
+	  return __d;
+	}
+    }
+
+  /**
+   * For a series specified by coefficients @f$ c_k @f$:
+   * @f[
+   *  \Lambda(x) = \sum_{k=0}^{N} c_k x^k
+   * @f]
+   * form the coefficients @f$ d_k @f$ for the inverse
+   * @f[
+   *  \frac{1}{\Lambda(x)} = \sum_{k=0}^{N} d_k x^k
+   * @f]
+   */
+  template<typename _Real>
+    std::vector<_Real>
+    __series_reciprocal(std::vector<_Real> __c)
+    {
+      if (__c.size() == 0)
+	return std::vector<_Real>{};
+      else if (__c[0] == _Real{0})
+	std::__throw_domain_error("__series_reciprocal: "
+				  "first (constant) coefficient is zero.");
+      else if (__c.size() == 1)
+	return std::vector<_Real>{{_Real{1} / __c[0]}};
+      else
+	{
+	  auto __n = __c.size();
+	  auto __m = __n + 1;
+	  std::vector<_Real> __d(__m);
+	  __d[0] = _Real{1} / __c[0];
+	  for (auto __k = 1u; __k < __m; ++__k)
+	    {
+	      for (auto __i = 0u; __i < __k; ++__i)
+	        if (__k - __i < __n)
+		  __d[__k] += __c[__k - __i] * __d[__i];
+	      __d[__k] *= -__d[0];
+	    }
+	  return __d;
+	}
+    }
+
+  /**
+   * For a series specified by coefficients @f$ c_k @f$:
+   * @f[
+   *  \Lambda(x) = \sum_{k=0}^{N} c_k x^k
+   * @f]
+   * form the coefficients @f$ d_k @f$ for the inverse
+   * @f[
+   *  \frac{1}{\Lambda(x)} = \sum_{k=0}^{N} d_k x^k
+   * @f]
+   */
+  template<typename _Real>
+    std::vector<_Real>
+    __series_reciprocal_vanWijn(std::vector<_Real> __c)
+    {
+std::cerr << std::showpoint;
+//      using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Real>;
+      if (__c.size() == 0)
+	return std::vector<_Real>{};
+      else if (__c[0] == _Real{0})
+	std::__throw_domain_error("__series_reciprocal_vanWijn: "
+				  "first (constant) coefficient is zero.");
+      else if (__c.size() == 1)
+	return std::vector<_Real>{{_Real{1} / __c[0]}};
+      else
+	{
+	  auto __n = __c.size();
+	  auto __m = __n + 1;
+	  std::vector<_Real> __d(__m);
+	  __d[0] = _Real{1} / __c[0];
+	  for (auto __k = 1u; __k < __m; ++__k)
+	    {
+std::cerr << '\n';
+//	      _WijnSum __sum(8);
+__gnu_cxx::_BasicSum<_Real> __sum;
+	      for (auto __i = 0u; __i < __k; ++__i)
+	        if (__k - __i < __n)
+{
+std::cerr << std::setw(12) << __c[__k - __i] * __d[__i] << '\t' << std::setw(12) << __c[__k - __i] << '\t' << std::setw(12) << __d[__i] << '\n';
+		  __sum += __c[__k - __i] * __d[__i];
+}
+	      __d[__k] = -__d[0] * __sum();
+	    }
 	  return __d;
 	}
     }
@@ -506,7 +590,8 @@ namespace __detail
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
 
-      constexpr auto _S_switchover = _Real{10}; /// @todo Find Binet function switch.
+      /// @todo Find Binet function switch.
+      constexpr auto _S_switchover = _Real{10};
 
       if (std::__detail::__isnan(__z))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
@@ -684,7 +769,7 @@ template<typename _Tp>
       }
   }
 
-// Test polynomial inversion..
+// Test polynomial reciprocal...
 template<typename _Tp>
   void
   test_exp()
@@ -692,26 +777,38 @@ template<typename _Tp>
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     auto width = std::cout.precision() + 8;
 
-    std::vector<_Tp> coef;
+    std::vector<_Tp> coeff;
     _Tp fact = 1;
-    coef.push_back(_Tp{1} / fact);
-    for (int i = 1; i <= 20; ++i)
-      coef.push_back(_Tp{1} / (fact *= _Tp(i)));
+    coeff.push_back(_Tp{1} / fact);
+    for (int i = 1; i <= width; ++i) // Width as number of terms... Why not.
+      coeff.push_back(_Tp{1} / (fact *= _Tp(i)));
 
     std::cout << "\n exp(x) oefficients:\n";
-    for (auto cf : coef)
+    for (auto cf : coeff)
       std::cout << std::setw(width) << cf << '\n';
 
-    std::vector<_Tp> inv = std::__detail::__series_reciprocal(coef);
-    std::cout << "\n Inverse (hopefully exp(-x)) coefficients:\n";
-    for (auto cf : inv)
+    std::vector<_Tp> recip = std::__detail::__series_reciprocal(coeff);
+    std::cout << "\n Reciprocal (hopefully exp(-x)) coefficients:\n";
+    for (auto cf : recip)
       std::cout << std::setw(width) << cf << '\n';
 
-/*
+/* Failed experiment
+    std::cout << "\n Reciprocal (hopefully exp(-x)) coefficients using vanWijngaarden:\n";
+    std::vector<_Tp> recip_vW = std::__detail::__series_reciprocal_vanWijn(coeff);
+    for (auto k = 0u; k < recip_vW.size(); ++k)
+      {
+	std::cout << std::setw(width) << recip[k]
+		  << std::setw(width) << recip_vW[k]
+		  << std::setw(width) << recip_vW[k] - recip[k]
+		  << '\n';
+      }
+*/
+
+/* Try to build Pade approximants someday.
     std::cout << "\nTest exp(x)\n";
-    __gnu_cxx::_Polynomial<_Tp> expoly(std::begin(coef), std::end(coef));
-    __gnu_cxx::_Polynomial<_Tp> rat_numer(std::begin(coef), std::begin(coef) + 10);
-    __gnu_cxx::_Polynomial<_Tp> rat_denom(std::begin(inv), std::begin(inv) + 10);
+    __gnu_cxx::_Polynomial<_Tp> expoly(std::begin(coeff), std::end(coeff));
+    __gnu_cxx::_Polynomial<_Tp> rat_numer(std::begin(coeff), std::begin(coeff) + 10);
+    __gnu_cxx::_Polynomial<_Tp> rat_denom(std::begin(recip), std::begin(recip) + 10);
     for (int k = 0; k <= 500; ++k)
       {
 	auto x = _Tp{0.1Q} * k;
@@ -732,6 +829,9 @@ main()
 {
   std::cout << "\nTest polynomial inversion\n";
   test_exp<long double>();
+
+  std::cout << "\nTest polynomial inversion\n";
+  test_exp<__float128>();
 
   //std::cout << "\nfloat\n=====\n\n";
   //test<float>();
