@@ -1,5 +1,5 @@
 
-/usr/local/bin/gnuplot
+gnuplot
 
 set xzeroaxis
 set yzeroaxis
