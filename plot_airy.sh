@@ -1,47 +1,47 @@
 
-/usr/local/bin/gnuplot --persist -e "plot [-20.0:5.0][-1.5:+1.5] \
+gnuplot --persist -e "plot [-20.0:5.0][-1.5:+1.5] \
  'plot/airy_float.txt' using 1:2 with lines title 'Ai', \
         	    '' using 1:3 with lines title 'Ai''', \
         	    '' using 1:4 with lines title 'Bi', \
         	    '' using 1:5 with lines title 'Bi'''"
 
-/usr/local/bin/gnuplot --persist -e "plot [-20.0:5.0][-1.5:+1.5] \
+gnuplot --persist -e "plot [-20.0:5.0][-1.5:+1.5] \
  'plot/airy_double.txt' using 1:2 with lines title 'Ai', \
         	     '' using 1:3 with lines title 'Ai''', \
         	     '' using 1:4 with lines title 'Bi', \
         	     '' using 1:5 with lines title 'Bi'''"
 
-/usr/local/bin/gnuplot --persist -e "plot [-20.0:5.0][-1.0:+1.0] \
+gnuplot --persist -e "plot [-20.0:5.0][-1.0:+1.0] \
  'plot/airy_long_double.txt' using 1:2 with lines title 'Ai', \
                 	  '' using 1:4 with lines title 'Bi'"
 
-/usr/local/bin/gnuplot --persist -e "plot [-20.0:5.0][-1.5:+1.5] \
+gnuplot --persist -e "plot [-20.0:5.0][-1.5:+1.5] \
  'plot/airy_long_double.txt' using 1:2 with lines title 'Ai', \
                 	  '' using 1:3 with lines title 'Ai'''"
 
-/usr/local/bin/gnuplot --persist -e "plot [-20.0:5.0][-1.5:+1.5] \
+gnuplot --persist -e "plot [-20.0:5.0][-1.5:+1.5] \
  'plot/airy_long_double.txt' using 1:4 with lines title 'Bi', \
                 	  '' using 1:5 with lines title 'Bi'''"
 
 
-/usr/local/bin/gnuplot --persist -e "plot [-20.0:5.0][-1.0:+1.0] \
+gnuplot --persist -e "plot [-20.0:5.0][-1.0:+1.0] \
  'plot/scorer_double.txt' using 1:2 with lines title 'Gi', \
                 	  '' using 1:4 with lines title 'Hi'"
 
-/usr/local/bin/gnuplot --persist -e "plot [-20.0:5.0][-1.5:+1.5] \
+gnuplot --persist -e "plot [-20.0:5.0][-1.5:+1.5] \
  'plot/scorer_double.txt' using 1:2 with lines title 'Gi', \
                 	  '' using 1:3 with lines title 'Gi'''"
 
-/usr/local/bin/gnuplot --persist -e "plot [-20.0:5.0][-1.5:+1.5] \
+gnuplot --persist -e "plot [-20.0:5.0][-1.5:+1.5] \
  'plot/scorer_double.txt' using 1:4 with lines title 'Hi', \
                 	  '' using 1:5 with lines title 'Hi'''"
 
 
-/usr/local/bin/gnuplot --persist -e "splot [-20.0:5.0][-5.0:5.0][-1.5:+1.5] \
+gnuplot --persist -e "splot [-20.0:5.0][-5.0:5.0][-1.5:+1.5] \
  'plot/airy_complex_double.txt' title 'Ai'"
 
 
-/usr/local/bin/gnuplot
+gnuplot
 set xzeroaxis
 set yzeroaxis
 set grid
@@ -92,7 +92,7 @@ plot [0.0:40.0][-1.5:1.5] "plot/kelvin_order_float.txt" using 1:2 with lines tit
 plot [0.0:40.0][-1.5:1.5] "plot/kelvin_order_double.txt" using 1:2 with lines title "ber(x)", "" using 1:3 with lines title "bei(x)", "" using 1:4 with lines title "ker(x)", "" using 1:5 with lines title "kei(x)"
 plot [0.0:40.0][-1.5:1.5] "plot/kelvin_order_long_double.txt" using 1:2 with lines title "ber(x)", "" using 1:3 with lines title "bei(x)", "" using 1:4 with lines title "ker(x)", "" using 1:5 with lines title "kei(x)"
 
-/usr/local/bin/gnuplot
+gnuplot
 set xzeroaxis
 set yzeroaxis
 set grid
@@ -101,7 +101,7 @@ set palette model RGB defined (0.0 "blue", 0.3 "green", 0.7 "yellow", 1 "red")
 set colorbox
 set pm3d at sb corners2color geomean
 
-/usr/local/bin/gnuplot
+gnuplot
 
 set hidden3d
 
