@@ -132,7 +132,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_rec
       for (auto __k = 1u; __k < _S_max_iter; ++__k)
 	{
 	  auto __rat = __a / __k;
-	  __gam *= (_Tp{1} + __rat) * std::exp(-__a / __k);
+	  __gam *= (_Tp{1} + __rat) * std::exp(-__rat);
 	  if (std::abs(__rat) < _S_eps)
 	    break;
 	}
