@@ -1,6 +1,8 @@
 
 gnuplot
 
+set termoption enhanced
+
 set hidden3d
 
 set palette model RGB defined (0.0 "blue", 0.3 "green", 0.7 "yellow", 1 "red")
