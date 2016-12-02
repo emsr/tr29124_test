@@ -50,11 +50,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_runtime_error(__N("_VanWijngaardenSum: bad term"));
       if (std::__detail::__isinf(__term))
 	std::__throw_runtime_error(__N("_VanWijngaardenSum: infinite term"));
+      if (this->_M_num_terms > 1 && this->_M_term * __term > value_type{0})
+	std::__throw_runtime_error(__N("_VanWijngaardenSum: "
+					"terms not alternating in sign"));
 
       ++this->_M_num_terms;
       this->_M_term = __term;
 
-      if (this->_M_delta.size() == 0)
+      if (this->_M_num_terms <= this->_M_start_term)
+	this->_M_sum += __term;
+      else if (this->_M_delta.size() == 0)
 	{
 	  this->_M_delta.push_back(__term);
 	  this->_M_sum += value_type{0.5L} * this->_M_delta.back();
