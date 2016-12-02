@@ -2353,6 +2353,8 @@ _S_neg_double_factorial_table[999]
 	    __fact *= (__arg -= _Real{1});
 	  return __gamma_reciprocal_series(__arg) / __fact;
 	}
+      else
+	return _Tp{0};
     }
 
   /**
