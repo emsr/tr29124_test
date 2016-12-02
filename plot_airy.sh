@@ -42,6 +42,7 @@ gnuplot --persist -e "splot [-20.0:5.0][-5.0:5.0][-1.5:+1.5] \
 
 
 gnuplot
+set termoption enhanced
 set xzeroaxis
 set yzeroaxis
 set grid
