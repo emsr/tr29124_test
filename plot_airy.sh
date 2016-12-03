@@ -76,14 +76,14 @@ plot [-20.0:5.0][-1.0:+1.0] "plot/airy_long_double.txt" using 1:2 with lines tit
 plot [-20.0:5.0][-1.5:+1.5] "plot/airy_long_double.txt" using 1:2 with lines title "Ai(x)", "" using 1:3 with lines title "Ai'(x)"
 plot [-20.0:5.0][-1.5:+1.5] "plot/airy_long_double.txt" using 1:4 with lines title "Bi(x)", "" using 1:5 with lines title "Bi'(x)"
 
-plot [0.0:30.0][-0.5:+6.0] "plot/struve_float.txt" using 1:2 with lines title "H_0", "" using 1:4 with lines title "H_1", "" using 1:6 with lines title "H_2", "" using 1:8 with lines title "H_3"
-plot [0.0:5.0][-0.5:+4.5] "plot/struve_float.txt" using 1:3 with lines title "L_0", "" using 1:5 with lines title "L_1", "" using 1:7 with lines title "L_2", "" using 1:9 with lines title "L_3"
+plot [0.0:30.0][-0.5:+6.0] "plot/struve_float.txt" using 1:2 with lines title "{/:Bold H}_0", "" using 1:4 with lines title "{/:Bold H}_1", "" using 1:6 with lines title "{/:Bold H}_2", "" using 1:8 with lines title "{/:Bold H}_3"
+plot [0.0:5.0][-0.5:+4.5] "plot/struve_float.txt" using 1:3 with lines title "{/:Bold L}_0", "" using 1:5 with lines title "{/:Bold L}_1", "" using 1:7 with lines title "{/:Bold L}_2", "" using 1:9 with lines title "{/:Bold L}_3"
 
-plot [0.0:30.0][-0.5:+6.0] "plot/struve_double.txt" using 1:2 with lines title "H_0", "" using 1:4 with lines title "H_1", "" using 1:6 with lines title "H_2", "" using 1:8 with lines title "H_3"
-plot [0.0:5.0][-0.5:+4.5] "plot/struve_double.txt" using 1:3 with lines title "L_0", "" using 1:5 with lines title "L_1", "" using 1:7 with lines title "L_2", "" using 1:9 with lines title "L_3"
+plot [0.0:30.0][-0.5:+6.0] "plot/struve_double.txt" using 1:2 with lines title "{/:Bold H}_0", "" using 1:4 with lines title "{/:Bold H}_1", "" using 1:6 with lines title "{/:Bold H}_2", "" using 1:8 with lines title "{/:Bold H}_3"
+plot [0.0:5.0][-0.5:+4.5] "plot/struve_double.txt" using 1:3 with lines title "{/:Bold L}_0", "" using 1:5 with lines title "{/:Bold L}_1", "" using 1:7 with lines title "{/:Bold L}_2", "" using 1:9 with lines title "{/:Bold L}_3"
 
-plot [0.0:30.0][-0.5:+6.0] "plot/struve_long_double.txt" using 1:2 with lines title "H_0", "" using 1:4 with lines title "H_1", "" using 1:6 with lines title "H_2", "" using 1:8 with lines title "H_3"
-plot [0.0:5.0][-0.5:+4.5] "plot/struve_long_double.txt" using 1:3 with lines title "L_0", "" using 1:5 with lines title "L_1", "" using 1:7 with lines title "L_2", "" using 1:9 with lines title "L_3"
+plot [0.0:30.0][-0.5:+6.0] "plot/struve_long_double.txt" using 1:2 with lines title "{/:Bold H}_0", "" using 1:4 with lines title "{/:Bold H}_1", "" using 1:6 with lines title "{/:Bold H}_2", "" using 1:8 with lines title "{/:Bold H}_3"
+plot [0.0:5.0][-0.5:+4.5] "plot/struve_long_double.txt" using 1:3 with lines title "{/:Bold L}_0", "" using 1:5 with lines title "{/:Bold L}_1", "" using 1:7 with lines title "{/:Bold L}_2", "" using 1:9 with lines title "{/:Bold L}_3"
 
 plot [0.0:40.0][-1.5:1.5] "plot/kelvin_float.txt" using 1:2 with lines title "ber(x)", "" using 1:3 with lines title "bei(x)", "" using 1:4 with lines title "ker(x)", "" using 1:5 with lines title "kei(x)"
 plot [0.0:40.0][-1.5:1.5] "plot/kelvin_double.txt" using 1:2 with lines title "ber(x)", "" using 1:3 with lines title "bei(x)", "" using 1:4 with lines title "ker(x)", "" using 1:5 with lines title "kei(x)"
