@@ -163,6 +163,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *   H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
    * @f]
+   * An explicit series formula is:
+   * @f[
+   *   H_n(x) = \sum_{k=0}^{m} \frac{(-1)^k}{k!(n-2k)!}(2x)^{n-2k}
+   *     \mbox{ where } m = \left\lfloor{\frac{n}{2}}\right\rfloor
+   * @f]
    *
    * The Hermite polynomial obeys a reflection formula:
    * @f[

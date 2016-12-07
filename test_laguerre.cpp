@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre test_laguerre.cpp -lquadmath
+$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre test_laguerre.cpp -lquadmath
 ./test_laguerre > test_laguerre.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre test_laguerre.cpp -lquadmath
@@ -78,14 +78,13 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre 
    * Return a vector of zeros of the Laguerre polynomial of degree n.
    */
   template<typename _Tp>
-    std::vector<_Tp>
+    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
     __laguerre_zeros(unsigned int __n, _Tp __proto)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__proto);
       const unsigned int _S_maxit = 1000u;
 
-      std::vector<_Tp> __zero(__n);
-      std::vector<_Tp> __weight(__n);
+      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
 
       auto __z = _Tp{0};
       auto __w = _Tp{0};
@@ -100,7 +99,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre 
 	    {
 	      auto __ai = __i - 2;
 	      __z += ((1.0 + 2.55 * __ai) / (1.9 * __ai))
-		   * (__z - __zero[__i - 3]);
+		   * (__z - __pt[__i - 3].__zero);
 	    }
 	  // Iterate TTRR for polynomial values
 	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
@@ -128,21 +127,20 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre 
 		std::__throw_logic_error("__laguerre_zeros: "
 					 "Too many iterations");
 	   }
-	  __zero[__i - 1] = __z;
-	  __weight[__i - 1] = __w;
+	  __pt[__i - 1].__zero = __z;
+	  __pt[__i - 1].__weight = __w;
 	}
-      return __zero;
+      return __pt;
     }
 
   template<typename _Tp, typename _Tn>
-    std::vector<_Tp>
+    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
     __laguerre_zeros(unsigned int __n, _Tn __alpha, _Tp __proto)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__proto);
       const unsigned int _S_maxit = 1000;
 
-      std::vector<_Tp> __zero(__n);
-      std::vector<_Tp> __weight(__n);
+      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
 
       for (auto __i = 1u; __i <= __n; ++__i)
 	{
@@ -159,7 +157,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre 
 	      auto __ai = __i - 2;
 	      __z += ((1.0 + 2.55 * __ai) / (1.9 * __ai)
 		     + 1.26 * __ai * __alpha / (1.0 + 3.5 * __ai))
-		   * (__z - __zero[__i - 3]) / (1.0 + 0.3 * __alpha);
+		   * (__z - __pt[__i - 3].__zero) / (1.0 + 0.3 * __alpha);
 	    }
 	  // Iterate TTRR for polynomial values
 	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
@@ -189,10 +187,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre 
 		std::__throw_logic_error("__laguerre_zeros: "
 					 "Too many iterations");
 	   }
-	  __zero[__i - 1] = __z;
-	  __weight[__i - 1] = __w;
+	  __pt[__i - 1].__zero = __z;
+	  __pt[__i - 1].__weight = __w;
 	}
-    return __zero;
+    return __pt;
   }
 
 template<typename _Tp>
@@ -205,10 +203,12 @@ template<typename _Tp>
 
     for (int n = 0; n <= 50; ++n)
       {
-	auto zero = __laguerre_zeros(n, proto);
+	auto pt = __laguerre_zeros(n, proto);
 	std::cout << "\nl = " << std::setw(4) << n << ":\n";
-	for (auto z : zero)
-	  std::cout << ' ' << std::setw(width) << z << '\n';
+	for (auto [z, w] : pt)
+	  std::cout << ' ' << std::setw(width) << z
+		    << ' ' << std::setw(width) << w
+		    << '\n';
       }
   }
 
