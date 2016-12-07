@@ -1036,4 +1036,150 @@ template<typename _Tp>
     _Tp f;
   };
 
+//
+template<typename _Tp>
+  struct testcase_boltzmann_cdf
+  {
+    _Tp f0;
+    _Tp mu;
+    _Tp x;
+    _Tp f;
+  };
+
+//
+template<typename _Tp>
+  struct testcase_boltzmann_pdf
+  {
+    _Tp f0;
+    _Tp mu;
+    _Tp x;
+    _Tp f;
+  };
+
+//
+template<typename _Tp>
+  struct testcase_laplace_cdf
+  {
+    _Tp f0;
+    _Tp mu;
+    _Tp sigma;
+    _Tp x;
+    _Tp f;
+  };
+
+//
+template<typename _Tp>
+  struct testcase_laplace_pdf
+  {
+    _Tp f0;
+    _Tp mu;
+    _Tp sigma;
+    _Tp x;
+    _Tp f;
+  };
+
+//
+template<typename _Tp>
+  struct testcase_maxwell_cdf
+  {
+    _Tp f0;
+    _Tp mu;
+    _Tp f;
+  };
+
+//
+template<typename _Tp>
+  struct testcase_maxwell_pdf
+  {
+    _Tp f0;
+    _Tp mu;
+    _Tp f;
+  };
+
+//
+template<typename _Tp>
+  struct testcase_normal_cdf
+  {
+    _Tp f0;
+    _Tp mu;
+    _Tp sigma;
+    _Tp x;
+    _Tp f;
+  };
+
+//
+template<typename _Tp>
+  struct testcase_normal_pdf
+  {
+    _Tp f0;
+    _Tp mu;
+    _Tp sigma;
+    _Tp x;
+    _Tp f;
+  };
+
+//
+template<typename _Tp>
+  struct testcase_rayleigh_cdf
+  {
+    _Tp f0;
+    _Tp mu;
+    _Tp x;
+    _Tp f;
+  };
+
+//
+template<typename _Tp>
+  struct testcase_rayleigh_pdf
+  {
+    _Tp f0;
+    _Tp mu;
+    _Tp x;
+    _Tp f;
+  };
+
+//
+template<typename _Tp>
+  struct testcase_lognormal_cdf
+  {
+    _Tp f0;
+    _Tp mu;
+    _Tp sigma;
+    _Tp x;
+    _Tp f;
+  };
+
+//
+template<typename _Tp>
+  struct testcase_lognormal_pdf
+  {
+    _Tp f0;
+    _Tp mu;
+    _Tp sigma;
+    _Tp x;
+    _Tp f;
+  };
+
+//
+template<typename _Tp>
+  struct testcase_logistic_cdf
+  {
+    _Tp f0;
+    _Tp mu;
+    _Tp s;
+    _Tp x;
+    _Tp f;
+  };
+
+//
+template<typename _Tp>
+  struct testcase_logistic_pdf
+  {
+    _Tp f0;
+    _Tp mu;
+    _Tp s;
+    _Tp x;
+    _Tp f;
+  };
+
 #endif // _GLIBCXX_SPECFUN_TESTCASE_H
