@@ -3,7 +3,6 @@
 #include <iomanip>
 #include <string>
 #include <vector>
-#include <fstream>
 #include <limits>
 #include <stdexcept>
 
@@ -48,12 +47,12 @@ main()
     std::vector<unsigned int> sborder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};
 
     // Orders for cylindrical Bessel functions.
-    std::vector<Real> cyl_neg_order{-5, -2, -1, -Real{2.0L/3.0L},
-				    -Real{0.5L}, -Real{1.0L/3.0L}};
+    std::vector<Real> cyl_neg_order{-5, -2, -1, -Real{2.0Q/3.0Q},
+				    -Real{0.5Q}, -Real{1.0Q/3.0Q}};
 
     //  Orders for cylindrical Bessel functions.
     std::vector<_TpGSL> cyl_order{0, _TpGSL{1}/_TpGSL{3},
-				 _TpGSL{0.5}, _TpGSL{2}/_TpGSL{3},
+				 _TpGSL{0.5Q}, _TpGSL{2}/_TpGSL{3},
 				 1, 2, 3, 5, 10, 20, 50, 100};
 
     // Orders for spherical bessel functions.
@@ -202,14 +201,14 @@ main()
 
 #if STD
     //  Airy Ai functions.
-    std::cout << "airy_ai" << std::endl;
+    std::cout << "airy_ai" << '\n';
     basename = "diff_airy_ai";
     rundiff(airy_ai, gsl::airy_ai, basename,
 	    "x", fill_argument(std::make_pair(Real{-10}, Real{+10}),
 			       std::make_pair(true, true), 41));
 
     //  Airy Bi functions.
-    std::cout << "airy_bi" << std::endl;
+    std::cout << "airy_bi" << '\n';
     basename = "diff_airy_bi";
     rundiff(airy_bi, gsl::airy_bi, basename,
 	    "x", fill_argument(std::make_pair(Real{-10}, Real{+10}),
@@ -217,7 +216,7 @@ main()
 #endif // STD
 
     //  Associated Laguerre polynomials.
-    std::cout << "assoc_laguerre" << std::endl;
+    std::cout << "assoc_laguerre" << '\n';
     basename = "diff_assoc_laguerre";
     rundiff(assoc_laguerre, gsl::assoc_laguerre, basename,
 	    "n", vorder, "m", vorder,
@@ -226,7 +225,7 @@ main()
 
 
     //  Associated Legendre functions.
-    std::cout << "assoc_legendre" << std::endl;
+    std::cout << "assoc_legendre" << '\n';
     basename = "diff_assoc_legendre";
     rundiff(assoc_legendre, gsl::assoc_legendre, basename,
 	    "l", vorder, "m", vorder,
@@ -235,7 +234,7 @@ main()
 
 
     //  Beta function.
-    std::cout << "beta" << std::endl;
+    std::cout << "beta" << '\n';
     basename = "diff_beta";
     rundiff(beta, gsl::beta, basename,
 	    "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -246,7 +245,7 @@ main()
 
 #if STD
     // Binomial coefficient.
-    std::cout << "bincoef" << std::endl;
+    std::cout << "bincoef" << '\n';
     basename = "diff_bincoef";
     rundiff(bincoef<Real>, gsl::choose, basename,
 	    "n", fill_argument(std::make_pair(0U, 50U),
@@ -255,7 +254,7 @@ main()
 	    		       std::make_pair(true, true), 51));
 
     // Log binomial coefficient.
-    std::cout << "lbincoef" << std::endl;
+    std::cout << "lbincoef" << '\n';
     basename = "diff_lbincoef";
     rundiff(lbincoef<Real>, gsl::lnchoose, basename,
 	    "n", fill_argument(std::make_pair(0U, 200U),
@@ -267,7 +266,7 @@ main()
 
     //  Complete elliptic integrals of the first kind.
     //  Avoid poles at |x| = 1.
-    std::cout << "comp_ellint_1" << std::endl;
+    std::cout << "comp_ellint_1" << '\n';
     basename = "diff_comp_ellint_1";
     rundiff(comp_ellint_1, gsl::comp_ellint_1, basename,
 	    "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
@@ -276,7 +275,7 @@ main()
 
     //  Complete elliptic integrals of the second kind.
     //  Avoid poles at |x| = 1.
-    std::cout << "comp_ellint_2" << std::endl;
+    std::cout << "comp_ellint_2" << '\n';
     basename = "diff_comp_ellint_2";
     rundiff(comp_ellint_2, gsl::comp_ellint_2, basename,
 	    "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
@@ -285,7 +284,7 @@ main()
 
     //  Complete elliptic integrals of the third kind.
     //  Avoid poles at |x| = 1 and at nu = 1.
-    std::cout << "comp_ellint_3" << std::endl;
+    std::cout << "comp_ellint_3" << '\n';
     basename = "diff_comp_ellint_3";
     rundiff(comp_ellint_3, gsl::comp_ellint_3, basename,
 	    "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
@@ -296,7 +295,7 @@ main()
 
     //  Confluent hypergeometric functions.
     //  Skip the singularity at c = 0.
-    std::cout << "conf_hyperg" << std::endl;
+    std::cout << "conf_hyperg" << '\n';
     basename = "diff_conf_hyperg";
     rundiff(conf_hyperg, gsl::conf_hyperg, basename,
 	    "a", vab,
@@ -307,7 +306,7 @@ main()
 
 
     //  Regular modified cylindrical Bessel functions.
-    std::cout << "cyl_bessel_i" << std::endl;
+    std::cout << "cyl_bessel_i" << '\n';
     basename = "diff_cyl_bessel_i";
     rundiff(cyl_bessel_i, gsl::cyl_bessel_i, basename,
 	    "nu", cyl_order,
@@ -316,7 +315,7 @@ main()
 
 
     //  Cylindrical Bessel functions (of the first kind).
-    std::cout << "cyl_bessel_j" << std::endl;
+    std::cout << "cyl_bessel_j" << '\n';
     basename = "diff_cyl_bessel_j";
     rundiff(cyl_bessel_j, gsl::cyl_bessel_j, basename,
 	    "nu", cyl_order,
@@ -326,7 +325,7 @@ main()
 
     //  Irregular modified cylindrical Bessel functions.
     // Skip the pole at the origin.
-    std::cout << "cyl_bessel_k" << std::endl;
+    std::cout << "cyl_bessel_k" << '\n';
     basename = "diff_cyl_bessel_k";
     rundiff(cyl_bessel_k, gsl::cyl_bessel_k, basename,
 	    "nu", cyl_order,
@@ -336,7 +335,7 @@ main()
 #if STD
 /*
     // Cylindrical Hankel functions of the first kind.
-    std::cout << "cyl_hankel_1" << std::endl;
+    std::cout << "cyl_hankel_1" << '\n';
     basename = "cyl_hankel_1";
     rundiff(cyl_hankel_1, beast::cyl_hankel_1, basename,
 	    "nu", cyl_order,
@@ -346,7 +345,7 @@ main()
 					     std::make_pair(false, true), 21)));
 
     // Cylindrical Hankel functions of the second kind.
-    std::cout << "cyl_hankel_2" << std::endl;
+    std::cout << "cyl_hankel_2" << '\n';
     basename = "cyl_hankel_2";
     rundiff(cyl_hankel_2, beast::cyl_hankel_2, basename,
 	    "nu", cyl_order,
@@ -360,7 +359,7 @@ main()
 
     //  Cylindrical Neumann functions.
     // Skip the pole at the origin.
-    std::cout << "cyl_neumann" << std::endl;
+    std::cout << "cyl_neumann" << '\n';
     basename = "diff_cyl_neumann";
     rundiff(cyl_neumann, gsl::cyl_neumann, basename,
 	    "nu", cyl_order,
@@ -370,7 +369,7 @@ main()
 
     //  Elliptic integrals of the first kind.
     //  Avoid poles at |x| = 1.
-    std::cout << "ellint_1" << std::endl;
+    std::cout << "ellint_1" << '\n';
     basename = "diff_ellint_1";
     rundiff(ellint_1, gsl::ellint_1, basename,
 	    "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
@@ -380,7 +379,7 @@ main()
 
     //  Elliptic integrals of the second kind.
     //  Avoid poles at |x| = 1.
-    std::cout << "ellint_2" << std::endl;
+    std::cout << "ellint_2" << '\n';
     basename = "diff_ellint_2";
     rundiff(ellint_2, gsl::ellint_2, basename,
 	    "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
@@ -390,7 +389,7 @@ main()
 
     //  Elliptic integrals of the third kind.
     //  Avoid poles at |x| = 1 and at nu = 1.
-    std::cout << "ellint_3" << std::endl;
+    std::cout << "ellint_3" << '\n';
     basename = "diff_ellint_3";
     rundiff(ellint_3, gsl::ellint_3, basename,
 	    "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
@@ -402,7 +401,7 @@ main()
 
     //  Exponential integral.
     //  Skip the pole at 0.
-    std::cout << "expint" << std::endl;
+    std::cout << "expint" << '\n';
     basename = "diff_expint_neg";
     rundiff(expint, gsl::expint, basename,
 	    "x", fill_argument(std::make_pair(Real{-50}, Real{0}),
@@ -413,7 +412,7 @@ main()
 			       std::make_pair(false, true), 51));
 
     // Dawson integral.
-    std::cout << "dawson" << std::endl;
+    std::cout << "dawson" << '\n';
     basename = "diff_dawson";
     rundiff(dawson, gsl::dawson, basename,
 	    "x", fill_argument(std::make_pair(Real{0}, Real{+20}),
@@ -421,7 +420,7 @@ main()
 
 
     //  Hermite polynomials
-    std::cout << "hermite" << std::endl;
+    std::cout << "hermite" << '\n';
     basename = "diff_hermite";
     rundiff(hermite, gsl::hermite, basename,
 	    "n", vorder,
@@ -432,7 +431,7 @@ main()
     //  Hypergeometric functions.
     //  Skip the singularity at c = 0.
     //  Skip the singularities at x = -1.
-    std::cout << "hyperg" << std::endl;
+    std::cout << "hyperg" << '\n';
     basename = "diff_hyperg";
     rundiff(hyperg, gsl::hyperg, basename,
 	    "a", vab, "b", vab,
@@ -443,7 +442,7 @@ main()
 
 
     //  Laguerre polynomials.
-    std::cout << "laguerre" << std::endl;
+    std::cout << "laguerre" << '\n';
     basename = "diff_laguerre";
     rundiff(laguerre, gsl::laguerre, basename,
 	    "n", vorder,
@@ -452,7 +451,7 @@ main()
 
 
     //  Legendre polynomials.
-    std::cout << "legendre" << std::endl;
+    std::cout << "legendre" << '\n';
     basename = "diff_legendre";
     rundiff(legendre, gsl::legendre_p, basename,
 	    "l", vorder,
@@ -462,7 +461,7 @@ main()
 
     //  Riemann zeta function.
     //  Skip the pole at 1.
-    std::cout << "riemann_zeta" << std::endl;
+    std::cout << "riemann_zeta" << '\n';
     basename = "diff_riemann_zeta_neg";
     rundiff(riemann_zeta, gsl::riemann_zeta, basename,
 	    "x", fill_argument(std::make_pair(Real{-10}, Real{1}),
@@ -474,7 +473,7 @@ main()
 
 #if STD
     //  Hurwitz zeta function.
-    std::cout << "hurwitz_zeta" << std::endl;
+    std::cout << "hurwitz_zeta" << '\n';
     //  Skip the pole at 1.
     basename = "diff_hurwitz_zeta";
     rundiff(hurwitz_zeta, gsl::hurwitz_zeta, basename,
@@ -486,7 +485,7 @@ main()
 
 
     //  Spherical Bessel functions.
-    std::cout << "sph_bessel" << std::endl;
+    std::cout << "sph_bessel" << '\n';
     basename = "diff_sph_bessel";
     rundiff(sph_bessel, gsl::sph_bessel, basename,
 	    "n", sborder,
@@ -495,7 +494,7 @@ main()
 
 
     //  Spherical Legendre functions.
-    std::cout << "sph_legendre" << std::endl;
+    std::cout << "sph_legendre" << '\n';
     basename = "diff_sph_legendre";
     rundiff(sph_legendre, gsl::sph_legendre, basename,
 	    "l", vorder, "m", vorder,
@@ -505,7 +504,7 @@ main()
 
     //  Spherical Neumann functions.
     // Skip the pole at the origin.
-    std::cout << "sph_neumann" << std::endl;
+    std::cout << "sph_neumann" << '\n';
     basename = "diff_sph_neumann";
     rundiff(sph_neumann, gsl::sph_neumann, basename,
 	    "n", sborder,
@@ -514,7 +513,7 @@ main()
 
 #if STD
     //  Carlson elliptic functions R_C.
-    std::cout << "ellint_rc" << std::endl;
+    std::cout << "ellint_rc" << '\n';
     basename = "diff_ellint_rc";
     rundiff(ellint_rc, gsl::ellint_rc, basename,
 	    "x", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -523,7 +522,7 @@ main()
 			       std::make_pair(false, true), 11));
 
     //  Carlson elliptic functions R_D.
-    std::cout << "ellint_rd" << std::endl;
+    std::cout << "ellint_rd" << '\n';
     basename = "diff_ellint_rd";
     rundiff(ellint_rd, gsl::ellint_rd, basename,
 	    "x", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -534,7 +533,7 @@ main()
 			       std::make_pair(false, true), 11));
 
     //  Carlson elliptic functions R_F.
-    std::cout << "ellint_rf" << std::endl;
+    std::cout << "ellint_rf" << '\n';
     basename = "diff_ellint_rf";
     rundiff(ellint_rf, gsl::ellint_rf, basename,
 	    "x", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -545,7 +544,7 @@ main()
 			       std::make_pair(false, true), 11));
 
       // Carlson elliptic functions R_G.
-      std::cout << "ellint_rg" << std::endl;
+      std::cout << "ellint_rg" << '\n';
       basename = "diff_ellint_rg";
       rundiff(ellint_rg, beast::ellint_rg, basename,
 	      "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
@@ -556,7 +555,7 @@ main()
 				 std::make_pair(true, true), 11));
 
     //  Carlson elliptic functions R_J.
-    std::cout << "ellint_rj" << std::endl;
+    std::cout << "ellint_rj" << '\n';
     basename = "diff_ellint_rj";
     rundiff(ellint_rj, gsl::ellint_rj, basename,
 	    "x", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -569,14 +568,14 @@ main()
 		 	       std::make_pair(false, true), 11));
 
     //  Dilogarithm functions.
-    std::cout << "dilog" << std::endl;
+    std::cout << "dilog" << '\n';
     basename = "diff_dilog";
     rundiff(dilog, gsl::dilog, basename,
 	    "x", fill_argument(std::make_pair(_TpGSL{-10}, _TpGSL{1}),
 			       std::make_pair(true, true), 23));
 
     //  Upper incomplete Gamma functions.
-    std::cout << "tgamma" << std::endl;
+    std::cout << "tgamma" << '\n';
     basename = "diff_tgamma";
     rundiff(tgamma, gsl::tgamma, basename,
 	    "a", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
@@ -585,7 +584,7 @@ main()
 			       std::make_pair(true, true), 11));
 
       // Lower incomplete Gamma functions.
-      std::cout << "tgamma_lower" << std::endl;
+      std::cout << "tgamma_lower" << '\n';
       basename = "diff_tgamma_lower";
       rundiff(tgamma_lower, gsl::tgamma_lower, basename,
 	      "a", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -594,7 +593,7 @@ main()
 				 std::make_pair(true, true), 11));
 
     //  Incomplete Beta functions.
-    std::cout << "ibeta" << std::endl;
+    std::cout << "ibeta" << '\n';
     basename = "diff_ibeta";
     rundiff(ibeta, gsl::ibeta, basename,
 	    "a", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
@@ -605,7 +604,7 @@ main()
 			       std::make_pair(false, false), 21));
 
     //  Complementary incomplete Beta functions.
-    std::cout << "ibetac" << std::endl;
+    std::cout << "ibetac" << '\n';
     basename = "diff_ibetac";
     rundiff(ibetac, beast::ibetac, basename,
 	    "a", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
@@ -616,49 +615,49 @@ main()
 			       std::make_pair(false, false), 21));
 
     //  Digamma or psi functions.
-    std::cout << "psi" << std::endl;
+    std::cout << "psi" << '\n';
     basename = "diff_psi";
     rundiff(psi, gsl::psi, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{-9.9375}, _TpGSL{10.0625}),
+	    "x", fill_argument(std::make_pair(_TpGSL{-9.9375Q}, _TpGSL{10.0625Q}),
 			       std::make_pair(true, true), 801));
 
     //  Sine integral or Si functions.
-    std::cout << "sinint" << std::endl;
+    std::cout << "sinint" << '\n';
     basename = "diff_sinint";
     rundiff(sinint, gsl::sinint, basename,
 	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+10}),
 			       std::make_pair(false, true), 101));
 
     //  Cosine integral or Ci functions.
-    std::cout << "cosint" << std::endl;
+    std::cout << "cosint" << '\n';
     basename = "diff_cosint";
     rundiff(cosint, gsl::cosint, basename,
 	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+10}),
 			       std::make_pair(false, true), 101));
 
     //  Hyperbolic sine integral or Shi functions.
-    std::cout << "sinhint" << std::endl;
+    std::cout << "sinhint" << '\n';
     basename = "diff_sinhint";
     rundiff(sinhint, gsl::sinhint, basename,
 	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
 			       std::make_pair(false, true), 101));
 
     //  Hyperbolic cosine integral or Chi functions.
-    std::cout << "coshint" << std::endl;
+    std::cout << "coshint" << '\n';
     basename = "diff_coshint";
     rundiff(coshint, gsl::coshint, basename,
 	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
 			       std::make_pair(false, true), 101));
 
     // Dawson integral.
-    std::cout << "dawson" << std::endl;
+    std::cout << "dawson" << '\n';
     basename = "diff_dawson";
     rundiff(dawson, gsl::dawson, basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{+20}),
 				std::make_pair(false, true), 201));
 
     // Jacobian elliptic integrals.
-    std::cout << "jacobi_sn" << std::endl;
+    std::cout << "jacobi_sn" << '\n';
     basename = "diff_jacobi_sn";
     rundiff(jacobi_sn, gsl::jacobi_sn, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{+1}),
@@ -667,7 +666,7 @@ main()
 				std::make_pair(true, true), 101));
 
     // Jacobian elliptic integrals.
-    std::cout << "jacobi_cn" << std::endl;
+    std::cout << "jacobi_cn" << '\n';
     basename = "diff_jacobi_cn";
     rundiff(jacobi_cn, gsl::jacobi_cn, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{+1}),
@@ -676,7 +675,7 @@ main()
 				std::make_pair(true, true), 101));
 
     // Jacobian elliptic integrals.
-    std::cout << "jacobi_dn" << std::endl;
+    std::cout << "jacobi_dn" << '\n';
     basename = "diff_jacobi_dn";
     rundiff(jacobi_dn, gsl::jacobi_dn, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{+1}),
@@ -685,7 +684,7 @@ main()
 				std::make_pair(true, true), 101));
 
     //  Exponential integral E_n.
-    std::cout << "expint" << std::endl;
+    std::cout << "expint" << '\n';
     basename = "diff_expint_en";
     rundiff(expint, gsl::expint, basename,
 	    "n", {0, 1, 2, 3, 5},
@@ -694,58 +693,58 @@ main()
 
 
     //  Fresnel cosine integral.
-    std::cout << "fresnel_c" << std::endl;
+    std::cout << "fresnel_c" << '\n';
     basename = "diff_fresnel_c";
     rundiff(fresnel_c, gsl::fresnel_c, basename,
 	    "x", fill_argument(std::make_pair(_TpGSL{-20}, _TpGSL{+20}),
 			       std::make_pair(false, true), 401));
 
     //  Fresnel sine integral.
-    std::cout << "fresnel_s" << std::endl;
+    std::cout << "fresnel_s" << '\n';
     basename = "diff_fresnel_s";
     rundiff(fresnel_s, gsl::fresnel_s, basename,
 	    "x", fill_argument(std::make_pair(_TpGSL{-20}, _TpGSL{+20}),
 			       std::make_pair(false, true), 401));
 
     //  Dawson integral.
-    std::cout << "dawson" << std::endl;
+    std::cout << "dawson" << '\n';
     basename = "diff_dawson";
     rundiff(dawson, gsl::dawson, basename,
 	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
 			       std::make_pair(false, true), 101));
 
     // Normalized sine cardinal function.
-    std::cout << "sinc" << std::endl;
+    std::cout << "sinc" << '\n';
     basename = "diff_sinc";
     rundiff(sinc, gsl::sinc, basename,
 	    "x", fill_argument(std::make_pair(Real{-20}, Real{+20}),
 			       std::make_pair(true, true), 401));
 
     //  Sine cardinal function.
-    std::cout << "sinc_pi" << std::endl;
+    std::cout << "sinc_pi" << '\n';
     basename = "diff_sinc_pi";
     rundiff(sinc_pi, gsl::sinc_pi, basename,
 	    "x", fill_argument(std::make_pair(_TpGSL{-20}, _TpGSL{+20}),
 			       std::make_pair(false, true), 401));
 
     // Log upper Pochhammer symbol.
-    std::cout << "lpochhammer" << std::endl;
+    std::cout << "lpochhammer" << '\n';
     basename = "diff_lpochhammer";
     rundiff(lpochhammer, beast::lpochhammer, basename,
 	    "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 			       std::make_pair(false, true), 21),
-	    "x", {1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0});
+	    "x", {Real{1}, Real{2}, Real{5}, Real{10}, Real{20}, Real{50}, Real{100}});
 
     // Log lower Pochhammer symbol.
-    std::cout << "lpochhammer_lower" << std::endl;
+    std::cout << "lpochhammer_lower" << '\n';
     basename = "diff_lpochhammer_lower";
     rundiff(lpochhammer_lower, beast::lpochhammer_lower, basename,
 	    "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 			       std::make_pair(false, true), 21),
-	    "x", {0.0, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0});
+	    "x", {Real{0}, Real{1}, Real{2}, Real{5}, Real{10}, Real{20}, Real{50}, Real{100}});
 
     // Upper Pochhammer symbols (see boost::rising_factorial).
-    std::cout << "pochhammer" << std::endl;
+    std::cout << "pochhammer" << '\n';
     basename = "diff_pochhammer";
     rundiff(pochhammer, beast::pochhammer, basename,
 	    "a", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -753,15 +752,15 @@ main()
 	    "x", dvorder);
 
     // Lower Pochhammer symbols (see boost::falling_factorial).
-    std::cout << "pochhammer_lower" << std::endl;
+    std::cout << "pochhammer_lower" << '\n';
     basename = "diff_pochhammer_lower";
     rundiff(pochhammer_lower, beast::pochhammer_lower, basename,
 	    "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 			       std::make_pair(false, true), 21),
-	    "x", {0.0, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0});
+	    "x", {Real{0}, Real{1}, Real{2}, Real{5}, Real{10}, Real{20}, Real{50}, Real{100}});
 /*
     // Regular modified spherical bessel functions.
-    std::cout << "sph_bessel_i" << std::endl;
+    std::cout << "sph_bessel_i" << '\n';
     basename = "diff_sph_bessel_i";
     rundiff(sph_bessel_i, gsl::sph_bessel_i, basename,
 	    "n", sph_order,
@@ -772,7 +771,7 @@ main()
 				     std::make_pair(true, true), 21)));
 
     // Irregular modified spherical bessel functions.
-    std::cout << "sph_bessel_k" << std::endl;
+    std::cout << "sph_bessel_k" << '\n';
     basename = "diff_sph_bessel_k";
     rundiff(sph_bessel_k, gsl::sph_bessel_k, basename,
 	    "n", sph_order,
@@ -783,7 +782,7 @@ main()
 			       std::make_pair(false, true), 21)));
 */
     // Legendre functions of the second kind.
-    std::cout << "legendre_q" << std::endl;
+    std::cout << "legendre_q" << '\n';
     basename = "diff_legendre_q";
     rundiff(legendre_q, gsl::legendre_q, basename,
 	    "l", vorder,
@@ -791,35 +790,35 @@ main()
 			       std::make_pair(false, false), 21));
 
     // Factorial.
-    std::cout << "factorial" << std::endl;
+    std::cout << "factorial" << '\n';
     basename = "diff_factorial";
     rundiff(factorial<Real>, gsl::factorial, basename,
 	    "n", fill_argument(std::make_pair(0U, 50U),
 			       std::make_pair(true, true), 51));
 
     // Log factorial.
-    std::cout << "lfactorial" << std::endl;
+    std::cout << "lfactorial" << '\n';
     basename = "diff_lfactorial";
     rundiff(lfactorial<Real>, gsl::lfactorial, basename,
 	    "n", fill_argument(std::make_pair(0U, 500U),
 			       std::make_pair(true, true), 501));
 
     // Double factorial.
-    std::cout << "double_factorial" << std::endl;
+    std::cout << "double_factorial" << '\n';
     basename = "diff_double_factorial";
     rundiff(double_factorial<Real>, gsl::double_factorial, basename,
 	    "n", fill_argument(std::make_pair(0, 50),
 			       std::make_pair(true, true), 51));
 
     // Log double factorial.
-    std::cout << "ldouble_factorial" << std::endl;
+    std::cout << "ldouble_factorial" << '\n';
     basename = "diff_ldouble_factorial";
     rundiff(ldouble_factorial<Real>, gsl::ldouble_factorial, basename,
 	    "n", fill_argument(std::make_pair(0, 500),
 			       std::make_pair(true, true), 501));
 
     // Binomial coefficient.
-    std::cout << "bincoef" << std::endl;
+    std::cout << "bincoef" << '\n';
     basename = "diff_bincoef";
     rundiff(bincoef<Real>, gsl::choose, basename,
 	    "n", fill_argument(std::make_pair(0U, 50U),
@@ -828,7 +827,7 @@ main()
 			       std::make_pair(true, true), 51));
 
     // Log binomial coefficient.
-    std::cout << "lbincoef" << std::endl;
+    std::cout << "lbincoef" << '\n';
     basename = "diff_lbincoef";
     rundiff(lbincoef<Real>, gsl::lnchoose, basename,
 	    "n", fill_argument(std::make_pair(0U, 200U),
@@ -837,7 +836,7 @@ main()
 			       std::make_pair(true, true), 201));
 
     // Gegenbauer polynomials.
-    std::cout << "gegenbauer" << std::endl;
+    std::cout << "gegenbauer" << '\n';
     basename = "diff_gegenbauer";
     rundiff(gegenbauer, gsl::gegenpoly_n, basename,
 	    "n", vorder,
@@ -847,7 +846,7 @@ main()
 			       std::make_pair(true, true), 41));
 
     // Chebyshev polynomials of the first kind.
-    std::cout << "chebyshev_t - UNTESTED" << std::endl;
+    std::cout << "chebyshev_t - UNTESTED" << '\n';
 /*
     basename = "diff_chebyshev_t";
     rundiff(chebyshev_t, gsl::chebyshev_t, basename,
@@ -856,19 +855,19 @@ main()
 				std::make_pair(true, true), 21));
 */
     // Chebyshev polynomials of the second kind.
-    std::cout << "chebyshev_u - UNTESTED" << std::endl;
+    std::cout << "chebyshev_u - UNTESTED" << '\n';
     basename = "diff_chebyshev_u";
 
     // Chebyshev polynomials of the third kind.
-    std::cout << "chebyshev_v - UNTESTED" << std::endl;
+    std::cout << "chebyshev_v - UNTESTED" << '\n';
     basename = "diff_chebyshev_v";
 
     // Chebyshev polynomials of the fourth kind.
-    std::cout << "chebyshev_w - UNTESTED" << std::endl;
+    std::cout << "chebyshev_w - UNTESTED" << '\n';
     basename = "diff_chebyshev_w";
 
     // Jacobi polynomials.
-    std::cout << "jacobi" << std::endl;
+    std::cout << "jacobi" << '\n';
     basename = "diff_jacobi";
     rundiff(jacobi, gsl::jacobi, basename,
 	    "n", vorder,
@@ -880,7 +879,7 @@ main()
 				  std::make_pair(true, true), 41));
 
     // Radial polynomials.
-    std::cout << "radpoly" << std::endl;
+    std::cout << "radpoly" << '\n';
     basename = "diff_radpoly";
     rundiff(radpoly, gsl::radpoly, basename,
 	    "n", vorder, "m", vorder,
@@ -888,7 +887,7 @@ main()
 				 std::make_pair(true, true), 21));
 
     // Zernike polynomials.
-    std::cout << "zernike" << std::endl;
+    std::cout << "zernike" << '\n';
     basename = "diff_zernike";
     rundiff(zernike, gsl::zernike, basename,
 	    "n", vorder, "m", iorder,
@@ -898,7 +897,7 @@ main()
 
     // Confluent hypergeometric limit functions.
     // Skip the singularity at c = 0.
-    std::cout << "conf_hyperg_lim" << std::endl;
+    std::cout << "conf_hyperg_lim" << '\n';
     basename = "diff_conf_hyperg_lim";
     rundiff(conf_hyperg_lim, gsl::conf_hyperg_lim, basename,
 	    "c", fill_argument(std::make_pair(Real{0}, Real{10}),
@@ -908,7 +907,7 @@ main()
 
     // Heuman lambda functions.
     // Avoid poles at |x| = 1.
-    std::cout << "heuman_lambda" << std::endl;
+    std::cout << "heuman_lambda" << '\n';
     basename = "diff_heuman_lambda";
     rundiff(heuman_lambda, beast::heuman_lambda, basename,
 	    "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
@@ -917,7 +916,7 @@ main()
 
     // Elliptic D integrals.
     // Avoid poles at |x| = 1.
-    std::cout << "ellint_d" << std::endl;
+    std::cout << "ellint_d" << '\n';
     basename = "diff_ellint_d";
     rundiff(ellint_d, beast::ellint_d, basename,
 	    "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
@@ -926,7 +925,7 @@ main()
 
     // Complementary elliptic D integrals.
     // Avoid poles at |x| = 1.
-    std::cout << "comp_ellint_d" << std::endl;
+    std::cout << "comp_ellint_d" << '\n';
     basename = "diff_comp_ellint_d";
     rundiff(comp_ellint_d, beast::comp_ellint_d, basename,
 	    "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
@@ -934,7 +933,7 @@ main()
 
     // Jacobi zeta functions.
     // Avoid poles at |x| = 1.
-    std::cout << "jacobi_zeta" << std::endl;
+    std::cout << "jacobi_zeta" << '\n';
     basename = "diff_jacobi_zeta";
     rundiff(jacobi_zeta, beast::jacobi_zeta, basename,
 	    "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
@@ -943,7 +942,7 @@ main()
 
 /*
     // Cylindrical Hankel functions of the first kind.
-    std::cout << "cyl_hankel_1" << std::endl;
+    std::cout << "cyl_hankel_1" << '\n';
     basename = "diff_cyl_hankel_1";
     rundiff(cyl_hankel_1, beast::cyl_hankel_1, basename,
 	    "nu", cyl_neg_order,
@@ -954,7 +953,7 @@ main()
 				     std::make_pair(true, true), 21)));
 
     // Cylindrical Hankel functions of the second kind.
-    std::cout << "cyl_hankel_2" << std::endl;
+    std::cout << "cyl_hankel_2" << '\n';
     basename = "diff_cyl_hankel_2";
     rundiff(cyl_hankel_2, beast::cyl_hankel_2, basename,
 	    "nu", cyl_neg_order,
@@ -965,7 +964,7 @@ main()
 				     std::make_pair(true, true), 21)));
 
     // Spherical Hankel functions of the first kind.
-    std::cout << "sph_hankel_1" << std::endl;
+    std::cout << "sph_hankel_1" << '\n';
     basename = "diff_sph_hankel_1";
     rundiff(sph_hankel_1, beast::sph_hankel_1, basename,
 	     "n", sph_order,
@@ -976,7 +975,7 @@ main()
 				      std::make_pair(true, true), 21)));
 
     // Spherical Hankel functions of the second kind.
-    std::cout << "sph_hankel_2" << std::endl;
+    std::cout << "sph_hankel_2" << '\n';
     basename = "diff_sph_hankel_2";
     rundiff(sph_hankel_2, beast::sph_hankel_2, basename,
 	    "n", sph_order,
@@ -988,7 +987,7 @@ main()
 */
 
     // Spherical harmonic functions.
-    std::cout << "sph_harmonic" << std::endl;
+    std::cout << "sph_harmonic" << '\n';
     basename = "diff_sph_harmonic";
     rundiff(sph_harmonic, beast::sph_harmonic, basename,
 	    "l", vorder, "m", iorder,
@@ -998,7 +997,7 @@ main()
 
 /*
     // Dirichlet eta function.
-    std::cout << "dirichlet_eta" << std::endl;
+    std::cout << "dirichlet_eta" << '\n';
     // Skip the pole at 1.
     basename = "diff_dirichlet_eta";
     rundiff(dirichlet_eta, gsl::dirichlet_eta, basename,
@@ -1010,7 +1009,7 @@ main()
 */
 
     // Owens T functions.
-    std::cout << "owens_t" << std::endl;
+    std::cout << "owens_t" << '\n';
     basename = "diff_owens_t";
     rundiff(owens_t, beast::owens_t, basename,
 	    "h", fill_argument(std::make_pair(Real{-5}, Real{5}),
@@ -1019,7 +1018,7 @@ main()
 			       std::make_pair(true, true), 21));
 
     // clausen_c function.
-    std::cout << "clausen_c" << std::endl;
+    std::cout << "clausen_c" << '\n';
     basename = "diff_clausen_c";
     rundiff(clausen_c, gsl::clausen_c, basename,
 	    "m", fill_argument(std::make_pair(2U, 2U),
@@ -1028,21 +1027,21 @@ main()
 			       std::make_pair(true, true), 41));
 
     // Bernoulli numbers.
-    std::cout << "bernoulli" << std::endl;
+    std::cout << "bernoulli" << '\n';
     basename = "diff_bernoulli";
     rundiff(bernoulli<Real>, beast::bernoulli, basename,
 	    "n", fill_argument(std::make_pair(0U, 100U),
 			       std::make_pair(true, true), 101));
 
     // Reperiodized sine function.
-    std::cout << "sin_pi" << std::endl;
+    std::cout << "sin_pi" << '\n';
     basename = "diff_sin_pi";
     rundiff(sin_pi, beast::sin_pi, basename,
 	    "x", fill_argument(std::make_pair(Real{-20}, Real{+50}),
 			       std::make_pair(false, true), 701));
 
     // Reperiodized cosine function.
-    std::cout << "cos_pi" << std::endl;
+    std::cout << "cos_pi" << '\n';
     basename = "diff_cos_pi";
     rundiff(cos_pi, beast::cos_pi, basename,
 	    "x", fill_argument(std::make_pair(Real{-20}, Real{+50}),
