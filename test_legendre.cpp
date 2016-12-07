@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_legendre test_legendre.cpp -lquadmath
+$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_legendre test_legendre.cpp -lquadmath
 ./test_legendre > test_legendre.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_legendre test_legendre.cpp -lquadmath
@@ -17,20 +17,31 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_legendre 
 #include "bits/sf_legendre.tcc"
 
   template<typename _Tp>
-    std::vector<_Tp>
+    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
     __legendre_zeros(unsigned int __l, _Tp proto = _Tp{})
     {
       const auto _S_eps = __gnu_cxx::__epsilon(proto);
       const auto _S_pi = __gnu_cxx::__const_pi(proto);
       const unsigned int _S_maxit = 1000u;
 
-      std::vector<_Tp> __zero(__l);
-      std::vector<_Tp> __weight(__l);
+      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__l);
 
       auto __m = __l / 2;
 
+      // Treat the central zero for odd order specially.
       if (__l & 1)
-	__zero[__m] = _Tp{0};
+	{
+	  auto __lm = __l - 1;
+	  auto __lmfact = std::__detail::__factorial<_Tp>(__lm);
+	  auto __mm = __lm / 2;
+	  auto __mmfact = std::__detail::__factorial<_Tp>(__mm);
+	  auto __Plm1 = (__lm & 1 ? -1 : 1) * __lmfact / __mmfact / __mmfact
+			/ std::pow(_Tp{2}, __lm);
+	  auto __Ppl = __l * __Plm1;
+	  __pt[__m].__zero = _Tp{0};
+	  __pt[__m].__weight = _Tp{2} / __Ppl / __Ppl;
+	}
+
       for (auto __i = 1u; __i <= __m; ++__i)
 	{
 	  // Clever approximation of root.
@@ -46,13 +57,13 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_legendre 
 	      // Compute __Pp the derivative of the Legendre polynomial of order l.
 	      auto __P1 = _Tp{0};
 	      auto __P = _Tp{1};
-	      for  (auto __j = 1u; __j <= __l; ++__j)
+	      for  (auto __k = 1u; __k <= __l; ++__k)
 		{
 		  auto __P2 = __P1;
 		  __P1 = __P;
 		  // Recursion for Legendre polynomials.
-		  __P = ((_Tp{2} * __j - _Tp{1}) * __z * __P1
-		      - (__j - _Tp{1}) * __P2) / __j;
+		  __P = ((_Tp{2} * __k - _Tp{1}) * __z * __P1
+		      - (__k - _Tp{1}) * __P2) / __k;
 		}
 	      // Recursion for the derivative of The Legendre polynomial.
 	      auto __Pp = __l * (__z * __P - __P1) / (__z * __z - _Tp{1});
@@ -69,13 +80,13 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_legendre 
 					 "Too many iterations");
 	    }
 
-	  __zero[__i - 1] = -__z;
-	  __zero[__l - __i] = __z;
-	  __weight[__i - 1] = __w;
-	  __weight[__l - __i] = __w;
+	  __pt[__i - 1].__zero = -__z;
+	  __pt[__l - __i].__zero = __z;
+	  __pt[__i - 1].__weight = __w;
+	  __pt[__l - __i].__weight = __w;
 	}
 
-      return __zero;
+      return __pt;
     }
 
 template<typename _Tp>
@@ -143,10 +154,12 @@ template<typename _Tp>
 
     for (int l = 0; l <= 50; ++l)
       {
-	auto zero = __legendre_zeros(l, proto);
+	auto pt = __legendre_zeros(l, proto);
 	std::cout << "\nl = " << std::setw(4) << l << ":\n";
-	for (auto z : zero)
-	  std::cout << ' ' << std::setw(width) << z << '\n';
+	for (auto [z, w] : pt)
+	  std::cout << ' ' << std::setw(width) << z
+		    << ' ' << std::setw(width) << w
+		    << '\n';
       }
   }
 

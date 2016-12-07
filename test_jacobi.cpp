@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi test_jacobi.cpp -lquadmath
+$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi test_jacobi.cpp -lquadmath
 ./test_jacobi > test_jacobi.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi test_jacobi.cpp -lquadmath
@@ -14,14 +14,13 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi te
 #include <bits/float128_io.h>
 
   template<typename _Tp>
-    std::vector<_Tp>
+    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
     __jacobi_zeros(unsigned int __n, _Tp __alpha, _Tp __beta)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__alpha);
       const unsigned int _S_maxit = 1000u;
 
-      std::vector<_Tp> __zero(__n);
-      std::vector<_Tp> __weight(__n);
+      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
 
       _Tp __z;
       _Tp __w;
@@ -52,7 +51,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi te
 	      auto __r1 = (1.67 + 0.28 * __alpha) / (1.0 + 0.37 * __alpha);
 	      auto __r2 = 1.0 + 0.22 * (__n - 8.0) / __n;
 	      auto __r3 = 1.0 + 8.0 * __beta / ((6.28 + __beta) * __n * __n);
-	      __z -= (__zero[0] - __z) * __r1 * __r2 * __r3;
+	      __z -= (__pt[0].__zero - __z) * __r1 * __r2 * __r3;
 	    }
 	  else if (__i == __n - 1)
 	    {
@@ -61,7 +60,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi te
 						/ (1.0 + 0.71 * (__n - 4.0)));
 	      auto __r3 = 1.0 / (1.0 + 20.0 * __alpha
 				/ ((7.5 + __alpha) * __n * __n));
-	      __z += (__z - __zero[__n - 4]) * __r1 * __r2 * __r3;
+	      __z += (__z - __pt[__n - 4].__zero) * __r1 * __r2 * __r3;
 	    }
 	  else if (__i == __n)
 	    {
@@ -69,12 +68,12 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi te
 	      auto __r2 = 1.0 / (1.0 + 0.22 * (__n - 8.0) / __n);
 	      auto __r3 = 1.0 / (1.0 + 8.0 * __alpha
 				 / ((6.28 + __alpha) * __n * __n));
-	      __z += (__z - __zero[__n - 3]) * __r1 * __r2 * __r3;
+	      __z += (__z - __pt[__n - 3].__zero) * __r1 * __r2 * __r3;
 	    }
 	  else
 	    {
-	      __z = 3.0 * __zero[__i - 2]
-		  - 3.0 * __zero[__i - 3] + __zero[__i - 4];
+	      __z = 3.0 * __pt[__i - 2].__zero
+		  - 3.0 * __pt[__i - 3].__zero + __pt[__i - 4].__zero;
 	    }
 
 	  auto __alphabeta = __alpha + __beta;
@@ -114,11 +113,11 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi te
 	      if (__its > _S_maxit)
 		std::__throw_logic_error("__jacobi_zeros: Too many iterations");
 	    }
-	  __zero[__i - 1] = __z;
-	  __weight[__i - 1] = __w;
+	  __pt[__i - 1].__zero = __z;
+	  __pt[__i - 1].__weight = __w;
 	}
 
-      return __zero;
+      return __pt;
     }
 
 template<typename _Tp>
@@ -152,10 +151,12 @@ template<typename _Tp>
 
 		for (int n = 0; n <= 50; ++n)
 		  {
-		    auto zero = __jacobi_zeros(n, alpha, beta);
+		    auto pt = __jacobi_zeros(n, alpha, beta);
 		    std::cout << "\nn = " << std::setw(4) << n << ":\n";
-		    for (auto z : zero)
-		      std::cout << ' ' << std::setw(width) << z << '\n';
+		    for (auto [z, w] : pt)
+		      std::cout << ' ' << std::setw(width) << z
+				<< ' ' << std::setw(width) << w
+				<< '\n';
 		  }
 	      }
             std::cout << '\n';
