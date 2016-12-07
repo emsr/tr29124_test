@@ -30,6 +30,7 @@ check/check_airy_ai
 check/check_airy_bi
 check/check_assoc_laguerre
 check/check_assoc_legendre
+check/check_bernoulli
 check/check_beta
 check/check_bincoef
 check_chebyshev_t
@@ -93,6 +94,13 @@ check/check_ldouble_factorial
 check/check_legendre
 check/check_legendre_q
 check/check_lfactorial
+check/check_lgamma
+check/check_logistic_cdf
+check/check_logistic_pdf
+check/check_lognormal_cdf
+check/check_lognormal_pdf
+check/check_normal_cdf
+check/check_normal_pdf
 check/check_lpochhammer_lower
 check/check_lpochhammer
 check/check_owens_t
