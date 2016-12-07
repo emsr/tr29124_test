@@ -147,7 +147,8 @@ GSL extras has these - there was struggle there too.
 
 42. [] We might not even need numeric_limits_float128.h - the generic ones might work.
 
-43. [] test_polylog has some remaining float128 issues.
+43. [DONE] test_polylog has some remaining float128 issues.
+    Building and execution work but there are other general issues.
 
 44. [DONE] test_hankel build fails on  
        test_hankel.cpp:52:47: error: no matching function for call to '__airy(std::complex<double>&, double)'
@@ -362,6 +363,14 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
     assoc_laguerre: x < 0
 
     Note this difference in the documentation.
+
+80. [] Test, fix, and ship gamma_reciprocal!
+    Something's broken.
+    Also, there might be other useful forms besides the series.
+
+81. [] polylog is broken for polylog_exp(real, cmplx) for first argument s=2.6.
+       This impacts the derived functions bose_einstein and fermi_dirac.
+       vimdiff test_polylog.txt zeta/zeta.txt
 
 plot_airy.cpp
 
