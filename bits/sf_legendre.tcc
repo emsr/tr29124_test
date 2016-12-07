@@ -59,17 +59,22 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *   @brief  Return the Legendre polynomial by upward recursion
-   *           on order @f$ l @f$.
+   * @brief  Return the Legendre polynomial by upward recursion
+   * 	     on order @f$ l @f$.
    *
-   *   The Legendre function of order @f$ l @f$ and argument @f$ x @f$,
-   *   @f$ P_l(x) @f$, is defined by:
-   *   @f[
-   *     P_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l}
-   *   @f]
+   * The Legendre function of order @f$ l @f$ and argument @f$ x @f$,
+   * @f$ P_l(x) @f$, is defined by:
+   * @f[
+   *   P_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l}
+   * @f]
+   * This can be expressed as a series:
+   * @f[
+   *   P_l(x) = frac{1}{2^l l!}\sum_{k=0}^{\lfloor l/2 \rfloor}
+   *            \frac{(-1)^k(2l-2k)!}{k!(l-k)!(l-2k)!}x^{l-2k}
+   * @f]
    *
-   *   @param  __l  The order of the Legendre polynomial.  @f$ l >= 0 @f$.
-   *   @param  __x  The argument of the Legendre polynomial.
+   * @param  __l  The order of the Legendre polynomial.  @f$ l >= 0 @f$.
+   * @param  __x  The argument of the Legendre polynomial.
    */
   template<typename _Tp>
     _Tp
