@@ -1,6 +1,8 @@
 #ifndef TEST_FUNC_TCC
 #define TEST_FUNC_TCC 1
 
+#include <fstream>
+
 /**
  * A class to reach into compound numeric types to extract the
  * value or element type.  This will be specialized for complex
@@ -129,7 +131,7 @@ template<typename Tp, typename Tp1>
   {
     std::string filename = testdirname + basename + filename_end<Tp>::suffix();
 
-    std::ofstream output(filename.c_str());
+    std::ofstream output(filename);
     output.precision(std::numeric_limits<Tp>::digits10);
     output.flags(std::ios::showpoint);
     int width = 8 + output.precision();
@@ -183,7 +185,7 @@ template<typename Tp, typename Tp1, typename Tp2>
   {
     std::string filename = testdirname + basename + filename_end<Tp>::suffix();
 
-    std::ofstream output(filename.c_str());
+    std::ofstream output(filename);
     output.precision(std::numeric_limits<Tp>::digits10);
     output.flags(std::ios::showpoint);
     int width = 8 + output.precision();
@@ -252,7 +254,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
   {
     std::string filename = testdirname + basename + filename_end<Tp>::suffix();
 
-    std::ofstream output(filename.c_str());
+    std::ofstream output(filename);
     output.precision(std::numeric_limits<Tp>::digits10);
     output.flags(std::ios::showpoint);
     int width = 8 + output.precision();
@@ -328,7 +330,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
   {
     std::string filename = testdirname + basename + filename_end<Tp>::suffix();
 
-    std::ofstream output(filename.c_str());
+    std::ofstream output(filename);
     output.precision(std::numeric_limits<Tp>::digits10);
     output.flags(std::ios::showpoint);
     int width = 8 + output.precision();
@@ -411,7 +413,7 @@ template<typename Tp, typename Tp1>
 
     std::string filename = diffdirname + basename + filename_end<Tp>::suffix();
 
-    std::ofstream output(filename.c_str());
+    std::ofstream output(filename);
     output.precision(std::numeric_limits<Tp>::digits10);
     output.flags(std::ios::showpoint);
     int width = 8 + output.precision();
@@ -498,7 +500,7 @@ template<typename Tp, typename Tp1, typename Tp2>
 
     std::string filename = diffdirname + basename + filename_end<Tp>::suffix();
 
-    std::ofstream output(filename.c_str());
+    std::ofstream output(filename);
     output.precision(std::numeric_limits<Tp>::digits10);
     output.flags(std::ios::showpoint);
     int width = 8 + output.precision();
@@ -593,7 +595,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
 
     std::string filename = diffdirname + basename + filename_end<Tp>::suffix();
 
-    std::ofstream output(filename.c_str());
+    std::ofstream output(filename);
     output.precision(std::numeric_limits<Tp>::digits10);
     output.flags(std::ios::showpoint);
     int width = 8 + output.precision();
@@ -696,7 +698,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 
     std::string filename = diffdirname + basename + filename_end<Tp>::suffix();
 
-    std::ofstream output(filename.c_str());
+    std::ofstream output(filename);
     output.precision(std::numeric_limits<Tp>::digits10);
     output.flags(std::ios::showpoint);
     int width = 8 + output.precision();
