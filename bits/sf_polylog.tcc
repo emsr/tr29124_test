@@ -1392,7 +1392,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see http://dlmf.nist.gov/25.12.16
    *
    * @f[
-   *    F_s(x) = \frac{1}{\Gamma(s+1)}\int_0^\infty \frac{t^s}{e^{t-s} + 1}dt
+   *    F_s(x) = \frac{1}{\Gamma(s+1)}\int_0^\infty \frac{t^s}{e^{t-x} + 1}dt
    *           = -Li_{s+1}(-e^x)
    * @f]
    *
@@ -1422,7 +1422,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see http://dlmf.nist.gov/25.12.16
    *
    * @f[
-   *    G_s(x) = \frac{1}{\Gamma(s+1)}\int_0^\infty \frac{t^s}{e^{t-s} - 1}dt
+   *    G_s(x) = \frac{1}{\Gamma(s+1)}\int_0^\infty \frac{t^s}{e^{t-x} - 1}dt
    *           = Li_{s+1}(e^x)
    * @f]
    *
