@@ -14,6 +14,33 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_fermi_dir
 #include <bits/float128_io.h>
 
 
+  /**
+   * Return the Fermi-Dirac probability distribution function (continuous).
+   *
+   * @see Kieth Oldham, Jan Myland, and Jerome Spanier,
+   * An Atlas of Functions, 2nd Edition p. 266
+   */
+  template<typename _Tp>
+    _Tp
+    __fermi_dirac_pdf(_Tp __mu, _Tp __beta, _Tp __x)
+    {
+      _Tp{1} / (std::exp(__beta * (__x - __mu)) + _Tp{1});
+    }
+
+  /**
+   * return the Fermi-Dirac cumulative distribution function (continuous).
+   *
+   * @see Kieth Oldham, Jan Myland, and Jerome Spanier,
+   * An Atlas of Functions, 2nd Edition p. 266
+   */
+  template<typename _Tp>
+    _Tp
+    __fermi_dirac_cdf(_Tp __mu, _Tp __beta, _Tp __x)
+    {
+      ;
+    }
+
+
 template<typename _Tp>
   void
   run_fermi_dirac()

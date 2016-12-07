@@ -14,6 +14,33 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_bose_einstein test_b
 #include <bits/float128_io.h>
 
 
+  /**
+   * Return the Bose-Einstein probability distribution function (continuous).
+   *
+   * @see Kieth Oldham, Jan Myland, and Jerome Spanier,
+   * An Atlas of Functions, 2nd Edition p. 266
+   */
+  template<typename _Tp>
+    _Tp
+    __bose_einstein_pdf(_Tp __mu, _Tp __beta, _Tp __x)
+    {
+      _Tp{1} / (std::exp(__beta * (__x - __mu)) - _Tp{1});
+    }
+
+  /**
+   * Return the Bose-Einstein cumulative distribution function (continuous).
+   *
+   * @see Kieth Oldham, Jan Myland, and Jerome Spanier,
+   * An Atlas of Functions, 2nd Edition p. 266
+   */
+  template<typename _Tp>
+    _Tp
+    __bose_einstein_cdf(_Tp __mu, _Tp __beta, _Tp __x)
+    {
+      ;
+    }
+
+
 template<typename _Tp>
   void
   run_bose_einstein()
