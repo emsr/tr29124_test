@@ -458,7 +458,13 @@
     }
 
   /**
-   * Return the normalization factor of the Hermite function.
+   * Return the normalization factor of the (Physicists) Hermite function.
+   *
+   * The normalized Hermite (Physicists) polynomial @f$ \tilde{H}_n(x)
+   * is defined in terms of the regular Physicists polynomial @f$ H_n(x) @f$ by
+   * @f[
+   *   H_n(x) = \pi^{1/4} 2^{n/2} \sqrt{n!} \tilde{H}_n(x)
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -471,7 +477,14 @@
     }
 
   /**
-   * Return the log of the normalization factor of the Hermite function.
+   * Return the log of the normalization factor of the (Physicists)
+   * Hermite function.
+   *
+   * The normalized Hermite (Physicists) polynomial @f$ \tilde{H}_n(x)
+   * is defined in terms of the regular Physicists polynomial @f$ H_n(x) @f$ by
+   * @f[
+   *   H_n(x) = \pi^{1/4} 2^{n/2} \sqrt{n!} \tilde{H}_n(x)
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -481,13 +494,19 @@
       const auto _S_lsqrt_2pi = __gnu_cxx::__const_ln_root_2_pi<_Tp>();
       const auto _S_lsqrt_pi = _S_lsqrt_2pi - _S_lsqrt_2;
       const auto _S_ln_2 = __gnu_cxx::__const_ln_2<_Tp>();
-      return (_S_lsqrt_pi + _Tp(__n) * _S_ln_2 +
-std::__detail::__log_factorial<_Tp>(__n)) / _Tp{2};
+      return (_S_lsqrt_pi + _Tp(__n) * _S_ln_2
+	   + std::__detail::__log_factorial<_Tp>(__n)) / _Tp{2};
     }
 
   /**
    * @brief Compute the normalized Hermite polynomial by recursion.
    * @todo Tabulate sqrt(int) or even sqrt(i)/sqrt(i+1) and add a helper.
+   *
+   * The normalized Hermite (Physicists) polynomial @f$ \tilde{H}_n(x)
+   * is defined in terms of the regular Physicists polynomial @f$ H_n(x) @f$ by
+   * @f[
+   *   H_n(x) = \pi^{1/4} 2^{n/2} \sqrt{n!} \tilde{H}_n(x)
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -598,6 +617,12 @@ std::__detail::__log_factorial<_Tp>(__n)) / _Tp{2};
 
   /**
    * Return the normalization factor of the probabilists Hermite function.
+   *
+   * The normalized Hermite Probabilists polynomial @f$ \tilde{He}_n(x) is
+   * defined in terms of the regular Probabilists polynomial @f$ He_n(x) @f$ by
+   * @f[
+   *   He_n(x) = (2\pi)^{1/4} \sqrt{n!} \tilde{He}_n(x)
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -609,15 +634,22 @@ std::__detail::__log_factorial<_Tp>(__n)) / _Tp{2};
     }
 
   /**
-   * Return the normalization factor of the Hermite function.
+   * Return the log of the normalization factor of the Probabilists
+   * Hermite function.
+   *
+   * The normalized Hermite Probabilists polynomial @f$ \tilde{He}_n(x) is
+   * defined in terms of the regular Probabilists polynomial @f$ He_n(x) @f$ by
+   * @f[
+   *   He_n(x) = (2\pi)^{1/4} \sqrt{n!} \tilde{He}_n(x)
+   * @f]
    */
   template<typename _Tp>
     _Tp
     __log_prob_hermite_norm_factor(unsigned int __n)
     {
       const auto _S_lsqrt_2pi = __gnu_cxx::__const_ln_root_2_pi<_Tp>();
-      return (_S_lsqrt_2pi +
-std::__detail::__log_factorial<_Tp>(__n)) / _Tp{2};
+      return (_S_lsqrt_2pi
+	    + std::__detail::__log_factorial<_Tp>(__n)) / _Tp{2};
     }
 
   /**
