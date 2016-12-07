@@ -43,6 +43,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * A return for sincos-type functions.
    */
   template<typename _Tp>
+    struct __quadrature_point_t
+    {
+      _Tp __zero;
+      _Tp __weight;
+    };
+
+  /**
+   * A struct to store a cosine and a sine value.
+   * A return for sincos-type functions.
+   */
+  template<typename _Tp>
     struct __sincos_t
     {
       _Tp __sin_value;
