@@ -89,8 +89,8 @@ template<typename _Tp>
     else
       {
 	auto __theta = std::acos(__x);
-	return std::cos(_Tp(__n + 0.5L) * __theta)
-	     / std::cos(_Tp{0.5L} * __theta);
+	return std::cos(_Tp(__n + 0.5Q) * __theta)
+	     / std::cos(_Tp{0.5Q} * __theta);
       }
   }
 
@@ -112,8 +112,8 @@ template<typename _Tp>
     else
       {
 	auto __theta = std::acos(__x);
-	return std::sin(_Tp(__n + 0.5L) * __theta)
-	     / std::sin(_Tp{0.5L} * __theta);
+	return std::sin(_Tp(__n + 0.5Q) * __theta)
+	     / std::sin(_Tp{0.5Q} * __theta);
       }
   }
 
@@ -280,11 +280,11 @@ template<typename Real>
     std::vector<Real> dvorder{0, 1, 2, 5, 10, 20, 50, 100};
 
     // Orders for cylindrical Bessel functions.
-    std::vector<Real> cyl_neg_order{-5, -2, -1, -Real{2.0L/3.0L},
-				    -Real{0.5L}, -Real{1.0L/3.0L}};
+    std::vector<Real> cyl_neg_order{-5, -2, -1, -Real{2.0Q/3.0Q},
+				    -Real{0.5Q}, -Real{1.0Q/3.0Q}};
 
-    std::vector<Real> cyl_order{0, Real{1.0L/3.0L},
-				Real{0.5L}, Real{2.0L/3.0L},
+    std::vector<Real> cyl_order{0, Real{1.0Q/3.0Q},
+				Real{0.5Q}, Real{2.0Q/3.0Q},
 				1, 2, 5, 10, 20, 50, 100};
 
     // Orders for spherical bessel functions.
@@ -300,7 +300,7 @@ template<typename Real>
     for (unsigned int i = 1; i < num_phi - 1; ++i)
       vnopolesd.push_back(Real{10} * i * _S_pi / Real{180});
 
-    std::vector<Real> vab{0, Real{0.5L}, 1, 2, 5, 10, 20};
+    std::vector<Real> vab{0, Real{0.5Q}, 1, 2, 5, 10, 20};
 
     unsigned int test = 1;
 
@@ -651,7 +651,8 @@ template<typename Real>
     maketest(hermite, gsl::hermite,
 	     "testcase_hermite", nsname, basename,
 	     "n", {8, 18, 32, 50, 72, 128, 200, 1250, 5000},
-	     "x", {4.0, 6.0, 8.0, 10.0, 12.0, 16.0, 20.0, 50.0, 100.0},
+	     "x", {Real{4}, Real{6}, Real{8}, Real{10}, Real{12},
+		   Real{16}, Real{20}, Real{50}, Real{100}},
 	     "GSL",
 	     file_hermite, false, true, test);
 
@@ -917,6 +918,19 @@ template<typename Real>
 	     "Boost",
 	     file_lgamma);
 
+    // Gamma functions.
+/*
+    std::cout << "tgamma" << std::endl;
+    basename = "tgamma";
+    filename = get_filename(path, prefix, basename, "", ".cc");
+    std::ofstream file_tgamma(filename.c_str());
+    maketest(tgamma, beast::tgamma,
+	     "testcase_tgamma", "__gnu_cxx", basename,
+	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
+				std::make_pair(false, true), 11),
+	     "Boost",
+	     file_tgamma);
+*/
     // Upper incomplete Gamma functions.
     std::cout << "tgamma" << std::endl;
     basename = "tgamma";
@@ -1013,7 +1027,7 @@ template<typename Real>
     test =
     maketest(psi, gsl::psi,
 	     "testcase_psi", "__gnu_cxx", basename,
-	     "x", fill_argument(std::make_pair(Real{-9.9375}, +Real{10.0625}),
+	     "x", fill_argument(std::make_pair(Real{-9.9375Q}, +Real{10.0625Q}),
 				std::make_pair(true, true), 801),
 	     "GSL",
 	     file_psi, true, false);
@@ -1197,7 +1211,7 @@ template<typename Real>
 	     "testcase_lpochhammer", "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
-	     "x", {1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0},
+	     "x", {Real{1}, Real{2}, Real{5}, Real{10}, Real{20}, Real{50}, Real{100}},
 	     "Boost",
 	     file_lpochhammer, true, true);
 
@@ -1210,7 +1224,7 @@ template<typename Real>
 	     "testcase_lpochhammer_lower", "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
-	     "x", {0.0, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0},
+	     "x", {Real{0}, Real{1}, Real{2}, Real{5}, Real{10}, Real{20}, Real{50}, Real{100}},
 	     "Boost",
 	     file_lpochhammer_lower, true, true);
 
@@ -1236,7 +1250,7 @@ template<typename Real>
 	     "testcase_pochhammer_lower", "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
-	     "x", {0.0, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0},
+	     "x", {Real{0}, Real{1}, Real{2}, Real{5}, Real{10}, Real{20}, Real{50}, Real{100}},
 	     "Boost",
 	     file_pochhammer_lower, true, true);
 
