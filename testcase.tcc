@@ -260,26 +260,26 @@ template<typename Tp>
     while (tol > std::abs(delta)
 	&& tol > eps)
       {
-	if (Tp(0.5L) * tol > abs_delta
-	 && Tp(0.5L) * tol > eps)
+	if (Tp(0.5Q) * tol > abs_delta
+	 && Tp(0.5Q) * tol > eps)
 	  {
-	    if (Tp(0.2L) * tol > abs_delta
-	     && Tp(0.2L) * tol > eps)
+	    if (Tp(0.2Q) * tol > abs_delta
+	     && Tp(0.2Q) * tol > eps)
 	      {
-		if (Tp(0.1L) * tol > abs_delta
-		 && Tp(0.1L) * tol > eps)
+		if (Tp(0.1Q) * tol > abs_delta
+		 && Tp(0.1Q) * tol > eps)
 		  {
-		    tol *= Tp(0.1L);
+		    tol *= Tp(0.1Q);
 		  }
 		else
 		  {
-		    tol *= Tp(0.2L);
+		    tol *= Tp(0.2Q);
 		    break;
 		  }
 	      }
 	    else
 	      {
-		tol *= Tp(0.5L);
+		tol *= Tp(0.5Q);
 		break;
 	      }
 	  }
@@ -306,7 +306,7 @@ template<typename Tp>
 
     //  Somehow, we seem to need extra space to get the tests to pass.
     //  TODO: Figure this out.
-    return Tp(50.0L) * tol;
+    return Tp(50.0Q) * tol;
   }
 
 
@@ -417,7 +417,7 @@ template<typename Ret, typename Arg1>
     if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
       {
 	bool tol_ok = false;
-	const auto min_tol = Val{1.0e-3L};
+	const auto min_tol = Val{1.0e-3Q};
 	const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 	std::string tname;
 	if (ret_complex)
@@ -620,7 +620,7 @@ template<typename Ret, typename Arg1, typename Arg2>
 	if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
 	  {
 	    bool tol_ok = false;
-	    const auto min_tol = Val{1.0e-3L};
+	    const auto min_tol = Val{1.0e-3Q};
 	    const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 	    std::string tname;
 	    if (ret_complex)
@@ -830,7 +830,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
 	    if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
 	      {
 		bool tol_ok = false;
-		const auto min_tol = Val{1.0e-3L};
+		const auto min_tol = Val{1.0e-3Q};
 		const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 		std::string tname;
 		if (ret_complex)
@@ -1053,7 +1053,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
 		if (abs_stats.max() >= Val{0} && max_abs_frac >= Val{0})
 		 {
 		    bool tol_ok = false;
-		    const auto min_tol = Val{1.0e-3L};
+		    const auto min_tol = Val{1.0e-3Q};
 		    const auto frac_toler = get_tolerance(max_abs_frac, min_tol, tol_ok);
 		    std::string tname;
 		    if (ret_complex)
