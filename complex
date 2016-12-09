@@ -41,7 +41,7 @@
 #include <bits/c++config.h>
 #include <bits/cpp_type_traits.h>
 #include <ext/type_traits.h>
-#define _GLIBCXX_NO_SPECFUN
+#define _GLIBCXX_NO_SPECFUN 1
 #  include <cmath>
 #undef _GLIBCXX_NO_SPECFUN
 #include <sstream>
