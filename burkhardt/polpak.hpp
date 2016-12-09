@@ -84,9 +84,9 @@ int i4_sign ( int i );
 void i4_swap ( int *i, int *j );
 void i4_to_triangle ( int k, int *i, int *j );
 int i4_uniform_ab ( int ilo, int ihi, int &seed );
-void i4mat_print ( int m, int n, int a[], string title );
+void i4mat_print ( int m, int n, int a[], std::string title );
 void i4mat_print_some ( int m, int n, int a[], int ilo, int jlo, int ihi,
-  int jhi, string title );
+  int jhi, std::string title );
 double *jacobi_poly ( int n, double alpha, double beta, double x );
 void jacobi_poly_values ( int &n_data, int &n, double &a, double &b, double &x,
   double &fx );
@@ -154,10 +154,10 @@ double r8_pi ( );
 double r8_psi ( double xx );
 double r8_uniform_01 ( int *seed );
 int r8poly_degree ( int na, double a[] );
-void r8poly_print ( int n, double a[], string title );
+void r8poly_print ( int n, double a[], std::string title );
 double r8poly_value_horner ( int n, double a[], double x );
 double *r8vec_linspace_new ( int n, double a_first, double a_last );
-void r8vec_print ( int n, double a[], string title );
+void r8vec_print ( int n, double a[], std::string title );
 void r8vec_zero ( int n, double a[] );
 int s_len_trim ( char* s );
 int sigma ( int n );

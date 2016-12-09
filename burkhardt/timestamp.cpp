@@ -1,3 +1,7 @@
+
+#include <ctime>
+#include <iostream>
+
 //****************************************************************************80
 
 void timestamp ( )
@@ -41,7 +45,7 @@ void timestamp ( )
 
   len = strftime ( time_buffer, TIME_SIZE, "%d %B %Y %I:%M:%S %p", tm );
 
-  cout << time_buffer << "\n";
+  std::cout << time_buffer << "\n";
 
   return;
 # undef TIME_SIZE

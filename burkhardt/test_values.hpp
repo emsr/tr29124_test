@@ -8,10 +8,10 @@ void airy_ai_prime_values ( int &n_data, double &x, double &aip );
 void airy_bi_values ( int &n_data, double &x, double &bi );
 void airy_bi_int_values ( int &n_data, double &x, double &fx );
 void airy_bi_prime_values ( int &n_data, double &x, double &bip );
-void airy_cai_values ( int &n_data, complex <double> &x, 
-  complex <double> &cai );
-void airy_cbi_values ( int &n_data, complex <double> &x, 
-  complex <double> &cbi );
+void airy_cai_values ( int &n_data, std::complex<double> &x, 
+  std::complex<double> &cai );
+void airy_cbi_values ( int &n_data, std::complex<double> &x, 
+  std::complex<double> &cbi );
 void airy_gi_values ( int &n_data, double &x, double &fx );
 void airy_hi_values ( int &n_data, double &x, double &fx );
 void arccos_values ( int &n_data, double &x, double &fx );

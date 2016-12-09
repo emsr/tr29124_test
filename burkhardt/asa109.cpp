@@ -475,47 +475,6 @@ double betain ( double x, double p, double q, double beta, int &ifault )
 }
 //****************************************************************************80
 
-double r8_max ( double x, double y )
-
-//****************************************************************************80
-//
-//  Purpose:
-//
-//    R8_MAX returns the maximum of two R8's.
-//
-//  Licensing:
-//
-//    This code is distributed under the GNU LGPL license. 
-//
-//  Modified:
-//
-//    18 August 2004
-//
-//  Author:
-//
-//    John Burkardt
-//
-//  Parameters:
-//
-//    Input, double X, Y, the quantities to compare.
-//
-//    Output, double R8_MAX, the maximum of X and Y.
-//
-{
-  double value;
-
-  if ( y < x )
-  {
-    value = x;
-  } 
-  else
-  {
-    value = y;
-  }
-  return value;
-}
-//****************************************************************************80
-
 double xinbta ( double p, double q, double beta, double alpha, int &ifault )
 
 //****************************************************************************80
