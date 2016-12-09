@@ -19,9 +19,9 @@ double r8mat_is_identity ( int n, double a[] );
 double *r8mat_mm_new ( int n1, int n2, int n3, double a[], double b[] );
 double *r8mat_mv_new ( int m, int n, double a[], double x[] );
 double r8mat_norm_fro ( int m, int n, double a[] );
-void r8mat_print ( int m, int n, double a[], string title );
+void r8mat_print ( int m, int n, double a[], std::string title );
 void r8mat_print_some ( int m, int n, double a[], int ilo, int jlo, int ihi,
-  int jhi, string title );
+  int jhi, std::string title );
 double r8vec_dot_product ( int n, double a1[], double a2[] );
 double *r8vec_linspace_new ( int n, double a_first, double a_last );
 double r8vec_sum ( int n, double a[] );
