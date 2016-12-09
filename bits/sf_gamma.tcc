@@ -1796,7 +1796,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __bernoulli(int __n)
+    __bernoulli(unsigned int __n)
     { return __bernoulli_series<_Tp>(__n); }
 
 
@@ -1809,7 +1809,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __bernoulli_2n(int __n)
+    __bernoulli_2n(unsigned int __n)
     { return __bernoulli_series<_Tp>(2 * __n); }
 
 
