@@ -391,7 +391,6 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
    * The recursion is
    * @f[
    *   S_{n+1}^{(m)} = S_n^{(m-1)} - n S_n^{(m)} \mbox{ or }
-   *   S_n^{(m)} = S_{n-1}^{(m-1)} - (n-1) S_{n-1}^{(m)}
    * @f]
    * with starting values
    * @f[
@@ -427,8 +426,26 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
     }
 
   /**
-   * Return the Stirling number of the first kind from lookup
-   * or by series expansion if terms of Stirling numbers of the second kind.
+   * Return the Stirling number of the first kind.
+   *
+   * The Stirling numbers of the first kind are the coefficients of
+   * the Pocchammer polynomials:
+   * @f[
+   *   (x)_n = \sum_{k=0}^{n} S_n^{(k)} x^k
+   * @f]
+   *
+   * The recursion is
+   * @f[
+   *   S_{n+1}^{(m)} = S_n^{(m-1)} - n S_n^{(m)} \mbox{ or }
+   * @f]
+   * with starting values
+   * @f[
+   *   S_0^{(0\rightarrow m)} = {1, 0, 0, ..., 0}
+   * @f]
+   * and
+   * @f[
+   *   S_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0}
+   * @f]
    *
    * @todo Look into asymptotic solutions.
    */
