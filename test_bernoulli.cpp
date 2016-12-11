@@ -36,9 +36,9 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
     _Tp
     __bernoulli_series(unsigned int __n)
     {
-      static constexpr std::size_t __len = 24;
+      static constexpr std::size_t _S_len = 24;
       static constexpr _Tp
-      __num[__len]
+      _S_num[_S_len]
       {
 	 frac<_Tp>,
 	-frac<_Tp, 1ull, 2ull>,
@@ -57,36 +57,32 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
 
       if (__n == 0)
 	return frac<_Tp>;
-
-      if (__n == 1)
+      else if (__n == 1)
 	return -frac<_Tp, 1, 2>;
-
-      //  Take care of the rest of the odd ones.
-      if (__n % 2 == 1)
+      else if (__n % 2 == 1) // Take care of the rest of the odd ones.
 	return _Tp(0);
-
-      //  Take care of some small evens that are painful for the series.
-      if (__n < __len)
-	return __num[__n];
-
-
-      _Tp __fact = _Tp(1);
-      if ((__n / 2) % 2 == 0)
-	__fact *= -1;
-      for (auto __k = 1u; __k <= __n; ++__k)
-	__fact *= __k / __gnu_cxx::__const_pi<_Tp>();
-      __fact *= _Tp(2);
-
-      _Tp __sum = _Tp(0);
-      for (auto __i = 1u; __i < 1000; ++__i)
+      else if (__n < _S_len) // return small evens that are painful for the series.
+	return _S_num[__n];
+      else
 	{
-	  _Tp __term = std::pow(_Tp(__i), -_Tp(__n));
-	  if (__term < __gnu_cxx::__epsilon<_Tp>())
-            break;
-	  __sum += __term;
-	}
+	  _Tp __fact = _Tp(1);
+	  if ((__n / 2) % 2 == 0)
+	    __fact *= -1;
+	  for (auto __k = 1u; __k <= __n; ++__k)
+	    __fact *= __k / __gnu_cxx::__const_pi<_Tp>();
+	  __fact *= _Tp(2);
 
-      return __fact * __sum;
+	  _Tp __sum = _Tp(0);
+	  for (auto __i = 1u; __i < 1000; ++__i)
+	    {
+	      _Tp __term = std::pow(_Tp(__i), -_Tp(__n));
+	      if (__term < __gnu_cxx::__epsilon<_Tp>())
+        	break;
+	      __sum += __term;
+	    }
+
+	  return __fact * __sum;
+	}
     }
 
   /**
@@ -142,38 +138,52 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
     _Tp
     __euler_series(unsigned int __n)
     {
-      static constexpr std::size_t __len = 0;
+      static constexpr std::size_t _S_len = 22;
       static constexpr _Tp
-      __num[__len]
+      _S_num[_S_len]
       {
+	 1ll, 0,
+	-1ll, 0ll,
+	 5ll, 0ll,
+	-61ll, 0ll,
+	 1385ll, 0ll,
+	-50521ll, 0ll,
+	 2702765ll, 0ll,
+	-199360981ll, 0ll,
+	 19391512145ll, 0ll,
+	-2404879675441ll, 0ll,
+	 370371188237525ll, 0ll,
+	//-69348874393137901ll, 0ll,
       };
 
       if (__n == 0)
 	return _Tp{1};
-
-      if (__n == 1)
+      else if (__n & 1)
 	return _Tp{0};
-
-      if (__n == 2)
+      else if (__n == 2)
         return _Tp{-1};
-
-      std::vector<_Tp> _En(__n + 1);
-      _En[0] = _Tp{1};
-      _En[1] = _Tp{0};
-      _En[2] = _Tp{-1};
-
-      for (auto __i = 3u; __i <= __n; ++__i)
+      else if (__n < _S_len)
+	return _S_num[__n];
+      else
 	{
-	  _En[__i] = 0;
+	  std::vector<_Tp> _En(__n + 1);
+	  _En[0] = _Tp{1};
+	  _En[1] = _Tp{0};
+	  _En[2] = _Tp{-1};
 
-	  if (__i % 2 == 0)
+	  for (auto __i = 3u; __i <= __n; ++__i)
 	    {
-	      for (auto __j = 2u; __j <= __i; __j += 2u)
-		_En[__i] -= std::__detail::__bincoef<_Tp>(__i, __j)
-			  * _En[__i - __j];
+	      _En[__i] = 0;
+
+	      if (__i % 2 == 0)
+		{
+		  for (auto __j = 2u; __j <= __i; __j += 2u)
+		    _En[__i] -= std::__detail::__bincoef<_Tp>(__i, __j)
+			      * _En[__i - __j];
+		}
 	    }
+	  return _En[__n];
 	}
-      return _En[__n];
     }
 
   /**
@@ -213,6 +223,255 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
 
       return _E_n;
     }
+
+  /**
+   * Return the Stirling number of the second kind by series expansion.
+   * The series is:
+   * @f[
+   *   \sigma_n^{(m)} = \sum_{k=0}^{m}\frac{(-1)^{m-k}k^n}{(m-k)!k!}
+   * @f]
+   *
+   * @todo Find a way to predict the maximum Stirling number for a type.
+   */
+  template<typename _Tp>
+    _Tp
+    __stirling_2_series(unsigned int __n, unsigned int __m)
+    {
+      if (__m > std::__detail::_S_num_factorials<_Tp>)
+	{
+	  auto _S2 = _Tp{0};
+	  for (auto __k = 0u; __k <= __m; ++__k)
+	    {
+	      auto __lf1 = std::__detail::__log_factorial<_Tp>(__k);
+	      auto __lf2 = std::__detail::__log_factorial<_Tp>(__m - __k);
+	      _S2 += ((__m - __k) & 1 ? _Tp{-1} : _Tp{1})
+		   * std::exp(__n * std::log(__k) - __lf1 - __lf2);
+	    }
+	  return _S2;
+	}
+      else
+	{
+	  auto _S2 = _Tp{0};
+	  for (auto __k = 0u; __k <= __m; ++__k)
+	    {
+	      _S2 += ((__m - __k) & 1 ? _Tp{-1} : _Tp{1})
+		   * std::pow(__k, __n)
+		   / std::__detail::__factorial<_Tp>(__k)
+		   / std::__detail::__factorial<_Tp>(__m - __k);
+	    }
+	  // @todo Only round if the sum is less than
+	  // the maximum representable integer.
+	  // Find or make a tool for this.
+	  return std::nearbyint(_S2);
+	}
+    }
+
+  /**
+   * Return the Stirling number of the second kind by recursion.
+   * The recursion is
+   * @f[
+   *   \sigma_n^{(m)} = m \sigma_{n-1}^{(m)} + \sigma_{n-1}^{(m-1)}
+   * @f]
+   * with starting values
+   * @f[
+   *   \sigma_0^{(0\rightarrow m)} = {1, 0, 0, ..., 0}
+   * @f]
+   * and
+   * @f[
+   *   \sigma_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0}
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __stirling_2_recur(unsigned int __n, unsigned int __m)
+    {
+      if (__n == 0)
+	return _Tp(__m == 0);
+      else if (__m == 0)
+	return _Tp(__n == 0);
+      else
+	{
+	  std::vector<_Tp> __sigold(__m + 1), __signew(__m + 1);
+	  __sigold[1] = _Tp{1};
+	  if (__n == 1)
+	    return __sigold[__m];
+	  for (auto __in = 1u; __in <= __n; ++__in)
+	    {
+	      __signew[1] = __sigold[1];
+	      for (auto __im = 2u; __im <= __m; ++__im)
+		__signew[__im] = __im * __sigold[__im] + __sigold[__im - 1];
+	      std::swap(__sigold, __signew);
+	    }
+	  return __signew[__m];
+	}
+    }
+
+  /**
+   * Return the Stirling number of the second kind from lookup
+   * or by series expansion.
+   *
+   * @todo Look into asymptotic solutions.
+   */
+  template<typename _Tp>
+    _Tp
+    __stirling_2(unsigned int __n, unsigned int __m)
+    {
+      if (__m > __n)
+	return _Tp{0};
+      else if (__m == __n)
+	return _Tp{1};
+      else if (__m == 0 && __n >= 10)
+	return _Tp{0};
+      else
+	return __stirling_2_recur<_Tp>(__n, __m);
+    }
+
+  /**
+   * Return the Stirling number of the second kind.
+   *
+   * @todo Look into asymptotic solutions.
+   */
+  template<typename _Tp>
+    _Tp
+    __log_stirling_2(unsigned int __n, unsigned int __m)
+    {
+      if (__m > __n)
+	return -std::numeric_limits<_Tp>::infinity();
+      else if (__m == __n)
+	return _Tp{0};
+      else if (__m == 0 && __n >= 1)
+	return -std::numeric_limits<_Tp>::infinity();
+      else
+	return std::log(__stirling_2<_Tp>(__n, __m));
+    }
+
+  /**
+   * Return the Stirling number of the first kind by series expansion.
+   * N.B. This seems to be a total disaster.
+   */
+  template<typename _Tp>
+    _Tp
+    __stirling_1_series(unsigned int __n, unsigned int __m)
+    {
+      if (2 * __n - __m > std::__detail::_S_num_factorials<_Tp> / 2)
+	{
+	  auto _S1 = _Tp{0};
+	  for (auto __k = 0u; __k <= __n - __m; ++__k)
+	    {
+	      auto __nmk = __n - __m + __k;
+	      auto __lbc1 = std::__detail::__log_bincoef<_Tp>(__n - 1 + __k, __nmk);
+	      auto __slbc1 = std::__detail::__log_bincoef_sign<_Tp>(__n - 1 + __k, __nmk);
+	      auto __lbc2 = std::__detail::__log_bincoef<_Tp>(2 * __n - __m, __nmk);
+	      auto __slbc2 = std::__detail::__log_bincoef_sign<_Tp>(2 * __n - __m, __nmk);
+	      _S1 += (__k & 1 ? _Tp{-1} : _Tp{1}) * __slbc1 * __slbc2
+		   * std::exp(__lbc1 + __lbc2 + __log_stirling_2<_Tp>(__nmk, __k));
+	    }
+	  return _S1;
+	}
+      else
+	{
+	  auto _S1 = _Tp{0};
+	  for (auto __k = 0u; __k <= __n - __m; ++__k)
+	    {
+	      auto __nmk = __n - __m + __k;
+	      _S1 += (__k & 1 ? _Tp{-1} : _Tp{1})
+		   * std::__detail::__bincoef<_Tp>(__n - 1 + __k, __nmk)
+		   * std::__detail::__bincoef<_Tp>(2 * __n - __m, __nmk)
+		   * __stirling_2<_Tp>(__nmk, __k);
+	    }
+	  // @todo Only round if the sum is less than
+	  // the maximum representable integer.
+	  // Find or make a tool for this.
+	  return std::nearbyint(_S1);
+	}
+    }
+
+  /**
+   * Return the Stirling number of the first kind by recursion.
+   * The recursion is
+   * @f[
+   *   S_{n+1}^{(m)} = S_n^{(m-1)} - n S_n^{(m)} \mbox{ or }
+   *   S_n^{(m)} = S_{n-1}^{(m-1)} - (n-1) S_{n-1}^{(m)}
+   * @f]
+   * with starting values
+   * @f[
+   *   S_0^{(0\rightarrow m)} = {1, 0, 0, ..., 0}
+   * @f]
+   * and
+   * @f[
+   *   S_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0}
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __stirling_1_recur(unsigned int __n, unsigned int __m)
+    {
+      if (__n == 0)
+	return _Tp(__m == 0);
+      else if (__m == 0)
+	return _Tp(__n == 0);
+      else
+	{
+	  std::vector<_Tp> _Sold(__m + 1), _Snew(__m + 1);
+	  _Sold[1] = _Tp{1};
+	  if (__n == 1)
+	    return _Sold[__m];
+	  for (auto __in = 1u; __in <= __n; ++__in)
+	    {
+	      for (auto __im = 1u; __im <= __m; ++__im)
+		_Snew[__im] = _Sold[__im - 1] - __in * _Sold[__im];
+	      std::swap(_Sold, _Snew);
+	    }
+	  return _Snew[__m];
+	}
+    }
+
+  /**
+   * Return the Stirling number of the first kind from lookup
+   * or by series expansion if terms of Stirling numbers of the second kind.
+   *
+   * @todo Look into asymptotic solutions.
+   */
+  template<typename _Tp>
+    _Tp
+    __stirling_1(unsigned int __n, unsigned int __m)
+    {
+      if (__m > __n)
+	return _Tp{0};
+      else if (__m == __n)
+	return _Tp{1};
+      else if (__m == 0 && __n >= 1)
+	return _Tp{0};
+      else
+        return __stirling_1_recur<_Tp>(__n, __m);
+    }
+
+  /**
+   * Return the logarithm of the absolute value of Stirling number
+   * of the first kind.
+   */
+  template<typename _Tp>
+    _Tp
+    __log_stirling_1(unsigned int __n, unsigned int __m)
+    {
+      if (__m > __n)
+	return -std::numeric_limits<_Tp>::infinity();
+      else if (__m == __n)
+	return _Tp{0};
+      else if (__m == 0 && __n >= 1)
+	return -std::numeric_limits<_Tp>::infinity();
+      else
+	return std::log(std::abs(__stirling_1<_Tp>(__n, __m)));
+    }
+
+  /**
+   * Return the sign of the exponent of the logarithm of the Stirling number
+   * of the first kind.
+   */
+  template<typename _Tp>
+    _Tp
+    __log_stirling_1_sign(unsigned int __n, unsigned int __m)
+    { return (__n + __m) & 1 ? _Tp{-1} : _Tp{+1}; }
 
 
 template<typename _Tp>
@@ -262,13 +521,39 @@ template<typename _Tp>
 		      << '\n';
 	  }
       }
+
+    std::cout << "\n Stirling numbers of the second kind";
+    for (auto n = 0u; n <= 100; ++n)
+      {
+	std::cout << '\n';
+	for (auto m = 0u; m <= n; ++m)
+	  std::cout << ' ' << std::setw(4) << n
+		    << ' ' << std::setw(4) << m
+		    << ' ' << std::setw(width) << __stirling_2_series<_Tp>(n, m)
+		    << ' ' << std::setw(width) << __stirling_2_recur<_Tp>(n, m)
+		    << '\n';
+      }
+
+    std::cout << "\n Stirling numbers of the first kind";
+    for (auto n = 0u; n <= 100; ++n)
+      {
+	std::cout << '\n';
+	for (auto m = 0u; m <= n; ++m)
+	  std::cout << ' ' << std::setw(4) << n
+		    << ' ' << std::setw(4) << m
+		    << ' ' << std::setw(width) << __stirling_1_series<_Tp>(n, m)
+		    << ' ' << std::setw(width) << __stirling_1_recur<_Tp>(n, m)
+		    << '\n';
+      }
 /*
-*/
+ */
   }
 
 int
 main()
 {
+  //test_bernoulli(0.0F);
+
   test_bernoulli(0.0);
 
   test_bernoulli(0.0L);
