@@ -2813,7 +2813,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     airy_bi(std::complex<_Tp> __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__airy<__type>(__x).__Bi_value;
+      return std::__detail::__airy_bi<__type>(__x);
     }
 
   // Log Gamma function for real argument.
