@@ -41,29 +41,29 @@ test01()
   using cmplx = std::complex<double>;
   using __gnu_cxx::airy_ai;
 
-  auto ai0 = airy_ai(cmplx(0.1352924163128814,  0.0000000000000000));
-  auto ai1 = airy_ai(cmplx(0.1433824486882056, -0.1092193342707378));
-  auto ai2 = airy_ai(cmplx(0.2215404472324631, -0.2588711788891803));
-  auto ai3 = airy_ai(cmplx(0.4763929771766866, -0.3036484220291284));
-  auto ai4 = airy_ai(cmplx(0.5983692170633874, -0.08154602160771214));
-  auto ai5 = airy_ai(cmplx(0.5355608832923521,  0.00000000000000000));
-  auto ai6 = airy_ai(cmplx(0.5983692170633874,  0.08154602160771214));
-  auto ai7 = airy_ai(cmplx(0.4763929771766866,  0.3036484220291284));
-  auto ai8 = airy_ai(cmplx(0.2215404472324631,  0.2588711788891803));
-  auto ai9 = airy_ai(cmplx(0.1433824486882056,  0.1092193342707378));
+  auto ai0 = airy_ai(cmplx( 1.0000000000000000,  0.0000000000000000));
+  auto ai1 = airy_ai(cmplx( 0.8090169943749474,  0.5877852522924731));
+  auto ai2 = airy_ai(cmplx( 0.3090169943749474,  0.9510565162951536));
+  auto ai3 = airy_ai(cmplx(-0.3090169943749474,  0.9510565162951536));
+  auto ai4 = airy_ai(cmplx(-0.8090169943749474,  0.5877852522924731));
+  auto ai5 = airy_ai(cmplx(-1.0000000000000000,  0.0000000000000000));
+  auto ai6 = airy_ai(cmplx(-0.8090169943749474, -0.5877852522924731));
+  auto ai7 = airy_ai(cmplx(-0.3090169943749474, -0.9510565162951536));
+  auto ai8 = airy_ai(cmplx( 0.3090169943749474, -0.9510565162951536));
+  auto ai9 = airy_ai(cmplx( 0.8090169943749474, -0.5877852522924731));
 
   bool test [[gnu::unused]] = true;
   double eps = 1.0e-12;
-  VERIFY(std::abs(ai0 - cmplx( 1.000000000000000,   0.0000000000000000)) < eps);
-  VERIFY(std::abs(ai1 - cmplx( 0.8090169943749474,  0.5877852522924731)) < eps);
-  VERIFY(std::abs(ai2 - cmplx( 0.3090169943749474,  0.9510565162951536)) < eps);
-  VERIFY(std::abs(ai3 - cmplx(-0.3090169943749474,  0.9510565162951536)) < eps);
-  VERIFY(std::abs(ai4 - cmplx(-0.8090169943749474,  0.5877852522924731)) < eps);
-  VERIFY(std::abs(ai5 - cmplx(-1.0000000000000000,  0.0000000000000000)) < eps);
-  VERIFY(std::abs(ai6 - cmplx(-0.8090169943749474, -0.5877852522924731)) < eps);
-  VERIFY(std::abs(ai7 - cmplx(-0.3090169943749474, -0.9510565162951536)) < eps);
-  VERIFY(std::abs(ai8 - cmplx( 0.3090169943749474, -0.9510565162951536)) < eps);
-  VERIFY(std::abs(ai9 - cmplx( 0.8090169943749474, -0.5877852522924731)) < eps);
+  VERIFY(std::abs(ai0 - cmplx( 0.1352924163128814,  0.0000000000000000)) < eps);
+  VERIFY(std::abs(ai1 - cmplx( 0.1433824486882056, -0.1092193342707378)) < eps);
+  VERIFY(std::abs(ai2 - cmplx( 0.2215404472324631, -0.2588711788891803)) < eps);
+  VERIFY(std::abs(ai3 - cmplx( 0.4763929771766866, -0.3036484220291284)) < eps);
+  VERIFY(std::abs(ai4 - cmplx( 0.5983692170633874, -0.08154602160771214)) < eps);
+  VERIFY(std::abs(ai5 - cmplx( 0.5355608832923521,  0.00000000000000000)) < eps);
+  VERIFY(std::abs(ai6 - cmplx( 0.5983692170633874,  0.08154602160771214)) < eps);
+  VERIFY(std::abs(ai7 - cmplx( 0.4763929771766866,  0.3036484220291284)) < eps);
+  VERIFY(std::abs(ai8 - cmplx( 0.2215404472324631,  0.2588711788891803)) < eps);
+  VERIFY(std::abs(ai9 - cmplx( 0.1433824486882056,  0.1092193342707378)) < eps);
 }
 
 int
