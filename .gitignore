@@ -137,6 +137,8 @@ check/complex_ellint_rd
 check/complex_ellint_rf
 check/complex_ellint_rg
 check/complex_ellint_rj
+check/complex_airy_ai
+check/complex_airy_bi
 check/pr56216_cyl_hankel_1
 check/pr56216_cyl_hankel_2
 check/pr56216_cyl_bessel_i
@@ -189,6 +191,7 @@ test_fresnel
 test_gamma
 test_gamma_ratio
 test_gamma_reciprocal
+test_gauss_kronrod
 test_gegenbauer
 test_hermite
 test_hankel
@@ -210,6 +213,7 @@ test_lentz_continued_fraction
 test_lerch
 test_limits
 test_little_airy
+test_lobatto
 test_local_special_function
 test_math_h
 test_notsospecfun 
