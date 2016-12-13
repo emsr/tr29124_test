@@ -1,10 +1,28 @@
 
 #include <limits>
+#include <vector>
+#include <cmath>
 
 #include "burkhardt/special_functions.h"
+
+
 #include "wrap_burkhardt.h"
 
+#include "burkhardt/asa109.hpp"
+#include "burkhardt/asa243.hpp"
+#include "burkhardt/asa310.hpp"
+#include "burkhardt/bernstein_polynomial.hpp"
+#include "burkhardt/beta_nc.hpp"
+#include "burkhardt/cdflib.hpp"
+#include "burkhardt/chebyshev_polynomial.hpp"
+#include "burkhardt/gegenbauer_polynomial.hpp"
 #include "burkhardt/hermite_polynomial.hpp"
+#include "burkhardt/jacobi_polynomial.hpp"
+#include "burkhardt/kronrod.hpp"
+#include "burkhardt/lobatto_polynomial.hpp"
+#include "burkhardt/polpak.hpp"
+#include "burkhardt/quadrule.hpp"
+#include "burkhardt/toms462.hpp"
 
 namespace burkhardt
 {
@@ -29,20 +47,20 @@ airy_bi(double x)
 
 /// Associated Laguerre polynomials.
 double
-assoc_laguerre(unsigned int /*n*/, unsigned int /*m*/, double /*x*/)
+assoc_laguerre(unsigned int l, unsigned int m, double x)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  std::vector<double> L(l);
+  laguerre_associated(l, m, x, L.data());
+  return L[m];
 }
 
 /// Associated Legendre functions.
 double
-assoc_legendre(unsigned int /*l*/, unsigned int /*m*/, double /*x*/)
+assoc_legendre(unsigned int l, unsigned int m, double x)
 {
-  //int mm = l * m;
-  //double cpm[mm], cpd[mm];
-  //double x{}, y{};
-  //clpmn_(&mm, &l, &m, &x, &y, &cpm, &cpd);
-  return std::numeric_limits<double>::quiet_NaN();
+  std::vector<double> P(l);
+  legendre_associated(l, m, x, P.data());
+  return P[m];
 }
 
 /// Associated Legendre functions of the second kind.
@@ -226,9 +244,9 @@ hermite(unsigned int /*n*/, double /*x*/)
 
 /// Hypergeometric functions.
 double
-hyperg(double /*a*/, double /*b*/, double /*c*/, double /*x*/)
+hyperg(double a, double b, double c, double x)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  return r8_hyper_2f1(a, b, c, x);
 }
 
 /// Laguerre polynomials.
@@ -240,17 +258,20 @@ laguerre(unsigned int /*n*/, double /*x*/)
 
 /// Legendre polynomials.
 double
-legendre_p(unsigned int /*l*/, double /*x*/)
+legendre_p(unsigned int l, double x)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  std::vector<double> P(l), Pp(l);
+  legendre_poly(l, x, P.data(), Pp.data());
+  return P[l];
 }
 
 /// Legendre functions of the second kind.
 double
-legendre_q(unsigned int /*l*/, double /*x*/)
+legendre_q(unsigned int l, double x)
 {
-  //clqmn_(mm, m, n, x, y, cqm, cqd);
-  return std::numeric_limits<double>::quiet_NaN();
+  std::vector<double> Q(l);
+  legendre_function_q(l, x, Q.data());
+  return Q[l];
 }
 
 /// Riemann zeta function.
@@ -612,9 +633,13 @@ lnchoose(unsigned int /*n*/, unsigned int /*k*/)
 
 /// Jacobi polynomials.
 double
-jacobi(unsigned int /*n*/, double /*alpha*/, double /*beta*/, double /*x*/)
+jacobi(unsigned int n, double alpha, double beta, double x)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  //auto C = std::make_unique<double[]>(jacobi_poly(n, alpha, beta, x));
+  auto C = jacobi_poly(n, alpha, beta, x);
+  auto Cn = C[n];
+  delete [] C;
+  return Cn;
 }
 
 /// Taylor coefficients.
@@ -626,16 +651,16 @@ taylorcoeff(unsigned int /*n*/, double /*x*/)
 
 /// Radial polynomials
 double
-radpoly(unsigned int /*n*/, unsigned int /*m*/, double /*rho*/)
+radpoly(unsigned int n, unsigned int m, double rho)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  return zernike_poly(m, n, rho);
 }
 
 /// Zernike polynomials
 double
-zernike(unsigned int /*n*/, int /*m*/, double /*rho*/, double /*phi*/)
+zernike(unsigned int n, int m, double rho, double phi)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  return zernike_poly(m, n, rho) * (m & 1 ? std::cos(phi) : std::sin(phi));
 }
 
 /// Cylindrical Hankel functions of the first kind.
