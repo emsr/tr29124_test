@@ -425,7 +425,7 @@ mpfrcalc: mpfr_gexpr.c
 
 
 libwgsl.so: $(OBJ_DIR)/wrap_gsl.o $(OBJ_DIR)/fresnel.o $(OBJ_DIR)/jacobi.o $(OBJ_DIR)/gsl_sf_hermite.o
-	$(CXX17) -fPIC -shared -o libwgsl.so $(OBJ_DIR)/wrap_gsl.o $(OBJ_DIR)/fresnel.o $(OBJ_DIR)/jacobi.o $(OBJ_DIR)/gsl_sf_hermite.o -L$(GSL_LIB_DIR) -lgsl -lgslcblas
+	$(CXX17) -fPIC -shared -o libwgsl.so $(OBJ_DIR)/wrap_gsl.o $(OBJ_DIR)/fresnel.o $(OBJ_DIR)/jacobi.o $(OBJ_DIR)/gsl_sf_hermite.o -lquadmath -L$(GSL_LIB_DIR) -lgsl -lgslcblas
 	cp libwgsl.so libwgsl.dll
 
 $(OBJ_DIR)/wrap_gsl.o: wrap_gsl.h wrap_gsl.cpp
@@ -453,7 +453,7 @@ $(OBJ_DIR)/special_functions.o: burkhardt/special_functions.f90
 
 
 libbeast.so: $(OBJ_DIR)/wrap_boost.o
-	$(CXX17) -fPIC -shared -o libbeast.so $(OBJ_DIR)/wrap_boost.o
+	$(CXX17) -fPIC -shared -o libbeast.so $(OBJ_DIR)/wrap_boost.o -lquadmath
 	cp libbeast.so libbeast.dll
 
 $(OBJ_DIR)/wrap_boost.o: wrap_boost.h wrap_boost.cpp
