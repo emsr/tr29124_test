@@ -372,6 +372,20 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
        This impacts the derived functions bose_einstein and fermi_dirac.
        vimdiff test_polylog.txt zeta/zeta.txt
 
+82. [] All that quadrature work and other stuff is in ~/tr2/ - holy shit!
+       Check it out.  Merge the good stuff.
+
+83. [] Put together basic math functions so we could build a cmath if we needed to for, say, decimal, or fixed.
+
+84. [DONE] Finish the Stirling numbers in test_bernoulli.cpp
+       This also has bernoulli and Euler polynomials and numbers.
+       I'm thinking of peeling off a sf_bernoulli.tcc
+       It would be a good idea o get generalized bernoulli polys for other functions that could use them.
+
+85. [] Play with Bernoulli and euler polynomials computed via Fourier transforms.
+       They might be fast too.
+       They generalize to noninteger order.
+
 plot_airy.cpp
 
 test_array_ref.cpp - move with <array_ref> somewhere else
