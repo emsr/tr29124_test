@@ -114,7 +114,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
       auto _GamArg11 = _Tp(1 + __m);
       auto _Gam11 = std::tgamma(_GamArg11);
       auto _GamArg12 = _Tp(1 - __m);
-      auto __term1 = _Tp{1} / (_Gam11);
+      auto __term1 = _Tp{1} / _Gam11;
       auto _S1 = _Tp{0};
       for (auto __k = 1u; __k < _S_max_iter; ++__k)
 	{
@@ -180,7 +180,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
       auto _GamArg21 = _Tp{2} + __m;
       auto _GamArg22 = _Tp{1} - __m;
       auto _Gam21 = std::tgamma(_GamArg21);
-      auto __term2 = __z2 / (_Gam21);
+      auto __term2 = __z2 / _Gam21;
       auto _S2 = _Tp{0};
       for (auto __k = 1u; __k < _S_max_iter; ++__k)
 	{
@@ -214,6 +214,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
       else
 	{
 	  auto __nuint = __gnu_cxx::__fp_is_integer(__nu);
+
 	  auto _S1 = _Tp{0};
 	  if (__nuint && __nuint() > 0 && __nuint() % 2 == 0)
 	    _S1 = __anger_weber_sum_1_even_int(__nuint(), __z);
@@ -239,8 +240,6 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
     __anger_weber_t<_Tp>
     __anger_weber_sum(_Tp __nu, _Tp __z)
     {
-      //using _Val = _Tp;
-      //using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(__z);
 
       auto __nuint = __gnu_cxx::__fp_is_integer(__nu);
@@ -508,9 +507,9 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
 
     for (auto nu : {_Tp{0}, _Tp{0.5Q}, _Tp{1}, _Tp{1.5Q},
- _Tp{1.999Q}, _Tp{2},
- _Tp{2.999Q}, _Tp{3},
- _Tp{5}})
+		    _Tp{1.999Q}, _Tp{2},
+		    _Tp{2.999Q}, _Tp{3},
+		    _Tp{5}})
       {
 	std::cout << "\n\n nu = " << std::setw(4) << nu << '\n';
 	std::cout << ' ' << std::setw(4) << "z"
