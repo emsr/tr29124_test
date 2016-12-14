@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_maxint test_maxint.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_maxint test_maxint.cpp -lquadmath -lmpfr
 ./test_maxint > test_maxint.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_maxint test_maxint.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_maxint test_maxint.cpp -lquadmath -lmpfr
 ./test_maxint > test_maxint.txt
 */
 
@@ -13,6 +13,12 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_maxint te
 #include <ext/cmath>
 #include <bits/numeric_limits_mpreal.h>
 
+/**
+ * Max representable integer turns out to be
+ *   2 / epsilon
+ * or
+ *   ldexp(1, digits)
+ */
 template<typename _Tp>
   void
   test_maxint(_Tp proto = _Tp{})
@@ -21,8 +27,8 @@ template<typename _Tp>
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    // Try 1/epsilon.
-    auto maxint = _Tp{1} / std::numeric_limits<_Tp>::epsilon();
+    // Try 2/epsilon.
+    auto maxint = _Tp{2} / __gnu_cxx::__epsilon(proto);
     std::cout << "\n\nTrying maxint = " << std::setw(width) << maxint << '\n';
     if (maxint + 1 == maxint)
       std::cout << "\nmaxint FAIL\n";
@@ -34,7 +40,7 @@ template<typename _Tp>
 	}
 
     // Try ldexp(1, std::numeric_limis<_Tp>::digits);
-    auto maxint2 = std::ldexp(_Tp{1}, std::numeric_limits<_Tp>::digits);
+    auto maxint2 = std::ldexp(_Tp{1}, __gnu_cxx::__digits(proto));
     std::cout << "\n\nTrying maxint2 = " << std::setw(width) << maxint2 << '\n';
     if (maxint2 + 1 == maxint2)
       std::cout << "\nmaxint2 FAIL\n";
@@ -53,5 +59,5 @@ main()
   test_maxint<double>();
   test_maxint<long double>();
   test_maxint<__float128>();
-  //test_maxint<mpfr::mpreal>((1,  256));
+  test_maxint<mpfr::mpreal>(mpfr::mpreal(1,  256));
 }
