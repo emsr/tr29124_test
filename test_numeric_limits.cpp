@@ -18,7 +18,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_numeric_l
 
 template<typename _Tp>
   void
-  test(_Tp __x)
+  test_numeric_limits(_Tp __x)
   {
     std::map<std::float_denorm_style, std::string>
     denorm
@@ -78,6 +78,7 @@ template<typename _Tp>
     std::cout << "tinyness_before  : " << __gnu_cxx::__tinyness_before(__x) << '\n';
     std::cout << "round_style      : " << round[__gnu_cxx::__round_style(__x)] << '\n';
     std::cout << '\n';
+    std::cout << "max_integer      : " << __gnu_cxx::__max_integer<_Tp>(__x) << '\n';
     std::cout << "sqrt_max         : " << __gnu_cxx::__sqrt_max<_Tp>(__x) << '\n';
     std::cout << "cbrt_max         : " << __gnu_cxx::__cbrt_max<_Tp>(__x) << '\n';
     std::cout << "root_max(5)      : " << __gnu_cxx::__root_max(_Tp{5}) << '\n';
@@ -98,17 +99,17 @@ template<typename _Tp>
 int
 main()
 {
-  test(1.0F);
-  test(1.0);
-  test(1.0L);
+  test_numeric_limits(1.0F);
+  test_numeric_limits(1.0);
+  test_numeric_limits(1.0L);
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  test(1.0Q);
+  test_numeric_limits(1.0Q);
 #endif
 
   const volatile auto x = 6.66666F;
-  test(x);
+  test_numeric_limits(x);
 
   long double y = 123.465L;
   mpfr::mpreal b(y, 256);
-  test(b);
+  test_numeric_limits(b);
 }
