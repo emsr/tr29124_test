@@ -33,6 +33,7 @@ traps            : false
 tinyness_before  : false
 round_style      : round_to_nearest
 
+max_integer      : 1.67772e+07
 sqrt_max         : 1.84467e+19
 cbrt_max         : 6.98146e+12
 root_max(5)      : 5.0859e+07
@@ -83,6 +84,7 @@ traps            : false
 tinyness_before  : false
 round_style      : round_to_nearest
 
+max_integer      : 9.00719925474099e+15
 sqrt_max         : 1.34078079299426e+154
 cbrt_max         : 5.64380309412236e+102
 root_max(5)      : 4.47654662275727e+61
@@ -133,6 +135,7 @@ traps            : false
 tinyness_before  : false
 round_style      : round_to_nearest
 
+max_integer      : 1.84467440737095516e+19
 sqrt_max         : 1.09074813561941593e+2466
 cbrt_max         : 1.05961879473808327e+1644
 root_max(5)      : 2.60069720981235732e+986
@@ -140,7 +143,7 @@ log_max          : 11356.5234062941439
 log10_max        : 4932.0754489586679
 sqrt_min         : 1.83360386755484717e-2466
 cbrt_min         : 1.49808691564457716e-1644
-root_min(5)      : 5.07366988280845642e-987
+root_min(5)      : 5.07366988280845611e-987
 log_min          : -11355.1371119330241
 log10_min        : -4931.47338896733994
 sqrt_eps         : 3.29272253991359623e-10
@@ -183,6 +186,7 @@ traps            : false
 tinyness_before  : false
 round_style      : round_to_nearest
 
+max_integer      :  1.03845937170696552570609926584402e+34
 sqrt_max         :  1.09074813561941592946298424473378e+2466
 cbrt_max         :  1.05961879473808327251231982579959e+1644
 root_max(5)      :  2.60069720981235724416249260414785e+986
@@ -233,6 +237,7 @@ traps            : false
 tinyness_before  : false
 round_style      : round_to_nearest
 
+max_integer      : 1.67772e+07
 sqrt_max         : 1.84467e+19
 cbrt_max         : 6.98146e+12
 root_max(5)      : 5.0859e+07
@@ -283,6 +288,7 @@ traps            : true
 tinyness_before  : true
 round_style      : round_to_nearest
 
+max_integer      : 1.1579208923731619542357098500868790785326998466564056403945758400791312963994e+77
 sqrt_max         : 1.4486472022088013173689062655397474592690733551126194824130425789260548252969e+161614248
 cbrt_max         : 1.2802902004094323683372594517770354041786271645641418799371815510555280408065e+107742832
 root_max(5)      : 1.838167386398243273667520510751262170570692631431516591397850222454382199747e+64645699

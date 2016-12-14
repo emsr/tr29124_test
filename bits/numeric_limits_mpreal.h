@@ -189,7 +189,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<>
     inline mpfr::mpreal
     __max_integer(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
-    { return std::ldexp(1, __digits(__proto));
+    { return std::ldexp(1, __digits(__proto)); }
 
   template<>
     inline mpfr::mpreal

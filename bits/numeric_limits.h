@@ -215,7 +215,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     inline _Tp
     __max_integer(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
-    { return std::ldexp(_Tp{1}, __digits(_Tp{}));
+    { return std::ldexp(_Tp{1}, __digits(_Tp{})); }
 
   template<typename _Tp>
     inline _Tp

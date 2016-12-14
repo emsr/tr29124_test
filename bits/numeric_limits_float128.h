@@ -217,7 +217,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<>
     inline __float128
     __max_integer(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::ldexp(1, __digits(__float128{}));
+    { return std::ldexp(1, __digits(__float128{})); }
 
   template<>
     inline __float128
