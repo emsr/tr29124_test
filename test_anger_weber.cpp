@@ -109,21 +109,20 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
     {
       const auto _S_max_iter = 10000u;
       const auto _S_eps = __gnu_cxx::__epsilon(__z);
-      const auto __m = __n / 2;
       const auto __z2 = __z / _Tp{2};
-      auto _GamArg11 = _Tp(1 + __m);
+      const auto __m = __n / 2;
+      const auto __k_start = __m;
+      auto _GamArg11 = _Tp(1 + __m + __k_start);
       auto _Gam11 = std::tgamma(_GamArg11);
-      auto _GamArg12 = _Tp(1 - __m);
-      auto __term1 = _Tp{1} / (_Gam11);
-      auto _S1 = _Tp{0};
+      auto _GamArg12 = _Tp(1 - __m + __k_start);
+      auto _Gam12 = std::tgamma(_GamArg12);
+      auto __term1 = (__k_start & 1 ? -1 : +1)
+		   * std::pow(__z2, _Tp(2 * __k_start)) / (_Gam11 * _Gam12);
+      auto _S1 = __term1;
       for (auto __k = 1u; __k < _S_max_iter; ++__k)
 	{
-	  __term1 *= -__z2 / _GamArg11 * __z2;
-	  if (_GamArg12 > _Tp{0})
-	    {
-	      __term1 /= _GamArg12;
-	      _S1 += __term1;
-	    }
+	  __term1 *= -__z2 / _GamArg11 * __z2 / _GamArg12;
+	  _S1 += __term1;
 	  _GamArg11 += _Tp{1};
 	  _GamArg12 += _Tp{1};
 
@@ -175,21 +174,20 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
     {
       const auto _S_max_iter = 10000u;
       const auto _S_eps = __gnu_cxx::__epsilon(__z);
-      const auto __m = (__n - 1) / 2;
       const auto __z2 = __z / _Tp{2};
-      auto _GamArg21 = _Tp{2} + __m;
-      auto _GamArg22 = _Tp{1} - __m;
+      const auto __m = (__n - 1) / 2;
+      const auto __k_start = __m;
+      auto _GamArg21 = _Tp{2} + __m + __k_start;
       auto _Gam21 = std::tgamma(_GamArg21);
-      auto __term2 = __z2 / (_Gam21);
-      auto _S2 = _Tp{0};
+      auto _GamArg22 = _Tp{1} - __m + __k_start;
+      auto _Gam22 = std::tgamma(_GamArg22);
+      auto __term2 = (__k_start & 1 ? -1 : +1)
+		   * std::pow(__z2, _Tp(2 * __k_start + 1)) / (_Gam21 * _Gam22);
+      auto _S2 = __term2;
       for (auto __k = 1u; __k < _S_max_iter; ++__k)
 	{
-	  __term2 *= -__z2 / _GamArg21 * __z2;
-	  if (_GamArg22 > _Tp{0})
-	    {
-	      __term2 /= _GamArg22;
-	      _S2 += __term2;
-	    }
+	  __term2 *= -__z2 / _GamArg21 * __z2 / _GamArg22;
+	  _S2 += __term2;
 	  _GamArg21 += _Tp{1};
 	  _GamArg22 += _Tp{1};
 
@@ -239,8 +237,6 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
     __anger_weber_t<_Tp>
     __anger_weber_sum(_Tp __nu, _Tp __z)
     {
-      //using _Val = _Tp;
-      //using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(__z);
 
       auto __nuint = __gnu_cxx::__fp_is_integer(__nu);
@@ -498,6 +494,20 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
       auto _Weber = __anger_weber(__nu, __z);
     }
 
+  /**
+   * \frac{1 - \cos(\pi x)}{\pi x}
+   */
+  template<typename _Tp>
+  _Tp
+  __cosc_pi(_Tp __x)
+  {
+    const auto _S_eps = __gnu_cxx::__epsilon(__x);
+    const auto _S_pi = __gnu_cxx::__const_pi(__x);
+    if (std::abs(__x) < _Tp{100} * _S_eps)
+      return _S_pi * __x / _Tp{2};
+    else
+      return _Tp{1} - __gnu_cxx::cos_pi(__x) / _S_pi / __x;
+  }
 
 template<typename _Tp>
   void
@@ -507,10 +517,12 @@ template<typename _Tp>
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
+    //std::cout << "\n\n Write J and E values\n";
+    //std::cout << " --------------------\n";
     for (auto nu : {_Tp{0}, _Tp{0.5Q}, _Tp{1}, _Tp{1.5Q},
- _Tp{1.999Q}, _Tp{2},
- _Tp{2.999Q}, _Tp{3},
- _Tp{5}})
+		    _Tp{1.999Q}, _Tp{2},
+		    _Tp{2.999Q}, _Tp{3},
+		    _Tp{5}})
       {
 	std::cout << "\n\n nu = " << std::setw(4) << nu << '\n';
 	std::cout << ' ' << std::setw(4) << "z"
@@ -532,10 +544,46 @@ template<typename _Tp>
 		      << '\n';
 	  }
       }
+
+    std::cout << "\n\n Test J and E values at zero\n";
+    std::cout << " ---------------------------\n";
+    for (auto nu : {_Tp{0}, _Tp{0.5Q}, _Tp{1}, _Tp{1.5Q},
+		    _Tp{1.999Q}, _Tp{2},
+		    _Tp{2.999Q}, _Tp{3},
+		    _Tp{5}})
+      {
+	std::cout << "\n\n nu = " << std::setw(4) << nu << '\n';
+	auto AW = __anger_weber_sum_new(nu, _Tp{0});
+	std::cout << ' ' << std::setw(width) << AW.__J_value
+		  << ' ' << std::setw(width) << __gnu_cxx::sinc_pi(nu)
+		  << ' ' << std::setw(width) << AW.__E_value
+		  << ' ' << std::setw(width) << __cosc_pi(nu)
+		  << '\n';
+      }
+
+    std::cout << "\n\n Test J values for integer order\n";
+    std::cout << " -------------------------------\n";
+    for (auto nu : {_Tp{0}, _Tp{1}, _Tp{2}, _Tp{3}, _Tp{5}})
+      {
+	std::cout << "\n\n nu = " << std::setw(4) << nu << '\n';
+	for (int k = 0; k <= 80; ++k)
+	  {
+	    auto z = _Tp{0.1Q} * k;
+	    auto AW = __anger_weber_sum_new(nu, z);
+	    std::cout << ' ' << std::setw(4) << z
+		      << ' ' << std::setw(width) << AW.__J_value
+		      << ' ' << std::setw(width) << std::cyl_bessel_j(nu, z)
+		      << '\n';
+	  }
+      }
   }
 
 int
 main()
 {
+  auto AW2 [[maybe_unused]] = __anger_weber_sum_new(2.0, -8.0);
+  auto BX2 [[maybe_unused]] = __anger_weber_sum_new(1.999, -8.0);
+  auto AW3 [[maybe_unused]] = __anger_weber_sum_new(3.0, -8.0);
+  auto BX3 [[maybe_unused]] = __anger_weber_sum_new(2.999, -8.0);
   test_anger_weber(1.0);
 }
