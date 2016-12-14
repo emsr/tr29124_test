@@ -372,6 +372,8 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
        This impacts the derived functions bose_einstein and fermi_dirac.
        vimdiff test_polylog.txt zeta/zeta.txt
 
+82. [DONE] test_anger_weber.cpp Get integer orders working.
+
 plot_airy.cpp
 
 test_array_ref.cpp - move with <array_ref> somewhere else
