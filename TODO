@@ -65,7 +65,7 @@ GSL extras has these - there was struggle there too.
 
 19. [DONE] Tabulate riemann_zeta for integer arguments - various sums can use this.
 
-20. [DONE] Loof at test_cyl_hankel - we got issues! vu=1, z=0.01 Y bombs on steeds algorithm!
+20. [DONE] Look at test_cyl_hankel - we got issues! vu=1, z=0.01 Y bombs on steeds algorithm!
        OK! Steeds algorithm fails for cyl_neumann for exatly nu=1 and no thoer. WTF!
        nearbyint(nu + .5) -> nearbyint(nu).  mu = nu - n was -1.
 
@@ -387,6 +387,18 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 86. [] Play with Bernoulli and euler polynomials computed via Fourier transforms.
        They might be fast too.
        They generalize to noninteger order.
+
+87. [DONE] Figure out maxint (test_maxint.cpp) and deliver it with numeric_limits.h
+       ldexp(1, std::numeric_limits<Tp>::digits);
+       calling it __max_integer.
+
+88. [] I think __parity(int __k) {return __k & 1 ? -1 : +1; }
+       possibly with some optional casting to floats would be real nice.
+
+89. [] cephes has a mod2pi. Figure out WTF it actually does.
+       Make it type generic.
+       See if you can use it in concert with *_pi circular functions.
+       The guts of a good fmod might also hold clues.
 
 plot_airy.cpp
 
