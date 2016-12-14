@@ -212,6 +212,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
       else
 	{
 	  auto __nuint = __gnu_cxx::__fp_is_integer(__nu);
+
 	  auto _S1 = _Tp{0};
 	  if (__nuint && __nuint() > 0 && __nuint() % 2 == 0)
 	    _S1 = __anger_weber_sum_1_even_int(__nuint(), __z);
