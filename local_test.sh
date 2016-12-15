@@ -25,6 +25,7 @@ src_dir=.
 ${makedir} ${utildir}
 
 ${copy} specfun_testcase.h              ${utildir}
+${copy} specfun_stats.h                 ${utildir}
 
 
 ${makedir} ${test_dir}/01_assoc_laguerre
@@ -150,6 +151,10 @@ ${makedir} ${text_dir}/theta_2
 ${makedir} ${text_dir}/theta_3
 ${makedir} ${text_dir}/theta_4
 ${makedir} ${text_dir}/zernike
+
+${copy} check/deathmatch_comp_ellint.cc   ${text_dir}/deathmatch_comp_ellint.cc
+${copy} check/deathmatch_conf_hyperg.cc   ${text_dir}/deathmatch_conf_hyperg.cc
+${copy} check/deathmatch_hyperg.cc        ${text_dir}/deathmatch_hyperg.cc
 
 ${copy} check/check_airy_ai.cc            ${text_dir}/airy_ai/check_value.cc
 ${copy} check/check_airy_bi.cc            ${text_dir}/airy_bi/check_value.cc

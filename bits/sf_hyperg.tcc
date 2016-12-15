@@ -269,7 +269,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief  Return the confluent hypergeometric function
-   * 	     @f$ {}_1F_1(a;c;x) @f$.
+   * 	     @f$ {}_1F_1(a;c;x) = M(a,c,x) @f$.
    *
    * @param  __a  The @a numerator parameter.
    * @param  __c  The @a denominator parameter.
@@ -293,6 +293,58 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __conf_hyperg_luke(__a, __c, __x);
       else
 	return __conf_hyperg_series(__a, __c, __x);
+    }
+
+
+  /**
+   * @brief  Return the Tricomi confluent hypergeometric function
+   * @f[
+   *   U(a,c,x) = \frac{\Gamma(1-c)}{\Gamma(a-c+1)} {}_1F_1(a;c;x)
+   *       + \frac{\Gamma(c-1)}{\Gamma(a)} x^{1-c} {}_1F_1(a-c+1;2-c;x)
+   * @f]
+   * @param  __a  The @a numerator parameter.
+   * @param  __c  The @a denominator parameter.
+   * @param  __x  The argument of the confluent hypergeometric function.
+   * @return  The Tricomi confluent hypergeometric function.
+   */
+  template<typename _Tp>
+    _Tp
+    __tricomi_u_naive(_Tp __a, _Tp __c, _Tp __x)
+    {
+      auto __U1 = _Tp{};
+      auto __iac1 = __gnu_cxx::__fp_is_integer(__a - __c + _Tp{1});
+      if (!__iac1 || (__iac1 && __iac1() > 0))
+	__U1 = std::tgamma(_Tp{1} - __c)
+	       * __conf_hyperg(__a, __c, __x)
+	       / std::tgamma(__a - __c + _Tp{1});
+
+      auto __U2 = _Tp{};
+      auto __ia = __gnu_cxx::__fp_is_integer(__a);
+      if (!__ia || (__ia && __ia() > 0))
+	__U2 = std::tgamma(__c - _Tp{1})
+	       * __conf_hyperg(__a - __c + _Tp{1}, _Tp{2} - __c, __x)
+	       / std::tgamma(__a);
+
+      return __U1 + __U2;
+	       
+    }
+
+  /**
+   * @brief  Return the Tricomi confluent hypergeometric function
+   * @f[
+   *   U(a,c,x) = \frac{\Gamma(1-c)}{\Gamma(a-c+1)} {}_1F_1(a;c;x)
+   *       + \frac{\Gamma(c-1)}{\Gamma(a)} x^{1-c} {}_1F_1(a-c+1;2-c;x)
+   * @f]
+   * @param  __a  The @a numerator parameter.
+   * @param  __c  The @a denominator parameter.
+   * @param  __x  The argument of the confluent hypergeometric function.
+   * @return  The Tricomi confluent hypergeometric function.
+   */
+  template<typename _Tp>
+    _Tp
+    __tricomi_u(_Tp __a, _Tp __c, _Tp __x)
+    {
+      return __tricomi_u_naive(__a, __c, __x);
     }
 
 
@@ -326,7 +378,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __Fabc = _Tp{1};
       const unsigned int __max_iter = 100000;
       unsigned int __i;
-      for (__i = 0; __i < __max_iter; ++__i)
+      for (__i = 0u; __i < __max_iter; ++__i)
 	{
 	  __term *= (__a + _Tp(__i)) * (__b + _Tp(__i)) * __x
 		  / ((__c + _Tp(__i)) * _Tp(1 + __i));
