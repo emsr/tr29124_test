@@ -15,7 +15,13 @@ void stvhv_(const double * nu, const double * x, double * sh);
 void stvlv_(const double * nu, const double * x, double * sl);
 
 // conf_hyperg
-void cchg (const double * a, const double * b, const double * z, double * chg);
+void cchg_(const double * a, const double * b, const double * z, double * chg);
+
+// tricomi_u
+void chgu_(const double * a, const double * b, const double * x, double * hu, int * md);
+
+// hyperg
+void hygfx_(const double * a, const double * b, const double * c, const double * x, double * hf);
 
 #ifdef __cplusplus
 }

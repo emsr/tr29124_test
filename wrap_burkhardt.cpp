@@ -50,7 +50,7 @@ double
 assoc_laguerre(unsigned int l, unsigned int m, double x)
 {
   std::vector<double> L(l);
-  laguerre_associated(l, m, x, L.data());
+  ::laguerre_associated(l, m, x, L.data());
   return L[m];
 }
 
@@ -118,9 +118,21 @@ comp_ellint_d(double /*k*/)
 
 /// Confluent hypergeometric functions.
 double
-conf_hyperg(double /*a*/, double /*c*/, double /*x*/)
+conf_hyperg(double a, double c, double x)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  double chg;
+  cchg_(&a, &c, &x, &chg);
+  return chg;
+}
+
+/// Tricomi confluent hypergeometric functions.
+double
+tricomi_u(double a, double c, double x)
+{
+  double hu;
+  int md;
+  chgu_(&a, &c, &x, &hu, &md);
+  return hu;
 }
 
 /// Confluent hypergeometric limit functions.
@@ -246,7 +258,7 @@ hermite(unsigned int /*n*/, double /*x*/)
 double
 hyperg(double a, double b, double c, double x)
 {
-  return r8_hyper_2f1(a, b, c, x);
+  return ::r8_hyper_2f1(a, b, c, x);
 }
 
 /// Laguerre polynomials.
@@ -261,7 +273,7 @@ double
 legendre_p(unsigned int l, double x)
 {
   std::vector<double> P(l), Pp(l);
-  legendre_poly(l, x, P.data(), Pp.data());
+  ::legendre_poly(l, x, P.data(), Pp.data());
   return P[l];
 }
 
@@ -270,7 +282,7 @@ double
 legendre_q(unsigned int l, double x)
 {
   std::vector<double> Q(l);
-  legendre_function_q(l, x, Q.data());
+  ::legendre_function_q(l, x, Q.data());
   return Q[l];
 }
 
@@ -636,7 +648,7 @@ double
 jacobi(unsigned int n, double alpha, double beta, double x)
 {
   //auto C = std::make_unique<double[]>(jacobi_poly(n, alpha, beta, x));
-  auto C = jacobi_poly(n, alpha, beta, x);
+  auto C = ::jacobi_poly(n, alpha, beta, x);
   auto Cn = C[n];
   delete [] C;
   return Cn;
@@ -653,14 +665,14 @@ taylorcoeff(unsigned int /*n*/, double /*x*/)
 double
 radpoly(unsigned int n, unsigned int m, double rho)
 {
-  return zernike_poly(m, n, rho);
+  return ::zernike_poly(m, n, rho);
 }
 
 /// Zernike polynomials
 double
 zernike(unsigned int n, int m, double rho, double phi)
 {
-  return zernike_poly(m, n, rho) * (m & 1 ? std::cos(phi) : std::sin(phi));
+  return ::zernike_poly(m, n, rho) * (m & 1 ? std::cos(phi) : std::sin(phi));
 }
 
 /// Cylindrical Hankel functions of the first kind.

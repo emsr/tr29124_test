@@ -184,6 +184,22 @@ conf_hyperg(double a, double c, double x)
     return result.val;
 }
 
+/// Tricomi confluent hypergeometric functions.
+double
+tricomi_u(double a, double c, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_hyperg_U_e(a, c, x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in tricomi_u:");
+      msg << " a=" << a << " c=" << c << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
 /// Confluent hypergeometric limit functions.
 double
 conf_hyperg_lim(double c, double x)
