@@ -114,6 +114,13 @@ conf_hyperg(double /*a*/, double /*c*/, double /*x*/)
   return std::numeric_limits<double>::quiet_NaN();
 }
 
+/// Tricomi confluent hypergeometric functions.
+double
+tricomi_u(double /*a*/, double /*c*/, double /*x*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
 /// Confluent hypergeometric limit functions.
 double
 conf_hyperg_lim(double /*c*/, double /*x*/)

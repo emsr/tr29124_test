@@ -507,7 +507,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
     if (std::abs(__x) < _Tp{100} * _S_eps)
       return _S_pi * __x / _Tp{2};
     else
-      return _Tp{1} - __gnu_cxx::cos_pi(__x) / _S_pi / __x;
+      return (_Tp{1} - __gnu_cxx::cos_pi(__x)) / _S_pi / __x;
   }
 
 template<typename _Tp>

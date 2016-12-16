@@ -154,7 +154,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  __res += __wk * __fac * std::__detail::__riemann_zeta(_Tp(__s - __k));
 	  __wk *= __w;
-	  _Tp __temp = _Tp{1}/(_Tp{1} + __k);
+	  _Tp __temp = _Tp{1} / _Tp(1 + __k);
 	  __fac *= __temp;
 	  __harmonicN += __temp;
 	}

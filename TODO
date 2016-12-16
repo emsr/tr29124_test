@@ -388,6 +388,7 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
        They might be fast too.
        They generalize to noninteger order.
 
+
 87. [DONE] Figure out maxint (test_maxint.cpp) and deliver it with numeric_limits.h
        ldexp(1, std::numeric_limits<Tp>::digits);
        calling it __max_integer.
@@ -399,6 +400,10 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
        Make it type generic.
        See if you can use it in concert with *_pi circular functions.
        The guts of a good fmod might also hold clues.
+
+90. [] Put a more extensive deathmatch test (in a separate function) in the corresponding test_*.cpp
+       Work out kinks!
+
 
 plot_airy.cpp
 
