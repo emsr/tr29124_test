@@ -11,39 +11,50 @@ g++ -std=c++14 -DNO_CBRT -DNO_LOGBQ -g -Wall -Wextra -I. -o test_conf_hyperg_lim
 #include <iostream>
 #include <iomanip>
 
-template<typename _Tp>
-  _Tp
-  conf_hyperg_limit_sum(_Tp __c, _Tp __z)
-  {
-    constexpr int _S_max_iter = 10000;
-    _Tp __term{1};
-    _Tp __sum = __term;
-    for (int __i = 0; __i < _S_max_iter; ++__i)
-      {
-	__term *=  __z / ((__c + __i) * (__i + 1));
-	__sum += __term;
-	if (std::abs(__term) < std::numeric_limits<_Tp>::epsilon())
-	  break;
-      }
-    return __sum;
-  }
+  template<typename _Tp>
+    _Tp
+    __conf_hyperg_limit_sum(_Tp __c, _Tp __z)
+    {
+      constexpr int _S_max_iter = 10000;
+      _Tp __term{1};
+      _Tp __sum = __term;
+      for (int __i = 0; __i < _S_max_iter; ++__i)
+	{
+	  __term *=  __z / ((__c + __i) * (__i + 1));
+	  __sum += __term;
+	  if (std::abs(__term) < std::numeric_limits<_Tp>::epsilon())
+	    break;
+	}
+      return __sum;
+    }
+
+  template<typename _Tp>
+    _Tp
+    __conf_hyperg_limit(_Tp __c, _Tp __z)
+    {
+      return conf_hyperg_limit_sum(__c, __z);
+    }
 
 template<typename _Tp>
-  _Tp
-  conf_hyperg_limit(_Tp __c, _Tp __z)
+  void
+  test_conf_hyperg_limit(_Tp proto = _Tp{})
   {
-    return conf_hyperg_limit_sum(__c, __z);
+    std::cout.precision(__gnu_cxx::__digits10(proto));
+    auto width = std::cout.precision() + 8;
+    std::cout << std::showpoint << std::scientific;
+
+    auto c = _Tp{0.2Q};
+    for (int i = -200; i < +200; ++i)
+    {
+      auto z = _Tp{0.1Q} * i;
+      std::cout << ' ' << std::setw(6) << z
+		<< ' ' << << std::setw(width) << __conf_hyperg_limit(c, z)
+		<< '\n';
+    }
   }
 
 int
 main()
 {
-  constexpr auto prec = std::numeric_limits<double>::digits10;
-  std::cout.precision(prec);
-  double c = 0.2;
-  for (int i = -200; i < +200; ++i)
-  {
-    double z = 0.1 * i;
-    std::cout << ' ' << std::setw(6) << z << ' ' << conf_hyperg_limit(c, z) << '\n';
-  }
+  test_conf_hyperg_limit(1.0);
 }
