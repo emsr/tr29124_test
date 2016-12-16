@@ -1,5 +1,5 @@
 
-//SUFFIX = _tr29124
+#SUFFIX = _tr29124
 SUFFIX = _specfun
 
 CXX_INST_DIR = $(HOME)/bin$(SUFFIX)
@@ -14,7 +14,7 @@ CXX_LIB_DIR = $(CXX_INST_DIR)/lib64
 OBJ_DIR = obj
 
 BINS = \
-  test \
+  test_quadrature \
   hermite_test \
   laguerre_test \
   legendre_test \
@@ -31,8 +31,8 @@ BINS = \
 all: $(BINS)
 
 
-test: test.cpp *.h
-	$(CXX17) -o test test.cpp -lquadmath
+test_quadrature: test_quadrature.cpp *.h
+	$(CXX17) -o test_quadrature test_quadrature.cpp -lquadmath
 
 hermite_test: $(OBJ_DIR)/hermite_test.o
 	$(CXX17) -o hermite_test $(OBJ_DIR)/hermite_test.o -lquadmath
@@ -64,8 +64,8 @@ chebyshev_w_test: $(OBJ_DIR)/chebyshev_w_test.o
 radpoly_test: $(OBJ_DIR)/radpoly_test.o
 	$(CXX17) -o radpoly_test $(OBJ_DIR)/radpoly_test.o -lquadmath
 
-zernicke_test: $(OBJ_DIR)/zernicke_test.o
-	$(CXX17) -o zernicke_test $(OBJ_DIR)/zernicke_test.o -lquadmath
+zernike_test: $(OBJ_DIR)/zernike_test.o
+	$(CXX17) -o zernike_test $(OBJ_DIR)/zernike_test.o -lquadmath
 
 
 $(OBJ_DIR)/hermite_test.o: *.h hermite_test.cpp
@@ -98,6 +98,6 @@ $(OBJ_DIR)/chebyshev_w_test.o: *.h chebyshev_w_test.cpp
 $(OBJ_DIR)/radpoly_test.o: *.h radpoly_test.cpp
 	$(CXX17) -c -o $(OBJ_DIR)/radpoly_test.o radpoly_test.cpp
 
-$(OBJ_DIR)/zernicke_test.o: *.h zernicke_test.cpp
-	$(CXX17) -c -o $(OBJ_DIR)/zernicke_test.o zernicke_test.cpp
+$(OBJ_DIR)/zernike_test.o: *.h zernike_test.cpp
+	$(CXX17) -c -o $(OBJ_DIR)/zernike_test.o zernike_test.cpp
 

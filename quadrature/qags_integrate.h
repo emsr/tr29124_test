@@ -55,11 +55,24 @@ namespace __gnu_test
   // Gauss-Kronrod algorithm
   template<typename _FuncTp, typename _VecTp>
     std::pair<_VecTp, _VecTp>
-    qags_integrate(const _FuncTp& func,
+    qags_integrate(integration_workspace<_VecTp>& __workspace,
+		   const _FuncTp& func,
 		   const _VecTp a, const _VecTp b,
 		   const _VecTp epsabs,
 		   const _VecTp epsrel,
 		   const std::size_t limit);
+
+  template<typename _FuncTp, typename _VecTp>
+    std::pair<_VecTp, _VecTp>
+    qags_integrate(const _FuncTp& func,
+		   const _VecTp a, const _VecTp b,
+		   const _VecTp epsabs,
+		   const _VecTp epsrel,
+		   const std::size_t limit)
+    {
+      integration_workspace<_VecTp> __workspace(limit);
+      return qags_integrate(__workspace, func, a, b, epsabs, epsrel, limit);
+    }
 
   // Integrate function from -infinity to +infinity
   template<typename _FuncTp, typename _VecTp>
@@ -70,6 +83,17 @@ namespace __gnu_test
 		   const _VecTp epsrel,
 		   const std::size_t limit);
 
+  template<typename _FuncTp, typename _VecTp>
+    std::pair<_VecTp, _VecTp>
+    qagi_integrate(const _FuncTp& func,
+		   const _VecTp epsabs,
+		   const _VecTp epsrel,
+		   const std::size_t limit)
+    {
+      integration_workspace<_VecTp> __workspace(limit);
+      return qagi_integrate(__workspace, func, epsabs, epsrel, limit);
+    }
+
   // Integrate function from -infinity to b
   template<typename _FuncTp, typename _VecTp>
     std::pair<_VecTp, _VecTp>
@@ -78,6 +102,17 @@ namespace __gnu_test
 		    const _VecTp epsabs,
 		    const _VecTp epsrel,
 		    const std::size_t limit);
+
+  template<typename _FuncTp, typename _VecTp>
+    std::pair<_VecTp, _VecTp>
+    qagil_integrate(const _FuncTp& func, const _VecTp b,
+		    const _VecTp epsabs,
+		    const _VecTp epsrel,
+		    const std::size_t limit)
+    {
+      integration_workspace<_VecTp> __workspace(limit);
+      return qagil_integrate(__workspace, func, b, epsabs, epsrel, limit);
+    }
 
   // Integrate function from a to +infinity
   template<typename _FuncTp, typename _VecTp>
@@ -88,6 +123,20 @@ namespace __gnu_test
 		    const _VecTp epsrel,
 		    const std::size_t limit);
 
+  template<typename _FuncTp, typename _VecTp>
+    std::pair<_VecTp, _VecTp>
+    qagiu_integrate(const _FuncTp& func, const _VecTp a,
+		    const _VecTp epsabs,
+		    const _VecTp epsrel,
+		    const std::size_t limit)
+    {
+      integration_workspace<_VecTp> __workspace(limit);
+      return qagiu_integrate(__workspace, func, a, epsabs, epsrel, limit);
+    }
+
+  /**
+   *
+   */
   template<typename _FuncTp, typename _VecTp>
     std::pair<_VecTp, _VecTp>
     qags_integrate(integration_workspace<_VecTp>& __workspace,

@@ -15,4 +15,4 @@ jacobi_test
 radpoly_test
 zernike_test
 
-test
+test_quadrature
