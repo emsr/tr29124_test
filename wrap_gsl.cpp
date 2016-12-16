@@ -146,6 +146,7 @@ comp_ellint_2(double k)
 double
 comp_ellint_3(double k, double nu)
 {
+  //const double M_PI = 3.141592653589793238462643383279502884195;
   //double phi = M_PI / 2.0;
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
@@ -932,6 +933,7 @@ fresnel_s(double x)
 double
 sinc(double x)
 {
+  const double M_PI = 3.141592653589793238462643383279502884195;
   gsl_sf_result result;
   int stat = gsl_sf_sinc_e(x / M_PI, &result);
   if (stat != GSL_SUCCESS)
@@ -971,6 +973,7 @@ sinhc(double x)
 double
 sinhc_pi(double x)
 {
+  const double M_PI = 3.141592653589793238462643383279502884195;
   return std::sinh(M_PI * x) / (M_PI * x);
 }
 
@@ -1030,6 +1033,7 @@ pochhammer(double a, double x)
 double
 pochhammer_lower(double a, double x)
 {
+  const double M_PI = 3.141592653589793238462643383279502884195;
   if (a == x)
     return std::numeric_limits<double>::infinity();
   if (std::fmod(std::abs(a - x), M_PI) < 1.0e-12)
