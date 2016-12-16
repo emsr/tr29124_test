@@ -18,11 +18,11 @@
 // with this library; see the file COPYING3.  If not see
 // <http://www.gnu.org/licenses/>.
 //
-// Ported from GSL by Jason Dick
+// Ported from GSL by Jason Dick and Ed Smith-Rowland
 // Originally written by Brian Gaugh
 //
 //This file implements an extrapolation table for use in integration schemes
-//Based upon gsl-1.9/integration/qelg.c
+//Based upon gsl-2.1/integration/qelg.c
 
 #include <array>
 #include <utility>

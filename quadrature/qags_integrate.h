@@ -64,7 +64,8 @@ namespace __gnu_test
   // Integrate function from -infinity to +infinity
   template<typename _FuncTp, typename _VecTp>
     std::pair<_VecTp, _VecTp>
-    qagi_integrate(const _FuncTp& func,
+    qagi_integrate(integration_workspace<_VecTp>& __workspace,
+		   const _FuncTp& func,
 		   const _VecTp epsabs,
 		   const _VecTp epsrel,
 		   const std::size_t limit);
@@ -72,7 +73,8 @@ namespace __gnu_test
   // Integrate function from -infinity to b
   template<typename _FuncTp, typename _VecTp>
     std::pair<_VecTp, _VecTp>
-    qagil_integrate(const _FuncTp& func, const _VecTp b,
+    qagil_integrate(integration_workspace<_VecTp>& __workspace,
+		    const _FuncTp& func, const _VecTp b,
 		    const _VecTp epsabs,
 		    const _VecTp epsrel,
 		    const std::size_t limit);
@@ -80,14 +82,16 @@ namespace __gnu_test
   // Integrate function from a to +infinity
   template<typename _FuncTp, typename _VecTp>
     std::pair<_VecTp, _VecTp>
-    qagiu_integrate(const _FuncTp& func, const _VecTp a,
+    qagiu_integrate(integration_workspace<_VecTp>& __workspace,
+		    const _FuncTp& func, const _VecTp a,
 		    const _VecTp epsabs,
 		    const _VecTp epsrel,
 		    const std::size_t limit);
 
   template<typename _FuncTp, typename _VecTp>
     std::pair<_VecTp, _VecTp>
-    qags_integrate(const _FuncTp& __func,
+    qags_integrate(integration_workspace<_VecTp>& __workspace,
+		   const _FuncTp& __func,
 		   const _VecTp __a, const _VecTp __b,
 		   _VecTp __epsabs,
 		   _VecTp __epsrel,
@@ -114,13 +118,6 @@ namespace __gnu_test
       bool __positive_integrand = false;
       int __extrapolate = 0;
       int __disallow_extrapolation = 0;
-
-      /* Initialize results */
-
-      integration_workspace<_VecTp> __workspace(__limit);
-
-      //_VecTp __result = 0;
-      //_VecTp __abserr = 0;
 
       /* Test on accuracy */
 
@@ -150,8 +147,6 @@ namespace __gnu_test
       else if (__limit == 1)
 	std::__throw_runtime_error("a maximum of one iteration was insufficient"
 			    " in qags_integrate()");
-
-      /* Initialization */
 
       extrapolation_table<_VecTp> __table;
       __table.append(__result0);
@@ -392,7 +387,6 @@ namespace __gnu_test
 
       __check_error(__error_type);
       std::__throw_runtime_error("Unknown error in qags_integrate()");
-
     }
 
   // Throws appropriate error if errcode nonzero
@@ -435,11 +429,12 @@ namespace __gnu_test
 
   template<typename _FuncTp, typename _VecTp>
     std::pair<_VecTp, _VecTp>
-    qagi_integrate(const _FuncTp& __func,
+    qagi_integrate(integration_workspace<_VecTp>& __workspace,
+		   const _FuncTp& __func,
 		   _VecTp __epsabs, _VecTp __epsrel,
 		   const std::size_t __limit)
     {
-      return qags_integrate(
+      return qags_integrate(__workspace,
 	  std::bind(i_transform<_FuncTp, _VecTp>, __func, std::placeholders::_1),
 	      _VecTp{0}, _VecTp{1}, __epsabs, __epsrel, __limit);
     }
@@ -455,11 +450,12 @@ namespace __gnu_test
 
   template<typename _FuncTp, typename _VecTp>
     std::pair<_VecTp, _VecTp>
-    qagil_integrate(const _FuncTp& __func, _VecTp __b,
+    qagil_integrate(integration_workspace<_VecTp>& __workspace,
+		    const _FuncTp& __func, _VecTp __b,
 		    _VecTp __epsabs, _VecTp __epsrel,
 		    const std::size_t __limit)
     {
-      return qags_integrate(
+      return qags_integrate(__workspace,
 	std::bind(il_transform<_FuncTp, _VecTp>, __func, __b, std::placeholders::_1),
 	    _VecTp{0}, _VecTp{1}, __epsabs, __epsrel, __limit);
     }
@@ -475,11 +471,12 @@ namespace __gnu_test
 
   template<typename _FuncTp, typename _VecTp>
     std::pair<_VecTp, _VecTp>
-    qagiu_integrate(const _FuncTp& __func, _VecTp __a,
+    qagiu_integrate(integration_workspace<_VecTp>& __workspace,
+		    const _FuncTp& __func, _VecTp __a,
 		    _VecTp __epsabs, _VecTp __epsrel,
 		    const std::size_t __limit)
     {
-      return qags_integrate(
+      return qags_integrate(__workspace,
 	std::bind(iu_transform<_FuncTp, _VecTp>, __func, __a, std::placeholders::_1),
 	    _VecTp{0}, _VecTp{1}, __epsabs, __epsrel, __limit);
     }

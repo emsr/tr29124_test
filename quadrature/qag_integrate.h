@@ -55,7 +55,8 @@ namespace __gnu_test
    */
   template<typename _VecTp, typename _FuncTp>
     std::pair<_VecTp, _VecTp>
-    qag_integrate(const _FuncTp& __func, _VecTp __a, _VecTp __b,
+    qag_integrate(integration_workspace<_VecTp>& __workspace,
+		  const _FuncTp& __func, _VecTp __a, _VecTp __b,
 		  _VecTp __epsabs, _VecTp __epsrel, const size_t __max_iter,
 		  const qk_intrule __qkintrule)
     {
@@ -125,7 +126,6 @@ namespace __gnu_test
 
       __iteration = 1;
 
-      integration_workspace<_VecTp> __workspace(__max_iter);
       __workspace.set_initial(__a, __b, __result0, __abserr0);
       __result = __workspace.sum_results();
 
