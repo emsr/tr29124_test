@@ -46,7 +46,7 @@ namespace __gnu_test
       std::size_t _M_nrmax;
       std::size_t _M_ii;
       std::size_t _M_maximum_level;
-      std::vector<_VecTp> _M_alist, _M_blist, _M_rlist, _M_elist;
+      std::vector<_VecTp> _M_lower_lim, _M_upper_lim, _M_result, _M_abs_error;
       std::vector<std::size_t> _M_order, _M_level;
 
       void qpsrt();
@@ -59,10 +59,10 @@ namespace __gnu_test
 	_M_nrmax(0),
 	_M_ii(0),
 	_M_maximum_level(0),
-	_M_alist(__lim),
-	_M_blist(__lim),
-	_M_rlist(__lim),
-	_M_elist(__lim),
+	_M_lower_lim(__lim),
+	_M_upper_lim(__lim),
+	_M_result(__lim),
+	_M_abs_error(__lim),
 	_M_order(__lim),
 	_M_level(__lim)
       { }
@@ -70,10 +70,10 @@ namespace __gnu_test
       void
       set_initial(_VecTp __a0, _VecTp __b0, _VecTp __result0, _VecTp __error0)
       {
-	_M_alist[0] = __a0;
-	_M_blist[0] = __b0;
-	_M_rlist[0] = __result0;
-	_M_elist[0] = __error0;
+	_M_lower_lim[0] = __a0;
+	_M_upper_lim[0] = __b0;
+	_M_result[0] = __result0;
+	_M_abs_error[0] = __error0;
 	_M_order[0] = 0;
 	_M_level[0] = 0;
 	_M_size = 1;
@@ -83,13 +83,41 @@ namespace __gnu_test
 		  _VecTp __a2, _VecTp __b2, _VecTp __area2, _VecTp __error2);
 
       void
-      retrieve(_VecTp& __a, _VecTp& __b, _VecTp& __r, _VecTp& __e) const
+      retrieve(_VecTp& __lolim, _VecTp& __uplim, _VecTp& __res, _VecTp& __err) const
       {
-	__a = _M_alist[_M_ii];
-	__b = _M_blist[_M_ii];
-	__r = _M_rlist[_M_ii];
-	__e = _M_elist[_M_ii];
+	__lolim = _M_lower_lim[_M_ii];
+	__uplim = _M_upper_lim[_M_ii];
+	__res = _M_result[_M_ii];
+	__err = _M_abs_error[_M_ii];
       }
+
+      size_t
+      size() const
+      { return _M_size; }
+
+      _VecTp
+      lower_lim(size_t ii) const
+      { return _M_lower_lim[ii]; }
+
+      _VecTp
+      upper_lim(size_t ii) const
+      { return _M_upper_lim[ii]; }
+
+      _VecTp
+      result(size_t ii) const
+      { return _M_result[ii]; }
+
+      _VecTp
+      abs_error(size_t ii) const
+      { return _M_abs_error[ii]; }
+
+      size_t
+      order(size_t ii) const
+      { return _M_order[ii]; }
+
+      size_t
+      level(size_t ii) const
+      { return _M_level[ii]; }
 
       bool
       increase_nrmax()
@@ -145,7 +173,7 @@ namespace __gnu_test
 	_VecTp __result_sum = 0;
 
 	for (std::size_t __kk = 0; __kk < _M_size; ++__kk)
-	  __result_sum += _M_rlist[__kk];
+	  __result_sum += _M_result[__kk];
 
 	return __result_sum;
       }
@@ -205,37 +233,37 @@ namespace __gnu_test
 	  return;
 	}
 
-      __errmax = _M_elist[__i_maxerr];
+      __errmax = _M_abs_error[__i_maxerr];
 
-      /* This part of the routine is only executed if, due to a difficult
-	integrand, subdivision increased the error estimate. In the normal
-	case the insert procedure should start after the nrmax-th largest
-	error estimate. */
+      // This part of the routine is only executed if, due to a difficult
+      // integrand, subdivision increased the error estimate. In the normal
+      // case the insert procedure should start after the nrmax-th largest
+      // error estimate.
 
-      while (__i_nrmax > 0 && __errmax > _M_elist[_M_order[__i_nrmax - 1]])
+      while (__i_nrmax > 0 && __errmax > _M_abs_error[_M_order[__i_nrmax - 1]])
 	{
 	  _M_order[__i_nrmax] = _M_order[__i_nrmax - 1];
 	  __i_nrmax--;
 	}
 
-      /* Compute the number of elements in the list to be maintained in
-	descending order. This number depends on the number of
-	subdivisions still allowed. */
+      // Compute the number of elements in the list to be maintained in
+      // descending order. This number depends on the number of
+      // subdivisions still allowed.
 
       if(__last < (_M_limit/2 + 2))
 	__top = __last;
       else
 	__top = _M_limit - __last + 1;
 
-      /* Insert errmax by traversing the list top-down, starting
-	comparison from the element elist(order(i_nrmax+1)). */
+      // Insert errmax by traversing the list top-down, starting
+      // comparison from the element elist(order(i_nrmax+1)).
 
 
-      /* The order of the tests in the following line is important to
-	prevent a segmentation fault */
+      // The order of the tests in the following line is important to
+      // prevent a segmentation fault
 
       __jj = __i_nrmax + 1;
-      while (__jj < __top && __errmax < _M_elist[_M_order[__jj]])
+      while (__jj < __top && __errmax < _M_abs_error[_M_order[__jj]])
 	{
 	  _M_order[__jj - 1] = _M_order[__jj];
 	  ++__jj;
@@ -244,10 +272,10 @@ namespace __gnu_test
 
       // Insert errmin by traversing the list bottom-up
 
-      __errmin = _M_elist[__last];
+      __errmin = _M_abs_error[__last];
 
       __kk = __top - 1;
-      while (__kk > __jj - 2 && __errmin >= _M_elist[_M_order[__kk]])
+      while (__kk > __jj - 2 && __errmin >= _M_abs_error[_M_order[__kk]])
 	{
 	  _M_order[__kk + 1] = _M_order[__kk];
 	  --__kk;
@@ -278,28 +306,28 @@ namespace __gnu_test
 
       if (__error2 > __error1)
 	{
-	  _M_alist[__i_max] = __a2;	// blist[maxerr] is already == b2
-	  _M_rlist[__i_max] = __area2;
-	  _M_elist[__i_max] = __error2;
+	  _M_lower_lim[__i_max] = __a2;	// blist[maxerr] is already == b2
+	  _M_result[__i_max] = __area2;
+	  _M_abs_error[__i_max] = __error2;
 	  _M_level[__i_max] = __new_level;
 
-	  _M_alist[__i_new] = __a1;
-	  _M_blist[__i_new] = __b1;
-	  _M_rlist[__i_new] = __area1;
-	  _M_elist[__i_new] = __error1;
+	  _M_lower_lim[__i_new] = __a1;
+	  _M_upper_lim[__i_new] = __b1;
+	  _M_result[__i_new] = __area1;
+	  _M_abs_error[__i_new] = __error1;
 	  _M_level[__i_new] = __new_level;
 	}
       else
 	{
-	  _M_blist[__i_max] = __b1;	// alist[maxerr] is already == a1
-	  _M_rlist[__i_max] = __area1;
-	  _M_elist[__i_max] = __error1;
+	  _M_upper_lim[__i_max] = __b1;	// alist[maxerr] is already == a1
+	  _M_result[__i_max] = __area1;
+	  _M_abs_error[__i_max] = __error1;
 	  _M_level[__i_max] = __new_level;
 
-	  _M_alist[__i_new] = __a2;
-	  _M_blist[__i_new] = __b2;
-	  _M_rlist[__i_new] = __area2;
-	  _M_elist[__i_new] = __error2;
+	  _M_lower_lim[__i_new] = __a2;
+	  _M_upper_lim[__i_new] = __b2;
+	  _M_result[__i_new] = __area2;
+	  _M_abs_error[__i_new] = __error2;
 	  _M_level[__i_new] = __new_level;
 	}
 

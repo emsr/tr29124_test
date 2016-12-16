@@ -53,9 +53,9 @@ namespace __gnu_test
    * @return A pair with the first value being the integration result,
    *         and the second value being the estimated error.
    */
-  template<typename _VecTp, typename _FType>
+  template<typename _VecTp, typename _FuncTp>
     std::pair<_VecTp, _VecTp>
-    qag_integrate(const _FType& __func, _VecTp __a, _VecTp __b,
+    qag_integrate(const _FuncTp& __func, _VecTp __a, _VecTp __b,
 		  _VecTp __epsabs, _VecTp __epsrel, const size_t __max_iter,
 		  const qk_intrule __qkintrule)
     {

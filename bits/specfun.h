@@ -244,6 +244,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::theta_2 "theta_2 - Exponential theta function 2"
    * - @ref __gnu_cxx::theta_3 "theta_3 - Exponential theta function 3"
    * - @ref __gnu_cxx::theta_4 "theta_4 - Exponential theta function 4"
+   * - @ref __gnu_cxx::tricomi_u "tricomi_u - Tricomi confluent hypergeometric function"
    * - @ref __gnu_cxx::zernike "zernike - Zernike polynomials"
    *
    * @section general General Features
@@ -1399,6 +1400,56 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tpa, _Tpc, _Tp>;
       return std::__detail::__conf_hyperg<__type>(__a, __c, __x);
+    }
+
+  // Confluent hypergeometric functions
+
+  /**
+   * Return the Tricomi confluent hypergeometric function @f$ U(a,c,x) @f$
+   * of @c float numeratorial parameter @f$ a @f$, denominatorial parameter @f$ c @f$,
+   * and argument @f$ x @f$.
+   *
+   * @see tricomi_u for details.
+   */
+  inline float
+  tricomi_uf(float __a, float __c, float __x)
+  { return std::__detail::__tricomi_u<float>(__a, __c, __x); }
+
+  /**
+   * Return the Tricomi confluent hypergeometric function @f$ U(a,c,x) @f$
+   * of <tt>long double</tt> numeratorial parameter @f$ a @f$,
+   * denominatorial parameter @f$ c @f$, and argument @f$ x @f$.
+   *
+   * @see tricomi_u for details.
+   */
+  inline long double
+  tricomi_ul(long double __a, long double __c, long double __x)
+  { return std::__detail::__tricomi_u<long double>(__a, __c, __x); }
+
+  /**
+   * Return the Tricomi confluent hypergeometric function @f$ U(a,c,x) @f$
+   * of real numeratorial parameter @f$ a @f$, denominatorial parameter @f$ c @f$,
+   * and argument @f$ x @f$.
+   *
+   * The Tricomi confluent hypergeometric function is defined by
+   * @f[
+   *    U(a,c,x) = \frac{\Gamma(1-c)}{\Gamma(a-c+1)} {}_1F_1(a;c;x)
+   *       + \frac{\Gamma(c-1)}{\Gamma(a)} x^{1-c} {}_1F_1(a-c+1;2-c;x)
+   * @f]
+   * where @f$ {}_1F_1(a;c;x) @f$ if the confluent hypergeometric function.
+   *
+   * @see conf_hyperg.
+   *
+   * @param __a The numeratorial parameter
+   * @param __c The denominatorial parameter
+   * @param __x The argument
+   */
+  template<typename _Tpa, typename _Tpc, typename _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tpa, _Tpc, _Tp>
+    tricomi_u(_Tpa __a, _Tpc __c, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_fp_t<_Tpa, _Tpc, _Tp>;
+      return std::__detail::__tricomi_u<__type>(__a, __c, __x);
     }
 
   // Hypergeometric functions
