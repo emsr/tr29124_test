@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -g -Wall -Wextra -Wno-psabi -I. -o test_conf_hyperg_limit test_conf_hyperg_limit.cpp wrap_gsl.cpp $HOME/tr29124_test/gslextras/Fresnel/fresnel.c $HOME/tr29124_test/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c $HOME/tr29124_test/gslextras/Hermite/gsl_sf_hermite.c -lgsl -lgslcblas -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_conf_hyperg_limit test_conf_hyperg_limit.cpp -lquadmath -L. -lwgsl -lburkhardt
 ./test_conf_hyperg_limit > test_conf_hyperg_limit.txt
 
-g++ -std=c++14 -DNO_CBRT -DNO_LOGBQ -g -Wall -Wextra -I. -o test_conf_hyperg_limit test_conf_hyperg_limit.cpp wrap_gsl.cpp -lgsl -lgslcblas
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_conf_hyperg_limit test_conf_hyperg_limit.cpp -lquadmath -L. -lwgsl -lburkhardt
 ./test_conf_hyperg_limit > test_conf_hyperg_limit.txt
 */
 
@@ -48,7 +48,7 @@ template<typename _Tp>
     {
       auto z = _Tp{0.1Q} * i;
       std::cout << ' ' << std::setw(6) << z
-		<< ' ' << << std::setw(width) << __conf_hyperg_limit(c, z)
+		<< ' ' << std::setw(width) << __gnu_cxx::conf_hyperg_lim(c, z)
 		<< '\n';
     }
   }
