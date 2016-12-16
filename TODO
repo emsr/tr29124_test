@@ -388,6 +388,9 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
        They might be fast too.
        They generalize to noninteger order.
 
+87. [] Put a more extensive deathmatch test (in a separate function) in the corresponding test_*.cpp
+       Work out kinks!
+
 plot_airy.cpp
 
 test_array_ref.cpp - move with <array_ref> somewhere else
