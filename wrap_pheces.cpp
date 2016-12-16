@@ -97,6 +97,13 @@ conf_hyperg(double a, double c, double x)
   return ::hyperg(a, c, x);
 }
 
+/// Tricomi confluent hypergeometric functions.
+double
+tricomi_u(double /*a*/, double /*c*/, double /*x*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
 /// Confluent hypergeometric limit functions.
 double
 conf_hyperg_lim(double /*c*/, double /*x*/)
@@ -692,7 +699,7 @@ struve_l(double /*nu*/, double /*x*/)
 double
 bernoulli(unsigned int /*n*/)
 {
-  std::numeric_limits<double>::quiet_NaN();
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Reperiodized sine.

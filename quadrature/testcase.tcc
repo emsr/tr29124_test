@@ -30,9 +30,8 @@
 
 template<typename _Tp>
   inline _Tp
-  f1(_Tp x, void* params)
+  f1(_Tp x, _Tp alpha)
   {
-    _Tp alpha = *(_Tp *)params;
     return std::pow(x,alpha) * std::log(1/x);
   }
 
@@ -41,9 +40,8 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  f2(_Tp x, void* params)
+  f2(_Tp x, _Tp alpha)
   {
-    _Tp alpha = *(_Tp *)params;
     return std::pow(_Tp{4}, -alpha) / (std::pow((x - M_PI / _Tp{4}), _Tp{2}) + std::pow(_Tp{16}, -alpha));
   }
 
@@ -52,9 +50,8 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  f3(_Tp x, void* params)
+  f3(_Tp x, _Tp alpha)
   {
-    _Tp alpha = *(_Tp *)params;
     return std::cos(std::pow(_Tp{2},alpha) * std::sin(x));
   }
 
@@ -66,9 +63,8 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  f7(_Tp x, void* params)
+  f7(_Tp x, _Tp alpha)
   {
-    _Tp alpha = *(_Tp *)params;
     return std::pow(std::abs(x - (_Tp{1}/_Tp{3})),alpha);
   }
 
@@ -78,9 +74,8 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  f8(_Tp x, void* params)
+  f8(_Tp x, _Tp alpha)
   {
-    _Tp alpha = *(_Tp *)params;
     return std::pow(std::abs(x - (M_PI/_Tp{4})),alpha);
   }
 
@@ -89,9 +84,8 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  f9(_Tp x, void* params)
+  f9(_Tp x, _Tp alpha)
   {
-    _Tp alpha = *(_Tp *)params;
     return 1 / ((x + 1 + std::pow(_Tp{2},-alpha)) * std::sqrt(1-x*x));
   }
 
@@ -100,9 +94,8 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  f10(_Tp x, void* params)
+  f10(_Tp x, _Tp alpha)
   {
-    _Tp alpha = *(_Tp *)params;
     return std::pow(std::sin(x), alpha-1);
   }
 
@@ -111,9 +104,8 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  f11(_Tp x, void* params)
+  f11(_Tp x, _Tp alpha)
   {
-    _Tp alpha = *(_Tp *)params;
     return std::pow(std::log(1/x), alpha-1);
   }
 
@@ -124,9 +116,8 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  f12(_Tp x, void* params)
+  f12(_Tp x, _Tp alpha)
   {
-    _Tp alpha = *(_Tp *)params;
     return std::exp(20 * (x - 1)) * std::sin(std::pow(_Tp{2}, alpha) * x);
   }
 
@@ -135,33 +126,29 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  f13(_Tp x, void* params)
+  f13(_Tp x, _Tp alpha)
   {
-    _Tp alpha = *(_Tp *)params;
     return std::cos(std::pow(_Tp{2}, alpha) * x) / std::sqrt(x * (1 - x));
   }
 
 template<typename _Tp>
   inline _Tp
-  f14(_Tp x, void* params)
+  f14(_Tp x, _Tp alpha)
   {
-    _Tp alpha = *(_Tp *)params;
     return std::exp(-std::pow(_Tp{2}, -alpha) * x) * std::cos(x) / std::sqrt(x);
   }
 
 template<typename _Tp>
   inline _Tp
-  f15(_Tp x, void* params)
+  f15(_Tp x, _Tp alpha)
   {
-    _Tp alpha = *(_Tp *)params;
     return x * x * std::exp(-std::pow(_Tp{2}, -alpha) * x);
   }
 
 template<typename _Tp>
   inline _Tp
-  f16(_Tp x, void* params)
+  f16(_Tp x, _Tp alpha)
   {
-    _Tp alpha = *(_Tp *)params;
     if (x==0 && alpha == 1)
       return 1;  /* make the function continuous in x */
     if (x==0 && alpha > 1)
@@ -171,9 +158,8 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  f17(_Tp x, void* params)
+  f17(_Tp x, _Tp alpha)
   {
-    _Tp alpha = *(_Tp *)params;
     return std::pow(_Tp{2}, -alpha)
   	  / (((x - 1) * (x - 1) + std::pow(_Tp{4}, -alpha)) * (x - 2));
   }
@@ -183,7 +169,7 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  f454(_Tp x, void*)
+  f454(_Tp x)
   {
     _Tp x2 = x * x;
     _Tp x3 = x * x2;
@@ -195,7 +181,7 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  f455(_Tp x, void*)
+  f455(_Tp x)
   {
     return std::log(x) / (_Tp{1} + _Tp{100} * x * x);
   }
@@ -205,7 +191,7 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  f456(_Tp x, void*)
+  f456(_Tp x)
   {
     if (x == _Tp{0})
       return _Tp{0};
@@ -217,7 +203,7 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  f457(_Tp x, void*)
+  f457(_Tp x)
   {
     if (x == _Tp{0})
       return _Tp{0};
@@ -230,7 +216,7 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  f458(_Tp x, void*)
+  f458(_Tp x)
   {
     if (x == _Tp{0}) 
       return _Tp{0};
@@ -247,7 +233,7 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  f459(_Tp x, void*)
+  f459(_Tp x)
   {
     return _Tp{1} / (_Tp{5} * x * x * x + _Tp{6});
   }
@@ -257,7 +243,7 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  myfn1(_Tp x, void*)
+  myfn1(_Tp x)
   {
     return std::exp(-x - x * x);
   }
@@ -267,36 +253,35 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  myfn2(_Tp x, void* params)
+  myfn2(_Tp x, _Tp alpha)
   {
-    _Tp alpha = *(_Tp *)params;
     return std::exp(alpha * x);
   }
 
-/* f_monomial = constant * x^degree */
+/* f_monomial = constant * x^degree 
 
 template<typename _Tp>
   inline _Tp
-  f_monomial(_Tp x, void* params)
+  f_monomial(_Tp x, _Tp alpha)
   {
-    monomial_params<_Tp>* p = (monomial_params<_Tp> *)params;
+    monomial<_Tp>* p = (monomial<_Tp> *)params;
 
     return p->constant * std::pow(x, p->degree);
   }
-
+*/
 template<typename _Tp>
   inline _Tp
-  integ_f_monomial(_Tp a, _Tp b, monomial_params<_Tp>* p)
+  integ_f_monomial(_Tp a, _Tp b, monomial<_Tp>& p)
   {
-    const int degreep1 = p->degree + 1;
+    const int degreep1 = p.degree + 1;
     const _Tp bnp1 = std::pow(b, degreep1);
     const _Tp anp1 = std::pow(a, degreep1);
-    return (p->constant / degreep1) * (bnp1 - anp1);
+    return (p.constant / degreep1) * (bnp1 - anp1);
   }
 
 template<typename _Tp>
   inline _Tp
-  f_sin(_Tp x, void*)
+  f_sin(_Tp x)
   {
     return std::sin(x);
   }
@@ -311,21 +296,21 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  cqf1(_Tp x, void*)
+  cqf1(_Tp x)
   {
     return std::exp(x);
   }
     
 template<typename _Tp>
   inline _Tp
-  cqf2(_Tp x, void*)
+  cqf2(_Tp x)
   {
     return x >= 0.3;
   }
 
 template<typename _Tp>
   inline _Tp
-  cqf3(_Tp x, void*)
+  cqf3(_Tp x)
   {
     return std::sqrt(x);
   }
@@ -333,14 +318,14 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  cqf4(_Tp x, void*)
+  cqf4(_Tp x)
   {
     return (_Tp{23} / _Tp{25}) * std::cosh(x) - std::cos(x);
   }
 
 template<typename _Tp>
   inline _Tp
-  cqf5(_Tp x, void*)
+  cqf5(_Tp x)
   {
     _Tp x2 = x*x;
     return _Tp{1} / (x2 * (x2 + 1) + _Tp{0.9});
@@ -348,21 +333,21 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  cqf6(_Tp x, void*)
+  cqf6(_Tp x)
   {
     return x * std::sqrt(x);
   }
 
 template<typename _Tp>
   inline _Tp
-  cqf7(_Tp x, void*)
+  cqf7(_Tp x)
   {
     return _Tp{1} / std::sqrt(x);
   }
 
 template<typename _Tp>
   inline _Tp
-  cqf8(_Tp x, void*)
+  cqf8(_Tp x)
   {
     _Tp x2 = x*x;
     return _Tp{1} / (_Tp{1} + x2*x2);
@@ -370,7 +355,7 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  cqf9(_Tp x, void*)
+  cqf9(_Tp x)
   {
     return _Tp{2} / (_Tp{2} + std::sin(_Tp{10} * M_PI * x));
   }
@@ -384,49 +369,49 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  cqf11(_Tp x, void*)
+  cqf11(_Tp x)
   {
     return _Tp{1} / (_Tp{1} + std::exp(x));
   }
 
 template<typename _Tp>
   inline _Tp
-  cqf12(_Tp x, void*)
+  cqf12(_Tp x)
   {
     return x / (std::exp(x) - _Tp{1});
   }
 
 template<typename _Tp>
   inline _Tp
-  cqf13(_Tp x, void*)
+  cqf13(_Tp x)
   {
     return std::sin(_Tp{100} * M_PI * x) / (M_PI * x);
   }
 
 template<typename _Tp>
   inline _Tp
-  cqf14(_Tp x, void*)
+  cqf14(_Tp x)
   {
     return std::sqrt(_Tp{50}) * std::exp(-_Tp{50} * M_PI * x * x);
   }
 
 template<typename _Tp>
   inline _Tp
-  cqf15(_Tp x, void*)
+  cqf15(_Tp x)
   {
     return _Tp{25} * std::exp(-_Tp{25} * x);
   }
 
 template<typename _Tp>
   inline _Tp
-  cqf16(_Tp x, void*)
+  cqf16(_Tp x)
   {
     return _Tp{50} / M_PI * (_Tp{2500} * x * x + _Tp{1});
   }
 
 template<typename _Tp>
   inline _Tp
-  cqf17(_Tp x, void*)
+  cqf17(_Tp x)
   {
     _Tp t1 = _Tp{50} * M_PI * x, t2;
     t2 = std::sin(t1) / t1;
@@ -435,7 +420,7 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  cqf18(_Tp x, void*)
+  cqf18(_Tp x)
   {
     return std::cos(std::cos(x)
 		  + _Tp{3} * std::sin(x)
@@ -446,21 +431,21 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  cqf19(_Tp x, void*)
+  cqf19(_Tp x)
   {
     return std::log(x);
   }
 
 template<typename _Tp>
   inline _Tp
-  cqf20(_Tp x, void*)
+  cqf20(_Tp x)
   {
     return _Tp{1} / (x * x + _Tp{1.005});
   }
 
 template<typename _Tp>
   inline _Tp
-  cqf21(_Tp x, void*)
+  cqf21(_Tp x)
   {
     return _Tp{1} / std::cosh(_Tp{10} * (x - 0.2) * _Tp{2}) + 
       _Tp{1} / std::cosh(_Tp{100} * (x - 0.4) * _Tp{4}) + 
@@ -469,7 +454,7 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  cqf22(_Tp x, void*)
+  cqf22(_Tp x)
   {
     return _Tp{4} * M_PI * M_PI * x
 	  * std::sin(_Tp{20} * M_PI * x) * std::cos(_Tp{2} * M_PI * x);
@@ -477,7 +462,7 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  cqf23(_Tp x, void*)
+  cqf23(_Tp x)
   {
     _Tp t = _Tp{230} * x - _Tp{30};
     return _Tp{1} / (_Tp{1} + t * t);
@@ -485,14 +470,14 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  cqf24(_Tp x, void*)
+  cqf24(_Tp x)
   {
     return std::floor(std::exp(x));
   }
 
 template<typename _Tp>
   inline _Tp
-  cqf25(_Tp x, void*)
+  cqf25(_Tp x)
   {
     return (x < _Tp{1}) * (x + _Tp{1})
        + (_Tp{1} <= x && x <= _Tp{3}) * (_Tp{3} - x)

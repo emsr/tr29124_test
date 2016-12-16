@@ -139,6 +139,9 @@ check/complex_ellint_rg
 check/complex_ellint_rj
 check/complex_airy_ai
 check/complex_airy_bi
+check/deathmatch_comp_ellint
+check/deathmatch_conf_hyperg
+check/deathmatch_hyperg
 check/pr56216_cyl_hankel_1
 check/pr56216_cyl_hankel_2
 check/pr56216_cyl_bessel_i

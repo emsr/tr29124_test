@@ -40,6 +40,9 @@ double comp_ellint_d(double k);
 /// Confluent hypergeometric functions.
 double conf_hyperg(double a, double c, double x);
 
+/// Tricomi confluent hypergeometric functions.
+double tricomi_u(double a, double c, double x);
+
 /// Confluent hypergeometric limit functions.
 double conf_hyperg_lim(double c, double x);
 

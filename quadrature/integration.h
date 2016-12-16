@@ -40,9 +40,9 @@ namespace __gnu_test
   // QK_15, QK_21, QK_31, QK_41, QK_51, QK_61
   // Higher-order rules converge more rapidly for most functions,
   // but may slow convergence for less well-behaved ones.
-  template<typename _FType, typename _VecTp>
+  template<typename _FuncTp, typename _VecTp>
     inline std::pair<_VecTp, _VecTp>
-    integrate_smooth(const _FType& __func, _VecTp __a, _VecTp __b,
+    integrate_smooth(const _FuncTp& __func, _VecTp __a, _VecTp __b,
 		     _VecTp __max_abs_error,
 		     _VecTp __max_rel_error,
 		     const std::size_t __max_iter = 1024,
@@ -54,9 +54,9 @@ namespace __gnu_test
 
   // Recursive Gauss-Kronrod integration optimized for
   // discontinuous or singular functions
-  template<typename _FType, typename _VecTp>
+  template<typename _FuncTp, typename _VecTp>
     inline std::pair<_VecTp, _VecTp>
-    integrate_singular(const _FType& __func, _VecTp __a, _VecTp __b,
+    integrate_singular(const _FuncTp& __func, _VecTp __a, _VecTp __b,
 		       _VecTp __max_abs_error,
 		       _VecTp __max_rel_error,
 		       const std::size_t __max_iter = 1024)
@@ -66,9 +66,9 @@ namespace __gnu_test
     }
 
   // Integrates function from -infinity to +infinity
-  template<typename _FType, typename _VecTp>
+  template<typename _FuncTp, typename _VecTp>
     inline std::pair<_VecTp, _VecTp>
-    integrate_infinite(const _FType& __func,
+    integrate_infinite(const _FuncTp& __func,
 		       _VecTp __max_abs_error,
 		       _VecTp __max_rel_error,
 		       const std::size_t __max_iter = 1024)
@@ -78,9 +78,9 @@ namespace __gnu_test
     }
 
   // Integrations function from -infinity to b
-  template<typename _FType, typename _VecTp>
+  template<typename _FuncTp, typename _VecTp>
     inline std::pair<_VecTp, _VecTp>
-    integrate_from_infinity(const _FType& __func, _VecTp __b,
+    integrate_from_infinity(const _FuncTp& __func, _VecTp __b,
 			    _VecTp __max_abs_error,
 			    _VecTp __max_rel_error,
 			    const std::size_t __max_iter = 1024)
@@ -90,9 +90,9 @@ namespace __gnu_test
     }
 
   // Integrations function from a to +infinity
-  template<typename _FType, typename _VecTp>
+  template<typename _FuncTp, typename _VecTp>
     inline std::pair<_VecTp, _VecTp>
-    integrate_to_infinity(const _FType& __func, _VecTp __a,
+    integrate_to_infinity(const _FuncTp& __func, _VecTp __a,
 			  _VecTp __max_abs_error,
 			  _VecTp __max_rel_error,
 			  const std::size_t __max_iter = 1024)
@@ -102,9 +102,9 @@ namespace __gnu_test
     }
 
   // Integrates function, allows setting of limits as being +/- infinity
-  template<typename _FType, typename _VecTp>
+  template<typename _FuncTp, typename _VecTp>
     inline std::pair<_VecTp, _VecTp>
-    integrate(const _FType& __func, _VecTp __a, _VecTp __b,
+    integrate(const _FuncTp& __func, _VecTp __a, _VecTp __b,
 	      _VecTp __max_abs_error,
 	      _VecTp __max_rel_error,
 	      const std::size_t __max_iter = 1024)
