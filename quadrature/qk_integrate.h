@@ -53,7 +53,7 @@ namespace __gnu_test
   {
     // Class template for internal implementation of
     // each individual integration rule.
-    template<typename _VecTp, typename _FType, qk_intrule sz>
+    template<typename _VecTp, typename _FuncTp, qk_intrule sz>
       class qk_integrator;
   }
 
@@ -65,16 +65,14 @@ namespace __gnu_test
   // 1: abserr (Estimated error as difference between Gauss and Kronrod)
   // 2: resabs (Integral of absolute value of function)
   // 3: resasc (unknown)
-  template<typename _VecTp, typename _FType>
+  template<typename _VecTp, typename _FuncTp>
     std::tuple<_VecTp, _VecTp, _VecTp, _VecTp>
-    qk_integrate(const _FType& __func, _VecTp __a, _VecTp __b,
+    qk_integrate(const _FuncTp& __func, _VecTp __a, _VecTp __b,
 		 const qk_intrule __qkintrule)
     {
-      using namespace qk_impl;
-
       //Determine the integration function to use for this routine
       typedef
-	std::function<void(const _FType&, _VecTp, _VecTp,
+	std::function<void(const _FuncTp&, _VecTp, _VecTp,
 		 _VecTp&, _VecTp&, _VecTp&, _VecTp&)>
 	qk_int_func_type;
 
@@ -83,22 +81,22 @@ namespace __gnu_test
       switch(__qkintrule)
 	{
 	case QK_15: __qk_int_func =
-	  (qk_int_func_type)(&(qk_integrator<_VecTp, _FType, QK_15>::_S_integrate));
+	  (qk_int_func_type)(&(qk_impl::qk_integrator<_VecTp, _FuncTp, QK_15>::_S_integrate));
 	  break;
 	case QK_21: __qk_int_func =
-	  (qk_int_func_type)(&(qk_integrator<_VecTp, _FType, QK_21>::_S_integrate));
+	  (qk_int_func_type)(&(qk_impl::qk_integrator<_VecTp, _FuncTp, QK_21>::_S_integrate));
 	  break;
 	case QK_31: __qk_int_func =
-	  (qk_int_func_type)(&(qk_integrator<_VecTp, _FType, QK_31>::_S_integrate));
+	  (qk_int_func_type)(&(qk_impl::qk_integrator<_VecTp, _FuncTp, QK_31>::_S_integrate));
 	  break;
 	case QK_41: __qk_int_func =
-	  (qk_int_func_type)(&(qk_integrator<_VecTp, _FType, QK_41>::_S_integrate));
+	  (qk_int_func_type)(&(qk_impl::qk_integrator<_VecTp, _FuncTp, QK_41>::_S_integrate));
 	  break;
 	case QK_51: __qk_int_func =
-	  (qk_int_func_type)(&(qk_integrator<_VecTp, _FType, QK_51>::_S_integrate));
+	  (qk_int_func_type)(&(qk_impl::qk_integrator<_VecTp, _FuncTp, QK_51>::_S_integrate));
 	  break;
 	case QK_61: __qk_int_func =
-	  (qk_int_func_type)(&(qk_integrator<_VecTp, _FType, QK_61>::_S_integrate));
+	  (qk_int_func_type)(&(qk_impl::qk_integrator<_VecTp, _FuncTp, QK_61>::_S_integrate));
 	  break;
 	default:
 	  std::__throw_logic_error("Unrecognized gauss-kronrod integration size"
@@ -113,12 +111,12 @@ namespace __gnu_test
 
   namespace qk_impl
   {
-    template<typename _VecTp, typename _FType, std::size_t __ksz, std::size_t __gsz>
+    template<typename _VecTp, typename _FuncTp, std::size_t __ksz, std::size_t __gsz>
       void
       qk_integrate(const std::array<_VecTp, __ksz> &__xgk,
 		   const std::array<_VecTp, __gsz> &__wg,
 		   const std::array<_VecTp, __ksz> &__wgk,
-		   const _FType& __func, _VecTp __a, _VecTp __b,
+		   const _FuncTp& __func, _VecTp __a, _VecTp __b,
 		   _VecTp& __result, _VecTp& __abserr,
 		   _VecTp& __resabs, _VecTp& __resasc)
       {
@@ -129,7 +127,7 @@ namespace __gnu_test
 	std::array<_VecTp, __ksz> __fv1;
 	std::array<_VecTp, __ksz> __fv2;
 
-	assert((__ksz/2)==__gsz);
+	assert((__ksz/2) == __gsz);
 
 	_VecTp __result_gauss = 0;
 	_VecTp __result_kronrod = __f_center * __wgk[__ksz - 1];
@@ -193,8 +191,8 @@ namespace __gnu_test
 	__abserr = __rescale_error(__err, __result_abs, __result_asc);
       }
 
-    template<typename _VecTp, typename _FType>
-      class qk_integrator<_VecTp, _FType, QK_15>
+    template<typename _VecTp, typename _FuncTp>
+      class qk_integrator<_VecTp, _FuncTp, QK_15>
       {
 
       private:
@@ -204,7 +202,7 @@ namespace __gnu_test
       public:
 
 	static void
-	_S_integrate(const _FType& func, _VecTp a, _VecTp b,
+	_S_integrate(const _FuncTp& func, _VecTp a, _VecTp b,
 		     _VecTp& result, _VecTp& abserr,
 		     _VecTp& resabs, _VecTp& resasc)
 	{
@@ -250,8 +248,8 @@ namespace __gnu_test
 	}
       };
 
-    template<typename _VecTp, typename _FType>
-      class qk_integrator<_VecTp, _FType, QK_21>
+    template<typename _VecTp, typename _FuncTp>
+      class qk_integrator<_VecTp, _FuncTp, QK_21>
       {
 
       private:
@@ -261,7 +259,7 @@ namespace __gnu_test
       public:
 
 	static void
-	_S_integrate(const _FType& func, _VecTp a, _VecTp b,
+	_S_integrate(const _FuncTp& func, _VecTp a, _VecTp b,
 		     _VecTp& result, _VecTp& abserr,
 		     _VecTp& resabs, _VecTp& resasc)
 	{
@@ -314,8 +312,8 @@ namespace __gnu_test
 	}
       };
 
-    template<typename _VecTp, typename _FType>
-      class qk_integrator<_VecTp, _FType, QK_31>
+    template<typename _VecTp, typename _FuncTp>
+      class qk_integrator<_VecTp, _FuncTp, QK_31>
       {
 
       private:
@@ -325,7 +323,7 @@ namespace __gnu_test
       public:
 
 	static void
-	_S_integrate(const _FType& func, _VecTp a, _VecTp b,
+	_S_integrate(const _FuncTp& func, _VecTp a, _VecTp b,
 		     _VecTp& result, _VecTp& abserr,
 		     _VecTp& resabs, _VecTp& resasc)
 	{
@@ -391,8 +389,8 @@ namespace __gnu_test
 	}
       };
 
-    template<typename _VecTp, typename _FType>
-      class qk_integrator<_VecTp, _FType, QK_41>
+    template<typename _VecTp, typename _FuncTp>
+      class qk_integrator<_VecTp, _FuncTp, QK_41>
       {
 
       private:
@@ -402,7 +400,7 @@ namespace __gnu_test
       public:
 
 	static void
-	_S_integrate(const _FType& func, _VecTp a, _VecTp b,
+	_S_integrate(const _FuncTp& func, _VecTp a, _VecTp b,
 		     _VecTp& result, _VecTp& abserr,
 		     _VecTp& resabs, _VecTp& resasc)
 	{
@@ -434,7 +432,7 @@ namespace __gnu_test
 	    _VecTp{0.000000000000000000000000000000000L}
 	  };
 	  // Weights of the 20-point Gauss rule
-	  static constexpr std::array<_VecTp, 11>
+	  static constexpr std::array<_VecTp, 10>
 	  _S_wg =
 	  {
 	    _VecTp{0.017614007139152118311861962351853L},
@@ -480,8 +478,8 @@ namespace __gnu_test
 	}
       };
 
-    template<typename _VecTp, typename _FType>
-      class qk_integrator<_VecTp, _FType, QK_51>
+    template<typename _VecTp, typename _FuncTp>
+      class qk_integrator<_VecTp, _FuncTp, QK_51>
       {
 
       private:
@@ -491,7 +489,7 @@ namespace __gnu_test
       public:
 
 	static void
-	_S_integrate(const _FType& func, _VecTp a, _VecTp b,
+	_S_integrate(const _FuncTp& func, _VecTp a, _VecTp b,
 		     _VecTp& result, _VecTp& abserr,
 		     _VecTp& resabs, _VecTp& resasc)
 	{
@@ -582,8 +580,8 @@ namespace __gnu_test
 	}
       };
 
-    template<typename _VecTp, typename _FType>
-      class qk_integrator<_VecTp, _FType, QK_61>
+    template<typename _VecTp, typename _FuncTp>
+      class qk_integrator<_VecTp, _FuncTp, QK_61>
       {
 
       private:
@@ -593,7 +591,7 @@ namespace __gnu_test
       public:
 
 	static void
-	_S_integrate(const _FType& func, _VecTp a, _VecTp b,
+	_S_integrate(const _FuncTp& func, _VecTp a, _VecTp b,
 		     _VecTp& result, _VecTp& abserr,
 		     _VecTp& resabs, _VecTp& resasc)
 	{
