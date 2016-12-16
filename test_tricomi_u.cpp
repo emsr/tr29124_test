@@ -1,9 +1,9 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_conf_hyperg test_conf_hyperg.cpp -lquadmath -L. -lwgsl -lburkhardt
-./test_conf_hyperg > test_conf_hyperg.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_tricomi_u test_tricomi_u.cpp -lquadmath -L. -lwgsl -lburkhardt
+./test_tricomi_u > test_tricomi_u.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_conf_hyperg test_conf_hyperg.cpp -lquadmath -L. -lwgsl -lburkhardt
-./test_conf_hyperg > test_conf_hyperg.txt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_tricomi_u test_tricomi_u.cpp -lquadmath -L. -lwgsl -lburkhardt
+./test_tricomi_u > test_tricomi_u.txt
 */
 
 #include <cmath>
@@ -13,7 +13,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_conf_hyperg test_con
 
 template<typename _Tp>
   void
-  test_conf_hyperg(_Tp proto = _Tp{})
+  test_tricomi_u(_Tp proto = _Tp{})
   {
     std::cout.precision(__gnu_cxx::__digits10(proto));
     auto width = std::cout.precision() + 8;
@@ -25,7 +25,7 @@ template<typename _Tp>
     {
       auto z = _Tp{0.1Q} * i;
       std::cout << ' ' << std::setw(6) << z
-		<< ' ' << std::setw(width) << __gnu_cxx::conf_hyperg(a, c, z)
+		<< ' ' << std::setw(width) << __gnu_cxx::tricomi_u(a, c, z)
 		<< '\n';
     }
   }
