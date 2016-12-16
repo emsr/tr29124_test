@@ -1,6 +1,6 @@
-/* integration/tests.c
+/* quadrature/testcase.h
  * 
- * Copyright (C) 1996, 1997, 1998, 1999, 2000, 2007 Brian Gough
+ * Copyright (C) 2016
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,11 +21,40 @@
 #define QUADRATURE_TESTCASE_H 1
 
 template<typename _Tp>
-  struct monomial_params
+  struct monomial
   {
     int degree;
     _Tp constant;
+
+    monomial(int deg, _Tp c)
+    : degree(deg),
+      constant(c)
+    { }
+
+    _Tp
+    operator()(_Tp x) const
+    { return constant * std::pow(x, degree); }
+
+    monomial
+    integral() const
+    { return monomial(degree + 1, constant / (degree + 1)); }
+
+    monomial
+    derivative() const
+    {
+      auto deg = std::max(0, degree - 1);
+      return monomial(deg, deg * constant);
+    }
   };
+
+template<typename _Tp>
+  _Tp
+  integrate(const monomial<_Tp>& mon, _Tp a, _Tp b)
+  {
+    auto integ = mon.integral();
+    return integ(b) - integ(a);
+  }
+
 
 #include "testcase.tcc"
 

@@ -13,21 +13,26 @@ CXX_LIB_DIR = $(CXX_INST_DIR)/lib64
 
 OBJ_DIR = obj
 
-BINS = hermite_test \
-       laguerre_test \
-       legendre_test \
-       gegenbauer_test \
-       jacobi_test \
-       chebyshev_t_test \
-       chebyshev_u_test \
-       chebyshev_v_test \
-       chebyshev_w_test \
-       radpoly_test \
-       zernike_test
+BINS = \
+  test \
+  hermite_test \
+  laguerre_test \
+  legendre_test \
+  gegenbauer_test \
+  jacobi_test \
+  chebyshev_t_test \
+  chebyshev_u_test \
+  chebyshev_v_test \
+  chebyshev_w_test \
+  radpoly_test \
+  zernike_test
 
 
 all: $(BINS)
 
+
+test: test.cpp *.h
+	$(CXX17) -o test test.cpp -lquadmath
 
 hermite_test: $(OBJ_DIR)/hermite_test.o
 	$(CXX17) -o hermite_test $(OBJ_DIR)/hermite_test.o -lquadmath

@@ -18,6 +18,7 @@ ext_dir="${test_dir}/ext/special_functions"
 ${makedir} ${util_dir}
 
 ${tool} specfun_testcase.h              ${util_dir}
+${tool} specfun_stats.h                 ${util_dir}
 
 
 ${makedir} ${gcc_dir}/01_assoc_laguerre
@@ -143,6 +144,11 @@ ${makedir} ${ext_dir}/theta_2
 ${makedir} ${ext_dir}/theta_3
 ${makedir} ${ext_dir}/theta_4
 ${makedir} ${ext_dir}/zernike
+
+
+${tool} check/deathmatch_comp_ellint.cc   ${ext_dir}/deathmatch_comp_ellint.cc
+${tool} check/deathmatch_conf_hyperg.cc   ${ext_dir}/deathmatch_conf_hyperg.cc
+${tool} check/deathmatch_hyperg.cc        ${ext_dir}/deathmatch_hyperg.cc
 
 ${tool} check/check_airy_ai.cc            ${ext_dir}/airy_ai/check_value.cc
 ${tool} check/check_airy_bi.cc            ${ext_dir}/airy_bi/check_value.cc

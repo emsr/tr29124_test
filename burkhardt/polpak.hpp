@@ -1,15 +1,23 @@
 void agm_values ( int &n_data, double &a, double &b, double &fx );
+[[gnu::visibility("default")]]
 double agud ( double gamma );
 int align_enum ( int m, int n );
+[[gnu::visibility("default")]]
 void bell ( int n, int b[] );
 void bell_values ( int &n_data, int &n, int &c );
 double benford ( int ival );
+[[gnu::visibility("default")]]
 void bernoulli_number ( int n, double b[] );
+[[gnu::visibility("default")]]
 void bernoulli_number2 ( int n, double b[] );
+[[gnu::visibility("default")]]
 double bernoulli_number3 ( int n );
+[[gnu::visibility("default")]]
 double bernoulli_poly ( int n, double x );
+[[gnu::visibility("default")]]
 double bernoulli_poly2 ( int n, double x );
 void bernoulli_number_values ( int &n_data, int &n, double &c );
+[[gnu::visibility("default")]]
 void bernstein_poly ( int n, double x, double bern[] );
 void bernstein_poly_values ( int &n_data, int &n, int &k, double &x, double &b );
 void beta_values ( int *n_data, double *x, double *y, double *fxy );
@@ -41,9 +49,12 @@ double cos_power_int ( double a, double b, int n );
 void cos_power_int_values ( int &n_data, double &a, double &b, int &n,
   double &fx );
 void erf_values ( int &n_data, double &x, double &fx );
+[[gnu::visibility("default")]]
 void euler_number ( int n, int e[] );
+[[gnu::visibility("default")]]
 double euler_number2 ( int n );
 void euler_number_values ( int *n_data, int *n, int *c );
+[[gnu::visibility("default")]]
 double euler_poly ( int n, double x );
 void eulerian ( int n, int e[] );
 int f_hofstadter ( int n );
@@ -53,10 +64,14 @@ void fibonacci_recursive ( int n, int f[] );
 int g_hofstadter ( int n );
 void gamma_log_values ( int &n_data, double &x, double &fx );
 void gamma_values ( int &n_data, double &x, double &fx );
+[[gnu::visibility("default")]]
 void gegenbauer_poly ( int n, double alpha, double x, double cx[] );
 void gegenbauer_poly_values ( int *n_data, int *n, double *a, double *x, double *fx );
+[[gnu::visibility("default")]]
 void gen_hermite_poly ( int n, double x, double mu, double p[] );
+[[gnu::visibility("default")]]
 void gen_laguerre_poly ( int n, double alpha, double x, double cx[] );
+[[gnu::visibility("default")]]
 double gud ( double x );
 void gud_values ( int *n_data, double *x, double *fx );
 int h_hofstadter ( int n );
@@ -87,30 +102,40 @@ int i4_uniform_ab ( int ilo, int ihi, int &seed );
 void i4mat_print ( int m, int n, int a[], std::string title );
 void i4mat_print_some ( int m, int n, int a[], int ilo, int jlo, int ihi,
   int jhi, std::string title );
+[[gnu::visibility("default")]]
 double *jacobi_poly ( int n, double alpha, double beta, double x );
 void jacobi_poly_values ( int &n_data, int &n, double &a, double &b, double &x,
   double &fx );
 int jacobi_symbol ( int q, int p );
 void krawtchouk ( int n, double p, double x, int m, double v[] );
+[[gnu::visibility("default")]]
+[[gnu::visibility("default")]]
 void laguerre_associated ( int n, int m, double x, double cx[] );
+[[gnu::visibility("default")]]
 void laguerre_poly ( int n, double x, double cx[] );
 void laguerre_poly_coef ( int n, double c[] );
 void laguerre_polynomial_values ( int *n_data, int *n, double *x, double *fx );
+[[gnu::visibility("default")]]
 void legendre_associated ( int n, int m, double x, double cx[] );
+[[gnu::visibility("default")]]
 void legendre_associated_normalized ( int n, int m, double x, double cx[] );
+[[gnu::visibility("default")]]
 void legendre_associated_normalized_sphere_values ( int &n_data, int &n, int &m, 
   double &x, double &fx );
 void legendre_associated_values ( int *n_data, int *n, int *m, double *x, 
   double *fx );
+[[gnu::visibility("default")]]
 void legendre_function_q ( int n, double x, double cx[] );
 void legendre_function_q_values ( int *n_data, int *n, double *x, double *fx );
 void legendre_poly ( int n, double x, double cx[], double cpx[] );
 void legendre_poly_coef ( int n, double c[] );
 void legendre_poly_values ( int *n_data, int *n, double *x, double *fx );
 int legendre_symbol ( int q, int p );
+[[gnu::visibility("default")]]
 double lerch ( double z, int s, double a );
 void lerch_values ( int *n_data, double *z, int *s, double *a, double *fx );
 void lock ( int n, int a[] );
+[[gnu::visibility("default")]]
 void meixner ( int n, double beta, double c, double x, double v[] );
 int mertens ( int n );
 void mertens_values ( int *n_data, int *n, int *c );
@@ -123,6 +148,7 @@ int omega ( int n );
 void omega_values ( int *n_data, int *n, int *c );
 void partition_distinct_count_values ( int *n_data, int *n, int *c );
 int pentagon_num ( int n );
+[[gnu::visibility("default")]]
 int phi ( int n );
 void phi_values ( int *n_data, int *n, int *c );
 int plane_partition_num ( int n );
@@ -132,14 +158,22 @@ int prime ( int n );
 void psi_values ( int *n_data, double *x, double *fx );
 int pyramid_num ( int n );
 int pyramid_square_num ( int n );
+[[gnu::visibility("default")]]
 double r8_agm ( double a, double b );
+[[gnu::visibility("default")]]
 double r8_beta ( double x, double y );
+[[gnu::visibility("default")]]
 double r8_choose ( int n, int k );
 double r8_epsilon ( );
+[[gnu::visibility("default")]]
 double r8_erf ( double x );
+[[gnu::visibility("default")]]
 double r8_erf_inverse ( double y );
+[[gnu::visibility("default")]]
 double r8_euler_constant ( );
+[[gnu::visibility("default")]]
 double r8_factorial ( int n );
+[[gnu::visibility("default")]]
 double r8_factorial_log ( int n );
 void r8_factorial_log_values ( int *n_data, int *n, double *fn );
 void r8_factorial_values ( int *n_data, int *n, double *fn );
@@ -151,6 +185,7 @@ double r8_min ( double x, double y );
 double r8_mop ( int i );
 int r8_nint ( double x );
 double r8_pi ( );
+[[gnu::visibility("default")]]
 double r8_psi ( double xx );
 double r8_uniform_01 ( int *seed );
 int r8poly_degree ( int na, double a[] );
@@ -167,11 +202,14 @@ double sin_power_int ( double a, double b, int n );
 void sin_power_int_values ( int *n_data, double *a, double *b, int *n, 
   double *fx );
 int slice ( int dim_num, int slice_num );
+[[gnu::visibility("default")]]
 void spherical_harmonic ( int l, int m, double theta, double phi, 
   double c[], double s[] );
 void spherical_harmonic_values ( int *n_data, int *l, int *m, double *theta,
   double *phi, double *yr, double *yi ) ;
+[[gnu::visibility("default")]]
 int *stirling1 ( int n, int m );
+[[gnu::visibility("default")]]
 int *stirling2 ( int n, int m );
 int tau ( int n );
 void tau_values ( int *n_data, int *n, int *c );
@@ -183,7 +221,9 @@ int trinomial ( int i, int j, int k );
 int v_hofstadter ( int n );
 void vibonacci ( int n, int &seed, int v[] );
 void zeckendorf ( int n, int m_max, int *m, int i_list[], int f_list[] );
+[[gnu::visibility("default")]]
 double zernike_poly ( int m, int n, double rho );
 double *zernike_poly_coef ( int m, int n );
+[[gnu::visibility("default")]]
 double zeta ( double p );
 void zeta_values ( int *n_data, int *n, double *zeta );

@@ -53,41 +53,41 @@ namespace __gnu_test
 
   // Integrate potentially singular function from a to b using recursive
   // Gauss-Kronrod algorithm
-  template<typename _FType, typename _VecTp>
+  template<typename _FuncTp, typename _VecTp>
     std::pair<_VecTp, _VecTp>
-    qags_integrate(const _FType& func,
+    qags_integrate(const _FuncTp& func,
 		   const _VecTp a, const _VecTp b,
 		   const _VecTp epsabs,
 		   const _VecTp epsrel,
 		   const std::size_t limit);
 
   // Integrate function from -infinity to +infinity
-  template<typename _FType, typename _VecTp>
+  template<typename _FuncTp, typename _VecTp>
     std::pair<_VecTp, _VecTp>
-    qagi_integrate(const _FType& func,
+    qagi_integrate(const _FuncTp& func,
 		   const _VecTp epsabs,
 		   const _VecTp epsrel,
 		   const std::size_t limit);
 
   // Integrate function from -infinity to b
-  template<typename _FType, typename _VecTp>
+  template<typename _FuncTp, typename _VecTp>
     std::pair<_VecTp, _VecTp>
-    qagil_integrate(const _FType& func, const _VecTp b,
+    qagil_integrate(const _FuncTp& func, const _VecTp b,
 		    const _VecTp epsabs,
 		    const _VecTp epsrel,
 		    const std::size_t limit);
 
   // Integrate function from a to +infinity
-  template<typename _FType, typename _VecTp>
+  template<typename _FuncTp, typename _VecTp>
     std::pair<_VecTp, _VecTp>
-    qagiu_integrate(const _FType& func, const _VecTp a,
+    qagiu_integrate(const _FuncTp& func, const _VecTp a,
 		    const _VecTp epsabs,
 		    const _VecTp epsrel,
 		    const std::size_t limit);
 
-  template<typename _FType, typename _VecTp>
+  template<typename _FuncTp, typename _VecTp>
     std::pair<_VecTp, _VecTp>
-    qags_integrate(const _FType& __func,
+    qags_integrate(const _FuncTp& __func,
 		   const _VecTp __a, const _VecTp __b,
 		   _VecTp __epsabs,
 		   _VecTp __epsrel,
@@ -425,62 +425,62 @@ namespace __gnu_test
       }
   }
 
-  template<typename _FType, typename _VecTp>
-    _VecTp i_transform(const _FType& __func, _VecTp __t)
+  template<typename _FuncTp, typename _VecTp>
+    _VecTp i_transform(const _FuncTp& __func, _VecTp __t)
     {
       _VecTp __x = (1 - __t) / __t;
       _VecTp __y = __func(__x) + __func(-__x);
       return (__y / __t) / __t;
     }
 
-  template<typename _FType, typename _VecTp>
+  template<typename _FuncTp, typename _VecTp>
     std::pair<_VecTp, _VecTp>
-    qagi_integrate(const _FType& __func,
+    qagi_integrate(const _FuncTp& __func,
 		   _VecTp __epsabs, _VecTp __epsrel,
 		   const std::size_t __limit)
     {
       return qags_integrate(
-	  std::bind(i_transform<_FType, _VecTp>, __func, std::placeholders::_1),
+	  std::bind(i_transform<_FuncTp, _VecTp>, __func, std::placeholders::_1),
 	      _VecTp{0}, _VecTp{1}, __epsabs, __epsrel, __limit);
     }
 
-  template<typename _FType, typename _VecTp>
+  template<typename _FuncTp, typename _VecTp>
     _VecTp
-    il_transform(const _FType& __func, _VecTp __b, _VecTp __t)
+    il_transform(const _FuncTp& __func, _VecTp __b, _VecTp __t)
     {
       _VecTp __x = __b - (1 - __t) / __t;
       _VecTp __y = __func(__x);
       return (__y / __t) / __t;
     }
 
-  template<typename _FType, typename _VecTp>
+  template<typename _FuncTp, typename _VecTp>
     std::pair<_VecTp, _VecTp>
-    qagil_integrate(const _FType& __func, _VecTp __b,
+    qagil_integrate(const _FuncTp& __func, _VecTp __b,
 		    _VecTp __epsabs, _VecTp __epsrel,
 		    const std::size_t __limit)
     {
       return qags_integrate(
-	std::bind(il_transform<_FType, _VecTp>, __func, __b, std::placeholders::_1),
+	std::bind(il_transform<_FuncTp, _VecTp>, __func, __b, std::placeholders::_1),
 	    _VecTp{0}, _VecTp{1}, __epsabs, __epsrel, __limit);
     }
 
-  template<typename _FType, typename _VecTp>
+  template<typename _FuncTp, typename _VecTp>
     _VecTp
-    iu_transform(const _FType& __func, _VecTp __a, _VecTp __t)
+    iu_transform(const _FuncTp& __func, _VecTp __a, _VecTp __t)
     {
       _VecTp __x = __a + (1 - __t) / __t;
       _VecTp __y = __func(__x);
       return (__y / __t) / __t;
     }
 
-  template<typename _FType, typename _VecTp>
+  template<typename _FuncTp, typename _VecTp>
     std::pair<_VecTp, _VecTp>
-    qagiu_integrate(const _FType& __func, _VecTp __a,
+    qagiu_integrate(const _FuncTp& __func, _VecTp __a,
 		    _VecTp __epsabs, _VecTp __epsrel,
 		    const std::size_t __limit)
     {
       return qags_integrate(
-	std::bind(iu_transform<_FType, _VecTp>, __func, __a, std::placeholders::_1),
+	std::bind(iu_transform<_FuncTp, _VecTp>, __func, __a, std::placeholders::_1),
 	    _VecTp{0}, _VecTp{1}, __epsabs, __epsrel, __limit);
     }
 } // namespace
