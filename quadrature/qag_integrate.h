@@ -215,6 +215,18 @@ namespace __gnu_test
 			    " in qag_integrate()");
     }
 
+  template<typename _VecTp, typename _FuncTp>
+    std::pair<_VecTp, _VecTp>
+    qag_integrate(const _FuncTp& __func, _VecTp __a, _VecTp __b,
+		  _VecTp __epsabs, _VecTp __epsrel, const size_t __max_iter,
+		  const qk_intrule __qkintrule)
+    {
+      integration_workspace<_VecTp> __workspace(__max_iter);
+      return qag_integrate(__workspace, __func, __a, __b,
+			   __epsabs, __epsrel, __max_iter,
+			   __qkintrule);
+    }
+
 } // namespace
 
 #endif
