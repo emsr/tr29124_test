@@ -41,7 +41,7 @@ namespace __gnu_test
     {
     private:
 
-      std::size_t _M_limit;
+      std::size_t _M_capacity;
       std::size_t _M_size;
       std::size_t _M_nrmax;
       std::size_t _M_ii;
@@ -49,22 +49,20 @@ namespace __gnu_test
       std::vector<_VecTp> _M_lower_lim, _M_upper_lim, _M_result, _M_abs_error;
       std::vector<std::size_t> _M_order, _M_level;
 
-      void qpsrt();
-
     public:
 
-      integration_workspace(std::size_t __lim)
-      : _M_limit(__lim),
+      integration_workspace(std::size_t __cap)
+      : _M_capacity(__cap),
 	_M_size(0),
 	_M_nrmax(0),
 	_M_ii(0),
 	_M_maximum_level(0),
-	_M_lower_lim(__lim),
-	_M_upper_lim(__lim),
-	_M_result(__lim),
-	_M_abs_error(__lim),
-	_M_order(__lim),
-	_M_level(__lim)
+	_M_lower_lim(__cap),
+	_M_upper_lim(__cap),
+	_M_result(__cap),
+	_M_abs_error(__cap),
+	_M_order(__cap),
+	_M_level(__cap)
       { }
 
       void
@@ -78,6 +76,10 @@ namespace __gnu_test
 	_M_level[0] = 0;
 	_M_size = 1;
       }
+
+      void sort_error();
+
+      void append(_VecTp __a, _VecTp __b, _VecTp __area, _VecTp __error);
 
       void update(_VecTp __a1, _VecTp __b1, _VecTp __area1, _VecTp __error1,
 		  _VecTp __a2, _VecTp __b2, _VecTp __area2, _VecTp __error2);
@@ -95,29 +97,41 @@ namespace __gnu_test
       size() const
       { return _M_size; }
 
-      _VecTp
-      lower_lim(size_t ii) const
-      { return _M_lower_lim[ii]; }
+      size_t
+      capacity() const
+      { return _M_capacity; }
 
       _VecTp
-      upper_lim(size_t ii) const
-      { return _M_upper_lim[ii]; }
+      lower_lim(size_t __ii) const
+      { return _M_lower_lim[__ii]; }
 
       _VecTp
-      result(size_t ii) const
-      { return _M_result[ii]; }
+      upper_lim(size_t __ii) const
+      { return _M_upper_lim[__ii]; }
 
       _VecTp
-      abs_error(size_t ii) const
-      { return _M_abs_error[ii]; }
+      result(size_t __ii) const
+      { return _M_result[__ii]; }
+
+      _VecTp
+      abs_error(size_t __ii) const
+      { return _M_abs_error[__ii]; }
 
       size_t
-      order(size_t ii) const
-      { return _M_order[ii]; }
+      order(size_t __ii) const
+      { return _M_order[__ii]; }
 
       size_t
       level(size_t ii) const
       { return _M_level[ii]; }
+
+      _VecTp
+      set_abs_error(size_t __ii, _VecTp __abserr)
+      { return _M_abs_error[__ii] = __abserr; }
+
+      void
+      set_level(size_t __ii, size_t __lvl)
+      { _M_level[__ii] = __lvl; }
 
       bool
       increase_nrmax()
@@ -128,8 +142,8 @@ namespace __gnu_test
 
 	std::size_t __last = _M_size - 1;
 
-	if (__last > (1 + _M_limit / 2))
-	  __jupbnd = _M_limit + 1 - __last;
+	if (__last > (1 + _M_capacity / 2))
+	  __jupbnd = _M_capacity + 1 - __last;
 	else
 	  __jupbnd = __last;
 
@@ -213,7 +227,7 @@ namespace __gnu_test
 
   template<typename _VecTp>
     void
-    integration_workspace<_VecTp>::qpsrt()
+    integration_workspace<_VecTp>::sort_error()
     {
       const std::size_t __last = _M_size - 1;
 
@@ -250,10 +264,10 @@ namespace __gnu_test
       // descending order. This number depends on the number of
       // subdivisions still allowed.
 
-      if(__last < (_M_limit/2 + 2))
+      if(__last < (_M_capacity/2 + 2))
 	__top = __last;
       else
-	__top = _M_limit - __last + 1;
+	__top = _M_capacity - __last + 1;
 
       // Insert errmax by traversing the list top-down, starting
       // comparison from the element elist(order(i_nrmax+1)).
@@ -292,51 +306,77 @@ namespace __gnu_test
 
   template<typename _VecTp>
     void
+    integration_workspace<_VecTp>::append(_VecTp __a, _VecTp __b,
+					  _VecTp __area, _VecTp __error)
+    {
+      const std::size_t __i_max = this->_M_ii;
+      const std::size_t __i_new = this->_M_size;
+
+      const std::size_t __new_level = this->_M_level[__i_max] + 1;
+
+      // append the newly-created interval to the list
+
+      this->_M_lower_lim[__i_new] = __a;
+      this->_M_upper_lim[__i_new] = __b;
+      this->_M_result[__i_new] = __area;
+      this->_M_abs_error[__i_new] = __error;
+      this->_M_level[__i_new] = __new_level;
+
+      ++this->_M_size;
+
+      if (__new_level > this->_M_maximum_level)
+	this->_M_maximum_level = __new_level;
+
+      this->sort_error();
+    }
+
+  template<typename _VecTp>
+    void
     integration_workspace<_VecTp>::update(_VecTp __a1, _VecTp __b1,
 					  _VecTp __area1, _VecTp __error1,
 					  _VecTp __a2, _VecTp __b2,
 					  _VecTp __area2, _VecTp __error2)
     {
-      const std::size_t __i_max = _M_ii;
-      const std::size_t __i_new = _M_size;
+      const std::size_t __i_max = this->_M_ii;
+      const std::size_t __i_new = this->_M_size;
 
-      const std::size_t __new_level = _M_level[__i_max] + 1;
+      const std::size_t __new_level = this->_M_level[__i_max] + 1;
 
       // append the newly-created intervals to the list
 
       if (__error2 > __error1)
 	{
-	  _M_lower_lim[__i_max] = __a2;	// blist[maxerr] is already == b2
-	  _M_result[__i_max] = __area2;
-	  _M_abs_error[__i_max] = __error2;
-	  _M_level[__i_max] = __new_level;
+	  this->_M_lower_lim[__i_max] = __a2;	// blist[maxerr] is already == b2
+	  this->_M_result[__i_max] = __area2;
+	  this->_M_abs_error[__i_max] = __error2;
+	  this->_M_level[__i_max] = __new_level;
 
-	  _M_lower_lim[__i_new] = __a1;
-	  _M_upper_lim[__i_new] = __b1;
-	  _M_result[__i_new] = __area1;
-	  _M_abs_error[__i_new] = __error1;
-	  _M_level[__i_new] = __new_level;
+	  this->_M_lower_lim[__i_new] = __a1;
+	  this->_M_upper_lim[__i_new] = __b1;
+	  this->_M_result[__i_new] = __area1;
+	  this->_M_abs_error[__i_new] = __error1;
+	  this->_M_level[__i_new] = __new_level;
 	}
       else
 	{
-	  _M_upper_lim[__i_max] = __b1;	// alist[maxerr] is already == a1
-	  _M_result[__i_max] = __area1;
-	  _M_abs_error[__i_max] = __error1;
-	  _M_level[__i_max] = __new_level;
+	  this->_M_upper_lim[__i_max] = __b1;	// alist[maxerr] is already == a1
+	  this->_M_result[__i_max] = __area1;
+	  this->_M_abs_error[__i_max] = __error1;
+	  this->_M_level[__i_max] = __new_level;
 
-	  _M_lower_lim[__i_new] = __a2;
-	  _M_upper_lim[__i_new] = __b2;
-	  _M_result[__i_new] = __area2;
-	  _M_abs_error[__i_new] = __error2;
-	  _M_level[__i_new] = __new_level;
+	  this->_M_lower_lim[__i_new] = __a2;
+	  this->_M_upper_lim[__i_new] = __b2;
+	  this->_M_result[__i_new] = __area2;
+	  this->_M_abs_error[__i_new] = __error2;
+	  this->_M_level[__i_new] = __new_level;
 	}
 
-      ++_M_size;
+      ++this->_M_size;
 
-      if (__new_level > _M_maximum_level)
-	_M_maximum_level = __new_level;
+      if (__new_level > this->_M_maximum_level)
+	this->_M_maximum_level = __new_level;
 
-      qpsrt();
+      this->sort_error();
     }
 
 } // namespace __gnu_test

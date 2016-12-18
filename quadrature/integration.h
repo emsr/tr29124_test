@@ -27,10 +27,20 @@
 
 #include "qag_integrate.h"
 #include "qags_integrate.h"
+#include "qng_integrate.h"
+#include "qagp_integrate.h"
+
 #include <limits>
 
 namespace __gnu_test
 {
+
+/*
+  template<typename _FuncTp, typename _VecTp>
+    std::tuple<_VecTp, _VecTp, _VecTp, _VecTp>
+    integration_rule(_FuncTp __func, _VecTp __a, _VecTp __b,
+		     const qk_intrule __qkintrule);
+*/
 
   // Integrates a smooth function from a to b
   // absolute_error_lim and relative_error_lim are the absolute
