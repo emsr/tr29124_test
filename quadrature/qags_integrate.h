@@ -40,14 +40,6 @@
 namespace __gnu_test
 {
 
-  template<typename _VecTp>
-    inline bool
-    __test_positivity(_VecTp __result, _VecTp __resabs)
-    {
-      return(std::abs(__result) >=
-		(1 - 50 * std::numeric_limits<_VecTp>::epsilon()) * __resabs);
-    }
-
   //Throws appropriate error if errcode nonzero
   void __check_error(int errcode);
 
@@ -411,7 +403,7 @@ namespace __gnu_test
 	  else if (__area == 0.0)
 	    {
 	      __check_error(__error_type);
-	      std::__throw_runtime_error("Unknown error in qags_integrate()");
+	      std::__throw_runtime_error("qags_integrate: Unknown error");
 	    }
 	}
 
@@ -423,7 +415,7 @@ namespace __gnu_test
 	if (!__positive_integrand && __max_area < 0.01 * __resabs0)
 	{
 	  __check_error(__error_type);
-	  std::__throw_runtime_error("Unknown error in qags_integrate()");
+	  std::__throw_runtime_error("qags_integrate: Unknown error");
 	}
       }
 
@@ -435,7 +427,7 @@ namespace __gnu_test
       }
 
       __check_error(__error_type);
-      std::__throw_runtime_error("Unknown error in qags_integrate()");
+      std::__throw_runtime_error("qags_integrate: Unknown error");
     }
 
   // Throws appropriate error if errcode nonzero
@@ -448,23 +440,27 @@ namespace __gnu_test
       {
       case 0: break;
       case 1:
-	std::__throw_runtime_error("number of iterations was insufficient"
-			    " in qags_integrate()");
+	std::__throw_runtime_error("qags_integrate: "
+				   "Number of iterations was insufficient");
       case 2:
-	std::__throw_runtime_error("cannot reach tolerance because of roundoff"
-			    " error in qags_integrate()");
+	std::__throw_runtime_error("qags_integrate: "
+				   "Cannot reach tolerance "
+				   "because of roundoff");
       case 3:
-	std::__throw_runtime_error("bad integrand behavior found in the"
-			    " integration interval in qags_integrate()");
+	std::__throw_runtime_error("qags_integrate: "
+				   "Bad integrand behavior found "
+				   "in the integration interval");
       case 4:
-	std::__throw_runtime_error("roundoff error detected in the extrapolation"
-			    " table in qags_integrate()");
+	std::__throw_runtime_error("qags_integrate: "
+				   "Roundoff error detected "
+				   "in the extrapolation");
       case 5:
-	std::__throw_runtime_error("integral is divergent, or slowly convergent"
-			    " in qags_integrate()");
+	std::__throw_runtime_error("qags_integrate: "
+				   "Integral is divergent, "
+				   "or slowly convergent");
       default:
-	std::__throw_runtime_error("could not integrate function in"
-			    " qags_integrate()");
+	std::__throw_runtime_error("qags_integrate: "
+				   "Could not integrate function");
       }
   }
 
