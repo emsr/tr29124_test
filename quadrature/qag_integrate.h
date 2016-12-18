@@ -100,9 +100,9 @@ namespace __gnu_test
 	  __result = __result0;
 	  __abserr = __abserr0;
 
-	  std::__throw_runtime_error("Cannot reach tolerance because"
-			      " of roundoff error on first attempt"
-			      " in qag_integrate()");
+	  std::__throw_runtime_error("qag_integrate: "
+				     "Cannot reach tolerance because"
+				     " of roundoff error on first attempt");
 	}
       else if ((__abserr0 <= __tolerance && __abserr0 != __resasc0)
 		|| __abserr0 == 0.0)
@@ -117,7 +117,8 @@ namespace __gnu_test
 	  __result = __result0;
 	  __abserr = __abserr0;
 
-	  std::__throw_runtime_error("a maximum of one iteration"
+	  std::__throw_runtime_error("qag_integrate: "
+				     "a maximum of one iteration"
 				     " was insufficient");
 	}
 
@@ -202,17 +203,19 @@ namespace __gnu_test
       if (__errsum <= __tolerance)
 	return std::make_pair(__result, __abserr);
       else if (__error_type == 2)
-	std::__throw_runtime_error("roundoff error prevents tolerance"
-			    " from being achieved in qag_integrate()");
+	std::__throw_runtime_error("qag_integrate: "
+				   "roundoff error prevents tolerance "
+				   "from being achieved");
       else if (__error_type == 3)
-	std::__throw_runtime_error("bad integrand behavior found in integrand"
-			    " inteveral in qag_integrate()");
+	std::__throw_runtime_error("qag_integrate: "
+				   "bad integrand behavior found "
+				   "in integrand inteveral");
       else if (__iteration == __max_iter)
-	std::__throw_runtime_error("maximum number of iterations reached"
-			    " in qag_integrate()");
+	std::__throw_runtime_error("qag_integrate: "
+				   "maximum number of iterations reached");
       else
-	std::__throw_runtime_error("could not integrate function"
-			    " in qag_integrate()");
+	std::__throw_runtime_error("qag_integrate: "
+				   "could not integrate function");
     }
 
   template<typename _VecTp, typename _FuncTp>
