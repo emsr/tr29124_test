@@ -57,7 +57,8 @@ template<typename Tp>
       {
 	auto z = Tp{0.1L} * i;
 	auto hyp = std::pow(z / Tp{2}, nu)
-		 * __gnu_cxx::conf_hyperg_lim(nu + Tp{1}, -z * z / Tp{4});
+		 * __gnu_cxx::conf_hyperg_lim(nu + Tp{1}, -z * z / Tp{4})
+		 / std::tgamma(nu + Tp{1});
 	auto Jnu = std::cyl_bessel_j(nu, z);
 	stats << std::make_pair(hyp, Jnu);
       }
