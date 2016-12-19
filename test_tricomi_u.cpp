@@ -64,7 +64,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_tricomi_u test_trico
       auto _Usum = _Tp{1};
       for (auto __k = 1u; __k < _S_max_iter; ++__k)
 	{
-	  __term *= -(__a + __k) * (__b + __k) / __k / __z;
+	  __term *= -(__a + _Tp(__k - 1)) * (__b + _Tp(__k - 1))
+		  / _Tp(__k) / __z;
 	  _Usum += __term;
 	  if (std::abs(__term) < _S_eps * std::abs(_Usum))
 	    break;
@@ -88,7 +89,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_tricomi_u test_trico
       for (auto __k = 1; __k <= __m - 2; ++__k)
 	{
 	  __term1 *= (__a + _Tp(-__m + __k)) * __z
-		   / _Tp(1 - __m + __k) / __k;
+		   / _Tp(1 - __m + __k) / _Tp(__k);
 	  _U1 += __term1;
 //std::cout << "_U1 = " << _U1 << '\n';
 	}
@@ -147,7 +148,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_tricomi_u test_trico
       auto _Usum = _Tp{1};
       for (auto __k = 1u; __k < -__n; ++__k)
 	{
-	  __term *= (__n + __k) / (__m + __k) / __k * __z;
+	  __term *= _Tp(__n + __k - 1) / _Tp(__m + __k - 1) / _Tp(__k) * __z;
 	  _Usum += __term;
 	  if (std::abs(__term) < _S_eps * std::abs(_Usum))
 	    break;
