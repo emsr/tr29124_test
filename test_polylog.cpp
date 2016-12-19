@@ -16,10 +16,13 @@ template<typename Tp>
   void
   TestPolyLog(Tp proto = Tp{})
   {
-    const auto _S_pi = __gnu_cxx::__const_pi<Tp>(proto);
-    const auto _S_2pi = __gnu_cxx::__const_2_pi<Tp>(proto);
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    const auto _S_pi = __gnu_cxx::__const_pi(proto);
+    const auto _S_2pi = __gnu_cxx::__const_2_pi(proto);
+
+    std::cout.precision(__gnu_cxx::__digits10(proto) - 1);
     std::cout << std::scientific;
+
+    std::cout << '\n';
 
     //std::size_t n = 5000;
 
@@ -36,6 +39,7 @@ template<typename Tp>
     //     }
 
     // Something that didn't work in the original implementation
+    std::cout << std::riemann_zeta(std::complex<Tp>{5.1, 0.5}) << '\n';
     std::cout << __gnu_cxx::hurwitz_zeta(Tp{5.1}, Tp{0.5}) << '\n';
     std::cout << __gnu_cxx::hurwitz_zeta(Tp{5.1}, std::complex<Tp>{0.5}) << '\n';
     std::cout << std::__detail::__hurwitz_zeta_polylog(Tp{5.1}, std::complex<Tp>{0.5}) << '\n';
@@ -130,9 +134,9 @@ template<typename Tp>
 int
 main()
 {
-  TestPolyLog<float>();
-
   TestPolyLog<double>();
+
+  TestPolyLog<float>();
 
   TestPolyLog<long double>();
 
