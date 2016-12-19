@@ -147,7 +147,8 @@ void agm_values ( int &n_data, double &a, double &b, double &fx )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double agud ( double g )
 
 //****************************************************************************80
@@ -574,7 +575,8 @@ double benford ( int ival )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void bernoulli_number ( int n, double b[] )
 
 //****************************************************************************80
@@ -720,7 +722,8 @@ void bernoulli_number ( int n, double b[] )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void bernoulli_number2 ( int n, double b[] )
 
 //****************************************************************************80
@@ -902,7 +905,8 @@ void bernoulli_number2 ( int n, double b[] )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double bernoulli_number3 ( int n )
 
 //****************************************************************************80
@@ -1203,7 +1207,8 @@ void bernoulli_number_values ( int &n_data, int &n, double &c )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double bernoulli_poly ( int n, double x )
 
 //****************************************************************************80
@@ -1296,7 +1301,8 @@ double bernoulli_poly ( int n, double x )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double bernoulli_poly2 ( int n, double x )
 
 //****************************************************************************80
@@ -1377,7 +1383,8 @@ double bernoulli_poly2 ( int n, double x )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void bernstein_poly ( int n, double x, double bern[] )
 
 //****************************************************************************80
@@ -1835,7 +1842,8 @@ void bpab ( int n, double x, double a, double b, double bern[] )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double *cardan_poly ( int n, double x, double s )
 
 //****************************************************************************80
@@ -2050,7 +2058,8 @@ void cardan_poly_coef ( int n, double s, double c[] )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double *cardinal_cos ( int j, int m, int n, double t[] )
 
 //****************************************************************************80
@@ -2140,7 +2149,8 @@ double *cardinal_cos ( int j, int m, int n, double t[] )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double *cardinal_sin ( int j, int m, int n, double t[] )
 
 //****************************************************************************80
@@ -2502,7 +2512,8 @@ void catalan_values ( int *n_data, int *n, int *c )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void charlier ( int n, double a, double x, double value[] )
 
 //****************************************************************************80
@@ -2602,7 +2613,8 @@ void charlier ( int n, double a, double x, double value[] )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double *cheby_t_poly ( int m, int n, double x[] )
 
 //****************************************************************************80
@@ -3218,7 +3230,8 @@ double *cheby_t_poly_zero ( int n )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double *cheby_u_poly ( int m, int n, double x[] )
 
 //****************************************************************************80
@@ -3602,7 +3615,8 @@ double *cheby_u_poly_zero ( int n )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void chebyshev_discrete ( int n, int m, double x, double v[] )
 
 //****************************************************************************80
@@ -4613,7 +4627,8 @@ void erf_values ( int &n_data, double &x, double &fx )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void euler_number ( int n, int e[] )
 
 //****************************************************************************80
@@ -4726,7 +4741,8 @@ void euler_number ( int n, int e[] )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double euler_number2 ( int n )
 
 //****************************************************************************80
@@ -4932,7 +4948,8 @@ void euler_number_values ( int *n_data, int *n, int *c )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double euler_poly ( int n, double x )
 
 //****************************************************************************80
@@ -4996,7 +5013,8 @@ double euler_poly ( int n, double x )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void eulerian ( int n, int e[] )
 
 //****************************************************************************80
@@ -5733,7 +5751,8 @@ void gamma_values ( int &n_data, double &x, double &fx )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void gegenbauer_poly ( int n, double alpha, double x, double cx[] )
 
 //****************************************************************************80
@@ -5986,7 +6005,8 @@ void gegenbauer_poly_values ( int *n_data, int *n, double *a, double *x,
 }
 //******************************************************************************
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void gen_hermite_poly ( int n, double x, double mu, double p[] )
 
 //******************************************************************************
@@ -6076,7 +6096,8 @@ void gen_hermite_poly ( int n, double x, double mu, double p[] )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void gen_laguerre_poly ( int n, double alpha, double x, double cx[] )
 
 //****************************************************************************80
@@ -6183,7 +6204,8 @@ void gen_laguerre_poly ( int n, double alpha, double x, double cx[] )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double gud ( double x )
 
 //****************************************************************************80
@@ -6486,7 +6508,8 @@ int hail ( int n )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void hermite_poly_phys ( int n, double x, double cx[] )
 
 //****************************************************************************80
@@ -6994,7 +7017,8 @@ void hyper_2f1_values ( int *n_data, double *a, double *b, double *c,
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 int i4_choose ( int n, int k )
 
 //****************************************************************************80
@@ -7188,7 +7212,8 @@ void i4_factor ( int n, int maxfactor, int &nfactor, int factor[],
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 int i4_factorial ( int n )
 
 //****************************************************************************80
@@ -7323,7 +7348,8 @@ void i4_factorial_values ( int *n_data, int *n, int *fn )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 int i4_factorial2 ( int n )
 
 //****************************************************************************80
@@ -8254,7 +8280,8 @@ void i4mat_print_some ( int m, int n, int a[], int ilo, int jlo, int ihi,
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double *jacobi_poly ( int n, double alpha, double beta, double x )
 
 //****************************************************************************80
@@ -8691,7 +8718,8 @@ int jacobi_symbol ( int q, int p )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void krawtchouk ( int n, double p, double x, int m, double v[] )
 
 //****************************************************************************80
@@ -8799,7 +8827,8 @@ void krawtchouk ( int n, double p, double x, int m, double v[] )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void laguerre_associated ( int n, int m, double x, double cx[] )
 
 //****************************************************************************80
@@ -8945,7 +8974,8 @@ void laguerre_associated ( int n, int m, double x, double cx[] )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void laguerre_poly ( int n, double x, double cx[] )
 
 //****************************************************************************80
@@ -9238,7 +9268,8 @@ void laguerre_polynomial_values ( int *n_data, int *n, double *x, double *fx )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void legendre_associated ( int n, int m, double x, double cx[] )
 
 //****************************************************************************80
@@ -9422,7 +9453,8 @@ void legendre_associated ( int n, int m, double x, double cx[] )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void legendre_associated_normalized ( int n, int m, double x, double cx[] )
 
 //****************************************************************************80
@@ -9817,7 +9849,8 @@ void legendre_associated_values ( int *n_data, int *n, int *m, double *x,
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void legendre_function_q ( int n, double x, double cx[] )
 
 //****************************************************************************80
@@ -10011,7 +10044,8 @@ void legendre_function_q_values ( int *n_data, int *n, double *x, double *fx )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void legendre_poly ( int n, double x, double cx[], double cpx[] )
 
 //****************************************************************************80
@@ -10603,7 +10637,8 @@ int legendre_symbol ( int q, int p )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double lerch ( double z, int s, double a )
 
 //****************************************************************************80
@@ -10956,7 +10991,8 @@ void lock ( int n, int a[] )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void meixner ( int n, double beta, double c, double x, double v[] )
 
 //****************************************************************************80
@@ -12113,7 +12149,8 @@ int pentagon_num ( int n )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 int phi ( int n )
 
 //****************************************************************************80
@@ -12415,7 +12452,8 @@ int plane_partition_num ( int n )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 int poly_bernoulli ( int n, int k )
 
 //****************************************************************************80
@@ -12988,7 +13026,8 @@ int pyramid_square_num ( int n )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double r8_agm ( double a, double b )
 
 //****************************************************************************80
@@ -13113,7 +13152,8 @@ double r8_agm ( double a, double b )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double r8_beta ( double x, double y )
 
 //****************************************************************************80
@@ -13172,7 +13212,8 @@ double r8_beta ( double x, double y )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double r8_erf ( double x )
 
 //****************************************************************************80
@@ -13361,7 +13402,8 @@ double r8_erf ( double x )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double r8_erf_inverse ( double y )
 
 //****************************************************************************80
@@ -13441,7 +13483,8 @@ double r8_euler_constant ( )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double r8_factorial_log ( int n )
 
 //****************************************************************************80
@@ -14480,7 +14523,8 @@ int slice ( int dim_num, int slice_num )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 void spherical_harmonic ( int l, int m, double theta, double phi, 
   double c[], double s[] )
 
@@ -14748,7 +14792,8 @@ void spherical_harmonic_values ( int *n_data, int *l, int *m, double *theta,
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 int *stirling1 ( int n, int m )
 
 //****************************************************************************80
@@ -14867,7 +14912,8 @@ int *stirling1 ( int n, int m )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 int *stirling2 ( int n, int m )
 
 //****************************************************************************80
@@ -15790,7 +15836,8 @@ void zeckendorf ( int n, int m_max, int *m, int i_list[], int f_list[] )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double zernike_poly ( int m, int n, double rho )
 
 //****************************************************************************80
@@ -16063,7 +16110,8 @@ double *zernike_poly_coef ( int m, int n )
 }
 //****************************************************************************80
 
-[[gnu::visibility("default")]]
+
+BURKHARDT_EXPORT
 double zeta ( double p )
 
 //****************************************************************************80
