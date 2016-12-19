@@ -12,6 +12,7 @@
 #include "cephes/ellf/cephes_ellf.h"
 #include "cephes/polyn/cephes_polyn.h"
 #include "cephes/bessel/cephes_bessel.h"
+#include "cephes/c9x-complex/cephes_cmplx.h"
 
 namespace pheces
 {
@@ -299,6 +300,17 @@ double
 sph_neumann(unsigned int /*n*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Complex gamma function.
+std::complex<double>
+tgamma(std::complex<double> a)
+{
+  double _Complex a99;
+  __real__ a99 = std::real(a);
+  __imag__ a99 = std::imag(a);
+  double _Complex r99 = ::cgamma(a99);
+  return std::complex<double>(__real__ r99, __imag__ r99);
 }
 
 /// Non-normalized lower incomplete gamma functions.
@@ -706,14 +718,14 @@ bernoulli(unsigned int /*n*/)
 double
 sin_pi(double /*x*/)
 {
-  std::numeric_limits<double>::quiet_NaN();
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Reperiodized cosine.
 double
 cos_pi(double /*x*/)
 {
-  std::numeric_limits<double>::quiet_NaN();
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Fermi-Dirac integrals
@@ -735,6 +747,24 @@ double
 debye(unsigned int /*n*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Polylogarithms
+double
+polylog(unsigned int n, double x)
+{
+  return ::polylog(n, x);
+}
+
+/// Complex polylogarithms
+std::complex<double>
+polylog(unsigned int n, std::complex<double> x)
+{
+  double _Complex x99;
+  __real__ x99 = std::real(x);
+  __imag__ x99 = std::imag(x);
+  double _Complex r99 = ::cpolylog(n, x99);
+  return std::complex<double>(__real__ r99, __imag__ r99);
 }
 
 } // namespace pheces
