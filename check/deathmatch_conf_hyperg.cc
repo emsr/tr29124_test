@@ -66,6 +66,38 @@ template<typename Tp>
 
 template<typename Tp>
   void
+  test_exp(Tp a, Tp toler = 100 * std::numeric_limits<Tp>::epsilon())
+  {
+    bool test __attribute__((unused)) = true;
+    Stats<Tp> stats(toler);
+    for (auto i = 1; i < 10; ++i)
+      {
+	auto z = Tp{0.1L} * i;
+	auto hyp = __gnu_cxx::conf_hyperg(a, a, z);
+	auto exp = std::exp(z);
+	stats << std::make_pair(hyp, exp);
+      }
+    VERIFY(stats.max_abs_frac < toler);
+  }
+
+template<typename Tp>
+  void
+  test_sinh(Tp toler = 100 * std::numeric_limits<Tp>::epsilon())
+  {
+    bool test __attribute__((unused)) = true;
+    Stats<Tp> stats(toler);
+    for (auto i = 1; i < 10; ++i)
+      {
+	auto z = Tp{0.1L} * i;
+	auto hyp = z * std::exp(-z) * __gnu_cxx::conf_hyperg(Tp{1}, Tp{2}, Tp{2} * z);
+	auto exp = std::sinh(z);
+	stats << std::make_pair(hyp, exp);
+      }
+    VERIFY(stats.max_abs_frac < toler);
+  }
+
+template<typename Tp>
+  void
   test_kummer_xform_m(Tp a, Tp c, Tp toler = 100 * std::numeric_limits<Tp>::epsilon())
   {
     bool test __attribute__((unused)) = true;
@@ -102,6 +134,13 @@ template<typename Tp>
   test(Tp toler = 100 * std::numeric_limits<Tp>::epsilon())
   {
     test_erf<Tp>(toler);
+
+    test_sinh<Tp>(toler);
+
+    test_exp(Tp{1.5L}, toler);
+    test_exp(Tp{2.0L}, toler);
+    test_exp(Tp{3.5L}, toler);
+    test_exp(Tp{5.0L}, toler);
 
     test_kummer_xform_m(Tp{1.5L}, Tp{0.5L}, toler);
     test_kummer_xform_m(Tp{2.0L}, Tp{2.5L}, toler);
