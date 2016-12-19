@@ -40,6 +40,14 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
+   * Return -1 if the integer argument is odd and +1 if it is even.
+   */
+  template<typename _IntTp, typename _Tp = std::make_signed_t<_IntTp>>
+    inline _Tp
+    __parity(_IntTp __k)
+    { return __k & 1 ? _Tp{-1} : _Tp{+1}; }
+
+  /**
    * A function to return the max of the absolute values of two numbers
    * ... so we won't include everything.
    */
@@ -152,6 +160,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       bool __halfodd = (__n & 1 == 1)
 		      && __fp_is_equal(_Tp{2} * __a, _Tp(__n), __mul);
       return __fp_is_integer_t{__halfodd, (__n - 1) / 2};
+    }
+
+  /**
+   * A function to reliably detect if a floating point number is an odd integer.
+   *
+   * @param __a The floating point number
+   * @return @c true if a is an odd integer within mul * epsilon.
+   */
+  template<typename _Tp>
+    inline __fp_is_integer_t
+    __fp_is_odd_integer(_Tp __a, _Tp __mul = _Tp{1})
+    {
+      const auto __integ = __fp_is_integer(__a, __mul);
+      return __fp_is_integer_t{__integ && (__integ() & 1), __integ()};
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
