@@ -450,7 +450,7 @@ $(OBJ_DIR)/gsl_sf_hermite.o: $(GSL_HERMITE_DIR)/gsl_sf_hermite.c
 
 
 libburkhardt.so: $(OBJ_DIR)/wrap_burkhardt.o $(OBJ_DIR)/special_functions.o
-	$(CXX17) -fPIC -shared -o libburkhardt.so $(OBJ_DIR)/wrap_burkhardt.o $(OBJ_DIR)/special_functions.o -lgfortran
+	$(CXX17) -fPIC -shared -o libburkhardt.so $(OBJ_DIR)/wrap_burkhardt.o $(OBJ_DIR)/special_functions.o -lgfortran -lquadmath
 	cp libburkhardt.so libburkhardt.dll
 
 $(OBJ_DIR)/wrap_burkhardt.o: wrap_burkhardt.h wrap_burkhardt.cpp
