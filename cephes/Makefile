@@ -9,3 +9,4 @@ all:
 	(cd polyn && make)
 	(cd qfloat && make)
 	(cd single && make)
+	(cd c9x-complex && make)
