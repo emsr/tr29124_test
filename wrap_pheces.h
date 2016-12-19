@@ -145,6 +145,9 @@ double pgamma_inv(double a, double p);
 /// Inverse parameter normalized lower incomplete gamma functions.
 double pgamma_inva(double x, double p);
 
+/// Complex gamma function.
+std::complex<double> tgamma(std::complex<double> a);
+
 /// Non-normalized (upper) incomplete gamma functions.
 double tgamma(double a, double x);
 
@@ -348,6 +351,12 @@ double bose_einstein(double s, double x);
 
 /// Debye integrals
 double debye(unsigned int n, double x);
+
+/// Polylogarithms
+double polylog(unsigned int n, double x);
+
+/// Complex polylogarithms
+std::complex<double> polylog(unsigned int n, std::complex<double> x);
 
 } // namespace pheces
 
