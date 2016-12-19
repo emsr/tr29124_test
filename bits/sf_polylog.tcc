@@ -576,7 +576,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
       std::complex<_Tp> __res = std::__detail::__riemann_zeta(__s);
       auto __wk = __w;
-      auto __phase = std::polar(_Tp{1}, __s / _Tp{2});
+      auto __phase = __polar_pi(_Tp{1}, __s / _Tp{2});
       auto __cp = std::real(__phase);
       auto __sp = std::imag(__phase);
       // This is \Gamma(1-s)(-w)^{s-1}
