@@ -186,6 +186,28 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_tricomi_u test_trico
 	return __tricomi_u_series(__a, __c, __z);
     }
 
+  /**
+   * 
+   */
+  template<typename _Tp>
+    _Tp
+    __whittaker_m(_Tp __kappa, _Tp __mu, _Tp __z)
+    {
+      return std::exp(-__z / 2) * std::pow(__z, 0.5 + __mu)
+	   * __gnu_cxx::conf_hyperg(0.5 + __mu - __kappa, 1 + 2 * __mu, __z);
+    }
+
+  /**
+   * 
+   */
+  template<typename _Tp>
+    _Tp
+    __whittaker_w(_Tp __kappa, _Tp __mu, _Tp __z)
+    {
+      return std::exp(-__z / 2) * std::pow(__z, 0.5 + __mu)
+	   * __tricomi_u(0.5 + __mu - __kappa, 1 + 2 * __mu, __z);
+    }
+
 //} // namespace __detail
 //} // namespace std
 
