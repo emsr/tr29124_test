@@ -1,8 +1,9 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath
-./test_polylog > test_polylog.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -L. -lpheces
+LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -L. -lpheces
+LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
 */
 
 #include <iostream>
@@ -11,6 +12,29 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog t
 #include <cmath>
 #include <complex>
 #include <bits/float128_io.h>
+
+#include "wrap_pheces.h"
+
+template<typename Tp>
+  void
+  test_polylog_cephes(Tp proto = Tp{})
+  {
+    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout << std::scientific;
+
+    for (auto n : {0, 1, 2, 3, 4, 5})
+      for (int i = 0; i <= 200; ++i)
+	{
+	  auto x = Tp(0.1Q) * i;
+	  auto Ls_ceph = pheces::polylog(n, x);
+	  auto Ls_gnu = __gnu_cxx::polylog(Tp(n), x);
+	  std::cout << ' ' << n
+		    << ' ' << x
+		    << ' ' << Ls_ceph
+		    << ' ' << Ls_gnu
+		    << '\n';
+	}
+  }
 
 template<typename Tp>
   void
@@ -130,6 +154,8 @@ template<typename Tp>
 int
 main()
 {
+  test_polylog_cephes(1.0);
+
   TestPolyLog<float>();
 
   TestPolyLog<double>();
