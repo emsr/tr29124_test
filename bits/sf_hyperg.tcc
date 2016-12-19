@@ -312,21 +312,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __tricomi_u_naive(_Tp __a, _Tp __c, _Tp __x)
     {
       auto __U1 = _Tp{};
-      auto __iac1 = __gnu_cxx::__fp_is_integer(__a - __c + _Tp{1});
-      if (!__iac1 || (__iac1 && __iac1() > 0))
+      auto __b = __a - __c + _Tp{1};
+      auto __ib = __gnu_cxx::__fp_is_integer(__b);
+      if (!__ib || (__ib && __ib() > 0))
 	__U1 = std::tgamma(_Tp{1} - __c)
 	       * __conf_hyperg(__a, __c, __x)
-	       / std::tgamma(__a - __c + _Tp{1});
+	       / std::tgamma(__b);
 
       auto __U2 = _Tp{};
       auto __ia = __gnu_cxx::__fp_is_integer(__a);
       if (!__ia || (__ia && __ia() > 0))
 	__U2 = std::tgamma(__c - _Tp{1})
-	       * __conf_hyperg(__a - __c + _Tp{1}, _Tp{2} - __c, __x)
+	       * std::pow(__x, _Tp{1} - __c)
+	       * __conf_hyperg(__b, _Tp{2} - __c, __x)
 	       / std::tgamma(__a);
 
       return __U1 + __U2;
-	       
     }
 
   /**
