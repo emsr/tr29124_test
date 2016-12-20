@@ -7,6 +7,7 @@ all:
 	(cd ldouble && make)
 	(cd misc && make)
 	(cd polyn && make)
-	(cd qfloat && make)
-	(cd single && make)
 	(cd c9x-complex && make)
+
+#	(cd qfloat && make)
+#	(cd single && make)
