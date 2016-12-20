@@ -291,11 +291,11 @@ PASS:  (315 observed vs 315 expected)
 PASS:  (8 observed vs 8 expected)
 PASS:  (0 observed vs 0 expected)
 Test adaptive integration of an oscillatory function which terminates because of roundoff error, uses the 31-pt rule...
-ERROR: Cannot reach tolerance because of roundoff error on first attempt in qag_integrate()
+ERROR: qag_integrate: Cannot reach tolerance because of roundoff error on first attempt
 Test singularity detection (singularity at x=-0.1 in this example)...
-ERROR: bad integrand behavior found in integrand inteveral in qag_integrate()
+ERROR: qag_integrate: bad integrand behavior found in integrand inteveral
 Test hitting the iteration limit...
-ERROR: maximum number of iterations reached in qag_integrate()
+ERROR: qag_integrate: maximum number of iterations reached
 Test the adaptive integrator with extrapolation...
 PASS:  (0.0771605 observed vs 0.0771605 expected)
 PASS:  (2.21639e-12 observed vs 2.21639e-12 expected)
@@ -389,7 +389,7 @@ PASS:  (357 observed vs 357 expected)
 PASS:  (9 observed vs 9 expected)
 PASS:  (0 observed vs 0 expected)
 Test infinite range integral f455 using a relative error bound...
-ERROR: cannot reach tolerance because of roundoff error in qags_integrate()
+ERROR: qags_integrate: Cannot reach tolerance because of roundoff
 Test infinite range integral f15 using a relative error bound...
 FAIL:  (65536.0000000069122 observed vs 65536.0000000002474 expected)
 FAIL:  (0.00147506021259102837 observed vs 0.000712166711145600928 expected)
@@ -544,6 +544,8 @@ PASS:  (1 observed vs 1 expected)
 PASS:  (2 observed vs 2 expected)
 PASS:  (3 observed vs 3 expected)
 PASS:  (4 observed vs 4 expected)
+Test integral f454 with integrable singular points...
+ERROR: qagp_integrate: Cannot reach tolerance because of roundoff error
 Sanity check monomial test function for fixed Gauss-Legendre rules...
 PASS:  (4 observed vs 4 expected)
 PASS:  (4 observed vs 4 expected)
