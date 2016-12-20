@@ -2142,7 +2142,7 @@ main()
   }
 
 
-  /* Test cauchy integration using a relative error bound
+  /* Test Cauchy integration using a relative error bound */
 
   try
   {
@@ -2188,7 +2188,7 @@ main()
     int order[6] = { 1, 5, 3, 2, 4, 6 };
 
     double alpha = 1.0;
-    auto f = make_function<double>(f459, alpha);
+    auto f = make_function<double>(f459);
     counted_function<double> fc(f);
 
     auto [result, abserr] = __gnu_test::qawc_integrate(w, fc, -1.0, 5.0, 0.0, 0.0, 1.0e-3, 1000);
@@ -2215,7 +2215,7 @@ main()
       qtest.test_int(w.order(i), order[i]-1, "qawc(f459) order");
 
     fc.neval = 0;
-    status = qawc_integrate(fc, 5.0, -1.0, 0.0, 0.0, 1.0e-3, 1000);
+    status = __gnu_test::qawc_integrate(w, fc, 5.0, -1.0, 0.0, 0.0, 1.0e-3, 1000);
 
     qtest.test_rel(result, -exp_result, 1e-14, "qawc(f459) rev result");
     qtest.test_rel(abserr, exp_abserr, 1e-6, "qawc(f459) rev abserr");
@@ -2228,7 +2228,7 @@ main()
     std::cout << "ERROR: " << ex.what() << std::endl;
     std::cerr << "ERROR: " << ex.what() << '\n';
   }
-*/
+
   /* Test QAWS singular integration using a relative error bound
 
   try

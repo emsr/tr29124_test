@@ -1,6 +1,6 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lommel test_lommel.cpp -lquadmath -L. -lwgsl -lburkhardt
-./test_lommel > test_lommel.txt
+LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_lommel > test_lommel.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_lommel test_lommel.cpp -lquadmath -L. -lwgsl -lburkhardt
 ./test_lommel > test_lommel.txt
