@@ -23,8 +23,13 @@
 
 #include <tuple>
 
+
 namespace __gnu_test
 {
+
+template<typename _FuncTp, typename _Tp>
+  std::tuple<_Tp, _Tp, bool>
+  qc25c(const _FuncTp& __func, _Tp __a, _Tp __b, _Tp __c);
 
 template<typename _Tp>
   std::vector<_Tp>
@@ -55,8 +60,8 @@ template<typename _FuncTp, typename _Tp>
 
     if (__b < __a) 
       {
-	__lower = b;
-	__higher = a;
+	__lower = __b;
+	__higher = __a;
 	__sign = -1;
       }
     else
@@ -74,9 +79,7 @@ template<typename _FuncTp, typename _Tp>
 
     /* perform the first integration */
 
-    using __qc25c_ret = std::tuple<_Tp&, _Tp&, bool&>;
-
-    __qc25c_ret{__result0, __abserr0, __err_reliable}
+    std::tie(__result0, __abserr0, __err_reliable)
       = qc25c(__func, __lower, __higher, __c);
 
     __workspace.set_initial(__lower, __higher, __result0, __abserr0);
@@ -84,19 +87,19 @@ template<typename _FuncTp, typename _Tp>
     /* Test on accuracy, use 0.01 relative error as an extra safety
        margin on the first iteration (ignored for subsequent iterations) */
 
-    __tolerance = std::max(__epsabs, epsrel * std::abs( __result0));
+    __tolerance = std::max(__epsabs, __epsrel * std::abs( __result0));
 
     if (__abserr0 < __tolerance && __abserr0 < 0.01 * std::abs(__result0)) 
       {
 	__result = __sign * __result0;
 	__abserr = __abserr0;
 
-	return std::make_pair(__result, abserr);
+	return std::make_pair(__result, __abserr);
       }
     else if (__limit == 1)
       {
 	__result = __sign * __result0;
-	__ abserr = __abserr0;
+	__abserr = __abserr0;
 
 	std::__throw_runtime_error ("a maximum of one iteration was insufficient");
       }
@@ -116,7 +119,7 @@ template<typename _FuncTp, typename _Tp>
 
 	/* Bisect the subinterval with the largest error estimate */
 
-	workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
+	__workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
 	__a1 = __a_i; 
 	__b1 = 0.5 * (__a_i + __b_i);
@@ -134,13 +137,13 @@ template<typename _FuncTp, typename _Tp>
             __a2 = __b1;
           }
 
-	__qc25c_ret{__area1, __error1, __err_reliable1} = qc25c(__func, __a1, __b1, __c);
-	__qc25c_ret{__area2, __error2, __err_reliable2} = qc25c(__func, __a2, __b2, __c);
+	std::tie(__area1, __error1, __err_reliable1) = qc25c(__func, __a1, __b1, __c);
+	std::tie(__area2, __error2, __err_reliable2) = qc25c(__func, __a2, __b2, __c);
 
 	__area12 = __area1 + __area2;
 	__error12 = __error1 + __error2;
 
-	__errsum += (__error12 -__ e_i);
+	__errsum += (__error12 - __e_i);
 	__area += __area12 - __r_i;
 
 	if (__err_reliable1 && __err_reliable2)
@@ -149,7 +152,7 @@ template<typename _FuncTp, typename _Tp>
 
             if (std::abs (__delta) <= 1.0e-5 * std::abs (__area12) && __error12 >= 0.99 * __e_i)
               ++__roundoff_type1;
-            if (__iteration >= 10 && __error12 > e_i)
+            if (__iteration >= 10 && __error12 > __e_i)
               ++__roundoff_type2;
           }
 
@@ -179,13 +182,13 @@ template<typename _FuncTp, typename _Tp>
     __result = __sign * __workspace.sum_results();
     __abserr = __errsum;
 
-    if (errsum <= tolerance)
-      return std::make_pair(result, abserr);
-    else if (error_type == 2)
+    if (__errsum <= __tolerance)
+      return std::make_pair(__result, __abserr);
+    else if (__error_type == 2)
       std::__throw_runtime_error ("roundoff error prevents tolerance from being achieved");
-    else if (error_type == 3)
+    else if (__error_type == 3)
       std::__throw_runtime_error ("bad integrand behavior found in the integration interval");
-    else if (iteration == limit)
+    else if (__iteration == __limit)
       std::__throw_runtime_error ("maximum number of subdivisions reached");
     else
       std::__throw_runtime_error ("could not integrate function");
@@ -212,7 +215,7 @@ template<typename _FuncTp, typename _Tp>
 				{ return __func(__x) / (__x - __c); };
 
 	  _Tp __resabs, __resasc;
-          __qk_ret{__result, __rabserr, __resabs, __resasc}
+          __qk_ret{__result, __abserr, __resabs, __resasc}
 	    = qk_integrate(__func_cauchy, __a, __b, QK_15);
 
 	  if (__abserr == __resasc)
@@ -228,7 +231,7 @@ template<typename _FuncTp, typename _Tp>
 	  const std::size_t __M = 1 + __N / 2;
 	  _Tp __cheb12[__M], __cheb24[__N];
 	  _Tp __res12 = 0, __res24 = 0;
-	  gsl_integration_qcheb(__func, __a, __b, __cheb12, __cheb24);
+	  qcheb_integrate(__func, __a, __b, __cheb12, __cheb24);
 	  auto __moment = compute_moments(__N, __cc);
 
 	  for (size_t __i = 0u; __i < __M; ++__i)

@@ -2148,7 +2148,7 @@ main()
   {
     std::cout << "Test cauchy integration using a relative error bound..." << std::endl;
 
-    int status = 0, i;
+    int status = 0;
     quadrature_test<double> qtest;
 
     __gnu_test::integration_workspace<double> w(1000);
@@ -2187,7 +2187,7 @@ main()
                     1.833082948207153514E-15 };
     int order[6] = { 1, 5, 3, 2, 4, 6 };
 
-    double alpha = 1.0;
+    //double alpha = 1.0;
     auto f = make_function<double>(f459);
     counted_function<double> fc(f);
 
@@ -2199,23 +2199,23 @@ main()
     qtest.test_int(w.size(), exp_last, "qawc(f459) last");
     qtest.test_int(status, exp_ier, "qawc(f459) status");
 
-    for (i = 0; i < 6; ++i)
+    for (int i = 0; i < 6; ++i)
       qtest.test_rel(w.lower_lim(i), a[i], 1e-15, "qawc(f459) alist");
 
-    for (i = 0; i < 6; ++i)
+    for (int i = 0; i < 6; ++i)
       qtest.test_rel(w.upper_lim(i), b[i], 1e-15, "qawc(f459) blist");
 
-    for (i = 0; i < 6; ++i)
+    for (int i = 0; i < 6; ++i)
       qtest.test_rel(w.result(i), r[i], 1e-14, "qawc(f459) rlist");
 
-    for (i = 0; i < 6; ++i)
+    for (int i = 0; i < 6; ++i)
       qtest.test_rel(w.abs_error(i), e[i], 1e-4, "qawc(f459) elist");
 
-    for (i = 0; i < 6; ++i)
+    for (int i = 0; i < 6; ++i)
       qtest.test_int(w.order(i), order[i]-1, "qawc(f459) order");
 
     fc.neval = 0;
-    status = __gnu_test::qawc_integrate(w, fc, 5.0, -1.0, 0.0, 0.0, 1.0e-3, 1000);
+    std::tie(result, abserr) = __gnu_test::qawc_integrate(w, fc, 5.0, -1.0, 0.0, 0.0, 1.0e-3, 1000);
 
     qtest.test_rel(result, -exp_result, 1e-14, "qawc(f459) rev result");
     qtest.test_rel(abserr, exp_abserr, 1e-6, "qawc(f459) rev abserr");

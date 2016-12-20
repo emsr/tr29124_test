@@ -29,6 +29,7 @@
 #include "qags_integrate.h"
 #include "qng_integrate.h"
 #include "qagp_integrate.h"
+#include "qcheb_integrate.h"
 #include "qawc_integrate.h"
 
 #include <limits>
