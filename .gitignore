@@ -218,6 +218,7 @@ test_limits
 test_little_airy
 test_lobatto
 test_local_special_function
+test_lommel
 test_math_h
 test_notsospecfun 
 test_nric_bessel
@@ -250,6 +251,7 @@ test_struve
 test_struve_old
 test_summation
 test_theta
+test_tricomi_u
 test_trigamma
 
 plot_airy
