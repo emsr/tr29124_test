@@ -18,6 +18,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+#ifndef QAGP_INTEGRATE_H
+#define QAGP_INTEGRATE_H 1
+
 #include "qk_integrate.h"
 #include "integration_workspace.h"
 #include "extrapolation_table.h"
@@ -402,3 +405,5 @@ template<typename _FuncTp, typename _Tp>
   }
 
 } // namespace __gnu_test
+
+#endif // QAGP_INTEGRATE_H
