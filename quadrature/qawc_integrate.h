@@ -18,11 +18,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#include "integration_workspace.h"
-#include "qk_integrate.h"
+#ifndef QAWC_INTEGRATE_H
+#define QAWC_INTEGRATE_H 1
 
 #include <tuple>
 
+#include "integration_workspace.h"
+#include "qk_integrate.h"
 
 namespace __gnu_test
 {
@@ -52,8 +54,8 @@ template<typename _FuncTp, typename _Tp>
     int __sign = 1;
     _Tp __lower, __higher;
 
-    auto __result = _Tp{0};
-    auto __abserr = _Tp{0};
+    auto __result = _Tp{};
+    auto __abserr = _Tp{};
 
     if (__limit > __workspace.capacity())
       std::__throw_runtime_error ("iteration limit exceeds available workspace") ;
@@ -101,7 +103,7 @@ template<typename _FuncTp, typename _Tp>
 	__result = __sign * __result0;
 	__abserr = __abserr0;
 
-	std::__throw_runtime_error ("a maximum of one iteration was insufficient");
+	std::__throw_runtime_error("a maximum of one iteration was insufficient");
       }
 
     __area = __result0;
@@ -287,3 +289,5 @@ template<typename _FuncTp, typename _Tp>
     }
 
 } // namespace
+
+#endif // QAWC_INTEGRATE_H
