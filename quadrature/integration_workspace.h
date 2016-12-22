@@ -27,7 +27,7 @@
 // Based upon gsl-1.9/integration/workspace.c
 
 #ifndef INTEGRATION_WORKSPACE_H
-#define INTEGRATION_WORKSPACE_H
+#define INTEGRATION_WORKSPACE_H 1
 
 #include <vector>
 #include <limits>
@@ -36,7 +36,7 @@
 namespace __gnu_test
 {
 
-  template<typename _VecTp>
+  template<typename _Tp>
     class integration_workspace
     {
     private:
@@ -46,7 +46,7 @@ namespace __gnu_test
       std::size_t _M_nrmax;
       std::size_t _M_ii;
       std::size_t _M_maximum_level;
-      std::vector<_VecTp> _M_lower_lim, _M_upper_lim, _M_result, _M_abs_error;
+      std::vector<_Tp> _M_lower_lim, _M_upper_lim, _M_result, _M_abs_error;
       std::vector<std::size_t> _M_order, _M_level;
 
     public:
@@ -66,7 +66,7 @@ namespace __gnu_test
       { }
 
       void
-      set_initial(_VecTp __a0, _VecTp __b0, _VecTp __result0, _VecTp __error0)
+      set_initial(_Tp __a0, _Tp __b0, _Tp __result0, _Tp __error0)
       {
 	_M_lower_lim[0] = __a0;
 	_M_upper_lim[0] = __b0;
@@ -79,13 +79,13 @@ namespace __gnu_test
 
       void sort_error();
 
-      void append(_VecTp __a, _VecTp __b, _VecTp __area, _VecTp __error);
+      void append(_Tp __a, _Tp __b, _Tp __area, _Tp __error);
 
-      void update(_VecTp __a1, _VecTp __b1, _VecTp __area1, _VecTp __error1,
-		  _VecTp __a2, _VecTp __b2, _VecTp __area2, _VecTp __error2);
+      void update(_Tp __a1, _Tp __b1, _Tp __area1, _Tp __error1,
+		  _Tp __a2, _Tp __b2, _Tp __area2, _Tp __error2);
 
       void
-      retrieve(_VecTp& __lolim, _VecTp& __uplim, _VecTp& __res, _VecTp& __err) const
+      retrieve(_Tp& __lolim, _Tp& __uplim, _Tp& __res, _Tp& __err) const
       {
 	__lolim = _M_lower_lim[_M_ii];
 	__uplim = _M_upper_lim[_M_ii];
@@ -101,19 +101,19 @@ namespace __gnu_test
       capacity() const
       { return _M_capacity; }
 
-      _VecTp
+      _Tp
       lower_lim(size_t __ii) const
       { return _M_lower_lim[__ii]; }
 
-      _VecTp
+      _Tp
       upper_lim(size_t __ii) const
       { return _M_upper_lim[__ii]; }
 
-      _VecTp
+      _Tp
       result(size_t __ii) const
       { return _M_result[__ii]; }
 
-      _VecTp
+      _Tp
       abs_error(size_t __ii) const
       { return _M_abs_error[__ii]; }
 
@@ -125,8 +125,8 @@ namespace __gnu_test
       level(size_t ii) const
       { return _M_level[ii]; }
 
-      _VecTp
-      set_abs_error(size_t __ii, _VecTp __abserr)
+      _Tp
+      set_abs_error(size_t __ii, _Tp __abserr)
       { return _M_abs_error[__ii] = __abserr; }
 
       void
@@ -181,10 +181,10 @@ namespace __gnu_test
 	_M_nrmax = NRMAX;
       }
 
-      _VecTp
+      _Tp
       sum_results() const
       {
-	_VecTp __result_sum = 0;
+	_Tp __result_sum = 0;
 
 	for (std::size_t __kk = 0; __kk < _M_size; ++__kk)
 	  __result_sum += _M_result[__kk];
@@ -193,12 +193,12 @@ namespace __gnu_test
       }
 
       static bool
-      subinterval_too_small(_VecTp __a1, _VecTp __a2, _VecTp __b2)
+      subinterval_too_small(_Tp __a1, _Tp __a2, _Tp __b2)
       {
-	const _VecTp __e = std::numeric_limits<_VecTp>::epsilon();
-	const _VecTp __u = std::numeric_limits<_VecTp>::min();
+	const _Tp __e = std::numeric_limits<_Tp>::epsilon();
+	const _Tp __u = std::numeric_limits<_Tp>::min();
 
-	_VecTp __tmp = (1 + 100 * __e) * (std::abs(__a2) + 1000 * __u);
+	_Tp __tmp = (1 + 100 * __e) * (std::abs(__a2) + 1000 * __u);
 
 	return std::abs(__a1) <= __tmp && std::abs(__b2) <= __tmp;
       }
@@ -225,160 +225,8 @@ namespace __gnu_test
       }
     };
 
-  template<typename _VecTp>
-    void
-    integration_workspace<_VecTp>::sort_error()
-    {
-      const std::size_t __last = _M_size - 1;
-
-      double __errmax;
-      double __errmin;
-      int __jj, __kk, __top;
-
-      std::size_t __i_nrmax = _M_nrmax;
-      std::size_t __i_maxerr = _M_order[__i_nrmax];
-
-      // Check whether the list contains more than two error estimates
-      if (__last < 2)
-	{
-	  _M_order[0] = 0;
-	  _M_order[1] = 1;
-	  _M_ii = __i_maxerr;
-	  return;
-	}
-
-      __errmax = _M_abs_error[__i_maxerr];
-
-      // This part of the routine is only executed if, due to a difficult
-      // integrand, subdivision increased the error estimate. In the normal
-      // case the insert procedure should start after the nrmax-th largest
-      // error estimate.
-
-      while (__i_nrmax > 0 && __errmax > _M_abs_error[_M_order[__i_nrmax - 1]])
-	{
-	  _M_order[__i_nrmax] = _M_order[__i_nrmax - 1];
-	  __i_nrmax--;
-	}
-
-      // Compute the number of elements in the list to be maintained in
-      // descending order. This number depends on the number of
-      // subdivisions still allowed.
-
-      if(__last < (_M_capacity/2 + 2))
-	__top = __last;
-      else
-	__top = _M_capacity - __last + 1;
-
-      // Insert errmax by traversing the list top-down, starting
-      // comparison from the element elist(order(i_nrmax+1)).
-
-
-      // The order of the tests in the following line is important to
-      // prevent a segmentation fault
-
-      __jj = __i_nrmax + 1;
-      while (__jj < __top && __errmax < _M_abs_error[_M_order[__jj]])
-	{
-	  _M_order[__jj - 1] = _M_order[__jj];
-	  ++__jj;
-	}
-      _M_order[__jj - 1] = __i_maxerr;
-
-      // Insert errmin by traversing the list bottom-up
-
-      __errmin = _M_abs_error[__last];
-
-      __kk = __top - 1;
-      while (__kk > __jj - 2 && __errmin >= _M_abs_error[_M_order[__kk]])
-	{
-	  _M_order[__kk + 1] = _M_order[__kk];
-	  --__kk;
-	}
-      _M_order[__kk + 1] = __last;
-
-      // Set i_max and e_max
-
-      __i_maxerr = _M_order[__i_nrmax];
-
-      _M_ii = __i_maxerr;
-      _M_nrmax = __i_nrmax;
-    }
-
-  template<typename _VecTp>
-    void
-    integration_workspace<_VecTp>::append(_VecTp __a, _VecTp __b,
-					  _VecTp __area, _VecTp __error)
-    {
-      const std::size_t __i_max = this->_M_ii;
-      const std::size_t __i_new = this->_M_size;
-
-      const std::size_t __new_level = this->_M_level[__i_max] + 1;
-
-      // append the newly-created interval to the list
-
-      this->_M_lower_lim[__i_new] = __a;
-      this->_M_upper_lim[__i_new] = __b;
-      this->_M_result[__i_new] = __area;
-      this->_M_abs_error[__i_new] = __error;
-      this->_M_level[__i_new] = __new_level;
-
-      ++this->_M_size;
-
-      if (__new_level > this->_M_maximum_level)
-	this->_M_maximum_level = __new_level;
-
-      this->sort_error();
-    }
-
-  template<typename _VecTp>
-    void
-    integration_workspace<_VecTp>::update(_VecTp __a1, _VecTp __b1,
-					  _VecTp __area1, _VecTp __error1,
-					  _VecTp __a2, _VecTp __b2,
-					  _VecTp __area2, _VecTp __error2)
-    {
-      const std::size_t __i_max = this->_M_ii;
-      const std::size_t __i_new = this->_M_size;
-
-      const std::size_t __new_level = this->_M_level[__i_max] + 1;
-
-      // append the newly-created intervals to the list
-
-      if (__error2 > __error1)
-	{
-	  this->_M_lower_lim[__i_max] = __a2;	// blist[maxerr] is already == b2
-	  this->_M_result[__i_max] = __area2;
-	  this->_M_abs_error[__i_max] = __error2;
-	  this->_M_level[__i_max] = __new_level;
-
-	  this->_M_lower_lim[__i_new] = __a1;
-	  this->_M_upper_lim[__i_new] = __b1;
-	  this->_M_result[__i_new] = __area1;
-	  this->_M_abs_error[__i_new] = __error1;
-	  this->_M_level[__i_new] = __new_level;
-	}
-      else
-	{
-	  this->_M_upper_lim[__i_max] = __b1;	// alist[maxerr] is already == a1
-	  this->_M_result[__i_max] = __area1;
-	  this->_M_abs_error[__i_max] = __error1;
-	  this->_M_level[__i_max] = __new_level;
-
-	  this->_M_lower_lim[__i_new] = __a2;
-	  this->_M_upper_lim[__i_new] = __b2;
-	  this->_M_result[__i_new] = __area2;
-	  this->_M_abs_error[__i_new] = __error2;
-	  this->_M_level[__i_new] = __new_level;
-	}
-
-      ++this->_M_size;
-
-      if (__new_level > this->_M_maximum_level)
-	this->_M_maximum_level = __new_level;
-
-      this->sort_error();
-    }
-
 } // namespace __gnu_test
+
+#include "integration_workspace.tcc"
 
 #endif // INTEGRATION_WORKSPACE_H
