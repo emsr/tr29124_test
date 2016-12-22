@@ -101,7 +101,7 @@ template<typename _FuncTp, typename _Tp>
     auto abserr0 = _Tp{0};
     auto resabs0 = _Tp{0};
 
-    workspace.set_initial(_Tp{0}, _Tp{0}, _Tp{0}, _Tp{0});
+    //workspace.set_initial(_Tp{0}, _Tp{0}, _Tp{0}, _Tp{0});
 
     for (i = 0; i < nint; ++i)
       {
@@ -112,9 +112,9 @@ template<typename _FuncTp, typename _Tp>
 	qk_return{area1, error1, resabs1, resasc1}
 	  = qk_integrate(__func, a1, b1, __qk_rule);
 
-	result0 = result0 + area1;
-	abserr0 = abserr0 + error1;
-	resabs0 = resabs0 + resabs1;
+	result0 += area1;
+	abserr0 += error1;
+	resabs0 += resabs1;
 
 	workspace.append(a1, b1, area1, error1);
 
@@ -136,13 +136,12 @@ template<typename _FuncTp, typename _Tp>
     for (i = 0; i < nint; ++i)
       workspace.set_level(i, 0);
 
-    /* Sort results into order of decreasing error via the indirection
-       array order[] */
+    // Sort results into order of decreasing error via the indirection
+    // array order[]
 
     workspace.sort_error();
 
-    /* Test on accuracy */
-
+    // Test on accuracy.
     tolerance = std::max(epsabs, epsrel * std::abs(result0));
 
     if (abserr0 <= 100 * std::numeric_limits<_Tp>::epsilon() * resabs0
@@ -174,18 +173,12 @@ template<typename _FuncTp, typename _Tp>
 
     do
       {
-	size_t current_level;
-	_Tp area1 = 0, area2 = 0;
-	_Tp error1 = 0, error2 = 0;
-	_Tp resasc1, resasc2;
-	_Tp resabs1, resabs2;
-
-	/* Bisect the subinterval with the largest error estimate */
+	// Bisect the subinterval with the largest error estimate.
 
 	_Tp a_i, b_i, r_i, e_i;
 	workspace.retrieve(a_i, b_i, r_i, e_i);
 
-	current_level = workspace.current_level() + 1;
+	size_t current_level = workspace.current_level() + 1;
 
 	auto a1 = a_i;
 	auto b1 = 0.5 * (a_i + b_i);
@@ -194,8 +187,11 @@ template<typename _FuncTp, typename _Tp>
 
 	++iteration;
 
+	_Tp area1, error1, resabs1, resasc1;
 	qk_return{area1, error1, resabs1, resasc1}
 	  = qk_integrate(__func, a1, b1, __qk_rule);
+
+	_Tp area2, error2, resabs2, resasc2;
 	qk_return{area2, error2, resabs2, resasc2}
 	  = qk_integrate(__func, a2, b2, __qk_rule);
 
@@ -210,10 +206,10 @@ template<typename _FuncTp, typename _Tp>
            QUADPACK code so that the rounding errors are the same, which
            makes testing easier. */
 
-	errsum = errsum + error12 - e_i;
-	area = area + area12 - r_i;
+	errsum += error12 - e_i;
+	area += area12 - r_i;
 
-	tolerance = std::max (epsabs, epsrel * std::abs (area));
+	tolerance = std::max(epsabs, epsrel * std::abs (area));
 
 	if (resasc1 != error1 && resasc2 != error2)
           {
@@ -232,22 +228,21 @@ template<typename _FuncTp, typename _Tp>
               ++roundoff_type3;
           }
 
-	/* Test for roundoff and eventually set error flag */
+	// Test for roundoff and eventually set error flag.
 
 	if (roundoff_type1 + roundoff_type2 >= 10 || roundoff_type3 >= 20)
-          error_type = 2; /* round off error */
+          error_type = 2; // round off error
 
 	if (roundoff_type2 >= 5)
           error_type2 = 1;
 
-	/* set error flag in the case of bad integrand behaviour at
-           a point of the integration range */
+	// Set error flag in the case of bad integrand behaviour at
+        // a point of the integration range
 
 	if (integration_workspace<_Tp>::subinterval_too_small(a1, a2, b2))
           error_type = 4;
 
-	/* append the newly-created intervals to the list */
-
+	// Append the newly-created intervals to the list.
 	workspace.update(a1, b1, area1, error1, a2, b2, area2, error2);
 
 	if (errsum <= tolerance)
@@ -272,8 +267,8 @@ template<typename _FuncTp, typename _Tp>
 
 	if (!extrapolate)
           {
-            /* test whether the interval to be bisected next is the
-               smallest interval. */
+            // Test whether the interval to be bisected next is the
+            // smallest interval.
             if (workspace.large_interval())
               continue;
 
@@ -290,7 +285,7 @@ template<typename _FuncTp, typename _Tp>
           if (workspace.increase_nrmax())
             continue;
 
-	/* Perform extrapolation */
+	// Perform extrapolation.
 
 	table.append(area);
 
@@ -300,7 +295,6 @@ template<typename _FuncTp, typename _Tp>
 	std::tie(reseps, abseps) = table.qelg();
 
 	++ktmin;
-
 	if (ktmin > 5 && err_ext < 0.001 * errsum)
           error_type = 5;
 
@@ -315,7 +309,7 @@ template<typename _FuncTp, typename _Tp>
               break;
           }
 
-	/* Prepare bisection of the smallest interval. */
+	// Prepare bisection of the smallest interval.
 
 	if (table.get_nn() == 1)
           disallow_extrapolation = 1;
@@ -344,19 +338,18 @@ template<typename _FuncTp, typename _Tp>
           err_ext += correc;
 	if (error_type == 0)
           error_type = 3;
-	if (result != 0 && area != 0)
+	if (result != _Tp{0} && area != _Tp{0})
 	  {
 	    if (err_ext / std::abs(res_ext) > errsum / std::abs(area))
 	      goto compute_result;
 	  }
 	else if (err_ext > errsum)
           goto compute_result;
-	else if (area == 0.0)
+	else if (area == _Tp{0})
           goto return_error;
       }
 
-    /*  Test on divergence. */
-
+    // Test on divergence.
     {
       auto max_area = std::max(std::abs(res_ext), std::abs(area));
       if (!positive_integrand && max_area < 0.01 * resabs0)
@@ -374,13 +367,16 @@ template<typename _FuncTp, typename _Tp>
 
   compute_result:
 
+  result = workspace.sum_results();
+  abserr = errsum;
+
   return_error:
 
     if (error_type > 2)
       --error_type;
 
     if (error_type == 0)
-      return std::make_pair(workspace.sum_results(), errsum);
+      return std::make_pair(result, abserr);
     else if (error_type == 1)
       std::__throw_runtime_error("qagp_integrate: "
 				 "Number of iterations was insufficient");
