@@ -33,6 +33,7 @@
 #include "qawc_integrate.h"
 #include "qaws_integrate.h"
 #include "qawo_integrate.h"
+#include "qawf_integrate.h"
 
 #include <limits>
 

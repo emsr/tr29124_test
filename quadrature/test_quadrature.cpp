@@ -2466,7 +2466,7 @@ main()
     std::cerr << "ERROR: " << ex.what() << '\n';
   }
 
-  /* Test Fourier integration using an absolute error bound
+  // Test Fourier integration using an absolute error bound.
   try
   {
     std::cout << "Test Fourier integration using an absolute error bound..." << std::endl;
@@ -2476,9 +2476,9 @@ main()
 
     __gnu_test::integration_workspace<double> w(1000);
     __gnu_test::integration_workspace<double> wc(1000);
-    gsl_integration_qawo_table * wo
-      = gsl_integration_qawo_table_alloc (M_PI / 2.0, 1.0,
-                                              GSL_INTEG_COSINE, 1000);
+    __gnu_test::oscillatory_integration_table<double>
+      wo(M_PI / 2.0, 1.0,
+	__gnu_test::oscillatory_integration_table<double>::INTEG_COSINE, 1000);
 
     // All results are for GSL_IEEE_MODE=double-precision
 
@@ -2513,12 +2513,11 @@ main()
                     2.439454888092388058E-17,
                     2.130457268934021451E-17 };
 
-    double alpha = 1.0;
-    auto f = make_function<double>(f457, alpha);
+    auto f = make_function<double>(f457);
     counted_function<double> fc(f);
 
-    auto [result, abserr] = __gnu_test::qawf_integrate(w, fc, 0.0, 1e-7, w._M_limit,
-                                   w, wc, wo);
+    auto [result, abserr]
+      = __gnu_test::qawf_integrate(w, wc, wo, fc, 0.0, 1e-7, w.capacity());
 
     qtest.test_rel(result, exp_result, 1e-14, "qawf(f457) result");
     qtest.test_rel(abserr, exp_abserr, 1e-3, "qawf(f457) abserr");
@@ -2534,15 +2533,13 @@ main()
 
     for (i = 0; i < 9; ++i)
       qtest.test_rel(w.abs_error(i), e[i], 50.0, "qawf(f457) elist");
-
-    gsl_integration_qawo_table_free (wo);
   }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
     std::cerr << "ERROR: " << ex.what() << '\n';
   }
-*/
+
   /* Sanity check monomial test function for fixed Gauss-Legendre rules */
   try
   {
