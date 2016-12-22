@@ -24,6 +24,9 @@
 //Implements integration using a recursive Gauss-Kronrod algorithm
 //Based upon gsl-1.9/integration/qag.c
 
+#ifndef QAG_INTEGRATE_H
+#define QAG_INTEGRATE_H 1
+
 #include <utility>
 #include <limits>
 #include <string>
@@ -33,8 +36,6 @@
 #include "qk_integrate.h"
 #include "integration_workspace.h"
 
-#ifndef QAG_INTEGRATE_H
-#define QAG_INTEGRATE_H
 namespace __gnu_test
 {
   /**
@@ -53,35 +54,35 @@ namespace __gnu_test
    * @return A pair with the first value being the integration result,
    *         and the second value being the estimated error.
    */
-  template<typename _VecTp, typename _FuncTp>
-    std::pair<_VecTp, _VecTp>
-    qag_integrate(integration_workspace<_VecTp>& __workspace,
-		  const _FuncTp& __func, _VecTp __a, _VecTp __b,
-		  _VecTp __epsabs, _VecTp __epsrel, const size_t __max_iter,
+  template<typename _Tp, typename _FuncTp>
+    std::pair<_Tp, _Tp>
+    qag_integrate(integration_workspace<_Tp>& __workspace,
+		  const _FuncTp& __func, _Tp __a, _Tp __b,
+		  _Tp __epsabs, _Tp __epsrel, const size_t __max_iter,
 		  const qk_intrule __qkintrule)
     {
-      _VecTp __area, __errsum;
-      _VecTp __result0, __abserr0, __resabs0, __resasc0;
-      _VecTp __tolerance;
+      _Tp __area, __errsum;
+      _Tp __result0, __abserr0, __resabs0, __resasc0;
+      _Tp __tolerance;
       size_t __iteration = 0;
       int __roundoff_type1 = 0, __roundoff_type2 = 0, __error_type = 0;
 
-      const auto _S_eps = std::numeric_limits<_VecTp>::epsilon();
+      const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
 
-      _VecTp __round_off;
+      _Tp __round_off;
 
-      _VecTp __result = 0;
-      _VecTp __abserr = 0;
+      _Tp __result = 0;
+      _Tp __abserr = 0;
 
-      std::vector<_VecTp> __rlist(__max_iter);
-      std::vector<_VecTp> __elist(__max_iter);
+      std::vector<_Tp> __rlist(__max_iter);
+      std::vector<_Tp> __elist(__max_iter);
 
       if (__epsabs <= 0 && (__epsrel < 50 * _S_eps))
 	std::__throw_logic_error("tolerance cannot be achieved"
 			  " in qag_integrate() with given absolute"
 			  " and relative error limits");
 
-      typedef std::tuple<_VecTp&,_VecTp&,_VecTp&,_VecTp&> __ret_type;
+      typedef std::tuple<_Tp&,_Tp&,_Tp&,_Tp&> __ret_type;
 
       __ret_type{__result0, __abserr0,__resabs0,__resasc0}
 	  = qk_integrate(__func, __a, __b, __qkintrule);
@@ -132,12 +133,12 @@ namespace __gnu_test
 
       do
 	{
-	  _VecTp __a1, __b1, __a2, __b2;
-	  _VecTp __a_i, __b_i, __r_i, __e_i;
-	  _VecTp __area1 = 0, __area2 = 0, __area12 = 0;
-	  _VecTp __error1 = 0, __error2 = 0, __error12 = 0;
-	  _VecTp __resasc1, __resasc2;
-	  _VecTp __resabs1, __resabs2;
+	  _Tp __a1, __b1, __a2, __b2;
+	  _Tp __a_i, __b_i, __r_i, __e_i;
+	  _Tp __area1 = 0, __area2 = 0, __area12 = 0;
+	  _Tp __error1 = 0, __error2 = 0, __error12 = 0;
+	  _Tp __resasc1, __resasc2;
+	  _Tp __resabs1, __resabs2;
 
 	  // Bisect the subinterval with the largest error estimate
 
@@ -162,7 +163,7 @@ namespace __gnu_test
 
 	  if (__resasc1 != __error1 && __resasc2 != __error2)
 	    {
-	      _VecTp __delta = __r_i - __area12;
+	      _Tp __delta = __r_i - __area12;
 
 	      if (std::abs(__delta) <= 1.0e-5 * std::abs(__area12)
 		 && __error12 >= 0.99 * __e_i)
@@ -218,13 +219,13 @@ namespace __gnu_test
 				   "could not integrate function");
     }
 
-  template<typename _VecTp, typename _FuncTp>
-    std::pair<_VecTp, _VecTp>
-    qag_integrate(const _FuncTp& __func, _VecTp __a, _VecTp __b,
-		  _VecTp __epsabs, _VecTp __epsrel, const size_t __max_iter,
+  template<typename _Tp, typename _FuncTp>
+    std::pair<_Tp, _Tp>
+    qag_integrate(const _FuncTp& __func, _Tp __a, _Tp __b,
+		  _Tp __epsabs, _Tp __epsrel, const size_t __max_iter,
 		  const qk_intrule __qkintrule)
     {
-      integration_workspace<_VecTp> __workspace(__max_iter);
+      integration_workspace<_Tp> __workspace(__max_iter);
       return qag_integrate(__workspace, __func, __a, __b,
 			   __epsabs, __epsrel, __max_iter,
 			   __qkintrule);
@@ -232,4 +233,4 @@ namespace __gnu_test
 
 } // namespace
 
-#endif
+#endif // QAG_INTEGRATE_H
