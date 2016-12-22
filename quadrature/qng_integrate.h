@@ -34,7 +34,7 @@ namespace __gnu_test
 
 /* x1, abscissae common to the 10-, 21-, 43- and 87-point rule */
 static const long double
-x1[5]
+qng_x1[5]
 {
   0.973906528517171720077964012084452L,
   0.865063366688984510732096688423493L,
@@ -45,7 +45,7 @@ x1[5]
 
 /* w10, weights of the 10-point formula */
 static const long double
-w10[5]
+qng_w10[5]
 {
   0.066671344308688137593568809893332L,
   0.149451349150580593145776339657697L,
@@ -56,7 +56,7 @@ w10[5]
 
 /* x2, abscissae common to the 21-, 43- and 87-point rule */
 static const long double
-x2[5]
+qng_x2[5]
 {
   0.995657163025808080735527280689003L,
   0.930157491355708226001207180059508L,
@@ -67,7 +67,7 @@ x2[5]
 
 /* w21a, weights of the 21-point formula for abscissae x1 */
 static const long double
-w21a[5]
+qng_w21a[5]
 {
   0.032558162307964727478818972459390L,
   0.075039674810919952767043140916190L,
@@ -78,7 +78,7 @@ w21a[5]
 
 /* w21b, weights of the 21-point formula for abscissae x2 */
 static const long double
-w21b[6]
+qng_w21b[6]
 {
   0.011694638867371874278064396062192L,
   0.054755896574351996031381300244580L,
@@ -90,7 +90,7 @@ w21b[6]
 
 /* x3, abscissae common to the 43- and 87-point rule */
 static const long double
-x3[11]
+qng_x3[11]
 {
   0.999333360901932081394099323919911L,
   0.987433402908088869795961478381209L,
@@ -107,7 +107,7 @@ x3[11]
 
 /* w43a, weights of the 43-point formula for abscissae x1, x3 */
 static const long double
-w43a[10]
+qng_w43a[10]
 {
   0.016296734289666564924281974617663L,
   0.037522876120869501461613795898115L,
@@ -123,7 +123,7 @@ w43a[10]
 
 /* w43b, weights of the 43-point formula for abscissae x3 */
 static const long double
-w43b[12]
+qng_w43b[12]
 {
   0.001844477640212414100389106552965L,
   0.010798689585891651740465406741293L,
@@ -141,7 +141,7 @@ w43b[12]
 
 /* x4, abscissae of the 87-point rule */
 static const long double
-x4[22]
+qng_x4[22]
 {
   0.999902977262729234490529830591582L,
   0.997989895986678745427496322365960L,
@@ -169,7 +169,7 @@ x4[22]
 
 /* w87a, weights of the 87-point formula for abscissae x1, x2, x3 */
 static const long double
-w87a[21]
+qng_w87a[21]
 {
   0.008148377384149172900002878448190L,
   0.018761438201562822243935059003794L,
@@ -196,7 +196,7 @@ w87a[21]
 
 /* w87b, weights of the 87-point formula for abscissae x4 */
 static const long double
-w87b[23]
+qng_w87b[23]
 {
   0.000274145563762072350016527092881L,
   0.001807124155057942948341311753254L,
@@ -253,18 +253,18 @@ template<typename _FuncTp, typename _Tp>
     /* Compute the integral using the 10- and 21-point formula. */
 
     res10 = 0;
-    res21 = _Tp(w21b[5]) * f_center;
-    resabs = _Tp(w21b[5]) * std::abs(f_center);
+    res21 = _Tp(qng_w21b[5]) * f_center;
+    resabs = _Tp(qng_w21b[5]) * std::abs(f_center);
 
     for (int k = 0; k < 5; ++k)
       {
-	const _Tp abscissa = half_length * _Tp(x1[k]);
+	const _Tp abscissa = half_length * _Tp(qng_x1[k]);
 	const _Tp fval1 = __func(center + abscissa);
 	const _Tp fval2 = __func(center - abscissa);
 	const _Tp fval = fval1 + fval2;
-	res10 += _Tp(w10[k]) * fval;
-	res21 += _Tp(w21a[k]) * fval;
-	resabs += _Tp(w21a[k]) * (std::abs(fval1) + std::abs(fval2));
+	res10 += _Tp(qng_w10[k]) * fval;
+	res21 += _Tp(qng_w21a[k]) * fval;
+	resabs += _Tp(qng_w21a[k]) * (std::abs(fval1) + std::abs(fval2));
 	savfun[k] = fval;
 	fv1[k] = fval1;
 	fv2[k] = fval2;
@@ -272,12 +272,12 @@ template<typename _FuncTp, typename _Tp>
 
     for (int k = 0; k < 5; ++k)
       {
-	const _Tp abscissa = half_length * _Tp(x2[k]);
+	const _Tp abscissa = half_length * _Tp(qng_x2[k]);
 	const _Tp fval1 = __func(center + abscissa);
 	const _Tp fval2 = __func(center - abscissa);
 	const _Tp fval = fval1 + fval2;
-	res21 += _Tp(w21b[k]) * fval;
-	resabs += _Tp(w21b[k]) * (std::abs(fval1) + std::abs(fval2));
+	res21 += _Tp(qng_w21b[k]) * fval;
+	resabs += _Tp(qng_w21b[k]) * (std::abs(fval1) + std::abs(fval2));
 	savfun[k + 5] = fval;
 	fv3[k] = fval1;
 	fv4[k] = fval2;
@@ -288,13 +288,13 @@ template<typename _FuncTp, typename _Tp>
     {
       const _Tp mean = 0.5 * res21;
 
-      resasc = _Tp(w21b[5]) * std::abs(f_center - mean);
+      resasc = _Tp(qng_w21b[5]) * std::abs(f_center - mean);
 
       for (int k = 0; k < 5; ++k)
 	{
 	  resasc +=
-	    (_Tp(w21a[k]) * (std::abs(fv1[k] - mean) + std::abs(fv2[k] - mean))
-	    + _Tp(w21b[k]) * (std::abs(fv3[k] - mean) + std::abs(fv4[k] - mean)));
+	    (_Tp(qng_w21a[k]) * (std::abs(fv1[k] - mean) + std::abs(fv2[k] - mean))
+	    + _Tp(qng_w21b[k]) * (std::abs(fv3[k] - mean) + std::abs(fv4[k] - mean)));
 	}
       resasc *= abs_half_length;
     }
@@ -315,17 +315,17 @@ template<typename _FuncTp, typename _Tp>
 
     /* Compute the integral using the 43-point formula. */
 
-    res43 = _Tp(w43b[11]) * f_center;
+    res43 = _Tp(qng_w43b[11]) * f_center;
 
     for (int k = 0; k < 10; ++k)
-      res43 += savfun[k] * _Tp(w43a[k]);
+      res43 += savfun[k] * _Tp(qng_w43a[k]);
 
     for (int k = 0; k < 11; ++k)
       {
-	const _Tp abscissa = half_length * _Tp(x3[k]);
+	const _Tp abscissa = half_length * _Tp(qng_x3[k]);
 	const _Tp fval = __func(center + abscissa)
 		       + __func(center - abscissa);
-	res43 += fval * _Tp(w43b[k]);
+	res43 += fval * _Tp(qng_w43b[k]);
 	savfun[k + 10] = fval;
       }
 
@@ -344,15 +344,15 @@ template<typename _FuncTp, typename _Tp>
 
     /* Compute the integral using the 87-point formula. */
 
-    res87 = _Tp(w87b[22]) * f_center;
+    res87 = _Tp(qng_w87b[22]) * f_center;
 
     for (int k = 0; k < 21; ++k)
-      res87 += savfun[k] * _Tp(w87a[k]);
+      res87 += savfun[k] * _Tp(qng_w87a[k]);
 
     for (int k = 0; k < 22; ++k)
       {
-	const _Tp abscissa = half_length * _Tp(x4[k]);
-	res87 += _Tp(w87b[k]) * (__func(center + abscissa)
+	const _Tp abscissa = half_length * _Tp(qng_x4[k]);
+	res87 += _Tp(qng_w87b[k]) * (__func(center + abscissa)
 			       + __func(center - abscissa));
       }
 
