@@ -38,6 +38,7 @@
 
 namespace __gnu_test
 {
+
   /**
    * Integrates a function from a to b using the Gauss-Kronrod
    * quadrature rule.  The integration limits are finite.
@@ -231,6 +232,6 @@ namespace __gnu_test
 			   __qkintrule);
     }
 
-} // namespace
+} // namespace __gnu_test
 
 #endif // QAG_INTEGRATE_H
