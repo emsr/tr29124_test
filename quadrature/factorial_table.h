@@ -24,7 +24,7 @@
 // Both plain factorials and the logarithms of factorials are supported.
 
 #ifndef FACTORIAL_TABLE_H
-#define FACTORIAL_TABLE_H
+#define FACTORIAL_TABLE_H 1
 
 #include <vector>
 #include <cmath>

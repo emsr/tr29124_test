@@ -25,21 +25,47 @@
 //Based upon gsl-1.9/integration/err.c
 
 #ifndef ERR_H
-#define ERR_H
+#define ERR_H 1
 
 #include <cmath>
 #include <limits>
 
 namespace __gnu_test
 {
-  template<typename _VecTp>
-    _VecTp __rescale_error(_VecTp __err,
-			 const _VecTp __result_abs, const _VecTp __result_asc);
 
-  template<typename _VecTp>
-    _VecTp
-    __rescale_error(_VecTp __err,
-		    const _VecTp __result_abs, const _VecTp __result_asc)
+  template<typename _Tp>
+  class _IntegrationError : std::runtime_error
+  {
+    _Tp _M_result;
+    _Tp _M_abserr;
+    int _M_status;
+
+  public:
+
+    _IntegrationError(const char* __what, int __status, _Tp __result, _Tp __abserr)
+    : std::runtime_error(__what),
+      _M_result(__result),
+      _M_abserr(__abserr),
+      _M_status(__status)
+    { }
+
+    int
+    status() const
+    { return _M_status; }
+
+    _Tp
+    result() const
+    { return this->_M_result; }
+
+    _Tp
+    abserr() const
+    { return this->_Mabserr; }
+  };
+
+  template<typename _Tp>
+    _Tp
+    __rescale_error(_Tp __err,
+		    const _Tp __result_abs, const _Tp __result_asc)
     {
       __err = std::abs(__err);
       if (__result_asc != 0 && __err != 0)
@@ -52,10 +78,10 @@ namespace __gnu_test
 	    __err = __result_asc;
 	}
       if (__result_abs >
-	    std::numeric_limits<_VecTp>::min()
-		/ (50 * std::numeric_limits<_VecTp>::epsilon()))
+	    std::numeric_limits<_Tp>::min()
+		/ (50 * std::numeric_limits<_Tp>::epsilon()))
 	{
-	  auto __min_err = 50 * std::numeric_limits<_VecTp>::epsilon() * __result_abs;
+	  auto __min_err = 50 * std::numeric_limits<_Tp>::epsilon() * __result_abs;
 
 	  if (__min_err > __err)
 	    __err = __min_err;
@@ -66,4 +92,4 @@ namespace __gnu_test
 
 } //namespace
 
-#endif
+#endif // ERR_H
