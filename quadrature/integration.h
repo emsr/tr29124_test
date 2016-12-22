@@ -23,7 +23,7 @@
 // Provides readable access to integration functions
 
 #ifndef INTEGRATION_H
-#define INTEGRATION_H
+#define INTEGRATION_H 1
 
 #include "qag_integrate.h"
 #include "qags_integrate.h"
@@ -39,9 +39,9 @@ namespace __gnu_test
 {
 
 /*
-  template<typename _FuncTp, typename _VecTp>
-    std::tuple<_VecTp, _VecTp, _VecTp, _VecTp>
-    integration_rule(_FuncTp __func, _VecTp __a, _VecTp __b,
+  template<typename _FuncTp, typename _Tp>
+    std::tuple<_Tp, _Tp, _Tp, _Tp>
+    integration_rule(_FuncTp __func, _Tp __a, _Tp __b,
 		     const qk_intrule __qkintrule);
 */
 
@@ -53,11 +53,11 @@ namespace __gnu_test
   // QK_15, QK_21, QK_31, QK_41, QK_51, QK_61
   // Higher-order rules converge more rapidly for most functions,
   // but may slow convergence for less well-behaved ones.
-  template<typename _FuncTp, typename _VecTp>
-    inline std::pair<_VecTp, _VecTp>
-    integrate_smooth(const _FuncTp& __func, _VecTp __a, _VecTp __b,
-		     _VecTp __max_abs_error,
-		     _VecTp __max_rel_error,
+  template<typename _FuncTp, typename _Tp>
+    inline std::pair<_Tp, _Tp>
+    integrate_smooth(const _FuncTp& __func, _Tp __a, _Tp __b,
+		     _Tp __max_abs_error,
+		     _Tp __max_rel_error,
 		     const std::size_t __max_iter = 1024,
 		     const qk_intrule __qkintrule = QK_61)
     {
@@ -67,11 +67,11 @@ namespace __gnu_test
 
   // Recursive Gauss-Kronrod integration optimized for
   // discontinuous or singular functions
-  template<typename _FuncTp, typename _VecTp>
-    inline std::pair<_VecTp, _VecTp>
-    integrate_singular(const _FuncTp& __func, _VecTp __a, _VecTp __b,
-		       _VecTp __max_abs_error,
-		       _VecTp __max_rel_error,
+  template<typename _FuncTp, typename _Tp>
+    inline std::pair<_Tp, _Tp>
+    integrate_singular(const _FuncTp& __func, _Tp __a, _Tp __b,
+		       _Tp __max_abs_error,
+		       _Tp __max_rel_error,
 		       const std::size_t __max_iter = 1024)
     {
       return qags_integrate(__func, __a, __b, __max_abs_error,
@@ -79,11 +79,11 @@ namespace __gnu_test
     }
 
   // Integrates function from -infinity to +infinity
-  template<typename _FuncTp, typename _VecTp>
-    inline std::pair<_VecTp, _VecTp>
+  template<typename _FuncTp, typename _Tp>
+    inline std::pair<_Tp, _Tp>
     integrate_infinite(const _FuncTp& __func,
-		       _VecTp __max_abs_error,
-		       _VecTp __max_rel_error,
+		       _Tp __max_abs_error,
+		       _Tp __max_rel_error,
 		       const std::size_t __max_iter = 1024)
     {
       return qagi_integrate(__func, __max_abs_error,
@@ -91,11 +91,11 @@ namespace __gnu_test
     }
 
   // Integrations function from -infinity to b
-  template<typename _FuncTp, typename _VecTp>
-    inline std::pair<_VecTp, _VecTp>
-    integrate_from_infinity(const _FuncTp& __func, _VecTp __b,
-			    _VecTp __max_abs_error,
-			    _VecTp __max_rel_error,
+  template<typename _FuncTp, typename _Tp>
+    inline std::pair<_Tp, _Tp>
+    integrate_from_infinity(const _FuncTp& __func, _Tp __b,
+			    _Tp __max_abs_error,
+			    _Tp __max_rel_error,
 			    const std::size_t __max_iter = 1024)
     {
       return qagil_integrate(__func, __b, __max_abs_error,
@@ -103,11 +103,11 @@ namespace __gnu_test
     }
 
   // Integrations function from a to +infinity
-  template<typename _FuncTp, typename _VecTp>
-    inline std::pair<_VecTp, _VecTp>
-    integrate_to_infinity(const _FuncTp& __func, _VecTp __a,
-			  _VecTp __max_abs_error,
-			  _VecTp __max_rel_error,
+  template<typename _FuncTp, typename _Tp>
+    inline std::pair<_Tp, _Tp>
+    integrate_to_infinity(const _FuncTp& __func, _Tp __a,
+			  _Tp __max_abs_error,
+			  _Tp __max_rel_error,
 			  const std::size_t __max_iter = 1024)
     {
       return qagiu_integrate(__func, __a, __max_abs_error,
@@ -115,16 +115,16 @@ namespace __gnu_test
     }
 
   // Integrates function, allows setting of limits as being +/- infinity
-  template<typename _FuncTp, typename _VecTp>
-    inline std::pair<_VecTp, _VecTp>
-    integrate(const _FuncTp& __func, _VecTp __a, _VecTp __b,
-	      _VecTp __max_abs_error,
-	      _VecTp __max_rel_error,
+  template<typename _FuncTp, typename _Tp>
+    inline std::pair<_Tp, _Tp>
+    integrate(const _FuncTp& __func, _Tp __a, _Tp __b,
+	      _Tp __max_abs_error,
+	      _Tp __max_rel_error,
 	      const std::size_t __max_iter = 1024)
     {
       using std::isnan; // To avoid ambiguous overload
-      const _VecTp __infty = std::numeric_limits<_VecTp>::infinity();
-      const _VecTp __NaN = std::numeric_limits<_VecTp>::quiet_NaN();
+      const _Tp __infty = std::numeric_limits<_Tp>::infinity();
+      const _Tp __NaN = std::numeric_limits<_Tp>::quiet_NaN();
 
       if (isnan(__a) || isnan(__b))
 	return std::make_pair(__NaN, __NaN);
@@ -147,14 +147,14 @@ namespace __gnu_test
 				" to +infinity in integrate()");
 	  else if (__b == -__infty) // Integration from +inf to -inf,
 	    {		     // Call integrate_infinite() and flip sign
-	      std::pair<_VecTp, _VecTp> __res
+	      std::pair<_Tp, _Tp> __res
 		= integrate_infinite(__func, __max_abs_error,
 				     __max_rel_error, __max_iter);
 	      return {-__res.first, __res.second};
 	    }
 	  else // Integration from +inf to finite value,
 	    { // Call integrate_to_infinity and flip sign
-	      std::pair<_VecTp, _VecTp>
+	      std::pair<_Tp, _Tp>
 		__res = integrate_to_infinity(__func, __b, __max_abs_error,
 					      __max_rel_error, __max_iter);
 	      return {-__res.first, __res.second};
@@ -167,7 +167,7 @@ namespace __gnu_test
 					 __max_rel_error, __max_iter);
 	  else if (__b == -__infty) // Integration from finite value to -inf,
 	    { // Call integrate_from_infinity and flip sign
-	      std::pair<_VecTp, _VecTp>
+	      std::pair<_Tp, _Tp>
 		__res = integrate_from_infinity(__func, __a,
 						__max_abs_error,
 						__max_rel_error,
@@ -180,6 +180,6 @@ namespace __gnu_test
 	}
     }
 
-} // namespace
+} // namespace __gnu_test
 
-#endif
+#endif // INTEGRATION_H
