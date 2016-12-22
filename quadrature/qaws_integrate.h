@@ -21,6 +21,7 @@
 #ifndef QAWS_INTEGRATE_H
 #define QAWS_INTEGRATE_H 1
 
+#include <array>
 #include <tuple>
 
 #include "qk_integrate.h"
@@ -30,155 +31,336 @@
 namespace __gnu_test
 {
 
+  template<typename _Tp>
+    struct fn_qaws;
+
+  template<typename _Tp>
+    std::pair<_Tp, _Tp>
+    compute_result(const std::array<_Tp, 25>& r,
+		   const std::array<_Tp, 13>& cheb12,
+		   const std::array<_Tp, 25>& cheb24);
+
 template<typename _FuncTp, typename _Tp>
   std::pair<_Tp, _Tp>
-  qaws_integrate(integration_workspace<_Tp>& workspace,
+  qaws_integrate(integration_workspace<_Tp>& __workspace,
+        	 qaws_integration_table<_Tp>& __table,
         	 const _FuncTp& __func,
-        	 const _Tp a, const _Tp b,
-        	 qaws_integration_table<_Tp>& t,
-        	 const _Tp epsabs, const _Tp epsrel,
-        	 const size_t limit)
+        	 const _Tp __a, const _Tp __b,
+        	 const _Tp __epsabs, const _Tp __epsrel,
+        	 const size_t __limit)
   {
-    _Tp area, errsum;
-    _Tp result0, abserr0;
-    _Tp tolerance;
-    size_t iteration = 0;
-    int roundoff_type1 = 0, roundoff_type2 = 0, error_type = 0;
+    _Tp __result0, __abserr0;
 
-    /* Initialize results */
+    if (__limit > __workspace.capacity())
+      std::__throw_runtime_error("iteration limit exceeds available workspace") ;
+    if (__b <= __a) 
+      std::__throw_runtime_error("limits must form an ascending sequence, a < b") ;
+    if (__epsabs <= 0 && (__epsrel < 50 * std::numeric_limits<_Tp>::epsilon() || __epsrel < 0.5e-28))
+      std::__throw_runtime_error("tolerance cannot be achieved with given epsabs and epsrel");
 
-    workspace.initialise(a, b);
-
-    _Tp result = _Tp{};
-    _Tp abserr = _Tp{};
-
-    if (limit > workspace->limit)
-      std::__throw_runtime_error ("iteration limit exceeds available workspace") ;
-    if (b <= a) 
-      std::__throw_runtime_error ("limits must form an ascending sequence, a < b") ;
-    if (epsabs <= 0 && (epsrel < 50 * std::numeric_limits<_Tp>::epsilon() || epsrel < 0.5e-28))
-      std::__throw_runtime_error ("tolerance cannot be achieved with given epsabs and epsrel");
-
-    /* perform the first integration */
-
+    // Perform the first integration.
     {
-      _Tp area1, area2;
-      _Tp error1, error2;
-      bool err_reliable1, err_reliable2;
-      auto a1 = a;
-      auto b1 = 0.5 * (a + b);
-      auto a2 = b1;
-      auto b2 = b;
+      _Tp __area1, __area2;
+      _Tp __error1, __error2;
+      bool __err_reliable1, __err_reliable2;
+      const auto __a1 = __a;
+      const auto __b1 = 0.5 * (__a + __b);
+      const auto __a2 = __b1;
+      const auto __b2 = __b;
 
-      std::tie(area1, error1, err_reliable1) = qc25s(__func, a, b, a1, b1, t);
-      std::tie(area2, error2, err_reliable2) = qc25s(__func, a, b, a2, b2, t);
+      std::tie(__area1, __error1, __err_reliable1)
+	= qc25s(__table, __func, __a, __b, __a1, __b1);
+      std::tie(__area2, __error2, __err_reliable2)
+	= qc25s(__table, __func, __a, __b, __a2, __b2);
 
-      if (error1 > error2)
+      if (__error1 > __error2)
 	{
-          workspace.append_interval(a1, b1, area1, error1);
-          workspace.append_interval(a2, b2, area2, error2);
+          __workspace.append(__a1, __b1, __area1, __error1);
+          __workspace.append(__a2, __b2, __area2, __error2);
 	}
       else
 	{
-          workspace.append_interval(a2, b2, area2, error2);
-          workspace.append_interval(a1, b1, area1, error1);
+          __workspace.append(__a2, __b2, __area2, __error2);
+          __workspace.append(__a1, __b1, __area1, __error1);
 	}
 
-      result0 = area1 + area2;
-      abserr0 = error1 + error2;
+      __result0 = __area1 + __area2;
+      __abserr0 = __error1 + __error2;
+      __workspace.set_initial(__a, __b, __result0, __abserr0);
     }
 
     /* Test on accuracy */
 
-    tolerance = std::max(epsabs, epsrel * std::abs (result0));
+    auto __tolerance = std::max(__epsabs, __epsrel * std::abs(__result0));
 
     /* Test on accuracy, use 0.01 relative error as an extra safety
        margin on the first iteration (ignored for subsequent iterations) */
 
-    if (abserr0 < tolerance && abserr0 < 0.01 * std::abs(result0))
-      std::make_pair(result0, abserr0);
-    else if (limit == 1)
+    if (__abserr0 < __tolerance && __abserr0 < 0.01 * std::abs(__result0))
+      return std::make_pair(__result0, __abserr0);
+    else if (__limit == 1)
       std::__throw_runtime_error("a maximum of one iteration was insufficient");
 
-    area = result0;
-    errsum = abserr0;
-
-    iteration = 2;
-
+    auto __area = __result0;
+    auto __errsum = __abserr0;
+    auto __iteration = 2u;
+    int __error_type = 0;
     do
       {
-	_Tp area1 = 0, area2 = 0;
-	_Tp error1 = 0, error2 = 0;
-	int err_reliable1, err_reliable2;
-
 	/* Bisect the subinterval with the largest error estimate */
 
-	_Tp a_i, b_i, r_i, e_i;
-	workspace.retrieve(a_i, b_i, r_i, e_i);
+	_Tp __a_i, __b_i, __r_i, __e_i;
+	__workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
-	auto a1 = a_i; 
-	auto b1 = 0.5 * (a_i + b_i);
-	auto a2 = b1;
-	auto b2 = b_i;
+	const auto __a1 = __a_i; 
+	const auto __b1 = 0.5 * (__a_i + __b_i);
+	const auto __a2 = __b1;
+	const auto __b2 = __b_i;
 
-	std::tie(area1, error1, err_reliable1) = qc25s(__func, a, b, a1, b1, t);
-	std::tie(area2, error2, err_reliable2) = qc25s(__func, a, b, a2, b2, t);
+	_Tp __area1, __error1;
+	_Tp __area2, __error2;
+	bool __err_reliable1, __err_reliable2;
+	std::tie(__area1, __error1, __err_reliable1)
+	  = qc25s(__table, __func, __a, __b, __a1, __b1);
+	std::tie(__area2, __error2, __err_reliable2)
+	  = qc25s(__table, __func, __a, __b, __a2, __b2);
 
-	auto area12 = area1 + area2;
-	auto error12 = error1 + error2;
+	const auto __area12 = __area1 + __area2;
+	const auto __error12 = __error1 + __error2;
 
-	errsum += (error12 - e_i);
-	area += area12 - r_i;
+	__errsum += __error12 - __e_i;
+	__area += __area12 - __r_i;
 
-	if (err_reliable1 && err_reliable2)
+	int __roundoff_type1 = 0, __roundoff_type2 = 0;
+	if (__err_reliable1 && __err_reliable2)
           {
-            auto delta = r_i - area12;
+            auto __delta = __r_i - __area12;
 
-            if (std::abs (delta) <= 1.0e-5 * std::abs (area12) && error12 >= 0.99 * e_i)
-              ++roundoff_type1;
-            if (iteration >= 10 && error12 > e_i)
-              ++roundoff_type2;
+            if (std::abs (__delta) <= 1.0e-5 * std::abs(__area12) && __error12 >= 0.99 * __e_i)
+              ++__roundoff_type1;
+            if (__iteration >= 10 && __error12 > __e_i)
+              ++__roundoff_type2;
           }
 
-	tolerance = std::max (epsabs, epsrel * std::abs (area));
+	__tolerance = std::max(__epsabs, __epsrel * std::abs(__area));
 
-	if (errsum > tolerance)
+	if (__errsum > __tolerance)
           {
-            if (roundoff_type1 >= 6 || roundoff_type2 >= 20)
-              error_type = 2;   /* round off error */
+            if (__roundoff_type1 >= 6 || __roundoff_type2 >= 20)
+              __error_type = 2;   /* round off error */
 
             /* set error flag in the case of bad integrand behaviour at
                a point of the integration range */
 
-            if (integration_workspace<_Tp>::subinterval_too_small(a1, a2, b2))
-              error_type = 3;
+            if (integration_workspace<_Tp>::subinterval_too_small(__a1, __a2, __b2))
+              __error_type = 3;
           }
 
-	workspace.update(a1, b1, area1, error1,
-			 a2, b2, area2, error2);
+	__workspace.update(__a1, __b1, __area1, __error1,
+			   __a2, __b2, __area2, __error2);
 
-	workspace.retrieve(a_i, b_i, r_i, e_i);
+	__workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
-	++iteration;
-
+	++__iteration;
       }
-    while (iteration < limit && !error_type && errsum > tolerance);
+    while (__iteration < __limit && !__error_type && __errsum > __tolerance);
 
-    result = sum_results (workspace);
-    abserr = errsum;
+    const auto __result = __workspace.sum_results();
+    const auto __abserr = __errsum;
 
-    if (errsum <= tolerance)
-      std::make_pair(result, abserr);
-    else if (error_type == 2)
+    if (__errsum <= __tolerance)
+      return std::make_pair(__result, __abserr);
+    else if (__error_type == 2)
       std::__throw_runtime_error ("roundoff error prevents tolerance from being achieved");
-    else if (error_type == 3)
+    else if (__error_type == 3)
       std::__throw_runtime_error ("bad integrand behavior found in the integration interval");
-    else if (iteration == limit)
+    else if (__iteration == __limit)
       std::__throw_runtime_error ("maximum number of subdivisions reached");
     else
       std::__throw_runtime_error ("could not integrate function");
-
   }
+
+  template<typename _FuncTp, typename _Tp>
+    std::tuple<_Tp, _Tp, bool>
+    qc25s(qaws_integration_table<_Tp>& t,
+	  const _FuncTp& __func, _Tp a, _Tp b, _Tp a1, _Tp b1)
+    {
+      struct fn_qaws<_Tp> fqaws(&t, __func, a, b);
+
+      if (a1 == a && (t.alpha != _Tp{0} || t.mu != 0))
+	{
+	  const auto factor = std::pow(0.5 * (b1 - a1), t.alpha + _Tp{1});
+
+	  auto f = [fqaws](_Tp x)->_Tp{ return fqaws.eval_right(x); };
+	  std::array<_Tp, 13> cheb12;
+	  std::array<_Tp, 25> cheb24;
+	  qcheb_integrate(f, a1, b1, cheb12, cheb24);
+
+	  if (t.mu == 0)
+            {
+              const auto u = factor;
+
+              _Tp res12 = 0, res24 = 0;
+              std::tie(res12, res24) = compute_result(t.ri, cheb12, cheb24);
+
+              const auto result = u * res24;
+              const auto abserr = std::abs(u * (res24 - res12));
+	      return std::make_tuple(result, abserr, false);
+            }
+	  else 
+            {
+              const auto u = factor * std::log(b1 - a1);
+              const auto v = factor;
+
+              _Tp res12a = 0, res24a = 0;
+              std::tie(res12a, res24a) = compute_result(t.ri, cheb12, cheb24);
+              _Tp res12b = 0, res24b = 0;
+              std::tie(res12b, res24b) = compute_result(t.rg, cheb12, cheb24);
+
+              const auto result = u * res24a + v * res24b;
+              const auto abserr = std::abs(u * (res24a - res12a)) + std::abs(v * (res24b - res12b));
+	      return std::make_tuple(result, abserr, false);
+            }
+	}
+      else if (b1 == b && (t.beta != _Tp{0} || t.nu != 0))
+	{
+	  _Tp factor = std::pow(0.5 * (b1 - a1), t.beta + _Tp{1});
+
+	  auto f = [fqaws](_Tp x)->_Tp{ return fqaws.eval_left(x); };
+	  std::array<_Tp, 13> cheb12;
+	  std::array<_Tp, 25> cheb24;
+	  qcheb_integrate(f, a1, b1, cheb12, cheb24);
+
+	  if (t.nu == 0)
+            {
+              const auto u = factor;
+
+              _Tp res12, res24;
+              std::tie(res12, res24) = compute_result(t.rj, cheb12, cheb24);
+
+              const auto result = u * res24;
+              const auto abserr = std::abs(u * (res24 - res12));
+	      return std::make_tuple(result, abserr, false);
+            }
+	  else 
+            {
+              const auto u = factor * std::log(b1 - a1);
+              const auto v = factor;
+
+              _Tp res12a, res24a;
+              std::tie(res12a, res24a) = compute_result(t.rj, cheb12, cheb24);
+              _Tp res12b, res24b;
+              std::tie(res12b, res24b) = compute_result(t.rh, cheb12, cheb24);
+
+              const auto result = u * res24a + v * res24b;
+              const auto abserr = std::abs(u * (res24a - res12a))
+				+ std::abs(v * (res24b - res12b));
+	      return std::make_tuple(result, abserr, false);
+            }
+	}
+      else
+	{
+	  auto f = [fqaws](_Tp x)->_Tp{ return fqaws.eval_middle(x); };
+	  _Tp result, abserr, resabs, resasc;
+	  std::tie(result, abserr, resabs, resasc)
+	    = qk_integrate(f, a1, b1, QK_15);
+
+	  bool err_reliable;
+	  if (abserr == resasc)
+            err_reliable = false;
+	  else
+            err_reliable = true;
+
+	  return std::make_tuple(result, abserr, err_reliable);
+	}
+    }
+
+  template<typename _Tp>
+    struct fn_qaws
+    {
+      const qaws_integration_table<_Tp> *table;
+      std::function<_Tp(_Tp)> func;
+      _Tp a;
+      _Tp b;
+
+      fn_qaws(const qaws_integration_table<_Tp> *t,
+	      std::function<_Tp(_Tp)> f, _Tp a_in, _Tp b_in)
+      : table(t),
+        func(f), a(a_in), b(b_in)
+      { }
+
+      _Tp eval_middle(_Tp) const;
+      _Tp eval_left(_Tp) const;
+      _Tp eval_right(_Tp) const;
+    };
+
+  template<typename _Tp>
+    _Tp
+    fn_qaws<_Tp>::eval_middle(_Tp x) const
+    {
+      auto factor = _Tp{1};
+
+      if (this->table->alpha != _Tp{0})
+	factor *= std::pow(x - this->a, this->table->alpha);
+
+      if (table->mu == 1)
+	factor *= std::log(x - this->a);
+
+      if (this->table->beta != _Tp{0})
+	factor *= std::pow(this->b - x, this->table->beta);
+
+      if (table->nu == 1)
+	factor *= std::log(this->b - x);
+
+      return factor * this->func(x);
+    }
+
+  template<typename _Tp>
+    _Tp
+    fn_qaws<_Tp>::eval_left(_Tp x) const
+    {
+      auto factor = _Tp{1};
+
+      if (this->table->alpha != _Tp{0})
+	factor *= std::pow(x - this->a, this->table->alpha);
+
+      if (this->table->mu == 1)
+	factor *= std::log(x - this->a);
+
+      return factor * this->func(x);
+    }
+
+  template<typename _Tp>
+    _Tp
+    fn_qaws<_Tp>::eval_right(_Tp x) const
+    {
+      auto factor = _Tp{1};
+
+      if (this->table->beta != _Tp{0})
+	factor *= std::pow(this->b - x, this->table->beta);
+
+      if (this->table->nu == 1)
+	factor *= std::log(this->b - x);
+
+      return factor * this->func(x);
+    }
+
+  template<typename _Tp>
+    std::pair<_Tp, _Tp>
+    compute_result(const std::array<_Tp, 25>& r,
+		   const std::array<_Tp, 13>& cheb12,
+		   const std::array<_Tp, 25>& cheb24)
+    {  
+      auto res12 = _Tp{0};
+      for (size_t i = 0; i < cheb12.size(); ++i)
+	res12 += r[i] * cheb12[i];
+
+      auto res24 = _Tp{0};
+      for (size_t i = 0; i < cheb24.size(); ++i)
+	res24 += r[i] * cheb24[i];
+
+      return std::make_pair(res12, res24);
+    }
 
 } // namespace __gnu_test
 
