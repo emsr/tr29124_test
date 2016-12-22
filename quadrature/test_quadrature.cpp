@@ -21,7 +21,6 @@
 $HOME/bin/bin/g++ -std=gnu++17 -fconcepts -g -Wall -Wextra -Wno-psabi -I.. -c -o obj/test.o test.cpp
 */
 
-//#include <config.h>
 #include <cstdlib>
 #include <cstdio>
 #include <cmath>
@@ -1462,19 +1461,19 @@ main()
     qtest.test_int(w.size(), exp_last, "qags(f1) smooth last");
     qtest.test_int(status, exp_ier, "qags(f1) smooth status");
 
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 5; ++i)
       qtest.test_rel(w.lower_lim(i), a[i], 1e-15, "qags(f1) smooth alist");
 
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 5; ++i)
       qtest.test_rel(w.upper_lim(i), b[i], 1e-15, "qags(f1) smooth blist");
 
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 5; ++i)
       qtest.test_rel(w.result(i), r[i], 1e-15, "qags(f1) smooth rlist");
 
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 5; ++i)
       qtest.test_rel(w.abs_error(i), e[i], 1e-6, "qags(f1) smooth elist");
 
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 5; ++i)
       qtest.test_int(w.order(i), order[i]-1, "qags(f1) smooth order");
 
     fc.neval = 0;
@@ -1561,19 +1560,19 @@ main()
     qtest.test_int(w.size(), exp_last, "qags(f11) smooth last");
     qtest.test_int(status, exp_ier, "qags(f11) smooth status");
 
-    for (i = 0; i < 9; i++)
+    for (i = 0; i < 9; ++i)
       qtest.test_rel(w.lower_lim(i), a[i], 1e-15, "qags(f11) smooth alist");
 
-    for (i = 0; i < 9; i++)
+    for (i = 0; i < 9; ++i)
       qtest.test_rel(w.upper_lim(i), b[i], 1e-15, "qags(f11) smooth blist");
 
-    for (i = 0; i < 9; i++)
+    for (i = 0; i < 9; ++i)
       qtest.test_rel(w.result(i), r[i], 1e-15, "qags(f11) smooth rlist");
 
-    for (i = 0; i < 9; i++)
+    for (i = 0; i < 9; ++i)
       qtest.test_rel(w.abs_error(i), e[i], 1e-5, "qags(f11) smooth elist");
 
-    for (i = 0; i < 9; i++)
+    for (i = 0; i < 9; ++i)
       qtest.test_int(w.order(i), order[i]-1, "qags(f11) smooth order");
 
     fc.neval = 0;
@@ -1663,19 +1662,19 @@ main()
     qtest.test_int(w.size(), exp_last, "qagiu(f455) smooth last");
     qtest.test_int(status, exp_ier, "qagiu(f455) smooth status");
 
-    for (i = 0; i < 10; i++)
+    for (i = 0; i < 10; ++i)
       qtest.test_rel(w.lower_lim(i), a[i], 1e-15, "qagiu(f455) smooth alist");
 
-    for (i = 0; i < 10; i++)
+    for (i = 0; i < 10; ++i)
       qtest.test_rel(w.upper_lim(i), b[i], 1e-15, "qagiu(f455) smooth blist");
 
-    for (i = 0; i < 10; i++)
+    for (i = 0; i < 10; ++i)
       qtest.test_rel(w.result(i), r[i], 1e-15, "qagiu(f455) smooth rlist");
 
-    for (i = 0; i < 10; i++)
+    for (i = 0; i < 10; ++i)
       qtest.test_rel(w.abs_error(i), e[i], 1e-4, "qagiu(f455) smooth elist");
 
-    for (i = 0; i < 10; i++)
+    for (i = 0; i < 10; ++i)
       qtest.test_int(w.order(i), order[i]-1, "qagiu(f455) smooth order");
   }
   catch (std::exception& ex)
@@ -1758,19 +1757,19 @@ main()
     qtest.test_int(w.size(), exp_last, "qagiu(f15) smooth last");
     qtest.test_int(status, exp_ier, "qagiu(f15) smooth status");
 
-    for (i = 0; i < 10; i++)
+    for (i = 0; i < 10; ++i)
       qtest.test_rel(w.lower_lim(i), a[i], 1e-15, "qagiu(f15) smooth alist");
 
-    for (i = 0; i < 10; i++)
+    for (i = 0; i < 10; ++i)
       qtest.test_rel(w.upper_lim(i), b[i], 1e-15, "qagiu(f15) smooth blist");
 
-    for (i = 0; i < 10; i++)
+    for (i = 0; i < 10; ++i)
       qtest.test_rel(w.result(i), r[i], 1e-15, "qagiu(f15) smooth rlist");
 
-    for (i = 0; i < 10; i++)
+    for (i = 0; i < 10; ++i)
       qtest.test_rel(w.abs_error(i), e[i], 1e-4, "qagiu(f15) smooth elist");
 
-    for (i = 0; i < 10; i++)
+    for (i = 0; i < 10; ++i)
       qtest.test_int(w.order(i), order[i]-1, "qagiu(f15) smooth order");
   }
   catch (std::exception& ex)
@@ -1910,19 +1909,19 @@ main()
     qtest.test_int(w.size(), exp_last, "qagi(myfn1) smooth last");
     qtest.test_int(status, exp_ier, "qagi(myfn1) smooth status");
 
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 5; ++i)
       qtest.test_rel(w.lower_lim(i), a[i], 1e-15, "qagi(myfn1) smooth alist");
 
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 5; ++i)
       qtest.test_rel(w.upper_lim(i), b[i], 1e-15, "qagi(myfn1) smooth blist");
 
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 5; ++i)
       qtest.test_rel(w.result(i), r[i], 1e-14, "qagi(myfn1) smooth rlist");
 
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 5; ++i)
       qtest.test_rel(w.abs_error(i), e[i], 1e-4, "qagi(myfn1) smooth elist");
 
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 5; ++i)
       qtest.test_int(w.order(i), order[i]-1, "qagi(myfn1) smooth order");
   }
   catch (std::exception& ex)
@@ -1984,19 +1983,19 @@ main()
     qtest.test_int(w.size(), exp_last, "qagil(myfn2) smooth last");
     qtest.test_int(status, exp_ier, "qagil(myfn2) smooth status");
 
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 5; ++i)
       qtest.test_rel(w.lower_lim(i), a[i], 1e-15, "qagil(myfn2) smooth alist");
 
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 5; ++i)
       qtest.test_rel(w.upper_lim(i), b[i], 1e-15, "qagil(myfn2) smooth blist");
 
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 5; ++i)
       qtest.test_rel(w.result(i), r[i], 1e-14, "qagil(myfn2) smooth rlist");
 
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 5; ++i)
       qtest.test_rel(w.abs_error(i), e[i], 1e-4, "qagil(myfn2) smooth elist");
 
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 5; ++i)
       qtest.test_int(w.order(i), order[i]-1, "qagil(myfn2) smooth order");
   }
   catch (std::exception& ex)
@@ -2120,19 +2119,19 @@ main()
     qtest.test_int(w.size(), exp_last, "qagp(f454) singular last");
     qtest.test_int(status, exp_ier, "qagp(f454) singular status");
 
-    for (i = 0; i < 20; i++)
+    for (i = 0; i < 20; ++i)
       qtest.test_rel(w.lower_lim(i), a[i], 1e-15, "qagp(f454) singular alist");
 
-    for (i = 0; i < 20; i++)
+    for (i = 0; i < 20; ++i)
       qtest.test_rel(w.upper_lim(i), b[i], 1e-15, "qagp(f454) singular blist");
 
-    for (i = 0; i < 20; i++)
+    for (i = 0; i < 20; ++i)
       qtest.test_rel(w.result(i), r[i], 1e-14, "qagp(f454) singular rlist");
 
-    for (i = 0; i < 20; i++)
+    for (i = 0; i < 20; ++i)
       qtest.test_rel(w.abs_error(i), e[i], 1e-4, "qagp(f454) singular elist");
 
-    for (i = 0; i < 20; i++)
+    for (i = 0; i < 20; ++i)
       qtest.test_int(w.order(i), order[i]-1, "qagp(f454) singular order");
   }
   catch (std::exception& ex)
@@ -2229,17 +2228,16 @@ main()
     std::cerr << "ERROR: " << ex.what() << '\n';
   }
 
-  /* Test QAWS singular integration using a relative error bound
+  /* Test QAWS singular integration using a relative error bound */
 
   try
   {
     std::cout << "Test adaptive singular integration using a relative error bound..." << std::endl;
 
-    int status = 0, i;
+    int status = 0;
     quadrature_test<double> qtest;
 
-    gsl_integration_qaws_table * t
-      = gsl_integration_qaws_table_alloc (0.0, 0.0, 1, 0);
+    __gnu_test::qaws_integration_table<double> t(0.0, 0.0, 1, 0);
 
     __gnu_test::integration_workspace<double> w(1000);
 
@@ -2285,11 +2283,10 @@ main()
                     8.919965558336773736E-19};
     int order[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
 
-    double alpha = 1.0;
-    auto f = make_function<double>(f458, alpha);
+    auto f = make_function<double>(f458);
     counted_function<double> fc(f);
 
-    auto [result, abserr] = __gnu_test::qaws_integrate(w, fc, 0.0, 1.0, t, 0.0, 1.0e-7, 1000);
+    auto [result, abserr] = __gnu_test::qaws_integrate(w, t, fc, 0.0, 1.0, 0.0, 1.0e-7, w.capacity());
 
     qtest.test_rel(result, exp_result, 1e-14, "qaws(f458) ln(x-a) result");
     qtest.test_rel(abserr, exp_abserr, 1e-6, "qaws(f458) ln(x-a) abserr");
@@ -2297,27 +2294,26 @@ main()
     qtest.test_int(w.size(), exp_last, "qaws(f458) ln(x-a) last");
     qtest.test_int(status, exp_ier, "qaws(f458) ln(x-a) status");
 
-    for (i = 0; i < 6; ++i)
+    for (int i = 0; i < 6; ++i)
       qtest.test_rel(w.lower_lim(i), a[i], 1e-15, "qaws(f458) ln(x-a) alist");
 
-    for (i = 0; i < 6; ++i)
+    for (int i = 0; i < 6; ++i)
       qtest.test_rel(w.upper_lim(i), b[i], 1e-15, "qaws(f458) ln(x-a) blist");
 
-    for (i = 0; i < 6; ++i)
+    for (int i = 0; i < 6; ++i)
       qtest.test_rel(w.result(i), r[i], 1e-14, "qaws(f458) ln(x-a) rlist");
 
-    for (i = 0; i < 6; ++i)
+    for (int i = 0; i < 6; ++i)
       qtest.test_rel(w.abs_error(i), e[i], 1e-4, "qaws(f458) ln(x-a) elist");
 
-    for (i = 0; i < 6; ++i)
+    for (int i = 0; i < 6; ++i)
       qtest.test_int(w.order(i), order[i]-1, "qaws(f458) ln(x-a) order");
 
     // Test without logs
 
-    gsl_integration_qaws_table_set (t, -0.5, -0.3, 0, 0);
+    t.set(-0.5, -0.3, 0, 0);
 
-    status = gsl_integration_qaws (fc, 0.0, 1.0, t, 0.0, 1.0e-7, w._M_limit,
-                                   w, &result, &abserr);
+    std::tie(result, abserr) = __gnu_test::qaws_integrate(w, t, fc, 0.0, 1.0, 0.0, 1.0e-7, w.capacity());
 
     exp_result = 9.896686656601706433E-01;
     exp_abserr = 5.888032513201251628E-08;
@@ -2327,10 +2323,9 @@ main()
 
     // Test with ln(x - a)
 
-    gsl_integration_qaws_table_set (t, -0.5, -0.3, 1, 0);
+    t.set(-0.5, -0.3, 1, 0);
 
-    status = gsl_integration_qaws (fc, 0.0, 1.0, t, 0.0, 1.0e-7, w._M_limit,
-                                   w, &result, &abserr);
+    std::tie(result, abserr) = __gnu_test::qaws_integrate(w, t, fc, 0.0, 1.0, 0.0, 1.0e-7, w.capacity());
 
     exp_result = -3.636679470586539620E-01;
     exp_abserr = 2.851348775257054093E-08;
@@ -2340,10 +2335,9 @@ main()
 
     // Test with ln(b - x)
 
-    gsl_integration_qaws_table_set (t, -0.5, -0.3, 0, 1);
+    t.set(-0.5, -0.3, 0, 1);
 
-    status = gsl_integration_qaws (fc, 0.0, 1.0, t, 0.0, 1.0e-7, w._M_limit,
-                                   w, &result, &abserr);
+    std::tie(result, abserr) = __gnu_test::qaws_integrate(w, t, fc, 0.0, 1.0, 0.0, 1.0e-7, w.capacity());
 
     exp_result = -1.911489253363409802E+00;
     exp_abserr = 9.854016753016499034E-09;
@@ -2353,39 +2347,33 @@ main()
 
     // Test with ln(x - a) ln(b - x)
 
-    gsl_integration_qaws_table_set (t, -0.5, -0.3, 1, 1);
+    t.set (-0.5, -0.3, 1, 1);
 
-    status = gsl_integration_qaws (fc, 0.0, 1.0, t, 0.0, 1.0e-7, w._M_limit,
-                                   w, &result, &abserr);
+    std::tie(result, abserr) = __gnu_test::qaws_integrate(w, t, fc, 0.0, 1.0, 0.0, 1.0e-7, w.capacity());
 
     exp_result = 3.159922862811048172E-01;
     exp_abserr = 2.336183482198144595E-08;
 
     qtest.test_rel(result, exp_result, 1e-14, "qaws(f458) AB ln(x-a)ln(b-x) result");
     qtest.test_rel(abserr, exp_abserr, 1e-6, "qaws(f458) AB ln(x-a)ln(b-x) abserr");
-
-    gsl_integration_qaws_table_free (t);
   }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
     std::cerr << "ERROR: " << ex.what() << '\n';
   }
- */
 
-  /* Test oscillatory integration using a relative error bound
-
+  // Test oscillatory integration using a relative error bound.
   try
   {
     std::cout << "Test oscillatory integration using a relative error bound..." << std::endl;
 
-    int status = 0, i;
+    int status = 0;
     quadrature_test<double> qtest;
 
     __gnu_test::integration_workspace<double> w(1000);
-    gsl_integration_qawo_table * wo
-      = gsl_integration_qawo_table_alloc (10.0 * M_PI, 1.0,
-                                              GSL_INTEG_SINE, 1000);
+    __gnu_test::oscillatory_integration_table<double> wo(10.0 * M_PI, 1.0,
+                                     __gnu_test::oscillatory_integration_table<double>::INTEG_SINE, 1000);
 
     // All results are for GSL_IEEE_MODE=double-precision
 
@@ -2433,11 +2421,10 @@ main()
                     4.062855738364339357E-17 };
     int order[9] = { 1, 2, 4, 3, 6, 5, 7, 8, 9 };
 
-    double alpha = 1.0;
-    auto f = make_function<double>(f456, alpha);
+    auto f = make_function<double>(f456<double>);
     counted_function<double> fc(f);
 
-    auto [result, abserr] = __gnu_test::qawo_integrate(w, fc, 0.0, 0.0, 1e-7, 1000);
+    auto [result, abserr] = __gnu_test::qawo_integrate(w, wo, fc, 0.0, 0.0, 1e-7, 1000);
 
     qtest.test_rel(result, exp_result, 1e-14, "qawo(f456) result");
     qtest.test_rel(abserr, exp_abserr, 1e-3, "qawo(f456) abserr");
@@ -2445,43 +2432,40 @@ main()
     qtest.test_int(w.size(), exp_last, "qawo(f456) last");
     qtest.test_int(status, exp_ier, "qawo(f456) status");
 
-    for (i = 0; i < 9; i++)
+    for (int i = 0; i < 9; ++i)
       qtest.test_rel(w.lower_lim(i), a[i], 1e-15, "qawo(f456) alist");
 
-    for (i = 0; i < 9; i++)
+    for (int i = 0; i < 9; ++i)
       qtest.test_rel(w.upper_lim(i), b[i], 1e-15, "qawo(f456) blist");
 
-    for (i = 0; i < 9; i++)
+    for (int i = 0; i < 9; ++i)
       qtest.test_rel(w.result(i), r[i], 1e-14, "qawo(f456) rlist");
 
-    for (i = 0; i < 9; i++)
+    for (int i = 0; i < 9; ++i)
       qtest.test_rel(w.abs_error(i), e[i], 1e-2, "qawo(f456) elist");
 
-    for (i = 0; i < 9; i++)
+    for (int i = 0; i < 9; ++i)
       qtest.test_int(w.order(i), order[i]-1, "qawo(f456) order");
 
 
     // In reverse, flip limit and sign of length
 
-    gsl_integration_qawo_table_set_length (wo, -1.0);
-
+    wo.set_length(-1.0);
     fc.neval = 0;
-    auto [result, abserr] = qawo_integrate(fc, 1.0, 0.0, 1e-7, 1000, wo);
+    std::tie(result, abserr) = qawo_integrate(w, wo, fc, 1.0, 0.0, 1e-7, 1000);
 
     qtest.test_rel(result, -exp_result, 1e-14, "qawo(f456) rev result");
     qtest.test_rel(abserr, exp_abserr, 1e-3, "qawo(f456) rev abserr");
     qtest.test_int(fc.neval, exp_neval, "qawo(f456) rev neval");
     qtest.test_int(w.size(), exp_last, "qawo(f456) rev last");
     qtest.test_int(status, exp_ier, "qawo(f456) rev status");
-
-    gsl_integration_qawo_table_free (wo);
   }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
     std::cerr << "ERROR: " << ex.what() << '\n';
   }
- */
+
   /* Test Fourier integration using an absolute error bound
   try
   {
@@ -2542,13 +2526,13 @@ main()
     qtest.test_int(w.size(), exp_last, "qawf(f457) last");
     qtest.test_int(status, exp_ier, "qawf(f457) status");
 
-    for (i = 0; i < 9; i++)
+    for (i = 0; i < 9; ++i)
       qtest.test_rel(w.result(i), r[i], 1e-12, "qawf(f457) rlist");
 
     // We can only get within two orders of magnitude on the error
     // here,  which is very sensitive to the floating point precision
 
-    for (i = 0; i < 9; i++)
+    for (i = 0; i < 9; ++i)
       qtest.test_rel(w.abs_error(i), e[i], 50.0, "qawf(f457) elist");
 
     gsl_integration_qawo_table_free (wo);
