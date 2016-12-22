@@ -62,8 +62,11 @@ namespace __gnu_test
       void
       append(_Tp __y)
       {
-	_M_rlist2[_M_nn] = __y;
-	++_M_nn;
+        if (this->_M_nn < this->_M_rlist2.size())
+	  {
+	    this->_M_rlist2[this->_M_nn] = __y;
+	    ++this->_M_nn;
+	  }
       }
 
       std::pair<_Tp, _Tp>
@@ -71,7 +74,7 @@ namespace __gnu_test
 
       size_t
       get_nn() const
-      { return _M_nn; }
+      { return this->_M_nn; }
     };
 
 } // namespace __gnu_test

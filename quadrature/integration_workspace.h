@@ -44,7 +44,7 @@ namespace __gnu_test
       std::size_t _M_capacity;
       std::size_t _M_size;
       std::size_t _M_nrmax;
-      std::size_t _M_ii;
+      std::size_t _M_current_index;
       std::size_t _M_maximum_level;
       std::vector<_Tp> _M_lower_lim, _M_upper_lim, _M_result, _M_abs_error;
       std::vector<std::size_t> _M_order, _M_level;
@@ -55,7 +55,7 @@ namespace __gnu_test
       : _M_capacity(__cap),
 	_M_size(0),
 	_M_nrmax(0),
-	_M_ii(0),
+	_M_current_index(0),
 	_M_maximum_level(0),
 	_M_lower_lim(__cap),
 	_M_upper_lim(__cap),
@@ -66,15 +66,44 @@ namespace __gnu_test
       { }
 
       void
+      set_initial_limits(_Tp a0, _Tp b0)
+      {
+	if (this->_M_capacity > 0)
+	  {
+	    this->_M_size = 0;
+	    this->_M_nrmax = 0;
+	    this->_M_current_index = 0;
+	    this->_M_lower_lim[0] = a0;
+	    this->_M_upper_lim[0] = b0;
+	    this->_M_result[0] = 0.0;
+	    this->_M_abs_error[0] = 0.0;
+	    this->_M_order[0] = 0;
+	    this->_M_level[0] = 0;
+	    this->_M_maximum_level = 0;
+	  }
+      }
+
+      void
+      set_initial_results(_Tp result, _Tp error)
+      {
+	if (this->_M_capacity > 0)
+	  {
+	    this->_M_size = 1;
+	    this->_M_result[0] = result;
+	    this->_M_abs_error[0] = error;
+	  }
+      }
+
+      void
       set_initial(_Tp __a0, _Tp __b0, _Tp __result0, _Tp __error0)
       {
-	_M_lower_lim[0] = __a0;
-	_M_upper_lim[0] = __b0;
-	_M_result[0] = __result0;
-	_M_abs_error[0] = __error0;
-	_M_order[0] = 0;
-	_M_level[0] = 0;
-	_M_size = 1;
+	this->_M_lower_lim[0] = __a0;
+	this->_M_upper_lim[0] = __b0;
+	this->_M_result[0] = __result0;
+	this->_M_abs_error[0] = __error0;
+	this->_M_order[0] = 0;
+	this->_M_level[0] = 0;
+	this->_M_size = 1;
       }
 
       void sort_error();
@@ -87,76 +116,80 @@ namespace __gnu_test
       void
       retrieve(_Tp& __lolim, _Tp& __uplim, _Tp& __res, _Tp& __err) const
       {
-	__lolim = _M_lower_lim[_M_ii];
-	__uplim = _M_upper_lim[_M_ii];
-	__res = _M_result[_M_ii];
-	__err = _M_abs_error[_M_ii];
+	__lolim = this->_M_lower_lim[this->_M_current_index];
+	__uplim = this->_M_upper_lim[this->_M_current_index];
+	__res = this->_M_result[this->_M_current_index];
+	__err = this->_M_abs_error[this->_M_current_index];
       }
 
       size_t
       size() const
-      { return _M_size; }
+      { return this->_M_size; }
 
       size_t
       capacity() const
-      { return _M_capacity; }
+      { return this->_M_capacity; }
+
+      size_t
+      current_index() const
+      { return this->_M_current_index; }
 
       _Tp
       lower_lim(size_t __ii) const
-      { return _M_lower_lim[__ii]; }
+      { return this->_M_lower_lim[__ii]; }
 
       _Tp
       upper_lim(size_t __ii) const
-      { return _M_upper_lim[__ii]; }
+      { return this->_M_upper_lim[__ii]; }
 
       _Tp
       result(size_t __ii) const
-      { return _M_result[__ii]; }
+      { return this->_M_result[__ii]; }
 
       _Tp
       abs_error(size_t __ii) const
-      { return _M_abs_error[__ii]; }
+      { return this->_M_abs_error[__ii]; }
 
       size_t
       order(size_t __ii) const
-      { return _M_order[__ii]; }
+      { return this->_M_order[__ii]; }
 
       size_t
       level(size_t ii) const
-      { return _M_level[ii]; }
+      { return this->_M_level[ii]; }
 
       _Tp
       set_abs_error(size_t __ii, _Tp __abserr)
-      { return _M_abs_error[__ii] = __abserr; }
+      { return this->_M_abs_error[__ii] = __abserr; }
 
       void
       set_level(size_t __ii, size_t __lvl)
-      { _M_level[__ii] = __lvl; }
+      { this->_M_level[__ii] = __lvl; }
 
       bool
       increase_nrmax()
       {
 	int __k;
-	int __id = _M_nrmax;
+	int __id = this->_M_nrmax;
 	int __jupbnd;
 
-	std::size_t __last = _M_size - 1;
+	std::size_t __last = this->_M_size - 1;
 
-	if (__last > (1 + _M_capacity / 2))
-	  __jupbnd = _M_capacity + 1 - __last;
+	if (__last > (1 + this->_M_capacity / 2))
+	  __jupbnd = this->_M_capacity + 1 - __last;
 	else
 	  __jupbnd = __last;
 
 	for (__k = __id; __k <= __jupbnd; ++__k)
 	  {
-	    std::size_t __i_max = _M_order[_M_nrmax];
+	    std::size_t __i_max = this->_M_order[this->_M_nrmax];
 
-	    _M_ii = __i_max;
+	    this->_M_current_index = __i_max;
 
-	    if (_M_level[__i_max] < _M_maximum_level)
+	    if (this->_M_level[__i_max] < this->_M_maximum_level)
 	      return true;
 
-	    ++_M_nrmax;
+	    ++this->_M_nrmax;
 
 	  }
 	return false;
@@ -165,20 +198,20 @@ namespace __gnu_test
       void
       reset_nrmax()
       {
-	_M_nrmax = 0;
-	_M_ii = _M_order[0];
+	this->_M_nrmax = 0;
+	this->_M_current_index = this->_M_order[0];
       }
 
       std::size_t
       get_nrmax() const
       {
-	return _M_nrmax;
+	return this->_M_nrmax;
       }
 
       void
-      set_nrmax(std::size_t NRMAX)
+      set_nrmax(std::size_t nrmax)
       {
-	_M_nrmax = NRMAX;
+	this->_M_nrmax = nrmax;
       }
 
       _Tp
@@ -186,8 +219,8 @@ namespace __gnu_test
       {
 	_Tp __result_sum = 0;
 
-	for (std::size_t __kk = 0; __kk < _M_size; ++__kk)
-	  __result_sum += _M_result[__kk];
+	for (std::size_t __kk = 0; __kk < this->_M_size; ++__kk)
+	  __result_sum += this->_M_result[__kk];
 
 	return __result_sum;
       }
@@ -206,19 +239,19 @@ namespace __gnu_test
       std::size_t
       current_level() const
       {
-	return _M_level[_M_ii];
+	return this->_M_level[this->_M_current_index];
       }
 
       std::size_t
       max_level() const
       {
-	return _M_maximum_level;
+	return this->_M_maximum_level;
       }
 
       bool
       large_interval() const
       {
-	if (_M_level[_M_ii] < _M_maximum_level)
+	if (this->_M_level[this->_M_current_index] < this->_M_maximum_level)
 	  return true;
 	else
 	  return false;
