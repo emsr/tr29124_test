@@ -21,6 +21,7 @@
 #ifndef QAWC_INTEGRATE_H
 #define QAWC_INTEGRATE_H 1
 
+#include <array>
 #include <tuple>
 
 #include "integration_workspace.h"
@@ -45,14 +46,6 @@ template<typename _FuncTp, typename _Tp>
                  const _Tp __epsabs, const _Tp __epsrel,
                  const size_t __limit)
   {
-    _Tp __area, __errsum;
-    _Tp __result0, __abserr0;
-    _Tp __tolerance;
-    size_t __iteration = 0;
-    int __roundoff_type1 = 0, __roundoff_type2 = 0, __error_type = 0;
-    int __err_reliable;
-    int __sign = 1;
-    _Tp __lower, __higher;
 
     auto __result = _Tp{};
     auto __abserr = _Tp{};
@@ -60,6 +53,8 @@ template<typename _FuncTp, typename _Tp>
     if (__limit > __workspace.capacity())
       std::__throw_runtime_error ("iteration limit exceeds available workspace") ;
 
+    int __sign = 1;
+    _Tp __lower, __higher;
     if (__b < __a) 
       {
 	__lower = __b;
@@ -81,6 +76,8 @@ template<typename _FuncTp, typename _Tp>
 
     /* perform the first integration */
 
+    _Tp __result0, __abserr0;
+    bool __err_reliable;
     std::tie(__result0, __abserr0, __err_reliable)
       = qc25c(__func, __lower, __higher, __c);
 
@@ -89,7 +86,7 @@ template<typename _FuncTp, typename _Tp>
     /* Test on accuracy, use 0.01 relative error as an extra safety
        margin on the first iteration (ignored for subsequent iterations) */
 
-    __tolerance = std::max(__epsabs, __epsrel * std::abs( __result0));
+    auto __tolerance = std::max(__epsabs, __epsrel * std::abs( __result0));
 
     if (__abserr0 < __tolerance && __abserr0 < 0.01 * std::abs(__result0)) 
       {
@@ -106,27 +103,21 @@ template<typename _FuncTp, typename _Tp>
 	std::__throw_runtime_error("a maximum of one iteration was insufficient");
       }
 
-    __area = __result0;
-    __errsum = __abserr0;
-
-    __iteration = 1;
-
+    auto __area = __result0;
+    auto __errsum = __abserr0;
+    auto __iteration = 1u;
+    int __error_type = 0;
     do
       {
-	_Tp __a1, __b1, __a2, __b2;
+	// Bisect the subinterval with the largest error estimate.
+
 	_Tp __a_i, __b_i, __r_i, __e_i;
-	_Tp __area1 = 0, __area2 = 0, __area12 = 0;
-	_Tp __error1 = 0, __error2 = 0, __error12 = 0;
-	int __err_reliable1, __err_reliable2;
-
-	/* Bisect the subinterval with the largest error estimate */
-
 	__workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
-	__a1 = __a_i; 
-	__b1 = 0.5 * (__a_i + __b_i);
-	__a2 = __b1;
-	__b2 = __b_i;
+	auto __a1 = __a_i; 
+	auto __b1 = 0.5 * (__a_i + __b_i);
+	auto __a2 = __b1;
+	auto __b2 = __b_i;
 
 	if (__c > __a1 && __c <= __b1) 
           {
@@ -139,20 +130,25 @@ template<typename _FuncTp, typename _Tp>
             __a2 = __b1;
           }
 
+	_Tp __area1, __area2;
+	_Tp __error1, __error2;
+	bool __err_reliable1, __err_reliable2;
 	std::tie(__area1, __error1, __err_reliable1) = qc25c(__func, __a1, __b1, __c);
 	std::tie(__area2, __error2, __err_reliable2) = qc25c(__func, __a2, __b2, __c);
 
-	__area12 = __area1 + __area2;
-	__error12 = __error1 + __error2;
+	auto __area12 = __area1 + __area2;
+	auto __error12 = __error1 + __error2;
 
 	__errsum += (__error12 - __e_i);
 	__area += __area12 - __r_i;
 
+	int __roundoff_type1 = 0, __roundoff_type2 = 0;
 	if (__err_reliable1 && __err_reliable2)
           {
             _Tp __delta = __r_i - __area12;
 
-            if (std::abs (__delta) <= 1.0e-5 * std::abs (__area12) && __error12 >= 0.99 * __e_i)
+            if (std::abs (__delta) <= 1.0e-5 * std::abs (__area12)
+	    	 && __error12 >= 0.99 * __e_i)
               ++__roundoff_type1;
             if (__iteration >= 10 && __error12 > __e_i)
               ++__roundoff_type2;
@@ -229,17 +225,17 @@ template<typename _FuncTp, typename _Tp>
 	}
       else
 	{
-	  const std::size_t __N = 25;
-	  const std::size_t __M = 1 + __N / 2;
-	  _Tp __cheb12[__M], __cheb24[__N];
-	  _Tp __res12 = 0, __res24 = 0;
+	  std::array<_Tp, 13> __cheb12;
+	  std::array<_Tp, 25> __cheb24;
 	  qcheb_integrate(__func, __a, __b, __cheb12, __cheb24);
-	  auto __moment = compute_moments(__N, __cc);
+	  const auto __moment = compute_moments(__cheb24.size(), __cc);
 
-	  for (size_t __i = 0u; __i < __M; ++__i)
+	  auto __res12 = _Tp{0};
+	  for (size_t __i = 0u; __i < __cheb12.size(); ++__i)
             __res12 += __cheb12[__i] * __moment[__i];
 
-	  for (size_t __i = 0u; __i < __N; ++__i)
+	  auto __res24 = _Tp{0};
+	  for (size_t __i = 0u; __i < __cheb24.size(); ++__i)
             __res24 += __cheb24[__i] * __moment[__i];
 
 	  __result = __res24;

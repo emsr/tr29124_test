@@ -1,23 +1,27 @@
 /* integration/qng_integrate.h
- * 
+ *
  * Copyright (C) 1996, 1997, 1998, 1999, 2000, 2007 Brian Gough
  * Copyright (C) 2016 Edward Smith-Rowland
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+#ifndef QNG_INTEGRATE_H
+#define QNG_INTEGRATE_H 1
+
+#include "err.h"
 /**
    Gauss-Kronrod-Patterson quadrature coefficients for use in
    quadpack routine qng. These coefficients were calculated with
@@ -219,43 +223,17 @@ w87b[23]
   0.037361073762679023410321241766599L,
 };
 
-template<typename _Tp>
-  _Tp
-  rescale_error(_Tp err, const _Tp result_abs, const _Tp result_asc)
-  {
-    err = std::abs(err);
-
-    if (result_asc != 0 && err != 0)
-      {
-	auto scale = std::pow((200 * err / result_asc), 1.5);
-
-	if (scale < 1)
-          err = result_asc * scale;
-	else 
-          err = result_asc;
-      }
-    if (result_abs > std::numeric_limits<_Tp>::min() / (50 * std::numeric_limits<_Tp>::epsilon()))
-      {
-	auto min_err = 50 * std::numeric_limits<_Tp>::epsilon() * result_abs;
-
-	if (min_err > err) 
-          err = min_err;
-      }
-
-    return err;
-  }
-
 template<typename _FuncTp, typename _Tp>
   int
   qng_integrate(const _FuncTp& __func,
-        	_Tp a, _Tp b,
-        	_Tp epsabs, _Tp epsrel,
-        	_Tp& result, _Tp& abserr, size_t& neval)
+		_Tp a, _Tp b,
+		_Tp epsabs, _Tp epsrel,
+		_Tp& result, _Tp& abserr, size_t& neval)
   {
     _Tp fv1[5], fv2[5], fv3[5], fv4[5];
     _Tp savfun[21];  /* array of function values which have been computed */
     _Tp res10, res21, res43, res87; /* 10, 21, 43 and 87 point results */
-    _Tp result_kronrod, err; 
+    _Tp result_kronrod, err;
     _Tp resabs; /* approximation to the integral of abs(f) */
     _Tp resasc; /* approximation to the integral of abs(f-i/(b-a)) */
 
@@ -307,23 +285,23 @@ template<typename _FuncTp, typename _Tp>
 
     resabs *= abs_half_length;
 
-    { 
+    {
       const _Tp mean = 0.5 * res21;
 
       resasc = _Tp(w21b[5]) * std::abs(f_center - mean);
 
       for (int k = 0; k < 5; ++k)
 	{
-          resasc +=
-            (_Tp(w21a[k]) * (std::abs(fv1[k] - mean) + std::abs(fv2[k] - mean))
-            + _Tp(w21b[k]) * (std::abs(fv3[k] - mean) + std::abs(fv4[k] - mean)));
+	  resasc +=
+	    (_Tp(w21a[k]) * (std::abs(fv1[k] - mean) + std::abs(fv2[k] - mean))
+	    + _Tp(w21b[k]) * (std::abs(fv3[k] - mean) + std::abs(fv4[k] - mean)));
 	}
       resasc *= abs_half_length;
     }
 
     result_kronrod = res21 * half_length;
 
-    err = rescale_error((res21 - res10) * half_length, resabs, resasc);
+    err = __rescale_error((res21 - res10) * half_length, resabs, resasc);
 
     /*   Test for convergence. */
 
@@ -345,8 +323,8 @@ template<typename _FuncTp, typename _Tp>
     for (int k = 0; k < 11; ++k)
       {
 	const _Tp abscissa = half_length * _Tp(x3[k]);
-	const _Tp fval = __func(center + abscissa) 
-                       + __func(center - abscissa);
+	const _Tp fval = __func(center + abscissa)
+		       + __func(center - abscissa);
 	res43 += fval * _Tp(w43b[k]);
 	savfun[k + 10] = fval;
       }
@@ -354,7 +332,7 @@ template<typename _FuncTp, typename _Tp>
     /* Test for convergence. */
 
     result_kronrod = res43 * half_length;
-    err = rescale_error ((res43 - res21) * half_length, resabs, resasc);
+    err = __rescale_error((res43 - res21) * half_length, resabs, resasc);
 
     if (err < epsabs || err < epsrel * std::abs(result_kronrod))
       {
@@ -382,7 +360,7 @@ template<typename _FuncTp, typename _Tp>
 
     result_kronrod = res87 * half_length;
 
-    err = rescale_error ((res87 - res43) * half_length, resabs, resasc);
+    err = __rescale_error((res87 - res43) * half_length, resabs, resasc);
 
     if (err < epsabs || err < epsrel * std::abs(result_kronrod))
       {
@@ -402,3 +380,5 @@ template<typename _FuncTp, typename _Tp>
   }
 
 } // namespace __gnu_test
+
+#endif // QNG_INTEGRATE_H
