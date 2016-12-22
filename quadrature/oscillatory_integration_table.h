@@ -25,6 +25,9 @@
 // in integration schemes
 // Based upon gsl-2.1/integration/qmomof.c
 
+#ifndef OSCILLATORY_INTEGRATION_TABLE_H
+#define OSCILLATORY_INTEGRATION_TABLE_H 1
+
 template<typename _Tp>
   struct oscillatory_integration_table
   {
@@ -288,3 +291,5 @@ template<typename _Tp>
     }
 
   };
+
+#endif // OSCILLATORY_INTEGRATION_TABLE_H
