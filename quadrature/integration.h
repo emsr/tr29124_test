@@ -34,6 +34,7 @@
 #include "qaws_integrate.h"
 #include "qawo_integrate.h"
 #include "qawf_integrate.h"
+#include "gauss_legendre_table.h"
 
 #include <limits>
 

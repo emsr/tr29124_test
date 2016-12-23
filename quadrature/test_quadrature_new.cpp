@@ -22,9 +22,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -fconcepts -g -Wall -Wextra -Wno-psabi -I.. -c -o
 */
 
 #include <cstdlib>
-#include <cstdio>
 #include <cmath>
-#include <cstring>
 #include <functional>
 #include <iostream>
 
@@ -150,13 +148,12 @@ template<typename _Tp>
 
     if (status ||  this->verbose)
       {
-	printf(status ? "FAIL: " : "PASS: ");
+	std::cout << (status ? "FAIL: " : "PASS: ");
 
 	if (status && ! this->verbose)
-          printf(" [%u]", this->num_tests);
+          std::cout << " [" << this->num_tests << "]";
 
-	printf("\n");
-	fflush(stdout);
+	std::cout << std::endl;
       }
   }
 
@@ -185,33 +182,27 @@ template<typename _Tp>
 
     if (status ||  this->verbose)
       {
-	printf(status ? "FAIL: " : "PASS: ");
+	std::cout << (status ? "FAIL: " : "PASS: ");
 
 	if (status == 0)
-          {
-            if (strlen(test_desc) < 45)
-              printf(" (%g observed vs %g expected)", result, expected);
-            else
-              printf(" (%g obs vs %g exp)", result, expected);
-          }
+          std::cout << " (" << result << " observed vs " << expected << " expected)";
 	else
-          printf(" (%.18g observed vs %.18g expected)", result, expected);
+          std::cout << " (" << result << " observed vs " << expected << " expected)";
 
 	if (status == -1)
-          printf(" [test uses subnormal value]");
+          std::cout << " [test uses subnormal value]");
 
 	if (status && ! this->verbose)
-          printf(" [%u]",  this->num_tests);
+          std::cout << " [" << this->num_tests << "]";
 
-	printf("\n");
-	fflush(stdout);
+	std::cout << std::endl;
       }
   }
 
 template<typename _Tp>
   void
   quadrature_test<_Tp>::test_abs(_Tp result, _Tp expected, _Tp abs_error,
-		      const char *test_desc)
+				 const char *test_desc)
   {
     int status;
 
@@ -229,28 +220,19 @@ template<typename _Tp>
 
     this->test_update(status);
 
-    if (status ||  this->verbose)
+    if (status || this->verbose)
       {
-	printf(status ? "FAIL: " : "PASS: ");
+	std::cout << (status ? "FAIL: " : "PASS: ");
 
-	if (status == 0)
-          {
-            if (strlen(test_desc) < 45)
-              printf(" (%g observed vs %g expected)", result, expected);
-            else
-              printf(" (%g obs vs %g exp)", result, expected);
-          }
-	else
-          printf(" (%.18g observed vs %.18g expected)", result, expected);
+	std::cout << " (" << result << " observed vs " << expected << " expected)";
 
 	if (status == -1)
-          printf(" [test uses subnormal value]");
+          std::cout << " [test uses subnormal value]");
 
 	if (status && ! this->verbose)
-          printf(" [%u]",  this->num_tests);
+          std::cout << " [" << this->num_tests << "]";
 
-	printf("\n");
-	fflush(stdout);
+	std::cout << std::endl;
       }
   }
 
@@ -276,28 +258,19 @@ template<typename _Tp>
 
     this->test_update (status);
 
-    if (status ||  this->verbose)
+    if (status || this->verbose)
       {
-	printf(status ? "FAIL: " : "PASS: ");
+	std::cout << (status ? "FAIL: " : "PASS: ");
 
-	if (status == 0)
-          {
-            if (strlen(test_desc) < 45)
-              printf(" (%g observed vs %g expected)", result, expected);
-            else
-              printf(" (%g obs vs %g exp)", result, expected);
-          }
-	else
-          printf(" (%.18g observed vs %.18g expected)", result, expected);
+	std::cout << (" (" << result << " observed vs " << expected << " expected)";
 
 	if (status == -1)
-          printf(" [test uses subnormal value]");
+          std::cout << " [test uses subnormal value]");
 
 	if (status && ! this->verbose)
-          printf(" [%u]",  this->num_tests);
+          std::cout << " [" << this->num_tests << "]";
 
-	printf("\n");
-	fflush(stdout);
+	std::cout << std::endl;
       }
   }
 
@@ -309,20 +282,16 @@ template<typename _Tp>
 
     this->test_update(status);
 
-    if (status ||  this->verbose)
+    if (status || this->verbose)
       {
-	printf(status ? "FAIL: " : "PASS: ");
+	std::cout << (status ? "FAIL: " : "PASS: ");
 
-	if (status == 0)
-          printf(" (%d observed vs %d expected)", result, expected);
-	else
-          printf(" (%d observed vs %d expected)", result, expected);
+	std::cout << " (" << result << " observed vs " << expected << " expected)";
 
-	if (status && ! this->verbose)
-          printf(" [%u]",  this->num_tests);
+	if (status && !this->verbose)
+          std::cout << " [" << this->num_tests << "]";
 
-	printf("\n");
-	fflush(stdout);
+	std::cout << std::endl;
       }
   }
 
@@ -331,7 +300,7 @@ template<typename _Tp>
   quadrature_test<_Tp>::test_summary()
   {
     if (tot_verbose)
-      printf("%d tests, passed %d, failed %d.\n",  tot_num_tests,  tot_num_passed,  tot_num_failed);
+      std::cout << tot_num_tests << " tests, passed " << tot_num_passed << ", failed " << tot_num_failed << ".\n";
 
     if (tot_num_failed != 0)
       {
@@ -341,15 +310,16 @@ template<typename _Tp>
     if (tot_num_tests !=  tot_num_passed +  tot_num_failed)
       {
 	if (tot_verbose)
-          printf("TEST RESULTS DO NOT ADD UP %d != %d + %d\n",
-                   tot_num_tests,  tot_num_passed,  tot_num_failed);
+          std::cout << "TEST RESULTS DO NOT ADD UP " << tot_num_tests
+		    << " != " << tot_num_passed
+		    << " + " << tot_num_failed << "\n";
 	return FAILURE;
       }
 
     if (tot_num_passed ==  tot_num_tests)
       {
 	if (! tot_verbose)
-          printf("Completed [%d/%d]\n",  tot_num_passed,  tot_num_tests);
+          std::cout << "Completed [" << tot_num_passed << "/" << tot_num_tests << "]\n";
 
 	return SUCCESS;
       }
@@ -1461,19 +1431,19 @@ main()
     qtest.test_int(w.size(), exp_last, "qags(f1) smooth last");
     qtest.test_int(status, exp_ier, "qags(f1) smooth status");
 
-    for (i = 0; i < 5; ++i)
+    for (i = 0; i < 5; i++)
       qtest.test_rel(w.lower_lim(i), a[i], 1e-15, "qags(f1) smooth alist");
 
-    for (i = 0; i < 5; ++i)
+    for (i = 0; i < 5; i++)
       qtest.test_rel(w.upper_lim(i), b[i], 1e-15, "qags(f1) smooth blist");
 
-    for (i = 0; i < 5; ++i)
+    for (i = 0; i < 5; i++)
       qtest.test_rel(w.result(i), r[i], 1e-15, "qags(f1) smooth rlist");
 
-    for (i = 0; i < 5; ++i)
+    for (i = 0; i < 5; i++)
       qtest.test_rel(w.abs_error(i), e[i], 1e-6, "qags(f1) smooth elist");
 
-    for (i = 0; i < 5; ++i)
+    for (i = 0; i < 5; i++)
       qtest.test_int(w.order(i), order[i]-1, "qags(f1) smooth order");
 
     fc.neval = 0;
@@ -1560,19 +1530,19 @@ main()
     qtest.test_int(w.size(), exp_last, "qags(f11) smooth last");
     qtest.test_int(status, exp_ier, "qags(f11) smooth status");
 
-    for (i = 0; i < 9; ++i)
+    for (i = 0; i < 9; i++)
       qtest.test_rel(w.lower_lim(i), a[i], 1e-15, "qags(f11) smooth alist");
 
-    for (i = 0; i < 9; ++i)
+    for (i = 0; i < 9; i++)
       qtest.test_rel(w.upper_lim(i), b[i], 1e-15, "qags(f11) smooth blist");
 
-    for (i = 0; i < 9; ++i)
+    for (i = 0; i < 9; i++)
       qtest.test_rel(w.result(i), r[i], 1e-15, "qags(f11) smooth rlist");
 
-    for (i = 0; i < 9; ++i)
+    for (i = 0; i < 9; i++)
       qtest.test_rel(w.abs_error(i), e[i], 1e-5, "qags(f11) smooth elist");
 
-    for (i = 0; i < 9; ++i)
+    for (i = 0; i < 9; i++)
       qtest.test_int(w.order(i), order[i]-1, "qags(f11) smooth order");
 
     fc.neval = 0;
@@ -1662,19 +1632,19 @@ main()
     qtest.test_int(w.size(), exp_last, "qagiu(f455) smooth last");
     qtest.test_int(status, exp_ier, "qagiu(f455) smooth status");
 
-    for (i = 0; i < 10; ++i)
+    for (i = 0; i < 10; i++)
       qtest.test_rel(w.lower_lim(i), a[i], 1e-15, "qagiu(f455) smooth alist");
 
-    for (i = 0; i < 10; ++i)
+    for (i = 0; i < 10; i++)
       qtest.test_rel(w.upper_lim(i), b[i], 1e-15, "qagiu(f455) smooth blist");
 
-    for (i = 0; i < 10; ++i)
+    for (i = 0; i < 10; i++)
       qtest.test_rel(w.result(i), r[i], 1e-15, "qagiu(f455) smooth rlist");
 
-    for (i = 0; i < 10; ++i)
+    for (i = 0; i < 10; i++)
       qtest.test_rel(w.abs_error(i), e[i], 1e-4, "qagiu(f455) smooth elist");
 
-    for (i = 0; i < 10; ++i)
+    for (i = 0; i < 10; i++)
       qtest.test_int(w.order(i), order[i]-1, "qagiu(f455) smooth order");
   }
   catch (std::exception& ex)
@@ -1757,19 +1727,19 @@ main()
     qtest.test_int(w.size(), exp_last, "qagiu(f15) smooth last");
     qtest.test_int(status, exp_ier, "qagiu(f15) smooth status");
 
-    for (i = 0; i < 10; ++i)
+    for (i = 0; i < 10; i++)
       qtest.test_rel(w.lower_lim(i), a[i], 1e-15, "qagiu(f15) smooth alist");
 
-    for (i = 0; i < 10; ++i)
+    for (i = 0; i < 10; i++)
       qtest.test_rel(w.upper_lim(i), b[i], 1e-15, "qagiu(f15) smooth blist");
 
-    for (i = 0; i < 10; ++i)
+    for (i = 0; i < 10; i++)
       qtest.test_rel(w.result(i), r[i], 1e-15, "qagiu(f15) smooth rlist");
 
-    for (i = 0; i < 10; ++i)
+    for (i = 0; i < 10; i++)
       qtest.test_rel(w.abs_error(i), e[i], 1e-4, "qagiu(f15) smooth elist");
 
-    for (i = 0; i < 10; ++i)
+    for (i = 0; i < 10; i++)
       qtest.test_int(w.order(i), order[i]-1, "qagiu(f15) smooth order");
   }
   catch (std::exception& ex)
@@ -1909,19 +1879,19 @@ main()
     qtest.test_int(w.size(), exp_last, "qagi(myfn1) smooth last");
     qtest.test_int(status, exp_ier, "qagi(myfn1) smooth status");
 
-    for (i = 0; i < 5; ++i)
+    for (i = 0; i < 5; i++)
       qtest.test_rel(w.lower_lim(i), a[i], 1e-15, "qagi(myfn1) smooth alist");
 
-    for (i = 0; i < 5; ++i)
+    for (i = 0; i < 5; i++)
       qtest.test_rel(w.upper_lim(i), b[i], 1e-15, "qagi(myfn1) smooth blist");
 
-    for (i = 0; i < 5; ++i)
+    for (i = 0; i < 5; i++)
       qtest.test_rel(w.result(i), r[i], 1e-14, "qagi(myfn1) smooth rlist");
 
-    for (i = 0; i < 5; ++i)
+    for (i = 0; i < 5; i++)
       qtest.test_rel(w.abs_error(i), e[i], 1e-4, "qagi(myfn1) smooth elist");
 
-    for (i = 0; i < 5; ++i)
+    for (i = 0; i < 5; i++)
       qtest.test_int(w.order(i), order[i]-1, "qagi(myfn1) smooth order");
   }
   catch (std::exception& ex)
@@ -1983,19 +1953,19 @@ main()
     qtest.test_int(w.size(), exp_last, "qagil(myfn2) smooth last");
     qtest.test_int(status, exp_ier, "qagil(myfn2) smooth status");
 
-    for (i = 0; i < 5; ++i)
+    for (i = 0; i < 5; i++)
       qtest.test_rel(w.lower_lim(i), a[i], 1e-15, "qagil(myfn2) smooth alist");
 
-    for (i = 0; i < 5; ++i)
+    for (i = 0; i < 5; i++)
       qtest.test_rel(w.upper_lim(i), b[i], 1e-15, "qagil(myfn2) smooth blist");
 
-    for (i = 0; i < 5; ++i)
+    for (i = 0; i < 5; i++)
       qtest.test_rel(w.result(i), r[i], 1e-14, "qagil(myfn2) smooth rlist");
 
-    for (i = 0; i < 5; ++i)
+    for (i = 0; i < 5; i++)
       qtest.test_rel(w.abs_error(i), e[i], 1e-4, "qagil(myfn2) smooth elist");
 
-    for (i = 0; i < 5; ++i)
+    for (i = 0; i < 5; i++)
       qtest.test_int(w.order(i), order[i]-1, "qagil(myfn2) smooth order");
   }
   catch (std::exception& ex)
@@ -2119,19 +2089,19 @@ main()
     qtest.test_int(w.size(), exp_last, "qagp(f454) singular last");
     qtest.test_int(status, exp_ier, "qagp(f454) singular status");
 
-    for (i = 0; i < 20; ++i)
+    for (i = 0; i < 20; i++)
       qtest.test_rel(w.lower_lim(i), a[i], 1e-15, "qagp(f454) singular alist");
 
-    for (i = 0; i < 20; ++i)
+    for (i = 0; i < 20; i++)
       qtest.test_rel(w.upper_lim(i), b[i], 1e-15, "qagp(f454) singular blist");
 
-    for (i = 0; i < 20; ++i)
+    for (i = 0; i < 20; i++)
       qtest.test_rel(w.result(i), r[i], 1e-14, "qagp(f454) singular rlist");
 
-    for (i = 0; i < 20; ++i)
+    for (i = 0; i < 20; i++)
       qtest.test_rel(w.abs_error(i), e[i], 1e-4, "qagp(f454) singular elist");
 
-    for (i = 0; i < 20; ++i)
+    for (i = 0; i < 20; i++)
       qtest.test_int(w.order(i), order[i]-1, "qagp(f454) singular order");
   }
   catch (std::exception& ex)
@@ -2283,10 +2253,11 @@ main()
                     8.919965558336773736E-19};
     int order[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
 
-    auto f = make_function<double>(f458);
+    double alpha = 1.0;
+    auto f = make_function<double>(f458, alpha);
     counted_function<double> fc(f);
 
-    auto [result, abserr] = __gnu_test::qaws_integrate(w, t, fc, 0.0, 1.0, 0.0, 1.0e-7, w.capacity());
+    auto [result, abserr] = __gnu_test::qaws_integrate(w, fc, 0.0, 1.0, t, 0.0, 1.0e-7, 1000);
 
     qtest.test_rel(result, exp_result, 1e-14, "qaws(f458) ln(x-a) result");
     qtest.test_rel(abserr, exp_abserr, 1e-6, "qaws(f458) ln(x-a) abserr");
@@ -2311,9 +2282,9 @@ main()
 
     // Test without logs
 
-    t.set(-0.5, -0.3, 0, 0);
+    t.set(t-0.5, -0.3, 0, 0);
 
-    std::tie(result, abserr) = __gnu_test::qaws_integrate(w, t, fc, 0.0, 1.0, 0.0, 1.0e-7, w.capacity());
+    std::tie(result, abserr) = __gnu_test::qaws_integrate(w, fc, 0.0, 1.0, t, 0.0, 1.0e-7, w.capacity());
 
     exp_result = 9.896686656601706433E-01;
     exp_abserr = 5.888032513201251628E-08;
@@ -2325,7 +2296,7 @@ main()
 
     t.set(-0.5, -0.3, 1, 0);
 
-    std::tie(result, abserr) = __gnu_test::qaws_integrate(w, t, fc, 0.0, 1.0, 0.0, 1.0e-7, w.capacity());
+    std::tie(result, abserr) = __gnu_test::qaws_integrate(w, fc, 0.0, 1.0, t, 0.0, 1.0e-7, w.capacity());
 
     exp_result = -3.636679470586539620E-01;
     exp_abserr = 2.851348775257054093E-08;
@@ -2337,7 +2308,7 @@ main()
 
     t.set(-0.5, -0.3, 0, 1);
 
-    std::tie(result, abserr) = __gnu_test::qaws_integrate(w, t, fc, 0.0, 1.0, 0.0, 1.0e-7, w.capacity());
+    std::tie(result, abserr) = __gnu_test::qaws_integrate(w, fc, 0.0, 1.0, t, 0.0, 1.0e-7, w.capacity());
 
     exp_result = -1.911489253363409802E+00;
     exp_abserr = 9.854016753016499034E-09;
@@ -2349,7 +2320,7 @@ main()
 
     t.set (-0.5, -0.3, 1, 1);
 
-    std::tie(result, abserr) = __gnu_test::qaws_integrate(w, t, fc, 0.0, 1.0, 0.0, 1.0e-7, w.capacity());
+    std::tie(result, abserr) = __gnu_test::qaws_integrate(w, fc, 0.0, 1.0, t, 0.0, 1.0e-7, w.capacity());
 
     exp_result = 3.159922862811048172E-01;
     exp_abserr = 2.336183482198144595E-08;
@@ -2363,17 +2334,19 @@ main()
     std::cerr << "ERROR: " << ex.what() << '\n';
   }
 
-  // Test oscillatory integration using a relative error bound.
+  /* Test oscillatory integration using a relative error bound
+
   try
   {
     std::cout << "Test oscillatory integration using a relative error bound..." << std::endl;
 
-    int status = 0;
+    int status = 0, i;
     quadrature_test<double> qtest;
 
     __gnu_test::integration_workspace<double> w(1000);
-    __gnu_test::oscillatory_integration_table<double> wo(10.0 * M_PI, 1.0,
-                                     __gnu_test::oscillatory_integration_table<double>::INTEG_SINE, 1000);
+    gsl_integration_qawo_table * wo
+      = gsl_integration_qawo_table_alloc (10.0 * M_PI, 1.0,
+                                              GSL_INTEG_SINE, 1000);
 
     // All results are for GSL_IEEE_MODE=double-precision
 
@@ -2421,10 +2394,11 @@ main()
                     4.062855738364339357E-17 };
     int order[9] = { 1, 2, 4, 3, 6, 5, 7, 8, 9 };
 
-    auto f = make_function<double>(f456<double>);
+    double alpha = 1.0;
+    auto f = make_function<double>(f456, alpha);
     counted_function<double> fc(f);
 
-    auto [result, abserr] = __gnu_test::qawo_integrate(w, wo, fc, 0.0, 0.0, 1e-7, 1000);
+    auto [result, abserr] = __gnu_test::qawo_integrate(w, fc, 0.0, 0.0, 1e-7, 1000);
 
     qtest.test_rel(result, exp_result, 1e-14, "qawo(f456) result");
     qtest.test_rel(abserr, exp_abserr, 1e-3, "qawo(f456) abserr");
@@ -2432,41 +2406,44 @@ main()
     qtest.test_int(w.size(), exp_last, "qawo(f456) last");
     qtest.test_int(status, exp_ier, "qawo(f456) status");
 
-    for (int i = 0; i < 9; ++i)
+    for (int i = 0; i < 9; i++)
       qtest.test_rel(w.lower_lim(i), a[i], 1e-15, "qawo(f456) alist");
 
-    for (int i = 0; i < 9; ++i)
+    for (int i = 0; i < 9; i++)
       qtest.test_rel(w.upper_lim(i), b[i], 1e-15, "qawo(f456) blist");
 
-    for (int i = 0; i < 9; ++i)
+    for (int i = 0; i < 9; i++)
       qtest.test_rel(w.result(i), r[i], 1e-14, "qawo(f456) rlist");
 
-    for (int i = 0; i < 9; ++i)
+    for (int i = 0; i < 9; i++)
       qtest.test_rel(w.abs_error(i), e[i], 1e-2, "qawo(f456) elist");
 
-    for (int i = 0; i < 9; ++i)
+    for (int i = 0; i < 9; i++)
       qtest.test_int(w.order(i), order[i]-1, "qawo(f456) order");
 
 
     // In reverse, flip limit and sign of length
 
-    wo.set_length(-1.0);
+    gsl_integration_qawo_table_set_length (wo, -1.0);
+
     fc.neval = 0;
-    std::tie(result, abserr) = qawo_integrate(w, wo, fc, 1.0, 0.0, 1e-7, 1000);
+    auto [result, abserr] = qawo_integrate(fc, 1.0, 0.0, 1e-7, 1000, wo);
 
     qtest.test_rel(result, -exp_result, 1e-14, "qawo(f456) rev result");
     qtest.test_rel(abserr, exp_abserr, 1e-3, "qawo(f456) rev abserr");
     qtest.test_int(fc.neval, exp_neval, "qawo(f456) rev neval");
     qtest.test_int(w.size(), exp_last, "qawo(f456) rev last");
     qtest.test_int(status, exp_ier, "qawo(f456) rev status");
+
+    gsl_integration_qawo_table_free (wo);
   }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
     std::cerr << "ERROR: " << ex.what() << '\n';
   }
-
-  // Test Fourier integration using an absolute error bound.
+ */
+  /* Test Fourier integration using an absolute error bound
   try
   {
     std::cout << "Test Fourier integration using an absolute error bound..." << std::endl;
@@ -2476,9 +2453,9 @@ main()
 
     __gnu_test::integration_workspace<double> w(1000);
     __gnu_test::integration_workspace<double> wc(1000);
-    __gnu_test::oscillatory_integration_table<double>
-      wo(M_PI / 2.0, 1.0,
-	__gnu_test::oscillatory_integration_table<double>::INTEG_COSINE, 1000);
+    gsl_integration_qawo_table * wo
+      = gsl_integration_qawo_table_alloc (M_PI / 2.0, 1.0,
+                                              GSL_INTEG_COSINE, 1000);
 
     // All results are for GSL_IEEE_MODE=double-precision
 
@@ -2513,11 +2490,12 @@ main()
                     2.439454888092388058E-17,
                     2.130457268934021451E-17 };
 
-    auto f = make_function<double>(f457);
+    double alpha = 1.0;
+    auto f = make_function<double>(f457, alpha);
     counted_function<double> fc(f);
 
-    auto [result, abserr]
-      = __gnu_test::qawf_integrate(w, wc, wo, fc, 0.0, 1e-7, w.capacity());
+    auto [result, abserr] = __gnu_test::qawf_integrate(w, fc, 0.0, 1e-7, w._M_limit,
+                                   w, wc, wo);
 
     qtest.test_rel(result, exp_result, 1e-14, "qawf(f457) result");
     qtest.test_rel(abserr, exp_abserr, 1e-3, "qawf(f457) abserr");
@@ -2525,21 +2503,23 @@ main()
     qtest.test_int(w.size(), exp_last, "qawf(f457) last");
     qtest.test_int(status, exp_ier, "qawf(f457) status");
 
-    for (i = 0; i < 9; ++i)
+    for (i = 0; i < 9; i++)
       qtest.test_rel(w.result(i), r[i], 1e-12, "qawf(f457) rlist");
 
     // We can only get within two orders of magnitude on the error
     // here,  which is very sensitive to the floating point precision
 
-    for (i = 0; i < 9; ++i)
+    for (i = 0; i < 9; i++)
       qtest.test_rel(w.abs_error(i), e[i], 50.0, "qawf(f457) elist");
+
+    gsl_integration_qawo_table_free (wo);
   }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
     std::cerr << "ERROR: " << ex.what() << '\n';
   }
-
+*/
   /* Sanity check monomial test function for fixed Gauss-Legendre rules */
   try
   {
@@ -2577,19 +2557,21 @@ main()
 
         monomial<double> mon(2*n-1, 1.0); // n point rule exact for 2n-1 degree poly
         expected      = integrate(mon, a, b);
-        result        = glfixed_integrate(tbl, mon, a, b);
+        result        = gsl_integration_glfixed(mon, a, b, tbl);
 
         if (tbl->precomputed)
           {
             qtest.test_rel(result, expected, 1.0e-12,
-                "glfixed %d-point: Integrating (%g*x^%d) over [%g,%g]",
-                n, mon.constant, mon.degree, a, b);
+                "glfixed " << n << "-point:"
+		" Integrating (" << mon.constant << "*x^" << mon.degree << ") "
+		"over [" << a << "," << b << "]";
           }
         else
           {
             qtest.test_rel(result, expected, 1.0e-7,
-                "glfixed %d-point: Integrating (%g*x^%d) over [%g,%g]",
-                n, mon.constant, mon.degree, a, b);
+                "glfixed " << n << "-point:"
+		" Integrating (" << mon.constant << "*x^" << mon.degree << ") "
+		"over [" << a << "," << b << "]";
           }
 
         gsl_integration_glfixed_table_free(tbl);
@@ -2642,25 +2624,22 @@ main()
         if (n == 1)
           {
             qtest.test_abs(result, GSL_FN_EVAL(&f,(b+a)/2)*(b-a), 0.0,
-                "glfixed %d-point: behavior for n == 1", n);
+                "glfixed " << n << "-point: behavior for n == 1";
           }
         else if (n < 9)
           {
             qtest.test_update(! (abserr < prev_abserr),
-                "glfixed %d-point: observed drop in absolute error versus %d-points",
-                n, n-1);
+                "glfixed " << n << "-point: observed drop in absolute error versus " << n-1 << "-points";
           }
         else if (tbl->precomputed)
           {
             qtest.test_abs(result, expected, 2.0 * n * std::numeric_limits<_Tp>::epsilon(),
-                "glfixed %d-point: very low absolute error for high precision coefficients",
-                n);
+                "glfixed " << n << "-point: very low absolute error for high precision coefficients");
           }
         else
           {
             qtest.test_abs(result, expected, 1.0e6 * std::numeric_limits<_Tp>::epsilon(),
-                "glfixed %d-point: acceptable absolute error for on-the-fly coefficients",
-                n);
+                "glfixed " << n << "-point: acceptable absolute error for on-the-fly coefficients");
           }
 
         prev_abserr = abserr;
@@ -2719,8 +2698,8 @@ main()
     for (i = 0; i < n; ++i)
       {
         gsl_integration_glfixed_point(-1, 1, i, &xi, &wi, tbl);
-        qtest.test_abs(xi, e1[i][0], eps, "glfixed %d-point lookup: x(%d)", n, i);
-        qtest.test_abs(wi, e1[i][1], eps, "glfixed %d-point lookup: w(%d)", n, i);
+        qtest.test_abs(xi, e1[i][0], eps, "glfixed " << n << "-point lookup: x(" << i << ")";
+        qtest.test_abs(wi, e1[i][1], eps, "glfixed " << n << "-point lookup: w(" << i << ")";
       }
     gsl_integration_glfixed_table_free(tbl);
 
@@ -2729,8 +2708,8 @@ main()
     for (i = 0; i < n; ++i)
       {
         gsl_integration_glfixed_point(-1, 1, i, &xi, &wi, tbl);
-        qtest.test_abs(xi, e2[i][0], eps, "glfixed %d-point lookup: x(%d)", n, i);
-        qtest.test_abs(wi, e2[i][1], eps, "glfixed %d-point lookup: w(%d)", n, i);
+        qtest.test_abs(xi, e2[i][0], eps, "glfixed " << n << "-point lookup: x(" << i << ")";
+        qtest.test_abs(wi, e2[i][1], eps, "glfixed " << n << "-point lookup: w(" << i << ")";
       }
     gsl_integration_glfixed_table_free(tbl);
 
@@ -2739,8 +2718,8 @@ main()
     for (i = 0; i < n; ++i)
       {
         gsl_integration_glfixed_point(-1, 1, i, &xi, &wi, tbl);
-        qtest.test_abs(xi, e3[i][0], eps, "glfixed %d-point lookup: x(%d)", n, i);
-        qtest.test_abs(wi, e3[i][1], eps, "glfixed %d-point lookup: w(%d)", n, i);
+        qtest.test_abs(xi, e3[i][0], eps, "glfixed " << n << "-point lookup: x(%d)", n, i);
+        qtest.test_abs(wi, e3[i][1], eps, "glfixed " << n << "-point lookup: w(%d)", n, i);
       }
     gsl_integration_glfixed_table_free(tbl);
 
