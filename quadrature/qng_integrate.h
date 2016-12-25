@@ -224,11 +224,10 @@ qng_w87b[23]
 };
 
 template<typename _FuncTp, typename _Tp>
-  int
+  std::tuple<_Tp, _Tp, std::size_t>
   qng_integrate(const _FuncTp& __func,
 		_Tp a, _Tp b,
-		_Tp epsabs, _Tp epsrel,
-		_Tp& result, _Tp& abserr, size_t& neval)
+		_Tp epsabs, _Tp epsrel)
   {
     _Tp fv1[5], fv2[5], fv3[5], fv4[5];
     _Tp savfun[21];  /* array of function values which have been computed */
@@ -243,14 +242,9 @@ template<typename _FuncTp, typename _Tp>
     const _Tp f_center = __func(center);
 
     if (epsabs <= 0 && (epsrel < 50 * std::numeric_limits<_Tp>::epsilon() || epsrel < 0.5e-28))
-      {
-	result = 0;
-	abserr = 0;
-	neval = 0;
-	std::__throw_runtime_error("tolerance cannot be achieved with given epsabs and epsrel");
-      };
+      std::__throw_runtime_error("tolerance cannot be achieved with given epsabs and epsrel");
 
-    /* Compute the integral using the 10- and 21-point formula. */
+    // Compute the integral using the 10- and 21-point formula.
 
     res10 = 0;
     res21 = _Tp(qng_w21b[5]) * f_center;
@@ -286,7 +280,7 @@ template<typename _FuncTp, typename _Tp>
     resabs *= abs_half_length;
 
     {
-      const _Tp mean = 0.5 * res21;
+      const auto mean = 0.5 * res21;
 
       resasc = _Tp(qng_w21b[5]) * std::abs(f_center - mean);
 
@@ -303,17 +297,12 @@ template<typename _FuncTp, typename _Tp>
 
     err = __rescale_error((res21 - res10) * half_length, resabs, resasc);
 
-    /*   Test for convergence. */
+    // Test for convergence.
 
     if (err < epsabs || err < epsrel * std::abs(result_kronrod))
-      {
-	result = result_kronrod;
-	abserr = err;
-	neval = 21;
-	return 0;
-      }
+      return std::make_tuple(result_kronrod, err, 21);
 
-    /* Compute the integral using the 43-point formula. */
+    // Compute the integral using the 43-point formula.
 
     res43 = _Tp(qng_w43b[11]) * f_center;
 
@@ -329,20 +318,15 @@ template<typename _FuncTp, typename _Tp>
 	savfun[k + 10] = fval;
       }
 
-    /* Test for convergence. */
+    // Test for convergence.
 
     result_kronrod = res43 * half_length;
     err = __rescale_error((res43 - res21) * half_length, resabs, resasc);
 
     if (err < epsabs || err < epsrel * std::abs(result_kronrod))
-      {
-	result = result_kronrod;
-	abserr = err;
-	neval = 43;
-	return 0;
-      }
+      return std::make_tuple(result_kronrod, err, 43);
 
-    /* Compute the integral using the 87-point formula. */
+    // Compute the integral using the 87-point formula.
 
     res87 = _Tp(qng_w87b[22]) * f_center;
 
@@ -356,26 +340,16 @@ template<typename _FuncTp, typename _Tp>
 			       + __func(center - abscissa));
       }
 
-    /* Test for convergence */
+    // Test for convergence.
 
     result_kronrod = res87 * half_length;
 
     err = __rescale_error((res87 - res43) * half_length, resabs, resasc);
 
     if (err < epsabs || err < epsrel * std::abs(result_kronrod))
-      {
-	result = result_kronrod;
-	abserr = err;
-	neval = 87;
-	return 0;
-      }
+      return std::make_tuple(result_kronrod, err, 87);
 
-    /* Failed to converge */
-
-    result = result_kronrod;
-    abserr = err;
-    neval = 87;
-
+    // Failed to converge.
     std::__throw_runtime_error("failed to reach tolerance with highest-order rule");
   }
 
