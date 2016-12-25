@@ -1,0 +1,42 @@
+1. Get all the tests passing for all the GSL integrals.
+
+2. Go through and make everything clean style-wise.
+   Columns, __, _S_eps, _S_max.
+
+3. Make the various APIs consistent.
+
+4. Make narrow types instead of pair and tuple.
+   Lean towards AOS i think.
+
+5. Fix up the IntegralError with errc and everything and use it.
+   Gat an errc enum for GSL quadrature.
+
+6. Get good names: *Integral.
+
+7. These tables should be inside classes.
+   users should not have to build them in real use.
+
+8. The tables are useful for debugging.
+   I might make these *_integrate public static members of the classes.
+
+9. The GSL seems to lack meat and potatoes integrals like midopint, trapezoid, romberg, ...
+   These are in NRiC++ in my trees. old/integration.tcc shold be truly genericized and packaged.
+
+10. Change from __gnu_test to __gnu_cxx
+
+11. Make the library truly type generic.
+
+12. Make the whole library deal with functions that return other than real - i.e. comlpex.
+    We want to be able to do contour integrals.
+    var_t for the integration variable
+    ret_t for function return
+    real_t - the scalar type of var_t - Do we require
+    area_t - var_t()*ret_t()
+
+13. Gather requirements of types and of __func.
+
+14. Gather more testcases.
+
+15. Try some integral reps of functions.
+
+16. I have Gauss rules out the wazoo.
