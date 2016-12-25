@@ -31,7 +31,7 @@ BINS = \
 all: $(BINS)
 
 
-test_quadrature: test_quadrature.cpp *.h
+test_quadrature: test_quadrature.cpp *.h *.tcc
 	$(CXX17) -o test_quadrature test_quadrature.cpp -lquadmath
 
 hermite_test: $(OBJ_DIR)/hermite_test.o
@@ -68,36 +68,36 @@ zernike_test: $(OBJ_DIR)/zernike_test.o
 	$(CXX17) -o zernike_test $(OBJ_DIR)/zernike_test.o -lquadmath
 
 
-$(OBJ_DIR)/hermite_test.o: *.h hermite_test.cpp
+$(OBJ_DIR)/hermite_test.o: *.h *.tcc hermite_test.cpp
 	$(CXX17) -c -o $(OBJ_DIR)/hermite_test.o hermite_test.cpp
 
-$(OBJ_DIR)/laguerre_test.o: *.h laguerre_test.cpp
+$(OBJ_DIR)/laguerre_test.o: *.h *.tcc laguerre_test.cpp
 	$(CXX17) -c -o $(OBJ_DIR)/laguerre_test.o laguerre_test.cpp
 
-$(OBJ_DIR)/legendre_test.o: *.h legendre_test.cpp
+$(OBJ_DIR)/legendre_test.o: *.h *.tcc legendre_test.cpp
 	$(CXX17) -c -o $(OBJ_DIR)/legendre_test.o legendre_test.cpp
 
-$(OBJ_DIR)/gegenbauer_test.o: *.h gegenbauer_test.cpp
+$(OBJ_DIR)/gegenbauer_test.o: *.h *.tcc gegenbauer_test.cpp
 	$(CXX17) -c -o $(OBJ_DIR)/gegenbauer_test.o gegenbauer_test.cpp
 
-$(OBJ_DIR)/jacobi_test.o: *.h jacobi_test.cpp
+$(OBJ_DIR)/jacobi_test.o: *.h *.tcc jacobi_test.cpp
 	$(CXX17) -c -o $(OBJ_DIR)/jacobi_test.o jacobi_test.cpp
 
-$(OBJ_DIR)/chebyshev_t_test.o: *.h chebyshev_t_test.cpp
+$(OBJ_DIR)/chebyshev_t_test.o: *.h *.tcc chebyshev_t_test.cpp
 	$(CXX17) -c -o $(OBJ_DIR)/chebyshev_t_test.o chebyshev_t_test.cpp
 
-$(OBJ_DIR)/chebyshev_u_test.o: *.h chebyshev_u_test.cpp
+$(OBJ_DIR)/chebyshev_u_test.o: *.h *.tcc chebyshev_u_test.cpp
 	$(CXX17) -c -o $(OBJ_DIR)/chebyshev_u_test.o chebyshev_u_test.cpp
 
-$(OBJ_DIR)/chebyshev_v_test.o: *.h chebyshev_v_test.cpp
+$(OBJ_DIR)/chebyshev_v_test.o: *.h *.tcc chebyshev_v_test.cpp
 	$(CXX17) -c -o $(OBJ_DIR)/chebyshev_v_test.o chebyshev_v_test.cpp
 
-$(OBJ_DIR)/chebyshev_w_test.o: *.h chebyshev_w_test.cpp
+$(OBJ_DIR)/chebyshev_w_test.o: *.h *.tcc chebyshev_w_test.cpp
 	$(CXX17) -c -o $(OBJ_DIR)/chebyshev_w_test.o chebyshev_w_test.cpp
 
-$(OBJ_DIR)/radpoly_test.o: *.h radpoly_test.cpp
+$(OBJ_DIR)/radpoly_test.o: *.h *.tcc radpoly_test.cpp
 	$(CXX17) -c -o $(OBJ_DIR)/radpoly_test.o radpoly_test.cpp
 
-$(OBJ_DIR)/zernike_test.o: *.h zernike_test.cpp
+$(OBJ_DIR)/zernike_test.o: *.h *.tcc zernike_test.cpp
 	$(CXX17) -c -o $(OBJ_DIR)/zernike_test.o zernike_test.cpp
 
