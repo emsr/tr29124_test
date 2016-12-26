@@ -18,7 +18,7 @@
  */
 
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -fconcepts -g -Wall -Wextra -Wno-psabi -I.. -c -o obj/test.o test.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -fconcepts -g -Wall -Wextra -Wno-psabi -I.. -c -o obj/test_quadrature..o test_quadrature.cpp
 */
 
 #include <cstdlib>
@@ -2580,7 +2580,6 @@ main()
     for (int n = 1; n < 1025; ++n)
       {
 	quadrature_test<double> qtest;
-std::cout << "n = " << n << '\n';
         __gnu_test::gauss_legendre_table<double> tbl(n);
 
         monomial<double> mon(2*n-1, 1.0); // n point rule exact for 2n-1 degree poly
@@ -2645,7 +2644,6 @@ std::cout << "n = " << n << '\n';
     for (n = 1; n <= n_max; ++n)
       {
         __gnu_test::gauss_legendre_table<double> tbl(n);
-std::cout << "n = " << n << '\n';
 
         result = __gnu_test::glfixed_integrate(tbl, f, a, b);
         abserr = std::abs(expected - result);
