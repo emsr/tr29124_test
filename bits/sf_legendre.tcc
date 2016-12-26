@@ -380,6 +380,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __m = __l / 2;
 
       // Treat the central zero for odd order specially.
+      // Be careful to avoid overflow of the factorials.
+      // An alternative would be to proceed with the recursion
+      // for large order.
       if (__l & 1)
 	{
 	  if (__l < _S_num_factorials<_Tp>)

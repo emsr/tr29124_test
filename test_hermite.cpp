@@ -67,16 +67,32 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hermite test_hermite
       const auto __m = __n / 2;
 
       // Treat the central zero for odd order specially.
+      // Be careful to avoid overflow of the factorials.
+      // An alternative would be to proceed with the recursion
+      // for large order.
       if (__n & 1)
 	{
-	  auto __nm = __n - 1;
-	  auto __nmfact = std::__detail::__factorial<_Tp>(__nm);
-	  auto __mm = __nm / 2;
-	  auto __mmfact = std::__detail::__factorial<_Tp>(__mm);
-	  auto __Hnm1 = (__mm & 1 ? _Tp{-1} : _Tp{1}) / __mmfact;
-	  __pt[__m].__zero = _Tp{0};
-	  __pt[__m].__weight = _S_sqrt_pi * std::pow(_Tp{2}, _Tp(__n - 1))
-			     / __nmfact / __Hnm1 / __Hnm1 / __n;
+	  if (__n < std::__detail::_S_num_factorials<_Tp>)
+	    {
+	      auto __nm = __n - 1;
+	      auto __nmfact = std::__detail::__factorial<_Tp>(__nm);
+	      auto __mm = __nm / 2;
+	      auto __mmfact = std::__detail::__factorial<_Tp>(__mm);
+	      auto __Hnm1 = (__mm & 1 ? _Tp{-1} : _Tp{1}) / __mmfact;
+	      __pt[__m].__zero = _Tp{0};
+	      __pt[__m].__weight = _S_sqrt_pi * std::pow(_Tp{2}, _Tp(__n - 1))
+				 / __nmfact / __Hnm1 / __Hnm1 / __n;
+	    }
+	  else
+	    {
+	      auto __nm = __n - 1;
+	      auto __nmfact = std::__detail::__log_factorial<_Tp>(__nm);
+	      auto __mm = __nm / 2;
+	      auto __mmfact = std::__detail::__log_factorial<_Tp>(__mm);
+	      __pt[__m].__zero = _Tp{0};
+	      __pt[__m].__weight = _S_sqrt_pi * std::pow(_Tp{2}, _Tp(__n - 1))
+				 *std::exp(-(__nmfact - 2 * __mmfact)) / __n;
+	    }
 	}
 
       _Tp __z;

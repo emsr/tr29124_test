@@ -16,6 +16,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_legendre 
 #include "legendre.tcc"
 #include "bits/sf_legendre.tcc"
 
+  /**
+   * Build a list of zeros and weights for the Gauss-Legendre integration rule
+   * for the Legendre polynomial of degree @c l.
+   */
   template<typename _Tp>
     std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
     __legendre_zeros(unsigned int __l, _Tp proto = _Tp{})
@@ -29,17 +33,36 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_legendre 
       auto __m = __l / 2;
 
       // Treat the central zero for odd order specially.
+      // Be careful to avoid overflow of the factorials.
+      // An alternative would be to proceed with the recursion
+      // for large order.
       if (__l & 1)
 	{
-	  auto __lm = __l - 1;
-	  auto __lmfact = std::__detail::__factorial<_Tp>(__lm);
-	  auto __mm = __lm / 2;
-	  auto __mmfact = std::__detail::__factorial<_Tp>(__mm);
-	  auto __Plm1 = (__lm & 1 ? -1 : 1) * __lmfact / __mmfact / __mmfact
-			/ std::pow(_Tp{2}, __lm);
-	  auto __Ppl = __l * __Plm1;
-	  __pt[__m].__zero = _Tp{0};
-	  __pt[__m].__weight = _Tp{2} / __Ppl / __Ppl;
+	  if (__l < std::__detail::_S_num_factorials<_Tp>)
+	    {
+	      auto __lm = __l - 1;
+	      auto __lmfact = std::__detail::__factorial<_Tp>(__lm);
+	      auto __mm = __lm / 2;
+	      auto __mmfact = std::__detail::__factorial<_Tp>(__mm);
+	      auto __Plm1 = (__lm & 1 ? -1 : 1) * __lmfact / __mmfact / __mmfact
+			    / std::pow(_Tp{2}, __lm);
+	      auto __Ppl = __l * __Plm1;
+	      __pt[__m].__zero = _Tp{0};
+	      __pt[__m].__weight = _Tp{2} / __Ppl / __Ppl;
+	    }
+	  else
+	    {
+	      auto __lm = __l - 1;
+	      auto __lmfact = std::__detail::__log_factorial<_Tp>(__lm);
+	      auto __mm = __lm / 2;
+	      auto __mmfact = std::__detail::__log_factorial<_Tp>(__mm);
+	      auto __Plm1 = (__lm & 1 ? -1 : 1)
+			  * std::exp(__lmfact - 2 * __mmfact)
+			  / std::pow(_Tp{2}, __lm);
+	      auto __Ppl = __l * __Plm1;
+	      __pt[__m].__zero = _Tp{0};
+	      __pt[__m].__weight = _Tp{2} / __Ppl / __Ppl;
+	    }
 	}
 
       for (auto __i = 1u; __i <= __m; ++__i)
@@ -152,7 +175,7 @@ template<typename _Tp>
 	  }
       }
 
-    for (int l = 0; l <= 50; ++l)
+    for (int l = 0; l <= 1024; ++l)
       {
 	auto pt = __legendre_zeros(l, proto);
 	std::cout << "\nl = " << std::setw(4) << l << ":\n";
