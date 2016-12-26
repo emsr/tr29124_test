@@ -409,6 +409,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 #endif
 #endif
 
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+  // Prevent infinite recursion with pow for __float128.
+  inline __float128 pow(__float128 __x, __float128 __y);
+#endif
+
   template<typename _Tp, typename _Up>
     inline _GLIBCXX_CONSTEXPR
     typename __gnu_cxx::__promote_2<_Tp, _Up>::__type
