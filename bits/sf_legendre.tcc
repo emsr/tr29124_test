@@ -382,15 +382,31 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Treat the central zero for odd order specially.
       if (__l & 1)
 	{
-	  auto __lm = __l - 1;
-	  auto __lmfact = std::__detail::__factorial<_Tp>(__lm);
-	  auto __mm = __lm / 2;
-	  auto __mmfact = std::__detail::__factorial<_Tp>(__mm);
-	  auto __Plm1 = (__lm & 1 ? -1 : 1) * __lmfact / __mmfact / __mmfact
-			/ std::pow(_Tp{2}, __lm);
-	  auto __Ppl = __l * __Plm1;
-	  __pt[__m].__zero = _Tp{0};
-	  __pt[__m].__weight = _Tp{2} / __Ppl / __Ppl;
+	  if (__l < _S_num_factorials<_Tp>)
+	    {
+	      auto __lm = __l - 1;
+	      auto __lmfact = __factorial<_Tp>(__lm);
+	      auto __mm = __lm / 2;
+	      auto __mmfact = __factorial<_Tp>(__mm);
+	      auto __Plm1 = (__lm & 1 ? -1 : 1) * __lmfact / __mmfact / __mmfact
+			    / std::pow(_Tp{2}, __lm);
+	      auto __Ppl = __l * __Plm1;
+	      __pt[__m].__zero = _Tp{0};
+	      __pt[__m].__weight = _Tp{2} / __Ppl / __Ppl;
+	    }
+	  else
+	    {
+	      auto __lm = __l - 1;
+	      auto __lmfact = __log_factorial<_Tp>(__lm);
+	      auto __mm = __lm / 2;
+	      auto __mmfact = __log_factorial<_Tp>(__mm);
+	      auto __Plm1 = (__lm & 1 ? -1 : 1)
+			  * std::exp(__lmfact - 2 * __mmfact)
+			  / std::pow(_Tp{2}, __lm);
+	      auto __Ppl = __l * __Plm1;
+	      __pt[__m].__zero = _Tp{0};
+	      __pt[__m].__weight = _Tp{2} / __Ppl / __Ppl;
+	    }
 	}
 
       for (auto __i = 1u; __i <= __m; ++__i)
