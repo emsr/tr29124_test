@@ -47,7 +47,7 @@ namespace __gnu_test
       enum circular_function circfun;
       std::vector<_Tp> chebmo;
 
-      oscillatory_integration_table(_Tp omega_in, _Tp length_in, 
+      oscillatory_integration_table(_Tp omega_in, _Tp length_in,
                                     circular_function circfun_in,
                                     std::size_t n_in)
       : n(n_in),
@@ -79,7 +79,7 @@ namespace __gnu_test
       }
 
       void
-      reset(_Tp omega_in, _Tp length_in, 
+      reset(_Tp omega_in, _Tp length_in,
 	    circular_function circfun_in)
       {
 	this->omega = omega_in;

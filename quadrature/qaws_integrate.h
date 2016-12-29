@@ -1,18 +1,18 @@
 /* quadrature/qaws_integrate.h
- * 
+ *
  * Copyright (C) 1996, 1997, 1998, 1999, 2000, 2007 Brian Gough
  * Copyright (C) 2016 Edward Smith-Rowland
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
@@ -50,7 +50,7 @@ namespace __gnu_test
     {
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
 
-      if (__b <= __a) 
+      if (__b <= __a)
 	std::__throw_runtime_error("limits must form an ascending sequence, a < b") ;
       if (__epsabs <= 0 && (__epsrel < 50 * _S_eps || __epsrel < 0.5e-28))
 	std::__throw_runtime_error("tolerance cannot be achieved with given epsabs and epsrel");
@@ -112,7 +112,7 @@ namespace __gnu_test
 	  _Tp __a_i, __b_i, __r_i, __e_i;
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
-	  const auto __a1 = __a_i; 
+	  const auto __a1 = __a_i;
 	  const auto __b1 = 0.5 * (__a_i + __b_i);
 	  const auto __a2 = __b1;
 	  const auto __b2 = __b_i;
@@ -218,7 +218,7 @@ namespace __gnu_test
               const auto __abserr = std::abs(__u * (__res24 - __res12));
 	      return std::make_tuple(__result, __abserr, false);
             }
-	  else 
+	  else
             {
               const auto __u = __factor * std::log(__b1 - __a1);
               const auto __v = __factor;
@@ -257,7 +257,7 @@ namespace __gnu_test
               const auto __abserr = std::abs(__u * (__res24 - __res12));
 	      return std::make_tuple(__result, __abserr, false);
             }
-	  else 
+	  else
             {
               const auto __u = __factor * std::log(__b1 - __a1);
               const auto __v = __factor;
@@ -369,7 +369,7 @@ namespace __gnu_test
     compute_result(const std::array<_Tp, 25>& __r,
 		   const std::array<_Tp, 13>& __cheb12,
 		   const std::array<_Tp, 25>& __cheb24)
-    {  
+    {
       auto __res12 = _Tp{0};
       for (size_t __i = 0; __i < __cheb12.size(); ++__i)
 	__res12 += __r[__i] * __cheb12[__i];
