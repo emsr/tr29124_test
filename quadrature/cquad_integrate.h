@@ -1,18 +1,18 @@
 /* integration/qagp_integrate.h
- * 
+ *
  * Copyright (C) 2010 Pedro Gonnet
  * Copyright (C) 2016 Edward Smith-Rowland
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
@@ -367,7 +367,7 @@ namespace __gnu_test
 				      && __ivl.c[0] / __iv.c[0] > 2);
 	      if (__ivl.ndiv > __ndiv_max && 2 * __ivl.ndiv > __ivl.rdepth)
 		{
-		  __result = std::copysign(_S_inf, __igral);  
+		  __result = std::copysign(_S_inf, __igral);
 		  return std::make_tuple(__result, __abserr);
 		}
 
@@ -428,7 +428,7 @@ namespace __gnu_test
 				      && __ivr.c[0] / __iv.c[0] > 2);
 	      if (__ivr.ndiv > __ndiv_max && 2 * __ivr.ndiv > __ivr.rdepth)
 		{
-		  __result = std::copysign(_S_inf, __igral);  
+		  __result = std::copysign(_S_inf, __igral);
 		  return std::make_tuple(__result, __abserr);
 		}
 

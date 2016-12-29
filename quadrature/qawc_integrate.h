@@ -1,18 +1,18 @@
 /* integration/qagp.c
- * 
+ *
  * Copyright (C) 1996, 1997, 1998, 1999, 2000, 2007 Brian Gough
  * Copyright (C) 2016 Edward Smith-Rowland
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
@@ -54,7 +54,7 @@ namespace __gnu_test
 
       int __sign = 1;
       _Tp __lower, __higher;
-      if (__b < __a) 
+      if (__b < __a)
 	{
 	  __lower = __b;
 	  __higher = __a;
@@ -70,7 +70,7 @@ namespace __gnu_test
 			   || __epsrel < 0.5e-28))
 	std::__throw_runtime_error ("tolerance cannot be achieved with given tolerances");
 
-      if (__c == __a || __c == __b) 
+      if (__c == __a || __c == __b)
 	std::__throw_runtime_error ("cannot integrate with singularity on endpoint");
 
       /* perform the first integration */
@@ -87,7 +87,7 @@ namespace __gnu_test
 
       auto __tolerance = std::max(__epsabs, __epsrel * std::abs( __result0));
 
-      if (__abserr0 < __tolerance && __abserr0 < 0.01 * std::abs(__result0)) 
+      if (__abserr0 < __tolerance && __abserr0 < 0.01 * std::abs(__result0))
 	{
 	  __result = __sign * __result0;
 	  __abserr = __abserr0;
@@ -113,12 +113,12 @@ namespace __gnu_test
 	  _Tp __a_i, __b_i, __r_i, __e_i;
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
-	  auto __a1 = __a_i; 
+	  auto __a1 = __a_i;
 	  auto __b1 = 0.5 * (__a_i + __b_i);
 	  auto __a2 = __b1;
 	  auto __b2 = __b_i;
 
-	  if (__c > __a1 && __c <= __b1) 
+	  if (__c > __a1 && __c <= __b1)
             {
               __b1 = 0.5 * (__c + __b2) ;
               __a2 = __b1;
@@ -201,7 +201,7 @@ namespace __gnu_test
     }
 
   /**
-   * 
+   *
    */
   template<typename _FuncTp, typename _Tp>
     std::tuple<_Tp, _Tp, bool>
@@ -226,7 +226,7 @@ namespace __gnu_test
 
 	  if (__abserr == __resasc)
             __err_reliable = false;
-	  else 
+	  else
             __err_reliable = true;
 
 	  return std::make_tuple(__result, __abserr, __err_reliable);
@@ -255,7 +255,7 @@ namespace __gnu_test
     }
 
   /**
-   * 
+   *
    */
   template<typename _Tp>
     std::vector<_Tp>
