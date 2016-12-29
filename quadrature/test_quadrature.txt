@@ -197,7 +197,7 @@ PASS:  (8.56654e-16 observed vs 8.56654e-16 expected)
 PASS:  (87 observed vs 87 expected)
 PASS:  (0 observed vs 0 expected)
 >>>> Test non-adaptive Gaussian integrator...
-ERROR: failed to reach tolerance with highest-order rule
+ERROR: qng_integrate: Failed to reach tolerance with highest-order rule
 >>>> Test adaptive Gaussian integrator...
 PASS:  (0.0771605 observed vs 0.0771605 expected)
 PASS:  (6.67938e-12 observed vs 6.67938e-12 expected)
