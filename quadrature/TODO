@@ -1,14 +1,14 @@
 1. Get all the tests passing for all the GSL integrals.
 
-2. Go through and make everything clean style-wise.
+2. [] Go through and make everything clean style-wise.
    Columns, __, _S_eps, _S_max.
 
 3. Make the various APIs consistent.
 
-4. Make narrow types instead of pair and tuple.
+4. [] Make narrow types instead of pair and tuple.
    Lean towards AOS i think.
 
-5. Fix up the IntegralError exception class with errc and everything and use it.
+5. [DONE] Fix up the IntegralError exception class with errc and everything and use it.
    Gat an errc enum for GSL quadrature.
    You'll eventually want to hack src/c++11/functexcept.cc and bits/functexcept.h.
    _GLIBCXX_THROW_OR_ABORT is in bits/c++config

@@ -44,7 +44,8 @@ namespace __gnu_test
     public:
 
       _IntegrationError(const char* __what, int __status,
-			_Tp __result = _Tp{0}, _Tp __abserr = _Tp{0})
+			_Tp __result = std::numeric_limits<_Tp>::quiet_NaN(),
+			_Tp __abserr = std::numeric_limits<_Tp>::quiet_NaN())
       : std::runtime_error(__what),
 	_M_result(__result),
 	_M_abserr(__abserr),
@@ -70,7 +71,8 @@ namespace __gnu_test
   template<typename _Tp>
     void
     __throw__IntegrationError(const char* __what, int __status,
-			      _Tp __result = _Tp{0}, _Tp __abserr = _Tp{0})
+			      _Tp __result = std::numeric_limits<_Tp>::quiet_NaN(),
+			      _Tp __abserr = std::numeric_limits<_Tp>::quiet_NaN())
     {
       _GLIBCXX_THROW_OR_ABORT(
 	_IntegrationError(__what, __status, __result, __abserr));
@@ -82,7 +84,8 @@ namespace __gnu_test
   template<typename _Tp>
     void
     __check_error(std::string_view __func, int __errcode,
-		  _Tp __result = _Tp{0}, _Tp __abserr = _Tp{0})
+		  _Tp __result = std::numeric_limits<_Tp>::quiet_NaN(),
+		  _Tp __abserr = std::numeric_limits<_Tp>::quiet_NaN())
     {
       std::ostringstream msg;
       msg << __func << ": ";
