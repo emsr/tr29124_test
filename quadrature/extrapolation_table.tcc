@@ -31,15 +31,16 @@ namespace __gnu_test
 {
 
   template<typename _Tp>
-    std::pair<_Tp, _Tp>
+    std::tuple<_Tp, _Tp>
     extrapolation_table<_Tp>::qelg()
     {
-      const size_t __cur_n = _M_nn - 1;
-      const _Tp __current = _M_rlist2[__cur_n];
+      const size_t __cur_n = this->_M_nn - 1;
+      const _Tp __current = this->_M_rlist2[__cur_n];
 
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto _S_max = std::numeric_limits<_Tp>::max();
 
-      auto __absolute = std::numeric_limits<_Tp>::max();
+      auto __absolute = _S_max;
       auto __relative = 5 * _S_eps * std::abs(__current);
 
       const size_t __newelm = __cur_n / 2;
@@ -47,26 +48,26 @@ namespace __gnu_test
       size_t __n_final = __cur_n;
       size_t __ii;
 
-      const size_t __nres_orig = _M_nres;
+      const size_t __nres_orig = this->_M_nres;
 
       auto __result = __current;
-      auto __abserr = std::numeric_limits<_Tp>::max();
+      auto __abserr = _S_max;
 
       if (__cur_n < 2)
 	{
 	  __result = __current;
 	  __abserr = std::max(__absolute, __relative);
-	  return std::make_pair(__result, __abserr);
+	  return std::make_tuple(__result, __abserr);
 	}
 
-      _M_rlist2[__cur_n + 2] = _M_rlist2[__cur_n];
-      _M_rlist2[__cur_n] = std::numeric_limits<_Tp>::max();
+      this->_M_rlist2[__cur_n + 2] = this->_M_rlist2[__cur_n];
+      this->_M_rlist2[__cur_n] = _S_max;
 
       for (size_t __ii = 0; __ii < __newelm; ++__ii)
 	{
-	  auto __res = _M_rlist2[__cur_n - 2 * __ii + 2];
-	  auto __e0 = _M_rlist2[__cur_n - 2 * __ii - 2];
-	  auto __e1 = _M_rlist2[__cur_n - 2 * __ii - 1];
+	  auto __res = this->_M_rlist2[__cur_n - 2 * __ii + 2];
+	  auto __e0 = this->_M_rlist2[__cur_n - 2 * __ii - 2];
+	  auto __e1 = this->_M_rlist2[__cur_n - 2 * __ii - 1];
 	  auto __e2 = __res;
 
 	  auto __e1abs = std::abs(__e1);
@@ -85,11 +86,11 @@ namespace __gnu_test
 	      __absolute = __err2 + __err3;
 	      __relative = 5 * _S_eps * std::abs(__res);
 	      __abserr = std::max(__absolute, __relative);
-	      return std::make_pair(__result, __abserr);
+	      return std::make_tuple(__result, __abserr);
 	    }
 
-	  auto __e3 = _M_rlist2[__cur_n - 2 * __ii];
-	  _M_rlist2[__cur_n - 2 * __ii] = __e1;
+	  auto __e3 = this->_M_rlist2[__cur_n - 2 * __ii];
+	  this->_M_rlist2[__cur_n - 2 * __ii] = __e1;
 	  auto __delta1 = __e1 - __e3;
 	  auto __err1 = std::abs(__delta1);
 	  auto __tol1 = std::max(__e1abs, std::abs(__e3)) * _S_eps;
@@ -103,7 +104,7 @@ namespace __gnu_test
 	      break;
 	    }
 
-	  auto __ss = (1 / __delta1 + 1 / __delta2) - 1 / __delta3;
+	  auto __ss = (_Tp{1} / __delta1 + _Tp{1} / __delta2) - _Tp{1} / __delta3;
 
 	  // Test to detect irregular behaviour in the table,
 	  // and eventually omit a part of the table by adjusting
@@ -115,8 +116,8 @@ namespace __gnu_test
 	    }
 
 	  // Compute a new element and eventually adjust the value of result.
-	  __res = __e1 + 1 / __ss;
-	  _M_rlist2[__cur_n - 2 * __ii] = __res;
+	  __res = __e1 + _Tp{1} / __ss;
+	  this->_M_rlist2[__cur_n - 2 * __ii] = __res;
 	  {
 	    const auto __error = __err2 + std::abs(__res - __e2) + __err3;
 
@@ -140,36 +141,36 @@ namespace __gnu_test
       if (__n_orig % 2 == 1)
 	{
 	  for (__ii = 0; __ii <= __newelm; ++__ii)
-	    _M_rlist2[1 + __ii * 2] = _M_rlist2[__ii * 2 + 3];
+	    this->_M_rlist2[1 + __ii * 2] = this->_M_rlist2[__ii * 2 + 3];
 	}
       else
 	{
 	  for (__ii = 0; __ii <= __newelm; ++__ii)
-	    _M_rlist2[__ii * 2] = _M_rlist2[__ii * 2 + 2];
+	    this->_M_rlist2[__ii * 2] = this->_M_rlist2[__ii * 2 + 2];
 	}
 
       if (__n_orig != __n_final)
 	{
 	  for (__ii = 0; __ii <= __n_final; ++__ii)
-	    _M_rlist2[__ii] = _M_rlist2[__n_orig - __n_final + __ii];
+	    this->_M_rlist2[__ii] = this->_M_rlist2[__n_orig - __n_final + __ii];
 	}
 
-      _M_nn = __n_final + 1;
+      this->_M_nn = __n_final + 1;
 
       if (__nres_orig < 3)
 	{
-	  _M_res3la[__nres_orig] = __result;
-	  __abserr = std::numeric_limits<_Tp>::max();
+	  this->_M_res3la[__nres_orig] = __result;
+	  __abserr = _S_max;
 	}
       else
 	{ /* Compute error estimate */
-	  __abserr = (std::abs(__result - _M_res3la[2])
-		    + std::abs(__result - _M_res3la[1])
-		    + std::abs(__result - _M_res3la[0]));
+	  __abserr = (std::abs(__result - this->_M_res3la[2])
+		    + std::abs(__result - this->_M_res3la[1])
+		    + std::abs(__result - this->_M_res3la[0]));
 
-	  _M_res3la[0] = _M_res3la[1];
-	  _M_res3la[1] = _M_res3la[2];
-	  _M_res3la[2] = __result;
+	  this->_M_res3la[0] = this->_M_res3la[1];
+	  this->_M_res3la[1] = this->_M_res3la[2];
+	  this->_M_res3la[2] = __result;
 	}
 
       /* In QUADPACK the variable table->nres is incremented at the top of
@@ -178,11 +179,11 @@ namespace __gnu_test
 	have moved the update to this point so that its value more
 	useful. */
 
-      _M_nres = __nres_orig + 1;
+      this->_M_nres = __nres_orig + 1;
 
       __abserr = std::max(__abserr, 5 * _S_eps * std::abs(__result));
 
-      return std::make_pair(__result, __abserr);
+      return std::make_tuple(__result, __abserr);
     }
 
 } // namespace __gnu_test

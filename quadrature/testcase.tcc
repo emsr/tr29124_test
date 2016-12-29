@@ -349,7 +349,7 @@ template<typename _Tp>
   inline _Tp
   cqf8(_Tp x)
   {
-    _Tp x2 = x*x;
+    _Tp x2 = x * x;
     return _Tp{1} / (_Tp{1} + x2*x2);
   }
 
@@ -362,7 +362,7 @@ template<typename _Tp>
 
 template<typename _Tp>
   inline _Tp
-  cqf10(_Tp x, void*)
+  cqf10(_Tp x)
   {
     return _Tp{1} / (_Tp{1} + x);
   }

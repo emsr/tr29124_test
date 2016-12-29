@@ -107,6 +107,7 @@ namespace __gnu_test
       }
 
       void sort_error();
+      void sort_results();
 
       void append(_Tp __a, _Tp __b, _Tp __area, _Tp __error);
 
@@ -116,54 +117,55 @@ namespace __gnu_test
       void
       retrieve(_Tp& __lolim, _Tp& __uplim, _Tp& __res, _Tp& __err) const
       {
-	__lolim = this->_M_lower_lim[this->_M_current_index];
-	__uplim = this->_M_upper_lim[this->_M_current_index];
-	__res = this->_M_result[this->_M_current_index];
-	__err = this->_M_abs_error[this->_M_current_index];
+	const auto __ii = this->_M_current_index;
+	__lolim = this->_M_lower_lim[__ii];
+	__uplim = this->_M_upper_lim[__ii];
+	__res = this->_M_result[__ii];
+	__err = this->_M_abs_error[__ii];
       }
 
-      size_t
+      std::size_t
       size() const
       { return this->_M_size; }
 
-      size_t
+      std::size_t
       capacity() const
       { return this->_M_capacity; }
 
-      size_t
+      std::size_t
       current_index() const
       { return this->_M_current_index; }
 
       _Tp
-      lower_lim(size_t __ii) const
+      lower_lim(std::size_t __ii) const
       { return this->_M_lower_lim[__ii]; }
 
       _Tp
-      upper_lim(size_t __ii) const
+      upper_lim(std::size_t __ii) const
       { return this->_M_upper_lim[__ii]; }
 
       _Tp
-      result(size_t __ii) const
+      result(std::size_t __ii) const
       { return this->_M_result[__ii]; }
 
       _Tp
-      abs_error(size_t __ii) const
+      abs_error(std::size_t __ii) const
       { return this->_M_abs_error[__ii]; }
 
       size_t
-      order(size_t __ii) const
+      order(std::size_t __ii) const
       { return this->_M_order[__ii]; }
 
       size_t
-      level(size_t ii) const
+      level(std::size_t ii) const
       { return this->_M_level[ii]; }
 
       _Tp
-      set_abs_error(size_t __ii, _Tp __abserr)
+      set_abs_error(std::size_t __ii, _Tp __abserr)
       { return this->_M_abs_error[__ii] = __abserr; }
 
       void
-      set_level(size_t __ii, size_t __lvl)
+      set_level(std::size_t __ii, std::size_t __lvl)
       { this->_M_level[__ii] = __lvl; }
 
       bool
@@ -217,8 +219,7 @@ namespace __gnu_test
       _Tp
       sum_results() const
       {
-	_Tp __result_sum = 0;
-
+	auto __result_sum = _Tp{0};
 	for (std::size_t __kk = 0; __kk < this->_M_size; ++__kk)
 	  __result_sum += this->_M_result[__kk];
 
