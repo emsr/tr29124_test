@@ -35,7 +35,7 @@ namespace __gnu_test
 {
 
   template<typename _Tp>
-    class _IntegrationError : std::runtime_error
+    class _IntegrationError : public std::runtime_error
     {
       _Tp _M_result;
       _Tp _M_abserr;
@@ -61,7 +61,7 @@ namespace __gnu_test
 
       _Tp
       abserr() const
-      { return this->_Mabserr; }
+      { return this->_M_abserr; }
     };
 
   /**
