@@ -101,7 +101,9 @@ area1 = -0.0630229
 error1 = 6.99694e-16
 area2 = -0.112508
 error2 = 0.0250643
+
 cquad: ival 0 (0) with [0.000000e+00,1.000000e+00], int=1.718282e+00, err=9.556669e-16, depth=3, rdepth=1
+
 cquad: processing ival 0 (of 1) with [0.000000e+00,1.000000e+00] int=7.138646e-01, err=1.194711e+00, depth=3
 cquad: processing ival 1 (of 2) with [0.000000e+00,5.000000e-01] int=1.500000e-01, err=1.832236e-01, depth=0
 cquad: processing ival 3 (of 3) with [2.500000e-01,5.000000e-01] int=1.750000e-01, err=7.821141e-02, depth=0
@@ -221,6 +223,7 @@ cquad: ival 18 (2) with [2.998047e-01,2.999268e-01], int=0.000000e+00, err=0.000
 cquad: ival 19 (1) with [2.500000e-01,2.812500e-01], int=0.000000e+00, err=0.000000e+00, depth=1, rdepth=6
 cquad: ival 20 (18) with [3.000000e-01,3.000000e-01], int=0.000000e+00, err=0.000000e+00, depth=1, rdepth=35
 cquad: ival 21 (15) with [3.000000e-01,3.000000e-01], int=0.000000e+00, err=0.000000e+00, depth=1, rdepth=34
+
 cquad: processing ival 0 (of 1) with [0.000000e+00,1.000000e+00] int=6.666633e-01, err=3.328786e-03, depth=3
 cquad: processing ival 1 (of 2) with [0.000000e+00,5.000000e-01] int=2.349691e-01, err=1.199042e-02, depth=0
 cquad: processing ival 1 (of 2) with [0.000000e+00,5.000000e-01] int=2.356232e-01, err=1.259085e-02, depth=1
@@ -384,7 +387,9 @@ cquad: ival 10 (2) with [7.629395e-06,1.525879e-05], int=2.568748e-08, err=1.157
 cquad: ival 11 (13) with [2.441406e-04,4.882812e-04], int=4.649931e-06, err=2.095930e-14, depth=2, rdepth=13
 cquad: ival 12 (14) with [1.220703e-04,2.441406e-04], int=1.643999e-06, err=7.410230e-15, depth=2, rdepth=14
 cquad: ival 13 (0) with [1.525879e-05,3.051758e-05], int=7.265517e-08, err=3.274890e-16, depth=2, rdepth=17
+
 cquad: ival 0 (0) with [-1.000000e+00,1.000000e+00], int=4.794282e-01, err=3.752412e-16, depth=3, rdepth=1
+
 cquad: processing ival 0 (of 1) with [-1.000000e+00,1.000000e+00] int=1.582233e+00, err=2.098406e-06, depth=3
 cquad: processing ival 1 (of 2) with [-1.000000e+00,0.000000e+00] int=7.911782e-01, err=2.727074e-03, depth=0
 cquad: processing ival 2 (of 2) with [0.000000e+00,1.000000e+00] int=7.911782e-01, err=2.727074e-03, depth=0
@@ -410,6 +415,7 @@ cquad: processing ival 0 (of 2) with [0.000000e+00,5.000000e-01] int=5.060296e-0
 cquad: dumping ival 0 (of 2) with [0.000000e+00,5.000000e-01] int=5.060296e-01, err=8.897629e-16, depth=3
 cquad: processing ival 3 (of 1) with [5.000000e-01,1.000000e+00] int=2.850869e-01, err=1.600129e-08, depth=2
 cquad: dumping ival 3 (of 1) with [5.000000e-01,1.000000e+00] int=2.850869e-01, err=6.168461e-16, depth=3
+
 cquad: processing ival 0 (of 1) with [0.000000e+00,1.000000e+00] int=4.000000e-01, err=1.169386e-05, depth=3
 cquad: processing ival 1 (of 2) with [0.000000e+00,5.000000e-01] int=7.070848e-02, err=2.631240e-04, depth=0
 cquad: processing ival 1 (of 2) with [0.000000e+00,5.000000e-01] int=7.071054e-02, err=2.684448e-04, depth=1
@@ -491,6 +497,7 @@ cquad: ival 3 (8) with [7.812500e-03,1.562500e-02], int=1.004911e-05, err=8.4517
 cquad: ival 4 (0) with [3.906250e-03,7.812500e-03], int=1.776449e-06, err=1.494065e-15, depth=2, rdepth=9
 cquad: ival 5 (2) with [9.765625e-04,1.953125e-03], int=5.551403e-08, err=4.668953e-17, depth=2, rdepth=11
 cquad: ival 6 (1) with [1.953125e-03,3.906250e-03], int=3.140348e-07, err=2.641159e-16, depth=2, rdepth=10
+
 cquad: processing ival 0 (of 1) with [0.000000e+00,1.000000e+00] int=1.948890e+00, err=3.905838e+00, depth=3
 cquad: processing ival 1 (of 2) with [0.000000e+00,5.000000e-01] int=1.204375e+00, err=1.399824e+00, depth=0
 cquad: processing ival 0 (of 3) with [0.000000e+00,2.500000e-01] int=8.516219e-01, err=2.123886e-01, depth=0
@@ -820,6 +827,7 @@ cquad: ival 80 (56) with [2.775558e-17,5.551115e-17], int=4.364449e-09, err=3.47
 cquad: ival 81 (57) with [1.387779e-17,2.775558e-17], int=3.086132e-09, err=2.455755e-16, depth=2, rdepth=57
 cquad: ival 82 (58) with [6.938894e-18,1.387779e-17], int=2.182225e-09, err=1.736481e-16, depth=2, rdepth=58
 cquad: ival 83 (59) with [3.469447e-18,6.938894e-18], int=1.543066e-09, err=1.227877e-16, depth=2, rdepth=59
+
 cquad: processing ival 0 (of 1) with [0.000000e+00,1.000000e+00] int=8.669730e-01, err=1.711088e-09, depth=3
 cquad: processing ival 2 (of 2) with [5.000000e-01,1.000000e+00] int=3.730170e-01, err=1.452884e-04, depth=0
 cquad: processing ival 2 (of 2) with [5.000000e-01,1.000000e+00] int=3.730149e-01, err=1.452730e-04, depth=1
@@ -829,6 +837,7 @@ cquad: processing ival 2 (of 2) with [5.000000e-01,1.000000e+00] int=3.730149e-0
 cquad: processing ival 1 (of 2) with [0.000000e+00,5.000000e-01] int=4.939581e-01, err=3.162358e-08, depth=2
 cquad: ival 0 (2) with [5.000000e-01,1.000000e+00], int=3.730149e-01, err=1.002391e-13, depth=3, rdepth=2
 cquad: ival 1 (1) with [0.000000e+00,5.000000e-01], int=4.939581e-01, err=1.835147e-15, depth=3, rdepth=2
+
 cquad: processing ival 0 (of 1) with [0.000000e+00,1.000000e+00] int=1.158029e+00, err=1.765412e+00, depth=3
 cquad: processing ival 2 (of 2) with [5.000000e-01,1.000000e+00] int=8.584537e-01, err=5.589702e-01, depth=0
 cquad: processing ival 1 (of 3) with [0.000000e+00,5.000000e-01] int=3.609272e-01, err=4.328936e-01, depth=0
@@ -1010,8 +1019,11 @@ cquad: ival 16 (5) with [7.187500e-01,7.500000e-01], int=5.490413e-02, err=3.710
 cquad: ival 17 (2) with [3.125000e-01,3.437500e-01], int=5.066545e-02, err=5.543356e-15, depth=3, rdepth=6
 cquad: ival 18 (22) with [9.062500e-01,9.375000e-01], int=4.601265e-02, err=1.506063e-15, depth=3, rdepth=6
 cquad: ival 19 (16) with [4.375000e-01,5.000000e-01], int=4.689530e-02, err=7.508552e-15, depth=3, rdepth=5
+
 cquad: ival 0 (0) with [0.000000e+00,1.000000e+00], int=6.931472e-01, err=2.247366e-13, depth=3, rdepth=1
+
 cquad: ival 0 (0) with [0.000000e+00,1.000000e+00], int=3.798855e-01, err=2.326357e-16, depth=3, rdepth=1
+
 cquad: processing ival 0 (of 1) with [0.000000e+00,1.000000e+00] int=7.770159e-01, err=9.236778e-02, depth=3
 cquad: processing ival 1 (of 2) with [0.000000e+00,5.000000e-01] int=4.409637e-01, err=3.434919e-02, depth=0
 cquad: processing ival 2 (of 2) with [5.000000e-01,1.000000e+00] int=3.365411e-01, err=4.852601e-03, depth=0
@@ -1019,6 +1031,7 @@ cquad: processing ival 1 (of 2) with [0.000000e+00,5.000000e-01] int=4.409636e-0
 cquad: processing ival 2 (of 2) with [5.000000e-01,1.000000e+00] int=3.365411e-01, err=6.473683e-09, depth=1
 cquad: ival 0 (1) with [0.000000e+00,5.000000e-01], int=4.409636e-01, err=1.235107e-13, depth=2, rdepth=2
 cquad: ival 1 (2) with [5.000000e-01,1.000000e+00], int=3.365411e-01, err=1.365469e-15, depth=2, rdepth=2
+
 cquad: processing ival 0 (of 1) with [0.000000e+00,1.000000e+00] int=6.147017e-01, err=1.079730e+01, depth=3
 cquad: processing ival 1 (of 2) with [0.000000e+00,5.000000e-01] int=-5.091158e-01, err=8.135123e+00, depth=0
 cquad: processing ival 2 (of 2) with [5.000000e-01,1.000000e+00] int=-2.395839e-02, err=8.699670e-01, depth=0
@@ -1347,6 +1360,7 @@ cquad: ival 60 (64) with [8.906250e-01,9.062500e-01], int=-6.923345e-04, err=1.3
 cquad: ival 61 (60) with [8.281250e-01,8.437500e-01], int=-1.478376e-03, err=5.956392e-16, depth=3, rdepth=7
 cquad: ival 62 (11) with [9.062500e-01,9.218750e-01], int=-1.340148e-03, err=4.031941e-16, depth=3, rdepth=7
 cquad: ival 63 (48) with [3.906250e-01,4.062500e-01], int=-1.611496e-03, err=3.193691e-15, depth=3, rdepth=7
+
 cquad: processing ival 0 (of 1) with [0.000000e+00,1.000000e+01] int=4.979863e-01, err=7.056274e+00, depth=3
 cquad: processing ival 1 (of 2) with [0.000000e+00,5.000000e+00] int=1.178511e+00, err=8.507029e+00, depth=0
 cquad: processing ival 0 (of 3) with [0.000000e+00,2.500000e+00] int=5.892557e-01, err=3.973154e+00, depth=0
@@ -1399,6 +1413,7 @@ cquad: ival 9 (3) with [2.500000e+00,5.000000e+00], int=0.000000e+00, err=0.0000
 cquad: ival 10 (4) with [6.250000e-01,9.375000e-01], int=1.657872e-28, err=1.105446e-27, depth=0, rdepth=6
 cquad: ival 11 (11) with [2.343750e-01,3.125000e-01], int=1.630697e-05, err=2.278157e-19, depth=3, rdepth=8
 cquad: ival 12 (14) with [1.562500e-01,2.343750e-01], int=2.791150e-03, err=2.937998e-17, depth=3, rdepth=8
+
 cquad: processing ival 0 (of 1) with [0.000000e+00,1.000000e+01] int=9.997577e-01, err=1.580785e+01, depth=3
 cquad: processing ival 1 (of 2) with [0.000000e+00,5.000000e+00] int=4.166667e+00, err=3.249313e+01, depth=0
 cquad: processing ival 0 (of 3) with [0.000000e+00,2.500000e+00] int=2.085099e+00, err=1.390093e+01, depth=0
@@ -1437,7 +1452,9 @@ cquad: ival 7 (4) with [6.250000e-01,9.375000e-01], int=1.636715e-07, err=2.5610
 cquad: ival 8 (11) with [1.562500e-01,3.125000e-01], int=1.971115e-02, err=8.008253e-17, depth=3, rdepth=7
 cquad: ival 9 (5) with [5.000000e+00,7.500000e+00], int=1.077250e-54, err=7.181805e-54, depth=0, rdepth=3
 cquad: ival 10 (6) with [3.750000e+00,5.000000e+00], int=2.172610e-41, err=6.937495e-28, depth=0, rdepth=4
+
 cquad: ival 0 (0) with [0.000000e+00,1.000000e+01], int=1.326307e+07, err=6.039545e-09, depth=3, rdepth=1
+
 cquad: processing ival 0 (of 1) with [0.000000e+00,1.000000e+00] int=4.532273e-01, err=5.894944e+00, depth=3
 cquad: processing ival 1 (of 2) with [0.000000e+00,5.000000e-01] int=5.499868e-02, err=4.108454e+00, depth=0
 cquad: processing ival 2 (of 3) with [5.000000e-01,1.000000e+00] int=1.589990e-03, err=2.500696e-01, depth=0
@@ -1757,6 +1774,7 @@ cquad: ival 60 (61) with [8.906250e-01,9.062500e-01], int=1.521154e-05, err=2.05
 cquad: ival 61 (27) with [7.187500e-01,7.343750e-01], int=3.340793e-05, err=6.458785e-18, depth=3, rdepth=7
 cquad: ival 62 (58) with [8.281250e-01,8.437500e-01], int=2.112802e-05, err=5.332091e-18, depth=3, rdepth=7
 cquad: ival 63 (52) with [9.375000e-01,9.531250e-01], int=1.804369e-05, err=4.613079e-18, depth=3, rdepth=7
+
 cquad: processing ival 0 (of 1) with [0.000000e+00,3.141593e+00] int=8.386764e-01, err=2.773743e+00, depth=3
 cquad: processing ival 1 (of 2) with [0.000000e+00,1.570796e+00] int=1.342837e-01, err=1.232382e+00, depth=0
 cquad: processing ival 2 (of 3) with [1.570796e+00,3.141593e+00] int=3.584867e-01, err=5.863194e-01, depth=0
@@ -1829,6 +1847,7 @@ cquad: ival 3 (8) with [1.963495e+00,2.356194e+00], int=1.143175e-01, err=9.4172
 cquad: ival 4 (6) with [1.178097e+00,1.570796e+00], int=2.543044e-01, err=1.955983e-14, depth=3, rdepth=4
 cquad: ival 5 (1) with [9.817477e-01,1.178097e+00], int=5.231987e-03, err=1.529423e-16, depth=3, rdepth=5
 cquad: ival 6 (9) with [5.890486e-01,7.853982e-01], int=-2.104923e-02, err=2.054895e-16, depth=3, rdepth=5
+
 cquad: processing ival 0 (of 1) with [0.000000e+00,1.000000e+00] int=-9.954284e-01, err=1.995034e+00, depth=3
 cquad: processing ival 1 (of 2) with [0.000000e+00,5.000000e-01] int=-8.086717e-01, err=3.048360e-01, depth=0
 cquad: processing ival 0 (of 3) with [0.000000e+00,2.500000e-01] int=-5.776227e-01, err=5.040762e-02, depth=0
@@ -2095,6 +2114,7 @@ cquad: ival 31 (11) with [9.765625e-04,1.953125e-03], int=-6.391775e-03, err=1.8
 cquad: ival 32 (28) with [7.450581e-09,1.490116e-08], int=-1.365593e-07, err=3.499712e-16, depth=2, rdepth=28
 cquad: ival 33 (13) with [2.441406e-04,4.882812e-04], int=-1.936394e-03, err=4.870389e-18, depth=3, rdepth=13
 cquad: ival 34 (34) with [1.164153e-10,2.328306e-10], int=-2.617897e-09, err=1.219211e-14, depth=0, rdepth=34
+
 cquad: processing ival 0 (of 1) with [-1.000000e+00,1.000000e+00] int=1.564396e+00, err=5.452639e-07, depth=3
 cquad: processing ival 2 (of 2) with [0.000000e+00,1.000000e+00] int=7.821403e-01, err=7.890618e-04, depth=0
 cquad: processing ival 2 (of 2) with [0.000000e+00,1.000000e+00] int=7.821982e-01, err=7.893104e-04, depth=1
@@ -2120,6 +2140,7 @@ cquad: processing ival 0 (of 2) with [-5.000000e-01,0.000000e+00] int=4.614985e-
 cquad: dumping ival 0 (of 2) with [-5.000000e-01,0.000000e+00] int=4.614985e-01, err=2.705941e-16, depth=3
 cquad: processing ival 3 (of 1) with [-1.000000e+00,-5.000000e-01] int=3.206997e-01, err=9.888198e-11, depth=2
 cquad: dumping ival 3 (of 1) with [-1.000000e+00,-5.000000e-01] int=3.206997e-01, err=6.224699e-17, depth=3
+
 cquad: processing ival 0 (of 1) with [0.000000e+00,1.000000e+00] int=1.868773e-01, err=4.950160e-01, depth=3
 cquad: processing ival 1 (of 2) with [0.000000e+00,5.000000e-01] int=1.541618e-01, err=1.770867e-01, depth=0
 cquad: processing ival 0 (of 3) with [0.000000e+00,2.500000e-01] int=1.176328e-01, err=2.864143e-02, depth=0
@@ -2361,6 +2382,7 @@ cquad: ival 25 (4) with [7.500000e-01,1.000000e+00], int=1.658917e-06, err=3.079
 cquad: ival 26 (20) with [3.906250e-01,3.945312e-01], int=6.070366e-04, err=3.970911e-18, depth=3, rdepth=9
 cquad: ival 27 (28) with [3.945312e-01,3.984375e-01], int=2.052132e-03, err=5.735917e-16, depth=3, rdepth=9
 cquad: ival 28 (26) with [4.375000e-01,4.687500e-01], int=4.020609e-04, err=1.504594e-16, depth=3, rdepth=6
+
 cquad: processing ival 0 (of 1) with [0.000000e+00,1.000000e+00] int=-6.346274e-01, err=1.318663e+01, depth=3
 cquad: processing ival 2 (of 2) with [5.000000e-01,1.000000e+00] int=7.030646e+00, err=1.566619e+01, depth=0
 cquad: processing ival 3 (of 3) with [7.500000e-01,1.000000e+00] int=-4.634830e+00, err=1.312285e+01, depth=0
@@ -2440,6 +2462,7 @@ cquad: ival 12 (10) with [8.125000e-01,8.750000e-01], int=5.517428e-02, err=4.07
 cquad: ival 13 (14) with [3.125000e-01,3.750000e-01], int=-1.247426e-02, err=6.133397e-15, depth=3, rdepth=5
 cquad: ival 14 (2) with [6.250000e-01,6.875000e-01], int=7.292580e-02, err=1.532869e-14, depth=3, rdepth=5
 cquad: ival 15 (5) with [5.000000e-01,5.625000e-01], int=-5.540339e-01, err=5.898533e-15, depth=3, rdepth=5
+
 cquad: processing ival 0 (of 1) with [0.000000e+00,1.000000e+00] int=5.211508e-03, err=2.396623e-02, depth=3
 cquad: processing ival 1 (of 2) with [0.000000e+00,5.000000e-01] int=1.079237e-03, err=1.549393e-02, depth=0
 cquad: processing ival 0 (of 3) with [0.000000e+00,2.500000e-01] int=3.937014e-02, err=7.364770e-02, depth=0
@@ -2561,6 +2584,7 @@ cquad: ival 7 (1) with [9.375000e-02,1.093750e-01], int=3.722741e-04, err=5.0158
 cquad: ival 8 (5) with [2.500000e-01,3.750000e-01], int=8.074659e-05, err=7.578163e-16, depth=3, rdepth=4
 cquad: ival 9 (8) with [1.562500e-01,1.718750e-01], int=2.709547e-04, err=6.108790e-19, depth=3, rdepth=7
 cquad: ival 10 (3) with [1.367188e-01,1.406250e-01], int=8.781828e-04, err=2.303148e-18, depth=3, rdepth=9
+
 cquad: processing ival 0 (of 1) with [0.000000e+00,3.000000e+00] int=1.751435e+01, err=1.215765e+00, depth=3
 cquad: processing ival 2 (of 2) with [1.500000e+00,3.000000e+00] int=1.500000e+01, err=9.833292e-01, depth=0
 cquad: processing ival 1 (of 2) with [0.000000e+00,1.500000e+00] int=3.050000e+00, err=7.975573e-01, depth=0
@@ -6526,6 +6550,7 @@ cquad: ival 81 (71) with [2.397895e+00,2.397895e+00], int=2.728484e-11, err=3.58
 cquad: ival 82 (27) with [2.890372e+00,2.890372e+00], int=4.911271e-11, err=2.773936e-14, depth=0, rdepth=41
 cquad: ival 83 (45) with [2.890372e+00,2.890372e+00], int=4.891910e-11, err=3.209212e-13, depth=3, rdepth=41
 cquad: ival 84 (40) with [2.484907e+00,2.484907e+00], int=3.001333e-11, err=2.773936e-14, depth=0, rdepth=41
+
 cquad: processing ival 0 (of 1) with [0.000000e+00,5.000000e+00] int=7.278028e+00, err=1.120328e+01, depth=3
 cquad: processing ival 2 (of 2) with [2.500000e+00,5.000000e+00] int=3.630922e+00, err=1.514501e+00, depth=0
 cquad: processing ival 0 (of 3) with [2.500000e+00,3.750000e+00] int=1.876481e+00, err=8.650770e-01, depth=0
