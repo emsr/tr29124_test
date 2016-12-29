@@ -139,7 +139,8 @@ namespace __gnu_test
 	std::__throw_domain_error("unreasonable accuracy requirement");
 
       // Create the first interval.
-      auto __iv = __ws.ivals[0];
+      __ws.initialize_heap();
+      auto& __iv = __ws.ivals[0];
       auto __m = (__a + __b) / _Tp{2};
       auto __h = (__b - __a) / _Tp{2};
       __num_NaNs = 0;
@@ -188,6 +189,10 @@ namespace __gnu_test
       auto __err_final = _Tp{0};
       std::size_t __nivals = 1;
 
+#ifdef INTEGRATION_DEBUG
+      fprintf(stderr,"\n");
+#endif
+
       // Main loop...
       while (__nivals > 0 && __err > _Tp{0} &&
 	     !(__err <= std::abs(__igral) * __epsrel || __err <= __epsabs)
@@ -200,10 +205,11 @@ namespace __gnu_test
 	  __m = (__iv.a + __iv.b) / _Tp{2};
 	  __h = (__iv.b - __iv.a) / _Tp{2};
 
-    /*      printf
+#ifdef INTEGRATION_DEBUG
+          printf
             ("cquad: processing ival %i (of %i) with [%e,%e] int=%e, err=%e, depth=%i\n",
-             __ws.heap[0], nivals, __iv.a, __iv.b, __iv.igral, __iv.err, __iv.depth);
-    */
+             __ws.heap[0], __nivals, __iv.a, __iv.b, __iv.igral, __iv.err, __iv.depth);
+#endif
 	  // Should we try to increase the degree?
 	  if (__iv.depth < 3)
 	    {
@@ -263,14 +269,14 @@ namespace __gnu_test
 	  // Should we drop this interval?
 	  if ((__m + __h * xi[0]) >= (__m + __h * xi[1])
 	      || (__m + __h * xi[31]) >= (__m + __h * xi[32])
-	      || __iv.err < std::abs (__iv.igral) * _S_eps * 10)
+	      || __iv.err < std::abs(__iv.igral) * _S_eps * 10)
 	    {
-
-    /*          printf
+#ifdef INTEGRATION_DEBUG
+              printf
         	("cquad: dumping ival %i (of %i) with [%e,%e] int=%e, err=%e, depth=%i\n",
-        	 __ws.heap[0], nivals, __iv.a, __iv.b, __iv.igral, __iv.err,
+        	 __ws.heap[0], __nivals, __iv.a, __iv.b, __iv.igral, __iv.err,
         	 __iv.depth);
-    */
+#endif
 	      // Keep this interval's contribution.
 	      __err_final += __iv.err;
 	      __igral_final += __iv.igral;
@@ -447,7 +453,8 @@ namespace __gnu_test
 		      && __ws.ivals[__ws.heap[__j + 1]].err >=
 		      __ws.ivals[__ws.heap[__j]].err)
 		    ++__j;
-		  if (__ws.ivals[__ws.heap[__j]].err <= __ws.ivals[__ws.heap[__i]].err)
+		  if (__ws.ivals[__ws.heap[__j]].err
+			 <= __ws.ivals[__ws.heap[__i]].err)
 		    break;
 		  else
 		    {
@@ -461,7 +468,8 @@ namespace __gnu_test
 	      while (__i > 0)
 		{
 		  std::size_t __j = (__i - 1) / 2;
-		  if (__ws.ivals[__ws.heap[__j]].err < __ws.ivals[__ws.heap[__i]].err)
+		  if (__ws.ivals[__ws.heap[__j]].err
+			 < __ws.ivals[__ws.heap[__i]].err)
 		    {
 		      std::swap(__ws.heap[__i], __ws.heap[__j]);
 		      __i = __j;
@@ -478,7 +486,7 @@ namespace __gnu_test
 		  std::size_t __j = 2 * __i + 1;
 		  if (__j + 1 < __nivals
 		      && __ws.ivals[__ws.heap[__j + 1]].err
-		      >= __ws.ivals[__ws.heap[__j]].err)
+			>= __ws.ivals[__ws.heap[__j]].err)
 		    ++__j;
 		  if (__ws.ivals[__ws.heap[__j]].err <= __ws.ivals[__ws.heap[__i]].err)
 		    break;
@@ -495,11 +503,12 @@ namespace __gnu_test
 	    {
 	      __iv = __ws.ivals[__ws.heap[__nivals - 1]];
 
-    /*          printf
+#ifdef INTEGRATION_DEBUG
+              printf
         	("cquad: dumping ival %i (of %i) with [%e,%e] int=%e, err=%e, depth=%i\n",
-        	 __ws.heap[0], nivals, __iv.a, __iv.b, __iv.igral, __iv.err,
+        	 __ws.heap[0], __nivals, __iv.a, __iv.b, __iv.igral, __iv.err,
         	 __iv.depth);
-    */
+#endif
 	      __err_final += __iv.err;
 	      __igral_final += __iv.igral;
 	      --__nivals;
@@ -516,15 +525,16 @@ namespace __gnu_test
 	}
 
       // Dump the contents of the heap.
-    /*  for (std::size_t __i = 0; __i < nivals; ++__i)
+#ifdef INTEGRATION_DEBUG
+      for (std::size_t __i = 0; __i < __nivals; ++__i)
 	{
-	  __iv = __ws.ivals[__ws.heap[__i]];
+	  auto __iv = __ws.ivals[__ws.heap[__i]];
 	  printf
             ("cquad: ival %i (%i) with [%e,%e], int=%e, err=%e, depth=%i, rdepth=%i\n",
              __i, __ws.heap[__i], __iv.a, __iv.b, __iv.igral, __iv.err, __iv.depth,
              __iv.rdepth);
 	}
-    */
+#endif
 
       return std::make_tuple(__igral, __err);
     }

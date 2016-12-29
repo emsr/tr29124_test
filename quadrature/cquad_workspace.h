@@ -55,7 +55,12 @@ namespace __gnu_test
 	if (__n < 3)
 	  std::__throw_domain_error("workspace size n must be at least 3");
 
-	// Initialize the heaps.
+	this->initialize_heap();
+      }
+
+      void
+      initialize_heap()
+      {
 	for (std::size_t __i = 0; __i < this->heap.size(); ++__i)
 	  this->heap[__i] = __i;
       }
