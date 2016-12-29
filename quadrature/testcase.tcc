@@ -1,17 +1,17 @@
 /* integration/tests.c
- * 
+ *
  * Copyright (C) 1996, 1997, 1998, 1999, 2000, 2007 Brian Gough
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
@@ -69,7 +69,7 @@ template<typename _Tp>
   }
 
 /* f8(x) = |x - pi/4|^alpha */
-/* integ(f8,x,0,1) = 
+/* integ(f8,x,0,1) =
    ((1 - pi/4)^(alpha+1) + (pi/4)^(alpha+1))/(alpha + 1) */
 
 template<typename _Tp>
@@ -110,7 +110,7 @@ template<typename _Tp>
   }
 
 /* f12(x) = std::exp(20*(x-1)) * sin(2^alpha * x) */
-/* integ(f12,x,0,1) = 
+/* integ(f12,x,0,1) =
    (20 sin(2^alpha) - 2^alpha cos(2^alpha) + 2^alpha exp(-20))
    /(400 + 4^alpha) */
 
@@ -211,16 +211,16 @@ template<typename _Tp>
   }
 
 /* f458(x) = 1/(1 + log(x)^2)^2 */
-/* integ(log(x) f458(x),x,0,1) = (Ci(1) std::sin(1) + (pi/2 - Si(1)) cos(1))/pi 
+/* integ(log(x) f458(x),x,0,1) = (Ci(1) std::sin(1) + (pi/2 - Si(1)) cos(1))/pi
                                = -0.1892752 */
 
 template<typename _Tp>
   inline _Tp
   f458(_Tp x)
   {
-    if (x == _Tp{0}) 
+    if (x == _Tp{0})
       return _Tp{0};
-    else 
+    else
       {
 	_Tp u = std::log(x);
 	_Tp v = 1 + u * u;
@@ -258,7 +258,7 @@ template<typename _Tp>
     return std::exp(alpha * x);
   }
 
-/* f_monomial = constant * x^degree 
+/* f_monomial = constant * x^degree
 
 template<typename _Tp>
   inline _Tp
@@ -300,7 +300,7 @@ template<typename _Tp>
   {
     return std::exp(x);
   }
-    
+
 template<typename _Tp>
   inline _Tp
   cqf2(_Tp x)
@@ -447,8 +447,8 @@ template<typename _Tp>
   inline _Tp
   cqf21(_Tp x)
   {
-    return _Tp{1} / std::cosh(_Tp{10} * (x - 0.2) * _Tp{2}) + 
-      _Tp{1} / std::cosh(_Tp{100} * (x - 0.4) * _Tp{4}) + 
+    return _Tp{1} / std::cosh(_Tp{10} * (x - 0.2) * _Tp{2}) +
+      _Tp{1} / std::cosh(_Tp{100} * (x - 0.4) * _Tp{4}) +
       _Tp{1} / std::cosh(_Tp{1000} * (x - 0.6) * _Tp{8});
   }
 

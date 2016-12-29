@@ -1,17 +1,17 @@
 /* integration/qawo.c
- * 
+ *
  * Copyright (C) 1996, 1997, 1998, 1999, 2000, 2007 Brian Gough
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
@@ -30,7 +30,7 @@ namespace __gnu_test
   template<typename _Tp, typename _FuncTp>
     std::tuple<_Tp, _Tp, _Tp, _Tp>
     qc25f(oscillatory_integration_table<_Tp>& __wf,
-	  const _FuncTp& __func, _Tp __a, _Tp __b, 
+	  const _FuncTp& __func, _Tp __a, _Tp __b,
 	  std::size_t __level);
 
   template<typename _Tp, typename _FuncTp>
@@ -129,7 +129,7 @@ namespace __gnu_test
 
 	  __current_level = __workspace.current_level() + 1;
 
-	  if (__current_level >= __wf.n) 
+	  if (__current_level >= __wf.n)
             {
               __error_type = -1; // exceeded limit of table.
               break;
@@ -216,7 +216,7 @@ namespace __gnu_test
 
 	  // set up variables on first iteration.
 
-	  if (__iteration == 2 && __extall)     
+	  if (__iteration == 2 && __extall)
             {
               __error_over_large_intervals = __errsum;
               __ertest = __tolerance;
@@ -380,7 +380,7 @@ namespace __gnu_test
   template<typename _Tp, typename _FuncTp>
     std::tuple<_Tp, _Tp, _Tp, _Tp>
     qc25f(oscillatory_integration_table<_Tp>& __wf,
-	  const _FuncTp& __func, _Tp __a, _Tp __b, 
+	  const _FuncTp& __func, _Tp __a, _Tp __b,
 	  std::size_t __level)
     {
       const auto _S_max = std::numeric_limits<_Tp>::max();
