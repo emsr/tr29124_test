@@ -203,7 +203,7 @@ template<typename _Tp>
           printf(" [test uses subnormal value]");
 
 	if (status && ! this->verbose)
-          printf(" [%u]",  this->num_tests);
+          printf(" [%u]", this->num_tests);
 
 	printf("\n");
 	fflush(stdout);
@@ -249,7 +249,7 @@ template<typename _Tp>
           printf(" [test uses subnormal value]");
 
 	if (status && ! this->verbose)
-          printf(" [%u]",  this->num_tests);
+          printf(" [%u]", this->num_tests);
 
 	printf("\n");
 	fflush(stdout);
@@ -296,7 +296,7 @@ template<typename _Tp>
           printf(" [test uses subnormal value]");
 
 	if (status && ! this->verbose)
-          printf(" [%u]",  this->num_tests);
+          printf(" [%u]", this->num_tests);
 
 	printf("\n");
 	fflush(stdout);
@@ -321,7 +321,7 @@ template<typename _Tp>
           printf(" (%d observed vs %d expected)", result, expected);
 
 	if (status && ! this->verbose)
-          printf(" [%u]",  this->num_tests);
+          printf(" [%u]", this->num_tests);
 
 	printf("\n");
 	fflush(stdout);
@@ -333,7 +333,7 @@ template<typename _Tp>
   quadrature_test<_Tp>::test_summary()
   {
     if (tot_verbose)
-      printf("%d tests, passed %d, failed %d.\n",  tot_num_tests,  tot_num_passed,  tot_num_failed);
+      printf("%d tests, passed %d, failed %d.\n", tot_num_tests, tot_num_passed, tot_num_failed);
 
     if (tot_num_failed != 0)
       {
@@ -344,14 +344,14 @@ template<typename _Tp>
       {
 	if (tot_verbose)
           printf("TEST RESULTS DO NOT ADD UP %d != %d + %d\n",
-                   tot_num_tests,  tot_num_passed,  tot_num_failed);
+                   tot_num_tests, tot_num_passed, tot_num_failed);
 	return FAILURE;
       }
 
     if (tot_num_passed ==  tot_num_tests)
       {
 	if (! tot_verbose)
-          printf("Completed [%d/%d]\n",  tot_num_passed,  tot_num_tests);
+          printf("Completed [%d/%d]\n", tot_num_passed, tot_num_tests);
 
 	return SUCCESS;
       }
@@ -2748,7 +2748,7 @@ main()
       qtest.test_rel(w.result(i), r[i], 1e-12, "qawf(f457) rlist");
 
     // We can only get within two orders of magnitude on the error
-    // here,  which is very sensitive to the floating point precision
+    // here, which is very sensitive to the floating point precision
 
     for (int i = 0; i < 9; ++i)
       qtest.test_rel(w.abs_error(i), e[i], 50.0, "qawf(f457) elist");

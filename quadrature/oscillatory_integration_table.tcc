@@ -33,7 +33,7 @@ namespace __gnu_test
   template<typename _Tp>
     int
     _S_tridiag(size_t n, _Tp *c, _Tp *d, _Tp *e, _Tp *b);
- 
+
   /**
    * Compute Chebyshev moments at level @c level.
    */
@@ -88,8 +88,8 @@ namespace __gnu_test
 
 	  auto ass = par * sinpar;
 	  auto asap = (((((210 * par2 - 1) * cospar - (105 * par2 - 63) * ass) / an2
-                    - (1 - 15 * par2) * cospar + 15 * ass) / an2 
-        	   - cospar + 3 * ass) / an2 
+                    - (1 - 15 * par2) * cospar + 15 * ass) / an2
+        	   - cospar + 3 * ass) / an2
         	  - cospar) / an2;
 	  v[noeq + 2] = v[noeq + 2] - 2 * asap * par2 * (an - 1) * (an - 2);
 
@@ -103,7 +103,7 @@ namespace __gnu_test
             {
               _Tp an2 = an * an;
               v[k] = ((an2 - 4) * (2 * (par22 - 2 * an2) * v[k - 1] - ac)
-                      + as - par2 * (an + 1) * (an + 2) * v[k - 2]) 
+                      + as - par2 * (an + 1) * (an + 2) * v[k - 2])
         	/ (par2 * (an - 1) * (an - 2));
               an += _Tp{2};
             }
@@ -159,7 +159,7 @@ namespace __gnu_test
             {
               _Tp an2 = an * an;
               v[k] = ((an2 - _Tp{4}) * (_Tp{2} * (par22 - _Tp{2} * an2) * v[k - 1] + as)
-                      + ac - par2 * (an + _Tp{1}) * (an + _Tp{2}) * v[k - 2]) 
+                      + ac - par2 * (an + _Tp{1}) * (an + _Tp{2}) * v[k - 2])
         	/ (par2 * (an - 1) * (an - _Tp{2}));
               an += _Tp{2};
             }

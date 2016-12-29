@@ -2507,7 +2507,7 @@ main()
       qtest.test_rel(w.result(i), r[i], 1e-12, "qawf(f457) rlist");
 
     // We can only get within two orders of magnitude on the error
-    // here,  which is very sensitive to the floating point precision
+    // here, which is very sensitive to the floating point precision
 
     for (i = 0; i < 9; i++)
       qtest.test_rel(w.abs_error(i), e[i], 50.0, "qawf(f457) elist");
@@ -2590,9 +2590,9 @@ main()
 
     quadrature_test<double> qtest;
 
-    qtest.test_abs(f_sin(2.0),  sin(2.0),  0.0,  "f_sin sanity check 1");
-    qtest.test_abs(f_sin(7.0),  sin(7.0),  0.0,  "f_sin sanity check 2");
-    qtest.test_abs(integ_f_sin(0.0,  M_PI),  2.0,  std::numeric_limits<double>::epsilon(),
+    qtest.test_abs(f_sin(2.0), sin(2.0), 0.0, "f_sin sanity check 1");
+    qtest.test_abs(f_sin(7.0), sin(7.0), 0.0, "f_sin sanity check 2");
+    qtest.test_abs(integ_f_sin(0.0, M_PI), 2.0, std::numeric_limits<double>::epsilon(),
         "integ_f_sin sanity check");
   }
   catch (std::exception& ex)
