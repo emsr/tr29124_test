@@ -41,10 +41,6 @@ namespace __gnu_test
     {
       const std::size_t __last = this->_M_size - 1;
 
-      double __errmax;
-      double __errmin;
-      int __jj, __kk, __top;
-
       std::size_t __i_nrmax = this->_M_nrmax;
       std::size_t __i_maxerr = this->_M_order[__i_nrmax];
 
@@ -57,36 +53,39 @@ namespace __gnu_test
 	  return;
 	}
 
-      __errmax = this->_M_abs_error[__i_maxerr];
+      auto __errmax = this->_M_abs_error[__i_maxerr];
 
       // This part of the routine is only executed if, due to a difficult
       // integrand, subdivision increased the error estimate. In the normal
       // case the insert procedure should start after the nrmax-th largest
       // error estimate.
 
-      while (__i_nrmax > 0 && __errmax > this->_M_abs_error[this->_M_order[__i_nrmax - 1]])
+      while (__i_nrmax > 0
+	  && __errmax > this->_M_abs_error[this->_M_order[__i_nrmax - 1]])
 	{
 	  this->_M_order[__i_nrmax] = this->_M_order[__i_nrmax - 1];
-	  __i_nrmax--;
+	  --__i_nrmax;
 	}
 
       // Compute the number of elements in the list to be maintained in
       // descending order. This number depends on the number of
       // subdivisions still allowed.
 
+      int __top;
       if(__last < (this->_M_capacity/2 + 2))
 	__top = __last;
       else
 	__top = this->_M_capacity - __last + 1;
 
       // Insert errmax by traversing the list top-down, starting
-      // comparison from the element elist(order(i_nrmax+1)).
+      // comparison from the element abs_error(order(i_nrmax+1)).
 
       // The order of the tests in the following line is important to
       // prevent a segmentation fault
 
-      __jj = __i_nrmax + 1;
-      while (__jj < __top && __errmax < this->_M_abs_error[this->_M_order[__jj]])
+      int __jj = __i_nrmax + 1;
+      while (__jj < __top
+	  && __errmax < this->_M_abs_error[this->_M_order[__jj]])
 	{
 	  this->_M_order[__jj - 1] = this->_M_order[__jj];
 	  ++__jj;
@@ -95,10 +94,11 @@ namespace __gnu_test
 
       // Insert errmin by traversing the list bottom-up
 
-      __errmin = this->_M_abs_error[__last];
+      auto __errmin = this->_M_abs_error[__last];
 
-      __kk = __top - 1;
-      while (__kk > __jj - 2 && __errmin >= this->_M_abs_error[this->_M_order[__kk]])
+      int __kk = __top - 1;
+      while (__kk > __jj - 2
+	  && __errmin >= this->_M_abs_error[this->_M_order[__kk]])
 	{
 	  this->_M_order[__kk + 1] = this->_M_order[__kk];
 	  --__kk;
@@ -118,13 +118,45 @@ namespace __gnu_test
    */
   template<typename _Tp>
     void
-    integration_workspace<_Tp>::append(_Tp __a, _Tp __b,
-					  _Tp __area, _Tp __error)
+    integration_workspace<_Tp>::sort_results()
     {
-      const std::size_t __i_max = this->_M_current_index;
-      const std::size_t __i_new = this->_M_size;
+      for (std::size_t __i = 0; __i < this->_M_size; ++__i)
+	{
+	  auto __i1 = this->_M_order[__i];
+	  auto __e1 = this->_M_abs_error[__i1];
+	  auto __i_max = __i1;
 
-      const std::size_t __new_level = this->_M_level[__i_max] + 1;
+	  for (auto __j = __i + 1; __j < this->_M_size; ++__j)
+            {
+              auto __i2 = this->_M_order[__j];
+              auto __e2 = this->_M_abs_error[__i2];
+
+              if (__e2 >= __e1)
+        	{
+        	  __i_max = __i2;
+        	  __e1 = __e2;
+        	}
+            }
+
+	  if (__i_max != __i1)
+            {
+              this->_M_order[__i] = this->_M_order[__i_max];
+              this->_M_order[__i_max] = __i1;
+            }
+	}
+
+      this->_M_current_index = this->_M_order[0];
+    }
+
+  /**
+   *
+   */
+  template<typename _Tp>
+    void
+    integration_workspace<_Tp>::append(_Tp __a, _Tp __b,
+				       _Tp __area, _Tp __error)
+    {
+      const std::size_t __i_new = this->_M_size;
 
       // append the newly-created interval to the list
 
@@ -132,14 +164,10 @@ namespace __gnu_test
       this->_M_upper_lim[__i_new] = __b;
       this->_M_result[__i_new] = __area;
       this->_M_abs_error[__i_new] = __error;
-      this->_M_level[__i_new] = __new_level;
+      this->_M_order[__i_new] = __i_new;
+      this->_M_level[__i_new] = 0;
 
       ++this->_M_size;
-
-      if (__new_level > this->_M_maximum_level)
-	this->_M_maximum_level = __new_level;
-
-      this->sort_error();
     }
 
   /**
@@ -148,9 +176,9 @@ namespace __gnu_test
   template<typename _Tp>
     void
     integration_workspace<_Tp>::update(_Tp __a1, _Tp __b1,
-					  _Tp __area1, _Tp __error1,
-					  _Tp __a2, _Tp __b2,
-					  _Tp __area2, _Tp __error2)
+				       _Tp __area1, _Tp __error1,
+				       _Tp __a2, _Tp __b2,
+				       _Tp __area2, _Tp __error2)
     {
       const std::size_t __i_max = this->_M_current_index;
       const std::size_t __i_new = this->_M_size;

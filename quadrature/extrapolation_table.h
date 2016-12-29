@@ -42,9 +42,9 @@ namespace __gnu_test
 
     private:
 
-      size_t _M_nn;
+      std::size_t _M_nn;
       std::array<_Tp, 52> _M_rlist2;
-      size_t _M_nres;
+      std::size_t _M_nres;
       std::array<_Tp, 3> _M_res3la;
 
     public:
@@ -69,10 +69,10 @@ namespace __gnu_test
 	  }
       }
 
-      std::pair<_Tp, _Tp>
+      std::tuple<_Tp, _Tp>
       qelg();
 
-      size_t
+      std::size_t
       get_nn() const
       { return this->_M_nn; }
     };

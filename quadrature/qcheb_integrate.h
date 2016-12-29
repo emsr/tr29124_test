@@ -25,209 +25,207 @@
 namespace __gnu_test
 {
 
-template<typename _FuncTp, typename _Tp>
-  void
-  qcheb_integrate(const _FuncTp& __func, _Tp a, _Tp b,
-		  std::array<_Tp, 13>& cheb12,
-		  std::array<_Tp, 25>& cheb24)
-  {
-    _Tp fval[25], v[12];
-
-    /* These are the values of cos(pi*k/24) for k=1..11 needed for the
-       Chebyshev expansion of f(x) */
-
-    constexpr _Tp
-    x[11]
+  template<typename _FuncTp, typename _Tp>
+    void
+    qcheb_integrate(const _FuncTp& __func, _Tp __a, _Tp __b,
+		    std::array<_Tp, 13>& __cheb12,
+		    std::array<_Tp, 25>& __cheb24)
     {
-      0.9914448613738104,     
-      0.9659258262890683,
-      0.9238795325112868,     
-      0.8660254037844386,
-      0.7933533402912352,     
-      0.7071067811865475,
-      0.6087614290087206,     
-      0.5000000000000000,
-      0.3826834323650898,     
-      0.2588190451025208,
-      0.1305261922200516
-    };
+      _Tp __fval[25], __v[12];
 
-    const _Tp center = 0.5 * (b + a);
-    const _Tp half_length = 0.5 * (b - a);
+      /* These are the values of cos(pi*k/24) for k=1..11 needed for the
+	 Chebyshev expansion of f(x) */
 
-    fval[0] = 0.5 * __func(b);
-    fval[12] = __func(center);
-    fval[24] = 0.5 * __func(a);
-
-    for (int i = 1; i < 12; ++i)
+      constexpr _Tp
+      __x[11]
       {
-	const size_t j = 24 - i;
-	const _Tp u = half_length * x[i-1];
-	fval[i] = __func(center + u);
-	fval[j] = __func(center - u);
-      }
+	0.9914448613738104,     
+	0.9659258262890683,
+	0.9238795325112868,     
+	0.8660254037844386,
+	0.7933533402912352,     
+	0.7071067811865475,
+	0.6087614290087206,     
+	0.5000000000000000,
+	0.3826834323650898,     
+	0.2588190451025208,
+	0.1305261922200516
+      };
 
-    for (int i = 0; i < 12; ++i)
+      const _Tp __center = (__b + __a) / _Tp{2};
+      const _Tp __half_length = (__b - __a) / _Tp{2};
+
+      __fval[0] = __func(__b) / _Tp{2};
+      __fval[12] = __func(__center);
+      __fval[24] = __func(__a) / _Tp{2};
+
+      for (int __i = 1; __i < 12; ++__i)
+	{
+	  const std::size_t __j = 24 - __i;
+	  const _Tp __u = __half_length * __x[__i - 1];
+	  __fval[__i] = __func(__center + __u);
+	  __fval[__j] = __func(__center - __u);
+	}
+
+      for (int __i = 0; __i < 12; ++__i)
+	{
+	  const std::size_t __j = 24 - __i;
+	  __v[__i] = __fval[__i] - __fval[__j];
+	  __fval[__i] = __fval[__i] + __fval[__j];
+	}
+
       {
-	const size_t j = 24 - i;
-	v[i] = fval[i] - fval[j];
-	fval[i] = fval[i] + fval[j];
-      }
-
-    {
-      const _Tp alam1 = v[0] - v[8];
-      const _Tp alam2 = x[5] * (v[2] - v[6] - v[10]);
-
-      cheb12[3] = alam1 + alam2;
-      cheb12[9] = alam1 - alam2;
-    }
-
-    {
-      const _Tp alam1 = v[1] - v[7] - v[9];
-      const _Tp alam2 = v[3] - v[5] - v[11];
-      {
-	const _Tp alam = x[2] * alam1 + x[8] * alam2;
-
-	cheb24[3] = cheb12[3] + alam;
-	cheb24[21] = cheb12[3] - alam;
+	const _Tp __alam1 = __v[0] - __v[8];
+	const _Tp __alam2 = __x[5] * (__v[2] - __v[6] - __v[10]);
+	__cheb12[3] = __alam1 + __alam2;
+	__cheb12[9] = __alam1 - __alam2;
       }
 
       {
-	const _Tp alam = x[8] * alam1 - x[2] * alam2;
-	cheb24[9] = cheb12[9] + alam;
-	cheb24[15] = cheb12[9] - alam;
-      }
-    }
+	const _Tp __alam1 = __v[1] - __v[7] - __v[9];
+	const _Tp __alam2 = __v[3] - __v[5] - __v[11];
+	{
+	  const _Tp __alam = __x[2] * __alam1 + __x[8] * __alam2;
+	  __cheb24[3] = __cheb12[3] + __alam;
+	  __cheb24[21] = __cheb12[3] - __alam;
+	}
 
-    {
-      const _Tp part1 = x[3] * v[4];
-      const _Tp part2 = x[7] * v[8];
-      const _Tp part3 = x[5] * v[6];
-
-      {
-	const _Tp alam1 = v[0] + part1 + part2;
-	const _Tp alam2 = x[1] * v[2] + part3 + x[9] * v[10];
-
-	cheb12[1] = alam1 + alam2;
-	cheb12[11] = alam1 - alam2;
+	{
+	  const _Tp __alam = __x[8] * __alam1 - __x[2] * __alam2;
+	  __cheb24[9] = __cheb12[9] + __alam;
+	  __cheb24[15] = __cheb12[9] - __alam;
+	}
       }
 
       {
-	const _Tp alam1 = v[0] - part1 + part2;
-	const _Tp alam2 = x[9] * v[2] - part3 + x[1] * v[10];
-	cheb12[5] = alam1 + alam2;
-	cheb12[7] = alam1 - alam2;
+	const _Tp __part1 = __x[3] * __v[4];
+	const _Tp __part2 = __x[7] * __v[8];
+	const _Tp __part3 = __x[5] * __v[6];
+
+	{
+	  const _Tp __alam1 = __v[0] + __part1 + __part2;
+	  const _Tp __alam2 = __x[1] * __v[2] + __part3 + __x[9] * __v[10];
+
+	  __cheb12[1] = __alam1 + __alam2;
+	  __cheb12[11] = __alam1 - __alam2;
+	}
+
+	{
+	  const _Tp __alam1 = __v[0] - __part1 + __part2;
+	  const _Tp __alam2 = __x[9] * __v[2] - __part3 + __x[1] * __v[10];
+	  __cheb12[5] = __alam1 + __alam2;
+	  __cheb12[7] = __alam1 - __alam2;
+	}
       }
-    }
 
-    {
-      const _Tp alam = (x[0] * v[1] + x[2] * v[3] + x[4] * v[5]
-                  + x[6] * v[7] + x[8] * v[9] + x[10] * v[11]);
-      cheb24[1] = cheb12[1] + alam;
-      cheb24[23] = cheb12[1] - alam;
-    }
-
-    {
-      const _Tp alam = (x[10] * v[1] - x[8] * v[3] + x[6] * v[5] 
-                  - x[4] * v[7] + x[2] * v[9] - x[0] * v[11]);
-      cheb24[11] = cheb12[11] + alam;
-      cheb24[13] = cheb12[11] - alam;
-    }
-
-    {
-      const _Tp alam = (x[4] * v[1] - x[8] * v[3] - x[0] * v[5] 
-                  - x[10] * v[7] + x[2] * v[9] + x[6] * v[11]);
-      cheb24[5] = cheb12[5] + alam;
-      cheb24[19] = cheb12[5] - alam;
-    }
-
-    {
-      const _Tp alam = (x[6] * v[1] - x[2] * v[3] - x[10] * v[5] 
-                  + x[0] * v[7] - x[8] * v[9] - x[4] * v[11]);
-      cheb24[7] = cheb12[7] + alam;
-      cheb24[17] = cheb12[7] - alam;
-    }
-
-    for (int i = 0; i < 6; i++)
       {
-	const size_t j = 12 - i;
-	v[i] = fval[i] - fval[j];
-	fval[i] = fval[i] + fval[j];
+	const _Tp __alam = (__x[0] * __v[1] + __x[2] * __v[3] + __x[4] * __v[5]
+                    + __x[6] * __v[7] + __x[8] * __v[9] + __x[10] * __v[11]);
+	__cheb24[1] = __cheb12[1] + __alam;
+	__cheb24[23] = __cheb12[1] - __alam;
       }
 
-    {
-      const _Tp alam1 = v[0] + x[7] * v[4];
-      const _Tp alam2 = x[3] * v[2];
-
-      cheb12[2] = alam1 + alam2;
-      cheb12[10] = alam1 - alam2;
-    }
-
-    cheb12[6] = v[0] - v[4];
-
-    {
-      const _Tp alam = x[1] * v[1] + x[5] * v[3] + x[9] * v[5];
-      cheb24[2] = cheb12[2] + alam;
-      cheb24[22] = cheb12[2] - alam;
-    }
-
-    {
-      const _Tp alam = x[5] * (v[1] - v[3] - v[5]);
-      cheb24[6] = cheb12[6] + alam;
-      cheb24[18] = cheb12[6] - alam;
-    }
-
-    {
-      const _Tp alam = x[9] * v[1] - x[5] * v[3] + x[1] * v[5];
-      cheb24[10] = cheb12[10] + alam;
-      cheb24[14] = cheb12[10] - alam;
-    }
-
-    for (int i = 0; i < 3; i++)
       {
-	const size_t j = 6 - i;
-	v[i] = fval[i] - fval[j];
-	fval[i] = fval[i] + fval[j];
+	const _Tp __alam = (__x[10] * __v[1] - __x[8] * __v[3] + __x[6] * __v[5]
+                    - __x[4] * __v[7] + __x[2] * __v[9] - __x[0] * __v[11]);
+	__cheb24[11] = __cheb12[11] + __alam;
+	__cheb24[13] = __cheb12[11] - __alam;
       }
 
-    cheb12[4] = v[0] + x[7] * v[2];
-    cheb12[8] = fval[0] - x[7] * fval[2];
+      {
+	const _Tp __alam = (__x[4] * __v[1] - __x[8] * __v[3] - __x[0] * __v[5]
+                    - __x[10] * __v[7] + __x[2] * __v[9] + __x[6] * __v[11]);
+	__cheb24[5] = __cheb12[5] + __alam;
+	__cheb24[19] = __cheb12[5] - __alam;
+      }
 
-    {
-      const _Tp alam = x[3] * v[1];
-      cheb24[4] = cheb12[4] + alam;
-      cheb24[20] = cheb12[4] - alam;
+      {
+	const _Tp __alam = (__x[6] * __v[1] - __x[2] * __v[3] - __x[10] * __v[5]
+                    + __x[0] * __v[7] - __x[8] * __v[9] - __x[4] * __v[11]);
+	__cheb24[7] = __cheb12[7] + __alam;
+	__cheb24[17] = __cheb12[7] - __alam;
+      }
+
+      for (int __i = 0; __i < 6; ++__i)
+	{
+	  const std::size_t __j = 12 - __i;
+	  __v[__i] = __fval[__i] - __fval[__j];
+	  __fval[__i] = __fval[__i] + __fval[__j];
+	}
+
+      {
+	const _Tp __alam1 = __v[0] + __x[7] * __v[4];
+	const _Tp __alam2 = __x[3] * __v[2];
+
+	__cheb12[2] = __alam1 + __alam2;
+	__cheb12[10] = __alam1 - __alam2;
+      }
+
+      __cheb12[6] = __v[0] - __v[4];
+
+      {
+	const _Tp __alam = __x[1] * __v[1] + __x[5] * __v[3] + __x[9] * __v[5];
+	__cheb24[2] = __cheb12[2] + __alam;
+	__cheb24[22] = __cheb12[2] - __alam;
+      }
+
+      {
+	const _Tp __alam = __x[5] * (__v[1] - __v[3] - __v[5]);
+	__cheb24[6] = __cheb12[6] + __alam;
+	__cheb24[18] = __cheb12[6] - __alam;
+      }
+
+      {
+	const _Tp __alam = __x[9] * __v[1] - __x[5] * __v[3] + __x[1] * __v[5];
+	__cheb24[10] = __cheb12[10] + __alam;
+	__cheb24[14] = __cheb12[10] - __alam;
+      }
+
+      for (int __i = 0; __i < 3; ++__i)
+	{
+	  const std::size_t __j = 6 - __i;
+	  __v[__i] = __fval[__i] - __fval[__j];
+	  __fval[__i] = __fval[__i] + __fval[__j];
+	}
+
+      __cheb12[4] = __v[0] + __x[7] * __v[2];
+      __cheb12[8] = __fval[0] - __x[7] * __fval[2];
+
+      {
+	const _Tp __alam = __x[3] * __v[1];
+	__cheb24[4] = __cheb12[4] + __alam;
+	__cheb24[20] = __cheb12[4] - __alam;
+      }
+
+      {
+	const _Tp __alam = __x[7] * __fval[1] - __fval[3];
+	__cheb24[8] = __cheb12[8] + __alam;
+	__cheb24[16] = __cheb12[8] - __alam;
+      }
+
+      __cheb12[0] = __fval[0] + __fval[2];
+
+      {
+	const _Tp __alam = __fval[1] + __fval[3];
+	__cheb24[0] = __cheb12[0] + __alam;
+	__cheb24[24] = __cheb12[0] - __alam;
+      }
+
+      __cheb12[12] = __v[0] - __v[2];
+      __cheb24[12] = __cheb12[12];
+
+      for (int __i = 1; __i < 12; ++__i)
+	__cheb12[__i] *= _Tp{1} / _Tp{6};
+
+      __cheb12[0] *= _Tp{1} / _Tp{12};
+      __cheb12[12] *= _Tp{1} / _Tp{12};
+
+      for (int __i = 1; __i < 24; ++__i)
+	__cheb24[__i] *= _Tp{1} / _Tp{12};
+
+      __cheb24[0] *= _Tp{1} / _Tp{24};
+      __cheb24[24] *= _Tp{1} / _Tp{24};
     }
-
-    {
-      const _Tp alam = x[7] * fval[1] - fval[3];
-      cheb24[8] = cheb12[8] + alam;
-      cheb24[16] = cheb12[8] - alam;
-    }
-
-    cheb12[0] = fval[0] + fval[2];
-
-    {
-      const _Tp alam = fval[1] + fval[3];
-      cheb24[0] = cheb12[0] + alam;
-      cheb24[24] = cheb12[0] - alam;
-    }
-
-    cheb12[12] = v[0] - v[2];
-    cheb24[12] = cheb12[12];
-
-    for (int i = 1; i < 12; i++)
-      cheb12[i] *= _Tp{1} / _Tp{6};
-
-    cheb12[0] *= _Tp{1} / _Tp{12};
-    cheb12[12] *= _Tp{1} / _Tp{12};
-
-    for (int i = 1; i < 24; ++i)
-      cheb24[i] *= _Tp{1} / _Tp{12};
-
-    cheb24[0] *= _Tp{1} / _Tp{24};
-    cheb24[24] *= _Tp{1} / _Tp{24};
-  }
 
 } // namespace __gnu_test
 

@@ -30,189 +30,176 @@ namespace __gnu_test
 
   template<typename _Tp, typename _FuncTp>
     std::tuple<_Tp, _Tp>
-    qawf_integrate(integration_workspace<_Tp>& workspace,
-                   integration_workspace<_Tp>& cycle_workspace,
-                   oscillatory_integration_table<_Tp>& wf,
-		   const _FuncTp& f,
-                   const _Tp a,
-                   const _Tp epsabs,
-                   const size_t limit)
+    qawf_integrate(integration_workspace<_Tp>& __workspace,
+                   integration_workspace<_Tp>& __cycle_workspace,
+                   oscillatory_integration_table<_Tp>& __wf,
+		   const _FuncTp& __func,
+                   const _Tp __a,
+                   const _Tp __epsabs)
     {
-      _Tp area, errsum;
-      _Tp res_ext, err_ext;
-      _Tp correc, total_error = 0.0, truncation_error;
+      _Tp __area, __errsum;
+      _Tp __res_ext, __err_ext;
+      _Tp __correc, __total_error = _Tp{0}, __truncation_error;
 
-      size_t ktmin = 0;
-      size_t iteration = 0;
+      std::size_t __ktmin = 0;
+      std::size_t __iteration = 0;
 
-      extrapolation_table<_Tp> table;
+      extrapolation_table<_Tp> __table;
 
-      _Tp cycle;
-      auto omega = wf.omega;
+      _Tp __cycle;
+      auto __omega = __wf.omega;
 
-      const _Tp p = 0.9;
-      _Tp factor = 1;
-      _Tp initial_eps, eps;
-      int error_type = 0;
+      const _Tp __p = 0.9;
+      _Tp __factor = 1;
+      _Tp __initial_eps, __eps;
+      int __error_type = 0;
 
-      workspace.set_initial_limits(a, a);
+      __workspace.set_initial_limits(__a, __a);
 
-      int status = 0;
-      auto result = _Tp{0};
-      auto abserr = _Tp{0};
+      int __status = 0;
+      auto __result = _Tp{0};
+      auto __abserr = _Tp{0};
 
-      if (limit > workspace.capacity())
-	std::__throw_runtime_error("iteration limit exceeds available workspace") ;
+      const auto _S_max = std::numeric_limits<_Tp>::max();
+      const auto __limit = __workspace.capacity();
 
       /* Test on accuracy */
 
-      if (epsabs <= 0)
+      if (__epsabs <= _Tp{0})
 	std::__throw_runtime_error("absolute tolerance epsabs must be positive") ;
 
-      if (omega == 0.0)
+      if (__omega == _Tp{0})
 	{
-	  if (wf.circfun == oscillatory_integration_table<_Tp>::INTEG_SINE)
+	  if (__wf.circfun == oscillatory_integration_table<_Tp>::INTEG_SINE)
             // The function sin(w x) f(x) is always zero for w = 0.
             return std::make_tuple(_Tp{0}, _Tp{0});
 	  else
             // The function cos(w x) f(x) is always f(x) for w = 0.
-	    return qagiu_integrate(cycle_workspace, f, a, epsabs, 0.0,
-                                   cycle_workspace.capacity());
+	    return qagiu_integrate(__cycle_workspace, __func, __a, __epsabs, 0.0);
 	}
 
-      if (epsabs > std::numeric_limits<_Tp>::min() / (1 - p)) // seems small
-	eps = epsabs * (1 - p);
+      if (__epsabs * (_Tp{1} - __p) > std::numeric_limits<_Tp>::min())
+	__eps = __epsabs * (_Tp{1} - __p);
       else
-	eps = epsabs;
+	__eps = __epsabs;
 
-      initial_eps = eps;
+      __initial_eps = __eps;
 
-      area = 0;
-      errsum = 0;
+      __area = _Tp{0};
+      __errsum = _Tp{0};
 
-      res_ext = 0;
-      err_ext = std::numeric_limits<_Tp>::max();
-      correc = 0;
+      __res_ext = _Tp{0};
+      __err_ext = _S_max;
+      __correc = _Tp{0};
 
-      cycle = (2 * floor (std::abs(omega)) + 1) * M_PI / std::abs(omega);
+      __cycle = (2 * std::floor(std::abs(__omega)) + 1) * M_PI / std::abs(__omega);
 
-      wf.set_length(cycle);
+      __wf.set_length(__cycle);
 
-      for (iteration = 0; iteration < limit; ++iteration)
+      for (__iteration = 0; __iteration < __limit; ++__iteration)
 	{
-	  _Tp area1, error1, reseps, erreps;
+	  auto __a1 = __a + __iteration * __cycle;
+	  auto __b1 = __a1 + __cycle;
 
-	  auto a1 = a + iteration * cycle;
-	  auto b1 = a1 + cycle;
+	  auto __epsabs1 = __eps * __factor;
 
-	  auto epsabs1 = eps * factor;
+	  _Tp __area1, __error1;
+	  std::tie(__area1, __error1)
+	    = qawo_integrate(__cycle_workspace, __wf, __func, __a1, __epsabs1, 0.0);
 
-	  std::tie(area1, error1) = qawo_integrate(cycle_workspace, wf, f, a1, epsabs1, 0.0, limit);
+	  __workspace.append(__a1, __b1, __area1, __error1);
 
-	  workspace.append(a1, b1, area1, error1);
+	  __factor *= __p;
 
-	  factor *= p;
-
-	  area += area1;
-	  errsum += error1;
+	  __area += __area1;
+	  __errsum += __error1;
 
 	  // estimate the truncation error as 50 times the final term.
 
-	  truncation_error = 50 * std::abs(area1);
+	  __truncation_error = 50 * std::abs(__area1);
 
-	  total_error = errsum + truncation_error;
+	  __total_error = __errsum + __truncation_error;
 
-	  if (total_error < epsabs && iteration > 4)
+	  if (__total_error < __epsabs && __iteration > 4)
             goto compute_result;
 
-	  if (error1 > correc)
-            correc = error1;
+	  if (__error1 > __correc)
+            __correc = __error1;
 
-	  if (status)
-            eps = std::max(initial_eps, correc * (1.0 - p));
+	  if (__status)
+            __eps = std::max(__initial_eps, __correc * (1.0 - __p));
 
-	  if (status && total_error < 10 * correc && iteration > 3)
+	  if (__status && __total_error < 10 * __correc && __iteration > 3)
             goto compute_result;
 
-	  table.append(area);
+	  __table.append(__area);
 
-	  if (table.get_nn() < 2)
+	  if (__table.get_nn() < 2)
             continue;
 
-	  std::tie(reseps, erreps) = table.qelg();
+	  _Tp __reseps, __erreps;
+	  std::tie(__reseps, __erreps) = __table.qelg();
 
-	  ++ktmin;
+	  ++__ktmin;
 
-	  if (ktmin >= 15 && err_ext < 0.001 * total_error)
-            error_type = 4;
+	  if (__ktmin >= 15 && __err_ext < 0.001 * __total_error)
+            __error_type = 4;
 
-	  if (erreps < err_ext)
+	  if (__erreps < __err_ext)
             {
-              ktmin = 0;
-              err_ext = erreps;
-              res_ext = reseps;
+              __ktmin = 0;
+              __err_ext = __erreps;
+              __res_ext = __reseps;
 
-              if (err_ext + 10 * correc <= epsabs)
+              if (__err_ext + 10 * __correc <= __epsabs)
         	break;
-              if (err_ext <= epsabs && 10 * correc >= epsabs)
+              if (__err_ext <= __epsabs && 10 * __correc >= __epsabs)
         	break;
             }
 	}
 
-      if (iteration == limit)
-	error_type = 1;
+      if (__iteration == __limit)
+	__error_type = 1;
 
-      if (err_ext == std::numeric_limits<_Tp>::max())
+      if (__err_ext == _S_max)
 	goto compute_result;
 
-      err_ext = err_ext + 10 * correc;
+      __err_ext += 10 * __correc;
 
-      result = res_ext;
-      abserr = err_ext;
+      __result = __res_ext;
+      __abserr = __err_ext;
 
-      if (error_type == 0)
-	return std::make_tuple(result, abserr);
+      if (__error_type == 0)
+	return std::make_tuple(__result, __abserr);
 
-      if (res_ext != _Tp{0} && area != _Tp{0})
+      if (__res_ext != _Tp{0} && __area != _Tp{0})
 	{
-	  if (err_ext / std::abs(res_ext) > errsum / std::abs(area))
+	  if (__err_ext / std::abs(__res_ext) > __errsum / std::abs(__area))
 	    goto compute_result;
 	}
-      else if (err_ext > errsum)
+      else if (__err_ext > __errsum)
 	goto compute_result;
-      else if (area == _Tp{0})
+      else if (__area == _Tp{0})
 	goto return_error;
 
-      if (error_type == 4)
-	err_ext += truncation_error;
+      if (__error_type == 4)
+	__err_ext += __truncation_error;
 
       goto return_error;
 
     compute_result:
 
-      result = area;
-      abserr = total_error;
+      __result = __area;
+      __abserr = __total_error;
+
+      if (__error_type == 0)
+	return std::make_tuple(__result, __abserr);
 
     return_error:
 
-      if (error_type > 2)
-	--error_type;
-
-      if (error_type == 0)
-	return std::make_tuple(result, abserr);
-      else if (error_type == 1)
-	std::__throw_runtime_error ("number of iterations was insufficient");
-      else if (error_type == 2)
-	std::__throw_runtime_error ("cannot reach tolerance because of roundoff error");
-      else if (error_type == 3)
-	std::__throw_runtime_error ("bad integrand behavior found in the integration interval");
-      else if (error_type == 4)
-	std::__throw_runtime_error ("roundoff error detected in the extrapolation table");
-      else if (error_type == 5)
-	std::__throw_runtime_error ("integral is divergent, or slowly convergent");
-      else
-	std::__throw_runtime_error ("could not integrate function");
-
+      __check_error(__func__, __error_type, __result, __abserr);
+      std::__throw_runtime_error("qawf_integrate: "
+				 "Could not integrate function");
     }
 
 } // namespace __gn_test

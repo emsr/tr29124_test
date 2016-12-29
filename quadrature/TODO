@@ -8,18 +8,22 @@
 4. Make narrow types instead of pair and tuple.
    Lean towards AOS i think.
 
-5. Fix up the IntegralError with errc and everything and use it.
+5. Fix up the IntegralError exception class with errc and everything and use it.
    Gat an errc enum for GSL quadrature.
+   You'll eventually want to hack src/c++11/functexcept.cc and bits/functexcept.h.
+   _GLIBCXX_THROW_OR_ABORT is in bits/c++config
 
-6. Get good names: *Integral.
+6. Get good names: *Integral - to go with *Sum.
 
 7. These tables should be inside classes.
-   users should not have to build them in real use.
+   Users should not have to build them in real use.
+   Even now, things like 'limit' should come from the table and not another argument.
+   Or a limit arg would go to an internally constructed table.
 
 8. The tables are useful for debugging.
    I might make these *_integrate public static members of the classes.
 
-9. The GSL seems to lack meat and potatoes integrals like midopint, trapezoid, romberg, ...
+9. The GSL seems to lack meat&potatoes integrals like midopint, trapezoid, romberg, ...
    These are in NRiC++ in my trees. old/integration.tcc shold be truly genericized and packaged.
 
 10. Change from __gnu_test to __gnu_cxx
@@ -37,6 +41,8 @@
 
 14. Gather more testcases.
 
-15. Try some integral reps of functions.
+15. Try some integral reps of special functions.  At least for testing.
 
-16. I have Gauss rules out the wazoo.
+16. I have Gauss rules out the wazoo.  Hermite, Jacobi, Laguerre, ...
+    Put these in and get tests for them.
+

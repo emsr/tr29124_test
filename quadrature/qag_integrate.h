@@ -52,20 +52,20 @@ namespace __gnu_test
    * @param[in] __epsabs The limit on absolute error
    * @param[in] __epsrel The limit on relative error
    * @param[in] __qksz The size of the Gauss-Kronrod integration scheme
-   * @return A pair with the first value being the integration result,
+   * @return A tuple with the first value being the integration result,
    *         and the second value being the estimated error.
    */
   template<typename _Tp, typename _FuncTp>
-    std::pair<_Tp, _Tp>
+    std::tuple<_Tp, _Tp>
     qag_integrate(integration_workspace<_Tp>& __workspace,
 		  const _FuncTp& __func, _Tp __a, _Tp __b,
-		  _Tp __epsabs, _Tp __epsrel, const size_t __max_iter,
+		  _Tp __epsabs, _Tp __epsrel, const std::size_t __max_iter,
 		  const qk_intrule __qkintrule)
     {
       _Tp __area, __errsum;
       _Tp __result0, __abserr0, __resabs0, __resasc0;
       _Tp __tolerance;
-      size_t __iteration = 0;
+      std::size_t __iteration = 0;
       int __roundoff_type1 = 0, __roundoff_type2 = 0, __error_type = 0;
 
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
@@ -112,7 +112,7 @@ namespace __gnu_test
 	  __result = __result0;
 	  __abserr = __abserr0;
 
-	  return std::make_pair(__result, __abserr);
+	  return std::make_tuple(__result, __abserr);
 	}
       else if (__max_iter == 1)
 	{
@@ -203,27 +203,27 @@ namespace __gnu_test
       __abserr = __errsum;
 
       if (__errsum <= __tolerance)
-	return std::make_pair(__result, __abserr);
+	return std::make_tuple(__result, __abserr);
       else if (__error_type == 2)
 	std::__throw_runtime_error("qag_integrate: "
-				   "roundoff error prevents tolerance "
-				   "from being achieved");
+				   "Cannot reach tolerance "
+				   "because of roundoff error");
       else if (__error_type == 3)
 	std::__throw_runtime_error("qag_integrate: "
-				   "bad integrand behavior found "
-				   "in integrand inteveral");
+				   "Bad integrand behavior found "
+				   "in the integrand inteveral");
       else if (__iteration == __max_iter)
 	std::__throw_runtime_error("qag_integrate: "
-				   "maximum number of iterations reached");
+				   "Maximum number of iterations reached");
       else
 	std::__throw_runtime_error("qag_integrate: "
-				   "could not integrate function");
+				   "Could not integrate function");
     }
 
   template<typename _Tp, typename _FuncTp>
-    std::pair<_Tp, _Tp>
+    std::tuple<_Tp, _Tp>
     qag_integrate(const _FuncTp& __func, _Tp __a, _Tp __b,
-		  _Tp __epsabs, _Tp __epsrel, const size_t __max_iter,
+		  _Tp __epsabs, _Tp __epsrel, const std::size_t __max_iter,
 		  const qk_intrule __qkintrule)
     {
       integration_workspace<_Tp> __workspace(__max_iter);
