@@ -49,15 +49,15 @@ namespace __gnu_test
       _Tp xi, wi;
       if (this->order & 1) // n is odd
 	{
-	  const auto k = (int(i) - int(this->order)) / 2;
-	  const auto sign = k < 0 ? -1 : +1;
+	  const auto k = int(i) - int(this->order) / 2;
+	  const auto sign = (k < 0 ? -1 : +1);
 
 	  xi = B + sign * A * this->pt(sign * k);
 	  wi =            A * this->wt(sign * k);
 	}
       else if (/* n is even && */ i < this->order / 2)
 	{
-	  i = (this->order / 2) - 1 - i;
+	  i = int(this->order) / 2 - 1 - int(i);
 	  xi = B - A * this->pt(i);
 	  wi =     A * this->wt(i);
 	}

@@ -31,6 +31,10 @@ BINS = \
 all: $(BINS)
 
 
+test: $(BINS)
+	./test_quadrature > test_quadrature.txt 2> test_quadrature2.txt
+
+
 test_quadrature: test_quadrature.cpp *.h *.tcc
 	$(CXX17) -o test_quadrature test_quadrature.cpp -lquadmath
 

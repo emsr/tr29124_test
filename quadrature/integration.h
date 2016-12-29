@@ -36,6 +36,7 @@
 #include "qawf_integrate.h"
 #include "gauss_legendre_table.h"
 #include "glfixed_integrate.h"
+#include "cquad_integrate.h"
 #include "integrate.h"
 
 #endif // INTEGRATION_H

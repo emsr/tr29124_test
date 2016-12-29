@@ -28,11 +28,11 @@ namespace __gnu_test
       explicit
       gauss_legendre_table(std::size_t n);
 
-      std::tuple<_Tp, _Tp> get_point(_Tp a, _Tp b, size_t i) const;
+      std::tuple<_Tp, _Tp> get_point(_Tp a, _Tp b, std::size_t i) const;
 
-      _Tp pt(size_t i) const;
+      _Tp pt(std::size_t i) const;
 
-      _Tp wt(size_t i) const;
+      _Tp wt(std::size_t i) const;
     };
 
   // n = 2
