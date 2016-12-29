@@ -359,6 +359,24 @@ template<typename _Tp>
     return FAILURE;
   }
 
+
+template<typename _Tp>
+  void
+  belch(const __gnu_test::_IntegrationError<double>& iex)
+  {
+    std::cout << "ERROR: " << iex.what()
+	      << "       status = " << iex.status()
+	      << "       result = " << iex.result()
+	      << "       abserr = " << iex.abserr()
+	      << std::endl;
+    std::cerr << "ERROR: " << iex.what()
+	      << "       status = " << iex.status()
+	      << "       result = " << iex.result()
+	      << "       abserr = " << iex.abserr()
+	      << '\n';
+  }
+
+
 int
 main()
 {
@@ -391,6 +409,10 @@ main()
     qtest.test_rel(abserr,exp_abserr,1e-7,"qk15(f1) reverse abserr");
     qtest.test_rel(resabs,exp_resabs,1e-15,"qk15(f1) reverse resabs");
     qtest.test_rel(resasc,exp_resasc,1e-15,"qk15(f1) reverse resasc");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -426,6 +448,10 @@ main()
     qtest.test_rel(resabs,exp_resabs,1e-15,"qk21(f1) reverse resabs");
     qtest.test_rel(resasc,exp_resasc,1e-15,"qk21(f1) reverse resasc");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -459,6 +485,10 @@ main()
     qtest.test_rel(abserr,exp_abserr,1e-7,"qk31(f1) reverse abserr");
     qtest.test_rel(resabs,exp_resabs,1e-15,"qk31(f1) reverse resabs");
     qtest.test_rel(resasc,exp_resasc,1e-15,"qk31(f1) reverse resasc");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -494,6 +524,10 @@ main()
     qtest.test_rel(resabs,exp_resabs,1e-15,"qk41(f1) reverse resabs");
     qtest.test_rel(resasc,exp_resasc,1e-15,"qk41(f1) reverse resasc");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -528,6 +562,10 @@ main()
     qtest.test_rel(resabs,exp_resabs,1e-15,"qk51(f1) reverse resabs");
     qtest.test_rel(resasc,exp_resasc,1e-15,"qk51(f1) reverse resasc");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -561,6 +599,10 @@ main()
     qtest.test_rel(abserr,exp_abserr,1e-5,"qk61(f1) reverse abserr");
     qtest.test_rel(resabs,exp_resabs,1e-15,"qk61(f1) reverse resabs");
     qtest.test_rel(resasc,exp_resasc,1e-15,"qk61(f1) reverse resasc");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -600,6 +642,10 @@ main()
     qtest.test_rel(resabs,exp_resabs,1e-15,"qk15(f1) reverse resabs");
     qtest.test_rel(resasc,exp_resasc,1e-15,"qk15(f1) reverse resasc");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -633,6 +679,10 @@ main()
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qk21(f1) reverse abserr");
     qtest.test_rel(resabs, exp_resabs, 1e-15, "qk21(f1) reverse resabs");
     qtest.test_rel(resasc, exp_resasc, 1e-15, "qk21(f1) reverse resasc");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -668,6 +718,10 @@ main()
     qtest.test_rel(resabs, exp_resabs, 1e-15, "qk31(f1) reverse resabs");
     qtest.test_rel(resasc, exp_resasc, 1e-15, "qk31(f1) reverse resasc");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -701,6 +755,10 @@ main()
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qk41(f1) reverse abserr");
     qtest.test_rel(resabs, exp_resabs, 1e-15, "qk41(f1) reverse resabs");
     qtest.test_rel(resasc, exp_resasc, 1e-15, "qk41(f1) reverse resasc");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -736,6 +794,10 @@ main()
     qtest.test_rel(resabs, exp_resabs, 1e-15, "qk51(f1) reverse resabs");
     qtest.test_rel(resasc, exp_resasc, 1e-15, "qk51(f1) reverse resasc");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -769,6 +831,10 @@ main()
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qk61(f1) reverse abserr");
     qtest.test_rel(resabs, exp_resabs, 1e-15, "qk61(f1) reverse resabs");
     qtest.test_rel(resasc, exp_resasc, 1e-15, "qk61(f1) reverse resasc");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -808,6 +874,10 @@ main()
     qtest.test_rel(resabs, exp_resabs, 1e-15, "qk15(f3) reverse resabs");
     qtest.test_rel(resasc, exp_resasc, 1e-15, "qk15(f3) reverse resasc");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -841,6 +911,10 @@ main()
     qtest.test_rel(abserr, exp_abserr, 1e-5, "qk21(f3) reverse abserr");
     qtest.test_rel(resabs, exp_resabs, 1e-15, "qk21(f3) reverse resabs");
     qtest.test_rel(resasc, exp_resasc, 1e-15, "qk21(f3) reverse resasc");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -876,6 +950,10 @@ main()
     qtest.test_rel(resabs, exp_resabs, 1e-15, "qk31(f3) reverse resabs");
     qtest.test_rel(resasc, exp_resasc, 1e-15, "qk31(f3) reverse resasc");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -909,6 +987,10 @@ main()
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qk41(f3) reverse abserr");
     qtest.test_rel(resabs, exp_resabs, 1e-15, "qk41(f3) reverse resabs");
     qtest.test_rel(resasc, exp_resasc, 1e-15, "qk41(f3) reverse resasc");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -944,6 +1026,10 @@ main()
     qtest.test_rel(resabs, exp_resabs, 1e-15, "qk51(f3) reverse resabs");
     qtest.test_rel(resasc, exp_resasc, 1e-15, "qk51(f3) reverse resasc");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -977,6 +1063,10 @@ main()
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qk61(f3) reverse abserr");
     qtest.test_rel(resabs, exp_resabs, 1e-15, "qk61(f3) reverse resabs");
     qtest.test_rel(resasc, exp_resasc, 1e-15, "qk61(f3) reverse resasc");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -1012,6 +1102,10 @@ main()
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qng(f1) reverse abserr");
     qtest.test_int(neval, exp_neval, "qng(f1) reverse neval");
     qtest.test_int(status, exp_ier, "qng(f1) reverse status");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -1049,6 +1143,10 @@ main()
     qtest.test_int(neval, exp_neval, "qng(f1) reverse 43pt neval");
     qtest.test_int(status, exp_ier, "qng(f1) reverse 43pt status");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -1083,6 +1181,10 @@ main()
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qng(f3) reverse abserr");
     qtest.test_int(neval, exp_neval, "qng(f3) reverse neval");
     qtest.test_int(status, exp_ier, "qng(f3) reverse status");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -1120,6 +1222,10 @@ main()
     qtest.test_int(neval, exp_neval, "qng(f1) 87pt reverse neval");
     qtest.test_int(status, exp_ier, "qng(f1) 87pt reverse status");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -1155,6 +1261,10 @@ main()
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qng(f1) rev beyond 87pt abserr");
     qtest.test_int(neval, exp_neval, "qng(f1) rev beyond 87pt neval");
     qtest.test_int(status, exp_ier, "qng(f1) rev beyond 87pt status");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -1230,6 +1340,10 @@ main()
     qtest.test_int(w.size(), exp_last, "qag(f1) reverse last");
     qtest.test_int(status, exp_ier, "qag(f1) reverse status");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -1303,6 +1417,10 @@ main()
     qtest.test_int(w.size(), exp_last, "qag(f1, 21pt) reverse last");
     qtest.test_int(status, exp_ier, "qag(f1, 21pt) reverse status");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -1353,6 +1471,10 @@ main()
     qtest.test_int(w.size(), exp_last, "qag(f3, 31pt) reverse last");
     qtest.test_int(status, exp_ier, "qag(f3, 31pt) reverse status");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -1394,6 +1516,10 @@ main()
     qtest.test_int(fc.neval, exp_neval, "qag(f16, 51pt) rev neval");
     qtest.test_int(w.size(), exp_last, "qag(f16, 51pt) rev last");
     qtest.test_int(status, exp_ier, "qag(f16, 51pt) rev status");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -1475,6 +1601,10 @@ main()
     qtest.test_int(w.size(), exp_last, "qag(f16, 61pt) reverse last");
     qtest.test_int(status, exp_ier, "qag(f16, 61pt) reverse status");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -1548,6 +1678,10 @@ main()
     qtest.test_int(fc.neval, exp_neval, "qags(f1) reverse neval");
     qtest.test_int(w.size(), exp_last, "qags(f1) reverse last");
     qtest.test_int(status, exp_ier, "qags(f1) reverse status");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -1647,6 +1781,10 @@ main()
     qtest.test_int(w.size(), exp_last, "qags(f11) reverse last");
     qtest.test_int(status, exp_ier, "qags(f11) reverse status");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -1737,6 +1875,10 @@ main()
 
     for (int i = 0; i < 10; ++i)
       qtest.test_int(w.order(i), order[i]-1, "qagiu(f455) smooth order");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -1831,6 +1973,10 @@ main()
     for (int i = 0; i < 10; ++i)
       qtest.test_int(w.order(i), order[i]-1, "qagiu(f15) smooth order");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -1908,6 +2054,10 @@ main()
     for (int i = 0; i < 6; ++i)
       qtest.test_int(w.order(i), order[i]-1, "qagiu(f16) smooth order");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -1977,6 +2127,10 @@ main()
 
     for (int i = 0; i < 5; ++i)
       qtest.test_int(w.order(i), order[i]-1, "qagi(myfn1) smooth order");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -2049,6 +2203,10 @@ main()
 
     for (int i = 0; i < 5; ++i)
       qtest.test_int(w.order(i), order[i]-1, "qagil(myfn2) smooth order");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -2183,6 +2341,10 @@ main()
     for (int i = 0; i < 20; ++i)
       qtest.test_int(w.order(i), order[i]-1, "qagp(f454) singular order");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -2268,6 +2430,10 @@ main()
     qtest.test_int(fc.neval, exp_neval, "qawc(f459) rev neval");
     qtest.test_int(w.size(), exp_last, "qawc(f459) rev last");
     qtest.test_int(status, exp_ier, "qawc(f459) rev status");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -2406,6 +2572,10 @@ main()
     qtest.test_rel(result, exp_result, 1e-14, "qaws(f458) AB ln(x-a)ln(b-x) result");
     qtest.test_rel(abserr, exp_abserr, 1e-6, "qaws(f458) AB ln(x-a)ln(b-x) abserr");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -2507,6 +2677,10 @@ main()
     qtest.test_int(w.size(), exp_last, "qawo(f456) rev last");
     qtest.test_int(status, exp_ier, "qawo(f456) rev status");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -2579,6 +2753,10 @@ main()
     for (int i = 0; i < 9; ++i)
       qtest.test_rel(w.abs_error(i), e[i], 50.0, "qawf(f457) elist");
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -2600,6 +2778,10 @@ main()
     qtest.test_abs(integrate(dmon_t(2, 2.0), 1.0, 2.0),
         (2.0/3.0)*(2.0*2.0*2.0 - 1.0*1.0*1.0), 8*_S_eps,
         "integrate(monomial) sanity check");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -2641,6 +2823,10 @@ main()
           }
       }
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -2658,6 +2844,10 @@ main()
     qtest.test_abs(f_sin(7.0), std::sin(7.0), 0.0, "f_sin sanity check 2");
     qtest.test_abs(integ_f_sin(0.0, M_PI), 2.0, _S_eps,
         "integ_f_sin sanity check");
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -2712,6 +2902,10 @@ main()
 
         prev_abserr = abserr;
       }
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -2833,6 +3027,10 @@ main()
         qtest.test_abs(wi, e5[i][1], eps, msg2.str().c_str());
       }
   }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
+  }
   catch (std::exception& ex)
   {
     std::cout << "ERROR: " << ex.what() << std::endl;
@@ -2874,6 +3072,10 @@ main()
     std::ostringstream msg2;
     msg2 << "glfixed " << n << "-point xi,wi eval";
     qtest.test_rel(result, 73925./56, 1e-8, msg2.str().c_str());
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {
@@ -2937,6 +3139,10 @@ main()
       qtest.test_int(status, 0, "cquad return code");
       std::cout << std::flush;
     }
+  }
+  catch (__gnu_test::_IntegrationError<double>& iex)
+  {
+    belch<double>(iex);
   }
   catch (std::exception& ex)
   {

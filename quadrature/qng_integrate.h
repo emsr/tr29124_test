@@ -240,7 +240,9 @@ namespace __gnu_test
       const auto __f_center = __func(__center);
 
       if (__epsabs <= 0 && (__epsrel < 50 * _S_eps || __epsrel < 0.5e-28))
-	std::__throw_runtime_error("tolerance cannot be achieved with given epsabs and epsrel");
+	std::__throw_runtime_error("qng_integrate: "
+				   "Tolerance cannot be achieved "
+				   "with given epsabs and epsrel");
 
       // Compute the integral using the 10- and 21-point formula.
 
@@ -257,7 +259,8 @@ namespace __gnu_test
 	  const auto __fval = __fval1 + __fval2;
 	  __res10 += _Tp(qng_w10[__k]) * __fval;
 	  __res21 += _Tp(qng_w21a[__k]) * __fval;
-	  __resabs += _Tp(qng_w21a[__k]) * (std::abs(__fval1) + std::abs(__fval2));
+	  __resabs += _Tp(qng_w21a[__k])
+		    * (std::abs(__fval1) + std::abs(__fval2));
 	  __savfun[__k] = __fval;
 	  __fv1[__k] = __fval1;
 	  __fv2[__k] = __fval2;
@@ -270,7 +273,8 @@ namespace __gnu_test
 	  const auto __fval2 = __func(__center - __abscissa);
 	  const auto __fval = __fval1 + __fval2;
 	  __res21 += _Tp(qng_w21b[__k]) * __fval;
-	  __resabs += _Tp(qng_w21b[__k]) * (std::abs(__fval1) + std::abs(__fval2));
+	  __resabs += _Tp(qng_w21b[__k])
+		    * (std::abs(__fval1) + std::abs(__fval2));
 	  __savfun[__k + 5] = __fval;
 	  __fv3[__k] = __fval1;
 	  __fv4[__k] = __fval2;
@@ -293,7 +297,8 @@ namespace __gnu_test
 
       // Test for convergence.
       auto __result_kronrod = __res21 * __half_length;
-      auto __err = __rescale_error((__res21 - __res10) * __half_length, __resabs, __resasc);
+      auto __err = __rescale_error((__res21 - __res10) * __half_length,
+				   __resabs, __resasc);
       if (__err < __epsabs || __err < __epsrel * std::abs(__result_kronrod))
 	return std::make_tuple(__result_kronrod, __err, 21);
 
@@ -312,7 +317,8 @@ namespace __gnu_test
 
       // Test for convergence.
       __result_kronrod = __res43 * __half_length;
-      __err = __rescale_error((__res43 - __res21) * __half_length, __resabs, __resasc);
+      __err = __rescale_error((__res43 - __res21) * __half_length,
+				 __resabs, __resasc);
       if (__err < __epsabs || __err < __epsrel * std::abs(__result_kronrod))
 	return std::make_tuple(__result_kronrod, __err, 43);
 
@@ -329,12 +335,15 @@ namespace __gnu_test
 
       // Test for convergence.
       __result_kronrod = __res87 * __half_length;
-      __err = __rescale_error((__res87 - __res43) * __half_length, __resabs, __resasc);
+      __err = __rescale_error((__res87 - __res43) * __half_length,
+				__resabs, __resasc);
       if (__err < __epsabs || __err < __epsrel * std::abs(__result_kronrod))
 	return std::make_tuple(__result_kronrod, __err, 87);
 
       // Failed to converge.
-      std::__throw_runtime_error("failed to reach tolerance with highest-order rule");
+      std::__throw_runtime_error("qng_integrate: "
+				 "Failed to reach tolerance "
+				 "with highest-order rule");
     }
 
 } // namespace __gnu_test
