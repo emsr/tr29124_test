@@ -3123,7 +3123,7 @@ main()
     {
       __gnu_test::cquad_workspace<double> ws(200);
       auto f = make_function<double>(funs[fid]);
-      double exact = f_exact[fid];
+      auto exact = f_exact[fid];
       int status = 0;
 
       // Call our quadrature routine.
@@ -3133,9 +3133,13 @@ main()
       std::ostringstream rstr;
       rstr << "cquad f" << fid;
       qtest.test_rel(result, exact, 1e-12, rstr.str().c_str());
+
       std::ostringstream upstr;
-      upstr << "cquad f" << fid << " error(" << std::abs(result-exact) << " actual vs " << abserr << " estimated)";
+      upstr << "cquad f" << fid << " error("
+			 << std::abs(result-exact) << " actual vs "
+			 << abserr << " estimated)";
       qtest.test_update(std::abs(result - exact) > 5.0 * abserr, upstr.str().c_str());
+
       qtest.test_int(status, 0, "cquad return code");
       std::cout << std::flush;
     }
