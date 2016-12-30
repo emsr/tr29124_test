@@ -21,8 +21,8 @@
 // Ported from GSL by Jason Dick
 // Originally written by Brian Gaugh
 //
-//Implements Gauss-Kronrod integration
-//Based upon gsl-1.9/integration/qk.c
+// Implements Gauss-Kronrod integration
+// Based upon gsl-2.3/integration/qk.c
 
 #ifndef QK_INTEGRATE_H
 #define QK_INTEGRATE_H 1

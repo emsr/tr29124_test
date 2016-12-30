@@ -1,7 +1,7 @@
 /* integration/qagp.c
  *
  * Copyright (C) 1996, 1997, 1998, 1999, 2000, 2007 Brian Gough
- * Copyright (C) 2016 Edward Smith-Rowland
+ * Copyright (C) 2016 Free Software Foundation, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,11 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
+// Ported from GSL by Ed Smith-Rowland
+// Originally written by Brian Gaugh
+//
+// Implements qawc integration algorithm
+// Based upon gsl-2.3/integration/qawc.c
 
 #ifndef QAWC_INTEGRATE_H
 #define QAWC_INTEGRATE_H 1

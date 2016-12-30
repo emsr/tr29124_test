@@ -1,7 +1,7 @@
-/* integration/qagp_integrate.h
+/* integration/cquad_integrate.h
  *
  * Copyright (C) 2010 Pedro Gonnet
- * Copyright (C) 2016 Edward Smith-Rowland
+ * Copyright (C) 2016 Free Software Foundation, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,11 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
+// Ported from GSL by Ed Smith-Rowland
+// Originally written by Pedro Gonnet
+//
+// This file implements the cquad integration scheme.
+// Based upon structs in gsl-2.3/integration/cquad.c
 
 #ifndef CQUAD_INTEGRATE_H
 #define CQUAD_INTEGRATE_H 1
@@ -33,7 +38,7 @@ namespace __gnu_test
    */
   template<typename _Tp>
     void
-    Vinvfx(const _Tp* __fx, _Tp* __c, const int __d)
+    _Vinvfx(const _Tp* __fx, _Tp* __c, const int __d)
     {
       switch (__d)
 	{
@@ -153,9 +158,9 @@ namespace __gnu_test
 	      __iv.fx[__i] = _Tp{0};
 	    }
 	}
-      Vinvfx(__iv.fx, &(__iv.c[__idx[0]]), 0);
-      Vinvfx(__iv.fx, &(__iv.c[__idx[3]]), 3);
-      Vinvfx(__iv.fx, &(__iv.c[__idx[2]]), 2);
+      _Vinvfx(__iv.fx, &(__iv.c[__idx[0]]), 0);
+      _Vinvfx(__iv.fx, &(__iv.c[__idx[3]]), 3);
+      _Vinvfx(__iv.fx, &(__iv.c[__idx[2]]), 2);
       for (std::size_t __i = 0; __i < __num_NaNs; ++__i)
 	__iv.fx[__NaN[__i]] = _S_NaN;
       __iv.a = __a;
@@ -229,7 +234,7 @@ namespace __gnu_test
 		  }
 
 	      // Compute the new coefficients.
-	      Vinvfx(__iv.fx, &(__iv.c[__idx[__d]]), __d);
+	      _Vinvfx(__iv.fx, &(__iv.c[__idx[__d]]), __d);
 
 	      // Downdate any NaNs.
 	      if (__num_NaNs > 0)
@@ -338,7 +343,7 @@ namespace __gnu_test
 		      __ivl.fx[__i] = _Tp{0};
 		    }
 		}
-	      Vinvfx(__ivl.fx, __ivl.c, 0);
+	      _Vinvfx(__ivl.fx, __ivl.c, 0);
 	      if (__num_NaNs > 0)
 		{
 		  downdate(__ivl.c, __n[0], 0, __NaN, __num_NaNs);
@@ -399,7 +404,7 @@ namespace __gnu_test
 		      __ivr.fx[__i] = _Tp{0};
 		    }
 		}
-	      Vinvfx (__ivr.fx, __ivr.c, 0);
+	      _Vinvfx (__ivr.fx, __ivr.c, 0);
 	      if (__num_NaNs > 0)
 		{
 		  downdate(__ivr.c, __n[0], 0, __NaN, __num_NaNs);
