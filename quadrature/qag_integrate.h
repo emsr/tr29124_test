@@ -21,8 +21,8 @@
 // Ported from GSL by Jason Dick
 // Originally written by Brian Gaugh
 //
-//Implements integration using a recursive Gauss-Kronrod algorithm
-//Based upon gsl-1.9/integration/qag.c
+// Implements integration using a recursive Gauss-Kronrod algorithm
+// Based upon gsl-2.3/integration/qag.c
 
 #ifndef QAG_INTEGRATE_H
 #define QAG_INTEGRATE_H 1

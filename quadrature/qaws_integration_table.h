@@ -1,7 +1,7 @@
 /* quadrature/qaws_integration_table.h
  *
  * Copyright (C) 1996, 1997, 1998, 1999, 2000, 2007, 2009 Brian Gough
- * Copyright (C) 2016 Edward Smith-Rowland
+ * Copyright (C) 2016 Free Software Foundation, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
