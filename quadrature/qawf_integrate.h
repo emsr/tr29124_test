@@ -37,11 +37,11 @@ namespace __gnu_test
   template<typename _Tp, typename _FuncTp>
     std::tuple<_Tp, _Tp>
     qawf_integrate(integration_workspace<_Tp>& __workspace,
-                   integration_workspace<_Tp>& __cycle_workspace,
-                   oscillatory_integration_table<_Tp>& __wf,
+		   integration_workspace<_Tp>& __cycle_workspace,
+		   oscillatory_integration_table<_Tp>& __wf,
 		   const _FuncTp& __func,
-                   const _Tp __a,
-                   const _Tp __epsabs)
+		   const _Tp __a,
+		   const _Tp __epsabs)
     {
       _Tp __area, __errsum;
       _Tp __res_ext, __err_ext;
@@ -77,10 +77,10 @@ namespace __gnu_test
       if (__omega == _Tp{0})
 	{
 	  if (__wf.circfun == oscillatory_integration_table<_Tp>::INTEG_SINE)
-            // The function sin(w x) f(x) is always zero for w = 0.
-            return std::make_tuple(_Tp{0}, _Tp{0});
+	    // The function sin(w x) f(x) is always zero for w = 0.
+	    return std::make_tuple(_Tp{0}, _Tp{0});
 	  else
-            // The function cos(w x) f(x) is always f(x) for w = 0.
+	    // The function cos(w x) f(x) is always f(x) for w = 0.
 	    return qagiu_integrate(__cycle_workspace, __func, __a, __epsabs, 0.0);
 	}
 
@@ -127,21 +127,21 @@ namespace __gnu_test
 	  __total_error = __errsum + __truncation_error;
 
 	  if (__total_error < __epsabs && __iteration > 4)
-            goto compute_result;
+	    goto compute_result;
 
 	  if (__error1 > __correc)
-            __correc = __error1;
+	    __correc = __error1;
 
 	  if (__status)
-            __eps = std::max(__initial_eps, __correc * (1.0 - __p));
+	    __eps = std::max(__initial_eps, __correc * (1.0 - __p));
 
 	  if (__status && __total_error < 10 * __correc && __iteration > 3)
-            goto compute_result;
+	    goto compute_result;
 
 	  __table.append(__area);
 
 	  if (__table.get_nn() < 2)
-            continue;
+	    continue;
 
 	  _Tp __reseps, __erreps;
 	  std::tie(__reseps, __erreps) = __table.qelg();
@@ -149,19 +149,19 @@ namespace __gnu_test
 	  ++__ktmin;
 
 	  if (__ktmin >= 15 && __err_ext < 0.001 * __total_error)
-            __error_type = 4;
+	    __error_type = 4;
 
 	  if (__erreps < __err_ext)
-            {
-              __ktmin = 0;
-              __err_ext = __erreps;
-              __res_ext = __reseps;
+	    {
+	      __ktmin = 0;
+	      __err_ext = __erreps;
+	      __res_ext = __reseps;
 
-              if (__err_ext + 10 * __correc <= __epsabs)
-        	break;
-              if (__err_ext <= __epsabs && 10 * __correc >= __epsabs)
-        	break;
-            }
+	      if (__err_ext + 10 * __correc <= __epsabs)
+		break;
+	      if (__err_ext <= __epsabs && 10 * __correc >= __epsabs)
+		break;
+	    }
 	}
 
       if (__iteration == __limit)

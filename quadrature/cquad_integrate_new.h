@@ -210,9 +210,9 @@ namespace __gnu_test
 	  __h = (__iv.b - __iv.a) / _Tp{2};
 
 #ifdef INTEGRATION_DEBUG
-          printf
-            ("cquad: processing ival %i (of %i) with [%e,%e] int=%e, err=%e, depth=%i\n",
-             0, __ws.size(), __iv.a, __iv.b, __iv.igral, __iv.err, __iv.depth);
+	  printf
+	    ("cquad: processing ival %i (of %i) with [%e,%e] int=%e, err=%e, depth=%i\n",
+	     0, __ws.size(), __iv.a, __iv.b, __iv.igral, __iv.err, __iv.depth);
 #endif
 	  // Should we try to increase the degree?
 	  if (__iv.depth < 3)
@@ -279,10 +279,10 @@ namespace __gnu_test
 	      || __iv.err < std::abs(__iv.igral) * _S_eps * 10)
 	    {
 #ifdef INTEGRATION_DEBUG
-              printf
-        	("cquad: dumping ival %i (of %i) with [%e,%e] int=%e, err=%e, depth=%i\n",
-        	 0, __ws.size(), __iv.a, __iv.b, __iv.igral, __iv.err,
-        	 __iv.depth);
+	      printf
+		("cquad: dumping ival %i (of %i) with [%e,%e] int=%e, err=%e, depth=%i\n",
+		 0, __ws.size(), __iv.a, __iv.b, __iv.igral, __iv.err,
+		 __iv.depth);
 #endif
 	      // Keep this interval's contribution.
 	      __err_final += __iv.err;
@@ -415,9 +415,9 @@ namespace __gnu_test
 	      // Compute the local integral.
 	      __ivr.igral = __h * __w * __ivr.c[0];
 
-              __ws.pop();
-              __ws.push(__ivl);
-              __ws.push(__ivr);
+	      __ws.pop();
+	      __ws.push(__ivl);
+	      __ws.push(__ivr);
 	    }
 	  else // Otherwise, just fix-up the heap.
 	    __ws.update();
@@ -432,9 +432,9 @@ namespace __gnu_test
       for (auto& __iv : __ws)
 	{
 	  printf
-            ("cquad: ival %i (%i) with [%e,%e], int=%e, err=%e, depth=%i, rdepth=%i\n",
-             0, 0, __iv.a, __iv.b, __iv.igral, __iv.err, __iv.depth,
-             __iv.rdepth);
+	    ("cquad: ival %i (%i) with [%e,%e], int=%e, err=%e, depth=%i, rdepth=%i\n",
+	     0, 0, __iv.a, __iv.b, __iv.igral, __iv.err, __iv.depth,
+	     __iv.rdepth);
 	}
 #endif
 

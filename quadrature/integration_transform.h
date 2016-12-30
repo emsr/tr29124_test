@@ -59,7 +59,7 @@ namespace __gnu_test
 
       il_transform(const _FuncTp& __func, _Tp __b)
       : _M_func(__func),
-        _M_b(__b)
+	_M_b(__b)
       { }
 
       _Tp
@@ -83,7 +83,7 @@ namespace __gnu_test
 
       iu_transform(const _FuncTp& __func, _Tp __a)
       : _M_func(__func),
-        _M_a(__a)
+	_M_a(__a)
       { }
 
       _Tp

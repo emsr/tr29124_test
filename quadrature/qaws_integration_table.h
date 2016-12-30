@@ -121,7 +121,7 @@ namespace __gnu_test
 	{
 	  this->rj[__i] = -(__r_beta
 				+ __an * (__an - __beta_p2) * this->rj[__i - 1])
-            / (__anm1 * (__an + __beta_p1));
+	    / (__anm1 * (__an + __beta_p1));
 	  __anm1 = __an;
 	  __an += _Tp{1};
 	}

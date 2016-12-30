@@ -111,7 +111,7 @@ namespace __gnu_test
 	case 5:
 	  msg << "Integral is divergent, or slowly convergent";
 	  break;
-        case 6:
+	case 6:
 	  msg << "Maximum number of subdivisions reached";
 	  break;
 	default:
