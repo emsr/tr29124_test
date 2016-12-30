@@ -62,7 +62,7 @@ namespace __gnu_test
       void
       append(_Tp __y)
       {
-        if (this->_M_nn < this->_M_rlist2.size())
+	if (this->_M_nn < this->_M_rlist2.size())
 	  {
 	    this->_M_rlist2[this->_M_nn] = __y;
 	    ++this->_M_nn;

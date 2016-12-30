@@ -64,24 +64,24 @@ namespace __gnu_test
       __v[1] = (_Tp{8} * __cospar + (_Tp{2} * __par2 - _Tp{8})
 			 * __sinpar / __par) / __par2;
       __v[2] = (_Tp{32} * (__par2 - _Tp{12}) * __cospar
-           + (_Tp{2} * ((__par2 - _Tp{80}) * __par2 + _Tp{192}) * __sinpar)
+	   + (_Tp{2} * ((__par2 - _Tp{80}) * __par2 + _Tp{192}) * __sinpar)
 		 / __par) / __par4;
 
       if (std::abs(__par) <= _Tp{24})
 	{
 	  // Compute the moments as the solution of a boundary value
-          // problem using the asyptotic expansion as an endpoint.
+	  // problem using the asyptotic expansion as an endpoint.
 	  auto __an = _Tp{6};
 	  for (auto __k = 0u; __k < __noeq - 1; ++__k)
-            {
-              auto __an2 = __an * __an;
-              __d[__k] = _Tp{-2} * (__an2 - _Tp{4})
+	    {
+	      auto __an2 = __an * __an;
+	      __d[__k] = _Tp{-2} * (__an2 - _Tp{4})
 			 * (__par22 - _Tp{2} * __an2);
-              __d2[__k] = (__an - 1) * (__an - _Tp{2}) * __par2;
-              __d1[__k + 1] = (__an + _Tp{3}) * (__an + _Tp{4}) * __par2;
-              __v[__k + 3] = __as - (__an2 - _Tp{4}) * __ac;
-              __an += _Tp{2};
-            }
+	      __d2[__k] = (__an - 1) * (__an - _Tp{2}) * __par2;
+	      __d1[__k + 1] = (__an + _Tp{3}) * (__an + _Tp{4}) * __par2;
+	      __v[__k + 3] = __as - (__an2 - _Tp{4}) * __ac;
+	      __an += _Tp{2};
+	    }
 
 	  auto __an2 = __an * __an;
 
@@ -93,10 +93,10 @@ namespace __gnu_test
 	  auto __ass = __par * __sinpar;
 	  auto __asap = (((((_Tp{210} * __par2 - 1) * __cospar
 			    - (_Tp{105} * __par2 - _Tp{63}) * __ass) / __an2
-                           - (_Tp{1} - _Tp{15} * __par2) * __cospar
+			   - (_Tp{1} - _Tp{15} * __par2) * __cospar
 				 + _Tp{15} * __ass) / __an2
-        		  - __cospar + _Tp{3} * __ass) / __an2
-        		 - __cospar) / __an2;
+			  - __cospar + _Tp{3} * __ass) / __an2
+			 - __cospar) / __an2;
 	  __v[__noeq + 2] -= _Tp{2} * __asap * __par2
 			   * (__an - _Tp{1}) * (__an - _Tp{2});
 
@@ -107,15 +107,15 @@ namespace __gnu_test
 	  // Compute the moments by forward recursion.
 	  auto __an = _Tp{4};
 	  for (auto __k = 3u; __k < 13u; ++__k)
-            {
-              auto __an2 = __an * __an;
-              __v[__k] = ((__an2 - _Tp{4})
+	    {
+	      auto __an2 = __an * __an;
+	      __v[__k] = ((__an2 - _Tp{4})
 		       * (_Tp{2} * (__par22 - _Tp{2} * __an2)
 				 * __v[__k - 1] - __ac)
-                  + __as - __par2 * (__an + 1) * (__an + _Tp{2}) * __v[__k - 2])
-        	/ (__par2 * (__an - 1) * (__an - _Tp{2}));
-              __an += _Tp{2};
-            }
+		  + __as - __par2 * (__an + 1) * (__an + _Tp{2}) * __v[__k - 2])
+		/ (__par2 * (__an - 1) * (__an - _Tp{2}));
+	      __an += _Tp{2};
+	    }
 	}
 
 
@@ -136,18 +136,18 @@ namespace __gnu_test
       if (std::abs(__par) <= 24)
 	{
 	  // Compute the moments as the solution of a boundary value
-          // problem using the asyptotic expansion as an endpoint.
+	  // problem using the asyptotic expansion as an endpoint.
 	  auto __an = _Tp{5};
 	  for (auto __k = 0u; __k < __noeq - 1; ++__k)
-            {
-              auto __an2 = __an * __an;
-              __d[__k] = -_Tp{2} * (__an2 - _Tp{4})
+	    {
+	      auto __an2 = __an * __an;
+	      __d[__k] = -_Tp{2} * (__an2 - _Tp{4})
 			 * (__par22 - _Tp{2} * __an2);
-              __d2[__k] = (__an - 1) * (__an - _Tp{2}) * __par2;
-              __d1[__k + 1] = (__an + 3) * (__an + _Tp{4}) * __par2;
-              __v[__k + 2] = __ac + (__an2 - _Tp{4}) * __as;
-              __an += _Tp{2};
-            }
+	      __d2[__k] = (__an - 1) * (__an - _Tp{2}) * __par2;
+	      __d1[__k + 1] = (__an + 3) * (__an + _Tp{4}) * __par2;
+	      __v[__k + 2] = __ac + (__an2 - _Tp{4}) * __as;
+	      __an += _Tp{2};
+	    }
 	  auto __an2 = __an * __an;
 
 	  __d[__noeq - 1] = -_Tp{2} * (__an2 - _Tp{4}) * (__par22 - 2 * __an2);
@@ -157,8 +157,8 @@ namespace __gnu_test
 	  auto __ass = __par * __cospar;
 	  auto __asap = (((((_Tp{105} * __par2 - _Tp{63}) * __ass
 			 - (_Tp{210} * __par2 - _Tp{1}) * __sinpar) / __an2
-                    + (_Tp{15} * __par2 - 1) * __sinpar
-                    - _Tp{15} * __ass) / __an2 - __sinpar - _Tp{3} * __ass)
+		    + (_Tp{15} * __par2 - 1) * __sinpar
+		    - _Tp{15} * __ass) / __an2 - __sinpar - _Tp{3} * __ass)
 			 / __an2 - __sinpar) / __an2;
 	  __v[__noeq + 1] -= _Tp{2} * __asap * __par2
 			   * (__an - _Tp{1}) * (__an - _Tp{2});
@@ -170,15 +170,15 @@ namespace __gnu_test
 	  // Compute the moments by forward recursion.
 	  auto __an = _Tp{3};
 	  for (auto __k = 2u; __k < 12u; ++__k)
-            {
-              auto __an2 = __an * __an;
-              __v[__k] = ((__an2 - _Tp{4})
+	    {
+	      auto __an2 = __an * __an;
+	      __v[__k] = ((__an2 - _Tp{4})
 		 * (_Tp{2} * (__par22 - _Tp{2} * __an2) * __v[__k - 1] + __as)
-                   + __ac
+		   + __ac
 		   - __par2 * (__an + _Tp{1}) * (__an + _Tp{2}) * __v[__k - 2])
-        	   / (__par2 * (__an - _Tp{1}) * (__an - _Tp{2}));
-              __an += _Tp{2};
-            }
+		   / (__par2 * (__an - _Tp{1}) * (__an - _Tp{2}));
+	      __an += _Tp{2};
+	    }
 	}
 
       for (auto __i = 0u; __i < 12u; ++__i)
@@ -218,23 +218,23 @@ namespace __gnu_test
 	  std::size_t __k1 = __k + 1;
 
 	  if (std::abs(__c[__k1]) >= std::abs(__c[__k]))
-            {
-              std::swap(__c[__k1], __c[__k]);
-              std::swap(__d[__k1], __d[__k]);
+	    {
+	      std::swap(__c[__k1], __c[__k]);
+	      std::swap(__d[__k1], __d[__k]);
 	      std::swap(__e[__k1], __e[__k]);
-              std::swap(__b[__k1], __b[__k]);
-            }
+	      std::swap(__b[__k1], __b[__k]);
+	    }
 
 	  if (__c[__k] == 0)
-            return 1;
+	    return 1;
 
 	  {
-            auto __t = -__c[__k1] / __c[__k];
+	    auto __t = -__c[__k1] / __c[__k];
 
-            __c[__k1] = __d[__k1] + __t * __d[__k];
-            __d[__k1] = __e[__k1] + __t * __e[__k];
-            __e[__k1] = _Tp{0};
-            __b[__k1] = __b[__k1] + __t * __b[__k];
+	    __c[__k1] = __d[__k1] + __t * __d[__k];
+	    __d[__k1] = __e[__k1] + __t * __e[__k];
+	    __e[__k1] = _Tp{0};
+	    __b[__k1] = __b[__k1] + __t * __b[__k];
 	  }
 	}
 

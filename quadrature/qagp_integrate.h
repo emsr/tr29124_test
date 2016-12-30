@@ -37,9 +37,9 @@ namespace __gnu_test
   template<typename _FuncTp, typename _Tp>
     std::tuple<_Tp, _Tp>
     qagp_integrate(integration_workspace<_Tp>& __workspace,
-                   const _FuncTp& __func,
-                   std::vector<_Tp> __pts,
-                   _Tp __epsabs, _Tp __epsrel)
+		   const _FuncTp& __func,
+		   std::vector<_Tp> __pts,
+		   _Tp __epsabs, _Tp __epsrel)
     {
       return qagp_integrate(__workspace, __func, __pts,
 			    __epsabs, __epsrel, QK_21);
@@ -48,9 +48,9 @@ namespace __gnu_test
   template<typename _FuncTp, typename _Tp>
     std::tuple<_Tp, _Tp>
     qagp_integrate(integration_workspace<_Tp>& __workspace,
-                   const _FuncTp& __func,
-                   std::vector<_Tp> __pts,
-                   _Tp __epsabs, _Tp __epsrel,
+		   const _FuncTp& __func,
+		   std::vector<_Tp> __pts,
+		   _Tp __epsabs, _Tp __epsrel,
 		   const qk_intrule __qk_rule)
     {
       _Tp __area, __errsum;
@@ -90,7 +90,7 @@ namespace __gnu_test
       const std::size_t __nint = __pts.size() - 1;
       for (std::size_t __i = 0; __i < __nint; ++__i)
 	if (__pts[__i + 1] < __pts[__i])
-          std::__throw_runtime_error("qagp_integrate: "
+	  std::__throw_runtime_error("qagp_integrate: "
 				     "points are not in an ascending sequence");
 
       // Perform the first integration.
@@ -115,9 +115,9 @@ namespace __gnu_test
 	  __workspace.append(__a1, __b1, __area1, __error1);
 
 	  if (__error1 == __resasc1 && __error1 != 0.0)
-            __workspace.set_level(__i, 1);
+	    __workspace.set_level(__i, 1);
 	  else
-            __workspace.set_level(__i, 0);
+	    __workspace.set_level(__i, 0);
 	}
 
       // Compute the initial error estimate.
@@ -125,7 +125,7 @@ namespace __gnu_test
       for (std::size_t __i = 0; __i < __nint; ++__i)
 	{
 	  if (__workspace.level(__i))
-            __workspace.set_abs_error(__i, __abserr0);
+	    __workspace.set_abs_error(__i, __abserr0);
 	  __errsum += __workspace.abs_error(__i);
 	}
 
@@ -203,35 +203,35 @@ namespace __gnu_test
 	  __tolerance = std::max(__epsabs, __epsrel * std::abs(__area));
 
 	  if (__resasc1 != __error1 && __resasc2 != __error2)
-            {
-              _Tp __delta = __r_i - __area12;
+	    {
+	      _Tp __delta = __r_i - __area12;
 
-              if (std::abs(__delta) <= 1.0e-5 * std::abs(__area12)
+	      if (std::abs(__delta) <= 1.0e-5 * std::abs(__area12)
 		   && __error12 >= 0.99 * __e_i)
-        	{
-        	  if (!__extrapolate)
-                    ++__roundoff_type1;
-        	  else
-                    ++__roundoff_type2;
-        	}
-              // This "i > 10" is just a test on nint.
-              if (/*i > 10 &&*/ __error12 > __e_i)
-        	++__roundoff_type3;
-            }
+		{
+		  if (!__extrapolate)
+		    ++__roundoff_type1;
+		  else
+		    ++__roundoff_type2;
+		}
+	      // This "i > 10" is just a test on nint.
+	      if (/*i > 10 &&*/ __error12 > __e_i)
+		++__roundoff_type3;
+	    }
 
 	  // Test for roundoff and eventually set error flag.
 
 	  if (__roundoff_type1 + __roundoff_type2 >= 10 || __roundoff_type3 >= 20)
-            __error_type = 2; // round off error
+	    __error_type = 2; // round off error
 
 	  if (__roundoff_type2 >= 5)
-            __error_type2 = 1;
+	    __error_type2 = 1;
 
 	  // Set error flag in the case of bad integrand behaviour at
-          // a point of the integration range
+	  // a point of the integration range
 
 	  if (integration_workspace<_Tp>::subinterval_too_small(__a1, __a2, __b2))
-            __error_type = 4;
+	    __error_type = 4;
 
 	  // Append the newly-created intervals to the list.
 	  __workspace.update(__a1, __b1, __area1, __error1,
@@ -245,73 +245,73 @@ namespace __gnu_test
 	    }
 
 	  if (__error_type)
-            break;
+	    break;
 
 	  if (__iteration >= __limit - 1)
-            {
-              __error_type = 1;
-              break;
-            }
+	    {
+	      __error_type = 1;
+	      break;
+	    }
 
 	  if (__disallow_extrapolation)
-            continue;
+	    continue;
 
 	  __error_over_large_intervals += -__last_e_i;
 
 	  if (__current_level < __workspace.max_level())
-            __error_over_large_intervals += __error12;
+	    __error_over_large_intervals += __error12;
 
 	  if (!__extrapolate)
-            {
-              // Test whether the interval to be bisected next is the
-              // smallest interval.
-              if (__workspace.large_interval())
-        	continue;
+	    {
+	      // Test whether the interval to be bisected next is the
+	      // smallest interval.
+	      if (__workspace.large_interval())
+		continue;
 
-              __extrapolate = 1;
-              __workspace.set_nrmax(1);
-            }
+	      __extrapolate = 1;
+	      __workspace.set_nrmax(1);
+	    }
 
 	  /* The smallest interval has the largest error.  Before
-             bisecting decrease the sum of the errors over the larger
-             intervals (error_over_large_intervals) and perform
-             extrapolation. */
+	     bisecting decrease the sum of the errors over the larger
+	     intervals (error_over_large_intervals) and perform
+	     extrapolation. */
 
 	  if (!__error_type2 && __error_over_large_intervals > __ertest)
-            if (__workspace.increase_nrmax())
-              continue;
+	    if (__workspace.increase_nrmax())
+	      continue;
 
 	  // Perform extrapolation.
 
 	  __table.append(__area);
 
 	  if (__table.get_nn() < 3)
-            goto skip_extrapolation;
+	    goto skip_extrapolation;
 
 	  std::tie(__reseps, __abseps) = __table.qelg();
 
 	  ++__ktmin;
 	  if (__ktmin > 5 && __err_ext < 0.001 * __errsum)
-            __error_type = 5;
+	    __error_type = 5;
 
 	  if (__abseps < __err_ext)
-            {
-              __ktmin = 0;
-              __err_ext = __abseps;
-              __res_ext = __reseps;
-              __correc = __error_over_large_intervals;
-              __ertest = std::max(__epsabs, __epsrel * std::abs(__reseps));
-              if (__err_ext <= __ertest)
-        	break;
-            }
+	    {
+	      __ktmin = 0;
+	      __err_ext = __abseps;
+	      __res_ext = __reseps;
+	      __correc = __error_over_large_intervals;
+	      __ertest = std::max(__epsabs, __epsrel * std::abs(__reseps));
+	      if (__err_ext <= __ertest)
+		break;
+	    }
 
 	  // Prepare bisection of the smallest interval.
 
 	  if (__table.get_nn() == 1)
-            __disallow_extrapolation = 1;
+	    __disallow_extrapolation = 1;
 
 	  if (__error_type == 5)
-            break;
+	    break;
 
 	skip_extrapolation:
 
@@ -335,9 +335,9 @@ namespace __gnu_test
       if (__error_type || __error_type2)
 	{
 	  if (__error_type2)
-            __err_ext += __correc;
+	    __err_ext += __correc;
 	  if (__error_type == 0)
-            __error_type = 3;
+	    __error_type = 3;
 	  if (__result != _Tp{0} && __area != _Tp{0})
 	    {
 	      if (__err_ext / std::abs(__res_ext) > __errsum / std::abs(__area))

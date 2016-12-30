@@ -53,7 +53,7 @@ namespace __gnu_test
    * @param[in] __epsrel The limit on relative error
    * @param[in] __qksz The size of the Gauss-Kronrod integration scheme
    * @return A tuple with the first value being the integration result,
-   *         and the second value being the estimated error.
+   *	     and the second value being the estimated error.
    */
   template<typename _Tp, typename _FuncTp>
     std::tuple<_Tp, _Tp>
