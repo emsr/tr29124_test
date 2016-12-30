@@ -25,8 +25,6 @@
 #include <sstream>
 #include <string>
 
-//#include "simple_integrate.h"
-#include "factorial_table.h"
 #include "integration.h"
 
 using namespace __gnu_test;

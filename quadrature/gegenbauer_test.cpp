@@ -25,8 +25,6 @@
 #include <sstream>
 #include <string>
 
-//#include "simple_integrate.h"
-#include "factorial_table.h"
 #include "integration.h"
 
 using namespace __gnu_test;
@@ -40,7 +38,7 @@ template<typename _Tp>
     auto gama = std::tgamma(alpha);
     auto gamn2a = std::tgamma(n1 + _Tp{2} * alpha);
     auto norm = _S_pi * std::pow(_Tp{2}, _Tp{1} - _Tp{2} * alpha) * gamn2a
-	      / factorial<_Tp>(n1) / (_Tp(n1) + alpha) / gama / gama;
+	      / __gnu_cxx::factorial<_Tp>(n1) / (_Tp(n1) + alpha) / gama / gama;
     return std::pow(_Tp{1} - x * x, alpha - _Tp{0.5})
 	 * __gnu_cxx::gegenbauer(n1, alpha, x)
 	 * __gnu_cxx::gegenbauer(n2, alpha, x) / norm;
