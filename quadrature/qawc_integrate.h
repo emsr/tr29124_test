@@ -46,9 +46,9 @@ namespace __gnu_test
   template<typename _FuncTp, typename _Tp>
     std::tuple<_Tp, _Tp>
     qawc_integrate(integration_workspace<_Tp>& __workspace,
-                   const _FuncTp& __func,
-                   const _Tp __a, const _Tp __b, const _Tp __c,
-                   const _Tp __epsabs, const _Tp __epsrel)
+		   const _FuncTp& __func,
+		   const _Tp __a, const _Tp __b, const _Tp __c,
+		   const _Tp __epsabs, const _Tp __epsrel)
     {
 
       auto __result = _Tp{};
@@ -124,15 +124,15 @@ namespace __gnu_test
 	  auto __b2 = __b_i;
 
 	  if (__c > __a1 && __c <= __b1)
-            {
-              __b1 = 0.5 * (__c + __b2) ;
-              __a2 = __b1;
-            }
+	    {
+	      __b1 = 0.5 * (__c + __b2) ;
+	      __a2 = __b1;
+	    }
 	  else if (__c > __b1 && __c < __b2)
-            {
-              __b1 = 0.5 * (__a1 + __c) ;
-              __a2 = __b1;
-            }
+	    {
+	      __b1 = 0.5 * (__a1 + __c) ;
+	      __a2 = __b1;
+	    }
 
 	  _Tp __area1, __area2;
 	  _Tp __error1, __error2;
@@ -148,29 +148,29 @@ namespace __gnu_test
 
 	  int __roundoff_type1 = 0, __roundoff_type2 = 0;
 	  if (__err_reliable1 && __err_reliable2)
-            {
-              _Tp __delta = __r_i - __area12;
+	    {
+	      _Tp __delta = __r_i - __area12;
 
-              if (std::abs (__delta) <= 1.0e-5 * std::abs (__area12)
+	      if (std::abs (__delta) <= 1.0e-5 * std::abs (__area12)
 	    	   && __error12 >= 0.99 * __e_i)
-        	++__roundoff_type1;
-              if (__iteration >= 10 && __error12 > __e_i)
-        	++__roundoff_type2;
-            }
+		++__roundoff_type1;
+	      if (__iteration >= 10 && __error12 > __e_i)
+		++__roundoff_type2;
+	    }
 
 	  __tolerance = std::max(__epsabs, __epsrel * std::abs(__area));
 
 	  if (__errsum > __tolerance)
-            {
-              if (__roundoff_type1 >= 6 || __roundoff_type2 >= 20)
-        	__error_type = 2;   /* round off error */
+	    {
+	      if (__roundoff_type1 >= 6 || __roundoff_type2 >= 20)
+		__error_type = 2;   /* round off error */
 
-              /* set error flag in the case of bad integrand behaviour at
-        	 a point of the integration range */
+	      /* set error flag in the case of bad integrand behaviour at
+		 a point of the integration range */
 
-              if (integration_workspace<_Tp>::subinterval_too_small(__a1, __a2, __b2))
-        	__error_type = 3;
-            }
+	      if (integration_workspace<_Tp>::subinterval_too_small(__a1, __a2, __b2))
+		__error_type = 3;
+	    }
 
 	  __workspace.update(__a1, __b1, __area1, __error1,
 			     __a2, __b2, __area2, __error2);
@@ -219,20 +219,20 @@ namespace __gnu_test
 
       if (std::abs(__cc) > 1.1)
 	{
-          using __qk_ret = std::tuple<_Tp&, _Tp&, _Tp&, _Tp&>;
+	  using __qk_ret = std::tuple<_Tp&, _Tp&, _Tp&, _Tp&>;
 
 	  auto __func_cauchy = [__func, __c](_Tp __x)
 				-> _Tp
 				{ return __func(__x) / (__x - __c); };
 
 	  _Tp __resabs, __resasc;
-          __qk_ret{__result, __abserr, __resabs, __resasc}
+	  __qk_ret{__result, __abserr, __resabs, __resasc}
 	    = qk_integrate(__func_cauchy, __a, __b, QK_15);
 
 	  if (__abserr == __resasc)
-            __err_reliable = false;
+	    __err_reliable = false;
 	  else
-            __err_reliable = true;
+	    __err_reliable = true;
 
 	  return std::make_tuple(__result, __abserr, __err_reliable);
 	}
@@ -245,11 +245,11 @@ namespace __gnu_test
 
 	  auto __res12 = _Tp{0};
 	  for (size_t __i = 0u; __i < __cheb12.size(); ++__i)
-            __res12 += __cheb12[__i] * __moment[__i];
+	    __res12 += __cheb12[__i] * __moment[__i];
 
 	  auto __res24 = _Tp{0};
 	  for (size_t __i = 0u; __i < __cheb24.size(); ++__i)
-            __res24 += __cheb24[__i] * __moment[__i];
+	    __res24 += __cheb24[__i] * __moment[__i];
 
 	  __result = __res24;
 	  __abserr = std::abs(__res24 - __res12);
@@ -279,14 +279,14 @@ namespace __gnu_test
 	  _Tp __a2;
 
 	  if ((__k % 2) == 0)
-            __a2 = _Tp{2} * __cc * __a1 - __a0;
+	    __a2 = _Tp{2} * __cc * __a1 - __a0;
 	  else
-            {
-              const auto __km1 = _Tp(__k - 1);
-              __a2 = _Tp{2} * __cc * __a1
+	    {
+	      const auto __km1 = _Tp(__k - 1);
+	      __a2 = _Tp{2} * __cc * __a1
 		   - __a0
 		   - _Tp{4} / (__km1 * __km1 - _Tp{1});
-            }
+	    }
 
 	  __moment[__k] = __a2;
 

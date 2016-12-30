@@ -79,7 +79,7 @@ namespace __gnu_test
 	  const auto sign = (k < 0 ? -1 : +1);
 
 	  xi = B + sign * A * this->pt(sign * k);
-	  wi =            A * this->wt(sign * k);
+	  wi =		  A * this->wt(sign * k);
 	}
       else if (/* n is even && */ i < this->order / 2)
 	{

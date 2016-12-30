@@ -48,10 +48,10 @@ namespace __gnu_test
   template<typename _FuncTp, typename _Tp>
     std::tuple<_Tp, _Tp>
     qaws_integrate(integration_workspace<_Tp>& __workspace,
-        	   qaws_integration_table<_Tp>& __table,
-        	   const _FuncTp& __func,
-        	   const _Tp __a, const _Tp __b,
-        	   const _Tp __epsabs, const _Tp __epsrel)
+		   qaws_integration_table<_Tp>& __table,
+		   const _FuncTp& __func,
+		   const _Tp __a, const _Tp __b,
+		   const _Tp __epsabs, const _Tp __epsrel)
     {
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
 
@@ -80,13 +80,13 @@ namespace __gnu_test
 
 	if (__error1 > __error2)
 	  {
-            __workspace.append(__a1, __b1, __area1, __error1);
-            __workspace.append(__a2, __b2, __area2, __error2);
+	    __workspace.append(__a1, __b1, __area1, __error1);
+	    __workspace.append(__a2, __b2, __area2, __error2);
 	  }
 	else
 	  {
-            __workspace.append(__a2, __b2, __area2, __error2);
-            __workspace.append(__a1, __b1, __area1, __error1);
+	    __workspace.append(__a2, __b2, __area2, __error2);
+	    __workspace.append(__a1, __b1, __area1, __error1);
 	  }
 
 	__result0 = __area1 + __area2;
@@ -138,28 +138,28 @@ namespace __gnu_test
 
 	  int __roundoff_type1 = 0, __roundoff_type2 = 0;
 	  if (__err_reliable1 && __err_reliable2)
-            {
-              auto __delta = __r_i - __area12;
+	    {
+	      auto __delta = __r_i - __area12;
 
-              if (std::abs (__delta) <= 1.0e-5 * std::abs(__area12) && __error12 >= 0.99 * __e_i)
-        	++__roundoff_type1;
-              if (__iteration >= 10 && __error12 > __e_i)
-        	++__roundoff_type2;
-            }
+	      if (std::abs (__delta) <= 1.0e-5 * std::abs(__area12) && __error12 >= 0.99 * __e_i)
+		++__roundoff_type1;
+	      if (__iteration >= 10 && __error12 > __e_i)
+		++__roundoff_type2;
+	    }
 
 	  __tolerance = std::max(__epsabs, __epsrel * std::abs(__area));
 
 	  if (__errsum > __tolerance)
-            {
-              if (__roundoff_type1 >= 6 || __roundoff_type2 >= 20)
-        	__error_type = 2;   /* round off error */
+	    {
+	      if (__roundoff_type1 >= 6 || __roundoff_type2 >= 20)
+		__error_type = 2;   /* round off error */
 
-              /* set error flag in the case of bad integrand behaviour at
-        	 a point of the integration range */
+	      /* set error flag in the case of bad integrand behaviour at
+		 a point of the integration range */
 
-              if (integration_workspace<_Tp>::subinterval_too_small(__a1, __a2, __b2))
-        	__error_type = 3;
-            }
+	      if (integration_workspace<_Tp>::subinterval_too_small(__a1, __a2, __b2))
+		__error_type = 3;
+	    }
 
 	  __workspace.update(__a1, __b1, __area1, __error1,
 			     __a2, __b2, __area2, __error2);
@@ -212,34 +212,34 @@ namespace __gnu_test
 	  qcheb_integrate(__f, __a1, __b1, __cheb12, __cheb24);
 
 	  if (__t.mu == 0)
-            {
-              const auto __u = __factor;
+	    {
+	      const auto __u = __factor;
 
-              _Tp __res12 = 0, __res24 = 0;
-              std::tie(__res12, __res24)
+	      _Tp __res12 = 0, __res24 = 0;
+	      std::tie(__res12, __res24)
 		= compute_result(__t.ri, __cheb12, __cheb24);
 
-              const auto __result = __u * __res24;
-              const auto __abserr = std::abs(__u * (__res24 - __res12));
+	      const auto __result = __u * __res24;
+	      const auto __abserr = std::abs(__u * (__res24 - __res12));
 	      return std::make_tuple(__result, __abserr, false);
-            }
+	    }
 	  else
-            {
-              const auto __u = __factor * std::log(__b1 - __a1);
-              const auto __v = __factor;
+	    {
+	      const auto __u = __factor * std::log(__b1 - __a1);
+	      const auto __v = __factor;
 
-              _Tp __res12a = 0, __res24a = 0;
-              std::tie(__res12a, __res24a)
+	      _Tp __res12a = 0, __res24a = 0;
+	      std::tie(__res12a, __res24a)
 		= compute_result(__t.ri, __cheb12, __cheb24);
-              _Tp __res12b = 0, __res24b = 0;
-              std::tie(__res12b, __res24b)
+	      _Tp __res12b = 0, __res24b = 0;
+	      std::tie(__res12b, __res24b)
 		= compute_result(__t.rg, __cheb12, __cheb24);
 
-              const auto __result = __u * __res24a + __v * __res24b;
-              const auto __abserr = std::abs(__u * (__res24a - __res12a))
+	      const auto __result = __u * __res24a + __v * __res24b;
+	      const auto __abserr = std::abs(__u * (__res24a - __res12a))
 				  + std::abs(__v * (__res24b - __res12b));
 	      return std::make_tuple(__result, __abserr, false);
-            }
+	    }
 	}
       else if (__b1 == __b && (__t.beta != _Tp{0} || __t.nu != 0))
 	{
@@ -251,34 +251,34 @@ namespace __gnu_test
 	  qcheb_integrate(__f, __a1, __b1, __cheb12, __cheb24);
 
 	  if (__t.nu == 0)
-            {
-              const auto __u = __factor;
+	    {
+	      const auto __u = __factor;
 
-              _Tp __res12, __res24;
-              std::tie(__res12, __res24)
+	      _Tp __res12, __res24;
+	      std::tie(__res12, __res24)
 		= compute_result(__t.rj, __cheb12, __cheb24);
 
-              const auto __result = __u * __res24;
-              const auto __abserr = std::abs(__u * (__res24 - __res12));
+	      const auto __result = __u * __res24;
+	      const auto __abserr = std::abs(__u * (__res24 - __res12));
 	      return std::make_tuple(__result, __abserr, false);
-            }
+	    }
 	  else
-            {
-              const auto __u = __factor * std::log(__b1 - __a1);
-              const auto __v = __factor;
+	    {
+	      const auto __u = __factor * std::log(__b1 - __a1);
+	      const auto __v = __factor;
 
-              _Tp __res12a, __res24a;
-              std::tie(__res12a, __res24a)
+	      _Tp __res12a, __res24a;
+	      std::tie(__res12a, __res24a)
 		= compute_result(__t.rj, __cheb12, __cheb24);
-              _Tp __res12b, __res24b;
-              std::tie(__res12b, __res24b)
+	      _Tp __res12b, __res24b;
+	      std::tie(__res12b, __res24b)
 		= compute_result(__t.rh, __cheb12, __cheb24);
 
-              const auto __result = __u * __res24a + __v * __res24b;
-              const auto __abserr = std::abs(__u * (__res24a - __res12a))
+	      const auto __result = __u * __res24a + __v * __res24b;
+	      const auto __abserr = std::abs(__u * (__res24a - __res12a))
 				  + std::abs(__v * (__res24b - __res12b));
 	      return std::make_tuple(__result, __abserr, false);
-            }
+	    }
 	}
       else
 	{
@@ -291,9 +291,9 @@ namespace __gnu_test
 
 	  bool __err_reliable;
 	  if (__abserr == __resasc)
-            __err_reliable = false;
+	    __err_reliable = false;
 	  else
-            __err_reliable = true;
+	    __err_reliable = true;
 
 	  return std::make_tuple(__result, __abserr, __err_reliable);
 	}
@@ -310,7 +310,7 @@ namespace __gnu_test
       fn_qaws(const qaws_integration_table<_Tp> *__t,
 	      std::function<_Tp(_Tp)> __f, _Tp __a_in, _Tp __b_in)
       : table(__t),
-        func(__f), a(__a_in), b(__b_in)
+	func(__f), a(__a_in), b(__b_in)
       { }
 
       _Tp eval_middle(_Tp) const;

@@ -27,9 +27,9 @@ namespace __gnu_test
   template<typename _FuncTp, typename _Tp>
     _Tp
     glfixed_integrate(const gauss_legendre_table<_Tp>& __t,
-                      const _FuncTp& __func,
-                      _Tp __a,
-                      _Tp __b)
+		      const _FuncTp& __func,
+		      _Tp __a,
+		      _Tp __b)
     {
       const int __n = __t.order;
 
@@ -41,20 +41,20 @@ namespace __gnu_test
 	{
 	  auto __sum = __t.wt(0) * __func(__B);
 	  for (int __i = 1; __i < __m; ++__i)
-            {
-              auto __Ax = __A * __t.pt(__i);
-              __sum += __t.wt(__i) * (__func(__B + __Ax) + __func(__B - __Ax));
-            }
+	    {
+	      auto __Ax = __A * __t.pt(__i);
+	      __sum += __t.wt(__i) * (__func(__B + __Ax) + __func(__B - __Ax));
+	    }
 	  return __A * __sum;
 	}
       else // n is even.
 	{
 	  auto __sum = _Tp{0};
 	  for (int __i = 0; __i < __m; ++__i)
-            {
-              auto __Ax = __A * __t.pt(__i);
-              __sum += __t.wt(__i) * (__func(__B + __Ax) + __func(__B - __Ax));
-            }
+	    {
+	      auto __Ax = __A * __t.pt(__i);
+	      __sum += __t.wt(__i) * (__func(__B + __Ax) + __func(__B - __Ax));
+	    }
 	  return __A * __sum;
 	}
     }

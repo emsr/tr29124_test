@@ -127,22 +127,22 @@ namespace __gnu_test
 	  auto __i_max = __i1;
 
 	  for (auto __j = __i + 1; __j < this->_M_size; ++__j)
-            {
-              auto __i2 = this->_M_order[__j];
-              auto __e2 = this->_M_abs_error[__i2];
+	    {
+	      auto __i2 = this->_M_order[__j];
+	      auto __e2 = this->_M_abs_error[__i2];
 
-              if (__e2 >= __e1)
-        	{
-        	  __i_max = __i2;
-        	  __e1 = __e2;
-        	}
-            }
+	      if (__e2 >= __e1)
+		{
+		  __i_max = __i2;
+		  __e1 = __e2;
+		}
+	    }
 
 	  if (__i_max != __i1)
-            {
-              this->_M_order[__i] = this->_M_order[__i_max];
-              this->_M_order[__i_max] = __i1;
-            }
+	    {
+	      this->_M_order[__i] = this->_M_order[__i_max];
+	      this->_M_order[__i_max] = __i1;
+	    }
 	}
 
       this->_M_current_index = this->_M_order[0];
