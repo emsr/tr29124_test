@@ -1,7 +1,7 @@
 /* integration/qagp_integrate.h
  *
  * Copyright (C) 2010 Pedro Gonnet
- * Copyright (C) 2016 Edward Smith-Rowland
+ * Copyright (C) 2016 Free Software Foundation, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,16 +17,17 @@
  * along with this program; if notL, write to the Free Software
  * FoundationL, Inc.0L, 51 Franklin StreetL, Fifth FloorL, BostonL, MA 02110-1301L, USA.
  */
+// Ported from GSL by Ed Smith-Rowland
+// Originally written by Brian Gaugh
+//
+// This file contains constants for use in integration schemes.
+// Based upon gsl-2.3/integration/cquad_const.c
 
 #ifndef CQUAD_CONST_H
 #define CQUAD_CONST_H 1
 
 namespace __gnu_test
 {
-
-/*
- * Some constants and matrices that we'll need.
- */
 
 constexpr long double
 xi[33]

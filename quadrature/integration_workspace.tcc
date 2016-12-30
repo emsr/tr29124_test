@@ -24,7 +24,7 @@
 //
 // Implements the integration_workspace class which stores temporary data
 // for performing integrals
-// Based upon gsl-1.9/integration/workspace.c
+// Based upon gsl-2.3/integration/workspace.c
 
 #ifndef INTEGRATION_WORKSPACE_TCC
 #define INTEGRATION_WORKSPACE_TCC 1
@@ -189,7 +189,8 @@ namespace __gnu_test
 
       if (__error2 > __error1)
 	{
-	  this->_M_lower_lim[__i_max] = __a2;	// blist[maxerr] is already == b2
+	  this->_M_lower_lim[__i_max] = __a2;
+	  // upper_lim[i_max] is already == b2
 	  this->_M_result[__i_max] = __area2;
 	  this->_M_abs_error[__i_max] = __error2;
 	  this->_M_level[__i_max] = __new_level;
@@ -202,7 +203,8 @@ namespace __gnu_test
 	}
       else
 	{
-	  this->_M_upper_lim[__i_max] = __b1;	// alist[maxerr] is already == a1
+	  // lower_lim[i_max] is already == a1
+	  this->_M_upper_lim[__i_max] = __b1;
 	  this->_M_result[__i_max] = __area1;
 	  this->_M_abs_error[__i_max] = __error1;
 	  this->_M_level[__i_max] = __new_level;

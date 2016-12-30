@@ -20,11 +20,10 @@
 //
 // Ported from GSL by Jason Dick
 // Originally written by Brian Gaugh
-
 //
 // Implements the integration_workspace class which stores temporary data
 // for performing integrals
-// Based upon gsl-1.9/integration/workspace.c
+// Based upon gsl-2.3/integration/workspace.c
 
 #ifndef INTEGRATION_WORKSPACE_H
 #define INTEGRATION_WORKSPACE_H 1
