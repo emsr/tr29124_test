@@ -48,8 +48,8 @@ namespace __gnu_test
       std::vector<_Tp> chebmo;
 
       oscillatory_integration_table(_Tp omega_in, _Tp length_in,
-                                    circular_function circfun_in,
-                                    std::size_t n_in)
+				    circular_function circfun_in,
+				    std::size_t n_in)
       : n(n_in),
 	omega(omega_in),
 	length(length_in),
@@ -60,8 +60,8 @@ namespace __gnu_test
 	auto __scale = _Tp{1};
 	for (auto __i = 0u; __i < this->n; ++__i)
 	  {
-            this->compute_moments(this->par * __scale, __i);
-            __scale *= 0.5;
+	    this->compute_moments(this->par * __scale, __i);
+	    __scale *= 0.5;
 	  }
       }
 
@@ -89,8 +89,8 @@ namespace __gnu_test
 	auto __scale = _Tp{1};
 	for (auto __i = 0u; __i < this->n; ++__i)
 	  {
-            this->compute_moments(this->par * __scale, __i);
-            __scale *= 0.5;
+	    this->compute_moments(this->par * __scale, __i);
+	    __scale *= 0.5;
 	  }
       }
 

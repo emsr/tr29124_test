@@ -211,9 +211,9 @@ namespace __gnu_test
 	  __h = (__iv.b - __iv.a) / _Tp{2};
 
 #ifdef INTEGRATION_DEBUG
-          printf
-            ("cquad: processing ival %i (of %i) with [%e,%e] int=%e, err=%e, depth=%i\n",
-             __ws.heap[0], __nivals, __iv.a, __iv.b, __iv.igral, __iv.err, __iv.depth);
+	  printf
+	    ("cquad: processing ival %i (of %i) with [%e,%e] int=%e, err=%e, depth=%i\n",
+	     __ws.heap[0], __nivals, __iv.a, __iv.b, __iv.igral, __iv.err, __iv.depth);
 #endif
 	  // Should we try to increase the degree?
 	  if (__iv.depth < 3)
@@ -280,10 +280,10 @@ namespace __gnu_test
 	      || __iv.err < std::abs(__iv.igral) * _S_eps * 10)
 	    {
 #ifdef INTEGRATION_DEBUG
-              printf
-        	("cquad: dumping ival %i (of %i) with [%e,%e] int=%e, err=%e, depth=%i\n",
-        	 __ws.heap[0], __nivals, __iv.a, __iv.b, __iv.igral, __iv.err,
-        	 __iv.depth);
+	      printf
+		("cquad: dumping ival %i (of %i) with [%e,%e] int=%e, err=%e, depth=%i\n",
+		 __ws.heap[0], __nivals, __iv.a, __iv.b, __iv.igral, __iv.err,
+		 __iv.depth);
 #endif
 	      // Keep this interval's contribution.
 	      __err_final += __iv.err;
@@ -301,7 +301,7 @@ namespace __gnu_test
 		  std::size_t __j = 2 * __i + 1;
 
 		  // If the j+1st entry exists and is larger than the jth,
-	          // use it instead.
+		  // use it instead.
 		  if (__j + 1 < __nivals
 		      && __ws.ivals[__ws.heap[__j + 1]].err
 		       >=__ws.ivals[__ws.heap[__j]].err)
@@ -514,10 +514,10 @@ namespace __gnu_test
 	      __iv = __ws.ivals[__ws.heap[__nivals - 1]];
 
 #ifdef INTEGRATION_DEBUG
-              printf
-        	("cquad: dumping ival %i (of %i) with [%e,%e] int=%e, err=%e, depth=%i\n",
-        	 __ws.heap[0], __nivals, __iv.a, __iv.b, __iv.igral, __iv.err,
-        	 __iv.depth);
+	      printf
+		("cquad: dumping ival %i (of %i) with [%e,%e] int=%e, err=%e, depth=%i\n",
+		 __ws.heap[0], __nivals, __iv.a, __iv.b, __iv.igral, __iv.err,
+		 __iv.depth);
 #endif
 	      __err_final += __iv.err;
 	      __igral_final += __iv.igral;
@@ -540,9 +540,9 @@ namespace __gnu_test
 	{
 	  auto __iv = __ws.ivals[__ws.heap[__i]];
 	  printf
-            ("cquad: ival %i (%i) with [%e,%e], int=%e, err=%e, depth=%i, rdepth=%i\n",
-             __i, __ws.heap[__i], __iv.a, __iv.b, __iv.igral, __iv.err, __iv.depth,
-             __iv.rdepth);
+	    ("cquad: ival %i (%i) with [%e,%e], int=%e, err=%e, depth=%i, rdepth=%i\n",
+	     __i, __ws.heap[__i], __iv.a, __iv.b, __iv.igral, __iv.err, __iv.depth,
+	     __iv.rdepth);
 	}
 #endif
 
