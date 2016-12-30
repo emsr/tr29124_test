@@ -1,5 +1,19 @@
 1. Get all the tests passing for all the GSL integrals.
 
+   Remaining fails:
+
+     * Several fnevals - I don't care but it would be nice to figure this out.
+
+     * The four runs at the end of "Test adaptive singular integration using a relative error bound..."
+
+     *PASS:  (2 obs vs 2 exp)
+      FAIL:  (1.9856337788276941 observed vs 2 expected) n=335? 336?  Probably an overrun
+
+     * Lots of fail in the various qags!
+
+     * A few pairs of thing look flipped in "Test integral f454 with integrable singular points..."
+       The 19, 20 pair is flipped - this could be a workspace sorting thing.
+
 2. [] Go through and make everything clean style-wise.
    Columns, __, _S_eps, _S_max.
 
