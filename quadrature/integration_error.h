@@ -21,8 +21,8 @@
 // Ported from GSL by Jason Dick
 // Originally written by Brian Gaugh
 //
-//Used to interpret the error estimate of the itnegration routines
-//Based upon gsl-1.9/integration/err.c
+// Used to interpret the error estimate of the itnegration routines
+// Based upon gsl-2.3/integration/err.c
 
 #ifndef ERR_H
 #define ERR_H 1

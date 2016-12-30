@@ -21,8 +21,8 @@
 // Ported from GSL by Jason Dick and Ed Smith-Rowland
 // Originally written by Brian Gaugh
 //
-//This file implements an extrapolation table for use in integration schemes
-//Based upon gsl-2.1/integration/qelg.c
+// This file implements an extrapolation table for use in integration schemes
+// Based upon gsl-2.3/integration/qelg.c
 
 #ifndef EXTRAPOLATION_TABLE_H
 #define EXTRAPOLATION_TABLE_H 1

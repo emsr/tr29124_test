@@ -21,8 +21,8 @@
 // Ported from GSL by Jason Dick
 // Originally written by Brian Gaugh
 //
-//This file implements Gauss-Kronrod integration with singularities
-//Based upon gsl-1.9/integration/qags.c
+// This file implements Gauss-Kronrod integration with singularities
+// Based upon gsl-2.3/integration/qags.c
 
 #ifndef QAGS_INTEGRATE_H
 #define QAGS_INTEGRATE_H 1

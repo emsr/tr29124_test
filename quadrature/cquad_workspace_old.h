@@ -1,7 +1,7 @@
-/* integration/qagp_integrate.h
+/* integration/cquad_workspace.h
  *
  * Copyright (C) 2010 Pedro Gonnet
- * Copyright (C) 2016 Edward Smith-Rowland
+ * Copyright (C) 2016 Free Software Foundation, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,11 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
+// Ported from GSL by Ed Smith-Rowland
+// Originally written by Pedro Gonnet
+//
+// This file contains constants for use in integration schemes.
+// Based upon structs in gsl-2.3/integration/gsl_integration.h
 
 #ifndef CQUAD_WORKSPACE_H
 #define CQUAD_WORKSPACE_H 1

@@ -1,3 +1,29 @@
+// -*- C++ -*-
+// Integration utilities for the C++ library testsuite.
+//
+// Copyright (C) 2011-2016 Free Software Foundation, Inc.
+//
+// This file is part of the GNU ISO C++ Library.  This library is free
+// software; you can redistribute it and/or modify it under the
+// terms of the GNU General Public License as published by the
+// Free Software Foundation; either version 3, or (at your option)
+// any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with this library; see the file COPYING3.  If not see
+// <http://www.gnu.org/licenses/>.
+//
+// Ported from GSL by Jason Dick and Ed Smith-Rowland
+// Originally written by Brian Gaugh
+//
+// This file implements an Gauss-Legendre table for use in integration schemes
+// Based upon gsl-2.3/integration/qelg.c
+
 #ifndef GAUSS_LEGENDRE_TABLE_TCC
 #define GAUSS_LEGENDRE_TABLE_TCC 1
 
