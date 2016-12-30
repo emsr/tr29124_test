@@ -25,8 +25,6 @@
 #include <sstream>
 #include <string>
 
-//#include "simple_integrate.h"
-#include "factorial_table.h"
 #include "integration.h"
 
 using namespace __gnu_test;
@@ -38,7 +36,8 @@ template<typename _Tp>
   {
     const auto _S_pi = __gnu_cxx::__const_pi(x);
     _Tp lnorm = _Tp{0.5} * (log(_S_pi) + (n1 + n2) * log(_Tp{2})
-                       + lnfactorialld(n1) + lnfactorialld(n2));
+			  + __gnu_cxx::lfactorial<_Tp>(n1)
+			  + __gnu_cxx::lfactorial<_Tp>(n2));
     return std::hermite(n2, x)
 	 * std::exp(-x * x - lnorm)
 	 * std::hermite(n1, x);
