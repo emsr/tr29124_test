@@ -56,9 +56,13 @@ namespace __gnu_test
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
 
       if (__b <= __a)
-	std::__throw_runtime_error("limits must form an ascending sequence, a < b") ;
+	std::__throw_runtime_error("qaws_integrate: "
+				   "Limits must form an ascending sequence");
       if (__epsabs <= 0 && (__epsrel < 50 * _S_eps || __epsrel < 0.5e-28))
-	std::__throw_runtime_error("tolerance cannot be achieved with given epsabs and epsrel");
+	std::__throw_runtime_error("qaws_integrate: "
+				   "Tolerance cannot be achieved "
+				   "with given absolute "
+				   "and relative error limits.");
 
       const auto __limit = __workspace.capacity();
 
@@ -104,7 +108,7 @@ namespace __gnu_test
       if (__abserr0 < __tolerance && __abserr0 < 0.01 * std::abs(__result0))
 	return std::make_tuple(__result0, __abserr0);
       else if (__limit == 1)
-	std::__throw_runtime_error("a maximum of one iteration was insufficient");
+	std::__throw_runtime_error("qaws_integrate: A maximum of one iteration was insufficient");
 
       auto __area = __result0;
       auto __errsum = __abserr0;
@@ -185,7 +189,7 @@ namespace __gnu_test
       else if (__error_type == 3)
 	std::__throw_runtime_error("qaws_integrate: "
 				   "Bad integrand behavior found "
-				     "in the integration interval");
+				   "in the integration interval");
       else if (__error_type == 6)
 	std::__throw_runtime_error("qaws_integrate: "
 				   "Maximum number of subdivisions reached");

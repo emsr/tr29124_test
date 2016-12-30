@@ -170,7 +170,6 @@ namespace __gnu_test
       bool
       increase_nrmax()
       {
-	int __k;
 	int __id = this->_M_nrmax;
 	int __jupbnd;
 
@@ -181,7 +180,7 @@ namespace __gnu_test
 	else
 	  __jupbnd = __last;
 
-	for (__k = __id; __k <= __jupbnd; ++__k)
+	for (int __k = __id; __k <= __jupbnd; ++__k)
 	  {
 	    std::size_t __i_max = this->_M_order[this->_M_nrmax];
 

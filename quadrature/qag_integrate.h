@@ -79,9 +79,10 @@ namespace __gnu_test
       std::vector<_Tp> __elist(__max_iter);
 
       if (__epsabs <= 0 && (__epsrel < 50 * _S_eps))
-	std::__throw_logic_error("tolerance cannot be achieved"
-			  " in qag_integrate() with given absolute"
-			  " and relative error limits");
+	std::__throw_logic_error("qag_integrate: "
+				 "Tolerance cannot be achieved "
+				 "with given absolute "
+				 "and relative error limits.");
 
       typedef std::tuple<_Tp&,_Tp&,_Tp&,_Tp&> __ret_type;
 
@@ -103,8 +104,8 @@ namespace __gnu_test
 	  __abserr = __abserr0;
 
 	  std::__throw_runtime_error("qag_integrate: "
-				     "Cannot reach tolerance because"
-				     " of roundoff error on first attempt");
+				     "Cannot reach tolerance because "
+				     "of roundoff error on first attempt.");
 	}
       else if ((__abserr0 <= __tolerance && __abserr0 != __resasc0)
 		|| __abserr0 == 0.0)
@@ -120,8 +121,8 @@ namespace __gnu_test
 	  __abserr = __abserr0;
 
 	  std::__throw_runtime_error("qag_integrate: "
-				     "a maximum of one iteration"
-				     " was insufficient");
+				     "a maximum of one iteration "
+				     "was insufficient.");
 	}
 
       __area = __result0;
@@ -207,17 +208,17 @@ namespace __gnu_test
       else if (__error_type == 2)
 	std::__throw_runtime_error("qag_integrate: "
 				   "Cannot reach tolerance "
-				   "because of roundoff error");
+				   "because of roundoff error.");
       else if (__error_type == 3)
 	std::__throw_runtime_error("qag_integrate: "
 				   "Bad integrand behavior found "
-				   "in the integrand inteveral");
+				   "in the integrand inteveral.");
       else if (__iteration == __max_iter)
 	std::__throw_runtime_error("qag_integrate: "
-				   "Maximum number of iterations reached");
+				   "Maximum number of iterations reached.");
       else
 	std::__throw_runtime_error("qag_integrate: "
-				   "Could not integrate function");
+				   "Could not integrate function.");
     }
 
   template<typename _Tp, typename _FuncTp>
