@@ -83,7 +83,7 @@ namespace __gnu_test
       // The order of the tests in the following line is important to
       // prevent a segmentation fault
 
-      int __jj = __i_nrmax + 1;
+      auto __jj = __i_nrmax + 1;
       while (__jj < __top
 	  && __errmax < this->_M_abs_error[this->_M_order[__jj]])
 	{
@@ -96,7 +96,7 @@ namespace __gnu_test
 
       auto __errmin = this->_M_abs_error[__last];
 
-      int __kk = __top - 1;
+      auto __kk = __top - 1;
       while (__kk > __jj - 2
 	  && __errmin >= this->_M_abs_error[this->_M_order[__kk]])
 	{

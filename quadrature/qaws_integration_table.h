@@ -53,13 +53,17 @@ namespace __gnu_test
       nu(__nu_in)
     {
       if (this->alpha < _Tp{-1})
-	std::__throw_domain_error ("alpha must be greater than -1.0");
+	std::__throw_domain_error("qaws_integration_table: "
+				  "alalpha must be greater than -1.0");
       if (this->beta < _Tp{-1})
-	std::__throw_domain_error ("beta must be greater than -1.0");
+	std::__throw_domain_error("qaws_integration_table: "
+				  "albeta must be greater than -1.0");
       if (this->mu != 0 && this->mu != 1)
-	std::__throw_domain_error ("mu must be 0 or 1");
+	std::__throw_domain_error("qaws_integration_table: "
+				  "almu must be 0 or 1");
       if (this->nu != 0 && this->nu != 1)
-	std::__throw_domain_error ("nu must be 0 or 1");
+	std::__throw_domain_error("qaws_integration_table: "
+				  "alnu must be 0 or 1");
 
       this->initialise();
     }
@@ -71,13 +75,17 @@ namespace __gnu_test
 				     int __mu_in, int __nu_in)
     {
       if (__alpha_in < _Tp{-1})
-	std::__throw_domain_error ("alpha must be greater than -1.0");
+	std::__throw_domain_error("qaws_integration_table: "
+				  "alpha must be greater than -1.0");
       if (__beta_in < _Tp{-1})
-	std::__throw_domain_error ("beta must be greater than -1.0");
+	std::__throw_domain_error("qaws_integration_table: "
+				  "beta must be greater than -1.0");
       if (__mu_in != 0 && __mu_in != 1)
-	std::__throw_domain_error ("mu must be 0 or 1");
+	std::__throw_domain_error("qaws_integration_table: "
+				  "mu must be 0 or 1");
       if (__nu_in != 0 && __nu_in != 1)
-	std::__throw_domain_error ("nu must be 0 or 1");
+	std::__throw_domain_error("qaws_integration_table: "
+				  "nu must be 0 or 1");
 
       this->alpha = __alpha_in;
       this->beta = __beta_in;

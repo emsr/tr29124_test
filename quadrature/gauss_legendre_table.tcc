@@ -64,8 +64,8 @@ namespace __gnu_test
     std::tuple<_Tp, _Tp>
     gauss_legendre_table<_Tp>::get_point(_Tp a, _Tp b, size_t i) const
     {
-      const auto A = (b - a) / _Tp{2};  /* Length of [a,b] */
-      const auto B = (a + b) / _Tp{2};  /* Midpoint of [a,b] */
+      const auto A = (b - a) / _Tp{2}; // Length of [a,b].
+      const auto B = (a + b) / _Tp{2}; // Midpoint of [a,b].
 
       if (i >= this->order)
 	std::__throw_domain_error("i must be less than n");

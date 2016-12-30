@@ -191,8 +191,10 @@ namespace __gnu_test
 
       if (__epsabs <= 0
 	  && (__epsrel < 50 * _S_eps || __epsrel < 0.5e-28))
-	std::__throw_logic_error("tolerance cannot be acheived"
-			  " with given tolerances in qags_integrate()");
+	std::__throw_logic_error("qags_integrate: "
+				 "Tolerance cannot be achieved "
+				 "with given absolute "
+				 "and relative error limits.");
 
       // Perform the first integration.
 
@@ -205,14 +207,16 @@ namespace __gnu_test
 
       if (__abserr0 <= 100 * _S_eps * __resabs0
 	  && __abserr0 > __tolerance)
-	std::__throw_runtime_error("cannot reach tolerance because of roundoff"
-			    " error on first attempt in qags_integrate()");
+	std::__throw_runtime_error("qags_integrate: "
+				   "Cannot reach tolerance because of roundoff "
+				   "error on first attempt.");
       else if ((__abserr0 <= __tolerance && __abserr0 != __resasc0)
 		|| __abserr0 == 0.0)
 	return std::make_tuple(__result0, __abserr0);
       else if (__limit == 1)
-	std::__throw_runtime_error("a maximum of one iteration was insufficient"
-			    " in qags_integrate()");
+	std::__throw_runtime_error("qags_integrate: "
+				   "A maximum of one iteration "
+				   "was insufficient.");
 
       extrapolation_table<_Tp> __table;
       __table.append(__result0);
@@ -423,7 +427,7 @@ namespace __gnu_test
 	  else if (__area == 0.0)
 	    {
 	      __check_error<_Tp>(__func__, __error_type);
-	      std::__throw_runtime_error("qags_integrate: Unknown error");
+	      std::__throw_runtime_error("qags_integrate: Unknown error.");
 	    }
 	}
 
@@ -432,7 +436,7 @@ namespace __gnu_test
       if (!__positive_integrand && __max_area < 0.01 * __resabs0)
 	{
 	  __check_error<_Tp>(__func__, __error_type);
-	  std::__throw_runtime_error("qags_integrate: Unknown error");
+	  std::__throw_runtime_error("qags_integrate: Unknown error.");
 	}
 
       auto __ratio = __res_ext / __area;
@@ -440,7 +444,7 @@ namespace __gnu_test
 	__error_type = 7;
 
       __check_error<_Tp>(__func__, __error_type);
-      std::__throw_runtime_error("qags_integrate: Unknown error");
+      std::__throw_runtime_error("qags_integrate: Unknown error.");
     }
 
 } // namespace __gnu_test

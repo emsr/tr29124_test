@@ -76,7 +76,10 @@ namespace __gnu_test
 
 
       if (__epsabs <= 0 && (__epsrel < 50 * _S_eps || __epsrel < 0.5e-28))
-	std::__throw_runtime_error("tolerance cannot be achieved with given epsabs and epsrel");
+	std::__throw_runtime_error("qawo_integrate: "
+				   "Tolerance cannot be achieved "
+				   "with given absolute "
+				   "and relative error limits.");
 
       // Perform the first integration.
 
@@ -92,8 +95,9 @@ namespace __gnu_test
 	{
 	  __result = __result0;
 	  __abserr = __abserr0;
-	  std::__throw_runtime_error("cannot reach tolerance because of roundoff error"
-		     "on first attempt");
+	  std::__throw_runtime_error("qawo_integrate: Cannot reach tolerance "
+				     "because of roundoff error"
+				     "on first attempt.");
 	}
       else if ((__abserr0 <= __tolerance && __abserr0 != __resasc0) || __abserr0 == 0.0)
 	{
@@ -105,7 +109,9 @@ namespace __gnu_test
 	{
 	  __result = __result0;
 	  __abserr = __abserr0;
-	  std::__throw_runtime_error("a maximum of one iteration was insufficient");
+	  std::__throw_runtime_error("qawo_integrate: "
+				     "A maximum of one iteration "
+				     "was insufficient.");
 	}
 
       if (0.5 * __abs_omega * std::abs(__b - __a) <= _Tp{2})
@@ -423,7 +429,7 @@ namespace __gnu_test
 	  if (__level >= __wf.n)
 	    {
 	      // table overflow should not happen, check before calling.
-	      std::__throw_runtime_error("table overflow in internal function");
+	      std::__throw_runtime_error("Table overflow in internal function");
 	    }
 
 	  // obtain moments from the table..
