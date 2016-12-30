@@ -163,7 +163,7 @@ namespace __gnu_test
 	  __abserr = _S_max;
 	}
       else
-	{ /* Compute error estimate */
+	{ // Compute error estimate.
 	  __abserr = (std::abs(__result - this->_M_res3la[2])
 		    + std::abs(__result - this->_M_res3la[1])
 		    + std::abs(__result - this->_M_res3la[0]));
