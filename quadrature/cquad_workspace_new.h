@@ -60,11 +60,13 @@ namespace __gnu_test
       bool
       operator()(const cquad_interval<_Tp>& __ivl,
 		 const cquad_interval<_Tp>& __ivr)
-      { return __ivr.err < __ivl.err; }
+      { return __ivl.err < __ivr.err; }
     };
 
   /**
-   * The workspace is just a collection of intervals.
+   * The workspace is a collection of intervals.
+   * Actually, it is a priority queue where the priority
+   * is the absolute error of the interval integral.
    */
   template<typename _Tp>
     struct cquad_workspace
