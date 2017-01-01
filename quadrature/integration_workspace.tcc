@@ -71,7 +71,7 @@ namespace __gnu_test
       // descending order. This number depends on the number of
       // subdivisions still allowed.
 
-      int __top;
+      std::size_t __top;
       if(__last < (this->_M_capacity/2 + 2))
 	__top = __last;
       else
