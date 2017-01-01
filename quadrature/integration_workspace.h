@@ -167,6 +167,23 @@ namespace __gnu_test
       set_level(std::size_t __ii, std::size_t __lvl)
       { this->_M_level[__ii] = __lvl; }
 
+      std::size_t
+      current_level() const
+      { return this->_M_level[this->_M_current_index]; }
+
+      std::size_t
+      max_level() const
+      { return this->_M_maximum_level; }
+
+      bool
+      large_interval() const
+      {
+	if (this->_M_level[this->_M_current_index] < this->_M_maximum_level)
+	  return true;
+	else
+	  return false;
+      }
+
       bool
       increase_nrmax()
       {
@@ -190,7 +207,6 @@ namespace __gnu_test
 	      return true;
 
 	    ++this->_M_nrmax;
-
 	  }
 	return false;
       }
@@ -204,15 +220,11 @@ namespace __gnu_test
 
       std::size_t
       get_nrmax() const
-      {
-	return this->_M_nrmax;
-      }
+      { return this->_M_nrmax; }
 
       void
       set_nrmax(std::size_t nrmax)
-      {
-	this->_M_nrmax = nrmax;
-      }
+      { this->_M_nrmax = nrmax; }
 
       _Tp
       sum_results() const
@@ -233,27 +245,6 @@ namespace __gnu_test
 	_Tp __tmp = (1 + 100 * __e) * (std::abs(__a2) + 1000 * __u);
 
 	return std::abs(__a1) <= __tmp && std::abs(__b2) <= __tmp;
-      }
-
-      std::size_t
-      current_level() const
-      {
-	return this->_M_level[this->_M_current_index];
-      }
-
-      std::size_t
-      max_level() const
-      {
-	return this->_M_maximum_level;
-      }
-
-      bool
-      large_interval() const
-      {
-	if (this->_M_level[this->_M_current_index] < this->_M_maximum_level)
-	  return true;
-	else
-	  return false;
       }
     };
 
