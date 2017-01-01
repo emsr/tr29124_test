@@ -53,6 +53,9 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hermite test_hermite
       return __Hrat();
     }
 
+  /**
+   * Build a vector of the Gauss-Hermite integration rule abscissae and weights.
+   */
   template<typename _Tp>
     std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
     __hermite_zeros(unsigned int __n, _Tp __proto = _Tp{})
