@@ -1,0 +1,24 @@
+Large files...
+
+ed@bad-horse:~/tr29124_test/quadrature$ git push
+Enter passphrase for key '/home/ed/.ssh/id_ed25519': 
+Counting objects: 173, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (173/173), done.
+Writing objects: 100% (173/173), 17.36 MiB | 2.07 MiB/s, done.
+Total 173 (delta 141), reused 0 (delta 0)
+remote: Resolving deltas: 100% (141/141), completed with 35 local objects.
+remote: warning: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
+remote: warning: See http://git.io/iEPt8g for more information.
+remote: warning: File test_legendre.txt is 73.56 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB
+To github.com:emsr/tr29124_test.git
+   95b4559..df3d920  master -> master
+
+Large files are often not really probative - they're too damned large to look at.
+
+Idea:
+git mv large_file.txt large_file.txt.bz2
+bz2 large_file.txt
+git commit -m"Compress large_file.txt" large_file.txt.bz2
+
+Of course, sensible diffs go out the window.
