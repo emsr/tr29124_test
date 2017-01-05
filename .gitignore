@@ -141,6 +141,7 @@ check/complex_airy_ai
 check/complex_airy_bi
 check/deathmatch_comp_ellint
 check/deathmatch_conf_hyperg
+check/deathmatch_conf_hyperg_lim
 check/deathmatch_hyperg
 check/pr56216_cyl_hankel_1
 check/pr56216_cyl_hankel_2
@@ -220,6 +221,7 @@ test_lobatto
 test_local_special_function
 test_lommel
 test_math_h
+test_mittag_leffler
 test_notsospecfun 
 test_nric_bessel
 test_numeric_limits

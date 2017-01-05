@@ -1,6 +1,6 @@
 // Special functions -*- C++ -*-
 
-// Copyright (C) 2006-2016 Free Software Foundation, Inc.
+// Copyright (C) 2006-2017 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -387,10 +387,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  if (__l < _S_num_factorials<_Tp>)
 	    {
-	      auto __lm = __l - 1;
-	      auto __lmfact = __factorial<_Tp>(__lm);
-	      auto __mm = __lm / 2;
-	      auto __mmfact = __factorial<_Tp>(__mm);
+	      const auto __lm = __l - 1;
+	      const auto __lmfact = __factorial<_Tp>(__lm);
+	      const auto __mm = __lm / 2;
+	      const auto __mmfact = __factorial<_Tp>(__mm);
 	      auto __Plm1 = (__lm & 1 ? -1 : 1) * __lmfact / __mmfact / __mmfact
 			    / std::pow(_Tp{2}, __lm);
 	      auto __Ppl = __l * __Plm1;
@@ -399,13 +399,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 	  else
 	    {
-	      auto __lm = __l - 1;
-	      auto __lmfact = __log_factorial<_Tp>(__lm);
-	      auto __mm = __lm / 2;
-	      auto __mmfact = __log_factorial<_Tp>(__mm);
+	      const auto _S_ln2 = __gnu_cxx::__const_ln_2(proto);
+	      const auto __lm = __l - 1;
+	      const auto __lmfact = __log_factorial<_Tp>(__lm);
+	      const auto __mm = __lm / 2;
+	      const auto __mmfact = __log_factorial<_Tp>(__mm);
 	      auto __Plm1 = (__lm & 1 ? -1 : 1)
-			  * std::exp(__lmfact - 2 * __mmfact)
-			  / std::pow(_Tp{2}, __lm);
+			  * std::exp(__lmfact - 2 * __mmfact - __lm * _S_ln2);
 	      auto __Ppl = __l * __Plm1;
 	      __pt[__m].__zero = _Tp{0};
 	      __pt[__m].__weight = _Tp{2} / __Ppl / __Ppl;
