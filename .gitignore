@@ -221,6 +221,7 @@ test_lobatto
 test_local_special_function
 test_lommel
 test_math_h
+test_mittag_leffler
 test_notsospecfun 
 test_nric_bessel
 test_numeric_limits
