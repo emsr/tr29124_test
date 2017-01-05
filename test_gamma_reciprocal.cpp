@@ -153,32 +153,46 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_rec
     __gamma_reciprocal(_Tp __a)
     {
       using _Real = std::__detail::__num_traits_t<_Tp>;
-      const auto _S_pi = __gnu_cxx::__const_pi(__a);
-      const auto __an = __gnu_cxx::__fp_is_integer(__a);
-      if (__an)
-	{
-	  auto __n = __an();
-	  if (__n <= 0)
-	    return _Tp{0};
-	  else if (__n < std::__detail::_S_num_factorials<_Real>)
-	    return _Tp{1}
-		/ static_cast<_Real>(std::__detail::_S_factorial_table[__n - 1].__factorial);
-	  else
-	    return _Tp{0};
-	}
-      else if (std::real(__a) > _Real{1}
-	    && std::abs(__a) < std::__detail::_S_num_factorials<_Tp>)
-	{
-	  auto __fact = _Tp{1};
-	  auto __arg = __a;
-	  while (std::real(__arg) > _Real{1})
-	    __fact *= (__arg -= _Real{1});
-	  return __gamma_reciprocal_series(__arg) / __fact;
-	}
-      else if (std::real(__a) > _Real{0})
-	return __gamma_reciprocal_series(__a);
+
+      if (std::__detail::__isnan(__a))
+	return __gnu_cxx::__quiet_NaN(__a);
       else
-	return std::__detail::__sin_pi(__a) * std::__detail::__gamma(_Tp{1} - __a) / _S_pi;
+	{
+	  const auto _S_pi = __gnu_cxx::__const_pi(__a);
+	  const auto __an = __gnu_cxx::__fp_is_integer(__a);
+	  if (__an)
+	    {
+	      auto __n = __an();
+	      if (__n <= 0)
+		return _Tp{0};
+	      else if (__n < int(std::__detail::_S_num_factorials<_Real>))
+		return _Tp{1}
+		    / static_cast<_Real>(std::__detail::_S_factorial_table[__n - 1].__factorial);
+	      else
+	        {
+		  auto __k = int(std::__detail::_S_num_factorials<_Real>);
+		  auto __rgam = _Tp{1}
+			      / _Real(std::__detail::_S_factorial_table[__k - 1].__factorial);
+		  while (__k < __n && std::abs(__rgam) > _Real{0})
+		    __rgam /= _Real(__k++);
+		  return __rgam;
+		}
+	    }
+	  else if (std::real(__a) > _Real{1})
+	    {
+	      auto __n = int(std::floor(std::real(__a)));
+	      auto __nu = __a - _Tp(__n);
+	      auto __rgam = __gamma_reciprocal_series(__nu);
+	      while (std::real(__a) > _Real{1} && std::abs(__rgam) > _Tp{0})
+	        __rgam /= (__a -= _Real{1});
+	      return __rgam;
+	    }
+	  else if (std::real(__a) > _Real{0})
+	    return __gamma_reciprocal_series(__a);
+	  else
+	    return std::__detail::__sin_pi(__a)
+		 * std::__detail::__gamma(_Tp{1} - __a) / _S_pi;
+	}
     }
 
   /**
@@ -305,8 +319,8 @@ template<typename _Tp>
     	      << '\n';
     for (auto __k = 0u; __k < __c.size(); ++__k)
       std::cout << ' ' << std::setw(4) << __k
-	        << ' ' << std::setw(width) << __c[__k]
-    	        << '\n';
+		<< ' ' << std::setw(width) << __c[__k]
+    		<< '\n';
 
     std::cout << '\n'
 	      << ' ' << std::setw(width) << "a"
@@ -316,22 +330,22 @@ template<typename _Tp>
 	      << ' ' << std::setw(width) << "delta series"
 	      << ' ' << std::setw(width) << "delta product"
     	      << '\n';
-    for (auto __k = 0; __k <= 100; ++__k)
+    for (auto __k = -500; __k <= 1000; ++__k)
       {
 	auto __a = __k * _Tp{0.01Q};
 	auto __gammargs = __gamma_reciprocal_series(__a);
 	auto __gammargp = __gamma_reciprocal_prod(__a);
-	auto __gammars = 1 / std::tgamma(__a);
-	auto __gammar = 1 / __gamma_reciprocal(__a);
+	auto __gammars = _Tp{1} / std::tgamma(__a);
+	auto __gammar = __gamma_reciprocal(__a);
 	std::cout << ' ' << std::setw(width) << __a
-	        << ' ' << std::setw(width) << __gammargs
-	        << ' ' << std::setw(width) << __gammargp
-	        << ' ' << std::setw(width) << __gammars
-	        << ' ' << std::setw(width) << __gammar
+		<< ' ' << std::setw(width) << __gammargs
+		<< ' ' << std::setw(width) << __gammargp
+		<< ' ' << std::setw(width) << __gammars
+		<< ' ' << std::setw(width) << __gammar
 		<< ' ' << std::setw(width) << (__gammargs - __gammars) / __gammars
 		<< ' ' << std::setw(width) << (__gammargp - __gammars) / __gammars
 		<< ' ' << std::setw(width) << (__gammar - __gammars) / __gammars
-    	        << '\n';
+    		<< '\n';
       }
   }
 
@@ -364,19 +378,19 @@ template<typename _Tp>
 	auto tggnu = __gamma_temme(mu);
 	auto tgstd = __gamma_temme_std(mu);
 	std::cout << ' ' << std::setw(width) << mu
-	        << ' ' << std::setw(width) << tggnu.__gamma_plus_value
-	        << ' ' << std::setw(width) << tggnu.__gamma_minus_value
-	        << ' ' << std::setw(width) << tggnu.__gamma_1_value
-	        << ' ' << std::setw(width) << tggnu.__gamma_2_value
-	        << ' ' << std::setw(width) << tgstd.__gamma_plus_value
-	        << ' ' << std::setw(width) << tgstd.__gamma_minus_value
-	        << ' ' << std::setw(width) << tgstd.__gamma_1_value
-	        << ' ' << std::setw(width) << tgstd.__gamma_2_value
+		<< ' ' << std::setw(width) << tggnu.__gamma_plus_value
+		<< ' ' << std::setw(width) << tggnu.__gamma_minus_value
+		<< ' ' << std::setw(width) << tggnu.__gamma_1_value
+		<< ' ' << std::setw(width) << tggnu.__gamma_2_value
+		<< ' ' << std::setw(width) << tgstd.__gamma_plus_value
+		<< ' ' << std::setw(width) << tgstd.__gamma_minus_value
+		<< ' ' << std::setw(width) << tgstd.__gamma_1_value
+		<< ' ' << std::setw(width) << tgstd.__gamma_2_value
 		<< ' ' << std::setw(width) << (tggnu.__gamma_plus_value - tgstd.__gamma_plus_value) / tgstd.__gamma_plus_value
 		<< ' ' << std::setw(width) << (tggnu.__gamma_minus_value - tgstd.__gamma_minus_value) / tgstd.__gamma_minus_value
 		<< ' ' << std::setw(width) << (tggnu.__gamma_1_value - tgstd.__gamma_1_value) / tgstd.__gamma_1_value
 		<< ' ' << std::setw(width) << (tggnu.__gamma_2_value - tgstd.__gamma_2_value) / tgstd.__gamma_2_value
-    	        << '\n';
+    		<< '\n';
       }
   }
 
