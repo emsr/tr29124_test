@@ -133,6 +133,9 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre 
       return __pt;
     }
 
+  /**
+   * Return an array of abscissae and weights for the Gauss-Laguerre rule.
+   */
   template<typename _Tp, typename _Tn>
     std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
     __laguerre_zeros(unsigned int __n, _Tn __alpha, _Tp __proto)
