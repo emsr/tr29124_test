@@ -285,8 +285,9 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_le
 				  / (2 * __alpha * __alpha));
 	    }
 	  __k1 = std::ceil(__k1);
-	  unsigned int __k0 = std::max(__k1, (std::log(_S_eps * (_Tp{1} - __az))
-					    / std::log(__az)));
+	  unsigned int __k0 = std::max(__k1,
+				 std::ceil(std::log(_S_eps * (_Tp{1} - __az))
+					 / std::log(__az)));
 	  auto __Ep = _Cmplx{0};
 	  auto __zk = _Cmplx{1};
 	  for (auto __k = 0u; __k <= __k0; ++__k)
