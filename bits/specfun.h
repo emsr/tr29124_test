@@ -6184,6 +6184,7 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
 #if __cplusplus > 201402L
+
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
@@ -6205,7 +6206,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     constexpr _Tp
     __hypot3(_Tp __x, _Tp __y, _Tp __z)
     {
-      if (__isnan(__x) || __isnan(__y) || __isnan(__z))
+      if (std::__detail::__isnan(__x)
+       || std::__detail::__isnan(__y)
+       || std::__detail::__isnan(__z))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	{
@@ -6215,7 +6218,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __amax = __fmax3(__x, __y, __z);
 	  if (__amax == _Tp{0})
 	    return _Tp{0};
-	  else if (__isinf(__amax))
+	  else if (std::__detail::__isinf(__amax))
 	    return std::numeric_limits<_Tp>::infinity();
 	  else
 	    {
@@ -6246,8 +6249,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using __type = typename __gnu_cxx::__promote_3<_Tp, _Up, _Vp>::__type;
       return std::__hypot3<__type>(__x, __y, __z);
     }
+
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace
+
 #endif // C++17
 
 #pragma GCC visibility pop
