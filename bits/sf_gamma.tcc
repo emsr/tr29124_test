@@ -2318,6 +2318,10 @@ _S_neg_double_factorial_table[999]
       return __gam;
     }
 
+  template<typename _Tp>
+    _Tp
+    __gamma(_Tp __a);
+
   /**
    * Return the reciprocal of the Gamma function:
    * @f[
@@ -2332,29 +2336,46 @@ _S_neg_double_factorial_table[999]
     __gamma_reciprocal(_Tp __a)
     {
       using _Real = std::__detail::__num_traits_t<_Tp>;
-      auto __an = __gnu_cxx::__fp_is_integer(__a);
-      if (__an)
-	{
-	  auto __n = __an();
-	  if (__n <= 0)
-	    return _Tp{0};
-	  else if (__n < _S_num_factorials<_Real>)
-	    return _Tp{1}
-		/ static_cast<_Real>(_S_factorial_table[__n - 1].__factorial);
-	  else
-	    return _Tp{0};
-	}
-      else if (std::real(__a) > _Real{1}
-	    && std::abs(__a) < _S_num_factorials<_Tp>)
-	{
-	  auto __fact = _Tp{1};
-	  auto __arg = __a;
-	  while (std::real(__arg) > _Real{1})
-	    __fact *= (__arg -= _Real{1});
-	  return __gamma_reciprocal_series(__arg) / __fact;
-	}
+
+      if (std::__detail::__isnan(__a))
+	return __gnu_cxx::__quiet_NaN(__a);
       else
-	return _Tp{0};
+	{
+	  const auto _S_pi = __gnu_cxx::__const_pi(__a);
+	  const auto __an = __gnu_cxx::__fp_is_integer(__a);
+	  if (__an)
+	    {
+	      auto __n = __an();
+	      if (__n <= 0)
+		return _Tp{0};
+	      else if (__n < int(_S_num_factorials<_Real>))
+		return _Tp{1}
+		  / _Real(_S_factorial_table[__n - 1].__factorial);
+	      else
+	        {
+		  auto __k = int(_S_num_factorials<_Real>);
+		  auto __rgam = _Tp{1}
+			      / _Real(_S_factorial_table[__k - 1].__factorial);
+		  while (__k < __n && std::abs(__rgam) > _Real{0})
+		    __rgam /= _Real(__k++);
+		  return __rgam;
+		}
+	    }
+	  else if (std::real(__a) > _Real{1})
+	    {
+	      auto __n = int(std::floor(std::real(__a)));
+	      auto __nu = __a - _Tp(__n);
+	      auto __rgam = __gamma_reciprocal_series(__nu);
+	      while (std::real(__a) > _Real{1} && std::abs(__rgam) > _Tp{0})
+	        __rgam /= (__a -= _Real{1});
+	      return __rgam;
+	    }
+	  else if (std::real(__a) > _Real{0})
+	    return __gamma_reciprocal_series(__a);
+	  else
+	    return std::__detail::__sin_pi(__a)
+		 * std::__detail::__gamma(_Tp{1} - __a) / _S_pi;
+	}
     }
 
   /**
