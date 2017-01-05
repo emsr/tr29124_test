@@ -15,4 +15,5 @@ jacobi_test
 radpoly_test
 zernike_test
 
+test_gauss_hermite
 test_quadrature

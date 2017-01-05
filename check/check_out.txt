@@ -3,6 +3,7 @@ check_airy_ai
 check_airy_bi
 check_assoc_laguerre
 check_assoc_legendre
+check_bernoulli
 check_beta
 check_bincoef
 check_chebyshev_t
@@ -67,12 +68,56 @@ check_legendre
 check_legendre
 check_legendre_q
 check_lfactorial
+check_lgamma
+check_logistic_cdf
+line 1046  max_abs_frac = 0.918549
+line 1046  max_abs_frac = 0.31257
+line 1046  max_abs_frac = 0.150184
+line 1046  max_abs_frac = 3.6039
+line 1046  max_abs_frac = 0.918549
+line 1046  max_abs_frac = 0.230345
+line 1046  max_abs_frac = 57.1134
+line 1046  max_abs_frac = 6.14408
+line 1046  max_abs_frac = 0.918549
+check_logistic_pdf
+line 1046  max_abs_frac = 256.579
+line 1046  max_abs_frac = 131.051
+line 1046  max_abs_frac = 56.1542
+line 1046  max_abs_frac = 203.135
+line 1046  max_abs_frac = 103.893
+line 1046  max_abs_frac = 45.5268
+line 1046  max_abs_frac = 80.1347
+line 1046  max_abs_frac = 74.4852
+line 1046  max_abs_frac = 21.9669
+check_lognormal_cdf
+line 1046  max_abs_frac = 0.949052
+line 1046  max_abs_frac = 0.640804
+line 1046  max_abs_frac = 0.484806
+line 1046  max_abs_frac = 16481
+line 1046  max_abs_frac = 20.502
+line 1046  max_abs_frac = 1.52523
+line 1046  max_abs_frac = 2.09223e+07
+line 1046  max_abs_frac = 1.65809e+09
+line 1046  max_abs_frac = 7800.45
+check_lognormal_pdf
+line 1046  max_abs_frac = inf
+line 1046  max_abs_frac = inf
+line 1046  max_abs_frac = inf
+line 1046  max_abs_frac = inf
+line 1046  max_abs_frac = inf
+line 1046  max_abs_frac = inf
+line 1046  max_abs_frac = inf
+line 1046  max_abs_frac = inf
+line 1046  max_abs_frac = inf
 check_lpochhammer_lower
 check_lpochhammer
 check_owens_t
 check_pgamma
 check_pochhammer_lower
 check_pochhammer
+check_normal_cdf
+line 1045  max_abs_frac = 4.89615e-11
+check_normal_pdf
 check_psi
 check_qgamma
 check_radpoly
@@ -103,6 +148,63 @@ complex_ellint_rd
 complex_ellint_rf
 complex_ellint_rg
 complex_ellint_rj
+complex_airy_ai
+line 57
+line 58
+line 59
+line 60
+line 61
+line 62
+line 63
+line 64
+line 65
+line 66
+complex_airy_bi
+line 57
+line 58
+line 59
+line 60
+line 61
+line 62
+line 63
+line 64
+line 65
+line 66
+deathmatch_comp_ellint
+Success:   samples = 9  mean = 5.42776e-16  variance = 1.30503e-30
+line 87  max_abs_frac = 504.474
+deathmatch_conf_hyperg
+Success:   samples = 9  mean = 3.08395e-18  variance = 2.78095e-32
+Success:   samples = 9  mean = -4.78013e-17  variance = 1.08328e-32
+Success:   samples = 9  mean = 0  variance = 0
+Success:   samples = 9  mean = 0  variance = 0
+Success:   samples = 9  mean = 0  variance = 0
+Success:   samples = 9  mean = 0  variance = 0
+Success:   samples = 9  mean = -4.19418e-16  variance = 9.4712e-31
+Success:   samples = 9  mean = -1.23358e-16  variance = 3.07997e-31
+Success:   samples = 9  mean = -1.70234e-15  variance = 3.6441e-29
+Success:   samples = 9  mean = -4.44089e-16  variance = 1.08468e-30
+line 129  max_abs_frac = 3.76636
+line 129  max_abs_frac = 0.286453
+line 129  max_abs_frac = 5.66707
+line 129  max_abs_frac = 1.7929
+deathmatch_conf_hyperg_lim
+Success:   samples = 9  mean = 1.41862e-16  variance = 6.23906e-33
+Success:   samples = 9  mean = 3.60437e-17  variance = 1.03638e-33
+Success:   samples = 9  mean = 4.0354e-16  variance = 1.08665e-31
+Success:   samples = 9  mean = 1.09559e-18  variance = 2.48427e-36
+Success:   samples = 9  mean = 3.70974e-19  variance = 2.74621e-37
+deathmatch_hyperg
+Success:   samples = 9  mean = -4.93432e-17  variance = 4.413e-33
+Success:   samples = 9  mean = 0  variance = 0
+Success:   samples = 9  mean = 0  variance = 0
+Success:   samples = 9  mean = 0  variance = 0
+Success:   samples = 9  mean = -2.23587e-16  variance = 1.01451e-31
+Success:   samples = 9  mean = -9.86865e-17  variance = 8.88686e-32
+line 130  max_abs_frac = 0.433032
+Success:   samples = 19  mean = 0  variance = 0
+Success:   samples = 19  mean = -4.83531e-16  variance = 6.20752e-30
+Success:   samples = 19  mean = 5.57668e-16  variance = 2.47696e-29
 pr56216_cyl_hankel_1
 pr56216_cyl_hankel_2
 pr56216_cyl_bessel_i
