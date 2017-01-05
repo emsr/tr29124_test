@@ -165,8 +165,12 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_le
 	  auto __zk = _Cmplx{1};
 	  for (auto __k = 0u; __k <= __k0; ++__k)
 	    {
-	      //__E += __zk / __gnu_cxx::tgamma(_Cmplx(__beta + __alpha * __k));
-	      __E += __zk * std::__detail::__gamma_reciprocal(__beta + __alpha * __k);
+	      const auto __arg = __beta + __alpha * __k;
+	      const auto __term = __zk
+			* std::__detail::__gamma_reciprocal(__arg);
+	      __E += __term;
+	      if (std::abs(__term) < _S_eps)
+		break;
 	      __zk *= __z;
 	    }
 	  return __E;
