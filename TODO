@@ -218,7 +218,7 @@ GSL extras has these - there was struggle there too.
 60. [] Make work: test_bessel_iter.cpp
        Complete it.  Make those polynomials up!
 
-61. [] __float128 pow barfage in several things.
+61. [DONE] __float128 pow barfage in several things.
        There's a stack overflow in the pow call.
        It actually looks suspect.
        cmath:418
@@ -404,13 +404,18 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 90. [] Put a more extensive deathmatch test (in a separate function) in the corresponding test_*.cpp
        Work out kinks!
 
-91. [] I had to add a declaration for __float128 pow to cmath to prevent infinite recursion
+91. [DONE] I had to add a declaration for __float128 pow to cmath to prevent infinite recursion
        in cmath (near line 418).  I think everything that uses __gnu_cxx::__promote_2
        (which doesn't know about __float128) will fail on this score.
        Either I should
 	* fold in definitions __float128 into cmath,
 	* pre-declare __float128 stuff in cmath (what i did with one functions),
 	* or teach __promote_2 about __float128.
+        * SEE ITEM 61!!!
+
+92. [] Steal root finding tests from GSL.
+
+93. [] Gamma uses gamma_reciprocal_series!  not Lanczos or Spouge!
 
 plot_airy.cpp
 
