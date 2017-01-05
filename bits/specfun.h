@@ -6183,6 +6183,73 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
+#if __cplusplus > 201402L
+namespace std _GLIBCXX_VISIBILITY(default)
+{
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
+  // [c.math.hypot3], three-dimensional hypotenuse
+#define __cpp_lib_hypot 201603
+
+#include <limits>
+
+  // Avoid including all of <algorithm>
+  template<typename _Tp>
+    constexpr _Tp
+    __fmax3(_Tp __x, _Tp __y, _Tp __z)
+    {
+      return std::fmax(std::fmax(__x, __y), std::fmax(__y, __z));
+    }
+
+  template<typename _Tp>
+    constexpr _Tp
+    __hypot3(_Tp __x, _Tp __y, _Tp __z)
+    {
+      if (__isnan(__x) || __isnan(__y) || __isnan(__z))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else
+	{
+	  __x = std::abs(__x);
+	  __y = std::abs(__y);
+	  __z = std::abs(__z);
+	  auto __amax = __fmax3(__x, __y, __z);
+	  if (__amax == _Tp{0})
+	    return _Tp{0};
+	  else if (__isinf(__amax))
+	    return std::numeric_limits<_Tp>::infinity();
+	  else
+	    {
+	      __x /= __amax;
+	      __y /= __amax;
+	      __z /= __amax;
+	      return __amax * std::sqrt(__x * __x + __y * __y + __z * __z);
+            }
+	}
+    }
+
+  constexpr inline float
+  hypot(float __x, float __y, float __z)
+  { return std::__hypot3<float>(__x, __y, __z); }
+
+  constexpr inline double
+  hypot(double __x, double __y, double __z)
+  { return std::__hypot3<double>(__x, __y, __z); }
+
+  constexpr inline long double
+  hypot(long double __x, long double __y, long double __z)
+  { return std::__hypot3<long double>(__x, __y, __z); }
+
+  template<typename _Tp, typename _Up, typename _Vp>
+    constexpr typename __gnu_cxx::__promote_3<_Tp, _Up, _Vp>::__type
+    hypot(_Tp __x, _Up __y, _Vp __z)
+    {
+      using __type = typename __gnu_cxx::__promote_3<_Tp, _Up, _Vp>::__type;
+      return std::__hypot3<__type>(__x, __y, __z);
+    }
+_GLIBCXX_END_NAMESPACE_VERSION
+} // namespace
+#endif // C++17
+
 #pragma GCC visibility pop
 
 #endif // _GLIBCXX_BITS_SPECFUN_H
