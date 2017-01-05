@@ -49,7 +49,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hyperg test_hyperg.c
     __hyperg_series(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
       const auto __eps = __gnu_cxx::__epsilon(__x);
-      const unsigned int _S_max_iter = 100000;
+      const unsigned int _S_max_iter = 100000u;
       auto __aint = __gnu_cxx::__fp_is_integer(__a);
       auto __bint = __gnu_cxx::__fp_is_integer(__b);
       auto __max_iter = _S_max_iter;
