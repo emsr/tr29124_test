@@ -1,7 +1,7 @@
 // -*- C++ -*-
 // Integration utilities for the C++ library testsuite.
 //
-// Copyright (C) 2011-2016 Free Software Foundation, Inc.
+// Copyright (C) 2011-2017 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -26,25 +26,26 @@
 namespace __gnu_test
 {
 
-_Tp
-gauss_hermite_integrate(__func, unsigned int n)
-{
-  if(__n == 0)
-    std::__throw_domain_error("gauss_hermite_integrate: "
-    			      "Hermite order must be greater than 0");
-  else
-   {
-      auto __rule = std::__detail::__hermite_zeros(__n);
-      auto __sum = _Tp{0};
-      for (const auto& __pt : __rule)
-	{
-	  auto __x = __pt.__zero;
-	  auto __w = __pt.__weight;
-	  __sum += __w * __func(__x);
-	}
-      return __sum;
-    }
-}
+template<typename _Tp, typename _FuncTp>
+  _Tp
+  gauss_hermite_integrate(_FuncTp __func, unsigned int __n)
+  {
+    if(__n == 0)
+      std::__throw_domain_error("gauss_hermite_integrate: "
+    				"Hermite order must be greater than 0");
+    else
+     {
+	auto __rule = std::__detail::__hermite_zeros<_Tp>(__n);
+	auto __sum = _Tp{0};
+	for (const auto& __pt : __rule)
+	  {
+	    auto __x = __pt.__zero;
+	    auto __w = __pt.__weight;
+	    __sum += __w * __func(__x);
+	  }
+	return __sum;
+      }
+  }
 
 } // namespace __gnu_test
 

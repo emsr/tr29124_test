@@ -1,7 +1,7 @@
 /* integration/cquad_workspace.h
  *
  * Copyright (C) 2010 Pedro Gonnet
- * Copyright (C) 2016 Free Software Foundation, Inc.
+ * Copyright (C) 2016-2017 Free Software Foundation, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -60,11 +60,13 @@ namespace __gnu_test
       bool
       operator()(const cquad_interval<_Tp>& __ivl,
 		 const cquad_interval<_Tp>& __ivr)
-      { return __ivr.err < __ivl.err; }
+      { return __ivl.err < __ivr.err; }
     };
 
   /**
-   * The workspace is just a collection of intervals.
+   * The workspace is a collection of intervals.
+   * Actually, it is a priority queue where the priority
+   * is the absolute error of the interval integral.
    */
   template<typename _Tp>
     struct cquad_workspace

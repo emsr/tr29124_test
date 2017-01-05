@@ -1,7 +1,7 @@
 /* integration/cquad_workspace.h
  *
  * Copyright (C) 2010 Pedro Gonnet
- * Copyright (C) 2016 Free Software Foundation, Inc.
+ * Copyright (C) 2016-2017 Free Software Foundation, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,8 @@
 #ifndef CQUAD_WORKSPACE_H
 #define CQUAD_WORKSPACE_H 1
 
+#include <vector>
+
 namespace __gnu_test
 {
 
@@ -38,37 +40,104 @@ namespace __gnu_test
       _Tp a, b;
       _Tp c[64];
       _Tp fx[33];
-      _Tp igral, err;
+      _Tp igral;
+      _Tp err;
       std::size_t depth, rdepth, ndiv;
     };
 
   /**
-   * The workspace is just a collection of intervals.
+   * Comparison of cquad intervals.
+   */
+  template<typename _Tp>
+    bool
+    operator<(const cquad_interval<_Tp>& __ivl,
+	      const cquad_interval<_Tp>& __ivr)
+    { return __ivl.err < __ivr.err; }
+
+  template<typename _Tp>
+    struct cquad_interval_comp
+    {
+      bool
+      operator()(const cquad_interval<_Tp>& __ivl,
+		 const cquad_interval<_Tp>& __ivr)
+      { return __ivl.err < __ivr.err; }
+    };
+
+  /**
+   * The workspace is a collection of intervals.
+   * Actually, it is a priority queue where the priority
+   * is the absolute error of the interval integral.
    */
   template<typename _Tp>
     struct cquad_workspace
     {
       std::vector<cquad_interval<_Tp>> ivals;
-      std::vector<std::size_t> heap;
+
+      cquad_workspace(std::size_t __len = 200)
+      : ivals()
+      { this->ivals.reserve(__len); }
 
       std::size_t size() const
-      { return ivals.size(); }
+      { return this->ivals.size(); }
 
-      cquad_workspace(std::size_t __n)
-      : ivals(__n), heap(__n)
+      typename std::vector<cquad_interval<_Tp>>::iterator
+      begin()
+      { return this->ivals.begin(); }
+
+      typename std::vector<cquad_interval<_Tp>>::iterator
+      end()
+      { return this->ivals.end(); }
+
+      const cquad_interval<_Tp>&
+      top() const
+      { return this->ivals[0]; }
+
+      cquad_interval<_Tp>&
+      top()
+      { return this->ivals[0]; }
+
+      void
+      clear()
+      { this->ivals.clear(); }
+
+      void
+      push(const cquad_interval<_Tp>& __iv)
       {
-	if (__n < 3)
-	  std::__throw_domain_error("cquad_workspace: "
-				    "Workspace size n must be at least 3");
-
-	this->initialize_heap();
+	cquad_interval_comp<_Tp> __cmp;
+	this->ivals.push_back(__iv);
+	std::push_heap(std::begin(this->ivals), std::end(this->ivals), __cmp);
       }
 
       void
-      initialize_heap()
+      pop()
       {
-	for (std::size_t __i = 0; __i < this->heap.size(); ++__i)
-	  this->heap[__i] = __i;
+	std::pop_heap(std::begin(this->ivals), std::end(this->ivals));
+	this->ivals.pop_back();
+      }
+
+      void
+      update()
+      {
+	cquad_interval_comp<_Tp> __cmp;
+	std::make_heap(std::begin(this->ivals), std::end(this->ivals), __cmp);
+      }
+
+      _Tp
+      total_integral() const
+      {
+	auto __tot_igral = _Tp{0};
+	for (auto& __iv : ivals)
+	  __tot_igral += __iv.igral;
+	return __tot_igral;
+      }
+
+      _Tp
+      total_error() const
+      {
+	auto __tot_error = _Tp{0};
+	for (auto& __iv : ivals)
+	  __tot_error += __iv.err;
+	return __tot_error;
       }
     };
 

@@ -1,7 +1,7 @@
 /* integration/cquad_integrate.h
  *
  * Copyright (C) 2010 Pedro Gonnet
- * Copyright (C) 2016 Free Software Foundation, Inc.
+ * Copyright (C) 2016-2017 Free Software Foundation, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -144,8 +144,8 @@ namespace __gnu_test
 	std::__throw_domain_error("unreasonable accuracy requirement");
 
       // Create the first interval.
-      __ws.initialize_heap();
-      auto& __iv = __ws.ivals[0];
+      __ws.clear();
+      cquad_interval<_Tp> __iv;
       auto __m = (__a + __b) / _Tp{2};
       auto __h = (__b - __a) / _Tp{2};
       __num_NaNs = 0;
@@ -185,35 +185,34 @@ namespace __gnu_test
       __ncdiff = std::sqrt(__ncdiff);
       __nc = std::sqrt(__nc);
       __iv.err = __ncdiff * _Tp{2} * __h;
-      if ( __ncdiff / __nc > _Tp{0.1} && __iv.err < _Tp{2} * __h * __nc)
+      if (__ncdiff / __nc > _Tp{0.1} && __iv.err < _Tp{2} * __h * __nc)
 	__iv.err = _Tp{2} * __h * __nc;
-
-      auto __igral = __iv.igral;
-      auto __igral_final = _Tp{0};
-      auto __err = __iv.err;
-      auto __err_final = _Tp{0};
-      std::size_t __nivals = 1;
+      __ws.push(__iv);
 
 #ifdef INTEGRATION_DEBUG
       fprintf(stderr,"\n");
 #endif
 
       // Main loop...
-      while (__nivals > 0 && __err > _Tp{0} &&
+      auto __igral = __iv.igral;
+      auto __igral_final = _Tp{0};
+      auto __err = __iv.err;
+      auto __err_final = _Tp{0};
+      while (__ws.size() > 0 && __err > _Tp{0} &&
 	     !(__err <= std::abs(__igral) * __epsrel || __err <= __epsabs)
 	     && !(__err_final > std::abs(__igral) * __epsrel
 		  && __err - __err_final < std::abs(__igral) * __epsrel)
 	     && !(__err_final > __epsabs && __err - __err_final < __epsabs))
 	{
 	  // Put our finger on the interval with the largest error.
-	  auto& __iv = __ws.ivals[__ws.heap[0]];
+	  auto& __iv = __ws.top();
 	  __m = (__iv.a + __iv.b) / _Tp{2};
 	  __h = (__iv.b - __iv.a) / _Tp{2};
 
 #ifdef INTEGRATION_DEBUG
 	  printf
 	    ("cquad: processing ival %i (of %i) with [%e,%e] int=%e, err=%e, depth=%i\n",
-	     __ws.heap[0], __nivals, __iv.a, __iv.b, __iv.igral, __iv.err, __iv.depth);
+	     0, __ws.size(), __iv.a, __iv.b, __iv.igral, __iv.err, __iv.depth);
 #endif
 	  // Should we try to increase the degree?
 	  if (__iv.depth < 3)
@@ -282,41 +281,14 @@ namespace __gnu_test
 #ifdef INTEGRATION_DEBUG
 	      printf
 		("cquad: dumping ival %i (of %i) with [%e,%e] int=%e, err=%e, depth=%i\n",
-		 __ws.heap[0], __nivals, __iv.a, __iv.b, __iv.igral, __iv.err,
+		 0, __ws.size(), __iv.a, __iv.b, __iv.igral, __iv.err,
 		 __iv.depth);
 #endif
 	      // Keep this interval's contribution.
 	      __err_final += __iv.err;
 	      __igral_final += __iv.igral;
 
-	      // Swap with the last element on the heap.
-	      std::swap(__ws.heap[__nivals - 1], __ws.heap[0]);
-	      --__nivals;
-
-	      // Fix up the heap.
-	      std::size_t __i = 0;
-	      while (2 * __i + 1 < __nivals)
-		{
-		  // Get the kids.
-		  std::size_t __j = 2 * __i + 1;
-
-		  // If the j+1st entry exists and is larger than the jth,
-		  // use it instead.
-		  if (__j + 1 < __nivals
-		      && __ws.ivals[__ws.heap[__j + 1]].err
-		       >=__ws.ivals[__ws.heap[__j]].err)
-		    ++__j;
-
-		  // Do we need to move the ith entry up?
-		  if (__ws.ivals[__ws.heap[__j]].err
-			 <= __ws.ivals[__ws.heap[__i]].err)
-		    break;
-		  else
-		    {
-		      std::swap(__ws.heap[__i], __ws.heap[__j]);
-		      __i = __j;
-		    }
-		}
+	      __ws.pop();
 	    }
 	  else if (__split) // Do we need to split this interval?
 	    {
@@ -324,7 +296,7 @@ namespace __gnu_test
 	      auto __d = __iv.depth;
 
 	      // Generate the interval on the left.
-	      auto& __ivl = __ws.ivals[__ws.heap[__nivals++]];
+	      cquad_interval<_Tp> __ivl;
 	      __ivl.a = __iv.a;
 	      __ivl.b = __m;
 	      __ivl.depth = 0;
@@ -383,9 +355,8 @@ namespace __gnu_test
 	      // Compute the local integral.
 	      __ivl.igral = __h * __w * __ivl.c[0];
 
-
 	      // Generate the interval on the right.
-	      auto& __ivr = __ws.ivals[__ws.heap[__nivals++]];
+	      cquad_interval<_Tp> __ivr;
 	      __ivr.a = __m;
 	      __ivr.b = __iv.b;
 	      __ivr.depth = 0;
@@ -444,104 +415,25 @@ namespace __gnu_test
 	      // Compute the local integral.
 	      __ivr.igral = __h * __w * __ivr.c[0];
 
-
-	      /* Fix-up the heap: we now have one interval on top
-		 that we don't need any more and two new, unsorted
-		 ones at the bottom. */
-
-	      // Flip the last interval to the top of the heap and sift down.
-	      std::swap(__ws.heap[__nivals - 1], __ws.heap[0]);
-	      --__nivals;
-
-	      // Sift this interval back down the heap.
-	      std::size_t __i = 0;
-	      while (2 * __i + 1 < __nivals - 1)
-		{
-		  std::size_t __j = 2 * __i + 1;
-		  if (__j + 1 < __nivals - 1
-		      && __ws.ivals[__ws.heap[__j + 1]].err >=
-		      __ws.ivals[__ws.heap[__j]].err)
-		    ++__j;
-		  if (__ws.ivals[__ws.heap[__j]].err
-			 <= __ws.ivals[__ws.heap[__i]].err)
-		    break;
-		  else
-		    {
-		      std::swap(__ws.heap[__i], __ws.heap[__j]);
-		      __i = __j;
-		    }
-		}
-
-	      // Now grab the last interval and sift it up the heap.
-	      __i = __nivals - 1;
-	      while (__i > 0)
-		{
-		  std::size_t __j = (__i - 1) / 2;
-		  if (__ws.ivals[__ws.heap[__j]].err
-			 < __ws.ivals[__ws.heap[__i]].err)
-		    {
-		      std::swap(__ws.heap[__i], __ws.heap[__j]);
-		      __i = __j;
-		    }
-		  else
-		    break;
-		}
+	      __ws.pop();
+	      __ws.push(__ivl);
+	      __ws.push(__ivr);
 	    }
 	  else // Otherwise, just fix-up the heap.
-	    {
-	      std::size_t __i = 0;
-	      while (2 * __i + 1 < __nivals)
-		{
-		  std::size_t __j = 2 * __i + 1;
-		  if (__j + 1 < __nivals
-		      && __ws.ivals[__ws.heap[__j + 1]].err
-			>= __ws.ivals[__ws.heap[__j]].err)
-		    ++__j;
-		  if (__ws.ivals[__ws.heap[__j]].err
-			<= __ws.ivals[__ws.heap[__i]].err)
-		    break;
-		  else
-		    {
-		      std::swap(__ws.heap[__i], __ws.heap[__j]);
-		      __i = __j;
-		    }
-		}
-	    }
-
-	  // If the heap is about to overflow, remove the last two intervals.
-	  while (__nivals > __ws.size() - 2)
-	    {
-	      __iv = __ws.ivals[__ws.heap[__nivals - 1]];
-
-#ifdef INTEGRATION_DEBUG
-	      printf
-		("cquad: dumping ival %i (of %i) with [%e,%e] int=%e, err=%e, depth=%i\n",
-		 __ws.heap[0], __nivals, __iv.a, __iv.b, __iv.igral, __iv.err,
-		 __iv.depth);
-#endif
-	      __err_final += __iv.err;
-	      __igral_final += __iv.igral;
-	      --__nivals;
-	    }
+	    __ws.update();
 
 	  // Collect the value of the integral and error.
-	  __igral = __igral_final;
-	  __err = __err_final;
-	  for (std::size_t __i = 0; __i < __nivals; ++__i)
-	    {
-	      __igral += __ws.ivals[__ws.heap[__i]].igral;
-	      __err += __ws.ivals[__ws.heap[__i]].err;
-	    }
+	  __igral = __igral_final + __ws.total_integral();
+	  __err = __err_final + __ws.total_error();
 	}
 
       // Dump the contents of the heap.
 #ifdef INTEGRATION_DEBUG
-      for (std::size_t __i = 0; __i < __nivals; ++__i)
+      for (auto& __iv : __ws)
 	{
-	  auto __iv = __ws.ivals[__ws.heap[__i]];
 	  printf
 	    ("cquad: ival %i (%i) with [%e,%e], int=%e, err=%e, depth=%i, rdepth=%i\n",
-	     __i, __ws.heap[__i], __iv.a, __iv.b, __iv.igral, __iv.err, __iv.depth,
+	     0, 0, __iv.a, __iv.b, __iv.igral, __iv.err, __iv.depth,
 	     __iv.rdepth);
 	}
 #endif
