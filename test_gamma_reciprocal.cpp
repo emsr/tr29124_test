@@ -140,6 +140,48 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_rec
     }
 
   /**
+   * Return the reciprocal of the Gamma function:
+   * @f[
+   *   \frac{1}{\Gamma(a)}
+   * @f]
+   *
+   * @param __a The argument of the reciprocal of the gamma function.
+   * @return  The reciprocal of the gamma function.
+   */
+  template<typename _Tp>
+    _Tp
+    __gamma_reciprocal(_Tp __a)
+    {
+      using _Real = std::__detail::__num_traits_t<_Tp>;
+      const auto _S_pi = __gnu_cxx::__const_pi(__a);
+      const auto __an = __gnu_cxx::__fp_is_integer(__a);
+      if (__an)
+	{
+	  auto __n = __an();
+	  if (__n <= 0)
+	    return _Tp{0};
+	  else if (__n < std::__detail::_S_num_factorials<_Real>)
+	    return _Tp{1}
+		/ static_cast<_Real>(std::__detail::_S_factorial_table[__n - 1].__factorial);
+	  else
+	    return _Tp{0};
+	}
+      else if (std::real(__a) > _Real{1}
+	    && std::abs(__a) < std::__detail::_S_num_factorials<_Tp>)
+	{
+	  auto __fact = _Tp{1};
+	  auto __arg = __a;
+	  while (std::real(__arg) > _Real{1})
+	    __fact *= (__arg -= _Real{1});
+	  return __gamma_reciprocal_series(__arg) / __fact;
+	}
+      else if (std::real(__a) > _Real{0})
+	return __gamma_reciprocal_series(__a);
+      else
+	return std::__detail::__sin_pi(__a) * std::__detail::__gamma(_Tp{1} - __a) / _S_pi;
+    }
+
+  /**
    * @brief A structure for the gamma functions required by the Temme series
    * 	    expansions of @f$ N_\nu(x) @f$ and @f$ K_\nu(x) @f$.
    * @f[
@@ -280,12 +322,15 @@ template<typename _Tp>
 	auto __gammargs = __gamma_reciprocal_series(__a);
 	auto __gammargp = __gamma_reciprocal_prod(__a);
 	auto __gammars = 1 / std::tgamma(__a);
+	auto __gammar = 1 / __gamma_reciprocal(__a);
 	std::cout << ' ' << std::setw(width) << __a
 	        << ' ' << std::setw(width) << __gammargs
 	        << ' ' << std::setw(width) << __gammargp
 	        << ' ' << std::setw(width) << __gammars
+	        << ' ' << std::setw(width) << __gammar
 		<< ' ' << std::setw(width) << (__gammargs - __gammars) / __gammars
 		<< ' ' << std::setw(width) << (__gammargp - __gammars) / __gammars
+		<< ' ' << std::setw(width) << (__gammar - __gammars) / __gammars
     	        << '\n';
       }
   }
