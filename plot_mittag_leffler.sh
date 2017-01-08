@@ -7,6 +7,8 @@ set xzeroaxis
 set yzeroaxis
 set grid
 
+asymp(x, c) = c
+
 # Figure 1
 set title "Mittag-Leffler function E_{1/4,1}(x)"
 set xlabel "-x"
@@ -38,7 +40,8 @@ plot [0.0:5.0][0.0:400.0] \
 set title "Mittag-Leffler function |E_{3/4,1}(z)|"
 set xlabel "|z|, arg(z) = {/Symbol a}{/Symbol p}/2"
 plot [0.0:50.0][1.29:1.38] \
-                    "test_mittag_leffler.txt" index 4 using 1:2 with lines title "|E_{{/Symbol a},{/Symbol b}}(z)|"
+                    "test_mittag_leffler.txt" index 4 using 1:2 with lines title "|E_{{/Symbol a},{/Symbol b}}(z)|", \
+                    asymp(x, 4./3.) with lines title "1/{/Symbol a} = 4/3"
 
 # Figure 6
 set title "Mittag-Leffler function |E_{3/4,1}(z)|"
@@ -62,7 +65,8 @@ plot [0.0:10.0][0.00:70.00] \
 set title "Mittag-Leffler function |E_{5/4,1}(z)|"
 set xlabel "|z|, arg(z) = {/Symbol a}{/Symbol p}/2"
 plot [0.0:50.0][0.72:0.85] \
-                    "test_mittag_leffler.txt" index 8 using 1:2 with lines title "|E_{{/Symbol a},{/Symbol b}}(x)|"
+                    "test_mittag_leffler.txt" index 8 using 1:2 with lines title "|E_{{/Symbol a},{/Symbol b}}(x)|", \
+                    asymp(x, 4./5.) with lines title "1/{/Symbol a} = 4/5"
 
 # Figure 10
 set title "Mittag-Leffler function |E_{5/4,1}(z)|"
