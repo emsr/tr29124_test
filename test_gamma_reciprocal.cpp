@@ -19,8 +19,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_rec
 
 #include <bits/float128_io.h>
 
-#include <mpreal.h>
-#include <ext/math_const_mpreal.h>
+//#include <mpreal.h>
+//#include <ext/math_const_mpreal.h>
+//#include <bits/math_mpreal.h>
+//#include <bits/numeric_limits_mpreal.h>
 
   /**
    * 
@@ -330,9 +332,10 @@ template<typename _Tp>
 	      << ' ' << std::setw(width) << "delta series"
 	      << ' ' << std::setw(width) << "delta product"
     	      << '\n';
+    const auto del = _Tp{1} / _Tp{100};
     for (auto __k = -500; __k <= 1000; ++__k)
       {
-	auto __a = __k * _Tp{0.01Q};
+	auto __a = __k * del;
 	auto __gammargs = __gamma_reciprocal_series(__a);
 	auto __gammargp = __gamma_reciprocal_prod(__a);
 	auto __gammars = _Tp{1} / std::tgamma(__a);
@@ -372,9 +375,10 @@ template<typename _Tp>
 	      << ' ' << std::setw(width) << "delta 1"
 	      << ' ' << std::setw(width) << "delta 2"
     	      << '\n';
+    const auto del = _Tp{1} / _Tp{100};
     for (auto k = -100; k <= 100; ++k)
       {
-	auto mu = k * _Tp{0.01Q};
+	auto mu = k * del;
 	auto tggnu = __gamma_temme(mu);
 	auto tgstd = __gamma_temme_std(mu);
 	std::cout << ' ' << std::setw(width) << mu

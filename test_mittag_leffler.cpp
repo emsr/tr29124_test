@@ -261,6 +261,17 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_le
 	}
     }
 
+  /**
+   * Compute the derivative of the Mittag-Leffer function:
+   * @f[
+   *   E_{\alpha,\beta}(z) = \sum_{k=0}^{\infty}
+   *                       \frac{z^k}{\Gamma(\beta + \alpha k)},
+   *   \mbox{  } \alpha > 0, \beta \elem \complex, z \elem \complex
+   * @f]
+   *
+   * @see COMPUTATION OF THE MITTAG-LEFFLER FUNCTION @f$ E_{\alpha,\beta}(z) @f$
+   * AND ITS DERIVATIVE, Rudolf Gorenflo, Joulia Loutchko & Yuri Luchko
+   */
   template<typename _Tp>
     std::complex<_Tp>
     __mittag_leffler_deriv(_Tp __alpha, _Tp __beta, std::complex<_Tp> __z)
@@ -278,7 +289,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_le
 	    {
 	      const auto __D = _Tp{1}
 			     + __alpha * (__alpha - _Tp{4} * __beta + _Tp{6});
-	      const auto __omega = __alpha + __beta - _Tp{1.5Q};
+	      const auto __omega = __alpha + __beta - _Tp{3} / _Tp{2};
 	      const auto __rat = _Tp{1} + (_Tp{3} - __alpha - __beta) / __alpha;
 	      if (__D <= _Tp{0})
 		__k1 = __rat;
@@ -320,14 +331,16 @@ template<typename _Tp>
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
+    // Figure 1
     {
-      auto __alpha = _Tp{0.25Q};
-      auto __beta = _Tp{1.00Q};
+      const auto __alpha = _Tp{1} / _Tp{4};
+      const auto __beta = _Tp{1};
       std::cout << '\n';
       std::cout << '\n';
+      const auto del = _Tp{1} / _Tp{10};
       for (int i = 0; i <= 100; ++i)
 	{
-	  auto t = i * _Tp{0.1Q};
+	  auto t = i * del;
 	  auto ml_val = __mittag_leffler(__alpha, __beta, _Cmplx(-t, 0));
 	  auto ml_der = -__mittag_leffler_deriv(__alpha, __beta, _Cmplx(-t, 0));
 	  std::cout << std::setw(width) << t
@@ -338,14 +351,16 @@ template<typename _Tp>
       std::cout << std::flush;
     }
 
+    // Figure 2
     {
-      auto __alpha = _Tp{1.75Q};
-      auto __beta = _Tp{1.00Q};
+      const auto __alpha = _Tp{7} / _Tp{4};
+      const auto __beta = _Tp{1};
       std::cout << '\n';
       std::cout << '\n';
+      const auto del = _Tp{1} / _Tp{10};
       for (int i = 0; i <= 500; ++i)
 	{
-	  auto t = i * _Tp{0.1Q};
+	  auto t = i * del;
 	  auto ml_val = __mittag_leffler(__alpha, __beta, _Cmplx(-t, 0));
 	  auto ml_der = -__mittag_leffler_deriv(__alpha, __beta, _Cmplx(-t, 0));
 	  std::cout << std::setw(width) << t
@@ -356,14 +371,16 @@ template<typename _Tp>
       std::cout << std::flush;
     }
 
+    // Figure 3
     {
-      auto __alpha = _Tp{2.25Q};
-      auto __beta = _Tp{1.00Q};
+      const auto __alpha = _Tp{9} / _Tp{4};
+      const auto __beta = _Tp{1};
       std::cout << '\n';
       std::cout << '\n';
+      const auto del = _Tp{1} / _Tp{10};
       for (int i = 0; i <= 1000; ++i)
 	{
-	  auto t = i * _Tp{0.1Q};
+	  auto t = i * del;
 	  auto ml_val = __mittag_leffler(__alpha, __beta, _Cmplx(-t, 0));
 	  auto ml_der = -__mittag_leffler_deriv(__alpha, __beta, _Cmplx(-t, 0));
 	  std::cout << std::setw(width) << t
@@ -374,16 +391,18 @@ template<typename _Tp>
       std::cout << std::flush;
     }
 
+    // Figure 4
     {
-      auto __alpha = _Tp{0.75Q};
-      auto __beta = _Tp{1.00Q};
+      const auto __alpha = _Tp{3} / _Tp{4};
+      const auto __beta = _Tp{1};
       const auto _S_pi = __gnu_cxx::__const_pi(__alpha);
       const auto __phase = __alpha * _S_pi / _Tp{4};
       std::cout << '\n';
       std::cout << '\n';
+      const auto del = _Tp{1} / _Tp{10};
       for (int i = 0; i <= 50; ++i)
 	{
-	  auto z = std::polar(i * _Tp{0.1Q}, __phase);
+	  auto z = std::polar(i * del, __phase);
 	  auto ml_val = __mittag_leffler(__alpha, __beta, z);
 	  std::cout << std::setw(width) << std::abs(z)
 		    << std::setw(width) << std::abs(ml_val)
@@ -394,16 +413,18 @@ template<typename _Tp>
       std::cout << std::flush;
     }
 
+    // Figure 5
     {
-      auto __alpha = _Tp{0.75Q};
-      auto __beta = _Tp{1.00Q};
+      const auto __alpha = _Tp{3} / _Tp{4};
+      const auto __beta = _Tp{1};
       const auto _S_pi = __gnu_cxx::__const_pi(__alpha);
       const auto __phase = __alpha * _S_pi / _Tp{2};
       std::cout << '\n';
       std::cout << '\n';
+      const auto del = _Tp{1} / _Tp{10};
       for (int i = 0; i <= 500; ++i)
 	{
-	  auto z = std::polar(i * _Tp{0.1Q}, __phase);
+	  auto z = std::polar(i * del, __phase);
 	  auto ml_val = __mittag_leffler(__alpha, __beta, z);
 	  std::cout << std::setw(width) << std::abs(z)
 		    << std::setw(width) << std::abs(ml_val)
@@ -414,16 +435,18 @@ template<typename _Tp>
       std::cout << std::flush;
     }
 
+    // Figure 6
     {
-      auto __alpha = _Tp{0.75Q};
-      auto __beta = _Tp{1.00Q};
+      const auto __alpha = _Tp{3} / _Tp{4};
+      const auto __beta = _Tp{1};
       const auto _S_pi = __gnu_cxx::__const_pi(__alpha);
       const auto __phase = _Tp{3} * __alpha * _S_pi / _Tp{4};
       std::cout << '\n';
       std::cout << '\n';
+      const auto del = _Tp{1} / _Tp{10};
       for (int i = 0; i <= 500; ++i)
 	{
-	  auto z = std::polar(i * _Tp{0.1Q}, __phase);
+	  auto z = std::polar(i * del, __phase);
 	  auto ml_val = __mittag_leffler(__alpha, __beta, z);
 	  std::cout << std::setw(width) << std::abs(z)
 		    << std::setw(width) << std::abs(ml_val)
@@ -434,16 +457,18 @@ template<typename _Tp>
       std::cout << std::flush;
     }
 
+    // Figure 7
     {
-      auto __alpha = _Tp{0.75Q};
-      auto __beta = _Tp{1.00Q};
+      const auto __alpha = _Tp{3} / _Tp{4};
+      const auto __beta = _Tp{1};
       const auto _S_pi = __gnu_cxx::__const_pi(__alpha);
       const auto __phase = _S_pi;
       std::cout << '\n';
       std::cout << '\n';
+      const auto del = _Tp{1} / _Tp{10};
       for (int i = 0; i <= 200; ++i)
 	{
-	  auto z = std::polar(i * _Tp{0.1Q}, __phase);
+	  auto z = std::polar(i * del, __phase);
 	  auto ml_val = __mittag_leffler(__alpha, __beta, z);
 	  std::cout << std::setw(width) << std::abs(z)
 		    << std::setw(width) << std::abs(ml_val)
@@ -454,16 +479,18 @@ template<typename _Tp>
       std::cout << std::flush;
     }
 
+    // Figure 8
     {
-      auto __alpha = _Tp{1.25Q};
-      auto __beta = _Tp{1.00Q};
+      const auto __alpha = _Tp{5} / _Tp{4};
+      const auto __beta = _Tp{1};
       const auto _S_pi = __gnu_cxx::__const_pi(__alpha);
       const auto __phase = __alpha * _S_pi / _Tp{4};
       std::cout << '\n';
       std::cout << '\n';
+      const auto del = _Tp{1} / _Tp{10};
       for (int i = 0; i <= 100; ++i)
 	{
-	  auto z = std::polar(i * _Tp{0.1Q}, __phase);
+	  auto z = std::polar(i * del, __phase);
 	  auto ml_val = __mittag_leffler(__alpha, __beta, z);
 	  std::cout << std::setw(width) << std::abs(z)
 		    << std::setw(width) << std::abs(ml_val)
@@ -474,16 +501,18 @@ template<typename _Tp>
       std::cout << std::flush;
     }
 
+    // Figure 9
     {
-      auto __alpha = _Tp{1.25Q};
-      auto __beta = _Tp{1.00Q};
+      const auto __alpha = _Tp{5} / _Tp{4};
+      const auto __beta = _Tp{1};
       const auto _S_pi = __gnu_cxx::__const_pi(__alpha);
       const auto __phase = __alpha * _S_pi / _Tp{2};
       std::cout << '\n';
       std::cout << '\n';
+      const auto del = _Tp{1} / _Tp{10};
       for (int i = 0; i <= 500; ++i)
 	{
-	  auto z = std::polar(i * _Tp{0.1Q}, __phase);
+	  auto z = std::polar(i * del, __phase);
 	  auto ml_val = __mittag_leffler(__alpha, __beta, z);
 	  std::cout << std::setw(width) << std::abs(z)
 		    << std::setw(width) << std::abs(ml_val)
@@ -494,16 +523,18 @@ template<typename _Tp>
       std::cout << std::flush;
     }
 
+    // Figure 10
     {
-      auto __alpha = _Tp{1.25Q};
-      auto __beta = _Tp{1.00Q};
+      const auto __alpha = _Tp{5} / _Tp{4};
+      const auto __beta = _Tp{1};
       const auto _S_pi = __gnu_cxx::__const_pi(__alpha);
-      const auto __phase = _Tp{3} * __alpha * _S_pi / _Tp{2};
+      const auto __phase = _Tp{3} * __alpha * _S_pi / _Tp{4};
       std::cout << '\n';
       std::cout << '\n';
+      const auto del = _Tp{1} / _Tp{10};
       for (int i = 0; i <= 500; ++i)
 	{
-	  auto z = std::polar(i * _Tp{0.1Q}, __phase);
+	  auto z = std::polar(i * del, __phase);
 	  auto ml_val = __mittag_leffler(__alpha, __beta, z);
 	  std::cout << std::setw(width) << std::abs(z)
 		    << std::setw(width) << std::abs(ml_val)
@@ -514,16 +545,18 @@ template<typename _Tp>
       std::cout << std::flush;
     }
 
+    // Figure 11
     {
-      auto __alpha = _Tp{1.25Q};
-      auto __beta = _Tp{1.00Q};
+      const auto __alpha = _Tp{5} / _Tp{4};
+      const auto __beta = _Tp{1};
       const auto _S_pi = __gnu_cxx::__const_pi(__alpha);
       const auto __phase =  _S_pi;
       std::cout << '\n';
       std::cout << '\n';
+      const auto del = _Tp{1} / _Tp{10};
       for (int i = 0; i <= 1000; ++i)
 	{
-	  auto z = std::polar(i * _Tp{0.1Q}, __phase);
+	  auto z = std::polar(i * del, __phase);
 	  auto ml_val = __mittag_leffler(__alpha, __beta, z);
 	  std::cout << std::setw(width) << std::abs(z)
 		    << std::setw(width) << std::abs(ml_val)
