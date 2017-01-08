@@ -35,6 +35,8 @@
 # include <bits/c++0x_warning.h>
 #else
 
+#include <ext/math_const.h>
+
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
