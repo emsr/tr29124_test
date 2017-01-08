@@ -75,7 +75,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint_E1_series(_Tp __x)
     {
-      const auto __eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
       auto __term = _Tp{1};
       auto __esum = _Tp{0};
       auto __osum = _Tp{0};
@@ -84,7 +84,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  __term *= - __x / __i;
 	  if (std::abs(__term)
-		 < __eps * std::min(std::abs(__esum), std::abs(__osum)))
+		 < _S_eps * std::min(std::abs(__esum), std::abs(__osum)))
 	    break;
 	  if (__term >= _Tp{0})
 	    __esum += __term / __i;
@@ -129,7 +129,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    __osum += __term;
 	}
 
-      return std::exp(- __x) * (__esum + __osum) / __x;
+      return std::exp(-__x) * (__esum + __osum) / __x;
     }
 
 
@@ -290,13 +290,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       _Tp __term = _Tp{1};
       _Tp __sum = _Tp{0};
-      const auto __eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const unsigned int __max_iter = 1000;
       for (unsigned int __i = 1; __i < __max_iter; ++__i)
 	{
 	  __term *= __x / __i;
 	  __sum += __term / __i;
-	  if (std::abs(__term) < __eps * std::abs(__sum))
+	  if (std::abs(__term) < _S_eps * std::abs(__sum))
 	    break;
 	}
 
@@ -323,7 +323,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       _Tp __term = _Tp{1};
       _Tp __sum = _Tp{1};
-      const auto __eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const unsigned int __max_iter = 1000;
       for (unsigned int __i = 1; __i < __max_iter; ++__i)
 	{
@@ -332,7 +332,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__term) >= std::abs(__prev))
 	    break;
 	  __sum += __term;
-	  if (std::abs(__term) < __eps * std::abs(__sum))
+	  if (std::abs(__term) < _S_eps * std::abs(__sum))
 	    break;
 	}
 
@@ -355,10 +355,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint_Ei(_Tp __x)
     {
-      const auto __eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
       if (__x < _Tp{0})
 	return -__expint_E1(-__x);
-      else if (__x < -std::log(__eps))
+      else if (__x < -std::log(_S_eps))
 	return __expint_Ei_series(__x);
       else
 	return __expint_Ei_asymp(__x);
@@ -443,14 +443,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto __xpn = __x + __n;
       const auto __xpn2 = __xpn * __xpn;
-      const auto __eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
       auto __term = _Tp{1};
       auto __sum = _Tp{1};
       for (unsigned int __i = 1; __i <= __n; ++__i)
 	{
 	  auto __prev = __term;
 	  __term *= (__n - 2 * (__i - 1) * __x) / __xpn2;
-	  if (std::abs(__term) < __eps * std::abs(__sum))
+	  if (std::abs(__term) < _S_eps * std::abs(__sum))
 	    break;
 	  __sum += __term;
 	}
