@@ -103,6 +103,7 @@ ${makedir} ${ext_dir}/ellnome
 ${makedir} ${ext_dir}/factorial
 ${makedir} ${ext_dir}/fresnel_c
 ${makedir} ${ext_dir}/fresnel_s
+${makedir} ${ext_dir}/gamma_reciprocal
 ${makedir} ${ext_dir}/gegenbauer
 ${makedir} ${ext_dir}/heuman_lambda
 ${makedir} ${ext_dir}/hurwitz_zeta
@@ -186,6 +187,7 @@ ${tool} check/check_expint_en.cc          ${ext_dir}/expint/check_value.cc
 ${tool} check/check_factorial.cc          ${ext_dir}/factorial/check_value.cc
 ${tool} check/check_fresnel_c.cc          ${ext_dir}/fresnel_c/check_value.cc
 ${tool} check/check_fresnel_s.cc          ${ext_dir}/fresnel_s/check_value.cc
+${tool} check/check_gamma_reciprocal.cc   ${ext_dir}/gamma_reciprocal/check_value.cc
 ${tool} check/check_gegenbauer.cc         ${ext_dir}/gegenbauer/check_value.cc
 ${tool} check/check_heuman_lambda.cc      ${ext_dir}/heuman_lambda/check_value.cc
 ${tool} check/check_hurwitz_zeta.cc       ${ext_dir}/hurwitz_zeta/check_value.cc

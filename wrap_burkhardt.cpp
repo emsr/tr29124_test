@@ -829,23 +829,30 @@ cos_pi(double /*x*/)
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Fermi-Dirac integrals
+/// Fermi-Dirac integrals.
 double
 fermi_dirac(double /*s*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Bose-Einstein integrals
+/// Bose-Einstein integrals.
 double
 bose_einstein(double /*s*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Debye integrals
+/// Debye integrals.
 double
 debye(unsigned int /*n*/, double /*x*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Polylogarithms.
+double
+polylog(unsigned int /*n*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }

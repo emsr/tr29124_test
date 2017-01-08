@@ -1438,4 +1438,19 @@ debye(unsigned int n, double x)
     return std::numeric_limits<double>::quiet_NaN();
 }
 
+/// Polylogarithms.
+double
+polylog(unsigned int /*n*/, double /*x*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Complex polylogarithms.
+std::complex<double>
+polylog(unsigned int /*n*/, std::complex<double> /*x*/)
+{
+  const auto NaN = std::numeric_limits<double>::quiet_NaN()
+  return std::complex<double>(NaN, NaN);
+}
+
 } // namespace gsl

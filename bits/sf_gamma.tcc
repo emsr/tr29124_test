@@ -2811,6 +2811,36 @@ _S_neg_double_factorial_table[999]
 
 
   /**
+   * @brief Return the incomplete gamma functions.
+   */
+  template<typename _Tp>
+    std::pair<_Tp, _Tp>
+    __gamma(_Tp __a, _Tp __x)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__a);
+
+      if (__isnan(__a) || __isnan(__x))
+	return _S_NaN;
+
+      auto __ia = __gnu_cxx::__fp_is_integer(__a);
+      if (__ia && __ia() <= 0)
+	std::__throw_domain_error(__N("__pgamma: "
+				      "non-positive integer argument a"));
+      else if (std::real(__x) < std::real(__a + _Real{1}))
+	{
+	  auto _Pgam = __gamma_series(__a, __x).first;
+	  return std::make_pair(_Pgam, _Val{1} - _Pgam);
+	}
+      else
+	{
+	  auto _Qgam = __gamma_cont_frac(__a, __x).first;
+	  return std::make_pair(_Val{1} - _Qgam, _Qgam);
+	}
+    }
+
+  /**
    * @brief  Return the regularized lower incomplete gamma function.
    * The regularized lower incomplete gamma function is defined by
    * @f[

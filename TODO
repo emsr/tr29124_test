@@ -339,6 +339,7 @@ GSL extras has these - there was struggle there too.
     No std::exchange.
     Couldn't handle two NSDMIs and number of args.  Bug?
 
+
 carlson_std.cpp - Collisions all over.  no surprise there.
 
 78. [] Make hankel_toy_new compile.
@@ -367,10 +368,16 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 80. [] Test, fix, and ship gamma_reciprocal!
     Something's broken.
     Also, there might be other useful forms besides the series.
+    I think we're about done.
+    i wanted to try mpreal to get good coefficients.
+    Broke mpreal tring to get it to play with float128.
+    Maybe I have to let go of Q numbers in testers and stay standard.
+    I could use 'auto del = _Tp{1} / _Tp{10};' everywhere.
 
-81. [] polylog is broken for polylog_exp(real, cmplx) for first argument s=2.6.
+81. [DONE] polylog is broken for polylog_exp(real, cmplx) for first argument s=2.6.
        This impacts the derived functions bose_einstein and fermi_dirac.
        vimdiff test_polylog.txt zeta/zeta.txt
+       FIXED?
 
 82. [DONE] test_anger_weber.cpp Get integer orders working.
 
@@ -387,7 +394,6 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 86. [] Play with Bernoulli and euler polynomials computed via Fourier transforms.
        They might be fast too.
        They generalize to noninteger order.
-
 
 87. [DONE] Figure out maxint (test_maxint.cpp) and deliver it with numeric_limits.h
        ldexp(1, std::numeric_limits<Tp>::digits);
@@ -415,7 +421,42 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 
 92. [] Steal root finding tests from GSL.
 
-93. [] Gamma uses gamma_reciprocal_series!  not Lanczos or Spouge!
+93. [] Gamma uses gamma_reciprocal_series!  Not Lanczos or Spouge!
+
+94. [] Finish Mittag-Leffler
+       Now test_mittag_leffler.cpp plots look really good against that paper.
+       Nailed it!!!
+       Also get the Wright functions.
+       Line up deathmatch tests.
+       Equator should have tests for M-L at least for real arg.
+
+95. [] polyloghas tests where some of the variables don't actually change.
+       Look for ???
+       Maybe change tests in both places and see if we can agre with good numbers.
+
+96. [] Lose the Tp{0.123Q} decimals in favor of Tp fractions!
+       Make damn sure this doesn't get into specfun impls!
+       This will make mpreal integration easier too.
+
+97. [] The plots for Fermi-Dirac and Bose-Einstein look choppy.
+       I need to jump in and work on polylog.
+
+98. [DONE] test_gamma_recip - the thing that makes the coefficients should stop
+       when the last coeff is smaller than epsilon.
+       Size:
+       float       : 17
+       double      : 27
+       long double : 31
+       __float128  : 46
+     We could make a variable template and not check in the series.
+
+99. [] test_gamma_recip - The negative arg vales are completely hosed for __float128.
+	They alternate between long doublish vales (probably due to factorial)
+        and -2ish!!!  The 2-deltas are the usual wrong sign! Probably the sin_pi!
+
+100. [] Check out
+        Lazhar Fekih-Ahmed - "On the Power Series Expansion of the Reciprocal Gamma Function"
+        Probably not useful but... you never know.
 
 plot_airy.cpp
 
@@ -441,8 +482,6 @@ test_inv_erf.cpp - Finish this!
 test_inv_ibeta.cpp - Finish this!
 
 test_gamma_ratio.cpp - Finish this!
-
-test_mittag_leffler.cpp - Do something ;-)
 
 test_mpreal.cpp - Do something ;-)
 

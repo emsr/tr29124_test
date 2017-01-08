@@ -8,7 +8,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_rec
  * \frac{1}{\Gamma(1 +- \mu)}
  */
 
-#include <bits/specfun.h>
+#include <cmath>
 #include <limits>
 #include <iostream>
 #include <fstream>
@@ -33,6 +33,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_rec
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__proto));
       const auto _S_gamma_e = __gnu_cxx::__const_gamma_e(std::real(__proto));
       auto __sign = [](std::size_t __i){ return (__i & 1u) == 1u ? -1 : +1; };
       std::vector<_Real> __c;
@@ -45,6 +46,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_rec
 	    __sum += __sign(__k) * __c[__k]
 		   * (_Real{1} + std::__detail::__riemann_zeta_m_1(_Real(__j + 1 - __k)));
 	  __c.push_back((_S_gamma_e * __c[__j] + __sign(__j) * __sum) / __j);
+	  if (std::abs(__c.back()) < _S_eps)
+	    break;
 	}
       return __c;
     }
@@ -66,40 +69,59 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_rec
     _Tp
     __gamma_reciprocal_series(_Tp __a)
     {
-      static constexpr std::array<long double, 31>
+      static constexpr std::array<__float128, 50>
       _S_c
       {{
 	 0.0000000000000000000000000000000000000000Q,
 	 1.0000000000000000000000000000000000000000Q,
-	 0.5772156649015328606065120900824024310422Q,
-	-0.6558780715202538810770195151453904812798Q,
-	-0.0420026350340952355290039348754298187114Q,
-	 0.1665386113822914895017007951021052357178Q,
-	-0.0421977345555443367482083012891873913017Q,
-	-0.0096219715278769735621149216723481989754Q,
-	 0.0072189432466630995423950103404465727099Q,
-	-0.0011651675918590651121139710840183886668Q,
-	-0.0002152416741149509728157299630536478065Q,
-	 0.0001280502823881161861531986263281643234Q,
-	-0.0000201348547807882386556893914210218184Q,
-	-0.0000012504934821426706573453594738330922Q,
-	 0.0000011330272319816958823741296203307449Q,
+	 0.5772156649015328606065120900824024310432Q,
+	-0.6558780715202538810770195151453904812811Q,
+	-0.0420026350340952355290039348754298187119Q,
+	 0.1665386113822914895017007951021052357187Q,
+	-0.0421977345555443367482083012891873913015Q,
+	-0.0096219715278769735621149216723481989747Q,
+	 0.0072189432466630995423950103404465727093Q,
+	-0.0011651675918590651121139710840183886674Q,
+	-0.0002152416741149509728157299630536478063Q,
+	 0.0001280502823881161861531986263281643238Q,
+	-0.0000201348547807882386556893914210218186Q,
+	-0.0000012504934821426706573453594738330926Q,
+	 0.0000011330272319816958823741296203307448Q,
 	-0.0000002056338416977607103450154130020573Q,
-	 0.0000000061160951044814158178624986828553Q,
-	 0.0000000050020076444692229300556650480600Q,
+	 0.0000000061160951044814158178624986828556Q,
+	 0.0000000050020076444692229300556650480601Q,
 	-0.0000000011812745704870201445881265654365Q,
-	 0.0000000001043426711691100510491540332312Q,
-	 0.0000000000077822634399050712540499373114Q,
+	 0.0000000001043426711691100510491540332313Q,
+	 0.0000000000077822634399050712540499373115Q,
 	-0.0000000000036968056186422057081878158781Q,
-	 0.0000000000005100370287454475979015481323Q,
+	 0.0000000000005100370287454475979015481319Q,
 	-0.0000000000000205832605356650678322242954Q,
-	-0.0000000000000053481225394230179823700173Q,
-	 0.0000000000000012267786282382607901588938Q,
+	-0.0000000000000053481225394230179823700171Q,
+	 0.0000000000000012267786282382607901588941Q,
 	-0.0000000000000001181259301697458769513765Q,
-	 0.0000000000000000011866922547516003325798Q,
-	 0.0000000000000000014123806553180317815558Q,
-	-0.0000000000000000002298745684435370206592Q,
-	 0.0000000000000000000171440632192733743338Q,
+	 0.0000000000000000011866922547516003325796Q,
+	 0.0000000000000000014123806553180317815559Q,
+	-0.0000000000000000002298745684435370206591Q,
+	 0.0000000000000000000171440632192733743337Q,
+	 0.0000000000000000000001337351730493693114Q,
+	-0.0000000000000000000002054233551766672789Q,
+	 0.0000000000000000000000273603004860799984Q,
+	-0.0000000000000000000000017323564459105165Q,
+	-0.0000000000000000000000000236061902449928Q,
+	 0.0000000000000000000000000186498294171728Q,
+	-0.0000000000000000000000000022180956242072Q,
+	 0.0000000000000000000000000001297781974948Q,
+	 0.0000000000000000000000000000011806974748Q,
+	-0.0000000000000000000000000000011245843493Q,
+	 0.0000000000000000000000000000001277085176Q,
+	-0.0000000000000000000000000000000073914512Q,
+	 0.0000000000000000000000000000000000113476Q,
+	 0.0000000000000000000000000000000000463914Q,
+	-0.0000000000000000000000000000000000053474Q,
+	 0.0000000000000000000000000000000000003208Q,
+	-0.0000000000000000000000000000000000000044Q,
+	-0.0000000000000000000000000000000000000013Q,
+	 0.0000000000000000000000000000000000000002Q,
       }};
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
       auto __ak = _Tp{1};
@@ -129,11 +151,11 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_rec
     {
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
       const auto _S_gamma_e = __gnu_cxx::__const_gamma_e(std::real(__a));
-      const auto _S_max_iter = 1000;
+      const auto _S_max_iter = 10000;
       auto __gam = __a * std::exp(_S_gamma_e * __a);
       for (auto __k = 1u; __k < _S_max_iter; ++__k)
 	{
-	  auto __rat = __a / __k;
+	  const auto __rat = __a / _Tp(__k);
 	  __gam *= (_Tp{1} + __rat) * std::exp(-__rat);
 	  if (std::abs(__rat) < _S_eps)
 	    break;
@@ -169,7 +191,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_rec
 		return _Tp{0};
 	      else if (__n < int(std::__detail::_S_num_factorials<_Real>))
 		return _Tp{1}
-		    / static_cast<_Real>(std::__detail::_S_factorial_table[__n - 1].__factorial);
+		    / _Real(std::__detail::_S_factorial_table[__n - 1].__factorial);
 	      else
 	        {
 		  auto __k = int(std::__detail::_S_num_factorials<_Real>);
@@ -301,6 +323,27 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_rec
       return __gamma_temme_t<_Tp>{__mu, __gamp, __gamm, __gam1, __gam2};
     }
 
+
+template<typename _Tp>
+  void
+  plot_gamma_reciprocal(_Tp __proto)
+  {
+    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout << std::showpoint << std::scientific;
+    auto width = 8 + std::cout.precision();
+    const auto del = _Tp{1} / _Tp{100};
+    for (auto __k = -500; __k <= 1000; ++__k)
+      {
+	auto __a = __k * del;
+	auto __gammar = __gamma_reciprocal(__a);
+	std::cout << ' ' << std::setw(width) << __a
+		<< ' ' << std::setw(width) << __gammar
+    		<< '\n';
+      }
+    std::cout << "\n\n";
+  }
+
+
 template<typename _Tp>
   void
   test_gamma_reciprocal(_Tp __proto)
@@ -326,11 +369,13 @@ template<typename _Tp>
 
     std::cout << '\n'
 	      << ' ' << std::setw(width) << "a"
-	      << ' ' << std::setw(width) << "1/Gamma(a) ser"
-	      << ' ' << std::setw(width) << "1/Gamma(a) prod"
-	      << ' ' << std::setw(width) << "1/std::tgamma(a)"
-	      << ' ' << std::setw(width) << "delta series"
-	      << ' ' << std::setw(width) << "delta product"
+	      << ' ' << std::setw(width) << "1/G(a) ser"
+	      << ' ' << std::setw(width) << "1/G(a) prd"
+	      << ' ' << std::setw(width) << "1/std::tgm"
+	      << ' ' << std::setw(width) << "1/G(a)"
+	      << ' ' << std::setw(width) << "del ser"
+	      << ' ' << std::setw(width) << "del prd"
+	      << ' ' << std::setw(width) << "del"
     	      << '\n';
     const auto del = _Tp{1} / _Tp{100};
     for (auto __k = -500; __k <= 1000; ++__k)
@@ -338,16 +383,16 @@ template<typename _Tp>
 	auto __a = __k * del;
 	auto __gammargs = __gamma_reciprocal_series(__a);
 	auto __gammargp = __gamma_reciprocal_prod(__a);
-	auto __gammars = _Tp{1} / std::tgamma(__a);
+	auto __gammarstd = _Tp{1} / std::tgamma(__a);
 	auto __gammar = __gamma_reciprocal(__a);
 	std::cout << ' ' << std::setw(width) << __a
 		<< ' ' << std::setw(width) << __gammargs
 		<< ' ' << std::setw(width) << __gammargp
-		<< ' ' << std::setw(width) << __gammars
+		<< ' ' << std::setw(width) << __gammarstd
 		<< ' ' << std::setw(width) << __gammar
-		<< ' ' << std::setw(width) << (__gammargs - __gammars) / __gammars
-		<< ' ' << std::setw(width) << (__gammargp - __gammars) / __gammars
-		<< ' ' << std::setw(width) << (__gammar - __gammars) / __gammars
+		<< ' ' << std::setw(width) << (__gammargs - __gammarstd) / __gammarstd
+		<< ' ' << std::setw(width) << (__gammargp - __gammarstd) / __gammarstd
+		<< ' ' << std::setw(width) << (__gammar - __gammarstd) / __gammarstd
     		<< '\n';
       }
   }
@@ -401,6 +446,8 @@ template<typename _Tp>
 int
 main()
 {
+  plot_gamma_reciprocal(1.0);
+
   test_gamma_reciprocal(1.0f);
 
   test_gamma_reciprocal(1.0);
