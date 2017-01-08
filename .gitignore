@@ -155,6 +155,8 @@ debug_airy
 debug_bessel
 poly_root
 
+mpreal_gamma_recip
+
 complex_literal_arith
 diff_special_function
 diff_local_special_function
@@ -179,6 +181,7 @@ test_cmath
 test_comp_ellint_1
 test_complex_gamma
 test_complex128
+test_conf_hyperg
 test_conf_hyperg_limit
 test_const
 test_continued_fraction

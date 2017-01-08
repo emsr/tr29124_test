@@ -63,6 +63,7 @@ ${tool} ${text_dir}/expint_e1/*          ${ext_dir}/expint_e1
 ${tool} ${text_dir}/factorial/*          ${ext_dir}/factorial
 ${tool} ${text_dir}/fresnel_c/*          ${ext_dir}/fresnel_c
 ${tool} ${text_dir}/fresnel_s/*          ${ext_dir}/fresnel_s
+${tool} ${text_dir}/gamma_reciprocal/*   ${ext_dir}/gamma_reciprocal
 ${tool} ${text_dir}/gegenbauer/*         ${ext_dir}/gegenbauer
 ${tool} ${text_dir}/hurwitz_zeta/*       ${ext_dir}/hurwitz_zeta
 ${tool} ${text_dir}/hyperg/*             ${ext_dir}/hyperg

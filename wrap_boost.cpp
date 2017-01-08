@@ -823,23 +823,45 @@ cos_pi(double x)
   return boost::math::cos_pi(x);
 }
 
-/// Fermi-Dirac integrals
+/// Fermi-Dirac integrals.
 double
 fermi_dirac(double /*s*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Bose-Einstein integrals
+/// Bose-Einstein integrals.
 double
 bose_einstein(double /*s*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Debye integrals
+/// Debye integrals.
 double
 debye(unsigned int /*n*/, double /*x*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Polylogarithms.
+double
+polylog(unsigned int /*n*/, double /*x*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Complex polylogarithms.
+std::complex<double>
+polylog(unsigned int /*n*/, std::complex<double> /*x*/)
+{
+  const auto NaN = std::numeric_limits<double>::quiet_NaN()
+  return std::complex<double>(NaN, NaN);
+}
+
+/// Reciprocal gamma.
+double
+gamma_reciprocal(unsigned int /*a*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }

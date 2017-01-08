@@ -339,14 +339,23 @@ double sin_pi(double x);
 /// Reperiodized cosine.
 double cos_pi(double x);
 
-/// Fermi-Dirac integrals
+/// Fermi-Dirac integrals.
 double fermi_dirac(double s, double x);
 
-/// Bose-Einstein integrals
+/// Bose-Einstein integrals.
 double bose_einstein(double s, double x);
 
-/// Debye integrals
+/// Debye integrals.
 double debye(unsigned int n, double x);
+
+/// Polylogarithms.
+double polylog(unsigned int n, double x);
+
+/// Complex polylogarithms.
+//std::complex<double> polylog(unsigned int n, std::complex<double> x);
+
+/// Reciprocal gamma.
+double gamma_reciprocal(unsigned int a);
 
 } // namespace burkhardt
 
