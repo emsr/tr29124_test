@@ -371,7 +371,7 @@ template<typename Tp, unsigned int Num>
     Tp max_abs_frac = -Tp(1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
-  	 {
+      {
 	const Tp f = __gnu_cxx::boltzmann_pdf(data[i].mu, data[i].x);
 	const Tp f0 = data[i].f0;
 	const Tp diff = f - f0;
